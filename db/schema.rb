@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_15_122121) do
+ActiveRecord::Schema.define(version: 2018_06_16_192031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -525,6 +525,7 @@ ActiveRecord::Schema.define(version: 2018_06_15_122121) do
     t.boolean "moderator", default: false, null: false
     t.bigint "invite_id"
     t.string "remember_token"
+    t.string "chosen_languages", array: true
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

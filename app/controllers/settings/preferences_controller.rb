@@ -27,7 +27,7 @@ class Settings::PreferencesController < ApplicationController
   def user_params
     params.require(:user).permit(
       :locale,
-      filtered_languages: []
+      chosen_languages: []
     )
   end
 

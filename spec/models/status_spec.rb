@@ -259,18 +259,18 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe '.not_in_filtered_languages' do
+  describe '.in_chosen_languages' do
     context 'for accounts with language filters' do
-      let(:user) { Fabricate(:user, filtered_languages: ['en']) }
+      let(:user) { Fabricate(:user, chosen_languages: ['en']) }
 
-      it 'does not include statuses in filtered languages' do
-        status = Fabricate(:status, language: 'en')
-        expect(Status.not_in_filtered_languages(user.account)).not_to include status
+      it 'does not include statuses in not in chosen languages' do
+        status = Fabricate(:status, language: 'de')
+        expect(Status.in_chosen_languages(user.account)).not_to include status
       end
 
       it 'includes status with unknown language' do
         status = Fabricate(:status, language: nil)
-        expect(Status.not_in_filtered_languages(user.account)).to include status
+        expect(Status.in_chosen_languages(user.account)).to include status
       end
     end
   end
@@ -518,7 +518,7 @@ RSpec.describe Status, type: :model do
 
       context 'with language preferences' do
         it 'excludes statuses in languages not allowed by the account user' do
-          user = Fabricate(:user, filtered_languages: [:fr])
+          user = Fabricate(:user, chosen_languages: [:en, :es])
           @account.update(user: user)
           en_status = Fabricate(:status, language: 'en')
           es_status = Fabricate(:status, language: 'es')
@@ -531,7 +531,7 @@ RSpec.describe Status, type: :model do
         end
 
         it 'includes all languages when user does not have a setting' do
-          user = Fabricate(:user, filtered_languages: [])
+          user = Fabricate(:user, chosen_languages: nil)
           @account.update(user: user)
 
           en_status = Fabricate(:status, language: 'en')
