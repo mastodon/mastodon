@@ -5,5 +5,8 @@
     = f.input :max_uses, wrapper: :with_label, collection: [1, 5, 10, 25, 50, 100], label_method: lambda { |num| I18n.t('invites.max_uses', count: num) }, prompt: I18n.t('invites.max_uses_prompt')
     = f.input :expires_in, wrapper: :with_label, collection: [30.minutes, 1.hour, 6.hours, 12.hours, 1.day, 1.week].map(&:to_i), label_method: lambda { |i| I18n.t("invites.expires_in.#{i}") }, prompt: I18n.t('invites.expires_in_prompt')
 
+  .fields-group
+    = f.input :autofollow, wrapper: :with_label
+
   .actions
     = f.button :button, t('invites.generate'), type: :submit

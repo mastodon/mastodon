@@ -140,10 +140,6 @@ export default class ActionBar extends React.PureComponent {
         {extraInfo}
 
         <div className='account__action-bar'>
-          <div className='account__action-bar-dropdown'>
-            <DropdownMenuContainer items={menu} icon='bars' size={24} direction='right' />
-          </div>
-
           <div className='account__action-bar-links'>
             <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}`}>
               <span><FormattedMessage id='account.posts' defaultMessage='Toots' /></span>
@@ -159,6 +155,10 @@ export default class ActionBar extends React.PureComponent {
               <span><FormattedMessage id='account.followers' defaultMessage='Followers' /></span>
               <strong>{shortNumberFormat(account.get('followers_count'))}</strong>
             </Link>
+          </div>
+
+          <div className='account__action-bar-dropdown'>
+            <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
           </div>
         </div>
       </div>
