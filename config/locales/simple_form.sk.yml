@@ -1,11 +1,12 @@
+---
 sk:
   simple_form:
     hints:
       defaults:
+        autofollow: Ľudia ktorí sa zaregistrujú prostredníctvom pozvánky, ťa budú inheď následovať
         avatar: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 400x400px
         bot: Tento účet vykonáva hlavne automatizované akcie, a je pravdepodobne nespravovaný
-        digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak si obdŕžal/a
-          nejaké osobné správy kým si bol/a preč
+        digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak si obdŕžal/a nejaké osobné správy kým si bol/a preč
         display_name:
           few: Ostávajú ti <span class="name-counter">%{count}</span> znaky
           one: Ostáva ti <span class="name-counter">1</span> znak
@@ -17,27 +18,22 @@ sk:
           few: Ostávajú ti <span class="note-counter">%{count}</span> znaky
           one: Ostáva ti <span class="note-counter">1</span> znak
           other: Ostáva ti <span class="note-counter">%{count}</span> znakov
-        setting_hide_network: Koho následuješ, a kto následuje teba nebude zobrazené
-          na tvojom profile
+        setting_hide_network: Koho následuješ, a kto následuje teba nebude zobrazené na tvojom profile
         setting_noindex: Ovplyvňuje verejný profil a statusy
-        setting_theme: Toto ovplyvňuje ako Mastodon vyzerá pri prihlásení z hociakého
-          zariadenia.
-        autofollow: Ľudia ktorí sa zaregistrujú prostredníctvom pozvánky, ťa budú
-          inheď následovať
+        setting_theme: Toto ovplyvňuje ako Mastodon vyzerá pri prihlásení z hociakého zariadenia.
       imports:
         data: CSV súbor vyexportovaný z inej Mastodon inštancie
       sessions:
-        otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích
-          obnovovacích kódov:'
+        otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích obnovovacích kódov:'
       user:
-        filtered_languages: Zaškrtnuté jazyky budú pre teba vynechané z verejnej časovej
-          osi
+        filtered_languages: Zaškrtnuté jazyky budú pre teba vynechané z verejnej časovej osi
     labels:
       account:
         fields:
           name: Označenie
           value: Obsah
       defaults:
+        autofollow: Pozvi k následovaniu tvojho profilu
         avatar: Avatar
         bot: Toto je automatizovaný bot účet
         confirm_new_password: Znovu tvoje nové heslo, pre potvrdenie
@@ -62,20 +58,17 @@ sk:
         setting_default_privacy: Súkromie príspevkov
         setting_default_sensitive: Označ všetky mediálne súbory ako chúlostivé
         setting_delete_modal: Zobrazuj potvrdzovacie okno pred vymazaním toot-u
-        setting_display_sensitive_media: Vždy zobrazuj médiá ktoré sú označené ako
-          chúlostivé
+        setting_display_sensitive_media: Vždy zobrazuj médiá ktoré sú označené ako chúlostivé
         setting_hide_network: Ukri svoju sieť kontaktov
         setting_noindex: Nezaraďuj príspevky do indexu pre vyhľadávče
         setting_reduce_motion: Redukovať pohyb v animáciách
         setting_system_font_ui: Použiť základné systémové písmo
         setting_theme: Vzhľad webu
-        setting_unfollow_modal: Zobrazuj potvrdzovacie okno pred skončením sledovania
-          iného užívateľa
+        setting_unfollow_modal: Zobrazuj potvrdzovacie okno pred skončením sledovania iného užívateľa
         severity: Závažnosť
         type: Typ importu
         username: Prezývka
         username_or_email: Prezívka, alebo email
-        autofollow: Pozvi k následovaniu tvojho profilu
       interactions:
         must_be_follower: Blokovať oznámenia od užívateľov, ktorí ťa nesledujú
         must_be_following: Blokovať oboznámenia ohľadom ľudí ktorých nesleduješ
@@ -89,6 +82,6 @@ sk:
         reblog: Poslať email ak niekto re-tootne tvoj príspevok
     'no': Nie
     required:
-      mark: '*'
+      mark: "*"
       text: povinné
     'yes': Áno

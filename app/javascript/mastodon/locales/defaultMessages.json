@@ -641,24 +641,15 @@
         "id": "home.settings"
       },
       {
+        "defaultMessage": "Media Only",
+        "id": "community.column_settings.media_only"
+      },
+      {
         "defaultMessage": "Advanced",
         "id": "home.column_settings.advanced"
       }
     ],
     "path": "app/javascript/mastodon/features/community_timeline/components/column_settings.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Toots",
-        "id": "timeline.posts"
-      },
-      {
-        "defaultMessage": "Media",
-        "id": "timeline.media"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/community_timeline/components/section_headline.json"
   },
   {
     "descriptors": [
@@ -672,6 +663,47 @@
       }
     ],
     "path": "app/javascript/mastodon/features/community_timeline/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Edit profile",
+        "id": "account.edit_profile"
+      },
+      {
+        "defaultMessage": "Pinned toots",
+        "id": "navigation_bar.pins"
+      },
+      {
+        "defaultMessage": "Preferences",
+        "id": "navigation_bar.preferences"
+      },
+      {
+        "defaultMessage": "Follow requests",
+        "id": "navigation_bar.follow_requests"
+      },
+      {
+        "defaultMessage": "Favourites",
+        "id": "navigation_bar.favourites"
+      },
+      {
+        "defaultMessage": "Lists",
+        "id": "navigation_bar.lists"
+      },
+      {
+        "defaultMessage": "Blocked users",
+        "id": "navigation_bar.blocks"
+      },
+      {
+        "defaultMessage": "Hidden domains",
+        "id": "navigation_bar.domain_blocks"
+      },
+      {
+        "defaultMessage": "Muted users",
+        "id": "navigation_bar.mutes"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/action_bar.json"
   },
   {
     "descriptors": [
@@ -990,6 +1022,23 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Filter out by regular expressions",
+        "id": "home.column_settings.filter_regex"
+      },
+      {
+        "defaultMessage": "Column settings",
+        "id": "home.settings"
+      },
+      {
+        "defaultMessage": "Advanced",
+        "id": "home.column_settings.advanced"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/direct_timeline/components/column_settings.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Direct messages",
         "id": "column.direct"
       },
@@ -1119,8 +1168,20 @@
         "id": "getting_started.heading"
       },
       {
+        "defaultMessage": "Find friends from Twitter",
+        "id": "getting_started.find_friends"
+      },
+      {
+        "defaultMessage": "Invite people",
+        "id": "getting_started.invite"
+      },
+      {
         "defaultMessage": "Hotkeys",
         "id": "navigation_bar.keyboard_shortcuts"
+      },
+      {
+        "defaultMessage": "Security",
+        "id": "getting_started.security"
       },
       {
         "defaultMessage": "About this instance",
@@ -1129,6 +1190,10 @@
       {
         "defaultMessage": "Terms of service",
         "id": "getting_started.terms"
+      },
+      {
+        "defaultMessage": "Developers",
+        "id": "getting_started.developers"
       },
       {
         "defaultMessage": "Documentation",
