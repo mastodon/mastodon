@@ -526,7 +526,9 @@ ko:
       expires_at: 만료
       uses: 사용됨
     title: 초대
-  landing_strip_html: "<strong>%{name}</strong> 님은 %{link_to_root_path} 인스턴스의 사용자입니다. 계정을 가지고 있다면 팔로우 하거나 대화할 수 있습니다."
+    invited_by: '당신을 초대한 사람:'
+  landing_strip_html: <strong>%{name}</strong> 님은 %{link_to_root_path} 인스턴스의 사용자입니다.
+    계정을 가지고 있다면 팔로우 하거나 대화할 수 있습니다.
   landing_strip_signup_html: 아직 계정이 없다면 <a href="%{sign_up_path}">여기서</a> 등록할 수 있습니다.
   lists:
     errors:
