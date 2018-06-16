@@ -25,7 +25,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def note
-    Formatter.instance.simplified_format(object, custom_emojify: true)
+    Formatter.instance.simplified_format(object)
   end
 
   def url
