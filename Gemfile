@@ -66,7 +66,6 @@ gem 'pundit', '~> 1.1'
 gem 'premailer-rails'
 gem 'rack-attack', '~> 5.2'
 gem 'rack-cors', '~> 1.0', require: 'rack/cors'
-gem 'rack-timeout', '~> 0.4'
 gem 'rails-i18n', '~> 5.1'
 gem 'rails-settings-cached', '~> 0.6'
 gem 'redis', '~> 4.0', require: ['redis', 'redis/connection/hiredis']
