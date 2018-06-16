@@ -5,7 +5,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   attributes :id, :username, :acct, :display_name, :locked, :bot, :created_at,
              :note, :url, :avatar, :avatar_static, :header, :header_static,
-             :followers_count, :following_count, :statuses_count
+             :followers_count, :following_count, :statuses_count, :noindex
 
   has_one :moved_to_account, key: :moved, serializer: REST::AccountSerializer, if: :moved_and_not_nested?
   has_many :emojis, serializer: REST::CustomEmojiSerializer
@@ -46,6 +46,15 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def header_static
     full_asset_url(object.header_static_url)
+  end
+
+  def noindex
+    user = object.user
+    if user
+      user.settings["noindex"]
+    else
+      nil
+    end
   end
 
   def moved_and_not_nested?
