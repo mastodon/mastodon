@@ -3,6 +3,7 @@ ja:
   simple_form:
     hints:
       defaults:
+        autofollow: 招待から登録した人が自動的にあなたをフォローするようになります
         avatar: 2MBまでのPNG、GIF、JPGが利用可能です。400x400pxまで縮小されます
         bot: このアカウントは主に自動で動作し、人が見ていない可能性があります
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
@@ -18,14 +19,13 @@ ja:
         data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
       sessions:
         otp: '携帯電話のアプリで生成された二段階認証コードを入力するか、リカバリーコードを使用してください:'
-      user:
-        filtered_languages: 選択した言語があなたの公開タイムラインから取り除かれます
     labels:
       account:
         fields:
           name: ラベル
           value: 内容
       defaults:
+        autofollow: あなたのアカウントに招待する
         avatar: アイコン
         bot: これは BOT アカウントです
         confirm_new_password: 新しいパスワード（確認用）
@@ -36,7 +36,6 @@ ja:
         email: メールアドレス
         expires_in: 有効期限
         fields: プロフィール補足情報
-        filtered_languages: 除外する言語
         header: ヘッダー
         locale: 言語
         locked: 承認制アカウントにする

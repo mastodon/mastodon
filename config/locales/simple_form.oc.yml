@@ -3,6 +3,7 @@ oc:
   simple_form:
     hints:
       defaults:
+        autofollow: Lo monde que se marcan gràcia a l’invitacion vos segràn automaticament
         avatar: PNG, GIF o JPG. Maximum 2 Mo. Serà retalhat en 400x400px
         bot: Avisar lo monde qu’aqueste compte es pas d’una persona
         digest: Solament enviat aprèp un long moment d’inactivitat e solament s’avètz recebut de messatges personals pendent vòstra abséncia
@@ -22,14 +23,13 @@ oc:
         data: Fichièr CSV exportat d’una autra instància Mastodon
       sessions:
         otp: 'Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstra aplicacion mobil o utilizatz un de vòstres còdis de recuperacion :'
-      user:
-        filtered_languages: Las lengas seleccionadas seràn levadas de vòstre flux d’actualitat
     labels:
       account:
         fields:
           name: Nom
           value: Contengut
       defaults:
+        autofollow: Convidar a sègre vòstre compte
         avatar: Avatar
         bot: Aquò es lo compte a un robòt
         confirm_new_password: Confirmacion del nòu senhal
@@ -40,7 +40,6 @@ oc:
         email: Corrièl
         expires_in: Expira aprèp
         fields: Metadonada del perfil
-        filtered_languages: Lengas filtradas
         header: Bandièra
         locale: Lenga
         locked: Far venir lo compte privat
