@@ -35,6 +35,7 @@
 #  moderator                 :boolean          default(FALSE), not null
 #  invite_id                 :bigint(8)
 #  remember_token            :string
+#  chosen_languages          :string           is an Array
 #
 
 class User < ApplicationRecord
@@ -317,7 +318,9 @@ class User < ApplicationRecord
   private
 
   def sanitize_languages
-    filtered_languages.reject!(&:blank?)
+    return if chosen_languages.nil?
+    chosen_languages.reject!(&:blank?)
+    self.chosen_languages = nil if chosen_languages.empty?
   end
 
   def prepare_new_user!
