@@ -19,7 +19,6 @@ class ActivityPub::Adapter < ActiveModelSerializers::Adapter::Base
         'Emoji'                     => 'toot:Emoji',
         'focalPoint'                => { '@container' => '@list', '@id' => 'toot:focalPoint' },
         'featured'                  => 'toot:featured',
-        'quoteUrl'                  => 'as:quoteUrl',
         'schema'                    => 'http://schema.org#',
         'PropertyValue'             => 'schema:PropertyValue',
         'value'                     => 'schema:value',
