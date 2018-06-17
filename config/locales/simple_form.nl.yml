@@ -3,6 +3,7 @@ nl:
   simple_form:
     hints:
       defaults:
+        autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen jou automatisch
         avatar: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 400x400px
         bot: Dit is een geautomatiseerd account en wordt mogelijk niet gemonitord
         digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
@@ -22,14 +23,13 @@ nl:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       sessions:
         otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes.
-      user:
-        filtered_languages: Geselecteerde talen worden uit de lokale en globale tijdlijn verwijderd
     labels:
       account:
         fields:
           name: Label
           value: Inhoud
       defaults:
+        autofollow: Uitnodigen om jouw account te volgen
         avatar: Avatar
         bot: Dit is een bot-account
         confirm_new_password: Nieuw wachtwoord bevestigen
@@ -40,7 +40,6 @@ nl:
         email: E-mailadres
         expires_in: Vervalt na
         fields: Metadata profiel
-        filtered_languages: Gefilterde talen
         header: Omslagfoto
         locale: Taal
         locked: Maak account besloten

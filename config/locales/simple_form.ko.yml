@@ -3,6 +3,7 @@ ko:
   simple_form:
     hints:
       defaults:
+        autofollow: 이 초대를 통해 가입하는 사람은 당신을 자동으로 팔로우 하게 됩니다
         avatar: PNG, GIF 혹은 JPG. 최대 2MB. 400x400px로 다운스케일 될 것임
         bot: 사람들에게 계정이 사람이 아님을 알립니다
         digest: 오랫동안 활동하지 않았을 때 받은 멘션들에 대한 요약 받기
@@ -22,14 +23,13 @@ ko:
         data: 다른 마스토돈 인스턴스에서 추출된 CSV 파일
       sessions:
         otp: '휴대전화에서 생성 된 2단계 인증 코드를 입력하거나, 복구 코드 중 하나를 사용하세요:'
-      user:
-        filtered_languages: 선택된 언어가 공개 타임라인에서 제외 될 것입니다
     labels:
       account:
         fields:
           name: 라벨
           value: 내용
       defaults:
+        autofollow: 초대를 통한 팔로우
         avatar: 아바타
         bot: 이것은 봇 계정입니다
         confirm_new_password: 새로운 비밀번호 다시 입력
@@ -40,7 +40,6 @@ ko:
         email: 이메일 주소
         expires_in: 만료시각
         fields: 프로필 메타데이터
-        filtered_languages: 숨긴 언어들
         header: 헤더
         locale: 언어
         locked: 계정 잠금
