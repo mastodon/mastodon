@@ -1,11 +1,12 @@
----
 it:
   simple_form:
     hints:
       defaults:
         avatar: PNG, GIF o JPG. Al massimo 2MB. Verranno scalate a 400x400px
-        bot: Questo account esegue principalmente operazioni automatiche e potrebbe non essere tenuto sotto controllo da una persona
-        digest: Inviata solo dopo un lungo periodo di inattività e solo se hai ricevuto qualche messaggio personale in tua assenza
+        bot: Questo account esegue principalmente operazioni automatiche e potrebbe
+          non essere tenuto sotto controllo da una persona
+        digest: Inviata solo dopo un lungo periodo di inattività e solo se hai ricevuto
+          qualche messaggio personale in tua assenza
         display_name:
           one: <span class="name-counter">1</span> carattere rimanente
           other: <span class="name-counter">%{count}</span> caratteri rimanenti
@@ -15,15 +16,22 @@ it:
         note:
           one: <span class="note-counter">1</span> carattere rimanente
           other: <span class="note-counter">%{count}</span> caratteri rimanenti
-        setting_hide_network: Chi segui e chi segue te non saranno mostrati sul tuo profilo
-        setting_noindex: Ha effetto sul tuo profilo pubblico e sulle pagine degli status
-        setting_theme: Ha effetto sul modo in cui Mastodon verrà visualizzato quando sarai collegato da qualsiasi dispositivo.
+        setting_hide_network: Chi segui e chi segue te non saranno mostrati sul tuo
+          profilo
+        setting_noindex: Ha effetto sul tuo profilo pubblico e sulle pagine degli
+          status
+        setting_theme: Ha effetto sul modo in cui Mastodon verrà visualizzato quando
+          sarai collegato da qualsiasi dispositivo.
+        autofollow: Le persone che si iscrivono attraverso l'invito ti seguiranno
+          automaticamente
       imports:
         data: File CSV esportato da un'altra istanza di Mastodon
       sessions:
-        otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
+        otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono
+          o usa uno dei codici di recupero:'
       user:
-        filtered_languages: Le lingue selezionate verranno filtrate dalla tua timeline pubblica
+        filtered_languages: Le lingue selezionate verranno filtrate dalla tua timeline
+          pubblica
     labels:
       account:
         fields:
@@ -60,11 +68,13 @@ it:
         setting_reduce_motion: Riduci movimento nelle animazioni
         setting_system_font_ui: Usa il carattere di default del sistema
         setting_theme: Tema sito
-        setting_unfollow_modal: Mostra dialogo di conferma prima di smettere di seguire qualcuno
+        setting_unfollow_modal: Mostra dialogo di conferma prima di smettere di seguire
+          qualcuno
         severity: Severità
         type: Tipo importazione
         username: Nome utente
         username_or_email: Nome utente o email
+        autofollow: Invita a seguire il tuo account
       interactions:
         must_be_follower: Blocca notifiche dai non follower
         must_be_following: Blocca notifiche dalle persone che non segui
@@ -78,6 +88,6 @@ it:
         reblog: Invia email quando qualcuno da un boost al tuo stato
     'no': 'No'
     required:
-      mark: "*"
+      mark: '*'
       text: richiesto
     'yes': Si
