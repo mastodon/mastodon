@@ -89,7 +89,7 @@ class UserSettingsDecorator
   end
 
   def default_language_preference
-    settings['default_language']
+    settings['setting_default_language']
   end
 
   def boolean_cast_setting(key)
