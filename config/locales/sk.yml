@@ -26,7 +26,7 @@ sk:
       within_reach_title: Stále v dosahu
     generic_description: "%{domain} je jeden server v sieti"
     hosted_on: Mastodon hostovaný na %{domain}
-    learn_more: Dozvedieť sa viac
+    learn_more: Zisti viac
     other_instances: Zoznam ďalších inštancií
     source_code: Zdrojový kód
     status_count_after: príspevkov
@@ -435,10 +435,11 @@ sk:
       about_x_years: "%{count}rok"
       almost_x_years: "%{count}rok"
       half_a_minute: Práve teraz
+      less_than_x_minutes: "%{count}min"
       less_than_x_seconds: Práve teraz
       over_x_years: "%{count}rok"
       x_days: "%{count}dni"
-      x_minutes: ''
+      x_minutes: "%{count}min"
       x_months: "%{count}mesiace"
       x_seconds: "%{count}sek"
   deletes:
@@ -516,6 +517,7 @@ sk:
       '86400': 1 deň
     expires_in_prompt: Nikdy
     generate: Vygeneruj
+    invited_by: 'Bol/a si pozvan/á užívateľom:'
     max_uses:
       few: "%{count} použitia"
       one: jedno použitie

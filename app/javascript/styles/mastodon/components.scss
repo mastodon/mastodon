@@ -1211,6 +1211,10 @@ a .account__avatar {
   flex: 0 1 calc(50% - 140px);
   padding: 10px;
 
+  .icon-button {
+    vertical-align: middle;
+  }
+
   .dropdown--active {
     .dropdown__content.dropdown__right {
       left: 6px;
@@ -1230,13 +1234,14 @@ a .account__avatar {
   display: flex;
   flex: 1 1 auto;
   line-height: 18px;
+  text-align: center;
 }
 
 .account__action-bar__tab {
   text-decoration: none;
   overflow: hidden;
   flex: 0 1 80px;
-  border-left: 1px solid lighten($ui-base-color, 8%);
+  border-right: 1px solid lighten($ui-base-color, 8%);
   padding: 10px 5px;
 
   & > span {
@@ -1494,6 +1499,7 @@ a.account__display-name {
 .navigation-bar {
   padding: 10px;
   display: flex;
+  align-items: center;
   flex-shrink: 0;
   cursor: default;
   color: $darker-text-color;
@@ -1510,15 +1516,29 @@ a.account__display-name {
     text-decoration: none;
   }
 
-  .icon-button {
-    pointer-events: none;
-    opacity: 0;
+  .navigation-bar__actions {
+    position: relative;
+
+    .icon-button.close {
+      position: absolute;
+      pointer-events: none;
+      transform: scale(0.0, 1.0) translate(-100%, 0);
+      opacity: 0;
+    }
+
+    .compose__action-bar .icon-button {
+      pointer-events: auto;
+      transform: scale(1.0, 1.0) translate(0, 0);
+      opacity: 1;
+    }
   }
 }
 
 .navigation-bar__profile {
   flex: 1 1 auto;
   margin-left: 8px;
+  line-height: 20px;
+  margin-top: -1px;
   overflow: hidden;
 }
 
@@ -4794,8 +4814,6 @@ a.status-card {
   }
 }
 
-.community-timeline__section-headline,
-.public-timeline__section-headline,
 .account__section-headline {
   background: darken($ui-base-color, 4%);
   border-bottom: 1px solid lighten($ui-base-color, 8%);
@@ -4923,8 +4941,8 @@ noscript {
 
   .navigation-bar {
     & > a:first-child {
-      will-change: margin-top, margin-left, width;
-      transition: margin-top $duration $delay, margin-left $duration ($duration + $delay);
+      will-change: margin-top, margin-left, margin-right, width;
+      transition: margin-top $duration $delay, margin-left $duration ($duration + $delay), margin-right $duration ($duration + $delay);
     }
 
     & > .navigation-bar__profile-edit {
@@ -4932,9 +4950,18 @@ noscript {
       transition: margin-top $duration $delay;
     }
 
-    & > .icon-button {
-      will-change: opacity;
-      transition: opacity $duration $delay;
+    .navigation-bar__actions {
+      & > .icon-button.close {
+        will-change: opacity transform;
+        transition: opacity $duration * 0.5 $delay,
+                    transform $duration $delay;
+      }
+
+      & > .compose__action-bar .icon-button {
+        will-change: opacity transform;
+        transition: opacity $duration * 0.5 $delay + $duration * 0.5,
+                    transform $duration $delay;
+      }
     }
   }
 
@@ -4948,8 +4975,7 @@ noscript {
       padding-bottom: 0;
 
       & > a:first-child {
-        margin-top: -50px;
-        margin-left: -40px;
+        margin: -100px 10px 0 -50px;
       }
 
       .navigation-bar__profile {
@@ -4958,12 +4984,22 @@ noscript {
 
       .navigation-bar__profile-edit {
         position: absolute;
-        margin-top: -50px;
+        margin-top: -60px;
       }
 
-      .icon-button {
-        pointer-events: auto;
-        opacity: 1;
+      .navigation-bar__actions {
+        .icon-button.close {
+          pointer-events: auto;
+          opacity: 1;
+          transform: scale(1.0, 1.0) translate(0, 0);
+          bottom: 5px;
+        }
+
+        .compose__action-bar .icon-button {
+          pointer-events: none;
+          opacity: 0;
+          transform: scale(0.0, 1.0) translate(100%, 0);
+        }
       }
     }
   }
