@@ -1,4 +1,3 @@
----
 ko:
   simple_form:
     hints:
@@ -19,10 +18,14 @@ ko:
         setting_hide_network: 나를 팔로우 하는 사람들과 내가 팔로우 하는 사람들이 내 프로필에 표시되지 않게 합니다
         setting_noindex: 공개 프로필 및 각 툿페이지에 영향을 미칩니다
         setting_theme: 로그인중인 모든 디바이스에 적용되는 디자인입니다.
+        locale: 유저 인터페이스, 이메일, 푸시 알림 언어
+        setting_default_language: 작성한 툿의 언어는 자동으로 인식할 수 있지만, 언제나 정확한 건 아닙니다
       imports:
         data: 다른 마스토돈 인스턴스에서 추출된 CSV 파일
       sessions:
         otp: '휴대전화에서 생성 된 2단계 인증 코드를 입력하거나, 복구 코드 중 하나를 사용하세요:'
+      user:
+        chosen_languages: 체크하면, 선택 된 언어들만 공개 타임라인에 보여집니다
     labels:
       account:
         fields:
@@ -41,7 +44,7 @@ ko:
         expires_in: 만료시각
         fields: 프로필 메타데이터
         header: 헤더
-        locale: 언어
+        locale: 인터페이스 언어
         locked: 계정 잠금
         max_uses: 사용 횟수 제한
         new_password: 새로운 비밀번호 입력
@@ -64,6 +67,8 @@ ko:
         type: 불러오기 종류
         username: 유저 이름
         username_or_email: 유저네임 또는 이메일
+        chosen_languages: 언어 필터링
+        setting_default_language: 게시물 언어
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단
@@ -77,6 +82,6 @@ ko:
         reblog: 누군가 내 툿을 부스트 했을 때 이메일 보내기
     'no': 아니오
     required:
-      mark: "*"
+      mark: '*'
       text: 필수 항목
     'yes': 네
