@@ -6,22 +6,32 @@ import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import { expandPublicTimeline } from '../../actions/timelines';
-import { addColumn, removeColumn, moveColumn, changeColumnParams } from '../../actions/columns';
+import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
-import SectionHeadline from '../community_timeline/components/section_headline';
 import { connectPublicStream } from '../../actions/streaming';
 
 const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Federated timeline' },
 });
 
-const mapStateToProps = (state, { onlyMedia }) => ({
-  hasUnread: state.getIn(['timelines', `public${onlyMedia ? ':media' : ''}`, 'unread']) > 0,
-});
+const mapStateToProps = (state, { onlyMedia, columnId }) => {
+  const uuid = columnId;
+  const columns = state.getIn(['settings', 'columns']);
+  const index = columns.findIndex(c => c.get('uuid') === uuid);
+
+  return {
+    hasUnread: state.getIn(['timelines', `public${onlyMedia ? ':media' : ''}`, 'unread']) > 0,
+    onlyMedia: (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'public', 'other', 'onlyMedia']),
+  };
+};
 
 @connect(mapStateToProps)
 @injectIntl
 export default class PublicTimeline extends React.PureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
   static defaultProps = {
     onlyMedia: false,
@@ -89,26 +99,16 @@ export default class PublicTimeline extends React.PureComponent {
     dispatch(expandPublicTimeline({ maxId, onlyMedia }));
   }
 
-  handleHeadlineLinkClick = e => {
-    const { columnId, dispatch } = this.props;
-    const onlyMedia = /\/media$/.test(e.currentTarget.href);
-
-    dispatch(changeColumnParams(columnId, { other: { onlyMedia } }));
+  handleSettingChanged = (key, checked) => {
+    const { columnId } = this.props;
+    if (!columnId && key[0] === 'other' && key[1] === 'onlyMedia') {
+      this.context.router.history.replace(`/timelines/public${checked ? '/media' : ''}`);
+    }
   }
 
   render () {
     const { intl, columnId, hasUnread, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
-
-    const headline = (
-      <SectionHeadline
-        timelineId='public'
-        to='/timelines/public'
-        pinned={pinned}
-        onlyMedia={onlyMedia}
-        onClick={this.handleHeadlineLinkClick}
-      />
-    );
 
     return (
       <Column ref={this.setRef}>
@@ -122,12 +122,10 @@ export default class PublicTimeline extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
         >
-          <ColumnSettingsContainer />
+          <ColumnSettingsContainer onChange={this.handleSettingChanged} columnId={columnId} />
         </ColumnHeader>
 
         <StatusListContainer
-          prepend={headline}
-          alwaysPrepend
           timelineId={`public${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
           trackScroll={!pinned}
