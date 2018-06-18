@@ -7,7 +7,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
              :atom_uri, :in_reply_to_atom_uri,
              :conversation
 
-  attribute :content, unless: :language?
+  attribute :content
   attribute :content_map, if: :language?
 
   has_many :media_attachments, key: :attachment
