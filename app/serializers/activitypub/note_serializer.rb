@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ActivityPub::NoteSerializer < ActiveModel::Serializer
-  attributes :id, :type, :summary, :content,
+  attributes :id, :type, :summary, :content_map,
              :in_reply_to, :published, :url,
              :attributed_to, :to, :cc, :sensitive,
              :atom_uri, :in_reply_to_atom_uri,
@@ -22,8 +22,8 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
     object.spoiler_text.presence
   end
 
-  def content
-    Formatter.instance.format(object)
+  def content_map
+    { object.language => Formatter.instance.format(object) }
   end
 
   def in_reply_to
