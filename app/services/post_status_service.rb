@@ -31,7 +31,7 @@ class PostStatusService < BaseService
                                         spoiler_text: options[:spoiler_text] || '',
                                         visibility: options[:visibility] || account.user&.setting_default_privacy,
                                         language: language_from_option(options[:language]) || account.user&.setting_default_language&.presence || LanguageDetector.instance.detect(text, account),
-                                        application: options[:application]),
+                                        application: options[:application],
                                         quote_id: options[:quote_id])
     end
 
