@@ -1,50 +1,46 @@
+---
 pl:
   simple_form:
     hints:
       defaults:
+        autofollow: Osoby, które zarejestrują się z Twojego zaproszenia automatycznie zaczną Cię śledzić
         avatar: PNG, GIF lub JPG. Maksymalnie 2MB. Zostanie zmniejszony do 400x400px
         bot: To konto wykonuje głównie zautomatyzowane działania i może nie być monitorowane
-        digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś
-          jakąś wiadomość bezpośrednią
+        digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
         display_name:
           few: Pozostały <span class="name-counter">%{count}</span> znaki.
           many: Pozostało <span class="name-counter">%{count}</span> znaków
           one: Pozostał <span class="name-counter">1</span> znak
           other: Pozostało <span class="name-counter">%{count}</span> znaków
-        fields: Możesz ustawić maksymalnie 4 niestandardowe pola wyświetlane jako
-          tabela na Twoim profilu
+        fields: Możesz ustawić maksymalnie 4 niestandardowe pola wyświetlane jako tabela na Twoim profilu
         header: PNG, GIF lub JPG. Maksymalnie 2MB. Zostanie zmniejszony do 700x335px
+        locale: Język interfejsu, wiadomości e-mail i powiadomieniach push
         locked: Musisz akceptować prośby o śledzenie
         note:
           few: Pozostały <span class="name-counter">%{count}</span> znaki.
           many: Pozostało <span class="name-counter">%{count}</span> znaków
           one: Pozostał <span class="name-counter">1</span> znak
           other: Pozostało <span class="name-counter">%{count}</span> znaków
-        setting_hide_network: Informacje o tym, kto Cię śledzi i kogo śledzisz nie
-          będą widoczne
+        setting_default_language: Język Twoich wpisów może być wykrywany automatycznie, ale nie zawsze jest to dokładne
+        setting_hide_network: Informacje o tym, kto Cię śledzi i kogo śledzisz nie będą widoczne
         setting_noindex: Wpływa na widoczność strony profilu i Twoich wpisów
         setting_theme: Zmienia wygląd Mastodona po zalogowaniu z dowolnego urządzenia.
-        autofollow: Osoby, które zarejestrują się z Twojego zaproszenia automatycznie
-          zaczną Cię śledzić
-        locale: Język interfejsu, wiadomości e-mail i powiadomieniach push
-        setting_default_language: Język Twoich wpisów może być wykrywany automatycznie,
-          ale nie zawsze jest to dokładne
       imports:
         data: Plik CSV wyeksportowany z innej instancji Mastodona
       sessions:
-        otp: 'Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden
-          z kodów zapasowych:'
+        otp: 'Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych:'
       user:
-        chosen_languages: Jeżeli zaznaczone, tylko wpisy w wybranych językach będą
-          wyświetlane na publicznych osiach czasu
+        chosen_languages: Jeżeli zaznaczone, tylko wpisy w wybranych językach będą wyświetlane na publicznych osiach czasu
     labels:
       account:
         fields:
           name: Nazwa
           value: Zawartość
       defaults:
+        autofollow: Zapraszaj do śledzenia swojego konta
         avatar: Awatar
         bot: To konto jest prowadzone przez bota
+        chosen_languages: Filtrowanie języków
         confirm_new_password: Potwierdź nowe hasło
         confirm_password: Potwierdź hasło
         current_password: Obecne hasło
@@ -63,11 +59,11 @@ pl:
         password: Hasło
         setting_auto_play_gif: Automatycznie odtwarzaj animowane GIFy
         setting_boost_modal: Pytaj o potwierdzenie przed podbiciem
+        setting_default_language: Język wpisów
         setting_default_privacy: Widoczność wpisów
         setting_default_sensitive: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
         setting_delete_modal: Pytaj o potwierdzenie przed usunięciem wpisu
-        setting_display_sensitive_media: Zawsze oznaczaj zawartość multimedialną jako
-          wrażliwą
+        setting_display_sensitive_media: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
         setting_hide_network: Ukryj swoją sieć
         setting_noindex: Nie indeksuj mojego profilu w wyszukiwarkach internetowych
         setting_reduce_motion: Ogranicz ruch w animacjach
@@ -78,24 +74,19 @@ pl:
         type: Importowane dane
         username: Nazwa użytkownika
         username_or_email: Nazwa użytkownika lub adres e-mail
-        autofollow: Zapraszaj do śledzenia swojego konta
-        chosen_languages: Filtrowanie języków
-        setting_default_language: Język wpisów
       interactions:
         must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie śledzą
         must_be_following: Nie wyświetlaj powiadomień od osób, których nie śledzisz
-        must_be_following_dm: Nie wyświetlaj wiadomości bezpośrednich od osób, których
-          nie śledzisz
+        must_be_following_dm: Nie wyświetlaj wiadomości bezpośrednich od osób, których nie śledzisz
       notification_emails:
         digest: Wysyłaj podsumowania e-mailem
         favourite: Powiadamiaj mnie e-mailem, gdy ktoś polubi mój wpis
         follow: Powiadamiaj mnie e-mailem, gdy ktoś zacznie mnie śledzić
-        follow_request: Powiadamiaj mnie e-mailem, gdy ktoś poprosi o pozwolenie na
-          śledzenie mnie
+        follow_request: Powiadamiaj mnie e-mailem, gdy ktoś poprosi o pozwolenie na śledzenie mnie
         mention: Powiadamiaj mnie e-mailem, gdy ktoś o mnie wspomni
         reblog: Powiadamiaj mnie e-mailem, gdy ktoś podbije mój wpis
     'no': Nie
     required:
-      mark: '*'
+      mark: "*"
       text: pole wymagane
     'yes': Tak

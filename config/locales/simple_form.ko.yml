@@ -1,3 +1,4 @@
+---
 ko:
   simple_form:
     hints:
@@ -11,15 +12,15 @@ ko:
           other: <span class="name-counter">%{count}</span> 글자 남음
         fields: 당신의 프로파일에 최대 4개까지 표 형식으로 나타낼 수 있습니다
         header: PNG, GIF 혹은 JPG. 최대 2MB. 700x335px로 다운스케일 됨
+        locale: 유저 인터페이스, 이메일, 푸시 알림 언어
         locked: 수동으로 팔로워를 승인하고, 기본 툿 프라이버시 설정을 팔로워 전용으로 변경
         note:
           one: <span class="note-counter">1</span> 글자 남음
           other: <span class="note-counter">%{count}</span> 글자 남음
+        setting_default_language: 작성한 툿의 언어는 자동으로 인식할 수 있지만, 언제나 정확한 건 아닙니다
         setting_hide_network: 나를 팔로우 하는 사람들과 내가 팔로우 하는 사람들이 내 프로필에 표시되지 않게 합니다
         setting_noindex: 공개 프로필 및 각 툿페이지에 영향을 미칩니다
         setting_theme: 로그인중인 모든 디바이스에 적용되는 디자인입니다.
-        locale: 유저 인터페이스, 이메일, 푸시 알림 언어
-        setting_default_language: 작성한 툿의 언어는 자동으로 인식할 수 있지만, 언제나 정확한 건 아닙니다
       imports:
         data: 다른 마스토돈 인스턴스에서 추출된 CSV 파일
       sessions:
@@ -35,6 +36,7 @@ ko:
         autofollow: 초대를 통한 팔로우
         avatar: 아바타
         bot: 이것은 봇 계정입니다
+        chosen_languages: 언어 필터링
         confirm_new_password: 새로운 비밀번호 다시 입력
         confirm_password: 현재 비밀번호 다시 입력
         current_password: 현재 비밀번호 입력
@@ -53,6 +55,7 @@ ko:
         password: 비밀번호
         setting_auto_play_gif: 애니메이션 GIF를 자동 재생
         setting_boost_modal: 부스트 전 확인 창을 표시
+        setting_default_language: 게시물 언어
         setting_default_privacy: 툿 프라이버시
         setting_default_sensitive: 미디어를 언제나 민감한 컨텐츠로 설정
         setting_delete_modal: 툿 삭제 전 확인 창을 표시
@@ -67,8 +70,6 @@ ko:
         type: 불러오기 종류
         username: 유저 이름
         username_or_email: 유저네임 또는 이메일
-        chosen_languages: 언어 필터링
-        setting_default_language: 게시물 언어
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단
@@ -82,6 +83,6 @@ ko:
         reblog: 누군가 내 툿을 부스트 했을 때 이메일 보내기
     'no': 아니오
     required:
-      mark: '*'
+      mark: "*"
       text: 필수 항목
     'yes': 네
