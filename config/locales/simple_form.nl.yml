@@ -12,10 +12,12 @@ nl:
           other: <span class="name-counter">%{count}</span> tekens over
         fields: Je kan maximaal 4 items als een tabel op je profiel weergeven
         header: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 700x335px
+        locale: De taal van de gebruikersomgeving, e-mails en pushmeldingen
         locked: Vereist dat je handmatig volgers moet accepteren
         note:
           one: <span class="note-counter">1</span> teken over
           other: <span class="note-counter">%{count}</span> tekens over
+        setting_default_language: De taal van jouw toots kan automatisch worden gedetecteerd, maar het is niet altijd accuraat
         setting_hide_network: Wie jij volgt en wie jou volgen wordt niet op jouw profiel getoond
         setting_noindex: Heeft invloed op jouw openbare profiel en toots
         setting_theme: Heeft invloed op hoe de webapp van Mastodon eruitziet (op elk apparaat waarmee je inlogt).
@@ -23,6 +25,8 @@ nl:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       sessions:
         otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes.
+      user:
+        chosen_languages: Alleen toots in de aangevinkte talen worden op de openbare tijdlijnen getoond
     labels:
       account:
         fields:
@@ -32,6 +36,7 @@ nl:
         autofollow: Uitnodigen om jouw account te volgen
         avatar: Avatar
         bot: Dit is een bot-account
+        chosen_languages: Talen filteren
         confirm_new_password: Nieuw wachtwoord bevestigen
         confirm_password: Wachtwoord bevestigen
         current_password: Huidig wachtwoord
@@ -41,7 +46,7 @@ nl:
         expires_in: Vervalt na
         fields: Metadata profiel
         header: Omslagfoto
-        locale: Taal
+        locale: Taal van de gebruikersomgeving
         locked: Maak account besloten
         max_uses: Max. aantal keer te gebruiken
         new_password: Nieuwe wachtwoord
@@ -50,6 +55,7 @@ nl:
         password: Wachtwoord
         setting_auto_play_gif: Speel geanimeerde GIF's automatisch af
         setting_boost_modal: Vraag voor het boosten van een toot een bevestiging
+        setting_default_language: Taal van jouw toots
         setting_default_privacy: Zichtbaarheid toots
         setting_default_sensitive: Media altijd als gevoelig markeren
         setting_delete_modal: Vraag voor het verwijderen van een toot een bevestiging
