@@ -3,6 +3,7 @@ it:
   simple_form:
     hints:
       defaults:
+        autofollow: Le persone che si iscrivono attraverso l'invito ti seguiranno automaticamente
         avatar: PNG, GIF o JPG. Al massimo 2MB. Verranno scalate a 400x400px
         bot: Questo account esegue principalmente operazioni automatiche e potrebbe non essere tenuto sotto controllo da una persona
         digest: Inviata solo dopo un lungo periodo di inattività e solo se hai ricevuto qualche messaggio personale in tua assenza
@@ -22,14 +23,13 @@ it:
         data: File CSV esportato da un'altra istanza di Mastodon
       sessions:
         otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
-      user:
-        filtered_languages: Le lingue selezionate verranno filtrate dalla tua timeline pubblica
     labels:
       account:
         fields:
           name: Etichetta
           value: Contenuto
       defaults:
+        autofollow: Invita a seguire il tuo account
         avatar: Avatar
         bot: Questo account è un bot
         confirm_new_password: Conferma nuova password
@@ -40,7 +40,6 @@ it:
         email: Indirizzo email
         expires_in: Scade dopo
         fields: Metadati del profilo
-        filtered_languages: Lingue filtrate
         header: Header
         locale: Lingua
         locked: Blocca account

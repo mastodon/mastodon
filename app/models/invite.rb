@@ -11,6 +11,7 @@
 #  uses       :integer          default(0), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  autofollow :boolean          default(FALSE), not null
 #
 
 class Invite < ApplicationRecord

@@ -3,12 +3,21 @@ ar:
   simple_form:
     hints:
       defaults:
+        autofollow: سوف يتابعك تلقائيًا الأشخاص الذين يقومون بالتسجيل من خلال الدعوة
         avatar: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير 2MB. سيتم تصغيره إلى 400x400px
         bot: يُعلِم أنّ هذا الحساب لا يمثل شخصًا
         digest: تُرسَل إليك بعد مُضيّ مدة مِن خمول نشاطك و فقط إذا ما تلقيت رسائل شخصية مباشِرة أثناء فترة غيابك مِن الشبكة
+        display_name:
+          one: <span class="name-counter">1</span> حرف باق
+          other: <span class="name-counter">%{count}</span> حرف باق
         fields: يُمكنك عرض 4 عناصر على شكل جدول في ملفك الشخصي
         header: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير 2MB. سيتم تصغيره إلى 700x335px
+        locale: لغة واجهة المستخدم و الرسائل الإلكترونية و الإشعارات
         locked: يتطلب منك الموافقة يدويا على طلبات المتابعة
+        note:
+          one: <span class="note-counter">1</span> حرف باق
+          other: <span class="note-counter">%{count}</span> حرف باق
+        setting_default_language: يمكن الكشف التلقائي للّغة اللتي استخدمتها في تحرير تبويقاتك ، غيرَ أنّ العملية ليست دائما دقيقة
         setting_hide_network: الحسابات التي تُتابعها و التي تُتابِعك على حد سواء لن تُعرَض على صفحتك الشخصية
         setting_noindex: ذلك يؤثر على حالة ملفك الشخصي و صفحاتك
         setting_theme: ذلك يؤثر على الشكل الذي سيبدو عليه ماستدون عندما تقوم بالدخول مِن أي جهاز.
@@ -17,15 +26,17 @@ ar:
       sessions:
         otp: 'قم بإدخال رمز المصادقة بخطوتين الذي قام بتوليده تطبيق جهازك أو إستخدم أحد رموز النفاذ الإحتياطية :'
       user:
-        filtered_languages: سوف يتم تصفية و إخفاء اللغات المختارة من خيوطك العمومية
+        chosen_languages: لن تظهر على الخيوط العمومية إلّا التبويقات المنشورة في اللغات المختارة
     labels:
       account:
         fields:
           name: التسمية
           value: المحتوى
       defaults:
+        autofollow: إرسال دعوة لمتابعة حسابك
         avatar: الصورة الرمزية
         bot: إنّ هذا الحساب روبوت آلي
+        chosen_languages: تصفية اللغات
         confirm_new_password: تأكيد كلمة السر الجديدة
         confirm_password: تأكيد كلمة السر
         current_password: كلمة السر الحالية
@@ -34,9 +45,8 @@ ar:
         email: عنوان البريد الإلكتروني
         expires_in: تنتهي مدة صلاحيته بعد
         fields: واصفات بيانات الملف الشخصي
-        filtered_languages: اللغات التي تم تصفيتها
         header: الرأسية
-        locale: اللغة
+        locale: لغة الواجهة
         locked: تجميد الحساب
         max_uses: عدد مرات استخدام الرابط
         new_password: كلمة السر الجديدة
@@ -45,6 +55,7 @@ ar:
         password: كلمة السر
         setting_auto_play_gif: تشغيل تلقائي لِوَسائط جيف المتحركة
         setting_boost_modal: إظهار مربع حوار للتأكيد قبل ترقية أي تبويق
+        setting_default_language: لغة النشر
         setting_default_privacy: خصوصية المنشور
         setting_default_sensitive: إعتبر الوسائط دائما كمحتوى حساس
         setting_delete_modal: إظهار مربع حوار للتأكيد قبل حذف أي تبويق
