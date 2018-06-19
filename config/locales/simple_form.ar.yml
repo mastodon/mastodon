@@ -12,10 +12,12 @@ ar:
           other: <span class="name-counter">%{count}</span> حرف باق
         fields: يُمكنك عرض 4 عناصر على شكل جدول في ملفك الشخصي
         header: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير 2MB. سيتم تصغيره إلى 700x335px
+        locale: لغة واجهة المستخدم و الرسائل الإلكترونية و الإشعارات
         locked: يتطلب منك الموافقة يدويا على طلبات المتابعة
         note:
           one: <span class="note-counter">1</span> حرف باق
           other: <span class="note-counter">%{count}</span> حرف باق
+        setting_default_language: يمكن الكشف التلقائي للّغة اللتي استخدمتها في تحرير تبويقاتك ، غيرَ أنّ العملية ليست دائما دقيقة
         setting_hide_network: الحسابات التي تُتابعها و التي تُتابِعك على حد سواء لن تُعرَض على صفحتك الشخصية
         setting_noindex: ذلك يؤثر على حالة ملفك الشخصي و صفحاتك
         setting_theme: ذلك يؤثر على الشكل الذي سيبدو عليه ماستدون عندما تقوم بالدخول مِن أي جهاز.
@@ -23,6 +25,8 @@ ar:
         data: ملف CSV تم تصديره مِن مثيل خادوم ماستدون آخر
       sessions:
         otp: 'قم بإدخال رمز المصادقة بخطوتين الذي قام بتوليده تطبيق جهازك أو إستخدم أحد رموز النفاذ الإحتياطية :'
+      user:
+        chosen_languages: لن تظهر على الخيوط العمومية إلّا التبويقات المنشورة في اللغات المختارة
     labels:
       account:
         fields:
@@ -32,6 +36,7 @@ ar:
         autofollow: إرسال دعوة لمتابعة حسابك
         avatar: الصورة الرمزية
         bot: إنّ هذا الحساب روبوت آلي
+        chosen_languages: تصفية اللغات
         confirm_new_password: تأكيد كلمة السر الجديدة
         confirm_password: تأكيد كلمة السر
         current_password: كلمة السر الحالية
@@ -41,7 +46,7 @@ ar:
         expires_in: تنتهي مدة صلاحيته بعد
         fields: واصفات بيانات الملف الشخصي
         header: الرأسية
-        locale: اللغة
+        locale: لغة الواجهة
         locked: تجميد الحساب
         max_uses: عدد مرات استخدام الرابط
         new_password: كلمة السر الجديدة
@@ -50,6 +55,7 @@ ar:
         password: كلمة السر
         setting_auto_play_gif: تشغيل تلقائي لِوَسائط جيف المتحركة
         setting_boost_modal: إظهار مربع حوار للتأكيد قبل ترقية أي تبويق
+        setting_default_language: لغة النشر
         setting_default_privacy: خصوصية المنشور
         setting_default_sensitive: إعتبر الوسائط دائما كمحتوى حساس
         setting_delete_modal: إظهار مربع حوار للتأكيد قبل حذف أي تبويق

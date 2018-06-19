@@ -3,8 +3,9 @@ pl:
   simple_form:
     hints:
       defaults:
+        autofollow: Osoby, które zarejestrują się z Twojego zaproszenia automatycznie zaczną Cię śledzić
         avatar: PNG, GIF lub JPG. Maksymalnie 2MB. Zostanie zmniejszony do 400x400px
-        bot: Informuje użytkowników, że konto nie jest prowadzone przez człowieka
+        bot: To konto wykonuje głównie zautomatyzowane działania i może nie być monitorowane
         digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
         display_name:
           few: Pozostały <span class="name-counter">%{count}</span> znaki.
@@ -13,12 +14,14 @@ pl:
           other: Pozostało <span class="name-counter">%{count}</span> znaków
         fields: Możesz ustawić maksymalnie 4 niestandardowe pola wyświetlane jako tabela na Twoim profilu
         header: PNG, GIF lub JPG. Maksymalnie 2MB. Zostanie zmniejszony do 700x335px
+        locale: Język interfejsu, wiadomości e-mail i powiadomieniach push
         locked: Musisz akceptować prośby o śledzenie
         note:
           few: Pozostały <span class="name-counter">%{count}</span> znaki.
           many: Pozostało <span class="name-counter">%{count}</span> znaków
           one: Pozostał <span class="name-counter">1</span> znak
           other: Pozostało <span class="name-counter">%{count}</span> znaków
+        setting_default_language: Język Twoich wpisów może być wykrywany automatycznie, ale nie zawsze jest to dokładne
         setting_hide_network: Informacje o tym, kto Cię śledzi i kogo śledzisz nie będą widoczne
         setting_noindex: Wpływa na widoczność strony profilu i Twoich wpisów
         setting_theme: Zmienia wygląd Mastodona po zalogowaniu z dowolnego urządzenia.
@@ -26,14 +29,18 @@ pl:
         data: Plik CSV wyeksportowany z innej instancji Mastodona
       sessions:
         otp: 'Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych:'
+      user:
+        chosen_languages: Jeżeli zaznaczone, tylko wpisy w wybranych językach będą wyświetlane na publicznych osiach czasu
     labels:
       account:
         fields:
           name: Nazwa
           value: Zawartość
       defaults:
+        autofollow: Zapraszaj do śledzenia swojego konta
         avatar: Awatar
         bot: To konto jest prowadzone przez bota
+        chosen_languages: Filtrowanie języków
         confirm_new_password: Potwierdź nowe hasło
         confirm_password: Potwierdź hasło
         current_password: Obecne hasło
@@ -43,7 +50,7 @@ pl:
         expires_in: Wygaśnie po
         fields: Metadane profilu
         header: Nagłówek
-        locale: Język
+        locale: Język interfejsu
         locked: Ustaw konto jako prywatne
         max_uses: Maksymalna liczba użyć
         new_password: Nowe hasło
@@ -52,6 +59,7 @@ pl:
         password: Hasło
         setting_auto_play_gif: Automatycznie odtwarzaj animowane GIFy
         setting_boost_modal: Pytaj o potwierdzenie przed podbiciem
+        setting_default_language: Język wpisów
         setting_default_privacy: Widoczność wpisów
         setting_default_sensitive: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
         setting_delete_modal: Pytaj o potwierdzenie przed usunięciem wpisu

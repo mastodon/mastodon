@@ -455,6 +455,7 @@ ar:
     '422':
       content: فشل التحقق الآمن. ربما منعتَ كعكات الكوكيز ؟
       title: فشِل التحقق الآمن
+    '429': طلبات كثيرة جدا
     '500':
       content: نحن متأسفون، لقد حدث خطأ ما مِن جانبنا.
       title: هذه الصفحة خاطئة
@@ -476,6 +477,9 @@ ar:
     followers_count: عدد المتابِعين
     lock_link: قم بتجميد حسابك
     purge: تنحية من بين متابعيك
+    success:
+      one: جارية عملية حظر المتابِعين بسلاسة من نطاق آخر ...
+      other: جارية عملية حظر المتابِعين بسلاسة من %{count} نطاقات أخرى ...
     unlocked_warning_title: إنّ حسابك غير مقفل
   generic:
     changes_saved_msg: تم حفظ التعديلات بنجاح !
@@ -504,6 +508,7 @@ ar:
       '86400': يوم واحد
     expires_in_prompt: أبدا
     generate: توليد
+    invited_by: 'تمت دعوتك من طرف :'
     max_uses:
       one: إستعمال واحد
       other: "%{count} استخدامات"
@@ -589,7 +594,8 @@ ar:
     prompt: 'إنك  بصدد متابعة :'
   remote_unfollow:
     error: خطأ
-    title: ''
+    title: العنوان
+    unfollowed: غير متابَع
   sessions:
     activity: آخر نشاط
     browser: المتصفح
@@ -603,6 +609,7 @@ ar:
       generic: متصفح مجهول
       ie: إنترنت إكسبلورر
       micro_messenger: مايكرو ميسنجر
+      nokia: متصفح  Nokia S40 Ovi
       opera: أوبرا
       otter: أوتر
       phantom_js: فانتوم جي آس
@@ -647,17 +654,22 @@ ar:
     your_apps: تطبيقاتك
   statuses:
     attached:
+      description: 'مُرفَق : %{attached}'
       image:
-        one: ''
-        other: ''
+        one: "%{count} صورة"
+        other: "%{count} صور"
       video:
-        one: ''
-        other: ''
-    content_warning: ''
+        one: "%{count} فيديو"
+        other: "%{count} فيديوهات"
+    content_warning: 'تحذير عن المحتوى : %{warning}'
+    disallowed_hashtags:
+      one: 'يحتوي على وسم ممنوع : %{tags}'
+      other: 'يحتوي على وسوم ممنوعة : %{tags}'
+    language_detection: اكتشاف اللغة تلقائيا
     open_in_web: إفتح في الويب
     over_character_limit: تم تجاوز حد الـ %{max} حرف المسموح بها
     pin_errors:
-      limit: ''
+      limit: لقد بلغت الحد الأقصى للتبويقات المدبسة
       ownership: لا يمكن تدبيس تبويق نشره شخص آخر
       private: لا يمكن تثبيت تبويق لم يُنشر للعامة
       reblog: لا يمكن تثبيت ترقية
@@ -678,7 +690,9 @@ ar:
   terms:
     title: شروط الخدمة وسياسة الخصوصية على %{instance}
   themes:
+    contrast: تباين عالٍ
     default: ماستدون
+    mastodon-light: ماستدون (فاتح)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -702,15 +716,17 @@ ar:
       subject: نسخة بيانات حسابك جاهزة للتنزيل
       title: المغادرة بأرشيف الحساب
     welcome:
-      edit_profile_action: ''
-      explanation: ''
-      full_handle: ''
-      review_preferences_action: ''
-      subject: ''
+      edit_profile_action: تهيئة الملف الشخصي
+      explanation: ها هي بعض النصائح قبل بداية الإستخدام
+      final_action: اشرَع في النشر
+      full_handle: عنوانك الكامل
+      review_preferences_action: تعديل التفضيلات
+      subject: أهلًا بك على ماستدون
       tips: نصائح
       title: أهلاً بك، %{name} !
   users:
     invalid_email: عنوان البريد الإلكتروني غير صالح
     invalid_otp_token: رمز المصادقة بخطوتين غير صالح
+    otp_lost_help_html: إن فقدتَهُما ، يمكنك الإتصال بـ %{email}
     seamless_external_login: لقد قمت بتسجيل الدخول عبر خدمة خارجية، إنّ إعدادات الكلمة السرية و البريد الإلكتروني غير متوفرة.
     signed_in_as: 'تم تسجيل دخولك بصفة :'
