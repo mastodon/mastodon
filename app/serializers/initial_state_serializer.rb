@@ -14,6 +14,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       domain: Rails.configuration.x.local_domain,
       admin: object.admin&.id&.to_s,
       search_enabled: Chewy.enabled?,
+      invites_enabled: Setting.min_invite_role == 'user',
     }
 
     if object.current_account

@@ -283,7 +283,7 @@ ca:
         create_and_resolve: Resoldre amb nota
         create_and_unresolve: Reobrir amb nota
         delete: Esborrar
-        placeholder: Descriu les accions que s'han pres o qualsevol altra actualització d'aquest informe…
+        placeholder: Descriu les accions que s'han pres o qualsevol altra actualització relacionada…
       reopen: Reobrir informe
       report: 'Informe #%{id}'
       report_contents: Contingut
@@ -424,7 +424,7 @@ ca:
     following: 'Perfecte! Ara segueixes:'
     post_follow:
       close: O bé, pots tancar aquesta finestra.
-      return: Torna al perfil de l'usuari
+      return: Mostra el perfil de l'usuari
       web: Vés a la web
     title: Segueix %{acct}
   datetime:
@@ -514,6 +514,7 @@ ca:
       '86400': 1 dia
     expires_in_prompt: Mai
     generate: Genera
+    invited_by: 'Has estat invitat per:'
     max_uses:
       one: 1 ús
       other: "%{count} usos"
@@ -619,7 +620,7 @@ ca:
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
-      otter: Altre
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -674,6 +675,7 @@ ca:
     disallowed_hashtags:
       one: 'conté una etiqueta no permesa: %{tags}'
       other: 'conté les etiquetes no permeses: %{tags}'
+    language_detection: Detecta automàticament el llenguatge
     open_in_web: Obre en la web
     over_character_limit: Límit de caràcters de %{max} superat
     pin_errors:
@@ -776,7 +778,8 @@ ca:
     title: "%{instance} Condicions del servei i política de privadesa"
   themes:
     contrast: Alt contrast
-    default: Mastodont
+    default: Mastodon
+    mastodon-light: Mastodon (clar)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

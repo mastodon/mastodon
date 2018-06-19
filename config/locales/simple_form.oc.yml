@@ -3,6 +3,7 @@ oc:
   simple_form:
     hints:
       defaults:
+        autofollow: Lo monde que se marcan gràcia a l’invitacion vos segràn automaticament
         avatar: PNG, GIF o JPG. Maximum 2 Mo. Serà retalhat en 400x400px
         bot: Avisar lo monde qu’aqueste compte es pas d’una persona
         digest: Solament enviat aprèp un long moment d’inactivitat e solament s’avètz recebut de messatges personals pendent vòstra abséncia
@@ -11,10 +12,12 @@ oc:
           other: Demòran encara <span class="name-counter">%{count}</span> caractèrs
         fields: Podètz far veire cap a 4 elements sus vòstre perfil
         header: PNG, GIF o JPG. Maximum 2 Mo. Serà retalhada en 700x335px
+        locale: La lenga de l’interfàcia d’utilizacion, los messatges e las notificacions
         locked: Demanda qu’acceptetz manualament lo mond que vos sègon e botarà la visibilitat de vòstras publicacions coma accessiblas a vòstres seguidors solament
         note:
           one: Demòra encara <span class="name-counter">1</span> caractèr
           other: Demòran encara <span class="name-counter">%{count}</span> caractèrs
+        setting_default_language: La lenga de vòstres tuts pòt èsser detectada automaticament, mas de còps es pas corrèctament determinada
         setting_hide_network: Vòstre perfil mostrarà pas los que vos sègon e lo monde que seguètz
         setting_noindex: Aquò es destinat a vòstre perfil public e vòstra pagina d’estatuts
         setting_theme: Aquò càmbia lo tèma grafic de Mastodon quand sètz connectat qual que siasque lo periferic.
@@ -23,15 +26,17 @@ oc:
       sessions:
         otp: 'Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstra aplicacion mobil o utilizatz un de vòstres còdis de recuperacion :'
       user:
-        filtered_languages: Las lengas seleccionadas seràn levadas de vòstre flux d’actualitat
+        chosen_languages: Quand seleccionadas, solament los tuts dins las lengas triadas seràn mostrats dins vòstre flux d’actualitat
     labels:
       account:
         fields:
           name: Nom
           value: Contengut
       defaults:
+        autofollow: Convidar a sègre vòstre compte
         avatar: Avatar
         bot: Aquò es lo compte a un robòt
+        chosen_languages: Filtrar las lengas
         confirm_new_password: Confirmacion del nòu senhal
         confirm_password: Confirmatz lo nòu senhal
         current_password: Senhal actual
@@ -40,9 +45,8 @@ oc:
         email: Corrièl
         expires_in: Expira aprèp
         fields: Metadonada del perfil
-        filtered_languages: Lengas filtradas
         header: Bandièra
-        locale: Lenga
+        locale: Lenga de l’interfàcia
         locked: Far venir lo compte privat
         max_uses: Limit d’utilizacions
         new_password: Nòu senhal
@@ -51,6 +55,7 @@ oc:
         password: Senhal
         setting_auto_play_gif: Lectura automatica dels GIFS animats
         setting_boost_modal: Afichar una fenèstra de confirmacion abans de partejar un estatut
+        setting_default_language: Lenga de publicacion
         setting_default_privacy: Confidencialitat de las publicacions
         setting_default_sensitive: Totjorn marcar los mèdias coma sensibles
         setting_delete_modal: Afichar una fenèstra de confirmacion abans de suprimir un estatut

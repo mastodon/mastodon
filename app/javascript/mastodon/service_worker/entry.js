@@ -33,7 +33,7 @@ self.addEventListener('fetch', function(event) {
 
     event.respondWith(asyncResponse.then(
       response => asyncCache.then(cache => cache.put('/', response.clone()))
-                            .then(() => response),
+        .then(() => response),
       () => asyncCache.then(cache => cache.match('/'))));
   } else if (url.pathname === '/auth/sign_out') {
     const asyncResponse = fetch(event.request);
@@ -49,7 +49,7 @@ self.addEventListener('fetch', function(event) {
 
       return response;
     }));
-  } else if (storageFreeable && process.env.CDN_HOST ? url.host === process.env.CDN_HOST : url.pathname.startsWith('/system/')) {
+  } else if (storageFreeable && (ATTACHMENT_HOST ? url.host === ATTACHMENT_HOST : url.pathname.startsWith('/system/'))) {
     event.respondWith(openSystemCache().then(cache => {
       return cache.match(event.request.url).then(cached => {
         if (cached === undefined) {

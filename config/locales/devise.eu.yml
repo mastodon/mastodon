@@ -1,5 +1,82 @@
 ---
 eu:
   devise:
+    confirmations:
+      confirmed: Zure e-mail helbidea ongi baieztatu da.
+      send_instructions: E-mail mezu bat jasoko duzu minutu batzuk barru zure e-mail helbidea baieztatzeko argibideekin. Egiaztatu zure spam karpeta ez baduzu e-mail hau jasotzen.
+      send_paranoid_instructions: Zure e-mail helbidea aurretik gure datu-basean bazegoen, e-mail mezu bat jasoko duzu minutu batzuk barru zure e-mail helbidea baieztatzeko argibideekin. Egiaztatu zure spam karpeta ez baduzu e-mail hau jasotzen.
     failure:
       already_authenticated: Saioa hasi duzu jada.
+      inactive: Zure kontua ez dago oraindik aktibo.
+      invalid: Baliogabeko %{authentication_keys} edo pasahitza.
+      last_attempt: Saiakera bat geratzen zaizu zure kontua giltzapetu aurretik.
+      locked: Zure kontua giltzapetuta dago.
+      not_found_in_database: Baliogabeko %{authentication_keys} edo pasahitza.
+      timeout: Zure saioa iraungitu da. Hasi saioa berriro jarraitzeko.
+      unauthenticated: Saioa hasi edo izena eman behar duzu jarraitu aurretik.
+      unconfirmed: Zure e-mail helbidea baieztatu behar duzu jarraitu aurretik.
+    mailer:
+      confirmation_instructions:
+        action: Baieztatu e-mail helbidea
+        explanation: Kontu bat sortu duzu %{host} ostalarian e-mail helbide honekin. Aktibatzeko klik bat falta zaizu. Ez baduzu zuk sortu, ez egin ezer e-mail honekin.
+        extra_html: Egiaztatu <a href="%{terms_path}">instantziaren arauak</a> eta <a href="%{policy_path}">zerbitzuaren erabilera baldintzak</a>.
+        subject: 'Mastodon: %{instance} instantziaren argibideak baieztapenerako'
+        title: Baieztatu e-mail helbidea
+      email_changed:
+        explanation: 'Zure kontuaren e-mail helbidea honetara aldatuko da:'
+        extra: Ez baduzu e-mail helbidea aldatu, agian baten bat zure kontura sartzea lortu du. Aldatu zure pasahitza berehala edo jarri instantziako administratzailearekin kontaktuan zure kontura sartzerik ez baduzu.
+        subject: 'Mastodon: E-mail helbidea aldatuta'
+        title: E-mail helbide berria
+      password_change:
+        explanation: Zure kontuaren pasahitza aldatu da.
+        extra: Ez baduzu pasahitza aldatu, agian baten bat zure kontura sartzea lortu du. Aldatu zure pasahitza berehala edo jarri instantziako administratzailearekin kontaktuan zure kontura sartzerik ez baduzu.
+        subject: 'Mastodon: Pasahitza aldatuta'
+        title: Pasahitza aldatuta
+      reconfirmation_instructions:
+        explanation: Baieztatu helbide berria zure e-maila aldatzeko.
+        extra: Aldaketa hau ez baduzu zuk eskatu, ezikusi e-mail hau. Mastodon kontuaren e-mail helbidea ez da aldatuko goiko estekan sartzen ez bazara.
+        subject: 'Mastodon: Baieztatu %{instance} instantziarako e-mail helbidea'
+        title: Baieztatu e-mail helbidea
+      reset_password_instructions:
+        action: Aldatu pasahitza
+        explanation: Pasahitza berria eskatu duzu zure konturako.
+        extra: Ez baduzu hau eskatu, mesedez ezikusi e-mail hau. Zure pasahitza ez da aldatuko goiko estekara sartu eta berri bat sortzen ez baduzu.
+        subject: 'Mastodon: Pasahitza berrezartzeko argibideak'
+        title: Pasahitza berrezartzea
+      unlock_instructions:
+        subject: 'Mastodon: Desblokeatzeko argibideak'
+    omniauth_callbacks:
+      failure: Ezin izan zaizu %{kind} motatik autentifikatu arrazoia "%{reason}" dela.
+      success: Ongi egin da autentifikazioa %{kind}  kontuarekin.
+    passwords:
+      no_token: Ezin zara orri honetara sartu ez bazatoz pasahitza aldatzeko e-mail batetik. Pasahitza aldatzeko e-mail batetik bazatoz egiaztatu emandako URL osoa erabiltzen duzula mesedez.
+      send_instructions: Zure e-mail helbidea gure datu-basean badago, pasahitza berreskuratzeko esteka bat duen e-mail bat jasoko duzu minutu gutxi barru. Egiaztatu spam karpeta e-mail hau jasotzen ez baduzu.
+      send_paranoid_instructions: Zure e-mail helbidea gure datu-basean badago, pasahitza berreskuratzeko esteka bat duen e-mail bat jasoko duzu minutu gutxi barru. Egiaztatu spam karpeta e-mail hau jasotzen ez baduzu.
+      updated: Zure pasahitza ongi aldatu da. Saioa hasi duzu.
+      updated_not_active: Zure pasahitza ongi aldatu da.
+    registrations:
+      destroyed: Agur! Zure kontua ongi ezeztatu da. Ea laster berriro ikusten garen.
+      signed_up: Ongi etorri! Ongi hasi duzu saioa.
+      signed_up_but_inactive: Ongi eman duzu izena. Hala ere, ezin duzu saioa hasi zure kontua oraindik ez dagoelako aktibatuta.
+      signed_up_but_locked: Ongi eman duzu izena. Hala ere, ezin duzu saioa hasi zure kontua giltzapetuta dagoelako.
+      signed_up_but_unconfirmed: Baieztapen esteka bat duen e-mail bidali zaizu. Jarraitu esteka zure kontua aktibatzeko. Egiaztatu spam karpeta ez baduzu e-mail hau jaso.
+      update_needs_confirmation: Zure kontua ongi eguneratu duzu, baina zure email helbide berria egiaztatu behar dugu. Baieztapen esteka bat duen e-mail bidali zaizu, jarraitu esteka zure e-mal helbide berria baieztatzeko. Egiaztatu spam karpeta ez baduzu e-mail hau jaso.
+      updated: Zure kontua ongi eguneratu da.
+    sessions:
+      already_signed_out: Ongi amaitu duzu saioa.
+      signed_in: Ongi hasi duzu saioa.
+      signed_out: Ongi amaitu duzu saioa.
+    unlocks:
+      send_instructions: Kontua desblokeatzeko argibideak dituen e-mail jasoko duzu minutu gutxi barru. Egiaztatu spam karpeta ez baduzu e-mail hau jaso.
+      send_paranoid_instructions: Zure kontua existitzen bada, hau desblokeatzeko argibideak dituen e-mail bat jasoko duzu minutu gutxi barru. Egiaztatu spam karpeta ez baduzu mezu hau jasotzen.
+      unlocked: Zure kontua ongi desblokeatu da. Hasi saioa jarraitzeko.
+  errors:
+    messages:
+      already_confirmed: ba<zegoen baieztatuta, saiatu saioa hasten
+      confirmation_period_expired: baieztapena %{period} barruan egin behar zen, eskatu berri bat mesedez
+      expired: iraungitua, eskatu beste bat
+      not_found: ez da aurkitu
+      not_locked: ez zegoen giltzapetuta
+      not_saved:
+        one: 'Errore batek %{resource} hau gordetzea eragotzi du:'
+        other: "%{count} errorek %{resource} hau gordetzea eragotzi dute:"

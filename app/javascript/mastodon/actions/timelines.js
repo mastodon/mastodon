@@ -13,21 +13,9 @@ export const TIMELINE_SCROLL_TOP = 'TIMELINE_SCROLL_TOP';
 
 export const TIMELINE_DISCONNECT = 'TIMELINE_DISCONNECT';
 
-export const TIMELINE_CONTEXT_UPDATE = 'CONTEXT_UPDATE';
-
 export function updateTimeline(timeline, status) {
   return (dispatch, getState) => {
     const references = status.reblog ? getState().get('statuses').filter((item, itemId) => (itemId === status.reblog.id || item.get('reblog') === status.reblog.id)).map((_, itemId) => itemId) : [];
-    const parents = [];
-
-    if (status.in_reply_to_id) {
-      let parent = getState().getIn(['statuses', status.in_reply_to_id]);
-
-      while (parent && parent.get('in_reply_to_id')) {
-        parents.push(parent.get('id'));
-        parent = getState().getIn(['statuses', parent.get('in_reply_to_id')]);
-      }
-    }
 
     dispatch(importFetchedStatus(status));
 
@@ -37,14 +25,6 @@ export function updateTimeline(timeline, status) {
       status,
       references,
     });
-
-    if (parents.length > 0) {
-      dispatch({
-        type: TIMELINE_CONTEXT_UPDATE,
-        status,
-        references: parents,
-      });
-    }
   };
 };
 

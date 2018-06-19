@@ -75,7 +75,7 @@ export default class Compose extends React.PureComponent {
       const { columns } = this.props;
       header = (
         <nav className='drawer__header'>
-          <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)} aria-label={intl.formatMessage(messages.start)}><i role='img' className='fa fa-fw fa-asterisk' /></Link>
+          <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)} aria-label={intl.formatMessage(messages.start)}><i role='img' className='fa fa-fw fa-bars' /></Link>
           {!columns.some(column => column.get('id') === 'HOME') && (
             <Link to='/timelines/home' className='drawer__tab' title={intl.formatMessage(messages.home_timeline)} aria-label={intl.formatMessage(messages.home_timeline)}><i role='img' className='fa fa-fw fa-home' /></Link>
           )}
@@ -101,7 +101,7 @@ export default class Compose extends React.PureComponent {
         {(multiColumn || isSearchPage) && <SearchContainer /> }
 
         <div className='drawer__pager'>
-          <div className='drawer__inner' onFocus={this.onFocus}>
+          {!isSearchPage && <div className='drawer__inner' onFocus={this.onFocus}>
             <NavigationContainer onClose={this.onBlur} />
             <ComposeFormContainer />
             {multiColumn && (
@@ -109,7 +109,7 @@ export default class Compose extends React.PureComponent {
                 <img alt='' draggable='false' src={elephantUIPlane} />
               </div>
             )}
-          </div>
+          </div>}
 
           <Motion defaultStyle={{ x: isSearchPage ? 0 : -100 }} style={{ x: spring(showSearch || isSearchPage ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
             {({ x }) => (

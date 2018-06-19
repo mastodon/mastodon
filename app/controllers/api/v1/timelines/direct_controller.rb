@@ -23,15 +23,18 @@ class Api::V1::Timelines::DirectController < Api::BaseController
   end
 
   def direct_statuses
-    direct_timeline_statuses.paginate_by_max_id(
-      limit_param(DEFAULT_STATUSES_LIMIT),
-      params[:max_id],
-      params[:since_id]
-    )
+    direct_timeline_statuses
   end
 
   def direct_timeline_statuses
-    Status.as_direct_timeline(current_account)
+    # this query requires built in pagination.
+    Status.as_direct_timeline(
+      current_account,
+      limit_param(DEFAULT_STATUSES_LIMIT),
+      params[:max_id],
+      params[:since_id],
+      true # returns array of cache_ids object
+    )
   end
 
   def insert_pagination_headers

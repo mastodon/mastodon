@@ -251,7 +251,7 @@
 
   .compose-form__warning {
     color: $inverted-text-color;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     background: $ui-primary-color;
     box-shadow: 0 2px 6px rgba($base-shadow-color, 0.3);
     padding: 8px 10px;
@@ -296,6 +296,19 @@
   .autosuggest-textarea,
   .spoiler-input {
     position: relative;
+  }
+
+  .spoiler-input {
+    height: 0;
+    transform-origin: bottom;
+    opacity: 0.0;
+    transition: all 0.4s ease;
+
+    &.spoiler-input--visible {
+      height: 47px;
+      opacity: 1.0;
+      transition: all 0.4s ease;
+    }
   }
 
   .autosuggest-textarea__textarea,
@@ -425,7 +438,7 @@
 
         .icon-button {
           flex: 0 1 auto;
-          color: $action-button-color;
+          color: $secondary-text-color;
           font-size: 14px;
           font-weight: 500;
           padding: 10px;
@@ -434,7 +447,7 @@
           &:hover,
           &:focus,
           &:active {
-            color: lighten($action-button-color, 7%);
+            color: lighten($secondary-text-color, 7%);
           }
         }
 
@@ -569,9 +582,8 @@
 }
 
 .reply-indicator {
-  border-radius: 4px 4px 0 0;
-  position: relative;
-  bottom: -2px;
+  border-radius: 4px;
+  margin-bottom: 10px;
   background: $ui-primary-color;
   padding: 10px;
 }
@@ -1199,6 +1211,10 @@ a .account__avatar {
   flex: 0 1 calc(50% - 140px);
   padding: 10px;
 
+  .icon-button {
+    vertical-align: middle;
+  }
+
   .dropdown--active {
     .dropdown__content.dropdown__right {
       left: 6px;
@@ -1218,13 +1234,14 @@ a .account__avatar {
   display: flex;
   flex: 1 1 auto;
   line-height: 18px;
+  text-align: center;
 }
 
 .account__action-bar__tab {
   text-decoration: none;
   overflow: hidden;
   flex: 0 1 80px;
-  border-left: 1px solid lighten($ui-base-color, 8%);
+  border-right: 1px solid lighten($ui-base-color, 8%);
   padding: 10px 5px;
 
   & > span {
@@ -1373,9 +1390,8 @@ a.account__display-name {
 }
 
 .notification__message {
-  margin-left: 68px;
-  padding: 8px 0;
-  padding-bottom: 0;
+  margin: 0 10px 0 68px;
+  padding: 8px 0 0;
   cursor: default;
   color: $darker-text-color;
   font-size: 15px;
@@ -1483,6 +1499,7 @@ a.account__display-name {
 .navigation-bar {
   padding: 10px;
   display: flex;
+  align-items: center;
   flex-shrink: 0;
   cursor: default;
   color: $darker-text-color;
@@ -1499,15 +1516,29 @@ a.account__display-name {
     text-decoration: none;
   }
 
-  .icon-button {
-    pointer-events: none;
-    opacity: 0;
+  .navigation-bar__actions {
+    position: relative;
+
+    .icon-button.close {
+      position: absolute;
+      pointer-events: none;
+      transform: scale(0.0, 1.0) translate(-100%, 0);
+      opacity: 0;
+    }
+
+    .compose__action-bar .icon-button {
+      pointer-events: auto;
+      transform: scale(1.0, 1.0) translate(0, 0);
+      opacity: 1;
+    }
   }
 }
 
 .navigation-bar__profile {
   flex: 1 1 auto;
   margin-left: 8px;
+  line-height: 20px;
+  margin-top: -1px;
   overflow: hidden;
 }
 
@@ -1664,24 +1695,6 @@ a.account__display-name {
   vertical-align: middle;
 }
 
-.static-content {
-  padding: 10px;
-  padding-top: 20px;
-  color: $dark-text-color;
-
-  h1 {
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 40px;
-    text-align: center;
-  }
-
-  p {
-    font-size: 13px;
-    margin-bottom: 20px;
-  }
-}
-
 .columns-area {
   display: flex;
   flex: 1 1 auto;
@@ -1773,6 +1786,8 @@ a.account__display-name {
     margin-bottom: 0;
   }
 
+  .getting-started__wrapper,
+  .getting-started__trends,
   .search {
     margin-bottom: 10px;
   }
@@ -2176,25 +2191,82 @@ a.account__display-name {
 }
 
 .getting-started__wrapper,
-.getting_started {
+.getting-started,
+.flex-spacer {
   background: $ui-base-color;
 }
 
 .getting-started__wrapper {
-  position: relative;
-  overflow-y: auto;
+  flex: 0 0 auto;
+}
+
+.flex-spacer {
+  flex: 1 1 auto;
 }
 
 .getting-started {
-  background: $ui-base-color;
-  flex: 1 0 auto;
+  color: $dark-text-color;
 
   p {
-    color: $secondary-text-color;
+    color: $dark-text-color;
+    font-size: 13px;
+    margin-bottom: 20px;
+
+    a {
+      color: $dark-text-color;
+      text-decoration: underline;
+    }
   }
 
   a {
-    color: $dark-text-color;
+    text-decoration: none;
+    color: $darker-text-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+
+  &__footer {
+    flex: 0 0 auto;
+    padding: 10px;
+    padding-top: 20px;
+
+    ul {
+      margin-bottom: 10px;
+    }
+
+    ul li {
+      display: inline;
+    }
+  }
+
+  &__trends {
+    background: $ui-base-color;
+    flex: 0 1 auto;
+
+    @media screen and (max-height: 810px) {
+      .trends__item:nth-child(3) {
+        display: none;
+      }
+    }
+
+    @media screen and (max-height: 720px) {
+      .trends__item:nth-child(2) {
+        display: none;
+      }
+    }
+
+    @media screen and (max-height: 670px) {
+      display: none;
+    }
+  }
+
+  &__scrollable {
+    max-height: 100%;
+    overflow-y: auto;
   }
 }
 
@@ -2421,8 +2493,10 @@ a.status-card {
   line-height: inherit;
   margin: 0;
   padding: 15px;
+  box-sizing: border-box;
   width: 100%;
   clear: both;
+  text-decoration: none;
 
   &:hover {
     background: lighten($ui-base-color, 2%);
@@ -3285,6 +3359,15 @@ a.status-card {
 }
 
 .search__icon {
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &::-moz-focus-inner,
+  &:focus {
+    outline: 0 !important;
+  }
+
   .fa {
     position: absolute;
     top: 10px;
@@ -3334,40 +3417,33 @@ a.status-card {
 .search-results__header {
   color: $dark-text-color;
   background: lighten($ui-base-color, 2%);
-  border-bottom: 1px solid darken($ui-base-color, 4%);
-  padding: 15px 10px;
-  font-size: 14px;
+  padding: 15px;
   font-weight: 500;
+  font-size: 16px;
+  cursor: default;
+
+  .fa {
+    display: inline-block;
+    margin-right: 5px;
+  }
 }
 
 .search-results__section {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 
   h5 {
-    position: relative;
+    background: darken($ui-base-color, 4%);
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    cursor: default;
+    display: flex;
+    padding: 15px;
+    font-weight: 500;
+    font-size: 16px;
+    color: $dark-text-color;
 
-    &::before {
-      content: "";
-      display: block;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 50%;
-      width: 100%;
-      height: 0;
-      border-top: 1px solid lighten($ui-base-color, 8%);
-    }
-
-    span {
+    .fa {
       display: inline-block;
-      background: $ui-base-color;
-      color: $darker-text-color;
-      font-size: 14px;
-      font-weight: 500;
-      padding: 10px;
-      position: relative;
-      z-index: 1;
-      cursor: default;
+      margin-right: 5px;
     }
   }
 
@@ -4499,7 +4575,7 @@ a.status-card {
     height: 100%;
     z-index: 4;
     border: 0;
-    background: $base-shadow-color;
+    background: $base-overlay-background;
     color: $darker-text-color;
     transition: none;
     pointer-events: none;
@@ -4738,8 +4814,6 @@ a.status-card {
   }
 }
 
-.community-timeline__section-headline,
-.public-timeline__section-headline,
 .account__section-headline {
   background: darken($ui-base-color, 4%);
   border-bottom: 1px solid lighten($ui-base-color, 8%);
@@ -4867,8 +4941,8 @@ noscript {
 
   .navigation-bar {
     & > a:first-child {
-      will-change: margin-top, margin-left, width;
-      transition: margin-top $duration $delay, margin-left $duration ($duration + $delay);
+      will-change: margin-top, margin-left, margin-right, width;
+      transition: margin-top $duration $delay, margin-left $duration ($duration + $delay), margin-right $duration ($duration + $delay);
     }
 
     & > .navigation-bar__profile-edit {
@@ -4876,9 +4950,18 @@ noscript {
       transition: margin-top $duration $delay;
     }
 
-    & > .icon-button {
-      will-change: opacity;
-      transition: opacity $duration $delay;
+    .navigation-bar__actions {
+      & > .icon-button.close {
+        will-change: opacity transform;
+        transition: opacity $duration * 0.5 $delay,
+                    transform $duration $delay;
+      }
+
+      & > .compose__action-bar .icon-button {
+        will-change: opacity transform;
+        transition: opacity $duration * 0.5 $delay + $duration * 0.5,
+                    transform $duration $delay;
+      }
     }
   }
 
@@ -4892,8 +4975,7 @@ noscript {
       padding-bottom: 0;
 
       & > a:first-child {
-        margin-top: -50px;
-        margin-left: -40px;
+        margin: -100px 10px 0 -50px;
       }
 
       .navigation-bar__profile {
@@ -4902,12 +4984,22 @@ noscript {
 
       .navigation-bar__profile-edit {
         position: absolute;
-        margin-top: -50px;
+        margin-top: -60px;
       }
 
-      .icon-button {
-        pointer-events: auto;
-        opacity: 1;
+      .navigation-bar__actions {
+        .icon-button.close {
+          pointer-events: auto;
+          opacity: 1;
+          transform: scale(1.0, 1.0) translate(0, 0);
+          bottom: 5px;
+        }
+
+        .compose__action-bar .icon-button {
+          pointer-events: none;
+          opacity: 0;
+          transform: scale(0.0, 1.0) translate(100%, 0);
+        }
       }
     }
   }
@@ -5208,5 +5300,83 @@ noscript {
     flex: 1 1 auto;
     color: $primary-text-color;
     background: $ui-base-color;
+  }
+}
+
+.trends {
+  &__header {
+    color: $dark-text-color;
+    background: lighten($ui-base-color, 2%);
+    border-bottom: 1px solid darken($ui-base-color, 4%);
+    font-weight: 500;
+    padding: 15px;
+    font-size: 16px;
+    cursor: default;
+
+    .fa {
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &__name {
+      flex: 1 1 auto;
+      color: $dark-text-color;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      strong {
+        font-weight: 500;
+      }
+
+      a {
+        color: $darker-text-color;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:hover,
+        &:focus,
+        &:active {
+          span {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    &__current {
+      flex: 0 0 auto;
+      width: 100px;
+      font-size: 24px;
+      line-height: 36px;
+      font-weight: 500;
+      text-align: center;
+      color: $secondary-text-color;
+    }
+
+    &__sparkline {
+      flex: 0 0 auto;
+      width: 50px;
+
+      path {
+        stroke: lighten($highlight-text-color, 6%) !important;
+      }
+    }
   }
 }

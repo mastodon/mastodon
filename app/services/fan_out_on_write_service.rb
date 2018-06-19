@@ -38,7 +38,7 @@ class FanOutOnWriteService < BaseService
   def deliver_to_followers(status)
     Rails.logger.debug "Delivering status #{status.id} to followers"
 
-    status.account.followers.where(domain: nil).joins(:user).where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago).select(:id).reorder(nil).find_in_batches do |followers|
+    status.account.followers_for_local_distribution.select(:id).reorder(nil).find_in_batches do |followers|
       FeedInsertWorker.push_bulk(followers) do |follower|
         [status.id, follower.id, :home]
       end
@@ -48,7 +48,7 @@ class FanOutOnWriteService < BaseService
   def deliver_to_lists(status)
     Rails.logger.debug "Delivering status #{status.id} to lists"
 
-    status.account.lists.joins(account: :user).where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago).select(:id).reorder(nil).find_in_batches do |lists|
+    status.account.lists_for_local_distribution.select(:id).reorder(nil).find_in_batches do |lists|
       FeedInsertWorker.push_bulk(lists) do |list|
         [status.id, list.id, :list]
       end

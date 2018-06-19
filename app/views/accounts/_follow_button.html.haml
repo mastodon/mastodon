@@ -15,6 +15,11 @@
         = link_to (account.local? ? account_follow_path(account) : authorize_follow_path(acct: account.acct)), data: { method: :post }, class: 'icon-button' do
           = fa_icon 'user-plus'
           = t('accounts.follow')
+  - elsif user_signed_in? && current_account.id == account.id
+    .controls
+      = link_to settings_profile_url, class: 'icon-button' do
+        = fa_icon 'pencil'
+        = t('settings.edit_profile')
   - elsif !user_signed_in?
     .controls
       .remote-follow

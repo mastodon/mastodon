@@ -314,6 +314,10 @@ Rails.application.routes.draw do
       end
     end
 
+    namespace :v2 do
+      get '/search', to: 'search#index', as: :search
+    end
+
     namespace :web do
       resource :settings, only: [:update]
       resource :embed, only: [:create]
