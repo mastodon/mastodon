@@ -1,12 +1,14 @@
----
 gl:
   simple_form:
     hints:
       defaults:
-        autofollow: As persoas que se conectaron a través de un convite seguirana automáticamente a vostede
+        autofollow: As persoas que se conectaron a través de un convite seguirana
+          automáticamente a vostede
         avatar: PNG, GIF ou JPG.  Máximo 2MB. Será reducida a 400x400px
-        bot: Esta conta realiza principalmente accións automatizadas e podería non estar monitorizada
-        digest: Enviar só tras un longo período de inactividade e só si recibeu algunha mensaxe personal na súa ausencia
+        bot: Esta conta realiza principalmente accións automatizadas e podería non
+          estar monitorizada
+        digest: Enviar só tras un longo período de inactividade e só si recibeu algunha
+          mensaxe personal na súa ausencia
         display_name:
           one: <span class="name-counter">1</span> caracter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
@@ -16,13 +18,22 @@ gl:
         note:
           one: <span class="note-counter">1</span> caracter restante
           other: <span class="note-counter">%{count}</span> caracteres restantes
-        setting_hide_network: Non se mostrará no seu perfil quen a segue e quen a está a seguir
+        setting_hide_network: Non se mostrará no seu perfil quen a segue e quen a
+          está a seguir
         setting_noindex: Afecta ao seu perfil público e páxinas de estado
-        setting_theme: Afecta ao aspecto de Mastodon en calquer dispositivo cando está conectada.
+        setting_theme: Afecta ao aspecto de Mastodon en calquer dispositivo cando
+          está conectada.
+        locale: O idioma da interface de usuaria, correos e notificacións
+        setting_default_language: Pódese detectar automáticamente o idioma dos seus
+          toots, mais non sempre é preciso
       imports:
         data: Ficheiro CSV exportado desde outra instancia Mastodon
       sessions:
-        otp: Introduza o código de doble-factor xerado no aplicativo do seu móbil ou utilice un dos seus códigos de recuperación.
+        otp: Introduza o código de doble-factor xerado no aplicativo do seu móbil
+          ou utilice un dos seus códigos de recuperación.
+      user:
+        chosen_languages: Si se marca, só os toots nos idiomas seleccionados serán
+          mostrados en liñas temporais públicas
     labels:
       account:
         fields:
@@ -41,7 +52,7 @@ gl:
         expires_in: Caducidade despois de
         fields: Metadatos do perfil
         header: Cabeceira
-        locale: Idioma
+        locale: Idioma da interface
         locked: Protexer conta
         max_uses: Número máximo de usos
         new_password: Novo contrasinal
@@ -64,19 +75,22 @@ gl:
         type: Tipo de importación
         username: Nome de usuaria
         username_or_email: Nome de usuaria ou Correo-e
+        chosen_languages: Filtrar idiomas
+        setting_default_language: Idioma de publicación
       interactions:
         must_be_follower: Bloquear as notificacións de non-seguidoras
         must_be_following: Bloquea as notificacións de personas que non segue
         must_be_following_dm: Bloquea as mensaxes directas de personas que non segue
       notification_emails:
         digest: Enviar correos con resumos
-        favourite: Enviar un correo cando alguén marca como favorita unha das súas publicacións
+        favourite: Enviar un correo cando alguén marca como favorita unha das súas
+          publicacións
         follow: Enviar un correo cando alguén a segue
         follow_request: Enviar un correo cando alguén solicita seguila
         mention: Enviar un correo cando alguén a menciona
         reblog: Enviar un correo cando alguén promociona a súa mensaxe
     'no': Non
     required:
-      mark: "*"
+      mark: '*'
       text: requerido
     'yes': Si
