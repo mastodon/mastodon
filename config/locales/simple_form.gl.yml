@@ -3,6 +3,7 @@ gl:
   simple_form:
     hints:
       defaults:
+        autofollow: As persoas que se conectaron a través de un convite seguirana automáticamente a vostede
         avatar: PNG, GIF ou JPG.  Máximo 2MB. Será reducida a 400x400px
         bot: Esta conta realiza principalmente accións automatizadas e podería non estar monitorizada
         digest: Enviar só tras un longo período de inactividade e só si recibeu algunha mensaxe personal na súa ausencia
@@ -22,14 +23,13 @@ gl:
         data: Ficheiro CSV exportado desde outra instancia Mastodon
       sessions:
         otp: Introduza o código de doble-factor xerado no aplicativo do seu móbil ou utilice un dos seus códigos de recuperación.
-      user:
-        filtered_languages: Os idiomas marcados filtraranse das liñas temporais públicas para vostede
     labels:
       account:
         fields:
           name: Etiqueta
           value: Contido
       defaults:
+        autofollow: Convide a seguir a súa conta
         avatar: Avatar
         bot: Esta conta é de un bot
         confirm_new_password: Confirme o novo contrasinal
@@ -40,7 +40,6 @@ gl:
         email: enderezo correo electrónico
         expires_in: Caducidade despois de
         fields: Metadatos do perfil
-        filtered_languages: Idiomas filtrados
         header: Cabeceira
         locale: Idioma
         locked: Protexer conta
