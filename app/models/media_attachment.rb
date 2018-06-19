@@ -182,7 +182,7 @@ class MediaAttachment < ApplicationRecord
   end
 
   def set_extension
-    extension = appropriate_extension
+    extension = appropriate_extension(file)
     basename  = Paperclip::Interpolations.basename(file, :original)
     file.instance_write :file_name, [basename, extension].delete_if(&:blank?).join('.')
   end
