@@ -24,6 +24,7 @@ delegate(document, batchCheckboxClassName, 'change', () => {
   const checkAllElement = document.querySelector('#batch_checkbox_all');
   if (checkAllElement) {
     checkAllElement.checked = [].every.call(document.querySelectorAll(batchCheckboxClassName), (content) => content.checked);
+    checkAllElement.indeterminate = !checkAllElement.checked && [].some.call(document.querySelectorAll(batchCheckboxClassName), (content) => content.checked);
   }
 });
 

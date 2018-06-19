@@ -29,6 +29,10 @@ class AccountPolicy < ApplicationPolicy
     admin?
   end
 
+  def remove_avatar?
+    staff?
+  end
+
   def subscribe?
     admin?
   end

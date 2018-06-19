@@ -3,8 +3,8 @@
 #
 # Table name: announcement_links
 #
-#  id              :integer          not null, primary key
-#  announcement_id :integer          not null
+#  id              :bigint(8)        not null, primary key
+#  announcement_id :bigint(8)        not null
 #  text            :string           default(""), not null
 #  url             :string           default(""), not null
 #  created_at      :datetime         not null

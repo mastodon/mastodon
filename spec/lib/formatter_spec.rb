@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Formatter do
   let(:local_account)  { Fabricate(:account, domain: nil, username: 'alice') }
-  let(:remote_account) { Fabricate(:account, domain: 'remote', username: 'bob', url: 'https://remote/') }
+  let(:remote_account) { Fabricate(:account, domain: 'remote.test', username: 'bob', url: 'https://remote.test/') }
 
   shared_examples 'encode and link URLs' do
     context 'matches a stand-alone medium URL' do
@@ -377,12 +377,12 @@ RSpec.describe Formatter do
       end
 
       context 'contains linkable mentions for remote accounts' do
-        let(:text) { '@bob@remote' }
+        let(:text) { '@bob@remote.test' }
 
         before { remote_account }
 
         it 'links' do
-          is_expected.to eq '<p><span class="h-card"><a href="https://remote/" class="u-url mention">@<span>bob</span></a></span></p>'
+          is_expected.to eq '<p><span class="h-card"><a href="https://remote.test/" class="u-url mention">@<span>bob</span></a></span></p>'
         end
       end
 
@@ -391,6 +391,45 @@ RSpec.describe Formatter do
 
         it 'returns raw mention texts' do
           is_expected.to eq '<p>@alice</p>'
+        end
+      end
+
+      context 'with custom_emojify option' do
+        let!(:emoji) { Fabricate(:custom_emoji) }
+
+        before { account.note = text }
+        subject { Formatter.instance.simplified_format(account, custom_emojify: true) }
+
+        context 'with emoji at the start' do
+          let(:text) { ':coolcat: Beep boop' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/<p><img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
+        end
+
+        context 'with emoji in the middle' do
+          let(:text) { 'Beep :coolcat: boop' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/Beep <img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
+        end
+
+        context 'with concatenated emoji' do
+          let(:text) { ':coolcat::coolcat:' }
+
+          it 'does not touch the shortcodes' do
+            is_expected.to match(/:coolcat::coolcat:/)
+          end
+        end
+
+        context 'with emoji at the end' do
+          let(:text) { 'Beep boop :coolcat:' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/boop <img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
         end
       end
 
@@ -403,6 +442,46 @@ RSpec.describe Formatter do
 
       it 'reformats' do
         is_expected.to_not include '<script>alert("Hello")</script>'
+      end
+
+      context 'with custom_emojify option' do
+        let!(:emoji) { Fabricate(:custom_emoji, domain: remote_account.domain) }
+
+        before { remote_account.note = text }
+
+        subject { Formatter.instance.simplified_format(remote_account, custom_emojify: true) }
+
+        context 'with emoji at the start' do
+          let(:text) { '<p>:coolcat: Beep boop<br />' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/<p><img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
+        end
+
+        context 'with emoji in the middle' do
+          let(:text) { '<p>Beep :coolcat: boop</p>' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/Beep <img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
+        end
+
+        context 'with concatenated emoji' do
+          let(:text) { '<p>:coolcat::coolcat:</p>' }
+
+          it 'does not touch the shortcodes' do
+            is_expected.to match(/<p>:coolcat::coolcat:<\/p>/)
+          end
+        end
+
+        context 'with emoji at the end' do
+          let(:text) { '<p>Beep boop<br />:coolcat:</p>' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/<br><img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
+        end
       end
     end
   end

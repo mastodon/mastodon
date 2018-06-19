@@ -15,7 +15,7 @@ describe Api::V1::Accounts::StatusesController do
     it 'returns http success' do
       get :index, params: { account_id: user.account.id, limit: 1 }
 
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
       expect(response.headers['Link'].links.size).to eq(2)
     end
 
@@ -23,7 +23,7 @@ describe Api::V1::Accounts::StatusesController do
       it 'returns http success' do
         get :index, params: { account_id: user.account.id, only_media: true }
 
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -35,7 +35,7 @@ describe Api::V1::Accounts::StatusesController do
       it 'returns http success' do
         get :index, params: { account_id: user.account.id, exclude_replies: true }
 
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -47,7 +47,7 @@ describe Api::V1::Accounts::StatusesController do
       it 'returns http success' do
         get :index, params: { account_id: user.account.id, pinned: true }
 
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
     end
   end

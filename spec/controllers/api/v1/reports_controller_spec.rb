@@ -16,7 +16,7 @@ RSpec.describe Api::V1::ReportsController, type: :controller do
     it 'returns http success' do
       get :index
 
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -31,7 +31,7 @@ RSpec.describe Api::V1::ReportsController, type: :controller do
 
     it 'creates a report' do
       expect(status.reload.account.targeted_reports).not_to be_empty
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'sends e-mails to admins' do

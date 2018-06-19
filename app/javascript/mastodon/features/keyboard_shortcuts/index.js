@@ -21,7 +21,7 @@ export default class KeyboardShortcuts extends ImmutablePureComponent {
     const { intl } = this.props;
 
     return (
-      <Column icon='question' heading={intl.formatMessage(messages.heading)}>
+      <Column icon='keyboard-o' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
         <div className='keyboard-shortcuts scrollable optionally-scrollable'>
           <table>
@@ -51,6 +51,10 @@ export default class KeyboardShortcuts extends ImmutablePureComponent {
               <tr>
                 <td><kbd>enter</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.enter' defaultMessage='to open status' /></td>
+              </tr>
+              <tr>
+                <td><kbd>x</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.toggle_hidden' defaultMessage='to show/hide text behind CW' /></td>
               </tr>
               <tr>
                 <td><kbd>up</kbd></td>

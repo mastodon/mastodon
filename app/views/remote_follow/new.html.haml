@@ -7,7 +7,7 @@
   = simple_form_for @remote_follow, as: :remote_follow, url: account_remote_follow_path(@account) do |f|
     = render 'shared/error_messages', object: @remote_follow
 
-    = f.input :acct, placeholder: t('remote_follow.acct')
+    = f.input :acct, placeholder: t('remote_follow.acct'), input_html: { autocapitalize: 'none', autocorrect: 'off' }
 
     .actions
       = f.button :button, t('remote_follow.proceed'), type: :submit

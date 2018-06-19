@@ -25,7 +25,7 @@ describe Api::V1::Accounts::RelationshipsController do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
 
       it 'returns JSON with correct data' do
@@ -43,7 +43,7 @@ describe Api::V1::Accounts::RelationshipsController do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
 
       it 'returns JSON with correct data' do

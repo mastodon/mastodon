@@ -108,6 +108,9 @@
               %div
                 %h3= t 'about.what_is_mastodon'
                 %p= t 'about.about_mastodon_html'
+              %div.contact
+                %h3= t 'about.administered_by'
+                = render 'administration'
 
             = render 'features'
 
@@ -122,8 +125,13 @@
       - else
         .column-4.non-preview.landing-page__information
           .landing-page__features
-            %h3= t 'about.what_is_mastodon'
-            %p= t 'about.about_mastodon_html'
+            .features-list
+              %div
+                %h3= t 'about.what_is_mastodon'
+                %p= t 'about.about_mastodon_html'
+              %div.contact
+                %h3= t 'about.administered_by'
+                = render 'administration'
 
             = render 'features'
 
@@ -134,3 +142,5 @@
             %p
               = link_to t('about.source_code'), @instance_presenter.source_url
               = " (#{@instance_presenter.version_number})"
+
+#modal-container

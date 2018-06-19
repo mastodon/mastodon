@@ -8,7 +8,7 @@ class FavouriteService < BaseService
   # @param [Status] status
   # @return [Favourite]
   def call(account, status)
-    authorize_with account, status, :show?
+    authorize_with account, status, :favourite?
 
     favourite = Favourite.find_by(account: account, status: status)
 

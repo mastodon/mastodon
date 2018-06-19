@@ -5,6 +5,10 @@ module JsonLdHelper
     haystack.is_a?(Array) ? haystack.include?(needle) : haystack == needle
   end
 
+  def equals_or_includes_any?(haystack, needles)
+    needles.any? { |needle| equals_or_includes?(haystack, needle) }
+  end
+
   def first_of_value(value)
     value.is_a?(Array) ? value.first : value
   end
@@ -44,25 +48,29 @@ module JsonLdHelper
   end
 
   def canonicalize(json)
-    graph = RDF::Graph.new << JSON::LD::API.toRdf(json)
+    graph = RDF::Graph.new << JSON::LD::API.toRdf(json, documentLoader: method(:load_jsonld_context))
     graph.dump(:normalize)
   end
 
-  def fetch_resource(uri, id)
+  def fetch_resource(uri, id, on_behalf_of = nil)
     unless id
-      json = fetch_resource_without_id_validation(uri)
+      json = fetch_resource_without_id_validation(uri, on_behalf_of)
       return unless json
       uri = json['id']
     end
 
-    json = fetch_resource_without_id_validation(uri)
+    json = fetch_resource_without_id_validation(uri, on_behalf_of)
     json.present? && json['id'] == uri ? json : nil
   end
 
-  def fetch_resource_without_id_validation(uri)
-    response = build_request(uri).perform
-    return if response.code != 200
-    body_to_json(response.to_s)
+  def fetch_resource_without_id_validation(uri, on_behalf_of = nil)
+    build_request(uri, on_behalf_of).perform do |response|
+      return body_to_json(response.body_with_limit) if response.code == 200
+    end
+    # If request failed, retry without doing it on behalf of a user
+    build_request(uri).perform do |response|
+      response.code == 200 ? body_to_json(response.body_with_limit) : nil
+    end
   end
 
   def body_to_json(body)
@@ -81,9 +89,25 @@ module JsonLdHelper
 
   private
 
-  def build_request(uri)
+  def build_request(uri, on_behalf_of = nil)
     request = Request.new(:get, uri)
+    request.on_behalf_of(on_behalf_of) if on_behalf_of
     request.add_headers('Accept' => 'application/activity+json, application/ld+json')
     request
+  end
+
+  def load_jsonld_context(url, _options = {}, &_block)
+    json = Rails.cache.fetch("jsonld:context:#{url}", expires_in: 30.days, raw: true) do
+      request = Request.new(:get, url)
+      request.add_headers('Accept' => 'application/ld+json')
+
+      request.perform do |res|
+        raise JSON::LD::JsonLdError::LoadingDocumentFailed unless res.code == 200 && res.mime_type == 'application/ld+json'
+        res.body_with_limit
+      end
+    end
+
+    doc = JSON::LD::API::RemoteDocument.new(url, json)
+    block_given? ? yield(doc) : doc
   end
 end

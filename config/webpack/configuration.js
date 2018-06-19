@@ -33,7 +33,10 @@ const output = {
 module.exports = {
   settings,
   themes,
-  env,
+  env: {
+    CDN_HOST: env.CDN_HOST,
+    NODE_ENV: env.NODE_ENV,
+  },
   loadersDir,
   output,
 };

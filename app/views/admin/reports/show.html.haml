@@ -4,56 +4,117 @@
 - content_for :page_title do
   = t('admin.reports.report', id: @report.id)
 
-.report-accounts
-  .report-accounts__item
-    %strong= t('admin.reports.reported_account')
-    = render 'authorize_follows/card', account: @report.target_account, admin: true
-    = render 'admin/accounts/card', account: @report.target_account
-  .report-accounts__item
-    %strong= t('admin.reports.reported_by')
-    = render 'authorize_follows/card', account: @report.account, admin: true
-    = render 'admin/accounts/card', account: @report.account
-
-%p
-  %strong= t('admin.reports.comment.label')
-  \:
-  = simple_format(@report.comment.presence || t('admin.reports.comment.none'))
-
-- unless @report.statuses.empty?
-  %hr/
-
-  = form_for(@form, url: admin_report_reported_statuses_path(@report.id)) do |f|
-    .batch-form-box
-      .batch-checkbox-all
-        = check_box_tag :batch_checkbox_all, nil, false
-      = f.select :action, Form::StatusBatch::ACTION_TYPE.map{|action| [t("admin.statuses.batch.#{action}"), action]}
-      = f.submit t('admin.statuses.execute'), data: { confirm: t('admin.reports.are_you_sure') }, class: 'button'
-      .media-spoiler-toggle-buttons
-        .media-spoiler-show-button.button= t('admin.statuses.media.show')
-        .media-spoiler-hide-button.button= t('admin.statuses.media.hide')
-    - @report.statuses.each do |status|
-      .report-status{ data: { id: status.id } }
-        .batch-checkbox
-          = f.check_box :status_ids, { multiple: true, include_hidden: false }, status.id
-        .activity-stream.activity-stream-headless
-          .entry= render 'stream_entries/simple_status', status: status
-        .report-status__actions
-          - unless status.media_attachments.empty?
-            = link_to admin_report_reported_status_path(@report, status, status: { sensitive: !status.sensitive }), method: :put, class: 'icon-button nsfw-button', title: t("admin.reports.nsfw.#{!status.sensitive}") do
-              = fa_icon status.sensitive? ? 'eye' : 'eye-slash'
-          = link_to admin_report_reported_status_path(@report, status), method: :delete, class: 'icon-button trash-button', title: t('admin.reports.delete'), data: { confirm: t('admin.reports.are_you_sure') }, remote: true do
-            = fa_icon 'trash'
-
-%hr/
-
-- if !@report.action_taken?
-  %div{ style: 'overflow: hidden' }
+%div{ style: 'overflow: hidden; margin-bottom: 20px' }
+  - if @report.unresolved?
     %div{ style: 'float: right' }
       = link_to t('admin.reports.silence_account'), admin_report_path(@report, outcome: 'silence'), method: :put, class: 'button'
       = link_to t('admin.reports.suspend_account'), admin_report_path(@report, outcome: 'suspend'), method: :put, class: 'button'
     %div{ style: 'float: left' }
       = link_to t('admin.reports.mark_as_resolved'), admin_report_path(@report, outcome: 'resolve'), method: :put, class: 'button'
-- elsif !@report.action_taken_by_account.nil?
-  %p
-    %strong #{t('admin.reports.action_taken_by')}:
-    = @report.action_taken_by_account.acct
+  - else
+    = link_to t('admin.reports.mark_as_unresolved'), admin_report_path(@report, outcome: 'reopen'), method: :put, class: 'button'
+
+%hr.spacer
+
+.table-wrapper
+  %table.table.inline-table
+    %tbody
+      %tr
+        %th= t('admin.reports.reported_account')
+        %td= admin_account_link_to @report.target_account
+        %td= table_link_to 'flag', pluralize(@report.target_account.targeted_reports.count, t('admin.reports.account.report')), admin_reports_path(target_account_id: @report.target_account.id)
+        %td= table_link_to 'file', pluralize(@report.target_account.targeted_moderation_notes.count, t('admin.reports.account.note')), admin_reports_path(target_account_id: @report.target_account.id)
+      %tr
+        %th= t('admin.reports.reported_by')
+        - if @report.account.local?
+          %td= admin_account_link_to @report.account
+          %td= table_link_to 'flag', pluralize(@report.account.targeted_reports.count, t('admin.reports.account.report')), admin_reports_path(target_account_id: @report.account.id)
+          %td= table_link_to 'file', pluralize(@report.account.targeted_moderation_notes.count, t('admin.reports.account.note')), admin_reports_path(target_account_id: @report.account.id)
+        - else
+          %td{ colspan: 3 }= @report.account.domain
+      %tr
+        %th= t('admin.reports.created_at')
+        %td{ colspan: 3 }
+          %time.formatted{ datetime: @report.created_at.iso8601 }
+      %tr
+        %th= t('admin.reports.updated_at')
+        %td{ colspan: 3 }
+          %time.formatted{ datetime: @report.updated_at.iso8601 }
+      %tr
+        %th= t('admin.reports.status')
+        %td
+          - if @report.action_taken?
+            = t('admin.reports.resolved')
+          - else
+            = t('admin.reports.unresolved')
+        %td{ colspan: 2 }
+          - if @report.action_taken?
+            = table_link_to 'envelope-open', t('admin.reports.reopen'), admin_report_path(@report, outcome: 'reopen'), method: :put
+      - if !@report.action_taken_by_account.nil?
+        %tr
+          %th= t('admin.reports.action_taken_by')
+          %td{ colspan: 3 }
+            = admin_account_link_to @report.action_taken_by_account
+      - else
+        %tr
+          %th= t('admin.reports.assigned')
+          %td
+            - if @report.assigned_account.nil?
+              \-
+            - else
+              = admin_account_link_to @report.assigned_account
+          %td
+            - if @report.assigned_account != current_user.account
+              = table_link_to 'user', t('admin.reports.assign_to_self'), admin_report_path(@report, outcome: 'assign_to_self'), method: :put
+          %td
+            - if !@report.assigned_account.nil?
+              = table_link_to 'trash', t('admin.reports.unassign'), admin_report_path(@report, outcome: 'unassign'), method: :put
+
+%hr.spacer
+
+.speech-bubble
+  .speech-bubble__bubble= simple_format(@report.comment.presence || t('admin.reports.comment.none'))
+  .speech-bubble__owner
+    - if @report.account.local?
+      = admin_account_link_to @report.account
+    - else
+      = @report.account.domain
+      %br/
+    %time.formatted{ datetime: @report.created_at.iso8601 }
+
+- unless @report.statuses.empty?
+  %hr.spacer/
+
+  = form_for(@form, url: admin_report_reported_statuses_path(@report.id)) do |f|
+    .batch-table
+      .batch-table__toolbar
+        %label.batch-table__toolbar__select.batch-checkbox-all
+          = check_box_tag :batch_checkbox_all, nil, false
+        .batch-table__toolbar__actions
+          = f.button safe_join([fa_icon('eye-slash'), t('admin.statuses.batch.nsfw_on')]), name: :nsfw_on, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+          = f.button safe_join([fa_icon('eye'), t('admin.statuses.batch.nsfw_off')]), name: :nsfw_off, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+          = f.button safe_join([fa_icon('trash'), t('admin.statuses.batch.delete')]), name: :delete, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+      .batch-table__body
+        = render partial: 'admin/reports/status', collection: @report.statuses, locals: { f: f }
+
+%hr.spacer/
+
+- @report_notes.each do |item|
+  - if item.is_a?(Admin::ActionLog)
+    = render partial: 'action_log', locals: { action_log: item }
+  - elsif item.is_a?(ReportNote)
+    = render item
+
+= simple_form_for @report_note, url: admin_report_notes_path do |f|
+  = render 'shared/error_messages', object: @report_note
+  = f.input :report_id, as: :hidden
+
+  .field-group
+    = f.input :content, placeholder: t('admin.reports.notes.placeholder'), rows: 6
+
+  .actions
+    - if @report.unresolved?
+      = f.button :button, t('admin.reports.notes.create_and_resolve'), name: :create_and_resolve, type: :submit
+    - else
+      = f.button :button, t('admin.reports.notes.create_and_unresolve'), name: :create_and_unresolve, type: :submit
+    = f.button :button, t('admin.reports.notes.create'), type: :submit

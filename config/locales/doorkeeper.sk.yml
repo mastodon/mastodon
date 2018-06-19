@@ -19,7 +19,7 @@ sk:
   doorkeeper:
     applications:
       buttons:
-        authorize: Autorizovať
+        authorize: Overiť
         cancel: Zrušiť
         destroy: Zničiť
         edit: Upraviť
@@ -33,14 +33,14 @@ sk:
       help:
         native_redirect_uri: Použite %{native_redirect_uri} pre lokálne testy
         redirect_uri: Iba jedna URI na riadok
-        scopes: Rozsahy oddeľujte medzerami. Nechajte prázdne pre štandardné rozsahy.
+        scopes: Oprávnenia oddeľujte medzerami. Nechajte prázdne pre štandardné oprávnenia.
       index:
         application: Aplikácia
         callback_url: Návratová URL
         delete: Zmazať
         name: Názov
         new: Nová aplikácia
-        scopes: Rozsahy
+        scopes: Oprávnenia
         show: Ukázať
         title: Vaše aplikácie
       new:
@@ -49,12 +49,12 @@ sk:
         actions: Akcie
         application_id: Kľúč klienta
         callback_urls: Návratové URL adresy
-        scopes: Rozsahy
+        scopes: Oprávnenia
         secret: Tajné slovo klienta
         title: 'Aplikácia: %{name}'
     authorizations:
       buttons:
-        authorize: Autorizovať
+        authorize: Overiť
         deny: Zamietnuť
       error:
         title: Nastala chyba
@@ -63,7 +63,7 @@ sk:
         prompt: Aplikácia %{client_name} žiada prístup k vašemu účtu
         title: Je potrebná autorizácia
       show:
-        title: Skopírujte tento autorizačný kód a vložte ho do aplikácie.
+        title: Skopíruj tento autorizačný kód a vlož ho do aplikácie.
     authorized_applications:
       buttons:
         revoke: Zrušiť oprávnenie
@@ -73,7 +73,7 @@ sk:
         application: Aplikácia
         created_at: Autorizované
         date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Rozsahy
+        scopes: Oprávnenia
         title: Vaše autorizované aplikácie
     errors:
       messages:
@@ -115,5 +115,6 @@ sk:
         title: Požadovaná OAuth autorizácia
     scopes:
       follow: sledovať, blokovať, povoliť a zušiť sledovanie účtov
+      push: dostávaj oznámenia ohľadom tvojho účtu ako notifikácie na plochu
       read: prezrieť dáta na vašom účete
       write: poslať vo vašom mene

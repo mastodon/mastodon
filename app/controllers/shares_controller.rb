@@ -15,6 +15,7 @@ class SharesController < ApplicationController
 
   def initial_state_params
     text = [params[:title], params[:text], params[:url]].compact.join(' ')
+
     {
       settings: Web::Setting.find_by(user: current_user)&.data || {},
       push_subscription: current_account.user.web_push_subscription(current_session),

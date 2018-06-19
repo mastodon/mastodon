@@ -13,7 +13,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
   describe 'GET #show' do
     it 'returns http success' do
       get :show, params: { id: user.account.id }
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -28,7 +28,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
       let(:locked) { false }
 
       it 'returns http success' do
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
 
       it 'returns JSON with following=true and requested=false' do
@@ -47,7 +47,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
       let(:locked) { true }
 
       it 'returns http success' do
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
 
       it 'returns JSON with following=false and requested=true' do
@@ -72,7 +72,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'removes the following relation between user and target user' do
@@ -89,7 +89,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'removes the following relation between user and target user' do
@@ -110,7 +110,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'removes the blocking relation between user and target user' do
@@ -127,7 +127,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'does not remove the following relation between user and target user' do
@@ -152,7 +152,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'does not remove the following relation between user and target user' do
@@ -177,7 +177,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'removes the muting relation between user and target user' do

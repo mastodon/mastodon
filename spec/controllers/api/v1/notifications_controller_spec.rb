@@ -16,7 +16,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       notification = Fabricate(:notification, account: user.account)
       get :show, params: { id: notification.id }
 
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -25,7 +25,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       notification = Fabricate(:notification, account: user.account)
       post :dismiss, params: { id: notification.id }
 
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
       expect { notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
@@ -36,7 +36,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       post :clear
 
       expect(notification.account.reload.notifications).to be_empty
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -56,7 +56,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
 
       it 'includes reblog' do
@@ -82,7 +82,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
 
       it 'includes reblog' do

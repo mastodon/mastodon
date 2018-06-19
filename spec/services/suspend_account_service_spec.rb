@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SuspendAccountService do
+RSpec.describe SuspendAccountService, type: :service do
   describe '#call' do
     subject do
       -> { described_class.new.call(account) }

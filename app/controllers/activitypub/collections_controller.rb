@@ -22,7 +22,7 @@ class ActivityPub::CollectionsController < Api::BaseController
   end
 
   def set_statuses
-    @statuses = scope_for_collection.paginate_by_max_id(20, params[:max_id], params[:since_id])
+    @statuses = scope_for_collection
     @statuses = cache_collection(@statuses, Status)
   end
 

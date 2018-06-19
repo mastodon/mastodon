@@ -107,9 +107,7 @@ module SignatureVerification
 
   def incompatible_signature?(signature_params)
     signature_params['keyId'].blank? ||
-      signature_params['signature'].blank? ||
-      signature_params['algorithm'].blank? ||
-      signature_params['algorithm'] != 'rsa-sha256'
+      signature_params['signature'].blank?
   end
 
   def account_from_key_id(key_id)

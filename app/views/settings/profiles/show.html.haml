@@ -19,6 +19,19 @@
   .fields-group
     = f.input :locked, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.locked')
 
+  .fields-group
+    = f.input :bot, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.bot')
+
+  .fields-group
+    .input.with_block_label
+      %label= t('simple_form.labels.defaults.fields')
+      %span.hint= t('simple_form.hints.defaults.fields')
+
+      = f.simple_fields_for :fields do |fields_f|
+        .row
+          = fields_f.input :name, placeholder: t('simple_form.labels.account.fields.name')
+          = fields_f.input :value, placeholder: t('simple_form.labels.account.fields.value')
+
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
 

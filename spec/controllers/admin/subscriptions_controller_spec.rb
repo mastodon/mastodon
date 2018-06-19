@@ -26,7 +26,7 @@ RSpec.describe Admin::SubscriptionsController, type: :controller do
       expect(subscriptions.count).to eq 1
       expect(subscriptions[0]).to eq specified
 
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 end

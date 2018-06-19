@@ -19,6 +19,7 @@ const mapStateToProps = state => ({
   spoiler_text: state.getIn(['compose', 'spoiler_text']),
   privacy: state.getIn(['compose', 'privacy']),
   focusDate: state.getIn(['compose', 'focusDate']),
+  caretPosition: state.getIn(['compose', 'caretPosition']),
   preselectDate: state.getIn(['compose', 'preselectDate']),
   is_submitting: state.getIn(['compose', 'is_submitting']),
   is_uploading: state.getIn(['compose', 'is_uploading']),
@@ -56,8 +57,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(uploadCompose(files));
   },
 
-  onPickEmoji (position, data) {
-    dispatch(insertEmojiCompose(position, data));
+  onPickEmoji (position, data, needsSpace) {
+    dispatch(insertEmojiCompose(position, data, needsSpace));
   },
 
 });

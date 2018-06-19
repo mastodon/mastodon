@@ -5,7 +5,7 @@
     .avatar= image_tag account.avatar.url(:original)
   .name
     = link_to TagManager.instance.url_for(account) do
-      %span.display_name.emojify= display_name(account)
+      %span.display_name.emojify= display_name(account, custom_emojify: true)
       %span.username
         @#{account.local? ? account.local_username_and_domain : account.acct}
         = fa_icon('lock') if account.locked?

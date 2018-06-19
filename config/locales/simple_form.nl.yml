@@ -4,26 +4,34 @@ nl:
     hints:
       defaults:
         avatar: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 400x400px
-        digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten ontvangt
+        bot: Dit is een geautomatiseerd account en wordt mogelijk niet gemonitord
+        digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
         display_name:
           one: <span class="name-counter">1</span> teken over
           other: <span class="name-counter">%{count}</span> tekens over
+        fields: Je kan maximaal 4 items als een tabel op je profiel weergeven
         header: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 700x335px
         locked: Vereist dat je handmatig volgers moet accepteren
         note:
           one: <span class="note-counter">1</span> teken over
           other: <span class="note-counter">%{count}</span> tekens over
+        setting_hide_network: Wie jij volgt en wie jou volgen wordt niet op jouw profiel getoond
         setting_noindex: Heeft invloed op jouw openbare profiel en toots
         setting_theme: Heeft invloed op hoe de webapp van Mastodon eruitziet (op elk apparaat waarmee je inlogt).
       imports:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       sessions:
-        otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcode's.
+        otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes.
       user:
-        filtered_languages: De geselecteerde talen worden uit de lokale en globale tijdlijn verwijderd
+        filtered_languages: Geselecteerde talen worden uit de lokale en globale tijdlijn verwijderd
     labels:
+      account:
+        fields:
+          name: Label
+          value: Inhoud
       defaults:
         avatar: Avatar
+        bot: Dit is een bot-account
         confirm_new_password: Nieuw wachtwoord bevestigen
         confirm_password: Wachtwoord bevestigen
         current_password: Huidig wachtwoord
@@ -31,11 +39,12 @@ nl:
         display_name: Weergavenaam
         email: E-mailadres
         expires_in: Vervalt na
-        filtered_languages: Talen filteren
+        fields: Metadata profiel
+        filtered_languages: Gefilterde talen
         header: Omslagfoto
         locale: Taal
         locked: Maak account besloten
-        max_uses: Max aantal keer te gebruiken
+        max_uses: Max. aantal keer te gebruiken
         new_password: Nieuwe wachtwoord
         note: Bio
         otp_attempt: Tweestaps-aanmeldcode
@@ -46,6 +55,7 @@ nl:
         setting_default_sensitive: Media altijd als gevoelig markeren
         setting_delete_modal: Vraag voor het verwijderen van een toot een bevestiging
         setting_display_sensitive_media: Als gevoelig gemarkeerde media altijd tonen
+        setting_hide_network: Jouw volgers en wie je volgt verbergen
         setting_noindex: Jouw toots niet door zoekmachines laten indexeren
         setting_reduce_motion: Langzamere animaties
         setting_system_font_ui: Standaardlettertype van jouw systeem gebruiken
@@ -53,7 +63,7 @@ nl:
         setting_unfollow_modal: Vraag voor het ontvolgen van iemand een bevestiging
         severity: Zwaarte
         type: Importtype
-        username: gebruikersnaam
+        username: Gebruikersnaam
         username_or_email: Gebruikersnaam of e-mailadres
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
@@ -63,7 +73,7 @@ nl:
         digest: Periodiek e-mails met een samenvatting versturen
         favourite: Een e-mail versturen wanneer iemand jouw toot als favoriet markeert
         follow: Een e-mail versturen wanneer iemand jou volgt
-        follow_request: Een e-mail versturen wanneer iemand jou wilt volgen
+        follow_request: Een e-mail versturen wanneer iemand jou wil volgen
         mention: Een e-mail versturen wanneer iemand jou vermeld
         reblog: Een e-mail versturen wanneer iemand jouw toot heeft geboost
     'no': Nee

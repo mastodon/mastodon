@@ -1,0 +1,7 @@
+- content_for :page_title do
+  = t('admin.accounts.change_email.title', username: @account.acct)
+
+= simple_form_for @user, url: admin_account_change_email_path(@account.id) do |f|
+  = f.input :email, wrapper: :with_label, disabled: true, label: t('admin.accounts.change_email.current_email')
+  = f.input :unconfirmed_email, wrapper: :with_label, label: t('admin.accounts.change_email.new_email')
+  = f.button :submit, class: "button", value: t('admin.accounts.change_email.submit')

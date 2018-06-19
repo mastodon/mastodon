@@ -50,7 +50,7 @@ PEM
 
       json = body_as_json
 
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
       expect(response.content_type).to eq 'application/jrd+json'
       expect(json[:subject]).to eq 'acct:alice@cb6e6126.ngrok.io'
       expect(json[:aliases]).to include('https://cb6e6126.ngrok.io/@alice', 'https://cb6e6126.ngrok.io/users/alice')
@@ -61,7 +61,7 @@ PEM
 
       xml = Nokogiri::XML(response.body)
 
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
       expect(response.content_type).to eq 'application/xrd+xml'
       expect(xml.at_xpath('//xmlns:Subject').content).to eq 'acct:alice@cb6e6126.ngrok.io'
       expect(xml.xpath('//xmlns:Alias').map(&:content)).to include('https://cb6e6126.ngrok.io/@alice', 'https://cb6e6126.ngrok.io/users/alice')
@@ -81,7 +81,7 @@ PEM
 
       json = body_as_json
 
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
       expect(response.content_type).to eq 'application/jrd+json'
       expect(json[:subject]).to eq 'acct:alice@cb6e6126.ngrok.io'
       expect(json[:aliases]).to include('https://cb6e6126.ngrok.io/@alice', 'https://cb6e6126.ngrok.io/users/alice')

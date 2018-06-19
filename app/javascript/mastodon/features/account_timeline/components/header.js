@@ -16,6 +16,7 @@ export default class Header extends ImmutablePureComponent {
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
+    onDirect: PropTypes.func.isRequired,
     onReblogToggle: PropTypes.func.isRequired,
     onReport: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
@@ -40,6 +41,10 @@ export default class Header extends ImmutablePureComponent {
     this.props.onMention(this.props.account, this.context.router.history);
   }
 
+  handleDirect = () => {
+    this.props.onDirect(this.props.account, this.context.router.history);
+  }
+
   handleReport = () => {
     this.props.onReport(this.props.account);
   }
@@ -57,7 +62,7 @@ export default class Header extends ImmutablePureComponent {
 
     if (!domain) return;
 
-    this.props.onBlockDomain(domain, this.props.account.get('id'));
+    this.props.onBlockDomain(domain);
   }
 
   handleUnblockDomain = () => {
@@ -65,7 +70,7 @@ export default class Header extends ImmutablePureComponent {
 
     if (!domain) return;
 
-    this.props.onUnblockDomain(domain, this.props.account.get('id'));
+    this.props.onUnblockDomain(domain);
   }
 
   render () {
@@ -89,6 +94,7 @@ export default class Header extends ImmutablePureComponent {
           account={account}
           onBlock={this.handleBlock}
           onMention={this.handleMention}
+          onDirect={this.handleDirect}
           onReblogToggle={this.handleReblogToggle}
           onReport={this.handleReport}
           onMute={this.handleMute}
@@ -99,7 +105,7 @@ export default class Header extends ImmutablePureComponent {
         {!hideTabs && (
           <div className='account__section-headline'>
             <NavLink exact to={`/accounts/${account.get('id')}`}><FormattedMessage id='account.posts' defaultMessage='Toots' /></NavLink>
-            <NavLink exact to={`/accounts/${account.get('id')}/with_replies`}><FormattedMessage id='account.posts_with_replies' defaultMessage='Toots with replies' /></NavLink>
+            <NavLink exact to={`/accounts/${account.get('id')}/with_replies`}><FormattedMessage id='account.posts_with_replies' defaultMessage='Toots and replies' /></NavLink>
             <NavLink exact to={`/accounts/${account.get('id')}/media`}><FormattedMessage id='account.media' defaultMessage='Media' /></NavLink>
           </div>
         )}

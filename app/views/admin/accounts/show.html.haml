@@ -2,7 +2,7 @@
   = @account.acct
 
 .table-wrapper
-  %table.table
+  %table.table.inline-table
     %tbody
       %tr
         %th= t('admin.accounts.username')
@@ -13,6 +13,14 @@
       %tr
         %th= t('admin.accounts.display_name')
         %td= @account.display_name
+
+      %tr
+        %th= t('admin.accounts.avatar')
+        %th
+          = link_to @account.avatar.url(:original) do
+            = image_tag @account.avatar.url(:original), alt: '', width: 40, height: 40, class: 'avatar'
+          - if @account.local? && @account.avatar?
+            = table_link_to 'trash', t('admin.accounts.remove_avatar'), remove_avatar_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:remove_avatar, @account)
 
       - if @account.local?
         %tr
@@ -28,9 +36,19 @@
           %th= t('admin.accounts.email')
           %td
             = @account.user_email
-
-            - if @account.user_confirmed?
-              = fa_icon('check')
+            = table_link_to 'edit', t('admin.accounts.change_email.label'), admin_account_change_email_path(@account.id) if can?(:change_email, @account.user)
+        - if @account.user_unconfirmed_email.present?
+          %th= t('admin.accounts.unconfirmed_email')
+          %td
+            = @account.user_unconfirmed_email
+        %tr
+          %th= t('admin.accounts.email_status')
+          %td
+            - if @account.user&.confirmed?
+              = t('admin.accounts.confirmed')
+            - else
+              = t('admin.accounts.confirming')
+              = table_link_to 'refresh', t('admin.accounts.resend_confirmation.send'), resend_admin_account_confirmation_path(@account.id), method: :post if can?(:confirm, @account.user)
         %tr
           %th= t('admin.accounts.login_status')
           %td
@@ -61,17 +79,17 @@
 
       %tr
         %th= t('admin.accounts.follows')
-        %td= @account.following_count
+        %td= number_to_human @account.following_count
       %tr
         %th= t('admin.accounts.followers')
-        %td= @account.followers_count
+        %td= number_to_human @account.followers_count
       %tr
         %th= t('admin.accounts.statuses')
-        %td= link_to @account.statuses_count, admin_account_statuses_path(@account.id)
+        %td= link_to number_to_human(@account.statuses_count), admin_account_statuses_path(@account.id)
       %tr
         %th= t('admin.accounts.media_attachments')
         %td
-          = link_to @account.media_attachments.count, admin_account_statuses_path(@account.id, { media: true })
+          = link_to number_to_human(@account.media_attachments.count), admin_account_statuses_path(@account.id, { media: true })
           = surround '(', ')' do
             = number_to_human_size @account.media_attachments.sum('file_file_size')
       %tr
@@ -108,11 +126,12 @@
       = link_to t('admin.accounts.perform_full_suspension'), admin_account_suspension_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button' if can?(:suspend, @account)
 
 - if !@account.local? && @account.hub_url.present?
-  %hr
+  %hr.spacer/
+
   %h3 OStatus
 
   .table-wrapper
-    %table.table
+    %table.table.inline-table
       %tbody
         %tr
           %th= t('admin.accounts.feed_url')
@@ -136,11 +155,12 @@
         = link_to t('admin.accounts.unsubscribe'), unsubscribe_admin_account_path(@account.id), method: :post, class: 'button negative' if can?(:unsubscribe, @account)
 
 - if !@account.local? && @account.inbox_url.present?
-  %hr
+  %hr.spacer/
+
   %h3 ActivityPub
 
   .table-wrapper
-    %table.table
+    %table.table.inline-table
       %tbody
         %tr
           %th= t('admin.accounts.inbox_url')
@@ -155,24 +175,15 @@
           %th= t('admin.accounts.followers_url')
           %td= link_to @account.followers_url, @account.followers_url
 
-%hr
-%h3= t('admin.accounts.moderation_notes')
+%hr.spacer/
+
+= render @moderation_notes
 
 = simple_form_for @account_moderation_note, url: admin_account_moderation_notes_path do |f|
   = render 'shared/error_messages', object: @account_moderation_note
 
-  = f.input :content
+  = f.input :content, placeholder: t('admin.reports.notes.placeholder'), rows: 6
   = f.hidden_field :target_account_id
 
   .actions
-  = f.button :button, t('admin.account_moderation_notes.create'), type: :submit
-
-.table-wrapper
-  %table.table
-    %thead
-      %tr
-        %th
-        %th= t('admin.account_moderation_notes.account')
-        %th= t('admin.account_moderation_notes.created_at')
-    %tbody
-      = render @moderation_notes
+    = f.button :button, t('admin.account_moderation_notes.create'), type: :submit

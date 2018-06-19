@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Update < ActivityPub::Activity
+  SUPPORTED_TYPES = %w(Application Group Organization Person Service).freeze
+
   def perform
-    case @object['type']
-    when 'Person'
-      update_account
-    end
+    update_account if equals_or_includes_any?(@object['type'], SUPPORTED_TYPES)
   end
 
   private

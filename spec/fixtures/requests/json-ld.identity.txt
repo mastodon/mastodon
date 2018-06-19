@@ -1,0 +1,100 @@
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Access-Control-Allow-Headers: DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Accept-Encoding
+Access-Control-Allow-Origin: *
+Content-Type: application/ld+json
+Date: Tue, 01 May 2018 23:28:21 GMT
+Etag: "e26-547a6fc75b04a-gzip"
+Last-Modified: Fri, 03 Feb 2017 21:30:09 GMT
+Server: Apache/2.4.7 (Ubuntu)
+Vary: Accept-Encoding
+Transfer-Encoding: chunked
+
+{
+  "@context": {
+    "id": "@id",
+    "type": "@type",
+
+    "cred": "https://w3id.org/credentials#",
+    "dc": "http://purl.org/dc/terms/",
+    "identity": "https://w3id.org/identity#",
+    "perm": "https://w3id.org/permissions#",
+    "ps": "https://w3id.org/payswarm#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "sec": "https://w3id.org/security#",
+    "schema": "http://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Group": "https://www.w3.org/ns/activitystreams#Group",
+
+    "claim": {"@id": "cred:claim", "@type": "@id"},
+    "credential": {"@id": "cred:credential", "@type": "@id"},
+    "issued": {"@id": "cred:issued", "@type": "xsd:dateTime"},
+    "issuer": {"@id": "cred:issuer", "@type": "@id"},
+    "recipient": {"@id": "cred:recipient", "@type": "@id"},
+    "Credential": "cred:Credential",
+    "CryptographicKeyCredential": "cred:CryptographicKeyCredential",
+
+    "about": {"@id": "schema:about", "@type": "@id"},
+    "address": {"@id": "schema:address", "@type": "@id"},
+    "addressCountry": "schema:addressCountry",
+    "addressLocality": "schema:addressLocality",
+    "addressRegion": "schema:addressRegion",
+    "comment": "rdfs:comment",
+    "created": {"@id": "dc:created", "@type": "xsd:dateTime"},
+    "creator": {"@id": "dc:creator", "@type": "@id"},
+    "description": "schema:description",
+    "email": "schema:email",
+    "familyName": "schema:familyName",
+    "givenName": "schema:givenName",
+    "image": {"@id": "schema:image", "@type": "@id"},
+    "label": "rdfs:label",
+    "name": "schema:name",
+    "postalCode": "schema:postalCode",
+    "streetAddress": "schema:streetAddress",
+    "title": "dc:title",
+    "url": {"@id": "schema:url", "@type": "@id"},
+    "Person": "schema:Person",
+    "PostalAddress": "schema:PostalAddress",
+    "Organization": "schema:Organization",
+
+    "identityService": {"@id": "identity:identityService", "@type": "@id"},
+    "idp": {"@id": "identity:idp", "@type": "@id"},
+    "Identity": "identity:Identity",
+
+    "paymentProcessor": "ps:processor",
+    "preferences": {"@id": "ps:preferences", "@type": "@vocab"},
+
+    "cipherAlgorithm": "sec:cipherAlgorithm",
+    "cipherData": "sec:cipherData",
+    "cipherKey": "sec:cipherKey",
+    "digestAlgorithm": "sec:digestAlgorithm",
+    "digestValue": "sec:digestValue",
+    "domain": "sec:domain",
+    "expires": {"@id": "sec:expiration", "@type": "xsd:dateTime"},
+    "initializationVector": "sec:initializationVector",
+    "member": {"@id": "schema:member", "@type": "@id"},
+    "memberOf": {"@id": "schema:memberOf", "@type": "@id"},
+    "nonce": "sec:nonce",
+    "normalizationAlgorithm": "sec:normalizationAlgorithm",
+    "owner": {"@id": "sec:owner", "@type": "@id"},
+    "password": "sec:password",
+    "privateKey": {"@id": "sec:privateKey", "@type": "@id"},
+    "privateKeyPem": "sec:privateKeyPem",
+    "publicKey": {"@id": "sec:publicKey", "@type": "@id"},
+    "publicKeyPem": "sec:publicKeyPem",
+    "publicKeyService": {"@id": "sec:publicKeyService", "@type": "@id"},
+    "revoked": {"@id": "sec:revoked", "@type": "xsd:dateTime"},
+    "signature": "sec:signature",
+    "signatureAlgorithm": "sec:signatureAlgorithm",
+    "signatureValue": "sec:signatureValue",
+    "CryptographicKey": "sec:Key",
+    "EncryptedMessage": "sec:EncryptedMessage",
+    "GraphSignature2012": "sec:GraphSignature2012",
+    "LinkedDataSignature2015": "sec:LinkedDataSignature2015",
+
+    "accessControl": {"@id": "perm:accessControl", "@type": "@id"},
+    "writePermission": {"@id": "perm:writePermission", "@type": "@id"}
+  }
+}

@@ -21,8 +21,8 @@ class Pubsubhubbub::ConfirmationWorker
   def process_confirmation
     prepare_subscription
 
-    confirm_callback
-    logger.debug "Confirming PuSH subscription for #{subscription.callback_url} with challenge #{challenge}: #{callback_response_body}"
+    callback_get_with_params
+    logger.debug "Confirming PuSH subscription for #{subscription.callback_url} with challenge #{challenge}: #{@callback_response_body}"
 
     update_subscription
   end
@@ -44,7 +44,7 @@ class Pubsubhubbub::ConfirmationWorker
   end
 
   def response_matches_challenge?
-    callback_response_body == challenge
+    @callback_response_body == challenge
   end
 
   def subscribing?
@@ -55,16 +55,10 @@ class Pubsubhubbub::ConfirmationWorker
     mode == 'unsubscribe'
   end
 
-  def confirm_callback
-    @_confirm_callback ||= callback_get_with_params
-  end
-
   def callback_get_with_params
-    Request.new(:get, subscription.callback_url, params: callback_params).perform
-  end
-
-  def callback_response_body
-    confirm_callback.body.to_s
+    Request.new(:get, subscription.callback_url, params: callback_params).perform do |response|
+      @callback_response_body = response.body_with_limit
+    end
   end
 
   def callback_params

@@ -1,0 +1,193 @@
+version: 2
+
+aliases:
+  - &defaults
+    docker:
+      - image: circleci/ruby:2.5.1-stretch-node
+        environment: &ruby_environment
+          BUNDLE_APP_CONFIG: ./.bundle/
+          DB_HOST: localhost
+          DB_USER: root
+          RAILS_ENV: test
+          PARALLEL_TEST_PROCESSORS: 4
+          ALLOW_NOPAM: true
+          CONTINUOUS_INTEGRATION: true
+          DISABLE_SIMPLECOV: true
+    working_directory: ~/projects/mastodon/
+
+  - &attach_workspace
+    attach_workspace:
+      at: ~/projects/
+
+  - &persist_to_workspace
+    persist_to_workspace:
+      root: ~/projects/
+      paths:
+        - ./mastodon/
+
+  - &restore_ruby_dependencies
+    restore_cache:
+      keys:
+        - v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
+        - v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-
+        - v2-ruby-dependencies-
+
+  - &install_steps
+    steps:
+      - checkout
+      - *attach_workspace
+
+      - restore_cache:
+          keys:
+            - v1-node-dependencies-{{ checksum "yarn.lock" }}
+            - v1-node-dependencies-
+      - run: yarn install --frozen-lockfile
+      - save_cache:
+          key: v1-node-dependencies-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules/
+
+      - *persist_to_workspace
+
+  - &install_system_dependencies
+      run:
+        name: Install system dependencies
+        command: |
+          sudo apt-get update
+          sudo apt-get install -y libicu-dev libidn11-dev libprotobuf-dev protobuf-compiler
+
+  - &install_ruby_dependencies
+      steps:
+        - *attach_workspace
+
+        - *install_system_dependencies
+
+        - run: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
+        - *restore_ruby_dependencies
+        - run: bundle install --clean --jobs 16 --path ./vendor/bundle/ --retry 3 --with pam_authentication --without development production
+        - save_cache:
+            key: v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
+            paths:
+              - ./.bundle/
+              - ./vendor/bundle/
+
+  - &test_steps
+      steps:
+        - *attach_workspace
+
+        - *install_system_dependencies
+        - run: sudo apt-get install -y ffmpeg
+
+        - run: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
+        - *restore_ruby_dependencies
+
+        - restore_cache:
+            keys:
+              - precompiled-assets-{{ .Branch }}-{{ .Revision }}
+              - precompiled-assets-{{ .Branch }}-
+              - precompiled-assets-
+
+        - run:
+            name: Prepare Tests
+            command: ./bin/rails parallel:create parallel:load_schema parallel:prepare
+        - run:
+            name: Run Tests
+            command: ./bin/retry bundle exec parallel_test ./spec/ --group-by filesize --type rspec
+
+jobs:
+  install:
+    <<: *defaults
+    <<: *install_steps
+
+  install-ruby2.5:
+    <<: *defaults
+    <<: *install_ruby_dependencies
+
+  install-ruby2.4:
+    <<: *defaults
+    docker:
+      - image: circleci/ruby:2.4.4-stretch-node
+        environment: *ruby_environment
+    <<: *install_ruby_dependencies
+
+  build:
+    <<: *defaults
+    steps:
+      - *attach_workspace
+      - *install_system_dependencies
+      - run: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
+      - *restore_ruby_dependencies
+      - run: ./bin/rails assets:precompile
+      - save_cache:
+          key: precompiled-assets-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - ./public/assets
+            - ./public/packs-test/
+
+  test-ruby2.5:
+    <<: *defaults
+    docker:
+      - image: circleci/ruby:2.5.1-stretch-node
+        environment: *ruby_environment
+      - image: circleci/postgres:10.3-alpine
+        environment:
+          POSTGRES_USER: root
+      - image: circleci/redis:4.0.9-alpine
+    <<: *test_steps
+
+  test-ruby2.4:
+    <<: *defaults
+    docker:
+      - image: circleci/ruby:2.4.4-stretch-node
+        environment: *ruby_environment
+      - image: circleci/postgres:10.3-alpine
+        environment:
+          POSTGRES_USER: root
+      - image: circleci/redis:4.0.9-alpine
+    <<: *test_steps
+
+  test-webui:
+    <<: *defaults
+    docker:
+      - image: circleci/node:8.11.1-stretch
+    steps:
+      - *attach_workspace
+      - run: ./bin/retry yarn test:jest
+
+  check-i18n:
+    <<: *defaults
+    steps:
+      - *attach_workspace
+      - run: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
+      - *restore_ruby_dependencies
+      - run: bundle exec i18n-tasks check-normalized
+      - run: bundle exec i18n-tasks unused
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - install
+      - install-ruby2.5:
+          requires:
+            - install
+      - install-ruby2.4:
+          requires:
+            - install
+      - build:
+          requires:
+            - install-ruby2.5
+      - test-ruby2.5:
+          requires:
+            - install-ruby2.5
+            - build
+      - test-ruby2.4:
+          requires:
+            - install-ruby2.4
+            - build
+      - test-webui:
+          requires:
+            - install
+      - check-i18n:
+          requires:
+            - install-ruby2.5

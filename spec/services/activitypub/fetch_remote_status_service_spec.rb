@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ActivityPub::FetchRemoteStatusService do
+RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
   include ActionView::Helpers::TextHelper
 
   let(:sender) { Fabricate(:account) }

@@ -4,26 +4,34 @@ fr:
     hints:
       defaults:
         avatar: Au format PNG, GIF ou JPG. 2 Mo maximum. Sera réduit à 400x400px
+        bot: Ce compte exécute principalement des actions automatisées et pourrait ne pas être surveillé
         digest: Uniquement envoyé après une longue période d’inactivité et uniquement si vous avez reçu des messages personnels pendant votre absence
         display_name:
           one: <span class="name-counter">1</span> caractère restant
           other: <span class="name-counter">%{count}</span> caractères restants
+        fields: Vous pouvez avoir jusqu'à 4 éléments affichés en tant que tableau sur votre profil
         header: Au format PNG, GIF ou JPG. 2 Mo maximum. Sera réduit à 700x335px
         locked: Vous devrez approuver chaque abonné⋅e et vos statuts ne s’afficheront qu’à vos abonné⋅es
         note:
           one: <span class="note-counter">1</span> caractère restant
           other: <span class="note-counter">%{count}</span> caractères restants
+        setting_hide_network: Ceux que vous suivez et ceux qui vous suivent ne seront pas affichés sur votre profil
         setting_noindex: Affecte votre profil public ainsi que vos statuts
         setting_theme: Affecte l’apparence de Mastodon quand vous êtes connecté·e depuis n’importe quel appareil.
       imports:
         data: Un fichier CSV généré par une autre instance de Mastodon
       sessions:
-        otp: Entrez le code d’authentification à deux facteurs depuis votre téléphone ou utilisez un de vos codes de récupération.
+        otp: 'Entrez le code d’authentification à deux facteurs généré par votre téléphone ou utilisez un de vos codes de récupération :'
       user:
         filtered_languages: Les langues sélectionnées seront filtrées hors de vos fils publics pour vous
     labels:
+      account:
+        fields:
+          name: Étiquette
+          value: Contenu
       defaults:
         avatar: Image de profil
+        bot: Ceci est un robot
         confirm_new_password: Confirmation du nouveau mot de passe
         confirm_password: Confirmation du mot de passe
         current_password: Mot de passe actuel
@@ -31,6 +39,7 @@ fr:
         display_name: Nom public
         email: Adresse courriel
         expires_in: Expire après
+        fields: Métadonnées du profil
         filtered_languages: Langues filtrées
         header: Image d’en-tête
         locale: Langue
@@ -46,6 +55,7 @@ fr:
         setting_default_sensitive: Toujours marquer les médias comme sensibles
         setting_delete_modal: Afficher une fenêtre de confirmation avant de supprimer un pouet
         setting_display_sensitive_media: Toujours afficher les médias marqués comme sensibles
+        setting_hide_network: Cacher votre réseau
         setting_noindex: Demander aux moteurs de recherche de ne pas indexer vos informations personnelles
         setting_reduce_motion: Réduire la vitesse des animations
         setting_system_font_ui: Utiliser la police par défaut du système

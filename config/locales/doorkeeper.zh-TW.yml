@@ -5,12 +5,14 @@ zh-TW:
       doorkeeper/application:
         name: 名稱
         redirect_uri: 重新導向 URI
+        scopes: 範圍
+        website: 應用程式網頁
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: URI 不可包含 "#fragment" 部份
+              fragment_present: 不能包含 fragment。
               invalid_uri: 必需有正確的 URI.
               relative_uri: 必需為絕對 URI.
               secured_uri: 必需使用有 HTTPS/SSL 加密的 URI.
@@ -31,11 +33,15 @@ zh-TW:
       help:
         native_redirect_uri: 使用 %{native_redirect_uri} 作局部測試
         redirect_uri: 每行輸入一個 URI
-        scopes: 請用半形空格分開權限範圍 (scope)。留空表示使用預設的權限範圍
+        scopes: 請用半形空格分開權限範圍 (scope)。留空表示使用預設的權限範圍。
       index:
+        application: 應用程式
         callback_url: 回傳網址
+        delete: 刪除
         name: 名稱
         new: 新增應用程式
+        scopes: 範圍
+        show: 顯示
         title: 您的應用程式
       new:
         title: 新增應用程式
@@ -57,7 +63,7 @@ zh-TW:
         prompt: 應用程式 %{client_name} 要求取得您帳號的部份權限
         title: 需要授權
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: 複製此授權碼並貼上到應用程式中。
     authorized_applications:
       buttons:
         revoke: 取消授權
@@ -77,7 +83,7 @@ zh-TW:
         invalid_grant: 授權申請不正確、逾期、已被取消、與授權請求內的重新導向 URI 不符、或屬於別的客戶端程式。
         invalid_redirect_uri: 不正確的重新導向網址。
         invalid_request: 請求缺少必要的參數、包含不支援的參數、或其他輸入錯誤。
-        invalid_resource_owner: 資源擁有者的登入資訊錯誤、或無法找到該資源擁有者。
+        invalid_resource_owner: 資源擁有者的登入資訊錯誤、或無法找到該資源擁有者
         invalid_scope: 請求的權限範圍不正確、未有定義、或輸入錯誤。
         invalid_token:
           expired: access token 已過期
