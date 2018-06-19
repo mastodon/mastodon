@@ -455,6 +455,7 @@ ar:
     '422':
       content: فشل التحقق الآمن. ربما منعتَ كعكات الكوكيز ؟
       title: فشِل التحقق الآمن
+    '429': طلبات كثيرة جدا
     '500':
       content: نحن متأسفون، لقد حدث خطأ ما مِن جانبنا.
       title: هذه الصفحة خاطئة
@@ -476,6 +477,9 @@ ar:
     followers_count: عدد المتابِعين
     lock_link: قم بتجميد حسابك
     purge: تنحية من بين متابعيك
+    success:
+      one: جارية عملية حظر المتابِعين بسلاسة من نطاق آخر ...
+      other: جارية عملية حظر المتابِعين بسلاسة من %{count} نطاقات أخرى ...
     unlocked_warning_title: إنّ حسابك غير مقفل
   generic:
     changes_saved_msg: تم حفظ التعديلات بنجاح !
@@ -658,6 +662,10 @@ ar:
         one: "%{count} فيديو"
         other: "%{count} فيديوهات"
     content_warning: 'تحذير عن المحتوى : %{warning}'
+    disallowed_hashtags:
+      one: 'يحتوي على وسم ممنوع : %{tags}'
+      other: 'يحتوي على وسوم ممنوعة : %{tags}'
+    language_detection: اكتشاف اللغة تلقائيا
     open_in_web: إفتح في الويب
     over_character_limit: تم تجاوز حد الـ %{max} حرف المسموح بها
     pin_errors:
