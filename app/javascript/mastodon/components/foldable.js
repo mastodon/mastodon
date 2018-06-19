@@ -6,7 +6,7 @@ import spring from 'react-motion/lib/spring';
 const Foldable = ({ fullHeight, minHeight, isVisible, children }) => (
   <Motion defaultStyle={{ height: isVisible ? fullHeight : minHeight }} style={{ height: spring(!isVisible ? minHeight : fullHeight) }}>
     {({ height }) =>
-      (<div style={{ height: `${height}px`, maxHeight: '20vh' }} class='scrollable optionally-scrollable'>
+      (<div style={{ height: `${height}px`, maxHeight: '20vh' }} className='scrollable optionally-scrollable'>
         {children}
       </div>)
     }
