@@ -21,7 +21,7 @@ module Mastodon
     end
 
     def flags
-      nil
+      '+80bda97'
     end
 
     def to_a
@@ -38,7 +38,7 @@ module Mastodon
 
     # specify git tag or commit hash here
     def source_tag
-      'foresdon-v2.4.1'
+      'foresdon-v2.4.2'
     end
 
     def source_url
