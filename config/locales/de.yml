@@ -283,7 +283,7 @@ de:
         create_and_resolve: Mit Kommentar lösen
         create_and_unresolve: Mit Kommentar wieder öffnen
         delete: Löschen
-        placeholder: Beschreibe, welche Maßnahmen ergriffen wurden oder andere Neuigkeiten zu dieser Meldung…
+        placeholder: Beschreibe, welche Maßnahmen ergriffen wurden oder irgendwelche andere Neuigkeiten…
       reopen: Meldung wieder öffnen
       report: 'Meldung #%{id}'
       report_contents: Inhalt
@@ -424,7 +424,7 @@ de:
     following: 'Erfolg! Du folgst nun:'
     post_follow:
       close: Oder du schließt einfach dieses Fenster.
-      return: Zurück zum Profil dieses Wesens
+      return: Zeige Profil des Benutzers
       web: Das Web öffnen
     title: "%{acct} folgen"
   datetime:
@@ -514,6 +514,7 @@ de:
       '86400': 1 Tag
     expires_in_prompt: Nie
     generate: Generieren
+    invited_by: 'Du wurdest eingeladen von:'
     max_uses:
       one: 1 mal verwendet
       other: "%{count} mal verwendet"
@@ -550,7 +551,7 @@ de:
       subject:
         one: "1 neue Mitteilung seit deinem letzten Besuch \U0001F418"
         other: "%{count} neue Mitteilungen seit deinem letzten Besuch \U0001F418"
-      title: In deiner Abwesenheit…
+      title: In deiner Abwesenheit...
     favourite:
       body: 'Dein Beitrag wurde von %{name} favorisiert:'
       subject: "%{name} hat deinen Beitrag favorisiert"
@@ -669,6 +670,7 @@ de:
       video:
         one: "%{count} Video"
         other: "%{count} Videos"
+    boosted_from_html: Geteilt von %{acct_link}
     content_warning: 'Inhaltswarnung: %{warning}'
     disallowed_hashtags:
       one: 'Enthält den unerlaubten Hashtag: %{tags}'
@@ -699,6 +701,7 @@ de:
   themes:
     contrast: Hoher Kontrast
     default: Mastodon
+    mastodon-light: Mastodon (hell)
   time:
     formats:
       default: "%d.%m.%Y %H:%M"

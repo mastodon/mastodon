@@ -138,7 +138,7 @@ export default class ListTimeline extends React.PureComponent {
     return (
       <Column ref={this.setRef}>
         <ColumnHeader
-          icon='bars'
+          icon='list-ul'
           active={hasUnread}
           title={title}
           onPin={this.handlePin}

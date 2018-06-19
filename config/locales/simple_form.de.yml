@@ -3,6 +3,7 @@ de:
   simple_form:
     hints:
       defaults:
+        autofollow: Leute die sich über deine Einladung registrieren werden dir automatisch folgen
         avatar: PNG, GIF oder JPG. Maximal 2 MB. Wird auf 400×400 px herunterskaliert
         bot: Dieser Account führt hauptsächlich automatische Aktionen aus und wird möglicherweise nicht überwacht
         digest: Wenn du lange Zeit inaktiv bist, wird dir eine Zusammenfassung von Erwähnungen in deiner Abwesenheit zugeschickt
@@ -15,7 +16,7 @@ de:
         note:
           one: <span class="note-counter">1</span> Zeichen verbleibt
           other: <span class="note-counter">%{count}</span> Zeichen verbleiben
-        setting_hide_network: Wem du folgst und wer dir folgt, wird in deinem Profil nicht angezeigt
+        setting_hide_network: Wem du folgst und wer dir folgt wird in deinem Profil nicht angezeigt
         setting_noindex: Betrifft dein öffentliches Profil und deine Beiträge
         setting_theme: Wirkt sich darauf aus, wie Mastodon aussieht, egal auf welchem Gerät du eingeloggt bist.
       imports:
@@ -28,6 +29,7 @@ de:
           name: Bezeichnung
           value: Inhalt
       defaults:
+        autofollow: Einladen, um deinen Account zu folgen
         avatar: Profilbild
         bot: Dies ist ein bot Benutzer
         confirm_new_password: Neues Passwort bestätigen
@@ -52,6 +54,7 @@ de:
         setting_default_sensitive: Medien immer als heikel markieren
         setting_delete_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag gelöscht wird
         setting_display_sensitive_media: Medien, die als heikel markiert sind, immer anzeigen
+        setting_hide_network: Verstecke dein Netzwerk
         setting_noindex: Suchmaschinen-Indexierung verhindern
         setting_reduce_motion: Bewegung in Animationen verringern
         setting_system_font_ui: Standardschriftart des Systems verwenden
