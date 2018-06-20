@@ -60,7 +60,7 @@ const initialState = ImmutableMap({
   preselectDate: null,
   in_reply_to: null,
   quote_from: null,
-  quote_from_uri: null,
+  quote_from_url: null,
   is_composing: false,
   is_submitting: false,
   is_changing_upload: false,
@@ -263,7 +263,7 @@ export default function compose(state = initialState, action) {
     return state.withMutations(map => {
       map.set('in_reply_to', action.status.get('id'));
       map.set('quote_from', null);
-      map.set('quote_from_uri', null);
+      map.set('quote_from_url', null);
       map.set('text', statusToTextMentions(state, action.status));
       map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
       map.set('focusDate', new Date());
@@ -283,12 +283,20 @@ export default function compose(state = initialState, action) {
     return state.withMutations(map => {
       map.set('in_reply_to', null);
       map.set('quote_from', action.status.get('id'));
-      map.set('quote_from_uri', action.status.get('uri'));
+      map.set('quote_from_url', action.status.get('url'));
       map.set('text', '');
       map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
       map.set('focusDate', new Date());
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
+
+      if (action.status.get('spoiler_text').length > 0) {
+        map.set('spoiler', true);
+        map.set('spoiler_text', action.status.get('spoiler_text'));
+      } else {
+        map.set('spoiler', false);
+        map.set('spoiler_text', '');
+      }
     });
   case COMPOSE_REPLY_CANCEL:
   case COMPOSE_QUOTE_CANCEL:
@@ -296,7 +304,7 @@ export default function compose(state = initialState, action) {
     return state.withMutations(map => {
       map.set('in_reply_to', null);
       map.set('quote_from', null);
-      map.set('quote_from_uri', null);
+      map.set('quote_from_url', null);
       map.set('text', '');
       map.set('spoiler', false);
       map.set('spoiler_text', '');

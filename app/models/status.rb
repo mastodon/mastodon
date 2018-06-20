@@ -23,6 +23,7 @@
 #  in_reply_to_account_id :bigint(8)
 #  quote_id               :bigint(8)
 #  poll_id                :bigint(8)
+#  quote_id               :bigint(8)
 #
 
 class Status < ApplicationRecord

@@ -148,7 +148,7 @@ export function directCompose(account, routerHistory) {
 
 export function submitCompose(routerHistory, withCommunity) {
   return function (dispatch, getState) {
-    let status = getState().getIn(['compose', 'text'], '');
+    const status = getState().getIn(['compose', 'text'], '');
     const media  = getState().getIn(['compose', 'media_attachments']);
 
     if ((!status || !status.length) && media.size === 0) {
@@ -178,6 +178,7 @@ export function submitCompose(routerHistory, withCommunity) {
       visibility,
       quote_id: getState().getIn(['compose', 'quote_from'], null),
       poll: getState().getIn(['compose', 'poll'], null),
+      quote_id: getState().getIn(['compose', 'quote_from'], null),
     }, {
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),

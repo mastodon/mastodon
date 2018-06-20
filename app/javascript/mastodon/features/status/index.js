@@ -465,6 +465,7 @@ class Status extends ImmutablePureComponent {
                   onToggleHidden={this.handleToggleHidden}
                   onQuoteToggleHidden={this.handleQuoteToggleHidden}
                   domain={domain}
+                  onQuoteToggleHidden={this.handleQuoteToggleHidden}
                 />
 
                 <ActionBar

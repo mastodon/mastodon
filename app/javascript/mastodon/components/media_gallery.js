@@ -197,6 +197,7 @@ class MediaGallery extends React.PureComponent {
     quote: PropTypes.bool,
     defaultWidth: PropTypes.number,
     cacheWidth: PropTypes.func,
+    quote: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -239,7 +240,7 @@ class MediaGallery extends React.PureComponent {
   }
 
   render () {
-    const { media, intl, sensitive, height, quote, defaultWidth } = this.props;
+    const { media, intl, sensitive, height, defaultWidth, quote } = this.props;
     const { visible } = this.state;
 
     const width = this.state.width || defaultWidth;
