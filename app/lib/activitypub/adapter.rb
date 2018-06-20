@@ -22,6 +22,7 @@ class ActivityPub::Adapter < ActiveModelSerializers::Adapter::Base
         'schema'                    => 'http://schema.org#',
         'PropertyValue'             => 'schema:PropertyValue',
         'value'                     => 'schema:value',
+        'quoteUrl'                  => 'as:quoteUrl',
       },
     ],
   }.freeze

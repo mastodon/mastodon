@@ -69,7 +69,7 @@ class FetchLinkCardService < BaseService
       urls = @status.text.scan(URL_PATTERN).map { |array| Addressable::URI.parse(array[0]).normalize }
     else
       html  = Nokogiri::HTML(@status.text)
-      links = html.css('a')
+      links = html.css(':not(.quote-inline) > a')
       urls  = links.map { |a| Addressable::URI.parse(a['href']).normalize unless skip_link?(a) }.compact
     end
 
@@ -78,7 +78,7 @@ class FetchLinkCardService < BaseService
 
   def bad_url?(uri)
     # Avoid local instance URLs and invalid URLs
-    uri.host.blank? || (TagManager.instance.local_url?(uri.to_s) && uri.to_s !~ %r(/users/[\w_-]+/statuses/\w+)) || !%w(http https).include?(uri.scheme)
+    uri.host.blank? || TagManager.instance.local_url?(uri.to_s) || !%w(http https).include?(uri.scheme)
   end
 
   def skip_link?(a)
@@ -119,7 +119,7 @@ class FetchLinkCardService < BaseService
       # Most providers rely on <script> tags, which is a no-no
       return false
     end
-    
+
     @card.save_with_optional_image!
   end
 

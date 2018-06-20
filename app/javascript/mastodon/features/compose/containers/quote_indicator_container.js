@@ -7,7 +7,7 @@ const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
 
   const mapStateToProps = state => ({
-    status: getStatus(state, state.getIn(['compose', 'quote_from'])),
+    status: getStatus(state, { id: state.getIn(['compose', 'quote_from']) }),
   });
 
   return mapStateToProps;

@@ -24,6 +24,9 @@
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
     .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status, custom_emojify: true, autoplay: autoplay)
 
+  - if status.quote?
+    = render partial: "stream_entries/quote_status", locals: {status: status.quote}
+
   - unless status.media_attachments.empty?
     - if status.media_attachments.first.video?
       - video = status.media_attachments.first
