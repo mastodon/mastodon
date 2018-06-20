@@ -159,6 +159,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
         {quote}
         {media}
+        {quote}
 
         <div className='detailed-status__meta'>
           <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener'>

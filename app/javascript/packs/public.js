@@ -201,6 +201,19 @@ function main() {
       console.error(err);
     }
   });
+
+  delegate(document, '.quote-status', 'click', ({target}) => {
+    if (target.closest('.status__content__spoiler-link') ||
+      target.closest('.media-gallery'))
+      return false;
+    const url = target.closest('.status__display-name') ? target.closest('.status__display-name').getAttribute('href') : target.closest('.quote-status').getAttribute('dataurl');
+    if (window.location.hostname === url.split('/')[2].split(':')[0]) {
+      window.location.href = url;
+    } else {
+      window.open(url, 'blank');
+    }
+    return false;
+  });
 }
 
 loadPolyfills().then(main).catch(error => {

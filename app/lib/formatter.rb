@@ -190,11 +190,12 @@ class Formatter
   end
 
   def quotify(html, status, options)
-    options[:escape_quotify] = true
-    quote_content = format_in_quote(status.quote, options)
+    #options[:escape_quotify] = true
+    #quote_content = format_in_quote(status.quote, options)
     url = TagManager.instance.url_for(status.quote)
     link = encode_and_link_urls(url)
-    html.sub(/(<[^>]+>)\z/, "<span class=\"quote-inline\"><br/>QT: #{quote_content} [#{link}]</span>\\1")
+    #html.sub(/(<[^>]+>)\z/, "<span class=\"quote-inline\"><br/>QT: #{quote_content} [#{link}]</span>\\1")
+    html.sub(/(<[^>]+>)\z/, "<span class=\"quote-inline\"><br/>QT: [#{link}]</span>\\1")
   end
 
   def rewrite(text, entities)
