@@ -319,11 +319,14 @@ body {
 }
 
 .getting-started__wrapper,
-.getting-started,
-.flex-spacer {
+.getting-started {
   margin-bottom: $foresdon-default-margin-bottom;
   background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
   border-radius: $foresdon-primary-border-radius;
+}
+.flex-spacer {
+  background: none;
+  border: none;
 }
 .community-timeline__section-headline,
 .public-timeline__section-headline,
