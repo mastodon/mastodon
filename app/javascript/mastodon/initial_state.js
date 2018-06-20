@@ -11,5 +11,6 @@ export const boostModal = getMeta('boost_modal');
 export const deleteModal = getMeta('delete_modal');
 export const me = getMeta('me');
 export const searchEnabled = getMeta('search_enabled');
+export const invitesEnabled = getMeta('invites_enabled');
 
 export default initialState;

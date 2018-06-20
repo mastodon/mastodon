@@ -3,6 +3,7 @@ eo:
   simple_form:
     hints:
       defaults:
+        autofollow: Homoj, kiuj registriĝos per la invito aŭtomate sekvos vin
         avatar: Formato PNG, GIF aŭ JPG. Ĝis 2MB. Estos malgrandigita al 400x400px
         bot: Tiu konto ĉefe faras aŭtomatajn agojn, kaj povas esti ne kontrolata
         digest: Sendita nur post longa tempo de neaktiveco, kaj nur se vi ricevis personan mesaĝon en via foresto
@@ -22,14 +23,13 @@ eo:
         data: CSV-dosiero el alia nodo de Mastodon
       sessions:
         otp: 'Enmetu la kodon de dufaktora aŭtentigo el via telefono aŭ uzu unu el viaj realiraj kodoj:'
-      user:
-        filtered_languages: Markitaj lingvoj estos elfiltritaj de publikaj tempolinioj por vi
     labels:
       account:
         fields:
           name: Etikedo
           value: Enhavo
       defaults:
+        autofollow: Inviti al sekvi vian konton
         avatar: Profilbildo
         bot: Tio estas robota konto
         confirm_new_password: Konfirmi novan pasvorton
@@ -40,7 +40,6 @@ eo:
         email: Retadreso
         expires_in: Eksvalidiĝas post
         fields: Profilaj metadatumoj
-        filtered_languages: Filtritaj lingvoj
         header: Fonbildo
         locale: Lingvo
         locked: Ŝlosi konton

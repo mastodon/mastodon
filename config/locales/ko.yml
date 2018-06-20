@@ -2,7 +2,7 @@
 ko:
   about:
     about_hashtag_html: "<strong>#%{hashtag}</strong> 라는 해시태그가 붙은 공개 툿 입니다. 같은 연합에 속한 임의의 인스턴스에 계정을 생성하면 당신도 대화에 참여할 수 있습니다."
-    about_mastodon_html: Mastodon은 <em>오픈 소스 기반의</em> 소셜 네트워크 서비스 입니다. 상용 플랫폼의 대체로서 <em>분산형 구조</em>를 채택해, 여러분의 대화가 한 회사에 독점되는 것을 방지합니다. 신뢰할 수 있는 인스턴스를 선택하세요 &mdash; 어떤 인스턴스를 고르더라도, 누구와도 대화할 수 있습니다. 누구나 자신만의 Mastodon 인스턴스를 만들 수 있으며, 아주 매끄럽게 <em>소셜 네트워크</em>에 참가할 수 있습니다.
+    about_mastodon_html: 마스토돈은 <em>오픈 소스 기반의</em> 소셜 네트워크 서비스 입니다. 상용 플랫폼의 대체로서 <em>분산형 구조</em>를 채택해, 여러분의 대화가 한 회사에 독점되는 것을 방지합니다. 신뢰할 수 있는 인스턴스를 선택하세요 &mdash; 어떤 인스턴스를 고르더라도, 누구와도 대화할 수 있습니다. 누구나 자신만의 마스토돈 인스턴스를 만들 수 있으며, 아주 매끄럽게 <em>소셜 네트워크</em>에 참가할 수 있습니다.
     about_this: 이 인스턴스에 대해서
     administered_by: '관리자:'
     closed_registrations: 현재 이 인스턴스에서는 신규 등록을 받고 있지 않습니다.
@@ -16,9 +16,9 @@ ko:
       <h3>룰을 작성하는 장소</h3>
       <p>아직 설명이 작성되지 않았습니다.</p>
     features:
-      humane_approach_body: 다른 SNS의 실패를 교훈삼아, Mastodon은 소셜미디어가 잘못 사용되는 것을 막기 위하여 윤리적인 설계를 추구합니다.
+      humane_approach_body: 다른 SNS의 실패를 교훈삼아, 마스토돈은 소셜미디어가 잘못 사용되는 것을 막기 위하여 윤리적인 설계를 추구합니다.
       humane_approach_title: 보다 배려를 의식한 설계를 추구
-      not_a_product_body: Mastodon은 이익을 추구하는 SNS가 아닙니다. 그러므로 광고와 데이터의 수집 및 분석이 존재하지 않고, 유저를 구속하지도 않습니다.
+      not_a_product_body: 마스토돈은 이익을 추구하는 SNS가 아닙니다. 그러므로 광고와 데이터의 수집 및 분석이 존재하지 않고, 유저를 구속하지도 않습니다.
       not_a_product_title: 여러분은 사람이며, 상품이 아닙니다
       real_conversation_body: 자유롭게 사용할 수 있는 500문자의 메세지와 미디어 경고 내용을 바탕으로, 자기자신을 자유롭게 표현할 수 있습니다.
       real_conversation_title: 진정한 커뮤니케이션을 위하여
@@ -33,7 +33,7 @@ ko:
     status_count_before: 툿 수
     user_count_after: 명
     user_count_before: 사용자 수
-    what_is_mastodon: Mastodon이란?
+    what_is_mastodon: 마스토돈이란?
   accounts:
     follow: 팔로우
     followers: 팔로워
@@ -109,7 +109,7 @@ ko:
       not_subscribed: 구독하지 않음
       order:
         alphabetic: 알파벳 순
-        most_recent: 최근 활동 순
+        most_recent: 최근 순
         title: 순서
       outbox_url: 발신함 URL
       perform_full_suspension: 완전히 정지시키기
@@ -242,13 +242,13 @@ ko:
       undo: 실행 취소
     email_domain_blocks:
       add_new: 새로 추가
-      created_msg: Email 도메인 차단 규칙을 생성했습니다
+      created_msg: 이메일 도메인 차단 규칙을 생성했습니다
       delete: 삭제
-      destroyed_msg: Email 도메인 차단 규칙을 삭제했습니다
+      destroyed_msg: 이메일 도메인 차단 규칙을 삭제했습니다
       domain: 도메인
       new:
         create: 차단 규칙 생성
-        title: 새 Email 도메인 차단
+        title: 새 이메일 도메인 차단
       title: Email 도메인 차단
     instances:
       account_count: 알려진 계정의 수
@@ -456,7 +456,7 @@ ko:
     '404': 당신이 찾으려는 페이지는 존재하지 않습니다.
     '410': 당신이 보려는 페이지는 더이상 존재하지 않습니다.
     '422':
-      content: 보안 인증에 실패했습니다. Cookie를 차단하고 있진 않습니까?
+      content: 보안 인증에 실패했습니다. 쿠키를 차단하고 있진 않습니까?
       title: 보안 인증 실패
     '429': 요청 횟수 제한에 도달했습니다
     '500':
@@ -516,6 +516,7 @@ ko:
       '86400': 하루
     expires_in_prompt: 영원히
     generate: 생성
+    invited_by: '당신을 초대한 사람:'
     max_uses:
       one: 일회용
       other: "%{count} 회"
@@ -629,7 +630,7 @@ ko:
       weibo: 웨이보
     current_session: 현재 세션
     description: "%{platform}의 %{browser}"
-    explanation: 내 Mastodon 계정에 현재 로그인 중인 웹 브라우저 목록입니다.
+    explanation: 내 마스토돈 계정에 현재 로그인 중인 웹 브라우저 목록입니다.
     ip: IP
     platforms:
       adobe_air: 어도비 에어
@@ -702,6 +703,7 @@ ko:
   themes:
     contrast: 고대비
     default: 마스토돈
+    mastodon-light: 마스토돈 (밝음)
   time:
     formats:
       default: "%Y년 %m월 %d일 %H:%M"

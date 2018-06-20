@@ -3,6 +3,7 @@ sk:
   simple_form:
     hints:
       defaults:
+        autofollow: Ľudia ktorí sa zaregistrujú prostredníctvom pozvánky, ťa budú inheď následovať
         avatar: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 400x400px
         bot: Tento účet vykonáva hlavne automatizované akcie, a je pravdepodobne nespravovaný
         digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak si obdŕžal/a nejaké osobné správy kým si bol/a preč
@@ -12,6 +13,7 @@ sk:
           other: Ostáva ti <span class="name-counter">%{count}</span> znakov
         fields: Môžeš mať 4 položky na svojom profile zobrazené vo forme tabuľky
         header: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 700x335px
+        locale: Jazyk užívateľského rozhrania, emailových a nástenkových oboznámení
         locked: Vyžaduje manuálne schvalovať sledujúcich
         note:
           few: Ostávajú ti <span class="note-counter">%{count}</span> znaky
@@ -24,16 +26,16 @@ sk:
         data: CSV súbor vyexportovaný z inej Mastodon inštancie
       sessions:
         otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích obnovovacích kódov:'
-      user:
-        filtered_languages: Zaškrtnuté jazyky budú pre teba vynechané z verejnej časovej osi
     labels:
       account:
         fields:
           name: Označenie
           value: Obsah
       defaults:
+        autofollow: Pozvi k následovaniu tvojho profilu
         avatar: Avatar
         bot: Toto je automatizovaný bot účet
+        chosen_languages: Filtruj jazyky
         confirm_new_password: Znovu tvoje nové heslo, pre potvrdenie
         confirm_password: Potvrď heslo
         current_password: Súčasné heslo
@@ -42,9 +44,8 @@ sk:
         email: Emailová adresa
         expires_in: Expirovať po
         fields: Metadáta profilu
-        filtered_languages: Vynechanie jazykov
         header: Obrázok v hlavičke
-        locale: Jazyk
+        locale: Jazyk rozhrania
         locked: Zamknúť účet
         max_uses: Maximálne možno použiť
         new_password: Nové heslo
@@ -69,7 +70,7 @@ sk:
         username_or_email: Prezívka, alebo email
       interactions:
         must_be_follower: Blokovať oznámenia od užívateľov, ktorí ťa nesledujú
-        must_be_following: Blokovať oznámenia od ľudí ktorých nesleduješ
+        must_be_following: Blokovať oboznámenia ohľadom ľudí ktorých nesleduješ
         must_be_following_dm: Blokovať súkromné správy od ľudí ktorých nesleduješ
       notification_emails:
         digest: Posielať súhrnné emaily

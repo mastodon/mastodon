@@ -23,6 +23,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       github_name: Mastodon::Version.source_link_title,
       admin: object.admin&.id&.to_s,
       search_enabled: Chewy.enabled?,
+      invites_enabled: Setting.min_invite_role == 'user',
     }
 
     if object.current_account
