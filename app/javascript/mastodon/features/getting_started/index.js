@@ -79,7 +79,7 @@ export default class GettingStarted extends ImmutablePureComponent {
 
     const navItems = [];
     let i = 1;
-    let height = 0;
+    let height = (multiColumn) ? 0 : 60;
 
     if (multiColumn) {
       navItems.push(
