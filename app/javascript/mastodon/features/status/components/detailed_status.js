@@ -23,6 +23,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     onOpenMedia: PropTypes.func.isRequired,
     onOpenVideo: PropTypes.func.isRequired,
     onToggleHidden: PropTypes.func.isRequired,
+    onQuoteToggleHidden: PropTypes.func.isRequired,
   };
 
   handleAccountClick = (e) => {
@@ -42,6 +43,19 @@ export default class DetailedStatus extends ImmutablePureComponent {
     this.props.onToggleHidden(this.props.status);
   }
 
+  handleExpandedQuoteToggle = () => {
+    this.props.onQuoteToggleHidden(this.props.status);
+  }
+
+  handleQuoteClick = () => {
+    if (!this.context.router) {
+      return;
+    }
+
+    const { status } = this.props;
+    this.context.router.history.push(`/statuses/${status.getIn(['quote', 'id'])}`);
+  }
+
   render () {
     const status = this.props.status.get('reblog') ? this.props.status.get('reblog') : this.props.status;
 
@@ -49,6 +63,36 @@ export default class DetailedStatus extends ImmutablePureComponent {
     let applicationLink = '';
     let reblogLink = '';
     let reblogIcon = 'retweet';
+
+    let quote = null;
+    if (status.get('quote', null) !== null) {
+      let quote_status = status.get('quote');
+
+      let quote_media = null;
+      if (quote_status.get('media_attachments').size > 0) {
+        quote_media = (
+          <MediaGallery
+            standalone
+            sensitive={quote_status.get('sensitive')}
+            media={quote_status.get('media_attachments')}
+            height={300}
+            onOpenMedia={this.props.onOpenMedia}
+            quote={true}
+          />
+        );
+      }
+
+      quote = (
+        <div className='quote-status'>
+          <div className='status__info'>
+            <div className='status__avatar'><Avatar account={quote_status.get('account')} size={18} /></div>
+            <DisplayName account={quote_status.get('account')} />
+          </div>
+          <StatusContent status={quote_status} onClick={this.handleQuoteClick} expanded={!status.get('quote_hidden')} onExpandedToggle={this.handleExpandedQuoteToggle} />
+          {quote_media}
+        </div>
+      );
+    }
 
     if (status.get('media_attachments').size > 0) {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
@@ -112,6 +156,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
         <StatusContent status={status} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} />
 
+        {quote}
         {media}
 
         <div className='detailed-status__meta'>
