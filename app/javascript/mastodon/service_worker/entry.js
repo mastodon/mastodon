@@ -63,7 +63,7 @@ self.addEventListener('fetch', function(event) {
             if (response.ok) {
               cache
                 .put(event.request.url, response.clone())
-                .catch(err=>console.error(err)).then(freeStorage()).catch();
+                .catch(()=>{}).then(freeStorage()).catch();
             }
 
             return response;
