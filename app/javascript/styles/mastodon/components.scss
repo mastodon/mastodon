@@ -302,12 +302,10 @@
     height: 0;
     transform-origin: bottom;
     opacity: 0.0;
-    transition: all 0.4s ease;
 
     &.spoiler-input--visible {
       height: 47px;
       opacity: 1.0;
-      transition: all 0.4s ease;
     }
   }
 
@@ -566,6 +564,10 @@
       padding-top: 10px;
     }
   }
+}
+
+.no-reduce-motion .spoiler-input {
+  transition: height 0.4s ease, opacity 0.4s ease;
 }
 
 .emojione {
