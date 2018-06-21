@@ -3,6 +3,7 @@ ca:
   simple_form:
     hints:
       defaults:
+        autofollow: Les persones que es registrin a través de la invitació et seguiran automàticament
         avatar: PNG, GIF o JPG. Màxim 2MB. S'escalarà a 400x400px
         bot: Aquest compte realitza principalment accions automatitzades i pot no estar controlat per cap persona
         digest: Només s'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
@@ -11,10 +12,12 @@ ca:
           other: <span class="name-counter">%{count}</span> càracters restans
         fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
         header: PNG, GIF o JPG. Màxim 2MB. S'escalarà a 700x335px
+        locale: El llenguatge de l’interfície d’usuari, els correus i les notificacions push
         locked: Requereix que aprovis manualment els seguidors
         note:
           one: <span class="note-counter">1</span> càracter restant
           other: <span class="note-counter">%{count}</span> caràcters restants
+        setting_default_language: La llengua dels teus toots pot ser detectada automàticament però no sempre acuradament
         setting_hide_network: Qui tu segueixes i els que et segueixen a tu no es mostraran en el teu perfil
         setting_noindex: Afecta el teu perfil públic i les pàgines d'estat
         setting_theme: Afecta l'aspecte de Mastodon quan es visita des de qualsevol dispositiu.
@@ -23,15 +26,17 @@ ca:
       sessions:
         otp: 'Introdueix el codi de dos factors generat per el teu telèfon o utilitza un dels teus codis de recuperació:'
       user:
-        filtered_languages: Les llengües seleccionades s'eliminaran de les línies de temps públiques
+        chosen_languages: Quan estigui marcat, només es mostraran els toots de les llengües seleccionades en les línies de temps públiques
     labels:
       account:
         fields:
           name: Etiqueta
           value: Contingut
       defaults:
+        autofollow: Convida a seguir el teu compte
         avatar: Avatar
         bot: Aquest compte és un bot
+        chosen_languages: Filtrar llengües
         confirm_new_password: Confirma la contrasenya nova
         confirm_password: Confirma la contrasenya
         current_password: Contrasenya actual
@@ -40,9 +45,8 @@ ca:
         email: Adreça de correu electrònic
         expires_in: Expira després
         fields: Metadades del perfil
-        filtered_languages: Llengües filtrades
         header: Capçalera
-        locale: Llengua
+        locale: Llengua de la interfície
         locked: Fes aquest compte privat
         max_uses: Nombre màxim d'usos
         new_password: Contrasenya nova
@@ -51,6 +55,7 @@ ca:
         password: Contrasenya
         setting_auto_play_gif: Reproducció automàtica de GIFs animats
         setting_boost_modal: Mostra la finestra de confirmació abans d'un retoot
+        setting_default_language: Llengua de les publicacions
         setting_default_privacy: Privacitat de les publicacions
         setting_default_sensitive: Marca sempre els elements multimèdia com a sensibles
         setting_delete_modal: Mostra la finestra de confirmació abans de suprimir un toot

@@ -483,38 +483,18 @@ oc:
     - :year
   datetime:
     distance_in_words:
-      about_x_hours:
-        one: Fa una ora
-        other: Fa %{count} oras
-      about_x_months:
-        one: Fa un mes
-        other: Fa %{count} meses
-      about_x_years:
-        one: Fa un an
-        other: Fa %{count} ans
-      almost_x_years:
-        one: Fa quasi un an
-        other: Fa quasi %{count} ans
+      about_x_hours: "%{count} h"
+      about_x_months: "%{count} meses"
+      about_x_years: "%{count} ans"
+      almost_x_years: "%{count}ans"
       half_a_minute: Ara
-      less_than_x_minutes:
-        one: Fa mens d’una minuta
-        other: Fa mens de %{count} minutas
+      less_than_x_minutes: "%{count} min"
       less_than_x_seconds: Ara meteis
-      over_x_years:
-        one: Fa mai d’un an
-        other: Fa mai de %{count} ans
-      x_days:
-        one: Fa un jorn
-        other: Fa %{count} jorns
-      x_minutes:
-        one: Fa una minuta
-        other: Fa %{count} minutas
-      x_months:
-        one: Fa un mes
-        other: Fa %{count} meses
-      x_seconds:
-        one: Fa una segonda
-        other: Fa %{count} segondas
+      over_x_years: "%{count} ans"
+      x_days: "%{count} jorns"
+      x_minutes: "%{count} min"
+      x_months: "%{count} meses"
+      x_seconds: "%{count}s"
       x_years:
         one: Fa un an
         other: Fa %{count} ans
@@ -591,6 +571,7 @@ oc:
       '86400': 1 jorn
     expires_in_prompt: Jamai
     generate: Generar
+    invited_by: 'Vos a convidat :'
     max_uses:
       one: 1 persona
       other: "%{count} personas"
@@ -751,6 +732,7 @@ oc:
     disallowed_hashtags:
       one: 'conten una etiqueta desactivada : %{tags}'
       other: 'conten las etiquetas desactivadas : %{tags}'
+    language_detection: Detectar automaticament la lenga
     open_in_web: Dobrir sul web
     over_character_limit: limit de %{max} caractèrs passat
     pin_errors:
