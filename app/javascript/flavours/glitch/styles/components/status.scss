@@ -150,7 +150,7 @@
 }
 
 .status {
-  padding: 8px 10px;
+  padding: 10px 14px;
   position: relative;
   height: auto;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
@@ -159,7 +159,7 @@
   @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
     // Add margin to avoid Edge auto-hiding scrollbar appearing over content.
     // On Edge 16 this is 16px and Edge <=15 it's 12px, so aim for 16px.
-    padding-right: 26px; // 10px + 16px
+    padding-right: 28px; // 12px + 16px
   }
 
   @keyframes fade {
