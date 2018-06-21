@@ -3,6 +3,7 @@ zh-CN:
   simple_form:
     hints:
       defaults:
+        autofollow: 通过邀请链接注册的用户将会自动关注你
         avatar: 文件大小限制 2MB，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 400×400px
         bot: 来自这个帐户的绝大多数操作都是自动进行的，并且可能无人监控
         digest: 仅在你长时间未登录，且收到了私信时发送
@@ -18,14 +19,13 @@ zh-CN:
         data: 请上传从其他 Mastodon 实例导出的 CSV 文件
       sessions:
         otp: 输入你手机应用上生成的双重认证码，或者任意一个恢复代码：
-      user:
-        filtered_languages: 被勾选语言的嘟文将不会出现在你的公共时间轴上
     labels:
       account:
         fields:
           name: 标签
           value: 内容
       defaults:
+        autofollow: 让被邀请人关注你的帐户
         avatar: 头像
         bot: 这是一个机器人帐户
         confirm_new_password: 确认新密码
@@ -36,7 +36,6 @@ zh-CN:
         email: 电子邮件地址
         expires_in: 失效时间
         fields: 个人资料附加信息
-        filtered_languages: 语言过滤
         header: 个人资料页横幅图片
         locale: 语言
         locked: 保护你的帐户（锁嘟）

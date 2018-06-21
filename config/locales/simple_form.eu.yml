@@ -3,6 +3,7 @@ eu:
   simple_form:
     hints:
       defaults:
+        autofollow: Gonbidapena erabiliz izena ematen dutenek automatikoki jarraituko zaituzte
         avatar: PNG, GIF edo JPG. Gehienez 2MB. 400x400px neurrira eskalatuko da
         bot: Kontu honek nagusiki automatizatutako ekintzak burutzen ditu eta agian ez du inork monitorizatzen
         digest: Soilik jarduerarik gabeko epe luze bat eta gero, eta soilik ez zeudela mezu pertsonalen bat jaso baduzu
@@ -22,14 +23,13 @@ eu:
         data: Beste Mastodon instantzia batetik esportatutako CSV fitxategia
       sessions:
         otp: 'Sartu zure telefonoko aplikazioak sortutako bi faktoreetako kodea, edo erabili zure berreskuratze kodeetako bat:'
-      user:
-        filtered_languages: Ez dira aukeratutako hizkuntzak erakutsiko zure denbora-lerro publikoetan
     labels:
       account:
         fields:
           name: Etiketa
           value: Edukia
       defaults:
+        autofollow: Gonbidatu zure kontua jarraitzera
         avatar: Abatarra
         bot: Hau bot kontu bat da
         confirm_new_password: Berretsi pasahitz berria
@@ -40,7 +40,6 @@ eu:
         email: E-mail helbidea
         expires_in: Iraungitzea
         fields: Profilaren metadatuak
-        filtered_languages: Iragazitako hizkuntzak
         header: Goiburua
         locale: Hizkuntza
         locked: Giltzapetu kontua

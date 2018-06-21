@@ -12,7 +12,9 @@
   .fields-group
     = f.input :locale, collection: I18n.available_locales, wrapper: :with_label, include_blank: false, label_method: lambda { |locale| human_locale(locale) }, selected: I18n.locale
 
-    = f.input :filtered_languages, collection: filterable_languages, wrapper: :with_block_label, include_blank: false, label_method: lambda { |locale| human_locale(locale) }, required: false, as: :check_boxes, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+    = f.input :setting_default_language, collection: [nil] + filterable_languages.sort, wrapper: :with_label, label_method: lambda { |locale| locale.nil? ? I18n.t('statuses.language_detection') : human_locale(locale) }, required: false, include_blank: false
+
+    = f.input :chosen_languages, collection: filterable_languages.sort, wrapper: :with_block_label, include_blank: false, label_method: lambda { |locale| human_locale(locale) }, required: false, as: :check_boxes, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
 
   %h4= t 'preferences.publishing'
 
