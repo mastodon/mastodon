@@ -26,13 +26,16 @@ fr:
         setting_theme: Affecte l’apparence de Mastodon quand vous êtes connecté·e
           depuis n’importe quel appareil.
         locale: La langue de l'interface-utilisateur, des courriels, et des notifications
-        setting_default_language: La langue de vos pouets peut être détectée automatiquement
-          mais ce n'est pas toujours pertinent
+        setting_default_language: La langue de vos pouets peut être détectée automatiquement,
+          mais ça n'est pas toujours pertinent
       imports:
         data: Un fichier CSV généré par une autre instance de Mastodon
       sessions:
         otp: 'Entrez le code d’authentification à deux facteurs généré par votre téléphone
           ou utilisez un de vos codes de récupération :'
+      user:
+        chosen_languages: Lorsque coché, seuls les pouets dans les langues sélectionnées
+          seront affichés sur les fils publics
     labels:
       account:
         fields:
@@ -51,7 +54,7 @@ fr:
         expires_in: Expire après
         fields: Métadonnées du profil
         header: Image d’en-tête
-        locale: Langue
+        locale: Langue de l'interface
         locked: Verrouiller le compte
         max_uses: Nombre maximum d'utilisations
         new_password: Nouveau mot de passe
@@ -78,6 +81,8 @@ fr:
         type: Type d’import
         username: Identifiant
         username_or_email: Nom d'utilisateur ou courriel
+        chosen_languages: Filtrer les langues
+        setting_default_language: Langue de publication
       interactions:
         must_be_follower: Masquer les notifications des personnes qui ne vous suivent
           pas
