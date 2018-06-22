@@ -1,7 +1,7 @@
----
 zh-TW:
   about:
-    about_mastodon_html: Mastodon （長毛象）是一個<em>自由、開放原始碼</em>的社群網站。它是一個分散式的服務，避免您的通訊被單一商業機構壟斷操控。請您選擇一家您信任的 Mastodon 服務站，在上面建立帳號，然後您就可以和任一 Mastodon 服務站上的使用者互通，享受無縫的<em>社群網路</em>交流。
+    about_mastodon_html: Mastodon （長毛象）是一個<em>自由、開放原始碼</em>的社群網站。它是一個分散式的服務，避免您的通訊被單一商業機構壟斷操控。請您選擇一家您信任的
+      Mastodon 服務站，在上面建立帳號，然後您就可以和任一 Mastodon 服務站上的使用者互通，享受無縫的<em>社群網路</em>交流。
     about_this: 關於本服務站
     closed_registrations: 本服務站暫時停止接受註冊。
     contact: 聯絡我們
@@ -19,7 +19,7 @@ zh-TW:
     followers: 關注者
     following: 正在關注
     nothing_here: 暫時沒有內容可供顯示
-    people_followed_by: "%{name} 關注的人"
+    people_followed_by: '%{name} 關注的人'
     people_who_follow: 關注 %{name} 的人
     posts: 文章
     remote_follow: 跨站關注
@@ -71,7 +71,7 @@ zh-TW:
         create: 新增封鎖
         hint: 網域封鎖動作並不會阻止帳號紀錄被新增至資料庫，但會自動回溯性地對那些帳號套用特定管理設定。
         severity:
-          desc_html: "<strong>靜音</strong>將使得未追蹤該帳號的使用者無法看見該帳號之貼文。<strong>停權</strong>將移除所有該使用者的帳號內容、多媒體檔案、以及個人檔案。"
+          desc_html: <strong>靜音</strong>將使得未追蹤該帳號的使用者無法看見該帳號之貼文。<strong>停權</strong>將移除所有該使用者的帳號內容、多媒體檔案、以及個人檔案。
           silence: 靜音
           suspend: 停權
         title: 新封鎖網域
@@ -104,7 +104,8 @@ zh-TW:
         open:
           title: 開放註冊
       site_description:
-        desc_html: 顯示在首頁並且作為 meta 標籤的短文。<br>可使用 HTML 標籤，包括 <code>&lt;a&gt;</code> 及 <code>&lt;em&gt;</code>。
+        desc_html: 顯示在首頁並且作為 meta 標籤的短文。<br>可使用 HTML 標籤，包括 <code>&lt;a&gt;</code>
+          及 <code>&lt;em&gt;</code>。
         title: 網站描述
       site_description_extended:
         desc_html: 顯示在資訊頁的長版描述，可使用 HTML 標籤。
@@ -142,18 +143,18 @@ zh-TW:
     title: 關注 %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}小時前"
-      about_x_months: "%{count}個月前"
-      about_x_years: "%{count}年前"
+      about_x_hours: '%{count}小時前'
+      about_x_months: '%{count}個月前'
+      about_x_years: '%{count}年前'
       almost_x_years: 接近%{count}年前
       half_a_minute: 剛剛
       less_than_x_minutes: 小於%{count}分鐘前
       less_than_x_seconds: 剛剛
-      over_x_years: "%{count}y"
-      x_days: "%{count}天"
-      x_minutes: "%{count}分"
-      x_months: "%{count}個月"
-      x_seconds: "%{count}秒"
+      over_x_years: '%{count}y'
+      x_days: '%{count}天'
+      x_minutes: '%{count}分'
+      x_months: '%{count}個月'
+      x_seconds: '%{count}秒'
   errors:
     '404': 您所尋找的網頁不存在。
     '410': 您所尋找的網頁已不存在。
@@ -189,7 +190,8 @@ zh-TW:
       following: 您關注的使用者名單
       muting: 您靜音的使用者名單
     upload: 上傳
-  landing_strip_html: "<strong>%{name}</strong> 是一個在 %{link_to_root_path} 的使用者。只要您有任何 Mastodon 服務站、或者聯盟網站的帳號，便可以跨站關注此站使用者，或者與他們互動。"
+  landing_strip_html: <strong>%{name}</strong> 是一個在 %{link_to_root_path} 的使用者。只要您有任何
+    Mastodon 服務站、或者聯盟網站的帳號，便可以跨站關注此站使用者，或者與他們互動。
   landing_strip_signup_html: 如果您沒有這些帳號，歡迎在<a href="%{sign_up_path}">這裡註冊</a>。
   media_attachments:
     validations:
@@ -198,32 +200,32 @@ zh-TW:
   notification_mailer:
     digest:
       body: 這是自從您在%{since}使用%{instance}以後，您錯過的訊息︰
-      mention: "%{name} 在此提及了您︰"
+      mention: '%{name} 在此提及了您︰'
       new_followers_summary:
         one: 您新獲得了 1 位關注者！恭喜！
         other: 您新獲得了 %{count} 位關注者！好厲害！
       subject:
-        one: "自從上次登入以來，您收到 1 則新的通知 \U0001F418"
-        other: "自從上次登入以來，您收到 %{count} 則新的通知 \U0001F418"
+        one: 自從上次登入以來，您收到 1 則新的通知 🐘
+        other: 自從上次登入以來，您收到 %{count} 則新的通知 🐘
     favourite:
       body: 您的文章被 %{name} 收藏
-      subject: "%{name} 將您的文章加入了最愛"
+      subject: '%{name} 將您的文章加入了最愛'
     follow:
-      body: "%{name} 開始關注您！"
-      subject: "%{name} 開始關注您"
+      body: '%{name} 開始關注您！'
+      subject: '%{name} 開始關注您'
     follow_request:
-      body: "%{name} 要求關注您"
+      body: '%{name} 要求關注您'
       subject: 等待關注您的使用者︰ %{name}
     mention:
-      body: "%{name} 在文章中提及您︰"
-      subject: "%{name} 在文章中提及您"
+      body: '%{name} 在文章中提及您︰'
+      subject: '%{name} 在文章中提及您'
     reblog:
       body: 您的文章被 %{name} 轉推
-      subject: "%{name} 轉推了您的文章"
+      subject: '%{name} 轉推了您的文章'
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: '%n%u'
         units:
           billion: B
           million: M
@@ -234,7 +236,7 @@ zh-TW:
   pagination:
     next: 下一頁
     prev: 上一頁
-    truncate: "……"
+    truncate: ……
   remote_follow:
     acct: 請輸入您的︰使用者名稱@服務點網域
     missing_resource: 無法找到資源
@@ -244,7 +246,7 @@ zh-TW:
     activity: 最近活動
     browser: 瀏覽器
     current_session: 目前的 session
-    description: "%{platform} 上的 %{browser}"
+    description: '%{platform} 上的 %{browser}'
     explanation: 這些是現在正登入於你的 Mastodon 帳號的瀏覽器。
     revoke: 取消
     revoke_success: Session 取消成功。
@@ -274,17 +276,22 @@ zh-TW:
     sensitive_content: 敏感內容
   time:
     formats:
-      default: "%Y年%-m月%d日 %H:%M"
+      default: '%Y年%-m月%d日 %H:%M'
   two_factor_authentication:
     code_hint: 請輸入您認證器產生的代碼，以進行認證
     description_html: 啟用<strong>兩階段認證</strong>後，登入時將需要使手機、或其他種類認證器產生的代碼。
     disable: 停用
     enable: 啟用
     enabled_success: 已成功啟用兩階段認證
-    instructions_html: "<strong>請用您手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裡的 QR 圖形碼</strong>。在兩階段認證啟用後，您登入時將須要使用此應用程式產生的認證碼。"
+    instructions_html: <strong>請用您手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裡的 QR
+      圖形碼</strong>。在兩階段認證啟用後，您登入時將須要使用此應用程式產生的認證碼。
     manual_instructions: 如果您無法掃描 QR 圖形碼，請手動輸入︰
     setup: 設定
     wrong_code: 您輸入的認證碼並不正確！可能伺服器時間和您手機不一致，請檢查您手機的時間，或與本站管理員聯絡。
   users:
     invalid_email: 信箱地址格式不正確
     invalid_otp_token: 兩階段認證碼不正確
+  user_mailer:
+    welcome:
+      tips: 小幫手
+      title: '%{name} 歡迎你的加入！'
