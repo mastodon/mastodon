@@ -88,7 +88,7 @@ zh-TW:
       profile_url: 個人檔案 URL
       public: 公開
       push_subscription_expires: PuSH 訂閱過期
-      salmon_url: ''
+      salmon_url: Salmon 網址
       silence: 靜音
       statuses: 嘟文
       title: 帳號
@@ -116,7 +116,7 @@ zh-TW:
       enable: 啟用
       enabled: 已啟用
       followers_url: 追隨者（Followers）URL
-      inbox_url: ''
+      inbox_url: 收件箱網址
       ip: IP
       login_status: 登入狀態
       memorialize: 設定為追悼帳戶
@@ -146,6 +146,8 @@ zh-TW:
       subscribe: 訂閱
       unconfirmed_email: 等待驗證的電子郵件
       unsubscribe: 取消訂閱
+      outbox_url: 寄件箱網址
+      shared_inbox_url: 公共收件箱網址
     domain_blocks:
       add_new: 新增
       domain: 網域
@@ -272,7 +274,7 @@ zh-TW:
       confirmed: 已確認
       expires_in: 期限
       last_delivery: 最後遞送
-      title: ''
+      title: WebSub 訂閱
       topic: 主題
     title: 管理介面
     account_moderation_notes:
@@ -380,6 +382,7 @@ zh-TW:
     notification_preferences: 更改電子郵件首選項
     view_profile: 檢視個人資料頁
     view_status: 檢視嘟文
+    salutation: '%{name}'
   applications:
     invalid_url: 網址不正確
     created: 已建立應用
@@ -409,6 +412,9 @@ zh-TW:
     or: 或
     or_log_in_with: 或透過其他方式登入
     register_elsewhere: 在其他站點註冊
+    providers:
+      cas: CAS
+      saml: SAML
   authorize_follow:
     error: 對不起，搜尋遠端使用者出現錯誤
     follow: 關注
@@ -542,7 +548,7 @@ zh-TW:
   pagination:
     next: 下一頁
     prev: 上一頁
-    truncate: ''
+    truncate: '......'
     newer: 較新
     older: 較舊
   remote_follow:
@@ -564,8 +570,18 @@ zh-TW:
       ie: ''
       uc_browser: UC瀏覽器
       weibo: 新浪微博
+      blackberry: 黑莓機
+      chrome: Google Chrome
+      edge: Microsoft Edge
+      micro_messenger: 微信
+      nokia: Nokia S40 Ovi 瀏覽器
+      qq: QQ 瀏覽器
     ip: IP
     title: 作業階段
+    platforms:
+      linux: Linux
+      mac: Mac
+      other: 未知平台
   settings:
     authorized_apps: 已授權應用程式
     back: 回到 Mastodon
