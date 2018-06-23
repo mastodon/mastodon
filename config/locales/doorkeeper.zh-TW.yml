@@ -39,7 +39,7 @@ zh-TW:
         delete: 刪除
         name: 名稱
         new: 新增應用程式
-        scopes: 範圍
+        scopes: 權限範圍
         show: 顯示
         title: 你的應用程式
       new:
@@ -53,7 +53,7 @@ zh-TW:
         title: 應用程式︰ %{name}
     authorizations:
       buttons:
-        authorize: 允許
+        authorize: 授權
         deny: 拒絕
       error:
         title: 發生錯誤
@@ -70,7 +70,7 @@ zh-TW:
         revoke: 您確定要撤銷這個授權？
       index:
         application: 應用程式
-        created_at: 授權於
+        created_at: 授權時間
         date_format: '%Y-%m-%d %H:%M:%S'
         scopes: 權限範圍
         title: 已授權的應用程式
@@ -88,7 +88,7 @@ zh-TW:
         invalid_token:
           expired: access token 已過期
           revoked: access token 已被取消
-          unknown: Access Token 不正確
+          unknown: access token 不正確
         resource_owner_authenticator_not_configured: 無法找到資源擁有者，由於 Doorkeeper.configure.resource_owner_authenticator
           沒有設定。
         server_error: 認證伺服器發生未知錯誤。
@@ -117,5 +117,5 @@ zh-TW:
     scopes:
       follow: 關注、封鎖、解除封鎖及取消關注帳號
       read: 讀取您的帳號資料
-      write: 以您的名義發佈貼文
+      write: 以您的名義發佈嘟文
       push: 接收你帳號的推送通知
