@@ -154,7 +154,7 @@ class Request
       alias new open
 
       def thru_hidden_service?(host)
-        Rails.configuration.x.hidden_service_via_transparent_proxy && /\.(onion|i2p)$/.match(host)
+        Rails.configuration.x.access_to_hidden_service && /\.(onion|i2p)$/.match(host)
       end
     end
   end
