@@ -12,10 +12,12 @@ fr:
           other: <span class="name-counter">%{count}</span> caractères restants
         fields: Vous pouvez avoir jusqu'à 4 éléments affichés en tant que tableau sur votre profil
         header: Au format PNG, GIF ou JPG. 2 Mo maximum. Sera réduit à 700x335px
+        locale: La langue de l'interface-utilisateur, des courriels, et des notifications
         locked: Vous devrez approuver chaque abonné⋅e et vos statuts ne s’afficheront qu’à vos abonné⋅es
         note:
           one: <span class="note-counter">1</span> caractère restant
           other: <span class="note-counter">%{count}</span> caractères restants
+        setting_default_language: La langue de vos pouets peut être détectée automatiquement, mais ça n'est pas toujours pertinent
         setting_hide_network: Ceux que vous suivez et ceux qui vous suivent ne seront pas affichés sur votre profil
         setting_noindex: Affecte votre profil public ainsi que vos statuts
         setting_theme: Affecte l’apparence de Mastodon quand vous êtes connecté·e depuis n’importe quel appareil.
@@ -23,6 +25,8 @@ fr:
         data: Un fichier CSV généré par une autre instance de Mastodon
       sessions:
         otp: 'Entrez le code d’authentification à deux facteurs généré par votre téléphone ou utilisez un de vos codes de récupération :'
+      user:
+        chosen_languages: Lorsque coché, seuls les pouets dans les langues sélectionnées seront affichés sur les fils publics
     labels:
       account:
         fields:
@@ -32,6 +36,7 @@ fr:
         autofollow: Invitation à suivre votre compte
         avatar: Image de profil
         bot: Ceci est un robot
+        chosen_languages: Filtrer les langues
         confirm_new_password: Confirmation du nouveau mot de passe
         confirm_password: Confirmation du mot de passe
         current_password: Mot de passe actuel
@@ -41,7 +46,7 @@ fr:
         expires_in: Expire après
         fields: Métadonnées du profil
         header: Image d’en-tête
-        locale: Langue
+        locale: Langue de l'interface
         locked: Verrouiller le compte
         max_uses: Nombre maximum d'utilisations
         new_password: Nouveau mot de passe
@@ -50,6 +55,7 @@ fr:
         password: Mot de passe
         setting_auto_play_gif: Lire automatiquement les GIFs animés
         setting_boost_modal: Afficher une fenêtre de confirmation avant de partager
+        setting_default_language: Langue de publication
         setting_default_privacy: Confidentialité des statuts
         setting_default_sensitive: Toujours marquer les médias comme sensibles
         setting_delete_modal: Afficher une fenêtre de confirmation avant de supprimer un pouet
