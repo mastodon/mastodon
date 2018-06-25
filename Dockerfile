@@ -6,8 +6,10 @@ LABEL maintainer="https://github.com/tootsuite/mastodon" \
 ARG UID=991
 ARG GID=991
 
-ENV RAILS_SERVE_STATIC_FILES=true \
-    RAILS_ENV=production NODE_ENV=production
+ENV PATH=/mastodon/bin:$PATH \
+    RAILS_SERVE_STATIC_FILES=true \
+    RAILS_ENV=production \
+    NODE_ENV=production
 
 ARG YARN_VERSION=1.3.2
 ARG YARN_DOWNLOAD_SHA256=6cfe82e530ef0837212f13e45c1565ba53f5199eec2527b85ecbcd88bf26821d
