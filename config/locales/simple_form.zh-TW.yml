@@ -3,53 +3,86 @@ zh-TW:
   simple_form:
     hints:
       defaults:
-        avatar: 支援 PNG, GIF 或 JPG 圖片，檔案大小上限為 2MB，會被縮小為 400x400px
-        display_name: 最多 30 個字元
-        header: 支援 PNG, GIF 或 JPG 圖片，檔案大小上限為 2MB，會被縮小為 700x335px
-        locked: 您必須手動核准每個使用者對您的關注請求，而您的文章隱私預設為「只有關注您的人能看」
-        note: 最多 160 個字元
+        autofollow: 通過邀請網址註冊的使用者將會自動關注你
+        avatar: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 2MB，會縮裁成 400x400px
+        bot: 這個帳號由程式進行自動式操作
+        digest: 僅在你長時間未登入，並且收到了私訊時發送
+        display_name:
+          one: 尚餘 <span class="name-counter">1</span> 個字
+          other: 尚餘 <span class="name-counter">%{count}</span> 個字
+        fields: 個人資訊頁至多可顯示 4 個項目
+        header: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 2MB，會縮裁成 700x335px
+        locale: 使用者介面、 E-mail 與通知的語言
+        locked: 你必須手動核准每個使用者對你的關注請求，而你的貼文隱私將會被設定為「只有關注你的人能看」
+        note:
+          one: 尚餘 <span class="note-counter">1</span> 個字
+          other: 尚餘 <span class="note-counter">%{count}</span> 個字
+        setting_default_language: 你嘟文的語言會被自動偵測，但不一定完全準確
+        setting_hide_network: 你關注的人與關注你的人將不會在你的個人資料頁上顯示
+        setting_noindex: 此設定會影響到你的公開個人資料與嘟文頁面
+        setting_theme: 此設定會影響到你從任意設備登入 Mastodon 時的顯示樣式。
       imports:
-        data: 自其他服務站匯出的 CSV 檔案
+        data: 自其他站點匯出的 CSV 檔案
+      sessions:
+        otp: 輸入你手機上產生的兩階段認證碼，或著任意一個備用驗證碼：
+      user:
+        chosen_languages: 只有被選擇的語言會在公開時間軸內顯示
     labels:
+      account:
+        fields:
+          name: 標籤
+          value: 內容
       defaults:
-        avatar: 大頭貼
+        autofollow: 邀請別人關注你的帳戶
+        avatar: 頭像
+        bot: 這個帳號是機器人
+        chosen_languages: 語言篩選
         confirm_new_password: 確認新密碼
         confirm_password: 確認密碼
         current_password: 目前密碼
         data: 資料
         display_name: 顯示名稱
-        email: 電子信箱
-        header: 個人頁面頂部
-        locale: 語言
+        email: E-mail
+        expires_in: 失效時間
+        fields: 資料
+        header: 個人頁面圖片
+        locale: 介面語言
         locked: 將帳號轉為「私密」
+        max_uses: 最大使用次數
         new_password: 新密碼
         note: 簡介
-        otp_attempt: 雙因子驗證碼
+        otp_attempt: 兩階段認證碼
         password: 密碼
-        setting_auto_play_gif: 自動播放 GIFs
-        setting_boost_modal: 轉推前跳出確認視窗
-        setting_default_privacy: 文章預設隱私度
-        setting_default_sensitive: 預設我的內容為敏感內容
-        setting_delete_modal: 刪推前跳出確認視窗
-        setting_noindex: 不被搜尋引擎檢索
+        setting_auto_play_gif: 自動播放 GIF
+        setting_boost_modal: 在轉嘟前先詢問我
+        setting_default_language: 嘟文語言
+        setting_default_privacy: 嘟文預設為
+        setting_default_sensitive: 預設我的媒體檔案為敏感內容
+        setting_delete_modal: 刪除嘟文前先詢問我
+        setting_display_sensitive_media: 預設我的媒體為敏感內容
+        setting_hide_network: 隱藏你的社交網路
+        setting_noindex: 阻止搜尋引擎收錄
         setting_reduce_motion: 減低動畫效果
-        setting_system_font_ui: 使用系統預設字體
-        setting_theme: 網站主題
-        setting_unfollow_modal: 取消關注前跳出確認視窗
+        setting_system_font_ui: 使用系統預設字型
+        setting_theme: 主題外觀
+        setting_unfollow_modal: 取消關注前先詢問我
+        severity: 等級
         type: 匯入資料類型
         username: 使用者名稱
+        username_or_email: 使用者名稱或 E-mail
       interactions:
-        must_be_follower: 隱藏沒有關注您的使用者的通知
-        must_be_following: 隱藏您不關注的使用者的通知
+        must_be_follower: 隱藏沒有關注你的使用者通知
+        must_be_following: 隱藏你沒關注的使用者通知
+        must_be_following_dm: 隱藏你沒關注的使用者私訊
       notification_emails:
-        digest: 定期摘要信
-        favourite: 當有使用者喜歡您的文章時，發信通知
-        follow: 當有使用者關注您時，發信通知
-        follow_request: 當有使用者要求關注您時，發信通知
-        mention: 當有使用者在文章提及您時，發信通知
-        reblog: 當有使用者轉推您的文章時，發信通知
+        digest: 定期發送摘要郵件
+        favourite: 當有使用者喜歡你的嘟文時，發送 E-mail 通知
+        follow: 當有使用者關注你時，發送 E-mail 通知
+        follow_request: 當有使用者要求關注你時，發送 E-mail 通知
+        mention: 當有使用者在嘟文提及你時，發送 E-mail 通知
+        reblog: 都有使用者轉嘟你的嘟文時，發送 E-mail 通知
     'no': 否
     required:
       mark: "*"
-      text: 必填
+      text: 必須填寫
     'yes': 是

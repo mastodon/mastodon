@@ -12,10 +12,12 @@ eu:
           other: <span class="name-counter">%{count}</span> karaktere geratzen dira
         fields: 4 elementu bistaratu ditzakezu taula batean zure profilean
         header: PNG, GIF edo JPG. Gehienez 2MB. 700x335px eskalara txikituko da
+        locale: Erabiltzaile-interfazea, e-mail mezuen eta jakinarazpenen hizkuntza
         locked: Jarraitzaileak eskuz onartu behar dituzu
         note:
           one: Karaktere<span class="note-counter">1</span> geratzen da
           other: <span class="note-counter"> %{count}</span> karaktere geratzen dira
+        setting_default_language: Zure toot-en hizkuntza automatikoki antzeman daiteke, baina ez da beti zehatza
         setting_hide_network: Nor jarraitzen duzun eta nork jarraitzen zaituen ez da bistaratuko zure profilean
         setting_noindex: Zure profil publiko eta toot orrietan eragina du
         setting_theme: Edozein gailutik konektatzean Mastodon-en itxuran eragiten du.
@@ -23,6 +25,8 @@ eu:
         data: Beste Mastodon instantzia batetik esportatutako CSV fitxategia
       sessions:
         otp: 'Sartu zure telefonoko aplikazioak sortutako bi faktoreetako kodea, edo erabili zure berreskuratze kodeetako bat:'
+      user:
+        chosen_languages: Ezer markatzekotan, hautatutako hizkuntzetan dauden toot-ak besterik ez dira erakutsiko
     labels:
       account:
         fields:
@@ -32,6 +36,7 @@ eu:
         autofollow: Gonbidatu zure kontua jarraitzera
         avatar: Abatarra
         bot: Hau bot kontu bat da
+        chosen_languages: Iragazi hizkuntzak
         confirm_new_password: Berretsi pasahitz berria
         confirm_password: Berretsi pasahitza
         current_password: Oraingo pasahitza
@@ -41,7 +46,7 @@ eu:
         expires_in: Iraungitzea
         fields: Profilaren metadatuak
         header: Goiburua
-        locale: Hizkuntza
+        locale: Interfazearen hizkuntza
         locked: Giltzapetu kontua
         max_uses: Gehieneko erabiltzaile kopurua
         new_password: Pasahitz berria
@@ -50,6 +55,7 @@ eu:
         password: Pasahitza
         setting_auto_play_gif: Erreproduzitu GIF animatuak automatikoki
         setting_boost_modal: Erakutsi baieztapen elkarrizketa-koadroa bultzada eman aurretik
+        setting_default_language: Argitalpenen hizkuntza
         setting_default_privacy: Mezuen pribatutasuna
         setting_default_sensitive: Beti markatu edukiak hunkigarri gisa
         setting_delete_modal: Erakutsi baieztapen elkarrizketa-koadroa toot bat ezabatu aurretik
