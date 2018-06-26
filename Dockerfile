@@ -52,6 +52,7 @@ RUN apk -U upgrade \
  && rm yarn.tar.gz \
  && mv /tmp/src/yarn-v$YARN_VERSION /opt/yarn \
  && ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn \
+ && ln -s /opt/yarn/bin/yarnpkg /usr/local/bin/yarnpkg \
  && wget -O libiconv.tar.gz "https://ftp.gnu.org/pub/gnu/libiconv/libiconv-$LIBICONV_VERSION.tar.gz" \
  && echo "$LIBICONV_DOWNLOAD_SHA256 *libiconv.tar.gz" | sha256sum -c - \
  && tar -xzf libiconv.tar.gz -C /tmp/src \
