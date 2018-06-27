@@ -11,23 +11,41 @@ class StatusesTag < ApplicationRecord
   class << self
 
     def update_trend_tags
-      unless redis.exists('trend_tags_management_data')
-        redis.hset('trend_tags_management_data', 'updated_at', Time.now.utc.iso8601)
-      end
-      level_l = get_previous_data('trend_tags_management_data', 'level_L')
-      trend_l = get_previous_data('trend_tags_management_data', 'trend_L')
-      now = aggregate_tags_in
-
+      now, level_l, trend_l = get_data
       score, level_now, trend_now = calc_score(level_l, trend_l, now)
-      redis.del('trend_tags')
-      redis.zadd('trend_tags', score) unless score.empty?
-      redis.hmset('trend_tags_management_data', 'updated_at', Time.now.utc.iso8601, 'level_L', level_now.to_json, 'trend_L', trend_now.to_json)
+      put_data(score, level_now, trend_now)
     end
 
     private
 
+    def get_data
+      unless redis.exists('trend_tags_management_data')
+        redis.hset('trend_tags_management_data', 'updated_at', Time.now.utc.iso8601)
+      end
+      [
+        aggregate_tags_in,
+        get_previous_data('trend_tags_management_data', 'level_L'),
+        get_previous_data('trend_tags_management_data', 'trend_L')
+      ]
+    end
+
     def get_previous_data(key, field)
-      return JSON.parse(redis.hget(key, field).presence || '{}')
+      JSON.parse(redis.hget(key, field).presence || '{}')
+    end
+
+    def put_data(score, level, trend)
+      previous_score = {
+        'updated_at': redis.hget('trend_tags_management_data', 'updated_at'),
+        'score': redis.zrevrange('trend_tags', 0, -1, withscores: true).to_h
+      }
+      list_length = redis.llen('trend_tags_history')
+      redis.multi do |r|
+        r.rpop('trend_tags_history') if list_length >= 12
+        r.lpush('trend_tags_history', previous_score.to_json)
+        r.del('trend_tags')
+        r.zadd('trend_tags', score) unless score.empty?
+        r.hmset('trend_tags_management_data', 'updated_at', Time.now.utc.iso8601, 'level_L', level.to_json, 'trend_L', trend.to_json)
+      end
     end
 
     # Double Exponential Smoothing
