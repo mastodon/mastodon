@@ -33,12 +33,6 @@ export default class ColumnSettings extends React.PureComponent {
         <div className='column-settings__row'>
           <SettingToggle prefix='home_timeline' settings={settings} settingPath={['shows', 'reply']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_replies' defaultMessage='Show replies' />} />
         </div>
-
-        <span className='column-settings__section'><FormattedMessage id='home.column_settings.advanced' defaultMessage='Advanced' /></span>
-
-        <div className='column-settings__row'>
-          <SettingText prefix='home_timeline' settings={settings} settingKey={['regex', 'body']} onChange={onChange} label={intl.formatMessage(messages.filter_regex)} />
-        </div>
       </div>
     );
   }

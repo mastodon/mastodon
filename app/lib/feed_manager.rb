@@ -198,7 +198,7 @@ class FeedManager
     active_filters.select! { |filter| filter.context.include?(context.to_s) && !filter.expired? }
     active_filters.map! { |filter| Regexp.new(Regexp.escape(filter.phrase), true) }
 
-    combined_regex = active_filters.inject { |memo, obj| Regexp.union(memo, obj) }
+    combined_regex = active_filters.reduce { |memo, obj| Regexp.union(memo, obj) }
 
     !combined_regex.match(status.text).nil? ||
       (status.spoiler_text.present? && !combined_regex.match(status.spoiler_text).nil?)
