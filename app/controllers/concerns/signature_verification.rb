@@ -27,7 +27,7 @@ module SignatureVerification
 
     raw_signature.split(',').each do |part|
       parsed_parts = part.match(/([a-z]+)="([^"]+)"/i)
-      next if parsed_parts.nil? || parsed_parts.size != 3
+      next if parsed_parts.nil?
       signature_params[parsed_parts[1]] = parsed_parts[2]
     end
 
