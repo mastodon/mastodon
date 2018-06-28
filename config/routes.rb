@@ -254,6 +254,7 @@ Rails.application.routes.draw do
       resources :mutes,      only: [:index]
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
+      resources :filters,    only: [:index, :create, :show, :update, :destroy]
 
       namespace :apps do
         get :verify_credentials, to: 'credentials#show'
