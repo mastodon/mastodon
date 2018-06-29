@@ -3,16 +3,32 @@
   * features/compose/components/trend_tags
   */
 
-.trend-tags__fav {
-  color: $ui-base-lighter-color;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  margin-top: -7px;
-  width: 14px;
-  text-align: center;
+.trend-tags__sparkline {
+  &.normal {
+    flex: 0 0 auto;
+    width: 50px;
 
-  &.active {
-    color: $gold-star;
+    path:first-child {
+      fill: lighten($highlight-text-color, 6%) !important;
+      fill-opacity: 0.3 !important;
+    }
+
+    path:nth-child(2) {
+      stroke: lighten($highlight-text-color, 6%) !important;
+    }
+  }
+
+  &.fever {
+    flex: 0 0 auto;
+    width: 50px;
+
+    path:first-child {
+      fill: lighten($error-value-color, 6%) !important;
+      fill-opacity: 0.3 !important;
+    }
+
+    path:nth-child(2) {
+      stroke: lighten($error-value-color, 6%) !important;
+    }
   }
 }
