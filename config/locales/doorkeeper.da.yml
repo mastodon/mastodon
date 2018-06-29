@@ -49,6 +49,7 @@ da:
         callback_urls: Callback-URLs
         scopes: Omfang
         title: 'Applikation: %{name}'
+        secret: Secret
     authorizations:
       buttons:
         authorize: Godkend
@@ -59,6 +60,8 @@ da:
         able_to: Den vil være i stand til
         prompt: Applikationen %{client_name} anmoder om adgang til din konto
         title: Godkendelse påkræves
+      show:
+        title: Kopiere denne godkendelseskode og indsæt den i applikationen.
     authorized_applications:
       buttons:
         revoke: Ophæv
@@ -76,6 +79,7 @@ da:
           expired: Adgangs-beviset er udløbet
           revoked: Adgangs-beviset er blevet ophævet
           unknown: Adgangs-beviset er ugyldigt
+        access_denied: Ejeren af ressourcen eller godkendelses serveren afviste anmodningen.
     flash:
       applications:
         create:
@@ -95,3 +99,4 @@ da:
       push: modtage push notifikationer for din konto
       read: læse din kontos data
       write: indsende på dine vegne
+      follow: følge, blokere, afblokete og affølge kontoer
