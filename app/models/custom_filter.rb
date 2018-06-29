@@ -26,15 +26,6 @@ class CustomFilter < ApplicationRecord
     expired_at.present? && expired_at < Time.now.utc
   end
 
-  def matches?(status, current_context)
-    return if !context.include?(current_context.to_s) || expired?
-
-    regex = Regexp.new(Regexp.escape(phrase), true)
-
-    !regex.match(status.text).nil? ||
-      (status.spoiler_text.present? && !regex.match(status.spoiler_text).nil?)
-  end
-
   private
 
   def remove_cache
