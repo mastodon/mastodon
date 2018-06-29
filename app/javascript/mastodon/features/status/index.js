@@ -336,6 +336,7 @@ export default class Status extends ImmutablePureComponent {
         id={id}
         onMoveUp={this.handleMoveUp}
         onMoveDown={this.handleMoveDown}
+        contextType='thread'
       />
     ));
   }

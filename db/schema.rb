@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(version: 2018_06_28_181026) do
 
   create_table "custom_filters", force: :cascade do |t|
     t.bigint "account_id"
-    t.datetime "expired_at"
+    t.datetime "expires_at"
     t.text "phrase", default: "", null: false
     t.string "context", default: [], null: false, array: true
     t.boolean "irreversible", default: false, null: false
