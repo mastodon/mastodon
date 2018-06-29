@@ -26,6 +26,11 @@ pt-BR:
         locale: O idioma das telas de usuário, e-mails e notificações push
         setting_default_language: O idioma de seus toots pode ser detectado automaticamente,
           mas isso nem sempre é preciso
+        context: Um ou mais contextos onde o filtro deve ser aplicado
+        irreversible: Os toots filtrados vão desaparecer irreversivelmente, mesmo
+          se o filtro for removido depois
+        phrase: Vai coincidir, independente de maiúsculas ou minúsculas, no texto
+          ou no aviso de conteúdo de um toot
       imports:
         data: Arquivo CSV exportado de outra instância do Mastodon
       sessions:
@@ -80,6 +85,9 @@ pt-BR:
         autofollow: Convite para seguir a sua conta
         chosen_languages: Filtros de idioma
         setting_default_language: Idioma das postagens
+        context: Contextos de filtro
+        irreversible: Ignorar ao invés de esconder
+        phrase: Palavra-chave ou frase
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de pessoas que você não segue
