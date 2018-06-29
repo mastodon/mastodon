@@ -16,6 +16,8 @@
 class CustomFilter < ApplicationRecord
   belongs_to :account
 
+  validates :phrase, :context, presence: true
+
   scope :active_irreversible, -> { where(irreversible: true).where(Arel.sql('expired_at IS NULL OR expired_at > NOW()')) }
 
   after_commit :remove_cache
