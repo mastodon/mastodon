@@ -34,7 +34,7 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
       expect(filter.phrase).to eq 'magic'
       expect(filter.context).to eq %w(home)
       expect(filter.irreversible?).to be true
-      expect(filter.expired_at).to be_nil
+      expect(filter.expires_at).to be_nil
     end
   end
 
