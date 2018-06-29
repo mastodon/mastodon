@@ -1,30 +1,42 @@
----
 sv:
   about:
-    about_hashtag_html: Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>. Du kan interagera med dem om du har ett konto någonstans i federationen.
-    about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
+    about_hashtag_html: Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>.
+      Du kan interagera med dem om du har ett konto någonstans i federationen.
+    about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll
+      och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
     about_this: Om
     administered_by: 'Administreras av:'
-    closed_registrations: Registreringar är för närvarande stängda i denna instans. Dock så kan du hitta en annan instans för att skapa ett konto och få tillgång till samma nätverk från det.
+    closed_registrations: Registreringar är för närvarande stängda i denna instans.
+      Dock så kan du hitta en annan instans för att skapa ett konto och få tillgång
+      till samma nätverk från det.
     contact: Kontakt
     contact_missing: Inte inställd
     contact_unavailable: N/A
     description_headline: Vad är %{domain}?
     domain_count_after: andra instanser
     domain_count_before: Uppkopplad mot
-    extended_description_html: |
-      <h3>En bra plats för regler</h3>
+    extended_description_html: '<h3>En bra plats för regler</h3>
+
       <p>Den utökade beskrivningen har inte konfigurerats ännu.</p>
+
+      '
     features:
-      humane_approach_body: Mastodon, har lärt sig från tidigare misslyckanden i andra nätverk och syftar till att göra etiska designval i Mastodon för att bekämpa missbruk av sociala medier.
+      humane_approach_body: Mastodon, har lärt sig från tidigare misslyckanden i andra
+        nätverk och syftar till att göra etiska designval i Mastodon för att bekämpa
+        missbruk av sociala medier.
       humane_approach_title: En mer human inställning
-      not_a_product_body: Mastodon är inte ett kommersiellt nätverk. Ingen reklam, ingen datautvinning, inga muromgärdade trädgårdar. Det finns ingen central myndighet.
+      not_a_product_body: Mastodon är inte ett kommersiellt nätverk. Ingen reklam,
+        ingen datautvinning, inga muromgärdade trädgårdar. Det finns ingen central
+        myndighet.
       not_a_product_title: Du är en person, inte en produkt
-      real_conversation_body: Med 500 tecken till ditt förfogande och stöd för granulärt innehåll och mediavarningar så kan du uttrycka dig själv, som du vill.
+      real_conversation_body: Med 500 tecken till ditt förfogande och stöd för granulärt
+        innehåll och mediavarningar så kan du uttrycka dig själv, som du vill.
       real_conversation_title: Byggd för riktiga konversationer
-      within_reach_body: Flera appar för iOS, Android och andra plattformar tack vare ett utvecklingsvänligt API-ekosystem gör att du kan hålla kontakten med dina vänner var som helst.
+      within_reach_body: Flera appar för iOS, Android och andra plattformar tack vare
+        ett utvecklingsvänligt API-ekosystem gör att du kan hålla kontakten med dina
+        vänner var som helst.
       within_reach_title: Alltid inom räckhåll
-    generic_description: "%{domain} är en server i nätverket"
+    generic_description: '%{domain} är en server i nätverket'
     hosted_on: Mastodon värd på %{domain}
     learn_more: Lär dig mer
     other_instances: Instanslista
@@ -39,7 +51,7 @@ sv:
     followers: Följare
     following: Följer
     media: Media
-    moved_html: "%{name} har flyttat till %{new_profile_link}:"
+    moved_html: '%{name} har flyttat till %{new_profile_link}:'
     network_hidden: Denna information är inte tillgänglig
     nothing_here: Det finns inget här!
     people_followed_by: Personer som %{name} följer
@@ -152,34 +164,35 @@ sv:
       web: Webb
     action_logs:
       actions:
-        assigned_to_self_report: "%{name} tilldelade anmälan %{target} till sig själv"
-        change_email_user: "%{name} bytte e-postadress för användare %{target}"
-        confirm_user: "%{name} bekräftade e-postadress för användare %{target}"
-        create_custom_emoji: "%{name} laddade upp ny emoji %{target}"
-        create_domain_block: "%{name} blockerade domän %{target}"
-        create_email_domain_block: "%{name} svartlistade e-postdomän %{target}"
-        demote_user: "%{name} degraderade användare %{target}"
-        destroy_domain_block: "%{name} avblockerade domän %{target}"
-        destroy_email_domain_block: "%{name} vitlistade e-postdomän %{target}"
-        destroy_status: "%{name} tog bort status av %{target}"
-        disable_2fa_user: "%{name} inaktiverade tvåstegsautentiseringskrav för användare %{target}"
-        disable_custom_emoji: "%{name} inaktiverade emoji %{target}"
-        disable_user: "%{name} inaktiverade inloggning för användare %{target}"
-        enable_custom_emoji: "%{name} aktiverade emoji %{target}"
-        enable_user: "%{name} aktiverade inloggning för användare %{target}"
-        memorialize_account: "%{name} omvandlade %{target}s konto till en memoriam-sida"
-        promote_user: "%{name} flyttade upp användare %{target}"
-        remove_avatar_user: "%{name} tog bort %{target}s avatar"
-        reopen_report: "%{name} återupptog anmälan %{target}"
-        reset_password_user: "%{name} återställde lösenord för användaren %{target}"
-        resolve_report: "%{name} löste anmälan %{target}"
-        silence_account: "%{name} tystade ner %{target}s konto"
-        suspend_account: "%{name} suspenderade %{target}s konto"
-        unassigned_report: "%{name} otilldelade anmälan %{target}"
-        unsilence_account: "%{name} återljudade %{target}s konto"
-        unsuspend_account: "%{name} aktiverade %{target}s konto"
-        update_custom_emoji: "%{name} uppdaterade emoji %{target}"
-        update_status: "%{name} uppdaterade status för %{target}"
+        assigned_to_self_report: '%{name} tilldelade anmälan %{target} till sig själv'
+        change_email_user: '%{name} bytte e-postadress för användare %{target}'
+        confirm_user: '%{name} bekräftade e-postadress för användare %{target}'
+        create_custom_emoji: '%{name} laddade upp ny emoji %{target}'
+        create_domain_block: '%{name} blockerade domän %{target}'
+        create_email_domain_block: '%{name} svartlistade e-postdomän %{target}'
+        demote_user: '%{name} degraderade användare %{target}'
+        destroy_domain_block: '%{name} avblockerade domän %{target}'
+        destroy_email_domain_block: '%{name} vitlistade e-postdomän %{target}'
+        destroy_status: '%{name} tog bort status av %{target}'
+        disable_2fa_user: '%{name} inaktiverade tvåstegsautentiseringskrav för användare
+          %{target}'
+        disable_custom_emoji: '%{name} inaktiverade emoji %{target}'
+        disable_user: '%{name} inaktiverade inloggning för användare %{target}'
+        enable_custom_emoji: '%{name} aktiverade emoji %{target}'
+        enable_user: '%{name} aktiverade inloggning för användare %{target}'
+        memorialize_account: '%{name} omvandlade %{target}s konto till en memoriam-sida'
+        promote_user: '%{name} flyttade upp användare %{target}'
+        remove_avatar_user: '%{name} tog bort %{target}s avatar'
+        reopen_report: '%{name} återupptog anmälan %{target}'
+        reset_password_user: '%{name} återställde lösenord för användaren %{target}'
+        resolve_report: '%{name} löste anmälan %{target}'
+        silence_account: '%{name} tystade ner %{target}s konto'
+        suspend_account: '%{name} suspenderade %{target}s konto'
+        unassigned_report: '%{name} otilldelade anmälan %{target}'
+        unsilence_account: '%{name} återljudade %{target}s konto'
+        unsuspend_account: '%{name} aktiverade %{target}s konto'
+        update_custom_emoji: '%{name} uppdaterade emoji %{target}'
+        update_status: '%{name} uppdaterade status för %{target}'
       title: Revisionslogg
     custom_emojis:
       by_domain: Domän
@@ -213,15 +226,21 @@ sv:
       domain: Domän
       new:
         create: Skapa block
-        hint: Domänblocket hindrar inte skapandet av kontoposter i databasen, men kommer retroaktivt, automatiskt att tillämpa specifika modereringsmetoder på dessa konton.
+        hint: Domänblocket hindrar inte skapandet av kontoposter i databasen, men
+          kommer retroaktivt, automatiskt att tillämpa specifika modereringsmetoder
+          på dessa konton.
         severity:
-          desc_html: "<strong>Tysta ner</strong> kommer att göra kontoinlägg osynliga för alla som inte följer dem. <strong>Suspendera</strong> kommer ta bort allt av kontots innehåll, media och profildata. Använd <strong>Ingen</strong> om du bara vill avvisa mediefiler."
+          desc_html: <strong>Tysta ner</strong> kommer att göra kontoinlägg osynliga
+            för alla som inte följer dem. <strong>Suspendera</strong> kommer ta bort
+            allt av kontots innehåll, media och profildata. Använd <strong>Ingen</strong>
+            om du bara vill avvisa mediefiler.
           noop: Ingen
           silence: Tysta ner
           suspend: Suspendera
         title: Nytt domänblock
       reject_media: Avvisa mediafiler
-      reject_media_hint: Raderar lokalt lagrade mediefiler och förhindrar möjligheten att ladda ner något i framtiden. Irrelevant för suspensioner
+      reject_media_hint: Raderar lokalt lagrade mediefiler och förhindrar möjligheten
+        att ladda ner något i framtiden. Irrelevant för suspensioner
       severities:
         noop: Ingen
         silence: Tysta ner
@@ -230,7 +249,7 @@ sv:
       show:
         affected_accounts:
           one: Ett konto i databasen drabbades
-          other: "%{count} konton i databasen har drabbats"
+          other: '%{count} konton i databasen har drabbats'
         retroactive:
           silence: Ta bort tysta ner från alla befintliga konton på den här domänen
           suspend: Ta bort suspendering från alla befintliga konton på den här domänen
@@ -283,7 +302,8 @@ sv:
         create_and_resolve: Lös med anteckning
         create_and_unresolve: Återuppta med anteckning
         delete: Radera
-        placeholder: Beskriv vilka åtgärder som vidtagits eller andra uppdateringar till den här anmälan.
+        placeholder: Beskriv vilka åtgärder som vidtagits eller andra uppdateringar
+          till den här anmälan.
       reopen: Återuppta anmälan
       report: 'Anmäl #%{id}'
       report_contents: Innehåll
@@ -302,23 +322,28 @@ sv:
       view: Granska
     settings:
       activity_api_enabled:
-        desc_html: Räkning av lokalt postade statusar, aktiva användare och nyregistreringar per vecka
+        desc_html: Räkning av lokalt postade statusar, aktiva användare och nyregistreringar
+          per vecka
         title: Publicera uppsamlad statistik om användaraktivitet
       bootstrap_timeline_accounts:
-        desc_html: Separera flera användarnamn med kommatecken. Endast lokala och olåsta konton kommer att fungera. Standard när det är tomt och alla är lokala administratörer.
+        desc_html: Separera flera användarnamn med kommatecken. Endast lokala och
+          olåsta konton kommer att fungera. Standard när det är tomt och alla är lokala
+          administratörer.
         title: Standard att följa för nya användare
       contact_information:
         email: Företag E-post
         username: Användarnamn för kontakt
       hero:
-        desc_html: Visas på framsidan. Minst 600x100px rekommenderas. Om inte angiven faller den tillbaka på instansens miniatyrbild
+        desc_html: Visas på framsidan. Minst 600x100px rekommenderas. Om inte angiven
+          faller den tillbaka på instansens miniatyrbild
         title: Hjältebild
       peers_api_enabled:
         desc_html: Domännamn denna instans har påträffat i fediverse
         title: Publicera lista över upptäckta instanser
       registrations:
         closed_message:
-          desc_html: Visas på framsidan när registreringen är stängd. Du kan använda HTML-taggar
+          desc_html: Visas på framsidan när registreringen är stängd. Du kan använda
+            HTML-taggar
           title: Stängt registreringsmeddelande
         deletion:
           desc_html: Tillåt alla att ta bort sitt konto
@@ -330,23 +355,28 @@ sv:
           desc_html: Tillåt alla att skapa ett konto
           title: Öppen registrering
       show_known_fediverse_at_about_page:
-        desc_html: När den växlas, kommer toots från hela fediverse visas på förhandsvisning. Annars visas bara lokala toots.
+        desc_html: När den växlas, kommer toots från hela fediverse visas på förhandsvisning.
+          Annars visas bara lokala toots.
         title: Visa det kända fediverse på tidslinjens förhandsgranskning
       show_staff_badge:
         desc_html: Visa en personalbricka på en användarsida
         title: Visa personalbricka
       site_description:
-        desc_html: Inledande stycke på framsidan och i metataggar. Du kan använda HTML-taggar, i synnerhet <code>&lt;a&gt;</code> och <code>&lt;em&gt;</code>.
+        desc_html: Inledande stycke på framsidan och i metataggar. Du kan använda
+          HTML-taggar, i synnerhet <code>&lt;a&gt;</code> och <code>&lt;em&gt;</code>.
         title: Instansbeskrivning
       site_description_extended:
-        desc_html: Ett bra ställe för din uppförandekod, regler, riktlinjer och andra saker som stämmer med din instans. Du kan använda HTML-taggar
+        desc_html: Ett bra ställe för din uppförandekod, regler, riktlinjer och andra
+          saker som stämmer med din instans. Du kan använda HTML-taggar
         title: Egentillverkad utökad information
       site_terms:
-        desc_html: Du kan skriva din egen integritetspolicy, användarvillkor eller andra regler. Du kan använda HTML-taggar
+        desc_html: Du kan skriva din egen integritetspolicy, användarvillkor eller
+          andra regler. Du kan använda HTML-taggar
         title: Egentillverkad villkor för tjänster
       site_title: Namn på instans
       thumbnail:
-        desc_html: Används för förhandsgranskningar via OpenGraph och API. 1200x630px rekommenderas
+        desc_html: Används för förhandsgranskningar via OpenGraph och API. 1200x630px
+          rekommenderas
         title: Instans tumnagelbild
       timeline_preview:
         desc_html: Visa offentlig tidslinje på landingsidan
@@ -374,12 +404,12 @@ sv:
     title: Administration
   admin_mailer:
     new_report:
-      body: "%{reporter} har rapporterat %{target}"
+      body: '%{reporter} har rapporterat %{target}'
       body_remote: Någon från %{domain} har rapporterat %{target}
       subject: Ny rapport för %{instance} (#%{id})
   application_mailer:
     notification_preferences: Ändra e-postinställningar
-    salutation: "%{name},"
+    salutation: '%{name},'
     settings: 'Ändra e-postinställningar: %{link}'
     view: 'Granska:'
     view_profile: Visa profil
@@ -393,18 +423,22 @@ sv:
     warning: Var mycket försiktig med denna data. Dela aldrig den med någon!
     your_token: Din access token
   auth:
-    agreement_html: Genom att registrera dig godkänner du att följa <a href="%{rules_path}">instansens regler</a> och <a href="%{terms_path}">våra användarvillkor</a>.
+    agreement_html: Genom att registrera dig godkänner du att följa <a href="%{rules_path}">instansens
+      regler</a> och <a href="%{terms_path}">våra användarvillkor</a>.
     change_password: Lösenord
     confirm_email: Bekräfta e-postadress
     delete_account: Ta bort konto
-    delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
+    delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta
+      här</a>. Du kommer att bli ombedd att bekräfta.
     didnt_get_confirmation: Fick inte instruktioner om bekräftelse?
     forgot_password: Glömt ditt lösenord?
-    invalid_reset_password_token: Lösenordsåterställningstoken är ogiltig eller utgått. Vänligen be om en ny.
+    invalid_reset_password_token: Lösenordsåterställningstoken är ogiltig eller utgått.
+      Vänligen be om en ny.
     login: Logga in
     logout: Logga ut
     migrate_account: Flytta till ett annat konto
-    migrate_account_html: Om du vill omdirigera detta konto till ett annat, kan du <a href="%{path}">konfigurera det här</a>.
+    migrate_account_html: Om du vill omdirigera detta konto till ett annat, kan du
+      <a href="%{path}">konfigurera det här</a>.
     or: eller
     or_log_in_with: Eller logga in med
     providers:
@@ -424,30 +458,35 @@ sv:
     following: 'Succé! Du följer nu:'
     post_follow:
       close: Eller så kan du stänga detta fönster.
-      return: Återgå till användarens profil
+      return: Visa användarens profil
       web: Gå till webb
     title: Följ %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}tim"
-      about_x_months: "%{count}mån"
-      about_x_years: "%{count}år"
-      almost_x_years: "%{count}år"
+      about_x_hours: '%{count}tim'
+      about_x_months: '%{count}mån'
+      about_x_years: '%{count}år'
+      almost_x_years: '%{count}år'
       half_a_minute: Just nu
-      less_than_x_minutes: "%{count}min"
+      less_than_x_minutes: '%{count}min'
       less_than_x_seconds: Just nu
-      over_x_years: "%{count}år"
-      x_days: "%{count}d"
-      x_minutes: "%{count}min"
-      x_months: "%{count}mån"
-      x_seconds: "%{count}sek"
+      over_x_years: '%{count}år'
+      x_days: '%{count}d'
+      x_minutes: '%{count}min'
+      x_months: '%{count}mån'
+      x_seconds: '%{count}sek'
   deletes:
     bad_password_msg: Bra försök, hackare! Fel lösenord
     confirm_password: Ange ditt lösenord för att verifiera din identitet
-    description_html: Detta vill <strong>permanent, irreversibelt</strong> ta bort innehåll från ditt konto och avaktivera det. Ditt användarnamn kommer att förbli reserverat för att förhindra framtida efterföljare.
+    description_html: Detta vill <strong>permanent, irreversibelt</strong> ta bort
+      innehåll från ditt konto och avaktivera det. Ditt användarnamn kommer att förbli
+      reserverat för att förhindra framtida efterföljare.
     proceed: Ta bort konto
     success_msg: Ditt konto har tagits bort
-    warning_html: Endast borttagning av innehåll från denna speciella instans garanteras. Innehåll som har delats i stor utsträckning kommer sannolikt att lämna spår. Offline-servrar och servrar som har avstängt från dina uppdateringar uppdaterar inte sina databaser.
+    warning_html: Endast borttagning av innehåll från denna speciella instans garanteras.
+      Innehåll som har delats i stor utsträckning kommer sannolikt att lämna spår.
+      Offline-servrar och servrar som har avstängt från dina uppdateringar uppdaterar
+      inte sina databaser.
     warning_title: Spridet innehåll och tillgänglighet
   errors:
     '403': Du har inte behörighet att visa den här sidan.
@@ -460,12 +499,16 @@ sv:
     '500':
       content: Vi är ledsna, men något gick fel från vårat håll.
       title: Den här sidan är inte korrekt
-    noscript_html: För att använda Mastodon webbapplikationen, vänligen aktivera JavaScript. Alternativt kan du prova en av <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">inhemska appar</a> för Mastodon för din plattform.
+    noscript_html: För att använda Mastodon webbapplikationen, vänligen aktivera JavaScript.
+      Alternativt kan du prova en av <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">inhemska
+      appar</a> för Mastodon för din plattform.
   exports:
     archive_takeout:
       date: Datum
       download: Ladda ner ditt arkiv
-      hint_html: Du kan begära ett arkiv av dina <strong>toots och uppladdad media</strong>. Den exporterade datan kommer att vara i ActivityPub-format och läsbar av kompatibel programvara. Du kan begära ett arkiv var sjunde dag.
+      hint_html: Du kan begära ett arkiv av dina <strong>toots och uppladdad media</strong>.
+        Den exporterade datan kommer att vara i ActivityPub-format och läsbar av kompatibel
+        programvara. Du kan begära ett arkiv var sjunde dag.
       in_progress: Kompilerar ditt arkiv...
       request: Efterfråga ditt arkiv
       size: Storlek
@@ -476,15 +519,21 @@ sv:
     storage: Medialagring
   followers:
     domain: Domän
-    explanation_html: Om du vill försäkra integriteten av dina statusar måste du vara medveten om vem som följer dig. <strong>Dina privata statusar levereras till alla instanser där du har följare</strong>. Du kanske vill granska och eventuellt ta bort följare om du inte litar på att din integritet respekteras hos medarbetarna eller programvara i dessa instanser.
+    explanation_html: Om du vill försäkra integriteten av dina statusar måste du vara
+      medveten om vem som följer dig. <strong>Dina privata statusar levereras till
+      alla instanser där du har följare</strong>. Du kanske vill granska och eventuellt
+      ta bort följare om du inte litar på att din integritet respekteras hos medarbetarna
+      eller programvara i dessa instanser.
     followers_count: Antal följare
     lock_link: Lås ditt konto
     purge: Ta bort från följare
     success:
       one: I processen med soft-blocking följare från en domän ...
       other: I processen med soft-blocking följare från %{count} domäner...
-    true_privacy_html: Kom ihåg att <strong>sann integritet kan bara uppnås med end-to-end kryptering</strong>.
-    unlocked_warning_html: Vem som helst kan följa dig för att omedelbart se dina privata statusar. %{lock_link} för att kunna granska och avvisa följare.
+    true_privacy_html: Kom ihåg att <strong>sann integritet kan bara uppnås med end-to-end
+      kryptering</strong>.
+    unlocked_warning_html: Vem som helst kan följa dig för att omedelbart se dina
+      privata statusar. %{lock_link} för att kunna granska och avvisa följare.
     unlocked_warning_title: Ditt konto är inte låst
   generic:
     changes_saved_msg: Ändringar sparades framgångsrikt!
@@ -494,7 +543,8 @@ sv:
       one: Något är inte riktigt rätt ännu! Kontrollera felet nedan
       other: Något är inte riktigt rätt ännu! Kontrollera dom %{count} felen nedan
   imports:
-    preface: Du kan importera data som du exporterat från en annan instans, till exempel en lista över personer du följer eller blockerar.
+    preface: Du kan importera data som du exporterat från en annan instans, till exempel
+      en lista över personer du följer eller blockerar.
     success: Dina uppgifter har laddats upp och kommer nu att behandlas snarast
     types:
       blocking: Lista av blockerade
@@ -516,21 +566,25 @@ sv:
     generate: Skapa
     max_uses:
       one: 1 användning
-      other: "%{count} användningar"
+      other: '%{count} användningar'
     max_uses_prompt: Ingen gräns
     prompt: Skapa och dela länkar med andra för att ge tillgång till denna instans
     table:
       expires_at: Utgår
       uses: Användningar
     title: Bjud in andra
-  landing_strip_html: "<strong>%{name}</strong> är en användare på %{link_to_root_path}. Du kan följa dem eller interagera med dem om du har ett konto någonstans i federationen."
-  landing_strip_signup_html: Om du inte gör det, så kan du <a href="%{sign_up_path}">registrera dig här</a>.
+    invited_by: 'Du blev inbjuden av:'
+  landing_strip_html: <strong>%{name}</strong> är en användare på %{link_to_root_path}.
+    Du kan följa dem eller interagera med dem om du har ett konto någonstans i federationen.
+  landing_strip_signup_html: Om du inte gör det, så kan du <a href="%{sign_up_path}">registrera
+    dig här</a>.
   lists:
     errors:
       limit: Du har nått det maximala antalet listor
   media_attachments:
     validations:
-      images_and_video: Det går inte att bifoga en video till en status som redan innehåller bilder
+      images_and_video: Det går inte att bifoga en video till en status som redan
+        innehåller bilder
       too_many: Det går inte att bifoga mer än 4 filer
   migrations:
     acct: användarnamn@domän av det nya kontot
@@ -542,26 +596,27 @@ sv:
   notification_mailer:
     digest:
       action: Visa alla notifieringar
-      body: Här är en kort sammanfattning av de meddelanden du missade sedan ditt senaste besök på %{since}
-      mention: "%{name} nämnde dig i:"
+      body: Här är en kort sammanfattning av de meddelanden du missade sedan ditt
+        senaste besök på %{since}
+      mention: '%{name} nämnde dig i:'
       new_followers_summary:
         one: Du har också förvärvat en ny följare! Jippie!
         other: Du har också fått %{count} nya följare medans du var iväg! Otroligt!
       subject:
-        one: "1 nytt meddelande sedan ditt senaste besök \U0001F418"
-        other: "%{count} nya meddelanden sedan ditt senaste besök \U0001F418"
+        one: 1 nytt meddelande sedan ditt senaste besök 🐘
+        other: '%{count} nya meddelanden sedan ditt senaste besök 🐘'
       title: I din frånvaro…
     favourite:
       body: 'Din status favoriserades av %{name}:'
-      subject: "%{name} favoriserade din status"
+      subject: '%{name} favoriserade din status'
       title: Ny favorit
     follow:
-      body: "%{name} följer nu dig!"
-      subject: "%{name} följer nu dig"
+      body: '%{name} följer nu dig!'
+      subject: '%{name} följer nu dig'
       title: Ny följare
     follow_request:
       action: Hantera följefterfrågningar
-      body: "%{name} har begärt att följa dig"
+      body: '%{name} har begärt att följa dig'
       subject: 'Väntande följare: %{name}'
       title: Ny följefterfrågning
     mention:
@@ -571,25 +626,25 @@ sv:
       title: Ny omnämning
     reblog:
       body: 'Din status knuffades av %{name}:'
-      subject: "%{name} knuffade din status"
+      subject: '%{name} knuffade din status'
       title: Ny knuff
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: '%n%u'
         units:
           billion: B
           million: M
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: ''
+          unit: ' '
   pagination:
     newer: Nyare
     next: Nästa
     older: Äldre
     prev: Tidigare
-    truncate: "&hellip;"
+    truncate: '&hellip;'
   preferences:
     languages: Språk
     other: Annat
@@ -597,7 +652,8 @@ sv:
     web: Webb
   remote_follow:
     acct: Ange ditt användarnamn@domän du vill följa från
-    missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för ditt konto
+    missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för
+      ditt konto
     proceed: Fortsätt för att följa
     prompt: 'Du kommer att följa:'
   remote_unfollow:
@@ -626,7 +682,7 @@ sv:
       uc_browser: UCBrowser
       weibo: Weibo
     current_session: Nuvarande session
-    description: "%{browser} på %{platform}"
+    description: '%{browser} på %{platform}'
     explanation: Detta är inloggade webbläsare på Mastodon just nu.
     ip: IP
     platforms:
@@ -664,11 +720,11 @@ sv:
     attached:
       description: 'Bifogad: %{attached}'
       image:
-        one: "%{count} bild"
-        other: "%{count} bilder"
+        one: '%{count} bild'
+        other: '%{count} bilder'
       video:
-        one: "%{count} video"
-        other: "%{count} videor"
+        one: '%{count} video'
+        other: '%{count} videor'
     boosted_from_html: Boosted från %{acct_link}
     content_warning: 'Innehållsvarning: %{warning}'
     disallowed_hashtags:
@@ -690,61 +746,185 @@ sv:
       public_long: Alla kan se
       unlisted: Olistade
       unlisted_long: Alla kan se, men listas inte på offentliga tidslinjer
+    language_detection: Lista ut språk automatiskt
   stream_entries:
     click_to_show: Klicka för att visa
     pinned: Fäst toot
     reblogged: boostad
     sensitive_content: Känsligt innehåll
   terms:
-    title: "%{instance} Användarvillkor och Sekretesspolicy"
+    title: '%{instance} Användarvillkor och Sekretesspolicy'
+    body_html: "<h2>Integritetspolicy</h2>\n<h3 id=\"collect\">Vilken information\
+      \ samlar vi in?</h3>\n\n<ul>\n  <li><em>Grundläggande kontoinformation</em>:\
+      \ Det användarnamn du väljer, visningsnamn, biografi, avatar/profilbild och\
+      \ bakgrundsbild kommer alltid vara tillgängliga för alla som kan nå webbsidan.\
+      \ </li>\n  <li><em>Inlägg, vem du följer och annan tillgänglig information</em>:\
+      \ Dina följare och de konton du följer är alltid tillgängliga. När du skapar\
+      \ ett nytt inlägg sparas datum och tid för meddelandet, samt vilket program\
+      \ du använde för att skapa inlägget. Detta gäller även bilder och media som\
+      \ inlägg kan innehålla.Både \"Publika\" och \"Olistade\" inlägg kan vara tillgängliga\
+      \ för alla som har åtkomst till webbsidan. When you feature a post on your profile,\
+      \ that is also publicly available information. Your posts are delivered to your\
+      \ followers, in some cases it means they are delivered to different servers\
+      \ and copies are stored there. When you delete posts, this is likewise delivered\
+      \ to your followers. The action of reblogging or favouriting another post is\
+      \ always public.</li>\n  <li><em>Direct and followers-only posts</em>: All posts\
+      \ are stored and processed on the server. Followers-only posts are delivered\
+      \ to your followers and users who are mentioned in them, and direct posts are\
+      \ delivered only to users mentioned in them. In some cases it means they are\
+      \ delivered to different servers and copies are stored there. We make a good\
+      \ faith effort to limit the access to those posts only to authorized persons,\
+      \ but other servers may fail to do so. Therefore it's important to review servers\
+      \ your followers belong to. You may toggle an option to approve and reject new\
+      \ followers manually in the settings. <em>Please keep in mind that the operators\
+      \ of the server and any receiving server may view such messages</em>, and that\
+      \ recipients may screenshot, copy or otherwise re-share them. <em>Do not share\
+      \ any dangerous information over Mastodon.</em></li>\n  <li><em>IPs and other\
+      \ metadata</em>: When you log in, we record the IP address you log in from,\
+      \ as well as the name of your browser application. All the logged in sessions\
+      \ are available for your review and revocation in the settings. The latest IP\
+      \ address used is stored for up to 12 months. We also may retain server logs\
+      \ which include the IP address of every request to our server.</li>\n</ul>\n\
+      \n<hr class=\"spacer\" />\n\n<h3 id=\"use\">What do we use your information\
+      \ for?</h3>\n\n<p>Any of the information we collect from you may be used in\
+      \ the following ways:</p>\n\n<ul>\n  <li>To provide the core functionality of\
+      \ Mastodon. You can only interact with other people's content and post your\
+      \ own content when you are logged in. For example, you may follow other people\
+      \ to view their combined posts in your own personalized home timeline.</li>\n\
+      \  <li>To aid moderation of the community, for example comparing your IP address\
+      \ with other known ones to determine ban evasion or other violations.</li>\n\
+      \  <li>The email address you provide may be used to send you information, notifications\
+      \ about other people interacting with your content or sending you messages,\
+      \ and to respond to inquiries, and/or other requests or questions.</li>\n</ul>\n\
+      \n<hr class=\"spacer\" />\n\n<h3 id=\"protect\">How do we protect your information?</h3>\n\
+      \n<p>We implement a variety of security measures to maintain the safety of your\
+      \ personal information when you enter, submit, or access your personal information.\
+      \ Among other things, your browser session, as well as the traffic between your\
+      \ applications and the API, are secured with SSL, and your password is hashed\
+      \ using a strong one-way algorithm. You may enable two-factor authentication\
+      \ to further secure access to your account.</p>\n\n<hr class=\"spacer\" />\n\
+      \n<h3 id=\"data-retention\">What is our data retention policy?</h3>\n\n<p>We\
+      \ will make a good faith effort to:</p>\n\n<ul>\n  <li>Retain server logs containing\
+      \ the IP address of all requests to this server, in so far as such logs are\
+      \ kept, no more than 90 days.</li>\n  <li>Retain the IP addresses associated\
+      \ with registered users no more than 12 months.</li>\n</ul>\n\n<p>You can request\
+      \ and download an archive of your content, including your posts, media attachments,\
+      \ profile picture, and header image.</p>\n\n<p>You may irreversibly delete your\
+      \ account at any time.</p>\n\n<hr class=\"spacer\"/>\n\n<h3 id=\"cookies\">Do\
+      \ we use cookies?</h3>\n\n<p>Yes. Cookies are small files that a site or its\
+      \ service provider transfers to your computer's hard drive through your Web\
+      \ browser (if you allow). These cookies enable the site to recognize your browser\
+      \ and, if you have a registered account, associate it with your registered account.</p>\n\
+      \n<p>We use cookies to understand and save your preferences for future visits.</p>\n\
+      \n<hr class=\"spacer\" />\n\n<h3 id=\"disclose\">Do we disclose any information\
+      \ to outside parties?</h3>\n\n<p>We do not sell, trade, or otherwise transfer\
+      \ to outside parties your personally identifiable information. This does not\
+      \ include trusted third parties who assist us in operating our site, conducting\
+      \ our business, or servicing you, so long as those parties agree to keep this\
+      \ information confidential. We may also release your information when we believe\
+      \ release is appropriate to comply with the law, enforce our site policies,\
+      \ or protect ours or others rights, property, or safety.</p>\n\n<p>Your public\
+      \ content may be downloaded by other servers in the network. Your public and\
+      \ followers-only posts are delivered to the servers where your followers reside,\
+      \ and direct messages are delivered to the servers of the recipients, in so\
+      \ far as those followers or recipients reside on a different server than this.</p>\n\
+      \n<p>When you authorize an application to use your account, depending on the\
+      \ scope of permissions you approve, it may access your public profile information,\
+      \ your following list, your followers, your lists, all your posts, and your\
+      \ favourites. Applications can never access your e-mail address or password.</p>\n\
+      \n<hr class=\"spacer\" />\n\n<h3 id=\"children\">Site usage by children</h3>\n\
+      \n<p>If this server is in the EU or the EEA: Our site, products and services\
+      \ are all directed to people who are at least 16 years old. If you are under\
+      \ the age of 16, per the requirements of the GDPR (<a href=\"https://en.wikipedia.org/wiki/General_Data_Protection_Regulation\"\
+      >General Data Protection Regulation</a>) do not use this site.</p>\n\n<p>If\
+      \ this server is in the USA: Our site, products and services are all directed\
+      \ to people who are at least 13 years old. If you are under the age of 13, per\
+      \ the requirements of COPPA (<a href=\"https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\"\
+      >Children's Online Privacy Protection Act</a>) do not use this site.</p>\n\n\
+      <p>Law requirements can be different if this server is in another jurisdiction.</p>\n\
+      \n<hr class=\"spacer\" />\n\n<h3 id=\"changes\">Changes to our Privacy Policy</h3>\n\
+      \n<p>If we decide to change our privacy policy, we will post those changes on\
+      \ this page.</p>\n\n<p>This document is CC-BY-SA. It was last updated March\
+      \ 7, 2018.</p>\n\n<p>Originally adapted from the <a href=\"https://github.com/discourse/discourse\"\
+      >Discourse privacy policy</a>.</p>\n"
   themes:
     contrast: Hög kontrast
     default: Mastodon
+    mastodon-light: Mastodon (ljust)
   time:
     formats:
-      default: "%b %d, %Y, %H:%M"
+      default: '%b %d, %Y, %H:%M'
   two_factor_authentication:
     code_hint: Ange koden som genererats av din autentiseringsapp för att bekräfta
-    description_html: Om du aktiverar <strong>tvåstegsautentisering</strong> kommer inloggningen kräva att du har din telefon tillgänglig, vilket kommer att generera tokens för dig att uppge.
+    description_html: Om du aktiverar <strong>tvåstegsautentisering</strong> kommer
+      inloggningen kräva att du har din telefon tillgänglig, vilket kommer att generera
+      tokens för dig att uppge.
     disable: Avaktivera
     enable: Aktivera
     enabled: Tvåfaktorsautentisering är aktiverad
     enabled_success: Tvåfaktors autentisering aktiverad
     generate_recovery_codes: Generera återställningskoder
-    instructions_html: "<strong>Skanna den här QR-koden i Google Authenticator eller en liknande TOTP-app på din telefon </strong>. Från och med nu genererar den appen tokens som du måste ange när du loggar in."
-    lost_recovery_codes: Återställningskoder tillåter dig att få tillgång till ditt konto om du förlorar din telefon. Om du har förlorat dina återställningskoder kan du regenerera dem här. Dina gamla återställningskoder kommer att ogiltigförklaras.
-    manual_instructions: 'Om du inte kan skanna QR-koden och behöver skriva in den manuellt, här är den enkla texten:'
+    instructions_html: <strong>Skanna den här QR-koden i Google Authenticator eller
+      en liknande TOTP-app på din telefon </strong>. Från och med nu genererar den
+      appen tokens som du måste ange när du loggar in.
+    lost_recovery_codes: Återställningskoder tillåter dig att få tillgång till ditt
+      konto om du förlorar din telefon. Om du har förlorat dina återställningskoder
+      kan du regenerera dem här. Dina gamla återställningskoder kommer att ogiltigförklaras.
+    manual_instructions: 'Om du inte kan skanna QR-koden och behöver skriva in den
+      manuellt, här är den enkla texten:'
     recovery_codes: Backup återställningskod
     recovery_codes_regenerated: Återställningskoder regenererades framgångsrikt
-    recovery_instructions_html: Om du någonsin tappar åtkomst till din telefon kan du använda någon av återställningskoderna nedan för att återställa åtkomst till ditt konto. <strong> Håll återställningskoderna säkra </strong>. Du kan till exempel skriva ut dem och lagra dem med andra viktiga dokument.
+    recovery_instructions_html: Om du någonsin tappar åtkomst till din telefon kan
+      du använda någon av återställningskoderna nedan för att återställa åtkomst till
+      ditt konto. <strong> Håll återställningskoderna säkra </strong>. Du kan till
+      exempel skriva ut dem och lagra dem med andra viktiga dokument.
     setup: Ställ in
     wrong_code: Den angivna koden var ogiltig! Är servertid och enhetstid korrekt?
   user_mailer:
     backup_ready:
-      explanation: Du begärde en fullständig säkerhetskopiering av ditt Mastodon-konto. Det är nu klart för nedladdning!
+      explanation: Du begärde en fullständig säkerhetskopiering av ditt Mastodon-konto.
+        Det är nu klart för nedladdning!
       subject: Ditt arkiv är klart för nedladdning
       title: Arkivuttagning
     welcome:
       edit_profile_action: Profilinställning
-      edit_profile_step: Du kan anpassa din profil genom att ladda upp en avatar, bakgrundsbild, ändra ditt visningsnamn och mer. Om du vill granska nya följare innan de får följa dig kan du låsa ditt konto.
+      edit_profile_step: Du kan anpassa din profil genom att ladda upp en avatar,
+        bakgrundsbild, ändra ditt visningsnamn och mer. Om du vill granska nya följare
+        innan de får följa dig kan du låsa ditt konto.
       explanation: Här är några tips för att komma igång
       final_action: Börja posta
-      final_step: 'Börja posta! Även utan anhängare kan dina offentliga meddelanden ses av andra, till exempel på den lokala tidslinjen och i hashtags. Du får gärna presentera dig via hashtaggen #introductions.'
+      final_step: 'Börja posta! Även utan anhängare kan dina offentliga meddelanden
+        ses av andra, till exempel på den lokala tidslinjen och i hashtags. Du får
+        gärna presentera dig via hashtaggen #introductions.'
       full_handle: Ditt fullständiga användarnamn/mastodonadress
-      full_handle_hint: Det här är vad du skulle berätta för dina vänner så att de kan meddela eller följa dig från en annan instans.
+      full_handle_hint: Det här är vad du skulle berätta för dina vänner så att de
+        kan meddela eller följa dig från en annan instans.
       review_preferences_action: Ändra inställningar
-      review_preferences_step: Se till att du ställer in dina inställningar, t.ex. vilka e-postmeddelanden du vill ta emot eller vilken integritetsnivå du vill att dina inlägg ska vara. Om du inte har åksjuka, kan du välja att aktivera automatisk uppspelning av GIF-bilder.
+      review_preferences_step: Se till att du ställer in dina inställningar, t.ex.
+        vilka e-postmeddelanden du vill ta emot eller vilken integritetsnivå du vill
+        att dina inlägg ska vara. Om du inte har åksjuka, kan du välja att aktivera
+        automatisk uppspelning av GIF-bilder.
       subject: Välkommen till Mastodon
-      tip_bridge_html: Om du kommer från Twitter kan du hitta dina vänner på Mastodon genom att använda <a href="%{bridge_url}">bridge-appen</a>. Det fungerar dock bara om de också har använt bridge-appen!
-      tip_federated_timeline: Den förenade tidslinjen är en störtflodsvy av Mastodon-nätverket. Men det inkluderar bara människor som dina grannar följer, så det är inte komplett.
-      tip_following: Du följer din servers administratör(er) som standard. För att hitta fler intressanta personer, kolla de lokala och förenade tidslinjerna.
-      tip_local_timeline: Den lokala tidslinjen är en störtflodsvy av personer på% {instance}. Det här är dina närmaste grannar!
-      tip_mobile_webapp: Om din mobila webbläsare erbjuder dig att lägga till Mastodon till ditt hemskärm kan du få push-meddelanden. Det fungerar som en inbyggd app på många sätt!
+      tip_bridge_html: Om du kommer från Twitter kan du hitta dina vänner på Mastodon
+        genom att använda <a href="%{bridge_url}">bridge-appen</a>. Det fungerar dock
+        bara om de också har använt bridge-appen!
+      tip_federated_timeline: Den förenade tidslinjen är en störtflodsvy av Mastodon-nätverket.
+        Men det inkluderar bara människor som dina grannar följer, så det är inte
+        komplett.
+      tip_following: Du följer din servers administratör(er) som standard. För att
+        hitta fler intressanta personer, kolla de lokala och förenade tidslinjerna.
+      tip_local_timeline: Den lokala tidslinjen är en störtflodsvy av personer på%
+        {instance}. Det här är dina närmaste grannar!
+      tip_mobile_webapp: Om din mobila webbläsare erbjuder dig att lägga till Mastodon
+        till ditt hemskärm kan du få push-meddelanden. Det fungerar som en inbyggd
+        app på många sätt!
       tips: Tips
       title: Välkommen ombord, %{name}!
   users:
     invalid_email: E-postadressen är ogiltig
     invalid_otp_token: Ogiltig tvåfaktorkod
-    otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
-    seamless_external_login: Du är inloggad via en extern tjänst, så lösenord och e-postinställningar är inte tillgängliga.
+    otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med
+      %{email}
+    seamless_external_login: Du är inloggad via en extern tjänst, så lösenord och
+      e-postinställningar är inte tillgängliga.
     signed_in_as: 'Inloggad som:'
