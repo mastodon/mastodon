@@ -26,6 +26,11 @@ da:
         setting_noindex: Påvirker din offentlige profil og status sider
         setting_theme: Påvirker hvordan Mastodon ser ud nåt du er logget ind via en
           hvilken som helst enhed.
+        context: En eller flere sammenhænge hvor filteret skal være gældende
+        irreversible: Filtrerede toots vil forsvinde fulstændigt, selv hvis filteret
+          senere skulle blive fjernet
+        phrase: Vil blive parret uanset om der er store eller små bogstaver i teksten
+          eller om der er en advarsel om en toot
       imports:
         data: CSV fil eksporteret fra en anden Mastodon instans
     labels:
@@ -60,6 +65,12 @@ da:
         type: Importtype
         username: Brugernavn
         username_or_email: Brugernavn eller Email
+        irreversible: Ignorer istedet for at skjule
+        phrase: Nøgleord eller sætning
+        setting_boost_modal: Vis bekræftelses dialog før du fremhæver
+        setting_default_language: Sprog for opslag
+        setting_default_privacy: Privatliv
+        setting_default_sensitive: Marker altid multimedia som værende følsomt
       interactions:
         must_be_follower: Bloker notifikationer fra folk der ikke følger dig
         must_be_following: Bloker notifikationer fra folk du ikke følger
