@@ -58,7 +58,7 @@ const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
 
   const mapStateToProps = (state, props) => {
-    const status = getStatus(state, props.params.statusId);
+    const status = getStatus(state, { id: props.params.statusId });
     let ancestorsIds = Immutable.List();
     let descendantsIds = Immutable.List();
 
@@ -336,6 +336,7 @@ export default class Status extends ImmutablePureComponent {
         id={id}
         onMoveUp={this.handleMoveUp}
         onMoveDown={this.handleMoveDown}
+        contextType='thread'
       />
     ));
   }
