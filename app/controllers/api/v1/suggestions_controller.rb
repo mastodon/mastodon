@@ -15,7 +15,15 @@ class Api::V1::SuggestionsController < Api::BaseController
 
   private
 
+  def triadic_closures
+    Account.triadic_closures(current_account, limit: DEFAULT_ACCOUNTS_LIMIT)
+  end
+
+  def potential_friendships
+    PotentialFriendshipTracker.get(current_account.id, limit: DEFAULT_ACCOUNTS_LIMIT)
+  end
+
   def set_accounts
-    @accounts = Account.triadic_closures(current_account, limit: limit_param(DEFAULT_ACCOUNTS_LIMIT))
+    @accounts = triadic_closures | potential_friendships
   end
 end

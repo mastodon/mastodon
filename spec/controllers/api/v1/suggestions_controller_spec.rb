@@ -13,10 +13,12 @@ RSpec.describe Api::V1::SuggestionsController, type: :controller do
   describe 'GET #index' do
     let(:alice) { Fabricate(:account) }
     let(:bob) { Fabricate(:account) }
+    let(:jeff) { Fabricate(:account) }
 
     before do
       user.account.follow!(alice)
       alice.follow!(bob)
+      PotentialFriendshipTracker.record(user.account_id, jeff.id, :favourite)
       get :index
     end
 
@@ -24,11 +26,11 @@ RSpec.describe Api::V1::SuggestionsController, type: :controller do
       expect(response).to have_http_status(200)
     end
 
-    it 'returns bob' do
+    it 'returns accounts' do
       json = body_as_json
 
-      expect(json.size).to eq 1
-      expect(json[0][:id]).to eq bob.id.to_s
+      expect(json.size).to be >= 1
+      expect(json.map { |i| i[:id] }).to include *[bob, jeff].map { |i| i.id.to_s }
     end
   end
 end
