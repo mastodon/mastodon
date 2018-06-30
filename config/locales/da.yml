@@ -180,6 +180,15 @@ da:
         enable_user: '%{name} aktiverede login for brugeren %{target}'
         promote_user: '%{name} forfremmede brugeren %{target}'
         reset_password_user: '%{name} nulstillede kodeordet for brugeren %{target}'
+        destroy_email_domain_block: '%{name} hvid-listede email domænet %{target}'
+        memorialize_account: '%{name} omdannede %{target}s konto til en mindeside'
+        remove_avatar_user: '%{name} fjernede %{target}s profilbillede'
+        reopen_report: '%{name} genåbnede anmeldelsen %{target}'
+        silence_account: '%{name} dæmpede %{target}s konto'
+        suspend_account: '%{name} udelukkede %{target}s konto'
+        unsilence_account: '%{name} fjernede dæmpningen fra %{target}s konto'
+        unsuspend_account: '%{name} fjernede udelukkelsen fra %{target}s konto'
+        update_custom_emoji: '%{name} opdaterede humørikonet %{target}'
     custom_emojis:
       by_domain: Domæne
       copy: Kopier
@@ -190,13 +199,28 @@ da:
       image_hint: PNG op til 50KB
       overwrite: Overskriv
       upload: Læg op
+      created_msg: Humørikon succesfuldt oprettet!
+      disabled_msg: Succesfuldt deaktiverede det humørikon
+      enabled_msg: Succesfuldt aktiverede det humørikon
+      listed: Listet
+      new:
+        title: Tilføj nyt brugerdefineret humørikon
+      title: Brugerdefinerede humørikoner
+      unlisted: Ikke listet
+      update_failed_msg: Kunne ikke opdatere det humørikon
+      updated_msg: Humørikon succesfuldt opdateret!
     domain_blocks:
       domain: Domæne
       new:
         severity:
           noop: Ingen
+          silence: Dæmp
+          suspend: Udeluk
+        create: Opret blokering
       severities:
         noop: Ingen
+        suspend: Udeluk
+      add_new: Tilføj ny
     email_domain_blocks:
       delete: Slet
       domain: Domæne
@@ -276,6 +300,10 @@ da:
   two_factor_authentication:
     disable: Deaktiver
     enable: Aktiver
+    enabled: To-faktor godkendelse er aktiveret
+    enabled_success: To-faktor godkendelse succesfuldt aktiveret
+    generate_recovery_codes: Generer gendannelseskoder
+    setup: Sæt op
   user_mailer:
     welcome:
       edit_profile_action: Opsæt profil
