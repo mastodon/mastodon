@@ -7,7 +7,7 @@ const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
 
   const mapStateToProps = state => ({
-    status: getStatus(state, state.getIn(['compose', 'in_reply_to'])),
+    status: getStatus(state, { id: state.getIn(['compose', 'in_reply_to']) }),
   });
 
   return mapStateToProps;

@@ -32,8 +32,11 @@ self.addEventListener('fetch', function(event) {
     const asyncCache = openWebCache();
 
     event.respondWith(asyncResponse.then(
-      response => asyncCache.then(cache => cache.put('/', response.clone()))
-        .then(() => response),
+      response => {
+        const clonedResponse = response.clone();
+        asyncCache.then(cache => cache.put('/', clonedResponse)).catch();
+        return response;
+      },
       () => asyncCache.then(cache => cache.match('/'))));
   } else if (url.pathname === '/auth/sign_out') {
     const asyncResponse = fetch(event.request);
@@ -58,14 +61,9 @@ self.addEventListener('fetch', function(event) {
 
           return asyncResponse.then(response => {
             if (response.ok) {
-              const put = cache.put(event.request.url, response.clone());
-
-              put.catch(() => freeStorage());
-
-              return put.then(() => {
-                freeStorage();
-                return response;
-              });
+              cache
+                .put(event.request.url, response.clone())
+                .catch(()=>{}).then(freeStorage()).catch();
             }
 
             return response;

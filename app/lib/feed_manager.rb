@@ -153,6 +153,7 @@ class FeedManager
   def filter_from_home?(status, receiver_id)
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
+    return true  if phrase_filtered?(status, receiver_id, :home)
 
     check_for_blocks = status.mentions.pluck(:account_id)
     check_for_blocks.concat([status.account_id])
@@ -177,6 +178,7 @@ class FeedManager
 
   def filter_from_mentions?(status, receiver_id)
     return true if receiver_id == status.account_id
+    return true if phrase_filtered?(status, receiver_id, :notifications)
 
     # This filter is called from NotifyService, but already after the sender of
     # the notification has been checked for mute/block. Therefore, it's not
@@ -188,6 +190,20 @@ class FeedManager
     should_filter ||= (status.account.silenced? && !Follow.where(account_id: receiver_id, target_account_id: status.account_id).exists?) # of if the account is silenced and I'm not following them
 
     should_filter
+  end
+
+  def phrase_filtered?(status, receiver_id, context)
+    active_filters = Rails.cache.fetch("filters:#{receiver_id}") { CustomFilter.where(account_id: receiver_id).active_irreversible.to_a }.to_a
+
+    active_filters.select! { |filter| filter.context.include?(context.to_s) && !filter.expired? }
+    active_filters.map! { |filter| Regexp.new(Regexp.escape(filter.phrase), true) }
+
+    return false if active_filters.empty?
+
+    combined_regex = active_filters.reduce { |memo, obj| Regexp.union(memo, obj) }
+
+    !combined_regex.match(status.text).nil? ||
+      (status.spoiler_text.present? && !combined_regex.match(status.spoiler_text).nil?)
   end
 
   # Adds a status to an account's feed, returning true if a status was
