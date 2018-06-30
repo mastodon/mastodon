@@ -42,7 +42,7 @@ const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
 
   const mapStateToProps = (state, props) => ({
-    status: getStatus(state, props.id),
+    status: getStatus(state, props),
   });
 
   return mapStateToProps;

@@ -335,6 +335,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Filtered",
+        "id": "status.filtered"
+      },
+      {
         "defaultMessage": "Pinned toot",
         "id": "status.pinned"
       },
@@ -633,20 +637,8 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Filter out by regular expressions",
-        "id": "home.column_settings.filter_regex"
-      },
-      {
-        "defaultMessage": "Column settings",
-        "id": "home.settings"
-      },
-      {
         "defaultMessage": "Media Only",
         "id": "community.column_settings.media_only"
-      },
-      {
-        "defaultMessage": "Advanced",
-        "id": "home.column_settings.advanced"
       }
     ],
     "path": "app/javascript/mastodon/features/community_timeline/components/column_settings.json"
@@ -1022,23 +1014,6 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Filter out by regular expressions",
-        "id": "home.column_settings.filter_regex"
-      },
-      {
-        "defaultMessage": "Column settings",
-        "id": "home.settings"
-      },
-      {
-        "defaultMessage": "Advanced",
-        "id": "home.column_settings.advanced"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/direct_timeline/components/column_settings.json"
-  },
-  {
-    "descriptors": [
-      {
         "defaultMessage": "Direct messages",
         "id": "column.direct"
       },
@@ -1222,14 +1197,6 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Filter out by regular expressions",
-        "id": "home.column_settings.filter_regex"
-      },
-      {
-        "defaultMessage": "Column settings",
-        "id": "home.settings"
-      },
-      {
         "defaultMessage": "Basic",
         "id": "home.column_settings.basic"
       },
@@ -1240,10 +1207,6 @@
       {
         "defaultMessage": "Show replies",
         "id": "home.column_settings.show_replies"
-      },
-      {
-        "defaultMessage": "Advanced",
-        "id": "home.column_settings.advanced"
       }
     ],
     "path": "app/javascript/mastodon/features/home_timeline/components/column_settings.json"
@@ -1935,16 +1898,16 @@
         "id": "tabs_bar.notifications"
       },
       {
-        "defaultMessage": "Search",
-        "id": "tabs_bar.search"
-      },
-      {
         "defaultMessage": "Local",
         "id": "tabs_bar.local_timeline"
       },
       {
         "defaultMessage": "Federated",
         "id": "tabs_bar.federated_timeline"
+      },
+      {
+        "defaultMessage": "Search",
+        "id": "tabs_bar.search"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/tabs_bar.json"
