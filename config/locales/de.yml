@@ -40,6 +40,7 @@ de:
     following: Folgt
     media: Medien
     moved_html: "%{name} ist auf %{new_profile_link} umgezogen:"
+    network_hidden: Diese Informationen sind nicht verfügbar
     nothing_here: Hier gibt es nichts!
     people_followed_by: Profile, denen %{name} folgt
     people_who_follow: Profile, die %{name} folgen
@@ -282,7 +283,7 @@ de:
         create_and_resolve: Mit Kommentar lösen
         create_and_unresolve: Mit Kommentar wieder öffnen
         delete: Löschen
-        placeholder: Beschreibe, welche Maßnahmen ergriffen wurden oder andere Neuigkeiten zu dieser Meldung…
+        placeholder: Beschreibe, welche Maßnahmen ergriffen wurden oder irgendwelche andere Neuigkeiten…
       reopen: Meldung wieder öffnen
       report: 'Meldung #%{id}'
       report_contents: Inhalt
@@ -423,7 +424,7 @@ de:
     following: 'Erfolg! Du folgst nun:'
     post_follow:
       close: Oder du schließt einfach dieses Fenster.
-      return: Zurück zum Profil dieses Wesens
+      return: Zeige Profil des Benutzers
       web: Das Web öffnen
     title: "%{acct} folgen"
   datetime:
@@ -513,6 +514,7 @@ de:
       '86400': 1 Tag
     expires_in_prompt: Nie
     generate: Generieren
+    invited_by: 'Du wurdest eingeladen von:'
     max_uses:
       one: 1 mal verwendet
       other: "%{count} mal verwendet"
@@ -549,7 +551,7 @@ de:
       subject:
         one: "1 neue Mitteilung seit deinem letzten Besuch \U0001F418"
         other: "%{count} neue Mitteilungen seit deinem letzten Besuch \U0001F418"
-      title: In deiner Abwesenheit…
+      title: In deiner Abwesenheit...
     favourite:
       body: 'Dein Beitrag wurde von %{name} favorisiert:'
       subject: "%{name} hat deinen Beitrag favorisiert"
@@ -594,20 +596,6 @@ de:
     other: Weiteres
     publishing: Beiträge
     web: Web
-  push_notifications:
-    favourite:
-      title: "%{name} hat deinen Beitrag favorisiert"
-    follow:
-      title: "%{name} folgt dir nun"
-    group:
-      title: "%{count} Benachrichtigungen"
-    mention:
-      action_boost: Teilen
-      action_expand: Mehr anzeigen
-      action_favourite: Favorisieren
-      title: "%{name} hat dich erwähnt"
-    reblog:
-      title: "%{name} hat deinen Beitrag geteilt"
   remote_follow:
     acct: Profilname@Domain, von wo aus du dieser Person folgen möchtest
     missing_resource: Die erforderliche Weiterleitungs-URL für dein Konto konnte nicht gefunden werden
@@ -682,10 +670,12 @@ de:
       video:
         one: "%{count} Video"
         other: "%{count} Videos"
+    boosted_from_html: Geteilt von %{acct_link}
     content_warning: 'Inhaltswarnung: %{warning}'
     disallowed_hashtags:
       one: 'Enthält den unerlaubten Hashtag: %{tags}'
       other: 'Enthält die unerlaubten Hashtags: %{tags}'
+    language_detection: Sprache automatisch erkennen
     open_in_web: Im Web öffnen
     over_character_limit: Zeichenlimit von %{max} überschritten
     pin_errors:
@@ -712,6 +702,7 @@ de:
   themes:
     contrast: Hoher Kontrast
     default: Mastodon
+    mastodon-light: Mastodon (hell)
   time:
     formats:
       default: "%d.%m.%Y %H:%M"

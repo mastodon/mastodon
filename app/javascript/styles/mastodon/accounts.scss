@@ -1,5 +1,5 @@
 .card {
-  background-color: lighten($ui-base-color, 4%);
+  background-color: $base-shadow-color;
   background-size: cover;
   background-position: center;
   border-radius: 4px 4px 0 0;
@@ -79,6 +79,10 @@
       font-weight: 400;
       overflow: hidden;
       text-overflow: ellipsis;
+
+      .fa {
+        margin-left: 3px;
+      }
     }
   }
 
@@ -322,6 +326,15 @@
   z-index: 2;
   position: relative;
 
+  &.empty img {
+    position: absolute;
+    opacity: 0.2;
+    height: 200px;
+    left: 0;
+    bottom: 0;
+    pointer-events: none;
+  }
+
   @media screen and (max-width: 740px) {
     border-radius: 0;
     box-shadow: none;
@@ -438,30 +451,39 @@
   font-size: 14px;
   font-weight: 500;
   text-align: center;
-  padding: 60px 0;
-  padding-top: 55px;
+  padding: 130px 0;
+  padding-top: 125px;
   margin: 0 auto;
   cursor: default;
 }
 
 .account-card {
-  padding: 14px 10px;
-  background: $simple-background-color;
   border-radius: 4px;
   text-align: left;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+  background: $simple-background-color;
 
-  .detailed-status__display-name {
+  &__header {
+    background: $base-shadow-color;
+    background-size: cover;
+    background-position: center center;
+    height: 90px;
+    border-radius: 4px 4px 0 0;
+  }
+
+  & > .detailed-status__display-name {
     display: block;
     overflow: hidden;
-    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
 
     &:last-child {
       margin-bottom: 0;
     }
 
-    & > div {
-      float: left;
+    & > div:first-child {
+      flex: 0 0 auto;
       margin-right: 10px;
       width: 48px;
       height: 48px;
@@ -470,15 +492,21 @@
     .avatar {
       display: block;
       border-radius: 4px;
+      margin: 0;
     }
 
     .display-name {
+      flex: 1 0 auto;
       display: block;
       max-width: 100%;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
       cursor: default;
+
+      & > .detailed-status__display-name {
+        margin-bottom: 0;
+      }
 
       strong {
         font-weight: 500;
@@ -506,9 +534,28 @@
     }
   }
 
-  .account__header__content {
-    font-size: 14px;
-    color: $inverted-text-color;
+  .counter {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    color: $light-text-color;
+    padding: 0 10px;
+    cursor: default;
+    text-align: center;
+    position: relative;
+    line-height: 24px;
+
+    .counter-label {
+      font-size: 12px;
+      display: block;
+      text-transform: uppercase;
+    }
+
+    .counter-number {
+      font-weight: 500;
+      font-size: 16px;
+      color: $inverted-text-color;
+      font-family: 'mastodon-font-display', sans-serif;
+    }
   }
 }
 

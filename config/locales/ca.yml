@@ -40,6 +40,7 @@ ca:
     following: Seguint
     media: Mèdia
     moved_html: "%{name} s'ha mogut a %{new_profile_link}:"
+    network_hidden: Aquesta informació no està disponible
     nothing_here: No hi ha res aquí!
     people_followed_by: Usuaris seguits per %{name}
     people_who_follow: Usuaris que segueixen %{name}
@@ -71,7 +72,7 @@ ca:
         title: Canviar adreça de correu de %{username}
       confirm: Confirma
       confirmed: Confirmat
-      confirming: Confirmando
+      confirming: Confirmant
       demote: Degrada
       disable: Inhabilita
       disable_two_factor_authentication: Desactiva 2FA
@@ -80,7 +81,7 @@ ca:
       domain: Domini
       edit: Edita
       email: Correu electrònic
-      email_status: Estado del correo electrónico
+      email_status: Estat del correu electrònic
       enable: Habilita
       enabled: Habilitat
       feed_url: URL del canal
@@ -121,7 +122,7 @@ ca:
       remove_avatar: Eliminar avatar
       resend_confirmation:
         already_confirmed: Este usuario ya está confirmado
-        send: Reenviar el correo electrónico de confirmación
+        send: Reenviar el correu electrònic de confirmació
         success: "¡Correo electrónico de confirmación enviado con éxito!"
       reset: Reinicialitza
       reset_password: Restableix la contrasenya
@@ -282,7 +283,7 @@ ca:
         create_and_resolve: Resoldre amb nota
         create_and_unresolve: Reobrir amb nota
         delete: Esborrar
-        placeholder: Descriu les accions que s'han pres o qualsevol altra actualització d'aquest informe…
+        placeholder: Descriu les accions que s'han pres o qualsevol altra actualització relacionada…
       reopen: Reobrir informe
       report: 'Informe #%{id}'
       report_contents: Contingut
@@ -423,7 +424,7 @@ ca:
     following: 'Perfecte! Ara segueixes:'
     post_follow:
       close: O bé, pots tancar aquesta finestra.
-      return: Torna al perfil de l'usuari
+      return: Mostra el perfil de l'usuari
       web: Vés a la web
     title: Segueix %{acct}
   datetime:
@@ -513,6 +514,7 @@ ca:
       '86400': 1 dia
     expires_in_prompt: Mai
     generate: Genera
+    invited_by: 'Has estat invitat per:'
     max_uses:
       one: 1 ús
       other: "%{count} usos"
@@ -594,20 +596,6 @@ ca:
     other: Altre
     publishing: Publicació
     web: Web
-  push_notifications:
-    favourite:
-      title: "%{name} ha marcat com a preferit el teu estat"
-    follow:
-      title: "%{name} ara et segueix"
-    group:
-      title: "%{count} notificacions"
-    mention:
-      action_boost: Retooteja
-      action_expand: Mostra'n més
-      action_favourite: Preferit
-      title: "%{name} t'ha mencionat"
-    reblog:
-      title: "%{name} t'ha retootejat"
   remote_follow:
     acct: Escriu el teu usuari@domini des del qual vols seguir
     missing_resource: No s'ha pogut trobar la URL de redirecció necessaria per al compte
@@ -632,7 +620,7 @@ ca:
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
-      otter: Altre
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -682,10 +670,12 @@ ca:
       video:
         one: "%{count} vídeo"
         other: "%{count} vídeos"
+    boosted_from_html: Impulsat des de %{acct_link}
     content_warning: 'Avís de contingut: %{warning}'
     disallowed_hashtags:
       one: 'conté una etiqueta no permesa: %{tags}'
       other: 'conté les etiquetes no permeses: %{tags}'
+    language_detection: Detecta automàticament el llenguatge
     open_in_web: Obre en la web
     over_character_limit: Límit de caràcters de %{max} superat
     pin_errors:
@@ -788,7 +778,8 @@ ca:
     title: "%{instance} Condicions del servei i política de privadesa"
   themes:
     contrast: Alt contrast
-    default: Mastodont
+    default: Mastodon
+    mastodon-light: Mastodon (clar)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

@@ -40,6 +40,7 @@ eo:
     following: Sekvatoj
     media: Aŭdovidaĵoj
     moved_html: "%{name} moviĝis al %{new_profile_link}:"
+    network_hidden: Tiu informo ne estas disponebla
     nothing_here: Estas nenio ĉi tie!
     people_followed_by: Sekvatoj de %{name}
     people_who_follow: Sekvantoj de %{name}
@@ -596,20 +597,6 @@ eo:
     other: Aliaj aferoj
     publishing: Publikado
     web: Reto
-  push_notifications:
-    favourite:
-      title: "%{name} stelumis vian mesaĝon"
-    follow:
-      title: "%{name} eksekvis vin"
-    group:
-      title: "%{count} sciigoj"
-    mention:
-      action_boost: Diskonigi
-      action_expand: Montri pli
-      action_favourite: Stelumi
-      title: "%{name} menciis vin"
-    reblog:
-      title: "%{name} diskonigis vian mesaĝon"
   remote_follow:
     acct: Enmetu vian uzantnomo@domajno de kie vi volas sekvi
     missing_resource: La URL de plusendado ne estis trovita
@@ -684,6 +671,7 @@ eo:
       video:
         one: "%{count} video"
         other: "%{count} videoj"
+    boosted_from_html: Diskonigita de %{acct_link}
     content_warning: 'Enhava averto: %{warning}'
     disallowed_hashtags:
       one: 'enhavas malpermesitan kradvorton: %{tags}'
@@ -714,6 +702,7 @@ eo:
   themes:
     contrast: Forta kontrasto
     default: Mastodon
+    mastodon-light: Mastodon (hela)
   time:
     formats:
       default: "%Y-%m-%d %H:%M"

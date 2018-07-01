@@ -23,6 +23,8 @@ class FetchLinkCardService < BaseService
       if lock.acquired?
         @card = PreviewCard.find_by(url: @url)
         process_url if @card.nil? || @card.updated_at <= 2.weeks.ago
+      else
+        raise Mastodon::RaceConditionError
       end
     end
 
@@ -38,7 +40,7 @@ class FetchLinkCardService < BaseService
     @card ||= PreviewCard.new(url: @url)
 
     failed = Request.new(:head, @url).perform do |res|
-      res.code != 405 && (res.code != 200 || res.mime_type != 'text/html')
+      res.code != 405 && res.code != 501 && (res.code != 200 || res.mime_type != 'text/html')
     end
 
     return if failed

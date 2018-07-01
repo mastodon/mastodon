@@ -51,12 +51,16 @@ module StatusThreadingConcern
   end
 
   def descendant_statuses(limit, max_child_id, since_child_id, depth)
-    Status.find_by_sql([<<-SQL.squish, id: id, limit: limit, max_child_id: max_child_id, since_child_id: since_child_id, depth: depth])
+    # use limit + 1 and depth + 1 because 'self' is included
+    depth += 1 if depth.present?
+    limit += 1 if limit.present?
+
+    descendants_with_self = Status.find_by_sql([<<-SQL.squish, id: id, limit: limit, max_child_id: max_child_id, since_child_id: since_child_id, depth: depth])
       WITH RECURSIVE search_tree(id, path)
       AS (
         SELECT id, ARRAY[id]
         FROM statuses
-        WHERE in_reply_to_id = :id AND COALESCE(id < :max_child_id, TRUE) AND COALESCE(id > :since_child_id, TRUE)
+        WHERE id = :id AND COALESCE(id < :max_child_id, TRUE) AND COALESCE(id > :since_child_id, TRUE)
         UNION ALL
         SELECT statuses.id, path || statuses.id
         FROM search_tree
@@ -68,6 +72,8 @@ module StatusThreadingConcern
       ORDER BY path
       LIMIT :limit
     SQL
+
+    descendants_with_self - [self]
   end
 
   def find_statuses_from_tree_path(ids, account)

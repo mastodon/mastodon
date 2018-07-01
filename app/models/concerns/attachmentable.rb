@@ -41,7 +41,10 @@ module Attachmentable
 
     extensions_for_mime_type = mime_type.empty? ? [] : mime_type.first.extensions
     original_extension       = Paperclip::Interpolations.extension(attachment, :original)
+    proper_extension         = extensions_for_mime_type.first.to_s
+    extension                = extensions_for_mime_type.include?(original_extension) ? original_extension : proper_extension
+    extension                = 'jpeg' if extension == 'jpe'
 
-    extensions_for_mime_type.include?(original_extension) ? original_extension : extensions_for_mime_type.first
+    extension
   end
 end

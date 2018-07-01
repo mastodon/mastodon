@@ -1,6 +1,5 @@
 export const unescapeHTML = (html) => {
   const wrapper = document.createElement('div');
-  html = html.replace(/<br \/>|<br>|\n/g, ' ');
-  wrapper.innerHTML = html;
+  wrapper.innerHTML = html.replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n').replace(/<[^>]*>/g, '');
   return wrapper.textContent;
 };

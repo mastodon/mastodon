@@ -75,7 +75,11 @@
 .speech-bubble
   .speech-bubble__bubble= simple_format(@report.comment.presence || t('admin.reports.comment.none'))
   .speech-bubble__owner
-    = admin_account_link_to @report.account
+    - if @report.account.local?
+      = admin_account_link_to @report.account
+    - else
+      = @report.account.domain
+      %br/
     %time.formatted{ datetime: @report.created_at.iso8601 }
 
 - unless @report.statuses.empty?

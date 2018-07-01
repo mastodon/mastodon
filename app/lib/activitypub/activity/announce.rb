@@ -26,16 +26,6 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
 
   private
 
-  def fetch_remote_original_status
-    if object_uri.start_with?('http')
-      return if ActivityPub::TagManager.instance.local_uri?(object_uri)
-
-      ActivityPub::FetchRemoteStatusService.new.call(object_uri, id: true, on_behalf_of: @account.followers.local.first)
-    elsif @object['url'].present?
-      ::FetchRemoteStatusService.new.call(@object['url'])
-    end
-  end
-
   def announceable?(status)
     status.account_id == @account.id || status.public_visibility? || status.unlisted_visibility?
   end

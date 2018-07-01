@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/rtomayko/posix-spawn
+  revision: 58465d2e213991f8afb13b984854a49fcdcc980c
+  ref: 58465d2e213991f8afb13b984854a49fcdcc980c
+  specs:
+    posix-spawn (0.3.13)
+
+GIT
   remote: https://github.com/tmm1/http_parser.rb
   revision: 54b17ba8c7d8d20a16dfc65d1775241833219cf2
   ref: 54b17ba8c7d8d20a16dfc65d1775241833219cf2
@@ -81,7 +88,7 @@ GEM
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.0)
     aws-sigv4 (1.0.2)
-    bcrypt (3.1.11)
+    bcrypt (3.1.12)
     benchmark-ips (2.7.2)
     better_errors (2.4.0)
       coderay (>= 1.0.0)
@@ -387,7 +394,6 @@ GEM
     pghero (2.1.0)
       activerecord
     pkg-config (1.3.0)
-    posix-spawn (0.3.13)
     powerpack (0.1.1)
     premailer (1.11.1)
       addressable
@@ -419,7 +425,6 @@ GEM
       rack
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
-    rack-timeout (0.4.2)
     rails (5.2.0)
       actioncable (= 5.2.0)
       actionmailer (= 5.2.0)
@@ -562,7 +567,7 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
-    sprockets (3.7.1)
+    sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.2.1)
@@ -711,7 +716,7 @@ DEPENDENCIES
   pg (~> 1.0)
   pghero (~> 2.1)
   pkg-config (~> 1.3)
-  posix-spawn (~> 0.3)
+  posix-spawn!
   premailer-rails
   private_address_check (~> 0.4.1)
   pry-byebug (~> 3.6)
@@ -720,7 +725,6 @@ DEPENDENCIES
   pundit (~> 1.1)
   rack-attack (~> 5.2)
   rack-cors (~> 1.0)
-  rack-timeout (~> 0.4)
   rails (~> 5.2.0)
   rails-controller-testing (~> 1.0)
   rails-i18n (~> 5.1)
@@ -760,4 +764,4 @@ RUBY VERSION
    ruby 2.5.0p0
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

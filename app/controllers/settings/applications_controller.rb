@@ -8,7 +8,7 @@ class Settings::ApplicationsController < ApplicationController
   before_action :prepare_scopes, only: [:create, :update]
 
   def index
-    @applications = current_user.applications.page(params[:page])
+    @applications = current_user.applications.order(id: :desc).page(params[:page])
   end
 
   def new

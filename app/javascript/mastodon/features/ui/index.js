@@ -12,6 +12,7 @@ import { debounce } from 'lodash';
 import { uploadCompose, resetCompose } from '../../actions/compose';
 import { expandHomeTimeline } from '../../actions/timelines';
 import { expandNotifications } from '../../actions/notifications';
+import { fetchFilters } from '../../actions/filters';
 import { clearHeight } from '../../actions/height_cache';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
@@ -132,16 +133,19 @@ class SwitchingColumnsArea extends React.PureComponent {
   render () {
     const { children } = this.props;
     const { mobile } = this.state;
+    const redirect = mobile ? <Redirect from='/' to='/timelines/home' exact /> : <Redirect from='/' to='/getting-started' exact />;
 
     return (
       <ColumnsAreaContainer ref={this.setRef} singleColumn={mobile}>
         <WrappedSwitch>
-          <Redirect from='/' to='/getting-started' exact />
+          {redirect}
           <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
           <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
           <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
           <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
-          <WrappedRoute path='/timelines/public/local' component={CommunityTimeline} content={children} />
+          <WrappedRoute path='/timelines/public/media' component={PublicTimeline} content={children} componentParams={{ onlyMedia: true }} />
+          <WrappedRoute path='/timelines/public/local' exact component={CommunityTimeline} content={children} />
+          <WrappedRoute path='/timelines/public/local/media' component={CommunityTimeline} content={children} componentParams={{ onlyMedia: true }} />
           <WrappedRoute path='/timelines/direct' component={DirectTimeline} content={children} />
           <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
           <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
@@ -227,7 +231,7 @@ export default class UI extends React.PureComponent {
       this.dragTargets.push(e.target);
     }
 
-    if (e.dataTransfer && e.dataTransfer.types.includes('Files')) {
+    if (e.dataTransfer && Array.from(e.dataTransfer.types).includes('Files')) {
       this.setState({ draggingOver: true });
     }
   }
@@ -294,6 +298,7 @@ export default class UI extends React.PureComponent {
 
     this.props.dispatch(expandHomeTimeline());
     this.props.dispatch(expandNotifications());
+    setTimeout(() => this.props.dispatch(fetchFilters()), 500);
   }
 
   componentDidMount () {

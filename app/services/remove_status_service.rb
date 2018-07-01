@@ -20,6 +20,7 @@ class RemoveStatusService < BaseService
     remove_reblogs
     remove_from_hashtags
     remove_from_public
+    remove_from_media if status.media_attachments.any?
     remove_from_direct if status.direct_visibility?
 
     @status.destroy!
@@ -42,13 +43,13 @@ class RemoveStatusService < BaseService
   end
 
   def remove_from_followers
-    @account.followers.local.find_each do |follower|
+    @account.followers_for_local_distribution.find_each do |follower|
       FeedManager.instance.unpush_from_home(follower, @status)
     end
   end
 
   def remove_from_lists
-    @account.lists.select(:id, :account_id).find_each do |list|
+    @account.lists_for_local_distribution.select(:id, :account_id).find_each do |list|
       FeedManager.instance.unpush_from_list(list, @status)
     end
   end
@@ -129,6 +130,13 @@ class RemoveStatusService < BaseService
 
     Redis.current.publish('timeline:public', @payload)
     Redis.current.publish('timeline:public:local', @payload) if @status.local?
+  end
+
+  def remove_from_media
+    return unless @status.public_visibility?
+
+    Redis.current.publish('timeline:public:media', @payload)
+    Redis.current.publish('timeline:public:local:media', @payload) if @status.local?
   end
 
   def remove_from_direct

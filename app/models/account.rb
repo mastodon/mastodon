@@ -99,6 +99,7 @@ class Account < ApplicationRecord
   has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id
 
   has_many :report_notes, dependent: :destroy
+  has_many :custom_filters, inverse_of: :account, dependent: :destroy
 
   # Moderation notes
   has_many :account_moderation_notes, dependent: :destroy
@@ -136,11 +137,12 @@ class Account < ApplicationRecord
            :moderator?,
            :staff?,
            :locale,
+           :hides_network?,
            to: :user,
            prefix: true,
            allow_nil: true
 
-  delegate :filtered_languages, to: :user, prefix: false, allow_nil: true
+  delegate :chosen_languages, to: :user, prefix: false, allow_nil: true
 
   def local?
     domain.nil?

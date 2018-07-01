@@ -40,6 +40,7 @@ en:
     following: Following
     media: Media
     moved_html: "%{name} has moved to %{new_profile_link}:"
+    network_hidden: This information is not available
     nothing_here: There is nothing here!
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
@@ -282,7 +283,7 @@ en:
         create_and_resolve: Resolve with note
         create_and_unresolve: Reopen with note
         delete: Delete
-        placeholder: Describe what actions have been taken, or any other updates to this report…
+        placeholder: Describe what actions have been taken, or any other related updates...
       reopen: Reopen report
       report: 'Report #%{id}'
       report_contents: Contents
@@ -423,7 +424,7 @@ en:
     following: 'Success! You are now following:'
     post_follow:
       close: Or, you can just close this window.
-      return: Return to the user's profile
+      return: Show the user's profile
       web: Go to web
     title: Follow %{acct}
   datetime:
@@ -473,6 +474,22 @@ en:
     follows: You follow
     mutes: You mute
     storage: Media storage
+  filters:
+    contexts:
+      home: Home timeline
+      notifications: Notifications
+      public: Public timelines
+      thread: Conversations
+    edit:
+      title: Edit filter
+    errors:
+      invalid_context: None or invalid context supplied
+      invalid_irreversible: Irreversible filtering only works with home or notifications context
+    index:
+      delete: Delete
+      title: Filters
+    new:
+      title: Add new filter
   followers:
     domain: Domain
     explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all instances where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those instances.
@@ -513,6 +530,7 @@ en:
       '86400': 1 day
     expires_in_prompt: Never
     generate: Generate
+    invited_by: 'You were invited by:'
     max_uses:
       one: 1 use
       other: "%{count} uses"
@@ -549,7 +567,7 @@ en:
       subject:
         one: "1 new notification since your last visit \U0001F418"
         other: "%{count} new notifications since your last visit \U0001F418"
-      title: In your absence…
+      title: In your absence...
     favourite:
       body: 'Your status was favourited by %{name}:'
       subject: "%{name} favourited your status"
@@ -594,23 +612,10 @@ en:
     other: Other
     publishing: Publishing
     web: Web
-  push_notifications:
-    favourite:
-      title: "%{name} favourited your status"
-    follow:
-      title: "%{name} is now following you"
-    group:
-      title: "%{count} notifications"
-    mention:
-      action_boost: Boost
-      action_expand: Show more
-      action_favourite: Favourite
-      title: "%{name} mentioned you"
-    reblog:
-      title: "%{name} boosted your status"
   remote_follow:
     acct: Enter your username@domain you want to follow from
     missing_resource: Could not find the required redirect URL for your account
+    no_account_html: Don't have an account? You can <a href='%{sign_up_path}' target='_blank'>sign up here</a>
     proceed: Proceed to follow
     prompt: 'You are going to follow:'
   remote_unfollow:
@@ -687,6 +692,7 @@ en:
     disallowed_hashtags:
       one: 'contained a disallowed hashtag: %{tags}'
       other: 'contained the disallowed hashtags: %{tags}'
+    language_detection: Automatically detect language
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
     pin_errors:
@@ -773,9 +779,13 @@ en:
 
       <hr class="spacer" />
 
-      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
+      <h3 id="children">Site usage by children</h3>
 
-      <p>Our site, products and services are all directed to people who are at least 13 years old. If this server is in the USA, and you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
+
+      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+
+      <p>Law requirements can be different if this server is in another jurisdiction.</p>
 
       <hr class="spacer" />
 
@@ -790,6 +800,7 @@ en:
   themes:
     contrast: High contrast
     default: Mastodon
+    mastodon-light: Mastodon (light)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

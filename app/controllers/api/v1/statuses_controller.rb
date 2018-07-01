@@ -10,6 +10,12 @@ class Api::V1::StatusesController < Api::BaseController
 
   respond_to :json
 
+  # This API was originally unlimited, pagination cannot be introduced without
+  # breaking backwards-compatibility. Arbitrarily high number to cover most
+  # conversations as quasi-unlimited, it would be too much work to render more
+  # than this anyway
+  CONTEXT_LIMIT = 4_096
+
   def show
     cached  = Rails.cache.read(@status.cache_key)
     @status = cached unless cached.nil?
@@ -17,8 +23,8 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def context
-    ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(DEFAULT_STATUSES_LIMIT, current_account)
-    descendants_results = @status.descendants(DEFAULT_STATUSES_LIMIT, current_account)
+    ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(CONTEXT_LIMIT, current_account)
+    descendants_results = @status.descendants(CONTEXT_LIMIT, current_account)
     loaded_ancestors    = cache_collection(ancestors_results, Status)
     loaded_descendants  = cache_collection(descendants_results, Status)
 

@@ -183,4 +183,15 @@ module AccountInteractions
   def pinned?(status)
     status_pins.where(status: status).exists?
   end
+
+  def followers_for_local_distribution
+    followers.local
+             .joins(:user)
+             .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
+  end
+
+  def lists_for_local_distribution
+    lists.joins(account: :user)
+         .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
+  end
 end

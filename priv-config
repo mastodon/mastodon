@@ -1,0 +1,4 @@
+listen-address  0.0.0.0:8118
+
+forward .   .
+forward-socks5t .onion  tor:9050    .

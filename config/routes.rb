@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   end
 
   use_doorkeeper do
-    controllers authorizations: 'oauth/authorizations', authorized_applications: 'oauth/authorized_applications'
+    controllers authorizations: 'oauth/authorizations',
+                authorized_applications: 'oauth/authorized_applications',
+                tokens: 'oauth/tokens'
   end
 
   get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
@@ -112,6 +114,7 @@ Rails.application.routes.draw do
   resources :tags,   only: [:show]
   resources :emojis, only: [:show]
   resources :invites, only: [:index, :create, :destroy]
+  resources :filters, except: [:show]
 
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 
@@ -252,6 +255,7 @@ Rails.application.routes.draw do
       resources :mutes,      only: [:index]
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
+      resources :filters,    only: [:index, :create, :show, :update, :destroy]
 
       namespace :apps do
         get :verify_credentials, to: 'credentials#show'
@@ -310,6 +314,10 @@ Rails.application.routes.draw do
       namespace :push do
         resource :subscription, only: [:create, :show, :update, :destroy]
       end
+    end
+
+    namespace :v2 do
+      get '/search', to: 'search#index', as: :search
     end
 
     namespace :web do

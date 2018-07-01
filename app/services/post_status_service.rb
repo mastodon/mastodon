@@ -22,16 +22,15 @@ class PostStatusService < BaseService
     media  = validate_media!(options[:media_ids])
     status = nil
     text   = options.delete(:spoiler_text) if text.blank? && options[:spoiler_text].present?
-    text   = '.' if text.blank? && media.present?
 
     ApplicationRecord.transaction do
       status = account.statuses.create!(text: text,
                                         media_attachments: media || [],
                                         thread: in_reply_to,
-                                        sensitive: (options[:sensitive].nil? ? account.user&.setting_default_sensitive : options[:sensitive]),
+                                        sensitive: (options[:sensitive].nil? ? account.user&.setting_default_sensitive : options[:sensitive]) || options[:spoiler_text].present?,
                                         spoiler_text: options[:spoiler_text] || '',
                                         visibility: options[:visibility] || account.user&.setting_default_privacy,
-                                        language: language_from_option(options[:language]) || LanguageDetector.instance.detect(text, account),
+                                        language: language_from_option(options[:language]) || account.user&.setting_default_language&.presence || LanguageDetector.instance.detect(text, account),
                                         application: options[:application])
     end
 

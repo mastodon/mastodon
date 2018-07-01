@@ -36,10 +36,11 @@ pl:
     what_is_mastodon: Czym jest Mastodon?
   accounts:
     follow: Śledź
-    followers: Śledzących
-    following: Śledzi
+    followers: Śledzący
+    following: Śledzeni
     media: Zawartość multimedialna
     moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
+    network_hidden: Ta informacja nie jest dostępna
     nothing_here: Niczego tu nie ma!
     people_followed_by: Konta śledzone przez %{name}
     people_who_follow: Osoby, które śledzą konto %{name}
@@ -49,6 +50,7 @@ pl:
     reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
       admin: Administrator
+      bot: Bot
       moderator: Moderator
     unfollow: Przestań śledzić
   admin:
@@ -423,7 +425,7 @@ pl:
     following: 'Pomyślnie! Od teraz śledzisz:'
     post_follow:
       close: Ewentualnie, możesz po prostu zamknąć tę stronę.
-      return: Powróć do strony użytkownika
+      return: Pokaż stronę użytkownika
       web: Przejdź do sieci
     title: Śledź %{acct}
   datetime:
@@ -473,6 +475,22 @@ pl:
     follows: Śledzeni
     mutes: Wyciszeni
     storage: Urządzenie przechowujące dane
+  filters:
+    contexts:
+      home: Strona główna
+      notifications: Powiadomienia
+      public: Publiczne osie czasu
+      thread: Konwersacje
+    edit:
+      title: Edytuj filtr
+    errors:
+      invalid_context: Nie podano lub podano nieprawidłową treść
+      invalid_irreversible: Nieodwracalne filtrowanie działa tylko na stronie głównej i w powiadomieniach
+    index:
+      delete: Usuń
+      title: Filtry
+    new:
+      title: Dodaj nowy filtr
   followers:
     domain: Domena
     explanation_html: Jeżeli chcesz mieć pewność, kto może przeczytać Twoje wpisy, musisz kontrolować, kto śledzi Twój profil. <strong>Twoje prywatne wpisy są dostarczane na te instancje, na których jesteś śledzony</strong>. Możesz sprawdzać, kto Cię śledzi i blokować ich, jeśli nie ufasz właścicielom lub oprogramowaniu danej instancji.
@@ -515,6 +533,7 @@ pl:
       '86400': dobie
     expires_in_prompt: Nigdy
     generate: Wygeneruj
+    invited_by: 'Zostałeś zaproszony przez:'
     max_uses:
       few: "%{count} użycia"
       many: "%{count} użyć"
@@ -602,20 +621,6 @@ pl:
     other: Pozostałe
     publishing: Publikowanie
     web: Sieć
-  push_notifications:
-    favourite:
-      title: "%{name} dodał Twój wpis do ulubionych"
-    follow:
-      title: "%{name} zaczął Cię śledzić"
-    group:
-      title: "%{count} powiadomień"
-    mention:
-      action_boost: Podbij
-      action_expand: Pokaż więcej
-      action_favourite: Dodaj do ulubionych
-      title: "%{name} wspomniał o Tobie"
-    reblog:
-      title: "%{name} podbił Twój wpis"
   remote_follow:
     acct: Podaj swój adres (nazwa@domena), z którego chcesz śledzić
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
@@ -683,7 +688,7 @@ pl:
     your_apps: Twoje aplikacje
   statuses:
     attached:
-      description: 'Przytwierdzony: %{attached}'
+      description: 'Załączono: %{attached}'
       image:
         few: "%{count} obrazy"
         many: "%{count} obrazów"
@@ -694,10 +699,12 @@ pl:
         many: "%{count} filmów"
         one: "%{count} film"
         other: "%{count} filmów"
+    boosted_from_html: Podbito przez %{acct_link}
     content_warning: 'Ostrzeżenie o zawartości: %{warning}'
     disallowed_hashtags:
       one: 'zawiera niedozwolony hashtag: %{tags}'
       other: 'zawiera niedozwolone hashtagi: %{tags}'
+    language_detection: Automatycznie wykrywaj język
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:
@@ -784,9 +791,13 @@ pl:
 
       <hr class="spacer" />
 
-      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
+      <h3 id="children">Korzystanie ze strony przez dzieci</h3>
 
-      <p>Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 13 lat. Jeżeli serwer znajduje się w USA, a nie ukończyłeś 13 roku życia, zgodnie z wymogami COPPA (<a href="https://pl.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Prawo o Ochronie Prywatności Dzieci w Internecie</a>), nie używaj tej strony.</p>
+      <p>Jeżeli serwer znajduje się w UE lub w EOG: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 16 lat. Jeżeli nie ukończyłeś 16 roku życia, zgodnie z wymogami COPPA (<a href="https://pl.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Prawo o Ochronie Prywatności Dzieci w Internecie</a>), nie używaj tej strony.</p>
+
+      <p>Jeżeli serwer znajduje się w USA: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 13 lat. Jeżeli nie ukończyłeś 13 roku życia, zgodnie z wymogami RODO (<a href="https://pl.wikipedia.org/wiki/Ogólne_rozporządzenie_o_ochronie_danych">Ogólne rozporządzenie o ochronie danych</a>), nie używaj tej strony.</p>
+
+      <p>Wymogi mogą być inne, jeżeli serwer znajduje się w innym kraju.</p>
 
       <hr class="spacer" />
 
@@ -801,6 +812,7 @@ pl:
   themes:
     contrast: Wysoki kontrast
     default: Mastodon
+    mastodon-light: Mastodon (jasny)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -846,5 +858,6 @@ pl:
   users:
     invalid_email: Adres e-mail jest niepoprawny
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
+    otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowany jako:'
