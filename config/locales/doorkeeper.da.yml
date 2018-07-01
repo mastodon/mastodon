@@ -32,6 +32,8 @@ da:
       help:
         native_redirect_uri: Brug %{native_redirect_uri} for lokale tests
         redirect_uri: Brug en linje per URI
+        scopes: Adskil omfang med mellemrum. Lad være blankt for at bruge standard
+          omfang.
       index:
         application: Applikation
         callback_url: Callback-URL
@@ -80,6 +82,11 @@ da:
           revoked: Adgangs-beviset er blevet ophævet
           unknown: Adgangs-beviset er ugyldigt
         access_denied: Ejeren af ressourcen eller godkendelses serveren afviste anmodningen.
+        invalid_redirect_uri: Ormdirigerings-uri'en der blev angivet er ikke gyldig.
+        unauthorized_client: Klienten er ikke godkendt til at udføre denne anmodning
+          ved at bruge denne metode.
+        unsupported_response_type: Godkendelses serveren understøtter ikke denne type
+          respons.
     flash:
       applications:
         create:
@@ -95,6 +102,9 @@ da:
       admin:
         nav:
           applications: Applikationer
+          oauth2_provider: OAuth Udbyder
+      application:
+        title: OAuth godkendelse påkrævet
     scopes:
       push: modtage push notifikationer for din konto
       read: læse din kontos data
