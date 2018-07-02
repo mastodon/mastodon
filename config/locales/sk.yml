@@ -491,7 +491,7 @@ sk:
       Obsah ktorý bol zdieľaný široko-ďaleko pravdepodobne zanechá nejaké stopy. Servery
       ktoré sú offline a tie ktoré ignorujú tvoje zmeny teda nezaktualizujú svoje
       databázy.
-    warning_title: Dostupnosť distribuovaného obsahu
+    warning_title: O dostupnosti distribuovaného obsahu
   errors:
     '403': Nemáte dostatočné povolenie na zobrazenie tejto stránky.
     '404': Stránka ktorú si hľadal/a sa tu nenachádza.
@@ -583,10 +583,10 @@ sk:
     table:
       expires_at: Vyprší
       uses: Používa
-    title: Pozvať ľudí
+    title: Pozvi ľudí
   landing_strip_html: <strong>%{name}</strong> je užívateľ na serveri %{link_to_root_path}.
-    Ty ich môžeš následovať a môžeš s nimi interaktovať pokiaľ máš účet hocikde v
-    rámci fediversa.
+    Ty ich môžeš následovať a môžeš s nimi interaktovať pokiaľ máš účet kdekoľvek
+    v rámci fediversa.
   landing_strip_signup_html: Pokiaľ ešte nemáš, môžeš <a href="%{sign_up_path}">si
     tu vytvoriť účet</a>.
   lists:
@@ -847,6 +847,8 @@ sk:
       title: Uprav triedenie
     errors:
       invalid_context: Nebola poskytnutá žiadna, alebo ide o neplatnú súvislosť
+      invalid_irreversible: Nezvratné filtrovanie funguje iba so súvislostiami domovskej
+        osi a oboznámení
     index:
       delete: Vymazať
       title: Triedenia
