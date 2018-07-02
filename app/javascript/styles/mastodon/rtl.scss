@@ -206,13 +206,19 @@ body.rtl {
   }
 
   .simple_form .input-with-append .input input {
-    padding-left: 127px;
+    padding-left: 142px;
     padding-right: 0;
   }
 
   .simple_form .input-with-append .append {
     right: auto;
     left: 0;
+
+    &::after {
+      right: auto;
+      left: 0;
+      background-image: linear-gradient(to left, rgba($classic-base-color, 0), $classic-base-color);
+    }
   }
 
   .table th,

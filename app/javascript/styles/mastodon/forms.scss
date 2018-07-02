@@ -352,7 +352,7 @@ code {
     position: relative;
 
     .input input {
-      padding-right: 127px;
+      padding-right: 142px;
     }
 
     .append {
@@ -366,6 +366,20 @@ code {
       font-family: inherit;
       pointer-events: none;
       cursor: default;
+      max-width: 140px;
+      white-space: nowrap;
+      overflow: hidden;
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 1px;
+        width: 5px;
+        background-image: linear-gradient(to right, rgba($classic-base-color, 0), $classic-base-color);
+      }
     }
   }
 }
