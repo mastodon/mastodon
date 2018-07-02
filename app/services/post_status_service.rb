@@ -47,6 +47,8 @@ class PostStatusService < BaseService
       redis.setex("idempotency:status:#{account.id}:#{options[:idempotency]}", 3_600, status.id)
     end
 
+    bump_potential_friendship(account, status)
+
     status
   end
 
@@ -78,5 +80,10 @@ class PostStatusService < BaseService
 
   def redis
     Redis.current
+  end
+
+  def bump_potential_friendship(account, status)
+    return if !status.reply? || account.following?(status.account_id)
+    PotentialFriendshipTracker.record(account.id, status.in_reply_to_account_id, :reply)
   end
 end

@@ -127,6 +127,7 @@ class Account < ApplicationRecord
   scope :matches_username, ->(value) { where(arel_table[:username].matches("#{value}%")) }
   scope :matches_display_name, ->(value) { where(arel_table[:display_name].matches("#{value}%")) }
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
+  scope :searchable, -> { where(suspended: false).where(moved_to_account_id: nil) }
 
   delegate :email,
            :unconfirmed_email,
@@ -307,34 +308,6 @@ class Account < ApplicationRecord
     def inboxes
       urls = reorder(nil).where(protocol: :activitypub).pluck(Arel.sql("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)"))
       DeliveryFailureTracker.filter(urls)
-    end
-
-    def triadic_closures(account, limit: 5, offset: 0)
-      sql = <<-SQL.squish
-        WITH first_degree AS (
-          SELECT target_account_id
-          FROM follows
-          WHERE account_id = :account_id
-        )
-        SELECT accounts.*
-        FROM follows
-        INNER JOIN accounts ON follows.target_account_id = accounts.id
-        WHERE
-          account_id IN (SELECT * FROM first_degree)
-          AND target_account_id NOT IN (SELECT * FROM first_degree)
-          AND target_account_id NOT IN (:excluded_account_ids)
-          AND accounts.suspended = false
-        GROUP BY target_account_id, accounts.id
-        ORDER BY count(account_id) DESC
-        OFFSET :offset
-        LIMIT :limit
-      SQL
-
-      excluded_account_ids = account.excluded_from_timeline_account_ids + [account.id]
-
-      find_by_sql(
-        [sql, { account_id: account.id, excluded_account_ids: excluded_account_ids, limit: limit, offset: offset }]
-      )
     end
 
     def search_for(terms, limit = 10)
