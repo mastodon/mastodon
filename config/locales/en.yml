@@ -474,6 +474,22 @@ en:
     follows: You follow
     mutes: You mute
     storage: Media storage
+  filters:
+    contexts:
+      home: Home timeline
+      notifications: Notifications
+      public: Public timelines
+      thread: Conversations
+    edit:
+      title: Edit filter
+    errors:
+      invalid_context: None or invalid context supplied
+      invalid_irreversible: Irreversible filtering only works with home or notifications context
+    index:
+      delete: Delete
+      title: Filters
+    new:
+      title: Add new filter
   followers:
     domain: Domain
     explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all instances where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those instances.
@@ -599,6 +615,7 @@ en:
   remote_follow:
     acct: Enter your username@domain you want to follow from
     missing_resource: Could not find the required redirect URL for your account
+    no_account_html: Don't have an account? You can <a href='%{sign_up_path}' target='_blank'>sign up here</a>
     proceed: Proceed to follow
     prompt: 'You are going to follow:'
   remote_unfollow:

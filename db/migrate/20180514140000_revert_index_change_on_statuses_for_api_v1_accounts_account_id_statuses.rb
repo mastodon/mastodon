@@ -5,10 +5,11 @@ class RevertIndexChangeOnStatusesForApiV1AccountsAccountIdStatuses < ActiveRecor
 
   def change
     safety_assured do
-      add_index :statuses, [:account_id, :id, :visibility, :updated_at], order: { id: :desc }, algorithm: :concurrently, name: :index_statuses_20180106
+      add_index :statuses, [:account_id, :id, :visibility, :updated_at], order: { id: :desc }, algorithm: :concurrently, name: :index_statuses_20180106 unless index_exists?(:statuses, name: "index_statuses_20180106")
     end
 
-    remove_index :statuses, column: [:account_id, :id, :visibility], where: 'visibility IN (0, 1, 2)', algorithm: :concurrently
-    remove_index :statuses, column: [:account_id, :id], where: 'visibility = 3', algorithm: :concurrently
+    # These index may not exists (see migration 20180514130000)
+    remove_index :statuses, column: [:account_id, :id, :visibility], where: 'visibility IN (0, 1, 2)', algorithm: :concurrently if index_exists?(:statuses, [:account_id, :id, :visibility], where: 'visibility IN (0, 1, 2)')
+    remove_index :statuses, column: [:account_id, :id], where: 'visibility = 3', algorithm: :concurrently if index_exists?(:statuses, ["account_id", "id"], where: "(visibility = 3)")
   end
 end

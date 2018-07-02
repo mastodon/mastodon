@@ -12,10 +12,12 @@ eo:
           other: <span class="name-counter">%{count}</span> signoj restas
         fields: Vi povas havi ĝis 4 tabelajn elementojn en via profilo
         header: Formato PNG, GIF aŭ JPG. Ĝis 2MB. Estos malgrandigita al 700x335px
+        locale: La lingvo de la uzant-interfaco, retmesaĝoj kaj puŝ-sciigoj
         locked: Vi devos aprobi ĉiun peton de sekvado mane
         note:
           one: <span class="note-counter">1</span> signo restas
           other: <span class="note-counter">%{count}</span> signoj restas
+        setting_default_language: La lingvo de viaj mesaĝoj povas esti aŭtomate detektitaj, sed tio ne ĉiam ĝustas
         setting_hide_network: Tiuj, kiujn vi sekvas, kaj tiuj, kiuj sekvas vin ne estos videblaj en via profilo
         setting_noindex: Influas vian publikan profilon kaj mesaĝajn paĝojn
         setting_theme: Influas kiel Mastodon aspektas post ensaluto de ajna aparato.
@@ -23,6 +25,8 @@ eo:
         data: CSV-dosiero el alia nodo de Mastodon
       sessions:
         otp: 'Enmetu la kodon de dufaktora aŭtentigo el via telefono aŭ uzu unu el viaj realiraj kodoj:'
+      user:
+        chosen_languages: Kiam estas elekto, nur mesaĝoj en elektitaj lingvoj aperos en publikaj tempolinioj
     labels:
       account:
         fields:
@@ -32,6 +36,7 @@ eo:
         autofollow: Inviti al sekvi vian konton
         avatar: Profilbildo
         bot: Tio estas robota konto
+        chosen_languages: Filtri lingvojn
         confirm_new_password: Konfirmi novan pasvorton
         confirm_password: Konfirmi pasvorton
         current_password: Nuna pasvorto
@@ -41,7 +46,7 @@ eo:
         expires_in: Eksvalidiĝas post
         fields: Profilaj metadatumoj
         header: Fonbildo
-        locale: Lingvo
+        locale: Interfaca lingvo
         locked: Ŝlosi konton
         max_uses: Maksimuma nombro de uzoj
         new_password: Nova pasvorto
@@ -50,6 +55,7 @@ eo:
         password: Pasvorto
         setting_auto_play_gif: Aŭtomate ekigi GIF-ojn
         setting_boost_modal: Montri fenestron por konfirmi antaŭ ol diskonigi
+        setting_default_language: Publikada lingvo
         setting_default_privacy: Mesaĝa videbleco
         setting_default_sensitive: Ĉiam marki aŭdovidaĵojn tiklaj
         setting_delete_modal: Montri fenestron por konfirmi antaŭ ol forigi mesaĝon
