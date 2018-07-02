@@ -189,6 +189,10 @@ da:
         unsilence_account: '%{name} fjernede dæmpningen fra %{target}s konto'
         unsuspend_account: '%{name} fjernede udelukkelsen fra %{target}s konto'
         update_custom_emoji: '%{name} opdaterede humørikonet %{target}'
+        resolve_report: '%{name} løste anmeldelsen %{target}'
+        unassigned_report: '%{name} fjernede tildelingen af rapporten %{target}'
+        update_status: '%{name} opdaterede status for %{target}'
+      title: Revisionslog
     custom_emojis:
       by_domain: Domæne
       copy: Kopier
@@ -209,6 +213,11 @@ da:
       unlisted: Ikke listet
       update_failed_msg: Kunne ikke opdatere det humørikon
       updated_msg: Humørikon succesfuldt opdateret!
+      copied_msg: Succesfuldt oprettede en lokal kopi af humørikonet
+      copy_failed_msg: Kunne ikke oprette en lokal kopi af dette humørikon
+      destroyed_msg: Emojo succesfuldt destrueret!
+      shortcode: Kortkode
+      shortcode_hint: Mindst 2 tegn, kun alfabetiske tegn og understreger
     domain_blocks:
       domain: Domæne
       new:
@@ -217,58 +226,115 @@ da:
           silence: Dæmp
           suspend: Udeluk
         create: Opret blokering
+        title: Ny domæne blokering
       severities:
         noop: Ingen
         suspend: Udeluk
+        silence: Dæmp
       add_new: Tilføj ny
+      created_msg: Domæne blokade bliver nu behandlet
+      destroyed_msg: Domæne blokade er blevet annulleret
+      reject_media: Afvis multimedie filer
+      severity: Alvorlighed
+      show:
+        affected_accounts:
+          one: En konto i databasen påvirket
+          other: '%{count} konti i databasen påvirket'
+        title: Annuller domæne blokeringen for domænet %{domain}
+      title: Domæne blokeringer
     email_domain_blocks:
       delete: Slet
       domain: Domæne
       new:
         create: Tilføj domæne
+      add_new: Tilføj ny
+      title: Email sortliste
     instances:
       account_count: Kendte konti
       domain_name: Domæne
       reset: Nulstil
       search: Søg
+      title: Kendte instanser
     invites:
       filter:
         all: Alle
         available: Tilgængelig
         expired: Udløbet
+        title: Filtre
       title: Invitationer
     reports:
       account:
         note: notat
+        report: anmeld
       are_you_sure: Er du sikker?
       comment:
         none: Ingen
       notes:
         create: Tilføj notat
         delete: Slet
+        create_and_unresolve: Genåbne med notat
       target: Mål
       updated_at: Opdateret
       view: Se
+      action_taken_by: Handling udført af
+      assign_to_self: Tildel til mig
+      created_at: Anmeldt
+      id: ID
+      mark_as_resolved: Marker som værende løst
+      mark_as_unresolved: Marker som værende uløst
+      reopen: Genåben anmeldelse
+      report: 'Anmeldelse #%{id}'
+      report_contents: Indhold
+      reported_account: Anmeldt konto
+      reported_by: Anmeldt af
+      resolved: Løst
+      silence_account: Dæmp konto
+      status: Status
+      suspend_account: Udeluk konto
+      title: Anmeldelser
+      unresolved: Uløst
     settings:
       registrations:
         deletion:
           desc_html: Tillad alle at slette deres konto
         min_invite_role:
           disabled: Ingen
+          title: Tillad invitationer af
+        open:
+          desc_html: Tillad alle at oprette en konto
+          title: Åben registrering
+      hero:
+        title: Billede af helt
+      show_staff_badge:
+        desc_html: Vis personale emblem på en brugerside
+        title: Vis personale emblem
+      site_description:
+        title: Beskrivelse af instans
+      site_title: Navn på instans
     statuses:
       batch:
         delete: Slet
         nsfw_off: Marker som værende ikke følsomt
         nsfw_on: Marker som værende følsomt
+      back_to_account: Tilbage til kontosiden
+      failed_to_execute: Udførelsen kunne ikke lade sig gøre
+      media:
+        title: Multimedier
+      no_media: Ingen multimedier
+      with_media: Med multimedier
     subscriptions:
       confirmed: Bekræftet
       expires_in: Udløber om
       topic: Emne
+      last_delivery: Sidste levering
+    title: Administration
   application_mailer:
     salutation: '%{name},'
     view: 'Se:'
     view_profile: Se profil
     view_status: Se status
+    notification_preferences: Ændre email indstillinger
+    settings: 'Ændre email indstillinger: %{link}'
   auth:
     change_password: Kodeord
     confirm_email: Bekræft email
@@ -279,20 +345,33 @@ da:
     migrate_account: Flyt til en anden konto
     or: eller
     or_log_in_with: Eller log in med
+    register: Opret dig
+    register_elsewhere: Opret dig på en anden server
+    reset_password: Nulstil kodeord
+    security: Sikkerhed
+    set_new_password: Sæt et nyt kodeord
   authorize_follow:
     already_following: Du følger allerede denne konto
     follow: Følg
     title: Følg %{acct}
+    following: 'Succes! Du følger nu:'
+    post_follow:
+      return: Vis brugerens profil
   datetime:
     distance_in_words:
       about_x_hours: '%{count}t'
       about_x_months: '%{count} måneder'
+      half_a_minute: Lige nu
+      less_than_x_seconds: Lige nu
   statuses:
     visibilities:
       private: Kun-følgere
       private_long: Vis kun til følgere
       public: Offentlig
       public_long: Alle kan se
+    pin_errors:
+      ownership: Dun kan ikke fastgøre en anden persons toot
+    show_more: Vis mere
   themes:
     contrast: Høj kontrast
     default: Mastodon
@@ -304,6 +383,10 @@ da:
     enabled_success: To-faktor godkendelse succesfuldt aktiveret
     generate_recovery_codes: Generer gendannelseskoder
     setup: Sæt op
+    recovery_codes: Reserve koder
+    recovery_codes_regenerated: Reserve koder blev succesfuldt regenereret
+    wrong_code: Den indtastede kode var ugyldig! Er serverens tid og enhedens tid
+      korrekte?
   user_mailer:
     welcome:
       edit_profile_action: Opsæt profil
@@ -321,6 +404,13 @@ da:
         måder ligesom en almindelig app!
       tips: Råd
       title: Velkommen ombord, %{name}!
+      tip_following: Du følger som standard administratoren(e) for den server du er
+        på. For at finde flere folk, tjek både den lokale og fælles tidslinje.
+    backup_ready:
+      explanation: Din anmodning for fuld backup af din Mastodon konto. Den er nu
+        klar til at blive hentet!
+      subject: Dit arkiv er klar til at blive hentet ned
+      title: Udpluk af arkiv
   users:
     invalid_email: E-mail adressen er ugyldig
     invalid_otp_token: Ugyldig to-faktor kode
@@ -329,3 +419,98 @@ da:
     seamless_external_login: Du er logget ind via en ekstern service, så er kodeord
       og e-mail indstillinger ikke tilgængelige.
     signed_in_as: 'Logget ind som:'
+  admin_mailer:
+    new_report:
+      body: '%{reporter} har anmeldt %{target}'
+      body_remote: Nogen fra %{domain} har anmeldt %{target}
+  deletes:
+    bad_password_msg: Godt forsøg, hackere! Forkert kodeord
+    proceed: Slet konto
+  errors:
+    '403': Du har ikke tilladelse til at se denne side.
+    '404': Den side du leder efter findes ikke.
+    '410': Den side du leder efter findes ikke mere.
+  exports:
+    archive_takeout:
+      date: Dato
+      download: Hent dit arkiv
+      size: Størrelse
+    blocks: Du blokerer
+    follows: Du følger
+    mutes: Du dæmper
+  filters:
+    contexts:
+      home: Hjemme tidslinje
+      notifications: Notifikationer
+      public: Offentlig tidslinje
+      thread: Samtaler
+    index:
+      delete: Slet
+  followers:
+    domain: Domæne
+    followers_count: Antal følgere
+    lock_link: Lås din konto
+    unlocked_warning_title: Din konto er ikke låst
+  generic:
+    save_changes: Gem ændringer
+  invites:
+    delete: Deaktiver
+    expired: Udløbet
+    expires_in:
+      '1800': 30 minutter
+      '21600': 6 timer
+      '3600': 1 time
+      '43200': 12 timer
+      '604800': 1 uge
+      '86400': 1 dag
+    expires_in_prompt: Aldrig
+    table:
+      expires_at: Udløber
+    title: Inviter folk
+  migrations:
+    proceed: Gem
+  moderation:
+    title: Moderatering
+  notification_mailer:
+    digest:
+      action: Se alle notifikationer
+      mention: '%{name} nævnte dig i:'
+      title: Mens du var væk...
+    follow:
+      body: '%{name} følger dig nu!'
+      subject: '%{name} følger dig nu'
+      title: Ny følger
+    mention:
+      action: Svar
+      body: 'Du blev nævnt af %{name} i:'
+      subject: Du blev nævnt af %{name}
+      title: Ny omtale
+    reblog:
+      body: 'Din status blev fremhævet af %{name}:'
+  pagination:
+    next: Næste
+    older: Ældre
+    prev: Forrige
+  preferences:
+    languages: Sprog
+    other: Andet
+  remote_unfollow:
+    error: Fejl
+    title: Titel
+  sessions:
+    browsers:
+      generic: Ukendt browser
+    description: '%{browser} på %{platform}'
+    ip: IP
+    platforms:
+      other: ukendt platform
+  settings:
+    authorized_apps: Godkendte apps
+    back: Tilbage til Mastodon
+    development: Udvikling
+    edit_profile: Rediger profil
+    import: Importer
+  stream_entries:
+    click_to_show: Tryk for at vise
+    pinned: Fastgjort toot
+    sensitive_content: Følsomt indhold
