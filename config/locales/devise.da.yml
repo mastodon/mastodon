@@ -2,6 +2,9 @@ da:
   devise:
     confirmations:
       confirmed: Din email adresse er blevet succesfuldt bekræftet.
+      send_instructions: Du vil modtage en mail med instrukser for hvordan du bekræfter
+        din email adresse om få minutter. Tjek venligst din spam mappe hvis du ikke
+        har modtaget denne email.
     failure:
       already_authenticated: Du er allerede logget ind.
       inactive: Din konto er endnu ikke aktiveret.
@@ -44,6 +47,11 @@ da:
         title: Kodeordet er blevet nulstillet
     unlocks:
       unlocked: Din konto er succesfuldt blevet låst op. Log venligst ind for at fortsætte.
+      send_paranoid_instructions: Hvis din konto findes, vil du modtage en email med
+        instrukser for hvordan du låser op for den om få minutter. Tjek venligst din
+        spam mappe hvis du ikke har modtaget denne mail.
+    registrations:
+      signed_up: Velkommen! Du har nu tilmeldt dig.
   errors:
     messages:
       already_confirmed: er allerede blevet bekræftet, prøv venligst at logge ind
