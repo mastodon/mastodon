@@ -2,6 +2,7 @@
 
 class PotentialFriendshipTracker
   EXPIRE_AFTER = 90.days.seconds
+  MAX_ITEMS    = 80
 
   WEIGHTS = {
     reply: 1,
@@ -15,6 +16,7 @@ class PotentialFriendshipTracker
       weight = WEIGHTS[action]
 
       redis.zincrby(key, weight, target_account_id)
+      redis.zremrangebyrank(key, 0, -MAX_ITEMS)
       redis.expire(key, EXPIRE_AFTER)
     end
 

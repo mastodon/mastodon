@@ -11,14 +11,13 @@ RSpec.describe Api::V1::SuggestionsController, type: :controller do
   end
 
   describe 'GET #index' do
-    let(:alice) { Fabricate(:account) }
     let(:bob) { Fabricate(:account) }
     let(:jeff) { Fabricate(:account) }
 
     before do
-      user.account.follow!(alice)
-      alice.follow!(bob)
+      PotentialFriendshipTracker.record(user.account_id, bob.id, :reblog)
       PotentialFriendshipTracker.record(user.account_id, jeff.id, :favourite)
+
       get :index
     end
 

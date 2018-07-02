@@ -310,52 +310,6 @@ class Account < ApplicationRecord
       DeliveryFailureTracker.filter(urls)
     end
 
-    # Fetch accounts that might be part of the given account's social group
-    # by checking 2nd-degree follow connections, while excluding suspended,
-    # moved, locked, blocked, muted, and domain blocked accounts. Ordered
-    # by the number of 1st-degree connections while putting more recently
-    # updated accounts higher to minimize recommendations of inactive people
-    def triadic_closures(account, limit: 5, offset: 0)
-      excluded_account_ids = account.excluded_from_timeline_account_ids + [account.id]
-      excluded_domains     = account.excluded_from_timeline_domains
-
-      sql = <<-SQL.squish
-        WITH first_degree AS (
-          SELECT target_account_id
-          FROM follows
-          WHERE account_id = :account_id
-        ), minus_degree AS (
-          SELECT account_id
-          FROM blocks
-          WHERE target_account_id = :account_id
-          UNION
-          SELECT account_id
-          FROM mutes
-          WHERE target_account_id = :account_id
-        )
-        SELECT accounts.*
-        FROM follows
-        INNER JOIN accounts ON follows.target_account_id = accounts.id
-        WHERE
-          account_id IN (SELECT * FROM first_degree)
-          AND target_account_id NOT IN (SELECT * FROM first_degree)
-          AND target_account_id NOT IN (SELECT * FROM minus_degree)
-          AND target_account_id NOT IN (:excluded_account_ids)
-          AND accounts.suspended = false
-          AND accounts.moved_to_account_id IS NULL
-          AND accounts.locked = false
-          #{excluded_domains.empty? ? '' : 'AND accounts.domain NOT IN (:excluded_domains)'}
-        GROUP BY target_account_id, accounts.id
-        ORDER BY count(account_id)::float / (EXTRACT('epoch' FROM age(accounts.updated_at)) / 86400 + 1) DESC
-        OFFSET :offset
-        LIMIT :limit
-      SQL
-
-      find_by_sql(
-        [sql, { account_id: account.id, excluded_account_ids: excluded_account_ids, excluded_domains: excluded_domains, limit: limit, offset: offset }]
-      )
-    end
-
     def search_for(terms, limit = 10)
       textsearch, query = generate_query_for_search(terms)
 
