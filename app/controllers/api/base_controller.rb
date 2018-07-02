@@ -78,4 +78,9 @@ class Api::BaseController < ApplicationController
   def render_empty
     render json: {}, status: 200
   end
+
+  def authorize_if_got_token!(*scopes)
+    request_token = Doorkeeper::OAuth::Token.from_request(request, *Doorkeeper.configuration.access_token_methods)
+    doorkeeper_authorize!(*scopes) if request_token
+  end
 end
