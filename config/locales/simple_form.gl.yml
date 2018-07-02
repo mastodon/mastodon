@@ -12,10 +12,12 @@ gl:
           other: <span class="name-counter">%{count}</span> caracteres restantes
         fields: Pode ter ate 4 elementos no seu perfil mostrados como unha táboa
         header: PNG, GIF ou JPG. Máximo 2MB. Será reducida a 700x335px
+        locale: O idioma da interface de usuaria, correos e notificacións
         locked: Require que vostede acepte as seguidoras de xeito manual
         note:
           one: <span class="note-counter">1</span> caracter restante
           other: <span class="note-counter">%{count}</span> caracteres restantes
+        setting_default_language: Pódese detectar automáticamente o idioma dos seus toots, mais non sempre é preciso
         setting_hide_network: Non se mostrará no seu perfil quen a segue e quen a está a seguir
         setting_noindex: Afecta ao seu perfil público e páxinas de estado
         setting_theme: Afecta ao aspecto de Mastodon en calquer dispositivo cando está conectada.
@@ -23,6 +25,8 @@ gl:
         data: Ficheiro CSV exportado desde outra instancia Mastodon
       sessions:
         otp: Introduza o código de doble-factor xerado no aplicativo do seu móbil ou utilice un dos seus códigos de recuperación.
+      user:
+        chosen_languages: Si se marca, só os toots nos idiomas seleccionados serán mostrados en liñas temporais públicas
     labels:
       account:
         fields:
@@ -32,6 +36,7 @@ gl:
         autofollow: Convide a seguir a súa conta
         avatar: Avatar
         bot: Esta conta é de un bot
+        chosen_languages: Filtrar idiomas
         confirm_new_password: Confirme o novo contrasinal
         confirm_password: Confirme o contrasinal
         current_password: Contrasinal actual
@@ -41,7 +46,7 @@ gl:
         expires_in: Caducidade despois de
         fields: Metadatos do perfil
         header: Cabeceira
-        locale: Idioma
+        locale: Idioma da interface
         locked: Protexer conta
         max_uses: Número máximo de usos
         new_password: Novo contrasinal
@@ -50,6 +55,7 @@ gl:
         password: Contrasinal
         setting_auto_play_gif: Reprodución automática de GIFs animados
         setting_boost_modal: Pedir confirmación antes de promocionar
+        setting_default_language: Idioma de publicación
         setting_default_privacy: Intimidade da publicación
         setting_default_sensitive: Marcar sempre multimedia como sensible
         setting_delete_modal: Solicitar confirmación antes de eliminar unha mensaxe

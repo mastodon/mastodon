@@ -19,16 +19,44 @@ export const makeGetAccount = () => {
   });
 };
 
+const toServerSideType = columnType => {
+  switch (columnType) {
+  case 'home':
+  case 'notifications':
+  case 'public':
+  case 'thread':
+    return columnType;
+  default:
+    if (columnType.indexOf('list:') > -1) {
+      return 'home';
+    } else {
+      return 'public'; // community, account, hashtag
+    }
+  }
+};
+
+const escapeRegExp = string =>
+  string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+
+const regexFromFilters = filters => {
+  if (filters.size === 0) {
+    return null;
+  }
+
+  return new RegExp(filters.map(filter => escapeRegExp(filter.get('phrase'))).join('|'), 'i');
+};
+
 export const makeGetStatus = () => {
   return createSelector(
     [
-      (state, id) => state.getIn(['statuses', id]),
-      (state, id) => state.getIn(['statuses', state.getIn(['statuses', id, 'reblog'])]),
-      (state, id) => state.getIn(['accounts', state.getIn(['statuses', id, 'account'])]),
-      (state, id) => state.getIn(['accounts', state.getIn(['statuses', state.getIn(['statuses', id, 'reblog']), 'account'])]),
+      (state, { id }) => state.getIn(['statuses', id]),
+      (state, { id }) => state.getIn(['statuses', state.getIn(['statuses', id, 'reblog'])]),
+      (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', id, 'account'])]),
+      (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', state.getIn(['statuses', id, 'reblog']), 'account'])]),
+      (state, { contextType }) => state.get('filters', ImmutableList()).filter(filter => contextType && filter.get('context').includes(toServerSideType(contextType)) && (filter.get('expires_at') === null || Date.parse(filter.get('expires_at')) > (new Date()))),
     ],
 
-    (statusBase, statusReblog, accountBase, accountReblog) => {
+    (statusBase, statusReblog, accountBase, accountReblog, filters) => {
       if (!statusBase) {
         return null;
       }
@@ -39,9 +67,13 @@ export const makeGetStatus = () => {
         statusReblog = null;
       }
 
+      const regex    = regexFromFilters(filters);
+      const filtered = regex && regex.test(statusBase.get('reblog') ? statusReblog.get('search_index') : statusBase.get('search_index'));
+
       return statusBase.withMutations(map => {
         map.set('reblog', statusReblog);
         map.set('account', accountBase);
+        map.set('filtered', filtered);
       });
     }
   );

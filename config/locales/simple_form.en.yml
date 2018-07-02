@@ -6,17 +6,20 @@ en:
         autofollow: People who sign up through the invite will automatically follow you
         avatar: PNG, GIF or JPG. At most 2MB. Will be downscaled to 400x400px
         bot: This account mainly performs automated actions and might not be monitored
+        context: One or multiple contexts where the filter should apply
         digest: Only sent after a long period of inactivity and only if you have received any personal messages in your absence
         display_name:
           one: <span class="name-counter">1</span> character left
           other: <span class="name-counter">%{count}</span> characters left
         fields: You can have up to 4 items displayed as a table on your profile
         header: PNG, GIF or JPG. At most 2MB. Will be downscaled to 700x335px
+        irreversible: Filtered toots will disappear irreversibly, even if filter is later removed
         locale: The language of the user interface, e-mails and push notifications
         locked: Requires you to manually approve followers
         note:
           one: <span class="note-counter">1</span> character left
           other: <span class="note-counter">%{count}</span> characters left
+        phrase: Will be matched regardless of casing in text or content warning of a toot
         setting_default_language: The language of your toots can be detected automatically, but it's not always accurate
         setting_hide_network: Who you follow and who follows you will not be shown on your profile
         setting_noindex: Affects your public profile and status pages
@@ -39,6 +42,7 @@ en:
         chosen_languages: Filter languages
         confirm_new_password: Confirm new password
         confirm_password: Confirm password
+        context: Filter contexts
         current_password: Current password
         data: Data
         display_name: Display name
@@ -46,6 +50,7 @@ en:
         expires_in: Expire after
         fields: Profile metadata
         header: Header
+        irreversible: Drop instead of hide
         locale: Interface language
         locked: Lock account
         max_uses: Max number of uses
@@ -53,6 +58,7 @@ en:
         note: Bio
         otp_attempt: Two-factor code
         password: Password
+        phrase: Keyword or phrase
         setting_auto_play_gif: Auto-play animated GIFs
         setting_boost_modal: Show confirmation dialog before boosting
         setting_default_language: Posting language
