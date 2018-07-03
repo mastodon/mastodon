@@ -276,7 +276,7 @@ export default class Status extends ImmutablePureComponent {
 
   handleHotkeyMention = e => {
     e.preventDefault();
-    this.handleMentionClick(this.props.status);
+    this.handleMentionClick(this.props.status.get('account'));
   }
 
   handleHotkeyOpenProfile = () => {
