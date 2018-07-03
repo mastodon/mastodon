@@ -1,3 +1,7 @@
+- content_for :header_tags do
+  - if @account.user&.setting_noindex
+    %meta{ name: 'robots', content: 'noindex' }/
+
 .form-container
   .follow-prompt
     %h2= t('remote_follow.prompt')
