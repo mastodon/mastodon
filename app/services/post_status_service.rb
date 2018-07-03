@@ -83,7 +83,7 @@ class PostStatusService < BaseService
   end
 
   def bump_potential_friendship(account, status)
-    return if !status.reply? || account.following?(status.account_id)
+    return if !status.reply? || account.following?(status.in_reply_to_account_id)
     PotentialFriendshipTracker.record(account.id, status.in_reply_to_account_id, :reply)
   end
 end
