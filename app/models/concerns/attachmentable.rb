@@ -28,7 +28,7 @@ module Attachmentable
     self.class.attachment_definitions.each_key do |attachment_name|
       attachment = send(attachment_name)
 
-      next if attachment.blank? || !attachment.content_type.match?(/image.*/) || attachment.queued_for_write[:original].blank?
+      next if attachment.blank? || !/image.*/.match?(attachment.content_type) || attachment.queued_for_write[:original].blank?
 
       width, height = FastImage.size(attachment.queued_for_write[:original].path)
 
