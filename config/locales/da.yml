@@ -241,7 +241,9 @@ da:
           one: En konto i databasen påvirket
           other: '%{count} konti i databasen påvirket'
         title: Annuller domæne blokeringen for domænet %{domain}
+        undo: Fortryd
       title: Domæne blokeringer
+      undo: Fortryd
     email_domain_blocks:
       delete: Slet
       domain: Domæne
@@ -293,10 +295,12 @@ da:
       suspend_account: Udeluk konto
       title: Anmeldelser
       unresolved: Uløst
+      assigned: Tildelt moderator
     settings:
       registrations:
         deletion:
           desc_html: Tillad alle at slette deres konto
+          title: Åben konto sletning
         min_invite_role:
           disabled: Ingen
           title: Tillad invitationer af
@@ -311,6 +315,9 @@ da:
       site_description:
         title: Beskrivelse af instans
       site_title: Navn på instans
+      timeline_preview:
+        desc_html: Vis offentlig tidslinje på landingssiden
+      title: Indstillinger for side
     statuses:
       batch:
         delete: Slet
@@ -322,6 +329,7 @@ da:
         title: Multimedier
       no_media: Ingen multimedier
       with_media: Med multimedier
+      title: Konto statusser
     subscriptions:
       confirmed: Bekræftet
       expires_in: Udløber om
@@ -350,6 +358,7 @@ da:
     reset_password: Nulstil kodeord
     security: Sikkerhed
     set_new_password: Sæt et nyt kodeord
+    didnt_get_confirmation: Har du endnu ikke modtaget instrukser for bekræftelse?
   authorize_follow:
     already_following: Du følger allerede denne konto
     follow: Følg
@@ -357,21 +366,33 @@ da:
     following: 'Succes! Du følger nu:'
     post_follow:
       return: Vis brugerens profil
+      close: Du kan også bare lukke dette vindue.
+      web: Gå til web
   datetime:
     distance_in_words:
       about_x_hours: '%{count}t'
       about_x_months: '%{count} måneder'
       half_a_minute: Lige nu
       less_than_x_seconds: Lige nu
+      x_seconds: '%{count}s'
   statuses:
     visibilities:
       private: Kun-følgere
       private_long: Vis kun til følgere
       public: Offentlig
       public_long: Alle kan se
+      unlisted: Ikke listet
     pin_errors:
       ownership: Dun kan ikke fastgøre en anden persons toot
     show_more: Vis mere
+    attached:
+      description: 'Vedhæftede: %{attached}'
+      image:
+        one: '%{count} billede'
+        other: '%{count} billeder'
+      video:
+        one: '%{count} video'
+        other: '%{count} videoer'
   themes:
     contrast: Høj kontrast
     default: Mastodon
@@ -426,10 +447,16 @@ da:
   deletes:
     bad_password_msg: Godt forsøg, hackere! Forkert kodeord
     proceed: Slet konto
+    success_msg: Din konto er nu blevet slettet
   errors:
     '403': Du har ikke tilladelse til at se denne side.
     '404': Den side du leder efter findes ikke.
     '410': Den side du leder efter findes ikke mere.
+    '422':
+      title: Sikkerheds godkendelse mislykkedes
+    '500':
+      content: Beklager men der gik noget galt i vores ende.
+      title: Siden er ikke korrekt
   exports:
     archive_takeout:
       date: Dato
@@ -446,13 +473,21 @@ da:
       thread: Samtaler
     index:
       delete: Slet
+      title: Filtrer
+    edit:
+      title: Rediger filter
+    new:
+      title: Tilføj nyt filter
   followers:
     domain: Domæne
     followers_count: Antal følgere
     lock_link: Lås din konto
     unlocked_warning_title: Din konto er ikke låst
+    purge: Fjern fra følgere
   generic:
     save_changes: Gem ændringer
+    changes_saved_msg: Ændringerne blev gemt!
+    powered_by: drevet af %{link}
   invites:
     delete: Deaktiver
     expired: Udløbet
@@ -467,6 +502,9 @@ da:
     table:
       expires_at: Udløber
     title: Inviter folk
+    generate: Generer
+    invited_by: 'Du er blevet inviteret af:'
+    max_uses_prompt: Ubegrænset
   migrations:
     proceed: Gem
   moderation:
@@ -487,16 +525,20 @@ da:
       title: Ny omtale
     reblog:
       body: 'Din status blev fremhævet af %{name}:'
+      subject: '%{name} fremhævede din status'
+      title: Ny fremhævelse
   pagination:
     next: Næste
     older: Ældre
     prev: Forrige
+    newer: Nyere
   preferences:
     languages: Sprog
     other: Andet
   remote_unfollow:
     error: Fejl
     title: Titel
+    unfollowed: Følger ikke længere
   sessions:
     browsers:
       generic: Ukendt browser
@@ -510,7 +552,24 @@ da:
     development: Udvikling
     edit_profile: Rediger profil
     import: Importer
+    delete: Sletning af konto
+    followers: Godkendte følgere
+    notifications: Notifikationer
+    preferences: Indstillinger
+    settings: Indstillinger
+    your_apps: Dine applikationer
   stream_entries:
     click_to_show: Tryk for at vise
     pinned: Fastgjort toot
     sensitive_content: Følsomt indhold
+  applications:
+    invalid_url: Det angivne URL er ugyldigt
+    warning: Vær meget forsigtig med disse data. Del dem aldrig med nogen!
+  imports:
+    types:
+      blocking: Blokeringsliste
+      following: Følgningsliste
+    upload: Læg op
+  media_attachments:
+    validations:
+      too_many: Kan ikke vedhæfte mere en 4 filer
