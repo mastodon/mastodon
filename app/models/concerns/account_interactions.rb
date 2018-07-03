@@ -89,10 +89,13 @@ module AccountInteractions
                               .find_or_create_by!(target_account: other_account)
 
     rel.update!(show_reblogs: reblogs)
+    remove_potential_friendship(other_account)
+
     rel
   end
 
   def block!(other_account, uri: nil)
+    remove_potential_friendship(other_account)
     block_relationships.create_with(uri: uri)
                        .find_or_create_by!(target_account: other_account)
   end
@@ -100,10 +103,13 @@ module AccountInteractions
   def mute!(other_account, notifications: nil)
     notifications = true if notifications.nil?
     mute = mute_relationships.create_with(hide_notifications: notifications).find_or_create_by!(target_account: other_account)
+    remove_potential_friendship(other_account)
+
     # When toggling a mute between hiding and allowing notifications, the mute will already exist, so the find_or_create_by! call will return the existing Mute without updating the hide_notifications attribute. Therefore, we check that hide_notifications? is what we want and set it if it isn't.
     if mute.hide_notifications? != notifications
       mute.update!(hide_notifications: notifications)
     end
+
     mute
   end
 
@@ -193,5 +199,11 @@ module AccountInteractions
   def lists_for_local_distribution
     lists.joins(account: :user)
          .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
+  end
+
+  private
+
+  def remove_potential_friendship(other_account)
+    PotentialFriendshipTracker.remove(id, other_account.id)
   end
 end
