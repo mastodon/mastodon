@@ -17,7 +17,7 @@ ja:
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
         setting_theme: ログインしている全てのデバイスで適用されるデザインです。
         context: フィルターを適用する対象
-        irreversible: フィルターが後で削除されても、取り除かれたトゥートは元に戻せなくなります
+        irreversible: フィルターが後で削除されても、除外されたトゥートは元に戻せなくなります
         phrase: トゥートの大文字小文字や閲覧注意に関係なく一致
       imports:
         data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
@@ -31,7 +31,7 @@ ja:
           name: ラベル
           value: 内容
       defaults:
-        autofollow: あなたのアカウントに招待する
+        autofollow: 招待から参加後、あなたをフォロー
         avatar: アイコン
         bot: これは BOT アカウントです
         chosen_languages: 表示する言語
@@ -68,8 +68,8 @@ ja:
         type: インポートする項目
         username: ユーザー名
         username_or_email: ユーザー名またはメールアドレス
-        context: 取り除く対象
-        irreversible: 隠すのではなく取り除く
+        context: フィルター対象
+        irreversible: 隠すのではなく除外する
         phrase: 単語または語句
       interactions:
         must_be_follower: フォロワー以外からの通知をブロック
