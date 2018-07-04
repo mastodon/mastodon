@@ -1,9 +1,9 @@
-import { freeStorage, storageFreeable } from '../storage/modifier';
+// import { freeStorage, storageFreeable } from '../storage/modifier';
 import './web_push_notifications';
 
-function openSystemCache() {
-  return caches.open('mastodon-system');
-}
+// function openSystemCache() {
+//   return caches.open('mastodon-system');
+// }
 
 function openWebCache() {
   return caches.open('mastodon-web');
@@ -13,8 +13,8 @@ function fetchRoot() {
   return fetch('/', { credentials: 'include', redirect: 'manual' });
 }
 
-const firefox = navigator.userAgent.match(/Firefox\/(\d+)/);
-const invalidOnlyIfCached = firefox && firefox[1] < 60;
+// const firefox = navigator.userAgent.match(/Firefox\/(\d+)/);
+// const invalidOnlyIfCached = firefox && firefox[1] < 60;
 
 // Cause a new version of a registered Service Worker to replace an existing one
 // that is already installed, and replace the currently active worker on open pages.
@@ -52,7 +52,7 @@ self.addEventListener('fetch', function(event) {
 
       return response;
     }));
-  } else if (storageFreeable && (ATTACHMENT_HOST ? url.host === ATTACHMENT_HOST : url.pathname.startsWith('/system/'))) {
+  } /* else if (storageFreeable && (ATTACHMENT_HOST ? url.host === ATTACHMENT_HOST : url.pathname.startsWith('/system/'))) {
     event.respondWith(openSystemCache().then(cache => {
       return cache.match(event.request.url).then(cached => {
         if (cached === undefined) {
@@ -73,5 +73,5 @@ self.addEventListener('fetch', function(event) {
         return cached;
       });
     }));
-  }
+  } */
 });
