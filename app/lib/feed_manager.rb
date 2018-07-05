@@ -155,12 +155,6 @@ class FeedManager
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
     return true  if keyword_filter_from_home?(status, receiver_id)
 
-    check_for_mutes = [status.account_id]
-    check_for_mutes.concat(status.mentions.pluck(:account_id))
-    check_for_mutes.concat([status.reblog.account_id]) if status.reblog?
-
-    return true if Mute.where(account_id: receiver_id, target_account_id: check_for_mutes).any?
-
     check_for_blocks = status.mentions.pluck(:account_id)
     check_for_blocks.concat([status.account_id])
     check_for_blocks.concat([status.reblog.account_id]) if status.reblog?
