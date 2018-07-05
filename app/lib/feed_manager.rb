@@ -157,7 +157,11 @@ class FeedManager
 
     check_for_blocks = status.mentions.pluck(:account_id)
     check_for_blocks.concat([status.account_id])
-    check_for_blocks.concat([status.reblog.account_id]) if status.reblog?
+
+    if status.reblog?
+      check_for_blocks.concat([status.reblog.account_id])
+      check_for_blocks.concat(status.reblog.mentions.pluck(:account_id))
+    end
 
     return true if blocks_or_mutes?(receiver_id, check_for_blocks, :home)
 
