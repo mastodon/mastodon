@@ -12,7 +12,7 @@
       = render file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')
       = t('accounts.follow')
 
-  .status__content.p-name.emojify<
+  .status__content.emojify<
     - if status.spoiler_text?
       %p{ style: 'margin-bottom: 0' }<
         %span.p-summary> #{Formatter.instance.format_spoiler(status)}&nbsp;
