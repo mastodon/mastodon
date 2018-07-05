@@ -4,13 +4,14 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
   render_views
 
   let(:user)  { Fabricate(:user) }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read write') }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
   describe 'GET #index' do
+    let(:scopes) { 'read:filters' }
     let!(:filter) { Fabricate(:custom_filter, account: user.account) }
 
     it 'returns http success' do
@@ -20,6 +21,8 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
   end
 
   describe 'POST #create' do
+    let(:scopes) { 'write:filters' }
+
     before do
       post :create, params: { phrase: 'magic', context: %w(home), irreversible: true }
     end
@@ -39,6 +42,7 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
   end
 
   describe 'GET #show' do
+    let(:scopes) { 'read:filters' }
     let(:filter) { Fabricate(:custom_filter, account: user.account) }
 
     it 'returns http success' do
@@ -48,6 +52,7 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
   end
 
   describe 'PUT #update' do
+    let(:scopes) { 'write:filters' }
     let(:filter) { Fabricate(:custom_filter, account: user.account) }
 
     before do
@@ -64,6 +69,7 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    let(:scopes) { 'write:filters' }
     let(:filter) { Fabricate(:custom_filter, account: user.account) }
 
     before do

@@ -1,19 +1,20 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe Api::V1::Accounts::FollowerAccountsController do
+RSpec.describe Api::V2::SearchController, type: :controller do
   render_views
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:accounts') }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:search') }
 
   before do
-    Fabricate(:follow, target_account: user.account)
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
   describe 'GET #index' do
     it 'returns http success' do
-      get :index, params: { account_id: user.account.id, limit: 1 }
+      get :index, params: { q: 'test' }
 
       expect(response).to have_http_status(200)
     end

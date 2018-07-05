@@ -80,7 +80,6 @@ class Api::BaseController < ApplicationController
   end
 
   def authorize_if_got_token!(*scopes)
-    request_token = Doorkeeper::OAuth::Token.from_request(request, *Doorkeeper.configuration.access_token_methods)
-    doorkeeper_authorize!(*scopes) if request_token
+    doorkeeper_authorize!(*scopes) if doorkeeper_token
   end
 end
