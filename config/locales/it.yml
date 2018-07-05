@@ -554,8 +554,10 @@ it:
       generic: Browser sconosciuto
     current_session: Sessione corrente
     description: "%{browser} su %{platform}"
+    explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al tuo account Mastodon.
     platforms:
       other: piattaforma sconosciuta
+    title: Sessioni
   settings:
     authorized_apps: Applicazioni autorizzate
     back: Torna a Mastodon
@@ -573,9 +575,18 @@ it:
     your_apps: Le tue applicazioni
   statuses:
     attached:
+      description: 'Allegato: %{attached}'
+      image:
+        one: "%{count} immagine"
+        other: "%{count} immagini"
       video:
         one: "%{count} video"
         other: "%{count} video"
+    boosted_from_html: Condiviso da %{acct_link}
+    disallowed_hashtags:
+      one: 'contiene un hashtag non permesso: %{tags}'
+      other: 'contiene gli hashtags non permessi: %{tags}'
+    language_detection: Individua lingua automaticamente
     open_in_web: Apri sul Web
     over_character_limit: Limite caratteri superato di %{max}
     pin_errors:
