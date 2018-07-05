@@ -6,17 +6,20 @@ fr:
         autofollow: Les personnes qui s'inscrivent grâce à l'invitation vous suivront automatiquement
         avatar: Au format PNG, GIF ou JPG. 2 Mo maximum. Sera réduit à 400x400px
         bot: Ce compte exécute principalement des actions automatisées et pourrait ne pas être surveillé
+        context: Un ou plusieurs contextes où le filtre devrait s'appliquer
         digest: Uniquement envoyé après une longue période d’inactivité et uniquement si vous avez reçu des messages personnels pendant votre absence
         display_name:
           one: <span class="name-counter">1</span> caractère restant
           other: <span class="name-counter">%{count}</span> caractères restants
         fields: Vous pouvez avoir jusqu'à 4 éléments affichés en tant que tableau sur votre profil
         header: Au format PNG, GIF ou JPG. 2 Mo maximum. Sera réduit à 700x335px
+        irreversible: Les pouets filtrés disparaîtront irrémédiablement, même si le filtre est supprimé plus tard
         locale: La langue de l'interface-utilisateur, des courriels, et des notifications
         locked: Vous devrez approuver chaque abonné⋅e et vos statuts ne s’afficheront qu’à vos abonné⋅es
         note:
           one: <span class="note-counter">1</span> caractère restant
           other: <span class="note-counter">%{count}</span> caractères restants
+        phrase: Sera trouvé sans que la case ou l'avertissement de contenu du pouet soit pris en compte
         setting_default_language: La langue de vos pouets peut être détectée automatiquement, mais ça n'est pas toujours pertinent
         setting_hide_network: Ceux que vous suivez et ceux qui vous suivent ne seront pas affichés sur votre profil
         setting_noindex: Affecte votre profil public ainsi que vos statuts
@@ -39,6 +42,7 @@ fr:
         chosen_languages: Filtrer les langues
         confirm_new_password: Confirmation du nouveau mot de passe
         confirm_password: Confirmation du mot de passe
+        context: Contextes du filtre
         current_password: Mot de passe actuel
         data: Données
         display_name: Nom public
@@ -46,6 +50,7 @@ fr:
         expires_in: Expire après
         fields: Métadonnées du profil
         header: Image d’en-tête
+        irreversible: Supprimer plutôt que de cacher
         locale: Langue de l'interface
         locked: Verrouiller le compte
         max_uses: Nombre maximum d'utilisations
@@ -53,6 +58,7 @@ fr:
         note: Présentation
         otp_attempt: Code d’identification à deux facteurs
         password: Mot de passe
+        phrase: Mot de passe ou phrase
         setting_auto_play_gif: Lire automatiquement les GIFs animés
         setting_boost_modal: Afficher une fenêtre de confirmation avant de partager
         setting_default_language: Langue de publication

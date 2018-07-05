@@ -3,7 +3,8 @@
 class Api::V1::DomainBlocksController < Api::BaseController
   BLOCK_LIMIT = 100
 
-  before_action -> { doorkeeper_authorize! :follow }
+  before_action -> { doorkeeper_authorize! :follow, :'read:blocks' }, only: :show
+  before_action -> { doorkeeper_authorize! :follow, :'write:blocks' }, except: :show
   before_action :require_user!
   after_action :insert_pagination_headers, only: :show
 

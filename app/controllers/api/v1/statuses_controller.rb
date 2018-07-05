@@ -3,8 +3,8 @@
 class Api::V1::StatusesController < Api::BaseController
   include Authorization
 
-  before_action :authorize_if_got_token, except:            [:create, :destroy]
-  before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy]
+  before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :destroy]
+  before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :destroy]
   before_action :require_user!, except:  [:show, :context, :card]
   before_action :set_status, only:       [:show, :context, :card]
 
@@ -83,10 +83,5 @@ class Api::V1::StatusesController < Api::BaseController
 
   def pagination_params(core_params)
     params.slice(:limit).permit(:limit).merge(core_params)
-  end
-
-  def authorize_if_got_token
-    request_token = Doorkeeper::OAuth::Token.from_request(request, *Doorkeeper.configuration.access_token_methods)
-    doorkeeper_authorize! :read if request_token
   end
 end

@@ -1,0 +1,13 @@
+---
+el:
+  activerecord:
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: μόνο γράμματα, αριθμοί και κάτω παύλες
+        status:
+          attributes:
+            reblog:
+              taken: της κατάστασης ήδη υπάρχει
