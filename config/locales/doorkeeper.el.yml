@@ -1,0 +1,120 @@
+---
+el:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Όνομα εφαρμογής
+        redirect_uri: URI Ανακατεύθυνσης (Ενιαίο Αναγνωριστικό Πόρων)
+        scopes: Εύρος εφαρμογής
+        website: Ιστότοπος εφαρμογής
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: δεν μπορεί να περιέχει τμήμα διεύθυνσης.
+              invalid_uri: πρέπει να είναι έγκυρο URI (Ενιαίο Αναγνωριστικό Πόρων).
+              relative_uri: πρέπει να είναι απόλυτο URI (Ενιαίο Αναγνωριστικό Πόρων).
+              secured_uri: πρέπει να είναι HTTPS/SSL URI (Ενιαίο Αναγνωριστικό Πόρων).
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Ενέκρινε
+        cancel: Άκυρο
+        destroy: Καταστροφή
+        edit: Αλλαγή
+        submit: Υποβολή
+      confirmations:
+        destroy: Σίγουρα;
+      edit:
+        title: Αλλαγή εφαρμογής
+      form:
+        error: Ώπα! Έλεγξε τη φόρμα σου για πιθανά λάθη
+      help:
+        native_redirect_uri: Χρησιμοποίησε το %{native_redirect_uri} για τοπικές δοκιμές
+        redirect_uri: Χρησιμοποίησε μια γραμμή ανά URI
+        scopes: Διαχώρησε το κάθε εύρος εφαρμογής με κενά. Άστο κενό για χρήση των προεπιλεγμένων ευρών εφαρμογής.
+      index:
+        application: Εφαρμογή
+        callback_url: URL επιστροφής (Callback)
+        delete: Διαγραφή
+        name: Όνομα
+        new: Νέα εφαρμογή
+        scopes: Εύρος εφαρμογής
+        show: Εμφάνισε
+        title: Οι εφαρμογές σου
+      new:
+        title: Νέα εφαρμογή
+      show:
+        actions: Ενέργειες
+        application_id: Κλειδί πελάτη
+        callback_urls: URL επιστροφής (Callback)
+        scopes: Εύρος εφαρμογής
+        secret: Μυστικό πελάτη
+        title: 'Εφαρμογή: %{name}'
+    authorizations:
+      buttons:
+        authorize: Ενέκρινε
+        deny: Απόρριψε
+      error:
+        title: Εμφανίστηκε σφάλμα
+      new:
+        able_to: Θα μπορεί να
+        prompt: Η εφαρμογή %{client_name} ζητάει πρόσβαση στο λογαριασμό σου
+        title: Απαιτείται έγκριση
+      show:
+        title: Αντέγραψε αυτό τον κωδικό έγκρισης στην εφαρμογή.
+    authorized_applications:
+      buttons:
+        revoke: Ανακάλεσε
+      confirmations:
+        revoke: Σίγουρα;
+      index:
+        application: Εφαρμογή
+        created_at: Εγκεκριμένη
+        date_format: "%H:%M:%S, %d/%m/%Y"
+        scopes: Εύρος εφαρμογής
+        title: Οι εφαρμογές που έχεις εγκρίνει
+    errors:
+      messages:
+        access_denied: Ο ιδιοκτήτης του πόρου ή του παρόχου έγκρισης απέρριψε το αίτημα.
+        credential_flow_not_configured: Η ροή Resource Owner Password Credentials απέτυχε επειδή το Doorkeeper.configure.resource_owner_from_credentials δεν έχει ρυθμιστεί.
+        invalid_client: Η ταυτοποίηση του πελάτη απέτυχε είτε λόγω άγνωστου πελάτη, είτε λόγω έλλειψης ταυτοποιημένου πελάτη ή λόγω μη υποστηριζόμενης μεθόδου ταυτοποίησης.
+        invalid_grant: Η άδεια πιστοποίησης που δόθηκε είναι άκυρη, ληγμένη, έχει ανακληθεί, δεν συμφωνεί με το URI ανακατεύθυνσης που δόθηκε στο αίτημα πιστοποίησης ή εκδόθηκε προς άλλο πελάτη.
+        invalid_redirect_uri: Το URI ανακατεύθυνσης που δόθηκε δεν είναι έγκυρο.
+        invalid_request: Το αίτημα δεν έχει κάποια απαιτούμενη παράμετρο, περιέχει κάποια μη υποστηριζόμενη τιμή παραμέτρου ή είναι μη σωστά δομημένη.
+        invalid_resource_owner: Τα διαπιστευτήρια που έδωσε ο ιδιοκτήτης του πόρου δεν είναι έγκυρα, ή δεν βρέθηκε ο ιδιοκτήτης του πόρου
+        invalid_scope: Το αιτούμενο εύρος εφαρμογής είναι άκυρο, άγνωστο ή λάθος διατυπωμένο.
+        invalid_token:
+          expired: Το διακριτικό πρόσβασης έληξε
+          revoked: Το διακριτικό πρόσβασης ανακλήθηκε
+          unknown: Το διακριτικό πρόσβασης δεν είναι έγκυρο
+        resource_owner_authenticator_not_configured: Η αναζήτηση του ιδιοκτήτη του πόρου απέτυχε επειδή το Doorkeeper.configure.resource_owner_authenticator δεν έχει ρυθμιστεί.
+        server_error: Ο εξυπηρετητής έγκρισης (authorization server) αντιμετώπισε μια απροσδόκητη συνθήκη που τον απέτρεψε να ικανοποιήσει το αίτημα.
+        temporarily_unavailable: Ο εξυπηρετητής έγκρισης (authorization server) προς το παρόν δεν είναι διαθέσιμος να αναλάβει το αίτημα λόγω προσωρινής υπερφόρτωσης ή συντήρησής του.
+        unauthorized_client: Ο πελάτης δεν έχει άδεια να εκτελέσει αυτό το αίτημα χρησιμοποιώντας αυτή τη μέθοδο.
+        unsupported_grant_type: Το είδος άδειας έγκρισης δεν υποστηρίζεται από τον εξυπηρετητή έγκρισης (authorization server).
+        unsupported_response_type: Ο εξυπηρετητής έγκρισης (authorization server) δεν υποστηρίζει αυτό το είδος απάντησης.
+    flash:
+      applications:
+        create:
+          notice: Η εφαρμογή δημιουργήθηκε.
+        destroy:
+          notice: Η εφαρμογή διαγράφηκε.
+        update:
+          notice: Η εφαρμογή ενημερώθηκε.
+      authorized_applications:
+        destroy:
+          notice: Η εφαρμογή ανακλήθηκε.
+    layouts:
+      admin:
+        nav:
+          applications: Εφαρμογές
+          oauth2_provider: Πάροχος OAuth2
+      application:
+        title: Απαιτείται έγκριση OAuth
+    scopes:
+      follow: παρακολούθηση, αποκλεισμός, άρση αποκλεισμού και άρση παρακολούθησης λογαριασμών
+      push: λήψη ειδοποιήσεων ώθησης για τον λογαριασμό σου
+      read: ανάγνωση στοιχείων του λογαριασμού σου
+      write: δημοσίευση εξ' ονόματός σου

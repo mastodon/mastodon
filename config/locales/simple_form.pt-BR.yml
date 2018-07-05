@@ -3,35 +3,46 @@ pt-BR:
   simple_form:
     hints:
       defaults:
+        autofollow: Pessoas que se cadastrarem através de seu convite te seguirão automaticamente
         avatar: PNG, GIF or JPG. Arquivos de até 2MB. Eles serão diminuídos para 400x400px
         bot: Essa conta executa principalmente ações automatizadas e pode não ser monitorada
+        context: Um ou mais contextos onde o filtro deve ser aplicado
         digest: Enviado após um longo período de inatividade com um resumo das menções que você recebeu em sua ausência
         display_name:
           one: <span class="name-counter">1</span> caracter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
         fields: Você pode ter até 4 itens exibidos em forma de tabela no seu perfil
         header: PNG, GIF or JPG. Arquivos de até 2MB. Eles serão diminuídos para 700x335px
+        irreversible: Os toots filtrados vão desaparecer irreversivelmente, mesmo se o filtro for removido depois
+        locale: O idioma das telas de usuário, e-mails e notificações push
         locked: Requer aprovação manual de seguidores
         note:
           one: <span class="note-counter">1</span> caracter restante
           other: <span class="note-counter">%{count}</span> caracteres restantes
-        setting_hide_network: Quem você segue e quem segue você não aparecerá no seu perfil
+        phrase: Vai coincidir, independente de maiúsculas ou minúsculas, no texto ou no aviso de conteúdo de um toot
+        setting_default_language: O idioma de seus toots pode ser detectado automaticamente, mas isso nem sempre é preciso
+        setting_hide_network: Quem você segue e quem segue você não serão exibidos no seu perfil
         setting_noindex: Afeta seu perfil público e as páginas de suas postagens
         setting_theme: Afeta a aparência do Mastodon quando em sua conta em qualquer aparelho.
       imports:
         data: Arquivo CSV exportado de outra instância do Mastodon
       sessions:
         otp: 'Insira o código de autenticação gerado pelo app no seu celular ou use um dos códigos de recuperação:'
+      user:
+        chosen_languages: Ao marcar, apenas toots dos idiomas selecionados serão exibidos nas timelines públicas
     labels:
       account:
         fields:
           name: Rótulo
           value: Conteúdo
       defaults:
+        autofollow: Convite para seguir a sua conta
         avatar: Avatar
-        bot: Essa é a conta de um robô
+        bot: Esta é uma conta-robô
+        chosen_languages: Filtros de idioma
         confirm_new_password: Confirmar nova senha
         confirm_password: Confirmar senha
+        context: Contextos de filtro
         current_password: Senha atual
         data: Dados
         display_name: Nome de exibição
@@ -39,20 +50,23 @@ pt-BR:
         expires_in: Expira em
         fields: Metadados do perfil
         header: Cabeçalho
-        locale: Idioma
+        irreversible: Ignorar ao invés de esconder
+        locale: Idioma das telas
         locked: Trancar conta
         max_uses: Número máximo de usos
         new_password: Nova senha
         note: Bio
         otp_attempt: Código de autenticação em dois passos
         password: Senha
+        phrase: Palavra-chave ou frase
         setting_auto_play_gif: Reproduzir GIFs automaticamente
         setting_boost_modal: Mostrar diálogo de confirmação antes de compartilhar postagem
+        setting_default_language: Idioma das postagens
         setting_default_privacy: Privacidade das postagens
         setting_default_sensitive: Sempre marcar mídia como sensível
         setting_delete_modal: Mostrar diálogo de confirmação antes de deletar uma postagem
-        setting_display_sensitive_media: Sempre mostrar mídia marcada como sensível
-        setting_hide_network: Esconder suas conexões
+        setting_display_sensitive_media: Sempre exibir mídia marcada como sensível
+        setting_hide_network: Esconder as suas redes
         setting_noindex: Não quero ser indexado por mecanismos de busca
         setting_reduce_motion: Reduz movimento em animações
         setting_system_font_ui: Usar a fonte padrão de seu sistema

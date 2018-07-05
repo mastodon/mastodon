@@ -31,7 +31,7 @@ sk:
     source_code: Zdrojový kód
     status_count_after: príspevkov
     status_count_before: Ktorí napísali
-    user_count_after: používateľov
+    user_count_after: užívateľov
     user_count_before: Domov pre
     what_is_mastodon: Čo je Mastodon?
   accounts:
@@ -270,8 +270,8 @@ sk:
         note: poznámka
         report: nahlás
       action_taken_by: Zákrok vykonal/a
-      are_you_sure: Ste si istý/á?
-      assign_to_self: Priraď sebe
+      are_you_sure: Si si istý/á?
+      assign_to_self: Priraď k sebe
       assigned: Priradený moderátor
       comment:
         none: Žiadne
@@ -400,12 +400,12 @@ sk:
     delete_account: Vymazať účet
     delete_account_html: Pokiaľ chceš vymazať svoj účet, môžeš tak <a href="%{path}">urobiť tu</a>. Budeš požiadaný/á o potvrdenie tohto kroku.
     didnt_get_confirmation: Neobdŕžal/a si kroky pre potvrdenie?
-    forgot_password: Zabudli ste heslo?
-    invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítajte si nový.
+    forgot_password: Zabudnuté heslo?
+    invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítaj si nový.
     login: Prihlás sa
     logout: Odhlás sa
     migrate_account: Presunúť sa na iný účet
-    migrate_account_html: Pokiaľ si želáte presmerovať tento účet na nejaký iný, môžete <a href="%{path}"> tak urobiť tu</a>.
+    migrate_account_html: Pokiaľ si želáš presmerovať tento účet na nejaký iný, môžeš to <a href="%{path}">urobiť tu</a>.
     or: alebo
     or_log_in_with: Alebo prihlásiť z
     providers:
@@ -426,8 +426,8 @@ sk:
     post_follow:
       close: Alebo môžete iba zatvoriť toto okno.
       return: Ukáž užívateľov profil
-      web: Ísť na web
-    title: Následovať %{acct}
+      web: Prejdi do siete
+    title: Následuj %{acct}
   datetime:
     distance_in_words:
       about_x_hours: "%{count}hod"
@@ -449,11 +449,11 @@ sk:
     proceed: Vymazať účet
     success_msg: Váš účet bol úspešne vymazaný
     warning_html: Iba vymazanie obsahu z tejto konkrétnej instancie je garantované. Obsah ktorý bol zdieľaný široko-ďaleko pravdepodobne zanechá nejaké stopy. Servery ktoré sú offline a tie ktoré ignorujú tvoje zmeny teda nezaktualizujú svoje databázy.
-    warning_title: Dostupnosť distribuovaného obsahu
+    warning_title: O dostupnosti distribuovaného obsahu
   errors:
     '403': Nemáte dostatočné povolenie na zobrazenie tejto stránky.
     '404': Stránka ktorú si hľadal/a sa tu nenachádza.
-    '410': Stránka ktorú tu hľadáš už viac neexistuje.
+    '410': Stránka ktorú si tu hľadal/a už viac neexistuje.
     '422':
       content: Bezpečtnostné overenie zlyhalo. Blokuješ cookies?
       title: Bezpečtnostné overenie zlyhalo
@@ -473,8 +473,24 @@ sk:
     blocks: Blokujete
     csv: CSV
     follows: Následujete
-    mutes: Stíšili ste
-    storage: Úložisko médii
+    mutes: Stíšil/a si
+    storage: Úložisko médií
+  filters:
+    contexts:
+      home: Domáca os
+      notifications: Oboznámenia
+      public: Verejné osi
+      thread: Konverzácie
+    edit:
+      title: Uprav triedenie
+    errors:
+      invalid_context: Nebola poskytnutá žiadna, alebo ide o neplatnú súvislosť
+      invalid_irreversible: Nezvratné filtrovanie funguje iba so súvislostiami domovskej osi a oboznámení
+    index:
+      delete: Vymazať
+      title: Triedenia
+    new:
+      title: Pridaj nové triedenie
   followers:
     domain: Doména
     explanation_html: Pokiaľ chceš zaručiť súkromie svojích príspevkov, musíš mať na vedomí, kto ťa sleduje. <strong> Tvoje súkromné príspevky sú doručené na každý server z ktorého ťa niekto následuje. </strong> Takže možno by si ich chcel/a skontrolovať, a odstrániť tých následovníkov, čo sú na serveroch ktorím nedôveruješ, že ich moderátori, alebo úpravbuy kódu budú tiež rešpektovať tvoje súkromie.
@@ -527,8 +543,8 @@ sk:
     table:
       expires_at: Vyprší
       uses: Používa
-    title: Pozvať ľudí
-  landing_strip_html: "<strong>%{name}</strong> je užívateľ na serveri %{link_to_root_path}. Ty ich môžeš následovať a môžeš s nimi interaktovať pokiaľ máš účet hocikde v rámci fediversa."
+    title: Pozvi ľudí
+  landing_strip_html: "<strong>%{name}</strong> je užívateľ na serveri %{link_to_root_path}. Ty ich môžeš následovať a môžeš s nimi interaktovať pokiaľ máš účet kdekoľvek v rámci fediversa."
   landing_strip_signup_html: Pokiaľ ešte nemáš, môžeš <a href="%{sign_up_path}">si tu vytvoriť účet</a>.
   lists:
     errors:
@@ -574,8 +590,8 @@ sk:
     mention:
       action: Odpovedať
       body: "%{name} ťa spomenul/a v:"
-      subject: Boli ste spomenutí užívateľom %{name}
-      title: Nové spomenutie
+      subject: Bol/a si spomenutý/á užívateľom %{name}
+      title: Novo spomenutý/á
     reblog:
       body: 'Tvoj príspevok bol pozdvihnutý užívateľom %{name}:'
       subject: "%{name} pozdvihli tvoj príspevok"
@@ -622,6 +638,7 @@ sk:
       generic: Neznámy prehliadač
       ie: Internet Explorer
       otter: Prehliadač Otter
+      qq: QQ Prehliadač
       safari: Apple Safari
       weibo: Sina/Tencent Weibo
     current_session: Aktuálna sezóna
@@ -634,6 +651,7 @@ sk:
       linux: GNU/Linux
       mac: MacOSX
       other: neznáma platforma
+      windows: Microsoft Windows
     revoke: Zamietni
     revoke_success: Sezóna úspešne zamietnutá
     title: Sezóna
