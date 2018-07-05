@@ -1,4 +1,3 @@
----
 ko:
   simple_form:
     hints:
@@ -21,6 +20,9 @@ ko:
         setting_hide_network: 나를 팔로우 하는 사람들과 내가 팔로우 하는 사람들이 내 프로필에 표시되지 않게 합니다
         setting_noindex: 공개 프로필 및 각 툿페이지에 영향을 미칩니다
         setting_theme: 로그인중인 모든 디바이스에 적용되는 디자인입니다.
+        context: 필터를 적용 할 한 개 이상의 컨텍스트
+        irreversible: 필터링 된 툿은 나중에 필터가 사라지더라도 돌아오지 않게 됩니다
+        phrase: 툿 내용이나 CW 내용 안에서 대소문자 구분 없이 매칭 됩니다
       imports:
         data: 다른 마스토돈 인스턴스에서 추출된 CSV 파일
       sessions:
@@ -70,6 +72,9 @@ ko:
         type: 불러오기 종류
         username: 유저 이름
         username_or_email: 유저네임 또는 이메일
+        context: 필터 컨텍스트
+        irreversible: 숨기는 대신 삭제
+        phrase: 키워드 또는 문장
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단
@@ -83,6 +88,6 @@ ko:
         reblog: 누군가 내 툿을 부스트 했을 때 이메일 보내기
     'no': 아니오
     required:
-      mark: "*"
+      mark: '*'
       text: 필수 항목
     'yes': 네
