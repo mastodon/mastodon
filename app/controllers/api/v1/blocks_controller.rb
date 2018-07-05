@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::BlocksController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :follow }
+  before_action -> { doorkeeper_authorize! :follow, :'read:blocks' }
   before_action :require_user!
   after_action :insert_pagination_headers
 
