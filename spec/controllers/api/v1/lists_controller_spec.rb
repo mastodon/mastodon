@@ -4,12 +4,14 @@ RSpec.describe Api::V1::ListsController, type: :controller do
   render_views
 
   let!(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
-  let!(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read write') }
+  let!(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let!(:list)  { Fabricate(:list, account: user.account) }
 
   before { allow(controller).to receive(:doorkeeper_token) { token } }
 
   describe 'GET #index' do
+    let(:scopes) { 'read:lists' }
+
     it 'returns http success' do
       get :index
       expect(response).to have_http_status(200)
@@ -17,6 +19,8 @@ RSpec.describe Api::V1::ListsController, type: :controller do
   end
 
   describe 'GET #show' do
+    let(:scopes) { 'read:lists' }
+
     it 'returns http success' do
       get :show, params: { id: list.id }
       expect(response).to have_http_status(200)
@@ -24,6 +28,8 @@ RSpec.describe Api::V1::ListsController, type: :controller do
   end
 
   describe 'POST #create' do
+    let(:scopes) { 'write:lists' }
+
     before do
       post :create, params: { title: 'Foo bar' }
     end
@@ -39,6 +45,8 @@ RSpec.describe Api::V1::ListsController, type: :controller do
   end
 
   describe 'PUT #update' do
+    let(:scopes) { 'write:lists' }
+
     before do
       put :update, params: { id: list.id, title: 'Updated title' }
     end
@@ -53,6 +61,8 @@ RSpec.describe Api::V1::ListsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    let(:scopes) { 'write:lists' }
+
     before do
       delete :destroy, params: { id: list.id }
     end
