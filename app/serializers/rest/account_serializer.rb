@@ -49,8 +49,8 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def noindex
-    user = object.user
-    user.settings['noindex'] if user
+    return true unless object.user
+    object.user.settings['noindex']
   end
 
   def moved_and_not_nested?
