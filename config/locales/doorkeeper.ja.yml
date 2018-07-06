@@ -1,4 +1,3 @@
----
 ja:
   activerecord:
     attributes:
@@ -72,13 +71,14 @@ ja:
       index:
         application: アプリ名
         created_at: 許可した日時
-        date_format: "%Y年%m月%d日 %H時%M分%S秒"
+        date_format: '%Y年%m月%d日 %H時%M分%S秒'
         scopes: アクセス権
         title: 認証済みアプリ
     errors:
       messages:
         access_denied: リソースの所有者または認証サーバーが要求を拒否しました。
-        credential_flow_not_configured: リソース所有者のパスワード Doorkeeper.configure.resource_owner_from_credentials が設定されていないためクレデンシャルフローに失敗しました。
+        credential_flow_not_configured: リソース所有者のパスワード Doorkeeper.configure.resource_owner_from_credentials
+          が設定されていないためクレデンシャルフローに失敗しました。
         invalid_client: 不明なクライアントであるか、クライアント情報が含まれていない、またはサポートされていない認証方法のため、クライアントの認証に失敗しました。
         invalid_grant: 指定された認証許可は無効であるか、期限切れ、取り消されている、リダイレクトURIの不一致、または別のクライアントに発行されています。
         invalid_redirect_uri: 無効なリダイレクトURIが含まれています。
@@ -89,7 +89,8 @@ ja:
           expired: アクセストークンの有効期限が切れています
           revoked: アクセストークンは取り消されています
           unknown: アクセストークンが無効です
-        resource_owner_authenticator_not_configured: Doorkeeper.configure.resource_owner_authenticator が設定されていないため、リソース所有者の検索に失敗しました。
+        resource_owner_authenticator_not_configured: Doorkeeper.configure.resource_owner_authenticator
+          が設定されていないため、リソース所有者の検索に失敗しました。
         server_error: 認証サーバーに予期せぬ例外が発生したため、リクエストを実行できなくなりました。
         temporarily_unavailable: 現在、認証サーバーに一時的な過負荷が掛かっているか、またはメンテナンス中のため、リクエストを処理できません。
         unauthorized_client: クライアントはこのメゾットで要求を実行する権限がありません。
@@ -115,6 +116,25 @@ ja:
         title: OAuth認証
     scopes:
       follow: アカウントのフォロー, ブロック, ブロック解除, フォロー解除
-      push: アカウントへのプッシュ通知の受信
-      read: アカウントからのデータの読み取り
-      write: アカウントへのデータの書き込み
+      push: プッシュ通知の受信
+      read: アカウントからのすべてのデータの読み取り
+      write: アカウントへのすべてのデータの書き換え
+      read:accounts: アカウント情報の読み取り
+      read:blocks: ブロックの読み取り
+      read:favourites: お気に入りの読み取り
+      read:filters: フィルターの読み取り
+      read:follows: フォローの読み取り
+      read:lists: リストの読み取り
+      read:mutes: ミュートの読み取り
+      read:notifications: 通知の読み取り
+      read:reports: 通報の読み取り
+      read:search: あなたの代わりに検索
+      read:statuses: すべてのトゥートの読み取り
+      write:accounts: プロフィールの書き換え
+      write:blocks: ユーザーのブロックやドメインの非表示
+      write:favourites: トゥートのお気に入り登録
+      write:filters: フィルターの書き換え
+      write:lists: リストの書き換え
+      write:media: メディアのアップロード
+      write:notifications: 通知の消去
+      write:statuses: トゥートの投稿
