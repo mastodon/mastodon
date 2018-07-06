@@ -126,6 +126,14 @@ RSpec.describe FeedManager do
         reblog = Fabricate(:status, reblog: status, account: jeff)
         expect(FeedManager.instance.filter?(:home, reblog, alice.id)).to be true
       end
+
+      it 'returns true if status contains irreversibly muted phrase' do
+        alice.custom_filters.create!(phrase: 'farts', context: %w(home public), irreversible: true)
+        alice.custom_filters.create!(phrase: 'pop tarts', context: %w(home), irreversible: true)
+        alice.follow!(jeff)
+        status = Fabricate(:status, text: 'i sure like POP TARts', account: jeff)
+        expect(FeedManager.instance.filter?(:home, status, alice.id)).to be true
+      end
     end
 
     context 'for mentions feed' do

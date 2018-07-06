@@ -4,7 +4,7 @@ describe Api::V1::Accounts::RelationshipsController do
   render_views
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read') }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:follows') }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }

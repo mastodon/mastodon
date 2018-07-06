@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::FollowRequestsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :follow }
+  before_action -> { doorkeeper_authorize! :follow, :'read:follows' }, only: :index
+  before_action -> { doorkeeper_authorize! :follow, :'write:follows' }, except: :index
   before_action :require_user!
   after_action :insert_pagination_headers, only: :index
 

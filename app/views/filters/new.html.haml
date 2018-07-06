@@ -1,0 +1,8 @@
+- content_for :page_title do
+  = t('filters.new.title')
+
+= simple_form_for @filter, url: filters_path do |f|
+  = render 'fields', f: f
+
+  .actions
+    = f.button :button, t('filters.new.title'), type: :submit

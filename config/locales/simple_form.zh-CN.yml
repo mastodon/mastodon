@@ -10,8 +10,10 @@ zh-CN:
         display_name: 还能输入 <span class="name-counter">%{count}</span> 个字符
         fields: 这将会在个人资料页上以表格的形式展示，最多 4 个项目
         header: 文件大小限制 2MB，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 700×335px
+        locale: 用户界面、电子邮件和推送通知中使用的语言
         locked: 你需要手动审核所有关注请求
         note: 还能输入 <span class="note-counter">%{count}</span> 个字符
+        setting_default_language: 嘟文语言自动检测的结果有可能不准确（此设置仅影响你的嘟文）
         setting_hide_network: 你关注的人和关注你的人将不会在你的个人资料页上展示
         setting_noindex: 此设置会影响到你的公开个人资料以及嘟文页面
         setting_theme: 此设置会影响到所有已登录设备上 Mastodon 的显示样式
@@ -19,6 +21,8 @@ zh-CN:
         data: 请上传从其他 Mastodon 实例导出的 CSV 文件
       sessions:
         otp: 输入你手机应用上生成的双重认证码，或者任意一个恢复代码：
+      user:
+        chosen_languages: 仅选中语言的嘟文会出现在公共时间轴上（全不选则显示所有语言的嘟文）
     labels:
       account:
         fields:
@@ -28,6 +32,7 @@ zh-CN:
         autofollow: 让被邀请人关注你的帐户
         avatar: 头像
         bot: 这是一个机器人帐户
+        chosen_languages: 语言过滤
         confirm_new_password: 确认新密码
         confirm_password: 确认密码
         current_password: 当前密码
@@ -37,7 +42,7 @@ zh-CN:
         expires_in: 失效时间
         fields: 个人资料附加信息
         header: 个人资料页横幅图片
-        locale: 语言
+        locale: 界面语言
         locked: 保护你的帐户（锁嘟）
         max_uses: 最大使用次数
         new_password: 新密码
@@ -46,6 +51,7 @@ zh-CN:
         password: 密码
         setting_auto_play_gif: 自动播放 GIF 动画
         setting_boost_modal: 在转嘟前询问我
+        setting_default_language: 发布语言
         setting_default_privacy: 嘟文默认可见范围
         setting_default_sensitive: 总是将我发送的媒体文件标记为敏感内容
         setting_delete_modal: 在删除嘟文前询问我

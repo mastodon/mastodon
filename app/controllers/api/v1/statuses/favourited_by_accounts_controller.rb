@@ -3,7 +3,7 @@
 class Api::V1::Statuses::FavouritedByAccountsController < Api::BaseController
   include Authorization
 
-  before_action :authorize_if_got_token
+  before_action -> { authorize_if_got_token! :read, :'read:accounts' }
   before_action :set_status
   after_action :insert_pagination_headers
 
@@ -69,11 +69,6 @@ class Api::V1::Statuses::FavouritedByAccountsController < Api::BaseController
   rescue Mastodon::NotPermittedError
     # Reraise in order to get a 404 instead of a 403 error code
     raise ActiveRecord::RecordNotFound
-  end
-
-  def authorize_if_got_token
-    request_token = Doorkeeper::OAuth::Token.from_request(request, *Doorkeeper.configuration.access_token_methods)
-    doorkeeper_authorize! :read if request_token
   end
 
   def pagination_params(core_params)
