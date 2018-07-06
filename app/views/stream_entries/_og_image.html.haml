@@ -1,4 +1,4 @@
-- if activity.is_a?(Status) && activity.non_sensitive_with_media?
+- if activity.is_a?(Status) && (activity.non_sensitive_with_media? || (activity.with_media? && Setting.preview_sensitive_media))
   - player_card = false
   - activity.media_attachments.each do |media|
     - if media.image?
