@@ -4,7 +4,7 @@ RSpec.describe Api::V1::FollowsController, type: :controller do
   render_views
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'follow') }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'write:follows') }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }

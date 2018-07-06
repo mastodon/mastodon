@@ -6,17 +6,20 @@ ca:
         autofollow: Les persones que es registrin a través de la invitació et seguiran automàticament
         avatar: PNG, GIF o JPG. Màxim 2MB. S'escalarà a 400x400px
         bot: Aquest compte realitza principalment accions automatitzades i pot no estar controlat per cap persona
+        context: Un o diversos contextos on s'ha d'aplicar el filtre
         digest: Només s'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
         display_name:
           one: <span class="name-counter">1</span> càracter restant
           other: <span class="name-counter">%{count}</span> càracters restans
         fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
         header: PNG, GIF o JPG. Màxim 2MB. S'escalarà a 700x335px
+        irreversible: Els nodes filtrats desapareixeran de manera irreversible, fins i tot si el filtre es retira més tard
         locale: El llenguatge de l’interfície d’usuari, els correus i les notificacions push
         locked: Requereix que aprovis manualment els seguidors
         note:
           one: <span class="note-counter">1</span> càracter restant
           other: <span class="note-counter">%{count}</span> caràcters restants
+        phrase: Es combinarà independentment del format en el text o l'avís de contingut d'un toot
         setting_default_language: La llengua dels teus toots pot ser detectada automàticament però no sempre acuradament
         setting_hide_network: Qui tu segueixes i els que et segueixen a tu no es mostraran en el teu perfil
         setting_noindex: Afecta el teu perfil públic i les pàgines d'estat
@@ -39,6 +42,7 @@ ca:
         chosen_languages: Filtrar llengües
         confirm_new_password: Confirma la contrasenya nova
         confirm_password: Confirma la contrasenya
+        context: Filtre els contextos
         current_password: Contrasenya actual
         data: Informació
         display_name: Nom visible
@@ -46,6 +50,7 @@ ca:
         expires_in: Expira després
         fields: Metadades del perfil
         header: Capçalera
+        irreversible: Cau en lloc d'ocultar
         locale: Llengua de la interfície
         locked: Fes aquest compte privat
         max_uses: Nombre màxim d'usos
@@ -53,6 +58,7 @@ ca:
         note: Biografia
         otp_attempt: Codi de dos factors
         password: Contrasenya
+        phrase: Paraula clau o frase
         setting_auto_play_gif: Reproducció automàtica de GIFs animats
         setting_boost_modal: Mostra la finestra de confirmació abans d'un retoot
         setting_default_language: Llengua de les publicacions

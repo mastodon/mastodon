@@ -448,6 +448,7 @@ ar:
     confirm_password: قم بإدخال كلمتك السرية الحالية للتحقق من هويتك
     proceed: حذف حساب
     success_msg: تم حذف حسابك بنجاح
+    warning_title: توافر المحتوى المنشور و المبعثَر
   errors:
     '403': ليس لك الصلاحيات الكافية لعرض هذه الصفحة.
     '404': إنّ الصفحة التي تبحث عنها لا وجود لها أصلا.
@@ -459,6 +460,7 @@ ar:
     '500':
       content: نحن متأسفون، لقد حدث خطأ ما مِن جانبنا.
       title: هذه الصفحة خاطئة
+    noscript_html: يرجى تفعيل الجافا سكريبت لاستخدام تطبيق الويب لماستدون، أو عِوض ذلك قوموا بتجريب إحدى <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">التطبيقات الأصلية</a> الدّاعمة لماستدون على منصّتكم.
   exports:
     archive_takeout:
       date: التاريخ
@@ -472,6 +474,19 @@ ar:
     follows: أنت تتبع
     mutes: قُمتَ بكتم
     storage: ذاكرة التخزين
+  filters:
+    contexts:
+      home: الخيط الزمني الرئيسي
+      notifications: الإخطارات
+      public: الخيوط الزمنية العامة
+      thread: المحادثات
+    edit:
+      title: تعديل عامل التصفية
+    index:
+      delete: إزالة
+      title: عوامل التصفية
+    new:
+      title: إضافة عامل تصفية جديد
   followers:
     domain: النطاق
     followers_count: عدد المتابِعين
@@ -531,6 +546,7 @@ ar:
     acct: username@domain للحساب الجديد
     currently_redirecting: 'تم تحويل رابط ملفك الشخصي إلى :'
     proceed: حفظ
+    updated_msg: تم تحديث إعدادات ترحيل حسابك بنجاح !
   moderation:
     title: الإشراف
   notification_mailer:
@@ -548,6 +564,7 @@ ar:
     favourite:
       body: 'أُعجب %{name} بمنشورك :'
       subject: أُعجِب %{name} بمنشورك
+      title: مفضّلة جديدة
     follow:
       body: "%{name} من متتبعيك الآن !"
       subject: "%{name} من متتبعيك الآن"
@@ -561,6 +578,7 @@ ar:
       action: الرد
       body: 'أشار إليك %{name} في :'
       subject: لقد قام %{name} بذِكرك
+      title: إشارة جديدة
     reblog:
       body: 'قام %{name} بترقية منشورك :'
       subject: قام %{name} بترقية منشورك
@@ -590,6 +608,7 @@ ar:
   remote_follow:
     acct: قم بإدخال عنوان حسابك username@domain الذي من خلاله تود المتابعة
     missing_resource: تعذر العثور على رابط التحويل المطلوب الخاص بحسابك
+    no_account_html: أليس عندك حساب بعدُ ؟ يُمْكنك <a href='%{sign_up_path}' target='_blank'>التسجيل مِن هنا</a>
     proceed: أكمل المتابعة
     prompt: 'إنك  بصدد متابعة :'
   remote_unfollow:

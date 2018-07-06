@@ -5,7 +5,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
   let(:app)   { Fabricate(:application, name: 'Test app', website: 'http://testapp.com') }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, application: app, scopes: 'write') }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, application: app, scopes: scopes) }
 
   context 'with an oauth token' do
     before do
@@ -13,6 +13,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
     end
 
     describe 'GET #show' do
+      let(:scopes) { 'read:statuses' }
       let(:status) { Fabricate(:status, account: user.account) }
 
       it 'returns http success' do
@@ -22,6 +23,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
     end
 
     describe 'GET #context' do
+      let(:scopes) { 'read:statuses' }
       let(:status) { Fabricate(:status, account: user.account) }
 
       before do
@@ -35,6 +37,8 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
     end
 
     describe 'POST #create' do
+      let(:scopes) { 'write:statuses' }
+
       before do
         post :create, params: { status: 'Hello world' }
       end
@@ -45,6 +49,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
     end
 
     describe 'DELETE #destroy' do
+      let(:scopes) { 'write:statuses' }
       let(:status) { Fabricate(:status, account: user.account) }
 
       before do

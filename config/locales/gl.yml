@@ -474,6 +474,22 @@ gl:
     follows: A seguir
     mutes: Acalou
     storage: Almacenamento de medios
+  filters:
+    contexts:
+      home: Liña temporal inicial
+      notifications: Avisos
+      public: Liñas temporais públicas
+      thread: Conversas
+    edit:
+      title: Editar filtro
+    errors:
+      invalid_context: Non se proporcionou un contexto válido
+      invalid_irreversible: O filtrado non reversible só funciona con contexto de avisos ou Inicio
+    index:
+      delete: Eliminar
+      title: Filtros
+    new:
+      title: Engadir novo filtro
   followers:
     domain: Dominio
     explanation_html: Se quere asegurar a intimidade dos seus estados, debe ser consciente de quen a está a seguir. <strong>Os seus estados privados son enviados a todas as instancias onde ten seguidoras</strong>. Podería querer revisalas, e elminar seguidoras si non confía que a súa intimidade sexa respetada polos administradores ou o software de esa instancia.
@@ -599,6 +615,7 @@ gl:
   remote_follow:
     acct: Introduza o seu nomedeusuaria@dominio desde onde quere facer seguimento
     missing_resource: Non se puido atopar o URL de redirecionamento requerido para a súa conta
+    no_account_html: Non ten unha conta? Pode <a href='%{sign_up_path}' target='_blank'>rexistrarse aquí</a>
     proceed: Proceda para seguir
     prompt: 'Vostede vai seguir:'
   remote_unfollow:

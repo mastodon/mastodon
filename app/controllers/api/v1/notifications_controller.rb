@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::NotificationsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read }
+  before_action -> { doorkeeper_authorize! :read, :'read:notifications' }, except: [:clear, :dismiss]
+  before_action -> { doorkeeper_authorize! :write, :'write:notifications' }, only: [:clear, :dismiss]
   before_action :require_user!
   after_action :insert_pagination_headers, only: :index
 

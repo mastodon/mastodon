@@ -64,7 +64,7 @@ function main() {
     [].forEach.call(document.querySelectorAll('.logo-button'), (content) => {
       content.addEventListener('click', (e) => {
         e.preventDefault();
-        window.open(e.target.href, 'mastodon-intent', 'width=400,height=400,resizable=no,menubar=no,status=no,scrollbars=yes');
+        window.open(e.target.href, 'mastodon-intent', 'width=445,height=600,resizable=no,menubar=no,status=no,scrollbars=yes');
       });
     });
 

@@ -3,7 +3,7 @@
 class Api::V1::Statuses::MutesController < Api::BaseController
   include Authorization
 
-  before_action -> { doorkeeper_authorize! :write }
+  before_action -> { doorkeeper_authorize! :write, :'write:mutes' }
   before_action :require_user!
   before_action :set_status
   before_action :set_conversation
