@@ -200,13 +200,14 @@ class FeedManager
     active_filters = Rails.cache.fetch("filters:#{receiver_id}") { CustomFilter.where(account_id: receiver_id).active_irreversible.to_a }.to_a
 
     active_filters.select! { |filter| filter.context.include?(context.to_s) && !filter.expired? }
-    active_filters.map! { |filter| Regexp.new(Regexp.escape(filter.phrase), true) }
+    active_filters.map! { |filter| Regexp.new("\\b#{Regexp.escape(filter.phrase)}\\b", true) }
 
     return false if active_filters.empty?
 
     combined_regex = active_filters.reduce { |memo, obj| Regexp.union(memo, obj) }
+    status         = status.reblog if status.reblog?
 
-    !combined_regex.match(status.text).nil? ||
+    !combined_regex.match(Formatter.instance.plaintext(status)).nil? ||
       (status.spoiler_text.present? && !combined_regex.match(status.spoiler_text).nil?)
   end
 
