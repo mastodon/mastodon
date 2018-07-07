@@ -27,8 +27,10 @@ import custom_emojis from './custom_emojis';
 import lists from './lists';
 import listEditor from './list_editor';
 import filters from './filters';
+import audioPlayer from './audio_player';
 
 const reducers = {
+  audioPlayer,
   dropdown_menu,
   timelines,
   meta,

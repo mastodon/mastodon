@@ -51,6 +51,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
+import { AudioPlayer } from './components/audio_player';
 
 const messages = defineMessages({
   beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
@@ -141,20 +142,20 @@ class SwitchingColumnsArea extends React.PureComponent {
           {redirect}
           <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
           <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
-          <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
+              <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
           <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
-          <WrappedRoute path='/timelines/public/media' component={PublicTimeline} content={children} componentParams={{ onlyMedia: true }} />
-          <WrappedRoute path='/timelines/public/local' exact component={CommunityTimeline} content={children} />
+                  <WrappedRoute path='/timelines/public/media' component={PublicTimeline} content={children} componentParams={{ onlyMedia: true }} />
+            <WrappedRoute path='/timelines/public/local' exact component={CommunityTimeline} content={children} />
           <WrappedRoute path='/timelines/public/local/media' component={CommunityTimeline} content={children} componentParams={{ onlyMedia: true }} />
           <WrappedRoute path='/timelines/direct' component={DirectTimeline} content={children} />
           <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
           <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
 
-          <WrappedRoute path='/notifications' component={Notifications} content={children} />
-          <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
+              <WrappedRoute path='/notifications' component={Notifications} content={children} />
+            <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
           <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
-          <WrappedRoute path='/search' component={Compose} content={children} componentParams={{ isSearchPage: true }} />
+                      <WrappedRoute path='/search' component={Compose} content={children} componentParams={{ isSearchPage: true }} />
 
           <WrappedRoute path='/statuses/new' component={Compose} content={children} />
           <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
@@ -163,15 +164,15 @@ class SwitchingColumnsArea extends React.PureComponent {
 
           <WrappedRoute path='/accounts/:accountId' exact component={AccountTimeline} content={children} />
           <WrappedRoute path='/accounts/:accountId/with_replies' component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
-          <WrappedRoute path='/accounts/:accountId/followers' component={Followers} content={children} />
+              <WrappedRoute path='/accounts/:accountId/followers' component={Followers} content={children} />
           <WrappedRoute path='/accounts/:accountId/following' component={Following} content={children} />
-          <WrappedRoute path='/accounts/:accountId/media' component={AccountGallery} content={children} />
+                  <WrappedRoute path='/accounts/:accountId/media' component={AccountGallery} content={children} />
 
           <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
           <WrappedRoute path='/blocks' component={Blocks} content={children} />
-          <WrappedRoute path='/domain_blocks' component={DomainBlocks} content={children} />
-          <WrappedRoute path='/mutes' component={Mutes} content={children} />
-          <WrappedRoute path='/lists' component={Lists} content={children} />
+              <WrappedRoute path='/domain_blocks' component={DomainBlocks} content={children} />
+            <WrappedRoute path='/mutes' component={Mutes} content={children} />
+            <WrappedRoute path='/lists' component={Lists} content={children} />
 
           <WrappedRoute component={GenericNotFound} content={children} />
         </WrappedSwitch>
@@ -448,10 +449,11 @@ export default class UI extends React.PureComponent {
 
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef}>
+        <AudioPlayer />
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
-          <TabsBar />
+            <TabsBar />
 
-          <SwitchingColumnsArea location={location} onLayoutChange={this.handleLayoutChange}>
+            <SwitchingColumnsArea location={location} onLayoutChange={this.handleLayoutChange}>
             {children}
           </SwitchingColumnsArea>
 
@@ -459,7 +461,7 @@ export default class UI extends React.PureComponent {
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
-        </div>
+          </div>
       </HotKeys>
     );
   }

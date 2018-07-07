@@ -2196,6 +2196,54 @@ a.account__display-name {
   margin: -6px 10px;
 }
 
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, -1px, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-3px, 2px, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(3px, -3px, 0);
+  }
+}
+
+.column-player {
+  background: lighten($ui-base-color, 8%);
+  color: $primary-text-color;
+  display: block;
+  font-size: 16px;
+  padding: 15px;
+  text-decoration: none;
+
+  &.playing {
+    animation: shake 0.9s cubic-bezier(.36, .07, .19, .97) both;
+    animation-iteration-count: infinite;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  > span {
+    margin-left: -8px;
+  }
+}
+
+.column-player__toggle {
+  display: inline-block;
+  margin-left: -6px;
+  margin-right: 5px;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+}
+
 .column-subheading {
   background: $ui-base-color;
   color: $dark-text-color;

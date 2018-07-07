@@ -9,6 +9,8 @@ module Admin
       site_description
       site_extended_description
       site_terms
+      player_url
+      player_name
       open_registrations
       closed_registrations_message
       open_deletion

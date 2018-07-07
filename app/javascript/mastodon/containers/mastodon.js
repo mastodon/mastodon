@@ -9,7 +9,7 @@ import UI from '../features/ui';
 import { fetchCustomEmojis } from '../actions/custom_emojis';
 import { hydrateStore } from '../actions/store';
 import { connectUserStream } from '../actions/streaming';
-import { IntlProvider, addLocaleData } from 'react-intl';
+import { addLocaleData, IntlProvider } from 'react-intl';
 import { getLocale } from '../locales';
 import initialState from '../initial_state';
 
@@ -48,14 +48,14 @@ export default class Mastodon extends React.PureComponent {
     store.dispatch(showOnboardingOnce());
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.disconnect) {
       this.disconnect();
       this.disconnect = null;
     }
   }
 
-  render () {
+  render() {
     const { locale } = this.props;
 
     return (
