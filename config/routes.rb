@@ -77,12 +77,6 @@ Rails.application.routes.draw do
   namespace :settings do
     resource :profile, only: [:show, :update]
 
-    resources :keyword_mutes do
-      collection do
-        delete :destroy_all
-      end
-    end
-
     resource :preferences, only: [:show, :update]
     resource :notifications, only: [:show, :update]
     resource :import, only: [:show, :create]
