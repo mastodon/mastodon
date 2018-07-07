@@ -242,6 +242,9 @@ da:
           other: '%{count} konti i databasen påvirket'
         title: Annuller domæne blokeringen for domænet %{domain}
         undo: Fortryd
+        retroactive:
+          silence: Fjern dæmpningen af alle eksisterende konti fra dette domæne
+          suspend: Fjern udelukkelsen af alle eksisterende konti fra dette domæne
       title: Domæne blokeringer
       undo: Fortryd
       reject_media_hint: Fjerner lokalt lagrede multimedie filer og nægter at hente
@@ -286,6 +289,7 @@ da:
         delete: Slet
         placeholder: Beskriv hvilke handlinger der er blevet udført, eller andre relevante
           opdateringer...
+        create_and_resolve: Løs med notat
       reopen: Genåben anmeldelse
       report: 'Anmeldelse #%{id}'
       report_contents: Indhold
@@ -300,6 +304,7 @@ da:
       unresolved: Uløst
       updated_at: Opdateret
       view: Se
+      resolved_msg: Anmeldelse er sat til at være løst!
     settings:
       hero:
         title: Billede af helt
@@ -322,6 +327,9 @@ da:
       timeline_preview:
         desc_html: Vis offentlig tidslinje på landingssiden
       title: Indstillinger for side
+      contact_information:
+        email: Forretnings email
+        username: Kontakt brugernavn
     statuses:
       back_to_account: Tilbage til kontosiden
       batch:
@@ -545,6 +553,9 @@ da:
     setup: Sæt op
     wrong_code: Den indtastede kode var ugyldig! Er serverens tid og enhedens tid
       korrekte?
+    code_hint: Indtast koden der er genereret af din app for at bekræfte
+    manual_instructions: 'Hvis du ikke kan scanne QR koden er er nødt til at skrive
+      koden ind manuelt, kan er din almindelig tekst secret:'
   user_mailer:
     backup_ready:
       explanation: Din anmodning for fuld backup af din Mastodon konto. Den er nu
