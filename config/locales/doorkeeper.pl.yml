@@ -114,7 +114,29 @@ pl:
       application:
         title: Uwierzytelnienie OAuth jest wymagane
     scopes:
-      follow: możliwość śledzenia, blokowania, usuwania blokad, anulowania śledzenia kont
+      follow: możliwość śledzenia kont
       push: otrzymywanie powiadomień push dla Twojego konta
-      read: dostęp do odczytu danych konta
-      write: możliwość publikowania wpisów w Twoim imieniu
+      read: możliwość odczytu wszystkich danych konta
+      read:accounts: dostęp do informacji o koncie
+      read:blocks: dostęp do listy blokowanych
+      read:favourites: dostęp do listy ulubionych
+      read:filters: dostęp do filtrów
+      read:follows: dostęp do listy śledzonych
+      read:lists: dostęp do Twoich list
+      read:mutes: dostęp do listy wyciszonych
+      read:notifications: możliwość odczytu powiadomień
+      read:reports: dostęp do Twoich zgłoszeń
+      read:search: wyświetlanie z Twojego konta
+      read:statuses: wyświetlanie wszystkich wpisów
+      write: możliwość modyfikowania wszystkich danych o koncie
+      write:accounts: możliwość modyfikowania informacji o koncie
+      write:blocks: możliwość blokowania domen i użytkowników
+      write:favourites: możliwość dodawnia wpisów do ulubionych
+      write:filters: możliwość tworzenia filtrów
+      write:follows: możliwość śledzenia ludzi
+      write:lists: możliwość tworzenia list
+      write:media: możliwość wysyłania zawartości multimedialnej
+      write:mutes: możliwość wyciszania ludzi i konwersacji
+      write:notifications: możliwość usuwania Twoich powiadomień
+      write:reports: możliwość zgłaszania wpisów
+      write:statuses: możliwość publikowania wpisów
