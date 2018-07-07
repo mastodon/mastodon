@@ -3,6 +3,7 @@ sv:
   simple_form:
     hints:
       defaults:
+        autofollow: Användarkonton som skapas genom din inbjudan kommer automatiskt följa dig
         avatar: Högst 2 MB. Kommer att skalas ner till 400x400px
         bot: Detta konto utför huvudsakligen automatiserade åtgärder och kanske inte övervakas
         digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
@@ -11,10 +12,12 @@ sv:
           other: <span class="name-counter">%{count}</span> tecken kvar
         fields: Du kan ha upp till 4 objekt visade som en tabell på din profil
         header: NG, GIF eller JPG. Högst 2 MB. Kommer nedskalas till 700x335px
+        locale: Användargränssnittets språk, e-post och push aviseringar
         locked: Kräver att du manuellt godkänner följare
         note:
           one: <span class="note-counter">1</span> tecken kvar
           other: <span class="note-counter">%{count}</span> tecken kvar
+        setting_default_language: Språket av dina inlägg kan upptäckas automatiskt, men det är inte alltid rätt
         setting_hide_network: Vem du följer och vilka som följer dig kommer inte att visas på din profilsida
         setting_noindex: Påverkar din offentliga profil och statussidor
         setting_theme: Påverkar hur Mastodon ser ut oavsett från vilken enhet du är inloggad.
@@ -22,14 +25,18 @@ sv:
         data: CSV-fil som exporteras från en annan Mastodon-instans
       sessions:
         otp: 'Ange tvåfaktorkoden genererad från din telefonapp eller använd någon av dina återställningskoder:'
+      user:
+        chosen_languages: När aktiverat så visas bara inlägg i dina valda språk i den offentliga tidslinjen
     labels:
       account:
         fields:
           name: Etikett
           value: Innehåll
       defaults:
+        autofollow: Bjud in till att följa ditt konto
         avatar: Avatar
         bot: Detta är ett botkonto
+        chosen_languages: Filtrera språk
         confirm_new_password: Bekräfta nytt lösenord
         confirm_password: Bekräfta lösenord
         current_password: Nuvarande lösenord
@@ -48,6 +55,7 @@ sv:
         password: Lösenord
         setting_auto_play_gif: Auto-play animerade GIF-filer
         setting_boost_modal: Visa bekräftelsedialog innan du knuffar
+        setting_default_language: Språk
         setting_default_privacy: Postintegritet
         setting_default_sensitive: Markera alltid media som känsligt
         setting_delete_modal: Visa bekräftelsedialog innan du raderar en toot

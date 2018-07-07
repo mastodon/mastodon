@@ -324,6 +324,9 @@
         .button.button-secondary.logo-button {
           flex: 0 auto;
           font-size: 14px;
+          background: $ui-highlight-color;
+          color: $primary-text-color;
+          border: 0;
 
           svg {
             width: 20px;
@@ -332,19 +335,21 @@
             margin-right: 5px;
 
             path:first-child {
-              fill: $ui-primary-color;
+              fill: $primary-text-color;
             }
 
             path:last-child {
-              fill: $simple-background-color;
+              fill: $ui-highlight-color;
             }
           }
 
           &:active,
           &:focus,
           &:hover {
-            svg path:first-child {
-              fill: lighten($ui-primary-color, 4%);
+            background: lighten($ui-highlight-color, 10%);
+
+            svg path:last-child {
+              fill: lighten($ui-highlight-color, 10%);
             }
           }
         }

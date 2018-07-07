@@ -901,6 +901,27 @@ $small-breakpoint: 960px;
       }
     }
 
+    .attachment-list__list {
+      margin-left: 0;
+      list-style: none;
+
+      li {
+        font-size: inherit;
+        line-height: inherit;
+        font-weight: inherit;
+        margin-bottom: 0;
+
+        a {
+          color: $dark-text-color;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
     @media screen and (max-width: $column-breakpoint) {
       height: 90vh;
     }

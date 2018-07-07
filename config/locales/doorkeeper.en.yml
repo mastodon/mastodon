@@ -114,7 +114,29 @@ en:
       application:
         title: OAuth authorization required
     scopes:
-      follow: follow, block, unblock and unfollow accounts
-      push: receive push notifications for your account
-      read: read your account's data
-      write: post on your behalf
+      follow: modify account relationships
+      push: receive your push notifications
+      read: read all your account's data
+      read:accounts: see accounts information
+      read:blocks: see your blocks
+      read:favourites: see your favourites
+      read:filters: see your filters
+      read:follows: see your follows
+      read:lists: see your lists
+      read:mutes: see your mutes
+      read:notifications: see your notifications
+      read:reports: see your reports
+      read:search: search on your behalf
+      read:statuses: see all statuses
+      write: modify all your account's data
+      write:accounts: modify your profile
+      write:blocks: block accounts and domains
+      write:favourites: favourite statuses
+      write:filters: create filters
+      write:follows: follow people
+      write:lists: create lists
+      write:media: upload media files
+      write:mutes: mute people and conversations
+      write:notifications: clear your notifications
+      write:reports: report other people
+      write:statuses: publish statuses

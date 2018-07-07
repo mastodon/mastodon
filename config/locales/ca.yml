@@ -474,6 +474,22 @@ ca:
     follows: Persones que segueixes
     mutes: Persones silenciades
     storage: Emmagatzematge
+  filters:
+    contexts:
+      home: Línia de temps Inici
+      notifications: Notificacions
+      public: Línies de temps públiques
+      thread: Converses
+    edit:
+      title: Editar filtre
+    errors:
+      invalid_context: Cap o el context proporcionat no és vàlid
+      invalid_irreversible: El filtratge irreversible només funciona amb el contextos inici o notificacions
+    index:
+      delete: Esborra
+      title: Filtres
+    new:
+      title: Afegir nou filtre
   followers:
     domain: Domini
     explanation_html: Si desitges garantir la privacitat de les teves publicacions, has de ser conscient de qui t'està seguint. <strong> Les publicacions privades es lliuren a totes les instàncies on tens seguidors </strong>. És possible que vulguis revisar-los i eliminar seguidors si no confies en que la teva privacitat sigui respectada pel personal o el programari d'aquestes instàncies.
@@ -599,6 +615,7 @@ ca:
   remote_follow:
     acct: Escriu el teu usuari@domini des del qual vols seguir
     missing_resource: No s'ha pogut trobar la URL de redirecció necessaria per al compte
+    no_account_html: No tens cap compte? Pots <a href='%{sign_up_path}' target='_blank'>registrar-te aquí</a>
     proceed: Comença a seguir
     prompt: 'Seguiràs a:'
   remote_unfollow:
@@ -762,9 +779,13 @@ ca:
 
       <hr class="spacer" />
 
-      <h3 id="coppa">Compliment de la Llei de protecció de la privacitat en línia dels nens</h3>
+      <h3 id="children">Ús del lloc dels nens</h3>
 
-      <p>El nostre lloc, productes i serveis estan dirigits a persones que tenen almenys 13 anys. Si aquest servidor es troba als EUA, i tens menys de 13 anys, segons els requisits de COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) no utilitzis aquest lloc.</p>
+      <p>Si el servidor és a EU o EEA: el nostre lloc, productes i serveis estan dirigits a persones que tenen almenys 16 anys. Si tens menys de 16 anys, seguint els requisits del GDPR (<a href="https://ca.wikipedia.org/wiki/Reglament_General_de_Protecció_de_Dades">Reglament General de Protecció de Dades</a>) no utilitzis aquest lloc.</p>
+
+      <p>Si aquest servidor es troba als EUA: el nostre lloc, productes i serveis estan dirigits a persones que tenen almenys 13 anys. Si tens menys de 13 anys, segons els requisits de COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) no utilitzis aquest lloc.</p>
+
+      <p>Els requisits legals poden ser diferents si aquest servidor està en una altra jurisdicció.</p>
 
       <hr class="spacer" />
 
