@@ -7,12 +7,12 @@
       %strong.p-name.emojify= display_name(status.account, custom_emojify: true)
       %span= acct(status.account)
 
-  - if embedded_view?
+  - if !user_signed_in? || embedded_view?
     = link_to account_remote_follow_path(status.account), class: 'button button-secondary logo-button', target: '_new' do
       = render file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')
       = t('accounts.follow')
 
-  .status__content.p-name.emojify<
+  .status__content.emojify<
     - if status.spoiler_text?
       %p{ style: 'margin-bottom: 0' }<
         %span.p-summary> #{Formatter.instance.format_spoiler(status)}&nbsp;
