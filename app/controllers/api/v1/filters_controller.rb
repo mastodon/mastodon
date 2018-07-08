@@ -43,6 +43,6 @@ class Api::V1::FiltersController < Api::BaseController
   end
 
   def resource_params
-    params.permit(:phrase, :expires_at, :irreversible, context: [])
+    params.permit(:phrase, :expires_in, :irreversible, context: [])
   end
 end
