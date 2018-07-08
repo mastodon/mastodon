@@ -117,8 +117,8 @@ ja:
     scopes:
       follow: アカウントのつながりを変更
       push: プッシュ通知の受信
-      read: アカウントからのすべてのデータの読み取り
-      write: アカウントのすべてのデータの書き換え
+      read: アカウントのすべてのデータの読み取り
+      write: アカウントのすべてのデータの変更
       read:accounts: アカウント情報の読み取り
       read:blocks: ブロックの読み取り
       read:favourites: お気に入りの読み取り
@@ -130,11 +130,14 @@ ja:
       read:reports: 通報の読み取り
       read:search: あなたの代わりに検索
       read:statuses: すべてのトゥートの読み取り
-      write:accounts: プロフィールの書き換え
+      write:accounts: プロフィールの変更
       write:blocks: ユーザーのブロックやドメインの非表示
       write:favourites: トゥートのお気に入り登録
-      write:filters: フィルターの書き換え
-      write:lists: リストの書き換え
+      write:filters: フィルターの変更
+      write:lists: リストの変更
       write:media: メディアのアップロード
       write:notifications: 通知の消去
       write:statuses: トゥートの投稿
+      write:follows: フォローの変更
+      write:mutes: アカウントや会話のミュート
+      write:reports: 通報の作成
