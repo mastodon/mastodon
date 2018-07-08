@@ -387,6 +387,7 @@ da:
       return: Vis brugerens profil
       web: Gå til web
     title: Følg %{acct}
+    follow_request: 'Du har anmodet om at følge:'
   datetime:
     distance_in_words:
       about_x_hours: '%{count}t'
@@ -398,6 +399,7 @@ da:
     bad_password_msg: Godt forsøg, hackere! Forkert kodeord
     proceed: Slet konto
     success_msg: Din konto er nu blevet slettet
+    confirm_password: Indtast dit nuværende kodeord for at bekræfte din identitet
   errors:
     '403': Du har ikke tilladelse til at se denne side.
     '404': Den side du leder efter findes ikke.
@@ -442,6 +444,7 @@ da:
     types:
       blocking: Blokeringsliste
       following: Følgningsliste
+      muting: Liste over dæmpninger
     upload: Læg op
   invites:
     delete: Deaktiver
@@ -465,6 +468,8 @@ da:
       too_many: Kan ikke vedhæfte mere en 4 filer
   migrations:
     proceed: Gem
+    acct: username@domain af den nye konto
+    currently_redirecting: 'Din profil er sat til at henvise til:'
   moderation:
     title: Moderatering
   notification_mailer:
@@ -493,6 +498,7 @@ da:
   preferences:
     languages: Sprog
     other: Andet
+    web: Web
   remote_unfollow:
     error: Fejl
     title: Titel
@@ -500,10 +506,18 @@ da:
   sessions:
     browsers:
       generic: Ukendt browser
+      blackberry: Blackberry OS
+      chrome: Google Chrome
+      firefox: Mozilla Firefox
+      ie: IE
     description: '%{browser} på %{platform}'
     ip: IP
     platforms:
       other: ukendt platform
+      android: Android
+      ios: iOS
+      linux: Linux
+      mac: Mac
   settings:
     authorized_apps: Godkendte apps
     back: Tilbage til Mastodon
@@ -516,6 +530,7 @@ da:
     preferences: Indstillinger
     settings: Indstillinger
     your_apps: Dine applikationer
+    migrate: Konto migrering
   statuses:
     attached:
       description: 'Vedhæftede: %{attached}'
@@ -534,6 +549,9 @@ da:
       public: Offentlig
       public_long: Alle kan se
       unlisted: Ikke listet
+    content_warning: 'Advarsel om indhold: %{warning}'
+    language_detection: Opfang automatisk sprog
+    title: '%{name}: "%{quote}"'
   stream_entries:
     click_to_show: Tryk for at vise
     pinned: Fastgjort toot
@@ -588,3 +606,9 @@ da:
     seamless_external_login: Du er logget ind via en ekstern service, så er kodeord
       og e-mail indstillinger ikke tilgængelige.
     signed_in_as: 'Logget ind som:'
+  number:
+    human:
+      decimal_units:
+        units:
+          billion: mia.
+          million: mio.
