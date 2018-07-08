@@ -11,6 +11,7 @@ import { debounce } from 'lodash';
 import { uploadCompose, resetCompose } from 'flavours/glitch/actions/compose';
 import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';
 import { expandNotifications } from 'flavours/glitch/actions/notifications';
+import { fetchFilters } from 'flavours/glitch/actions/filters';
 import { clearHeight } from 'flavours/glitch/actions/height_cache';
 import { WrappedSwitch, WrappedRoute } from 'flavours/glitch/util/react_router_helpers';
 import UploadArea from './components/upload_area';
@@ -218,6 +219,7 @@ export default class UI extends React.Component {
 
     this.props.dispatch(expandHomeTimeline());
     this.props.dispatch(expandNotifications());
+    setTimeout(() => this.props.dispatch(fetchFilters()), 500);
   }
 
   componentDidMount () {

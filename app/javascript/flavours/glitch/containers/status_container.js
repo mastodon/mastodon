@@ -38,7 +38,7 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => {
 
-    let status = getStatus(state, props.id);
+    let status = getStatus(state, props);
     let reblogStatus = status ? status.get('reblog', null) : null;
     let account = undefined;
     let prepend = undefined;

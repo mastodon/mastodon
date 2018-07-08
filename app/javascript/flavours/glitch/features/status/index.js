@@ -53,7 +53,7 @@ const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
 
   const mapStateToProps = (state, props) => ({
-    status: getStatus(state, props.params.statusId),
+    status: getStatus(state, { id: props.params.statusId }),
     settings: state.get('local_settings'),
     ancestorsIds: state.getIn(['contexts', 'ancestors', props.params.statusId]),
     descendantsIds: state.getIn(['contexts', 'descendants', props.params.statusId]),
@@ -304,6 +304,7 @@ export default class Status extends ImmutablePureComponent {
         expanded={this.state.threadExpanded}
         onMoveUp={this.handleMoveUp}
         onMoveDown={this.handleMoveDown}
+        contextType='thread'
       />
     ));
   }
