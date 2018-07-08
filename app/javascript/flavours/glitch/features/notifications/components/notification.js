@@ -54,6 +54,7 @@ export default class Notification extends ImmutablePureComponent {
           onMoveDown={onMoveDown}
           onMoveUp={onMoveUp}
           onMention={onMention}
+          contextType='notifications'
           getScrollPosition={getScrollPosition}
           updateScrollBottom={updateScrollBottom}
           withDismiss

@@ -3,6 +3,7 @@ import IntlMessageFormat from 'intl-messageformat';
 import { fetchRelationships } from './accounts';
 import { defineMessages } from 'react-intl';
 import { unescapeHTML } from 'flavours/glitch/util/html';
+import { getFilters, regexFromFilters } from 'flavours/glitch/selectors';
 
 export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
 
@@ -40,19 +41,29 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
   return (dispatch, getState) => {
     const showAlert = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
     const playSound = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
+    const filters   = getFilters(getState(), { contextType: 'notifications' });
+
+    let filtered = false;
+
+    if (notification.type === 'mention') {
+      const regex       = regexFromFilters(filters);
+      const searchIndex = notification.status.spoiler_text + '\n' + unescapeHTML(notification.status.content);
+
+      filtered = regex && regex.test(searchIndex);
+    }
 
     dispatch({
       type: NOTIFICATIONS_UPDATE,
       notification,
       account: notification.account,
       status: notification.status,
-      meta: playSound ? { sound: 'boop' } : undefined,
+      meta: (playSound && !filtered) ? { sound: 'boop' } : undefined,
     });
 
     fetchRelatedRelationships(dispatch, [notification]);
 
     // Desktop notifications
-    if (typeof window.Notification !== 'undefined' && showAlert) {
+    if (typeof window.Notification !== 'undefined' && showAlert && !filtered) {
       const title = new IntlMessageFormat(intlMessages[`notification.${notification.type}`], intlLocale).format({ name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
       const body  = (notification.status && notification.status.spoiler_text.length > 0) ? notification.status.spoiler_text : unescapeHTML(notification.status ? notification.status.content : '');
 
