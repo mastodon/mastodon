@@ -10,6 +10,7 @@ const initialState = ImmutableMap({
   stretch   : true,
   navbar_under : false,
   side_arm  : 'none',
+  side_arm_auto : false,
   collapsed : ImmutableMap({
     enabled     : true,
     auto        : ImmutableMap({

@@ -67,7 +67,7 @@ function mapStateToProps (state) {
     replyAccount: inReplyTo ? state.getIn(['statuses', inReplyTo, 'account']) : null,
     replyContent: inReplyTo ? state.getIn(['statuses', inReplyTo, 'contentHtml']) : null,
     resetFileKey: state.getIn(['compose', 'resetFileKey']),
-    sideArm: state.getIn(['local_settings', 'side_arm']),
+    sideArm: (state.getIn(['local_settings', 'side_arm_auto']) ? state.getIn(['compose', 'reply_privacy']) : null) || state.getIn(['local_settings', 'side_arm']),
     sensitive: state.getIn(['compose', 'sensitive']),
     showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
     spoiler: state.getIn(['compose', 'spoiler']),
