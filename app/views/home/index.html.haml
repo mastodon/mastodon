@@ -11,8 +11,6 @@
 
 .app-holder#mastodon{ data: { props: Oj.dump(default_props) } }
 
-  %input#playerState{'data-player-name' => Setting.player_name, 'data-player-url' => Setting.player_url, :type => 'hidden'}/
-
   %noscript
     = image_tag asset_pack_path('logo.svg'), alt: 'Mastodon'
 

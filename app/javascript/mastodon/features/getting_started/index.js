@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me, invitesEnabled } from '../../initial_state';
+import { me, invitesEnabled, playerEnabled } from '../../initial_state';
 import { fetchFollowRequests } from '../../actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import { Link } from 'react-router-dom';
@@ -67,7 +67,7 @@ export default class GettingStarted extends ImmutablePureComponent {
     unreadNotifications: PropTypes.number,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { myAccount, fetchFollowRequests } = this.props;
 
     if (myAccount.get('locked')) {
@@ -97,10 +97,10 @@ export default class GettingStarted extends ImmutablePureComponent {
       <ColumnLink key={i++} icon='envelope' text={intl.formatMessage(messages.direct)} to='/timelines/direct' />,
       <ColumnLink key={i++} icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
       <ColumnLink key={i++} icon='list-ul' text={intl.formatMessage(messages.lists)} to='/lists' />,
-      <ColumnPlayer key={i++} />
+      ((playerEnabled) ? <ColumnPlayer key={i++} /> : <span />)
     );
 
-    height += 48*4;
+    height += ((playerEnabled) ? (48 * 4) : (48 * 3));
 
     if (myAccount.get('locked')) {
       navItems.push(<ColumnLink key={i++} icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
@@ -136,15 +136,45 @@ export default class GettingStarted extends ImmutablePureComponent {
 
         <div className='getting-started getting-started__footer'>
           <ul>
-            <li><a href='https://bridge.joinmastodon.org/' target='_blank'><FormattedMessage id='getting_started.find_friends' defaultMessage='Find friends from Twitter' /></a> · </li>
-            {invitesEnabled && <li><a href='/invites' target='_blank'><FormattedMessage id='getting_started.invite' defaultMessage='Invite people' /></a> · </li>}
-            {multiColumn && <li><Link to='/keyboard-shortcuts'><FormattedMessage id='navigation_bar.keyboard_shortcuts' defaultMessage='Hotkeys' /></Link> · </li>}
-            <li><a href='/auth/edit'><FormattedMessage id='getting_started.security' defaultMessage='Security' /></a> · </li>
-            <li><a href='/about/more' target='_blank'><FormattedMessage id='navigation_bar.info' defaultMessage='About this instance' /></a> · </li>
-            <li><a href='/terms' target='_blank'><FormattedMessage id='getting_started.terms' defaultMessage='Terms of service' /></a> · </li>
-            <li><a href='/settings/applications' target='_blank'><FormattedMessage id='getting_started.developers' defaultMessage='Developers' /></a> · </li>
-            <li><a href='https://github.com/tootsuite/documentation#documentation' target='_blank'><FormattedMessage id='getting_started.documentation' defaultMessage='Documentation' /></a> · </li>
-            <li><a href='/auth/sign_out' data-method='delete'><FormattedMessage id='navigation_bar.logout' defaultMessage='Logout' /></a></li>
+            <li><a href='https://bridge.joinmastodon.org/' target='_blank'><FormattedMessage
+              id='getting_started.find_friends' defaultMessage='Find friends from Twitter'
+            /></a> ·
+            </li>
+            {invitesEnabled && <li><a href='/invites' target='_blank'><FormattedMessage
+              id='getting_started.invite'
+              defaultMessage='Invite people'
+            /></a> ·
+            </li>}
+            {multiColumn && <li><Link to='/keyboard-shortcuts'><FormattedMessage
+              id='navigation_bar.keyboard_shortcuts'
+              defaultMessage='Hotkeys'
+            /></Link> ·
+            </li>}
+            <li><a href='/auth/edit'><FormattedMessage id='getting_started.security' defaultMessage='Security' /></a> ·
+            </li>
+            <li><a href='/about/more' target='_blank'><FormattedMessage
+              id='navigation_bar.info'
+              defaultMessage='About this instance'
+            /></a> ·
+            </li>
+            <li><a href='/terms' target='_blank'><FormattedMessage
+              id='getting_started.terms'
+              defaultMessage='Terms of service'
+            /></a> ·
+            </li>
+            <li><a href='/settings/applications' target='_blank'><FormattedMessage
+              id='getting_started.developers'
+              defaultMessage='Developers'
+            /></a> ·
+            </li>
+            <li><a href='https://github.com/tootsuite/documentation#documentation' target='_blank'><FormattedMessage
+              id='getting_started.documentation' defaultMessage='Documentation'
+            /></a> ·
+            </li>
+            <li><a href='/auth/sign_out' data-method='delete'><FormattedMessage
+              id='navigation_bar.logout'
+              defaultMessage='Logout'
+            /></a></li>
           </ul>
 
           <p>

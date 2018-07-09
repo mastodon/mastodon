@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactAudioPlayer from 'react-audio-player';
 import { connect } from 'react-redux';
-import { playerUrl } from '../../../initial_state';
+import { playerUrl, playerEnabled } from '../../../initial_state';
 import * as playerActions from '../../../actions/audio_player';
 
 @connect(state => ({ ...state.get('audioPlayer') }), (dispatch) => ({
@@ -28,7 +28,9 @@ export class AudioPlayer extends React.Component {
   }
 
   componentDidMount() {
-    this.audioPlayer.audioEl.load();
+    if (playerEnabled) {
+      this.audioPlayer.audioEl.load();
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -69,16 +71,20 @@ export class AudioPlayer extends React.Component {
   };
 
   render() {
-    return (<ReactAudioPlayer
-      className={'column-player'}
-      src={playerUrl}
-      ref={this.setPlayerRef}
-      volume={(this.props.volume / 10) || 0.6}
-      onLoadedMetadata={this.onMetaLoaded}
-      onError={this.onPlaybackError}
-      onCanPlay={this.onPlaybackPossible}
-      onEnded={this.setPaused}
-    />);
+    if (playerEnabled === true) {
+      return (<ReactAudioPlayer
+        className={'column-player'}
+        src={playerUrl}
+        ref={this.setPlayerRef}
+        volume={(this.props.volume / 10) || 0.6}
+        onLoadedMetadata={this.onMetaLoaded}
+        onError={this.onPlaybackError}
+        onCanPlay={this.onPlaybackPossible}
+        onEnded={this.setPaused}
+      />);
+    } else {
+      return <div />;
+    }
   }
 
 }

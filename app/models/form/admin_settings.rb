@@ -16,6 +16,8 @@ class Form::AdminSettings
     :site_extended_description=,
     :site_terms,
     :site_terms=,
+    :player_enabled,
+    :player_enabled=,
     :player_url,
     :player_url=,
     :player_name,
