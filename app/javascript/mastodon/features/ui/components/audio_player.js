@@ -54,7 +54,7 @@ export class AudioPlayer extends React.Component {
   };
 
   onMetaLoaded = () => {
-    this.props.finishedLoading()
+    this.props.finishedLoading();
   };
 
   onPlaybackPossible = () => {

@@ -3,8 +3,6 @@ import { default as Mastodon, store } from './containers/mastodon';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ready from './ready';
-import { AudioPlayer } from './features/ui/components/audio_player';
-import { Provider } from 'react-redux';
 
 const perf = require('./performance');
 

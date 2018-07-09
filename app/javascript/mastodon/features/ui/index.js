@@ -129,7 +129,7 @@ class SwitchingColumnsArea extends React.PureComponent {
 
   setRef = c => {
     this.node = c.getWrappedInstance().getWrappedInstance();
-  }
+  };
 
   render () {
     const { children } = this.props;
@@ -142,20 +142,20 @@ class SwitchingColumnsArea extends React.PureComponent {
           {redirect}
           <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
           <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
-              <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
+          <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
           <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
-                  <WrappedRoute path='/timelines/public/media' component={PublicTimeline} content={children} componentParams={{ onlyMedia: true }} />
-            <WrappedRoute path='/timelines/public/local' exact component={CommunityTimeline} content={children} />
+          <WrappedRoute path='/timelines/public/media' component={PublicTimeline} content={children} componentParams={{ onlyMedia: true }} />
+          <WrappedRoute path='/timelines/public/local' exact component={CommunityTimeline} content={children} />
           <WrappedRoute path='/timelines/public/local/media' component={CommunityTimeline} content={children} componentParams={{ onlyMedia: true }} />
           <WrappedRoute path='/timelines/direct' component={DirectTimeline} content={children} />
           <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
           <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
 
-              <WrappedRoute path='/notifications' component={Notifications} content={children} />
-            <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
+          <WrappedRoute path='/notifications' component={Notifications} content={children} />
+          <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
           <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
-                      <WrappedRoute path='/search' component={Compose} content={children} componentParams={{ isSearchPage: true }} />
+          <WrappedRoute path='/search' component={Compose} content={children} componentParams={{ isSearchPage: true }} />
 
           <WrappedRoute path='/statuses/new' component={Compose} content={children} />
           <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
@@ -164,15 +164,15 @@ class SwitchingColumnsArea extends React.PureComponent {
 
           <WrappedRoute path='/accounts/:accountId' exact component={AccountTimeline} content={children} />
           <WrappedRoute path='/accounts/:accountId/with_replies' component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
-              <WrappedRoute path='/accounts/:accountId/followers' component={Followers} content={children} />
+          <WrappedRoute path='/accounts/:accountId/followers' component={Followers} content={children} />
           <WrappedRoute path='/accounts/:accountId/following' component={Following} content={children} />
-                  <WrappedRoute path='/accounts/:accountId/media' component={AccountGallery} content={children} />
+          <WrappedRoute path='/accounts/:accountId/media' component={AccountGallery} content={children} />
 
           <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
           <WrappedRoute path='/blocks' component={Blocks} content={children} />
-              <WrappedRoute path='/domain_blocks' component={DomainBlocks} content={children} />
-            <WrappedRoute path='/mutes' component={Mutes} content={children} />
-            <WrappedRoute path='/lists' component={Lists} content={children} />
+          <WrappedRoute path='/domain_blocks' component={DomainBlocks} content={children} />
+          <WrappedRoute path='/mutes' component={Mutes} content={children} />
+          <WrappedRoute path='/lists' component={Lists} content={children} />
 
           <WrappedRoute component={GenericNotFound} content={children} />
         </WrappedSwitch>
@@ -214,12 +214,12 @@ export default class UI extends React.PureComponent {
       // but we set user-friendly message for other browsers, e.g. Edge.
       e.returnValue = intl.formatMessage(messages.beforeUnload);
     }
-  }
+  };
 
   handleLayoutChange = () => {
     // The cached heights are no longer accurate, invalidate
     this.props.dispatch(clearHeight());
-  }
+  };
 
   handleDragEnter = (e) => {
     e.preventDefault();
@@ -235,7 +235,7 @@ export default class UI extends React.PureComponent {
     if (e.dataTransfer && Array.from(e.dataTransfer.types).includes('Files')) {
       this.setState({ draggingOver: true });
     }
-  }
+  };
 
   handleDragOver = (e) => {
     e.preventDefault();
@@ -248,7 +248,7 @@ export default class UI extends React.PureComponent {
     }
 
     return false;
-  }
+  };
 
   handleDrop = (e) => {
     e.preventDefault();
@@ -258,7 +258,7 @@ export default class UI extends React.PureComponent {
     if (e.dataTransfer && e.dataTransfer.files.length === 1) {
       this.props.dispatch(uploadCompose(e.dataTransfer.files));
     }
-  }
+  };
 
   handleDragLeave = (e) => {
     e.preventDefault();
@@ -271,11 +271,11 @@ export default class UI extends React.PureComponent {
     }
 
     this.setState({ draggingOver: false });
-  }
+  };
 
   closeUploadModal = () => {
     this.setState({ draggingOver: false });
-  }
+  };
 
   handleServiceWorkerPostMessage = ({ data }) => {
     if (data.type === 'navigate') {
@@ -283,7 +283,7 @@ export default class UI extends React.PureComponent {
     } else {
       console.warn('Unknown message type:', data.type);
     }
-  }
+  };
 
   componentWillMount () {
     window.addEventListener('beforeunload', this.handleBeforeUnload, false);
@@ -319,7 +319,7 @@ export default class UI extends React.PureComponent {
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
   handleHotkeyNew = e => {
     e.preventDefault();
@@ -329,7 +329,7 @@ export default class UI extends React.PureComponent {
     if (element) {
       element.focus();
     }
-  }
+  };
 
   handleHotkeySearch = e => {
     e.preventDefault();
@@ -339,12 +339,12 @@ export default class UI extends React.PureComponent {
     if (element) {
       element.focus();
     }
-  }
+  };
 
   handleHotkeyForceNew = e => {
     this.handleHotkeyNew(e);
     this.props.dispatch(resetCompose());
-  }
+  };
 
   handleHotkeyFocusColumn = e => {
     const index  = (e.key * 1) + 1; // First child is drawer, skip that
@@ -357,7 +357,7 @@ export default class UI extends React.PureComponent {
         status.focus();
       }
     }
-  }
+  };
 
   handleHotkeyBack = () => {
     if (window.history && window.history.length === 1) {
@@ -365,11 +365,11 @@ export default class UI extends React.PureComponent {
     } else {
       this.context.router.history.goBack();
     }
-  }
+  };
 
   setHotkeysRef = c => {
     this.hotkeys = c;
-  }
+  };
 
   handleHotkeyToggleHelp = () => {
     if (this.props.location.pathname === '/keyboard-shortcuts') {
@@ -377,51 +377,51 @@ export default class UI extends React.PureComponent {
     } else {
       this.context.router.history.push('/keyboard-shortcuts');
     }
-  }
+  };
 
   handleHotkeyGoToHome = () => {
     this.context.router.history.push('/timelines/home');
-  }
+  };
 
   handleHotkeyGoToNotifications = () => {
     this.context.router.history.push('/notifications');
-  }
+  };
 
   handleHotkeyGoToLocal = () => {
     this.context.router.history.push('/timelines/public/local');
-  }
+  };
 
   handleHotkeyGoToFederated = () => {
     this.context.router.history.push('/timelines/public');
-  }
+  };
 
   handleHotkeyGoToDirect = () => {
     this.context.router.history.push('/timelines/direct');
-  }
+  };
 
   handleHotkeyGoToStart = () => {
     this.context.router.history.push('/getting-started');
-  }
+  };
 
   handleHotkeyGoToFavourites = () => {
     this.context.router.history.push('/favourites');
-  }
+  };
 
   handleHotkeyGoToPinned = () => {
     this.context.router.history.push('/pinned');
-  }
+  };
 
   handleHotkeyGoToProfile = () => {
     this.context.router.history.push(`/accounts/${me}`);
-  }
+  };
 
   handleHotkeyGoToBlocked = () => {
     this.context.router.history.push('/blocks');
-  }
+  };
 
   handleHotkeyGoToMuted = () => {
     this.context.router.history.push('/mutes');
-  }
+  };
 
   render () {
     const { draggingOver } = this.state;
@@ -451,9 +451,9 @@ export default class UI extends React.PureComponent {
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef}>
         <AudioPlayer />
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
-            <TabsBar />
+          <TabsBar />
 
-            <SwitchingColumnsArea location={location} onLayoutChange={this.handleLayoutChange}>
+          <SwitchingColumnsArea location={location} onLayoutChange={this.handleLayoutChange}>
             {children}
           </SwitchingColumnsArea>
 
@@ -461,7 +461,7 @@ export default class UI extends React.PureComponent {
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
-          </div>
+        </div>
       </HotKeys>
     );
   }

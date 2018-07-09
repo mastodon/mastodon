@@ -16,7 +16,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       search_enabled: Chewy.enabled?,
       invites_enabled: Setting.min_invite_role == 'user',
       player_url: Setting.player_url,
-      player_name: Setting.player_name
+      player_name: Setting.player_name,
     }
 
     if object.current_account
