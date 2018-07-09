@@ -45,7 +45,7 @@ export const regexFromFilters = filters => {
     return null;
   }
 
-  return new RegExp(filters.map(filter => escapeRegExp(filter.get('phrase'))).join('|'), 'i');
+  return new RegExp(filters.map(filter => escapeRegExp(filter.get('phrase'))).map(expr => `\\b${expr}\\b`).join('|'), 'i');
 };
 
 export const makeGetStatus = () => {
