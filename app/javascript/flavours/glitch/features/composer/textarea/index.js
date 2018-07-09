@@ -112,6 +112,7 @@ const handlers = {
     const {
       disabled,
       onSubmit,
+      onSecondarySubmit,
       onSuggestionSelected,
       suggestions,
     } = this.props;
@@ -131,6 +132,11 @@ const handlers = {
     //  We submit the status on control/meta + enter.
     if (onSubmit && e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       onSubmit();
+    }
+
+    // Submit the status with secondary visibility on alt + enter.
+    if (onSecondarySubmit && e.keyCode === 13 && e.altKey) {
+      onSecondarySubmit();
     }
 
     //  Switches over the pressed key.
@@ -294,6 +300,7 @@ ComposerTextarea.propTypes = {
   onPaste: PropTypes.func,
   onPickEmoji: PropTypes.func,
   onSubmit: PropTypes.func,
+  onSecondarySubmit: PropTypes.func,
   onSuggestionsClearRequested: PropTypes.func,
   onSuggestionsFetchRequested: PropTypes.func,
   onSuggestionSelected: PropTypes.func,

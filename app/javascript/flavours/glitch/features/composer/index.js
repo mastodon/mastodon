@@ -331,6 +331,7 @@ class Composer extends React.Component {
           onPaste={onUpload}
           onPickEmoji={handleEmoji}
           onSubmit={handleSubmit}
+          onSecondarySubmit={handleSecondarySubmit}
           onSuggestionsClearRequested={onClearSuggestions}
           onSuggestionsFetchRequested={onFetchSuggestions}
           onSuggestionSelected={handleSelect}
