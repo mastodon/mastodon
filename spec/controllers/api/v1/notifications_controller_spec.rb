@@ -4,7 +4,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
   render_views
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read') }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:other) { Fabricate(:user, account: Fabricate(:account, username: 'bob')) }
 
   before do
@@ -12,6 +12,8 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
   end
 
   describe 'GET #show' do
+    let(:scopes) { 'read:notifications' }
+
     it 'returns http success' do
       notification = Fabricate(:notification, account: user.account)
       get :show, params: { id: notification.id }
@@ -21,6 +23,8 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
   end
 
   describe 'POST #dismiss' do
+    let(:scopes) { 'write:notifications' }
+
     it 'destroys the notification' do
       notification = Fabricate(:notification, account: user.account)
       post :dismiss, params: { id: notification.id }
@@ -31,6 +35,8 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
   end
 
   describe 'POST #clear' do
+    let(:scopes) { 'write:notifications' }
+
     it 'clears notifications for the account' do
       notification = Fabricate(:notification, account: user.account)
       post :clear
@@ -41,6 +47,8 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
   end
 
   describe 'GET #index' do
+    let(:scopes) { 'read:notifications' }
+
     before do
       first_status = PostStatusService.new.call(user.account, 'Test')
       @reblog_of_first_status = ReblogService.new.call(other.account, first_status)

@@ -11,7 +11,6 @@ Rails.application.configure do
   end
 
   config.x.access_to_hidden_service = ENV['ALLOW_ACCESS_TO_HIDDEN_SERVICE'] == 'true'
-  config.x.hidden_service_via_transparent_proxy = ENV['HIDDEN_SERVICE_VIA_TRANSPARENT_PROXY'] == 'true'
 end
 
 module Goldfinger

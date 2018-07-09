@@ -1,0 +1,94 @@
+---
+da:
+  simple_form:
+    hints:
+      defaults:
+        autofollow: Folk der har oprettet sig gennem invitationen vil automatisk følge dig
+        avatar: PNG, GIF eller JPG. Højest 2MB. Vil blive skaleret ned til 400x400px
+        bot: Denne konto udfører hovedsageligt automatiserede handlinger og bliver muligvis ikke overvåget
+        context: En eller flere sammenhænge hvor filteret skal være gældende
+        digest: Sendes kun efter en lang periode med inaktivitet og kun hvis du har modtaget nogle personlige beskeder mens du er væk
+        display_name:
+          one: <span class="name-counter">1</span> tegn tilbage
+          other: <span class="name-counter">%{count}</span>tegn tilbage
+        fields: Du kan have op til 4 ting vist som en tabel på din profil
+        header: PNG, GIF eller JPG. Højest 2MB. Vil blive skaleret ned til 700x335px
+        irreversible: Filtrerede toots vil forsvinde fulstændigt, selv hvis filteret senere skulle blive fjernet
+        locale: Sproget på interfacet, emails og push beskeder
+        locked: Kræver, at du godkender følgere manuelt
+        note:
+          one: <span class="note-counter">1</span> tegn tilbage
+          other: <span class="note-counter">%{count}</span> tegn tilbage
+        phrase: Vil blive parret uanset om der er store eller små bogstaver i teksten eller om der er en advarsel om en toot
+        setting_default_language: Sproget for dine toots kan blive fundet automatisk, men det er ikke altid præcist
+        setting_hide_network: Hvem du følger og hvem der følger dig vil ikke blive vist på din profil
+        setting_noindex: Påvirker din offentlige profil og status sider
+        setting_theme: Påvirker hvordan Mastodon ser ud nåt du er logget ind via en hvilken som helst enhed.
+      imports:
+        data: CSV fil eksporteret fra en anden Mastodon instans
+      sessions:
+        otp: 'Indtast to-faktor koden der generes af appen på din fon eller brug en af din genoprettelses koder:'
+      user:
+        chosen_languages: Når markeret, vil kun toots i de valgte sprog blive vist på offentlige tidslinjer
+    labels:
+      account:
+        fields:
+          name: Etiket
+          value: Indhold
+      defaults:
+        autofollow: Inviter til at følge din konto
+        avatar: Profilbillede
+        bot: Dette er en bot konto
+        chosen_languages: Filtrer sprog
+        confirm_new_password: Bekræft dit nye kodeord
+        confirm_password: Bekræft kodeord
+        context: Filtrer sammenhænge
+        current_password: Nuværende kodeord
+        data: Data
+        display_name: Visningsnavn
+        email: E-mail adresse
+        expires_in: Udløber efter
+        fields: Profil metadata
+        header: Overskrift
+        irreversible: Ignorer istedet for at skjule
+        locale: Sprog på interface
+        locked: Lås konto
+        max_uses: Højeste antal benyttelser
+        new_password: Nyt kodeord
+        note: Biografi
+        otp_attempt: To-faktor kode
+        password: Kodeord
+        phrase: Nøgleord eller sætning
+        setting_auto_play_gif: Afspil automatisk animerede GIFs
+        setting_boost_modal: Vis bekræftelses dialog før du fremhæver
+        setting_default_language: Sprog for opslag
+        setting_default_privacy: Privatliv
+        setting_default_sensitive: Marker altid multimedia som værende følsomt
+        setting_delete_modal: Vis bekræftelses dialog før du sletter et toot
+        setting_display_sensitive_media: Vis altid multimedier markeret som værende følsomt
+        setting_hide_network: Skjul dit netværk
+        setting_noindex: Frameld dig søgemaskiners indeksering
+        setting_reduce_motion: Reducer animationers bevægelse
+        setting_system_font_ui: Brug systemets standard font
+        setting_theme: Tema for side
+        setting_unfollow_modal: Vis bekræftelses dialog før du stopper med at følge nogen
+        severity: Omfang
+        type: Importtype
+        username: Brugernavn
+        username_or_email: Brugernavn eller Email
+      interactions:
+        must_be_follower: Bloker notifikationer fra folk der ikke følger dig
+        must_be_following: Bloker notifikationer fra folk du ikke følger
+        must_be_following_dm: Bloker direkte beskeder fra folk du ikke følger
+      notification_emails:
+        digest: Send sammendrag via emails
+        favourite: Send email når nogen favoriserer din status
+        follow: Send e-mail når nogen følger dig
+        follow_request: Send email når nogen anmoder om at følge dig
+        mention: Send e-mail når nogen nævner dig
+        reblog: Send email når nogen fremhæver din status
+    'no': Nej
+    required:
+      mark: "*"
+      text: påkrævet
+    'yes': Ja

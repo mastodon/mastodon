@@ -1,0 +1,58 @@
+---
+da:
+  devise:
+    confirmations:
+      confirmed: Din email adresse er blevet succesfuldt bekræftet.
+      send_instructions: Du vil modtage en mail med instrukser for hvordan du bekræfter din email adresse om få minutter. Tjek venligst din spam mappe hvis du ikke har modtaget denne email.
+    failure:
+      already_authenticated: Du er allerede logget ind.
+      inactive: Din konto er endnu ikke aktiveret.
+      invalid: Ugyldig %{authentication_keys} eller ugyldigt kodeord.
+      last_attempt: Du har et forsøg tilbage før din konto låses.
+      locked: Din konto er låst.
+      not_found_in_database: Ugyldig %{authentication_keys} eller ugyldigt kodeord.
+      timeout: Din session er udløbet. Log venligst ind igen for at fortsætte.
+      unauthenticated: Du er nødt til at logge ind eller oprette dig for at fortsætte.
+      unconfirmed: Du er nødt til at bekræfte din email adresse for at fortsætte.
+    mailer:
+      confirmation_instructions:
+        action: Bekræft email adresse
+        explanation: Du har oprettet en konto på %{host} med denne email adresse. Du er et klik fra at aktivere din konto. Hvis du ikke har oprettet dig, ignorer venligst denne email.
+        subject: 'Mastodon: Bekræftelses instrukser for %{instance}'
+        title: Bekræft email adresse
+      email_changed:
+        explanation: 'Email adressen for din konto bliver ændret til:'
+        extra: Hvis du ikke har ændret din email adresse er det muligt, at nogen har fået adgang til din konto. Venligst ændre dit kodeord med det samme eller kontakt administratoren på instansen hvis du er låst ude af din konto.
+        subject: 'Mastodon: Email ændret'
+        title: Ny email adresse
+      password_change:
+        explanation: Kodeordet for din konto er blevet ændret.
+        extra: Hvis du ikke har ændret dit kodeord er det muligt, at nogen har fået adgang til din konto. Venligst ændre dit kodeord med det samme eller kontakt administratoren på instansen hvis du er låst ude af din konto.
+        subject: 'Mastodon: Kodeord ændret'
+        title: Kodeordet er blevet ændret
+      reconfirmation_instructions:
+        explanation: Bekræft den nye adresse for at ændre din email.
+        subject: 'Mastodon: Bekræft email for %{instance}'
+        title: Bekræft email adresse
+      reset_password_instructions:
+        action: Ændre kodeord
+        explanation: Du anmodede om et nyt kodeord for din konto.
+        title: Kodeordet er blevet nulstillet
+    registrations:
+      signed_up: Velkommen! Du har nu tilmeldt dig.
+    sessions:
+      signed_in: Du er nu logget ind.
+      signed_out: Du er nu logget ud.
+    unlocks:
+      send_paranoid_instructions: Hvis din konto findes, vil du modtage en email med instrukser for hvordan du låser op for den om få minutter. Tjek venligst din spam mappe hvis du ikke har modtaget denne mail.
+      unlocked: Din konto er succesfuldt blevet låst op. Log venligst ind for at fortsætte.
+  errors:
+    messages:
+      already_confirmed: er allerede blevet bekræftet, prøv venligst at logge ind
+      confirmation_period_expired: skal bekræftes indenfor %{period}, anmod venligst om en ny
+      expired: er udløbet, anmod venligst en ny
+      not_found: ikke fundet
+      not_locked: blev ikke låst
+      not_saved:
+        one: '1 fejl forhindrede denne %{resource} fra at blive gemt:'
+        other: "%{count} fejl forhindrede denne %{resource} fra at blive gemt:"
