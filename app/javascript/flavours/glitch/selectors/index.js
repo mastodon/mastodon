@@ -66,14 +66,18 @@ export const makeGetStatus = () => {
         return null;
       }
 
+      const regex  = regexFromFilters(filters);
+      let filtered = false;
+
       if (statusReblog) {
+        filtered     = regex && regex.test(statusReblog.get('search_index'));
         statusReblog = statusReblog.set('account', accountReblog);
+        statusReblog = statusReblog.set('filtered', filtered);
       } else {
         statusReblog = null;
       }
 
-      const regex    = regexFromFilters(filters);
-      const filtered = regex && regex.test(statusBase.get('reblog') ? statusReblog.get('search_index') : statusBase.get('search_index'));
+      filtered = filtered || regex && regex.test(statusBase.get('search_index'));
 
       return statusBase.withMutations(map => {
         map.set('reblog', statusReblog);
