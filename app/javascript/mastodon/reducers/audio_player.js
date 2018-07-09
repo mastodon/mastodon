@@ -3,7 +3,7 @@ import * as actions from '../actions/audio_player';
 const initialState = {
   isPlaying: false,
   isLoading: true,
-  volume: 0.6,
+  volume: 6,
   muted: false,
   error: { code: -1 },
 };
@@ -25,13 +25,13 @@ export default function audioPlayer(state = initialState, action) {
   case actions.VOLUME_UP: {
     return {
       ...state,
-      volume: state.volume > 0.9 ? state.volume : state.volume + 0.1,
+      volume: state.volume >= 9 ? 9 : state.volume + 1,
     };
   }
   case actions.VOLUME_DOWN: {
     return {
       ...state,
-      volume: state.volume < 0.1 ? state.volume : state.volume - 0.1,
+      volume: state.volume <= 1 ? 1 : state.volume - 1,
     };
   }
   case actions.MUTE: {

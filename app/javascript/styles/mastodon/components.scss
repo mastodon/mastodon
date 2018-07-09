@@ -2196,24 +2196,6 @@ a.account__display-name {
   margin: -6px 10px;
 }
 
-@keyframes shake {
-  10%, 90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-
-  20%, 80% {
-    transform: translate3d(2px, -1px, 0);
-  }
-
-  30%, 50%, 70% {
-    transform: translate3d(-3px, 2px, 0);
-  }
-
-  40%, 60% {
-    transform: translate3d(3px, -3px, 0);
-  }
-}
-
 .column-player {
   background: lighten($ui-base-color, 8%);
   color: $primary-text-color;
@@ -2222,12 +2204,22 @@ a.account__display-name {
   padding: 15px;
   text-decoration: none;
 
-  &.playing {
-    animation: shake 0.9s cubic-bezier(.36, .07, .19, .97) both;
-    animation-iteration-count: infinite;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    perspective: 1000px;
+  > div.column-player__volume-controls {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    margin-right: 16px;
+
+    > span {
+      font-size: 11px;
+    }
+
+    > button {
+      margin-left: 8px;
+      margin-right: 8px;
+      background-color: transparent;
+      border: none;
+    }
   }
 
   button.column-player__toggle > i {

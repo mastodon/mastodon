@@ -26,7 +26,7 @@ export function volumeUp() {
   };
 }
 
-export function volumeDowm() {
+export function volumeDown() {
   return {
     type: VOLUME_DOWN,
   };

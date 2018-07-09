@@ -73,7 +73,7 @@ export class AudioPlayer extends React.Component {
       className={'column-player'}
       src={playerUrl}
       ref={this.setPlayerRef}
-      volume={this.props.volume  || 0.6}
+      volume={(this.props.volume / 10) || 0.6}
       onLoadedMetadata={this.onMetaLoaded}
       onError={this.onPlaybackError}
       onCanPlay={this.onPlaybackPossible}

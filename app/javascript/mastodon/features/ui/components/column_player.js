@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 @connect(state => ({ ...state.get('audioPlayer') }), (dispatch) => ({
   setPaused: () => dispatch(playerActions.setPaused()),
   setPlaying: () => dispatch(playerActions.setPlaying()),
+  volumeUp: () => dispatch(playerActions.volumeUp()),
+  volumeDown: () => dispatch(playerActions.volumeDown()),
 }))
 export default class ColumnPlayer extends React.Component {
 
@@ -17,6 +19,9 @@ export default class ColumnPlayer extends React.Component {
     isLoading: PropTypes.bool,
     setPlaying: PropTypes.func,
     error: PropTypes.any,
+    volume: PropTypes.number,
+    volumeUp: PropTypes.func,
+    volumeDown: PropTypes.func,
   };
 
   constructor(props) {
@@ -52,6 +57,11 @@ export default class ColumnPlayer extends React.Component {
           />
         </button>
         <span>{name}</span>
+        <div className='column-player__volume-controls'>
+          <button className='column-player__volume-btn' onClick={this.props.volumeDown}><i className='fa fa-fw fa-volume-down' /></button>
+          <span>{this.props.volume}</span>
+          <button className='column-player__volume-btn' onClick={this.props.volumeUp}><i className='fa fa-fw fa-volume-up' /></button>
+        </div>
       </div>
     </React.Fragment>);
   }
