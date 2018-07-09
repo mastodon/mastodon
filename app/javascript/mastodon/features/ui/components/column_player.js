@@ -3,7 +3,7 @@ import { playerName as name } from '../../../initial_state';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import * as playerActions from '../../../actions/audio_player';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 @connect(state => ({ ...state.get('audioPlayer') }), (dispatch) => ({
   setPaused: () => dispatch(playerActions.setPaused()),
