@@ -8,4 +8,7 @@
   = f.input :irreversible, wrapper: :with_label
 
 .fields-group
+  = f.input :whole_word, wrapper: :with_label
+
+.fields-group
   = f.input :expires_in, wrapper: :with_label, collection: [30.minutes, 1.hour, 6.hours, 12.hours, 1.day, 1.week].map(&:to_i), label_method: lambda { |i| I18n.t("invites.expires_in.#{i}") }, prompt: I18n.t('invites.expires_in_prompt')
