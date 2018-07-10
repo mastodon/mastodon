@@ -114,7 +114,29 @@ ja:
       application:
         title: OAuth認証
     scopes:
-      follow: アカウントのフォロー, ブロック, ブロック解除, フォロー解除
-      push: アカウントへのプッシュ通知の受信
-      read: アカウントからのデータの読み取り
-      write: アカウントへのデータの書き込み
+      follow: アカウントのつながりを変更
+      push: プッシュ通知の受信
+      read: アカウントのすべてのデータの読み取り
+      read:accounts: アカウント情報の読み取り
+      read:blocks: ブロックの読み取り
+      read:favourites: お気に入りの読み取り
+      read:filters: フィルターの読み取り
+      read:follows: フォローの読み取り
+      read:lists: リストの読み取り
+      read:mutes: ミュートの読み取り
+      read:notifications: 通知の読み取り
+      read:reports: 通報の読み取り
+      read:search: あなたの代わりに検索
+      read:statuses: すべてのトゥートの読み取り
+      write: アカウントのすべてのデータの変更
+      write:accounts: プロフィールの変更
+      write:blocks: ユーザーのブロックやドメインの非表示
+      write:favourites: トゥートのお気に入り登録
+      write:filters: フィルターの変更
+      write:follows: フォローの変更
+      write:lists: リストの変更
+      write:media: メディアのアップロード
+      write:mutes: アカウントや会話のミュート
+      write:notifications: 通知の消去
+      write:reports: 通報の作成
+      write:statuses: トゥートの投稿

@@ -219,6 +219,7 @@ da:
           suspend: Udeluk
         title: Ny domæne blokering
       reject_media: Afvis multimedie filer
+      reject_media_hint: Fjerner lokalt lagrede multimedie filer og nægter at hente nogen i fremtiden. Irrelevant for udelukkelser
       severities:
         noop: Ingen
         silence: Dæmp
@@ -228,6 +229,9 @@ da:
         affected_accounts:
           one: En konto i databasen påvirket
           other: "%{count} konti i databasen påvirket"
+        retroactive:
+          silence: Fjern dæmpningen af alle eksisterende konti fra dette domæne
+          suspend: Fjern udelukkelsen af alle eksisterende konti fra dette domæne
         title: Annuller domæne blokeringen for domænet %{domain}
         undo: Fortryd
       title: Domæne blokeringer
@@ -268,14 +272,17 @@ da:
       mark_as_unresolved: Marker som værende uløst
       notes:
         create: Tilføj notat
+        create_and_resolve: Løs med notat
         create_and_unresolve: Genåbne med notat
         delete: Slet
+        placeholder: Beskriv hvilke handlinger der er blevet udført, eller andre relevante opdateringer...
       reopen: Genåben anmeldelse
       report: 'Anmeldelse #%{id}'
       report_contents: Indhold
       reported_account: Anmeldt konto
       reported_by: Anmeldt af
       resolved: Løst
+      resolved_msg: Anmeldelse er sat til at være løst!
       silence_account: Dæmp konto
       status: Status
       suspend_account: Udeluk konto
@@ -285,6 +292,9 @@ da:
       updated_at: Opdateret
       view: Se
     settings:
+      contact_information:
+        email: Forretnings email
+        username: Kontakt brugernavn
       hero:
         title: Billede af helt
       registrations:
@@ -357,6 +367,7 @@ da:
   authorize_follow:
     already_following: Du følger allerede denne konto
     follow: Følg
+    follow_request: 'Du har anmodet om at følge:'
     following: 'Succes! Du følger nu:'
     post_follow:
       close: Du kan også bare lukke dette vindue.
@@ -372,6 +383,7 @@ da:
       x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Godt forsøg, hackere! Forkert kodeord
+    confirm_password: Indtast dit nuværende kodeord for at bekræfte din identitet
     proceed: Slet konto
     success_msg: Din konto er nu blevet slettet
   errors:
@@ -418,6 +430,7 @@ da:
     types:
       blocking: Blokeringsliste
       following: Følgningsliste
+      muting: Liste over dæmpninger
     upload: Læg op
   invites:
     delete: Deaktiver
@@ -440,6 +453,8 @@ da:
     validations:
       too_many: Kan ikke vedhæfte mere en 4 filer
   migrations:
+    acct: username@domain af den nye konto
+    currently_redirecting: 'Din profil er sat til at henvise til:'
     proceed: Gem
   moderation:
     title: Moderatering
@@ -461,6 +476,12 @@ da:
       body: 'Din status blev fremhævet af %{name}:'
       subject: "%{name} fremhævede din status"
       title: Ny fremhævelse
+  number:
+    human:
+      decimal_units:
+        units:
+          billion: mia.
+          million: mio.
   pagination:
     newer: Nyere
     next: Næste
@@ -469,16 +490,25 @@ da:
   preferences:
     languages: Sprog
     other: Andet
+    web: Web
   remote_unfollow:
     error: Fejl
     title: Titel
     unfollowed: Følger ikke længere
   sessions:
     browsers:
+      blackberry: Blackberry OS
+      chrome: Google Chrome
+      firefox: Mozilla Firefox
       generic: Ukendt browser
+      ie: IE
     description: "%{browser} på %{platform}"
     ip: IP
     platforms:
+      android: Android
+      ios: iOS
+      linux: Linux
+      mac: Mac.
       other: ukendt platform
   settings:
     authorized_apps: Godkendte apps
@@ -488,6 +518,7 @@ da:
     edit_profile: Rediger profil
     followers: Godkendte følgere
     import: Importer
+    migrate: Konto migrering
     notifications: Notifikationer
     preferences: Indstillinger
     settings: Indstillinger
@@ -501,9 +532,12 @@ da:
       video:
         one: "%{count} video"
         other: "%{count} videoer"
+    content_warning: 'Advarsel om indhold: %{warning}'
+    language_detection: Opfang automatisk sprog
     pin_errors:
       ownership: Dun kan ikke fastgøre en anden persons toot
     show_more: Vis mere
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Kun-følgere
       private_long: Vis kun til følgere
@@ -519,11 +553,13 @@ da:
     default: Mastodon
     mastodon-light: Mastodon (lys)
   two_factor_authentication:
+    code_hint: Indtast koden der er genereret af din app for at bekræfte
     disable: Deaktiver
     enable: Aktiver
     enabled: To-faktor godkendelse er aktiveret
     enabled_success: To-faktor godkendelse succesfuldt aktiveret
     generate_recovery_codes: Generer gendannelseskoder
+    manual_instructions: 'Hvis du ikke kan scanne QR koden er er nødt til at skrive koden ind manuelt, kan er din almindelig tekst secret:'
     recovery_codes: Reserve koder
     recovery_codes_regenerated: Reserve koder blev succesfuldt regenereret
     setup: Sæt op
