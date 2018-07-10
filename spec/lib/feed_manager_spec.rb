@@ -134,66 +134,28 @@ RSpec.describe FeedManager do
         expect(FeedManager.instance.filter?(:home, reblog, alice.id)).to be true
       end
 
-      it 'returns true for a status containing a muted keyword' do
-        Fabricate('Glitch::KeywordMute', account: alice, keyword: 'take')
-        status = Fabricate(:status, text: 'This is a hot take', account: bob)
+      context 'for irreversibly muted phrases' do
+        it 'considers word boundaries when matching' do
+          alice.custom_filters.create!(phrase: 'bob', context: %w(home), irreversible: true)
+          alice.follow!(jeff)
+          status = Fabricate(:status, text: 'bobcats', account: jeff)
+          expect(FeedManager.instance.filter?(:home, status, alice.id)).to be_falsy
+        end
 
-        expect(FeedManager.instance.filter?(:home, status, alice.id)).to be true
-      end
+        it 'returns true if phrase is contained' do
+          alice.custom_filters.create!(phrase: 'farts', context: %w(home public), irreversible: true)
+          alice.custom_filters.create!(phrase: 'pop tarts', context: %w(home), irreversible: true)
+          alice.follow!(jeff)
+          status = Fabricate(:status, text: 'i sure like POP TARts', account: jeff)
+          expect(FeedManager.instance.filter?(:home, status, alice.id)).to be true
+        end
 
-      it 'returns true for a reply containing a muted keyword' do
-        Fabricate('Glitch::KeywordMute', account: alice, keyword: 'take')
-        s1 = Fabricate(:status, text: 'Something', account: alice)
-        s2 = Fabricate(:status, text: 'This is a hot take', thread: s1, account: bob)
-
-        expect(FeedManager.instance.filter?(:home, s2, alice.id)).to be true
-      end
-
-      it 'returns true for a status whose spoiler text contains a muted keyword' do
-        Fabricate('Glitch::KeywordMute', account: alice, keyword: 'take')
-        status = Fabricate(:status, spoiler_text: 'This is a hot take', account: bob)
-
-        expect(FeedManager.instance.filter?(:home, status, alice.id)).to be true
-      end
-
-      it 'returns true for a reblog containing a muted keyword' do
-        Fabricate('Glitch::KeywordMute', account: alice, keyword: 'take')
-        status = Fabricate(:status, text: 'This is a hot take', account: bob)
-        reblog = Fabricate(:status, reblog: status, account: jeff)
-
-        expect(FeedManager.instance.filter?(:home, reblog, alice.id)).to be true
-      end
-
-      it 'returns true for a reblog whose spoiler text contains a muted keyword' do
-        Fabricate('Glitch::KeywordMute', account: alice, keyword: 'take')
-        status = Fabricate(:status, spoiler_text: 'This is a hot take', account: bob)
-        reblog = Fabricate(:status, reblog: status, account: jeff)
-
-        expect(FeedManager.instance.filter?(:home, reblog, alice.id)).to be true
-      end
-
-      it 'returns true for a status with a tag that matches a muted keyword' do
-        Fabricate('Glitch::KeywordMute', account: alice, keyword: 'jorts')
-        status = Fabricate(:status, account: bob)
-        status.tags << Fabricate(:tag, name: 'jorts')
-
-        expect(FeedManager.instance.filter?(:home, status, alice.id)).to be true
-      end
-
-      it 'returns true for a status with a tag that matches an octothorpe-prefixed muted keyword' do
-        Fabricate('Glitch::KeywordMute', account: alice, keyword: '#jorts')
-        status = Fabricate(:status, account: bob)
-        status.tags << Fabricate(:tag, name: 'jorts')
-
-        expect(FeedManager.instance.filter?(:home, status, alice.id)).to be true
-      end
-
-      it 'returns false if the status is muted by a keyword mute that does not apply to mentions' do
-        Fabricate('Glitch::KeywordMute', account: alice, keyword: 'take', apply_to_mentions: false)
-        status = Fabricate(:status, spoiler_text: 'This is a hot take', account: bob)
-        status.mentions.create!(account_id: alice.id)
-
-        expect(FeedManager.instance.filter?(:home, status, alice.id)).to be false
+        it 'matches substrings if whole_word is false' do
+          alice.custom_filters.create!(phrase: 'take', context: %w(home), whole_word: false, irreversible: true)
+          alice.follow!(jeff)
+          status = Fabricate(:status, text: 'shiitake', account: jeff)
+          expect(FeedManager.instance.filter?(:home, status, alice.id)).to be true
+        end
       end
     end
 
@@ -220,20 +182,6 @@ RSpec.describe FeedManager do
       it 'returns false for status by followed silenced account' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
         alice.update(silenced: true)
-        bob.follow!(alice)
-        expect(FeedManager.instance.filter?(:mentions, status, bob.id)).to be false
-      end
-
-      it 'returns true for status that contains a muted keyword' do
-        Fabricate('Glitch::KeywordMute', account: bob, keyword: 'take')
-        status = Fabricate(:status, text: 'This is a hot take', account: alice)
-        bob.follow!(alice)
-        expect(FeedManager.instance.filter?(:mentions, status, bob.id)).to be true
-      end
-
-      it 'returns false for a mention that contains a word muted by a keyword that does not apply to mentions' do
-        Fabricate('Glitch::KeywordMute', account: bob, keyword: 'take', apply_to_mentions: false)
-        status = Fabricate(:status, text: 'This is a hot take', account: alice)
         bob.follow!(alice)
         expect(FeedManager.instance.filter?(:mentions, status, bob.id)).to be false
       end

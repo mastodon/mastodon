@@ -5,17 +5,19 @@ de:
       defaults:
         autofollow: Leute die sich über deine Einladung registrieren werden dir automatisch folgen
         avatar: PNG, GIF oder JPG. Maximal 2 MB. Wird auf 400×400 px herunterskaliert
-        bot: Dieser Account führt hauptsächlich automatische Aktionen aus und wird möglicherweise nicht überwacht
+        bot: Dieses Konto führt lediglich automatisierte Aktionen durch und wird möglicherweise nicht überwacht
         digest: Wenn du lange Zeit inaktiv bist, wird dir eine Zusammenfassung von Erwähnungen in deiner Abwesenheit zugeschickt
         display_name:
           one: <span class="name-counter">1</span> Zeichen verbleibt
           other: <span class="name-counter">%{count}</span> Zeichen verbleiben
         fields: Du kannst bis zu 4 Elemente als Tabelle dargestellt auf deinem Profil anzeigen lassen
         header: PNG, GIF oder JPG. Maximal 2 MB. Wird auf 700×335 px herunterskaliert
+        locale: Die Sprache der Oberfläche, E-Mails und Push-Benachrichtigungen
         locked: Wer dir folgen möchte, muss um deine Erlaubnis bitten
         note:
           one: <span class="note-counter">1</span> Zeichen verbleibt
           other: <span class="note-counter">%{count}</span> Zeichen verbleiben
+        setting_default_language: Die Sprache der Beiträge kann automatisch erkannt werden, aber dies ist nicht immer genau
         setting_hide_network: Wem du folgst und wer dir folgt wird in deinem Profil nicht angezeigt
         setting_noindex: Betrifft dein öffentliches Profil und deine Beiträge
         setting_theme: Wirkt sich darauf aus, wie Mastodon aussieht, egal auf welchem Gerät du eingeloggt bist.
@@ -23,6 +25,8 @@ de:
         data: CSV-Datei, die aus einer anderen Mastodon-Instanz exportiert wurde
       sessions:
         otp: 'Gib den Zwei-Faktor-Authentisierungscode von deinem Telefon ein oder benutze einen deiner Wiederherstellungscodes:'
+      user:
+        chosen_languages: Wenn dies aktiviert ist, dann werden nur Beiträge in den ausgewählten Sprachen auf der öffentlichen Timeline angezeigt
     labels:
       account:
         fields:
@@ -32,6 +36,7 @@ de:
         autofollow: Einladen, um deinen Account zu folgen
         avatar: Profilbild
         bot: Dies ist ein bot Benutzer
+        chosen_languages: Sprachen filtern
         confirm_new_password: Neues Passwort bestätigen
         confirm_password: Passwort bestätigen
         current_password: Derzeitiges Passwort
@@ -41,26 +46,27 @@ de:
         expires_in: Gültig bis
         fields: Profil-Metadaten
         header: Kopfbild
-        locale: Sprache
+        locale: Sprache der Benutzeroberfläche
         locked: Gesperrtes Profil
-        max_uses: Max Verwendungen
+        max_uses: Maximale Verwendungen
         new_password: Neues Passwort
         note: Über mich
         otp_attempt: Zwei-Faktor-Authentisierungs-Code
         password: Passwort
         setting_auto_play_gif: Animierte GIFs automatisch abspielen
         setting_boost_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag geteilt wird
+        setting_default_language: Beitragssprache
         setting_default_privacy: Beitragssichtbarkeit
         setting_default_sensitive: Medien immer als heikel markieren
         setting_delete_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag gelöscht wird
         setting_display_sensitive_media: Medien, die als heikel markiert sind, immer anzeigen
-        setting_hide_network: Verstecke dein Netzwerk
+        setting_hide_network: Blende dein Netzwerk aus
         setting_noindex: Suchmaschinen-Indexierung verhindern
         setting_reduce_motion: Bewegung in Animationen verringern
         setting_system_font_ui: Standardschriftart des Systems verwenden
         setting_theme: Theme der Website
         setting_unfollow_modal: Bestätigungsdialog anzeigen, bevor jemand entfolgt wird
-        severity: Gewichtung
+        severity: Schweregrad
         type: Importtyp
         username: Profilname
         username_or_email: Profilname oder Email

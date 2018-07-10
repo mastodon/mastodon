@@ -97,7 +97,7 @@
     "postdeploy": "bundle exec rails db:migrate && bundle exec rails db:seed"
   },
   "addons": [
-    "scalingo-postgresql",
-    "scalingo-redis"
+    "postgresql",
+    "redis"
   ]
 }

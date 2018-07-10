@@ -78,4 +78,8 @@ class Api::BaseController < ApplicationController
   def render_empty
     render json: {}, status: 200
   end
+
+  def authorize_if_got_token!(*scopes)
+    doorkeeper_authorize!(*scopes) if doorkeeper_token
+  end
 end

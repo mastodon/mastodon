@@ -1,1 +1,26 @@
-{}
+---
+sl:
+  devise:
+    confirmations:
+      confirmed: Vaš e-poštni naslov je bil uspešno potrjen.
+      send_instructions: V nekaj minutah boste prejeli e-poštno sporočilo z navodili za potrditev vašega e-poštnega naslova. Če niste prejeli e-poštnega sporočila, preverite mapo neželena pošta.
+      send_paranoid_instructions: Če vaš e-poštni naslov obstaja v naši podatkovni bazi, boste v nekaj minutah prejeli e-poštno sporočilo z navodili za potrditev vašega e-poštnega naslova. Če niste prejeli e-poštnega sporočila, preverite mapo neželena pošta.
+    failure:
+      already_authenticated: Prijavljeni ste že.
+      inactive: Vaš račun še ni aktiviran.
+      invalid: Neveljavno %{authentication_keys} ali geslo.
+      last_attempt: Pred zaklepom računa imate še en poskus.
+      locked: Vaš račun je zaklenjen.
+      not_found_in_database: Neveljavno %{authentication_keys} ali geslo.
+      timeout: Vaša seja je potekla. Če želite nadaljevati, se znova prijavite.
+      unauthenticated: Pred nadaljevanjem se morate prijaviti ali vpisati.
+      unconfirmed: Pred nadaljevanjem morate potrditi svoj e-poštni naslov.
+    mailer:
+      confirmation_instructions:
+        action: Potrdi e-poštni naslov
+        explanation: S tem e-poštnim naslovom ste ustvarili račun na %{host}. Z enim samim klikom ga aktivirate. Če to niste bili vi, prosimo, prezrite to e-poštno sporočilo.
+        extra_html: Preverite tudi <a href="%{terms_path}">pravila vozlišča</a> in <a href="%{policy_path}">naše pogoje storitve</a>.
+        subject: 'Mastodon: Navodila za potrditev za %{instance}'
+        title: Potrdi e-poštni naslov
+      email_changed:
+        explanation: 'E-poštni naslov za vaš račun je spremenjen na:'
