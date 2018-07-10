@@ -1,13 +1,13 @@
 ---
-oc:
+cs:
   activerecord:
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: solament letras, nombres e tirets basses
+              invalid: pouze písmena, číslice a podtržítka
         status:
           attributes:
             reblog:
-              taken: de l’estatut existís ja
+              taken: stavu již existuje
