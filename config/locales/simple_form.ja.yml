@@ -1,3 +1,4 @@
+---
 ja:
   simple_form:
     hints:
@@ -15,11 +16,11 @@ ja:
         locked: フォロワーを手動で承認する必要があります
         note: あと<span class="note-counter">%{count}</span>文字入力できます。
         phrase: トゥートの大文字小文字や閲覧注意に関係なく一致
+        scopes: アプリの API に許可するアクセス権を選択してください。最上位のスコープを選択する場合、個々のスコープを選択する必要はありません。
         setting_default_language: トゥートの言語は自動的に検出されますが、必ずしも正確とは限りません
         setting_hide_network: フォローとフォロワーの情報がプロフィールページで見られないようにします
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
         setting_theme: ログインしている全てのデバイスで適用されるデザインです。
-        scopes: アプリの API に許可するアクセス権を選択してください。最上位のスコープを選択する場合、個々のスコープを選択する必要はありません。
       imports:
         data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
       sessions:
@@ -85,6 +86,6 @@ ja:
         reblog: トゥートがブーストされた時にメールで通知する
     'no': いいえ
     required:
-      mark: '*'
+      mark: "*"
       text: 必須
     'yes': はい
