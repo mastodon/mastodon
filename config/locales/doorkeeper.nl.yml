@@ -1,4 +1,3 @@
----
 nl:
   activerecord:
     attributes:
@@ -33,7 +32,8 @@ nl:
       help:
         native_redirect_uri: Gebruik %{native_redirect_uri} voor lokale tests
         redirect_uri: Gebruik één regel per URI
-        scopes: Toestemmingen met spaties van elkaar scheiden. Laat leeg om de standaardtoestemmingen te gebruiken.
+        scopes: Toestemmingen met spaties van elkaar scheiden. Laat leeg om de standaardtoestemmingen
+          te gebruiken.
       index:
         application: Toepassing
         callback_url: Callback-URL
@@ -60,7 +60,7 @@ nl:
         title: Er is een fout opgetreden
       new:
         able_to: Deze toepassing zal in staat zijn om
-        prompt: "%{client_name} autoriseren om jouw account te gebruiken"
+        prompt: '%{client_name} autoriseren om jouw account te gebruiken'
         title: Autorisatie vereist
       show:
         title: Kopieer deze autorisatiecode en plak het in de toepassing.
@@ -72,29 +72,44 @@ nl:
       index:
         application: Toepassing
         created_at: Aangemaakt op
-        date_format: "%d-%m-%Y %H:%M:%S"
+        date_format: '%d-%m-%Y %H:%M:%S'
         scopes: Toestemmingen
         title: Jouw geautoriseerde toepassingen
     errors:
       messages:
         access_denied: De resource-eigenaar of autorisatie-server weigerde het verzoek.
-        credential_flow_not_configured: De wachtwoordgegevens-flow van de resource-eigenaar is mislukt omdat Doorkeeper.configure.resource_owner_from_credentials niet is ingesteld.
-        invalid_client: Clientverificatie is mislukt door een onbekende client, ontbrekende client-authenticatie of een niet ondersteunde authenticatie-methode.
-        invalid_grant: De verstrekte autorisatie is ongeldig, verlopen, ingetrokken, komt niet overeen met de redirect-URI die is opgegeven of werd uitgegeven aan een andere client.
+        credential_flow_not_configured: De wachtwoordgegevens-flow van de resource-eigenaar
+          is mislukt omdat Doorkeeper.configure.resource_owner_from_credentials niet
+          is ingesteld.
+        invalid_client: Clientverificatie is mislukt door een onbekende client, ontbrekende
+          client-authenticatie of een niet ondersteunde authenticatie-methode.
+        invalid_grant: De verstrekte autorisatie is ongeldig, verlopen, ingetrokken,
+          komt niet overeen met de redirect-URI die is opgegeven of werd uitgegeven
+          aan een andere client.
         invalid_redirect_uri: De opgegeven redirect-URI is ongeldig.
-        invalid_request: Het verzoek mist een vereiste parameter, bevat een niet ondersteunde parameterwaarde of is anderszins onjuist.
-        invalid_resource_owner: De verstrekte resource-eigenaargegevens zijn ongeldig of de resource-eigenaar kan niet worden gevonden
+        invalid_request: Het verzoek mist een vereiste parameter, bevat een niet ondersteunde
+          parameterwaarde of is anderszins onjuist.
+        invalid_resource_owner: De verstrekte resource-eigenaargegevens zijn ongeldig
+          of de resource-eigenaar kan niet worden gevonden
         invalid_scope: De opgevraagde toestemming is ongeldig, onbekend of onjuist.
         invalid_token:
           expired: Toegangscode verlopen
           revoked: Toegangscode ingetrokken
           unknown: Toegangscode ongeldig
-        resource_owner_authenticator_not_configured: Het opzoeken van de resource-eigenaar is mislukt omdat Doorkeeper.configure.resource_owner_authenticator niet is ingesteld.
-        server_error: De autorisatieserver is is een onverwachte situatie tegengekomen die het verzoek verhinderde.
-        temporarily_unavailable: De autorisatieserver is momenteel niet in staat het verzoek te behandelen als gevolg van een tijdelijke overbelasting of onderhoud aan de server.
-        unauthorized_client: De client is niet bevoegd om dit verzoek op deze manier uit te voeren.
-        unsupported_grant_type: Het type autorisatie wordt niet door de autorisatieserver ondersteund.
-        unsupported_response_type: De autorisatieserver ondersteund dit antwoordtype niet.
+        resource_owner_authenticator_not_configured: Het opzoeken van de resource-eigenaar
+          is mislukt omdat Doorkeeper.configure.resource_owner_authenticator niet
+          is ingesteld.
+        server_error: De autorisatieserver is is een onverwachte situatie tegengekomen
+          die het verzoek verhinderde.
+        temporarily_unavailable: De autorisatieserver is momenteel niet in staat het
+          verzoek te behandelen als gevolg van een tijdelijke overbelasting of onderhoud
+          aan de server.
+        unauthorized_client: De client is niet bevoegd om dit verzoek op deze manier
+          uit te voeren.
+        unsupported_grant_type: Het type autorisatie wordt niet door de autorisatieserver
+          ondersteund.
+        unsupported_response_type: De autorisatieserver ondersteund dit antwoordtype
+          niet.
     flash:
       applications:
         create:
@@ -115,7 +130,29 @@ nl:
       application:
         title: OAuth-autorisatie vereist
     scopes:
-      follow: accounts volgen, negeren en blokkeren
-      push: ontvang pushmeldingen voor jouw account
-      read: berichten lezen
-      write: berichten plaatsen
+      follow: relaties tussen accounts bewerken
+      push: ontvang jouw pushmeldingen
+      read: alle gegevens van jouw account lezen
+      write: alle gegevens van jouw account bewerken
+      read:accounts: zie informatie accounts
+      read:blocks: zie jouw geblokkeerde gebruikers
+      read:favourites: zie jouw favorieten
+      read:filters: zie jouw filters
+      read:follows: zie de accounts die jij volgt
+      read:lists: zie jouw lijsten
+      read:mutes: zie jouw genegeerde gebruikers
+      read:notifications: zie jouw meldingen
+      read:reports: zie jouw gerapporteerde toots
+      read:search: namens jou zoeken
+      read:statuses: zie alle toots
+      write:accounts: jouw profiel bewerken
+      write:blocks: accounts en domeinen blokkeren
+      write:favourites: toots als favoriet markeren
+      write:filters: filters aanmaken
+      write:follows: mensen volgen
+      write:lists: lijsten aanmaken
+      write:media: mediabestanden uploaden
+      write:mutes: mensen en gesprekken negeren
+      write:notifications: meldingen verwijderen
+      write:reports: andere mensen rapporteren
+      write:statuses: toots publiceren

@@ -1,4 +1,3 @@
----
 da:
   activerecord:
     attributes:
@@ -33,7 +32,8 @@ da:
       help:
         native_redirect_uri: Brug %{native_redirect_uri} for lokale tests
         redirect_uri: Brug en linje per URI
-        scopes: Adskil omfang med mellemrum. Lad være blankt for at bruge standard omfang.
+        scopes: Adskil omfang med mellemrum. Lad være blankt for at bruge standard
+          omfang.
       index:
         application: Applikation
         callback_url: Callback-URL
@@ -72,7 +72,7 @@ da:
       index:
         application: Applikation
         created_at: Godkendt
-        date_format: "%Y-%m-%d %H:%M:%S"
+        date_format: '%Y-%m-%d %H:%M:%S'
         scopes: Omfang
         title: Dine godkendte applikationer
     errors:
@@ -83,8 +83,13 @@ da:
           expired: Adgangs-beviset er udløbet
           revoked: Adgangs-beviset er blevet ophævet
           unknown: Adgangs-beviset er ugyldigt
-        unauthorized_client: Klienten er ikke godkendt til at udføre denne anmodning ved at bruge denne metode.
-        unsupported_response_type: Godkendelses serveren understøtter ikke denne type respons.
+        unauthorized_client: Klienten er ikke godkendt til at udføre denne anmodning
+          ved at bruge denne metode.
+        unsupported_response_type: Godkendelses serveren understøtter ikke denne type
+          respons.
+        invalid_request: Anmodningen mangler en parametre, inkluderer en ikke understøttet
+          parametre værdi eller er på en eller anden måde deformeret.
+        invalid_scope: Det anmodede omfang er ugyldigt, ukendt eller deformeret.
     flash:
       applications:
         create:
@@ -104,7 +109,29 @@ da:
       application:
         title: OAuth godkendelse påkrævet
     scopes:
-      follow: følge, blokere, afblokete og affølge kontoer
-      push: modtage push notifikationer for din konto
-      read: læse din kontos data
-      write: indsende på dine vegne
+      follow: ændre din kontos forhold
+      push: modtage dine push notifikationer
+      read: læse alle din kontos data
+      write: ændre din kontos data
+      read:accounts: se konto oplysninger
+      read:blocks: se dine blokeringer
+      read:favourites: se dine favoritter
+      read:filters: se dine filtre
+      read:follows: se hvem du følger
+      read:lists: se dine lister
+      read:mutes: se dine dæmpninger
+      read:notifications: se dine notifikationer
+      read:reports: se dine anmeldelser
+      read:search: søge på dine vegne
+      read:statuses: se alle statusser
+      write:accounts: ændre din profil
+      write:blocks: bloker konti og domæner
+      write:favourites: favoriser statusser
+      write:filters: opret filtre
+      write:follows: følg folk
+      write:lists: opret lister
+      write:media: upload multimedie filer
+      write:mutes: dæmp folk og samtaler
+      write:notifications: ryd dine notifikationer
+      write:reports: anmeld andre folk
+      write:statuses: udgiv statusser

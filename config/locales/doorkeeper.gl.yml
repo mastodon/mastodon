@@ -1,4 +1,3 @@
----
 gl:
   activerecord:
     attributes:
@@ -33,7 +32,8 @@ gl:
       help:
         native_redirect_uri: Utilice %{native_redirect_uri} para probas locais
         redirect_uri: Utilice unha liña por URI
-        scopes: Separar permisos con espazos. Deixar en blanco para utilizar os permisos por omisión.
+        scopes: Separar permisos con espazos. Deixar en blanco para utilizar os permisos
+          por omisión.
       index:
         application: Aplicativo
         callback_url: URL de chamada
@@ -72,29 +72,44 @@ gl:
       index:
         application: Aplicativo
         created_at: Autorizado
-        date_format: "%d-%m-%Y %H:%M:%S"
+        date_format: '%d-%m-%Y %H:%M:%S'
         scopes: Permisos
         title: Os seus aplicativos autorizados
     errors:
       messages:
-        access_denied: O propietario do recurso ou o servidor autorizado denegaron a petición.
-        credential_flow_not_configured: O fluxo do Contrasinal de Credenciais do Dono do Recurso  fallou debido a que Doorkeeper.configure.resource_owner_from_credentials non están configuradas.
-        invalid_client: A autenticación do cliente fallou debido a un cliente descoñecido, non se incluíu autenticación do cliente, ou o método de autenticación non está soportado.
-        invalid_grant: A validación da autorización proporcionada non é valida, caducou, foi rexeitada, non coincide a redirección URI utilizada na petición de autorización, ou foi proporcionada para outro cliente.
+        access_denied: O propietario do recurso ou o servidor autorizado denegaron
+          a petición.
+        credential_flow_not_configured: O fluxo do Contrasinal de Credenciais do Dono
+          do Recurso  fallou debido a que Doorkeeper.configure.resource_owner_from_credentials
+          non están configuradas.
+        invalid_client: A autenticación do cliente fallou debido a un cliente descoñecido,
+          non se incluíu autenticación do cliente, ou o método de autenticación non
+          está soportado.
+        invalid_grant: A validación da autorización proporcionada non é valida, caducou,
+          foi rexeitada, non coincide a redirección URI utilizada na petición de autorización,
+          ou foi proporcionada para outro cliente.
         invalid_redirect_uri: A uri de redirección incluída non é válida.
-        invalid_request: A petición fáltalle un parámetro requerido, inclúe un valor de parámetro non soportado, ou de algún xeito non ten o formato axeitado.
-        invalid_resource_owner: As credenciais do dono do recurso proporcionadas non son válidas, ou o dono do recurso non pode ser atopado
+        invalid_request: A petición fáltalle un parámetro requerido, inclúe un valor
+          de parámetro non soportado, ou de algún xeito non ten o formato axeitado.
+        invalid_resource_owner: As credenciais do dono do recurso proporcionadas non
+          son válidas, ou o dono do recurso non pode ser atopado
         invalid_scope: O permiso solicitado non é válido, descoñecido, ou mal formado.
         invalid_token:
           expired: O testemuño de acceso caducou
           revoked: O testemuño de acceso foi rexeitado
           unknown: O testemuño de acceso non é válido
-        resource_owner_authenticator_not_configured: O dono do recurso fallou debido a Doorkeeper.configure.resource_owner_authenticator non estar configurado.
-        server_error: O servidor de autorización atopou un problema non agardado que evitou completar a petición.
-        temporarily_unavailable: O servidor de autorización non pode atender a petición en este momento debido a unha sobrecarga puntual ou mantemento do servidor.
-        unauthorized_client: O cliente non está autorizado a realizar a petición utilizando este método.
-        unsupported_grant_type: O método para proporcionar autorización non está soportado polo servidor de autorización.
-        unsupported_response_type: O servidor de autorización non soporta este tipo de resposta.
+        resource_owner_authenticator_not_configured: O dono do recurso fallou debido
+          a Doorkeeper.configure.resource_owner_authenticator non estar configurado.
+        server_error: O servidor de autorización atopou un problema non agardado que
+          evitou completar a petición.
+        temporarily_unavailable: O servidor de autorización non pode atender a petición
+          en este momento debido a unha sobrecarga puntual ou mantemento do servidor.
+        unauthorized_client: O cliente non está autorizado a realizar a petición utilizando
+          este método.
+        unsupported_grant_type: O método para proporcionar autorización non está soportado
+          polo servidor de autorización.
+        unsupported_response_type: O servidor de autorización non soporta este tipo
+          de resposta.
     flash:
       applications:
         create:
@@ -114,7 +129,29 @@ gl:
       application:
         title: Precisa autorización OAuth
     scopes:
-      follow: seguir, bloquear, desbloquear e deixar de seguir contas
-      push: recibir notificatións tipo push para a súa conta
-      read: ler os datos da súa conta
-      write: publicar no seu nome
+      follow: modificar as relacións da conta
+      push: recibir notificacións push
+      read: ler todos os datos da súa conta
+      write: modificar todos os datos da súa conta
+      read:accounts: ver información das contas
+      read:blocks: ver a quen bloquea
+      read:favourites: ver as súas favoritas
+      read:filters: ver os seus filtros
+      read:follows: ver a quen segue
+      read:lists: ver as súas listas
+      read:mutes: ver a quen ten acalado
+      read:notifications: ver as notificacións
+      read:reports: ver os seus informes
+      read:search: buscar no seu nome
+      read:statuses: ver todos os estados
+      write:accounts: modificar o seu perfil
+      write:blocks: bloquear contas e dominios
+      write:favourites: estados favoritos
+      write:filters: crear filtros
+      write:follows: seguir usuarias
+      write:lists: crear listas
+      write:media: subir ficheiros de medios
+      write:mutes: acalar usuarias e conversas
+      write:notifications: eliminar as notificacións
+      write:reports: informe a outras usuarias
+      write:statuses: publicar estados
