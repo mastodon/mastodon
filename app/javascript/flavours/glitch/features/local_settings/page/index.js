@@ -78,11 +78,11 @@ export default class LocalSettingsPage extends React.PureComponent {
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
-            item={['side_arm_auto']}
-            id='mastodon-settings--side_arm_auto'
+            item={['side_arm_reply_mode']}
+            id='mastodon-settings--side_arm_reply_mode'
             onChange={onChange}
           >
-            <FormattedMessage id='settings.side_arm_auto' defaultMessage='Auto privacy for secondary toot button' />
+            <FormattedMessage id='settings.side_arm_reply_mode' defaultMessage='When replying to a toot:' />
           </LocalSettingsPageItem>
         </section>
       </div>

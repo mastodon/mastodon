@@ -56,7 +56,6 @@ const initialState = ImmutableMap({
   spoiler: false,
   spoiler_text: '',
   privacy: null,
-  reply_privacy: null,
   text: '',
   focusDate: null,
   caretPosition: null,
@@ -291,7 +290,6 @@ export default function compose(state = initialState, action) {
       map.set('in_reply_to', action.status.get('id'));
       map.set('text', statusToTextMentions(state, action.status));
       map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
-      map.set('reply_privacy', action.status.get('visibility'));
       map.update(
         'advanced_options',
         map => map.merge(new ImmutableMap({ do_not_federate: /👁\ufe0f?\u200b?(?:<\/p>)?$/.test(action.status.get('content')) }))
@@ -317,7 +315,6 @@ export default function compose(state = initialState, action) {
       map.set('spoiler', false);
       map.set('spoiler_text', '');
       map.set('privacy', state.get('default_privacy'));
-      map.set('reply_privacy', null);
       map.update(
         'advanced_options',
         map => map.mergeWith(overwrite, state.get('default_advanced_options'))
