@@ -114,7 +114,29 @@ gl:
       application:
         title: Precisa autorización OAuth
     scopes:
-      follow: seguir, bloquear, desbloquear e deixar de seguir contas
-      push: recibir notificatións tipo push para a súa conta
-      read: ler os datos da súa conta
-      write: publicar no seu nome
+      follow: modificar as relacións da conta
+      push: recibir notificacións push
+      read: ler todos os datos da súa conta
+      read:accounts: ver información das contas
+      read:blocks: ver a quen bloquea
+      read:favourites: ver as súas favoritas
+      read:filters: ver os seus filtros
+      read:follows: ver a quen segue
+      read:lists: ver as súas listas
+      read:mutes: ver a quen ten acalado
+      read:notifications: ver as notificacións
+      read:reports: ver os seus informes
+      read:search: buscar no seu nome
+      read:statuses: ver todos os estados
+      write: modificar todos os datos da súa conta
+      write:accounts: modificar o seu perfil
+      write:blocks: bloquear contas e dominios
+      write:favourites: estados favoritos
+      write:filters: crear filtros
+      write:follows: seguir usuarias
+      write:lists: crear listas
+      write:media: subir ficheiros de medios
+      write:mutes: acalar usuarias e conversas
+      write:notifications: eliminar as notificacións
+      write:reports: informe a outras usuarias
+      write:statuses: publicar estados
