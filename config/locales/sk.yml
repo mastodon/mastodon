@@ -317,6 +317,9 @@ sk:
       peers_api_enabled:
         desc_html: Domény na ktoré táto instancia už vo fediverse natrafila
         title: Zverejniť zoznam objavených instancií
+      preview_sensitive_media:
+        desc_html: Náhľad adresy z iných instancií, bude zobrazený aj vtedy, keď sú dané médiá označené ako senzitívne
+        title: Ukazuj aj chúlostivé médiá v náhľadoch OpenGraph
       registrations:
         closed_message:
           desc_html: Toto sa zobrazí na hlavnej stránke v prípade že sú registrácie uzavreté. Možno tu použiť aj HTML kód
@@ -620,6 +623,7 @@ sk:
   remote_follow:
     acct: Napíš svoju prezývku@doménu z ktorej chceš následovať
     missing_resource: Nemôžeme nájsť potrebnú presmerovaciu adresu k tvojmu účtu
+    no_account_html: Nemáš ešte účet? Môžeš sa <a href='%{sign_up_path}' target='_blank'>zaregistrovať tu</a>
     proceed: Začni následovať
     prompt: 'Budeš sledovať:'
   remote_unfollow:

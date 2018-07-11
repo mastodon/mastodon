@@ -317,6 +317,9 @@ oc:
       peers_api_enabled:
         desc_html: Noms de domeni qu’aquesta instància a trobats pel fediverse
         title: Publica la lista de las instàncias conegudas
+      preview_sensitive_media:
+        desc_html: Los apercebuts dels ligams sus los autres sites mostraràn una vinheta encara que lo mèdia siá marcat coma sensible
+        title: Mostrar los mèdias sensibles dins los apercebuts OpenGraph
       registrations:
         closed_message:
           desc_html: Afichat sus las pagina d’acuèlh quand las inscripcions son tampadas.<br>Podètz utilizar de balisas HTML
@@ -338,7 +341,7 @@ oc:
         title: Mostrar lo badge personal
       site_description:
         desc_html: Afichada jos la forma de paragraf sus la pagina d’acuèlh e utilizada coma balisa meta. Podètz utilizar de balisas HTML, en particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
-        title: Descripcion del site
+        title: Descripcion de l’instància
       site_description_extended:
         desc_html: Afichada sus la pagina d’informacion complementària del site<br>Podètz utilizar de balisas HTML
         title: Descripcion espandida del site
@@ -387,7 +390,7 @@ oc:
     view_status: Veire los estatuts
   applications:
     created: Aplicacion ben creada
-    destroyed: Aplication ben suprimida
+    destroyed: Aplication corrcètament suprimida
     invalid_url: L’URL donada es invalida
     regenerate_token: Tornar generar lo geton d’accès
     token_regenerated: Geton d’accès ben regenerat
@@ -672,6 +675,7 @@ oc:
   remote_follow:
     acct: Picatz vòstre utilizaire@instància que cal utilizar per sègre aqueste utilizaire
     missing_resource: URL de redireccion pas trobada
+    no_account_html: Avètz pas cap de compte ? Podètz <a href='%{sign_up_path}' target='_blank'>vos marcar aquí</a>
     proceed: Clicatz per sègre
     prompt: 'Sètz per sègre :'
   remote_unfollow:
