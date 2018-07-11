@@ -317,6 +317,9 @@ pl:
       peers_api_enabled:
         desc_html: Nazwy domen, z którymi ta instancja wchodziła w interakcje
         title: Publikuj listę znanych instancji
+      preview_sensitive_media:
+        desc_html: Podgląd odnośników na innych instancjach będzie wyświetlał miniaturę nawet jeśli zawartość multimedialna zostanie oznaczona jako wrażliwa
+        title: Wyświetlaj zawartość wrażliwą w podglądzie OpenGraph
       registrations:
         closed_message:
           desc_html: Wyświetlana na stronie głównej, gdy możliwość otwarej rejestracji nie jest dostępna. Możesz korzystać z tagów HTML
@@ -624,6 +627,7 @@ pl:
   remote_follow:
     acct: Podaj swój adres (nazwa@domena), z którego chcesz śledzić
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
+    no_account_html: Nie masz konta? Możesz <a href='%{sign_up_path}' target='_blank'>zarejestrować się tutaj</a>
     proceed: Śledź
     prompt: 'Zamierzasz śledzić:'
   remote_unfollow:

@@ -13,7 +13,7 @@
         %strong.p-name.emojify= display_name(status.account, custom_emojify: true)
         %span= acct(status.account)
 
-  .status__content.p-name.emojify<
+  .status__content.emojify<
     - if status.spoiler_text?
       %p{ style: 'margin-bottom: 0' }<
         %span.p-summary> #{Formatter.instance.format_spoiler(status)}&nbsp;
