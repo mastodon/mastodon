@@ -114,7 +114,29 @@ oc:
       application:
         title: Cal una autorizacion OAuth
     scopes:
-      follow: sègre, blocar, quitar de blocar e quitar de sègre de comptes
-      push: recebre las notificacions push per vòstre compte
-      read: legir las donadas de vòstre compte
-      write: publicar per vos
+      follow: modificar las relacions del compte
+      push: recebre vòstras notificacions push
+      read: legir totas las donadas de vòstre compte
+      read:accounts: veire las informacions del compte
+      read:blocks: veire vòstres blocatges
+      read:favourites: veire vòstres favorits
+      read:filters: veire vòstres filtres
+      read:follows: veire vòstres abonaments
+      read:lists: veire vòstras listas
+      read:mutes: veire qual rescondètz
+      read:notifications: veire vòstras notificacions
+      read:reports: veire vòstres senhalaments
+      read:search: recercar per vos
+      read:statuses: veire los estatuts
+      write: modificar totas las donadas de vòstre compte
+      write:accounts: modificar vòstre perfil
+      write:blocks: blocar de comptes e de domenis
+      write:favourites: metre en favorit
+      write:filters: crear de filtres
+      write:follows: sègre de monde
+      write:lists: crear de listas
+      write:media: mandar de fichièrs mèdias
+      write:mutes: rescondre de monde e de conversacions
+      write:notifications: escafar vòstras notificacions
+      write:reports: senhalar de monde
+      write:statuses: publicar d’estatuts

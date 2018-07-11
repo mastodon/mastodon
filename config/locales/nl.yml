@@ -145,8 +145,8 @@ nl:
       subscribe: Abonneren
       title: Accounts
       unconfirmed_email: Onbevestigd e-mailadres
-      undo_silenced: Niet meer negeren
-      undo_suspension: Niet meer opschorten
+      undo_silenced: Niet langer negeren
+      undo_suspension: Niet langer opschorten
       unsubscribe: Opzeggen
       username: Gebruikersnaam
       web: Webapp
@@ -232,8 +232,8 @@ nl:
           one: Eén account in de database aangepast
           other: "%{count} accounts in de database aangepast"
         retroactive:
-          silence: Alle genegeerde accounts van dit domein niet meer negeren
-          suspend: Alle opgeschorte accounts van dit domein niet meer opschorten
+          silence: Alle genegeerde accounts van dit domein niet langer negeren
+          suspend: Alle opgeschorte accounts van dit domein niet langer opschorten
         title: Domeinblokkade voor %{domain} ongedaan maken
         undo: Ongedaan maken
       title: Domeinblokkades
@@ -296,7 +296,7 @@ nl:
       suspend_account: Account opschorten
       target: Gerapporteerde account
       title: Gerapporteerde toots
-      unassign: Niet meer toewijzen
+      unassign: Niet langer toewijzen
       unresolved: Onopgelost
       updated_at: Bijgewerkt
       view: Weergeven
@@ -316,6 +316,9 @@ nl:
       peers_api_enabled:
         desc_html: Domeinnamen die deze server in de fediverse is tegengekomen
         title: Lijst van bekende servers publiceren
+      preview_sensitive_media:
+        desc_html: Linkvoorvertoningen op andere websites hebben een thumbnail, zelfs als een afbeelding of video als gevoelig is gemarkeerd
+        title: Gevoelige afbeeldingen en video's in OpenGraph-voorvertoningen tonen
       registrations:
         closed_message:
           desc_html: Wordt op de voorpagina weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld<br>En ook hier kan je HTML gebruiken
@@ -474,6 +477,22 @@ nl:
     follows: Jij volgt
     mutes: Jij negeert
     storage: Mediaopslag
+  filters:
+    contexts:
+      home: Starttijdlijn
+      notifications: Meldingen
+      public: Openbare tijdlijnen
+      thread: Gesprekken
+    edit:
+      title: Filter bewerken
+    errors:
+      invalid_context: Geen of ongeldige context verstrekt
+      invalid_irreversible: Onomkeerbaar filteren werkt alleen met de starttijdlijn en meldingen
+    index:
+      delete: Verwijderen
+      title: Filters
+    new:
+      title: Nieuwe filter toevoegen
   followers:
     domain: Domein
     explanation_html: Wanneer je de privacy van jouw toots wilt garanderen, moet je goed weten wie jouw volgers zijn. <strong>Toots die alleen aan jouw volgers zijn gericht, worden aan de Mastodonservers van jouw volgers afgeleverd.</strong> Daarom wil je ze misschien controleren en desnoods volgers verwijderen die zich op een Mastodonserver bevinden die jij niet vertrouwd. Bijvoorbeeld omdat de beheerder(s) of de software van zo'n server jouw privacy niet respecteert.
@@ -484,7 +503,7 @@ nl:
       one: Bezig om volgers van één domein te verwijderen...
       other: Bezig om volgers van %{count} domeinen te verwijderen...
     true_privacy_html: Hou er wel rekening mee dat <strong>echte privacy alleen gegarandeerd kan worden met behulp van end-to-end-encryptie</strong>.
-    unlocked_warning_html: Iedereen kan jou volgen en daarmee meteen toots zien die je alleen aan volgers hebt gericht. %{lock_link} om volgers te kunnen beoordelen en desnoods te weigeren.
+    unlocked_warning_html: Iedereen kan jou volgen en daarmee meteen toots zien die je alleen aan jouw volgers hebt gericht. %{lock_link} om volgers te kunnen beoordelen en desnoods te weigeren.
     unlocked_warning_title: Jouw account is niet besloten
   generic:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
@@ -599,6 +618,7 @@ nl:
   remote_follow:
     acct: Geef jouw account@domein.tld op waarvandaan je wilt volgen
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
+    no_account_html: Heb je geen account? Je kunt er <a href='%{sign_up_path}' target='_blank'>hier een registreren</a>
     proceed: Ga door om te volgen
     prompt: 'Jij gaat volgen:'
   remote_unfollow:
@@ -687,7 +707,7 @@ nl:
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Alleen volgers
-      private_long: Alleen aan volgers tonen
+      private_long: Alleen aan jouw volgers tonen
       public: Openbaar
       public_long: Aan iedereen tonen, ook op openbare tijdlijnen
       unlisted: Minder openbaar

@@ -3,6 +3,4 @@
 
   %div
     = t('landing_strip_html', name: content_tag(:span, display_name(account, custom_emojify: true), class: :emojify), link_to_root_path: link_to(content_tag(:strong, site_hostname), root_path))
-
-    - if open_registrations?
-      = t('landing_strip_signup_html', sign_up_path: new_user_registration_path)
+    = t('landing_strip_signup_html', sign_up_path: open_registrations? ? new_user_registration_path : 'https://joinmastodon.org/#getting-started')
