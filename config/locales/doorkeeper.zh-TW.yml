@@ -5,7 +5,7 @@ zh-TW:
       doorkeeper/application:
         name: 名稱
         redirect_uri: 重新導向 URI
-        scopes: 範圍
+        scopes: 權限範圍
         website: 應用程式網頁
     errors:
       models:
@@ -29,9 +29,9 @@ zh-TW:
       edit:
         title: 編輯應用程式
       form:
-        error: 噢！請檢查表單錯誤訊息
+        error: 唉呦！請檢查表單錯誤訊息
       help:
-        native_redirect_uri: 使用 %{native_redirect_uri} 作局部測試
+        native_redirect_uri: 請使用 %{native_redirect_uri} 作測試
         redirect_uri: 每行輸入一個 URI
         scopes: 請用半形空格分開權限範圍 (scope)。留空表示使用預設的權限範圍。
       index:
@@ -40,9 +40,9 @@ zh-TW:
         delete: 刪除
         name: 名稱
         new: 新增應用程式
-        scopes: 範圍
+        scopes: 權限範圍
         show: 顯示
-        title: 您的應用程式
+        title: 你的應用程式
       new:
         title: 新增應用程式
       show:
@@ -54,7 +54,7 @@ zh-TW:
         title: 應用程式︰ %{name}
     authorizations:
       buttons:
-        authorize: 允許
+        authorize: 授權
         deny: 拒絕
       error:
         title: 發生錯誤
@@ -66,25 +66,25 @@ zh-TW:
         title: 複製此授權碼並貼上到應用程式中。
     authorized_applications:
       buttons:
-        revoke: 取消授權
+        revoke: 撤銷授權
       confirmations:
-        revoke: 您確定要取消授權？
+        revoke: 您確定要撤銷這個授權？
       index:
         application: 應用程式
-        created_at: 授權於
+        created_at: 授權時間
         date_format: "%Y-%m-%d %H:%M:%S"
         scopes: 權限範圍
-        title: 已獲您授權的應用程式
+        title: 已授權的應用程式
     errors:
       messages:
-        access_denied: 資源擁有者或授權伺服器不接受請求。
+        access_denied: 資源擁有者或認證伺服器不接受請求。
         credential_flow_not_configured: 資源擁有者密碼認證程序失敗，由於 Doorkeeper.configure.resource_owner_from_credentials 沒有設定。
         invalid_client: 客戶端驗證失敗，可能是未知的客戶端程式、未包含客戶端驗證、或使用了不支援的認證方法。
         invalid_grant: 授權申請不正確、逾期、已被取消、與授權請求內的重新導向 URI 不符、或屬於別的客戶端程式。
         invalid_redirect_uri: 不正確的重新導向網址。
         invalid_request: 請求缺少必要的參數、包含不支援的參數、或其他輸入錯誤。
         invalid_resource_owner: 資源擁有者的登入資訊錯誤、或無法找到該資源擁有者
-        invalid_scope: 請求的權限範圍不正確、未有定義、或輸入錯誤。
+        invalid_scope: 請求的權限範圍無效、未定義、或輸入錯誤。
         invalid_token:
           expired: access token 已過期
           revoked: access token 已被取消
@@ -93,8 +93,8 @@ zh-TW:
         server_error: 認證伺服器發生未知錯誤。
         temporarily_unavailable: 認證伺服器暫時無法使用。
         unauthorized_client: 客戶端程式無權使用此方法進行請求。
-        unsupported_grant_type: 授權伺服器不支援這個授權類型。
-        unsupported_response_type: 授權伺服器不支援這個回應類型。
+        unsupported_grant_type: 認證伺服器不支援這個授權類型。
+        unsupported_response_type: 認證伺服器不支援這個回應類型。
     flash:
       applications:
         create:
@@ -105,7 +105,7 @@ zh-TW:
           notice: 已更新應用程式。
       authorized_applications:
         destroy:
-          notice: 已取消應用程式授權。
+          notice: 已撤銷應用程式授權。
     layouts:
       admin:
         nav:
@@ -115,5 +115,6 @@ zh-TW:
         title: 需要 OAuth 授權
     scopes:
       follow: 關注、封鎖、解除封鎖及取消關注帳號
+      push: 接收你帳號的推送通知
       read: 讀取您的帳號資料
-      write: 以您的名義發佈文章
+      write: 以您的名義發佈嘟文

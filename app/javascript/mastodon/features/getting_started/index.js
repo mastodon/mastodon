@@ -84,7 +84,7 @@ export default class GettingStarted extends ImmutablePureComponent {
 
     const navItems = [];
     let i = 1;
-    let height = 0;
+    let height = (multiColumn) ? 0 : 60;
 
     if (multiColumn) {
       navItems.push(
@@ -119,10 +119,9 @@ export default class GettingStarted extends ImmutablePureComponent {
       navItems.push(
         <ColumnSubheading key={i++} text={intl.formatMessage(messages.settings_subheading)} />,
         <ColumnLink key={i++} icon='gears' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
-        <ColumnLink key={i++} icon='lock' text={intl.formatMessage(messages.security)} href='/auth/edit' />
       );
 
-      height += 34 + 48*2;
+      height += 34 + 48;
     }
 
     return (
