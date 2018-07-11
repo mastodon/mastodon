@@ -14,6 +14,8 @@ const messages = defineMessages({
   layout_desktop: { id: 'layout.desktop', defaultMessage: 'Desktop' },
   layout_mobile: { id: 'layout.single', defaultMessage: 'Mobile' },
   side_arm_none: { id: 'settings.side_arm.none', defaultMessage: 'None' },
+  side_arm_keep: { id: 'settings.side_arm_reply_mode.keep', defaultMessage: 'Keep secondary toot button to set privacy' },
+  side_arm_copy: { id: 'settings.side_arm_reply_mode.copy', defaultMessage: 'Copy privacy setting of the toot being replied to' },
 });
 
 @injectIntl
@@ -80,6 +82,10 @@ export default class LocalSettingsPage extends React.PureComponent {
             settings={settings}
             item={['side_arm_reply_mode']}
             id='mastodon-settings--side_arm_reply_mode'
+            options={[
+              { value: 'keep', message: intl.formatMessage(messages.side_arm_keep) },
+              { value: 'copy', message: intl.formatMessage(messages.side_arm_copy) }
+            ]}
             onChange={onChange}
           >
             <FormattedMessage id='settings.side_arm_reply_mode' defaultMessage='When replying to a toot:' />

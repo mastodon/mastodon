@@ -51,6 +51,9 @@ import { wrap } from 'flavours/glitch/util/redux_helpers';
 //  State mapping.
 function mapStateToProps (state) {
   const inReplyTo = state.getIn(['compose', 'in_reply_to']);
+  const replyPrivacy = inReplyTo ? state.getIn(['statuses', inReplyTo, 'visibility']) : null;
+  const sideArmBasePrivacy = state.getIn(['local_settings', 'side_arm']);
+  const sideArmPrivacy = (state.getIn(['local_settings', 'side_arm_reply_mode']) === 'copy' ? replyPrivacy : null) || sideArmBasePrivacy;
   return {
     acceptContentTypes: state.getIn(['media_attachments', 'accept_content_types']).toArray().join(','),
     advancedOptions: state.getIn(['compose', 'advanced_options']),
@@ -67,7 +70,7 @@ function mapStateToProps (state) {
     replyAccount: inReplyTo ? state.getIn(['statuses', inReplyTo, 'account']) : null,
     replyContent: inReplyTo ? state.getIn(['statuses', inReplyTo, 'contentHtml']) : null,
     resetFileKey: state.getIn(['compose', 'resetFileKey']),
-    sideArm: (state.getIn(['local_settings', 'side_arm_auto']) ? state.getIn(['compose', 'reply_privacy']) : null) || state.getIn(['local_settings', 'side_arm']),
+    sideArm: sideArmPrivacy,
     sensitive: state.getIn(['compose', 'sensitive']),
     showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
     spoiler: state.getIn(['compose', 'spoiler']),
