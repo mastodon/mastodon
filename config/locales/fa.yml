@@ -316,6 +316,9 @@ fa:
       peers_api_enabled:
         desc_html: دامین‌هایی که این سرور به آن‌ها برخورده است
         title: انتشار فهرست سرورهای یافته‌شده
+      preview_sensitive_media:
+        desc_html: پیوند به سایت‌های دیگر پیش‌نمایشی خواهد داشت که یک تصویر کوچک را نشان می‌دهد، حتی اگر نوشته به عنوان حساس علامت‌گذاری شده باشد
+        title: نمایش تصاویر حساسیت‌برانگیز در پیش‌نمایش‌های OpenGraph
       registrations:
         closed_message:
           desc_html: وقتی امکان ثبت نام روی سرور فعال نباشد در صفحهٔ اصلی نمایش می‌یابد<br>می‌توانید HTML بنویسید
@@ -615,6 +618,7 @@ fa:
   remote_follow:
     acct: نشانی حساب username@domain خود را این‌جا بنویسید
     missing_resource: نشانی اینترنتی برای رسیدن به حساب شما پیدا نشد
+    no_account_html: هنوز عضو نیستید؟ <a href='%{sign_up_path}' target='_blank'>این‌جا می‌توانید حساب باز کنید</a>
     proceed: درخواست پیگیری
     prompt: 'شما قرار است این حساب را پیگیری کنید:'
   remote_unfollow:
