@@ -200,7 +200,17 @@ class FeedManager
     active_filters = Rails.cache.fetch("filters:#{receiver_id}") { CustomFilter.where(account_id: receiver_id).active_irreversible.to_a }.to_a
 
     active_filters.select! { |filter| filter.context.include?(context.to_s) && !filter.expired? }
-    active_filters.map! { |filter| Regexp.new("\\b#{Regexp.escape(filter.phrase)}\\b", true) }
+
+    active_filters.map! do |filter|
+      if filter.whole_word
+        sb = filter.phrase =~ /\A[[:word:]]/ ? '\b' : ''
+        eb = filter.phrase =~ /[[:word:]]\z/ ? '\b' : ''
+
+        /(?mix:#{sb}#{Regexp.escape(filter.phrase)}#{eb})/
+      else
+        /#{Regexp.escape(filter.phrase)}/i
+      end
+    end
 
     return false if active_filters.empty?
 

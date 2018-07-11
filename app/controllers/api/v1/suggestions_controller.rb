@@ -13,6 +13,11 @@ class Api::V1::SuggestionsController < Api::BaseController
     render json: @accounts, each_serializer: REST::AccountSerializer
   end
 
+  def destroy
+    PotentialFriendshipTracker.remove(current_account.id, params[:id])
+    render_empty
+  end
+
   private
 
   def set_accounts
