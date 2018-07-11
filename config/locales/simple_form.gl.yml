@@ -20,6 +20,7 @@ gl:
           one: <span class="note-counter">1</span> caracter restante
           other: <span class="note-counter">%{count}</span> caracteres restantes
         phrase: Concordará independentemente das maiúsculas ou avisos de contido no toot
+        scopes: A que APIs terá acceso a aplicación. Si selecciona un ámbito de alto nivel, non precisa seleccionar elementos individuais.
         setting_default_language: Pódese detectar automáticamente o idioma dos seus toots, mais non sempre é preciso
         setting_hide_network: Non se mostrará no seu perfil quen a segue e quen a está a seguir
         setting_noindex: Afecta ao seu perfil público e páxinas de estado
@@ -27,7 +28,7 @@ gl:
       imports:
         data: Ficheiro CSV exportado desde outra instancia Mastodon
       sessions:
-        otp: Introduza o código de doble-factor xerado no aplicativo do seu móbil ou utilice un dos seus códigos de recuperación.
+        otp: 'Introduza o código de doble-factor xerado no aplicativo do seu móbil ou utilice un dos seus códigos de recuperación:'
       user:
         chosen_languages: Si se marca, só os toots nos idiomas seleccionados serán mostrados en liñas temporais públicas
     labels:
