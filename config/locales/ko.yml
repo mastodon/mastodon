@@ -318,6 +318,9 @@ ko:
       peers_api_enabled:
         desc_html: 이 인스턴스가 페디버스에서 만났던 도메인 네임들
         title: 발견 된 인스턴스들의 리스트 발행
+      preview_sensitive_media:
+        desc_html: 민감한 미디어로 설정되었더라도 다른 웹사이트에서 링크 미리보기에 썸네일을 보여줍니다
+        title: 민감한 미디어를 오픈그래프 미리보기에 보여주기
       registrations:
         closed_message:
           desc_html: 신규 등록을 받지 않을 때 프론트 페이지에 표시됩니다. HTML 태그를 사용할 수 있습니다
@@ -617,6 +620,7 @@ ko:
   remote_follow:
     acct: 아이디@도메인을 입력해 주십시오
     missing_resource: 리디렉션 대상을 찾을 수 없습니다
+    no_account_html: 계정이 없나요? <a href='%{sign_up_path}' target='_blank'>여기에서 가입 할 수 있습니다</a>
     proceed: 팔로우 하기
     prompt: '팔로우 하려 하고 있습니다:'
   remote_unfollow:
