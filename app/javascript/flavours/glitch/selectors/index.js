@@ -47,7 +47,18 @@ export const regexFromFilters = filters => {
 
   return new RegExp(filters.map(filter => {
     let expr = escapeRegExp(filter.get('phrase'));
-    return filter.get('whole_word') ? `\\b${expr}\\b` : expr;
+
+    if (filter.get('whole_word')) {
+      if (/^[\w]/.test(expr)) {
+        expr = `\\b${expr}`;
+      }
+
+      if (/[\w]$/.test(expr)) {
+        expr = `${expr}\\b`;
+      }
+    }
+
+    return expr;
   }).join('|'), 'i');
 };
 
