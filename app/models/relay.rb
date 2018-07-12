@@ -12,9 +12,13 @@
 #
 
 class Relay < ApplicationRecord
-  validates :inbox_url, presence: true, if: :will_save_change_to_inbox_url?
+  PRESET_RELAY = 'https://relay.joinmastodon.org/inbox'
+
+  validates :inbox_url, presence: true, uniqueness: true, url: true, if: :will_save_change_to_inbox_url?
 
   scope :enabled, -> { where(enabled: true) }
+
+  before_destroy :ensure_disabled
 
   def enable!
     activity_id = ActivityPub::TagManager.instance.generate_uri_for(nil)
@@ -58,5 +62,10 @@ class Relay < ApplicationRecord
 
   def some_local_account
     @some_local_account ||= Account.local.find_by(suspended: false)
+  end
+
+  def ensure_disabled
+    return unless enabled?
+    disable!
   end
 end
