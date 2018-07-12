@@ -25,6 +25,7 @@ en:
         setting_hide_network: Who you follow and who follows you will not be shown on your profile
         setting_noindex: Affects your public profile and status pages
         setting_skin: Reskins the selected Mastodon flavour
+        whole_word: When the keyword or phrase is alphanumeric only, it will only be applied if it matches the whole word
       imports:
         data: CSV file exported from another Mastodon instance
       sessions:
@@ -78,6 +79,7 @@ en:
         type: Import type
         username: Username
         username_or_email: Username or Email
+        whole_word: Whole word
       interactions:
         must_be_follower: Block notifications from non-followers
         must_be_following: Block notifications from people you don't follow
