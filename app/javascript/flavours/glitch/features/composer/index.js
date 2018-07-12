@@ -47,13 +47,24 @@ import { me } from 'flavours/glitch/util/initial_state';
 import { isMobile } from 'flavours/glitch/util/is_mobile';
 import { assignHandlers } from 'flavours/glitch/util/react_helpers';
 import { wrap } from 'flavours/glitch/util/redux_helpers';
+import { privacyPreference } from 'flavours/glitch/util/privacy_preference';
 
 //  State mapping.
 function mapStateToProps (state) {
   const inReplyTo = state.getIn(['compose', 'in_reply_to']);
   const replyPrivacy = inReplyTo ? state.getIn(['statuses', inReplyTo, 'visibility']) : null;
   const sideArmBasePrivacy = state.getIn(['local_settings', 'side_arm']);
-  const sideArmPrivacy = (state.getIn(['local_settings', 'side_arm_reply_mode']) === 'copy' ? replyPrivacy : null) || sideArmBasePrivacy;
+  const sideArmRestrictedPrivacy = replyPrivacy ? privacyPreference(replyPrivacy, sideArmBasePrivacy) : null;
+  let sideArmPrivacy = null;
+  switch (state.getIn(['local_settings', 'side_arm_reply_mode'])) {
+    case 'copy':
+      sideArmPrivacy = replyPrivacy;
+      break;
+    case 'restrict':
+      sideArmPrivacy = sideArmRestrictedPrivacy;
+      break;
+  }
+  sideArmPrivacy = sideArmPrivacy || sideArmBasePrivacy;
   return {
     acceptContentTypes: state.getIn(['media_attachments', 'accept_content_types']).toArray().join(','),
     advancedOptions: state.getIn(['compose', 'advanced_options']),
