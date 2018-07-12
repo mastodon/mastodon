@@ -43,6 +43,7 @@ class Relay < ApplicationRecord
       '@context': ActivityPub::TagManager::CONTEXT,
       id: activity_id,
       type: 'Follow',
+      actor: ActivityPub::TagManager.instance.uri_for(some_local_account),
       object: ActivityPub::TagManager::COLLECTIONS[:public],
     }
   end
@@ -52,9 +53,11 @@ class Relay < ApplicationRecord
       '@context': ActivityPub::TagManager::CONTEXT,
       id: activity_id,
       type: 'Undo',
+      actor: ActivityPub::TagManager.instance.uri_for(some_local_account),
       object: {
         id: follow_activity_id,
         type: 'Follow',
+        actor: ActivityPub::TagManager.instance.uri_for(some_local_account),
         object: ActivityPub::TagManager::COLLECTIONS[:public],
       },
     }
