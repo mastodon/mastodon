@@ -35,6 +35,7 @@ import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
 import { REDRAFT } from 'flavours/glitch/actions/statuses';
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 import uuid from 'flavours/glitch/util/uuid';
+import { privacyPreference } from 'flavours/glitch/util/privacy_preference';
 import { me } from 'flavours/glitch/util/initial_state';
 import { overwrite } from 'flavours/glitch/util/js_helpers';
 import { unescapeHTML } from 'flavours/glitch/util/html';
@@ -204,11 +205,6 @@ const insertEmoji = (state, position, emojiData) => {
     map.set('caretPosition', position + emoji.length + 1);
     map.set('idempotencyKey', uuid());
   });
-};
-
-const privacyPreference = (a, b) => {
-  const order = ['public', 'unlisted', 'private', 'direct'];
-  return order[Math.max(order.indexOf(a), order.indexOf(b), 0)];
 };
 
 const hydrate = (state, hydratedState) => {
