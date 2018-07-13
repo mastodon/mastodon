@@ -1,36 +1,49 @@
----
 nl:
   simple_form:
     hints:
       defaults:
-        autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen jou automatisch
+        autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen
+          jou automatisch
         avatar: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 400x400px
         bot: Dit is een geautomatiseerd account en wordt mogelijk niet gemonitord
         context: Een of meerdere locaties waar de filter actief moet zijn
-        digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
+        digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen
+          wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
         display_name:
           one: <span class="name-counter">1</span> teken over
           other: <span class="name-counter">%{count}</span> tekens over
         fields: Je kan maximaal 4 items als een tabel op je profiel weergeven
         header: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 700x335px
-        irreversible: Gefilterde toots verdwijnen onomkeerbaar, zelfs als de filter later wordt verwijderd
+        irreversible: Gefilterde toots verdwijnen onomkeerbaar, zelfs als de filter
+          later wordt verwijderd
         locale: De taal van de gebruikersomgeving, e-mails en pushmeldingen
         locked: Vereist dat je handmatig volgers moet accepteren
         note:
           one: <span class="note-counter">1</span> teken over
           other: <span class="note-counter">%{count}</span> tekens over
         phrase: Komt overeen ongeacht hoofd-/kleine letters of tekstwaarschuwingen
-        scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
-        setting_default_language: De taal van jouw toots kan automatisch worden gedetecteerd, maar het is niet altijd accuraat
-        setting_hide_network: Wie jij volgt en wie jou volgen wordt niet op jouw profiel getoond
+        scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming
+          van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer
+          te kiezen.
+        setting_default_language: De taal van jouw toots kan automatisch worden gedetecteerd,
+          maar het is niet altijd accuraat
+        setting_hide_network: Wie jij volgt en wie jou volgen wordt niet op jouw profiel
+          getoond
         setting_noindex: Heeft invloed op jouw openbare profiel en toots
-        setting_theme: Heeft invloed op hoe de webapp van Mastodon eruitziet (op elk apparaat waarmee je inlogt).
+        setting_theme: Heeft invloed op hoe de webapp van Mastodon eruitziet (op elk
+          apparaat waarmee je inlogt).
+        inbox_url: Kopieer de URL van de voorpagina van de relayserver die je wil
+          gebruiken
+        whole_word: Wanneer het trefwoord of zinsdeel alfanumeriek is, wordt het alleen
+          gefilterd wanneer het hele woord overeenkomt
       imports:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       sessions:
-        otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes.
+        otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik
+          een van jouw herstelcodes.
       user:
-        chosen_languages: Alleen toots in de aangevinkte talen worden op de openbare tijdlijnen getoond
+        chosen_languages: Alleen toots in de aangevinkte talen worden op de openbare
+          tijdlijnen getoond
     labels:
       account:
         fields:
@@ -77,6 +90,8 @@ nl:
         type: Importtype
         username: Gebruikersnaam
         username_or_email: Gebruikersnaam of e-mailadres
+        inbox_url: Inbox-URL van de relayserver
+        whole_word: Heel woord
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren
@@ -90,6 +105,6 @@ nl:
         reblog: Een e-mail versturen wanneer iemand jouw toot heeft geboost
     'no': Nee
     required:
-      mark: "*"
+      mark: '*'
       text: vereist
     'yes': Ja
