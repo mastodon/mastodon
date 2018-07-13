@@ -1,3 +1,4 @@
+---
 ja:
   simple_form:
     hints:
@@ -47,6 +48,7 @@ ja:
         expires_in: 有効期限
         fields: プロフィール補足情報
         header: ヘッダー
+        inbox_url: URL of the relay inbox
         irreversible: 隠すのではなく除外する
         locale: 言語
         locked: 承認制アカウントにする
@@ -74,7 +76,6 @@ ja:
         username: ユーザー名
         username_or_email: ユーザー名またはメールアドレス
         whole_word: 単語全体にマッチ
-        inbox_url: URL of the relay inbox
       interactions:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック
@@ -88,6 +89,6 @@ ja:
         reblog: トゥートがブーストされた時にメールで通知する
     'no': いいえ
     required:
-      mark: '*'
+      mark: "*"
       text: 必須
     'yes': はい
