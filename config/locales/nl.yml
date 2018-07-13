@@ -413,6 +413,20 @@ nl:
       title: WebSub
       topic: Account
     title: Beheer
+    relays:
+      add_new: Nieuwe relayserver toevoegen
+      description_html: Een <strong>federatie-relay</strong> is een tussenliggende
+        server die grote hoeveelheden openbare toots uitwisselt tussen servers die
+        zich hierop hebben geabonneerd. <strong>Het kan kleine en middelgrote servers
+        helpen om content uit de fediverse te ontdekken</strong>, waarvoor anders
+        lokale gebruikers handmatig mensen van externe servers moeten volgen.
+      enable_hint: Eenmaal ingeschakeld gaat jouw server zich op alle openbare toots
+        van deze relayserver abonneren en stuurt het de openbare toots van jouw server
+        naar de relayserver.
+      inbox_url: Relay-URL
+      setup: Een verbinding met een relayserver maken
+      status: Status
+      title: Relayservers
   admin_mailer:
     new_report:
       body: '%{reporter} heeft %{target} gerapporteerd'
