@@ -131,6 +131,13 @@ Rails.application.routes.draw do
     resource :settings, only: [:edit, :update]
     resources :invites, only: [:index, :create, :destroy]
 
+    resources :relays, only: [:index, :new, :create, :destroy] do
+      member do
+        post :enable
+        post :disable
+      end
+    end
+
     resources :instances, only: [:index] do
       collection do
         post :resubscribe
