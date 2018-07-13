@@ -1,0 +1,21 @@
+%tr
+  %td
+    %samp= relay.inbox_url
+  %td
+    - if relay.enabled?
+      %span.positive-hint
+        = fa_icon('check')
+        = ' '
+        = t 'admin.relays.enabled'
+    - else
+      %span.negative-hint
+        = fa_icon('times')
+        = ' '
+        = t 'admin.relays.disabled'
+  %td
+    - if relay.enabled?
+      = table_link_to 'power-off', t('admin.relays.disable'), disable_admin_relay_path(relay), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
+    - else
+      = table_link_to 'power-off', t('admin.relays.enable'), enable_admin_relay_path(relay), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
+
+    = table_link_to 'times', t('admin.relays.delete'), admin_relay_path(relay), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }

@@ -9,7 +9,11 @@ class ActivityPub::UpdateDistributionWorker
     @account = Account.find(account_id)
 
     ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
-      [payload, @account.id, inbox_url]
+      [signed_payload, @account.id, inbox_url]
+    end
+
+    ActivityPub::DeliveryWorker.push_bulk(Relay.enabled.pluck(:inbox_url)) do |inbox_url|
+      [signed_payload, @account.id, inbox_url]
     end
   rescue ActiveRecord::RecordNotFound
     true
@@ -19,6 +23,10 @@ class ActivityPub::UpdateDistributionWorker
 
   def inboxes
     @inboxes ||= @account.followers.inboxes
+  end
+
+  def signed_payload
+    @signed_payload ||= Oj.dump(ActivityPub::LinkedDataSignature.new(payload).sign!(@account))
   end
 
   def payload

@@ -17,7 +17,7 @@ class ActivityPub::DeleteSerializer < ActiveModel::Serializer
     end
   end
 
-  attributes :id, :type, :actor
+  attributes :id, :type, :actor, :to
 
   has_one :object, serializer: TombstoneSerializer
 
@@ -31,5 +31,9 @@ class ActivityPub::DeleteSerializer < ActiveModel::Serializer
 
   def actor
     ActivityPub::TagManager.instance.uri_for(object.account)
+  end
+
+  def to
+    [ActivityPub::TagManager::COLLECTIONS[:public]]
   end
 end
