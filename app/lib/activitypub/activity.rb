@@ -73,8 +73,6 @@ class ActivityPub::Activity
   end
 
   def distribute(status)
-    crawl_links(status)
-
     notify_about_reblog(status) if reblog_of_local_account?(status)
     notify_about_mentions(status)
 
@@ -100,11 +98,6 @@ class ActivityPub::Activity
       next unless mention.account.local? && audience_includes?(mention.account)
       NotifyService.new.call(mention.account, mention)
     end
-  end
-
-  def crawl_links(status)
-    return if status.spoiler_text?
-    LinkCrawlWorker.perform_async(status.id)
   end
 
   def distribute_to_followers(status)

@@ -64,8 +64,6 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
 
     Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
 
-    LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
-
     # Only continue if the status is supposed to have arrived in real-time.
     # Note that if @options[:override_timestamps] isn't set, the status
     # may have a lower snowflake id than other existing statuses, potentially
