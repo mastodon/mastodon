@@ -1,0 +1,471 @@
+// Apply background image.
+body {
+  background: url($foresdon-background-image) no-repeat fixed center bottom;
+
+  &.app-body {
+    background: url($foresdon-background-image) no-repeat fixed center bottom;
+  }
+
+  &.about-body {
+    background: url($foresdon-background-image) no-repeat fixed center bottom;
+  }
+
+  &.admin {
+    background: url($foresdon-background-image) no-repeat fixed center bottom;
+  }
+}
+
+// landing page.
+.landing-page {
+  background: rgba($foresdon-ui-base-color, 0.7);
+
+  & .header-wrapper,
+  & .header-wrapper.compact {
+    background: rgba($foresdon-ui-base-color, 0.5);
+  }
+
+  & .information-board {
+    background: rgba($foresdon-ui-base-color, 0.9);
+  }
+
+  &__forms {
+    background: rgba($foresdon-ui-base-color, 0.5);
+  }
+
+  &__information {
+    background: rgba($foresdon-ui-base-color, 0.5);
+  }
+
+  &__call-to-action {
+    background: rgba($foresdon-ui-base-color, 0.5);
+  }
+
+  & #mastodon-timeline {
+    background: none;
+    box-shadow: none;
+  }
+
+  @media screen and (max-width: 675px) {
+    .header {
+      .links {
+        background: rgba($foresdon-ui-base-color, 0.5);
+      }
+    }
+  }
+}
+
+// login page.
+.form-container {
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  & ::-webkit-input-placeholder {
+    color: $foresdon-ui-primary-color;
+  }
+
+  & ::-moz-placeholder {
+    color: $foresdon-ui-primary-color;
+  }
+
+  & :-ms-input-placeholder {
+    color: $foresdon-ui-primary-color;
+  }
+}
+
+// Permalink
+.landing-strip {
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+  border: none;
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.card {
+  margin-bottom: $foresdon-default-margin-bottom;
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  & .card-bio {
+    background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+  }
+}
+
+.activity-stream-tabs {
+  margin-bottom: $foresdon-default-margin-bottom;
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+  border: none;
+  border-radius: $foresdon-primary-border-radius;
+
+  & a.active {
+    color: $foresdon-ui-primary-color;
+  }
+}
+
+.activity-stream.with-header {
+  color: $white;
+  box-shadow: none;
+
+  & .entry:first-child,
+  & .entry:first-child:last-child,
+  & .entry:first-child:last-child .detailed-status.light,
+  & .entry:first-child:last-child .status.light {
+    border-radius: $foresdon-primary-border-radius;
+  }
+}
+
+.activity-stream .entry {
+  margin-bottom: $foresdon-default-margin-bottom;
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+  border: none;
+  border-radius: $foresdon-primary-border-radius;
+
+  & .detailed-status.light,
+  & .status.light {
+    background: none;
+    border: none;
+    & .display-name strong,
+    & .status__content {
+      color: $white;
+    }
+  }
+
+  &:last-child {
+    border-radius: $foresdon-primary-border-radius;
+  }
+}
+
+.accounts-grid {
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+  border: none;
+  border-radius: $foresdon-primary-border-radius;
+  box-shadow: none;
+
+  & .account-grid-card {
+    color: $white;
+    background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+    border: none;
+    border-radius: $foresdon-primary-border-radius;
+
+    & .display_name {
+      color: $white;
+    }
+
+    & .note {
+      color: $white;
+    }
+  }
+}
+
+// Preference
+.admin-wrapper {
+  background: rgba($foresdon-ui-base-color, $foresdon-background-filter-alpha);
+
+  & .sidebar-wrapper,
+  & .content-wrapper {
+    background: none;
+
+    & .table-wrapper .table tr {
+      & th, & td {
+        background: none;
+      }
+    }
+  }
+  & .sidebar ul {
+    & a {
+      &.selected {
+        color: $foresdon-ui-primary-color;
+        background: none;
+
+        &:hover {
+          background: none;
+        }
+      }
+
+      &:hover {
+        background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+      }
+    }
+
+    & ul {
+      background: none;
+
+      & a {
+        background: none;
+
+        &.selected {
+          color: $foresdon-ui-primary-color;
+          background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+          border-radius: $foresdon-primary-border-radius;
+
+          &:hover {
+            background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+          }
+        }
+
+        &:hover {
+          background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+        }
+      }
+    }
+  }
+}
+
+// main ui page.
+.ui {
+  background: rgba($foresdon-ui-base-color, $foresdon-background-filter-alpha);
+}
+
+// Drawer
+.drawer__header {
+  margin-bottom: 0;
+  background: none;
+
+  & a {
+    color: $foresdon-ui-primary-color;
+    border-radius: $foresdon-primary-border-radius;
+    transition: color 100ms ease-in;
+  }
+
+  & a:hover {
+    color: $foresdon-ui-secondary-color;
+    background: none;
+  }
+}
+
+.drawer__tab {
+  color: $foresdon-primary-text-color;
+}
+
+.drawer__inner {
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  &__mastodon {
+    background: none;
+  }
+
+  &.darker {
+    background: rgba($foresdon-ui-base-color, 0.9);
+  }
+}
+
+.search__input {
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  &:focus {
+    background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+    transition: background-color 100ms ease-in;
+  }
+}
+
+
+.search-results__header {
+  color: $foresdon-ui-secondary-color;
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+  border: none;
+}
+
+// Columns
+.column>.scrollable {
+  background: none;
+}
+
+.column-header {
+  background: none;
+}
+
+.column-header__button {
+  color: $foresdon-ui-primary-color;
+  background: none;
+
+  &:hover {
+    color: $foresdon-ui-secondary-color;
+  }
+  &.active, &.active:hover {
+    color: $foresdon-ui-secondary-color;
+    background: none;
+  }
+}
+
+/// Getting started
+.column-header__back-button {
+  color: $foresdon-ui-primary-color;
+  background: none;
+
+  &:hover {
+    color: $foresdon-ui-secondary-color;
+  }
+}
+
+.column-back-button {
+  color: $foresdon-ui-primary-color;
+  background: none;
+
+  &:hover {
+    color: $foresdon-ui-secondary-color;
+  }
+}
+
+.column-header__collapsible-inner {
+  margin-bottom: $foresdon-default-margin-bottom;
+  color: $foresdon-ui-primary-color;
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.column-inline-form {
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.getting-started__wrapper,
+.getting-started {
+  margin-bottom: $foresdon-default-margin-bottom;
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+.flex-spacer {
+  background: none;
+  border: none;
+}
+.community-timeline__section-headline,
+.public-timeline__section-headline,
+.account__section-headline {
+  margin: 0 3px 3px 0;
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  & a::after {
+      opacity: 0.5;
+  }
+}
+
+.column-subheading {
+  color: darken($foresdon-ui-primary-color, 20%);
+  background: none;
+}
+
+.column-link {
+  background: none;
+  border-radius: $foresdon-primary-border-radius;
+
+  &:hover {
+    background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  }
+}
+
+.static-content {
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.keyboard-shortcuts kbd {
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  border: none;
+  border-radius: 3px;
+}
+
+
+// Statuses
+.status__wrapper {
+  margin: 0 3px $foresdon-default-margin-bottom 0;
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  border: none;
+  border-radius: $foresdon-primary-border-radius;
+}
+.status {
+  border: none;
+  &.status-direct {
+    background: none;
+  }
+}
+
+// Accounts
+.account {
+  margin-bottom: $foresdon-default-margin-bottom;
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  border: none;
+  border-radius: $foresdon-primary-border-radius;
+
+  &__header {
+    margin: 0 3px $foresdon-default-margin-bottom 0;
+    background-color: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+    border: none;
+    border-radius: $foresdon-primary-border-radius;
+    margin-bottom: 3px;
+  
+    & > div {
+      background-color: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+      border-radius: $foresdon-primary-border-radius;
+    }
+  }
+
+  &__action-bar__tab {
+    background: none;
+    border: none;
+  }
+  
+  &__action-bar {
+    margin: 0 3px $foresdon-default-margin-bottom 0;
+    background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+    border: none;
+    border-radius: $foresdon-primary-border-radius;
+    margin-bottom: 3px;
+  }
+  
+
+  &__section-headline {
+    margin-bottom: 3px;
+    color: $foresdon-ui-primary-color;
+    background-color: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+    border-style: none;
+    border-radius: $foresdon-primary-border-radius;
+
+    & a.active::before, & a.active::after {
+      opacity: 0.3;
+    }
+  }
+}
+
+// Notifications
+.notification {
+  margin: 0 3px $foresdon-default-margin-bottom 0;
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  & .status__wrapper {
+    background: none;
+  }
+
+  & .account {
+    background: none;
+  }
+}
+
+// Single column
+.tabs-bar {
+  margin: 0;
+  background: rgba($foresdon-ui-base-color, $foresdon-background-filter-alpha);
+}
+
+// Other
+.load-more {
+  color: $foresdon-ui-primary-color;
+  background: none;
+  border-radius: $foresdon-primary-border-radius;
+
+  &:hover {
+    color: $foresdon-ui-secondary-color;
+    background: none;
+  }
+}
+
+.empty-column-indicator, .error-column {
+  color: $foresdon-primary-text-color;
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+}

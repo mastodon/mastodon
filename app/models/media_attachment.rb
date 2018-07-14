@@ -32,7 +32,7 @@ class MediaAttachment < ApplicationRecord
 
   IMAGE_STYLES = {
     original: {
-      geometry: '1280x1280>',
+      geometry: '1920x1920>',
       file_geometry_parser: FastGeometryParser,
     },
 
@@ -54,7 +54,7 @@ class MediaAttachment < ApplicationRecord
     },
   }.freeze
 
-  LIMIT = 8.megabytes
+  LIMIT = 16.megabytes
 
   belongs_to :account, inverse_of: :media_attachments, optional: true
   belongs_to :status,  inverse_of: :media_attachments, optional: true

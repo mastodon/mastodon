@@ -21,7 +21,7 @@ module Mastodon
     end
 
     def flags
-      ''
+      '+80bda97'
     end
 
     def to_a
@@ -33,12 +33,12 @@ module Mastodon
     end
 
     def source_base_url
-      'https://github.com/tootsuite/mastodon'
+      'https://github.com/kedamaDQ/mastodon'
     end
 
     # specify git tag or commit hash here
     def source_tag
-      nil
+      'foresdon-v2.4.2'
     end
 
     def source_url
