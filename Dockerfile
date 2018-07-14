@@ -69,7 +69,7 @@ COPY Gemfile Gemfile.lock package.json yarn.lock .yarnclean /mastodon/
 
 RUN bundle config build.nokogiri --with-iconv-lib=/usr/local/lib --with-iconv-include=/usr/local/include \
  && bundle install -j$(getconf _NPROCESSORS_ONLN) --deployment --without test development \
- && yarn --pure-lockfile \
+ && yarn install --pure-lockfile --ignore-engines \
  && yarn cache clean
 
 RUN addgroup -g ${GID} mastodon && adduser -h /mastodon -s /bin/sh -D -G mastodon -u ${UID} mastodon \
