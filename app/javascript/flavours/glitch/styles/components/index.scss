@@ -577,14 +577,6 @@
   }
 }
 
-@include limited-single-column('screen and (max-width: 600px)', $parent: null) {
-  .tabs-bar__link {
-    span {
-      display: inline;
-    }
-  }
-}
-
 @include multi-columns('screen and (min-width: 631px)', $parent: null) {
   .tabs-bar {
     display: none;
