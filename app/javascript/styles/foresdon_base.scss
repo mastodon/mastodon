@@ -54,6 +54,17 @@ body {
   }
 }
 
+// override on forms.scss.
+.simple_form {
+  .input-with-append {
+    .append {
+      &::after {
+        background-image: none;
+      }
+    }
+  }
+}
+
 // login page.
 .form-container {
   background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
