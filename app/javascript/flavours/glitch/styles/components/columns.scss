@@ -63,9 +63,10 @@
   overflow: hidden;
 }
 
-@include limited-single-column('screen and (max-width: 360px)', $parent: null) {
+@include limited-single-column('screen and (min-width: 360px)', $parent: null) {
   .tabs-bar {
-    margin: 0;
+    margin: 10px;
+    margin-bottom: 0;
   }
 }
 
