@@ -42,25 +42,14 @@ sudo apt-get install \
   libpam0g-dev \
   -y
 
-# Install rbenv
-sudo apt-get install \
-  git \
-  build-essential \
-  libssl-dev \
-  -y
+# Install rvm
 read RUBY_VERSION < .ruby-version
-git clone https://github.com/sstephenson/rbenv.git /home/vagrant/.rbenv
-git clone https://github.com/sstephenson/ruby-build.git /home/vagrant/.rbenv/plugins/ruby-build
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
-echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-source /home/vagrant/.bash_profile
-rbenv rehash
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer | bash -s stable --ruby=$RUBY_VERSION
+source /home/vagrant/.rvm/scripts/rvm
 
 # Install Ruby
-rbenv install $RUBY_VERSION
-rbenv rehash
-rbenv global $RUBY_VERSION
-rbenv rehash
+rvm reinstall ruby-$RUBY_VERSION --disable-binary
 
 # Configure database
 sudo -u postgres createuser -U postgres vagrant -s
