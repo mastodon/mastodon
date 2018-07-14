@@ -77,8 +77,10 @@ COPY . /mastodon
 
 RUN chown -R mastodon:mastodon /mastodon
 
-VOLUME /mastodon/public/system /mastodon/public/assets /mastodon/public/packs
+VOLUME /mastodon/public/system
 
 USER mastodon
+
+RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:precompile
 
 ENTRYPOINT ["/sbin/tini", "--"]
