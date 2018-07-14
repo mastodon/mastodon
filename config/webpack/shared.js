@@ -1,9 +1,9 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
 const webpack = require('webpack');
-const { basename, dirname, join, relative, resolve, sep } = require('path');
+const { basename, dirname, join, relative, resolve } = require('path');
 const { sync } = require('glob');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const extname = require('path-complete-extname');
 const { env, settings, themes, output, loadersDir } = require('./configuration.js');
@@ -39,6 +39,26 @@ module.exports = {
     publicPath: output.publicPath,
   },
 
+  optimization: {
+    runtimeChunk: {
+      name: 'common',
+    },
+    splitChunks: {
+      cacheGroups: {
+        default: false,
+        vendors: false,
+        common: {
+          name: 'common',
+          chunks: 'all',
+          minChunks: 2,
+          minSize: 0,
+          test: /^(?!.*[\\\/]node_modules[\\\/]react-intl[\\\/]).+$/,
+        },
+      },
+    },
+    occurrenceOrder: true,
+  },
+
   module: {
     rules: sync(join(loadersDir, '*.js')).map(loader => require(loader)),
   },
@@ -52,25 +72,13 @@ module.exports = {
         resource.request = resource.request.replace(/^history/, 'history/es');
       }
     ),
-    new ExtractTextPlugin(env.NODE_ENV === 'production' ? '[name]-[contenthash].css' : '[name].css'),
+    new MiniCssExtractPlugin({
+      filename: env.NODE_ENV === 'production' ? '[name]-[contenthash].css' : '[name].css',
+    }),
     new ManifestPlugin({
       publicPath: output.publicPath,
       writeToFileEmit: true,
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'common',
-      minChunks: (module, count) => {
-        const reactIntlPathRegexp = new RegExp(`node_modules\\${sep}react-intl`);
-
-        if (module.resource && reactIntlPathRegexp.test(module.resource)) {
-          // skip react-intl because it's useless to put in the common chunk,
-          // e.g. because "shared" modules between zh-TW and zh-CN will never
-          // be loaded together
-          return false;
-        }
-
-        return count >= 2;
-      },
+      filter: file => !file.isAsset || file.isModuleAsset,
     }),
   ],
 
