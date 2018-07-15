@@ -10,7 +10,7 @@ da:
     contact_missing: Ikke sat
     contact_unavailable: Ikke tilgængeligt
     description_headline: Hvad er %{domain}?
-    domain_count_after: andre instancer
+    domain_count_after: andre instanser
     domain_count_before: Forbundet til
     extended_description_html: |
       <h3>Et godt sted for regler</h3>
@@ -27,7 +27,7 @@ da:
     generic_description: "%{domain} er en server i netværket"
     hosted_on: Mostodon hostet på %{domain}
     learn_more: Lær mere
-    other_instances: Liste over instancer
+    other_instances: Liste over instanser
     source_code: Kildekode
     status_count_after: statusser
     status_count_before: Som har skrevet
@@ -46,7 +46,7 @@ da:
     people_who_follow: Folk der følger %{name}
     posts: Dyt
     posts_with_replies: Toots og svar
-    remote_follow: Følg fra andre instancer
+    remote_follow: Følg fra andre instanser
     reserved_username: Brugernavnet er reserveret
     roles:
       admin: Administrator
@@ -256,6 +256,10 @@ da:
         expired: Udløbet
         title: Filtre
       title: Invitationer
+    relays:
+      setup: Opsæt en videresendelses forbindelse
+      status: Status
+      title: Videresendelser
     reports:
       account:
         note: notat
@@ -297,7 +301,11 @@ da:
         username: Kontakt brugernavn
       hero:
         title: Billede af helt
+      peers_api_enabled:
+        title: Udgiv liste over opdagede instanser
       registrations:
+        closed_message:
+          title: Besked for lukkede registreringer
         deletion:
           desc_html: Tillad alle at slette deres konto
           title: Åben konto sletning
@@ -338,6 +346,7 @@ da:
     new_report:
       body: "%{reporter} har anmeldt %{target}"
       body_remote: Nogen fra %{domain} har anmeldt %{target}
+      subject: Ny anmeldelse for %{instance} (#%{id})
   application_mailer:
     notification_preferences: Ændre email indstillinger
     salutation: "%{name},"
@@ -359,6 +368,9 @@ da:
     migrate_account: Flyt til en anden konto
     or: eller
     or_log_in_with: Eller log in med
+    providers:
+      cas: CAS
+      saml: SAML
     register: Opret dig
     register_elsewhere: Opret dig på en anden server
     reset_password: Nulstil kodeord
@@ -378,8 +390,15 @@ da:
     distance_in_words:
       about_x_hours: "%{count}t"
       about_x_months: "%{count} måneder"
+      about_x_years: "%{count}år"
+      almost_x_years: "%{count}år"
       half_a_minute: Lige nu
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Lige nu
+      over_x_years: "%{count}år"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}md"
       x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Godt forsøg, hackere! Forkert kodeord
@@ -401,6 +420,7 @@ da:
       download: Hent dit arkiv
       size: Størrelse
     blocks: Du blokerer
+    csv: CSV
     follows: Du følger
     mutes: Du dæmper
   filters:
@@ -445,9 +465,13 @@ da:
     expires_in_prompt: Aldrig
     generate: Generer
     invited_by: 'Du er blevet inviteret af:'
+    max_uses:
+      one: 1 benyttelse
+      other: "%{count} benyttelser"
     max_uses_prompt: Ubegrænset
     table:
       expires_at: Udløber
+      uses: Benyttelser
     title: Inviter folk
   media_attachments:
     validations:
