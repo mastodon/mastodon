@@ -12,12 +12,16 @@ class PotentialFriendshipTracker
 
   class << self
     def record(account_id, target_account_id, action)
+      return if account_id == target_account_id
+
       key    = "interactions:#{account_id}"
       weight = WEIGHTS[action]
 
       redis.zincrby(key, weight, target_account_id)
       redis.zremrangebyrank(key, 0, -MAX_ITEMS)
       redis.expire(key, EXPIRE_AFTER)
+
+      ActivityTracker.increment('activity:interactions')
     end
 
     def remove(account_id, target_account_id)
