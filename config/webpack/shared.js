@@ -1,9 +1,9 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
 const webpack = require('webpack');
-const { join, resolve } = require('path');
+const { basename, dirname, join, relative, resolve } = require('path');
 const { sync } = require('glob');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const { env, settings, core, flavours, output, loadersDir } = require('./configuration.js');
 const localePacks = require('./generateLocalePacks');
@@ -59,6 +59,25 @@ module.exports = {
     publicPath: output.publicPath,
   },
 
+  optimization: {
+    runtimeChunk: {
+      name: 'locales',
+    },
+    splitChunks: {
+      cacheGroups: {
+        default: false,
+        vendors: false,
+        locales: {
+          name: 'locales',
+          chunks: 'all',
+          minChunks: Infinity,
+          minSize: 0,
+        },
+      },
+    },
+    occurrenceOrder: true,
+  },
+
   module: {
     rules: sync(join(loadersDir, '*.js')).map(loader => require(loader)),
   },
@@ -72,17 +91,13 @@ module.exports = {
         resource.request = resource.request.replace(/^history/, 'history/es');
       }
     ),
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: env.NODE_ENV === 'production' ? '[name]-[contenthash].css' : '[name].css',
-      allChunks: true,
     }),
     new ManifestPlugin({
       publicPath: output.publicPath,
       writeToFileEmit: true,
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'locales',
-      minChunks: Infinity, // It doesn't make sense to use common chunks with multiple frontend support.
+      filter: file => !file.isAsset || file.isModuleAsset,
     }),
   ],
 

@@ -20,10 +20,12 @@ ko:
           one: <span class="note-counter">1</span> 글자 남음
           other: <span class="note-counter">%{count}</span> 글자 남음
         phrase: 툿 내용이나 CW 내용 안에서 대소문자 구분 없이 매칭 됩니다
+        scopes: 애플리케이션에 허용할 API들입니다. 최상위 스코프를 선택하면 개별적인 것은 선택하지 않아도 됩니다.
         setting_default_language: 작성한 툿의 언어는 자동으로 인식할 수 있지만, 언제나 정확한 건 아닙니다
         setting_hide_network: 나를 팔로우 하는 사람들과 내가 팔로우 하는 사람들이 내 프로필에 표시되지 않게 합니다
         setting_noindex: 공개 프로필 및 각 툿페이지에 영향을 미칩니다
         setting_theme: 로그인중인 모든 디바이스에 적용되는 디자인입니다.
+        whole_word: 키워드가 영문과 숫자로만 이루어 진 경우, 단어 전체에 매칭 되었을 때에만 작동하게 합니다
       imports:
         data: 다른 마스토돈 인스턴스에서 추출된 CSV 파일
       sessions:
@@ -76,6 +78,7 @@ ko:
         type: 불러오기 종류
         username: 유저 이름
         username_or_email: 유저네임 또는 이메일
+        whole_word: 단어 전체에 매칭
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단
