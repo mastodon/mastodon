@@ -11,7 +11,7 @@ module Admin
       @relay_enabled         = Relay.enabled.exists?
       @single_user_mode      = Rails.configuration.x.single_user_mode
       @registrations_enabled = Setting.open_registrations
-      @deletions_enabled     = Setting.open_deletions
+      @deletions_enabled     = Setting.open_deletion
       @invites_enabled       = Setting.min_invite_role == 'user'
       @search_enabled        = Chewy.enabled?
       @version               = Mastodon::Version.to_s
