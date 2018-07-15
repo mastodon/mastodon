@@ -15,6 +15,9 @@ import {
   UNPIN_SUCCESS,
 } from 'flavours/glitch/actions/interactions';
 import {
+  COMPOSE_SUBMIT_SUCCESS,
+} from 'flavours/glitch/actions/compose';
+import {
   STATUS_FETCH_SUCCESS,
   CONTEXT_FETCH_SUCCESS,
   STATUS_MUTE_SUCCESS,
@@ -101,6 +104,7 @@ export default function statuses(state = initialState, action) {
   case TIMELINE_UPDATE:
   case STATUS_FETCH_SUCCESS:
   case NOTIFICATIONS_UPDATE:
+  case COMPOSE_SUBMIT_SUCCESS:
     return normalizeStatus(state, action.status);
   case REBLOG_SUCCESS:
   case UNREBLOG_SUCCESS:
