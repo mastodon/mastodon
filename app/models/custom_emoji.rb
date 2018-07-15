@@ -19,7 +19,7 @@
 #
 
 class CustomEmoji < ApplicationRecord
-  LIMIT = 50.kilobytes
+  LIMIT = 500.kilobytes
 
   SHORTCODE_RE_FRAGMENT = '[a-zA-Z0-9_]{2,}'
 
@@ -29,9 +29,11 @@ class CustomEmoji < ApplicationRecord
 
   has_one :local_counterpart, -> { where(domain: nil) }, class_name: 'CustomEmoji', primary_key: :shortcode, foreign_key: :shortcode
 
-  has_attached_file :image, styles: { static: { format: 'png', convert_options: '-coalesce -strip' } }
+  has_attached_file :image, styles: { static: { convert_options: '-coalesce -strip' } }
 
-  validates_attachment :image, content_type: { content_type: 'image/png' }, presence: true, size: { less_than: LIMIT }
+  #has_attached_file :image, styles: { static: { format: ['gif','png'], convert_options: '-coalesce -strip' } }
+
+  validates_attachment :image, content_type: { content_type: ['image/png','image/gif'] }, presence: true, size: { less_than: LIMIT }
   validates :shortcode, uniqueness: { scope: :domain }, format: { with: /\A#{SHORTCODE_RE_FRAGMENT}\z/ }, length: { minimum: 2 }
 
   scope :local,      -> { where(domain: nil) }
