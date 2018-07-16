@@ -96,7 +96,7 @@ class RemoveStatusService < BaseService
   end
 
   def relayable?
-    @status.public_visibility?
+    @status.public_visibility? && !@account.bot?
   end
 
   def relay!
