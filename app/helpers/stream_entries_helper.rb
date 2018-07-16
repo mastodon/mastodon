@@ -67,7 +67,7 @@ module StreamEntriesHelper
   end
 
   def acct(account)
-    if embedded_view? && account.local?
+    if account.local?
       "@#{account.acct}@#{Rails.configuration.x.local_domain}"
     else
       "@#{account.acct}"

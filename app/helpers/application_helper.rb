@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  DANGEROUS_SCOPES = %w(
+    read
+    write
+    follow
+  ).freeze
+
   def active_nav_class(path)
     current_page?(path) ? 'active' : ''
   end
@@ -41,6 +47,10 @@ module ApplicationHelper
 
   def title
     Rails.env.production? ? site_title : "#{site_title} (Dev)"
+  end
+
+  def class_for_scope(scope)
+    'scope-danger' if DANGEROUS_SCOPES.include?(scope.to_s)
   end
 
   def can?(action, record)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_28_181026) do
+ActiveRecord::Schema.define(version: 2018_07_11_152640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 2018_06_28_181026) do
     t.text "phrase", default: "", null: false
     t.string "context", default: [], null: false, array: true
     t.boolean "irreversible", default: false, null: false
+    t.boolean "whole_word", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_custom_filters_on_account_id"
@@ -368,6 +369,15 @@ ActiveRecord::Schema.define(version: 2018_06_28_181026) do
     t.bigint "preview_card_id", null: false
     t.bigint "status_id", null: false
     t.index ["status_id", "preview_card_id"], name: "index_preview_cards_statuses_on_status_id_and_preview_card_id"
+  end
+
+  create_table "relays", force: :cascade do |t|
+    t.string "inbox_url", default: "", null: false
+    t.boolean "enabled", default: false, null: false
+    t.string "follow_activity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["enabled"], name: "index_relays_on_enabled"
   end
 
   create_table "report_notes", force: :cascade do |t|

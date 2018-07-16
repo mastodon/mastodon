@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::FiltersController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read }, only: [:index, :show]
-  before_action -> { doorkeeper_authorize! :write }, except: [:index, :show]
+  before_action -> { doorkeeper_authorize! :read, :'read:filters' }, only: [:index, :show]
+  before_action -> { doorkeeper_authorize! :write, :'write:filters' }, except: [:index, :show]
   before_action :require_user!
   before_action :set_filters, only: :index
   before_action :set_filter, only: [:show, :update, :destroy]
@@ -43,6 +43,6 @@ class Api::V1::FiltersController < Api::BaseController
   end
 
   def resource_params
-    params.permit(:phrase, :expires_at, :irreversible, context: [])
+    params.permit(:phrase, :expires_in, :irreversible, :whole_word, context: [])
   end
 end

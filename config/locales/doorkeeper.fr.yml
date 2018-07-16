@@ -115,7 +115,26 @@ fr:
       application:
         title: Autorisation OAuth requise
     scopes:
-      follow: s’abonner, se désabonner, bloquer et débloquer des comptes
-      push: recevoir des notifications pour votre compte
-      read: lire les données de votre compte
-      write: poster en votre nom
+      follow: modifier les relations avec les comptes
+      push: recevoir vos notifications
+      read: lire toutes les données de votre compte
+      read:accounts: voir les informations du compte
+      read:blocks: voir vos bloqués
+      read:favourites: voir vos favoris
+      read:filters: voir vos filtres
+      read:lists: voir vos listes
+      read:mutes: voir vos silenciés
+      read:notifications: voir vos notifications
+      read:reports: voir vos rapports
+      read:search: rechercher en votre nom
+      read:statuses: voir tous les statuts
+      write: modifier toutes les données de votre compte
+      write:accounts: modifier votre profil
+      write:blocks: bloquer des comptes et des domaines
+      write:filters: créer des filtres
+      write:follows: suivre les gens
+      write:lists: créer des listes
+      write:media: téléverser des fichiers-média
+      write:mutes: silencier des gens et des conversations
+      write:notifications: nettoyer vos notifications
+      write:statuses: publier des statuts

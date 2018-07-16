@@ -424,7 +424,7 @@ eo:
     following: 'Sukceson! Vi nun sekvas:'
     post_follow:
       close: Aŭ, vi povas simple fermi ĉi tiun fenestron.
-      return: Reveni al la profilo de uzanto
+      return: Montri la profilon de la uzanto
       web: Iri al reto
     title: Sekvi %{acct}
   datetime:
@@ -476,6 +476,22 @@ eo:
     follows: Vi sekvas
     mutes: Vi silentigas
     storage: Aŭdovidaĵa konservado
+  filters:
+    contexts:
+      home: Hejma tempolinio
+      notifications: Sciigoj
+      public: Publikaj tempolinioj
+      thread: Konversacioj
+    edit:
+      title: Ŝanĝi filtrilojn
+    errors:
+      invalid_context: Neniu aŭ nevalida kunteksto donita
+      invalid_irreversible: Nemalfarebla filtrado funkcias nur por hejma aŭ sciiga kuntekstoj
+    index:
+      delete: Forigi
+      title: Filtriloj
+    new:
+      title: Aldoni novan filtrilon
   followers:
     domain: Domajno
     explanation_html: Se vi volas esti certa pri la privateco de viaj mesaĝoj, vi bezonas esti atenta pri tiuj, kiuj sekvas vin. <strong>Viaj privataj mesaĝoj estas liveritaj al ĉiuj nodoj, kie vi havas sekvantojn</strong>. Eble vi ŝatus kontroli ilin, kaj forigi la sekvantojn de la nodoj, kie vi ne certas ĉu via privateco estos respektita de la tiea teamo aŭ programo.
@@ -516,6 +532,7 @@ eo:
       '86400': 1 tago
     expires_in_prompt: Neniam
     generate: Krei
+    invited_by: 'Vi estis invitita de:'
     max_uses:
       one: 1 uzo
       other: "%{count} uzoj"
@@ -600,6 +617,7 @@ eo:
   remote_follow:
     acct: Enmetu vian uzantnomo@domajno de kie vi volas sekvi
     missing_resource: La URL de plusendado ne estis trovita
+    no_account_html: Ĉu vi ne havas konton? Vi povas <a href='%{sign_up_path}' target='_blank'>registriĝi tie</a>
     proceed: Daŭrigi por eksekvi
     prompt: 'Vi eksekvos:'
   remote_unfollow:
@@ -676,6 +694,7 @@ eo:
     disallowed_hashtags:
       one: 'enhavas malpermesitan kradvorton: %{tags}'
       other: 'enhavis malpermesitan kradvorton: %{tags}'
+    language_detection: Aŭtomate detekti la lingvon
     open_in_web: Malfermi retumile
     over_character_limit: limo de %{max} signoj transpasita
     pin_errors:

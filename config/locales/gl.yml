@@ -261,6 +261,14 @@ gl:
         expired: Cadudado
         title: Filtro
       title: Convida
+    relays:
+      add_new: Engadir un novo repetidor
+      description_html: Un <strong>repetidor da federación</strong> é un servidor intermedio que intercambia grandes volumes de toots públicos entre servidores que se suscriban e publiquen nel. <strong>Pode axudar a servidores pequenos e medios a descubrir contido no fediverso</strong>, o que de outro xeito precisaría que as usuarias locais seguisen a outra xente en servidores remotos.
+      enable_hint: Unha vez activado, o seu servidor suscribirase a todos os toots públicos de este servidor, e tamén comezará a eviar a el os toots públicos do servidor.
+      inbox_url: URL do repetidor
+      setup: Configurar a conexión ao repetidor
+      status: Estado
+      title: Repetidores
     report_notes:
       created_msg: Creouse correctamente a nota do informe!
       destroyed_msg: Nota do informe eliminouse con éxito!
@@ -316,6 +324,9 @@ gl:
       peers_api_enabled:
         desc_html: Nome de dominio que esta instancia atopou no fediverso
         title: Publicar lista de instancias descubertas
+      preview_sensitive_media:
+        desc_html: A vista previa de ligazóns de outros sitios web mostrará unha imaxe incluso si os medios están marcados como sensibles
+        title: Mostrar medios sensibles con vista previa OpenGraph
       registrations:
         closed_message:
           desc_html: Mostrado na páxina de portada cando o rexistro está pechado. Pode utilizar etiquetas HTML
@@ -474,6 +485,22 @@ gl:
     follows: A seguir
     mutes: Acalou
     storage: Almacenamento de medios
+  filters:
+    contexts:
+      home: Liña temporal inicial
+      notifications: Avisos
+      public: Liñas temporais públicas
+      thread: Conversas
+    edit:
+      title: Editar filtro
+    errors:
+      invalid_context: Non se proporcionou un contexto válido
+      invalid_irreversible: O filtrado non reversible só funciona con contexto de avisos ou Inicio
+    index:
+      delete: Eliminar
+      title: Filtros
+    new:
+      title: Engadir novo filtro
   followers:
     domain: Dominio
     explanation_html: Se quere asegurar a intimidade dos seus estados, debe ser consciente de quen a está a seguir. <strong>Os seus estados privados son enviados a todas as instancias onde ten seguidoras</strong>. Podería querer revisalas, e elminar seguidoras si non confía que a súa intimidade sexa respetada polos administradores ou o software de esa instancia.
@@ -599,6 +626,7 @@ gl:
   remote_follow:
     acct: Introduza o seu nomedeusuaria@dominio desde onde quere facer seguimento
     missing_resource: Non se puido atopar o URL de redirecionamento requerido para a súa conta
+    no_account_html: Non ten unha conta? Pode <a href='%{sign_up_path}' target='_blank'>rexistrarse aquí</a>
     proceed: Proceda para seguir
     prompt: 'Vostede vai seguir:'
   remote_unfollow:

@@ -35,15 +35,31 @@ const toServerSideType = columnType => {
   }
 };
 
+export const getFilters = (state, { contextType }) => state.get('filters', ImmutableList()).filter(filter => contextType && filter.get('context').includes(toServerSideType(contextType)) && (filter.get('expires_at') === null || Date.parse(filter.get('expires_at')) > (new Date())));
+
 const escapeRegExp = string =>
   string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 
-const regexFromFilters = filters => {
+export const regexFromFilters = filters => {
   if (filters.size === 0) {
     return null;
   }
 
-  return new RegExp(filters.map(filter => escapeRegExp(filter.get('phrase'))).join('|'), 'i');
+  return new RegExp(filters.map(filter => {
+    let expr = escapeRegExp(filter.get('phrase'));
+
+    if (filter.get('whole_word')) {
+      if (/^[\w]/.test(expr)) {
+        expr = `\\b${expr}`;
+      }
+
+      if (/[\w]$/.test(expr)) {
+        expr = `${expr}\\b`;
+      }
+    }
+
+    return expr;
+  }).join('|'), 'i');
 };
 
 export const makeGetStatus = () => {
@@ -53,7 +69,7 @@ export const makeGetStatus = () => {
       (state, { id }) => state.getIn(['statuses', state.getIn(['statuses', id, 'reblog'])]),
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', id, 'account'])]),
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', state.getIn(['statuses', id, 'reblog']), 'account'])]),
-      (state, { contextType }) => state.get('filters', ImmutableList()).filter(filter => contextType && filter.get('context').includes(toServerSideType(contextType)) && (filter.get('expires_at') === null || Date.parse(filter.get('expires_at')) > (new Date()))),
+      getFilters,
     ],
 
     (statusBase, statusReblog, accountBase, accountReblog, filters) => {

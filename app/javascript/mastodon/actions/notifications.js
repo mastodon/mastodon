@@ -9,6 +9,7 @@ import {
 } from './importer';
 import { defineMessages } from 'react-intl';
 import { unescapeHTML } from '../utils/html';
+import { getFilters, regexFromFilters } from '../selectors';
 
 export const NOTIFICATIONS_UPDATE      = 'NOTIFICATIONS_UPDATE';
 export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
@@ -38,6 +39,16 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
     const showInColumn = getState().getIn(['settings', 'notifications', 'shows', notification.type], true);
     const showAlert    = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
     const playSound    = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
+    const filters      = getFilters(getState(), { contextType: 'notifications' });
+
+    let filtered = false;
+
+    if (notification.type === 'mention') {
+      const regex       = regexFromFilters(filters);
+      const searchIndex = notification.status.spoiler_text + '\n' + unescapeHTML(notification.status.content);
+
+      filtered = regex && regex.test(searchIndex);
+    }
 
     // 通知の種類毎に音を変更する
     let sound;
@@ -62,11 +73,11 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
       dispatch({
         type: NOTIFICATIONS_UPDATE,
         notification,
-        meta: playSound ? sound : undefined,
+        meta: (playSound && !filtered) ? sound : undefined,
       });
 
       fetchRelatedRelationships(dispatch, [notification]);
-    } else if (playSound) {
+    } else if (playSound && !filtered) {
       dispatch({
         type: NOTIFICATIONS_UPDATE_NOOP,
         meta: sound,
@@ -74,7 +85,7 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
     }
 
     // Desktop notifications
-    if (typeof window.Notification !== 'undefined' && showAlert) {
+    if (typeof window.Notification !== 'undefined' && showAlert && !filtered) {
       const title = new IntlMessageFormat(intlMessages[`notification.${notification.type}`], intlLocale).format({ name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
       const body  = (notification.status && notification.status.spoiler_text.length > 0) ? notification.status.spoiler_text : unescapeHTML(notification.status ? notification.status.content : '');
 
