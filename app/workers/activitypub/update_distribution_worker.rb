@@ -34,6 +34,6 @@ class ActivityPub::UpdateDistributionWorker
       @account,
       serializer: ActivityPub::UpdateSerializer,
       adapter: ActivityPub::Adapter
-    ).to_json
+    ).as_json
   end
 end
