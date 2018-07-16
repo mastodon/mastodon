@@ -1,9 +1,10 @@
----
 da:
   devise:
     confirmations:
       confirmed: Din email adresse er blevet succesfuldt bekræftet.
-      send_instructions: Du vil modtage en mail med instrukser for hvordan du bekræfter din email adresse om få minutter. Tjek venligst din spam mappe hvis du ikke har modtaget denne email.
+      send_instructions: Du vil modtage en mail med instrukser for hvordan du bekræfter
+        din email adresse om få minutter. Tjek venligst din spam mappe hvis du ikke
+        har modtaget denne email.
     failure:
       already_authenticated: Du er allerede logget ind.
       inactive: Din konto er endnu ikke aktiveret.
@@ -17,17 +18,25 @@ da:
     mailer:
       confirmation_instructions:
         action: Bekræft email adresse
-        explanation: Du har oprettet en konto på %{host} med denne email adresse. Du er et klik fra at aktivere din konto. Hvis du ikke har oprettet dig, ignorer venligst denne email.
+        explanation: Du har oprettet en konto på %{host} med denne email adresse.
+          Du er et klik fra at aktivere din konto. Hvis du ikke har oprettet dig,
+          ignorer venligst denne email.
         subject: 'Mastodon: Bekræftelses instrukser for %{instance}'
         title: Bekræft email adresse
+        extra_html: Tjek også <a href="%{terms_path}">reglerne for instansen</a> og
+          <a href="%{policy_path}">vores betingelser</a>.
       email_changed:
         explanation: 'Email adressen for din konto bliver ændret til:'
-        extra: Hvis du ikke har ændret din email adresse er det muligt, at nogen har fået adgang til din konto. Venligst ændre dit kodeord med det samme eller kontakt administratoren på instansen hvis du er låst ude af din konto.
+        extra: Hvis du ikke har ændret din email adresse er det muligt, at nogen har
+          fået adgang til din konto. Venligst ændre dit kodeord med det samme eller
+          kontakt administratoren på instansen hvis du er låst ude af din konto.
         subject: 'Mastodon: Email ændret'
         title: Ny email adresse
       password_change:
         explanation: Kodeordet for din konto er blevet ændret.
-        extra: Hvis du ikke har ændret dit kodeord er det muligt, at nogen har fået adgang til din konto. Venligst ændre dit kodeord med det samme eller kontakt administratoren på instansen hvis du er låst ude af din konto.
+        extra: Hvis du ikke har ændret dit kodeord er det muligt, at nogen har fået
+          adgang til din konto. Venligst ændre dit kodeord med det samme eller kontakt
+          administratoren på instansen hvis du er låst ude af din konto.
         subject: 'Mastodon: Kodeord ændret'
         title: Kodeordet er blevet ændret
       reconfirmation_instructions:
@@ -41,21 +50,30 @@ da:
     registrations:
       signed_up: Velkommen! Du har nu tilmeldt dig.
       updated: Din konto er nu blevet opdateret.
+      update_needs_confirmation: Du har succesfuldt opdateret din konto, men vi er
+        nødt til at bekræfte din email adresse. Tjek venligst din email og følg bekræftelses
+        linket for at bekræfte din nye email adresse. Tjek venligst din spam mappe
+        hvis du ikke har modtaget denne email.
     sessions:
       already_signed_out: Du er nu logget ud.
       signed_in: Du er nu logget ind.
       signed_out: Du er nu logget ud.
     unlocks:
-      send_instructions: Du vil modtage en email med instrukser for hvordan du låser op for din konto om nogle få minutter. Venligst tjek din spam mappe hvis du ikke har modtaget denne email.
-      send_paranoid_instructions: Hvis din konto findes, vil du modtage en email med instrukser for hvordan du låser op for den om få minutter. Tjek venligst din spam mappe hvis du ikke har modtaget denne mail.
+      send_instructions: Du vil modtage en email med instrukser for hvordan du låser
+        op for din konto om nogle få minutter. Venligst tjek din spam mappe hvis du
+        ikke har modtaget denne email.
+      send_paranoid_instructions: Hvis din konto findes, vil du modtage en email med
+        instrukser for hvordan du låser op for den om få minutter. Tjek venligst din
+        spam mappe hvis du ikke har modtaget denne mail.
       unlocked: Din konto er succesfuldt blevet låst op. Log venligst ind for at fortsætte.
   errors:
     messages:
       already_confirmed: er allerede blevet bekræftet, prøv venligst at logge ind
-      confirmation_period_expired: skal bekræftes indenfor %{period}, anmod venligst om en ny
+      confirmation_period_expired: skal bekræftes indenfor %{period}, anmod venligst
+        om en ny
       expired: er udløbet, anmod venligst en ny
       not_found: ikke fundet
       not_locked: blev ikke låst
       not_saved:
         one: '1 fejl forhindrede denne %{resource} fra at blive gemt:'
-        other: "%{count} fejl forhindrede denne %{resource} fra at blive gemt:"
+        other: '%{count} fejl forhindrede denne %{resource} fra at blive gemt:'
