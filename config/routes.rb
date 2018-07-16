@@ -124,12 +124,21 @@ Rails.application.routes.draw do
   resource :share, only: [:show, :create]
 
   namespace :admin do
+    get '/dashboard', to: 'dashboard#index'
+
     resources :subscriptions, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
     resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resources :action_logs, only: [:index]
     resource :settings, only: [:edit, :update]
     resources :invites, only: [:index, :create, :destroy]
+
+    resources :relays, only: [:index, :new, :create, :destroy] do
+      member do
+        post :enable
+        post :disable
+      end
+    end
 
     resources :instances, only: [:index] do
       collection do
@@ -189,13 +198,7 @@ Rails.application.routes.draw do
     resources :account_moderation_notes, only: [:create, :destroy]
   end
 
-  authenticate :user, lambda { |u| u.admin? } do
-    get '/admin', to: redirect('/admin/settings/edit', status: 302)
-  end
-
-  authenticate :user, lambda { |u| u.moderator? } do
-    get '/admin', to: redirect('/admin/reports', status: 302)
-  end
+  get '/admin', to: redirect('/admin/dashboard', status: 302)
 
   namespace :api do
     # PubSubHubbub outgoing subscriptions

@@ -259,9 +259,12 @@ sk:
       filter:
         all: Všetky
         available: Dostupné
-        expired: Expirované
+        expired: Vypršalo
         title: Filtrovať
       title: Pozvánky
+    relays:
+      add_new: Pridaj novú priechodnú oporu
+      status: Stav
     report_notes:
       created_msg: Poznámka o nahlásení úspešne vytvorená!
       destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
@@ -317,6 +320,9 @@ sk:
       peers_api_enabled:
         desc_html: Domény na ktoré táto instancia už vo fediverse natrafila
         title: Zverejniť zoznam objavených instancií
+      preview_sensitive_media:
+        desc_html: Náhľad adresy z iných instancií, bude zobrazený aj vtedy, keď sú dané médiá označené ako senzitívne
+        title: Ukazuj aj chúlostivé médiá v náhľadoch OpenGraph
       registrations:
         closed_message:
           desc_html: Toto sa zobrazí na hlavnej stránke v prípade že sú registrácie uzavreté. Možno tu použiť aj HTML kód
@@ -420,11 +426,11 @@ sk:
   authorize_follow:
     already_following: Tento účet už následuješ
     error: Naneštastie nastala chyba pri hľadaní vzdialeného účtu
-    follow: Následovať
-    follow_request: 'Poslali ste požiadavku následovať užívateľa:'
-    following: 'Podarilo sa! Teraz už následujete užívateľa:'
+    follow: Následuj
+    follow_request: 'Poslal/a si žiadosť následovať užívateľa:'
+    following: 'Podarilo sa! Teraz už následuješ užívateľa:'
     post_follow:
-      close: Alebo môžete iba zatvoriť toto okno.
+      close: Alebo môžeš iba zatvoriť toto okno.
       return: Ukáž užívateľov profil
       web: Prejdi do siete
     title: Následuj %{acct}
@@ -620,6 +626,7 @@ sk:
   remote_follow:
     acct: Napíš svoju prezývku@doménu z ktorej chceš následovať
     missing_resource: Nemôžeme nájsť potrebnú presmerovaciu adresu k tvojmu účtu
+    no_account_html: Nemáš ešte účet? Môžeš sa <a href='%{sign_up_path}' target='_blank'>zaregistrovať tu</a>
     proceed: Začni následovať
     prompt: 'Budeš sledovať:'
   remote_unfollow:
@@ -631,6 +638,7 @@ sk:
     browser: Prehliadač
     browsers:
       alipay: Alipay
+      blackberry: RIM Blackberry
       chrome: Google Chrome
       edge: Microsoft Edge
       electron: Electron

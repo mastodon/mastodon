@@ -14,6 +14,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       domain: Rails.configuration.x.local_domain,
       admin: object.admin&.id&.to_s,
       search_enabled: Chewy.enabled?,
+      version: Mastodon::Version.to_s,
       invites_enabled: Setting.min_invite_role == 'user',
       player_enabled: Setting.player_enabled,
       player_url: Setting.player_url,

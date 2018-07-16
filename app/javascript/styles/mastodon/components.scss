@@ -1478,6 +1478,7 @@ a.account__display-name {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
   .image-loader__preview-canvas {
     max-width: $media-modal-media-max-width;
@@ -1486,8 +1487,8 @@ a.account__display-name {
     object-fit: contain;
   }
 
-  &.image-loader--loading .image-loader__preview-canvas {
-    filter: blur(2px);
+  .loading-bar {
+    position: relative;
   }
 
   &.image-loader--amorphous .image-loader__preview-canvas {

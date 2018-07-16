@@ -114,7 +114,28 @@ it:
       application:
         title: Autorizzazione OAuth richiesta
     scopes:
-      follow: seguire, bloccare, sbloccare e smettere di seguire account
-      push: ricevi notifiche push per il tuo account
-      read: leggere le informazioni del tuo account
-      write: pubblicare post in tua vece
+      follow: modificare relazioni tra account
+      push: ricevere le tue notifiche push
+      read: leggere tutte le informazioni del tuo account
+      read:accounts: vedere informazioni sull'account
+      read:blocks: vedere i tuoi blocchi
+      read:favourites: vedere i tuoi preferiti
+      read:filters: vedere i tuoi filtri
+      read:follows: vedere i tuoi seguiti
+      read:lists: vedere le tue liste
+      read:mutes: vedere i tuoi silenziati
+      read:notifications: vedere le tue notifiche
+      read:reports: vedere i tuoi rapporti
+      read:search: fare ricerche per te
+      read:statuses: vedere tutti gli status
+      write: modificare tutti i dati del tuo account
+      write:accounts: modificare il tuo profilo
+      write:blocks: bloccare account e domini
+      write:favourites: segnare status come preferiti
+      write:filters: creare filtri
+      write:follows: seguire persone
+      write:lists: creare liste
+      write:media: caricare media
+      write:mutes: silenziare persone e conversazioni
+      write:notifications: cancellare le tue notifiche
+      write:statuses: pubblicare status

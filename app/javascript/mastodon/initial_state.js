@@ -15,5 +15,6 @@ export const invitesEnabled = getMeta('invites_enabled');
 export const playerEnabled = getMeta('player_enabled');
 export const playerUrl = getMeta('player_url');
 export const playerName = getMeta('player_name');
+export const version = getMeta('version');
 
 export default initialState;
