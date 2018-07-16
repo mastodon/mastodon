@@ -44,6 +44,7 @@ class ReblogService < BaseService
   end
 
   def bump_potential_friendship(account, reblog)
+    ActivityTracker.increment('activity:interactions')
     return if account.following?(reblog.reblog.account_id)
     PotentialFriendshipTracker.record(account.id, reblog.reblog.account_id, :reblog)
   end

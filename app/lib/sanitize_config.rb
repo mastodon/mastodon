@@ -2,7 +2,7 @@
 
 class Sanitize
   module Config
-    HTTP_PROTOCOLS ||= ['http', 'https', :relative].freeze
+    HTTP_PROTOCOLS ||= ['http', 'https', 'dat', 'dweb', 'ipfs', 'ipns', 'ssb', 'gopher', :relative].freeze
 
     CLASS_WHITELIST_TRANSFORMER = lambda do |env|
       node = env[:node]
