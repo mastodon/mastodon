@@ -27,6 +27,7 @@ module Admin
       @saml_enabled          = ENV['SAML_ENABLED'] == 'true'
       @pam_enabled           = ENV['PAM_ENABLED'] == 'true'
       @hidden_service        = ENV['ALLOW_ACCESS_TO_HIDDEN_SERVICE'] == 'true'
+      @trending_hashtags     = TrendingTags.get(7)
     end
 
     private

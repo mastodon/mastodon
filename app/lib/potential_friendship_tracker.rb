@@ -20,8 +20,6 @@ class PotentialFriendshipTracker
       redis.zincrby(key, weight, target_account_id)
       redis.zremrangebyrank(key, 0, -MAX_ITEMS)
       redis.expire(key, EXPIRE_AFTER)
-
-      ActivityTracker.increment('activity:interactions')
     end
 
     def remove(account_id, target_account_id)
