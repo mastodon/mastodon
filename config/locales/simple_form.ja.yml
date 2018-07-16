@@ -1,4 +1,3 @@
----
 ja:
   simple_form:
     hints:
@@ -22,6 +21,7 @@ ja:
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
         setting_theme: ログインしている全てのデバイスで適用されるデザインです。
         whole_word: キーワードまたはフレーズが英数字のみの場合、単語全体と一致する場合のみ適用されるようになります
+        inbox_url: 使用したいリレーサーバーのトップページからURLをコピーします
       imports:
         data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
       sessions:
@@ -48,7 +48,7 @@ ja:
         expires_in: 有効期限
         fields: プロフィール補足情報
         header: ヘッダー
-        inbox_url: URL of the relay inbox
+        inbox_url: リレーサーバーの inbox URL
         irreversible: 隠すのではなく除外する
         locale: 言語
         locked: 承認制アカウントにする
@@ -89,6 +89,6 @@ ja:
         reblog: トゥートがブーストされた時にメールで通知する
     'no': いいえ
     required:
-      mark: "*"
+      mark: '*'
       text: 必須
     'yes': はい
