@@ -1,5 +1,8 @@
 import loadPolyfills from '../mastodon/load_polyfills';
 import ready from '../mastodon/ready';
+import { start } from '../mastodon/common';
+
+start();
 
 function main() {
   const IntlRelativeFormat = require('intl-relativeformat').default;

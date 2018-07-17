@@ -13,5 +13,6 @@ export const me = getMeta('me');
 export const searchEnabled = getMeta('search_enabled');
 export const maxChars = getMeta('max_toot_chars') || 500;
 export const invitesEnabled = getMeta('invites_enabled');
+export const version = getMeta('version');
 
 export default initialState;

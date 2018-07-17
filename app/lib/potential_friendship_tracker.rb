@@ -12,6 +12,8 @@ class PotentialFriendshipTracker
 
   class << self
     def record(account_id, target_account_id, action)
+      return if account_id == target_account_id
+
       key    = "interactions:#{account_id}"
       weight = WEIGHTS[action]
 
