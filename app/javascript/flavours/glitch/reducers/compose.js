@@ -297,6 +297,7 @@ export default function compose(state = initialState, action) {
       }
     });
   case COMPOSE_REPLY_CANCEL:
+    state = state.setIn(['advanced_options', 'threaded_mode'], false);
   case COMPOSE_RESET:
     return state.withMutations(map => {
       map.set('in_reply_to', null);
