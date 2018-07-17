@@ -138,3 +138,12 @@
             %span.pull-right.positive-hint= fa_icon 'check fw'
           - else
             %span.pull-right.negative-hint= fa_icon 'times fw'
+
+  .dashboard__widgets__trends
+    %div
+      %h4= t 'admin.dashboard.trends'
+      %ul
+        - @trending_hashtags.each do |tag|
+          %li
+            = link_to "##{tag.name}", web_url("timelines/tag/#{tag.name}")
+            %span.pull-right= number_with_delimiter(tag.history[0][:accounts].to_i)
