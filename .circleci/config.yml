@@ -124,7 +124,10 @@ jobs:
       - *install_system_dependencies
       - run: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
       - *restore_ruby_dependencies
-      - run: ./bin/rails assets:precompile
+      - run:
+          name: Precompile assets
+          command: ./bin/rails assets:precompile
+          no_output_timeout: 20m
       - save_cache:
           key: precompiled-assets-{{ .Branch }}-{{ .Revision }}
           paths:
