@@ -1,3 +1,4 @@
+---
 ja:
   simple_form:
     hints:
@@ -10,6 +11,7 @@ ja:
         display_name: あと<span class="name-counter">%{count}</span>文字入力できます。
         fields: プロフィールに表として4つまでの項目を表示することができます
         header: 2MBまでのPNG、GIF、JPGが利用可能です。 700x335pxまで縮小されます
+        inbox_url: 使用したいリレーサーバーのトップページからURLをコピーします
         irreversible: フィルターが後で削除されても、除外されたトゥートは元に戻せなくなります
         locale: ユーザーインターフェース、メールやプッシュ通知の言語
         locked: フォロワーを手動で承認する必要があります
@@ -21,7 +23,6 @@ ja:
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
         setting_theme: ログインしている全てのデバイスで適用されるデザインです。
         whole_word: キーワードまたはフレーズが英数字のみの場合、単語全体と一致する場合のみ適用されるようになります
-        inbox_url: 使用したいリレーサーバーのトップページからURLをコピーします
       imports:
         data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
       sessions:
@@ -89,6 +90,6 @@ ja:
         reblog: トゥートがブーストされた時にメールで通知する
     'no': いいえ
     required:
-      mark: '*'
+      mark: "*"
       text: 必須
     'yes': はい
