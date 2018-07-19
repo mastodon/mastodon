@@ -158,6 +158,7 @@ it:
         create_custom_emoji: "%{name} ha caricato un nuovo emoji %{target}"
         create_domain_block: "%{name} ha bloccato il dominio %{target}"
         create_email_domain_block: "%{name} ha messo il dominio email %{target} nella blacklist"
+        demote_user: "%{name} ha degradato l'utente %{target}"
         destroy_domain_block: "%{name} ha sbloccato il dominio %{target}"
         destroy_email_domain_block: "%{name}ha messo il dominio email %{target} nella whitelist"
         destroy_status: "%{name} ha eliminato lo status di %{target}"
@@ -238,6 +239,7 @@ it:
       domain: Dominio
       new:
         create: Aggiungi dominio
+      title: Lista nera email
     instances:
       account_count: Accounts conosciuti
       domain_name: Dominio
