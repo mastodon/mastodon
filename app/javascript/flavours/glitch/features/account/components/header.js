@@ -83,7 +83,7 @@ export default class Header extends ImmutablePureComponent {
       actionBtn = '';
     }
 
-    const { text, metadata } = processBio(account.get('note'));
+    const { text, metadata } = processBio(account.get('note_emojified'));
 
     return (
       <div className='account__header__wrapper'>
@@ -121,8 +121,8 @@ export default class Header extends ImmutablePureComponent {
               <div className='account__header__fields'>
                 {metadata.map((pair, i) => (
                   <dl key={i}>
-                    <dt dangerouslySetInnerHTML={{ __html: emojify(pair[0]) }} title={pair[0]} />
-                    <dd dangerouslySetInnerHTML={{ __html: emojify(pair[1]) }} title={pair[1]} />
+                    <dt dangerouslySetInnerHTML={{ __html: pair[0] }} title={pair[0]} />
+                    <dd dangerouslySetInnerHTML={{ __html: pair[1] }} title={pair[1]} />
                   </dl>
                 ))}
               </div>
