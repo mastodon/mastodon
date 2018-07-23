@@ -2,6 +2,10 @@
   clear: both;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
 
+  div[data-component] {
+    width: 100%;
+  }
+
   .entry {
     background: $simple-background-color;
 

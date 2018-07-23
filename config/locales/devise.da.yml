@@ -18,6 +18,7 @@ da:
       confirmation_instructions:
         action: Bekræft email adresse
         explanation: Du har oprettet en konto på %{host} med denne email adresse. Du er et klik fra at aktivere din konto. Hvis du ikke har oprettet dig, ignorer venligst denne email.
+        extra_html: Tjek også <a href="%{terms_path}">reglerne for instansen</a> og <a href="%{policy_path}">vores betingelser</a>.
         subject: 'Mastodon: Bekræftelses instrukser for %{instance}'
         title: Bekræft email adresse
       email_changed:
@@ -40,6 +41,7 @@ da:
         title: Kodeordet er blevet nulstillet
     registrations:
       signed_up: Velkommen! Du har nu tilmeldt dig.
+      update_needs_confirmation: Du har succesfuldt opdateret din konto, men vi er nødt til at bekræfte din email adresse. Tjek venligst din email og følg bekræftelses linket for at bekræfte din nye email adresse. Tjek venligst din spam mappe hvis du ikke har modtaget denne email.
       updated: Din konto er nu blevet opdateret.
     sessions:
       already_signed_out: Du er nu logget ud.
