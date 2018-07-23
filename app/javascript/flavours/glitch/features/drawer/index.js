@@ -37,14 +37,28 @@ const mapStateToProps = state => ({
 });
 
 //  Dispatch mapping.
-const mapDispatchToProps = {
-  onChange: changeSearch,
-  onClear: clearSearch,
-  onClickElefriend: cycleElefriendCompose,
-  onShow: showSearch,
-  onSubmit: submitSearch,
-  onOpenSettings: openModal.bind(null, 'SETTINGS', {}),
-};
+const mapDispatchToProps = (dispatch, { intl }) => ({
+  onChange (value) {
+    dispatch(changeSearch(value));
+  },
+  onClear () {
+    dispatch(clearSearch());
+  },
+  onClickElefriend () {
+    dispatch(cycleElefriendCompose());
+  },
+  onShow () {
+    dispatch(showSearch());
+  },
+  onSubmit () {
+    dispatch(submitSearch());
+  },
+  onOpenSettings (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch(openModal('SETTINGS', {}));
+  },
+});
 
 //  The component.
 class Drawer extends React.Component {

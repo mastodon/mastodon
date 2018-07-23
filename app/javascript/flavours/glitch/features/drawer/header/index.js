@@ -96,9 +96,8 @@ export default function DrawerHeader ({
       <a
         aria-label={intl.formatMessage(messages.settings)}
         onClick={onSettingsClick}
-        role='button'
+        href='#'
         title={intl.formatMessage(messages.settings)}
-        tabIndex='0'
       ><Icon icon='cogs' /></a>
       <a
         aria-label={intl.formatMessage(messages.logout)}
