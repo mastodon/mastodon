@@ -1,50 +1,38 @@
+---
 it:
   simple_form:
     hints:
       defaults:
-        autofollow: Le persone che si iscrivono attraverso l'invito ti seguiranno
-          automaticamente
+        autofollow: Le persone che si iscrivono attraverso l'invito ti seguiranno automaticamente
         avatar: PNG, GIF o JPG. Al massimo 2MB. Verranno scalate a 400x400px
-        bot: Questo account esegue principalmente operazioni automatiche e potrebbe
-          non essere tenuto sotto controllo da una persona
+        bot: Questo account esegue principalmente operazioni automatiche e potrebbe non essere tenuto sotto controllo da una persona
         context: Uno o più contesti nei quali il filtro dovrebbe essere applicato
-        digest: Inviata solo dopo un lungo periodo di inattività e solo se hai ricevuto
-          qualche messaggio personale in tua assenza
+        digest: Inviata solo dopo un lungo periodo di inattività e solo se hai ricevuto qualche messaggio personale in tua assenza
         display_name:
           one: <span class="name-counter">1</span> carattere rimanente
           other: <span class="name-counter">%{count}</span> caratteri rimanenti
         fields: Puoi avere fino a 4 voci visualizzate come una tabella sul tuo profilo
         header: PNG, GIF o JPG. Al massimo 2MB. Verranno scalate a 700x335px
-        irreversible: I toot filtrati scompariranno in modo irreversibile, anche se
-          il filtro viene eliminato
+        inbox_url: Copia la URL dalla pagina iniziale del ripetitore che vuoi usare
+        irreversible: I toot filtrati scompariranno in modo irreversibile, anche se il filtro viene eliminato
         locale: La lingua dell'interfaccia utente, di email e notifiche push
         locked: Richiede che approvi i follower manualmente
         note:
           one: <span class="note-counter">1</span> carattere rimanente
           other: <span class="note-counter">%{count}</span> caratteri rimanenti
-        phrase: Il confronto sarà eseguito ignorando minuscole/maiuscole e i content
-          warning
-        scopes: A quali API l'applicazione potrà avere accesso. Se selezionate un
-          ambito di alto livello, non c'è bisogno di selezionare quelle singole.
-        setting_default_language: La lingua dei tuoi toot può essere individuata automaticamente,
-          ma il risultato non è sempre accurato
-        setting_hide_network: Chi segui e chi segue te non saranno mostrati sul tuo
-          profilo
-        setting_noindex: Ha effetto sul tuo profilo pubblico e sulle pagine degli
-          status
-        setting_theme: Ha effetto sul modo in cui Mastodon verrà visualizzato quando
-          sarai collegato da qualsiasi dispositivo.
-        whole_word: Quando la parola chiave o la frase è solo alfanumerica, si applica
-          solo se corrisponde alla parola intera
-        inbox_url: Copia la URL dalla pagina iniziale del ripetitore che vuoi usare
+        phrase: Il confronto sarà eseguito ignorando minuscole/maiuscole e i content warning
+        scopes: A quali API l'applicazione potrà avere accesso. Se selezionate un ambito di alto livello, non c'è bisogno di selezionare quelle singole.
+        setting_default_language: La lingua dei tuoi toot può essere individuata automaticamente, ma il risultato non è sempre accurato
+        setting_hide_network: Chi segui e chi segue te non saranno mostrati sul tuo profilo
+        setting_noindex: Ha effetto sul tuo profilo pubblico e sulle pagine degli status
+        setting_theme: Ha effetto sul modo in cui Mastodon verrà visualizzato quando sarai collegato da qualsiasi dispositivo.
+        whole_word: Quando la parola chiave o la frase è solo alfanumerica, si applica solo se corrisponde alla parola intera
       imports:
         data: File CSV esportato da un'altra istanza di Mastodon
       sessions:
-        otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono
-          o usa uno dei codici di recupero:'
+        otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
       user:
-        chosen_languages: Quando una o più lingue sono contrassegnate, nelle timeline
-          pubbliche vengono mostrati solo i toot nelle lingue selezionate
+        chosen_languages: Quando una o più lingue sono contrassegnate, nelle timeline pubbliche vengono mostrati solo i toot nelle lingue selezionate
     labels:
       account:
         fields:
@@ -65,6 +53,7 @@ it:
         expires_in: Scade dopo
         fields: Metadati del profilo
         header: Header
+        inbox_url: URL della inbox del ripetitore
         irreversible: Elimina invece di nascondere
         locale: Lingua dell'interfaccia
         locked: Blocca account
@@ -86,14 +75,12 @@ it:
         setting_reduce_motion: Riduci movimento nelle animazioni
         setting_system_font_ui: Usa il carattere di default del sistema
         setting_theme: Tema sito
-        setting_unfollow_modal: Mostra dialogo di conferma prima di smettere di seguire
-          qualcuno
+        setting_unfollow_modal: Mostra dialogo di conferma prima di smettere di seguire qualcuno
         severity: Severità
         type: Tipo importazione
         username: Nome utente
         username_or_email: Nome utente o email
         whole_word: Parola intera
-        inbox_url: URL della inbox del ripetitore
       interactions:
         must_be_follower: Blocca notifiche dai non follower
         must_be_following: Blocca notifiche dalle persone che non segui
@@ -107,6 +94,6 @@ it:
         reblog: Invia email quando qualcuno da un boost al tuo stato
     'no': 'No'
     required:
-      mark: '*'
+      mark: "*"
       text: richiesto
     'yes': Si

@@ -1,19 +1,27 @@
+---
 ast:
   about:
+    about_mastodon_html: Mastodon ye una rede social basada en protocolos abiertos y software de códigu llibre. Ye descentralizada, como'l corréu electrónicu.
     contact_unavailable: N/D
-    about_mastodon_html: Mastodon ye una rede social basada en protocolos abiertos
-      y software de códigu llibre. Ye descentralizada, como'l corréu electrónicu.
-    description_headline: ¿Qué ye %{domain}?
+    description_headline: "¿Qué ye %{domain}?"
     domain_count_after: otres instancies
     features:
       not_a_product_title: Yes una persona, non un productu
     source_code: Códigu fonte
     status_count_after: estaos
     user_count_after: usuarios
-    what_is_mastodon: ¿Qué ye Mastodon?
+    what_is_mastodon: "¿Qué ye Mastodon?"
+  accounts:
+    followers: Siguidores
+    network_hidden: Esta información nun ta disponible
+    nothing_here: "¡Equí nun hai nada!"
+    people_followed_by: Persones a les que sigue %{name}
+    people_who_follow: Persones que siguen a %{name}
+    reserved_username: El nome d'usuariu ta acutáu
+    roles:
+      bot: Robó
   admin:
     accounts:
-      role: Permisos
       avatar: Avatar
       by_domain: Dominiu
       domain: Dominiu
@@ -22,6 +30,7 @@ ast:
       protocol: Protocolu
       resend_confirmation:
         already_confirmed: Esti usuariu yá ta confirmáu
+      role: Permisos
       roles:
         moderator: Llendador
       username: Nome d'usuariu
@@ -54,95 +63,20 @@ ast:
       failed_to_execute: Fallu al executar
     subscriptions:
       title: WebSub
-  application_mailer:
-    salutation: '%{name},'
-  auth:
-    providers:
-      saml: SAML
-      cas: CAS
-    change_password: Contraseña
-    forgot_password: ¿Escaeciesti la contraseña?
-    security: Seguranza
-  invites:
-    expires_in:
-      '1800': 30 minutos
-      '21600': 6 hores
-      '3600': 1 hora
-      '43200': 12 hores
-      '604800': 1 selmana
-      '86400': 1 día
-    expires_in_prompt: Enxamás
-    max_uses:
-      one: 1 usu
-      other: '%{count} usos'
-    table:
-      uses: Usos
-  notification_mailer:
-    digest:
-      mention: '%{name} mentóte en:'
-    follow_request:
-      body: '%{name} solicitó siguite'
-      title: Petición nueva de siguimientu
-    follow:
-      title: Siguidor nuevu
-    mention:
-      body: '%{name} mentóte en:'
-      subject: '%{name} mentóte'
-      title: Mención nueva
-  number:
-    human:
-      decimal_units:
-        format: '%n%u'
-  sessions:
-    browsers:
-      opera: Opera
-      phantom_js: PhantomJS
-      safari: Safari
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      uc_browser: UCBrowser
-      weibo: Weibo
-    description: '%{browser} en %{platform}'
-    platforms:
-      linux: Linux
-      mac: Mac
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
-    browser: Restolador
-    ip: IP
-    title: Sesiones
-  statuses:
-    attached:
-      image:
-        one: '%{count} imaxe'
-        other: '%{count} imáxenes'
-      video:
-        one: '%{count} videu'
-        other: '%{count} vídeos'
-    title: '%{name}: «%{quote}»'
-  accounts:
-    followers: Siguidores
-    network_hidden: Esta información nun ta disponible
-    nothing_here: ¡Equí nun hai nada!
-    people_followed_by: Persones a les que sigue %{name}
-    people_who_follow: Persones que siguen a %{name}
-    reserved_username: El nome d'usuariu ta acutáu
-    roles:
-      bot: Robó
   admin_mailer:
     new_report:
       body_remote: Daquién dende %{domain} informó de %{target}
+  application_mailer:
+    salutation: "%{name},"
   applications:
     invalid_url: La URL apurrida nun ye válida
+  auth:
+    change_password: Contraseña
+    forgot_password: "¿Escaeciesti la contraseña?"
+    providers:
+      cas: CAS
+      saml: SAML
+    security: Seguranza
   authorize_follow:
     already_following: Yá tas siguiendo a esta cuenta
     error: Desafortunadamente, hebo un fallu guetando la cuenta remota
@@ -164,6 +98,20 @@ ast:
     followers_count: Númberu de siguidores
   generic:
     powered_by: cola potencia de %{link}
+  invites:
+    expires_in:
+      '1800': 30 minutos
+      '21600': 6 hores
+      '3600': 1 hora
+      '43200': 12 hores
+      '604800': 1 selmana
+      '86400': 1 día
+    expires_in_prompt: Enxamás
+    max_uses:
+      one: 1 usu
+      other: "%{count} usos"
+    table:
+      uses: Usos
   lists:
     errors:
       limit: Algamesti la cantidá máxima de llistes
@@ -173,6 +121,22 @@ ast:
       too_many: Nun puen axuntase más de 4 ficheros
   migrations:
     acct: nome_usuariu@dominiu de la cuenta nueva
+  notification_mailer:
+    digest:
+      mention: "%{name} mentóte en:"
+    follow:
+      title: Siguidor nuevu
+    follow_request:
+      body: "%{name} solicitó siguite"
+      title: Petición nueva de siguimientu
+    mention:
+      body: "%{name} mentóte en:"
+      subject: "%{name} mentóte"
+      title: Mención nueva
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
   preferences:
     languages: Llingües
     web: Web
@@ -180,8 +144,44 @@ ast:
     prompt: 'Vas siguir a:'
   remote_unfollow:
     error: Fallu
+  sessions:
+    browser: Restolador
+    browsers:
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      opera: Opera
+      phantom_js: PhantomJS
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    description: "%{browser} en %{platform}"
+    ip: IP
+    platforms:
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    title: Sesiones
   settings:
     preferences: Preferencies
+  statuses:
+    attached:
+      image:
+        one: "%{count} imaxe"
+        other: "%{count} imáxenes"
+      video:
+        one: "%{count} videu"
+        other: "%{count} vídeos"
+    title: "%{name}: «%{quote}»"
   stream_entries:
     click_to_show: Primi p'amosar
     sensitive_content: Conteníu sensible
@@ -192,8 +192,7 @@ ast:
     enabled: L'autenticación en dos pasos ta activada
   user_mailer:
     welcome:
-      full_handle_hint: Esto ye lo que-yos diríes a los collacios pa que puean unviate
-        mensaxes o siguite dende otra instancia.
+      full_handle_hint: Esto ye lo que-yos diríes a los collacios pa que puean unviate mensaxes o siguite dende otra instancia.
       subject: Afáyate en Mastodon
       tips: Conseyos
   users:
