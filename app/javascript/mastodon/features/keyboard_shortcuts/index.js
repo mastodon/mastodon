@@ -41,6 +41,10 @@ export default class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.mention' defaultMessage='to mention author' /></td>
               </tr>
               <tr>
+                <td><kbd>p</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.profile' defaultMessage="to open author's profile" /></td>
+              </tr>
+              <tr>
                 <td><kbd>f</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.favourite' defaultMessage='to favourite' /></td>
               </tr>
