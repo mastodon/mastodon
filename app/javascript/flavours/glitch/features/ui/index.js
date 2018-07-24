@@ -269,7 +269,7 @@ export default class UI extends React.Component {
   handleHotkeyNew = e => {
     e.preventDefault();
 
-    const element = this.node.querySelector('.compose-form__autosuggest-wrapper textarea');
+    const element = this.node.querySelector('.composer--textarea textarea');
 
     if (element) {
       element.focus();
