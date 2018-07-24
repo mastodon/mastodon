@@ -1,4 +1,3 @@
----
 ja:
   simple_form:
     hints:
@@ -23,6 +22,7 @@ ja:
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
         setting_theme: ログインしている全てのデバイスで適用されるデザインです。
         whole_word: キーワードまたはフレーズが英数字のみの場合、単語全体と一致する場合のみ適用されるようになります
+        inbox_url: 使用したいリレーサーバーのトップページからURLをコピーします
       imports:
         data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
       sessions:
@@ -90,6 +90,6 @@ ja:
         reblog: トゥートがブーストされた時にメールで通知する
     'no': いいえ
     required:
-      mark: "*"
+      mark: '*'
       text: 必須
     'yes': はい
