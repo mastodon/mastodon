@@ -208,6 +208,7 @@ oc:
       updated_msg: Emoji ben mes a jorn !
       upload: Enviar
     dashboard:
+      backlog: Accions en retard
       config: Configuracion
       feature_deletions: Supressions de comptes
       feature_invites: Ligams convidat
@@ -823,7 +824,23 @@ oc:
       <ul>
         <li>Per provesir la foncionament màger de Mastodon. Podètz pas qu’interagir amb lo contengut del monde e de vòstras publicacions quand sètz connectat. Per exemple, avètz la possibilitat de sègre de monde per veire lors publicacions amassadas dins vòstre flux d’actualitat personalizat.</li>
         <li>Per ajudar la moderacion de la comunitat, per exemple en comparant vòstra adreça IP amb d’autras per determinar d’ensages de contornament de bandiment e d’autras violéncias.</li>
-        <li>Per enviar periodicament de corrièls &mdash; Podèm utilizar l’adreça qu’avètz donada per vos enviar d’informacions e de notificacions que demandatz tocant de cambiaments dins los subjèctes del forum o en responsa a vòstre nom d’utilizaire, en responsa a una demanda, e/o tota autra question.</li>
+        <li>Podèm utilizar l’adreça qu’avètz donada per vos enviar d’informacions e de notificacions que demandatz tocant de cambiaments dins los subjèctes del forum o en responsa a vòstre nom d’utilizaire, en responsa a una demanda, e/o tota autra question.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">Cossí protegèm vòstras informacions ?</h3>
+
+      <p>Apliquem tota una mena de mesuras de seguretat per manténer la fisança de vòstras informacions personalas quand las picatz, mandatz, o i accedètz. Entre aquelas, vòstre session de navigacion, coma lo trafic entre vòstra aplicacion e l’API, son securizats amb SSL e lo senhal es copat en tròces en emplegar un algorisme fòrt a sens unic. Podètz activar l’autentificacion en dos temps pels accèsses futurs a vòstre compte.</p>
+      <hr class="spacer" />
+
+      <h3 id="data-retention">Quala es nòstra politica de conservacion de donadas ?</h3>
+
+      <p>Farem esfòrces per :</p>
+
+      <ul>
+      <li>Gardar los jornals del servidor que contenon las adreças IP de totas las demandas al servidor pas mai de 90 jorns.</li>
+      <li>Gardar las adreças IP ligadas als utilizaires e lors publicacions pas mai de 12 messes.</li>
       </ul>
     title: Condicions d’utilizacion e politica de confidencialitat de %{instance}
   themes:
