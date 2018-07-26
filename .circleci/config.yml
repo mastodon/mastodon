@@ -127,7 +127,7 @@ jobs:
       - run:
           name: Precompile assets
           command: ./bin/rails assets:precompile
-          no_output_timeout: 20m
+          no_output_timeout: 40m
       - save_cache:
           key: precompiled-assets-{{ .Branch }}-{{ .Revision }}
           paths:
