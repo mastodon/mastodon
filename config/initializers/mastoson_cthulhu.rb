@@ -8,7 +8,7 @@ MastodonCthulhu.setup do |status|
   status
 
   fortune = MastodonCthulhu::Random.new('[ 　\n]?#(社会性フィルター)[ 　\n]?', %w(こゃーん！))
-  status = status.replace("こゃーん！\n #社会性フィルター") if fortune.match(status)	
+  status = status.replace("こゃーん！ :neko_oinari: \n #社会性フィルター") if fortune.match(status)	
   status
   
   cthulhu = Cthulhu.find(rand(Cthulhu.count) + 1).story
