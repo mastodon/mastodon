@@ -6,6 +6,10 @@ MastodonCthulhu.setup do |status|
   fortune = MastodonCthulhu::Random.new('[ 　\n]?#(スーモ)[ 　\n]?', %w(あ❗️スーモ❗️🌚ダン💥ダン💥ダン💥シャーン🎶スモ🌝スモ🌚スモ🌝スモ🌚スモ🌝スモ🌚ス〜〜〜モ⤴スモ🌚スモ🌝スモ🌚スモ🌝スモ🌚スモ🌝ス～～～モ⤵🌞))
   status = fortune.convert(status) if fortune.match(status)	
   status
+
+  fortune = MastodonCthulhu::Random.new('[ 　\n]?#(社会性フィルター)[ 　\n]?', %w(こゃーん！))
+  status = fortune.convert(status) if fortune.match(status)	
+  status
   
   cthulhu = Cthulhu.find(rand(Cthulhu.count) + 1).story
   fortune = MastodonCthulhu::Random.new('[ 　\n]?#(Cthulhu)[ 　\n]?', %W(#{cthulhu}))
