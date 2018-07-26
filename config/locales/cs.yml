@@ -123,7 +123,7 @@ cs:
       memorialize: Změnit na "in memoriam"
       moderation:
         all: Vše
-        silenced: Umlčen
+        silenced: Utišen
         suspended: Suspendován
         title: Moderace
       moderation_notes: Moderační poznámky
@@ -135,7 +135,7 @@ cs:
         most_recent: Nejnovější
         title: Pořadí
       outbox_url: URL odchozích zpráv
-      perform_full_suspension: Provést plnou suspenzi
+      perform_full_suspension: Provést plnou suspenzaci
       profile_url: URL profilu
       promote: Povýšit
       protocol: Protokol
@@ -163,13 +163,13 @@ cs:
         created_reports: Nahlášení vytvořené z tohoto účtu
         report: nahlášení
         targeted_reports: Nahlášení vytvořena o tomto účtu
-      silence: Umlčet
+      silence: Utišit
       statuses: Statusy
       subscribe: Odebírat
       title: Účty
       unconfirmed_email: Nepotvrzený e-mail
-      undo_silenced: Zrušit umlčení
-      undo_suspension: Zrušit suspenzi
+      undo_silenced: Zrušit utišení
+      undo_suspension: Zrušit suspenzaci
       unsubscribe: Přestat odebírat
       username: Uživatelské jméno
       web: Web
@@ -199,11 +199,11 @@ cs:
         reopen_report: '%{name} znovuotevřel/a nahlášení %{target}'
         reset_password_user: '%{name} resetoval/a heslo uživatele %{target}'
         resolve_report: '%{name} vyřešil/a nahlášení %{target}'
-        silence_account: '%{name} umlčel/a účet uživatele %{target}'
+        silence_account: '%{name} utišil/a účet uživatele %{target}'
         suspend_account: '%{name} suspendoval/a účet uživatele %{target}'
         unassigned_report: '%{name} odebral/a nahlášení %{target}'
-        unsilence_account: '%{name} odmlčel/a účet uživatele %{target}'
-        unsuspend_account: '%{name} zrušil/a suspenzi účtu uživatele %{target}'
+        unsilence_account: '%{name} odtišil/a účet uživatele %{target}'
+        unsuspend_account: '%{name} zrušil/a suspenzaci účtu uživatele %{target}'
         update_custom_emoji: '%{name} aktualizoval/a emoji %{target}'
         update_status: '%{name} aktualizoval/a status uživatele %{target}'
       title: Záznam auditu
@@ -215,6 +215,174 @@ cs:
       created_msg: Emoji úspěšně vytvořeno!
       delete: Smazat
       destroyed_msg: Emoji úspěšně zničeno!
+      disable: Zakázat
+      disabled_msg: Emoji bylo úspěšně zakázáno
+      emoji: Emoji
+      enable: Povolit
+      enabled_msg: Emoji bylo úspěšně povoleno
+      image_hint: PNG až do 50KB
+      listed: Uvedené
+      new:
+        title: Přidat nové vlastní emoji
+      overwrite: Přepsat
+      shortcode: Zkratka
+      shortcode_hint: Alespoň 2 znaky, pouze alfanumerické znaky a podtržítka
+      title: Vlastní emoji
+      unlisted: Neuvedené
+      update_failed_msg: Nebylo možné aktualizovat toto emoji
+      updated_msg: Emoji úspěšně aktualizováno!
+      upload: Nahrát
+    dashboard:
+      backlog: opožděné úlohy
+      config: Konfigurace
+      feature_deletions: Smazání účtů
+      feature_invites: Pozvánky
+      feature_registrations: Registrace
+      feature_relay: Federovací most
+      features: Vlastnosti
+      hidden_service: Federace se skrytými službami
+      open_reports: otevřená hlášení
+      recent_users: Nedávní uživatelé
+      search: Fulltextové vyhledávání
+      single_user_mode: Režim jednoho uživatele
+      software: Software
+      space: Využití prostoru
+      title: Přehled
+      total_users: uživatelů celkem
+      trends: Trendy
+      week_interactions: interakcí tento týden
+      week_users_active: aktivních tento týden
+      week_users_new: uživatelů tento týden
+    domain_blocks:
+      add_new: Přidat nové
+      created_msg: Blokace domény se právě vyřizuje
+      destroyed_msg: Blokace domény byla zrušena
+      domain: Doména
+      new:
+        create: Vytvořit blokaci
+        hint: Blokace domény nezakáže vytváření účtových záznamů v databázi, ale bude
+          na tyto účty zpětně a automaticky aplikovat specifické metody moderace.
+        severity:
+          desc_html: Funkce <strong>Utišit</strong> zneviditelní příspěvky z účtu
+            komukoliv, kdo jej nesleduje. Funkce <strong>Suspendovat</strong> odstraní
+            všechen obsah, média a profilová data účtu. Pro pouhé odmítnutí mediálních
+            souborů použijte funkci <strong>Žádné</strong>.
+          noop: Žádné
+          silence: Utišit
+          suspend: Suspendovat
+        title: Nová doménová blokace
+      reject_media: Odmítat mediální soubory
+      reject_media_hint: Odstraní lokálně uložené soubory a odmítne jejich stažení
+        v budoucnosti. Irelevantní pro suspenzace
+      severities:
+        noop: Žádné
+        silence: Utišit
+        suspend: Suspendovat
+      severity: Přísnost
+      show:
+        affected_accounts:
+          one: Jeden účet v databázi byl ovlivněn
+          other: '%{count} účtů v databázi byl ovlivněn'
+        retroactive:
+          silence: Odtišit všechny existující účty z této domény
+          suspend: Zrušit suspenzaci všech existujících účtů z této domény
+        title: Zrušit blokaci domény %{domain}
+        undo: Odvolat
+      title: Doménové blokace
+      undo: Odvolat
+    email_domain_blocks:
+      add_new: Přidat nový
+      created_msg: E-mailová doména úspěšně přidána na černou listinu
+      delete: Smazat
+      destroyed_msg: E-mailová doména úspěšně odstraněna z černé listiny
+      domain: Doména
+      new:
+        create: Přidat doménu
+        title: Nový e-mail pro zablokování
+      title: Černá listina e-mailů
+    instances:
+      account_count: Známé účty
+      domain_name: Doména
+      reset: Resetovat
+      search: Hledat
+      title: Známé instance
+    invites:
+      filter:
+        all: Vše
+        available: Dostupné
+        expired: Vypršelé
+        title: Filtrovat
+      title: Pozvánky
+    relays:
+      add_new: Přidat nový most
+      description_html: <strong>Federovací most</strong> je přechodný server, který
+        vyměňuje velká množství veřejných tootů mezi servery, které z něj odebírají
+        a poblikují na něj. <strong>Může pomoci malým a středně velkým serverům objevovat
+        obsah z fediverse</strong>, což by jinak vyžadovalo, aby místní uživatelé
+        manuálně sledovali jiné lidi na vzdálených serverech.
+      enable_hint: Je-li tohle povoleno, začne váš server odebírat všechny veřejné
+        tooty z tohoto mostu a odesílat na něj své vlastní veřejné tooty.
+      inbox_url: URL mostu
+      setup: Nastavit připojení k mostu
+      status: Stav
+      title: Mosty
+    report_notes:
+      created_msg: Poznámka o nahlášení úspěšně vytvořena!
+      destroyed_msg: Poznámka o nahlášení úspěšně smazána!
+    reports:
+      account:
+        note: poznámka
+        report: nahlášení
+      action_taken_by: Akci vykonal/a
+      are_you_sure: Jste si jistý/á?
+      assign_to_self: Přidělit ke mně
+      assigned: Přiřazený moderátor
+      comment:
+        none: Žádné
+      created_at: Nahlášené
+      id: ID
+      mark_as_resolved: Označit jako vyřešené
+      mark_as_unresolved: Označit jako nevyřešené
+      notes:
+        create: Přidat poznámku
+        create_and_resolve: Vyřešit s poznámkou
+        create_and_unresolve: Znovu otevřít s poznámkou
+        delete: Smazat
+        placeholder: Popište, jaké akce byly vykonány, nebo jakékoliv jiné související
+          aktuality...
+      reopen: Znovu otevřít nahlášení
+      report: 'Nahlásit #%{id}'
+      report_contents: Obsah
+      reported_account: Nahlášený účet
+      reported_by: Nahlášeno uživatelem
+      resolved: Vyřešeno
+      resolved_msg: Nahlášení úspěšně vyřešeno!
+      silence_account: Utišit účet
+      status: Stav
+      suspend_account: Suspendovat účet
+      target: Cíl
+      title: Nahlášení
+      unassign: Odebrat
+      unresolved: Nevyřešeno
+      updated_at: Aktualizováno
+      view: Zobrazit
+    settings:
+      activity_api_enabled:
+        desc_html: Počty lokálně publikovaných statusů, aktivních uživatelů a nových
+          registrací, v týdenních intervalech
+        title: Publikovat hromadné statistiky o uživatelské aktivitě
+      bootstrap_timeline_accounts:
+        desc_html: Je-li uživatelskch jmen více, oddělujte je čárkami. Lze zadat pouze
+          místní a odemknuté účty. Je-li tohle prázdné, jsou výchozí hodnotou všichni
+          místní administrátoři.
+        title: Výchozí sledování pro nové uživatele
+      contact_information:
+        email: Pracovní e-mail
+        username: Uživatelské jméno kontaktu
+      hero:
+        desc_html: Zobrazuje se na hlavní stránce. Doporučuje se rozlišení alespoň
+          600x100px. Pokud toto není nastavené, bude zobrazen náhled instance
+        title: Hlavní obrázek
   auth:
     login: Přihlásit
     logout: Odhlásit
