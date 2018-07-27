@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import createHistory from 'history/createBrowserHistory';
 
 export default class ModalRoot extends React.PureComponent {
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
   static propTypes = {
     children: PropTypes.node,
@@ -24,6 +28,7 @@ export default class ModalRoot extends React.PureComponent {
 
   componentDidMount () {
     window.addEventListener('keyup', this.handleKeyUp, false);
+    this.history = this.context.router ? this.context.router.history : createHistory();
   }
 
   componentWillReceiveProps (nextProps) {
@@ -41,16 +46,36 @@ export default class ModalRoot extends React.PureComponent {
       this.getSiblings().forEach(sibling => sibling.removeAttribute('inert'));
       this.activeElement.focus();
       this.activeElement = null;
+      this.handleModalClose();
     }
     if (this.props.children) {
       requestAnimationFrame(() => {
         this.setState({ revealed: true });
       });
+      if (!prevProps.children) this.handleModalOpen();
     }
   }
 
   componentWillUnmount () {
     window.removeEventListener('keyup', this.handleKeyUp);
+  }
+
+  handleModalClose () {
+    this.unlistenHistory();
+
+    const state = this.history.location.state;
+    if (state && state.mastodonModalOpen) {
+      this.history.goBack();
+    }
+  }
+
+  handleModalOpen () {
+    const history = this.history;
+    const state   = {...history.location.state, mastodonModalOpen: true};
+    history.push(history.location.pathname, state);
+    this.unlistenHistory = history.listen(() => {
+      this.props.onClose();
+    });
   }
 
   getSiblings = () => {
