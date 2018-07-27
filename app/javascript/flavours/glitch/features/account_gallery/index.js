@@ -89,6 +89,10 @@ export default class AccountGallery extends ImmutablePureComponent {
     this.handleScrollToBottom();
   }
 
+  shouldUpdateScroll = (prevRouterProps, { location }) => {
+    return !(location.state && location.state.mastodonModalOpen)
+  }
+
   render () {
     const { medias, isLoading, hasMore } = this.props;
 
@@ -110,7 +114,7 @@ export default class AccountGallery extends ImmutablePureComponent {
       <Column>
         <ColumnBackButton />
 
-        <ScrollContainer scrollKey='account_gallery'>
+        <ScrollContainer scrollKey='account_gallery' shouldUpdateScroll={this.shouldUpdateScroll}>
           <div className='scrollable' onScroll={this.handleScroll}>
             <HeaderContainer accountId={this.props.params.accountId} />
 

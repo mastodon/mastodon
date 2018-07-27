@@ -60,6 +60,10 @@ export default class AccountTimeline extends ImmutablePureComponent {
     this.props.dispatch(expandAccountTimeline(this.props.params.accountId, { maxId, withReplies: this.props.withReplies }));
   }
 
+  shouldUpdateScroll = (prevRouterProps, { location }) => {
+    return !(location.state && location.state.mastodonModalOpen)
+  }
+
   render () {
     const { statusIds, featuredStatusIds, isLoading, hasMore } = this.props;
 
@@ -83,6 +87,7 @@ export default class AccountTimeline extends ImmutablePureComponent {
           isLoading={isLoading}
           hasMore={hasMore}
           onLoadMore={this.handleLoadMore}
+          shouldUpdateScroll={this.shouldUpdateScroll}
         />
       </Column>
     );

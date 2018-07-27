@@ -42,6 +42,10 @@ export default class Blocks extends ImmutablePureComponent {
     }
   }
 
+  shouldUpdateScroll = (prevRouterProps, { location }) => {
+    return !(location.state && location.state.mastodonModalOpen)
+  }
+
   render () {
     const { intl, accountIds } = this.props;
 
@@ -56,7 +60,7 @@ export default class Blocks extends ImmutablePureComponent {
     return (
       <Column name='blocks' icon='ban' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
-        <ScrollContainer scrollKey='blocks'>
+        <ScrollContainer scrollKey='blocks' shouldUpdateScroll={this.shouldUpdateScroll}>
           <div className='scrollable' onScroll={this.handleScroll}>
             {accountIds.map(id =>
               <AccountContainer key={id} id={id} />

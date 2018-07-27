@@ -40,6 +40,10 @@ export default class Blocks extends ImmutablePureComponent {
     this.props.dispatch(expandDomainBlocks());
   }, 300, { leading: true });
 
+  shouldUpdateScroll = (prevRouterProps, { location }) => {
+    return !(location.state && location.state.mastodonModalOpen)
+  }
+
   render () {
     const { intl, domains } = this.props;
 
@@ -54,7 +58,7 @@ export default class Blocks extends ImmutablePureComponent {
     return (
       <Column icon='minus-circle' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
-        <ScrollableList scrollKey='domain_blocks' onLoadMore={this.handleLoadMore}>
+        <ScrollableList scrollKey='domain_blocks' onLoadMore={this.handleLoadMore} shouldUpdateScroll={this.shouldUpdateScroll}>
           {domains.map(domain =>
             <DomainContainer key={domain} domain={domain} />
           )}

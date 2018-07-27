@@ -47,6 +47,10 @@ export default class CommunityTimeline extends React.PureComponent {
     this.props.dispatch(expandCommunityTimeline({ maxId }));
   }
 
+  shouldUpdateScroll = (prevRouterProps, { location }) => {
+    return !(location.state && location.state.mastodonModalOpen)
+  }
+
   render () {
     const { intl } = this.props;
 
@@ -62,6 +66,7 @@ export default class CommunityTimeline extends React.PureComponent {
           timelineId='community'
           onLoadMore={this.handleLoadMore}
           scrollKey='standalone_public_timeline'
+          shouldUpdateScroll={this.shouldUpdateScroll}
           trackScroll={false}
         />
       </Column>
