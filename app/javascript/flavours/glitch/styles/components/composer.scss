@@ -2,7 +2,20 @@
   padding: 10px;
 }
 
+.no-reduce-motion .composer--spoiler {
+  transition: height 0.4s ease, opacity 0.4s ease;
+}
+
 .composer--spoiler {
+  height: 0;
+  transform-origin: bottom;
+  opacity: 0.0;
+
+  &.composer--spoiler--visible {
+    height: 47px;
+    opacity: 1.0;
+  }
+
   input {
     display: block;
     box-sizing: border-box;

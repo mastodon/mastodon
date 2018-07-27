@@ -3,9 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-//  Components.
-import Collapsable from 'flavours/glitch/components/collapsable';
-
 //  Utils.
 import {
   assignHandlers,
@@ -59,11 +56,8 @@ export default class ComposerSpoiler extends React.PureComponent {
 
     //  The result.
     return (
-      <Collapsable
-        isVisible={!hidden}
-        fullHeight={50}
-      >
-        <label className='composer--spoiler'>
+      <div className={`composer--spoiler ${hidden ? '' : 'composer--spoiler--visible'}`}>
+        <label>
           <span {...hiddenComponent}>
             <FormattedMessage {...messages.placeholder} />
           </span>
@@ -76,7 +70,7 @@ export default class ComposerSpoiler extends React.PureComponent {
             value={text}
           />
         </label>
-      </Collapsable>
+      </div>
     );
   }
 
