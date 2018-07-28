@@ -946,6 +946,18 @@
   background: lighten($ui-base-color, 4%);
   padding: 14px 10px;
 
+  &--flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .status__content,
+    .detailed-status__meta {
+      flex: 100%;
+    }
+  }
+
   .status__content {
     font-size: 19px;
     line-height: 24px;

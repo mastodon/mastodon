@@ -1,13 +1,12 @@
 body {
   font-family: 'mastodon-font-sans-serif', sans-serif;
-  background: $ui-base-color;
+  background: darken($ui-base-color, 8%);
   background-size: cover;
   background-attachment: fixed;
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
   color: $primary-text-color;
-  padding-bottom: 20px;
   text-rendering: optimizelegibility;
   font-feature-settings: "kern";
   text-size-adjust: none;
@@ -52,7 +51,7 @@ body {
   }
 
   &.embed {
-    background: transparent;
+    background: lighten($ui-base-color, 4%);
     margin: 0;
     padding-bottom: 0;
 

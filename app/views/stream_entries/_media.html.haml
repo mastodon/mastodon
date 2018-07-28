@@ -1,4 +1,0 @@
-.media-item
-  = link_to media.remote_url.blank? ? media.file.url(:original) : media.remote_url, style: media.image? ? "background-image: url(#{media.file.url(:original)})" : '', target: '_blank', rel: 'noopener', class: "u-#{media.video? || media.gifv? ? 'video' : 'photo'}" do
-    - unless media.image?
-      %video{ src: media.file.url(:original), autoplay: true, loop: true }/
