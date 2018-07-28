@@ -46,7 +46,6 @@ gl:
     people_who_follow: Personas que seguen a %{name}
     posts: Mensaxes
     posts_with_replies: Toots e respostas
-    remote_follow: Seguimento remoto
     reserved_username: O nome de usuaria está reservado
     roles:
       admin: Admin
@@ -222,6 +221,7 @@ gl:
       space: Uso de espazo
       title: Taboleiro
       total_users: total de usuarias
+      trends: Tendencias
       week_interactions: interaccións en esta semana
       week_users_active: activas estas semana
       week_users_new: usuarias esta semana
@@ -534,7 +534,6 @@ gl:
     unlocked_warning_title: A súa conta non está pechada
   generic:
     changes_saved_msg: Cambios gardados correctamente!!
-    powered_by: grazas a %{link}
     save_changes: Gardar cambios
     validation_errors:
       one: Algo non está ben de todo! Por favor revise abaixo o erro
@@ -570,8 +569,6 @@ gl:
       expires_at: Caduca
       uses: Usos
     title: Convidar xente
-  landing_strip_html: "<strong>%{name}</strong> é unha usuaria en %{link_to_root_path}.  Pode seguila ou interactuar con ela si ten unha conta en algún lugar do fediverso."
-  landing_strip_signup_html: Si non, pode <a href="%{sign_up_path}">rexistrarse aquí</a>.
   lists:
     errors:
       limit: Acadou o número máximo de listas
@@ -740,7 +737,6 @@ gl:
       unlisted: Non listado
       unlisted_long: Visible para calquera, pero non listado en liñas de tempo públicas
   stream_entries:
-    click_to_show: Pulse para mostrar
     pinned: Mensaxe fixada
     reblogged: promovida
     sensitive_content: Contido sensible

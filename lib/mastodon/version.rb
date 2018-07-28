@@ -32,8 +32,12 @@ module Mastodon
       [to_a.join('.'), flags].join
     end
 
+    def repository
+      'dtp-mstdn-jp/mastodon'
+    end
+
     def source_base_url
-      'https://github.com/dtp-mstdn-jp/mastodon'
+      "https://github.com/#{repository}"
     end
 
     # specify git tag or commit hash here

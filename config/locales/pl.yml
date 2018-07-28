@@ -46,7 +46,6 @@ pl:
     people_who_follow: Osoby, które śledzą konto %{name}
     posts: Wpisy
     posts_with_replies: Wpisy z odpowiedziami
-    remote_follow: Śledź zdalnie
     reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
       admin: Administrator
@@ -223,6 +222,7 @@ pl:
       space: Używana powierzchnia
       title: Panel administracyjny
       total_users: łącznie użytkowników
+      trends: Na czasie
       week_interactions: interakcje w tym tygodniu
       week_users_active: aktywni w tym tygodniu
       week_users_new: rejestracje w tym tygodniu
@@ -536,7 +536,6 @@ pl:
     unlocked_warning_title: Twoje konto nie jest zablokowane
   generic:
     changes_saved_msg: Ustawienia zapisane!
-    powered_by: uruchomione na %{link}
     save_changes: Zapisz zmiany
     validation_errors:
       few: Coś jest wciąż nie tak! Przejrzyj %{count} poniższe błędy
@@ -576,8 +575,6 @@ pl:
       expires_at: Wygaśnie po
       uses: Użycia
     title: Zaproś użytkowników
-  landing_strip_html: "<strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersum."
-  landing_strip_signup_html: Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
   lists:
     errors:
       limit: Przekroczyłeś maksymalną liczbę utworzonych list
@@ -754,7 +751,6 @@ pl:
       unlisted: Niewypisane
       unlisted_long: Widoczne dla wszystkich, ale nie wyświetlane na publicznych osiach czasu
   stream_entries:
-    click_to_show: Naciśnij aby wyświetlić
     pinned: Przypięty wpis
     reblogged: podbił
     sensitive_content: Wrażliwa zawartość

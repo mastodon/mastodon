@@ -46,7 +46,6 @@ ja:
     people_who_follow: "%{name} さんをフォロー中のアカウント"
     posts: トゥート
     posts_with_replies: トゥートと返信
-    remote_follow: リモートフォロー
     reserved_username: このユーザー名は予約されています
     roles:
       admin: Admin
@@ -213,6 +212,7 @@ ja:
       feature_registrations: 新規登録
       feature_relay: 連合リレー
       features: 機能
+      hidden_service: 秘匿サービスとの連合
       open_reports: 未解決のレポート
       recent_users: 最近登録したユーザー
       search: 全文検索
@@ -221,7 +221,7 @@ ja:
       space: ディスク使用量
       title: ダッシュボード
       total_users: 全ユーザー
-      trends: トレンド
+      trends: トレンドタグ
       week_interactions: 今週の交流数
       week_users_active: 今週活動した人数
       week_users_new: 今週登録した人数
@@ -534,7 +534,6 @@ ja:
     unlocked_warning_title: このアカウントは承認制アカウントに設定されていません
   generic:
     changes_saved_msg: 正常に変更されました！
-    powered_by: powered by %{link}
     save_changes: 変更を保存
     validation_errors:
       one: エラーが発生しました！ 以下のエラーを確認してください
@@ -570,8 +569,6 @@ ja:
       expires_at: 有効期限
       uses: 使用
     title: 新規ユーザーの招待
-  landing_strip_html: "<strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。"
-  landing_strip_signup_html: もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   lists:
     errors:
       limit: リストの上限に達しました
@@ -740,7 +737,6 @@ ja:
       unlisted: 未収載
       unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
   stream_entries:
-    click_to_show: クリックして表示
     pinned: 固定されたトゥート
     reblogged: さんがブースト
     sensitive_content: 閲覧注意

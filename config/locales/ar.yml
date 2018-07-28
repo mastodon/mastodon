@@ -46,7 +46,6 @@ ar:
     people_who_follow: الأشخاص الذين يتبعون %{name}
     posts: منشورات
     posts_with_replies: التبويقات و الردود
-    remote_follow: إتبع عن بعد
     reserved_username: إسم المستخدم محجوز
     roles:
       admin: المدير
@@ -206,6 +205,18 @@ ar:
       update_failed_msg: تعذرت عملية تحذيث ذاك الإيموجي
       updated_msg: تم تحديث الإيموجي بنجاح !
       upload: رفع
+    dashboard:
+      feature_invites: روابط الدعوات
+      feature_registrations: التسجيلات
+      feature_relay: المُرحّل الفديرالي
+      features: الميّزات
+      hidden_service: الفيديرالية مع الخدمات الخفية
+      search: البحث النصي الكامل
+      software: البرنامج
+      space: المساحة المستخدَمة
+      title: لوح المراقبة
+      week_users_active: نشط هذا الأسبوع
+      week_users_new: مستخدِمين هذا الأسبوع
     domain_blocks:
       add_new: إضافة نطاق جديد
       created_msg: إنّ حجب النطاق حيز التشغيل
@@ -261,6 +272,12 @@ ar:
         expired: المنتهي صلاحيتها
         title: التصفية
       title: الدعوات
+    relays:
+      add_new: إضافة مُرحّل جديد
+      inbox_url: رابط المُرحّل
+      setup: إعداد اتصال بمُرحّل
+      status: الحالة
+      title: المُرحّلات
     report_notes:
       created_msg: |-
         41/5000
@@ -498,7 +515,6 @@ ar:
     unlocked_warning_title: إنّ حسابك غير مقفل
   generic:
     changes_saved_msg: تم حفظ التعديلات بنجاح !
-    powered_by: مدعوم بـ %{link}
     save_changes: حفظ التغييرات
     validation_errors:
       one: لا يزال هناك خلل ما إلى حد الآن. يُرجى إعادة النظر في الخطأ أسفله
@@ -533,8 +549,6 @@ ar:
       expires_at: تنتهي مدة صلاحيتها في
       uses: يستخدِم
     title: دعوة أشخاص
-  landing_strip_html: "<strong>%{name}</strong> هو أحد مُستخدِمي %{link_to_root_path}. بإمكانك متابعته أو التواصل معه إن كنت تملك حسابًا أيا كان على البيئة الموحَّدة فيديفرس."
-  landing_strip_signup_html: إن كنت لا تملك واحدا، يمكنك <a href="%{sign_up_path}">التسجيل مِن هنا</a>.
   lists:
     errors:
       limit: لقد بلغت الحد الأقصى للقوائم
@@ -702,7 +716,6 @@ ar:
       unlisted: غير مُدرَج
       unlisted_long: يُمكن لأيٍ كان رُؤيتَه و لكن لن يُعرَض على الخيوط العامة
   stream_entries:
-    click_to_show: إضغط للعرض
     pinned: تبويق مثبّت
     reblogged: رقى
     sensitive_content: محتوى حساس
