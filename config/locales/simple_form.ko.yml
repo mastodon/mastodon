@@ -1,4 +1,3 @@
----
 ko:
   simple_form:
     hints:
@@ -26,6 +25,7 @@ ko:
         setting_noindex: 공개 프로필 및 각 툿페이지에 영향을 미칩니다
         setting_theme: 로그인중인 모든 디바이스에 적용되는 디자인입니다.
         whole_word: 키워드가 영문과 숫자로만 이루어 진 경우, 단어 전체에 매칭 되었을 때에만 작동하게 합니다
+        inbox_url: 사용 할 릴레이 서버의 프론트페이지에서 URL을 복사합니다
       imports:
         data: 다른 마스토돈 인스턴스에서 추출된 CSV 파일
       sessions:
@@ -79,6 +79,7 @@ ko:
         username: 유저 이름
         username_or_email: 유저네임 또는 이메일
         whole_word: 단어 전체에 매칭
+        inbox_url: 릴레이 서버의 inbox URL
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단
@@ -92,6 +93,6 @@ ko:
         reblog: 누군가 내 툿을 부스트 했을 때 이메일 보내기
     'no': 아니오
     required:
-      mark: "*"
+      mark: '*'
       text: 필수 항목
     'yes': 네
