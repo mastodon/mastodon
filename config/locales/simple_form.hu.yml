@@ -3,12 +3,12 @@ hu:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF vagy JPG. Maximum 2MB. Át lesz méretezve 400x400 pixelre
+        avatar: PNG, GIF vagy JPG. Maximum %{size}. Át lesz méretezve %{dimensions} pixelre
         digest: Csak hosszú távollét esetén küldve és csak ha személyes üzenetet kaptál távollétedben
         display_name:
           one: <span class="name-counter">1</span>karakter maradt
           other: <span class="name-counter">%{count}</span>karakter maradt
-        header: PNG, GIF vagy JPG. Maximum 2MB. Át lesz méretezve 700x335 pixelre
+        header: PNG, GIF vagy JPG. Maximum %{size}. Át lesz méretezve %{dimensions} pixelre
         locked: Egyenként engedélyezned kell a követőidet
         note:
           one: <span class="note-counter">1</span>karakter maradt
