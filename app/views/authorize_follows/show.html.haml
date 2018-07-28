@@ -3,7 +3,7 @@
 
 .form-container
   .follow-prompt
-    = render 'card', account: @account
+    = render 'application/card', account: @account
 
   - if current_account.following?(@account)
     .flash-message

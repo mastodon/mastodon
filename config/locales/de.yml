@@ -46,7 +46,6 @@ de:
     people_who_follow: Profile, die %{name} folgen
     posts: Beiträge
     posts_with_replies: Beiträge mit Antworten
-    remote_follow: Folgen
     reserved_username: Dieser Profilname ist belegt
     roles:
       admin: Admin
@@ -206,6 +205,17 @@ de:
       update_failed_msg: Konnte dieses Emoji nicht aktualisieren
       updated_msg: Emoji erfolgreich aktualisiert!
       upload: Hochladen
+    dashboard:
+      backlog: Unerledigte Jobs
+      config: Konfiguration
+      feature_invites: Einladungslinks
+      feature_registrations: Registrierung
+      features: Eigenschaften
+      open_reports: Offene Meldungen
+      search: Volltextsuche
+      space: Speicherverbrauch
+      title: Übersicht
+      total_users: Benutzer Insgesamt
     domain_blocks:
       add_new: Neu hinzufügen
       created_msg: Die Domain-Blockade wird nun durchgeführt
@@ -261,6 +271,8 @@ de:
         expired: Ausgelaufen
         title: Filter
       title: Einladungen
+    relays:
+      add_new: Neues Relay hinzufügen
     report_notes:
       created_msg: Meldungs-Kommentar erfolgreich erstellt!
       destroyed_msg: Meldungs-Kommentar erfolgreich gelöscht!
@@ -504,7 +516,6 @@ de:
     unlocked_warning_title: Dein Konto ist nicht gesperrt
   generic:
     changes_saved_msg: Änderungen gespeichert!
-    powered_by: angetrieben von %{link}
     save_changes: Änderungen speichern
     validation_errors:
       one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
@@ -540,8 +551,6 @@ de:
       expires_at: Läuft ab
       uses: Verwendungen
     title: Leute Einladen
-  landing_strip_html: "<strong>%{name}</strong> hat ein Profil auf %{link_to_root_path}. Du kannst folgen oder interagieren, sofern du ein Konto irgendwo im Fediversum hast."
-  landing_strip_signup_html: Wenn nicht, kannst du dich <a href="%{sign_up_path}">hier anmelden</a>.
   lists:
     errors:
       limit: Du hast die maximale Anzahl an Listen erreicht
@@ -710,7 +719,6 @@ de:
       unlisted: Nicht gelistet
       unlisted_long: Für alle sichtbar, aber nicht in öffentlichen Zeitleisten aufgelistet
   stream_entries:
-    click_to_show: Klicken, um zu zeigen
     pinned: Angehefteter Beitrag
     reblogged: teilte
     sensitive_content: Heikle Inhalte

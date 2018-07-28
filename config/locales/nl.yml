@@ -46,7 +46,6 @@ nl:
     people_who_follow: Mensen die %{name} volgen
     posts: Toots
     posts_with_replies: Toots en reacties
-    remote_follow: Extern volgen
     reserved_username: Deze gebruikersnaam is gereserveerd
     roles:
       admin: Beheerder
@@ -206,6 +205,27 @@ nl:
       update_failed_msg: Deze emoji kon niet worden bijgewerkt
       updated_msg: Bijwerken van emoji is geslaagd!
       upload: Uploaden
+    dashboard:
+      backlog: achterstallige taken
+      config: Configuratie
+      feature_deletions: Verwijderen van account
+      feature_invites: Uitnodigingen
+      feature_registrations: Registraties
+      feature_relay: Federatierelay
+      features: Functies
+      hidden_service: Federatie met verborgen diensten
+      open_reports: onopgeloste gerapporteerde toots
+      recent_users: Recente gebruikers
+      search: In volledige tekst zoeken
+      single_user_mode: Modus voor één gebruiker
+      software: Software
+      space: Ruimtegebruik
+      title: Dashboard
+      total_users: gebruikers in totaal
+      trends: Trends
+      week_interactions: interacties deze week
+      week_users_active: actieve gebruikers deze week
+      week_users_new: nieuwe gebruikers deze week
     domain_blocks:
       add_new: Nieuwe toevoegen
       created_msg: Domeinblokkade wordt nu verwerkt
@@ -263,7 +283,7 @@ nl:
       title: Uitnodigingen
     relays:
       add_new: Nieuwe relayserver toevoegen
-      description_html: Een <strong>federatie-relay</strong> is een tussenliggende server die grote hoeveelheden openbare toots uitwisselt tussen servers die zich hierop hebben geabonneerd. <strong>Het kan kleine en middelgrote servers helpen om content uit de fediverse te ontdekken</strong>, waarvoor anders lokale gebruikers handmatig mensen van externe servers moeten volgen.
+      description_html: Een <strong>federatierelay</strong> is een tussenliggende server die grote hoeveelheden openbare toots uitwisselt tussen servers die zich hierop hebben geabonneerd. <strong>Het kan kleine en middelgrote servers helpen om content uit de fediverse te ontdekken</strong>, waarvoor anders lokale gebruikers handmatig mensen van externe servers moeten volgen.
       enable_hint: Eenmaal ingeschakeld gaat jouw server zich op alle openbare toots van deze relayserver abonneren en stuurt het de openbare toots van jouw server naar de relayserver.
       inbox_url: Relay-URL
       setup: Een verbinding met een relayserver maken
@@ -515,7 +535,6 @@ nl:
     unlocked_warning_title: Jouw account is niet besloten
   generic:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
-    powered_by: wordt mogelijk gemaakt door %{link}
     save_changes: Wijzigingen opslaan
     validation_errors:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
@@ -551,8 +570,6 @@ nl:
       expires_at: Verloopt op
       uses: Aantal keer te gebruiken
     title: Mensen uitnodigen
-  landing_strip_html: "<strong>%{name}</strong> is een gebruiker op %{link_to_root_path}. Je kunt deze volgen en ermee communiceren als je op Mastodon (of ergens anders in de fediverse) een account hebt."
-  landing_strip_signup_html: Als je dat niet hebt, kun je je <a href="%{sign_up_path}">hier registreren</a>.
   lists:
     errors:
       limit: Je hebt het maximaal aantal lijsten bereikt
@@ -721,7 +738,6 @@ nl:
       unlisted: Minder openbaar
       unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
   stream_entries:
-    click_to_show: Klik om te tonen
     pinned: Vastgemaakte toot
     reblogged: boostte
     sensitive_content: Gevoelige inhoud

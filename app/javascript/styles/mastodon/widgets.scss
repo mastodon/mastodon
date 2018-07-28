@@ -1,0 +1,161 @@
+.hero-widget {
+  margin-bottom: 10px;
+  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+
+  &__img {
+    width: 100%;
+    height: 167px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+    background: $base-shadow-color;
+
+    img {
+      object-fit: cover;
+      display: block;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      border-radius: 4px 4px 0 0;
+    }
+  }
+
+  &__text {
+    background: $ui-base-color;
+    padding: 20px;
+    border-radius: 0 0 4px 4px;
+    font-size: 15px;
+    color: $darker-text-color;
+    line-height: 20px;
+    word-wrap: break-word;
+    font-weight: 400;
+
+    .emojione {
+      width: 20px;
+      height: 20px;
+      margin: -3px 0 0;
+    }
+
+    p {
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    em {
+      display: inline;
+      margin: 0;
+      padding: 0;
+      font-weight: 700;
+      background: transparent;
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      color: lighten($darker-text-color, 10%);
+    }
+
+    a {
+      color: $secondary-text-color;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    display: none;
+  }
+}
+
+.moved-account-widget {
+  padding: 15px;
+  padding-bottom: 20px;
+  border-radius: 4px;
+  background: $ui-base-color;
+  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+  color: $secondary-text-color;
+  font-weight: 400;
+  margin-bottom: 10px;
+
+  strong,
+  a {
+    font-weight: 500;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+
+    &.mention {
+      text-decoration: none;
+
+      span {
+        text-decoration: none;
+      }
+
+      &:focus,
+      &:hover,
+      &:active {
+        text-decoration: none;
+
+        span {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &__message {
+    margin-bottom: 15px;
+
+    .fa {
+      margin-right: 5px;
+      color: $darker-text-color;
+    }
+  }
+
+  &__card {
+    .detailed-status__display-avatar {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .detailed-status__display-name {
+      margin-bottom: 0;
+      text-decoration: none;
+
+      span {
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+.memoriam-widget {
+  padding: 20px;
+  border-radius: 4px;
+  background: $base-shadow-color;
+  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+  font-size: 14px;
+  color: $darker-text-color;
+  margin-bottom: 10px;
+}
+
+.moved-account-widget,
+.memoriam-widget {
+  @media screen and (max-width: $no-gap-breakpoint) {
+    margin-bottom: 0;
+    box-shadow: none;
+    border-radius: 0;
+  }
+}

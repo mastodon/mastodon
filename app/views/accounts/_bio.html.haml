@@ -1,0 +1,15 @@
+.public-account-bio
+  - unless account.fields.empty?
+    .account__header__fields
+      - account.fields.each do |field|
+        %dl
+          %dt.emojify{ title: field.name }= field.name
+          %dd.emojify{ title: field.value }= Formatter.instance.format_field(account, field.value, custom_emojify: true)
+
+  = account_badge(account)
+
+  - if account.note.present?
+    .account__header__content.emojify= Formatter.instance.simplified_format(account, custom_emojify: true)
+
+  .public-account-bio__extra
+    = t 'accounts.joined', date: l(account.created_at, format: :month)

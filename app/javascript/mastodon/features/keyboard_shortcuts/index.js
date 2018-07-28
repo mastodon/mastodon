@@ -41,6 +41,10 @@ export default class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.mention' defaultMessage='to mention author' /></td>
               </tr>
               <tr>
+                <td><kbd>p</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.profile' defaultMessage="to open author's profile" /></td>
+              </tr>
+              <tr>
                 <td><kbd>f</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.favourite' defaultMessage='to favourite' /></td>
               </tr>
@@ -49,7 +53,7 @@ export default class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.boost' defaultMessage='to boost' /></td>
               </tr>
               <tr>
-                <td><kbd>enter</kbd></td>
+                <td><kbd>enter</kbd>, <kbd>o</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.enter' defaultMessage='to open status' /></td>
               </tr>
               <tr>
@@ -57,11 +61,11 @@ export default class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.toggle_hidden' defaultMessage='to show/hide text behind CW' /></td>
               </tr>
               <tr>
-                <td><kbd>up</kbd></td>
+                <td><kbd>up</kbd>, <kbd>k</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.up' defaultMessage='to move up in the list' /></td>
               </tr>
               <tr>
-                <td><kbd>down</kbd></td>
+                <td><kbd>down</kbd>, <kbd>j</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.down' defaultMessage='to move down in the list' /></td>
               </tr>
               <tr>

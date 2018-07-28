@@ -32,12 +32,12 @@ class MediaAttachment < ApplicationRecord
 
   IMAGE_STYLES = {
     original: {
-      geometry: '1280x1280>',
+      pixels: 1_638_400, # 1280x1280px
       file_geometry_parser: FastGeometryParser,
     },
 
     small: {
-      geometry: '400x400>',
+      pixels: 160_000, # 400x400px
       file_geometry_parser: FastGeometryParser,
     },
   }.freeze
@@ -152,7 +152,7 @@ class MediaAttachment < ApplicationRecord
       elsif VIDEO_MIME_TYPES.include? f.file_content_type
         [:video_transcoder]
       else
-        [:thumbnail]
+        [:lazy_thumbnail]
       end
     end
   end

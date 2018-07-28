@@ -46,7 +46,6 @@ oc:
     people_who_follow: Lo monde que sègon %{name}
     posts: Tuts
     posts_with_replies: Tuts e responsas
-    remote_follow: Sègre a distància
     reserved_username: Aqueste nom d’utilizaire es reservat
     roles:
       admin: Admin
@@ -208,6 +207,7 @@ oc:
       updated_msg: Emoji ben mes a jorn !
       upload: Enviar
     dashboard:
+      backlog: Accions en retard
       config: Configuracion
       feature_deletions: Supressions de comptes
       feature_invites: Ligams convidat
@@ -592,7 +592,6 @@ oc:
     unlocked_warning_title: Vòstre compte es pas clavat
   generic:
     changes_saved_msg: Cambiaments ben realizats !
-    powered_by: propulsat per %{link}
     save_changes: Salvar los cambiaments
     validation_errors:
       one: I a quicòm que truca ! Mercés de corregir l’error çai-jos
@@ -628,8 +627,6 @@ oc:
       expires_at: Expirats
       uses: Usatges
     title: Convidar de mond
-  landing_strip_html: "<strong>%{name}</strong> utiliza %{link_to_root_path}. Podètz lo/la sègre o interagir amb el o ela s’avètz un compte ont que siasque sul fediverse."
-  landing_strip_signup_html: S’es pas lo cas, podètz <a href="%{sign_up_path}">vos marcar aquí</a>.
   lists:
     errors:
       limit: Avètz atengut lo maximum de listas
@@ -798,7 +795,6 @@ oc:
       unlisted: Pas listat
       unlisted_long: Tot lo monde pòt veire mai serà pas visible sul flux public
   stream_entries:
-    click_to_show: Clicatz per veire
     pinned: Tut penjat
     reblogged: a partejat
     sensitive_content: Contengut sensible
@@ -823,7 +819,23 @@ oc:
       <ul>
         <li>Per provesir la foncionament màger de Mastodon. Podètz pas qu’interagir amb lo contengut del monde e de vòstras publicacions quand sètz connectat. Per exemple, avètz la possibilitat de sègre de monde per veire lors publicacions amassadas dins vòstre flux d’actualitat personalizat.</li>
         <li>Per ajudar la moderacion de la comunitat, per exemple en comparant vòstra adreça IP amb d’autras per determinar d’ensages de contornament de bandiment e d’autras violéncias.</li>
-        <li>Per enviar periodicament de corrièls &mdash; Podèm utilizar l’adreça qu’avètz donada per vos enviar d’informacions e de notificacions que demandatz tocant de cambiaments dins los subjèctes del forum o en responsa a vòstre nom d’utilizaire, en responsa a una demanda, e/o tota autra question.</li>
+        <li>Podèm utilizar l’adreça qu’avètz donada per vos enviar d’informacions e de notificacions que demandatz tocant de cambiaments dins los subjèctes del forum o en responsa a vòstre nom d’utilizaire, en responsa a una demanda, e/o tota autra question.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">Cossí protegèm vòstras informacions ?</h3>
+
+      <p>Apliquem tota una mena de mesuras de seguretat per manténer la fisança de vòstras informacions personalas quand las picatz, mandatz, o i accedètz. Entre aquelas, vòstre session de navigacion, coma lo trafic entre vòstra aplicacion e l’API, son securizats amb SSL e lo senhal es copat en tròces en emplegar un algorisme fòrt a sens unic. Podètz activar l’autentificacion en dos temps pels accèsses futurs a vòstre compte.</p>
+      <hr class="spacer" />
+
+      <h3 id="data-retention">Quala es nòstra politica de conservacion de donadas ?</h3>
+
+      <p>Farem esfòrces per :</p>
+
+      <ul>
+      <li>Gardar los jornals del servidor que contenon las adreças IP de totas las demandas al servidor pas mai de 90 jorns.</li>
+      <li>Gardar las adreças IP ligadas als utilizaires e lors publicacions pas mai de 12 messes.</li>
       </ul>
     title: Condicions d’utilizacion e politica de confidencialitat de %{instance}
   themes:
