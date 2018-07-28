@@ -44,13 +44,16 @@ function reducePacks (data, into = {}) {
   return into;
 }
 
+const entries = Object.assign(
+  { locales: resolve('app', 'javascript', 'locales') },
+  localePacks,
+  reducePacks(core),
+  Object.keys(flavours).reduce((map, entry) => reducePacks(flavours[entry], map), {})
+);
+
+
 module.exports = {
-  entry: Object.assign(
-    { locales: resolve('app', 'javascript', 'locales') },
-    localePacks,
-    reducePacks(core),
-    Object.keys(flavours).reduce((map, entry) => reducePacks(flavours[entry], map), {})
-  ),
+  entry: entries,
 
   output: {
     filename: '[name].js',
@@ -67,11 +70,14 @@ module.exports = {
       cacheGroups: {
         default: false,
         vendors: false,
-        locales: {
-          name: 'locales',
-          chunks: 'all',
-          minChunks: Infinity,
+        common: {
+          name: 'common',
+          chunks (chunk) {
+            return !(chunk.name in entries);
+          },
+          minChunks: 2,
           minSize: 0,
+          test: /^(?!.*[\\\/]node_modules[\\\/]react-intl[\\\/]).+$/,
         },
       },
     },
