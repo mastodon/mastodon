@@ -482,11 +482,39 @@ cs:
     set_new_password: Nastavit nové heslo
   landing_strip_html: <strong>%{name}</strong> je uživatelem {link_to_root_path}.
     Pokud máte účet kdekoliv na fediverse, můžete s ním interagovat.
-  landing_strip_signup_html: Pokud ho nemáte, můžete se <a href="%{sign_up_path}">přihlásit
+  landing_strip_signup_html: Pokud ho nemáte, můžete se <a href="%{sign_up_path}">registrovat
     zde</a>.
   statuses:
     visibilities:
       unlisted_long: Všichni mohou vidět, ale není zahrnut ve veřejných časových osách
+      private: Pouze pro sledovatele
+      private_long: Zobrazit pouze sledovatelům
+      public: Veřejné
+      public_long: Všichni mohou vidět
+      unlisted: Neuvedené
+    attached:
+      description: 'Přiloženo: %{attached}'
+      image:
+        one: '%{count} obrázek'
+        other: '%{count} obrázků'
+      video:
+        one: '%{count} video'
+        other: '%{count} videí'
+    boosted_from_html: Boostnuto z %{acct_link}
+    content_warning: 'Varování o obsahu: %{warning}'
+    disallowed_hashtags:
+      one: 'obsahuje nepovolený hashtag: %{tags}'
+      other: 'obsahuje nepovolené hashtagy: %{tags}'
+    language_detection: Zjistit jazyk automaticky
+    open_in_web: Otevřít na webu
+    over_character_limit: limit %{max} znaků byl překročen
+    pin_errors:
+      limit: Už jste si připnul/a maximální počet tootů
+      ownership: Nelže připnout toot někoho jiného
+      private: Nelze připnout neveřejné tooty
+      reblog: Nelze připnout boostnutí
+    show_more: Zobrazit více
+    title: '%{name}: "%{quote}"'
   stream_entries:
     click_to_show: Klikněte pro zobrazení
     pinned: Připnutý toot
@@ -596,7 +624,7 @@ cs:
     mastodon-light: Mastodon (světlý)
   time:
     formats:
-      default: '%d %b %Y, %H:%M'
+      default: '%d. %b %Y, %H:%M'
   in_memoriam_html: Navždy budeme vzpomínat.
   admin_mailer:
     new_report:
@@ -631,18 +659,18 @@ cs:
     title: Sledovat uživatele %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: '%{count}hod'
-      about_x_months: '%{count}měsíců'
-      about_x_years: '%{count}let'
-      almost_x_years: '%{count}let'
+      about_x_hours: '%{count} hod'
+      about_x_months: '%{count} měsíců'
+      about_x_years: '%{count} let'
+      almost_x_years: '%{count} let'
       half_a_minute: Právě teď
-      less_than_x_minutes: '%{count}min'
+      less_than_x_minutes: '%{count} min'
       less_than_x_seconds: Právě teď
-      over_x_years: '%{count}let'
-      x_days: '%{count}dní'
-      x_minutes: '%{count}min'
-      x_months: '%{count}mesíců'
-      x_seconds: '%{count}s'
+      over_x_years: '%{count} let'
+      x_days: '%{count} dní'
+      x_minutes: '%{count} min'
+      x_months: '%{count} mesíců'
+      x_seconds: '%{count} s'
   deletes:
     bad_password_msg: Dobrý pokus, hackeři! Nesprávné heslo
     confirm_password: Zadejte svoje současné heslo pro ověření vaší identity
@@ -673,7 +701,7 @@ cs:
     archive_takeout:
       date: Datum
       download: Stáhnout svůj archiv
-      hint_html: Můžete si vyžádat archiv vašich <strong>tootů a nahranýých médií</strong>.
+      hint_html: Můžete si vyžádat archiv vašich <strong>tootů a nahraných médií</strong>.
         Exportovaná data budou ve formátu ActivityPub a budou čitelné kterýmkoliv
         kompatibilním softwarem. Archiv si můžete vyžádat každých 7 dní.
       in_progress: Kompiluji váš archiv...
@@ -726,3 +754,174 @@ cs:
     validation_errors:
       one: Něco ještě není úplně v pořádku! Prosím zkontrolujte chybu níže
       other: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
+  imports:
+    preface: Můžete importovat data, která jste exportoval/a z jiné instance, jako
+      například seznam lidí, které sledujete či blokujete.
+    success: Vaše data byla úspěšně nahrána a nyní budou zpracována v daný čas
+    types:
+      blocking: Seznam blokovaných
+      following: Seznam sledovaných
+      muting: Seznam ignorovaných
+    upload: Nahrát
+  invites:
+    delete: Deaktivovat
+    expired: Vypršelé
+    expires_in:
+      '1800': 30 minut
+      '21600': 6 hodin
+      '3600': 1 hodina
+      '43200': 12 hodin
+      '604800': 1 týden
+      '86400': 1 den
+    expires_in_prompt: Nikdy
+    generate: Vygenerovat
+    invited_by: 'Byl/a jste pozván/a uživatelem:'
+    max_uses:
+      one: 1 použití
+      other: '%{count} použití'
+    max_uses_prompt: Bez limitu
+    prompt: Vygenerujte a sdílejte s ostatními odkazy a umožněte jim přístup na tuto
+      instanci
+    table:
+      expires_at: Vyprší
+      uses: Použití
+    title: Pozvěte lidi
+  lists:
+    errors:
+      limit: Dosáhl/a jste maximálního počtu seznamů
+  media_attachments:
+    validations:
+      images_and_video: Ke statusu, který již obsahuje obrázky, nelze připojit video
+      too_many: Nelze připojit více než 4 soubory
+  migrations:
+    acct: přezdívka@doména nového účtu
+    currently_redirecting: 'Váš profil má nastaveno přesměrování na:'
+    proceed: Uložit
+    updated_msg: Vaše nastavení migrace účtu bylo úspěšně aktualizováno!
+  moderation:
+    title: Moderace
+  notification_mailer:
+    digest:
+      action: Zobrazit všechna oznámení
+      body: Zde najdete stručný souhrn zpráv, které jste zmeškal/a od vaší poslední
+        návštěvy %{since}
+      mention: '%{name} vás zmínil/a v:'
+      new_followers_summary:
+        one: Navíc jste získal/a jednoho nového sledovatele, zatímco jste byl/a pryč!
+          Hurá!
+        other: Navíc jste získal/a %{count} nových sledovatelů, zatímco jste byl/a
+          pryč! Hurá!
+      subject:
+        one: Jedno nové oznámení od vaší poslední návštěvy 🐘
+        other: '%{count} nových oznámení od vaší poslední návštěvy 🐘'
+      title: Ve vaší absenci...
+    favourite:
+      body: 'Váš status si oblíbil/a %{name}:'
+      subject: '%{name} si oblíbil/a váš status'
+      title: Nové oblíbení
+    follow:
+      body: '%{name} vás nyní sleduje!'
+      subject: '%{name} vás nyní sleduje'
+      title: Nový sledovatel
+    follow_request:
+      action: Spravovat žádosti o sledování
+      body: '%{name} žádá o povolení vás následovat'
+      subject: 'Čekající sledovatel: %{name}'
+      title: Nová žádost o sledování
+    mention:
+      action: Odpovědět
+      body: 'Byl/a jste zmíněn/a uživatelem %{name} v:'
+      subject: Byl/a jste zmíněn/a uživatelem %{name}
+      title: Nová zmínka
+    reblog:
+      body: 'Váš status byl boostnutý uživatelem %{name}:'
+      subject: '%{name} boostnul/a váš status'
+      title: Nové boostnutí
+  number:
+    human:
+      decimal_units:
+        format: '%n %u'
+        units:
+          billion: mld
+          million: mil
+          quadrillion: bld
+          thousand: tis
+          trillion: bil
+  pagination:
+    newer: Novější
+    next: Starší
+    older: Starší
+    prev: Před
+    truncate: '&hellip;'
+  preferences:
+    languages: Jazyky
+    other: Ostatní
+    publishing: Publikování
+    web: Web
+  remote_follow:
+    acct: Napište svou přezdívku@doménu, ze které chcete sledovat
+    missing_resource: Nemůžeme najít požadované přesměrovací URL pro váš účet
+    no_account_html: Ještě nemáte účet? Můžete se <a href='%{sign_up_path}' target='_blank'>registrovat
+      zde</a>
+    proceed: Pokračujte pro sledování
+    prompt: 'Budete sledovat:'
+  remote_unfollow:
+    error: Chyba
+    title: Nadpis
+    unfollowed: Už nesledujete
+  sessions:
+    activity: Nejnovější aktivita
+    browser: Prohlížeč
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Neznámý prohlížeč
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Aktuální relace
+    description: '%{browser} na %{platform}'
+    explanation: Toto jsou webové prohlížeče aktuálně přihlášené na váš účet Mastodon.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: Chrome OS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: neznámé platformě
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Zamítnout
+    revoke_success: Relace úspěšně zamítnuta
+    title: Relace
+  settings:
+    authorized_apps: Autorizované aplikace
+    back: Zpět na Mastodon
+    delete: Smazání účtu
+    development: Vývoj
+    edit_profile: Upravit profil
+    export: Export dat
+    followers: Autorizovaní sledovatelé
+    import: Import
+    migrate: Přesunutí účtu
+    notifications: Oznámení
+    preferences: Předvolby
+    settings: Nastavení
+    two_factor_authentication: Dvoufaktorové ověřování
+    your_apps: Vaše aplikace
