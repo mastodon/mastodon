@@ -78,6 +78,7 @@ function mapStateToProps (state) {
     preselectDate: state.getIn(['compose', 'preselectDate']),
     privacy: state.getIn(['compose', 'privacy']),
     progress: state.getIn(['compose', 'progress']),
+    inReplyTo: inReplyTo ? state.getIn(['statuses', inReplyTo]) : null,
     replyAccount: inReplyTo ? state.getIn(['statuses', inReplyTo, 'account']) : null,
     replyContent: inReplyTo ? state.getIn(['statuses', inReplyTo, 'contentHtml']) : null,
     resetFileKey: state.getIn(['compose', 'resetFileKey']),
@@ -302,8 +303,7 @@ class Composer extends React.Component {
       onUpload,
       privacy,
       progress,
-      replyAccount,
-      replyContent,
+      inReplyTo,
       resetFileKey,
       sensitive,
       showSearch,
@@ -328,10 +328,9 @@ class Composer extends React.Component {
         {privacy === 'direct' ? <ComposerDirectWarning /> : null}
         {privacy === 'private' && amUnlocked ? <ComposerWarning /> : null}
         {privacy !== 'public' && APPROX_HASHTAG_RE.test(text) ? <ComposerHashtagWarning /> : null}
-        {replyAccount && (
+        {inReplyTo && (
           <ComposerReply
-            account={replyAccount}
-            content={replyContent}
+            status={inReplyTo}
             intl={intl}
             onCancel={onCancelReply}
           />
@@ -417,8 +416,7 @@ Composer.propTypes = {
   preselectDate: PropTypes.instanceOf(Date),
   privacy: PropTypes.string,
   progress: PropTypes.number,
-  replyAccount: PropTypes.string,
-  replyContent: PropTypes.string,
+  inReplyTo: ImmutablePropTypes.map,
   resetFileKey: PropTypes.number,
   sideArm: PropTypes.string,
   sensitive: PropTypes.bool,
