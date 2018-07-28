@@ -328,7 +328,7 @@ class Composer extends React.Component {
         {privacy === 'direct' ? <ComposerDirectWarning /> : null}
         {privacy === 'private' && amUnlocked ? <ComposerWarning /> : null}
         {privacy !== 'public' && APPROX_HASHTAG_RE.test(text) ? <ComposerHashtagWarning /> : null}
-        {replyContent !== null && (
+        {replyAccount && (
           <ComposerReply
             account={replyAccount}
             content={replyContent}
