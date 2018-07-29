@@ -16,7 +16,7 @@ const messages = defineMessages({
   next: { id: 'lightbox.next', defaultMessage: 'Next' },
 });
 
-const previewState = 'previewMediaModal';
+export const previewState = 'previewMediaModal';
 
 @injectIntl
 export default class MediaModal extends ImmutablePureComponent {
