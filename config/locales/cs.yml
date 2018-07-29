@@ -71,11 +71,43 @@ cs:
       tip_bridge_html: Pokud přicházíte z Twitteru, můžete najít vaše přátele na Mastodonu
         pomocí <a href="%{bridge_url}">mostové aplikace</a>. Funguje ovšem pouze,
         pokud ji oni někdy také použili!
+      edit_profile_action: Nastavit profil
+      edit_profile_step: Můžete si přizpůsobit svůj profil nahráním avataru a obrázku
+        na hlavičce, změnou zobrazovaného jména a dalších. Chcete-li posoudit nové
+        sledovatele předtím, než vás mohou sledovat, můžete svůj účet uzamknout.
+      explanation: Zde je pár tipů na začátek
+      final_action: Začněte přispívat
+      final_step: 'Začněte psát! I když nemáte sledovatele, mohou vaše zprávy vidět
+        jiní lidé, například na místní časové ose a mezi hashtagy. Můžete se ostatním
+        představit pomocí hashtagu #introductions.'
+      full_handle: Vaše celá adresa profilu
+      full_handle_hint: Tohle je, co byste řekl/a svým přátelům, aby vám mohli posílat
+        zprávy nebo vás sledovat z jiné instance.
+      review_preferences_action: Změnit nastavení
+      review_preferences_step: Nezapomeňte si nastavit své volby, například jaké e-maily
+        chcete přijímat či jak soukromé mají být vaše příspěvky ve výchozím stavu.
+        Nemáte-li epilepsii, můžete si nastavit automatické přehrávání obrázků GIF.
+      tip_federated_timeline: Federovaná časová osa je náhled celé sítě Mastodon.
+        Zahrnuje ovšem pouze lidi, které sledují vaši sousedé, takže není úplná.
+      tip_following: Administrátora/y serveru sledujete automaticky. Chcete-li najít
+        další zajímavé lidi, podívejte se na místní a federované časové osy.
+      tip_local_timeline: Místní časová osa je náhled lidí na %{instance}. Toto jsou
+        vaši nejbližší sousedé!
+      tip_mobile_webapp: Pokud vám váš mobilní prohlížeč nabídne přidat si Mastodon
+        na vaši domovskou obrazovku, můžete dostávat oznámení. V mnoha ohledech to
+        funguje jako nativní aplikace!
+    backup_ready:
+      explanation: Vyžádal/a jste si úplnou zálohu svého účtu Mastodon. Nyní je připravena
+        ke stažení!
+      subject: Váš archiv je připraven ke stažení
+      title: Stažení archivu
   users:
     invalid_email: E-mailová adresa je neplatná
     signed_in_as: 'Přihlášen/a jako:'
     invalid_otp_token: Neplatný kód pro dvoufaktorovou autentikaci
     otp_lost_help_html: Pokud jste ztratil/a přístup k oběma, můžete se spojit %{email}
+    seamless_external_login: Jste přihlášen/a přes externí službu, nastavení hesla
+      a e-mailu proto nejsou dostupná.
   admin:
     account_moderation_notes:
       create: Zanechat poznámku
@@ -846,7 +878,7 @@ cs:
           million: mil
           quadrillion: bld
           thousand: tis
-          trillion: bil
+          trillion: T
   pagination:
     newer: Novější
     next: Starší
@@ -925,3 +957,29 @@ cs:
     settings: Nastavení
     two_factor_authentication: Dvoufaktorové ověřování
     your_apps: Vaše aplikace
+  two_factor_authentication:
+    code_hint: Pro potvrzení zadejte kód vygenerovaný vaší autentikační aplikací
+    description_html: Povolíte-li <strong>dvoufaktorové ověřování</strong>, budete
+      při přihlášení potřebovat telefon, který vám vygeneruje přístupové tokeny, které
+      musíte zadat.
+    disable: Zakázat
+    enable: Povolit
+    enabled: Dvoufaktorové ověřování je povoleno
+    enabled_success: Dvoufaktorové ověřování bylo úspěšně povoleno
+    generate_recovery_codes: Vygenerovat záložní kódy
+    instructions_html: <strong>Naskenujte tento QR kód Google Authenticatorem nebo
+      jinou TOTP aplikací na vašem telefonu</strong>. Od teď bude tato aplikace generovat
+      tokeny, které budete muset zadat při přihlášení.
+    lost_recovery_codes: Záložní kódy vám dovolí dostat se k vašemu účtu, pokud ztratíte
+      telefon. Ztratíte-li záložní kódy, můžete je zde znovu vygenerovat. Vaše staré
+      záložní kódy budou zneplatněny.
+    manual_instructions: 'Nemůžete-li oskenovat QR kód a je potřebovat ho zadat ručně,
+      zde je tajemství v prostém textu:'
+    recovery_codes: Záložní kódy pro obnovu
+    recovery_codes_regenerated: Záložní kódy byly úspěšně znovu vygenerované
+    recovery_instructions_html: Ztratíte-li někdy přístup k vašemu telefonu, můžete
+      k získání přístupu k účtu použít jeden ze záložních kódů. <strong>Uchovávejte
+      tyto kódy v bezpečí</strong>. Můžete si je například vytisknout a uložit je
+      mezi jiné důležité dokumenty.
+    setup: Nastavit
+    wrong_code: Zadaný kód byl neplatný! Je serverový čas a čas na zařízení správný?
