@@ -2,16 +2,49 @@
   = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
 
 - content_for :content do
-  .container-alt= yield
-  .footer
-    - if !user_signed_in? && single_user_mode?
-      %span.single-user-login
-        = link_to t('auth.login'), new_user_session_path
-        &mdash;
-      %span.footer__domain= link_to site_hostname, about_path
-    - else
-      %span.footer__domain= link_to site_hostname, root_path
-    %span.powered-by
-      != t('generic.powered_by', link: link_to('https://joinmastodon.org') { image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon' })
+  .public-layout
+    .container
+      %nav.header
+        .nav-left
+          = link_to root_url, class: 'brand' do
+            = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+        .nav-center
+        .nav-right
+          - if user_signed_in?
+            = link_to t('settings.back'), root_url, class: 'nav-link nav-button webapp-btn'
+          - else
+            = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn nav-link nav-button'
+            = link_to t('auth.register'), new_user_registration_path, class: 'webapp-btn nav-link nav-button'
+
+    .container= yield
+
+    .container
+      .footer
+        .grid
+          .column-0
+            %h4= t 'footer.resources'
+            %ul
+              %li= link_to t('about.terms'), terms_path
+              %li= link_to t('about.privacy_policy'), terms_path
+          .column-1
+            %h4= t 'footer.developers'
+            %ul
+              %li= link_to t('about.documentation'), 'https://github.com/tootsuite/documentation'
+              %li= link_to t('about.api'), 'https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md'
+          .column-2
+            %h4= link_to t('about.what_is_mastodon'), 'https://joinmastodon.org/'
+
+            = link_to root_url, class: 'brand' do
+              = render file: Rails.root.join('app', 'javascript', 'images', 'logo_transparent.svg')
+          .column-3
+            %h4= site_hostname
+            %ul
+              %li= link_to t('about.about_this'), about_more_path
+              %li= "v#{Mastodon::Version.to_s}"
+          .column-4
+            %h4= t 'footer.more'
+            %ul
+              %li= link_to t('about.source_code'), Mastodon::Version.source_url
+              %li= link_to 'joinmastodon.org', 'https://joinmastodon.org'
 
 = render template: 'layouts/application'

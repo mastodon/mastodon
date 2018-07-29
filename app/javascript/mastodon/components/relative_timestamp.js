@@ -60,6 +60,32 @@ const getUnitDelay = units => {
   }
 };
 
+export const timeAgoString = (intl, date, now, year) => {
+  const delta = now - date.getTime();
+
+  let relativeTime;
+
+  if (delta < 10 * SECOND) {
+    relativeTime = intl.formatMessage(messages.just_now);
+  } else if (delta < 7 * DAY) {
+    if (delta < MINUTE) {
+      relativeTime = intl.formatMessage(messages.seconds, { number: Math.floor(delta / SECOND) });
+    } else if (delta < HOUR) {
+      relativeTime = intl.formatMessage(messages.minutes, { number: Math.floor(delta / MINUTE) });
+    } else if (delta < DAY) {
+      relativeTime = intl.formatMessage(messages.hours, { number: Math.floor(delta / HOUR) });
+    } else {
+      relativeTime = intl.formatMessage(messages.days, { number: Math.floor(delta / DAY) });
+    }
+  } else if (date.getFullYear() === year) {
+    relativeTime = intl.formatDate(date, shortDateFormatOptions);
+  } else {
+    relativeTime = intl.formatDate(date, { ...shortDateFormatOptions, year: 'numeric' });
+  }
+
+  return relativeTime;
+};
+
 @injectIntl
 export default class RelativeTimestamp extends React.Component {
 
@@ -121,28 +147,8 @@ export default class RelativeTimestamp extends React.Component {
   render () {
     const { timestamp, intl, year } = this.props;
 
-    const date  = new Date(timestamp);
-    const delta = this.state.now - date.getTime();
-
-    let relativeTime;
-
-    if (delta < 10 * SECOND) {
-      relativeTime = intl.formatMessage(messages.just_now);
-    } else if (delta < 7 * DAY) {
-      if (delta < MINUTE) {
-        relativeTime = intl.formatMessage(messages.seconds, { number: Math.floor(delta / SECOND) });
-      } else if (delta < HOUR) {
-        relativeTime = intl.formatMessage(messages.minutes, { number: Math.floor(delta / MINUTE) });
-      } else if (delta < DAY) {
-        relativeTime = intl.formatMessage(messages.hours, { number: Math.floor(delta / HOUR) });
-      } else {
-        relativeTime = intl.formatMessage(messages.days, { number: Math.floor(delta / DAY) });
-      }
-    } else if (date.getFullYear() === year) {
-      relativeTime = intl.formatDate(date, shortDateFormatOptions);
-    } else {
-      relativeTime = intl.formatDate(date, { ...shortDateFormatOptions, year: 'numeric' });
-    }
+    const date         = new Date(timestamp);
+    const relativeTime = timeAgoString(intl, date, this.state.now, year);
 
     return (
       <time dateTime={timestamp} title={intl.formatDate(date, dateFormatOptions)}>

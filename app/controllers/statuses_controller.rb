@@ -12,6 +12,7 @@ class StatusesController < ApplicationController
 
   before_action :set_account
   before_action :set_status
+  before_action :set_instance_presenter
   before_action :set_link_headers
   before_action :check_account_suspension
   before_action :redirect_to_original, only: [:show]
@@ -146,6 +147,10 @@ class StatusesController < ApplicationController
   rescue Mastodon::NotPermittedError
     # Reraise in order to get a 404
     raise ActiveRecord::RecordNotFound
+  end
+
+  def set_instance_presenter
+    @instance_presenter = InstancePresenter.new
   end
 
   def check_account_suspension

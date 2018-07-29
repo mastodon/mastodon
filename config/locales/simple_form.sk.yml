@@ -4,7 +4,7 @@ sk:
     hints:
       defaults:
         autofollow: Ľudia ktorí sa zaregistrujú prostredníctvom pozvánky, ťa budú inheď následovať
-        avatar: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 400x400px
+        avatar: PNG, GIF alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
         bot: Tento účet vykonáva hlavne automatizované akcie, a je pravdepodobne nespravovaný
         context: Jedno, alebo viac kritérií, v ktorých má byť filtrovanie uplatnené
         digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak si obdŕžal/a nejaké osobné správy kým si bol/a preč
@@ -13,7 +13,7 @@ sk:
           one: Ostáva ti <span class="name-counter">1</span> znak
           other: Ostáva ti <span class="name-counter">%{count}</span> znakov
         fields: Môžeš mať 4 položky na svojom profile zobrazené vo forme tabuľky
-        header: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 700x335px
+        header: PNG, GIF alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
         inbox_url: Skopíruj adresu z hlavnej stránky mostíka, ktorý chceš používať
         irreversible: Vytriedené príspevky zmiznú nenávratne, aj keď triedenie neskôr zrušíš
         locale: Jazyk užívateľského rozhrania, emailových a nástenkových oboznámení

@@ -4,7 +4,7 @@ it:
     hints:
       defaults:
         autofollow: Le persone che si iscrivono attraverso l'invito ti seguiranno automaticamente
-        avatar: PNG, GIF o JPG. Al massimo 2MB. Verranno scalate a 400x400px
+        avatar: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
         bot: Questo account esegue principalmente operazioni automatiche e potrebbe non essere tenuto sotto controllo da una persona
         context: Uno o più contesti nei quali il filtro dovrebbe essere applicato
         digest: Inviata solo dopo un lungo periodo di inattività e solo se hai ricevuto qualche messaggio personale in tua assenza
@@ -12,7 +12,7 @@ it:
           one: <span class="name-counter">1</span> carattere rimanente
           other: <span class="name-counter">%{count}</span> caratteri rimanenti
         fields: Puoi avere fino a 4 voci visualizzate come una tabella sul tuo profilo
-        header: PNG, GIF o JPG. Al massimo 2MB. Verranno scalate a 700x335px
+        header: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
         inbox_url: Copia la URL dalla pagina iniziale del ripetitore che vuoi usare
         irreversible: I toot filtrati scompariranno in modo irreversibile, anche se il filtro viene eliminato
         locale: La lingua dell'interfaccia utente, di email e notifiche push
