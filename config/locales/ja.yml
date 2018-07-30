@@ -35,6 +35,10 @@ ja:
     user_count_after: 人
     user_count_before: ユーザー数
     what_is_mastodon: Mastodon とは？
+    api: API
+    documentation: ドキュメント
+    privacy_policy: プライバシーポリシー
+    terms: 利用規約
   accounts:
     follow: フォロー
     followers: フォロワー
@@ -53,6 +57,7 @@ ja:
       bot: Bot
       moderator: Mod
     unfollow: フォロー解除
+    joined: '%{date} に登録'
   admin:
     account_moderation_notes:
       create: 書き込む
@@ -785,6 +790,7 @@ ja:
   time:
     formats:
       default: '%Y年%m月%d日 %H:%M'
+      month: '%Y年 %b'
   two_factor_authentication:
     code_hint: 確認するには認証アプリで表示されたコードを入力してください
     description_html: <strong>二段階認証</strong>を有効にするとログイン時、認証アプリからコードを入力する必要があります。
@@ -833,3 +839,7 @@ ja:
     otp_lost_help_html: どちらも使用できない場合、%{email} に連絡を取ると解決できるかもしれません
     seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
     signed_in_as: '下記でログイン中:'
+  footer:
+    developers: 開発者向け
+    more: さらに…
+    resources: リソース
