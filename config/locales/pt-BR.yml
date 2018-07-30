@@ -46,7 +46,6 @@ pt-BR:
     people_who_follow: Pessoas que seguem %{name}
     posts: Toots
     posts_with_replies: Toots e respostas
-    remote_follow: Siga remotamente
     reserved_username: Este usuário está reservado
     roles:
       admin: Administrador
@@ -206,6 +205,27 @@ pt-BR:
       update_failed_msg: Não foi possível atualizar esse emoji
       updated_msg: Emoji atualizado com sucesso!
       upload: Enviar
+    dashboard:
+      backlog: Tarefas na fila
+      config: Configuração
+      feature_deletions: Remoção de contas
+      feature_invites: Convites
+      feature_registrations: Registros
+      feature_relay: Repetidor da federação
+      features: Funcionalidades
+      hidden_service: Federação com serviços escondidos
+      open_reports: Denúncias em aberto
+      recent_users: Usuários recentes
+      search: Pesquisa em texto
+      single_user_mode: Modo de usuário único
+      software: Software
+      space: Uso de espaço em disco
+      title: Painel de controle
+      total_users: usuários no total
+      trends: Tendências
+      week_interactions: interações essa semana
+      week_users_active: ativos essa semana
+      week_users_new: usuários essa semana
     domain_blocks:
       add_new: Adicionar novo
       created_msg: Bloqueio de domínio está sendo processado
@@ -261,6 +281,14 @@ pt-BR:
         expired: Expirados
         title: Filtro
       title: Convites
+    relays:
+      add_new: Adicionar novo repetidor
+      description_html: Um <strong>repetidor de federação</strong> é um servidor intermediário que troca um grande volume de toots públicos entre servidores que se inscrevem e publicam nele. <strong>O repetidor pode ser usado para ajudar servidores pequenos e médios a descobrir conteúdo do fediverso</strong>, que normalmente precisariam que usuários locais manualmente seguissem outras pessoas em servidores remotos.
+      enable_hint: Uma vez habilitado, seu servidor vai se inscrever para receber todos os toots públicos desse repetidor; E vai começar a enviar todos os toots públicos desse servidor para o repetidor.
+      inbox_url: URL do repetidor
+      setup: Configurar uma conexão de repetidor
+      status: Status
+      title: Repetidores
     report_notes:
       created_msg: Nota de denúncia criada com sucesso!
       destroyed_msg: Nota de denúncia excluída com sucesso!
@@ -507,7 +535,6 @@ pt-BR:
     unlocked_warning_title: A sua conta não está trancada
   generic:
     changes_saved_msg: Mudanças salvas com sucesso!
-    powered_by: graças a tecnologia de %{link}
     save_changes: Salvar mudanças
     validation_errors:
       one: Algo não está certo! Por favor, reveja o erro abaixo
@@ -543,8 +570,6 @@ pt-BR:
       expires_at: Expira em
       uses: Usos
     title: Convidar pessoas
-  landing_strip_html: "<strong>%{name}</strong> é um usuário no %{link_to_root_path}. Você pode segui-lo ou interagir com ele se você tiver uma conta em qualquer lugar no fediverso."
-  landing_strip_signup_html: Se não, você pode <a href="%{sign_up_path}">se cadastrar aqui</a>.
   lists:
     errors:
       limit: Você alcançou o número máximo de listas
@@ -713,7 +738,6 @@ pt-BR:
       unlisted: Não listado
       unlisted_long: Todos podem ver, porém não será postado nas timelines públicas
   stream_entries:
-    click_to_show: Clique para mostrar
     pinned: Toot fixado
     reblogged: compartilhou
     sensitive_content: Conteúdo sensível

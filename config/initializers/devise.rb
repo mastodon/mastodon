@@ -9,6 +9,7 @@ Warden::Manager.after_set_user except: :fetch do |user, warden|
     value: session_id,
     expires: 1.year.from_now,
     httponly: true,
+    secure: (Rails.env.production? || ENV['LOCAL_HTTPS'] == 'true'),
   }
 end
 
@@ -18,6 +19,7 @@ Warden::Manager.after_fetch do |user, warden|
       value: warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'],
       expires: 1.year.from_now,
       httponly: true,
+      secure: (Rails.env.production? || ENV['LOCAL_HTTPS'] == 'true'),
     }
   else
     warden.logout

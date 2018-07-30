@@ -142,17 +142,17 @@ export default class ActionBar extends React.PureComponent {
         <div className='account__action-bar'>
           <div className='account__action-bar-links'>
             <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}`}>
-              <span><FormattedMessage id='account.posts' defaultMessage='Toots' /></span>
+              <FormattedMessage id='account.posts' defaultMessage='Toots' />
               <strong>{shortNumberFormat(account.get('statuses_count'))}</strong>
             </Link>
 
             <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}/following`}>
-              <span><FormattedMessage id='account.follows' defaultMessage='Follows' /></span>
+              <FormattedMessage id='account.follows' defaultMessage='Follows' />
               <strong>{shortNumberFormat(account.get('following_count'))}</strong>
             </Link>
 
             <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}/followers`}>
-              <span><FormattedMessage id='account.followers' defaultMessage='Followers' /></span>
+              <FormattedMessage id='account.followers' defaultMessage='Followers' />
               <strong>{shortNumberFormat(account.get('followers_count'))}</strong>
             </Link>
           </div>

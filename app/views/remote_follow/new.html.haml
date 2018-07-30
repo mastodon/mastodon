@@ -6,7 +6,7 @@
   .follow-prompt
     %h2= t('remote_follow.prompt')
 
-    = render partial: 'authorize_follows/card', locals: { account: @account }
+    = render partial: 'application/card', locals: { account: @account }
 
   = simple_form_for @remote_follow, as: :remote_follow, url: account_remote_follow_path(@account) do |f|
     = render 'shared/error_messages', object: @remote_follow

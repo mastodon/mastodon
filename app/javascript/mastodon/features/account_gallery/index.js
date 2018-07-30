@@ -23,6 +23,7 @@ const mapStateToProps = (state, props) => ({
 class LoadMoreMedia extends ImmutablePureComponent {
 
   static propTypes = {
+    shouldUpdateScroll: PropTypes.func,
     maxId: PropTypes.string,
     onLoadMore: PropTypes.func.isRequired,
   };
@@ -90,7 +91,7 @@ export default class AccountGallery extends ImmutablePureComponent {
   }
 
   render () {
-    const { medias, isLoading, hasMore } = this.props;
+    const { medias, shouldUpdateScroll, isLoading, hasMore } = this.props;
 
     let loadOlder = null;
 
@@ -110,7 +111,7 @@ export default class AccountGallery extends ImmutablePureComponent {
       <Column>
         <ColumnBackButton />
 
-        <ScrollContainer scrollKey='account_gallery'>
+        <ScrollContainer scrollKey='account_gallery' shouldUpdateScroll={shouldUpdateScroll}>
           <div className='scrollable' onScroll={this.handleScroll}>
             <HeaderContainer accountId={this.props.params.accountId} />
 

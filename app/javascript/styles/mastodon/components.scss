@@ -965,6 +965,18 @@
   background: lighten($ui-base-color, 4%);
   padding: 14px 10px;
 
+  &--flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .status__content,
+    .detailed-status__meta {
+      flex: 100%;
+    }
+  }
+
   .status__content {
     font-size: 19px;
     line-height: 24px;
@@ -1243,7 +1255,6 @@ a .account__avatar {
 }
 
 .account__action-bar-dropdown {
-  flex: 0 1 calc(50% - 140px);
   padding: 10px;
 
   .icon-button {
@@ -1275,9 +1286,9 @@ a .account__avatar {
 .account__action-bar__tab {
   text-decoration: none;
   overflow: hidden;
-  flex: 0 1 80px;
+  flex: 0 1 100%;
   border-right: 1px solid lighten($ui-base-color, 8%);
-  padding: 10px 5px;
+  padding: 10px 0;
 
   & > span {
     display: block;
@@ -2030,6 +2041,7 @@ a.account__display-name {
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 16px;
+  line-height: inherit;
   border: 0;
   text-align: unset;
   padding: 15px;

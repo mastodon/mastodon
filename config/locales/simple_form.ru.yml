@@ -3,7 +3,7 @@ ru:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF или JPG. Максимально 2MB. Будет уменьшено до 400x400px
+        avatar: PNG, GIF или JPG. Максимально %{size}. Будет уменьшено до %{dimensions}px
         bot: Этот аккаунт обычно выполяет автоматизированные действия и может не просматриваться владельцем
         digest: Отсылается лишь после длительной неактивности, если Вы в это время получали личные сообщения
         display_name:
@@ -12,7 +12,7 @@ ru:
           one: Остался <span class="name-counter">1</span> символ
           other: Осталось <span class="name-counter">%{count}</span> символов
         fields: В профиле можно отобразить до 4 пунктов как таблицу
-        header: PNG, GIF или JPG. Максимально 2MB. Будет уменьшено до 700x335px
+        header: PNG, GIF или JPG. Максимально %{size}. Будет уменьшено до %{dimensions}px
         locked: Потребует от Вас ручного подтверждения подписчиков, изменит приватность постов по умолчанию на "только для подписчиков"
         note:
           few: Осталось <span class="name-counter">%{count}</span> символа

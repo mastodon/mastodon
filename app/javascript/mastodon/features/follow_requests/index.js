@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { defineMessages, injectIntl } from 'react-intl';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
@@ -8,8 +10,6 @@ import Column from '../ui/components/column';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import AccountAuthorizeContainer from './containers/account_authorize_container';
 import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
-import { defineMessages, injectIntl } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   heading: { id: 'column.follow_requests', defaultMessage: 'Follow requests' },
@@ -26,6 +26,7 @@ export default class FollowRequests extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
+    shouldUpdateScroll: PropTypes.func,
     accountIds: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
   };
@@ -43,7 +44,7 @@ export default class FollowRequests extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, accountIds } = this.props;
+    const { intl, shouldUpdateScroll, accountIds } = this.props;
 
     if (!accountIds) {
       return (
@@ -57,7 +58,7 @@ export default class FollowRequests extends ImmutablePureComponent {
       <Column icon='users' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
 
-        <ScrollContainer scrollKey='follow_requests'>
+        <ScrollContainer scrollKey='follow_requests' shouldUpdateScroll={shouldUpdateScroll}>
           <div className='scrollable' onScroll={this.handleScroll}>
             {accountIds.map(id =>
               <AccountAuthorizeContainer key={id} id={id} />

@@ -46,7 +46,6 @@ ko:
     people_who_follow: "%{name} 님을 팔로우 중인 계정"
     posts: 툿
     posts_with_replies: 툿과 답장
-    remote_follow: 리모트 팔로우
     reserved_username: 이 아이디는 예약되어 있습니다
     roles:
       admin: 관리자
@@ -206,6 +205,27 @@ ko:
       update_failed_msg: 에모지를 업데이트 할 수 없습니다
       updated_msg: 에모지가 성공적으로 업데이트 되었습니다!
       upload: 업로드
+    dashboard:
+      backlog: 미처리 된 작업
+      config: 설정
+      feature_deletions: 계정 삭제
+      feature_invites: 초대 링크
+      feature_registrations: 가입
+      feature_relay: 연합 릴레이
+      features: 기능
+      hidden_service: 히든 서비스와의 연합
+      open_reports: 미해결 신고
+      recent_users: 최근 가입 한 유저
+      search: 전문 검색
+      single_user_mode: 싱글 유저 모드
+      software: 소프트웨어
+      space: 디스크 사용량
+      title: 대시보드
+      total_users: 총 유저 수
+      trends: 트렌드
+      week_interactions: 이번 주의 상호작용
+      week_users_active: 이번 주의 활성 사용자
+      week_users_new: 이번 주의 신규 유저
     domain_blocks:
       add_new: 추가하기
       created_msg: 도메인 차단 처리를 완료했습니다
@@ -263,6 +283,14 @@ ko:
         expired: 만료됨
         title: 필터
       title: 초대
+    relays:
+      add_new: 릴레이 추가
+      description_html: "<strong>연합 릴레이</strong>는 서버들 사이에서 많은 양의 공개 툿을 구독하고 중개하는 서버입니다. <strong>이것은 중소 규모의 서버에서 연합우주를 발견하는 데에 도움을 줄 수 있습니다</strong>, 이제 로컬 유저들이 다른 서버의 유저들을 수동으로 팔로우 하지 않아도 됩니다."
+      enable_hint: 활성화 되면, 이 릴레이의 모든 공개 툿을 구독하고 이 서버의 공개 툿을 전송하게 됩니다.
+      inbox_url: 릴레이 URL
+      setup: 릴레이 연결 설정
+      status: 상태
+      title: 릴레이
     report_notes:
       created_msg: 리포트 노트가 성공적으로 작성되었습니다!
       destroyed_msg: 리포트 노트가 성공적으로 삭제되었습니다!
@@ -509,7 +537,6 @@ ko:
     unlocked_warning_title: 이 계정은 비공개로 설정되어 있지 않습니다
   generic:
     changes_saved_msg: 정상적으로 변경되었습니다!
-    powered_by: "%{link}에 의해 제공"
     save_changes: 변경 사항을 저장
     validation_errors:
       one: 오류가 발생했습니다. 아래 오류를 확인해 주십시오
@@ -545,8 +572,6 @@ ko:
       expires_at: 만료
       uses: 사용됨
     title: 초대
-  landing_strip_html: "<strong>%{name}</strong> 님은 %{link_to_root_path} 인스턴스의 사용자입니다. 계정을 가지고 있다면 팔로우 하거나 대화할 수 있습니다."
-  landing_strip_signup_html: 아직 계정이 없다면 <a href="%{sign_up_path}">여기서</a> 등록할 수 있습니다.
   lists:
     errors:
       limit: 리스트 최대치에 도달했습니다
@@ -715,7 +740,6 @@ ko:
       unlisted: 공개 타임라인 비공개
       unlisted_long: 누구나 볼 수 있지만, 공개 타임라인에는 표시되지 않습니다
   stream_entries:
-    click_to_show: 클릭해서 표시
     pinned: 고정된 툿
     reblogged: 님이 부스트 했습니다
     sensitive_content: 민감한 컨텐츠

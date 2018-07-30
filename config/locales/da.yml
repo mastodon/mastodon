@@ -46,7 +46,6 @@ da:
     people_who_follow: Folk der følger %{name}
     posts: Dyt
     posts_with_replies: Toots og svar
-    remote_follow: Følg fra andre instanser
     reserved_username: Brugernavnet er reserveret
     roles:
       admin: Administrator
@@ -206,6 +205,24 @@ da:
       update_failed_msg: Kunne ikke opdatere det humørikon
       updated_msg: Humørikon succesfuldt opdateret!
       upload: Læg op
+    dashboard:
+      backlog: ophobede jobs
+      config: Konfiguration
+      feature_deletions: Konto sletninger
+      feature_invites: Invitations links
+      feature_registrations: Registreringer
+      features: Funktioner
+      open_reports: åbne anmeldelser
+      recent_users: Seneste brugere
+      search: Søg på fuld tekst
+      software: Software
+      space: Brugt lagerplads
+      title: Betjeningspanel
+      total_users: samlede antal brugere
+      trends: Tendenser
+      week_interactions: interaktioner denne uge
+      week_users_active: aktive denne uge
+      week_users_new: brugere denne uge
     domain_blocks:
       add_new: Tilføj ny
       created_msg: Domæne blokade bliver nu behandlet
@@ -257,6 +274,8 @@ da:
         title: Filtre
       title: Invitationer
     relays:
+      add_new: Tilføj nyt relay
+      inbox_url: Link til relay
       setup: Opsæt en videresendelses forbindelse
       status: Status
       title: Videresendelser
@@ -444,7 +463,6 @@ da:
     unlocked_warning_title: Din konto er ikke låst
   generic:
     changes_saved_msg: Ændringerne blev gemt!
-    powered_by: drevet af %{link}
     save_changes: Gem ændringer
   imports:
     types:
@@ -473,8 +491,12 @@ da:
       expires_at: Udløber
       uses: Benyttelser
     title: Inviter folk
+  lists:
+    errors:
+      limit: Du har nået det højeste antal lister
   media_attachments:
     validations:
+      images_and_video: Kan ikke vedhæfte en video til en status der allerede har billeder
       too_many: Kan ikke vedhæfte mere en 4 filer
   migrations:
     acct: username@domain af den nye konto
@@ -487,6 +509,9 @@ da:
       action: Se alle notifikationer
       mention: "%{name} nævnte dig i:"
       title: Mens du var væk...
+    favourite:
+      body: 'Din status blev favoriseret af %{name}:'
+      subject: "%{name} favoriserede din status"
     follow:
       body: "%{name} følger dig nu!"
       subject: "%{name} følger dig nu"
@@ -514,18 +539,22 @@ da:
   preferences:
     languages: Sprog
     other: Andet
+    publishing: Offentligører
     web: Web
   remote_unfollow:
     error: Fejl
     title: Titel
     unfollowed: Følger ikke længere
   sessions:
+    activity: Sidste aktivitet
+    browser: Browser
     browsers:
       blackberry: Blackberry OS
       chrome: Google Chrome
       firefox: Mozilla Firefox
       generic: Ukendt browser
       ie: IE
+      safari: Apple Safari
     description: "%{browser} på %{platform}"
     ip: IP
     platforms:
@@ -559,7 +588,9 @@ da:
     content_warning: 'Advarsel om indhold: %{warning}'
     language_detection: Opfang automatisk sprog
     pin_errors:
+      limit: Du har allerede fastgjort det maksimale antal trut
       ownership: Dun kan ikke fastgøre en anden persons toot
+      private: Ikke offentlige trut kan ikke blive fastgjort
     show_more: Vis mere
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -569,7 +600,6 @@ da:
       public_long: Alle kan se
       unlisted: Ikke listet
   stream_entries:
-    click_to_show: Tryk for at vise
     pinned: Fastgjort toot
     sensitive_content: Følsomt indhold
   themes:
