@@ -46,7 +46,6 @@ zh-CN:
     people_who_follow: 关注 %{name} 的人
     posts: 嘟文
     posts_with_replies: 嘟文和回复
-    remote_follow: 跨站关注
     reserved_username: 此用户名已被保留
     roles:
       admin: 管理员
@@ -484,7 +483,6 @@ zh-CN:
     unlocked_warning_title: 你的帐户未受到保护
   generic:
     changes_saved_msg: 更改保存成功！
-    powered_by: 基于 %{link} 构建
     save_changes: 保存更改
     validation_errors:
       one: 出错啦！检查一下下面出错的地方吧
@@ -518,8 +516,6 @@ zh-CN:
       expires_at: 失效时间
       uses: 已使用次数
     title: 邀请用户
-  landing_strip_html: "<strong>%{name}</strong> 是一位来自 %{link_to_root_path} 的用户。如果你想关注他们或者与他们互动，你需要在任意一个 Mastodon 实例或与其兼容的网站上拥有一个帐户。"
-  landing_strip_signup_html: 还没有这种帐户？你可以<a href="%{sign_up_path}">在本站注册一个</a>。
   lists:
     errors:
       limit: 你所建立的列表数量已经达到上限
@@ -681,7 +677,6 @@ zh-CN:
       unlisted: 不公开
       unlisted_long: 所有人可见，但不会出现在公共时间轴上
   stream_entries:
-    click_to_show: 点击显示
     pinned: 置顶嘟文
     reblogged: 转嘟
     sensitive_content: 敏感内容

@@ -3,12 +3,12 @@ es:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF o JPG. Máximo 2MB. Será escalado a 400x400px
+        avatar: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         digest: Solo enviado tras un largo periodo de inactividad y solo si has recibido mensajes personales durante tu ausencia
         display_name:
           one: <span class="name-counter">1</span> caracter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
-        header: PNG, GIF o JPG. Máximo 2MB. Será escalado a 700x335px
+        header: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         locked: Requiere que manualmente apruebes seguidores y las publicaciones serán mostradas solamente a tus seguidores
         note:
           one: <span class="name-counter">1</span> carácter restante

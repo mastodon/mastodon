@@ -20,36 +20,39 @@
   = opengraph 'og:type', 'profile'
   = render 'og', account: @account, url: short_account_url(@account, only_path: false)
 
-- if @account.memorial?
-  .memoriam-strip= t('in_memoriam_html')
-- elsif @account.moved?
-  = render partial: 'moved_strip', locals: { account: @account }
-- elsif show_landing_strip?
-  = render partial: 'shared/landing_strip', locals: { account: @account }
 
-.h-feed
-  %data.p-name{ value: "#{@account.username} on #{site_hostname}" }/
+= render 'header', account: @account, with_bio: true
 
-  = render 'header', account: @account
+.grid
+  .column-0
+    .h-feed
+      %data.p-name{ value: "#{@account.username} on #{site_hostname}" }/
 
-  .activity-stream-tabs
-    = active_link_to t('accounts.posts'), short_account_url(@account)
-    = active_link_to t('accounts.posts_with_replies'), short_account_with_replies_url(@account)
-    = active_link_to t('accounts.media'), short_account_media_url(@account)
+      .account__section-headline
+        = active_link_to t('accounts.posts'), short_account_url(@account)
+        = active_link_to t('accounts.posts_with_replies'), short_account_with_replies_url(@account)
+        = active_link_to t('accounts.media'), short_account_media_url(@account)
 
-  - if @statuses.empty?
-    .accounts-grid
-      = render 'nothing_here'
-  - else
-    .activity-stream.with-header
-      - if params[:page].to_i.zero?
-        = render partial: 'stream_entries/status', collection: @pinned_statuses, as: :status, locals: { pinned: true }
+      - if @statuses.empty?
+        = nothing_here 'nothing-here--under-tabs'
+      - else
+        .activity-stream
+          - if params[:page].to_i.zero?
+            = render partial: 'stream_entries/status', collection: @pinned_statuses, as: :status, locals: { pinned: true }
 
-      = render partial: 'stream_entries/status', collection: @statuses, as: :status
+          - if @newer_url
+            .entry= link_to_more @newer_url
 
-  - if @newer_url || @older_url
-    .pagination
-      - if @older_url
-        = link_to safe_join([fa_icon('chevron-left'), t('pagination.older')], ' '), @older_url, class: 'older', rel: 'next'
-      - if @newer_url
-        = link_to safe_join([t('pagination.newer'), fa_icon('chevron-right')], ' '), @newer_url, class: 'newer', rel: 'prev'
+          = render partial: 'stream_entries/status', collection: @statuses, as: :status
+
+          - if @older_url
+            .entry= link_to_more @older_url
+
+  .column-1
+    - if @account.memorial?
+      .memoriam-widget= t('in_memoriam_html')
+    - elsif @account.moved?
+      = render 'moved', account: @account
+
+    = render 'bio', account: @account
+    = render 'application/sidebar'

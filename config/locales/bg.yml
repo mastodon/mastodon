@@ -22,7 +22,6 @@ bg:
     people_followed_by: Хора, които %{name} следва
     people_who_follow: Хора, които следват %{name}
     posts: Публикации
-    remote_follow: Последвай
     unfollow: Не следвай
   application_mailer:
     settings: 'Промяна на предпочитанията за e-mail: %{link}'
@@ -64,7 +63,6 @@ bg:
     storage: Съхранение на мултимедия
   generic:
     changes_saved_msg: Успешно запазване на промените!
-    powered_by: поддържано от %{link}
     save_changes: Запази промените
     validation_errors:
       one: Нещо все още не е наред! Моля, прегледай грешката по-долу
@@ -76,8 +74,6 @@ bg:
       blocking: Списък на блокираните
       following: Списък на последователите
     upload: Качване
-  landing_strip_html: "<strong>%{name}</strong> е потребител от %{link_to_root_path}. Можеш да ги следваш, или да контактуваш с тях, ако имаш акаунт където и да е из федерираната вселена на Mastodon."
-  landing_strip_signup_html: Ако нямаш акаунт, можеш да си <a href="%{sign_up_path}">създадеш ето тук</a>.
   media_attachments:
     validations:
       images_and_video: Не мога да прикача видеоклип към публикация, която вече съдържа изображения
@@ -144,7 +140,6 @@ bg:
       public: Публично
       unlisted: Публично, но не показвай в публичния канал
   stream_entries:
-    click_to_show: Покажи
     reblogged: споделено
     sensitive_content: Деликатно съдържание
   time:

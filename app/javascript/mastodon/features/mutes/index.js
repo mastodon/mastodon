@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { defineMessages, injectIntl } from 'react-intl';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
@@ -8,8 +10,6 @@ import Column from '../ui/components/column';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import AccountContainer from '../../containers/account_container';
 import { fetchMutes, expandMutes } from '../../actions/mutes';
-import { defineMessages, injectIntl } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   heading: { id: 'column.mutes', defaultMessage: 'Muted users' },
@@ -26,6 +26,7 @@ export default class Mutes extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
+    shouldUpdateScroll: PropTypes.func,
     accountIds: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
   };
@@ -43,7 +44,7 @@ export default class Mutes extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, accountIds } = this.props;
+    const { intl, shouldUpdateScroll, accountIds } = this.props;
 
     if (!accountIds) {
       return (
@@ -56,7 +57,7 @@ export default class Mutes extends ImmutablePureComponent {
     return (
       <Column icon='volume-off' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
-        <ScrollContainer scrollKey='mutes'>
+        <ScrollContainer scrollKey='mutes' shouldUpdateScroll={shouldUpdateScroll}>
           <div className='scrollable mutes' onScroll={this.handleScroll}>
             {accountIds.map(id =>
               <AccountContainer key={id} id={id} />
