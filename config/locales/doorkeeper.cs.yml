@@ -1,13 +1,34 @@
----
 cs:
   activerecord:
     attributes:
       doorkeeper/application:
         name: Název aplikace
         website: Stránka aplikace
+        redirect_uri: URI přesměrování
+        scopes: Rozsahy
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: nesmí obsahovat fragment.
+              invalid_uri: musí být platné URI.
+              relative_uri: musí být apsolutní URI.
+              secured_uri: musí být URI HTTPS/SSL.
   doorkeeper:
     applications:
       buttons:
         authorize: Ověřit
         cancel: Zrušit
         destroy: Zničit
+        edit: Upravit
+        submit: Odeslat
+      confirmations:
+        destroy: Jste si jistý/á?
+      edit:
+        title: Upravit aplikaci
+      form:
+        error: A jéje! Zkontrolujte svůj formulář kvůli případným chybám
+      help:
+        native_redirect_uri: Použijte %{native_redirect_uri} pro místní testy
+        redirect_uri: Jedno URI na řádek
