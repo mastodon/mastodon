@@ -33,7 +33,7 @@ module Mastodon
     end
 
     def repository
-      'tootsuite/mastodon'
+      'S-H-GAMELINKS/mastodon'
     end
 
     def source_base_url
