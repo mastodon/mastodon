@@ -4,7 +4,7 @@ da:
     hints:
       defaults:
         autofollow: Folk der har oprettet sig gennem invitationen vil automatisk følge dig
-        avatar: PNG, GIF eller JPG. Højest 2MB. Vil blive skaleret ned til 400x400px
+        avatar: PNG, GIF eller JPG. Højest %{size}. Vil blive skaleret ned til %{dimensions}px
         bot: Denne konto udfører hovedsageligt automatiserede handlinger og bliver muligvis ikke overvåget
         context: En eller flere sammenhænge hvor filteret skal være gældende
         digest: Sendes kun efter en lang periode med inaktivitet og kun hvis du har modtaget nogle personlige beskeder mens du er væk
@@ -12,7 +12,7 @@ da:
           one: <span class="name-counter">1</span> tegn tilbage
           other: <span class="name-counter">%{count}</span>tegn tilbage
         fields: Du kan have op til 4 ting vist som en tabel på din profil
-        header: PNG, GIF eller JPG. Højest 2MB. Vil blive skaleret ned til 700x335px
+        header: PNG, GIF eller JPG. Højest %{size}. Vil blive skaleret ned til %{dimensions}px
         inbox_url: Kopiere linket fra forsiden af den relay som du ønsker at bruge
         irreversible: Filtrerede toots vil forsvinde fulstændigt, selv hvis filteret senere skulle blive fjernet
         locale: Sproget på interfacet, emails og push beskeder
