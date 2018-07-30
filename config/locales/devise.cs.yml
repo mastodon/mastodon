@@ -8,3 +8,35 @@ cs:
     failure:
       already_authenticated: Již jste přihlášen/a.
       inactive: Váš účet ještě není aktivován.
+      invalid: Neplatné %{authentication_keys} nebo heslo.
+      last_attempt: Máte ještě jeden pokus, než bude váš účet uzamčen.
+      locked: Váš účet je uzamčen.
+      not_found_in_database: Neplatné %{authentication_keys} nebo heslo.
+      timeout: Vaše relace vypršela. Pro pokračování se prosím přihlaste znovu.
+      unauthenticated: Před pokračováním se musíte přihlásit nebo registrovat.
+      unconfirmed: Před pokračováním musíte potvrdit svůj e-mail.
+    mailer:
+      confirmation_instructions:
+        action: Potvrdit e-mailovou adresu
+        explanation: S touto e-mailovou adresou jste si vytvořil/a účet na %{host}. K jeho aktivaci vám zbývá jedno kliknutí. Pokud jste to nebyl/a vy, ignorujte této e-mail.
+        extra_html: Prosím podívejte se také na <a href="%{terms_path}">pravidla této instance</a> a <a href="%{policy_path}">naše podmínky používání</a>.
+        subject: 'Mastodon: Potvrzovací instrukce pro %{instance}'
+        title: Potvrďte e-mailovou adresu
+      email_changed:
+        explanation: 'E-mailová adresa vašeho účtu byla změněna na:'
+        extra: Pokud jste si e-mail nezměnil/a, je pravděpodobné, že někdo jiný získal přístup k vašemu účtu. Prosím změňte si okamžitě heslo, nebo, pokud se nemůžete na účet přihlásit, kontaktujte administrátora instance.
+        subject: 'Mastodon: E-mail byl změněn'
+        title: Nová e-mailová adresa
+      password_change:
+        explanation: Heslo k vašemu účtu bylo změněno.
+        extra: Pokud jste si heslo nezměnil/a, je pravděpodobné, že někdo jiný získal přístup k vašemu účtu. Prosím změňte si okamžitě heslo, nebo, pokud se nemůžete na účet přihlásit, kontaktujte administrátora instance.
+        subject: 'Mastodon: Heslo bylo změněno'
+        title: Heslo bylo změněno
+      reconfirmation_instructions:
+        explanation: Potvrďte novou adresu pro změnu e-mailu.
+        extra: Pokud jste tuto akci nevyžádal/a vy, prosím ignorujte tento e-mail. E-mailová adresa nebude změněna, dokud nepřejdete na výše uvedenou adresu.
+        subject: 'Mastodon: Potvrďte e-mail pro %{instance}'
+        title: Ověřit e-mailovou adresu
+      reset_password_instructions:
+        action: Změnit heslo
+        explanation: Vyžádal/a jste si pro svůj účet nové heslo.
