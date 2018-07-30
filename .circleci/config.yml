@@ -81,12 +81,6 @@ aliases:
         - run: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
         - *restore_ruby_dependencies
 
-        - restore_cache:
-            keys:
-              - precompiled-assets-{{ .Branch }}-{{ .Revision }}
-              - precompiled-assets-{{ .Branch }}-
-              - precompiled-assets-
-
         - run:
             name: Prepare Tests
             command: ./bin/rails parallel:create parallel:load_schema parallel:prepare
@@ -128,11 +122,11 @@ jobs:
           name: Precompile assets
           command: ./bin/rails assets:precompile
           no_output_timeout: 40m
-      - save_cache:
-          key: precompiled-assets-{{ .Branch }}-{{ .Revision }}
+      - persist_to_workspace:
+          root: ~/projects/
           paths:
-            - ./public/assets
-            - ./public/packs-test/
+              - ./mastodon/public/assets
+              - ./mastodon/public/packs-test/
 
   test-ruby2.5:
     <<: *defaults
