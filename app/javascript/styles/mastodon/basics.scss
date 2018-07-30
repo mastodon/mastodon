@@ -1,8 +1,6 @@
 body {
   font-family: 'mastodon-font-sans-serif', sans-serif;
   background: darken($ui-base-color, 8%);
-  background-size: cover;
-  background-attachment: fixed;
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
@@ -34,16 +32,24 @@ body {
     height: 100%;
     padding: 0;
     background: $ui-base-color;
+
+    &.with-modals--active {
+      overflow-y: hidden;
+    }
   }
 
-  &.about-body {
-    background: darken($ui-base-color, 8%);
-    padding-bottom: 0;
+  &.lighter {
+    background: $ui-base-color;
   }
 
-  &.tag-body {
-    background: darken($ui-base-color, 8%);
-    padding-bottom: 0;
+  &.with-modals {
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    &--active {
+      overflow-y: hidden;
+      margin-right: 13px;
+    }
   }
 
   &.player {

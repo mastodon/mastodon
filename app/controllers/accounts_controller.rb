@@ -10,6 +10,7 @@ class AccountsController < ApplicationController
   def show
     respond_to do |format|
       format.html do
+        @body_classes    = 'with-modals'
         @pinned_statuses = []
 
         if current_account && @account.blocking?(current_account)
