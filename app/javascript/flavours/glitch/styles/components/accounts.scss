@@ -209,7 +209,6 @@
 }
 
 .account__action-bar-dropdown {
-  flex: 0 1 calc(50% - 140px);
   padding: 10px;
 
   .dropdown--active {
@@ -231,14 +230,15 @@
   display: flex;
   flex: 1 1 auto;
   line-height: 18px;
+  text-align: center;
 }
 
 .account__action-bar__tab {
   text-decoration: none;
   overflow: hidden;
-  flex: 0 1 80px;
+  flex: 0 1 100%;
   border-left: 1px solid lighten($ui-base-color, 8%);
-  padding: 10px 5px;
+  padding: 10px 0;
 
   & > span {
     display: block;
