@@ -7,9 +7,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import Avatar from 'flavours/glitch/components/avatar';
 import IconButton from 'flavours/glitch/components/icon_button';
 
-import emojify from 'flavours/glitch/util/emoji';
 import { me } from 'flavours/glitch/util/initial_state';
-import { processBio } from 'flavours/glitch/util/bio_metadata';
 import classNames from 'classnames';
 
 const messages = defineMessages({
@@ -83,7 +81,7 @@ export default class Header extends ImmutablePureComponent {
       actionBtn = '';
     }
 
-    const { text, metadata } = processBio(account.get('note_emojified'));
+    const content = { __html: account.get('note_emojified') };
 
     return (
       <div className='account__header__wrapper'>
@@ -104,7 +102,7 @@ export default class Header extends ImmutablePureComponent {
 
             {badge}
 
-            <div className='account__header__content' dangerouslySetInnerHTML={{ __html: emojify(text) }} />
+            <div className='account__header__content' dangerouslySetInnerHTML={content} />
 
             {fields.size > 0 && (
               <div className='account__header__fields'>
@@ -116,17 +114,6 @@ export default class Header extends ImmutablePureComponent {
                 ))}
               </div>
             )}
-
-            {fields.size == 0 && metadata.length && (
-              <div className='account__header__fields'>
-                {metadata.map((pair, i) => (
-                  <dl key={i}>
-                    <dt dangerouslySetInnerHTML={{ __html: pair[0] }} title={pair[0]} />
-                    <dd dangerouslySetInnerHTML={{ __html: pair[1] }} title={pair[1]} />
-                  </dl>
-                ))}
-              </div>
-            ) || null}
 
             {info}
             {mutingInfo}

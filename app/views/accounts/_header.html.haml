@@ -1,4 +1,3 @@
-- processed_bio = FrontmatterHandler.instance.process_bio Formatter.instance.simplified_format(account, custom_emojify: true)
 .card.h-card.p-author{ style: "background-image: url(#{account.header.url(:original)})" }
   .card__illustration
     = render 'accounts/follow_button', account: account
@@ -24,21 +23,16 @@
         .roles
           .account-role.moderator
             = t 'accounts.roles.moderator'
-    .bio
-      .account__header__content.p-note.emojify!=processed_bio[:text]
 
-      - if !account.fields.empty?
+    .bio
+      .account__header__content.p-note.emojify= Formatter.instance.simplified_format(account, custom_emojify: true)
+
+      - unless account.fields.empty?
         .account__header__fields
           - account.fields.each do |field|
             %dl
               %dt.emojify{ title: field.name }= field.name
               %dd.emojify{ title: field.value }= Formatter.instance.format_field(account, field.value, custom_emojify: true)
-      - elsif processed_bio[:metadata].length > 0
-        .account__header__fields
-          - processed_bio[:metadata].each do |i|
-            %dl
-              %dt.emojify{ title: i[0] }!= i[0]
-              %dd.emojify{ title: i[1] }!= i[1]
 
     .details-counters
       .counter{ class: active_nav_class(short_account_url(account)) }

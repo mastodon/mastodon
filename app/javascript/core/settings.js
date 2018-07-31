@@ -3,8 +3,6 @@
 const { length } = require('stringz');
 const { delegate } = require('rails-ujs');
 
-import { processBio } from 'flavours/glitch/util/bio_metadata';
-
 delegate(document, '.account_display_name', 'input', ({ target }) => {
   const nameCounter = document.querySelector('.name-counter');
 
@@ -17,8 +15,7 @@ delegate(document, '.account_note', 'input', ({ target }) => {
   const noteCounter = document.querySelector('.note-counter');
 
   if (noteCounter) {
-    const noteWithoutMetadata = processBio(target.value).text;
-    noteCounter.textContent = 500 - length(noteWithoutMetadata);
+    noteCounter.textContent = 500 - length(target.value);
   }
 });
 
