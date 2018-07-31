@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_12_123222) do
+ActiveRecord::Schema.define(version: 2018_08_12_173710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -454,6 +454,16 @@ ActiveRecord::Schema.define(version: 2018_08_12_123222) do
     t.datetime "created_at", default: -> { "now()" }, null: false
     t.datetime "updated_at", default: -> { "now()" }, null: false
     t.index ["account_id", "status_id"], name: "index_status_pins_on_account_id_and_status_id", unique: true
+  end
+
+  create_table "status_stats", force: :cascade do |t|
+    t.bigint "status_id"
+    t.bigint "replies_count", default: 0, null: false
+    t.bigint "reblogs_count", default: 0, null: false
+    t.bigint "favourites_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["status_id"], name: "index_status_stats_on_status_id", unique: true
   end
 
   create_table "statuses", id: :bigint, default: -> { "timestamp_id('statuses'::text)" }, force: :cascade do |t|
