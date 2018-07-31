@@ -509,6 +509,9 @@ da:
       action: Se alle notifikationer
       mention: "%{name} nævnte dig i:"
       title: Mens du var væk...
+    favourite:
+      body: 'Din status blev favoriseret af %{name}:'
+      subject: "%{name} favoriserede din status"
     follow:
       body: "%{name} følger dig nu!"
       subject: "%{name} følger dig nu"
@@ -536,18 +539,22 @@ da:
   preferences:
     languages: Sprog
     other: Andet
+    publishing: Offentligører
     web: Web
   remote_unfollow:
     error: Fejl
     title: Titel
     unfollowed: Følger ikke længere
   sessions:
+    activity: Sidste aktivitet
+    browser: Browser
     browsers:
       blackberry: Blackberry OS
       chrome: Google Chrome
       firefox: Mozilla Firefox
       generic: Ukendt browser
       ie: IE
+      safari: Apple Safari
     description: "%{browser} på %{platform}"
     ip: IP
     platforms:
@@ -581,7 +588,9 @@ da:
     content_warning: 'Advarsel om indhold: %{warning}'
     language_detection: Opfang automatisk sprog
     pin_errors:
+      limit: Du har allerede fastgjort det maksimale antal trut
       ownership: Dun kan ikke fastgøre en anden persons toot
+      private: Ikke offentlige trut kan ikke blive fastgjort
     show_more: Vis mere
     title: '%{name}: "%{quote}"'
     visibilities:
