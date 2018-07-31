@@ -1115,6 +1115,21 @@ $small-breakpoint: 960px;
   }
 
   &.tag-page {
+    @media screen and (max-width: $column-breakpoint) {
+      padding: 0;
+
+      .container {
+        padding: 0;
+      }
+
+      #mastodon-timeline {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+      }
+    }
+
     .grid {
       @media screen and (min-width: $small-breakpoint) {
         grid-template-columns: 33% 67%;
@@ -1146,23 +1161,16 @@ $small-breakpoint: 960px;
 
     @media screen and (max-width: $column-breakpoint) {
       .grid {
-        .column-1 {
-          grid-column: 1;
-          grid-row: 2;
-        }
+        grid-gap: 0;
 
-        .column-2 {
+        .column-1 {
           grid-column: 1;
           grid-row: 1;
         }
-      }
 
-      .brand {
-        margin: 0;
-      }
-
-      .landing-page__features {
-        display: none;
+        .column-2 {
+          display: none;
+        }
       }
     }
   }
