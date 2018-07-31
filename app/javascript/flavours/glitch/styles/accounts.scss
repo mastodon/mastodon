@@ -59,6 +59,7 @@
       flex: 0 0 auto;
       width: 48px;
       height: 48px;
+      @include avatar-size(48px);
       padding-top: 2px;
 
       img {
@@ -67,6 +68,7 @@
         display: block;
         margin: 0;
         border-radius: 4px;
+        @include avatar-radius();
         background: darken($ui-base-color, 8%);
       }
     }

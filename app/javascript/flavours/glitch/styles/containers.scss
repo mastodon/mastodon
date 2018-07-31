@@ -83,6 +83,7 @@
   .avatar {
     width: 40px;
     height: 40px;
+    @include avatar-size(40px);
     margin-right: 8px;
 
     img {
@@ -91,6 +92,7 @@
       display: block;
       margin: 0;
       border-radius: 4px;
+      @include avatar-radius();
     }
   }
 
@@ -337,6 +339,7 @@
         display: block;
         width: 120px;
         height: 120px;
+        @include avatar-size(120px);
         padding-left: 20px - 4px;
         flex: 0 0 auto;
 
@@ -348,6 +351,7 @@
           border-radius: 50%;
           border: 4px solid lighten($ui-base-color, 4%);
           background: darken($ui-base-color, 8%);
+          @include avatar-radius();
         }
       }
 
@@ -364,12 +368,14 @@
         .avatar {
           width: 48px;
           height: 48px;
+          @include avatar-size(48px);
           padding: 7px 0;
           padding-left: 10px;
 
           img {
             border: 0;
             border-radius: 4px;
+            @include avatar-radius();
           }
 
           @media screen and (max-width: 360px) {

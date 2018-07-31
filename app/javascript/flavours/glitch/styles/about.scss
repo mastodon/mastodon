@@ -574,6 +574,7 @@ $small-breakpoint: 960px;
       .avatar {
         width: 80px;
         height: 80px;
+        @include avatar-size(80px);
         margin: 0 auto;
         margin-bottom: 15px;
 
@@ -582,6 +583,7 @@ $small-breakpoint: 960px;
           width: 80px;
           height: 80px;
           border-radius: 48px;
+          @include avatar-radius();
         }
       }
 
@@ -716,6 +718,7 @@ $small-breakpoint: 960px;
       &__avatar {
         width: 44px;
         height: 44px;
+        @include avatar-size(48px);
         background-size: 44px 44px;
       }
 
