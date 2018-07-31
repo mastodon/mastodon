@@ -4,7 +4,7 @@ gl:
     hints:
       defaults:
         autofollow: As persoas que se conectaron a través de un convite seguirana automáticamente a vostede
-        avatar: PNG, GIF ou JPG.  Máximo 2MB. Será reducida a 400x400px
+        avatar: PNG, GIF ou JPG.  Máximo %{size}. Será reducida a %{dimensions}px
         bot: Esta conta realiza principalmente accións automatizadas e podería non estar monitorizada
         context: Un ou varios contextos onde se debería aplicar o filtro
         digest: Enviar só tras un longo período de inactividade e só si recibeu algunha mensaxe personal na súa ausencia
@@ -12,7 +12,7 @@ gl:
           one: <span class="name-counter">1</span> caracter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
         fields: Pode ter ate 4 elementos no seu perfil mostrados como unha táboa
-        header: PNG, GIF ou JPG. Máximo 2MB. Será reducida a 700x335px
+        header: PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
         inbox_url: Copiar o URL desde a páxina de inicio do repetidor que quere utilizar
         irreversible: Os toots filtrados desaparecerán de xeito irreversible, incluso si despois se elimina o filtro
         locale: O idioma da interface de usuaria, correos e notificacións

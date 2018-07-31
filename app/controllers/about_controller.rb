@@ -31,7 +31,7 @@ class AboutController < ApplicationController
   end
 
   def set_body_classes
-    @body_classes = 'about-body'
+    @body_classes = 'with-modals'
   end
 
   def initial_state_params

@@ -12,6 +12,7 @@ describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true d
     allow(view).to receive(:full_asset_url).and_return('//asset.host/image.svg')
     allow(view).to receive(:local_time)
     allow(view).to receive(:local_time_ago)
+    assign(:instance_presenter, InstancePresenter.new)
   end
 
   it 'has valid author h-card and basic data for a detailed_status' do

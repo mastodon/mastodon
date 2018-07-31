@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
@@ -8,7 +9,6 @@ import { ScrollContainer } from 'react-router-scroll-4';
 import AccountContainer from '../../containers/account_container';
 import Column from '../ui/components/column';
 import ColumnBackButton from '../../components/column_back_button';
-import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
   accountIds: state.getIn(['user_lists', 'favourited_by', props.params.statusId]),
@@ -20,6 +20,7 @@ export default class Favourites extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
+    shouldUpdateScroll: PropTypes.func,
     accountIds: ImmutablePropTypes.list,
   };
 
@@ -34,7 +35,7 @@ export default class Favourites extends ImmutablePureComponent {
   }
 
   render () {
-    const { accountIds } = this.props;
+    const { shouldUpdateScroll, accountIds } = this.props;
 
     if (!accountIds) {
       return (
@@ -48,7 +49,7 @@ export default class Favourites extends ImmutablePureComponent {
       <Column>
         <ColumnBackButton />
 
-        <ScrollContainer scrollKey='favourites'>
+        <ScrollContainer scrollKey='favourites' shouldUpdateScroll={shouldUpdateScroll}>
           <div className='scrollable'>
             {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
           </div>

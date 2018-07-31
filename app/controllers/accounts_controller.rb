@@ -11,6 +11,7 @@ class AccountsController < ApplicationController
     respond_to do |format|
       format.html do
         use_pack 'public'
+        @body_classes    = 'with-modals'
         @pinned_statuses = []
 
         if current_account && @account.blocking?(current_account)

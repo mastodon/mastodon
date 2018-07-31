@@ -16,24 +16,25 @@
 - if status.reply? && include_threads
   - if @next_ancestor
     .entry{ class: entry_classes }
-      = render 'stream_entries/more', url: TagManager.instance.url_for(@next_ancestor)
+      = link_to_more TagManager.instance.url_for(@next_ancestor)
 
   = render partial: 'stream_entries/status', collection: @ancestors, as: :status, locals: { is_predecessor: true, direct_reply_id: status.in_reply_to_id }
 
 .entry{ class: entry_classes }
 
   - if status.reblog?
-    .pre-header
-      .pre-header__icon
-        = fa_icon('retweet fw')
+    .status__prepend
+      .status__prepend-icon-wrapper
+        %i.status__prepend-icon.fa.fa-fw.fa-retweet
       %span
         = link_to TagManager.instance.url_for(status.account), class: 'status__display-name muted' do
-          %strong.emojify= display_name(status.account, custom_emojify: true)
+          %bdi
+            %strong.emojify= display_name(status.account, custom_emojify: true)
         = t('stream_entries.reblogged')
   - elsif pinned
-    .pre-header
-      .pre-header__icon
-        = fa_icon('thumb-tack fw')
+    .status__prepend
+      .status__prepend-icon-wrapper
+        %i.status__prepend-icon.fa.fa-fw.fa-thumb-tack
       %span
         = t('stream_entries.pinned')
 
@@ -42,13 +43,13 @@
 - if include_threads
   - if @since_descendant_thread_id
     .entry{ class: entry_classes }
-      = render 'stream_entries/more', url: short_account_status_url(status.account.username, status, max_descendant_thread_id: @since_descendant_thread_id + 1)
+      = link_to_more short_account_status_url(status.account.username, status, max_descendant_thread_id: @since_descendant_thread_id + 1)
   - @descendant_threads.each do |thread|
     = render partial: 'stream_entries/status', collection: thread[:statuses], as: :status, locals: { is_successor: true, parent_id: status.id }
 
     - if thread[:next_status]
       .entry{ class: entry_classes }
-        = render 'stream_entries/more', url: TagManager.instance.url_for(thread[:next_status])
+        = link_to_more TagManager.instance.url_for(thread[:next_status])
   - if @next_descendant_thread
     .entry{ class: entry_classes }
-      = render 'stream_entries/more', url: short_account_status_url(status.account.username, status, since_descendant_thread_id: @max_descendant_thread_id - 1)
+      = link_to_more short_account_status_url(status.account.username, status, since_descendant_thread_id: @max_descendant_thread_id - 1)
