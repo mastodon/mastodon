@@ -80,6 +80,8 @@ export default class GettingStarted extends ImmutablePureComponent {
     const navItems = [];
     let i = 1;
     let height = (multiColumn) ? 0 : 60;
+    const sourceBaseUrl = 'https://github.com/';
+    const repository = 'tootsuite/mastodon';
 
     if (multiColumn) {
       navItems.push(
@@ -149,7 +151,7 @@ export default class GettingStarted extends ImmutablePureComponent {
             <FormattedMessage
               id='getting_started.open_source_notice'
               defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
-              values={{ github: <span><a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>tootsuite/mastodon</a> (v{version})</span> }}
+              values={{ github: <span><a href={sourceBaseUrl+repository} rel='noopener' target='_blank'>{repository}</a> (v{version})</span> }}
             />
           </p>
         </div>
