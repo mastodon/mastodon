@@ -143,3 +143,43 @@
     }
   }
 }
+
+// Styling from upstream's WebUI, as public pages use the same layout
+.embed,
+.public-layout {
+  .status {
+    .status__info .status__display-name {
+      display: block;
+      max-width: 100%;
+      padding-right: 25px;
+    }
+
+    .status__info {
+      font-size: 15px;
+      display: initial;
+    }
+
+    .status__relative-time {
+      color: $dark-text-color;
+      float: right;
+      font-size: 14px;
+      width: auto;
+      margin: initial;
+      padding: initial;
+    }
+
+    .status__info .status__display-name {
+      display: block;
+      max-width: 100%;
+      padding-right: 25px;
+      margin: initial;
+    }
+
+    .status__avatar {
+      height: 48px;
+      position: absolute;
+      width: 48px;
+      margin: initial;
+    }
+  }
+}
