@@ -22,6 +22,8 @@ class StatusesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
+        @body_classes = 'with-modals'
+
         set_ancestors
         set_descendants
 
