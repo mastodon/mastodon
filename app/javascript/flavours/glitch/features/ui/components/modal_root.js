@@ -44,6 +44,17 @@ export default class ModalRoot extends React.PureComponent {
     onClose: PropTypes.func.isRequired,
   };
 
+  getSnapshotBeforeUpdate () {
+    const visible = !!this.props.type;
+    return {
+      overflowY: visible ? 'hidden' : null,
+    };
+  }
+
+  componentDidUpdate (prevProps, prevState, { overflowY }) {
+    document.body.style.overflowY = overflowY;
+  }
+
   renderLoading = modalId => () => {
     return ['MEDIA', 'VIDEO', 'BOOST', 'FAVOURITE', 'DOODLE', 'CONFIRM', 'ACTIONS'].indexOf(modalId) === -1 ? <ModalLoading /> : null;
   }
