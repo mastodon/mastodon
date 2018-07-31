@@ -12,7 +12,7 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def show?
-    return false if local_only? && current_account.nil?
+    return false if local_only? && (current_account.nil? || !current_account.local?)
 
     if direct?
       owned? || mention_exists?
