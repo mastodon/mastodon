@@ -83,7 +83,7 @@ cs:
           nakonfigurováno.
         invalid_client: Ověření klienta selhalo kvůli neznámému klientovi, chybějící
           klientské autentikaci či nepodporované autentikační metodě.
-        invalid_grant: Poskytnuté ověření je neplatné, vypršelé, zamítnuté, neshoduje
+        invalid_grant: Poskytnuté oprávnění je neplatné, vypršelé, zamítnuté, neshoduje
           se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno
           jinému klientu.
         invalid_redirect_uri: Přesměrovací URI není platné.
@@ -98,3 +98,56 @@ cs:
           unknown: Přístupový token je neplatný
         resource_owner_authenticator_not_configured: Nález Resource Owner selhal,
           protože Doorkeeper.configure.resource_owner_authenticator nebylo nakonfigurováno.
+        server_error: Autorizační server se setkal s neočekávanou chybou, která mu
+          zabránila ve vykonání požadavku.
+        temporarily_unavailable: Autorizační server vás nyní nemůže obsloužit kvůli
+          dočasnému přetížení či údržbě serveru.
+        unauthorized_client: Klient není autorizován k vykonání tohoto požadavku touto
+          metodou.
+        unsupported_grant_type: Tento typ oprávnění není podporován autorizačním serverem.
+        unsupported_response_type: Autorizační server nepodporuje tento typ odpovědi.
+    flash:
+      applications:
+        create:
+          notice: Aplikace vytvořena.
+        destroy:
+          notice: Aplikace smazána.
+        update:
+          notice: Aplikace aktualizována.
+      authorized_applications:
+        destroy:
+          notice: Aplikace zamítnuta.
+    layouts:
+      admin:
+        nav:
+          applications: Aplikace
+          oauth2_provider: Poskytovatel OAuth2
+      application:
+        title: Je požadována autorizace OAuth
+    scopes:
+      follow: upravovat vztahy mezi profily
+      push: přijímat vaše push oznámení
+      read: vidět všechna data vašeho účtu
+      read:accounts: vidět informace o účtech
+      read:blocks: vidět vaše blokace
+      read:favourites: vidět vaše oblíbení
+      read:filters: vidět vaše filtry
+      read:follows: vidět vaše sledování
+      read:lists: vidět vaše seznamy
+      read:mutes: vidět vaše ignorace
+      read:notifications: vidět vaše oznámení
+      read:reports: vidět vaše nahlášení
+      read:search: vyhledávat za vás
+      read:statuses: vidět všechny příspěvky
+      write: měnit všechna data vašeho účtu
+      write:accounts: měnit váš profil
+      write:blocks: blokovat účty a domény
+      write:favourites: oblibovat si příspěvky
+      write:filters: vytvářet filtry
+      write:follows: sledovat lidi
+      write:lists: vytvářet seznamy
+      write:media: nahrávat mediální soubory
+      write:mutes: ignorovat lidi a konverzace
+      write:notifications: vymazávat vaše oznámení
+      write:reports: nahlašovat jiné uživatele
+      write:statuses: publikovat příspěvky
