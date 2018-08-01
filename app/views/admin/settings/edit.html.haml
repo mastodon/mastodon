@@ -7,7 +7,8 @@
 
   .fields-group
     = f.input :site_title, placeholder: t('admin.settings.site_title')
-    = f.input :site_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_description.title'), hint: t('admin.settings.site_description.desc_html'), input_html: { rows: 8 }
+    = f.input :site_short_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_short_description.title'), hint: t('admin.settings.site_short_description.desc_html'), input_html: { rows: 2 }
+    = f.input :site_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_description.title'), hint: t('admin.settings.site_description.desc_html'), input_html: { rows: 4 }
     = f.input :site_contact_username, placeholder: t('admin.settings.contact_information.username')
     = f.input :site_contact_email, placeholder: t('admin.settings.contact_information.email')
 
