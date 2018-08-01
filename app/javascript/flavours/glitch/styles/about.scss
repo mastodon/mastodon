@@ -574,6 +574,7 @@ $small-breakpoint: 960px;
       .avatar {
         width: 80px;
         height: 80px;
+        @include avatar-size(80px);
         margin: 0 auto;
         margin-bottom: 15px;
 
@@ -582,6 +583,7 @@ $small-breakpoint: 960px;
           width: 80px;
           height: 80px;
           border-radius: 48px;
+          @include avatar-radius();
         }
       }
 
@@ -716,6 +718,7 @@ $small-breakpoint: 960px;
       &__avatar {
         width: 44px;
         height: 44px;
+        @include avatar-size(48px);
         background-size: 44px 44px;
       }
 
@@ -1094,6 +1097,21 @@ $small-breakpoint: 960px;
   }
 
   &.tag-page {
+    @media screen and (max-width: $column-breakpoint) {
+      padding: 0;
+
+      .container {
+        padding: 0;
+      }
+
+      #mastodon-timeline {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+      }
+    }
+
     .grid {
       @media screen and (min-width: $small-breakpoint) {
         grid-template-columns: 33% 67%;
@@ -1125,23 +1143,16 @@ $small-breakpoint: 960px;
 
     @media screen and (max-width: $column-breakpoint) {
       .grid {
-        .column-1 {
-          grid-column: 1;
-          grid-row: 2;
-        }
+        grid-gap: 0;
 
-        .column-2 {
+        .column-1 {
           grid-column: 1;
           grid-row: 1;
         }
-      }
 
-      .brand {
-        margin: 0;
-      }
-
-      .landing-page__features {
-        display: none;
+        .column-2 {
+          display: none;
+        }
       }
     }
   }

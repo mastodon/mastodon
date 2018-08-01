@@ -4,7 +4,7 @@ pl:
     hints:
       defaults:
         autofollow: Osoby, które zarejestrują się z Twojego zaproszenia automatycznie zaczną Cię śledzić
-        avatar: PNG, GIF lub JPG. Maksymalnie 2MB. Zostanie zmniejszony do 400x400px
+        avatar: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
         bot: To konto wykonuje głównie zautomatyzowane działania i może nie być monitorowane
         context: Jedno lub wiele miejsc, w których filtr zostanie zastosowany
         digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
@@ -14,7 +14,7 @@ pl:
           one: Pozostał <span class="name-counter">1</span> znak
           other: Pozostało <span class="name-counter">%{count}</span> znaków
         fields: Możesz ustawić maksymalnie 4 niestandardowe pola wyświetlane jako tabela na Twoim profilu
-        header: PNG, GIF lub JPG. Maksymalnie 2MB. Zostanie zmniejszony do 700x335px
+        header: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
         irreversible: Filtrowane wpisy znikną bezpowrotnie, nawet gdy filtr zostanie usunięty
         locale: Język interfejsu, wiadomości e-mail i powiadomieniach push
         locked: Musisz akceptować prośby o śledzenie

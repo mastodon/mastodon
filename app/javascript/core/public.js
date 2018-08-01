@@ -1,6 +1,7 @@
 //  This file will be loaded on public pages, regardless of theme.
 
 const { delegate } = require('rails-ujs');
+const { length } = require('stringz');
 
 delegate(document, '.webapp-btn', 'click', ({ target, button }) => {
   if (button !== 0) {

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import configureStore from 'flavours/glitch/store/configureStore';
@@ -8,6 +9,7 @@ import { getLocale } from 'mastodon/locales';
 import PublicTimeline from 'flavours/glitch/features/standalone/public_timeline';
 import CommunityTimeline from 'flavours/glitch/features/standalone/community_timeline';
 import HashtagTimeline from 'flavours/glitch/features/standalone/hashtag_timeline';
+import ModalContainer from 'flavours/glitch/features/ui/containers/modal_container';
 import initialState from 'flavours/glitch/util/initial_state';
 
 const { localeData, messages } = getLocale();
@@ -47,7 +49,13 @@ export default class TimelineContainer extends React.PureComponent {
     return (
       <IntlProvider locale={locale} messages={messages}>
         <Provider store={store}>
-          {timeline}
+          <Fragment>
+            {timeline}
+            {ReactDOM.createPortal(
+              <ModalContainer />,
+              document.getElementById('modal-container'),
+            )}
+          </Fragment>
         </Provider>
       </IntlProvider>
     );

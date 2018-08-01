@@ -3,11 +3,11 @@ th:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF or JPG. At most 2MB. Will be downscaled to 400x400px
+        avatar: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
         display_name:
           one: <span class="name-counter">1</span> character left
           other: <span class="name-counter">%{count}</span> characters left
-        header: PNG, GIF or JPG. At most 2MB. Will be downscaled to 700x335px
+        header: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
         locked: Requires you to manually approve followers and defaults post privacy to followers-only
         note:
           one: <span class="name-counter">1</span> character left

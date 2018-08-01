@@ -1,51 +1,43 @@
-.card.h-card.p-author{ style: "background-image: url(#{account.header.url(:original)})" }
-  .card__illustration
-    = render 'accounts/follow_button', account: account
-    .avatar= image_tag account.avatar.url(:original), class: 'u-photo'
+.public-account-header
+  .public-account-header__image
+    = image_tag account.header.url, class: 'parallax'
+  .public-account-header__bar
+    = link_to short_account_url(account), class: 'avatar' do
+      = image_tag account.avatar.url
+    .public-account-header__tabs
+      .public-account-header__tabs__name
+        %h1
+          = display_name(account)
+          %small
+            = acct(account)
+            = fa_icon('lock') if account.locked?
+      .public-account-header__tabs__tabs
+        .details-counters
+          .counter{ class: active_nav_class(short_account_url(account)) }
+            = link_to short_account_url(account), class: 'u-url u-uid' do
+              %span.counter-number= number_to_human account.statuses_count, strip_insignificant_zeros: true
+              %span.counter-label= t('accounts.posts')
 
-  .card__bio
-    %h1.name
-      %span.p-name.emojify= display_name(account, custom_emojify: true)
-      %small<
-        %span>< @#{account.local_username_and_domain}
-        = fa_icon('lock') if account.locked?
+          .counter{ class: active_nav_class(account_following_index_url(account)) }
+            = link_to account_following_index_url(account) do
+              %span.counter-number= number_to_human account.following_count, strip_insignificant_zeros: true
+              %span.counter-label= t('accounts.following')
 
-    - if account.bot?
-      .roles
-        .account-role.bot
-          = t 'accounts.roles.bot'
-    - elsif Setting.show_staff_badge
-      - if account.user_admin?
-        .roles
-          .account-role.admin
-            = t 'accounts.roles.admin'
-      - elsif account.user_moderator?
-        .roles
-          .account-role.moderator
-            = t 'accounts.roles.moderator'
+          .counter{ class: active_nav_class(account_followers_url(account)) }
+            = link_to account_followers_url(account) do
+              %span.counter-number= number_to_human account.followers_count, strip_insignificant_zeros: true
+              %span.counter-label= t('accounts.followers')
+        .spacer
+        .public-account-header__tabs__tabs__buttons
+          = account_action_button(account)
 
-    .bio
-      .account__header__content.p-note.emojify= Formatter.instance.simplified_format(account, custom_emojify: true)
+    .public-account-header__extra
+      = render 'accounts/bio', account: account
 
-      - unless account.fields.empty?
-        .account__header__fields
-          - account.fields.each do |field|
-            %dl
-              %dt.emojify{ title: field.name }= field.name
-              %dd.emojify{ title: field.value }= Formatter.instance.format_field(account, field.value, custom_emojify: true)
-
-    .details-counters
-      .counter{ class: active_nav_class(short_account_url(account)) }
-        = link_to short_account_url(account), class: 'u-url u-uid' do
-          %span.counter-number= number_to_human account.statuses_count, strip_insignificant_zeros: true
-          %span.counter-label= t('accounts.posts')
-
-      .counter{ class: active_nav_class(account_following_index_url(account)) }
+      .public-account-header__extra__links
         = link_to account_following_index_url(account) do
-          %span.counter-number= number_to_human account.following_count, strip_insignificant_zeros: true
-          %span.counter-label= t('accounts.following')
-
-      .counter{ class: active_nav_class(account_followers_url(account)) }
+          %strong= number_to_human account.following_count, strip_insignificant_zeros: true
+          = t('accounts.following')
         = link_to account_followers_url(account) do
-          %span.counter-number= number_to_human account.followers_count, strip_insignificant_zeros: true
-          %span.counter-label= t('accounts.followers')
+          %strong= number_to_human account.followers_count, strip_insignificant_zeros: true
+          = t('accounts.followers')

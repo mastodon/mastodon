@@ -3,6 +3,7 @@
 class Auth::ConfirmationsController < Devise::ConfirmationsController
   layout 'auth'
 
+  before_action :set_body_classes
   before_action :set_user, only: [:finish_signup]
   before_action :set_pack
 
@@ -26,6 +27,10 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
 
   def set_user
     @user = current_user
+  end
+
+  def set_body_classes
+    @body_classes = 'lighter'
   end
 
   def user_params

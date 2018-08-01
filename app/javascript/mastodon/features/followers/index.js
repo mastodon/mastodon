@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
@@ -14,7 +15,6 @@ import Column from '../ui/components/column';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import LoadMore from '../../components/load_more';
 import ColumnBackButton from '../../components/column_back_button';
-import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
   accountIds: state.getIn(['user_lists', 'followers', props.params.accountId, 'items']),
@@ -27,6 +27,7 @@ export default class Followers extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
+    shouldUpdateScroll: PropTypes.func,
     accountIds: ImmutablePropTypes.list,
     hasMore: PropTypes.bool,
   };
@@ -57,7 +58,7 @@ export default class Followers extends ImmutablePureComponent {
   }
 
   render () {
-    const { accountIds, hasMore } = this.props;
+    const { shouldUpdateScroll, accountIds, hasMore } = this.props;
 
     let loadMore = null;
 
@@ -77,7 +78,7 @@ export default class Followers extends ImmutablePureComponent {
       <Column>
         <ColumnBackButton />
 
-        <ScrollContainer scrollKey='followers'>
+        <ScrollContainer scrollKey='followers' shouldUpdateScroll={shouldUpdateScroll}>
           <div className='scrollable' onScroll={this.handleScroll}>
             <div className='followers'>
               <HeaderContainer accountId={this.props.params.accountId} hideTabs />

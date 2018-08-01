@@ -6,7 +6,7 @@
     %p.hint= t('migrations.currently_redirecting')
 
     .fields-group
-      = render partial: 'authorize_follows/card', locals: { account: @migration.account }
+      = render partial: 'application/card', locals: { account: @migration.account }
 
   = render 'shared/error_messages', object: @migration
 

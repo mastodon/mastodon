@@ -10,6 +10,7 @@ class Auth::SessionsController < Devise::SessionsController
   prepend_before_action :authenticate_with_two_factor, if: :two_factor_enabled?, only: [:create]
   prepend_before_action :set_pack
   before_action :set_instance_presenter, only: [:new]
+  before_action :set_body_classes
 
   def new
     Devise.omniauth_configs.each do |provider, config|
@@ -112,6 +113,10 @@ class Auth::SessionsController < Devise::SessionsController
 
   def set_instance_presenter
     @instance_presenter = InstancePresenter.new
+  end
+
+  def set_body_classes
+    @body_classes = 'lighter'
   end
 
   def home_paths(resource)
