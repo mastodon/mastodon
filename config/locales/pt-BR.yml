@@ -406,8 +406,9 @@ pt-BR:
         desc_html: Mostrar uma insígnia de Equipe na página de usuário
         title: Mostrar insígnia de equipe
       site_description:
-        desc_html: Parágrafo introdutório na página inicial e em meta tags. Você pode
-          usar tags HTML, em especial <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
+        desc_html: Parágrafo introdutório na página inicial. Descreva o que faz esse
+          servidor especial, e qualquer outra coisa de importante. Você pode usar
+          tags HTML, em especial <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrição da instância
       site_description_extended:
         desc_html: Um ótimo lugar para seu código de conduta, regras, diretrizes e
@@ -425,6 +426,11 @@ pt-BR:
         desc_html: Exibir a timeline pública na página inicial
         title: Prévia da timeline
       title: Configurações do site
+      site_short_description:
+        desc_html: Aparece na barra lateral e nas meta tags. Descreva o que é Mastodon
+          e o que faz esse servidor especial em um único parágrafo. Se não for preenchido,
+          é substituído pela descrição da instância.
+        title: Descrição curta da instância
     statuses:
       back_to_account: Voltar para página da conta
       batch:
