@@ -372,11 +372,14 @@ en:
         desc_html: Show a staff badge on a user page
         title: Show staff badge
       site_description:
-        desc_html: Introductory paragraph on the frontpage and in meta tags. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
+        desc_html: Introductory paragraph on the frontpage. Describe what makes this Mastodon server special and anything else important. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Instance description
       site_description_extended:
         desc_html: A good place for your code of conduct, rules, guidelines and other things that set your instance apart. You can use HTML tags
         title: Custom extended information
+      site_short_description:
+        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph. If empty, defaults to instance description.
+        title: Short instance description
       site_terms:
         desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML tags
         title: Custom terms of service
