@@ -403,13 +403,14 @@ cs:
         desc_html: Zobrazit na stránce uživatele odznak člena personálu
         title: Zobrazit odznak personálu
       site_description:
-        desc_html: Úvodní odstavec na hlavní straně a v meta značkách. Můžete zde
-          používat HTML značky, hlavně <code>&lt;a&gt;</code> a <code>&lt;em&gt;</code>.
+        desc_html: Úvodní odstavec na hlavní straně. Popište, díky čemu je tento server
+          Mastodon zvláštní, a cokoliv jiného, co je důležité. Můžete zde používat
+          HTML značky, hlavně <code>&lt;a&gt;</code> a <code>&lt;em&gt;</code>.
         title: Popis instance
       site_description_extended:
         desc_html: Dobré místo pro vaše pravidla, pokyny a jiné věci, které vaši instanci
           odlišují od ostatních. Lze použít HTML značky
-        title: Vlastní doplňujísí informace
+        title: Vlastní doplňující informace
       site_terms:
         desc_html: Můžete si napsat vlastní zásady soukromí, podmínky používání či
           jiné legality. Můžete použít HTML značky
@@ -423,6 +424,11 @@ cs:
         desc_html: Zobrazit na hlavní straně veřejnou časovou osu
         title: Náhled časové osy
       title: Nastavení stránky
+      site_short_description:
+        desc_html: Zobrazen v postranním panelu a meta značkách. Popište, co je Mastodon
+          a díky čemu je tento server zvláštní v jediném odstavci. Je-li tohle prázdné,
+          zobrazí se popis instance.
+        title: Krátký popis instance
     statuses:
       back_to_account: Zpět na stránku účtu
       batch:
