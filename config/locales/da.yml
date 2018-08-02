@@ -58,11 +58,11 @@ da:
     moved_html: '%{name} er flyttet til %{new_profile_link}:'
     network_hidden: Denne information er ikke tilgængelig
     nothing_here: Der er intet her!
-    people_followed_by: Folk some %{name} følger
+    people_followed_by: Folk som %{name} følger
     people_who_follow: Folk der følger %{name}
-    posts: Dyt
-    posts_with_replies: Toots og svar
-    reserved_username: Brugernavnet er reserveret
+    posts: Trut
+    posts_with_replies: Trut og svar
+    reserved_username: Brugernavnet er allerede taget
     roles:
       admin: Administrator
       bot: Robot
@@ -71,7 +71,7 @@ da:
     joined: Tilmeldt den %{date}
   admin:
     account_moderation_notes:
-      create: Læg en kommentar
+      create: Læg en note
       created_msg: Moderator notat succesfuldt oprettet!
       delete: Slet
       destroyed_msg: Moderator notat succesfuldt destrueret!
@@ -153,8 +153,8 @@ da:
       search: Søg
       shared_inbox_url: Link til delt indbakke
       show:
-        created_reports: Rapporter oprettet af denne konto
-        report: rapporter
+        created_reports: Anmeldelser oprettet af denne konto
+        report: anmeld
         targeted_reports: Anmeldelser fra denne konto
       silence: Dæmp
       statuses: Statusser
@@ -241,6 +241,8 @@ da:
       week_users_active: aktive denne uge
       week_users_new: brugere denne uge
       feature_relay: Føderations relæ
+      hidden_service: Føderation med skjulte tjenester
+      single_user_mode: Enkelt bruger mode
     domain_blocks:
       add_new: Tilføj ny
       created_msg: Domæne blokade bliver nu behandlet
@@ -279,6 +281,8 @@ da:
       new:
         create: Tilføj domæne
       title: Email sortliste
+      created_msg: Tilføjede succesfuldt email domænet til sortliste
+      destroyed_msg: Fjernede succesfuldt email domænet fra sortliste
     instances:
       account_count: Kendte konti
       domain_name: Domæne
@@ -363,6 +367,8 @@ da:
       timeline_preview:
         desc_html: Vis offentlig tidslinje på landingssiden
       title: Indstillinger for side
+      site_short_description:
+        title: Kort beskrivelse af instans
     statuses:
       back_to_account: Tilbage til kontosiden
       batch:
@@ -396,6 +402,8 @@ da:
   applications:
     invalid_url: Det angivne URL er ugyldigt
     warning: Vær meget forsigtig med disse data. Del dem aldrig med nogen!
+    created: Applikation blev oprettet
+    destroyed: Applikation er blevet slettet
   auth:
     change_password: Kodeord
     confirm_email: Bekræft email
@@ -484,6 +492,11 @@ da:
   generic:
     changes_saved_msg: Ændringerne blev gemt!
     save_changes: Gem ændringer
+    validation_errors:
+      one: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende
+        fejl forneden
+      other: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende
+        %{count} fejl forneden
   imports:
     types:
       blocking: Blokeringsliste
@@ -530,6 +543,11 @@ da:
       action: Se alle notifikationer
       mention: '%{name} nævnte dig i:'
       title: Mens du var væk...
+      new_followers_summary:
+        other: Du har også fået %{count} nye følgere mens du var væk! Fantastisk!
+      subject:
+        one: 1 ny notifikation siden du sidst var her 🐘
+        other: '%{count} nye notifikationer siden du sidst var her 🐘'
     favourite:
       body: 'Din status blev favoriseret af %{name}:'
       subject: '%{name} favoriserede din status'
@@ -620,6 +638,7 @@ da:
       public: Offentlig
       public_long: Alle kan se
       unlisted: Ikke listet
+    boosted_from_html: Fremhævet fra %{acct_link}
   stream_entries:
     pinned: Fastgjort toot
     sensitive_content: Følsomt indhold
@@ -673,3 +692,15 @@ da:
     seamless_external_login: Du er logget ind via en ekstern service, så er kodeord
       og e-mail indstillinger ikke tilgængelige.
     signed_in_as: 'Logget ind som:'
+  footer:
+    developers: Udviklere
+    more: Mere…
+    resources: Ressourcer
+  remote_follow:
+    no_account_html: Har du ikke en konto? Du kan <a href='%{sign_up_path}' target='_blank'>oprette
+      dig her</a>
+    proceed: Fortsæt for at følge
+    prompt: 'Du er ved at følge:'
+  time:
+    formats:
+      month: '%b %Y'
