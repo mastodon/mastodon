@@ -1,4 +1,3 @@
----
 da:
   activerecord:
     attributes:
@@ -33,7 +32,8 @@ da:
       help:
         native_redirect_uri: Brug %{native_redirect_uri} for lokale tests
         redirect_uri: Brug en linje per URI
-        scopes: Adskil omfang med mellemrum. Lad være blankt for at bruge standard omfang.
+        scopes: Adskil omfang med mellemrum. Lad være blankt for at bruge standard
+          omfang.
       index:
         application: Applikation
         callback_url: Callback-URL
@@ -72,21 +72,26 @@ da:
       index:
         application: Applikation
         created_at: Godkendt
-        date_format: "%Y-%m-%d %H:%M:%S"
+        date_format: '%Y-%m-%d %H:%M:%S'
         scopes: Omfang
         title: Dine godkendte applikationer
     errors:
       messages:
         access_denied: Ejeren af ressourcen eller godkendelses serveren afviste anmodningen.
         invalid_redirect_uri: Ormdirigerings-uri'en der blev angivet er ikke gyldig.
-        invalid_request: Anmodningen mangler en parametre, inkluderer en ikke understøttet parametre værdi eller er på en eller anden måde deformeret.
+        invalid_request: Anmodningen mangler en parametre, inkluderer en ikke understøttet
+          parametre værdi eller er på en eller anden måde deformeret.
         invalid_scope: Det anmodede omfang er ugyldigt, ukendt eller deformeret.
         invalid_token:
           expired: Adgangs-beviset er udløbet
           revoked: Adgangs-beviset er blevet ophævet
           unknown: Adgangs-beviset er ugyldigt
-        unauthorized_client: Klienten er ikke godkendt til at udføre denne anmodning ved at bruge denne metode.
-        unsupported_response_type: Godkendelses serveren understøtter ikke denne type respons.
+        unauthorized_client: Klienten er ikke godkendt til at udføre denne anmodning
+          ved at bruge denne metode.
+        unsupported_response_type: Godkendelses serveren understøtter ikke denne type
+          respons.
+        invalid_client: Klient autentikationen mislykkedes grundet en ukendt klient,
+          ingen klient autentikation fulgte med, eller en ikke-understøttet metode.
     flash:
       applications:
         create:
