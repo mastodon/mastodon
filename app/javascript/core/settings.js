@@ -2,6 +2,7 @@
 
 const { length } = require('stringz');
 const { delegate } = require('rails-ujs');
+import emojify from '../mastodon/features/emoji/emoji';
 
 delegate(document, '#account_display_name', 'input', ({ target }) => {
   const nameCounter = document.querySelector('.name-counter');
