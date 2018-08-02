@@ -5,11 +5,13 @@ pl:
     about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
     about_this: O tej instancji
     administered_by: 'Administrowana przez:'
+    api: API
     closed_registrations: Rejestracja na tej instancji jest obecnie zamknięta. Możesz jednak zarejestrować się na innej instancji, uzyskując dostęp do tej samej sieci.
     contact: Kontakt
     contact_missing: Nie ustawiono
     contact_unavailable: Nie dotyczy
     description_headline: Czym jest %{domain}?
+    documentation: Dokumentacja
     domain_count_after: instancjami
     domain_count_before: Serwer połączony z
     extended_description_html: |
@@ -28,9 +30,11 @@ pl:
     hosted_on: Mastodon uruchomiony na %{domain}
     learn_more: Dowiedz się więcej
     other_instances: Lista instancji
+    privacy_policy: Polityka prywatności
     source_code: Kod źródłowy
     status_count_after: wpisów
     status_count_before: Są autorami
+    terms: Zasady użytkowania
     user_count_after: użytkowników
     user_count_before: Z serwera korzysta
     what_is_mastodon: Czym jest Mastodon?
@@ -38,6 +42,7 @@ pl:
     follow: Śledź
     followers: Śledzący
     following: Śledzeni
+    joined: Dołączył(a) %{date}
     media: Zawartość multimedialna
     moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
     network_hidden: Ta informacja nie jest dostępna
@@ -151,34 +156,34 @@ pl:
       web: Sieć
     action_logs:
       actions:
-        assigned_to_self_report: "%{name} przypisał sobie zgłoszenie %{target}"
-        change_email_user: "%{name} zmienił adres-email użytkownika %{target}"
-        confirm_user: "%{name} potwierdził adres e-mail użytkownika %{target}"
-        create_custom_emoji: "%{name} dodał nowe emoji %{target}"
-        create_domain_block: "%{name} zablokował domenę %{target}"
-        create_email_domain_block: "%{name} dodał domenę e-mail %{target} na czarną listę"
-        demote_user: "%{name} zdegradował użytkownika %{target}"
-        destroy_domain_block: "%{name} odblokował domenę %{target}"
-        destroy_email_domain_block: "%{name} usunął domenę e-mail %{target} z czarnej listy"
-        destroy_status: "%{name} usunął wpis użytkownika %{target}"
-        disable_2fa_user: "%{name} wyłączył uwierzytelnianie dwustopniowe użytkownikowi %{target}"
-        disable_custom_emoji: "%{name} wyłączył emoji %{target}"
-        disable_user: "%{name} zablokował możliwość logowania użytkownikowi %{target}"
-        enable_custom_emoji: "%{name} włączył emoji %{target}"
-        enable_user: "%{name} przywrócił możliwość logowania użytkownikowi %{target}"
-        memorialize_account: "%{name} nadał kontu %{target} status in memoriam"
-        promote_user: "%{name} podniósł uprawnienia użytkownikowi %{target}"
-        remove_avatar_user: "%{name} usunął awatar użytkownikowi %{target}"
-        reopen_report: "%{name} otworzył ponownie zgłoszenie %{target}"
-        reset_password_user: "%{name} przywrócił hasło użytkownikowi %{target}"
-        resolve_report: "%{name} rozwiązał zgłoszenie %{target}"
-        silence_account: "%{name} wyciszył konto %{target}"
-        suspend_account: "%{name} zawiesił konto %{target}"
-        unassigned_report: "%{name} cofnął przypisanie zgłoszenia %{target}"
-        unsilence_account: "%{name} cofnął wyciszenie konta %{target}"
-        unsuspend_account: "%{name} cofnął zawieszenie konta %{target}"
-        update_custom_emoji: "%{name} zaktualizował emoji %{target}"
-        update_status: "%{name} zaktualizował wpis użytkownika %{target}"
+        assigned_to_self_report: "%{name} przypisał(a) sobie zgłoszenie %{target}"
+        change_email_user: "%{name} zmienił(a) adres e-mail użytkownika %{target}"
+        confirm_user: "%{name} potwierdził(a) adres e-mail użytkownika %{target}"
+        create_custom_emoji: "%{name} dodał(a) nowe emoji %{target}"
+        create_domain_block: "%{name} zablokował(a) domenę %{target}"
+        create_email_domain_block: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
+        demote_user: "%{name} zdegradował(a) użytkownika %{target}"
+        destroy_domain_block: "%{name} odblokował(a) domenę %{target}"
+        destroy_email_domain_block: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
+        destroy_status: "%{name} usunął(-ęła) wpis użytkownika %{target}"
+        disable_2fa_user: "%{name} wyłączył(a) uwierzytelnianie dwustopniowe użytkownikowi %{target}"
+        disable_custom_emoji: "%{name} wyłączył(a) emoji %{target}"
+        disable_user: "%{name} zablokował(a) możliwość logowania użytkownikowi %{target}"
+        enable_custom_emoji: "%{name} włączył(a) emoji %{target}"
+        enable_user: "%{name} przywrócił(a) możliwość logowania użytkownikowi %{target}"
+        memorialize_account: "%{name} nadał(a) kontu %{target} status in memoriam"
+        promote_user: "%{name} podniósł(a) uprawnienia użytkownikowi %{target}"
+        remove_avatar_user: "%{name} usunął(-ęła) awatar użytkownikowi %{target}"
+        reopen_report: "%{name} otworzył(a) ponownie zgłoszenie %{target}"
+        reset_password_user: "%{name} przywrócił(a) hasło użytkownikowi %{target}"
+        resolve_report: "%{name} rozwiązał(a) zgłoszenie %{target}"
+        silence_account: "%{name} wyciszył(a) konto %{target}"
+        suspend_account: "%{name} zawiesił(a) konto %{target}"
+        unassigned_report: "%{name} cofnął(-ęła) przypisanie zgłoszenia %{target}"
+        unsilence_account: "%{name} cofnął(-ęła) wyciszenie konta %{target}"
+        unsuspend_account: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
+        update_custom_emoji: "%{name} zaktualizował(a) emoji %{target}"
+        update_status: "%{name} zaktualizował(a) wpis użytkownika %{target}"
       title: Dziennik działań administracyjnych
     custom_emojis:
       by_domain: Domeny
@@ -368,13 +373,16 @@ pl:
         desc_html: Pokazuj odznakę uprawnień na stronie profilu użytkownika
         title: Pokazuj odznakę administracji
       site_description:
-        desc_html: Akapit wprowadzający, widoczny na stronie głównej i znacznikach meta. Możesz korzystać z tagów HTML, w szczególności <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
+        desc_html: Akapit wprowadzający, widoczny na stronie głównej. Opisz, co czyni tę instancję wyjątkową. Możesz korzystać ze znaczników HTML, w szczególności <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
         title: Opis instancji
       site_description_extended:
-        desc_html: Dobre miejsce na zasady użytkowania, wprowadzenie i inne rzeczy, które wyróżniają tę instancję. Możesz korzystać z tagów HTML
+        desc_html: Dobre miejsce na zasady użytkowania, wprowadzenie i inne rzeczy, które wyróżniają tę instancję. Możesz korzystać ze znaczników HTML
         title: Niestandardowy opis strony
+      site_short_description:
+        desc_html: Wyświetlany na pasku bocznym i w znacznikach meta. Opisz, czym jest Mastodon i czym wyróżnia się ta instancja w jednym akapicie. Jeżeli pusty, zostanie użyty opis instancji.
+        title: Krótki opis instancji
       site_terms:
-        desc_html: Miejsce na własną politykę prywatności, zasady użytkowania i inne unormowania prawne. Możesz korzystać z tagów HTML
+        desc_html: Miejsce na własną politykę prywatności, zasady użytkowania i inne unormowania prawne. Możesz korzystać ze znaczników HTML
         title: Niestandardowe zasady użytkowania
       site_title: Nazwa instancji
       thumbnail:
@@ -406,8 +414,8 @@ pl:
     title: Administracja
   admin_mailer:
     new_report:
-      body: Użytkownik %{reporter} zgłosił %{target}
-      body_remote: Użytkownik instancji %{domain} zgłosił %{target}
+      body: Użytkownik %{reporter} zgłosił(a) %{target}
+      body_remote: Użytkownik instancji %{domain} zgłosił(a) %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
@@ -425,18 +433,18 @@ pl:
     warning: Przechowuj te dane ostrożnie. Nie udostępniaj ich nikomu!
     your_token: Twój token dostępu
   auth:
-    agreement_html: Rejestrując się, oświadczasz, że zapoznałeś się z <a href="%{rules_path}">informacjami o instancji</a> i <a href="%{terms_path}">zasadami korzystania z usługi</a>.
+    agreement_html: Rejestrując się, oświadczasz, że zapoznałeś(-aś) się z <a href="%{rules_path}">informacjami o instancji</a> i <a href="%{terms_path}">zasadami korzystania z usługi</a>.
     change_password: Hasło
     confirm_email: Potwierdź adres e-mail
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
-    didnt_get_confirmation: Nie otrzymałeś instrukcji weryfikacji?
+    didnt_get_confirmation: Nie otrzymałeś(-aś) instrukcji weryfikacji?
     forgot_password: Nie pamiętasz hasła?
     invalid_reset_password_token: Token do resetowania hasła jest nieprawidłowy lub utracił ważność. Spróbuj uzyskać nowy.
     login: Zaloguj się
     logout: Wyloguj się
     migrate_account: Przenieś konto
-    migrate_account_html: Jeżeli chcesz skonfigurować przekierowanie z obecnego konta na inne, możesz <a href="%{path}">skonfigurować to tutaj</a>.
+    migrate_account_html: Jeżeli chcesz skonfigurować przekierowanie z obecnego konta na inne, możesz <a href="%{path}">zrobić to tutaj</a>.
     or: lub
     or_log_in_with: Lub zaloguj się z użyciem
     providers:
@@ -534,6 +542,10 @@ pl:
     true_privacy_html: Pamiętaj, że <strong>rzeczywista prywatność może zostać uzyskana wyłącznie dzięki szyfrowaniu end-to-end</strong>.
     unlocked_warning_html: Każdy może Cię śledzić, dzięki czemu może zobaczyć Twoje niepubliczne wpisy. %{lock_link} aby móc kontrolować, kto Cię śledzi.
     unlocked_warning_title: Twoje konto nie jest zablokowane
+  footer:
+    developers: Dla programistów
+    more: Więcej…
+    resources: Zasoby
   generic:
     changes_saved_msg: Ustawienia zapisane!
     save_changes: Zapisz zmiany
@@ -563,7 +575,7 @@ pl:
       '86400': dobie
     expires_in_prompt: Nigdy
     generate: Wygeneruj
-    invited_by: 'Zostałeś zaproszony przez:'
+    invited_by: 'Zostałeś(-aś) zaproszony(-a) przez:'
     max_uses:
       few: "%{count} użycia"
       many: "%{count} użyć"
@@ -615,13 +627,13 @@ pl:
       title: Nowy śledzący
     follow_request:
       action: Zarządzaj prośbami o możliwość śledzenia
-      body: "%{name} poprosił o możliwość śledzenia Cię"
+      body: "%{name} poprosił(a) o możliwość śledzenia Cię"
       subject: 'Prośba o możliwość śledzenia: %{name}'
       title: Nowa prośba o możliwość śledzenia
     mention:
       action: Odpowiedz
-      body: "%{name} wspomniał o Tobie w:"
-      subject: "%{name} wspomniał o Tobie"
+      body: "%{name} wspomniał(a) o Tobie w:"
+      subject: "%{name} wspomniał(a) o Tobie"
       title: Nowe wspomnienie o Tobie
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
@@ -760,9 +772,9 @@ pl:
       <h3 id="collect">Jakie informacje zbieramy?</h3>
 
       <ul>
-        <li><em>Podstawowe informacje o koncie</em>: Podczas rejestracji na tym serwerze, możesz zostać poproszony o wprowadzenie nazwy użytkownika, adresu e-mail i hasła. Możesz także wprowadzić dodatkowe informacje o profilu, takie jak nazwa wyświetlana i biografia oraz wysłać awatar i obraz nagłówka. Nazwa użytkownika, nazwa wyświetlana, biografia, awatar i obraz nagłówka są zawsze widoczne dla wszystkich.</li>
+        <li><em>Podstawowe informacje o koncie</em>: Podczas rejestracji na tym serwerze, możesz zostać poproszony(-a) o wprowadzenie nazwy użytkownika, adresu e-mail i hasła. Możesz także wprowadzić dodatkowe informacje o profilu, takie jak nazwa wyświetlana i biografia oraz wysłać awatar i obraz nagłówka. Nazwa użytkownika, nazwa wyświetlana, biografia, awatar i obraz nagłówka są zawsze widoczne dla wszystkich.</li>
         <li><em>Wpisy, śledzenie i inne publiczne informacje</em>: Lista osób które śledzisz jest widoczna publicznie, tak jak lista osób, które Cię śledzą. Jeżeli dodasz wpis, data i czas jego utworzenia i aplikacja, z której go wysłano są przechowywane. Wiadomości mogą zawierać załączniki multimedialne, takie jak zdjęcia i filmy. Publiczne i niewidoczne wpisy są dostępne publicznie. Udostępniony wpis również jest widoczny publicznie. Twoje wpisy są dostarczane obserwującym, co oznacza że jego kopie mogą zostać dostarczone i być przechowywane na innych serwerach. Kiedy usuniesz wpis, przestaje być widoczny również dla osób śledzących Cię. „Podbijanie” i dodanie do ulubionych jest zawsze publiczne.</li>
-        <li><em>Wpisy bezpośrednie i tylko dla śledzących</em>: Wszystkie wpisy są przechowywane i przetwarzane na serwerze. Wpisy przeznaczone tylko dla śledzących są widoczne tylko dla nich i osób wspomnianych we wpisie, a wpisy bezpośrednie tylko dla wspimnianych. W wielu przypadkach oznacza to, że ich kopie są dostarczane i przechowywane na innych serwerach. Staramy się ograniczać zasięg tych wpisów wyłącznie do właściwych odbiorców, ale inne serwery mogą tego nie robić. Ważne jest, aby sprawdzać jakich serwerów używają osoby, które Cię śledzą. Możesz aktywować opcję pozwalającą na ręczne akceptowanie i odrzucanie nowych śledzących. <em>Pamiętaj, że właściciele serwerów mogą zobaczyć te wiadomości</em>, a odbiorcy mogą wykonać zrzut ekranu, skopiować lub udostępniać ten wpis. <em>Nie udostępniaj wrażliwych danych z użyciem Mastodona.</em></li>
+        <li><em>Wpisy bezpośrednie i tylko dla śledzących</em>: Wszystkie wpisy są przechowywane i przetwarzane na serwerze. Wpisy przeznaczone tylko dla śledzących są widoczne tylko dla nich i osób wspomnianych we wpisie, a wpisy bezpośrednie tylko dla wspomnianych. W wielu przypadkach oznacza to, że ich kopie są dostarczane i przechowywane na innych serwerach. Staramy się ograniczać zasięg tych wpisów wyłącznie do właściwych odbiorców, ale inne serwery mogą tego nie robić. Ważne jest, aby sprawdzać jakich serwerów używają osoby, które Cię śledzą. Możesz aktywować opcję pozwalającą na ręczne akceptowanie i odrzucanie nowych śledzących. <em>Pamiętaj, że właściciele serwerów mogą zobaczyć te wiadomości</em>, a odbiorcy mogą wykonać zrzut ekranu, skopiować lub udostępniać ten wpis. <em>Nie udostępniaj wrażliwych danych z użyciem Mastodona.</em></li>
         <li><em>Adresy IP i inne metadane</em>: Kiedy zalogujesz się, przechowujemy adres IP użyty w trakcie logowania wraz z nazwą używanej przeglądarki. Wszystkie aktywne sesje możesz zobaczyć (i wygasić) w ustawieniach. Ostatnio używany adres IP jest przechowywany przez nas do 12 miesięcy. Możemy również przechowywać adresy IP wykorzystywane przy każdym działaniu na serwerze.</li>
       </ul>
 
@@ -803,15 +815,15 @@ pl:
 
       <h3 id="cookies">Czy używany plików cookies?</h3>
 
-      <p>Tak. Pliki cookies są małymi plikami, które strona lub dostawca jej usługi dostarcza na dysk twardy komputera z użyciem przeglądarki internetowej (jeżeli na to pozwoli). Pliki cookies pozwalają na rozpoznanie przeglądarki i – jeśli jesteś zarejestrowany – przypisanie jej do konta.</p>
+      <p>Tak. Pliki cookies są małymi plikami, które strona lub dostawca jej usługi dostarcza na dysk twardy komputera z użyciem przeglądarki internetowej (jeżeli na to pozwoli). Pliki cookies pozwalają na rozpoznanie przeglądarki i – jeśli jesteś zarejestrowany(-a) – przypisanie jej do konta.</p>
 
-      <p>Wykorzystujemy pliki cookies, aby przechowywać preferencję użytkowników na przyszłe wizyty.</p>
+      <p>Wykorzystujemy pliki cookies, aby przechowywać preferencje użytkowników na przyszłe wizyty.</p>
 
       <hr class="spacer" />
 
       <h3 id="disclose">Czy przekazujemy informacje osobom trzecim?</h3>
 
-      <p>Nie sprzedajemy, nie wymieniamy i nie przekazujemy osobom trzecim informacji pozwalających na identyfikację Ciebie. Nie dotyczy to zaufanym dostawcom pomagającym w prowadzeniu lub obsługiwaniu użytkowników, jeżeli zgadzają się, aby nie przekazywać dalej tych informacji. Możemy również udostępnić informacje, jeżeli uważany to za wymagane przez prawo, konieczne do wypełnienia polityki strony, przestrzegania naszych lub cudzych praw, własności i bezpieczeństwa.</p>
+      <p>Nie sprzedajemy, nie wymieniamy i nie przekazujemy osobom trzecim informacji pozwalających na identyfikację Ciebie. Nie dotyczy to zaufanych dostawców pomagających w prowadzeniu strony lub obsługiwaniu użytkowników, jeżeli zgadzają się, aby nie przekazywać dalej tych informacji. Możemy również udostępnić informacje, jeżeli uważany to za wymagane przez prawo, konieczne do wypełnienia polityki strony, przestrzegania naszych lub cudzych praw, własności i bezpieczeństwa.</p>
 
       <p>Twoja publiczna zawartość może zostać pobrana przez inne serwery w sieci. Wpisy publiczne i tylko dla śledzących są dostarczane na serwery, na których znajdują się śledzący Cię, a wiadomości bezpośrednie trafiają na serwery adresatów, jeżeli są oni użytkownikami innego serwera.</p>
 
@@ -821,9 +833,9 @@ pl:
 
       <h3 id="children">Korzystanie ze strony przez dzieci</h3>
 
-      <p>Jeżeli serwer znajduje się w UE lub w EOG: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 16 lat. Jeżeli nie ukończyłeś 16 roku życia, zgodnie z wymogami COPPA (<a href="https://pl.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Prawo o Ochronie Prywatności Dzieci w Internecie</a>), nie używaj tej strony.</p>
+      <p>Jeżeli serwer znajduje się w UE lub w EOG: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 16 lat. Jeżeli nie ukończyłeś(-aś) 16 roku życia, zgodnie z wymogami COPPA (<a href="https://pl.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Prawo o Ochronie Prywatności Dzieci w Internecie</a>), nie używaj tej strony.</p>
 
-      <p>Jeżeli serwer znajduje się w USA: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 13 lat. Jeżeli nie ukończyłeś 13 roku życia, zgodnie z wymogami RODO (<a href="https://pl.wikipedia.org/wiki/Ogólne_rozporządzenie_o_ochronie_danych">Ogólne rozporządzenie o ochronie danych</a>), nie używaj tej strony.</p>
+      <p>Jeżeli serwer znajduje się w USA: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 13 lat. Jeżeli nie ukończyłeś(-aś) 13 roku życia, zgodnie z wymogami RODO (<a href="https://pl.wikipedia.org/wiki/Ogólne_rozporządzenie_o_ochronie_danych">Ogólne rozporządzenie o ochronie danych</a>), nie używaj tej strony.</p>
 
       <p>Wymogi mogą być inne, jeżeli serwer znajduje się w innym kraju.</p>
 
@@ -874,7 +886,7 @@ pl:
       full_handle: Twój pełny adres
       full_handle_hint: Ten adres możesz podać znajomym, aby mogli skontaktować się z Tobą lub zacząć śledzić z innej instancji.
       review_preferences_action: Zmień ustawienia
-      review_preferences_step: Upewnij się, że zmieniłeś ustawienia, takie jak maile, które chciałbyś otrzymywać lub domyślne opcje prywatności. Jeżeli nie masz choroby lokomocyjnej, możesz włączyć automatyczne odtwarzanie animacji GIF.
+      review_preferences_step: Upewnij się, że zmieniłeś(-aś) ustawienia, takie jak maile, które chciałbyś otrzymywać lub domyślne opcje prywatności. Jeżeli nie masz choroby lokomocyjnej, możesz włączyć automatyczne odtwarzanie animacji GIF.
       subject: Witaj w Mastodonie
       tip_bridge_html: Jeżeli przybywasz z Twittera, możesz znaleźć znajomych na Mastodonie używając <a href="%{bridge_url}">aplikacji mostku</a>. Działa to tylko, jeżeli oni również z niej korzystali!
       tip_federated_timeline: Oś czasu federacji przedstawia całą sieć Mastodona. Wyświetla tylko wpisy osób, które śledzą użytkownicy Twojej instancji, więc nie jest kompletna.
