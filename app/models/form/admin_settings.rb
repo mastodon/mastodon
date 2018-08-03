@@ -10,6 +10,8 @@ class Form::AdminSettings
     :site_contact_email=,
     :site_title,
     :site_title=,
+    :site_short_description,
+    :site_short_description=,
     :site_description,
     :site_description=,
     :site_extended_description,
