@@ -350,7 +350,7 @@ co:
             chjosi. Pudete fà usu di u furmattu HTML
           title: Missaghju per l’arregistramenti chjosi
         deletion:
-          desc_html: Auturizà tuttu u mondu di sguassà u so propiu contu
+          desc_html: Auturizà tuttu u mondu à sguassà u so propiu contu
           title: Auturizà à sguassà i conti
         min_invite_role:
           disabled: Nisunu
@@ -367,8 +367,9 @@ co:
         desc_html: Mustrerà un badge Squadra nant’à un prufile d’utilizatore
         title: Mustrà un badge staff
       site_description:
-        desc_html: Paragrafu di prisentazione nant’a pagina d’accolta è i marchi meta.
-          Pudete fà usu di marchi HTML, in particulare <code>&lt;a&gt;</code> è <code>&lt;em&gt;</code>.
+        desc_html: Paragrafu di prisentazione nant’a pagina d’accolta. Parlate di
+          cio chì rende stu servore speziale, o d'altre cose impurtante. Pudete fà
+          usu di marchi HTML, in particulare <code>&lt;a&gt;</code> è <code>&lt;em&gt;</code>.
         title: Discrizzione di l’istanza
       site_description_extended:
         desc_html: Una bona piazza per e regule, infurmazione è altre cose chì l’utilizatori
@@ -386,6 +387,8 @@ co:
         desc_html: Vede a linea pubblica nant’a pagina d’accolta
         title: Vista di e linee
       title: Parametri di u situ
+      site_short_description:
+        title: Descrizzione corta di l'istanza
     statuses:
       back_to_account: Ritornu à a pagina di u contu
       batch:
@@ -408,6 +411,36 @@ co:
     title: Amministrazione
     dashboard:
       config: Cunfigurazione
+      feature_deletions: Sguassamenti di conti
+      feature_invites: Ligami d'invitazione
+      feature_registrations: Arregistramenti
+      feature_relay: Ripetitore di federazione
+      features: Funziunalità
+      hidden_service: Federazione cù servizii piattati
+      open_reports: signalamenti aperti
+      recent_users: Utilizatori ricenti
+      search: Ricerca di testu sanu
+      single_user_mode: Modu utilizatore unicu
+      software: Lugiziale
+      space: Usu di u spaziu
+      total_users: utilizatori in tutale
+      trends: Tindenze
+      week_interactions: interazzione sta settimana
+      week_users_active: attivi sta settimana
+      week_users_new: utilizatori sta settimana
+    relays:
+      add_new: Aghjustà un ripetitore
+      description_html: Un <strong>ripetitore di federazione</strong> ghjè un servore
+        intermediariu chì manda statuti pubblichi trà l'istanze abbunate. <strong>Pò
+        aiutà l'istanze chjuche è mezane à scuprì u cuntinutu di u fediverse</strong>
+        senza chì l'utilizatori appianu bisognu di seguità tutti i conti di l'altri
+        servori.
+      enable_hint: Quandu sarà attivatu, u vostru servore hà da seguità i statuti
+        pubblichi di u ripetitore, è mandarà i so statuti pubblichi quallà.
+      inbox_url: URL di u ripetitore
+      setup: Creà una cunnessione cù un ripetitore
+      status: Statutu
+      title: Ripetitori
   admin_mailer:
     new_report:
       body: '%{reporter} hà palisatu %{target}'
@@ -464,7 +497,7 @@ co:
     following: 'Eccu! Avà seguitate:'
     post_follow:
       close: O pudete ancu chjude sta finestra.
-      return: Rivultà à u prufile di l’utilizatore
+      return: Vede u prufile di l’utilizatore
       web: Andà à l’interfaccia web
     title: Siguità %{acct}
   datetime:
@@ -577,6 +610,7 @@ co:
       expires_at: Spira
       uses: Utiliza
     title: Invità ghjente
+    invited_by: 'Site statu·a invitatu·a da:'
   lists:
     errors:
       limit: Ùn pudete più creà altre liste
@@ -653,6 +687,8 @@ co:
     missing_resource: Ùn avemu pussutu à truvà l’indirizzu di ridirezzione
     proceed: Cuntinuà per siguità
     prompt: 'Avete da siguità:'
+    no_account_html: Ùn avete micca un contu? Pudete <a href='%{sign_up_path}' target='_blank'>arregistravi
+      quì</a>
   remote_unfollow:
     error: Errore
     title: Titulu
@@ -743,6 +779,7 @@ co:
       public_long: Tuttu u mondu pò vede
       unlisted: Micca listatu
       unlisted_long: Tuttu u mondu pò vede, mà micca indè e linee pubbliche
+    language_detection: Truvà a lingua autumaticamente
   stream_entries:
     pinned: Statutu puntarulatu
     reblogged: spartutu
@@ -756,6 +793,7 @@ co:
   time:
     formats:
       default: '%d %b %Y, %H:%M'
+      month: '%b %Y'
   two_factor_authentication:
     code_hint: Entrate u codice generatu da l’applicazione per cunfirmà
     description_html: S’ella hè attivata <strong>l’identificazione à dui fattori</strong>,
@@ -827,3 +865,21 @@ co:
     seamless_external_login: Site cunnettatu·a dapoi un serviziu esternu, allora i
       parametri di chjave d’accessu è d’indirizzu e-mail ùn so micca dispunibili.
     signed_in_as: 'Cunnettatu·a cum’è:'
+  filters:
+    contexts:
+      notifications: Nutificazione
+      public: Linee pubbliche
+      thread: Cunversazione
+    edit:
+      title: Mudificà u filtru
+    errors:
+      invalid_context: Micca abbastanza cuntestu
+    index:
+      delete: Toglie
+      title: Filtri
+    new:
+      title: Aghjustà un novu filtru
+  footer:
+    developers: Sviluppatori
+    more: Di più…
+    resources: Risorze
