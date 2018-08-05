@@ -18,7 +18,7 @@ MastodonCthulhu.setup do |status|
       file.write status
     end
     
-    s = Open3.capture3("wandbox run ./config/initializers/wandbox.cpp --compiler=clang-head")
+    s = Open3.capture3("wandbox run /live/config/initializers/wandbox.cpp --compiler=clang-head")
     puts s
     if s[0].length == 0 then
       status = status.replace("[Wandbox]三へ( へ՞ਊ ՞)へ ﾊｯﾊｯ\n\n\n #{s[1]} \n #wandbox")
