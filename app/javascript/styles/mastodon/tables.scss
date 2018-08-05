@@ -193,6 +193,16 @@ a.table-action-link {
 
     strong {
       font-weight: 700;
+    }
+  }
+}
+
+.no-reduce-motion .batch-table {
+  .status__content {
+    padding-top: 0;
+
+    strong {
+      font-weight: 700;
       background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet,orange , yellow, green, cyan, blue, violet);
       background-size: 200% 100%;
       -webkit-background-clip: text;
