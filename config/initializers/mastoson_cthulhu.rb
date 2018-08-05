@@ -48,6 +48,24 @@ MastodonCthulhu.setup do |status|
     end
   end
   
+  fortune = MastodonCthulhu::Random.new('[ 　\n]?#(javascript)[ 　\n]?', %w(こゃーん！))
+  if fortune.match(status) then
+    status.gsub!(/#javascript/, '')
+    File.open("./config/initializers/javascript.js", "w+") do |file|
+      file.write status
+    end
+    
+    s = Open3.capture3("node ./config/initializers/javascript.js")
+    puts s
+    if s[0].length == 0 then
+      status = status.replace(" #{s[1]} \n #javascript")
+    elsif s[0].length <= 500 then
+      status = status.replace("#{s[0]} \n #javascript")
+    else
+      status = status.replace("文字数がオーバーしています \n #javascript")
+    end
+  end
+      
   cthulhu = Cthulhu.find(rand(Cthulhu.count) + 1).story
   fortune = MastodonCthulhu::Random.new('[ 　\n]?#(Cthulhu)[ 　\n]?', %W(#{cthulhu}))
   status = fortune.convert(status) if fortune.match(status)	
