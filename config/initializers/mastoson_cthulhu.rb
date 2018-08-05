@@ -20,7 +20,9 @@ MastodonCthulhu.setup do |status|
     
     s = Open3.capture3("wandbox run ./config/initializers/wandbox.cpp --compiler=clang-head")
     puts s
-    if s[0].length <= 500 then
+    if s[0].length == 0 then
+      status = status.replace("[Wandbox]三へ( へ՞ਊ ՞)へ ﾊｯﾊｯ\n\n\n #{s} \n #wandbox")
+    elsif s[0].length <= 500 then
       status = status.replace("[Wandbox]三へ( へ՞ਊ ՞)へ ﾊｯﾊｯ\n\n\n #{s[0]} \n #wandbox")
     else
       status = status.replace("[Wandbox]三へ( へ՞ਊ ՞)へ ﾊｯﾊｯ\n\n\n 文字数がオーバーしています \n #wandbox")
