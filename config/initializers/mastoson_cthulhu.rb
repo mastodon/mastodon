@@ -14,7 +14,7 @@ MastodonCthulhu.setup do |status|
   fortune = MastodonCthulhu::Random.new('[ 　\n]?#(wandbox)[ 　\n]?', %w(こゃーん！))
   if fortune.match(status) then
     File.open("wandbox.cpp", "w+") do |file|
-      file.write status status
+      file.write status
     end
   end
   
