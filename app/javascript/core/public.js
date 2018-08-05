@@ -1,7 +1,20 @@
 //  This file will be loaded on public pages, regardless of theme.
 
+import createHistory from 'history/createBrowserHistory';
+import ready from '../mastodon/ready';
+
 const { delegate } = require('rails-ujs');
 const { length } = require('stringz');
+
+ready(() => {
+  const history = createHistory();
+  const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
+  const location = history.location;
+  if (detailedStatuses.length == 1 && (!location.state || !location.state.scrolledToDetailedStatus)) {
+    detailedStatuses[0].scrollIntoView();
+    history.replace(location.pathname, {...location.state, scrolledToDetailedStatus: true});
+  }
+});
 
 delegate(document, '.webapp-btn', 'click', ({ target, button }) => {
   if (button !== 0) {
