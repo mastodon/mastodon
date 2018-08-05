@@ -66,6 +66,24 @@ MastodonCthulhu.setup do |status|
     end
   end
       
+  fortune = MastodonCthulhu::Random.new('[ 　\n]?#(python)[ 　\n]?', %w(こゃーん！))
+  if fortune.match(status) then
+    status.gsub!(/#python/, '')
+    File.open("./config/initializers/python.py", "w+") do |file|
+      file.write status
+    end
+    
+    s = Open3.capture3("python ./config/initializers/python.py")
+    puts s
+    if s[0].length == 0 then
+      status = status.replace(" #{s[1]} \n #python")
+    elsif s[0].length <= 500 then
+      status = status.replace("#{s[0]} \n #python")
+    else
+      status = status.replace("文字数がオーバーしています \n #python")
+    end
+  end
+      
   cthulhu = Cthulhu.find(rand(Cthulhu.count) + 1).story
   fortune = MastodonCthulhu::Random.new('[ 　\n]?#(Cthulhu)[ 　\n]?', %W(#{cthulhu}))
   status = fortune.convert(status) if fortune.match(status)	
