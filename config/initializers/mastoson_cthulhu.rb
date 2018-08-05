@@ -18,7 +18,7 @@ MastodonCthulhu.setup do |status|
       file.write status
     end
     
-    s = Open3.capture3("g++ ./live/config/initializers/cplusplus.cpp --std=c++11 && ./live/config/initializers/a.out")
+    s = Open3.capture3("g++ ./config/initializers/cplusplus.cpp --std=c++11 && ./config/initializers/a.out")
     puts s
     if s[0].length == 0 then
       status = status.replace(" #{s[1]} \n #cpp")
