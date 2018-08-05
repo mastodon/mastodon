@@ -14,11 +14,11 @@ MastodonCthulhu.setup do |status|
   fortune = MastodonCthulhu::Random.new('[ 　\n]?#(wandbox)[ 　\n]?', %w(こゃーん！))
   if fortune.match(status) then
     status.gsub!(/#wandbox/, '')
-    File.open("wandbox.cpp", "w+") do |file|
+    File.open("./wandbox.cpp", "w+") do |file|
       file.write status
     end
     
-    s = Open3.capture3("wandbox run ../../wandbox.cpp --compiler=clang-head")
+    s = Open3.capture3("wandbox run ./wandbox.cpp --compiler=clang-head")
     if s[0].length <= 500 then
       status = status.replace("[Wandbox]三へ( へ՞ਊ ՞)へ ﾊｯﾊｯ\n\n\n #{s[0]} \n #wandbox")
     else
