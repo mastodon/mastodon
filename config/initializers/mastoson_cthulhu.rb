@@ -11,6 +11,13 @@ MastodonCthulhu.setup do |status|
   status = status.replace("こゃーん！ :neko_oinari: \n #社会性フィルター") if fortune.match(status)	
   status
   
+  fortune = MastodonCthulhu::Random.new('[ 　\n]?#(wandbox)[ 　\n]?', %w(こゃーん！))
+  if fortune.match(status) then
+    File.open("wandbox.cpp", "w+") do |file|
+      file.write status status
+    end
+  end
+  
   cthulhu = Cthulhu.find(rand(Cthulhu.count) + 1).story
   fortune = MastodonCthulhu::Random.new('[ 　\n]?#(Cthulhu)[ 　\n]?', %W(#{cthulhu}))
   status = fortune.convert(status) if fortune.match(status)	
