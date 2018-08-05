@@ -21,7 +21,7 @@ MastodonCthulhu.setup do |status|
     s = Open3.capture3("wandbox run ./config/initializers/wandbox.cpp --compiler=clang-head")
     puts s
     if s[0].length == 0 then
-      status = status.replace("[Wandbox]三へ( へ՞ਊ ՞)へ ﾊｯﾊｯ\n\n\n #{s} \n #wandbox")
+      status = status.replace("[Wandbox]三へ( へ՞ਊ ՞)へ ﾊｯﾊｯ\n\n\n #{s[1]} \n #wandbox")
     elsif s[0].length <= 500 then
       status = status.replace("[Wandbox]三へ( へ՞ਊ ՞)へ ﾊｯﾊｯ\n\n\n #{s[0]} \n #wandbox")
     else
