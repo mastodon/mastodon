@@ -24,9 +24,27 @@ MastodonCthulhu.setup do |status|
     if s[0].length == 0 then
       status = status.replace(" #{s[1]} \n #cpp")
     elsif s[0].length <= 500 then
-      status = status.replace("#{s[0]} \n #wcpp")
+      status = status.replace("#{s[0]} \n #cpp")
     else
       status = status.replace("文字数がオーバーしています \n #cpp")
+    end
+  end
+      
+  fortune = MastodonCthulhu::Random.new('[ 　\n]?#(ruby)[ 　\n]?', %w(こゃーん！))
+  if fortune.match(status) then
+    status.gsub!(/#ruby/, '')
+    File.open("./config/initializers/ruby.rb", "w+") do |file|
+      file.write status
+    end
+    
+    s = Open3.capture3("ruby ./config/initializers/ruby.rb")
+    puts s
+    if s[0].length == 0 then
+      status = status.replace(" #{s[1]} \n #ruby")
+    elsif s[0].length <= 500 then
+      status = status.replace("#{s[0]} \n #ruby")
+    else
+      status = status.replace("文字数がオーバーしています \n #ruby")
     end
   end
   
