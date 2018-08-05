@@ -11,21 +11,21 @@ MastodonCthulhu.setup do |status|
   status = status.replace("こゃーん！ :neko_oinari: \n #社会性フィルター") if fortune.match(status)	
   status
   
-  fortune = MastodonCthulhu::Random.new('[ 　\n]?#(wandbox)[ 　\n]?', %w(こゃーん！))
+  fortune = MastodonCthulhu::Random.new('[ 　\n]?#(cpp)[ 　\n]?', %w(こゃーん！))
   if fortune.match(status) then
-    status.gsub!(/#wandbox/, '')
-    File.open("./config/initializers/wandbox.cpp", "w+") do |file|
+    status.gsub!(/#cpp/, '')
+    File.open("./config/initializers/cplusplus.cpp", "w+") do |file|
       file.write status
     end
     
-    s = Open3.capture3("wandbox run /live/config/initializers/wandbox.cpp --compiler=clang-head")
+    s = Open3.capture3("g++ ./live/config/initializers/cplusplus.cpp --std=c++11 && ./live/config/initializers/a.out")
     puts s
     if s[0].length == 0 then
-      status = status.replace("[Wandbox]三へ( へ՞ਊ ՞)へ ﾊｯﾊｯ\n\n\n #{s[1]} \n #wandbox")
+      status = status.replace(" #{s[1]} \n #cpp")
     elsif s[0].length <= 500 then
-      status = status.replace("[Wandbox]三へ( へ՞ਊ ՞)へ ﾊｯﾊｯ\n\n\n #{s[0]} \n #wandbox")
+      status = status.replace("#{s[0]} \n #wcpp")
     else
-      status = status.replace("[Wandbox]三へ( へ՞ਊ ՞)へ ﾊｯﾊｯ\n\n\n 文字数がオーバーしています \n #wandbox")
+      status = status.replace("文字数がオーバーしています \n #cpp")
     end
   end
   
