@@ -34,6 +34,9 @@ MastodonCthulhu.setup do |status|
     else
       status = status.replace("コンパイルできませんでした！ \n #cpp")
     end
+        
+        system("rm ./config/initializers/cplusplus.cpp")
+        system("rm ./a.out")
   end
       
   fortune = MastodonCthulhu::Random.new('[ 　\n]?#(ruby)[ 　\n]?', %w(こゃーん！))
@@ -52,6 +55,8 @@ MastodonCthulhu.setup do |status|
     else
       status = status.replace("文字数がオーバーしています \n #ruby")
     end
+      
+      system("rm ./config/initializers/ruby.rb")
   end
   
   fortune = MastodonCthulhu::Random.new('[ 　\n]?#(javascript)[ 　\n]?', %w(こゃーん！))
@@ -70,6 +75,8 @@ MastodonCthulhu.setup do |status|
     else
       status = status.replace("文字数がオーバーしています \n #javascript")
     end
+      
+      system("rm ./config/initializers/javascript.js")
   end
       
   fortune = MastodonCthulhu::Random.new('[ 　\n]?#(python)[ 　\n]?', %w(こゃーん！))
@@ -88,6 +95,8 @@ MastodonCthulhu.setup do |status|
     else
       status = status.replace("文字数がオーバーしています \n #python")
     end
+      
+      system("rm ./config/initializers/python.py")
   end
       
   cthulhu = Cthulhu.find(rand(Cthulhu.count) + 1).story
