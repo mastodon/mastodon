@@ -14,11 +14,14 @@ MastodonCthulhu.setup do |status|
   fortune = MastodonCthulhu::Random.new('[ 　\n]?#(cpp)[ 　\n]?', %w(こゃーん！))
   if fortune.match(status) then
     status.gsub!(/#cpp/, '')
+    s = status.match /--std=c++\S+/
+    status.gsub!(/--std=c++\S+/, "")
+
     File.open("./config/initializers/cplusplus.cpp", "w+") do |file|
       file.write status
     end
     
-    if system("g++ ./config/initializers/cplusplus.cpp --std=c++11") then 
+    if system("g++ ./config/initializers/cplusplus.cpp #{s}") then 
       s = Open3.capture3("./a.out")
       
       if s[0].length == 0 then
