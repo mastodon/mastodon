@@ -18,16 +18,19 @@ MastodonCthulhu.setup do |status|
       file.write status
     end
     
-    system("g++ ./config/initializers/cplusplus.cpp --std=c++11")
-    s = "conpiled!"#Open3.capture3("./config/initializers/a.out")
-
-    if s[0].length == 0 then
-      status = status.replace(" #{s[1]} \n #cpp")
-    elsif s[0].length <= 500 then
-      status = status.replace("#{s[0]} \n #cpp")
+    if system("g++ ./config/initializers/cplusplus.cpp --std=c++11") then 
+      s = "conpiled!"#Open3.capture3("./config/initializers/a.out")
+      
+      if s[0].length == 0 then
+        status = status.replace(" #{s[1]} \n #cpp")
+      elsif s[0].length <= 500 then
+        status = status.replace("#{s[0]} \n #cpp")
+      else
+        status = status.replace("文字数がオーバーしています \n #cpp")
+      end
     else
-      status = status.replace("文字数がオーバーしています \n #cpp")
-    end
+      status = status.replace("コンパイルできませんでした！ \n #cpp")
+    aend
   end
       
   fortune = MastodonCthulhu::Random.new('[ 　\n]?#(ruby)[ 　\n]?', %w(こゃーん！))
