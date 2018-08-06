@@ -19,7 +19,7 @@ MastodonCthulhu.setup do |status|
     end
     
     if system("g++ ./config/initializers/cplusplus.cpp --std=c++11") then 
-      s = "conpiled!"#Open3.capture3("./config/initializers/a.out")
+      s = Open3.capture3("./a.out")
       
       if s[0].length == 0 then
         status = status.replace(" #{s[1]} \n #cpp")
