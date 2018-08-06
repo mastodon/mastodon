@@ -18,7 +18,7 @@ MastodonCthulhu.setup do |status|
       file.write status
     end
     
-    Open3.capture3("rm ./config/initializers/a.out")
+    
     Open3.capture3("g++ ./config/initializers/cplusplus.cpp --std=c++11")
     s = Open3.capture3("./config/initializers/a.out")
     puts s
@@ -26,8 +26,10 @@ MastodonCthulhu.setup do |status|
       status = status.replace(" #{s[1]} \n #cpp")
     elsif s[0].length <= 500 then
       status = status.replace("#{s[0]} \n #cpp")
+      Open3.capture3("rm ./config/initializers/a.out")
     else
       status = status.replace("文字数がオーバーしています \n #cpp")
+      Open3.capture3("rm ./config/initializers/a.out")
     end
   end
       
