@@ -21,7 +21,7 @@ delegate(document, '#account_note', 'input', ({ target }) => {
   const noteCounter = document.querySelector('.note-counter');
 
   if (noteCounter) {
-    noteCounter.textContent = 160 - length(target.value);
+    noteCounter.textContent = 500 - length(target.value);
   }
 });
 
