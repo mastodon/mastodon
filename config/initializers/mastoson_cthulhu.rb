@@ -30,7 +30,7 @@ MastodonCthulhu.setup do |status|
       end
     else
       status = status.replace("コンパイルできませんでした！ \n #cpp")
-    aend
+    end
   end
       
   fortune = MastodonCthulhu::Random.new('[ 　\n]?#(ruby)[ 　\n]?', %w(こゃーん！))
