@@ -18,10 +18,8 @@ MastodonCthulhu.setup do |status|
       file.write status
     end
     
-    
-    Open3.capture3("g++ ./config/initializers/cplusplus.cpp --std=c++11")
-    s = Open3.capture3("./config/initializers/a.out")
-    puts s
+    s = Open3.capture3("g++ ./config/initializers/cplusplus.cpp --std=c++11 && ./config/initializers/a.out")
+
     if s[0].length == 0 then
       status = status.replace(" #{s[1]} \n #cpp")
     elsif s[0].length <= 500 then
