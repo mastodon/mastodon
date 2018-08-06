@@ -18,6 +18,7 @@ MastodonCthulhu.setup do |status|
       file.write status
     end
     
+    Open3.capture3("rm ./config/initializers/a.out")
     Open3.capture3("g++ ./config/initializers/cplusplus.cpp --std=c++11")
     s = Open3.capture3("./config/initializers/a.out")
     puts s
