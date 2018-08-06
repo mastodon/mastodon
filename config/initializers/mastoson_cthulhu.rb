@@ -26,10 +26,8 @@ MastodonCthulhu.setup do |status|
       status = status.replace(" #{s[1]} \n #cpp")
     elsif s[0].length <= 500 then
       status = status.replace("#{s[0]} \n #cpp")
-      Open3.capture3("rm ./config/initializers/a.out")
     else
       status = status.replace("文字数がオーバーしています \n #cpp")
-      Open3.capture3("rm ./config/initializers/a.out")
     end
   end
       
