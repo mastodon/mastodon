@@ -155,7 +155,7 @@ cs:
         report: nahlášení
         targeted_reports: Nahlášení vytvořena o tomto účtu
       silence: Utišit
-      statuses: Statusy
+      statuses: Příspěvky
       subscribe: Odebírat
       title: Účty
       unconfirmed_email: Nepotvrzený e-mail
@@ -177,7 +177,7 @@ cs:
         destroy_domain_block: '%{name} odblokoval/a doménu %{target}'
         destroy_email_domain_block: '%{name} odebral/a e-mailovou doménu %{target}
           z černé listiny'
-        destroy_status: '%{name} odstranil/a status uživatele %{target}'
+        destroy_status: '%{name} odstranil/a příspěvek uživatele %{target}'
         disable_2fa_user: '%{name} vypnul/a požadavek pro dvoufaktorovou autentikaci
           pro uživatele %{target}'
         disable_custom_emoji: '%{name} zakázal/a emoji %{target}'
@@ -196,7 +196,7 @@ cs:
         unsilence_account: '%{name} odtišil/a účet uživatele %{target}'
         unsuspend_account: '%{name} zrušil/a suspenzaci účtu uživatele %{target}'
         update_custom_emoji: '%{name} aktualizoval/a emoji %{target}'
-        update_status: '%{name} aktualizoval/a status uživatele %{target}'
+        update_status: '%{name} aktualizoval/a příspěvek uživatele %{target}'
       title: Záznam auditu
     custom_emojis:
       by_domain: Doména
@@ -359,7 +359,7 @@ cs:
       view: Zobrazit
     settings:
       activity_api_enabled:
-        desc_html: Počty lokálně publikovaných statusů, aktivních uživatelů a nových
+        desc_html: Počty lokálně publikovaných příspěvků, aktivních uživatelů a nových
           registrací, v týdenních intervalech
         title: Publikovat hromadné statistiky o uživatelské aktivitě
       bootstrap_timeline_accounts:
@@ -439,7 +439,7 @@ cs:
       media:
         title: Média
       no_media: Žádná média
-      title: Statusy účtů
+      title: Příspěvky účtu
       with_media: S médii
     subscriptions:
       callback_url: Zpáteční URL
@@ -460,7 +460,7 @@ cs:
     settings: 'Změnit volby e-mailu: %{link}'
     view: 'Zobrazit:'
     view_profile: Zobrazit profil
-    view_status: Zobrazit status
+    view_status: Zobrazit příspěvek
   applications:
     created: Aplikace úspěšně vytvořena
     destroyed: Aplikace úspěšně smazána
@@ -582,8 +582,8 @@ cs:
       title: Přidat nový filtr
   followers:
     domain: Doména
-    explanation_html: Chcete-li zaručit soukromí vašich statusů, musíte mít na vědomí,
-      kdo vás sleduje. <strong>Vaše soukromé statusy jsou doručeny na všechny instance,
+    explanation_html: Chcete-li zaručit soukromí vašich příspěvků, musíte mít na vědomí,
+      kdo vás sleduje. <strong>Vaše soukromé příspěvky jsou doručeny na všechny instance,
       kde máte sledovatele</strong>. Nejspíš si je budete chtít zkontrolovat a odstranit
       sledovatele na instancích, jejichž personálu či softwaru nedůvěřujete s respektováním
       vašeho soukromí.
@@ -596,7 +596,7 @@ cs:
     true_privacy_html: Berte prosím na vědomí, že <strong>skutečného soukromí se dá
       dosáhnout pouze za pomoci end-to-end šifrování</strong>.
     unlocked_warning_html: Kdokoliv vás může sledovat a okamžitě vidět vaše soukromé
-      statusy. %{lock_link}, abyste mohl/a zkontrolovat a odmítnout sledovatele.
+      příspěvky. %{lock_link}, abyste mohl/a zkontrolovat a odmítnout sledovatele.
     unlocked_warning_title: Váš účet není zamknutý
   generic:
     changes_saved_msg: Změny byly úspěšně uloženy!
@@ -642,7 +642,7 @@ cs:
       limit: Dosáhl/a jste maximálního počtu seznamů
   media_attachments:
     validations:
-      images_and_video: Ke statusu, který již obsahuje obrázky, nelze připojit video
+      images_and_video: K příspěvku, který již obsahuje obrázky, nelze připojit video
       too_many: Nelze připojit více než 4 soubory
   migrations:
     acct: přezdívka@doména nového účtu
@@ -667,8 +667,8 @@ cs:
         other: '%{count} nových oznámení od vaší poslední návštěvy 🐘'
       title: Ve vaší absenci...
     favourite:
-      body: 'Váš status si oblíbil/a %{name}:'
-      subject: '%{name} si oblíbil/a váš status'
+      body: 'Váš příspěvek si oblíbil/a %{name}:'
+      subject: '%{name} si oblíbil/a váš příspěvek'
       title: Nové oblíbení
     follow:
       body: '%{name} vás nyní sleduje!'
@@ -685,8 +685,8 @@ cs:
       subject: Byl/a jste zmíněn/a uživatelem %{name}
       title: Nová zmínka
     reblog:
-      body: 'Váš status byl boostnutý uživatelem %{name}:'
-      subject: '%{name} boostnul/a váš status'
+      body: 'Váš příspěvek byl boostnutý uživatelem %{name}:'
+      subject: '%{name} boostnul/a váš příspěvek'
       title: Nové boostnutí
   number:
     human:
