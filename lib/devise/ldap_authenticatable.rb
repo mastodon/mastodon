@@ -24,7 +24,8 @@ module Devise
             connect_timeout: 10
           )
 
-          if (user_info = ldap.bind_as(base: Devise.ldap_base, filter: "(#{Devise.ldap_uid}=#{email})", password: password))
+          filter = format(Devise.ldap_search_filter, uid: Devise.ldap_uid, email: email)
+          if (user_info = ldap.bind_as(base: Devise.ldap_base, filter: filter, password: password))
             user = User.ldap_get_user(user_info.first)
             success!(user)
           else
