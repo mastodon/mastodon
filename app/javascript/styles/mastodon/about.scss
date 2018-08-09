@@ -15,6 +15,276 @@ $small-breakpoint: 960px;
   }
 }
 
+.rich-formatting {
+  font-family: 'mastodon-font-sans-serif', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+  color: $darker-text-color;
+  padding-right: 10px;
+
+  a {
+    color: $highlight-text-color;
+    text-decoration: underline;
+  }
+
+  p,
+  li {
+    font-family: 'mastodon-font-sans-serif', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    margin-bottom: 12px;
+    color: $darker-text-color;
+
+    a {
+      color: $highlight-text-color;
+      text-decoration: underline;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  em {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: lighten($darker-text-color, 10%);
+  }
+
+  h1 {
+    font-family: 'mastodon-font-display', sans-serif;
+    font-size: 26px;
+    line-height: 30px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: $secondary-text-color;
+
+    small {
+      font-family: 'mastodon-font-sans-serif', sans-serif;
+      display: block;
+      font-size: 18px;
+      font-weight: 400;
+      color: lighten($darker-text-color, 10%);
+    }
+  }
+
+  h2 {
+    font-family: 'mastodon-font-display', sans-serif;
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: $secondary-text-color;
+  }
+
+  h3 {
+    font-family: 'mastodon-font-display', sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: $secondary-text-color;
+  }
+
+  h4 {
+    font-family: 'mastodon-font-display', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: $secondary-text-color;
+  }
+
+  h5 {
+    font-family: 'mastodon-font-display', sans-serif;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: $secondary-text-color;
+  }
+
+  h6 {
+    font-family: 'mastodon-font-display', sans-serif;
+    font-size: 12px;
+    line-height: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: $secondary-text-color;
+  }
+
+  ul,
+  ol {
+    margin-left: 20px;
+
+    &[type='a'] {
+      list-style-type: lower-alpha;
+    }
+
+    &[type='i'] {
+      list-style-type: lower-roman;
+    }
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  li > ol,
+  li > ul {
+    margin-top: 6px;
+  }
+
+  hr {
+    width: 100%;
+    height: 0;
+    border: 0;
+    border-bottom: 1px solid rgba($ui-base-lighter-color, .6);
+    margin: 20px 0;
+
+    &.spacer {
+      height: 1px;
+      border: 0;
+    }
+  }
+}
+
+.information-board {
+  background: darken($ui-base-color, 4%);
+  padding: 20px 0;
+
+  .container-alt {
+    position: relative;
+    padding-right: 280px + 15px;
+  }
+
+  &__sections {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  &__section {
+    flex: 1 0 0;
+    font-family: 'mastodon-font-sans-serif', sans-serif;
+    font-size: 16px;
+    line-height: 28px;
+    color: $primary-text-color;
+    text-align: right;
+    padding: 10px 15px;
+
+    span,
+    strong {
+      display: block;
+    }
+
+    span {
+      &:last-child {
+        color: $secondary-text-color;
+      }
+    }
+
+    strong {
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 48px;
+    }
+
+    @media screen and (max-width: $column-breakpoint) {
+      text-align: center;
+    }
+  }
+
+  .panel {
+    position: absolute;
+    width: 280px;
+    box-sizing: border-box;
+    background: darken($ui-base-color, 8%);
+    padding: 20px;
+    padding-top: 10px;
+    border-radius: 4px 4px 0 0;
+    right: 0;
+    bottom: -40px;
+
+    .panel-header {
+      font-family: 'mastodon-font-display', sans-serif;
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 500;
+      color: $darker-text-color;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid lighten($ui-base-color, 4%);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+
+      a,
+      span {
+        font-weight: 400;
+        color: darken($darker-text-color, 10%);
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .owner {
+    text-align: center;
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto;
+      margin-bottom: 15px;
+
+      img {
+        display: block;
+        width: 80px;
+        height: 80px;
+        border-radius: 48px;
+      }
+    }
+
+    .name {
+      font-size: 14px;
+
+      a {
+        display: block;
+        color: $primary-text-color;
+        text-decoration: none;
+
+        &:hover {
+          .display_name {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .username {
+        display: block;
+        color: $darker-text-color;
+      }
+    }
+  }
+}
+
 .landing-page {
   .grid {
     display: grid;
@@ -486,128 +756,6 @@ $small-breakpoint: 960px;
     }
   }
 
-  .information-board {
-    background: darken($ui-base-color, 4%);
-    padding: 20px 0;
-
-    .container-alt {
-      position: relative;
-      padding-right: 280px + 15px;
-    }
-
-    &__sections {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
-    &__section {
-      flex: 1 0 0;
-      font-family: 'mastodon-font-sans-serif', sans-serif;
-      font-size: 16px;
-      line-height: 28px;
-      color: $primary-text-color;
-      text-align: right;
-      padding: 10px 15px;
-
-      span,
-      strong {
-        display: block;
-      }
-
-      span {
-        &:last-child {
-          color: $secondary-text-color;
-        }
-      }
-
-      strong {
-        font-weight: 500;
-        font-size: 32px;
-        line-height: 48px;
-      }
-
-      @media screen and (max-width: $column-breakpoint) {
-        text-align: center;
-      }
-    }
-
-    .panel {
-      position: absolute;
-      width: 280px;
-      box-sizing: border-box;
-      background: darken($ui-base-color, 8%);
-      padding: 20px;
-      padding-top: 10px;
-      border-radius: 4px 4px 0 0;
-      right: 0;
-      bottom: -40px;
-
-      .panel-header {
-        font-family: 'mastodon-font-display', sans-serif;
-        font-size: 14px;
-        line-height: 24px;
-        font-weight: 500;
-        color: $darker-text-color;
-        padding-bottom: 5px;
-        margin-bottom: 15px;
-        border-bottom: 1px solid lighten($ui-base-color, 4%);
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-
-        a,
-        span {
-          font-weight: 400;
-          color: darken($darker-text-color, 10%);
-        }
-
-        a {
-          text-decoration: none;
-        }
-      }
-    }
-
-    .owner {
-      text-align: center;
-
-      .avatar {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto;
-        margin-bottom: 15px;
-
-        img {
-          display: block;
-          width: 80px;
-          height: 80px;
-          border-radius: 48px;
-        }
-      }
-
-      .name {
-        font-size: 14px;
-
-        a {
-          display: block;
-          color: $primary-text-color;
-          text-decoration: none;
-
-          &:hover {
-            .display_name {
-              text-decoration: underline;
-            }
-          }
-        }
-
-        .username {
-          display: block;
-          color: $darker-text-color;
-        }
-      }
-    }
-  }
-
   &.alternative {
     padding: 10px 0;
 
@@ -980,21 +1128,6 @@ $small-breakpoint: 960px;
       grid-template-columns: 1fr 1fr;
       grid-auto-columns: 50%;
       grid-auto-rows: max-content;
-    }
-  }
-
-  .extended-description {
-    padding: 50px 0;
-    font-family: 'mastodon-font-sans-serif', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 30px;
-    color: $darker-text-color;
-
-    a {
-      color: $highlight-text-color;
-      text-decoration: underline;
     }
   }
 
