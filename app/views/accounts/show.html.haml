@@ -55,4 +55,12 @@
       = render 'moved', account: @account
 
     = render 'bio', account: @account
+
+    - unless @endorsed_accounts.empty?
+      .endorsements-widget
+        %h4= t 'accounts.choices_html', name: content_tag(:bdi, display_name(@account, custom_emojify: true))
+
+        - @endorsed_accounts.each do |account|
+          = account_link_to account
+
     = render 'application/sidebar'
