@@ -40,6 +40,10 @@ module AccountInteractions
       end
     end
 
+    def endorsed_map(target_account_ids, account_id)
+      follow_mapping(AccountPin.where(account_id: account_id, target_account_id: target_account_ids), :target_account_id)
+    end
+
     def domain_blocking_map(target_account_ids, account_id)
       accounts_map    = Account.where(id: target_account_ids).select('id, domain').map { |a| [a.id, a.domain] }.to_h
       blocked_domains = domain_blocking_map_by_domain(accounts_map.values.compact, account_id)
@@ -188,6 +192,10 @@ module AccountInteractions
 
   def pinned?(status)
     status_pins.where(status: status).exists?
+  end
+
+  def endorsed?(account)
+    account_pins.where(target_account: account).exists?
   end
 
   def followers_for_local_distribution

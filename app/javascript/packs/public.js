@@ -31,6 +31,7 @@ function main() {
   const React = require('react');
   const ReactDOM = require('react-dom');
   const Rellax = require('rellax');
+  const createHistory = require('history').createBrowserHistory;
 
   ready(() => {
     const locale = document.documentElement.lang;
@@ -86,6 +87,14 @@ function main() {
     }
 
     new Rellax('.parallax', { speed: -1 });
+
+    const history = createHistory();
+    const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
+    const location = history.location;
+    if (detailedStatuses.length === 1 && (!location.state || !location.state.scrolledToDetailedStatus)) {
+      detailedStatuses[0].scrollIntoView();
+      history.replace(location.pathname, { ...location.state, scrolledToDetailedStatus: true });
+    }
   });
 
   delegate(document, '.webapp-btn', 'click', ({ target, button }) => {
