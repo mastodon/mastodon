@@ -5,6 +5,8 @@ import {
   ACCOUNT_UNBLOCK_SUCCESS,
   ACCOUNT_MUTE_SUCCESS,
   ACCOUNT_UNMUTE_SUCCESS,
+  ACCOUNT_PIN_SUCCESS,
+  ACCOUNT_UNPIN_SUCCESS,
   RELATIONSHIPS_FETCH_SUCCESS,
 } from '../actions/accounts';
 import {
@@ -41,6 +43,8 @@ export default function relationships(state = initialState, action) {
   case ACCOUNT_UNBLOCK_SUCCESS:
   case ACCOUNT_MUTE_SUCCESS:
   case ACCOUNT_UNMUTE_SUCCESS:
+  case ACCOUNT_PIN_SUCCESS:
+  case ACCOUNT_UNPIN_SUCCESS:
     return normalizeRelationship(state, action.relationship);
   case RELATIONSHIPS_FETCH_SUCCESS:
     return normalizeRelationships(state, action.relationships);

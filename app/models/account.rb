@@ -89,6 +89,10 @@ class Account < ApplicationRecord
   has_many :status_pins, inverse_of: :account, dependent: :destroy
   has_many :pinned_statuses, -> { reorder('status_pins.created_at DESC') }, through: :status_pins, class_name: 'Status', source: :status
 
+  # Endorsements
+  has_many :account_pins, inverse_of: :account, dependent: :destroy
+  has_many :endorsed_accounts, through: :account_pins, class_name: 'Account', source: :target_account
+
   # Media
   has_many :media_attachments, dependent: :destroy
 

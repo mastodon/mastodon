@@ -32,6 +32,8 @@ const messages = defineMessages({
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
+  endorse: { id: 'account.endorse', defaultMessage: 'Feature on profile' },
+  unendorse: { id: 'account.unendorse', defaultMessage: 'Don\'t feature on profile' },
 });
 
 @injectIntl
@@ -48,6 +50,7 @@ export default class ActionBar extends React.PureComponent {
     onMute: PropTypes.func.isRequired,
     onBlockDomain: PropTypes.func.isRequired,
     onUnblockDomain: PropTypes.func.isRequired,
+    onEndorseToggle: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -93,6 +96,9 @@ export default class ActionBar extends React.PureComponent {
         } else {
           menu.push({ text: intl.formatMessage(messages.showReblogs, { name: account.get('username') }), action: this.props.onReblogToggle });
         }
+
+        menu.push({ text: intl.formatMessage(account.getIn(['relationship', 'endorsed']) ? messages.unendorse : messages.endorse), action: this.props.onEndorseToggle });
+        menu.push(null);
       }
 
       if (account.getIn(['relationship', 'muting'])) {
