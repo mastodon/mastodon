@@ -1,0 +1,134 @@
+---
+da:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Navn på program
+        redirect_uri: Link
+        scopes: Områder
+        website: Webside for applikation
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: kan ikke indeholde et fragment.
+              invalid_uri: skal være et gyldigt URI.
+              relative_uri: skal være en absolut URI.
+              secured_uri: skal være en HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Godkend
+        cancel: Annuller
+        destroy: Destruer
+        edit: Rediger
+        submit: Indsend
+      confirmations:
+        destroy: Er du sikker?
+      edit:
+        title: Rediger applikation
+      form:
+        error: Ups! Tjek din form for mulige fejl
+      help:
+        native_redirect_uri: Brug %{native_redirect_uri} for lokale tests
+        redirect_uri: Brug en linje per URI
+        scopes: Adskil omfang med mellemrum. Lad være blankt for at bruge standard omfang.
+      index:
+        application: Applikation
+        callback_url: Callback-URL
+        delete: Slet
+        name: Navn
+        new: Ny applikation
+        scopes: Omfang
+        show: Vis
+        title: Dine applikationer
+      new:
+        title: Ny applikation
+      show:
+        actions: Handlinger
+        application_id: Klient nøgle
+        callback_urls: Callback-URLs
+        scopes: Omfang
+        secret: Secret
+        title: 'Applikation: %{name}'
+    authorizations:
+      buttons:
+        authorize: Godkend
+        deny: Afvis
+      error:
+        title: Der opstod en fejl
+      new:
+        able_to: Den vil være i stand til
+        prompt: Applikationen %{client_name} anmoder om adgang til din konto
+        title: Godkendelse påkræves
+      show:
+        title: Kopiere denne godkendelseskode og indsæt den i applikationen.
+    authorized_applications:
+      buttons:
+        revoke: Ophæv
+      confirmations:
+        revoke: Er du sikker?
+      index:
+        application: Applikation
+        created_at: Godkendt
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Omfang
+        title: Dine godkendte applikationer
+    errors:
+      messages:
+        access_denied: Ejeren af ressourcen eller godkendelses serveren afviste anmodningen.
+        invalid_redirect_uri: Ormdirigerings-uri'en der blev angivet er ikke gyldig.
+        invalid_request: Anmodningen mangler en parametre, inkluderer en ikke understøttet parametre værdi eller er på en eller anden måde deformeret.
+        invalid_scope: Det anmodede omfang er ugyldigt, ukendt eller deformeret.
+        invalid_token:
+          expired: Adgangs-beviset er udløbet
+          revoked: Adgangs-beviset er blevet ophævet
+          unknown: Adgangs-beviset er ugyldigt
+        unauthorized_client: Klienten er ikke godkendt til at udføre denne anmodning ved at bruge denne metode.
+        unsupported_response_type: Godkendelses serveren understøtter ikke denne type respons.
+    flash:
+      applications:
+        create:
+          notice: Applikationen blev oprettet.
+        destroy:
+          notice: Applikationen blev slettet.
+        update:
+          notice: Applikationen blev opdateret.
+      authorized_applications:
+        destroy:
+          notice: Applikationen blev ophævet.
+    layouts:
+      admin:
+        nav:
+          applications: Applikationer
+          oauth2_provider: OAuth Udbyder
+      application:
+        title: OAuth godkendelse påkrævet
+    scopes:
+      follow: ændre din kontos forhold
+      push: modtage dine push notifikationer
+      read: læse alle din kontos data
+      read:accounts: se konto oplysninger
+      read:blocks: se dine blokeringer
+      read:favourites: se dine favoritter
+      read:filters: se dine filtre
+      read:follows: se hvem du følger
+      read:lists: se dine lister
+      read:mutes: se dine dæmpninger
+      read:notifications: se dine notifikationer
+      read:reports: se dine anmeldelser
+      read:search: søge på dine vegne
+      read:statuses: se alle statusser
+      write: ændre din kontos data
+      write:accounts: ændre din profil
+      write:blocks: bloker konti og domæner
+      write:favourites: favoriser statusser
+      write:filters: opret filtre
+      write:follows: følg folk
+      write:lists: opret lister
+      write:media: upload multimedie filer
+      write:mutes: dæmp folk og samtaler
+      write:notifications: ryd dine notifikationer
+      write:reports: anmeld andre folk
+      write:statuses: udgiv statusser

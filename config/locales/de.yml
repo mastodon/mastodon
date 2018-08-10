@@ -9,9 +9,6 @@ de:
     contact: Kontakt
     contact_missing: Nicht angegeben
     contact_unavailable: N/A
-    description_headline: Was ist %{domain}?
-    domain_count_after: anderen Instanzen
-    domain_count_before: Vernetzt mit
     extended_description_html: |
       <h3>Ein guter Platz für Regeln</h3>
       <p>Die erweiterte Beschreibung wurde noch nicht aufgesetzt.</p>
@@ -40,12 +37,12 @@ de:
     following: Folgt
     media: Medien
     moved_html: "%{name} ist auf %{new_profile_link} umgezogen:"
+    network_hidden: Diese Informationen sind nicht verfügbar
     nothing_here: Hier gibt es nichts!
     people_followed_by: Profile, denen %{name} folgt
     people_who_follow: Profile, die %{name} folgen
     posts: Beiträge
     posts_with_replies: Beiträge mit Antworten
-    remote_follow: Folgen
     reserved_username: Dieser Profilname ist belegt
     roles:
       admin: Admin
@@ -205,6 +202,17 @@ de:
       update_failed_msg: Konnte dieses Emoji nicht aktualisieren
       updated_msg: Emoji erfolgreich aktualisiert!
       upload: Hochladen
+    dashboard:
+      backlog: Unerledigte Jobs
+      config: Konfiguration
+      feature_invites: Einladungslinks
+      feature_registrations: Registrierung
+      features: Eigenschaften
+      open_reports: Offene Meldungen
+      search: Volltextsuche
+      space: Speicherverbrauch
+      title: Übersicht
+      total_users: Benutzer Insgesamt
     domain_blocks:
       add_new: Neu hinzufügen
       created_msg: Die Domain-Blockade wird nun durchgeführt
@@ -260,6 +268,8 @@ de:
         expired: Ausgelaufen
         title: Filter
       title: Einladungen
+    relays:
+      add_new: Neues Relay hinzufügen
     report_notes:
       created_msg: Meldungs-Kommentar erfolgreich erstellt!
       destroyed_msg: Meldungs-Kommentar erfolgreich gelöscht!
@@ -282,7 +292,7 @@ de:
         create_and_resolve: Mit Kommentar lösen
         create_and_unresolve: Mit Kommentar wieder öffnen
         delete: Löschen
-        placeholder: Beschreibe, welche Maßnahmen ergriffen wurden oder andere Neuigkeiten zu dieser Meldung…
+        placeholder: Beschreibe, welche Maßnahmen ergriffen wurden oder irgendwelche andere Neuigkeiten…
       reopen: Meldung wieder öffnen
       report: 'Meldung #%{id}'
       report_contents: Inhalt
@@ -423,7 +433,7 @@ de:
     following: 'Erfolg! Du folgst nun:'
     post_follow:
       close: Oder du schließt einfach dieses Fenster.
-      return: Zurück zum Profil dieses Wesens
+      return: Zeige Profil des Benutzers
       web: Das Web öffnen
     title: "%{acct} folgen"
   datetime:
@@ -473,6 +483,22 @@ de:
     follows: Du folgst
     mutes: Du hast stummgeschaltet
     storage: Medienspeicher
+  filters:
+    contexts:
+      home: Startseite
+      notifications: Benachrichtigungen
+      public: Öffentliche Zeitleisten
+      thread: Gespräche
+    edit:
+      title: Filter bearbeiten
+    errors:
+      invalid_context: Ungültiger oder fehlender Kontext übergeben
+      invalid_irreversible: Unwiderrufliche Filterung funktioniert nur mit Heim- oder Benachrichtigungskontext
+    index:
+      delete: Löschen
+      title: Filter
+    new:
+      title: Neuen Filter hinzufügen
   followers:
     domain: Instanz
     explanation_html: Wenn du sicherstellen willst, dass deine Beiträge privat sind, musst du wissen, wer dir folgt. <strong>Deine privaten Beiträge werden an alle Instanzen weitergegeben, auf denen Menschen registriert sind, die dir folgen.</strong> Wenn du den Betreibenden einer Instanz misstraust und du befürchtest, dass sie deine Privatsphäre missachten könnten, kannst du sie hier entfernen.
@@ -487,7 +513,6 @@ de:
     unlocked_warning_title: Dein Konto ist nicht gesperrt
   generic:
     changes_saved_msg: Änderungen gespeichert!
-    powered_by: angetrieben von %{link}
     save_changes: Änderungen speichern
     validation_errors:
       one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
@@ -513,6 +538,7 @@ de:
       '86400': 1 Tag
     expires_in_prompt: Nie
     generate: Generieren
+    invited_by: 'Du wurdest eingeladen von:'
     max_uses:
       one: 1 mal verwendet
       other: "%{count} mal verwendet"
@@ -522,8 +548,6 @@ de:
       expires_at: Läuft ab
       uses: Verwendungen
     title: Leute Einladen
-  landing_strip_html: "<strong>%{name}</strong> hat ein Profil auf %{link_to_root_path}. Du kannst folgen oder interagieren, sofern du ein Konto irgendwo im Fediversum hast."
-  landing_strip_signup_html: Wenn nicht, kannst du dich <a href="%{sign_up_path}">hier anmelden</a>.
   lists:
     errors:
       limit: Du hast die maximale Anzahl an Listen erreicht
@@ -549,7 +573,7 @@ de:
       subject:
         one: "1 neue Mitteilung seit deinem letzten Besuch \U0001F418"
         other: "%{count} neue Mitteilungen seit deinem letzten Besuch \U0001F418"
-      title: In deiner Abwesenheit…
+      title: In deiner Abwesenheit...
     favourite:
       body: 'Dein Beitrag wurde von %{name} favorisiert:'
       subject: "%{name} hat deinen Beitrag favorisiert"
@@ -597,6 +621,7 @@ de:
   remote_follow:
     acct: Profilname@Domain, von wo aus du dieser Person folgen möchtest
     missing_resource: Die erforderliche Weiterleitungs-URL für dein Konto konnte nicht gefunden werden
+    no_account_html: Noch keinen Account? Du kannst dich <a href='%{sign_up_path}' target='_blank'>hier anmelden</a>
     proceed: Weiter
     prompt: 'Du wirst dieser Person folgen:'
   remote_unfollow:
@@ -668,10 +693,12 @@ de:
       video:
         one: "%{count} Video"
         other: "%{count} Videos"
+    boosted_from_html: Geteilt von %{acct_link}
     content_warning: 'Inhaltswarnung: %{warning}'
     disallowed_hashtags:
       one: 'Enthält den unerlaubten Hashtag: %{tags}'
       other: 'Enthält die unerlaubten Hashtags: %{tags}'
+    language_detection: Sprache automatisch erkennen
     open_in_web: Im Web öffnen
     over_character_limit: Zeichenlimit von %{max} überschritten
     pin_errors:
@@ -689,7 +716,6 @@ de:
       unlisted: Nicht gelistet
       unlisted_long: Für alle sichtbar, aber nicht in öffentlichen Zeitleisten aufgelistet
   stream_entries:
-    click_to_show: Klicken, um zu zeigen
     pinned: Angehefteter Beitrag
     reblogged: teilte
     sensitive_content: Heikle Inhalte
@@ -698,6 +724,7 @@ de:
   themes:
     contrast: Hoher Kontrast
     default: Mastodon
+    mastodon-light: Mastodon (hell)
   time:
     formats:
       default: "%d.%m.%Y %H:%M"

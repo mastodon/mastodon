@@ -68,6 +68,7 @@ class Account < ApplicationRecord
 
   # Remote user validations
   validates :username, uniqueness: { scope: :domain, case_sensitive: true }, if: -> { !local? && will_save_change_to_username? }
+  validates :username, format: { with: /\A#{USERNAME_RE}\z/i }, if: -> { !local? && will_save_change_to_username? }
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 60 }, if: -> { local? && will_save_change_to_username? }
@@ -88,6 +89,10 @@ class Account < ApplicationRecord
   has_many :status_pins, inverse_of: :account, dependent: :destroy
   has_many :pinned_statuses, -> { reorder('status_pins.created_at DESC') }, through: :status_pins, class_name: 'Status', source: :status
 
+  # Endorsements
+  has_many :account_pins, inverse_of: :account, dependent: :destroy
+  has_many :endorsed_accounts, through: :account_pins, class_name: 'Account', source: :target_account
+
   # Media
   has_many :media_attachments, dependent: :destroy
 
@@ -99,6 +104,7 @@ class Account < ApplicationRecord
   has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id
 
   has_many :report_notes, dependent: :destroy
+  has_many :custom_filters, inverse_of: :account, dependent: :destroy
 
   # Moderation notes
   has_many :account_moderation_notes, dependent: :destroy
@@ -126,6 +132,7 @@ class Account < ApplicationRecord
   scope :matches_username, ->(value) { where(arel_table[:username].matches("#{value}%")) }
   scope :matches_display_name, ->(value) { where(arel_table[:display_name].matches("#{value}%")) }
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
+  scope :searchable, -> { where(suspended: false).where(moved_to_account_id: nil) }
 
   delegate :email,
            :unconfirmed_email,
@@ -141,7 +148,7 @@ class Account < ApplicationRecord
            prefix: true,
            allow_nil: true
 
-  delegate :filtered_languages, to: :user, prefix: false, allow_nil: true
+  delegate :chosen_languages, to: :user, prefix: false, allow_nil: true
 
   def local?
     domain.nil?
@@ -306,34 +313,6 @@ class Account < ApplicationRecord
     def inboxes
       urls = reorder(nil).where(protocol: :activitypub).pluck(Arel.sql("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)"))
       DeliveryFailureTracker.filter(urls)
-    end
-
-    def triadic_closures(account, limit: 5, offset: 0)
-      sql = <<-SQL.squish
-        WITH first_degree AS (
-          SELECT target_account_id
-          FROM follows
-          WHERE account_id = :account_id
-        )
-        SELECT accounts.*
-        FROM follows
-        INNER JOIN accounts ON follows.target_account_id = accounts.id
-        WHERE
-          account_id IN (SELECT * FROM first_degree)
-          AND target_account_id NOT IN (SELECT * FROM first_degree)
-          AND target_account_id NOT IN (:excluded_account_ids)
-          AND accounts.suspended = false
-        GROUP BY target_account_id, accounts.id
-        ORDER BY count(account_id) DESC
-        OFFSET :offset
-        LIMIT :limit
-      SQL
-
-      excluded_account_ids = account.excluded_from_timeline_account_ids + [account.id]
-
-      find_by_sql(
-        [sql, { account_id: account.id, excluded_account_ids: excluded_account_ids, limit: limit, offset: offset }]
-      )
     end
 
     def search_for(terms, limit = 10)

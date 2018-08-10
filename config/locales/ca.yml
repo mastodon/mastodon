@@ -9,9 +9,6 @@ ca:
     contact: Contacte
     contact_missing: No configurat
     contact_unavailable: N/D
-    description_headline: Què es %{domain}?
-    domain_count_after: altres instàncies
-    domain_count_before: Connectada a
     extended_description_html: |
       <h3>Un bon lloc per les regles</h3>
       <p>Encara no s'ha configurat la descripció ampliada.</p>
@@ -46,7 +43,6 @@ ca:
     people_who_follow: Usuaris que segueixen %{name}
     posts: Toots
     posts_with_replies: Toots i respostes
-    remote_follow: Seguiment remot
     reserved_username: El nom d'usuari està reservat
     roles:
       admin: Administrador
@@ -72,7 +68,7 @@ ca:
         title: Canviar adreça de correu de %{username}
       confirm: Confirma
       confirmed: Confirmat
-      confirming: Confirmando
+      confirming: Confirmant
       demote: Degrada
       disable: Inhabilita
       disable_two_factor_authentication: Desactiva 2FA
@@ -81,7 +77,7 @@ ca:
       domain: Domini
       edit: Edita
       email: Correu electrònic
-      email_status: Estado del correo electrónico
+      email_status: Estat del correu electrònic
       enable: Habilita
       enabled: Habilitat
       feed_url: URL del canal
@@ -122,7 +118,7 @@ ca:
       remove_avatar: Eliminar avatar
       resend_confirmation:
         already_confirmed: Este usuario ya está confirmado
-        send: Reenviar el correo electrónico de confirmación
+        send: Reenviar el correu electrònic de confirmació
         success: "¡Correo electrónico de confirmación enviado con éxito!"
       reset: Reinicialitza
       reset_password: Restableix la contrasenya
@@ -283,7 +279,7 @@ ca:
         create_and_resolve: Resoldre amb nota
         create_and_unresolve: Reobrir amb nota
         delete: Esborrar
-        placeholder: Descriu les accions que s'han pres o qualsevol altra actualització d'aquest informe…
+        placeholder: Descriu les accions que s'han pres o qualsevol altra actualització relacionada…
       reopen: Reobrir informe
       report: 'Informe #%{id}'
       report_contents: Contingut
@@ -424,7 +420,7 @@ ca:
     following: 'Perfecte! Ara segueixes:'
     post_follow:
       close: O bé, pots tancar aquesta finestra.
-      return: Torna al perfil de l'usuari
+      return: Mostra el perfil de l'usuari
       web: Vés a la web
     title: Segueix %{acct}
   datetime:
@@ -474,6 +470,22 @@ ca:
     follows: Persones que segueixes
     mutes: Persones silenciades
     storage: Emmagatzematge
+  filters:
+    contexts:
+      home: Línia de temps Inici
+      notifications: Notificacions
+      public: Línies de temps públiques
+      thread: Converses
+    edit:
+      title: Editar filtre
+    errors:
+      invalid_context: Cap o el context proporcionat no és vàlid
+      invalid_irreversible: El filtratge irreversible només funciona amb el contextos inici o notificacions
+    index:
+      delete: Esborra
+      title: Filtres
+    new:
+      title: Afegir nou filtre
   followers:
     domain: Domini
     explanation_html: Si desitges garantir la privacitat de les teves publicacions, has de ser conscient de qui t'està seguint. <strong> Les publicacions privades es lliuren a totes les instàncies on tens seguidors </strong>. És possible que vulguis revisar-los i eliminar seguidors si no confies en que la teva privacitat sigui respectada pel personal o el programari d'aquestes instàncies.
@@ -488,7 +500,6 @@ ca:
     unlocked_warning_title: El teu compte no està blocat
   generic:
     changes_saved_msg: Els canvis s'han desat correctament!
-    powered_by: amb tecnologia %{link}
     save_changes: Desa els canvis
     validation_errors:
       one: Alguna cosa no va bé! Si us plau, revisa l'error
@@ -514,6 +525,7 @@ ca:
       '86400': 1 dia
     expires_in_prompt: Mai
     generate: Genera
+    invited_by: 'Has estat invitat per:'
     max_uses:
       one: 1 ús
       other: "%{count} usos"
@@ -523,8 +535,6 @@ ca:
       expires_at: Caduca
       uses: Usos
     title: Convida persones
-  landing_strip_html: "<strong>%{name}</strong> és un usuari/a de %{link_to_root_path}. Pots seguir-lo/la o interactuar amb ell/a si tens un compte a qualsevol node del fediverse."
-  landing_strip_signup_html: Si no en tens, pots <a href="%{sign_up_path}">registrar-te aquí</a>.
   lists:
     errors:
       limit: Has assolit la quantitat màxima de llistes
@@ -598,6 +608,7 @@ ca:
   remote_follow:
     acct: Escriu el teu usuari@domini des del qual vols seguir
     missing_resource: No s'ha pogut trobar la URL de redirecció necessaria per al compte
+    no_account_html: No tens cap compte? Pots <a href='%{sign_up_path}' target='_blank'>registrar-te aquí</a>
     proceed: Comença a seguir
     prompt: 'Seguiràs a:'
   remote_unfollow:
@@ -619,7 +630,7 @@ ca:
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
-      otter: Altre
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -674,6 +685,7 @@ ca:
     disallowed_hashtags:
       one: 'conté una etiqueta no permesa: %{tags}'
       other: 'conté les etiquetes no permeses: %{tags}'
+    language_detection: Detecta automàticament el llenguatge
     open_in_web: Obre en la web
     over_character_limit: Límit de caràcters de %{max} superat
     pin_errors:
@@ -691,7 +703,6 @@ ca:
       unlisted: No llistat
       unlisted_long: Tothom ho pot veure, però no es mostra en la història federada
   stream_entries:
-    click_to_show: Clic per mostrar
     pinned: Toot fixat
     reblogged: ha impulsat
     sensitive_content: Contingut sensible
@@ -760,9 +771,13 @@ ca:
 
       <hr class="spacer" />
 
-      <h3 id="coppa">Compliment de la Llei de protecció de la privacitat en línia dels nens</h3>
+      <h3 id="children">Ús del lloc dels nens</h3>
 
-      <p>El nostre lloc, productes i serveis estan dirigits a persones que tenen almenys 13 anys. Si aquest servidor es troba als EUA, i tens menys de 13 anys, segons els requisits de COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) no utilitzis aquest lloc.</p>
+      <p>Si el servidor és a EU o EEA: el nostre lloc, productes i serveis estan dirigits a persones que tenen almenys 16 anys. Si tens menys de 16 anys, seguint els requisits del GDPR (<a href="https://ca.wikipedia.org/wiki/Reglament_General_de_Protecció_de_Dades">Reglament General de Protecció de Dades</a>) no utilitzis aquest lloc.</p>
+
+      <p>Si aquest servidor es troba als EUA: el nostre lloc, productes i serveis estan dirigits a persones que tenen almenys 13 anys. Si tens menys de 13 anys, segons els requisits de COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) no utilitzis aquest lloc.</p>
+
+      <p>Els requisits legals poden ser diferents si aquest servidor està en una altra jurisdicció.</p>
 
       <hr class="spacer" />
 
@@ -776,7 +791,8 @@ ca:
     title: "%{instance} Condicions del servei i política de privadesa"
   themes:
     contrast: Alt contrast
-    default: Mastodont
+    default: Mastodon
+    mastodon-light: Mastodon (clar)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

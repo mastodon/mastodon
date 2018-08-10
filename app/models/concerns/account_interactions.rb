@@ -40,6 +40,10 @@ module AccountInteractions
       end
     end
 
+    def endorsed_map(target_account_ids, account_id)
+      follow_mapping(AccountPin.where(account_id: account_id, target_account_id: target_account_ids), :target_account_id)
+    end
+
     def domain_blocking_map(target_account_ids, account_id)
       accounts_map    = Account.where(id: target_account_ids).select('id, domain').map { |a| [a.id, a.domain] }.to_h
       blocked_domains = domain_blocking_map_by_domain(accounts_map.values.compact, account_id)
@@ -89,10 +93,13 @@ module AccountInteractions
                               .find_or_create_by!(target_account: other_account)
 
     rel.update!(show_reblogs: reblogs)
+    remove_potential_friendship(other_account)
+
     rel
   end
 
   def block!(other_account, uri: nil)
+    remove_potential_friendship(other_account)
     block_relationships.create_with(uri: uri)
                        .find_or_create_by!(target_account: other_account)
   end
@@ -100,10 +107,13 @@ module AccountInteractions
   def mute!(other_account, notifications: nil)
     notifications = true if notifications.nil?
     mute = mute_relationships.create_with(hide_notifications: notifications).find_or_create_by!(target_account: other_account)
+    remove_potential_friendship(other_account)
+
     # When toggling a mute between hiding and allowing notifications, the mute will already exist, so the find_or_create_by! call will return the existing Mute without updating the hide_notifications attribute. Therefore, we check that hide_notifications? is what we want and set it if it isn't.
     if mute.hide_notifications? != notifications
       mute.update!(hide_notifications: notifications)
     end
+
     mute
   end
 
@@ -182,5 +192,27 @@ module AccountInteractions
 
   def pinned?(status)
     status_pins.where(status: status).exists?
+  end
+
+  def endorsed?(account)
+    account_pins.where(target_account: account).exists?
+  end
+
+  def followers_for_local_distribution
+    followers.local
+             .joins(:user)
+             .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
+  end
+
+  def lists_for_local_distribution
+    lists.joins(account: :user)
+         .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
+  end
+
+  private
+
+  def remove_potential_friendship(other_account, mutual = false)
+    PotentialFriendshipTracker.remove(id, other_account.id)
+    PotentialFriendshipTracker.remove(other_account.id, id) if mutual
   end
 end

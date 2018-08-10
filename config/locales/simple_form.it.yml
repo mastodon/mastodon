@@ -3,57 +3,74 @@ it:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF o JPG. Al massimo 2MB. Verranno scalate a 400x400px
-        bot: Avverte che l'account non rappresenta una persona
-        digest: Inviata solo dopo un lungo periodo di intattività e solo se hai ricevuto qualsiasi messaggio personale in tua assenza
+        autofollow: Le persone che si iscrivono attraverso l'invito ti seguiranno automaticamente
+        avatar: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
+        bot: Questo account esegue principalmente operazioni automatiche e potrebbe non essere tenuto sotto controllo da una persona
+        context: Uno o più contesti nei quali il filtro dovrebbe essere applicato
+        digest: Inviata solo dopo un lungo periodo di inattività e solo se hai ricevuto qualche messaggio personale in tua assenza
         display_name:
           one: <span class="name-counter">1</span> carattere rimanente
           other: <span class="name-counter">%{count}</span> caratteri rimanenti
         fields: Puoi avere fino a 4 voci visualizzate come una tabella sul tuo profilo
-        header: PNG, GIF o JPG. Al massimo 2MB. Verranno scalate a 700x335px
+        header: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
+        inbox_url: Copia la URL dalla pagina iniziale del ripetitore che vuoi usare
+        irreversible: I toot filtrati scompariranno in modo irreversibile, anche se il filtro viene eliminato
+        locale: La lingua dell'interfaccia utente, di email e notifiche push
         locked: Richiede che approvi i follower manualmente
         note:
           one: <span class="note-counter">1</span> carattere rimanente
           other: <span class="note-counter">%{count}</span> caratteri rimanenti
-        setting_noindex: Coinvolge il tuo profilo pubblico e le pagine di stato
-        setting_theme: Coinvolge il modo in cui Mastodon verrà visualizzato quando sarai collegato da qualsiasi dispositivo.
+        phrase: Il confronto sarà eseguito ignorando minuscole/maiuscole e i content warning
+        scopes: A quali API l'applicazione potrà avere accesso. Se selezionate un ambito di alto livello, non c'è bisogno di selezionare quelle singole.
+        setting_default_language: La lingua dei tuoi toot può essere individuata automaticamente, ma il risultato non è sempre accurato
+        setting_hide_network: Chi segui e chi segue te non saranno mostrati sul tuo profilo
+        setting_noindex: Ha effetto sul tuo profilo pubblico e sulle pagine degli status
+        setting_theme: Ha effetto sul modo in cui Mastodon verrà visualizzato quando sarai collegato da qualsiasi dispositivo.
+        whole_word: Quando la parola chiave o la frase è solo alfanumerica, si applica solo se corrisponde alla parola intera
       imports:
-        data: File CSV esportato da un altra istanza di Mastodon
+        data: File CSV esportato da un'altra istanza di Mastodon
       sessions:
         otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
       user:
-        filtered_languages: Le lingue selezionate verranno filtrate dalla timeline pubblica per te
+        chosen_languages: Quando una o più lingue sono contrassegnate, nelle timeline pubbliche vengono mostrati solo i toot nelle lingue selezionate
     labels:
       account:
         fields:
           name: Etichetta
           value: Contenuto
       defaults:
+        autofollow: Invita a seguire il tuo account
         avatar: Avatar
         bot: Questo account è un bot
+        chosen_languages: Filtra lingue
         confirm_new_password: Conferma nuova password
         confirm_password: Conferma password
+        context: Contesti del filtro
         current_password: Password corrente
         data: Data
         display_name: Nome visualizzato
         email: Indirizzo email
         expires_in: Scade dopo
-        fields: Metadata profilo
-        filtered_languages: Lingue filtrate
+        fields: Metadati del profilo
         header: Header
-        locale: Lingua
+        inbox_url: URL della inbox del ripetitore
+        irreversible: Elimina invece di nascondere
+        locale: Lingua dell'interfaccia
         locked: Blocca account
         max_uses: Numero massimo di utilizzi
         new_password: Nuova password
         note: Bio
         otp_attempt: Codice due-fattori
         password: Password
+        phrase: Parola chiave o frase
         setting_auto_play_gif: Play automatico GIF animate
         setting_boost_modal: Mostra dialogo di conferma prima del boost
-        setting_default_privacy: Privacy post
+        setting_default_language: Lingua dei post
+        setting_default_privacy: Privacy dei post
         setting_default_sensitive: Segna sempre i media come sensibili
         setting_delete_modal: Mostra dialogo di conferma prima di eliminare un toot
         setting_display_sensitive_media: Mostra sempre i media segnati come sensibili
+        setting_hide_network: Nascondi la tua rete
         setting_noindex: Non indicizzare dai motori di ricerca
         setting_reduce_motion: Riduci movimento nelle animazioni
         setting_system_font_ui: Usa il carattere di default del sistema
@@ -63,6 +80,7 @@ it:
         type: Tipo importazione
         username: Nome utente
         username_or_email: Nome utente o email
+        whole_word: Parola intera
       interactions:
         must_be_follower: Blocca notifiche dai non follower
         must_be_following: Blocca notifiche dalle persone che non segui

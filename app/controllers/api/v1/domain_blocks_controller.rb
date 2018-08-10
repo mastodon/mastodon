@@ -3,7 +3,8 @@
 class Api::V1::DomainBlocksController < Api::BaseController
   BLOCK_LIMIT = 100
 
-  before_action -> { doorkeeper_authorize! :follow }
+  before_action -> { doorkeeper_authorize! :follow, :'read:blocks' }, only: :show
+  before_action -> { doorkeeper_authorize! :follow, :'write:blocks' }, except: :show
   before_action :require_user!
   after_action :insert_pagination_headers, only: :show
 
@@ -15,7 +16,8 @@ class Api::V1::DomainBlocksController < Api::BaseController
   end
 
   def create
-    BlockDomainFromAccountService.new.call(current_account, domain_block_params[:domain])
+    current_account.block_domain!(domain_block_params[:domain])
+    AfterAccountDomainBlockWorker.perform_async(current_account.id, domain_block_params[:domain])
     render_empty
   end
 

@@ -6,13 +6,15 @@ RSpec.describe Api::V1::ReportsController, type: :controller do
   render_views
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read write') }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
   describe 'GET #index' do
+    let(:scopes) { 'read:reports' }
+
     it 'returns http success' do
       get :index
 
@@ -21,6 +23,7 @@ RSpec.describe Api::V1::ReportsController, type: :controller do
   end
 
   describe 'POST #create' do
+    let(:scopes)  { 'write:reports' }
     let!(:status) { Fabricate(:status) }
     let!(:admin)  { Fabricate(:user, admin: true) }
 

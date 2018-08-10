@@ -126,6 +126,30 @@ RSpec.describe FeedManager do
         reblog = Fabricate(:status, reblog: status, account: jeff)
         expect(FeedManager.instance.filter?(:home, reblog, alice.id)).to be true
       end
+
+      context 'for irreversibly muted phrases' do
+        it 'considers word boundaries when matching' do
+          alice.custom_filters.create!(phrase: 'bob', context: %w(home), irreversible: true)
+          alice.follow!(jeff)
+          status = Fabricate(:status, text: 'bobcats', account: jeff)
+          expect(FeedManager.instance.filter?(:home, status, alice.id)).to be_falsy
+        end
+
+        it 'returns true if phrase is contained' do
+          alice.custom_filters.create!(phrase: 'farts', context: %w(home public), irreversible: true)
+          alice.custom_filters.create!(phrase: 'pop tarts', context: %w(home), irreversible: true)
+          alice.follow!(jeff)
+          status = Fabricate(:status, text: 'i sure like POP TARts', account: jeff)
+          expect(FeedManager.instance.filter?(:home, status, alice.id)).to be true
+        end
+
+        it 'matches substrings if whole_word is false' do
+          alice.custom_filters.create!(phrase: 'take', context: %w(home), whole_word: false, irreversible: true)
+          alice.follow!(jeff)
+          status = Fabricate(:status, text: 'shiitake', account: jeff)
+          expect(FeedManager.instance.filter?(:home, status, alice.id)).to be true
+        end
+      end
     end
 
     context 'for mentions feed' do

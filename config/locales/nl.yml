@@ -9,9 +9,6 @@ nl:
     contact: Contact
     contact_missing: Niet ingesteld
     contact_unavailable: n.v.t
-    description_headline: Wat is %{domain}?
-    domain_count_after: andere servers
-    domain_count_before: Verbonden met
     extended_description_html: |
       <h3>Een goede plek voor richtlijnen</h3>
       <p>De uitgebreide omschrijving is nog niet ingevuld.</p>
@@ -46,7 +43,6 @@ nl:
     people_who_follow: Mensen die %{name} volgen
     posts: Toots
     posts_with_replies: Toots en reacties
-    remote_follow: Extern volgen
     reserved_username: Deze gebruikersnaam is gereserveerd
     roles:
       admin: Beheerder
@@ -145,8 +141,8 @@ nl:
       subscribe: Abonneren
       title: Accounts
       unconfirmed_email: Onbevestigd e-mailadres
-      undo_silenced: Niet meer negeren
-      undo_suspension: Niet meer opschorten
+      undo_silenced: Niet langer negeren
+      undo_suspension: Niet langer opschorten
       unsubscribe: Opzeggen
       username: Gebruikersnaam
       web: Webapp
@@ -206,6 +202,27 @@ nl:
       update_failed_msg: Deze emoji kon niet worden bijgewerkt
       updated_msg: Bijwerken van emoji is geslaagd!
       upload: Uploaden
+    dashboard:
+      backlog: achterstallige taken
+      config: Configuratie
+      feature_deletions: Verwijderen van account
+      feature_invites: Uitnodigingen
+      feature_registrations: Registraties
+      feature_relay: Federatierelay
+      features: Functies
+      hidden_service: Federatie met verborgen diensten
+      open_reports: onopgeloste gerapporteerde toots
+      recent_users: Recente gebruikers
+      search: In volledige tekst zoeken
+      single_user_mode: Modus voor één gebruiker
+      software: Software
+      space: Ruimtegebruik
+      title: Dashboard
+      total_users: gebruikers in totaal
+      trends: Trends
+      week_interactions: interacties deze week
+      week_users_active: actieve gebruikers deze week
+      week_users_new: nieuwe gebruikers deze week
     domain_blocks:
       add_new: Nieuwe toevoegen
       created_msg: Domeinblokkade wordt nu verwerkt
@@ -232,8 +249,8 @@ nl:
           one: Eén account in de database aangepast
           other: "%{count} accounts in de database aangepast"
         retroactive:
-          silence: Alle genegeerde accounts van dit domein niet meer negeren
-          suspend: Alle opgeschorte accounts van dit domein niet meer opschorten
+          silence: Alle genegeerde accounts van dit domein niet langer negeren
+          suspend: Alle opgeschorte accounts van dit domein niet langer opschorten
         title: Domeinblokkade voor %{domain} ongedaan maken
         undo: Ongedaan maken
       title: Domeinblokkades
@@ -261,6 +278,14 @@ nl:
         expired: Verlopen
         title: Filter
       title: Uitnodigingen
+    relays:
+      add_new: Nieuwe relayserver toevoegen
+      description_html: Een <strong>federatierelay</strong> is een tussenliggende server die grote hoeveelheden openbare toots uitwisselt tussen servers die zich hierop hebben geabonneerd. <strong>Het kan kleine en middelgrote servers helpen om content uit de fediverse te ontdekken</strong>, waarvoor anders lokale gebruikers handmatig mensen van externe servers moeten volgen.
+      enable_hint: Eenmaal ingeschakeld gaat jouw server zich op alle openbare toots van deze relayserver abonneren en stuurt het de openbare toots van jouw server naar de relayserver.
+      inbox_url: Relay-URL
+      setup: Een verbinding met een relayserver maken
+      status: Status
+      title: Relayservers
     report_notes:
       created_msg: Opmerking bij gerapporteerde toot succesvol aangemaakt!
       destroyed_msg: Opmerking bij gerapporteerde toot succesvol verwijderd!
@@ -283,7 +308,7 @@ nl:
         create_and_resolve: Oplossen met opmerking
         create_and_unresolve: Heropenen met opmerking
         delete: Verwijderen
-        placeholder: Beschrijf welke acties zijn ondernomen of andere opmerkingen over deze gerapporteerde toot…
+        placeholder: Beschrijf welke acties zijn ondernomen of andere gerelateerde opmerkingen…
       reopen: Gerapporteerde toot heropenen
       report: 'Gerapporteerde toot #%{id}'
       report_contents: Inhoud
@@ -296,7 +321,7 @@ nl:
       suspend_account: Account opschorten
       target: Gerapporteerde account
       title: Gerapporteerde toots
-      unassign: Niet meer toewijzen
+      unassign: Niet langer toewijzen
       unresolved: Onopgelost
       updated_at: Bijgewerkt
       view: Weergeven
@@ -316,6 +341,9 @@ nl:
       peers_api_enabled:
         desc_html: Domeinnamen die deze server in de fediverse is tegengekomen
         title: Lijst van bekende servers publiceren
+      preview_sensitive_media:
+        desc_html: Linkvoorvertoningen op andere websites hebben een thumbnail, zelfs als een afbeelding of video als gevoelig is gemarkeerd
+        title: Gevoelige afbeeldingen en video's in OpenGraph-voorvertoningen tonen
       registrations:
         closed_message:
           desc_html: Wordt op de voorpagina weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld<br>En ook hier kan je HTML gebruiken
@@ -330,8 +358,8 @@ nl:
           desc_html: Toestaan dat iedereen een account kan registereren
           title: Open registratie
       show_known_fediverse_at_about_page:
-        desc_html: Wanneer ingeschakeld wordt de globale tijdlijn als voorbeeld getoond en wanneer uitgeschakeld de lokale tijdljn.
-        title: De globale tijdlijn als voorbeeld tonen
+        desc_html: Wanneer ingeschakeld wordt de globale tijdlijn op de voorpagina getoond en wanneer uitgeschakeld de lokale tijdljn.
+        title: De globale tijdlijn op de voorpagina tonen
       show_staff_badge:
         desc_html: Medewerkersbadge op profielpagina tonen
         title: Medewerkersbadge tonen
@@ -342,15 +370,15 @@ nl:
         desc_html: Wordt op de uitgebreide informatiepagina weergegeven<br>Je kan ook hier HTML gebruiken
         title: Uitgebreide omschrijving Mastodonserver
       site_terms:
-        desc_html: Je kan hier jouw eigen privacybeleid, gebruikersvoorwaarden en ander juridisch jargon kwijt. Je kan HTML gebruiken
-        title: Aangepaste gebruikersvoorwaarden
+        desc_html: Je kan hier jouw eigen privacybeleid, gebruiksvoorwaarden en ander juridisch jargon kwijt. Je kan HTML gebruiken
+        title: Aangepaste gebruiksvoorwaarden
       site_title: Naam Mastodonserver
       thumbnail:
         desc_html: Gebruikt als voorvertoning voor OpenGraph en de API. 1200x630px aanbevolen
         title: Thumbnail Mastodonserver
       timeline_preview:
         desc_html: Toon een openbare tijdlijn op de voorpagina
-        title: Tijdlijn als voorbeeld tonen
+        title: Tijdlijn op de voorpagina tonen
       title: Server-instellingen
     statuses:
       back_to_account: Terug naar accountpagina
@@ -393,7 +421,7 @@ nl:
     warning: Wees voorzichtig met deze gegevens. Deel het nooit met iemand anders!
     your_token: Jouw toegangscode
   auth:
-    agreement_html: Wanneer je op registreren klikt ga je akkoord met het opvolgen van <a href="%{rules_path}">de regels van deze server</a> en <a href="%{terms_path}">onze gebruikersvoorwaarden</a>.
+    agreement_html: Wanneer je op registreren klikt ga je akkoord met het opvolgen van <a href="%{rules_path}">de regels van deze server</a> en <a href="%{terms_path}">onze gebruiksvoorwaarden</a>.
     change_password: Wachtwoord
     confirm_email: E-mail bevestigen
     delete_account: Account verwijderen
@@ -424,7 +452,7 @@ nl:
     following: 'Succes! Jij volgt nu:'
     post_follow:
       close: Of je kan dit venster gewoon sluiten.
-      return: Ga terug naar het profiel van de gebruiker
+      return: Profiel van deze gebruiker tonen
       web: Ga naar de webapp
     title: Volg %{acct}
   datetime:
@@ -474,6 +502,22 @@ nl:
     follows: Jij volgt
     mutes: Jij negeert
     storage: Mediaopslag
+  filters:
+    contexts:
+      home: Starttijdlijn
+      notifications: Meldingen
+      public: Openbare tijdlijnen
+      thread: Gesprekken
+    edit:
+      title: Filter bewerken
+    errors:
+      invalid_context: Geen of ongeldige context verstrekt
+      invalid_irreversible: Onomkeerbaar filteren werkt alleen met de starttijdlijn en meldingen
+    index:
+      delete: Verwijderen
+      title: Filters
+    new:
+      title: Nieuw filter toevoegen
   followers:
     domain: Domein
     explanation_html: Wanneer je de privacy van jouw toots wilt garanderen, moet je goed weten wie jouw volgers zijn. <strong>Toots die alleen aan jouw volgers zijn gericht, worden aan de Mastodonservers van jouw volgers afgeleverd.</strong> Daarom wil je ze misschien controleren en desnoods volgers verwijderen die zich op een Mastodonserver bevinden die jij niet vertrouwd. Bijvoorbeeld omdat de beheerder(s) of de software van zo'n server jouw privacy niet respecteert.
@@ -484,11 +528,10 @@ nl:
       one: Bezig om volgers van één domein te verwijderen...
       other: Bezig om volgers van %{count} domeinen te verwijderen...
     true_privacy_html: Hou er wel rekening mee dat <strong>echte privacy alleen gegarandeerd kan worden met behulp van end-to-end-encryptie</strong>.
-    unlocked_warning_html: Iedereen kan jou volgen en daarmee meteen toots zien die je alleen aan volgers hebt gericht. %{lock_link} om volgers te kunnen beoordelen en desnoods te weigeren.
+    unlocked_warning_html: Iedereen kan jou volgen en daarmee meteen toots zien die je alleen aan jouw volgers hebt gericht. %{lock_link} om volgers te kunnen beoordelen en desnoods te weigeren.
     unlocked_warning_title: Jouw account is niet besloten
   generic:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
-    powered_by: wordt mogelijk gemaakt door %{link}
     save_changes: Wijzigingen opslaan
     validation_errors:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
@@ -514,6 +557,7 @@ nl:
       '86400': 1 dag
     expires_in_prompt: Nooit
     generate: Genereren
+    invited_by: 'Jij bent uitgenodigd door:'
     max_uses:
       one: 1 keer
       other: "%{count} keer"
@@ -523,8 +567,6 @@ nl:
       expires_at: Verloopt op
       uses: Aantal keer te gebruiken
     title: Mensen uitnodigen
-  landing_strip_html: "<strong>%{name}</strong> is een gebruiker op %{link_to_root_path}. Je kunt deze volgen en ermee communiceren als je op Mastodon (of ergens anders in de fediverse) een account hebt."
-  landing_strip_signup_html: Als je dat niet hebt, kun je je <a href="%{sign_up_path}">hier registreren</a>.
   lists:
     errors:
       limit: Je hebt het maximaal aantal lijsten bereikt
@@ -550,7 +592,7 @@ nl:
       subject:
         one: "1 nieuwe melding sinds jouw laatste bezoek \U0001F418"
         other: "%{count} nieuwe meldingen sinds jouw laatste bezoek \U0001F418"
-      title: Tijdens jouw afwezigheid…
+      title: Tijdens jouw afwezigheid...
     favourite:
       body: 'Jouw toot werd door %{name} als favoriet gemarkeerd:'
       subject: "%{name} markeerde jouw toot als favoriet"
@@ -598,6 +640,7 @@ nl:
   remote_follow:
     acct: Geef jouw account@domein.tld op waarvandaan je wilt volgen
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
+    no_account_html: Heb je geen account? Je kunt er <a href='%{sign_up_path}' target='_blank'>hier een registreren</a>
     proceed: Ga door om te volgen
     prompt: 'Jij gaat volgen:'
   remote_unfollow:
@@ -674,6 +717,7 @@ nl:
     disallowed_hashtags:
       one: 'bevatte een niet toegestane hashtag: %{tags}'
       other: 'bevatte niet toegestane hashtags: %{tags}'
+    language_detection: Taal automatisch detecteren
     open_in_web: In de webapp openen
     over_character_limit: Limiet van %{max} tekens overschreden
     pin_errors:
@@ -685,13 +729,12 @@ nl:
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Alleen volgers
-      private_long: Alleen aan volgers tonen
+      private_long: Alleen aan jouw volgers tonen
       public: Openbaar
       public_long: Aan iedereen tonen, ook op openbare tijdlijnen
       unlisted: Minder openbaar
       unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
   stream_entries:
-    click_to_show: Klik om te tonen
     pinned: Vastgemaakte toot
     reblogged: boostte
     sensitive_content: Gevoelige inhoud
@@ -760,9 +803,13 @@ nl:
 
       <hr class="spacer" />
 
-      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
+      <h3 id="children">Site usage by children</h3>
 
-      <p>Our site, products and services are all directed to people who are at least 13 years old. If this server is in the USA, and you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
+
+      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+
+      <p>Law requirements can be different if this server is in another jurisdiction.</p>
 
       <hr class="spacer" />
 
@@ -777,6 +824,7 @@ nl:
   themes:
     contrast: Hoog contrast
     default: Mastodon
+    mastodon-light: Mastodon (licht)
   time:
     formats:
       default: "%d %B %Y om %H:%M"

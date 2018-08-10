@@ -7,7 +7,6 @@ import ColumnHeader from '../../components/column_header';
 import { expandDirectTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectDirectStream } from '../../actions/streaming';
 
 const messages = defineMessages({
@@ -24,6 +23,7 @@ export default class DirectTimeline extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    shouldUpdateScroll: PropTypes.func,
     columnId: PropTypes.string,
     intl: PropTypes.object.isRequired,
     hasUnread: PropTypes.bool,
@@ -72,7 +72,7 @@ export default class DirectTimeline extends React.PureComponent {
   }
 
   render () {
-    const { intl, hasUnread, columnId, multiColumn } = this.props;
+    const { intl, shouldUpdateScroll, hasUnread, columnId, multiColumn } = this.props;
     const pinned = !!columnId;
 
     return (
@@ -86,9 +86,7 @@ export default class DirectTimeline extends React.PureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
-        >
-          <ColumnSettingsContainer />
-        </ColumnHeader>
+        />
 
         <StatusListContainer
           trackScroll={!pinned}
@@ -96,6 +94,7 @@ export default class DirectTimeline extends React.PureComponent {
           timelineId='direct'
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.direct' defaultMessage="You don't have any direct messages yet. When you send or receive one, it will show up here." />}
+          shouldUpdateScroll={shouldUpdateScroll}
         />
       </Column>
     );

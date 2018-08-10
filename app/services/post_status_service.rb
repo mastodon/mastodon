@@ -22,16 +22,15 @@ class PostStatusService < BaseService
     media  = validate_media!(options[:media_ids])
     status = nil
     text   = options.delete(:spoiler_text) if text.blank? && options[:spoiler_text].present?
-    text   = '.' if text.blank? && media.present?
 
     ApplicationRecord.transaction do
       status = account.statuses.create!(text: text,
                                         media_attachments: media || [],
                                         thread: in_reply_to,
-                                        sensitive: (options[:sensitive].nil? ? account.user&.setting_default_sensitive : options[:sensitive]),
+                                        sensitive: (options[:sensitive].nil? ? account.user&.setting_default_sensitive : options[:sensitive]) || options[:spoiler_text].present?,
                                         spoiler_text: options[:spoiler_text] || '',
                                         visibility: options[:visibility] || account.user&.setting_default_privacy,
-                                        language: language_from_option(options[:language]) || LanguageDetector.instance.detect(text, account),
+                                        language: language_from_option(options[:language]) || account.user&.setting_default_language&.presence || LanguageDetector.instance.detect(text, account),
                                         application: options[:application])
     end
 
@@ -47,6 +46,8 @@ class PostStatusService < BaseService
     if options[:idempotency].present?
       redis.setex("idempotency:status:#{account.id}:#{options[:idempotency]}", 3_600, status.id)
     end
+
+    bump_potential_friendship(account, status)
 
     status
   end
@@ -79,5 +80,12 @@ class PostStatusService < BaseService
 
   def redis
     Redis.current
+  end
+
+  def bump_potential_friendship(account, status)
+    return if !status.reply? || account.id == status.in_reply_to_account_id
+    ActivityTracker.increment('activity:interactions')
+    return if account.following?(status.in_reply_to_account_id)
+    PotentialFriendshipTracker.record(account.id, status.in_reply_to_account_id, :reply)
   end
 end

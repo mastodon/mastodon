@@ -6,11 +6,11 @@ sk:
       send_instructions: O niekoľko minút obdržíte email s inštrukciami ako potvrdiť váš účet.
       send_paranoid_instructions: Ak sa váš email nachádza v našej databáze, obdržíte email s inštrukciami ako potvrdiť váš účet.
     failure:
-      already_authenticated: Už ste prihlásený/á.
-      inactive: Váš účet ešte nebol aktivovaný.
-      invalid: Nesprávny %{authentication_keys} alebo heslo.
-      last_attempt: Máte posledný pokus pred zamknutím vašeho účtu.
-      locked: Váš účet je zamknutý.
+      already_authenticated: Už si prihlásený/á.
+      inactive: Tvoj účet ešte nebol potvrdený.
+      invalid: Nesprávny %{authentication_keys}, alebo heslo.
+      last_attempt: Máš posledný pokus pred zamknutím tvojho účtu.
+      locked: Tvoj účet je zamknutý.
       not_found_in_database: Nesprávny %{authentication_keys} alebo heslo.
       timeout: Vaša aktívna sezóna vypršala. Pre pokračovanie sa prosím znovu prihláste.
       unauthenticated: K pokračovaniu sa musíš zaregistrovať alebo prihlásiť.
@@ -28,7 +28,7 @@ sk:
         subject: 'Mastodon: Emailová adresa bola zmenená'
         title: Nová emailová adresa
       password_change:
-        explanation: Heslo k vašemu účtu bolo zmenené.
+        explanation: Heslo k tvojmu účtu bolo zmenené.
         extra: Pokiaľ si nezmenil/a svoje heslo, je pravdepodobné že niekto iný získal prístup k tvojmu účtu. Naliehavo preto prosím zmeň svoje heslo, alebo kontaktuj administrátora tohto serveru pokiaľ si vymknutý/á zo svojho účtu.
         subject: 'Mastodon: Heslo bolo zmenené'
         title: Heslo bolo zmenené
@@ -38,8 +38,8 @@ sk:
         subject: 'Mastodon: Potvrďenie emailu pre %{instance}'
         title: Overiť emailovú adresu
       reset_password_instructions:
-        action: Zmeniť heslo
-        explanation: Vyžiadal/a ste si nové heslo pre svoj účet.
+        action: Zmeň svoje heslo
+        explanation: Vyžiadal/a si si nové heslo pre svoj účet.
         extra: Pokiaľ si túto akciu nevyžiadal/a, prosím ignoruj tento email. Tvoje heslo nebude zmenené pokiaľ nepostúpiš na adresu uvedenú vyššie a vytvoríš si nové.
         subject: 'Mastodon: Inštrukcie pre obnovu hesla'
         title: Nastav nové heslo
@@ -52,11 +52,11 @@ sk:
       no_token: Túto stránku nemôžete navštíviť pokiaľ neprichádzate z emailu s inštrukciami na obnovu hesla. Pokiaľ prichádzate z tohto emailu, prosím uistite sa že ste použili celú URL z emailu.
       send_instructions: Ak zadaný email existuje v našej databázi, tak o niekoľko minút obdržíte email s inštrukciami ako nastaviť nové heslo.
       send_paranoid_instructions: Ak zadaný email existuje v našej databázi, zachvíľu obdržíte odkaz na obnovu hesla na svoj email. Skontrolujte aj spam ak tento email nevidíte.
-      updated: Vaše heslo bolo úspešne zmenené. Teraz ste prihlásený/á.
-      updated_not_active: Vaše heslo bolo úspešne zmenené.
+      updated: Tvoje heslo bolo úspešne zmenené. Teraz si prihlásený/á.
+      updated_not_active: Tvoje heslo bolo úspešne zmenené.
     registrations:
-      destroyed: Dovidenia! Váš účet bol úspešne zrušený. Dúfame ale, že sa tu opäť niekedy zastavíte.
-      signed_up: Vitajte! Vaša registrácia bola úspešná.
+      destroyed: Dovidenia! Tvoj účet bol úspešne zrušený. Dúfame ale, že ťa tu opäť niekedy uvidíme.
+      signed_up: Vitaj! Tvoja registrácia bola úspešná.
       signed_up_but_inactive: Registrácia bola úspešná. Avšak, účet ešte nebol aktivovaný, takže ťa nemôžeme prihlásiť.
       signed_up_but_locked: Prihlasovanie úspešné. Avšak tvoj účet je zamknutý, takže ťa nieje možné prihlásiť.
       signed_up_but_unconfirmed: Správa s odkazom potvrdzujúcim registráciu bola poslaná na váš email. Pre aktváciu účtu, kliknite na daný odkaz.

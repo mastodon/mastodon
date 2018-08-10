@@ -40,12 +40,13 @@ export function moveColumn(uuid, direction) {
   };
 };
 
-export function changeColumnParams(uuid, params) {
+export function changeColumnParams(uuid, path, value) {
   return dispatch => {
     dispatch({
       type: COLUMN_PARAMS_CHANGE,
       uuid,
-      params,
+      path,
+      value,
     });
 
     dispatch(saveSettings());

@@ -9,9 +9,6 @@ ja:
     contact: 連絡先
     contact_missing: 未設定
     contact_unavailable: N/A
-    description_headline: "%{domain} とは？"
-    domain_count_after: 個のインスタンス
-    domain_count_before: 接続中
     extended_description_html: |
       <h3>ルールを書くのに適した場所</h3>
       <p>詳細説明が設定されていません。</p>
@@ -46,7 +43,6 @@ ja:
     people_who_follow: "%{name} さんをフォロー中のアカウント"
     posts: トゥート
     posts_with_replies: トゥートと返信
-    remote_follow: リモートフォロー
     reserved_username: このユーザー名は予約されています
     roles:
       admin: Admin
@@ -206,6 +202,27 @@ ja:
       update_failed_msg: 絵文字を更新できませんでした
       updated_msg: 絵文字の更新に成功しました！
       upload: アップロード
+    dashboard:
+      backlog: 未処理のジョブ
+      config: 構成
+      feature_deletions: アカウント削除
+      feature_invites: 招待リンク
+      feature_registrations: 新規登録
+      feature_relay: 連合リレー
+      features: 機能
+      hidden_service: 秘匿サービスとの連合
+      open_reports: 未解決のレポート
+      recent_users: 最近登録したユーザー
+      search: 全文検索
+      single_user_mode: シングルユーザーモード
+      software: ソフトウェア
+      space: ディスク使用量
+      title: ダッシュボード
+      total_users: 全ユーザー
+      trends: トレンドタグ
+      week_interactions: 今週の交流数
+      week_users_active: 今週活動した人数
+      week_users_new: 今週登録した人数
     domain_blocks:
       add_new: 新規追加
       created_msg: ドメインブロック処理を完了しました
@@ -261,6 +278,14 @@ ja:
         expired: 期限切れ
         title: フィルター
       title: 招待
+    relays:
+      add_new: リレーを追加
+      description_html: "<strong>連合リレー</strong>とは、登録しているサーバー間の公開トゥートを仲介するサーバーです。<strong>中小規模のサーバーが連合のコンテンツを見つけるのを助けます。</strong>これを使用しない場合、ローカルユーザーがリモートユーザーを手動でフォローする必要があります。"
+      enable_hint: 有効にすると、リレーから全ての公開トゥートを受信するようになり、またこのサーバーの全ての公開トゥートをリレーに送信するようになります。
+      inbox_url: Relay URL
+      setup: リレー接続を設定する
+      status: ステータス
+      title: リレー
     report_notes:
       created_msg: レポートメモを書き込みました！
       destroyed_msg: レポートメモを削除しました！
@@ -283,7 +308,7 @@ ja:
         create_and_resolve: 書き込み、解決済みにする
         create_and_unresolve: 書き込み、未解決として開く
         delete: 削除
-        placeholder: このレポートに取られた措置や、その他の更新を記述してください…
+        placeholder: どのような措置が取られたか、または関連する更新を記述してください…
       reopen: 再び開く
       report: レポート#%{id}
       report_contents: 内容
@@ -316,6 +341,9 @@ ja:
       peers_api_enabled:
         desc_html: 連合内でこのインスタンスが遭遇したドメインの名前
         title: 接続しているインスタンスのリストを公開する
+      preview_sensitive_media:
+        desc_html: 他のウェブサイトにリンクを貼った際、メディアが閲覧注意としてマークされていてもサムネイルが表示されます
+        title: OpenGraphによるプレビューで閲覧注意のメディアも表示する
       registrations:
         closed_message:
           desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
@@ -393,7 +421,7 @@ ja:
     warning: このデータは気をつけて取り扱ってください。他の人と共有しないでください！
     your_token: アクセストークン
   auth:
-    agreement_html: 登録すると <a href="%{rules_path}">インスタンスのルール</a> と <a href="%{terms_path}">利用規約</a> に従うことに同意したことになります。
+    agreement_html: 登録すると <a href="%{rules_path}">インスタンスのルール</a> と <a href="%{terms_path}">プライバシーポリシー</a> に従うことに同意したことになります。
     change_password: パスワード
     confirm_email: メールアドレスの確認
     delete_account: アカウントの削除
@@ -424,7 +452,7 @@ ja:
     following: '成功！ あなたは現在以下のアカウントをフォローしています:'
     post_follow:
       close: またはこのウィンドウを閉じます。
-      return: ユーザーのプロフィールに戻る
+      return: ユーザーのプロフィールを見る
       web: Web を開く
     title: "%{acct} をフォロー"
   datetime:
@@ -474,21 +502,36 @@ ja:
     follows: フォロー
     mutes: ミュート
     storage: メディア
+  filters:
+    contexts:
+      home: ホームタイムライン
+      notifications: 通知
+      public: 公開タイムライン
+      thread: 会話
+    edit:
+      title: フィルターを編集
+    errors:
+      invalid_context: 対象がないか無効です
+      invalid_irreversible: この機能はホームタイムラインまたは通知と一緒に指定する場合のみ機能します
+    index:
+      delete: 削除
+      title: フィルター
+    new:
+      title: 新規フィルターを追加
   followers:
     domain: ドメイン
     explanation_html: あなたの投稿のプライバシーを確保したい場合、誰があなたをフォローしているのかを把握している必要があります。 <strong>プライベート投稿は、あなたのフォロワーがいる全てのインスタンスに配信されます</strong>。 フォロワーのインスタンスの管理者やソフトウェアがあなたのプライバシーを尊重してくれるかどうか怪しい場合は、そのフォロワーを削除した方がよいかもしれません。
     followers_count: フォロワー数
-    lock_link: 非公開アカウントにする
+    lock_link: 承認制アカウントにする
     purge: フォロワーから削除する
     success:
       one: 1個のドメインからソフトブロックするフォロワーを処理中...
       other: "%{count} 個のドメインからソフトブロックするフォロワーを処理中..."
     true_privacy_html: "<strong>プライバシーの保護はエンドツーエンドの暗号化でのみ実現可能</strong>であることに留意ください。"
-    unlocked_warning_html: 誰でもあなたをフォローすることができ、あなたのプライベート投稿をすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
-    unlocked_warning_title: このアカウントは非公開アカウントに設定されていません
+    unlocked_warning_html: 誰でもあなたをフォローすることができ、フォロワー限定の投稿をすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
+    unlocked_warning_title: このアカウントは承認制アカウントに設定されていません
   generic:
     changes_saved_msg: 正常に変更されました！
-    powered_by: powered by %{link}
     save_changes: 変更を保存
     validation_errors:
       one: エラーが発生しました！ 以下のエラーを確認してください
@@ -514,6 +557,7 @@ ja:
       '86400': 1 日
     expires_in_prompt: 無期限
     generate: 作成
+    invited_by: '次の人に招待されました:'
     max_uses:
       one: '1'
       other: "%{count}"
@@ -523,8 +567,6 @@ ja:
       expires_at: 有効期限
       uses: 使用
     title: 新規ユーザーの招待
-  landing_strip_html: "<strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。"
-  landing_strip_signup_html: もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   lists:
     errors:
       limit: リストの上限に達しました
@@ -598,6 +640,7 @@ ja:
   remote_follow:
     acct: あなたの ユーザー名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした
+    no_account_html: アカウントをお持ちではないですか？<a href='%{sign_up_path}' target='_blank'>こちら</a>からサインアップできます
     proceed: フォローする
     prompt: 'フォローしようとしています:'
   remote_unfollow:
@@ -674,6 +717,7 @@ ja:
     disallowed_hashtags:
       one: '許可されていないハッシュタグが含まれています: %{tags}'
       other: '許可されていないハッシュタグが含まれています: %{tags}'
+    language_detection: 自動検出
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     pin_errors:
@@ -684,14 +728,13 @@ ja:
     show_more: もっと見る
     title: '%{name}: "%{quote}"'
     visibilities:
-      private: 非公開
+      private: フォロワー限定
       private_long: フォロワーにのみ表示されます
       public: 公開
       public_long: 誰でも見ることができ、かつ公開タイムラインに表示されます
       unlisted: 未収載
       unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
   stream_entries:
-    click_to_show: クリックして表示
     pinned: 固定されたトゥート
     reblogged: さんがブースト
     sensitive_content: 閲覧注意
@@ -744,7 +787,7 @@ ja:
 
       <h3 id="cookies">クッキーを使用していますか？</h3>
 
-      <p>はい。クッキーは (あなたが許可した場合に) WebサイトやサービスがWebブラウザーを介してコンピューターに保存する小さなファイルです。使用することで Web サイトがブラウザーを識別し、登録済みのアカウントがある場合関連付けます。</p>
+      <p>はい。クッキーは (あなたが許可した場合に) WebサイトやサービスがWebブラウザーを介してコンピューターに保存する小さなファイルです。使用することでWebサイトがブラウザーを識別し、登録済みのアカウントがある場合関連付けます。</p>
 
       <p>私たちはクッキーを将来の訪問のために設定を保存し呼び出す用途に使用します。</p>
 
@@ -760,9 +803,13 @@ ja:
 
       <hr class="spacer" />
 
-      <h3 id="coppa">児童オンラインプライバシー保護法の遵守</h3>
+      <h3 id="children">児童によるサイト利用について</h3>
 
-      <p>当サイト・製品・サービスは13歳以上の人を対象としています。サーバーが米国にあり、あなたが13歳未満の場合、COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a> - 児童オンラインプライバシー保護法) により当サイトを使用できません。</p>
+      <p>サーバーがEUまたはEEA圏内にある場合: 当サイト・製品・サービスは16歳以上の人を対象としています。あなたが16歳未満の場合、GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a> - EU一般データ保護規則) により当サイトを使用できません。</p>
+
+      <p>サーバーが米国にある場合: 当サイト・製品・サービスは13歳以上の人を対象としています。あなたが13歳未満の場合、COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a> - 児童オンラインプライバシー保護法) により当サイトを使用できません。</p>
+
+      <p>サーバーが別の管轄区域にある場合、法的要件は異なることがあります。</p>
 
       <hr class="spacer" />
 
@@ -777,6 +824,7 @@ ja:
   themes:
     contrast: ハイコントラスト
     default: Mastodon
+    mastodon-light: Mastodon (ライト)
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
@@ -803,7 +851,7 @@ ja:
       title: アーカイブの取り出し
     welcome:
       edit_profile_action: プロフィールを設定
-      edit_profile_step: アバター画像やヘッダー画像をアップロードしたり、表示名やその他プロフィールを変更しカスタマイズすることができます。新しいフォロワーからのフォローを許可する前に検討したい場合、アカウントを非公開にすることができます。
+      edit_profile_step: アバター画像やヘッダー画像をアップロードしたり、表示名やその他プロフィールを変更しカスタマイズすることができます。新しいフォロワーからのフォローを許可する前に検討したい場合、アカウントを承認制にすることができます。
       explanation: 始めるにあたってのアドバイスです
       final_action: 始めましょう
       final_step: 'さあ始めましょう！ たとえフォロワーがいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどで誰かの目に止まるかもしれません。自己紹介をしたい時は #introductions ハッシュタグを使うといいかもしれません。'

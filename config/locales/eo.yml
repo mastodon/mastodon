@@ -9,9 +9,6 @@ eo:
     contact: Kontakti
     contact_missing: Ne elektita
     contact_unavailable: Ne disponebla
-    description_headline: Kio estas %{domain}?
-    domain_count_after: aliaj nodoj
-    domain_count_before: Konektita al
     extended_description_html: |
       <h3>Bona loko por reguloj</h3>
       <p>La detala priskribo ne estis elektita.</p>
@@ -40,12 +37,12 @@ eo:
     following: Sekvatoj
     media: Aŭdovidaĵoj
     moved_html: "%{name} moviĝis al %{new_profile_link}:"
+    network_hidden: Tiu informo ne estas disponebla
     nothing_here: Estas nenio ĉi tie!
     people_followed_by: Sekvatoj de %{name}
     people_who_follow: Sekvantoj de %{name}
     posts: Mesaĝoj
     posts_with_replies: Mesaĝoj kaj respondoj
-    remote_follow: Fore sekvi
     reserved_username: La uzantnomo estas rezervita
     roles:
       admin: Administranto
@@ -260,6 +257,14 @@ eo:
         expired: Eksvalida
         title: Filtri
       title: Invitoj
+    relays:
+      add_new: Aldoni novan ripetilon
+      description_html: "<strong>Fratara ripetilo</strong> estas survoja servilo, kiu interŝanĝas grandan kvanton de publikaj mesaĝoj inter serviloj, kiuj abonas kaj publikigas al ĝi. <strong>Ĝi povas helpi etajn kaj mezgrandajn servilojn malkovri enhavon de la fediverse</strong>, kio normale postulus al lokaj uzantoj mane sekvi homojn de foraj serviloj."
+      enable_hint: Post ebligo, via servilo abonos ĉiujn publikajn mesaĝojn de tiu ripetilo, kaj komencos sendi publikajn mesaĝojn de la servilo al ĝi.
+      inbox_url: URL de la ripetilo
+      setup: Agordi konekton al ripetilo
+      status: Stato
+      title: Ripetiloj
     report_notes:
       created_msg: Signala noto sukcese kreita!
       destroyed_msg: Signala noto sukcese forigita!
@@ -315,6 +320,9 @@ eo:
       peers_api_enabled:
         desc_html: Nomoj de domajnoj, kiujn ĉi tiu nodo renkontis en la fediverse
         title: Publikigi liston de malkovritaj nodoj
+      preview_sensitive_media:
+        desc_html: Antaŭvido de ligiloj en aliaj retejoj montros bildeton eĉ se la aŭdovidaĵo estas markita kiel tikla
+        title: Montri tiklajn aŭdovidaĵojn en la antaŭvidoj de OpenGraph
       registrations:
         closed_message:
           desc_html: Montrita sur la hejma paĝo kiam registriĝoj estas fermitaj. Vi povas uzi HTML-etikedojn
@@ -423,7 +431,7 @@ eo:
     following: 'Sukceson! Vi nun sekvas:'
     post_follow:
       close: Aŭ, vi povas simple fermi ĉi tiun fenestron.
-      return: Reveni al la profilo de uzanto
+      return: Montri la profilon de la uzanto
       web: Iri al reto
     title: Sekvi %{acct}
   datetime:
@@ -475,6 +483,22 @@ eo:
     follows: Vi sekvas
     mutes: Vi silentigas
     storage: Aŭdovidaĵa konservado
+  filters:
+    contexts:
+      home: Hejma tempolinio
+      notifications: Sciigoj
+      public: Publikaj tempolinioj
+      thread: Konversacioj
+    edit:
+      title: Ŝanĝi filtrilojn
+    errors:
+      invalid_context: Neniu aŭ nevalida kunteksto donita
+      invalid_irreversible: Nemalfarebla filtrado funkcias nur por hejma aŭ sciiga kuntekstoj
+    index:
+      delete: Forigi
+      title: Filtriloj
+    new:
+      title: Aldoni novan filtrilon
   followers:
     domain: Domajno
     explanation_html: Se vi volas esti certa pri la privateco de viaj mesaĝoj, vi bezonas esti atenta pri tiuj, kiuj sekvas vin. <strong>Viaj privataj mesaĝoj estas liveritaj al ĉiuj nodoj, kie vi havas sekvantojn</strong>. Eble vi ŝatus kontroli ilin, kaj forigi la sekvantojn de la nodoj, kie vi ne certas ĉu via privateco estos respektita de la tiea teamo aŭ programo.
@@ -489,7 +513,6 @@ eo:
     unlocked_warning_title: Via konto ne estas ŝlosita
   generic:
     changes_saved_msg: Ŝanĝoj sukcese konservitaj!
-    powered_by: povigita de %{link}
     save_changes: Konservi ŝanĝojn
     validation_errors:
       one: Io mise okazis! Bonvolu konsulti la suban erar-raporton
@@ -515,6 +538,7 @@ eo:
       '86400': 1 tago
     expires_in_prompt: Neniam
     generate: Krei
+    invited_by: 'Vi estis invitita de:'
     max_uses:
       one: 1 uzo
       other: "%{count} uzoj"
@@ -524,8 +548,6 @@ eo:
       expires_at: Eksvalidiĝas je
       uses: Uzoj
     title: Inviti homojn
-  landing_strip_html: "<strong>%{name}</strong> estas uzanto en %{link_to_root_path}. Vi povas sekvi tiun aŭ interagi kun tiu, se vi havas konton ie ajn en la fediverse."
-  landing_strip_signup_html: Se vi ne havas, vi povas <a href="%{sign_up_path}">registriĝi ĉi tie</a>.
   lists:
     errors:
       limit: Vi atingis la maksimuman kvanton de listoj
@@ -599,6 +621,7 @@ eo:
   remote_follow:
     acct: Enmetu vian uzantnomo@domajno de kie vi volas sekvi
     missing_resource: La URL de plusendado ne estis trovita
+    no_account_html: Ĉu vi ne havas konton? Vi povas <a href='%{sign_up_path}' target='_blank'>registriĝi tie</a>
     proceed: Daŭrigi por eksekvi
     prompt: 'Vi eksekvos:'
   remote_unfollow:
@@ -670,10 +693,12 @@ eo:
       video:
         one: "%{count} video"
         other: "%{count} videoj"
+    boosted_from_html: Diskonigita de %{acct_link}
     content_warning: 'Enhava averto: %{warning}'
     disallowed_hashtags:
       one: 'enhavas malpermesitan kradvorton: %{tags}'
       other: 'enhavis malpermesitan kradvorton: %{tags}'
+    language_detection: Aŭtomate detekti la lingvon
     open_in_web: Malfermi retumile
     over_character_limit: limo de %{max} signoj transpasita
     pin_errors:
@@ -691,7 +716,6 @@ eo:
       unlisted: Nelistigita
       unlisted_long: Ĉiuj povas vidi, sed nelistigita en publikaj tempolinioj
   stream_entries:
-    click_to_show: Alklaki por montri
     pinned: Alpinglita
     reblogged: diskonigita
     sensitive_content: Tikla enhavo
@@ -700,6 +724,7 @@ eo:
   themes:
     contrast: Forta kontrasto
     default: Mastodon
+    mastodon-light: Mastodon (hela)
   time:
     formats:
       default: "%Y-%m-%d %H:%M"

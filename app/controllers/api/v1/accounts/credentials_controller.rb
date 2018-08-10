@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::Accounts::CredentialsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read }, except: [:update]
-  before_action -> { doorkeeper_authorize! :write }, only: [:update]
+  before_action -> { doorkeeper_authorize! :read, :'read:accounts' }, except: [:update]
+  before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, only: [:update]
   before_action :require_user!
 
   def show
@@ -32,6 +32,7 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
     {
       'setting_default_privacy' => source_params.fetch(:privacy, @account.user.setting_default_privacy),
       'setting_default_sensitive' => source_params.fetch(:sensitive, @account.user.setting_default_sensitive),
+      'setting_default_language' => source_params.fetch(:language, @account.user.setting_default_language),
     }
   end
 end

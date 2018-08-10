@@ -8,6 +8,7 @@
 #
 defaults: &defaults
   site_title: Mastodon
+  site_short_description: ''
   site_description: ''
   site_extended_description: ''
   site_terms: ''
@@ -26,6 +27,7 @@ defaults: &defaults
   delete_modal: true
   auto_play_gif: false
   display_sensitive_media: false
+  preview_sensitive_media: false
   reduce_motion: false
   system_font_ui: false
   noindex: false

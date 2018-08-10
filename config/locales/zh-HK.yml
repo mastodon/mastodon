@@ -9,9 +9,6 @@ zh-HK:
     contact: 聯絡
     contact_missing: 未設定
     contact_unavailable: 未公開
-    description_headline: 關於 %{domain}
-    domain_count_after: 個其他服務站
-    domain_count_before: 已連接至
     extended_description_html: |
       <h3>這裡可以寫一些網站規則</h3>
       <p>本站未有詳細介紹</p>
@@ -40,17 +37,17 @@ zh-HK:
     following: 正在關注
     media: 媒體
     moved_html: "%{name} 已經轉移到 %{new_profile_link}："
-    nothing_here: 暫時未有內容可以顯示
+    network_hidden: 此信息不可用
+    nothing_here: 暫時未有內容可以顯示。
     people_followed_by: "%{name} 關注的人"
     people_who_follow: 關注 %{name} 的人
     posts: 文章
     posts_with_replies: 文章和回覆
-    remote_follow: 跨站關注
     reserved_username: 此用戶名已被保留
     roles:
       admin: 管理員
       bot: 機械人
-      moderator: 監察员
+      moderator: 監察員
     unfollow: 取消關注
   admin:
     account_moderation_notes:
@@ -129,7 +126,7 @@ zh-HK:
       role: 身份
       roles:
         admin: 管理員
-        moderator: 監察员
+        moderator: 監察員
         staff: 管理人員
         user: 普通用戶
       salmon_url: Salmon 反饋 URL
@@ -214,7 +211,7 @@ zh-HK:
         create: 新增域名阻隔
         hint: "「域名阻隔」不會隔絕該域名用戶的用戶進入本站資料庫，而是會在時候自動套用特定的審批操作。"
         severity:
-          desc_html: "「<strong>自動靜音</strong>」令該域名用戶的文章，設為只對關注者顯示，沒有關注的人會看不到。 「<strong>自動刪除</strong>」會自動將該域名用戶的文章、媒體檔案、個人資料自本服務站刪除。"
+          desc_html: "「<strong>自動靜音</strong>」令該域名下用戶的文章，設為只對關注者顯示，沒有關注的人會看不到。 「<strong>自動刪除</strong>」會刪除將該域名下用戶的文章、媒體檔案和個人資料。「<strong>無</strong>」則會拒絕接收來自該域名的媒體檔案。"
           noop: 無
           silence: 自動靜音
           suspend: 自動刪除
@@ -282,7 +279,7 @@ zh-HK:
         create_and_resolve: 建立筆記並標示為「已處理」
         create_and_unresolve: 建立筆記並標示為「未處理」
         delete: 刪除
-        placeholder: 記錄已執行的動作，或其他更新
+        placeholder: 記錄已執行的動作，或其他相關的更新……
       reopen: 重開舉報
       report: '舉報 #%{id}'
       report_contents: 舉報內容
@@ -373,7 +370,7 @@ zh-HK:
     title: 管理
   admin_mailer:
     new_report:
-      body: "%{reporter} 舉報了用戶 %{target}。"
+      body: "%{reporter} 舉報了用戶 %{target}"
       body_remote: 來自 %{domain} 的用戶舉報了用戶 %{target}
       subject: 來自 %{instance} 的用戶舉報（#%{id}）
   application_mailer:
@@ -422,8 +419,8 @@ zh-HK:
     follow_request: 關注請求已發送给：
     following: 成功！你正在關注：
     post_follow:
-      close: 你也可以直接關閉這個頁面
-      return: 返回至個人資料頁
+      close: 你也可以直接關閉這個頁面。
+      return: 顯示個人資料頁
       web: 返回本站
     title: 關注 %{acct}
   datetime:
@@ -449,9 +446,9 @@ zh-HK:
     warning_html: 我們只能保證本服務站上的內容將會被徹底刪除。對於已經被廣泛傳播的內容，它們在本服務站以外的某些地方可能仍然可見。此外，失去連接的服務站以及停止接收訂閱的服務站所存儲的數據亦無法刪除。
     warning_title: 關於已傳播的內容的警告
   errors:
-    '403': 你沒有觀看本頁的權限
-    '404': 找不到內容
-    '410': 內容已被刪除
+    '403': 你沒有觀看本頁的權限。
+    '404': 找不到內容。
+    '410': 內容已被刪除。
     '422':
       content: 無法確認登入資訊。會不會你阻擋了本站使用 Cookies 的權限？
       title: 無法確認登入資訊
@@ -486,8 +483,7 @@ zh-HK:
     unlocked_warning_html: 目前任何人都可以看到你的私人文章，若%{lock_link}的話，你將可以審批關注者。
     unlocked_warning_title: 你的用戶目前為「公共」
   generic:
-    changes_saved_msg: 已成功儲存修改
-    powered_by: 網站由 %{link} 開發
+    changes_saved_msg: 已成功儲存修改。
     save_changes: 儲存修改
     validation_errors:
       one: 提交的資料有問題
@@ -513,6 +509,7 @@ zh-HK:
       '86400': 1 天後
     expires_in_prompt: 永不過期
     generate: 生成邀請連結
+    invited_by: 你的邀請人是：
     max_uses:
       one: 1 次
       other: "%{count} 次"
@@ -522,8 +519,6 @@ zh-HK:
       expires_at: 失效時間
       uses: 已使用次數
     title: 邀請用戶
-  landing_strip_html: "<strong>%{name}</strong> 是一個在 %{link_to_root_path} 的用戶。只要你有任何 Mastodon 服務站、或者聯盟網站的用戶，便可以跨站關注此站用戶，或者與他們互動。"
-  landing_strip_signup_html: 如果你沒有這類用戶，歡迎在<a href="%{sign_up_path}">此處登記</a>。
   lists:
     errors:
       limit: 你所建立的列表數量已經達到上限
@@ -551,7 +546,7 @@ zh-HK:
         other: "自從上次登入以來，你收到 %{count} 則新的通知 \U0001F418"
       title: 在你不在的這段時間……
     favourite:
-      body: 你的文章是 %{name} 的最愛！
+      body: 您的文章被 %{name} 收藏：
       subject: "%{name} 收藏了你的文章"
       title: 新的收藏
     follow:
@@ -569,7 +564,7 @@ zh-HK:
       subject: "%{name} 在文章中提及你"
       title: 新的提及
     reblog:
-      body: 你的文章得到 %{name} 的轉推
+      body: 您的文章被 %{name} 轉推：
       subject: "%{name} 轉推了你的文章"
       title: 新的轉推
   number:
@@ -608,14 +603,16 @@ zh-HK:
     browsers:
       alipay: 支付寶
       blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      firefox: Firefox
+      chrome: Chrome 瀏覽器
+      edge: Microsoft Edge 瀏覽器
+      electron: Electron 瀏覽器
+      firefox: Firefox 瀏覽器
       generic: 未知的瀏覽器
-      ie: Internet Explorer
+      ie: Internet Explorer 瀏覽器
       micro_messenger: 微信
       nokia: Nokia S40 Ovi 瀏覽器
       opera: Opera
+      otter: Otter 瀏覽器
       phantom_js: PhantomJS
       qq: QQ瀏覽器
       safari: Safari
@@ -639,7 +636,7 @@ zh-HK:
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
     revoke: 取消
-    revoke_success: 作業階段取消成功。
+    revoke_success: 作業階段成功取消
     title: 作業階段
   settings:
     authorized_apps: 授權應用程式
@@ -670,6 +667,7 @@ zh-HK:
     disallowed_hashtags:
       one: 包含不允許的標籤： %{tags}
       other: 包含不允許的標籤： %{tags}
+    language_detection: 自動偵測語言
     open_in_web: 開啟網頁
     over_character_limit: 超過了 %{max} 字的限制
     pin_errors:
@@ -687,7 +685,6 @@ zh-HK:
       unlisted: 公開，但不在公共時間軸顯示
       unlisted_long: 所有人都能看到，但不在公共時間軸（本站時間軸、跨站時間軸）顯示
   stream_entries:
-    click_to_show: 點擊顯示
     pinned: 置頂文章
     reblogged: 轉推
     sensitive_content: 敏感內容
@@ -696,6 +693,7 @@ zh-HK:
   themes:
     contrast: 高對比
     default: 萬象
+    mastodon-light: 萬象（亮色主題）
   time:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
@@ -712,7 +710,7 @@ zh-HK:
     manual_instructions: 如果你無法掃描 QR 圖形碼，請手動輸入這個文字密碼︰
     recovery_codes: 備份恢復驗證碼
     recovery_codes_regenerated: 成功產生新的備用驗證碼
-    recovery_instructions_html: 如果你遺失了安裝認證器的裝置（如︰你的電話），你可以使用備用驗證碼進行登入。請確保將備用驗證碼收藏穩當，（如列印出來，和你其他重要文件一起存放）
+    recovery_instructions_html: 如果你遺失了安裝認證器的裝置（如︰你的電話），你可以使用備用驗證碼進行登入。請確保將備用驗證碼收藏穩當，（如列印出來，和你其他重要文件一起存放）。
     setup: 設定
     wrong_code: 你輸入的認證碼並不正確！可能伺服器時間和你手機不一致，請檢查你手機的時鐘，或與本站管理員聯絡。
   user_mailer:

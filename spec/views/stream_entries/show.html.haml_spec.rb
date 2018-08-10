@@ -12,6 +12,7 @@ describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true d
     allow(view).to receive(:full_asset_url).and_return('//asset.host/image.svg')
     allow(view).to receive(:local_time)
     allow(view).to receive(:local_time_ago)
+    assign(:instance_presenter, InstancePresenter.new)
   end
 
   it 'has valid author h-card and basic data for a detailed_status' do
@@ -30,9 +31,7 @@ describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true d
 
     mf2 = Microformats.parse(rendered)
 
-    expect(mf2.entry.name.to_s).to eq status.text
     expect(mf2.entry.url.to_s).not_to be_empty
-
     expect(mf2.entry.author.name.to_s).to eq alice.display_name
     expect(mf2.entry.author.url.to_s).not_to be_empty
   end
@@ -56,9 +55,7 @@ describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true d
 
     mf2 = Microformats.parse(rendered)
 
-    expect(mf2.entry.name.to_s).to eq reply.text
     expect(mf2.entry.url.to_s).not_to be_empty
-
     expect(mf2.entry.comment.url.to_s).not_to be_empty
     expect(mf2.entry.comment.author.name.to_s).to eq carl.display_name
     expect(mf2.entry.comment.author.url.to_s).not_to be_empty

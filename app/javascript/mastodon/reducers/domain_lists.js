@@ -6,7 +6,9 @@ import {
 import { Map as ImmutableMap, OrderedSet as ImmutableOrderedSet } from 'immutable';
 
 const initialState = ImmutableMap({
-  blocks: ImmutableMap(),
+  blocks: ImmutableMap({
+    items: ImmutableOrderedSet(),
+  }),
 });
 
 export default function domainLists(state = initialState, action) {

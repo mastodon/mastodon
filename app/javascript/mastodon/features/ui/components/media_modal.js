@@ -16,6 +16,8 @@ const messages = defineMessages({
   next: { id: 'lightbox.next', defaultMessage: 'Next' },
 });
 
+export const previewState = 'previewMediaModal';
+
 @injectIntl
 export default class MediaModal extends ImmutablePureComponent {
 
@@ -24,6 +26,10 @@ export default class MediaModal extends ImmutablePureComponent {
     index: PropTypes.number.isRequired,
     onClose: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+  };
+
+  static contextTypes = {
+    router: PropTypes.object,
   };
 
   state = {
@@ -48,23 +54,41 @@ export default class MediaModal extends ImmutablePureComponent {
     this.setState({ index: index % this.props.media.size });
   }
 
-  handleKeyUp = (e) => {
+  handleKeyDown = (e) => {
     switch(e.key) {
     case 'ArrowLeft':
       this.handlePrevClick();
+      e.preventDefault();
+      e.stopPropagation();
       break;
     case 'ArrowRight':
       this.handleNextClick();
+      e.preventDefault();
+      e.stopPropagation();
       break;
     }
   }
 
   componentDidMount () {
-    window.addEventListener('keyup', this.handleKeyUp, false);
+    window.addEventListener('keydown', this.handleKeyDown, false);
+    if (this.context.router) {
+      const history = this.context.router.history;
+      history.push(history.location.pathname, previewState);
+      this.unlistenHistory = history.listen(() => {
+        this.props.onClose();
+      });
+    }
   }
 
   componentWillUnmount () {
-    window.removeEventListener('keyup', this.handleKeyUp);
+    window.removeEventListener('keydown', this.handleKeyDown);
+    if (this.context.router) {
+      this.unlistenHistory();
+
+      if (this.context.router.history.location.state === previewState) {
+        this.context.router.history.goBack();
+      }
+    }
   }
 
   getIndex () {

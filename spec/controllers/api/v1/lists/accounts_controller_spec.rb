@@ -4,7 +4,7 @@ describe Api::V1::Lists::AccountsController do
   render_views
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read write') }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:list)  { Fabricate(:list, account: user.account) }
 
   before do
@@ -14,6 +14,8 @@ describe Api::V1::Lists::AccountsController do
   end
 
   describe 'GET #index' do
+    let(:scopes) { 'read:lists' }
+
     it 'returns http success' do
       get :show, params: { list_id: list.id }
 
@@ -22,6 +24,7 @@ describe Api::V1::Lists::AccountsController do
   end
 
   describe 'POST #create' do
+    let(:scopes) { 'write:lists' }
     let(:bob) { Fabricate(:account, username: 'bob') }
 
     before do
@@ -39,6 +42,8 @@ describe Api::V1::Lists::AccountsController do
   end
 
   describe 'DELETE #destroy' do
+    let(:scopes) { 'write:lists' }
+
     before do
       delete :destroy, params: { list_id: list.id, account_ids: [list.accounts.first.id] }
     end
