@@ -10,6 +10,9 @@ module Admin
       site_description
       site_extended_description
       site_terms
+      player_enabled
+      player_url
+      player_name
       open_registrations
       closed_registrations_message
       open_deletion
@@ -34,6 +37,7 @@ module Admin
       peers_api_enabled
       show_known_fediverse_at_about_page
       preview_sensitive_media
+      player_enabled
     ).freeze
 
     UPLOAD_SETTINGS = %w(

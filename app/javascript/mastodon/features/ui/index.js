@@ -52,6 +52,7 @@ import { previewState } from './components/media_modal';
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
+import { AudioPlayer } from './components/audio_player';
 
 const messages = defineMessages({
   beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
@@ -133,7 +134,7 @@ class SwitchingColumnsArea extends React.PureComponent {
 
   setRef = c => {
     this.node = c.getWrappedInstance().getWrappedInstance();
-  }
+  };
 
   render () {
     const { children } = this.props;
@@ -218,12 +219,12 @@ export default class UI extends React.PureComponent {
       // but we set user-friendly message for other browsers, e.g. Edge.
       e.returnValue = intl.formatMessage(messages.beforeUnload);
     }
-  }
+  };
 
   handleLayoutChange = () => {
     // The cached heights are no longer accurate, invalidate
     this.props.dispatch(clearHeight());
-  }
+  };
 
   handleDragEnter = (e) => {
     e.preventDefault();
@@ -239,7 +240,7 @@ export default class UI extends React.PureComponent {
     if (e.dataTransfer && Array.from(e.dataTransfer.types).includes('Files')) {
       this.setState({ draggingOver: true });
     }
-  }
+  };
 
   handleDragOver = (e) => {
     e.preventDefault();
@@ -252,7 +253,7 @@ export default class UI extends React.PureComponent {
     }
 
     return false;
-  }
+  };
 
   handleDrop = (e) => {
     e.preventDefault();
@@ -262,7 +263,7 @@ export default class UI extends React.PureComponent {
     if (e.dataTransfer && e.dataTransfer.files.length === 1) {
       this.props.dispatch(uploadCompose(e.dataTransfer.files));
     }
-  }
+  };
 
   handleDragLeave = (e) => {
     e.preventDefault();
@@ -275,11 +276,11 @@ export default class UI extends React.PureComponent {
     }
 
     this.setState({ draggingOver: false });
-  }
+  };
 
   closeUploadModal = () => {
     this.setState({ draggingOver: false });
-  }
+  };
 
   handleServiceWorkerPostMessage = ({ data }) => {
     if (data.type === 'navigate') {
@@ -287,7 +288,7 @@ export default class UI extends React.PureComponent {
     } else {
       console.warn('Unknown message type:', data.type);
     }
-  }
+  };
 
   componentWillMount () {
     window.addEventListener('beforeunload', this.handleBeforeUnload, false);
@@ -323,7 +324,7 @@ export default class UI extends React.PureComponent {
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
   handleHotkeyNew = e => {
     e.preventDefault();
@@ -333,7 +334,7 @@ export default class UI extends React.PureComponent {
     if (element) {
       element.focus();
     }
-  }
+  };
 
   handleHotkeySearch = e => {
     e.preventDefault();
@@ -343,12 +344,12 @@ export default class UI extends React.PureComponent {
     if (element) {
       element.focus();
     }
-  }
+  };
 
   handleHotkeyForceNew = e => {
     this.handleHotkeyNew(e);
     this.props.dispatch(resetCompose());
-  }
+  };
 
   handleHotkeyFocusColumn = e => {
     const index  = (e.key * 1) + 1; // First child is drawer, skip that
@@ -361,7 +362,7 @@ export default class UI extends React.PureComponent {
         status.focus();
       }
     }
-  }
+  };
 
   handleHotkeyBack = () => {
     if (window.history && window.history.length === 1) {
@@ -369,11 +370,11 @@ export default class UI extends React.PureComponent {
     } else {
       this.context.router.history.goBack();
     }
-  }
+  };
 
   setHotkeysRef = c => {
     this.hotkeys = c;
-  }
+  };
 
   handleHotkeyToggleHelp = () => {
     if (this.props.location.pathname === '/keyboard-shortcuts') {
@@ -381,51 +382,51 @@ export default class UI extends React.PureComponent {
     } else {
       this.context.router.history.push('/keyboard-shortcuts');
     }
-  }
+  };
 
   handleHotkeyGoToHome = () => {
     this.context.router.history.push('/timelines/home');
-  }
+  };
 
   handleHotkeyGoToNotifications = () => {
     this.context.router.history.push('/notifications');
-  }
+  };
 
   handleHotkeyGoToLocal = () => {
     this.context.router.history.push('/timelines/public/local');
-  }
+  };
 
   handleHotkeyGoToFederated = () => {
     this.context.router.history.push('/timelines/public');
-  }
+  };
 
   handleHotkeyGoToDirect = () => {
     this.context.router.history.push('/timelines/direct');
-  }
+  };
 
   handleHotkeyGoToStart = () => {
     this.context.router.history.push('/getting-started');
-  }
+  };
 
   handleHotkeyGoToFavourites = () => {
     this.context.router.history.push('/favourites');
-  }
+  };
 
   handleHotkeyGoToPinned = () => {
     this.context.router.history.push('/pinned');
-  }
+  };
 
   handleHotkeyGoToProfile = () => {
     this.context.router.history.push(`/accounts/${me}`);
-  }
+  };
 
   handleHotkeyGoToBlocked = () => {
     this.context.router.history.push('/blocks');
-  }
+  };
 
   handleHotkeyGoToMuted = () => {
     this.context.router.history.push('/mutes');
-  }
+  };
 
   render () {
     const { draggingOver } = this.state;
@@ -453,6 +454,7 @@ export default class UI extends React.PureComponent {
 
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef}>
+        <AudioPlayer />
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
           <TabsBar />
 

@@ -21,6 +21,13 @@
   %hr/
 
   .fields-group
+    = f.input :player_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.player_enabled.title'), hint: t('admin.settings.player_enabled.desc_html')
+    = f.input :player_url, as: :string, wrapper: :with_block_label, label: t('admin.settings.player_url.title'), hint: t('admin.settings.player_url.desc_html')
+    = f.input :player_name, wrapper: :with_block_label, label: t('admin.settings.player_name.title'), hint: t('admin.settings.player_name.desc_html')
+
+  %hr/
+
+  .fields-group
     = f.input :timeline_preview, as: :boolean, wrapper: :with_label, label: t('admin.settings.timeline_preview.title'), hint: t('admin.settings.timeline_preview.desc_html')
 
   .fields-group

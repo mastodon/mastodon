@@ -2209,6 +2209,51 @@ a.account__display-name {
   margin: -6px 10px;
 }
 
+.column-player {
+  background: lighten($ui-base-color, 8%);
+  color: $primary-text-color;
+  display: block;
+  font-size: 16px;
+  padding: 15px;
+  text-decoration: none;
+
+  > div.column-player__volume-controls {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    margin-right: 16px;
+
+    > span {
+      font-size: 11px;
+    }
+
+    > button {
+      margin-left: 8px;
+      margin-right: 8px;
+      background-color: transparent;
+      border: none;
+      color: $primary-text-color;
+    }
+  }
+
+  button.column-player__toggle > i {
+    color: $primary-text-color;
+  }
+
+  > span {
+    margin-left: -8px;
+  }
+}
+
+.column-player__toggle {
+  display: inline-block;
+  margin-left: -6px;
+  margin-right: 5px;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+}
+
 .column-subheading {
   background: $ui-base-color;
   color: $dark-text-color;
