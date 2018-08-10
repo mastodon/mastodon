@@ -9,9 +9,6 @@ ru:
     contact: Связаться
     contact_missing: Не установлено
     contact_unavailable: Недоступен
-    description_headline: Что такое %{domain}?
-    domain_count_after: другими узлами
-    domain_count_before: Связан с
     extended_description_html: |
       <h3>Хорошее место для правил</h3>
       <p>Расширенное описание еще не настроено.</p>
@@ -37,6 +34,7 @@ ru:
     user_count_before: Здесь живет
     what_is_mastodon: Что такое Mastodon?
   accounts:
+    choices_html: "%{name} рекомендует:"
     follow: Подписаться
     followers: Подписчики
     following: Подписан(а)
@@ -47,6 +45,8 @@ ru:
     nothing_here: Здесь ничего нет!
     people_followed_by: Люди, на которых подписан(а) %{name}
     people_who_follow: Подписчики %{name}
+    pin_errors:
+      following: Чтобы порекомендовать кого-то, надо сначала на них подписаться
     posts: Посты
     posts_with_replies: Посты с ответами
     reserved_username: Имя пользователя зарезервировано
@@ -361,7 +361,7 @@ ru:
           title: Разрешить удаление аккаунтов
         min_invite_role:
           disabled: Никого
-          title: Разрешает приглашения от
+          title: Разрешать приглашения от
         open:
           desc_html: Позволяет любому создавать аккаунт
           title: Открыть регистрацию
