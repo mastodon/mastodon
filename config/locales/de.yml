@@ -310,8 +310,19 @@ de:
       title: Einladungen
     relays:
       add_new: Neues Relay hinzufügen
-      inbox_url: Relay URL
+      inbox_url: Relay-URL
       setup: Relayverbindung einrichten
+      description_html: Ein <strong>Föderierungsrelay</strong> ist ein vermittelnder
+        Server, der eine große Anzahl öffentlicher Beiträge zwischen Servern austauscht,
+        die es abonnieren und zu ihm veröffentlichen.<strong> Es kann kleinen und
+        mittleren Servern dabei helfen, Inhalte des Fediverse zu entdecken</strong>,
+        was andernfalls das manuelle Folgen anderer Leute auf entfernten Servern durch
+        lokale Nutzer erfordern würde.
+      enable_hint: Sobald aktiviert wird dein Server alle öffentlichen Beiträge dieses
+        Relays abonnieren und wird alle öffentlichen Beiträge dieses Servers an es
+        senden.
+      status: Status
+      title: Relays
     report_notes:
       created_msg: Meldungs-Kommentar erfolgreich erstellt!
       destroyed_msg: Meldungs-Kommentar erfolgreich gelöscht!
@@ -395,8 +406,9 @@ de:
         desc_html: Zeige Mitarbeiter-Badge auf Benutzerseite
         title: Zeige Mitarbeiter-Badge
       site_description:
-        desc_html: Wird als Absatz auf der Frontseite angezeigt und als Meta-Tag benutzt.
-          Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
+        desc_html: Einleitungsabschnitt auf der Frontseite. Beschreibe, was diese
+          Mastodon-Instanz ausmacht. Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code>
+          und <code>&lt;em&gt;</code>.
         title: Beschreibung der Instanz
       site_description_extended:
         desc_html: Bietet sich für Verhaltenskodizes, Regeln, Richtlinien und weiteres
@@ -415,6 +427,15 @@ de:
         desc_html: Auf der Frontseite die öffentliche Zeitleiste anzeigen
         title: Zeitleisten-Vorschau
       title: Instanz-Einstellungen
+      preview_sensitive_media:
+        desc_html: Linkvorschauen auf anderen Webseiten werden ein Vorschaubild anzeigen,
+          obwohl die Medien als heikel gekennzeichnet sind
+        title: Heikle Medien in OpenGraph-Vorschauen anzeigen
+      site_short_description:
+        desc_html: Wird angezeigt in der Seitenleiste und in Meta-Tags. Beschreibe
+          in einem einzigen Abschnitt, was Mastodon ist und was diesen Server ausmacht.
+          Falls leer, wird die Instanz-Beschreibung verwendet.
+        title: Kurze Instanz-Beschreibung
     statuses:
       back_to_account: Zurück zum Konto
       batch:
@@ -814,6 +835,7 @@ de:
   time:
     formats:
       default: '%d.%m.%Y %H:%M'
+      month: '%b %Y'
   two_factor_authentication:
     code_hint: Gib zur Bestätigung den Code ein, den deine Authenticator-App generiert
       hat
@@ -892,3 +914,7 @@ de:
     seamless_external_login: Du bist angemeldet über einen Drittanbieter-Dienst, weswegen
       Passwort- und E-Maileinstellungen nicht verfügbar sind.
     signed_in_as: 'Angemeldet als:'
+  footer:
+    developers: Entwickler
+    more: Mehr…
+    resources: Ressourcen
