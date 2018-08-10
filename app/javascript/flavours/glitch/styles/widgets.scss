@@ -103,6 +103,52 @@
   }
 }
 
+.box-widget {
+  padding: 20px;
+  border-radius: 4px;
+  background: $ui-base-color;
+  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+}
+
+.contact-widget,
+.landing-page__information.contact-widget {
+  box-sizing: border-box;
+  padding: 20px;
+  min-height: 100%;
+  border-radius: 4px;
+  background: $ui-base-color;
+  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+}
+
+.contact-widget {
+  font-size: 15px;
+  color: $darker-text-color;
+  line-height: 20px;
+  word-wrap: break-word;
+  font-weight: 400;
+
+  strong {
+    font-weight: 500;
+  }
+
+  p {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__mail {
+    margin-top: 10px;
+
+    a {
+      color: $primary-text-color;
+      text-decoration: none;
+    }
+  }
+}
+
 .moved-account-widget {
   padding: 15px;
   padding-bottom: 20px;
@@ -184,7 +230,10 @@
 }
 
 .moved-account-widget,
-.memoriam-widget {
+.memoriam-widget,
+.box-widget,
+.contact-widget,
+.landing-page__information.contact-widget {
   @media screen and (max-width: $no-gap-breakpoint) {
     margin-bottom: 0;
     box-shadow: none;
