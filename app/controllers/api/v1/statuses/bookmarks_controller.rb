@@ -3,7 +3,7 @@
 class Api::V1::Statuses::BookmarksController < Api::BaseController
   include Authorization
 
-  before_action -> { doorkeeper_authorize! :write }
+  before_action -> { doorkeeper_authorize! :write, :'write:bookmarks' }
   before_action :require_user!
 
   respond_to :json
