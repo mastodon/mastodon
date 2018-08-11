@@ -5,10 +5,12 @@ fr:
     about_mastodon_html: Mastodon est un réseau social utilisant des formats ouverts et des logiciels libres. Comme le courriel, il est décentralisé.
     about_this: À propos
     administered_by: 'Administré par :'
+    api: API
     closed_registrations: Les inscriptions sont actuellement fermées sur cette instance. Cependant, vous pouvez trouver une autre instance sur laquelle vous créer un compte et à partir de laquelle vous pourrez accéder au même réseau.
     contact: Contact
     contact_missing: Manquant
     contact_unavailable: Non disponible
+    documentation: Documentation
     extended_description_html: |
       <h3>Un bon endroit pour les règles</h3>
       <p>La description étendue n’a pas été remplie.</p>
@@ -202,6 +204,23 @@ fr:
       update_failed_msg: N'a pas pu mettre à jour cet emoji
       updated_msg: Emoji mis à jour avec succès !
       upload: Téléverser
+    dashboard:
+      config: Configuration
+      feature_invites: Liens d'invitation
+      feature_relay: Relais de fédération
+      features: Fonctionnalités
+      hidden_service: Fédération avec des services cachés
+      recent_users: Utilisateurs récents
+      search: Recherche texte-plein
+      single_user_mode: Mode utilisateur unique
+      software: Logiciel
+      space: Utilisation d'espace
+      title: Tableau de bord
+      total_users: utilisateurs au total
+      trends: Tendances
+      week_interactions: interactions cette semaine
+      week_users_active: actif cette semaine
+      week_users_new: utilisateurs cette semaine
     domain_blocks:
       add_new: Ajouter
       created_msg: Le blocage de domaine est désormais activé
@@ -257,6 +276,12 @@ fr:
         expired: Expiré
         title: Filtre
       title: Invitations
+    relays:
+      add_new: Ajouter un nouveau relais
+      inbox_url: URL de relais
+      setup: Paramétrer une connexion de relais
+      status: Statut
+      title: Relais
     report_notes:
       created_msg: Note de signalement créée avec succès !
       destroyed_msg: Note de signalement effacée avec succès !
@@ -332,11 +357,13 @@ fr:
         desc_html: Montrer un badge de responsable sur une page utilisateur
         title: Montrer un badge de responsable
       site_description:
-        desc_html: Paragraphe introductif sur la page d'accueil et dans les méta-balises. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
+        desc_html: Paragraphe introductif sur la page d'accueil. Décrivez ce qui rend spécifique ce serveur Mastodon et toute autre chose importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
         title: Description du site
       site_description_extended:
         desc_html: Affichée sur la page d’informations complémentaires du site<br>Vous pouvez utiliser des balises HTML
         title: Description étendue du site
+      site_short_description:
+        title: Description courte de l'instance
       site_terms:
         desc_html: Affichée sur la page des conditions d’utilisation du site<br>Vous pouvez utiliser des balises HTML
         title: Politique de confidentialité
@@ -470,6 +497,19 @@ fr:
     follows: Vous suivez
     mutes: Vous masquez
     storage: Médias stockés
+  filters:
+    contexts:
+      home: Ligne de temps personnelle
+      notifications: Notifications
+      public: Lignes de temps public
+      thread: Conversations
+    edit:
+      title: Filtre d'édition
+    index:
+      delete: Effacer
+      title: Filtres
+    new:
+      title: Ajouter un nouveau filtre
   followers:
     domain: Domaine
     explanation_html: Si vous voulez être sûr⋅e que vos statuts restent privés, vous devez savoir qui vous suit. <strong>Vos statuts privés seront diffusés à toutes les instances des utilisateur⋅ice⋅s qui vous suivent</strong>. Vous voudrez peut-être les passer en revue et les supprimer si vous n’êtes pas sûr⋅e que votre vie privée sera respectée par l’administration ou le logiciel de ces instances.
@@ -482,6 +522,10 @@ fr:
     true_privacy_html: Soyez conscient⋅e⋅s <strong>qu’une vraie confidentialité ne peut être atteinte que par un chiffrement de bout-en-bout</strong>.
     unlocked_warning_html: N’importe qui peut vous suivre et voir vos statuts privés. %{lock_link} afin de pouvoir vérifier et rejeter des abonné⋅e⋅s.
     unlocked_warning_title: Votre compte n’est pas privé
+  footer:
+    developers: Développeurs
+    more: Davantage…
+    resources: Ressources
   generic:
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
     save_changes: Enregistrer les modifications
@@ -509,6 +553,7 @@ fr:
       '86400': 1 jour
     expires_in_prompt: Jamais
     generate: Générer
+    invited_by: 'Vous avez été invité par :'
     max_uses:
       one: 1 usage
       other: "%{count} usages"
@@ -667,6 +712,7 @@ fr:
     disallowed_hashtags:
       one: 'contient un hashtag désactivé : %{tags}'
       other: 'contient les hashtag désactivés : %{tags}'
+    language_detection: Détecter automatiquement la langue
     open_in_web: Ouvrir sur le web
     over_character_limit: limite de caractères dépassée de %{max} caractères
     pin_errors:
@@ -696,6 +742,7 @@ fr:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Entrez le code généré par votre application pour confirmer
     description_html: Si vous activez <strong>l’identification à deux facteurs</strong>, vous devrez être en possession de votre téléphone afin de générer un code de connexion.

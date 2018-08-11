@@ -368,6 +368,7 @@ da:
       confirmed: Bekræftet
       expires_in: Udløber om
       last_delivery: Sidste levering
+      title: Websub
       topic: Emne
     title: Administration
   admin_mailer:
@@ -403,6 +404,7 @@ da:
       saml: SAML
     register: Opret dig
     register_elsewhere: Opret dig på en anden server
+    resend_confirmation: Gensend bekræftelses instrukser
     reset_password: Nulstil kodeord
     security: Sikkerhed
     set_new_password: Sæt et nyt kodeord
@@ -539,6 +541,8 @@ da:
       body: "%{name} følger dig nu!"
       subject: "%{name} følger dig nu"
       title: Ny følger
+    follow_request:
+      body: "%{name} har anmodet om at følge dig"
     mention:
       action: Svar
       body: 'Du blev nævnt af %{name} i:'
@@ -554,6 +558,10 @@ da:
         units:
           billion: mia.
           million: mio.
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: "\n"
   pagination:
     newer: Nyere
     next: Næste
@@ -578,18 +586,23 @@ da:
     browsers:
       blackberry: Blackberry OS
       chrome: Google Chrome
+      edge: Microsoft edge
       firefox: Mozilla Firefox
       generic: Ukendt browser
       ie: IE
+      qq: QQ browser
       safari: Apple Safari
     description: "%{browser} på %{platform}"
     ip: IP
     platforms:
+      adobe_air: Adobe air
       android: Android
       ios: iOS
       linux: Linux
       mac: Mac.
       other: ukendt platform
+      windows: Microsoft windows
+      windows_phone: Windows fon
   settings:
     authorized_apps: Godkendte apps
     back: Tilbage til Mastodon
@@ -602,6 +615,7 @@ da:
     notifications: Notifikationer
     preferences: Indstillinger
     settings: Indstillinger
+    two_factor_authentication: To-faktor godkendelse
     your_apps: Dine applikationer
   statuses:
     attached:
@@ -615,10 +629,13 @@ da:
     boosted_from_html: Fremhævet fra %{acct_link}
     content_warning: 'Advarsel om indhold: %{warning}'
     language_detection: Opfang automatisk sprog
+    open_in_web: Åbn i browser
+    over_character_limit: grænsen på %{max} tegn er overskredet
     pin_errors:
       limit: Du har allerede fastgjort det maksimale antal trut
       ownership: Dun kan ikke fastgøre en anden persons toot
       private: Ikke offentlige trut kan ikke blive fastgjort
+      reblog: Fremhævede trut kan ikke fastgøres
     show_more: Vis mere
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -627,15 +644,20 @@ da:
       public: Offentlig
       public_long: Alle kan se
       unlisted: Ikke listet
+      unlisted_long: Alle kan se, men vil ikke være listet på offentlige tidslinjer
   stream_entries:
     pinned: Fastgjort toot
+    reblogged: fremhævede
     sensitive_content: Følsomt indhold
+  terms:
+    title: Vilkår og privatlivpolitik for %{instance}
   themes:
     contrast: Høj kontrast
     default: Mastodon
     mastodon-light: Mastodon (lys)
   time:
     formats:
+      default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
     code_hint: Indtast koden der er genereret af din app for at bekræfte
