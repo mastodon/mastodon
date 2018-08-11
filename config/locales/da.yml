@@ -386,6 +386,7 @@ da:
       expires_in: Udløber om
       last_delivery: Sidste levering
       topic: Emne
+      title: Websub
     title: Administration
   admin_mailer:
     new_report:
@@ -423,6 +424,7 @@ da:
     reset_password: Nulstil kodeord
     security: Sikkerhed
     set_new_password: Sæt et nyt kodeord
+    resend_confirmation: Gensend bekræftelses instrukser
   authorize_follow:
     already_following: Du følger allerede denne konto
     follow: Følg
@@ -564,12 +566,20 @@ da:
       body: 'Din status blev fremhævet af %{name}:'
       subject: '%{name} fremhævede din status'
       title: Ny fremhævelse
+    follow_request:
+      body: '%{name} har anmodet om at følge dig'
   number:
     human:
       decimal_units:
         units:
           billion: mia.
           million: mio.
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: '
+
+            '
   pagination:
     newer: Nyere
     next: Næste
@@ -594,6 +604,8 @@ da:
       generic: Ukendt browser
       ie: IE
       safari: Apple Safari
+      edge: Microsoft edge
+      qq: QQ browser
     description: '%{browser} på %{platform}'
     ip: IP
     platforms:
@@ -602,6 +614,9 @@ da:
       linux: Linux
       mac: Mac.
       other: ukendt platform
+      adobe_air: Adobe air
+      windows: Microsoft windows
+      windows_phone: Windows fon
   settings:
     authorized_apps: Godkendte apps
     back: Tilbage til Mastodon
@@ -615,6 +630,7 @@ da:
     preferences: Indstillinger
     settings: Indstillinger
     your_apps: Dine applikationer
+    two_factor_authentication: To-faktor godkendelse
   statuses:
     attached:
       description: 'Vedhæftede: %{attached}'
@@ -630,6 +646,7 @@ da:
       limit: Du har allerede fastgjort det maksimale antal trut
       ownership: Dun kan ikke fastgøre en anden persons toot
       private: Ikke offentlige trut kan ikke blive fastgjort
+      reblog: Fremhævede trut kan ikke fastgøres
     show_more: Vis mere
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -638,10 +655,14 @@ da:
       public: Offentlig
       public_long: Alle kan se
       unlisted: Ikke listet
+      unlisted_long: Alle kan se, men vil ikke være listet på offentlige tidslinjer
     boosted_from_html: Fremhævet fra %{acct_link}
+    open_in_web: Åbn i browser
+    over_character_limit: grænsen på %{max} tegn er overskredet
   stream_entries:
     pinned: Fastgjort toot
     sensitive_content: Følsomt indhold
+    reblogged: fremhævede
   themes:
     contrast: Høj kontrast
     default: Mastodon
@@ -704,3 +725,6 @@ da:
   time:
     formats:
       month: '%b %Y'
+      default: '%b %d, %Y, %H:%M'
+  terms:
+    title: Vilkår og privatlivpolitik for %{instance}
