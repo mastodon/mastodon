@@ -10,10 +10,7 @@ en:
     contact: Contact
     contact_missing: Not set
     contact_unavailable: N/A
-    description_headline: What is %{domain}?
     documentation: Documentation
-    domain_count_after: other instances
-    domain_count_before: Connected to
     extended_description_html: |
       <h3>A good place for rules</h3>
       <p>The extended description has not been set up yet.</p>
@@ -39,6 +36,7 @@ en:
     user_count_before: Home to
     what_is_mastodon: What is Mastodon?
   accounts:
+    choices_html: "%{name}'s choices:"
     follow: Follow
     followers: Followers
     following: Following
@@ -49,6 +47,8 @@ en:
     nothing_here: There is nothing here!
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
+    pin_errors:
+      following: You must be already following the person you want to endorse
     posts: Toots
     posts_with_replies: Toots and replies
     reserved_username: The username is reserved

@@ -7,7 +7,7 @@
     .public-account-header__tabs
       .public-account-header__tabs__name
         %h1
-          = display_name(account)
+          = display_name(account, custom_emojify: true)
           %small
             = acct(account)
             = fa_icon('lock') if account.locked?

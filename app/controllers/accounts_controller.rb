@@ -11,8 +11,9 @@ class AccountsController < ApplicationController
     respond_to do |format|
       format.html do
         use_pack 'public'
-        @body_classes    = 'with-modals'
-        @pinned_statuses = []
+        @body_classes      = 'with-modals'
+        @pinned_statuses   = []
+        @endorsed_accounts = @account.endorsed_accounts.to_a.sample(4)
 
         if current_account && @account.blocking?(current_account)
           @statuses = []

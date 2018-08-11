@@ -8,6 +8,8 @@ import {
   blockAccount,
   unblockAccount,
   unmuteAccount,
+  pinAccount,
+  unpinAccount,
 } from 'flavours/glitch/actions/accounts';
 import {
   mentionCompose,
@@ -83,6 +85,14 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       dispatch(followAccount(account.get('id'), false));
     } else {
       dispatch(followAccount(account.get('id'), true));
+    }
+  },
+
+  onEndorseToggle (account) {
+    if (account.getIn(['relationship', 'endorsed'])) {
+      dispatch(unpinAccount(account.get('id')));
+    } else {
+      dispatch(pinAccount(account.get('id')));
     }
   },
 
