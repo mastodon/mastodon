@@ -5,10 +5,12 @@ el:
     about_mastodon_html: Το Mastodon είναι ένα κοινωνικό δίκτυο που βασίζεται σε ανοιχτά δικτυακά πρωτόκολλα και ελεύθερο λογισμικό ανοιχτού κώδικα. Είναι αποκεντρωμένο όπως το e-mail.
     about_this: Σχετικά
     administered_by: 'Διαχειρίζεται από:'
+    api: API
     closed_registrations: Αυτή τη στιγμή οι εγγραφές σε αυτό τον κόμβο είναι κλειστές. Αλλά! Μπορείς να βρεις έναν άλλο κόμβο για να ανοίξεις λογαριασμό και να έχεις πρόσβαση από εκεί στο ίδιο ακριβώς δίκτυο.
     contact: Επικοινωνία
     contact_missing: Δεν έχει οριστεί
     contact_unavailable: Μ/Δ
+    documentation: Τεκμηρίωση
     extended_description_html: |
       <h3>Ένα καλό σημείο για κανόνες</h3>
       <p>Η αναλυτική περιγραφή δεν έχει ακόμα οριστεί</p>
@@ -25,9 +27,11 @@ el:
     hosted_on: Το Mastodon φιλοξενείται στο %{domain}
     learn_more: Μάθε περισσότερα
     other_instances: Λίστα κόμβων
+    privacy_policy: Πολιτική απορρήτου
     source_code: Πηγαίος κώδικας
     status_count_after: καταστάσεις
-    status_count_before: Που έχουν γράψει
+    status_count_before: Που έγραψαν
+    terms: Όροι χρήσης
     user_count_after: χρήστες
     user_count_before: Σπίτι για
     what_is_mastodon: Τι είναι το Mastodon;
@@ -35,6 +39,7 @@ el:
     follow: Ακολούθησε
     followers: Ακόλουθοι
     following: Ακολουθεί
+    joined: Εγγράφηκε στις %{date}
     media: Πολυμέσα
     moved_html: 'Ο/Η %{name} μετακόμισε στο %{new_profile_link}:'
     network_hidden: Αυτή η πληροφορία δεν είναι διαθέσιμη
@@ -364,11 +369,14 @@ el:
         desc_html: Δείξε ένα σήμα προσωπικού στη σελίδα ενός χρήστη
         title: Δείξε διακριτικό προσωπικού
       site_description:
-        desc_html: Εισαγωγική παράγραφος στην αρχική σελίδα και στα meta tags. Μπορείς να χρησιμοποιήσεις HTML tags, συγκεκριμένα <code>&lt; a&gt;</code> και <code> &lt; em&gt;</code>.
+        desc_html: Εισαγωγική παράγραφος στην αρχική σελίδα. Περιέγραψε τι κάνει αυτό τον διακομιστή Mastodon διαφορετικό και ό,τι άλλο ενδιαφέρον. Μπορείς να χρησιμοποιήσεις HTML tags, συγκεκριμένα <code>&lt; a&gt;</code> και <code> &lt; em&gt;</code>.
         title: Περιγραφή κόμβου
       site_description_extended:
         desc_html: Ένα καλό μέρος για τον κώδικα δεοντολογίας, τους κανόνες, τις οδηγίες και ό,τι άλλο διαφοροποιεί τον κόμβο σου. Δέχεται και κώδικα HTML
         title: Προσαρμοσμένες εκτεταμένες πληροφορίες
+      site_short_description:
+        desc_html: Εμφανίζεται στην πλαϊνή μπάρα και στα meta tags. Περιέγραψε τι είναι το Mastodon και τι κάνει αυτό τον διακομιστή ιδιαίτερο σε μια παράγραφο. Αν μείνει κενό, θα πάρει την προκαθορισμένη περιγραφή του κόμβου.
+        title: Σύντομη περιγραφή του κόμβου
       site_terms:
         desc_html: Μπορείς να γράψεις τη δική σου πολιτική απορρήτου, όρους χρήσης ή άλλους νομικούς όρους. Μπορείς να χρησιμοποιήσεις HTML tags
         title: Προσαρμοσμένοι όροι χρήσης της υπηρεσίας
@@ -530,9 +538,13 @@ el:
     true_privacy_html: Έχε υπ' όψιν σου πως <strong>η πραγματική ιδιωτικότητα επιτυγχάνεται μόνο με κρυπτογράφηση από άκρη σε άκρη</strong>.
     unlocked_warning_html: Μπορεί ο οποιοσδήποτε να σε ακολουθήσει και να βλέπει κατευθείαν τις ιδιωτικές ενημερώσεις σου. %{lock_link} για να αναθεωρήσεις και απορρίψεις ακόλουθους.
     unlocked_warning_title: Ο λογαριασμός σου δεν είναι κλειδωμένος
+  footer:
+    developers: Ανάπτυξη
+    more: Περισσότερα…
+    resources: Πόροι
   generic:
     changes_saved_msg: Οι αλλαγές αποθηκεύτηκαν!
-    save_changes: Αποθήκευσε αλλαγές
+    save_changes: Αποθήκευσε τις αλλαγές
     validation_errors:
       one: Κάτι δεν είναι εντάξει ακόμα! Για κοίταξε το παρακάτω σφάλμα
       other: Κάτι δεν είναι εντάξει ακόμα! Για κοίταξε τα παρακάτω %{count} σφάλματα
@@ -620,11 +632,11 @@ el:
       decimal_units:
         format: "%n%u"
         units:
-          billion: Δις.
-          million: Εκ.
-          quadrillion: Τετράκις.
-          thousand: Χ.
-          trillion: Τρις.
+          billion: δις.
+          million: εκ.
+          quadrillion: τετράκις.
+          thousand: χ.
+          trillion: τρις.
   pagination:
     newer: Νεότερο
     next: Επόμενο
@@ -731,7 +743,7 @@ el:
       private_long: Εμφάνιση μόνο σε ακόλουθους
       public: Δημόσιο
       public_long: Βλέπει οποιοσδήποτε
-      unlisted: Ακαταχώριστο
+      unlisted: Μη καταχωρημένο
       unlisted_long: Βλέπει οποιοσδήποτε, αλλά δεν καταχωρείται στις δημόσιες ροές
   stream_entries:
     pinned: Καρφιτσωμένο τουτ
@@ -827,6 +839,7 @@ el:
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Βάλε τον κωδικό που δημιούργησε η εφαρμογή πιστοποίησής σου για επιβεβαίωση
     description_html: Αν ενεργοποιήσεις την <strong>πιστοποίηση 2 παραγόντων (2FA)</strong>, για να συνδεθείς θα πρέπει να έχεις το τηλέφωνό σου, που θα σου δημιουργήσει κλειδιά εισόδου.
