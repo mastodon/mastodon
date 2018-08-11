@@ -5,10 +5,12 @@ nl:
     about_mastodon_html: Mastodon is een sociaal netwerk dat gebruikt maakt van open webprotocollen en vrije software. Het is net zoals e-mail gedecentraliseerd.
     about_this: Over deze server
     administered_by: 'Beheerd door:'
+    api: API
     closed_registrations: Registreren op deze server is momenteel niet mogelijk. Je kunt echter een andere server vinden om zo toegang te krijgen tot het netwerk.
     contact: Contact
     contact_missing: Niet ingesteld
     contact_unavailable: n.v.t
+    documentation: Documentatie
     extended_description_html: |
       <h3>Een goede plek voor richtlijnen</h3>
       <p>De uitgebreide omschrijving is nog niet ingevuld.</p>
@@ -25,9 +27,11 @@ nl:
     hosted_on: Mastodon op %{domain}
     learn_more: Meer leren
     other_instances: Andere servers
+    privacy_policy: Privacybeleid
     source_code: Broncode
     status_count_after: toots
     status_count_before: Zij schreven
+    terms: Gebruiksvoorwaarden
     user_count_after: gebruikers
     user_count_before: Thuisbasis van
     what_is_mastodon: Wat is Mastodon?
@@ -35,6 +39,7 @@ nl:
     follow: Volgen
     followers: Volgers
     following: Volgend
+    joined: Geregistreerd in %{date}
     media: Media
     moved_html: "%{name} is verhuisd naar %{new_profile_link}:"
     network_hidden: Deze informatie is niet beschikbaar
@@ -530,6 +535,10 @@ nl:
     true_privacy_html: Hou er wel rekening mee dat <strong>echte privacy alleen gegarandeerd kan worden met behulp van end-to-end-encryptie</strong>.
     unlocked_warning_html: Iedereen kan jou volgen en daarmee meteen toots zien die je alleen aan jouw volgers hebt gericht. %{lock_link} om volgers te kunnen beoordelen en desnoods te weigeren.
     unlocked_warning_title: Jouw account is niet besloten
+  footer:
+    developers: Ontwikkelaars
+    more: Meer…
+    resources: Hulpmiddelen
   generic:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
     save_changes: Wijzigingen opslaan
@@ -824,6 +833,7 @@ nl:
   time:
     formats:
       default: "%d %B %Y om %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Voer de code in die door de authenticatie-app gegenereerd is
     description_html: Na het instellen van <strong>tweestapsverificatie</strong>, kun jij je alleen aanmelden als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren aanmeldcode.

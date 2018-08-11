@@ -34,9 +34,49 @@ cs:
         title: Heslo bylo změněno
       reconfirmation_instructions:
         explanation: Potvrďte novou adresu pro změnu e-mailu.
-        extra: Pokud jste tuto akci nevyžádal/a vy, prosím ignorujte tento e-mail. E-mailová adresa nebude změněna, dokud nepřejdete na výše uvedenou adresu.
+        extra: Pokud jste tuto změnu nevyžádal/a vy, prosím ignorujte tento e-mail. E-mailová adresa nebude změněna, dokud nepřejdete na výše uvedenou adresu.
         subject: 'Mastodon: Potvrďte e-mail pro %{instance}'
         title: Ověřit e-mailovou adresu
       reset_password_instructions:
         action: Změnit heslo
         explanation: Vyžádal/a jste si pro svůj účet nové heslo.
+        extra: Pokud jste tohle nevyžádal/a, prosím ignorujte tento e-mail. Vaše heslo nebude změněno, dokud nepřejdete na výše uvedenou adresu a nevytvoříte si nové.
+        subject: 'Mastodon: Instrukce pro obnovu hesla'
+        title: Obnovení hesla
+      unlock_instructions:
+        subject: 'Mastodon: Instrukce pro odemčení účtu'
+    omniauth_callbacks:
+      failure: Nelze vás ověřit z %{kind}, protože "%{reason}".
+      success: Úspěšně ověřeno z účtu %{kind}.
+    passwords:
+      no_token: Tuto stránku nemůžete navštívit, pokud nepřicházíte z e-mailu pro obnovu hesla. Pokud jste z něj přišel/la, ujistěte se, že jste použil/a celé URL z e-mailu.
+      send_instructions: Pokud vaše e-mailová adresa existuje v naší databázi, obdržíte za pár minut ve vašem e-mailu odkaz pro obnovení hesla. Prosím zkontrolujte si složku spam, jestli jste tento e-mail neobdržel/a.
+      send_paranoid_instructions: Pokud vaše e-mailová adresa existuje v naší databázi, obdržíte za pár minut ve vašem e-mailu odkaz pro obnovení hesla. Prosím zkontrolujte si složku spam, jestli jste tento e-mail neobdržel/a.
+      updated: Vaše heslo bylo úspěšně změněno. Nyní jste přihlášen/a.
+      updated_not_active: Vaše heslo bylo úspěšně změněno.
+    registrations:
+      destroyed: Sbohem! Váš účet byl úspěšně zrušen. Doufáme, že vás opět brzy uvidíme.
+      signed_up: Vítejte! Registroval/a jste se úspěšně.
+      signed_up_but_inactive: Registroval/a jste se úspěšně. Nemohli jsme vás však přihlásit, protože váš účet ještě není aktivován.
+      signed_up_but_locked: Registroval/a jste se úspěšně. Nemohli jsme vás však přihlásit, protože váš účet je uzamčen.
+      signed_up_but_unconfirmed: Na vaši e-mailovou adresu byla poslána zpráva s potvrzovacím odkazem. Pro aktivaci účtu přejděte na danou adresu. Prosím zkontrolujte si složku spam, jestli jste tento e-mail neobdržel/a.
+      update_needs_confirmation: Váš účet byl úspěšně aktualizován, ale je potřeba ověřit vaši novou e-mailovou adresu. Prosím zkontrolujte si e-mail a klikněte na odkaz pro potvrzení vaši nové e-mailové adresy. Prosím zkontrolujte si složku spam, jestli jste tento e-mail neobdržel/a.
+      updated: Váš účet byl úspěšně aktualizován.
+    sessions:
+      already_signed_out: Odhlášení proběhlo úspěšně.
+      signed_in: Přihlášení proběhlo úspěšně.
+      signed_out: Odhlášení proběhlo úspěšně.
+    unlocks:
+      send_instructions: Za pár minut obdržíte e-mail s instrukcemi pro odemčení vašeho účtu. Prosím zkontrolujte si složku spam, jestli jste tento e-mail neobdržel/a.
+      send_paranoid_instructions: Pokud váš účet existuje, obdržíte za pár minut e-mail s instrukcemi pro odemčení vašeho účtu. Prosím zkontrolujte si složku spam, jestli jste tento e-mail neobdržel/a.
+      unlocked: Váš účet byl úspěšně odemčen. Pro pokračování se prosím přihlaste.
+  errors:
+    messages:
+      already_confirmed: byl již potvrzen, prosím zkuste se přihlásit
+      confirmation_period_expired: musí být potvrzen do %{period}, prosím vyžádejte si nový
+      expired: vypršel, prosím vyžádejte si nový
+      not_found: nenalezen
+      not_locked: nebyl uzamčen
+      not_saved:
+        one: '1 chyba zabránila uložení tohoto %{resource}:'
+        other: "%{count} chyb zabránila uložení tohoto %{resource}:"
