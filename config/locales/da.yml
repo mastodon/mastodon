@@ -1,27 +1,42 @@
----
 da:
   about:
-    about_hashtag_html: Disse er offentlige toots der indeholder tagget <strong>#%{hashtag}</strong>. Du kan interagere med dem hvis du har en konto hvor som helst i fediverset.
-    about_mastodon_html: Mastodon er et socialt netværk der er baseret på åbne web protokoller og frit, open-source source software. Der er decentraliseret ligesom e-mail tjenester.
+    about_hashtag_html: Disse er offentlige toots der indeholder tagget <strong>#%{hashtag}</strong>.
+      Du kan interagere med dem hvis du har en konto hvor som helst i fediverset.
+    about_mastodon_html: Mastodon er et socialt netværk der er baseret på åbne web
+      protokoller og frit, open-source source software. Der er decentraliseret ligesom
+      e-mail tjenester.
     about_this: Om
     administered_by: 'Administreret af:'
-    closed_registrations: Registreringer er på nuværrende tidspunkt lukkede for denne instans. Du kan dog finde andre instanser du kan oprette dig på og få adgang til det samme netværk derfra.
+    closed_registrations: Registreringer er på nuværrende tidspunkt lukkede for denne
+      instans. Du kan dog finde andre instanser du kan oprette dig på og få adgang
+      til det samme netværk derfra.
     contact: Kontakt
     contact_missing: Ikke sat
     contact_unavailable: Ikke tilgængeligt
-    extended_description_html: |
-      <h3>Et godt sted for regler</h3>
+    description_headline: Hvad er %{domain}?
+    domain_count_after: andre instanser
+    domain_count_before: Forbundet til
+    extended_description_html: '<h3>Et godt sted for regler</h3>
+
       <p>Den udvidede beskrivelse er endnu ikke blevet opsat.</p>
+
+      '
     features:
-      humane_approach_body: Ved at lære fra fejl fra andre netværk, sigter Mastodon for at tage etisk designmæssig valg for at bekæmpe misbrug af sociale medier.
+      humane_approach_body: Ved at lære fra fejl fra andre netværk, sigter Mastodon
+        for at tage etisk designmæssig valg for at bekæmpe misbrug af sociale medier.
       humane_approach_title: En mere human tilgang
-      not_a_product_body: Mastodon er ikke et kommercielt netværk. Ingen reklamer, ingen datamining, ingen indhegnet haver. Der er ingen central regering.
+      not_a_product_body: Mastodon er ikke et kommercielt netværk. Ingen reklamer,
+        ingen datamining, ingen indhegnet haver. Der er ingen central regering.
       not_a_product_title: Du er en person, ikke et produkt
-      real_conversation_body: Med 500 tegn til din rådighed og understøttelse af granulært indhold og multimedie advarsler, kan du udtrykke dig på en hvilken som helst måde du ønsker.
+      real_conversation_body: Med 500 tegn til din rådighed og understøttelse af granulært
+        indhold og multimedie advarsler, kan du udtrykke dig på en hvilken som helst
+        måde du ønsker.
       real_conversation_title: Bygget til rigtige samtaler
-      within_reach_body: Adskillige apps for iOS, Android og andre platforme takket være et udviklervenligt API økosystem tillader dig at holde kontakten med dine venner hvor som helst.
+      within_reach_body: Adskillige apps for iOS, Android og andre platforme takket
+        være et udviklervenligt API økosystem tillader dig at holde kontakten med
+        dine venner hvor som helst.
       within_reach_title: Altid indenfor rækkevidde
-    generic_description: "%{domain} er en server i netværket"
+    generic_description: '%{domain} er en server i netværket'
     hosted_on: Mostodon hostet på %{domain}
     learn_more: Lær mere
     other_instances: Liste over instanser
@@ -31,27 +46,32 @@ da:
     user_count_after: brugere
     user_count_before: Hjem til
     what_is_mastodon: Hvad er Mastodon?
+    api: API
+    documentation: Dokumentation
+    privacy_policy: Privatlivspolitik
+    terms: Vilkår for service
   accounts:
     follow: Følg
     followers: Følgere
     following: Følger
     media: Multimedia
-    moved_html: "%{name} er flyttet til %{new_profile_link}:"
+    moved_html: '%{name} er flyttet til %{new_profile_link}:'
     network_hidden: Denne information er ikke tilgængelig
     nothing_here: Der er intet her!
-    people_followed_by: Folk some %{name} følger
+    people_followed_by: Folk som %{name} følger
     people_who_follow: Folk der følger %{name}
-    posts: Dyt
-    posts_with_replies: Toots og svar
-    reserved_username: Brugernavnet er reserveret
+    posts: Trut
+    posts_with_replies: Trut og svar
+    reserved_username: Brugernavnet er allerede taget
     roles:
       admin: Administrator
       bot: Robot
       moderator: Moderator
     unfollow: Følg ikke længere
+    joined: Tilmeldt den %{date}
   admin:
     account_moderation_notes:
-      create: Læg en kommentar
+      create: Læg en note
       created_msg: Moderator notat succesfuldt oprettet!
       delete: Slet
       destroyed_msg: Moderator notat succesfuldt destrueret!
@@ -133,8 +153,8 @@ da:
       search: Søg
       shared_inbox_url: Link til delt indbakke
       show:
-        created_reports: Rapporter oprettet af denne konto
-        report: rapporter
+        created_reports: Anmeldelser oprettet af denne konto
+        report: anmeld
         targeted_reports: Anmeldelser fra denne konto
       silence: Dæmp
       statuses: Statusser
@@ -148,34 +168,34 @@ da:
       web: Web
     action_logs:
       actions:
-        assigned_to_self_report: "%{name} tildelte anmeldelsen %{target} til sig selv"
-        change_email_user: "%{name} ændrede email adressen for brugeren %{target}"
-        confirm_user: "%{name} bekræftede %{target}s email adresse"
-        create_custom_emoji: "%{name} uploadede humørikonet %{target}"
-        create_domain_block: "%{name} blokerede domænet %{target}"
-        create_email_domain_block: "%{name} sortlistede email domænet %{target}"
-        demote_user: "%{name} degraderede %{target}"
-        destroy_domain_block: "%{name} fjernede blokeringen af domænet %{target}"
-        destroy_email_domain_block: "%{name} hvid-listede email domænet %{target}"
-        destroy_status: "%{name} fjernede statussen fra %{target}"
-        disable_2fa_user: "%{name} deaktiverede to faktor kravet for brugeren %{target}"
-        disable_custom_emoji: "%{name} deaktiverede humørikonet %{target}"
-        disable_user: "%{name} deaktiverede login for brugeren %{target}"
-        enable_custom_emoji: "%{name} aktiverede humørikonet %{target}"
-        enable_user: "%{name} aktiverede login for brugeren %{target}"
-        memorialize_account: "%{name} omdannede %{target}s konto til en mindeside"
-        promote_user: "%{name} forfremmede brugeren %{target}"
-        remove_avatar_user: "%{name} fjernede %{target}s profilbillede"
-        reopen_report: "%{name} genåbnede anmeldelsen %{target}"
-        reset_password_user: "%{name} nulstillede kodeordet for brugeren %{target}"
-        resolve_report: "%{name} løste anmeldelsen %{target}"
-        silence_account: "%{name} dæmpede %{target}s konto"
-        suspend_account: "%{name} udelukkede %{target}s konto"
-        unassigned_report: "%{name} fjernede tildelingen af rapporten %{target}"
-        unsilence_account: "%{name} fjernede dæmpningen fra %{target}s konto"
-        unsuspend_account: "%{name} fjernede udelukkelsen fra %{target}s konto"
-        update_custom_emoji: "%{name} opdaterede humørikonet %{target}"
-        update_status: "%{name} opdaterede status for %{target}"
+        assigned_to_self_report: '%{name} tildelte anmeldelsen %{target} til sig selv'
+        change_email_user: '%{name} ændrede email adressen for brugeren %{target}'
+        confirm_user: '%{name} bekræftede %{target}s email adresse'
+        create_custom_emoji: '%{name} uploadede humørikonet %{target}'
+        create_domain_block: '%{name} blokerede domænet %{target}'
+        create_email_domain_block: '%{name} sortlistede email domænet %{target}'
+        demote_user: '%{name} degraderede %{target}'
+        destroy_domain_block: '%{name} fjernede blokeringen af domænet %{target}'
+        destroy_email_domain_block: '%{name} hvid-listede email domænet %{target}'
+        destroy_status: '%{name} fjernede statussen fra %{target}'
+        disable_2fa_user: '%{name} deaktiverede to faktor kravet for brugeren %{target}'
+        disable_custom_emoji: '%{name} deaktiverede humørikonet %{target}'
+        disable_user: '%{name} deaktiverede login for brugeren %{target}'
+        enable_custom_emoji: '%{name} aktiverede humørikonet %{target}'
+        enable_user: '%{name} aktiverede login for brugeren %{target}'
+        memorialize_account: '%{name} omdannede %{target}s konto til en mindeside'
+        promote_user: '%{name} forfremmede brugeren %{target}'
+        remove_avatar_user: '%{name} fjernede %{target}s profilbillede'
+        reopen_report: '%{name} genåbnede anmeldelsen %{target}'
+        reset_password_user: '%{name} nulstillede kodeordet for brugeren %{target}'
+        resolve_report: '%{name} løste anmeldelsen %{target}'
+        silence_account: '%{name} dæmpede %{target}s konto'
+        suspend_account: '%{name} udelukkede %{target}s konto'
+        unassigned_report: '%{name} fjernede tildelingen af rapporten %{target}'
+        unsilence_account: '%{name} fjernede dæmpningen fra %{target}s konto'
+        unsuspend_account: '%{name} fjernede udelukkelsen fra %{target}s konto'
+        update_custom_emoji: '%{name} opdaterede humørikonet %{target}'
+        update_status: '%{name} opdaterede status for %{target}'
       title: Revisionslog
     custom_emojis:
       by_domain: Domæne
@@ -220,6 +240,9 @@ da:
       week_interactions: interaktioner denne uge
       week_users_active: aktive denne uge
       week_users_new: brugere denne uge
+      feature_relay: Føderations relæ
+      hidden_service: Føderation med skjulte tjenester
+      single_user_mode: Enkelt bruger mode
     domain_blocks:
       add_new: Tilføj ny
       created_msg: Domæne blokade bliver nu behandlet
@@ -233,7 +256,8 @@ da:
           suspend: Udeluk
         title: Ny domæne blokering
       reject_media: Afvis multimedie filer
-      reject_media_hint: Fjerner lokalt lagrede multimedie filer og nægter at hente nogen i fremtiden. Irrelevant for udelukkelser
+      reject_media_hint: Fjerner lokalt lagrede multimedie filer og nægter at hente
+        nogen i fremtiden. Irrelevant for udelukkelser
       severities:
         noop: Ingen
         silence: Dæmp
@@ -242,7 +266,7 @@ da:
       show:
         affected_accounts:
           one: En konto i databasen påvirket
-          other: "%{count} konti i databasen påvirket"
+          other: '%{count} konti i databasen påvirket'
         retroactive:
           silence: Fjern dæmpningen af alle eksisterende konti fra dette domæne
           suspend: Fjern udelukkelsen af alle eksisterende konti fra dette domæne
@@ -257,6 +281,8 @@ da:
       new:
         create: Tilføj domæne
       title: Email sortliste
+      created_msg: Tilføjede succesfuldt email domænet til sortliste
+      destroyed_msg: Fjernede succesfuldt email domænet fra sortliste
     instances:
       account_count: Kendte konti
       domain_name: Domæne
@@ -295,7 +321,8 @@ da:
         create_and_resolve: Løs med notat
         create_and_unresolve: Genåbne med notat
         delete: Slet
-        placeholder: Beskriv hvilke handlinger der er blevet udført, eller andre relevante opdateringer...
+        placeholder: Beskriv hvilke handlinger der er blevet udført, eller andre relevante
+          opdateringer...
       reopen: Genåben anmeldelse
       report: 'Anmeldelse #%{id}'
       report_contents: Indhold
@@ -340,6 +367,8 @@ da:
       timeline_preview:
         desc_html: Vis offentlig tidslinje på landingssiden
       title: Indstillinger for side
+      site_short_description:
+        title: Kort beskrivelse af instans
     statuses:
       back_to_account: Tilbage til kontosiden
       batch:
@@ -360,12 +389,12 @@ da:
     title: Administration
   admin_mailer:
     new_report:
-      body: "%{reporter} har anmeldt %{target}"
+      body: '%{reporter} har anmeldt %{target}'
       body_remote: Nogen fra %{domain} har anmeldt %{target}
       subject: Ny anmeldelse for %{instance} (#%{id})
   application_mailer:
     notification_preferences: Ændre email indstillinger
-    salutation: "%{name},"
+    salutation: '%{name},'
     settings: 'Ændre email indstillinger: %{link}'
     view: 'Se:'
     view_profile: Se profil
@@ -373,6 +402,8 @@ da:
   applications:
     invalid_url: Det angivne URL er ugyldigt
     warning: Vær meget forsigtig med disse data. Del dem aldrig med nogen!
+    created: Applikation blev oprettet
+    destroyed: Applikation er blevet slettet
   auth:
     change_password: Kodeord
     confirm_email: Bekræft email
@@ -404,18 +435,18 @@ da:
     title: Følg %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}t"
-      about_x_months: "%{count} måneder"
-      about_x_years: "%{count}år"
-      almost_x_years: "%{count}år"
+      about_x_hours: '%{count}t'
+      about_x_months: '%{count} måneder'
+      about_x_years: '%{count}år'
+      almost_x_years: '%{count}år'
       half_a_minute: Lige nu
-      less_than_x_minutes: "%{count}m"
+      less_than_x_minutes: '%{count}m'
       less_than_x_seconds: Lige nu
-      over_x_years: "%{count}år"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
-      x_months: "%{count}md"
-      x_seconds: "%{count}s"
+      over_x_years: '%{count}år'
+      x_days: '%{count}d'
+      x_minutes: '%{count}m'
+      x_months: '%{count}md'
+      x_seconds: '%{count}s'
   deletes:
     bad_password_msg: Godt forsøg, hackere! Forkert kodeord
     confirm_password: Indtast dit nuværende kodeord for at bekræfte din identitet
@@ -461,6 +492,11 @@ da:
   generic:
     changes_saved_msg: Ændringerne blev gemt!
     save_changes: Gem ændringer
+    validation_errors:
+      one: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende
+        fejl forneden
+      other: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende
+        %{count} fejl forneden
   imports:
     types:
       blocking: Blokeringsliste
@@ -482,7 +518,7 @@ da:
     invited_by: 'Du er blevet inviteret af:'
     max_uses:
       one: 1 benyttelse
-      other: "%{count} benyttelser"
+      other: '%{count} benyttelser'
     max_uses_prompt: Ubegrænset
     table:
       expires_at: Udløber
@@ -493,7 +529,8 @@ da:
       limit: Du har nået det højeste antal lister
   media_attachments:
     validations:
-      images_and_video: Kan ikke vedhæfte en video til en status der allerede har billeder
+      images_and_video: Kan ikke vedhæfte en video til en status der allerede har
+        billeder
       too_many: Kan ikke vedhæfte mere en 4 filer
   migrations:
     acct: username@domain af den nye konto
@@ -504,14 +541,19 @@ da:
   notification_mailer:
     digest:
       action: Se alle notifikationer
-      mention: "%{name} nævnte dig i:"
+      mention: '%{name} nævnte dig i:'
       title: Mens du var væk...
+      new_followers_summary:
+        other: Du har også fået %{count} nye følgere mens du var væk! Fantastisk!
+      subject:
+        one: 1 ny notifikation siden du sidst var her 🐘
+        other: '%{count} nye notifikationer siden du sidst var her 🐘'
     favourite:
       body: 'Din status blev favoriseret af %{name}:'
-      subject: "%{name} favoriserede din status"
+      subject: '%{name} favoriserede din status'
     follow:
-      body: "%{name} følger dig nu!"
-      subject: "%{name} følger dig nu"
+      body: '%{name} følger dig nu!'
+      subject: '%{name} følger dig nu'
       title: Ny følger
     mention:
       action: Svar
@@ -520,7 +562,7 @@ da:
       title: Ny omtale
     reblog:
       body: 'Din status blev fremhævet af %{name}:'
-      subject: "%{name} fremhævede din status"
+      subject: '%{name} fremhævede din status'
       title: Ny fremhævelse
   number:
     human:
@@ -552,7 +594,7 @@ da:
       generic: Ukendt browser
       ie: IE
       safari: Apple Safari
-    description: "%{browser} på %{platform}"
+    description: '%{browser} på %{platform}'
     ip: IP
     platforms:
       android: Android
@@ -577,11 +619,11 @@ da:
     attached:
       description: 'Vedhæftede: %{attached}'
       image:
-        one: "%{count} billede"
-        other: "%{count} billeder"
+        one: '%{count} billede'
+        other: '%{count} billeder'
       video:
-        one: "%{count} video"
-        other: "%{count} videoer"
+        one: '%{count} video'
+        other: '%{count} videoer'
     content_warning: 'Advarsel om indhold: %{warning}'
     language_detection: Opfang automatisk sprog
     pin_errors:
@@ -596,6 +638,7 @@ da:
       public: Offentlig
       public_long: Alle kan se
       unlisted: Ikke listet
+    boosted_from_html: Fremhævet fra %{acct_link}
   stream_entries:
     pinned: Fastgjort toot
     sensitive_content: Følsomt indhold
@@ -610,14 +653,17 @@ da:
     enabled: To-faktor godkendelse er aktiveret
     enabled_success: To-faktor godkendelse succesfuldt aktiveret
     generate_recovery_codes: Generer gendannelseskoder
-    manual_instructions: 'Hvis du ikke kan scanne QR koden er er nødt til at skrive koden ind manuelt, kan er din almindelig tekst secret:'
+    manual_instructions: 'Hvis du ikke kan scanne QR koden er er nødt til at skrive
+      koden ind manuelt, kan er din almindelig tekst secret:'
     recovery_codes: Reserve koder
     recovery_codes_regenerated: Reserve koder blev succesfuldt regenereret
     setup: Sæt op
-    wrong_code: Den indtastede kode var ugyldig! Er serverens tid og enhedens tid korrekte?
+    wrong_code: Den indtastede kode var ugyldig! Er serverens tid og enhedens tid
+      korrekte?
   user_mailer:
     backup_ready:
-      explanation: Din anmodning for fuld backup af din Mastodon konto. Den er nu klar til at blive hentet!
+      explanation: Din anmodning for fuld backup af din Mastodon konto. Den er nu
+        klar til at blive hentet!
       subject: Dit arkiv er klar til at blive hentet ned
       title: Udpluk af arkiv
     welcome:
@@ -625,17 +671,36 @@ da:
       explanation: Her er nogle råd til at starte med
       final_action: Kom igang med at poste
       full_handle: Dit fulde brugernavn
-      full_handle_hint: Dette er hvad du vil fortælle dine venner så de kan sende dig beskeder eller følge dig fra andre instanser.
+      full_handle_hint: Dette er hvad du vil fortælle dine venner så de kan sende
+        dig beskeder eller følge dig fra andre instanser.
       review_preferences_action: Ændre præferencer
       subject: Velkommen til Mastodon
-      tip_following: Du følger som standard administratoren(e) for den server du er på. For at finde flere folk, tjek både den lokale og fælles tidslinje.
-      tip_local_timeline: Den lokale tidslinje er et have af folk i %{instance}. Disse er dine umiddelbare naboer!
-      tip_mobile_webapp: Hvis din mobil browser tilbyder dig at tilføje Mastodon til din hjemmeskærm, kan du modtage push meddelelser. Dette opfører sig på mange måder ligesom en almindelig app!
+      tip_following: Du følger som standard administratoren(e) for den server du er
+        på. For at finde flere folk, tjek både den lokale og fælles tidslinje.
+      tip_local_timeline: Den lokale tidslinje er et have af folk i %{instance}. Disse
+        er dine umiddelbare naboer!
+      tip_mobile_webapp: Hvis din mobil browser tilbyder dig at tilføje Mastodon til
+        din hjemmeskærm, kan du modtage push meddelelser. Dette opfører sig på mange
+        måder ligesom en almindelig app!
       tips: Råd
       title: Velkommen ombord, %{name}!
   users:
     invalid_email: E-mail adressen er ugyldig
     invalid_otp_token: Ugyldig to-faktor kode
-    otp_lost_help_html: Hvis du har mistet adgang til begge, kan du få kontakt via %{email}
-    seamless_external_login: Du er logget ind via en ekstern service, så er kodeord og e-mail indstillinger ikke tilgængelige.
+    otp_lost_help_html: Hvis du har mistet adgang til begge, kan du få kontakt via
+      %{email}
+    seamless_external_login: Du er logget ind via en ekstern service, så er kodeord
+      og e-mail indstillinger ikke tilgængelige.
     signed_in_as: 'Logget ind som:'
+  footer:
+    developers: Udviklere
+    more: Mere…
+    resources: Ressourcer
+  remote_follow:
+    no_account_html: Har du ikke en konto? Du kan <a href='%{sign_up_path}' target='_blank'>oprette
+      dig her</a>
+    proceed: Fortsæt for at følge
+    prompt: 'Du er ved at følge:'
+  time:
+    formats:
+      month: '%b %Y'
