@@ -5,10 +5,12 @@ cs:
     about_mastodon_html: Mastodon je sociální síť založená na otevřených webových protokolech a svobodném, otevřeném softwaru. Je decentrovalizovaná jako e-mail.
     about_this: O této instanci
     administered_by: 'Server spravuje:'
+    api: API
     closed_registrations: Registrace na této instanci jsou momentálně uzavřené. Můžete si však najít jinou instanci, vytvořit si na ní účet a získat z ní přístup do naprosto stejné sítě.
     contact: Kontakt
     contact_missing: Nenastaveno
     contact_unavailable: Neuvedeno
+    documentation: Dokumentace
     extended_description_html: |
       <h3>Dobré místo pro pravidla</h3>
       <p>Rozšířený popis ještě nebyl nastaven.</p>
@@ -25,9 +27,11 @@ cs:
     hosted_on: Mastodon hostovaný na %{domain}
     learn_more: Zjistit více
     other_instances: Seznam instancí
+    privacy_policy: Zásady soukromí
     source_code: Zdrojový kód
     status_count_after: příspěvků
     status_count_before: Kteří napsali
+    terms: Podmínky používání
     user_count_after: uživatelů
     user_count_before: Domov
     what_is_mastodon: Co je Mastodon?
@@ -35,6 +39,7 @@ cs:
     follow: Sledovat
     followers: Sledovatelé
     following: Sleduje
+    joined: Připojil/a se %{date}
     media: Média
     moved_html: 'Účet %{name} byl přesunut na %{new_profile_link}:'
     network_hidden: Tato informace není k dispozici
@@ -42,7 +47,7 @@ cs:
     people_followed_by: Lidé, které %{name} sleduje
     people_who_follow: Lidé, kteří sledují uživatele %{name}
     posts: Tooty
-    posts_with_replies: Tooty s odpověďmi
+    posts_with_replies: Tooty a odpovědi
     reserved_username: Toto uživatelské jméno je rezervováno
     roles:
       admin: Administrátor
@@ -137,7 +142,7 @@ cs:
         report: nahlášení
         targeted_reports: Nahlášení vytvořena o tomto účtu
       silence: Utišit
-      statuses: Statusy
+      statuses: Příspěvky
       subscribe: Odebírat
       title: Účty
       unconfirmed_email: Nepotvrzený e-mail
@@ -157,7 +162,7 @@ cs:
         demote_user: "%{name} degradoval/a uživatele %{target}"
         destroy_domain_block: "%{name} odblokoval/a doménu %{target}"
         destroy_email_domain_block: "%{name} odebral/a e-mailovou doménu %{target} z černé listiny"
-        destroy_status: "%{name} odstranil/a status uživatele %{target}"
+        destroy_status: "%{name} odstranil/a příspěvek uživatele %{target}"
         disable_2fa_user: "%{name} vypnul/a požadavek pro dvoufaktorovou autentikaci pro uživatele %{target}"
         disable_custom_emoji: "%{name} zakázal/a emoji %{target}"
         disable_user: "%{name} zakázal/a přihlašování pro uživatele %{target}"
@@ -175,7 +180,7 @@ cs:
         unsilence_account: "%{name} odtišil/a účet uživatele %{target}"
         unsuspend_account: "%{name} zrušil/a suspenzaci účtu uživatele %{target}"
         update_custom_emoji: "%{name} aktualizoval/a emoji %{target}"
-        update_status: "%{name} aktualizoval/a status uživatele %{target}"
+        update_status: "%{name} aktualizoval/a příspěvek uživatele %{target}"
       title: Záznam auditu
     custom_emojis:
       by_domain: Doména
@@ -327,7 +332,7 @@ cs:
       view: Zobrazit
     settings:
       activity_api_enabled:
-        desc_html: Počty lokálně publikovaných statusů, aktivních uživatelů a nových registrací, v týdenních intervalech
+        desc_html: Počty lokálně publikovaných příspěvků, aktivních uživatelů a nových registrací, v týdenních intervalech
         title: Publikovat hromadné statistiky o uživatelské aktivitě
       bootstrap_timeline_accounts:
         desc_html: Je-li uživatelskch jmen více, oddělujte je čárkami. Lze zadat pouze místní a odemknuté účty. Je-li tohle prázdné, jsou výchozí hodnotou všichni místní administrátoři.
@@ -364,11 +369,14 @@ cs:
         desc_html: Zobrazit na stránce uživatele odznak člena personálu
         title: Zobrazit odznak personálu
       site_description:
-        desc_html: Úvodní odstavec na hlavní straně a v meta značkách. Můžete zde používat HTML značky, hlavně <code>&lt;a&gt;</code> a <code>&lt;em&gt;</code>.
+        desc_html: Úvodní odstavec na hlavní straně. Popište, díky čemu je tento server Mastodon zvláštní, a cokoliv jiného, co je důležité. Můžete zde používat HTML značky, hlavně <code>&lt;a&gt;</code> a <code>&lt;em&gt;</code>.
         title: Popis instance
       site_description_extended:
         desc_html: Dobré místo pro vaše pravidla, pokyny a jiné věci, které vaši instanci odlišují od ostatních. Lze použít HTML značky
-        title: Vlastní doplňujísí informace
+        title: Vlastní doplňující informace
+      site_short_description:
+        desc_html: Zobrazen v postranním panelu a meta značkách. Popište, co je Mastodon a díky čemu je tento server zvláštní v jediném odstavci. Je-li tohle prázdné, zobrazí se popis instance.
+        title: Krátký popis instance
       site_terms:
         desc_html: Můžete si napsat vlastní zásady soukromí, podmínky používání či jiné legality. Můžete použít HTML značky
         title: Vlastní podmínky používání
@@ -390,7 +398,7 @@ cs:
       media:
         title: Média
       no_media: Žádná média
-      title: Statusy účtů
+      title: Příspěvky účtu
       with_media: S médii
     subscriptions:
       callback_url: Zpáteční URL
@@ -411,7 +419,7 @@ cs:
     settings: 'Změnit volby e-mailu: %{link}'
     view: 'Zobrazit:'
     view_profile: Zobrazit profil
-    view_status: Zobrazit status
+    view_status: Zobrazit příspěvek
   applications:
     created: Aplikace úspěšně vytvořena
     destroyed: Aplikace úspěšně smazána
@@ -520,7 +528,7 @@ cs:
       title: Přidat nový filtr
   followers:
     domain: Doména
-    explanation_html: Chcete-li zaručit soukromí vašich statusů, musíte mít na vědomí, kdo vás sleduje. <strong>Vaše soukromé statusy jsou doručeny na všechny instance, kde máte sledovatele</strong>. Nejspíš si je budete chtít zkontrolovat a odstranit sledovatele na instancích, jejichž personálu či softwaru nedůvěřujete s respektováním vašeho soukromí.
+    explanation_html: Chcete-li zaručit soukromí vašich příspěvků, musíte mít na vědomí, kdo vás sleduje. <strong>Vaše soukromé příspěvky jsou doručeny na všechny instance, kde máte sledovatele</strong>. Nejspíš si je budete chtít zkontrolovat a odstranit sledovatele na instancích, jejichž personálu či softwaru nedůvěřujete s respektováním vašeho soukromí.
     followers_count: Počet sledovatelů
     lock_link: Zamkněte svůj účet
     purge: Odstranit ze sledovatelů
@@ -528,8 +536,12 @@ cs:
       one: V průběhu utišování sledovatelů z jedné domény...
       other: V průběhu utišování sledovatelů z %{count} domén...
     true_privacy_html: Berte prosím na vědomí, že <strong>skutečného soukromí se dá dosáhnout pouze za pomoci end-to-end šifrování</strong>.
-    unlocked_warning_html: Kdokoliv vás může sledovat a okamžitě vidět vaše soukromé statusy. %{lock_link}, abyste mohl/a zkontrolovat a odmítnout sledovatele.
+    unlocked_warning_html: Kdokoliv vás může sledovat a okamžitě vidět vaše soukromé příspěvky. %{lock_link}, abyste mohl/a zkontrolovat a odmítnout sledovatele.
     unlocked_warning_title: Váš účet není zamknutý
+  footer:
+    developers: Vývojáři
+    more: Více…
+    resources: Zdroje
   generic:
     changes_saved_msg: Změny byly úspěšně uloženy!
     save_changes: Uložit změny
@@ -572,7 +584,7 @@ cs:
       limit: Dosáhl/a jste maximálního počtu seznamů
   media_attachments:
     validations:
-      images_and_video: Ke statusu, který již obsahuje obrázky, nelze připojit video
+      images_and_video: K příspěvku, který již obsahuje obrázky, nelze připojit video
       too_many: Nelze připojit více než 4 soubory
   migrations:
     acct: přezdívka@doména nového účtu
@@ -594,8 +606,8 @@ cs:
         other: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
       title: Ve vaší absenci...
     favourite:
-      body: 'Váš status si oblíbil/a %{name}:'
-      subject: "%{name} si oblíbil/a váš status"
+      body: 'Váš příspěvek si oblíbil/a %{name}:'
+      subject: "%{name} si oblíbil/a váš příspěvek"
       title: Nové oblíbení
     follow:
       body: "%{name} vás nyní sleduje!"
@@ -612,8 +624,8 @@ cs:
       subject: Byl/a jste zmíněn/a uživatelem %{name}
       title: Nová zmínka
     reblog:
-      body: 'Váš status byl boostnutý uživatelem %{name}:'
-      subject: "%{name} boostnul/a váš status"
+      body: 'Váš příspěvek byl boostnutý uživatelem %{name}:'
+      subject: "%{name} boostnul/a váš příspěvek"
       title: Nové boostnutí
   number:
     human:
@@ -624,7 +636,7 @@ cs:
           million: mil
           quadrillion: bld
           thousand: tis
-          trillion: T
+          trillion: bil
   pagination:
     newer: Novější
     next: Starší
@@ -827,6 +839,7 @@ cs:
   time:
     formats:
       default: "%d. %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Pro potvrzení zadejte kód vygenerovaný vaší autentikační aplikací
     description_html: Povolíte-li <strong>dvoufaktorové ověřování</strong>, budete při přihlášení potřebovat telefon, který vám vygeneruje přístupové tokeny, které musíte zadat.

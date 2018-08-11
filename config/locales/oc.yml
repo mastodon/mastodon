@@ -5,10 +5,12 @@ oc:
     about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
     about_this: A prepaus d’aquesta instància
     administered_by: 'Gerida per :'
+    api: API
     closed_registrations: Las inscripcions son clavadas pel moment sus aquesta instància.
     contact: Contacte
     contact_missing: Pas parametrat
     contact_unavailable: Pas disponible
+    documentation: Documentacion
     extended_description_html: |
       <h3>Una bona plaça per las règlas</h3>
       <p>La descripcion longa es pas estada causida pel moment.</p>
@@ -25,9 +27,11 @@ oc:
     hosted_on: Mastodon albergat sus %{domain}
     learn_more: Ne saber mai
     other_instances: Lista d’instàncias
+    privacy_policy: Politica de confidencialitat
     source_code: Còdi font
     status_count_after: estatuts
     status_count_before: qu’an escrich
+    terms: Condicions d’utilizacion
     user_count_after: personas
     user_count_before: Ostal de
     what_is_mastodon: Qu’es Mastodon ?
@@ -35,6 +39,7 @@ oc:
     follow: Sègre
     followers: Seguidors
     following: Abonaments
+    joined: Arribèt lo %{date}
     media: Mèdias
     moved_html: "%{name} a mudat a %{new_profile_link} :"
     network_hidden: Aquesta informacion es pas disponibla
@@ -365,11 +370,14 @@ oc:
         desc_html: Mostrar lo badge Personal sus la pagina de perfil
         title: Mostrar lo badge personal
       site_description:
-        desc_html: Afichada jos la forma de paragraf sus la pagina d’acuèlh e utilizada coma balisa meta. Podètz utilizar de balisas HTML, en particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
+        desc_html: Paragraf d’introduccion sus la pagina d’acuèlh. Explicatz çò que fa diferent aqueste servidor Mastodon e tot çò qu’es important de dire. Podètz utilizare de balises HTML, en particular <code>&lt;a&gt;</code> e<code>&lt;em&gt;</code>.
         title: Descripcion de l’instància
       site_description_extended:
         desc_html: Afichada sus la pagina d’informacion complementària del site<br>Podètz utilizar de balisas HTML
         title: Descripcion espandida del site
+      site_short_description:
+        desc_html: Mostrat dins la barra laterala e dins las meta balisas. Explica çò qu’es Mastodon e perque aqueste servidor es especial en un solet paragraf. S’es void, serà garnit amb la descripcion de l’instància.
+        title: Descripcion corta de l’instància
       site_terms:
         desc_html: Afichada sus la pagina de las condicions d’utilizacion<br>Podètz utilizar de balisas HTML
         title: Politica de confidencialitat del site
@@ -587,6 +595,10 @@ oc:
     true_privacy_html: Mèfi que la <strong>vertadièra confidencialitat pòt solament èsser amb un chiframent del cap a la fin (end-to-end)</strong>.
     unlocked_warning_html: Tot lo monde pòt vos sègre e veire sulpic vòstres estatuts privats. %{lock_link} per poder repassar e regetar los seguidors.
     unlocked_warning_title: Vòstre compte es pas clavat
+  footer:
+    developers: Desvolopaires
+    more: Mai…
+    resources: Ressorsas
   generic:
     changes_saved_msg: Cambiaments ben realizats !
     save_changes: Salvar los cambiaments
