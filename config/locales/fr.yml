@@ -1,27 +1,45 @@
----
 fr:
   about:
-    about_hashtag_html: Figurent ci-dessous les pouets tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec eux si vous avez un compte n’importe où dans le Fediverse.
-    about_mastodon_html: Mastodon est un réseau social utilisant des formats ouverts et des logiciels libres. Comme le courriel, il est décentralisé.
+    about_hashtag_html: Figurent ci-dessous les pouets tagués avec <strong>#%{hashtag}</strong>.
+      Vous pouvez interagir avec eux si vous avez un compte n’importe où dans le Fediverse.
+    about_mastodon_html: Mastodon est un réseau social utilisant des formats ouverts
+      et des logiciels libres. Comme le courriel, il est décentralisé.
     about_this: À propos
     administered_by: 'Administré par :'
-    closed_registrations: Les inscriptions sont actuellement fermées sur cette instance. Cependant, vous pouvez trouver une autre instance sur laquelle vous créer un compte et à partir de laquelle vous pourrez accéder au même réseau.
+    closed_registrations: Les inscriptions sont actuellement fermées sur cette instance.
+      Cependant, vous pouvez trouver une autre instance sur laquelle vous créer un
+      compte et à partir de laquelle vous pourrez accéder au même réseau.
     contact: Contact
     contact_missing: Manquant
     contact_unavailable: Non disponible
-    extended_description_html: |
-      <h3>Un bon endroit pour les règles</h3>
+    description_headline: Qu’est-ce que %{domain} ?
+    domain_count_after: autres instances
+    domain_count_before: Connecté⋅e⋅s à
+    extended_description_html: '<h3>Un bon endroit pour les règles</h3>
+
       <p>La description étendue n’a pas été remplie.</p>
+
+      '
     features:
-      humane_approach_body: Ayant appris des échecs d’autres réseaux, Mastodon à l’ambition de combattre l’abus des médias sociaux en effectuant des choix de conception éthiques.
+      humane_approach_body: Ayant appris des échecs d’autres réseaux, Mastodon à l’ambition
+        de combattre l’abus des médias sociaux en effectuant des choix de conception
+        éthiques.
       humane_approach_title: Une approche plus humaine
-      not_a_product_body: Mastodon n’est pas un réseau commercial. Ici, pas de publicités, pas de prospection de données et pas d’environnements fermés. Il n’y existe aucune autorité centrale.
+      not_a_product_body: Mastodon n’est pas un réseau commercial. Ici, pas de publicités,
+        pas de prospection de données et pas d’environnements fermés. Il n’y existe
+        aucune autorité centrale.
       not_a_product_title: Vous êtes une personne, pas un produit
-      real_conversation_body: Avec 500 caractères à votre disposition, une grande granularité en termes de diffusion et la possibilité de masquer vos messages derrières des avertissements, vous êtes libre de vous exprimer de la manière qui vous plaît.
+      real_conversation_body: Avec 500 caractères à votre disposition, une grande
+        granularité en termes de diffusion et la possibilité de masquer vos messages
+        derrières des avertissements, vous êtes libre de vous exprimer de la manière
+        qui vous plaît.
       real_conversation_title: Construit pour de vraies conversations
-      within_reach_body: Grâce à l’existence d’un environnement API accueillant pour les développeur·se·s, de multiples applications pour iOS, Android et d’autres plateformes vous permettent de rester en contact avec vos ami·e·s où que vous soyez.
+      within_reach_body: Grâce à l’existence d’un environnement API accueillant pour
+        les développeur·se·s, de multiples applications pour iOS, Android et d’autres
+        plateformes vous permettent de rester en contact avec vos ami·e·s où que vous
+        soyez.
       within_reach_title: Toujours à portée de main
-    generic_description: "%{domain} est seulement un serveur du réseau"
+    generic_description: '%{domain} est seulement un serveur du réseau'
     hosted_on: Instance Mastodon hébergée par %{domain}
     learn_more: En savoir plus
     other_instances: Liste des instances
@@ -31,12 +49,14 @@ fr:
     user_count_after: utilisateur⋅ice⋅s
     user_count_before: Abrite
     what_is_mastodon: Qu’est-ce que Mastodon ?
+    api: API
+    documentation: Documentation
   accounts:
     follow: Suivre
     followers: Abonné⋅e⋅s
     following: Abonnements
     media: Médias
-    moved_html: "%{name} a changé de compte pour %{new_profile_link} :"
+    moved_html: '%{name} a changé de compte pour %{new_profile_link} :'
     network_hidden: Cette information n’est pas disponible
     nothing_here: Rien à voir ici !
     people_followed_by: Personnes suivies par %{name}
@@ -148,34 +168,40 @@ fr:
       web: Web
     action_logs:
       actions:
-        assigned_to_self_report: "%{name} s'est assigné le signalement de %{target} à eux-même"
-        change_email_user: "%{name} a modifié l'adresse de courriel de l'utilisateur %{target}"
-        confirm_user: "%{name} adresse courriel confirmée de l'utilisateur %{target}"
-        create_custom_emoji: "%{name} a importé de nouveaux emoji %{target}"
-        create_domain_block: "%{name} a bloqué le domaine %{target}"
-        create_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste noire"
-        demote_user: "%{name} a rétrogradé l'utilisateur %{target}"
-        destroy_domain_block: "%{name} a débloqué le domaine %{target}"
-        destroy_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste blanche"
-        destroy_status: "%{name} a enlevé le statut de %{target}"
-        disable_2fa_user: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur %{target}"
-        disable_custom_emoji: "%{name} a désactivé l'emoji %{target}"
-        disable_user: "%{name} a désactivé le login pour l'utilisateur %{target}"
-        enable_custom_emoji: "%{name} a activé l'emoji %{target}"
-        enable_user: "%{name} a activé le login pour l'utilisateur %{target}"
-        memorialize_account: "%{name} a transformé le compte de %{target} en une page de mémorial"
-        promote_user: "%{name} a promu l'utilisateur %{target}"
-        remove_avatar_user: "%{name} a supprimé l'avatar de %{target}'s"
-        reopen_report: "%{name} a ré-ouvert le signalement %{target}"
-        reset_password_user: "%{name} a réinitialisé le mot de passe de %{target}"
-        resolve_report: "%{name} a résolu la dénonciation de %{target}"
-        silence_account: "%{name} a mis le compte %{target} en mode silence"
-        suspend_account: "%{name} a suspendu le compte %{target}"
-        unassigned_report: "%{name} a dés-assigné le signalement %{target}"
-        unsilence_account: "%{name} a mis fin au mode silence de %{target}"
-        unsuspend_account: "%{name} a réactivé le compte de %{target}"
-        update_custom_emoji: "%{name} a mis à jour l'emoji %{target}"
-        update_status: "%{name} a mis à jour le statut de %{target}"
+        assigned_to_self_report: '%{name} s''est assigné le signalement de %{target}
+          à eux-même'
+        change_email_user: '%{name} a modifié l''adresse de courriel de l''utilisateur
+          %{target}'
+        confirm_user: '%{name} adresse courriel confirmée de l''utilisateur %{target}'
+        create_custom_emoji: '%{name} a importé de nouveaux emoji %{target}'
+        create_domain_block: '%{name} a bloqué le domaine %{target}'
+        create_email_domain_block: '%{name} a mis le domaine du courriel %{target}
+          sur liste noire'
+        demote_user: '%{name} a rétrogradé l''utilisateur %{target}'
+        destroy_domain_block: '%{name} a débloqué le domaine %{target}'
+        destroy_email_domain_block: '%{name} a mis le domaine du courriel %{target}
+          sur liste blanche'
+        destroy_status: '%{name} a enlevé le statut de %{target}'
+        disable_2fa_user: '%{name} a désactivé l''authentification à deux facteurs
+          pour l''utilisateur %{target}'
+        disable_custom_emoji: '%{name} a désactivé l''emoji %{target}'
+        disable_user: '%{name} a désactivé le login pour l''utilisateur %{target}'
+        enable_custom_emoji: '%{name} a activé l''emoji %{target}'
+        enable_user: '%{name} a activé le login pour l''utilisateur %{target}'
+        memorialize_account: '%{name} a transformé le compte de %{target} en une page
+          de mémorial'
+        promote_user: '%{name} a promu l''utilisateur %{target}'
+        remove_avatar_user: '%{name} a supprimé l''avatar de %{target}''s'
+        reopen_report: '%{name} a ré-ouvert le signalement %{target}'
+        reset_password_user: '%{name} a réinitialisé le mot de passe de %{target}'
+        resolve_report: '%{name} a résolu la dénonciation de %{target}'
+        silence_account: '%{name} a mis le compte %{target} en mode silence'
+        suspend_account: '%{name} a suspendu le compte %{target}'
+        unassigned_report: '%{name} a dés-assigné le signalement %{target}'
+        unsilence_account: '%{name} a mis fin au mode silence de %{target}'
+        unsuspend_account: '%{name} a réactivé le compte de %{target}'
+        update_custom_emoji: '%{name} a mis à jour l''emoji %{target}'
+        update_status: '%{name} a mis à jour le statut de %{target}'
       title: Journal d'audit
     custom_emojis:
       by_domain: Domaine
@@ -196,7 +222,8 @@ fr:
         title: Ajouter un nouvel émoji personnalisé
       overwrite: Réécrire
       shortcode: Raccourci
-      shortcode_hint: Au moins deux caractères, seulement des caractères alphanumériques ou des tirets bas
+      shortcode_hint: Au moins deux caractères, seulement des caractères alphanumériques
+        ou des tirets bas
       title: Émoji personnalisés
       unlisted: Délisté
       update_failed_msg: N'a pas pu mettre à jour cet emoji
@@ -209,15 +236,22 @@ fr:
       domain: Domaine
       new:
         create: Créer le blocage
-        hint: Le blocage de domaine n’empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
+        hint: Le blocage de domaine n’empêchera pas la création de comptes dans la
+          base de données, mais il appliquera automatiquement et rétrospectivement
+          des méthodes de modération spécifiques sur ces comptes.
         severity:
-          desc_html: "<strong>Silence</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspendre</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil. Utilisez <strong>Aucun</strong> si vous voulez simplement rejeter les fichiers multimédia."
+          desc_html: <strong>Silence</strong> rendra les messages des comptes concernés
+            invisibles à ceux qui ne les suivent pas. <strong>Suspendre</strong> supprimera
+            tout le contenu des comptes concernés, les médias, et les données du profil.
+            Utilisez <strong>Aucun</strong> si vous voulez simplement rejeter les
+            fichiers multimédia.
           noop: Aucune
           silence: Masqué
           suspend: Suspendre
         title: Nouveau blocage de domaine
       reject_media: Fichiers média rejetés
-      reject_media_hint: Supprime localement les fichiers média stockés et refuse d’en télécharger ultérieurement. Ne concerne pas les suspensions
+      reject_media_hint: Supprime localement les fichiers média stockés et refuse
+        d’en télécharger ultérieurement. Ne concerne pas les suspensions
       severities:
         noop: Aucune
         silence: Masquer
@@ -226,7 +260,7 @@ fr:
       show:
         affected_accounts:
           one: Un compte affecté dans la base de données
-          other: "%{count} comptes affectés dans la base de données"
+          other: '%{count} comptes affectés dans la base de données'
         retroactive:
           silence: Annuler le masquage sur tous les comptes existants pour ce domaine
           suspend: Annuler la suspension sur tous les comptes existants pour ce domaine
@@ -279,7 +313,8 @@ fr:
         create_and_resolve: Résoudre avec une note
         create_and_unresolve: Ré-ouvrir avec une note
         delete: Effacer
-        placeholder: Décrivez quelles actions ont été prises, ou toute autre mise à jour…
+        placeholder: Décrivez quelles actions ont été prises, ou toute autre mise
+          à jour…
       reopen: Ré-ouvrir le signalement
       report: 'Signalement #%{id}'
       report_contents: Contenu
@@ -298,26 +333,32 @@ fr:
       view: Voir
     settings:
       activity_api_enabled:
-        desc_html: Nombre de statuts affichés localement, d'utilisateurs actifs et de nouveaux enregistrements dans les registres hebdomadaires
+        desc_html: Nombre de statuts affichés localement, d'utilisateurs actifs et
+          de nouveaux enregistrements dans les registres hebdomadaires
         title: Publier des statistiques agrégées sur l'activité des utilisateurs
       bootstrap_timeline_accounts:
-        desc_html: Séparez les noms d’utilisateur·ice par des virgules. Ne fonctionne qu’avec des comptes locaux et non-verrouillés. Si laissé vide, tous les administrateur⋅ice⋅s locaux sont sélectionné⋅e⋅s.
+        desc_html: Séparez les noms d’utilisateur·ice par des virgules. Ne fonctionne
+          qu’avec des comptes locaux et non-verrouillés. Si laissé vide, tous les
+          administrateur⋅ice⋅s locaux sont sélectionné⋅e⋅s.
         title: Abonnements par défaut pour les nouveaux·elles utilisateur·ice·s
       contact_information:
         email: Entrez une adresse courriel publique
         username: Entrez un nom d’utilisateur⋅ice
       hero:
-        desc_html: Affichée sur la page d'accueil. Au moins 600x100px recommandé. Lorsqu'elle n'est pas définie, se rabat sur la vignette de l'instance
+        desc_html: Affichée sur la page d'accueil. Au moins 600x100px recommandé.
+          Lorsqu'elle n'est pas définie, se rabat sur la vignette de l'instance
         title: Image d'en-tête
       peers_api_enabled:
         desc_html: Noms des domaines que cette instance a découvert dans le fediverse
         title: Publier la liste des instances découvertes
       registrations:
         closed_message:
-          desc_html: Affiché sur la page d’accueil lorsque les inscriptions sont fermées<br>Vous pouvez utiliser des balises HTML
+          desc_html: Affiché sur la page d’accueil lorsque les inscriptions sont fermées<br>Vous
+            pouvez utiliser des balises HTML
           title: Message de fermeture des inscriptions
         deletion:
-          desc_html: Permettre à tou·te·s les utilisateur·ice·s de supprimer leur compte
+          desc_html: Permettre à tou·te·s les utilisateur·ice·s de supprimer leur
+            compte
           title: Autoriser les suppressions de compte
         min_invite_role:
           disabled: Personne
@@ -326,28 +367,37 @@ fr:
           desc_html: Autoriser tout le monde à créer un compte
           title: Ouvrir les inscriptions
       show_known_fediverse_at_about_page:
-        desc_html: Lorsque l'option est activée, les pouets provenant de toutes les instances connues sont affichés dans la prévisualisation. Si non, seuls les pouets locaux sont affichés.
+        desc_html: Lorsque l'option est activée, les pouets provenant de toutes les
+          instances connues sont affichés dans la prévisualisation. Si non, seuls
+          les pouets locaux sont affichés.
         title: Afficher le fediverse connu dans la prévisualisation du fil
       show_staff_badge:
         desc_html: Montrer un badge de responsable sur une page utilisateur
         title: Montrer un badge de responsable
       site_description:
-        desc_html: Paragraphe introductif sur la page d'accueil et dans les méta-balises. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
+        desc_html: Paragraphe introductif sur la page d'accueil. Décrivez ce qui rend
+          spécifique ce serveur Mastodon et toute autre chose importante. Vous pouvez
+          utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
         title: Description du site
       site_description_extended:
-        desc_html: Affichée sur la page d’informations complémentaires du site<br>Vous pouvez utiliser des balises HTML
+        desc_html: Affichée sur la page d’informations complémentaires du site<br>Vous
+          pouvez utiliser des balises HTML
         title: Description étendue du site
       site_terms:
-        desc_html: Affichée sur la page des conditions d’utilisation du site<br>Vous pouvez utiliser des balises HTML
+        desc_html: Affichée sur la page des conditions d’utilisation du site<br>Vous
+          pouvez utiliser des balises HTML
         title: Politique de confidentialité
       site_title: Titre du site
       thumbnail:
-        desc_html: Utilisée pour les prévisualisations via OpenGraph et l’API. 1200x630px recommandé
+        desc_html: Utilisée pour les prévisualisations via OpenGraph et l’API. 1200x630px
+          recommandé
         title: Vignette de l’instance
       timeline_preview:
         desc_html: Afficher le fil public sur la page d’accueil
         title: Prévisualisation du fil global
       title: Paramètres du site
+      site_short_description:
+        title: Description courte de l'instance
     statuses:
       back_to_account: Retour à la page du compte
       batch:
@@ -368,14 +418,37 @@ fr:
       title: WebSub
       topic: Sujet
     title: Administration
+    dashboard:
+      config: Configuration
+      feature_invites: Liens d'invitation
+      feature_relay: Relais de fédération
+      features: Fonctionnalités
+      hidden_service: Fédération avec des services cachés
+      recent_users: Utilisateurs récents
+      search: Recherche texte-plein
+      single_user_mode: Mode utilisateur unique
+      software: Logiciel
+      space: Utilisation d'espace
+      title: Tableau de bord
+      total_users: utilisateurs au total
+      trends: Tendances
+      week_interactions: interactions cette semaine
+      week_users_active: actif cette semaine
+      week_users_new: utilisateurs cette semaine
+    relays:
+      add_new: Ajouter un nouveau relais
+      inbox_url: URL de relais
+      setup: Paramétrer une connexion de relais
+      status: Statut
+      title: Relais
   admin_mailer:
     new_report:
-      body: "%{reporter} a signalé %{target}"
+      body: '%{reporter} a signalé %{target}'
       body_remote: Quelqu'un de %{domain} a signalé %{target}
       subject: Nouveau signalement sur %{instance} (#%{id})
   application_mailer:
     notification_preferences: Modifier les préférences de courriel
-    salutation: "%{name},"
+    salutation: '%{name},'
     settings: 'Changer les préférences courriel : %{link}'
     view: 'Voir :'
     view_profile: Voir le profil
@@ -389,18 +462,22 @@ fr:
     warning: Soyez prudent⋅e avec ces données. Ne les partagez pas !
     your_token: Votre jeton d’accès
   auth:
-    agreement_html: En vous inscrivant, vous souscrivez <a href="%{rules_path}">aux règles de l’instance</a> et à <a href="%{terms_path}">nos conditions d’utilisation</a>.
+    agreement_html: En vous inscrivant, vous souscrivez <a href="%{rules_path}">aux
+      règles de l’instance</a> et à <a href="%{terms_path}">nos conditions d’utilisation</a>.
     change_password: Mot de passe
     confirm_email: Confirmer mon adresse mail
     delete_account: Supprimer le compte
-    delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.
+    delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer
+      ici</a>. Il vous sera demandé de confirmer cette action.
     didnt_get_confirmation: Vous n’avez pas reçu les consignes de confirmation ?
     forgot_password: Mot de passe oublié ?
-    invalid_reset_password_token: Le lien de réinitialisation du mot de passe est invalide ou a expiré. Merci de réessayer.
+    invalid_reset_password_token: Le lien de réinitialisation du mot de passe est
+      invalide ou a expiré. Merci de réessayer.
     login: Se connecter
     logout: Se déconnecter
     migrate_account: Déplacer vers un compte différent
-    migrate_account_html: Si vous voulez rediriger ce compte vers un autre, vous pouvez le <a href="%{path}">configurer ici</a>.
+    migrate_account_html: Si vous voulez rediriger ce compte vers un autre, vous pouvez
+      le <a href="%{path}">configurer ici</a>.
     or: ou
     or_log_in_with: Ou authentifiez-vous avec
     providers:
@@ -414,7 +491,8 @@ fr:
     set_new_password: Définir le nouveau mot de passe
   authorize_follow:
     already_following: Vous suivez déjà ce compte
-    error: Malheureusement, il y a eu une erreur en cherchant les détails du compte distant
+    error: Malheureusement, il y a eu une erreur en cherchant les détails du compte
+      distant
     follow: Suivre
     follow_request: 'Vous avez demandé à suivre :'
     following: 'Youpi ! Vous suivez  :'
@@ -425,25 +503,30 @@ fr:
     title: Suivre %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count} h"
-      about_x_months: "%{count} mois"
-      about_x_years: "%{count} an(s)"
-      almost_x_years: "%{count} an(s)"
+      about_x_hours: '%{count} h'
+      about_x_months: '%{count} mois'
+      about_x_years: '%{count} an(s)'
+      almost_x_years: '%{count} an(s)'
       half_a_minute: À l’instant
-      less_than_x_minutes: "%{count} min"
+      less_than_x_minutes: '%{count} min'
       less_than_x_seconds: À l’instant
-      over_x_years: "%{count}an(s)"
-      x_days: "%{count} j"
-      x_minutes: "%{count} min"
-      x_months: "%{count} mois"
-      x_seconds: "%{count} s"
+      over_x_years: '%{count}an(s)'
+      x_days: '%{count} j'
+      x_minutes: '%{count} min'
+      x_months: '%{count} mois'
+      x_seconds: '%{count} s'
   deletes:
     bad_password_msg: Bien essayé ! Mot de passe incorrect
     confirm_password: Entrez votre mot de passe pour vérifier votre identité
-    description_html: Cela va supprimer votre compte et le désactiver de manière <strong>permanente et irréversible</strong>. Votre nom d’utilisateur⋅ice restera réservé afin d’éviter la confusion.
+    description_html: Cela va supprimer votre compte et le désactiver de manière <strong>permanente
+      et irréversible</strong>. Votre nom d’utilisateur⋅ice restera réservé afin d’éviter
+      la confusion.
     proceed: Supprimer compte
     success_msg: Votre compte a été supprimé avec succès
-    warning_html: Seule la suppression du contenu depuis cette instance est garantie. Le contenu qui a été partagé est susceptible de laisser des traces. Les serveurs hors-lignes ainsi que ceux n’étant plus abonnés à vos publications ne mettront pas leur base de données à jour.
+    warning_html: Seule la suppression du contenu depuis cette instance est garantie.
+      Le contenu qui a été partagé est susceptible de laisser des traces. Les serveurs
+      hors-lignes ainsi que ceux n’étant plus abonnés à vos publications ne mettront
+      pas leur base de données à jour.
     warning_title: Disponibilité du contenu disséminé
   errors:
     '403': Vous n’avez pas accès à cette page.
@@ -454,14 +537,20 @@ fr:
       title: Vérification de sécurité échouée
     '429': Trop de requêtes émises dans un délai donné
     '500':
-      content: Nous sommes désolé·e·s, mais quelque chose s’est mal passé de notre côté.
+      content: Nous sommes désolé·e·s, mais quelque chose s’est mal passé de notre
+        côté.
       title: Cette page n’est pas correcte
-    noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript. Sinon, essayez l'une des <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">applications natives</a> pour Mastodon pour votre plate-forme.
+    noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript. Sinon, essayez
+      l'une des <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">applications
+      natives</a> pour Mastodon pour votre plate-forme.
   exports:
     archive_takeout:
       date: Date
       download: Télécharger votre archive
-      hint_html: Vous pouvez demander une archive de vos  <strong>pouets et médias téléversés</strong>. Les données exportées seront au format ActivityPub, lisible par tout logiciel compatible. Vous pouvez demander une archive tous les 7 jours.
+      hint_html: Vous pouvez demander une archive de vos  <strong>pouets et médias
+        téléversés</strong>. Les données exportées seront au format ActivityPub, lisible
+        par tout logiciel compatible. Vous pouvez demander une archive tous les 7
+        jours.
       in_progress: Élaboration de votre archive....
       request: Demandez vos archives
       size: Taille
@@ -472,15 +561,21 @@ fr:
     storage: Médias stockés
   followers:
     domain: Domaine
-    explanation_html: Si vous voulez être sûr⋅e que vos statuts restent privés, vous devez savoir qui vous suit. <strong>Vos statuts privés seront diffusés à toutes les instances des utilisateur⋅ice⋅s qui vous suivent</strong>. Vous voudrez peut-être les passer en revue et les supprimer si vous n’êtes pas sûr⋅e que votre vie privée sera respectée par l’administration ou le logiciel de ces instances.
+    explanation_html: Si vous voulez être sûr⋅e que vos statuts restent privés, vous
+      devez savoir qui vous suit. <strong>Vos statuts privés seront diffusés à toutes
+      les instances des utilisateur⋅ice⋅s qui vous suivent</strong>. Vous voudrez
+      peut-être les passer en revue et les supprimer si vous n’êtes pas sûr⋅e que
+      votre vie privée sera respectée par l’administration ou le logiciel de ces instances.
     followers_count: Nombre d’abonné⋅e⋅s
     lock_link: Rendez votre compte privé
     purge: Retirer de la liste d’abonné⋅e⋅s
     success:
       one: Suppression des abonné⋅e⋅s venant d’un domaine en cours…
       other: Suppression des abonné⋅e⋅s venant de %{count} domaines en cours…
-    true_privacy_html: Soyez conscient⋅e⋅s <strong>qu’une vraie confidentialité ne peut être atteinte que par un chiffrement de bout-en-bout</strong>.
-    unlocked_warning_html: N’importe qui peut vous suivre et voir vos statuts privés. %{lock_link} afin de pouvoir vérifier et rejeter des abonné⋅e⋅s.
+    true_privacy_html: Soyez conscient⋅e⋅s <strong>qu’une vraie confidentialité ne
+      peut être atteinte que par un chiffrement de bout-en-bout</strong>.
+    unlocked_warning_html: N’importe qui peut vous suivre et voir vos statuts privés.
+      %{lock_link} afin de pouvoir vérifier et rejeter des abonné⋅e⋅s.
     unlocked_warning_title: Votre compte n’est pas privé
   generic:
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
@@ -489,8 +584,11 @@ fr:
       one: Quelque chose ne va pas ! Vérifiez l’erreur ci-dessous
       other: Certaines choses ne vont pas ! Vérifiez les %{count} erreurs ci-dessous
   imports:
-    preface: Vous pouvez importer certaines données comme les personnes que vous suivez ou bloquez sur votre compte sur cette instance à partir de fichiers créés sur une autre instance.
-    success: Vos données ont été importées avec succès et seront traitées en temps et en heure
+    preface: Vous pouvez importer certaines données comme les personnes que vous suivez
+      ou bloquez sur votre compte sur cette instance à partir de fichiers créés sur
+      une autre instance.
+    success: Vos données ont été importées avec succès et seront traitées en temps
+      et en heure
     types:
       blocking: Liste d’utilisateur⋅ice⋅s bloqué⋅e⋅s
       following: Liste d’utilisateur⋅ice⋅s suivi⋅e⋅s
@@ -511,65 +609,70 @@ fr:
     generate: Générer
     max_uses:
       one: 1 usage
-      other: "%{count} usages"
+      other: '%{count} usages'
     max_uses_prompt: Pas de limite
-    prompt: Générer et partager des liens avec les autres pour donner accès à cette instance
+    prompt: Générer et partager des liens avec les autres pour donner accès à cette
+      instance
     table:
       expires_at: Expire
       uses: Utilise
     title: Inviter des gens
+    invited_by: 'Vous avez été invité par :'
   lists:
     errors:
       limit: Vous avez atteint le nombre maximum de listes
   media_attachments:
     validations:
-      images_and_video: Impossible de joindre une vidéo à un statut contenant déjà des images
+      images_and_video: Impossible de joindre une vidéo à un statut contenant déjà
+        des images
       too_many: Impossible de joindre plus de 4 fichiers
   migrations:
     acct: utilisateur@domaine du nouveau compte
     currently_redirecting: 'Votre profile va être redirigé vers :'
     proceed: Enregistrer
-    updated_msg: Les paramètres de votre migration de compte ont été mis à jour avec succès !
+    updated_msg: Les paramètres de votre migration de compte ont été mis à jour avec
+      succès !
   moderation:
     title: Modération
   notification_mailer:
     digest:
       action: Voir toutes les notifications
-      body: 'Voici ce que vous avez raté sur ${instance} depuis votre dernière visite le %{since} :'
-      mention: "%{name} vous a mentionné⋅e dans :"
+      body: 'Voici ce que vous avez raté sur ${instance} depuis votre dernière visite
+        le %{since} :'
+      mention: '%{name} vous a mentionné⋅e dans :'
       new_followers_summary:
         one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
         other: Vous avez %{count} nouveaux⋅elles abonné⋅e·s ! Incroyable !
       subject:
-        one: "Une nouvelle notification depuis votre dernière visite \U0001F418"
-        other: "%{count} nouvelles notifications depuis votre dernière visite \U0001F418"
+        one: Une nouvelle notification depuis votre dernière visite 🐘
+        other: '%{count} nouvelles notifications depuis votre dernière visite 🐘'
       title: Pendant votre absence...
     favourite:
-      body: "%{name} a ajouté votre post à ses favoris :"
-      subject: "%{name} a ajouté votre post à ses favoris"
+      body: '%{name} a ajouté votre post à ses favoris :'
+      subject: '%{name} a ajouté votre post à ses favoris'
       title: Nouveau favori
     follow:
-      body: "%{name} vous suit !"
-      subject: "%{name} vous suit"
+      body: '%{name} vous suit !'
+      subject: '%{name} vous suit'
       title: Nouvel·le abonné·e
     follow_request:
       action: Gérer les demandes d'abonnement
-      body: "%{name} a demandé à vous suivre"
+      body: '%{name} a demandé à vous suivre'
       subject: 'Abonné⋅es en attente : %{name}'
       title: Nouvelle demande d'abonnement
     mention:
       action: Répondre
-      body: "%{name} vous a mentionné⋅e dans :"
-      subject: "%{name} vous a mentionné·e"
+      body: '%{name} vous a mentionné⋅e dans :'
+      subject: '%{name} vous a mentionné·e'
       title: Nouvelle mention
     reblog:
-      body: "%{name} a partagé votre statut :"
-      subject: "%{name} a partagé votre statut"
+      body: '%{name} a partagé votre statut :'
+      subject: '%{name} a partagé votre statut'
       title: Nouveau partage
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: '%n%u'
         units:
           billion: G
           million: M
@@ -582,7 +685,7 @@ fr:
     next: Suivant
     older: Plus ancien
     prev: Précédent
-    truncate: "&hellip;"
+    truncate: '&hellip;'
   preferences:
     languages: Langues
     other: Autre
@@ -619,8 +722,9 @@ fr:
       uc_browser: UCBrowser
       weibo: Weibo
     current_session: Session courante
-    description: "%{browser} sur %{platform}"
-    explanation: Ceci est la liste des navigateurs actuellement connectés à votre compte Mastodon.
+    description: '%{browser} sur %{platform}'
+    explanation: Ceci est la liste des navigateurs actuellement connectés à votre
+      compte Mastodon.
     ip: Adresse IP
     platforms:
       adobe_air: Adobe Air
@@ -657,11 +761,11 @@ fr:
     attached:
       description: 'Attaché : %{attached}'
       image:
-        one: "%{count} image"
-        other: "%{count} images"
+        one: '%{count} image'
+        other: '%{count} images'
       video:
-        one: "%{count} vidéo"
-        other: "%{count} vidéos"
+        one: '%{count} vidéo'
+        other: '%{count} vidéos'
     boosted_from_html: Repartagé depuis %{acct_link}
     content_warning: 'Attention au contenu : %{warning}'
     disallowed_hashtags:
@@ -682,62 +786,115 @@ fr:
       public: Public
       public_long: Tout le monde peut voir vos statuts
       unlisted: Public sans être affiché sur le fil public
-      unlisted_long: Tout le monde peut voir vos statuts mais ils ne seront pas sur listés sur les fils publics
+      unlisted_long: Tout le monde peut voir vos statuts mais ils ne seront pas sur
+        listés sur les fils publics
+    language_detection: Détecter automatiquement la langue
   stream_entries:
     pinned: Pouet épinglé
     reblogged: a partagé
     sensitive_content: Contenu sensible
   terms:
-    title: "%{instance} Conditions d’utilisations et politique de confidentialité"
+    title: '%{instance} Conditions d’utilisations et politique de confidentialité'
   themes:
     contrast: Contraste élevé
     default: Mastodon
     mastodon-light: Mastodon (clair)
   time:
     formats:
-      default: "%d %b %Y, %H:%M"
+      default: '%d %b %Y, %H:%M'
+      month: '%b %Y'
   two_factor_authentication:
     code_hint: Entrez le code généré par votre application pour confirmer
-    description_html: Si vous activez <strong>l’identification à deux facteurs</strong>, vous devrez être en possession de votre téléphone afin de générer un code de connexion.
+    description_html: Si vous activez <strong>l’identification à deux facteurs</strong>,
+      vous devrez être en possession de votre téléphone afin de générer un code de
+      connexion.
     disable: Désactiver
     enable: Activer
     enabled: L’authentification à deux facteurs est activée
     enabled_success: Identification à deux facteurs activée avec succès
     generate_recovery_codes: Générer les codes de récupération
-    instructions_html: "<strong>Scannez ce QR code grâce à Google Authenticator, Authy ou une application similaire sur votre téléphone</strong>. Désormais, cette application génèrera des jetons que vous devrez saisir à chaque connexion."
-    lost_recovery_codes: Les codes de récupération vous permettent de retrouver les accès à votre comptre si vous perdez votre téléphone. Si vous perdez vos codes de récupération, vous pouvez les générer à nouveau ici. Vos anciens codes de récupération seront invalidés.
-    manual_instructions: 'Si vous ne pouvez pas scanner ce QR code et devez l’entrer manuellement, voici le secret en clair :'
+    instructions_html: <strong>Scannez ce QR code grâce à Google Authenticator, Authy
+      ou une application similaire sur votre téléphone</strong>. Désormais, cette
+      application génèrera des jetons que vous devrez saisir à chaque connexion.
+    lost_recovery_codes: Les codes de récupération vous permettent de retrouver les
+      accès à votre comptre si vous perdez votre téléphone. Si vous perdez vos codes
+      de récupération, vous pouvez les générer à nouveau ici. Vos anciens codes de
+      récupération seront invalidés.
+    manual_instructions: 'Si vous ne pouvez pas scanner ce QR code et devez l’entrer
+      manuellement, voici le secret en clair :'
     recovery_codes: Codes de récupération
     recovery_codes_regenerated: Codes de récupération régénérés avec succès
-    recovery_instructions_html: Si vous perdez l’accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour retrouver l’accès à votre compte. <strong>Conservez les codes de récupération en sécurité</strong>. Par exemple, en les imprimant et en les stockant avec vos autres documents importants.
+    recovery_instructions_html: Si vous perdez l’accès à votre téléphone, vous pouvez
+      utiliser un des codes de récupération ci-dessous pour retrouver l’accès à votre
+      compte. <strong>Conservez les codes de récupération en sécurité</strong>. Par
+      exemple, en les imprimant et en les stockant avec vos autres documents importants.
     setup: Installer
-    wrong_code: Les codes entrés sont incorrects ! L’heure du serveur et celle de votre appareil sont-elles correctes ?
+    wrong_code: Les codes entrés sont incorrects ! L’heure du serveur et celle de
+      votre appareil sont-elles correctes ?
   user_mailer:
     backup_ready:
-      explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon. Elle est maintenant prête à être téléchargée !
+      explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon.
+        Elle est maintenant prête à être téléchargée !
       subject: Votre archive est prête à être téléchargée
       title: Retrait de l'archive
     welcome:
       edit_profile_action: Configuration du profil
-      edit_profile_step: Vous pouvez personnaliser votre profil en téléchargeant un avatar, une image d'en-tête, en changeant votre pseudo et plus encore. Si vous souhaitez examiner les nouveaux abonnés avant qu'ils ne soient autorisés à vous suivre, vous pouvez verrouiller votre compte.
+      edit_profile_step: Vous pouvez personnaliser votre profil en téléchargeant un
+        avatar, une image d'en-tête, en changeant votre pseudo et plus encore. Si
+        vous souhaitez examiner les nouveaux abonnés avant qu'ils ne soient autorisés
+        à vous suivre, vous pouvez verrouiller votre compte.
       explanation: Voici quelques conseils pour vous aider à démarrer
       final_action: Commencer à publier
-      final_step: 'Commencez à poster ! Même sans abonné·es, vos messages publics peuvent être vus par d''autres, par exemple sur la chronologie locale et dans les hashtags. Vous pouvez vous présenter sur le hashtag #introductions.'
+      final_step: 'Commencez à poster ! Même sans abonné·es, vos messages publics
+        peuvent être vus par d''autres, par exemple sur la chronologie locale et dans
+        les hashtags. Vous pouvez vous présenter sur le hashtag #introductions.'
       full_handle: Votre pleine maîtrise
-      full_handle_hint: C'est ce que vous diriez à vos amis pour qu'ils puissent vous envoyer un message ou vous suivre à partir d'une autre instance.
+      full_handle_hint: C'est ce que vous diriez à vos amis pour qu'ils puissent vous
+        envoyer un message ou vous suivre à partir d'une autre instance.
       review_preferences_action: Modifier les préférences
-      review_preferences_step: Assurez-vous de définir vos préférences, telles que les courriels que vous aimeriez recevoir ou le niveau de confidentialité auquel vous aimeriez que vos messages soient soumis par défaut. Si vous n'avez pas le mal des transports, vous pouvez choisir d'activer la lecture automatique GIF.
+      review_preferences_step: Assurez-vous de définir vos préférences, telles que
+        les courriels que vous aimeriez recevoir ou le niveau de confidentialité auquel
+        vous aimeriez que vos messages soient soumis par défaut. Si vous n'avez pas
+        le mal des transports, vous pouvez choisir d'activer la lecture automatique
+        GIF.
       subject: Bienvenue sur Mastodon
-      tip_bridge_html: Si vous venez de Twitter, vous pouvez retrouver vos amis sur Mastodon en utilisant le <a href="%{bridge_url}">bridge app</a>. Cela ne fonctionne que s'ils ont aussi utilisé cette application !
-      tip_federated_timeline: La chronologie fédérée est une vue en direct du réseau Mastodon. Mais elle n'inclut que les personnes auxquelles vos voisin·es sont abonné·es, donc elle n'est pas complète.
-      tip_following: Vous suivez les administrateurs et administratrices de votre serveur par défaut. Pour trouver d'autres personnes intéressantes, consultez les chronologies locales et fédérées.
-      tip_local_timeline: La chronologie locale est une vue des personnes sur %{instance}. Ce sont vos voisines et voisins immédiats !
-      tip_mobile_webapp: Si votre navigateur mobile vous propose d'ajouter Mastodon à votre écran d'accueil, vous pouvez recevoir des notifications. Il agit comme une application native de bien des façons !
+      tip_bridge_html: Si vous venez de Twitter, vous pouvez retrouver vos amis sur
+        Mastodon en utilisant le <a href="%{bridge_url}">bridge app</a>. Cela ne fonctionne
+        que s'ils ont aussi utilisé cette application !
+      tip_federated_timeline: La chronologie fédérée est une vue en direct du réseau
+        Mastodon. Mais elle n'inclut que les personnes auxquelles vos voisin·es sont
+        abonné·es, donc elle n'est pas complète.
+      tip_following: Vous suivez les administrateurs et administratrices de votre
+        serveur par défaut. Pour trouver d'autres personnes intéressantes, consultez
+        les chronologies locales et fédérées.
+      tip_local_timeline: La chronologie locale est une vue des personnes sur %{instance}.
+        Ce sont vos voisines et voisins immédiats !
+      tip_mobile_webapp: Si votre navigateur mobile vous propose d'ajouter Mastodon
+        à votre écran d'accueil, vous pouvez recevoir des notifications. Il agit comme
+        une application native de bien des façons !
       tips: Astuces
       title: Bienvenue à bord, %{name} !
   users:
     invalid_email: L’adresse courriel est invalide
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
     otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
-    seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
+    seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres
+      concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
+  filters:
+    contexts:
+      home: Ligne de temps personnelle
+      notifications: Notifications
+      public: Lignes de temps public
+      thread: Conversations
+    edit:
+      title: Filtre d'édition
+    index:
+      delete: Effacer
+      title: Filtres
+    new:
+      title: Ajouter un nouveau filtre
+  footer:
+    developers: Développeurs
+    more: Davantage…
+    resources: Ressources
