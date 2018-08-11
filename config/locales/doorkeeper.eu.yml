@@ -1,3 +1,4 @@
+---
 eu:
   activerecord:
     attributes:
@@ -32,8 +33,7 @@ eu:
       help:
         native_redirect_uri: Erabili %{native_redirect_uri} proba lokaletarako
         redirect_uri: Erabili lerro bat URI bakoitzeko
-        scopes: Banandu esparruak espazioekin. Laga hutsik lehenetsitako esparruak
-          erabiltzeko.
+        scopes: Banandu esparruak espazioekin. Laga hutsik lehenetsitako esparruak erabiltzeko.
       index:
         application: Aplikazioa
         callback_url: Itzulera URLa
@@ -60,7 +60,7 @@ eu:
         title: Errore bat gertatu da
       new:
         able_to: Egin ahal izango du
-        prompt: '%{client_name} aplikazioak zure kontua atzitzea eskatu du'
+        prompt: "%{client_name} aplikazioak zure kontua atzitzea eskatu du"
         title: Baimena behar da
       show:
         title: Kopiatu baimen kode hau eta itsatsi aplikazioan.
@@ -72,45 +72,29 @@ eu:
       index:
         application: Aplikazioa
         created_at: Baimenduta
-        date_format: '%Y-%m-%d %H:%M:%S'
+        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Esparruak
         title: Zuk baimendutako aplikazioak
     errors:
       messages:
-        access_denied: Baliabidearen jabeak edo baimenaren zerbitzariak eskaria ukatu
-          du.
-        credential_flow_not_configured: Baliabidearen jabearen pasahitza kredentzialen
-          fluxuak huts egin du Doorkeeper.configure.resource_owner_from_credentials
-          konfiguratu gabe dagoelako.
-        invalid_client: Bezeroaren autentifikazioak huts egin du bezero ezezaguna
-          delako, ez delako bezero autentifikazioa txertatu, edo autentifikazio metodoa
-          ez delako onartzen.
-        invalid_grant: Emandako autorizatzea baliogabea da, iraungitu da, indargabetu
-          da. ez dator bat autorizatze eskarian erabilitako URI-arekin, edo beste
-          bezero batek sortu du.
+        access_denied: Baliabidearen jabeak edo baimenaren zerbitzariak eskaria ukatu du.
+        credential_flow_not_configured: Baliabidearen jabearen pasahitza kredentzialen fluxuak huts egin du Doorkeeper.configure.resource_owner_from_credentials konfiguratu gabe dagoelako.
+        invalid_client: Bezeroaren autentifikazioak huts egin du bezero ezezaguna delako, ez delako bezero autentifikazioa txertatu, edo autentifikazio metodoa ez delako onartzen.
+        invalid_grant: Emandako autorizatzea baliogabea da, iraungitu da, indargabetu da. ez dator bat autorizatze eskarian erabilitako URI-arekin, edo beste bezero batek sortu du.
         invalid_redirect_uri: Sartutako birbideratze URI-a baliogabea da.
-        invalid_request: Eskaerak beharrezkoa den parametro bat falta du, onartu gabeko
-          parametro-balio bat du, edo beste moduren batean gaizki osatua dago.
-        invalid_resource_owner: Emandako baliabidearen jabearen kredentzialak baliogabeak
-          dira, edo baliabidearen jabea ez da aurkitu
-        invalid_scope: Eskatutako esparrua baliogabea da, ezezaguna, edo gaizki osatua
-          dago.
+        invalid_request: Eskaerak beharrezkoa den parametro bat falta du, onartu gabeko parametro-balio bat du, edo beste moduren batean gaizki osatua dago.
+        invalid_resource_owner: Emandako baliabidearen jabearen kredentzialak baliogabeak dira, edo baliabidearen jabea ez da aurkitu
+        invalid_scope: Eskatutako esparrua baliogabea da, ezezaguna, edo gaizki osatua dago.
         invalid_token:
           expired: Sarbide token-a iraungitu da
           revoked: Sarbide token-a indargabetua izan da
           unknown: Sarbide token-a baliogabea da
-        resource_owner_authenticator_not_configured: Baliabidearen jabearen bilaketak
-          huts egin du Doorkeeper.configure.resource_owner_authenticator konfiguratu
-          gabe dagoelako.
-        server_error: Autorizatze zerbitzariak eskaera betetzea eragotzi duen ustekabeko
-          baldintza bat aurkitu du.
-        temporarily_unavailable: Autorizatze zerbitzariak ezin du orain eskaera bete  une
-          batez zerbitzariak gainezka egin duelako edo mantentze lanetan dagoelako.
-        unauthorized_client: Bezeroak ez du eskaera hau metodo hau erabiliz egiteko
-          baimenik.
+        resource_owner_authenticator_not_configured: Baliabidearen jabearen bilaketak huts egin du Doorkeeper.configure.resource_owner_authenticator konfiguratu gabe dagoelako.
+        server_error: Autorizatze zerbitzariak eskaera betetzea eragotzi duen ustekabeko baldintza bat aurkitu du.
+        temporarily_unavailable: Autorizatze zerbitzariak ezin du orain eskaera bete  une batez zerbitzariak gainezka egin duelako edo mantentze lanetan dagoelako.
+        unauthorized_client: Bezeroak ez du eskaera hau metodo hau erabiliz egiteko baimenik.
         unsupported_grant_type: Autorizatze mota ez da onartzen autorizatze zerbitzarian.
-        unsupported_response_type: Autorizatze zerbitzari honek ez du onartzen erantzun
-          mota hau.
+        unsupported_response_type: Autorizatze zerbitzari honek ez du onartzen erantzun mota hau.
     flash:
       applications:
         create:
@@ -133,7 +117,6 @@ eu:
       follow: aldatu kontuaren erlazioak
       push: jaso push jakinarazpenak
       read: irakurri zure kontuko datu guztiak
-      write: kontuaren datu guztiak aldatzea
       read:accounts: ikusi kontuaren informazioa
       read:blocks: ikusi zure blokeoak
       read:favourites: ikusi zure gogokoak
@@ -145,6 +128,7 @@ eu:
       read:reports: ikusi zure salaketak
       read:search: bilatu zure izenean
       read:statuses: ikusi mezu guztiak
+      write: kontuaren datu guztiak aldatzea
       write:accounts: zure profila aldatzea
       write:blocks: kontuak eta domeinuak blokeatzea
       write:favourites: gogoko mezuak

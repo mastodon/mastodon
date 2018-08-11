@@ -1,11 +1,12 @@
+---
 cs:
   activerecord:
     attributes:
       doorkeeper/application:
         name: Název aplikace
-        website: Stránka aplikace
         redirect_uri: URI přesměrování
         scopes: Rozsahy
+        website: Stránka aplikace
     errors:
       models:
         doorkeeper/application:
@@ -32,8 +33,7 @@ cs:
       help:
         native_redirect_uri: Použijte %{native_redirect_uri} pro místní testy
         redirect_uri: Jedno URI na řádek
-        scopes: Oddělujte rozsahy mezerami. Pro použití výchozích rozsahů zanechte
-          prázdné.
+        scopes: Oddělujte rozsahy mezerami. Pro použití výchozích rozsahů zanechte prázdné.
       index:
         application: Aplikace
         callback_url: Zpáteční URL
@@ -72,38 +72,27 @@ cs:
       index:
         application: Aplikace
         created_at: Autorizováno
-        date_format: '%d.%m.%Y %H:%M:%S'
+        date_format: "%d.%m.%Y %H:%M:%S"
         scopes: Rozsahy
         title: Vaše autorizované aplikace
     errors:
       messages:
         access_denied: Vlastník zdroje či autorizační server zamítl požadavek.
-        credential_flow_not_configured: Proud Resource Owner Password Credentials
-          selhal, protože Doorkeeper.configure.resource_owner_from_credentials nebylo
-          nakonfigurováno.
-        invalid_client: Ověření klienta selhalo kvůli neznámému klientovi, chybějící
-          klientské autentikaci či nepodporované autentikační metodě.
-        invalid_grant: Poskytnuté oprávnění je neplatné, vypršelé, zamítnuté, neshoduje
-          se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno
-          jinému klientu.
+        credential_flow_not_configured: Proud Resource Owner Password Credentials selhal, protože Doorkeeper.configure.resource_owner_from_credentials nebylo nakonfigurováno.
+        invalid_client: Ověření klienta selhalo kvůli neznámému klientovi, chybějící klientské autentikaci či nepodporované autentikační metodě.
+        invalid_grant: Poskytnuté oprávnění je neplatné, vypršelé, zamítnuté, neshoduje se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno jinému klientu.
         invalid_redirect_uri: Přesměrovací URI není platné.
-        invalid_request: Požadavku chybí pžadovaný parametr, obsahuje nepodporovanou
-          hodnotu parametru, či je jinak malformovaný.
-        invalid_resource_owner: Poskytnuté přihlašovací údaje vlastníka zdroje nejsou
-          platné, nebo vlastník zdroje nemůže být nalezen
+        invalid_request: Požadavku chybí pžadovaný parametr, obsahuje nepodporovanou hodnotu parametru, či je jinak malformovaný.
+        invalid_resource_owner: Poskytnuté přihlašovací údaje vlastníka zdroje nejsou platné, nebo vlastník zdroje nemůže být nalezen
         invalid_scope: Požadovaný rozsah je neplatný, neznámý, nebo malformovaný.
         invalid_token:
           expired: Přístupový token vypršel
           revoked: Přístupový token byl zamítnut
           unknown: Přístupový token je neplatný
-        resource_owner_authenticator_not_configured: Nález Resource Owner selhal,
-          protože Doorkeeper.configure.resource_owner_authenticator nebylo nakonfigurováno.
-        server_error: Autorizační server se setkal s neočekávanou chybou, která mu
-          zabránila ve vykonání požadavku.
-        temporarily_unavailable: Autorizační server vás nyní nemůže obsloužit kvůli
-          dočasnému přetížení či údržbě serveru.
-        unauthorized_client: Klient není autorizován k vykonání tohoto požadavku touto
-          metodou.
+        resource_owner_authenticator_not_configured: Nález Resource Owner selhal, protože Doorkeeper.configure.resource_owner_authenticator nebylo nakonfigurováno.
+        server_error: Autorizační server se setkal s neočekávanou chybou, která mu zabránila ve vykonání požadavku.
+        temporarily_unavailable: Autorizační server vás nyní nemůže obsloužit kvůli dočasnému přetížení či údržbě serveru.
+        unauthorized_client: Klient není autorizován k vykonání tohoto požadavku touto metodou.
         unsupported_grant_type: Tento typ oprávnění není podporován autorizačním serverem.
         unsupported_response_type: Autorizační server nepodporuje tento typ odpovědi.
     flash:
