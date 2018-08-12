@@ -5,10 +5,12 @@ ja:
     about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
     about_this: 詳細情報
     administered_by: '管理者:'
+    api: API
     closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。しかし、他のインスタンスにアカウントを作成しても全く同じネットワークに参加することができます。
     contact: 連絡先
     contact_missing: 未設定
     contact_unavailable: N/A
+    documentation: ドキュメント
     extended_description_html: |
       <h3>ルールを書くのに適した場所</h3>
       <p>詳細説明が設定されていません。</p>
@@ -25,9 +27,11 @@ ja:
     hosted_on: Mastodon hosted on %{domain}
     learn_more: もっと詳しく
     other_instances: 他のインスタンス
+    privacy_policy: プライバシーポリシー
     source_code: ソースコード
     status_count_after: トゥート
     status_count_before: トゥート数
+    terms: 利用規約
     user_count_after: 人
     user_count_before: ユーザー数
     what_is_mastodon: Mastodon とは？
@@ -35,6 +39,7 @@ ja:
     follow: フォロー
     followers: フォロワー
     following: フォロー中
+    joined: "%{date} に登録"
     media: メディア
     moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
     network_hidden: この情報は利用できません
@@ -220,7 +225,7 @@ ja:
       title: ダッシュボード
       total_users: 全ユーザー
       trends: トレンドタグ
-      week_interactions: 今週の交流数
+      week_interactions: 今週交流のあった回数
       week_users_active: 今週活動した人数
       week_users_new: 今週登録した人数
     domain_blocks:
@@ -282,7 +287,7 @@ ja:
       add_new: リレーを追加
       description_html: "<strong>連合リレー</strong>とは、登録しているサーバー間の公開トゥートを仲介するサーバーです。<strong>中小規模のサーバーが連合のコンテンツを見つけるのを助けます。</strong>これを使用しない場合、ローカルユーザーがリモートユーザーを手動でフォローする必要があります。"
       enable_hint: 有効にすると、リレーから全ての公開トゥートを受信するようになり、またこのサーバーの全ての公開トゥートをリレーに送信するようになります。
-      inbox_url: Relay URL
+      inbox_url: リレーURL
       setup: リレー接続を設定する
       status: ステータス
       title: リレー
@@ -364,11 +369,14 @@ ja:
         desc_html: ユーザーページにスタッフのバッジを表示します
         title: スタッフバッジを表示する
       site_description:
-        desc_html: フロントページへの表示と meta タグに使用される紹介文です。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
+        desc_html: フロントページへの表示に使用される紹介文です。このMastodonインスタンスを特徴付けることやその他重要なことを記述してください。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
         title: インスタンスの説明
       site_description_extended:
         desc_html: あなたのインスタンスにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます
         title: カスタム詳細説明
+      site_short_description:
+        desc_html: サイドバーと meta タグに表示されます。Mastodon とは何か、そしてこのサーバーの特別な何かを1段落で記述してください。空欄の場合、インスタンスの説明が使用されます。
+        title: 短いインスタンスの説明
       site_terms:
         desc_html: あなたは独自のプライバシーポリシーや利用規約、そのほかの法的根拠を書くことができます。HTMLタグが使えます
         title: カスタム利用規約
@@ -530,6 +538,10 @@ ja:
     true_privacy_html: "<strong>プライバシーの保護はエンドツーエンドの暗号化でのみ実現可能</strong>であることに留意ください。"
     unlocked_warning_html: 誰でもあなたをフォローすることができ、フォロワー限定の投稿をすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
     unlocked_warning_title: このアカウントは承認制アカウントに設定されていません
+  footer:
+    developers: 開発者向け
+    more: さらに…
+    resources: リソース
   generic:
     changes_saved_msg: 正常に変更されました！
     save_changes: 変更を保存
@@ -828,6 +840,7 @@ ja:
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
+      month: "%Y年 %b"
   two_factor_authentication:
     code_hint: 確認するには認証アプリで表示されたコードを入力してください
     description_html: "<strong>二段階認証</strong>を有効にするとログイン時、認証アプリからコードを入力する必要があります。"

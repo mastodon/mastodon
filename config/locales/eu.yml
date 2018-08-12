@@ -5,10 +5,12 @@ eu:
     about_mastodon_html: Mastodon web protokolo ireki eta libreak darabiltzan gizarte sare bat da. E-mail sarea bezala deszentralizatua da.
     about_this: Honi buruz
     administered_by: 'Administratzailea(k):'
+    api: APIa
     closed_registrations: Harpidetza itxita dago orain instantzia honetan. Hala ere, beste instantzia bat aurkitu dezakezu kontua egiteko eta hona ere sarbidea izan.
     contact: Kontaktua
     contact_missing: Ezarri gabe
     contact_unavailable: E/E
+    documentation: Dokumentazioa
     extended_description_html: |
       <h3>Arauentzako toki egoki bat</h3>
       <p>Azalpen luzea ez da ezarri oraindik.</p>
@@ -25,9 +27,11 @@ eu:
     hosted_on: Mastodon %{domain} domeinuan ostatatua
     learn_more: Ikasi gehiago
     other_instances: Instantzien zerrenda
+    privacy_policy: Pribatutasun politika
     source_code: Iturburu kodea
     status_count_after: mezu idatzi dituzte
     status_count_before: Hauek
+    terms: Erabilera baldintzak
     user_count_after: erabiltzaile daude
     user_count_before: Hemen
     what_is_mastodon: Zer da Mastodon?
@@ -35,6 +39,7 @@ eu:
     follow: Jarraitu
     followers: Jarraitzaile
     following: Jarraitzen
+    joined: "%{date}(e)an elkartua"
     media: Multimedia
     moved_html: "%{name} hona lekualdatu da %{new_profile_link}:"
     network_hidden: Informazio hau ez dago eskuragarri
@@ -202,6 +207,27 @@ eu:
       update_failed_msg: Ezin izan da emoji hori eguneratu
       updated_msg: Emoji-a ongi eguneratu da!
       upload: Igo
+    dashboard:
+      backlog: aurreikusitako lanak
+      config: Konfigurazioa
+      feature_deletions: Kontu ezabaketak
+      feature_invites: Gonbidapen estekak
+      feature_registrations: Izen emateak
+      feature_relay: Federazio haria
+      features: Ezaugarriak
+      hidden_service: Federazioa ezkutuko zerbitzuekin
+      open_reports: salaketa irekiak
+      recent_users: Azken erabiltzaileak
+      search: Testu osoko bilaketa
+      single_user_mode: Erabiltzaile bakarreko modua
+      software: Software
+      space: Espazio erabilera
+      title: Kontrol panela
+      total_users: erabiltzaile guztira
+      trends: Joerak
+      week_interactions: interakzio aste honetan
+      week_users_active: aktibo aste honetan
+      week_users_new: erabiltzaile aste honetan
     domain_blocks:
       add_new: Gehitu berria
       created_msg: Domeinuaren blokeoa orain prozesatzen ari da
@@ -257,6 +283,8 @@ eu:
         expired: Iraungitua
         title: Iragazi
       title: Gonbidapenak
+    relays:
+      add_new: Gehitu hari berria
     report_notes:
       created_msg: Salaketa oharra ongi sortu da!
       destroyed_msg: Salaketa oharra ongi ezabatu da!
@@ -779,6 +807,7 @@ eu:
   time:
     formats:
       default: "%Y(e)ko %b %d, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Sartu zure autentifikazio aplikazioak sortutako kodea berresteko
     description_html: "<strong>Bi faktoreetako autentifikazioa</strong> gaitzen baduzu, saioa hasteko telefonoa eskura izan beharko duzu, honek zuk sartu behar dituzun kodeak sortuko dituelako."

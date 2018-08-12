@@ -29,14 +29,16 @@
 
   .column-2
     .landing-page__information.contact-widget
-      %p= t 'about.administered_by'
+      %p
+        %strong= t 'about.administered_by'
 
       = account_link_to(@instance_presenter.contact_account)
 
       - if @instance_presenter.site_contact_email.present?
         %p.contact-widget__mail
-          = succeed ':' do
-            = t 'about.contact'
+          %strong
+            = succeed ':' do
+              = t 'about.contact'
           %br/
           = mail_to @instance_presenter.site_contact_email, nil, title: @instance_presenter.site_contact_email
 

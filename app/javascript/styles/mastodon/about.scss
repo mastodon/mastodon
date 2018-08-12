@@ -790,8 +790,10 @@ $small-breakpoint: 960px;
     border-radius: 4px;
     padding: 25px 40px;
     overflow: hidden;
+    box-sizing: border-box;
 
     .row {
+      width: 100%;
       display: flex;
       flex-direction: row-reverse;
       flex-wrap: wrap;
@@ -808,11 +810,20 @@ $small-breakpoint: 960px;
         flex: 1 0 auto;
         padding: 0 10px;
       }
+
+      @media screen and (max-width: $no-gap-breakpoint) {
+        width: 100%;
+        justify-content: space-between;
+      }
     }
 
     .row__mascot {
       flex: 1;
       margin: 10px -50px 0 0;
+
+      @media screen and (max-width: $no-gap-breakpoint) {
+        display: none;
+      }
     }
   }
 
