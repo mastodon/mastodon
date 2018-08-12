@@ -105,6 +105,7 @@ describe ApplicationController, type: :controller do
         end
 
         it 'returns nil when body has been tampered' do
+          post :success, body: 'Toot!'
           request.headers['RAW_POST_DATA'] = 'doo doo doo'
           expect(controller.signed_request_account).to be_nil
         end
