@@ -11,6 +11,8 @@ class ActivityPub::Activity::Reject < ActivityPub::Activity
   private
 
   def reject_follow
+    return reject_follow_for_relay if relay_follow?
+
     target_account = account_from_uri(target_uri)
 
     return if target_account.nil? || !target_account.local?
@@ -19,6 +21,18 @@ class ActivityPub::Activity::Reject < ActivityPub::Activity
     follow_request&.reject!
 
     UnfollowService.new.call(target_account, @account) if target_account.following?(@account)
+  end
+
+  def reject_follow_for_relay
+    relay.update!(state: :rejected)
+  end
+
+  def relay
+    @relay ||= Relay.find_by(follow_activity_id: object_uri)
+  end
+
+  def relay_follow?
+    relay.present?
   end
 
   def target_uri

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_08_175627) do
+ActiveRecord::Schema.define(version: 2018_08_12_123222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -383,11 +383,10 @@ ActiveRecord::Schema.define(version: 2018_08_08_175627) do
 
   create_table "relays", force: :cascade do |t|
     t.string "inbox_url", default: "", null: false
-    t.boolean "enabled", default: false, null: false
     t.string "follow_activity_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["enabled"], name: "index_relays_on_enabled"
+    t.integer "state", default: 0, null: false
   end
 
   create_table "report_notes", force: :cascade do |t|
