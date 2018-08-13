@@ -4,29 +4,44 @@ uk:
     about_hashtag_html: Немає публічних постів з хештегом<strong>#%{hashtag}</strong>. Ви можете  You can interact with them if you have an account anywhere in the fediverse.
     about_mastodon_html: Mastodon - це <em>вільна</em> соціальна мережа з <em>відкритим вихідним кодом</em>. Вона є <em>децентралізованою</em> альтернативою комерційним платформам, що дозволяє уникнути ризиків монополізації вашого спілкування однією компанією. Виберіть сервер, якому ви довіряєте &mdash; що б ви не вибрали, Ви зможете спілкуватись з усіма іншими. Будь-який користувач може запустити власну інстанцію Mastodon та без проблем брати участь в <em>соціальній мережі</em>.
     about_this: Про цю інстанцію
+    administered_by: 'Адміністратор:'
+    api: API
     closed_registrations: На даний момент реєстрація на цій інстанції закрита.
     contact: Зв'язатися
     contact_missing: Не зазначено
+    contact_unavailable: Недоступно
+    documentation: Документація
+    extended_description_html: |
+      <h3>Гарне місце для правил</h3>
+      <p>Детальний опис ще не налаштований.</p>
     features:
+      humane_approach_body: Навчаючись з помилок інших соціальних мереж, Mastodon націлений на етичні рішення для боротьби з направильним використанням соціальних медіа.
       humane_approach_title: Більш людський підхід
+      not_a_product_body: Mastodon - це некомерційна мережа. Ніякої реклами, збору даних і залізних стін. Тут немає центральної влади.
+      not_a_product_title: Ви - особистість, а не продукт
       real_conversation_title: Побудований для справжньої розмови
+      within_reach_body: Велика кількість застосунків для iOS, Android та інших платформ, завдяки дружній до розробника екосистемі дозволяє бути на звязку з друзями звідусіль.
       within_reach_title: Завжди на звязку
     generic_description: "%{domain} є одним сервером у мережі"
-    hosted_on: Мастодон розміщено на %{domain}
+    hosted_on: Mastodon розміщено на %{domain}
     learn_more: Дізнатися більше
     other_instances: Інші інстанції
+    privacy_policy: Політика приватності
     source_code: Вихідний код
     status_count_after: статусів
     status_count_before: Опубліковано
+    terms: Правила використання
     user_count_after: користувачів
     user_count_before: Тут живе
-    what_is_mastodon: Що таке Мастодон?
+    what_is_mastodon: Що таке Mastodon?
   accounts:
     follow: Підписатися
     followers: Підписники
     following: Підписаний(-а)
+    joined: Приєднався %{date}
     media: Медіа
     moved_html: "%{name} переїхав на %{new_profile_link}:"
+    network_hidden: Ця інформація недоступна
     nothing_here: Тут нічого немає!
     people_followed_by: Люди, на яких підписаний(-а) %{name}
     people_who_follow: Підписники %{name}
@@ -47,30 +62,42 @@ uk:
     accounts:
       are_you_sure: Ви впевнені?
       avatar: Аватар
+      by_domain: Домен
       change_email:
         changed_msg: Поштова адреса аккаунту успішно змінена!
         current_email: Поточна поштова адреса
         label: Змінити поштову адресу
+        new_email: Новий e-mail
         submit: Змінити поштову адресу
         title: Змінити поштову адресу для %{username}
       confirm: Зберегти
       confirmed: Збережено
       confirming: Зберігається
+      demote: Усунути
+      disable: Вимкнути
+      disable_two_factor_authentication: Вимкнути двофакторну авторизацію
+      disabled: Вимкнено
       display_name: Відображуване ім'я
       domain: Домен
       edit: Змінити
       email: Email
+      email_status: Статус e-mail
+      enable: Увімкнути
+      enabled: Увімкнено
       feed_url: URL фіду
       followers: Підписники
       followers_url: URL підписників
       follows: Підписки
+      inbox_url: Вхідний URL
       ip: IP
       location:
         all: Усі
         local: Локальні
         remote: Віддалені
         title: Розміщення
+      login_status: Статус авторизації
       media_attachments: Мультимедійні вкладення
+      memorialize: Зробити пам'ятником
       moderation:
         all: Усі
         silenced: Заглушені
@@ -87,11 +114,16 @@ uk:
       outbox_url: Вихідний URL
       perform_full_suspension: Повне блокування
       profile_url: URL профілю
+      promote: Просунути
       protocol: Протокол
       public: Публічний
       push_subscription_expires: Підписка PuSH спливає
       redownload: Оновити аватар
       remove_avatar: Видалити аватар
+      resend_confirmation:
+        already_confirmed: Цей користувач уже підтверджений
+        send: Надіслати підтвердження ще раз
+        success: Повідомлення з підтвердженням успішно надіслано!
       reset: Скинути
       reset_password: Зкинути пароль
       resubscribe: Перепідписатися
@@ -105,11 +137,14 @@ uk:
       search: Пошук
       shared_inbox_url: URL спільного вхідного кошика
       show:
+        created_reports: Скарги створені цим аккаунтом
         report: скарга
+        targeted_reports: Скарги щодо цього аккаунту
       silence: Глушення
       statuses: Статуси
       subscribe: Підписатися
       title: Акаунти
+      unconfirmed_email: Непідтверджений e-mail
       undo_silenced: Зняти глушення
       undo_suspension: Зняти блокування
       unsubscribe: Відписатися
@@ -123,6 +158,7 @@ uk:
         create_custom_emoji: "%{name} вивантажив(-ла) нове емодзі %{target}"
         create_domain_block: "%{name} заблокував(-ла) домен %{target}"
         create_email_domain_block: "%{name} додав(-ла) поштовий домен %{target} до чорного списку"
+        demote_user: "%{name} понизив(-ла) %{target}"
         destroy_domain_block: "%{name} розблокував(-ла) домен %{target}"
         destroy_email_domain_block: "%{name} додав(-ла) поштовий домен %{target} до білого списку"
         destroy_status: "%{name} видалив(-ла) статус користувача %{target}"
@@ -131,11 +167,16 @@ uk:
         disable_user: "%{name} заборонив(-ла) авторизацію користувачу %{target}"
         enable_custom_emoji: "%{name} увімкнув(-ла) емодзі %{target}"
         enable_user: "%{name} увімкнув(-ла) авторизацію користувачу %{target}"
+        memorialize_account: "%{name} перетворив(-ла) сторінку %{target} у пам'ятник"
         promote_user: "%{name} підвищив(-ла) користувача %{target}"
         remove_avatar_user: "%{name} прибрав(-ла) аватар користувача %{target}"
         reopen_report: "%{name} перевідкрив(-ла) скаргу %{target}"
         reset_password_user: "%{name} скинув(-ла) пароль користувача %{target}"
+        resolve_report: "%{name} розв'язав(-ла) скаргу %{target}"
+        silence_account: "%{name} заглушив(-ла) аккаунт %{target}"
         suspend_account: "%{name} заблокував аккаунт користувача %{target}"
+        unassigned_report: "%{name} зняв(-ла) призначення скарги %{target}"
+        unsilence_account: "%{name} розглушив(-ла) аккаунт %{target}"
         unsuspend_account: "%{name} розблокував аккаунт користувача %{target}"
         update_custom_emoji: "%{name} оновив(-ла) емодзі %{target}"
         update_status: "%{name} змінив(-ла) статус користуача %{target}"
@@ -167,6 +208,7 @@ uk:
       upload: Вивантажити
     dashboard:
       config: Налаштування
+      feature_deletions: Видалення аккаунтів
       feature_invites: Посилання-запрошення
       feature_registrations: Реєстрації
       features: Можливості
@@ -261,6 +303,7 @@ uk:
       mark_as_unresolved: Відмітити як невирішену
       notes:
         create: Додати примітку
+        create_and_resolve: Розв'язати з приміткою
         create_and_unresolve: Перевідкрити з приміткою
         delete: Видалити
         placeholder: Опишіть, які дії були виконані, або інші зміни, що стосуються справи...
@@ -444,7 +487,7 @@ uk:
     '500':
       content: Пробачте, та щось пішло не так з нашого боку.
       title: Ця сторінка неправильна
-    noscript_html: Для використання веб-застосунку Мастодон, будь-ласка увімкніть JavaScript. Якщо у вас немає такої можливості, скористайтесь одним із <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">нативних застосунків</a> для Мастодон для вашої платформи.
+    noscript_html: Для використання веб-застосунку Mastodon, будь-ласка увімкніть JavaScript. Якщо у вас немає такої можливості, скористайтесь одним із <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">нативних застосунків</a> для Mastodon для вашої платформи.
   exports:
     archive_takeout:
       date: Дата
@@ -629,7 +672,7 @@ uk:
       weibo: Weibo
     current_session: Активна сесія
     description: "%{browser} на %{platform}"
-    explanation: Це веб-браузери, нині авторизовані до вашого аккаунту Мастодон.
+    explanation: Це веб-браузери, нині авторизовані до вашого аккаунту Mastodon.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -649,7 +692,7 @@ uk:
     title: Сесії
   settings:
     authorized_apps: Авторизовані застосунки
-    back: Назад у Мастодон
+    back: Назад у Mastodon
     delete: Видалення аккаунту
     development: Розробка
     edit_profile: Редагувати профіль
@@ -660,7 +703,7 @@ uk:
     notifications: Сповіщення
     preferences: Налаштування
     settings: Опції
-    two_factor_authentication: Двофакторна аутентифікація
+    two_factor_authentication: Двофакторна авторизація
     your_apps: Ваші затосунки
   statuses:
     attached:
