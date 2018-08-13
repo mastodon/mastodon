@@ -29,20 +29,20 @@ class MigrateFilters < ActiveRecord::Migration[5.2]
         whole_word: filter.whole_word,
         irreversible: true)
     end
-
-    drop_table :glitch_keyword_mutes
   end
 
   def down
-    create_table "glitch_keyword_mutes" do |t|
-      t.references :account, null: false
-      t.string :keyword, null: false
-      t.boolean :whole_word, default: true, null: false
-      t.boolean :apply_to_mentions, default: true, null: false
-      t.timestamps
-    end
+    unless table_exists? :glitch_keyword_mutes
+      create_table :glitch_keyword_mutes do |t|
+        t.references :account, null: false
+        t.string :keyword, null: false
+        t.boolean :whole_word, default: true, null: false
+        t.boolean :apply_to_mentions, default: true, null: false
+        t.timestamps
+      end
 
-    add_foreign_key :glitch_keyword_mutes, :accounts, on_delete: :cascade
+      add_foreign_key :glitch_keyword_mutes, :accounts, on_delete: :cascade
+    end
 
     CustomFilter.where(irreversible: true).find_each do |filter|
       GlitchKeywordMute.where(account: filter.account).create!(
