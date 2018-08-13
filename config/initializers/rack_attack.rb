@@ -45,11 +45,11 @@ class Rack::Attack
     '127.0.0.1' == req.ip || '::1' == req.ip
   end
 
-  throttle('throttle_authenticated_api', limit: 300, period: 5.minutes) do |req|
+  throttle('throttle_authenticated_api', limit: 600, period: 5.minutes) do |req|
     req.api_request? && req.authenticated_user_id
   end
 
-  throttle('throttle_unauthenticated_api', limit: 7_500, period: 5.minutes) do |req|
+  throttle('throttle_unauthenticated_api', limit: 15_000, period: 5.minutes) do |req|
     req.ip if req.api_request?
   end
 
