@@ -35,7 +35,8 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def card
-    @card = @status.preview_cards.first
+    @card   = @status.preview_cards.first
+    @card ||= FetchLinkCardService.new.call(@status)
 
     if @card.nil?
       render_empty
