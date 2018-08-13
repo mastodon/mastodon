@@ -17,7 +17,7 @@ class Api::V1::StatusesController < Api::BaseController
   CONTEXT_LIMIT = 4_096
 
   def show
-    cached  = Rails.cache.read(@status.cache_key)
+    cached  = Rails.cache.read(@status)
     @status = cached unless cached.nil?
     render json: @status, serializer: REST::StatusSerializer
   end
