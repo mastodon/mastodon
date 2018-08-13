@@ -5,10 +5,12 @@ pt-BR:
     about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos e software gratuito e de código aberto. É descentralizada como e-mail.
     about_this: Sobre
     administered_by: 'Administrado por:'
+    api: API
     closed_registrations: Os cadastros estão atualmente fechados nesta instância. No entanto, você pode procurar uma instância diferente na qual possa criar uma conta e acessar a mesma rede por lá.
     contact: Contato
     contact_missing: Não definido
     contact_unavailable: N/A
+    documentation: Documentação
     extended_description_html: |
       <h3>Um bom lugar para regras</h3>
       <p>A descrição da instância ainda não foi feita.</p>
@@ -25,9 +27,11 @@ pt-BR:
     hosted_on: Mastodon hospedado em %{domain}
     learn_more: Saiba mais
     other_instances: Lista de instâncias
+    privacy_policy: Política de Privacidade
     source_code: Código-fonte
     status_count_after: publicações
     status_count_before: Autores de
+    terms: Termos de Serviço
     user_count_after: usuários
     user_count_before: Casa de
     what_is_mastodon: O que é Mastodon?
@@ -35,6 +39,7 @@ pt-BR:
     follow: Seguir
     followers: Seguidores
     following: Seguindo
+    joined: Participa desde %{date}
     media: Mídia
     moved_html: "%{name} se mudou para %{new_profile_link}:"
     network_hidden: Esta informação não está disponível
@@ -203,14 +208,14 @@ pt-BR:
       updated_msg: Emoji atualizado com sucesso!
       upload: Enviar
     dashboard:
-      backlog: Tarefas na fila
+      backlog: tarefas na fila
       config: Configuração
       feature_deletions: Remoção de contas
       feature_invites: Convites
-      feature_registrations: Registros
+      feature_registrations: Cadastros
       feature_relay: Repetidor da federação
       features: Funcionalidades
-      hidden_service: Federação com serviços escondidos
+      hidden_service: Federação com serviços onion
       open_reports: Denúncias em aberto
       recent_users: Usuários recentes
       search: Pesquisa em texto
@@ -364,11 +369,14 @@ pt-BR:
         desc_html: Mostrar uma insígnia de Equipe na página de usuário
         title: Mostrar insígnia de equipe
       site_description:
-        desc_html: Parágrafo introdutório na página inicial e em meta tags. Você pode usar tags HTML, em especial <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
+        desc_html: Parágrafo introdutório na página inicial. Descreva o que faz esse servidor especial, e qualquer outra coisa de importante. Você pode usar tags HTML, em especial <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrição da instância
       site_description_extended:
         desc_html: Um ótimo lugar para seu código de conduta, regras, diretrizes e outras coisas para diferenciar a sua instância. Você pode usar tags HTML
         title: Informação estendida customizada
+      site_short_description:
+        desc_html: Aparece na barra lateral e nas meta tags. Descreva o que é Mastodon e o que faz esse servidor especial em um único parágrafo. Se não for preenchido, é substituído pela descrição da instância.
+        title: Descrição curta da instância
       site_terms:
         desc_html: Você pode escrever a sua própria política de privacidade, termos de serviço, entre outras coisas. Você pode usar tags HTML
         title: Termos de serviço customizados
@@ -530,6 +538,10 @@ pt-BR:
     true_privacy_html: Lembre-se de que <strong>a verdadeira privacidade só pode ser alcançada através de encriptação ponto-a-ponto</strong>.
     unlocked_warning_html: Qualquer pessoa pode te seguir e ver as suas postagens privadas. %{lock_link} para ser capaz de revisar e rejeitar seguidores.
     unlocked_warning_title: A sua conta não está trancada
+  footer:
+    developers: Desenvolvedores
+    more: Mais…
+    resources: Recursos
   generic:
     changes_saved_msg: Mudanças salvas com sucesso!
     save_changes: Salvar mudanças
@@ -828,6 +840,7 @@ pt-BR:
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
+      month: "%B de %Y"
   two_factor_authentication:
     code_hint: Insira o código gerado pelo seu aplicativo auteticador para confirmar
     description_html: Se você ativar a <strong>autenticação em dois passos</strong>, o acesso à sua conta exigirá posse de seu celular, que irá gerar tokens para validação.

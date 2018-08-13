@@ -5,10 +5,12 @@ gl:
     about_mastodon_html: Mastodon é unha rede social que se basea en protocolos web abertos e libres, software de código aberto. É descentralizada como o correo electrónico.
     about_this: Sobre
     administered_by: 'Administrada por:'
+    api: API
     closed_registrations: O rexistro en esta instancia está pechado en este intre. Porén! Pode atopar unha instancia diferente para obter unha conta e ter acceso exactamente a misma rede desde alí.
     contact: Contacto
     contact_missing: Non establecido
     contact_unavailable: N/A
+    documentation: Documentación
     extended_description_html: |
       <h3>Un bo lugar para regras</h3>
       <p>A descrición extendida aínda non se proporcionou.</p>
@@ -25,9 +27,11 @@ gl:
     hosted_on: Mastodon aloxado en %{domain}
     learn_more: Coñeza máis
     other_instances: Listado de instancias
+    privacy_policy: Política de intimidade
     source_code: Código fonte
     status_count_after: estados
     status_count_before: Que publicaron
+    terms: Termos do servizo
     user_count_after: usuarias
     user_count_before: Fogar de
     what_is_mastodon: Qué é Mastodon?
@@ -35,6 +39,7 @@ gl:
     follow: Seguir
     followers: Seguidoras
     following: Seguindo
+    joined: Uneuse %{date}
     media: Medios
     moved_html: "%{name} mudouse a %{new_profile_link}:"
     network_hidden: A información non está dispoñible
@@ -529,6 +534,10 @@ gl:
     true_privacy_html: Por favor teña en conta que <strong>a verdadeira intimidade só pode ser conseguida con cifrado de extremo-a-extremo</strong>.
     unlocked_warning_html: Calquera pode seguila para inmediatamente ver os seus estados privados. %{lock_link} para poder revisar e rexeitar seguidoras.
     unlocked_warning_title: A súa conta non está pechada
+  footer:
+    developers: Desenvolvedoras
+    more: Máis…
+    resources: Recursos
   generic:
     changes_saved_msg: Cambios gardados correctamente!!
     save_changes: Gardar cambios
@@ -827,6 +836,7 @@ gl:
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Introducir o código xerado polo seu aplicativo de autenticación para confirmar
     description_html: Si habilita a <strong>autenticación de doble factor</strong>, a conexión pediralle estar en posesión do seu teléfono, que xerará testemuños para poder entrar.

@@ -5,10 +5,12 @@ co:
     about_mastodon_html: Mastodon ghjè una rete suciale custruita incù prutucolli web aperti è lugiziali liberi. Hè decentralizatu cumu l’e-mail.
     about_this: À prupositu
     administered_by: 'Amministratu da:'
+    api: API
     closed_registrations: Pè avà, l’arregistramenti sò chjosi nant’à st’istanza. Mà pudete truvà un’altr’istanza per fà un contu è avè accessu à listessa reta da quallà.
     contact: Cuntattu
     contact_missing: Mancante
     contact_unavailable: Micca dispunibule
+    documentation: Ducumentazione
     extended_description_html: |
       <h3>Una bona piazza per e regule</h3>
       <p>A descrizzione stesa ùn hè micca stata riempiuta.</p>
@@ -25,9 +27,11 @@ co:
     hosted_on: Mastodon allughjatu nant’à %{domain}
     learn_more: Amparà di più
     other_instances: Lista di l’istanze
+    privacy_policy: Pulitica di vita privata
     source_code: Codice di fonte
     status_count_after: statuti
     status_count_before: chì anu pubblicatu
+    terms: Cundizione di u serviziu
     user_count_after: parsone quì
     user_count_before: Ci sò
     what_is_mastodon: Quale hè Mastodon?
@@ -202,6 +206,25 @@ co:
       update_failed_msg: Ùn s’hè micca pussutu mette à ghjornu l’emoji
       updated_msg: L’emoji hè stata messa à ghjornu!
       upload: Caricà
+    dashboard:
+      config: Cunfigurazione
+      feature_deletions: Sguassamenti di conti
+      feature_invites: Ligami d'invitazione
+      feature_registrations: Arregistramenti
+      feature_relay: Ripetitore di federazione
+      features: Funziunalità
+      hidden_service: Federazione cù servizii piattati
+      open_reports: signalamenti aperti
+      recent_users: Utilizatori ricenti
+      search: Ricerca di testu sanu
+      single_user_mode: Modu utilizatore unicu
+      software: Lugiziale
+      space: Usu di u spaziu
+      total_users: utilizatori in tutale
+      trends: Tindenze
+      week_interactions: interazzione sta settimana
+      week_users_active: attivi sta settimana
+      week_users_new: utilizatori sta settimana
     domain_blocks:
       add_new: Aghjustà
       created_msg: U blucchime di u duminiu hè attivu
@@ -257,6 +280,14 @@ co:
         expired: Spirati
         title: Filtrà
       title: Invitazione
+    relays:
+      add_new: Aghjustà un ripetitore
+      description_html: Un <strong>ripetitore di federazione</strong> ghjè un servore intermediariu chì manda statuti pubblichi trà l'istanze abbunate. <strong>Pò aiutà l'istanze chjuche è mezane à scuprì u cuntinutu di u fediverse</strong> senza chì l'utilizatori appianu bisognu di seguità tutti i conti di l'altri servori.
+      enable_hint: Quandu sarà attivatu, u vostru servore hà da seguità i statuti pubblichi di u ripetitore, è mandarà i so statuti pubblichi quallà.
+      inbox_url: URL di u ripetitore
+      setup: Creà una cunnessione cù un ripetitore
+      status: Statutu
+      title: Ripetitori
     report_notes:
       created_msg: Nota di signalamentu creata!
       destroyed_msg: Nota di signalamentu sguassata!
@@ -317,7 +348,7 @@ co:
           desc_html: Affissatu nant’a pagina d’accolta quandu l’arregistramenti sò chjosi. Pudete fà usu di u furmattu HTML
           title: Missaghju per l’arregistramenti chjosi
         deletion:
-          desc_html: Auturizà tuttu u mondu di sguassà u so propiu contu
+          desc_html: Auturizà tuttu u mondu à sguassà u so propiu contu
           title: Auturizà à sguassà i conti
         min_invite_role:
           disabled: Nisunu
@@ -332,11 +363,13 @@ co:
         desc_html: Mustrerà un badge Squadra nant’à un prufile d’utilizatore
         title: Mustrà un badge staff
       site_description:
-        desc_html: Paragrafu di prisentazione nant’a pagina d’accolta è i marchi meta. Pudete fà usu di marchi HTML, in particulare <code>&lt;a&gt;</code> è <code>&lt;em&gt;</code>.
+        desc_html: Paragrafu di prisentazione nant’a pagina d’accolta. Parlate di cio chì rende stu servore speziale, o d'altre cose impurtante. Pudete fà usu di marchi HTML, in particulare <code>&lt;a&gt;</code> è <code>&lt;em&gt;</code>.
         title: Discrizzione di l’istanza
       site_description_extended:
         desc_html: Una bona piazza per e regule, infurmazione è altre cose chì l’utilizatori duverìanu sapè. Pudete fà usu di marchi HTML
         title: Discrizzione stesa di u situ
+      site_short_description:
+        title: Descrizzione corta di l'istanza
       site_terms:
         desc_html: Quì pudete scrive e vostre regule di cunfidenzialità, cundizione d’usu o altre menzione legale. Pudete fà usu di marchi HTML
         title: Termini persunalizati
@@ -420,7 +453,7 @@ co:
     following: 'Eccu! Avà seguitate:'
     post_follow:
       close: O pudete ancu chjude sta finestra.
-      return: Rivultà à u prufile di l’utilizatore
+      return: Vede u prufile di l’utilizatore
       web: Andà à l’interfaccia web
     title: Siguità %{acct}
   datetime:
@@ -470,6 +503,20 @@ co:
     follows: Seguitate
     mutes: Piattate
     storage: I vostri media
+  filters:
+    contexts:
+      notifications: Nutificazione
+      public: Linee pubbliche
+      thread: Cunversazione
+    edit:
+      title: Mudificà u filtru
+    errors:
+      invalid_context: Micca abbastanza cuntestu
+    index:
+      delete: Toglie
+      title: Filtri
+    new:
+      title: Aghjustà un novu filtru
   followers:
     domain: Duminiu
     explanation_html: Per assicuravi di a cunfidenzialità di i vostri statuti, duvete avè primura di quale vi seguita. <strong>I vostri statuti privati sò mandati à tutte l’istanze induve avete abbunati</strong>. Pensate à u vostru livellu di cunfidenza in i so amministratori.
@@ -482,6 +529,10 @@ co:
     true_privacy_html: Ùn vi scurdate chì <strong>una vera cunfidenzialità pò solu esse ottenuta cù crittografia da un capu à l’altru</strong>.
     unlocked_warning_html: Tuttu u mondu pò seguitavi è vede i vostri statuti privati. %{lock_link}  per pudè cunfirmà o righjittà abbunamenti.
     unlocked_warning_title: U vostru contu hè pubblicu
+  footer:
+    developers: Sviluppatori
+    more: Di più…
+    resources: Risorze
   generic:
     changes_saved_msg: Cambiamenti salvati!
     save_changes: Salvà e mudificazione
@@ -509,6 +560,7 @@ co:
       '86400': 1 ghjornu
     expires_in_prompt: Mai
     generate: Creà
+    invited_by: 'Site statu·a invitatu·a da:'
     max_uses:
       one: 1 usu
       other: "%{count} usi"
@@ -591,6 +643,7 @@ co:
   remote_follow:
     acct: Entrate u vostru cugnome@istanza da induve vulete siguità stu contu
     missing_resource: Ùn avemu pussutu à truvà l’indirizzu di ridirezzione
+    no_account_html: Ùn avete micca un contu? Pudete <a href='%{sign_up_path}' target='_blank'>arregistravi quì</a>
     proceed: Cuntinuà per siguità
     prompt: 'Avete da siguità:'
   remote_unfollow:
@@ -667,6 +720,7 @@ co:
     disallowed_hashtags:
       one: 'cuntene l’hashtag disattivatu: %{tags}'
       other: 'cuntene l’hashtag disattivati: %{tags}'
+    language_detection: Truvà a lingua autumaticamente
     open_in_web: Apre nant’à u web
     over_character_limit: Site sopr’à a limita di %{max} caratteri
     pin_errors:
@@ -696,6 +750,7 @@ co:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Entrate u codice generatu da l’applicazione per cunfirmà
     description_html: S’ella hè attivata <strong>l’identificazione à dui fattori</strong>, duvete avè u vostru telefuninu pè ottene un codice di cunnezzione.

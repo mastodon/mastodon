@@ -5,10 +5,12 @@ da:
     about_mastodon_html: Mastodon er et socialt netværk der er baseret på åbne web protokoller og frit, open-source source software. Der er decentraliseret ligesom e-mail tjenester.
     about_this: Om
     administered_by: 'Administreret af:'
+    api: API
     closed_registrations: Registreringer er på nuværrende tidspunkt lukkede for denne instans. Du kan dog finde andre instanser du kan oprette dig på og få adgang til det samme netværk derfra.
     contact: Kontakt
     contact_missing: Ikke sat
     contact_unavailable: Ikke tilgængeligt
+    documentation: Dokumentation
     extended_description_html: |
       <h3>Et godt sted for regler</h3>
       <p>Den udvidede beskrivelse er endnu ikke blevet opsat.</p>
@@ -25,9 +27,11 @@ da:
     hosted_on: Mostodon hostet på %{domain}
     learn_more: Lær mere
     other_instances: Liste over instanser
+    privacy_policy: Privatlivspolitik
     source_code: Kildekode
     status_count_after: statusser
     status_count_before: Som har skrevet
+    terms: Vilkår for service
     user_count_after: brugere
     user_count_before: Hjem til
     what_is_mastodon: Hvad er Mastodon?
@@ -35,15 +39,16 @@ da:
     follow: Følg
     followers: Følgere
     following: Følger
+    joined: Tilmeldt den %{date}
     media: Multimedia
     moved_html: "%{name} er flyttet til %{new_profile_link}:"
     network_hidden: Denne information er ikke tilgængelig
     nothing_here: Der er intet her!
-    people_followed_by: Folk some %{name} følger
+    people_followed_by: Folk som %{name} følger
     people_who_follow: Folk der følger %{name}
-    posts: Dyt
-    posts_with_replies: Toots og svar
-    reserved_username: Brugernavnet er reserveret
+    posts: Trut
+    posts_with_replies: Trut og svar
+    reserved_username: Brugernavnet er allerede taget
     roles:
       admin: Administrator
       bot: Robot
@@ -51,7 +56,7 @@ da:
     unfollow: Følg ikke længere
   admin:
     account_moderation_notes:
-      create: Læg en kommentar
+      create: Læg en note
       created_msg: Moderator notat succesfuldt oprettet!
       delete: Slet
       destroyed_msg: Moderator notat succesfuldt destrueret!
@@ -133,8 +138,8 @@ da:
       search: Søg
       shared_inbox_url: Link til delt indbakke
       show:
-        created_reports: Rapporter oprettet af denne konto
-        report: rapporter
+        created_reports: Anmeldelser oprettet af denne konto
+        report: anmeld
         targeted_reports: Anmeldelser fra denne konto
       silence: Dæmp
       statuses: Statusser
@@ -208,10 +213,13 @@ da:
       feature_deletions: Konto sletninger
       feature_invites: Invitations links
       feature_registrations: Registreringer
+      feature_relay: Føderations relæ
       features: Funktioner
+      hidden_service: Føderation med skjulte tjenester
       open_reports: åbne anmeldelser
       recent_users: Seneste brugere
       search: Søg på fuld tekst
+      single_user_mode: Enkelt bruger mode
       software: Software
       space: Brugt lagerplads
       title: Betjeningspanel
@@ -252,7 +260,9 @@ da:
       undo: Fortryd
     email_domain_blocks:
       add_new: Tilføj ny
+      created_msg: Tilføjede succesfuldt email domænet til sortliste
       delete: Slet
+      destroyed_msg: Fjernede succesfuldt email domænet fra sortliste
       domain: Domæne
       new:
         create: Tilføj domæne
@@ -336,6 +346,8 @@ da:
         title: Vis personale emblem
       site_description:
         title: Beskrivelse af instans
+      site_short_description:
+        title: Kort beskrivelse af instans
       site_title: Navn på instans
       timeline_preview:
         desc_html: Vis offentlig tidslinje på landingssiden
@@ -356,6 +368,7 @@ da:
       confirmed: Bekræftet
       expires_in: Udløber om
       last_delivery: Sidste levering
+      title: Websub
       topic: Emne
     title: Administration
   admin_mailer:
@@ -371,6 +384,8 @@ da:
     view_profile: Se profil
     view_status: Se status
   applications:
+    created: Applikation blev oprettet
+    destroyed: Applikation er blevet slettet
     invalid_url: Det angivne URL er ugyldigt
     warning: Vær meget forsigtig med disse data. Del dem aldrig med nogen!
   auth:
@@ -389,6 +404,7 @@ da:
       saml: SAML
     register: Opret dig
     register_elsewhere: Opret dig på en anden server
+    resend_confirmation: Gensend bekræftelses instrukser
     reset_password: Nulstil kodeord
     security: Sikkerhed
     set_new_password: Sæt et nyt kodeord
@@ -458,9 +474,16 @@ da:
     lock_link: Lås din konto
     purge: Fjern fra følgere
     unlocked_warning_title: Din konto er ikke låst
+  footer:
+    developers: Udviklere
+    more: Mere…
+    resources: Ressourcer
   generic:
     changes_saved_msg: Ændringerne blev gemt!
     save_changes: Gem ændringer
+    validation_errors:
+      one: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende fejl forneden
+      other: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende %{count} fejl forneden
   imports:
     types:
       blocking: Blokeringsliste
@@ -505,6 +528,11 @@ da:
     digest:
       action: Se alle notifikationer
       mention: "%{name} nævnte dig i:"
+      new_followers_summary:
+        other: Du har også fået %{count} nye følgere mens du var væk! Fantastisk!
+      subject:
+        one: "1 ny notifikation siden du sidst var her \U0001F418"
+        other: "%{count} nye notifikationer siden du sidst var her \U0001F418"
       title: Mens du var væk...
     favourite:
       body: 'Din status blev favoriseret af %{name}:'
@@ -513,6 +541,8 @@ da:
       body: "%{name} følger dig nu!"
       subject: "%{name} følger dig nu"
       title: Ny følger
+    follow_request:
+      body: "%{name} har anmodet om at følge dig"
     mention:
       action: Svar
       body: 'Du blev nævnt af %{name} i:'
@@ -528,6 +558,10 @@ da:
         units:
           billion: mia.
           million: mio.
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: "\n"
   pagination:
     newer: Nyere
     next: Næste
@@ -538,6 +572,10 @@ da:
     other: Andet
     publishing: Offentligører
     web: Web
+  remote_follow:
+    no_account_html: Har du ikke en konto? Du kan <a href='%{sign_up_path}' target='_blank'>oprette dig her</a>
+    proceed: Fortsæt for at følge
+    prompt: 'Du er ved at følge:'
   remote_unfollow:
     error: Fejl
     title: Titel
@@ -548,18 +586,23 @@ da:
     browsers:
       blackberry: Blackberry OS
       chrome: Google Chrome
+      edge: Microsoft edge
       firefox: Mozilla Firefox
       generic: Ukendt browser
       ie: IE
+      qq: QQ browser
       safari: Apple Safari
     description: "%{browser} på %{platform}"
     ip: IP
     platforms:
+      adobe_air: Adobe air
       android: Android
       ios: iOS
       linux: Linux
       mac: Mac.
       other: ukendt platform
+      windows: Microsoft windows
+      windows_phone: Windows fon
   settings:
     authorized_apps: Godkendte apps
     back: Tilbage til Mastodon
@@ -572,6 +615,7 @@ da:
     notifications: Notifikationer
     preferences: Indstillinger
     settings: Indstillinger
+    two_factor_authentication: To-faktor godkendelse
     your_apps: Dine applikationer
   statuses:
     attached:
@@ -582,12 +626,16 @@ da:
       video:
         one: "%{count} video"
         other: "%{count} videoer"
+    boosted_from_html: Fremhævet fra %{acct_link}
     content_warning: 'Advarsel om indhold: %{warning}'
     language_detection: Opfang automatisk sprog
+    open_in_web: Åbn i browser
+    over_character_limit: grænsen på %{max} tegn er overskredet
     pin_errors:
       limit: Du har allerede fastgjort det maksimale antal trut
       ownership: Dun kan ikke fastgøre en anden persons toot
       private: Ikke offentlige trut kan ikke blive fastgjort
+      reblog: Fremhævede trut kan ikke fastgøres
     show_more: Vis mere
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -596,13 +644,21 @@ da:
       public: Offentlig
       public_long: Alle kan se
       unlisted: Ikke listet
+      unlisted_long: Alle kan se, men vil ikke være listet på offentlige tidslinjer
   stream_entries:
     pinned: Fastgjort toot
+    reblogged: fremhævede
     sensitive_content: Følsomt indhold
+  terms:
+    title: Vilkår og privatlivpolitik for %{instance}
   themes:
     contrast: Høj kontrast
     default: Mastodon
     mastodon-light: Mastodon (lys)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Indtast koden der er genereret af din app for at bekræfte
     disable: Deaktiver
