@@ -158,6 +158,9 @@ export default class Video extends React.PureComponent {
     this.setState({ dragging: true });
     this.video.pause();
     this.handleMouseMove(e);
+
+    e.preventDefault();
+    e.stopPropagation();
   }
 
   handleMouseUp = () => {
