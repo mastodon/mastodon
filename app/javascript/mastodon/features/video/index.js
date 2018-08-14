@@ -286,6 +286,15 @@ export default class Video extends React.PureComponent {
       playerStyle.height = height;
     }
 
+    let preload;
+    if (startTime || fullscreen || dragging) {
+      preload = 'auto';
+    } else if (detailed) {
+      preload = 'metadata';
+    } else {
+      preload = 'none';
+    }
+
     return (
       <div
         role='menuitem'
@@ -301,7 +310,7 @@ export default class Video extends React.PureComponent {
           ref={this.setVideoRef}
           src={src}
           poster={preview}
-          preload={startTime ? 'auto' : 'none'}
+          preload={preload}
           loop
           role='button'
           tabIndex='0'
