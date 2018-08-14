@@ -17,11 +17,14 @@ export default class StatusContent extends React.PureComponent {
     expanded: PropTypes.bool,
     onExpandedToggle: PropTypes.func,
     onClick: PropTypes.func,
+    collapsable: PropTypes.bool,
   };
 
   state = {
     hidden: true,
+    collapsed: null,
   };
+  //  `collapsed: null` indicates that an element doesn't need collapsing, while `true` or `false` indicates that it does (and is/isn't).
 
   _updateStatusLinks () {
     const node = this.node;
@@ -53,6 +56,8 @@ export default class StatusContent extends React.PureComponent {
       link.setAttribute('target', '_blank');
       link.setAttribute('rel', 'noopener');
     }
+
+    if (this.props.collapsable && this.state.collapsed === null && node.clientHeight > 200) this.setState({ collapsed: true });
   }
 
   componentDidMount () {
@@ -113,6 +118,11 @@ export default class StatusContent extends React.PureComponent {
     }
   }
 
+  handleCollapsedClick = (e) => {
+    e.preventDefault();
+    this.setState({ collapsed: !this.state.collapsed });
+  }
+
   setRef = (c) => {
     this.node = c;
   }
@@ -132,6 +142,8 @@ export default class StatusContent extends React.PureComponent {
     const classNames = classnames('status__content', {
       'status__content--with-action': this.props.onClick && this.context.router,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
+      'status__content--collapsed': this.state.collapsed === true,
+      'status__content--expanded': this.state.collapsed === false,
     });
 
     if (isRtl(status.get('search_index'))) {
@@ -175,8 +187,17 @@ export default class StatusContent extends React.PureComponent {
           style={directionStyle}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
-          dangerouslySetInnerHTML={content}
-        />
+        >
+          <div dangerouslySetInnerHTML={content} />
+          {this.state.collapsed !== null ?
+            <a
+              className="status__content__collapse-button"
+              onClick={this.handleCollapsedClick}
+            >
+              <i className='fa fa-fw fa-angle-double-down' />
+            </a>
+          : null}
+        </div>
       );
     } else {
       return (
