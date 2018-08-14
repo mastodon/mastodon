@@ -751,17 +751,20 @@
   height: 25px;
   font-size: 18px;
   line-height: 25px;
-  color: $ui-secondary-color;
+  color: $inverted-text-color;
   text-align: center;
-  background: linear-gradient(to top, transparent, rgba(lighten($ui-primary-color, 13%), .3)), $ui-primary-color;
+  background: $action-button-color;
   transition: background .2s ease-in-out, color .2s ease-in-out;
 
   &:hover {
-    background-color: lighten($ui-primary-color, 8%);
+    background: lighten($action-button-color, 7%);
   }
 
   i {
     transition: transform .2s ease-in-out;
+    &, &:hover {
+      color: $inverted-text-color !important;
+    }
   }
 }
 
