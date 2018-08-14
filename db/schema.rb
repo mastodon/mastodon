@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_08_175627) do
+ActiveRecord::Schema.define(version: 2018_08_14_171349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -349,6 +349,7 @@ ActiveRecord::Schema.define(version: 2018_08_08_175627) do
     t.string "website"
     t.string "owner_type"
     t.bigint "owner_id"
+    t.boolean "confidential", default: true, null: false
     t.index ["owner_id", "owner_type"], name: "index_oauth_applications_on_owner_id_and_owner_type"
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
@@ -383,11 +384,10 @@ ActiveRecord::Schema.define(version: 2018_08_08_175627) do
 
   create_table "relays", force: :cascade do |t|
     t.string "inbox_url", default: "", null: false
-    t.boolean "enabled", default: false, null: false
     t.string "follow_activity_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["enabled"], name: "index_relays_on_enabled"
+    t.integer "state", default: 0, null: false
   end
 
   create_table "report_notes", force: :cascade do |t|
@@ -457,6 +457,16 @@ ActiveRecord::Schema.define(version: 2018_08_08_175627) do
     t.index ["account_id", "status_id"], name: "index_status_pins_on_account_id_and_status_id", unique: true
   end
 
+  create_table "status_stats", force: :cascade do |t|
+    t.bigint "status_id", null: false
+    t.bigint "replies_count", default: 0, null: false
+    t.bigint "reblogs_count", default: 0, null: false
+    t.bigint "favourites_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["status_id"], name: "index_status_stats_on_status_id", unique: true
+  end
+
   create_table "statuses", id: :bigint, default: -> { "timestamp_id('statuses'::text)" }, force: :cascade do |t|
     t.string "uri"
     t.text "text", default: "", null: false
@@ -469,8 +479,6 @@ ActiveRecord::Schema.define(version: 2018_08_08_175627) do
     t.integer "visibility", default: 0, null: false
     t.text "spoiler_text", default: "", null: false
     t.boolean "reply", default: false, null: false
-    t.integer "favourites_count", default: 0, null: false
-    t.integer "reblogs_count", default: 0, null: false
     t.string "language"
     t.bigint "conversation_id"
     t.boolean "local"
@@ -631,6 +639,7 @@ ActiveRecord::Schema.define(version: 2018_08_08_175627) do
   add_foreign_key "session_activations", "users", name: "fk_e5fda67334", on_delete: :cascade
   add_foreign_key "status_pins", "accounts", name: "fk_d4cb435b62", on_delete: :cascade
   add_foreign_key "status_pins", "statuses", on_delete: :cascade
+  add_foreign_key "status_stats", "statuses", on_delete: :cascade
   add_foreign_key "statuses", "accounts", column: "in_reply_to_account_id", name: "fk_c7fa917661", on_delete: :nullify
   add_foreign_key "statuses", "accounts", name: "fk_9bda1543f7", on_delete: :cascade
   add_foreign_key "statuses", "statuses", column: "in_reply_to_id", on_delete: :nullify
