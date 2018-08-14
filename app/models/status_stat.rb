@@ -4,7 +4,7 @@
 # Table name: status_stats
 #
 #  id               :bigint(8)        not null, primary key
-#  status_id        :bigint(8)
+#  status_id        :bigint(8)        not null
 #  replies_count    :bigint(8)        default(0), not null
 #  reblogs_count    :bigint(8)        default(0), not null
 #  favourites_count :bigint(8)        default(0), not null
