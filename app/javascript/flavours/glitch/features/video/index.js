@@ -179,8 +179,10 @@ export default class Video extends React.PureComponent {
     const { x } = getPointerPosition(this.seek, e);
     const currentTime = Math.floor(this.video.duration * x);
 
-    this.video.currentTime = currentTime;
-    this.setState({ currentTime });
+    if (!isNaN(currentTime)) {
+      this.video.currentTime = currentTime;
+      this.setState({ currentTime });
+    }
   }, 60);
 
   togglePlay = () => {
