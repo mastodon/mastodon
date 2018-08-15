@@ -10,7 +10,7 @@ describe ResolveURLService, type: :service do
       url = 'http://example.com/missing-atom'
       service = double
       allow(FetchAtomService).to receive(:new).and_return service
-      allow(service).to receive(:call).with(url).and_return(nil)
+      allow(service).to receive(:call).with(url, on_behalf_of: nil).and_return(nil)
 
       result = subject.call(url)
       expect(result).to be_nil
@@ -22,7 +22,7 @@ describe ResolveURLService, type: :service do
       allow(FetchAtomService).to receive(:new).and_return service
       feed_url = 'http://feed-url'
       feed_content = '<feed>contents</feed>'
-      allow(service).to receive(:call).with(url).and_return([feed_url, { prefetched_body: feed_content }])
+      allow(service).to receive(:call).with(url, on_behalf_of: nil).and_return([feed_url, { prefetched_body: feed_content }])
 
       account_service = double
       allow(FetchRemoteAccountService).to receive(:new).and_return(account_service)
@@ -39,7 +39,7 @@ describe ResolveURLService, type: :service do
       allow(FetchAtomService).to receive(:new).and_return service
       feed_url = 'http://feed-url'
       feed_content = '<entry>contents</entry>'
-      allow(service).to receive(:call).with(url).and_return([feed_url, { prefetched_body: feed_content }])
+      allow(service).to receive(:call).with(url, on_behalf_of: nil).and_return([feed_url, { prefetched_body: feed_content }])
 
       account_service = double
       allow(FetchRemoteStatusService).to receive(:new).and_return(account_service)
