@@ -755,6 +755,8 @@
   text-align: center;
   background: $action-button-color;
   transition: background .2s ease-in-out, color .2s ease-in-out;
+  border: 0;
+  border-radius: 2px;
 
   &:hover {
     background: lighten($action-button-color, 7%);
@@ -762,7 +764,9 @@
 
   i {
     transition: transform .2s ease-in-out;
-    &, &:hover {
+
+    &,
+    &:hover {
       color: $inverted-text-color !important;
     }
   }

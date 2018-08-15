@@ -190,13 +190,13 @@ export default class StatusContent extends React.PureComponent {
         >
           <div dangerouslySetInnerHTML={content} />
           {this.state.collapsed !== null ?
-            <a
-              className="status__content__collapse-button"
+            <button
+              className='status__content__collapse-button'
               onClick={this.handleCollapsedClick}
             >
               <i className='fa fa-fw fa-angle-double-down' />
-            </a>
-          : null}
+            </button>
+            : null}
         </div>
       );
     } else {
