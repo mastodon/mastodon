@@ -6,6 +6,10 @@ class FixAccountsUniqueIndex < ActiveRecord::Migration[5.2]
     def local?
       domain.nil?
     end
+
+    def acct
+      local? ? username : "#{username}@#{domain}"
+    end
   end
 
   disable_ddl_transaction!
