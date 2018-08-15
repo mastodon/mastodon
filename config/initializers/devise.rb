@@ -59,6 +59,8 @@ module Devise
   @@ldap_password = nil
   mattr_accessor :ldap_tls_no_verify
   @@ldap_tls_no_verify = false
+  mattr_accessor :ldap_search_filter
+  @@ldap_search_filter = nil
 
   class Strategies::PamAuthenticatable
     def valid?
@@ -362,5 +364,6 @@ Devise.setup do |config|
     config.ldap_password       = ENV.fetch('LDAP_PASSWORD')
     config.ldap_uid            = ENV.fetch('LDAP_UID', 'cn')
     config.ldap_tls_no_verify  = ENV['LDAP_TLS_NO_VERIFY'] == 'true'
+    config.ldap_search_filter  = ENV.fetch('LDAP_SEARCH_FILTER', '%{uid}=%{email}')
   end
 end
