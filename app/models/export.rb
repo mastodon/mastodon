@@ -29,11 +29,11 @@ class Export
   end
 
   def total_follows
-    account.following_count
+    account.following.size
   end
 
   def total_followers
-    account.followers_count
+    account.followers.size
   end
 
   def total_blocks
