@@ -10,6 +10,9 @@ class FetchAtomService < BaseService
 
     result = process(url)
 
+    # retry using on_behalf_of
+    result ||= process(url) if @incorrect_response_code
+
     # retry without ActivityPub
     result ||= process(url) if @unsupported_activity
 
@@ -34,12 +37,15 @@ class FetchAtomService < BaseService
     accept = 'application/activity+json, application/ld+json, application/atom+xml, ' + accept unless @unsupported_activity
 
     request = Request.new(:get, @url).add_headers('Accept' => accept)
-    request.on_behalf_of(@on_behalf_of) if @on_behalf_of
+    request.on_behalf_of(@on_behalf_of) if @on_behalf_of && @incorrect_response_code
     request.perform(&block)
   end
 
   def process_response(response, terminal = false)
-    return nil if response.code != 200
+    if response.code != 200
+      @incorrect_response_code = true
+      return nil
+    end
 
     if response.mime_type == 'application/atom+xml'
       [@url, { prefetched_body: response.body_with_limit }, :ostatus]
