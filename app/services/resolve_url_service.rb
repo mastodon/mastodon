@@ -26,7 +26,7 @@ class ResolveURLService < BaseService
   end
 
   def fetched_atom_feed
-    @_fetched_atom_feed ||= FetchAtomService.new.call(url)
+    @_fetched_atom_feed ||= FetchAtomService.new.call(url, on_behalf_of: @on_behalf_of)
   end
 
   def atom_url

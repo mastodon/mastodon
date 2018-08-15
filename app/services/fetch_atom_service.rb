@@ -3,8 +3,10 @@
 class FetchAtomService < BaseService
   include JsonLdHelper
 
-  def call(url)
+  def call(url, on_behalf_of: nil)
     return if url.blank?
+
+    @on_behalf_of = on_behalf_of
 
     result = process(url)
 
@@ -31,7 +33,9 @@ class FetchAtomService < BaseService
     accept = 'text/html'
     accept = 'application/activity+json, application/ld+json, application/atom+xml, ' + accept unless @unsupported_activity
 
-    Request.new(:get, @url).add_headers('Accept' => accept).perform(&block)
+    let request = Request.new(:get, @url).add_headers('Accept' => accept)
+    request.on_behalf_of(@on_behalf_of) if @on_behalf_of
+    request.perform(&block)
   end
 
   def process_response(response, terminal = false)
