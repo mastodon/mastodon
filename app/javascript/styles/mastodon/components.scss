@@ -921,15 +921,31 @@
   align-items: center;
   display: flex;
   margin-top: 8px;
+
+  &__counter {
+    display: inline-flex;
+    margin-right: 11px;
+    align-items: center;
+
+    .status__action-bar-button {
+      margin-right: 4px;
+    }
+
+    &__label {
+      display: inline-block;
+      width: 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: $action-button-color;
+    }
+  }
 }
 
 .status__action-bar-button {
-  float: left;
   margin-right: 18px;
 }
 
 .status__action-bar-dropdown {
-  float: left;
   height: 23.15px;
   width: 23.15px;
 }
