@@ -30,6 +30,7 @@ class UserSettingsDecorator
     user.settings['noindex']                 = noindex_preference if change?('setting_noindex')
     user.settings['theme']                   = theme_preference if change?('setting_theme')
     user.settings['hide_network']            = hide_network_preference if change?('setting_hide_network')
+    user.settings['fetch_anonymously']       = fetch_anonymously_preference if change?('setting_fetch_anonymously')
   end
 
   def merged_notification_emails
@@ -82,6 +83,10 @@ class UserSettingsDecorator
 
   def hide_network_preference
     boolean_cast_setting 'setting_hide_network'
+  end
+
+  def fetch_anonymously_preference
+    boolean_cast_setting 'setting_fetch_anonymously'
   end
 
   def theme_preference

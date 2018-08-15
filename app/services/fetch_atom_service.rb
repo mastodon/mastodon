@@ -6,7 +6,7 @@ class FetchAtomService < BaseService
   def call(url, on_behalf_of: nil)
     return if url.blank?
 
-    @on_behalf_of = on_behalf_of
+    @on_behalf_of = on_behalf_of unless on_behalf_of&.user&.setting_fetch_anonymously
 
     result = process(url)
 
@@ -33,7 +33,7 @@ class FetchAtomService < BaseService
     accept = 'text/html'
     accept = 'application/activity+json, application/ld+json, application/atom+xml, ' + accept unless @unsupported_activity
 
-    let request = Request.new(:get, @url).add_headers('Accept' => accept)
+    request = Request.new(:get, @url).add_headers('Accept' => accept)
     request.on_behalf_of(@on_behalf_of) if @on_behalf_of
     request.perform(&block)
   end

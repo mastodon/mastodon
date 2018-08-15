@@ -46,6 +46,7 @@ class Settings::PreferencesController < ApplicationController
       :setting_noindex,
       :setting_theme,
       :setting_hide_network,
+      :setting_fetch_anonymously,
       notification_emails: %i(follow follow_request reblog favourite mention digest report),
       interactions: %i(must_be_follower must_be_following)
     )
