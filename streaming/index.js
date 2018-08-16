@@ -7,7 +7,7 @@ const redis = require('redis');
 const pg = require('pg');
 const log = require('npmlog');
 const url = require('url');
-const WebSocket = require('uws');
+const WebSocket = require('ws');
 const uuid = require('uuid');
 
 const env = process.env.NODE_ENV || 'development';
