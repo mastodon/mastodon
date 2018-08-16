@@ -1,6 +1,7 @@
 //  Package imports.
 import PropTypes from 'prop-types';
 import React from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages } from 'react-intl';
 
 //  Components.
@@ -89,7 +90,7 @@ export default class ComposerReply extends React.PureComponent {
 }
 
 ComposerReply.propTypes = {
-  status: PropTypes.map.isRequired,
+  status: ImmutablePropTypes.map.isRequired,
   intl: PropTypes.object.isRequired,
   onCancel: PropTypes.func,
 };
