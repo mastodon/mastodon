@@ -10,6 +10,17 @@
   = f.input :password_confirmation, placeholder: t('simple_form.labels.defaults.confirm_password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_password'), :autocomplete => 'off' }
 
   .actions
+<<<<<<< HEAD
     = f.button :button, t('auth.register'), type: :submit, class: 'button button-primary'
+=======
+    - if ENV['RECAPTCHA_ENABLED'] == 'true'
+      %script(src='https://www.google.com/recaptcha/api.js' async defer)
+      = javascript_include_tag 'on_submit_new_user'
+      = f.button :button, t('about.get_started'), type: :submit, id: 'registration-form',
+        class: 'g-recaptcha',
+        data: { sitekey: ENV['RECAPTCHA_SITE_KEY'], callback: 'on_submit_new_user' }
+    - else
+      = f.button :button, t('about.get_started'), type: :submit
+>>>>>>> 93b77575d1bc0a6762236475b13365b5b888ab1a
 
   %p.hint.subtle-hint=t('auth.agreement_html', rules_path: about_more_path, terms_path: terms_path)

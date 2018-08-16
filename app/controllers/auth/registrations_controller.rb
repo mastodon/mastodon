@@ -14,6 +14,11 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     not_found
   end
 
+  def create
+    raise 'Only human can register our service.' unless is_human?
+    super
+  end
+
   protected
 
   def update_resource(resource, params)
@@ -94,5 +99,26 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def set_sessions
     @sessions = current_user.session_activations
+  end
+
+  concerning :RecaptchaFeature do
+    if ENV['RECAPTCHA_ENABLED'] == 'true'
+      def is_human?
+        g_recaptcha_response = params["g-recaptcha-response"]
+        return false unless g_recaptcha_response.present?
+        verify_by_recaptcha g_recaptcha_response
+      end
+      def verify_by_recaptcha(g_recaptcha_response)
+        conn = Faraday.new(url: 'https://www.google.com')
+        res = conn.post '/recaptcha/api/siteverify', {
+            secret: ENV['RECAPTCHA_SECRET_KEY'],
+            response: g_recaptcha_response
+        }
+        j = JSON.parse(res.body)
+        j['success']
+      end
+    else
+      def is_human?; true end
+    end
   end
 end
