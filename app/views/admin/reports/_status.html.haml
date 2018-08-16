@@ -3,11 +3,13 @@
     = f.check_box :status_ids, { multiple: true, include_hidden: false }, status.id
   .batch-table__row__content
     .status__content><
-      - unless status.proper.spoiler_text.blank?
-        %p><
-          %strong> Content warning: #{Formatter.instance.format_spoiler(status.proper)}
-
-      = Formatter.instance.format(status.proper, custom_emojify: true)
+      - if status.proper.spoiler_text.blank?
+        = Formatter.instance.format(status.proper, custom_emojify: true)
+      - else
+        %details<
+          %summary><
+            %strong> Content warning: #{Formatter.instance.format_spoiler(status.proper)}
+          = Formatter.instance.format(status.proper, custom_emojify: true)
 
     - unless status.proper.media_attachments.empty?
       - if status.proper.media_attachments.first.video?

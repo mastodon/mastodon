@@ -456,8 +456,8 @@ class Status < ApplicationRecord
       Account.where(id: account_id).update_all('statuses_count = COALESCE(statuses_count, 0) + 1')
     end
 
-    thread.increment_count!(:replies_count) if in_reply_to_id.present?
     reblog.increment_count!(:reblogs_count) if reblog?
+    thread.increment_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end
 
   def decrement_counter_caches
@@ -469,7 +469,7 @@ class Status < ApplicationRecord
       Account.where(id: account_id).update_all('statuses_count = GREATEST(COALESCE(statuses_count, 0) - 1, 0)')
     end
 
-    thread.decrement_count!(:replies_count) if in_reply_to_id.present?
     reblog.decrement_count!(:reblogs_count) if reblog?
+    thread.decrement_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end
 end
