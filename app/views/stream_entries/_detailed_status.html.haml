@@ -1,16 +1,15 @@
-.detailed-status.light
+.detailed-status.detailed-status--flex
   = link_to TagManager.instance.url_for(status.account), class: 'detailed-status__display-name p-author h-card', target: stream_link_target, rel: 'noopener' do
-    %div
-      .avatar
-        = image_tag status.account.avatar.url(:original), width: 48, height: 48, alt: '', class: 'u-photo'
+    .detailed-status__display-avatar
+      = image_tag status.account.avatar.url(:original), width: 48, height: 48, alt: '', class: 'account__avatar u-photo'
     %span.display-name
-      %strong.p-name.emojify= display_name(status.account, custom_emojify: true)
-      %span= acct(status.account)
+      %bdi
+        %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true)
+      %span.display-name__account
+        = acct(status.account)
+        = fa_icon('lock') if status.account.locked?
 
-  - if !user_signed_in? || embedded_view?
-    = link_to account_remote_follow_path(status.account), class: 'button button-secondary logo-button', target: '_new' do
-      = render file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')
-      = t('accounts.follow')
+  = account_action_button(status.account)
 
   .status__content.emojify<
     - if status.spoiler_text?
@@ -30,6 +29,7 @@
 
   .detailed-status__meta
     %data.dt-published{ value: status.created_at.to_time.iso8601 }
+
     = link_to TagManager.instance.url_for(status), class: 'detailed-status__datetime u-url u-uid', target: stream_link_target, rel: 'noopener' do
       %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
     ·
@@ -40,20 +40,20 @@
         = link_to status.application.name, status.application.website, class: 'detailed-status__application', target: '_blank', rel: 'noopener'
       ·
     - if status.direct_visibility?
-      %span<
+      %span.detailed-status__link<
         = fa_icon('envelope')
     - elsif status.private_visibility?
-      %span<
+      %span.detailed-status__link<
         = fa_icon('lock')
     - else
-      %span<
+      %span.detailed-status__link<
         = fa_icon('retweet')
-        %span= status.reblogs_count
+        %span.detailed-status__reblogs= number_to_human status.reblogs_count, strip_insignificant_zeros: true
     ·
-    %span<
+    %span.detailed-status__link<
       = fa_icon('star')
-      %span= status.favourites_count
+      %span.detailed-status__favorites= number_to_human status.favourites_count, strip_insignificant_zeros: true
 
     - if user_signed_in?
       ·
-      = link_to t('statuses.open_in_web'), web_url("statuses/#{status.id}"), class: 'open-in-web-link', target: '_blank'
+      = link_to t('statuses.open_in_web'), web_url("statuses/#{status.id}"), class: 'detailed-status__application', target: '_blank'

@@ -1,18 +1,19 @@
-.status.light
-  .status__header
-    .status__meta
-      = link_to TagManager.instance.url_for(status), class: 'status__relative-time u-url u-uid', target: stream_link_target, rel: 'noopener' do
-        %time.time-ago{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
-      %data.dt-published{ value: status.created_at.to_time.iso8601 }
+.status
+  .status__info
+    = link_to TagManager.instance.url_for(status), class: 'status__relative-time u-url u-uid', target: stream_link_target, rel: 'noopener' do
+      %time.time-ago{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
+    %data.dt-published{ value: status.created_at.to_time.iso8601 }
 
     = link_to TagManager.instance.url_for(status.account), class: 'status__display-name p-author h-card', target: stream_link_target, rel: 'noopener' do
       .status__avatar
         %div
-          = image_tag status.account.avatar(:original), width: 48, height: 48, alt: '', class: 'u-photo'
+          = image_tag status.account.avatar(:original), width: 48, height: 48, alt: '', class: 'u-photo account__avatar'
       %span.display-name
-        %strong.p-name.emojify= display_name(status.account, custom_emojify: true)
-        %span= acct(status.account)
-
+        %bdi
+          %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true)
+        %span.display-name__account
+          = acct(status.account)
+          = fa_icon('lock') if status.account.locked?
   .status__content.emojify<
     - if status.spoiler_text?
       %p{ style: 'margin-bottom: 0' }<
@@ -26,3 +27,16 @@
       = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, width: 610, height: 343, inline: true
     - else
       = react_component :media_gallery, height: 343, sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, 'autoPlayGif': current_account&.user&.setting_auto_play_gif, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }
+
+  .status__action-bar
+    .status__action-bar-button.static-icon-button<
+      - if status.public_visibility? || status.unlisted_visibility?
+        = fa_icon 'retweet fw'
+        %span.detailed-status__reblogs= number_to_human status.reblogs_count, strip_insignificant_zeros: true
+      - elsif status.private_visibility?
+        = fa_icon 'lock fw'
+      - else
+        = fa_icon 'envelope fw'
+    .status__action-bar-button.static-icon-button<
+      = fa_icon 'star fw'
+      %span.detailed-status__favorites= number_to_human status.favourites_count, strip_insignificant_zeros: true

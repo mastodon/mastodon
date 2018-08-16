@@ -5,13 +5,12 @@ de:
     about_mastodon_html: Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral (so wie E-Mail!).
     about_this: Über diese Instanz
     administered_by: 'Administriert von:'
+    api: API
     closed_registrations: Die Registrierung auf dieser Instanz ist momentan geschlossen. Aber du kannst dein Konto auch auf einer anderen Instanz erstellen! Von dort hast du genauso Zugriff auf das Mastodon-Netzwerk.
     contact: Kontakt
     contact_missing: Nicht angegeben
     contact_unavailable: N/A
-    description_headline: Was ist %{domain}?
-    domain_count_after: anderen Instanzen
-    domain_count_before: Vernetzt mit
+    documentation: Dokumentation
     extended_description_html: |
       <h3>Ein guter Platz für Regeln</h3>
       <p>Die erweiterte Beschreibung wurde noch nicht aufgesetzt.</p>
@@ -28,9 +27,11 @@ de:
     hosted_on: Mastodon, beherbergt auf %{domain}
     learn_more: Mehr erfahren
     other_instances: Andere Instanzen
+    privacy_policy: Datenschutzerklärung
     source_code: Quellcode
     status_count_after: Beiträge verfassten
     status_count_before: die
+    terms: Nutzungsbedingungen
     user_count_after: Wesen
     user_count_before: Zuhause für
     what_is_mastodon: Was ist Mastodon?
@@ -38,6 +39,7 @@ de:
     follow: Folgen
     followers: Folgende
     following: Folgt
+    joined: Beigetreten am %{date}
     media: Medien
     moved_html: "%{name} ist auf %{new_profile_link} umgezogen:"
     network_hidden: Diese Informationen sind nicht verfügbar
@@ -46,7 +48,6 @@ de:
     people_who_follow: Profile, die %{name} folgen
     posts: Beiträge
     posts_with_replies: Beiträge mit Antworten
-    remote_follow: Folgen
     reserved_username: Dieser Profilname ist belegt
     roles:
       admin: Admin
@@ -55,7 +56,7 @@ de:
     unfollow: Entfolgen
   admin:
     account_moderation_notes:
-      create: Notiz hinterlassen
+      create: Notiz erstellen
       created_msg: Moderationsnotiz erfolgreich erstellt!
       delete: Löschen
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
@@ -206,6 +207,27 @@ de:
       update_failed_msg: Konnte dieses Emoji nicht aktualisieren
       updated_msg: Emoji erfolgreich aktualisiert!
       upload: Hochladen
+    dashboard:
+      backlog: Unerledigte Jobs
+      config: Konfiguration
+      feature_deletions: Kontolöschung
+      feature_invites: Einladungslinks
+      feature_registrations: Registrierung
+      feature_relay: Föderations-Relay
+      features: Eigenschaften
+      hidden_service: Föderation mit versteckten Diensten
+      open_reports: Offene Meldungen
+      recent_users: Neueste Nutzer
+      search: Volltextsuche
+      single_user_mode: Einzelnutzermodus
+      software: Software
+      space: Speicherverbrauch
+      title: Übersicht
+      total_users: Benutzer Insgesamt
+      trends: Trends
+      week_interactions: Interaktionen diese Woche
+      week_users_active: Aktiv diese Woche
+      week_users_new: Benutzer diese Woche
     domain_blocks:
       add_new: Neu hinzufügen
       created_msg: Die Domain-Blockade wird nun durchgeführt
@@ -261,6 +283,14 @@ de:
         expired: Ausgelaufen
         title: Filter
       title: Einladungen
+    relays:
+      add_new: Neues Relay hinzufügen
+      description_html: Ein <strong>Föderierungsrelay</strong> ist ein vermittelnder Server, der eine große Anzahl öffentlicher Beiträge zwischen Servern austauscht, die es abonnieren und zu ihm veröffentlichen.<strong> Es kann kleinen und mittleren Servern dabei helfen, Inhalte des Fediverse zu entdecken</strong>, was andernfalls das manuelle Folgen anderer Leute auf entfernten Servern durch lokale Nutzer erfordern würde.
+      enable_hint: Sobald aktiviert wird dein Server alle öffentlichen Beiträge dieses Relays abonnieren und wird alle öffentlichen Beiträge dieses Servers an es senden.
+      inbox_url: Relay-URL
+      setup: Relayverbindung einrichten
+      status: Status
+      title: Relays
     report_notes:
       created_msg: Meldungs-Kommentar erfolgreich erstellt!
       destroyed_msg: Meldungs-Kommentar erfolgreich gelöscht!
@@ -316,6 +346,9 @@ de:
       peers_api_enabled:
         desc_html: Domain-Namen dieser Instanz, die im Fediverse gefunden wurden
         title: Veröffentliche Liste von gefundenen Instanzen
+      preview_sensitive_media:
+        desc_html: Linkvorschauen auf anderen Webseiten werden ein Vorschaubild anzeigen, obwohl die Medien als heikel gekennzeichnet sind
+        title: Heikle Medien in OpenGraph-Vorschauen anzeigen
       registrations:
         closed_message:
           desc_html: Wird auf der Frontseite angezeigt, wenn die Registrierung geschlossen ist. Du kannst HTML-Tags benutzen
@@ -336,11 +369,14 @@ de:
         desc_html: Zeige Mitarbeiter-Badge auf Benutzerseite
         title: Zeige Mitarbeiter-Badge
       site_description:
-        desc_html: Wird als Absatz auf der Frontseite angezeigt und als Meta-Tag benutzt. Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
+        desc_html: Einleitungsabschnitt auf der Frontseite. Beschreibe, was diese Mastodon-Instanz ausmacht. Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
         title: Beschreibung der Instanz
       site_description_extended:
         desc_html: Bietet sich für Verhaltenskodizes, Regeln, Richtlinien und weiteres an, was deine Instanz auszeichnet. Du kannst HTML-Tags benutzen
         title: Erweiterte Beschreibung der Instanz
+      site_short_description:
+        desc_html: Wird angezeigt in der Seitenleiste und in Meta-Tags. Beschreibe in einem einzigen Abschnitt, was Mastodon ist und was diesen Server ausmacht. Falls leer, wird die Instanz-Beschreibung verwendet.
+        title: Kurze Instanz-Beschreibung
       site_terms:
         desc_html: Hier kannst du deine eigenen Geschäftsbedingungen, Datenschutzerklärung und anderes rechtlich Relevante eintragen. Du kannst HTML-Tags benutzen
         title: Eigene Geschäftsbedingungen
@@ -465,7 +501,7 @@ de:
     archive_takeout:
       date: Datum
       download: Dein Archiv herunterladen
-      hint_html: Du kannst ein Archiv deiner <strong>Beiträge und hochgeladenen Medien</strong> anfragen. Die exportierten Daten werden im ActivityPub-Format gespeichert, welches mit jeder Software lesbar ist, die das Format unterstützt. Du kannst alle 7 Tage ein neues Archiv anfordern.
+      hint_html: Du kannst ein Archiv deiner <strong>Beiträge und hochgeladenen Medien</strong> anfragen. Die exportierten Daten werden im ActivityPub-Format gespeichert, welches mit jeder Software lesbar ist die das Format unterstützt. Du kannst alle 7 Tage ein Archiv anfordern.
       in_progress: Stelle dein Archiv zusammen...
       request: Dein Archiv anfragen
       size: Größe
@@ -502,9 +538,12 @@ de:
     true_privacy_html: Bitte beachte, dass <strong>wirklicher Schutz deiner Privatsphäre nur durch Ende-zu-Ende-Verschlüsselung erreicht werden kann.</strong>.
     unlocked_warning_html: Wer dir folgen will, kann dies jederzeit ohne deine vorige Einverständnis tun und erhält damit automatisch Zugriff auf deine privaten Beiträge. Wenn du %{lock_link}, kannst du vorab entscheiden, wer dir folgen darf und wer nicht.
     unlocked_warning_title: Dein Konto ist nicht gesperrt
+  footer:
+    developers: Entwickler
+    more: Mehr…
+    resources: Ressourcen
   generic:
     changes_saved_msg: Änderungen gespeichert!
-    powered_by: angetrieben von %{link}
     save_changes: Änderungen speichern
     validation_errors:
       one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
@@ -540,8 +579,6 @@ de:
       expires_at: Läuft ab
       uses: Verwendungen
     title: Leute Einladen
-  landing_strip_html: "<strong>%{name}</strong> hat ein Profil auf %{link_to_root_path}. Du kannst folgen oder interagieren, sofern du ein Konto irgendwo im Fediversum hast."
-  landing_strip_signup_html: Wenn nicht, kannst du dich <a href="%{sign_up_path}">hier anmelden</a>.
   lists:
     errors:
       limit: Du hast die maximale Anzahl an Listen erreicht
@@ -710,11 +747,93 @@ de:
       unlisted: Nicht gelistet
       unlisted_long: Für alle sichtbar, aber nicht in öffentlichen Zeitleisten aufgelistet
   stream_entries:
-    click_to_show: Klicken, um zu zeigen
     pinned: Angehefteter Beitrag
     reblogged: teilte
     sensitive_content: Heikle Inhalte
   terms:
+    body_html: |
+      <h2>Datenschutzerklärung</h2>
+      <h3 id="collect">Welche Informationen sammeln wir?</h3>
+
+      <ul>
+        <li><em>Grundlegende Kontoinformationen</em>: Wenn du dich auf diesem Server registrierst, wirst du darum gebeten, einen Benutzernamen, eine E-Mail-Adresse und ein Passwort einzugeben. Du kannst auch zusätzliche Profilinformationen wie etwa einen Anzeigenamen oder eine Biografie eingeben und ein Profilbild oder ein Headerbild hochladen. Der Benutzername, der Anzeigename, die Biografie, das Profilbild und das Headerbild werden immer öffentlich angezeigt.</li>
+        <li><em>Beiträge, Folge- und andere öffentliche Informationen</em>: Die Liste der Leute, denen du folgst, wird öffentlich gezeigt, das gleiche gilt für deine Folgenden (Follower). Sobald du eine Nachricht übermittelst, wird das Datum und die Uhrzeit gemeinsam mit der Information, welche Anwendung du dafür verwendet hast, gespeichert. Nachricht können Medienanhänge enthalten, etwa Bilder und Videos. Öffentliche und ungelistete Beiträge sind öffentlich verfügbar. Sobald du einen Beitrag auf deinem Profil featurest, sind dies auch öffentlich verfügbare Informationen. Deine Beiträge werden an deine Folgenden ausgeliefert, was in manchen Fällen bedeutet, dass sie an andere Server ausgeliefert werden und dort Kopien gespeichert werden. Sobald du Beiträge löschst, wird dies ebenso an deine Follower ausgeliefert. Die Handlungen des Teilens und Favorisieren eines anderen Beitrages ist immer öffentlich.</li>
+        <li><em>Direkte und "Nur Folgende"-Beiträge</em>: Alle Beiträge werden auf dem Server gespeichert und verarbeitet. "Nur Folgende"-Beiträge werden an deine Folgenden und an Benutzer, die du in ihnen erwähnst, ausgeliefert, direkte Beiträge nur an in ihnen erwähnte Benutzer. In manchen Fällen bedeutet dass, dass sie an andere Server ausgeliefert werden und dort Kopien gespeichert werden. Wir bemühen uns nach bestem Wissen und Gewissen, den Zugriff auf diese Beiträge auf nur autorisierte Personen einzuschränken, jedoch könnten andere Server dabei scheitern. Deswegen ist es wichtig, die Server, zu denen deine Folgenden gehören, zu überprüfen. Du kannst eine Option in den Einstellungen umschalten, um neue Folgenden manuell anzunehmen oder abzuweisen. <em>Bitte beachte, dass die Betreiber des Server und jedes empfangenden Servers solche Nachrichten anschauen könnten</em> und dass Empfänger von diesen eine Bildschirmkopie erstellen könnten, sie kopieren oder anderweitig weiterverteilen könnten. <em>Teile nicht irgendwelche gefährlichen Informationen über Mastodon.</em></li>
+        <li><em>Internet Protocol-Adressen (IP-Adressen) und andere Metadaten</em>: Sobald du dich anmeldest, erfassen wir sowohl die IP-Adresse, von der aus du dich anmeldest, als auch den Namen deine Browseranwendung. Alle angemeldeten Sitzungen (Sessions) sind für deine Überprüfung und Widerruf in den Einstellungen verfügbar. Die letzte verwendete IP-Adresse wird bis zu 12 Monate lang gespeichert. Wir könnten auch Serverprotokoll behalten, welche die IP-Adresse von jeder Anfrage an unseren Server enthalten.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">Für was verwenden wir deine Informationen?</h3>
+
+      <p>Jede der von dir gesammelten Information kann in den folgenden Weisen verwendet werden:</p>
+
+      <ul>
+        <li>Um die Kernfunktionalität von Mastodon bereitzustellen. Du kannst du mit dem Inhalt anderer Leute interagieren und deine eigenen Inhalte beitragen, wenn du angemeldet bist. Zum Beispiel kannst du anderen folgen, um deren kombinierten Beiträge in deine personalisierten Start-Timeline zu sehen.</li>
+        <li>Um Moderation der Community zu ermöglichen, zum Beispiel beim Vergleichen deiner IP-Adresse mit anderen bekannten, um Verbotsumgehung oder andere Vergehen festzustellen.</li>
+        <li>Die E-Mail-Adresse, die du bereitstellst, kann dazu verwendet werden, dir Informationen, Benachrichtigungen über andere Leute, die mit deinen Inhalten interagieren oder dir Nachrichten senden, und auf Anfragen, Wünsche und/oder Fragen zu antworten.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">Wie beschützen wir deine Informationen?</h3>
+
+      <p>Wir implementieren eine Reihe von Sicherheitsmaßnahmen, um die Sicherheit deiner persönlichen Information sicherzustellen, wenn du persönliche Informationen eingibst, übermittelst oder auf sie zugreifst. Neben anderen Dingen, wird sowohl deine Browsersitzung, als auch der Datenverkehr zischen deinen Anwendungen und der Programmierschnittstelle (API) mit SSL gesichert, dein Passwort wird mit einem starken Einwegalgorithmus gehasht. Du kannst Zwei-Faktor-Authentifizierung aktivieren, um den Zugriff auf dein Konto zusätzlich abzusichern.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">Was ist unsere Datenspeicherungsrichtlinie?</h3>
+
+      <p>Wir werden mit bestem Wissen und Gewissen:</p>
+
+      <ul>
+        <li>Serverprotokolle, die IP-Adressen von allen deinen Anfragen an diesen Server, falls solche Protokolle behalten werden, für nicht mehr als 90 Tage behalten.</li>
+        <li>registrierten Benutzern zu geordnete IP-Adressen nicht länger als 12 Monate behalten.</li>
+      </ul>
+
+      <p>Du kannst ein Archiv deines Inhalts anfordern und herunterladen, inkludierend deiner Beiträge, Medienanhänge, Profilbilder und Headerbilder.</p>
+
+      <p>Du kannst dein Konto unwiderruflich jederzeit löschen.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Verwenden wir Cookies?</h3>
+
+      <p>Ja. Cookies sind kleine Dateien, die eine Webseite oder ihr Serviceanbieter über deinen Webbrowser (sofern er es erlaubt) auf die Festplatte deines Computers überträgt. Diese Cookies ermöglichen es der Seite deinen Browser wiederzuerkennen und, sofern du ein registriertes Konto hast, diesen mit deinem registrierten Konto zu verknüpfen.</p>
+
+      <p>Wir verwenden Cookies, um deine Einstellungen zu verstehen und für zukünftige Besuche zu speichern.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Offenbaren wir Informationen an Dritte?</h3>
+
+      <p>Wir verkaufen nicht, handeln nicht mit oder übertragen deine persönlich identifizierbaren Informationen nicht an Dritte. Dies beinhaltet nicht Dritte, die vertrauenswürdig sind und uns beim Betreiben unserer Seite, Leiten unseres Geschäftes oder dabei, die Dienste für dich bereitzustellen, unterstützen, sofern diese Dritte zustimmen, diese Informationen vertraulich zu halten. Wir können auch Informationen freigeben, wenn wir glauben, dass Freigabe angemessen ist, um dem Gesetz zu entsprechen, unsere Seitenrichtlinien durchzusetzen oder unsere Rechte, Eigentum und/oder Sicherheit oder die anderer zu beschützen.</p>
+
+      <p>Dein öffentlicher Inhalt kann durch andere Server im Netzwerk heruntergeladen werden. Deine öffentlichen und "Nur Folgende"-Beiträge werden an die Server ausgeliefert, bei denen sich deine Folgenden befinden und direkte Nachrichten werden an die Server des Empfängers ausgeliefert, falls diese Folgenden oder Empfänger sich auf einem anderen Server als diesen befinden.</p>
+
+      <p>Wenn du eine Anwendung autorisierst, dein Konto zu benutzen, kann diese – abhängig von den von dir genehmigten Befugnissen – auf deine öffentlichen Profilinformationen, deine Folgt- und Folgende-Liste, deine Listen, alle deine Beiträge und deine Favoriten zugreifen. Anwendungen können nie auf deine E-Mail-Adresse oder dein Passwort zugreifen</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Webseitenbenutzung durch Kinder</h3>
+
+      <p>Wenn sich dieser Server in der EU oder im Europäischen Wirtschaftsraum befinden: Unsere Website, Produkte und Dienstleistungen sind alle an Leute gerichtet, die mindestens 16 Jahre als sind. Wenn du unter 16 bist, darfst du nach den Bestimmungen der DSGVO (<a href="https://de.wikipedia.org/wiki/Datenschutz-Grundverordnung">Datenschutz-Grundverordnung</a>) diese Webseite nicht benutzen.</p>
+
+      <p>Wenn sich dieser Server in den USA befindet: Unsere Webseite, Produkte und Dienstleistungen sind alle an Leute gerichtet, die mindestens 13 Jahre alt sind. Wenn du unter 13 bist, darfst du nach den Bestimmungen des COPPA (<a href="https://de.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act, dt. "Gesetz zum Schutz der Privatsphäre von Kindern im Internet"</a>) diese Webseite nicht benutzen.</p>
+
+      <p>Gesetzesvorschriften können unterschiedlich sein, wenn sich dieser Server in anderer Gerichtsbarkeit befindet.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Änderung an unserer Datenschutzerklärung</h3>
+
+      <p>Wenn wir uns entscheiden, Änderungen an unserer Datenschutzerklärung vorzunehmen, werden wird diese Änderungen auf dieser Seite bekannt geben.</p>
+
+      <p>Dies ist eine Übersetzung, Irrtümer und Übersetzungsfehler vorbehalten. Im Zweifelsfall gilt die englische Originalversion</p>
+
+      <p>Dieses Dokument ist CC-BY-SA. Es wurde zuletzt aktualisiert am 7. März 2018.</p>
+
+      <p>Ursprünglich übernommen von der <a href="https://github.com/discourse/discourse">Discourse-Datenschutzerklärung</a>.</p>
     title: "%{instance} Nutzungsbedingungen und Datenschutzerklärung"
   themes:
     contrast: Hoher Kontrast
@@ -723,6 +842,7 @@ de:
   time:
     formats:
       default: "%d.%m.%Y %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Gib zur Bestätigung den Code ein, den deine Authenticator-App generiert hat
     description_html: Wenn du <strong>Zwei-Faktor-Authentisierung (2FA)</strong> aktivierst, wirst du dein Telefon zum Anmelden benötigen. Darauf werden Tokens erzeugt, die du bei der Anmeldung eingeben musst.
@@ -765,6 +885,6 @@ de:
   users:
     invalid_email: Ungültige E-Mail-Adresse
     invalid_otp_token: Ungültiger Zwei-Faktor-Authentisierungs-Code
-    otp_lost_help_html: Wenn Sie zu beidem keinen Zugriff mehr haben, kontaktieren sie %{email}
+    otp_lost_help_html: Wenn Du beides nicht mehr weißt, melde Dich bei uns unter der E-Mailadresse %{email}
     seamless_external_login: Du bist angemeldet über einen Drittanbieter-Dienst, weswegen Passwort- und E-Maileinstellungen nicht verfügbar sind.
     signed_in_as: 'Angemeldet als:'

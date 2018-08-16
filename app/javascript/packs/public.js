@@ -22,15 +22,16 @@ window.addEventListener('message', e => {
 
 function main() {
   const { length } = require('stringz');
-  const IntlRelativeFormat = require('intl-relativeformat').default;
+  const IntlMessageFormat = require('intl-messageformat').default;
+  const { timeAgoString } = require('../mastodon/components/relative_timestamp');
   const { delegate } = require('rails-ujs');
   const emojify = require('../mastodon/features/emoji/emoji').default;
   const { getLocale } = require('../mastodon/locales');
-  const { localeData } = getLocale();
+  const { messages } = getLocale();
   const React = require('react');
   const ReactDOM = require('react-dom');
-
-  localeData.forEach(IntlRelativeFormat.__addLocaleData);
+  const Rellax = require('rellax');
+  const createHistory = require('history').createBrowserHistory;
 
   ready(() => {
     const locale = document.documentElement.lang;
@@ -42,8 +43,6 @@ function main() {
       hour: 'numeric',
       minute: 'numeric',
     });
-
-    const relativeFormat = new IntlRelativeFormat(locale);
 
     [].forEach.call(document.querySelectorAll('.emojify'), (content) => {
       content.innerHTML = emojify(content.innerHTML);
@@ -59,12 +58,16 @@ function main() {
 
     [].forEach.call(document.querySelectorAll('time.time-ago'), (content) => {
       const datetime = new Date(content.getAttribute('datetime'));
+      const now      = new Date();
 
       content.title = dateTimeFormat.format(datetime);
-      content.textContent = relativeFormat.format(datetime);
+      content.textContent = timeAgoString({
+        formatMessage: ({ id, defaultMessage }, values) => (new IntlMessageFormat(messages[id] || defaultMessage, locale)).format(values),
+        formatDate: (date, options) => (new Intl.DateTimeFormat(locale, options)).format(date),
+      }, datetime, now, datetime.getFullYear());
     });
 
-    [].forEach.call(document.querySelectorAll('.logo-button'), (content) => {
+    [].forEach.call(document.querySelectorAll('.modal-button'), (content) => {
       content.addEventListener('click', (e) => {
         e.preventDefault();
         window.open(e.target.href, 'mastodon-intent', 'width=445,height=600,resizable=no,menubar=no,status=no,scrollbars=yes');
@@ -81,6 +84,16 @@ function main() {
           document.body.appendChild(content);
         })
         .catch(error => console.error(error));
+    }
+
+    new Rellax('.parallax', { speed: -1 });
+
+    const history = createHistory();
+    const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
+    const location = history.location;
+    if (detailedStatuses.length === 1 && (!location.state || !location.state.scrolledToDetailedStatus)) {
+      detailedStatuses[0].scrollIntoView();
+      history.replace(location.pathname, { ...location.state, scrolledToDetailedStatus: true });
     }
   });
 
@@ -106,15 +119,20 @@ function main() {
     return false;
   });
 
-  delegate(document, '.account_display_name', 'input', ({ target }) => {
+  delegate(document, '#account_display_name', 'input', ({ target }) => {
     const nameCounter = document.querySelector('.name-counter');
+    const name        = document.querySelector('.card .display-name strong');
 
     if (nameCounter) {
       nameCounter.textContent = 30 - length(target.value);
     }
+
+    if (name) {
+      name.innerHTML = emojify(target.value);
+    }
   });
 
-  delegate(document, '.account_note', 'input', ({ target }) => {
+  delegate(document, '#account_note', 'input', ({ target }) => {
     const noteCounter = document.querySelector('.note-counter');
 
     if (noteCounter) {
@@ -123,7 +141,7 @@ function main() {
   });
 
   delegate(document, '#account_avatar', 'change', ({ target }) => {
-    const avatar = document.querySelector('.card.compact .avatar img');
+    const avatar = document.querySelector('.card .avatar img');
     const [file] = target.files || [];
     const url = file ? URL.createObjectURL(file) : avatar.dataset.originalSrc;
 
@@ -131,11 +149,21 @@ function main() {
   });
 
   delegate(document, '#account_header', 'change', ({ target }) => {
-    const header = document.querySelector('.card.compact');
+    const header = document.querySelector('.card .card__img img');
     const [file] = target.files || [];
     const url = file ? URL.createObjectURL(file) : header.dataset.originalSrc;
 
-    header.style.backgroundImage = `url(${url})`;
+    header.src = url;
+  });
+
+  delegate(document, '#account_locked', 'change', ({ target }) => {
+    const lock = document.querySelector('.card .display-name i');
+
+    if (target.checked) {
+      lock.style.display = 'inline';
+    } else {
+      lock.style.display = 'none';
+    }
   });
 }
 

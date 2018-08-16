@@ -4,6 +4,7 @@ module SettingsHelper
   HUMAN_LOCALES = {
     en: 'English',
     ar: 'العربية',
+    ast: 'l\'asturianu',
     bg: 'Български',
     ca: 'Català',
     co: 'Corsu',
@@ -33,7 +34,7 @@ module SettingsHelper
     pt: 'Português',
     'pt-BR': 'Português do Brasil',
     ru: 'Русский',
-    sk: 'Slovensky',
+    sk: 'Slovenčina',
     sl: 'Slovenščina',
     sr: 'Српски',
     'sr-Latn': 'Srpski (latinica)',

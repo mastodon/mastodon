@@ -10,7 +10,9 @@ class AccountsController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @pinned_statuses = []
+        @body_classes      = 'with-modals'
+        @pinned_statuses   = []
+        @endorsed_accounts = @account.endorsed_accounts.to_a.sample(4)
 
         if current_account && @account.blocking?(current_account)
           @statuses = []
@@ -50,7 +52,7 @@ class AccountsController < ApplicationController
   private
 
   def show_pinned_statuses?
-    [replies_requested?, media_requested?, params[:max_id].present?, params[:since_id].present?].none?
+    [replies_requested?, media_requested?, params[:max_id].present?, params[:min_id].present?].none?
   end
 
   def filtered_statuses

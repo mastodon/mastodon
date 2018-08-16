@@ -309,6 +309,9 @@ Rails.application.routes.draw do
           post :mute
           post :unmute
         end
+
+        resource :pin, only: :create, controller: 'accounts/pins'
+        post :unpin, to: 'accounts/pins#destroy'
       end
 
       resources :lists, only: [:index, :create, :show, :update, :destroy] do
