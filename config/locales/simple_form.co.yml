@@ -3,35 +3,49 @@ co:
   simple_form:
     hints:
       defaults:
+        autofollow: Quelli·e chì s'arregistranu cù l'invitazione saranu autumaticamente abbunati·e à voi
         avatar: Furmatu PNG, GIF o JPG. 2Mo o menu. Sarà ridottu à %{dimensions}px
         bot: Stu contu hè autumatizatu è ùn hè forse micca survegliatu
+        context: Cuntestu·i induve u filtru deve esse applicatu
         digest: Solu mandatu dopu à una longa perioda d’inattività, è solu s’elli ci sò novi missaghji diretti
         display_name:
           one: Ci ferma <span class="name-counter">1</span> caratteru
           other: Ci fermanu <span class="name-counter">%{count}</span> caratteri
         fields: Pudete avè fin’à 4 elementi mustrati cum’un tavulone nant’à u vostru prufile
         header: Furmatu PNG, GIF o JPG. 2Mo o menu. Sarà ridottu à %{dimensions}px
+        inbox_url: Cupiate l'URL di a pagina d'accolta di u ripetitore chì vulete utilizà
+        irreversible: I statuti filtrati saranu sguassati di manera irreversibile, ancu s'ellu hè toltu u filtru
+        locale: A lingua di l'interfaccia utilizatore, di l'e-mail è di e nutificazione push
         locked: Duvarete appruvà e dumande d’abbunamentu
         note:
           one: Ci ferma <span class="name-counter">1</span> caratteru
           other: Ci fermanu <span class="name-counter">%{count}</span> caratteri
+        phrase: Sarà trovu senza primura di e maiuscule o di l'avertimenti
+        scopes: L'API à quelle l'applicazione averà accessu. S'è voi selezziunate un parametru d'altu livellu, un c'hè micca bisognu di selezziunà quell'individuali.
+        setting_default_language: A lingua di i vostri statuti pò esse induvinata autumaticamente, mà ùn marchja micca sempre bè
         setting_hide_network: I vostri abbunati è abbunamenti ùn saranu micca mustrati nant’à u vostru prufile
         setting_noindex: Tocca à u vostru prufile pubblicu è i vostri statuti
         setting_theme: Tocca à l’apparenza di Mastodon quandu site cunnettatu·a da qualch’apparechju.
+        whole_word: Quandu a parolla o a frasa sana hè alfanumerica, sarà applicata solu s'ella currisponde à a parolla sana
       imports:
         data: Un fugliale CSV da un’altr’istanza di Mastodon
       sessions:
         otp: 'Entrate u codice d’identificazione à dui fattori nant’à u vostru telefuninu, o unu di i vostri codici di ricuperazione:'
+      user:
+        chosen_languages: Soli i statuti scritti in e lingue selezziunate saranu mustrati indè e linee pubbliche
     labels:
       account:
         fields:
           name: Label
           value: Cuntinutu
       defaults:
+        autofollow: Invità à siguità u vostru contu
         avatar: Ritrattu di prufile
         bot: Stu contu hè un bot
+        chosen_languages: Filtrà lingue
         confirm_new_password: Cunfirmà a nova chjave d’accessu
         confirm_password: Cunfirmà a chjave d’accessu
+        context: Cuntesti di u filtru
         current_password: Chjave d’accessu attuale
         data: Dati
         display_name: Nome pubblicu
@@ -39,15 +53,19 @@ co:
         expires_in: Spira dopu à
         fields: Metadata di u prufile
         header: Ritrattu di cuprendula
-        locale: Lingua
+        inbox_url: URL di l'inbox di u ripetitore
+        irreversible: Sguassà invece di piattà
+        locale: Lingua di l'interfaccia
         locked: Privatizà u contu
         max_uses: Numeru massimale d’utilizazione
         new_password: Nova chjave d’accessu
         note: Descrizzione
         otp_attempt: Codice d’identificazione à dui fattori
         password: Chjave d’accessu
+        phrase: Parolla-chjave o frasa
         setting_auto_play_gif: Lettura autumatica di i GIF animati
         setting_boost_modal: Mustrà una cunfirmazione per sparte un statutu
+        setting_default_language: Lingua di pubblicazione
         setting_default_privacy: Cunfidenzialità di i statuti
         setting_default_sensitive: Sempre cunsiderà media cum’è sensibili
         setting_delete_modal: Mustrà une cunfirmazione per toglie un statutu
@@ -62,6 +80,7 @@ co:
         type: Tippu d’impurtazione
         username: Cugnome
         username_or_email: Cugnome o Email
+        whole_word: Parolla sana
       interactions:
         must_be_follower: Piattà e nutificazione di quelli·e ch’ùn vi seguitanu
         must_be_following: Piattà e nutificazione di quelli·e ch’ùn seguitate

@@ -48,17 +48,17 @@ describe Export do
   describe 'total_follows' do
     it 'returns the total number of the followed accounts' do
       target_accounts.each(&account.method(:follow!))
-      expect(Export.new(account).total_follows).to eq 2
+      expect(Export.new(account.reload).total_follows).to eq 2
     end
 
     it 'returns the total number of the blocked accounts' do
       target_accounts.each(&account.method(:block!))
-      expect(Export.new(account).total_blocks).to eq 2
+      expect(Export.new(account.reload).total_blocks).to eq 2
     end
 
     it 'returns the total number of the muted accounts' do
       target_accounts.each(&account.method(:mute!))
-      expect(Export.new(account).total_mutes).to eq 2
+      expect(Export.new(account.reload).total_mutes).to eq 2
     end
   end
 end

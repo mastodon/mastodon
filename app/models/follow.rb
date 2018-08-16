@@ -33,10 +33,15 @@ class Follow < ApplicationRecord
   end
 
   before_validation :set_uri, only: :create
+  after_destroy :remove_endorsements
 
   private
 
   def set_uri
     self.uri = ActivityPub::TagManager.instance.generate_uri_for(self) if uri.nil?
+  end
+
+  def remove_endorsements
+    AccountPin.where(target_account_id: target_account_id, account_id: account_id).delete_all
   end
 end

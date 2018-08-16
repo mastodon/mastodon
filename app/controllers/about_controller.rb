@@ -9,9 +9,13 @@ class AboutController < ApplicationController
     @initial_state_json   = serializable_resource.to_json
   end
 
-  def more; end
+  def more
+    render layout: 'public'
+  end
 
-  def terms; end
+  def terms
+    render layout: 'public'
+  end
 
   private
 
