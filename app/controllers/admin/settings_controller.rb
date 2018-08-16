@@ -6,6 +6,7 @@ module Admin
       site_contact_username
       site_contact_email
       site_title
+      site_short_description
       site_description
       site_extended_description
       site_terms
