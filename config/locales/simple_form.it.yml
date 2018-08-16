@@ -4,7 +4,7 @@ it:
     hints:
       defaults:
         autofollow: Le persone che si iscrivono attraverso l'invito ti seguiranno automaticamente
-        avatar: PNG, GIF o JPG. Al massimo 2MB. Verranno scalate a 400x400px
+        avatar: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
         bot: Questo account esegue principalmente operazioni automatiche e potrebbe non essere tenuto sotto controllo da una persona
         context: Uno o più contesti nei quali il filtro dovrebbe essere applicato
         digest: Inviata solo dopo un lungo periodo di inattività e solo se hai ricevuto qualche messaggio personale in tua assenza
@@ -12,7 +12,8 @@ it:
           one: <span class="name-counter">1</span> carattere rimanente
           other: <span class="name-counter">%{count}</span> caratteri rimanenti
         fields: Puoi avere fino a 4 voci visualizzate come una tabella sul tuo profilo
-        header: PNG, GIF o JPG. Al massimo 2MB. Verranno scalate a 700x335px
+        header: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
+        inbox_url: Copia la URL dalla pagina iniziale del ripetitore che vuoi usare
         irreversible: I toot filtrati scompariranno in modo irreversibile, anche se il filtro viene eliminato
         locale: La lingua dell'interfaccia utente, di email e notifiche push
         locked: Richiede che approvi i follower manualmente
@@ -25,6 +26,7 @@ it:
         setting_hide_network: Chi segui e chi segue te non saranno mostrati sul tuo profilo
         setting_noindex: Ha effetto sul tuo profilo pubblico e sulle pagine degli status
         setting_theme: Ha effetto sul modo in cui Mastodon verrà visualizzato quando sarai collegato da qualsiasi dispositivo.
+        whole_word: Quando la parola chiave o la frase è solo alfanumerica, si applica solo se corrisponde alla parola intera
       imports:
         data: File CSV esportato da un'altra istanza di Mastodon
       sessions:
@@ -51,6 +53,7 @@ it:
         expires_in: Scade dopo
         fields: Metadati del profilo
         header: Header
+        inbox_url: URL della inbox del ripetitore
         irreversible: Elimina invece di nascondere
         locale: Lingua dell'interfaccia
         locked: Blocca account
@@ -77,6 +80,7 @@ it:
         type: Tipo importazione
         username: Nome utente
         username_or_email: Nome utente o email
+        whole_word: Parola intera
       interactions:
         must_be_follower: Blocca notifiche dai non follower
         must_be_following: Blocca notifiche dalle persone che non segui

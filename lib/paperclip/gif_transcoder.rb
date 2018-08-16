@@ -5,14 +5,7 @@ module Paperclip
   # to convert animated gifs to webm
   class GifTranscoder < Paperclip::Processor
     def make
-      num_frames = identify('-format %n :file', file: file.path).to_i
-
-      unless options[:style] == :original && num_frames > 1
-        tmp_file = Paperclip::TempfileFactory.new.generate(attachment.instance.file_file_name)
-        tmp_file << file.read
-        tmp_file.flush
-        return tmp_file
-      end
+      return File.open(@file.path) unless needs_convert?
 
       final_file = Paperclip::Transcoder.make(file, options, attachment)
 
@@ -21,6 +14,13 @@ module Paperclip
       attachment.instance.type              = MediaAttachment.types[:gifv]
 
       final_file
+    end
+
+    private
+
+    def needs_convert?
+      num_frames = identify('-format %n :file', file: file.path).to_i
+      options[:style] == :original && num_frames > 1
     end
   end
 end

@@ -90,6 +90,18 @@ class RemoveStatusService < BaseService
     ActivityPub::DeliveryWorker.push_bulk(@account.followers.inboxes) do |inbox_url|
       [signed_activity_json, @account.id, inbox_url]
     end
+
+    relay! if relayable?
+  end
+
+  def relayable?
+    @status.public_visibility?
+  end
+
+  def relay!
+    ActivityPub::DeliveryWorker.push_bulk(Relay.enabled.pluck(:inbox_url)) do |inbox_url|
+      [signed_activity_json, @account.id, inbox_url]
+    end
   end
 
   def salmon_xml

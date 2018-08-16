@@ -4,7 +4,7 @@ en:
     hints:
       defaults:
         autofollow: People who sign up through the invite will automatically follow you
-        avatar: PNG, GIF or JPG. At most 2MB. Will be downscaled to 400x400px
+        avatar: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
         bot: This account mainly performs automated actions and might not be monitored
         context: One or multiple contexts where the filter should apply
         digest: Only sent after a long period of inactivity and only if you have received any personal messages in your absence
@@ -12,7 +12,8 @@ en:
           one: <span class="name-counter">1</span> character left
           other: <span class="name-counter">%{count}</span> characters left
         fields: You can have up to 4 items displayed as a table on your profile
-        header: PNG, GIF or JPG. At most 2MB. Will be downscaled to 700x335px
+        header: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
+        inbox_url: Copy the URL from the frontpage of the relay you want to use
         irreversible: Filtered toots will disappear irreversibly, even if filter is later removed
         locale: The language of the user interface, e-mails and push notifications
         locked: Requires you to manually approve followers
@@ -25,6 +26,7 @@ en:
         setting_hide_network: Who you follow and who follows you will not be shown on your profile
         setting_noindex: Affects your public profile and status pages
         setting_theme: Affects how Mastodon looks when you're logged in from any device.
+        whole_word: When the keyword or phrase is alphanumeric only, it will only be applied if it matches the whole word
       imports:
         data: CSV file exported from another Mastodon instance
       sessions:
@@ -51,6 +53,7 @@ en:
         expires_in: Expire after
         fields: Profile metadata
         header: Header
+        inbox_url: URL of the relay inbox
         irreversible: Drop instead of hide
         locale: Interface language
         locked: Lock account
@@ -77,6 +80,7 @@ en:
         type: Import type
         username: Username
         username_or_email: Username or Email
+        whole_word: Whole word
       interactions:
         must_be_follower: Block notifications from non-followers
         must_be_following: Block notifications from people you don't follow

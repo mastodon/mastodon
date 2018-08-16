@@ -4,13 +4,14 @@ ja:
     hints:
       defaults:
         autofollow: 招待から登録した人が自動的にあなたをフォローするようになります
-        avatar: 2MBまでのPNG、GIF、JPGが利用可能です。400x400pxまで縮小されます
+        avatar: "%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます"
         bot: このアカウントは主に自動で動作し、人が見ていない可能性があります
         context: フィルターを適用する対象 (複数選択可)
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
         display_name: あと<span class="name-counter">%{count}</span>文字入力できます。
         fields: プロフィールに表として4つまでの項目を表示することができます
-        header: 2MBまでのPNG、GIF、JPGが利用可能です。 700x335pxまで縮小されます
+        header: "%{size}までのPNG、GIF、JPGが利用可能です。 %{dimensions}pxまで縮小されます"
+        inbox_url: 使用したいリレーサーバーのトップページからURLをコピーします
         irreversible: フィルターが後で削除されても、除外されたトゥートは元に戻せなくなります
         locale: ユーザーインターフェース、メールやプッシュ通知の言語
         locked: フォロワーを手動で承認する必要があります
@@ -21,6 +22,7 @@ ja:
         setting_hide_network: フォローとフォロワーの情報がプロフィールページで見られないようにします
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
         setting_theme: ログインしている全てのデバイスで適用されるデザインです。
+        whole_word: キーワードまたはフレーズが英数字のみの場合、単語全体と一致する場合のみ適用されるようになります
       imports:
         data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
       sessions:
@@ -39,7 +41,7 @@ ja:
         chosen_languages: 表示する言語
         confirm_new_password: 新しいパスワード（確認用）
         confirm_password: パスワード（確認用）
-        context: フィルター対象
+        context: 除外対象
         current_password: 現在のパスワード
         data: データ
         display_name: 表示名
@@ -47,6 +49,7 @@ ja:
         expires_in: 有効期限
         fields: プロフィール補足情報
         header: ヘッダー
+        inbox_url: リレーサーバーの inbox URL
         irreversible: 隠すのではなく除外する
         locale: 言語
         locked: 承認制アカウントにする
@@ -55,7 +58,7 @@ ja:
         note: プロフィール
         otp_attempt: 二段階認証コード
         password: パスワード
-        phrase: 単語または語句
+        phrase: キーワードまたはフレーズ
         setting_auto_play_gif: アニメーションGIFを自動再生する
         setting_boost_modal: ブーストする前に確認ダイアログを表示する
         setting_default_language: 投稿する言語
@@ -73,6 +76,7 @@ ja:
         type: インポートする項目
         username: ユーザー名
         username_or_email: ユーザー名またはメールアドレス
+        whole_word: 単語全体にマッチ
       interactions:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック

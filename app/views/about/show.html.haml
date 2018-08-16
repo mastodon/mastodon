@@ -110,7 +110,7 @@
                 %p= t 'about.about_mastodon_html'
               %div.contact
                 %h3= t 'about.administered_by'
-                = render 'administration'
+                = account_link_to(@instance_presenter.contact_account, link_to(t('about.learn_more'), about_more_path, class: 'button button-alternative'))
 
             = render 'features'
 
@@ -131,7 +131,7 @@
                 %p= t 'about.about_mastodon_html'
               %div.contact
                 %h3= t 'about.administered_by'
-                = render 'administration'
+                = account_link_to(@instance_presenter.contact_account, link_to(t('about.learn_more'), about_more_path, class: 'button button-alternative'))
 
             = render 'features'
 

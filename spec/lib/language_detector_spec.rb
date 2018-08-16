@@ -57,7 +57,7 @@ describe LanguageDetector do
     end
 
     it 'detects spanish language' do
-      string = 'Obtener un Hola y bienvenidos a Mastodon'
+      string = 'Obtener un Hola y bienvenidos a Mastodon. Obtener un Hola y bienvenidos a Mastodon. Obtener un Hola y bienvenidos a Mastodon. Obtener un Hola y bienvenidos a Mastodon'
       result = described_class.instance.detect(string, account_without_user_locale)
 
       expect(result).to eq :es
@@ -86,7 +86,7 @@ describe LanguageDetector do
           account = double(user_locale: 'fr')
           result  = described_class.instance.detect('', account)
 
-          expect(result).to eq :fr
+          expect(result).to eq nil
         end
 
         it 'uses nil when account is present but has no locale' do

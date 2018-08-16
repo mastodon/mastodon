@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { LoadingBar } from 'react-redux-loading-bar';
 import ZoomableImage from './zoomable_image';
 
 export default class ImageLoader extends React.PureComponent {
@@ -23,6 +24,7 @@ export default class ImageLoader extends React.PureComponent {
   state = {
     loading: true,
     error: false,
+    width: null,
   }
 
   removers = [];
@@ -122,6 +124,7 @@ export default class ImageLoader extends React.PureComponent {
 
   setCanvasRef = c => {
     this.canvas = c;
+    if (c) this.setState({ width: c.offsetWidth });
   }
 
   render () {
@@ -135,6 +138,7 @@ export default class ImageLoader extends React.PureComponent {
 
     return (
       <div className={className}>
+        <LoadingBar loading={loading ? 1 : 0} className='loading-bar' style={{ width: this.state.width || width }} />
         {loading ? (
           <canvas
             className='image-loader__preview-canvas'

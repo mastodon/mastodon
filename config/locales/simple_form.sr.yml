@@ -3,14 +3,14 @@ sr:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF или JPG. Највише 2MB. Биће смањена на 400x400px
+        avatar: PNG, GIF или JPG. Највише %{size}. Биће смањена на %{dimensions}px
         digest: Послато после дужег периода неактивности са прегледом свих битних ствари које сте добили док сте били одсутни
         display_name:
           few: <span class="name-counter">%{count}</span> карактера преостала
           many: <span class="name-counter">%{count}</span> карактера преостало
           one: <span class="name-counter">1</span> карактер преостао
           other: <span class="name-counter">%{count}</span> карактера преостало
-        header: PNG, GIF или JPG. Највише 2MB. Биће смањена на 700x335px
+        header: PNG, GIF или JPG. Највише %{size}. Биће смањена на %{dimensions}px
         locked: Захтева да појединачно одобрите пратиоце
         note:
           few: <span class="note-counter">%{count}</span> карактера преостал
