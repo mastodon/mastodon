@@ -1,7 +1,4 @@
 import { delegate } from 'rails-ujs';
-import { start } from '../mastodon/common';
-
-start();
 
 function handleDeleteStatus(event) {
   const [data] = event.detail;

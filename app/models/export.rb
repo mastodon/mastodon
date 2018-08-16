@@ -24,8 +24,16 @@ class Export
     account.media_attachments.sum(:file_file_size)
   end
 
+  def total_statuses
+    account.statuses_count
+  end
+
   def total_follows
-    account.following.count
+    account.following_count
+  end
+
+  def total_followers
+    account.followers_count
   end
 
   def total_blocks
