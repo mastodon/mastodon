@@ -123,7 +123,7 @@ Rails.application.routes.draw do
 
   # Remote follow
   resource :remote_unfollow, only: [:create]
-  resource :authorize_follow, only: [:show, :create]
+  resource :authorize_interaction, only: [:show, :create]
   resource :share, only: [:show, :create]
 
   namespace :admin do
