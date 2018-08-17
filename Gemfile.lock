@@ -403,6 +403,7 @@ GEM
       actionmailer (>= 3, < 6)
       premailer (~> 1.7, >= 1.7.9)
     private_address_check (0.4.1)
+    prometheus_exporter (0.3.3)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -719,6 +720,7 @@ DEPENDENCIES
   posix-spawn!
   premailer-rails
   private_address_check (~> 0.4.1)
+  prometheus_exporter (~> 0.3)
   pry-byebug (~> 3.6)
   pry-rails (~> 0.3)
   puma (~> 3.11)
@@ -764,4 +766,4 @@ RUBY VERSION
    ruby 2.5.0p0
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

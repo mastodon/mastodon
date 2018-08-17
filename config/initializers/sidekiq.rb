@@ -8,10 +8,18 @@ if namespace
 end
 
 Sidekiq.configure_server do |config|
+  require 'prometheus_exporter/instrumentation'
+  require 'prometheus_exporter/client'
+  
+  prometheus_exporter_host = ENV.fetch('PROMETHEUS_EXPORTER_HOST') { 'prometheus_exporter' }
+  prometheus_client = PrometheusExporter::Client.new(host: prometheus_exporter_host)
+  PrometheusExporter::Client.default = prometheus_client
+
   config.redis = redis_params
 
   config.server_middleware do |chain|
     chain.add SidekiqErrorHandler
+    chain.add PrometheusExporter::Instrumentation::Sidekiq
   end
 end
 
