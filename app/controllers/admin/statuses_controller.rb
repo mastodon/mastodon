@@ -29,6 +29,10 @@ module Admin
       flash[:alert] = I18n.t('admin.statuses.failed_to_execute') unless @form.save
 
       redirect_to admin_account_statuses_path(@account.id, current_params)
+    rescue ActionController::ParameterMissing
+      flash[:alert] = I18n.t('admin.statuses.no_status_selected')
+
+      redirect_to admin_account_statuses_path(@account.id, current_params)
     end
 
     private
