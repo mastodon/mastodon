@@ -34,7 +34,7 @@ const messages = defineMessages({
 
 const obfuscatedCount = count => {
   if (count < 0) {
-    return 0;
+    return '';
   } else if (count <= 1) {
     return count;
   } else {
