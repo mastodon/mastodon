@@ -32,11 +32,11 @@ class Favourite < ApplicationRecord
   private
 
   def increment_cache_counters
-    status.increment_count!(:favourites_count)
+    status&.increment_count!(:favourites_count)
   end
 
   def decrement_cache_counters
     return if association(:status).loaded? && (status.marked_for_destruction? || status.marked_for_mass_destruction?)
-    status.decrement_count!(:favourites_count)
+    status&.decrement_count!(:favourites_count)
   end
 end

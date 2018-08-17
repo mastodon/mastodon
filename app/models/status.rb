@@ -396,6 +396,8 @@ class Status < ApplicationRecord
   private
 
   def update_status_stat!(attrs)
+    return if marked_for_destruction? || destroyed?
+
     record = status_stat || build_status_stat
     record.update(attrs)
   end
@@ -456,8 +458,8 @@ class Status < ApplicationRecord
       Account.where(id: account_id).update_all('statuses_count = COALESCE(statuses_count, 0) + 1')
     end
 
-    reblog.increment_count!(:reblogs_count) if reblog?
-    thread.increment_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
+    reblog&.increment_count!(:reblogs_count) if reblog?
+    thread&.increment_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end
 
   def decrement_counter_caches
@@ -469,7 +471,7 @@ class Status < ApplicationRecord
       Account.where(id: account_id).update_all('statuses_count = GREATEST(COALESCE(statuses_count, 0) - 1, 0)')
     end
 
-    reblog.decrement_count!(:reblogs_count) if reblog?
-    thread.decrement_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
+    reblog&.decrement_count!(:reblogs_count) if reblog?
+    thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end
 end
