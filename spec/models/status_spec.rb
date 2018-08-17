@@ -343,6 +343,7 @@ RSpec.describe Status, type: :model do
     let(:account) { Fabricate(:account) }
     let(:followed) { Fabricate(:account) }
     let(:not_followed) { Fabricate(:account) }
+    let(:bot) { Fabricate(:account, actor_type: 'Service') }
 
     before do
       Fabricate(:follow, account: account, target_account: followed)
@@ -352,6 +353,7 @@ RSpec.describe Status, type: :model do
       @followed_public_status = Fabricate(:status, account: followed, visibility: :public)
       @followed_direct_status = Fabricate(:status, account: followed, visibility: :direct)
       @not_followed_direct_status = Fabricate(:status, account: not_followed, visibility: :direct)
+      @bot_direct_status = Fabricate(:status, account: bot, visibility: :direct)
 
       @results = Status.as_direct_timeline(account)
     end
@@ -387,9 +389,33 @@ RSpec.describe Status, type: :model do
       results2 = Status.as_direct_timeline(account)
       expect(results2).to include(@not_followed_direct_status)
     end
+
+    it 'includes direct statuses mentioning recipient from bots' do
+      Fabricate(:mention, account: account, status: @bot_direct_status)
+      results2 = Status.as_direct_timeline(account)
+      expect(results2).to include(@bot_direct_status)
+    end
+
+    context 'when filtering bots' do
+      let(:user) { Fabricate(:user, account: account, filter_bots: true) }
+
+      it 'does not include direct statuses mentioning recipient from bot' do
+        Fabricate(:mention, account: user.account, status: @bot_direct_status)
+        results2 = Status.as_direct_timeline(user.account)
+        expect(results2).to_not include(@bot_direct_status)
+      end
+
+      it 'includes direct statuses mentioning recipient from non-bot' do
+        Fabricate(:mention, account: user.account, status: @not_followed_direct_status)
+        results2 = Status.as_direct_timeline(user.account)
+        expect(results2).to include(@not_followed_direct_status)
+      end
+    end
   end
 
   describe '.as_public_timeline' do
+    let(:bot) { Fabricate(:account, actor_type: 'Service') }
+
     it 'only includes statuses with public visibility' do
       public_status = Fabricate(:status, visibility: :public)
       private_status = Fabricate(:status, visibility: :private)
@@ -426,6 +452,12 @@ RSpec.describe Status, type: :model do
       results = Status.as_public_timeline
       expect(results).to include(status)
       expect(results).not_to include(silenced_status)
+    end
+
+    it 'does not filter bot accounts' do
+      bot_public_status = Fabricate(:status, visibility: :public, account: bot)
+      results = Status.as_public_timeline
+      expect(results).to include(bot_public_status)
     end
 
     context 'without local_only option' do
@@ -573,6 +605,16 @@ RSpec.describe Status, type: :model do
           expect(results).to include(es_status)
         end
       end
+
+      context 'when filtering bots' do
+        let(:user) { Fabricate(:user, account: @account, filter_bots: true) }
+        let(:bot_public_status) { Fabricate(:status, account: bot, visibility: :public) }
+
+        it 'does not include statuses from bot' do
+          results = Status.as_public_timeline(user.account)
+          expect(results).to_not include(bot_public_status)
+        end
+      end
     end
   end
 
@@ -594,6 +636,29 @@ RSpec.describe Status, type: :model do
 
       results = Status.as_tag_timeline(tag)
       expect(results).to include(status)
+    end
+
+    context 'when filtering bots' do
+      let(:tag) { Fabricate(:tag) }
+      let(:user) { Fabricate(:user, filter_bots: true) }
+      let(:tagged_status) { Fabricate(:status, tags: [tag]) }
+
+      it 'includes statuses with a tag' do
+        untagged_status = Fabricate(:status)
+
+        results = Status.as_tag_timeline(tag)
+        expect(results).to include(tagged_status)
+        expect(results).not_to include(untagged_status)
+      end
+
+      it 'does not include statuses from bot' do
+        bot = Fabricate(:account, actor_type: 'Service')
+        bot_tagged_status = Fabricate(:status, account: bot, tags: [tag])
+
+        results = Status.as_tag_timeline(tag, user.account)
+        expect(results).to include(tagged_status)
+        expect(results).to_not include(bot_tagged_status)
+      end
     end
   end
 

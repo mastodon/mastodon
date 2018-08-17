@@ -34,6 +34,7 @@ describe Api::V1::Accounts::CredentialsController do
             header: fixture_file_upload('files/attachment.jpg', 'image/jpeg'),
             source: {
               privacy: 'unlisted',
+              filter_bots: true,
               sensitive: true,
             }
           }
@@ -52,6 +53,7 @@ describe Api::V1::Accounts::CredentialsController do
           expect(user.account.header).to exist
           expect(user.setting_default_privacy).to eq('unlisted')
           expect(user.setting_default_sensitive).to eq(true)
+          expect(user.setting_filter_bots).to eq(true)
         end
 
         it 'queues up an account update distribution' do

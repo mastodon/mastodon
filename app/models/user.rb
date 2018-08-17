@@ -96,7 +96,7 @@ class User < ApplicationRecord
 
   delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
            :reduce_motion, :system_font_ui, :noindex, :theme, :display_media, :hide_network,
-           :expand_spoilers, :default_language, to: :settings, prefix: :setting, allow_nil: false
+           :expand_spoilers, :default_language, :filter_bots, to: :settings, prefix: :setting, allow_nil: false
 
   attr_reader :invite_code
 
@@ -230,6 +230,14 @@ class User < ApplicationRecord
 
   def hides_network?
     @hides_network ||= settings.hide_network
+  end
+
+  def filters_bots?
+    @filters_bots ||= settings.filter_bots
+  end
+
+  def filter_bots=(filter)
+    settings.filter_bots = @filters_bots = filter
   end
 
   def token_for_app(a)

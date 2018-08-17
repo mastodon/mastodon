@@ -77,6 +77,7 @@ class Status < ApplicationRecord
   scope :tagged_with, ->(tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag }) }
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
+  scope :excluding_bot_accounts, -> { left_outer_joins(:account).where("accounts.actor_type IS NULL OR accounts.actor_type NOT IN ('Application', 'Service')") }
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).where('accounts.domain IS NULL OR accounts.domain NOT IN (?)', account.excluded_from_timeline_domains) }
 
@@ -270,6 +271,8 @@ class Status < ApplicationRecord
         query_to_me = query_to_me.where('mentions.status_id > ?', since_id)
       end
 
+      query_to_me = query_to_me.excluding_bot_accounts if account.filters_bots?
+
       if cache_ids
         # returns array of cache_ids object that have id and updated_at
         (query_from_me.cache_ids.to_a + query_to_me.cache_ids.to_a).uniq(&:id).sort_by(&:id).reverse.take(limit)
@@ -375,6 +378,7 @@ class Status < ApplicationRecord
       query = query.not_excluded_by_account(account)
       query = query.not_domain_blocked_by_account(account) unless local_only
       query = query.in_chosen_languages(account) if account.chosen_languages.present?
+      query = query.excluding_bot_accounts if account.filters_bots?
       query.merge(account_silencing_filter(account))
     end
 

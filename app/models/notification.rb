@@ -43,6 +43,7 @@ class Notification < ApplicationRecord
     types = TYPE_CLASS_MAP.values - activity_types_from_types(exclude_types + [:follow_request])
     where(activity_type: types)
   }
+  scope :excluding_bot_accounts, -> { left_outer_joins(:from_account).where("accounts.actor_type IS NULL OR accounts.actor_type NOT IN ('Application', 'Service')") }
 
   cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account
 

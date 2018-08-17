@@ -10,6 +10,7 @@ class REST::CredentialAccountSerializer < REST::AccountSerializer
       privacy: user.setting_default_privacy,
       sensitive: user.setting_default_sensitive,
       language: user.setting_default_language,
+      filter_bots: user.setting_filter_bots,
       note: object.note,
       fields: object.fields.map(&:to_h),
     }

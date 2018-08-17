@@ -44,7 +44,12 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def browserable_account_notifications
-    current_account.notifications.browserable(exclude_types)
+    notifications = current_account.notifications.browserable(exclude_types)
+    if current_account.filters_bots?
+      notifications.excluding_bot_accounts
+    else
+      notifications
+    end
   end
 
   def target_statuses_from_notifications
