@@ -14,6 +14,7 @@ const messages = defineMessages({
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
+  filters: { id: 'navigation_bar.filters', defaultMessage: 'Muted words' },
 });
 
 @injectIntl
@@ -40,6 +41,7 @@ export default class ActionBar extends React.PureComponent {
     menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
     menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks' });
     menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
+    menu.push({ text: intl.formatMessage(messages.filters), href: '/filters' });
 
     return (
       <div className='compose__action-bar'>

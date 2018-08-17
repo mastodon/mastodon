@@ -5,6 +5,7 @@ class RemoteFollowController < ApplicationController
 
   before_action :set_account
   before_action :gone, if: :suspended_account?
+  before_action :set_body_classes
 
   def new
     @remote_follow = RemoteFollow.new(session_params)

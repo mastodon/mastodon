@@ -317,6 +317,9 @@ pl:
       peers_api_enabled:
         desc_html: Nazwy domen, z którymi ta instancja wchodziła w interakcje
         title: Publikuj listę znanych instancji
+      preview_sensitive_media:
+        desc_html: Podgląd odnośników na innych instancjach będzie wyświetlał miniaturę nawet jeśli zawartość multimedialna zostanie oznaczona jako wrażliwa
+        title: Wyświetlaj zawartość wrażliwą w podglądzie OpenGraph
       registrations:
         closed_message:
           desc_html: Wyświetlana na stronie głównej, gdy możliwość otwarej rejestracji nie jest dostępna. Możesz korzystać z tagów HTML
@@ -475,6 +478,22 @@ pl:
     follows: Śledzeni
     mutes: Wyciszeni
     storage: Urządzenie przechowujące dane
+  filters:
+    contexts:
+      home: Strona główna
+      notifications: Powiadomienia
+      public: Publiczne osie czasu
+      thread: Konwersacje
+    edit:
+      title: Edytuj filtr
+    errors:
+      invalid_context: Nie podano lub podano nieprawidłową treść
+      invalid_irreversible: Nieodwracalne filtrowanie działa tylko na stronie głównej i w powiadomieniach
+    index:
+      delete: Usuń
+      title: Filtry
+    new:
+      title: Dodaj nowy filtr
   followers:
     domain: Domena
     explanation_html: Jeżeli chcesz mieć pewność, kto może przeczytać Twoje wpisy, musisz kontrolować, kto śledzi Twój profil. <strong>Twoje prywatne wpisy są dostarczane na te instancje, na których jesteś śledzony</strong>. Możesz sprawdzać, kto Cię śledzi i blokować ich, jeśli nie ufasz właścicielom lub oprogramowaniu danej instancji.
@@ -608,6 +627,7 @@ pl:
   remote_follow:
     acct: Podaj swój adres (nazwa@domena), z którego chcesz śledzić
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
+    no_account_html: Nie masz konta? Możesz <a href='%{sign_up_path}' target='_blank'>zarejestrować się tutaj</a>
     proceed: Śledź
     prompt: 'Zamierzasz śledzić:'
   remote_unfollow:

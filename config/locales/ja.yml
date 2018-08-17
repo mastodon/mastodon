@@ -316,6 +316,9 @@ ja:
       peers_api_enabled:
         desc_html: 連合内でこのインスタンスが遭遇したドメインの名前
         title: 接続しているインスタンスのリストを公開する
+      preview_sensitive_media:
+        desc_html: 他のウェブサイトにリンクを貼った際、メディアが閲覧注意としてマークされていてもサムネイルが表示されます
+        title: OpenGraphによるプレビューで閲覧注意のメディアも表示する
       registrations:
         closed_message:
           desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
@@ -474,6 +477,22 @@ ja:
     follows: フォロー
     mutes: ミュート
     storage: メディア
+  filters:
+    contexts:
+      home: ホームタイムライン
+      notifications: 通知
+      public: 公開タイムライン
+      thread: 会話
+    edit:
+      title: フィルターを編集
+    errors:
+      invalid_context: 対象がないか無効です
+      invalid_irreversible: この機能はホームタイムラインまたは通知と一緒に指定する場合のみ機能します
+    index:
+      delete: 削除
+      title: フィルター
+    new:
+      title: 新規フィルターを追加
   followers:
     domain: ドメイン
     explanation_html: あなたの投稿のプライバシーを確保したい場合、誰があなたをフォローしているのかを把握している必要があります。 <strong>プライベート投稿は、あなたのフォロワーがいる全てのインスタンスに配信されます</strong>。 フォロワーのインスタンスの管理者やソフトウェアがあなたのプライバシーを尊重してくれるかどうか怪しい場合は、そのフォロワーを削除した方がよいかもしれません。
@@ -599,6 +618,7 @@ ja:
   remote_follow:
     acct: あなたの ユーザー名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした
+    no_account_html: アカウントをお持ちではないですか？<a href='%{sign_up_path}' target='_blank'>こちら</a>からサインアップできます
     proceed: フォローする
     prompt: 'フォローしようとしています:'
   remote_unfollow:

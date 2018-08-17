@@ -114,6 +114,7 @@ Rails.application.routes.draw do
   resources :tags,   only: [:show]
   resources :emojis, only: [:show]
   resources :invites, only: [:index, :create, :destroy]
+  resources :filters, except: [:show]
 
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 
@@ -245,6 +246,7 @@ Rails.application.routes.draw do
 
       resources :streaming, only: [:index]
       resources :custom_emojis, only: [:index]
+      resources :suggestions, only: [:index, :destroy]
 
       get '/search', to: 'search#index', as: :search
 
@@ -254,6 +256,7 @@ Rails.application.routes.draw do
       resources :mutes,      only: [:index]
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
+      resources :filters,    only: [:index, :create, :show, :update, :destroy]
 
       namespace :apps do
         get :verify_credentials, to: 'credentials#show'

@@ -424,7 +424,7 @@ zh-HK:
     following: 成功！你正在關注：
     post_follow:
       close: 你也可以直接關閉這個頁面。
-      return: 返回至個人資料頁
+      return: 顯示個人資料頁
       web: 返回本站
     title: 關注 %{acct}
   datetime:
@@ -514,6 +514,7 @@ zh-HK:
       '86400': 1 天後
     expires_in_prompt: 永不過期
     generate: 生成邀請連結
+    invited_by: 你的邀請人是：
     max_uses:
       one: 1 次
       other: "%{count} 次"
@@ -609,14 +610,16 @@ zh-HK:
     browsers:
       alipay: 支付寶
       blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      firefox: Firefox
+      chrome: Chrome 瀏覽器
+      edge: Microsoft Edge 瀏覽器
+      electron: Electron 瀏覽器
+      firefox: Firefox 瀏覽器
       generic: 未知的瀏覽器
-      ie: Internet Explorer
+      ie: Internet Explorer 瀏覽器
       micro_messenger: 微信
       nokia: Nokia S40 Ovi 瀏覽器
       opera: Opera
+      otter: Otter 瀏覽器
       phantom_js: PhantomJS
       qq: QQ瀏覽器
       safari: Safari
@@ -671,6 +674,7 @@ zh-HK:
     disallowed_hashtags:
       one: 包含不允許的標籤： %{tags}
       other: 包含不允許的標籤： %{tags}
+    language_detection: 自動偵測語言
     open_in_web: 開啟網頁
     over_character_limit: 超過了 %{max} 字的限制
     pin_errors:

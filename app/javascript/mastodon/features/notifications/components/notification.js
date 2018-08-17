@@ -91,6 +91,7 @@ export default class Notification extends ImmutablePureComponent {
         hidden={this.props.hidden}
         onMoveDown={this.handleMoveDown}
         onMoveUp={this.handleMoveUp}
+        contextType='notifications'
       />
     );
   }

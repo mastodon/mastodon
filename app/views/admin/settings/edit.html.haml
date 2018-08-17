@@ -2,6 +2,9 @@
   = t('admin.settings.title')
 
 = simple_form_for @admin_settings, url: admin_settings_path, html: { method: :patch } do |f|
+  .actions.actions--top
+    = f.button :button, t('generic.save_changes'), type: :submit
+
   .fields-group
     = f.input :site_title, placeholder: t('admin.settings.site_title')
     = f.input :site_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_description.title'), hint: t('admin.settings.site_description.desc_html'), input_html: { rows: 8 }
@@ -57,6 +60,9 @@
 
   .fields-group
     = f.input :peers_api_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.peers_api_enabled.title'), hint: t('admin.settings.peers_api_enabled.desc_html')
+
+  .fields-group
+    = f.input :preview_sensitive_media, as: :boolean, wrapper: :with_label, label: t('admin.settings.preview_sensitive_media.title'), hint: t('admin.settings.preview_sensitive_media.desc_html')
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

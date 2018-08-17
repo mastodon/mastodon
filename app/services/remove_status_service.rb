@@ -67,7 +67,9 @@ class RemoveStatusService < BaseService
     # delete notification - so here, we explicitly
     # send it to them
 
-    target_accounts = (@mentions.map(&:account).reject(&:local?) + @reblogs.map(&:account).reject(&:local?)).uniq(&:id)
+    target_accounts = (@mentions.map(&:account).reject(&:local?) + @reblogs.map(&:account).reject(&:local?))
+    target_accounts << @status.reblog.account if @status.reblog? && !@status.reblog.account.local?
+    target_accounts.uniq!(&:id)
 
     # Ostatus
     NotificationWorker.push_bulk(target_accounts.select(&:ostatus?).uniq(&:domain)) do |target_account|

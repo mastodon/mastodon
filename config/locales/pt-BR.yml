@@ -316,6 +316,9 @@ pt-BR:
       peers_api_enabled:
         desc_html: Nomes de domínio que essa instância encontrou no fediverso
         title: Publicar lista de instâncias descobertas
+      preview_sensitive_media:
+        desc_html: A pré-visualização do link em outros sites vai incluir uma miniatura mesmo se a mídia estiver marcada como sensível
+        title: Mostrar mídia sensível em pré-visualizações OpenGraph
       registrations:
         closed_message:
           desc_html: Exibido na página inicial quando cadastros estão fechados. Você pode usar tags HTML
@@ -474,6 +477,22 @@ pt-BR:
     follows: Você segue
     mutes: Você silenciou
     storage: Armazenamento de mídia
+  filters:
+    contexts:
+      home: Página inicial
+      notifications: Notificações
+      public: Timelines públicas
+      thread: Conversas
+    edit:
+      title: Editar filtro
+    errors:
+      invalid_context: Contexto inválido ou nenhum contexto informado
+      invalid_irreversible: O filtro irreversível só funciona com contexto de página inicial ou notificações
+    index:
+      delete: Remover
+      title: Filtros
+    new:
+      title: Adicionar novo filtro
   followers:
     domain: Domínio
     explanation_html: Se você quer garantir a privacidade de suas postagens, você deve ficar atento a quem está te seguindo.<strong>Suas postagens privadas são enviadas para todas as instâncias em que você tem seguidores</strong>. Convém revisá-las e remover seguidores se você acredita que a sua privacidade não será respeitada pela equipe ou software destas instâncias.
@@ -514,6 +533,7 @@ pt-BR:
       '86400': 1 dia
     expires_in_prompt: Nunca
     generate: Gerar
+    invited_by: 'Você recebeu um convite de:'
     max_uses:
       one: 1 uso
       other: "%{count} usos"
@@ -598,6 +618,7 @@ pt-BR:
   remote_follow:
     acct: Insira o seu usuário@domínio do qual você quer seguir
     missing_resource: Não foi possível encontrar a URL de direcionamento para a sua conta
+    no_account_html: Não tem uma conta? Você pode <a href='%{sign_up_path}' target='_blank'>cadastrar-se aqui</a>
     proceed: Prosseguir para seguir
     prompt: 'Você irá seguir:'
   remote_unfollow:
@@ -674,6 +695,7 @@ pt-BR:
     disallowed_hashtags:
       one: 'continha a hashtag não permitida: %{tags}'
       other: 'continha as hashtags não permitidas: %{tags}'
+    language_detection: Detectar idioma automaticamente
     open_in_web: Abrir na web
     over_character_limit: limite de caracteres de %{max} excedido
     pin_errors:
