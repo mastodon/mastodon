@@ -327,10 +327,10 @@ export default class Status extends ImmutablePureComponent {
     if (status && ancestorsIds && ancestorsIds.size > 0) {
       const element = this.node.querySelectorAll('.focusable')[ancestorsIds.size - 1];
 
-      if (element) {
+      window.requestAnimationFrame(() => {
         element.scrollIntoView(true);
-        this._scrolledIntoView = true;
-      }
+      });
+      this._scrolledIntoView = true;
     }
   }
 
