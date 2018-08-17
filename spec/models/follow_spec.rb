@@ -37,4 +37,20 @@ RSpec.describe Follow, type: :model do
       expect(a[1]).to eq follow0
     end
   end
+
+  describe 'revoke_request!' do
+    let(:follow)         { Fabricate(:follow, account: account, target_account: target_account) }
+    let(:account)        { Fabricate(:account) }
+    let(:target_account) { Fabricate(:account) }
+
+    it 'revokes the follow relation' do
+      follow.revoke_request!
+      expect(account.following?(target_account)).to be false
+    end
+
+    it 'creates a follow request' do
+      follow.revoke_request!
+      expect(account.requested?(target_account)).to be true
+    end
+  end
 end
