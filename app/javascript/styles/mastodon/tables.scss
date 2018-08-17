@@ -1,9 +1,3 @@
-@keyframes Swag {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 100% 0%; }
-  100% { background-position: 200% 0%; }
-}
-
 .table {
   width: 100%;
   max-width: 100%;
@@ -191,14 +185,12 @@ a.table-action-link {
   .status__content {
     padding-top: 0;
 
+    summary {
+      display: list-item;
+    }
+
     strong {
       font-weight: 700;
-      background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet,orange , yellow, green, cyan, blue, violet);
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: Swag 2s linear 0s infinite;
     }
   }
 }
