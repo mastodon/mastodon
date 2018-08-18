@@ -134,7 +134,12 @@ Rails.application.routes.draw do
     resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resources :action_logs, only: [:index]
     resource :settings, only: [:edit, :update]
-    resources :invites, only: [:index, :create, :destroy]
+
+    resources :invites, only: [:index, :create, :destroy] do
+      collection do
+        post :deactivate_all
+      end
+    end
 
     resources :relays, only: [:index, :new, :create, :destroy] do
       member do
