@@ -26,6 +26,7 @@ module SettingsHelper
     io: 'Ido',
     it: 'Italiano',
     ja: '日本語',
+    ka: 'ქართული',
     ko: '한국어',
     nl: 'Nederlands',
     no: 'Norsk',

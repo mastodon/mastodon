@@ -39,6 +39,11 @@
       - else
         = link_to status.application.name, status.application.website, class: 'detailed-status__application', target: '_blank', rel: 'noopener'
       ·
+    = link_to remote_interaction_path(status), class: 'modal-button detailed-status__link' do
+      = fa_icon('reply')
+      %span.detailed-status__reblogs>= number_to_human status.replies_count, strip_insignificant_zeros: true
+      = " "
+    ·
     - if status.direct_visibility?
       %span.detailed-status__link<
         = fa_icon('envelope')
@@ -46,13 +51,15 @@
       %span.detailed-status__link<
         = fa_icon('lock')
     - else
-      %span.detailed-status__link<
+      = link_to remote_interaction_path(status), class: 'modal-button detailed-status__link' do
         = fa_icon('retweet')
-        %span.detailed-status__reblogs= number_to_human status.reblogs_count, strip_insignificant_zeros: true
+        %span.detailed-status__reblogs>= number_to_human status.reblogs_count, strip_insignificant_zeros: true
+        = " "
     ·
-    %span.detailed-status__link<
+    = link_to remote_interaction_path(status), class: 'modal-button detailed-status__link' do
       = fa_icon('star')
-      %span.detailed-status__favorites= number_to_human status.favourites_count, strip_insignificant_zeros: true
+      %span.detailed-status__favorites>= number_to_human status.favourites_count, strip_insignificant_zeros: true
+      = " "
 
     - if user_signed_in?
       ·

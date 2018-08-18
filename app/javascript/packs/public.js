@@ -51,13 +51,6 @@ function main() {
       }, datetime, now, datetime.getFullYear());
     });
 
-    [].forEach.call(document.querySelectorAll('.modal-button'), (content) => {
-      content.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.open(e.target.href, 'mastodon-intent', 'width=445,height=600,resizable=no,menubar=no,status=no,scrollbars=yes');
-      });
-    });
-
     const reactComponents = document.querySelectorAll('[data-component]');
     if (reactComponents.length > 0) {
       import(/* webpackChunkName: "containers/media_container" */ '../mastodon/containers/media_container')
