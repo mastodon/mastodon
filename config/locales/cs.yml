@@ -198,6 +198,7 @@ cs:
         update_custom_emoji: '%{name} aktualizoval/a emoji %{target}'
         update_status: '%{name} aktualizoval/a příspěvek uživatele %{target}'
       title: Záznam auditu
+      deleted_status: (smazaný příspěvek)
     custom_emojis:
       by_domain: Doména
       copied_msg: Místní kopie emoji byla úspěšně vytvořena
@@ -441,6 +442,7 @@ cs:
       no_media: Žádná média
       title: Příspěvky účtu
       with_media: S médii
+      no_status_selected: Nebyly změněny žádné příspěvky, neboť žádné nebyly vybrány
     subscriptions:
       callback_url: Zpáteční URL
       confirmed: Potvrzeno
@@ -714,7 +716,7 @@ cs:
     publishing: Publikování
     web: Web
   remote_follow:
-    acct: Napište svou přezdívku@doménu, ze které chcete sledovat
+    acct: Napište svou přezdívku@doménu, ze které chcete jednat
     missing_resource: Nemůžeme najít požadované přesměrovací URL pro váš účet
     no_account_html: Ještě nemáte účet? Můžete se <a href='%{sign_up_path}' target='_blank'>registrovat
       zde</a>
@@ -811,6 +813,7 @@ cs:
       public_long: Všichni mohou vidět
       unlisted: Neuvedené
       unlisted_long: Všichni mohou vidět, ale není zahrnut ve veřejných časových osách
+    sign_in_to_participate: Chcete-li se účastnit této konverzace, přihlaste se
   stream_entries:
     pinned: Připnutý toot
     reblogged: boostnutý
@@ -992,3 +995,6 @@ cs:
     seamless_external_login: Jste přihlášen/a přes externí službu, nastavení hesla
       a e-mailu proto nejsou dostupná.
     signed_in_as: 'Přihlášen/a jako:'
+  remote_interaction:
+    proceed: Pokračujte k interakci
+    prompt: 'Chcete interagovat s tímto tootem:'
