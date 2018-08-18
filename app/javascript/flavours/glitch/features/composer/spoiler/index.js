@@ -33,6 +33,10 @@ const handlers = {
       onSubmit();
     }
   },
+
+  handleRefSpoilerText (spoilerText) {
+    this.spoilerText = spoilerText;
+  },
 };
 
 //  The component.
@@ -46,7 +50,7 @@ export default class ComposerSpoiler extends React.PureComponent {
 
   //  Rendering.
   render () {
-    const { handleKeyDown } = this.handlers;
+    const { handleKeyDown, handleRefSpoilerText } = this.handlers;
     const {
       hidden,
       intl,
@@ -68,6 +72,7 @@ export default class ComposerSpoiler extends React.PureComponent {
             placeholder={intl.formatMessage(messages.placeholder)}
             type='text'
             value={text}
+            ref={handleRefSpoilerText}
           />
         </label>
       </div>

@@ -237,6 +237,13 @@ const handlers = {
       this.textarea = textareaComponent.textarea;
     }
   },
+
+  //  Sets a reference to the CW field.
+  handleRefSpoilerText (spoilerComponent) {
+    if (spoilerComponent) {
+      this.spoilerText = spoilerComponent.spoilerText;
+    }
+  }
 };
 
 //  The component.
@@ -249,6 +256,7 @@ class Composer extends React.Component {
 
     //  Instance variables.
     this.textarea = null;
+    this.spoilerText = null;
   }
 
   //  Tells our state the composer has been mounted.
@@ -277,6 +285,7 @@ class Composer extends React.Component {
   componentDidUpdate (prevProps) {
     const {
       textarea,
+      spoilerText,
     } = this;
     const {
       focusDate,
@@ -308,6 +317,16 @@ class Composer extends React.Component {
     //  Refocuses the textarea after submitting.
     } else if (textarea && prevProps.isSubmitting && !isSubmitting) {
       textarea.focus();
+    } else if (this.props.spoiler !== prevProps.spoiler) {
+      if (this.props.spoiler) {
+        if (spoilerText) {
+          spoilerText.focus();
+        }
+      } else {
+        if (textarea) {
+          textarea.focus();
+        }
+      }
     }
   }
 
@@ -319,6 +338,7 @@ class Composer extends React.Component {
       handleSelect,
       handleSubmit,
       handleRefTextarea,
+      handleRefSpoilerText,
     } = this.handlers;
     const {
       acceptContentTypes,
@@ -378,6 +398,7 @@ class Composer extends React.Component {
           onChange={handleChangeSpoiler}
           onSubmit={handleSubmit}
           text={spoilerText}
+          ref={handleRefSpoilerText}
         />
         <ComposerTextarea
           advancedOptions={advancedOptions}
