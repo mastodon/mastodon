@@ -52,6 +52,32 @@ RSpec.describe ActivityPub::Activity::Undo do
       end
     end
 
+    context 'with Accept' do
+      let(:recipient) { Fabricate(:account) }
+      let(:object_json) do
+        {
+          id: 'bar',
+          type: 'Accept',
+          actor: ActivityPub::TagManager.instance.uri_for(sender),
+          object: 'follow-to-revoke',
+        }
+      end
+
+      before do
+        recipient.follow!(sender, uri: 'follow-to-revoke')
+      end
+
+      it 'deletes follow from recipient to sender' do
+        subject.perform
+        expect(recipient.following?(sender)).to be false
+      end
+
+      it 'creates a follow request from recipient to sender' do
+        subject.perform
+        expect(recipient.requested?(sender)).to be true
+      end
+    end
+
     context 'with Block' do
       let(:recipient) { Fabricate(:account) }
 

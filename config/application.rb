@@ -60,6 +60,7 @@ module Mastodon
       :io,
       :it,
       :ja,
+      :ka,
       :ko,
       :nl,
       :no,
