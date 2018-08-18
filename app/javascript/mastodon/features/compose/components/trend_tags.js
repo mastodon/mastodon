@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import Link from 'react-router-dom/Link';
 import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
+import { Sparklines, SparklinesCurve } from 'react-sparklines';
 import FoldButton from '../../../components/fold_button';
 import Foldable from '../../../components/foldable';
 
@@ -18,6 +19,7 @@ export default class TrendTags extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     visible: PropTypes.bool.isRequired,
     trendTags: ImmutablePropTypes.map.isRequired,
+    trendTagsHistory: ImmutablePropTypes.list.isRequired,
     favouriteTags: ImmutablePropTypes.list.isRequired,
     refreshTrendTags: PropTypes.func.isRequired,
     onToggle: PropTypes.func.isRequired,
@@ -42,18 +44,15 @@ export default class TrendTags extends React.PureComponent {
     this.setState({ animate: false });
   }
 
-  isFavourited = (name) => {
-    return this.props.favouriteTags.map(f => f.get('name').toLowerCase()).includes(name);
-  }
-
   reloadIcon = (isAnimate) => {
     return isAnimate ? <i className='fa fa-repeat animate' onAnimationEnd={this.onAnimationEnd} /> : <i className='fa fa-repeat' />;
   }
 
   render () {
-    const { intl, visible, trendTags, onToggle } = this.props;
+    const { intl, visible, trendTags, trendTagsHistory, onToggle } = this.props;
+    const hMax = trendTagsHistory.map(item => item.get('score').valueSeq()).flatten().max();
 
-    const tags = trendTags ? trendTags.keySeq().filter((v, k) => k < 5).map(name => (
+    const tags = trendTags && trendTags.keySeq().filter((v, k) => k < 5).map(name => (
       <li key={name}>
         <Link
           to={`/timelines/tag/${name}`}
@@ -63,11 +62,18 @@ export default class TrendTags extends React.PureComponent {
           <i className='fa fa-hashtag' />
           {name}
         </Link>
-        <div className={`trend-tags__fav${this.isFavourited(name) ? ' active' : ''}`}>
-          <i className='fa fa-star' />
+        <div className={`trend-tags__sparkline ${trendTags.get(name) < 20 ? 'normal' : 'fever'}`}>
+          <Sparklines
+            width={50}
+            height={18}
+            max={hMax}
+            data={[...trendTagsHistory.map(item => item.getIn(['score', name]) || 0).toArray().reverse(), trendTags.get(name)]}
+          >
+            <SparklinesCurve />
+          </Sparklines>
         </div>
       </li>
-    )) : null;
+    ));
 
     return (
       <div className='compose__extra'>
