@@ -11,6 +11,7 @@ import BoostModal from './boost_modal';
 import FavouriteModal from './favourite_modal';
 import DoodleModal from './doodle_modal';
 import ConfirmationModal from './confirmation_modal';
+import FocalPointModal from './focal_point_modal';
 import {
   OnboardingModal,
   MuteModal,
@@ -34,6 +35,7 @@ const MODAL_COMPONENTS = {
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
   'EMBED': EmbedModal,
   'LIST_EDITOR': ListEditor,
+  'FOCAL_POINT': () => Promise.resolve({ default: FocalPointModal }),
 };
 
 export default class ModalRoot extends React.PureComponent {

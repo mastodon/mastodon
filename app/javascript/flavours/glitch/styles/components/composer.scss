@@ -255,11 +255,12 @@
   & > div {
     position: relative;
     border-radius: 4px;
-    height: 100px;
+    height: 140px;
     width: 100%;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
 
     input {
       display: block;
@@ -295,6 +296,34 @@
     & > div {
       input { opacity: 1 }
     }
+  }
+}
+
+.composer--upload_form--actions {
+  background: linear-gradient(180deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 80%, transparent);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  opacity: 0;
+  transition: opacity .1s ease;
+
+  .icon-button {
+    flex: 0 1 auto;
+    color: $ui-secondary-color;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px;
+    font-family: inherit;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: lighten($ui-secondary-color, 4%);
+    }
+  }
+
+  &.active {
+    opacity: 1;
   }
 }
 

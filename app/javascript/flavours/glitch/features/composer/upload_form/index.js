@@ -13,6 +13,7 @@ export default function ComposerUploadForm ({
   intl,
   media,
   onChangeDescription,
+  onOpenFocalPointModal,
   onRemove,
   progress,
   uploading,
@@ -31,8 +32,12 @@ export default function ComposerUploadForm ({
               key={item.get('id')}
               id={item.get('id')}
               intl={intl}
+              focusX={item.getIn(['meta', 'focus', 'x'])}
+              focusY={item.getIn(['meta', 'focus', 'y'])}
+              mediaType={item.get('type')}
               preview={item.get('preview_url')}
               onChangeDescription={onChangeDescription}
+              onOpenFocalPointModal={onOpenFocalPointModal}
               onRemove={onRemove}
             />
           ))}
@@ -46,8 +51,8 @@ export default function ComposerUploadForm ({
 ComposerUploadForm.propTypes = {
   intl: PropTypes.object.isRequired,
   media: ImmutablePropTypes.list,
-  onChangeDescription: PropTypes.func,
-  onRemove: PropTypes.func,
+  onChangeDescription: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
   progress: PropTypes.number,
   uploading: PropTypes.bool,
 };

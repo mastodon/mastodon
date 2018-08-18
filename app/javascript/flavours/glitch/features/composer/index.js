@@ -103,7 +103,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changeComposeAdvancedOption(option, value));
   },
   onChangeDescription(id, description) {
-    dispatch(changeUploadCompose(id, description));
+    dispatch(changeUploadCompose(id, { description }));
   },
   onChangeSensitivity() {
     dispatch(changeComposeSensitivity());
@@ -140,6 +140,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onOpenDoodleModal() {
     dispatch(openModal('DOODLE', { noEsc: true }));
+  },
+  onOpenFocalPointModal(id) {
+    dispatch(openModal('FOCAL_POINT', { id }));
   },
   onSelectSuggestion(position, token, suggestion) {
     dispatch(selectComposeSuggestion(position, token, suggestion));
@@ -339,6 +342,7 @@ class Composer extends React.Component {
       onFetchSuggestions,
       onOpenActionsModal,
       onOpenDoodleModal,
+      onOpenFocalPointModal,
       onUndoUpload,
       onUpload,
       privacy,
@@ -397,6 +401,7 @@ class Composer extends React.Component {
             intl={intl}
             media={media}
             onChangeDescription={onChangeDescription}
+            onOpenFocalPointModal={onOpenFocalPointModal}
             onRemove={onUndoUpload}
             progress={progress}
             uploading={isUploading}
