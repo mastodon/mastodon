@@ -37,7 +37,7 @@ doc << Ox::Element.new('XRD').tap do |xrd|
 
   xrd << Ox::Element.new('Link').tap do |link|
     link['rel']      = 'http://ostatus.org/schema/1.0/subscribe'
-    link['template'] = "#{authorize_follow_url}?acct={uri}"
+    link['template'] = "#{authorize_interaction_url}?acct={uri}"
   end
 end
 
