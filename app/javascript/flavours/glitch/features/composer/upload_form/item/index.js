@@ -41,11 +41,10 @@ const handlers = {
       onChangeDescription,
     } = this.props;
     const { dirtyDescription } = this.state;
+
+    this.setState({ dirtyDescription: null, focused: false });
+
     if (id && onChangeDescription && dirtyDescription !== null) {
-      this.setState({
-        dirtyDescription: null,
-        focused: false,
-      });
       onChangeDescription(id, dirtyDescription);
     }
   },
@@ -120,7 +119,6 @@ export default class ComposerUploadFormItem extends React.PureComponent {
       handleFocalPointClick,
     } = this.handlers;
     const {
-      description,
       intl,
       preview,
       focusX,
@@ -132,9 +130,11 @@ export default class ComposerUploadFormItem extends React.PureComponent {
       hovered,
       dirtyDescription,
     } = this.state;
-    const computedClass = classNames('composer--upload_form--item', { active: hovered || focused });
+    const active = hovered || focused;
+    const computedClass = classNames('composer--upload_form--item', { active });
     const x = ((focusX /  2) + .5) * 100;
     const y = ((focusY / -2) + .5) * 100;
+    const description = dirtyDescription || (dirtyDescription !== '' && this.props.description) || '';
 
     //  The result.
     return (
@@ -160,7 +160,7 @@ export default class ComposerUploadFormItem extends React.PureComponent {
                 backgroundPosition: `${x}% ${y}%`
               }}
             >
-              <div className={classNames('composer--upload_form--actions', { active: hovered || focused })}>
+              <div className={classNames('composer--upload_form--actions', { active })}>
                 <button className='icon-button' onClick={handleRemove}>
                   <i className='fa fa-times' /> <FormattedMessage {...messages.undo} />
                 </button>
@@ -175,7 +175,7 @@ export default class ComposerUploadFormItem extends React.PureComponent {
                   onFocus={handleFocus}
                   placeholder={intl.formatMessage(messages.description)}
                   type='text'
-                  value={dirtyDescription || description || ''}
+                  value={description}
                 />
               </label>
             </div>
