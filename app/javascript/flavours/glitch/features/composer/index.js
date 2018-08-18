@@ -95,28 +95,68 @@ function mapStateToProps (state) {
 };
 
 //  Dispatch mapping.
-const mapDispatchToProps = {
-  onCancelReply: cancelReplyCompose,
-  onChangeAdvancedOption: changeComposeAdvancedOption,
-  onChangeDescription: changeUploadCompose,
-  onChangeSensitivity: changeComposeSensitivity,
-  onChangeSpoilerText: changeComposeSpoilerText,
-  onChangeSpoilerness: changeComposeSpoilerness,
-  onChangeText: changeCompose,
-  onChangeVisibility: changeComposeVisibility,
-  onClearSuggestions: clearComposeSuggestions,
-  onCloseModal: closeModal,
-  onFetchSuggestions: fetchComposeSuggestions,
-  onInsertEmoji: insertEmojiCompose,
-  onMount: mountCompose,
-  onOpenActionsModal: openModal.bind(null, 'ACTIONS'),
-  onOpenDoodleModal: openModal.bind(null, 'DOODLE', { noEsc: true }),
-  onSelectSuggestion: selectComposeSuggestion,
-  onSubmit: submitCompose,
-  onUndoUpload: undoUploadCompose,
-  onUnmount: unmountCompose,
-  onUpload: uploadCompose,
-};
+const mapDispatchToProps = (dispatch) => ({
+  onCancelReply() {
+    dispatch(cancelReplyCompose());
+  },
+  onChangeAdvancedOption(option, value) {
+    dispatch(changeComposeAdvancedOption(option, value));
+  },
+  onChangeDescription(id, description) {
+    dispatch(changeUploadCompose(id, description));
+  },
+  onChangeSensitivity() {
+    dispatch(changeComposeSensitivity());
+  },
+  onChangeSpoilerText(text) {
+    dispatch(changeComposeSpoilerText(text));
+  },
+  onChangeSpoilerness() {
+    dispatch(changeComposeSpoilerness());
+  },
+  onChangeText(text) {
+    dispatch(changeCompose(text));
+  },
+  onChangeVisibility(value) {
+    dispatch(changeComposeVisibility(value));
+  },
+  onClearSuggestions() {
+    dispatch(clearComposeSuggestions());
+  },
+  onCloseModal() {
+    dispatch(closeModal());
+  },
+  onFetchSuggestions(token) {
+    dispatch(fetchComposeSuggestions(token));
+  },
+  onInsertEmoji(position, emoji) {
+    dispatch(insertEmojiCompose(position, emoji));
+  },
+  onMount() {
+    dispatch(mountCompose());
+  },
+  onOpenActionModal(props) {
+    dispatch(openModal('ACTIONS', props));
+  },
+  onOpenDoodleModal() {
+    dispatch(openModal('DOODLE', { noEsc: true }));
+  },
+  onSelectSuggestion(position, token, suggestion) {
+    dispatch(selectComposeSuggestion(position, token, suggestion));
+  },
+  onSubmit() {
+    dispatch(submitCompose());
+  },
+  onUndoUpload(id) {
+    dispatch(undoUploadCompose(id));
+  },
+  onUnmount() {
+    dispatch(unmountCompose());
+  },
+  onUpload(files) {
+    dispatch(uploadCompose(files));
+  },
+});
 
 //  Handlers.
 const handlers = {
