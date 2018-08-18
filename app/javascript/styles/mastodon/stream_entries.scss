@@ -3,6 +3,7 @@
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 10px;
+  text-align: left;
 
   @media screen and (max-width: $no-gap-breakpoint) {
     margin-bottom: 0;
@@ -62,6 +63,10 @@
         border-radius: 0 !important;
       }
     }
+  }
+
+  &--highlighted .entry {
+    background: lighten($ui-base-color, 8%);
   }
 }
 

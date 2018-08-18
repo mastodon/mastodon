@@ -13,7 +13,7 @@ RSpec.describe IntentsController, type: :controller do
       context 'when host is follow' do
         let(:uri) { 'web+mastodon://follow?uri=test' }
 
-        it { is_expected.to redirect_to authorize_follow_path(acct: 'test') }
+        it { is_expected.to redirect_to authorize_interaction_path(uri: 'test') }
       end
 
       context 'when host is share' do
