@@ -307,53 +307,57 @@
 .embed {
   .activity-stream {
     box-shadow: none;
+  }
+}
 
-    .entry {
+.entry {
+  .detailed-status.light {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
 
-      .detailed-status.light {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: flex-start;
+    .detailed-status__display-name {
+      flex: 1;
+      margin: 0 5px 15px 0;
+    }
 
-        .detailed-status__display-name {
-          flex: 1;
-          margin: 0 5px 15px 0;
+    .button.button-secondary.logo-button {
+      flex: 0 auto;
+      font-size: 14px;
+      background: $ui-highlight-color;
+      color: $primary-text-color;
+      border: 0;
+
+      svg {
+        width: 20px;
+        height: auto;
+        vertical-align: middle;
+        margin-right: 5px;
+
+        path:first-child {
+          fill: $primary-text-color;
         }
 
-        .button.button-secondary.logo-button {
-          flex: 0 auto;
-          font-size: 14px;
-
-          svg {
-            width: 20px;
-            height: auto;
-            vertical-align: middle;
-            margin-right: 5px;
-
-            path:first-child {
-              fill: $ui-primary-color;
-            }
-
-            path:last-child {
-              fill: $simple-background-color;
-            }
-          }
-
-          &:active,
-          &:focus,
-          &:hover {
-            svg path:first-child {
-              fill: lighten($ui-primary-color, 4%);
-            }
-          }
-        }
-
-        .status__content,
-        .detailed-status__meta {
-          flex: 100%;
+        path:last-child {
+          fill: $ui-highlight-color;
         }
       }
+
+      &:active,
+      &:focus,
+      &:hover {
+        background: lighten($ui-highlight-color, 10%);
+
+        svg path:last-child {
+          fill: lighten($ui-highlight-color, 10%);
+        }
+      }
+    }
+
+    .status__content,
+    .detailed-status__meta {
+      flex: 100%;
     }
   }
 }

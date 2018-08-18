@@ -318,6 +318,9 @@ ko:
       peers_api_enabled:
         desc_html: 이 인스턴스가 페디버스에서 만났던 도메인 네임들
         title: 발견 된 인스턴스들의 리스트 발행
+      preview_sensitive_media:
+        desc_html: 민감한 미디어로 설정되었더라도 다른 웹사이트에서 링크 미리보기에 썸네일을 보여줍니다
+        title: 민감한 미디어를 오픈그래프 미리보기에 보여주기
       registrations:
         closed_message:
           desc_html: 신규 등록을 받지 않을 때 프론트 페이지에 표시됩니다. HTML 태그를 사용할 수 있습니다
@@ -476,6 +479,22 @@ ko:
     follows: 팔로우
     mutes: 뮤트
     storage: 미디어
+  filters:
+    contexts:
+      home: 홈 타임라인
+      notifications: 알림
+      public: 퍼블릭 타임라인
+      thread: 대화
+    edit:
+      title: 필터 편집
+    errors:
+      invalid_context: 컨텍스트가 없거나 올바르지 않습니다
+      invalid_irreversible: 되돌릴 수 없는 필터링은 홈 타임라인과 알림에서만 동작합니다
+    index:
+      delete: 삭제
+      title: 필터
+    new:
+      title: 필터 추가
   followers:
     domain: 도메인
     explanation_html: 프라이버시를 확보하고 싶은 경우, 누가 여러분을 팔로우 하고 있는지 파악해둘 필요가 있습니다. <strong>프라이빗 포스팅은 여러분의 팔로워가 소속하는 모든 인스턴스로 배달됩니다</strong>. 팔로워가 소속된 인스턴스 관리자나 소프트웨어가 여러분의 프라이버시를 존중하고 있는지 잘 모를 경우, 그 팔로워를 삭제하는 것이 좋을 수도 있습니다.
@@ -601,6 +620,7 @@ ko:
   remote_follow:
     acct: 아이디@도메인을 입력해 주십시오
     missing_resource: 리디렉션 대상을 찾을 수 없습니다
+    no_account_html: 계정이 없나요? <a href='%{sign_up_path}' target='_blank'>여기에서 가입 할 수 있습니다</a>
     proceed: 팔로우 하기
     prompt: '팔로우 하려 하고 있습니다:'
   remote_unfollow:
@@ -677,6 +697,7 @@ ko:
     disallowed_hashtags:
       one: '허용 되지 않은 해시태그를 포함하고 있습니다: %{tags}'
       other: '허용되지 않은 해시태그를 포함하고 있습니다: %{tags}'
+    language_detection: 자동으로 언어 감지
     open_in_web: Web으로 열기
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:

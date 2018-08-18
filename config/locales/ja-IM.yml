@@ -337,6 +337,9 @@ ja-IM:
       peers_api_enabled:
         desc_html: 連合内でこのインスタンスが遭遇したドメインの名前
         title: 接続しているインスタンスのリストを公開する
+      preview_sensitive_media:
+        desc_html: 他のウェブサイトにリンクを貼った際、メディアが早苗さんに見つからないように隠されていてもサムネイルが表示されます
+        title: OpenGraphによるプレビューで早苗さんに見つからないように隠されたメディアも表示する
       registrations:
         closed_message:
           desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
@@ -445,7 +448,7 @@ ja-IM:
     following: '成功！ あなたは現在以下のアカウントをフォローしています:'
     post_follow:
       close: またはこのウィンドウを閉じます。
-      return: ユーザーのプロフィールに戻る
+      return: ユーザーのプロフィールを見る
       web: Web を開く
     title: "%{acct} をフォロー"
   datetime:
@@ -507,6 +510,22 @@ ja-IM:
     name_of_tag: タグ名
     order: 順序
     submit: お気に入りタグを登録
+  filters:
+    contexts:
+      home: 楽屋
+      notifications: 通知
+      public: ライブステージ
+      thread: 会話
+    edit:
+      title: フィルターを編集
+    errors:
+      invalid_context: 対象がないか無効です
+      invalid_irreversible: この機能は楽屋または通知と一緒に指定する場合のみ機能します
+    index:
+      delete: 削除
+      title: フィルター
+    new:
+      title: 新規フィルターを追加
   followers:
     domain: ドメイン
     explanation_html: あなたのあふぅのプライバシーを確保したい場合、誰があなたをフォローしているのかを把握している必要があります。 <strong>プライベートあふぅは、あなたのフォロワーがいる全てのインスタンスに配信されます</strong>。 フォロワーのインスタンスの管理者やソフトウェアがあなたのプライバシーを尊重してくれるかどうか怪しい場合は、そのフォロワーを削除した方がよいかもしれません。
@@ -517,8 +536,8 @@ ja-IM:
       one: 1個のドメインからソフトブロックするフォロワーを処理中...
       other: "%{count} 個のドメインからソフトブロックするフォロワーを処理中..."
     true_privacy_html: "<strong>プライバシーの保護はエンドツーエンドの暗号化でのみ実現可能</strong>であることに留意ください。"
-    unlocked_warning_html: 誰でもあなたをフォローすることができ、あなたのプライベート投稿をすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
-    unlocked_warning_title: このアカウントは非公開アカウントに設定されていません
+    unlocked_warning_html: 誰でもあなたをフォローすることができ、フォロワー限定のあふぅをすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
+    unlocked_warning_title: このアカウントは承認制アカウントに設定されていません
   generic:
     changes_saved_msg: 正常に変更されました！
     powered_by: powered by %{link}
@@ -632,6 +651,7 @@ ja-IM:
   remote_follow:
     acct: あなたの ユーザー名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした
+    no_account_html: アカウントをお持ちではないですか？<a href='%{sign_up_path}' target='_blank'>こちら</a>からサインアップできます
     proceed: フォローする
     prompt: 'フォローしようとしています:'
   remote_unfollow:

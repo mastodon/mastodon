@@ -302,12 +302,10 @@
     height: 0;
     transform-origin: bottom;
     opacity: 0.0;
-    transition: all 0.4s ease;
 
     &.spoiler-input--visible {
       height: 47px;
       opacity: 1.0;
-      transition: all 0.4s ease;
     }
   }
 
@@ -568,6 +566,10 @@
   }
 }
 
+.no-reduce-motion .spoiler-input {
+  transition: height 0.4s ease, opacity 0.4s ease;
+}
+
 .emojione {
   font-size: inherit;
   vertical-align: middle;
@@ -721,6 +723,20 @@
   line-height: 20px;
   cursor: pointer;
   vertical-align: middle;
+}
+
+.status__wrapper--filtered {
+  color: $dark-text-color;
+  border: 0;
+  font-size: inherit;
+  text-align: center;
+  line-height: inherit;
+  margin: 0;
+  padding: 15px;
+  box-sizing: border-box;
+  width: 100%;
+  clear: both;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
 }
 
 .status__prepend-icon-wrapper {

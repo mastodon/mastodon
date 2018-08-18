@@ -24,6 +24,8 @@ class ReblogService < BaseService
     ActivityPub::DistributionWorker.perform_async(reblog.id)
 
     create_notification(reblog)
+    bump_potential_friendship(account, reblog)
+
     reblog
   end
 
@@ -39,6 +41,11 @@ class ReblogService < BaseService
     elsif reblogged_status.account.activitypub? && !reblogged_status.account.following?(reblog.account)
       ActivityPub::DeliveryWorker.perform_async(build_json(reblog), reblog.account_id, reblogged_status.account.inbox_url)
     end
+  end
+
+  def bump_potential_friendship(account, reblog)
+    return if account.following?(reblog.reblog.account_id)
+    PotentialFriendshipTracker.record(account.id, reblog.reblog.account_id, :reblog)
   end
 
   def build_json(reblog)

@@ -80,6 +80,23 @@ services:
     volumes:
       - ./public/packs:/mastodon/public/packs
       - ./public/system:/mastodon/public/system
+## Uncomment to enable federation with tor instances along with adding the following ENV variables
+## http_proxy=http://privoxy:8118
+## ALLOW_ACCESS_TO_HIDDEN_SERVICE=true
+#  tor:
+#    build: https://github.com/usbsnowcrash/docker-tor.git
+#    networks:
+#      - external_network
+#      - internal_network
+#
+#  privoxy:
+#    build: https://github.com/usbsnowcrash/docker-privoxy.git
+#    command: /opt/sbin/privoxy --no-daemon --user privoxy.privoxy /opt/config
+#    volumes:
+#      - ./priv-config:/opt/config
+#    networks:
+#      - external_network
+#      - internal_network
 
 networks:
   external_network:

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::Accounts::CredentialsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read }, except: [:update]
-  before_action -> { doorkeeper_authorize! :write }, only: [:update]
+  before_action -> { doorkeeper_authorize! :read, :'read:accounts' }, except: [:update]
+  before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, only: [:update]
   before_action :require_user!
 
   def show

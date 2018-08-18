@@ -7,7 +7,6 @@ import ColumnHeader from '../../components/column_header';
 import { expandDirectTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectDirectStream } from '../../actions/streaming';
 
 const messages = defineMessages({
@@ -86,9 +85,7 @@ export default class DirectTimeline extends React.PureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
-        >
-          <ColumnSettingsContainer />
-        </ColumnHeader>
+        />
 
         <StatusListContainer
           trackScroll={!pinned}

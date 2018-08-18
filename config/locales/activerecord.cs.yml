@@ -1,0 +1,13 @@
+---
+cs:
+  activerecord:
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: pouze písmena, číslice a podtržítka
+        status:
+          attributes:
+            reblog:
+              taken: stavu již existuje

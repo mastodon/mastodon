@@ -4,7 +4,7 @@ RSpec.describe Api::V1::MutesController, type: :controller do
   render_views
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'follow') }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:mutes') }
 
   before do
     Fabricate(:mute, account: user.account, hide_notifications: false)

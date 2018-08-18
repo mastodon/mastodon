@@ -58,11 +58,11 @@ module SignatureVerification
         @signed_request_account = account
         @signed_request_account
       else
-        @signed_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri}"
+        @signature_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri}"
         @signed_request_account = nil
       end
     else
-      @signed_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri}"
+      @signature_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri}"
       @signed_request_account = nil
     end
   end
