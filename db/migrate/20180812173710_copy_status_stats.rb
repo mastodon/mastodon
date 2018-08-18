@@ -3,7 +3,7 @@ class CopyStatusStats < ActiveRecord::Migration[5.2]
 
   def up
     safety_assured do
-      Status.where.not(id: StatusStat.select('status_id')).select('id').find_in_batches do |statuses|
+      Status.unscoped.select('id').find_in_batches(batch_size: 5_000) do |statuses|
         execute <<-SQL.squish
           INSERT INTO status_stats (status_id, reblogs_count, favourites_count, created_at, updated_at)
           SELECT id, reblogs_count, favourites_count, created_at, updated_at
