@@ -20,7 +20,7 @@ class WebfingerSerializer < ActiveModel::Serializer
       { rel: 'self', type: 'application/activity+json', href: account_url(object) },
       { rel: 'salmon', href: api_salmon_url(object.id) },
       { rel: 'magic-public-key', href: "data:application/magic-public-key,#{object.magic_key}" },
-      { rel: 'http://ostatus.org/schema/1.0/subscribe', template: "#{authorize_follow_url}?acct={uri}" },
+      { rel: 'http://ostatus.org/schema/1.0/subscribe', template: "#{authorize_interaction_url}?uri={uri}" },
     ]
   end
 end
