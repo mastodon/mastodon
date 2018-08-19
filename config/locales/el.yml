@@ -49,6 +49,7 @@ el:
     user_count_after: χρήστες
     user_count_before: Σπίτι για
     what_is_mastodon: Τι είναι το Mastodon;
+    apps: Εφαρμογές κινητών
   accounts:
     follow: Ακολούθησε
     followers: Ακόλουθοι
@@ -314,6 +315,7 @@ el:
         expired: Ληγμένες
         title: Φίλτρο
       title: Προσκλήσεις
+      deactivate_all: Απενεργοποίηση όλων
     relays:
       add_new: Πρόσθεσε νέο ανταποκριτή (relay)
       description_html: Ο <strong>ομοσπονδιακός ανταποκριτής</strong> είναι ένας ενδιάμεσος
@@ -730,7 +732,7 @@ el:
     publishing: Δημοσίευση
     web: Διαδίκτυο
   remote_follow:
-    acct: Γράψε το ΌνομαΧρήστη@τομέας από όπου θέλεις να ακολουθήσεις
+    acct: Γράψε το ΌνομαΧρήστη@τομέα από όπου θέλεις να εκτελέσεις την ενέργεια αυτή
     missing_resource: Δεν βρέθηκε το απαιτούμενο URL ανακατεύθυνσης για το λογαριασμό
       σου
     no_account_html: Δεν έχεις λογαριασμό; Μπορείς <a href='%{sign_up_path}' target='_blank'>να
@@ -829,6 +831,7 @@ el:
       public_long: Βλέπει οποιοσδήποτε
       unlisted: Μη καταχωρημένο
       unlisted_long: Βλέπει οποιοσδήποτε, αλλά δεν καταχωρείται στις δημόσιες ροές
+    sign_in_to_participate: Εγγράφου για να συμμετάσχεις στη συζήτηση
   stream_entries:
     pinned: Καρφιτσωμένο τουτ
     reblogged: προωθημένο
@@ -1033,3 +1036,6 @@ el:
     seamless_external_login: Επειδή έχεις συνδεθεί μέσω τρίτης υπηρεσίας, οι ρυθμίσεις
       συνθηματικού και email δεν είναι διαθέσιμες.
     signed_in_as: 'Έχεις συνδεθεί ως:'
+  remote_interaction:
+    proceed: Συνέχισε για να αλληλεπιδράσεις
+    prompt: 'Θέλεις να αλληλεπιδράσεις με αυτό το τουτ:'
