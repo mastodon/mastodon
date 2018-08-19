@@ -42,7 +42,14 @@ class User < ApplicationRecord
   include Settings::Extend
   include Omniauthable
 
-  ACTIVE_DURATION = 7.days
+  # The home and list feeds will be stored in Redis for this amount
+  # of time, and status fan-out to followers will include only people
+  # within this time frame. Lowering the duration may improve performance
+  # if lots of people sign up, but not a lot of them check their feed
+  # every day. Raising the duration reduces the amount of expensive
+  # RegenerationWorker jobs that need to be run when those people come
+  # to check their feed
+  ACTIVE_DURATION = ENV.fetch('USER_ACTIVE_DAYS', 7).to_i.days
 
   devise :two_factor_authenticatable,
          otp_secret_encryption_key: Rails.configuration.x.otp_secret

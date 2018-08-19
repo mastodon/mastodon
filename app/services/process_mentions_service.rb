@@ -25,7 +25,7 @@ class ProcessMentionsService < BaseService
         end
       end
 
-      next match if mention_undeliverable?(mentioned_account)
+      next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended
 
       mentions << mentioned_account.mentions.where(status: status).first_or_create(status: status)
 
