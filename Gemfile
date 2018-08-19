@@ -10,6 +10,7 @@ gem 'rails', '~> 5.2.1'
 
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.0'
+gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.1'
 gem 'dotenv-rails', '~> 2.2', '< 2.3'
 
@@ -41,7 +42,7 @@ gem 'omniauth-cas', '~> 1.1'
 gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth', '~> 1.2'
 
-gem 'doorkeeper', '~> 4.4'
+gem 'doorkeeper', '~> 4.2', '< 4.3'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
 gem 'goldfinger', '~> 2.1'

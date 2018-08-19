@@ -20,6 +20,7 @@ export default class Upload extends ImmutablePureComponent {
     onUndo: PropTypes.func.isRequired,
     onDescriptionChange: PropTypes.func.isRequired,
     onOpenFocalPoint: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
   };
 
   state = {
@@ -27,6 +28,17 @@ export default class Upload extends ImmutablePureComponent {
     focused: false,
     dirtyDescription: null,
   };
+
+  handleKeyDown = (e) => {
+    if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
+      this.handleSubmit();
+    }
+  }
+
+  handleSubmit = () => {
+    this.handleInputBlur();
+    this.props.onSubmit();
+  }
 
   handleUndoClick = () => {
     this.props.onUndo(this.props.media.get('id'));
@@ -93,6 +105,7 @@ export default class Upload extends ImmutablePureComponent {
                     onFocus={this.handleInputFocus}
                     onChange={this.handleInputChange}
                     onBlur={this.handleInputBlur}
+                    onKeyDown={this.handleKeyDown}
                   />
                 </label>
               </div>

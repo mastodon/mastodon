@@ -29,14 +29,16 @@
       = react_component :media_gallery, height: 343, sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, 'autoPlayGif': current_account&.user&.setting_auto_play_gif, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }
 
   .status__action-bar
-    .status__action-bar-button.static-icon-button<
+    .status__action-bar__counter
+      = link_to remote_interaction_path(status), class: 'status__action-bar-button icon-button modal-button', style: 'font-size: 18px; width: 23.1429px; height: 23.1429px; line-height: 23.15px;' do
+        = fa_icon 'reply fw'
+      .status__action-bar__counter__label= obscured_counter status.replies_count
+    = link_to remote_interaction_path(status), class: 'status__action-bar-button icon-button modal-button', style: 'font-size: 18px; width: 23.1429px; height: 23.1429px; line-height: 23.15px;' do
       - if status.public_visibility? || status.unlisted_visibility?
         = fa_icon 'retweet fw'
-        %span.detailed-status__reblogs= number_to_human status.reblogs_count, strip_insignificant_zeros: true
       - elsif status.private_visibility?
         = fa_icon 'lock fw'
       - else
         = fa_icon 'envelope fw'
-    .status__action-bar-button.static-icon-button<
+    = link_to remote_interaction_path(status), class: 'status__action-bar-button icon-button modal-button', style: 'font-size: 18px; width: 23.1429px; height: 23.1429px; line-height: 23.15px;' do
       = fa_icon 'star fw'
-      %span.detailed-status__favorites= number_to_human status.favourites_count, strip_insignificant_zeros: true
