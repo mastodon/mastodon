@@ -26,6 +26,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:auto_play_gif]           = object.current_account.user.setting_auto_play_gif
       store[:display_sensitive_media] = object.current_account.user.setting_display_sensitive_media
       store[:reduce_motion]           = object.current_account.user.setting_reduce_motion
+      store[:fetch_anonymously]       = object.current_account.user.setting_fetch_anonymously
     end
 
     store

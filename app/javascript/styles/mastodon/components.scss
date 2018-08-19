@@ -3555,6 +3555,38 @@ a.status-card {
   }
 }
 
+.search-results__warning {
+  color: $inverted-text-color;
+  background: $ui-primary-color;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 400;
+
+  strong {
+    color: $inverted-text-color;
+    font-weight: 500;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
+  }
+
+  a {
+    color: $lighter-text-color;
+    font-weight: 500;
+    text-decoration: underline;
+
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+}
+
+
 .modal-root {
   position: relative;
   transition: opacity 0.3s linear;
