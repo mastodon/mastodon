@@ -3,6 +3,8 @@
 class Scheduler::MediaCleanupScheduler
   include Sidekiq::Worker
 
+  sidekiq_options unique: :until_executed
+
   def perform
     unattached_media.find_each(&:destroy)
   end
