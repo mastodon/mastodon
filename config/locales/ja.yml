@@ -1,14 +1,14 @@
 ---
 ja:
   about:
-    about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開トゥートです。どこでもいいので、連合に参加しているSNS上にアカウントを作れば会話に参加することができます。
+    about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開ちんちんです。どこでもいいので、娑婆に参加しているSNS上にアカウントを作れば会話に参加することができます。
     about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
     about_this: 詳細情報
     administered_by: '管理者:'
     closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。しかし、他のインスタンスにアカウントを作成しても全く同じネットワークに参加することができます。
     contact: 連絡先
     contact_missing: 未設定
-    contact_unavailable: N/A
+    contact_unavailable: 管理人に直接どうぞ
     description_headline: "%{domain} とは？"
     domain_count_after: 個のインスタンス
     domain_count_before: 接続中
@@ -20,7 +20,7 @@ ja:
       humane_approach_title: より思いやりのある設計
       not_a_product_body: Mastodon は営利的な SNS ではありません。広告や、データの収集・解析は無く、またユーザーの囲い込みもありません。ここには中央権力はありません。
       not_a_product_title: あなたは人間であり、商品ではありません
-      real_conversation_body: 好きなように書ける500文字までの投稿や、文章やメディアの内容に警告をつけられる機能で、思い通りに自分自身を表現することができます。
+      real_conversation_body: 好きなように書ける500文字までのちんちんや、文章や証拠品の内容に警告をつけられる機能で、思い通りに自分自身を表現することができます。
       real_conversation_title: 本当のコミュニケーションのために
       within_reach_body: デベロッパーフレンドリーな API により実現された、iOS や Android、その他様々なプラットフォームのためのアプリでどこでも友人とやりとりできます。
       within_reach_title: いつでも身近に
@@ -29,30 +29,30 @@ ja:
     learn_more: もっと詳しく
     other_instances: 他のインスタンス
     source_code: ソースコード
-    status_count_after: トゥート
-    status_count_before: トゥート数
+    status_count_after: ちんちん 
+    status_count_before: ちんちんの数
     user_count_after: 人
     user_count_before: ユーザー数
     what_is_mastodon: Mastodon とは？
   accounts:
-    follow: フォロー
-    followers: フォロワー
-    following: フォロー中
-    media: メディア
+    follow: 監視
+    followers: 看守
+    following: 監視中
+    media: 証拠品
     moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
     network_hidden: この情報は利用できません
     nothing_here: 何もありません！
-    people_followed_by: "%{name} さんがフォロー中のアカウント"
-    people_who_follow: "%{name} さんをフォロー中のアカウント"
-    posts: トゥート
-    posts_with_replies: トゥートと返信
-    remote_follow: リモートフォロー
+    people_followed_by: "%{name} さんが監視中のアカウント"
+    people_who_follow: "%{name} さんを監視中のアカウント"
+    posts: ちんちん
+    posts_with_replies: ちんちんと返信
+    remote_follow: リモート監視
     reserved_username: このユーザー名は予約されています
     roles:
       admin: Admin
       bot: Bot
       moderator: Mod
-    unfollow: フォロー解除
+    unfollow: 監視の解除
   admin:
     account_moderation_notes:
       create: 書き込む
@@ -85,18 +85,18 @@ ja:
       enable: 有効化
       enabled: 有効
       feed_url: フィードURL
-      followers: フォロワー数
+      followers: 看守数
       followers_url: Followers URL
-      follows: フォロー数
+      follows: 監視数
       inbox_url: Inbox URL
       ip: IP
       location:
         all: すべて
-        local: ローカル
+        local: 監獄
         remote: リモート
         title: ロケーション
       login_status: ログイン
-      media_attachments: 添付されたメディア
+      media_attachments: 添付された証拠品
       memorialize: 追悼アカウント化
       moderation:
         all: すべて
@@ -141,7 +141,7 @@ ja:
         report: レポート
         targeted_reports: このアカウントについてのレポート
       silence: サイレンス
-      statuses: トゥート数
+      statuses: ちんちんの数
       subscribe: 購読する
       title: アカウント
       unconfirmed_email: 確認待ちのメールアドレス
@@ -156,12 +156,12 @@ ja:
         change_email_user: "%{name} さんが %{target} さんのメールアドレスを変更しました"
         confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
         create_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を追加しました"
-        create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
+        create_domain_block: "%{name} さんがドメイン %{target} を粛清しました"
         create_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストに追加しました"
         demote_user: "%{name} さんが %{target} さんを降格しました"
-        destroy_domain_block: "%{name} さんがドメイン %{target} のブロックを外しました"
+        destroy_domain_block: "%{name} さんがドメイン %{target} の粛清を外しました"
         destroy_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストから外しました"
-        destroy_status: "%{name} さんが %{target} さんの投稿を削除しました"
+        destroy_status: "%{name} さんが %{target} さんのちんちんを削除しました"
         disable_2fa_user: "%{name} さんが %{target} さんの二段階認証を無効化しました"
         disable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を無効化しました"
         disable_user: "%{name} さんが %{target} さんのログインを無効化しました"
@@ -179,13 +179,13 @@ ja:
         unsilence_account: "%{name} さんが %{target} さんのサイレンスを解除しました"
         unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
         update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
-        update_status: "%{name} さんが %{target} さんの投稿を更新しました"
+        update_status: "%{name} さんが %{target} さんのちんちんを更新しました"
       title: 操作履歴
     custom_emojis:
       by_domain: ドメイン
-      copied_msg: 絵文字のコピーをローカルに作成しました
+      copied_msg: 絵文字のコピーを監獄に作成しました
       copy: コピー
-      copy_failed_msg: 絵文字のコピーをローカルに作成できませんでした
+      copy_failed_msg: 絵文字のコピーを監獄に作成できませんでした
       created_msg: 絵文字の追加に成功しました！
       delete: 削除
       destroyed_msg: 絵文字の削除に成功しました！
@@ -208,20 +208,20 @@ ja:
       upload: アップロード
     domain_blocks:
       add_new: 新規追加
-      created_msg: ドメインブロック処理を完了しました
-      destroyed_msg: ドメインブロックを外しました
+      created_msg: ドメイン粛清処理を完了しました
+      destroyed_msg: ドメイン粛清を外しました
       domain: ドメイン
       new:
-        create: ブロックを作成
-        hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
+        create: 粛清を作成
+        hint: ドメイン粛清はデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
-          desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。メディアファイルの拒否は<strong>なし</strong>を使います。"
+          desc_html: "<strong>サイレンス</strong>はアカウントのちんちんを監視していない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、証拠品、プロフィールデータをすべて削除します。証拠品ファイルの拒否は<strong>なし</strong>を使います。"
           noop: なし
           silence: サイレンス
           suspend: 停止
-        title: 新規ドメインブロック
-      reject_media: メディアファイルを拒否
-      reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
+        title: 新規ドメイン粛清
+      reject_media: 証拠品ファイルを拒否
+      reject_media_hint: 監獄に保存された証拠品ファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
       severities:
         noop: なし
         silence: サイレンス
@@ -234,9 +234,9 @@ ja:
         retroactive:
           silence: このドメインからの存在するすべてのアカウントのサイレンスを戻す
           suspend: このドメインからの存在するすべてのアカウントの停止を戻す
-        title: "%{domain}のドメインブロックを戻す"
+        title: "%{domain}のドメイン粛清を戻す"
         undo: 元に戻す
-      title: ドメインブロック
+      title: ドメイン粛清
       undo: 元に戻す
     email_domain_blocks:
       add_new: 新規追加
@@ -259,7 +259,7 @@ ja:
         all: すべて
         available: 使用可能
         expired: 期限切れ
-        title: フィルター
+        title: 検閲
       title: 招待
     report_notes:
       created_msg: レポートメモを書き込みました！
@@ -302,11 +302,11 @@ ja:
       view: 表示
     settings:
       activity_api_enabled:
-        desc_html: 週ごとのローカルに投稿されたトゥート数、アクティブなユーザー数、新規登録者数
+        desc_html: 週ごとの監獄に投稿されたちんちんの数、アクティブなユーザー数、新規登録者数
         title: ユーザーアクティビティに関する統計を公開する
       bootstrap_timeline_accounts:
-        desc_html: 複数のユーザー名はコンマで区切ります。ローカルの公開アカウントのみ有効です。指定しない場合は管理者がデフォルトで指定されます。
-        title: 新規ユーザーが自動フォローするアカウント
+        desc_html: 複数のユーザー名はコンマで区切ります。監獄の公開アカウントのみ有効です。指定しない場合は管理者がデフォルトで指定されます。
+        title: 新規ユーザーが自動監視するアカウント
       contact_information:
         email: ビジネスメールアドレス
         username: 連絡先のユーザー名
@@ -315,10 +315,10 @@ ja:
         title: ヒーローイメージ
       peers_api_enabled:
         desc_html: 連合内でこのインスタンスが遭遇したドメインの名前
-        title: 接続しているインスタンスのリストを公開する
+        title: 接続しているインスタンスの閻魔帳を公開する
       preview_sensitive_media:
-        desc_html: 他のウェブサイトにリンクを貼った際、メディアが閲覧注意としてマークされていてもサムネイルが表示されます
-        title: OpenGraphによるプレビューで閲覧注意のメディアも表示する
+        desc_html: 他のウェブサイトにリンクを貼った際、証拠品が閲覧注意としてマークされていてもサムネイルが表示されます
+        title: OpenGraphによるプレビューで閲覧注意の証拠品も表示する
       registrations:
         closed_message:
           desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
@@ -333,8 +333,8 @@ ja:
           desc_html: 誰でも自由にアカウントを作成できるようにします
           title: 新規登録を受け付ける
       show_known_fediverse_at_about_page:
-        desc_html: チェックを入れるとプレビュー欄に既知の連合先全てのトゥートを表示します。外すとローカルのトゥートだけ表示します。
-        title: タイムラインプレビューに連合タイムラインを表示する
+        desc_html: チェックを入れるとプレビュー欄に既知の連合先全てのちんちんを表示します。外すと監獄のちんちんだけ表示します。
+        title: ストリームプレビューに娑婆ストリームを表示する
       show_staff_badge:
         desc_html: ユーザーページにスタッフのバッジを表示します
         title: スタッフバッジを表示する
@@ -353,7 +353,7 @@ ja:
         title: インスタンスのサムネイル
       timeline_preview:
         desc_html: ランディングページに公開タイムラインを表示します
-        title: タイムラインプレビュー
+        title: ストリームプレビュー
       title: サイト設定
     statuses:
       back_to_account: アカウントページに戻る
@@ -363,10 +363,10 @@ ja:
         nsfw_on: 閲覧注意にする
       failed_to_execute: 実行に失敗しました
       media:
-        title: メディア
-      no_media: メディアなし
-      title: トゥート一覧
-      with_media: メディアあり
+        title: 証拠品
+      no_media: 証拠品なし
+      title: ちんちん一覧
+      with_media: 証拠品あり
     subscriptions:
       callback_url: コールバックURL
       confirmed: 確認済み
@@ -386,7 +386,7 @@ ja:
     settings: 'メール設定の変更: %{link}'
     view: 'リンク:'
     view_profile: プロフィールを表示
-    view_status: トゥートを表示
+    view_status: ちんちんを表示
   applications:
     created: アプリが作成されました
     destroyed: アプリが削除されました
@@ -420,16 +420,16 @@ ja:
     security: セキュリティ
     set_new_password: 新しいパスワード
   authorize_follow:
-    already_following: あなたは既にこのアカウントをフォローしています
+    already_following: あなたは既にこのアカウントを監視しています
     error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました
-    follow: フォロー
-    follow_request: 'あなたは以下のアカウントにフォローリクエストを送信しました:'
-    following: '成功！ あなたは現在以下のアカウントをフォローしています:'
+    follow: 監視
+    follow_request: 'あなたは以下のアカウントに監視リクエストを送信しました:'
+    following: '成功！ あなたは現在以下のアカウントを監視しています:'
     post_follow:
       close: またはこのウィンドウを閉じます。
       return: ユーザーのプロフィールを見る
       web: Web を開く
-    title: "%{acct} をフォロー"
+    title: "%{acct} を監視"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}時間"
@@ -468,42 +468,42 @@ ja:
     archive_takeout:
       date: 日時
       download: ダウンロード
-      hint_html: "<strong>トゥートとメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。7日毎にアーカイブをリクエストできます。"
+      hint_html: "<strong>ちんちんと証拠品</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。7日毎にアーカイブをリクエストできます。"
       in_progress: 準備中...
       request: アーカイブをリクエスト
       size: 容量
-    blocks: ブロック
+    blocks: 粛清
     csv: CSV
-    follows: フォロー
-    mutes: ミュート
-    storage: メディア
+    follows: 監視
+    mutes: 去勢
+    storage: 証拠品
   filters:
     contexts:
-      home: ホームタイムライン
+      home: 心の安寧ストリーム
       notifications: 通知
-      public: 公開タイムライン
+      public: 公開ストリーム
       thread: 会話
     edit:
-      title: フィルターを編集
+      title: 検閲を編集
     errors:
       invalid_context: 対象がないか無効です
-      invalid_irreversible: この機能はホームタイムラインまたは通知と一緒に指定する場合のみ機能します
+      invalid_irreversible: この機能は心の安寧ストリームまたは通知と一緒に指定する場合のみ機能します
     index:
       delete: 削除
-      title: フィルター
+      title: 検閲
     new:
-      title: 新規フィルターを追加
+      title: 新規検閲を追加
   followers:
     domain: ドメイン
-    explanation_html: あなたの投稿のプライバシーを確保したい場合、誰があなたをフォローしているのかを把握している必要があります。 <strong>プライベート投稿は、あなたのフォロワーがいる全てのインスタンスに配信されます</strong>。 フォロワーのインスタンスの管理者やソフトウェアがあなたのプライバシーを尊重してくれるかどうか怪しい場合は、そのフォロワーを削除した方がよいかもしれません。
-    followers_count: フォロワー数
+    explanation_html: あなたのちんちんのプライバシーを確保したい場合、誰があなたを監視しているのかを把握している必要があります。 <strong>プライベートちんちんは、あなたの看守がいる全てのインスタンスに配信されます</strong>。 看守のインスタンスの管理者やソフトウェアがあなたのプライバシーを尊重してくれるかどうか怪しい場合は、その看守を削除した方がよいかもしれません。
+    followers_count: 看守数
     lock_link: 承認制アカウントにする
-    purge: フォロワーから削除する
+    purge: 看守から削除する
     success:
-      one: 1個のドメインからソフトブロックするフォロワーを処理中...
-      other: "%{count} 個のドメインからソフトブロックするフォロワーを処理中..."
+      one: 1個のドメインからソフト粛清する看守を処理中...
+      other: "%{count} 個のドメインからソフト粛清する看守を処理中..."
     true_privacy_html: "<strong>プライバシーの保護はエンドツーエンドの暗号化でのみ実現可能</strong>であることに留意ください。"
-    unlocked_warning_html: 誰でもあなたをフォローすることができ、フォロワー限定の投稿をすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
+    unlocked_warning_html: 誰でもあなたを監視することができ、看守限定のちんちんをすぐに見ることができます。看守する人を限定したい場合は%{lock_link}に設定してください。
     unlocked_warning_title: このアカウントは承認制アカウントに設定されていません
   generic:
     changes_saved_msg: 正常に変更されました！
@@ -513,12 +513,12 @@ ja:
       one: エラーが発生しました！ 以下のエラーを確認してください
       other: エラーが発生しました！ 以下の%{count}個のエラーを確認してください
   imports:
-    preface: 他のインスタンスでエクスポートされたファイルから、フォロー/ブロックした情報をこのインスタンス上のアカウントにインポートできます。
+    preface: 他のインスタンスでエクスポートされたファイルから、監視/粛清した情報をこのインスタンス上のアカウントにインポートできます。
     success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください
     types:
-      blocking: ブロックしたアカウントリスト
-      following: フォロー中のアカウントリスト
-      muting: ミュートしたアカウントリスト
+      blocking: 粛清したアカウントリスト
+      following: 看守中のアカウントリスト
+      muting: 去勢したアカウントリスト
     upload: アップロード
   in_memoriam_html: 故人を偲んで。
   invites:
@@ -543,7 +543,7 @@ ja:
       expires_at: 有効期限
       uses: 使用
     title: 新規ユーザーの招待
-  landing_strip_html: "<strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。"
+  landing_strip_html: "<strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていれば監視したり会話したりできます。"
   landing_strip_signup_html: もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   lists:
     errors:
@@ -565,34 +565,34 @@ ja:
       body: '最後のログイン（%{since}）からの出来事:'
       mention: "%{name} さんがあなたに返信しました:"
       new_followers_summary:
-        one: また、離れている間に新たなフォロワーを獲得しました！
-        other: また、離れている間に%{count} 人の新たなフォロワーを獲得しました！
+        one: また、離れている間に新たな看守を獲得しました！
+        other: また、離れている間に%{count} 人の新たな看守を獲得しました！
       subject:
         one: "新しい1件の通知 \U0001F418"
         other: "新しい%{count}件の通知 \U0001F418"
       title: 不在の間に…
     favourite:
-      body: "%{name} さんにお気に入り登録された、あなたのトゥートがあります:"
+      body: "%{name} さんにお気に入り登録された、あなたのちんちんがあります:"
       subject: "%{name} さんにお気に入りに登録されました"
       title: 新たなお気に入り登録
     follow:
-      body: "%{name} さんにフォローされています！"
-      subject: "%{name} さんにフォローされています"
-      title: 新たなフォロワー
+      body: "%{name} さんに監視されています！"
+      subject: "%{name} さんに監視されています"
+      title: 新たな看守
     follow_request:
-      action: フォローリクエストの管理
-      body: "%{name} さんがあなたにフォローをリクエストしました"
-      subject: "%{name} さんからのフォローリクエスト"
-      title: 新たなフォローリクエスト
+      action: 監視リクエストの管理
+      body: "%{name} さんがあなたに監視をリクエストしました"
+      subject: "%{name} さんからの監視リクエスト"
+      title: 新たな監視リクエスト
     mention:
       action: 返信
       body: "%{name} さんから返信がありました:"
       subject: "%{name} さんに返信されました"
       title: 新たな返信
     reblog:
-      body: "%{name} さんにブーストされた、あなたのトゥートがあります:"
-      subject: "%{name} さんにブーストされました"
-      title: 新たなブースト
+      body: "%{name} さんにまんまんされた、あなたのちんちんがあります:"
+      subject: "%{name} さんにまんまんされました"
+      title: 新たなまんまん
   number:
     human:
       decimal_units:
@@ -605,26 +605,26 @@ ja:
           trillion: T
           unit: ''
   pagination:
-    newer: 新しいトゥート
+    newer: 新しいちんちん
     next: 次
-    older: 以前のトゥート
+    older: 以前のちんちん
     prev: 前
     truncate: "&hellip;"
   preferences:
     languages: 言語
     other: その他
-    publishing: 投稿
+    publishing: ちんちん
     web: ウェブ
   remote_follow:
     acct: あなたの ユーザー名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした
     no_account_html: アカウントをお持ちではないですか？<a href='%{sign_up_path}' target='_blank'>こちら</a>からサインアップできます
-    proceed: フォローする
-    prompt: 'フォローしようとしています:'
+    proceed: 監視する
+    prompt: '監視しようとしています:'
   remote_unfollow:
     error: エラー
     title: タイトル
-    unfollowed: フォロー解除しました
+    unfollowed: 監視の解除をしました
   sessions:
     activity: 最後のアクティビティ
     browser: ブラウザ
@@ -690,7 +690,7 @@ ja:
       video:
         one: "%{count} 本の動画"
         other: "%{count} 本の動画"
-    boosted_from_html: "%{acct_link} からブースト"
+    boosted_from_html: "%{acct_link} からまんまん"
     content_warning: '閲覧注意: %{warning}'
     disallowed_hashtags:
       one: '許可されていないハッシュタグが含まれています: %{tags}'
@@ -699,23 +699,23 @@ ja:
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     pin_errors:
-      limit: 固定されているトゥートの上限に達しました
-      ownership: 他人のトゥートを固定することはできません
-      private: 非公開のトゥートを固定することはできません
-      reblog: ブーストされたトゥートを固定することはできません
+      limit: 固定されているちんちんの上限に達しました
+      ownership: 他人のちんちんを固定することはできません
+      private: 非公開のちんちんを固定することはできません
+      reblog: まんまんされたちんちんを固定することはできません
     show_more: もっと見る
     title: '%{name}: "%{quote}"'
     visibilities:
-      private: フォロワー限定
-      private_long: フォロワーにのみ表示されます
+      private: 看守限定
+      private_long: 看守にのみ表示されます
       public: 公開
-      public_long: 誰でも見ることができ、かつ公開タイムラインに表示されます
+      public_long: 誰でも見ることができ、かつ公開ストリームに表示されます
       unlisted: 未収載
-      unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
+      unlisted_long: 誰でも見ることができますが、公開ストリームには表示されません
   stream_entries:
     click_to_show: クリックして表示
-    pinned: 固定されたトゥート
-    reblogged: さんがブースト
+    pinned: 固定されたちんちん
+    reblogged: さんがまんまん
     sensitive_content: 閲覧注意
   terms:
     body_html: |
@@ -724,8 +724,8 @@ ja:
 
       <ul>
         <li><em>基本的なアカウント情報</em>: 当サイトに登録すると、ユーザー名・メールアドレス・パスワードの入力を求められることがあります。また表示名や自己紹介・プロフィール画像・ヘッダー画像といった追加のプロフィールを登録できます。ユーザー名・表示名・自己紹介・プロフィール画像・ヘッダー画像は常に公開されます。</li>
-        <li><em>投稿・フォロー・その他公開情報</em>: フォローしているユーザーの一覧は一般公開されます。フォロワーも同様です。メッセージを投稿する際、日時だけでなく投稿に使用したアプリケーション名も記録されます。メッセージには写真や動画といった添付メディアを含むことがあります。「公開」や「未収載」の投稿は一般公開されます。プロフィールに投稿を載せるとそれもまた公開情報となります。投稿はフォロワーに配信されます。場合によっては他のサーバーに配信され、そこにコピーが保存されることを意味します。投稿を削除した場合も同様にフォロワーに配信されます。他の投稿をリブログやお気に入り登録する行動は常に公開されます。</li>
-        <li><em>「ダイレクト」と「フォロワー限定」投稿</em>: すべての投稿はサーバーに保存され、処理されます。「フォロワー限定」投稿はフォロワーと投稿に書かれたユーザーに配信されます。「ダイレクト」投稿は投稿に書かれたユーザーにのみ配信されます。場合によっては他のサーバーに配信され、そこにコピーが保存されることを意味します。私たちはこれらの閲覧を一部の許可された者に限定するよう誠意を持って努めます。しかし他のサーバーにおいても同様に扱われるとは限りません。したがって、相手の所属するサーバーを吟味することが重要です。設定で新しいフォロワーの承認または拒否を手動で行うよう切り替えることもできます。<em>サーバー管理者は「ダイレクト」や「フォロワー限定」投稿も閲覧する可能性があることを忘れないでください。</em>また受信者がスクリーンショットやコピー、もしくは共有する可能性があることを忘れないでください。<em>いかなる危険な情報もMastodon上で共有しないでください。</em></li>
+        <li><em>ちんちん・監視・その他公開情報</em>: 監視しているユーザーの一覧は一般公開されます。看守も同様です。メッセージをちんちんする際、日時だけでなくちんちんに使用したアプリケーション名も記録されます。メッセージには写真や動画といった添付証拠品を含むことがあります。「公開」や「未収載」のちんちんは一般公開されます。プロフィールにちんちんを載せるとそれもまた公開情報となります。ちんちんは看守に配信されます。場合によっては他のサーバーに配信され、そこにコピーが保存されることを意味します。ちんちんを削除した場合も同様に看守に配信されます。他のちんちんをまんまんやお気に入り登録する行動は常に公開されます。</li>
+        <li><em>「ダイレクト」と「フォロワー限定」ちんちん</em>: すべてのちんちんはサーバーに保存され、処理されます。「看守限定」ちんちんは看守とちんちんに書かれたユーザーに配信されます。「ダイレクトオチンチン」はちんちんに書かれたユーザーにのみ配信されます。場合によっては他のサーバーに配信され、そこにコピーが保存されることを意味します。私たちはこれらの閲覧を一部の許可された者に限定するよう誠意を持って努めます。しかし他のサーバーにおいても同様に扱われるとは限りません。したがって、相手の所属するサーバーを吟味することが重要です。設定で新しい看守の承認または拒否を手動で行うよう切り替えることもできます。<em>サーバー管理者は「ダイレクト」や「看守限定」オチンチンも閲覧する可能性があることを忘れないでください。</em>また受信者がスクリーンショットやコピー、もしくは共有する可能性があることを忘れないでください。<em>いかなる危険な情報もMastodon上で共有しないでください。</em></li>
         <li><em>IPアドレスやその他メタデータ</em>: ログインする際IPアドレスだけでなくブラウザーアプリケーション名を記録します。ログインしたセッションはすべてユーザー設定で見直し、取り消すことができます。使用されている最新のIPアドレスは最大12ヵ月間保存されます。またサーバーへのIPアドレスを含むすべてのリクエストのログを保持することがあります。</li>
       </ul>
 
@@ -736,9 +736,9 @@ ja:
       <p>収集した情報は次の用途に使用されることがあります:</p>
 
       <ul>
-        <li>Mastodonのコア機能の提供: ログインしている間にかぎり他の人たちと投稿を通じて交流することができます。例えば自分専用のホームタイムラインで投稿をまとめて読むために他の人たちをフォローできます。</li>
+        <li>Mastodonのコア機能の提供: ログインしている間にかぎり他の人たちとちんちんを通じて交流することができます。例えば自分専用の心の安寧ストリームでちんちんをまとめて読むために他の人たちを監視できます。</li>
         <li>コミュニティ維持の補助: 例えばIPアドレスを既知のものと比較し、BAN回避目的の複数登録者やその他違反者を判別します。</li>
-        <li>提供されたメールアドレスはお知らせの送信・投稿に対するリアクションやメッセージ送信の通知・お問い合わせやその他要求や質問への返信に使用されることがあります。</li>
+        <li>提供されたメールアドレスはお知らせの送信・ちんちんに対するリアクションやメッセージ送信の通知・お問い合わせやその他要求や質問への返信に使用されることがあります。</li>
       </ul>
 
       <hr class="spacer" />
@@ -758,7 +758,7 @@ ja:
         <li>登録されたユーザーに関連付けられたIPアドレスを12ヵ月以内の間保持します。</li>
       </ul>
 
-      <p>あなたは投稿・添付メディア・プロフィール画像・ヘッダー画像を含む自身のデータのアーカイブを要求し、ダウンロードすることができます。</p>
+      <p>あなたはちんちん・添付証拠品・プロフィール画像・ヘッダー画像を含む自身のデータのアーカイブを要求し、ダウンロードすることができます。</p>
 
       <p>あなたはいつでもアカウントの削除を要求できます。削除は取り消すことができません。</p>
 
@@ -776,9 +776,9 @@ ja:
 
       <p>私たちは個人を特定できる情報を外部へ販売・取引・その他方法で渡すことはありません。これには当サイトの運営・業務遂行・サービス提供を行ううえで補助する信頼できる第三者をこの機密情報の保護に同意するかぎり含みません。法令の遵守やサイトポリシーの施行、権利・財産・安全の保護に適切と判断した場合、あなたの情報を公開することがあります。</p>
 
-      <p>あなたの公開情報はネットワーク上の他のサーバーにダウンロードされることがあります。相手が異なるサーバーに所属する場合、「公開」と「フォロワー限定」投稿はフォロワーの所属するサーバーに配信され、「ダイレクト」投稿は受信者の所属するサーバーに配信されます。</p>
+      <p>あなたの公開情報はネットワーク上の他のサーバーにダウンロードされることがあります。相手が異なるサーバーに所属する場合、「公開」と「看守限定」ちんちんは看守の所属するサーバーに配信され、「ダイレクトオチンチン」は受信者の所属するサーバーに配信されます。</p>
 
-      <p>あなたがアカウントの使用をアプリケーションに許可すると、承認した権限の範囲内で公開プロフィール情報・フォローリスト・フォロワー・リスト・すべての投稿・お気に入り登録にアクセスできます。アプリケーションはメールアドレスやパスワードに決してアクセスできません。</p>
+      <p>あなたがアカウントの使用をアプリケーションに許可すると、承認した権限の範囲内で公開プロフィール情報・監視リスト・看守・閻魔帳・すべてのちんちん・お気に入り登録にアクセスできます。アプリケーションはメールアドレスやパスワードに決してアクセスできません。</p>
 
       <hr class="spacer" />
 
@@ -794,9 +794,9 @@ ja:
 
       <h3 id="changes">プライバシーポリシーの変更</h3>
 
-      <p>プライバシーポリシーの変更を決定した場合、このページに変更点を掲載します。</p>
+      <p>一部用語の変更を行いました。</p>
 
-      <p>この文章のライセンスはCC-BY-SAです。最終更新日は2018年3月7日です。</p>
+      <p>この文章のライセンスはCC-BY-SAです。最終更新日は2018年8月4日です。</p>
 
       <p>オリジナルの出典: <a href="https://github.com/discourse/discourse">Discourse privacy policy</a></p>
     title: "%{instance} 利用規約・プライバシーポリシー"
@@ -830,19 +830,19 @@ ja:
       title: アーカイブの取り出し
     welcome:
       edit_profile_action: プロフィールを設定
-      edit_profile_step: アバター画像やヘッダー画像をアップロードしたり、表示名やその他プロフィールを変更しカスタマイズすることができます。新しいフォロワーからのフォローを許可する前に検討したい場合、アカウントを承認制にすることができます。
+      edit_profile_step: アバター画像やヘッダー画像をアップロードしたり、表示名やその他プロフィールを変更しカスタマイズすることができます。新しい看守からの監視を許可する前に検討したい場合、アカウントを承認制にすることができます。
       explanation: 始めるにあたってのアドバイスです
       final_action: 始めましょう
-      final_step: 'さあ始めましょう！ たとえフォロワーがいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどで誰かの目に止まるかもしれません。自己紹介をしたい時は #introductions ハッシュタグを使うといいかもしれません。'
+      final_step: 'さあ始めましょう！ たとえ看守がいなくても、あなたの公開したちんちんは監獄ストリームやハッシュタグなどで誰かの目に止まるかもしれません。自己紹介をしたい時は #introductions ハッシュタグを使うといいかもしれません。'
       full_handle: あなたの正式なユーザー名
-      full_handle_hint: これは別のインスタンスからフォローしてもらったりメッセージのやり取りをする際に、友達に伝えるといいでしょう。
+      full_handle_hint: これは別のインスタンスから監視してもらったりちんちんのやり取りをする際に、友達に伝えるといいでしょう。
       review_preferences_action: 設定の変更
-      review_preferences_step: 受け取りたいメールや投稿の公開範囲などの設定を必ず行ってください。不快でないならアニメーション GIF の自動再生を有効にすることもできます。
-      subject: Mastodon へようこそ
-      tip_bridge_html: もし Twitter から来られたのであれば、<a href="%{bridge_url}">bridge app</a> を使用することで Mastodon での友達のアカウントを探すこともできます。ただし bridge app を使用したことのある相手に限ります！
-      tip_federated_timeline: 連合タイムラインは Mastodon ネットワークの流れを見られるものです。ただしあなたと同じインスタンスの人がフォローしている人だけが含まれるので、それが全てではありません。
-      tip_following: 標準では自動でインスタンスの管理者をフォローしています。もっと興味のある人たちを見つけるには、ローカルタイムラインと連合タイムラインを確認してください。
-      tip_local_timeline: ローカルタイムラインは %{instance} にいる人々の流れを見られるものです。彼らはあなたと同じインスタンスにいる隣人のようなものです！
+      review_preferences_step: 受け取りたいメールやちんちんの公開範囲などの設定を必ず行ってください。不快でないならアニメーション GIF の自動再生を有効にすることもできます。
+      subject: Alserver.jp へようこそ
+      tip_bridge_html: もし Twitter から来られたのであれば、<a href="%{bridge_url}">bridge app</a> を使用することでAlserverでの友達のアカウントを探すこともできます。ただし bridge app を使用したことのある相手に限ります！
+      tip_federated_timeline: 連合ストリームは Mastodon ネットワークの流れを見られるものです。ただしあなたと同じインスタンスの人が監視している人だけが含まれるので、それが全てではありません。
+      tip_following: 標準では自動でインスタンスのかわいい管理者を監視しています。もっと興味のある人たちを見つけるには、監獄ストリームと娑婆ストリームを確認してください。
+      tip_local_timeline: 監獄ストリームは %{instance} にいる人々の流れを見られるものです。彼らはあなたと同じインスタンスにいる隣人のようなものです！
       tip_mobile_webapp: もしモバイル端末のブラウザで Mastodon をホーム画面に追加できる場合、プッシュ通知を受け取ることができます。それはまるでネイティブアプリのように動作します！
       tips: 豆知識
       title: ようこそ、%{name} ！
