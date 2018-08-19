@@ -71,7 +71,7 @@ const redisUrlToClient = (defaultConfig, redisUrl) => {
 const numWorkers = +process.env.STREAMING_CLUSTER_NUM || (env === 'development' ? 1 : Math.max(os.cpus().length - 1, 1));
 
 const startMaster = () => {
-  if (!process.env.SOCKET && process.env.PORT && process.env.PORT.startsWith('/')) {
+  if (!process.env.SOCKET && process.env.PORT && isNaN(+process.env.PORT)) {
     log.warn('UNIX domain socket is now supported by using SOCKET. Please migrate from PORT hack.');
   }
   log.info(`Starting streaming API server master with ${numWorkers} workers`);
@@ -578,7 +578,7 @@ const startWorker = (workerId) => {
     });
   }, 30000);
 
-  if (process.env.SOCKET || process.env.PORT && process.env.PORT.startsWith('/')) {
+  if (process.env.SOCKET || process.env.PORT && isNaN(+process.env.PORT)) {
     server.listen(process.env.SOCKET || process.env.PORT, () => {
       fs.chmodSync(server.address(), 0o666);
       log.info(`Worker ${workerId} now listening on ${server.address()}`);
