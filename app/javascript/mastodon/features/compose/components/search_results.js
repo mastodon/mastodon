@@ -47,7 +47,7 @@ export default class SearchResults extends ImmutablePureComponent {
           <h5><i className='fa fa-fw fa-quote-right' /><FormattedMessage id='search_results.statuses' defaultMessage='Toots' /></h5>
 
           <div className='search-results__warning'>
-            <FormattedMessage id='search_results.fetch_anonymously_warning' defaultMessage='Nothing was found at the requested URL. It may require authentication, but your account is configured to not authentify to remote instances. You can {change_setting}.' values={{ change_setting: <a href='/settings/preferences#user_setting_fetch_anonymously'><FormattedMessage id='search_results.change_setting' defaultMessage='change this setting' /></a> }} />
+            <FormattedMessage id='search_results.fetch_anonymously_warning' defaultMessage='Nothing was found at the requested URL. It may require authentication, but your account is configured to not authenticate to remote instances. You can {change_setting}.' values={{ change_setting: <a href='/settings/preferences#user_setting_fetch_anonymously'><FormattedMessage id='search_results.change_setting' defaultMessage='change this setting' /></a> }} />
 
           </div>
         </div>
