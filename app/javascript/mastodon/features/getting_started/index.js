@@ -97,12 +97,15 @@ export default class GettingStarted extends ImmutablePureComponent {
     }
 
     navItems.push(
+	  <ColumnLink key={i++} icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />,
+	  <ColumnLink key={i++} icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />,
+	  <ColumnLink key={i++} icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />,
       <ColumnLink key={i++} icon='envelope' text={intl.formatMessage(messages.direct)} to='/timelines/direct' />,
       <ColumnLink key={i++} icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
       <ColumnLink key={i++} icon='list-ul' text={intl.formatMessage(messages.lists)} to='/lists' />
     );
 
-    height += 48*3;
+    height += 48*6;
 
     if (myAccount.get('locked')) {
       navItems.push(<ColumnLink key={i++} icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
