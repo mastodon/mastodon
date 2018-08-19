@@ -12,6 +12,10 @@ class ResolveURLService < BaseService
 
     return process_local_url if local_url?
 
+    # If the URI is that of a known remote status, avoid fetching it
+    status = find_status_from_database
+    return status unless status.nil?
+
     process_url unless fetched_atom_feed.nil?
   end
 
@@ -75,16 +79,20 @@ class ResolveURLService < BaseService
 
     if recognized_params[:controller] == 'stream_entries'
       status = StreamEntry.find_by(id: recognized_params[:id])&.status
-      check_local_status(status)
+      check_status(status)
     elsif recognized_params[:controller] == 'statuses'
       status = Status.find_by(id: recognized_params[:id])
-      check_local_status(status)
+      check_status(status)
     elsif recognized_params[:controller] == 'accounts'
       Account.find_local(recognized_params[:username])
     end
   end
 
-  def check_local_status(status)
+  def find_status_from_database
+    check_status Status.find_by(uri: @url)
+  end
+
+  def check_status(status)
     return if status.nil?
     authorize_with @on_behalf_of, status, :show?
     status
