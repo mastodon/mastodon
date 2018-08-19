@@ -32,6 +32,11 @@ class Follow < ApplicationRecord
     false # Force uri_for to use uri attribute
   end
 
+  def revoke_request!
+    FollowRequest.create!(account: account, target_account: target_account, show_reblogs: show_reblogs, uri: uri)
+    destroy!
+  end
+
   before_validation :set_uri, only: :create
   after_destroy :remove_endorsements
 

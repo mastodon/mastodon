@@ -35,6 +35,17 @@
     transition: all 200ms ease-out;
   }
 
+  &--destructive {
+    transition: none;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: $error-red;
+      transition: none;
+    }
+  }
+
   &:disabled {
     background-color: $ui-primary-color;
     cursor: default;
@@ -647,6 +658,7 @@
   overflow: hidden;
   white-space: pre-wrap;
   padding-top: 2px;
+  color: $primary-text-color;
 
   &:focus {
     outline: 0;

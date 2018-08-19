@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AuthorizeFollowsController do
+describe AuthorizeInteractionsController do
   render_views
 
   describe 'GET #show' do
@@ -39,19 +39,19 @@ describe AuthorizeFollowsController do
         expect(service).to have_received(:call).with('missing@hostname')
       end
 
-      it 'sets account from url' do
+      it 'sets resource from url' do
         account = Account.new
         service = double
-        allow(FetchRemoteAccountService).to receive(:new).and_return(service)
+        allow(ResolveURLService).to receive(:new).and_return(service)
         allow(service).to receive(:call).with('http://example.com').and_return(account)
 
         get :show, params: { acct: 'http://example.com' }
 
         expect(response).to have_http_status(200)
-        expect(assigns(:account)).to eq account
+        expect(assigns(:resource)).to eq account
       end
 
-      it 'sets account from acct uri' do
+      it 'sets resource from acct uri' do
         account = Account.new
         service = double
         allow(ResolveAccountService).to receive(:new).and_return(service)
@@ -60,7 +60,7 @@ describe AuthorizeFollowsController do
         get :show, params: { acct: 'acct:found@hostname' }
 
         expect(response).to have_http_status(200)
-        expect(assigns(:account)).to eq account
+        expect(assigns(:resource)).to eq account
       end
     end
   end
@@ -75,8 +75,8 @@ describe AuthorizeFollowsController do
     end
 
     describe 'when signed in' do
-      let(:user) { Fabricate(:user) }
-      let(:account) { Fabricate(:account, user: user) }
+      let!(:user) { Fabricate(:user) }
+      let!(:account) { user.account }
 
       before do
         sign_in(user)
@@ -84,25 +84,26 @@ describe AuthorizeFollowsController do
 
       it 'shows error when account not found' do
         service = double
-        allow(FollowService).to receive(:new).and_return(service)
-        allow(service).to receive(:call).with(account, 'user@hostname').and_return(nil)
+
+        allow(ResolveAccountService).to receive(:new).and_return(service)
+        allow(service).to receive(:call).with('user@hostname').and_return(nil)
 
         post :create, params: { acct: 'acct:user@hostname' }
 
-        expect(service).to have_received(:call).with(account, 'user@hostname')
         expect(response).to render_template(:error)
       end
 
       it 'follows account when found' do
         target_account = Fabricate(:account)
-        result_account = double(target_account: target_account)
         service = double
-        allow(FollowService).to receive(:new).and_return(service)
-        allow(service).to receive(:call).with(account, 'user@hostname').and_return(result_account)
+
+        allow(ResolveAccountService).to receive(:new).and_return(service)
+        allow(service).to receive(:call).with('user@hostname').and_return(target_account)
 
         post :create, params: { acct: 'acct:user@hostname' }
 
-        expect(service).to have_received(:call).with(account, 'user@hostname')
+        expect(service).to have_received(:call).with('user@hostname')
+        expect(account.following?(target_account)).to be true
         expect(response).to render_template(:success)
       end
     end

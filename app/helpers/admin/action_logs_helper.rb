@@ -34,7 +34,11 @@ module Admin::ActionLogsHelper
       link_to attributes['domain'], "https://#{attributes['domain']}"
     when 'Status'
       tmp_status = Status.new(attributes)
-      link_to tmp_status.account&.acct || "##{tmp_status.account_id}", TagManager.instance.url_for(tmp_status)
+      if tmp_status.account
+        link_to tmp_status.account&.acct || "##{tmp_status.account_id}", admin_account_path(tmp_status.account_id)
+      else
+        I18n.t('admin.action_logs.deleted_status')
+      end
     end
   end
 

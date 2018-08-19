@@ -1,0 +1,142 @@
+---
+ka:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: აპლიკაციის სახელი
+        redirect_uri: გადამისამართების ური
+        scopes: ფარგლები
+        website: აპლიკაციის ვებ-საიტი
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: ვერ ექნება ფრაგმეტი.
+              invalid_uri: უნდა იყოს ვალიდური ური.
+              relative_uri: უნდა იყოს აბსოლუტური ური.
+              secured_uri: უნდა იყოს ჰტტპს/სსლ ური.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: ავტორიზაცია
+        cancel: უარყოფა
+        destroy: გაუქმება
+        edit: შეცვლა
+        submit: გაგრძელება
+      confirmations:
+        destroy: დარწმუნებული ხართ?
+      edit:
+        title: აპლიკაციის შეცვლა
+      form:
+        error: უპს! შესაძლო შეცდომებზე შეამოწმეთ თქვენი ფორმა
+      help:
+        native_redirect_uri: ლოკალური ტესტებისთვის მოიხმარეთ %{native_redirect_uri}
+        redirect_uri: გამოიყენეთ ერთი ხაზი თითო ური-სთვის
+        scopes: ფარგლები გამოჰყავით სიცარიელით. საწყისი ფარგლის გამოსაყენებლად დატოვეთ ცარიელი.
+      index:
+        application: აპლიკაცია
+        callback_url: ქოლბექ ურლ
+        delete: გაუქმება
+        name: სახელი
+        new: ახალი აპლიკაცია
+        scopes: ფარგლები
+        show: ჩვენება
+        title: თქვენი აპლიკაციები
+      new:
+        title: ახალი აპლიკაცია
+      show:
+        actions: მოქმედებები
+        application_id: კლიენტის გასაღები
+        callback_urls: ქოლბექ ურლები
+        scopes: ფარგლები
+        secret: კლიენტის სერვერი
+        title: 'აპლიკაცია: %{name}'
+    authorizations:
+      buttons:
+        authorize: ავტორიზაცია
+        deny: აკრძალვა
+      error:
+        title: წარმოიშვა შეცდომა
+      new:
+        able_to: ის შეძლებს
+        prompt: აპლიკაცია %{client_name} ითხოვს წვდომას თქვენს ანგარიშზე
+        title: საჭიროა ავტორიზაცია
+      show:
+        title: დააკოპირეთ ეს ავტორიზაციის კოდი და ჩასვით აპლიკაციაში.
+    authorized_applications:
+      buttons:
+        revoke: გაუქმება
+      confirmations:
+        revoke: დარწმუნებული ხართ?
+      index:
+        application: აპლიკაცია
+        created_at: ავტორიზებული
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: ფარგლები
+        title: თქვენი ავტორიზებული აპლიკაციები
+    errors:
+      messages:
+        access_denied: რესურსის მფლობელმა ან აუტორიზაციის სერვერმა აკრძალა ეს მოთხოვნა.
+        credential_flow_not_configured: რესურის მფლობელის პაროლის რწმუნებულებების ნაკადი ვერ შესრულდა არაკონფიგურირებული Doorkeeper.configure.resource_owner_from_credentials გამო.
+        invalid_client: ამოუცნობი კლიენტის გამო კლიენტ აუტენტიფიკაცია ვერ მოხერხდა, კლიენტის აუტენტიფიკაცია არ იყო თან დართული, ან მხარდაუჭერელი აუტენტიფიკაციის მეთოდი.
+        invalid_grant: მოწოდებული ავტორიზაციის გრანტი არასწორია, ვადაგასულია, გაუქმებულია არ ემთხვევა გადამისამართების ურის, რომელიც მოიხმარება ავტორიზაცის მოთხოვნაში, ან მიეცა სხვა კლიენტს.
+        invalid_redirect_uri: მითითებული გადამისამართების ური არაა ვალიდური.
+        invalid_request: მოთხოვნას აკლია აუცილებელი პარამეტრი, მოიცავს მხარდაუჭერელ პარამეტრის მნიშვნელობას, ან სხვაგვარად არაა გამართული.
+        invalid_resource_owner: მოწოდებული რესურსის მფლობელის რწმუნებულებები არაა ვალიდური, ან მფლობელის პონვა ვერ ხერხდება
+        invalid_scope: მოთხოვნილი ფარგალი არასწორია, ამოუცნობია ან არაა გამართული.
+        invalid_token:
+          expired: წვდომის ტოკენს გაუვიდა ვადა
+          revoked: წვდომის ტოკენი გაუქმდა
+          unknown: წვდომის ტოკენი არაა ვალიდური
+        resource_owner_authenticator_not_configured: რესურსის მფლობელის მოპოვება არ შედგა Doorkeeper.configure.resource_owner_authenticator კონფიგურაციის არ არსებობის გამო.
+        server_error: აუტორიზაციის სერვერს შეხვდა მოულოდნელი მდგომარეობა, რამაც ხელი შეუშალა მას აღესრულებინა მოთხონვა.
+        temporarily_unavailable: ავტორიზაციის სერვერი ამჟამად ვერ ახერხებს მოთხოვნის შემუშავებას დროებითი გადატვირთვის ან სერვერის შენარჩუნების გამო.
+        unauthorized_client: კლიენტი არაა ავტორიზებული შეასრულოს ეს მოთხოვნა ამ მეთოდით.
+        unsupported_grant_type: ავტორიზაციის გრანტის სახეობა არაა მხარდაჭერილი ავტორიზაციის სერვერის მიერ.
+        unsupported_response_type: ავტორიზაციის სერვერი არ უჭერს მხარს ამ პასუხის სახეობას.
+    flash:
+      applications:
+        create:
+          notice: აპლიკაცია შეიქმნა.
+        destroy:
+          notice: აპლიკაცია გაუქმდა.
+        update:
+          notice: აპლიკაცია განახლდა.
+      authorized_applications:
+        destroy:
+          notice: აპლიკაცია წაიშალა.
+    layouts:
+      admin:
+        nav:
+          applications: აპლიკაციები
+          oauth2_provider: ოუ-აუთ2 პროვაიდერი
+      application:
+        title: საჭიროა ოუ-აუთ ავტორიზაცია
+    scopes:
+      follow: შეცვალეთ ანგარიშის ურთიერთობები
+      push: მიიღეთ თქვენი ფუშ შეტყობინებები
+      read: წაიკითხოს მთელი თქვენი ანგარიშის მონაცემები
+      read:accounts: იხილოს ანგარიშის ინფორმაცია
+      read:blocks: იხილოს თქვენი ბლოკები
+      read:favourites: იხილოს თქვენი ფავორიტები
+      read:filters: იხილოს თქვენი ფილრები
+      read:follows: იხილოს თქვენი მიდევნებები
+      read:lists: იხილოს თქვენი სიები
+      read:mutes: იხილოს თქვენი გაჩუმებები
+      read:notifications: იხილოს თქვენი შეტყობინებები
+      read:reports: იხილოს თქვენი რეპორტები
+      read:search: მოძებნოს თქვენი სახელით
+      read:statuses: იხილოს ყველა სტატუსი
+      write: შეცვალოს მთელი თქვენი ანგარიშის მონაცემები
+      write:accounts: შეცვალოს თქვენი პროფილი
+      write:blocks: დაბლოკოს ანგარიშები და დომენები
+      write:favourites: ფავორიტი სტატუსები
+      write:filters: შექმნას ფილტრები
+      write:follows: გაყვეს ხალხს
+      write:lists: შექმნას სიები
+      write:media: ატვირთოს მედია ფაილები
+      write:mutes: გააგჩუმოს ადამიანები და საუბრები
+      write:notifications: გაასუფთავოს თქვენი შეტყობინებები
+      write:reports: დაარეპორტოს სხვა ადამიანები
+      write:statuses: გამოაქვეყნოს სტატუსები

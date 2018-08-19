@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-class RemoteFollowController < ApplicationController
+class RemoteInteractionController < ApplicationController
+  include Authorization
+
   layout 'modal'
 
-  before_action :set_account
-  before_action :gone, if: :suspended_account?
+  before_action :set_status
   before_action :set_body_classes
 
   def new
@@ -16,7 +17,7 @@ class RemoteFollowController < ApplicationController
 
     if @remote_follow.valid?
       session[:remote_follow] = @remote_follow.acct
-      redirect_to @remote_follow.subscribe_address_for(@account)
+      redirect_to @remote_follow.interact_address_for(@status)
     else
       render :new
     end
@@ -32,12 +33,12 @@ class RemoteFollowController < ApplicationController
     { acct: session[:remote_follow] }
   end
 
-  def set_account
-    @account = Account.find_local!(params[:account_username])
-  end
-
-  def suspended_account?
-    @account.suspended?
+  def set_status
+    @status = Status.find(params[:id])
+    authorize @status, :show?
+  rescue Mastodon::NotPermittedError
+    # Reraise in order to get a 404
+    raise ActiveRecord::RecordNotFound
   end
 
   def set_body_classes
