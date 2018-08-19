@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { List as ImmutableList } from 'immutable';
+import { me } from 'flavours/glitch/util/initial_state';
 
 const getAccountBase         = (state, id) => state.getIn(['accounts', id], null);
 const getAccountCounters     = (state, id) => state.getIn(['accounts_counters', id], null);
@@ -77,7 +78,7 @@ export const makeGetStatus = () => {
         return null;
       }
 
-      const regex  = regexFromFilters(filters);
+      const regex  = (accountReblog || accountBase).get('id') !== me && regexFromFilters(filters);
       let filtered = false;
 
       if (statusReblog) {
