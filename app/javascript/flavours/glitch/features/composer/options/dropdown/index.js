@@ -168,6 +168,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
     const computedClass = classNames('composer--options--dropdown', {
       active,
       open,
+      top: placement === 'top',
     });
 
     //  The result.

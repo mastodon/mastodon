@@ -406,6 +406,12 @@
       background: $ui-highlight-color;
       transition: none;
     }
+    &.top {
+      & > .value {
+        border-radius: 0 0 4px 4px;
+        box-shadow: 0 4px 4px rgba($base-shadow-color, 0.1);
+      }
+    }
   }
 }
 
