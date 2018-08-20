@@ -72,6 +72,17 @@ export const FOLLOW_REQUEST_REJECT_REQUEST = 'FOLLOW_REQUEST_REJECT_REQUEST';
 export const FOLLOW_REQUEST_REJECT_SUCCESS = 'FOLLOW_REQUEST_REJECT_SUCCESS';
 export const FOLLOW_REQUEST_REJECT_FAIL    = 'FOLLOW_REQUEST_REJECT_FAIL';
 
+export const PINNED_ACCOUNTS_FETCH_REQUEST = 'PINNED_ACCOUNTS_FETCH_REQUEST';
+export const PINNED_ACCOUNTS_FETCH_SUCCESS = 'PINNED_ACCOUNTS_FETCH_SUCCESS';
+export const PINNED_ACCOUNTS_FETCH_FAIL    = 'PINNED_ACCOUNTS_FETCH_FAIL';
+
+export const PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_READY  = 'PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_READY';
+export const PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CLEAR  = 'PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CLEAR';
+export const PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CHANGE = 'PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CHANGE';
+
+export const PINNED_ACCOUNTS_EDITOR_RESET = 'PINNED_ACCOUNTS_EDITOR_RESET';
+
+
 export function fetchAccount(id) {
   return (dispatch, getState) => {
     dispatch(fetchRelationships([id]));
@@ -733,3 +744,76 @@ export function unpinAccountFail(error) {
     error,
   };
 };
+
+export function fetchPinnedAccounts() {
+  return (dispatch, getState) => {
+    dispatch(fetchPinnedAccountsRequest());
+
+    api(getState).get(`/api/v1/endorsements`, { params: { limit: 0 } })
+      .then(({ data }) => dispatch(fetchPinnedAccountsSuccess(data)))
+      .catch(err => dispatch(fetchPinnedAccountsFail(err)));
+  };
+};
+
+export function fetchPinnedAccountsRequest() {
+  return {
+    type: PINNED_ACCOUNTS_FETCH_REQUEST,
+  };
+};
+
+export function fetchPinnedAccountsSuccess(accounts, next) {
+  return {
+    type: PINNED_ACCOUNTS_FETCH_SUCCESS,
+    accounts,
+    next,
+  };
+};
+
+export function fetchPinnedAccountsFail(error) {
+  return {
+    type: PINNED_ACCOUNTS_FETCH_FAIL,
+    error,
+  };
+};
+
+export function fetchPinnedAccountsSuggestions(q) {
+  return (dispatch, getState) => {
+    const params = {
+      q,
+      resolve: false,
+      limit: 4,
+      following: true,
+    };
+
+    api(getState).get('/api/v1/accounts/search', { params })
+      .then(({ data }) => dispatch(fetchPinnedAccountsSuggestionsReady(q, data)));
+  };
+};
+
+export function fetchPinnedAccountsSuggestionsReady(query, accounts) {
+  return {
+    type: PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_READY,
+    query,
+    accounts,
+  };
+};
+
+export function clearPinnedAccountsSuggestions() {
+  return {
+    type: PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CLEAR,
+  };
+};
+
+export function changePinnedAccountsSuggestions(value) {
+  return {
+    type: PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CHANGE,
+    value,
+  }
+};
+
+export function resetPinnedAccountsEditor() {
+  return {
+    type: PINNED_ACCOUNTS_EDITOR_RESET,
+  };
+};
+

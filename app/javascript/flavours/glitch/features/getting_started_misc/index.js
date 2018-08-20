@@ -21,6 +21,7 @@ const messages = defineMessages({
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
   info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
   keyboard_shortcuts: { id: 'navigation_bar.keyboard_shortcuts', defaultMessage: 'Keyboard shortcuts' },
+  featured_users: { id: 'navigation_bar.featured_users', defaultMessage: 'Featured users' },
 });
 
 @connect()
@@ -33,8 +34,11 @@ export default class gettingStartedMisc extends ImmutablePureComponent {
   };
 
   openOnboardingModal = (e) => {
-    e.preventDefault();
     this.props.dispatch(openModal('ONBOARDING'));
+  }
+
+  openFeaturedAccountsModal = (e) => {
+    this.props.dispatch(openModal('PINNED_ACCOUNTS_EDITOR'));
   }
 
   render () {
@@ -50,6 +54,7 @@ export default class gettingStartedMisc extends ImmutablePureComponent {
           <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
           <ColumnLink key='{i++}' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />
           <ColumnLink key='{i++}' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />
+          <ColumnLink key='{i++}' icon='users' text={intl.formatMessage(messages.featured_users)} onClick={this.openFeaturedAccountsModal} />
           <ColumnLink key='{i++}' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
           <ColumnLink key='{i++}' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
           <ColumnLink key='{i++}' icon='minus-circle' text={intl.formatMessage(messages.domain_blocks)} to='/domain_blocks' />

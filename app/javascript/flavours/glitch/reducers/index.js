@@ -28,6 +28,7 @@ import custom_emojis from './custom_emojis';
 import lists from './lists';
 import listEditor from './list_editor';
 import filters from './filters';
+import pinnedAccountsEditor from './pinned_accounts_editor';
 
 const reducers = {
   dropdown_menu,
@@ -59,6 +60,7 @@ const reducers = {
   lists,
   listEditor,
   filters,
+  pinnedAccountsEditor,
 };
 
 export default combineReducers(reducers);

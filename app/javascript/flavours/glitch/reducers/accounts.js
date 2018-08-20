@@ -6,6 +6,8 @@ import {
   FOLLOWING_EXPAND_SUCCESS,
   FOLLOW_REQUESTS_FETCH_SUCCESS,
   FOLLOW_REQUESTS_EXPAND_SUCCESS,
+  PINNED_ACCOUNTS_FETCH_SUCCESS,
+  PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_READY,
 } from 'flavours/glitch/actions/accounts';
 import {
   BLOCKS_FETCH_SUCCESS,
@@ -141,6 +143,8 @@ export default function accounts(state = initialState, action) {
   case MUTES_EXPAND_SUCCESS:
   case LIST_ACCOUNTS_FETCH_SUCCESS:
   case LIST_EDITOR_SUGGESTIONS_READY:
+  case PINNED_ACCOUNTS_FETCH_SUCCESS:
+  case PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_READY:
     return action.accounts ? normalizeAccounts(state, action.accounts) : state;
   case NOTIFICATIONS_EXPAND_SUCCESS:
   case SEARCH_FETCH_SUCCESS:
