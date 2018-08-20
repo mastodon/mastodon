@@ -499,12 +499,15 @@ fr:
     storage: Médias stockés
   filters:
     contexts:
-      home: Ligne de temps personnelle
+      home: Accueil
       notifications: Notifications
-      public: Lignes de temps public
+      public: Fils publics
       thread: Conversations
     edit:
-      title: Filtre d'édition
+      title: Éditer le filtre
+    errors:
+      invalid_context: Contexte invalide ou insuffisant
+      invalid_irreversible: Le filtrage irréversible ne fonctionne que pour l’accueil et les notifications
     index:
       delete: Effacer
       title: Filtres
