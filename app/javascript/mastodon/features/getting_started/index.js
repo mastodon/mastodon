@@ -141,19 +141,15 @@ export default class GettingStarted extends ImmutablePureComponent {
 
         <div className='getting-started getting-started__footer'>
           <ul>
-            <li><a href='https://bridge.joinmastodon.org/' target='_blank'><FormattedMessage id='getting_started.find_friends' defaultMessage='Find friends from Twitter' /></a> · </li>
             {multiColumn && <li><Link to='/keyboard-shortcuts'><FormattedMessage id='navigation_bar.keyboard_shortcuts' defaultMessage='Hotkeys' /></Link> · </li>}
-            <li><a href='/auth/edit'><FormattedMessage id='getting_started.security' defaultMessage='Security' /></a> · </li>
-            <li><a href='/terms' target='_blank'><FormattedMessage id='getting_started.terms' defaultMessage='Terms of service' /></a> · </li>
-            <li><a href='/settings/applications' target='_blank'><FormattedMessage id='getting_started.developers' defaultMessage='Developers' /></a> · </li>
-            <li><a href='https://github.com/tootsuite/documentation#documentation' target='_blank'><FormattedMessage id='getting_started.documentation' defaultMessage='Documentation' /></a> · </li>
+            <li><a href='/terms' target='_blank'><FormattedMessage id='getting_started.terms' defaultMessage='Terms of service' /></a></li>
           </ul>
 
           <p>
             <FormattedMessage
               id='getting_started.open_source_notice'
               defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
-              values={{ github: <a href='https://github.com/KazuneAkasaka/mastodon/tree/alserver' rel='noopener' target='_blank'>KazuneAkasaka/mastodon (alserver)</a> }}
+              values={{ github: <a href='https://github.com/KazuneAkasaka/mastodon/tree/alserver' rel='noopener' target='_blank'>mastodon (alserver)</a> }}
             />
           </p>
         </div>
