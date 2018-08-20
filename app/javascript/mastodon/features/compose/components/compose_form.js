@@ -174,14 +174,14 @@ export default class ComposeForm extends ImmutablePureComponent {
         <div className={`spoiler-textarea ${this.props.spoiler ? 'spoiler-textarea--visible' : ''}`}>
           <label>
             <span style={{ display: 'none' }}>{intl.formatMessage(messages.spoiler_placeholder)}</span>
-            <textArea 
-              placeholder={intl.formatMessage(messages.spoiler_placeholder)} 
-              value={this.props.spoiler_text} 
-              onChange={this.handleChangeSpoilerText} 
-              onKeyDown={this.handleKeyDown} 
-              className='spoiler-textarea__textarea'  
-              id='cw-spoiler-textarea' 
-              ref={this.setSpoilerText} 
+            <textArea
+              placeholder={intl.formatMessage(messages.spoiler_placeholder)}
+              value={this.props.spoiler_text}
+              onChange={this.handleChangeSpoilerText}
+              onKeyDown={this.handleKeyDown}
+              className='spoiler-textarea__textarea'
+              id='cw-spoiler-textarea'
+              ref={this.setSpoilerText}
             />
           </label>
         </div>
