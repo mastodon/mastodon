@@ -25,8 +25,6 @@
 #
 
 class Status < ApplicationRecord
-  self.cache_versioning = false
-
   include Paginable
   include Streamable
   include Cacheable

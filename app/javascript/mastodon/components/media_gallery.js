@@ -50,7 +50,7 @@ class Item extends React.PureComponent {
   handleClick = (e) => {
     const { index, onClick } = this.props;
 
-    if (e.button === 0) {
+    if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       onClick(index);
     }
