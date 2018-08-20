@@ -66,7 +66,8 @@ const emojify = (str, customEmojis = {}) => {
     rtn += str.slice(0, i) + replacement;
     str = str.slice(rend);
   }
-  return (rtn + str).replace(/ちんちん/g, '<img src="/stamps/chinchin.png" style="height: 2em; vertical-align: baseline;"/>');
+  return (rtn + str).replace(/ちんちん/g, '<img src="/stamps/chinchin.png" style="height: 2em; vertical-align: baseline;"/>')
+                    .replace(/ぽしゃけ/g, '<img src="/stamps/poshake.png" style="height: 2em; vertical-align: baseline;"/>');
 };
 
 export default emojify;
