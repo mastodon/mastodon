@@ -304,23 +304,23 @@
   }
 
   .autosuggest-textarea,
-  .spoiler-input {
+  .spoiler-textarea {
     position: relative;
   }
 
-  .spoiler-input {
+  .spoiler-textarea {
     height: 0;
     transform-origin: bottom;
     opacity: 0.0;
 
-    &.spoiler-input--visible {
-      height: 47px;
+    &.spoiler-textarea--visible {
+      height: 60px;
       opacity: 1.0;
     }
   }
 
   .autosuggest-textarea__textarea,
-  .spoiler-input__input {
+  .spoiler-textarea__textarea {
     display: block;
     box-sizing: border-box;
     width: 100%;
@@ -330,7 +330,7 @@
     padding: 10px;
     font-family: inherit;
     font-size: 14px;
-    resize: vertical;
+    resize: none;
     border: 0;
     outline: 0;
 
@@ -343,7 +343,7 @@
     }
   }
 
-  .spoiler-input__input {
+  .spoiler-textarea__textarea {
     border-radius: 4px;
   }
 
@@ -576,7 +576,7 @@
   }
 }
 
-.no-reduce-motion .spoiler-input {
+.no-reduce-motion .spoiler-textarea {
   transition: height 0.4s ease, opacity 0.4s ease;
 }
 
