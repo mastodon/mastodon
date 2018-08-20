@@ -47,6 +47,7 @@ gl:
     user_count_after: usuarias
     user_count_before: Fogar de
     what_is_mastodon: Qué é Mastodon?
+    apps: Apps móbiles
   accounts:
     follow: Seguir
     followers: Seguidoras
@@ -246,6 +247,7 @@ gl:
       week_interactions: interaccións en esta semana
       week_users_active: activas estas semana
       week_users_new: usuarias esta semana
+      backlog: backlogged jobs
     domain_blocks:
       add_new: Engadir novo
       created_msg: Estase a procesar o bloqueo do dominio
@@ -307,6 +309,7 @@ gl:
         expired: Cadudado
         title: Filtro
       title: Convida
+      deactivate_all: Desactivar todo
     relays:
       add_new: Engadir un novo repetidor
       description_html: Un <strong>repetidor da federación</strong> é un servidor
@@ -718,7 +721,7 @@ gl:
     publishing: Publicando
     web: Web
   remote_follow:
-    acct: Introduza o seu nomedeusuaria@dominio desde onde quere facer seguimento
+    acct: Introduza o seu usuaria@servidor desde onde quere interactuar
     missing_resource: Non se puido atopar o URL de redirecionamento requerido para
       a súa conta
     no_account_html: Non ten unha conta? Pode <a href='%{sign_up_path}' target='_blank'>rexistrarse
@@ -816,6 +819,7 @@ gl:
       public_long: Visible para calquera
       unlisted: Non listado
       unlisted_long: Visible para calquera, pero non listado en liñas de tempo públicas
+    sign_in_to_participate: Conéctese para participar na conversa
   stream_entries:
     pinned: Mensaxe fixada
     reblogged: promovida
@@ -1008,3 +1012,6 @@ gl:
     seamless_external_login: Está conectado a través de un servizo externo, polo que
       os axustes de contrasinal e correo-e non están dispoñibles.
     signed_in_as: 'Rexistrada como:'
+  remote_interaction:
+    proceed: Proceda para interactuar
+    prompt: 'Vostede quere interactuar con este toot:'
