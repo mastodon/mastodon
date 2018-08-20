@@ -3,6 +3,8 @@
 class Scheduler::BackupCleanupScheduler
   include Sidekiq::Worker
 
+  sidekiq_options unique: :until_executed
+
   def perform
     old_backups.find_each(&:destroy!)
   end

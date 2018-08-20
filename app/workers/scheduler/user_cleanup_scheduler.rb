@@ -3,6 +3,8 @@
 class Scheduler::UserCleanupScheduler
   include Sidekiq::Worker
 
+  sidekiq_options unique: :until_executed
+
   def perform
     User.where('confirmed_at is NULL AND confirmation_sent_at <= ?', 2.days.ago).find_in_batches do |batch|
       Account.where(id: batch.map(&:account_id)).delete_all
