@@ -90,16 +90,80 @@
   font-weight: 500;
 }
 
-.search-results__hashtag {
-  display: block;
-  padding: 10px;
-  color: $secondary-text-color;
-  text-decoration: none;
+.trends {
+  &__header {
+    color: $dark-text-color;
+    background: lighten($ui-base-color, 2%);
+    border-bottom: 1px solid darken($ui-base-color, 4%);
+    font-weight: 500;
+    padding: 15px;
+    font-size: 16px;
+    cursor: default;
 
-  &:hover,
-  &:active,
-  &:focus {
-    color: lighten($secondary-text-color, 4%);
-    text-decoration: underline;
+    .fa {
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &__name {
+      flex: 1 1 auto;
+      color: $dark-text-color;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      strong {
+        font-weight: 500;
+      }
+
+      a {
+        color: $darker-text-color;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:hover,
+        &:focus,
+        &:active {
+          span {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    &__current {
+      flex: 0 0 auto;
+      width: 100px;
+      font-size: 24px;
+      line-height: 36px;
+      font-weight: 500;
+      text-align: center;
+      color: $secondary-text-color;
+    }
+
+    &__sparkline {
+      flex: 0 0 auto;
+      width: 50px;
+
+      path {
+        stroke: lighten($highlight-text-color, 6%) !important;
+      }
+    }
   }
 }

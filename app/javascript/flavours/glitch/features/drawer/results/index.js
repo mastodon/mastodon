@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 //  Components.
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import StatusContainer from 'flavours/glitch/containers/status_container';
+import Hashtag from 'flavours/glitch/components/hashtag';
 
 //  Utils.
 import Motion from 'flavours/glitch/util/optional_motion';
@@ -98,15 +99,7 @@ export default function DrawerResults ({
             <section>
               <h5><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></h5>
 
-              {hashtags.map(
-                hashtag => (
-                  <Link
-                    className='hashtag'
-                    key={hashtag}
-                    to={`/timelines/tag/${hashtag}`}
-                  >#{hashtag}</Link>
-                )
-              )}
+              {hashtags.map(hashtag => <Hashtag key={hashtag.get('name')} hashtag={hashtag} />)}
             </section>
           ) : null}
         </div>
