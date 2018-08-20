@@ -11,6 +11,7 @@
 #
 
 class AccountPin < ApplicationRecord
+  include Paginable
   include RelationshipCacheable
 
   belongs_to :account
