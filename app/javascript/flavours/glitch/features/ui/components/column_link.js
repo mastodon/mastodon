@@ -22,8 +22,13 @@ const ColumnLink = ({ icon, text, to, onClick, href, method, badge }) => {
       </Link>
     );
   } else {
+    const handleOnClick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      return onClick(e);
+    }
     return (
-      <a onClick={onClick} className='column-link' role='button' tabIndex='0' data-method={method}>
+      <a href='#' onClick={onClick && handleOnClick} className='column-link' tabIndex='0'>
         <i className={`fa fa-fw fa-${icon} column-link__icon`} />
         {text}
         {badgeElement}
