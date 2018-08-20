@@ -341,6 +341,7 @@ da:
       unresolved: Uløst
       updated_at: Opdateret
       view: Se
+      unassign: Utildel
     settings:
       contact_information:
         email: Forretnings email
@@ -375,9 +376,14 @@ da:
       site_title: Navn på instans
       timeline_preview:
         desc_html: Vis offentlig tidslinje på landingssiden
+        title: Tidslinje forhåndsvisning
       title: Indstillinger for side
       bootstrap_timeline_accounts:
         title: Standard følger for nye brugere
+      preview_sensitive_media:
+        title: Vis følsomt medie i OpenGraph forhåndsvisninger
+      show_known_fediverse_at_about_page:
+        title: Vis kendte fedivers på tidslinje forhåndsvisning
     statuses:
       back_to_account: Tilbage til kontosiden
       batch:
@@ -481,6 +487,7 @@ da:
     csv: CSV
     follows: Du følger
     mutes: Du dæmper
+    storage: Medie lager
   filters:
     contexts:
       home: Hjemme tidslinje
@@ -566,12 +573,14 @@ da:
     favourite:
       body: 'Din status blev favoriseret af %{name}:'
       subject: '%{name} favoriserede din status'
+      title: Ny favorit
     follow:
       body: '%{name} følger dig nu!'
       subject: '%{name} følger dig nu'
       title: Ny følger
     follow_request:
       body: '%{name} har anmodet om at følge dig'
+      action: Håndter følgeranmodninger
     mention:
       action: Svar
       body: 'Du blev nævnt af %{name} i:'
@@ -649,6 +658,7 @@ da:
     settings: Indstillinger
     two_factor_authentication: To-faktor godkendelse
     your_apps: Dine applikationer
+    export: Data exportering
   statuses:
     attached:
       description: 'Vedhæftede: %{attached}'
@@ -665,7 +675,7 @@ da:
     over_character_limit: grænsen på %{max} tegn er overskredet
     pin_errors:
       limit: Du har allerede fastgjort det maksimale antal trut
-      ownership: Dun kan ikke fastgøre en anden persons toot
+      ownership: Du kan ikke fastgøre en anden persons trut
       private: Ikke offentlige trut kan ikke blive fastgjort
       reblog: Fremhævede trut kan ikke fastgøres
     show_more: Vis mere
@@ -677,6 +687,7 @@ da:
       public_long: Alle kan se
       unlisted: Ikke listet
       unlisted_long: Alle kan se, men vil ikke være listet på offentlige tidslinjer
+    sign_in_to_participate: Log ind for at deltage i samtalen
   stream_entries:
     pinned: Fastgjort trut
     reblogged: fremhævede
@@ -729,6 +740,12 @@ da:
         måder ligesom en almindelig app!
       tips: Råd
       title: Velkommen ombord, %{name}!
+      final_step: 'Start med at skrive opslag! Selv uden følgere vil dine offentlige
+        beskeder kunne ses af andre, foreksempel på den lokale tidslinje og i hashtags.
+        Måske kunne du tænke dig at introducere dig selv på #introductions hashtagget.'
+      tip_bridge_html: Hvis du kommer fra Twitter, kan du finde dine venner på Mastodon
+        ved at bruge <a href="%{bridge_url}">bridge appen</a>. Den virker dog kun
+        hvis de også bruger bridge appen!
   users:
     invalid_email: E-mail adressen er ugyldig
     invalid_otp_token: Ugyldig to-faktor kode
