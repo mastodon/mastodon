@@ -154,9 +154,10 @@ code {
       margin-bottom: 15px;
     }
 
-    li {
-      float: left;
-      width: 50%;
+    ul {
+      columns: 2;
+      -webkit-columns: 2;
+      -moz-columns: 2;
     }
   }
 
