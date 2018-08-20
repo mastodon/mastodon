@@ -70,6 +70,10 @@ da:
         ind da din konto endnu ikke er aktiveret.
       signed_up_but_locked: Du har nu oprettet dig. Vi kunne dog ikke logge dig ind
         da din konto er låst.
+      destroyed: Farvel! Din konto er nu annulleret. Vi håber snart at se dig igen.
+      signed_up_but_unconfirmed: En besked med et bekræftelses link er nu blevet sendt
+        til din email adresse. Følg linket for at aktivere din konti. Tjek din spam
+        mappe hvis du ikke har modtaget denne email.
     sessions:
       already_signed_out: Du er nu logget ud.
       signed_in: Du er nu logget ind.
@@ -85,6 +89,18 @@ da:
     omniauth_callbacks:
       failure: Kunne ikke godkende dig fra %{kind} fordi "%{reason}".
       success: Godkendelse fra %{kind} konto lykkedes.
+    passwords:
+      no_token: Du kan ikke tilgå denne side uden at komme fra en email om nulstilling
+        af adgangskode. Hvis du kommer fra en email om nulstilling af adgangskode,
+        tjek om du brugte det fulde link der blev angivet.
+      send_instructions: Hvis din email adresse allerede findes i vores database,
+        vil du modtage et link til nulstilling af adgangskode til din email adresse
+        om få minutter. Tjek din spam mappe hvis du ikke har modtaget denne email.
+      send_paranoid_instructions: Hvis din email adresse allerede findes i vores database,
+        vil du modtage et link til nulstilling af adgangskode til din email adresse
+        om få minutter. Tjek din spam mappe hvis du ikke har modtaget denne email.
+      updated: Din adgangskode er nu blevet ændret. Du er nu logget ind.
+      updated_not_active: Din adgangskode blev ændret.
   errors:
     messages:
       already_confirmed: er allerede blevet bekræftet, prøv venligst at logge ind
