@@ -47,6 +47,7 @@ nl:
     user_count_after: gebruikers
     user_count_before: Thuisbasis van
     what_is_mastodon: Wat is Mastodon?
+    apps: Mobiele apps
   accounts:
     follow: Volgen
     followers: Volgers
@@ -204,6 +205,7 @@ nl:
         update_custom_emoji: Emoji %{target} is door %{name} bijgewerkt
         update_status: De toots van %{target} zijn door %{name} bijgewerkt
       title: Auditlog
+      deleted_status: (verwijderde toot}
     custom_emojis:
       by_domain: Domein
       copied_msg: Lokale kopie van emoji maken geslaagd
@@ -312,6 +314,7 @@ nl:
         expired: Verlopen
         title: Filter
       title: Uitnodigingen
+      deactivate_all: Alles deactiveren
     relays:
       add_new: Nieuwe relayserver toevoegen
       description_html: Een <strong>federatierelay</strong> is een tussenliggende
@@ -450,6 +453,8 @@ nl:
       no_media: Geen media
       title: Toots van account
       with_media: Met media
+      no_status_selected: Er werden geen toots gewijzigd, omdat er geen enkele werd
+        geselecteerd
     subscriptions:
       callback_url: Callback-URL
       confirmed: Bevestigd
@@ -731,7 +736,7 @@ nl:
     publishing: Publiceren
     web: Webapp
   remote_follow:
-    acct: Geef jouw account@domein.tld op waarvandaan je wilt volgen
+    acct: Geef jouw account@domein op die je wilt gebruiken
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
     no_account_html: Heb je geen account? Je kunt er <a href='%{sign_up_path}' target='_blank'>hier
       een registreren</a>
@@ -829,6 +834,7 @@ nl:
       public_long: Aan iedereen tonen, ook op openbare tijdlijnen
       unlisted: Minder openbaar
       unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
+    sign_in_to_participate: Meldt je aan om aan deze conversatie mee te doen
   stream_entries:
     pinned: Vastgemaakte toot
     reblogged: boostte
@@ -1015,3 +1021,6 @@ nl:
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn
       wachtwoorden en e-mailinstellingen niet beschikbaar.
     signed_in_as: 'Ingelogd als:'
+  remote_interaction:
+    proceed: Ga de interactie aan
+    prompt: 'Jij wilt de interactie aangaan met deze toot:'
