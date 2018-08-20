@@ -30,6 +30,7 @@ const messages = defineMessages({
   info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
+  keyboard_shortcuts: { id: 'navigation_bar.keyboard_shortcuts', defaultMessage: 'Hotkeys'},
   discover: { id: 'navigation_bar.discover', defaultMessage: 'Discover' },
   personal: { id: 'navigation_bar.personal', defaultMessage: 'Personal' },
   security: { id: 'navigation_bar.security', defaultMessage: 'Security' },
@@ -89,11 +90,12 @@ export default class GettingStarted extends ImmutablePureComponent {
         <ColumnLink key={i++} icon='users' text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />,
         <ColumnLink key={i++} icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />,
 		<ColumnLink key={i++} icon='user-plus' text={intl.formatMessage(messages.invite)} href='/invites' rel='noopener' target='_blank'/>,
+		<ColumnLink key={i++} icon='question' text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' />,
 		<ColumnLink key={i++} icon='book' text={intl.formatMessage(messages.info)} href='/about/more' rel='noopener' target='_blank'/>,
         <ColumnSubheading key={i++} text={intl.formatMessage(messages.personal)} />
       );
 
-      height += 34*2 + 48*4;
+      height += 34*2 + 48*5;
     }
 
     navItems.push(
@@ -140,11 +142,6 @@ export default class GettingStarted extends ImmutablePureComponent {
         {!multiColumn && <div className='flex-spacer' />}
 
         <div className='getting-started getting-started__footer'>
-          <ul>
-            {multiColumn && <li><Link to='/keyboard-shortcuts'><FormattedMessage id='navigation_bar.keyboard_shortcuts' defaultMessage='Hotkeys' /></Link> · </li>}
-            <li><a href='/terms' target='_blank'><FormattedMessage id='getting_started.terms' defaultMessage='Terms of service' /></a></li>
-          </ul>
-
           <p>
             <FormattedMessage
               id='getting_started.open_source_notice'
