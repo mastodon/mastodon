@@ -1,26 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { defineMessages, injectIntl } from 'react-intl';
-import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from '../../../actions/lists';
+import { defineMessages } from 'react-intl';
 import classNames from 'classnames';
 
 const messages = defineMessages({
   search: { id: 'lists.search', defaultMessage: 'Search among people you follow' },
 });
 
-const mapStateToProps = state => ({
-  value: state.getIn(['listEditor', 'suggestions', 'value']),
-});
-
-const mapDispatchToProps = dispatch => ({
-  onSubmit: value => dispatch(fetchListSuggestions(value)),
-  onClear: () => dispatch(clearListSuggestions()),
-  onChange: value => dispatch(changeListSuggestions(value)),
-});
-
-@connect(mapStateToProps, mapDispatchToProps)
-@injectIntl
 export default class Search extends React.PureComponent {
 
   static propTypes = {

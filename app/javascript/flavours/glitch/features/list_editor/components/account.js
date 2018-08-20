@@ -1,38 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { makeGetAccount } from 'flavours/glitch/selectors';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar from 'flavours/glitch/components/avatar';
 import DisplayName from 'flavours/glitch/components/display_name';
 import IconButton from 'flavours/glitch/components/icon_button';
-import { defineMessages, injectIntl } from 'react-intl';
-import { removeFromListEditor, addToListEditor } from 'flavours/glitch/actions/lists';
+import { defineMessages } from 'react-intl';
 
 const messages = defineMessages({
   remove: { id: 'lists.account.remove', defaultMessage: 'Remove from list' },
   add: { id: 'lists.account.add', defaultMessage: 'Add to list' },
 });
 
-const makeMapStateToProps = () => {
-  const getAccount = makeGetAccount();
-
-  const mapStateToProps = (state, { accountId, added }) => ({
-    account: getAccount(state, accountId),
-    added: typeof added === 'undefined' ? state.getIn(['listEditor', 'accounts', 'items']).includes(accountId) : added,
-  });
-
-  return mapStateToProps;
-};
-
-const mapDispatchToProps = (dispatch, { accountId }) => ({
-  onRemove: () => dispatch(removeFromListEditor(accountId)),
-  onAdd: () => dispatch(addToListEditor(accountId)),
-});
-
-@connect(makeMapStateToProps, mapDispatchToProps)
-@injectIntl
 export default class Account extends ImmutablePureComponent {
 
   static propTypes = {
