@@ -92,6 +92,7 @@ const keyMap = {
   goToProfile: 'g u',
   goToBlocked: 'g b',
   goToMuted: 'g m',
+  goToRequests: 'g r',
   toggleSpoiler: 'x',
 };
 
@@ -369,6 +370,10 @@ export default class UI extends React.Component {
     this.props.history.push('/mutes');
   }
 
+  handleHotkeyGoToRequests = () => {
+    this.props.history.push('/follow_requests');
+  }
+
   render () {
     const { width, draggingOver } = this.state;
     const { children, layout, isWide, navbarUnder, dropdownMenuIsOpen } = this.props;
@@ -408,6 +413,7 @@ export default class UI extends React.Component {
       goToProfile: this.handleHotkeyGoToProfile,
       goToBlocked: this.handleHotkeyGoToBlocked,
       goToMuted: this.handleHotkeyGoToMuted,
+      goToRequests: this.handleHotkeyGoToRequests,
     };
 
     return (
