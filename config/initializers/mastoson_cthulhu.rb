@@ -7,6 +7,10 @@ MastodonCthulhu.setup do |status|
   status = fortune.convert(status) if fortune.match(status)	
   status
 
+  fortune = MastodonCthulhu::Random.new('[ 　\n]?#(水曜どうでしょう)[ 　\n]?', %w(ここをキャンプ地とする 腹を割って話そう ギアいじったっけ ロー入っちゃって もうウィリーさ おい、パイ食わねぇか?))
+  status = fortune.convert(status) if fortune.match(status)	
+  status
+
   fortune = MastodonCthulhu::Random.new('[ 　\n]?#(社会性フィルター)[ 　\n]?', %w(こゃーん！))
   status = status.replace("こゃーん！ :neko_oinari: \n #社会性フィルター") if fortune.match(status)	
   status
