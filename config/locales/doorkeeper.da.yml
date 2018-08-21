@@ -94,6 +94,16 @@ da:
           respons.
         credential_flow_not_configured: Flytning af ressourceejers adgangskode mislykkedes
           grundet Doorkeeper.configure.resource_owner_from_credentials ikke er opsat.
+        invalid_grant: Autoriseringen er ugyldig, udløbet, ophævet, passer ikke med
+          den henvisnings URI der blev brugt i autoriserings anmodningen, eller blev
+          givet til en anden klient.
+        invalid_resource_owner: De angivne ressource ejer kredentialer er ikke gyldige,
+          eller ressource ejeren kunne ikke blive fundet
+        resource_owner_authenticator_not_configured: Ressource ejeren kunne ikke blive
+          fundet grundet Doorkeeper.configure.resource_owner_authenticator ikke er
+          konfigureret.
+        server_error: Autoriserings serveren blev mødt med en uventet betingelse der
+          forhindrede den i at færdiggøre anmodningen.
     flash:
       applications:
         create:
