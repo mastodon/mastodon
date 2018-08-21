@@ -7,7 +7,7 @@ MastodonCthulhu.setup do |status|
   status = fortune.convert(status) if fortune.match(status)	
   status
 
-  fortune = MastodonCthulhu::Random.new('[ 　\n]?#(水曜どうでしょう)[ 　\n]?', %w(ここをキャンプ地とする 腹を割って話そう ギアいじったっけ ロー入っちゃって もうウィリーさ おい、パイ食わねぇか?))
+  fortune = MastodonCthulhu::Random.new('[ 　\n]?#(水曜どうでしょう)[ 　\n]?', %w(ここをキャンプ地とする 腹を割って話そう ギアいじったっけ、ロー入っちゃって、もうウィリーさ おい、パイ食わねぇか?))
   status = fortune.convert(status) if fortune.match(status)	
   status
 
