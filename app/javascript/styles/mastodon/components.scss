@@ -230,7 +230,6 @@
 
 .dropdown-menu {
   position: absolute;
-  transform-origin: 50% 0;
 }
 
 .invisible {
@@ -1633,6 +1632,22 @@ a.account__display-name {
 
   ul {
     list-style: none;
+  }
+
+  &.left {
+    transform-origin: 100% 50%;
+  }
+
+  &.top {
+    transform-origin: 50% 100%;
+  }
+
+  &.bottom {
+    transform-origin: 50% 0;
+  }
+
+  &.right {
+    transform-origin: 0 50%;
   }
 }
 
@@ -3300,7 +3315,14 @@ a.status-card {
   border-radius: 4px;
   margin-left: 40px;
   overflow: hidden;
-  transform-origin: 50% 0;
+
+  &.top {
+    transform-origin: 50% 100%;
+  }
+
+  &.bottom {
+    transform-origin: 50% 0;
+  }
 }
 
 .privacy-dropdown__option {
@@ -3370,6 +3392,10 @@ a.status-card {
         color: $primary-text-color;
       }
     }
+  }
+
+  &.top .privacy-dropdown__value {
+    border-radius: 0 0 4px 4px;
   }
 
   .privacy-dropdown__dropdown {
@@ -4174,6 +4200,10 @@ a.status-card {
 
   .status__content a {
     color: $highlight-text-color;
+  }
+
+  .status__content p {
+    color: $inverted-text-color;
   }
 
   @media screen and (max-width: 480px) {

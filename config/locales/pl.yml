@@ -6,6 +6,7 @@ pl:
     about_this: O tej instancji
     administered_by: 'Administrowana przez:'
     api: API
+    apps: Aplikacje
     closed_registrations: Rejestracja na tej instancji jest obecnie zamknięta. Możesz jednak zarejestrować się na innej instancji, uzyskując dostęp do tej samej sieci.
     contact: Kontakt
     contact_missing: Nie ustawiono
@@ -281,6 +282,7 @@ pl:
       search: Szukaj
       title: Znane instancje
     invites:
+      deactivate_all: Unieważnij wszystkie
       filter:
         all: Wszystkie
         available: Dostępne
@@ -662,11 +664,14 @@ pl:
     publishing: Publikowanie
     web: Sieć
   remote_follow:
-    acct: Podaj swój adres (nazwa@domena), z którego chcesz śledzić
+    acct: Podaj swój adres (nazwa@domena), z którego chcesz wykonać działanie
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
     no_account_html: Nie masz konta? Możesz <a href='%{sign_up_path}' target='_blank'>zarejestrować się tutaj</a>
     proceed: Śledź
     prompt: 'Zamierzasz śledzić:'
+  remote_interaction:
+    proceed: Przejdź do interakcji
+    prompt: 'Chcesz dokonać interakcji z tym wpisem:'
   remote_unfollow:
     error: Błąd
     title: Tytuł
@@ -754,6 +759,7 @@ pl:
       private: Nie możesz przypiąć niepublicznego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
     show_more: Pokaż więcej
+    sign_in_to_participate: Zaloguj się, aby udzielić się w tej konwersacji
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Tylko dla śledzących
