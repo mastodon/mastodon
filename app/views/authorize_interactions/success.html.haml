@@ -1,13 +1,13 @@
 - content_for :page_title do
-  = t('authorize_follow.title', acct: @account.acct)
+  = t('authorize_follow.title', acct: @resource.acct)
 
 .form-container
   .follow-prompt
-    - if @account.locked?
+    - if @resource.locked?
       %h2= t('authorize_follow.follow_request')
     - else
       %h2= t('authorize_follow.following')
 
-    = render 'application/card', account: @account
+    = render 'application/card', account: @resource
 
   = render 'post_follow_actions'

@@ -5,6 +5,8 @@ class ActivityPub::Activity::Undo < ActivityPub::Activity
     case @object['type']
     when 'Announce'
       undo_announce
+    when 'Accept'
+      undo_accept
     when 'Follow'
       undo_follow
     when 'Like'
@@ -25,6 +27,10 @@ class ActivityPub::Activity::Undo < ActivityPub::Activity
     else
       RemoveStatusService.new.call(status)
     end
+  end
+
+  def undo_accept
+    ::Follow.find_by(target_account: @account, uri: target_uri)&.revoke_request!
   end
 
   def undo_follow

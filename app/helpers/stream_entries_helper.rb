@@ -19,7 +19,7 @@ module StreamEntriesHelper
           safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('settings.edit_profile')])
         end
       elsif current_account.following?(account) || current_account.requested?(account)
-        link_to account_unfollow_path(account), class: 'button logo-button', data: { method: :post } do
+        link_to account_unfollow_path(account), class: 'button logo-button button--destructive', data: { method: :post } do
           safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('accounts.unfollow')])
         end
       else
