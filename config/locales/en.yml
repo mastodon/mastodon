@@ -414,6 +414,12 @@ en:
       last_delivery: Last delivery
       title: WebSub
       topic: Topic
+    suspensions:
+      bad_acct_msg: The confirmation value didn't match up. Are you suspending the right account?
+      hint_html: 'To confirm the suspension of the account, please enter %{value} into the field below:'
+      proceed: Proceed
+      title: Suspend %{acct}
+      warning_html: 'Suspending this account will <strong>irreversibly</strong> delete data from this account, which includes:'
     title: Administration
   admin_mailer:
     new_report:

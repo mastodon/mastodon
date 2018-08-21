@@ -174,7 +174,7 @@ Rails.application.routes.draw do
       resource :change_email, only: [:show, :update]
       resource :reset, only: [:create]
       resource :silence, only: [:create, :destroy]
-      resource :suspension, only: [:create, :destroy]
+      resource :suspension, only: [:new, :create, :destroy]
       resources :statuses, only: [:index, :create, :update, :destroy]
 
       resource :confirmation, only: [:create] do
