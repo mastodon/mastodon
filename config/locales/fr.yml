@@ -34,15 +34,19 @@ fr:
     user_count_before: Abrite
     what_is_mastodon: Qu’est-ce que Mastodon ?
   accounts:
+    choices_html: "%{name} recommande :"
     follow: Suivre
     followers: Abonné⋅e⋅s
     following: Abonnements
+    joined: Inscrit·e en %{date}
     media: Médias
     moved_html: "%{name} a changé de compte pour %{new_profile_link} :"
     network_hidden: Cette information n’est pas disponible
     nothing_here: Rien à voir ici !
     people_followed_by: Personnes suivies par %{name}
     people_who_follow: Personnes qui suivent %{name}
+    pin_errors:
+      following: Vous devez être déjà abonné·e à la personne que vous désirez recommander
     posts: Statuts
     posts_with_replies: Statuts & réponses
     reserved_username: Ce nom d’utilisateur⋅ice est réservé
@@ -178,6 +182,7 @@ fr:
         unsuspend_account: "%{name} a réactivé le compte de %{target}"
         update_custom_emoji: "%{name} a mis à jour l'emoji %{target}"
         update_status: "%{name} a mis à jour le statut de %{target}"
+      deleted_status: "(statut supprimé)"
       title: Journal d'audit
     custom_emojis:
       by_domain: Domaine
@@ -205,11 +210,14 @@ fr:
       updated_msg: Emoji mis à jour avec succès !
       upload: Téléverser
     dashboard:
+      backlog: tâches en arrière plan
       config: Configuration
+      feature_deletions: Suppressions de comptes
       feature_invites: Liens d'invitation
       feature_relay: Relais de fédération
       features: Fonctionnalités
       hidden_service: Fédération avec des services cachés
+      open_reports: signalements non résolus
       recent_users: Utilisateurs récents
       search: Recherche texte-plein
       single_user_mode: Mode utilisateur unique
@@ -278,6 +286,8 @@ fr:
       title: Invitations
     relays:
       add_new: Ajouter un nouveau relais
+      description_html: Un <strong>relai de fédération</strong> est un serveur intermédiaire qui échange de grandes quantités de pouets entre les serveurs qui publient dessus et ceux qui y sont abonnés. <strong>Il peut aider les petites et moyennes instances à découvrir du contenu sur le fediverse</strong>, ce qui normalement requerrait que les utilisateur·ice·s locaux·les suivent des gens inscrits sur des serveurs distants.
+      enable_hint: Une fois activé, votre serveur souscrira à tous les pouets publics présents sur ce relais et y enverra ses propres pouets publics.
       inbox_url: URL de relais
       setup: Paramétrer une connexion de relais
       status: Statut
@@ -337,6 +347,9 @@ fr:
       peers_api_enabled:
         desc_html: Noms des domaines que cette instance a découvert dans le fediverse
         title: Publier la liste des instances découvertes
+      preview_sensitive_media:
+        desc_html: Les liens de prévisualisation sur les autres sites webs afficheront une vignette même si le média est sensible
+        title: Afficher les médias sensibles dans les prévisualisations OpenGraph
       registrations:
         closed_message:
           desc_html: Affiché sur la page d’accueil lorsque les inscriptions sont fermées<br>Vous pouvez utiliser des balises HTML
@@ -363,6 +376,7 @@ fr:
         desc_html: Affichée sur la page d’informations complémentaires du site<br>Vous pouvez utiliser des balises HTML
         title: Description étendue du site
       site_short_description:
+        desc_html: Affichée dans la barre latérale et dans les méta-tags. Décrivez ce qui rend spécifique ce serveur Mastodon en un seul paragraphe. Si laissée vide, la description de l’instance sera affiché par défaut.
         title: Description courte de l'instance
       site_terms:
         desc_html: Affichée sur la page des conditions d’utilisation du site<br>Vous pouvez utiliser des balises HTML
@@ -386,6 +400,7 @@ fr:
         title: Médias
       no_media: Aucun média
       title: État du compte
+      no_status_selected: Aucun statut n’a été modifié car aucun n’a été sélectionné
       with_media: avec médias
     subscriptions:
       callback_url: URL de rappel
@@ -637,10 +652,14 @@ fr:
     publishing: Publication
     web: Web
   remote_follow:
-    acct: Entrez votre pseudo@instance depuis lequel vous voulez suivre cet·te utilisateur⋅ice
+    acct: Entre l’adresse pseudo@instance depuis laquelle vous voulez vous abonner
     missing_resource: L’URL de redirection n’a pas pu être trouvée
+    no_account_html: Vous n’avez pas de compte ? Vous pouvez <a href='%{sign_up_path}' target='_blank'>vous inscrire ici</a>
     proceed: Continuez pour suivre
     prompt: 'Vous allez suivre :'
+  remote_interaction:
+    proceed: Continuer pour interagir
+    prompt: 'Vous désirez interagir avec ce pouet :'
   remote_unfollow:
     error: Erreur
     title: Titre
@@ -724,6 +743,7 @@ fr:
       private: Les statuts non-publics ne peuvent pas être épinglés
       reblog: Un partage ne peut pas être épinglé
     show_more: Afficher plus
+    sign_in_to_participate: Inscrivez-vous pour prendre part à la conversation
     title: '%{name} : "%{quote}"'
     visibilities:
       private: Abonné⋅e⋅s uniquement
