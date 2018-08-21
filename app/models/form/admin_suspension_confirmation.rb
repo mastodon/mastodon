@@ -3,5 +3,5 @@
 class Form::AdminSuspensionConfirmation
   include ActiveModel::Model
 
-  attr_accessor :acct
+  attr_accessor :acct, :report_id
 end

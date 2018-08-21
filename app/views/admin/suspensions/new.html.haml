@@ -19,6 +19,7 @@
   %p.hint= t('admin.suspensions.hint_html', value: content_tag(:code, @account.acct))
 
   = f.input :acct
+  = f.input_field :report_id, as: :hidden
 
   .actions
     = f.button :button, t('admin.suspensions.proceed'), type: :submit, class: 'negative'
