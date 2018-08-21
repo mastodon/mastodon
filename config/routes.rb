@@ -267,18 +267,19 @@ Rails.application.routes.draw do
 
       get '/search', to: 'search#index', as: :search
 
-      resources :follows,    only: [:create]
-      resources :media,      only: [:create, :update]
-      resources :blocks,     only: [:index]
-      resources :mutes,      only: [:index] do
+      resources :follows,      only: [:create]
+      resources :media,        only: [:create, :update]
+      resources :blocks,       only: [:index]
+      resources :mutes,        only: [:index] do
         collection do
           get 'details'
         end
       end
-      resources :favourites, only: [:index]
-      resources :bookmarks,  only: [:index]
-      resources :reports,    only: [:index, :create]
-      resources :filters,    only: [:index, :create, :show, :update, :destroy]
+      resources :favourites,   only: [:index]
+      resources :bookmarks,    only: [:index]
+      resources :reports,      only: [:index, :create]
+      resources :filters,      only: [:index, :create, :show, :update, :destroy]
+      resources :endorsements, only: [:index]
 
       namespace :apps do
         get :verify_credentials, to: 'credentials#show'
