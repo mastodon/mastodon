@@ -4,7 +4,7 @@ class Pubsubhubbub::ConfirmationWorker
   include Sidekiq::Worker
   include RoutingHelper
 
-  sidekiq_options queue: 'push', retry: false
+  sidekiq_options queue: 'default', retry: false
 
   attr_reader :subscription, :mode, :secret, :lease_seconds
 

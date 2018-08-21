@@ -3,7 +3,7 @@
 class Pubsubhubbub::DistributionWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'push'
+  sidekiq_options queue: 'default'
 
   def perform(stream_entry_ids)
     stream_entries = StreamEntry.where(id: stream_entry_ids).includes(:status).reject { |e| e.status.nil? || e.status.hidden? }

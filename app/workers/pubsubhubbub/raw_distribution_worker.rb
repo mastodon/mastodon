@@ -3,7 +3,7 @@
 class Pubsubhubbub::RawDistributionWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'push'
+  sidekiq_options queue: 'default'
 
   def perform(xml, source_account_id)
     @account       = Account.find(source_account_id)

@@ -3,7 +3,7 @@
 class Import::RelationshipWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'pull', retry: 8, dead: false
+  sidekiq_options queue: 'default', retry: 8, dead: false
 
   def perform(account_id, target_account_uri, relationship)
     from_account   = Account.find(account_id)

@@ -3,7 +3,7 @@
 class ActivityPub::PostUpgradeWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'pull'
+  sidekiq_options queue: 'default'
 
   def perform(domain)
     Account.where(domain: domain)

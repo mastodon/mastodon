@@ -3,7 +3,7 @@
 class Maintenance::DestroyMediaWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'pull'
+  sidekiq_options queue: 'mailers'
 
   def perform(media_attachment_id)
     media = MediaAttachment.find(media_attachment_id)

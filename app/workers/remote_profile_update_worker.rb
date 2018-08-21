@@ -3,7 +3,7 @@
 class RemoteProfileUpdateWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'pull'
+  sidekiq_options queue: 'default'
 
   def perform(account_id, body, resubscribe)
     UpdateRemoteProfileService.new.call(body, Account.find(account_id), resubscribe)

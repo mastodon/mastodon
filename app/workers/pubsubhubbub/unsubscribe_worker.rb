@@ -3,7 +3,7 @@
 class Pubsubhubbub::UnsubscribeWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'push', retry: false, unique: :until_executed, dead: false
+  sidekiq_options queue: 'default', retry: false, unique: :until_executed, dead: false
 
   def perform(account_id)
     account = Account.find(account_id)
