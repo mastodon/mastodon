@@ -16,7 +16,6 @@ gem 'dotenv-rails', '~> 2.2', '< 2.3'
 
 gem 'aws-sdk-s3', '~> 1.9', require: false
 gem 'fog-core', '~> 1.45'
-gem 'fog-local', '~> 0.5', require: false
 gem 'fog-openstack', '~> 0.1', require: false
 gem 'paperclip', '~> 6.0'
 gem 'paperclip-av-transcoder', '~> 0.6'
@@ -42,7 +41,7 @@ gem 'omniauth-cas', '~> 1.1'
 gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth', '~> 1.2'
 
-gem 'doorkeeper', '~> 4.2', '< 4.3'
+gem 'doorkeeper', '~> 4.4'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
 gem 'goldfinger', '~> 2.1'
