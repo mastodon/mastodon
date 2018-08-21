@@ -121,7 +121,7 @@ fr:
       public: Publique
       push_subscription_expires: Expiration de l’abonnement PuSH
       redownload: Rafraîchir les avatars
-      remove_avatar: Supprimer l'avatar
+      remove_avatar: Supprimer l’avatar
       resend_confirmation:
         already_confirmed: Cet·te utilisateur·ice est déjà confirmé·e
         send: Renvoyer un courriel de confirmation
@@ -154,24 +154,24 @@ fr:
       web: Web
     action_logs:
       actions:
-        assigned_to_self_report: "%{name} s'est assigné le signalement de %{target} à eux-même"
-        change_email_user: "%{name} a modifié l'adresse de courriel de l'utilisateur·rice %{target}"
-        confirm_user: "%{name} adresse courriel confirmée de l'utilisateur·ice %{target}"
+        assigned_to_self_report: "%{name} s’est assigné le signalement de %{target} à eux-même"
+        change_email_user: "%{name} a modifié l’adresse de courriel de l’utilisateur·rice %{target}"
+        confirm_user: "%{name} adresse courriel confirmée de l’utilisateur·ice %{target}"
         create_custom_emoji: "%{name} a importé de nouveaux émoji %{target}"
         create_domain_block: "%{name} a bloqué le domaine %{target}"
         create_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste noire"
-        demote_user: "%{name} a rétrogradé l'utilisateur·ice %{target}"
+        demote_user: "%{name} a rétrogradé l’utilisateur·ice %{target}"
         destroy_domain_block: "%{name} a débloqué le domaine %{target}"
         destroy_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste blanche"
         destroy_status: "%{name} a enlevé le statut de %{target}"
-        disable_2fa_user: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur·ice %{target}"
-        disable_custom_emoji: "%{name} a désactivé l'émoji %{target}"
-        disable_user: "%{name} a désactivé le login pour l'utilisateur·ice %{target}"
-        enable_custom_emoji: "%{name} a activé l'émoji %{target}"
-        enable_user: "%{name} a activé le login pour l'utilisateur·ice %{target}"
+        disable_2fa_user: "%{name} a désactivé l’authentification à deux facteurs pour l’utilisateur·ice %{target}"
+        disable_custom_emoji: "%{name} a désactivé l’émoji %{target}"
+        disable_user: "%{name} a désactivé le login pour l’utilisateur·ice %{target}"
+        enable_custom_emoji: "%{name} a activé l’émoji %{target}"
+        enable_user: "%{name} a activé le login pour l’utilisateur·ice %{target}"
         memorialize_account: "%{name} a transformé le compte de %{target} en une page de mémorial"
-        promote_user: "%{name} a promu l'utilisateur·ice %{target}"
-        remove_avatar_user: "%{name} a supprimé l'avatar de %{target}'s"
+        promote_user: "%{name} a promu l’utilisateur·ice %{target}"
+        remove_avatar_user: "%{name} a supprimé l’avatar de %{target}"
         reopen_report: "%{name} a ré-ouvert le signalement %{target}"
         reset_password_user: "%{name} a réinitialisé le mot de passe de %{target}"
         resolve_report: "%{name} a résolu la dénonciation de %{target}"
@@ -180,10 +180,10 @@ fr:
         unassigned_report: "%{name} a dés-assigné le signalement %{target}"
         unsilence_account: "%{name} a mis fin au mode silence de %{target}"
         unsuspend_account: "%{name} a réactivé le compte de %{target}"
-        update_custom_emoji: "%{name} a mis à jour l'émoji %{target}"
+        update_custom_emoji: "%{name} a mis à jour l’émoji %{target}"
         update_status: "%{name} a mis à jour le statut de %{target}"
       deleted_status: "(statut supprimé)"
-      title: Journal d'audit
+      title: Journal d’audit
     custom_emojis:
       by_domain: Domaine
       copied_msg: Copie locale de l’émoji créée avec succès !
@@ -206,14 +206,14 @@ fr:
       shortcode_hint: Au moins deux caractères, seulement des caractères alphanumériques ou des tirets bas
       title: Émoji personnalisés
       unlisted: Délisté
-      update_failed_msg: N'a pas pu mettre à jour cet émoji
+      update_failed_msg: N’a pas pu mettre à jour cet émoji
       updated_msg: Émoji mis à jour avec succès !
       upload: Téléverser
     dashboard:
       backlog: tâches en arrière plan
       config: Configuration
       feature_deletions: Suppressions de comptes
-      feature_invites: Liens d'invitation
+      feature_invites: Liens d’invitation
       feature_relay: Relais de fédération
       features: Fonctionnalités
       hidden_service: Fédération avec des services cachés
@@ -301,7 +301,7 @@ fr:
         report: signaler
       action_taken_by: Intervention de
       are_you_sure: Êtes vous certain⋅e ?
-      assign_to_self: Me l'assigner
+      assign_to_self: Me l’assigner
       assigned: Modérateur assigné
       comment:
         none: Aucun
@@ -333,8 +333,8 @@ fr:
       view: Voir
     settings:
       activity_api_enabled:
-        desc_html: Nombre de statuts affichés localement, d'utilisateur·ice·s actif·ve·s et de nouveaux enregistrements dans les registres hebdomadaires
-        title: Publier des statistiques agrégées sur l'activité des utilisateur·ice·s
+        desc_html: Nombre de statuts affichés localement, d’utilisateur·ice·s actif·ve·s et de nouveaux enregistrements dans les registres hebdomadaires
+        title: Publier des statistiques agrégées sur l’activité des utilisateur·ice·s
       bootstrap_timeline_accounts:
         desc_html: Séparez les noms d’utilisateur·ice par des virgules. Ne fonctionne qu’avec des comptes locaux et non-verrouillés. Si laissé vide, tous les administrateur⋅ice⋅s locaux sont sélectionné⋅e⋅s.
         title: Abonnements par défaut pour les nouveaux·elles utilisateur·ice·s
@@ -342,8 +342,8 @@ fr:
         email: Entrez une adresse courriel publique
         username: Entrez un nom d’utilisateur⋅ice
       hero:
-        desc_html: Affichée sur la page d'accueil. Au moins 600x100px recommandé. Lorsqu'elle n'est pas définie, se rabat sur la vignette de l'instance
-        title: Image d'en-tête
+        desc_html: Affichée sur la page d’accueil. Au moins 600x100px recommandé. Lorsqu’elle n’est pas définie, se rabat sur la vignette de l’instance
+        title: Image d’en-tête
       peers_api_enabled:
         desc_html: Noms des domaines que cette instance a découvert dans le fediverse
         title: Publier la liste des instances découvertes
@@ -364,20 +364,20 @@ fr:
           desc_html: Autoriser tout le monde à créer un compte
           title: Ouvrir les inscriptions
       show_known_fediverse_at_about_page:
-        desc_html: Lorsque l'option est activée, les pouets provenant de toutes les instances connues sont affichés dans la prévisualisation. Si non, seuls les pouets locaux sont affichés.
+        desc_html: Lorsque l’option est activée, les pouets provenant de toutes les instances connues sont affichés dans la prévisualisation. Si non, seuls les pouets locaux sont affichés.
         title: Afficher le fediverse connu dans la prévisualisation du fil
       show_staff_badge:
         desc_html: Montrer un badge de responsable sur une page utilisateur·ice
         title: Montrer un badge de responsable
       site_description:
-        desc_html: Paragraphe introductif sur la page d'accueil. Décrivez ce qui rend spécifique ce serveur Mastodon et toute autre chose importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
+        desc_html: Paragraphe introductif sur la page d’accueil. Décrivez ce qui rend spécifique ce serveur Mastodon et toute autre chose importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
         title: Description du site
       site_description_extended:
         desc_html: Affichée sur la page d’informations complémentaires du site<br>Vous pouvez utiliser des balises HTML
         title: Description étendue du site
       site_short_description:
         desc_html: Affichée dans la barre latérale et dans les méta-tags. Décrivez ce qui rend spécifique ce serveur Mastodon en un seul paragraphe. Si laissée vide, la description de l’instance sera affiché par défaut.
-        title: Description courte de l'instance
+        title: Description courte de l’instance
       site_terms:
         desc_html: Affichée sur la page des conditions d’utilisation du site<br>Vous pouvez utiliser des balises HTML
         title: Politique de confidentialité
@@ -413,7 +413,7 @@ fr:
   admin_mailer:
     new_report:
       body: "%{reporter} a signalé %{target}"
-      body_remote: Quelqu'un de %{domain} a signalé %{target}
+      body_remote: Quelqu’un de %{domain} a signalé %{target}
       subject: Nouveau signalement sur %{instance} (#%{id})
   application_mailer:
     notification_preferences: Modifier les préférences de courriel
@@ -449,7 +449,7 @@ fr:
       cas: CAS
       saml: SAML
     register: S’inscrire
-    register_elsewhere: S'inscrire sur un autre serveur
+    register_elsewhere: S’inscrire sur un autre serveur
     resend_confirmation: Envoyer à nouveau les consignes de confirmation
     reset_password: Réinitialiser le mot de passe
     security: Sécurité
@@ -498,7 +498,7 @@ fr:
     '500':
       content: Nous sommes désolé·e·s, mais quelque chose s’est mal passé de notre côté.
       title: Cette page n’est pas correcte
-    noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript. Sinon, essayez l'une des <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">applications natives</a> pour Mastodon pour votre plate-forme.
+    noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript. Sinon, essayez l’une des <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">applications natives</a> pour Mastodon pour votre plate-forme.
   exports:
     archive_takeout:
       date: Date
@@ -616,10 +616,10 @@ fr:
       subject: "%{name} vous suit"
       title: Nouvel·le abonné·e
     follow_request:
-      action: Gérer les demandes d'abonnement
+      action: Gérer les demandes d’abonnement
       body: "%{name} a demandé à vous suivre"
       subject: 'Abonné⋅es en attente : %{name}'
-      title: Nouvelle demande d'abonnement
+      title: Nouvelle demande d’abonnement
     mention:
       action: Répondre
       body: "%{name} vous a mentionné⋅e dans :"
@@ -786,23 +786,23 @@ fr:
     backup_ready:
       explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon. Elle est maintenant prête à être téléchargée !
       subject: Votre archive est prête à être téléchargée
-      title: Retrait de l'archive
+      title: Retrait de l’archive
     welcome:
       edit_profile_action: Configuration du profil
-      edit_profile_step: Vous pouvez personnaliser votre profil en téléchargeant un avatar, une image d'en-tête, en changeant votre pseudo et plus encore. Si vous souhaitez examiner les nouveaux abonnés avant qu'ils ne soient autorisés à vous suivre, vous pouvez verrouiller votre compte.
+      edit_profile_step: Vous pouvez personnaliser votre profil en téléchargeant un avatar, une image d’en-tête, en changeant votre pseudo et plus encore. Si vous souhaitez examiner les nouveaux abonnés avant qu’ils ne soient autorisés à vous suivre, vous pouvez verrouiller votre compte.
       explanation: Voici quelques conseils pour vous aider à démarrer
       final_action: Commencer à publier
-      final_step: 'Commencez à poster ! Même sans abonné·es, vos messages publics peuvent être vus par d''autres, par exemple sur la chronologie locale et dans les hashtags. Vous pouvez vous présenter sur le hashtag #introductions.'
+      final_step: 'Commencez à poster ! Même sans abonné·es, vos messages publics peuvent être vus par d’autres, par exemple sur la chronologie locale et dans les hashtags. Vous pouvez vous présenter sur le hashtag #introductions.'
       full_handle: Votre pleine maîtrise
-      full_handle_hint: C'est ce que vous diriez à vos amis pour qu'ils puissent vous envoyer un message ou vous suivre à partir d'une autre instance.
+      full_handle_hint: C’est ce que vous diriez à vos amis pour qu’ils puissent vous envoyer un message ou vous suivre à partir d’une autre instance.
       review_preferences_action: Modifier les préférences
-      review_preferences_step: Assurez-vous de définir vos préférences, telles que les courriels que vous aimeriez recevoir ou le niveau de confidentialité auquel vous aimeriez que vos messages soient soumis par défaut. Si vous n'avez pas le mal des transports, vous pouvez choisir d'activer la lecture automatique GIF.
+      review_preferences_step: Assurez-vous de définir vos préférences, telles que les courriels que vous aimeriez recevoir ou le niveau de confidentialité auquel vous aimeriez que vos messages soient soumis par défaut. Si vous n’avez pas le mal des transports, vous pouvez choisir d’activer la lecture automatique GIF.
       subject: Bienvenue sur Mastodon
-      tip_bridge_html: Si vous venez de Twitter, vous pouvez retrouver vos amis sur Mastodon en utilisant le <a href="%{bridge_url}">bridge app</a>. Cela ne fonctionne que s'ils ont aussi utilisé cette application !
-      tip_federated_timeline: La chronologie fédérée est une vue en direct du réseau Mastodon. Mais elle n'inclut que les personnes auxquelles vos voisin·es sont abonné·es, donc elle n'est pas complète.
-      tip_following: Vous suivez les administrateurs et administratrices de votre serveur par défaut. Pour trouver d'autres personnes intéressantes, consultez les chronologies locales et fédérées.
+      tip_bridge_html: Si vous venez de Twitter, vous pouvez retrouver vos amis sur Mastodon en utilisant le <a href="%{bridge_url}">bridge app</a>. Cela ne fonctionne que s’ils ont aussi utilisé cette application !
+      tip_federated_timeline: La chronologie fédérée est une vue en direct du réseau Mastodon. Mais elle n’inclut que les personnes auxquelles vos voisin·es sont abonné·es, donc elle n’est pas complète.
+      tip_following: Vous suivez les administrateurs et administratrices de votre serveur par défaut. Pour trouver d’autres personnes intéressantes, consultez les chronologies locales et fédérées.
       tip_local_timeline: La chronologie locale est une vue des personnes sur %{instance}. Ce sont vos voisines et voisins immédiats !
-      tip_mobile_webapp: Si votre navigateur mobile vous propose d'ajouter Mastodon à votre écran d'accueil, vous pouvez recevoir des notifications. Il agit comme une application native de bien des façons !
+      tip_mobile_webapp: Si votre navigateur mobile vous propose d’ajouter Mastodon à votre écran d’accueil, vous pouvez recevoir des notifications. Il agit comme une application native de bien des façons !
       tips: Astuces
       title: Bienvenue à bord, %{name} !
   users:
