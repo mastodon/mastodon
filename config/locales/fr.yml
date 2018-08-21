@@ -123,7 +123,7 @@ fr:
       redownload: Rafraîchir les avatars
       remove_avatar: Supprimer l'avatar
       resend_confirmation:
-        already_confirmed: Cet utilisateur est déjà confirmé
+        already_confirmed: Cet·te utilisateur·ice est déjà confirmé·e
         send: Renvoyer un courriel de confirmation
         success: Email de confirmation envoyé avec succès !
       reset: Réinitialiser
@@ -155,22 +155,22 @@ fr:
     action_logs:
       actions:
         assigned_to_self_report: "%{name} s'est assigné le signalement de %{target} à eux-même"
-        change_email_user: "%{name} a modifié l'adresse de courriel de l'utilisateur %{target}"
-        confirm_user: "%{name} adresse courriel confirmée de l'utilisateur %{target}"
-        create_custom_emoji: "%{name} a importé de nouveaux emoji %{target}"
+        change_email_user: "%{name} a modifié l'adresse de courriel de l'utilisateur·rice %{target}"
+        confirm_user: "%{name} adresse courriel confirmée de l'utilisateur·ice %{target}"
+        create_custom_emoji: "%{name} a importé de nouveaux émoji %{target}"
         create_domain_block: "%{name} a bloqué le domaine %{target}"
         create_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste noire"
-        demote_user: "%{name} a rétrogradé l'utilisateur %{target}"
+        demote_user: "%{name} a rétrogradé l'utilisateur·ice %{target}"
         destroy_domain_block: "%{name} a débloqué le domaine %{target}"
         destroy_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste blanche"
         destroy_status: "%{name} a enlevé le statut de %{target}"
-        disable_2fa_user: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur %{target}"
-        disable_custom_emoji: "%{name} a désactivé l'emoji %{target}"
-        disable_user: "%{name} a désactivé le login pour l'utilisateur %{target}"
-        enable_custom_emoji: "%{name} a activé l'emoji %{target}"
-        enable_user: "%{name} a activé le login pour l'utilisateur %{target}"
+        disable_2fa_user: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur·ice %{target}"
+        disable_custom_emoji: "%{name} a désactivé l'émoji %{target}"
+        disable_user: "%{name} a désactivé le login pour l'utilisateur·ice %{target}"
+        enable_custom_emoji: "%{name} a activé l'émoji %{target}"
+        enable_user: "%{name} a activé le login pour l'utilisateur·ice %{target}"
         memorialize_account: "%{name} a transformé le compte de %{target} en une page de mémorial"
-        promote_user: "%{name} a promu l'utilisateur %{target}"
+        promote_user: "%{name} a promu l'utilisateur·ice %{target}"
         remove_avatar_user: "%{name} a supprimé l'avatar de %{target}'s"
         reopen_report: "%{name} a ré-ouvert le signalement %{target}"
         reset_password_user: "%{name} a réinitialisé le mot de passe de %{target}"
@@ -180,7 +180,7 @@ fr:
         unassigned_report: "%{name} a dés-assigné le signalement %{target}"
         unsilence_account: "%{name} a mis fin au mode silence de %{target}"
         unsuspend_account: "%{name} a réactivé le compte de %{target}"
-        update_custom_emoji: "%{name} a mis à jour l'emoji %{target}"
+        update_custom_emoji: "%{name} a mis à jour l'émoji %{target}"
         update_status: "%{name} a mis à jour le statut de %{target}"
       deleted_status: "(statut supprimé)"
       title: Journal d'audit
@@ -206,8 +206,8 @@ fr:
       shortcode_hint: Au moins deux caractères, seulement des caractères alphanumériques ou des tirets bas
       title: Émoji personnalisés
       unlisted: Délisté
-      update_failed_msg: N'a pas pu mettre à jour cet emoji
-      updated_msg: Emoji mis à jour avec succès !
+      update_failed_msg: N'a pas pu mettre à jour cet émoji
+      updated_msg: Émoji mis à jour avec succès !
       upload: Téléverser
     dashboard:
       backlog: tâches en arrière plan
@@ -218,17 +218,17 @@ fr:
       features: Fonctionnalités
       hidden_service: Fédération avec des services cachés
       open_reports: signalements non résolus
-      recent_users: Utilisateurs récents
-      search: Recherche texte-plein
-      single_user_mode: Mode utilisateur unique
+      recent_users: Utilisateur·rice·s récent·e·s
+      search: Recherche plein texte
+      single_user_mode: Mode utilisateur·ice unique
       software: Logiciel
-      space: Utilisation d'espace
+      space: Espace utilisé
       title: Tableau de bord
-      total_users: utilisateurs au total
+      total_users: utilisateur·rice·s au total
       trends: Tendances
       week_interactions: interactions cette semaine
-      week_users_active: actif cette semaine
-      week_users_new: utilisateurs cette semaine
+      week_users_active: actif·ve·s cette semaine
+      week_users_new: utilisateur·rice·s cette semaine
     domain_blocks:
       add_new: Ajouter
       created_msg: Le blocage de domaine est désormais activé
@@ -333,8 +333,8 @@ fr:
       view: Voir
     settings:
       activity_api_enabled:
-        desc_html: Nombre de statuts affichés localement, d'utilisateurs actifs et de nouveaux enregistrements dans les registres hebdomadaires
-        title: Publier des statistiques agrégées sur l'activité des utilisateurs
+        desc_html: Nombre de statuts affichés localement, d'utilisateur·ice·s actif·ve·s et de nouveaux enregistrements dans les registres hebdomadaires
+        title: Publier des statistiques agrégées sur l'activité des utilisateur·ice·s
       bootstrap_timeline_accounts:
         desc_html: Séparez les noms d’utilisateur·ice par des virgules. Ne fonctionne qu’avec des comptes locaux et non-verrouillés. Si laissé vide, tous les administrateur⋅ice⋅s locaux sont sélectionné⋅e⋅s.
         title: Abonnements par défaut pour les nouveaux·elles utilisateur·ice·s
@@ -367,7 +367,7 @@ fr:
         desc_html: Lorsque l'option est activée, les pouets provenant de toutes les instances connues sont affichés dans la prévisualisation. Si non, seuls les pouets locaux sont affichés.
         title: Afficher le fediverse connu dans la prévisualisation du fil
       show_staff_badge:
-        desc_html: Montrer un badge de responsable sur une page utilisateur
+        desc_html: Montrer un badge de responsable sur une page utilisateur·ice
         title: Montrer un badge de responsable
       site_description:
         desc_html: Paragraphe introductif sur la page d'accueil. Décrivez ce qui rend spécifique ce serveur Mastodon et toute autre chose importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
@@ -589,7 +589,7 @@ fr:
       images_and_video: Impossible de joindre une vidéo à un statut contenant déjà des images
       too_many: Impossible de joindre plus de 4 fichiers
   migrations:
-    acct: utilisateur@domaine du nouveau compte
+    acct: pseudo@domaine du nouveau compte
     currently_redirecting: 'Votre profile va être redirigé vers :'
     proceed: Enregistrer
     updated_msg: Les paramètres de votre migration de compte ont été mis à jour avec succès !
@@ -655,10 +655,10 @@ fr:
     acct: Entre l’adresse pseudo@instance depuis laquelle vous voulez vous abonner
     missing_resource: L’URL de redirection n’a pas pu être trouvée
     no_account_html: Vous n’avez pas de compte ? Vous pouvez <a href='%{sign_up_path}' target='_blank'>vous inscrire ici</a>
-    proceed: Continuez pour suivre
+    proceed: Confirmer l’abonnement
     prompt: 'Vous allez suivre :'
   remote_interaction:
-    proceed: Continuer pour interagir
+    proceed: Confirmer l’interaction
     prompt: 'Vous désirez interagir avec ce pouet :'
   remote_unfollow:
     error: Erreur
