@@ -512,7 +512,7 @@ RSpec.describe User, type: :model do
       context 'when user is confirmed' do
         let(:confirmed_at) { Time.zone.now }
 
-        it { is_expected.to be false }
+        it { is_expected.to be true }
       end
 
       context 'when user is not confirmed' do
