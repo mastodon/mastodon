@@ -45,6 +45,7 @@ pt-BR:
     user_count_after: usuários
     user_count_before: Casa de
     what_is_mastodon: O que é Mastodon?
+    apps: Apps
   accounts:
     follow: Seguir
     followers: Seguidores
@@ -65,6 +66,8 @@ pt-BR:
       moderator: Moderador
     unfollow: Deixar de seguir
     choices_html: 'Escolhas de %{name}:'
+    pin_errors:
+      following: Você tem que estar seguindo a pessoa que você quer sugerir
   admin:
     account_moderation_notes:
       create: Criar uma advertência
@@ -196,6 +199,7 @@ pt-BR:
         update_custom_emoji: '%{name} atualizou o emoji %{target}'
         update_status: '%{name} atualizou o estado de %{target}'
       title: Auditar relatório
+      deleted_status: (status deletado)
     custom_emojis:
       by_domain: Domínio
       copied_msg: Cópia local do emoji criada com sucesso
@@ -303,6 +307,7 @@ pt-BR:
         expired: Expirados
         title: Filtro
       title: Convites
+      deactivate_all: Desativar todos
     relays:
       add_new: Adicionar novo repetidor
       description_html: Um <strong>repetidor de federação</strong> é um servidor intermediário
@@ -441,6 +446,7 @@ pt-BR:
       no_media: Não há mídia
       title: Postagens da conta
       with_media: Com mídia
+      no_status_selected: Nenhum status foi modificado porque nenhum estava selecionado
     subscriptions:
       callback_url: URL de Callback
       confirmed: Confirmado
@@ -715,7 +721,7 @@ pt-BR:
     publishing: Publicação
     web: Web
   remote_follow:
-    acct: Insira o seu usuário@domínio do qual você quer seguir
+    acct: Insira o seu usuário@domínio a partir do qual você deseja agir
     missing_resource: Não foi possível encontrar a URL de direcionamento para a sua
       conta
     no_account_html: Não tem uma conta? Você pode <a href='%{sign_up_path}' target='_blank'>cadastrar-se
@@ -814,6 +820,7 @@ pt-BR:
       public_long: Todos podem ver
       unlisted: Não listado
       unlisted_long: Todos podem ver, porém não será postado nas timelines públicas
+    sign_in_to_participate: Entre para participar dessa conversa
   stream_entries:
     pinned: Toot fixado
     reblogged: compartilhou
@@ -1011,3 +1018,6 @@ pt-BR:
     seamless_external_login: Você está logado usando um serviço externo, então configurações
       de e-mail e senha não estão disponíveis.
     signed_in_as: 'Acesso como:'
+  remote_interaction:
+    proceed: Continue para interagir
+    prompt: 'Você quer interagir com este toot:'
