@@ -3,7 +3,7 @@
 class ThreadResolveWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'pull', retry: 3
+  sidekiq_options queue: 'default', retry: 3
 
   sidekiq_retry_in do |count|
     15 + 10 * (count**4) + rand(10 * (count**4))

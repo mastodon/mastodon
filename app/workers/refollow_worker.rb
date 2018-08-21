@@ -3,7 +3,7 @@
 class RefollowWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'pull', retry: false
+  sidekiq_options queue: 'default', retry: false
 
   def perform(target_account_id)
     target_account = Account.find(target_account_id)

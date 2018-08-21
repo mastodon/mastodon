@@ -3,7 +3,7 @@
 class ActivityPub::UpdateDistributionWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'push'
+  sidekiq_options queue: 'default'
 
   def perform(account_id)
     @account = Account.find(account_id)

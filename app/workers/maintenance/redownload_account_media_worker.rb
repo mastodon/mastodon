@@ -3,7 +3,7 @@
 class Maintenance::RedownloadAccountMediaWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'pull', retry: false
+  sidekiq_options queue: 'mailers', retry: false
 
   def perform(account_id)
     account = Account.find(account_id)
