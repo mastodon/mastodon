@@ -9,7 +9,7 @@ class RefollowWorker
     target_account = Account.find(target_account_id)
     return unless target_account.protocol == :activitypub
 
-    target_account.followers.where(domain: nil).find_each do |follower|
+    target_account.followers.where(domain: nil).reorder(nil).find_each do |follower|
       # Locally unfollow remote account
       follower.unfollow!(target_account)
 
