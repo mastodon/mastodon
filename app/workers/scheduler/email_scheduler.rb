@@ -6,7 +6,7 @@ class Scheduler::EmailScheduler
   sidekiq_options unique: :until_executed
 
   def perform
-    eligible_users.find_each do |user|
+    eligible_users.reorder(nil).find_each do |user|
       next unless user.allows_digest_emails?
       DigestMailerWorker.perform_async(user.id)
     end
