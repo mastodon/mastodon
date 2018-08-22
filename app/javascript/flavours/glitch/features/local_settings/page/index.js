@@ -33,6 +33,14 @@ export default class LocalSettingsPage extends React.PureComponent {
     ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page general'>
         <h1><FormattedMessage id='settings.general' defaultMessage='General' /></h1>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['show_reply_count']}
+          id='mastodon-settings--reply-count'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.show_reply_counter' defaultMessage='Display an estimate of the reply count' />
+        </LocalSettingsPageItem>
         <section>
           <h2><FormattedMessage id='settings.layout_opts' defaultMessage='Layout options' /></h2>
           <LocalSettingsPageItem

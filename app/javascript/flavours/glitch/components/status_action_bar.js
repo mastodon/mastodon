@@ -66,6 +66,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
     onPin: PropTypes.func,
     onBookmark: PropTypes.func,
     withDismiss: PropTypes.bool,
+    showReplyCount: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
@@ -73,6 +74,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
   // evaluate to false. See react-immutable-pure-component for usage.
   updateOnProps = [
     'status',
+    'showReplyCount',
     'withDismiss',
   ]
 
@@ -144,7 +146,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
   }
 
   render () {
-    const { status, intl, withDismiss } = this.props;
+    const { status, intl, withDismiss, showReplyCount } = this.props;
 
     const mutingConversation = status.get('muted');
     const anonymousAccess    = !me;
@@ -198,12 +200,27 @@ export default class StatusActionBar extends ImmutablePureComponent {
       <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.share)} icon='share-alt' onClick={this.handleShareClick} />
     );
 
-    return (
-      <div className='status__action-bar'>
+    let replyButton = (
+      <IconButton
+        className='status__action-bar-button'
+        disabled={anonymousAccess}
+        title={replyTitle}
+        icon={replyIcon}
+        onClick={this.handleReplyClick}
+      />
+    );
+    if (showReplyCount) {
+      replyButton = (
         <div className='status__action-bar__counter'>
-          <IconButton className='status__action-bar-button' disabled={anonymousAccess} title={replyTitle} icon={replyIcon} onClick={this.handleReplyClick} />
+          {replyButton}
           <span className='status__action-bar__counter__label' >{obfuscatedCount(status.get('replies_count'))}</span>
         </div>
+      );
+    }
+
+    return (
+      <div className='status__action-bar'>
+        {replyButton}
         <IconButton className='status__action-bar-button' disabled={reblogDisabled} active={status.get('reblogged')} pressed={status.get('reblogged')} title={reblogDisabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(reblogMessage)} icon={reblogIcon} onClick={this.handleReblogClick} />
         <IconButton className='status__action-bar-button star-icon' disabled={anonymousAccess} animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
         {shareButton}
