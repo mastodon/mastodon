@@ -6,6 +6,7 @@ gl:
     about_this: Sobre
     administered_by: 'Administrada por:'
     api: API
+    apps: Apps móbiles
     closed_registrations: O rexistro en esta instancia está pechado en este intre. Porén! Pode atopar unha instancia diferente para obter unha conta e ter acceso exactamente a misma rede desde alí.
     contact: Contacto
     contact_missing: Non establecido
@@ -36,6 +37,7 @@ gl:
     user_count_before: Fogar de
     what_is_mastodon: Qué é Mastodon?
   accounts:
+    choices_html: 'Eleccións de %{name}:'
     follow: Seguir
     followers: Seguidoras
     following: Seguindo
@@ -46,6 +48,8 @@ gl:
     nothing_here: Nada por aquí!
     people_followed_by: Personas que segue %{name}
     people_who_follow: Personas que seguen a %{name}
+    pin_errors:
+      following: Debe seguir a persoa que intenta recomendar
     posts: Mensaxes
     posts_with_replies: Toots e respostas
     reserved_username: O nome de usuaria está reservado
@@ -181,6 +185,7 @@ gl:
         unsuspend_account: "%{name} activou a conta de %{target}"
         update_custom_emoji: "%{name} actualizou emoji %{target}"
         update_status: "%{name} actualizou un estado de %{target}"
+      deleted_status: "(estado eliminado)"
       title: Rexistro de auditoría
     custom_emojis:
       by_domain: Dominio
@@ -208,6 +213,7 @@ gl:
       updated_msg: Actualizouse correctamente o emoji!
       upload: Subir
     dashboard:
+      backlog: backlogged jobs
       config: Axustes
       feature_deletions: Borrado de contas
       feature_invites: Ligazóns de convite
@@ -276,6 +282,7 @@ gl:
       search: Buscar
       title: Instancias coñecidas
     invites:
+      deactivate_all: Desactivar todo
       filter:
         all: Todo
         available: Dispoñible
@@ -368,11 +375,14 @@ gl:
         desc_html: Mostrar unha insignia de membresía nunha páxina de usuaria
         title: Mostrar insigna de membresía
       site_description:
-        desc_html: Parágrafo de presentación na páxina principal e nas meta etiquetas. Pode utilizar etiquetas HTML, en particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
+        desc_html: Parágrafo de presentación na páxina principal. Describe o que fai especial a este servidor Mastodon e calquera outra ouca importante. Pode utilizar etiquetas HTML, en particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrición da instancia
       site_description_extended:
         desc_html: Un bo lugar para o seu código de conducta, regras, guías e outras cousas que distingan a súa instancia. Pode utilizar etiquetas HTML
         title: Información extendida da personalización
+      site_short_description:
+        desc_html: Mostrado na barra lateral e nas etiquetas meta. Describe o que é Mastodon e que fai especial a este servidor nun só parágrafo. Si está baldeiro, mostrará a descrición da instancia.
+        title: Descrición curta da instancia
       site_terms:
         desc_html: Pode escribir a súa propia política de intimidade, termos de servizo ou aclaracións legais. Pode utilizar etiquetas HTML
         title: Termos de servizo personalizados
@@ -394,6 +404,7 @@ gl:
       media:
         title: Medios
       no_media: Sen medios
+      no_status_selected: Non se cambiou ningún estado xa que ningún foi seleccionado
       title: Estados da conta
       with_media: con medios
     subscriptions:
@@ -646,11 +657,14 @@ gl:
     publishing: Publicando
     web: Web
   remote_follow:
-    acct: Introduza o seu nomedeusuaria@dominio desde onde quere facer seguimento
+    acct: Introduza o seu usuaria@servidor desde onde quere interactuar
     missing_resource: Non se puido atopar o URL de redirecionamento requerido para a súa conta
     no_account_html: Non ten unha conta? Pode <a href='%{sign_up_path}' target='_blank'>rexistrarse aquí</a>
     proceed: Proceda para seguir
     prompt: 'Vostede vai seguir:'
+  remote_interaction:
+    proceed: Proceda para interactuar
+    prompt: 'Vostede quere interactuar con este toot:'
   remote_unfollow:
     error: Fallo
     title: Título
@@ -734,6 +748,7 @@ gl:
       private: As mensaxes non-públicas non poden ser fixadas
       reblog: Non se poden fixar as mensaxes promovidas
     show_more: Mostrar máis
+    sign_in_to_participate: Conéctese para participar na conversa
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Só seguidoras

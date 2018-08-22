@@ -6,6 +6,7 @@ ja:
     about_this: 詳細情報
     administered_by: '管理者:'
     api: API
+    apps: アプリ
     closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。しかし、他のインスタンスにアカウントを作成しても全く同じネットワークに参加することができます。
     contact: 連絡先
     contact_missing: 未設定
@@ -36,6 +37,7 @@ ja:
     user_count_before: ユーザー数
     what_is_mastodon: Mastodon とは？
   accounts:
+    choices_html: "%{name} によるおすすめ:"
     follow: フォロー
     followers: フォロワー
     following: フォロー中
@@ -46,6 +48,8 @@ ja:
     nothing_here: 何もありません！
     people_followed_by: "%{name} さんがフォロー中のアカウント"
     people_who_follow: "%{name} さんをフォロー中のアカウント"
+    pin_errors:
+      following: 推薦したい人はあなたが既にフォローしている必要があります
     posts: トゥート
     posts_with_replies: トゥートと返信
     reserved_username: このユーザー名は予約されています
@@ -181,6 +185,7 @@ ja:
         unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
         update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
         update_status: "%{name} さんが %{target} さんの投稿を更新しました"
+      deleted_status: "(削除されました)"
       title: 操作履歴
     custom_emojis:
       by_domain: ドメイン
@@ -277,6 +282,7 @@ ja:
       search: 検索
       title: 既知のインスタンス
     invites:
+      deactivate_all: すべて無効化
       filter:
         all: すべて
         available: 使用可能
@@ -398,6 +404,7 @@ ja:
       media:
         title: メディア
       no_media: メディアなし
+      no_status_selected: 何も選択されていないため、変更されていません
       title: トゥート一覧
       with_media: メディアあり
     subscriptions:
@@ -655,6 +662,9 @@ ja:
     no_account_html: アカウントをお持ちではないですか？<a href='%{sign_up_path}' target='_blank'>こちら</a>からサインアップできます
     proceed: フォローする
     prompt: 'フォローしようとしています:'
+  remote_interaction:
+    proceed: 進む
+    prompt: 'このトゥートに返信しようとしています:'
   remote_unfollow:
     error: エラー
     title: タイトル
@@ -738,6 +748,7 @@ ja:
       private: 非公開のトゥートを固定することはできません
       reblog: ブーストされたトゥートを固定することはできません
     show_more: もっと見る
+    sign_in_to_participate: ログインして会話に参加
     title: '%{name}: "%{quote}"'
     visibilities:
       private: フォロワー限定

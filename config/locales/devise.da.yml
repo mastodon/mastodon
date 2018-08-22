@@ -4,6 +4,7 @@ da:
     confirmations:
       confirmed: Din email adresse er blevet succesfuldt bekræftet.
       send_instructions: Du vil modtage en mail med instrukser for hvordan du bekræfter din email adresse om få minutter. Tjek venligst din spam mappe hvis du ikke har modtaget denne email.
+      send_paranoid_instructions: Hvis din email adresse allerede findes i vores database, vil du modtage en email med instrukser for hvordan du bekræfter din email adresse om få minutter. Tjek gerne din spam mappe hvis du ikke modtager denne email.
     failure:
       already_authenticated: Du er allerede logget ind.
       inactive: Din konto er endnu ikke aktiveret.
@@ -33,14 +34,32 @@ da:
         title: Kodeordet er blevet ændret
       reconfirmation_instructions:
         explanation: Bekræft den nye adresse for at ændre din email.
+        extra: Hvis denne ændring ikke blev foretaget af dig, ignorer denne email. Email adressen for denne Mastodon konto vil ikke blive ændret før du følger linket foroven.
         subject: 'Mastodon: Bekræft email for %{instance}'
         title: Bekræft email adresse
       reset_password_instructions:
         action: Ændre kodeord
-        explanation: Du anmodede om et nyt kodeord for din konto.
+        explanation: Du anmodede om en ny adgangskode for din konto.
+        extra: Hvis du ikke har anmodet om dette, ignorer denne email. Din adgangskode vil ikke blive ændret før du har fulgt linket foroven og oprettet en ny.
+        subject: 'Mastodon: Instrukser for nulstilling af adgangskode'
         title: Kodeordet er blevet nulstillet
+      unlock_instructions:
+        subject: 'Mastodon: Instruktioner for oplåsning'
+    omniauth_callbacks:
+      failure: Kunne ikke godkende dig fra %{kind} fordi "%{reason}".
+      success: Godkendelse fra %{kind} konto lykkedes.
+    passwords:
+      no_token: Du kan ikke tilgå denne side uden at komme fra en email om nulstilling af adgangskode. Hvis du kommer fra en email om nulstilling af adgangskode, tjek om du brugte det fulde link der blev angivet.
+      send_instructions: Hvis din email adresse allerede findes i vores database, vil du modtage et link til nulstilling af adgangskode til din email adresse om få minutter. Tjek din spam mappe hvis du ikke har modtaget denne email.
+      send_paranoid_instructions: Hvis din email adresse allerede findes i vores database, vil du modtage et link til nulstilling af adgangskode til din email adresse om få minutter. Tjek din spam mappe hvis du ikke har modtaget denne email.
+      updated: Din adgangskode er nu blevet ændret. Du er nu logget ind.
+      updated_not_active: Din adgangskode blev ændret.
     registrations:
+      destroyed: Farvel! Din konto er nu annulleret. Vi håber snart at se dig igen.
       signed_up: Velkommen! Du har nu tilmeldt dig.
+      signed_up_but_inactive: Du har nu oprettet dig. Vi kunne dog ikke logge dig ind da din konto endnu ikke er aktiveret.
+      signed_up_but_locked: Du har nu oprettet dig. Vi kunne dog ikke logge dig ind da din konto er låst.
+      signed_up_but_unconfirmed: En besked med et bekræftelses link er nu blevet sendt til din email adresse. Følg linket for at aktivere din konti. Tjek din spam mappe hvis du ikke har modtaget denne email.
       update_needs_confirmation: Du har succesfuldt opdateret din konto, men vi er nødt til at bekræfte din email adresse. Tjek venligst din email og følg bekræftelses linket for at bekræfte din nye email adresse. Tjek venligst din spam mappe hvis du ikke har modtaget denne email.
       updated: Din konto er nu blevet opdateret.
     sessions:
