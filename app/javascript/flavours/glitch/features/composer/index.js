@@ -51,6 +51,7 @@ import { privacyPreference } from 'flavours/glitch/util/privacy_preference';
 
 //  State mapping.
 function mapStateToProps (state) {
+  const spoilersAlwaysOn = state.getIn(['local_settings', 'always_show_spoilers_field']);
   const inReplyTo = state.getIn(['compose', 'in_reply_to']);
   const replyPrivacy = inReplyTo ? state.getIn(['statuses', inReplyTo, 'visibility']) : null;
   const sideArmBasePrivacy = state.getIn(['local_settings', 'side_arm']);
@@ -85,12 +86,13 @@ function mapStateToProps (state) {
     sideArm: sideArmPrivacy,
     sensitive: state.getIn(['compose', 'sensitive']),
     showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
-    spoiler: state.getIn(['compose', 'spoiler']),
+    spoiler: spoilersAlwaysOn || state.getIn(['compose', 'spoiler']),
     spoilerText: state.getIn(['compose', 'spoiler_text']),
     suggestionToken: state.getIn(['compose', 'suggestion_token']),
     suggestions: state.getIn(['compose', 'suggestions']),
     text: state.getIn(['compose', 'text']),
     anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
+    spoilersAlwaysOn: spoilersAlwaysOn,
   };
 };
 
@@ -376,6 +378,7 @@ class Composer extends React.Component {
       spoilerText,
       suggestions,
       text,
+      spoilersAlwaysOn,
     } = this.props;
 
     let disabledButton = isSubmitting || isUploading || (!!text.length && !text.trim().length && !anyMedia);
@@ -443,7 +446,7 @@ class Composer extends React.Component {
           onDoodleOpen={onOpenDoodleModal}
           onModalClose={onCloseModal}
           onModalOpen={onOpenActionsModal}
-          onToggleSpoiler={onChangeSpoilerness}
+          onToggleSpoiler={spoilersAlwaysOn ? null : onChangeSpoilerness}
           onUpload={onUpload}
           privacy={privacy}
           resetFileKey={resetFileKey}
@@ -515,6 +518,7 @@ Composer.propTypes = {
   onUnmount: PropTypes.func,
   onUpload: PropTypes.func,
   anyMedia: PropTypes.bool,
+  spoilersAlwaysOn: PropTypes.bool,
 };
 
 //  Connecting and export.

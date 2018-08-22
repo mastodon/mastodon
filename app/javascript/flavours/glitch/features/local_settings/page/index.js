@@ -77,6 +77,14 @@ export default class LocalSettingsPage extends React.PureComponent {
           <h2><FormattedMessage id='settings.compose_box_opts' defaultMessage='Compose box options' /></h2>
           <LocalSettingsPageItem
             settings={settings}
+            item={['always_show_spoilers_field']}
+            id='mastodon-settings--always_show_spoilers_field'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.always_show_spoilers_field' defaultMessage='Always enable the Content Warning field' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
             item={['side_arm']}
             id='mastodon-settings--side_arm'
             options={[

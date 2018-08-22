@@ -285,13 +285,15 @@ export default class ComposerOptions extends React.PureComponent {
           title={intl.formatMessage(messages.change_privacy)}
           value={privacy}
         />
-        <TextIconButton
-          active={spoiler}
-          ariaControls='glitch.composer.spoiler.input'
-          label='CW'
-          onClick={onToggleSpoiler}
-          title={intl.formatMessage(messages.spoiler)}
-        />
+        {onToggleSpoiler && (
+          <TextIconButton
+            active={spoiler}
+            ariaControls='glitch.composer.spoiler.input'
+            label='CW'
+            onClick={onToggleSpoiler}
+            title={intl.formatMessage(messages.spoiler)}
+          />
+        )}
         <Dropdown
           active={advancedOptions && advancedOptions.some(value => !!value)}
           disabled={disabled}
