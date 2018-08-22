@@ -110,6 +110,18 @@
     }
   }
 
+  &.button--destructive {
+    &:active,
+    &:focus,
+    &:hover {
+      background: $error-red;
+
+      svg path:last-child {
+        fill: $error-red;
+      }
+    }
+  }
+
   @media screen and (max-width: $no-gap-breakpoint) {
     svg {
       display: none;

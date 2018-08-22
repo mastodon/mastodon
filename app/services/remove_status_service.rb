@@ -43,13 +43,13 @@ class RemoveStatusService < BaseService
   end
 
   def remove_from_followers
-    @account.followers_for_local_distribution.find_each do |follower|
+    @account.followers_for_local_distribution.reorder(nil).find_each do |follower|
       FeedManager.instance.unpush_from_home(follower, @status)
     end
   end
 
   def remove_from_lists
-    @account.lists_for_local_distribution.select(:id, :account_id).find_each do |list|
+    @account.lists_for_local_distribution.select(:id, :account_id).reorder(nil).find_each do |list|
       FeedManager.instance.unpush_from_list(list, @status)
     end
   end

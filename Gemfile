@@ -10,12 +10,12 @@ gem 'rails', '~> 5.2.1'
 
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.0'
+gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.1'
 gem 'dotenv-rails', '~> 2.2', '< 2.3'
 
 gem 'aws-sdk-s3', '~> 1.9', require: false
 gem 'fog-core', '~> 1.45'
-gem 'fog-local', '~> 0.5', require: false
 gem 'fog-openstack', '~> 0.1', require: false
 gem 'paperclip', '~> 6.0'
 gem 'paperclip-av-transcoder', '~> 0.6'

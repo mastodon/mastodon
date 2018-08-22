@@ -36,6 +36,7 @@ eu:
     user_count_before: Hemen
     what_is_mastodon: Zer da Mastodon?
   accounts:
+    choices_html: "%{name}(r)en aukerak:"
     follow: Jarraitu
     followers: Jarraitzaile
     following: Jarraitzen
@@ -46,6 +47,8 @@ eu:
     nothing_here: Ez dago ezer hemen!
     people_followed_by: "%{name}(e)k jarraitzen dituenak"
     people_who_follow: "%{name} jarraitzen dutenak"
+    pin_errors:
+      following: Onetsi nahi duzun pertsona aurretik jarraitu behar duzu
     posts: Toot-ak
     posts_with_replies: Toot eta erantzunak
     reserved_username: Erabiltzaile-izena erreserbatuta dago
@@ -340,6 +343,9 @@ eu:
       peers_api_enabled:
         desc_html: Instantzia honek fedibertsuan aurkitutako domeinu-izenak
         title: Argitaratu aurkitutako instantzien zerrenda
+      preview_sensitive_media:
+        desc_html: Beste webguneetako esteken aurrebistak iruditxoa izango du multimedia hunkigarri gisa markatzen bada ere
+        title: Erakutsi multimedia hunkigarria OpenGraph aurrebistetan
       registrations:
         closed_message:
           desc_html: Azaleko orrian bistaratua izen ematea ixten denean. HTML etiketak erabili ditzakezu
@@ -360,11 +366,13 @@ eu:
         desc_html: Erakutsi langile banda erabiltzailearen orrian
         title: Erakutsi langile banda
       site_description:
-        desc_html: Azaleko orrian eta meta etiketetan agertuko den sarrera paragrafoa. HTML etiketak erabili ditzakezu, zehazki <code>&lt;a&gt;</code> eta <code>&lt;em&gt;</code>.
+        desc_html: Azaleko orrian agertuko den sarrera paragrafoa. Azaldu zerk egiten duen berezi Mastodon zerbitzari hau eta garrantzizko beste edozer. HTML etiketak erabili ditzakezu, zehazki <code>&lt;a&gt;</code> eta <code>&lt;em&gt;</code>.
         title: Instantziaren deskripzioa
       site_description_extended:
         desc_html: Zure jokabide-koderako  toki on bat, arauak, gidalerroak eta zure instantzia desberdin egiten duten bestelakoak. HTML etiketak erabili ditzakezu
         title: Informazio hedatu pertsonalizatua
+      site_short_description:
+        title: Instantziaren deskripzio laburra
       site_terms:
         desc_html: Zure pribatutasun politika, erabilera baldintzak eta bestelako testu legalak idatzi ditzakezu. HTML etiketak erabili ditzakezu
         title: Erabilera baldintza pertsonalizatuak
@@ -498,6 +506,22 @@ eu:
     follows: Zuk jarraitutakoak
     mutes: Zuk mututukoak
     storage: Multimedia biltegiratzea
+  filters:
+    contexts:
+      home: Hasierako denbora-lerroa
+      notifications: Jakinarazpenak
+      public: Denbora-lerro publikoak
+      thread: Elkarrizketak
+    edit:
+      title: Editatu iragazkia
+    errors:
+      invalid_context: Testuinguru baliogabe edo hutsa eman da
+      invalid_irreversible: Behin betiko iragazketa hasiera edo jakinarazpenen testuinguruan besterik ez dabil
+    index:
+      delete: Ezabatu
+      title: Iragazkiak
+    new:
+      title: Gehitu iragazki berria
   followers:
     domain: Domeinua
     explanation_html: Zure mezuen pribatutasuna bermatu nahi baduzu, nork jarraitzen zaituen jakin behar duzu. <strong>Zure mezu pribatuak zure jarraitzaileak dituzten instantzia guztietara bidaltzen dira</strong>.  Instantzia bateko langileek edo softwareak zure pribatutasunari dagokion begirunea ez dutela izango uste baduzu, berrikusi eta kendu jarraitzaileak.
@@ -510,6 +534,10 @@ eu:
     true_privacy_html: Kontuan izan <strong>egiazko pribatutasuna lortzeko muturretik muturrerako zifratzea ezinbestekoa dela</strong>.
     unlocked_warning_html: Edonork jarraitu zaitzake eta berehala zure mezu pribatuak ikusi. %{lock_link} jarraitzaileak berrikusi eta ukatu ahal izateko.
     unlocked_warning_title: Zure kontua ez dago giltzapetuta
+  footer:
+    developers: Garatzaileak
+    more: Gehiago…
+    resources: Baliabideak
   generic:
     changes_saved_msg: Aldaketak ongi gorde dira!
     save_changes: Gorde aldaketak
@@ -620,6 +648,7 @@ eu:
   remote_follow:
     acct: Sartu jarraitzeko erabili nahi duzun erabiltzaile@domeinua
     missing_resource: Ezin izan da zure konturako behar den birbideratze URL-a
+    no_account_html: Ez duzu konturik? <a href='%{sign_up_path}' target='_blank'>Izena eman</a> dezakezu
     proceed: Ekin jarraitzeari
     prompt: 'Hau jarraituko duzu:'
   remote_unfollow:

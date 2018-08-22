@@ -23,9 +23,7 @@ class SuspendAccountService < BaseService
 
   def purge_content!
     if @account.local?
-      ActivityPub::RawDistributionWorker.perform_async(delete_actor_json, @account.id)
-
-      ActivityPub::DeliveryWorker.push_bulk(Relay.enabled.pluck(:inbox_url)) do |inbox_url|
+      ActivityPub::DeliveryWorker.push_bulk(delivery_inboxes) do |inbox_url|
         [delete_actor_json, @account.id, inbox_url]
       end
     end
@@ -74,5 +72,9 @@ class SuspendAccountService < BaseService
     ).as_json
 
     @delete_actor_json = Oj.dump(ActivityPub::LinkedDataSignature.new(payload).sign!(@account))
+  end
+
+  def delivery_inboxes
+    Account.inboxes + Relay.enabled.pluck(:inbox_url)
   end
 end

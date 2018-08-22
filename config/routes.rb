@@ -134,7 +134,12 @@ Rails.application.routes.draw do
     resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resources :action_logs, only: [:index]
     resource :settings, only: [:edit, :update]
-    resources :invites, only: [:index, :create, :destroy]
+
+    resources :invites, only: [:index, :create, :destroy] do
+      collection do
+        post :deactivate_all
+      end
+    end
 
     resources :relays, only: [:index, :new, :create, :destroy] do
       member do
@@ -169,7 +174,7 @@ Rails.application.routes.draw do
       resource :change_email, only: [:show, :update]
       resource :reset, only: [:create]
       resource :silence, only: [:create, :destroy]
-      resource :suspension, only: [:create, :destroy]
+      resource :suspension, only: [:new, :create, :destroy]
       resources :statuses, only: [:index, :create, :update, :destroy]
 
       resource :confirmation, only: [:create] do
@@ -256,13 +261,14 @@ Rails.application.routes.draw do
 
       get '/search', to: 'search#index', as: :search
 
-      resources :follows,    only: [:create]
-      resources :media,      only: [:create, :update]
-      resources :blocks,     only: [:index]
-      resources :mutes,      only: [:index]
-      resources :favourites, only: [:index]
-      resources :reports,    only: [:index, :create]
-      resources :filters,    only: [:index, :create, :show, :update, :destroy]
+      resources :follows,      only: [:create]
+      resources :media,        only: [:create, :update]
+      resources :blocks,       only: [:index]
+      resources :mutes,        only: [:index]
+      resources :favourites,   only: [:index]
+      resources :reports,      only: [:index, :create]
+      resources :filters,      only: [:index, :create, :show, :update, :destroy]
+      resources :endorsements, only: [:index]
 
       namespace :apps do
         get :verify_credentials, to: 'credentials#show'
