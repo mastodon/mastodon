@@ -19,6 +19,10 @@ class StatusesController < ApplicationController
   before_action :set_referrer_policy_header, only: [:show]
   before_action :set_cache_headers
 
+  content_security_policy only: :embed do |p|
+    p.frame_ancestors(false)
+  end
+
   def show
     respond_to do |format|
       format.html do
