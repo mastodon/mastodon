@@ -256,6 +256,10 @@ da:
           noop: Ingen
           silence: Dæmp
           suspend: Udeluk
+          desc_html: <strong>Dæmp</strong> vil gøre kontoens opslag usynlige for alle
+            der ikke følger dem. <strong>Udeluk</strong> vil fjerne al kontoens indhold,
+            medie, og profil data. Brug <strong>Intet</strong> hvis du bare ønsker
+            at afvise medie filer.
         title: Ny domæne blokering
       reject_media: Afvis medie filer
       reject_media_hint: Fjerner lokalt lagrede medie filer og nægter at hente nogen
@@ -355,6 +359,7 @@ da:
         title: Billede af helt
       peers_api_enabled:
         title: Udgiv liste over opdagede instanser
+        desc_html: Domæne navne denne instans er stødt på i ferdiverset
       preview_sensitive_media:
         title: Vis følsomt medie i OpenGraph forhåndsvisninger
       registrations:
@@ -397,6 +402,7 @@ da:
       no_media: Ingen medier
       title: Konto statusser
       with_media: Med medier
+      no_status_selected: Ingen statusser blev ændret da ingen var blevet valgt
     subscriptions:
       confirmed: Bekræftet
       expires_in: Udløber om
@@ -407,6 +413,15 @@ da:
     report_notes:
       created_msg: Anmeldelsesnote oprettet!
       destroyed_msg: Anmeldelsesnote slettet!
+    suspensions:
+      bad_acct_msg: Bekræftelsesværdien stemmer ikke over ens. Er du ved at udelukke
+        den rigtige konto?
+      hint_html: 'For at bekræfte udelukkelsen af kontoen, indtast %{value} i nedenstående
+        felt:'
+      proceed: Fortsæt
+      title: Udeluk %{acct}
+      warning_html: 'Udelukkelse af denne konto vil <strong>uigenkaldeligt</strong>
+        slette data fra kontoen, hvilket inkluderer:'
   admin_mailer:
     new_report:
       body: '%{reporter} har anmeldt %{target}'
@@ -606,11 +621,13 @@ da:
           unit: '
 
             '
+        format: '%n%u'
   pagination:
     newer: Nyere
     next: Næste
     older: Ældre
     prev: Forrige
+    truncate: '...&hellip;'
   preferences:
     languages: Sprog
     other: Andet
