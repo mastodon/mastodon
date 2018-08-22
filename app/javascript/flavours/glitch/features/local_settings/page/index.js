@@ -33,35 +33,38 @@ export default class LocalSettingsPage extends React.PureComponent {
     ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page general'>
         <h1><FormattedMessage id='settings.general' defaultMessage='General' /></h1>
-        <LocalSettingsPageItem
-          settings={settings}
-          item={['layout']}
-          id='mastodon-settings--layout'
-          options={[
-            { value: 'auto', message: intl.formatMessage(messages.layout_auto) },
-            { value: 'multiple', message: intl.formatMessage(messages.layout_desktop) },
-            { value: 'single', message: intl.formatMessage(messages.layout_mobile) },
-          ]}
-          onChange={onChange}
-        >
-          <FormattedMessage id='settings.layout' defaultMessage='Layout:' />
-        </LocalSettingsPageItem>
-        <LocalSettingsPageItem
-          settings={settings}
-          item={['stretch']}
-          id='mastodon-settings--stretch'
-          onChange={onChange}
-        >
-          <FormattedMessage id='settings.wide_view' defaultMessage='Wide view (Desktop mode only)' />
-        </LocalSettingsPageItem>
-        <LocalSettingsPageItem
-          settings={settings}
-          item={['navbar_under']}
-          id='mastodon-settings--navbar_under'
-          onChange={onChange}
-        >
-          <FormattedMessage id='settings.navbar_under' defaultMessage='Navbar at the bottom (Mobile only)' />
-        </LocalSettingsPageItem>
+        <section>
+          <h2><FormattedMessage id='settings.layout_opts' defaultMessage='Layout options' /></h2>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['layout']}
+            id='mastodon-settings--layout'
+            options={[
+              { value: 'auto', message: intl.formatMessage(messages.layout_auto) },
+              { value: 'multiple', message: intl.formatMessage(messages.layout_desktop) },
+              { value: 'single', message: intl.formatMessage(messages.layout_mobile) },
+            ]}
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.layout' defaultMessage='Layout:' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['stretch']}
+            id='mastodon-settings--stretch'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.wide_view' defaultMessage='Wide view (Desktop mode only)' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['navbar_under']}
+            id='mastodon-settings--navbar_under'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.navbar_under' defaultMessage='Navbar at the bottom (Mobile only)' />
+          </LocalSettingsPageItem>
+        </section>
         <section>
           <h2><FormattedMessage id='settings.compose_box_opts' defaultMessage='Compose box options' /></h2>
           <LocalSettingsPageItem
