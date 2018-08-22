@@ -6,6 +6,7 @@ pt-BR:
     about_this: Sobre
     administered_by: 'Administrado por:'
     api: API
+    apps: Apps
     closed_registrations: Os cadastros estão atualmente fechados nesta instância. No entanto, você pode procurar uma instância diferente na qual possa criar uma conta e acessar a mesma rede por lá.
     contact: Contato
     contact_missing: Não definido
@@ -31,11 +32,12 @@ pt-BR:
     source_code: Código-fonte
     status_count_after: publicações
     status_count_before: Autores de
-    terms: Termos de Serviço
+    terms: Termos de serviço
     user_count_after: usuários
     user_count_before: Casa de
     what_is_mastodon: O que é Mastodon?
   accounts:
+    choices_html: 'Escolhas de %{name}:'
     follow: Seguir
     followers: Seguidores
     following: Seguindo
@@ -46,6 +48,8 @@ pt-BR:
     nothing_here: Não há nada aqui!
     people_followed_by: Pessoas que %{name} segue
     people_who_follow: Pessoas que seguem %{name}
+    pin_errors:
+      following: Você tem que estar seguindo a pessoa que você quer sugerir
     posts: Toots
     posts_with_replies: Toots e respostas
     reserved_username: Este usuário está reservado
@@ -181,6 +185,7 @@ pt-BR:
         unsuspend_account: "%{name} desativou a suspensão de  %{target}"
         update_custom_emoji: "%{name} atualizou o emoji %{target}"
         update_status: "%{name} atualizou o estado de %{target}"
+      deleted_status: "(status deletado)"
       title: Auditar relatório
     custom_emojis:
       by_domain: Domínio
@@ -277,6 +282,7 @@ pt-BR:
       search: Buscar
       title: Instâncias conhecidas
     invites:
+      deactivate_all: Desativar todos
       filter:
         all: Todos
         available: Disponíveis
@@ -398,6 +404,7 @@ pt-BR:
       media:
         title: Mídia
       no_media: Não há mídia
+      no_status_selected: Nenhum status foi modificado porque nenhum estava selecionado
       title: Postagens da conta
       with_media: Com mídia
     subscriptions:
@@ -650,11 +657,14 @@ pt-BR:
     publishing: Publicação
     web: Web
   remote_follow:
-    acct: Insira o seu usuário@domínio do qual você quer seguir
+    acct: Insira o seu usuário@domínio a partir do qual você deseja agir
     missing_resource: Não foi possível encontrar a URL de direcionamento para a sua conta
     no_account_html: Não tem uma conta? Você pode <a href='%{sign_up_path}' target='_blank'>cadastrar-se aqui</a>
     proceed: Prosseguir para seguir
     prompt: 'Você irá seguir:'
+  remote_interaction:
+    proceed: Continue para interagir
+    prompt: 'Você quer interagir com este toot:'
   remote_unfollow:
     error: Erro
     title: Título
@@ -738,6 +748,7 @@ pt-BR:
       private: Toot não-público não pode ser fixado
       reblog: Um compartilhamento não pode ser fixado
     show_more: Mostrar mais
+    sign_in_to_participate: Entre para participar dessa conversa
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Apenas seguidores

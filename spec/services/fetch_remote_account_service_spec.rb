@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe FetchRemoteAccountService, type: :service do
-  let(:url) { 'https://example.com' }
+  let(:url) { 'https://example.com/alice' }
   let(:prefetched_body) { nil }
   let(:protocol) { :ostatus }
   subject { FetchRemoteAccountService.new.call(url, prefetched_body, protocol) }
@@ -46,6 +46,24 @@ RSpec.describe FetchRemoteAccountService, type: :service do
     end
 
     include_examples 'return Account'
+
+    it 'does not update account information if XML comes from an unverified domain' do
+      feed_xml = <<-XML.squish
+        <?xml version="1.0" encoding="UTF-8"?>
+        <feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:georss="http://www.georss.org/georss" xmlns:activity="http://activitystrea.ms/spec/1.0/" xmlns:media="http://purl.org/syndication/atommedia" xmlns:poco="http://portablecontacts.net/spec/1.0" xmlns:ostatus="http://ostatus.org/schema/1.0" xmlns:statusnet="http://status.net/schema/api/1/">
+          <author>
+            <activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>
+            <uri>http://kickass.zone/users/localhost</uri>
+            <name>localhost</name>
+            <poco:preferredUsername>localhost</poco:preferredUsername>
+            <poco:displayName>Villain!!!</poco:displayName>
+          </author>
+        </feed>
+      XML
+
+      returned_account = described_class.new.call('https://real-fake-domains.com/alice', feed_xml, :ostatus)
+      expect(returned_account.display_name).to_not eq 'Villain!!!'
+    end
   end
 
   context 'when prefetched_body is nil' do
