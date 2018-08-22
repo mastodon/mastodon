@@ -70,5 +70,27 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
         expect(strip_tags(status.text)).to eq "Nyan Cat 10 hours remix https://#{valid_domain}/watch?v=12345"
       end
     end
+
+    context 'with wrong id' do
+      let(:note) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: "https://real.address/@foo/1234",
+          type: 'Note',
+          content: 'Lorem ipsum',
+          attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
+        }
+      end
+
+      let(:object) do
+        temp = note.dup
+        temp[:id] = 'https://fake.address/@foo/5678'
+        temp
+      end
+
+      it 'does not create status' do
+        expect(sender.statuses.first).to be_nil
+      end
+    end
   end
 end
