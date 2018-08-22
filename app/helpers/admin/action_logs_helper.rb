@@ -33,7 +33,7 @@ module Admin::ActionLogsHelper
     when 'DomainBlock', 'EmailDomainBlock'
       link_to attributes['domain'], "https://#{attributes['domain']}"
     when 'Status'
-      tmp_status = Status.new(attributes)
+      tmp_status = Status.new(attributes.except('reblogs_count', 'favourites_count'))
       if tmp_status.account
         link_to tmp_status.account&.acct || "##{tmp_status.account_id}", admin_account_path(tmp_status.account_id)
       else
