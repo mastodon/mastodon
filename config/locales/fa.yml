@@ -5,10 +5,12 @@ fa:
     about_mastodon_html: ماستدون (Mastodon) یک شبکهٔ اجتماعی است که بر اساس پروتکل‌های آزاد وب و نرم‌افزارهای آزاد و کدباز ساخته شده است. این شبکه مانند ایمیل غیرمتمرکز است.
     about_this: درباره
     administered_by: 'با مدیریت:'
+    api: رابط برنامه‌نویسی کاربردی
     closed_registrations: ثبت‌نام روی این سرور هم‌اینک فعال نیست. اما شما می‌توانید سرور دیگری بیابید و با حسابی که آن‌جا می‌سازید دقیقاً به همین شبکه دسترسی داشته باشید.
     contact: تماس
     contact_missing: تعیین نشده
     contact_unavailable: موجود نیست
+    documentation: مستندات
     extended_description_html: |
       <h3>جای خوبی برای قانون‌ها</h3>
       <p>توضیحات تکمیلی نوشته نشده است.</p>
@@ -25,22 +27,28 @@ fa:
     hosted_on: ماستدون، میزبانی‌شده روی %{domain}
     learn_more: بیشتر بدانید
     other_instances: فهرست سرورها
+    privacy_policy: سیاست رازداری
     source_code: کدهای منبع
     status_count_after: چیز نوشته‌اند
     status_count_before: که جمعاً
+    terms: شرایط کاربری
     user_count_after: کاربر
     user_count_before: دارای
     what_is_mastodon: ماستدون چیست؟
   accounts:
+    choices_html: 'انتخاب‌های %{name}:'
     follow: پی بگیرید
     followers: پیگیران
     following: پی می‌گیرد
+    joined: کاربر از %{date}
     media: عکس و ویدیو
     moved_html: "%{name} حساب خود را به %{new_profile_link} منتقل کرده است:"
     network_hidden: این اطلاعات در دسترس نیست
     nothing_here: این‌جا چیزی نیست!
     people_followed_by: کسانی که %{name} پی می‌گیرد
     people_who_follow: کسانی که %{name} را پی می‌گیرند
+    pin_errors:
+      following: شما باید پیگیر کاربری باشید که می‌خواهید ثابت کنید
     posts: نوشته‌ها
     posts_with_replies: نوشته‌ها و پاسخ‌ها
     reserved_username: این نام کاربری در دسترس نیست
@@ -176,6 +184,7 @@ fa:
         unsuspend_account: "%{name} حساب کاربر %{target} را از تعلیق خارج کرد"
         update_custom_emoji: "%{name} شکلک %{target} را به‌روز کرد"
         update_status: "%{name} نوشتهٔ %{target} را به‌روز کرد"
+      deleted_status: "(بوق پاک‌شده)"
       title: سیاههٔ بازرسی
     custom_emojis:
       by_domain: دامین
@@ -364,11 +373,14 @@ fa:
         desc_html: نمایش علامت همکار روی صفحهٔ کاربر
         title: نمایش علامت همکار
       site_description:
-        desc_html: معرفی کوتاهی که روی صفحهٔ اصلی و همچنین به عنوان فرادادهٔ صفحه‌ها نمایش می‌یابد. می‌توانید HTML بنویسید, به‌ویژه <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
+        desc_html: معرفی کوتاهی که روی صفحهٔ اصلی نمایش می‌یابد. دربارهٔ این که چه چیزی دربارهٔ این سرور ماستدون ویژه است یا هر چیز مهم دیگری بنویسید. می‌توانید HTML بنویسید، به‌ویژه <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
         title: دربارهٔ سایت
       site_description_extended:
         desc_html: جای خوبی برای نوشتن سیاست‌های کاربری، قانون‌ها، راهنماها، و هر چیزی که ویژهٔ این سرور است. تگ‌های HTML هم مجاز است
         title: اطلاعات تکمیلی سفارشی
+      site_short_description:
+        desc_html: روی نوار کناری و همچنین به عنوان فرادادهٔ صفحه‌ها نمایش می‌یابد. در یک بند توضیح دهید که ماستدون چیست و چرا این سرور با بقیه فرق دارد. اگر خالی بگذارید، به جایش «دربارهٔ سایت» نمایش می‌یابد.
+        title: توضیح کوتاه دربارهٔ سایت
       site_terms:
         desc_html: می‌توانید سیاست رازداری، شرایط استفاده، یا سایر مسائل قانونی را به دلخواه خود بنویسید. تگ‌های HTML هم مجاز است
         title: شرایط استفادهٔ سفارشی
@@ -390,6 +402,7 @@ fa:
       media:
         title: رسانه
       no_media: بدون عکس یا ویدیو
+      no_status_selected: هیچ بوقی تغییری نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
       title: نوشته‌های حساب
       with_media: دارای عکس یا ویدیو
     subscriptions:
@@ -530,6 +543,10 @@ fa:
     true_privacy_html: لطفاً بدانید که <strong>داشتن حریم خصوصی واقعی تنها با رمزگذاری سرتاسر (end-to-end encryption) ممکن است</strong>.
     unlocked_warning_html: هر کسی می‌تواند پیگیر شما شود تا بلافاصله نوشته‌های خصوصی شما را ببیند. اگر  %{lock_link} خواهید توانست درخواست‌های پیگیری را بررسی کرده و نپذیرید.
     unlocked_warning_title: حساب شما خصوصی نیست
+  footer:
+    developers: برنامه‌نویسان
+    more: بیشتر…
+    resources: منابع
   generic:
     changes_saved_msg: تغییرات با موفقیت ذخیره شدند!
     save_changes: ذخیرهٔ تغییرات
@@ -747,6 +764,7 @@ fa:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: برای تأیید، کدی را که برنامهٔ تأییدکننده ساخته است وارد کنید
     description_html: اگر <strong>ورود دومرحله‌ای</strong> را فعال کنید، برای ورود به سیستم به تلفن خود نیاز خواهید داشت تا برایتان یک کد موقتی بسازد.

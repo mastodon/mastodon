@@ -50,6 +50,12 @@ code {
         color: $highlight-text-color;
       }
     }
+
+    code {
+      border-radius: 3px;
+      padding: 0.2em 0.4em;
+      background: darken($ui-base-color, 12%);
+    }
   }
 
   .card {
