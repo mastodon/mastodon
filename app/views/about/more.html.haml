@@ -18,11 +18,11 @@
           .information-board__section
             %span= t 'about.user_count_before'
             %strong= number_with_delimiter @instance_presenter.user_count
-            %span= t 'about.user_count_after'
+            %span= t 'about.user_count_after', count: @instance_presenter.user_count
           .information-board__section
             %span= t 'about.status_count_before'
             %strong= number_with_delimiter @instance_presenter.status_count
-            %span= t 'about.status_count_after'
+            %span= t 'about.status_count_after', count: @instance_presenter.status_count
         .row__mascot
           .landing-page__mascot
             = image_tag asset_pack_path('elephant_ui_plane.svg')
