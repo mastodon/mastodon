@@ -17,7 +17,7 @@ class ActivityPub::FetchRemoteKeyService < BaseService
         @json = fetch_resource(uri, id)
       end
     else
-      @json = body_to_json(prefetched_body)
+      @json = body_to_json(prefetched_body, compare_id: id ? uri : nil)
     end
 
     return unless supported_context?(@json) && expected_type?
