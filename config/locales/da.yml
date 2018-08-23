@@ -6,6 +6,7 @@ da:
     about_this: Om
     administered_by: 'Administreret af:'
     api: API
+    apps: Apps til mobilen
     closed_registrations: Registreringer er på nuværrende tidspunkt lukkede for denne instans. Du kan dog finde andre instanser du kan oprette dig på og få adgang til det samme netværk derfra.
     contact: Kontakt
     contact_missing: Ikke sat
@@ -36,6 +37,7 @@ da:
     user_count_before: Hjem til
     what_is_mastodon: Hvad er Mastodon?
   accounts:
+    choices_html: "%{name}s valg:"
     follow: Følg
     followers: Følgere
     following: Følger
@@ -46,6 +48,8 @@ da:
     nothing_here: Der er intet her!
     people_followed_by: Folk som %{name} følger
     people_who_follow: Folk der følger %{name}
+    pin_errors:
+      following: Du er nødt til at følge den person du ønsker at støtte
     posts: Trut
     posts_with_replies: Trut og svar
     reserved_username: Brugernavnet er allerede taget
@@ -181,6 +185,7 @@ da:
         unsuspend_account: "%{name} fjernede udelukkelsen fra %{target}s konto"
         update_custom_emoji: "%{name} opdaterede humørikonet %{target}"
         update_status: "%{name} opdaterede status for %{target}"
+      deleted_status: "(slettet status)"
       title: Revisionslog
     custom_emojis:
       by_domain: Domæne
@@ -266,6 +271,7 @@ da:
       domain: Domæne
       new:
         create: Tilføj domæne
+        title: Ny email blokade opslag
       title: Email sortliste
     instances:
       account_count: Kendte konti
@@ -274,6 +280,7 @@ da:
       search: Søg
       title: Kendte instanser
     invites:
+      deactivate_all: Deaktiver alle
       filter:
         all: Alle
         available: Tilgængelig
@@ -318,19 +325,26 @@ da:
       suspend_account: Udeluk konto
       target: Mål
       title: Anmeldelser
+      unassign: Utildel
       unresolved: Uløst
       updated_at: Opdateret
       view: Se
     settings:
+      bootstrap_timeline_accounts:
+        title: Standard følger for nye brugere
       contact_information:
         email: Forretnings email
         username: Kontakt brugernavn
       hero:
+        desc_html: Vist på forsiden. Mindst 600x100px anbefales. Hvis ikke sat, vil dette falde tilbage til billedet for instansen
         title: Billede af helt
       peers_api_enabled:
         title: Udgiv liste over opdagede instanser
+      preview_sensitive_media:
+        title: Vis følsomt medie i OpenGraph forhåndsvisninger
       registrations:
         closed_message:
+          desc_html: Vist på forsiden når registreringer er lukkede. Du kan bruge HTML tags
           title: Besked for lukkede registreringer
         deletion:
           desc_html: Tillad alle at slette deres konto
@@ -341,6 +355,8 @@ da:
         open:
           desc_html: Tillad alle at oprette en konto
           title: Åben registrering
+      show_known_fediverse_at_about_page:
+        title: Vis kendte fedivers på tidslinje forhåndsvisning
       show_staff_badge:
         desc_html: Vis personale emblem på en brugerside
         title: Vis personale emblem
@@ -351,6 +367,7 @@ da:
       site_title: Navn på instans
       timeline_preview:
         desc_html: Vis offentlig tidslinje på landingssiden
+        title: Tidslinje forhåndsvisning
       title: Indstillinger for side
     statuses:
       back_to_account: Tilbage til kontosiden
@@ -455,6 +472,7 @@ da:
     csv: CSV
     follows: Du følger
     mutes: Du dæmper
+    storage: Medie lager
   filters:
     contexts:
       home: Hjemme tidslinje
@@ -537,11 +555,13 @@ da:
     favourite:
       body: 'Din status blev favoriseret af %{name}:'
       subject: "%{name} favoriserede din status"
+      title: Ny favorit
     follow:
       body: "%{name} følger dig nu!"
       subject: "%{name} følger dig nu"
       title: Ny følger
     follow_request:
+      action: Håndter følgeranmodninger
       body: "%{name} har anmodet om at følge dig"
     mention:
       action: Svar
@@ -576,6 +596,8 @@ da:
     no_account_html: Har du ikke en konto? Du kan <a href='%{sign_up_path}' target='_blank'>oprette dig her</a>
     proceed: Fortsæt for at følge
     prompt: 'Du er ved at følge:'
+  remote_interaction:
+    prompt: 'Du ønsker at interagere med dette trut:'
   remote_unfollow:
     error: Fejl
     title: Titel
@@ -609,6 +631,7 @@ da:
     delete: Sletning af konto
     development: Udvikling
     edit_profile: Rediger profil
+    export: Data exportering
     followers: Godkendte følgere
     import: Importer
     migrate: Konto migrering
@@ -633,10 +656,11 @@ da:
     over_character_limit: grænsen på %{max} tegn er overskredet
     pin_errors:
       limit: Du har allerede fastgjort det maksimale antal trut
-      ownership: Dun kan ikke fastgøre en anden persons toot
+      ownership: Du kan ikke fastgøre en anden persons trut
       private: Ikke offentlige trut kan ikke blive fastgjort
       reblog: Fremhævede trut kan ikke fastgøres
     show_more: Vis mere
+    sign_in_to_participate: Log ind for at deltage i samtalen
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Kun-følgere
@@ -646,7 +670,7 @@ da:
       unlisted: Ikke listet
       unlisted_long: Alle kan se, men vil ikke være listet på offentlige tidslinjer
   stream_entries:
-    pinned: Fastgjort toot
+    pinned: Fastgjort trut
     reblogged: fremhævede
     sensitive_content: Følsomt indhold
   terms:
@@ -680,10 +704,12 @@ da:
       edit_profile_action: Opsæt profil
       explanation: Her er nogle råd til at starte med
       final_action: Kom igang med at poste
+      final_step: 'Start med at skrive opslag! Selv uden følgere vil dine offentlige beskeder kunne ses af andre, foreksempel på den lokale tidslinje og i hashtags. Måske kunne du tænke dig at introducere dig selv på #introductions hashtagget.'
       full_handle: Dit fulde brugernavn
       full_handle_hint: Dette er hvad du vil fortælle dine venner så de kan sende dig beskeder eller følge dig fra andre instanser.
       review_preferences_action: Ændre præferencer
       subject: Velkommen til Mastodon
+      tip_bridge_html: Hvis du kommer fra Twitter, kan du finde dine venner på Mastodon ved at bruge <a href="%{bridge_url}">bridge appen</a>. Den virker dog kun hvis de også bruger bridge appen!
       tip_following: Du følger som standard administratoren(e) for den server du er på. For at finde flere folk, tjek både den lokale og fælles tidslinje.
       tip_local_timeline: Den lokale tidslinje er et have af folk i %{instance}. Disse er dine umiddelbare naboer!
       tip_mobile_webapp: Hvis din mobil browser tilbyder dig at tilføje Mastodon til din hjemmeskærm, kan du modtage push meddelelser. Dette opfører sig på mange måder ligesom en almindelig app!

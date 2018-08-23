@@ -123,7 +123,7 @@
     - if @account.suspended?
       = link_to t('admin.accounts.undo_suspension'), admin_account_suspension_path(@account.id), method: :delete, class: 'button' if can?(:unsuspend, @account)
     - else
-      = link_to t('admin.accounts.perform_full_suspension'), admin_account_suspension_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button' if can?(:suspend, @account)
+      = link_to t('admin.accounts.perform_full_suspension'), new_admin_account_suspension_path(@account.id), class: 'button' if can?(:suspend, @account)
 
 - if !@account.local? && @account.hub_url.present?
   %hr.spacer/
