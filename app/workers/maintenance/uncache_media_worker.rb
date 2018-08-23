@@ -8,7 +8,7 @@ class Maintenance::UncacheMediaWorker
   def perform(media_attachment_id)
     media = MediaAttachment.find(media_attachment_id)
 
-    return unless media.file.exists?
+    return if media.file.blank?
 
     media.file.destroy
     media.save

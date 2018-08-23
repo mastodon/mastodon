@@ -573,17 +573,6 @@ RSpec.describe Status, type: :model do
           expect(results).to include(es_status)
         end
       end
-
-      context 'where that account is silenced' do
-        it 'includes statuses from other accounts that are silenced' do
-          @account.update(silenced: true)
-          other_silenced_account = Fabricate(:account, silenced: true)
-          other_status = Fabricate(:status, account: other_silenced_account)
-
-          results = Status.as_public_timeline(@account)
-          expect(results).to include(other_status)
-        end
-      end
     end
   end
 

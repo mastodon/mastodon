@@ -6,6 +6,7 @@ nl:
     about_this: Over deze server
     administered_by: 'Beheerd door:'
     api: API
+    apps: Mobiele apps
     closed_registrations: Registreren op deze server is momenteel niet mogelijk. Je kunt echter een andere server vinden om zo toegang te krijgen tot het netwerk.
     contact: Contact
     contact_missing: Niet ingesteld
@@ -36,6 +37,7 @@ nl:
     user_count_before: Thuisbasis van
     what_is_mastodon: Wat is Mastodon?
   accounts:
+    choices_html: 'Aanbevelingen van %{name}:'
     follow: Volgen
     followers: Volgers
     following: Volgend
@@ -46,6 +48,8 @@ nl:
     nothing_here: Hier is niets!
     people_followed_by: Mensen die %{name} volgen
     people_who_follow: Mensen die %{name} volgen
+    pin_errors:
+      following: Je moet dit account wel al volgen, alvorens je het kan aanbevelen
     posts: Toots
     posts_with_replies: Toots en reacties
     reserved_username: Deze gebruikersnaam is gereserveerd
@@ -181,6 +185,7 @@ nl:
         unsuspend_account: Opschorten van account %{target} is door %{name} opgeheven
         update_custom_emoji: Emoji %{target} is door %{name} bijgewerkt
         update_status: De toots van %{target} zijn door %{name} bijgewerkt
+      deleted_status: "(verwijderde toot}"
       title: Auditlog
     custom_emojis:
       by_domain: Domein
@@ -277,6 +282,7 @@ nl:
       search: Zoeken
       title: Bekende servers
     invites:
+      deactivate_all: Alles deactiveren
       filter:
         all: Alles
         available: Beschikbaar
@@ -398,6 +404,7 @@ nl:
       media:
         title: Media
       no_media: Geen media
+      no_status_selected: Er werden geen toots gewijzigd, omdat er geen enkele werd geselecteerd
       title: Toots van account
       with_media: Met media
     subscriptions:
@@ -650,11 +657,14 @@ nl:
     publishing: Publiceren
     web: Webapp
   remote_follow:
-    acct: Geef jouw account@domein.tld op waarvandaan je wilt volgen
+    acct: Geef jouw account@domein op die je wilt gebruiken
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
     no_account_html: Heb je geen account? Je kunt er <a href='%{sign_up_path}' target='_blank'>hier een registreren</a>
     proceed: Ga door om te volgen
     prompt: 'Jij gaat volgen:'
+  remote_interaction:
+    proceed: Ga de interactie aan
+    prompt: 'Jij wilt de interactie aangaan met deze toot:'
   remote_unfollow:
     error: Fout
     title: Titel
@@ -738,6 +748,7 @@ nl:
       private: Alleen openbare toots kunnen worden vastgezet
       reblog: Een boost kan niet worden vastgezet
     show_more: Meer tonen
+    sign_in_to_participate: Meld je aan om aan dit gesprek mee te doen
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Alleen volgers
