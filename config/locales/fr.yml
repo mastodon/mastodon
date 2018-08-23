@@ -32,8 +32,8 @@ fr:
     source_code: Code source
     status_count_after: statuts
     status_count_before: Ayant publié
-    terms: Conditions d'utilisation
-    user_count_after: utilisateur⋅ice⋅s
+    terms: Conditions d’utilisation
+    user_count_after: membres
     user_count_before: Abrite
     what_is_mastodon: Qu’est-ce que Mastodon ?
   accounts:
@@ -52,7 +52,7 @@ fr:
       following: Vous devez être déjà abonné·e à la personne que vous désirez recommander
     posts: Statuts
     posts_with_replies: Statuts & réponses
-    reserved_username: Ce nom d’utilisateur⋅ice est réservé
+    reserved_username: Ce pseudonyme est réservé
     roles:
       admin: Admin
       bot: Robot
@@ -82,7 +82,7 @@ fr:
       disable: Désactiver
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
       disabled: Désactivé
-      display_name: Nom affiché
+      display_name: Nom public
       domain: Domaine
       edit: Éditer
       email: Courriel
@@ -126,7 +126,7 @@ fr:
       redownload: Rafraîchir les avatars
       remove_avatar: Supprimer l’avatar
       resend_confirmation:
-        already_confirmed: Cet·te utilisateur·ice est déjà confirmé·e
+        already_confirmed: Cet·te membre est déjà confirmé·e
         send: Renvoyer un courriel de confirmation
         success: Courriel de confirmation envoyé avec succès !
       reset: Réinitialiser
@@ -137,7 +137,7 @@ fr:
         admin: Administrateur
         moderator: Modérateur
         staff: Équipe
-        user: Utilisateur
+        user: Membre
       salmon_url: URL Salmon
       search: Rechercher
       shared_inbox_url: URL de la boite de réception partagée
@@ -153,35 +153,35 @@ fr:
       undo_silenced: Démasquer
       undo_suspension: Annuler la suspension
       unsubscribe: Se désabonner
-      username: Nom d’utilisateur⋅ice
+      username: Pseudonyme
       web: Web
     action_logs:
       actions:
-        assigned_to_self_report: "%{name} s’est assigné·e le signalement de %{target}"
-        change_email_user: "%{name} a modifié l’adresse de courriel de l’utilisateur·rice %{target}"
-        confirm_user: "%{name} adresse courriel confirmée de l’utilisateur·ice %{target}"
+        assigned_to_self_report: "%{name} s’est assigné·e le signalement du compte %{target}"
+        change_email_user: "%{name} a modifié l’adresse de courriel du compte %{target}"
+        confirm_user: "%{name} a confirmé l’adresse courriel du compte %{target}"
         create_custom_emoji: "%{name} a importé de nouveaux émojis %{target}"
         create_domain_block: "%{name} a bloqué le domaine %{target}"
         create_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste noire"
-        demote_user: "%{name} a rétrogradé l’utilisateur·ice %{target}"
+        demote_user: "%{name} a rétrogradé le compte %{target}"
         destroy_domain_block: "%{name} a débloqué le domaine %{target}"
         destroy_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste blanche"
         destroy_status: "%{name} a enlevé le statut de %{target}"
-        disable_2fa_user: "%{name} a désactivé l’authentification à deux facteurs pour l’utilisateur·ice %{target}"
+        disable_2fa_user: "%{name} a désactivé l’authentification à deux facteurs pour le compte %{target}"
         disable_custom_emoji: "%{name} a désactivé l’émoji %{target}"
-        disable_user: "%{name} a désactivé le login pour l’utilisateur·ice %{target}"
+        disable_user: "%{name} a désactivé la connexion pour le compte %{target}"
         enable_custom_emoji: "%{name} a activé l’émoji %{target}"
-        enable_user: "%{name} a activé le login pour l’utilisateur·ice %{target}"
+        enable_user: "%{name} a activé la connection pour le compte %{target}"
         memorialize_account: "%{name} a transformé le compte de %{target} en une page de mémorial"
-        promote_user: "%{name} a promu l’utilisateur·ice %{target}"
-        remove_avatar_user: "%{name} a supprimé l’avatar de %{target}"
+        promote_user: "%{name} a promu le compte %{target}"
+        remove_avatar_user: "%{name} a supprimé l’avatar du compte %{target}"
         reopen_report: "%{name} a rouvert le signalement %{target}"
-        reset_password_user: "%{name} a réinitialisé le mot de passe de %{target}"
+        reset_password_user: "%{name} a réinitialisé le mot de passe du compte %{target}"
         resolve_report: "%{name} a résolu la dénonciation de %{target}"
         silence_account: "%{name} a mis le compte %{target} en mode silence"
         suspend_account: "%{name} a suspendu le compte %{target}"
         unassigned_report: "%{name} a désassigné le signalement %{target}"
-        unsilence_account: "%{name} a mis fin au mode silence de %{target}"
+        unsilence_account: "%{name} a mis fin au mode silence du compte %{target}"
         unsuspend_account: "%{name} a réactivé le compte de %{target}"
         update_custom_emoji: "%{name} a mis à jour l’émoji %{target}"
         update_status: "%{name} a mis à jour le statut de %{target}"
@@ -222,17 +222,17 @@ fr:
       features: Fonctionnalités
       hidden_service: Fédération avec des services cachés
       open_reports: signalements non résolus
-      recent_users: Utilisateur·rice·s récent·e·s
+      recent_users: Membres récent·e·s
       search: Recherche plein texte
-      single_user_mode: Mode utilisateur·ice unique
+      single_user_mode: Mode membre
       software: Logiciel
       space: Espace utilisé
       title: Tableau de bord
-      total_users: utilisateur·rice·s au total
+      total_users: membres au total
       trends: Tendances
       week_interactions: interactions cette semaine
       week_users_active: actif·ve·s cette semaine
-      week_users_new: utilisateur·rice·s cette semaine
+      week_users_new: membres cette semaine
     domain_blocks:
       add_new: Ajouter
       created_msg: Le blocage de domaine est désormais activé
@@ -338,14 +338,14 @@ fr:
       view: Voir
     settings:
       activity_api_enabled:
-        desc_html: Nombre de statuts affichés localement, d’utilisateur·ice·s actif·ve·s et de nouveaux enregistrements dans les registres hebdomadaires
-        title: Publier des statistiques agrégées sur l’activité des utilisateur·ice·s
+        desc_html: Nombre de statuts affichés localement, de membres actif·ve·s et de nouveaux enregistrements dans les registres hebdomadaires
+        title: Publier des statistiques agrégées sur l’activité des membres
       bootstrap_timeline_accounts:
-        desc_html: Séparez les noms d’utilisateur·ice par des virgules. Ne fonctionne qu’avec des comptes locaux et non verrouillés. Si laissé vide, tous les administrateur⋅ice⋅s locaux sont sélectionné⋅e⋅s.
-        title: Abonnements par défaut pour les nouveaux·elles utilisateur·ice·s
+        desc_html: Séparez les pseudonymes par des virgules. Ne fonctionne qu’avec des comptes locaux et non verrouillés. Si laissé vide, tous les administrateur⋅ice⋅s locaux sont sélectionné⋅e⋅s.
+        title: Abonnements par défaut pour les nouveaux·elles membres
       contact_information:
         email: Entrez une adresse courriel publique
-        username: Entrez un nom d’utilisateur⋅ice
+        username: Entrez un pseudonyme
       hero:
         desc_html: Affichée sur la page d’accueil. Au moins 600x100px recommandé. Lorsqu’elle n’est pas définie, se rabat sur la vignette de l’instance
         title: Image d’en-tête
@@ -360,7 +360,7 @@ fr:
           desc_html: Affiché sur la page d’accueil lorsque les inscriptions sont fermées<br>Vous pouvez utiliser des balises HTML
           title: Message de fermeture des inscriptions
         deletion:
-          desc_html: Permettre à tou·te·s les utilisateur·ice·s de supprimer leur compte
+          desc_html: Permettre à tou·te·s les membres de supprimer leur compte
           title: Autoriser les suppressions de compte
         min_invite_role:
           disabled: Personne
@@ -372,7 +372,7 @@ fr:
         desc_html: Lorsque l’option est activée, les pouets provenant de toutes les instances connues sont affichés dans la prévisualisation. Sinon, seuls les pouets locaux sont affichés.
         title: Afficher le fediverse connu dans la prévisualisation du fil
       show_staff_badge:
-        desc_html: Montrer un badge de responsable sur une page utilisateur·ice
+        desc_html: Montrer un badge de responsable sur une page de profil
         title: Montrer un badge de responsable
       site_description:
         desc_html: Paragraphe introductif sur la page d’accueil. Décrivez ce qui rend spécifique ce serveur Mastodon et toute autre chose importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
@@ -467,7 +467,7 @@ fr:
     following: 'Youpi ! Vous suivez  :'
     post_follow:
       close: Ou bien, vous pouvez fermer cette fenêtre.
-      return: Afficher le profil de l’utilisateur⋅ice
+      return: Afficher le profil
       web: Retour à l’interface web
     title: Suivre %{acct}
   datetime:
@@ -487,7 +487,7 @@ fr:
   deletes:
     bad_password_msg: Bien essayé ! Mot de passe incorrect
     confirm_password: Entrez votre mot de passe pour vérifier votre identité
-    description_html: Cela va supprimer votre compte et le désactiver de manière <strong>permanente et irréversible</strong>. Votre nom d’utilisateur⋅ice restera réservé afin d’éviter la confusion.
+    description_html: Cela va supprimer votre compte et le désactiver de manière <strong>permanente et irréversible</strong>. Votre pseudonyme restera réservé afin d’éviter la confusion.
     proceed: Supprimer compte
     success_msg: Votre compte a été supprimé avec succès
     warning_html: Seule la suppression du contenu depuis cette instance est garantie. Le contenu qui a été partagé est susceptible de laisser des traces. Les serveurs hors-ligne ainsi que ceux n’étant plus abonnés à vos publications ne mettront pas leur base de données à jour.
@@ -535,7 +535,7 @@ fr:
       title: Ajouter un nouveau filtre
   followers:
     domain: Domaine
-    explanation_html: Si vous voulez être sûr⋅e que vos statuts restent privés, vous devez savoir qui vous suit. <strong>Vos statuts privés seront diffusés à toutes les instances des utilisateur⋅ice⋅s qui vous suivent</strong>. Vous voudrez peut-être les passer en revue et les supprimer si vous n’êtes pas sûr⋅e que votre vie privée sera respectée par l’administration ou le logiciel de ces instances.
+    explanation_html: Si vous voulez être sûr⋅e que vos statuts restent privés, vous devez savoir qui vous suit. <strong>Vos statuts privés seront diffusés à toutes les instances des membres qui vous suivent</strong>. Vous voudrez peut-être les passer en revue et les supprimer si vous n’êtes pas sûr⋅e que votre vie privée sera respectée par l’administration ou le logiciel de ces instances.
     followers_count: Nombre d’abonné⋅e⋅s
     lock_link: Rendez votre compte privé
     purge: Retirer de la liste d’abonné⋅e⋅s
@@ -559,9 +559,9 @@ fr:
     preface: Vous pouvez importer certaines données comme les personnes que vous suivez ou bloquez sur votre compte sur cette instance à partir de fichiers créés sur une autre instance.
     success: Vos données ont été importées avec succès et seront traitées en temps et en heure
     types:
-      blocking: Liste d’utilisateur⋅ice⋅s bloqué⋅e⋅s
-      following: Liste d’utilisateur⋅ice⋅s suivi⋅e⋅s
-      muting: Liste d’utilisateur⋅ice⋅s que vous masquez
+      blocking: Liste de membres bloqué⋅e⋅s
+      following: Liste de memenres suivi⋅e⋅s
+      muting: Liste de membres que vous masquez
     upload: Importer
   in_memoriam_html: En mémoire de.
   invites:
@@ -767,7 +767,7 @@ fr:
       <h3 id="collect">Quelles informations collectons-nous ?</h3>
 
       <ul>
-        <li><em>Informations de base sur votre compte</em> : Si vous vous inscrivez sur ce serveur, il vous sera demandé de rentrer un identifiant, une adresse électronique et un mot de passe. Vous pourrez également ajouter des informations additionnelles sur votre profil, telles qu’un nom public et une biographie, ainsi que téléverser une image de profil et une image d’en-tête. Vos identifiant, nom public, biographie, image de profil et image d’en-tête seront toujours affichés publiquement.</li>
+        <li><em>Informations de base sur votre compte</em> : Si vous vous inscrivez sur ce serveur, il vous sera demandé de rentrer un pseudonyme une adresse électronique et un mot de passe. Vous pourrez également ajouter des informations additionnelles sur votre profil, telles qu’un nom public et une biographie, ainsi que téléverser une image de profil et une image d’en-tête. Vos pseudonyme, nom public, biographie, image de profil et image d’en-tête seront toujours affichés publiquement.</li>
       <li><em>Posts, liste d’abonnements et autres informations publiques</em> : La liste de vos abonnements ainsi que la liste de vos abonné·e·s sont publiques. Quand vous postez un message, la date et l’heure d’envoi ainsi que le nom de l’application utilisée pour sa transmission sont enregistré·e·s. Des médias, tels que des images ou des vidéos, peuvent être joints aux messages. Les posts publics et non listés sont affichés publiquement. Quand vous mettez en avant un post sur votre profil, ce post est également affiché publiquement. Vos messages sont délivrés à vos abonné·e·s, ce qui, dans certains cas, signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Quand vous supprimer un post, il est probable que vos abonné·e·s en soient informé·e·s. Partager un message ou le marquer comme favori est toujours une action publique.</li>
         <li><em>Posts directs et abonné·e·s uniquement</em> : Tous les posts sont stockés et traités par le serveur. Les messages abonné·e·s uniquement ne sont transmis qu’à vos abonné·e·s et aux personnes mentionnées dans le corps du message, tandis que les messages directs ne sont transmis qu’aux personnes mentionnées. Dans certains cas, cela signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Nous faisons un effort de bonne fois pour en limiter l’accès uniquement aux personnes autorisées, mais ce n’est pas nécessairement le cas des autres serveurs. Il est donc très important que vous vérifiiez les serveurs auxquels appartiennent vos abonné·e·s. Il vous est possible d’activer une option dans les paramètres afin d’approuver et de rejeter manuellement les nouveaux·lles abonné·e·s. <em>Gardez s’il-vous-plaît en mémoire que les opérateur·rice·s du serveur ainsi que celles et ceux de n’importe quel serveur récepteur peuvent voir ces messages</em> et qu’il est possible pour les destinataires de faire des captures d’écran, de copier et plus généralement de repartager ces messages. <em>Ne partager aucune information sensible à l’aide de Mastodon.</em></li>
         <li><em>IP et autres métadonnées</em> : Quand vous vous connectez, nous enregistrons votre adresse IP ainsi que le nom de votre navigateur web. Toutes les sessions enregistrées peuvent être consultées dans les paramètres, afin que vous puissiez les surveiller et éventuellement les révoquer. La dernière adresse IP utilisée est conservée pour une durée de 12 mois. Nous sommes également susceptibles de conserver les journaux du serveur, ce qui inclut l’adresse IP de chaque requête reçue.</li>
@@ -799,7 +799,7 @@ fr:
 
       <ul>
         <li>Pour ne pas conserver plus de 90 jours les journaux systèmes contenant les adresses IP de toutes les requêtes reçues par ce serveur.</li>
-        <li>Pour ne pas conserver plus de 12 mois les adresses IP associées aux utilisateur·ice·s enregistré·e·s.</li>
+        <li>Pour ne pas conserver plus de 12 mois les adresses IP associées aux membres enregistré·e·s.</li>
       </ul>
 
       <p>Vous pouvez demander une archive de votre contenu, incluant vos posts, vos médias joints, votre image de profil et votre image d’en-tête.</p>
@@ -875,7 +875,7 @@ fr:
       title: Récupération de l’archive
     welcome:
       edit_profile_action: Configuration du profil
-      edit_profile_step: Vous pouvez personnaliser votre profil en téléchargeant un avatar, une image d’en-tête, en changeant votre pseudo et plus encore. Si vous souhaitez examiner les nouveaux·lles abonné·e·s avant qu’il·elle·s ne soient autorisé·e·s à vous suivre, vous pouvez verrouiller votre compte.
+      edit_profile_step: Vous pouvez personnaliser votre profil en téléchargeant un avatar, une image d’en-tête, en changeant votre nom public et plus encore. Si vous souhaitez examiner les nouveaux·lles abonné·e·s avant qu’il·elle·s ne soient autorisé·e·s à vous suivre, vous pouvez verrouiller votre compte.
       explanation: Voici quelques conseils pour vous aider à démarrer
       final_action: Commencer à publier
       final_step: 'Commencez à poster ! Même sans abonné·e·s, vos messages publics peuvent être vus par d’autres, par exemple sur le fil public local et dans les hashtags. Vous pouvez vous présenter sur le hashtag #introductions.'
