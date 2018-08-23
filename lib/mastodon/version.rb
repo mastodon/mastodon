@@ -9,11 +9,11 @@ module Mastodon
     end
 
     def minor
-      4
+      5
     end
 
     def patch
-      3
+      0
     end
 
     def pre
@@ -21,7 +21,7 @@ module Mastodon
     end
 
     def flags
-      ''
+      'rc1'
     end
 
     def to_a
