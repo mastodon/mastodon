@@ -6,6 +6,7 @@ el:
     about_this: Σχετικά
     administered_by: 'Διαχειρίζεται από:'
     api: API
+    apps: Εφαρμογές κινητών
     closed_registrations: Αυτή τη στιγμή οι εγγραφές σε αυτό τον κόμβο είναι κλειστές. Αλλά! Μπορείς να βρεις έναν άλλο κόμβο για να ανοίξεις λογαριασμό και να έχεις πρόσβαση από εκεί στο ίδιο ακριβώς δίκτυο.
     contact: Επικοινωνία
     contact_missing: Δεν έχει οριστεί
@@ -36,6 +37,7 @@ el:
     user_count_before: Σπίτι για
     what_is_mastodon: Τι είναι το Mastodon;
   accounts:
+    choices_html: 'Επιλογές του/της %{name}:'
     follow: Ακολούθησε
     followers: Ακόλουθοι
     following: Ακολουθεί
@@ -46,6 +48,8 @@ el:
     nothing_here: Δεν υπάρχει τίποτα εδώ!
     people_followed_by: Χρήστες που ακολουθεί ο/η %{name}
     people_who_follow: Χρήστες που ακολουθούν τον/την %{name}
+    pin_errors:
+      following: Πρέπει ήδη να ακολουθείς το άτομο που θέλεις να επιδοκιμάσεις
     posts: Τουτ
     posts_with_replies: Τουτ και απαντήσεις
     reserved_username: Το όνομα χρήστη είναι κατειλημμένο
@@ -181,6 +185,7 @@ el:
         unsuspend_account: Ο/Η %{name} ήρε την παύση του λογαριασμού του χρήστη %{target}
         update_custom_emoji: Ο/Η %{name} ενημέρωσε το emoji %{target}
         update_status: Ο/Η %{name} ενημέρωσε την κατάσταση του/της %{target}
+      deleted_status: "(διαγραμμένη δημοσίευση)"
       title: Αρχείο ελέγχου
     custom_emojis:
       by_domain: Τομέας
@@ -277,6 +282,7 @@ el:
       search: Αναζήτηση
       title: Γνωστοί κόμβοι
     invites:
+      deactivate_all: Απενεργοποίηση όλων
       filter:
         all: Όλες
         available: Διαθέσιμες
@@ -398,6 +404,7 @@ el:
       media:
         title: Πολυμέσα
       no_media: Χωρίς πολυμέσα
+      no_status_selected: Καμία δημοσίευση δεν άλλαξε αφού καμία δεν ήταν επιλεγμένη
       title: Καταστάσεις λογαριασμού
       with_media: Με πολυμέσα
     subscriptions:
@@ -649,11 +656,14 @@ el:
     publishing: Δημοσίευση
     web: Διαδίκτυο
   remote_follow:
-    acct: Γράψε το ΌνομαΧρήστη@τομέας από όπου θέλεις να ακολουθήσεις
+    acct: Γράψε το ΌνομαΧρήστη@τομέα από όπου θέλεις να εκτελέσεις την ενέργεια αυτή
     missing_resource: Δεν βρέθηκε το απαιτούμενο URL ανακατεύθυνσης για το λογαριασμό σου
     no_account_html: Δεν έχεις λογαριασμό; Μπορείς <a href='%{sign_up_path}' target='_blank'>να γραφτείς εδώ</a>
     proceed: Συνέχισε για να ακολουθήσεις
     prompt: 'Θα ακολουθήσεις:'
+  remote_interaction:
+    proceed: Συνέχισε για να αλληλεπιδράσεις
+    prompt: 'Θέλεις να αλληλεπιδράσεις με αυτό το τουτ:'
   remote_unfollow:
     error: Σφάλμα
     title: Τίτλος
@@ -737,6 +747,7 @@ el:
       private: Τα μη δημόσια τουτ δεν καρφιτσώνονται
       reblog: Οι προωθήσεις δεν καρφιτσώνονται
     show_more: Δείξε περισσότερα
+    sign_in_to_participate: Εγγράφου για να συμμετάσχεις στη συζήτηση
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Μόνο ακόλουθοι
