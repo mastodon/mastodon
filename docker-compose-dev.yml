@@ -33,6 +33,7 @@ services:
     depends_on:
       - db
       - redis
+      - prometheus_exporter
 
   streaming:
     image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
@@ -61,6 +62,13 @@ services:
     depends_on:
       - db
       - redis
+
+  prometheus_exporter:
+    image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/prometheus_exporter:latest
+    ports:
+      - "9394:9394"
+    networks:
+      - external_network
 
 networks:
   external_network:
