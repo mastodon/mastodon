@@ -18,12 +18,12 @@ import classNames from 'classnames';
 // to use the progress bar to show download progress
 import Bundle from '../features/ui/components/bundle';
 
-export const textForScreenReader = (intl, status, rebloggedByText = false) => {
+export const textForScreenReader = (intl, status, rebloggedByText = false, expanded = false) => {
   const displayName = status.getIn(['account', 'display_name']);
 
   const values = [
     displayName.length === 0 ? status.getIn(['account', 'acct']).split('@')[0] : displayName,
-    status.get('search_index'),
+    status.get('spoiler_text') && !expanded ? status.get('spoiler_text') : status.get('search_index').slice(status.get('spoiler_text').length),
     intl.formatDate(status.get('created_at'), { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' }),
     status.getIn(['account', 'acct']),
   ];
@@ -268,7 +268,7 @@ export default class Status extends ImmutablePureComponent {
 
     return (
       <HotKeys handlers={handlers}>
-        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText)}>
+        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText, !status.get('hidden'))}>
           {prepend}
 
           <div className={classNames('status', `status-${status.get('visibility')}`, { muted: this.props.muted })} data-id={status.get('id')}>

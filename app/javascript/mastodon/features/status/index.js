@@ -418,7 +418,7 @@ export default class Status extends ImmutablePureComponent {
             {ancestors}
 
             <HotKeys handlers={handlers}>
-              <div className='focusable' tabIndex='0' aria-label={textForScreenReader(intl, status)}>
+              <div className='focusable' tabIndex='0' aria-label={textForScreenReader(intl, status, false, !status.get('hidden'))}>
                 <DetailedStatus
                   status={status}
                   onOpenVideo={this.handleOpenVideo}
