@@ -30,6 +30,8 @@ class Form::AdminSettings
     :show_staff_badge=,
     :bootstrap_timeline_accounts,
     :bootstrap_timeline_accounts=,
+    :theme,
+    :theme=,
     :min_invite_role,
     :min_invite_role=,
     :activity_api_enabled,
