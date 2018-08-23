@@ -21,6 +21,7 @@
 #  account_id             :bigint(8)        not null
 #  application_id         :bigint(8)
 #  in_reply_to_account_id :bigint(8)
+#  local_only             :boolean
 #
 
 class Status < ApplicationRecord
@@ -73,6 +74,7 @@ class Status < ApplicationRecord
 
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
+  scope :without_local_only, -> { where(local_only: [false, nil]) }
   scope :with_public_visibility, -> { where(visibility: :public) }
   scope :tagged_with, ->(tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag }) }
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
@@ -336,7 +338,7 @@ class Status < ApplicationRecord
       visibility = [:public, :unlisted]
 
       if account.nil?
-        where(visibility: visibility)
+        where(visibility: visibility).without_local_only
       elsif target_account.blocking?(account) # get rid of blocked peeps
         none
       elsif account.id == target_account.id # author can see own stuff
@@ -379,7 +381,7 @@ class Status < ApplicationRecord
     end
 
     def filter_timeline_default(query)
-      query.excluding_silenced_accounts
+      query.without_local_only.excluding_silenced_accounts
     end
 
     def account_silencing_filter(account)

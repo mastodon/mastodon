@@ -35,7 +35,7 @@ class AccountsController < ApplicationController
       end
 
       format.rss do
-        @statuses = cache_collection(default_statuses.without_reblogs.without_replies.limit(PAGE_SIZE), Status)
+        @statuses = cache_collection(default_statuses.without_local_only.without_reblogs.without_replies.limit(PAGE_SIZE), Status)
         render xml: RSS::AccountSerializer.render(@account, @statuses)
       end
 
