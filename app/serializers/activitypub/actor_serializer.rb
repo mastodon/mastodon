@@ -93,11 +93,11 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   end
 
   def avatar_exists?
-    object.avatar.exists?
+    object.avatar?
   end
 
   def header_exists?
-    object.header.exists?
+    object.header?
   end
 
   def manually_approves_followers
