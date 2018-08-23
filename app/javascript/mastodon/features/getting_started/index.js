@@ -31,6 +31,7 @@ const messages = defineMessages({
   discover: { id: 'navigation_bar.discover', defaultMessage: 'Discover' },
   personal: { id: 'navigation_bar.personal', defaultMessage: 'Personal' },
   security: { id: 'navigation_bar.security', defaultMessage: 'Security' },
+  menu: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
 });
 
 const mapStateToProps = state => ({
@@ -115,7 +116,7 @@ export default class GettingStarted extends ImmutablePureComponent {
     }
 
     return (
-      <Column>
+      <Column label={intl.formatMessage(messages.menu)}>
         {multiColumn && <div className='column-header__wrapper'>
           <h1 className='column-header'>
             <button>
