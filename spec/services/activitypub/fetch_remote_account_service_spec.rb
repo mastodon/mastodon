@@ -59,7 +59,6 @@ RSpec.describe ActivityPub::FetchRemoteAccountService, type: :service do
       it 'returns nil' do
         expect(account).to be_nil
       end
-
     end
 
     context 'when URI and WebFinger share the same host' do
@@ -118,6 +117,12 @@ RSpec.describe ActivityPub::FetchRemoteAccountService, type: :service do
       end
 
       include_examples 'sets profile data'
+    end
+
+    context 'with wrong id' do
+      it 'does not create account' do
+        expect(subject.call('https://fake.address/@foo', prefetched_body: Oj.dump(actor))).to be_nil
+      end
     end
   end
 end
