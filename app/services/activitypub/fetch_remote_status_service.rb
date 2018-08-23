@@ -8,7 +8,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
     @json = if prefetched_body.nil?
               fetch_resource(uri, id, on_behalf_of)
             else
-              body_to_json(prefetched_body)
+              body_to_json(prefetched_body, compare_id: id ? uri : nil)
             end
 
     return unless supported_context? && expected_type?
