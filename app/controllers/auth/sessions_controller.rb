@@ -6,7 +6,7 @@ class Auth::SessionsController < Devise::SessionsController
   layout 'auth'
 
   skip_before_action :require_no_authentication, only: [:create]
-  skip_before_action :check_suspension, only: [:destroy]
+  skip_before_action :check_user_permissions, only: [:destroy]
   prepend_before_action :authenticate_with_two_factor, if: :two_factor_enabled?, only: [:create]
   before_action :set_instance_presenter, only: [:new]
   before_action :set_body_classes
