@@ -74,14 +74,10 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
     fog_public: true
   )
 else
-  require 'fog/local'
-
   Paperclip::Attachment.default_options.merge!(
-    fog_credentials: {
-      provider: 'Local',
-      local_root: ENV.fetch('PAPERCLIP_ROOT_PATH') { Rails.root.join('public', 'system') },
-    },
-    fog_directory: '',
-    fog_host: ENV.fetch('PAPERCLIP_ROOT_URL') { '/system' }
+    storage: :filesystem,
+    use_timestamp: true,
+    path: (ENV['PAPERCLIP_ROOT_PATH'] || ':rails_root/public/system') + '/:class/:attachment/:id_partition/:style/:filename',
+    url: (ENV['PAPERCLIP_ROOT_URL'] || '/system') + '/:class/:attachment/:id_partition/:style/:filename',
   )
 end
