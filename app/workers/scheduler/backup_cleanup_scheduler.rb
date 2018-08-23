@@ -6,7 +6,7 @@ class Scheduler::BackupCleanupScheduler
   sidekiq_options unique: :until_executed
 
   def perform
-    old_backups.find_each(&:destroy!)
+    old_backups.reorder(nil).find_each(&:destroy!)
   end
 
   private
