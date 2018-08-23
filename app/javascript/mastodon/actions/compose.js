@@ -40,6 +40,7 @@ export const COMPOSE_SENSITIVITY_CHANGE = 'COMPOSE_SENSITIVITY_CHANGE';
 export const COMPOSE_SPOILERNESS_CHANGE = 'COMPOSE_SPOILERNESS_CHANGE';
 export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE  = 'COMPOSE_VISIBILITY_CHANGE';
+export const COMPOSE_FEDERATION_CHANGE  = 'COMPOSE_FEDERATION_CHANGE';
 export const COMPOSE_LISTABILITY_CHANGE = 'COMPOSE_LISTABILITY_CHANGE';
 export const COMPOSE_COMPOSING_CHANGE = 'COMPOSE_COMPOSING_CHANGE';
 
@@ -125,6 +126,7 @@ export function submitCompose() {
       sensitive: getState().getIn(['compose', 'sensitive']),
       spoiler_text: getState().getIn(['compose', 'spoiler_text'], ''),
       visibility: getState().getIn(['compose', 'privacy']),
+      local_only: !getState().getIn(['compose', 'federation']),
     }, {
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
@@ -441,6 +443,13 @@ export function changeComposeSpoilerText(text) {
 export function changeComposeVisibility(value) {
   return {
     type: COMPOSE_VISIBILITY_CHANGE,
+    value,
+  };
+};
+
+export function changeComposeFederation(value) {
+  return {
+    type: COMPOSE_FEDERATION_CHANGE,
     value,
   };
 };
