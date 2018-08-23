@@ -2,7 +2,7 @@
   = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
 
 - content_for :content do
-  - if user_signed_in?
+  - if user_signed_in? && !@hide_header
     .account-header
       .avatar= image_tag current_account.avatar.url(:original)
       .name

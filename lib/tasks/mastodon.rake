@@ -502,18 +502,24 @@ namespace :mastodon do
 
     desc 'Remove media attachments attributed to silenced accounts'
     task remove_silenced: :environment do
-      MediaAttachment.where(account: Account.silenced).select(:id).find_in_batches do |media_attachments|
+      nb_media_attachments = 0
+      MediaAttachment.where(account: Account.silenced).select(:id).reorder(nil).find_in_batches do |media_attachments|
+        nb_media_attachments += media_attachments.length
         Maintenance::DestroyMediaWorker.push_bulk(media_attachments.map(&:id))
       end
+      puts "Scheduled the deletion of #{nb_media_attachments} media attachments"
     end
 
     desc 'Remove cached remote media attachments that are older than NUM_DAYS. By default 7 (week)'
     task remove_remote: :environment do
       time_ago = ENV.fetch('NUM_DAYS') { 7 }.to_i.days.ago
+      nb_media_attachments = 0
 
-      MediaAttachment.where.not(remote_url: '').where.not(file_file_name: nil).where('created_at < ?', time_ago).select(:id).find_in_batches do |media_attachments|
+      MediaAttachment.where.not(remote_url: '').where.not(file_file_name: nil).where('created_at < ?', time_ago).select(:id).reorder(nil).find_in_batches do |media_attachments|
+        nb_media_attachments += media_attachments.length
         Maintenance::UncacheMediaWorker.push_bulk(media_attachments.map(&:id))
       end
+      puts "Scheduled the deletion of #{nb_media_attachments} media attachments"
     end
 
     desc 'Set unknown attachment type for remote-only attachments'
@@ -527,10 +533,13 @@ namespace :mastodon do
     task redownload_avatars: :environment do
       accounts = Account.remote
       accounts = accounts.where(domain: ENV['DOMAIN']) if ENV['DOMAIN'].present?
+      nb_accounts = 0
 
-      accounts.select(:id).find_in_batches do |accounts_batch|
+      accounts.select(:id).reorder(nil).find_in_batches do |accounts_batch|
+        nb_accounts += accounts_batch.length
         Maintenance::RedownloadAccountMediaWorker.push_bulk(accounts_batch.map(&:id))
       end
+      puts "Scheduled the download of avatars/headers for #{nb_accounts} remote users"
     end
   end
 
@@ -561,7 +570,7 @@ namespace :mastodon do
 
     desc 'Generates home timelines for users who logged in in the past two weeks'
     task build: :environment do
-      User.active.select(:id, :account_id).find_in_batches do |users|
+      User.active.select(:id, :account_id).reorder(nil).find_in_batches do |users|
         RegenerationWorker.push_bulk(users.map(&:account_id))
       end
     end

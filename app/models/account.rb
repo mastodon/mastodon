@@ -193,6 +193,13 @@ class Account < ApplicationRecord
     ResolveAccountService.new.call(acct)
   end
 
+  def suspend!
+    transaction do
+      user&.disable! if local?
+      update!(suspended: true)
+    end
+  end
+
   def unsuspend!
     transaction do
       user&.enable! if local?

@@ -6,6 +6,7 @@ en:
     about_this: About
     administered_by: 'Administered by:'
     api: API
+    apps: Mobile apps
     closed_registrations: Registrations are currently closed on this instance. However! You can find a different instance to make an account on and get access to the very same network from there.
     contact: Contact
     contact_missing: Not set
@@ -29,10 +30,14 @@ en:
     other_instances: Instance list
     privacy_policy: Privacy policy
     source_code: Source code
-    status_count_after: statuses
+    status_count_after:
+      one: status
+      other: statuses
     status_count_before: Who authored
     terms: Terms of service
-    user_count_after: users
+    user_count_after:
+      one: user
+      other: users
     user_count_before: Home to
     what_is_mastodon: What is Mastodon?
   accounts:
@@ -184,6 +189,7 @@ en:
         unsuspend_account: "%{name} unsuspended %{target}'s account"
         update_custom_emoji: "%{name} updated emoji %{target}"
         update_status: "%{name} updated status by %{target}"
+      deleted_status: "(deleted status)"
       title: Audit log
     custom_emojis:
       by_domain: Domain
@@ -280,6 +286,7 @@ en:
       search: Search
       title: Known instances
     invites:
+      deactivate_all: Deactivate all
       filter:
         all: All
         available: Available
@@ -401,6 +408,7 @@ en:
       media:
         title: Media
       no_media: No media
+      no_status_selected: No statuses were changed as none were selected
       title: Account statuses
       with_media: With media
     subscriptions:
@@ -410,6 +418,12 @@ en:
       last_delivery: Last delivery
       title: WebSub
       topic: Topic
+    suspensions:
+      bad_acct_msg: The confirmation value didn't match up. Are you suspending the right account?
+      hint_html: 'To confirm the suspension of the account, please enter %{value} into the field below:'
+      proceed: Proceed
+      title: Suspend %{acct}
+      warning_html: 'Suspending this account will <strong>irreversibly</strong> delete data from this account, which includes:'
     title: Administration
   admin_mailer:
     new_report:
@@ -653,11 +667,14 @@ en:
     publishing: Publishing
     web: Web
   remote_follow:
-    acct: Enter your username@domain you want to follow from
+    acct: Enter your username@domain you want to act from
     missing_resource: Could not find the required redirect URL for your account
     no_account_html: Don't have an account? You can <a href='%{sign_up_path}' target='_blank'>sign up here</a>
     proceed: Proceed to follow
     prompt: 'You are going to follow:'
+  remote_interaction:
+    proceed: Proceed to interact
+    prompt: 'You want to interact with this toot:'
   remote_unfollow:
     error: Error
     title: Title
@@ -741,6 +758,7 @@ en:
       private: Non-public toot cannot be pinned
       reblog: A boost cannot be pinned
     show_more: Show more
+    sign_in_to_participate: Sign in to participate in the conversation
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Followers-only

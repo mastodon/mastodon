@@ -13,7 +13,7 @@ class ActivityPub::Activity::Follow < ActivityPub::Activity
 
     # Fast-forward repeat follow requests
     if @account.following?(target_account)
-      AuthorizeFollowService.new.call(@account, target_account, skip_follow_request: true)
+      AuthorizeFollowService.new.call(@account, target_account, skip_follow_request: true, follow_request_uri: @json['id'])
       return
     end
 

@@ -65,11 +65,11 @@ export default class ActionBar extends React.PureComponent {
   }
 
   handleDeleteClick = () => {
-    this.props.onDelete(this.props.status);
+    this.props.onDelete(this.props.status, this.context.router.history);
   }
 
   handleRedraftClick = () => {
-    this.props.onDelete(this.props.status, true);
+    this.props.onDelete(this.props.status, this.context.router.history, true);
   }
 
   handleDirectClick = () => {

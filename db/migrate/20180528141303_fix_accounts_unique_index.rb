@@ -1,4 +1,17 @@
 class FixAccountsUniqueIndex < ActiveRecord::Migration[5.2]
+  class Account < ApplicationRecord
+    # Dummy class, to make migration possible across version changes
+    has_one :user, inverse_of: :account
+
+    def local?
+      domain.nil?
+    end
+
+    def acct
+      local? ? username : "#{username}@#{domain}"
+    end
+  end
+
   disable_ddl_transaction!
 
   def up

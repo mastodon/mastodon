@@ -74,6 +74,9 @@ Rails.application.routes.draw do
   get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
   get '/@:account_username/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
 
+  get  '/interact/:id', to: 'remote_interaction#new', as: :remote_interaction
+  post '/interact/:id', to: 'remote_interaction#create'
+
   namespace :settings do
     resource :profile, only: [:show, :update]
     resource :preferences, only: [:show, :update]
@@ -120,7 +123,7 @@ Rails.application.routes.draw do
 
   # Remote follow
   resource :remote_unfollow, only: [:create]
-  resource :authorize_follow, only: [:show, :create]
+  resource :authorize_interaction, only: [:show, :create]
   resource :share, only: [:show, :create]
 
   namespace :admin do
@@ -131,7 +134,12 @@ Rails.application.routes.draw do
     resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resources :action_logs, only: [:index]
     resource :settings, only: [:edit, :update]
-    resources :invites, only: [:index, :create, :destroy]
+
+    resources :invites, only: [:index, :create, :destroy] do
+      collection do
+        post :deactivate_all
+      end
+    end
 
     resources :relays, only: [:index, :new, :create, :destroy] do
       member do
@@ -166,7 +174,7 @@ Rails.application.routes.draw do
       resource :change_email, only: [:show, :update]
       resource :reset, only: [:create]
       resource :silence, only: [:create, :destroy]
-      resource :suspension, only: [:create, :destroy]
+      resource :suspension, only: [:new, :create, :destroy]
       resources :statuses, only: [:index, :create, :update, :destroy]
 
       resource :confirmation, only: [:create] do
@@ -253,13 +261,14 @@ Rails.application.routes.draw do
 
       get '/search', to: 'search#index', as: :search
 
-      resources :follows,    only: [:create]
-      resources :media,      only: [:create, :update]
-      resources :blocks,     only: [:index]
-      resources :mutes,      only: [:index]
-      resources :favourites, only: [:index]
-      resources :reports,    only: [:index, :create]
-      resources :filters,    only: [:index, :create, :show, :update, :destroy]
+      resources :follows,      only: [:create]
+      resources :media,        only: [:create, :update]
+      resources :blocks,       only: [:index]
+      resources :mutes,        only: [:index]
+      resources :favourites,   only: [:index]
+      resources :reports,      only: [:index, :create]
+      resources :filters,      only: [:index, :create, :show, :update, :destroy]
+      resources :endorsements, only: [:index]
 
       namespace :apps do
         get :verify_credentials, to: 'credentials#show'

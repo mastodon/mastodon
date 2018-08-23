@@ -5,10 +5,13 @@ nl:
     about_mastodon_html: Mastodon is een sociaal netwerk dat gebruikt maakt van open webprotocollen en vrije software. Het is net zoals e-mail gedecentraliseerd.
     about_this: Over deze server
     administered_by: 'Beheerd door:'
+    api: API
+    apps: Mobiele apps
     closed_registrations: Registreren op deze server is momenteel niet mogelijk. Je kunt echter een andere server vinden om zo toegang te krijgen tot het netwerk.
     contact: Contact
     contact_missing: Niet ingesteld
     contact_unavailable: n.v.t
+    documentation: Documentatie
     extended_description_html: |
       <h3>Een goede plek voor richtlijnen</h3>
       <p>De uitgebreide omschrijving is nog niet ingevuld.</p>
@@ -25,22 +28,28 @@ nl:
     hosted_on: Mastodon op %{domain}
     learn_more: Meer leren
     other_instances: Andere servers
+    privacy_policy: Privacybeleid
     source_code: Broncode
     status_count_after: toots
     status_count_before: Zij schreven
+    terms: Gebruiksvoorwaarden
     user_count_after: gebruikers
     user_count_before: Thuisbasis van
     what_is_mastodon: Wat is Mastodon?
   accounts:
+    choices_html: 'Aanbevelingen van %{name}:'
     follow: Volgen
     followers: Volgers
     following: Volgend
+    joined: Geregistreerd in %{date}
     media: Media
     moved_html: "%{name} is verhuisd naar %{new_profile_link}:"
     network_hidden: Deze informatie is niet beschikbaar
     nothing_here: Hier is niets!
     people_followed_by: Mensen die %{name} volgen
     people_who_follow: Mensen die %{name} volgen
+    pin_errors:
+      following: Je moet dit account wel al volgen, alvorens je het kan aanbevelen
     posts: Toots
     posts_with_replies: Toots en reacties
     reserved_username: Deze gebruikersnaam is gereserveerd
@@ -176,6 +185,7 @@ nl:
         unsuspend_account: Opschorten van account %{target} is door %{name} opgeheven
         update_custom_emoji: Emoji %{target} is door %{name} bijgewerkt
         update_status: De toots van %{target} zijn door %{name} bijgewerkt
+      deleted_status: "(verwijderde toot}"
       title: Auditlog
     custom_emojis:
       by_domain: Domein
@@ -272,6 +282,7 @@ nl:
       search: Zoeken
       title: Bekende servers
     invites:
+      deactivate_all: Alles deactiveren
       filter:
         all: Alles
         available: Beschikbaar
@@ -364,11 +375,14 @@ nl:
         desc_html: Medewerkersbadge op profielpagina tonen
         title: Medewerkersbadge tonen
       site_description:
-        desc_html: Dit wordt als een alinea op de voorpagina getoond en gebruikt als meta-tag in de paginabron.<br/>Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
+        desc_html: Dit wordt als een alinea op de voorpagina getoond. Beschrijf wat er speciaal is aan deze server en andere zaken die van belang zijn. Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
         title: Omschrijving Mastodonserver
       site_description_extended:
         desc_html: Wordt op de uitgebreide informatiepagina weergegeven<br>Je kan ook hier HTML gebruiken
         title: Uitgebreide omschrijving Mastodonserver
+      site_short_description:
+        desc_html: Dit wordt in de zijbalk getoond als en als metatag in de paginabron.  Beschrijf in één alinea wat Mastodon is en wat deze server speciaal maakt. De (langere) omschrijving van de Mastodonserver wordt gebruikt wanneer dit veld wordt leeg gelaten.
+        title: Korte omschrijving Mastodonserver
       site_terms:
         desc_html: Je kan hier jouw eigen privacybeleid, gebruiksvoorwaarden en ander juridisch jargon kwijt. Je kan HTML gebruiken
         title: Aangepaste gebruiksvoorwaarden
@@ -390,6 +404,7 @@ nl:
       media:
         title: Media
       no_media: Geen media
+      no_status_selected: Er werden geen toots gewijzigd, omdat er geen enkele werd geselecteerd
       title: Toots van account
       with_media: Met media
     subscriptions:
@@ -530,6 +545,10 @@ nl:
     true_privacy_html: Hou er wel rekening mee dat <strong>echte privacy alleen gegarandeerd kan worden met behulp van end-to-end-encryptie</strong>.
     unlocked_warning_html: Iedereen kan jou volgen en daarmee meteen toots zien die je alleen aan jouw volgers hebt gericht. %{lock_link} om volgers te kunnen beoordelen en desnoods te weigeren.
     unlocked_warning_title: Jouw account is niet besloten
+  footer:
+    developers: Ontwikkelaars
+    more: Meer…
+    resources: Hulpmiddelen
   generic:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
     save_changes: Wijzigingen opslaan
@@ -638,11 +657,14 @@ nl:
     publishing: Publiceren
     web: Webapp
   remote_follow:
-    acct: Geef jouw account@domein.tld op waarvandaan je wilt volgen
+    acct: Geef jouw account@domein op die je wilt gebruiken
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
     no_account_html: Heb je geen account? Je kunt er <a href='%{sign_up_path}' target='_blank'>hier een registreren</a>
     proceed: Ga door om te volgen
     prompt: 'Jij gaat volgen:'
+  remote_interaction:
+    proceed: Ga de interactie aan
+    prompt: 'Jij wilt de interactie aangaan met deze toot:'
   remote_unfollow:
     error: Fout
     title: Titel
@@ -726,6 +748,7 @@ nl:
       private: Alleen openbare toots kunnen worden vastgezet
       reblog: Een boost kan niet worden vastgezet
     show_more: Meer tonen
+    sign_in_to_participate: Meld je aan om aan dit gesprek mee te doen
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Alleen volgers
@@ -828,6 +851,7 @@ nl:
   time:
     formats:
       default: "%d %B %Y om %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Voer de code in die door de authenticatie-app gegenereerd is
     description_html: Na het instellen van <strong>tweestapsverificatie</strong>, kun jij je alleen aanmelden als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren aanmeldcode.

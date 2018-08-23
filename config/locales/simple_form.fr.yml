@@ -13,6 +13,7 @@ fr:
           other: <span class="name-counter">%{count}</span> caractères restants
         fields: Vous pouvez avoir jusqu'à 4 éléments affichés en tant que tableau sur votre profil
         header: Au format PNG, GIF ou JPG. 2 Mo maximum. Sera réduit à %{dimensions}px
+        inbox_url: Copiez l'URL depuis la page d'accueil du relais que vous souhaitez utiliser
         irreversible: Les pouets filtrés disparaîtront irrémédiablement, même si le filtre est supprimé plus tard
         locale: La langue de l'interface-utilisateur, des courriels, et des notifications
         locked: Vous devrez approuver chaque abonné⋅e et vos statuts ne s’afficheront qu’à vos abonné⋅es
@@ -25,6 +26,7 @@ fr:
         setting_hide_network: Ceux que vous suivez et ceux qui vous suivent ne seront pas affichés sur votre profil
         setting_noindex: Affecte votre profil public ainsi que vos statuts
         setting_theme: Affecte l’apparence de Mastodon quand vous êtes connecté·e depuis n’importe quel appareil.
+        whole_word: Lorsque le mot-clef ou la phrase-clef est uniquement alphanumérique, ça sera uniquement appliqué s'il correspond au mot entier
       imports:
         data: Un fichier CSV généré par une autre instance de Mastodon
       sessions:
@@ -51,6 +53,7 @@ fr:
         expires_in: Expire après
         fields: Métadonnées du profil
         header: Image d’en-tête
+        inbox_url: URL de la boîte de relais
         irreversible: Supprimer plutôt que de cacher
         locale: Langue de l'interface
         locked: Verrouiller le compte
@@ -77,6 +80,7 @@ fr:
         type: Type d’import
         username: Identifiant
         username_or_email: Nom d'utilisateur ou courriel
+        whole_word: Mot entier
       interactions:
         must_be_follower: Masquer les notifications des personnes qui ne vous suivent pas
         must_be_following: Masquer les notifications des personnes que vous ne suivez pas
