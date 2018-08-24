@@ -230,6 +230,7 @@ export default class Status extends ImmutablePureComponent {
               <Component
                 preview={video.get('preview_url')}
                 src={video.get('url')}
+                alt={video.get('description')}
                 width={239}
                 height={110}
                 inline

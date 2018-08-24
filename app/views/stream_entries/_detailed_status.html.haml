@@ -21,7 +21,7 @@
   - if !status.media_attachments.empty?
     - if status.media_attachments.first.video?
       - video = status.media_attachments.first
-      = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, width: 670, height: 380, detailed: true, inline: true
+      = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, width: 670, height: 380, detailed: true, inline: true, alt: video.description
     - else
       = react_component :media_gallery, height: 380, sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, standalone: true, 'autoPlayGif': current_account&.user&.setting_auto_play_gif, 'reduceMotion': current_account&.user&.setting_reduce_motion, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }
   - elsif status.preview_cards.first
