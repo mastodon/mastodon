@@ -6,7 +6,7 @@ class Maintenance::UncacheMediaWorker
   sidekiq_options queue: 'pull'
 
   def perform(media_attachment_id)
-    media = MediaAttachment.find(media_attachment_id)
+    media = media_attachment_id.is_a?(MediaAttachment) ? media_attachment_id : MediaAttachment.find(media_attachment_id)
 
     return if media.file.blank?
 
