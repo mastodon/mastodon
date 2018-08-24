@@ -16,6 +16,7 @@ module Admin
       timeline_preview
       show_staff_badge
       bootstrap_timeline_accounts
+      theme
       thumbnail
       hero
       min_invite_role
@@ -23,6 +24,7 @@ module Admin
       peers_api_enabled
       show_known_fediverse_at_about_page
       preview_sensitive_media
+      custom_css
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
