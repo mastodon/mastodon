@@ -19,6 +19,9 @@
     = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
     = csrf_meta_tags
 
+    - if Setting.custom_css.present?
+      = stylesheet_link_tag custom_css_path, media: 'all'
+
     = yield :header_tags
 
   - body_classes ||= @body_classes || ''
