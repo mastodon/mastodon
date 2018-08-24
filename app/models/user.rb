@@ -216,10 +216,6 @@ class User < ApplicationRecord
     save!
   end
 
-  def active_for_authentication?
-    super && !disabled?
-  end
-
   def setting_default_privacy
     settings.default_privacy || (account.locked? ? 'private' : 'public')
   end
