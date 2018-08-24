@@ -42,6 +42,8 @@ class Form::AdminSettings
     :show_known_fediverse_at_about_page=,
     :preview_sensitive_media,
     :preview_sensitive_media=,
+    :custom_css,
+    :custom_css=,
     to: Setting
   )
 end
