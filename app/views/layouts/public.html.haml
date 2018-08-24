@@ -14,7 +14,7 @@
             = link_to t('settings.back'), root_url, class: 'nav-link nav-button webapp-btn'
           - else
             = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn nav-link nav-button'
-            = link_to t('auth.register'), new_user_registration_path, class: 'webapp-btn nav-link nav-button'
+            = link_to t('auth.register'), open_registrations? ? new_user_registration_path : 'https://joinmastodon.org/#getting-started', class: 'webapp-btn nav-link nav-button'
 
     .container= yield
 

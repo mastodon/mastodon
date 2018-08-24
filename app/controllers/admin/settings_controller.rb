@@ -16,6 +16,7 @@ module Admin
       timeline_preview
       show_staff_badge
       bootstrap_timeline_accounts
+      theme
       thumbnail
       hero
       min_invite_role
