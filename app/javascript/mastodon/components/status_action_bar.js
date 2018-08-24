@@ -22,6 +22,7 @@ const messages = defineMessages({
   reblog_private: { id: 'status.reblog_private', defaultMessage: 'Boost to original audience' },
   cancel_reblog_private: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
+  local_only: { id: 'status.local_only', defaultMessage: 'This post is only visible by other users of your instance' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
@@ -145,6 +146,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
     const mutingConversation = status.get('muted');
     const anonymousAccess    = !me;
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
+    const federated          = !status.get('local_only');
 
     let menu = [];
     let reblogIcon = 'retweet';
@@ -212,6 +214,9 @@ export default class StatusActionBar extends ImmutablePureComponent {
         <div className='status__action-bar-dropdown'>
           <DropdownMenuContainer disabled={anonymousAccess} status={status} items={menu} icon='ellipsis-h' size={18} direction='right' title={intl.formatMessage(messages.more)} />
         </div>
+        { !federated &&
+          <IconButton className='status__action-bar-button' disabled title={intl.formatMessage(messages.local_only)} icon='chain-broken' />
+        }
       </div>
     );
   }
