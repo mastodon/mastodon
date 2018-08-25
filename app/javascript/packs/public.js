@@ -78,10 +78,10 @@ function main() {
         })
         .catch(error => console.error(error));
     }
-        
-    const parallaxComponents = document.querySelectorAll('.parallax')
+    
+    const parallaxComponents = document.querySelectorAll('.parallax');
     if (parallaxComponents.length > 0 ) {
-        new Rellax('.parallax', { speed: -1 });
+      new Rellax('.parallax', { speed: -1 });
     }
 
     const history = createHistory();
