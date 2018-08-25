@@ -390,7 +390,7 @@
         "id": "confirmations.redraft.confirm"
       },
       {
-        "defaultMessage": "Are you sure you want to delete this status and re-draft it? You will lose all replies, boosts and favourites to it.",
+        "defaultMessage": "Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.",
         "id": "confirmations.redraft.message"
       },
       {
@@ -1019,6 +1019,10 @@
       {
         "defaultMessage": "Logout",
         "id": "navigation_bar.logout"
+      },
+      {
+        "defaultMessage": "Compose new toot",
+        "id": "navigation_bar.compose"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/index.json"
@@ -1636,7 +1640,7 @@
         "id": "confirmations.redraft.confirm"
       },
       {
-        "defaultMessage": "Are you sure you want to delete this status and re-draft it? You will lose all replies, boosts and favourites to it.",
+        "defaultMessage": "Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.",
         "id": "confirmations.redraft.message"
       },
       {
@@ -1650,6 +1654,10 @@
       {
         "defaultMessage": "Show less for all",
         "id": "status.show_less_all"
+      },
+      {
+        "defaultMessage": "Detailed conversation view",
+        "id": "status.detailed_status"
       },
       {
         "defaultMessage": "Are you sure you want to block {name}?",
