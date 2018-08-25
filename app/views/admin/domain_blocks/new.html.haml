@@ -1,3 +1,6 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', integrity: true, async: true, crossorigin: 'anonymous'
+
 - content_for :page_title do
   = t('.title')
 
