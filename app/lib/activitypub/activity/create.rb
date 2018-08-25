@@ -48,7 +48,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       account: @account,
       text: text_from_content || '',
       language: detected_language,
-      spoiler_text: @object['summary'] || '',
+      spoiler_text: text_from_summary || '',
       created_at: @object['published'],
       override_timestamps: @options[:override_timestamps],
       reply: @object['inReplyTo'].present?,
@@ -194,6 +194,14 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     end
   end
 
+  def text_from_summary
+    if @object['summary'].present?
+      @object['summary']
+    elsif summary_language_map?
+      @object['summaryMap'].values.first
+    end
+  end
+
   def text_from_name
     if @object['name'].present?
       @object['name']
@@ -207,6 +215,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       @object['contentMap'].keys.first
     elsif name_language_map?
       @object['nameMap'].keys.first
+    elsif summary_language_map?
+      @object['summaryMap'].keys.first
     elsif supported_object_type?
       LanguageDetector.instance.detect(text_from_content, @account)
     end
@@ -222,6 +232,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     else
       url_candidate
     end
+  end
+
+  def summary_language_map?
+    @object['summaryMap'].is_a?(Hash) && !@object['summaryMap'].empty?
   end
 
   def content_language_map?
