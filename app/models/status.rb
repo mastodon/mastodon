@@ -130,6 +130,10 @@ class Status < ApplicationRecord
     attributes['local'] || uri.nil?
   end
 
+  def local_only?
+    local_only
+  end
+
   def reblog?
     !reblog_of_id.nil?
   end
@@ -221,6 +225,8 @@ class Status < ApplicationRecord
   after_create_commit :update_statistics, if: :local?
 
   around_create Mastodon::Snowflake::Callbacks
+
+  before_create :set_locality
 
   before_validation :prepare_contents, if: :local?
   before_validation :set_reblog
@@ -443,6 +449,10 @@ class Status < ApplicationRecord
 
   def set_local
     self.local = account.local?
+  end
+
+  def set_locality
+    self.local_only = reblog.local_only if reblog?
   end
 
   def update_statistics
