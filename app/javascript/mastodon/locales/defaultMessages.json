@@ -582,16 +582,8 @@
         "id": "account.follows"
       },
       {
-        "defaultMessage": "This user doesn't follow anyone yet.",
-        "id": "account.follows.empty"
-      },
-      {
         "defaultMessage": "Followers",
         "id": "account.followers"
-      },
-      {
-        "defaultMessage": "No one follows this user yet.",
-        "id": "account.followers.empty"
       }
     ],
     "path": "app/javascript/mastodon/features/account/components/action_bar.json"
@@ -1055,12 +1047,12 @@
         "id": "column.domain_blocks"
       },
       {
-        "defaultMessage": "There are no hidden domains yet.",
-        "id": "empty_column.domain_blocks"
-      },
-      {
         "defaultMessage": "Unhide {domain}",
         "id": "account.unblock_domain"
+      },
+      {
+        "defaultMessage": "There are no hidden domains yet.",
+        "id": "empty_column.domain_blocks"
       }
     ],
     "path": "app/javascript/mastodon/features/domain_blocks/index.json"
@@ -1112,6 +1104,24 @@
       }
     ],
     "path": "app/javascript/mastodon/features/follow_requests/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "No one follows this user yet.",
+        "id": "account.followers.empty"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/followers/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "This user doesn't follow anyone yet.",
+        "id": "account.follows.empty"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/following/index.json"
   },
   {
     "descriptors": [
@@ -1566,6 +1576,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "No one has boosted this toot yet. When someone does, they will show up here.",
+        "id": "status.reblogs.empty"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/reblogs/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "A look inside...",
         "id": "standalone.public_title"
       }
@@ -1606,10 +1625,6 @@
       {
         "defaultMessage": "Boost",
         "id": "status.reblog"
-      },
-      {
-        "defaultMessage": "No one has boosted this toot yet. When someone does, they will show up here.",
-        "id": "status.reblogs.empty"
       },
       {
         "defaultMessage": "Boost to original audience",
@@ -1695,6 +1710,10 @@
       {
         "defaultMessage": "Show less for all",
         "id": "status.show_less_all"
+      },
+      {
+        "defaultMessage": "Detailed conversation view",
+        "id": "status.detailed_status"
       },
       {
         "defaultMessage": "Are you sure you want to block {name}?",
