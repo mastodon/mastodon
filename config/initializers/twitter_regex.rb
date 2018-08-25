@@ -26,6 +26,8 @@ module Twitter
         #{REGEXEN[:valid_url_path_ending_chars]}
       )|(?:#{REGEXEN[:valid_general_url_path_chars]}+\/)
     )/iox
+    REGEXEN[:valid_url_query_chars] = /[^\p{White_Space}]/iou
+    REGEXEN[:valid_url_query_ending_chars] = /[^\p{White_Space}!?\*'\(\);:\+\$%\[\]\.,~|@]/i
     REGEXEN[:valid_url] = %r{
       (                                                                                     #   $1 total match
         (#{REGEXEN[:valid_url_preceding_chars]})                                            #   $2 Preceeding chracter
