@@ -62,6 +62,7 @@ class FetchLinkCardService < BaseService
 
   def attach_card
     @status.preview_cards << @card
+    @card
   end
 
   def parse_urls
