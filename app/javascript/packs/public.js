@@ -78,8 +78,11 @@ function main() {
         })
         .catch(error => console.error(error));
     }
-
-    new Rellax('.parallax', { speed: -1 });
+        
+    const parallaxComponents = document.querySelectorAll('.parallax')
+    if (parallaxComponents.length > 0 ) {
+        new Rellax('.parallax', { speed: -1 });
+    }
 
     const history = createHistory();
     const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
