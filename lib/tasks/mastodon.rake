@@ -222,7 +222,7 @@ namespace :mastodon do
         end
 
         if prompt.yes?('Do you want to access the uploaded files from your own domain?')
-          env['S3_CLOUDFRONT_HOST'] = prompt.ask('Domain for uploaded files:') do |q|
+          env['S3_ALIAS_HOST'] = prompt.ask('Domain for uploaded files:') do |q|
             q.required true
             q.default "files.#{env['LOCAL_DOMAIN']}"
             q.modify :strip
