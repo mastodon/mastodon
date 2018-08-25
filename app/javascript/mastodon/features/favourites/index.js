@@ -57,7 +57,7 @@ export default class Favourites extends ImmutablePureComponent {
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
         >
-          {accountIds.map(id => 
+          {accountIds.map(id =>
             <AccountContainer key={id} id={id} withNote={false} />
           )}
         </ScrollableList>
