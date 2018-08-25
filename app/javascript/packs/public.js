@@ -78,7 +78,7 @@ function main() {
         })
         .catch(error => console.error(error));
     }
-    
+
     const parallaxComponents = document.querySelectorAll('.parallax');
     if (parallaxComponents.length > 0 ) {
       new Rellax('.parallax', { speed: -1 });
