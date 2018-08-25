@@ -512,14 +512,9 @@ namespace :mastodon do
 
     desc 'Remove cached remote media attachments that are older than NUM_DAYS. By default 7 (week)'
     task remove_remote: :environment do
-      time_ago = ENV.fetch('NUM_DAYS') { 7 }.to_i.days.ago
-      nb_media_attachments = 0
-
-      MediaAttachment.where.not(remote_url: '').where.not(file_file_name: nil).where('created_at < ?', time_ago).select(:id).reorder(nil).find_in_batches do |media_attachments|
-        nb_media_attachments += media_attachments.length
-        Maintenance::UncacheMediaWorker.push_bulk(media_attachments.map(&:id))
-      end
-      puts "Scheduled the deletion of #{nb_media_attachments} media attachments"
+      require_relative '../mastodon/media_cli'
+      cli = Mastodon::MediaCLI.new([], days: ENV['NUM_DAYS'] || 7)
+      cli.invoke(:remove)
     end
 
     desc 'Set unknown attachment type for remote-only attachments'
