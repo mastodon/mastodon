@@ -132,7 +132,7 @@ export function directCompose(account, router) {
 
 export function submitCompose(withCommunity) {
   return function (dispatch, getState) {
-    let { status, visibility, hasDefaultHashtag } = handleDefaultTag(
+    const { newStatus, visibility, hasDefaultHashtag } = handleDefaultTag(
       withCommunity,
       getState().getIn(['compose', 'text'], ''),
       getState().getIn(['compose', 'privacy'])
@@ -146,12 +146,12 @@ export function submitCompose(withCommunity) {
     dispatch(submitComposeRequest());
 
     api(getState).post('/api/v1/statuses', {
-      status,
+      status: newStatus,
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
       media_ids: media.map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive']),
       spoiler_text: getState().getIn(['compose', 'spoiler_text'], ''),
-      visibility: getState().getIn(['compose', 'privacy']),
+      visibility,
       quote_id: getState().getIn(['compose', 'quote_from'], null),
     }, {
       headers: {
@@ -201,11 +201,11 @@ const handleDefaultTag = (withCommunity, status, visibility) => {
     // if has default hashtag: keep
     // else if public: add default hashtag
     return hasDefaultHashtag ? {
-      status,
+      newStatus: status,
       visibility,
       hasDefaultHashtag: true,
     } : {
-      status: isPublic ? `${status} #${process.env.DEFAULT_HASHTAG}` : status,
+      newStatus: isPublic ? `${status} #${process.env.DEFAULT_HASHTAG}` : status,
       visibility,
       hasDefaultHashtag: true,
     };
@@ -215,11 +215,11 @@ const handleDefaultTag = (withCommunity, status, visibility) => {
     // if has hashtag: keep
     // else if public: change visibility to unlisted
     return hasHashtags ? {
-      status,
+      newStatus: status,
       visibility,
       hasDefaultHashtag: false,
     } : {
-      status,
+      newStatus: status,
       visibility: isPublic ? 'unlisted' : visibility,
       hasDefaultHashtag: false,
     };

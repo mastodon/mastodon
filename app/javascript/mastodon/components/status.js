@@ -291,7 +291,7 @@ export default class Status extends ImmutablePureComponent {
         } else {
           quote_media = (
             <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
-              {Component => <Component media={quote_status.get('media_attachments')} sensitive={quote_status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} quote={true} />}
+              {Component => <Component media={quote_status.get('media_attachments')} sensitive={quote_status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} quote />}
             </Bundle>
           );
         }

@@ -173,7 +173,7 @@ function main() {
     }
   });
 
-  delegate(document, '.quote-status', 'click', ({target}) => {
+  delegate(document, '.quote-status', 'click', ({ target }) => {
     if (target.closest('.status__content__spoiler-link') ||
       target.closest('.media-gallery'))
       return false;
