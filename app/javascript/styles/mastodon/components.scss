@@ -724,51 +724,22 @@
 }
 
 .status__content.status__content--collapsed {
-  padding-bottom: 25px;
-  max-height: 200px;
-
-  i {
-    transform: rotateX(0);
-  }
+  max-height: 20px * 15; // 15 lines is roughly above 500 characters
 }
 
-.status__content.status__content--expanded, {
-  padding-bottom: 25px;
-  height: auto;
-
-  i {
-    transform: rotateX(180deg);
-  }
-}
-
-.status__content__collapse-button {
+.status__content__read-more-button {
   display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 25px;
-  font-size: 18px;
-  line-height: 25px;
-  color: $inverted-text-color;
-  text-align: center;
-  background: $action-button-color;
-  transition: background .2s ease-in-out, color .2s ease-in-out;
+  font-size: 15px;
+  line-height: 20px;
+  color: lighten($ui-highlight-color, 8%);
   border: 0;
-  border-radius: 2px;
+  background: transparent;
+  padding: 0;
+  padding-top: 8px;
 
-  &:hover {
-    background: lighten($action-button-color, 7%);
-  }
-
-  i {
-    transition: transform .2s ease-in-out;
-
-    &,
-    &:hover {
-      color: $inverted-text-color !important;
-    }
+  &:hover,
+  &:active {
+    text-decoration: underline;
   }
 }
 

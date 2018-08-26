@@ -6,6 +6,8 @@ import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 import classnames from 'classnames';
 
+const MAX_HEIGHT = 322; // 20px * 16 (+ 2px padding at the top)
+
 export default class StatusContent extends React.PureComponent {
 
   static contextTypes = {
@@ -22,9 +24,8 @@ export default class StatusContent extends React.PureComponent {
 
   state = {
     hidden: true,
-    collapsed: null,
+    collapsed: null, //  `collapsed: null` indicates that an element doesn't need collapsing, while `true` or `false` indicates that it does (and is/isn't).
   };
-  //  `collapsed: null` indicates that an element doesn't need collapsing, while `true` or `false` indicates that it does (and is/isn't).
 
   _updateStatusLinks () {
     const node = this.node;
@@ -59,10 +60,13 @@ export default class StatusContent extends React.PureComponent {
 
     if (
       this.props.collapsable
+      && this.props.onClick
       && this.state.collapsed === null
-      && node.clientHeight > 200
+      && node.clientHeight > MAX_HEIGHT
       && this.props.status.get('spoiler_text').length === 0
-    ) this.setState({ collapsed: true });
+    ) {
+      this.setState({ collapsed: true });
+    }
   }
 
   componentDidMount () {
@@ -148,12 +152,17 @@ export default class StatusContent extends React.PureComponent {
       'status__content--with-action': this.props.onClick && this.context.router,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
       'status__content--collapsed': this.state.collapsed === true,
-      'status__content--expanded': this.state.collapsed === false,
     });
 
     if (isRtl(status.get('search_index'))) {
       directionStyle.direction = 'rtl';
     }
+
+    const readMoreButton = (
+      <button className='status__content__read-more-button' onClick={this.props.onClick}>
+        <FormattedMessage id='status.read_more' defaultMessage='Read more' /><i className='fa fa-fw fa-angle-right' />
+      </button>
+    );
 
     if (status.get('spoiler_text').length > 0) {
       let mentionsPlaceholder = '';
@@ -184,26 +193,23 @@ export default class StatusContent extends React.PureComponent {
         </div>
       );
     } else if (this.props.onClick) {
-      return (
+      const output = [
         <div
           ref={this.setRef}
           tabIndex='0'
           className={classNames}
           style={directionStyle}
+          dangerouslySetInnerHTML={content}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
-        >
-          <div dangerouslySetInnerHTML={content} />
-          {this.state.collapsed !== null ?
-            <button
-              className='status__content__collapse-button'
-              onClick={this.handleCollapsedClick}
-            >
-              <i className='fa fa-fw fa-angle-double-down' />
-            </button>
-            : null}
-        </div>
-      );
+        />,
+      ];
+
+      if (this.state.collapsed) {
+        output.push(readMoreButton);
+      }
+
+      return output;
     } else {
       return (
         <div
