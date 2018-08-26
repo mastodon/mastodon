@@ -78,7 +78,7 @@ module ApplicationHelper
     output << "flavour-#{current_flavour.parameterize}"
     output << "skin-#{current_skin.parameterize}"
     output << 'system-font' if current_account&.user&.setting_system_font_ui
-    output << current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion'
+    output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
     output << 'rtl' if locale_direction == 'rtl'
     output.reject(&:blank?).join(' ')
   end
