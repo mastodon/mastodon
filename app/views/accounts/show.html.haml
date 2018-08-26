@@ -29,7 +29,7 @@
       %data.p-name{ value: "#{@account.username} on #{site_hostname}" }/
 
       .account__section-headline
-        = active_link_to t('accounts.posts'), short_account_url(@account)
+        = active_link_to t('accounts.posts_tab_heading'), short_account_url(@account)
         = active_link_to t('accounts.posts_with_replies'), short_account_with_replies_url(@account)
         = active_link_to t('accounts.media'), short_account_media_url(@account)
 
