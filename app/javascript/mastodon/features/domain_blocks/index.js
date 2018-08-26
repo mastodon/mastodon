@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -52,10 +52,17 @@ export default class Blocks extends ImmutablePureComponent {
       );
     }
 
+    const emptyMessage = <FormattedMessage id='empty_column.domain_blocks' defaultMessage='There are no hidden domains yet.' />;
+
     return (
       <Column icon='minus-circle' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
-        <ScrollableList scrollKey='domain_blocks' onLoadMore={this.handleLoadMore} shouldUpdateScroll={shouldUpdateScroll}>
+        <ScrollableList
+          scrollKey='domain_blocks'
+          onLoadMore={this.handleLoadMore}
+          shouldUpdateScroll={shouldUpdateScroll}
+          emptyMessage={emptyMessage}
+        >
           {domains.map(domain =>
             <DomainContainer key={domain} domain={domain} />
           )}
