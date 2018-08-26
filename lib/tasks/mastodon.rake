@@ -280,14 +280,14 @@ namespace :mastodon do
 
         begin
           ActionMailer::Base.smtp_settings = {
-            :port                 => env['SMTP_PORT'],
-            :address              => env['SMTP_SERVER'],
-            :user_name            => env['SMTP_LOGIN'].presence,
-            :password             => env['SMTP_PASSWORD'].presence,
-            :domain               => env['LOCAL_DOMAIN'],
-            :authentication       => env['SMTP_AUTH_METHOD'] == 'none' ? nil : env['SMTP_AUTH_METHOD'] || :plain,
-            :openssl_verify_mode  => env['SMTP_OPENSSL_VERIFY_MODE'],
-            :enable_starttls_auto => true,
+            port:                 env['SMTP_PORT'],
+            address:              env['SMTP_SERVER'],
+            user_name:            env['SMTP_LOGIN'].presence,
+            password:             env['SMTP_PASSWORD'].presence,
+            domain:               env['LOCAL_DOMAIN'],
+            authentication:       env['SMTP_AUTH_METHOD'] == 'none' ? nil : env['SMTP_AUTH_METHOD'] || :plain,
+            openssl_verify_mode:  env['SMTP_OPENSSL_VERIFY_MODE'],
+            enable_starttls_auto: true,
           }
 
           ActionMailer::Base.default_options = {
@@ -326,13 +326,11 @@ namespace :mastodon do
 
         if prompt.yes?('Prepare the database now?')
           prompt.say 'Running `RAILS_ENV=production rails db:setup` ...'
-          prompt.say "\n"
+          prompt.say "\n\n"
 
           if cmd.run!({ RAILS_ENV: 'production', SAFETY_ASSURED: 1 }, :rails, 'db:setup').failure?
-            prompt.say "\n"
             prompt.error 'That failed! Perhaps your configuration is not right'
           else
-            prompt.say "\n"
             prompt.ok 'Done!'
           end
         end
@@ -343,13 +341,11 @@ namespace :mastodon do
 
         if prompt.yes?('Compile the assets now?')
           prompt.say 'Running `RAILS_ENV=production rails assets:precompile` ...'
-          prompt.say "\n"
+          prompt.say "\n\n"
 
           if cmd.run!({ RAILS_ENV: 'production' }, :rails, 'assets:precompile').failure?
-            prompt.say "\n"
             prompt.error 'That failed! Maybe you need swap space?'
           else
-            prompt.say "\n"
             prompt.say 'Done!'
           end
         end
@@ -392,12 +388,6 @@ namespace :mastodon do
     rescue TTY::Reader::InputInterrupt
       prompt.ok 'Aborting. Bye!'
     end
-  end
-
-  desc 'Execute daily tasks (deprecated)'
-  task :daily do
-    # No-op
-    # All of these tasks are now executed via sidekiq-scheduler
   end
 
   desc 'Turn a user into an admin, identified by the USERNAME environment variable'
@@ -494,12 +484,6 @@ namespace :mastodon do
   end
 
   namespace :media do
-    desc 'Removes media attachments that have not been assigned to any status for longer than a day (deprecated)'
-    task clear: :environment do
-      # No-op
-      # This task is now executed via sidekiq-scheduler
-    end
-
     desc 'Remove media attachments attributed to silenced accounts'
     task remove_silenced: :environment do
       nb_media_attachments = 0
@@ -512,8 +496,9 @@ namespace :mastodon do
 
     desc 'Remove cached remote media attachments that are older than NUM_DAYS. By default 7 (week)'
     task remove_remote: :environment do
+      puts 'Please use `./bin/tootctl media remove --help` directly'.colorize(:yellow)
       require_relative '../mastodon/media_cli'
-      cli = Mastodon::MediaCLI.new([], days: ENV['NUM_DAYS'] || 7)
+      cli = Mastodon::MediaCLI.new([], days: (ENV['NUM_DAYS'] || 7).to_i)
       cli.invoke(:remove)
     end
 
@@ -543,21 +528,9 @@ namespace :mastodon do
     task clear: :environment do
       Pubsubhubbub::UnsubscribeWorker.push_bulk(Account.remote.without_followers.where.not(subscription_expires_at: nil).pluck(:id))
     end
-
-    desc 'Re-subscribes to soon expiring PuSH subscriptions (deprecated)'
-    task refresh: :environment do
-      # No-op
-      # This task is now executed via sidekiq-scheduler
-    end
   end
 
   namespace :feeds do
-    desc 'Clear timelines of inactive users (deprecated)'
-    task clear: :environment do
-      # No-op
-      # This task is now executed via sidekiq-scheduler
-    end
-
     desc 'Clear all timelines without regenerating them'
     task clear_all: :environment do
       Redis.current.keys('feed:*').each { |key| Redis.current.del(key) }
@@ -571,21 +544,7 @@ namespace :mastodon do
     end
   end
 
-  namespace :emails do
-    desc 'Send out digest e-mails (deprecated)'
-    task digest: :environment do
-      # No-op
-      # This task is now executed via sidekiq-scheduler
-    end
-  end
-
   namespace :users do
-    desc 'Clear out unconfirmed users (deprecated)'
-    task clear: :environment do
-      # No-op
-      # This task is now executed via sidekiq-scheduler
-    end
-
     desc 'List e-mails of all admin users'
     task admins: :environment do
       puts 'Admin user emails:'
@@ -752,10 +711,10 @@ namespace :mastodon do
       pastel = Pastel.new
 
       duplicate_masters.each do |account|
-        puts pastel.yellow("First of their name: ") + pastel.bold(account.username) + " (#{admin_account_url(account.id)})"
+        puts pastel.yellow('First of their name: ') + pastel.bold(account.username) + " (#{admin_account_url(account.id)})"
 
         Account.where('lower(username) = ?', account.username.downcase).where.not(id: account.id).each do |duplicate|
-          puts "  " + pastel.red("Duplicate: ") + admin_account_url(duplicate.id)
+          puts '  ' + pastel.red('Duplicate: ') + admin_account_url(duplicate.id)
         end
       end
     end

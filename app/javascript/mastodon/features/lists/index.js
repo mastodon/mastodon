@@ -6,12 +6,13 @@ import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import { fetchLists } from '../../actions/lists';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ColumnLink from '../ui/components/column_link';
 import ColumnSubheading from '../ui/components/column_subheading';
 import NewListForm from './components/new_list_form';
 import { createSelector } from 'reselect';
+import ScrollableList from '../../components/scrollable_list';
 
 const messages = defineMessages({
   heading: { id: 'column.lists', defaultMessage: 'Lists' },
@@ -46,7 +47,7 @@ export default class Lists extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, lists } = this.props;
+    const { intl, shouldUpdateScroll, lists } = this.props;
 
     if (!lists) {
       return (
@@ -56,19 +57,24 @@ export default class Lists extends ImmutablePureComponent {
       );
     }
 
+    const emptyMessage = <FormattedMessage id='empty_column.lists' defaultMessage="You don't have any lists yet. When you create one, it will show up here." />;
+
     return (
       <Column icon='list-ul' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
 
         <NewListForm />
 
-        <div className='scrollable'>
-          <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
-
+        <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
+        <ScrollableList
+          scrollKey='lists'
+          shouldUpdateScroll={shouldUpdateScroll}
+          emptyMessage={emptyMessage}
+        >
           {lists.map(list =>
             <ColumnLink key={list.get('id')} to={`/timelines/list/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
           )}
-        </div>
+        </ScrollableList>
       </Column>
     );
   }
