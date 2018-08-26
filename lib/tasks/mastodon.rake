@@ -394,12 +394,6 @@ namespace :mastodon do
     end
   end
 
-  desc 'Execute daily tasks (deprecated)'
-  task :daily do
-    # No-op
-    # All of these tasks are now executed via sidekiq-scheduler
-  end
-
   desc 'Turn a user into an admin, identified by the USERNAME environment variable'
   task make_admin: :environment do
     include RoutingHelper
@@ -494,12 +488,6 @@ namespace :mastodon do
   end
 
   namespace :media do
-    desc 'Removes media attachments that have not been assigned to any status for longer than a day (deprecated)'
-    task clear: :environment do
-      # No-op
-      # This task is now executed via sidekiq-scheduler
-    end
-
     desc 'Remove media attachments attributed to silenced accounts'
     task remove_silenced: :environment do
       nb_media_attachments = 0
@@ -512,8 +500,9 @@ namespace :mastodon do
 
     desc 'Remove cached remote media attachments that are older than NUM_DAYS. By default 7 (week)'
     task remove_remote: :environment do
+      puts 'Please use `./bin/tootctl media remove --help` directly'.colorize(:yellow)
       require_relative '../mastodon/media_cli'
-      cli = Mastodon::MediaCLI.new([], days: ENV['NUM_DAYS'] || 7)
+      cli = Mastodon::MediaCLI.new([], days: (ENV['NUM_DAYS'] || 7).to_i)
       cli.invoke(:remove)
     end
 
@@ -543,21 +532,9 @@ namespace :mastodon do
     task clear: :environment do
       Pubsubhubbub::UnsubscribeWorker.push_bulk(Account.remote.without_followers.where.not(subscription_expires_at: nil).pluck(:id))
     end
-
-    desc 'Re-subscribes to soon expiring PuSH subscriptions (deprecated)'
-    task refresh: :environment do
-      # No-op
-      # This task is now executed via sidekiq-scheduler
-    end
   end
 
   namespace :feeds do
-    desc 'Clear timelines of inactive users (deprecated)'
-    task clear: :environment do
-      # No-op
-      # This task is now executed via sidekiq-scheduler
-    end
-
     desc 'Clear all timelines without regenerating them'
     task clear_all: :environment do
       Redis.current.keys('feed:*').each { |key| Redis.current.del(key) }
@@ -571,21 +548,7 @@ namespace :mastodon do
     end
   end
 
-  namespace :emails do
-    desc 'Send out digest e-mails (deprecated)'
-    task digest: :environment do
-      # No-op
-      # This task is now executed via sidekiq-scheduler
-    end
-  end
-
   namespace :users do
-    desc 'Clear out unconfirmed users (deprecated)'
-    task clear: :environment do
-      # No-op
-      # This task is now executed via sidekiq-scheduler
-    end
-
     desc 'List e-mails of all admin users'
     task admins: :environment do
       puts 'Admin user emails:'
