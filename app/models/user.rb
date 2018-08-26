@@ -98,7 +98,7 @@ class User < ApplicationRecord
            :reduce_motion, :system_font_ui, :noindex, :theme, :display_sensitive_media, :hide_network,
            :default_language, to: :settings, prefix: :setting, allow_nil: false
 
-  attr_accessor :invite_code
+  attr_reader :invite_code
 
   def pam_conflict(_)
     # block pam login tries on traditional account
