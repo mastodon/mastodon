@@ -21,11 +21,16 @@ module Mastodon
     def rotate(username = nil)
       if options[:all]
         processed = 0
+        delay     = 0
 
-        Account.local.find_each do |account|
-          rotate_keys_for_account(account)
-          processed += 1
-          say('.', :green, false)
+        Account.local.find_in_batches do |accounts|
+          accounts.each do |account|
+            rotate_keys_for_account(account, delay)
+            processed += 1
+            say('.', :green, false)
+          end
+
+          delay += 5.minutes
         end
 
         say
@@ -40,11 +45,11 @@ module Mastodon
 
     private
 
-    def rotate_keys_for_account(account)
+    def rotate_keys_for_account(account, delay = 0)
       old_key = account.private_key
       new_key = OpenSSL::PKey::RSA.new(2048).to_pem
       account.update(private_key: new_key)
-      ActivityPub::UpdateDistributionWorker.perform_async(account.id, sign_with: old_key)
+      ActivityPub::UpdateDistributionWorker.perform_in(delay, account.id, sign_with: old_key)
     end
   end
 end
