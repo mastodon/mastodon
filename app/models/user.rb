@@ -258,7 +258,7 @@ class User < ApplicationRecord
   end
 
   def invite_code=(code)
-    self.invite  = Invite.find_by(code: code) unless code.blank?
+    self.invite  = Invite.find_by(code: code) if code.present?
     @invite_code = code
   end
 
