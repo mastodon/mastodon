@@ -8,6 +8,8 @@ bundle install --without="" --no-deployment --path=vendor/bundle \
 
 echo "Start with ${MODE} mode..."
 
+export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.1
+
 case "$MODE" in
   "web")
     bundle exec rails s -p 3000 -b '0.0.0.0'
