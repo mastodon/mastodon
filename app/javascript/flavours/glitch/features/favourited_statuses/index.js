@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { debounce } from 'lodash';
 import { fetchFavouritedStatuses, expandFavouritedStatuses } from 'flavours/glitch/actions/favourites';
 import Column from 'flavours/glitch/features/ui/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import StatusList from 'flavours/glitch/components/status_list';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { debounce } from 'lodash';
 
 const messages = defineMessages({
   heading: { id: 'column.favourites', defaultMessage: 'Favourites' },
@@ -70,6 +70,8 @@ export default class Favourites extends ImmutablePureComponent {
     const { intl, statusIds, columnId, multiColumn, hasMore, isLoading } = this.props;
     const pinned = !!columnId;
 
+    const emptyMessage = <FormattedMessage id='empty_column.favourited_statuses' defaultMessage="You don't have any favourite toots yet. When you favourite one, it will show up here." />;
+
     return (
       <Column ref={this.setRef} name='favourites' label={intl.formatMessage(messages.heading)}>
         <ColumnHeader
@@ -90,6 +92,7 @@ export default class Favourites extends ImmutablePureComponent {
           hasMore={hasMore}
           isLoading={isLoading}
           onLoadMore={this.handleLoadMore}
+          emptyMessage={emptyMessage}
         />
       </Column>
     );

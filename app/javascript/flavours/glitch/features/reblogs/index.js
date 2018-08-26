@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 import { fetchReblogs } from 'flavours/glitch/actions/interactions';
-import { ScrollContainer } from 'react-router-scroll-4';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import Column from 'flavours/glitch/features/ui/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import ScrollableList from 'flavours/glitch/components/scrollable_list';
 
 const messages = defineMessages({
   heading: { id: 'column.reblogged_by', defaultMessage: 'Boosted by' },
@@ -64,6 +64,8 @@ export default class Reblogs extends ImmutablePureComponent {
       );
     }
 
+    const emptyMessage = <FormattedMessage id='status.reblogs.empty' defaultMessage='No one has boosted this toot yet. When someone does, they will show up here.' />;
+
     return (
       <Column ref={this.setRef}>
         <ColumnHeader
@@ -73,11 +75,15 @@ export default class Reblogs extends ImmutablePureComponent {
           showBackButton
         />
 
-        <ScrollContainer scrollKey='reblogs' shouldUpdateScroll={this.shouldUpdateScroll}>
-          <div className='scrollable reblogs'>
-            {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
-          </div>
-        </ScrollContainer>
+        <ScrollableList
+          scrollKey='reblogs'
+          shouldUpdateScroll={this.shouldUpdateScroll}
+          emptyMessage={emptyMessage}
+        >
+          {accountIds.map(id =>
+            <AccountContainer key={id} id={id} withNote={false} />
+          )}
+        </ScrollableList>
       </Column>
     );
   }

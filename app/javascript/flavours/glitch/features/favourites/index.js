@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 import { fetchFavourites } from 'flavours/glitch/actions/interactions';
-import { ScrollContainer } from 'react-router-scroll-4';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import Column from 'flavours/glitch/features/ui/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import ScrollableList from '../../components/scrollable_list';
 
 const messages = defineMessages({
   heading: { id: 'column.favourited_by', defaultMessage: 'Favourited by' },
@@ -64,6 +64,8 @@ export default class Favourites extends ImmutablePureComponent {
       );
     }
 
+    const emptyMessage = <FormattedMessage id='empty_column.favourites' defaultMessage='No one has favourited this toot yet. When someone does, they will show up here.' />;
+
     return (
       <Column ref={this.setRef}>
         <ColumnHeader
@@ -72,12 +74,15 @@ export default class Favourites extends ImmutablePureComponent {
           onClick={this.handleHeaderClick}
           showBackButton
         />
-
-        <ScrollContainer scrollKey='favourites' shouldUpdateScroll={this.shouldUpdateScroll}>
-          <div className='scrollable'>
-            {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
-          </div>
-        </ScrollContainer>
+        <ScrollableList
+          scrollKey='favourites'
+          shouldUpdateScroll={this.shouldUpdateScroll}
+          emptyMessage={emptyMessage}
+        >
+          {accountIds.map(id =>
+            <AccountContainer key={id} id={id} withNote={false} />
+          )}
+        </ScrollableList>
       </Column>
     );
   }

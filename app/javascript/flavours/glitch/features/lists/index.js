@@ -6,12 +6,13 @@ import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 import Column from 'flavours/glitch/features/ui/components/column';
 import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
 import { fetchLists } from 'flavours/glitch/actions/lists';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
 import ColumnSubheading from 'flavours/glitch/features/ui/components/column_subheading';
 import NewListForm from './components/new_list_form';
 import { createSelector } from 'reselect';
+import ScrollableList from 'flavours/glitch/components/scrollable_list';
 
 const messages = defineMessages({
   heading: { id: 'column.lists', defaultMessage: 'Lists' },
@@ -62,13 +63,15 @@ export default class Lists extends ImmutablePureComponent {
 
         <NewListForm />
 
-        <div className='scrollable'>
-          <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
-
+        <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
+        <ScrollableList
+          scrollKey='lists'
+          emptyMessage={emptyMessage}
+        >
           {lists.map(list =>
             <ColumnLink key={list.get('id')} to={`/timelines/list/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
           )}
-        </div>
+        </ScrollableList>
       </Column>
     );
   }
