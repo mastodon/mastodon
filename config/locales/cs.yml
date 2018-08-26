@@ -44,6 +44,12 @@ cs:
     terms: Podmínky používání
     user_count_before: Domov
     what_is_mastodon: Co je Mastodon?
+    status_count_after:
+      one: příspěvek
+      other: příspěvků
+    user_count_after:
+      one: uživatele
+      other: uživatelů
   accounts:
     choices_html: 'Volby uživatele %{name}:'
     follow: Sledovat
@@ -430,6 +436,9 @@ cs:
         desc_html: Zobrazit na hlavní straně veřejnou časovou osu
         title: Náhled časové osy
       title: Nastavení stránky
+      custom_css:
+        desc_html: Pozměnit vzhled pomocí šablony CSS načtené na každé stránce
+        title: Vlastní CSS
     statuses:
       back_to_account: Zpět na stránku účtu
       batch:
@@ -455,6 +464,8 @@ cs:
       title: Suspendovat účet %{acct}
       warning_html: 'Suspenzace tohoto účtu <strong>nenávratně</strong> smaže z tohoto
         účtu data, včetně:'
+      bad_acct_msg: Hodnota pro potvrzení neodpovídá. Suspendujete správný účet?
+      hint_html: 'Pro potvrzení suspenzace účtu prosím zadejte do pole níže %{value}:'
     title: Administrace
   admin_mailer:
     new_report:
