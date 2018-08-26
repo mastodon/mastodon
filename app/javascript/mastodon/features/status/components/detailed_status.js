@@ -77,7 +77,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             media={quote_status.get('media_attachments')}
             height={300}
             onOpenMedia={this.props.onOpenMedia}
-            quote={true}
+            quote
           />
         );
       }

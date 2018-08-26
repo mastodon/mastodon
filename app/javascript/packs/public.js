@@ -79,7 +79,10 @@ function main() {
         .catch(error => console.error(error));
     }
 
-    new Rellax('.parallax', { speed: -1 });
+    const parallaxComponents = document.querySelectorAll('.parallax');
+    if (parallaxComponents.length > 0 ) {
+      new Rellax('.parallax', { speed: -1 });
+    }
 
     const history = createHistory();
     const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
@@ -173,7 +176,7 @@ function main() {
     }
   });
 
-  delegate(document, '.quote-status', 'click', ({target}) => {
+  delegate(document, '.quote-status', 'click', ({ target }) => {
     if (target.closest('.status__content__spoiler-link') ||
       target.closest('.media-gallery'))
       return false;

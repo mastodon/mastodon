@@ -185,7 +185,7 @@ const expandMentions = status => {
 const rejectQuoteAltText = html => {
   const fragment = domParser.parseFromString(html, 'text/html').documentElement;
 
-  const quote_inline = fragment.querySelector(`span.quote-inline`);
+  const quote_inline = fragment.querySelector('span.quote-inline');
   if (quote_inline) {
     quote_inline.remove();
   }
