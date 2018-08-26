@@ -315,6 +315,7 @@ export default class Video extends React.PureComponent {
           role='button'
           tabIndex='0'
           aria-label={alt}
+          title={alt}
           width={width}
           height={height}
           onClick={this.togglePlay}
