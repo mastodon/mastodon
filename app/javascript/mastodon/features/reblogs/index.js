@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
 import { fetchReblogs } from '../../actions/interactions';
-import { ScrollContainer } from 'react-router-scroll-4';
+import { FormattedMessage } from 'react-intl';
 import AccountContainer from '../../containers/account_container';
 import Column from '../ui/components/column';
 import ColumnBackButton from '../../components/column_back_button';
+import ScrollableList from '../../components/scrollable_list';
 
 const mapStateToProps = (state, props) => ({
   accountIds: state.getIn(['user_lists', 'reblogged_by', props.params.statusId]),
@@ -45,15 +46,21 @@ export default class Reblogs extends ImmutablePureComponent {
       );
     }
 
+    const emptyMessage = <FormattedMessage id='status.reblogs.empty' defaultMessage='No one has boosted this toot yet. When someone does, they will show up here.' />;
+
     return (
       <Column>
         <ColumnBackButton />
 
-        <ScrollContainer scrollKey='reblogs' shouldUpdateScroll={shouldUpdateScroll}>
-          <div className='scrollable reblogs'>
-            {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
-          </div>
-        </ScrollContainer>
+        <ScrollableList
+          scrollKey='reblogs'
+          shouldUpdateScroll={shouldUpdateScroll}
+          emptyMessage={emptyMessage}
+        >
+          {accountIds.map(id =>
+            <AccountContainer key={id} id={id} withNote={false} />
+          )}
+        </ScrollableList>
       </Column>
     );
   }

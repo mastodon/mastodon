@@ -638,6 +638,10 @@
       {
         "defaultMessage": "Blocked users",
         "id": "column.blocks"
+      },
+      {
+        "defaultMessage": "You haven't blocked any users yet.",
+        "id": "empty_column.blocks"
       }
     ],
     "path": "app/javascript/mastodon/features/blocks/index.json"
@@ -1049,6 +1053,10 @@
       {
         "defaultMessage": "Unhide {domain}",
         "id": "account.unblock_domain"
+      },
+      {
+        "defaultMessage": "There are no hidden domains yet.",
+        "id": "empty_column.domain_blocks"
       }
     ],
     "path": "app/javascript/mastodon/features/domain_blocks/index.json"
@@ -1058,9 +1066,22 @@
       {
         "defaultMessage": "Favourites",
         "id": "column.favourites"
+      },
+      {
+        "defaultMessage": "You don't have any favourite toots yet. When you favourite one, it will show up here.",
+        "id": "empty_column.favourited_statuses"
       }
     ],
     "path": "app/javascript/mastodon/features/favourited_statuses/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "No one has favourited this toot yet. When someone does, they will show up here.",
+        "id": "empty_column.favourites"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/favourites/index.json"
   },
   {
     "descriptors": [
@@ -1080,9 +1101,31 @@
       {
         "defaultMessage": "Follow requests",
         "id": "column.follow_requests"
+      },
+      {
+        "defaultMessage": "You don't have any follow requests yet. When you receive one, it will show up here.",
+        "id": "empty_column.follow_requests"
       }
     ],
     "path": "app/javascript/mastodon/features/follow_requests/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "No one follows this user yet.",
+        "id": "account.followers.empty"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/followers/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "This user doesn't follow anyone yet.",
+        "id": "account.follows.empty"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/following/index.json"
   },
   {
     "descriptors": [
@@ -1398,6 +1441,10 @@
       {
         "defaultMessage": "Your lists",
         "id": "lists.subheading"
+      },
+      {
+        "defaultMessage": "You don't have any lists yet. When you create one, it will show up here.",
+        "id": "empty_column.lists"
       }
     ],
     "path": "app/javascript/mastodon/features/lists/index.json"
@@ -1407,6 +1454,10 @@
       {
         "defaultMessage": "Muted users",
         "id": "column.mutes"
+      },
+      {
+        "defaultMessage": "You haven't muted any users yet.",
+        "id": "empty_column.mutes"
       }
     ],
     "path": "app/javascript/mastodon/features/mutes/index.json"
@@ -1525,6 +1576,15 @@
       }
     ],
     "path": "app/javascript/mastodon/features/public_timeline/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "No one has boosted this toot yet. When someone does, they will show up here.",
+        "id": "status.reblogs.empty"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/reblogs/index.json"
   },
   {
     "descriptors": [
