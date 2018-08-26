@@ -132,7 +132,7 @@ export function directCompose(account, router) {
 
 export function submitCompose(withCommunity) {
   return function (dispatch, getState) {
-    const { newStatus, visibility, hasDefaultHashtag } = handleDefaultTag(
+    let { newStatus, visibility, hasDefaultHashtag } = handleDefaultTag(
       withCommunity,
       getState().getIn(['compose', 'text'], ''),
       getState().getIn(['compose', 'privacy'])
