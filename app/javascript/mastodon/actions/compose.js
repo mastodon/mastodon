@@ -132,16 +132,17 @@ export function directCompose(account, router) {
 
 export function submitCompose(withCommunity) {
   return function (dispatch, getState) {
-    let { newStatus, visibility, hasDefaultHashtag } = handleDefaultTag(
-      withCommunity,
-      getState().getIn(['compose', 'text'], ''),
-      getState().getIn(['compose', 'privacy'])
-    );
-    const media  = getState().getIn(['compose', 'media_attachments']);
-
+    const status = getState().getIn(['compose', 'text'], '');	
+    const media = getState().getIn(['compose', 'media_attachments']);
     if ((!status || !status.length) && media.size === 0) {
       return;
     }
+
+    const { newStatus, visibility, hasDefaultHashtag } = handleDefaultTag(
+      withCommunity,
+      status,
+      getState().getIn(['compose', 'privacy'])
+    );
 
     dispatch(submitComposeRequest());
 
