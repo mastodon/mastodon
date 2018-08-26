@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::Accounts::StatusesController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }
+  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, unless: :public_toots_api?
   before_action :set_account
   after_action :insert_pagination_headers
 
@@ -13,6 +13,10 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   private
+
+  def public_toots_api?
+    Setting.public_toots_api
+  end
 
   def set_account
     @account = Account.find(params[:account_id])

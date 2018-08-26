@@ -54,6 +54,7 @@ defaults: &defaults
   bootstrap_timeline_accounts: ''
   activity_api_enabled: true
   peers_api_enabled: true
+  public_toots_api: false
   show_known_fediverse_at_about_page: true
 development:
   <<: *defaults

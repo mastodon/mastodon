@@ -64,6 +64,9 @@
     = f.input :peers_api_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.peers_api_enabled.title'), hint: t('admin.settings.peers_api_enabled.desc_html')
 
   .fields-group
+    = f.input :public_toots_api, as: :boolean, wrapper: :with_label, label: t('admin.settings.public_toots_api.title'), hint: t('admin.settings.public_toots_api.desc_html')
+
+  .fields-group
     = f.input :preview_sensitive_media, as: :boolean, wrapper: :with_label, label: t('admin.settings.preview_sensitive_media.title'), hint: t('admin.settings.preview_sensitive_media.desc_html')
 
   .actions

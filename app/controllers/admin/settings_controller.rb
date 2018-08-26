@@ -22,6 +22,7 @@ module Admin
       min_invite_role
       activity_api_enabled
       peers_api_enabled
+      public_toots_api
       show_known_fediverse_at_about_page
       preview_sensitive_media
       custom_css
@@ -34,6 +35,7 @@ module Admin
       show_staff_badge
       activity_api_enabled
       peers_api_enabled
+      public_toots_api
       show_known_fediverse_at_about_page
       preview_sensitive_media
     ).freeze
