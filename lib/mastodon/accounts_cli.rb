@@ -23,7 +23,7 @@ module Mastodon
         processed = 0
         delay     = 0
 
-        Account.local.find_in_batches do |accounts|
+        Account.local.without_suspended.find_in_batches do |accounts|
           accounts.each do |account|
             rotate_keys_for_account(account, delay)
             processed += 1
