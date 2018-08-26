@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
+  get 'custom.css', to: 'custom_css#show', as: :custom_css
 
   devise_scope :user do
     get '/invite/:invite_code', to: 'auth/registrations#new', as: :public_invite

@@ -7,6 +7,7 @@ export default class Column extends React.PureComponent {
 
   static propTypes = {
     children: PropTypes.node,
+    label: PropTypes.string,
   };
 
   scrollTop () {
@@ -40,10 +41,10 @@ export default class Column extends React.PureComponent {
   }
 
   render () {
-    const { children } = this.props;
+    const { label, children } = this.props;
 
     return (
-      <div role='region' className='column' ref={this.setRef}>
+      <div role='region' aria-label={label} className='column' ref={this.setRef}>
         {children}
       </div>
     );

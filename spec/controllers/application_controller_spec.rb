@@ -92,6 +92,43 @@ describe ApplicationController, type: :controller do
     end
   end
 
+  describe 'helper_method :current_flavour' do
+    it 'returns "glitch" when theme wasn\'t changed in admin settings' do
+      allow(Setting).to receive(:default_settings).and_return({'skin' => 'default'})
+      allow(Setting).to receive(:default_settings).and_return({'flavour' => 'glitch'})
+
+      expect(controller.view_context.current_flavour).to eq 'glitch'
+    end
+
+    it 'returns instances\'s flavour when user is not signed in' do
+      allow(Setting).to receive(:[]).with('skin').and_return 'default'
+      allow(Setting).to receive(:[]).with('flavour').and_return 'vanilla'
+
+      expect(controller.view_context.current_flavour).to eq 'vanilla'
+    end
+
+    it 'returns instances\'s default flavour when user didn\'t set theme' do
+      current_user = Fabricate(:user)
+      sign_in current_user
+
+      allow(Setting).to receive(:[]).with('skin').and_return 'default'
+      allow(Setting).to receive(:[]).with('flavour').and_return 'vanilla'
+
+      expect(controller.view_context.current_flavour).to eq 'vanilla'
+    end
+
+    it 'returns user\'s flavour when it is set' do
+      current_user = Fabricate(:user)
+      current_user.settings['flavour'] = 'glitch'
+      sign_in current_user
+
+      allow(Setting).to receive(:[]).with('skin').and_return 'default'
+      allow(Setting).to receive(:[]).with('flavour').and_return 'vanilla'
+
+      expect(controller.view_context.current_flavour).to eq 'glitch'
+    end
+  end
+
   context 'ActionController::RoutingError' do
     subject do
       routes.draw { get 'routing_error' => 'anonymous#routing_error' }
