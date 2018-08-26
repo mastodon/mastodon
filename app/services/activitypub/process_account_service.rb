@@ -5,9 +5,10 @@ class ActivityPub::ProcessAccountService < BaseService
 
   # Should be called with confirmed valid JSON
   # and WebFinger-resolved username and domain
-  def call(username, domain, json)
+  def call(username, domain, json, options = {})
     return if json['inbox'].blank? || unsupported_uri_scheme?(json['id'])
 
+    @options     = options
     @json        = json
     @uri         = @json['id']
     @username    = username
@@ -31,7 +32,7 @@ class ActivityPub::ProcessAccountService < BaseService
     return if @account.nil?
 
     after_protocol_change! if protocol_changed?
-    after_key_change! if key_changed?
+    after_key_change! if key_changed? && !@options[:signed_with_known_key]
     check_featured_collection! if @account.featured_collection_url.present?
 
     @account
