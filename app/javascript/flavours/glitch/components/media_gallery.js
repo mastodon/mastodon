@@ -174,6 +174,7 @@ class Item extends React.PureComponent {
           <video
             className={`media-gallery__item-gifv-thumbnail${letterbox ? ' letterbox' : ''}`}
             aria-label={attachment.get('description')}
+            title={attachment.get('description')}
             role='application'
             src={attachment.get('url')}
             onClick={this.handleClick}
