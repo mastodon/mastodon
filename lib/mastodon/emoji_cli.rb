@@ -13,7 +13,7 @@ module Mastodon
     option :suffix
     option :overwrite, type: :boolean
     option :unlisted, type: :boolean
-    desc 'import PATH', 'import emoji from a TAR archive at PATH'
+    desc 'import PATH', 'Import emoji from a TAR archive at PATH'
     long_desc <<-LONG_DESC
       Imports custom emoji from a TAR archive specified by PATH.
 

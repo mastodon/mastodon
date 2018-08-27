@@ -280,14 +280,14 @@ namespace :mastodon do
 
         begin
           ActionMailer::Base.smtp_settings = {
-            :port                 => env['SMTP_PORT'],
-            :address              => env['SMTP_SERVER'],
-            :user_name            => env['SMTP_LOGIN'].presence,
-            :password             => env['SMTP_PASSWORD'].presence,
-            :domain               => env['LOCAL_DOMAIN'],
-            :authentication       => env['SMTP_AUTH_METHOD'] == 'none' ? nil : env['SMTP_AUTH_METHOD'] || :plain,
-            :openssl_verify_mode  => env['SMTP_OPENSSL_VERIFY_MODE'],
-            :enable_starttls_auto => true,
+            port:                 env['SMTP_PORT'],
+            address:              env['SMTP_SERVER'],
+            user_name:            env['SMTP_LOGIN'].presence,
+            password:             env['SMTP_PASSWORD'].presence,
+            domain:               env['LOCAL_DOMAIN'],
+            authentication:       env['SMTP_AUTH_METHOD'] == 'none' ? nil : env['SMTP_AUTH_METHOD'] || :plain,
+            openssl_verify_mode:  env['SMTP_OPENSSL_VERIFY_MODE'],
+            enable_starttls_auto: true,
           }
 
           ActionMailer::Base.default_options = {
@@ -326,13 +326,11 @@ namespace :mastodon do
 
         if prompt.yes?('Prepare the database now?')
           prompt.say 'Running `RAILS_ENV=production rails db:setup` ...'
-          prompt.say "\n"
+          prompt.say "\n\n"
 
           if cmd.run!({ RAILS_ENV: 'production', SAFETY_ASSURED: 1 }, :rails, 'db:setup').failure?
-            prompt.say "\n"
             prompt.error 'That failed! Perhaps your configuration is not right'
           else
-            prompt.say "\n"
             prompt.ok 'Done!'
           end
         end
@@ -343,13 +341,11 @@ namespace :mastodon do
 
         if prompt.yes?('Compile the assets now?')
           prompt.say 'Running `RAILS_ENV=production rails assets:precompile` ...'
-          prompt.say "\n"
+          prompt.say "\n\n"
 
           if cmd.run!({ RAILS_ENV: 'production' }, :rails, 'assets:precompile').failure?
-            prompt.say "\n"
             prompt.error 'That failed! Maybe you need swap space?'
           else
-            prompt.say "\n"
             prompt.say 'Done!'
           end
         end
@@ -715,10 +711,10 @@ namespace :mastodon do
       pastel = Pastel.new
 
       duplicate_masters.each do |account|
-        puts pastel.yellow("First of their name: ") + pastel.bold(account.username) + " (#{admin_account_url(account.id)})"
+        puts pastel.yellow('First of their name: ') + pastel.bold(account.username) + " (#{admin_account_url(account.id)})"
 
         Account.where('lower(username) = ?', account.username.downcase).where.not(id: account.id).each do |duplicate|
-          puts "  " + pastel.red("Duplicate: ") + admin_account_url(duplicate.id)
+          puts '  ' + pastel.red('Duplicate: ') + admin_account_url(duplicate.id)
         end
       end
     end

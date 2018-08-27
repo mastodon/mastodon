@@ -10,7 +10,7 @@ module Mastodon
   class MediaCLI < Thor
     option :days, type: :numeric, default: 7
     option :background, type: :boolean, default: false
-    desc 'remove', 'remove remote media files'
+    desc 'remove', 'Remove remote media files'
     long_desc <<-DESC
       Removes locally cached copies of media attachments from other servers.
 
