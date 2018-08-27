@@ -191,7 +191,7 @@ Resources:
   EC2InstancePrimary:
     Type: 'AWS::EC2::Instance'
     Properties:
-      InstanceType: m4.large
+      InstanceType: t2.small
       KeyName: !Ref KeyPairName
       ImageId: !Ref ImageId
       IamInstanceProfile: !Ref EC2InstanceProfile
