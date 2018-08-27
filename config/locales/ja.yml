@@ -30,10 +30,14 @@ ja:
     other_instances: 他のインスタンス
     privacy_policy: プライバシーポリシー
     source_code: ソースコード
-    status_count_after: トゥート
+    status_count_after:
+      one: トゥート
+      other: トゥート
     status_count_before: トゥート数
     terms: 利用規約
-    user_count_after: 人
+    user_count_after:
+      one: 人
+      other: 人
     user_count_before: ユーザー数
     what_is_mastodon: Mastodon とは？
   accounts:
@@ -49,7 +53,7 @@ ja:
     people_followed_by: "%{name} さんがフォロー中のアカウント"
     people_who_follow: "%{name} さんをフォロー中のアカウント"
     pin_errors:
-      following: 推薦したい人はあなたが既にフォローしている必要があります
+      following: おすすめしたい人はあなたが既にフォローしている必要があります
     posts: トゥート
     posts_with_replies: トゥートと返信
     reserved_username: このユーザー名は予約されています
@@ -185,7 +189,7 @@ ja:
         unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
         update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
         update_status: "%{name} さんが %{target} さんの投稿を更新しました"
-      deleted_status: "(削除されました)"
+      deleted_status: "(削除済)"
       title: 操作履歴
     custom_emojis:
       by_domain: ドメイン
@@ -414,6 +418,12 @@ ja:
       last_delivery: 最終配送
       title: WebSub
       topic: トピック
+    suspensions:
+      bad_acct_msg: 値が一致しませんでした。停止しようとしているアカウントに間違いはありませんか？
+      hint_html: 'アカウントの停止を確認するには、以下のフィールドに %{value} と入力してください:'
+      proceed: 完全に活動停止させる
+      title: "%{acct} を停止"
+      warning_html: 'このアカウントを停止すると、このアカウントから次のようなデータが<strong>不可逆的に</strong>削除されます:'
     title: 管理
   admin_mailer:
     new_report:
@@ -644,7 +654,6 @@ ja:
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: ''
   pagination:
     newer: 新しいトゥート
     next: 次
@@ -867,7 +876,7 @@ ja:
     recovery_codes_regenerated: リカバリーコードが再生成されました
     recovery_instructions_html: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。<strong>リカバリーコードは大切に保全してください。</strong>たとえば印刷してほかの重要な書類と一緒に保管することができます。
     setup: 初期設定
-    wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していることを確認してください。
+    wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していますか？
   user_mailer:
     backup_ready:
       explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！

@@ -27,6 +27,8 @@ class FollowService < BaseService
       return
     end
 
+    ActivityTracker.increment('activity:interactions')
+
     if target_account.locked? || target_account.activitypub?
       request_follow(source_account, target_account, reblogs: reblogs)
     else

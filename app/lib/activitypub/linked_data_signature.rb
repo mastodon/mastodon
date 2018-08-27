@@ -32,7 +32,7 @@ class ActivityPub::LinkedDataSignature
     end
   end
 
-  def sign!(creator)
+  def sign!(creator, sign_with: nil)
     options = {
       'type'    => 'RsaSignature2017',
       'creator' => [ActivityPub::TagManager.instance.uri_for(creator), '#main-key'].join,
@@ -42,8 +42,9 @@ class ActivityPub::LinkedDataSignature
     options_hash  = hash(options.without('type', 'id', 'signatureValue').merge('@context' => CONTEXT))
     document_hash = hash(@json.without('signature'))
     to_be_signed  = options_hash + document_hash
+    keypair       = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : creator.keypair
 
-    signature = Base64.strict_encode64(creator.keypair.sign(OpenSSL::Digest::SHA256.new, to_be_signed))
+    signature = Base64.strict_encode64(keypair.sign(OpenSSL::Digest::SHA256.new, to_be_signed))
 
     @json.merge('signature' => options.merge('signatureValue' => signature))
   end

@@ -3,7 +3,7 @@
     .account__header__fields
       - account.fields.each do |field|
         %dl
-          %dt.emojify{ title: field.name }= field.name
+          %dt.emojify{ title: field.name }= Formatter.instance.format_field(account, field.name, custom_emojify: true)
           %dd.emojify{ title: field.value }= Formatter.instance.format_field(account, field.value, custom_emojify: true)
 
   = account_badge(account)

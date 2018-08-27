@@ -390,7 +390,7 @@
         "id": "confirmations.redraft.confirm"
       },
       {
-        "defaultMessage": "Are you sure you want to delete this status and re-draft it? You will lose all replies, boosts and favourites to it.",
+        "defaultMessage": "Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.",
         "id": "confirmations.redraft.message"
       },
       {
@@ -638,6 +638,10 @@
       {
         "defaultMessage": "Blocked users",
         "id": "column.blocks"
+      },
+      {
+        "defaultMessage": "You haven't blocked any users yet.",
+        "id": "empty_column.blocks"
       }
     ],
     "path": "app/javascript/mastodon/features/blocks/index.json"
@@ -907,7 +911,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Add media",
+        "defaultMessage": "Add media (JPEG, PNG, GIF, WebM, MP4)",
         "id": "upload_button.label"
       }
     ],
@@ -1019,6 +1023,10 @@
       {
         "defaultMessage": "Logout",
         "id": "navigation_bar.logout"
+      },
+      {
+        "defaultMessage": "Compose new toot",
+        "id": "navigation_bar.compose"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/index.json"
@@ -1045,6 +1053,10 @@
       {
         "defaultMessage": "Unhide {domain}",
         "id": "account.unblock_domain"
+      },
+      {
+        "defaultMessage": "There are no hidden domains yet.",
+        "id": "empty_column.domain_blocks"
       }
     ],
     "path": "app/javascript/mastodon/features/domain_blocks/index.json"
@@ -1054,9 +1066,22 @@
       {
         "defaultMessage": "Favourites",
         "id": "column.favourites"
+      },
+      {
+        "defaultMessage": "You don't have any favourite toots yet. When you favourite one, it will show up here.",
+        "id": "empty_column.favourited_statuses"
       }
     ],
     "path": "app/javascript/mastodon/features/favourited_statuses/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "No one has favourited this toot yet. When someone does, they will show up here.",
+        "id": "empty_column.favourites"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/favourites/index.json"
   },
   {
     "descriptors": [
@@ -1076,9 +1101,31 @@
       {
         "defaultMessage": "Follow requests",
         "id": "column.follow_requests"
+      },
+      {
+        "defaultMessage": "You don't have any follow requests yet. When you receive one, it will show up here.",
+        "id": "empty_column.follow_requests"
       }
     ],
     "path": "app/javascript/mastodon/features/follow_requests/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "No one follows this user yet.",
+        "id": "account.followers.empty"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/followers/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "This user doesn't follow anyone yet.",
+        "id": "account.follows.empty"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/following/index.json"
   },
   {
     "descriptors": [
@@ -1319,6 +1366,54 @@
         "id": "keyboard_shortcuts.unfocus"
       },
       {
+        "defaultMessage": "to open home timeline",
+        "id": "keyboard_shortcuts.home"
+      },
+      {
+        "defaultMessage": "to open notifications column",
+        "id": "keyboard_shortcuts.notifications"
+      },
+      {
+        "defaultMessage": "to open local timeline",
+        "id": "keyboard_shortcuts.local"
+      },
+      {
+        "defaultMessage": "to open federated timeline",
+        "id": "keyboard_shortcuts.federated"
+      },
+      {
+        "defaultMessage": "to open direct messages column",
+        "id": "keyboard_shortcuts.direct"
+      },
+      {
+        "defaultMessage": "to open \"get started\" column",
+        "id": "keyboard_shortcuts.start"
+      },
+      {
+        "defaultMessage": "to open favourites list",
+        "id": "keyboard_shortcuts.favourites"
+      },
+      {
+        "defaultMessage": "to open pinned toots list",
+        "id": "keyboard_shortcuts.pinned"
+      },
+      {
+        "defaultMessage": "to open your profile",
+        "id": "keyboard_shortcuts.my_profile"
+      },
+      {
+        "defaultMessage": "to open blocked users list",
+        "id": "keyboard_shortcuts.blocked"
+      },
+      {
+        "defaultMessage": "to open muted users list",
+        "id": "keyboard_shortcuts.muted"
+      },
+      {
+        "defaultMessage": "to open follow requests list",
+        "id": "keyboard_shortcuts.requests"
+      },
+      {
         "defaultMessage": "to display this legend",
         "id": "keyboard_shortcuts.legend"
       }
@@ -1394,6 +1489,10 @@
       {
         "defaultMessage": "Your lists",
         "id": "lists.subheading"
+      },
+      {
+        "defaultMessage": "You don't have any lists yet. When you create one, it will show up here.",
+        "id": "empty_column.lists"
       }
     ],
     "path": "app/javascript/mastodon/features/lists/index.json"
@@ -1403,6 +1502,10 @@
       {
         "defaultMessage": "Muted users",
         "id": "column.mutes"
+      },
+      {
+        "defaultMessage": "You haven't muted any users yet.",
+        "id": "empty_column.mutes"
       }
     ],
     "path": "app/javascript/mastodon/features/mutes/index.json"
@@ -1525,6 +1628,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "No one has boosted this toot yet. When someone does, they will show up here.",
+        "id": "status.reblogs.empty"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/reblogs/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "A look inside...",
         "id": "standalone.public_title"
       }
@@ -1636,7 +1748,7 @@
         "id": "confirmations.redraft.confirm"
       },
       {
-        "defaultMessage": "Are you sure you want to delete this status and re-draft it? You will lose all replies, boosts and favourites to it.",
+        "defaultMessage": "Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.",
         "id": "confirmations.redraft.message"
       },
       {
@@ -1650,6 +1762,10 @@
       {
         "defaultMessage": "Show less for all",
         "id": "status.show_less_all"
+      },
+      {
+        "defaultMessage": "Detailed conversation view",
+        "id": "status.detailed_status"
       },
       {
         "defaultMessage": "Are you sure you want to block {name}?",

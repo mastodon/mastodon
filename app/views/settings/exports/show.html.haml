@@ -9,7 +9,7 @@
         %td= number_to_human_size @export.total_storage
         %td
       %tr
-        %th= t('accounts.statuses')
+        %th= t('accounts.statuses', count: @export.total_statuses)
         %td= number_with_delimiter @export.total_statuses
         %td
       %tr
@@ -17,7 +17,7 @@
         %td= number_with_delimiter @export.total_follows
         %td= table_link_to 'download', t('exports.csv'), settings_exports_follows_path(format: :csv)
       %tr
-        %th= t('accounts.followers')
+        %th= t('accounts.followers', count: @export.total_followers)
         %td= number_with_delimiter @export.total_followers
         %td
       %tr

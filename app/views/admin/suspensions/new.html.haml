@@ -8,13 +8,13 @@
     %ul
       %li.negative-hint
         = number_to_human @account.statuses_count, strip_insignificant_zeros: true
-        = t('accounts.posts')
+        = t('accounts.posts', count: @account.statuses_count)
       %li.negative-hint
         = number_to_human @account.following_count, strip_insignificant_zeros: true
-        = t('accounts.following')
+        = t('accounts.following', count: @account.following_count)
       %li.negative-hint
         = number_to_human @account.followers_count, strip_insignificant_zeros: true
-        = t('accounts.followers')
+        = t('accounts.followers', count: @account.followers_count)
 
   %p.hint= t('admin.suspensions.hint_html', value: content_tag(:code, @account.acct))
 

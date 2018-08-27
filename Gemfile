@@ -7,6 +7,7 @@ gem 'pkg-config', '~> 1.3'
 
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.1'
+gem 'thor', '~> 0.20'
 
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.0'
@@ -41,7 +42,7 @@ gem 'omniauth-cas', '~> 1.1'
 gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth', '~> 1.2'
 
-gem 'doorkeeper', '~> 4.4'
+gem 'doorkeeper', '~> 5.0'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
 gem 'goldfinger', '~> 2.1'
