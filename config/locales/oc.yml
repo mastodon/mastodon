@@ -6,6 +6,7 @@ oc:
     about_this: A prepaus d’aquesta instància
     administered_by: 'Gerida per :'
     api: API
+    apps: Aplicacions per mobil
     closed_registrations: Las inscripcions son clavadas pel moment sus aquesta instància.
     contact: Contacte
     contact_missing: Pas parametrat
@@ -36,6 +37,7 @@ oc:
     user_count_before: Ostal de
     what_is_mastodon: Qu’es Mastodon ?
   accounts:
+    choices_html: 'Recomandacion de %{name} :'
     follow: Sègre
     followers: Seguidors
     following: Abonaments
@@ -46,6 +48,8 @@ oc:
     nothing_here: I a pas res aquí !
     people_followed_by: Lo monde que %{name} sèc
     people_who_follow: Lo monde que sègon %{name}
+    pin_errors:
+      following: Vos cal d’en primièr sègre las personas que volètz promòure
     posts: Tuts
     posts_with_replies: Tuts e responsas
     reserved_username: Aqueste nom d’utilizaire es reservat
@@ -182,6 +186,7 @@ oc:
         unsuspend_account: "%{name} restabliguèt lo compte a %{target}"
         update_custom_emoji: "%{name} metèt a jorn l’emoji %{target}"
         update_status: "%{name} metèt a jorn l’estatut a %{target}"
+      deleted_status: "(estatut suprimit)"
       title: Audit dels jornals
     custom_emojis:
       by_domain: Domeni
@@ -278,6 +283,7 @@ oc:
       search: Cercar
       title: Instàncias conegudas
     invites:
+      deactivate_all: O desactivar tot
       filter:
         all: Totes
         available: Disponibles
@@ -399,6 +405,7 @@ oc:
       media:
         title: Mèdia
       no_media: Cap de mèdia
+      no_status_selected: Cap d’estatut pas cambiat estant que cap èra pas seleccionat
       title: Estatuts del compte
       with_media: Amb mèdia
     subscriptions:
@@ -712,6 +719,8 @@ oc:
     no_account_html: Avètz pas cap de compte ? Podètz <a href='%{sign_up_path}' target='_blank'>vos marcar aquí</a>
     proceed: Clicatz per sègre
     prompt: 'Sètz per sègre :'
+  remote_interaction:
+    prompt: 'Volètz interagir amb aqueste tut :'
   remote_unfollow:
     error: Error
     title: Títol
@@ -795,6 +804,7 @@ oc:
       private: Se pòt pas penjar los tuts pas publics
       reblog: Se pòt pas penjar un tut partejat
     show_more: Ne veire mai
+    sign_in_to_participate: Inscrivètz-vos per participar a la conversacion
     title: '%{name} : "%{quote}"'
     visibilities:
       private: Seguidors solament
@@ -854,6 +864,7 @@ oc:
   time:
     formats:
       default: Lo %d %b de %Y a %Ho%M
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Picatz lo còdi generat per vòstra aplicacion d’autentificacion per confirmar
     description_html: S’activatz <strong> l’autentificacion two-factor</strong>, vos caldrà vòstre mobil per vos connectar perque generarà un geton per vos daissar dintrar.

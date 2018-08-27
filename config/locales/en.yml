@@ -30,16 +30,22 @@ en:
     other_instances: Instance list
     privacy_policy: Privacy policy
     source_code: Source code
-    status_count_after: statuses
+    status_count_after:
+      one: status
+      other: statuses
     status_count_before: Who authored
     terms: Terms of service
-    user_count_after: users
+    user_count_after:
+      one: user
+      other: users
     user_count_before: Home to
     what_is_mastodon: What is Mastodon?
   accounts:
     choices_html: "%{name}'s choices:"
     follow: Follow
-    followers: Followers
+    followers:
+      one: Follower
+      other: Followers
     following: Following
     joined: Joined %{date}
     media: Media
@@ -50,7 +56,10 @@ en:
     people_who_follow: People who follow %{name}
     pin_errors:
       following: You must be already following the person you want to endorse
-    posts: Toots
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Toots and replies
     reserved_username: The username is reserved
     roles:
@@ -346,6 +355,9 @@ en:
       contact_information:
         email: Business e-mail
         username: Contact username
+      custom_css:
+        desc_html: Modify the look with CSS loaded on every page
+        title: Custom CSS
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to instance thumbnail
         title: Hero image
@@ -414,6 +426,12 @@ en:
       last_delivery: Last delivery
       title: WebSub
       topic: Topic
+    suspensions:
+      bad_acct_msg: The confirmation value didn't match up. Are you suspending the right account?
+      hint_html: 'To confirm the suspension of the account, please enter %{value} into the field below:'
+      proceed: Proceed
+      title: Suspend %{acct}
+      warning_html: 'Suspending this account will <strong>irreversibly</strong> delete data from this account, which includes:'
     title: Administration
   admin_mailer:
     new_report:
