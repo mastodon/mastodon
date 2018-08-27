@@ -18,7 +18,13 @@ I'm sending user-data/meta-data debug information into a file - `/var/tmp$ tail 
 * Automate creation of admin account (task is currently interactive only)
 * Build AWS Elasticsearch in the stack?
 
+## Cost
+Monthly cost is about $50-100!
+I'm running my https://aus.social instance on t2.small instances and we're almost at 100 active users.
+It's much more expensive than digital ocean but much more stable with lower techdebt due to the managed services (RDS/ElasticCache).
+
 ## Automation steps
+* Creates ec2 instance (t2.small can support hundreds of users)
 * Installs Ubuntu 18.04
 * Installs supporting packages
 * Installs all updates
