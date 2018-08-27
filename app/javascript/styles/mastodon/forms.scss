@@ -106,18 +106,13 @@ code {
       font-size: 16px;
       color: $primary-text-color;
       display: block;
-      padding-top: 5px;
-      margin-bottom: 5px;
+      margin: 5px 10px 5px 0;
       flex: 1;
-      min-width: 150px;
+      min-width: 200px;
       word-wrap: break-word;
 
       &.select {
         flex: 0;
-      }
-
-      & ~ * {
-        margin-left: 10px;
       }
     }
 
@@ -346,11 +341,6 @@ code {
         background-color: darken($error-value-color, 5%);
       }
     }
-  }
-
-  select {
-    font-size: 16px;
-    max-height: 29px;
   }
 
   .input-with-append {
