@@ -129,3 +129,7 @@ export function EmbedModal () {
 export function ListEditor () {
   return import(/* webpackChunkName: "features/list_editor" */'../../list_editor');
 }
+
+export function PanoramaViewer () {
+  return import(/* webpackChunkName: "features/panorama_viewer" */'../components/panorama_viewer');
+}

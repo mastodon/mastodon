@@ -1549,6 +1549,22 @@ a.account__display-name {
     height: auto;
     object-fit: contain;
   }
+
+  .zoomable-image__panorama {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .zoomable-image__panorama-button {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    z-index: 1;
+    font-size: 1.3em;
+  }
 }
 
 .navigation-bar {

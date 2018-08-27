@@ -1,5 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Motion from '../util/optional_motion';
+import spring from 'react-motion/lib/spring';
+import getPanoramaData from '../util/get_panorama_data';
+import { PanoramaViewer as PanoramaViewerAsync } from '../util/async-components';
+
+let PanoramaViewer; // async
 
 const MIN_SCALE = 1;
 const MAX_SCALE = 4;
@@ -32,6 +38,9 @@ export default class ZoomableImage extends React.PureComponent {
 
   state = {
     scale: MIN_SCALE,
+    canShowPanorama: false,
+    panoramaData: null,
+    panorama: false,
   }
 
   removers = [];
@@ -49,6 +58,8 @@ export default class ZoomableImage extends React.PureComponent {
     // https://www.chromestatus.com/features/5093566007214080
     this.container.addEventListener('touchmove', handler, { passive: false });
     this.removers.push(() => this.container.removeEventListener('touchend', handler));
+
+    this.checkForPanorama();
   }
 
   componentWillUnmount () {
@@ -107,6 +118,31 @@ export default class ZoomableImage extends React.PureComponent {
     });
   }
 
+  checkForPanorama () {
+    getPanoramaData(this.props.src).then(result => {
+      if (result) {
+        this.setState({
+          panoramaData: result,
+          panorama: result.enabledInitially,
+          canShowPanorama: !!PanoramaViewer,
+        });
+
+        if (!PanoramaViewer) {
+          PanoramaViewerAsync().then(module => {
+            PanoramaViewer = module.default;
+            this.setState({ canShowPanorama: true });
+          }).catch(() => {});
+        }
+      }
+    }).catch(() => {});
+  }
+
+  togglePanorama = e => {
+    // don't propagate event to MediaModal
+    if (e) e.stopPropagation();
+    this.setState({ panorama: !this.state.panorama });
+  }
+
   handleClick = e => {
     // don't propagate event to MediaModal
     e.stopPropagation();
@@ -124,8 +160,8 @@ export default class ZoomableImage extends React.PureComponent {
 
   render () {
     const { alt, src } = this.props;
-    const { scale } = this.state;
-    const overflow = scale === 1 ? 'hidden' : 'scroll';
+    const { scale, panorama, panoramaData,canShowPanorama } = this.state;
+    const overflow = scale === 1 || panorama ? 'hidden' : 'scroll';
 
     return (
       <div
@@ -133,6 +169,18 @@ export default class ZoomableImage extends React.PureComponent {
         ref={this.setContainerRef}
         style={{ overflow }}
       >
+        {panoramaData && canShowPanorama && (
+          <button
+            onClick={this.togglePanorama}
+            aria-label='Toggle Panorama'
+            title='Toggle Panorama'
+            className='zoomable-image__panorama-button icon-button'
+            tabIndex='0'
+          >
+            <i className={panorama ? 'fa fa-picture-o' : 'fa fa-globe'} />
+          </button>
+        )}
+
         <img
           role='presentation'
           ref={this.setImageRef}
@@ -144,6 +192,23 @@ export default class ZoomableImage extends React.PureComponent {
           }}
           onClick={this.handleClick}
         />
+
+        <Motion
+          defaultStyle={{ sphere: 0 }}
+          style={{ sphere: spring(+(panorama && canShowPanorama)) }}
+        >
+          {({ sphere }) => {
+            return sphere ? (
+              <PanoramaViewer
+                alt={alt}
+                className='zoomable-image__panorama'
+                image={this.image}
+                panoramaData={panoramaData}
+                sphere={sphere}
+              />
+            ) : null;
+          }}
+        </Motion>
       </div>
     );
   }
