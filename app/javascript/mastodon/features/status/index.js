@@ -43,15 +43,17 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
 import { boostModal, deleteModal } from '../../initial_state';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
+import { textForScreenReader } from '../../components/status';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
   redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
-  redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? You will lose all replies, boosts and favourites to it.' },
+  redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.' },
   blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
   revealAll: { id: 'status.show_more_all', defaultMessage: 'Show more for all' },
   hideAll: { id: 'status.show_less_all', defaultMessage: 'Show less for all' },
+  detailedStatus: { id: 'status.detailed_status', defaultMessage: 'Detailed conversation view' },
 });
 
 const makeMapStateToProps = () => {
@@ -404,7 +406,7 @@ export default class Status extends ImmutablePureComponent {
     };
 
     return (
-      <Column>
+      <Column label={intl.formatMessage(messages.detailedStatus)}>
         <ColumnHeader
           showBackButton
           extraButton={(
@@ -417,7 +419,7 @@ export default class Status extends ImmutablePureComponent {
             {ancestors}
 
             <HotKeys handlers={handlers}>
-              <div className='focusable' tabIndex='0'>
+              <div className='focusable' tabIndex='0' aria-label={textForScreenReader(intl, status, false, !status.get('hidden'))}>
                 <DetailedStatus
                   status={status}
                   onOpenVideo={this.handleOpenVideo}

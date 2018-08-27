@@ -16,17 +16,17 @@
           .counter{ class: active_nav_class(short_account_url(account)) }
             = link_to short_account_url(account), class: 'u-url u-uid', title: number_with_delimiter(account.statuses_count) do
               %span.counter-number= number_to_human account.statuses_count, strip_insignificant_zeros: true
-              %span.counter-label= t('accounts.posts')
+              %span.counter-label= t('accounts.posts', count: account.statuses_count)
 
           .counter{ class: active_nav_class(account_following_index_url(account)) }
             = link_to account_following_index_url(account), title: number_with_delimiter(account.following_count) do
               %span.counter-number= number_to_human account.following_count, strip_insignificant_zeros: true
-              %span.counter-label= t('accounts.following')
+              %span.counter-label= t('accounts.following', count: account.following_count)
 
           .counter{ class: active_nav_class(account_followers_url(account)) }
             = link_to account_followers_url(account), title: number_with_delimiter(account.followers_count) do
               %span.counter-number= number_to_human account.followers_count, strip_insignificant_zeros: true
-              %span.counter-label= t('accounts.followers')
+              %span.counter-label= t('accounts.followers', count: account.followers_count)
         .spacer
         .public-account-header__tabs__tabs__buttons
           = account_action_button(account)
@@ -37,7 +37,7 @@
       .public-account-header__extra__links
         = link_to account_following_index_url(account) do
           %strong= number_to_human account.following_count, strip_insignificant_zeros: true
-          = t('accounts.following')
+          = t('accounts.following', count: account.following_count)
         = link_to account_followers_url(account) do
           %strong= number_to_human account.followers_count, strip_insignificant_zeros: true
-          = t('accounts.followers')
+          = t('accounts.followers', count: account.followers_count)

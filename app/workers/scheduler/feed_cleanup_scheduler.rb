@@ -3,7 +3,7 @@
 class Scheduler::FeedCleanupScheduler
   include Sidekiq::Worker
 
-  sidekiq_options unique: :until_executed
+  sidekiq_options unique: :until_executed, retry: 0
 
   def perform
     clean_home_feeds!
