@@ -30,10 +30,14 @@ cs:
     other_instances: Seznam instancí
     privacy_policy: Zásady soukromí
     source_code: Zdrojový kód
-    status_count_after: příspěvků
+    status_count_after:
+      one: příspěvek
+      other: příspěvků
     status_count_before: Kteří napsali
     terms: Podmínky používání
-    user_count_after: uživatelů
+    user_count_after:
+      one: uživatele
+      other: uživatelů
     user_count_before: Domov
     what_is_mastodon: Co je Mastodon?
   accounts:
@@ -346,6 +350,9 @@ cs:
       contact_information:
         email: Pracovní e-mail
         username: Uživatelské jméno kontaktu
+      custom_css:
+        desc_html: Pozměnit vzhled pomocí šablony CSS načtené na každé stránce
+        title: Vlastní CSS
       hero:
         desc_html: Zobrazuje se na hlavní stránce. Doporučuje se rozlišení alespoň 600x100px. Pokud toto není nastavené, bude zobrazena miniatura instance
         title: Hlavní obrázek
@@ -415,8 +422,11 @@ cs:
       title: WebSub
       topic: Téma
     suspensions:
+      bad_acct_msg: Hodnota pro potvrzení neodpovídá. Suspendujete správný účet?
+      hint_html: 'Pro potvrzení suspenzace účtu prosím zadejte do pole níže %{value}:'
       proceed: Pokračovat
       title: Suspendovat účet %{acct}
+      warning_html: 'Suspenzace tohoto účtu <strong>nenávratně</strong> smaže z tohoto účtu data, včetně:'
     title: Administrace
   admin_mailer:
     new_report:
