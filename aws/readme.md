@@ -13,3 +13,29 @@
 ## TODO
 * Setup scheduled tasks (documentation related to recommend tasks is slim)
 * Automate creation of admin account (task is currently interactive only)
+
+## Automation steps
+* Installs Ubuntu 18.04
+* Installs supporting packages
+* Installs all updates
+* TODO: Install held AWS packages
+
+* Setups DNS record on Route53
+* Creates mastodon user
+* Installs docker
+* Installs docker-compose
+* Setups swap
+
+* clones mastodon 
+* tweaks docker-compose.yml
+* creates .env.production
+* builds docker images
+* prepares the DB
+* precompiles assets
+* boots docker
+
+* Installs nginx
+* configures nginx 
+* Installs certbot for LetsEncypt TLS
+
+* Reboots box
