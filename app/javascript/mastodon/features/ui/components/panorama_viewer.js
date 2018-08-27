@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mat4 } from 'gl-matrix';
+import VelocityScroller from '../util/velocity_scroller';
 
 const MAX_ZOOM = 50;
 const DEFAULT_INITIAL_ZOOM = 0.8;
 const MIN_ZOOM = 0.4;
 const WHEEL_ZOOM_SPEED = 0.01;
 const PAN_SPEED = 2;
+const CLICK_DISTANCE = 4;
 
 // shaders and projection adapted from https://github.com/google/marzipano/tree/5632cd6d3b5ddeb49939aee96e97c24f68874aee
 export default class PanoramaViewer extends React.PureComponent {
@@ -16,7 +18,8 @@ export default class PanoramaViewer extends React.PureComponent {
     image: PropTypes.object.isRequired,
     panoramaData: PropTypes.object.isRequired,
     className: PropTypes.string,
-    sphere: PropTypes.number,
+    sphere: PropTypes.number.isRequired,
+    onClick: PropTypes.func.isRequired,
   }
 
   state = {
@@ -25,6 +28,22 @@ export default class PanoramaViewer extends React.PureComponent {
     zoom: this.props.panoramaData.initialFOV ? 1 / this.props.panoramaData.initialFOV : DEFAULT_INITIAL_ZOOM,
     width: 0,
     height: 0,
+  }
+
+  constructor (props) {
+    super(props);
+
+    this.yawScroller = new VelocityScroller(14, this.props.panoramaData.initialYaw || 0);
+    this.pitchScroller = new VelocityScroller(14, this.props.panoramaData.initialPitch || 0);
+
+    this.yawScroller.onUpdate = yaw => {
+      this.yawScroller.position = yaw = yaw % (2 * Math.PI);
+      this.setState({ yaw });
+    };
+    this.pitchScroller.onUpdate = pitch => {
+      this.pitchScroller.position = pitch = Math.max(-Math.PI / 2, Math.min(pitch, Math.PI / 2));
+      this.setState({ pitch });
+    };
   }
 
   get webGLContext() {
@@ -51,6 +70,11 @@ export default class PanoramaViewer extends React.PureComponent {
       // bind WebKit gesture events here because React won't do it
       canvas.addEventListener('gesturestart', this.onGestureStart);
       canvas.addEventListener('gesturechange', this.onGestureChange);
+
+      // passive: false is required for touch events on some browsers (like Firefox 61)
+      canvas.addEventListener('touchstart', this.onTouchStart, { passive: false });
+      canvas.addEventListener('touchmove', this.onTouchMove, { passive: false });
+      canvas.addEventListener('touchend', this.onTouchEnd, { passive: false });
     }
   }
 
@@ -66,14 +90,33 @@ export default class PanoramaViewer extends React.PureComponent {
     if (this.touchDown) this.onTouchEnd();
   }
 
-  applyPointerDelta (dx, dy) {
+  screenToYawPitch (dx, dy) {
     const { width, height, zoom } = this.state;
+    return [PAN_SPEED * dx / width / zoom, PAN_SPEED * dy / height / zoom];
+  }
+
+  applyPointerDelta (dx, dy) {
     let { yaw, pitch } = this.state;
-    yaw = yaw + PAN_SPEED * dx / width / zoom;
-    pitch = pitch + PAN_SPEED * dy / height / zoom;
+    let [deltaYaw, deltaPitch] = this.screenToYawPitch(dx, dy);
+    yaw += deltaYaw;
+    pitch += deltaPitch;
     yaw = yaw % (2 * Math.PI);
     pitch = Math.max(-Math.PI / 2, Math.min(pitch, Math.PI / 2));
     this.setState({ yaw, pitch });
+  }
+
+  startCoastingWithScreenVelocity(vx, vy) {
+    this.yawScroller.position = this.state.yaw;
+    this.pitchScroller.position = this.state.pitch;
+    const [yawVelocity, pitchVelocity] = this.screenToYawPitch(vx, vy);
+    this.yawScroller.velocity = yawVelocity;
+    this.pitchScroller.velocity = pitchVelocity;
+    this.yawScroller.start();
+    this.pitchScroller.start();
+  }
+
+  shouldSimulateClick(startPos, endPos) {
+    return Math.abs(startPos[0] - endPos[0]) < CLICK_DISTANCE && Math.abs(startPos[1] - endPos[1]) < CLICK_DISTANCE;
   }
 
   onResize = () => {
@@ -92,22 +135,38 @@ export default class PanoramaViewer extends React.PureComponent {
   }
 
   onMouseDown = e => {
-    this.lastMousePos = [e.clientX, e.clientY];
+    this.startMousePos = this.lastMousePos = [e.clientX, e.clientY];
+    this.lastMouseTime = Date.now();
+    this.mouseVelocity = [0, 0];
     this.mouseDown = true;
+
+    this.yawScroller.stop();
+    this.pitchScroller.stop();
 
     window.addEventListener('mousemove', this.onMouseMove);
     window.addEventListener('mouseup', this.onMouseUp);
   }
 
   onMouseMove = e => {
-    let deltaX = e.clientX - this.lastMousePos[0];
-    let deltaY = e.clientY - this.lastMousePos[1];
+    const deltaX = e.clientX - this.lastMousePos[0];
+    const deltaY = e.clientY - this.lastMousePos[1];
+    const now = Date.now();
+    const deltaTime = (now - this.lastMouseTime) / 1000;
+
+    this.lastMouseTime = now;
+    this.mouseVelocity = [deltaX / deltaTime, deltaY / deltaTime];
     this.applyPointerDelta(deltaX, deltaY);
     this.lastMousePos = [e.clientX, e.clientY];
   }
 
-  onMouseUp = () => {
+  onMouseUp = e => {
     this.mouseDown = false;
+
+    if (this.shouldSimulateClick(this.startMousePos, this.lastMousePos)) {
+      this.props.onClick(e);
+    } else {
+      this.startCoastingWithScreenVelocity(...this.mouseVelocity);
+    }
 
     window.removeEventListener('mousemove', this.onMouseMove);
     window.removeEventListener('mouseup', this.onMouseUp);
@@ -115,28 +174,39 @@ export default class PanoramaViewer extends React.PureComponent {
 
   onTouchStart = e => {
     e.preventDefault();
+    e.stopPropagation();
 
-    this.lastTouchPos = [e.touches[0].clientX, e.touches[0].clientY];
+    this.startTouchPos = this.lastTouchPos = [e.touches[0].clientX, e.touches[0].clientY];
+    this.lastTouchTime = Date.now();
+    this.touchVelocity = [0, 0];
     this.touchDown = true;
 
-    window.addEventListener('touchmove', this.onTouchMove);
-    window.addEventListener('touchend', this.onTouchEnd);
+    this.yawScroller.stop();
+    this.pitchScroller.stop();
   }
 
   onTouchMove = e => {
     e.preventDefault();
 
-    let deltaX = e.touches[0].clientX - this.lastTouchPos[0];
-    let deltaY = e.touches[0].clientY - this.lastTouchPos[1];
+    const deltaX = e.touches[0].clientX - this.lastTouchPos[0];
+    const deltaY = e.touches[0].clientY - this.lastTouchPos[1];
+    const now = Date.now();
+    const deltaTime = (now - this.lastTouchTime) / 1000;
+
+    this.lastTouchTime = now;
+    this.touchVelocity = [deltaX / deltaTime, deltaY / deltaTime];
     this.applyPointerDelta(deltaX, deltaY);
     this.lastTouchPos = [e.touches[0].clientX, e.touches[0].clientY];
   }
 
-  onTouchEnd = () => {
+  onTouchEnd = e => {
     this.touchDown = false;
 
-    window.removeEventListener('touchmove', this.onTouchMove);
-    window.removeEventListener('touchend', this.onTouchEnd);
+    if (this.shouldSimulateClick(this.startTouchPos, this.lastTouchPos)) {
+      this.props.onClick(e);
+    } else {
+      this.startCoastingWithScreenVelocity(...this.touchVelocity);
+    }
   }
 
   onWheel = e => {
@@ -169,7 +239,7 @@ export default class PanoramaViewer extends React.PureComponent {
     this.draw();
 
     return (
-      <div className={className} onClick={this.onClick} ref={this.setContainerRef}>
+      <div className={className} ref={this.setContainerRef}>
         <canvas
           className='panorama-viewer__canvas'
           width={width}
@@ -177,8 +247,8 @@ export default class PanoramaViewer extends React.PureComponent {
           ref={this.setCanvasRef}
 
           onMouseDown={this.onMouseDown}
-          onTouchStart={this.onTouchStart}
           onWheel={this.onWheel}
+          onClick={this.onClick}
         />
       </div>
     );

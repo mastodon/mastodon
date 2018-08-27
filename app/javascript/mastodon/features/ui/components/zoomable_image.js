@@ -160,7 +160,7 @@ export default class ZoomableImage extends React.PureComponent {
 
   render () {
     const { alt, src } = this.props;
-    const { scale, panorama, panoramaData,canShowPanorama } = this.state;
+    const { scale, panorama, panoramaData, canShowPanorama } = this.state;
     const overflow = scale === 1 || panorama ? 'hidden' : 'scroll';
 
     return (
@@ -205,6 +205,7 @@ export default class ZoomableImage extends React.PureComponent {
                 image={this.image}
                 panoramaData={panoramaData}
                 sphere={sphere}
+                onClick={this.handleClick}
               />
             ) : null;
           }}
