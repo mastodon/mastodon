@@ -52,6 +52,11 @@ Parameters:
       Type: String
       Default: '10.32.0.34'
 
+    MastodonLocalUserPassword:
+      Description: 'mastodon local user password'
+      Type: String
+      NoEcho: true
+
     KeyPairName:
       Description: AWS KeyName
       Type: 'AWS::EC2::KeyPair::KeyName'
@@ -325,7 +330,7 @@ Resources:
                 echo "$?" >> /var/tmp/bootstrap.txt
 
                 echo "change mastodon password" >> /var/tmp/bootstrap.txt
-                echo "mastodon:changeme" | sudo chpasswd
+                echo "mastodon:${MastodonLocalUserPassword}" | sudo chpasswd
                 echo "$?" >> /var/tmp/bootstrap.txt
 
                 echo "Install Docker" >> /var/tmp/bootstrap.txt
