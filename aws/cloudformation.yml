@@ -249,12 +249,10 @@ Resources:
             sudo /usr/local/bin/cfn-init --stack ${AWS::StackName} --resource EC2InstancePrimary --configsets bootstrap --region ${AWS::Region}
             # sudo seems to be required here
             ## SERVER REBOOTS VIA CFN-INIT
-
+            
       Tags:
         - Key: Name
           Value: !Sub "Frontend-${UniqueID}"
-        - Key: OperatingHours
-          Value: !Sub "AlwaysOn"
 
     Metadata:
       AWS::CloudFormation::Init:
