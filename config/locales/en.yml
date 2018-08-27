@@ -43,7 +43,9 @@ en:
   accounts:
     choices_html: "%{name}'s choices:"
     follow: Follow
-    followers: Followers
+    followers:
+      one: Follower
+      other: Followers
     following: Following
     joined: Joined %{date}
     media: Media
@@ -54,7 +56,10 @@ en:
     people_who_follow: People who follow %{name}
     pin_errors:
       following: You must be already following the person you want to endorse
-    posts: Toots
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Toots and replies
     reserved_username: The username is reserved
     roles:
@@ -350,6 +355,9 @@ en:
       contact_information:
         email: Business e-mail
         username: Contact username
+      custom_css:
+        desc_html: Modify the look with CSS loaded on every page
+        title: Custom CSS
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to instance thumbnail
         title: Hero image

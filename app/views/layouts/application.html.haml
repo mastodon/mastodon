@@ -24,9 +24,5 @@
 
     = yield :header_tags
 
-  - body_classes ||= @body_classes || ''
-  - body_classes += ' system-font' if current_account&.user&.setting_system_font_ui
-  - body_classes += current_account&.user&.setting_reduce_motion ? ' reduce-motion' : ' no-reduce-motion'
-
-  %body{ class: add_rtl_body_class(body_classes) }
+  %body{ class: body_classes }
     = content_for?(:content) ? yield(:content) : yield
