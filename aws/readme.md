@@ -23,13 +23,13 @@ I'm sending user-data/meta-data debug information into a file - `/var/tmp$ tail 
 * Installs supporting packages
 * Installs all updates
 * TODO: Install held AWS packages
-
+* --
 * Setups DNS record on Route53
 * Creates mastodon user
 * Installs docker
 * Installs docker-compose
 * Setups swap
-
+* --
 * clones mastodon 
 * tweaks docker-compose.yml
 * creates .env.production
@@ -37,9 +37,9 @@ I'm sending user-data/meta-data debug information into a file - `/var/tmp$ tail 
 * prepares the DB
 * precompiles assets
 * boots docker
-
+* --
 * Installs nginx
 * configures nginx 
 * Installs certbot for LetsEncypt TLS
-
+* --
 * Reboots box
