@@ -20,11 +20,7 @@ class Api::V1::MutesController < Api::BaseController
   private
 
   def load_accounts
-    default_accounts.merge(paginated_mutes).to_a
-  end
-
-  def default_accounts
-    Account.includes(:muted_by).references(:muted_by)
+    paginated_mutes.map(&:target_account)
   end
 
   def load_mutes
@@ -32,11 +28,13 @@ class Api::V1::MutesController < Api::BaseController
   end
 
   def paginated_mutes
-    Mute.where(account: current_account).paginate_by_max_id(
-      limit_param(DEFAULT_ACCOUNTS_LIMIT),
-      params[:max_id],
-      params[:since_id]
-    )
+    @paginated_mutes ||= Mute.eager_load(:target_account)
+                             .where(account: current_account)
+                             .paginate_by_max_id(
+                               limit_param(DEFAULT_ACCOUNTS_LIMIT),
+                               params[:max_id],
+                               params[:since_id]
+                             )
   end
 
   def insert_pagination_headers
@@ -50,7 +48,7 @@ class Api::V1::MutesController < Api::BaseController
   end
 
   def prev_path
-    unless@data.empty?
+    unless @data.empty?
       url_for pagination_params(since_id: pagination_since_id)
     end
   end
@@ -59,7 +57,7 @@ class Api::V1::MutesController < Api::BaseController
     if params[:action] == "details"
       @mutes.last.id
     else
-      @accounts.last.muted_by_ids.last
+      paginated_mutes.last.id
     end
   end
 
@@ -67,7 +65,7 @@ class Api::V1::MutesController < Api::BaseController
     if params[:action] == "details"
       @mutes.first.id
     else
-      @accounts.first.muted_by_ids.first
+      paginated_mutes.first.id
     end
   end
 
