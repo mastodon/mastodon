@@ -10,9 +10,13 @@
 3) Create the AWS CFN Stack with the required details.
 4) Register an account on your instance (log in and promote as admin using cli)
 
+## Troubleshooting
+I'm sending user-data/meta-data debug information into a file - `/var/tmp$ tail -f /var/tmp/bootstrap.txt`
+
 ## TODO
 * Setup scheduled tasks (documentation related to recommend tasks is slim)
 * Automate creation of admin account (task is currently interactive only)
+* Build AWS Elasticsearch in the stack?
 
 ## Automation steps
 * Installs Ubuntu 18.04
