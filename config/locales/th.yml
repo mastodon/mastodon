@@ -1,7 +1,10 @@
----
 th:
   about:
-    about_mastodon_html: แมสโทดอน เป็น  <em>ดีเซ็นทรัลไลซ์</em><em>ฟรีโอเพ่นซอร์ส</em> โซเชี่ยวเน็ตเวริ์ค.  เป็นทางเลือกทดแทนโซเชี่ยวเน็ตเวิร์คที่ทำเป็นธุรกิจการค้า, ป้องกันการผูกขาดช่องทางการสื่อสารของคุณ. เลือกเซร์ฟเวอร์ที่คุณไว้ใจ &mdash; ที่คุณเลือกได้เอง, สื่อสารกับคนที่คุณต้องการได้เสมอ. ใครๆก็รันแมสโทดอนอินซะแตนซ์ได้ และ เชื่อมต่อกับ<em>โซเชี่ยวเน็ตเวิร์ค</em> โดยไม่มีอะไรมาขวางกั้น.
+    about_mastodon_html: แมสโทดอน เป็น  <em>ดีเซ็นทรัลไลซ์</em><em>ฟรีโอเพ่นซอร์ส</em>
+      โซเชี่ยวเน็ตเวริ์ค.  เป็นทางเลือกทดแทนโซเชี่ยวเน็ตเวิร์คที่ทำเป็นธุรกิจการค้า,
+      ป้องกันการผูกขาดช่องทางการสื่อสารของคุณ. เลือกเซร์ฟเวอร์ที่คุณไว้ใจ &mdash;
+      ที่คุณเลือกได้เอง, สื่อสารกับคนที่คุณต้องการได้เสมอ. ใครๆก็รันแมสโทดอนอินซะแตนซ์ได้
+      และ เชื่อมต่อกับ<em>โซเชี่ยวเน็ตเวิร์ค</em> โดยไม่มีอะไรมาขวางกั้น.
     about_this: เกี่ยวกับอินซะแตนซ์นี้
     closed_registrations: อินซะแตนซ์นี้ปิดรับลงทะเบียนแล้ว.
     contact: ติดต่อ
@@ -81,14 +84,18 @@ th:
       domain: โดเมน
       new:
         create: สร้างการบล๊อก
-        hint: การบล๊อคโดเมนไม่สามารถป้องกันการสร้างแอคเค๊าท์ในฐานข้อมูล, but will retroactively and automatically apply specific moderation methods on those accounts.
+        hint: การบล๊อคโดเมนไม่สามารถป้องกันการสร้างแอคเค๊าท์ในฐานข้อมูล, but will
+          retroactively and automatically apply specific moderation methods on those
+          accounts.
         severity:
-          desc_html: "<strong>การปิดเสียง</strong> จะทำให้ผู้ที่ไมไ่ด้ติดตามไม่เห็นโพสต์ของเขา. <strong>การหยุด</strong> จะนำเนื้อหา สื่อ และ โปรไฟล์ ออก."
+          desc_html: <strong>การปิดเสียง</strong> จะทำให้ผู้ที่ไมไ่ด้ติดตามไม่เห็นโพสต์ของเขา.
+            <strong>การหยุด</strong> จะนำเนื้อหา สื่อ และ โปรไฟล์ ออก.
           silence: ปิดเสียง
           suspend: หยุดไว้
         title: การบล๊อกโดเมนใหม่
       reject_media: ไม่อนุมัติไฟล์สื่อ
-      reject_media_hint: ลบไฟล์สื่อที่เก็บไว้ในเครื่อง และ ป้องกันการดาวน์โหลดในอนาคต. Irrelevant for suspensions
+      reject_media_hint: ลบไฟล์สื่อที่เก็บไว้ในเครื่อง และ ป้องกันการดาวน์โหลดในอนาคต.
+        Irrelevant for suspensions
       severities:
         silence: ปิดเสียง
         suspend: หยุดไว้
@@ -131,12 +138,14 @@ th:
         username: กรอกชื่อผู้ใช้
       registrations:
         closed_message:
-          desc_html: Displayed on frontpage when registrations are closed<br> ใช้ HTML tags ได้
+          desc_html: Displayed on frontpage when registrations are closed<br> ใช้
+            HTML tags ได้
           title: ปิดข้อความลงทะเบียน
         open:
           title: เปิดรับลงทะเบียน
       site_description:
-        desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br> ใช้ HTML tags ได้, in particular <code>&lt;a&gt;</code> และ <code>&lt;em&gt;</code>.
+        desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>
+          ใช้ HTML tags ได้, in particular <code>&lt;a&gt;</code> และ <code>&lt;em&gt;</code>.
         title: คำอธิบายไซต์
       site_description_extended:
         desc_html: Displayed on extended information page<br>You can use HTML tags
@@ -172,18 +181,18 @@ th:
     title: ติดตาม %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}ช"
-      about_x_months: "%{count}ด"
-      about_x_years: "%{count}ป"
-      almost_x_years: "%{count}ป"
+      about_x_hours: '%{count}ช'
+      about_x_months: '%{count}ด'
+      about_x_years: '%{count}ป'
+      almost_x_years: '%{count}ป'
       half_a_minute: ครึ่งนาที
-      less_than_x_minutes: "%{count}ม"
+      less_than_x_minutes: '%{count}ม'
       less_than_x_seconds: ไม่ถึงนาที
-      over_x_years: "%{count}ป"
-      x_days: "%{count}ด"
-      x_minutes: "%{count}น"
-      x_months: "%{count}ด"
-      x_seconds: "%{count}ว"
+      over_x_years: '%{count}ป'
+      x_days: '%{count}ด'
+      x_minutes: '%{count}น'
+      x_months: '%{count}ด'
+      x_seconds: '%{count}ว'
   errors:
     '403': คุณไม่มีสิทธิ์เข้าดูหน้านี้.
     '404': ไม่พบเพจที่คุณต้องการดู.
@@ -200,15 +209,21 @@ th:
     storage: ที่เก็บสื่อ
   followers:
     domain: โดเมน
-    explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all instances where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those instances.
+    explanation_html: If you want to ensure the privacy of your statuses, you must
+      be aware of who is following you. <strong>Your private statuses are delivered
+      to all instances where you have followers</strong>. You may wish to review them,
+      and remove followers if you do not trust your privacy to be respected by the
+      staff or software of those instances.
     followers_count: จำนวนผู้ติดตาม
     lock_link: ล๊อคแอคเค๊าท์ของคุณ
     purge: นำผู้ติดตามออก
     success:
       one: In the process of soft-blocking followers from one domain...
       other: In the process of soft-blocking followers from %{count} domains...
-    true_privacy_html: Please mind that <strong>true privacy can only be achieved with end-to-end encryption</strong>.
-    unlocked_warning_html: Anyone can follow you to immediately view your private statuses. %{lock_link} to be able to review and reject followers.
+    true_privacy_html: Please mind that <strong>true privacy can only be achieved
+      with end-to-end encryption</strong>.
+    unlocked_warning_html: Anyone can follow you to immediately view your private
+      statuses. %{lock_link} to be able to review and reject followers.
     unlocked_warning_title: แอคเค๊าท์ของคุณไม่ได้ล๊อค
   generic:
     changes_saved_msg: บันทึกการแก้ไขแล้ว!
@@ -217,8 +232,11 @@ th:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
   imports:
-    preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
-    success: Your data was successfully uploaded and will now be processed in due time
+    preface: You can import certain data like all the people you are following or
+      blocking into your account on this instance, from files created by an export
+      on another instance.
+    success: Your data was successfully uploaded and will now be processed in due
+      time
     types:
       blocking: Blocking list
       following: Following list
@@ -230,33 +248,34 @@ th:
       too_many: แนบมากกว่า 4 ไฟล์ไม่ได้
   notification_mailer:
     digest:
-      body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
-      mention: "%{name} ส่งข้อความถึงคุณ:"
+      body: 'Here is a brief summary of what you missed on %{instance} since your
+        last visit on %{since}:'
+      mention: '%{name} ส่งข้อความถึงคุณ:'
       new_followers_summary:
         one: ยินดีด้วยคุณได้ผู้ติดตามคนใหม่! Yay!
         other: You have gotten %{count} new followers! Amazing!
       subject:
-        one: "1 new notification since your last visit \U0001F418"
-        other: "%{count} new notifications since your last visit \U0001F418"
+        one: 1 new notification since your last visit 🐘
+        other: '%{count} new notifications since your last visit 🐘'
     favourite:
       body: 'สเตตัสของคุณได้รับการกดถูกใจโดย %{name} :'
-      subject: "%{name} กดถูกใจสเตตัสของคุณ"
+      subject: '%{name} กดถูกใจสเตตัสของคุณ'
     follow:
-      body: "%{name} กำลังติดตามคุณ"
-      subject: "%{name} ได้ติดตามคุณแล้ว"
+      body: '%{name} กำลังติดตามคุณ'
+      subject: '%{name} ได้ติดตามคุณแล้ว'
     follow_request:
-      body: "%{name} ได้ขอติดตามคุณ"
+      body: '%{name} ได้ขอติดตามคุณ'
       subject: 'Pending follower: %{name}'
     mention:
       body: 'You were mentioned by %{name} in:'
       subject: You were mentioned by %{name}
     reblog:
       body: 'Your status was boosted by %{name}:'
-      subject: "%{name} boosted your status"
+      subject: '%{name} boosted your status'
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: '%n%u'
         units:
           billion: B
           million: M
@@ -267,7 +286,7 @@ th:
   pagination:
     next: ต่อไป
     prev: ย้อนกลับ
-    truncate: "&hellip;"
+    truncate: '&hellip;'
   remote_follow:
     acct: Enter your username@domain you want to follow from
     missing_resource: Could not find the required redirect URL for your account
@@ -299,19 +318,29 @@ th:
     sensitive_content: Sensitive content
   time:
     formats:
-      default: "%b %d, %Y, %H:%M"
+      default: '%b %d, %Y, %H:%M'
   two_factor_authentication:
     code_hint: Enter the code generated by your authenticator app to confirm
-    description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
+    description_html: If you enable <strong>two-factor authentication</strong>, logging
+      in will require you to be in possession of your phone, which will generate tokens
+      for you to enter.
     disable: ปิด
     enable: เปิด
     enabled_success: Two-factor authentication successfully enabled
     generate_recovery_codes: สร้าง Recovery Codes
-    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
-    lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
-    manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
+    instructions_html: <strong>Scan this QR code into Google Authenticator or a similiar
+      TOTP app on your phone</strong>. From now on, that app will generate tokens
+      that you will have to enter when logging in.
+    lost_recovery_codes: Recovery codes allow you to regain access to your account
+      if you lose your phone. If you've lost your recovery codes, you can regenerate
+      them here. Your old recovery codes will be invalidated.
+    manual_instructions: 'If you can''t scan the QR code and need to enter it manually,
+      here is the plain-text secret:'
     recovery_codes_regenerated: Recovery codes successfully regenerated
-    recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
+    recovery_instructions_html: If you ever lose access to your phone, you can use
+      one of the recovery codes below to regain access to your account. Keep the recovery
+      codes safe, for example by printing them and storing them with other important
+      documents.
     setup: ตั้งค่า
     wrong_code: รหัสที่กรอกไม่ถูกต้อง! Are server time and device time correct?
   users:
