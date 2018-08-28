@@ -17,6 +17,8 @@ User-data/meta-data debug information is stored in /var/tmp/bootstrap.txt - `/va
 * Setup scheduled tasks (documentation related to recommend tasks is slim)
 * Automate creation of admin account (task is currently interactive only)
 * Build AWS Elasticsearch in the stack?
+* KMS for at-rest encryption
+* EIP for dedicated Public IP.
 
 ## Cost
 * Monthly cost is about $50-100!
