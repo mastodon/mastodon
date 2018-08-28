@@ -269,10 +269,10 @@ export default class Status extends ImmutablePureComponent {
 
     return (
       <HotKeys handlers={handlers}>
-        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText, !status.get('hidden'))}>
+        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText, !status.get('hidden'))}>
           {prepend}
 
-          <div className={classNames('status', `status-${status.get('visibility')}`, { muted: this.props.muted })} data-id={status.get('id')}>
+          <div className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), muted: this.props.muted })} data-id={status.get('id')}>
             <div className='status__info'>
               <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
 
