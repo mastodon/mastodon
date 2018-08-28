@@ -39,6 +39,7 @@ import { privacyPreference } from 'flavours/glitch/util/privacy_preference';
 import { me } from 'flavours/glitch/util/initial_state';
 import { overwrite } from 'flavours/glitch/util/js_helpers';
 import { unescapeHTML } from 'flavours/glitch/util/html';
+import { recoverHashtags } from 'flavours/glitch/util/hashtag';
 
 const totalElefriends = 3;
 
@@ -114,8 +115,9 @@ function apiStatusToTextMentions (state, status) {
 }
 
 function apiStatusToTextHashtags (state, status) {
-  return ImmutableOrderedSet([]).union(status.tags.map(
-    ({ name }) => `#${name} `
+  const text = unescapeHTML(status.content);
+  return ImmutableOrderedSet([]).union(recoverHashtags(status.tags, text).map(
+    (name) => `#${name} `
   )).join('');
 }
 
