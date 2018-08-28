@@ -17,6 +17,7 @@ const messages = defineMessages({
   side_arm_keep: { id: 'settings.side_arm_reply_mode.keep', defaultMessage: 'Keep secondary toot button to set privacy' },
   side_arm_copy: { id: 'settings.side_arm_reply_mode.copy', defaultMessage: 'Copy privacy setting of the toot being replied to' },
   side_arm_restrict: { id: 'settings.side_arm_reply_mode.restrict', defaultMessage: 'Restrict privacy setting to that of the toot being replied to' },
+  regexp: { id: 'settings.content_warnings.regexp', defaultMessage: 'Regular expression' },
 });
 
 @injectIntl
@@ -122,7 +123,7 @@ export default class LocalSettingsPage extends React.PureComponent {
         </section>
       </div>
     ),
-    ({ onChange, settings }) => (
+    ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page content_warnings'>
         <h1><FormattedMessage id='settings.content_warnings' defaultMessage='Content warnings' /></h1>
         <LocalSettingsPageItem
@@ -132,6 +133,16 @@ export default class LocalSettingsPage extends React.PureComponent {
           onChange={onChange}
         >
           <FormattedMessage id='settings.enable_content_warnings_auto_unfold' defaultMessage='Automatically unfold content-warnings' />
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['content_warnings', 'filter']}
+          id='mastodon-settings--content_warnings-auto_unfold'
+          onChange={onChange}
+          dependsOn={[['content_warnings', 'auto_unfold']]}
+          placeholder={intl.formatMessage(messages.regexp)}
+        >
+          <FormattedMessage id='settings.content_warnings_filter' defaultMessage='Content warnings to not automatically unfold:' />
         </LocalSettingsPageItem>
       </div>
     ),

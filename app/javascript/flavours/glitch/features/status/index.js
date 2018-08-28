@@ -38,6 +38,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
 import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/util/initial_state';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from 'flavours/glitch/util/fullscreen';
+import { autoUnfoldCW } from 'flavours/glitch/util/content_warning';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -82,7 +83,7 @@ export default class Status extends ImmutablePureComponent {
 
   state = {
     fullscreen: false,
-    isExpanded: this.props.settings.getIn(['content_warnings', 'auto_unfold']),
+    isExpanded: undefined,
     threadExpanded: undefined,
   };
 
@@ -95,9 +96,14 @@ export default class Status extends ImmutablePureComponent {
   }
 
   componentWillReceiveProps (nextProps) {
+    if (this.state.isExpanded === undefined) {
+      const isExpanded = autoUnfoldCW(nextProps.settings, nextProps.status);
+      if (isExpanded !== undefined) this.setState({ isExpanded: isExpanded });
+    }
     if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
       this._scrolledIntoView = false;
       this.props.dispatch(fetchStatus(nextProps.params.statusId));
+      this.setState({ isExpanded: autoUnfoldCW(nextProps.settings, nextProps.status) });
     }
   }
 

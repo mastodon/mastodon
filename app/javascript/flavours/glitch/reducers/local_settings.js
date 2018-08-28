@@ -16,6 +16,7 @@ const initialState = ImmutableMap({
   confirm_missing_media_description: false,
   content_warnings : ImmutableMap({
     auto_unfold : false,
+    filter      : null,
   }),
   collapsed : ImmutableMap({
     enabled     : true,

@@ -13,6 +13,7 @@ import { MediaGallery, Video } from 'flavours/glitch/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import NotificationOverlayContainer from 'flavours/glitch/features/notifications/containers/overlay_container';
 import classNames from 'classnames';
+import { autoUnfoldCW } from 'flavours/glitch/util/content_warning';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -56,7 +57,7 @@ export default class Status extends ImmutablePureComponent {
   state = {
     isCollapsed: false,
     autoCollapsed: false,
-    isExpanded: this.props.settings.getIn(['content_warnings', 'auto_unfold']),
+    isExpanded: undefined,
   }
 
   // Avoid checking props that are functions (and whose equality will always
@@ -122,6 +123,17 @@ export default class Status extends ImmutablePureComponent {
       update.isExpanded = nextProps.expanded;
       if (nextProps.expanded) update.isCollapsed = false;
       updated = true;
+    }
+
+    if (nextProps.expanded === undefined &&
+      prevState.isExpanded === undefined &&
+      update.isExpanded === undefined
+    ) {
+      const isExpanded = autoUnfoldCW(nextProps.settings, nextProps.status);
+      if (isExpanded !== undefined) {
+        update.isExpanded = isExpanded;
+        updated = true;
+      }
     }
 
     return updated ? update : null;
