@@ -123,6 +123,19 @@ export default class LocalSettingsPage extends React.PureComponent {
       </div>
     ),
     ({ onChange, settings }) => (
+      <div className='glitch local-settings__page content_warnings'>
+        <h1><FormattedMessage id='settings.content_warnings' defaultMessage='Content warnings' /></h1>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['content_warnings', 'auto_unfold']}
+          id='mastodon-settings--content_warnings-auto_unfold'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.enable_content_warnings_auto_unfold' defaultMessage='Automatically unfold content-warnings' />
+        </LocalSettingsPageItem>
+      </div>
+    ),
+    ({ onChange, settings }) => (
       <div className='glitch local-settings__page collapsed'>
         <h1><FormattedMessage id='settings.collapsed_statuses' defaultMessage='Collapsed toots' /></h1>
         <LocalSettingsPageItem

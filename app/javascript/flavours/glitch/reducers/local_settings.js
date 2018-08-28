@@ -14,6 +14,9 @@ const initialState = ImmutableMap({
   show_reply_count : false,
   always_show_spoilers_field: false,
   confirm_missing_media_description: false,
+  content_warnings : ImmutableMap({
+    auto_unfold : false,
+  }),
   collapsed : ImmutableMap({
     enabled     : true,
     auto        : ImmutableMap({

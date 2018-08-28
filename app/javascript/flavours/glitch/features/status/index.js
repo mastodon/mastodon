@@ -82,8 +82,8 @@ export default class Status extends ImmutablePureComponent {
 
   state = {
     fullscreen: false,
-    isExpanded: false,
-    threadExpanded: null,
+    isExpanded: this.props.settings.getIn(['content_warnings', 'auto_unfold']),
+    threadExpanded: undefined,
   };
 
   componentWillMount () {

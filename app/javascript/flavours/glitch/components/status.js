@@ -56,6 +56,7 @@ export default class Status extends ImmutablePureComponent {
   state = {
     isCollapsed: false,
     autoCollapsed: false,
+    isExpanded: this.props.settings.getIn(['content_warnings', 'auto_unfold']),
   }
 
   // Avoid checking props that are functions (and whose equality will always
