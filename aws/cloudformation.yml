@@ -29,28 +29,28 @@ Parameters:
       Type: String
 
     Domain:
-      Description: 'example.com'
+      Description: 'social.example'
       Type: String
-      Default: 'darkarts.club'
+      Default: 'social.example'
 
     DomainEmail:
-      Description: 'admin@example.com - used to register certbot'
+      Description: 'admin@example.com - used to register certbot/admin account'
       Type: String
-      Default: 'admin@darkarts.club'
+      Default: 'admin@social.example'
 
     R53Zone:
       Description: AWS KeyName
       Type: 'AWS::Route53::HostedZone::Id'
 
     ReleaseVersion:
-      Description: 'v2.4.4'
+      Description: 'v2.5.0rc1'
       Type: String
-      Default: 'v2.4.4'
+      Default: 'v2.5.0rc1'
 
     EC2PrivateIP:
       Description: 'Private IP for the EC2 Primary Instance'
       Type: String
-      Default: '10.32.0.34'
+      Default: '10.xxx.xxx.xxx'
 
     MastodonLocalUserPassword:
       Description: 'mastodon local user password'
@@ -62,14 +62,19 @@ Parameters:
       Type: 'AWS::EC2::KeyPair::KeyName'
 
     ImageId:
-      Description: Official Ubuntu 18.04 AMI
+      Description: Official Ubuntu 18.04 LTS - Bionic
       Type: String
-      Default: ami-0118debc71f4a5be3
+      Default: ami-09b984525e8ba2206
+
+    SwapSize:
+      Description: GB of Swap space
+      Type: String
+      Default: 5
 
     MailgunLOGIN:
       Description: 'Mailgun username'
       Type: String
-      Default: 'notifications@mail.example.com'
+      Default: 'notifications@mail.social.example'
     MailgunPASSWORD:
       Description: 'Mailgun password'
       Type: String
@@ -176,7 +181,11 @@ Resources:
             Version: 2012-10-17
             Statement:
               - Effect: Allow
-                Action: 's3:*'
+                Action: 
+                  - 's3:ListBucket'
+                  - 's3:GetObject*'
+                  - 's3:PutObject*'
+                  - 's3:DeleteObject*'
                 Resource: 
                   - !Sub 'arn:aws:s3:::${MasotodonS3bucket}'
                   - !Sub 'arn:aws:s3:::${MasotodonS3bucket}/*'
@@ -350,13 +359,13 @@ Resources:
                 echo "$?" >> /var/tmp/bootstrap.txt
 
                 echo "Activate Swap" >> /var/tmp/bootstrap.txt
-                fallocate -l 5G /swapfile
+                fallocate -l ${SwapSize}G /swapfile
                 chmod 600 /swapfile
                 mkswap /swapfile
                 swapon /swapfile
                 echo '/swapfile       none    swap    sw      0       0' | tee -a /etc/fstab
 
-              mode: "000777"
+              mode: "000755"
               owner: "ubuntu"
               group: "ubuntu"
 
@@ -417,11 +426,13 @@ Resources:
                   echo "$?" >> /var/tmp/bootstrap.txt
 
                   echo "db:setup" >> /var/tmp/bootstrap.txt
-                  docker-compose run --rm web rails db:setup -e SAFETY_ASSURED=1 -e RAILS_ENV=production # Create DB tables <-- BORKED?
+                  docker-compose run --rm web bundle exec rails db:setup -e SAFETY_ASSURED=1 -e RAILS_ENV=production 
+                  # Create DB tables (Destructive: Deletes existing tables)
                   echo "$?" >> /var/tmp/bootstrap.txt
 
                   echo "assets:precompile" >> /var/tmp/bootstrap.txt
-                  docker-compose run --rm web rails assets:precompile  # Compile assetts
+                  docker-compose run --rm web bundle exec rails assets:precompile  
+                  # Compile assetts (Notice: docker will complete this step using the build step)
                   echo "$?" >> /var/tmp/bootstrap.txt
 
                   echo "docker-compose up -d" >> /var/tmp/bootstrap.txt
@@ -430,7 +441,7 @@ Resources:
 
                 - { REDIS_ENDPOINT: !GetAtt ElastiCacheRedis.RedisEndpoint.Address, REDIS_PORT: !GetAtt ElastiCacheRedis.RedisEndpoint.Port, DB_ENDPOINT: !GetAtt RDSPostgreSQLInstance.Endpoint.Address, DB_PORT: !GetAtt RDSPostgreSQLInstance.Endpoint.Port, S3_ACCESSKEY: !Ref MasotodonS3bucketKey, S3_SECRETKEY: !GetAtt MasotodonS3bucketKey.SecretAccessKey }
               
-              mode: "000777"
+              mode: "000755"
               owner: "ubuntu"
               group: "ubuntu"
 
@@ -466,7 +477,7 @@ Resources:
                 certbot certonly --standalone -d ${Domain} --agree-tos -m ${DomainEmail} --non-interactive
                 echo "$?" >> /var/tmp/bootstrap.txt
 
-              mode: "000777"
+              mode: "000755"
               owner: "ubuntu"
               group: "ubuntu"
 
@@ -478,7 +489,7 @@ Resources:
                 ## RAILS_ENV=production
                 ## @daily cd /home/mastodon/live && /home/mastodon/.rbenv/shims/bundle exec rake mastodon:media:remove_remote
 
-              mode: "000777"
+              mode: "000755"
               owner: "ubuntu"
               group: "ubuntu"
 
@@ -580,7 +591,7 @@ Resources:
 
                   error_page 500 501 502 503 504 /500.html;
                 }
-              mode: "000777"
+              mode: "000755"
               owner: "ubuntu"
               group: "ubuntu"
 
@@ -629,7 +640,7 @@ Resources:
                     external_network:
                     internal_network:
                       internal: true
-              mode: "000777"
+              mode: "000755"
               owner: "ubuntu"
               group: "ubuntu"
 
@@ -659,7 +670,11 @@ Resources:
           PolicyDocument:
             Statement:
               - Effect: Allow
-                Action: 's3:*'
+                Action:
+                  - 's3:ListBucket'
+                  - 's3:GetObject*'
+                  - 's3:PutObject*'
+                  - 's3:DeleteObject*'
                 Resource: 
                   - !Sub 'arn:aws:s3:::${MasotodonS3bucket}'
                   - !Sub 'arn:aws:s3:::${MasotodonS3bucket}/*'
