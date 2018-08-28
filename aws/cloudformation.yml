@@ -332,10 +332,6 @@ Resources:
                 adduser --quiet --disabled-password --gid 991 --uid 991 mastodon --gecos GECOS
                 echo "$?" >> /var/tmp/bootstrap.txt
 
-                echo "Grant mastodon sudo" >> /var/tmp/bootstrap.txt
-                usermod -a -G sudo mastodon
-                echo "$?" >> /var/tmp/bootstrap.txt
-
                 echo "change mastodon password" >> /var/tmp/bootstrap.txt
                 echo "mastodon:${MastodonLocalUserPassword}" | sudo chpasswd
                 echo "$?" >> /var/tmp/bootstrap.txt
