@@ -179,6 +179,7 @@ export default class Notifications extends React.PureComponent {
         ref={this.setColumnRef}
         name='notifications'
         extraClasses={this.props.notifCleaningActive ? 'notif-cleaning' : null}
+        label={intl.formatMessage(messages.title)}
       >
         <ColumnHeader
           icon='bell'
