@@ -19,18 +19,20 @@ export default class LocalSettingsPageItem extends React.PureComponent {
       message: PropTypes.string.isRequired,
     })),
     settings: ImmutablePropTypes.map.isRequired,
+    placeholder: PropTypes.string,
   };
 
   handleChange = e => {
     const { target } = e;
-    const { item, onChange, options } = this.props;
+    const { item, onChange, options, placeholder } = this.props;
     if (options && options.length > 0) onChange(item, target.value);
+    else if (placeholder) onChange(item, target.value);
     else onChange(item, target.checked);
   }
 
   render () {
     const { handleChange } = this;
-    const { settings, item, id, options, children, dependsOn, dependsOnNot } = this.props;
+    const { settings, item, id, options, children, dependsOn, dependsOnNot, placeholder } = this.props;
     let enabled = true;
 
     if (dependsOn) {
@@ -67,6 +69,22 @@ export default class LocalSettingsPageItem extends React.PureComponent {
             >
               {optionElems}
             </select>
+          </p>
+        </label>
+      );
+    } else if (placeholder) {
+      return (
+        <label className='glitch local-settings__page__item' htmlFor={id}>
+          <p>{children}</p>
+          <p>
+            <input
+              id={id}
+              type='text'
+              value={settings.getIn(item)}
+              placeholder={placeholder}
+              onChange={handleChange}
+              disabled={!enabled}
+            />
           </p>
         </label>
       );
