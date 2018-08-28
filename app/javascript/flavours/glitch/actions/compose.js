@@ -4,6 +4,7 @@ import { throttle } from 'lodash';
 import { search as emojiSearch } from 'flavours/glitch/util/emoji/emoji_mart_search_light';
 import { useEmoji } from './emojis';
 import { tagHistory } from 'flavours/glitch/util/settings';
+import { recoverHashtags } from 'flavours/glitch/util/hashtag';
 import resizeImage from 'flavours/glitch/util/resize_image';
 
 import { updateTimeline } from './timelines';
@@ -140,7 +141,7 @@ export function submitCompose() {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
-      dispatch(insertIntoTagHistory(response.data.tags));
+      dispatch(insertIntoTagHistory(response.data.tags, status));
       dispatch(submitComposeSuccess({ ...response.data }));
 
       //  If the response has no data then we can't do anything else.
@@ -402,13 +403,13 @@ export function hydrateCompose() {
   };
 }
 
-function insertIntoTagHistory(tags) {
+function insertIntoTagHistory(recognizedTags, text) {
   return (dispatch, getState) => {
     const state = getState();
     const oldHistory = state.getIn(['compose', 'tagHistory']);
     const me = state.getIn(['meta', 'me']);
-    const names = tags.map(({ name }) => name);
-    const intersectedOldHistory = oldHistory.filter(name => !names.includes(name));
+    const names = recoverHashtags(recognizedTags, text);
+    const intersectedOldHistory = oldHistory.filter(name => names.findIndex(newName => newName.toLowerCase() === name.toLowerCase()) === -1);
 
     names.push(...intersectedOldHistory.toJS());
 
