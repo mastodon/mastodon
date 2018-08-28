@@ -15,7 +15,7 @@ if Rails.env.production?
     p.style_src       :self, :unsafe_inline, assets_host
     p.media_src       :self, :data, assets_host
     p.frame_src       :self, :https
-    p.connect_src     :self, assets_host, Rails.configuration.x.streaming_api_base_url
+    p.connect_src     :self, :blob, assets_host, Rails.configuration.x.streaming_api_base_url
   end
 end
 
