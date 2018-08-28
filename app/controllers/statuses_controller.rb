@@ -54,6 +54,7 @@ class StatusesController < ApplicationController
     skip_session!
     expires_in 180, public: true
     response.headers['X-Frame-Options'] = 'ALLOWALL'
+    @animate_custom_emoji = params[:animate_custom_emoji] == "1"
 
     render 'stream_entries/embed', layout: 'embedded'
   end

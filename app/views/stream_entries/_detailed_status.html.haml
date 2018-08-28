@@ -4,7 +4,7 @@
       = image_tag status.account.avatar.url(:original), width: 48, height: 48, alt: '', class: 'account__avatar u-photo'
     %span.display-name
       %bdi
-        %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true)
+        %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true, animate_custom_emoji: animate_custom_emoji)
       %span.display-name__account
         = acct(status.account)
         = fa_icon('lock') if status.account.locked?
@@ -16,7 +16,7 @@
       %p{ style: 'margin-bottom: 0' }<
         %span.p-summary> #{Formatter.instance.format_spoiler(status)}&nbsp;
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
-    .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status, custom_emojify: true)
+    .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status, custom_emojify: true, animate_custom_emoji: animate_custom_emoji)
 
   - if !status.media_attachments.empty?
     - if status.media_attachments.first.video?
