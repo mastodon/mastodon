@@ -34,7 +34,7 @@ module Mastodon
           Maintenance::UncacheMediaWorker.push_bulk(media_attachments.map(&:id))
         else
           media_attachments.each do |m|
-            Maintenance::UncacheMediaWorker.new.perform(m.id)
+            Maintenance::UncacheMediaWorker.new.perform(m)
             say('.', :green, false)
             processed += 1
           end
