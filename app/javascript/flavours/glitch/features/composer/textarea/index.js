@@ -58,7 +58,7 @@ const handlers = {
     const right = value.slice(selectionStart).search(/[\s\u200B]/);
     const token = function () {
       switch (true) {
-      case left < 0 || !/[@:]/.test(value[left]):
+      case left < 0 || !/[@:#]/.test(value[left]):
         return null;
       case right < 0:
         return value.slice(left);

@@ -57,6 +57,42 @@ export default class ComposerTextareaSuggestionsItem extends React.Component {
     } = this.props;
     const computedClass = classNames('composer--textarea--suggestions--item', { selected });
 
+    //  If the suggestion is an object, then we render an emoji.
+    //  Otherwise, we render a hashtag if it starts with #, or an account.
+    let inner;
+    if (typeof suggestion === 'object') {
+      let url;
+      if (suggestion.custom) {
+        url = suggestion.imageUrl;
+      } else {
+        const mapping = unicodeMapping[suggestion.native] || unicodeMapping[suggestion.native.replace(/\uFE0F$/, '')];
+        if (mapping) {
+          url = `${assetHost}/emoji/${mapping.filename}.svg`;
+        }
+      }
+      if (url) {
+        inner = (
+          <div className='emoji'>
+            <img
+              alt={suggestion.native || suggestion.colons}
+              className='emojione'
+              src={url}
+            />
+            {suggestion.colons}
+          </div>
+        );
+      }
+    } else if (suggestion[0] === '#') {
+      inner = suggestion;
+    } else {
+      inner = (
+        <AccountContainer
+          id={suggestion}
+          small
+        />
+      );
+    }
+
     //  The result.
     return (
       <div
@@ -66,37 +102,7 @@ export default class ComposerTextareaSuggestionsItem extends React.Component {
         role='button'
         tabIndex='0'
       >
-        { //  If the suggestion is an object, then we render an emoji.
-          //  Otherwise, we render an account.
-          typeof suggestion === 'object' ? function () {
-            const url = function () {
-              if (suggestion.custom) {
-                return suggestion.imageUrl;
-              } else {
-                const mapping = unicodeMapping[suggestion.native] || unicodeMapping[suggestion.native.replace(/\uFE0F$/, '')];
-                if (!mapping) {
-                  return null;
-                }
-                return `${assetHost}/emoji/${mapping.filename}.svg`;
-              }
-            }();
-            return url ? (
-              <div className='emoji'>
-                <img
-                  alt={suggestion.native || suggestion.colons}
-                  className='emojione'
-                  src={url}
-                />
-                {suggestion.colons}
-              </div>
-            ) : null;
-          }() : (
-            <AccountContainer
-              id={suggestion}
-              small
-            />
-          )
-        }
+        { inner }
       </div>
     );
   }
