@@ -1,4 +1,4 @@
 Fabricator(:relay) do
   inbox_url "https://example.com/inbox"
-  enabled   true
+  state   :idle
 end
