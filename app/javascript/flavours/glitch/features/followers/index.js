@@ -98,13 +98,14 @@ export default class Followers extends ImmutablePureComponent {
       <Column ref={this.setRef}>
         <ProfileColumnHeader onClick={this.handleHeaderClick} />
 
-        <HeaderContainer accountId={this.props.params.accountId} hideTabs />
-
         <ScrollableList
           scrollKey='followers'
           hasMore={hasMore}
           onLoadMore={this.handleLoadMore}
           shouldUpdateScroll={this.shouldUpdateScroll}
+          prepend={<HeaderContainer accountId={this.props.params.accountId} hideTabs />}
+          alwaysPrepend
+          alwaysShowScrollbar
           emptyMessage={emptyMessage}
         >
           {accountIds.map(id =>
