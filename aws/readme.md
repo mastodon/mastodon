@@ -2,7 +2,7 @@
 * 1x EC2 Server (Dockerised Mastodon Instance)
 * 1x RDS PostgreSQL (for Database)
 * 1 x ElasticCache Redis (for shared cache)
-* 1 x S3 Bucket for storage (with AWS IAM account)
+* 1 x S3 Bucket for storage (with IAM user account linked)
 
 ## Installation Guide
 1) Setup a new Route53 zone and forward the domain nameservers correctly.
