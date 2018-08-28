@@ -7,7 +7,7 @@ import Column from '../ui/components/column';
 import ColumnHeader from '../../components/column_header';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import StatusList from '../../components/status_list';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { debounce } from 'lodash';
 
@@ -71,6 +71,8 @@ export default class Favourites extends ImmutablePureComponent {
     const { intl, shouldUpdateScroll, statusIds, columnId, multiColumn, hasMore, isLoading } = this.props;
     const pinned = !!columnId;
 
+    const emptyMessage = <FormattedMessage id='empty_column.favourited_statuses' defaultMessage="You don't have any favourite toots yet. When you favourite one, it will show up here." />;
+
     return (
       <Column ref={this.setRef} label={intl.formatMessage(messages.heading)}>
         <ColumnHeader
@@ -92,6 +94,7 @@ export default class Favourites extends ImmutablePureComponent {
           isLoading={isLoading}
           onLoadMore={this.handleLoadMore}
           shouldUpdateScroll={shouldUpdateScroll}
+          emptyMessage={emptyMessage}
         />
       </Column>
     );

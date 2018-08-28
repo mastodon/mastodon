@@ -47,10 +47,10 @@ if ENV['S3_ENABLED'] == 'true'
     Paperclip::Attachment.default_options[:url] = ':s3_path_url'
   end
 
-  if ENV.has_key?('S3_CLOUDFRONT_HOST')
+  if ENV.has_key?('S3_ALIAS_HOST') || ENV.has_key?('S3_CLOUDFRONT_HOST')
     Paperclip::Attachment.default_options.merge!(
       url: ':s3_alias_url',
-      s3_host_alias: ENV['S3_CLOUDFRONT_HOST']
+      s3_host_alias: ENV['S3_ALIAS_HOST'] || ENV['S3_CLOUDFRONT_HOST']
     )
   end
 elsif ENV['SWIFT_ENABLED'] == 'true'
