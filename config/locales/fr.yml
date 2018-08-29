@@ -340,6 +340,7 @@ fr:
       setup: Paramétrer une connexion de relais
       status: Statut
       title: Relais
+      pending: En attente de l'approbation du relai
     report_notes:
       created_msg: Note de signalement créée avec succès !
       destroyed_msg: Note de signalement effacée avec succès !
@@ -454,6 +455,9 @@ fr:
         desc_html: Afficher le fil public sur la page d’accueil
         title: Prévisualisation du fil global
       title: Paramètres du site
+      custom_css:
+        desc_html: Modifier l'apparence avec une CSS chargée sur chaque page
+        title: CSS personnalisée
     statuses:
       back_to_account: Retour à la page du compte
       batch:
@@ -477,6 +481,13 @@ fr:
     title: Administration
     suspensions:
       title: Suspension de %{acct}
+      bad_acct_msg: La valeur de confirmation n'a pas correspondu. Êtes-vous certain
+        de suspendre le bon compte ?
+      hint_html: 'Pour confirmer la suspension du compte, veuillez entrer %{value}
+        dans le champ ci-dessous :'
+      proceed: Traité
+      warning_html: 'Suspendre ce compte effacera <strong>irréversiblement</strong>
+        les données de ce compte, ce qui inclut :'
   admin_mailer:
     new_report:
       body: '%{reporter} a signalé %{target}'
