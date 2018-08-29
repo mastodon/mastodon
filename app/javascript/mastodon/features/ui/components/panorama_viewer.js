@@ -293,7 +293,7 @@ void main() {
   tex_pos /= crop.zw;
   tex_pos = mix(vec2(1, -1) * pos / 2. + vec2(.5), tex_pos, sphere);
   if (tex_pos.x < 0. || tex_pos.y < 0. || tex_pos.x > 1. || tex_pos.y > 1.) {
-    gl_FragColor = vec4(0);
+    gl_FragColor = vec4(0, 0, 0, 1);
   } else {
     gl_FragColor = texture2D(texture, tex_pos);
   }
