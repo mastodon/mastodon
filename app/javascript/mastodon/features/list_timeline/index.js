@@ -129,9 +129,8 @@ export default class ListTimeline extends React.PureComponent {
     } else if (list === false) {
       return (
         <Column>
-          <div className='scrollable'>
-            <MissingIndicator />
-          </div>
+          <ColumnBackButton />
+          <MissingIndicator />
         </Column>
       );
     }
