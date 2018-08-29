@@ -10,13 +10,30 @@ cy:
       one: statws
     administered_by: 'Weinyddir gan:'
     privacy_policy: Polisi preifatrwydd
+    terms: Telerau Gwasanaeth
+    user_count_after:
+      one: defnyddiwr
+      other: defnyddiwyr
+    what_is_mastodon: Beth yw Mastodon?
   accounts:
     roles:
       bot: Bot
+      admin: Gweinyddwr
+      moderator: Safonwr
     unfollow: Dad-ddilyn
     follow: Dilynwch
     posts:
       one: Tŵt
+      other: Tŵtiau
+    choices_html: 'Dewisiadau %{name}:'
+    followers:
+      one: Dilynwr
+      other: Dilynwyr
+    joined: Ymunodd %{date}
+    media: Cyfryngau
+    network_hidden: Nid yw'r wybodaeth hon ar gael
+    nothing_here: Does dim byd yma!
+    posts_tab_heading: Tŵtiau
   admin:
     account_moderation_notes:
       create: Gadael nodyn
@@ -29,9 +46,48 @@ cy:
         current_email: E-bost Cyfredol
         label: Newid E-bost
         new_email: E-bost Newydd
+        submit: Newid E-bost
+        title: Newid E-bost i %{username}
       confirm: Cadarnhau
+      confirmed: Cadarnhawyd
+      disable: Diffodd
+      domain: Parth
+      edit: Golygu
+      email: E-bost
+      email_status: Statws E-bost
+      enable: Galluogi
+      feed_url: Ffrwd URL
+      inbox_url: URL Mewnflwch
+      ip: IP
+      location:
+        all: Popeth
+        local: Leol
+        remote: Pell
+        title: Lleoliad
+      media_attachments: Atodiadau
+      moderation:
+        all: Popeth
+      outbox_url: URL blwch allan
+      profile_url: URL proffil
+      public: Cyhoeddus
+      reset: Ailosod
+      reset_password: Newid cyfrinair
+      roles:
+        user: Defnyddiwr
+      search: Chwilio
+      show:
+        report: adrodd
+      subscribe: Tanysgrifio
+      title: Cyfrifon
+      username: Enw defnyddiwr
+      web: Gwe
     custom_emojis:
       upload: Lanlwytho
+      by_domain: Parth
+      copy: Copïo
+      delete: Dileu
+      enable: Galluogi
+      listed: Rhestredig
     dashboard:
       config: Cyfluniad
       feature_registrations: Cofrestriadau
