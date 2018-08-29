@@ -478,10 +478,12 @@ const startWorker = (workerId) => {
   });
 
   app.get('/api/v1/streaming/public/local', (req, res) => {
-    const onlyMedia = req.query.only_media === '1' || req.query.only_media === 'true';
-    const channel   = onlyMedia ? 'timeline:public:local:media' : 'timeline:public:local';
+    const defaultTag = process.env.DEFAULT_HASHTAG.toLowerCase();
 
-    streamFrom(`timeline:hashtag:${process.env.DEFAULT_HASHTAG.toLowerCase()}`, req, streamToHttp(req, res), streamHttpEnd(req), true);
+    const onlyMedia = req.query.only_media === '1' || req.query.only_media === 'true';
+    const channel   = onlyMedia ? `timeline:hashtag:${defaultTag}:media` : `timeline:hashtag:${defaultTag}`;
+
+    streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req), true);
   });
 
   app.get('/api/v1/streaming/direct', (req, res) => {

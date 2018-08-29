@@ -111,17 +111,18 @@ export function directCompose(account, router) {
 
 export function submitCompose(withCommunity) {
   return function (dispatch, getState) {
-    const { status, visibility, hasDefaultHashtag } = handleDefaultTag(
-      withCommunity,
-      getState().getIn(['compose', 'text'], ''),
-      getState().getIn(['compose', 'privacy']),
-      getState().getIn(['compose', 'in_reply_to'])
-    );
-    const media  = getState().getIn(['compose', 'media_attachments']);
-
-    if ((!status || !status.length) && media.size === 0) {
+    const rawStatus = getState().getIn(['compose', 'text'], '');
+    const media = getState().getIn(['compose', 'media_attachments']);
+    if ((!rawStatus || !rawStatus.length) && media.size === 0) {
       return;
     }
+
+    const { status, visibility, hasDefaultHashtag } = handleDefaultTag(
+      withCommunity,
+      rawStatus,
+      getState().getIn(['compose', 'privacy']),
+      getState().getIn(['compose', 'in_reply_to']),
+    );
 
     dispatch(submitComposeRequest());
 
@@ -166,10 +167,6 @@ export function submitCompose(withCommunity) {
 };
 
 const handleDefaultTag = (withCommunity, status, visibility, in_reply_to) => {
-  if (!status || !status.length) {
-    return {};
-  }
-
   const tags = extractHashtags(status);
   const hasHashtags = tags.length > 0;
   const hasDefaultHashtag = tags.some(tag => tag === process.env.DEFAULT_HASHTAG);
