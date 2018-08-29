@@ -33,8 +33,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changeCompose(text));
   },
 
-  onSubmit () {
-    dispatch(submitCompose());
+  onSubmit (withCommunity) {
+    dispatch(submitCompose(withCommunity));
   },
 
   onClearSuggestions () {

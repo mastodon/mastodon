@@ -478,8 +478,10 @@ const startWorker = (workerId) => {
   });
 
   app.get('/api/v1/streaming/public/local', (req, res) => {
+    const defaultTag = process.env.DEFAULT_HASHTAG.toLowerCase();
+
     const onlyMedia = req.query.only_media === '1' || req.query.only_media === 'true';
-    const channel   = onlyMedia ? 'timeline:public:local:media' : 'timeline:public:local';
+    const channel   = onlyMedia ? `timeline:hashtag:${defaultTag}:media` : `timeline:hashtag:${defaultTag}`;
 
     streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req), true);
   });
@@ -537,7 +539,7 @@ const startWorker = (workerId) => {
       streamFrom('timeline:public', req, streamToWs(req, ws), streamWsEnd(req, ws), true);
       break;
     case 'public:local':
-      streamFrom('timeline:public:local', req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+      streamFrom(`timeline:hashtag:${process.env.DEFAULT_HASHTAG.toLowerCase()}`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
       break;
     case 'public:media':
       streamFrom('timeline:public:media', req, streamToWs(req, ws), streamWsEnd(req, ws), true);

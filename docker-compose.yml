@@ -32,7 +32,7 @@ services:
 
   web:
     build: .
-    image: tootsuite/mastodon
+    image: luckybeastakatheboss/mastodon:v2.5.0rc1-feature-default-hashtag-timeline
     restart: always
     env_file: .env.production
     command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000 -b '0.0.0.0'"

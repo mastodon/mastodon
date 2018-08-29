@@ -11,6 +11,8 @@ import { showAlertForError } from './alerts';
 
 let cancelFetchComposeSuggestionsAccounts;
 
+import { extractHashtags } from 'twitter-text';
+
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
 export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
 export const COMPOSE_SUBMIT_SUCCESS  = 'COMPOSE_SUBMIT_SUCCESS';
@@ -107,14 +109,20 @@ export function directCompose(account, router) {
   };
 };
 
-export function submitCompose() {
+export function submitCompose(withCommunity) {
   return function (dispatch, getState) {
-    const status = getState().getIn(['compose', 'text'], '');
-    const media  = getState().getIn(['compose', 'media_attachments']);
-
-    if ((!status || !status.length) && media.size === 0) {
+    const rawStatus = getState().getIn(['compose', 'text'], '');
+    const media = getState().getIn(['compose', 'media_attachments']);
+    if ((!rawStatus || !rawStatus.length) && media.size === 0) {
       return;
     }
+
+    const { status, visibility, hasDefaultHashtag } = handleDefaultTag(
+      withCommunity,
+      rawStatus,
+      getState().getIn(['compose', 'privacy']),
+      getState().getIn(['compose', 'in_reply_to']),
+    );
 
     dispatch(submitComposeRequest());
 
@@ -124,7 +132,7 @@ export function submitCompose() {
       media_ids: media.map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive']),
       spoiler_text: getState().getIn(['compose', 'spoiler_text'], ''),
-      visibility: getState().getIn(['compose', 'privacy']),
+      visibility,
     }, {
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
@@ -144,7 +152,10 @@ export function submitCompose() {
       insertIfOnline('home');
 
       if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
-        insertIfOnline('community');
+        if (hasDefaultHashtag) {
+          // Refresh the community timeline only if there is default hashtag
+          insertIfOnline('community');
+        }
         insertIfOnline('public');
       } else if (response.data.visibility === 'direct') {
         insertIfOnline('direct');
@@ -153,6 +164,43 @@ export function submitCompose() {
       dispatch(submitComposeFail(error));
     });
   };
+};
+
+const handleDefaultTag = (withCommunity, status, visibility, in_reply_to) => {
+  const tags = extractHashtags(status);
+  const hasHashtags = tags.length > 0;
+  const hasDefaultHashtag = tags.some(tag => tag === process.env.DEFAULT_HASHTAG);
+  const isPublic = visibility === 'public';
+
+  if (withCommunity) {
+    // toot with community:
+    // if has default hashtag: keep
+    // else if public && non-reply: add default hashtag
+    return hasDefaultHashtag ? {
+      status,
+      visibility,
+      hasDefaultHashtag: true,
+    } : {
+      status: isPublic && !in_reply_to ? `${status} #${process.env.DEFAULT_HASHTAG}` : status,
+      visibility,
+      hasDefaultHashtag: true,
+    };
+
+  } else {
+    // toot without community:
+    // if has hashtag: keep
+    // else if public: change visibility to unlisted
+    return hasHashtags ? {
+      status,
+      visibility,
+      hasDefaultHashtag: false,
+    } : {
+      status,
+      visibility: isPublic ? 'unlisted' : visibility,
+      hasDefaultHashtag: false,
+    };
+
+  }
 };
 
 export function submitComposeRequest() {
