@@ -2,6 +2,7 @@ import React from 'react';
 import ReactSwipeableViews from 'react-swipeable-views';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+import Video from '../../video';
 import ExtendedVideoPlayer from '../../../components/extended_video_player';
 import classNames from 'classnames';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -15,6 +16,8 @@ const messages = defineMessages({
   next: { id: 'lightbox.next', defaultMessage: 'Next' },
 });
 
+export const previewState = 'previewMediaModal';
+
 @injectIntl
 export default class MediaModal extends ImmutablePureComponent {
 
@@ -23,6 +26,10 @@ export default class MediaModal extends ImmutablePureComponent {
     index: PropTypes.number.isRequired,
     onClose: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+  };
+
+  static contextTypes = {
+    router: PropTypes.object,
   };
 
   state = {
@@ -47,23 +54,41 @@ export default class MediaModal extends ImmutablePureComponent {
     this.setState({ index: index % this.props.media.size });
   }
 
-  handleKeyUp = (e) => {
+  handleKeyDown = (e) => {
     switch(e.key) {
     case 'ArrowLeft':
       this.handlePrevClick();
+      e.preventDefault();
+      e.stopPropagation();
       break;
     case 'ArrowRight':
       this.handleNextClick();
+      e.preventDefault();
+      e.stopPropagation();
       break;
     }
   }
 
   componentDidMount () {
-    window.addEventListener('keyup', this.handleKeyUp, false);
+    window.addEventListener('keydown', this.handleKeyDown, false);
+    if (this.context.router) {
+      const history = this.context.router.history;
+      history.push(history.location.pathname, previewState);
+      this.unlistenHistory = history.listen(() => {
+        this.props.onClose();
+      });
+    }
   }
 
   componentWillUnmount () {
-    window.removeEventListener('keyup', this.handleKeyUp);
+    window.removeEventListener('keydown', this.handleKeyDown);
+    if (this.context.router) {
+      this.unlistenHistory();
+
+      if (this.context.router.history.location.state === previewState) {
+        this.context.router.history.goBack();
+      }
+    }
   }
 
   getIndex () {
@@ -110,6 +135,22 @@ export default class MediaModal extends ImmutablePureComponent {
             alt={image.get('description')}
             key={image.get('url')}
             onClick={this.toggleNavigation}
+          />
+        );
+      } else if (image.get('type') === 'video') {
+        const { time } = this.props;
+
+        return (
+          <Video
+            preview={image.get('preview_url')}
+            src={image.get('url')}
+            width={image.get('width')}
+            height={image.get('height')}
+            startTime={time || 0}
+            onCloseVideo={onClose}
+            detailed
+            description={image.get('description')}
+            key={image.get('url')}
           />
         );
       } else if (image.get('type') === 'gifv') {

@@ -4,13 +4,11 @@ sr:
     about_hashtag_html: Ово су јавни статуси таговани са <strong>#%{hashtag}</strong>. Можете одговарати на њих ако имате налог било где у федиверсу.
     about_mastodon_html: Мастодонт је друштвена мрежа базирана на отвореним протоколима и слободном софтверу отвореног кода. Децентрализована је као што је децентрализована е-пошта.
     about_this: О инстанци
+    administered_by: 'Администрирано од стране:'
     closed_registrations: Регистрације су тренутно затворене на овој инстанци. Ипак! Можете наћи другу инстанцу на којој ћете направити налог и одатле добити приступ истој овој мрежи.
     contact: Контакт
     contact_missing: Није постављено
     contact_unavailable: N/A
-    description_headline: Шта је %{domain}?
-    domain_count_after: остале инстанце
-    domain_count_before: Повезан на
     extended_description_html: |
       <h3>Добро место за правила</h3>
       <p>Проширени опис који још није постављен.</p>
@@ -44,7 +42,6 @@ sr:
     people_who_follow: Људи који прате %{name}
     posts: Тутови
     posts_with_replies: Тутови и одговори
-    remote_follow: Удаљена праћења
     reserved_username: Корисничко име је резервисано
     roles:
       admin: Администратор
@@ -52,9 +49,7 @@ sr:
     unfollow: Отпрати
   admin:
     account_moderation_notes:
-      account: Модератор
       create: Направи
-      created_at: Датум
       created_msg: Модераторска белешка успешно направљена!
       delete: Обриши
       destroyed_msg: Модераторска белешка успешно обрисана!
@@ -63,6 +58,7 @@ sr:
       by_domain: Домен
       confirm: Потврди
       confirmed: Потврђено
+      confirming: Потврдување
       demote: Ражалуј
       disable: Искључи
       disable_two_factor_authentication: Искључи 2FA
@@ -71,6 +67,7 @@ sr:
       domain: Домен
       edit: Измени
       email: Е-пошта
+      email_status: Е-пошта статус
       enable: Укључи
       enabled: Укључено
       feed_url: Адреса довода
@@ -108,6 +105,10 @@ sr:
       public: Јавно
       push_subscription_expires: PuSH subscription expires
       redownload: Освежи аватар
+      resend_confirmation:
+        already_confirmed: Овој корисник е веќе потврден
+        send: Препрати го е-мајлот за потврда
+        success: Е-пошта за потврда успешно испратена!
       reset: Ресетуј
       reset_password: Ресетуј лозинку
       resubscribe: Поново се претплати
@@ -245,14 +246,9 @@ sr:
       action_taken_by: Акцију извео
       are_you_sure: Да ли сте сигурни?
       comment:
-        label: Коментар
         none: Ништа
-      delete: Обриши
       id: ID
       mark_as_resolved: Означи као решен
-      nsfw:
-        'false': Откриј медијске прилоге
-        'true': Сакриј медијске прилоге
       report: 'Пријава #%{id}'
       report_contents: Садржај
       reported_account: Пријављени налог
@@ -311,11 +307,8 @@ sr:
         delete: Обриши
         nsfw_off: NSFW искључен
         nsfw_on: NSFW укључен
-      execute: Изврши
       failed_to_execute: Неуспело извршавање
       media:
-        hide: Сакриј мултимедију
-        show: Прикажи мултимедију
         title: Мултимедија
       no_media: Без мултимедије
       title: Статуси налога
@@ -426,7 +419,6 @@ sr:
     unlocked_warning_title: Ваш налог није закључан
   generic:
     changes_saved_msg: Измене успешно сачуване!
-    powered_by: омогућио %{link}
     save_changes: Сними измене
     validation_errors:
       few: Нешто није баш како треба! Прегледајте %{count} грешке испод
@@ -464,8 +456,6 @@ sr:
       expires_at: Истиче
       uses: Коришћења
     title: Позови људе
-  landing_strip_html: "<strong>%{name}</strong> је корисник на %{link_to_root_path}. Можете га запратити или комуницирати са њим ако имте налог било где у федиверсу."
-  landing_strip_signup_html: Ако немате, можете се <a href="%{sign_up_path}">регистровати овде</a>.
   lists:
     errors:
       limit: Достигли сте лимит броја листи
@@ -529,20 +519,6 @@ sr:
     other: Остали
     publishing: Објављивање
     web: Веб
-  push_notifications:
-    favourite:
-      title: "%{name} је ставио Ваш статус за омиљени"
-    follow:
-      title: "%{name} Вас је запратио"
-    group:
-      title: "%{count} обавештења"
-    mention:
-      action_boost: Подржи
-      action_expand: Прикажи још
-      action_favourite: Омиљени
-      title: "%{name} Вас је поменуо"
-    reblog:
-      title: "%{name} је подржао(ла) Ваш статус"
   remote_follow:
     acct: Унесите Ваш корисник@домен са кога желите да пратите
     missing_resource: Не могу да нађем захтевану адресу преусмеравања за Ваш налог
@@ -620,7 +596,6 @@ sr:
       unlisted: Неизлистано
       unlisted_long: Свако може да види, али није излистано на јавним лајнама
   stream_entries:
-    click_to_show: Кликни да видиш
     pinned: Прикачени тут
     reblogged: подржано
     sensitive_content: Осетљив садржај

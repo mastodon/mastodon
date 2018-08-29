@@ -7,7 +7,7 @@ module Mastodon::Snowflake
     def self.around_create(record)
       now = Time.now.utc
 
-      if record.created_at.nil? || record.created_at >= now || record.created_at == record.updated_at
+      if record.created_at.nil? || record.created_at >= now || record.created_at == record.updated_at || record.override_timestamps
         yield
       else
         record.id = Mastodon::Snowflake.id_at(record.created_at)

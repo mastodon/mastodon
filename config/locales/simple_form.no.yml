@@ -3,12 +3,12 @@
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF eller JPG. Maksimalt 2 MB. Vil bli nedskalert til 400x400px
+        avatar: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
         display_name:
           one: <span class="name-counter">1</span> tegn igjen
           other: <span class="name-counter">%{count}</span> tegn igjen
-        header: PNG, GIF eller JPG. Maksimalt 2MB. Vil bli nedskalert til 700x335px
+        header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         locked: Krever at du manuelt godkjenner følgere
         note:
           one: <span class="note-counter">1</span> tegn igjen
@@ -19,8 +19,6 @@
         data: CSV-fil eksportert fra en annen Mastodon-instans
       sessions:
         otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
-      user:
-        filtered_languages: Språk som er avhuket vil ikke vises på offentlige tidslinjer fra deg
     labels:
       defaults:
         avatar: Avatar
@@ -31,7 +29,6 @@
         display_name: Visningsnavn
         email: E-postadresse
         expires_in: Utløper etter
-        filtered_languages: Filtrerte språk
         header: Overskrift
         locale: Språk
         locked: Lås konto

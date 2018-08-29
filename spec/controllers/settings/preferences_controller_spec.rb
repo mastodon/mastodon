@@ -12,18 +12,18 @@ describe Settings::PreferencesController do
   describe 'GET #show' do
     it 'returns http success' do
       get :show
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
   describe 'PUT #update' do
     it 'updates the user record' do
-      put :update, params: { user: { locale: 'en', filtered_languages: ['es', 'fr', ''] } }
+      put :update, params: { user: { locale: 'en', chosen_languages: ['es', 'fr', ''] } }
 
       expect(response).to redirect_to(settings_preferences_path)
       user.reload
       expect(user.locale).to eq 'en'
-      expect(user.filtered_languages).to eq ['es', 'fr']
+      expect(user.chosen_languages).to eq ['es', 'fr']
     end
 
     it 'updates user settings' do

@@ -6,6 +6,7 @@ module Admin
       site_contact_username
       site_contact_email
       site_title
+      site_short_description
       site_description
       site_extended_description
       site_terms
@@ -15,12 +16,15 @@ module Admin
       timeline_preview
       show_staff_badge
       bootstrap_timeline_accounts
+      theme
       thumbnail
       hero
       min_invite_role
       activity_api_enabled
       peers_api_enabled
       show_known_fediverse_at_about_page
+      preview_sensitive_media
+      custom_css
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
@@ -31,6 +35,7 @@ module Admin
       activity_api_enabled
       peers_api_enabled
       show_known_fediverse_at_about_page
+      preview_sensitive_media
     ).freeze
 
     UPLOAD_SETTINGS = %w(

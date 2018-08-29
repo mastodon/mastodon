@@ -2,28 +2,26 @@
 ko:
   about:
     about_hashtag_html: "<strong>#%{hashtag}</strong> 라는 해시태그가 붙은 공개 툿 입니다. 같은 연합에 속한 임의의 인스턴스에 계정을 생성하면 당신도 대화에 참여할 수 있습니다."
-    about_mastodon_html: Mastodon은 <em>오픈 소스 기반의</em> 소셜 네트워크 서비스 입니다. 상용 플랫폼의 대체로서 <em>분산형 구조</em>를 채택해, 여러분의 대화가 한 회사에 독점되는 것을 방지합니다. 신뢰할 수 있는 인스턴스를 선택하세요 &mdash; 어떤 인스턴스를 고르더라도, 누구와도 대화할 수 있습니다. 누구나 자신만의 Mastodon 인스턴스를 만들 수 있으며, 아주 매끄럽게 <em>소셜 네트워크</em>에 참가할 수 있습니다.
+    about_mastodon_html: 마스토돈은 <em>오픈 소스 기반의</em> 소셜 네트워크 서비스 입니다. 상용 플랫폼의 대체로서 <em>분산형 구조</em>를 채택해, 여러분의 대화가 한 회사에 독점되는 것을 방지합니다. 신뢰할 수 있는 인스턴스를 선택하세요 &mdash; 어떤 인스턴스를 고르더라도, 누구와도 대화할 수 있습니다. 누구나 자신만의 마스토돈 인스턴스를 만들 수 있으며, 아주 매끄럽게 <em>소셜 네트워크</em>에 참가할 수 있습니다.
     about_this: 이 인스턴스에 대해서
+    administered_by: '관리자:'
     closed_registrations: 현재 이 인스턴스에서는 신규 등록을 받고 있지 않습니다.
     contact: 연락처
     contact_missing: 미설정
     contact_unavailable: N/A
-    description_headline: "%{domain} (은)는 무엇인가요?"
-    domain_count_after: 개의 인스턴스
-    domain_count_before: 연결된
     extended_description_html: |
       <h3>룰을 작성하는 장소</h3>
       <p>아직 설명이 작성되지 않았습니다.</p>
     features:
-      humane_approach_body: 다른 SNS의 실패를 교훈삼아, Mastodon은 소셜미디어가 잘못 사용되는 것을 막기 위하여 윤리적인 설계를 추구합니다.
+      humane_approach_body: 다른 SNS의 실패를 교훈삼아, 마스토돈은 소셜미디어가 잘못 사용되는 것을 막기 위하여 윤리적인 설계를 추구합니다.
       humane_approach_title: 보다 배려를 의식한 설계를 추구
-      not_a_product_body: Mastodon은 이익을 추구하는 SNS가 아닙니다. 그러므로 광고와 데이터의 수집 및 분석이 존재하지 않고, 유저를 구속하지도 않습니다.
-      not_a_product_title: 여러분은 사람이며, 상품이 아닙니다.
+      not_a_product_body: 마스토돈은 이익을 추구하는 SNS가 아닙니다. 그러므로 광고와 데이터의 수집 및 분석이 존재하지 않고, 유저를 구속하지도 않습니다.
+      not_a_product_title: 여러분은 사람이며, 상품이 아닙니다
       real_conversation_body: 자유롭게 사용할 수 있는 500문자의 메세지와 미디어 경고 내용을 바탕으로, 자기자신을 자유롭게 표현할 수 있습니다.
       real_conversation_title: 진정한 커뮤니케이션을 위하여
       within_reach_body: 개발자 친화적인 API에 의해서 실현된 iOS나 Android, 그 외의 여러 Platform들 덕분에 어디서든 친구들과 자유롭게 메세지를 주고 받을 수 있습니다.
       within_reach_title: 언제나 유저의 곁에서
-    generic_description: "%{domain} 은 Mastodon의 인스턴스 입니다."
+    generic_description: "%{domain} 은 네트워크에 있는 한 서버입니다"
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
     learn_more: 자세히
     other_instances: 다른 인스턴스
@@ -32,37 +30,45 @@ ko:
     status_count_before: 툿 수
     user_count_after: 명
     user_count_before: 사용자 수
-    what_is_mastodon: Mastodon이란?
+    what_is_mastodon: 마스토돈이란?
   accounts:
     follow: 팔로우
     followers: 팔로워
     following: 팔로잉
     media: 미디어
     moved_html: "%{name}은 %{new_profile_link}으로 이동되었습니다:"
+    network_hidden: 이 정보는 사용할 수 없습니다
     nothing_here: 아무 것도 없습니다!
     people_followed_by: "%{name} 님이 팔로우 중인 계정"
     people_who_follow: "%{name} 님을 팔로우 중인 계정"
     posts: 툿
     posts_with_replies: 툿과 답장
-    remote_follow: 리모트 팔로우
     reserved_username: 이 아이디는 예약되어 있습니다
     roles:
       admin: 관리자
+      bot: 봇
       moderator: 모더레이터
     unfollow: 팔로우 해제
   admin:
     account_moderation_notes:
-      account: 모더레이터
-      create: 작성하기
-      created_at: 작성 날짜
+      create: 모더레이션 노트 작성하기
       created_msg: 모더레이션 기록이 성공적으로 작성되었습니다!
       delete: 삭제
       destroyed_msg: 모더레이션 기록이 성공적으로 삭제되었습니다!
     accounts:
       are_you_sure: 정말로 실행하시겠습니까?
+      avatar: 아바타
       by_domain: 도메인
+      change_email:
+        changed_msg: 이메일이 성공적으로 바뀌었습니다!
+        current_email: 현재 이메일 주소
+        label: 이메일 주소 변경
+        new_email: 새 이메일 주소
+        submit: 이메일 주소 변경
+        title: "%{username}의 이메일 주소 변경"
       confirm: 확인
       confirmed: 확인됨
+      confirming: 확인 중
       demote: 모더레이터 강등
       disable: 비활성화
       disable_two_factor_authentication: 2단계 인증을 비활성화
@@ -71,6 +77,7 @@ ko:
       domain: 도메인
       edit: 편집
       email: E-mail
+      email_status: 이메일 상태
       enable: 활성화
       enabled: 활성화된
       feed_url: 피드 URL
@@ -98,7 +105,7 @@ ko:
       not_subscribed: 구독하지 않음
       order:
         alphabetic: 알파벳 순
-        most_recent: 최근 활동 순
+        most_recent: 최근 순
         title: 순서
       outbox_url: 발신함 URL
       perform_full_suspension: 완전히 정지시키기
@@ -108,6 +115,11 @@ ko:
       public: 전체 공개
       push_subscription_expires: PuSH 구독 기간 만료
       redownload: 아바타 업데이트
+      remove_avatar: 아바타 지우기
+      resend_confirmation:
+        already_confirmed: 이 사용자는 이미 확인되었습니다
+        send: 다시 확인 이메일
+        success: 확인 이메일이 전송되었습니다!
       reset: 초기화
       reset_password: 비밀번호 초기화
       resubscribe: 다시 구독
@@ -128,6 +140,7 @@ ko:
       statuses: 툿 수
       subscribe: 구독하기
       title: 계정
+      unconfirmed_email: 미확인 된 이메일 주소
       undo_silenced: 침묵 해제
       undo_suspension: 정지 해제
       unsubscribe: 구독 해제
@@ -135,6 +148,8 @@ ko:
       web: 웹
     action_logs:
       actions:
+        assigned_to_self_report: "%{name}이 리포트 %{target}을 자신에게 할당했습니다"
+        change_email_user: "%{name}이 %{target}의 이메일 주소를 변경했습니다"
         confirm_user: "%{name}이 %{target}의 이메일 주소를 컨펌했습니다"
         create_custom_emoji: "%{name}이 새로운 에모지 %{target}를 추가했습니다"
         create_domain_block: "%{name}이 도메인 %{target}를 차단했습니다"
@@ -150,10 +165,13 @@ ko:
         enable_user: "%{name}이 %{target}의 로그인을 활성화 했습니다"
         memorialize_account: "%{name}이 %{target}의 계정을 메모리엄으로 전환했습니다"
         promote_user: "%{name}이 %{target}를 승급시켰습니다"
+        remove_avatar_user: "%{name}이 %{target}의 아바타를 지웠습니다"
+        reopen_report: "%{name}이 리포트 %{target}을 다시 열었습니다"
         reset_password_user: "%{name}이 %{target}의 암호를 초기화했습니다"
         resolve_report: "%{name}이 %{target} 신고를 처리됨으로 변경하였습니다"
         silence_account: "%{name}이 %{target}의 계정을 뮤트시켰습니다"
         suspend_account: "%{name}이 %{target}의 계정을 정지시켰습니다"
+        unassigned_report: "%{name}이 리포트 %{target}을 할당 해제했습니다"
         unsilence_account: "%{name}이 %{target}에 대한 뮤트를 해제했습니다"
         unsuspend_account: "%{name}이 %{target}에 대한 정지를 해제했습니다"
         update_custom_emoji: "%{name}이 에모지 %{target}를 업데이트 했습니다"
@@ -184,6 +202,27 @@ ko:
       update_failed_msg: 에모지를 업데이트 할 수 없습니다
       updated_msg: 에모지가 성공적으로 업데이트 되었습니다!
       upload: 업로드
+    dashboard:
+      backlog: 미처리 된 작업
+      config: 설정
+      feature_deletions: 계정 삭제
+      feature_invites: 초대 링크
+      feature_registrations: 가입
+      feature_relay: 연합 릴레이
+      features: 기능
+      hidden_service: 히든 서비스와의 연합
+      open_reports: 미해결 신고
+      recent_users: 최근 가입 한 유저
+      search: 전문 검색
+      single_user_mode: 싱글 유저 모드
+      software: 소프트웨어
+      space: 디스크 사용량
+      title: 대시보드
+      total_users: 총 유저 수
+      trends: 트렌드
+      week_interactions: 이번 주의 상호작용
+      week_users_active: 이번 주의 활성 사용자
+      week_users_new: 이번 주의 신규 유저
     domain_blocks:
       add_new: 추가하기
       created_msg: 도메인 차단 처리를 완료했습니다
@@ -220,13 +259,13 @@ ko:
       undo: 실행 취소
     email_domain_blocks:
       add_new: 새로 추가
-      created_msg: Email 도메인 차단 규칙을 생성했습니다
+      created_msg: 이메일 도메인 차단 규칙을 생성했습니다
       delete: 삭제
-      destroyed_msg: Email 도메인 차단 규칙을 삭제했습니다
+      destroyed_msg: 이메일 도메인 차단 규칙을 삭제했습니다
       domain: 도메인
       new:
         create: 차단 규칙 생성
-        title: 새 Email 도메인 차단
+        title: 새 이메일 도메인 차단
       title: Email 도메인 차단
     instances:
       account_count: 알려진 계정의 수
@@ -241,29 +280,52 @@ ko:
         expired: 만료됨
         title: 필터
       title: 초대
+    relays:
+      add_new: 릴레이 추가
+      description_html: "<strong>연합 릴레이</strong>는 서버들 사이에서 많은 양의 공개 툿을 구독하고 중개하는 서버입니다. <strong>이것은 중소 규모의 서버에서 연합우주를 발견하는 데에 도움을 줄 수 있습니다</strong>, 이제 로컬 유저들이 다른 서버의 유저들을 수동으로 팔로우 하지 않아도 됩니다."
+      enable_hint: 활성화 되면, 이 릴레이의 모든 공개 툿을 구독하고 이 서버의 공개 툿을 전송하게 됩니다.
+      inbox_url: 릴레이 URL
+      setup: 릴레이 연결 설정
+      status: 상태
+      title: 릴레이
+    report_notes:
+      created_msg: 리포트 노트가 성공적으로 작성되었습니다!
+      destroyed_msg: 리포트 노트가 성공적으로 삭제되었습니다!
     reports:
+      account:
+        note: 노트
+        report: 리포트
       action_taken_by: 신고 처리자
       are_you_sure: 정말로 실행하시겠습니까?
+      assign_to_self: 나에게 할당 됨
+      assigned: 할당 된 모더레이터
       comment:
-        label: 코멘트
         none: 없음
-      delete: 삭제
+      created_at: 리포트 시각
       id: ID
       mark_as_resolved: 해결 완료 처리
-      nsfw:
-        'false': NSFW 꺼짐
-        'true': NSFW 켜짐
+      mark_as_unresolved: 미해결로 표시
+      notes:
+        create: 기록 추가
+        create_and_resolve: 기록을 작성하고 해결됨으로 표시
+        create_and_unresolve: 기록 작성과 함께 미해결로 표시
+        delete: 삭제
+        placeholder: 이 리포트에 대한 조치, 기타 관련 된 사항에 대해 설명합니다…
+      reopen: 리포트 다시 열기
       report: '신고 #%{id}'
       report_contents: 내용
       reported_account: 신고 대상 계정
       reported_by: 신고자
       resolved: 해결됨
+      resolved_msg: 리포트가 성공적으로 해결되었습니다!
       silence_account: 계정을 침묵 처리
       status: 상태
       suspend_account: 계정을 정지
       target: 대상
       title: 신고
+      unassign: 할당 해제
       unresolved: 미해결
+      updated_at: 업데이트 시각
       view: 표시
     settings:
       activity_api_enabled:
@@ -281,6 +343,9 @@ ko:
       peers_api_enabled:
         desc_html: 이 인스턴스가 페디버스에서 만났던 도메인 네임들
         title: 발견 된 인스턴스들의 리스트 발행
+      preview_sensitive_media:
+        desc_html: 민감한 미디어로 설정되었더라도 다른 웹사이트에서 링크 미리보기에 썸네일을 보여줍니다
+        title: 민감한 미디어를 오픈그래프 미리보기에 보여주기
       registrations:
         closed_message:
           desc_html: 신규 등록을 받지 않을 때 프론트 페이지에 표시됩니다. HTML 태그를 사용할 수 있습니다
@@ -301,7 +366,7 @@ ko:
         desc_html: 유저 페이지에 스태프 배지를 표시합니다
         title: 스태프 배지 표시
       site_description:
-        desc_html: 탑 페이지와 meta 태그에 사용됩니다. HTML 태그, 주로 <code>&lt;a&gt;</code>, <code>&lt;em&gt;</code> 같은 것을 사용 가능합니다.
+        desc_html: 프론트 페이지의 소개문에 사용 됩니다.이 마스토돈 서버의 특별한 점 등을 설명하세요. HTML 태그, 주로 <code>&lt;a&gt;</code>, <code>&lt;em&gt;</code> 같은 것을 사용 가능합니다.
         title: 사이트 설명
       site_description_extended:
         desc_html: 규칙, 가이드라인 등을 작성하기 좋은 곳입니다. HTML 태그를 사용할 수 있습니다
@@ -323,11 +388,8 @@ ko:
         delete: 삭제
         nsfw_off: NSFW 끄기
         nsfw_on: NSFW 켜기
-      execute: 실행
       failed_to_execute: 실행을 실패하였습니다
       media:
-        hide: 미디어 숨기기
-        show: 미디어 보여주기
         title: 미디어
       no_media: 미디어 없음
       title: 계정 툿
@@ -343,6 +405,7 @@ ko:
   admin_mailer:
     new_report:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
+      body_remote: "%{domain}의 누군가가 %{target}을 신고했습니다"
       subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
   application_mailer:
     notification_preferences: 메일 설정 변경
@@ -384,13 +447,14 @@ ko:
     security: 보안
     set_new_password: 새 비밀번호
   authorize_follow:
+    already_following: 이미 이 계정을 팔로우 하고 있습니다
     error: 리모트 계정을 확인하는 도중 오류가 발생했습니다
     follow: 팔로우
     follow_request: '당신은 다음 계정에 팔로우 신청을 했습니다:'
     following: '성공! 당신은 다음 계정을 팔로우 하고 있습니다:'
     post_follow:
       close: 혹은, 당신은 이 윈도우를 닫을 수 있습니다.
-      return: 유저 프로필로 돌아가기
+      return: 유저 프로필 보기
       web: 웹으로 가기
     title: "%{acct} 를 팔로우"
   datetime:
@@ -420,7 +484,7 @@ ko:
     '404': 당신이 찾으려는 페이지는 존재하지 않습니다.
     '410': 당신이 보려는 페이지는 더이상 존재하지 않습니다.
     '422':
-      content: 보안 인증에 실패했습니다. Cookie를 차단하고 있진 않습니까?
+      content: 보안 인증에 실패했습니다. 쿠키를 차단하고 있진 않습니까?
       title: 보안 인증 실패
     '429': 요청 횟수 제한에 도달했습니다
     '500':
@@ -431,7 +495,7 @@ ko:
     archive_takeout:
       date: 날짜
       download: 아카이브 다운로드
-      hint_html: 당신의 <strong>툿과 업로드 된 미디어</strong>의 아카이브를 요청할 수 있습니다. 내보내지는 데이터는 ActivityPub 포맷입니다. 호환 되는 모든 소프트웨어에서 읽을 수 있습니다.
+      hint_html: 당신의 <strong>툿과 업로드 된 미디어</strong>의 아카이브를 요청할 수 있습니다. 내보내지는 데이터는 ActivityPub 포맷입니다. 호환 되는 모든 소프트웨어에서 읽을 수 있습니다. 7일마다 새로운 아카이브를 요청할 수 있습니다.
       in_progress: 당신의 아카이브를 컴파일 중입니다…
       request: 아카이브 요청하기
       size: 크기
@@ -440,6 +504,22 @@ ko:
     follows: 팔로우
     mutes: 뮤트
     storage: 미디어
+  filters:
+    contexts:
+      home: 홈 타임라인
+      notifications: 알림
+      public: 퍼블릭 타임라인
+      thread: 대화
+    edit:
+      title: 필터 편집
+    errors:
+      invalid_context: 컨텍스트가 없거나 올바르지 않습니다
+      invalid_irreversible: 되돌릴 수 없는 필터링은 홈 타임라인과 알림에서만 동작합니다
+    index:
+      delete: 삭제
+      title: 필터
+    new:
+      title: 필터 추가
   followers:
     domain: 도메인
     explanation_html: 프라이버시를 확보하고 싶은 경우, 누가 여러분을 팔로우 하고 있는지 파악해둘 필요가 있습니다. <strong>프라이빗 포스팅은 여러분의 팔로워가 소속하는 모든 인스턴스로 배달됩니다</strong>. 팔로워가 소속된 인스턴스 관리자나 소프트웨어가 여러분의 프라이버시를 존중하고 있는지 잘 모를 경우, 그 팔로워를 삭제하는 것이 좋을 수도 있습니다.
@@ -454,7 +534,6 @@ ko:
     unlocked_warning_title: 이 계정은 비공개로 설정되어 있지 않습니다
   generic:
     changes_saved_msg: 정상적으로 변경되었습니다!
-    powered_by: "%{link}에 의해 제공"
     save_changes: 변경 사항을 저장
     validation_errors:
       one: 오류가 발생했습니다. 아래 오류를 확인해 주십시오
@@ -476,9 +555,11 @@ ko:
       '21600': 6 시간
       '3600': 1 시간
       '43200': 12 시간
+      '604800': 1주일
       '86400': 하루
     expires_in_prompt: 영원히
     generate: 생성
+    invited_by: '당신을 초대한 사람:'
     max_uses:
       one: 일회용
       other: "%{count} 회"
@@ -488,8 +569,6 @@ ko:
       expires_at: 만료
       uses: 사용됨
     title: 초대
-  landing_strip_html: "<strong>%{name}</strong> 님은 %{link_to_root_path} 인스턴스의 사용자입니다. 계정을 가지고 있다면 팔로우 하거나 대화할 수 있습니다."
-  landing_strip_signup_html: 아직 계정이 없다면 <a href="%{sign_up_path}">여기서</a> 등록할 수 있습니다.
   lists:
     errors:
       limit: 리스트 최대치에 도달했습니다
@@ -515,7 +594,7 @@ ko:
       subject:
         one: "1건의 새로운 알림 \U0001F418"
         other: "%{count}건의 새로운 알림 \U0001F418"
-      title: 당신이 없는 동안에…
+      title: 당신이 없는 동안에...
     favourite:
       body: "%{name} 님이 내 툿을 즐겨찾기에 등록했습니다:"
       subject: "%{name} 님이 내 툿을 즐겨찾기에 등록했습니다"
@@ -548,7 +627,7 @@ ko:
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: ''
+          unit: "."
   pagination:
     newer: 새로운 툿
     next: 다음
@@ -560,25 +639,16 @@ ko:
     other: 기타
     publishing: 퍼블리싱
     web: 웹
-  push_notifications:
-    favourite:
-      title: "%{name} 님이 당신의 툿를 즐겨찾기에 등록했습니다"
-    follow:
-      title: "%{name} 님이 나를 팔로우 하고 있습니다"
-    group:
-      title: "%{count} 건의 알림"
-    mention:
-      action_boost: 부스트
-      action_expand: 더보기
-      action_favourite: 즐겨찾기
-      title: "%{name} 님이 답장을 보냈습니다"
-    reblog:
-      title: "%{name} 님이 당신의 툿을 부스트 했습니다"
   remote_follow:
-    acct: 아이디@도메인을 입력해 주십시오
+    acct: 당신이 사용하는 아이디@도메인을 입력해 주십시오
     missing_resource: 리디렉션 대상을 찾을 수 없습니다
+    no_account_html: 계정이 없나요? <a href='%{sign_up_path}' target='_blank'>여기에서 가입 할 수 있습니다</a>
     proceed: 팔로우 하기
     prompt: '팔로우 하려 하고 있습니다:'
+  remote_unfollow:
+    error: 에러
+    title: 타이틀
+    unfollowed: 언팔로우됨
   sessions:
     activity: 마지막 활동
     browser: 브라우저
@@ -602,7 +672,7 @@ ko:
       weibo: 웨이보
     current_session: 현재 세션
     description: "%{platform}의 %{browser}"
-    explanation: 내 Mastodon 계정에 현재 로그인 중인 웹 브라우저 목록입니다.
+    explanation: 내 마스토돈 계정에 현재 로그인 중인 웹 브라우저 목록입니다.
     ip: IP
     platforms:
       adobe_air: 어도비 에어
@@ -644,7 +714,12 @@ ko:
       video:
         one: "%{count} 영상"
         other: "%{count} 영상"
+    boosted_from_html: "%{acct_link} 님이 부스트"
     content_warning: '열람 주의: %{warning}'
+    disallowed_hashtags:
+      one: '허용 되지 않은 해시태그를 포함하고 있습니다: %{tags}'
+      other: '허용되지 않은 해시태그를 포함하고 있습니다: %{tags}'
+    language_detection: 자동으로 언어 감지
     open_in_web: Web으로 열기
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:
@@ -662,14 +737,15 @@ ko:
       unlisted: 공개 타임라인 비공개
       unlisted_long: 누구나 볼 수 있지만, 공개 타임라인에는 표시되지 않습니다
   stream_entries:
-    click_to_show: 클릭해서 표시
     pinned: 고정된 툿
     reblogged: 님이 부스트 했습니다
     sensitive_content: 민감한 컨텐츠
   terms:
     title: "%{instance} 이용약관과 개인정보 취급 방침"
   themes:
+    contrast: 고대비
     default: 마스토돈
+    mastodon-light: 마스토돈 (밝음)
   time:
     formats:
       default: "%Y년 %m월 %d일 %H:%M"
@@ -688,10 +764,10 @@ ko:
     recovery_codes_regenerated: 복구 코드가 다시 생성되었습니다
     recovery_instructions_html: 휴대전화를 분실한 경우, 아래 복구 코드 중 하나를 사용해 계정에 접근할 수 있습니다. <strong>복구 코드는 안전하게 보관해 주십시오.</strong> 이 코드를 인쇄해 중요한 서류와 함께 보관하는 것도 좋습니다.
     setup: 초기 설정
-    wrong_code: 코드가 올바르지 않습니다. 서버와 휴대전화 간의 시간이 일치하는지 확인해 주십시오.
+    wrong_code: 코드가 올바르지 않습니다. 서버와 휴대전화 간의 시각이 일치하나요?
   user_mailer:
     backup_ready:
-      explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다.
+      explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
       subject: 당신의 아카이브를 다운로드 가능합니다
       title: 아카이브 테이크 아웃
     welcome:
@@ -715,5 +791,6 @@ ko:
   users:
     invalid_email: 메일 주소가 올바르지 않습니다
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
+    otp_lost_help_html: 만약 양쪽 모두를 잃어버렸다면 %{email}을 통해 복구할 수 있습니다
     seamless_external_login: 외부 서비스를 이용해 로그인 했습니다, 패스워드와 이메일 설정을 할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'

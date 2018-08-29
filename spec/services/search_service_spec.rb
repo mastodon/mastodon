@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe SearchService do
+describe SearchService, type: :service do
   subject { described_class.new }
 
   describe '#call' do
@@ -29,7 +29,7 @@ describe SearchService do
           allow(ResolveURLService).to receive(:new).and_return(service)
           results = subject.call(@query, 10)
 
-          expect(service).to have_received(:call).with(@query)
+          expect(service).to have_received(:call).with(@query, on_behalf_of: nil)
           expect(results).to eq empty_results
         end
       end
@@ -41,7 +41,7 @@ describe SearchService do
           allow(ResolveURLService).to receive(:new).and_return(service)
 
           results = subject.call(@query, 10)
-          expect(service).to have_received(:call).with(@query)
+          expect(service).to have_received(:call).with(@query, on_behalf_of: nil)
           expect(results).to eq empty_results.merge(accounts: [account])
         end
       end
@@ -53,7 +53,7 @@ describe SearchService do
           allow(ResolveURLService).to receive(:new).and_return(service)
 
           results = subject.call(@query, 10)
-          expect(service).to have_received(:call).with(@query)
+          expect(service).to have_received(:call).with(@query, on_behalf_of: nil)
           expect(results).to eq empty_results.merge(statuses: [status])
         end
       end

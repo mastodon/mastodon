@@ -51,7 +51,7 @@ describe ApplicationController, type: :controller do
     routes.draw { get 'success' => 'anonymous#success' }
     allow(Rails.env).to receive(:production?).and_return(false)
     get 'success'
-    expect(response).to have_http_status(:success)
+    expect(response).to have_http_status(200)
   end
 
   it "forces ssl if Rails.env.production? is 'true'" do
@@ -89,6 +89,39 @@ describe ApplicationController, type: :controller do
       allow(Rails.configuration.x).to receive(:single_user_mode).and_return(true)
       Fabricate(:account)
       expect(controller.view_context.single_user_mode?).to eq true
+    end
+  end
+
+  describe 'helper_method :current_theme' do
+    it 'returns "default" when theme wasn\'t changed in admin settings' do
+      allow(Setting).to receive(:default_settings).and_return({'theme' => 'default'})
+
+      expect(controller.view_context.current_theme).to eq 'default'
+    end
+
+    it 'returns instances\'s theme when user is not signed in' do
+      allow(Setting).to receive(:[]).with('theme').and_return 'contrast'
+
+      expect(controller.view_context.current_theme).to eq 'contrast'
+    end
+
+    it 'returns instances\'s default theme when user didn\'t set theme' do
+      current_user = Fabricate(:user)
+      sign_in current_user
+
+      allow(Setting).to receive(:[]).with('theme').and_return 'contrast'
+
+      expect(controller.view_context.current_theme).to eq 'contrast'
+    end
+
+    it 'returns user\'s theme when it is set' do
+      current_user = Fabricate(:user)
+      current_user.settings['theme'] = 'mastodon-light'
+      sign_in current_user
+
+      allow(Setting).to receive(:[]).with('theme').and_return 'contrast'
+
+      expect(controller.view_context.current_theme).to eq 'mastodon-light'
     end
   end
 
@@ -145,13 +178,13 @@ describe ApplicationController, type: :controller do
 
     it 'does nothing if not signed in' do
       get 'success'
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'does nothing if user who signed in is not suspended' do
       sign_in(Fabricate(:user, account: Fabricate(:account, suspended: false)))
       get 'success'
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'returns http 403 if user who signed in is suspended' do

@@ -2,6 +2,7 @@
 
 class HomeController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_referrer_policy_header
   before_action :set_initial_state_json
 
   def index
@@ -57,9 +58,13 @@ class HomeController < ApplicationController
     if request.path.start_with?('/web')
       new_user_session_path
     elsif single_user_mode?
-      short_account_path(Account.first)
+      short_account_path(Account.local.where(suspended: false).first)
     else
       about_path
     end
+  end
+
+  def set_referrer_policy_header
+    response.headers['Referrer-Policy'] = 'origin'
   end
 end

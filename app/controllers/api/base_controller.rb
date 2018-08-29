@@ -7,6 +7,8 @@ class Api::BaseController < ApplicationController
   include RateLimitHeaders
 
   skip_before_action :store_current_location
+  skip_before_action :check_user_permissions
+
   protect_from_forgery with: :null_session
 
   rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
@@ -66,8 +68,10 @@ class Api::BaseController < ApplicationController
   end
 
   def require_user!
-    if current_user
+    if current_user && !current_user.disabled?
       set_user_activity
+    elsif current_user
+      render json: { error: 'Your login is currently disabled' }, status: 403
     else
       render json: { error: 'This method requires an authenticated user' }, status: 422
     end
@@ -75,5 +79,9 @@ class Api::BaseController < ApplicationController
 
   def render_empty
     render json: {}, status: 200
+  end
+
+  def authorize_if_got_token!(*scopes)
+    doorkeeper_authorize!(*scopes) if doorkeeper_token
   end
 end

@@ -154,7 +154,7 @@ RSpec.describe Status, type: :model do
 
   describe '#target' do
     it 'returns nil if the status is self-contained' do
-      expect(subject.target).to be_nil
+     expect(subject.target).to be_nil
     end
 
     it 'returns nil if the status is a reply' do
@@ -175,6 +175,34 @@ RSpec.describe Status, type: :model do
 
       expect(subject.reblogs_count).to eq 2
     end
+
+    it 'is decremented when reblog is removed' do
+      reblog = Fabricate(:status, account: bob, reblog: subject)
+      expect(subject.reblogs_count).to eq 1
+      reblog.destroy
+      expect(subject.reblogs_count).to eq 0
+    end
+
+    it 'does not fail when original is deleted before reblog' do
+      reblog = Fabricate(:status, account: bob, reblog: subject)
+      expect(subject.reblogs_count).to eq 1
+      expect { subject.destroy }.to_not raise_error
+      expect(Status.find_by(id: reblog.id)).to be_nil
+    end
+  end
+
+  describe '#replies_count' do
+    it 'is the number of replies' do
+      reply = Fabricate(:status, account: bob, thread: subject)
+      expect(subject.replies_count).to eq 1
+    end
+
+    it 'is decremented when reply is removed' do
+      reply = Fabricate(:status, account: bob, thread: subject)
+      expect(subject.replies_count).to eq 1
+      reply.destroy
+      expect(subject.replies_count).to eq 0
+    end
   end
 
   describe '#favourites_count' do
@@ -183,6 +211,13 @@ RSpec.describe Status, type: :model do
       Fabricate(:favourite, account: alice, status: subject)
 
       expect(subject.favourites_count).to eq 2
+    end
+
+    it 'is decremented when favourite is removed' do
+      favourite = Fabricate(:favourite, account: bob, status: subject)
+      expect(subject.favourites_count).to eq 1
+      favourite.destroy
+      expect(subject.favourites_count).to eq 0
     end
   end
 
@@ -245,18 +280,18 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe '.not_in_filtered_languages' do
+  describe '.in_chosen_languages' do
     context 'for accounts with language filters' do
-      let(:user) { Fabricate(:user, filtered_languages: ['en']) }
+      let(:user) { Fabricate(:user, chosen_languages: ['en']) }
 
-      it 'does not include statuses in filtered languages' do
-        status = Fabricate(:status, language: 'en')
-        expect(Status.not_in_filtered_languages(user.account)).not_to include status
+      it 'does not include statuses in not in chosen languages' do
+        status = Fabricate(:status, language: 'de')
+        expect(Status.in_chosen_languages(user.account)).not_to include status
       end
 
       it 'includes status with unknown language' do
         status = Fabricate(:status, language: nil)
-        expect(Status.not_in_filtered_languages(user.account)).to include status
+        expect(Status.in_chosen_languages(user.account)).to include status
       end
     end
   end
@@ -301,6 +336,56 @@ RSpec.describe Status, type: :model do
 
     it 'does not include statuses from non-followed' do
       expect(@results).not_to include(@not_followed_status)
+    end
+  end
+
+  describe '.as_direct_timeline' do
+    let(:account) { Fabricate(:account) }
+    let(:followed) { Fabricate(:account) }
+    let(:not_followed) { Fabricate(:account) }
+
+    before do
+      Fabricate(:follow, account: account, target_account: followed)
+
+      @self_public_status = Fabricate(:status, account: account, visibility: :public)
+      @self_direct_status = Fabricate(:status, account: account, visibility: :direct)
+      @followed_public_status = Fabricate(:status, account: followed, visibility: :public)
+      @followed_direct_status = Fabricate(:status, account: followed, visibility: :direct)
+      @not_followed_direct_status = Fabricate(:status, account: not_followed, visibility: :direct)
+
+      @results = Status.as_direct_timeline(account)
+    end
+
+    it 'does not include public statuses from self' do
+      expect(@results).to_not include(@self_public_status)
+    end
+
+    it 'includes direct statuses from self' do
+      expect(@results).to include(@self_direct_status)
+    end
+
+    it 'does not include public statuses from followed' do
+      expect(@results).to_not include(@followed_public_status)
+    end
+
+    it 'does not include direct statuses not mentioning recipient from followed' do
+      expect(@results).to_not include(@followed_direct_status)
+    end
+
+    it 'does not include direct statuses not mentioning recipient from non-followed' do
+      expect(@results).to_not include(@not_followed_direct_status)
+    end
+
+    it 'includes direct statuses mentioning recipient from followed' do
+      Fabricate(:mention, account: account, status: @followed_direct_status)
+      results2 = Status.as_direct_timeline(account)
+      expect(results2).to include(@followed_direct_status)
+    end
+
+    it 'includes direct statuses mentioning recipient from non-followed' do
+      Fabricate(:mention, account: account, status: @not_followed_direct_status)
+      results2 = Status.as_direct_timeline(account)
+      expect(results2).to include(@not_followed_direct_status)
     end
   end
 
@@ -454,7 +539,7 @@ RSpec.describe Status, type: :model do
 
       context 'with language preferences' do
         it 'excludes statuses in languages not allowed by the account user' do
-          user = Fabricate(:user, filtered_languages: [:fr])
+          user = Fabricate(:user, chosen_languages: [:en, :es])
           @account.update(user: user)
           en_status = Fabricate(:status, language: 'en')
           es_status = Fabricate(:status, language: 'es')
@@ -467,7 +552,7 @@ RSpec.describe Status, type: :model do
         end
 
         it 'includes all languages when user does not have a setting' do
-          user = Fabricate(:user, filtered_languages: [])
+          user = Fabricate(:user, chosen_languages: nil)
           @account.update(user: user)
 
           en_status = Fabricate(:status, language: 'en')
@@ -486,17 +571,6 @@ RSpec.describe Status, type: :model do
           results = Status.as_public_timeline(@account)
           expect(results).to include(en_status)
           expect(results).to include(es_status)
-        end
-      end
-
-      context 'where that account is silenced' do
-        it 'includes statuses from other accounts that are silenced' do
-          @account.update(silenced: true)
-          other_silenced_account = Fabricate(:account, silenced: true)
-          other_status = Fabricate(:status, account: other_silenced_account)
-
-          results = Status.as_public_timeline(@account)
-          expect(results).to include(other_status)
         end
       end
     end

@@ -3,7 +3,7 @@
 #
 # Table name: site_uploads
 #
-#  id                :integer          not null, primary key
+#  id                :bigint(8)        not null, primary key
 #  var               :string           default(""), not null
 #  file_file_name    :string
 #  file_content_type :string

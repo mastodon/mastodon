@@ -7,12 +7,14 @@ class ActivityPub::CollectionSerializer < ActiveModel::Serializer
     super
   end
 
-  attributes :id, :type, :total_items
+  attributes :id, :type
+  attribute :total_items, if: -> { object.size.present? }
   attribute :next, if: -> { object.next.present? }
   attribute :prev, if: -> { object.prev.present? }
   attribute :part_of, if: -> { object.part_of.present? }
 
   has_one :first, if: -> { object.first.present? }
+  has_one :last, if: -> { object.last.present? }
   has_many :items, key: :items, if: -> { (!object.items.nil? || page?) && !ordered? }
   has_many :items, key: :ordered_items, if: -> { (!object.items.nil? || page?) && ordered? }
 

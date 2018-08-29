@@ -5,9 +5,6 @@ th:
     about_this: เกี่ยวกับอินซะแตนซ์นี้
     closed_registrations: อินซะแตนซ์นี้ปิดรับลงทะเบียนแล้ว.
     contact: ติดต่อ
-    description_headline: โดเมนคือ %{domain} ?
-    domain_count_after: อินซะแตนซ์อื่นๆ
-    domain_count_before: เชื่อมต่อกับ
     other_instances: อินซะแตนซ์อื่นๆ
     source_code: ซอร์สโค๊ด
     status_count_after: สถานะ
@@ -22,18 +19,19 @@ th:
     people_followed_by: ถูกติดตามโดย %{name}
     people_who_follow: คนที่ติดตาม %{name}
     posts: โพสต์
-    remote_follow: Remote follow
     unfollow: เลิกติดตาม
   admin:
     accounts:
       are_you_sure: แน่ใจนะ?
       confirm: ยืนยัน
       confirmed: ยึนยันแล้ว
+      confirming: ยืนยัน
       disable_two_factor_authentication: Disable 2FA
       display_name: ชื่อสำหรับดีสเพล
       domain: โดแมน
       edit: แก้ไข
       email: อีเมล์
+      email_status: สถานะอีเมล
       feed_url: Feed URL
       followers: ผู้ติดตาม
       follows: ติดตาม
@@ -59,6 +57,10 @@ th:
       profile_url: Profile URL
       public: สาธารณะ
       push_subscription_expires: PuSH subscription expires
+      resend_confirmation:
+        already_confirmed: ผู้ใช้รายนี้ได้รับการยืนยันแล้ว
+        send: ส่งอีเมลยืนยันอีกครั้ง
+        success: ยืนยันอีเมลเรียบร้อยแล้ว!
       reset_password: รีเซ็ตรหัสผ่าน
       salmon_url: Salmon URL
       show:
@@ -108,9 +110,7 @@ th:
       title: Known Instances
     reports:
       comment:
-        label: คอมเม้นต์
         none: None
-      delete: ลบ
       id: ไอดี
       mark_as_resolved: ทำเครื่องหมายว่าจัดการแล้ว
       report: 'Report #%{id}'
@@ -212,7 +212,6 @@ th:
     unlocked_warning_title: แอคเค๊าท์ของคุณไม่ได้ล๊อค
   generic:
     changes_saved_msg: บันทึกการแก้ไขแล้ว!
-    powered_by: powered by %{link}
     save_changes: บันทึกการเปลี่ยนแปลง
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
@@ -225,8 +224,6 @@ th:
       following: Following list
       muting: Muting list
     upload: Upload
-  landing_strip_html: "<strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse."
-  landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a status that already contains images
@@ -298,7 +295,6 @@ th:
       unlisted: Unlisted
       unlisted_long: Everyone can see, but not listed on public timelines
   stream_entries:
-    click_to_show: คลิกเพื่อแสดง
     reblogged: boosted
     sensitive_content: Sensitive content
   time:

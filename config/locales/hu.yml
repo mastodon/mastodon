@@ -8,9 +8,6 @@ hu:
     contact: Kapcsolat
     contact_missing: Nincs megadva
     contact_unavailable: N/A
-    description_headline: Mi az a %{domain}?
-    domain_count_after: további instanciával
-    domain_count_before: Kapcsolatban
     extended_description_html: |
       <h3>Ez itt a szabályzat helye</h3>
       <p>Még nem állítottál be bővebb leírást.</p>
@@ -44,7 +41,6 @@ hu:
     people_who_follow: "%{name} követői"
     posts: Tülkök
     posts_with_replies: Tülkök és válaszok
-    remote_follow: Követés más hálózaton
     reserved_username: Ez egy már lefoglalt felhasználónév
     roles:
       admin: Adminisztrátor
@@ -52,9 +48,7 @@ hu:
     unfollow: Követés abbahagyása
   admin:
     account_moderation_notes:
-      account: Moderátor
       create: Új bejegyzés
-      created_at: Dátum
       created_msg: Moderációs bejegyzés létrehozva!
       delete: Törlés
       destroyed_msg: Moderációs bejegyzés törölve!
@@ -63,6 +57,7 @@ hu:
       by_domain: Domain
       confirm: Megerősítés
       confirmed: Megerősítve
+      confirming: Megerősítve
       demote: Lefokozás
       disable: Kikapcsolás
       disable_two_factor_authentication: Kétlépcsős azonosítás kikapcsolása
@@ -71,6 +66,7 @@ hu:
       domain: Domain
       edit: Szerkesztés
       email: E-mail
+      email_status: E-mail állapot
       enable: Engedélyezés
       enabled: Engedélyezve
       feed_url: Hírcsatorna URL
@@ -108,6 +104,10 @@ hu:
       public: Nyilvános
       push_subscription_expires: A PuSH feliratkozás elévül
       redownload: Profilkép frissítése
+      resend_confirmation:
+        already_confirmed: Ezt a felhasználót már megerősítették
+        send: Küldd újra a megerősítő email-t
+        success: A megerősítő e-mail sikeresen elküldve!
       reset: Visszaállítás
       reset_password: Jelszó visszaállítása
       resubscribe: Feliratkozás ismét
@@ -243,14 +243,9 @@ hu:
       action_taken_by: 'Kezelte:'
       are_you_sure: Biztos vagy benne?
       comment:
-        label: Hozzászólás
         none: Egyik sem
-      delete: Törlés
       id: ID
       mark_as_resolved: Megjelölés megoldottként
-      nsfw:
-        'false': Média-csatolmányok rejtésének feloldása
-        'true': Média-csatolmányok elrejtése
       report: "#%{id} számú jelentés"
       report_contents: Tartalom
       reported_account: Bejelentett fiók
@@ -315,11 +310,8 @@ hu:
         delete: Törlés
         nsfw_off: Szenzitív tartalom kikapcsolva
         nsfw_on: Szenzitív tartalom bekapcsolva
-      execute: Végrehajt
       failed_to_execute: Végrehajtás sikertelen
       media:
-        hide: Média elrejtése
-        show: Média megjelenítése
         title: Média
       no_media: Nem található médiafájl
       title: Felhasználó tülkjei
@@ -431,7 +423,6 @@ hu:
     unlocked_warning_title: A fiókod jelenleg nem privát
   generic:
     changes_saved_msg: Változások sikeresen elmentve!
-    powered_by: működteti a %{link}
     save_changes: Változások mentése
     validation_errors:
       one: Valami nincs rendjén! Kérlek tekintsd meg a hibát alant
@@ -465,8 +456,6 @@ hu:
       expires_at: Lejárat
       uses: Használat
     title: Meghívások
-  landing_strip_html: "<strong>%{name}</strong> az alábbi instancia használója: %{link_to_root_path}. Követheted vagy kapcsolatba léphetsz vele, ha már van felhasználói fiókod a föderációban."
-  landing_strip_signup_html: Ha még nincs fiókod, <a href="%{sign_up_path}">itt regisztrálhatsz</a>.
   lists:
     errors:
       limit: Elérted a hozzáadható listák maximális számát
@@ -535,20 +524,6 @@ hu:
     other: Egyéb
     publishing: Közzététel
     web: Web
-  push_notifications:
-    favourite:
-      title: "%{name} a kedvenceihez adta a tülköd"
-    follow:
-      title: "%{name} mostantól követ téged"
-    group:
-      title: "%{count} értesítés"
-    mention:
-      action_boost: Reblog
-      action_expand: Mutass többet
-      action_favourite: Kedvencekhez adás
-      title: "%{name} megemlített téged"
-    reblog:
-      title: "%{name} reblogolta a tülköd"
   remote_follow:
     acct: Írd be a felhasználódat, amelyről követni szeretnéd felhasznalonev@domain formátumban
     missing_resource: A fiókodnál nem található a szükséges átirányítási URL
@@ -628,7 +603,6 @@ hu:
       unlisted: Listázatlan
       unlisted_long: Mindenki látja, de a nyilvános időfolyamokban nem jelenik meg
   stream_entries:
-    click_to_show: Megtekintéshez kattints
     pinned: Kitűzött tülk
     reblogged: reblogolt
     sensitive_content: Szenzitív tartalom

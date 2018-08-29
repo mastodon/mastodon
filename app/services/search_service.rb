@@ -4,7 +4,7 @@ class SearchService < BaseService
   attr_accessor :query, :account, :limit, :resolve
 
   def call(query, limit, resolve = false, account = nil)
-    @query   = query
+    @query   = query.strip
     @account = account
     @limit   = limit
     @resolve = resolve
@@ -53,7 +53,7 @@ class SearchService < BaseService
   end
 
   def url_resource
-    @_url_resource ||= ResolveURLService.new.call(query)
+    @_url_resource ||= ResolveURLService.new.call(query, on_behalf_of: @account)
   end
 
   def url_resource_symbol

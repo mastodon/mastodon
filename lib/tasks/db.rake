@@ -18,7 +18,7 @@ def each_schema_load_environment
   #    needing to do the same, and we can't even use the same method
   #    to do it.
 
-  if Rails.env == 'development'
+  if Rails.env.development?
     test_conf = ActiveRecord::Base.configurations['test']
 
     if test_conf['database']&.present?

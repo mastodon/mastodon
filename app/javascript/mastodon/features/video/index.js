@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { fromJS } from 'immutable';
 import { throttle } from 'lodash';
 import classNames from 'classnames';
 import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
@@ -131,6 +132,8 @@ export default class Video extends React.PureComponent {
     this.seek = c;
   }
 
+  handleClickRoot = e => e.stopPropagation();
+
   handlePlay = () => {
     this.setState({ paused: false });
   }
@@ -155,6 +158,9 @@ export default class Video extends React.PureComponent {
     this.setState({ dragging: true });
     this.video.pause();
     this.handleMouseMove(e);
+
+    e.preventDefault();
+    e.stopPropagation();
   }
 
   handleMouseUp = () => {
@@ -171,8 +177,10 @@ export default class Video extends React.PureComponent {
     const { x } = getPointerPosition(this.seek, e);
     const currentTime = Math.floor(this.video.duration * x);
 
-    this.video.currentTime = currentTime;
-    this.setState({ currentTime });
+    if (!isNaN(currentTime)) {
+      this.video.currentTime = currentTime;
+      this.setState({ currentTime });
+    }
   }, 60);
 
   togglePlay = () => {
@@ -244,8 +252,17 @@ export default class Video extends React.PureComponent {
   }
 
   handleOpenVideo = () => {
+    const { src, preview, width, height } = this.props;
+    const media = fromJS({
+      type: 'video',
+      url: src,
+      preview_url: preview,
+      width,
+      height,
+    });
+
     this.video.pause();
-    this.props.onOpenVideo(this.video.currentTime);
+    this.props.onOpenVideo(media, this.video.currentTime);
   }
 
   handleCloseVideo = () => {
@@ -269,17 +286,36 @@ export default class Video extends React.PureComponent {
       playerStyle.height = height;
     }
 
+    let preload;
+    if (startTime || fullscreen || dragging) {
+      preload = 'auto';
+    } else if (detailed) {
+      preload = 'metadata';
+    } else {
+      preload = 'none';
+    }
+
     return (
-      <div className={classNames('video-player', { inactive: !revealed, detailed, inline: inline && !fullscreen, fullscreen })} style={playerStyle} ref={this.setPlayerRef} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <div
+        role='menuitem'
+        className={classNames('video-player', { inactive: !revealed, detailed, inline: inline && !fullscreen, fullscreen })}
+        style={playerStyle}
+        ref={this.setPlayerRef}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+        onClick={this.handleClickRoot}
+        tabIndex={0}
+      >
         <video
           ref={this.setVideoRef}
           src={src}
           poster={preview}
-          preload={startTime ? 'auto' : 'none'}
+          preload={preload}
           loop
           role='button'
           tabIndex='0'
           aria-label={alt}
+          title={alt}
           width={width}
           height={height}
           onClick={this.togglePlay}

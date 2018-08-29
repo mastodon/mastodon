@@ -3,13 +3,13 @@
 #
 # Table name: notifications
 #
-#  id              :integer          not null, primary key
-#  activity_id     :integer          not null
+#  id              :bigint(8)        not null, primary key
+#  activity_id     :bigint(8)        not null
 #  activity_type   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  account_id      :integer          not null
-#  from_account_id :integer          not null
+#  account_id      :bigint(8)        not null
+#  from_account_id :bigint(8)        not null
 #
 
 class Notification < ApplicationRecord
@@ -39,8 +39,6 @@ class Notification < ApplicationRecord
   validates :account_id, uniqueness: { scope: [:activity_type, :activity_id] }
   validates :activity_type, inclusion: { in: TYPE_CLASS_MAP.values }
 
-  scope :cache_ids, -> { select(:id, :updated_at, :activity_type, :activity_id) }
-
   scope :browserable, ->(exclude_types = []) {
     types = TYPE_CLASS_MAP.values - activity_types_from_types(exclude_types + [:follow_request])
     where(activity_type: types)
@@ -68,6 +66,10 @@ class Notification < ApplicationRecord
   end
 
   class << self
+    def cache_ids
+      select(:id, :updated_at, :activity_type, :activity_id)
+    end
+
     def reload_stale_associations!(cached_items)
       account_ids = (cached_items.map(&:from_account_id) + cached_items.map { |item| item.target_status&.account_id }.compact).uniq
 
@@ -80,8 +82,6 @@ class Notification < ApplicationRecord
         item.target_status.account = accounts[item.target_status.account_id] if item.target_status
       end
     end
-
-    private
 
     def activity_types_from_types(types)
       types.map { |type| TYPE_CLASS_MAP[type.to_sym] }.compact

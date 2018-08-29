@@ -1,10 +1,11 @@
 # frozen_string_literal: true
-require 'sidekiq-scheduler'
 
 class Scheduler::IpCleanupScheduler
   include Sidekiq::Worker
 
   RETENTION_PERIOD = 1.year
+
+  sidekiq_options unique: :until_executed, retry: 0
 
   def perform
     time_ago = RETENTION_PERIOD.ago

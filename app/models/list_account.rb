@@ -3,10 +3,10 @@
 #
 # Table name: list_accounts
 #
-#  id         :integer          not null, primary key
-#  list_id    :integer          not null
-#  account_id :integer          not null
-#  follow_id  :integer          not null
+#  id         :bigint(8)        not null, primary key
+#  list_id    :bigint(8)        not null
+#  account_id :bigint(8)        not null
+#  follow_id  :bigint(8)        not null
 #
 
 class ListAccount < ApplicationRecord

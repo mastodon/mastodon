@@ -32,11 +32,11 @@ import {
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
+import { REDRAFT } from '../actions/statuses';
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 import uuid from '../uuid';
 import { me } from '../initial_state';
-
-const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
+import { unescapeHTML } from '../utils/html';
 
 const initialState = ImmutableMap({
   mounted: 0,
@@ -46,6 +46,7 @@ const initialState = ImmutableMap({
   privacy: null,
   text: '',
   focusDate: null,
+  caretPosition: null,
   preselectDate: null,
   in_reply_to: null,
   is_composing: false,
@@ -93,7 +94,6 @@ function appendMedia(state, media) {
     map.update('media_attachments', list => list.push(media));
     map.set('is_uploading', false);
     map.set('resetFileKey', Math.floor((Math.random() * 0x10000)));
-    map.set('focusDate', new Date());
     map.set('idempotencyKey', uuid());
 
     if (prevSize === 0 && (state.get('default_sensitive') || state.get('spoiler'))) {
@@ -121,6 +121,7 @@ const insertSuggestion = (state, position, token, completion) => {
     map.set('suggestion_token', null);
     map.update('suggestions', ImmutableList(), list => list.clear());
     map.set('focusDate', new Date());
+    map.set('caretPosition', position + completion.length + 1);
     map.set('idempotencyKey', uuid());
   });
 };
@@ -130,35 +131,28 @@ const updateSuggestionTags = (state, token) => {
 
   return state.merge({
     suggestions: state.get('tagHistory')
-      .filter(tag => tag.startsWith(prefix))
+      .filter(tag => tag.toLowerCase().startsWith(prefix.toLowerCase()))
       .slice(0, 4)
       .map(tag => '#' + tag),
     suggestion_token: token,
   });
 };
 
-const insertEmoji = (state, position, emojiData) => {
+const insertEmoji = (state, position, emojiData, needsSpace) => {
   const oldText = state.get('text');
-  const needsSpace = emojiData.custom && position > 0 && !allowedAroundShortCode.includes(oldText[position - 1]);
   const emoji = needsSpace ? ' ' + emojiData.native : emojiData.native;
 
   return state.merge({
     text: `${oldText.slice(0, position)}${emoji} ${oldText.slice(position)}`,
     focusDate: new Date(),
+    caretPosition: position + emoji.length + 1,
     idempotencyKey: uuid(),
   });
 };
 
 const privacyPreference = (a, b) => {
-  if (a === 'direct' || b === 'direct') {
-    return 'direct';
-  } else if (a === 'private' || b === 'private') {
-    return 'private';
-  } else if (a === 'unlisted' || b === 'unlisted') {
-    return 'unlisted';
-  } else {
-    return 'public';
-  }
+  const order = ['public', 'unlisted', 'private', 'direct'];
+  return order[Math.max(order.indexOf(a), order.indexOf(b), 0)];
 };
 
 const hydrate = (state, hydratedState) => {
@@ -169,6 +163,18 @@ const hydrate = (state, hydratedState) => {
   }
 
   return state;
+};
+
+const domParser = new DOMParser();
+
+const expandMentions = status => {
+  const fragment = domParser.parseFromString(status.get('content'), 'text/html').documentElement;
+
+  status.get('mentions').forEach(mention => {
+    fragment.querySelector(`a[href="${mention.get('url')}"]`).textContent = `@${mention.get('acct')}`;
+  });
+
+  return fragment.innerHTML;
 };
 
 export default function compose(state = initialState, action) {
@@ -219,6 +225,7 @@ export default function compose(state = initialState, action) {
       map.set('text', statusToTextMentions(state, action.status));
       map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
       map.set('focusDate', new Date());
+      map.set('caretPosition', null);
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
 
@@ -262,6 +269,7 @@ export default function compose(state = initialState, action) {
     return state.withMutations(map => {
       map.update('text', text => [text.trim(), `@${action.account.get('acct')} `].filter((str) => str.length !== 0).join(' '));
       map.set('focusDate', new Date());
+      map.set('caretPosition', null);
       map.set('idempotencyKey', uuid());
     });
   case COMPOSE_DIRECT:
@@ -269,6 +277,7 @@ export default function compose(state = initialState, action) {
       map.update('text', text => [text.trim(), `@${action.account.get('acct')} `].filter((str) => str.length !== 0).join(' '));
       map.set('privacy', 'direct');
       map.set('focusDate', new Date());
+      map.set('caretPosition', null);
       map.set('idempotencyKey', uuid());
     });
   case COMPOSE_SUGGESTIONS_CLEAR:
@@ -288,7 +297,7 @@ export default function compose(state = initialState, action) {
       return state;
     }
   case COMPOSE_EMOJI_INSERT:
-    return insertEmoji(state, action.position, action.emoji);
+    return insertEmoji(state, action.position, action.emoji, action.needsSpace);
   case COMPOSE_UPLOAD_CHANGE_SUCCESS:
     return state
       .set('is_submitting', false)
@@ -299,6 +308,24 @@ export default function compose(state = initialState, action) {
 
         return item;
       }));
+  case REDRAFT:
+    return state.withMutations(map => {
+      map.set('text', unescapeHTML(expandMentions(action.status)));
+      map.set('in_reply_to', action.status.get('in_reply_to_id'));
+      map.set('privacy', action.status.get('visibility'));
+      map.set('media_attachments', action.status.get('media_attachments'));
+      map.set('focusDate', new Date());
+      map.set('caretPosition', null);
+      map.set('idempotencyKey', uuid());
+
+      if (action.status.get('spoiler_text').length > 0) {
+        map.set('spoiler', true);
+        map.set('spoiler_text', action.status.get('spoiler_text'));
+      } else {
+        map.set('spoiler', false);
+        map.set('spoiler_text', '');
+      }
+    });
   default:
     return state;
   }

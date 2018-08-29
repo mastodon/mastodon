@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SubscribeService do
+RSpec.describe SubscribeService, type: :service do
   let(:account) { Fabricate(:account, username: 'bob', domain: 'example.com', hub_url: 'http://hub.example.com') }
   subject { SubscribeService.new }
 

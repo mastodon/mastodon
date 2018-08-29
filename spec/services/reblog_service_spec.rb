@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ReblogService do
+RSpec.describe ReblogService, type: :service do
   let(:alice)  { Fabricate(:account, username: 'alice') }
 
   context 'OStatus' do

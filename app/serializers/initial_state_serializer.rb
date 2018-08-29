@@ -2,7 +2,9 @@
 
 class InitialStateSerializer < ActiveModel::Serializer
   attributes :meta, :compose, :accounts,
-             :media_attachments, :settings, :push_subscription
+             :media_attachments, :settings
+
+  has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
 
   def meta
     store = {
@@ -12,6 +14,8 @@ class InitialStateSerializer < ActiveModel::Serializer
       domain: Rails.configuration.x.local_domain,
       admin: object.admin&.id&.to_s,
       search_enabled: Chewy.enabled?,
+      version: Mastodon::Version.to_s,
+      invites_enabled: Setting.min_invite_role == 'user',
     }
 
     if object.current_account

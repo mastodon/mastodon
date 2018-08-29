@@ -1,11 +1,12 @@
 # frozen_string_literal: true
-require 'sidekiq-scheduler'
 
 class Scheduler::BackupCleanupScheduler
   include Sidekiq::Worker
 
+  sidekiq_options unique: :until_executed, retry: 0
+
   def perform
-    old_backups.find_each(&:destroy!)
+    old_backups.reorder(nil).find_each(&:destroy!)
   end
 
   private

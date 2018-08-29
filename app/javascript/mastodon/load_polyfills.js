@@ -12,12 +12,13 @@ function importExtraPolyfills() {
 
 function loadPolyfills() {
   const needsBasePolyfills = !(
+    Array.prototype.includes &&
+    HTMLCanvasElement.prototype.toBlob &&
     window.Intl &&
+    Number.isNaN &&
     Object.assign &&
     Object.values &&
-    Number.isNaN &&
-    window.Symbol &&
-    Array.prototype.includes
+    window.Symbol
   );
 
   // Latest version of Firefox and Safari do not have IntersectionObserver.

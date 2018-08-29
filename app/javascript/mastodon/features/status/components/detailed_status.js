@@ -26,7 +26,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
   };
 
   handleAccountClick = (e) => {
-    if (e.button === 0) {
+    if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
     }
@@ -34,8 +34,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
     e.stopPropagation();
   }
 
-  handleOpenVideo = startTime => {
-    this.props.onOpenVideo(this.props.status.getIn(['media_attachments', 0]), startTime);
+  handleOpenVideo = (media, startTime) => {
+    this.props.onOpenVideo(media, startTime);
   }
 
   handleExpandedToggle = () => {
@@ -60,6 +60,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
           <Video
             preview={video.get('preview_url')}
             src={video.get('url')}
+            alt={video.get('description')}
             width={300}
             height={150}
             inline

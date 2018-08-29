@@ -1,11 +1,12 @@
 # frozen_string_literal: true
-require 'sidekiq-scheduler'
 
 class Scheduler::EmailScheduler
   include Sidekiq::Worker
 
+  sidekiq_options unique: :until_executed, retry: 0
+
   def perform
-    eligible_users.find_each do |user|
+    eligible_users.reorder(nil).find_each do |user|
       next unless user.allows_digest_emails?
       DigestMailerWorker.perform_async(user.id)
     end

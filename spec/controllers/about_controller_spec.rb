@@ -8,16 +8,12 @@ RSpec.describe AboutController, type: :controller do
       get :show
     end
 
-    it 'assigns @body_classes' do
-      expect(assigns(:body_classes)).to eq 'about-body'
-    end
-
     it 'assigns @instance_presenter' do
       expect(assigns(:instance_presenter)).to be_kind_of InstancePresenter
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -26,16 +22,12 @@ RSpec.describe AboutController, type: :controller do
       get :more
     end
 
-    it 'assigns @body_classes' do
-      expect(assigns(:body_classes)).to eq 'about-body'
-    end
-
     it 'assigns @instance_presenter' do
       expect(assigns(:instance_presenter)).to be_kind_of InstancePresenter
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -44,12 +36,8 @@ RSpec.describe AboutController, type: :controller do
       get :terms
     end
 
-    it 'assigns @body_classes' do
-      expect(assigns(:body_classes)).to eq 'about-body'
-    end
-
     it 'returns http success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 

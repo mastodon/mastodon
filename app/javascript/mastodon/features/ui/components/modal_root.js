@@ -40,6 +40,18 @@ export default class ModalRoot extends React.PureComponent {
     onClose: PropTypes.func.isRequired,
   };
 
+  getSnapshotBeforeUpdate () {
+    return { visible: !!this.props.type };
+  }
+
+  componentDidUpdate (prevProps, prevState, { visible }) {
+    if (visible) {
+      document.body.classList.add('with-modals--active');
+    } else {
+      document.body.classList.remove('with-modals--active');
+    }
+  }
+
   renderLoading = modalId => () => {
     return ['MEDIA', 'VIDEO', 'BOOST', 'CONFIRM', 'ACTIONS'].indexOf(modalId) === -1 ? <ModalLoading /> : null;
   }

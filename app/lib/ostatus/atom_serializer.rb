@@ -352,9 +352,9 @@ class OStatus::AtomSerializer
     append_element(entry, 'link', nil, rel: :alternate, type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(status)) if status.account.local?
 
     append_element(entry, 'summary', status.spoiler_text, 'xml:lang': status.language) if status.spoiler_text?
-    append_element(entry, 'content', Formatter.instance.format(status).to_str, type: 'html', 'xml:lang': status.language)
+    append_element(entry, 'content', Formatter.instance.format(status).to_str || '.', type: 'html', 'xml:lang': status.language)
 
-    status.mentions.order(:id).each do |mentioned|
+    status.mentions.sort_by(&:id).each do |mentioned|
       append_element(entry, 'link', nil, rel: :mentioned, 'ostatus:object-type': OStatus::TagManager::TYPES[:person], href: OStatus::TagManager.instance.uri_for(mentioned.account))
     end
 
@@ -364,12 +364,11 @@ class OStatus::AtomSerializer
       append_element(entry, 'category', nil, term: tag.name)
     end
 
-    append_element(entry, 'category', nil, term: 'nsfw') if status.sensitive?
-
     status.media_attachments.each do |media|
       append_element(entry, 'link', nil, rel: :enclosure, type: media.file_content_type, length: media.file_file_size, href: full_asset_url(media.file.url(:original, false)))
     end
 
+    append_element(entry, 'category', nil, term: 'nsfw') if status.sensitive? && status.media_attachments.any?
     append_element(entry, 'mastodon:scope', status.visibility)
 
     status.emojis.each do |emoji|

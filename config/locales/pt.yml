@@ -8,9 +8,6 @@ pt:
     contact: Contacto
     contact_missing: Não configurado
     contact_unavailable: n.d.
-    description_headline: O que é o %{domain}?
-    domain_count_after: outras instâncias
-    domain_count_before: Ligado a
     extended_description_html: |
       <h3>Um bom lugar para regras</h3>
       <p>A descrição estendida ainda não foi configurada.</p>
@@ -44,7 +41,6 @@ pt:
     people_who_follow: Pessoas que seguem %{name}
     posts: Posts
     posts_with_replies: Posts e Respostas
-    remote_follow: Seguir remotamente
     reserved_username: Este nome de utilizadores é reservado
     roles:
       admin: Administrador
@@ -52,9 +48,7 @@ pt:
     unfollow: Deixar de seguir
   admin:
     account_moderation_notes:
-      account: Moderador
       create: Criar
-      created_at: Data
       created_msg: Nota de moderação criada com sucesso!
       delete: Eliminar
       destroyed_msg: Nota de moderação excluída com sucesso!
@@ -63,6 +57,7 @@ pt:
       by_domain: Domínio
       confirm: Confirme
       confirmed: Confirmado
+      confirming: Confirmer
       demote: Rebaixar
       disable: Desativar
       disable_two_factor_authentication: Desativar 2FA
@@ -71,6 +66,7 @@ pt:
       domain: Domínio
       edit: Editar
       email: E-mail
+      email_status: Estado do correio electrónico
       enable: Ativar
       enabled: Ativado
       feed_url: URL do Feed
@@ -108,6 +104,10 @@ pt:
       public: Público
       push_subscription_expires: A Inscrição PuSH expira
       redownload: Atualizar avatar
+      resend_confirmation:
+        already_confirmed: Este usuário já está confirmado
+        send: Reenviar um email de confirmação
+        success: Email de confirmação enviado com sucesso!
       reset: Restaurar
       reset_password: Reset palavra-passe
       resubscribe: Reinscrever
@@ -243,14 +243,9 @@ pt:
       action_taken_by: Ação tomada por
       are_you_sure: Tens a certeza?
       comment:
-        label: Comentário
         none: Nenhum
-      delete: Eliminar
       id: ID
       mark_as_resolved: Marcar como resolvido
-      nsfw:
-        'false': Mostrar imagens/vídeos
-        'true': Esconder imagens/vídeos
       report: 'Denúncia #%{id}'
       report_contents: Conteúdos
       reported_account: Conta denunciada
@@ -315,11 +310,8 @@ pt:
         delete: Eliminar
         nsfw_off: NSFW OFF
         nsfw_on: NSFW ON
-      execute: Executar
       failed_to_execute: Falhou ao executar
       media:
-        hide: Esconder média
-        show: Mostrar média
         title: Média
       no_media: Não há média
       title: Estado das contas
@@ -434,7 +426,6 @@ pt:
     unlocked_warning_title: A tua conta não está bloqueada
   generic:
     changes_saved_msg: Alterações guardadas!
-    powered_by: fornecido por %{link}
     save_changes: Guardar alterações
     validation_errors:
       one: Algo não está correcto. Por favor vê o erro abaixo
@@ -468,8 +459,6 @@ pt:
       expires_at: Expira
       uses: Usos
     title: Convidar pessoas
-  landing_strip_html: "<strong>%{name}</strong> é um utilizador em %{link_to_root_path}. Podes segui-lo ou interagir com ele se tiveres uma conta em qualquer lugar no fediverso."
-  landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   lists:
     errors:
       limit: Número máximo de listas alcançado
@@ -538,20 +527,6 @@ pt:
     other: Outro
     publishing: Publicação
     web: Web
-  push_notifications:
-    favourite:
-      title: "%{name} adicionou o teu post aos favoritos"
-    follow:
-      title: "%{name} começou a seguir-te"
-    group:
-      title: "%{count} notificações"
-    mention:
-      action_boost: Partilhar
-      action_expand: Mostrar mais
-      action_favourite: Adicionar aos favoritos
-      title: "%{name} mencionou-te"
-    reblog:
-      title: "%{name} partilhou o teu post"
   remote_follow:
     acct: Entre seu usuário@domínio do qual quer seguir
     missing_resource: Não foi possível achar a URL de redirecionamento para sua conta
@@ -630,7 +605,6 @@ pt:
       unlisted: Público, mas não mostre no timeline público
       unlisted_long: Todos podem ver, porém não será postado nas timelines públicas
   stream_entries:
-    click_to_show: Clique pra mostrar
     pinned: Toot fixado
     reblogged: boosted
     sensitive_content: Conteúdo sensível

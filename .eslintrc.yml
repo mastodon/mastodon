@@ -7,6 +7,9 @@ env:
   es6: true
   jest: true
 
+globals:
+  ATTACHMENT_HOST: false
+
 parser: babel-eslint
 
 plugins:
@@ -110,13 +113,23 @@ rules:
   jsx-a11y/accessible-emoji: warn
   jsx-a11y/alt-text: warn
   jsx-a11y/anchor-has-content: warn
+  jsx-a11y/anchor-is-valid:
+  - warn
+  - components:
+    - Link
+    - NavLink
+    specialLink:
+    - to
+    aspect:
+    - noHref
+    - invalidHref
+    - preferButton
   jsx-a11y/aria-activedescendant-has-tabindex: warn
   jsx-a11y/aria-props: warn
   jsx-a11y/aria-proptypes: warn
   jsx-a11y/aria-role: warn
   jsx-a11y/aria-unsupported-elements: warn
   jsx-a11y/heading-has-content: warn
-  jsx-a11y/href-no-hash: warn
   jsx-a11y/html-has-lang: warn
   jsx-a11y/iframe-has-title: warn
   jsx-a11y/img-redundant-alt: warn

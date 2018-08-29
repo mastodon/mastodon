@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Formatter do
   let(:local_account)  { Fabricate(:account, domain: nil, username: 'alice') }
-  let(:remote_account) { Fabricate(:account, domain: 'remote', username: 'bob', url: 'https://remote/') }
+  let(:remote_account) { Fabricate(:account, domain: 'remote.test', username: 'bob', url: 'https://remote.test/') }
 
   shared_examples 'encode and link URLs' do
     context 'matches a stand-alone medium URL' do
@@ -377,12 +377,12 @@ RSpec.describe Formatter do
       end
 
       context 'contains linkable mentions for remote accounts' do
-        let(:text) { '@bob@remote' }
+        let(:text) { '@bob@remote.test' }
 
         before { remote_account }
 
         it 'links' do
-          is_expected.to eq '<p><span class="h-card"><a href="https://remote/" class="u-url mention">@<span>bob</span></a></span></p>'
+          is_expected.to eq '<p><span class="h-card"><a href="https://remote.test/" class="u-url mention">@<span>bob</span></a></span></p>'
         end
       end
 

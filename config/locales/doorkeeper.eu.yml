@@ -1,0 +1,142 @@
+---
+eu:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Aplikazioaren izena
+        redirect_uri: Birbideratu URIa
+        scopes: Esparruak
+        website: Aplikazioaren webgunea
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: ezin du zati bat eduki.
+              invalid_uri: baliozko URI bat izan behar du.
+              relative_uri: URI absolutu bat izan behar du.
+              secured_uri: HTTPS/SSL URI bat izan behar du.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Baimendu
+        cancel: Utzi
+        destroy: Suntsitu
+        edit: Editatu
+        submit: Bidali
+      confirmations:
+        destroy: Ziur zaude?
+      edit:
+        title: Editatu aplikazioa
+      form:
+        error: Ene! Egiaztatu formularioan errorerik dagoen
+      help:
+        native_redirect_uri: Erabili %{native_redirect_uri} proba lokaletarako
+        redirect_uri: Erabili lerro bat URI bakoitzeko
+        scopes: Banandu esparruak espazioekin. Laga hutsik lehenetsitako esparruak erabiltzeko.
+      index:
+        application: Aplikazioa
+        callback_url: Itzulera URLa
+        delete: Ezabatu
+        name: Izena
+        new: Aplikazio berria
+        scopes: Esparruak
+        show: Erakutsi
+        title: Zure aplikazioak
+      new:
+        title: Aplikazio berria
+      show:
+        actions: Ekintzak
+        application_id: Bezeroaren gakoa
+        callback_urls: Itzulera URL-ak
+        scopes: Esparruak
+        secret: Bezeroaren sekretua
+        title: 'Aplikazioa: %{name}'
+    authorizations:
+      buttons:
+        authorize: Baimendu
+        deny: Ukatu
+      error:
+        title: Errore bat gertatu da
+      new:
+        able_to: Egin ahal izango du
+        prompt: "%{client_name} aplikazioak zure kontua atzitzea eskatu du"
+        title: Baimena behar da
+      show:
+        title: Kopiatu baimen kode hau eta itsatsi aplikazioan.
+    authorized_applications:
+      buttons:
+        revoke: Indargabetu
+      confirmations:
+        revoke: Ziur zaude?
+      index:
+        application: Aplikazioa
+        created_at: Baimenduta
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Esparruak
+        title: Zuk baimendutako aplikazioak
+    errors:
+      messages:
+        access_denied: Baliabidearen jabeak edo baimenaren zerbitzariak eskaria ukatu du.
+        credential_flow_not_configured: Baliabidearen jabearen pasahitza kredentzialen fluxuak huts egin du Doorkeeper.configure.resource_owner_from_credentials konfiguratu gabe dagoelako.
+        invalid_client: Bezeroaren autentifikazioak huts egin du bezero ezezaguna delako, ez delako bezero autentifikazioa txertatu, edo autentifikazio metodoa ez delako onartzen.
+        invalid_grant: Emandako autorizatzea baliogabea da, iraungitu da, indargabetu da. ez dator bat autorizatze eskarian erabilitako URI-arekin, edo beste bezero batek sortu du.
+        invalid_redirect_uri: Sartutako birbideratze URI-a baliogabea da.
+        invalid_request: Eskaerak beharrezkoa den parametro bat falta du, onartu gabeko parametro-balio bat du, edo beste moduren batean gaizki osatua dago.
+        invalid_resource_owner: Emandako baliabidearen jabearen kredentzialak baliogabeak dira, edo baliabidearen jabea ez da aurkitu
+        invalid_scope: Eskatutako esparrua baliogabea da, ezezaguna, edo gaizki osatua dago.
+        invalid_token:
+          expired: Sarbide token-a iraungitu da
+          revoked: Sarbide token-a indargabetua izan da
+          unknown: Sarbide token-a baliogabea da
+        resource_owner_authenticator_not_configured: Baliabidearen jabearen bilaketak huts egin du Doorkeeper.configure.resource_owner_authenticator konfiguratu gabe dagoelako.
+        server_error: Autorizatze zerbitzariak eskaera betetzea eragotzi duen ustekabeko baldintza bat aurkitu du.
+        temporarily_unavailable: Autorizatze zerbitzariak ezin du orain eskaera bete  une batez zerbitzariak gainezka egin duelako edo mantentze lanetan dagoelako.
+        unauthorized_client: Bezeroak ez du eskaera hau metodo hau erabiliz egiteko baimenik.
+        unsupported_grant_type: Autorizatze mota ez da onartzen autorizatze zerbitzarian.
+        unsupported_response_type: Autorizatze zerbitzari honek ez du onartzen erantzun mota hau.
+    flash:
+      applications:
+        create:
+          notice: Aplikazioa sortuta.
+        destroy:
+          notice: Aplikazioa ezabatuta.
+        update:
+          notice: Aplikazioa eguneratuta.
+      authorized_applications:
+        destroy:
+          notice: Aplikazioa indargabetuta.
+    layouts:
+      admin:
+        nav:
+          applications: Aplikazioak
+          oauth2_provider: OAuth2 hornitzailea
+      application:
+        title: OAuth autorizazioa behar da
+    scopes:
+      follow: aldatu kontuaren erlazioak
+      push: jaso push jakinarazpenak
+      read: irakurri zure kontuko datu guztiak
+      read:accounts: ikusi kontuaren informazioa
+      read:blocks: ikusi zure blokeoak
+      read:favourites: ikusi zure gogokoak
+      read:filters: ikusi zure iragazkiak
+      read:follows: ikusi zuk jarraitutakoak
+      read:lists: ikusi zure zerrendak
+      read:mutes: ikusi zuk mutututakoak
+      read:notifications: ikusi zure jakinarazpenak
+      read:reports: ikusi zure salaketak
+      read:search: bilatu zure izenean
+      read:statuses: ikusi mezu guztiak
+      write: kontuaren datu guztiak aldatzea
+      write:accounts: zure profila aldatzea
+      write:blocks: kontuak eta domeinuak blokeatzea
+      write:favourites: gogoko mezuak
+      write:filters: sortu iragazkiak
+      write:follows: jarraitu jendea
+      write:lists: sortu zerrendak
+      write:media: igo multimedia fitxategiak
+      write:mutes: mututu pertsonak eta elkarrizketak
+      write:notifications: garbitu zure jakinarazpenak
+      write:reports: salatu beste jendea
+      write:statuses: argitaratu mezuak

@@ -1,7 +1,0 @@
-.accounts-grid
-  - if accounts.empty?
-    = render partial: 'accounts/nothing_here'
-  - else
-    = render partial: 'accounts/grid_card', collection: accounts, as: :account, cached: !user_signed_in?
-
-= paginate follows

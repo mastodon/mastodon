@@ -24,6 +24,7 @@ delegate(document, batchCheckboxClassName, 'change', () => {
   const checkAllElement = document.querySelector('#batch_checkbox_all');
   if (checkAllElement) {
     checkAllElement.checked = [].every.call(document.querySelectorAll(batchCheckboxClassName), (content) => content.checked);
+    checkAllElement.indeterminate = !checkAllElement.checked && [].some.call(document.querySelectorAll(batchCheckboxClassName), (content) => content.checked);
   }
 });
 
@@ -37,4 +38,11 @@ delegate(document, '.media-spoiler-hide-button', 'click', () => {
   [].forEach.call(document.querySelectorAll('.spoiler-button.spoiler-button--visible button'), (element) => {
     element.click();
   });
+});
+
+delegate(document, '#domain_block_severity', 'change', ({ target }) => {
+  const rejectMediaDiv = document.querySelector('.input.with_label.domain_block_reject_media');
+  if (rejectMediaDiv) {
+    rejectMediaDiv.style.display = (target.value === 'suspend') ? 'none' : 'block';
+  }
 });

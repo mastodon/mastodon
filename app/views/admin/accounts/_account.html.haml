@@ -1,7 +1,7 @@
 %tr
   %td.username
     = account.username
-  %td.domain
+  %td
     - unless account.local?
       = link_to account.domain, admin_accounts_path(by_domain: account.domain)
   %td

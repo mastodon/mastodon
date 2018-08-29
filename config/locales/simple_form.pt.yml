@@ -3,12 +3,12 @@ pt:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF or JPG. Arquivos até 2MB. Vão ser reduzidos para 400x400px
+        avatar: PNG, GIF or JPG. Arquivos até %{size}. Vão ser reduzidos para %{dimensions}px
         digest: Enviado após um longo período de inatividade e apenas se foste mencionado na tua ausência
         display_name:
           one: <span class="name-counter">1</span> caracter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
-        header: PNG, GIF or JPG. Arquivos até 2MB. Vão ser reduzidos para 700x335px
+        header: PNG, GIF or JPG. Arquivos até %{size}. Vão ser reduzidos para %{dimensions}px
         locked: Requer aprovação manual de seguidores
         note:
           one: <span class="note-counter">1</span> caracter restante
@@ -19,8 +19,6 @@ pt:
         data: Arquivo CSV exportado de outra instância do Mastodon
       sessions:
         otp: Inserir o código de autenticação de dois factores do teu telemóvel ou usa um dos códigos de recuperação.
-      user:
-        filtered_languages: Seleciona os idiomas que devem ser removidos das tuas timelines públicas
     labels:
       defaults:
         avatar: Imagem de Perfil
@@ -31,7 +29,6 @@ pt:
         display_name: Nome Público
         email: Endereço de e-mail
         expires_in: Expira em
-        filtered_languages: Idiomas filtrados
         header: Cabeçalho
         locale: Idioma
         locked: Trancar conta

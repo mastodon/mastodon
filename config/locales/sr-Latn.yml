@@ -8,9 +8,6 @@ sr-Latn:
     contact: Kontakt
     contact_missing: Nije postavljeno
     contact_unavailable: N/A
-    description_headline: Šta je %{domain}?
-    domain_count_after: ostale instance
-    domain_count_before: Povezan na
     extended_description_html: |
       <h3>Dobro mesto za pravila</h3>
       <p>Prošireni opis koji još nije postavljen.</p>
@@ -44,7 +41,6 @@ sr-Latn:
     people_who_follow: Ljudi koji prate %{name}
     posts: Tutovi
     posts_with_replies: Tutovi i odgovori
-    remote_follow: Udaljena praćenja
     reserved_username: Korisničko ime je rezervisano
     roles:
       admin: Administrator
@@ -52,9 +48,7 @@ sr-Latn:
     unfollow: Otprati
   admin:
     account_moderation_notes:
-      account: Moderator
       create: Napravi
-      created_at: Datum
       created_msg: Moderatorska beleška uspešno napravljena!
       delete: Obriši
       destroyed_msg: Moderatorska beleška uspešno obrisana!
@@ -63,6 +57,7 @@ sr-Latn:
       by_domain: Domen
       confirm: Potvrdi
       confirmed: Potvrđeno
+      confirming: Potvrđujući
       demote: Ražaluj
       disable: Isključi
       disable_two_factor_authentication: Isključi 2FA
@@ -71,6 +66,7 @@ sr-Latn:
       domain: Domen
       edit: Izmeni
       email: E-pošta
+      email_status: Status e-pošte
       enable: Uključi
       enabled: Uključeno
       feed_url: Adresa dovoda
@@ -108,6 +104,10 @@ sr-Latn:
       public: Javno
       push_subscription_expires: PuSH subscription expires
       redownload: Osveži avatar
+      resend_confirmation:
+        already_confirmed: Ovaj korisnik je već potvrđen
+        send: Ponovo pošaljite e-poruku za potvrdu
+        success: E-mail potvrde je uspešno poslat!
       reset: Resetuj
       reset_password: Resetuj lozinku
       resubscribe: Ponovo se pretplati
@@ -245,14 +245,9 @@ sr-Latn:
       action_taken_by: Akciju izveo
       are_you_sure: Da li ste sigurni?
       comment:
-        label: Komentar
         none: Ništa
-      delete: Obriši
       id: ID
       mark_as_resolved: Označi kao rešen
-      nsfw:
-        'false': Otkrij medijske priloge
-        'true': Sakrij medijske priloge
       report: 'Prijava #%{id}'
       report_contents: Sadržaj
       reported_account: Prijavljeni nalog
@@ -311,11 +306,8 @@ sr-Latn:
         delete: Obriši
         nsfw_off: NSFW isključen
         nsfw_on: NSFW uključen
-      execute: Izvrši
       failed_to_execute: Neuspelo izvršavanje
       media:
-        hide: Sakrij multimediju
-        show: Prikaži multimediju
         title: Multimedija
       no_media: Bez multimedije
       title: Statusi naloga
@@ -426,7 +418,6 @@ sr-Latn:
     unlocked_warning_title: Vaš nalog nije zaključan
   generic:
     changes_saved_msg: Izmene uspešno sačuvane!
-    powered_by: omogućio %{link}
     save_changes: Snimi izmene
     validation_errors:
       few: Nešto nije baš kako treba! Pregledajte %{count} greške ispod
@@ -464,8 +455,6 @@ sr-Latn:
       expires_at: Ističe
       uses: Korišćenja
     title: Pozovi ljude
-  landing_strip_html: "<strong>%{name}</strong> je korisnik na %{link_to_root_path}. Možete ga zapratiti ili komunicirati sa njim ako imte nalog bilo gde u fediversu."
-  landing_strip_signup_html: Ako nemate, možete se <a href="%{sign_up_path}">registrovati ovde</a>.
   lists:
     errors:
       limit: Dostigli ste limit broja listi
@@ -529,20 +518,6 @@ sr-Latn:
     other: Ostali
     publishing: Objavljivanje
     web: Veb
-  push_notifications:
-    favourite:
-      title: "%{name} je stavio Vaš status za omiljeni"
-    follow:
-      title: "%{name} Vas je zapratio"
-    group:
-      title: "%{count} obaveštenja"
-    mention:
-      action_boost: Podrži
-      action_expand: Prikaži još
-      action_favourite: Omiljeni
-      title: "%{name} Vas je pomenuo"
-    reblog:
-      title: "%{name} je podržao(la) Vaš status"
   remote_follow:
     acct: Unesite Vaš korisnik@domen sa koga želite da pratite
     missing_resource: Ne mogu da nađem zahtevanu adresu preusmeravanja za Vaš nalog
@@ -620,7 +595,6 @@ sr-Latn:
       unlisted: Neizlistano
       unlisted_long: Svako može da vidi, ali nije izlistano na javnim lajnama
   stream_entries:
-    click_to_show: Klikni da vidiš
     pinned: Prikačeni tut
     reblogged: podržano
     sensitive_content: Osetljiv sadržaj

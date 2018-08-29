@@ -11,6 +11,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       if lock.acquired?
         @status = find_existing_status
         process_status if @status.nil?
+      else
+        raise Mastodon::RaceConditionError
       end
     end
 
@@ -46,8 +48,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       account: @account,
       text: text_from_content || '',
       language: detected_language,
-      spoiler_text: @object['summary'] || '',
-      created_at: @options[:override_timestamps] ? nil : @object['published'],
+      spoiler_text: text_from_summary || '',
+      created_at: @object['published'],
+      override_timestamps: @options[:override_timestamps],
       reply: @object['inReplyTo'].present?,
       sensitive: @object['sensitive'] || false,
       visibility: visibility_from_audience,
@@ -61,12 +64,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if @object['tag'].nil?
 
     as_array(@object['tag']).each do |tag|
-      case tag['type']
-      when 'Hashtag'
+      if equals_or_includes?(tag['type'], 'Hashtag')
         process_hashtag tag, status
-      when 'Mention'
+      elsif equals_or_includes?(tag['type'], 'Mention')
         process_mention tag, status
-      when 'Emoji'
+      elsif equals_or_includes?(tag['type'], 'Emoji')
         process_emoji tag, status
       end
     end
@@ -76,9 +78,12 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if tag['name'].blank?
 
     hashtag = tag['name'].gsub(/\A#/, '').mb_chars.downcase
-    hashtag = Tag.where(name: hashtag).first_or_initialize(name: hashtag)
+    hashtag = Tag.where(name: hashtag).first_or_create(name: hashtag)
+
+    return if status.tags.include?(hashtag)
 
     status.tags << hashtag
+    TrendingTags.record_use!(hashtag, status.account, status.created_at) if status.public_visibility?
   rescue ActiveRecord::RecordInvalid
     nil
   end
@@ -102,7 +107,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     updated   = tag['updated']
     emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: @account.domain)
 
-    return unless emoji.nil? || emoji.updated_at >= updated
+    return unless emoji.nil? || image_url != emoji.image_remote_url || (updated && emoji.updated_at >= updated)
 
     emoji ||= CustomEmoji.new(domain: @account.domain, shortcode: shortcode, uri: uri)
     emoji.image_remote_url = image_url
@@ -188,6 +193,14 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     end
   end
 
+  def text_from_summary
+    if @object['summary'].present?
+      @object['summary']
+    elsif summary_language_map?
+      @object['summaryMap'].values.first
+    end
+  end
+
   def text_from_name
     if @object['name'].present?
       @object['name']
@@ -201,6 +214,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       @object['contentMap'].keys.first
     elsif name_language_map?
       @object['nameMap'].keys.first
+    elsif summary_language_map?
+      @object['summaryMap'].keys.first
     elsif supported_object_type?
       LanguageDetector.instance.detect(text_from_content, @account)
     end
@@ -216,6 +231,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     else
       url_candidate
     end
+  end
+
+  def summary_language_map?
+    @object['summaryMap'].is_a?(Hash) && !@object['summaryMap'].empty?
   end
 
   def content_language_map?
@@ -235,11 +254,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def supported_object_type?
-    SUPPORTED_TYPES.include?(@object['type'])
+    equals_or_includes_any?(@object['type'], SUPPORTED_TYPES)
   end
 
   def converted_object_type?
-    CONVERTED_TYPES.include?(@object['type'])
+    equals_or_includes_any?(@object['type'], CONVERTED_TYPES)
   end
 
   def skip_download?

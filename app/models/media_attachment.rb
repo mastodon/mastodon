@@ -3,8 +3,8 @@
 #
 # Table name: media_attachments
 #
-#  id                :integer          not null, primary key
-#  status_id         :integer
+#  id                :bigint(8)        not null, primary key
+#  status_id         :bigint(8)
 #  file_file_name    :string
 #  file_content_type :string
 #  file_file_size    :integer
@@ -15,11 +15,9 @@
 #  shortcode         :string
 #  type              :integer          default("image"), not null
 #  file_meta         :json
-#  account_id        :integer
+#  account_id        :bigint(8)
 #  description       :text
 #
-
-require 'mime/types'
 
 class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
@@ -27,19 +25,20 @@ class MediaAttachment < ApplicationRecord
   enum type: [:image, :gifv, :video, :unknown]
 
   IMAGE_FILE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif'].freeze
-  VIDEO_FILE_EXTENSIONS = ['.webm', '.mp4', '.m4v'].freeze
+  VIDEO_FILE_EXTENSIONS = ['.webm', '.mp4', '.m4v', '.mov'].freeze
 
-  IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
-  VIDEO_MIME_TYPES = ['video/webm', 'video/mp4'].freeze
+  IMAGE_MIME_TYPES             = ['image/jpeg', 'image/png', 'image/gif'].freeze
+  VIDEO_MIME_TYPES             = ['video/webm', 'video/mp4', 'video/quicktime'].freeze
+  VIDEO_CONVERTIBLE_MIME_TYPES = ['video/webm', 'video/quicktime'].freeze
 
   IMAGE_STYLES = {
     original: {
-      geometry: '1280x1280>',
+      pixels: 1_638_400, # 1280x1280px
       file_geometry_parser: FastGeometryParser,
     },
 
     small: {
-      geometry: '400x400>',
+      pixels: 160_000, # 400x400px
       file_geometry_parser: FastGeometryParser,
     },
   }.freeze
@@ -56,7 +55,25 @@ class MediaAttachment < ApplicationRecord
     },
   }.freeze
 
-  LIMIT = 8.megabytes
+  VIDEO_FORMAT = {
+    format: 'mp4',
+    convert_options: {
+      output: {
+        'movflags' => 'faststart',
+        'pix_fmt'  => 'yuv420p',
+        'vf'       => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
+        'vsync'    => 'cfr',
+        'c:v'      => 'h264',
+        'b:v'      => '500K',
+        'maxrate'  => '1300K',
+        'bufsize'  => '1300K',
+        'crf'      => 18,
+      },
+    },
+  }.freeze
+
+  IMAGE_LIMIT = 8.megabytes
+  VIDEO_LIMIT = 40.megabytes
 
   belongs_to :account, inverse_of: :media_attachments, optional: true
   belongs_to :status,  inverse_of: :media_attachments, optional: true
@@ -67,8 +84,11 @@ class MediaAttachment < ApplicationRecord
                     convert_options: { all: '-quality 90 -strip' }
 
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES
-  validates_attachment_size :file, less_than: LIMIT
-  remotable_attachment :file, LIMIT
+  validates_attachment_size :file, less_than: IMAGE_LIMIT, unless: :video?
+  validates_attachment_size :file, less_than: VIDEO_LIMIT, if: :video?
+  remotable_attachment :file, VIDEO_LIMIT
+
+  include Attachmentable
 
   validates :account, presence: true
   validates :description, length: { maximum: 420 }, if: :local?
@@ -122,24 +142,15 @@ class MediaAttachment < ApplicationRecord
       if f.instance.file_content_type == 'image/gif'
         {
           small: IMAGE_STYLES[:small],
-          original: {
-            format: 'mp4',
-            convert_options: {
-              output: {
-                'movflags' => 'faststart',
-                'pix_fmt'  => 'yuv420p',
-                'vf'       => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
-                'vsync'    => 'cfr',
-                'b:v'      => '1300K',
-                'maxrate'  => '500K',
-                'bufsize'  => '1300K',
-                'crf'      => 18,
-              },
-            },
-          },
+          original: VIDEO_FORMAT,
         }
       elsif IMAGE_MIME_TYPES.include? f.instance.file_content_type
         IMAGE_STYLES
+      elsif VIDEO_CONVERTIBLE_MIME_TYPES.include?(f.instance.file_content_type)
+        {
+          small: VIDEO_STYLES[:small],
+          original: VIDEO_FORMAT,
+        }
       else
         VIDEO_STYLES
       end
@@ -151,7 +162,7 @@ class MediaAttachment < ApplicationRecord
       elsif VIDEO_MIME_TYPES.include? f.file_content_type
         [:video_transcoder]
       else
-        [:thumbnail]
+        [:lazy_thumbnail]
       end
     end
   end
@@ -175,9 +186,6 @@ class MediaAttachment < ApplicationRecord
 
   def set_type_and_extension
     self.type = VIDEO_MIME_TYPES.include?(file_content_type) ? :video : :image
-    extension = appropriate_extension
-    basename  = Paperclip::Interpolations.basename(file, :original)
-    file.instance_write :file_name, [basename, extension].delete_if(&:blank?).join('.')
   end
 
   def set_meta
@@ -221,14 +229,5 @@ class MediaAttachment < ApplicationRecord
       duration: movie.duration,
       bitrate: movie.bitrate,
     }
-  end
-
-  def appropriate_extension
-    mime_type = MIME::Types[file.content_type]
-
-    extensions_for_mime_type = mime_type.empty? ? [] : mime_type.first.extensions
-    original_extension       = Paperclip::Interpolations.extension(file, :original)
-
-    extensions_for_mime_type.include?(original_extension) ? original_extension : extensions_for_mime_type.first
   end
 end
