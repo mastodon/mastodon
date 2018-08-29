@@ -1,6 +1,6 @@
 cy:
   about:
-    about_this: Amdanom ni
+    about_this: Amdanom
     api: API
     apps: Apiau symudol
     contact: Cyswllt
@@ -8,10 +8,15 @@ cy:
     learn_more: Dysgu mwy
     status_count_after:
       one: statws
+    administered_by: 'Weinyddir gan:'
+    privacy_policy: Polisi preifatrwydd
   accounts:
     roles:
       bot: Bot
     unfollow: Dad-ddilyn
+    follow: Dilynwch
+    posts:
+      one: Tŵt
   admin:
     account_moderation_notes:
       create: Gadael nodyn
@@ -27,6 +32,39 @@ cy:
       confirm: Cadarnhau
     custom_emojis:
       upload: Lanlwytho
+    dashboard:
+      config: Cyfluniad
+      feature_registrations: Cofrestriadau
+      features: Nodweddion
+      software: Meddalwedd
+      title: Dangosfwrdd
+      trends: Tueddiadau
   user_mailer:
     welcome:
       subject: Croeso i Mastodon
+  authorize_follow:
+    follow: Dilynwch
+    title: Dilynwch %{acct}
+  invites:
+    expires_in:
+      '86400': 1 dydd
+    max_uses_prompt: Dim terfyn
+  remote_unfollow:
+    error: Gwall
+    title: Teitl
+  sessions:
+    browser: Porwr
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+    current_session: Sesiwn cyfredol
+    description: '%{browser} ar %{platform}'
+    title: Sesiynau
+  themes:
+    contrast: Cyferbyniad uchel
+    default: Mastodon
+    mastodon-light: Mastodon (golau)
+  time:
+    formats:
+      default: '%b %d, %Y, %H:%M'
+      month: '%b %Y'
