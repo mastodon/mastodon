@@ -33,17 +33,17 @@ module Mastodon
       time_ago  = options[:days].days.ago
       queued    = 0
       processed = 0
-      options[:dry_run] ? dry_run = "(DRY RUN)" : dry_run = ""
+      dry_run = options[:dry_run] ? '(DRY RUN)' : ''
 
       if options[:background]
         MediaAttachment.where.not(remote_url: '').where.not(file_file_name: nil).where('created_at < ?', time_ago).select(:id).reorder(nil).find_in_batches do |media_attachments|
           queued += media_attachments.size
-          Maintenance::UncacheMediaWorker.push_bulk(media_attachments.map(&:id)) if !options[:dry_run]
+          Maintenance::UncacheMediaWorker.push_bulk(media_attachments.map(&:id)) unless options[:dry_run]
         end
       else
         MediaAttachment.where.not(remote_url: '').where.not(file_file_name: nil).where('created_at < ?', time_ago).reorder(nil).find_in_batches do |media_attachments|
           media_attachments.each do |m|
-            Maintenance::UncacheMediaWorker.new.perform(m) if !options[:dry_run]
+            Maintenance::UncacheMediaWorker.new.perform(m) unless options[:dry_run]
             options[:verbose] ? say(m.id) : say('.', :green, false)
             processed += 1
           end
