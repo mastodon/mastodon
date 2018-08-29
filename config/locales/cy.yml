@@ -15,6 +15,8 @@ cy:
       one: defnyddiwr
       other: defnyddiwyr
     what_is_mastodon: Beth yw Mastodon?
+    about_hashtag_html: Dyma dwtiau cyhoeddus wedi eu tagio gyda <strong>#%{hashtag}</strong>.
+      Gallwch ryngweithio gyda nhw os oes gennych gyfrif yn unrhywle yn y ffedysawd.
   accounts:
     roles:
       bot: Bot
@@ -37,7 +39,7 @@ cy:
   admin:
     account_moderation_notes:
       create: Gadael nodyn
-      delete: Delete
+      delete: Dileu
     accounts:
       are_you_sure: Ydych chi'n siŵr?
       avatar: Afatar
@@ -111,14 +113,14 @@ cy:
   sessions:
     browser: Porwr
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
+      alipay: ''
+      blackberry: ''
     current_session: Sesiwn cyfredol
     description: '%{browser} ar %{platform}'
     title: Sesiynau
   themes:
     contrast: Cyferbyniad uchel
-    default: Mastodon
+    default: ''
     mastodon-light: Mastodon (golau)
   time:
     formats:
