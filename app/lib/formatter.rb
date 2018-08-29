@@ -124,10 +124,10 @@ class Formatter
     return html if emojis.empty?
 
     emoji_map = if animate
-      emojis.map { |e| [e.shortcode, full_asset_url(e.image.url)] }.to_h
-    else
-      emojis.map { |e| [e.shortcode, full_asset_url(e.image.url(:static))] }.to_h
-    end
+                  emojis.map { |e| [e.shortcode, full_asset_url(e.image.url)] }.to_h
+                else
+                  emojis.map { |e| [e.shortcode, full_asset_url(e.image.url(:static))] }.to_h
+                end
 
     i                     = -1
     tag_open_index        = nil
