@@ -15,6 +15,7 @@ User-data/meta-data debug information is stored in /var/tmp/bootstrap.txt - `/va
 
 ## TODO
 * Setup scheduled tasks (documentation related to recommend tasks is slim)
+* Schedule Let's Encrypt cron
 * Automate creation of admin account (task is currently interactive only)
 * Build AWS Elasticsearch in the stack?
 * KMS for at-rest encryption
