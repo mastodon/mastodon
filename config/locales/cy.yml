@@ -17,6 +17,7 @@ cy:
     what_is_mastodon: Beth yw Mastodon?
     about_hashtag_html: Dyma dwtiau cyhoeddus wedi eu tagio gyda <strong>#%{hashtag}</strong>.
       Gallwch ryngweithio gyda nhw os oes gennych gyfrif yn unrhywle yn y ffedysawd.
+    source_code: Cod ffynhonnell
   accounts:
     roles:
       bot: Bot
@@ -107,6 +108,8 @@ cy:
     expires_in:
       '86400': 1 dydd
     max_uses_prompt: Dim terfyn
+    table:
+      uses: Defnyddiau
   remote_unfollow:
     error: Gwall
     title: Teitl
@@ -126,3 +129,10 @@ cy:
     formats:
       default: '%b %d, %Y, %H:%M'
       month: '%b %Y'
+  migrations:
+    proceed: Cadw
+  moderation:
+    title: Cymedroli
+  notification_mailer:
+    favourite:
+      title: Ffefryn newydd
