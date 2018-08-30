@@ -222,7 +222,7 @@ const handlers = {
 
   //  Submits the status.
   handleSubmit () {
-    const { textarea: { value } } = this;
+    const { textarea: { value }, uploadForm } = this;
     const {
       onChangeText,
       onSubmit,
@@ -249,14 +249,21 @@ const handlers = {
     // Submit unless there are media with missing descriptions
     if (mediaDescriptionConfirmation && onMediaDescriptionConfirm && media && media.some(item => !item.get('description'))) {
       const firstWithoutDescription = media.findIndex(item => !item.get('description'));
-      const inputs = document.querySelectorAll('.composer--upload_form--item input');
-      if (inputs.length == media.size && firstWithoutDescription !== -1) {
-        inputs[firstWithoutDescription].focus();
+      if (uploadForm) {
+        const inputs = uploadForm.querySelectorAll('.composer--upload_form--item input');
+        if (inputs.length == media.size && firstWithoutDescription !== -1) {
+          inputs[firstWithoutDescription].focus();
+        }
       }
       onMediaDescriptionConfirm();
     } else if (onSubmit) {
       onSubmit();
     }
+  },
+
+  //  Sets a reference to the upload form.
+  handleRefUploadForm (uploadFormComponent) {
+    this.uploadForm = uploadFormComponent;
   },
 
   //  Sets a reference to the textarea.
@@ -365,6 +372,7 @@ class Composer extends React.Component {
       handleSecondarySubmit,
       handleSelect,
       handleSubmit,
+      handleRefUploadForm,
       handleRefTextarea,
       handleRefSpoilerText,
     } = this.handlers;
@@ -455,6 +463,7 @@ class Composer extends React.Component {
             onRemove={onUndoUpload}
             progress={progress}
             uploading={isUploading}
+            handleRef={handleRefUploadForm}
           />
         ) : null}
         <ComposerOptions

@@ -17,12 +17,13 @@ export default function ComposerUploadForm ({
   onRemove,
   progress,
   uploading,
+  handleRef,
 }) {
   const computedClass = classNames('composer--upload_form', { uploading });
 
   //  The result.
   return (
-    <div className={computedClass}>
+    <div className={computedClass} ref={handleRef}>
       {uploading ? <ComposerUploadFormProgress progress={progress} /> : null}
       {media ? (
         <div className='content'>
@@ -55,4 +56,5 @@ ComposerUploadForm.propTypes = {
   onRemove: PropTypes.func.isRequired,
   progress: PropTypes.number,
   uploading: PropTypes.bool,
+  handleRef: PropTypes.func,
 };
