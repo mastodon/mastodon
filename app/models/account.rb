@@ -51,6 +51,7 @@
 class Account < ApplicationRecord
   USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.]+[a-z0-9_]+)?/i
   MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
+  GRAPHEME_RE = /[\u{1F3FB}-\u{1F3FF}](?=[\u{1F3FB}-\u{1F3FF}])|(?:[^\u{10000}-\u{10FFFF}][\u0300-\u036f\ufe20-\ufe2f\u20d0-\u20ff]?|[\u0300-\u036f\ufe20-\ufe2f\u20d0-\u20ff]|(?:[\u{1F1E6}-\u{1F1FF}]){2}|[\u{10000}-\u{10FFFF}])[\ufe0e\ufe0f]?(?:[\u0300-\u036f\ufe20-\ufe2f\u20d0-\u20ff]|[\u{1F3FB}-\u{1F3FF}])?(?:\u200d(?:[^\u{10000}-\u{10FFFF}]|(?:[\u{1F1E6}-\u{1F1FF}]){2}|[\u{10000}-\u{10FFFF}])[\ufe0e\ufe0f]?(?:[\u0300-\u036f\ufe20-\ufe2f\u20d0-\u20ff]|[\u{1F3FB}-\u{1F3FF}])?)*/
 
   include AccountAvatar
   include AccountFinderConcern
@@ -74,8 +75,12 @@ class Account < ApplicationRecord
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? }
   validates_with UniqueUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
-  validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
-  validates :note, length: { maximum: 160 }, if: -> { local? && will_save_change_to_note? }
+  validates_each :display_name, if: -> { local? && will_save_change_to_display_name? } do |record, attr, value|
+    record.errors.add(attr, I18n.t('statuses.over_character_limit', max: 30)) if value.scan(GRAPHEME_RE).length > 30
+  end
+  validates_each :note, if: -> { local? && will_save_change_to_note? } do |record, attr, value|
+    record.errors.add(attr, I18n.t('statuses.over_character_limit', max: 160)) if value.scan(GRAPHEME_RE).length > 160
+  end
   validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
 
   # Timelines

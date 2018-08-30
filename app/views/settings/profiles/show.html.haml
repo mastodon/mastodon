@@ -5,8 +5,8 @@
   = render 'shared/error_messages', object: @account
 
   .fields-group
-    = f.input :display_name, placeholder: t('simple_form.labels.defaults.display_name'), hint: t('simple_form.hints.defaults.display_name', count: 30 - @account.display_name.size).html_safe
-    = f.input :note, placeholder: t('simple_form.labels.defaults.note'), hint: t('simple_form.hints.defaults.note', count: 160 - @account.note.size).html_safe
+    = f.input :display_name, placeholder: t('simple_form.labels.defaults.display_name'), hint: t('simple_form.hints.defaults.display_name', count: 30 - @account.display_name.scan(Account::GRAPHEME_RE).size).html_safe
+    = f.input :note, placeholder: t('simple_form.labels.defaults.note'), hint: t('simple_form.hints.defaults.note', count: 160 - @account.note.scan(Account::GRAPHEME_RE).size).html_safe
 
   = render 'application/card', account: @account
 

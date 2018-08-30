@@ -25,6 +25,13 @@ describe StatusLengthValidator do
       expect(status.errors).to have_received(:add)
     end
 
+    rainbow_flag = '🏳️‍🌈'
+    it 'counts #{rainbow_flag} as one character' do
+      status = double(spoiler_text: '', text: rainbow_flag * 300, errors: double(add: nil), local?: true, reblog?: false)
+      subject.validate(status)
+      expect(status.errors).to_not have_received(:add)
+    end
+
     it 'counts URLs as 23 characters flat' do
       text   = ('a' * 476) + " http://#{'b' * 30}.com/example"
       status = double(spoiler_text: '', text: text, errors: double(add: nil), local?: true, reblog?: false)
