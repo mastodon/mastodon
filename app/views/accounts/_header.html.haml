@@ -1,4 +1,4 @@
-.public-account-header
+.public-account-header{:class => ("inactive" if account.moved?)}
   .public-account-header__image
     = image_tag account.header.url, class: 'parallax'
   .public-account-header__bar
