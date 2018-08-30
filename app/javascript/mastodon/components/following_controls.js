@@ -50,7 +50,7 @@ export default class FollowingControls extends ImmutablePureComponent {
     return (
       <IconButton
         active={following}
-        icon={following ? 'user-times' : 'user-plus'} 
+        icon={following ? 'user-times' : 'user-plus'}
         title={intl.formatMessage(following ? messages.unfollow : messages.follow)}
         onClick={this.handleFollowing}
       />
