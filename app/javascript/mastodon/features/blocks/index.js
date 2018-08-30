@@ -12,6 +12,8 @@ import AccountContainer from '../../containers/account_container';
 import { fetchBlocks, expandBlocks } from '../../actions/blocks';
 import ScrollableList from '../../components/scrollable_list';
 
+import BlockingControls from '../../components/blocking_controls';
+
 const messages = defineMessages({
   heading: { id: 'column.blocks', defaultMessage: 'Blocked users' },
 });
@@ -62,9 +64,11 @@ export default class Blocks extends ImmutablePureComponent {
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
         >
-          {accountIds.map(id =>
-            <AccountContainer key={id} id={id} />
-          )}
+          {accountIds.map(id => (
+            <AccountContainer key={id} id={id}>
+              <BlockingControls />
+            </AccountContainer>
+          ))}
         </ScrollableList>
       </Column>
     );

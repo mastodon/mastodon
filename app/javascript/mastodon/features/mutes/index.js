@@ -12,6 +12,8 @@ import AccountContainer from '../../containers/account_container';
 import { fetchMutes, expandMutes } from '../../actions/mutes';
 import ScrollableList from '../../components/scrollable_list';
 
+import MutingControls from '../../components/muting_controls';
+
 const messages = defineMessages({
   heading: { id: 'column.mutes', defaultMessage: 'Muted users' },
 });
@@ -62,9 +64,11 @@ export default class Mutes extends ImmutablePureComponent {
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
         >
-          {accountIds.map(id =>
-            <AccountContainer key={id} id={id} />
-          )}
+          {accountIds.map(id => (
+            <AccountContainer key={id} id={id}>
+              <MutingControls />
+            </AccountContainer>
+          ))}
         </ScrollableList>
       </Column>
     );
