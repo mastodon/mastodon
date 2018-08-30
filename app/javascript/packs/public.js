@@ -1,6 +1,7 @@
 import loadPolyfills from '../mastodon/load_polyfills';
 import ready from '../mastodon/ready';
 import { start } from '../mastodon/common';
+import punycode from 'punycode';
 
 start();
 
@@ -134,7 +135,7 @@ function main() {
     const name        = document.querySelector('.card .display-name strong');
 
     if (nameCounter) {
-      nameCounter.textContent = 30 - length(target.value);
+      nameCounter.textContent = 30 - punycode.ucs2.decode(target.value).length;
     }
 
     if (name) {
@@ -146,7 +147,7 @@ function main() {
     const noteCounter = document.querySelector('.note-counter');
 
     if (noteCounter) {
-      noteCounter.textContent = 160 - length(target.value);
+      noteCounter.textContent = 160 - punycode.ucs2.decode(target.value).length;
     }
   });
 
