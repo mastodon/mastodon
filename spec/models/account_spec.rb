@@ -596,10 +596,22 @@ RSpec.describe Account, type: :model do
         expect(account).to model_have_error_on_field(:display_name)
       end
 
+      it 'display name with newline and carriage returns gets modified to have only newline' do
+        account = Fabricate.build(:account, display_name: "My display name is\r\ncool")
+        account.valid?
+        expect(account.display_name).to eq "My display name is\ncool"
+      end
+
       it 'is invalid if the note is longer than 160 characters' do
         account = Fabricate.build(:account, note: Faker::Lorem.characters(161))
         account.valid?
         expect(account).to model_have_error_on_field(:note)
+      end
+
+      it 'note with newline and carriage return gets modified to have only newline' do
+        account = Fabricate.build(:account, note: "My note came from a weird browser\r\nBut I like it!")
+        account.valid?
+        expect(account.note).to eq "My note came from a weird browser\nBut I like it!"
       end
     end
 
