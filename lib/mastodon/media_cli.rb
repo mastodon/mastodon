@@ -28,11 +28,13 @@ module Mastodon
       queued    = 0
       processed = 0
 
-      MediaAttachment.where.not(remote_url: '').where.not(file_file_name: nil).where('created_at < ?', time_ago).select(:id).reorder(nil).find_in_batches do |media_attachments|
-        if options[:background]
+      if options[:background]
+        MediaAttachment.where.not(remote_url: '').where.not(file_file_name: nil).where('created_at < ?', time_ago).select(:id).reorder(nil).find_in_batches do |media_attachments|
           queued += media_attachments.size
           Maintenance::UncacheMediaWorker.push_bulk(media_attachments.map(&:id))
-        else
+        end
+      else
+        MediaAttachment.where.not(remote_url: '').where.not(file_file_name: nil).where('created_at < ?', time_ago).reorder(nil).find_in_batches do |media_attachments|
           media_attachments.each do |m|
             Maintenance::UncacheMediaWorker.new.perform(m)
             say('.', :green, false)
