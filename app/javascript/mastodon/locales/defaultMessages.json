@@ -61,6 +61,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Block @{name}",
+        "id": "account.block"
+      },
+      {
+        "defaultMessage": "Unblock @{name}",
+        "id": "account.unblock"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/blocking_controls.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Back",
         "id": "column_back_button.label"
       }
@@ -187,6 +200,68 @@
       }
     ],
     "path": "app/javascript/mastodon/components/missing_indicator.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Mute @{name}",
+        "id": "account.mute"
+      },
+      {
+        "defaultMessage": "Unmute @{name}",
+        "id": "account.unmute"
+      },
+      {
+        "defaultMessage": "Mute notifications from @{name}",
+        "id": "account.mute_notifications"
+      },
+      {
+        "defaultMessage": "Unmute notifications from @{name}",
+        "id": "account.unmute_notifications"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/muting_controls.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Follow",
+        "id": "account.follow"
+      },
+      {
+        "defaultMessage": "Unfollow",
+        "id": "account.unfollow"
+      },
+      {
+        "defaultMessage": "Awaiting approval",
+        "id": "account.requested"
+      },
+      {
+        "defaultMessage": "Unblock @{name}",
+        "id": "account.unblock"
+      },
+      {
+        "defaultMessage": "Unmute @{name}",
+        "id": "account.unmute"
+      },
+      {
+        "defaultMessage": "Mute notifications from @{name}",
+        "id": "account.mute_notifications"
+      },
+      {
+        "defaultMessage": "Unmute notifications from @{name}",
+        "id": "account.unmute_notifications"
+      },
+      {
+        "defaultMessage": "Unfollow",
+        "id": "confirmations.unfollow.confirm"
+      },
+      {
+        "defaultMessage": "Are you sure you want to unfollow {name}?",
+        "id": "confirmations.unfollow.message"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/old_cascading_controls.json"
   },
   {
     "descriptors": [
