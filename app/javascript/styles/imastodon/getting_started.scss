@@ -1,13 +1,12 @@
-.getting-started__footer {
-  display: flex;
-  flex-direction: column;
-}
-
 .getting-started {
   box-sizing: border-box;
-  padding-bottom: 235px;
   background: url('../images/mastodon-ui.png') no-repeat 0 100%;
   background-size: contain;
+  height: 100%;
+
+  .getting-started__footer{ 
+    background-color: rgba($ui-base-color, 0.9);
+  }
 }
 
 .column-link {
