@@ -9,6 +9,7 @@ import spring from 'react-motion/lib/spring';
 
 //  Utils.
 import Motion from 'flavours/glitch/util/optional_motion';
+import { searchEnabled } from 'flavours/glitch/util/initial_state';
 
 //  Messages.
 const messages = defineMessages({
@@ -27,6 +28,10 @@ const messages = defineMessages({
   text: {
     defaultMessage: 'Simple text returns matching display names, usernames and hashtags',
     id: 'search_popout.tips.text',
+  },
+  full_text: {
+    defaultMessage: 'Simple text returns statuses you have written, favourited, boosted, or have been mentioned in, as well as matching usernames, display names, and hashtags.',
+    id: 'search_popout.tips.full_text',
   },
   user: {
     defaultMessage: 'user',
@@ -92,7 +97,7 @@ export default function DrawerSearchPopout ({ style }) {
                 <FormattedMessage {...messages.status} />
               </li>
             </ul>
-            <FormattedMessage {...messages.text} />
+            { searchEnabled ? <FormattedMessage {...messages.full_text} /> : <FormattedMessage {...messages.text} /> }
           </div>
         )}
       </Motion>
