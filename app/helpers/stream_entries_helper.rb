@@ -22,12 +22,12 @@ module StreamEntriesHelper
         link_to account_unfollow_path(account), class: 'button logo-button button--destructive', data: { method: :post } do
           safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('accounts.unfollow')])
         end
-      else
+      elsif !(account.memorial? || account.moved?)
         link_to account_follow_path(account), class: 'button logo-button', data: { method: :post } do
           safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('accounts.follow')])
         end
       end
-    else
+    elsif !(account.memorial? || account.moved?)
       link_to account_remote_follow_path(account), class: 'button logo-button modal-button', target: '_new' do
         safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('accounts.follow')])
       end
