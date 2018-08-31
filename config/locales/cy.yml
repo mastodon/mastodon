@@ -1,34 +1,26 @@
+---
 cy:
   about:
+    about_hashtag_html: Dyma dwtiau cyhoeddus wedi eu tagio gyda <strong>#%{hashtag}</strong>. Gallwch ryngweithio gyda nhw os oes gennych gyfrif yn unrhywle yn y ffedysawd.
     about_this: Ynghylch
+    administered_by: 'Gweinyddir gan:'
     api: API
     apps: Apiau symudol
     contact: Cyswllt
     documentation: Dogfennaeth
     learn_more: Dysgu mwy
+    privacy_policy: Polisi preifatrwydd
+    source_code: Cod ffynhonnell
     status_count_after:
       one: statws
-    administered_by: 'Gweinyddir gan:'
-    privacy_policy: Polisi preifatrwydd
     terms: Telerau Gwasanaeth
     user_count_after:
       one: defnyddiwr
       other: defnyddiwyr
     what_is_mastodon: Beth yw Mastodon?
-    about_hashtag_html: Dyma dwtiau cyhoeddus wedi eu tagio gyda <strong>#%{hashtag}</strong>.
-      Gallwch ryngweithio gyda nhw os oes gennych gyfrif yn unrhywle yn y ffedysawd.
-    source_code: Cod ffynhonnell
   accounts:
-    roles:
-      bot: Bot
-      admin: Gweinyddwr
-      moderator: Safonwr
-    unfollow: Dad-ddilyn
-    follow: Dilynwch
-    posts:
-      one: Tŵt
-      other: Tŵtiau
     choices_html: 'Dewisiadau %{name}:'
+    follow: Dilynwch
     followers:
       one: Dilynwr
       other: Dilynwyr
@@ -36,7 +28,15 @@ cy:
     media: Cyfryngau
     network_hidden: Nid yw'r wybodaeth hon ar gael
     nothing_here: Does dim byd yma!
+    posts:
+      one: Tŵt
+      other: Tŵtiau
     posts_tab_heading: Tŵtiau
+    roles:
+      admin: Gweinyddwr
+      bot: Bot
+      moderator: Safonwr
+    unfollow: Dad-ddilyn
   admin:
     account_moderation_notes:
       create: Gadael nodyn
@@ -86,12 +86,12 @@ cy:
       username: Enw defnyddiwr
       web: Gwe
     custom_emojis:
-      upload: Lanlwytho
       by_domain: Parth
       copy: Copïo
       delete: Dileu
       enable: Galluogi
       listed: Rhestredig
+      upload: Lanlwytho
     dashboard:
       config: Cyfluniad
       feature_registrations: Cofrestriadau
@@ -101,9 +101,6 @@ cy:
       trends: Tueddiadau
     instances:
       domain_name: Parth
-  user_mailer:
-    welcome:
-      subject: Croeso i Mastodon
   authorize_follow:
     follow: Dilynwch
     title: Dilynwch %{acct}
@@ -113,25 +110,6 @@ cy:
     max_uses_prompt: Dim terfyn
     table:
       uses: Defnyddiau
-  remote_unfollow:
-    error: Gwall
-    title: Teitl
-  sessions:
-    browser: Porwr
-    browsers:
-      alipay: ''
-      blackberry: ''
-    current_session: Sesiwn cyfredol
-    description: '%{browser} ar %{platform}'
-    title: Sesiynau
-  themes:
-    contrast: Cyferbyniad uchel
-    default: ''
-    mastodon-light: Mastodon (golau)
-  time:
-    formats:
-      default: '%b %d, %Y, %H:%M'
-      month: '%b %Y'
   migrations:
     proceed: Cadw
   moderation:
@@ -148,3 +126,25 @@ cy:
     languages: Ieithoedd
     other: Arall
     web: Gwe
+  remote_unfollow:
+    error: Gwall
+    title: Teitl
+  sessions:
+    browser: Porwr
+    browsers:
+      alipay: ''
+      blackberry: ''
+    current_session: Sesiwn cyfredol
+    description: "%{browser} ar %{platform}"
+    title: Sesiynau
+  themes:
+    contrast: Cyferbyniad uchel
+    default: ''
+    mastodon-light: Mastodon (golau)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
+  user_mailer:
+    welcome:
+      subject: Croeso i Mastodon
