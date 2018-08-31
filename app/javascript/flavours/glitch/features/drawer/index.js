@@ -100,15 +100,15 @@ class Drawer extends React.Component {
             onSettingsClick={onOpenSettings}
           />
         ) : null}
-        <DrawerSearch
-          intl={intl}
-          onChange={onChange}
-          onClear={onClear}
-          onShow={onShow}
-          onSubmit={onSubmit}
-          submitted={submitted}
-          value={searchValue}
-        />
+        {(multiColumn || isSearchPage) && <DrawerSearch
+            intl={intl}
+            onChange={onChange}
+            onClear={onClear}
+            onShow={onShow}
+            onSubmit={onSubmit}
+            submitted={submitted}
+            value={searchValue}
+          /> }
         <div className='contents'>
           <DrawerAccount account={account} />
           {!isSearchPage && <Composer />}
