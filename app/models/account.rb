@@ -408,6 +408,8 @@ class Account < ApplicationRecord
   def prepare_contents
     display_name&.strip!
     note&.strip!
+    display_name.gsub!("\r\n", "\n")
+    note.gsub!("\r\n", "\n")
   end
 
   def generate_keys
