@@ -30,16 +30,22 @@ fr:
     other_instances: Liste des instances
     privacy_policy: Politique de vie privée
     source_code: Code source
-    status_count_after: statuts
+    status_count_after:
+      one: Statut
+      other: Statuts
     status_count_before: Ayant publié
     terms: Conditions d'utilisation
-    user_count_after: utilisateur⋅ice⋅s
+    user_count_after:
+      one: utilisateur
+      other: utilisateurs
     user_count_before: Abrite
     what_is_mastodon: Qu’est-ce que Mastodon ?
   accounts:
     choices_html: "%{name} recommande :"
     follow: Suivre
-    followers: Abonné⋅e⋅s
+    followers:
+      one: Abonné·e
+      other: Abonné⋅e⋅s
     following: Abonnements
     joined: Inscrit·e en %{date}
     media: Médias
@@ -50,7 +56,10 @@ fr:
     people_who_follow: Personnes qui suivent %{name}
     pin_errors:
       following: Vous devez être déjà abonné·e à la personne que vous désirez recommander
-    posts: Statuts
+    posts:
+      one: Pouet
+      other: Pouets
+    posts_tab_heading: Pouets
     posts_with_replies: Statuts & réponses
     reserved_username: Ce nom d’utilisateur⋅ice est réservé
     roles:
@@ -294,6 +303,7 @@ fr:
       description_html: Un <strong>relai de fédération</strong> est un serveur intermédiaire qui échange de grandes quantités de pouets entre les serveurs qui publient dessus et ceux qui y sont abonnés. <strong>Il peut aider les petites et moyennes instances à découvrir du contenu sur le fediverse</strong>, ce qui normalement nécessiterait que les membres locaux suivent des gens inscrits sur des serveurs distants.
       enable_hint: Une fois activé, votre serveur souscrira à tous les pouets publics présents sur ce relais et y enverra ses propres pouets publics.
       inbox_url: URL de relais
+      pending: En attente de l'approbation du relai
       setup: Paramétrer une connexion de relais
       status: Statut
       title: Relais
@@ -346,6 +356,9 @@ fr:
       contact_information:
         email: Entrez une adresse courriel publique
         username: Entrez un nom d’utilisateur⋅ice
+      custom_css:
+        desc_html: Modifier l'apparence avec une CSS chargée sur chaque page
+        title: CSS personnalisée
       hero:
         desc_html: Affichée sur la page d’accueil. Au moins 600x100px recommandé. Lorsqu’elle n’est pas définie, se rabat sur la vignette de l’instance
         title: Image d’en-tête
@@ -414,6 +427,12 @@ fr:
       last_delivery: Dernière livraison
       title: WebSub
       topic: Sujet
+    suspensions:
+      bad_acct_msg: La valeur de confirmation n'a pas correspondu. Êtes-vous certain de suspendre le bon compte ?
+      hint_html: 'Pour confirmer la suspension du compte, veuillez entrer %{value} dans le champ ci-dessous :'
+      proceed: Traité
+      title: Suspension de %{acct}
+      warning_html: 'Suspendre ce compte effacera <strong>irréversiblement</strong> les données de ce compte, ce qui inclut :'
     title: Administration
   admin_mailer:
     new_report:
