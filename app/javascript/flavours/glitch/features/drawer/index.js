@@ -110,7 +110,7 @@ class Drawer extends React.Component {
             value={searchValue}
           /> }
         <div className='contents'>
-          <DrawerAccount account={account} />
+          {!isSearchPage && <DrawerAccount account={account} />}
           {!isSearchPage && <Composer />}
           {multiColumn && <button className='mastodon' onClick={onClickElefriend} />}
           <DrawerResults
