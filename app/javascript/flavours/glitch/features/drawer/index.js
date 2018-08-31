@@ -113,10 +113,11 @@ class Drawer extends React.Component {
           {!isSearchPage && <DrawerAccount account={account} />}
           {!isSearchPage && <Composer />}
           {multiColumn && <button className='mastodon' onClick={onClickElefriend} />}
-          <DrawerResults
-            results={results}
-            visible={submitted && !searchHidden}
-          />
+          {(multiColumn || isSearchPage) &&
+            <DrawerResults
+              results={results}
+              visible={submitted && !searchHidden}
+            />}
         </div>
       </div>
     );
