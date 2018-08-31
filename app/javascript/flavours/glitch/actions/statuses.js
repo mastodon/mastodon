@@ -79,7 +79,7 @@ export function redraft(status) {
   };
 };
 
-export function deleteStatus(id, withRedraft = false) {
+export function deleteStatus(id, router, withRedraft = false) {
   return (dispatch, getState) => {
     const status = getState().getIn(['statuses', id]);
 
@@ -91,6 +91,10 @@ export function deleteStatus(id, withRedraft = false) {
 
       if (withRedraft) {
         dispatch(redraft(status));
+
+        if (!getState().getIn(['compose', 'mounted'])) {
+          router.push('/statuses/new');
+        }
       }
     }).catch(error => {
       dispatch(deleteStatusFail(id, error));
