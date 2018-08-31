@@ -26,7 +26,7 @@ class Relay < ApplicationRecord
 
   def enable!
     activity_id = ActivityPub::TagManager.instance.generate_uri_for(nil)
-    payload     = Oj.dump(follow_activity(activity_id))
+    payload     = build_json(follow_activity(activity_id))
 
     update!(state: :pending, follow_activity_id: activity_id)
     ActivityPub::DeliveryWorker.perform_async(payload, some_local_account.id, inbox_url)
@@ -34,7 +34,7 @@ class Relay < ApplicationRecord
 
   def disable!
     activity_id = ActivityPub::TagManager.instance.generate_uri_for(nil)
-    payload     = Oj.dump(unfollow_activity(activity_id))
+    payload     = build_json(unfollow_activity(activity_id))
 
     update!(state: :idle, follow_activity_id: nil)
     ActivityPub::DeliveryWorker.perform_async(payload, some_local_account.id, inbox_url)
@@ -65,6 +65,10 @@ class Relay < ApplicationRecord
         object: ActivityPub::TagManager::COLLECTIONS[:public],
       },
     }
+  end
+
+  def build_json(relay_request)
+    Oj.dump(ActivityPub::LinkedDataSignature.new(relay_request.as_json).sign!(some_local_account))
   end
 
   def some_local_account
