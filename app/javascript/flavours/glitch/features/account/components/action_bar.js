@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
 import { Link } from 'react-router-dom';
 import { defineMessages, injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
-import { me } from 'flavours/glitch/util/initial_state';
+import { me, isStaff } from 'flavours/glitch/util/initial_state';
 
 const messages = defineMessages({
   mention: { id: 'account.mention', defaultMessage: 'Mention @{name}' },
@@ -25,6 +25,7 @@ const messages = defineMessages({
   showReblogs: { id: 'account.show_reblogs', defaultMessage: 'Show boosts from @{name}' },
   endorse: { id: 'account.endorse', defaultMessage: 'Feature on profile' },
   unendorse: { id: 'account.unendorse', defaultMessage: 'Don\'t feature on profile' },
+  admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
 });
 
 @injectIntl
@@ -118,6 +119,11 @@ export default class ActionBar extends React.PureComponent {
       } else {
         menu.push({ text: intl.formatMessage(messages.blockDomain, { domain }), action: this.props.onBlockDomain });
       }
+    }
+
+    if (account.get('id') !== me && isStaff) {
+      menu.push(null);
+      menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: `/admin/accounts/${account.get('id')}` });
     }
 
     return (
