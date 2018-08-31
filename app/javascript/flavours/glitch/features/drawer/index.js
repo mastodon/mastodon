@@ -86,6 +86,7 @@ class Drawer extends React.Component {
       searchHidden,
       searchValue,
       submitted,
+      isSearchPage,
     } = this.props;
     const computedClass = classNames('drawer', `mbstobon-${elefriend}`);
 
@@ -110,7 +111,7 @@ class Drawer extends React.Component {
         />
         <div className='contents'>
           <DrawerAccount account={account} />
-          <Composer />
+          {!isSearchPage && <Composer />}
           {multiColumn && <button className='mastodon' onClick={onClickElefriend} />}
           <DrawerResults
             results={results}
@@ -126,6 +127,7 @@ class Drawer extends React.Component {
 //  Props.
 Drawer.propTypes = {
   intl: PropTypes.object.isRequired,
+  isSearchPage: PropTypes.bool,
   multiColumn: PropTypes.bool,
 
   //  State props.
