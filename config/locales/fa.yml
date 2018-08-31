@@ -6,6 +6,7 @@ fa:
     about_this: درباره
     administered_by: 'با مدیریت:'
     api: رابط برنامه‌نویسی کاربردی
+    apps: اپ‌های موبایل
     closed_registrations: ثبت‌نام روی این سرور هم‌اینک فعال نیست. اما شما می‌توانید سرور دیگری بیابید و با حسابی که آن‌جا می‌سازید دقیقاً به همین شبکه دسترسی داشته باشید.
     contact: تماس
     contact_missing: تعیین نشده
@@ -29,16 +30,22 @@ fa:
     other_instances: فهرست سرورها
     privacy_policy: سیاست رازداری
     source_code: کدهای منبع
-    status_count_after: چیز نوشته‌اند
+    status_count_after:
+      one: نوشته
+      other: نوشته
     status_count_before: که جمعاً
     terms: شرایط کاربری
-    user_count_after: کاربر
+    user_count_after:
+      one: کاربر
+      other: کاربر
     user_count_before: دارای
     what_is_mastodon: ماستدون چیست؟
   accounts:
     choices_html: 'انتخاب‌های %{name}:'
     follow: پی بگیرید
-    followers: پیگیران
+    followers:
+      one: پیگیر
+      other: پیگیر
     following: پی می‌گیرد
     joined: کاربر از %{date}
     media: عکس و ویدیو
@@ -49,7 +56,10 @@ fa:
     people_who_follow: کسانی که %{name} را پی می‌گیرند
     pin_errors:
       following: شما باید پیگیر کاربری باشید که می‌خواهید ثابت کنید
-    posts: نوشته‌ها
+    posts:
+      one: بوق
+      other: بوق
+    posts_tab_heading: بوق‌ها
     posts_with_replies: نوشته‌ها و پاسخ‌ها
     reserved_username: این نام کاربری در دسترس نیست
     roles:
@@ -281,6 +291,7 @@ fa:
       search: جستجو
       title: سرورهای شناخته‌شده
     invites:
+      deactivate_all: غیرفعال‌کردن همه
       filter:
         all: همه
         available: در دسترس
@@ -292,6 +303,7 @@ fa:
       description_html: یک <strong>رلهٔ میان‌سروری</strong> (federation relay) یک سرور میانجی است که حجم زیادی از بوق‌های عمومی را بین سرورهای گوناگونی که عضوش می‌شوند جابه‌جا می‌کند. <strong>رله‌ها به سرورهای کوچک و متوسط کمک می‌کنند تا مطالب عمومی بیشتری را بیابند.</strong> اگر رله نباشد، این مطالب عمومی تنها وقتی پیدا می‌شوند که کاربران محلی خودشان پیگیر کاربران روی سرورهای دیگر شوند.
       enable_hint: اگر فعال باشد، سرور شما عضو همهٔ بوق‌های عمومی‌ای را که از این رله می‌آید می‌گیرد، و بوق‌های عمومی این سرور را به آن می‌فرستند.
       inbox_url: نشانی رله
+      pending: در انتظار پذیرش رله
       setup: پیوستن به رله‌ها
       status: وضعیت
       title: رله‌ها
@@ -344,6 +356,9 @@ fa:
       contact_information:
         email: ایمیل کاری
         username: نام کاربری
+      custom_css:
+        desc_html: ظاهر ماستدون را با CSS-ای که در همهٔ صفحه‌ها جاسازی می‌شود تغییر دهید
+        title: سبک CSS سفارشی
       hero:
         desc_html: در صفحهٔ آغازین نمایش می‌یابد. دست‌کم ۶۰۰×۱۰۰ پیکسل توصیه می‌شود. اگر تعیین نشود، با تصویر بندانگشتی سرور جایگزین خواهد شد
         title: تصویر سربرگ
@@ -412,6 +427,12 @@ fa:
       last_delivery: آخرین ارسال
       title: WebSub
       topic: موضوع
+    suspensions:
+      bad_acct_msg: محتوایی که برای تأیید وارد کردید منطبق نبود. آیا دارید حساب درستی را معلق می‌کنید؟
+      hint_html: 'برای تأیید معلق‌کردن حساب، لطفاً در کادر زیر %{value} را وارد کنید:'
+      proceed: ادامه
+      title: معلق‌کردن %{acct}
+      warning_html: 'معلق‌کردن این حساب <strong>برای همیشه</strong> داده‌هایش را پاک می‌کند. داده‌هایی شامل:'
     title: مدیریت سرور
   admin_mailer:
     new_report:
@@ -660,6 +681,9 @@ fa:
     no_account_html: هنوز عضو نیستید؟ <a href='%{sign_up_path}' target='_blank'>این‌جا می‌توانید حساب باز کنید</a>
     proceed: درخواست پیگیری
     prompt: 'شما قرار است این حساب را پیگیری کنید:'
+  remote_interaction:
+    proceed: ادامهٔ برهم‌کنش
+    prompt: 'شما می‌خواهید دربارهٔ این بوق کاری کنید:'
   remote_unfollow:
     error: خطا
     title: عنوان
@@ -743,6 +767,7 @@ fa:
       private: نوشته‌های غیرعمومی را نمی‌توان ثابت کرد
       reblog: بازبوق‌ها را نمی‌توان ثابت کرد
     show_more: نمایش
+    sign_in_to_participate: برای شرکت در گفتگو وارد حساب خود شوید
     title: '%{name}: "%{quote}"'
     visibilities:
       private: خصوصی

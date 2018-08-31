@@ -1,7 +1,7 @@
 ---
 cs:
   about:
-    about_hashtag_html: Toto jsou veřejné tooty označené hashtagem<strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv na fediverse, můžete s nimi interagovat.
+    about_hashtag_html: Toto jsou veřejné tooty označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv na fediverse, můžete s nimi interagovat.
     about_mastodon_html: Mastodon je sociální síť založená na otevřených webových protokolech a svobodném, otevřeném softwaru. Je decentrovalizovaná jako e-mail.
     about_this: O této instanci
     administered_by: 'Server spravuje:'
@@ -24,7 +24,7 @@ cs:
       real_conversation_title: Vytvořen pro opravdovou konverzaci
       within_reach_body: Několik aplikací pro iOS, Android a jiné platformy vám díky jednoduchému API ekosystému dovolují držet krok s vašimi přáteli, ať už jste kdekoliv.
       within_reach_title: Vždy v dosahu
-    generic_description: "%{domain} je jedním serverem v síti"
+    generic_description: "%{domain} je jedním ze serverů v síti"
     hosted_on: Mastodon hostovaný na %{domain}
     learn_more: Zjistit více
     other_instances: Seznam instancí
@@ -43,7 +43,9 @@ cs:
   accounts:
     choices_html: 'Volby uživatele %{name}:'
     follow: Sledovat
-    followers: Sledovatelé
+    followers:
+      one: Sledovatel
+      other: Sledovatelé
     following: Sleduje
     joined: Připojil/a se %{date}
     media: Média
@@ -54,7 +56,10 @@ cs:
     people_who_follow: Lidé, kteří sledují uživatele %{name}
     pin_errors:
       following: Musíte již sledovat osobu, kterou chcete podpořit
-    posts: Tooty
+    posts:
+      one: Toot
+      other: Tooty
+    posts_tab_heading: Tooty
     posts_with_replies: Tooty a odpovědi
     reserved_username: Toto uživatelské jméno je rezervováno
     roles:
@@ -298,6 +303,7 @@ cs:
       description_html: "<strong>Federovací most</strong> je přechodný server, který vyměňuje velká množství veřejných tootů mezi servery, které z něj odebírají a poblikují na něj. <strong>Může pomoci malým a středně velkým serverům objevovat obsah z fediverse</strong>, což by jinak vyžadovalo, aby místní uživatelé manuálně sledovali jiné lidi na vzdálených serverech."
       enable_hint: Je-li tohle povoleno, začne váš server odebírat všechny veřejné tooty z tohoto mostu a odesílat na něj své vlastní veřejné tooty.
       inbox_url: URL mostu
+      pending: Čekám na souhlas mostu
       setup: Nastavit připojení k mostu
       status: Stav
       title: Mosty
@@ -357,7 +363,7 @@ cs:
         desc_html: Zobrazuje se na hlavní stránce. Doporučuje se rozlišení alespoň 600x100px. Pokud toto není nastavené, bude zobrazena miniatura instance
         title: Hlavní obrázek
       peers_api_enabled:
-        desc_html: Domény, na které tato instanve narazila ve fediverse
+        desc_html: Domény, na které tato instance narazila ve fediverse
         title: Zveřejnit seznam objevených instancí
       preview_sensitive_media:
         desc_html: Náhledy odkazů na jiných stránkách budou zobrazeny i pokud jsou media označena jako citlivá
