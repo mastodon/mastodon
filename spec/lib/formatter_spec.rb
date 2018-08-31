@@ -170,6 +170,29 @@ RSpec.describe Formatter do
     end
   end
 
+
+  describe '#format_spoiler' do
+    subject { Formatter.instance.format_spoiler(status) }
+
+    context 'given a post containing plain text' do
+      let(:status)  { Fabricate(:status, text: 'text', spoiler_text: 'Secret!', uri: nil) }
+
+      it 'Returns the spoiler text' do
+        is_expected.to eq 'Secret!'
+      end
+    end
+
+    context 'given a post with an emoji shortcode at the start' do
+      let!(:emoji) { Fabricate(:custom_emoji) }
+      let(:status)  { Fabricate(:status, text: 'text', spoiler_text: ':coolcat: Secret!', uri: nil) }
+      let(:text) { ':coolcat: Beep boop' }
+
+      it 'converts the shortcode to an image tag' do
+        is_expected.to match(/<img draggable="false" class="emojione" alt=":coolcat:"/)
+      end
+    end
+  end
+
   describe '#format' do
     subject { Formatter.instance.format(status) }
 

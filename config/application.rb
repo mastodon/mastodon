@@ -42,6 +42,7 @@ module Mastodon
       :bg,
       :ca,
       :co,
+      :cy,
       :da,
       :de,
       :el,

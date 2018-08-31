@@ -30,16 +30,22 @@ pt-BR:
     other_instances: Lista de instâncias
     privacy_policy: Política de Privacidade
     source_code: Código-fonte
-    status_count_after: publicações
+    status_count_after:
+      one: status
+      other: status
     status_count_before: Autores de
     terms: Termos de serviço
-    user_count_after: usuários
+    user_count_after:
+      one: usuário
+      other: usuários
     user_count_before: Casa de
     what_is_mastodon: O que é Mastodon?
   accounts:
     choices_html: 'Escolhas de %{name}:'
     follow: Seguir
-    followers: Seguidores
+    followers:
+      one: Seguidor
+      other: Seguidores
     following: Seguindo
     joined: Participa desde %{date}
     media: Mídia
@@ -50,7 +56,10 @@ pt-BR:
     people_who_follow: Pessoas que seguem %{name}
     pin_errors:
       following: Você tem que estar seguindo a pessoa que você quer sugerir
-    posts: Toots
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Toots e respostas
     reserved_username: Este usuário está reservado
     roles:
@@ -346,6 +355,9 @@ pt-BR:
       contact_information:
         email: E-mail
         username: Contate usuário
+      custom_css:
+        desc_html: Modificar o visual com CSS que é carregado em todas as páginas
+        title: CSS customizado
       hero:
         desc_html: Aparece na página inicial. Ao menos 600x100px é recomendado. Se não estiver definido, o thumbnail da instância é usado no lugar
         title: Imagem de capa
@@ -414,6 +426,12 @@ pt-BR:
       last_delivery: Última entrega
       title: WebSub
       topic: Tópico
+    suspensions:
+      bad_acct_msg: Os valores de confirmação não correspondem. Você está suspendendo a conta certa?
+      hint_html: 'Para confirmar a suspensão da conta, por favor digite %{value} no campo abaixo:'
+      proceed: Prosseguir
+      title: Suspender %{acct}
+      warning_html: 'Suspender essa conta vai remover <strong>irreversivelmente</strong> dados dessa conta, o que inclui:'
     title: Administração
   admin_mailer:
     new_report:
