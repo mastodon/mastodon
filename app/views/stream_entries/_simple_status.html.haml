@@ -7,10 +7,13 @@
     = link_to TagManager.instance.url_for(status.account), class: 'status__display-name p-author h-card', target: stream_link_target, rel: 'noopener' do
       .status__avatar
         %div
-          = image_tag status.account.avatar(:original), width: 48, height: 48, alt: '', class: 'u-photo account__avatar'
+          - if current_account&.user&.setting_auto_play_gif || autoplay
+            = image_tag status.account.avatar(:original), width: 48, height: 48, alt: '', class: 'u-photo account__avatar'
+          - else
+            = image_tag status.account.avatar(:static), width: 48, height: 48, alt: '', class: 'u-photo account__avatar'
       %span.display-name
         %bdi
-          %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true)
+          %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true, autoplay: autoplay)
         %span.display-name__account
           = acct(status.account)
           = fa_icon('lock') if status.account.locked?
@@ -19,14 +22,14 @@
       %p{ style: 'margin-bottom: 0' }<
         %span.p-summary> #{Formatter.instance.format_spoiler(status)}&nbsp;
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
-    .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status, custom_emojify: true)
+    .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status, custom_emojify: true, autoplay: autoplay)
 
   - unless status.media_attachments.empty?
     - if status.media_attachments.first.video?
       - video = status.media_attachments.first
       = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, width: 610, height: 343, inline: true, alt: video.description
     - else
-      = react_component :media_gallery, height: 343, sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, 'autoPlayGif': current_account&.user&.setting_auto_play_gif, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }
+      = react_component :media_gallery, height: 343, sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, 'autoPlayGif': current_account&.user&.setting_auto_play_gif || autoplay, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }
 
   .status__action-bar
     .status__action-bar__counter

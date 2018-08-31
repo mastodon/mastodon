@@ -23,7 +23,7 @@ class Formatter
 
     unless status.local?
       html = reformat(raw_content)
-      html = encode_custom_emojis(html, status.emojis) if options[:custom_emojify]
+      html = encode_custom_emojis(html, status.emojis, options[:autoplay]) if options[:custom_emojify]
       return html.html_safe # rubocop:disable Rails/OutputSafety
     end
 
@@ -33,7 +33,7 @@ class Formatter
     html = raw_content
     html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
     html = encode_and_link_urls(html, linkable_accounts)
-    html = encode_custom_emojis(html, status.emojis) if options[:custom_emojify]
+    html = encode_custom_emojis(html, status.emojis, options[:autoplay]) if options[:custom_emojify]
     html = simple_format(html, {}, sanitize: false)
     html = html.delete("\n")
 
@@ -53,7 +53,7 @@ class Formatter
 
   def simplified_format(account, **options)
     html = account.local? ? linkify(account.note) : reformat(account.note)
-    html = encode_custom_emojis(html, account.emojis) if options[:custom_emojify]
+    html = encode_custom_emojis(html, account.emojis, options[:autoplay]) if options[:custom_emojify]
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
@@ -63,20 +63,20 @@ class Formatter
 
   def format_spoiler(status)
     html = encode(status.spoiler_text)
-    html = encode_custom_emojis(html, status.emojis)
+    html = encode_custom_emojis(html, status.emojis, options[:autoplay])
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def format_display_name(account, **options)
     html = encode(account.display_name.presence || account.username)
-    html = encode_custom_emojis(html, account.emojis) if options[:custom_emojify]
+    html = encode_custom_emojis(html, account.emojis, options[:autoplay]) if options[:custom_emojify]
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def format_field(account, str, **options)
     return reformat(str).html_safe unless account.local? # rubocop:disable Rails/OutputSafety
     html = encode_and_link_urls(str, me: true)
-    html = encode_custom_emojis(html, account.emojis) if options[:custom_emojify]
+    html = encode_custom_emojis(html, account.emojis, options[:autoplay]) if options[:custom_emojify]
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
@@ -120,10 +120,14 @@ class Formatter
     end
   end
 
-  def encode_custom_emojis(html, emojis)
+  def encode_custom_emojis(html, emojis, animate = false)
     return html if emojis.empty?
 
-    emoji_map = emojis.map { |e| [e.shortcode, full_asset_url(e.image.url(:static))] }.to_h
+    emoji_map = if animate
+                  emojis.map { |e| [e.shortcode, full_asset_url(e.image.url)] }.to_h
+                else
+                  emojis.map { |e| [e.shortcode, full_asset_url(e.image.url(:static))] }.to_h
+                end
 
     i                     = -1
     tag_open_index        = nil
