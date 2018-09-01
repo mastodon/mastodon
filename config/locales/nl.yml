@@ -30,16 +30,22 @@ nl:
     other_instances: Andere servers
     privacy_policy: Privacybeleid
     source_code: Broncode
-    status_count_after: toots
+    status_count_after:
+      one: toot
+      other: toots
     status_count_before: Zij schreven
     terms: Gebruiksvoorwaarden
-    user_count_after: gebruikers
+    user_count_after:
+      one: gebruiker
+      other: gebruikers
     user_count_before: Thuisbasis van
     what_is_mastodon: Wat is Mastodon?
   accounts:
     choices_html: 'Aanbevelingen van %{name}:'
     follow: Volgen
-    followers: Volgers
+    followers:
+      one: Volger
+      other: Volgers
     following: Volgend
     joined: Geregistreerd in %{date}
     media: Media
@@ -50,7 +56,10 @@ nl:
     people_who_follow: Mensen die %{name} volgen
     pin_errors:
       following: Je moet dit account wel al volgen, alvorens je het kan aanbevelen
-    posts: Toots
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Toots en reacties
     reserved_username: Deze gebruikersnaam is gereserveerd
     roles:
@@ -294,6 +303,7 @@ nl:
       description_html: Een <strong>federatierelay</strong> is een tussenliggende server die grote hoeveelheden openbare toots uitwisselt tussen servers die zich hierop hebben geabonneerd. <strong>Het kan kleine en middelgrote servers helpen om content uit de fediverse te ontdekken</strong>, waarvoor anders lokale gebruikers handmatig mensen van externe servers moeten volgen.
       enable_hint: Eenmaal ingeschakeld gaat jouw server zich op alle openbare toots van deze relayserver abonneren en stuurt het de openbare toots van jouw server naar de relayserver.
       inbox_url: Relay-URL
+      pending: Aan het wachten op toestemming van de relayserver
       setup: Een verbinding met een relayserver maken
       status: Status
       title: Relayservers
@@ -346,6 +356,9 @@ nl:
       contact_information:
         email: Vul een openbaar gebruikt e-mailadres in
         username: Vul een gebruikersnaam in
+      custom_css:
+        desc_html: Het uiterlijk van deze server met CSS aanpassen
+        title: Aangepaste CSS
       hero:
         desc_html: Wordt op de voorpagina getoond. Tenminste 600x100px aanbevolen. Wanneer dit niet is ingesteld wordt de thumbnail van de Mastodonserver getoond
         title: Hero-afbeelding
@@ -414,6 +427,12 @@ nl:
       last_delivery: Laatste bezorging
       title: WebSub
       topic: Account
+    suspensions:
+      bad_acct_msg: De bevestigingswaarde kwam niet overeen. Schort je wel het juiste account op?
+      hint_html: Vul in het veld hieronder %{value} in, om het opschorten van dit account te bevestigen.
+      proceed: Ga verder
+      title: "%{acct} opschorten"
+      warning_html: 'Door het opschorten van dit account worden gegevens van dit account <strong>permanent</strong> verwijderd, waaronder:'
     title: Beheer
   admin_mailer:
     new_report:
@@ -660,7 +679,7 @@ nl:
     acct: Geef jouw account@domein op die je wilt gebruiken
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
     no_account_html: Heb je geen account? Je kunt er <a href='%{sign_up_path}' target='_blank'>hier een registreren</a>
-    proceed: Ga door om te volgen
+    proceed: Ga verder om te volgen
     prompt: 'Jij gaat volgen:'
   remote_interaction:
     proceed: Ga de interactie aan
@@ -843,7 +862,7 @@ nl:
       <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
-    title: "%{instance} Terms of Service and Privacy Policy"
+    title: Gebruiksvoorwaarden en privacybeleid van %{instance}
   themes:
     contrast: Hoog contrast
     default: Mastodon
@@ -862,7 +881,7 @@ nl:
     generate_recovery_codes: Herstelcodes genereren
     instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het aanmelden moet invoeren."
     lost_recovery_codes: Met herstelcodes kun je toegang tot jouw account krijgen wanneer je jouw telefoon bent kwijtgeraakt. Wanneer je jouw herstelcodes bent kwijtgeraakt, kan je ze hier opnieuw genereren. Jouw oude herstelcodes zijn daarna ongeldig.
-    manual_instructions: Hieronder vind je de geheime code in platte tekst. Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren.
+    manual_instructions: Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder geheime code in gewone tekst.
     recovery_codes: Herstelcodes back-uppen
     recovery_codes_regenerated: Opnieuw genereren herstelcodes geslaagd
     recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige plek bewaard</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.
