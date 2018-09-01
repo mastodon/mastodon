@@ -5,7 +5,6 @@
   padding: 10px 5px;
   width: 300px;
   flex: none;
-  contain: strict;
 
   &:first-child {
     padding-left: 10px;
@@ -49,7 +48,6 @@
     background: lighten($ui-base-color, 13%);
     overflow-x: hidden;
     overflow-y: auto;
-    contain: strict;
 
     & > .mastodon {
       flex: 1;
@@ -253,7 +251,6 @@
   background: $ui-base-color;
   overflow-x: hidden;
   overflow-y: auto;
-  contain: strict;
 
   & > header {
     border-bottom: 1px solid darken($ui-base-color, 4%);
