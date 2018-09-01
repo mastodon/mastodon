@@ -224,6 +224,10 @@ class User < ApplicationRecord
     settings.notification_emails['digest']
   end
 
+  def allows_report_emails?
+    settings.notification_emails['report']
+  end
+
   def hides_network?
     @hides_network ||= settings.hide_network
   end
