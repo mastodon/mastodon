@@ -2369,28 +2369,6 @@ a.account__display-name {
 .getting-started {
   color: $dark-text-color;
 
-  p {
-    color: $dark-text-color;
-    font-size: 13px;
-    margin-bottom: 20px;
-
-    a {
-      color: $dark-text-color;
-      text-decoration: underline;
-    }
-  }
-
-  a {
-    text-decoration: none;
-    color: $darker-text-color;
-
-    &:hover,
-    &:focus,
-    &:active {
-      text-decoration: underline;
-    }
-  }
-
   &__footer {
     flex: 0 0 auto;
     padding: 10px;
@@ -2402,6 +2380,28 @@ a.account__display-name {
 
     ul li {
       display: inline;
+    }
+
+    p {
+      color: $dark-text-color;
+      font-size: 13px;
+      margin-bottom: 20px;
+
+      a {
+        color: $dark-text-color;
+        text-decoration: underline;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $darker-text-color;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: underline;
+      }
     }
   }
 

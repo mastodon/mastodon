@@ -6,6 +6,7 @@ eu:
     about_this: Honi buruz
     administered_by: 'Administratzailea(k):'
     api: APIa
+    apps: Aplikazio mugikorrak
     closed_registrations: Harpidetza itxita dago orain instantzia honetan. Hala ere, beste instantzia bat aurkitu dezakezu kontua egiteko eta hona ere sarbidea izan.
     contact: Kontaktua
     contact_missing: Ezarri gabe
@@ -29,16 +30,22 @@ eu:
     other_instances: Instantzien zerrenda
     privacy_policy: Pribatutasun politika
     source_code: Iturburu kodea
-    status_count_after: mezu idatzi dituzte
+    status_count_after:
+      one: mezu
+      other: mezu
     status_count_before: Hauek
     terms: Erabilera baldintzak
-    user_count_after: erabiltzaile daude
+    user_count_after:
+      one: erabiltzaile
+      other: erabiltzaile
     user_count_before: Hemen
     what_is_mastodon: Zer da Mastodon?
   accounts:
     choices_html: "%{name}(r)en aukerak:"
     follow: Jarraitu
-    followers: Jarraitzaile
+    followers:
+      one: Jarraitzaile
+      other: jarraitzaile
     following: Jarraitzen
     joined: "%{date}(e)an elkartua"
     media: Multimedia
@@ -49,7 +56,10 @@ eu:
     people_who_follow: "%{name} jarraitzen dutenak"
     pin_errors:
       following: Onetsi nahi duzun pertsona aurretik jarraitu behar duzu
-    posts: Toot-ak
+    posts:
+      one: Toot
+      other: Toot
+    posts_tab_heading: Tootak
     posts_with_replies: Toot eta erantzunak
     reserved_username: Erabiltzaile-izena erreserbatuta dago
     roles:
@@ -184,6 +194,7 @@ eu:
         unsuspend_account: "%{name}(e)k %{target} kontuaren kanporaketa atzera bota du"
         update_custom_emoji: "%{name}(e)k %{target} emoji-a eguneratu du"
         update_status: "%{name} (e)k %{target}(r)en mezua aldatu du"
+      deleted_status: "(ezabatutako mezua)"
       title: Auditoria-egunkaria
     custom_emojis:
       by_domain: Domeinua
@@ -280,6 +291,7 @@ eu:
       search: Bilatu
       title: Instantzia ezagunak
     invites:
+      deactivate_all: Desgaitu guztiak
       filter:
         all: Denak
         available: Eskuragarri
@@ -288,6 +300,7 @@ eu:
       title: Gonbidapenak
     relays:
       add_new: Gehitu hari berria
+      status: Mezuak
     report_notes:
       created_msg: Salaketa oharra ongi sortu da!
       destroyed_msg: Salaketa oharra ongi ezabatu da!
@@ -337,6 +350,9 @@ eu:
       contact_information:
         email: Laneko e-mail helbidea
         username: Kontaktuaren erabiltzaile-izena
+      custom_css:
+        desc_html: Aldatu itxura orri bakoitzean kargatutako CSS bidez
+        title: CSS pertsonala
       hero:
         desc_html: Azaleko orrian bistaratua. Gutxienez 600x100px aholkatzen da. Ezartzen ez bada, instantziaren irudia hartuko du
         title: Azaleko irudia
@@ -372,6 +388,7 @@ eu:
         desc_html: Zure jokabide-koderako  toki on bat, arauak, gidalerroak eta zure instantzia desberdin egiten duten bestelakoak. HTML etiketak erabili ditzakezu
         title: Informazio hedatu pertsonalizatua
       site_short_description:
+        desc_html: Albo-barra eta meta etiketetan bistaratua. Deskribatu zerk egiten duen Mastodon zerbitzari hau berezia paragrafo batean. Hutsik lagatzekotan lehenetsitako deskripzioa agertuko da.
         title: Instantziaren deskripzio laburra
       site_terms:
         desc_html: Zure pribatutasun politika, erabilera baldintzak eta bestelako testu legalak idatzi ditzakezu. HTML etiketak erabili ditzakezu
@@ -394,6 +411,7 @@ eu:
       media:
         title: Multimedia
       no_media: Multimediarik ez
+      no_status_selected: Ez da mezurik aldatu ez delako mezurik aukeratu
       title: Kontuaren mezuak
       with_media: Multimediarekin
     subscriptions:
@@ -403,6 +421,11 @@ eu:
       last_delivery: Azken bidalketa
       title: WebSub
       topic: Mintzagaia
+    suspensions:
+      bad_acct_msg: Berrespen balioa ez dator bat. Dagokion kontua kanporatzen ari zara?
+      hint_html: 'Kontuaren kanporatzea berresteko, sartu %{value} beheko eremuan:'
+      title: Kanporatu %{acct}
+      warning_html: 'Kontu hau kanporatzeak <strong>behin betiko</strong> ezabatuko ditu kontu honetako datuak, hauek barne:'
     title: Administrazioa
   admin_mailer:
     new_report:

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
+import ColumnBackButton from '../../components/column_back_button';
 import ColumnHeader from '../../components/column_header';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
@@ -129,9 +130,8 @@ export default class ListTimeline extends React.PureComponent {
     } else if (list === false) {
       return (
         <Column>
-          <div className='scrollable'>
-            <MissingIndicator />
-          </div>
+          <ColumnBackButton />
+          <MissingIndicator />
         </Column>
       );
     }
