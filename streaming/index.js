@@ -452,6 +452,12 @@ const startWorker = (workerId) => {
   app.use(setRequestId);
   app.use(setRemoteAddress);
   app.use(allowCrossDomain);
+
+  app.get('/api/v1/streaming/health', (req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('OK');
+  });
+
   app.use(authenticationMiddleware);
   app.use(errorMiddleware);
 

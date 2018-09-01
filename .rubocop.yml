@@ -62,6 +62,9 @@ Metrics/ParameterLists:
 Metrics/PerceivedComplexity:
   Max: 20
 
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
 Rails:
   Enabled: true
 
@@ -69,6 +72,9 @@ Rails/HasAndBelongsToMany:
   Enabled: false
 
 Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/HttpStatus:
   Enabled: false
 
 Style/ClassAndModuleChildren:

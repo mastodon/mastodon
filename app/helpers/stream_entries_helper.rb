@@ -22,12 +22,12 @@ module StreamEntriesHelper
         link_to account_unfollow_path(account), class: 'button logo-button button--destructive', data: { method: :post } do
           safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('accounts.unfollow')])
         end
-      else
+      elsif !(account.memorial? || account.moved?)
         link_to account_follow_path(account), class: 'button logo-button', data: { method: :post } do
           safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('accounts.follow')])
         end
       end
-    else
+    elsif !(account.memorial? || account.moved?)
       link_to account_remote_follow_path(account), class: 'button logo-button modal-button', target: '_new' do
         safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('accounts.follow')])
       end
@@ -62,17 +62,17 @@ module StreamEntriesHelper
     prepend_str = [
       [
         number_to_human(account.statuses_count, strip_insignificant_zeros: true),
-        I18n.t('accounts.posts'),
+        I18n.t('accounts.posts', count: account.statuses_count),
       ].join(' '),
 
       [
         number_to_human(account.following_count, strip_insignificant_zeros: true),
-        I18n.t('accounts.following'),
+        I18n.t('accounts.following', count: account.following_count),
       ].join(' '),
 
       [
         number_to_human(account.followers_count, strip_insignificant_zeros: true),
-        I18n.t('accounts.followers'),
+        I18n.t('accounts.followers', count: account.followers_count),
       ].join(' '),
     ].join(', ')
 

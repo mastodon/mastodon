@@ -25,11 +25,12 @@ module Devise
           )
 
           filter = format(Devise.ldap_search_filter, uid: Devise.ldap_uid, email: email)
+
           if (user_info = ldap.bind_as(base: Devise.ldap_base, filter: filter, password: password))
             user = User.ldap_get_user(user_info.first)
             success!(user)
           else
-            return fail(:invalid_login)
+            return fail(:invalid)
           end
         end
       end

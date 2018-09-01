@@ -43,7 +43,9 @@ en:
   accounts:
     choices_html: "%{name}'s choices:"
     follow: Follow
-    followers: Followers
+    followers:
+      one: Follower
+      other: Followers
     following: Following
     joined: Joined %{date}
     media: Media
@@ -54,7 +56,10 @@ en:
     people_who_follow: People who follow %{name}
     pin_errors:
       following: You must be already following the person you want to endorse
-    posts: Toots
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Toots and replies
     reserved_username: The username is reserved
     roles:
@@ -298,6 +303,8 @@ en:
       description_html: A <strong>federation relay</strong> is an intermediary server that exchanges large volumes of public toots between servers that subscribe and publish to it. <strong>It can help small and medium servers discover content from the fediverse</strong>, which would otherwise require local users manually following other people on remote servers.
       enable_hint: Once enabled, your server will subscribe to all public toots from this relay, and will begin sending this server's public toots to it.
       inbox_url: Relay URL
+      pending: Waiting for relay's approval
+      save_and_enable: Save and enable
       setup: Setup a relay connection
       status: Status
       title: Relays
@@ -350,6 +357,9 @@ en:
       contact_information:
         email: Business e-mail
         username: Contact username
+      custom_css:
+        desc_html: Modify the look with CSS loaded on every page
+        title: Custom CSS
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to instance thumbnail
         title: Hero image
