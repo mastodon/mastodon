@@ -19,20 +19,20 @@ Click on the screenshot below to watch a demo of the UI:
 
 **Ruby on Rails** is used for the back-end, while **React.js** and Redux are used for the dynamic front-end. A static front-end for public resources (profiles and statuses) is also provided.
 
-If you would like, you can [support the development of this project on Patreon][patreon] or [Liberapay][liberapay].
+If you would like, you can [support the development of this project on Patreon][patreon].
 
-[patreon]: https://www.patreon.com/user?u=619786
-[liberapay]: https://liberapay.com/Mastodon/
+[patreon]: https://www.patreon.com/mastodon
 
 ---
 
 ## Resources
 
-- [Frequently Asked Questions](https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md)
-- [Use this tool to find Twitter friends on Mastodon](https://bridge.joinmastodon.org)
+- [Quick start guide](https://blog.joinmastodon.org/2018/08/mastodon-quick-start-guide/)
+- [Find Twitter friends on Mastodon](https://bridge.joinmastodon.org)
 - [API overview](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md)
-- [List of Mastodon instances](https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/List-of-Mastodon-instances.md)
-- [List of apps](https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md)
+- [Documentation](https://github.com/tootsuite/documentation)
+- [List of servers](https://joinmastodon.org/#getting-started)
+- [List of apps](https://joinmastodon.org/apps)
 - [List of sponsors](https://joinmastodon.org/sponsors)
 
 ## Features
