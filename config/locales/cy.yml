@@ -1,7 +1,7 @@
+---
 cy:
   about:
-    about_hashtag_html: Dyma dwtiau cyhoeddus wedi eu tagio gyda <strong>#%{hashtag}</strong>.
-      Gallwch ryngweithio gyda nhw os oes gennych gyfrif yn unrhywle yn y ffedysawd.
+    about_hashtag_html: Dyma dwtiau cyhoeddus wedi eu tagio gyda <strong>#%{hashtag}</strong>. Gallwch ryngweithio gyda nhw os oes gennych gyfrif yn unrhywle yn y ffedysawd.
     about_this: Ynghylch
     administered_by: 'Gweinyddir gan:'
     api: API
@@ -104,6 +104,8 @@ cy:
     settings:
       contact_information:
         email: E-bost busnes
+  auth:
+    change_password: Cyfrinair
   authorize_follow:
     follow: Dilynwch
     title: Dilynwch %{acct}
@@ -138,7 +140,7 @@ cy:
       alipay: ''
       blackberry: ''
     current_session: Sesiwn cyfredol
-    description: '%{browser} ar %{platform}'
+    description: "%{browser} ar %{platform}"
     title: Sesiynau
   themes:
     contrast: Cyferbyniad uchel
@@ -146,10 +148,8 @@ cy:
     mastodon-light: Mastodon (golau)
   time:
     formats:
-      default: '%b %d, %Y, %H:%M'
-      month: '%b %Y'
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   user_mailer:
     welcome:
       subject: Croeso i Mastodon
-  auth:
-    change_password: Cyfrinair
