@@ -5,10 +5,13 @@ ca:
     about_mastodon_html: Mastodon és una xarxa social basada en protocols web oberts i en programari lliure i de codi obert. Està descentralitzat com el correu electrònic.
     about_this: Quant a
     administered_by: 'Administrat per:'
+    api: API
+    apps: Apps mòbil
     closed_registrations: Actualment, el registre està tancat en aquesta instància. Malgrat això! Pots trobar una altra instància per fer-te un compte i obtenir accés a la mateixa xarxa des d'allà.
     contact: Contacte
     contact_missing: No configurat
     contact_unavailable: N/D
+    documentation: Documentació
     extended_description_html: |
       <h3>Un bon lloc per les regles</h3>
       <p>Encara no s'ha configurat la descripció ampliada.</p>
@@ -25,23 +28,38 @@ ca:
     hosted_on: Mastodon allotjat a %{domain}
     learn_more: Més informació
     other_instances: Altres instàncies
+    privacy_policy: Política de privacitat
     source_code: Codi font
-    status_count_after: estats
+    status_count_after:
+      one: estat
+      other: estats
     status_count_before: Que han escrit
-    user_count_after: usuaris registrats
+    terms: Termes del servei
+    user_count_after:
+      one: usuari
+      other: usuaris
     user_count_before: Tenim
     what_is_mastodon: Què és Mastodon?
   accounts:
+    choices_html: 'Eleccions de %{name}:'
     follow: Segueix
-    followers: Seguidors
+    followers:
+      one: Seguidor
+      other: Seguidors
     following: Seguint
+    joined: Unit des de %{date}
     media: Mèdia
     moved_html: "%{name} s'ha mogut a %{new_profile_link}:"
     network_hidden: Aquesta informació no està disponible
     nothing_here: No hi ha res aquí!
     people_followed_by: Usuaris seguits per %{name}
     people_who_follow: Usuaris que segueixen %{name}
-    posts: Toots
+    pin_errors:
+      following: Has d'estar seguint la persona que vulguis avalar
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Toots i respostes
     reserved_username: El nom d'usuari està reservat
     roles:
@@ -176,6 +194,7 @@ ca:
         unsuspend_account: "%{name} ha llevat la suspensió del compte de %{target}"
         update_custom_emoji: "%{name} ha actualitzat l'emoji %{target}"
         update_status: "%{name} estat actualitzat per %{target}"
+      deleted_status: "(toot suprimit)"
       title: Registre d'auditoria
     custom_emojis:
       by_domain: Domini
@@ -202,6 +221,27 @@ ca:
       update_failed_msg: No s'ha pogut actualitzar aquest emoji
       updated_msg: Emoji s'ha actualitzat correctament!
       upload: Carrega
+    dashboard:
+      backlog: treballs en espera
+      config: Configuració
+      feature_deletions: Supressions del compte
+      feature_invites: Enllaços de convits
+      feature_registrations: Registres
+      feature_relay: Relay de la Federació
+      features: Característiques
+      hidden_service: Federació amb serveis ocults
+      open_reports: informes oberts
+      recent_users: Usuaris recents
+      search: Cerca de text complet
+      single_user_mode: Mode d'usuari únic
+      software: Programari
+      space: Ús d’espai
+      title: Panell
+      total_users: usuaris en total
+      trends: Tendències
+      week_interactions: interaccions d'aquesta setmana
+      week_users_active: actiu aquesta setmana
+      week_users_new: usuaris aquesta setmana
     domain_blocks:
       add_new: Afegeix
       created_msg: El bloqueig de domini ara s'està processant
@@ -251,12 +291,23 @@ ca:
       search: Cerca
       title: Instàncies conegudes
     invites:
+      deactivate_all: Desactiva-ho tot
       filter:
         all: Totes
         available: Disponible
         expired: Caducat
         title: Filtre
       title: Convida
+    relays:
+      add_new: Afegiu un nou relay
+      description_html: Un <strong>relay de federació</strong> és un servidor intermediari que intercanvia grans volums de toots públics entre servidors que es subscriuen i publiquen en ell. <strong>Pot ajudar a servidors petits i mitjans a descobrir contingut del fedivers</strong>, no fent necessari que els usuaris locals manualment segueixin altres persones de servidors remots.
+      enable_hint: Una vegada habilitat, el teu servidor es subscriurà a tots els toots públics d'aquest relay i començarà a enviar-hi tots els toots públics d'aquest servidor.
+      inbox_url: URL del Relay
+      pending: S'està esperant l'aprovació del relay
+      save_and_enable: Desa i activa
+      setup: Configura una connexió de relay
+      status: Estat
+      title: Relays
     report_notes:
       created_msg: La nota del informe s'ha creat correctament!
       destroyed_msg: La nota del informe s'ha esborrat correctament!
@@ -306,12 +357,18 @@ ca:
       contact_information:
         email: Introdueix una adreça de correu electrònic píblica
         username: Nom d'usuari del contacte
+      custom_css:
+        desc_html: Modifica l'aspecte amb CSS carregat a cada pàgina
+        title: CSS personalitzat
       hero:
         desc_html: Es mostra en pàgina frontal. Recomanat 600x100px al menys. Si no es configura es mostrarà el de la instància
         title: Imatge d’heroi
       peers_api_enabled:
         desc_html: Els noms de domini que ha trobat aquesta instància al fediverse
         title: Publica la llista d'instàncies descobertes
+      preview_sensitive_media:
+        desc_html: Les visualitzacions prèvies d'enllaços d'altres llocs web mostraran una miniatura encara que els mitjans de comunicació estiguin marcats com a sensibles
+        title: Mostra els mitjans sensibles a les previsualitzacions d'OpenGraph
       registrations:
         closed_message:
           desc_html: Apareix en la primera pàgina quan es tanquen els registres. Pots utilitzar etiquetes HTML
@@ -337,6 +394,9 @@ ca:
       site_description_extended:
         desc_html: Un bon lloc per al codi de conducta, regles, directrius i altres coses que distingeixen la vostra instància. Pots utilitzar etiquetes HTML
         title: Descripció ampliada del lloc
+      site_short_description:
+        desc_html: Es mostra a la barra lateral i a metaetiquetes. Descriu en un únic paràgraf què és Mastodon i què fa que aquest servidor sigui especial. Si està buit, s'estableix per defecte la descripció de la instància.
+        title: Descripció curta de l’instància
       site_terms:
         desc_html: Pots escriure la teva pròpia política de privadesa, els termes del servei o d'altres normes legals. Pots utilitzar etiquetes HTML
         title: Termes del servei personalitzats
@@ -358,6 +418,7 @@ ca:
       media:
         title: Contingut multimèdia
       no_media: Sense contingut multimèdia
+      no_status_selected: No s’han canviat els estatus perquè cap no ha estat seleccionat
       title: Estats del compte
       with_media: Amb contingut multimèdia
     subscriptions:
@@ -367,6 +428,12 @@ ca:
       last_delivery: Últim lliurament
       title: WebSub
       topic: Tema
+    suspensions:
+      bad_acct_msg: El valor de confirmació no s'ha trobat. Estàs suspenen el compte correcte?
+      hint_html: 'Per confirmar la suspensió del compte, introdueix %{value} al camp següent:'
+      proceed: Procedeix
+      title: Suspèn %{acct}
+      warning_html: 'Suspenen aquest compte esborrarà <strong>irreversiblement</strong> les dades del compte, incloent:'
     title: Administració
   admin_mailer:
     new_report:
@@ -498,6 +565,10 @@ ca:
     true_privacy_html: Considera que <strong>la autèntica privacitat només es pot aconseguir amb xifratge d'extrem a extrem</strong>.
     unlocked_warning_html: Tothom pot seguir-te per a veure inmediatament les teves publicacions privades. %{lock_link} per poder revisar i rebutjar seguidors.
     unlocked_warning_title: El teu compte no està blocat
+  footer:
+    developers: Desenvolupadors
+    more: Més…
+    resources: Recursos
   generic:
     changes_saved_msg: Els canvis s'han desat correctament!
     save_changes: Desa els canvis
@@ -611,6 +682,9 @@ ca:
     no_account_html: No tens cap compte? Pots <a href='%{sign_up_path}' target='_blank'>registrar-te aquí</a>
     proceed: Comença a seguir
     prompt: 'Seguiràs a:'
+  remote_interaction:
+    proceed: Procedeix a interactuar
+    prompt: 'Vols interactuar amb aquest toot:'
   remote_unfollow:
     error: Error
     title: Títol
@@ -694,6 +768,7 @@ ca:
       private: No es pot fixar el toot no públic
       reblog: No es pot fixar un impuls
     show_more: Mostrar més
+    sign_in_to_participate: Inicia la sessió per participar a la conversa
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Només seguidors
@@ -796,6 +871,7 @@ ca:
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Introdueix el codi generat per l'aplicació autenticadora per a confirmar
     description_html: Si habilites l'<strong>autenticació de dos factors</strong>, et caldrà tenir el teu telèfon, que generarà tokens per a que puguis iniciar sessió.
