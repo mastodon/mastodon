@@ -6,6 +6,7 @@ co:
     about_this: À prupositu
     administered_by: 'Amministratu da:'
     api: API
+    apps: Applicazione per u telefuninu
     closed_registrations: Pè avà, l’arregistramenti sò chjosi nant’à st’istanza. Mà pudete truvà un’altr’istanza per fà un contu è avè accessu à listessa reta da quallà.
     contact: Cuntattu
     contact_missing: Mancante
@@ -29,23 +30,36 @@ co:
     other_instances: Lista di l’istanze
     privacy_policy: Pulitica di vita privata
     source_code: Codice di fonte
-    status_count_after: statuti
+    status_count_after:
+      one: statutu
+      other: statuti
     status_count_before: chì anu pubblicatu
     terms: Cundizione di u serviziu
-    user_count_after: parsone quì
+    user_count_after:
+      one: utilizatore
+      other: utilizatori
     user_count_before: Ci sò
     what_is_mastodon: Quale hè Mastodon?
   accounts:
+    choices_html: "%{name} ricumanda:"
     follow: Siguità
-    followers: Abbunati
+    followers:
+      one: Abbunatu·a
+      other: Abbunati
     following: Abbunamenti
+    joined: Quì dapoi %{date}
     media: Media
     moved_html: "%{name} hà cambiatu di contu, avà hè nant’à %{new_profile_link}:"
     network_hidden: St'infurmazione ùn hè micca dispunibule
     nothing_here: Ùn c’hè nunda quì!
     people_followed_by: Seguitati da %{name}
     people_who_follow: Seguitanu %{name}
-    posts: Statuti
+    pin_errors:
+      following: Duvete digià siguità a persona che vulete ricumandà
+    posts:
+      one: Statutu
+      other: Statuti
+    posts_tab_heading: Statuti
     posts_with_replies: Statuti è risposte
     reserved_username: Stu cugnome hè riservatu
     roles:
@@ -180,6 +194,7 @@ co:
         unsuspend_account: "%{name} hà fattu che u contu di %{target} ùn hè più suspesu"
         update_custom_emoji: "%{name} hà messu à ghjornu l’emoji %{target}"
         update_status: "%{name} hà cambiatu u statutu di %{target}"
+      deleted_status: "(statutu sguassatu)"
       title: Ghjurnale d’audit
     custom_emojis:
       by_domain: Duminiu
@@ -207,6 +222,7 @@ co:
       updated_msg: L’emoji hè stata messa à ghjornu!
       upload: Caricà
     dashboard:
+      backlog: travagli in attesa
       config: Cunfigurazione
       feature_deletions: Sguassamenti di conti
       feature_invites: Ligami d'invitazione
@@ -220,6 +236,7 @@ co:
       single_user_mode: Modu utilizatore unicu
       software: Lugiziale
       space: Usu di u spaziu
+      title: Dashboard
       total_users: utilizatori in tutale
       trends: Tindenze
       week_interactions: interazzione sta settimana
@@ -274,6 +291,7 @@ co:
       search: Cercà
       title: Istanze cunnisciute
     invites:
+      deactivate_all: Disattivà tuttu
       filter:
         all: Tuttu
         available: Dispunibuli
@@ -285,6 +303,8 @@ co:
       description_html: Un <strong>ripetitore di federazione</strong> ghjè un servore intermediariu chì manda statuti pubblichi trà l'istanze abbunate. <strong>Pò aiutà l'istanze chjuche è mezane à scuprì u cuntinutu di u fediverse</strong> senza chì l'utilizatori appianu bisognu di seguità tutti i conti di l'altri servori.
       enable_hint: Quandu sarà attivatu, u vostru servore hà da seguità i statuti pubblichi di u ripetitore, è mandarà i so statuti pubblichi quallà.
       inbox_url: URL di u ripetitore
+      pending: In attesa di l'apprubazione di u ripetitore
+      save_and_enable: Salvà è attivà
       setup: Creà una cunnessione cù un ripetitore
       status: Statutu
       title: Ripetitori
@@ -337,12 +357,18 @@ co:
       contact_information:
         email: E-mail prufissiunale
         username: Identificatore di cuntattu
+      custom_css:
+        desc_html: Mudificà l'apparenza cù CSS caricatu nant'à ogni pagina
+        title: CSS persunalizatu
       hero:
         desc_html: Affissatu nant’a pagina d’accolta. Ricumandemu almenu 600x100px. S’ellu ùn hè micca definiti, a vignetta di l’istanza sarà usata
         title: Ritrattu di cuprendula
       peers_api_enabled:
         desc_html: Indirizzi st’istanza hà vistu indè u fediverse
         title: Pubblicà a lista d’istanza cunnisciute
+      preview_sensitive_media:
+        desc_html: E priviste di i ligami nant'à l'altri siti mustreranu una vignetta ancu s'ellu hè marcatu cum'è sensibile u media
+        title: Vede media sensibili in e viste OpenGraph
       registrations:
         closed_message:
           desc_html: Affissatu nant’a pagina d’accolta quandu l’arregistramenti sò chjosi. Pudete fà usu di u furmattu HTML
@@ -369,6 +395,7 @@ co:
         desc_html: Una bona piazza per e regule, infurmazione è altre cose chì l’utilizatori duverìanu sapè. Pudete fà usu di marchi HTML
         title: Discrizzione stesa di u situ
       site_short_description:
+        desc_html: Mustratu indè a barra laterala è i tag meta. Spiegate quale hè Mastodon è ciò chì rende u vostru servore speciale in un paragrafu. S'ella hè lasciata viota, a discrizzione di l'istanza sarà utilizata.
         title: Descrizzione corta di l'istanza
       site_terms:
         desc_html: Quì pudete scrive e vostre regule di cunfidenzialità, cundizione d’usu o altre menzione legale. Pudete fà usu di marchi HTML
@@ -391,6 +418,7 @@ co:
       media:
         title: Media
       no_media: Nisun media
+      no_status_selected: I statuti ùn sò micca stati mudificati perchè manc'unu era selezziunatu
       title: Statutu di u contu
       with_media: Cù media
     subscriptions:
@@ -400,6 +428,12 @@ co:
       last_delivery: Ultima arricata
       title: WebSub
       topic: Sughjettu
+    suspensions:
+      bad_acct_msg: U valore di cunfirmazione ùn era micca curretta. Site sicuru·a di suspende u bonu contu?
+      hint_html: 'Per cunfirmà a suspensione di u contu, entrate %{value} quì sottu:'
+      proceed: Cuntinuà
+      title: Suspende %{acct}
+      warning_html: 'A suspensione di u contu sguasserà di manera <strong>irreversibile</strong> i so dati, cum''è:'
     title: Amministrazione
   admin_mailer:
     new_report:
@@ -505,6 +539,7 @@ co:
     storage: I vostri media
   filters:
     contexts:
+      home: Accolta
       notifications: Nutificazione
       public: Linee pubbliche
       thread: Cunversazione
@@ -512,6 +547,7 @@ co:
       title: Mudificà u filtru
     errors:
       invalid_context: Micca abbastanza cuntestu
+      invalid_irreversible: A filtrazione irreversibile marchja solu per l'accolta è e nutificazione
     index:
       delete: Toglie
       title: Filtri
@@ -646,6 +682,9 @@ co:
     no_account_html: Ùn avete micca un contu? Pudete <a href='%{sign_up_path}' target='_blank'>arregistravi quì</a>
     proceed: Cuntinuà per siguità
     prompt: 'Avete da siguità:'
+  remote_interaction:
+    proceed: Cunfirmà l'interazzione
+    prompt: 'Vulete interagisce cù u statutu:'
   remote_unfollow:
     error: Errore
     title: Titulu
@@ -729,6 +768,7 @@ co:
       private: Ùn pudete micca puntarulà un statutu ch’ùn hè micca pubblicu
       reblog: Ùn pudete micca puntarulà una spartera
     show_more: Vede di più
+    sign_in_to_participate: Cunnettatevi per participà à a cunversazione
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Solu per l’abbunati
@@ -742,6 +782,87 @@ co:
     reblogged: spartutu
     sensitive_content: Cuntenutu sensibile
   terms:
+    body_html: |
+      <h2>Politique de confidentialité</h2>
+      <h3 id="collect">Quelles informations collectons-nous ?</h3>
+
+      <ul>
+        <li><em>Informations de base sur votre compte</em> : Si vous vous inscrivez sur ce serveur, il vous sera demandé de rentrer un identifiant, une adresse électronique et un mot de passe. Vous pourrez également ajouter des informations additionnelles sur votre profil, telles qu’un nom public et une biographie, ainsi que téléverser une image de profil et une image d’en-tête. Vos identifiant, nom public, biographie, image de profil et image d’en-tête seront toujours affichés publiquement.</li>
+      <li><em>Posts, liste d’abonnements et autres informations publiques</em> : La liste de vos abonnements ainsi que la liste de vos abonné·e·s sont publiques. Quand vous postez un message, la date et l’heure d’envoi ainsi que le nom de l’application utilisée pour sa transmission sont enregistré·e·s. Des médias, tels que des images ou des vidéos, peuvent être joints aux messages. Les posts publics et non listés sont affichés publiquement. Quand vous mettez en avant un post sur votre profil, ce post est également affiché publiquement. Vos messages sont délivrés à vos abonné·e·s, ce qui, dans certains cas, signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Quand vous supprimer un post, il est probable que vos abonné·e·s en soient informé·e·s. Partager un message ou le marquer comme favori est toujours une action publique.</li>
+        <li><em>Posts directs et abonné·e·s uniquement</em> : Tous les posts sont stockés et traités par le serveur. Les messages abonné·e·s uniquement ne sont transmis qu’à vos abonné·e·s et aux personnes mentionnées dans le corps du message, tandis que les messages directs ne sont transmis qu’aux personnes mentionnées. Dans certains cas, cela signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Nous faisons un effort de bonne fois pour en limiter l’accès uniquement aux personnes autorisées, mais ce n’est pas nécessairement le cas des autres serveurs. Il est donc très important que vous vérifiiez les serveurs auxquels appartiennent vos abonné·e·s. Il vous est possible d’activer une option dans les paramètres afin d’approuver et de rejeter manuellement les nouveaux·lles abonné·e·s. <em>Gardez s’il-vous-plaît en mémoire que les opérateur·rice·s du serveur ainsi que celles et ceux de n’importe quel serveur récepteur peuvent voir ces messages</em> et qu’il est possible pour les destinataires de faire des captures d’écran, de copier et plus généralement de repartager ces messages. <em>Ne partager aucune information sensible à l’aide de Mastodon.</em></li>
+        <li><em>IP et autres métadonnées</em> : Quand vous vous connectez, nous enregistrons votre adresse IP ainsi que le nom de votre navigateur web. Toutes les sessions enregistrées peuvent être consultées dans les paramètres, afin que vous puissiez les surveiller et éventuellement les révoquer. La dernière adresse IP utilisée est conservée pour une durée de 12 mois. Nous sommes également susceptibles de conserver les journaux du serveur, ce qui inclut l’adresse IP de chaque requête reçue.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">Que faisons-nous des informations que nous collectons ?</h3>
+
+      <p>Toutes les informations que nous collectons sur vous peuvent être utilisées d’une des manières suivantes :</p>
+
+      <ul>
+        <li>Pour vous fournir les fonctionnalités de base de Mastodon. Vous ne pouvez interagir avec le contenu des autres et poster votre propre contenu que lorsque vous êtes connecté·e. Par exemple, vous pouvez vous abonner à plusieurs autres comptes pour voir l’ensemble de leurs posts dans votre fil d’accueil personnalisé.</li>
+        <li>Pour aider à la modération de la communauté, par exemple, comparer votre adresse IP à d’autres afin de déterminer si un bannissement a été contourné ou si une autre violation aux règles a été commise.</li>
+        <li>L’adresse électronique que vous nous avez fournie peut être utilisée pour vous envoyez des informations, des notifications lorsque d’autres personnes interagissent avec votre contenu ou vous envoient des messages, pour répondre à des demandes de votre part ainsi que pour tout autres requêtes ou questions.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">Comment protégeons-nous vos informations ?</h3>
+
+      <p>Nous mettons en œuvre une variété de mesures de sécurité afin de garantir la sécurité de vos informations personnelles quand vous les saisissez, les soumettez et les consultez. Entre autres choses, votre session de navigation ainsi que le trafic entre votre application et l’API sont sécurisés à l’aide de TLS tandis que votre mot de passe est haché en utilisant un puissant algorithme à sens unique. Vous pouvez également activer l’authentification à deux facteurs pour sécuriser encore plus l’accès à votre compte.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">Quelle est notre politique de conservation des données ?</h3>
+
+      <p>Nous ferons un effort de bonne foi :</p>
+
+      <ul>
+        <li>Pour ne pas conserver plus de 90 jours les journaux systèmes contenant les adresses IP de toutes les requêtes reçues par ce serveur.</li>
+        <li>Pour ne pas conserver plus de 12 mois les adresses IP associées aux utilisateur·ice·s enregistré·e·s.</li>
+      </ul>
+
+      <p>Vous pouvez demander une archive de votre contenu, incluant vos posts, vos médias joints, votre image de profil et votre image d’en-tête.</p>
+
+      <p>Vous pouvez, à n’importe quel moment, supprimer votre compte de manière définitive.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Utilisons-nous des témoins de connexion ?</h3>
+
+      <p>Oui. Les témoins de connexion sont de petits fichiers qu’un site ou un service transféres sur le disque dur de votre ordinateur via votre navigateur web (si vous l’avez autorisé). Ces témoins permettent au site de reconnaître votre navigateur et de, dans le cas où vous possédez un compte, de vous associer avec ce dernier.</p>
+
+      <p>Nous utilisons les témoins de connexion comme un moyen de comprendre et de nous souvenir de vos préférences pour vos prochaines visites.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Divulguons-nous des informations à des tierces parties ?</h3>
+
+      <p>Nous ne vendons, n’échangeons ou ne transférons d’une quelque manière que soit des informations permettant de vous identifier personnellement. Cela n’inclut pas les tierces parties de confiance qui nous aident à opérer ce site, à conduire nos activités commerciales ou à vous servir, tant qu’elles acceptent de garder ces informations confidentielles. Nous sommes également susceptibles de partager vos informations quand nous pensons que c’est nécessaire pour nous conformer à la loi, pour appliquer les politiques de notre site ainsi que pour défendre nos droits, notre propriété, notre sécurité et celles et ceux d’autres personnes.</p>
+
+      <p>Votre contenu public peut être téléchargé par d’autres serveurs du réseau. Dans le cas où vos abonné·e·s et vos destinataires résideraient sur des serveurs différents du vôtre, vos posts publics et abonné·e·s uniquement peuvent être délivrés vers les serveurs de vos abonné·e·s tandis que vos messages directs sont délivrés aux serveurs de vos destinataires.</p>
+
+      <p>Quand vous autorisez une application à utiliser votre compte, en fonction de l’étendue des permissions que vous approuvez, il est possible qu’elle puisse accéder aux informations publiques de votre profil, votre liste d’abonnements, votre liste d’abonné·e·s, vos listes, tout vos posts et vos favoris. Les applications ne peuvent en aucun cas accéder à votre adresse électronique et à votre mot de passe.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Utilisation de ce site par les enfants</h3>
+
+      <p>Si ce serveur est situé dans dans l’UE ou l’EEE : Notre site, produits et services sont tous destinés à des personnes âgées de 16 ans ou plus. Si vous avez moins de 16 ans, en application du RGPD (<a href="https://fr.wikipedia.org/wiki/R%C3%A8glement_g%C3%A9n%C3%A9ral_sur_la_protection_des_donn%C3%A9es">Règlement Général sur la Protection des Données</a>), merci de ne pas utiliser ce site.</p>
+
+      <p>Si ce serveur est situé dans aux États-Unis d’Amérique : Notre site, produits et services sont tous destinés à des personnes âgées de 13 ans ou plus. Si vous avez moins de 13 ans, en application du COPPA (<a href="https://fr.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>), merci de ne pas utiliser ce site.</p>
+
+      <p>Les exigences légales peuvent être différentes si ce serveur se trouve dans une autre juridiction.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Modifications de notre politique de confidentialité</h3>
+
+      <p>Dans le cas où nous déciderions de changer notre politique de confidentialité, nous posterons les modifications sur cette page.</p>
+
+      <p>Ce document est publié sous lincence CC-BY-SA. Il a été mis à jours pour la dernière fois le 7 mars 2018.</p>
+
+      <p>Originellement adapté de la <a href="https://github.com/discourse/discourse">politique de confidentialité de Discourse</a>.</p>
     title: Termini d’usu è di cunfidenzialità per %{instance}
   themes:
     contrast: Cuntrastu altu

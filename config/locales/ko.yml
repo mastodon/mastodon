@@ -5,10 +5,13 @@ ko:
     about_mastodon_html: 마스토돈은 <em>오픈 소스 기반의</em> 소셜 네트워크 서비스 입니다. 상용 플랫폼의 대체로서 <em>분산형 구조</em>를 채택해, 여러분의 대화가 한 회사에 독점되는 것을 방지합니다. 신뢰할 수 있는 인스턴스를 선택하세요 &mdash; 어떤 인스턴스를 고르더라도, 누구와도 대화할 수 있습니다. 누구나 자신만의 마스토돈 인스턴스를 만들 수 있으며, 아주 매끄럽게 <em>소셜 네트워크</em>에 참가할 수 있습니다.
     about_this: 이 인스턴스에 대해서
     administered_by: '관리자:'
+    api: API
+    apps: 모바일 앱
     closed_registrations: 현재 이 인스턴스에서는 신규 등록을 받고 있지 않습니다.
     contact: 연락처
     contact_missing: 미설정
     contact_unavailable: N/A
+    documentation: 문서
     extended_description_html: |
       <h3>룰을 작성하는 장소</h3>
       <p>아직 설명이 작성되지 않았습니다.</p>
@@ -25,23 +28,38 @@ ko:
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
     learn_more: 자세히
     other_instances: 다른 인스턴스
+    privacy_policy: 개인정보 정책
     source_code: 소스 코드
-    status_count_after: 툿
+    status_count_after:
+      one: 툿
+      other: 툿
     status_count_before: 툿 수
-    user_count_after: 명
+    terms: 이용약관
+    user_count_after:
+      one: 명
+      other: 명
     user_count_before: 사용자 수
     what_is_mastodon: 마스토돈이란?
   accounts:
+    choices_html: "%{name}의 추천:"
     follow: 팔로우
-    followers: 팔로워
+    followers:
+      one: 팔로워
+      other: 팔로워
     following: 팔로잉
+    joined: "%{date}에 가입함"
     media: 미디어
     moved_html: "%{name}은 %{new_profile_link}으로 이동되었습니다:"
     network_hidden: 이 정보는 사용할 수 없습니다
     nothing_here: 아무 것도 없습니다!
     people_followed_by: "%{name} 님이 팔로우 중인 계정"
     people_who_follow: "%{name} 님을 팔로우 중인 계정"
-    posts: 툿
+    pin_errors:
+      following: 추천하려는 사람을 팔로우 하고 있어야 합니다
+    posts:
+      one: 툿
+      other: 툿
+    posts_tab_heading: 툿
     posts_with_replies: 툿과 답장
     reserved_username: 이 아이디는 예약되어 있습니다
     roles:
@@ -176,6 +194,7 @@ ko:
         unsuspend_account: "%{name}이 %{target}에 대한 정지를 해제했습니다"
         update_custom_emoji: "%{name}이 에모지 %{target}를 업데이트 했습니다"
         update_status: "%{name}이 %{target}의 상태를 업데이트 했습니다"
+      deleted_status: "(삭제됨)"
       title: 감사 기록
     custom_emojis:
       by_domain: 도메인
@@ -274,6 +293,7 @@ ko:
       search: 검색
       title: 알려진 인스턴스들
     invites:
+      deactivate_all: 전부 비활성화
       filter:
         all: 모두
         available: 사용가능
@@ -285,6 +305,8 @@ ko:
       description_html: "<strong>연합 릴레이</strong>는 서버들 사이에서 많은 양의 공개 툿을 구독하고 중개하는 서버입니다. <strong>이것은 중소 규모의 서버에서 연합우주를 발견하는 데에 도움을 줄 수 있습니다</strong>, 이제 로컬 유저들이 다른 서버의 유저들을 수동으로 팔로우 하지 않아도 됩니다."
       enable_hint: 활성화 되면, 이 릴레이의 모든 공개 툿을 구독하고 이 서버의 공개 툿을 전송하게 됩니다.
       inbox_url: 릴레이 URL
+      pending: 릴레이의 승인 대기중
+      save_and_enable: 저장하고 활성화
       setup: 릴레이 연결 설정
       status: 상태
       title: 릴레이
@@ -337,6 +359,9 @@ ko:
       contact_information:
         email: 공개할 메일 주소를 입력
         username: 아이디를 입력
+      custom_css:
+        desc_html: 모든 페이지에 적용할 CSS
+        title: 커스텀 CSS
       hero:
         desc_html: 프론트페이지에 표시 됩니다. 최소 600x100픽셀을 권장합니다. 만약 설정되지 않았다면, 인스턴스의 썸네일이 사용 됩니다
         title: 히어로 이미지
@@ -371,6 +396,9 @@ ko:
       site_description_extended:
         desc_html: 규칙, 가이드라인 등을 작성하기 좋은 곳입니다. HTML 태그를 사용할 수 있습니다
         title: 사이트 상세 설명
+      site_short_description:
+        desc_html: 사이드바와 메타 태그에 나타납니다. 마스토돈이 무엇이고 이 서버의 특징은 무엇인지 한 문장으로 설명하세요. 비워두면 인스턴스 설명이 대신 사용됩니다.
+        title: 짧은 인스턴스 설명
       site_terms:
         desc_html: 당신은 독자적인 개인정보 취급 방침이나 이용약관, 그 외의 법적 근거를 작성할 수 있습니다. HTML태그를 사용할 수 있습니다
         title: 커스텀 서비스 이용 약관
@@ -392,6 +420,7 @@ ko:
       media:
         title: 미디어
       no_media: 미디어 없음
+      no_status_selected: 아무 것도 선택 되지 않아 아무 것도 바뀌지 않았습니다
       title: 계정 툿
       with_media: 미디어 있음
     subscriptions:
@@ -401,6 +430,12 @@ ko:
       last_delivery: 최종 발송
       title: WebSub
       topic: 토픽
+    suspensions:
+      bad_acct_msg: 확인값이 일치하지 않습니다. 정지하려는 계정이 맞습니까?
+      hint_html: '이 계정을 정지하려면 %{value}를 아래 입력칸에 입력하세요:'
+      proceed: 처리됨
+      title: "%{acct} 정지하기"
+      warning_html: '이 계정을 정지하면 계정의 데이터를 모두 삭제하며 <strong>되돌릴 수 없습니다</strong>. 이것은 다음을 포함합니다:'
     title: 관리
   admin_mailer:
     new_report:
@@ -532,6 +567,10 @@ ko:
     true_privacy_html: "<strong>프라이버시 보호는 End-to-End 암호화로만 이루어 질 수 있다는 것에 유의</strong>해 주십시오."
     unlocked_warning_html: 누구든 여러분을 팔로우 할 수 있으며, 여러분의 프라이빗 투고를 볼 수 있습니다. 팔로우 할 수 있는 사람을 제한하고 싶은 경우 %{lock_link}에서 설정해 주십시오.
     unlocked_warning_title: 이 계정은 비공개로 설정되어 있지 않습니다
+  footer:
+    developers: 개발자
+    more: 더 보기…
+    resources: 리소스
   generic:
     changes_saved_msg: 정상적으로 변경되었습니다!
     save_changes: 변경 사항을 저장
@@ -645,6 +684,9 @@ ko:
     no_account_html: 계정이 없나요? <a href='%{sign_up_path}' target='_blank'>여기에서 가입 할 수 있습니다</a>
     proceed: 팔로우 하기
     prompt: '팔로우 하려 하고 있습니다:'
+  remote_interaction:
+    proceed: 진행
+    prompt: '이 게시물에 상호작용하려 하고 있습니다:'
   remote_unfollow:
     error: 에러
     title: 타이틀
@@ -728,6 +770,7 @@ ko:
       private: 비공개 툿은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
     show_more: 더 보기
+    sign_in_to_participate: 로그인 하여 이 대화에 참여하기
     title: '%{name}: "%{quote}"'
     visibilities:
       private: 비공개
@@ -741,6 +784,87 @@ ko:
     reblogged: 님이 부스트 했습니다
     sensitive_content: 민감한 컨텐츠
   terms:
+    body_html: |
+      <h2>개인정보 정책</h2>
+      <h3 id="collect">우리가 어떤 정보를 수집하나요?</h3>
+
+      <ul>
+        <li><em>기본 계정 정보</em>: 이 서버에 가입하실 때 유저네임, 이메일 주소, 패스워드 등을 입력 받게 됩니다. 추가적으로 디스플레이네임이나 자기소개, 프로필 이미지, 헤더 이미지 등의 프로필 정보를 입력하게 됩니다. 유저네임, 디스플레이네임, 자기소개, 프로필 이미지와 헤더 이미지는 언제나 공개적으로 게시됩니다.</li>
+        <li><em>게시물, 팔로잉, 기타 공개된 정보</em>: 당신이 팔로우 하는 사람들의 리스트는 공개됩니다. 당신을 팔로우 하는 사람들도 마찬가지입니다. 당신이 게시물을 작성하는 경우, 응용프로그램이 메시지를 받았을 때의 날짜와 시간이 기록 됩니다. 게시물은 그림이나 영상 등의 미디어를 포함할 수 있습니다. 퍼블릭과 미표시(unlisted) 게시물은 공개적으로 접근이 가능합니다. 프로필에 게시물을 고정하는 경우 마찬가지로 공개적으로 접근 가능한 정보가 됩니다. 당신의 게시물들은 당신의 팔로워들에게 전송 됩니다. 몇몇 경우 이것은 다른 서버에 전송되고 그곳에 사본이 저장 됩니다. 당신이 게시물을 삭제하는 경우 이 또한 당신의 팔로워들에게 전송 됩니다. 다른 게시물을 리블로깅 하거나 즐겨찾기 하는 경우 이는 언제나 공개적으로 제공 됩니다.</li>
+        <li><em>DM, 팔로워 공개 게시물</em>: 모든 게시물들은 서버에서 처리되고 저장됩니다. 팔로워 공개 게시물은 당신의 팔로워와 멘션 된 사람들에게 전달이 됩니다. 다이렉트 메시지는 멘션 된 사람들에게만 전송 됩니다. 몇몇 경우 이것은 다른 서버에 전송 되고 그곳에 사본이 저장됨을 의미합니다. 우리는 이 게시물들이 권한을 가진 사람들만 열람이 가능하도록 노력을 할 것이지만 다른 서버에서는 이것이 실패할 수도 있습니다. 그러므로 당신의 팔로워들이 속한 서버를 재확인하는 것이 중요합니다. 당신은 새 팔로워를 수동으로 승인하거나 거절하도록 설정을 변경할 수 있습니다. <em>해당 서버의 운영자는 서버가 받는 메시지를 열람할 수 있다는 것을 항상 염두해 두세요</em>, 그리고 수신자들은 스크린샷을 찍거나 복사하는 등의 방법으로 다시 공유할 수 있습니다. <em>위험한 정보를 마스토돈을 통해 공유하지 마세요.</em></li>
+        <li><em>IP와 기타 메타데이터</em>: 당신이 로그인 하는 경우 IP 주소와 브라우저의 이름을 저장합니다. 모든 세션은 당신이 검토하고 취소할 수 있도록 설정에서 제공 됩니다. 마지막으로 사용 된 IP 주소는 최대 12개월 간 저장됩니다. 또한, 모든 요청에 대해 IP주소를 포함한 정보를 로그에 저장할 수 있습니다.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">우리가 당신의 정보를 어디에 쓰나요?</h3>
+
+      <p>당신에게서 수집한 정보는 다음과 같은 곳에 사용 됩니다:</p>
+
+      <ul>
+        <li>마스토돈의 주요 기능 제공. 다른 사람의 게시물에 상호작용 하거나 자신의 게시물을 작성하기 위해서는 로그인을 해야 합니다. 예를 들어, 다른 사람의 게시물을 자신만의 홈 타임라인에서 모아 보기 위해 팔로우를 할 수 있습니다.</li>
+        <li>커뮤니티의 모더레이션을 위해, 예를 들어 당신의 IP 주소와 기타 사항을 비교하여 금지를 우회하거나 다른 규칙을 위반하는지 판단하는 데에 사용할 수 있습니다.</li>
+        <li>당신이 제공한 이메일 주소를 통해 정보, 다른 사람들의 반응이나 받은 메시지에 대한 알림, 기타 요청 등에 관한 응답 요청 등을 보내는 데에 활용됩니다.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">어떻게 당신의 정보를 보호하나요?</h3>
+
+      <p>우리는 당신이 입력, 전송, 접근하는 개인정보를 보호하기 위해 다양한 보안 대책을 적용합니다. 당신의 브라우저 세션, 당신의 응용프로그램과의 통신, API는 SSL로 보호 되며 패스워드는 강력한 단방향 해시 알고리즘을 사용합니다. 계정의 더 나은 보안을 위해 2단계 인증을 활성화 할 수 있습니다.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">자료 저장 정책은 무엇이죠?</h3>
+
+      <p>우리는 다음을 위해 노력을 할 것입니다:</p>
+
+      <ul>
+        <li>IP를 포함해 이 서버에 전송 되는 모든 요청에 대한 로그는 90일을 초과하여 저장되지 않습니다.</li>
+        <li>가입 된 유저의 IP 정보는 12개월을 초과하여 저장 되지 않습니다.</li>
+      </ul>
+
+      <p>당신은 언제든지 게시물, 미디어 첨부, 프로필 이미지, 헤더 이미지를 포함한 당신의 컨텐트에 대한 아카이브를 요청하고 다운로드 할 수 있습니다.</p>
+
+      <p>언제든지 계정을 완전히 삭제할 수 있습니다.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">쿠키를 사용하나요?</h3>
+
+      <p>네. 쿠키는 (당신이 허용한다면) 당신의 웹 브라우저를 통해 서버에서 당신의 하드드라이브에 저장하도록 전송하는 작은 파일들입니다. 이 쿠키들은 당신의 브라우저를 인식하고, 계정이 있는 경우 이와 연결하는 것을 가능하게 합니다.</p>
+
+      <p>당신의 환경설정을 저장하고 다음 방문에 활용하기 위해 쿠키를 사용합니다.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">외부에 정보를 공개하나요?</h3>
+
+      <p>우리는 당신을 식별 가능한 개인정보를 외부에 팔거나 제공하거나 전송하지 않습니다. 이는 당사의 사이트를 운영하기 위한, 기밀 유지에 동의하는, 신뢰 가능한 서드파티를 포함하지 않습니다. 또한 법률 준수, 사이트 정책 시행, 또는 당사나 타인에 대한 권리, 재산, 또는 안전보호를 위해 적절하다고 판단되는 경우 당신의 정보를 공개할 수 있습니다.</p>
+
+      <p>당신의 공개 게시물은 네트워크에 속한 다른 서버가 다운로드 할 수 있습니다. 당신의 팔로워나 수신자가 이 서버가 아닌 다른 곳에 존재하는 경우 당신의 공개, 팔로워 공개 게시물은 당신의 팔로워가 존재하는 서버로 전송되며, 다이렉트메시지는 수신자가 존재하는 서버로 전송 됩니다.</p>
+
+      <p>당신이 계정을 사용하기 위해 응용프로그램을 승인하는 경우 당신이 허용한 권한에 따라 응용프로그램은 당신의 공개 계정정보, 팔로잉 리스트, 팔로워 리스트, 게시물, 즐겨찾기 등에 접근이 가능해집니다. 응용프로그램은 절대로 당신의 이메일 주소나 패스워드에 접근할 수 없습니다.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">어린이의 사이트 사용</h3>
+
+      <p>이 서버가 EU나 EEA에 속해 있다면: 당사의 사이트, 제품과 서비스는 16세 이상인 사람들을 위해 제공됩니다. 당신이 16세 미만이라면 GDPR(<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>)의 요건에 따라 이 사이트를 사용할 수 없습니다.</p>
+
+      <p>이 서버가 미국에 속해 있다면: 당사의 사이트, 제품과 서비스는 13세 이상인 사람들을 위해 제공됩니다. 당신이 13세 미만이라면 COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>)의 요건에 따라 이 사이트를 사용할 수 없습니다.</p>
+
+      <p>이 서버가 있는 관할권에 따라 법적 요구가 달라질 수 있습니다.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">개인정보 정책의 변경</h3>
+
+      <p>만약 우리의 개인정보 정책이 바뀐다면, 이 페이지에 바뀐 정책이 포스트 됩니다.</p>
+
+      <p>이 문서는 CC-BY-SA 라이센스입니다. 마지막 업데이트는 2018년 3월 7일입니다.</p>
+
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} 이용약관과 개인정보 취급 방침"
   themes:
     contrast: 고대비
@@ -749,6 +873,7 @@ ko:
   time:
     formats:
       default: "%Y년 %m월 %d일 %H:%M"
+      month: "%Y년 %b"
   two_factor_authentication:
     code_hint: 확인하기 위해서 인증 애플리케이션에서 표시된 코드를 입력해 주십시오
     description_html: "<strong>2단계 인증</strong>을 활성화 하면 로그인 시 전화로 인증 코드를 받을 필요가 있습니다."
