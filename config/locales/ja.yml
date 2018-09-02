@@ -43,7 +43,9 @@ ja:
   accounts:
     choices_html: "%{name} によるおすすめ:"
     follow: フォロー
-    followers: フォロワー
+    followers:
+      one: フォロワー
+      other: フォロワー
     following: フォロー中
     joined: "%{date} に登録"
     media: メディア
@@ -54,7 +56,10 @@ ja:
     people_who_follow: "%{name} さんをフォロー中のアカウント"
     pin_errors:
       following: おすすめしたい人はあなたが既にフォローしている必要があります
-    posts: トゥート
+    posts:
+      one: トゥート
+      other: トゥート
+    posts_tab_heading: トゥート
     posts_with_replies: トゥートと返信
     reserved_username: このユーザー名は予約されています
     roles:
@@ -299,6 +304,7 @@ ja:
       enable_hint: 有効にすると、リレーから全ての公開トゥートを受信するようになり、またこのサーバーの全ての公開トゥートをリレーに送信するようになります。
       inbox_url: リレーURL
       pending: リレーサーバーの承認待ちです
+      save_and_enable: 保存して有効にする
       setup: リレー接続を設定する
       status: ステータス
       title: リレー
