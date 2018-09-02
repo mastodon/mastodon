@@ -6,6 +6,7 @@ de:
     about_this: Über diese Instanz
     administered_by: 'Administriert von:'
     api: API
+    apps: Mobile Apps
     closed_registrations: Die Registrierung auf dieser Instanz ist momentan geschlossen. Aber du kannst dein Konto auch auf einer anderen Instanz erstellen! Von dort hast du genauso Zugriff auf das Mastodon-Netzwerk.
     contact: Kontakt
     contact_missing: Nicht angegeben
@@ -29,15 +30,22 @@ de:
     other_instances: Andere Instanzen
     privacy_policy: Datenschutzerklärung
     source_code: Quellcode
-    status_count_after: Beiträge verfassten
+    status_count_after:
+      one: Status
+      other: Status
     status_count_before: die
     terms: Nutzungsbedingungen
-    user_count_after: Wesen
+    user_count_after:
+      one: Benutzer
+      other: Benutzer
     user_count_before: Zuhause für
     what_is_mastodon: Was ist Mastodon?
   accounts:
+    choices_html: "%{name} empfielt:"
     follow: Folgen
-    followers: Folgende
+    followers:
+      one: Folgende
+      other: Follower
     following: Folgt
     joined: Beigetreten am %{date}
     media: Medien
@@ -46,7 +54,12 @@ de:
     nothing_here: Hier gibt es nichts!
     people_followed_by: Profile, denen %{name} folgt
     people_who_follow: Profile, die %{name} folgen
-    posts: Beiträge
+    pin_errors:
+      following: Du musst dieser Person bereits folgen, um sie empfehlen zu können
+    posts:
+      one: Beitrag
+      other: Beiträge
+    posts_tab_heading: Beiträge
     posts_with_replies: Beiträge mit Antworten
     reserved_username: Dieser Profilname ist belegt
     roles:
@@ -181,6 +194,7 @@ de:
         unsuspend_account: "%{name} hat die Sperrung von %{target}s Account aufgehoben"
         update_custom_emoji: "%{name} hat das %{target} Emoji aktualisiert"
         update_status: "%{name} hat den Status von %{target} aktualisiert"
+      deleted_status: "(gelöschter Beitrag)"
       title: Überprüfungsprotokoll
     custom_emojis:
       by_domain: Domain
@@ -277,6 +291,7 @@ de:
       search: Suchen
       title: Bekannte Instanzen
     invites:
+      deactivate_all: Alle deaktivieren
       filter:
         all: Alle
         available: Verfügbar
@@ -288,6 +303,7 @@ de:
       description_html: Ein <strong>Föderierungsrelay</strong> ist ein vermittelnder Server, der eine große Anzahl öffentlicher Beiträge zwischen Servern austauscht, die es abonnieren und zu ihm veröffentlichen.<strong> Es kann kleinen und mittleren Servern dabei helfen, Inhalte des Fediverse zu entdecken</strong>, was andernfalls das manuelle Folgen anderer Leute auf entfernten Servern durch lokale Nutzer erfordern würde.
       enable_hint: Sobald aktiviert wird dein Server alle öffentlichen Beiträge dieses Relays abonnieren und wird alle öffentlichen Beiträge dieses Servers an es senden.
       inbox_url: Relay-URL
+      pending: Warte auf Zustimmung des Relays
       setup: Relayverbindung einrichten
       status: Status
       title: Relays
@@ -340,6 +356,9 @@ de:
       contact_information:
         email: Öffentliche E-Mail-Adresse
         username: Profilname für die Kontaktaufnahme
+      custom_css:
+        desc_html: Verändere das Aussehen mit CSS, dass auf jeder Seite geladen wird
+        title: Benutzerdefiniertes CSS
       hero:
         desc_html: Wird auf der Startseite angezeigt. Mindestens 600x100px sind empfohlen. Wenn es nicht gesetzt wurde, wird das Instanz-Thumbnail dafür verwendet
         title: Bild für Startseite
@@ -398,6 +417,7 @@ de:
       media:
         title: Medien
       no_media: Keine Medien
+      no_status_selected: Keine Beiträge wurden verändert, weil keine ausgewählt wurden
       title: Beiträge des Kontos
       with_media: Mit Medien
     subscriptions:
@@ -407,6 +427,12 @@ de:
       last_delivery: Letzte Zustellung
       title: WebSub
       topic: Thema
+    suspensions:
+      bad_acct_msg: Der Bestätigungswert stimmt nicht überein. Sperrst du das richtige Benutzerkonto?
+      hint_html: 'Um die Sperrung des Benutzerkontos zu genehmigen tippe %{value} in das Feld unten ein:'
+      proceed: Fortfahren
+      title: "%{acct} sperren"
+      warning_html: 'Die Sperrung des Benutzerkontos wird <strong>unwiederrufliche</strong> Schäden hervorrufen und alle Daten löschen, die folgendes beinhalten:'
     title: Administration
   admin_mailer:
     new_report:
@@ -655,6 +681,9 @@ de:
     no_account_html: Noch keinen Account? Du kannst dich <a href='%{sign_up_path}' target='_blank'>hier anmelden</a>
     proceed: Weiter
     prompt: 'Du wirst dieser Person folgen:'
+  remote_interaction:
+    proceed: Fortfahren zum Interagieren
+    prompt: 'Du wirst mit diesem Beitrag interagieren:'
   remote_unfollow:
     error: Fehler
     title: Titel
@@ -738,6 +767,7 @@ de:
       private: Du kannst nur öffentliche Beiträge anheften
       reblog: Du kannst keine geteilten Beiträge anheften
     show_more: Mehr anzeigen
+    sign_in_to_participate: Melde dich an, um an der Konversation teilzuhaben
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Nur Folgende
