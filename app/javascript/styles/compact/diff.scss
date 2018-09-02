@@ -6,12 +6,12 @@
   left: 0;
   right: 0;
   justify-content: center;
-  max-height: 2px;
-  padding-top: 2px;
+  max-height: 0px;
   &:hover {
     opacity: 0.9;
     background-color: black;
-    max-height: 26px;
+    max-height: none;
+    padding: 7px 0;
     z-index: 2;
   }
 }
