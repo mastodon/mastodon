@@ -1,30 +1,42 @@
----
 nl:
   about:
-    about_hashtag_html: Dit zijn openbare toots die getagged zijn met <strong>#%{hashtag}</strong>. Je kunt er op reageren of iets anders mee doen als je op Mastodon (of ergens anders in de fediverse) een account hebt.
-    about_mastodon_html: Mastodon is een sociaal netwerk dat gebruikt maakt van open webprotocollen en vrije software. Het is net zoals e-mail gedecentraliseerd.
+    about_hashtag_html: Dit zijn openbare toots die getagged zijn met <strong>#%{hashtag}</strong>.
+      Je kunt er op reageren of iets anders mee doen als je op Mastodon (of ergens
+      anders in de fediverse) een account hebt.
+    about_mastodon_html: Mastodon is een sociaal netwerk dat gebruikt maakt van open
+      webprotocollen en vrije software. Het is net zoals e-mail gedecentraliseerd.
     about_this: Over deze server
     administered_by: 'Beheerd door:'
     api: API
     apps: Mobiele apps
-    closed_registrations: Registreren op deze server is momenteel niet mogelijk. Je kunt echter een andere server vinden om zo toegang te krijgen tot het netwerk.
+    closed_registrations: Registreren op deze server is momenteel niet mogelijk. Je
+      kunt echter een andere server vinden om zo toegang te krijgen tot het netwerk.
     contact: Contact
     contact_missing: Niet ingesteld
     contact_unavailable: n.v.t
     documentation: Documentatie
-    extended_description_html: |
-      <h3>Een goede plek voor richtlijnen</h3>
+    extended_description_html: '<h3>Een goede plek voor richtlijnen</h3>
+
       <p>De uitgebreide omschrijving is nog niet ingevuld.</p>
+
+      '
     features:
-      humane_approach_body: Mastodon heeft van de fouten van andere sociale netwerken geleerd en probeert aan de hand van ethische ontwerpkeuzes misbruik van sociale media te voorkomen.
+      humane_approach_body: Mastodon heeft van de fouten van andere sociale netwerken
+        geleerd en probeert aan de hand van ethische ontwerpkeuzes misbruik van sociale
+        media te voorkomen.
       humane_approach_title: Een meer menselijke aanpak
-      not_a_product_body: Mastodon is geen commercieel netwerk. Dus geen advertenties, geen datamining en geen besloten systemen. Er is geen centrale organisatie die alles bepaalt.
+      not_a_product_body: Mastodon is geen commercieel netwerk. Dus geen advertenties,
+        geen datamining en geen besloten systemen. Er is geen centrale organisatie
+        die alles bepaalt.
       not_a_product_title: Jij bent een persoon, geen product
-      real_conversation_body: Met 500 tekens tot jouw beschikking en ondersteuning voor tekst- en media-waarschuwingen, kan je jezelf uiten zoals jij dat wil.
+      real_conversation_body: Met 500 tekens tot jouw beschikking en ondersteuning
+        voor tekst- en media-waarschuwingen, kan je jezelf uiten zoals jij dat wil.
       real_conversation_title: Voor echte gesprekken gemaakt
-      within_reach_body: Meerdere apps voor iOS, Android en andere platformen, met dank aan het ontwikkelaarsvriendelijke API-systeem, zorgen ervoor dat je overal op de hoogte blijft.
+      within_reach_body: Meerdere apps voor iOS, Android en andere platformen, met
+        dank aan het ontwikkelaarsvriendelijke API-systeem, zorgen ervoor dat je overal
+        op de hoogte blijft.
       within_reach_title: Altijd binnen bereik
-    generic_description: "%{domain} is een server in het Mastodonnetwerk"
+    generic_description: '%{domain} is een server in het Mastodonnetwerk'
     hosted_on: Mastodon op %{domain}
     learn_more: Meer leren
     other_instances: Andere servers
@@ -49,7 +61,7 @@ nl:
     following: Volgend
     joined: Geregistreerd in %{date}
     media: Media
-    moved_html: "%{name} is verhuisd naar %{new_profile_link}:"
+    moved_html: '%{name} is verhuisd naar %{new_profile_link}:'
     network_hidden: Deze informatie is niet beschikbaar
     nothing_here: Hier is niets!
     people_followed_by: Mensen die %{name} volgen
@@ -151,9 +163,9 @@ nl:
       search: Zoeken
       shared_inbox_url: Gedeelde inbox-URL
       show:
-        created_reports: Toots door dit account gerapporteerd
+        created_reports: Door dit account aangemaakte rapportages
         report: gerapporteerd
-        targeted_reports: Toots van dit account gerapporteerd
+        targeted_reports: Over dit account aangemaakte rapportages
       silence: Negeren
       statuses: Toots
       subscribe: Abonneren
@@ -166,35 +178,42 @@ nl:
       web: Webapp
     action_logs:
       actions:
-        assigned_to_self_report: "%{name} heeft gerapporteerde toot %{target} aan zichzelf toegewezen"
-        change_email_user: "%{name} veranderde het e-mailadres van gebruiker %{target}"
+        assigned_to_self_report: '%{name} heeft rapportage %{target} aan zichzelf
+          toegewezen'
+        change_email_user: '%{name} veranderde het e-mailadres van gebruiker %{target}'
         confirm_user: E-mailadres van gebruiker %{target} is door %{name} bevestigd
         create_custom_emoji: Nieuwe emoji %{target} is door %{name} geüpload
         create_domain_block: Domein %{target} is door %{name} geblokkeerd
-        create_email_domain_block: E-maildomein %{target} is door %{name} op de zwarte lijst geplaatst
+        create_email_domain_block: E-maildomein %{target} is door %{name} op de zwarte
+          lijst geplaatst
         demote_user: Gebruiker %{target} is door %{name} gedegradeerd
         destroy_domain_block: Domein %{target} is door %{name} gedeblokkeerd
-        destroy_email_domain_block: E-maildomein %{target} is door %{name} op de witte lijst geplaatst
+        destroy_email_domain_block: E-maildomein %{target} is door %{name} op de witte
+          lijst geplaatst
         destroy_status: Toot van %{target} is door %{name} verwijderd
-        disable_2fa_user: Vereisten tweestapsverificatie van %{target} zijn door %{name} uitgeschakeld
+        disable_2fa_user: Vereisten tweestapsverificatie van %{target} zijn door %{name}
+          uitgeschakeld
         disable_custom_emoji: Emoji %{target} is door %{name} uitgeschakeld
         disable_user: Aanmelden voor %{target} is door %{name} uitgeschakeld
         enable_custom_emoji: Emoji %{target} is door %{name} ingeschakeld
         enable_user: Inloggen voor %{target} is door %{name} ingeschakeld
-        memorialize_account: Account %{target} is door %{name} in een gedenkpagina veranderd
+        memorialize_account: Account %{target} is door %{name} in een gedenkpagina
+          veranderd
         promote_user: Gebruiker %{target} is door %{name} gepromoveerd
-        remove_avatar_user: "%{name} verwijderde de avatar van %{target}"
-        reopen_report: "%{name} heeft gerapporteerde toot %{target} heropend"
-        reset_password_user: Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld
-        resolve_report: "%{name} heeft gerapporteerde toot %{target} opgelost"
+        remove_avatar_user: '%{name} verwijderde de avatar van %{target}'
+        reopen_report: '%{name} heeft rapportage %{target} heropend'
+        reset_password_user: Wachtwoord van gebruiker %{target} is door %{name} opnieuw
+          ingesteld
+        resolve_report: '%{name} heeft rapportage %{target} opgelost'
         silence_account: Account %{target} is door %{name} genegeerd
         suspend_account: Account %{target} is door %{name} opgeschort
-        unassigned_report: "%{name} heeft het toewijzen van gerapporteerde toot %{target} ongedaan gemaakt"
+        unassigned_report: '%{name} heeft het toewijzen van rapportage %{target} ongedaan
+          gemaakt'
         unsilence_account: Negeren van account %{target} is door %{name} opgeheven
         unsuspend_account: Opschorten van account %{target} is door %{name} opgeheven
         update_custom_emoji: Emoji %{target} is door %{name} bijgewerkt
         update_status: De toots van %{target} zijn door %{name} bijgewerkt
-      deleted_status: "(verwijderde toot}"
+      deleted_status: (verwijderde toot}
       title: Auditlog
     custom_emojis:
       by_domain: Domein
@@ -230,7 +249,7 @@ nl:
       feature_relay: Federatierelay
       features: Functies
       hidden_service: Federatie met verborgen diensten
-      open_reports: onopgeloste gerapporteerde toots
+      open_reports: onopgeloste rapportages
       recent_users: Recente gebruikers
       search: In volledige tekst zoeken
       single_user_mode: Modus voor één gebruiker
@@ -249,15 +268,22 @@ nl:
       domain: Domein
       new:
         create: Blokkade aanmaken
-        hint: Een domeinblokkade voorkomt niet dat accountgegevens van dit domein aan de database worden toegevoegd, maar dat er met terugwerkende kracht en automatisch bepaalde moderatiemethoden op deze accounts worden toegepast.
+        hint: Een domeinblokkade voorkomt niet dat accountgegevens van dit domein
+          aan de database worden toegevoegd, maar dat er met terugwerkende kracht
+          en automatisch bepaalde moderatiemethoden op deze accounts worden toegepast.
         severity:
-          desc_html: "<strong>Negeren</strong> zorgt ervoor dat berichten van accounts van dit domein voor iedereen onzichtbaar zijn, behalve als een account wordt gevolgd. <strong>Opschorten</strong> zorgt ervoor dat alle berichten, media en profielgegevens van accounts van dit domein worden verwijderd. Gebruik <strong>Geen</strong> wanneer je alleen mediabestanden wilt weigeren."
+          desc_html: <strong>Negeren</strong> zorgt ervoor dat berichten van accounts
+            van dit domein voor iedereen onzichtbaar zijn, behalve als een account
+            wordt gevolgd. <strong>Opschorten</strong> zorgt ervoor dat alle berichten,
+            media en profielgegevens van accounts van dit domein worden verwijderd.
+            Gebruik <strong>Geen</strong> wanneer je alleen mediabestanden wilt weigeren.
           noop: Geen
           silence: Negeren
           suspend: Opschorten
         title: Nieuwe domeinblokkade
       reject_media: Mediabestanden verwerpen
-      reject_media_hint: Verwijderd lokaal opgeslagen mediabestanden en weigert deze in de toekomst te downloaden. Irrelevant voor opgeschorte domeinen
+      reject_media_hint: Verwijderd lokaal opgeslagen mediabestanden en weigert deze
+        in de toekomst te downloaden. Irrelevant voor opgeschorte domeinen
       severities:
         noop: Geen
         silence: Negeren
@@ -266,7 +292,7 @@ nl:
       show:
         affected_accounts:
           one: Eén account in de database aangepast
-          other: "%{count} accounts in de database aangepast"
+          other: '%{count} accounts in de database aangepast'
         retroactive:
           silence: Alle genegeerde accounts van dit domein niet langer negeren
           suspend: Alle opgeschorte accounts van dit domein niet langer opschorten
@@ -300,8 +326,14 @@ nl:
       title: Uitnodigingen
     relays:
       add_new: Nieuwe relayserver toevoegen
-      description_html: Een <strong>federatierelay</strong> is een tussenliggende server die grote hoeveelheden openbare toots uitwisselt tussen servers die zich hierop hebben geabonneerd. <strong>Het kan kleine en middelgrote servers helpen om content uit de fediverse te ontdekken</strong>, waarvoor anders lokale gebruikers handmatig mensen van externe servers moeten volgen.
-      enable_hint: Eenmaal ingeschakeld gaat jouw server zich op alle openbare toots van deze relayserver abonneren en stuurt het de openbare toots van jouw server naar de relayserver.
+      description_html: Een <strong>federatierelay</strong> is een tussenliggende
+        server die grote hoeveelheden openbare toots uitwisselt tussen servers die
+        zich hierop hebben geabonneerd. <strong>Het kan kleine en middelgrote servers
+        helpen om content uit de fediverse te ontdekken</strong>, waarvoor anders
+        lokale gebruikers handmatig mensen van externe servers moeten volgen.
+      enable_hint: Eenmaal ingeschakeld gaat jouw server zich op alle openbare toots
+        van deze relayserver abonneren en stuurt het de openbare toots van jouw server
+        naar de relayserver.
       inbox_url: Relay-URL
       pending: Aan het wachten op toestemming van de relayserver
       save_and_enable: Opslaan en inschakelen
@@ -309,12 +341,12 @@ nl:
       status: Status
       title: Relayservers
     report_notes:
-      created_msg: Opmerking bij gerapporteerde toot succesvol aangemaakt!
-      destroyed_msg: Opmerking bij gerapporteerde toot succesvol verwijderd!
+      created_msg: Opmerking bij rapportage succesvol aangemaakt!
+      destroyed_msg: Opmerking bij rapportage succesvol verwijderd!
     reports:
       account:
         note: opmerking
-        report: gerapporteerde toot
+        report: rapportage
       action_taken_by: Actie uitgevoerd door
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
@@ -330,29 +362,32 @@ nl:
         create_and_resolve: Oplossen met opmerking
         create_and_unresolve: Heropenen met opmerking
         delete: Verwijderen
-        placeholder: Beschrijf welke acties zijn ondernomen of andere gerelateerde opmerkingen…
-      reopen: Gerapporteerde toot heropenen
-      report: 'Gerapporteerde toot #%{id}'
+        placeholder: Beschrijf welke acties zijn ondernomen of andere gerelateerde
+          opmerkingen…
+      reopen: Rapportage heropenen
+      report: 'Rapportage #%{id}'
       report_contents: Inhoud
       reported_account: Gerapporteerde account
       reported_by: Gerapporteerd door
       resolved: Opgelost
-      resolved_msg: Gerapporteerde toot succesvol opgelost!
+      resolved_msg: Rapportage succesvol opgelost!
       silence_account: Account negeren
       status: Toot
       suspend_account: Account opschorten
       target: Gerapporteerde account
-      title: Gerapporteerde toots
+      title: Rapportages
       unassign: Niet langer toewijzen
       unresolved: Onopgelost
       updated_at: Bijgewerkt
       view: Weergeven
     settings:
       activity_api_enabled:
-        desc_html: Wekelijks overzicht van de hoeveelheid lokale toots, actieve gebruikers en nieuwe registraties
+        desc_html: Wekelijks overzicht van de hoeveelheid lokale toots, actieve gebruikers
+          en nieuwe registraties
         title: Statistieken over gebruikersactiviteit publiceren
       bootstrap_timeline_accounts:
-        desc_html: Meerdere gebruikersnamen met komma's scheiden. Alleen lokale en niet opgeschorte accounts werken. Laat leeg voor alle lokale beheerders.
+        desc_html: Meerdere gebruikersnamen met komma's scheiden. Alleen lokale en
+          niet opgeschorte accounts werken. Laat leeg voor alle lokale beheerders.
         title: Standaard te volgen accounts voor nieuwe gebruikers
       contact_information:
         email: Vul een openbaar gebruikt e-mailadres in
@@ -361,17 +396,20 @@ nl:
         desc_html: Het uiterlijk van deze server met CSS aanpassen
         title: Aangepaste CSS
       hero:
-        desc_html: Wordt op de voorpagina getoond. Tenminste 600x100px aanbevolen. Wanneer dit niet is ingesteld wordt de thumbnail van de Mastodonserver getoond
+        desc_html: Wordt op de voorpagina getoond. Tenminste 600x100px aanbevolen.
+          Wanneer dit niet is ingesteld wordt de thumbnail van de Mastodonserver getoond
         title: Hero-afbeelding
       peers_api_enabled:
         desc_html: Domeinnamen die deze server in de fediverse is tegengekomen
         title: Lijst van bekende servers publiceren
       preview_sensitive_media:
-        desc_html: Linkvoorvertoningen op andere websites hebben een thumbnail, zelfs als een afbeelding of video als gevoelig is gemarkeerd
+        desc_html: Linkvoorvertoningen op andere websites hebben een thumbnail, zelfs
+          als een afbeelding of video als gevoelig is gemarkeerd
         title: Gevoelige afbeeldingen en video's in OpenGraph-voorvertoningen tonen
       registrations:
         closed_message:
-          desc_html: Wordt op de voorpagina weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld<br>En ook hier kan je HTML gebruiken
+          desc_html: Wordt op de voorpagina weergegeven wanneer registratie van nieuwe
+            accounts is uitgeschakeld<br>En ook hier kan je HTML gebruiken
           title: Bericht wanneer registratie is uitgeschakeld
         deletion:
           desc_html: Toestaan dat iedereen hun eigen account kan verwijderen
@@ -383,26 +421,35 @@ nl:
           desc_html: Toestaan dat iedereen een account kan registereren
           title: Open registratie
       show_known_fediverse_at_about_page:
-        desc_html: Wanneer ingeschakeld wordt de globale tijdlijn op de voorpagina getoond en wanneer uitgeschakeld de lokale tijdljn.
+        desc_html: Wanneer ingeschakeld wordt de globale tijdlijn op de voorpagina
+          getoond en wanneer uitgeschakeld de lokale tijdljn.
         title: De globale tijdlijn op de voorpagina tonen
       show_staff_badge:
         desc_html: Medewerkersbadge op profielpagina tonen
         title: Medewerkersbadge tonen
       site_description:
-        desc_html: Dit wordt als een alinea op de voorpagina getoond. Beschrijf wat er speciaal is aan deze server en andere zaken die van belang zijn. Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
+        desc_html: Dit wordt als een alinea op de voorpagina getoond. Beschrijf wat
+          er speciaal is aan deze server en andere zaken die van belang zijn. Je kan
+          HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
         title: Omschrijving Mastodonserver
       site_description_extended:
-        desc_html: Wordt op de uitgebreide informatiepagina weergegeven<br>Je kan ook hier HTML gebruiken
+        desc_html: Wordt op de uitgebreide informatiepagina weergegeven<br>Je kan
+          ook hier HTML gebruiken
         title: Uitgebreide omschrijving Mastodonserver
       site_short_description:
-        desc_html: Dit wordt in de zijbalk getoond als en als metatag in de paginabron.  Beschrijf in één alinea wat Mastodon is en wat deze server speciaal maakt. De (langere) omschrijving van de Mastodonserver wordt gebruikt wanneer dit veld wordt leeg gelaten.
+        desc_html: Dit wordt in de zijbalk getoond als en als metatag in de paginabron.  Beschrijf
+          in één alinea wat Mastodon is en wat deze server speciaal maakt. De (langere)
+          omschrijving van de Mastodonserver wordt gebruikt wanneer dit veld wordt
+          leeg gelaten.
         title: Korte omschrijving Mastodonserver
       site_terms:
-        desc_html: Je kan hier jouw eigen privacybeleid, gebruiksvoorwaarden en ander juridisch jargon kwijt. Je kan HTML gebruiken
+        desc_html: Je kan hier jouw eigen privacybeleid, gebruiksvoorwaarden en ander
+          juridisch jargon kwijt. Je kan HTML gebruiken
         title: Aangepaste gebruiksvoorwaarden
       site_title: Naam Mastodonserver
       thumbnail:
-        desc_html: Gebruikt als voorvertoning voor OpenGraph en de API. 1200x630px aanbevolen
+        desc_html: Gebruikt als voorvertoning voor OpenGraph en de API. 1200x630px
+          aanbevolen
         title: Thumbnail Mastodonserver
       timeline_preview:
         desc_html: Toon een openbare tijdlijn op de voorpagina
@@ -418,7 +465,8 @@ nl:
       media:
         title: Media
       no_media: Geen media
-      no_status_selected: Er werden geen toots gewijzigd, omdat er geen enkele werd geselecteerd
+      no_status_selected: Er werden geen toots gewijzigd, omdat er geen enkele werd
+        geselecteerd
       title: Toots van account
       with_media: Met media
     subscriptions:
@@ -429,20 +477,23 @@ nl:
       title: WebSub
       topic: Account
     suspensions:
-      bad_acct_msg: De bevestigingswaarde kwam niet overeen. Schort je wel het juiste account op?
-      hint_html: Vul in het veld hieronder %{value} in, om het opschorten van dit account te bevestigen.
+      bad_acct_msg: De bevestigingswaarde kwam niet overeen. Schort je wel het juiste
+        account op?
+      hint_html: Vul in het veld hieronder %{value} in, om het opschorten van dit
+        account te bevestigen.
       proceed: Ga verder
-      title: "%{acct} opschorten"
-      warning_html: 'Door het opschorten van dit account worden gegevens van dit account <strong>permanent</strong> verwijderd, waaronder:'
+      title: '%{acct} opschorten'
+      warning_html: 'Door het opschorten van dit account worden gegevens van dit account
+        <strong>permanent</strong> verwijderd, waaronder:'
     title: Beheer
   admin_mailer:
     new_report:
-      body: "%{reporter} heeft %{target} gerapporteerd"
+      body: '%{reporter} heeft %{target} gerapporteerd'
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
-      subject: Nieuwe toots gerapporteerd op %{instance} (#%{id})
+      subject: Nieuwe rapportage op %{instance} (#%{id})
   application_mailer:
     notification_preferences: E-mailvoorkeuren wijzigen
-    salutation: "%{name},"
+    salutation: '%{name},'
     settings: 'E-mailvoorkeuren wijzigen: %{link}'
     view: 'Bekijk:'
     view_profile: Profiel bekijken
@@ -456,18 +507,23 @@ nl:
     warning: Wees voorzichtig met deze gegevens. Deel het nooit met iemand anders!
     your_token: Jouw toegangscode
   auth:
-    agreement_html: Wanneer je op registreren klikt ga je akkoord met het opvolgen van <a href="%{rules_path}">de regels van deze server</a> en <a href="%{terms_path}">onze gebruiksvoorwaarden</a>.
+    agreement_html: Wanneer je op registreren klikt ga je akkoord met het opvolgen
+      van <a href="%{rules_path}">de regels van deze server</a> en <a href="%{terms_path}">onze
+      gebruiksvoorwaarden</a>.
     change_password: Wachtwoord
     confirm_email: E-mail bevestigen
     delete_account: Account verwijderen
-    delete_account_html: Wanneer je jouw account graag wilt verwijderen, kan je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
+    delete_account_html: Wanneer je jouw account graag wilt verwijderen, kan je dat
+      <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
     didnt_get_confirmation: Geen bevestigingsinstructies ontvangen?
     forgot_password: Wachtwoord vergeten?
-    invalid_reset_password_token: De code om jouw wachtwoord opnieuw in te stellen is verlopen. Vraag een nieuwe aan.
+    invalid_reset_password_token: De code om jouw wachtwoord opnieuw in te stellen
+      is verlopen. Vraag een nieuwe aan.
     login: Aanmelden
     logout: Afmelden
     migrate_account: Naar een andere account verhuizen
-    migrate_account_html: Wanneer je dit account naar een ander account wilt doorverwijzen, kun je <a href="%{path}">dit hier instellen</a>.
+    migrate_account_html: Wanneer je dit account naar een ander account wilt doorverwijzen,
+      kun je <a href="%{path}">dit hier instellen</a>.
     or: of
     or_log_in_with: Of aanmelden met
     providers:
@@ -492,25 +548,31 @@ nl:
     title: Volg %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}u"
-      about_x_months: "%{count}ma"
-      about_x_years: "%{count}j"
-      almost_x_years: "%{count}j"
+      about_x_hours: '%{count}u'
+      about_x_months: '%{count}ma'
+      about_x_years: '%{count}j'
+      almost_x_years: '%{count}j'
       half_a_minute: Zojuist
-      less_than_x_minutes: "%{count}m"
+      less_than_x_minutes: '%{count}m'
       less_than_x_seconds: Zojuist
-      over_x_years: "%{count}j"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
-      x_months: "%{count}ma"
-      x_seconds: "%{count}s"
+      over_x_years: '%{count}j'
+      x_days: '%{count}d'
+      x_minutes: '%{count}m'
+      x_months: '%{count}ma'
+      x_seconds: '%{count}s'
   deletes:
     bad_password_msg: Goed geprobeerd hackers! Ongeldig wachtwoord
     confirm_password: Voer jouw huidige wachtwoord in om jouw identiteit te bevestigen
-    description_html: Hierdoor worden alle gegevens van jouw account <strong>permanent, onomkeerbaar</strong> verwijderd en wordt deze gedeactiveerd. Om toekomstige identiteitsdiefstal te voorkomen, kan op deze server jouw gebruikersnaam niet meer gebruikt worden.
+    description_html: Hierdoor worden alle gegevens van jouw account <strong>permanent,
+      onomkeerbaar</strong> verwijderd en wordt deze gedeactiveerd. Om toekomstige
+      identiteitsdiefstal te voorkomen, kan op deze server jouw gebruikersnaam niet
+      meer gebruikt worden.
     proceed: Account verwijderen
     success_msg: Jouw account is succesvol verwijderd
-    warning_html: We kunnen alleen garanderen dat jouw gegevens op deze server worden verwijderd. Berichten (toots), incl. media, die veel zijn gedeeld laten mogelijk sporen achter. Offline servers en servers die niet meer op jouw updates zijn geabonneerd zullen niet hun databases updaten.
+    warning_html: We kunnen alleen garanderen dat jouw gegevens op deze server worden
+      verwijderd. Berichten (toots), incl. media, die veel zijn gedeeld laten mogelijk
+      sporen achter. Offline servers en servers die niet meer op jouw updates zijn
+      geabonneerd zullen niet hun databases updaten.
     warning_title: Verwijdering gegevens op andere servers
   errors:
     '403': Jij hebt geen toestemming om deze pagina te bekijken.
@@ -523,12 +585,17 @@ nl:
     '500':
       content: Het spijt ons, er is aan onze kant iets fout gegaan.
       title: Er is iets mis
-    noscript_html: Schakel JavaScript in om de webapp van Mastodon te kunnen gebruiken. Als alternatief kan je een <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon-app</a> zoeken voor jouw platform.
+    noscript_html: Schakel JavaScript in om de webapp van Mastodon te kunnen gebruiken.
+      Als alternatief kan je een <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon-app</a>
+      zoeken voor jouw platform.
   exports:
     archive_takeout:
       date: Datum
       download: Jouw archief downloaden
-      hint_html: Je kunt een archief opvragen van jouw <strong>toots en geüploade media</strong>. De geëxporteerde gegevens zijn in ActivityPub-formaat, dat door hiervoor geschikte software valt uit te lezen. Je kunt elke 7 dagen een kopie van je archief aanvragen.
+      hint_html: Je kunt een archief opvragen van jouw <strong>toots en geüploade
+        media</strong>. De geëxporteerde gegevens zijn in ActivityPub-formaat, dat
+        door hiervoor geschikte software valt uit te lezen. Je kunt elke 7 dagen een
+        kopie van je archief aanvragen.
       in_progress: Jouw archief wordt samengesteld...
       request: Jouw archief opvragen
       size: Omvang
@@ -547,7 +614,8 @@ nl:
       title: Filter bewerken
     errors:
       invalid_context: Geen of ongeldige context verstrekt
-      invalid_irreversible: Onomkeerbaar filteren werkt alleen met de starttijdlijn en meldingen
+      invalid_irreversible: Onomkeerbaar filteren werkt alleen met de starttijdlijn
+        en meldingen
     index:
       delete: Verwijderen
       title: Filters
@@ -555,15 +623,23 @@ nl:
       title: Nieuw filter toevoegen
   followers:
     domain: Domein
-    explanation_html: Wanneer je de privacy van jouw toots wilt garanderen, moet je goed weten wie jouw volgers zijn. <strong>Toots die alleen aan jouw volgers zijn gericht, worden aan de Mastodonservers van jouw volgers afgeleverd.</strong> Daarom wil je ze misschien controleren en desnoods volgers verwijderen die zich op een Mastodonserver bevinden die jij niet vertrouwd. Bijvoorbeeld omdat de beheerder(s) of de software van zo'n server jouw privacy niet respecteert.
+    explanation_html: Wanneer je de privacy van jouw toots wilt garanderen, moet je
+      goed weten wie jouw volgers zijn. <strong>Toots die alleen aan jouw volgers
+      zijn gericht, worden aan de Mastodonservers van jouw volgers afgeleverd.</strong>
+      Daarom wil je ze misschien controleren en desnoods volgers verwijderen die zich
+      op een Mastodonserver bevinden die jij niet vertrouwd. Bijvoorbeeld omdat de
+      beheerder(s) of de software van zo'n server jouw privacy niet respecteert.
     followers_count: Aantal volgers
     lock_link: Maak jouw account besloten
     purge: Volgers verwijderen
     success:
       one: Bezig om volgers van één domein te verwijderen...
       other: Bezig om volgers van %{count} domeinen te verwijderen...
-    true_privacy_html: Hou er wel rekening mee dat <strong>echte privacy alleen gegarandeerd kan worden met behulp van end-to-end-encryptie</strong>.
-    unlocked_warning_html: Iedereen kan jou volgen en daarmee meteen toots zien die je alleen aan jouw volgers hebt gericht. %{lock_link} om volgers te kunnen beoordelen en desnoods te weigeren.
+    true_privacy_html: Hou er wel rekening mee dat <strong>echte privacy alleen gegarandeerd
+      kan worden met behulp van end-to-end-encryptie</strong>.
+    unlocked_warning_html: Iedereen kan jou volgen en daarmee meteen toots zien die
+      je alleen aan jouw volgers hebt gericht. %{lock_link} om volgers te kunnen beoordelen
+      en desnoods te weigeren.
     unlocked_warning_title: Jouw account is niet besloten
   footer:
     developers: Ontwikkelaars
@@ -576,7 +652,9 @@ nl:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
       other: Er is iets niet helemaal goed! Bekijk onderstaande %{count} fouten
   imports:
-    preface: Je kunt bepaalde gegevens, zoals de mensen die jij volgt of hebt geblokkeerd, naar jouw account op deze server importeren. Je moet deze gegevens wel eerst op de oorspronkelijke server exporteren.
+    preface: Je kunt bepaalde gegevens, zoals de mensen die jij volgt of hebt geblokkeerd,
+      naar jouw account op deze server importeren. Je moet deze gegevens wel eerst
+      op de oorspronkelijke server exporteren.
     success: Jouw gegevens zijn succesvol geüpload en worden binnenkort verwerkt
     types:
       blocking: Blokkeerlijst
@@ -599,9 +677,10 @@ nl:
     invited_by: 'Jij bent uitgenodigd door:'
     max_uses:
       one: 1 keer
-      other: "%{count} keer"
+      other: '%{count} keer'
     max_uses_prompt: Onbeperkt
-    prompt: Genereer en deel speciale links om mensen toegang tot deze Mastodonserver te geven
+    prompt: Genereer en deel speciale links om mensen toegang tot deze Mastodonserver
+      te geven
     table:
       expires_at: Verloopt op
       uses: Aantal keer te gebruiken
@@ -623,26 +702,29 @@ nl:
   notification_mailer:
     digest:
       action: Alle meldingen bekijken
-      body: Hier is een korte samenvatting van de berichten die je sinds jouw laatste bezoek op %{since} hebt gemist
-      mention: "%{name} vermeldde jou in:"
+      body: Hier is een korte samenvatting van de berichten die je sinds jouw laatste
+        bezoek op %{since} hebt gemist
+      mention: '%{name} vermeldde jou in:'
       new_followers_summary:
-        one: Je hebt trouwens sinds je weg was er ook een nieuwe volger bijgekregen! Hoera!
-        other: Je hebt trouwens sinds je weg was er ook %{count} nieuwe volgers bijgekregen! Fantastisch!
+        one: Je hebt trouwens sinds je weg was er ook een nieuwe volger bijgekregen!
+          Hoera!
+        other: Je hebt trouwens sinds je weg was er ook %{count} nieuwe volgers bijgekregen!
+          Fantastisch!
       subject:
-        one: "1 nieuwe melding sinds jouw laatste bezoek \U0001F418"
-        other: "%{count} nieuwe meldingen sinds jouw laatste bezoek \U0001F418"
+        one: 1 nieuwe melding sinds jouw laatste bezoek 🐘
+        other: '%{count} nieuwe meldingen sinds jouw laatste bezoek 🐘'
       title: Tijdens jouw afwezigheid...
     favourite:
       body: 'Jouw toot werd door %{name} als favoriet gemarkeerd:'
-      subject: "%{name} markeerde jouw toot als favoriet"
+      subject: '%{name} markeerde jouw toot als favoriet'
       title: Nieuwe favoriet
     follow:
-      body: "%{name} volgt jou nu!"
-      subject: "%{name} volgt jou nu"
+      body: '%{name} volgt jou nu!'
+      subject: '%{name} volgt jou nu'
       title: Nieuwe volger
     follow_request:
       action: Volgverzoeken beheren
-      body: "%{name} wil jou graag volgen"
+      body: '%{name} wil jou graag volgen'
       subject: 'Volgen in afwachting: %{name}'
       title: Nieuw volgverzoek
     mention:
@@ -652,25 +734,25 @@ nl:
       title: Nieuwe vermelding
     reblog:
       body: 'Jouw toot werd door %{name} geboost:'
-      subject: "%{name} boostte jouw toot"
+      subject: '%{name} boostte jouw toot'
       title: Nieuwe boost
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: '%n%u'
         units:
           billion: B
           million: M
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: " "
+          unit: ' '
   pagination:
     newer: Nieuwer
     next: Volgende
     older: Ouder
     prev: Vorige
-    truncate: "&hellip;"
+    truncate: '&hellip;'
   preferences:
     languages: Talen
     other: Overig
@@ -679,7 +761,8 @@ nl:
   remote_follow:
     acct: Geef jouw account@domein op die je wilt gebruiken
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
-    no_account_html: Heb je geen account? Je kunt er <a href='%{sign_up_path}' target='_blank'>hier een registreren</a>
+    no_account_html: Heb je geen account? Je kunt er <a href='%{sign_up_path}' target='_blank'>hier
+      een registreren</a>
     proceed: Ga verder om te volgen
     prompt: 'Jij gaat volgen:'
   remote_interaction:
@@ -711,8 +794,9 @@ nl:
       uc_browser: UCBrowser
       weibo: Weibo
     current_session: Huidige sessie
-    description: "%{browser} op %{platform}"
-    explanation: Dit zijn de webbrowsers die momenteel met jouw Mastodonaccount zijn ingelogd.
+    description: '%{browser} op %{platform}'
+    explanation: Dit zijn de webbrowsers die momenteel met jouw Mastodonaccount zijn
+      ingelogd.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -749,11 +833,11 @@ nl:
     attached:
       description: 'Bijlagen: %{attached}'
       image:
-        one: "%{count} afbeelding"
-        other: "%{count} afbeeldingen"
+        one: '%{count} afbeelding'
+        other: '%{count} afbeeldingen'
       video:
-        one: "%{count} video"
-        other: "%{count} video's"
+        one: '%{count} video'
+        other: '%{count} video''s'
     boosted_from_html: Geboost van %{acct_link}
     content_warning: 'Tekstwaarschuwing: %{warning}'
     disallowed_hashtags:
@@ -782,87 +866,100 @@ nl:
     reblogged: boostte
     sensitive_content: Gevoelige inhoud
   terms:
-    body_html: |
-      <h2>Privacy Policy</h2>
-      <h3 id="collect">What information do we collect?</h3>
-
-      <ul>
-        <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
-        <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
-        <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">What do we use your information for?</h3>
-
-      <p>Any of the information we collect from you may be used in the following ways:</p>
-
-      <ul>
-        <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
-        <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-        <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">How do we protect your information?</h3>
-
-      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">What is our data retention policy?</h3>
-
-      <p>We will make a good faith effort to:</p>
-
-      <ul>
-        <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
-        <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
-      </ul>
-
-      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
-
-      <p>You may irreversibly delete your account at any time.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Do we use cookies?</h3>
-
-      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
-
-      <p>We use cookies to understand and save your preferences for future visits.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
-
-      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
-
-      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
-
-      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Site usage by children</h3>
-
-      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
-
-      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
-
-      <p>Law requirements can be different if this server is in another jurisdiction.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Changes to our Privacy Policy</h3>
-
-      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
-
-      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
-
-      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+    body_html: "<h2>Privacy Policy</h2>\n<h3 id=\"collect\">What information do we\
+      \ collect?</h3>\n\n<ul>\n  <li><em>Basic account information</em>: If you register\
+      \ on this server, you may be asked to enter a username, an e-mail address and\
+      \ a password. You may also enter additional profile information such as a display\
+      \ name and biography, and upload a profile picture and header image. The username,\
+      \ display name, biography, profile picture and header image are always listed\
+      \ publicly.</li>\n  <li><em>Posts, following and other public information</em>:\
+      \ The list of people you follow is listed publicly, the same is true for your\
+      \ followers. When you submit a message, the date and time is stored as well\
+      \ as the application you submitted the message from. Messages may contain media\
+      \ attachments, such as pictures and videos. Public and unlisted posts are available\
+      \ publicly. When you feature a post on your profile, that is also publicly available\
+      \ information. Your posts are delivered to your followers, in some cases it\
+      \ means they are delivered to different servers and copies are stored there.\
+      \ When you delete posts, this is likewise delivered to your followers. The action\
+      \ of reblogging or favouriting another post is always public.</li>\n  <li><em>Direct\
+      \ and followers-only posts</em>: All posts are stored and processed on the server.\
+      \ Followers-only posts are delivered to your followers and users who are mentioned\
+      \ in them, and direct posts are delivered only to users mentioned in them. In\
+      \ some cases it means they are delivered to different servers and copies are\
+      \ stored there. We make a good faith effort to limit the access to those posts\
+      \ only to authorized persons, but other servers may fail to do so. Therefore\
+      \ it's important to review servers your followers belong to. You may toggle\
+      \ an option to approve and reject new followers manually in the settings. <em>Please\
+      \ keep in mind that the operators of the server and any receiving server may\
+      \ view such messages</em>, and that recipients may screenshot, copy or otherwise\
+      \ re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>\n\
+      \  <li><em>IPs and other metadata</em>: When you log in, we record the IP address\
+      \ you log in from, as well as the name of your browser application. All the\
+      \ logged in sessions are available for your review and revocation in the settings.\
+      \ The latest IP address used is stored for up to 12 months. We also may retain\
+      \ server logs which include the IP address of every request to our server.</li>\n\
+      </ul>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"use\">What do we use your information\
+      \ for?</h3>\n\n<p>Any of the information we collect from you may be used in\
+      \ the following ways:</p>\n\n<ul>\n  <li>To provide the core functionality of\
+      \ Mastodon. You can only interact with other people's content and post your\
+      \ own content when you are logged in. For example, you may follow other people\
+      \ to view their combined posts in your own personalized home timeline.</li>\n\
+      \  <li>To aid moderation of the community, for example comparing your IP address\
+      \ with other known ones to determine ban evasion or other violations.</li>\n\
+      \  <li>The email address you provide may be used to send you information, notifications\
+      \ about other people interacting with your content or sending you messages,\
+      \ and to respond to inquiries, and/or other requests or questions.</li>\n</ul>\n\
+      \n<hr class=\"spacer\" />\n\n<h3 id=\"protect\">How do we protect your information?</h3>\n\
+      \n<p>We implement a variety of security measures to maintain the safety of your\
+      \ personal information when you enter, submit, or access your personal information.\
+      \ Among other things, your browser session, as well as the traffic between your\
+      \ applications and the API, are secured with SSL, and your password is hashed\
+      \ using a strong one-way algorithm. You may enable two-factor authentication\
+      \ to further secure access to your account.</p>\n\n<hr class=\"spacer\" />\n\
+      \n<h3 id=\"data-retention\">What is our data retention policy?</h3>\n\n<p>We\
+      \ will make a good faith effort to:</p>\n\n<ul>\n  <li>Retain server logs containing\
+      \ the IP address of all requests to this server, in so far as such logs are\
+      \ kept, no more than 90 days.</li>\n  <li>Retain the IP addresses associated\
+      \ with registered users no more than 12 months.</li>\n</ul>\n\n<p>You can request\
+      \ and download an archive of your content, including your posts, media attachments,\
+      \ profile picture, and header image.</p>\n\n<p>You may irreversibly delete your\
+      \ account at any time.</p>\n\n<hr class=\"spacer\"/>\n\n<h3 id=\"cookies\">Do\
+      \ we use cookies?</h3>\n\n<p>Yes. Cookies are small files that a site or its\
+      \ service provider transfers to your computer's hard drive through your Web\
+      \ browser (if you allow). These cookies enable the site to recognize your browser\
+      \ and, if you have a registered account, associate it with your registered account.</p>\n\
+      \n<p>We use cookies to understand and save your preferences for future visits.</p>\n\
+      \n<hr class=\"spacer\" />\n\n<h3 id=\"disclose\">Do we disclose any information\
+      \ to outside parties?</h3>\n\n<p>We do not sell, trade, or otherwise transfer\
+      \ to outside parties your personally identifiable information. This does not\
+      \ include trusted third parties who assist us in operating our site, conducting\
+      \ our business, or servicing you, so long as those parties agree to keep this\
+      \ information confidential. We may also release your information when we believe\
+      \ release is appropriate to comply with the law, enforce our site policies,\
+      \ or protect ours or others rights, property, or safety.</p>\n\n<p>Your public\
+      \ content may be downloaded by other servers in the network. Your public and\
+      \ followers-only posts are delivered to the servers where your followers reside,\
+      \ and direct messages are delivered to the servers of the recipients, in so\
+      \ far as those followers or recipients reside on a different server than this.</p>\n\
+      \n<p>When you authorize an application to use your account, depending on the\
+      \ scope of permissions you approve, it may access your public profile information,\
+      \ your following list, your followers, your lists, all your posts, and your\
+      \ favourites. Applications can never access your e-mail address or password.</p>\n\
+      \n<hr class=\"spacer\" />\n\n<h3 id=\"children\">Site usage by children</h3>\n\
+      \n<p>If this server is in the EU or the EEA: Our site, products and services\
+      \ are all directed to people who are at least 16 years old. If you are under\
+      \ the age of 16, per the requirements of the GDPR (<a href=\"https://en.wikipedia.org/wiki/General_Data_Protection_Regulation\"\
+      >General Data Protection Regulation</a>) do not use this site.</p>\n\n<p>If\
+      \ this server is in the USA: Our site, products and services are all directed\
+      \ to people who are at least 13 years old. If you are under the age of 13, per\
+      \ the requirements of COPPA (<a href=\"https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\"\
+      >Children's Online Privacy Protection Act</a>) do not use this site.</p>\n\n\
+      <p>Law requirements can be different if this server is in another jurisdiction.</p>\n\
+      \n<hr class=\"spacer\" />\n\n<h3 id=\"changes\">Changes to our Privacy Policy</h3>\n\
+      \n<p>If we decide to change our privacy policy, we will post those changes on\
+      \ this page.</p>\n\n<p>This document is CC-BY-SA. It was last updated March\
+      \ 7, 2018.</p>\n\n<p>Originally adapted from the <a href=\"https://github.com/discourse/discourse\"\
+      >Discourse privacy policy</a>.</p>\n"
     title: Gebruiksvoorwaarden en privacybeleid van %{instance}
   themes:
     contrast: Hoog contrast
@@ -870,50 +967,83 @@ nl:
     mastodon-light: Mastodon (licht)
   time:
     formats:
-      default: "%d %B %Y om %H:%M"
-      month: "%b %Y"
+      default: '%d %B %Y om %H:%M'
+      month: '%b %Y'
   two_factor_authentication:
     code_hint: Voer de code in die door de authenticatie-app gegenereerd is
-    description_html: Na het instellen van <strong>tweestapsverificatie</strong>, kun jij je alleen aanmelden als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren aanmeldcode.
+    description_html: Na het instellen van <strong>tweestapsverificatie</strong>,
+      kun jij je alleen aanmelden als je jouw mobiele telefoon bij je hebt. Hiermee
+      genereer je namelijk de in te voeren aanmeldcode.
     disable: Uitschakelen
     enable: Inschakelen
     enabled: Tweestapsverificatie is ingeschakeld
     enabled_success: Inschakelen tweestapsverificatie geslaagd
     generate_recovery_codes: Herstelcodes genereren
-    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het aanmelden moet invoeren."
-    lost_recovery_codes: Met herstelcodes kun je toegang tot jouw account krijgen wanneer je jouw telefoon bent kwijtgeraakt. Wanneer je jouw herstelcodes bent kwijtgeraakt, kan je ze hier opnieuw genereren. Jouw oude herstelcodes zijn daarna ongeldig.
-    manual_instructions: Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder geheime code in gewone tekst.
+    instructions_html: <strong>Scan deze QR-code in Google Authenticator of een soortgelijke
+      app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes
+      die je bij het aanmelden moet invoeren.
+    lost_recovery_codes: Met herstelcodes kun je toegang tot jouw account krijgen
+      wanneer je jouw telefoon bent kwijtgeraakt. Wanneer je jouw herstelcodes bent
+      kwijtgeraakt, kan je ze hier opnieuw genereren. Jouw oude herstelcodes zijn
+      daarna ongeldig.
+    manual_instructions: Voor het geval je de QR-code niet kunt scannen en het handmatig
+      moet invoeren, vind je hieronder geheime code in gewone tekst.
     recovery_codes: Herstelcodes back-uppen
     recovery_codes_regenerated: Opnieuw genereren herstelcodes geslaagd
-    recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige plek bewaard</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.
+    recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon,
+      kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen
+      tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige
+      plek bewaard</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere
+      belangrijke documenten bewaren.
     setup: Instellen
-    wrong_code: De ingevoerde code is ongeldig! Klopt de systeemtijd van de server en die van jouw apparaat?
+    wrong_code: De ingevoerde code is ongeldig! Klopt de systeemtijd van de server
+      en die van jouw apparaat?
   user_mailer:
     backup_ready:
-      explanation: Je hebt een volledige back-up van jouw Mastodon-account opgevraagd. Het staat nu klaar om te worden gedownload!
+      explanation: Je hebt een volledige back-up van jouw Mastodon-account opgevraagd.
+        Het staat nu klaar om te worden gedownload!
       subject: Jouw archief staat klaar om te worden gedownload
       title: Archief ophalen
     welcome:
       edit_profile_action: Profiel instellen
-      edit_profile_step: Je kunt jouw profiel aanpassen door een avatar (profielfoto) en omslagfoto te uploaden, jouw weergavenaam in te stellen en iets over jezelf te vertellen. Wanneer je nieuwe volgers eerst wilt goedkeuren, kun je jouw account besloten maken.
+      edit_profile_step: Je kunt jouw profiel aanpassen door een avatar (profielfoto)
+        en omslagfoto te uploaden, jouw weergavenaam in te stellen en iets over jezelf
+        te vertellen. Wanneer je nieuwe volgers eerst wilt goedkeuren, kun je jouw
+        account besloten maken.
       explanation: Hier zijn enkele tips om je op weg te helpen
       final_action: Begin berichten te plaatsen
-      final_step: 'Begin berichten te plaatsen! Zelfs zonder volgers kunnen jouw openbare berichten door anderen gezien worden, bijvoorbeeld op de lokale tijdlijn en via hashtags. Je wilt jezelf misschien introduceren met de hashtag #introductions.'
+      final_step: 'Begin berichten te plaatsen! Zelfs zonder volgers kunnen jouw openbare
+        berichten door anderen gezien worden, bijvoorbeeld op de lokale tijdlijn en
+        via hashtags. Je wilt jezelf misschien introduceren met de hashtag #introductions.'
       full_handle: Jouw volledige Mastodonadres
-      full_handle_hint: Dit geef je aan jouw vrienden, zodat ze jouw berichten kunnen sturen of (vanaf een andere Mastodonserver) kunnen volgen.
+      full_handle_hint: Dit geef je aan jouw vrienden, zodat ze jouw berichten kunnen
+        sturen of (vanaf een andere Mastodonserver) kunnen volgen.
       review_preferences_action: Instellingen veranderen
-      review_preferences_step: Zorg dat je jouw instellingen naloopt, zoals welke e-mails je wilt ontvangen of voor wie jouw berichten standaard zichtbaar moeten zijn. Wanneer je geen last hebt van bewegende beelden, kun je het afspelen van geanimeerde GIF's inschakelen.
+      review_preferences_step: Zorg dat je jouw instellingen naloopt, zoals welke
+        e-mails je wilt ontvangen of voor wie jouw berichten standaard zichtbaar moeten
+        zijn. Wanneer je geen last hebt van bewegende beelden, kun je het afspelen
+        van geanimeerde GIF's inschakelen.
       subject: Welkom op Mastodon
-      tip_bridge_html: Wanneer je hiervoor op Twitter zat, kun je jouw vrienden op Mastodon vinden door gebruik te maken van de <a href="%{bridge_url}">bridge-app</a>. Het werkt echter alleen wanneer zij ook deze bridge-app hebben gebruikt!
-      tip_federated_timeline: De globale tijdlijn toont berichten in het Mastodonnetwerk. Het bevat echter alleen berichten van mensen waar jouw buren mee zijn verbonden, dus het is niet compleet.
-      tip_following: Je volgt standaard de beheerder(s) van jouw Mastodonserver. Bekijk de lokale en de globale tijdlijnen om meer interessante mensen te vinden.
-      tip_local_timeline: De lokale tijdlijn toont berichten van mensen op %{instance}. Dit zijn jouw naaste buren!
-      tip_mobile_webapp: Wanneer jouw mobiele webbrowser Mastodon aan jouw startscherm wilt toevoegen, kun je pushmeldingen ontvangen. Het gedraagt zich op meerdere manieren als een native app!
+      tip_bridge_html: Wanneer je hiervoor op Twitter zat, kun je jouw vrienden op
+        Mastodon vinden door gebruik te maken van de <a href="%{bridge_url}">bridge-app</a>.
+        Het werkt echter alleen wanneer zij ook deze bridge-app hebben gebruikt!
+      tip_federated_timeline: De globale tijdlijn toont berichten in het Mastodonnetwerk.
+        Het bevat echter alleen berichten van mensen waar jouw buren mee zijn verbonden,
+        dus het is niet compleet.
+      tip_following: Je volgt standaard de beheerder(s) van jouw Mastodonserver. Bekijk
+        de lokale en de globale tijdlijnen om meer interessante mensen te vinden.
+      tip_local_timeline: De lokale tijdlijn toont berichten van mensen op %{instance}.
+        Dit zijn jouw naaste buren!
+      tip_mobile_webapp: Wanneer jouw mobiele webbrowser Mastodon aan jouw startscherm
+        wilt toevoegen, kun je pushmeldingen ontvangen. Het gedraagt zich op meerdere
+        manieren als een native app!
       tips: Tips
       title: Welkom aan boord %{name}!
   users:
     invalid_email: E-mailadres is ongeldig
     invalid_otp_token: Ongeldige tweestaps-aanmeldcode
-    otp_lost_help_html: Als je toegang tot beiden kwijt bent geraakt, neem dan contact op via %{email}
-    seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.
+    otp_lost_help_html: Als je toegang tot beiden kwijt bent geraakt, neem dan contact
+      op via %{email}
+    seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn
+      wachtwoorden en e-mailinstellingen niet beschikbaar.
     signed_in_as: 'Ingelogd als:'
