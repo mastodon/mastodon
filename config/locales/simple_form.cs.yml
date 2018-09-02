@@ -1,50 +1,38 @@
+---
 cs:
   simple_form:
     hints:
       defaults:
-        autofollow: Lidé, kteří se zaregistrují přes pozvání, vás budou automaticky
-          sledovat
-        avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšena na %{dimensions}
-          px
+        autofollow: Lidé, kteří se zaregistrují přes pozvání, vás budou automaticky sledovat
+        avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšena na %{dimensions} px
         bot: Tento účet provádí hlavně automatizované akce a nemusí být spravován
         context: Jedno či více kontextů, ve kterých má být filtr uplatněn
-        digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste při
-          své nepřítomnosti obdržel/a osobní zprávy
+        digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste při své nepřítomnosti obdržel/a osobní zprávy
         display_name:
           one: Zbývá <span class="name-counter">1</span> znak
           other: Zbývá vám <span class="name-counter">%{count}</span> znaků
         fields: Na profilu můžete mít až 4 položky zobrazené jako tabulka
-        header: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšena na %{dimensions}
-          px
+        header: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšena na %{dimensions} px
         inbox_url: Zkopírujte URL z hlavní stránky mostu, který chcete použít
-        irreversible: Filtrované tooty nenávratně zmizí, i pokud bude filtr později
-          odstraněn
+        irreversible: Filtrované tooty nenávratně zmizí, i pokud bude filtr později odstraněn
         locale: Jazyk uživatelského rozhraní, e-mailů a oznámení push
         locked: Vyžaduje manuální schvalování sledovatelů
         note:
           one: Zbývá <span class="note-counter">1</span>znak
           other: Zbývá <span class="note-counter">%{count}</span> znaků
-        phrase: Shoda bude nalezena bez ohledu na velikost písmen v těle tootu či
-          varování o obsahu
-        scopes: Které API bude aplikace povolena používat. Pokud vyberete rozsah nejvyššího
-          stupně, nebudete je muset vybírat po jednom.
-        setting_default_language: Jazyk vašich tootů může být detekován automaticky,
-          není to však vždy přesné
-        setting_hide_network: Koho sledujete a kdo sleduje vás nebude zobrazeno na
-          vašem profilu
+        phrase: Shoda bude nalezena bez ohledu na velikost písmen v těle tootu či varování o obsahu
+        scopes: Které API bude aplikace povolena používat. Pokud vyberete rozsah nejvyššího stupně, nebudete je muset vybírat po jednom.
+        setting_default_language: Jazyk vašich tootů může být detekován automaticky, není to však vždy přesné
+        setting_hide_network: Koho sledujete a kdo sleduje vás nebude zobrazeno na vašem profilu
         setting_noindex: Ovlivňuje váš veřejný profil a stránky příspěvků
-        setting_theme: Ovlivňuje jak Mastodon vypadá, jste-li přihlášen na libovolném
-          zařízení.
-        whole_word: Je-li klíčové slovo či fráze pouze alfanumerická, bude aplikována
-          pouze, pokud se shoduje s celým slovem
+        setting_theme: Ovlivňuje jak Mastodon vypadá, jste-li přihlášen na libovolném zařízení.
+        whole_word: Je-li klíčové slovo či fráze pouze alfanumerická, bude aplikována pouze, pokud se shoduje s celým slovem
       imports:
         data: Soubor CSV exportován z jiné instance Mastodon
       sessions:
-        otp: 'Napište dvoufaktorový kód vygenerovaný vaší mobilní aplikací, nebo použijte
-          jeden z vašich záložních kódů:'
+        otp: 'Napište dvoufaktorový kód vygenerovaný vaší mobilní aplikací, nebo použijte jeden z vašich záložních kódů:'
       user:
-        chosen_languages: Je-li tohle zaškrtnuto, budou ve veřejných časových osách
-          zobrazeny pouze tooty ve zvolených jazycích
+        chosen_languages: Je-li tohle zaškrtnuto, budou ve veřejných časových osách zobrazeny pouze tooty ve zvolených jazycích
     labels:
       account:
         fields:
@@ -107,6 +95,6 @@ cs:
         report: Posílat e-maily, je-li odesláno nové nahlášení
     'no': Ne
     required:
-      mark: '*'
+      mark: "*"
       text: požadováno
     'yes': Ano
