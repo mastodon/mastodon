@@ -38,14 +38,25 @@ sr:
     learn_more: Сазнајте више
     other_instances: Листа инстанци
     source_code: Изворни код
-    status_count_after: статуса
+    status_count_after:
+      one: статус
+      other: статуси
     status_count_before: Који су написали
-    user_count_after: корисника
+    user_count_after:
+      one: корисник
+      other: корисници
     user_count_before: Дом за
     what_is_mastodon: Шта је Мастодонт?
+    api: API
+    apps: Мобилне апликације
+    documentation: Документација
+    privacy_policy: Полиса приватности
+    terms: Услови коришћења
   accounts:
     follow: Follow
-    followers: Followers
+    followers:
+      one: Пратилац
+      other: Пратиоци
     following: Following
     media: Мултимедија
     moved_html: '%{name} је померен на %{new_profile_link}:'
@@ -59,6 +70,9 @@ sr:
       admin: Администратор
       moderator: Модератор
     unfollow: Отпрати
+    choices_html: '%{name}''s избори:'
+    joined: Придружио/ла се %{date}
+    network_hidden: Ова информација није доступна
   admin:
     account_moderation_notes:
       create: Направи
@@ -179,29 +193,29 @@ sr:
       deleted_status: (обрисан статус)
     custom_emojis:
       by_domain: Домен
-      copied_msg: Успешно направљена локална копија емотикона
+      copied_msg: Успешно направљена локална копија емоџија
       copy: Копирај
-      copy_failed_msg: Не могу да направим локалну копију тог емотикона
-      created_msg: Емотикон успешно направљен!
+      copy_failed_msg: Не могу да направим локалну копију тог емотиџија
+      created_msg: Емоџи успешно направљен!
       delete: Обриши
-      destroyed_msg: Емотикон успешно обрисан!
+      destroyed_msg: Емоџи успешно обрисан!
       disable: Онемогући
-      disabled_msg: Емотикон успешно онемогућен
-      emoji: Емотикон
+      disabled_msg: Емоџи успешно онемогућен
+      emoji: Емоџи
       enable: Омогући
-      enabled_msg: Емотикон успешно омогућен
+      enabled_msg: Емоџи успешно омогућен
       image_hint: PNG до 50KB
       listed: Излистан
       new:
-        title: Додај нови произвољни емотикон
+        title: Додај нови произвољни емоџи
       overwrite: Препиши
       shortcode: Пречица
       shortcode_hint: Најмање 2 карактера, дозвољени су само слова, бројеви и доње
         црте
-      title: Произвољни емотикони
+      title: Произвољни емотиџији
       unlisted: Неизлистан
-      update_failed_msg: Не могу да ажурирам овај емотикон
-      updated_msg: емотикон успешно ажуриран!
+      update_failed_msg: Не могу да ажурирам овај емоџи
+      updated_msg: Емоџи успешно ажуриран!
       upload: Отпреми
     domain_blocks:
       add_new: Додај нови
@@ -214,16 +228,16 @@ sr:
           и аутоматски применити одређене модераторске методе над тим налозима.
         severity:
           desc_html: <strong>Ућуткавање</strong> ће све статусе овог налога учинити
-            невидиљивим за све, осим за оне који налог већ прате. <strong>Суспензија</strong>
+            невидљивим за све, осим за оне који већ прате налог. <strong>Суспензија</strong>
             ће уклонити сав садржај налога, сву мултимедију, и профилне податке. Користите
-            <strong>Ништа</strong> ако само желите да одбаците мултимедијалне фајлове.
+            <strong>Ништа</strong> само ако желите да одбаците мултимедијалне фајлове.
           noop: Ништа
           silence: Ућуткавање
           suspend: Суспензија
         title: Ново блокирање домена
       reject_media: Одбаци мултимедију
       reject_media_hint: Уклања локално ускладиштене мултимедијске фајлове и одбија
-        да их скида на даље. Небитно је за суспензију.
+        да их скида убудуће. Небитно је за суспензију
       severities:
         noop: Ништа
         silence: Ућуткавање
@@ -233,25 +247,25 @@ sr:
         affected_accounts:
           few: Утиче на %{count} налога у бази
           many: Утиче на %{count} налога у бази
-          one: Утиче на један налог у бази
-          other: Утиче на %{count} налога у бази
+          one: Један налог у бази података је под утицајем
+          other: Утиче на %{count} налога у бази података
         retroactive:
           silence: Угаси ућуткивање за све постојеће налоге са овог домена
-          suspend: Угаси суспензије за све постојеће налоге са овог домена
-        title: Поништи блокаду домена за домен %{domain}
+          suspend: Уклони суспензије за све постојеће налоге са овог домена
+        title: Поништи блокаду домена за %{domain}
         undo: Поништи
       title: Блокаде домена
       undo: Поништи
     email_domain_blocks:
-      add_new: Додај новуAdd new
-      created_msg: Успешно додао домен е-поште на црну листу
+      add_new: Додај нови
+      created_msg: Успешно додао домен Е-поште на црну листу
       delete: Уклони
-      destroyed_msg: Успешно уклоњен домен е-поште са црне листе
+      destroyed_msg: Успешно уклоњен домен Е-поште са црне листе
       domain: Домен
       new:
         create: Додај домен
-        title: Нова ставка у црној листи е-пошти
-      title: Црна листа адреса е-поште
+        title: Нова ставка е-поштe у црној листи
+      title: Црна листа E-поште
     instances:
       account_count: Познати налози
       domain_name: Домен
@@ -261,10 +275,11 @@ sr:
     invites:
       filter:
         all: Све
-        available: Активне
-        expired: Истекле
+        available: Доступни
+        expired: Истекли
         title: Филтер
       title: Позивнице
+      deactivate_all: Деактивирај све
     reports:
       action_taken_by: Акцију извео
       are_you_sure: Да ли сте сигурни?
@@ -349,6 +364,29 @@ sr:
       title: WebSub
       topic: Topic
     title: Администрација
+    dashboard:
+      backlog: Позадински записи
+      config: Конфигурација
+      feature_deletions: Брисање налога
+      feature_invites: Позивнице
+      feature_registrations: Регистрација
+      feature_relay: Федеративни релеј
+      features: Карактеристике
+      hidden_service: Федерација са скривеним услугама
+      open_reports: отворене пријаве
+      recent_users: Недавни корисници
+      search: Потпуна претрага текста
+      single_user_mode: Појединачни корисник
+      software: Софтвер
+      space: Коришћење простора
+      title: Командна табла
+      total_users: укупан број корисника
+      trends: Трендови
+      week_interactions: интеракције ове недеље
+      week_users_active: активно ове недеље
+      week_users_new: корисника ове недеље
+    relays:
+      add_new: Додај нови релеј
   admin_mailer:
     new_report:
       body: '%{reporter} је пријавио %{target}'
