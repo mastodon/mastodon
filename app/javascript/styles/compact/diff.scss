@@ -1,0 +1,17 @@
+// compact.scss
+.status__action-bar {
+  position: absolute;
+  opacity: 0;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  max-height: 2px;
+  padding-top: 2px;
+  &:hover {
+    opacity: 0.9;
+    background-color: black;
+    max-height: 26px;
+    z-index: 2;
+  }
+}
