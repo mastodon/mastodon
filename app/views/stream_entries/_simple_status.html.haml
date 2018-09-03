@@ -8,9 +8,9 @@
       .status__avatar
         %div
           - if current_account&.user&.setting_auto_play_gif || autoplay
-            = image_tag status.account.avatar(:original), width: 48, height: 48, alt: '', class: 'u-photo account__avatar'
+            = image_tag status.account.avatar_original_url, width: 48, height: 48, alt: '', class: 'u-photo account__avatar'
           - else
-            = image_tag status.account.avatar(:static), width: 48, height: 48, alt: '', class: 'u-photo account__avatar'
+            = image_tag status.account.avatar_static_url, width: 48, height: 48, alt: '', class: 'u-photo account__avatar'
       %span.display-name
         %bdi
           %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true, autoplay: autoplay)
@@ -20,7 +20,7 @@
   .status__content.emojify<
     - if status.spoiler_text?
       %p{ style: 'margin-bottom: 0' }<
-        %span.p-summary> #{Formatter.instance.format_spoiler(status)}&nbsp;
+        %span.p-summary> #{Formatter.instance.format_spoiler(status, autoplay: autoplay)}&nbsp;
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
     .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status, custom_emojify: true, autoplay: autoplay)
 

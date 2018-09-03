@@ -61,7 +61,7 @@ class Formatter
     Sanitize.fragment(html, config)
   end
 
-  def format_spoiler(status)
+  def format_spoiler(status, **options)
     html = encode(status.spoiler_text)
     html = encode_custom_emojis(html, status.emojis, options[:autoplay])
     html.html_safe # rubocop:disable Rails/OutputSafety

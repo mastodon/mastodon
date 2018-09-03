@@ -3,8 +3,8 @@
 :queues:
   - default
   - push
-  - pull
   - mailers
+  - pull
 :schedule:
   subscriptions_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(4..6) %> * * *'
