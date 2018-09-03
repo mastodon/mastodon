@@ -1,3 +1,20 @@
+$maximum-width: 1235px;
+$fluid-breakpoint: $maximum-width + 20px;
+$column-breakpoint: 700px;
+$small-breakpoint: 960px;
+
+.container {
+  box-sizing: border-box;
+  max-width: $maximum-width;
+  margin: 0 auto;
+  position: relative;
+
+  @media screen and (max-width: $fluid-breakpoint) {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+
 .container-alt {
   width: 700px;
   margin: 0 auto;
