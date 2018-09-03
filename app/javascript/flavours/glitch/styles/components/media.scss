@@ -78,16 +78,10 @@
   box-sizing: border-box;
   margin-top: 8px;
   overflow: hidden;
+  border-radius: 4px;
   position: relative;
-  background: $base-shadow-color;
   width: 100%;
   height: 110px;
-
-  .detailed-status & {
-    margin-left: -14px;
-    width: calc(100% + 28px);
-    height: 250px;
-  }
 
   @include fullwidth-gallery;
 }
@@ -98,6 +92,12 @@
   display: block;
   float: left;
   position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .full-width & {
+    border-radius: 0;
+  }
 
   &.standalone {
     .media-gallery__item-gifv-thumbnail {
@@ -105,13 +105,17 @@
       top: 0;
     }
   }
+
+  &.letterbox {
+    background: $base-shadow-color;
+  }
 }
 
 .media-gallery__item-thumbnail {
   cursor: zoom-in;
   display: block;
   text-decoration: none;
-  height: 100%;
+  color: $secondary-text-color;
   line-height: 0;
 
   &,

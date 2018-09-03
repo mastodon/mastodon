@@ -77,6 +77,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             sensitive={status.get('sensitive')}
             media={status.get('media_attachments')}
             letterbox={settings.getIn(['media', 'letterbox'])}
+            fullwidth={settings.getIn(['media', 'fullwidth'])}
             onOpenMedia={this.props.onOpenMedia}
           />
         );

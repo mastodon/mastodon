@@ -163,7 +163,8 @@ class Item extends React.PureComponent {
             sizes={sizes}
             alt={attachment.get('description')}
             title={attachment.get('description')}
-            style={{ objectPosition: `${x}% ${y}%` }} />
+            style={{ objectPosition: `${x}% ${y}%` }}
+          />
         </a>
       );
     } else if (attachment.get('type') === 'gifv') {
@@ -191,7 +192,7 @@ class Item extends React.PureComponent {
     }
 
     return (
-      <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
+      <div className={classNames('media-gallery__item', { standalone, letterbox })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
         {thumbnail}
       </div>
     );
@@ -261,6 +262,8 @@ export default class MediaGallery extends React.PureComponent {
 
     if (this.isStandaloneEligible() && width) {
       style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
+    } else if (width) {
+      style.height = width / (16/9);
     }
 
     if (!visible) {
@@ -280,7 +283,7 @@ export default class MediaGallery extends React.PureComponent {
       }
     }
 
-    const computedClass = classNames('media-gallery', `size-${size}`, { 'full-width': fullwidth });
+    const computedClass = classNames('media-gallery', { 'full-width': fullwidth });
 
     return (
       <div className={computedClass} style={style} ref={this.handleRef}>
