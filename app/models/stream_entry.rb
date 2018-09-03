@@ -26,6 +26,7 @@ class StreamEntry < ApplicationRecord
   default_scope { where(activity_type: 'Status') }
   scope :recent, -> { reorder(id: :desc) }
   scope :with_includes, -> { includes(:account, status: STATUS_INCLUDES) }
+  scope :without_local_only, -> { where(statuses: { local_only: [false, nil] }) }
 
   delegate :target, :title, :content, :thread, :local_only?,
            to: :status,

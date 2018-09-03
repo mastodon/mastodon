@@ -30,7 +30,7 @@ class AccountsController < ApplicationController
       end
 
       format.atom do
-        @entries = @account.stream_entries.where(hidden: false).with_includes.paginate_by_max_id(PAGE_SIZE, params[:max_id], params[:since_id])
+        @entries = @account.stream_entries.where(hidden: false).with_includes.without_local_only.paginate_by_max_id(PAGE_SIZE, params[:max_id], params[:since_id])
         render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.feed(@account, @entries.reject { |entry| entry.status.nil? }))
       end
 
@@ -63,7 +63,11 @@ class AccountsController < ApplicationController
   end
 
   def default_statuses
-    @account.statuses.where(visibility: [:public, :unlisted])
+    if current_user.nil?
+      @account.statuses.without_local_only.where(visibility: [:public, :unlisted])
+    else
+      @account.statuses.where(visibility: [:public, :unlisted])
+    end
   end
 
   def only_media_scope
