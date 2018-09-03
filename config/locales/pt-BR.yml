@@ -5,13 +5,13 @@ pt-BR:
     about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos e software gratuito e de código aberto. É descentralizada como e-mail.
     about_this: Sobre
     administered_by: 'Administrado por:'
+    api: API
+    apps: Apps
     closed_registrations: Os cadastros estão atualmente fechados nesta instância. No entanto, você pode procurar uma instância diferente na qual possa criar uma conta e acessar a mesma rede por lá.
     contact: Contato
     contact_missing: Não definido
     contact_unavailable: N/A
-    description_headline: O que é %{domain}?
-    domain_count_after: outras instâncias
-    domain_count_before: Conectado a
+    documentation: Documentação
     extended_description_html: |
       <h3>Um bom lugar para regras</h3>
       <p>A descrição da instância ainda não foi feita.</p>
@@ -28,25 +28,39 @@ pt-BR:
     hosted_on: Mastodon hospedado em %{domain}
     learn_more: Saiba mais
     other_instances: Lista de instâncias
+    privacy_policy: Política de Privacidade
     source_code: Código-fonte
-    status_count_after: publicações
+    status_count_after:
+      one: status
+      other: status
     status_count_before: Autores de
-    user_count_after: usuários
+    terms: Termos de serviço
+    user_count_after:
+      one: usuário
+      other: usuários
     user_count_before: Casa de
     what_is_mastodon: O que é Mastodon?
   accounts:
+    choices_html: 'Escolhas de %{name}:'
     follow: Seguir
-    followers: Seguidores
+    followers:
+      one: Seguidor
+      other: Seguidores
     following: Seguindo
+    joined: Participa desde %{date}
     media: Mídia
     moved_html: "%{name} se mudou para %{new_profile_link}:"
     network_hidden: Esta informação não está disponível
     nothing_here: Não há nada aqui!
     people_followed_by: Pessoas que %{name} segue
     people_who_follow: Pessoas que seguem %{name}
-    posts: Toots
+    pin_errors:
+      following: Você tem que estar seguindo a pessoa que você quer sugerir
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Toots e respostas
-    remote_follow: Siga remotamente
     reserved_username: Este usuário está reservado
     roles:
       admin: Administrador
@@ -180,6 +194,7 @@ pt-BR:
         unsuspend_account: "%{name} desativou a suspensão de  %{target}"
         update_custom_emoji: "%{name} atualizou o emoji %{target}"
         update_status: "%{name} atualizou o estado de %{target}"
+      deleted_status: "(status deletado)"
       title: Auditar relatório
     custom_emojis:
       by_domain: Domínio
@@ -206,6 +221,27 @@ pt-BR:
       update_failed_msg: Não foi possível atualizar esse emoji
       updated_msg: Emoji atualizado com sucesso!
       upload: Enviar
+    dashboard:
+      backlog: tarefas na fila
+      config: Configuração
+      feature_deletions: Remoção de contas
+      feature_invites: Convites
+      feature_registrations: Cadastros
+      feature_relay: Repetidor da federação
+      features: Funcionalidades
+      hidden_service: Federação com serviços onion
+      open_reports: Denúncias em aberto
+      recent_users: Usuários recentes
+      search: Pesquisa em texto
+      single_user_mode: Modo de usuário único
+      software: Software
+      space: Uso de espaço em disco
+      title: Painel de controle
+      total_users: usuários no total
+      trends: Tendências
+      week_interactions: interações essa semana
+      week_users_active: ativos essa semana
+      week_users_new: usuários essa semana
     domain_blocks:
       add_new: Adicionar novo
       created_msg: Bloqueio de domínio está sendo processado
@@ -255,12 +291,21 @@ pt-BR:
       search: Buscar
       title: Instâncias conhecidas
     invites:
+      deactivate_all: Desativar todos
       filter:
         all: Todos
         available: Disponíveis
         expired: Expirados
         title: Filtro
       title: Convites
+    relays:
+      add_new: Adicionar novo repetidor
+      description_html: Um <strong>repetidor de federação</strong> é um servidor intermediário que troca um grande volume de toots públicos entre servidores que se inscrevem e publicam nele. <strong>O repetidor pode ser usado para ajudar servidores pequenos e médios a descobrir conteúdo do fediverso</strong>, que normalmente precisariam que usuários locais manualmente seguissem outras pessoas em servidores remotos.
+      enable_hint: Uma vez habilitado, seu servidor vai se inscrever para receber todos os toots públicos desse repetidor; E vai começar a enviar todos os toots públicos desse servidor para o repetidor.
+      inbox_url: URL do repetidor
+      setup: Configurar uma conexão de repetidor
+      status: Status
+      title: Repetidores
     report_notes:
       created_msg: Nota de denúncia criada com sucesso!
       destroyed_msg: Nota de denúncia excluída com sucesso!
@@ -310,6 +355,9 @@ pt-BR:
       contact_information:
         email: E-mail
         username: Contate usuário
+      custom_css:
+        desc_html: Modificar o visual com CSS que é carregado em todas as páginas
+        title: CSS customizado
       hero:
         desc_html: Aparece na página inicial. Ao menos 600x100px é recomendado. Se não estiver definido, o thumbnail da instância é usado no lugar
         title: Imagem de capa
@@ -339,11 +387,14 @@ pt-BR:
         desc_html: Mostrar uma insígnia de Equipe na página de usuário
         title: Mostrar insígnia de equipe
       site_description:
-        desc_html: Parágrafo introdutório na página inicial e em meta tags. Você pode usar tags HTML, em especial <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
+        desc_html: Parágrafo introdutório na página inicial. Descreva o que faz esse servidor especial, e qualquer outra coisa de importante. Você pode usar tags HTML, em especial <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrição da instância
       site_description_extended:
         desc_html: Um ótimo lugar para seu código de conduta, regras, diretrizes e outras coisas para diferenciar a sua instância. Você pode usar tags HTML
         title: Informação estendida customizada
+      site_short_description:
+        desc_html: Aparece na barra lateral e nas meta tags. Descreva o que é Mastodon e o que faz esse servidor especial em um único parágrafo. Se não for preenchido, é substituído pela descrição da instância.
+        title: Descrição curta da instância
       site_terms:
         desc_html: Você pode escrever a sua própria política de privacidade, termos de serviço, entre outras coisas. Você pode usar tags HTML
         title: Termos de serviço customizados
@@ -365,6 +416,7 @@ pt-BR:
       media:
         title: Mídia
       no_media: Não há mídia
+      no_status_selected: Nenhum status foi modificado porque nenhum estava selecionado
       title: Postagens da conta
       with_media: Com mídia
     subscriptions:
@@ -374,6 +426,12 @@ pt-BR:
       last_delivery: Última entrega
       title: WebSub
       topic: Tópico
+    suspensions:
+      bad_acct_msg: Os valores de confirmação não correspondem. Você está suspendendo a conta certa?
+      hint_html: 'Para confirmar a suspensão da conta, por favor digite %{value} no campo abaixo:'
+      proceed: Prosseguir
+      title: Suspender %{acct}
+      warning_html: 'Suspender essa conta vai remover <strong>irreversivelmente</strong> dados dessa conta, o que inclui:'
     title: Administração
   admin_mailer:
     new_report:
@@ -505,9 +563,12 @@ pt-BR:
     true_privacy_html: Lembre-se de que <strong>a verdadeira privacidade só pode ser alcançada através de encriptação ponto-a-ponto</strong>.
     unlocked_warning_html: Qualquer pessoa pode te seguir e ver as suas postagens privadas. %{lock_link} para ser capaz de revisar e rejeitar seguidores.
     unlocked_warning_title: A sua conta não está trancada
+  footer:
+    developers: Desenvolvedores
+    more: Mais…
+    resources: Recursos
   generic:
     changes_saved_msg: Mudanças salvas com sucesso!
-    powered_by: graças a tecnologia de %{link}
     save_changes: Salvar mudanças
     validation_errors:
       one: Algo não está certo! Por favor, reveja o erro abaixo
@@ -543,8 +604,6 @@ pt-BR:
       expires_at: Expira em
       uses: Usos
     title: Convidar pessoas
-  landing_strip_html: "<strong>%{name}</strong> é um usuário no %{link_to_root_path}. Você pode segui-lo ou interagir com ele se você tiver uma conta em qualquer lugar no fediverso."
-  landing_strip_signup_html: Se não, você pode <a href="%{sign_up_path}">se cadastrar aqui</a>.
   lists:
     errors:
       limit: Você alcançou o número máximo de listas
@@ -616,11 +675,14 @@ pt-BR:
     publishing: Publicação
     web: Web
   remote_follow:
-    acct: Insira o seu usuário@domínio do qual você quer seguir
+    acct: Insira o seu usuário@domínio a partir do qual você deseja agir
     missing_resource: Não foi possível encontrar a URL de direcionamento para a sua conta
     no_account_html: Não tem uma conta? Você pode <a href='%{sign_up_path}' target='_blank'>cadastrar-se aqui</a>
     proceed: Prosseguir para seguir
     prompt: 'Você irá seguir:'
+  remote_interaction:
+    proceed: Continue para interagir
+    prompt: 'Você quer interagir com este toot:'
   remote_unfollow:
     error: Erro
     title: Título
@@ -704,6 +766,7 @@ pt-BR:
       private: Toot não-público não pode ser fixado
       reblog: Um compartilhamento não pode ser fixado
     show_more: Mostrar mais
+    sign_in_to_participate: Entre para participar dessa conversa
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Apenas seguidores
@@ -713,7 +776,6 @@ pt-BR:
       unlisted: Não listado
       unlisted_long: Todos podem ver, porém não será postado nas timelines públicas
   stream_entries:
-    click_to_show: Clique para mostrar
     pinned: Toot fixado
     reblogged: compartilhou
     sensitive_content: Conteúdo sensível
@@ -807,6 +869,7 @@ pt-BR:
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
+      month: "%B de %Y"
   two_factor_authentication:
     code_hint: Insira o código gerado pelo seu aplicativo auteticador para confirmar
     description_html: Se você ativar a <strong>autenticação em dois passos</strong>, o acesso à sua conta exigirá posse de seu celular, que irá gerar tokens para validação.

@@ -4,7 +4,7 @@ sk:
     hints:
       defaults:
         autofollow: Ľudia ktorí sa zaregistrujú prostredníctvom pozvánky, ťa budú inheď následovať
-        avatar: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 400x400px
+        avatar: PNG, GIF alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
         bot: Tento účet vykonáva hlavne automatizované akcie, a je pravdepodobne nespravovaný
         context: Jedno, alebo viac kritérií, v ktorých má byť filtrovanie uplatnené
         digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak si obdŕžal/a nejaké osobné správy kým si bol/a preč
@@ -13,7 +13,8 @@ sk:
           one: Ostáva ti <span class="name-counter">1</span> znak
           other: Ostáva ti <span class="name-counter">%{count}</span> znakov
         fields: Môžeš mať 4 položky na svojom profile zobrazené vo forme tabuľky
-        header: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 700x335px
+        header: PNG, GIF alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
+        inbox_url: Skopíruj adresu z hlavnej stránky mostíka, ktorý chceš používať
         irreversible: Vytriedené príspevky zmiznú nenávratne, aj keď triedenie neskôr zrušíš
         locale: Jazyk užívateľského rozhrania, emailových a nástenkových oboznámení
         locked: Vyžaduje manuálne schvalovať sledujúcich
@@ -27,6 +28,7 @@ sk:
         setting_hide_network: Koho následuješ, a kto následuje teba nebude zobrazené na tvojom profile
         setting_noindex: Ovplyvňuje verejný profil a statusy
         setting_theme: Toto ovplyvňuje ako Mastodon vyzerá pri prihlásení z hociakého zariadenia.
+        whole_word: Ak je kľúčové slovo, alebo fráza poskladaná iba s písmen a čísel, bude použité iba ak sa zhoduje s celým výrazom
       imports:
         data: CSV súbor vyexportovaný z inej Mastodon inštancie
       sessions:
@@ -53,6 +55,7 @@ sk:
         expires_in: Expirovať po
         fields: Metadáta profilu
         header: Obrázok v hlavičke
+        inbox_url: URL adresa prechodnej schránky
         irreversible: Zahoď, namiesto skritia
         locale: Jazyk rozhrania
         locked: Zamknúť účet
@@ -79,6 +82,7 @@ sk:
         type: Typ importu
         username: Prezývka
         username_or_email: Prezívka, alebo email
+        whole_word: Celé slovo
       interactions:
         must_be_follower: Blokovať oznámenia od užívateľov, ktorí ťa nesledujú
         must_be_following: Blokovať oboznámenia ohľadom ľudí ktorých nesleduješ

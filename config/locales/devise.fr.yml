@@ -17,30 +17,30 @@ fr:
       unconfirmed: Vous devez valider votre compte pour continuer.
     mailer:
       confirmation_instructions:
-        action: Vérifier l'adresse courriel
-        explanation: Vous avez créé un compte sur %{host} avec cette adresse courriel. Vous êtes à un clic de l'activer. Si ce n'était pas vous, veuillez ignorer ce courriel.
-        extra_html: S'il vous plaît, consultez également <a href="%{terms_path}"> 1les règles de l'instance</a> 2 et <a href="%{policy_path}">3nos termes de service</a> 4.
+        action: Vérifier l’adresse courriel
+        explanation: Vous avez créé un compte sur %{host} avec cette adresse courriel. Vous êtes à un clic de l’activer. Si ce n’était pas vous, veuillez ignorer ce courriel.
+        extra_html: Merci de consultez également <a href="%{terms_path}">les règles de l’instance</a> et <a href="%{policy_path}">nos conditions d’utilisation</a>.
         subject: Merci de confirmer votre inscription sur %{instance}
-        title: Vérifier l'adresse courriel
+        title: Vérifier l’adresse courriel
       email_changed:
-        explanation: 'L''adresse courriel de votre compte est en cours de modification pour devenir :'
-        extra: Si vous n'avez pas changé votre adresse courriel, il est probable que quelqu'un ait eu accès à votre compte. Veuillez changer votre mot de passe immédiatement ou contacter l'administrateur de l'instance si vous êtes bloqué hors de votre compte.
+        explanation: 'L’adresse courriel de votre compte est en cours de modification pour devenir :'
+        extra: Si vous n’avez pas changé votre adresse courriel, il est probable que quelqu’un ait eu accès à votre compte. Veuillez changer votre mot de passe immédiatement ou contacter l’administrateur·rice de l’instance si vous êtes bloqué·e hors de votre compte.
         subject: 'Mastodon : Courriel modifié'
         title: Nouvelle adresse courriel
       password_change:
         explanation: Le mot de passe de votre compte a été changé.
-        extra: Si vous n'avez pas changé votre mot de passe, il est probable que quelqu'un ait eu accès à votre compte. Veuillez changer votre mot de passe immédiatement ou contacter l'administrateur de l'instance si vous êtes bloqué hors de votre compte.
+        extra: Si vous n’avez pas changé votre mot de passe, il est probable que quelqu’un ait eu accès à votre compte. Veuillez changer votre mot de passe immédiatement ou contacter l’administrateur·rice de l’instance si vous êtes bloqué·e hors de votre compte.
         subject: Votre mot de passe a été modifié avec succès
         title: Mot de passe modifié
       reconfirmation_instructions:
         explanation: Confirmez la nouvelle adresse pour changer votre courriel.
-        extra: Si ce changement n' a pas été initié par vous, veuillez ignorer ce courriel. L'adresse courriel du compte Mastodon ne changera pas tant que vous n'aurez pas cliqué sur le lien ci-dessus.
-        subject: 'Mastodon : Confirmez l''email pour %{instance}'
-        title: Vérifier l'adresse courriel
+        extra: Si ce changement n’a pas été initié par vous, veuillez ignorer ce courriel. L’adresse courriel du compte Mastodon ne changera pas tant que vous n’aurez pas cliqué sur le lien ci-dessus.
+        subject: 'Mastodon : Confirmez l’adresse pour %{instance}'
+        title: Vérifier l’adresse courriel
       reset_password_instructions:
         action: Modifier le mot de passe
         explanation: Vous avez demandé un nouveau mot de passe pour votre compte.
-        extra: Si vous ne l'avez pas demandé, veuillez ignorer ce courriel. Votre mot de passe ne changera pas tant que vous n'aurez pas cliqué sur le lien ci-dessus et que vous n'en aurez pas créé un nouveau.
+        extra: Si vous ne l’avez pas demandé, veuillez ignorer ce courriel. Votre mot de passe ne changera pas tant que vous n’aurez pas cliqué sur le lien ci-dessus et que vous n’en aurez pas créé un nouveau.
         subject: Instructions pour changer votre mot de passe
         title: Réinitialisation du mot de passe
       unlock_instructions:

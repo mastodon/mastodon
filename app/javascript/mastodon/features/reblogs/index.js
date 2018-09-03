@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
 import { fetchReblogs } from '../../actions/interactions';
-import { ScrollContainer } from 'react-router-scroll-4';
+import { FormattedMessage } from 'react-intl';
 import AccountContainer from '../../containers/account_container';
 import Column from '../ui/components/column';
 import ColumnBackButton from '../../components/column_back_button';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ScrollableList from '../../components/scrollable_list';
 
 const mapStateToProps = (state, props) => ({
   accountIds: state.getIn(['user_lists', 'reblogged_by', props.params.statusId]),
@@ -20,6 +21,7 @@ export default class Reblogs extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
+    shouldUpdateScroll: PropTypes.func,
     accountIds: ImmutablePropTypes.list,
   };
 
@@ -34,7 +36,7 @@ export default class Reblogs extends ImmutablePureComponent {
   }
 
   render () {
-    const { accountIds } = this.props;
+    const { shouldUpdateScroll, accountIds } = this.props;
 
     if (!accountIds) {
       return (
@@ -44,15 +46,21 @@ export default class Reblogs extends ImmutablePureComponent {
       );
     }
 
+    const emptyMessage = <FormattedMessage id='status.reblogs.empty' defaultMessage='No one has boosted this toot yet. When someone does, they will show up here.' />;
+
     return (
       <Column>
         <ColumnBackButton />
 
-        <ScrollContainer scrollKey='reblogs'>
-          <div className='scrollable reblogs'>
-            {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
-          </div>
-        </ScrollContainer>
+        <ScrollableList
+          scrollKey='reblogs'
+          shouldUpdateScroll={shouldUpdateScroll}
+          emptyMessage={emptyMessage}
+        >
+          {accountIds.map(id =>
+            <AccountContainer key={id} id={id} withNote={false} />
+          )}
+        </ScrollableList>
       </Column>
     );
   }

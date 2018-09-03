@@ -12,6 +12,9 @@
       = ff.input :favourite, as: :boolean, wrapper: :with_label
       = ff.input :mention, as: :boolean, wrapper: :with_label
 
+      - if current_user.staff?
+        = ff.input :report, as: :boolean, wrapper: :with_label
+
   .fields-group
     = f.simple_fields_for :notification_emails, hash_to_object(current_user.settings.notification_emails) do |ff|
       = ff.input :digest, as: :boolean, wrapper: :with_label

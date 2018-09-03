@@ -8,6 +8,7 @@ module AccountControllerConcern
   included do
     layout 'public'
     before_action :set_account
+    before_action :set_instance_presenter
     before_action :set_link_headers
     before_action :check_account_suspension
   end
@@ -16,6 +17,10 @@ module AccountControllerConcern
 
   def set_account
     @account = Account.find_local!(params[:account_username])
+  end
+
+  def set_instance_presenter
+    @instance_presenter = InstancePresenter.new
   end
 
   def set_link_headers

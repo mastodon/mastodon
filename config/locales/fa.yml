@@ -5,13 +5,13 @@ fa:
     about_mastodon_html: ماستدون (Mastodon) یک شبکهٔ اجتماعی است که بر اساس پروتکل‌های آزاد وب و نرم‌افزارهای آزاد و کدباز ساخته شده است. این شبکه مانند ایمیل غیرمتمرکز است.
     about_this: درباره
     administered_by: 'با مدیریت:'
+    api: رابط برنامه‌نویسی کاربردی
+    apps: اپ‌های موبایل
     closed_registrations: ثبت‌نام روی این سرور هم‌اینک فعال نیست. اما شما می‌توانید سرور دیگری بیابید و با حسابی که آن‌جا می‌سازید دقیقاً به همین شبکه دسترسی داشته باشید.
     contact: تماس
     contact_missing: تعیین نشده
     contact_unavailable: موجود نیست
-    description_headline: "%{domain} چیست؟"
-    domain_count_after: سرور دیگر
-    domain_count_before: متصل به
+    documentation: مستندات
     extended_description_html: |
       <h3>جای خوبی برای قانون‌ها</h3>
       <p>توضیحات تکمیلی نوشته نشده است.</p>
@@ -28,25 +28,39 @@ fa:
     hosted_on: ماستدون، میزبانی‌شده روی %{domain}
     learn_more: بیشتر بدانید
     other_instances: فهرست سرورها
+    privacy_policy: سیاست رازداری
     source_code: کدهای منبع
-    status_count_after: چیز نوشته‌اند
+    status_count_after:
+      one: نوشته
+      other: نوشته
     status_count_before: که جمعاً
-    user_count_after: کاربر
+    terms: شرایط کاربری
+    user_count_after:
+      one: کاربر
+      other: کاربر
     user_count_before: دارای
     what_is_mastodon: ماستدون چیست؟
   accounts:
+    choices_html: 'انتخاب‌های %{name}:'
     follow: پی بگیرید
-    followers: پیگیران
+    followers:
+      one: پیگیر
+      other: پیگیر
     following: پی می‌گیرد
+    joined: کاربر از %{date}
     media: عکس و ویدیو
     moved_html: "%{name} حساب خود را به %{new_profile_link} منتقل کرده است:"
     network_hidden: این اطلاعات در دسترس نیست
     nothing_here: این‌جا چیزی نیست!
     people_followed_by: کسانی که %{name} پی می‌گیرد
     people_who_follow: کسانی که %{name} را پی می‌گیرند
-    posts: نوشته‌ها
+    pin_errors:
+      following: شما باید پیگیر کاربری باشید که می‌خواهید ثابت کنید
+    posts:
+      one: بوق
+      other: بوق
+    posts_tab_heading: بوق‌ها
     posts_with_replies: نوشته‌ها و پاسخ‌ها
-    remote_follow: پیگیری غیرمستقیم
     reserved_username: این نام کاربری در دسترس نیست
     roles:
       admin: مدیر
@@ -180,6 +194,7 @@ fa:
         unsuspend_account: "%{name} حساب کاربر %{target} را از تعلیق خارج کرد"
         update_custom_emoji: "%{name} شکلک %{target} را به‌روز کرد"
         update_status: "%{name} نوشتهٔ %{target} را به‌روز کرد"
+      deleted_status: "(بوق پاک‌شده)"
       title: سیاههٔ بازرسی
     custom_emojis:
       by_domain: دامین
@@ -206,6 +221,27 @@ fa:
       update_failed_msg: این شکلک نتوانست به‌روز شود
       updated_msg: شکلک با موفقیت به‌روز شد!
       upload: بارگذاری
+    dashboard:
+      backlog: کارهای باقیمانده
+      config: پیکربندی
+      feature_deletions: حساب‌های حذف‌شده
+      feature_invites: دعوت‌نامه‌ها
+      feature_registrations: ثبت‌نام‌ها
+      feature_relay: رله
+      features: ویژگی‌ها
+      hidden_service: ارتباط میان‌سروری با سرویس‌های نهفته
+      open_reports: گزارش‌های فعال
+      recent_users: کاربران تازه
+      search: جستجوی متنی
+      single_user_mode: حالت تک‌کاربره
+      software: نرم‌افزار
+      space: فضای مصرف‌شده
+      title: ابزارهای مدیریت
+      total_users: شمار کاربران
+      trends: هشتگ‌های پرکاربرد
+      week_interactions: فعالیت‌ها در این هفته
+      week_users_active: کاربران فعال هفتهٔ اخیر
+      week_users_new: کاربران هفتهٔ اخیر
     domain_blocks:
       add_new: افزودن تازه
       created_msg: مسدودکردن دامین در حال انجام است
@@ -255,12 +291,23 @@ fa:
       search: جستجو
       title: سرورهای شناخته‌شده
     invites:
+      deactivate_all: غیرفعال‌کردن همه
       filter:
         all: همه
         available: در دسترس
         expired: منقضی‌شده
         title: فیلتر
       title: دعوت‌ها
+    relays:
+      add_new: افزودن رلهٔ تازه
+      description_html: یک <strong>رلهٔ میان‌سروری</strong> (federation relay) یک سرور میانجی است که حجم زیادی از بوق‌های عمومی را بین سرورهای گوناگونی که عضوش می‌شوند جابه‌جا می‌کند. <strong>رله‌ها به سرورهای کوچک و متوسط کمک می‌کنند تا مطالب عمومی بیشتری را بیابند.</strong> اگر رله نباشد، این مطالب عمومی تنها وقتی پیدا می‌شوند که کاربران محلی خودشان پیگیر کاربران روی سرورهای دیگر شوند.
+      enable_hint: اگر فعال باشد، سرور شما عضو همهٔ بوق‌های عمومی‌ای را که از این رله می‌آید می‌گیرد، و بوق‌های عمومی این سرور را به آن می‌فرستند.
+      inbox_url: نشانی رله
+      pending: در انتظار پذیرش رله
+      save_and_enable: ذخیره و فعال‌سازی
+      setup: پیوستن به رله‌ها
+      status: وضعیت
+      title: رله‌ها
     report_notes:
       created_msg: یادداشت گزارش با موفقیت ساخته شد!
       destroyed_msg: یادداشت گزارش با موفقیت حذف شد!
@@ -310,6 +357,9 @@ fa:
       contact_information:
         email: ایمیل کاری
         username: نام کاربری
+      custom_css:
+        desc_html: ظاهر ماستدون را با CSS-ای که در همهٔ صفحه‌ها جاسازی می‌شود تغییر دهید
+        title: سبک CSS سفارشی
       hero:
         desc_html: در صفحهٔ آغازین نمایش می‌یابد. دست‌کم ۶۰۰×۱۰۰ پیکسل توصیه می‌شود. اگر تعیین نشود، با تصویر بندانگشتی سرور جایگزین خواهد شد
         title: تصویر سربرگ
@@ -339,11 +389,14 @@ fa:
         desc_html: نمایش علامت همکار روی صفحهٔ کاربر
         title: نمایش علامت همکار
       site_description:
-        desc_html: معرفی کوتاهی که روی صفحهٔ اصلی و همچنین به عنوان فرادادهٔ صفحه‌ها نمایش می‌یابد. می‌توانید HTML بنویسید, به‌ویژه <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
+        desc_html: معرفی کوتاهی که روی صفحهٔ اصلی نمایش می‌یابد. دربارهٔ این که چه چیزی دربارهٔ این سرور ماستدون ویژه است یا هر چیز مهم دیگری بنویسید. می‌توانید HTML بنویسید، به‌ویژه <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
         title: دربارهٔ سایت
       site_description_extended:
         desc_html: جای خوبی برای نوشتن سیاست‌های کاربری، قانون‌ها، راهنماها، و هر چیزی که ویژهٔ این سرور است. تگ‌های HTML هم مجاز است
         title: اطلاعات تکمیلی سفارشی
+      site_short_description:
+        desc_html: روی نوار کناری و همچنین به عنوان فرادادهٔ صفحه‌ها نمایش می‌یابد. در یک بند توضیح دهید که ماستدون چیست و چرا این سرور با بقیه فرق دارد. اگر خالی بگذارید، به جایش «دربارهٔ سایت» نمایش می‌یابد.
+        title: توضیح کوتاه دربارهٔ سایت
       site_terms:
         desc_html: می‌توانید سیاست رازداری، شرایط استفاده، یا سایر مسائل قانونی را به دلخواه خود بنویسید. تگ‌های HTML هم مجاز است
         title: شرایط استفادهٔ سفارشی
@@ -365,6 +418,7 @@ fa:
       media:
         title: رسانه
       no_media: بدون عکس یا ویدیو
+      no_status_selected: هیچ بوقی تغییری نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
       title: نوشته‌های حساب
       with_media: دارای عکس یا ویدیو
     subscriptions:
@@ -374,6 +428,12 @@ fa:
       last_delivery: آخرین ارسال
       title: WebSub
       topic: موضوع
+    suspensions:
+      bad_acct_msg: محتوایی که برای تأیید وارد کردید منطبق نبود. آیا دارید حساب درستی را معلق می‌کنید؟
+      hint_html: 'برای تأیید معلق‌کردن حساب، لطفاً در کادر زیر %{value} را وارد کنید:'
+      proceed: ادامه
+      title: معلق‌کردن %{acct}
+      warning_html: 'معلق‌کردن این حساب <strong>برای همیشه</strong> داده‌هایش را پاک می‌کند. داده‌هایی شامل:'
     title: مدیریت سرور
   admin_mailer:
     new_report:
@@ -505,9 +565,12 @@ fa:
     true_privacy_html: لطفاً بدانید که <strong>داشتن حریم خصوصی واقعی تنها با رمزگذاری سرتاسر (end-to-end encryption) ممکن است</strong>.
     unlocked_warning_html: هر کسی می‌تواند پیگیر شما شود تا بلافاصله نوشته‌های خصوصی شما را ببیند. اگر  %{lock_link} خواهید توانست درخواست‌های پیگیری را بررسی کرده و نپذیرید.
     unlocked_warning_title: حساب شما خصوصی نیست
+  footer:
+    developers: برنامه‌نویسان
+    more: بیشتر…
+    resources: منابع
   generic:
     changes_saved_msg: تغییرات با موفقیت ذخیره شدند!
-    powered_by: نیرو گرفته از %{link}
     save_changes: ذخیرهٔ تغییرات
     validation_errors:
       one: یک چیزی هنوز درست نیست! لطفاً خطاهای زیر را ببینید
@@ -543,8 +606,6 @@ fa:
       expires_at: تاریخ انقضا
       uses: استفاده‌ها
     title: دعوت دیگران
-  landing_strip_html: "<strong>%{name}</strong> کاربری روی %{link_to_root_path} است. شما با داشتن حساب روی هر سروری می‌توانید نوشته‌های او را پیگیری کرده یا با او ارتباط داشته باشید."
-  landing_strip_signup_html: اگر هنوز حسابی ندارید <a href="%{sign_up_path}">این‌جا حساب باز کنید</a>.
   lists:
     errors:
       limit: از این بیشتر نمی‌شود فهرست داشت
@@ -621,6 +682,9 @@ fa:
     no_account_html: هنوز عضو نیستید؟ <a href='%{sign_up_path}' target='_blank'>این‌جا می‌توانید حساب باز کنید</a>
     proceed: درخواست پیگیری
     prompt: 'شما قرار است این حساب را پیگیری کنید:'
+  remote_interaction:
+    proceed: ادامهٔ برهم‌کنش
+    prompt: 'شما می‌خواهید دربارهٔ این بوق کاری کنید:'
   remote_unfollow:
     error: خطا
     title: عنوان
@@ -704,6 +768,7 @@ fa:
       private: نوشته‌های غیرعمومی را نمی‌توان ثابت کرد
       reblog: بازبوق‌ها را نمی‌توان ثابت کرد
     show_more: نمایش
+    sign_in_to_participate: برای شرکت در گفتگو وارد حساب خود شوید
     title: '%{name}: "%{quote}"'
     visibilities:
       private: خصوصی
@@ -713,7 +778,6 @@ fa:
       unlisted: فهرست‌نشده
       unlisted_long: عمومی، ولی در فهرست نوشته‌ها نمایش نمی‌یابد
   stream_entries:
-    click_to_show: برای نمایش کلیک کنید
     pinned: نوشته‌های ثابت
     reblogged: بازبوقید
     sensitive_content: محتوای حساس
@@ -726,6 +790,7 @@ fa:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: برای تأیید، کدی را که برنامهٔ تأییدکننده ساخته است وارد کنید
     description_html: اگر <strong>ورود دومرحله‌ای</strong> را فعال کنید، برای ورود به سیستم به تلفن خود نیاز خواهید داشت تا برایتان یک کد موقتی بسازد.

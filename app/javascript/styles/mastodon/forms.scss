@@ -50,6 +50,12 @@ code {
         color: $highlight-text-color;
       }
     }
+
+    code {
+      border-radius: 3px;
+      padding: 0.2em 0.4em;
+      background: darken($ui-base-color, 12%);
+    }
   }
 
   .card {
@@ -154,9 +160,8 @@ code {
       margin-bottom: 15px;
     }
 
-    li {
-      float: left;
-      width: 50%;
+    ul {
+      columns: 2;
     }
   }
 
@@ -615,4 +620,15 @@ code {
 
 .scope-danger {
   color: $warning-red;
+}
+
+.form_admin_settings_site_short_description,
+.form_admin_settings_site_description,
+.form_admin_settings_site_extended_description,
+.form_admin_settings_site_terms,
+.form_admin_settings_custom_css,
+.form_admin_settings_closed_registrations_message {
+  textarea {
+    font-family: 'mastodon-font-monospace', monospace;
+  }
 }

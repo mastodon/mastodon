@@ -41,6 +41,10 @@ export default class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.mention' defaultMessage='to mention author' /></td>
               </tr>
               <tr>
+                <td><kbd>p</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.profile' defaultMessage="to open author's profile" /></td>
+              </tr>
+              <tr>
                 <td><kbd>f</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.favourite' defaultMessage='to favourite' /></td>
               </tr>
@@ -49,7 +53,7 @@ export default class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.boost' defaultMessage='to boost' /></td>
               </tr>
               <tr>
-                <td><kbd>enter</kbd></td>
+                <td><kbd>enter</kbd>, <kbd>o</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.enter' defaultMessage='to open status' /></td>
               </tr>
               <tr>
@@ -57,11 +61,11 @@ export default class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.toggle_hidden' defaultMessage='to show/hide text behind CW' /></td>
               </tr>
               <tr>
-                <td><kbd>up</kbd></td>
+                <td><kbd>up</kbd>, <kbd>k</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.up' defaultMessage='to move up in the list' /></td>
               </tr>
               <tr>
-                <td><kbd>down</kbd></td>
+                <td><kbd>down</kbd>, <kbd>j</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.down' defaultMessage='to move down in the list' /></td>
               </tr>
               <tr>
@@ -87,6 +91,54 @@ export default class KeyboardShortcuts extends ImmutablePureComponent {
               <tr>
                 <td><kbd>esc</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.unfocus' defaultMessage='to un-focus compose textarea/search' /></td>
+              </tr>
+              <tr>
+                <td><kbd>g</kbd>+<kbd>h</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.home' defaultMessage='to open home timeline' /></td>
+              </tr>
+              <tr>
+                <td><kbd>g</kbd>+<kbd>n</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.notifications' defaultMessage='to open notifications column' /></td>
+              </tr>
+              <tr>
+                <td><kbd>g</kbd>+<kbd>l</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.local' defaultMessage='to open local timeline' /></td>
+              </tr>
+              <tr>
+                <td><kbd>g</kbd>+<kbd>t</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.federated' defaultMessage='to open federated timeline' /></td>
+              </tr>
+              <tr>
+                <td><kbd>g</kbd>+<kbd>d</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.direct' defaultMessage='to open direct messages column' /></td>
+              </tr>
+              <tr>
+                <td><kbd>g</kbd>+<kbd>s</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.start' defaultMessage='to open "get started" column' /></td>
+              </tr>
+              <tr>
+                <td><kbd>g</kbd>+<kbd>f</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.favourites' defaultMessage='to open favourites list' /></td>
+              </tr>
+              <tr>
+                <td><kbd>g</kbd>+<kbd>p</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.pinned' defaultMessage='to open pinned toots list' /></td>
+              </tr>
+              <tr>
+                <td><kbd>g</kbd>+<kbd>u</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.my_profile' defaultMessage='to open your profile' /></td>
+              </tr>
+              <tr>
+                <td><kbd>g</kbd>+<kbd>b</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.blocked' defaultMessage='to open blocked users list' /></td>
+              </tr>
+              <tr>
+                <td><kbd>g</kbd>+<kbd>m</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.muted' defaultMessage='to open muted users list' /></td>
+              </tr>
+              <tr>
+                <td><kbd>g</kbd>+<kbd>r</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.requests' defaultMessage='to open follow requests list' /></td>
               </tr>
               <tr>
                 <td><kbd>?</kbd></td>
