@@ -151,9 +151,9 @@ nl:
       search: Zoeken
       shared_inbox_url: Gedeelde inbox-URL
       show:
-        created_reports: Toots door dit account gerapporteerd
+        created_reports: Door dit account aangemaakte rapportages
         report: gerapporteerd
-        targeted_reports: Toots van dit account gerapporteerd
+        targeted_reports: Over dit account aangemaakte rapportages
       silence: Negeren
       statuses: Toots
       subscribe: Abonneren
@@ -166,7 +166,7 @@ nl:
       web: Webapp
     action_logs:
       actions:
-        assigned_to_self_report: "%{name} heeft gerapporteerde toot %{target} aan zichzelf toegewezen"
+        assigned_to_self_report: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
         change_email_user: "%{name} veranderde het e-mailadres van gebruiker %{target}"
         confirm_user: E-mailadres van gebruiker %{target} is door %{name} bevestigd
         create_custom_emoji: Nieuwe emoji %{target} is door %{name} geüpload
@@ -184,12 +184,12 @@ nl:
         memorialize_account: Account %{target} is door %{name} in een gedenkpagina veranderd
         promote_user: Gebruiker %{target} is door %{name} gepromoveerd
         remove_avatar_user: "%{name} verwijderde de avatar van %{target}"
-        reopen_report: "%{name} heeft gerapporteerde toot %{target} heropend"
+        reopen_report: "%{name} heeft rapportage %{target} heropend"
         reset_password_user: Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld
-        resolve_report: "%{name} heeft gerapporteerde toot %{target} opgelost"
+        resolve_report: "%{name} heeft rapportage %{target} opgelost"
         silence_account: Account %{target} is door %{name} genegeerd
         suspend_account: Account %{target} is door %{name} opgeschort
-        unassigned_report: "%{name} heeft het toewijzen van gerapporteerde toot %{target} ongedaan gemaakt"
+        unassigned_report: "%{name} heeft het toewijzen van rapportage %{target} ongedaan gemaakt"
         unsilence_account: Negeren van account %{target} is door %{name} opgeheven
         unsuspend_account: Opschorten van account %{target} is door %{name} opgeheven
         update_custom_emoji: Emoji %{target} is door %{name} bijgewerkt
@@ -230,7 +230,7 @@ nl:
       feature_relay: Federatierelay
       features: Functies
       hidden_service: Federatie met verborgen diensten
-      open_reports: onopgeloste gerapporteerde toots
+      open_reports: onopgeloste rapportages
       recent_users: Recente gebruikers
       search: In volledige tekst zoeken
       single_user_mode: Modus voor één gebruiker
@@ -304,16 +304,17 @@ nl:
       enable_hint: Eenmaal ingeschakeld gaat jouw server zich op alle openbare toots van deze relayserver abonneren en stuurt het de openbare toots van jouw server naar de relayserver.
       inbox_url: Relay-URL
       pending: Aan het wachten op toestemming van de relayserver
+      save_and_enable: Opslaan en inschakelen
       setup: Een verbinding met een relayserver maken
       status: Status
       title: Relayservers
     report_notes:
-      created_msg: Opmerking bij gerapporteerde toot succesvol aangemaakt!
-      destroyed_msg: Opmerking bij gerapporteerde toot succesvol verwijderd!
+      created_msg: Opmerking bij rapportage succesvol aangemaakt!
+      destroyed_msg: Opmerking bij rapportage succesvol verwijderd!
     reports:
       account:
         note: opmerking
-        report: gerapporteerde toot
+        report: rapportage
       action_taken_by: Actie uitgevoerd door
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
@@ -330,18 +331,18 @@ nl:
         create_and_unresolve: Heropenen met opmerking
         delete: Verwijderen
         placeholder: Beschrijf welke acties zijn ondernomen of andere gerelateerde opmerkingen…
-      reopen: Gerapporteerde toot heropenen
-      report: 'Gerapporteerde toot #%{id}'
+      reopen: Rapportage heropenen
+      report: 'Rapportage #%{id}'
       report_contents: Inhoud
       reported_account: Gerapporteerde account
       reported_by: Gerapporteerd door
       resolved: Opgelost
-      resolved_msg: Gerapporteerde toot succesvol opgelost!
+      resolved_msg: Rapportage succesvol opgelost!
       silence_account: Account negeren
       status: Toot
       suspend_account: Account opschorten
       target: Gerapporteerde account
-      title: Gerapporteerde toots
+      title: Rapportages
       unassign: Niet langer toewijzen
       unresolved: Onopgelost
       updated_at: Bijgewerkt
@@ -438,7 +439,7 @@ nl:
     new_report:
       body: "%{reporter} heeft %{target} gerapporteerd"
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
-      subject: Nieuwe toots gerapporteerd op %{instance} (#%{id})
+      subject: Nieuwe rapportage op %{instance} (#%{id})
   application_mailer:
     notification_preferences: E-mailvoorkeuren wijzigen
     salutation: "%{name},"

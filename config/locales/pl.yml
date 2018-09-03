@@ -45,8 +45,14 @@ pl:
   accounts:
     choices_html: 'Polecani przez %{name}:'
     follow: Śledź
-    followers: Śledzący
-    following: Śledzeni
+    followers:
+      few: śledzących
+      many: śledzących
+      one: śledzący
+    following:
+      few: śledzonych
+      many: śledzonych
+      one: śledzony
     joined: Dołączył(a) %{date}
     media: Zawartość multimedialna
     moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
@@ -56,7 +62,10 @@ pl:
     people_who_follow: Osoby, które śledzą konto %{name}
     pin_errors:
       following: Musisz śledzić osobę, którą chcesz polecać
-    posts: Wpisy
+    posts:
+      few: wpisy
+      many: wpisów
+      one: wpis
     posts_with_replies: Wpisy z odpowiedziami
     reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
@@ -300,6 +309,8 @@ pl:
       description_html: "<strong>Przekaźnik federacji</strong> jest pośredniczącym serwerem wymieniającym duże ilości publicznych wpisów pomiędzy serwerami które subskrybują je i publikują na nich. <strong>Pomaga to małym i średnim instancją poznawać nową zawartość z Fediwersum</strong>, co w innym przypadku wymagałoby od użytkowników ręcznego śledzenia osób z innych serwerów."
       enable_hint: Jeżeli włączone, Twój serwer zasubskrybuje wszystkie publiczne wpisy z tego przekaźnika i zacznie wysyłać tam publiczne wpisy z tego serwera.
       inbox_url: Adres przekaźnika
+      pending: Oczekiwanie na przyjęcie przez przekaźnik
+      save_and_enable: Zapisz i aktywuj
       setup: Skonfiguruj połączenie z przekaźnikiem
       status: Stan
       title: Przekaźniki
