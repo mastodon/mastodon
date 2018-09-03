@@ -33,6 +33,10 @@ export default class Favourites extends ImmutablePureComponent {
     }
   }
 
+  shouldUpdateScroll = (prevRouterProps, { location }) => {
+    return !(location.state && location.state.mastodonModalOpen);
+  }
+
   render () {
     const { accountIds } = this.props;
 
@@ -48,7 +52,7 @@ export default class Favourites extends ImmutablePureComponent {
       <Column>
         <ColumnBackButton />
 
-        <ScrollContainer scrollKey='favourites'>
+        <ScrollContainer scrollKey='favourites' shouldUpdateScroll={this.shouldUpdateScroll}>
           <div className='scrollable'>
             {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
           </div>

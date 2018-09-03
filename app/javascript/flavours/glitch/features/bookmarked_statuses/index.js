@@ -66,10 +66,6 @@ export default class Bookmarks extends ImmutablePureComponent {
     this.props.dispatch(expandBookmarkedStatuses());
   }, 300, { leading: true })
 
-  shouldUpdateScroll = (prevRouterProps, { location }) => {
-    return !(location.state && location.state.mastodonModalOpen)
-  }
-
   render () {
     const { intl, statusIds, columnId, multiColumn, hasMore, isLoading } = this.props;
     const pinned = !!columnId;
@@ -91,7 +87,6 @@ export default class Bookmarks extends ImmutablePureComponent {
           trackScroll={!pinned}
           statusIds={statusIds}
           scrollKey={`bookmarked_statuses-${columnId}`}
-          shouldUpdateScroll={this.shouldUpdateScroll}
           hasMore={hasMore}
           isLoading={isLoading}
           onLoadMore={this.handleLoadMore}

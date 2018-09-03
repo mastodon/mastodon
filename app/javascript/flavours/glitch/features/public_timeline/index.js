@@ -71,10 +71,6 @@ export default class PublicTimeline extends React.PureComponent {
     this.props.dispatch(expandPublicTimeline({ maxId }));
   }
 
-  shouldUpdateScroll = (prevRouterProps, { location }) => {
-    return !(location.state && location.state.mastodonModalOpen)
-  }
-
   render () {
     const { intl, columnId, hasUnread, multiColumn } = this.props;
     const pinned = !!columnId;
@@ -99,7 +95,6 @@ export default class PublicTimeline extends React.PureComponent {
           onLoadMore={this.handleLoadMore}
           trackScroll={!pinned}
           scrollKey={`public_timeline-${columnId}`}
-          shouldUpdateScroll={this.shouldUpdateScroll}
           emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other instances to fill it up' />}
         />
       </Column>

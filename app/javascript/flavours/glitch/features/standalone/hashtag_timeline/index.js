@@ -41,10 +41,6 @@ export default class HashtagTimeline extends React.PureComponent {
     this.props.dispatch(expandHashtagTimeline(this.props.hashtag, { maxId }));
   }
 
-  shouldUpdateScroll = (prevRouterProps, { location }) => {
-    return !(location.state && location.state.mastodonModalOpen)
-  }
-
   render () {
     const { hashtag } = this.props;
 
@@ -59,7 +55,6 @@ export default class HashtagTimeline extends React.PureComponent {
         <StatusListContainer
           trackScroll={false}
           scrollKey='standalone_hashtag_timeline'
-          shouldUpdateScroll={this.shouldUpdateScroll}
           timelineId={`hashtag:${hashtag}`}
           onLoadMore={this.handleLoadMore}
         />

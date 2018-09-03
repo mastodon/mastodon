@@ -71,10 +71,6 @@ export default class DirectTimeline extends React.PureComponent {
     this.props.dispatch(expandDirectTimeline({ maxId }));
   }
 
-  shouldUpdateScroll = (prevRouterProps, { location }) => {
-    return !(location.state && location.state.mastodonModalOpen)
-  }
-
   render () {
     const { intl, hasUnread, columnId, multiColumn } = this.props;
     const pinned = !!columnId;
@@ -97,7 +93,6 @@ export default class DirectTimeline extends React.PureComponent {
         <StatusListContainer
           trackScroll={!pinned}
           scrollKey={`direct_timeline-${columnId}`}
-          shouldUpdateScroll={this.shouldUpdateScroll}
           timelineId='direct'
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.direct' defaultMessage="You don't have any direct messages yet. When you send or receive one, it will show up here." />}

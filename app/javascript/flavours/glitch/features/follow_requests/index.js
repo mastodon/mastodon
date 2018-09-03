@@ -42,6 +42,10 @@ export default class FollowRequests extends ImmutablePureComponent {
     }
   }
 
+  shouldUpdateScroll = (prevRouterProps, { location }) => {
+    return !(location.state && location.state.mastodonModalOpen);
+  }
+
   render () {
     const { intl, accountIds } = this.props;
 
@@ -57,7 +61,7 @@ export default class FollowRequests extends ImmutablePureComponent {
       <Column name='follow-requests' icon='users' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
 
-        <ScrollContainer scrollKey='follow_requests'>
+        <ScrollContainer scrollKey='follow_requests' shouldUpdateScroll={this.shouldUpdateScroll}>
           <div className='scrollable' onScroll={this.handleScroll}>
             {accountIds.map(id =>
               <AccountAuthorizeContainer key={id} id={id} />

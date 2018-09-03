@@ -41,10 +41,6 @@ export default class PinnedStatuses extends ImmutablePureComponent {
     this.column = c;
   }
 
-  shouldUpdateScroll = (prevRouterProps, { location }) => {
-    return !(location.state && location.state.mastodonModalOpen)
-  }
-
   render () {
     const { intl, statusIds, hasMore } = this.props;
 
@@ -54,7 +50,6 @@ export default class PinnedStatuses extends ImmutablePureComponent {
         <StatusList
           statusIds={statusIds}
           scrollKey='pinned_statuses'
-          shouldUpdateScroll={this.shouldUpdateScroll}
           hasMore={hasMore}
         />
       </Column>

@@ -66,10 +66,6 @@ export default class Favourites extends ImmutablePureComponent {
     this.props.dispatch(expandFavouritedStatuses());
   }, 300, { leading: true })
 
-  shouldUpdateScroll = (prevRouterProps, { location }) => {
-    return !(location.state && location.state.mastodonModalOpen)
-  }
-
   render () {
     const { intl, statusIds, columnId, multiColumn, hasMore, isLoading } = this.props;
     const pinned = !!columnId;
@@ -91,7 +87,6 @@ export default class Favourites extends ImmutablePureComponent {
           trackScroll={!pinned}
           statusIds={statusIds}
           scrollKey={`favourited_statuses-${columnId}`}
-          shouldUpdateScroll={this.shouldUpdateScroll}
           hasMore={hasMore}
           isLoading={isLoading}
           onLoadMore={this.handleLoadMore}
