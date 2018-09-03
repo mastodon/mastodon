@@ -54,11 +54,11 @@ sr:
     what_is_mastodon: Шта је Мастодонт?
   accounts:
     choices_html: '%{name}''s избори:'
-    follow: Follow
+    follow: Запрати
     followers:
       one: Пратилац
       other: Пратиоци
-    following: Following
+    following: Пратим
     joined: Придружио/ла се %{date}
     media: Мултимедија
     moved_html: '%{name} је померен на %{new_profile_link}:'
@@ -129,7 +129,7 @@ sr:
       promote: Унапреди
       protocol: Протокол
       public: Јавно
-      push_subscription_expires: PuSH subscription expires
+      push_subscription_expires: PuSH претплата истиче
       redownload: Освежи аватар
       resend_confirmation:
         already_confirmed: Овој корисник е веќе потврден
@@ -465,8 +465,8 @@ sr:
     '404': Страна коју сте тражили не постоји.
     '410': Страна коју сте тражили више не постоји.
     '422':
-      content: Security verification failed. Are you blocking cookies?
-      title: Security verification failed
+      content: Безбедоносна провера није успела. Да не блокирате колачиће?
+      title: Безбедоносна провера није успела
     '429': Успоред
     '500':
       content: Извињавамо се, нешто је пошло по злу са ове стране.
@@ -556,8 +556,7 @@ sr:
     title: Модерација
   notification_mailer:
     digest:
-      body: 'Ево кратак преглед шта сте пропустили на инстанци %{instance} од последње
-        посете од %{since}:'
+      body: Ево кратак преглед порука које сте пропустили од последње посете од %{since}
       mention: '%{name} Вас је поменуо у:'
       new_followers_summary:
         few: Добили сте %{count} нова пратиоца! Сјајно!
@@ -617,9 +616,9 @@ sr:
       blackberry: Блекбери
       chrome: Хром
       edge: Microsoft Edge
-      firefox: Firefox
+      firefox: Фајерфокс
       generic: Непознати веб читач
-      ie: Internet Explorer
+      ie: Интернет Експлорер
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Опера
