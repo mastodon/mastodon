@@ -163,7 +163,7 @@ class Item extends React.PureComponent {
             sizes={sizes}
             alt={attachment.get('description')}
             title={attachment.get('description')}
-            style={{ objectPosition: `${x}% ${y}%` }}
+            style={{ objectPosition: letterbox ? null : `${x}% ${y}%` }}
           />
         </a>
       );
