@@ -6,7 +6,7 @@ pl:
       send_instructions: W ciągu kilku minut otrzymasz wiadomosć e-mail z instrukcją jak potwierdzić Twój adres e-mail. Jeżeli nie otrzymano wiadomości, sprawdź folder ze spamem.
       send_paranoid_instructions: Jeśli Twój adres e-mail już istnieje w naszej bazie danych, w ciągu kilku minut otrzymasz wiadomość e-mail z instrukcją jak potwierdzić Twój adres e-mail. Jeżeli nie otrzymano wiadomości, sprawdź folder ze spamem.
     failure:
-      already_authenticated: Jesteś już zalogowany/zalogowana.
+      already_authenticated: Jesteś już zalogowany(-a).
       inactive: Twoje konto nie zostało jeszcze aktywowane.
       invalid: Nieprawidłowy %{authentication_keys} lub hasło.
       last_attempt: Masz jeszcze jedną próbę; Twoje konto zostanie zablokowane jeśli się nie powiedzie.
@@ -18,28 +18,28 @@ pl:
     mailer:
       confirmation_instructions:
         action: Zweryfikuj adres e-mail
-        explanation: Utworzyłeś konto na %{host} podając ten adres e-mail. Jedno kliknięcie dzieli Cię od aktywacji tego konta. Jeżeli to nie Ty, zignoruj ten e-mail.
+        explanation: Utworzyłeś(-aś) konto na %{host} podając ten adres e-mail. Jedno kliknięcie dzieli Cię od aktywacji tego konta. Jeżeli to nie Ty, zignoruj ten e-mail.
         extra_html: Przeczytaj też <a href="%{terms_path}">regulamin instancji</a> i <a href="%{policy_path}">nasze zasady użytkowania</a>.
         subject: 'Mastodon: Instrukcje weryfikacji adresu e-mail'
         title: Zweryfikuj adres e-mail
       email_changed:
         explanation: 'Adres e-mail dla Twojego konta zostanie zmieniony na:'
-        extra: Jeżeli nie próbowałeś zmienić adresu e-mail, prawdopodobnie ktoś uzyskał dostęp do Twojego konta. Zmień natychmiastowo hasło lub skontaktuj się z administratorem isntancji, jeżeli nie masz dostępu do konta.
+        extra: Jeżeli nie próbowałeś(-aś) zmienić adresu e-mail, prawdopodobnie ktoś uzyskał dostęp do Twojego konta. Zmień natychmiastowo hasło lub skontaktuj się z administratorem isntancji, jeżeli nie masz dostępu do konta.
         subject: 'Mastodon: Zmieniono adres e-mail'
         title: Nowy adres e-mail
       password_change:
         explanation: Hasło do Twojego konta zostało zmienione.
-        extra: Jeżeli nie zmieniałeś hasła, prawdopodobnie ktoś uzyskał dostęp do Twojego konta. Zmień hasło natychmiastowo lub skontaktuj się z administratorem instancji, jeżeli nie masz dostępu do konta.
+        extra: Jeżeli nie zmieniałeś(-aś) hasła, prawdopodobnie ktoś uzyskał dostęp do Twojego konta. Zmień hasło natychmiastowo lub skontaktuj się z administratorem instancji, jeżeli nie masz dostępu do konta.
         subject: 'Mastodon: Zmieniono hasło'
         title: Zmieniono hasło
       reconfirmation_instructions:
         explanation: Potwierdź nowy adres aby zmienić e-mail.
-        extra: Jeżeli nie próbowałeś zmienić e-maila, zignoruj tą wiadomość. Adres e-mail przypisany do konta Mastodona nie ulegnie zmianie, jeżeli nie użyjesz powyższego odnośniku.
+        extra: Jeżeli nie próbowałeś(-aś) zmienić e-maila, zignoruj tą wiadomość. Adres e-mail przypisany do konta Mastodona nie ulegnie zmianie, jeżeli nie użyjesz powyższego odnośniku.
         subject: 'Mastodon: Potwierdź adres e-mail na &{instance}'
         title: Zweryfikuj adres e-mail
       reset_password_instructions:
         action: Zmień hasło
-        explanation: Próbowałeś uzyskać nowe hasło do swojego konta.
+        explanation: Próbowałeś(-aś) uzyskać nowe hasło do swojego konta.
         extra: Jeżeli to nie Ty, zignoruj tą wiadomość. Twoje hasło nie ulegnie zmianie, jeżeli nie wykorzystasz powyższego odnośnika i nie utworzysz nowego hasła.
         subject: 'Mastodon: Instrukcje ustawienia nowego hasła'
         title: Przywracanie hasła
@@ -49,10 +49,10 @@ pl:
       failure: 'Uwierzytelnienie przez %{kind} nie powiodło się, ponieważ: "%{reason}".'
       success: Uwierzytelnienie przez %{kind} powiodło się.
     passwords:
-      no_token: Dostęp do tej strony możliwy jest wyłącznie za pomocą odnośnika z e-maila z instrukcjami ustawienia nowego hasła. Jeśli skorzystałeś/aś z takiego odnośnika, upewnij się, że został wykorzystany/skopiowany cały odnośnik.
+      no_token: Dostęp do tej strony możliwy jest wyłącznie za pomocą odnośnika z e-maila z instrukcjami ustawienia nowego hasła. Jeśli skorzystałeś(-aś) z takiego odnośnika, upewnij się, że został wykorzystany/skopiowany cały odnośnik.
       send_instructions: W ciągu kilku minut otrzymasz wiadomość e-mail z instrukcją ustawienia nowego hasła. Jeżeli nie otrzymano wiadomości, sprawdź folder ze spamem.
       send_paranoid_instructions: Jeśli Twój adres e-mail już istnieje w naszej bazie danych, w ciągu kilku minut otrzymasz wiadomość e-mail zawierającą odnośnik pozwalający na ustawienie nowego hasła. Jeżeli nie otrzymano wiadomości, sprawdź folder ze spamem.
-      updated: Twoje hasło zostało zmienione. Jesteś zalogowany/a.
+      updated: Twoje hasło zostało zmienione. Jesteś zalogowany(-a).
       updated_not_active: Twoje hasło zostało zmienione.
     registrations:
       destroyed: Twoje konto zostało zawieszone. Mamy jednak nadzieję, że do nas wrócisz. Do zobaczenia!
@@ -63,9 +63,9 @@ pl:
       update_needs_confirmation: Konto zostało zaktualizowane, musimy jednak zweryfikować Twój nowy adres e-mail. Została na niego wysłana wiadomość z odnośnikiem potwierdzającym. Jeżeli nie otrzymano wiadomości, sprawdź folder ze spamem.
       updated: Konto zostało zaktualizowane.
     sessions:
-      already_signed_out: Zostałeś/aś wylogowany/a.
-      signed_in: Zostałeś/aś zalogowany/a.
-      signed_out: Zostałeś/aś wylogowany/a.
+      already_signed_out: Zostałeś(-aś) wylogowany(-a).
+      signed_in: Zostałeś(-aś) zalogowany(-a).
+      signed_out: Zostałeś(-aś) wylogowany(-a).
     unlocks:
       send_instructions: W ciągu kilku minut otrzymasz wiadomość e-mail z instrukcjami odblokowania konta. Jeżeli nie otrzymano wiadomości, sprawdź folder ze spamem.
       send_paranoid_instructions: Jeśli Twoje konto istnieje, instrukcje odblokowania go otrzymasz w wiadomości e-mail w ciągu kilku minut. Jeżeli nie otrzymano wiadomości, sprawdź folder ze spamem.

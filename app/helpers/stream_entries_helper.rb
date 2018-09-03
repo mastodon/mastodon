@@ -12,21 +12,67 @@ module StreamEntriesHelper
     end
   end
 
+  def account_action_button(account)
+    if user_signed_in?
+      if account.id == current_user.account_id
+        link_to settings_profile_url, class: 'button logo-button' do
+          safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('settings.edit_profile')])
+        end
+      elsif current_account.following?(account) || current_account.requested?(account)
+        link_to account_unfollow_path(account), class: 'button logo-button button--destructive', data: { method: :post } do
+          safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('accounts.unfollow')])
+        end
+      elsif !(account.memorial? || account.moved?)
+        link_to account_follow_path(account), class: 'button logo-button', data: { method: :post } do
+          safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('accounts.follow')])
+        end
+      end
+    elsif !(account.memorial? || account.moved?)
+      link_to account_remote_follow_path(account), class: 'button logo-button modal-button', target: '_new' do
+        safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('accounts.follow')])
+      end
+    end
+  end
+
+  def account_badge(account)
+    if account.bot?
+      content_tag(:div, content_tag(:div, t('accounts.roles.bot'), class: 'account-role bot'), class: 'roles')
+    elsif Setting.show_staff_badge && account.user_staff?
+      content_tag(:div, class: 'roles') do
+        if account.user_admin?
+          content_tag(:div, t('accounts.roles.admin'), class: 'account-role admin')
+        elsif account.user_moderator?
+          content_tag(:div, t('accounts.roles.moderator'), class: 'account-role moderator')
+        end
+      end
+    end
+  end
+
+  def link_to_more(url)
+    link_to t('statuses.show_more'), url, class: 'load-more load-gap'
+  end
+
+  def nothing_here(extra_classes = '')
+    content_tag(:div, class: "nothing-here #{extra_classes}") do
+      t('accounts.nothing_here')
+    end
+  end
+
   def account_description(account)
     prepend_str = [
       [
         number_to_human(account.statuses_count, strip_insignificant_zeros: true),
-        I18n.t('accounts.posts'),
+        I18n.t('accounts.posts', count: account.statuses_count),
       ].join(' '),
 
       [
         number_to_human(account.following_count, strip_insignificant_zeros: true),
-        I18n.t('accounts.following'),
+        I18n.t('accounts.following', count: account.following_count),
       ].join(' '),
 
       [
         number_to_human(account.followers_count, strip_insignificant_zeros: true),
-        I18n.t('accounts.followers'),
+        I18n.t('accounts.followers', count: account.followers_count),
       ].join(' '),
     ].join(', ')
 
@@ -67,7 +113,7 @@ module StreamEntriesHelper
   end
 
   def acct(account)
-    if embedded_view? && account.local?
+    if account.local?
       "@#{account.acct}@#{Rails.configuration.x.local_domain}"
     else
       "@#{account.acct}"

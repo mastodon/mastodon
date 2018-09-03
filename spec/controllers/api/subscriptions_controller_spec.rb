@@ -53,9 +53,8 @@ RSpec.describe Api::SubscriptionsController, type: :controller do
       stub_request(:any, "https://mastodon.social/users/Gargron").to_return(status: 404)
 
       request.env['HTTP_X_HUB_SIGNATURE'] = "sha1=#{OpenSSL::HMAC.hexdigest('sha1', 'abc', feed)}"
-      request.env['RAW_POST_DATA'] = feed
 
-      post :update, params: { id: account.id }
+      post :update, params: { id: account.id }, body: feed
     end
 
     it 'returns http success' do

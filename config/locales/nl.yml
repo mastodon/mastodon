@@ -5,13 +5,13 @@ nl:
     about_mastodon_html: Mastodon is een sociaal netwerk dat gebruikt maakt van open webprotocollen en vrije software. Het is net zoals e-mail gedecentraliseerd.
     about_this: Over deze server
     administered_by: 'Beheerd door:'
+    api: API
+    apps: Mobiele apps
     closed_registrations: Registreren op deze server is momenteel niet mogelijk. Je kunt echter een andere server vinden om zo toegang te krijgen tot het netwerk.
     contact: Contact
     contact_missing: Niet ingesteld
     contact_unavailable: n.v.t
-    description_headline: Wat is %{domain}?
-    domain_count_after: andere servers
-    domain_count_before: Verbonden met
+    documentation: Documentatie
     extended_description_html: |
       <h3>Een goede plek voor richtlijnen</h3>
       <p>De uitgebreide omschrijving is nog niet ingevuld.</p>
@@ -28,25 +28,39 @@ nl:
     hosted_on: Mastodon op %{domain}
     learn_more: Meer leren
     other_instances: Andere servers
+    privacy_policy: Privacybeleid
     source_code: Broncode
-    status_count_after: toots
+    status_count_after:
+      one: toot
+      other: toots
     status_count_before: Zij schreven
-    user_count_after: gebruikers
+    terms: Gebruiksvoorwaarden
+    user_count_after:
+      one: gebruiker
+      other: gebruikers
     user_count_before: Thuisbasis van
     what_is_mastodon: Wat is Mastodon?
   accounts:
+    choices_html: 'Aanbevelingen van %{name}:'
     follow: Volgen
-    followers: Volgers
+    followers:
+      one: Volger
+      other: Volgers
     following: Volgend
+    joined: Geregistreerd in %{date}
     media: Media
     moved_html: "%{name} is verhuisd naar %{new_profile_link}:"
     network_hidden: Deze informatie is niet beschikbaar
     nothing_here: Hier is niets!
     people_followed_by: Mensen die %{name} volgen
     people_who_follow: Mensen die %{name} volgen
-    posts: Toots
+    pin_errors:
+      following: Je moet dit account wel al volgen, alvorens je het kan aanbevelen
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Toots en reacties
-    remote_follow: Extern volgen
     reserved_username: Deze gebruikersnaam is gereserveerd
     roles:
       admin: Beheerder
@@ -137,9 +151,9 @@ nl:
       search: Zoeken
       shared_inbox_url: Gedeelde inbox-URL
       show:
-        created_reports: Toots door dit account gerapporteerd
+        created_reports: Door dit account aangemaakte rapportages
         report: gerapporteerd
-        targeted_reports: Toots van dit account gerapporteerd
+        targeted_reports: Over dit account aangemaakte rapportages
       silence: Negeren
       statuses: Toots
       subscribe: Abonneren
@@ -152,7 +166,7 @@ nl:
       web: Webapp
     action_logs:
       actions:
-        assigned_to_self_report: "%{name} heeft gerapporteerde toot %{target} aan zichzelf toegewezen"
+        assigned_to_self_report: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
         change_email_user: "%{name} veranderde het e-mailadres van gebruiker %{target}"
         confirm_user: E-mailadres van gebruiker %{target} is door %{name} bevestigd
         create_custom_emoji: Nieuwe emoji %{target} is door %{name} geüpload
@@ -170,16 +184,17 @@ nl:
         memorialize_account: Account %{target} is door %{name} in een gedenkpagina veranderd
         promote_user: Gebruiker %{target} is door %{name} gepromoveerd
         remove_avatar_user: "%{name} verwijderde de avatar van %{target}"
-        reopen_report: "%{name} heeft gerapporteerde toot %{target} heropend"
+        reopen_report: "%{name} heeft rapportage %{target} heropend"
         reset_password_user: Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld
-        resolve_report: "%{name} heeft gerapporteerde toot %{target} opgelost"
+        resolve_report: "%{name} heeft rapportage %{target} opgelost"
         silence_account: Account %{target} is door %{name} genegeerd
         suspend_account: Account %{target} is door %{name} opgeschort
-        unassigned_report: "%{name} heeft het toewijzen van gerapporteerde toot %{target} ongedaan gemaakt"
+        unassigned_report: "%{name} heeft het toewijzen van rapportage %{target} ongedaan gemaakt"
         unsilence_account: Negeren van account %{target} is door %{name} opgeheven
         unsuspend_account: Opschorten van account %{target} is door %{name} opgeheven
         update_custom_emoji: Emoji %{target} is door %{name} bijgewerkt
         update_status: De toots van %{target} zijn door %{name} bijgewerkt
+      deleted_status: "(verwijderde toot}"
       title: Auditlog
     custom_emojis:
       by_domain: Domein
@@ -206,6 +221,27 @@ nl:
       update_failed_msg: Deze emoji kon niet worden bijgewerkt
       updated_msg: Bijwerken van emoji is geslaagd!
       upload: Uploaden
+    dashboard:
+      backlog: achterstallige taken
+      config: Configuratie
+      feature_deletions: Verwijderen van account
+      feature_invites: Uitnodigingen
+      feature_registrations: Registraties
+      feature_relay: Federatierelay
+      features: Functies
+      hidden_service: Federatie met verborgen diensten
+      open_reports: onopgeloste rapportages
+      recent_users: Recente gebruikers
+      search: In volledige tekst zoeken
+      single_user_mode: Modus voor één gebruiker
+      software: Software
+      space: Ruimtegebruik
+      title: Dashboard
+      total_users: gebruikers in totaal
+      trends: Trends
+      week_interactions: interacties deze week
+      week_users_active: actieve gebruikers deze week
+      week_users_new: nieuwe gebruikers deze week
     domain_blocks:
       add_new: Nieuwe toevoegen
       created_msg: Domeinblokkade wordt nu verwerkt
@@ -255,19 +291,30 @@ nl:
       search: Zoeken
       title: Bekende servers
     invites:
+      deactivate_all: Alles deactiveren
       filter:
         all: Alles
         available: Beschikbaar
         expired: Verlopen
         title: Filter
       title: Uitnodigingen
+    relays:
+      add_new: Nieuwe relayserver toevoegen
+      description_html: Een <strong>federatierelay</strong> is een tussenliggende server die grote hoeveelheden openbare toots uitwisselt tussen servers die zich hierop hebben geabonneerd. <strong>Het kan kleine en middelgrote servers helpen om content uit de fediverse te ontdekken</strong>, waarvoor anders lokale gebruikers handmatig mensen van externe servers moeten volgen.
+      enable_hint: Eenmaal ingeschakeld gaat jouw server zich op alle openbare toots van deze relayserver abonneren en stuurt het de openbare toots van jouw server naar de relayserver.
+      inbox_url: Relay-URL
+      pending: Aan het wachten op toestemming van de relayserver
+      save_and_enable: Opslaan en inschakelen
+      setup: Een verbinding met een relayserver maken
+      status: Status
+      title: Relayservers
     report_notes:
-      created_msg: Opmerking bij gerapporteerde toot succesvol aangemaakt!
-      destroyed_msg: Opmerking bij gerapporteerde toot succesvol verwijderd!
+      created_msg: Opmerking bij rapportage succesvol aangemaakt!
+      destroyed_msg: Opmerking bij rapportage succesvol verwijderd!
     reports:
       account:
         note: opmerking
-        report: gerapporteerde toot
+        report: rapportage
       action_taken_by: Actie uitgevoerd door
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
@@ -284,18 +331,18 @@ nl:
         create_and_unresolve: Heropenen met opmerking
         delete: Verwijderen
         placeholder: Beschrijf welke acties zijn ondernomen of andere gerelateerde opmerkingen…
-      reopen: Gerapporteerde toot heropenen
-      report: 'Gerapporteerde toot #%{id}'
+      reopen: Rapportage heropenen
+      report: 'Rapportage #%{id}'
       report_contents: Inhoud
       reported_account: Gerapporteerde account
       reported_by: Gerapporteerd door
       resolved: Opgelost
-      resolved_msg: Gerapporteerde toot succesvol opgelost!
+      resolved_msg: Rapportage succesvol opgelost!
       silence_account: Account negeren
       status: Toot
       suspend_account: Account opschorten
       target: Gerapporteerde account
-      title: Gerapporteerde toots
+      title: Rapportages
       unassign: Niet langer toewijzen
       unresolved: Onopgelost
       updated_at: Bijgewerkt
@@ -310,6 +357,9 @@ nl:
       contact_information:
         email: Vul een openbaar gebruikt e-mailadres in
         username: Vul een gebruikersnaam in
+      custom_css:
+        desc_html: Het uiterlijk van deze server met CSS aanpassen
+        title: Aangepaste CSS
       hero:
         desc_html: Wordt op de voorpagina getoond. Tenminste 600x100px aanbevolen. Wanneer dit niet is ingesteld wordt de thumbnail van de Mastodonserver getoond
         title: Hero-afbeelding
@@ -339,11 +389,14 @@ nl:
         desc_html: Medewerkersbadge op profielpagina tonen
         title: Medewerkersbadge tonen
       site_description:
-        desc_html: Dit wordt als een alinea op de voorpagina getoond en gebruikt als meta-tag in de paginabron.<br/>Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
+        desc_html: Dit wordt als een alinea op de voorpagina getoond. Beschrijf wat er speciaal is aan deze server en andere zaken die van belang zijn. Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
         title: Omschrijving Mastodonserver
       site_description_extended:
         desc_html: Wordt op de uitgebreide informatiepagina weergegeven<br>Je kan ook hier HTML gebruiken
         title: Uitgebreide omschrijving Mastodonserver
+      site_short_description:
+        desc_html: Dit wordt in de zijbalk getoond als en als metatag in de paginabron.  Beschrijf in één alinea wat Mastodon is en wat deze server speciaal maakt. De (langere) omschrijving van de Mastodonserver wordt gebruikt wanneer dit veld wordt leeg gelaten.
+        title: Korte omschrijving Mastodonserver
       site_terms:
         desc_html: Je kan hier jouw eigen privacybeleid, gebruiksvoorwaarden en ander juridisch jargon kwijt. Je kan HTML gebruiken
         title: Aangepaste gebruiksvoorwaarden
@@ -365,6 +418,7 @@ nl:
       media:
         title: Media
       no_media: Geen media
+      no_status_selected: Er werden geen toots gewijzigd, omdat er geen enkele werd geselecteerd
       title: Toots van account
       with_media: Met media
     subscriptions:
@@ -374,12 +428,18 @@ nl:
       last_delivery: Laatste bezorging
       title: WebSub
       topic: Account
+    suspensions:
+      bad_acct_msg: De bevestigingswaarde kwam niet overeen. Schort je wel het juiste account op?
+      hint_html: Vul in het veld hieronder %{value} in, om het opschorten van dit account te bevestigen.
+      proceed: Ga verder
+      title: "%{acct} opschorten"
+      warning_html: 'Door het opschorten van dit account worden gegevens van dit account <strong>permanent</strong> verwijderd, waaronder:'
     title: Beheer
   admin_mailer:
     new_report:
       body: "%{reporter} heeft %{target} gerapporteerd"
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
-      subject: Nieuwe toots gerapporteerd op %{instance} (#%{id})
+      subject: Nieuwe rapportage op %{instance} (#%{id})
   application_mailer:
     notification_preferences: E-mailvoorkeuren wijzigen
     salutation: "%{name},"
@@ -492,7 +552,7 @@ nl:
       delete: Verwijderen
       title: Filters
     new:
-      title: Nieuwe filter toevoegen
+      title: Nieuw filter toevoegen
   followers:
     domain: Domein
     explanation_html: Wanneer je de privacy van jouw toots wilt garanderen, moet je goed weten wie jouw volgers zijn. <strong>Toots die alleen aan jouw volgers zijn gericht, worden aan de Mastodonservers van jouw volgers afgeleverd.</strong> Daarom wil je ze misschien controleren en desnoods volgers verwijderen die zich op een Mastodonserver bevinden die jij niet vertrouwd. Bijvoorbeeld omdat de beheerder(s) of de software van zo'n server jouw privacy niet respecteert.
@@ -505,9 +565,12 @@ nl:
     true_privacy_html: Hou er wel rekening mee dat <strong>echte privacy alleen gegarandeerd kan worden met behulp van end-to-end-encryptie</strong>.
     unlocked_warning_html: Iedereen kan jou volgen en daarmee meteen toots zien die je alleen aan jouw volgers hebt gericht. %{lock_link} om volgers te kunnen beoordelen en desnoods te weigeren.
     unlocked_warning_title: Jouw account is niet besloten
+  footer:
+    developers: Ontwikkelaars
+    more: Meer…
+    resources: Hulpmiddelen
   generic:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
-    powered_by: wordt mogelijk gemaakt door %{link}
     save_changes: Wijzigingen opslaan
     validation_errors:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
@@ -543,8 +606,6 @@ nl:
       expires_at: Verloopt op
       uses: Aantal keer te gebruiken
     title: Mensen uitnodigen
-  landing_strip_html: "<strong>%{name}</strong> is een gebruiker op %{link_to_root_path}. Je kunt deze volgen en ermee communiceren als je op Mastodon (of ergens anders in de fediverse) een account hebt."
-  landing_strip_signup_html: Als je dat niet hebt, kun je je <a href="%{sign_up_path}">hier registreren</a>.
   lists:
     errors:
       limit: Je hebt het maximaal aantal lijsten bereikt
@@ -616,11 +677,14 @@ nl:
     publishing: Publiceren
     web: Webapp
   remote_follow:
-    acct: Geef jouw account@domein.tld op waarvandaan je wilt volgen
+    acct: Geef jouw account@domein op die je wilt gebruiken
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
     no_account_html: Heb je geen account? Je kunt er <a href='%{sign_up_path}' target='_blank'>hier een registreren</a>
-    proceed: Ga door om te volgen
+    proceed: Ga verder om te volgen
     prompt: 'Jij gaat volgen:'
+  remote_interaction:
+    proceed: Ga de interactie aan
+    prompt: 'Jij wilt de interactie aangaan met deze toot:'
   remote_unfollow:
     error: Fout
     title: Titel
@@ -704,6 +768,7 @@ nl:
       private: Alleen openbare toots kunnen worden vastgezet
       reblog: Een boost kan niet worden vastgezet
     show_more: Meer tonen
+    sign_in_to_participate: Meld je aan om aan dit gesprek mee te doen
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Alleen volgers
@@ -713,7 +778,6 @@ nl:
       unlisted: Minder openbaar
       unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
   stream_entries:
-    click_to_show: Klik om te tonen
     pinned: Vastgemaakte toot
     reblogged: boostte
     sensitive_content: Gevoelige inhoud
@@ -799,7 +863,7 @@ nl:
       <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
-    title: "%{instance} Terms of Service and Privacy Policy"
+    title: Gebruiksvoorwaarden en privacybeleid van %{instance}
   themes:
     contrast: Hoog contrast
     default: Mastodon
@@ -807,6 +871,7 @@ nl:
   time:
     formats:
       default: "%d %B %Y om %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Voer de code in die door de authenticatie-app gegenereerd is
     description_html: Na het instellen van <strong>tweestapsverificatie</strong>, kun jij je alleen aanmelden als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren aanmeldcode.
@@ -817,7 +882,7 @@ nl:
     generate_recovery_codes: Herstelcodes genereren
     instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het aanmelden moet invoeren."
     lost_recovery_codes: Met herstelcodes kun je toegang tot jouw account krijgen wanneer je jouw telefoon bent kwijtgeraakt. Wanneer je jouw herstelcodes bent kwijtgeraakt, kan je ze hier opnieuw genereren. Jouw oude herstelcodes zijn daarna ongeldig.
-    manual_instructions: Hieronder vind je de geheime code in platte tekst. Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren.
+    manual_instructions: Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder geheime code in gewone tekst.
     recovery_codes: Herstelcodes back-uppen
     recovery_codes_regenerated: Opnieuw genereren herstelcodes geslaagd
     recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige plek bewaard</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.

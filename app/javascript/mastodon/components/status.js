@@ -8,7 +8,7 @@ import DisplayName from './display_name';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import AttachmentList from './attachment_list';
-import { FormattedMessage } from 'react-intl';
+import { injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { MediaGallery, Video } from '../features/ui/util/async-components';
 import { HotKeys } from 'react-hotkeys';
@@ -18,6 +18,24 @@ import classNames from 'classnames';
 // to use the progress bar to show download progress
 import Bundle from '../features/ui/components/bundle';
 
+export const textForScreenReader = (intl, status, rebloggedByText = false) => {
+  const displayName = status.getIn(['account', 'display_name']);
+
+  const values = [
+    displayName.length === 0 ? status.getIn(['account', 'acct']).split('@')[0] : displayName,
+    status.get('spoiler_text') && status.get('hidden') ? status.get('spoiler_text') : status.get('search_index').slice(status.get('spoiler_text').length),
+    intl.formatDate(status.get('created_at'), { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' }),
+    status.getIn(['account', 'acct']),
+  ];
+
+  if (rebloggedByText) {
+    values.push(rebloggedByText);
+  }
+
+  return values.join(', ');
+};
+
+@injectIntl
 export default class Status extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -65,7 +83,7 @@ export default class Status extends ImmutablePureComponent {
   }
 
   handleAccountClick = (e) => {
-    if (this.context.router && e.button === 0) {
+    if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       const id = e.currentTarget.getAttribute('data-id');
       e.preventDefault();
       this.context.router.history.push(`/accounts/${id}`);
@@ -138,9 +156,9 @@ export default class Status extends ImmutablePureComponent {
 
   render () {
     let media = null;
-    let statusAvatar, prepend;
+    let statusAvatar, prepend, rebloggedByText;
 
-    const { hidden, featured } = this.props;
+    const { intl, hidden, featured } = this.props;
 
     let { status, account, ...other } = this.props;
 
@@ -189,6 +207,8 @@ export default class Status extends ImmutablePureComponent {
         </div>
       );
 
+      rebloggedByText = intl.formatMessage({ id: 'status.reblogged_by', defaultMessage: '{name} boosted' }, { name: status.getIn(['account', 'acct']) });
+
       account = status.get('account');
       status  = status.get('reblog');
     }
@@ -210,6 +230,7 @@ export default class Status extends ImmutablePureComponent {
               <Component
                 preview={video.get('preview_url')}
                 src={video.get('url')}
+                alt={video.get('description')}
                 width={239}
                 height={110}
                 inline
@@ -248,10 +269,10 @@ export default class Status extends ImmutablePureComponent {
 
     return (
       <HotKeys handlers={handlers}>
-        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null}>
+        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText, !status.get('hidden'))}>
           {prepend}
 
-          <div className={classNames('status', `status-${status.get('visibility')}`, { muted: this.props.muted })} data-id={status.get('id')}>
+          <div className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), muted: this.props.muted })} data-id={status.get('id')}>
             <div className='status__info'>
               <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
 

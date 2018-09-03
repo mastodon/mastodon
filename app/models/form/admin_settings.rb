@@ -10,6 +10,8 @@ class Form::AdminSettings
     :site_contact_email=,
     :site_title,
     :site_title=,
+    :site_short_description,
+    :site_short_description=,
     :site_description,
     :site_description=,
     :site_extended_description,
@@ -28,6 +30,8 @@ class Form::AdminSettings
     :show_staff_badge=,
     :bootstrap_timeline_accounts,
     :bootstrap_timeline_accounts=,
+    :theme,
+    :theme=,
     :min_invite_role,
     :min_invite_role=,
     :activity_api_enabled,
@@ -38,6 +42,8 @@ class Form::AdminSettings
     :show_known_fediverse_at_about_page=,
     :preview_sensitive_media,
     :preview_sensitive_media=,
+    :custom_css,
+    :custom_css=,
     to: Setting
   )
 end

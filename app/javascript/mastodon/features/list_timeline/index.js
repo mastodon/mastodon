@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
+import ColumnBackButton from '../../components/column_back_button';
 import ColumnHeader from '../../components/column_header';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
@@ -35,6 +36,7 @@ export default class ListTimeline extends React.PureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
+    shouldUpdateScroll: PropTypes.func,
     columnId: PropTypes.string,
     hasUnread: PropTypes.bool,
     multiColumn: PropTypes.bool,
@@ -112,7 +114,7 @@ export default class ListTimeline extends React.PureComponent {
   }
 
   render () {
-    const { hasUnread, columnId, multiColumn, list } = this.props;
+    const { shouldUpdateScroll, hasUnread, columnId, multiColumn, list } = this.props;
     const { id } = this.props.params;
     const pinned = !!columnId;
     const title  = list ? list.get('title') : id;
@@ -128,15 +130,14 @@ export default class ListTimeline extends React.PureComponent {
     } else if (list === false) {
       return (
         <Column>
-          <div className='scrollable'>
-            <MissingIndicator />
-          </div>
+          <ColumnBackButton />
+          <MissingIndicator />
         </Column>
       );
     }
 
     return (
-      <Column ref={this.setRef}>
+      <Column ref={this.setRef} label={title}>
         <ColumnHeader
           icon='list-ul'
           active={hasUnread}
@@ -166,6 +167,7 @@ export default class ListTimeline extends React.PureComponent {
           timelineId={`list:${id}`}
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet. When members of this list post new statuses, they will appear here.' />}
+          shouldUpdateScroll={shouldUpdateScroll}
         />
       </Column>
     );

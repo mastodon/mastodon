@@ -1,0 +1,149 @@
+- content_for :page_title do
+  = t('admin.dashboard.title')
+
+.dashboard__counters
+  %div
+    = link_to admin_accounts_url(local: 1, recent: 1) do
+      .dashboard__counters__num= number_with_delimiter @users_count
+      .dashboard__counters__label= t 'admin.dashboard.total_users'
+  %div
+    %div
+      .dashboard__counters__num= number_with_delimiter @registrations_week
+      .dashboard__counters__label= t 'admin.dashboard.week_users_new'
+  %div
+    %div
+      .dashboard__counters__num= number_with_delimiter @logins_week
+      .dashboard__counters__label= t 'admin.dashboard.week_users_active'
+  %div
+    %div
+      .dashboard__counters__num= number_with_delimiter @interactions_week
+      .dashboard__counters__label= t 'admin.dashboard.week_interactions'
+  %div
+    = link_to admin_reports_url do
+      .dashboard__counters__num= number_with_delimiter @reports_count
+      .dashboard__counters__label= t 'admin.dashboard.open_reports'
+  %div
+    = link_to sidekiq_url do
+      .dashboard__counters__num= number_with_delimiter @queue_backlog
+      .dashboard__counters__label= t 'admin.dashboard.backlog'
+
+.dashboard__widgets
+  .dashboard__widgets__users
+    %div
+      %h4= t 'admin.dashboard.recent_users'
+      %ul
+        - @recent_users.each do |user|
+          %li= admin_account_link_to(user.account)
+
+  .dashboard__widgets__features
+    %div
+      %h4= t 'admin.dashboard.features'
+      %ul
+        %li
+          = link_to t('admin.dashboard.feature_registrations'), edit_admin_settings_path
+          - if @registrations_enabled
+            %span.pull-right.positive-hint= fa_icon 'check fw'
+          - else
+            %span.pull-right.negative-hint= fa_icon 'times fw'
+        %li
+          = link_to t('admin.dashboard.feature_invites'), edit_admin_settings_path
+          - if @invites_enabled
+            %span.pull-right.positive-hint= fa_icon 'check fw'
+          - else
+            %span.pull-right.negative-hint= fa_icon 'times fw'
+        %li
+          = link_to t('admin.dashboard.feature_deletions'), edit_admin_settings_path
+          - if @deletions_enabled
+            %span.pull-right.positive-hint= fa_icon 'check fw'
+          - else
+            %span.pull-right.negative-hint= fa_icon 'times fw'
+        %li
+          = link_to t('admin.dashboard.feature_relay'), admin_relays_path
+          - if @relay_enabled
+            %span.pull-right.positive-hint= fa_icon 'check fw'
+          - else
+            %span.pull-right.negative-hint= fa_icon 'times fw'
+
+  .dashboard__widgets__versions
+    %div
+      %h4= t 'admin.dashboard.software'
+      %ul
+        %li
+          Mastodon
+          %span.pull-right= @version
+        %li
+          Ruby
+          %span.pull-right= "#{RUBY_VERSION}p#{RUBY_PATCHLEVEL}"
+        %li
+          PostgreSQL
+          %span.pull-right= @database_version
+        %li
+          Redis
+          %span.pull-right= @redis_version
+
+  .dashboard__widgets__space
+    %div
+      %h4= t 'admin.dashboard.space'
+      %ul
+        %li
+          PostgreSQL
+          %span.pull-right= number_to_human_size @database_size
+        %li
+          Redis
+          %span.pull-right= number_to_human_size @redis_size
+
+  .dashboard__widgets__config
+    %div
+      %h4= t 'admin.dashboard.config'
+      %ul
+        %li
+          = t('admin.dashboard.search')
+          - if @search_enabled
+            %span.pull-right.positive-hint= fa_icon 'check fw'
+          - else
+            %span.pull-right.negative-hint= fa_icon 'times fw'
+        %li
+          = t('admin.dashboard.single_user_mode')
+          - if @single_user_mode
+            %span.pull-right.positive-hint= fa_icon 'check fw'
+          - else
+            %span.pull-right.negative-hint= fa_icon 'times fw'
+        %li
+          LDAP
+          - if @ldap_enabled
+            %span.pull-right.positive-hint= fa_icon 'check fw'
+          - else
+            %span.pull-right.negative-hint= fa_icon 'times fw'
+        %li
+          CAS
+          - if @cas_enabled
+            %span.pull-right.positive-hint= fa_icon 'check fw'
+          - else
+            %span.pull-right.negative-hint= fa_icon 'times fw'
+        %li
+          SAML
+          - if @saml_enabled
+            %span.pull-right.positive-hint= fa_icon 'check fw'
+          - else
+            %span.pull-right.negative-hint= fa_icon 'times fw'
+        %li
+          PAM
+          - if @pam_enabled
+            %span.pull-right.positive-hint= fa_icon 'check fw'
+          - else
+            %span.pull-right.negative-hint= fa_icon 'times fw'
+        %li
+          = t 'admin.dashboard.hidden_service'
+          - if @hidden_service
+            %span.pull-right.positive-hint= fa_icon 'check fw'
+          - else
+            %span.pull-right.negative-hint= fa_icon 'times fw'
+
+  .dashboard__widgets__trends
+    %div
+      %h4= t 'admin.dashboard.trends'
+      %ul
+        - @trending_hashtags.each do |tag|
+          %li
+            = link_to "##{tag.name}", web_url("timelines/tag/#{tag.name}")
+            %span.pull-right= number_with_delimiter(tag.history[0][:accounts].to_i)

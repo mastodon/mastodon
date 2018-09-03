@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   rescue_from Mastodon::NotPermittedError, with: :forbidden
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
-  before_action :check_suspension, if: :user_signed_in?
+  before_action :check_user_permissions, if: :user_signed_in?
 
   def raise_not_found
     raise ActionController::RoutingError, "No route matches #{params[:unmatched_route]}"
@@ -48,8 +48,8 @@ class ApplicationController < ActionController::Base
     forbidden unless current_user&.staff?
   end
 
-  def check_suspension
-    forbidden if current_user.account.suspended?
+  def check_user_permissions
+    forbidden if current_user.disabled? || current_user.account.suspended?
   end
 
   def after_sign_out_path_for(_resource_or_scope)
@@ -95,7 +95,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_theme
-    return Setting.default_settings['theme'] unless Themes.instance.names.include? current_user&.setting_theme
+    return Setting.theme unless Themes.instance.names.include? current_user&.setting_theme
     current_user.setting_theme
   end
 
@@ -103,12 +103,8 @@ class ApplicationController < ActionController::Base
     return raw unless klass.respond_to?(:with_includes)
 
     raw                    = raw.cache_ids.to_a if raw.is_a?(ActiveRecord::Relation)
-    uncached_ids           = []
-    cached_keys_with_value = Rails.cache.read_multi(*raw.map(&:cache_key))
-
-    raw.each do |item|
-      uncached_ids << item.id unless cached_keys_with_value.key?(item.cache_key)
-    end
+    cached_keys_with_value = Rails.cache.read_multi(*raw).transform_keys(&:id)
+    uncached_ids           = raw.map(&:id) - cached_keys_with_value.keys
 
     klass.reload_stale_associations!(cached_keys_with_value.values) if klass.respond_to?(:reload_stale_associations!)
 
@@ -116,11 +112,11 @@ class ApplicationController < ActionController::Base
       uncached = klass.where(id: uncached_ids).with_includes.map { |item| [item.id, item] }.to_h
 
       uncached.each_value do |item|
-        Rails.cache.write(item.cache_key, item)
+        Rails.cache.write(item, item)
       end
     end
 
-    raw.map { |item| cached_keys_with_value[item.cache_key] || uncached[item.id] }.compact
+    raw.map { |item| cached_keys_with_value[item.id] || uncached[item.id] }.compact
   end
 
   def respond_with_error(code)
@@ -135,7 +131,6 @@ class ApplicationController < ActionController::Base
 
   def render_cached_json(cache_key, **options)
     options[:expires_in] ||= 3.minutes
-    cache_key              = cache_key.join(':') if cache_key.is_a?(Enumerable)
     cache_public           = options.key?(:public) ? options.delete(:public) : true
     content_type           = options.delete(:content_type) || 'application/json'
 
