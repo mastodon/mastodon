@@ -195,7 +195,12 @@ class Status < ApplicationRecord
     if destroyed?
       "#{account.acct} deleted status"
     else
-      reblog? ? "#{account.acct} shared a status by #{reblog.account.acct}" : "New status by #{account.acct}"
+      preview = sensitive ? "<sensitive>" : text.slice(0, 10).split("\n")[0]
+      if reblog?
+        "#{account.acct} shared #{reblog.account.acct}: #{preview}"
+      else
+        "#{account.acct}: #{preview}"
+      end
     end
   end
 
