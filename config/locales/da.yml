@@ -30,16 +30,22 @@ da:
     other_instances: Liste over instanser
     privacy_policy: Privatlivspolitik
     source_code: Kildekode
-    status_count_after: statusser
+    status_count_after:
+      one: status
+      other: statusser
     status_count_before: Som har skrevet
     terms: Vilkår for service
-    user_count_after: brugere
+    user_count_after:
+      one: bruger
+      other: brugere
     user_count_before: Hjem til
     what_is_mastodon: Hvad er Mastodon?
   accounts:
     choices_html: "%{name}s valg:"
     follow: Følg
-    followers: Følgere
+    followers:
+      one: Følger
+      other: Følgere
     following: Følger
     joined: Tilmeldt den %{date}
     media: Multimedia
@@ -50,7 +56,10 @@ da:
     people_who_follow: Folk der følger %{name}
     pin_errors:
       following: Du er nødt til at følge den person du ønsker at støtte
-    posts: Trut
+    posts:
+      one: Trut
+      other: Trut
+    posts_tab_heading: Trut
     posts_with_replies: Trut og svar
     reserved_username: Brugernavnet er allerede taget
     roles:
@@ -240,7 +249,9 @@ da:
       domain: Domæne
       new:
         create: Opret blokering
+        hint: Domæne blokeringen vil ikke forhindre oprettelse af konto opslag i databasen, men vil retroaktivt og automatisk benytte specifikke moderator metoder på disse konti.
         severity:
+          desc_html: "<strong>Dæmp</strong> vil gøre denne kontos opslag usynlige til alle der ikke følger dem. <strong>Udeluk</strong> vil fjerne al kontoens indhold, medie og profildata. Brug <strong>Ingen</strong> hvis du bare ønsker at afvise medie filer."
           noop: Ingen
           silence: Dæmp
           suspend: Udeluk
@@ -289,10 +300,17 @@ da:
       title: Invitationer
     relays:
       add_new: Tilføj nyt relay
+      description_html: Et <strong>federation relay</strong> er en mellemleds server der udveksler store mængder af offentlige trut mellem servere der abonnerer på og offentliggør til det. <strong>Det kan hjælpe små og mellemstore servere opdage indhold fra fediverset</strong>, hvilket der ellers ville kræve at lokale brugere manuelt følger andre folk på fjerne servere.
+      enable_hint: Når dette er aktiveret, vil serveren abonnere på alle offentlige trut fra dette relay, og vil begynde at sende offentlige trut fra denne server dertil.
       inbox_url: Link til relay
+      pending: Venter på godkendelse fra relæet
+      save_and_enable: Gem og aktiver
       setup: Opsæt en videresendelses forbindelse
       status: Status
       title: Videresendelser
+    report_notes:
+      created_msg: Anmeldelse note blev oprettet!
+      destroyed_msg: Anmeldelse note blev slettet!
     reports:
       account:
         note: notat
@@ -330,17 +348,26 @@ da:
       updated_at: Opdateret
       view: Se
     settings:
+      activity_api_enabled:
+        desc_html: Antal af lokalt opslåede statusser, aktive brugere, og nye registreringer i ugentlige opdelinger
+        title: Offentliggør samlede statistikker vedrørende brugeraktivitet
       bootstrap_timeline_accounts:
+        desc_html: Opdel flere brugernavne ved hjælp af komma. Kun lokale og ulåste konti vil virke. Standard hvis tom er alle lokale administratorer.
         title: Standard følger for nye brugere
       contact_information:
         email: Forretnings email
         username: Kontakt brugernavn
+      custom_css:
+        desc_html: Ændre udseendet med CSS indlæst på hver side
+        title: Brugerdefineret CSS
       hero:
         desc_html: Vist på forsiden. Mindst 600x100px anbefales. Hvis ikke sat, vil dette falde tilbage til billedet for instansen
         title: Billede af helt
       peers_api_enabled:
+        desc_html: Domæne navne denne instans er stødt på i fediverset
         title: Udgiv liste over opdagede instanser
       preview_sensitive_media:
+        desc_html: Forhåndsvisninger af links på andre websider vil vise et miniaturebillede selv hvis mediet er markeret som følsomt
         title: Vis følsomt medie i OpenGraph forhåndsvisninger
       registrations:
         closed_message:
@@ -356,15 +383,27 @@ da:
           desc_html: Tillad alle at oprette en konto
           title: Åben registrering
       show_known_fediverse_at_about_page:
+        desc_html: Når slået til, vil det vise trut fra hele det kendte fedivers på forhåndsvisning. Ellers vil det kun vise lokale trut.
         title: Vis kendte fedivers på tidslinje forhåndsvisning
       show_staff_badge:
         desc_html: Vis personale emblem på en brugerside
         title: Vis personale emblem
       site_description:
+        desc_html: Introduktions afsnit på forsiden. Beskriv hvad der gør denne Mastodon server speciel og alt andet vigtigt. Du kan bruge HTML tags, især <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
         title: Beskrivelse af instans
+      site_description_extended:
+        desc_html: Et godt sted for placering af adfærdskodes, regler, retningslinjer og andre ting der gør din instans unik. Du kan bruge HTML tags
+        title: Brugerdefineret udvidet information
       site_short_description:
+        desc_html: Vist på sidelinjen og meta tags. Beskriv hvad Mastodon er og hvad der gør denne server speciel i et enkelt afsnit. Hvis tomt, vil standard være beskrivelsen af instansen.
         title: Kort beskrivelse af instans
+      site_terms:
+        desc_html: Du kan skrive din egen privatlivpolitik, servicevilkår, eller lignende. Du kan bruge HTML tags
+        title: Brugerdefineret servicevilkår
       site_title: Navn på instans
+      thumbnail:
+        desc_html: Brugt til forhåndsvisninger via OpenGraph og API. 1200x630px anbefales
+        title: Miniaturebillede for instans
       timeline_preview:
         desc_html: Vis offentlig tidslinje på landingssiden
         title: Tidslinje forhåndsvisning
@@ -379,14 +418,22 @@ da:
       media:
         title: Multimedier
       no_media: Ingen multimedier
+      no_status_selected: Ingen statusser blev ændret eller ingen blev valgt
       title: Konto statusser
       with_media: Med multimedier
     subscriptions:
+      callback_url: Callback-URL
       confirmed: Bekræftet
       expires_in: Udløber om
       last_delivery: Sidste levering
       title: Websub
       topic: Emne
+    suspensions:
+      bad_acct_msg: Bekræftelsværdien stemte ikke overens. Er du ved at udelukke den rigtige konto?
+      hint_html: 'For at bekræfte udelukkelsen af kontoen, indtast venligst %{value} i nedenstående felt:'
+      proceed: Fortsæt
+      title: Udeluk %{acct}
+      warning_html: 'Udelukkelse af denne konto vil <strong>uigenkaldeligt</strong> slette al data fra denne konto, hvilket indebærer:'
     title: Administration
   admin_mailer:
     new_report:
@@ -394,9 +441,9 @@ da:
       body_remote: Nogen fra %{domain} har anmeldt %{target}
       subject: Ny anmeldelse for %{instance} (#%{id})
   application_mailer:
-    notification_preferences: Ændre email indstillinger
+    notification_preferences: Ændre email præferencer
     salutation: "%{name},"
-    settings: 'Ændre email indstillinger: %{link}'
+    settings: 'Ændre email præferencer: %{link}'
     view: 'Se:'
     view_profile: Se profil
     view_status: Se status
@@ -404,16 +451,23 @@ da:
     created: Applikation blev oprettet
     destroyed: Applikation er blevet slettet
     invalid_url: Det angivne URL er ugyldigt
+    regenerate_token: Regenerer adgangs token
+    token_regenerated: Adgangs token blev regenereret
     warning: Vær meget forsigtig med disse data. Del dem aldrig med nogen!
+    your_token: Din adgangs token
   auth:
+    agreement_html: Ved at oprette dig erklærer du dig enig i at følge <a href="%{rules_path}">instanses regler</a> og <a href="%{terms_path}">vores servicevilkår</a>.
     change_password: Kodeord
     confirm_email: Bekræft email
     delete_account: Slet konto
+    delete_account_html: Hvis du ønsker at slette din konto, kan du <a href="%{path}">gøre det her</a>. Du vil blive bedt om bekræftelse.
     didnt_get_confirmation: Har du endnu ikke modtaget instrukser for bekræftelse?
     forgot_password: Glemt dit kodeord?
+    invalid_reset_password_token: Adgangskode nulstillings token er ugyldig eller udløbet. Anmod venligst om en ny.
     login: Log ind
     logout: Log ud
     migrate_account: Flyt til en anden konto
+    migrate_account_html: Hvis du ønsker at omdirigere denne konto til en anden, kan du <a href="%{path}">gøre det her</a>.
     or: eller
     or_log_in_with: Eller log in med
     providers:
@@ -427,6 +481,7 @@ da:
     set_new_password: Sæt et nyt kodeord
   authorize_follow:
     already_following: Du følger allerede denne konto
+    error: Der opstod desværre en fejl under søgningen af denne fjerne konto
     follow: Følg
     follow_request: 'Du har anmodet om at følge:'
     following: 'Succes! Du følger nu:'
@@ -452,21 +507,30 @@ da:
   deletes:
     bad_password_msg: Godt forsøg, hackere! Forkert kodeord
     confirm_password: Indtast dit nuværende kodeord for at bekræfte din identitet
+    description_html: Dette vil <strong>permanent, uigenkaldeligt</strong> fjerne indhold fra din konto samt deaktivere den. Dit brugernavn vil forblive reserveret for at forhindre fremtidige efterligninger.
     proceed: Slet konto
     success_msg: Din konto er nu blevet slettet
+    warning_html: Kun sletning af indhold fra denne specifikke instans er garanteret. Indhold der er blevet delt rundt omkring vil sandsynligvis efterlade spor. Offline servere og servere der ikke længere abonnerer på dine opdateringer vil ikke opdatere deres databaser.
+    warning_title: Tilgængelighed af delt indhold
   errors:
     '403': Du har ikke tilladelse til at se denne side.
     '404': Den side du leder efter findes ikke.
     '410': Den side du leder efter findes ikke mere.
     '422':
+      content: Sikkerhedsbekræftelse mislykkedes. Blokerer du cookies?
       title: Sikkerheds godkendelse mislykkedes
+    '429': Droslet
     '500':
       content: Beklager men der gik noget galt i vores ende.
       title: Siden er ikke korrekt
+    noscript_html: For at bruge Mastodon web applikationen, aktiver JavaScript. Alternativt kan du prøve en af disse <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apps</a> til Mastodon for din platform.
   exports:
     archive_takeout:
       date: Dato
       download: Hent dit arkiv
+      hint_html: Du kan anmode om et arkiv af dine <strong>trut og oplagt medie</strong>. Den eksporterede data vil være i ActivityPub formattet, læseligt af enhvert kompatibel program. Du kan anmode om et arkiv en gang om ugen.
+      in_progress: Udarbejder dit arkiv...
+      request: Anmod om dit arkiv
       size: Størrelse
     blocks: Du blokerer
     csv: CSV
@@ -481,6 +545,9 @@ da:
       thread: Samtaler
     edit:
       title: Rediger filter
+    errors:
+      invalid_context: Ingen eller ugyldig kontekst angivet
+      invalid_irreversible: Uigenkaldelig filtrering virker kun med hjem eller notifikations kontekst
     index:
       delete: Slet
       title: Filtrer
@@ -488,9 +555,15 @@ da:
       title: Tilføj nyt filter
   followers:
     domain: Domæne
+    explanation_html: Hvis du vil sikre dig privatliv over dine statusser, skal du være klar over hvem der følger dig. <strong>Dine private statusser leveres til alle instanser som du har følger fra</strong>. Det kan være en ide at gennemgå dem, og fjerne følgere hvis du ikke føler dit privatliv respekteres af personalet eller software fra disse instanser.
     followers_count: Antal følgere
     lock_link: Lås din konto
     purge: Fjern fra følgere
+    success:
+      one: I gang med at soft-blokere følgere fra et domæne...
+      other: I gang med at soft-blokere følgere fra %{count} domæner...
+    true_privacy_html: Husk på, at <strong>sand privatliv kan kun opnås via end-to-end kryptering</strong>.
+    unlocked_warning_html: Alle kan følge dig med det samme for at se dine private statusser. %{lock_link} for at være i stand til at gennemse og afvise følgere.
     unlocked_warning_title: Din konto er ikke låst
   footer:
     developers: Udviklere
@@ -503,11 +576,14 @@ da:
       one: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende fejl forneden
       other: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende %{count} fejl forneden
   imports:
+    preface: Du kan importere data du har eksporteret fra en anden instans, så som en liste over folk du følger eller blokerer.
+    success: Dine data blev succesfuldt uploaded og vil nu blive behandlet hurtigst muligt
     types:
       blocking: Blokeringsliste
       following: Følgningsliste
       muting: Liste over dæmpninger
     upload: Læg op
+  in_memoriam_html: Til minde om.
   invites:
     delete: Deaktiver
     expired: Udløbet
@@ -525,6 +601,7 @@ da:
       one: 1 benyttelse
       other: "%{count} benyttelser"
     max_uses_prompt: Ubegrænset
+    prompt: Generer og del links med andre for at give dem adgang til denne instans
     table:
       expires_at: Udløber
       uses: Benyttelser
@@ -540,13 +617,16 @@ da:
     acct: username@domain af den nye konto
     currently_redirecting: 'Din profil er sat til at henvise til:'
     proceed: Gem
+    updated_msg: Dine konti migrærings indstillinger blev opdateret!
   moderation:
     title: Moderatering
   notification_mailer:
     digest:
       action: Se alle notifikationer
+      body: Her er en kort gennemgang af de beskeder du gik glip af siden dit sidste besøg den %{since}
       mention: "%{name} nævnte dig i:"
       new_followers_summary:
+        one: Du har også fået dig en ny følger mens du var væk! Sådan!
         other: Du har også fået %{count} nye følgere mens du var væk! Fantastisk!
       subject:
         one: "1 ny notifikation siden du sidst var her \U0001F418"
@@ -563,6 +643,8 @@ da:
     follow_request:
       action: Håndter følgeranmodninger
       body: "%{name} har anmodet om at følge dig"
+      subject: 'Følger afventer: %{name}'
+      title: Ny følgeranmodning
     mention:
       action: Svar
       body: 'Du blev nævnt af %{name} i:'
@@ -575,6 +657,7 @@ da:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: mia.
           million: mio.
@@ -587,16 +670,20 @@ da:
     next: Næste
     older: Ældre
     prev: Forrige
+    truncate: "...&hellip;"
   preferences:
     languages: Sprog
     other: Andet
     publishing: Offentligører
     web: Web
   remote_follow:
+    acct: Indtast dit brugernavn@domæne du vil handle fra
+    missing_resource: Kunne ikke finde det påkrævede omdirigerings link for din konto
     no_account_html: Har du ikke en konto? Du kan <a href='%{sign_up_path}' target='_blank'>oprette dig her</a>
     proceed: Fortsæt for at følge
     prompt: 'Du er ved at følge:'
   remote_interaction:
+    proceed: Fortsæt for at interagere
     prompt: 'Du ønsker at interagere med dette trut:'
   remote_unfollow:
     error: Fejl
@@ -606,25 +693,43 @@ da:
     activity: Sidste aktivitet
     browser: Browser
     browsers:
+      alipay: Ali-pay
       blackberry: Blackberry OS
       chrome: Google Chrome
       edge: Microsoft edge
+      electron: Elektron
       firefox: Mozilla Firefox
       generic: Ukendt browser
       ie: IE
+      micro_messenger: Micromessenger
+      nokia: Nokia S40 ovi browser
+      opera: Opera browser
+      otter: Odder
+      phantom_js: FantomJS
       qq: QQ browser
       safari: Apple Safari
+      uc_browser: UCbrowser
+      weibo: Weibo browser
+    current_session: Nuværrende session
     description: "%{browser} på %{platform}"
+    explanation: Disse er de web browsere der på nuværende tidspunkt er logget ind på din Mastodon konto.
     ip: IP
     platforms:
       adobe_air: Adobe air
       android: Android
+      blackberry: Blackberry OS
+      chrome_os: Chromeos
+      firefox_os: Firefox Os
       ios: iOS
       linux: Linux
       mac: Mac.
       other: ukendt platform
       windows: Microsoft windows
+      windows_mobile: Windows mobil
       windows_phone: Windows fon
+    revoke: Tilbagekald
+    revoke_success: Sessionen blev tilbagekaldt
+    title: Sessioner
   settings:
     authorized_apps: Godkendte apps
     back: Tilbage til Mastodon
@@ -636,7 +741,7 @@ da:
     import: Importer
     migrate: Konto migrering
     notifications: Notifikationer
-    preferences: Indstillinger
+    preferences: Præferencer
     settings: Indstillinger
     two_factor_authentication: To-faktor godkendelse
     your_apps: Dine applikationer
@@ -651,6 +756,9 @@ da:
         other: "%{count} videoer"
     boosted_from_html: Fremhævet fra %{acct_link}
     content_warning: 'Advarsel om indhold: %{warning}'
+    disallowed_hashtags:
+      one: 'indeholdte et ikke tilladt hashtag: %{tags}'
+      other: 'indeholdte de ikke tilladte hashtags: %{tags}'
     language_detection: Opfang automatisk sprog
     open_in_web: Åbn i browser
     over_character_limit: grænsen på %{max} tegn er overskredet
@@ -674,10 +782,11 @@ da:
     reblogged: fremhævede
     sensitive_content: Følsomt indhold
   terms:
+    body_html: "<p><h2> Privatlivspolitik </h2> \n<h3 id=\"collect\">Hvilke information indsamler vi?</h3> \n\n<ul>\n  <li><em>Grundlæggende kontoinformation </em>: Hvis du registrerer dig på denne server, bliver du måske bedt om at indtaste et brugernavn, en e-mail-adresse og et kodeord. Du kan også indtaste yderligere profiloplysninger, såsom et visningsnavn og biografi, og uploade et profilbillede og headerbillede. Brugernavnet, visningsnavnet, biografien, profilbilledet og hovedbilledet vises altid offentligt. </li> \n  <li> <em>Stillinger, følgende og andre offentlige oplysninger </em>: Listen over personer du følger er offentliggjort, det samme gælder for dine tilhængere. Når du sender en besked, gemmes datoen og klokkeslættet såvel som det program, du sendte beskeden fra. Meddelelser kan indeholde medievedhæftninger, som f.eks. Billeder og videoer. Offentlige og unoterede indlæg er offentligt tilgængelige. Når du har et indlæg på din profil, er det også offentligt tilgængelig information. Dine indlæg leveres til dine tilhængere, i nogle tilfælde betyder det, at de leveres til forskellige servere, og der gemmes kopier der. Når du sletter indlæg, leveres det også til dine tilhængere. Handlingen med reblogging eller favorisering af et andet indlæg er altid offentligt. </li>\n  <li><em> Direkte og efterfølger-kun indlæg </ em>: Alle indlæg gemmes og behandles på serveren. Følgere-kun indlæg leveres til dine tilhængere og brugere, der er nævnt i dem, og direkte indlæg leveres kun til brugere nævnt i dem. I nogle tilfælde betyder det, at de leveres til forskellige servere, og der gemmes kopier der. Vi gør en god tro for at begrænse adgangen til disse stillinger kun til autoriserede personer, men andre servere kan undlade at gøre det. Derfor er det vigtigt at gennemgå de servere, dine tilhængere tilhører. Du kan skifte en mulighed for at godkende og afvise nye følgere manuelt i indstillingerne. <em> Vær opmærksom på, at operatørerne af serveren og enhver modtagende server muligvis kan se sådanne meddelelser </em>, og at modtagere muligvis skærmbilleder, kopierer eller på anden vis deler dem igen. <em> Del ikke nogen farlig information over Mastodon. </em> </li>\n  <li> <em> IP'er og andre metadata </em>: Når du logger ind, registrerer vi den IP-adresse, du logger ind fra, samt navnet på din browser-applikation. Alle indloggede sessioner er tilgængelige til din anmeldelse og tilbagekaldelse i indstillingerne. Den seneste anvendte IP-adresse gemmes i op til 12 måneder. Vi kan også beholde serverlogfiler, som indeholder IP-adressen til hver anmodning til vores server. </li>\n</ul>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"use\">Hvad bruger vi dine oplysninger til? </h3>\n\n<p> Enhver af de oplysninger, vi indsamler fra dig, kan bruges på følgende måder: </p>\n\n<ul>\n  <li> At levere kernen funktionalitet Mastodon. Du kan kun interagere med andres indhold og indsende dit eget indhold, når du er logget ind. Du kan f.eks. Følge andre personer for at se deres kombinerede indlæg på din egen personlige tidslinje. </li>\n  <li> For at hjælpe moderering af samfundet, f.eks. sammenligning af din IP-adresse med andre kendte, for at bestemme forbud mod unddragelse eller andre overtrædelser. </li>\n  <li> Den e-mail-adresse, du angiver, kan bruges til at sende dig oplysninger, meddelelser om andre personer, der interagerer med dit indhold eller sender dig beskeder, og for at svare på henvendelser og / eller andre forespørgsler eller spørgsmål. </li>\n</ul>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"protect\">Hvordan beskytter vi dine oplysninger? </h3>\n\n<p> Vi implementerer en række sikkerhedsforanstaltninger for at opretholde sikkerheden for dine personlige oplysninger, når du indtaster, indsender eller har adgang til dine personlige oplysninger. Bl.a. er din browsersession samt trafikken mellem dine applikationer og API'en sikret med SSL, og din adgangskode er hashed ved hjælp af en stærk envejsalgoritme. Du kan muligvis aktivere tofaktors godkendelse for yderligere at sikre adgang til din konto. </p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"data-retention\"> Hvad er vores data retention politik? </h3>\n\n<p> Vi vil gøre en god tro indsats for at: </p>\n\n<ul>\n  <li> Behold serverlogfiler, der indeholder IP-adressen på alle anmodninger til denne server, for så vidt som sådanne logfiler holdes, ikke mere end 90 dage. </li>\n  <li> Behold de IP-adresser, der er forbundet med registrerede brugere, ikke mere end 12 måneder. </li>\n</ul>\n\n<p> Du kan anmode om og downloade et arkiv af dit indhold, herunder dine indlæg, medievedhæftninger, profilbillede og headerbillede. </p>\n\n<p> Du kan til enhver tid slette din konto. </p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"cookies\"> Bruger vi cookies? </h3>\n\n<p> Ja. Cookies er små filer, som et websted eller dets tjenesteudbyder overfører til din computers harddisk via din webbrowser (hvis du tillader det). Disse cookies gør det muligt for webstedet at genkende din browser og, hvis du har en registreret konto, associerer den med din registrerede konto. </p>\n\n<p> Vi bruger cookies til at forstå og gemme dine præferencer til fremtidige besøg. </p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"disclose\"> Viser vi nogen information til eksterne parter? </h3>\n\n<p> Vi sælger ikke, handler eller på anden måde overfører dine personlige identificerbare oplysninger til eksterne parter. Dette omfatter ikke tillid til tredjeparter, der hjælper os med at drive vores hjemmeside, udføre vores forretning eller servicere dig, så længe parterne er enige om at holde disse oplysninger fortrolige. Vi kan også frigive dine oplysninger, når vi mener, at udgivelsen er hensigtsmæssig for at overholde loven, håndhæve vores webstedspolitikker eller beskytte vores eller andre rettigheder, ejendom eller sikkerhed. </p>\n\n<p> Dit offentlige indhold kan downloades af andre servere i netværket. Dine offentlige og efterfølger-kun indlæg leveres til de servere, hvor dine tilhængere er bosat, og direkte meddelelser leveres til modtagerens servere, for så vidt som disse tilhængere eller modtagere opholder sig på en anden server end dette. </p>\n\n<p> Når du autoriserer et program til at bruge din konto, afhænger det af omfanget af tilladelser, du godkender, det kan få adgang til dine offentlige profiloplysninger, din følgende liste, dine tilhængere, dine lister, alle dine indlæg og dine favoritter. Applikationer kan aldrig få adgang til din e-mail-adresse eller adgangskode. </p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"children\"> Bebyggelse af børn </h3>\n\n<p> Hvis denne server er i EU eller EØS: Vores websted, produkter og tjenester er alle rettet mod personer, der er mindst 16 år gamle. Hvis du er under 16 år, skal du ikke bruge dette websted efter kravene i GDPR (<a href=\"https://en.wikipedia.org/wiki/General_Data_Protection_Regulation\"> Generel databeskyttelsesforordning </a>). . </p>\n\n<p> Hvis denne server er i USA: Vores websted, produkter og tjenester er alle rettet mod personer, der er mindst 13 år. Hvis du er under 13 år, skal du ikke bruge kravene i COPPA (<a href=\"https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\"> Børns online beskyttelse af personlige oplysninger </a>) dette websted. </p>\n\n<p> Lovkrav kan være anderledes, hvis denne server er i en anden jurisdiktion. </p>\n\n<hr class = \"spacer\" />\n\n<h3 id=\"changes\"> Ændringer i vores privatlivspolitik </h3>\n\n<p> Hvis vi beslutter os for at ændre vores privatlivspolitik, vil vi sende disse ændringer på denne side. </p>\n\n<p> Dette dokument er CC-BY-SA. Det blev senest opdateret 7. marts 2018. </p>\n\n<p> Oprindelig tilpasset fra <a href=\"https://github.com/discourse/discourse\"> Discourse privacy policy </a>.</p>\n"
     title: Vilkår og privatlivpolitik for %{instance}
   themes:
     contrast: Høj kontrast
-    default: Mastodon
+    default: Mastodont
     mastodon-light: Mastodon (lys)
   time:
     formats:
@@ -685,14 +794,18 @@ da:
       month: "%b %Y"
   two_factor_authentication:
     code_hint: Indtast koden der er genereret af din app for at bekræfte
+    description_html: Hvis du aktiverer <strong>to-faktor godkendelse</strong>, vil du være nødt til at være i besiddelse af din telefon, der genererer tokens som du skal indtaste, når du logger ind.
     disable: Deaktiver
     enable: Aktiver
     enabled: To-faktor godkendelse er aktiveret
     enabled_success: To-faktor godkendelse succesfuldt aktiveret
     generate_recovery_codes: Generer gendannelseskoder
+    instructions_html: "<strong>Scan denne QR kode i Google Autehnticator eller lignende TOTP app på din telefon</strong>. Fra nu af vil den app generere koder som du vil være nødt til at indtaste når du logger ind."
+    lost_recovery_codes: Gendannelseskoder vil lade dig få adgang til din konto hvis du mister din telefon. Hvis du har mistet dine gendannelseskoder, kan du regenerere dem her. Dine gamle gendannelseskoder vil blive ugyldige.
     manual_instructions: 'Hvis du ikke kan scanne QR koden er er nødt til at skrive koden ind manuelt, kan er din almindelig tekst secret:'
     recovery_codes: Reserve koder
     recovery_codes_regenerated: Reserve koder blev succesfuldt regenereret
+    recovery_instructions_html: Hvis du nogensinde mister adgang til din telefon, kan du bruge en af genoprettelses koderne forneden for at få adgang til din konto. <strong>Gem gendannelses koderne et sikkert sted</strong>. Foreksempel kan du printe dem ud og gemme dem sammen med andre vigtige dokumenter.
     setup: Sæt op
     wrong_code: Den indtastede kode var ugyldig! Er serverens tid og enhedens tid korrekte?
   user_mailer:
@@ -702,14 +815,17 @@ da:
       title: Udpluk af arkiv
     welcome:
       edit_profile_action: Opsæt profil
+      edit_profile_step: Du kan skræddersy din profil ved at uploade et profilbillede, overskrift, ændre dit visningsnavn og mere. Hvis du kunne tænke dig at gennemse nye følgere før de må følge dig, kan du låse din konto.
       explanation: Her er nogle råd til at starte med
       final_action: Kom igang med at poste
       final_step: 'Start med at skrive opslag! Selv uden følgere vil dine offentlige beskeder kunne ses af andre, foreksempel på den lokale tidslinje og i hashtags. Måske kunne du tænke dig at introducere dig selv på #introductions hashtagget.'
       full_handle: Dit fulde brugernavn
       full_handle_hint: Dette er hvad du vil fortælle dine venner så de kan sende dig beskeder eller følge dig fra andre instanser.
       review_preferences_action: Ændre præferencer
+      review_preferences_step: Vær sikker på at sætte dine præferencer, så som hvilke emails du kunne tænke dig at modtage, eller hvilket niveau af privatliv der skal være standard for dine opslag. Hvis du kunne tænke dig ikke at blive køresyg, kan du vælge at aktivere automatisk afspilning af GIFfer.
       subject: Velkommen til Mastodon
       tip_bridge_html: Hvis du kommer fra Twitter, kan du finde dine venner på Mastodon ved at bruge <a href="%{bridge_url}">bridge appen</a>. Den virker dog kun hvis de også bruger bridge appen!
+      tip_federated_timeline: Den delte tidslinje er et brandslange agtigt indblik over Mastodon netværket. Men det inkluderer kun folk dine naboer abonnerer på, så den er ikke fuldendt.
       tip_following: Du følger som standard administratoren(e) for den server du er på. For at finde flere folk, tjek både den lokale og fælles tidslinje.
       tip_local_timeline: Den lokale tidslinje er et have af folk i %{instance}. Disse er dine umiddelbare naboer!
       tip_mobile_webapp: Hvis din mobil browser tilbyder dig at tilføje Mastodon til din hjemmeskærm, kan du modtage push meddelelser. Dette opfører sig på mange måder ligesom en almindelig app!

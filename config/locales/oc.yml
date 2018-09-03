@@ -30,16 +30,22 @@ oc:
     other_instances: Lista d’instàncias
     privacy_policy: Politica de confidencialitat
     source_code: Còdi font
-    status_count_after: estatuts
+    status_count_after:
+      one: estatut
+      other: estatuts
     status_count_before: qu’an escrich
     terms: Condicions d’utilizacion
-    user_count_after: personas
+    user_count_after:
+      one: utilizaire
+      other: utilizaires
     user_count_before: Ostal de
     what_is_mastodon: Qu’es Mastodon ?
   accounts:
     choices_html: 'Recomandacion de %{name} :'
     follow: Sègre
-    followers: Seguidors
+    followers:
+      one: Seguidor
+      other: Seguidors
     following: Abonaments
     joined: Arribèt lo %{date}
     media: Mèdias
@@ -50,7 +56,10 @@ oc:
     people_who_follow: Lo monde que sègon %{name}
     pin_errors:
       following: Vos cal d’en primièr sègre las personas que volètz promòure
-    posts: Tuts
+    posts:
+      one: Tut
+      other: Tuts
+    posts_tab_heading: Tuts
     posts_with_replies: Tuts e responsas
     reserved_username: Aqueste nom d’utilizaire es reservat
     roles:
@@ -295,6 +304,8 @@ oc:
       description_html: Un <strong> relai de federacion</strong> es un servidor intermediari qu’escàmbia de bèls volumes de tuts publics entre servidors que son abonats e i publican.<strong>Pòt ajudar de pichons e mejans servidors a trobar de contenguts del fediverse estant</strong>, qu’autrament demandariá als utilizaires locals de s’abonar manualament a d’autres monde marcats sus de servidors alonhats.
       enable_hint: Un còp activat, vòstre servidor s’abonarà a totes los tuts publics del relai estant, e començarà de mandar sos tuts publics a aqueste d’enlà.
       inbox_url: URL del relai
+      pending: En espèra d’aprovacion del relai
+      save_and_enable: Salvar e activar
       setup: Configurar una connexion relai
       status: Estatut
       title: Relais
@@ -334,7 +345,7 @@ oc:
       target: Cibla
       title: Senhalament
       unassign: Levar
-      unresolved: Pas resolguts
+      unresolved: Pas resolgut
       updated_at: Actualizat
       view: Veire
     settings:
@@ -347,6 +358,9 @@ oc:
       contact_information:
         email: Picatz una adreça de corrièl
         username: Picatz un nom d’utilizaire
+      custom_css:
+        desc_html: Modificar l’estil amb una fuèlha CSS cargada sus cada pagina
+        title: CSS personalizada
       hero:
         desc_html: Mostrat en primièra pagina. Almens 600x100px recomandat. S’es pas configurat l’imatge de l’instància serà mostrat
         title: Imatge de l’eròi
@@ -415,6 +429,12 @@ oc:
       last_delivery: Darrièra distribucion
       title: WebSub
       topic: Subjècte
+    suspensions:
+      bad_acct_msg: La valor de confirmacion a pas coïncidit. Sètz a suspendre lo bon compte ?
+      hint_html: 'Per confirmar la suspension del compte, picatz %{value} al camp çai-jos :'
+      proceed: Tractat
+      title: Suspension de %{acct}
+      warning_html: 'Suspendre aqueste compte suprimirà <strong>irreversiblament</strong> las donadas del compte, aquò compren :'
     title: Administracion
   admin_mailer:
     new_report:
@@ -720,6 +740,7 @@ oc:
     proceed: Clicatz per sègre
     prompt: 'Sètz per sègre :'
   remote_interaction:
+    proceed: Confirmar l’interaccion
     prompt: 'Volètz interagir amb aqueste tut :'
   remote_unfollow:
     error: Error

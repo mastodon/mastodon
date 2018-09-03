@@ -30,16 +30,22 @@ gl:
     other_instances: Listado de instancias
     privacy_policy: Política de intimidade
     source_code: Código fonte
-    status_count_after: estados
+    status_count_after:
+      one: estado
+      other: estados
     status_count_before: Que publicaron
     terms: Termos do servizo
-    user_count_after: usuarias
+    user_count_after:
+      one: usuaria
+      other: usuarias
     user_count_before: Fogar de
     what_is_mastodon: Qué é Mastodon?
   accounts:
     choices_html: 'Eleccións de %{name}:'
     follow: Seguir
-    followers: Seguidoras
+    followers:
+      one: Seguidora
+      other: Seguidoras
     following: Seguindo
     joined: Uneuse %{date}
     media: Medios
@@ -50,7 +56,10 @@ gl:
     people_who_follow: Personas que seguen a %{name}
     pin_errors:
       following: Debe seguir a persoa que intenta recomendar
-    posts: Mensaxes
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Toots e respostas
     reserved_username: O nome de usuaria está reservado
     roles:
@@ -294,6 +303,7 @@ gl:
       description_html: Un <strong>repetidor da federación</strong> é un servidor intermedio que intercambia grandes volumes de toots públicos entre servidores que se suscriban e publiquen nel. <strong>Pode axudar a servidores pequenos e medios a descubrir contido no fediverso</strong>, o que de outro xeito precisaría que as usuarias locais seguisen a outra xente en servidores remotos.
       enable_hint: Unha vez activado, o seu servidor suscribirase a todos os toots públicos de este servidor, e tamén comezará a eviar a el os toots públicos do servidor.
       inbox_url: URL do repetidor
+      pending: Agardando polo permiso do repetidor
       setup: Configurar a conexión ao repetidor
       status: Estado
       title: Repetidores
@@ -346,6 +356,9 @@ gl:
       contact_information:
         email: e-mail de traballo
         username: Nome de usuaria de contacto
+      custom_css:
+        desc_html: Modificar o aspecto con CSS cargado en cada páxina
+        title: CSS personalizado
       hero:
         desc_html: Mostrado na portada. Recoméndase 600x100px como mínimo. Si non se establece, mostrará a imaxe por omisión da instancia
         title: Imáxe Heróe
@@ -414,6 +427,12 @@ gl:
       last_delivery: Última entrega
       title: WebSub
       topic: Asunto
+    suspensions:
+      bad_acct_msg: O valor de confirmación non é coincidente. Está a suspender a conta correcta?
+      hint_html: 'Para confirmar a suspensión da conta introduza %{value} no campo inferior:'
+      proceed: Proceder
+      title: Suspender %{acct}
+      warning_html: 'Ao suspender esta conta eliminará <strong>de xeito irreversible</strong> os datos de esta conta, que inclúe:'
     title: Administración
   admin_mailer:
     new_report:

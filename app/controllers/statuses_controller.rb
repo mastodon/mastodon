@@ -54,6 +54,7 @@ class StatusesController < ApplicationController
     skip_session!
     expires_in 180, public: true
     response.headers['X-Frame-Options'] = 'ALLOWALL'
+    @autoplay = ActiveModel::Type::Boolean.new.cast(params[:autoplay])
 
     render 'stream_entries/embed', layout: 'embedded'
   end
