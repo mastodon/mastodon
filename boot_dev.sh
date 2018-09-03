@@ -18,7 +18,7 @@ case "$MODE" in
     bundle exec sidekiq -q default -q mailers -q pull -q push
     ;;
   "streaming")
-    npm run start
+    yarn start
     ;;
   *)
     echo "Unknown mode: ${MODE}"
