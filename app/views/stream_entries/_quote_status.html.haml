@@ -1,4 +1,4 @@
-.status.light.quote-status{ dataurl:  TagManager.instance.url_for(status) }
+.status.quote-status{ dataurl:  TagManager.instance.url_for(status) }
   = link_to TagManager.instance.url_for(status.account), class: 'status__display-name p-author h-card', target: stream_link_target, rel: 'noopener' do
     .status__avatar
       %div
