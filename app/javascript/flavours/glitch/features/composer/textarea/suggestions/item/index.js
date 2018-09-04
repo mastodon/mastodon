@@ -11,7 +11,7 @@ import { unicodeMapping } from 'flavours/glitch/util/emoji';
 import { assignHandlers } from 'flavours/glitch/util/react_helpers';
 
 //  Gets our asset host from the environment, if available.
-const assetHost = ((process || {}).env || {}).CDN_HOST || '';
+const assetHost = process.env.CDN_HOST || '';
 
 //  Handlers.
 const handlers = {
