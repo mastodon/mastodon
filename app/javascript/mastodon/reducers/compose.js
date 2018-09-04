@@ -131,7 +131,7 @@ const updateSuggestionTags = (state, token) => {
 
   return state.merge({
     suggestions: state.get('tagHistory')
-      .filter(tag => tag.startsWith(prefix))
+      .filter(tag => tag.toLowerCase().startsWith(prefix.toLowerCase()))
       .slice(0, 4)
       .map(tag => '#' + tag),
     suggestion_token: token,

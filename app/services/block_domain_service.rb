@@ -43,14 +43,14 @@ class BlockDomainService < BaseService
   end
 
   def suspend_accounts!
-    blocked_domain_accounts.where(suspended: false).find_each do |account|
+    blocked_domain_accounts.where(suspended: false).reorder(nil).find_each do |account|
       UnsubscribeService.new.call(account) if account.subscribed?
       SuspendAccountService.new.call(account)
     end
   end
 
   def clear_account_images!
-    blocked_domain_accounts.find_each do |account|
+    blocked_domain_accounts.reorder(nil).find_each do |account|
       account.avatar.destroy if account.avatar.exists?
       account.header.destroy if account.header.exists?
       account.save
@@ -58,7 +58,7 @@ class BlockDomainService < BaseService
   end
 
   def clear_account_attachments!
-    media_from_blocked_domain.find_each do |attachment|
+    media_from_blocked_domain.reorder(nil).find_each do |attachment|
       @affected_status_ids << attachment.status_id if attachment.status_id.present?
 
       attachment.file.destroy if attachment.file.exists?

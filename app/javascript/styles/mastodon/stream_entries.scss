@@ -1,363 +1,166 @@
 .activity-stream {
-  clear: both;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  text-align: left;
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    margin-bottom: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  &--headless {
+    border-radius: 0;
+    margin: 0;
+    box-shadow: none;
+
+    .detailed-status,
+    .status {
+      border-radius: 0 !important;
+    }
+  }
+
+  div[data-component] {
+    width: 100%;
+  }
 
   .entry {
-    background: $simple-background-color;
+    background: $ui-base-color;
 
-    .detailed-status.light,
-    .status.light,
-    .more.light {
-      border-bottom: 1px solid $ui-secondary-color;
+    .detailed-status,
+    .status,
+    .load-more {
       animation: none;
     }
 
     &:last-child {
-      &,
-      .detailed-status.light,
-      .status.light {
+      .detailed-status,
+      .status,
+      .load-more {
         border-bottom: 0;
         border-radius: 0 0 4px 4px;
       }
     }
 
     &:first-child {
-      &,
-      .detailed-status.light,
-      .status.light {
+      .detailed-status,
+      .status,
+      .load-more {
         border-radius: 4px 4px 0 0;
       }
 
       &:last-child {
-        &,
-        .detailed-status.light,
-        .status.light {
+        .detailed-status,
+        .status,
+        .load-more {
           border-radius: 4px;
         }
       }
     }
 
     @media screen and (max-width: 740px) {
-      &,
-      .detailed-status.light,
-      .status.light {
+      .detailed-status,
+      .status,
+      .load-more {
         border-radius: 0 !important;
       }
     }
   }
 
-  &.with-header {
-    .entry {
-      &:first-child {
-        &,
-        .detailed-status.light,
-        .status.light {
-          border-radius: 0;
-        }
+  &--highlighted .entry {
+    background: lighten($ui-base-color, 8%);
+  }
+}
 
-        &:last-child {
-          &,
-          .detailed-status.light,
-          .status.light {
-            border-radius: 0 0 4px 4px;
-          }
-        }
-      }
+.button.logo-button {
+  flex: 0 auto;
+  font-size: 14px;
+  background: $ui-highlight-color;
+  color: $primary-text-color;
+  text-transform: none;
+  line-height: 36px;
+  height: auto;
+  padding: 3px 15px;
+  border: 0;
+
+  svg {
+    width: 20px;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 5px;
+
+    path:first-child {
+      fill: $primary-text-color;
+    }
+
+    path:last-child {
+      fill: $ui-highlight-color;
     }
   }
 
-  .media-gallery__gifv__label {
-    bottom: 9px;
-  }
+  &:active,
+  &:focus,
+  &:hover {
+    background: lighten($ui-highlight-color, 10%);
 
-  .status.light {
-    padding: 14px 14px 14px (48px + 14px * 2);
-    position: relative;
-    min-height: 48px;
-    cursor: default;
-
-    .status__header {
-      font-size: 15px;
-
-      .status__meta {
-        float: right;
-        font-size: 14px;
-
-        .status__relative-time {
-          color: $lighter-text-color;
-        }
-      }
-    }
-
-    .status__display-name {
-      display: block;
-      max-width: 100%;
-      padding-right: 25px;
-      color: $inverted-text-color;
-    }
-
-    .status__avatar {
-      position: absolute;
-      left: 14px;
-      top: 14px;
-      width: 48px;
-      height: 48px;
-
-      & > div {
-        width: 48px;
-        height: 48px;
-      }
-
-      img {
-        display: block;
-        border-radius: 4px;
-      }
-    }
-
-    .display-name {
-      display: block;
-      max-width: 100%;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-
-      strong {
-        font-weight: 500;
-        color: $inverted-text-color;
-
-        @each $lang in $cjk-langs {
-          &:lang(#{$lang}) {
-            font-weight: 700;
-          }
-        }
-      }
-
-      span {
-        font-size: 14px;
-        color: $light-text-color;
-      }
-    }
-
-    .status__content {
-      color: $inverted-text-color;
-
-      a {
-        color: $highlight-text-color;
-      }
-
-      a.status__content__spoiler-link {
-        color: $primary-text-color;
-        background: $ui-base-color;
-
-        &:hover {
-          background: lighten($ui-base-color, 8%);
-        }
-      }
+    svg path:last-child {
+      fill: lighten($ui-highlight-color, 10%);
     }
   }
 
-  .detailed-status.light {
-    padding: 14px;
-    background: $simple-background-color;
-    cursor: default;
-
-    .detailed-status__display-name {
-      display: block;
-      overflow: hidden;
-      margin-bottom: 15px;
-
-      & > div {
-        float: left;
-        margin-right: 10px;
-      }
-
-      .display-name {
-        display: block;
-        max-width: 100%;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-
-        strong {
-          font-weight: 500;
-          color: $inverted-text-color;
-
-          @each $lang in $cjk-langs {
-            &:lang(#{$lang}) {
-              font-weight: 700;
-            }
-          }
-        }
-
-        span {
-          font-size: 14px;
-          color: $light-text-color;
-        }
-      }
-    }
-
-    .avatar {
-      width: 48px;
-      height: 48px;
-
-      img {
-        display: block;
-        border-radius: 4px;
-      }
-    }
-
-    .status__content {
-      color: $inverted-text-color;
-
-      a {
-        color: $highlight-text-color;
-      }
-
-      a.status__content__spoiler-link {
-        color: $primary-text-color;
-        background: $ui-base-color;
-
-        &:hover {
-          background: lighten($ui-base-color, 8%);
-        }
-      }
-    }
-
-    .detailed-status__meta {
-      margin-top: 15px;
-      color: $light-text-color;
-      font-size: 14px;
-      line-height: 18px;
-
-      a {
-        color: inherit;
-      }
-
-      span > span {
-        font-weight: 500;
-        font-size: 12px;
-        margin-left: 6px;
-        display: inline-block;
-      }
-    }
-
-    .status-card {
-      border-color: lighten($ui-secondary-color, 4%);
-      color: $lighter-text-color;
-
-      &:hover {
-        background: lighten($ui-secondary-color, 4%);
-      }
-    }
-
-    .status-card__title,
-    .status-card__description {
-      color: $inverted-text-color;
-    }
-
-    .status-card__image {
-      background: $ui-secondary-color;
-    }
-  }
-
-  .media-spoiler {
-    background: $ui-base-color;
-    color: $darker-text-color;
-  }
-
-  .pre-header {
-    padding: 14px 0;
-    padding-left: (48px + 14px * 2);
-    padding-bottom: 0;
-    margin-bottom: -4px;
-    color: $light-text-color;
-    font-size: 14px;
-    position: relative;
-
-    .pre-header__icon {
-      position: absolute;
-      left: (48px + 14px * 2 - 30px);
-    }
-
-    .status__display-name.muted strong {
-      color: $light-text-color;
-    }
-  }
-
-  .open-in-web-link {
-    text-decoration: none;
-
+  &.button--destructive {
+    &:active,
+    &:focus,
     &:hover {
-      text-decoration: underline;
+      background: $error-red;
+
+      svg path:last-child {
+        fill: $error-red;
+      }
     }
   }
 
-  .more {
-    color: $darker-text-color;
-    display: block;
-    padding: 14px;
-    text-align: center;
-
-    &:not(:hover) {
-      text-decoration: none;
+  @media screen and (max-width: $no-gap-breakpoint) {
+    svg {
+      display: none;
     }
   }
 }
 
-.embed {
-  .activity-stream {
-    box-shadow: none;
+.embed,
+.public-layout {
+  .detailed-status {
+    padding: 15px;
   }
-}
 
-.entry {
-  .detailed-status.light {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
+  .status {
+    padding: 15px 15px 15px (48px + 15px * 2);
+    min-height: 48px + 2px;
 
-    .detailed-status__display-name {
-      flex: 1;
-      margin: 0 5px 15px 0;
+    &__avatar {
+      left: 15px;
+      top: 17px;
     }
 
-    .button.button-secondary.logo-button {
-      flex: 0 auto;
-      font-size: 14px;
-      background: $ui-highlight-color;
-      color: $primary-text-color;
-      border: 0;
-
-      svg {
-        width: 20px;
-        height: auto;
-        vertical-align: middle;
-        margin-right: 5px;
-
-        path:first-child {
-          fill: $primary-text-color;
-        }
-
-        path:last-child {
-          fill: $ui-highlight-color;
-        }
-      }
-
-      &:active,
-      &:focus,
-      &:hover {
-        background: lighten($ui-highlight-color, 10%);
-
-        svg path:last-child {
-          fill: lighten($ui-highlight-color, 10%);
-        }
-      }
+    &__content {
+      padding-top: 5px;
     }
 
-    .status__content,
-    .detailed-status__meta {
-      flex: 100%;
+    &__prepend {
+      margin-left: 48px + 15px * 2;
+      padding-top: 15px;
+    }
+
+    &__prepend-icon-wrapper {
+      left: -32px;
+    }
+
+    .media-gallery,
+    &__action-bar,
+    .video-player {
+      margin-top: 10px;
     }
   }
 }

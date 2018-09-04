@@ -9,7 +9,7 @@ module Expireable
     attr_reader :expires_in
 
     def expires_in=(interval)
-      self.expires_at = interval.to_i.seconds.from_now unless interval.blank?
+      self.expires_at = interval.to_i.seconds.from_now if interval.present?
       @expires_in     = interval
     end
 

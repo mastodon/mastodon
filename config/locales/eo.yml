@@ -5,13 +5,13 @@ eo:
     about_mastodon_html: Mastodon estas socia reto bazita sur malfermitaj retaj protokoloj kaj sur libera malfermitkoda programo. Ĝi estas sencentra kiel retmesaĝoj.
     about_this: Pri
     administered_by: 'Administrata de:'
+    api: API
+    apps: Poŝtelefonaj aplikaĵoj
     closed_registrations: Registriĝoj estas nuntempe fermitaj en ĉi tiu nodo. Tamen, vi povas trovi alian nodon por fari konton kaj aliri al la sama reto de tie.
     contact: Kontakti
     contact_missing: Ne elektita
     contact_unavailable: Ne disponebla
-    description_headline: Kio estas %{domain}?
-    domain_count_after: aliaj nodoj
-    domain_count_before: Konektita al
+    documentation: Dokumentado
     extended_description_html: |
       <h3>Bona loko por reguloj</h3>
       <p>La detala priskribo ne estis elektita.</p>
@@ -28,25 +28,30 @@ eo:
     hosted_on: "%{domain} estas nodo de Mastodon"
     learn_more: Lerni pli
     other_instances: Listo de nodoj
+    privacy_policy: Privateca politiko
     source_code: Fontkodo
     status_count_after: mesaĝoj
     status_count_before: Kie skribiĝis
+    terms: Uzkondiĉoj
     user_count_after: uzantoj
     user_count_before: Hejmo de
     what_is_mastodon: Kio estas Mastodon?
   accounts:
+    choices_html: 'Proponoj de %{name}:'
     follow: Sekvi
     followers: Sekvantoj
     following: Sekvatoj
+    joined: Aliĝis je %{date}
     media: Aŭdovidaĵoj
     moved_html: "%{name} moviĝis al %{new_profile_link}:"
     network_hidden: Tiu informo ne estas disponebla
     nothing_here: Estas nenio ĉi tie!
     people_followed_by: Sekvatoj de %{name}
     people_who_follow: Sekvantoj de %{name}
+    pin_errors:
+      following: Vi devas sekvi la homon, kiun vi volas proponi
     posts: Mesaĝoj
     posts_with_replies: Mesaĝoj kaj respondoj
-    remote_follow: Fore sekvi
     reserved_username: La uzantnomo estas rezervita
     roles:
       admin: Administranto
@@ -180,6 +185,7 @@ eo:
         unsuspend_account: "%{name} malhaltigis la konton de %{target}"
         update_custom_emoji: "%{name} ĝisdatigis emoĝion %{target}"
         update_status: "%{name} ĝisdatigis mesaĝon de %{target}"
+      deleted_status: "(forigita mesaĝo)"
       title: Kontrola protokolo
     custom_emojis:
       by_domain: Domajno
@@ -206,6 +212,27 @@ eo:
       update_failed_msg: Ĝisdatigi tiun emoĝion ne eblis
       updated_msg: Emoĝio sukcese ĝisdatigita!
       upload: Alŝuti
+    dashboard:
+      backlog: postigitaj taskoj
+      config: Agordado
+      feature_deletions: Forigo de kontoj
+      feature_invites: Invitaj ligiloj
+      feature_registrations: Registriĝoj
+      feature_relay: Federacia ripetilo
+      features: Funkcioj
+      hidden_service: Federacio kun kaŝitaj servoj
+      open_reports: nefermitaj raportoj
+      recent_users: Lastatempaj uzantoj
+      search: Tutteksta serĉado
+      single_user_mode: Unuuzanta reĝimo
+      software: Programo
+      space: Memorspaca uzado
+      title: Kontrolpanelo
+      total_users: uzantoj sume
+      trends: Furoroj
+      week_interactions: interagoj tiusemajne
+      week_users_active: aktivaj tiusemajne
+      week_users_new: uzantoj tiusemajne
     domain_blocks:
       add_new: Aldoni novan
       created_msg: Domajna blokado en traktado
@@ -255,12 +282,21 @@ eo:
       search: Serĉi
       title: Konataj nodoj
     invites:
+      deactivate_all: Malaktivigi ĉion
       filter:
         all: Ĉio
         available: Disponebla
         expired: Eksvalida
         title: Filtri
       title: Invitoj
+    relays:
+      add_new: Aldoni novan ripetilon
+      description_html: "<strong>Fratara ripetilo</strong> estas survoja servilo, kiu interŝanĝas grandan kvanton de publikaj mesaĝoj inter serviloj, kiuj abonas kaj publikigas al ĝi. <strong>Ĝi povas helpi etajn kaj mezgrandajn servilojn malkovri enhavon de la fediverse</strong>, kio normale postulus al lokaj uzantoj mane sekvi homojn de foraj serviloj."
+      enable_hint: Post ebligo, via servilo abonos ĉiujn publikajn mesaĝojn de tiu ripetilo, kaj komencos sendi publikajn mesaĝojn de la servilo al ĝi.
+      inbox_url: URL de la ripetilo
+      setup: Agordi konekton al ripetilo
+      status: Stato
+      title: Ripetiloj
     report_notes:
       created_msg: Signala noto sukcese kreita!
       destroyed_msg: Signala noto sukcese forigita!
@@ -316,6 +352,9 @@ eo:
       peers_api_enabled:
         desc_html: Nomoj de domajnoj, kiujn ĉi tiu nodo renkontis en la fediverse
         title: Publikigi liston de malkovritaj nodoj
+      preview_sensitive_media:
+        desc_html: Antaŭvido de ligiloj en aliaj retejoj montros bildeton eĉ se la aŭdovidaĵo estas markita kiel tikla
+        title: Montri tiklajn aŭdovidaĵojn en la antaŭvidoj de OpenGraph
       registrations:
         closed_message:
           desc_html: Montrita sur la hejma paĝo kiam registriĝoj estas fermitaj. Vi povas uzi HTML-etikedojn
@@ -336,11 +375,14 @@ eo:
         desc_html: Montri teaman insignon en paĝo de uzanto
         title: Montri teaman insignon
       site_description:
-        desc_html: Enkonduka alineo en la ĉefpaĝo kaj en informaj etikedoj. Vi povas uzi HTML-etikedojn, kiel <code>&lt;a&gt;</code> kaj <code>&lt;em&gt;</code>.
+        desc_html: Enkonduka alineo en la ĉefpaĝo. Priskribu la unikaĵojn de ĉi tiu nodo de Mastodon, kaj ĉiujn aliajn gravaĵojn. Vi povas uzi HTML-etikedojn, kiel <code>&lt;a&gt;</code> kaj <code>&lt;em&gt;</code>.
         title: Priskribo de la nodo
       site_description_extended:
         desc_html: Bona loko por viaj sintenaj reguloj, aliaj reguloj, gvidlinioj kaj aliaj aferoj, kiuj apartigas vian nodon. Vi povas uzi HTML-etikedojn
         title: Propraj detalaj informoj
+      site_short_description:
+        desc_html: Afiŝita en la flankpanelo kaj metadatumaj etikedoj. Priskribu kio estas Mastodon, kaj kio specialas en ĉi tiu nodo, per unu alineo. Se malplena, la priskribo de la nodo estos uzata.
+        title: Mallonga priskribo de la nodo
       site_terms:
         desc_html: Vi povas skribi vian propran privatecan politikon, viajn uzkondiĉojn aŭ aliajn leĝaĵojn. Vi povas uzi HTML-etikedojn
         title: Propraj uzkondiĉoj
@@ -362,6 +404,7 @@ eo:
       media:
         title: Aŭdovidaĵoj
       no_media: Neniu aŭdovidaĵo
+      no_status_selected: Neniu mesaĝo estis ŝanĝita ĉar neniu estis elektita
       title: Mesaĝoj de la konto
       with_media: Kun aŭdovidaĵoj
     subscriptions:
@@ -504,9 +547,12 @@ eo:
     true_privacy_html: Bonvolu atenti, ke <strong>vera privateco povas esti atingita nur per ĉifrado de komenco al fino</strong>.
     unlocked_warning_html: Iu ajn povas eksekvi vin por tuj vidi viajn privatajn mesaĝojn. %{lock_link} por povi akcepti kaj rifuzi petojn de sekvado.
     unlocked_warning_title: Via konto ne estas ŝlosita
+  footer:
+    developers: Programistoj
+    more: Pli…
+    resources: Rimedoj
   generic:
     changes_saved_msg: Ŝanĝoj sukcese konservitaj!
-    powered_by: povigita de %{link}
     save_changes: Konservi ŝanĝojn
     validation_errors:
       one: Io mise okazis! Bonvolu konsulti la suban erar-raporton
@@ -542,8 +588,6 @@ eo:
       expires_at: Eksvalidiĝas je
       uses: Uzoj
     title: Inviti homojn
-  landing_strip_html: "<strong>%{name}</strong> estas uzanto en %{link_to_root_path}. Vi povas sekvi tiun aŭ interagi kun tiu, se vi havas konton ie ajn en la fediverse."
-  landing_strip_signup_html: Se vi ne havas, vi povas <a href="%{sign_up_path}">registriĝi ĉi tie</a>.
   lists:
     errors:
       limit: Vi atingis la maksimuman kvanton de listoj
@@ -615,11 +659,14 @@ eo:
     publishing: Publikado
     web: Reto
   remote_follow:
-    acct: Enmetu vian uzantnomo@domajno de kie vi volas sekvi
+    acct: Enmetu vian uzantnomo@domajno de kie vi volas agi
     missing_resource: La URL de plusendado ne estis trovita
     no_account_html: Ĉu vi ne havas konton? Vi povas <a href='%{sign_up_path}' target='_blank'>registriĝi tie</a>
     proceed: Daŭrigi por eksekvi
     prompt: 'Vi eksekvos:'
+  remote_interaction:
+    proceed: Efektivigi la interagon
+    prompt: 'Vi volas interagi kun ĉi tiu mesaĝo:'
   remote_unfollow:
     error: Eraro
     title: Titolo
@@ -703,6 +750,7 @@ eo:
       private: Mesaĝo nepublika ne povas esti alpinglita
       reblog: Diskonigo ne povas esti alpinglita
     show_more: Montri pli
+    sign_in_to_participate: Ensaluti por partopreni en la konversacio
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Montri nur al sekvantoj
@@ -712,7 +760,6 @@ eo:
       unlisted: Nelistigita
       unlisted_long: Ĉiuj povas vidi, sed nelistigita en publikaj tempolinioj
   stream_entries:
-    click_to_show: Alklaki por montri
     pinned: Alpinglita
     reblogged: diskonigita
     sensitive_content: Tikla enhavo

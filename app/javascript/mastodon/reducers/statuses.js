@@ -49,11 +49,19 @@ export default function statuses(state = initialState, action) {
     return state.setIn([action.id, 'muted'], false);
   case STATUS_REVEAL:
     return state.withMutations(map => {
-      action.ids.forEach(id => map.setIn([id, 'hidden'], false));
+      action.ids.forEach(id => {
+        if (!(state.get(id) === undefined)) {
+          map.setIn([id, 'hidden'], false);
+        }
+      });
     });
   case STATUS_HIDE:
     return state.withMutations(map => {
-      action.ids.forEach(id => map.setIn([id, 'hidden'], true));
+      action.ids.forEach(id => {
+        if (!(state.get(id) === undefined)) {
+          map.setIn([id, 'hidden'], true);
+        }
+      });
     });
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.references);

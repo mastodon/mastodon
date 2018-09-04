@@ -3,12 +3,12 @@
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF eller JPG. Maksimalt 2 MB. Vil bli nedskalert til 400x400px
+        avatar: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
         display_name:
           one: <span class="name-counter">1</span> tegn igjen
           other: <span class="name-counter">%{count}</span> tegn igjen
-        header: PNG, GIF eller JPG. Maksimalt 2MB. Vil bli nedskalert til 700x335px
+        header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         locked: Krever at du manuelt godkjenner følgere
         note:
           one: <span class="note-counter">1</span> tegn igjen
