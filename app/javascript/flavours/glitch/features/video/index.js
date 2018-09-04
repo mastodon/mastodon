@@ -101,6 +101,7 @@ export default class Video extends React.PureComponent {
     fullwidth: PropTypes.bool,
     detailed: PropTypes.bool,
     inline: PropTypes.bool,
+    preventPlayback: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
@@ -213,6 +214,12 @@ export default class Video extends React.PureComponent {
     document.removeEventListener('webkitfullscreenchange', this.handleFullscreenChange, true);
     document.removeEventListener('mozfullscreenchange', this.handleFullscreenChange, true);
     document.removeEventListener('MSFullscreenChange', this.handleFullscreenChange, true);
+  }
+
+  componentDidUpdate (prevProps) {
+    if (this.video && this.state.revealed && this.props.preventPlayback && !prevProps.preventPlayback) {
+      this.video.pause();
+    }
   }
 
   handleFullscreenChange = () => {

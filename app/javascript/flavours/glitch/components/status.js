@@ -430,6 +430,7 @@ export default class Status extends ImmutablePureComponent {
               sensitive={status.get('sensitive')}
               letterbox={settings.getIn(['media', 'letterbox'])}
               fullwidth={settings.getIn(['media', 'fullwidth'])}
+              preventPlayback={isCollapsed || !isExpanded}
               onOpenVideo={this.handleOpenVideo}
             />)}
           </Bundle>
