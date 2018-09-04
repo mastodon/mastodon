@@ -1,13 +1,10 @@
 body {
   font-family: 'mastodon-font-sans-serif', sans-serif;
-  background: $ui-base-color;
-  background-size: cover;
-  background-attachment: fixed;
+  background: darken($ui-base-color, 8%);
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
   color: $primary-text-color;
-  padding-bottom: 20px;
   text-rendering: optimizelegibility;
   font-feature-settings: "kern";
   text-size-adjust: none;
@@ -35,16 +32,24 @@ body {
     height: 100%;
     padding: 0;
     background: $ui-base-color;
+
+    &.with-modals--active {
+      overflow-y: hidden;
+    }
   }
 
-  &.about-body {
-    background: darken($ui-base-color, 8%);
-    padding-bottom: 0;
+  &.lighter {
+    background: $ui-base-color;
   }
 
-  &.tag-body {
-    background: darken($ui-base-color, 8%);
-    padding-bottom: 0;
+  &.with-modals {
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    &--active {
+      overflow-y: hidden;
+      margin-right: 13px;
+    }
   }
 
   &.player {
@@ -52,7 +57,7 @@ body {
   }
 
   &.embed {
-    background: transparent;
+    background: lighten($ui-base-color, 4%);
     margin: 0;
     padding-bottom: 0;
 

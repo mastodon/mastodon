@@ -38,7 +38,7 @@ class InvitesController < ApplicationController
   private
 
   def invites
-    Invite.where(user: current_user)
+    Invite.where(user: current_user).order(id: :desc)
   end
 
   def resource_params

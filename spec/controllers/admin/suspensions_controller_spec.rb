@@ -12,7 +12,7 @@ describe Admin::SuspensionsController do
       account = Fabricate(:account, suspended: false)
       expect(Admin::SuspensionWorker).to receive(:perform_async).with(account.id)
 
-      post :create, params: { account_id: account.id }
+      post :create, params: { account_id: account.id, form_admin_suspension_confirmation: { acct: account.acct } }
 
       expect(response).to redirect_to(admin_accounts_path)
     end

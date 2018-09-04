@@ -8,6 +8,7 @@
 #
 defaults: &defaults
   site_title: Mastodon
+  site_short_description: ''
   site_description: ''
   site_extended_description: ''
   site_terms: ''
@@ -38,6 +39,7 @@ defaults: &defaults
     mention: false
     follow_request: true
     digest: true
+    report: true
   interactions:
     must_be_follower: false
     must_be_following: false

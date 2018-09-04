@@ -10,7 +10,8 @@ class ActivityPub::DeliveryWorker
 
   HEADERS = { 'Content-Type' => 'application/activity+json' }.freeze
 
-  def perform(json, source_account_id, inbox_url)
+  def perform(json, source_account_id, inbox_url, options = {})
+    @options        = options.with_indifferent_access
     @json           = json
     @source_account = Account.find(source_account_id)
     @inbox_url      = inbox_url
@@ -27,7 +28,7 @@ class ActivityPub::DeliveryWorker
 
   def build_request
     request = Request.new(:post, @inbox_url, body: @json)
-    request.on_behalf_of(@source_account, :uri)
+    request.on_behalf_of(@source_account, :uri, sign_with: @options[:sign_with])
     request.add_headers(HEADERS)
   end
 

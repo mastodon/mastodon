@@ -8,7 +8,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const OfflinePlugin = require('offline-plugin');
 const { publicPath } = require('./configuration.js');
 const path = require('path');
-const { URL } = require('whatwg-url');
+const { URL } = require('url');
 
 let compressionAlgorithm;
 try {
@@ -23,8 +23,8 @@ try {
 let attachmentHost;
 
 if (process.env.S3_ENABLED === 'true') {
-  if (process.env.S3_CLOUDFRONT_HOST) {
-    attachmentHost = process.env.S3_CLOUDFRONT_HOST;
+  if (process.env.S3_ALIAS_HOST || process.env.S3_CLOUDFRONT_HOST) {
+    attachmentHost = process.env.S3_ALIAS_HOST || process.env.S3_CLOUDFRONT_HOST;
   } else {
     attachmentHost = process.env.S3_HOSTNAME || `s3-${process.env.S3_REGION || 'us-east-1'}.amazonaws.com`;
   }

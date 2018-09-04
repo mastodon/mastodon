@@ -1,50 +1,110 @@
 ---
 uk:
   about:
+    about_hashtag_html: Немає публічних постів з хештегом<strong>#%{hashtag}</strong>. Ви можете  You can interact with them if you have an account anywhere in the fediverse.
     about_mastodon_html: Mastodon - це <em>вільна</em> соціальна мережа з <em>відкритим вихідним кодом</em>. Вона є <em>децентралізованою</em> альтернативою комерційним платформам, що дозволяє уникнути ризиків монополізації вашого спілкування однією компанією. Виберіть сервер, якому ви довіряєте &mdash; що б ви не вибрали, Ви зможете спілкуватись з усіма іншими. Будь-який користувач може запустити власну інстанцію Mastodon та без проблем брати участь в <em>соціальній мережі</em>.
     about_this: Про цю інстанцію
+    administered_by: 'Адміністратор:'
+    api: API
     closed_registrations: На даний момент реєстрація на цій інстанції закрита.
     contact: Зв'язатися
-    description_headline: Що таке %{domain}?
-    domain_count_after: іншими інстанціями
-    domain_count_before: Зв'язаний з
+    contact_missing: Не зазначено
+    contact_unavailable: Недоступно
+    documentation: Документація
+    extended_description_html: |
+      <h3>Гарне місце для правил</h3>
+      <p>Детальний опис ще не налаштований.</p>
+    features:
+      humane_approach_body: Навчаючись з помилок інших соціальних мереж, Mastodon націлений на етичні рішення для боротьби з направильним використанням соціальних медіа.
+      humane_approach_title: Більш людський підхід
+      not_a_product_body: Mastodon - це некомерційна мережа. Ніякої реклами, збору даних і залізних стін. Тут немає центральної влади.
+      not_a_product_title: Ви - особистість, а не продукт
+      real_conversation_body: Висловлюйте свої думки себе у будь-який спосіб маючи в розпорядженні 500 символів з підтримкою гранульованого контенту та попереджень медіа.
+      real_conversation_title: Побудований для справжньої розмови
+      within_reach_body: Велика кількість застосунків для iOS, Android та інших платформ, завдяки дружній до розробника екосистемі дозволяє бути на звязку з друзями звідусіль.
+      within_reach_title: Завжди на звязку
+    generic_description: "%{domain} є одним сервером у мережі"
+    hosted_on: Mastodon розміщено на %{domain}
+    learn_more: Дізнатися більше
     other_instances: Інші інстанції
+    privacy_policy: Політика приватності
     source_code: Вихідний код
     status_count_after: статусів
     status_count_before: Опубліковано
+    terms: Правила використання
     user_count_after: користувачів
     user_count_before: Тут живе
+    what_is_mastodon: Що таке Mastodon?
   accounts:
     follow: Підписатися
     followers: Підписники
     following: Підписаний(-а)
+    joined: Приєднався %{date}
+    media: Медіа
+    moved_html: "%{name} переїхав на %{new_profile_link}:"
+    network_hidden: Ця інформація недоступна
     nothing_here: Тут нічого немає!
     people_followed_by: Люди, на яких підписаний(-а) %{name}
     people_who_follow: Підписники %{name}
     posts: Пости
-    remote_follow: Підписатися на іншій інстанції
+    posts_with_replies: Пости і відповіді
+    reserved_username: Це ім'я користувача зарезервоване
+    roles:
+      admin: Адміністратор
+      bot: Бот
+      moderator: Мод
     unfollow: Відписатися
   admin:
+    account_moderation_notes:
+      create: Залишити примітки
+      created_msg: Примітку модератора успішно створено!
+      delete: Видалити
+      destroyed_msg: Примітку модератора успішно видалено!
     accounts:
       are_you_sure: Ви впевнені?
+      avatar: Аватар
+      by_domain: Домен
+      change_email:
+        changed_msg: Поштова адреса аккаунту успішно змінена!
+        current_email: Поточна поштова адреса
+        label: Змінити поштову адресу
+        new_email: Новий e-mail
+        submit: Змінити поштову адресу
+        title: Змінити поштову адресу для %{username}
+      confirm: Зберегти
+      confirmed: Збережено
+      confirming: Зберігається
+      demote: Усунути
+      disable: Вимкнути
+      disable_two_factor_authentication: Вимкнути двофакторну авторизацію
+      disabled: Вимкнено
       display_name: Відображуване ім'я
       domain: Домен
       edit: Змінити
       email: Email
+      email_status: Статус e-mail
+      enable: Увімкнути
+      enabled: Увімкнено
       feed_url: URL фіду
       followers: Підписники
+      followers_url: URL підписників
       follows: Підписки
+      inbox_url: Вхідний URL
+      ip: IP
       location:
         all: Усі
         local: Локальні
         remote: Віддалені
         title: Розміщення
+      login_status: Статус авторизації
       media_attachments: Мультимедійні вкладення
+      memorialize: Зробити пам'ятником
       moderation:
         all: Усі
         silenced: Заглушені
         suspended: Заблоковані
         title: Модерація
+      moderation_notes: Примітки модераторів
       most_recent_activity: Остання активність
       most_recent_ip: Останній IP
       not_subscribed: Не підписані
@@ -52,19 +112,120 @@ uk:
         alphabetic: За алфавітом
         most_recent: За датою
         title: Порядок
+      outbox_url: Вихідний URL
       perform_full_suspension: Повне блокування
       profile_url: URL профілю
+      promote: Просунути
+      protocol: Протокол
       public: Публічний
       push_subscription_expires: Підписка PuSH спливає
+      redownload: Оновити аватар
+      remove_avatar: Видалити аватар
+      resend_confirmation:
+        already_confirmed: Цей користувач уже підтверджений
+        send: Надіслати підтвердження ще раз
+        success: Повідомлення з підтвердженням успішно надіслано!
+      reset: Скинути
       reset_password: Зкинути пароль
+      resubscribe: Перепідписатися
+      role: Дозволи
+      roles:
+        admin: Адміністратор
+        moderator: Модератор
+        staff: Персонал
+        user: Користувач
       salmon_url: Salmon URL
+      search: Пошук
+      shared_inbox_url: URL спільного вхідного кошика
+      show:
+        created_reports: Скарги створені цим аккаунтом
+        report: скарга
+        targeted_reports: Скарги щодо цього аккаунту
       silence: Глушення
       statuses: Статуси
+      subscribe: Підписатися
       title: Акаунти
+      unconfirmed_email: Непідтверджений e-mail
       undo_silenced: Зняти глушення
       undo_suspension: Зняти блокування
+      unsubscribe: Відписатися
       username: Ім'я користувача
       web: WWW
+    action_logs:
+      actions:
+        assigned_to_self_report: "%{name} призначив(-ла) скаргу %{target} на себе"
+        change_email_user: "%{name} змінив(-ла) поштову адресу користувача %{target}"
+        confirm_user: "%{name} підтвердив(-ла) статус поштової адреси користувача %{target}"
+        create_custom_emoji: "%{name} вивантажив(-ла) нове емодзі %{target}"
+        create_domain_block: "%{name} заблокував(-ла) домен %{target}"
+        create_email_domain_block: "%{name} додав(-ла) поштовий домен %{target} до чорного списку"
+        demote_user: "%{name} понизив(-ла) %{target}"
+        destroy_domain_block: "%{name} розблокував(-ла) домен %{target}"
+        destroy_email_domain_block: "%{name} додав(-ла) поштовий домен %{target} до білого списку"
+        destroy_status: "%{name} видалив(-ла) статус користувача %{target}"
+        disable_2fa_user: "%{name} вимкнув(-ла) двофакторну авторизацію для користувача %{target}"
+        disable_custom_emoji: "%{name} вимкнув(-ла) емодзі %{target}"
+        disable_user: "%{name} заборонив(-ла) авторизацію користувачу %{target}"
+        enable_custom_emoji: "%{name} увімкнув(-ла) емодзі %{target}"
+        enable_user: "%{name} увімкнув(-ла) авторизацію користувачу %{target}"
+        memorialize_account: "%{name} перетворив(-ла) сторінку %{target} у пам'ятник"
+        promote_user: "%{name} підвищив(-ла) користувача %{target}"
+        remove_avatar_user: "%{name} прибрав(-ла) аватар користувача %{target}"
+        reopen_report: "%{name} перевідкрив(-ла) скаргу %{target}"
+        reset_password_user: "%{name} скинув(-ла) пароль користувача %{target}"
+        resolve_report: "%{name} розв'язав(-ла) скаргу %{target}"
+        silence_account: "%{name} заглушив(-ла) аккаунт %{target}"
+        suspend_account: "%{name} заблокував аккаунт користувача %{target}"
+        unassigned_report: "%{name} зняв(-ла) призначення скарги %{target}"
+        unsilence_account: "%{name} розглушив(-ла) аккаунт %{target}"
+        unsuspend_account: "%{name} розблокував аккаунт користувача %{target}"
+        update_custom_emoji: "%{name} оновив(-ла) емодзі %{target}"
+        update_status: "%{name} змінив(-ла) статус користуача %{target}"
+      title: Журнал подій
+    custom_emojis:
+      by_domain: Домен
+      copied_msg: Локальна копія емодзі успішно створена
+      copy: Копіювати
+      copy_failed_msg: Не вийшло створити локальну копію емодзі
+      created_msg: Емодзі успішно створене!
+      delete: Видалити
+      destroyed_msg: Емодзі усіпішно видалене!
+      disable: Вимкнути
+      disabled_msg: Емодзі успішно вимкнено
+      emoji: Емодзі
+      enable: Увімкнути
+      enabled_msg: Емодзі успішно увімкнене
+      image_hint: PNG розміром до 50 КБ
+      listed: У списку
+      new:
+        title: Додати новий емодзі
+      overwrite: Переписати
+      shortcode: Шорткод
+      shortcode_hint: Мінімум два символи, тільки цифрові й латинські символи або нижні підкреслення
+      title: Особливі емодзі
+      unlisted: Не у списку
+      update_failed_msg: Не вийшло оновити емозді
+      updated_msg: Емодзі успішно оновлене!
+      upload: Вивантажити
+    dashboard:
+      config: Налаштування
+      feature_deletions: Видалення аккаунтів
+      feature_invites: Посилання-запрошення
+      feature_registrations: Реєстрації
+      features: Можливості
+      hidden_service: Федерація з прихованими сервісами
+      open_reports: відкриті скарги
+      recent_users: Останні користувачі
+      search: Повнотекстовий пошук
+      single_user_mode: Режим одного користувача
+      software: Програмне забезпечення
+      space: Використання дискового простору
+      title: Дашборд
+      total_users: користувачів загалом
+      trends: Тренди
+      week_interactions: дій за цей тиждень
+      week_users_active: активно протягом тижня
+      week_users_new: користувачів цього тижня
     domain_blocks:
       add_new: Додати нове
       created_msg: Блокування домену оброблюється
@@ -72,15 +233,17 @@ uk:
       domain: Домен
       new:
         create: Створити блокування
-        hint: Блокування домену не запобіжить створенню нових акаунтів у базі даних, але ретроактивно та автоматично застосує указані методи модерації для цих акаунтів.
+        hint: Блокування домену не завадить створенню нових акаунтів у базі даних, але ретроактивно та автоматично застосує вказані методи модерації для цих акаунтів.
         severity:
-          desc_html: "<strong>Глушення</strong> зробить статуси акаунту невидимими для всіх, крім їхніх підписників. <strong>Блокування</strong> видалить увесь контент акаунту, включаючи мультимедійні вкладення та дані профілю."
+          desc_html: "<strong>Глушення</strong> зробить статуси акаунту невидимими для всіх, окрім їхніх підписників. <strong>Блокування</strong> видалить увесь контент акаунту, включаючи мультимедійні вкладення та дані профілю."
+          noop: Нічого
           silence: Глушення
           suspend: Блокування
-        title: Нове доменне блокування
+        title: Нове блокування домену
       reject_media: Заборонити медіаконтент
       reject_media_hint: Видаляє медіаконтент, збережений локально, і забороняє його завантаження у майбутньому. Не має значення у випадку блокування.
       severities:
+        noop: Нічого
         silence: Глушення
         suspend: Блокування
       severity: Суворість
@@ -97,40 +260,138 @@ uk:
         undo: Відмінити
       title: Доменні блокування
       undo: Відмінити
+    email_domain_blocks:
+      add_new: Додати
+      created_msg: Успішно додано поштовий домен до чорного списку
+      delete: Видалити
+      destroyed_msg: Успішно видалено поштовий домен з чорного списку
+      domain: Домен
+      new:
+        create: Додати домен
+        title: Нове доменне блокування домену email
+      title: Чорний список поштових доменів
+    instances:
+      account_count: Відомі аккаунти
+      domain_name: Домен
+      reset: Скинути
+      search: Пошук
+      title: Відомі інстанції
+    invites:
+      filter:
+        all: Все
+        available: Доступно
+        expired: Просрочено
+        title: Фільтр
+      title: Запрошення
+    relays:
+      status: Статус
+    report_notes:
+      created_msg: Скарга успішно створена!
+      destroyed_msg: Скарга успішно видалена!
     reports:
+      account:
+        note: примітка
+        report: скарга
+      action_taken_by: Дія виконана
+      are_you_sure: Ви впевнені?
+      assign_to_self: Призначити мені
+      assigned: Призначений модератор
       comment:
         none: Немає
+      created_at: Створено
       id: ID
       mark_as_resolved: Відмітити як вирішену
+      mark_as_unresolved: Відмітити як невирішену
+      notes:
+        create: Додати примітку
+        create_and_resolve: Розв'язати з приміткою
+        create_and_unresolve: Перевідкрити з приміткою
+        delete: Видалити
+        placeholder: Опишіть, які дії були виконані, або інші зміни, що стосуються справи...
+      reopen: Перевідкрити скаргу
       report: 'Скарга #%{id}'
+      report_contents: Зміст
       reported_account: Акаунт порушника
       reported_by: Відправник скарги
       resolved: Вирішено
+      resolved_msg: Скаргу успішно вирішено!
       silence_account: Заглушити акаунт
       status: Статус
-      suspend_account: Блокувати акаунт
+      suspend_account: Заблокувати акаунт
       target: Ціль
       title: Скарги
+      unassign: Зняти призначення
       unresolved: Невирішені
+      updated_at: Оновлені
       view: Подивитися
     settings:
+      activity_api_enabled:
+        desc_html: Кількість локальних постів, активних та нових користувачів у тижневих розрізах
+        title: Публікація агрегованої статистики про активність користувачів
+      bootstrap_timeline_accounts:
+        title: Підписки за замовчуванням для нових користувачів
       contact_information:
         email: Введіть публічний email
         username: Введіть ім'я користувача
+      hero:
+        desc_html: Відображається на головній сторінці. Рекомендована як мінімум 600x100 пікселів. Якщо не вказано, буде використано передпоказ інстанції
+        title: Банер інстанції
+      peers_api_enabled:
+        desc_html: Доменні ім'я, помічені цією інстанцією федисвіту
+        title: Опублікувати список знайдених інстанцій
+      preview_sensitive_media:
+        desc_html: Передпоказ посилання на інших сайтах буде відображати мініатюру навіть якщо медіа відмічене як вразливе
+        title: Показувати вразливе медія у перепоказі OpenGraph
       registrations:
         closed_message:
           desc_html: Відображається на титульній сторінці, коли реєстрація закрита <br>Можна використовувати HTML-теги
           title: Повідомлення про закриту реєстрацію
+        deletion:
+          desc_html: Дозволити будь-кому видаляти свій аккаунт
+          title: Дозволити видалення аккаунтів
+        min_invite_role:
+          disabled: Ніхто
+          title: Дозволити запрошення від
         open:
+          desc_html: Дозволити будь-ком створювати аккаунт
           title: Відкрити реєстрацію
+      show_known_fediverse_at_about_page:
+        desc_html: Коли увімкнено, будуть показані пости з усього відомого федисвіту у передпоказі. Інакше будуть показані локальні пости
+        title: Показувати доступний федисвіт у передпоказі фіду
+      show_staff_badge:
+        desc_html: Відмічати персонал на сторінці користувачів
+        title: Показувати персонал
       site_description:
         desc_html: Відображається у якості параграфа на титульній сторінці та використовується у якості мета-тега.<br>Можна використовувати HTML-теги, особливо <code>&lt;a&gt;</code> і <code>&lt;em&gt;</code>.
-        title: Опис сайту
+        title: Опис інстанції
       site_description_extended:
         desc_html: Відображається на сторінці додаткової информації<br>Можна використовувати HTML-теги
         title: Розширений опис сайту
+      site_terms:
+        desc_html: |-
+          Ви можене написати власну політику приватності, умови використанні та інші законні штуки<br>
+          Можете використовувати HTML теги
+        title: Особливі умови використання
       site_title: Назва сайту
+      thumbnail:
+        desc_html: Використовується для передпоказів через OpenGraph та API. Бажано розміром 1200х640 пікселів.
+        title: Мініатюра інстанції
+      timeline_preview:
+        desc_html: Показувати публічний фід на головній сторінці
+        title: Передпоказ фіду
       title: Налаштування сайту
+    statuses:
+      back_to_account: Назад на сторінку профілю
+      batch:
+        delete: Видалити
+        nsfw_off: Відмітити сприйнятливим
+        nsfw_on: Відмітити несприйнятливим
+      failed_to_execute: Не вийшло
+      media:
+        title: Медіа
+      no_media: Немає медіа
+      title: Статуси аккаунтів
+      with_media: З медіа
     subscriptions:
       callback_url: Callback URL
       confirmed: Підтверджено
@@ -139,24 +400,60 @@ uk:
       title: WebSub
       topic: Тема
     title: Адміністрування
+  admin_mailer:
+    new_report:
+      body: "%{reporter} поскаржився(-лася) %{target}"
+      body_remote: Хтось з домену %{domain} поскаржився(-лася) %{target}
+      subject: Нова скарга до %{instance} (#%{id})
   application_mailer:
-    settings: 'Змінити налаштування email: %{link}'
+    notification_preferences: Змінити налаштування e-mail
+    salutation: "%{name},"
+    settings: 'Змінити налаштування e-mail: %{link}'
     view: 'Перегляд:'
+    view_profile: Показати профіль
+    view_status: Показати статус
   applications:
+    created: Застосунок успішно створений
+    destroyed: Застосунок успішно видалений
     invalid_url: Введена URL неправильна
+    regenerate_token: Перегенерувати токен доступу
+    token_regenerated: Токен доступу успішне перегенеровано
+    warning: Будьте дуже обережні з цими даними. Ніколи не діліться ними ні з ким!
+    your_token: Ваш токен доступу
   auth:
+    agreement_html: Реєструючись, ви погоджуєтеся виконувати <a href="%{rules_path}">правила інстанції</a> та <a href="%{terms_path}">наші умови використання</a>.
+    change_password: Пароль
+    confirm_email: Підтвердьте e-mail адресу
+    delete_account: Видалити аккаунт
+    delete_account_html: Якщо ви хочете видалити аккаунт, ви можете <a href="%{path}">перейти сюди</a>. Вас попросять підтвердити дію.
     didnt_get_confirmation: Ви не отримали інструкції з підтвердження?
     forgot_password: Забули свій пароль?
+    invalid_reset_password_token: Токен скидання паролю неправильний або просрочений. Спробуйте попросити новий.
     login: Увійти
     logout: Вийти
+    migrate_account: Переїхати до іншого аккаунту
+    migrate_account_html: Якщо ви бажаєте, щоб відвідувачі цього акканту були перенаправлені до іншого, ви можете <a href="%{path}">налаштувати це тут</a>.
+    or: або
+    or_log_in_with: Або увійдіть з
+    providers:
+      cas: CAS
+      saml: SAML
     register: Зареєструватися
+    register_elsewhere: Зареєструватися на іншому сервері
     resend_confirmation: Повторно відправити інструкції з підтвердження
     reset_password: Скинути пароль
     security: Зміна паролю
     set_new_password: Встановити новий пароль
   authorize_follow:
+    already_following: Ви вже підписані на цей аккаунт
     error: На жаль, при пошуку віддаленого аккаунту виникла помилка
     follow: Підписатися
+    follow_request: 'Вам надіслали запит на підписку:'
+    following: 'Ура! Ви тепер підписані на:'
+    post_follow:
+      close: Або, ви можете просто закрити вікно.
+      return: Перейти до профілю користувача
+      web: Перейти до вебу
     title: Підписатися на %{acct}
   datetime:
     distance_in_words:
@@ -164,14 +461,22 @@ uk:
       about_x_months: "%{count}міс"
       about_x_years: "%{count}р"
       almost_x_years: "%{count}р"
-      half_a_minute: Тільки що
+      half_a_minute: Щойно
       less_than_x_minutes: "%{count}хв"
-      less_than_x_seconds: Тільки що
+      less_than_x_seconds: Щойно
       over_x_years: "%{count}р"
       x_days: "%{count}д"
       x_minutes: "%{count}хв"
       x_months: "%{count}міс"
       x_seconds: "%{count}сек"
+  deletes:
+    bad_password_msg: Гарна спроба, гакери! Неправильний пароль
+    confirm_password: Введіть актуальний пароль щоб перевірити що ви це ви
+    description_html: Це <strong>безвідворотно і назавжди</strong> видалить контент з вашого аккаунту та деактивує його. Ваше ім'я користувача буде залишатися зарезервованим для уникнення вашої деперсоналізації.
+    proceed: Видалити аккаунт
+    success_msg: Ваш аккаунт було успішно видалено
+    warning_html: Ми можемо гарантувати видалення контенти <b>лише з цього сайту</b>. Контент, що був поширений залишає сліди. Сервери, що є офлайн та ті, що відписалися від наших оновлень не запишуть змін до своїх баз даних.
+    warning_title: Про доступність поширеного контенту
   errors:
     '403': У Вас немає доступу до перегляду даної сторінки.
     '404': Сторінка, яку Ви шукали, не існує.
@@ -179,15 +484,43 @@ uk:
     '422':
       content: Перевірка безпеки не вдалася. Можливо, Ви блокуєте cookies?
       title: Перевірка безпеки не вдалася.
+    '429': Забагато запитів
+    '500':
+      content: Пробачте, та щось пішло не так з нашого боку.
+      title: Ця сторінка неправильна
+    noscript_html: Для використання веб-застосунку Mastodon, будь-ласка увімкніть JavaScript. Якщо у вас немає такої можливості, скористайтесь одним із <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">нативних застосунків</a> для Mastodon для вашої платформи.
   exports:
+    archive_takeout:
+      date: Дата
+      download: Завантажити ваш архів
+      hint_html: Ви можете зробити запит на архів ваших <strong>постів та вивантаженого медіа контенту</strong>. Завантажені дані будуть у форматі ActivityPub, доступні для читання будь-яким сумісним програмним забезпеченням. Ви можете робити запит на архів кожні 7 днів.
+      in_progress: Збираємо ваш архів...
+      request: Зробити запит на архів
+      size: Розмір
     blocks: Список блокувань
     csv: CSV
     follows: Підписки
     mutes: Список глушення
     storage: Ваш медіаконтент
+  filters:
+    contexts:
+      home: Ваш фід
+      notifications: Сповіщення
+      public: Публічний фід
+      thread: Повідомлення
+    edit:
+      title: Редагувати фільтр
+    errors:
+      invalid_context: Контекст неправильний або не був наданий
+      invalid_irreversible: Незворотне фільтрування працює тільки в контексті свого фіду або сповіщень
+    index:
+      delete: Видалити
+      title: Фільтри
+    new:
+      title: Додати фільтр
   followers:
     domain: Домен
-    explanation_html: Якщо Ви хочете бути впевнені в приватності Ваших статусів, Ви повинні мати чітке уявлення про те, хто на Вас підписаний. <strong>Ваші приватні статусі відправляються усім інстанціям, на яких у Вас є підписники</strong>. Рекомендуємо видалити з підписників користувачів інстанцій, адміністрації чи програмному забезпеченню яких Ви не довіряєте.
+    explanation_html: Якщо Ви хочете бути впевнені в приватності Ваших статусів, Ви повинні мати чітке уявлення про те, хто на Вас підписаний. <strong>Ваші приватні статусі відправляються усім сайтам, на яких у Вас є підписники</strong>. Рекомендуємо видалити з підписників користувачів інстанцій, адміністрації чи програмному забезпеченню яких Ви не довіряєте.
     followers_count: Кількість підписників
     lock_link: Закрийте акаунт
     purge: Видалити з підписників
@@ -199,7 +532,6 @@ uk:
     unlocked_warning_title: Ваш аккаунт не закритий для підписки
   generic:
     changes_saved_msg: Зміни успішно збережені!
-    powered_by: працює на %{link}
     save_changes: Зберегти зміни
     validation_errors:
       one: Щось тут не так! Будь ласка, ознайомтеся з помилкою нижче
@@ -212,103 +544,252 @@ uk:
       following: Підписки
       muting: Список глушення
     upload: Завантажити
-  landing_strip_html: "<strong>%{name}</strong> - користувач на %{link_to_root_path}. Ви можете підписатися на нього/неї та спілкуватися з ним/нею, якщо у Вас є акаунт на будь-якій інстанції загальної мережі."
-  landing_strip_signup_html: Якщо його у Вас немає, Ви можете <a href="%{sign_up_path}">зареєструватися тут</a>.
+  in_memoriam_html: Пам'ятник.
+  invites:
+    delete: Деактивувати
+    expired: Вийшов
+    expires_in:
+      '1800': 30 хвилин
+      '21600': 6 годин
+      '3600': 1 година
+      '43200': 12 годин
+      '604800': 1 тиждень
+      '86400': 1 день
+    expires_in_prompt: Ніколи
+    generate: Згенерувати
+    invited_by: 'Вас запросив(-ла):'
+    max_uses:
+      one: 1 використання
+      other: "%{count} використань"
+    max_uses_prompt: Без обмеження
+    prompt: Генеруйте та діліться посиланням з іншими для надання доступу до сайту
+    table:
+      expires_at: Час роботи
+      uses: Використання
+    title: Запросити людей
+  lists:
+    errors:
+      limit: Ви досягнули максимальної кількості списків
   media_attachments:
     validations:
       images_and_video: Не можна додати відео до статусу з зображеннями
       too_many: Не можна додати більше 4 файлів
+  migrations:
+    acct: username@domain нового аккаунту
+    currently_redirecting: 'Ваш профіль налаштований перенаправляти на:'
+    proceed: Зберегти
+    updated_msg: Переїзд вашого аккаунту успішно оновлений!
+  moderation:
+    title: Модерація
   notification_mailer:
     digest:
-      body: 'Коротко про пропущене Вами на %{instance} з Вашого останнього входу %{since}:'
+      action: Показати усі сповіщення
+      body: Коротко про пропущене вами з Вашого останнього входу %{since}
       mention: "%{name} згадав(-ла) Вас в:"
       new_followers_summary:
         few: У Вас з'явилось %{count} нових підписники! Чудово!
         many: У Вас з'явилось %{count} нових підписників! Чудово!
-        one: У Вас з'явився новий підписник! Ура!
-        other: У Вас з'явилось %{count} нових підписників! Чудово!
+        one: Також, у Вас з'явився новий підписник, коли ви були відсутні! Ура!
+        other: Також, у Вас з'явилось %{count} нових підписників, поки ви були відсутні! Чудово!
       subject:
         few: "%{count} нові сповіщення з Вашого останнього входу \U0001F418"
         many: "%{count} нових сповіщень з Вашого останнього входу \U0001F418"
         one: "1 нове сповіщення з Вашого останнього входу \U0001F418"
         other: "%{count} нових сповіщень з Вашого останнього входу \U0001F418"
+      title: Поки ви були відсутні...
     favourite:
       body: 'Ваш статус подобається %{name}:'
       subject: Користувачу %{name} сподобався ваш статус
+      title: Нове вподобання
     follow:
       body: "%{name} тепер підписаний на вас!"
       subject: "%{name} тепер підписаний(-а) на вас"
+      title: Новий підписник
     follow_request:
+      action: Керувати запитами на підписку
       body: "%{name} запитав Вас про підписку"
       subject: "%{name} хоче підписатися на Вас"
+      title: Новий запит на підписку
     mention:
-      body: 'Ви були згадані %{name} в:'
-      subject: Ви були згадані %{name}
+      action: Відповісти
+      body: 'Вас згадав(-ла) %{name} в:'
+      subject: Вас згадав(-ла) %{name}
+      title: Нова згадка
     reblog:
       body: 'Ваш статус було передмухнуто %{name}:'
       subject: "%{name} передмухнув ваш статус"
+      title: Нове передмухування
   number:
     human:
       decimal_units:
         format: "%n%u"
         units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
+          billion: млрд
+          million: млн
+          quadrillion: квдрл
+          thousand: тис
+          trillion: трлн
           unit: ''
   pagination:
+    newer: Новіше
     next: Далі
     prev: Назад
     truncate: "&hellip;"
+  preferences:
+    languages: Мови
+    other: Інше
+    publishing: Публікація
+    web: Веб
   remote_follow:
-    acct: Введіть username@domain, звідки ви хочете підписатися
-    missing_resource: Пошук потрібного перенаправлення URL для Вашого аккаунта закінчився неудачою
-    proceed: Продовжити підписку
+    acct: Введіть username@domain, яким ви хочете підписатися
+    missing_resource: Пошук потрібного перенаправлення URL для Вашого аккаунта закінчився невдачею
+    no_account_html: Не маєте аккаунту? Не біда, ви можете <a href='%{sign_up_path}' target='_blank'>зареєструватися</a>
+    proceed: Перейти до підписки
     prompt: 'Ви хочете підписатися на:'
+  remote_unfollow:
+    error: Помилка
+    title: Заголовок
+    unfollowed: Відписані
+  sessions:
+    activity: Остання активність
+    browser: Браузер
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Невідомий браузер
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Активна сесія
+    description: "%{browser} на %{platform}"
+    explanation: Це веб-браузери, нині авторизовані до вашого аккаунту Mastodon.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: невідома платформа
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Закінчити
+    revoke_success: Сесія успішно закінчена
+    title: Сесії
   settings:
-    authorized_apps: Авторизованные приложения
-    back: Назад в Mastodon
+    authorized_apps: Авторизовані застосунки
+    back: Назад у Mastodon
+    delete: Видалення аккаунту
+    development: Розробка
     edit_profile: Редагувати профіль
     export: Експорт даних
     followers: Авторизовані підписники
     import: Імпорт
+    migrate: Міграція акаунту
+    notifications: Сповіщення
     preferences: Налаштування
     settings: Опції
-    two_factor_authentication: Двофакторна аутентифікація
+    two_factor_authentication: Двофакторна авторизація
+    your_apps: Ваші затосунки
   statuses:
-    open_in_web: Відкрити в WWW
+    attached:
+      description: 'Прикріплено: %{attached}'
+      image:
+        one: "%{count} картинка"
+        other: "%{count} картинки"
+      video:
+        one: "%{count} відео"
+        other: "%{count} відео"
+    boosted_from_html: Просунуто від %{acct_link}
+    content_warning: 'Попередження про контент: %{warning}'
+    disallowed_hashtags:
+      one: 'містив заборонений хештеґ: %{tags}'
+      other: 'містив заборонені хештеґи: %{tags}'
+    language_detection: Автоматично визначати мову
+    open_in_web: Відкрити у вебі
     over_character_limit: перевищено ліміт символів (%{max})
+    pin_errors:
+      limit: Ви вже закріпили максимальну кількість постів
+      ownership: Не можна закріпити чужий пост
+      private: Не можна закріпити непублічний пост
+      reblog: Не можна закріпити просунутий пост
     show_more: Детальніше
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Для підписників
-      private_long: Показувати тількои підписникам
+      private_long: Показувати тільки підписникам
       public: Для всіх
       public_long: Показувати всім
-      unlisted: Приховувати зі стріок
+      unlisted: Приховувати зі стрічок
       unlisted_long: Показувати всім, але не відображати в публічних стрічках
   stream_entries:
-    click_to_show: Показати
+    pinned: Закріплений пост
     reblogged: передмухнув(-ла)
-    sensitive_content: Непристойний контент
+    sensitive_content: Несприйнятливий контент
+  terms:
+    title: Умови використання та Політика приватності %{instance}
+  themes:
+    contrast: Висока контрасність
+    default: Mastodon
+    mastodon-light: Mastodon (світла)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
-    code_hint: Для підтверждення введіть код, згенерований додатком аутентифікатора
+    code_hint: Для підтверждення введіть код, згенерований застосунком аутентифікатора
     description_html: При увімкненні <strong>двофакторної аутентифікації</strong>, вхід буде вимагати від Вас використовування Вашого телефона, який згенерує вхідний код.
     disable: Вимкнути
     enable: Увімкнути
+    enabled: Двофакторна аутентифікація увімкнена
     enabled_success: Двофакторна аутентифікація успішно увімкнена
     generate_recovery_codes: Згенерувати коди відновлення
-    instructions_html: "<strong>Відскануйте цей QR-код за допомогою Google Authenticator чи іншого TOTP-додатка на Вашому телефоні</strong>. Від цього моменту додаток буде генерувати коди, які буде необхідно ввести для входу."
-    lost_recovery_codes: Коди відновлення дозволяють повернути доступ до акаунту у випадку втрати телефону. Якщо Ви втратили Ваші коди відновлення, Ви можете знову згенерувати їх тут. Ваші старі коди відновлення будуть анульовані.
+    instructions_html: "<strong>Відскануйте цей QR-код за допомогою Google Authenticator чи іншого TOTP-застосунку на Вашому телефоні</strong>. З цього моменту він буде генерувати коди, які буде необхідно ввести для входу."
+    lost_recovery_codes: Коди відновлення дозволяють повернути доступ до акаунту у випадку втрати телефону. Якщо Ви втратили Ваші коди відновлення, Ви можете знову згенерувати їх тут. Тоді ваші старі коди відновлення будуть анульовані.
     manual_instructions: 'Якщо Ви не можете відсканувати QR-код та хочете ввести його вручну, секрет представлений тут відкритим текстом:'
+    recovery_codes: Запасні коди відновлення
     recovery_codes_regenerated: Коди відновлення успішно згенеровані
-    recovery_instructions_html: У випадку втрати доступу до Вашого телефона Ви можете використати один з кодів відновлення, вказаних нижче, щоб повернути доступ до акаунту. Тримайте коди відновлення у безпеці, наприклад, роздрукувавши їх та тримаючи їх з іншими важливими документами.
+    recovery_instructions_html: У випадку втрати доступу до вашого телефону ви можете використати один з кодів відновлення, вказаних нижче, щоб повернути доступ до акаунту. Тримайте коди відновлення у безпеці, наприклад, роздруйте їх та зберігайте їх з іншими важливими документами.
     setup: Налаштувати
-    wrong_code: Введений код неправильний! Чи правильно встановлені серверний час та час пристрою?
+    wrong_code: Введений код неправильний! Чи правильно встановлений час на сервері та пристрої?
+  user_mailer:
+    backup_ready:
+      explanation: Ви зробили запит на повний архів вашого аккаунту Mastodon. Він вже готовий для завантаження!
+      subject: Ваш архів готовий до завантаження
+      title: Винесення архіву
+    welcome:
+      edit_profile_action: Налаштувати профіль
+      edit_profile_step: Ви можете налаштувати профіль під себе завантаживши аватар, шпалери, змінивши відображуване ім'я тощо. Якщо ви захочете переглядати нових підписників до того, як вони зможуть підписатися на вас, ви можете заблокувати свій аккаунт.
+      explanation: Ось декілька порад для початку
+      final_action: Почати постити
+      final_step: 'Почність постити! Навіть не підписавшись на вас, інші зможуть побачити ваші пости, наприкоал, у локальному фіді та у хештеґах. Якщо ви хочете представитися, можете скористатися хештеґом #introductions.'
+      full_handle: Ваше звернення
+      full_handle_hint: Те, що ви хочете сказати друзям, щоб вони могли написати вам або підписатися з інших сайтів.
+      review_preferences_action: Змінити налаштування
+      review_preferences_step: Переконайтеся у тому, що ви налаштували все необхідне, як от які e-mail повідомлення ви хочете отримувати, або який рівень приватності ви хочете встановити вашим постам за замовчуванням. Якщо хочете, ви можете увімкнути автоматичне програвання GIF анімацій.
+      subject: Ласкаво просимо до Mastodon
+      tip_bridge_html: Якщо ви прийшли до нас із Twitter, ви можете знайти ваших друзів на Mastodon, скориставшись <a href="%{bridge_url}">проміжним застосунком</a>. Проте він працює тільки, якщо вони теж користуються проміжним застосунком!
+      tip_federated_timeline: Федерований фід є широким поглядом на мережу Mastodon. Але він включає лише людей, на яких підписані ваші сусіди по сайту, тому він не є повним.
+      tip_following: Ви автоматично підписані на адміністратора(-ів) сервера. Для того, щоб знайти ще цікавих людей, дослідіть локальний та федерований фіди.
+      tip_local_timeline: Локальний фід - це погляд згори на людей на %{instance}. Це ваші прямі сусіди!
+      tip_mobile_webapp: Якщо ваш мобільний браузер пропонує вам додати Mastodon на робочий стіл, ви можете отримувати push-сповіщення. Все може виглядати як нативний застосунок у багатьох речах.
+      tips: Поради
+      title: Ласкаво просимо, %{name}!
   users:
-    invalid_email: Введений email неправильний
+    invalid_email: Введена адреса e-mail неправильна
     invalid_otp_token: Введено неправильний код
+    otp_lost_help_html: Якщо ви втратили доступ до обох, ви можете отримати доступ з %{email}

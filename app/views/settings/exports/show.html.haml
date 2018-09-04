@@ -9,16 +9,24 @@
         %td= number_to_human_size @export.total_storage
         %td
       %tr
+        %th= t('accounts.statuses', count: @export.total_statuses)
+        %td= number_with_delimiter @export.total_statuses
+        %td
+      %tr
         %th= t('exports.follows')
-        %td= number_to_human @export.total_follows
+        %td= number_with_delimiter @export.total_follows
         %td= table_link_to 'download', t('exports.csv'), settings_exports_follows_path(format: :csv)
       %tr
+        %th= t('accounts.followers', count: @export.total_followers)
+        %td= number_with_delimiter @export.total_followers
+        %td
+      %tr
         %th= t('exports.blocks')
-        %td= number_to_human @export.total_blocks
+        %td= number_with_delimiter @export.total_blocks
         %td= table_link_to 'download', t('exports.csv'), settings_exports_blocks_path(format: :csv)
       %tr
         %th= t('exports.mutes')
-        %td= number_to_human @export.total_mutes
+        %td= number_with_delimiter @export.total_mutes
         %td= table_link_to 'download', t('exports.csv'), settings_exports_mutes_path(format: :csv)
 
 %p.muted-hint= t('exports.archive_takeout.hint_html')

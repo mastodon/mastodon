@@ -35,6 +35,17 @@
     transition: all 200ms ease-out;
   }
 
+  &--destructive {
+    transition: none;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: $error-red;
+      transition: none;
+    }
+  }
+
   &:disabled {
     background-color: $ui-primary-color;
     cursor: default;
@@ -219,7 +230,6 @@
 
 .dropdown-menu {
   position: absolute;
-  transform-origin: 50% 0;
 }
 
 .invisible {
@@ -628,6 +638,7 @@
   overflow: hidden;
   white-space: pre-wrap;
   padding-top: 2px;
+  color: $primary-text-color;
 
   &:focus {
     outline: 0;
@@ -921,15 +932,31 @@
   align-items: center;
   display: flex;
   margin-top: 8px;
+
+  &__counter {
+    display: inline-flex;
+    margin-right: 11px;
+    align-items: center;
+
+    .status__action-bar-button {
+      margin-right: 4px;
+    }
+
+    &__label {
+      display: inline-block;
+      width: 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: $action-button-color;
+    }
+  }
 }
 
 .status__action-bar-button {
-  float: left;
   margin-right: 18px;
 }
 
 .status__action-bar-dropdown {
-  float: left;
   height: 23.15px;
   width: 23.15px;
 }
@@ -945,6 +972,18 @@
 .detailed-status {
   background: lighten($ui-base-color, 4%);
   padding: 14px 10px;
+
+  &--flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .status__content,
+    .detailed-status__meta {
+      flex: 100%;
+    }
+  }
 
   .status__content {
     font-size: 19px;
@@ -1224,7 +1263,6 @@ a .account__avatar {
 }
 
 .account__action-bar-dropdown {
-  flex: 0 1 calc(50% - 140px);
   padding: 10px;
 
   .icon-button {
@@ -1256,9 +1294,9 @@ a .account__avatar {
 .account__action-bar__tab {
   text-decoration: none;
   overflow: hidden;
-  flex: 0 1 80px;
+  flex: 0 1 100%;
   border-right: 1px solid lighten($ui-base-color, 8%);
-  padding: 10px 5px;
+  padding: 10px 0;
 
   & > span {
     display: block;
@@ -1478,6 +1516,7 @@ a.account__display-name {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
   .image-loader__preview-canvas {
     max-width: $media-modal-media-max-width;
@@ -1486,8 +1525,8 @@ a.account__display-name {
     object-fit: contain;
   }
 
-  &.image-loader--loading .image-loader__preview-canvas {
-    filter: blur(2px);
+  .loading-bar {
+    position: relative;
   }
 
   &.image-loader--amorphous .image-loader__preview-canvas {
@@ -1593,6 +1632,22 @@ a.account__display-name {
 
   ul {
     list-style: none;
+  }
+
+  &.left {
+    transform-origin: 100% 50%;
+  }
+
+  &.top {
+    transform-origin: 50% 100%;
+  }
+
+  &.bottom {
+    transform-origin: 50% 0;
+  }
+
+  &.right {
+    transform-origin: 0 50%;
   }
 }
 
@@ -2010,6 +2065,7 @@ a.account__display-name {
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 16px;
+  line-height: inherit;
   border: 0;
   text-align: unset;
   padding: 15px;
@@ -2223,28 +2279,6 @@ a.account__display-name {
 .getting-started {
   color: $dark-text-color;
 
-  p {
-    color: $dark-text-color;
-    font-size: 13px;
-    margin-bottom: 20px;
-
-    a {
-      color: $dark-text-color;
-      text-decoration: underline;
-    }
-  }
-
-  a {
-    text-decoration: none;
-    color: $darker-text-color;
-
-    &:hover,
-    &:focus,
-    &:active {
-      text-decoration: underline;
-    }
-  }
-
   &__footer {
     flex: 0 0 auto;
     padding: 10px;
@@ -2256,6 +2290,28 @@ a.account__display-name {
 
     ul li {
       display: inline;
+    }
+
+    p {
+      color: $dark-text-color;
+      font-size: 13px;
+      margin-bottom: 20px;
+
+      a {
+        color: $dark-text-color;
+        text-decoration: underline;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $darker-text-color;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: underline;
+      }
     }
   }
 
@@ -3259,7 +3315,14 @@ a.status-card {
   border-radius: 4px;
   margin-left: 40px;
   overflow: hidden;
-  transform-origin: 50% 0;
+
+  &.top {
+    transform-origin: 50% 100%;
+  }
+
+  &.bottom {
+    transform-origin: 50% 0;
+  }
 }
 
 .privacy-dropdown__option {
@@ -3329,6 +3392,10 @@ a.status-card {
         color: $primary-text-color;
       }
     }
+  }
+
+  &.top .privacy-dropdown__value {
+    border-radius: 0 0 4px 4px;
   }
 
   .privacy-dropdown__dropdown {
@@ -4133,6 +4200,10 @@ a.status-card {
 
   .status__content a {
     color: $highlight-text-color;
+  }
+
+  .status__content p {
+    color: $inverted-text-color;
   }
 
   @media screen and (max-width: 480px) {
@@ -5296,7 +5367,7 @@ noscript {
   dt,
   dd {
     box-sizing: border-box;
-    padding: 14px 20px;
+    padding: 14px 5px;
     text-align: center;
     max-height: 48px;
     overflow: hidden;

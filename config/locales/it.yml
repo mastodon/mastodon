@@ -5,49 +5,54 @@ it:
     about_mastodon_html: Mastodon è un social network <em>gratuito e open-source</em>. Un'alternativa <em>decentralizzata</em> alle piattaforme commerciali che evita che una singola compagnia monopolizzi il tuo modo di comunicare. Scegli un server di cui ti fidi &mdash; qualunque sia la tua scelta, potrai interagire con chiunque altro. Chiunque può sviluppare un suo server Mastodon e partecipare alla vita del <em>social network</em>.
     about_this: A proposito di questo server
     administered_by: 'Amministrato da:'
-    closed_registrations: Al momento le iscrizioni a questo server sono chiuse. Tuttavia! Puoi provare a cercare un istanza diversa su cui creare un account ed avere accesso alla stessa identica rete di questa.
+    api: API
+    apps: Applicazioni Mobile
+    closed_registrations: Al momento le iscrizioni a questo server sono chiuse. Tuttavia! Puoi provare a cercare un istanza diversa su cui creare un account ed avere accesso alla stessa identica rete.
     contact: Contatti
     contact_missing: Non impostato
     contact_unavailable: N/D
-    description_headline: Cos'è %{domain}?
-    domain_count_after: altri server
-    domain_count_before: Connesso a
+    documentation: Documentazione
     extended_description_html: |
       <h3>Un buon posto per le regole</h3>
       <p>La descrizione estesa non è ancora stata preparata.</p>
     features:
-      humane_approach_body: Imparando dai fallimenti degli altri networks, Mastodon mira a fare scelte di design etico per combattere l'abuso dei social media.
+      humane_approach_body: Imparando dai fallimenti degli altri networks, Mastodon mira a fare scelte etiche di design per combattere l'abuso dei social media.
       humane_approach_title: Un approccio più umano
-      not_a_product_body: Mastodon non è una rete commerciale. Niente pubblicità, niente data mining, nessun giardino murato. Non c'è nessuna autorità centrale.
+      not_a_product_body: Mastodon non è una rete commerciale. Niente pubblicità, niente data mining, nessun recinto dorato. Non c'è nessuna autorità centrale.
       not_a_product_title: Tu sei una persona, non un prodotto
       real_conversation_body: Con 500 caratteri a disposizione, un supporto per i contenuti granulari ed avvisi sui media potrai esprimerti nel modo desiderato.
       real_conversation_title: Creato per conversazioni reali
-      within_reach_body: Apps per iOS, Android ed altre piattaforme, realizzate grazie ad un ecosistema di API adatto agli sviluppatori, ti consentono di poter stare ovunque al passo con i tuoi amici.
+      within_reach_body: Apps per iOS, Android ed altre piattaforme, realizzate grazie ad un ecosistema di API adatto agli sviluppatori, ti consentono di poter stare in contatto con i tuoi amici ovunque ti trovi.
       within_reach_title: Sempre a portata di mano
     generic_description: "%{domain} è un server nella rete"
     hosted_on: Mastodon ospitato su %{domain}
     learn_more: Scopri altro
     other_instances: Elenco istanze
+    privacy_policy: Policy su la Privacy
     source_code: Codice sorgente
     status_count_after: stati
     status_count_before: Che hanno pubblicato
+    terms: Termini di Servizio
     user_count_after: utenti
     user_count_before: Home di
     what_is_mastodon: Che cos'è Mastodon?
   accounts:
+    choices_html: 'Suggerimenti da %{name}:'
     follow: Segui
     followers: Seguaci
     following: Segui
+    joined: Dal %{date}
     media: Media
     moved_html: "%{name} è stato spostato su %{new_profile_link}:"
     network_hidden: Questa informazione non e' disponibile
     nothing_here: Qui non c'è nulla!
     people_followed_by: Persone seguite da %{name}
     people_who_follow: Persone che seguono %{name}
+    pin_errors:
+      following: Devi gia seguire la persona che vuoi promuovere
     posts: Posts
     posts_with_replies: Toot e risposte
-    remote_follow: Segui da remoto
-    reserved_username: Il nome utente è riservato
+    reserved_username: Il nome utente è gia stato preso
     roles:
       admin: Amministratore
       bot: Bot
@@ -158,6 +163,7 @@ it:
         create_custom_emoji: "%{name} ha caricato un nuovo emoji %{target}"
         create_domain_block: "%{name} ha bloccato il dominio %{target}"
         create_email_domain_block: "%{name} ha messo il dominio email %{target} nella blacklist"
+        demote_user: "%{name} ha degradato l'utente %{target}"
         destroy_domain_block: "%{name} ha sbloccato il dominio %{target}"
         destroy_email_domain_block: "%{name}ha messo il dominio email %{target} nella whitelist"
         destroy_status: "%{name} ha eliminato lo status di %{target}"
@@ -174,9 +180,13 @@ it:
         resolve_report: "%{name} ha risolto il rapporto %{target}"
         silence_account: "%{name} ha silenziato l'account di %{target}"
         suspend_account: "%{name} ha sospeso l'account di %{target}"
+        unassigned_report: "%{name} report non assegnato %{target}"
         unsilence_account: "%{name} ha de-silenziato l'account di %{target}"
         unsuspend_account: "%{name} ha annullato la sospensione dell'account di %{target}"
         update_custom_emoji: "%{name} ha aggiornato l'emoji %{target}"
+        update_status: "%{name} stato aggiornato da %{target}"
+      deleted_status: "(stato cancellato)"
+      title: Audit log
     custom_emojis:
       by_domain: Dominio
       copied_msg: Creata con successo una copia locale dell'emoji
@@ -202,6 +212,25 @@ it:
       update_failed_msg: Impossibile aggiornare questa emojii
       updated_msg: Emoji aggiornata con successo!
       upload: Carica
+    dashboard:
+      backlog: backlogged jobs
+      config: Configurazione
+      feature_invites: Link di invito
+      feature_registrations: Registrazioni
+      features: Funzionalità
+      hidden_service: Federazione con servizi nascosti
+      open_reports: apri report
+      recent_users: Utenti Recenti
+      search: Ricerca testo intero
+      single_user_mode: Modalita utente singolo
+      software: Software
+      space: Utilizzo dello spazio
+      title: Dashboard
+      total_users: utenti totali
+      trends: Trends
+      week_interactions: interazioni per questa settimana
+      week_users_active: attivi questa settimana
+      week_users_new: utenti questa settimana
     domain_blocks:
       add_new: Aggiungi nuovo
       created_msg: Il blocco del dominio sta venendo processato
@@ -209,11 +238,14 @@ it:
       domain: Dominio
       new:
         create: Crea blocco
+        hint: Il blocco dominio non previene la creazione di utenti nel database, ma applicherà automaticamente e retroattivamente metodi di moderazione specifici su quegli account.
         severity:
           noop: Nessuno
           silence: Silenzia
           suspend: Sospendi
         title: Nuovo blocco dominio
+      reject_media: Rifiuta file media
+      reject_media_hint: Rimuovi i file media salvati in locale e blocca i download futuri. Irrilevante per le sospensioni
       severities:
         noop: Nessuno
         silence: Silenzia
@@ -238,6 +270,7 @@ it:
       domain: Dominio
       new:
         create: Aggiungi dominio
+      title: Lista nera email
     instances:
       account_count: Accounts conosciuti
       domain_name: Dominio
@@ -245,12 +278,15 @@ it:
       search: Cerca
       title: Istanze conosciute
     invites:
+      deactivate_all: Disattiva tutto
       filter:
         all: Tutto
         available: Disponibile
         expired: Scaduto
         title: Filtro
       title: Inviti
+    relays:
+      inbox_url: Url Relay
     reports:
       account:
         note: note
@@ -431,7 +467,6 @@ it:
     unlocked_warning_html: Chiunque può seguirti per vedere immediatamente i tuoi status privati. %{lock_link} per poter esaminare e respingere gli utenti che vogliono seguirti.
   generic:
     changes_saved_msg: Modifiche effettuate con successo!
-    powered_by: offerto da %{link}
     save_changes: Salva modifiche
     validation_errors:
       one: Qualcosa ancora non va bene! Per favore, controlla l'errore qui sotto
@@ -465,8 +500,6 @@ it:
       expires_at: Scade
       uses: Utilizzi
     title: Invita persone
-  landing_strip_html: "<strong>%{name}</strong> è un utente su %{link_to_root_path}. Puoi seguirlo o interagire con lui se possiedi un account ovunque nel fediverse."
-  landing_strip_signup_html: Se non possiedi un account, puoi <a href="%{sign_up_path}">iscriverti qui</a>.
   lists:
     errors:
       limit: Hai raggiunto il numero massimo di liste
@@ -603,7 +636,6 @@ it:
       unlisted: Pubblico, ma non visibile sulla timeline pubblica
       unlisted_long: Tutti lo possono vedere, ma non compare nelle timeline pubbliche
   stream_entries:
-    click_to_show: Clicca per mostrare
     pinned: Toot fissato in cima
     reblogged: condiviso
     sensitive_content: Materiale sensibile
