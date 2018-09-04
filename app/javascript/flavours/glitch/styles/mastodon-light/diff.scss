@@ -82,6 +82,12 @@
 
 }
 
+// Change the background colors of media and video spoilers
+.media-spoiler,
+.video-player__spoiler {
+  background: $ui-base-color;
+}
+
 // Change the colors used in the dropdown menu
 .dropdown-menu {
   background: $ui-base-color;
@@ -145,6 +151,24 @@
 
   }
 
+}
+
+.composer--upload_form--actions .icon-button {
+  color: lighten($white, 7%);
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: $white;
+  }
+}
+
+.composer--upload_form--item > div input {
+  color: lighten($white, 7%);
+
+  &::placeholder {
+    color: lighten($white, 10%);
+  }
 }
 
 .dropdown-menu__separator {
