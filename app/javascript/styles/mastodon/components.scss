@@ -4068,7 +4068,8 @@ a.status-card {
 .confirmation-modal,
 .report-modal,
 .actions-modal,
-.mute-modal {
+.mute-modal,
+.language-select-modal {
   background: lighten($ui-secondary-color, 8%);
   color: $inverted-text-color;
   border-radius: 8px;
@@ -4358,6 +4359,84 @@ a.status-card {
   padding: 20px;
 
   .media-modal__close {
+    top: 19px;
+    right: 15px;
+  }
+}
+
+.language-select-modal {
+  width: 90vw;
+  max-width: 700px;
+}
+
+.language-select-modal__container {
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid $ui-secondary-color;
+  padding: 20px;
+
+  @media screen and (max-width: 480px) {
+    overflow-y: auto;
+  }
+}
+
+.language-select-modal__entry {
+  flex: 1 1 auto;
+  display: block;
+  color: $highlight-text-color;
+  overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
+
+  font-size: 14px;
+  margin-bottom: 1.25em;
+
+  &.current {
+    color: darken($highlight-text-color, 24%);
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  .flag-emoji {
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    min-width: 1em;
+    margin: 0 .05em 0 .1em;
+    margin-right: 0.1em;
+    vertical-align: -0.1em;
+    vertical-align: -0.15em;
+  }
+
+  width: 25%;
+
+  @media screen and (max-width: 700px) {
+    width: 33%;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 50%;
+  }
+}
+
+.language-select-modal__header {
+  padding: 20px;
+  font-size: 16px;
+  text-align: center;
+
+  strong {
+    font-weight: 500;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
+  }
+
+  .language-select-modal__close {
     top: 19px;
     right: 15px;
   }

@@ -4,14 +4,21 @@ import { start } from '../mastodon/common';
 start();
 
 function loaded() {
-  const TimelineContainer = require('../mastodon/containers/timeline_container').default;
   const React             = require('react');
   const ReactDOM          = require('react-dom');
-  const mountNode         = document.getElementById('mastodon-timeline');
 
-  if (mountNode !== null) {
-    const props = JSON.parse(mountNode.getAttribute('data-props'));
-    ReactDOM.render(<TimelineContainer {...props} />, mountNode);
+  const TimelineContainer = require('../mastodon/containers/timeline_container').default;
+  const timelineMountNode = document.getElementById('mastodon-timeline');
+  if (timelineMountNode !== null) {
+    const props = JSON.parse(timelineMountNode.getAttribute('data-props'));
+    ReactDOM.render(<TimelineContainer {...props} />, timelineMountNode);
+  }
+
+  const LanguageSelectContainer = require('../mastodon/containers/language_select_container').default;
+  const selectorMountNode = document.getElementById('language-selector');
+  if (selectorMountNode !== null) {
+    const props = JSON.parse(selectorMountNode.getAttribute('data-props'));
+    ReactDOM.render(<LanguageSelectContainer {...props} />, selectorMountNode);
   }
 }
 

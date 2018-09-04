@@ -11,6 +11,7 @@ module Localized
 
   def set_locale
     I18n.locale = default_locale
+    I18n.locale = cookies[:lang]
     I18n.locale = current_user.locale if user_signed_in?
   rescue I18n::InvalidLocale
     I18n.locale = default_locale

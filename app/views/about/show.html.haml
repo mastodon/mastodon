@@ -39,6 +39,7 @@
             = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('preview.jpg'), alt: @instance_presenter.site_title
 
           .landing-page__information
+            #language-selector{ data: { props: json_escape(@language_selector_props) } }
             .landing-page__short-description
               .row
                 .landing-page__logo

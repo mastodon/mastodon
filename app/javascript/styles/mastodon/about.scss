@@ -838,6 +838,7 @@ $small-breakpoint: 960px;
   }
 
   &__information {
+    position: relative;
     padding: 45px 40px;
     margin-bottom: 10px;
 
@@ -885,6 +886,12 @@ $small-breakpoint: 960px;
           font-size: 14px;
         }
       }
+    }
+
+    #language-selector {
+      position: absolute;
+      top: 16px;
+      right: 16px;
     }
 
     @media screen and (max-width: $small-breakpoint) {

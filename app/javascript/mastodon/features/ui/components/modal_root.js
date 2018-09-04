@@ -10,6 +10,7 @@ import VideoModal from './video_modal';
 import BoostModal from './boost_modal';
 import ConfirmationModal from './confirmation_modal';
 import FocalPointModal from './focal_point_modal';
+import LanguageSelectModal from './language_select_modal';
 import {
   OnboardingModal,
   MuteModal,
@@ -30,6 +31,7 @@ const MODAL_COMPONENTS = {
   'EMBED': EmbedModal,
   'LIST_EDITOR': ListEditor,
   'FOCAL_POINT': () => Promise.resolve({ default: FocalPointModal }),
+  'LANGUAGE_SELECT': () => Promise.resolve({ default: LanguageSelectModal }),
 };
 
 export default class ModalRoot extends React.PureComponent {
@@ -53,7 +55,7 @@ export default class ModalRoot extends React.PureComponent {
   }
 
   renderLoading = modalId => () => {
-    return ['MEDIA', 'VIDEO', 'BOOST', 'CONFIRM', 'ACTIONS'].indexOf(modalId) === -1 ? <ModalLoading /> : null;
+    return ['MEDIA', 'VIDEO', 'BOOST', 'CONFIRM', 'ACTIONS', 'LANGUAGE_SELECT'].indexOf(modalId) === -1 ? <ModalLoading /> : null;
   }
 
   renderError = (props) => {

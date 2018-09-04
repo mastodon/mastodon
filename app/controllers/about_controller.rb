@@ -7,6 +7,12 @@ class AboutController < ApplicationController
   def show
     serializable_resource = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(initial_state_params), serializer: InitialStateSerializer)
     @initial_state_json   = serializable_resource.to_json
+    @language_selector_props = {
+      locale: I18n.locale,
+      supportedLocales: I18n.available_locales.map do |locale|
+        { code: locale, name: SettingsHelper::HUMAN_LOCALES[locale] }
+      end,
+    }.to_json
   end
 
   def more
