@@ -28,8 +28,12 @@ module Mastodon
       [major, minor, patch, pre].compact
     end
 
+    def suffix
+      '+glitch'
+    end
+
     def to_s
-      [to_a.join('.'), flags].join
+      [to_a.join('.'), flags, suffix].join
     end
 
     def repository
