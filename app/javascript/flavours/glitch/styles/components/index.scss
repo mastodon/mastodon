@@ -837,8 +837,10 @@
   line-height: inherit;
   margin: 0;
   padding: 15px;
+  box-sizing: border-box;
   width: 100%;
   clear: both;
+  text-decoration: none;
 
   &:hover {
     background: lighten($ui-base-color, 2%);
