@@ -37,7 +37,8 @@
 
     &:last-child {
       .detailed-status,
-      .status {
+      .status,
+      .load-more {
         border-bottom: 0;
         border-radius: 0 0 4px 4px;
       }
@@ -45,13 +46,15 @@
 
     &:first-child {
       .detailed-status,
-      .status {
+      .status,
+      .load-more {
         border-radius: 4px 4px 0 0;
       }
 
       &:last-child {
         .detailed-status,
-        .status {
+        .status,
+        .load-more {
           border-radius: 4px;
         }
       }
@@ -59,7 +62,8 @@
 
     @media screen and (max-width: 740px) {
       .detailed-status,
-      .status {
+      .status,
+      .load-more {
         border-radius: 0 !important;
       }
     }
