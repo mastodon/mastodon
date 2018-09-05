@@ -34,7 +34,7 @@ gem 'devise', '~> 4.4'
 gem 'devise-two-factor', '~> 3.0'
 
 group :pam_authentication, optional: true do
-  gem 'devise_pam_authenticatable2', '~> 9.1'
+  gem 'devise_pam_authenticatable2', '~> 9.2'
 end
 
 gem 'net-ldap', '~> 0.10'
