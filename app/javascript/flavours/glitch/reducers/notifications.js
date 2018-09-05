@@ -25,6 +25,7 @@ const initialState = ImmutableMap({
   hasMore: true,
   top: true,
   unread: 0,
+  lastReadId: '0',
   isLoading: false,
   cleaningMode: false,
   // notification removal mark of new notifs loaded whilst cleaningMode is true.
@@ -42,7 +43,9 @@ const notificationToMap = (state, notification) => ImmutableMap({
 const normalizeNotification = (state, notification) => {
   const top = state.get('top');
 
-  if (!top) {
+  if (top) {
+    state = state.set('lastReadId', notification.id);
+  } else {
     state = state.update('unread', unread => unread + 1);
   }
 
@@ -56,6 +59,8 @@ const normalizeNotification = (state, notification) => {
 };
 
 const expandNormalizedNotifications = (state, notifications, next) => {
+  const top = state.get('top');
+  const lastReadId = state.get('lastReadId');
   let items = ImmutableList();
 
   notifications.forEach((n, i) => {
@@ -77,6 +82,14 @@ const expandNormalizedNotifications = (state, notifications, next) => {
       });
     }
 
+    if (top) {
+      if (!items.isEmpty()) {
+        mutable.update('lastReadId', id => compareId(id, items.first().get('id')) > 0 ? id : items.first().get('id'));
+      }
+    } else {
+      mutable.update('unread', unread => unread + items.filter(item => compareId(item.get('id'), lastReadId) > 0).size);
+    }
+
     if (!next) {
       mutable.set('hasMore', true);
     }
@@ -92,12 +105,19 @@ const filterNotifications = (state, relationship) => {
 const updateTop = (state, top) => {
   if (top) {
     state = state.set('unread', 0);
+    const lastNotification = state.get('items').find(item => item !== null);
+    state = state.set('lastReadId', lastNotification ? lastNotification.get('id') : '0');
   }
 
   return state.set('top', top);
 };
 
 const deleteByStatus = (state, statusId) => {
+  if (!state.get('top')) {
+    const lastReadId = state.get('lastReadId');
+    const deletedUnread = state.get('items').filter(item => item !== null && item.get('status') === statusId && compareId(item.get('id'), lastReadId) > 0);
+    state = state.update('unread', unread => unread - deletedUnread.size);
+  }
   return state.update('items', list => list.filterNot(item => item !== null && item.get('status') === statusId));
 };
 
