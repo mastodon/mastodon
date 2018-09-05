@@ -132,8 +132,9 @@ export function directCompose(account, router) {
 
 export function submitCompose(withCommunity) {
   return function (dispatch, getState) {
-    const status = getState().getIn(['compose', 'text'], '');	
-    const media = getState().getIn(['compose', 'media_attachments']);
+    const status = getState().getIn(['compose', 'text'], '');
+    const media  = getState().getIn(['compose', 'media_attachments']);
+
     if ((!status || !status.length) && media.size === 0) {
       return;
     }

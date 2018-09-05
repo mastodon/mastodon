@@ -43,6 +43,7 @@ class Formatter
 
   def format_in_quote(status, **options)
     html = format(status)
+    return '' if html.empty?
     doc = Nokogiri::HTML.parse(html, nil, 'utf-8')
     doc.search('span.invisible').remove
     html = doc.css('body')[0].inner_html
