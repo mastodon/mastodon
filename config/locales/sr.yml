@@ -2,16 +2,16 @@ sr:
   about:
     about_hashtag_html: Ово су јавни статуси таговани са <strong>#%{hashtag}</strong>.
       Можете одговарати на њих ако имате налог било где у федиверсу.
-    about_mastodon_html: Мастодонт је друштвена мрежа базирана на отвореним протоколима
+    about_mastodon_html: Мастодон је друштвена мрежа базирана на отвореним протоколима
       и слободном софтверу отвореног кода. Децентрализована је као што је децентрализована
       е-пошта.
     about_this: О инстанци
     administered_by: 'Администрирано од стране:'
     api: API
     apps: Мобилне апликације
-    closed_registrations: Регистрације су тренутно затворене на овој инстанци. Али!
+    closed_registrations: Регистрације су тренутно затворене на овој инстанци. Међутим!
       Можете наћи другу инстанцу на којој ћете направити налог и одатле добити приступ
-      истој овој мрежи.
+      на истој овој мрежи.
     contact: Контакт
     contact_missing: Није постављено
     contact_unavailable: N/A
@@ -51,7 +51,7 @@ sr:
       one: корисник
       other: корисници
     user_count_before: Дом за
-    what_is_mastodon: Шта је Мастодонт?
+    what_is_mastodon: Шта је Мастодон?
   accounts:
     choices_html: '%{name}''s избори:'
     follow: Запрати
@@ -60,22 +60,28 @@ sr:
       other: Пратиоци
     following: Пратим
     joined: Придружио/ла се %{date}
-    media: Мултимедија
-    moved_html: '%{name} је померен на %{new_profile_link}:'
+    media: Медији
+    moved_html: '%{name} је прешао на %{new_profile_link}:'
     network_hidden: Ова информација није доступна
     nothing_here: Овде нема ништа!
     people_followed_by: Људи које %{name} прати
     people_who_follow: Људи који прате %{name}
-    posts: Тутови
-    posts_with_replies: Тутови и одговори
+    posts:
+      one: Труба
+      other: Трубе
+    posts_with_replies: Трубе и одговори
     reserved_username: Корисничко име је резервисано
     roles:
       admin: Администратор
       moderator: Модератор
+      bot: Бот
     unfollow: Отпрати
+    pin_errors:
+      following: Морате пратити ову особу ако хоћете да потврдите
+    posts_tab_heading: Трубе
   admin:
     account_moderation_notes:
-      create: Направи
+      create: Оставите белешку
       created_msg: Модераторска белешка успешно направљена!
       delete: Обриши
       destroyed_msg: Модераторска белешка успешно обрисана!
@@ -94,7 +100,7 @@ sr:
       edit: Измени
       email: Е-пошта
       email_status: Е-пошта статус
-      enable: Укључи
+      enable: Омогући
       enabled: Укључено
       feed_url: Адреса довода
       followers: Пратиоци
@@ -160,10 +166,20 @@ sr:
       unsubscribe: Укини претплату
       username: Корисничко име
       web: Веб
+      avatar: Аватар
+      change_email:
+        changed_msg: Е-пошта налога успешно промењена!
+        current_email: Тренутна Е-пошта
+        label: Промените Е-пошту
+        new_email: Нова Е-пошта
+        submit: Промените Е-пошту
+        title: Промените Е-пошту за %{username}
+      remove_avatar: Уклони аватар
+      unconfirmed_email: Непотврђена Е-пошта
     action_logs:
       actions:
         confirm_user: '%{name} је потврдио адресу е-поште корисника %{target}'
-        create_custom_emoji: '%{name} је отпремио нови емотикон %{target}'
+        create_custom_emoji: '%{name} је отпремио нови емоџи %{target}'
         create_domain_block: '%{name} је блокирао домен %{target}'
         create_email_domain_block: '%{name} је ставио на црну листу домен е-поште
           %{target}'
@@ -189,6 +205,11 @@ sr:
         unsuspend_account: '%{name} је укинуо суспензију налогу %{target}'
         update_custom_emoji: '%{name} је изменио емотикон %{target}'
         update_status: '%{name} је изменио статус корисника %{target}'
+        assigned_to_self_report: '%{name} је доделио/ла извештај %{target} себи'
+        change_email_user: '%{name} је променио/ла адресу Е-поште коисника/це %{target}'
+        remove_avatar_user: '%{name} је уклонио/ла %{target}''s аватар'
+        reopen_report: '%{name} је поново отворио/ла извештај %{target}'
+        unassigned_report: '%{name} недодељен извештај %{target}'
       deleted_status: (обрисан статус)
       title: Записник
     custom_emojis:
@@ -280,7 +301,7 @@ sr:
     email_domain_blocks:
       add_new: Додај нови
       created_msg: Успешно додао домен Е-поште на црну листу
-      delete: Уклони
+      delete: Обриши
       destroyed_msg: Успешно уклоњен домен Е-поште са црне листе
       domain: Домен
       new:
@@ -303,13 +324,19 @@ sr:
       title: Позивнице
     relays:
       add_new: Додај нови релеј
+      inbox_url: URL Релеја
+      pending: Чекам одобрење релеја
+      save_and_enable: Сачувај и омогући
+      setup: Подеси везу релеја
+      status: Статус
+      title: Релеји
     reports:
       action_taken_by: Акцију извео
       are_you_sure: Да ли сте сигурни?
       comment:
         none: Ништа
       id: ID
-      mark_as_resolved: Означи као решен
+      mark_as_resolved: Означи као решено
       report: 'Пријава #%{id}'
       report_contents: Садржај
       reported_account: Пријављени налог
@@ -322,6 +349,16 @@ sr:
       title: Пријаве
       unresolved: Нерешени
       view: Погледај
+      account:
+        note: белешка
+        report: извештај
+      assign_to_self: Додели мени
+      assigned: Додељени модератор
+      created_at: Пријављено
+      mark_as_unresolved: Означи као нерешено
+      notes:
+        create: Додај белешку
+        create_and_resolve: Реши са белешком
     settings:
       bootstrap_timeline_accounts:
         desc_html: Одвојите више корисничких имена зарезом. Ради само за локалне и
@@ -387,6 +424,9 @@ sr:
       title: WebSub
       topic: Topic
     title: Администрација
+    report_notes:
+      created_msg: Белешка пријаве успешно направљена!
+      destroyed_msg: Белешка пријаве успешно избрисана!
   admin_mailer:
     new_report:
       body: '%{reporter} је пријавио %{target}'
@@ -666,37 +706,55 @@ sr:
     open_in_web: Отвори у вебу
     over_character_limit: ограничење од %{max} карактера прекорачено
     pin_errors:
-      limit: Већ имате прикачен највећи број тутова
-      ownership: Туђи тутови не могу да се прикаче
-      private: Тутови који нису јавни не могу да се прикаче
+      limit: Већ имате прикачен највећи број труба
+      ownership: Туђе трубе не могу да се прикаче
+      private: Трубе које нису јавне не могу бити прикачене
       reblog: Подршка не може да се прикачи
     show_more: Прикажи још
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Само пратиоци
-      private_long: Само прикажи пратиоцима
+      private_long: Прикажи само пратиоцима
       public: Јавно
       public_long: Свако може да види
       unlisted: Неизлистано
-      unlisted_long: Свако може да види, али није излистано на јавним лајнама
+      unlisted_long: Свако може да види, али није излистано на јавним временским линијама
+    attached:
+      image:
+        one: '%{count} слику'
+        other: '%{count} слике'
+      video:
+        one: '%{count} видео'
+        other: '%{count} видеа'
+    boosted_from_html: Подржано од %{acct_link}
+    content_warning: 'Упозорење на садржај: %{warning}'
+    disallowed_hashtags:
+      one: 'садржи забрањену тарабу: %{tags}'
+      other: 'садржи забрањене тарабе: %{tags}'
+    language_detection: Аутоматскo откривање језика
+    sign_in_to_participate: Пријавите се да учествујете у разговору
   stream_entries:
-    pinned: Прикачени тут
+    pinned: Прикачена труба
     reblogged: подржано
     sensitive_content: Осетљив садржај
   terms:
     title: Услови коришћења и политика приватности инстанце %{instance}
   themes:
-    default: Мастодонт
+    default: Мастодон
+    contrast: Велики контраст
+    mastodon-light: Мастодон (светло)
   time:
     formats:
       default: '%b %d, %Y, %H:%M'
+      month: '%b %Y'
   two_factor_authentication:
-    code_hint: Унесите код са Ваше апликације за проверу идентитета да потврдите
+    code_hint: Да бисте потврдили, унесите код генерисан од стране ваше апликације
+      за потврду идентитета
     description_html: Ако укључите <strong>двофакторску идентификацију</strong>, мораћете
       да имате телефон са собом да бисте могли да се пријавите. Телефон ће онда генерисати
       токене за Вашу пријаву.
     disable: Искључи
-    enable: Укључи
+    enable: Омогући
     enabled: Двофакторска идентификација је укључена
     enabled_success: Двофакторска идентификација је успешно укључена
     generate_recovery_codes: Генериши кодове за опоравак
@@ -704,12 +762,12 @@ sr:
       сличној TOTP апликацији на Вашем телефону</strong>. Од сада, та апликација ће
       Вам генерисати токене које морате унети да бисте се пријавили.
     lost_recovery_codes: Кодови за опоравак Вам омогућавају да повратите приступ налогу
-      ако изгубите телефон. Ако изгубите кодове за опоравак, можете их регенерисати
+      ако изгубите телефон. Ако изгубите кодове за опоравак, можете их ре-генерисати
       овде. Од тог тренутка, стари кодови за опоравак више не важе.
     manual_instructions: 'Уколико не можете да скенирате QR код и морате га унесете
       ручно, ево је огољена шифра:'
     recovery_codes: Направите резерву кодова за опоравак
-    recovery_codes_regenerated: Кодови за опоравак успешно регенерисани
+    recovery_codes_regenerated: Кодови за опоравак успешно ре-генерисани
     recovery_instructions_html: Ако икада изгубите приступ телефону, можете искористити
       кодове за опоравак дате испод да повратите приступ налогу. <strong>Држите кодове
       за опоравак на сигурном</strong>. На пример, одштампајте их и чувајте их са
@@ -721,3 +779,5 @@ sr:
     invalid_email: Адреса е-поште није исправна
     invalid_otp_token: Неисправни двофакторски код
     signed_in_as: 'Пријављен као:'
+  remote_interaction:
+    prompt: 'Желите да интерактирате са овом трубом:'
