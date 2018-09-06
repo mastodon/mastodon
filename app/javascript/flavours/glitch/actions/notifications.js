@@ -25,6 +25,9 @@ export const NOTIFICATIONS_EXPAND_FAIL    = 'NOTIFICATIONS_EXPAND_FAIL';
 export const NOTIFICATIONS_CLEAR      = 'NOTIFICATIONS_CLEAR';
 export const NOTIFICATIONS_SCROLL_TOP = 'NOTIFICATIONS_SCROLL_TOP';
 
+export const NOTIFICATIONS_MOUNT   = 'NOTIFICATIONS_MOUNT';
+export const NOTIFICATIONS_UNMOUNT = 'NOTIFICATIONS_UNMOUNT';
+
 defineMessages({
   mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
 });
@@ -214,5 +217,17 @@ export function markNotificationForDelete(id, yes) {
 export function deleteMarkedNotificationsSuccess() {
   return {
     type: NOTIFICATIONS_DELETE_MARKED_SUCCESS,
+  };
+};
+
+export function mountNotifications() {
+  return {
+    type: NOTIFICATIONS_MOUNT,
+  };
+};
+
+export function unmountNotifications() {
+  return {
+    type: NOTIFICATIONS_UNMOUNT,
   };
 };

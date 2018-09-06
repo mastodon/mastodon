@@ -1,4 +1,6 @@
 import {
+  NOTIFICATIONS_MOUNT,
+  NOTIFICATIONS_UNMOUNT,
   NOTIFICATIONS_UPDATE,
   NOTIFICATIONS_EXPAND_SUCCESS,
   NOTIFICATIONS_EXPAND_REQUEST,
@@ -24,6 +26,7 @@ const initialState = ImmutableMap({
   items: ImmutableList(),
   hasMore: true,
   top: true,
+  mounted: 0,
   unread: 0,
   lastReadId: '0',
   isLoading: false,
@@ -41,7 +44,7 @@ const notificationToMap = (state, notification) => ImmutableMap({
 });
 
 const normalizeNotification = (state, notification) => {
-  const top = state.get('top');
+  const top = state.get('top') && state.get('mounted') > 0;
 
   if (top) {
     state = state.set('lastReadId', notification.id);
@@ -59,7 +62,7 @@ const normalizeNotification = (state, notification) => {
 };
 
 const expandNormalizedNotifications = (state, notifications, next) => {
-  const top = state.get('top');
+  const top = state.get('top') && state.get('mounted') > 0;
   const lastReadId = state.get('lastReadId');
   let items = ImmutableList();
 
@@ -102,18 +105,23 @@ const filterNotifications = (state, relationship) => {
   return state.update('items', list => list.filterNot(item => item !== null && item.get('account') === relationship.id));
 };
 
+const clearUnread = (state) => {
+  state = state.set('unread', 0);
+  const lastNotification = state.get('items').find(item => item !== null);
+  return state.set('lastReadId', lastNotification ? lastNotification.get('id') : '0');
+}
+
 const updateTop = (state, top) => {
-  if (top) {
-    state = state.set('unread', 0);
-    const lastNotification = state.get('items').find(item => item !== null);
-    state = state.set('lastReadId', lastNotification ? lastNotification.get('id') : '0');
+  if (top && state.get('mounted') > 0) {
+    state = clearUnread(state);
   }
 
   return state.set('top', top);
 };
 
 const deleteByStatus = (state, statusId) => {
-  if (!state.get('top')) {
+  const top = state.get('top') && state.get('mounted') > 0;
+  if (!top) {
     const lastReadId = state.get('lastReadId');
     const deletedUnread = state.get('items').filter(item => item !== null && item.get('status') === statusId && compareId(item.get('id'), lastReadId) > 0);
     state = state.update('unread', unread => unread - deletedUnread.size);
@@ -153,6 +161,10 @@ export default function notifications(state = initialState, action) {
   let st;
 
   switch(action.type) {
+  case NOTIFICATIONS_MOUNT:
+    return (state.get('top') ? clearUnread(state) : state).update('mounted', count => count + 1);
+  case NOTIFICATIONS_UNMOUNT:
+    return state.update('mounted', count => count - 1);
   case NOTIFICATIONS_EXPAND_REQUEST:
   case NOTIFICATIONS_DELETE_MARKED_REQUEST:
     return state.set('isLoading', true);
