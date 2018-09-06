@@ -8,20 +8,22 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
   unreadNotifications: state.getIn(['notifications', 'unread']),
+  showBadge: state.getIn(['local_settings', 'notifications', 'tab_badge']),
 });
 
 @connect(mapStateToProps)
 class NotificationsIcon extends React.PureComponent {
   static propTypes = {
     unreadNotifications: PropTypes.number,
+    showBadge: PropTypes.bool,
   };
 
   render() {
-    const { unreadNotifications } = this.props;
+    const { unreadNotifications, showBadge } = this.props;
     return (
       <span className='icon-badge-wrapper'>
         <i className='fa fa-fw fa-bell' />
-        { unreadNotifications > 0 && <div className='icon-badge' />}
+        { showBadge && unreadNotifications > 0 && <div className='icon-badge' />}
       </span>
     );
   }

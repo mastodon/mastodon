@@ -43,6 +43,25 @@ export default class LocalSettingsPage extends React.PureComponent {
           <FormattedMessage id='settings.show_reply_counter' defaultMessage='Display an estimate of the reply count' />
         </LocalSettingsPageItem>
         <section>
+          <h2><FormattedMessage id='settings.notifications_opts' defaultMessage='Notifications options' /></h2>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['notifications', 'tab_badge']}
+            id='mastodon-settings--notifications-tab_badge'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.notifications.tab_badge' defaultMessage="Display a badge for unread notifications if the notifications column isn't open" />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['notifications', 'favicon_badge']}
+            id='mastodon-settings--notifications-favicon_badge'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.notifications.favicon_badge' defaultMessage='Display unread notifications count in the favicon' />
+          </LocalSettingsPageItem>
+        </section>
+        <section>
           <h2><FormattedMessage id='settings.layout_opts' defaultMessage='Layout options' /></h2>
           <LocalSettingsPageItem
             settings={settings}
@@ -78,7 +97,6 @@ export default class LocalSettingsPage extends React.PureComponent {
     ),
     ({ intl, onChange, settings }) => (
       <div className='glitch local-settings_page compose_box_opts'>
-<section>
         <h1><FormattedMessage id='settings.compose_box_opts' defaultMessage='Compose box options' /></h1>
         <LocalSettingsPageItem
           settings={settings}

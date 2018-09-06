@@ -66,6 +66,7 @@ const mapStateToProps = state => ({
   navbarUnder: state.getIn(['local_settings', 'navbar_under']),
   dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
   unreadNotifications: state.getIn(['notifications', 'unread']),
+  showFaviconBadge: state.getIn(['local_settings', 'notifications', 'favicon_badge']),
 });
 
 const keyMap = {
@@ -118,6 +119,7 @@ export default class UI extends React.Component {
     intl: PropTypes.object.isRequired,
     dropdownMenuIsOpen: PropTypes.bool,
     unreadNotifications: PropTypes.number,
+    showFaviconBadge: PropTypes.bool,
   };
 
   state = {
@@ -272,9 +274,10 @@ export default class UI extends React.Component {
     if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
       this.columnsAreaNode.handleChildrenContentChange();
     }
-    if (this.props.unreadNotifications != prevProps.unreadNotifications) {
+    if (this.props.unreadNotifications != prevProps.unreadNotifications ||
+        this.props.showFaviconBadge != prevProps.showFaviconBadge) {
       if (this.favicon) {
-        this.favicon.badge(this.props.unreadNotifications);
+        this.favicon.badge(this.props.showFaviconBadge ? this.props.unreadNotifications : 0);
       }
     }
   }

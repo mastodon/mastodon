@@ -47,6 +47,7 @@ const messages = defineMessages({
 export default function DrawerHeader ({
   columns,
   unreadNotifications,
+  showNotificationsBadge,
   intl,
   onSettingsClick,
 }) {
@@ -81,7 +82,7 @@ export default function DrawerHeader ({
         >
           <span className='icon-badge-wrapper'>
             <Icon icon='bell' />
-            { unreadNotifications > 0 && <div className='icon-badge' />}
+            { showNotificationsBadge && unreadNotifications > 0 && <div className='icon-badge' />}
           </span>
         </Link>
       ))}
@@ -119,6 +120,7 @@ export default function DrawerHeader ({
 DrawerHeader.propTypes = {
   columns: ImmutablePropTypes.list,
   unreadNotifications: PropTypes.number,
+  showNotificationsBadge: PropTypes.bool,
   intl: PropTypes.object,
   onSettingsClick: PropTypes.func,
 };
