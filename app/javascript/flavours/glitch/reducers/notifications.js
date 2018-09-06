@@ -1,6 +1,7 @@
 import {
   NOTIFICATIONS_MOUNT,
   NOTIFICATIONS_UNMOUNT,
+  NOTIFICATIONS_SET_VISIBILITY,
   NOTIFICATIONS_UPDATE,
   NOTIFICATIONS_EXPAND_SUCCESS,
   NOTIFICATIONS_EXPAND_REQUEST,
@@ -31,6 +32,7 @@ const initialState = ImmutableMap({
   lastReadId: '0',
   isLoading: false,
   cleaningMode: false,
+  isTabVisible: true,
   // notification removal mark of new notifs loaded whilst cleaningMode is true.
   markNewForDelete: false,
 });
@@ -44,7 +46,7 @@ const notificationToMap = (state, notification) => ImmutableMap({
 });
 
 const normalizeNotification = (state, notification) => {
-  const top = state.get('top') && state.get('mounted') > 0;
+  const top = !shouldCountUnreadNotifications(state);
 
   if (top) {
     state = state.set('lastReadId', notification.id);
@@ -62,7 +64,7 @@ const normalizeNotification = (state, notification) => {
 };
 
 const expandNormalizedNotifications = (state, notifications, next) => {
-  const top = state.get('top') && state.get('mounted') > 0;
+  const top = !(shouldCountUnreadNotifications(state));
   const lastReadId = state.get('lastReadId');
   let items = ImmutableList();
 
@@ -112,7 +114,9 @@ const clearUnread = (state) => {
 }
 
 const updateTop = (state, top) => {
-  if (top && state.get('mounted') > 0) {
+  state = state.set('top', top);
+
+  if (!shouldCountUnreadNotifications(state)) {
     state = clearUnread(state);
   }
 
@@ -120,7 +124,7 @@ const updateTop = (state, top) => {
 };
 
 const deleteByStatus = (state, statusId) => {
-  const top = state.get('top') && state.get('mounted') > 0;
+  const top = !(shouldCountUnreadNotifications(state));
   if (!top) {
     const lastReadId = state.get('lastReadId');
     const deletedUnread = state.get('items').filter(item => item !== null && item.get('status') === statusId && compareId(item.get('id'), lastReadId) > 0);
@@ -157,14 +161,36 @@ const deleteMarkedNotifs = (state) => {
   return state.update('items', list => list.filterNot(item => item.get('markedForDelete')));
 };
 
+const updateMounted = (state) => {
+  state = state.update('mounted', count => count + 1);
+  if (!shouldCountUnreadNotifications(state)) {
+    state = clearUnread(state);
+  }
+  return state;
+};
+
+const updateVisibility = (state, visibility) => {
+  state = state.set('isTabVisible', visibility);
+  if (!shouldCountUnreadNotifications(state)) {
+    state = clearUnread(state);
+  }
+  return state;
+};
+
+const shouldCountUnreadNotifications = (state) => {
+  return !(state.get('isTabVisible') && state.get('top') && state.get('mounted') > 0);
+};
+
 export default function notifications(state = initialState, action) {
   let st;
 
   switch(action.type) {
   case NOTIFICATIONS_MOUNT:
-    return (state.get('top') ? clearUnread(state) : state).update('mounted', count => count + 1);
+    return updateMounted(state);
   case NOTIFICATIONS_UNMOUNT:
     return state.update('mounted', count => count - 1);
+  case NOTIFICATIONS_SET_VISIBILITY:
+    return updateVisibility(state, action.visibility);
   case NOTIFICATIONS_EXPAND_REQUEST:
   case NOTIFICATIONS_DELETE_MARKED_REQUEST:
     return state.set('isLoading', true);

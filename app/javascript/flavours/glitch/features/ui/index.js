@@ -10,7 +10,7 @@ import { isMobile } from 'flavours/glitch/util/is_mobile';
 import { debounce } from 'lodash';
 import { uploadCompose, resetCompose } from 'flavours/glitch/actions/compose';
 import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';
-import { expandNotifications } from 'flavours/glitch/actions/notifications';
+import { expandNotifications, notificationsSetVisibility } from 'flavours/glitch/actions/notifications';
 import { fetchFilters } from 'flavours/glitch/actions/filters';
 import { clearHeight } from 'flavours/glitch/actions/height_cache';
 import { WrappedSwitch, WrappedRoute } from 'flavours/glitch/util/react_router_helpers';
@@ -206,7 +206,27 @@ export default class UI extends React.Component {
     }
   }
 
+  handleVisibilityChange = () => {
+    const visibility = !document[this.visibilityHiddenProp];
+    this.props.dispatch(notificationsSetVisibility(visibility));
+  }
+
   componentWillMount () {
+    if (typeof document.hidden !== 'undefined') { // Opera 12.10 and Firefox 18 and later support
+      this.visibilityHiddenProp = 'hidden';
+      this.visibilityChange = 'visibilitychange';
+    } else if (typeof document.msHidden !== 'undefined') {
+      this.visibilityHiddenProp = 'msHidden';
+      this.visibilityChange = 'msvisibilitychange';
+    } else if (typeof document.webkitHidden !== 'undefined') {
+      this.visibilityHiddenProp = 'webkitHidden';
+      this.visibilityChange = 'webkitvisibilitychange';
+    }
+    if (this.visibilityChange !== undefined) {
+      document.addEventListener(this.visibilityChange, this.handleVisibilityChange, false);
+      this.handleVisibilityChange();
+    }
+
     window.addEventListener('beforeunload', this.handleBeforeUnload, false);
     window.addEventListener('resize', this.handleResize, { passive: true });
     document.addEventListener('dragenter', this.handleDragEnter, false);
@@ -250,6 +270,10 @@ export default class UI extends React.Component {
   }
 
   componentWillUnmount () {
+    if (this.visibilityChange !== undefined) {
+      document.removeEventListener(this.visibilityChange, this.handleVisibilityChange);
+    }
+
     window.removeEventListener('beforeunload', this.handleBeforeUnload);
     window.removeEventListener('resize', this.handleResize);
     document.removeEventListener('dragenter', this.handleDragEnter);

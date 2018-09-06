@@ -28,6 +28,8 @@ export const NOTIFICATIONS_SCROLL_TOP = 'NOTIFICATIONS_SCROLL_TOP';
 export const NOTIFICATIONS_MOUNT   = 'NOTIFICATIONS_MOUNT';
 export const NOTIFICATIONS_UNMOUNT = 'NOTIFICATIONS_UNMOUNT';
 
+export const NOTIFICATIONS_SET_VISIBILITY = 'NOTIFICATIONS_SET_VISIBILITY';
+
 defineMessages({
   mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
 });
@@ -229,5 +231,12 @@ export function mountNotifications() {
 export function unmountNotifications() {
   return {
     type: NOTIFICATIONS_UNMOUNT,
+  };
+};
+
+export function notificationsSetVisibility(visibility) {
+  return {
+    type: NOTIFICATIONS_SET_VISIBILITY,
+    visibility: visibility,
   };
 };
