@@ -10,6 +10,7 @@ import LocalSettingsNavigationItem from './item';
 
 const messages = defineMessages({
   general: {  id: 'settings.general', defaultMessage: 'General' },
+  compose: {  id: 'settings.compose_box_opts', defaultMessage: 'Compose box options' },
   content_warnings: { id: 'settings.content_warnings', defaultMessage: 'Content Warnings' },
   collapsed: { id: 'settings.collapsed_statuses', defaultMessage: 'Collapsed toots' },
   media: { id: 'settings.media', defaultMessage: 'Media' },
@@ -43,31 +44,37 @@ export default class LocalSettingsNavigation extends React.PureComponent {
           active={index === 1}
           index={1}
           onNavigate={onNavigate}
-          title={intl.formatMessage(messages.content_warnings)}
+          title={intl.formatMessage(messages.compose)}
         />
         <LocalSettingsNavigationItem
           active={index === 2}
           index={2}
           onNavigate={onNavigate}
-          title={intl.formatMessage(messages.collapsed)}
+          title={intl.formatMessage(messages.content_warnings)}
         />
         <LocalSettingsNavigationItem
           active={index === 3}
           index={3}
           onNavigate={onNavigate}
-          title={intl.formatMessage(messages.media)}
+          title={intl.formatMessage(messages.collapsed)}
         />
         <LocalSettingsNavigationItem
           active={index === 4}
-          href='/settings/preferences'
           index={4}
+          onNavigate={onNavigate}
+          title={intl.formatMessage(messages.media)}
+        />
+        <LocalSettingsNavigationItem
+          active={index === 5}
+          href='/settings/preferences'
+          index={5}
           icon='cog'
           title={intl.formatMessage(messages.preferences)}
         />
         <LocalSettingsNavigationItem
-          active={index === 5}
+          active={index === 6}
           className='close'
-          index={5}
+          index={6}
           onNavigate={onClose}
           title={intl.formatMessage(messages.close)}
         />
