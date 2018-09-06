@@ -17,6 +17,7 @@ import { WrappedSwitch, WrappedRoute } from 'flavours/glitch/util/react_router_h
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
 import classNames from 'classnames';
+import Favico from 'favico.js';
 import {
   Drawer,
   Status,
@@ -64,6 +65,7 @@ const mapStateToProps = state => ({
   isWide: state.getIn(['local_settings', 'stretch']),
   navbarUnder: state.getIn(['local_settings', 'navbar_under']),
   dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
+  unreadNotifications: state.getIn(['notifications', 'unread']),
 });
 
 const keyMap = {
@@ -115,6 +117,7 @@ export default class UI extends React.Component {
     history: PropTypes.object.isRequired,
     intl: PropTypes.object.isRequired,
     dropdownMenuIsOpen: PropTypes.bool,
+    unreadNotifications: PropTypes.number,
   };
 
   state = {
@@ -239,6 +242,8 @@ export default class UI extends React.Component {
       navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
     }
 
+    this.favicon = new Favico({ animation:"none" });
+
     this.props.dispatch(expandHomeTimeline());
     this.props.dispatch(expandNotifications());
     setTimeout(() => this.props.dispatch(fetchFilters()), 500);
@@ -266,6 +271,11 @@ export default class UI extends React.Component {
   componentDidUpdate (prevProps) {
     if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
       this.columnsAreaNode.handleChildrenContentChange();
+    }
+    if (this.props.unreadNotifications != prevProps.unreadNotifications) {
+      if (this.favicon) {
+        this.favicon.badge(this.props.unreadNotifications);
+      }
     }
   }
 
