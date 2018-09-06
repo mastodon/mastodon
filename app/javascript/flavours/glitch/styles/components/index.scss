@@ -1121,6 +1121,22 @@
   left: 0;
 }
 
+.icon-badge-wrapper {
+  position: relative;
+}
+
+.icon-badge {
+  position: absolute;
+  display: block;
+  right: -.25em;
+  top: -.25em;
+  background-color: $ui-highlight-color;
+  border-radius: 50%;
+  font-size: 75%;
+  width: 1em;
+  height: 1em;
+}
+
 ::-webkit-scrollbar-thumb {
   border-radius: 0;
 }
