@@ -194,14 +194,12 @@ class Status < ApplicationRecord
   def title
     if destroyed?
       "#{account.acct} deleted status"
-    else
-      if reblog?
+    elsif reblog?
         preview = sensitive ? '<sensitive>' : text.slice(0, 10).split("\n")[0]
         "#{account.acct} shared #{reblog.account.acct}'s: #{preview}"
-      else
-        preview = sensitive ? '<sensitive>' : text.slice(0, 20).split("\n")[0]
-        "#{account.acct}: #{preview}"
-      end
+    else
+      preview = sensitive ? '<sensitive>' : text.slice(0, 20).split("\n")[0]
+      "#{account.acct}: #{preview}"
     end
   end
 
