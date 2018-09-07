@@ -7,12 +7,12 @@ class UpdateAccountService < BaseService
     if params[:subaction] == 'clear_avatar'
       params = {
         avatar: nil,
-        avatar_remote_url: ''
+        avatar_remote_url: '',
       }
     elsif params[:subaction] == 'clear_header'
       params = {
         header: nil,
-        header_remote_url: ''
+        header_remote_url: '',
       }
     end
     account.send(update_method, params).tap do |ret|
