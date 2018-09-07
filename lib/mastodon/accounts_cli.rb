@@ -43,6 +43,81 @@ module Mastodon
       end
     end
 
+    option :email, required: true
+    option :confirmed, type: :boolean
+    option :role, default: 'user'
+    option :reattach, type: :boolean
+    option :force, type: :boolean
+    desc 'add USERNAME', 'Create a new user'
+    long_desc <<-LONG_DESC
+      Create a new user account with a given USERNAME and an
+      e-mail address provided with --email.
+
+      With the --confirmed option, the confirmation e-mail will
+      be skipped and the account will be active straight away.
+
+      With the --role option one of  "user", "admin" or "moderator"
+      can be supplied. Defaults to "user"
+
+      With the --reattach option, the new user will be reattached
+      to a given existing username of an old account. If the old
+      account is still in use by someone else, you can supply
+      the --force option to delete the old record and reattach the
+      username to the new account anyway.
+    LONG_DESC
+    def add(username)
+      account  = Account.new(username: username)
+      password = SecureRandom.hex
+      user     = User.new(email: options[:email], password: password, admin: options[:role] == 'admin', moderator: options[:role] == 'moderator', confirmed_at: Time.now.utc)
+
+      if options[:reattach]
+        account = Account.find_local(username) || Account.new(username: username)
+
+        if account.user.present? && !options[:force]
+          say('The chosen username is currently in use', :red)
+          say('Use --force to reattach it anyway and delete the other user')
+          return
+        elsif account.user.present?
+          account.user.destroy!
+        end
+      end
+
+      user.account = account
+
+      if user.save
+        if options[:confirmed]
+          user.confirmed_at = nil
+          user.confirm!
+        end
+
+        say('OK', :green)
+        say("New password: #{password}")
+      else
+        user.errors.to_h.each do |key, error|
+          say('Failure/Error: ', :red)
+          say(key)
+          say('    ' + error, :red)
+        end
+      end
+    end
+
+    desc 'del USERNAME', 'Delete a user'
+    long_desc <<-LONG_DESC
+      Remove a user account with a given USERNAME.
+    LONG_DESC
+    def del(username)
+      account = Account.find_local(username)
+
+      if account.nil?
+        say('No user with such username', :red)
+        return
+      end
+
+      say("Deleting user with #{account.statuses_count}, this might take a while...")
+      SuspendAccountService.new.call(account, remove_user: true)
+      say('OK', :green)
+    end
+
     private
 
     def rotate_keys_for_account(account, delay = 0)
