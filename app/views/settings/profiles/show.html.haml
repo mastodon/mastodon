@@ -12,8 +12,13 @@
 
   .fields-group
     = f.input :avatar, wrapper: :with_label, input_html: { accept: AccountAvatar::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.avatar', dimensions: '400x400', size: number_to_human_size(AccountAvatar::LIMIT))
+    .actions
+      = f.button :button, t('generic.clear'), name: 'account[subaction]', type: :submit, value: 'clear_avatar'
 
     = f.input :header, wrapper: :with_label, input_html: { accept: AccountHeader::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.header', dimensions: '1500x500', size: number_to_human_size(AccountHeader::LIMIT))
+    .actions
+      = f.button :button, t('generic.clear'), name: 'account[subaction]', type: :submit, value: 'clear_header'
+
 
   .fields-group
     = f.input :locked, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.locked')
