@@ -118,6 +118,70 @@ module Mastodon
       say('OK', :green)
     end
 
+    option :dry_run, type: :boolean
+    desc 'cull', 'Remove remote accounts that no longer exist'
+    long_desc <<-LONG_DESC
+      Query every single remote account in the database to determine
+      if it still exists on the origin server, and if it doesn't,
+      remove it from the database.
+
+      Accounts that have had confirmed activity within the last week
+      are excluded from the checks.
+
+      If 10 or more accounts from the same domain cannot be queried
+      due to a connection error (such as missing DNS records) then
+      the domain is considered dead, and all other accounts from it
+      are deleted without further querying.
+
+      With the --dry-run option, no deletes will actually be carried
+      out.
+    LONG_DESC
+    def cull
+      domain_thresholds = Hash.new { |hash, key| hash[key] = 0 }
+      skip_threshold    = 7.days.ago
+      culled            = 0
+      dead_servers      = []
+      dry_run           = options[:dry_run] ? ' (DRY RUN)' : ''
+
+      Account.remote.where(protocol: :activitypub).partitioned.find_each do |account|
+        next if account.updated_at >= skip_threshold || account.last_webfingered_at >= skip_threshold
+
+        unless dead_servers.include?(account.domain)
+          begin
+            code = Request.new(:head, account.uri).perform(&:code)
+          rescue HTTP::ConnectionError
+            domain_thresholds[account.domain] += 1
+
+            if domain_thresholds[account.domain] >= 10
+              dead_servers << account.domain
+            end
+          rescue StandardError
+            next
+          end
+        end
+
+        if [404, 410].include?(code) || dead_servers.include?(account.domain)
+          unless options[:dry_run]
+            SuspendAccountService.new.call(account)
+            account.destroy
+          end
+
+          culled += 1
+          say('.', :green, false)
+        else
+          say('.', nil, false)
+        end
+      end
+
+      say
+      say("Removed #{culled} accounts (#{dead_servers.size} dead servers)#{dry_run}", :green)
+
+      unless dead_servers.empty?
+        say('R.I.P.:', :yellow)
+        dead_servers.each { |domain| say('    ' + domain) }
+      end
+    end
+
     private
 
     def rotate_keys_for_account(account, delay = 0)
