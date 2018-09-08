@@ -13,6 +13,9 @@ class FanOutOnWriteService < BaseService
     if status.direct_visibility?
       deliver_to_mentioned_followers(status)
       deliver_to_direct_timelines(status)
+    elsif status.private_visibility?
+      deliver_to_full_followers(status)
+      deliver_to_full_lists(status)
     else
       deliver_to_followers(status)
       deliver_to_lists(status)
@@ -45,10 +48,30 @@ class FanOutOnWriteService < BaseService
     end
   end
 
+  def deliver_to_full_followers(status)
+    Rails.logger.debug "Delivering status #{status.id} to fully authorized followers"
+
+    status.account.followers_for_local_distribution.select(:id).where(full: true).reorder(nil).find_in_batches do |followers|
+      FeedInsertWorker.push_bulk(followers) do |follower|
+        [status.id, follower.id, :home]
+      end
+    end
+  end
+
   def deliver_to_lists(status)
     Rails.logger.debug "Delivering status #{status.id} to lists"
 
     status.account.lists_for_local_distribution.select(:id).reorder(nil).find_in_batches do |lists|
+      FeedInsertWorker.push_bulk(lists) do |list|
+        [status.id, list.id, :list]
+      end
+    end
+  end
+
+  def deliver_to_full_lists(status)
+    Rails.logger.debug "Delivering status #{status.id} to lists of fully authorized followers"
+
+    status.account.lists_for_local_distribution.select(:id).where(full: true).reorder(nil).find_in_batches do |lists|
       FeedInsertWorker.push_bulk(lists) do |list|
         [status.id, list.id, :list]
       end

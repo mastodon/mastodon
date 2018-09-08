@@ -87,11 +87,11 @@ module AccountInteractions
     has_many :domain_blocks, class_name: 'AccountDomainBlock', dependent: :destroy
   end
 
-  def follow!(other_account, reblogs: nil, uri: nil)
+  def follow!(other_account, reblogs: nil, uri: nil, full_follow: true)
     reblogs = true if reblogs.nil?
 
-    rel = active_relationships.create_with(show_reblogs: reblogs, uri: uri)
-                              .find_or_create_by!(target_account: other_account, full: full_follow)
+    rel = active_relationships.create_with(show_reblogs: reblogs, uri: uri, full: full_follow)
+                              .find_or_create_by!(target_account: other_account)
 
     rel.update!(show_reblogs: reblogs)
     remove_potential_friendship(other_account)

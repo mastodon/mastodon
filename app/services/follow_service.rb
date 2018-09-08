@@ -54,7 +54,7 @@ class FollowService < BaseService
   end
 
   def direct_follow(source_account, target_account, reblogs: true)
-    follow = source_account.follow!(target_account, reblogs: reblogs, full: true)
+    follow = source_account.follow!(target_account, reblogs: reblogs, full_follow: true)
 
     if target_account.local?
       NotifyService.new.call(target_account, follow)
