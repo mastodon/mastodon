@@ -24,7 +24,7 @@ class FollowRequest < ApplicationRecord
   validates :account_id, uniqueness: { scope: :target_account_id }
 
   def authorize!
-    account.follow!(target_account, reblogs: show_reblogs, uri: uri)
+    account.follow!(target_account, reblogs: show_reblogs, uri: uri, full: true)
     MergeWorker.perform_async(target_account.id, account.id)
     destroy!
   end
@@ -41,5 +41,12 @@ class FollowRequest < ApplicationRecord
 
   def set_uri
     self.uri = ActivityPub::TagManager.instance.generate_uri_for(self) if uri.nil?
+  end
+
+  def soft_follow!
+    account.follow!(target_account, full_follow: false)
+    MergeWorker.perform_async(target_account.id, account.id)
+
+    destroy!
   end
 end

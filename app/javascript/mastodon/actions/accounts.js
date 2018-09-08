@@ -70,6 +70,10 @@ export const FOLLOW_REQUEST_AUTHORIZE_REQUEST = 'FOLLOW_REQUEST_AUTHORIZE_REQUES
 export const FOLLOW_REQUEST_AUTHORIZE_SUCCESS = 'FOLLOW_REQUEST_AUTHORIZE_SUCCESS';
 export const FOLLOW_REQUEST_AUTHORIZE_FAIL    = 'FOLLOW_REQUEST_AUTHORIZE_FAIL';
 
+export const FOLLOW_REQUEST_SOFTAUTH_REQUEST = 'FOLLOW_REQUEST_SOFTAUTH_REQUEST';
+export const FOLLOW_REQUEST_SOFTAUTH_SUCCESS = 'FOLLOW_REQUEST_SOFTAUTH_SUCCESS';
+export const FOLLOW_REQUEST_SOFTAUTH_FAIL    = 'FOLLOW_REQUEST_SOFTAUTH_FAIL';
+
 export const FOLLOW_REQUEST_REJECT_REQUEST = 'FOLLOW_REQUEST_REJECT_REQUEST';
 export const FOLLOW_REQUEST_REJECT_SUCCESS = 'FOLLOW_REQUEST_REJECT_SUCCESS';
 export const FOLLOW_REQUEST_REJECT_FAIL    = 'FOLLOW_REQUEST_REJECT_FAIL';
@@ -669,6 +673,39 @@ export function authorizeFollowRequestFail(id, error) {
   };
 };
 
+
+export function softauthFollowRequest(id) {
+  return (dispatch, getState) => {
+    dispatch(softauthFollowRequestRequest(id));
+
+    api(getState)
+      .post(`/api/v1/follow_requests/${id}/softauth`)
+      .then(() => dispatch(softauthFollowRequestSuccess(id)))
+      .catch(error => dispatch(softauthFollowRequestFail(id, error)));
+  };
+};
+
+export function softauthFollowRequestRequest(id) {
+  return {
+    type: FOLLOW_REQUEST_SOFTAUTH_REQUEST,
+    id,
+  };
+};
+
+export function softauthFollowRequestSuccess(id) {
+  return {
+    type: FOLLOW_REQUEST_SOFTAUTH_SUCCESS,
+    id,
+  };
+};
+
+export function softauthFollowRequestFail(id, error) {
+  return {
+    type: FOLLOW_REQUEST_SOFTAUTH_FAIL,
+    id,
+    error,
+  };
+};
 
 export function rejectFollowRequest(id) {
   return (dispatch, getState) => {

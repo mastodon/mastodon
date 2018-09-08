@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { makeGetAccount } from '../../../selectors';
 import AccountAuthorize from '../components/account_authorize';
-import { authorizeFollowRequest, rejectFollowRequest } from '../../../actions/accounts';
+import { authorizeFollowRequest, rejectFollowRequest, softauthFollowRequest } from '../../../actions/accounts';
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();
@@ -20,6 +20,10 @@ const mapDispatchToProps = (dispatch, { id }) => ({
 
   onReject () {
     dispatch(rejectFollowRequest(id));
+  },
+
+  onSoftAuth () {
+    dispatch(softauthFollowRequest(id));
   },
 });
 

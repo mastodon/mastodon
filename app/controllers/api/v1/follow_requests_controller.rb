@@ -17,6 +17,11 @@ class Api::V1::FollowRequestsController < Api::BaseController
     render_empty
   end
 
+  def softauth
+    AuthorizeFollowService.new.call(account, current_account, soft_follow: true)
+    render_empty
+  end
+
   def reject
     RejectFollowService.new.call(account, current_account)
     render_empty

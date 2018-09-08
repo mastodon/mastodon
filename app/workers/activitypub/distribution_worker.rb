@@ -31,7 +31,11 @@ class ActivityPub::DistributionWorker
   end
 
   def inboxes
-    @inboxes ||= @account.followers.inboxes
+    if @status.private_visibility?
+      @inboxes ||= @account.full_followers.inboxes
+    else
+      @inboxes ||= @account.followers.inboxes
+    end
   end
 
   def signed_payload

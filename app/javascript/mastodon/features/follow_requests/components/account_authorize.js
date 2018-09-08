@@ -10,6 +10,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   authorize: { id: 'follow_request.authorize', defaultMessage: 'Authorize' },
+  softauth: { id: 'follow_request.softauth', defaultMessage: 'Semi-Authorize' },
   reject: { id: 'follow_request.reject', defaultMessage: 'Reject' },
 });
 
@@ -19,12 +20,13 @@ export default class AccountAuthorize extends ImmutablePureComponent {
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
     onAuthorize: PropTypes.func.isRequired,
+    onSoftAuth: PropTypes.func.isRequired,
     onReject: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
   render () {
-    const { intl, account, onAuthorize, onReject } = this.props;
+    const { intl, account, onAuthorize, onReject, onSoftAuth } = this.props;
     const content = { __html: account.get('note_emojified') };
 
     return (
@@ -40,7 +42,8 @@ export default class AccountAuthorize extends ImmutablePureComponent {
 
         <div className='account--panel'>
           <div className='account--panel__button'><IconButton title={intl.formatMessage(messages.authorize)} icon='check' onClick={onAuthorize} /></div>
-          <div className='account--panel__button'><IconButton title={intl.formatMessage(messages.reject)} icon='times' onClick={onReject} /></div>
+          <div className='account--panel__button'><IconButton title={intl.formatMessage(messages.reject)} icon='ban' onClick={onReject} /></div>
+          <div className='account--panel__button'><IconButton title={intl.formatMessage(messages.softauth)} icon='times' onClick={onSoftAuth} /></div>
         </div>
       </div>
     );

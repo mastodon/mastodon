@@ -10,6 +10,7 @@
 #  target_account_id :bigint(8)        not null
 #  show_reblogs      :boolean          default(TRUE), not null
 #  uri               :string
+#  full              :boolean
 #
 
 class Follow < ApplicationRecord
