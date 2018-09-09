@@ -17,7 +17,7 @@ namespace :repo do
       contributors = Oj.load(response.body)
       contributors.each do |c|
         file << "* [#{c['login']}](#{c['html_url']})\n" if c['login']
-        file << "* [#{c['name']}](#{c['email']})\n" if c['name']
+        file << "* [#{c['name']}](mailto:#{c['email']})\n" if c['name']
       end
       url = LinkHeader.parse(response.headers['Link']).find_link(%w(rel next))&.href
     end
