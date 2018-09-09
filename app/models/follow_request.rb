@@ -29,6 +29,13 @@ class FollowRequest < ApplicationRecord
     destroy!
   end
 
+  def soft_follow!
+    account.follow!(target_account, full_follow: false)
+    MergeWorker.perform_async(target_account.id, account.id)
+
+    destroy!
+  end
+
   alias reject! destroy!
 
   def local?
@@ -41,12 +48,5 @@ class FollowRequest < ApplicationRecord
 
   def set_uri
     self.uri = ActivityPub::TagManager.instance.generate_uri_for(self) if uri.nil?
-  end
-
-  def soft_follow!
-    account.follow!(target_account, full_follow: false)
-    MergeWorker.perform_async(target_account.id, account.id)
-
-    destroy!
   end
 end
