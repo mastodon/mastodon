@@ -28,8 +28,10 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def destroy
+    tmp_stored_location = stored_location_for(:user)
     super
     flash.delete(:notice)
+    store_location_for(:user, tmp_stored_location) if continue_after?
   end
 
   protected
@@ -124,8 +126,14 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def clear_site_data
+    return if continue_after?
+
     # Should be '"*"' but that doen't work in Chrome (neither does '"executionContexts"')
     # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data
     response.headers['Clear-Site-Data'] = '"cache", "cookies", "storage"'
+  end
+
+  def continue_after?
+    truthy_param?(:continue)
   end
 end
