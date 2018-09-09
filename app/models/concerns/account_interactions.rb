@@ -69,6 +69,7 @@ module AccountInteractions
     has_many :passive_relationships, class_name: 'Follow', foreign_key: 'target_account_id', dependent: :destroy
 
     has_many :following, -> { order('follows.id desc') }, through: :active_relationships,  source: :target_account
+    has_many :full_following, -> { where(full: true).order('follows.id desc') }, through: :active_relationships,  source: :target_account
     has_many :followers, -> { order('follows.id desc') }, through: :passive_relationships, source: :account
     has_many :full_followers, -> { where(full: true).order('follows.id desc') }, through: :passive_relationships, source: :account
 
@@ -153,6 +154,10 @@ module AccountInteractions
 
   def following?(other_account)
     active_relationships.where(target_account: other_account).exists?
+  end
+
+  def fully_following?(other_account)
+    active_relationships.where(target_account: other_account, full: true).exists?
   end
 
   def blocking?(other_account)

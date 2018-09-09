@@ -15,7 +15,7 @@ class StatusPolicy < ApplicationPolicy
     if direct?
       owned? || mention_exists?
     elsif private?
-      owned? || following_author? || mention_exists?
+      owned? || fully_following_author? || mention_exists?
     else
       current_account.nil? || !author_blocking?
     end
@@ -79,6 +79,12 @@ class StatusPolicy < ApplicationPolicy
     return false if current_account.nil?
 
     @preloaded_relations[:following] ? @preloaded_relations[:following][author.id] : current_account.following?(author)
+  end
+
+  def fully_following_author?
+    return false if current_account.nil?
+
+    @preloaded_relations[:full_following] ? @preloaded_relations[:full_following][author.id] : current_account.fully_following?(author)
   end
 
   def author

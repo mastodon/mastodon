@@ -344,7 +344,7 @@ class Status < ApplicationRecord
       else
         # followers can see followers-only stuff, but also things they are mentioned in.
         # non-followers can see everything that isn't private/direct, but can see stuff they are mentioned in.
-        visibility.push(:private) if account.following?(target_account)
+        visibility.push(:private) if account.fully_following?(target_account)
 
         scope = left_outer_joins(:reblog)
 
