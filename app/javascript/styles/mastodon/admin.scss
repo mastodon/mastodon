@@ -629,10 +629,18 @@ a.name-tag,
         box-sizing: border-box;
         width: 150px;
         color: $darker-text-color;
+
+        &,
+        .username {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
 
       &__content {
         flex: 1 1 auto;
+        max-width: calc(100% - 300px);
 
         &__icon {
           color: $dark-text-color;

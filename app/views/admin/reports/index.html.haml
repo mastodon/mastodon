@@ -28,7 +28,10 @@
       - reports.each do |report|
         .report-card__summary__item
           .report-card__summary__item__reported-by
-            = admin_account_link_to report.account
+            - if report.account.local?
+              = admin_account_link_to report.account
+            - else
+              = report.account.domain
           .report-card__summary__item__content
             = link_to admin_report_path(report) do
               .one-line= report.comment.presence || t('admin.reports.comment.none')
