@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AccountRelationshipsPresenter
-  attr_reader :following, :followed_by, :blocking,
+  attr_reader :following, :full_following, :followed_by, :full_followed_by, :blocking,
               :muting, :requested, :domain_blocking,
               :endorsed
 
@@ -10,7 +10,7 @@ class AccountRelationshipsPresenter
     @current_account_id = current_account_id
 
     @following       = cached[:following].merge(Account.following_map(@uncached_account_ids, @current_account_id))
-    @fully_following = cached[:full_following].merge(Account.full_following_map(@uncached_account_ids, @current_account_id))
+    @full_following = cached[:full_following].merge(Account.full_following_map(@uncached_account_ids, @current_account_id))
     @followed_by     = cached[:followed_by].merge(Account.followed_by_map(@uncached_account_ids, @current_account_id))
     @full_followed_by = cached[:full_followed_by].merge(Account.full_followed_by_map(@uncached_account_ids, @current_account_id))
     @blocking        = cached[:blocking].merge(Account.blocking_map(@uncached_account_ids, @current_account_id))
@@ -39,7 +39,9 @@ class AccountRelationshipsPresenter
 
     @cached = {
       following: {},
+      full_following: {},
       followed_by: {},
+      full_followed_by: {},
       blocking: {},
       muting: {},
       requested: {},
