@@ -43,7 +43,7 @@ export default class Card extends React.PureComponent {
       Immutable.fromJS([
         {
           type: 'image',
-          url: card.get('url'),
+          url: card.get('embed_url'),
           description: card.get('title'),
           meta: {
             original: {
