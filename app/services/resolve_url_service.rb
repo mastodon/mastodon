@@ -18,10 +18,20 @@ class ResolveURLService < BaseService
   private
 
   def process_url
-    if equals_or_includes_any?(type, %w(Application Group Organization Person Service))
-      FetchRemoteAccountService.new.call(atom_url, body, protocol)
-    elsif equals_or_includes_any?(type, %w(Note Article Image Video))
-      FetchRemoteStatusService.new.call(atom_url, body, protocol)
+    object_url = atom_url
+    object_body = body
+    object_type = type
+
+    if protocol == :activitypub && type == 'Create'
+      object_url = json_data['object']['id']
+      object_type = json_data['object']['type']
+      object_body = nil
+    end
+
+    if equals_or_includes_any?(object_type, %w(Application Group Organization Person Service))
+      FetchRemoteAccountService.new.call(object_url, object_body, protocol)
+    elsif equals_or_includes_any?(object_type, %w(Note Article Image Video))
+      FetchRemoteStatusService.new.call(object_url, object_body, protocol)
     end
   end
 

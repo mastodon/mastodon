@@ -62,7 +62,8 @@ class FetchAtomService < BaseService
   end
 
   def expected_type?(json)
-    equals_or_includes_any?(json['type'], ActivityPub::Activity::Create::SUPPORTED_TYPES + ActivityPub::Activity::Create::CONVERTED_TYPES)
+    type = json['type'] == 'Create' && json['object'] ? json['object']['type'] : json['type']
+    equals_or_includes_any?(type, ActivityPub::Activity::Create::SUPPORTED_TYPES + ActivityPub::Activity::Create::CONVERTED_TYPES)
   end
 
   def process_html(response)
