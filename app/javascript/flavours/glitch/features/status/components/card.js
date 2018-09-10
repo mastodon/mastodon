@@ -101,7 +101,7 @@ export default class Card extends React.PureComponent {
         onClick={this.handlePhotoClick}
         role='button'
         tabIndex='0'
-        src={card.get('url')}
+        src={card.get('embed_url')}
         alt={card.get('title')}
         width={card.get('width')}
         height={card.get('height')}
