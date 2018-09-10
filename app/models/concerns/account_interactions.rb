@@ -210,6 +210,12 @@ module AccountInteractions
              .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
   end
 
+  def full_followers_for_local_distribution
+    full_followers.local
+             .joins(:user)
+             .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
+  end
+
   def lists_for_local_distribution
     lists.joins(account: :user)
          .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)

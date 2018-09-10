@@ -26,10 +26,6 @@ class FeedInsertWorker
     perform_push unless feed_filtered?
   end
 
-  def full_follower?
-    Follow.select('full').find_by(account: follower.id, target_account: status.account_id)
-  end
-
   def feed_filtered?
     # Note: Lists are a variation of home, so the filtering rules
     # of home apply to both

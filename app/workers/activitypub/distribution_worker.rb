@@ -32,8 +32,10 @@ class ActivityPub::DistributionWorker
 
   def inboxes
     if @status.private_visibility?
-      @inboxes ||= @account.full_followers.inboxes
+      Rails.logger.debug "Using fully authorised inboxes"
+      @inboxes = @account.full_followers.inboxes
     else
+      Rails.logger.debug "Using all followers' inboxes"
       @inboxes ||= @account.followers.inboxes
     end
   end
