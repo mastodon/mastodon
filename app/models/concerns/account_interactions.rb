@@ -81,9 +81,9 @@ module AccountInteractions
     has_many :passive_relationships, class_name: 'Follow', foreign_key: 'target_account_id', dependent: :destroy
 
     has_many :following, -> { order('follows.id desc') }, through: :active_relationships,  source: :target_account
-    has_many :full_following, -> { where(full_access: true).order('follows.id desc') }, through: :active_relationships,  source: :target_account
+    has_many :full_following, -> { where('follows.full_access = true').order('follows.id desc') }, through: :active_relationships,  source: :target_account
     has_many :followers, -> { order('follows.id desc') }, through: :passive_relationships, source: :account
-    has_many :full_followers, -> { where(full_access: true).order('follows.id desc') }, through: :passive_relationships, source: :account
+    has_many :full_followers, -> { where('follows.full_access = true').order('follows.id desc') }, through: :passive_relationships, source: :account
 
     # Block relationships
     has_many :block_relationships, class_name: 'Block', foreign_key: 'account_id', dependent: :destroy
