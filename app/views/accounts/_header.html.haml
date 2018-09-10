@@ -3,7 +3,10 @@
     = image_tag account.header.url, class: 'parallax'
   .public-account-header__bar
     = link_to short_account_url(account), class: 'avatar' do
-      = image_tag account.avatar.url
+      - if current_account&.user&.setting_auto_play_gif
+        = image_tag account.avatar_original_url
+      - else
+        = image_tag account.avatar_static_url
     .public-account-header__tabs
       .public-account-header__tabs__name
         %h1
