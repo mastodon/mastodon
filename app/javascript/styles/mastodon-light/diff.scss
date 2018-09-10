@@ -370,3 +370,9 @@
 .nothing-here {
   box-shadow: none;
 }
+
+.language-select-modal__entry {
+  &.current {
+    color: lighten($highlight-text-color, 24%);
+  }
+}
