@@ -5,10 +5,10 @@ sk:
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových
       protokoloch. Jej zrojový kód je otvorený a je decentralizovaná podobne ako email.
     about_this: O tejto instancii
-    administered_by: 'Správca je:'
-    closed_registrations: Registrácie sú momentálne uzatvorené. Avšak, môžeš nájsť
-      nejaký iný Mastodon server kde si založ účet a získaj tak prístup do presne
-      tej istej siete, odtiaľ.
+    administered_by: 'Správcom je:'
+    closed_registrations: Registrácie sú na tomto serveri momentálne uzatvorené. Avšak,
+      môžeš nájsť nejaký iný Mastodon server kde si založ účet a získaj tak prístup
+      do presne tej istej siete, odtiaľ.
     contact: Kontakt
     contact_missing: Nezadané
     contact_unavailable: Neuvedené
@@ -49,9 +49,12 @@ sk:
     documentation: Dokumentácia
     privacy_policy: Ustanovenia o súkromí
     terms: Podmienky užívania
+    api: API
   accounts:
     follow: Sledovať
-    followers: Sledujúci
+    followers:
+      one: Následovateľ
+      other: Následovatelia
     following: Sleduje
     media: Médiá
     moved_html: '%{name} účet bol presunutý na %{new_profile_link}:'
@@ -59,7 +62,9 @@ sk:
     nothing_here: Nič tu nie je!
     people_followed_by: Ľudia, ktorých %{name} sleduje
     people_who_follow: Ľudia sledujúci %{name}
-    posts: Príspevky
+    posts:
+      one: Príspevok
+      other: Príspevky
     posts_with_replies: Príspevky s odpoveďami
     reserved_username: Prihlasovacie meno je rezervované
     roles:
@@ -68,6 +73,8 @@ sk:
       moderator: Moderátor
     unfollow: Prestať sledovať
     choices_html: '%{name}vé voľby:'
+    joined: Pridal/a sa %{date}
+    posts_tab_heading: Príspevky
   admin:
     account_moderation_notes:
       create: Zanechaj poznámku
@@ -199,6 +206,7 @@ sk:
         update_custom_emoji: '%{name} aktualizoval/a emoji %{target}'
         update_status: '%{name} aktualizoval/a status pre %{target}'
       title: Kontrólny záznam
+      deleted_status: (zmazaný príspevok)
     custom_emojis:
       by_domain: Doména
       copied_msg: Lokálna kópia emoji úspešne vytvorená
@@ -237,6 +245,13 @@ sk:
       software: Softvér
       space: Využitie miesta
       total_users: užívateľov celkovo
+      search: Celofrázové vyhľadávanie
+      single_user_mode: Jednouživateľské rozhranie
+      title: Spravovacie rozhranie
+      trends: Trendy
+      week_interactions: Tohto týždňové interakcie
+      week_users_active: aktívni tento týždeň
+      week_users_new: užívateľov počas tohto týždňa
     domain_blocks:
       add_new: Pridať nový
       created_msg: Doména je v procese blokovania
@@ -306,6 +321,10 @@ sk:
         instanciám objavovať federovaný obsah</strong>, čo inak vyžaduje aby miestni
         užívatelia ručne následovali iných ľudí zo vzdialených instancií.
       status: Stav
+      inbox_url: URL mostu
+      save_and_enable: Uložiť a povoliť
+      setup: Nastav prepojenie s mostom
+      title: Mosty
     report_notes:
       created_msg: Poznámka o nahlásení úspešne vytvorená!
       destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
@@ -415,6 +434,11 @@ sk:
         desc_html: Zobraziť verejnú nástenku na hlavnej stránke
         title: Náhľad nástenky
       title: Nastavenia stránky
+      custom_css:
+        desc_html: Uprav vzhľad pomocou CSS, ktoré je načítané na každej stránke
+        title: Vlastné CSS
+      site_short_description:
+        title: Krátky popis instancie
     statuses:
       back_to_account: Späť na účet
       batch:
