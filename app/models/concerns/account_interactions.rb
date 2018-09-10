@@ -12,8 +12,20 @@ module AccountInteractions
       end
     end
 
+    def full_following_map(target_account_ids, account_id)
+      Follow.where(target_account_id: target_account_ids, account_id: account_id, full_access: true).each_with_object({}) do |follow, mapping|
+        mapping[follow.target_account_id] = {
+          reblogs: follow.show_reblogs?,
+        }
+      end
+    end
+
     def followed_by_map(target_account_ids, account_id)
       follow_mapping(Follow.where(account_id: target_account_ids, target_account_id: account_id), :account_id)
+    end
+
+    def full_followed_by_map(target_account_ids, account_id)
+      follow_mapping(Follow.where(account_id: target_account_ids, target_account_id: account_id, full_access: true), :account_id)
     end
 
     def blocking_map(target_account_ids, account_id)

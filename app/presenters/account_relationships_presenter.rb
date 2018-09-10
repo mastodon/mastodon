@@ -10,7 +10,9 @@ class AccountRelationshipsPresenter
     @current_account_id = current_account_id
 
     @following       = cached[:following].merge(Account.following_map(@uncached_account_ids, @current_account_id))
+    @fully_following = cached[:full_following].merge(Account.full_following_map(@uncached_account_ids, @current_account_id))
     @followed_by     = cached[:followed_by].merge(Account.followed_by_map(@uncached_account_ids, @current_account_id))
+    @full_followed_by = cached[:full_followed_by].merge(Account.full_followed_by_map(@uncached_account_ids, @current_account_id))
     @blocking        = cached[:blocking].merge(Account.blocking_map(@uncached_account_ids, @current_account_id))
     @muting          = cached[:muting].merge(Account.muting_map(@uncached_account_ids, @current_account_id))
     @requested       = cached[:requested].merge(Account.requested_map(@uncached_account_ids, @current_account_id))
@@ -20,7 +22,9 @@ class AccountRelationshipsPresenter
     cache_uncached!
 
     @following.merge!(options[:following_map] || {})
+    @full_following.merge!(options[:full_following_map] || {})
     @followed_by.merge!(options[:followed_by_map] || {})
+    @full_followed_by.merge!(options[:full_followed_by_map] || {})
     @blocking.merge!(options[:blocking_map] || {})
     @muting.merge!(options[:muting_map] || {})
     @requested.merge!(options[:requested_map] || {})
@@ -62,7 +66,9 @@ class AccountRelationshipsPresenter
     @uncached_account_ids.each do |account_id|
       maps_for_account = {
         following:       { account_id => following[account_id] },
+        full_following:   { account_id => full_following[account_id] },
         followed_by:     { account_id => followed_by[account_id] },
+        full_followed_by: { account_id => full_followed_by[account_id] },
         blocking:        { account_id => blocking[account_id] },
         muting:          { account_id => muting[account_id] },
         requested:       { account_id => requested[account_id] },
