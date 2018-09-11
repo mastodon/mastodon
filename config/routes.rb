@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
+  get 'custom.css', to: 'custom_css#show', as: :custom_css
 
   devise_scope :user do
     get '/invite/:invite_code', to: 'auth/registrations#new', as: :public_invite
@@ -38,6 +39,7 @@ Rails.application.routes.draw do
   }
 
   get '/users/:username', to: redirect('/@%{username}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
   resources :accounts, path: 'users', only: [:show], param: :username do
     resources :stream_entries, path: 'updates', only: [:show] do
@@ -75,6 +77,9 @@ Rails.application.routes.draw do
   get '/@:username/media', to: 'accounts#show', as: :short_account_media
   get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
   get '/@:account_username/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
+
+  get  '/interact/:id', to: 'remote_interaction#new', as: :remote_interaction
+  post '/interact/:id', to: 'remote_interaction#create'
 
   namespace :settings do
     resource :profile, only: [:show, :update]
@@ -123,16 +128,30 @@ Rails.application.routes.draw do
 
   # Remote follow
   resource :remote_unfollow, only: [:create]
-  resource :authorize_follow, only: [:show, :create]
+  resource :authorize_interaction, only: [:show, :create]
   resource :share, only: [:show, :create]
 
   namespace :admin do
+    get '/dashboard', to: 'dashboard#index'
+
     resources :subscriptions, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
     resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resources :action_logs, only: [:index]
     resource :settings, only: [:edit, :update]
-    resources :invites, only: [:index, :create, :destroy]
+
+    resources :invites, only: [:index, :create, :destroy] do
+      collection do
+        post :deactivate_all
+      end
+    end
+
+    resources :relays, only: [:index, :new, :create, :destroy] do
+      member do
+        post :enable
+        post :disable
+      end
+    end
 
     resources :instances, only: [:index] do
       collection do
@@ -160,7 +179,7 @@ Rails.application.routes.draw do
       resource :change_email, only: [:show, :update]
       resource :reset, only: [:create]
       resource :silence, only: [:create, :destroy]
-      resource :suspension, only: [:create, :destroy]
+      resource :suspension, only: [:new, :create, :destroy]
       resources :statuses, only: [:index, :create, :update, :destroy]
 
       resource :confirmation, only: [:create] do
@@ -193,13 +212,7 @@ Rails.application.routes.draw do
     resources :announcements, only: [:index, :new, :edit, :create, :update, :destroy]
   end
 
-  authenticate :user, lambda { |u| u.admin? } do
-    get '/admin', to: redirect('/admin/settings/edit', status: 302)
-  end
-
-  authenticate :user, lambda { |u| u.moderator? } do
-    get '/admin', to: redirect('/admin/reports', status: 302)
-  end
+  get '/admin', to: redirect('/admin/dashboard', status: 302)
 
   namespace :api do
     # PubSubHubbub outgoing subscriptions
@@ -254,13 +267,14 @@ Rails.application.routes.draw do
 
       get '/search', to: 'search#index', as: :search
 
-      resources :follows,    only: [:create]
-      resources :media,      only: [:create, :update]
-      resources :blocks,     only: [:index]
-      resources :mutes,      only: [:index]
-      resources :favourites, only: [:index]
-      resources :reports,    only: [:index, :create]
-      resources :filters,    only: [:index, :create, :show, :update, :destroy]
+      resources :follows,      only: [:create]
+      resources :media,        only: [:create, :update]
+      resources :blocks,       only: [:index]
+      resources :mutes,        only: [:index]
+      resources :favourites,   only: [:index]
+      resources :reports,      only: [:index, :create]
+      resources :filters,      only: [:index, :create, :show, :update, :destroy]
+      resources :endorsements, only: [:index]
 
       namespace :apps do
         get :verify_credentials, to: 'credentials#show'
@@ -310,6 +324,9 @@ Rails.application.routes.draw do
           post :mute
           post :unmute
         end
+
+        resource :pin, only: :create, controller: 'accounts/pins'
+        post :unpin, to: 'accounts/pins#destroy'
       end
 
       resources :favourite_tags, only: [:index, :create, :destroy], param: :tag

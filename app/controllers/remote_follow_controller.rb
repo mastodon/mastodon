@@ -42,5 +42,6 @@ class RemoteFollowController < ApplicationController
 
   def set_body_classes
     @body_classes = 'modal-layout'
+    @hide_header  = true
   end
 end

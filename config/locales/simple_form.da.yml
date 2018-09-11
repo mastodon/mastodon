@@ -4,7 +4,7 @@ da:
     hints:
       defaults:
         autofollow: Folk der har oprettet sig gennem invitationen vil automatisk følge dig
-        avatar: PNG, GIF eller JPG. Højest 2MB. Vil blive skaleret ned til 400x400px
+        avatar: PNG, GIF eller JPG. Højest %{size}. Vil blive skaleret ned til %{dimensions}px
         bot: Denne konto udfører hovedsageligt automatiserede handlinger og bliver muligvis ikke overvåget
         context: En eller flere sammenhænge hvor filteret skal være gældende
         digest: Sendes kun efter en lang periode med inaktivitet og kun hvis du har modtaget nogle personlige beskeder mens du er væk
@@ -12,25 +12,27 @@ da:
           one: <span class="name-counter">1</span> tegn tilbage
           other: <span class="name-counter">%{count}</span>tegn tilbage
         fields: Du kan have op til 4 ting vist som en tabel på din profil
-        header: PNG, GIF eller JPG. Højest 2MB. Vil blive skaleret ned til 700x335px
-        irreversible: Filtrerede toots vil forsvinde fulstændigt, selv hvis filteret senere skulle blive fjernet
+        header: PNG, GIF eller JPG. Højest %{size}. Vil blive skaleret ned til %{dimensions}px
+        inbox_url: Kopiere linket fra forsiden af den relay som du ønsker at bruge
+        irreversible: Filtrerede trut vil forsvinde fulstændigt, selv hvis filteret senere skulle blive fjernet
         locale: Sproget på interfacet, emails og push beskeder
         locked: Kræver, at du godkender følgere manuelt
         note:
           one: <span class="note-counter">1</span> tegn tilbage
           other: <span class="note-counter">%{count}</span> tegn tilbage
-        phrase: Vil blive parret uanset om der er store eller små bogstaver i teksten eller om der er en advarsel om en toot
+        phrase: Vil blive parret uanset om der er store eller små bogstaver i teksten eller om der er en advarsel om et trut
         scopes: Hvilke APIs applikationen vil få adgang til. Hvis du vælger et højtlevel omfang, behøver du ikke vælge enkeltstående.
-        setting_default_language: Sproget for dine toots kan blive fundet automatisk, men det er ikke altid præcist
+        setting_default_language: Sproget for dine trut kan blive fundet automatisk, men det er ikke altid præcist
         setting_hide_network: Hvem du følger og hvem der følger dig vil ikke blive vist på din profil
         setting_noindex: Påvirker din offentlige profil og status sider
-        setting_theme: Påvirker hvordan Mastodon ser ud nåt du er logget ind via en hvilken som helst enhed.
+        setting_theme: Påvirker hvordan Mastodon ser ud når du er logget ind via en hvilken som helst enhed.
+        whole_word: Når nøgle ordet eller udtrykket kun er alfanumerisk, vil det kun blive brugt hvis det passer hele ordet
       imports:
         data: CSV fil eksporteret fra en anden Mastodon instans
       sessions:
-        otp: 'Indtast to-faktor koden der generes af appen på din fon eller brug en af din genoprettelses koder:'
+        otp: 'Indtast to-faktor koden der generes af appen af appen på din telefon eller brug en af din genoprettelses koder:'
       user:
-        chosen_languages: Når markeret, vil kun toots i de valgte sprog blive vist på offentlige tidslinjer
+        chosen_languages: Når markeret, vil kun trut i de valgte sprog blive vist på offentlige tidslinjer
     labels:
       account:
         fields:
@@ -39,33 +41,34 @@ da:
       defaults:
         autofollow: Inviter til at følge din konto
         avatar: Profilbillede
-        bot: Dette er en bot konto
+        bot: Dette er en robot konto
         chosen_languages: Filtrer sprog
-        confirm_new_password: Bekræft dit nye kodeord
-        confirm_password: Bekræft kodeord
+        confirm_new_password: Bekræft din nye adgangskode
+        confirm_password: Bekræft adgangskode
         context: Filtrer sammenhænge
-        current_password: Nuværende kodeord
+        current_password: Nuværende adgangskode
         data: Data
         display_name: Visningsnavn
         email: E-mail adresse
         expires_in: Udløber efter
         fields: Profil metadata
         header: Overskrift
+        inbox_url: Link til relay indbakken
         irreversible: Ignorer istedet for at skjule
         locale: Sprog på interface
         locked: Lås konto
         max_uses: Højeste antal benyttelser
-        new_password: Nyt kodeord
+        new_password: Ny adgangskode
         note: Biografi
         otp_attempt: To-faktor kode
-        password: Kodeord
+        password: Adgangskode
         phrase: Nøgleord eller sætning
         setting_auto_play_gif: Afspil automatisk animerede GIFs
         setting_boost_modal: Vis bekræftelses dialog før du fremhæver
         setting_default_language: Sprog for opslag
         setting_default_privacy: Privatliv
         setting_default_sensitive: Marker altid multimedia som værende følsomt
-        setting_delete_modal: Vis bekræftelses dialog før du sletter et toot
+        setting_delete_modal: Vis bekræftelses dialog før du sletter et trut
         setting_display_sensitive_media: Vis altid multimedier markeret som værende følsomt
         setting_hide_network: Skjul dit netværk
         setting_noindex: Frameld dig søgemaskiners indeksering
@@ -77,6 +80,7 @@ da:
         type: Importtype
         username: Brugernavn
         username_or_email: Brugernavn eller Email
+        whole_word: Helt ord
       interactions:
         must_be_follower: Bloker notifikationer fra folk der ikke følger dig
         must_be_following: Bloker notifikationer fra folk du ikke følger

@@ -4,23 +4,28 @@ eu:
     hints:
       defaults:
         autofollow: Gonbidapena erabiliz izena ematen dutenek automatikoki jarraituko zaituzte
-        avatar: PNG, GIF edo JPG. Gehienez 2MB. 400x400px neurrira eskalatuko da
+        avatar: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px neurrira eskalatuko da
         bot: Kontu honek nagusiki automatizatutako ekintzak burutzen ditu eta agian ez du inork monitorizatzen
+        context: Iragazkia aplikatzeko testuinguru bat edo batzuk
         digest: Soilik jarduerarik gabeko epe luze bat eta gero, eta soilik ez zeudela mezu pertsonalen bat jaso baduzu
         display_name:
           one: Karaktere <span class="name-counter">1</span> geratzen da
           other: <span class="name-counter">%{count}</span> karaktere geratzen dira
         fields: 4 elementu bistaratu ditzakezu taula batean zure profilean
-        header: PNG, GIF edo JPG. Gehienez 2MB. 700x335px eskalara txikituko da
+        header: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px eskalara txikituko da
+        irreversible: Iragazitako toot-ak betirako galduko dira, geroago iragazkia kentzen baduzu ere
         locale: Erabiltzaile-interfazea, e-mail mezuen eta jakinarazpenen hizkuntza
         locked: Jarraitzaileak eskuz onartu behar dituzu
         note:
           one: Karaktere<span class="note-counter">1</span> geratzen da
           other: <span class="note-counter"> %{count}</span> karaktere geratzen dira
+        phrase: Bat egingo du Maiuskula/minuskula kontuan hartu gabe eta edukiaren abisua kontuan hartu gabe
+        scopes: Zeintzuk API atzitu ditzakeen aplikazioak. Goi mailako arloa aukeratzen baduzu, ez dituzu azpikoak aukeratu behar.
         setting_default_language: Zure toot-en hizkuntza automatikoki antzeman daiteke, baina ez da beti zehatza
         setting_hide_network: Nor jarraitzen duzun eta nork jarraitzen zaituen ez da bistaratuko zure profilean
         setting_noindex: Zure profil publiko eta toot orrietan eragina du
         setting_theme: Edozein gailutik konektatzean Mastodon-en itxuran eragiten du.
+        whole_word: Hitz eta esaldi gakoa alfanumerikoa denean, hitz osoarekin bat datorrenean besterik ez da aplikatuko
       imports:
         data: Beste Mastodon instantzia batetik esportatutako CSV fitxategia
       sessions:
@@ -39,6 +44,7 @@ eu:
         chosen_languages: Iragazi hizkuntzak
         confirm_new_password: Berretsi pasahitz berria
         confirm_password: Berretsi pasahitza
+        context: Iragazkiaren testuinguruak
         current_password: Oraingo pasahitza
         data: Datuak
         display_name: Pantaila-izena
@@ -46,6 +52,7 @@ eu:
         expires_in: Iraungitzea
         fields: Profilaren metadatuak
         header: Goiburua
+        irreversible: Baztertu ezkutatu ordez
         locale: Interfazearen hizkuntza
         locked: Giltzapetu kontua
         max_uses: Gehieneko erabiltzaile kopurua
@@ -53,6 +60,7 @@ eu:
         note: Biografia
         otp_attempt: Bi faktoreetako kodea
         password: Pasahitza
+        phrase: Hitz edo esaldi gakoa
         setting_auto_play_gif: Erreproduzitu GIF animatuak automatikoki
         setting_boost_modal: Erakutsi baieztapen elkarrizketa-koadroa bultzada eman aurretik
         setting_default_language: Argitalpenen hizkuntza
@@ -70,6 +78,7 @@ eu:
         type: Inportazio mota
         username: Erabiltzaile-izena
         username_or_email: Erabiltzaile-izena edo e-mail helbidea
+        whole_word: Hitz osoa
       interactions:
         must_be_follower: Blokeatu jarraitzaile ez direnen jakinarazpenak
         must_be_following: Blokeatu zuk jarraitzen ez dituzunen jakinarazpenak

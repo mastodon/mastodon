@@ -5,13 +5,13 @@ ja:
     about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
     about_this: 詳細情報
     administered_by: '管理者:'
+    api: API
+    apps: アプリ
     closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。しかし、他のインスタンスにアカウントを作成しても全く同じネットワークに参加することができます。
     contact: 連絡先
     contact_missing: 未設定
     contact_unavailable: N/A
-    description_headline: "%{domain} とは？"
-    domain_count_after: 個のインスタンス
-    domain_count_before: 接続中
+    documentation: ドキュメント
     extended_description_html: |
       <h3>ルールを書くのに適した場所</h3>
       <p>詳細説明が設定されていません。</p>
@@ -28,25 +28,39 @@ ja:
     hosted_on: Mastodon hosted on %{domain}
     learn_more: もっと詳しく
     other_instances: 他のインスタンス
+    privacy_policy: プライバシーポリシー
     source_code: ソースコード
-    status_count_after: トゥート
+    status_count_after:
+      one: トゥート
+      other: トゥート
     status_count_before: トゥート数
-    user_count_after: 人
+    terms: 利用規約
+    user_count_after:
+      one: 人
+      other: 人
     user_count_before: ユーザー数
     what_is_mastodon: Mastodon とは？
   accounts:
+    choices_html: "%{name} によるおすすめ:"
     follow: フォロー
-    followers: フォロワー
+    followers:
+      one: フォロワー
+      other: フォロワー
     following: フォロー中
+    joined: "%{date} に登録"
     media: メディア
     moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
     network_hidden: この情報は利用できません
     nothing_here: 何もありません！
     people_followed_by: "%{name} さんがフォロー中のアカウント"
     people_who_follow: "%{name} さんをフォロー中のアカウント"
-    posts: トゥート
+    pin_errors:
+      following: おすすめしたい人はあなたが既にフォローしている必要があります
+    posts:
+      one: トゥート
+      other: トゥート
+    posts_tab_heading: トゥート
     posts_with_replies: トゥートと返信
-    remote_follow: リモートフォロー
     reserved_username: このユーザー名は予約されています
     roles:
       admin: Admin
@@ -180,6 +194,7 @@ ja:
         unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
         update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
         update_status: "%{name} さんが %{target} さんの投稿を更新しました"
+      deleted_status: "(削除済)"
       title: 操作履歴
     announcements:
       add_new: 新規追加
@@ -227,6 +242,27 @@ ja:
       update_failed_msg: 絵文字を更新できませんでした
       updated_msg: 絵文字の更新に成功しました！
       upload: アップロード
+    dashboard:
+      backlog: 未処理のジョブ
+      config: 構成
+      feature_deletions: アカウント削除
+      feature_invites: 招待リンク
+      feature_registrations: 新規登録
+      feature_relay: 連合リレー
+      features: 機能
+      hidden_service: 秘匿サービスとの連合
+      open_reports: 未解決のレポート
+      recent_users: 最近登録したユーザー
+      search: 全文検索
+      single_user_mode: シングルユーザーモード
+      software: ソフトウェア
+      space: ディスク使用量
+      title: ダッシュボード
+      total_users: 全ユーザー
+      trends: トレンドタグ
+      week_interactions: 今週交流のあった回数
+      week_users_active: 今週活動した人数
+      week_users_new: 今週登録した人数
     domain_blocks:
       add_new: 新規追加
       created_msg: ドメインブロック処理を完了しました
@@ -276,12 +312,23 @@ ja:
       search: 検索
       title: 既知のインスタンス
     invites:
+      deactivate_all: すべて無効化
       filter:
         all: すべて
         available: 使用可能
         expired: 期限切れ
         title: フィルター
       title: 招待
+    relays:
+      add_new: リレーを追加
+      description_html: "<strong>連合リレー</strong>とは、登録しているサーバー間の公開トゥートを仲介するサーバーです。<strong>中小規模のサーバーが連合のコンテンツを見つけるのを助けます。</strong>これを使用しない場合、ローカルユーザーがリモートユーザーを手動でフォローする必要があります。"
+      enable_hint: 有効にすると、リレーから全ての公開トゥートを受信するようになり、またこのサーバーの全ての公開トゥートをリレーに送信するようになります。
+      inbox_url: リレーURL
+      pending: リレーサーバーの承認待ちです
+      save_and_enable: 保存して有効にする
+      setup: リレー接続を設定する
+      status: ステータス
+      title: リレー
     report_notes:
       created_msg: レポートメモを書き込みました！
       destroyed_msg: レポートメモを削除しました！
@@ -331,6 +378,9 @@ ja:
       contact_information:
         email: ビジネスメールアドレス
         username: 連絡先のユーザー名
+      custom_css:
+        desc_html: 全ページに適用されるCSSの編集
+        title: カスタムCSS
       hero:
         desc_html: フロントページに表示されます。サイズは600x100px以上推奨です。未設定の場合、インスタンスのサムネイルが使用されます
         title: ヒーローイメージ
@@ -360,11 +410,14 @@ ja:
         desc_html: ユーザーページにスタッフのバッジを表示します
         title: スタッフバッジを表示する
       site_description:
-        desc_html: フロントページへの表示と meta タグに使用される紹介文です。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
+        desc_html: フロントページへの表示に使用される紹介文です。このMastodonインスタンスを特徴付けることやその他重要なことを記述してください。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
         title: インスタンスの説明
       site_description_extended:
         desc_html: あなたのインスタンスにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます
         title: カスタム詳細説明
+      site_short_description:
+        desc_html: サイドバーと meta タグに表示されます。Mastodon とは何か、そしてこのサーバーの特別な何かを1段落で記述してください。空欄の場合、インスタンスの説明が使用されます。
+        title: 短いインスタンスの説明
       site_terms:
         desc_html: あなたは独自のプライバシーポリシーや利用規約、そのほかの法的根拠を書くことができます。HTMLタグが使えます
         title: カスタム利用規約
@@ -386,6 +439,7 @@ ja:
       media:
         title: メディア
       no_media: メディアなし
+      no_status_selected: 何も選択されていないため、変更されていません
       title: トゥート一覧
       with_media: メディアあり
     subscriptions:
@@ -395,6 +449,12 @@ ja:
       last_delivery: 最終配送
       title: WebSub
       topic: トピック
+    suspensions:
+      bad_acct_msg: 値が一致しませんでした。停止しようとしているアカウントに間違いはありませんか？
+      hint_html: 'アカウントの停止を確認するには、以下のフィールドに %{value} と入力してください:'
+      proceed: 完全に活動停止させる
+      title: "%{acct} を停止"
+      warning_html: 'このアカウントを停止すると、このアカウントから次のようなデータが<strong>不可逆的に</strong>削除されます:'
     title: 管理
   admin_mailer:
     new_report:
@@ -538,9 +598,12 @@ ja:
     true_privacy_html: "<strong>プライバシーの保護はエンドツーエンドの暗号化でのみ実現可能</strong>であることに留意ください。"
     unlocked_warning_html: 誰でもあなたをフォローすることができ、フォロワー限定の投稿をすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
     unlocked_warning_title: このアカウントは承認制アカウントに設定されていません
+  footer:
+    developers: 開発者向け
+    more: さらに…
+    resources: リソース
   generic:
     changes_saved_msg: 正常に変更されました！
-    powered_by: powered by %{link}
     save_changes: 変更を保存
     validation_errors:
       one: エラーが発生しました！ 以下のエラーを確認してください
@@ -576,8 +639,6 @@ ja:
       expires_at: 有効期限
       uses: 使用
     title: 新規ユーザーの招待
-  landing_strip_html: "<strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。"
-  landing_strip_signup_html: もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   lists:
     errors:
       limit: リストの上限に達しました
@@ -636,7 +697,6 @@ ja:
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: ''
   pagination:
     newer: 新しいトゥート
     next: 次
@@ -654,6 +714,9 @@ ja:
     no_account_html: アカウントをお持ちではないですか？<a href='%{sign_up_path}' target='_blank'>こちら</a>からサインアップできます
     proceed: フォローする
     prompt: 'フォローしようとしています:'
+  remote_interaction:
+    proceed: 進む
+    prompt: 'このトゥートに返信しようとしています:'
   remote_unfollow:
     error: エラー
     title: タイトル
@@ -729,7 +792,7 @@ ja:
     disallowed_hashtags:
       one: '許可されていないハッシュタグが含まれています: %{tags}'
       other: '許可されていないハッシュタグが含まれています: %{tags}'
-    language_detection: 自動的に言語を検出する
+    language_detection: 自動検出
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     pin_errors:
@@ -738,6 +801,7 @@ ja:
       private: 非公開のトゥートを固定することはできません
       reblog: ブーストされたトゥートを固定することはできません
     show_more: もっと見る
+    sign_in_to_participate: ログインして会話に参加
     title: '%{name}: "%{quote}"'
     visibilities:
       private: フォロワー限定
@@ -747,7 +811,6 @@ ja:
       unlisted: 未収載
       unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
   stream_entries:
-    click_to_show: クリックして表示
     pinned: 固定されたトゥート
     reblogged: さんがブースト
     sensitive_content: 閲覧注意
@@ -841,6 +904,7 @@ ja:
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
+      month: "%Y年 %b"
   two_factor_authentication:
     code_hint: 確認するには認証アプリで表示されたコードを入力してください
     description_html: "<strong>二段階認証</strong>を有効にするとログイン時、認証アプリからコードを入力する必要があります。"
@@ -856,7 +920,7 @@ ja:
     recovery_codes_regenerated: リカバリーコードが再生成されました
     recovery_instructions_html: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。<strong>リカバリーコードは大切に保全してください。</strong>たとえば印刷してほかの重要な書類と一緒に保管することができます。
     setup: 初期設定
-    wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していることを確認してください。
+    wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していますか？
   user_mailer:
     backup_ready:
       explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！

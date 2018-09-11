@@ -25,19 +25,20 @@ class MediaAttachment < ApplicationRecord
   enum type: [:image, :gifv, :video, :unknown]
 
   IMAGE_FILE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif'].freeze
-  VIDEO_FILE_EXTENSIONS = ['.webm', '.mp4', '.m4v'].freeze
+  VIDEO_FILE_EXTENSIONS = ['.webm', '.mp4', '.m4v', '.mov'].freeze
 
-  IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
-  VIDEO_MIME_TYPES = ['video/webm', 'video/mp4'].freeze
+  IMAGE_MIME_TYPES             = ['image/jpeg', 'image/png', 'image/gif'].freeze
+  VIDEO_MIME_TYPES             = ['video/webm', 'video/mp4', 'video/quicktime'].freeze
+  VIDEO_CONVERTIBLE_MIME_TYPES = ['video/webm', 'video/quicktime'].freeze
 
   IMAGE_STYLES = {
     original: {
-      geometry: '1920x1920>',
+      pixels: 4_147_200, # 2880x1440px
       file_geometry_parser: FastGeometryParser,
     },
 
     small: {
-      geometry: '400x400>',
+      pixels: 160_000, # 400x400px
       file_geometry_parser: FastGeometryParser,
     },
   }.freeze
@@ -54,7 +55,25 @@ class MediaAttachment < ApplicationRecord
     },
   }.freeze
 
-  LIMIT = 8.megabytes
+  VIDEO_FORMAT = {
+    format: 'mp4',
+    convert_options: {
+      output: {
+        'movflags' => 'faststart',
+        'pix_fmt'  => 'yuv420p',
+        'vf'       => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
+        'vsync'    => 'cfr',
+        'c:v'      => 'h264',
+        'b:v'      => '500K',
+        'maxrate'  => '1300K',
+        'bufsize'  => '1300K',
+        'crf'      => 18,
+      },
+    },
+  }.freeze
+
+  IMAGE_LIMIT = 8.megabytes
+  VIDEO_LIMIT = 40.megabytes
 
   belongs_to :account, inverse_of: :media_attachments, optional: true
   belongs_to :status,  inverse_of: :media_attachments, optional: true
@@ -65,8 +84,9 @@ class MediaAttachment < ApplicationRecord
                     convert_options: { all: '-quality 90 -strip' }
 
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES
-  validates_attachment_size :file, less_than: LIMIT
-  remotable_attachment :file, LIMIT
+  validates_attachment_size :file, less_than: IMAGE_LIMIT, unless: :video?
+  validates_attachment_size :file, less_than: VIDEO_LIMIT, if: :video?
+  remotable_attachment :file, VIDEO_LIMIT
 
   include Attachmentable
 
@@ -123,25 +143,15 @@ class MediaAttachment < ApplicationRecord
       if f.instance.file_content_type == 'image/gif'
         {
           small: IMAGE_STYLES[:small],
-          original: {
-            format: 'mp4',
-            convert_options: {
-              output: {
-                'movflags' => 'faststart',
-                'pix_fmt'  => 'yuv420p',
-                'vf'       => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
-                'vsync'    => 'cfr',
-                'c:v'      => 'h264',
-                'b:v'      => '500K',
-                'maxrate'  => '1300K',
-                'bufsize'  => '1300K',
-                'crf'      => 18,
-              },
-            },
-          },
+          original: VIDEO_FORMAT,
         }
       elsif IMAGE_MIME_TYPES.include? f.instance.file_content_type
         IMAGE_STYLES
+      elsif VIDEO_CONVERTIBLE_MIME_TYPES.include?(f.instance.file_content_type)
+        {
+          small: VIDEO_STYLES[:small],
+          original: VIDEO_FORMAT,
+        }
       else
         VIDEO_STYLES
       end
@@ -155,7 +165,7 @@ class MediaAttachment < ApplicationRecord
       elsif VIDEO_MIME_TYPES.include? f.file_content_type
         [:video_transcoder]
       else
-        [:thumbnail]
+        [:lazy_thumbnail]
       end
     end
   end

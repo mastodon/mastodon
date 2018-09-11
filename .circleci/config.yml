@@ -64,12 +64,17 @@ aliases:
 
         - run: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
         - *restore_ruby_dependencies
-        - run: bundle install --clean --jobs 16 --path ./vendor/bundle/ --retry 3 --with pam_authentication --without development production
+        - run: bundle install --clean --jobs 16 --path ./vendor/bundle/ --retry 3 --with pam_authentication --without development production && bundle clean
         - save_cache:
             key: v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
             paths:
               - ./.bundle/
               - ./vendor/bundle/
+        - persist_to_workspace:
+            root: ~/projects/
+            paths:
+                - ./mastodon/.bundle/
+                - ./mastodon/vendor/bundle/
 
   - &test_steps
       steps:
@@ -77,15 +82,6 @@ aliases:
 
         - *install_system_dependencies
         - run: sudo apt-get install -y ffmpeg
-
-        - run: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
-        - *restore_ruby_dependencies
-
-        - restore_cache:
-            keys:
-              - precompiled-assets-{{ .Branch }}-{{ .Revision }}
-              - precompiled-assets-{{ .Branch }}-
-              - precompiled-assets-
 
         - run:
             name: Prepare Tests
@@ -122,14 +118,12 @@ jobs:
     steps:
       - *attach_workspace
       - *install_system_dependencies
-      - run: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
-      - *restore_ruby_dependencies
       - run: ./bin/rails assets:precompile
-      - save_cache:
-          key: precompiled-assets-{{ .Branch }}-{{ .Revision }}
+      - persist_to_workspace:
+          root: ~/projects/
           paths:
-            - ./public/assets
-            - ./public/packs-test/
+              - ./mastodon/public/assets
+              - ./mastodon/public/packs-test/
 
   test-ruby2.5:
     <<: *defaults
@@ -176,8 +170,6 @@ jobs:
     <<: *defaults
     steps:
       - *attach_workspace
-      - run: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
-      - *restore_ruby_dependencies
       - run: bundle exec i18n-tasks check-normalized
       - run: bundle exec i18n-tasks unused
 
@@ -192,9 +184,11 @@ workflows:
       - install-ruby2.4:
           requires:
             - install
+            - install-ruby2.5
       - install-ruby2.3:
           requires:
             - install
+            - install-ruby2.5
       - build:
           requires:
             - install-ruby2.5

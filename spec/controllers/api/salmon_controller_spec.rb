@@ -15,8 +15,7 @@ RSpec.describe Api::SalmonController, type: :controller do
   describe 'POST #update' do
     context 'with valid post data' do
       before do
-        request.env['RAW_POST_DATA'] = File.read(File.join(Rails.root, 'spec', 'fixtures', 'salmon', 'mention.xml'))
-        post :update, params: { id: account.id }
+        post :update, params: { id: account.id }, body: File.read(File.join(Rails.root, 'spec', 'fixtures', 'salmon', 'mention.xml'))
       end
 
       it 'contains XML in the request body' do
@@ -42,8 +41,7 @@ RSpec.describe Api::SalmonController, type: :controller do
 
     context 'with empty post data' do
       before do
-        request.env['RAW_POST_DATA'] = ''
-        post :update, params: { id: account.id }
+        post :update, params: { id: account.id }, body: ''
       end
 
       it 'returns http client error' do
@@ -56,8 +54,7 @@ RSpec.describe Api::SalmonController, type: :controller do
         service = double(call: false)
         allow(VerifySalmonService).to receive(:new).and_return(service)
 
-        request.env['RAW_POST_DATA'] = File.read(File.join(Rails.root, 'spec', 'fixtures', 'salmon', 'mention.xml'))
-        post :update, params: { id: account.id }
+        post :update, params: { id: account.id }, body: File.read(File.join(Rails.root, 'spec', 'fixtures', 'salmon', 'mention.xml'))
       end
 
       it 'returns http client error' do

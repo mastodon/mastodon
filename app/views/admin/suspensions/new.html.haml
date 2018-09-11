@@ -1,0 +1,25 @@
+- content_for :page_title do
+  = t('admin.suspensions.title', acct: @account.acct)
+
+= simple_form_for @suspension, url: admin_account_suspension_path(@account.id), method: :post do |f|
+  %p.hint= t('admin.suspensions.warning_html')
+
+  .fields-group
+    %ul
+      %li.negative-hint
+        = number_to_human @account.statuses_count, strip_insignificant_zeros: true
+        = t('accounts.posts', count: @account.statuses_count)
+      %li.negative-hint
+        = number_to_human @account.following_count, strip_insignificant_zeros: true
+        = t('accounts.following', count: @account.following_count)
+      %li.negative-hint
+        = number_to_human @account.followers_count, strip_insignificant_zeros: true
+        = t('accounts.followers', count: @account.followers_count)
+
+  %p.hint= t('admin.suspensions.hint_html', value: content_tag(:code, @account.acct))
+
+  = f.input :acct
+  = f.input_field :report_id, as: :hidden
+
+  .actions
+    = f.button :button, t('admin.suspensions.proceed'), type: :submit, class: 'negative'

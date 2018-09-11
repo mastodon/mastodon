@@ -18,7 +18,7 @@ class BackupService < BaseService
   def build_json!
     @collection = serialize(collection_presenter, ActivityPub::CollectionSerializer)
 
-    account.statuses.with_includes.find_in_batches do |statuses|
+    account.statuses.with_includes.reorder(nil).find_in_batches do |statuses|
       statuses.each do |status|
         item = serialize(status, ActivityPub::ActivitySerializer)
         item.delete(:'@context')
@@ -44,6 +44,7 @@ class BackupService < BaseService
         Gem::Package::TarWriter.new(gz) do |tar|
           dump_media_attachments!(tar)
           dump_outbox!(tar)
+          dump_likes!(tar)
           dump_actor!(tar)
         end
       end
@@ -60,7 +61,7 @@ class BackupService < BaseService
   end
 
   def dump_media_attachments!(tar)
-    MediaAttachment.attached.where(account: account).find_in_batches do |media_attachments|
+    MediaAttachment.attached.where(account: account).reorder(nil).find_in_batches do |media_attachments|
       media_attachments.each do |m|
         download_to_tar(tar, m.file, m.file.path)
       end
@@ -82,6 +83,8 @@ class BackupService < BaseService
 
     actor[:icon][:url]  = 'avatar' + File.extname(actor[:icon][:url])  if actor[:icon]
     actor[:image][:url] = 'header' + File.extname(actor[:image][:url]) if actor[:image]
+    actor[:outbox]      = 'outbox.json'
+    actor[:likes]       = 'likes.json'
 
     download_to_tar(tar, account.avatar, 'avatar' + File.extname(account.avatar.path)) if account.avatar.exists?
     download_to_tar(tar, account.header, 'header' + File.extname(account.header.path)) if account.header.exists?
@@ -91,15 +94,30 @@ class BackupService < BaseService
     tar.add_file_simple('actor.json', 0o444, json.bytesize) do |io|
       io.write(json)
     end
+  end
 
-    tar.add_file_simple('key.pem', 0o444, account.private_key.bytesize) do |io|
-      io.write(account.private_key)
+  def dump_likes!(tar)
+    collection = serialize(ActivityPub::CollectionPresenter.new(id: 'likes.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
+
+    Status.reorder(nil).joins(:favourites).includes(:account).merge(account.favourites).find_in_batches do |statuses|
+      statuses.each do |status|
+        collection[:totalItems] += 1
+        collection[:orderedItems] << ActivityPub::TagManager.instance.uri_for(status)
+      end
+
+      GC.start
+    end
+
+    json = Oj.dump(collection)
+
+    tar.add_file_simple('likes.json', 0o444, json.bytesize) do |io|
+      io.write(json)
     end
   end
 
   def collection_presenter
     ActivityPub::CollectionPresenter.new(
-      id: account_outbox_url(account),
+      id: 'outbox.json',
       type: :ordered,
       size: account.statuses_count,
       items: []

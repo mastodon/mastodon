@@ -16,7 +16,7 @@ const messages = defineMessages({
   next: { id: 'lightbox.next', defaultMessage: 'Next' },
 });
 
-const previewState = 'previewMediaModal';
+export const previewState = 'previewMediaModal';
 
 @injectIntl
 export default class MediaModal extends ImmutablePureComponent {
@@ -54,19 +54,23 @@ export default class MediaModal extends ImmutablePureComponent {
     this.setState({ index: index % this.props.media.size });
   }
 
-  handleKeyUp = (e) => {
+  handleKeyDown = (e) => {
     switch(e.key) {
     case 'ArrowLeft':
       this.handlePrevClick();
+      e.preventDefault();
+      e.stopPropagation();
       break;
     case 'ArrowRight':
       this.handleNextClick();
+      e.preventDefault();
+      e.stopPropagation();
       break;
     }
   }
 
   componentDidMount () {
-    window.addEventListener('keyup', this.handleKeyUp, false);
+    window.addEventListener('keydown', this.handleKeyDown, false);
     if (this.context.router) {
       const history = this.context.router.history;
       history.push(history.location.pathname, previewState);
@@ -77,7 +81,7 @@ export default class MediaModal extends ImmutablePureComponent {
   }
 
   componentWillUnmount () {
-    window.removeEventListener('keyup', this.handleKeyUp);
+    window.removeEventListener('keydown', this.handleKeyDown);
     if (this.context.router) {
       this.unlistenHistory();
 
