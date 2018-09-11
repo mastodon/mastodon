@@ -154,6 +154,7 @@ class FeedManager
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
     return true  if phrase_filtered?(status, receiver_id, :home)
+    return true  if status.private_visibility? && !Follow.where(account_id: receiver_id, target_account_id: status.account_id, full_access: true).exists?
 
     check_for_blocks = status.mentions.pluck(:account_id)
     check_for_blocks.concat([status.account_id])
