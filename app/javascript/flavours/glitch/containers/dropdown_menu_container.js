@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch, { status, items }) => ({
         (item, i) => item ? {
           ...item,
           name: `${item.text}-${i}`,
-          onClick: (e) => { return onItemClick(i, e) },
+          onClick: item.action ? ((e) => { return onItemClick(i, e) }) : null,
         } : null
       ),
     }) : openDropdownMenu(id, dropdownPlacement));
