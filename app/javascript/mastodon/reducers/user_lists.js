@@ -64,6 +64,7 @@ export default function userLists(state = initialState, action) {
   case FOLLOW_REQUESTS_EXPAND_SUCCESS:
     return state.updateIn(['follow_requests', 'items'], list => list.concat(action.accounts.map(item => item.id))).setIn(['follow_requests', 'next'], action.next);
   case FOLLOW_REQUEST_AUTHORIZE_SUCCESS:
+  case FOLLOW_REQUEST_SOFTAUTH_SUCCESS:
   case FOLLOW_REQUEST_REJECT_SUCCESS:
     return state.updateIn(['follow_requests', 'items'], list => list.filterNot(item => item === action.id));
   case BLOCKS_FETCH_SUCCESS:
