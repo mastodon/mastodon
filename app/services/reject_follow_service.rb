@@ -1,9 +1,15 @@
 # frozen_string_literal: true
 
 class RejectFollowService < BaseService
-  def call(source_account, target_account)
-    follow_request = FollowRequest.find_by!(account: source_account, target_account: target_account)
-    follow_request.reject!
+  def call(source_account, target_account, **options)
+    if options[:soft_auth]
+      follow_request = FollowRequest.find_by!(account: source_account, target_account: target_account)
+      follow_request.soft_auth!
+    else
+      follow_request = FollowRequest.find_by!(account: source_account, target_account: target_account)
+      follow_request.reject!
+    end
+    
     create_notification(follow_request) unless source_account.local?
     follow_request
   end

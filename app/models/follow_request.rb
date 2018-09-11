@@ -29,10 +29,9 @@ class FollowRequest < ApplicationRecord
     destroy!
   end
 
-  def soft_follow!
-    account.follow!(target_account, full_follow: false)
+  def soft_auth!
+    account.follow!(target_account, reblogs: show_reblogs, uri: uri, full_follow: false)
     MergeWorker.perform_async(target_account.id, account.id)
-
     destroy!
   end
 

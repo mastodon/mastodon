@@ -4,9 +4,6 @@ class AuthorizeFollowService < BaseService
   def call(source_account, target_account, **options)
     if options[:skip_follow_request]
       follow_request = FollowRequest.new(account: source_account, target_account: target_account, uri: options[:follow_request_uri])
-    elsif options[:soft_follow]
-      follow_request = FollowRequest.find_by!(account: source_account, target_account: target_account)
-      follow_request.soft_follow!
     else
       follow_request = FollowRequest.find_by!(account: source_account, target_account: target_account)
       follow_request.authorize!
