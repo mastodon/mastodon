@@ -149,7 +149,7 @@ export default class MediaModal extends ImmutablePureComponent {
             startTime={time || 0}
             onCloseVideo={onClose}
             detailed
-            description={image.get('description')}
+            alt={image.get('description')}
             key={image.get('url')}
           />
         );
