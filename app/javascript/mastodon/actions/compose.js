@@ -368,8 +368,8 @@ export function selectComposeSuggestion(position, token, suggestion) {
     } else if (suggestion[0] === '#') {
       completion    = suggestion;
       startPosition = position - 1;
-    } else if (suggestion[0] === '/') {
-      completion    = suggestion.replace(/\//g, '');
+    } else if (suggestion[0] === '[') {
+      completion    = suggestion.replace(/^\[|\]$/g, '');
       startPosition = position - 1;
     } else {
       completion    = getState().getIn(['accounts', suggestion, 'acct']);

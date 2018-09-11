@@ -174,7 +174,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     } else if (suggestion[0] === '#') {
       inner = suggestion;
       key   = suggestion;
-    } else if (suggestion[0] === '/') {
+    } else if (suggestion[0] === '[') {
       inner = suggestion;
       key   = suggestion;
     } else {

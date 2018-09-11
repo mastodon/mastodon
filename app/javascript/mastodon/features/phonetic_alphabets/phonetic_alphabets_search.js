@@ -4,7 +4,7 @@ function search(value) {
   if (!phoneticAlphabets[value]) {
     return [];
   }
-  return phoneticAlphabets[value].map(x => `/${x}/`);
+  return phoneticAlphabets[value].map(x => `[${x}]`);
 }
 
 export { search };
