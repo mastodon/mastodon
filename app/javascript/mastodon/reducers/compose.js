@@ -117,11 +117,19 @@ function removeMedia(state, mediaId) {
 
 const insertSuggestion = (state, position, token, completion) => {
   return state.withMutations(map => {
-    map.update('text', oldText => `${oldText.slice(0, position)}${completion} ${oldText.slice(position + token.length)}`);
+    if (token[0] === '/') {
+      map.update('text', oldText => `${oldText.slice(0, position)}${completion}${oldText.slice(position + token.length)}`);
+    } else {
+      map.update('text', oldText => `${oldText.slice(0, position)}${completion} ${oldText.slice(position + token.length)}`);
+    }
     map.set('suggestion_token', null);
     map.update('suggestions', ImmutableList(), list => list.clear());
     map.set('focusDate', new Date());
-    map.set('caretPosition', position + completion.length + 1);
+    if (token[0] === '/') {
+      map.set('caretPosition', position + completion.length);
+    } else {
+      map.set('caretPosition', position + completion.length + 1);
+    }
     map.set('idempotencyKey', uuid());
   });
 };
@@ -283,6 +291,9 @@ export default function compose(state = initialState, action) {
   case COMPOSE_SUGGESTIONS_CLEAR:
     return state.update('suggestions', ImmutableList(), list => list.clear()).set('suggestion_token', null);
   case COMPOSE_SUGGESTIONS_READY:
+    if (action.alphabets) {
+      return state.set('suggestions', ImmutableList(action.alphabets)).set('suggestion_token', action.token);
+    }
     return state.set('suggestions', ImmutableList(action.accounts ? action.accounts.map(item => item.id) : action.emojis)).set('suggestion_token', action.token);
   case COMPOSE_SUGGESTION_SELECT:
     return insertSuggestion(state, action.position, action.token, action.completion);
