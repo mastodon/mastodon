@@ -827,6 +827,10 @@
   color: $highlight-text-color;
 }
 
+.reduce-motion button.icon-button.disabled i.fa-retweet {
+  color: darken($action-button-color, 13%);
+}
+
 .load-more {
   display: block;
   color: $dark-text-color;
