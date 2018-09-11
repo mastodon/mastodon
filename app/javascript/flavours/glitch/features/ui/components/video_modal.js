@@ -24,7 +24,7 @@ export default class VideoModal extends ImmutablePureComponent {
             startTime={time}
             onCloseVideo={onClose}
             detailed
-            description={media.get('description')}
+            alt={media.get('description')}
           />
         </div>
       </div>
