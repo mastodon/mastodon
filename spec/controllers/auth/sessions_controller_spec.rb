@@ -30,6 +30,13 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
         expect(response).to redirect_to(new_user_session_path)
       end
+
+      it 'does not delete redirect location with continue=true' do
+        sign_in(user, scope: :user)
+        controller.store_location_for(:user, '/authorize')
+        delete :destroy, params: { continue: 'true' }
+        expect(controller.stored_location_for(:user)).to eq '/authorize'
+      end
     end
 
     context 'with a suspended user' do
