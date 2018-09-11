@@ -23,6 +23,7 @@ class DropdownMenu extends React.PureComponent {
     placement: PropTypes.string,
     arrowOffsetLeft: PropTypes.string,
     arrowOffsetTop: PropTypes.string,
+    openedViaKeyboard: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -43,7 +44,7 @@ class DropdownMenu extends React.PureComponent {
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
-    if (this.focusedItem) this.focusedItem.focus();
+    if (this.focusedItem && this.props.openedviaKeyBoard) this.focusedItem.focus();
     this.setState({ mounted: true });
   }
 
@@ -170,6 +171,7 @@ export default class Dropdown extends React.PureComponent {
     onClose: PropTypes.func.isRequired,
     dropdownPlacement: PropTypes.string,
     openDropdownId: PropTypes.number,
+    openedViaKeyboard: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -180,14 +182,14 @@ export default class Dropdown extends React.PureComponent {
     id: id++,
   };
 
-  handleClick = ({ target }) => {
+  handleClick = ({ target, type }) => {
     if (this.state.id === this.props.openDropdownId) {
       this.handleClose();
     } else {
       const { top } = target.getBoundingClientRect();
       const placement = top * 2 < innerHeight ? 'bottom' : 'top';
 
-      this.props.onOpen(this.state.id, this.handleItemClick, placement);
+      this.props.onOpen(this.state.id, this.handleItemClick, placement, type !== 'click');
     }
   }
 
@@ -197,6 +199,11 @@ export default class Dropdown extends React.PureComponent {
 
   handleKeyDown = e => {
     switch(e.key) {
+    case ' ':
+    case 'Enter':
+      this.handleClick(e);
+      e.preventDefault();
+      break;
     case 'Escape':
       this.handleClose();
       break;
@@ -232,7 +239,7 @@ export default class Dropdown extends React.PureComponent {
   }
 
   render () {
-    const { icon, items, size, ariaLabel, disabled, dropdownPlacement, openDropdownId } = this.props;
+    const { icon, items, size, ariaLabel, disabled, dropdownPlacement, openDropdownId, openedViaKeyboard } = this.props;
     const open = this.state.id === openDropdownId;
 
     return (
@@ -248,7 +255,7 @@ export default class Dropdown extends React.PureComponent {
         />
 
         <Overlay show={open} placement={dropdownPlacement} target={this.findTarget}>
-          <DropdownMenu items={items} onClose={this.handleClose} />
+          <DropdownMenu items={items} onClose={this.handleClose} openedViaKeyboard={openedViaKeyboard} />
         </Overlay>
       </div>
     );
