@@ -2,6 +2,7 @@ import api from '../api';
 import { CancelToken, isCancel } from 'axios';
 import { throttle } from 'lodash';
 import { search as emojiSearch } from '../features/emoji/emoji_mart_search_light';
+import { search as phoneticAlphabetsSearch } from '../features/phonetic_alphabets/phonetic_alphabets_search';
 import { tagHistory } from '../settings';
 import { useEmoji } from './emojis';
 import resizeImage from '../utils/resize_image';
@@ -307,6 +308,11 @@ const fetchComposeSuggestionsTags = (dispatch, getState, token) => {
   dispatch(updateSuggestionTags(token));
 };
 
+const fetchComposeSuggestionsPhoneticAlphabets = (dispatch, getState, token) => {
+  const results = phoneticAlphabetsSearch(token.replace('/', ''));
+  dispatch(readyComposeSuggestionsPhoneticAlphabets(token, results));
+};
+
 export function fetchComposeSuggestions(token) {
   return (dispatch, getState) => {
     switch (token[0]) {
@@ -315,6 +321,9 @@ export function fetchComposeSuggestions(token) {
       break;
     case '#':
       fetchComposeSuggestionsTags(dispatch, getState, token);
+      break;
+    case '/':
+      fetchComposeSuggestionsPhoneticAlphabets(dispatch, getState, token);
       break;
     default:
       fetchComposeSuggestionsAccounts(dispatch, getState, token);
@@ -330,6 +339,14 @@ export function readyComposeSuggestionsEmojis(token, emojis) {
     emojis,
   };
 };
+
+export function readyComposeSuggestionsPhoneticAlphabets(token, alphabets) {
+  return {
+    type: COMPOSE_SUGGESTIONS_READY,
+    token,
+    alphabets,
+  };
+}
 
 export function readyComposeSuggestionsAccounts(token, accounts) {
   return {
@@ -350,6 +367,9 @@ export function selectComposeSuggestion(position, token, suggestion) {
       dispatch(useEmoji(suggestion));
     } else if (suggestion[0] === '#') {
       completion    = suggestion;
+      startPosition = position - 1;
+    } else if (suggestion[0] === '/') {
+      completion    = suggestion.replace(/\//g, '');
       startPosition = position - 1;
     } else {
       completion    = getState().getIn(['accounts', suggestion, 'acct']);
