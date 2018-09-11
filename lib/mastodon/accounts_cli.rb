@@ -104,6 +104,36 @@ module Mastodon
       end
     end
 
+    option :role
+    option :confirmed
+    desc 'mod USERNAME', 'Modify a user'
+    long_desc <<-LONG_DESC
+      Modify a user account.
+
+      With the --role option, update the user's role to one of "user",
+      "moderator" or "admin".
+
+      With the --confirmed option, mark the user's e-mail as confirmed.
+    LONG_DESC
+    def mod(username)
+      account = Account.find_local(username)
+
+      if account.nil?
+        say('No user with such username', :red)
+        exit(1)
+      end
+
+      if options[:role]
+        account.user.update(admin: options[:role] == 'admin', moderator: options[:role] == 'moderator')
+      end
+
+      if options[:confirmed]
+        account.user.confirm!
+      end
+
+      say('OK', :green)
+    end
+
     desc 'del USERNAME', 'Delete a user'
     long_desc <<-LONG_DESC
       Remove a user account with a given USERNAME.
