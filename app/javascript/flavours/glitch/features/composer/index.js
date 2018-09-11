@@ -146,7 +146,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onMount() {
     dispatch(mountCompose());
   },
-  onOpenActionModal(props) {
+  onOpenActionsModal(props) {
     dispatch(openModal('ACTIONS', props));
   },
   onOpenDoodleModal() {
