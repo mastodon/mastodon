@@ -40,6 +40,7 @@ module Mastodon
         say('OK', :green)
       else
         say('No account(s) given', :red)
+        exit(1)
       end
     end
 
@@ -98,6 +99,8 @@ module Mastodon
           say(key)
           say('    ' + error, :red)
         end
+
+        exit(1)
       end
     end
 
@@ -110,7 +113,7 @@ module Mastodon
 
       if account.nil?
         say('No user with such username', :red)
-        return
+        exit(1)
       end
 
       say("Deleting user with #{account.statuses_count}, this might take a while...")
@@ -182,9 +185,56 @@ module Mastodon
       end
     end
 
+    option :all, type: :boolean
+    option :domain
+    desc 'refresh [USERNAME]', 'Fetch remote user data and files'
+    long_desc <<-LONG_DESC
+      Fetch remote user data and files for one or multiple accounts.
+
+      With the --all option, all remote accounts will be processed.
+      Through the --domain option, this can be narrowed down to a
+      specific domain only. Otherwise, a single remote account must
+      be specified with USERNAME.
+
+      All processing is done in the background through Sidekiq.
+    LONG_DESC
+    def refresh(username = nil)
+      if options[:domain] || options[:all]
+        queued = 0
+        scope  = Account.remote
+        scope  = scope.where(domain: options[:domain]) if options[:domain]
+
+        scope.select(:id).reorder(nil).find_in_batches do |accounts|
+          Maintenance::RedownloadAccountMediaWorker.push_bulk(accounts.map(&:id))
+          queued += accounts.size
+        end
+
+        say("Scheduled refreshment of #{queued} accounts", :green, true)
+      elsif username.present?
+        username, domain = username.split('@')
+        account = Account.find_remote(username, domain)
+
+        if account.nil?
+          say('No such account', :red)
+          exit(1)
+        end
+
+        Maintenance::RedownloadAccountMediaWorker.perform_async(account.id)
+        say('OK', :green)
+      else
+        say('No account(s) given', :red)
+        exit(1)
+      end
+    end
+
     private
 
     def rotate_keys_for_account(account, delay = 0)
+      if account.nil?
+        say('No such account', :red)
+        exit(1)
+      end
+
       old_key = account.private_key
       new_key = OpenSSL::PKey::RSA.new(2048).to_pem
       account.update(private_key: new_key)
