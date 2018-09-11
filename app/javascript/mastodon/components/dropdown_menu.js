@@ -43,13 +43,15 @@ class DropdownMenu extends React.PureComponent {
 
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
+    document.addEventListener('keydown', this.handleKeyDown, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
-    if (this.focusedItem && this.props.openedviaKeyBoard) this.focusedItem.focus();
+    if (this.focusedItem && this.props.openedViaKeyboard) this.focusedItem.focus();
     this.setState({ mounted: true });
   }
 
   componentWillUnmount () {
     document.removeEventListener('click', this.handleDocumentClick, false);
+    document.removeEventListener('keydown', this.handleKeyDown, false);
     document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
   }
 
@@ -63,13 +65,10 @@ class DropdownMenu extends React.PureComponent {
 
   handleKeyDown = e => {
     const items = Array.from(this.node.getElementsByTagName('a'));
-    const index = items.indexOf(e.currentTarget);
+    const index = items.indexOf(document.activeElement);
     let element;
 
     switch(e.key) {
-    case 'Enter':
-      this.handleClick(e);
-      break;
     case 'ArrowDown':
       element = items[index+1];
       if (element) {
@@ -97,6 +96,12 @@ class DropdownMenu extends React.PureComponent {
     }
   }
 
+  handleItemKeyDown = e => {
+    if (e.key === 'Enter') {
+      this.handleClick(e);
+    }
+  }
+
   handleClick = e => {
     const i = Number(e.currentTarget.getAttribute('data-index'));
     const { action, to } = this.props.items[i];
@@ -121,7 +126,7 @@ class DropdownMenu extends React.PureComponent {
 
     return (
       <li className='dropdown-menu__item' key={`${text}-${i}`}>
-        <a href={href} target='_blank' rel='noopener' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyDown={this.handleKeyDown} data-index={i}>
+        <a href={href} target='_blank' rel='noopener' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyDown={this.handleItemKeyDown} data-index={i}>
           {text}
         </a>
       </li>
