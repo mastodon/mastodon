@@ -135,7 +135,7 @@ class Auth::SessionsController < Devise::SessionsController
 
     # Should be '"*"' but that doen't work in Chrome (neither does '"executionContexts"')
     # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data
-    response.headers['Clear-Site-Data'] = '"cache", "cookies", "storage"'
+    response.headers['Clear-Site-Data'] = '"cache", "cookies"'
   end
 
   def continue_after?
