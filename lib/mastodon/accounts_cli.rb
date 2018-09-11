@@ -49,7 +49,7 @@ module Mastodon
     option :role, default: 'user'
     option :reattach, type: :boolean
     option :force, type: :boolean
-    desc 'add USERNAME', 'Create a new user'
+    desc 'create USERNAME', 'Create a new user'
     long_desc <<-LONG_DESC
       Create a new user account with a given USERNAME and an
       e-mail address provided with --email.
@@ -66,7 +66,7 @@ module Mastodon
       the --force option to delete the old record and reattach the
       username to the new account anyway.
     LONG_DESC
-    def add(username)
+    def create(username)
       account  = Account.new(username: username)
       password = SecureRandom.hex
       user     = User.new(email: options[:email], password: password, admin: options[:role] == 'admin', moderator: options[:role] == 'moderator', confirmed_at: Time.now.utc)
@@ -105,40 +105,61 @@ module Mastodon
     end
 
     option :role
-    option :confirmed
-    desc 'mod USERNAME', 'Modify a user'
+    option :email
+    option :confirm, type: :boolean
+    option :enable, type: :boolean
+    option :disable, type: :boolean
+    option :disable_2fa, type: :boolean
+    desc 'modify USERNAME', 'Modify a user'
     long_desc <<-LONG_DESC
       Modify a user account.
 
       With the --role option, update the user's role to one of "user",
       "moderator" or "admin".
 
-      With the --confirmed option, mark the user's e-mail as confirmed.
-    LONG_DESC
-    def mod(username)
-      account = Account.find_local(username)
+      With the --email option, update the user's e-mail address. With
+      the --confirm option, mark the user's e-mail as confirmed.
 
-      if account.nil?
+      With the --disable option, lock the user out of their account. The
+      --enable option is the opposite.
+
+      With the --disable-2fa option, the two-factor authentication
+      requirement for the user can be removed.
+    LONG_DESC
+    def modify(username)
+      user = Account.find_local(username)&.user
+
+      if user.nil?
         say('No user with such username', :red)
         exit(1)
       end
 
-      if options[:role]
-        account.user.update(admin: options[:role] == 'admin', moderator: options[:role] == 'moderator')
-      end
+      user.admin = options[:role] == 'admin' if options[:role]
+      user.moderator = options[:role] == 'moderator' if options[:role]
+      user.email = options[:email] if options[:email]
+      user.disabled = false if options[:enable]
+      user.disabled = true if options[:disable]
+      user.otp_required_for_login = false if options[:disable_2fa]
+      user.confirm if options[:confirm]
 
-      if options[:confirmed]
-        account.user.confirm!
-      end
+      if user.save
+        say('OK', :green)
+      else
+        user.errors.to_h.each do |key, error|
+          say('Failure/Error: ', :red)
+          say(key)
+          say('    ' + error, :red)
+        end
 
-      say('OK', :green)
+        exit(1)
+      end
     end
 
-    desc 'del USERNAME', 'Delete a user'
+    desc 'delete USERNAME', 'Delete a user'
     long_desc <<-LONG_DESC
       Remove a user account with a given USERNAME.
     LONG_DESC
-    def del(username)
+    def delete(username)
       account = Account.find_local(username)
 
       if account.nil?
