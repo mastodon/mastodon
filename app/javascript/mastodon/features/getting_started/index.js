@@ -95,7 +95,7 @@ export default class GettingStarted extends ImmutablePureComponent {
         <ColumnSubheading key={i++} text={intl.formatMessage(messages.personal)} />
       );
 
-      height += 34*2 + 48*2;
+      height += 34*2 + 42*2;
     }
 
     navItems.push(
@@ -104,17 +104,17 @@ export default class GettingStarted extends ImmutablePureComponent {
       <ColumnLink key={i++} icon='list-ul' text={intl.formatMessage(messages.lists)} to='/lists' />
     );
 
-    height += 48*3;
+    height += 42*3;
 
     if (myAccount.get('locked')) {
       navItems.push(<ColumnLink key={i++} icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
-      height += 48;
+      height += 42;
     }
 
     navItems.push(
       <ColumnLink key={i++} icon='question' text={intl.formatMessage(messages.faq)} href='https://faq.imastodon.net/getting-started/' targetWindow='_blank' />
     );
-    height += 48;
+    height += 42;
 
     if (!multiColumn) {
       navItems.push(
@@ -122,7 +122,7 @@ export default class GettingStarted extends ImmutablePureComponent {
         <ColumnLink key={i++} icon='gears' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
       );
 
-      height += 34 + 48;
+      height += 34 + 42;
     }
 
     return (
