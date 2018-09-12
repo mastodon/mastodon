@@ -21,7 +21,7 @@ cy:
     about_mastodon_html: Mae Mastodon yn rhywdwaith cymdeithasol sy'n seiliedig ar
       brotocolau gwê a meddalwedd côd agored rhad ac am ddim. Mae'n ddatganoledig
       fel e-bost.
-    closed_registrations: Mae Mastodon yn rhywdwaith cymdeithasol sy'n seiliedig ar
+    closed_registrations: Mae Mastodon yn rwydwaith cymdeithasol sy'n seiliedig ar
       brotocolau gwê a meddalwedd côd agored rhad ac am ddim. Mae'n ddatganoledig
       fel e-bost.
     contact_missing: Heb ei osod
@@ -35,6 +35,15 @@ cy:
       humane_approach_body: Gan ddysgu o fethiannau rhwydweithiau eraill, mae Mastadon
         yn anelu i wneud penderfyniadau dylunio moesol er mwyn ymladd y camddefnydd
         o gyfryngau cymdeithasol.
+      humane_approach_title: Agwedd fwy dynol
+      not_a_product_body: Nid yw Mastodon yn rwydwaith fasnachol. Nid oes hysbysebion,
+        cloddio data na gerddi caeedig. Nid oes awdurdod ganolog.
+      not_a_product_title: Rwyt yn berson, nid yn gynnyrch
+      real_conversation_title: Wedi ei adeiladu ar gyfer trafodaeth go iawn
+      within_reach_title: Bob tro o fewn gafael
+    generic_description: Mae %{domain} yn un gweinydd yn y rhwydwaith
+    hosted_on: Mastodon wedi ei weinyddu ar %{domain}
+    user_count_before: Cartref i
   accounts:
     choices_html: 'Dewisiadau %{name}:'
     follow: Dilynwch
@@ -43,7 +52,7 @@ cy:
       other: Dilynwyr
     joined: Ymunodd %{date}
     media: Cyfryngau
-    network_hidden: Nid yw'r wybodaeth hon ar gael
+    network_hidden: Nid yw'r wybodaeth hyn ar gael
     nothing_here: Does dim byd yma!
     posts:
       one: Twt
@@ -54,10 +63,20 @@ cy:
       bot: Bot
       moderator: Safonwr
     unfollow: Dad-ddilyn
+    following: Yn dilyn
+    moved_html: 'Mae %{name} wedi symud i %{new_profile_link}:'
+    people_followed_by: Pobl y mae %{name} yn ei ddilyn
+    people_who_follow: Pobl sy'n dilyn %{name}
+    pin_errors:
+      following: Rhaid i ti fod yn dilyn y person yr ydych am ei gymeradwyo yn barod
+    posts_with_replies: Twtiau ac atebion
+    reserved_username: Mae'r enw defnyddior yn neilltuedig
   admin:
     account_moderation_notes:
       create: Gadael nodyn
       delete: Dileu
+      created_msg: Crewyd nodyn cymedroli yn llwyddiannus!
+      destroyed_msg: Dinistrwyd nodyn cymedroli yn llwyddiannus!
     accounts:
       are_you_sure: Ydych chi'n siŵr?
       avatar: Afatar
@@ -68,6 +87,7 @@ cy:
         new_email: E-bost Newydd
         submit: Newid E-bost
         title: Newid E-bost i %{username}
+        changed_msg: E-bost cyfri wedi ei newid yn llwyddiannus!
       confirm: Cadarnhau
       confirmed: Cadarnhawyd
       disable: Diffodd
@@ -81,27 +101,66 @@ cy:
       ip: IP
       location:
         all: Popeth
-        local: Leol
+        local: Lleol
         remote: Pell
         title: Lleoliad
       media_attachments: Atodiadau
       moderation:
         all: Popeth
         title: Cymedroli
-      outbox_url: URL blwch allan
+        silenced: Wedi ei dawelu
+        suspended: Wedi ei atal
+      outbox_url: Allflwch URL
       profile_url: URL proffil
       public: Cyhoeddus
       reset: Ailosod
-      reset_password: Newid cyfrinair
+      reset_password: Ailosod cyfrinair
       roles:
         user: Defnyddiwr
+        admin: Gweinyddwr
+        moderator: Safonwr
+        staff: Staff
       search: Chwilio
       show:
         report: adrodd
+        created_reports: Adroddiadau a grewyd gan y cyfri hwn
+        targeted_reports: Adroddiadau am y cyfri hwn
       subscribe: Tanysgrifio
       title: Cyfrifon
       username: Enw defnyddiwr
       web: Gwe
+      confirming: Cadarnhau
+      demote: Diraddio
+      disable_two_factor_authentication: Diffodd 2FA
+      disabled: Wedi ei ddiffodd
+      display_name: ''
+      enabled: Wedi ei alluogi
+      followers: Dilynwyr
+      followers_url: URL Dilynwyr
+      follows: Yn dilyn
+      login_status: Statws mewngofnodi
+      moderation_notes: Nodiadau cymedroli
+      most_recent_activity: Gweithgarwch diweddaraf
+      most_recent_ip: IP diweddaraf
+      not_subscribed: Heb danysgrifio
+      order:
+        alphabetic: Allfabetig
+        most_recent: Mwyaf diweddaraf
+        title: Trefn
+      promote: Hyrwyddo
+      protocol: Protocol
+      push_subscription_expires: Tanysgrifiad PUSH yn dod i ben
+      resend_confirmation:
+        already_confirmed: Mae'r defnyddiwr hwn wedi ei gadarnhau yn barod
+        success: E-bost cadarnhau wedi ei anfon yn llwyddiannus!
+      resubscribe: Aildanysgrifio
+      role: Caniatâd
+      shared_inbox_url: URL Mewnflwch wedi ei rannu
+      silence: Tawelu
+      unconfirmed_email: E-bost heb ei gadarnhau
+      undo_silenced: Dadwneud tawelu
+      undo_suspension: Dadwneud
+      unsubscribe: Dad-danysgrifio
     custom_emojis:
       by_domain: Parth
       copy: Copïo
@@ -121,6 +180,13 @@ cy:
     settings:
       contact_information:
         email: E-bost busnes
+    action_logs:
+      actions:
+        assigned_to_self_report: Aseiniodd %{name} adroddiad %{target} i'w hunan
+        change_email_user: Newidodd %{name} gyfeiriad e-bost y defnyddiwr %{target}
+        confirm_user: Cadarnhaodd %{name} gyfeiriad e-bost y defnyddiwr %{target}
+        create_custom_emoji: Uwchlwythodd %{name} emoji newydd %{target}
+        create_domain_block: Blociodd %{name} y parth %{target}
   auth:
     change_password: Cyfrinair
   authorize_follow:
