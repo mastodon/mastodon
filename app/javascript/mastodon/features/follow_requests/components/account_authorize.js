@@ -42,7 +42,7 @@ export default class AccountAuthorize extends ImmutablePureComponent {
 
         <div className='account--panel'>
           <div className='account--panel__button'><IconButton title={intl.formatMessage(messages.authorize)} icon='check' onClick={onAuthorize} /></div>
-          <div className='account--panel__button'><IconButton title={intl.formatMessage(messages.softauth)} icon='filter' onClick={onSoftAuth} /></div>
+          <div className='account--panel__button'><IconButton title={intl.formatMessage(messages.softauth)} icon='plus' onClick={onSoftAuth} /></div>
           <div className='account--panel__button'><IconButton title={intl.formatMessage(messages.reject)} icon='times' onClick={onReject} /></div>
         </div>
       </div>
