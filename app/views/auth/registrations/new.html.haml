@@ -36,6 +36,15 @@
     = f.input :agreement, as: :boolean, wrapper: :with_label, label: whitelist_mode? ? t('auth.checkbox_agreement_without_rules_html', terms_path: terms_path) : t('auth.checkbox_agreement_html', rules_path: about_more_path, terms_path: terms_path)
 
   .actions
-    = f.button :button, @invite.present? ? t('auth.register') : sign_up_message, type: :submit
+    - if ENV['RECAPTCHA_ENABLED'] == 'true'
+      %script(src='https://www.google.com/recaptcha/api.js')
+      = f.button :button, sign_up_message, type: :submit, id: 'registration-form', disabled: 'true'
+      %div{class: 'g-recaptcha',data: {sitekey: ENV['RECAPTCHA_SITE_KEY'], callback: 'on_submit_new_user'}}
+      :javascript
+        function on_submit_new_user(token) {
+          document.getElementById("registration-form").disabled = false;
+        }
+    - else
+      = f.button :button, @invite.present? ? t('auth.register') : sign_up_message, type: :submit
 
 .form-footer= render 'auth/shared/links'

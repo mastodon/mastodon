@@ -19,7 +19,16 @@
       = f.input :agreement, as: :boolean, wrapper: :with_label, label: t('auth.checkbox_agreement_html', rules_path: about_more_path, terms_path: terms_path), disabled: closed_registrations?
 
     .actions
-      = f.button :button, sign_up_message, type: :submit, class: 'button button-primary', disabled: closed_registrations?
+      - if ENV['RECAPTCHA_ENABLED'] == 'true'
+        %script(src='https://www.google.com/recaptcha/api.js')
+        = f.button :button, t('auth.register'), type: :submit, class: 'button button-primary', id: 'registration-form', disabled: 'true'
+        %div{class: 'g-recaptcha',data: {sitekey: ENV['RECAPTCHA_SITE_KEY'], callback: 'on_submit_new_user'}}
+        :javascript
+          function on_submit_new_user(token) {
+            document.getElementById("registration-form").disabled = false;
+          }
+      - else
+        = f.button :button, sign_up_message, type: :submit, class: 'button button-primary', disabled: closed_registrations?
 
   - if closed_registrations? && @instance_presenter.closed_registrations_message.present?
     .simple_form__overlay-area__overlay
