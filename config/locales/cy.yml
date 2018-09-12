@@ -1,7 +1,7 @@
----
 cy:
   about:
-    about_hashtag_html: Dyma dwtiau cyhoeddus wedi eu tagio gyda <strong>#%{hashtag}</strong>. Gallwch ryngweithio gyda nhw os oes gennych gyfrif yn unrhywle yn y ffedysawd.
+    about_hashtag_html: Dyma dwtiau cyhoeddus wedi eu tagio gyda <strong>#%{hashtag}</strong>.
+      Gallwch ryngweithio gyda nhw os oes gennych gyfrif yn unrhywle yn y ffedysawd.
     about_this: Ynghylch
     administered_by: 'Gweinyddir gan:'
     api: API
@@ -18,6 +18,23 @@ cy:
       one: defnyddiwr
       other: defnyddiwyr
     what_is_mastodon: Beth yw Mastodon?
+    about_mastodon_html: Mae Mastodon yn rhywdwaith cymdeithasol sy'n seiliedig ar
+      brotocolau gwê a meddalwedd côd agored rhad ac am ddim. Mae'n ddatganoledig
+      fel e-bost.
+    closed_registrations: Mae Mastodon yn rhywdwaith cymdeithasol sy'n seiliedig ar
+      brotocolau gwê a meddalwedd côd agored rhad ac am ddim. Mae'n ddatganoledig
+      fel e-bost.
+    contact_missing: Heb ei osod
+    contact_unavailable: N/A
+    extended_description_html: '<h3>Lle da ar gyfer rheolau</h3>
+
+      <p>Nid yw''r disgrifiad estynedig wedi ei sefydlu eto</p>
+
+      '
+    features:
+      humane_approach_body: Gan ddysgu o fethiannau rhwydweithiau eraill, mae Mastadon
+        yn anelu i wneud penderfyniadau dylunio moesol er mwyn ymladd y camddefnydd
+        o gyfryngau cymdeithasol.
   accounts:
     choices_html: 'Dewisiadau %{name}:'
     follow: Dilynwch
@@ -140,7 +157,7 @@ cy:
       alipay: ''
       blackberry: ''
     current_session: Sesiwn cyfredol
-    description: "%{browser} ar %{platform}"
+    description: '%{browser} ar %{platform}'
     title: Sesiynau
   themes:
     contrast: Cyferbyniad uchel
@@ -148,8 +165,8 @@ cy:
     mastodon-light: Mastodon (golau)
   time:
     formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
+      default: '%b %d, %Y, %H:%M'
+      month: '%b %Y'
   user_mailer:
     welcome:
       subject: Croeso i Mastodon
