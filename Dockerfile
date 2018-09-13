@@ -10,7 +10,8 @@ ARG GID=991
 ENV PATH=/mastodon/bin:$PATH \
     RAILS_SERVE_STATIC_FILES=true \
     RAILS_ENV=production \
-    NODE_ENV=production
+    NODE_ENV=production \
+    LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.1
 
 ARG LIBICONV_VERSION=1.15
 ARG LIBICONV_DOWNLOAD_SHA256=ccf536620a45458d26ba83887a983b96827001e92a13847b45e4925cc8913178
@@ -46,6 +47,7 @@ RUN apk -U upgrade \
     protobuf \
     tini \
     tzdata \
+    libjemalloc \
  && update-ca-certificates \
  && ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn \
  && ln -s /opt/yarn/bin/yarnpkg /usr/local/bin/yarnpkg \
