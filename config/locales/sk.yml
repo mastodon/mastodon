@@ -75,6 +75,8 @@ sk:
     choices_html: '%{name}vé voľby:'
     joined: Pridal/a sa %{date}
     posts_tab_heading: Príspevky
+    pin_errors:
+      following: Musíš už následovať toho človeka, ktorého si praješ zviditeľniť
   admin:
     account_moderation_notes:
       create: Zanechaj poznámku
@@ -252,6 +254,7 @@ sk:
       week_interactions: Tohto týždňové interakcie
       week_users_active: aktívni tento týždeň
       week_users_new: užívateľov počas tohto týždňa
+      backlog: odložené aktivity
     domain_blocks:
       add_new: Pridať nový
       created_msg: Doména je v procese blokovania
@@ -327,6 +330,9 @@ sk:
       setup: Nastav prepojenie s mostom
       title: Mosty
       pending: Čakám na povolenie od prechodného mostu
+      enable_hint: Ak povolíš, tvoj server bude odoberať všetky verejné príspevky
+        z tohto mostu, a začne posielať verejné príspevky tvojho servera na tento
+        most.
     report_notes:
       created_msg: Poznámka o nahlásení úspešne vytvorená!
       destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
