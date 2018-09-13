@@ -567,3 +567,102 @@ a.name-tag,
     color: $dark-text-color;
   }
 }
+
+.report-card {
+  background: $ui-base-color;
+  border-radius: 4px;
+  margin-bottom: 20px;
+
+  &__profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+
+    .account {
+      padding: 0;
+      border: 0;
+
+      &__avatar-wrapper {
+        margin-left: 0;
+      }
+    }
+
+    &__stats {
+      flex: 0 0 auto;
+      font-weight: 500;
+      color: $darker-text-color;
+      text-transform: uppercase;
+      text-align: right;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+
+        &:focus,
+        &:hover,
+        &:active {
+          color: lighten($darker-text-color, 8%);
+        }
+      }
+
+      .red {
+        color: $error-value-color;
+      }
+    }
+  }
+
+  &__summary {
+    &__item {
+      display: flex;
+      justify-content: flex-start;
+      border-top: 1px solid darken($ui-base-color, 4%);
+
+      &:hover {
+        background: lighten($ui-base-color, 2%);
+      }
+
+      &__reported-by,
+      &__assigned {
+        padding: 15px;
+        flex: 0 0 auto;
+        box-sizing: border-box;
+        width: 150px;
+        color: $darker-text-color;
+
+        &,
+        .username {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      &__content {
+        flex: 1 1 auto;
+        max-width: calc(100% - 300px);
+
+        &__icon {
+          color: $dark-text-color;
+          margin-right: 4px;
+          font-weight: 500;
+        }
+      }
+
+      &__content a {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 15px;
+        text-decoration: none;
+        color: $darker-text-color;
+      }
+    }
+  }
+}
+
+.one-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
