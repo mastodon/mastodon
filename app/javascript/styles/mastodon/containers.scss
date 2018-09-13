@@ -345,6 +345,23 @@
     margin-bottom: 10px;
     box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
 
+    &.inactive {
+      opacity: 0.5;
+
+      .public-account-header__image,
+      .avatar {
+        filter: grayscale(100%);
+      }
+
+      .logo-button {
+        background-color: $secondary-text-color;
+
+        svg path:last-child {
+          fill: $secondary-text-color;
+        }
+      }
+    }
+
     &__image {
       border-radius: 4px 4px 0 0;
       overflow: hidden;
@@ -581,6 +598,10 @@
             &::after {
               border-bottom: 4px solid $highlight-text-color;
               opacity: 1;
+            }
+
+            &.inactive::after {
+              border-bottom-color: $secondary-text-color;
             }
           }
 

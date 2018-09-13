@@ -15,6 +15,7 @@ pl:
           other: Pozostało <span class="name-counter">%{count}</span> znaków
         fields: Możesz ustawić maksymalnie 4 niestandardowe pola wyświetlane jako tabela na Twoim profilu
         header: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
+        inbox_url: Skopiuj adres ze strony głównej przekaźnika, którego chcesz użyć
         irreversible: Filtrowane wpisy znikną bezpowrotnie, nawet gdy filtr zostanie usunięty
         locale: Język interfejsu, wiadomości e-mail i powiadomieniach push
         locked: Musisz akceptować prośby o śledzenie
@@ -24,10 +25,12 @@ pl:
           one: Pozostał <span class="name-counter">1</span> znak
           other: Pozostało <span class="name-counter">%{count}</span> znaków
         phrase: Zostanie wykryte nawet, gdy znajduje się za ostrzeżeniem o zawartości
+        scopes: Wybór API, do których aplikacja będzie miała dostęp. Jeżeli wybierzesz nadrzędny zakres, nie musisz wybierać jego elementów.
         setting_default_language: Język Twoich wpisów może być wykrywany automatycznie, ale nie zawsze jest to dokładne
         setting_hide_network: Informacje o tym, kto Cię śledzi i kogo śledzisz nie będą widoczne
         setting_noindex: Wpływa na widoczność strony profilu i Twoich wpisów
         setting_theme: Zmienia wygląd Mastodona po zalogowaniu z dowolnego urządzenia.
+        whole_word: Jeśli słowo lub fraza składa się jedynie z liter lub cyfr, filtr będzie zastosowany tylko do pełnych wystąpień
       imports:
         data: Plik CSV wyeksportowany z innej instancji Mastodona
       sessions:
@@ -54,6 +57,7 @@ pl:
         expires_in: Wygaśnie po
         fields: Metadane profilu
         header: Nagłówek
+        inbox_url: Adres skrzynki przekaźnika
         irreversible: Usuwaj zamiast ukrywać
         locale: Język interfejsu
         locked: Ustaw konto jako prywatne
@@ -81,6 +85,7 @@ pl:
         type: Importowane dane
         username: Nazwa użytkownika
         username_or_email: Nazwa użytkownika lub adres e-mail
+        whole_word: Całe słowo
       interactions:
         must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie śledzą
         must_be_following: Nie wyświetlaj powiadomień od osób, których nie śledzisz
@@ -92,6 +97,7 @@ pl:
         follow_request: Powiadamiaj mnie e-mailem, gdy ktoś poprosi o pozwolenie na śledzenie mnie
         mention: Powiadamiaj mnie e-mailem, gdy ktoś o mnie wspomni
         reblog: Powiadamiaj mnie e-mailem, gdy ktoś podbije mój wpis
+        report: Powiadamiaj mnie e-mailem, gdy zostanie utworzone nowe zgłoszenie
     'no': Nie
     required:
       mark: "*"

@@ -621,3 +621,14 @@ code {
 .scope-danger {
   color: $warning-red;
 }
+
+.form_admin_settings_site_short_description,
+.form_admin_settings_site_description,
+.form_admin_settings_site_extended_description,
+.form_admin_settings_site_terms,
+.form_admin_settings_custom_css,
+.form_admin_settings_closed_registrations_message {
+  textarea {
+    font-family: 'mastodon-font-monospace', monospace;
+  }
+}

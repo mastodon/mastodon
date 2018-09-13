@@ -1297,6 +1297,11 @@ a .account__avatar {
   flex: 0 1 100%;
   border-right: 1px solid lighten($ui-base-color, 8%);
   padding: 10px 0;
+  border-bottom: 4px solid transparent;
+
+  &.active {
+    border-bottom: 4px solid $ui-highlight-color;
+  }
 
   & > span {
     display: block;
@@ -1666,14 +1671,14 @@ a.account__display-name {
 
   &.top {
     bottom: -5px;
-    margin-left: -13px;
+    margin-left: -7px;
     border-width: 5px 7px 0;
     border-top-color: $ui-secondary-color;
   }
 
   &.bottom {
     top: -5px;
-    margin-left: -13px;
+    margin-left: -7px;
     border-width: 0 7px 5px;
     border-bottom-color: $ui-secondary-color;
   }
@@ -2279,28 +2284,6 @@ a.account__display-name {
 .getting-started {
   color: $dark-text-color;
 
-  p {
-    color: $dark-text-color;
-    font-size: 13px;
-    margin-bottom: 20px;
-
-    a {
-      color: $dark-text-color;
-      text-decoration: underline;
-    }
-  }
-
-  a {
-    text-decoration: none;
-    color: $darker-text-color;
-
-    &:hover,
-    &:focus,
-    &:active {
-      text-decoration: underline;
-    }
-  }
-
   &__footer {
     flex: 0 0 auto;
     padding: 10px;
@@ -2312,6 +2295,28 @@ a.account__display-name {
 
     ul li {
       display: inline;
+    }
+
+    p {
+      color: $dark-text-color;
+      font-size: 13px;
+      margin-bottom: 20px;
+
+      a {
+        color: $dark-text-color;
+        text-decoration: underline;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $darker-text-color;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: underline;
+      }
     }
   }
 
@@ -5367,7 +5372,7 @@ noscript {
   dt,
   dd {
     box-sizing: border-box;
-    padding: 14px 20px;
+    padding: 14px 5px;
     text-align: center;
     max-height: 48px;
     overflow: hidden;

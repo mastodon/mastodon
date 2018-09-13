@@ -31,20 +31,28 @@ pl:
     privacy_policy: Polityka prywatności
     source_code: Kod źródłowy
     status_count_after:
+      few: wpisów
+      many: wpisów
       one: wpisu
-      other: wpisów
     status_count_before: Są autorami
     terms: Zasady użytkowania
     user_count_after:
+      few: użytkowników
+      many: użytkowników
       one: użytkownik
-      other: użytkowników
     user_count_before: Z serwera korzysta
     what_is_mastodon: Czym jest Mastodon?
   accounts:
     choices_html: 'Polecani przez %{name}:'
     follow: Śledź
-    followers: Śledzący
-    following: Śledzeni
+    followers:
+      few: śledzących
+      many: śledzących
+      one: śledzący
+    following:
+      few: śledzonych
+      many: śledzonych
+      one: śledzony
     joined: Dołączył(a) %{date}
     media: Zawartość multimedialna
     moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
@@ -54,7 +62,10 @@ pl:
     people_who_follow: Osoby, które śledzą konto %{name}
     pin_errors:
       following: Musisz śledzić osobę, którą chcesz polecać
-    posts: Wpisy
+    posts:
+      few: wpisy
+      many: wpisów
+      one: wpis
     posts_with_replies: Wpisy z odpowiedziami
     reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
@@ -298,6 +309,8 @@ pl:
       description_html: "<strong>Przekaźnik federacji</strong> jest pośredniczącym serwerem wymieniającym duże ilości publicznych wpisów pomiędzy serwerami które subskrybują je i publikują na nich. <strong>Pomaga to małym i średnim instancją poznawać nową zawartość z Fediwersum</strong>, co w innym przypadku wymagałoby od użytkowników ręcznego śledzenia osób z innych serwerów."
       enable_hint: Jeżeli włączone, Twój serwer zasubskrybuje wszystkie publiczne wpisy z tego przekaźnika i zacznie wysyłać tam publiczne wpisy z tego serwera.
       inbox_url: Adres przekaźnika
+      pending: Oczekiwanie na przyjęcie przez przekaźnik
+      save_and_enable: Zapisz i aktywuj
       setup: Skonfiguruj połączenie z przekaźnikiem
       status: Stan
       title: Przekaźniki
@@ -315,7 +328,6 @@ pl:
       comment:
         none: Brak
       created_at: Zgłoszono
-      id: ID
       mark_as_resolved: Oznacz jako rozwiązane
       mark_as_unresolved: Oznacz jako nierozwiązane
       notes:
@@ -326,7 +338,6 @@ pl:
         placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia…
       reopen: Otwórz ponownie
       report: 'Zgłoszenie #%{id}'
-      report_contents: Zawartość
       reported_account: Zgłoszone konto
       reported_by: Zgłaszający
       resolved: Rozwiązane
@@ -334,12 +345,10 @@ pl:
       silence_account: Wycisz konto
       status: Stan
       suspend_account: Zawieś konto
-      target: Cel
       title: Zgłoszenia
       unassign: Cofnij przypisanie
       unresolved: Nierozwiązane
       updated_at: Zaktualizowano
-      view: Wyświetl
     settings:
       activity_api_enabled:
         desc_html: Liczy publikowane lokalnie wpisy, aktywnych użytkowników i nowe rejestracje w ciągu danego tygodnia
@@ -408,6 +417,7 @@ pl:
       media:
         title: Media
       no_media: Bez zawartości multimedialnej
+      no_status_selected: Żaden wpis nie został zmieniony, bo żaden nie został wybrany
       title: Wpisy konta
       with_media: Z zawartością multimedialną
     subscriptions:

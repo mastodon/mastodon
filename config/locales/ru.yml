@@ -5,6 +5,8 @@ ru:
     about_mastodon_html: Mastodon - это <em>свободная</em> социальная сеть с <em>открытым исходным кодом</em>. Как <em>децентрализованная</em> альтернатива коммерческим платформам, Mastodon предотвращает риск монополизации Вашего общения одной компанией. Выберите сервер, которому Вы доверяете &mdash; что бы Вы ни выбрали, Вы сможете общаться со всеми остальными. Любой может запустить свой собственный узел Mastodon и участвовать в <em>социальной сети</em> совершенно бесшовно.
     about_this: Об этом узле
     administered_by: 'Администратор узла:'
+    api: API
+    apps: Приложения
     closed_registrations: В данный момент регистрация на этом узле закрыта. Но вы можете найти другой узел, создать на нём учётную запись и получить доступ к той же сети оттуда.
     contact: Связаться
     contact_missing: Не установлено
@@ -27,17 +29,29 @@ ru:
     other_instances: Другие узлы
     privacy_policy: Политика конфиденциальности
     source_code: Исходный код
-    status_count_after: статусов
+    status_count_after:
+      few: статуса
+      many: статусов
+      one: статус
+      other: статусов
     status_count_before: Опубликовано
     terms: Условия использования
-    user_count_after: пользователей
+    user_count_after:
+      few: пользователя
+      many: пользователей
+      one: пользователь
+      other: пользователей
     user_count_before: Здесь живет
     what_is_mastodon: Что такое Mastodon?
   accounts:
     choices_html: "%{name} рекомендует:"
     follow: Подписаться
-    followers: Подписчики
-    following: Подписан(а)
+    followers:
+      few: подписчика
+      many: подписчиков
+      one: подписчик
+      other: подписчиков
+    following: подписки
     joined: 'Дата регистрации: %{date}'
     media: Медиа
     moved_html: "%{name} переехал(а) на %{new_profile_link}:"
@@ -47,7 +61,12 @@ ru:
     people_who_follow: Подписчики %{name}
     pin_errors:
       following: Чтобы порекомендовать кого-то, надо сначала на них подписаться
-    posts: Посты
+    posts:
+      few: статуса
+      many: статусов
+      one: статус
+      other: статусов
+    posts_tab_heading: Статусы
     posts_with_replies: Посты с ответами
     reserved_username: Имя пользователя зарезервировано
     roles:
@@ -182,11 +201,12 @@ ru:
         unsuspend_account: "%{name} разморозил(а) аккаунт %{target}"
         update_custom_emoji: "%{name} обновил(а) эмодзи %{target}"
         update_status: "%{name} изменил(а) статус пользователя %{target}"
+      deleted_status: "(удалённый статус)"
       title: Журнал событий
     custom_emojis:
       by_domain: Домен
       copied_msg: Локальная копия эмодзи успешно создана
-      copy: Скопироват
+      copy: Копировать
       copy_failed_msg: Не удалось создать локальную копию эмодзи
       created_msg: Эмодзи успешно создано!
       delete: Удалить
@@ -211,11 +231,11 @@ ru:
     dashboard:
       backlog: задачи
       config: Конфигурация
-      feature_deletions: Аккаунтов удалено
+      feature_deletions: Удаление аккаунтов
       feature_invites: Пригласительные ссылки
-      feature_registrations: Регистрации
-      feature_relay: Ретрансляторов сети
-      features: Нововведения
+      feature_registrations: Регистрация
+      feature_relay: Ретрансляторы
+      features: Возможности
       hidden_service: Федерация со скрытыми сервисами
       open_reports: открытых жалоб
       recent_users: Недавние пользователи
@@ -280,6 +300,7 @@ ru:
       search: Поиск
       title: Известные узлы
     invites:
+      deactivate_all: Отключить все
       filter:
         all: Все
         available: Актуальные
@@ -291,7 +312,9 @@ ru:
       description_html: "<strong>Федеративный ретранслятор</strong> – это промежуточный сервер, который передаёт большие объёмы публичных статусов между серверами, которые подписываются и публикуют туда. <strong>Это может помочь небольшим и средним серверам находить записи со всей федерации</strong>, ведь в противном случае пользователям нужно будет вручную подписываться на людей с удалённых узлов."
       enable_hint: Если включено, ваш сервер будет подписан на все публичные статусы с этого ретранслятора и начнёт туда отправлять публичные статусы со своего узла.
       inbox_url: URL ретранслятора
-      setup: Настроте соединение с ретранслятором
+      pending: Ожидание подтверждения ретранслятора
+      save_and_enable: Сохранить и включить
+      setup: Настроить соединение с ретранслятором
       status: Состояние
       title: Ретрансляторы
     report_notes:
@@ -308,7 +331,6 @@ ru:
       comment:
         none: Нет
       created_at: Создано
-      id: ID
       mark_as_resolved: Отметить как разрешенную
       mark_as_unresolved: Отметить как неразрешённую
       notes:
@@ -319,7 +341,6 @@ ru:
         placeholder: Опишите, какие действия были приняты, или любые другие подробности…
       reopen: Переоткрыть жалобу
       report: 'Жалоба #%{id}'
-      report_contents: Содержимое
       reported_account: Аккаунт нарушителя
       reported_by: Отправитель жалобы
       resolved: Разрешено
@@ -327,12 +348,10 @@ ru:
       silence_account: Заглушить аккаунт
       status: Статус
       suspend_account: Блокировать аккаунт
-      target: Цель
       title: Жалобы
       unassign: Снять назначение
       unresolved: Неразрешенные
       updated_at: Обновлена
-      view: Просмотреть
     settings:
       activity_api_enabled:
         desc_html: Подсчёт количества локальных статусов, активных пользователей и новых регистраций на еженедельной основе
@@ -343,6 +362,9 @@ ru:
       contact_information:
         email: Введите публичный e-mail
         username: Введите имя пользователя
+      custom_css:
+        desc_html: Измените внешний вид с CSS, загружаемым на каждой странице
+        title: Особый CSS
       hero:
         desc_html: Отображается на главной странице. Рекомендуется разрешение не менее 600х100px. Если не установлено, используется изображение узла
         title: Баннер узла
@@ -379,7 +401,7 @@ ru:
         title: Расширенное описание узла
       site_short_description:
         desc_html: Отображается в боковой панели и в тегах. Опишите, что такое Mastodon и что делает именно этот узел особенным. Если пусто, используется описание узла по умолчанию.
-        title: Короткое описание узла
+        title: Краткое описание узла
       site_terms:
         desc_html: Вы можете добавить сюда собственную политику конфиденциальности, пользовательское соглашение и другие документы. Можно использовать теги HTML.
         title: Условия использования
@@ -401,6 +423,7 @@ ru:
       media:
         title: Медиаконтент
       no_media: Без медиаконтента
+      no_status_selected: Не выбран ни один статус, ничего не изменено
       title: Статусы аккаунта
       with_media: С медиаконтентом
     subscriptions:
@@ -410,6 +433,12 @@ ru:
       last_delivery: Последняя доставка
       title: WebSub
       topic: Тема
+    suspensions:
+      bad_acct_msg: Не удалось найти такое число подтверждения. Вы уверены, что замораживаете нужный аккаунт?
+      hint_html: 'Чтобы подтвердить заморозку аккаунта, пожалуйста, введите %{value} в поле ниже:'
+      proceed: Продолжить
+      title: Заморозить %{acct}
+      warning_html: 'Заморозка этого аккаунта приведёт к <strong>необратимому</strong> удалению данных с этого аккаунта, включая:'
     title: Администрирование
   admin_mailer:
     new_report:
@@ -662,11 +691,14 @@ ru:
     publishing: Публикация
     web: WWW
   remote_follow:
-    acct: Введите username@domain, откуда Вы хотите подписаться
+    acct: Введите свой username@domain для продолжения
     missing_resource: Поиск требуемого перенаправления URL для Вашего аккаунта завершился неудачей
     no_account_html: Нет учётной записи? Вы можете <a href='%{sign_up_path}' target='_blank'>зарегистрироваться здесь</a>
     proceed: Продолжить подписку
     prompt: 'Вы хотите подписаться на:'
+  remote_interaction:
+    proceed: Продолжить
+    prompt: 'Вы собираетесь взаимодействовать со статусом:'
   remote_unfollow:
     error: Ошибка
     title: Заголовок
@@ -755,7 +787,8 @@ ru:
       ownership: Нельзя закрепить чужой статус
       private: Нельзя закрепить непубличный статус
       reblog: Нельзя закрепить продвинутый статус
-    show_more: Подробнее
+    show_more: Ещё
+    sign_in_to_participate: Войдите, чтобы принять участие в дискуссии
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Для подписчиков
