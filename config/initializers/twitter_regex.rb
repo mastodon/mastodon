@@ -28,7 +28,7 @@ module Twitter
     )/iox
     REGEXEN[:valid_url] = %r{
       (                                                                                     #   $1 total match
-        (#{REGEXEN[:valid_url_preceding_chars]})                                            #   $2 Preceeding chracter
+        (#{REGEXEN[:valid_url_preceding_chars]})                                            #   $2 Preceding character
         (                                                                                   #   $3 URL
           ((https?|dat|dweb|ipfs|ipns|ssb|gopher):\/\/)?                                    #   $4 Protocol (optional)
           (#{REGEXEN[:valid_domain]})                                                       #   $5 Domain(s)
