@@ -4,7 +4,7 @@ class Form::StatusBatch
   include ActiveModel::Model
   include AccountableConcern
 
-  attr_accessor :status_ids, :action, :current_account
+  attr_accessor :status_ids, :action, :current_account, :notify_users
 
   ACTION_TYPE = %w(nsfw_on nsfw_off delete).freeze
 
@@ -25,7 +25,8 @@ class Form::StatusBatch
     ApplicationRecord.transaction do
       Status.where(id: media_attached_status_ids).reorder(nil).find_each do |status|
         status.update!(sensitive: sensitive)
-        log_action :update, status
+        action = log_action(:update, status)
+        NotifyService.new.call(status.account, action) if notify_users
       end
     end
 
@@ -37,7 +38,8 @@ class Form::StatusBatch
   def delete_statuses
     Status.where(id: status_ids).reorder(nil).find_each do |status|
       RemovalWorker.perform_async(status.id)
-      log_action :destroy, status
+      action = log_action(:destroy, status)
+      NotifyService.new.call(status.account, action) if notify_users
     end
 
     true

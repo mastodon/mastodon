@@ -38,7 +38,9 @@ module Admin
     private
 
     def form_status_batch_params
-      params.require(:form_status_batch).permit(:action, status_ids: [])
+      params.require(:form_status_batch).permit(
+        :notify_users, :action, status_ids: []
+      )
     end
 
     def set_account

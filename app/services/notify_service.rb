@@ -78,9 +78,10 @@ class NotifyService < BaseService
   end
 
   def blocked?
-    blocked   = @recipient.suspended?                            # Skip if the recipient account is suspended anyway
-    blocked ||= from_self?                                       # Skip for interactions with self
+    blocked = from_self?                                         # Skip for interactions with self
     blocked ||= domain_blocking?                                 # Skip for domain blocked accounts
+    return blocked if @notification.type.to_s == 'ActionLog'     # Return if object is ActionLog
+    blocked ||= @recipient.suspended?                            # Skip if the recipient account is suspended anyway
     blocked ||= @recipient.blocking?(@notification.from_account) # Skip for blocked accounts
     blocked ||= @recipient.muting_notifications?(@notification.from_account)
     blocked ||= hellbanned?                                      # Hellban

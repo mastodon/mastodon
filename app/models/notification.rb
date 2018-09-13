@@ -22,6 +22,7 @@ class Notification < ApplicationRecord
     follow:         'Follow',
     follow_request: 'FollowRequest',
     favourite:      'Favourite',
+    action_log:     'ActionLog',
   }.freeze
 
   STATUS_INCLUDES = [:account, :application, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :application, :media_attachments, :tags, mentions: :account]].freeze
@@ -35,6 +36,7 @@ class Notification < ApplicationRecord
   belongs_to :follow,         foreign_type: 'Follow',        foreign_key: 'activity_id', optional: true
   belongs_to :follow_request, foreign_type: 'FollowRequest', foreign_key: 'activity_id', optional: true
   belongs_to :favourite,      foreign_type: 'Favourite',     foreign_key: 'activity_id', optional: true
+  belongs_to :action_log,      foreign_type: 'ActionLog',     foreign_key: 'activity_id', optional: true
 
   validates :account_id, uniqueness: { scope: [:activity_type, :activity_id] }
   validates :activity_type, inclusion: { in: TYPE_CLASS_MAP.values }
@@ -97,7 +99,7 @@ class Notification < ApplicationRecord
     return unless new_record?
 
     case activity_type
-    when 'Status', 'Follow', 'Favourite', 'FollowRequest'
+    when 'Status', 'Follow', 'Favourite', 'FollowRequest', 'ActionLog'
       self.from_account_id = activity&.account_id
     when 'Mention'
       self.from_account_id = activity&.status&.account_id

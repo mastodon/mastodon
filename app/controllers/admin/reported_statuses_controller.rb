@@ -16,11 +16,11 @@ module Admin
     private
 
     def status_params
-      params.require(:status).permit(:sensitive)
+      params.require(:status).permit(:notify_users, :sensitive)
     end
 
     def form_status_batch_params
-      params.require(:form_status_batch).permit(status_ids: [])
+      params.require(:form_status_batch).permit(:notify_users, status_ids: [])
     end
 
     def action_from_button
