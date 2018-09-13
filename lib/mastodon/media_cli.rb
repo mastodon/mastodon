@@ -4,8 +4,6 @@ require_relative '../../config/boot'
 require_relative '../../config/environment'
 require_relative 'cli_helper'
 
-# rubocop:disable Rails/Output
-
 module Mastodon
   class MediaCLI < Thor
     option :days, type: :numeric, default: 7
@@ -61,5 +59,3 @@ module Mastodon
     end
   end
 end
-
-# rubocop:enable Rails/Output
