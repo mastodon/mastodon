@@ -1,4 +1,3 @@
----
 zh-TW:
   simple_form:
     hints:
@@ -21,6 +20,12 @@ zh-TW:
         setting_hide_network: 你關注的人與關注你的人將不會在你的個人資料頁上顯示
         setting_noindex: 此設定會影響到你的公開個人資料與嘟文頁面
         setting_theme: 此設定會影響到你從任意設備登入 Mastodon 時的顯示樣式。
+        phrase: 無論是嘟文的本文或是內容警告都會被過濾
+        context: 應該套用過濾器的一項或多項內容
+        inbox_url: 從您想要使用的中繼首頁複製 URL
+        irreversible: 已過濾的嘟文將會不可逆的消失，即便過濾器之後也一樣
+        scopes: 應用程式將會被允許存取哪些 API。若您選取了最高階的範圍，您就不需要再選取單獨的了。
+        whole_word: 如果關鍵字或詞組僅有字母與數字，它將只會在符合整個單字的時候才會套用
       imports:
         data: 自其他站點匯出的 CSV 檔案
       sessions:
@@ -57,9 +62,9 @@ zh-TW:
         setting_boost_modal: 在轉嘟前先詢問我
         setting_default_language: 嘟文語言
         setting_default_privacy: 嘟文預設為
-        setting_default_sensitive: 預設我的媒體檔案為敏感內容
+        setting_default_sensitive: 總是將媒體標記為敏感內容
         setting_delete_modal: 刪除嘟文前先詢問我
-        setting_display_sensitive_media: 預設我的媒體為敏感內容
+        setting_display_sensitive_media: 總是顯示標記為敏感內容的媒體
         setting_hide_network: 隱藏你的社交網路
         setting_noindex: 阻止搜尋引擎收錄
         setting_reduce_motion: 減低動畫效果
@@ -70,6 +75,11 @@ zh-TW:
         type: 匯入資料類型
         username: 使用者名稱
         username_or_email: 使用者名稱或 E-mail
+        context: 過濾範圍
+        phrase: 關鍵字或片語
+        whole_word: 整個詞
+        inbox_url: 中繼收件匣的 URL
+        irreversible: 放棄而非隱藏
       interactions:
         must_be_follower: 隱藏沒有關注你的使用者通知
         must_be_following: 隱藏你沒關注的使用者通知
@@ -81,8 +91,9 @@ zh-TW:
         follow_request: 當有使用者要求關注你時，發送 E-mail 通知
         mention: 當有使用者在嘟文提及你時，發送 E-mail 通知
         reblog: 都有使用者轉嘟你的嘟文時，發送 E-mail 通知
+        report: 當遞交新報告時傳送電子郵件
     'no': 否
     required:
-      mark: "*"
+      mark: '*'
       text: 必須填寫
     'yes': 是
