@@ -134,8 +134,11 @@ module Mastodon
         exit(1)
       end
 
-      user.admin = options[:role] == 'admin' if options[:role]
-      user.moderator = options[:role] == 'moderator' if options[:role]
+      if options[:role]
+        user.admin = options[:role] == 'admin'
+        user.moderator = options[:role] == 'moderator'
+      end
+
       user.email = options[:email] if options[:email]
       user.disabled = false if options[:enable]
       user.disabled = true if options[:disable]
