@@ -757,15 +757,23 @@ namespace :mastodon do
 
         begin
           code = Request.new(:head, account.uri).perform(&:code)
-        rescue StandardError
+        rescue StandardError => e
           # This could happen due to network timeout, DNS timeout, wrong SSL cert, etc,
           # which should probably not lead to perceiving the account as deleted, so
           # just skip till next time
+          progress_bar.pause
+          progress_bar.clear
+          print "ignored: #{account.acct}, #{e}\n"
+          progress_bar.resume
           next
         end
 
         if [404, 410].include?(code)
           if options[:force]
+            progress_bar.pause
+            progress_bar.clear
+            print "deleting: #{account.acct}, #{account.uri} no longer exists.\n"
+            progress_bar.resume
             SuspendAccountService.new.call(account)
             account.destroy
           else
