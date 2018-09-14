@@ -1,38 +1,49 @@
----
 gl:
   simple_form:
     hints:
       defaults:
-        autofollow: As persoas que se conectaron a través de un convite seguirana automáticamente a vostede
+        autofollow: As persoas que se conectaron a través de un convite seguirana
+          automáticamente a vostede
         avatar: PNG, GIF ou JPG.  Máximo %{size}. Será reducida a %{dimensions}px
-        bot: Esta conta realiza principalmente accións automatizadas e podería non estar monitorizada
+        bot: Esta conta realiza principalmente accións automatizadas e podería non
+          estar monitorizada
         context: Un ou varios contextos onde se debería aplicar o filtro
-        digest: Enviar só tras un longo período de inactividade e só si recibeu algunha mensaxe personal na súa ausencia
+        digest: Enviar só tras un longo período de inactividade e só si recibeu algunha
+          mensaxe personal na súa ausencia
         display_name:
           one: <span class="name-counter">1</span> caracter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
         fields: Pode ter ate 4 elementos no seu perfil mostrados como unha táboa
         header: PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
         inbox_url: Copiar o URL desde a páxina de inicio do repetidor que quere utilizar
-        irreversible: Os toots filtrados desaparecerán de xeito irreversible, incluso si despois se elimina o filtro
+        irreversible: Os toots filtrados desaparecerán de xeito irreversible, incluso
+          si despois se elimina o filtro
         locale: O idioma da interface de usuaria, correos e notificacións
         locked: Require que vostede acepte as seguidoras de xeito manual
         note:
           one: <span class="note-counter">1</span> caracter restante
           other: <span class="note-counter">%{count}</span> caracteres restantes
-        phrase: Concordará independentemente das maiúsculas ou avisos de contido no toot
-        scopes: A que APIs terá acceso a aplicación. Si selecciona un ámbito de alto nivel, non precisa seleccionar elementos individuais.
-        setting_default_language: Pódese detectar automáticamente o idioma dos seus toots, mais non sempre é preciso
-        setting_hide_network: Non se mostrará no seu perfil quen a segue e quen a está a seguir
+        phrase: Concordará independentemente das maiúsculas ou avisos de contido no
+          toot
+        scopes: A que APIs terá acceso a aplicación. Si selecciona un ámbito de alto
+          nivel, non precisa seleccionar elementos individuais.
+        setting_default_language: Pódese detectar automáticamente o idioma dos seus
+          toots, mais non sempre é preciso
+        setting_hide_network: Non se mostrará no seu perfil quen a segue e quen a
+          está a seguir
         setting_noindex: Afecta ao seu perfil público e páxinas de estado
-        setting_theme: Afecta ao aspecto de Mastodon en calquer dispositivo cando está conectada.
-        whole_word: Si a chave ou frase de paso é só alfanumérica, só se aplicará si concorda a palabra completa
+        setting_theme: Afecta ao aspecto de Mastodon en calquer dispositivo cando
+          está conectada.
+        whole_word: Si a chave ou frase de paso é só alfanumérica, só se aplicará
+          si concorda a palabra completa
       imports:
         data: Ficheiro CSV exportado desde outra instancia Mastodon
       sessions:
-        otp: 'Introduza o código de doble-factor xerado no aplicativo do seu móbil ou utilice un dos seus códigos de recuperación:'
+        otp: 'Introduza o código de doble-factor xerado no aplicativo do seu móbil
+          ou utilice un dos seus códigos de recuperación:'
       user:
-        chosen_languages: Si se marca, só os toots nos idiomas seleccionados serán mostrados en liñas temporais públicas
+        chosen_languages: Si se marca, só os toots nos idiomas seleccionados serán
+          mostrados en liñas temporais públicas
     labels:
       account:
         fields:
@@ -87,13 +98,15 @@ gl:
         must_be_following_dm: Bloquea as mensaxes directas de personas que non segue
       notification_emails:
         digest: Enviar correos con resumos
-        favourite: Enviar un correo cando alguén marca como favorita unha das súas publicacións
+        favourite: Enviar un correo cando alguén marca como favorita unha das súas
+          publicacións
         follow: Enviar un correo cando alguén a segue
         follow_request: Enviar un correo cando alguén solicita seguila
         mention: Enviar un correo cando alguén a menciona
         reblog: Enviar un correo cando alguén promociona a súa mensaxe
+        report: Enviar un correo cando se envíe un novo informe
     'no': Non
     required:
-      mark: "*"
+      mark: '*'
       text: requerido
     'yes': Si
