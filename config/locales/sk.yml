@@ -459,6 +459,8 @@ sk:
       no_media: Žiadné médiá
       title: Statusy na účte
       with_media: S médiami
+      no_status_selected: Žiadne príspevky neboli zmenené, keďže si žiadne nemal/a
+        zvolené
     subscriptions:
       callback_url: Zdrojová adresa URL
       confirmed: Potvrdené
@@ -467,6 +469,11 @@ sk:
       title: WebSub
       topic: Téma
     title: Administrácia
+    suspensions:
+      hint_html: 'Pre potvrdenie zamrazenia účtu, prosím napíš %{value} do následujúceho
+        políčka:'
+      proceed: Pokračuj
+      title: Zamraz %{acct}
   admin_mailer:
     new_report:
       body: '%{reporter} nahlásil %{target}'
