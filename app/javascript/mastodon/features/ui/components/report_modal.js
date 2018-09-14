@@ -106,6 +106,7 @@ export default class ReportModal extends ImmutablePureComponent {
               onChange={this.handleCommentChange}
               onKeyDown={this.handleKeyDown}
               disabled={isSubmitting}
+              autoFocus
             />
 
             {domain && (

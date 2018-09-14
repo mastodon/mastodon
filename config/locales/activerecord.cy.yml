@@ -1,3 +1,13 @@
 ---
 cy:
-  activerecord: {}
+  activerecord:
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: dim ond llythrennau, rhifau a tanlinellau
+        status:
+          attributes:
+            reblog:
+              taken: o'r statws sy'n bodoli'n barod
