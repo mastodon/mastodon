@@ -4,8 +4,6 @@ require_relative '../../config/boot'
 require_relative '../../config/environment'
 require_relative 'cli_helper'
 
-# rubocop:disable Rails/Output
-
 module Mastodon
   class MediaCLI < Thor
     option :days, type: :numeric, default: 7
@@ -25,9 +23,10 @@ module Mastodon
       it may impact other operations of the Mastodon server, and it may overload
       the underlying file storage.
 
-      With the --verbose option, output deleting file ID to console (only when --background false).
+      With the --dry-run option, no work will be done.
 
-      With the --dry-run option, output the number of files to delete without deleting.
+      With the --verbose option, when media attachments are processed sequentially in the
+      foreground, the IDs of the media attachments will be printed.
     DESC
     def remove
       time_ago  = options[:days].days.ago
@@ -53,12 +52,10 @@ module Mastodon
       say
 
       if options[:background]
-        say("Scheduled the deletion of #{queued} media attachments #{dry_run}.", :green)
+        say("Scheduled the deletion of #{queued} media attachments #{dry_run}", :green, true)
       else
-        say("Removed #{processed} media attachments #{dry_run}.", :green)
+        say("Removed #{processed} media attachments #{dry_run}", :green, true)
       end
     end
   end
 end
-
-# rubocop:enable Rails/Output
