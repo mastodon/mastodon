@@ -1,0 +1,10 @@
+%tr
+  %td
+    %samp= simple_format(custom_template.content)
+  %td
+    - if custom_template.disabled?
+      = table_link_to 'power-off', t('admin.custom_templates.enable'), enable_admin_custom_template_path(custom_template, page: params[:page], **@filter_params), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
+    - else
+      = table_link_to 'power-off', t('admin.custom_templates.disable'), disable_admin_custom_template_path(custom_template, page: params[:page], **@filter_params), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
+  %td
+    = table_link_to 'times', t('admin.custom_templates.delete'), admin_custom_template_path(custom_template, page: params[:page], **@filter_params), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }

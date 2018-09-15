@@ -205,6 +205,13 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :custom_templates, only: [:index, :new, :create, :update, :destroy] do
+      member do
+        post :enable
+        post :disable
+      end
+    end
+
     resources :account_moderation_notes, only: [:create, :destroy]
   end
 
@@ -259,6 +266,7 @@ Rails.application.routes.draw do
 
       resources :streaming, only: [:index]
       resources :custom_emojis, only: [:index]
+      resources :custom_templates, only: [:index]
       resources :suggestions, only: [:index, :destroy]
 
       get '/search', to: 'search#index', as: :search
