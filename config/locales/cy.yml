@@ -134,7 +134,7 @@ cy:
       demote: Diraddio
       disable_two_factor_authentication: Diffodd 2FA
       disabled: Wedi ei ddiffodd
-      display_name: ''
+      display_name: Enw arddangos
       enabled: Wedi ei alluogi
       followers: Dilynwyr
       followers_url: URL Dilynwyr
@@ -164,6 +164,9 @@ cy:
       undo_suspension: Dadwneud ataliad
       unsubscribe: Dad-danysgrifio
       salmon_url: URL Eog
+      memorialize: Troi yn gofeb
+      redownload: Adnewyddwch afatar
+      remove_avatar: Dilewch afatar
     custom_emojis:
       by_domain: Parth
       copy: Copïo
@@ -180,12 +183,14 @@ cy:
       enabled_msg: Llwyddwyd i ganiatau yr emoji hwnnw
       image_hint: PNG hyd at 50KB
       new:
-        title: ''
+        title: Ychwanegu emoji personol newydd
       overwrite: Trosysgrifio
       shortcode_hint: O leiaf 2 lythyren, dim ond llythrennau alffaniwmerig a tanlinellau
       unlisted: Heb ei restru
       update_failed_msg: Ni allwyd diweddaru'r emoji hwnnw
       updated_msg: Llwyddwyd i ddiweddaru'r emoji!
+      copied_msg: Llwyddwyd i greu copi lleol o'r emoji
+      title: Emoji personol
     dashboard:
       config: Cyfluniad
       feature_registrations: Cofrestriadau
@@ -207,9 +212,20 @@ cy:
       account_count: Cyfrifoedd hysbys
       reset: Ailosod
       search: Chwilio
+      title: INSTANCES hysbys
     settings:
       contact_information:
         email: E-bost busnes
+      activity_api_enabled:
+        title: Cyhoeddwch ystatedgau agregau am weithgaredd defnyddwyr
+      registrations:
+        deletion:
+          desc_html: Caniatewch i unrhywun i ddileu eu cyfrif
+        min_invite_role:
+          disabled: Neb
+          title: Caniatewch wahoddiadau gan
+        open:
+          desc_html: Caniatewch i unrhywun greu cyfrif
     action_logs:
       actions:
         assigned_to_self_report: Aseiniodd %{name} adroddiad %{target} i'w hunan
@@ -218,7 +234,10 @@ cy:
         create_custom_emoji: Uwchlwythodd %{name} emoji newydd %{target}
         create_domain_block: Blociodd %{name} y parth %{target}
         create_email_domain_block: Cosbrestrwyd parth e-bost %{target} gan %{name}
+        demote_user: Diraddiodd %{name} y defnyddiwr %{target}
+        destroy_domain_block: Dadflociodd %{name} y parth %{target}
       deleted_status: (statws wedi ei ddileu)
+      title: Log archwilio
     domain_blocks:
       domain: Parth
       new:
@@ -260,6 +279,36 @@ cy:
     relays:
       save_and_enable: Cadw a galluogi
       status: Statws
+    reports:
+      account:
+        note: nodyn
+        report: adroddiad
+      are_you_sure: Ydych chi'n sicr?
+      comment:
+        none: Dim
+      created_at: Adroddwyd
+      id: ID
+      mark_as_resolved: Nodwch wedi ei ddatrys
+      mark_as_unresolved: Nodwch heb ei ddatrys
+      notes:
+        create: Ychwanegwch nodyn
+        create_and_resolve: Datruswch a nodyn
+        create_and_unresolve: Ailagorwch a nodyn
+        delete: Dilëwch
+      reopen: Ailagorwch adroddiad
+      report: 'Adroddiad #%{id}'
+      report_contents: Cynnwys
+      reported_by: Adroddwyd gan
+      resolved: Wedi ei ddatrys
+      resolved_msg: Llwyddwyd i ddatrys yr adroddiad!
+      silence_account: Tawelwch y cyfrif
+      status: Statws
+      target: Targed
+      title: Adroddiadau
+      unassign: Dadneilltuo
+      unresolved: Heb ei ddatrys
+      updated_at: Diweddarwyd
+      view: GWELD / GWEDD
   auth:
     change_password: Cyfrinair
   authorize_follow:
