@@ -4,8 +4,10 @@ ast:
     about_mastodon_html: Mastodon ye una rede social basada en protocolos abiertos y software de códigu llibre. Ye descentralizada, como'l corréu electrónicu.
     about_this: Tocante a
     administered_by: 'Alministráu por:'
+    api: API
     contact: Contautu
     contact_unavailable: N/D
+    documentation: Documentación
     extended_description_html: |
       <h3>Un llugar bonu pa les regles</h3>
       <p>Entá nun se configuró la descripción estendida.</p>
@@ -22,7 +24,9 @@ ast:
     user_count_after: usuarios
     what_is_mastodon: "¿Qué ye Mastodon?"
   accounts:
-    followers: Siguidores
+    followers:
+      one: Siguidor
+      other: Siguidores
     moved_html: "%{name} mudóse a %{new_profile_link}:"
     network_hidden: Esta información nun ta disponible
     nothing_here: "¡Equí nun hai nada!"
@@ -57,6 +61,7 @@ ast:
     action_logs:
       actions:
         create_domain_block: "%{name} bloquió'l dominiu %{target}"
+        disable_custom_emoji: "%{name} desactivó'l fustaxe %{target}"
         disable_user: "%{name} desactivó l'aniciu de sesión del usuariu %{target}"
     custom_emojis:
       by_domain: Dominiu
@@ -88,7 +93,6 @@ ast:
       title: Invitaciones
     reports:
       are_you_sure: "¿De xuru?"
-      id: ID
       status: Estáu
     settings:
       registrations:
@@ -181,6 +185,7 @@ ast:
     acct: nome_usuariu@dominiu de la cuenta nueva
   notification_mailer:
     digest:
+      body: Equí hai un resume de los mensaxes que nun viesti dende la última visita'l %{since}
       mention: "%{name} mentóte en:"
       subject:
         other: "%{count} avisos nuevos dende la última visita \U0001F418"
@@ -251,6 +256,7 @@ ast:
     notifications: Avisos
     preferences: Preferencies
     settings: Axustes
+    two_factor_authentication: Autenticación en dos pasos
   statuses:
     attached:
       image:
@@ -263,15 +269,21 @@ ast:
       limit: Yá fixesti'l númberu máxiumu de toots
     show_more: Amosar más
     title: "%{name}: «%{quote}»"
+    visibilities:
+      private: Namái siguidores
   stream_entries:
     sensitive_content: Conteníu sensible
   themes:
     default: Mastodon
   two_factor_authentication:
     code_hint: Introduz el códigu xeneráu pola aplicación autenticadora pa confirmar
+    disable: Desactivar
     enabled: L'autenticación en dos pasos ta activada
     enabled_success: L'autenticación en dos pasos activóse con ésitu
+    generate_recovery_codes: Xenerar códigos de recuperación
+    lost_recovery_codes: Los códigos de recuperación permítente recuperar l'accesu a la cuenta si pierdes el teléfonu. Si tamién pierdes esos códigos, pues xeneralos de nueves equí. Los códigos de recuperación vieyos van invalidase.
     manual_instructions: 'Si nun pues escaniar el códigu QR y precises introducilu a mano, equí ta''l secretu en testu planu:'
+    recovery_codes: Códigos de recuperación
   user_mailer:
     welcome:
       full_handle_hint: Esto ye lo que-yos diríes a los collacios pa que puean unviate mensaxes o siguite dende otra instancia.
