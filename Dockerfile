@@ -46,6 +46,7 @@ RUN apk -U upgrade \
     protobuf \
     tini \
     tzdata \
+    libjemalloc \
  && update-ca-certificates \
  && ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn \
  && ln -s /opt/yarn/bin/yarnpkg /usr/local/bin/yarnpkg \
@@ -61,6 +62,8 @@ RUN apk -U upgrade \
  && libtool --finish /usr/local/lib \
  && cd /mastodon \
  && rm -rf /tmp/* /var/cache/apk/*
+
+ENV LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libjemalloc.so.1"
 
 COPY Gemfile Gemfile.lock package.json yarn.lock .yarnclean /mastodon/
 
