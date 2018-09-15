@@ -21,11 +21,14 @@ ast:
     hosted_on: Mastodon ta agospiáu en %{domain}
     learn_more: Deprendi más
     source_code: Códigu fonte
-    status_count_after: estaos
+    status_count_after:
+      other: estaos
     user_count_after: usuarios
     what_is_mastodon: ¿Qué ye Mastodon?
     api: API
     documentation: Documentación
+    contact_missing: Nun s'afitó
+    terms: Términos del serviciu
   accounts:
     followers:
       one: Siguidor
@@ -38,6 +41,7 @@ ast:
     reserved_username: El nome d'usuariu ta acutáu
     roles:
       bot: Robó
+    joined: Xunióse en %{date}
   admin:
     accounts:
       are_you_sure: ¿De xuru?
@@ -61,6 +65,7 @@ ast:
       title: Cuentes
       username: Nome d'usuariu
       web: Web
+      statuses: Estaos
     action_logs:
       actions:
         create_domain_block: '%{name} bloquió''l dominiu %{target}'
@@ -111,6 +116,9 @@ ast:
     subscriptions:
       title: WebSub
     title: Alministración
+    suspensions:
+      warning_html: 'El suspender esta cuenta va desaniciar <strong>de mou irreversible</strong>
+        los sos datos qu''inclúin:'
   admin_mailer:
     new_report:
       body_remote: Daquién dende %{domain} informó de %{target}
@@ -128,6 +136,10 @@ ast:
       cas: CAS
       saml: SAML
     security: Seguranza
+    agreement_html: Aniciando sesión aceutes siguir <a href="%{rules_path}">les regles
+      de la instancia</a> y <a href="%{terms_path}">los nuesos términos del serviciu</a>.
+    login: Aniciar sesión
+    register: Rexistrase
   authorize_follow:
     already_following: Yá tas siguiendo a esta cuenta
     error: Desafortunadamente, hebo un fallu guetando la cuenta remota
@@ -220,6 +232,8 @@ ast:
     no_account_html: ¿Nun tienes una cuenta? Pues <a href='%{sign_up_path}' target='_blank'>rexistrate
       equí</a>
     prompt: 'Vas siguir a:'
+    acct: Introduz el nome_usuariu@dominiu dende'l que lo quies facer
+    proceed: Siguir
   remote_unfollow:
     error: Fallu
   sessions:
@@ -306,3 +320,6 @@ ast:
     invalid_email: La direición de corréu nun ye válida
     seamless_external_login: Aniciesti sesión pente un serviciu esternu, polo que
       los axustes de la contraseña y corréu nun tán disponibles.
+  remote_interaction:
+    proceed: Interactuar
+    prompt: 'Quies interactuar con esti toot:'
