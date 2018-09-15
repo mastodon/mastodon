@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
+import ColumnSettingsContainer from './containers/column_settings_container';
 import { expandHashtagTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { FormattedMessage } from 'react-intl';
@@ -11,6 +12,7 @@ import { connectHashtagStream } from '../../actions/streaming';
 
 const mapStateToProps = (state, props) => ({
   hasUnread: state.getIn(['timelines', `hashtag:${props.params.id}`, 'unread']) > 0,
+  settings: state.getIn(['timelines', `hashtag:${props.params.id}`, 'params'])
 });
 
 @connect(mapStateToProps)
@@ -100,7 +102,9 @@ export default class HashtagTimeline extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
           showBackButton
-        />
+        >
+          <ColumnSettingsContainer columnId={columnId} />
+        </ColumnHeader>
 
         <StatusListContainer
           trackScroll={!pinned}
