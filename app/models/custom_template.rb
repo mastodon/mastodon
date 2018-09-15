@@ -12,4 +12,25 @@
 class CustomTemplate < ApplicationRecord
   scope :alphabetic, -> { order(content: :asc) }
 
+  def preview
+    emojis = CustomEmoji.from_text(content, nil)
+    position = 0
+    codes = []
+
+    while (m = content.match(CustomEmoji::SCAN_RE, position))
+      codes << content[position..m.begin(0) - 1] if m.begin(0) > 0
+
+      emoji = emojis.detect { |e| e.shortcode == m[1] }
+      if emoji
+        codes << emoji
+      else
+        codes << content[m.begin(0)..m.end(0)]
+      end
+
+      position = m.end(0)
+    end
+
+    codes << content[position..-1]
+    codes
+  end
 end

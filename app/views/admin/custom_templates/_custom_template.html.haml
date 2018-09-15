@@ -1,4 +1,10 @@
 %tr
+  %td.custom-template-emoji<
+    - custom_template.preview.each do |item|
+      - if item.is_a?(CustomEmoji)
+        = custom_emoji_tag(item)
+      - else
+        = safe_join(item.split("\r"), tag(:br))
   %td
     %samp= simple_format(custom_template.content)
   %td
