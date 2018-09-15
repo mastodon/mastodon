@@ -10,8 +10,7 @@ ARG GID=991
 ENV PATH=/mastodon/bin:$PATH \
     RAILS_SERVE_STATIC_FILES=true \
     RAILS_ENV=production \
-    NODE_ENV=production \
-    LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.1
+    NODE_ENV=production
 
 ARG LIBICONV_VERSION=1.15
 ARG LIBICONV_DOWNLOAD_SHA256=ccf536620a45458d26ba83887a983b96827001e92a13847b45e4925cc8913178
@@ -63,6 +62,8 @@ RUN apk -U upgrade \
  && libtool --finish /usr/local/lib \
  && cd /mastodon \
  && rm -rf /tmp/* /var/cache/apk/*
+
+ENV LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libjemalloc.so.1"
 
 COPY Gemfile Gemfile.lock package.json yarn.lock .yarnclean /mastodon/
 
