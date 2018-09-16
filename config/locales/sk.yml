@@ -471,19 +471,21 @@ sk:
       last_delivery: Posledné doručenie
       title: WebSub
       topic: Téma
-    title: Administrácia
+    title: Spravovanie
     suspensions:
       hint_html: 'Pre potvrdenie zamrazenia účtu, prosím napíš %{value} do následujúceho
         políčka:'
       proceed: Pokračuj
-      title: Zamraz %{acct}
+      title: Zamraziť %{acct}
       bad_acct_msg: Hodnota pre potvrdenie sa nezhoduje. Si si istý/á že zamrazuješ
         ten správny účet?
+      warning_html: 'Zamrazením tohto účtu budú dáta na tomto účte <strong>nenávratne</strong>
+        zmazané, zahŕňajúc:'
   admin_mailer:
     new_report:
-      body: '%{reporter} nahlásil %{target}'
-      body_remote: Niekto z %{domain} nahlásil %{target}
-      subject: Nový report pre %{instance} (#%{id})
+      body: '%{reporter} nahlásil/a %{target}'
+      body_remote: Niekto z %{domain} nahlásil/a %{target}
+      subject: Nové hlásenie pre %{instance} (#%{id})
   application_mailer:
     notification_preferences: Zmeniť e-mailové voľby
     salutation: '%{name},'
