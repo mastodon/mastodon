@@ -33,9 +33,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-@connect(mapStateToProps, mapDispatchToProps)
+export default @connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
-export default class MuteModal extends React.PureComponent {
+class MuteModal extends React.PureComponent {
 
   static propTypes = {
     isSubmitting: PropTypes.bool.isRequired,

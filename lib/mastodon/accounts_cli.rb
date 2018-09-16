@@ -40,6 +40,7 @@ module Mastodon
         say('OK', :green)
       else
         say('No account(s) given', :red)
+        exit(1)
       end
     end
 
@@ -48,7 +49,7 @@ module Mastodon
     option :role, default: 'user'
     option :reattach, type: :boolean
     option :force, type: :boolean
-    desc 'add USERNAME', 'Create a new user'
+    desc 'create USERNAME', 'Create a new user'
     long_desc <<-LONG_DESC
       Create a new user account with a given USERNAME and an
       e-mail address provided with --email.
@@ -65,7 +66,7 @@ module Mastodon
       the --force option to delete the old record and reattach the
       username to the new account anyway.
     LONG_DESC
-    def add(username)
+    def create(username)
       account  = Account.new(username: username)
       password = SecureRandom.hex
       user     = User.new(email: options[:email], password: password, admin: options[:role] == 'admin', moderator: options[:role] == 'moderator', confirmed_at: Time.now.utc)
@@ -98,19 +99,75 @@ module Mastodon
           say(key)
           say('    ' + error, :red)
         end
+
+        exit(1)
       end
     end
 
-    desc 'del USERNAME', 'Delete a user'
+    option :role
+    option :email
+    option :confirm, type: :boolean
+    option :enable, type: :boolean
+    option :disable, type: :boolean
+    option :disable_2fa, type: :boolean
+    desc 'modify USERNAME', 'Modify a user'
+    long_desc <<-LONG_DESC
+      Modify a user account.
+
+      With the --role option, update the user's role to one of "user",
+      "moderator" or "admin".
+
+      With the --email option, update the user's e-mail address. With
+      the --confirm option, mark the user's e-mail as confirmed.
+
+      With the --disable option, lock the user out of their account. The
+      --enable option is the opposite.
+
+      With the --disable-2fa option, the two-factor authentication
+      requirement for the user can be removed.
+    LONG_DESC
+    def modify(username)
+      user = Account.find_local(username)&.user
+
+      if user.nil?
+        say('No user with such username', :red)
+        exit(1)
+      end
+
+      if options[:role]
+        user.admin = options[:role] == 'admin'
+        user.moderator = options[:role] == 'moderator'
+      end
+
+      user.email = options[:email] if options[:email]
+      user.disabled = false if options[:enable]
+      user.disabled = true if options[:disable]
+      user.otp_required_for_login = false if options[:disable_2fa]
+      user.confirm if options[:confirm]
+
+      if user.save
+        say('OK', :green)
+      else
+        user.errors.to_h.each do |key, error|
+          say('Failure/Error: ', :red)
+          say(key)
+          say('    ' + error, :red)
+        end
+
+        exit(1)
+      end
+    end
+
+    desc 'delete USERNAME', 'Delete a user'
     long_desc <<-LONG_DESC
       Remove a user account with a given USERNAME.
     LONG_DESC
-    def del(username)
+    def delete(username)
       account = Account.find_local(username)
 
       if account.nil?
         say('No user with such username', :red)
-        return
+        exit(1)
       end
 
       say("Deleting user with #{account.statuses_count}, this might take a while...")
@@ -182,9 +239,56 @@ module Mastodon
       end
     end
 
+    option :all, type: :boolean
+    option :domain
+    desc 'refresh [USERNAME]', 'Fetch remote user data and files'
+    long_desc <<-LONG_DESC
+      Fetch remote user data and files for one or multiple accounts.
+
+      With the --all option, all remote accounts will be processed.
+      Through the --domain option, this can be narrowed down to a
+      specific domain only. Otherwise, a single remote account must
+      be specified with USERNAME.
+
+      All processing is done in the background through Sidekiq.
+    LONG_DESC
+    def refresh(username = nil)
+      if options[:domain] || options[:all]
+        queued = 0
+        scope  = Account.remote
+        scope  = scope.where(domain: options[:domain]) if options[:domain]
+
+        scope.select(:id).reorder(nil).find_in_batches do |accounts|
+          Maintenance::RedownloadAccountMediaWorker.push_bulk(accounts.map(&:id))
+          queued += accounts.size
+        end
+
+        say("Scheduled refreshment of #{queued} accounts", :green, true)
+      elsif username.present?
+        username, domain = username.split('@')
+        account = Account.find_remote(username, domain)
+
+        if account.nil?
+          say('No such account', :red)
+          exit(1)
+        end
+
+        Maintenance::RedownloadAccountMediaWorker.perform_async(account.id)
+        say('OK', :green)
+      else
+        say('No account(s) given', :red)
+        exit(1)
+      end
+    end
+
     private
 
     def rotate_keys_for_account(account, delay = 0)
+      if account.nil?
+        say('No such account', :red)
+        exit(1)
+      end
+
       old_key = account.private_key
       new_key = OpenSSL::PKey::RSA.new(2048).to_pem
       account.update(private_key: new_key)
