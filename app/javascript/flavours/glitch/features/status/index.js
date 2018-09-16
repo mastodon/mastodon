@@ -103,7 +103,7 @@ export default class Status extends ImmutablePureComponent {
     if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
       this._scrolledIntoView = false;
       this.props.dispatch(fetchStatus(nextProps.params.statusId));
-      this.setState({ isExpanded: autoUnfoldCW(nextProps.settings, nextProps.status) });
+      this.setState({ isExpanded: autoUnfoldCW(nextProps.settings, nextProps.status), threadExpanded: undefined });
     }
   }
 
