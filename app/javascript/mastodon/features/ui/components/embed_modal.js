@@ -4,8 +4,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import api from '../../../api';
 
-@injectIntl
-export default class EmbedModal extends ImmutablePureComponent {
+export default @injectIntl
+class EmbedModal extends ImmutablePureComponent {
 
   static propTypes = {
     url: PropTypes.string.isRequired,

@@ -120,6 +120,7 @@ en:
       moderation_notes: Moderation notes
       most_recent_activity: Most recent activity
       most_recent_ip: Most recent IP
+      no_limits_imposed: No limits imposed
       not_subscribed: Not subscribed
       order:
         alphabetic: Alphabetic
@@ -155,8 +156,10 @@ en:
         report: report
         targeted_reports: Reports made about this account
       silence: Silence
+      silenced: Silenced
       statuses: Statuses
       subscribe: Subscribe
+      suspended: Suspended
       title: Accounts
       unconfirmed_email: Unconfirmed E-mail
       undo_silenced: Undo silence
@@ -300,8 +303,13 @@ en:
       title: Invites
     relays:
       add_new: Add new relay
+      delete: Delete
       description_html: A <strong>federation relay</strong> is an intermediary server that exchanges large volumes of public toots between servers that subscribe and publish to it. <strong>It can help small and medium servers discover content from the fediverse</strong>, which would otherwise require local users manually following other people on remote servers.
+      disable: Disable
+      disabled: Disabled
+      enable: Enable
       enable_hint: Once enabled, your server will subscribe to all public toots from this relay, and will begin sending this server's public toots to it.
+      enabled: Enabled
       inbox_url: Relay URL
       pending: Waiting for relay's approval
       save_and_enable: Save and enable
@@ -322,7 +330,6 @@ en:
       comment:
         none: None
       created_at: Reported
-      id: ID
       mark_as_resolved: Mark as resolved
       mark_as_unresolved: Mark as unresolved
       notes:
@@ -333,7 +340,6 @@ en:
         placeholder: Describe what actions have been taken, or any other related updates...
       reopen: Reopen report
       report: 'Report #%{id}'
-      report_contents: Contents
       reported_account: Reported account
       reported_by: Reported by
       resolved: Resolved
@@ -341,12 +347,10 @@ en:
       silence_account: Silence account
       status: Status
       suspend_account: Suspend account
-      target: Target
       title: Reports
       unassign: Unassign
       unresolved: Unresolved
       updated_at: Updated
-      view: View
     settings:
       activity_api_enabled:
         desc_html: Counts of locally posted statuses, active users, and new registrations in weekly buckets

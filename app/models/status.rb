@@ -241,7 +241,7 @@ class Status < ApplicationRecord
 
     def as_direct_timeline(account, limit = 20, max_id = nil, since_id = nil, cache_ids = false)
       # direct timeline is mix of direct message from_me and to_me.
-      # 2 querys are executed with pagination.
+      # 2 queries are executed with pagination.
       # constant expression using arel_table is required for partial index
 
       # _from_me part does not require any timeline filters

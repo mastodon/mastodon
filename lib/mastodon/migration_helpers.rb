@@ -835,7 +835,7 @@ module Mastodon
       columns(table).find { |column| column.name == name }
     end
 
-    # This will replace the first occurance of a string in a column with
+    # This will replace the first occurrence of a string in a column with
     # the replacement
     # On postgresql we can use `regexp_replace` for that.
     # On mysql we find the location of the pattern, and overwrite it
