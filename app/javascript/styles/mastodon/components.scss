@@ -5363,6 +5363,7 @@ noscript {
   overflow: hidden;
   margin: 20px -10px -20px;
   border-bottom: 0;
+  border-top: 0;
 
   dl {
     border-top: 1px solid lighten($ui-base-color, 8%);
@@ -5392,6 +5393,10 @@ noscript {
     flex: 1 1 auto;
     color: $primary-text-color;
     background: $ui-base-color;
+
+    &.verified {
+      background: rgba($valid-value-color, 0.25);
+    }
   }
 }
 

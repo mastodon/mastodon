@@ -718,6 +718,10 @@
       a {
         color: lighten($ui-highlight-color, 8%);
       }
+
+      .verified a {
+        color: $valid-value-color;
+      }
     }
 
     .account__header__content {
