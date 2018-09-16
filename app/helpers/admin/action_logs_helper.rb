@@ -47,6 +47,8 @@ module Admin::ActionLogsHelper
       log.recorded_changes.slice('domain')
     elsif log.target_type == 'CustomEmoji' && log.action == :update
       log.recorded_changes.slice('domain', 'visible_in_picker')
+    elsif log.target_type == 'CustomTemplate'
+      log.recorded_changes.slice('content')
     elsif log.target_type == 'User' && [:promote, :demote].include?(log.action)
       log.recorded_changes.slice('moderator', 'admin')
     elsif log.target_type == 'User' && [:change_email].include?(log.action)
@@ -73,6 +75,8 @@ module Admin::ActionLogsHelper
       'user'
     when 'CustomEmoji'
       'file'
+    when 'CustomTemplate'
+      'picture-o'
     when 'Report'
       'flag'
     when 'DomainBlock'
