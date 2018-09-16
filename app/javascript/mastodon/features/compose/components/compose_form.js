@@ -11,6 +11,7 @@ import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import SensitiveButtonContainer from '../containers/sensitive_button_container';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
+import TemplatePickerDropdown from '../containers/template_picker_dropdown_container';
 import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
 import { isMobile } from '../../../is_mobile';
@@ -51,6 +52,7 @@ export default class ComposeForm extends ImmutablePureComponent {
     onChangeSpoilerText: PropTypes.func.isRequired,
     onPaste: PropTypes.func.isRequired,
     onPickEmoji: PropTypes.func.isRequired,
+    onPickTemplate: PropTypes.func.isRequired,
     showSearch: PropTypes.bool,
     anyMedia: PropTypes.bool,
   };
@@ -152,6 +154,12 @@ export default class ComposeForm extends ImmutablePureComponent {
     this.props.onPickEmoji(position, data, needsSpace);
   }
 
+  handleTemplatePick = (data) => {
+    const position  = this.autosuggestTextarea.textarea.selectionStart;
+
+    this.props.onPickTemplate(position, data);
+  }
+
   render () {
     const { intl, onPaste, showSearch, anyMedia } = this.props;
     const disabled = this.props.is_submitting;
@@ -195,6 +203,7 @@ export default class ComposeForm extends ImmutablePureComponent {
           />
 
           <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
+          <TemplatePickerDropdown onPickTemplate={this.handleTemplatePick} />
         </div>
 
         <div className='compose-form__modifiers'>

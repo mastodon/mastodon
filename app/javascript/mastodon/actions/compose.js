@@ -46,6 +46,8 @@ export const COMPOSE_COMPOSING_CHANGE = 'COMPOSE_COMPOSING_CHANGE';
 
 export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
 
+export const COMPOSE_TEMPLATE_INSERT = 'COMPOSE_TEMPLATE_INSERT';
+
 export const COMPOSE_UPLOAD_CHANGE_REQUEST     = 'COMPOSE_UPLOAD_UPDATE_REQUEST';
 export const COMPOSE_UPLOAD_CHANGE_SUCCESS     = 'COMPOSE_UPLOAD_UPDATE_SUCCESS';
 export const COMPOSE_UPLOAD_CHANGE_FAIL        = 'COMPOSE_UPLOAD_UPDATE_FAIL';
@@ -471,6 +473,14 @@ export function insertEmojiCompose(position, emoji, needsSpace) {
     position,
     emoji,
     needsSpace,
+  };
+};
+
+export function insertTemplateCompose(position, template) {
+  return {
+    type: COMPOSE_TEMPLATE_INSERT,
+    position,
+    template,
   };
 };
 
