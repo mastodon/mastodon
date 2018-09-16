@@ -24,6 +24,7 @@ import media_attachments from './media_attachments';
 import notifications from './notifications';
 import height_cache from './height_cache';
 import custom_emojis from './custom_emojis';
+import custom_templates from './custom_templates';
 import lists from './lists';
 import listEditor from './list_editor';
 import filters from './filters';
@@ -54,6 +55,7 @@ const reducers = {
   notifications,
   height_cache,
   custom_emojis,
+  custom_templates,
   lists,
   listEditor,
   filters,

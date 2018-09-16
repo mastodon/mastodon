@@ -7,6 +7,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { ScrollContext } from 'react-router-scroll-4';
 import UI from '../features/ui';
 import { fetchCustomEmojis } from '../actions/custom_emojis';
+import { fetchCustomTemplates } from '../actions/custom_templates';
 import { hydrateStore } from '../actions/store';
 import { connectUserStream } from '../actions/streaming';
 import { IntlProvider, addLocaleData } from 'react-intl';
@@ -22,6 +23,9 @@ store.dispatch(hydrateAction);
 
 // load custom emojis
 store.dispatch(fetchCustomEmojis());
+
+// load custom templates
+store.dispatch(fetchCustomTemplates());
 
 export default class Mastodon extends React.PureComponent {
 

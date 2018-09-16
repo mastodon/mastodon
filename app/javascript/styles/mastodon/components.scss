@@ -301,6 +301,12 @@
       right: 5px;
       top: 5px;
     }
+
+    .template-picker-dropdown {
+      position: absolute;
+      right: 5px;
+      top: 32px;
+    }
   }
 
   .autosuggest-textarea,
@@ -3123,6 +3129,7 @@ a.status-card {
   animation: shake-bottom 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) 2s 2 both;
 }
 
+.template-picker-dropdown__menu,
 .emoji-picker-dropdown__menu {
   background: $simple-background-color;
   position: absolute;
@@ -3406,6 +3413,41 @@ a.status-card {
   .privacy-dropdown__dropdown {
     display: block;
     box-shadow: 2px 4px 6px rgba($base-shadow-color, 0.1);
+  }
+}
+
+.template-picker {
+  width: 300px;
+  background: #ffffff;
+  color: #282c37;
+  border-radius: 4px;
+
+  .template-picker-title {
+    padding: 6px 12px;
+  }
+
+  .template-picker-scroll {
+    overflow-y: scroll;
+    height: 300px;
+    padding: 0 6px;
+
+    .template-picker-template {
+      line-height: 1;
+      padding: 6px;
+      position: relative;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(217, 225, 232, .7);
+        border-radius: 4px;
+      }
+
+      .emojione {
+        margin: 0;
+        width: 24px;
+        height: 24px;
+      }
+    }
   }
 }
 

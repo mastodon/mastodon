@@ -1,0 +1,11 @@
+- content_for :page_title do
+  = t('.title')
+
+= simple_form_for @custom_template, url: admin_custom_templates_path do |f|
+  = render 'shared/error_messages', object: @custom_template
+
+  .fields-group
+    = f.input :content, wrapper: :with_block_label, as: :text, label: t('admin.custom_templates.content'), input_html: { rows: 4 }
+
+  .actions
+    = f.button :button, t('admin.custom_templates.add_new'), type: :submit

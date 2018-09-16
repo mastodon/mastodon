@@ -9,6 +9,7 @@ import {
   selectComposeSuggestion,
   changeComposeSpoilerText,
   insertEmojiCompose,
+  insertTemplateCompose,
 } from '../../../actions/compose';
 
 const mapStateToProps = state => ({
@@ -59,6 +60,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   onPickEmoji (position, data, needsSpace) {
     dispatch(insertEmojiCompose(position, data, needsSpace));
+  },
+
+  onPickTemplate (position, data) {
+    dispatch(insertTemplateCompose(position, data));
   },
 
 });
