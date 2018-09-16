@@ -319,21 +319,25 @@ const startWorker = (workerId) => {
 
 
     const content_filter = payload => {
-      const allowedWords = [/猫/,/ねこ/,/cat/,/kitt/];
-      const allowedDomains = [/cat/,/mstdn\.jp/,/kitt/];
+      const filterDomains = [/pawoo\.net/];
 
-      var refused = true;
-      if(typeof payload.content === 'string' ) {
-        allowedWords.forEach((current, index, arr) => {
-          if(payload.content.match(current)) {
-            refused = false;
+      var need_filter = false;
+      if(typeof payload.url === 'string') {
+        filterDomains.forEach((current, index, arr) => {
+          if(!payload.url.match(current)) {
+            need_filter = true;
             return;
           }
         });
       }
-      if(refused && typeof payload.url === 'string') {
-        allowedDomains.forEach((current, index, arr) => {
-          if(payload.url.match(current)) {
+      if(!need_filter) {
+        return true;
+      }
+      const allowedWords = [/猫/,/ねこ/,/cat/,/kitt/];
+      var refused = true;
+      if(typeof payload.content === 'string' ) {
+        allowedWords.forEach((current, index, arr) => {
+          if(payload.content.match(current)) {
             refused = false;
             return;
           }

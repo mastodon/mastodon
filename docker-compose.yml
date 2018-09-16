@@ -27,7 +27,9 @@ services:
 ##      - ./elasticsearch:/usr/share/elasticsearch/data
 
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile-catgram
     image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
     restart: always
     env_file: .env.production
@@ -45,7 +47,9 @@ services:
       - ./public/system:/mastodon/public/system
 
   streaming:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile-catgram
     image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
     restart: always
     env_file: .env.production
@@ -60,7 +64,9 @@ services:
       - redis
 
   sidekiq:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile-catgram
     image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
     restart: always
     env_file: .env.production
