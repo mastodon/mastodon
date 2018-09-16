@@ -322,6 +322,10 @@ class Account < ApplicationRecord
       verified_at.present?
     end
 
+    def verifiable?
+      value.present? && /\A#{FetchLinkCardService::URL_PATTERN}\z/ =~ value
+    end
+
     def mark_verified!
       @verified_at = Time.now.utc
       @attributes['verified_at'] = @verified_at
