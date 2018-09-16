@@ -11,6 +11,8 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
 
   def update_account
     return if @account.uri != object_uri
+
     ActivityPub::ProcessAccountService.new.call(@account.username, @account.domain, @object, signed_with_known_key: true)
+    VerifyAccountLinksWorker.perform_async(@account.id)
   end
 end
