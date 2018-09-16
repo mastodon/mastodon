@@ -632,3 +632,46 @@ code {
     font-family: 'mastodon-font-monospace', monospace;
   }
 }
+
+.input-copy {
+  background: darken($ui-base-color, 12%);
+  border: 1px solid darken($ui-base-color, 16%);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding-right: 4px;
+  transition: border-color 300ms linear;
+
+  &__wrapper {
+    flex: 1 1 auto;
+  }
+
+  input[type=text] {
+    background: transparent;
+    border: 0;
+    padding: 10px;
+    font-size: 14px;
+    font-family: 'mastodon-font-monospace', monospace;
+  }
+
+  button {
+    flex: 0 0 auto;
+    margin: 4px;
+    text-transform: none;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 8px 18px;
+    width: auto;
+    transition: background 300ms linear;
+  }
+
+  &.copied {
+    border-color: $valid-value-color;
+    transition: none;
+
+    button {
+      background: $valid-value-color;
+      transition: none;
+    }
+  }
+}

@@ -30,25 +30,16 @@
         .row
           = fields_f.input :name, placeholder: t('simple_form.labels.account.fields.name')
           = fields_f.input :value, placeholder: t('simple_form.labels.account.fields.value')
-        - if fields_f.object.verified?
-          %p.hint.positive-hint
-            = fa_icon('check fw')
-            = t('accounts.link_verified_on', date: l(fields_f.object.verified_at))
-        - elsif fields_f.object.verifiable?
-          %p.hint
-            = fa_icon('link fw')
-            = t('verification.can_be_verified')
+
+    %p.hint= t('verification.explanation_html')
+
+    .input-copy
+      .input-copy__wrapper
+        %input{ type: :text, maxlength: '999', spellcheck: 'false', readonly: 'true', value: link_to('Mastodon', ActivityPub::TagManager.instance.url_for(@account), rel: 'me').to_str }
+      %button{ type: :button }= t('generic.copy')
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
-
-%hr/
-
-%h6= t('verification.verification')
-%p.muted-hint= t('verification.explanation_html')
-%pre
-  %code
-    = link_to('Mastodon', ActivityPub::TagManager.instance.url_for(@account), rel: 'me').to_str
 
 %hr/
 
