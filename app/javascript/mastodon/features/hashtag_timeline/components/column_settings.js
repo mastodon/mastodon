@@ -16,11 +16,18 @@ export default class ColumnSettings extends React.PureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  this.state = {
-    open: (props.settings.get('tags') || []).length > 0
+  state = {
+    open: this.tags().length > 0
   };
 
-  toggle () {
+  tags() {
+    return Array.from(this.props.settings.get('tags') || []).map((tag) => {
+      return tag.toJSON ? tag.toJSON() : tag
+    })
+  };
+
+  toggle(settings, onChange, value) {
+    if (!value && this.tags().length > 0) { onChange('tags', []) }
     this.setState({ open: !this.state.open })
   };
 
@@ -31,22 +38,29 @@ export default class ColumnSettings extends React.PureComponent {
       <div>
         <div className='column-settings__row'>
           <div className='setting-toggle'>
-            <Toggle id='hashtag.column_settings.tag_toggle' checked={this.state.open} onChange={() => { this.toggle() }} />
-            <FormattedMessage id='hashtag.column_settings.tag_toggle' defaultMessage='Include additional tags in this column' />
+            <Toggle
+              id='hashtag.column_settings.tag_toggle'
+              onChange={() => { this.toggle(settings, onChange, !this.state.open) }}
+              checked={this.state.open} />
+            <span className='setting-toggle__label'>
+              <FormattedMessage id='hashtag.column_settings.tag_toggle' defaultMessage='Include additional tags in this column' />
+            </span>
           </div>
         </div>
         {this.state.open &&
           <div className="column-setting__hashtags">
-            <AsyncSelect
-              isMulti
-              autoFocus
-              value={settings.get('tags')}
-              loadOptions={onLoad}
-              settings={settings}
-              settingPath={['tags']}
-              onChange={(value) => { onChange('tags', value) }}
-              className="column-settings__hashtag-select"
-              name="tags" />
+            <div className="column-setting__row">
+              <AsyncSelect
+                isMulti
+                autoFocus
+                value={this.tags()}
+                settings={settings}
+                settingPath={['tags']}
+                onChange={(value) => { onChange('tags', value) }}
+                loadOptions={onLoad}
+                className="column-settings__hashtag-select"
+                name="tags" />
+            </div>
             <div className='column-settings__row'>
               <SettingToggle prefix='additional_hashtags_or' settings={settings} settingPath={['orOperation']} onChange={onChange} label={
                 <FormattedMessage id='hashtag.column_settings.include_tag_intersection' defaultMessage='Display toots with all of these hashtags' />

@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import ColumnSettings from '../components/column_settings';
-import { changeSetting, saveSettings } from '../../../actions/settings';
+import { saveSettings } from '../../../actions/settings';
 import { changeColumnParams } from '../../../actions/columns';
+import api from '../../../api';
 
 const mapStateToProps = (state, { columnId }) => {
   const columns = state.getIn(['settings', 'columns']);
@@ -24,9 +25,11 @@ const mapDispatchToProps = (dispatch, { columnId }) => ({
     dispatch(saveSettings());
   },
 
-  onLoad (text) {
-    return new Promise((resolve) => {
-      resolve([{ value: '#hashtag', label: '#hashtag' }]) // TODO
+  onLoad (value) {
+    return api().get('/api/v2/search', { params: { q: value } }).then(response => {
+      return (response.data.hashtags || []).map((tag) => {
+        return { name: `#${tag.name}`, label: `#${tag.name}` }
+      })
     })
   }
 });
