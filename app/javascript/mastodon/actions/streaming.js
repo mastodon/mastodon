@@ -47,6 +47,6 @@ const refreshHomeTimelineAndNotification = (dispatch, done) => {
 export const connectUserStream      = () => connectTimelineStream('home', 'user', refreshHomeTimelineAndNotification);
 export const connectCommunityStream = ({ onlyMedia } = {}) => connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`);
 export const connectPublicStream    = ({ onlyMedia } = {}) => connectTimelineStream(`public${onlyMedia ? ':media' : ''}`, `public${onlyMedia ? ':media' : ''}`);
-export const connectHashtagStream   = (tag, isLocal) => connectTimelineStream(`hashtag:${tag}`, `hashtag&tag=${tag}${ isLocal ? ':local' : '' }`);
+export const connectHashtagStream   = (tag, isLocal) => connectTimelineStream(`hashtag:${tag}`, `hashtag${ isLocal ? ':local' : '' }&tag=${tag}`);
 export const connectDirectStream    = () => connectTimelineStream('direct', 'direct');
 export const connectListStream      = id => connectTimelineStream(`list:${id}`, `list&list=${id}`);
