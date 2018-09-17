@@ -3417,7 +3417,7 @@ a.status-card {
 }
 
 .template-picker {
-  width: 300px;
+  width: 350px;
   background: #ffffff;
   color: #282c37;
   border-radius: 4px;
@@ -3430,22 +3430,28 @@ a.status-card {
     overflow-y: scroll;
     height: 300px;
     padding: 0 6px;
+    margin-bottom: 5px;
 
-    .template-picker-template {
-      line-height: 1;
-      padding: 6px;
-      position: relative;
-      cursor: pointer;
+    .template-picker-area {
+      display: flex;
+      flex-wrap: wrap;
 
-      &:hover {
-        background-color: rgba(217, 225, 232, .7);
-        border-radius: 4px;
-      }
+      .template-picker-template {
+        padding: 6px;
+        position: relative;
+        cursor: pointer;
+        width: calc(100% / 2 - 12px);
 
-      .emojione {
-        margin: 0;
-        width: 24px;
-        height: 24px;
+        &:hover {
+          background-color: rgba(217, 225, 232, .7);
+          border-radius: 4px;
+        }
+
+        .emojione {
+          margin: 0;
+          width: 24px;
+          height: 24px;
+        }
       }
     }
   }

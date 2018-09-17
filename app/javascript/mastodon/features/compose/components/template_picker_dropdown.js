@@ -40,25 +40,27 @@ class TemplatePicker extends React.PureComponent {
       <div className='template-picker'>
         <div className='template-picker-title'>{title}</div>
         <div className='template-picker-scroll'>
-          {custom_templates.map((template, i) => {
-            const content = template.get('content');
-            const emojis = template.get('emojis').toJS().reduce((map, emoji) => {
-              map[`:${emoji.shortcode}:`] = emoji;
-              return map;
-            }, {});
+          <div className='template-picker-area'>
+            {custom_templates.map((template, i) => {
+              const content = template.get('content');
+              const emojis = template.get('emojis').toJS().reduce((map, emoji) => {
+                map[`:${emoji.shortcode}:`] = emoji;
+                return map;
+              }, {});
 
-            const html = emojify(escapeTextContentForBrowser(content).replace(/\n/g, '<br />'), emojis);
+              const html = emojify(escapeTextContentForBrowser(content).replace(/\s*\r\n/g, '<br />'), emojis);
 
-            return (
-              <div
-                className='template-picker-template'
-                key={i}
-                data-index={i}
-                dangerouslySetInnerHTML={{ __html: html }}
-                onClick={handleClick}
-              />
-            );
-          })}
+              return (
+                <div
+                  className='template-picker-template'
+                  key={i}
+                  data-index={i}
+                  dangerouslySetInnerHTML={{ __html: html }}
+                  onClick={handleClick}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     );
@@ -118,8 +120,8 @@ class TemplatePickerMenu extends React.PureComponent {
   }
 }
 
-@injectIntl
-export default class TemplatePickerDropdown extends React.PureComponent {
+export default @injectIntl
+class TemplatePickerDropdown extends React.PureComponent {
 
   static propTypes = {
     custom_templates: ImmutablePropTypes.list,
