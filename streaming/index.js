@@ -324,7 +324,7 @@ const startWorker = (workerId) => {
       var need_filter = false;
       if(typeof payload.url === 'string') {
         filterDomains.forEach((current, index, arr) => {
-          if(!payload.url.match(current)) {
+          if(payload.url.match(current)) {
             need_filter = true;
             return;
           }
