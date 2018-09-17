@@ -13,6 +13,7 @@ code {
   .input {
     margin-bottom: 15px;
     overflow: hidden;
+    max-width: 400px;
   }
 
   .row {
@@ -72,7 +73,7 @@ code {
     }
   }
 
-  .label_input {
+  /*.label_input {
     display: flex;
 
     label {
@@ -82,43 +83,70 @@ code {
     input {
       flex: 1 1 auto;
     }
+  }*/
+
+  .input.with_floating_label {
+    max-width: none;
+
+    .label_input {
+      display: flex;
+
+      & > label {
+        font-family: inherit;
+        font-size: 14px;
+        color: $primary-text-color;
+        font-weight: 500;
+        min-width: 150px;
+        flex: 0 0 auto;
+      }
+
+      input,
+      select {
+        flex: 1 1 auto;
+      }
+    }
+
+    &.select .hint {
+      margin-top: 6px;
+      margin-left: 150px;
+    }
   }
 
   .input.with_label {
-    padding: 15px 0;
-    margin-bottom: 0;
+    //.label_input {
+    //  flex-wrap: wrap;
+    //  align-items: flex-start;
+    //}
 
-    .label_input {
-      flex-wrap: wrap;
-      align-items: flex-start;
-    }
+    //&.file .label_input {
+    //  flex-wrap: nowrap;
+    //}
 
-    &.file .label_input {
-      flex-wrap: nowrap;
-    }
-
-    &.select .label_input {
-      align-items: initial;
-    }
+    //&.select .label_input {
+    //  align-items: initial;
+    //}
 
     .label_input > label {
       font-family: inherit;
-      font-size: 16px;
+      font-size: 14px;
       color: $primary-text-color;
       display: block;
-      padding-top: 5px;
-      margin-bottom: 5px;
-      flex: 1;
-      min-width: 150px;
+      margin-bottom: 8px;
+      //flex: 1;
       word-wrap: break-word;
+      font-weight: 500;
 
-      &.select {
-        flex: 0;
-      }
+      //&.select {
+      //  flex: 0;
+      //}
 
-      & ~ * {
-        margin-left: 10px;
-      }
+      //& ~ * {
+      //  margin-left: 10px;
+      //}
+    }
+
+    .hint {
+      margin-top: 6px;
     }
 
     ul {
@@ -132,6 +160,7 @@ code {
       .label_input > label {
         font-family: inherit;
         font-size: 14px;
+        padding-top: 5px;
         color: $primary-text-color;
         display: block;
         width: auto;
@@ -146,13 +175,14 @@ code {
   }
 
   .input.with_block_label {
-    padding-top: 15px;
+    max-width: none;
 
     & > label {
       font-family: inherit;
       font-size: 16px;
       color: $primary-text-color;
       display: block;
+      font-weight: 500;
       padding-top: 5px;
     }
 
@@ -165,8 +195,40 @@ code {
     }
   }
 
+  .required abbr {
+    text-decoration: none;
+    color: lighten($error-value-color, 12%);
+  }
+
   .fields-group {
     margin-bottom: 25px;
+  }
+
+  .fields-row {
+    display: flex;
+    margin: 0 -10px;
+    padding-top: 5px;
+    margin-bottom: 5px;
+
+    .input {
+      max-width: none;
+    }
+
+    &__column {
+      box-sizing: border-box;
+      padding: 0 10px;
+      flex: 1 1 auto;
+      min-height: 1px;
+
+      &-6 {
+        max-width: 50%;
+      }
+    }
+
+    .fields-group:last-child,
+    .fields-row__column.fields-group {
+      margin-bottom: 0;
+    }
   }
 
   .input.radio_buttons .radio label {
@@ -236,12 +298,7 @@ code {
   input[type=email],
   input[type=password],
   textarea {
-    background: transparent;
     box-sizing: border-box;
-    border: 0;
-    border-bottom: 2px solid $ui-primary-color;
-    border-radius: 2px 2px 0 0;
-    padding: 7px 4px;
     font-size: 16px;
     color: $primary-text-color;
     display: block;
@@ -249,23 +306,31 @@ code {
     outline: 0;
     font-family: inherit;
     resize: vertical;
+    background: darken($ui-base-color, 10%);
+    border: 1px solid darken($ui-base-color, 14%);
+    border-radius: 4px;
+    padding: 10px;
 
     &:invalid {
       box-shadow: none;
     }
 
     &:focus:invalid {
-      border-bottom-color: lighten($error-red, 12%);
+      border-color: lighten($error-red, 12%);
     }
 
     &:required:valid {
-      border-bottom-color: $valid-value-color;
+      border-color: $valid-value-color;
+    }
+
+    &:hover {
+      border-color: darken($ui-base-color, 20%);
     }
 
     &:active,
     &:focus {
-      border-bottom-color: $highlight-text-color;
-      background: rgba($base-overlay-background, 0.1);
+      border-color: $highlight-text-color;
+      background: darken($ui-base-color, 8%);
     }
   }
 
@@ -349,8 +414,20 @@ code {
   }
 
   select {
+    appearance: none;
+    box-sizing: border-box;
     font-size: 16px;
-    max-height: 29px;
+    color: $primary-text-color;
+    display: block;
+    width: 100%;
+    outline: 0;
+    font-family: inherit;
+    resize: vertical;
+    background: darken($ui-base-color, 10%) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 12%))}'/></svg>") no-repeat right 8px center / auto 16px;
+    border: 1px solid darken($ui-base-color, 14%);
+    border-radius: 4px;
+    padding: 10px;
+    height: 41px;
   }
 
   .input-with-append {
@@ -634,12 +711,14 @@ code {
 }
 
 .input-copy {
-  background: darken($ui-base-color, 12%);
-  border: 1px solid darken($ui-base-color, 16%);
+  background: darken($ui-base-color, 10%);
+  border: 1px solid darken($ui-base-color, 14%);
   border-radius: 4px;
   display: flex;
   align-items: center;
   padding-right: 4px;
+  position: relative;
+  top: 1px;
   transition: border-color 300ms linear;
 
   &__wrapper {
@@ -660,7 +739,8 @@ code {
     text-transform: none;
     font-weight: 400;
     font-size: 14px;
-    padding: 8px 18px;
+    padding: 7px 18px;
+    padding-bottom: 6px;
     width: auto;
     transition: background 300ms linear;
   }

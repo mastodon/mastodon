@@ -122,6 +122,11 @@
       font-weight: 400;
     }
 
+    .fields-group h6 {
+      color: $primary-text-color;
+      font-weight: 500;
+    }
+
     & > p {
       font-size: 14px;
       line-height: 18px;
@@ -173,8 +178,6 @@
   }
 
   .simple_form {
-    max-width: 400px;
-
     &.edit_user,
     &.new_form_admin_settings,
     &.new_form_two_factor_confirmation,
