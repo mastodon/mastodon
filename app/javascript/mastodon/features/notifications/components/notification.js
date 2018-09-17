@@ -16,8 +16,8 @@ const notificationForScreenReader = (intl, message, timestamp) => {
   return output.join(', ');
 };
 
-@injectIntl
-export default class Notification extends ImmutablePureComponent {
+export default @injectIntl
+class Notification extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,

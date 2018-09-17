@@ -1297,6 +1297,11 @@ a .account__avatar {
   flex: 0 1 100%;
   border-right: 1px solid lighten($ui-base-color, 8%);
   padding: 10px 0;
+  border-bottom: 4px solid transparent;
+
+  &.active {
+    border-bottom: 4px solid $ui-highlight-color;
+  }
 
   & > span {
     display: block;

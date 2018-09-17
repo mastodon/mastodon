@@ -1,6 +1,64 @@
 ---
 cy:
   devise:
+    confirmations:
+      confirmed: Mae eich cyfeiriad e-bost wedi ei gadarnhau yn llwyddiannus.
+      send_instructions: Byddwch yn derbyn e-bost a chyfarwyddiadau am sut i gadarnhau eich cyfeiriad e-bost mewn rhai munudau. Os na dderbynioch chi'r e-bost hwn, edrychwch yn eich ffolder sbam os gwelwch yn dda.
+      send_paranoid_instructions: Os yw eich cyfeiriad e-bost yn bodoli yn ein bas data, byddwch yn derbyn e-bost a chyfarwyddiadau am sut i gadarnhau eich cyfeiriad ebost mewn rhai munudau. Os na dderbynioch chi'r e-bost hwn, edrychwch yn eich ffolder sbam os gwelwch yn dda.
+    failure:
+      already_authenticated: Yr ydych yn barod wedi mewngofnodi.
+      inactive: Nid yw eich cyfrif yn weithredol eto.
+      invalid: "%{authentication_keys} neu gyfrinair annilys."
+      last_attempt: Mae gennych un gyfle arall cyn i'ch cyfrif gael ei gloi.
+      locked: Mae eich cyfrif wedi ei gloi.
+      not_found_in_database: "%{authentication_keys} neu gyfrinair annilys."
+      timeout: Mae eich sesiwn wedi dod i ben. Mewngofnodwch eto i barhau.
+      unauthenticated: Mae angen i chi fewngofnodi neu gofrestru cyn parhau.
+      unconfirmed: Mae rhaid i chi gadarnhau eich cyfeiriad e-bost cyn parhau.
     mailer:
+      confirmation_instructions:
+        action: Gwiriwch eich cyfeiriad e-bost
+        explanation: Yr ydych wedi creu cyfrif ar %{host} gyda'r cyfrif e-bost hwn. Dim ond un clic sydd angen i'w wneud yn weithredol. Os nad chi oedd hyn, anwybyddwch yr e-bost hwn os gwelwch yn dda.
+        extra_html: Gwnewch yn siŵr i edrych ar <a href="%{terms_path}">reolau'r INSTANCE</a> a <a href="%{policy_path}">ein telerau gwasanaeth</a>.
+        subject: 'Mastodon: Canllawiau cadarnhau i %{instance}'
+        title: Gwiriwch cyfeiriad e-bost
+      email_changed:
+        explanation: 'Mae''r cyfeiriad e-bost ar gyfer eich cyfrif yn cael ei newid i:'
+        extra: Os na wnaethoch chi newid eich e-bost, mae'n debygol fod rhywun wedi cael mynediad i'ch cyfrif. Newidwch eich cyfrinair yn syth os gwelwch yn dda neu cysylltwch a gweinydd yr INSTANCE os ydych wedi'ch cloi allan o'ch cyfrif.
+        subject: 'Mastodon: Newidwyd e-bost'
+        title: Cyfeiriad e-bost newydd
+      password_change:
+        explanation: Newidwyd cyfrinair eich cyfrif.
+        extra: Os na wnaethoch chi newid eich e-bost, mae'n debygol fod rhywun wedi cael mynediad i'ch cyfrif. Newidwch eich cyfrinair yn syth os gwelwch yn dda neu cysylltwch a gweinydd yr INSTANCE os ydych wedi'ch cloi allan o'ch cyfrif.
+        subject: 'Mastodon: Newidwyd Cyfrinair'
+        title: Newidwyd cyfrinair
+      reconfirmation_instructions:
+        explanation: Cadarnhewch y cyferiad newydd i newid eich e-bost.
+        subject: 'Mastodon: Cadarnhewch e-bost i %{instance}'
+        title: Gwiriwch cyfeiriad e-bost
       reset_password_instructions:
         action: Newid cyfrinair
+        explanation: Gofynnoch am gyfrinair newydd i'ch cyfrif.
+        subject: 'Mastodon: Ailosodwch cyfarwyddiadau cyfrinair'
+        title: Ailosod cyfrinair
+      unlock_instructions:
+        subject: 'Mastodon: Cyfarwyddiadau datgloi'
+    omniauth_callbacks:
+      failure: Ni ellid eich dilysu o %{kind} achos "%{reason}".
+    registrations:
+      signed_up: Croeso! Rydych wedi llwyddo i ymuno.
+      update_needs_confirmation: Rydych wedi diweddaru eich cyfrif yn llwyddiannus, ond mae angen i ni wirio eich cyfeiriad e-bost newydd. Edrychwch ar eich e-byst a dilynwch y ddolen gadarnhau er mwyn cadarnhau eich cyfeiriad e-bost newydd. Edrychwch ar eich ffolder sbam os na dderbynioch chi yr e-bost hwn.
+      updated: Mae eich cyfrif wedi ei ddiweddaru yn llwyddiannus.
+    sessions:
+      already_signed_out: Allgofnodwyd yn llwyddiannus.
+      signed_in: Mewngofnodwyd yn llwyddiannus.
+      signed_out: Allgofnodwyd yn llwyddiannus.
+    unlocks:
+      unlocked: Mae eich cyfrif wedi ei ddatgloi'n llwyddiannus. Mewngofnodwch i barhau.
+  errors:
+    messages:
+      already_confirmed: wedi ei gadarnhau yn baros, ymgeisiwch fewngofnodi
+      confirmation_period_expired: angen ei gadarnhau o fewn %{period}, gwnewch gais am un newydd os gwelwch yn dda
+      expired: wedi dod i ben, gwnewch gais am un newydd os gwelwch yn dda
+      not_found: heb ei ganfod
+      not_locked: heb ei gloi
