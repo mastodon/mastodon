@@ -77,9 +77,18 @@ RUN bundle config build.nokogiri --with-iconv-lib=/usr/local/lib --with-iconv-in
  && yarn cache clean
 
 RUN addgroup --gid ${GID} mastodon && useradd -b /mastodon -s /bin/sh -g ${GID} -u ${UID} mastodon \
- && mkdir -p /mastodon/public/system /mastodon/public/assets /mastodon/public/packs \
- && chown -R mastodon:mastodon /mastodon/public
+ && mkdir -p /mastodon/public/system /mastodon/public/assets /mastodon/public/packs /mastodon/build /mastodon/mastodon \
+ && chown -R mastodon:mastodon /mastodon/public /mastodon/mastodon
 
 COPY . /mastodon
 
+RUN chown -R mastodon:mastodon tmp build
 RUN chmod +x /mastodon/boot.sh
+
+VOLUME /mastodon/public/system
+
+USER mastodon
+
+RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:precompile
+
+USER root
