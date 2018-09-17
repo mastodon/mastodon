@@ -78,6 +78,11 @@ class Item extends React.PureComponent {
     e.stopPropagation();
   }
 
+  handleMouseDown = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
   render () {
     const { attachment, index, size, standalone, letterbox, displayWidth } = this.props;
 
@@ -181,6 +186,7 @@ class Item extends React.PureComponent {
             onClick={this.handleClick}
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
+            onMouseDown={this.handleMouseDown}
             autoPlay={autoPlay}
             loop
             muted
