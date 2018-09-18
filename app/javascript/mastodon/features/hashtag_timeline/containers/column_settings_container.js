@@ -21,14 +21,10 @@ const mapDispatchToProps = (dispatch, { columnId }) => ({
     dispatch(changeColumnParams(columnId, key, value));
   },
 
-  onSave () {
-    dispatch(saveSettings());
-  },
-
   onLoad (value) {
     return api().get('/api/v2/search', { params: { q: value } }).then(response => {
       return (response.data.hashtags || []).map((tag) => {
-        return { name: `#${tag.name}`, label: `#${tag.name}` }
+        return { name: `#${tag.name}`, label: `#${tag.name}`, key: `#${tag.name}` }
       })
     })
   }

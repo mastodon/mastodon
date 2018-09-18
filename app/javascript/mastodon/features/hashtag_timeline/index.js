@@ -12,7 +12,6 @@ import { connectHashtagStream } from '../../actions/streaming';
 
 const mapStateToProps = (state, props) => ({
   hasUnread: state.getIn(['timelines', `hashtag:${props.params.id}`, 'unread']) > 0,
-  settings: state.getIn(['timelines', `hashtag:${props.params.id}`, 'params'])
 });
 
 export default @connect(mapStateToProps)
