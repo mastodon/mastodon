@@ -1,3 +1,5 @@
+$no-columns-breakpoint: 600px;
+
 .admin-wrapper {
   display: flex;
   justify-content: center;
@@ -24,11 +26,21 @@
       height: 100px;
     }
 
+    @media screen and (max-width: $no-columns-breakpoint) {
+      & > a:first-child {
+        display: none;
+      }
+    }
+
     ul {
       list-style: none;
       border-radius: 4px 0 0 4px;
       overflow: hidden;
       margin-bottom: 20px;
+
+      @media screen and (max-width: $no-columns-breakpoint) {
+        margin-bottom: 0;
+      }
 
       a {
         display: block;
@@ -92,6 +104,12 @@
     padding: 20px 15px;
     padding-top: 60px;
     padding-left: 25px;
+
+    @media screen and (max-width: $no-columns-breakpoint) {
+      max-width: none;
+      padding: 15px;
+      padding-top: 30px;
+    }
 
     h2 {
       color: $secondary-text-color;
@@ -183,7 +201,7 @@
     }
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: $no-columns-breakpoint) {
     display: block;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -197,16 +215,8 @@
 
     .sidebar {
       width: 100%;
-      padding: 10px 0;
+      padding: 0;
       height: auto;
-
-      .logo {
-        margin: 20px auto;
-      }
-    }
-
-    .content {
-      padding-top: 20px;
     }
   }
 }

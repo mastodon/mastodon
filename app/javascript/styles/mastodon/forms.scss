@@ -1,3 +1,5 @@
+$no-columns-breakpoint: 600px;
+
 code {
   font-family: 'mastodon-font-monospace', monospace;
   font-weight: 400;
@@ -231,6 +233,21 @@ code {
     .fields-group:last-child,
     .fields-row__column.fields-group {
       margin-bottom: 0;
+    }
+
+    @media screen and (max-width: $no-columns-breakpoint) {
+      display: block;
+      margin-bottom: 0;
+
+      &__column {
+        max-width: none;
+      }
+
+      .fields-group:last-child,
+      .fields-row__column.fields-group,
+      .fields-row__column {
+        margin-bottom: 25px;
+      }
     }
   }
 
