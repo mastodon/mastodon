@@ -19,7 +19,7 @@ class VerifyLinkService < BaseService
   private
 
   def perform_request!
-    @body = Request.new(:get, url).add_headers('Accept' => 'text/html').perform do |res|
+    @body = Request.new(:get, @url).add_headers('Accept' => 'text/html').perform do |res|
       res.code != 200 ? nil : res.body_with_limit
     end
   end
@@ -27,6 +27,6 @@ class VerifyLinkService < BaseService
   def link_back_present?
     return false if @body.empty?
 
-    Nokogiri::HTML(@body).xpath('//a[@rel="me"]').any? { |link| link['href'] == @link_back }
+    Nokogiri::HTML(@body).xpath('//a[@rel="me"]|//link[@rel="me"]').any? { |link| link['href'] == @link_back }
   end
 end
