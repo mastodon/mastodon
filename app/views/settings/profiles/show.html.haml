@@ -1,8 +1,6 @@
 - content_for :page_title do
   = t('settings.edit_profile')
 
-%hr/
-
 = simple_form_for @account, url: settings_profile_path, html: { method: :put } do |f|
   = render 'shared/error_messages', object: @account
 

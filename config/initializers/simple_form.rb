@@ -1,4 +1,15 @@
 # Use this setup block to configure all options available in SimpleForm.
+
+module AppendComponent
+  def append(wrapper_options = nil)
+    @append ||= begin
+      options[:append].to_s.html_safe if options[:append].present?
+    end
+  end
+end
+
+SimpleForm.include_component(AppendComponent)
+
 SimpleForm.setup do |config|
   # Wrappers are used by the form builder to generate a
   # complete input. You can remove any component from the
@@ -52,7 +63,16 @@ SimpleForm.setup do |config|
 
   config.wrappers :with_label, class: [:input, :with_label], hint_class: :field_with_hint, error_class: :field_with_errors do |b|
     b.use :html5
-    b.use :label_input, wrap_with: { tag: :div, class: :label_input }
+
+    b.wrapper tag: :div, class: :label_input do |ba|
+      ba.use :label
+
+      ba.wrapper tag: :div, class: :label_input__wrapper do |bb|
+        bb.use :input
+        bb.optional :append, wrap_with: { tag: :div, class: 'label_input__append' }
+      end
+    end
+
     b.use :hint,  wrap_with: { tag: :span, class: :hint }
     b.use :error, wrap_with: { tag: :span, class: :error }
   end
