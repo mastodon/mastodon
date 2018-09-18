@@ -323,7 +323,7 @@ class Account < ApplicationRecord
     end
 
     def verifiable?
-      value.present? && /\A#{FetchLinkCardService::URL_PATTERN}\z/ =~ value
+      value.present? && value.start_with?('http://', 'https://')
     end
 
     def mark_verified!
