@@ -323,7 +323,7 @@ class Account < ApplicationRecord
     end
 
     def verifiable?
-      value.present? && (value.start_with?('http://') || value.start_with?('https://'))
+      value.present? && value.start_with?('http://', 'https://')
     end
 
     def mark_verified!
