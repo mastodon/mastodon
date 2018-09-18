@@ -3,6 +3,7 @@ cy:
     attributes:
       doorkeeper/application:
         name: Enw rhaglen
+        scopes: Cwmpasau
   doorkeeper:
     applications:
       buttons:
@@ -24,10 +25,12 @@ cy:
         new: Rhaglen newydd
         show: Dangoswch
         title: Eich rhaglenni
+        scopes: Cwmpasau
       new:
         title: Rhaglen newydd
       show:
         title: 'Rhaglen: %{name}'
+        scopes: Cwmpasau
     authorizations:
       buttons:
         authorize: Awdurdodi
@@ -45,6 +48,7 @@ cy:
         application: Rhaglen
         created_at: Awdurdodedig
         title: Eich rhaglenni awdurdodedig
+        scopes: Cwmpasau
     errors:
       messages:
         access_denied: Mae perchennog yr adnodd neu'r gweinydd awdurdodi wedi atal
