@@ -28,10 +28,9 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
 
   def account_statuses
     statuses = truthy_param?(:pinned) ? pinned_scope : permitted_account_statuses
-    statuses = statuses.paginate_by_max_id(
+    statuses = statuses.paginate_by_id(
       limit_param(DEFAULT_STATUSES_LIMIT),
-      params[:max_id],
-      params[:since_id]
+      params_slice(:max_id, :since_id, :min_id)
     )
 
     statuses.merge!(only_media_scope) if truthy_param?(:only_media)
