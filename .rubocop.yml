@@ -77,6 +77,11 @@ Rails/SkipsModelValidations:
 Rails/HttpStatus:
   Enabled: false
 
+Rails/Exit:
+  Exclude:
+    - 'lib/mastodon/*'
+    - 'lib/cli'
+
 Style/ClassAndModuleChildren:
   Enabled: false
 

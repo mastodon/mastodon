@@ -84,8 +84,8 @@ export const getPointerPosition = (el, event) => {
   return position;
 };
 
-@injectIntl
-export default class Video extends React.PureComponent {
+export default @injectIntl
+class Video extends React.PureComponent {
 
   static propTypes = {
     preview: PropTypes.string,
@@ -252,11 +252,12 @@ export default class Video extends React.PureComponent {
   }
 
   handleOpenVideo = () => {
-    const { src, preview, width, height } = this.props;
+    const { src, preview, width, height, alt } = this.props;
     const media = fromJS({
       type: 'video',
       url: src,
       preview_url: preview,
+      description: alt,
       width,
       height,
     });

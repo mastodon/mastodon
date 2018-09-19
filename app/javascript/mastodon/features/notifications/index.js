@@ -31,9 +31,9 @@ const mapStateToProps = state => ({
   hasMore: state.getIn(['notifications', 'hasMore']),
 });
 
-@connect(mapStateToProps)
+export default @connect(mapStateToProps)
 @injectIntl
-export default class Notifications extends React.PureComponent {
+class Notifications extends React.PureComponent {
 
   static propTypes = {
     columnId: PropTypes.string,

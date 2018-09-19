@@ -52,6 +52,7 @@ function main() {
     });
 
     const reactComponents = document.querySelectorAll('[data-component]');
+
     if (reactComponents.length > 0) {
       import(/* webpackChunkName: "containers/media_container" */ '../mastodon/containers/media_container')
         .then(({ default: MediaContainer }) => {
@@ -64,6 +65,7 @@ function main() {
     }
 
     const parallaxComponents = document.querySelectorAll('.parallax');
+
     if (parallaxComponents.length > 0 ) {
       new Rellax('.parallax', { speed: -1 });
     }
@@ -71,6 +73,7 @@ function main() {
     const history = createHistory();
     const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
     const location = history.location;
+
     if (detailedStatuses.length === 1 && (!location.state || !location.state.scrolledToDetailedStatus)) {
       detailedStatuses[0].scrollIntoView();
       history.replace(location.pathname, { ...location.state, scrolledToDetailedStatus: true });
