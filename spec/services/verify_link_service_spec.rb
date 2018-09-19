@@ -26,6 +26,21 @@ RSpec.describe VerifyLinkService, type: :service do
     end
   end
 
+  context 'when a link contains an <a rel="noopener"> back' do
+    let(:html) do
+      <<-HTML
+        <!doctype html>
+        <body>
+          <a href="#{ActivityPub::TagManager.instance.url_for(account)}" rel="noopener me" target="_blank">Follow me on Mastodon</a>
+        </body>
+      HTML
+    end
+
+    it 'marks the field as verified' do
+      expect(field.verified?).to be true
+    end
+  end
+
   context 'when a link contains a <link> back' do
     let(:html) do
       <<-HTML

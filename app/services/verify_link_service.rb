@@ -27,6 +27,6 @@ class VerifyLinkService < BaseService
   def link_back_present?
     return false if @body.empty?
 
-    Nokogiri::HTML(@body).xpath('//a[@rel="me"]|//link[@rel="me"]').any? { |link| link['href'] == @link_back }
+    Nokogiri::HTML(@body).xpath('//a[contains(concat(" ", normalize-space(@rel), " "), " me ")]|//link[contains(concat(" ", normalize-space(@rel), " "), " me ")]').any? { |link| link['href'] == @link_back }
   end
 end
