@@ -7,6 +7,7 @@ RSpec.describe VerifyLinkService, type: :service do
   let(:field)   { Account::Field.new(account, 'name' => 'Website', 'value' => 'http://example.com') }
 
   before do
+    stub_request(:head, 'https://redirect.me/abc').to_return(status: 301, headers: { 'Location' => ActivityPub::TagManager.instance.url_for(account) })
     stub_request(:get, 'http://example.com').to_return(status: 200, body: html)
     subject.call(field)
   end
@@ -47,6 +48,21 @@ RSpec.describe VerifyLinkService, type: :service do
         <!doctype html>
         <head>
           <link type="text/html" href="#{ActivityPub::TagManager.instance.url_for(account)}" rel="me" />
+        </head>
+      HTML
+    end
+
+    it 'marks the field as verified' do
+      expect(field.verified?).to be true
+    end
+  end
+
+  context 'when a link goes through a redirect back' do
+    let(:html) do
+      <<-HTML
+        <!doctype html>
+        <head>
+          <link type="text/html" href="https://redirect.me/abc" rel="me" />
         </head>
       HTML
     end
