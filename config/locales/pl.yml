@@ -34,12 +34,14 @@ pl:
       few: wpisów
       many: wpisów
       one: wpisu
+      other: wpisów
     status_count_before: Są autorami
     terms: Zasady użytkowania
     user_count_after:
       few: użytkowników
       many: użytkowników
       one: użytkownik
+      other: użytkowników
     user_count_before: Z serwera korzysta
     what_is_mastodon: Czym jest Mastodon?
   accounts:
@@ -49,10 +51,8 @@ pl:
       few: śledzących
       many: śledzących
       one: śledzący
-    following:
-      few: śledzonych
-      many: śledzonych
-      one: śledzony
+      other: Śledzących
+    following: Śledzonych
     joined: Dołączył(a) %{date}
     link_verified_on: Własność tego odnośnika została potwierdzona %{date}
     media: Zawartość multimedialna
@@ -67,6 +67,8 @@ pl:
       few: wpisy
       many: wpisów
       one: wpis
+      other: Wpisów
+    posts_tab_heading: Wpisy
     posts_with_replies: Wpisy z odpowiedziami
     reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
@@ -204,6 +206,7 @@ pl:
         unsuspend_account: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
         update_custom_emoji: "%{name} zaktualizował(a) emoji %{target}"
         update_status: "%{name} zaktualizował(a) wpis użytkownika %{target}"
+      deleted_status: "(usunięty wpis)"
       title: Dziennik działań administracyjnych
     custom_emojis:
       by_domain: Domeny
@@ -368,6 +371,9 @@ pl:
       contact_information:
         email: Służbowy adres e-mail
         username: Nazwa użytkownika do kontaktu
+      custom_css:
+        desc_html: Modyfikuj wygląd pliku CSS ładowanego na każdej stronie
+        title: Niestandardowy CSS
       hero:
         desc_html: Wyświetlany na stronie głównej. Zalecany jest rozmiar przynajmniej 600x100 pikseli. Jeżeli nie ustawiony, zostanie użyta miniatura instancji.
         title: Obraz bohatera
@@ -891,6 +897,7 @@ pl:
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Aby kontynuować, wprowadź kod wyświetlany przez aplikację uwierzytelniającą
     description_html: Jeśli włączysz <strong>uwierzytelnianie dwuetapowe</strong>, logowanie się będzie wymagało podania tokenu wyświetlonego na Twoim telefonie.
