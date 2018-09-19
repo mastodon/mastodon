@@ -54,6 +54,7 @@ pl:
       many: śledzonych
       one: śledzony
     joined: Dołączył(a) %{date}
+    link_verified_on: Własność tego odnośnika została potwierdzona %{date}
     media: Zawartość multimedialna
     moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
     network_hidden: Ta informacja nie jest dostępna
@@ -126,6 +127,7 @@ pl:
       moderation_notes: Notatki moderacyjne
       most_recent_activity: Najnowsza aktywność
       most_recent_ip: Ostatnie IP
+      no_limits_imposed: Nie nałożono ograniczeń
       not_subscribed: Nie zasubskrybowano
       order:
         alphabetic: Alfabetycznie
@@ -161,8 +163,10 @@ pl:
         report: zgłoszeń
         targeted_reports: Zgłoszenia dotyczące tego użytkownika
       silence: Wycisz
+      silenced: Wyciszono
       statuses: Wpisy
       subscribe: Subskrybuj
+      suspended: Wywieszono
       title: Konta
       unconfirmed_email: Niepotwierdzony adres e-mail
       undo_silenced: Cofnij wyciszenie
@@ -306,8 +310,13 @@ pl:
       title: Zaproszenia
     relays:
       add_new: Dodaj nowy
+      delete: Usuń
       description_html: "<strong>Przekaźnik federacji</strong> jest pośredniczącym serwerem wymieniającym duże ilości publicznych wpisów pomiędzy serwerami które subskrybują je i publikują na nich. <strong>Pomaga to małym i średnim instancją poznawać nową zawartość z Fediwersum</strong>, co w innym przypadku wymagałoby od użytkowników ręcznego śledzenia osób z innych serwerów."
+      disable: Dezaktuwuj
+      disabled: Nieaktywny
+      enable: Aktywuj
       enable_hint: Jeżeli włączone, Twój serwer zasubskrybuje wszystkie publiczne wpisy z tego przekaźnika i zacznie wysyłać tam publiczne wpisy z tego serwera.
+      enabled: Aktywny
       inbox_url: Adres przekaźnika
       pending: Oczekiwanie na przyjęcie przez przekaźnik
       save_and_enable: Zapisz i aktywuj
@@ -455,7 +464,7 @@ pl:
     warning: Przechowuj te dane ostrożnie. Nie udostępniaj ich nikomu!
     your_token: Twój token dostępu
   auth:
-    agreement_html: Rejestrując się, oświadczasz, że zapoznałeś(-aś) się z <a href="%{rules_path}">informacjami o instancji</a> i <a href="%{terms_path}">zasadami korzystania z usługi</a>.
+    agreement_html: Klikając „Rejestracja”, oświadczasz, że zapoznałeś(-aś) się z <a href="%{rules_path}">informacjami o instancji</a> i <a href="%{terms_path}">zasadami korzystania z usługi</a>.
     change_password: Hasło
     confirm_email: Potwierdź adres e-mail
     delete_account: Usunięcie konta
@@ -927,3 +936,6 @@ pl:
     otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowany jako:'
+  verification:
+    explanation_html: 'Możesz <strong>zweryfikować siebie jako właściciela odnośników w metadanych</strong>. Aby to zrobić, strona musi zawierać odnośnik do Twojego profilu na Mastodonie. Odnośnik <strong>musi</strong> zawierać atrybut <code>rel="me"</code>. Treść odnośnika nie ma znaczenia. Przykład:'
+    verification: Weryfikacja
