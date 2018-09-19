@@ -2,6 +2,35 @@
 
 require 'ipaddr'
 require 'socket'
+require 'openssl'
+require 'async/io/tcp_socket'
+require 'async/io/ssl_socket'
+
+module Wrap
+  class TCPSocket
+    def self.new(*args)
+      if Async::Task.current?
+        Async::IO::TCPSocket.new(*args)
+      else
+        ::TCPSocket.new(*args)
+      end
+    end
+
+    def self.open(*args)
+      self.new(*args)
+    end
+  end
+
+  class SSLSocket
+    def self.new(*args)
+      if Async::Task.current?
+        Async::IO::SSLSocket.wrap(*args)
+      else
+        OpenSSL::SSL::SSLSocket.new(*args)
+      end
+    end
+  end
+end
 
 class Request
   REQUEST_TARGET = '(request-target)'
@@ -13,7 +42,8 @@ class Request
 
     @verb    = verb
     @url     = Addressable::URI.parse(url).normalize
-    @options = options.merge(use_proxy? ? Rails.configuration.x.http_client_proxy : { socket_class: Socket })
+    @options = options.merge({ socket_class: Wrap::TCPSocket, ssl_socket_class: Wrap::SSLSocket})
+    @options = @options.merge(use_proxy? ? Rails.configuration.x.http_client_proxy : { socket_class: Socket })
     @headers = {}
 
     raise Mastodon::HostValidationError, 'Instance does not support hidden service connections' if block_hidden_service?
@@ -39,7 +69,16 @@ class Request
 
   def perform
     begin
-      response = http_client.headers(headers).public_send(@verb, @url.to_s, @options)
+      response = nil
+      if Async::Task.current?
+        Async::Task.current.timeout(10) do
+          response = http_client.timeout(:null).headers(headers).public_send(@verb, @url.to_s, @options)
+        end
+      else
+        response = http_client.headers(headers).public_send(@verb, @url.to_s, @options)
+      end
+    rescue Async::TimeoutError => e
+      raise HTTP::TimeoutError, "#{e.message} on #{@url}", e.backtrace[0]
     rescue => e
       raise e.class, "#{e.message} on #{@url}", e.backtrace[0]
     end
@@ -136,9 +175,9 @@ class Request
     end
   end
 
-  class Socket < TCPSocket
+  class Socket < Wrap::TCPSocket
     class << self
-      def open(host, *args)
+      def new(host, *args)
         return super host, *args if thru_hidden_service? host
         outer_e = nil
         Addrinfo.foreach(host, nil, nil, :SOCK_STREAM) do |address|
@@ -152,7 +191,7 @@ class Request
         raise outer_e if outer_e
       end
 
-      alias new open
+      alias open new
 
       def thru_hidden_service?(host)
         Rails.configuration.x.access_to_hidden_service && /\.(onion|i2p)$/.match(host)
