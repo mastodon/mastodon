@@ -1,3 +1,4 @@
+---
 cy:
   activerecord:
     attributes:
@@ -23,14 +24,14 @@ cy:
         delete: Dileu
         name: Enw
         new: Rhaglen newydd
+        scopes: Cwmpasau
         show: Dangoswch
         title: Eich rhaglenni
-        scopes: Cwmpasau
       new:
         title: Rhaglen newydd
       show:
-        title: 'Rhaglen: %{name}'
         scopes: Cwmpasau
+        title: 'Rhaglen: %{name}'
     authorizations:
       buttons:
         authorize: Awdurdodi
@@ -47,12 +48,11 @@ cy:
       index:
         application: Rhaglen
         created_at: Awdurdodedig
-        title: Eich rhaglenni awdurdodedig
         scopes: Cwmpasau
+        title: Eich rhaglenni awdurdodedig
     errors:
       messages:
-        access_denied: Mae perchennog yr adnodd neu'r gweinydd awdurdodi wedi atal
-          y cais.
+        access_denied: Mae perchennog yr adnodd neu'r gweinydd awdurdodi wedi atal y cais.
     flash:
       applications:
         create:
