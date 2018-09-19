@@ -1,4 +1,3 @@
----
 cy:
   simple_form:
     labels:
@@ -9,5 +8,30 @@ cy:
         new_password: Cyfrinair newydd
         password: Cyfrinair
         username: Enw defnyddiwr
+        locale: Iaith y rhyngwyneb
+        max_uses: Uchafswm y nifer o ddefnyddiau
+        phrase: Allweddair neu ymadrodd
+        setting_default_language: Cyhoeddi iaith
+        setting_hide_network: Cuddiwch eich rhwydwaith
+        setting_reduce_motion: ''
+        setting_system_font_ui: Defnyddiwch ffont rhagosodedig y system
+        setting_theme: Thema'r wefan
+        severity: Difrifoldeb
+        type: Modd mewnforio
+        username_or_email: Enw defnyddiwr neu e-bost
+        whole_word: Gair cyfan
+      interactions:
+        must_be_follower: Blociwch hysbysiadau o bobl nad ydynt yn eich dilyn
+        must_be_following: Blociwch hysbysiadau o bobl nad ydych yn eu dilyn
+        must_be_following_dm: Blociwch negeseuon uniongyrchol o bobl nad ydych yn
+          eu dilyn
+      notification_emails:
+        favourite: Anfonwch e-bost pan mae rhywun yn ffefrynnu eich statws
+        follow: Anfonwch e-bost pan mae rhywun yn eich dilyn chi
+        follow_request: Anfonwch e-bost pan mae rhywun yn gofyn i chi i'w dilyn
+        mention: Anfonwch e-bost pan mae rhywun yn eich crybwyll
     required:
-      mark: "*"
+      mark: '*'
+      text: gofynnol
+    'no': Na
+    'yes': Ie

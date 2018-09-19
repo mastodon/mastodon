@@ -1,7 +1,7 @@
----
 zh-CN:
   about:
-    about_hashtag_html: 这里展示的是带有话题标签 <strong>#%{hashtag}</strong> 的公开嘟文。如果你想与他们互动，你需要在任意一个 Mastodon 实例或与其兼容的网站上拥有一个帐户。
+    about_hashtag_html: 这里展示的是带有话题标签 <strong>#%{hashtag}</strong> 的公开嘟文。如果你想与他们互动，你需要在任意一个
+      Mastodon 实例或与其兼容的网站上拥有一个帐户。
     about_mastodon_html: Mastodon（长毛象）是一个建立在开放式网络协议和自由、开源软件之上的社交网络，有着类似于电子邮件的分布式设计。
     about_this: 关于本实例
     administered_by: 本实例的管理员：
@@ -9,9 +9,11 @@ zh-CN:
     contact: 联系方式
     contact_missing: 未设定
     contact_unavailable: 未公开
-    extended_description_html: |
-      <h3>这里可以写一些规定</h3>
+    extended_description_html: '<h3>这里可以写一些规定</h3>
+
       <p>本站尚未设置详细介绍。</p>
+
+      '
     features:
       humane_approach_body: Mastodon 从其他网络的失败经验中汲取了教训，致力于在与错误的社交媒体使用方式的斗争中做出符合伦理化设计的选择。
       humane_approach_title: 更加以人为本
@@ -21,27 +23,39 @@ zh-CN:
       real_conversation_title: 为真正的交流而生
       within_reach_body: 通过一个面向开发者友好的 API 生态系统，Mastodon 让你可以随时随地通过众多 iOS、Android 以及其他平台的应用与朋友们保持联系。
       within_reach_title: 始终触手可及
-    generic_description: "%{domain} 是这个庞大网络中的一台服务器"
+    generic_description: '%{domain} 是这个庞大网络中的一台服务器'
     hosted_on: 一个在 %{domain} 上运行的 Mastodon 实例
     learn_more: 了解详情
     other_instances: 其他实例
     source_code: 源代码
-    status_count_after: 条嘟文
+    status_count_after:
+      one: 状态
     status_count_before: 他们共嘟出了
-    user_count_after: 位用户
+    user_count_after:
+      one: 用户
+      other: 用户
     user_count_before: 这里共注册有
     what_is_mastodon: Mastodon 是什么？
+    api: API
+    apps: 移动应用
+    documentation: 文件
+    privacy_policy: 隐私条款
+    terms: 使用条款
   accounts:
     follow: 关注
-    followers: 关注者
+    followers:
+      one: 关注者
+      other: 关注者
     following: 正在关注
     media: 媒体
-    moved_html: "%{name} 已经迁移到 %{new_profile_link}："
+    moved_html: '%{name} 已经迁移到 %{new_profile_link}：'
     network_hidden: 此信息不可用。
     nothing_here: 这里神马都没有！
-    people_followed_by: "%{name} 关注的人"
+    people_followed_by: '%{name} 关注的人'
     people_who_follow: 关注 %{name} 的人
-    posts: 嘟文
+    posts:
+      one: 嘟嘟
+      other: 嘟文
     posts_with_replies: 嘟文和回复
     reserved_username: 此用户名已被保留
     roles:
@@ -49,6 +63,8 @@ zh-CN:
       bot: 机器人
       moderator: 监察员
     unfollow: 取消关注
+    joined: 加入于 %{date}
+    posts_tab_heading: 嘟文
   admin:
     account_moderation_notes:
       create: 新建
@@ -148,35 +164,36 @@ zh-CN:
       web: 站内页面
     action_logs:
       actions:
-        assigned_to_self_report: "%{name} 接管了举报 %{target}"
-        change_email_user: "%{name} 更改了用户 %{target} 的电子邮件地址"
-        confirm_user: "%{name} 确认了用户 %{target} 的电子邮件地址"
-        create_custom_emoji: "%{name} 添加了新的自定义表情 %{target}"
-        create_domain_block: "%{name} 屏蔽了域名 %{target}"
-        create_email_domain_block: "%{name} 屏蔽了电子邮件域名 %{target}"
-        demote_user: "%{name} 对用户 %{target} 进行了降任操作"
-        destroy_domain_block: "%{name} 解除了对域名 %{target} 的屏蔽"
-        destroy_email_domain_block: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
-        destroy_status: "%{name} 删除了 %{target} 的嘟文"
-        disable_2fa_user: "%{name} 停用了用户 %{target} 的双重认证"
-        disable_custom_emoji: "%{name} 停用了自定义表情 %{target}"
-        disable_user: "%{name} 将用户 %{target} 设置为禁止登录"
-        enable_custom_emoji: "%{name} 启用了自定义表情 %{target}"
-        enable_user: "%{name} 将用户 %{target} 设置为允许登录"
-        memorialize_account: "%{name} 将 %{target} 设置为追悼帐户"
-        promote_user: "%{name} 对用户 %{target} 进行了升任操作"
-        remove_avatar_user: "%{name} 删除了 %{target} 的头像"
-        reopen_report: "%{name} 重开了举报 %{target}"
-        reset_password_user: "%{name} 重置了用户 %{target} 的密码"
-        resolve_report: "%{name} 处理了举报 %{target}"
-        silence_account: "%{name} 隐藏了用户 %{target}"
-        suspend_account: "%{name} 封禁了用户 %{target}"
-        unassigned_report: "%{name} 放弃了举报 %{target} 的接管"
-        unsilence_account: "%{name} 解除了用户 %{target} 的隐藏状态"
-        unsuspend_account: "%{name} 解除了用户 %{target} 的封禁状态"
-        update_custom_emoji: "%{name} 更新了自定义表情 %{target}"
-        update_status: "%{name} 刷新了 %{target} 的嘟文"
+        assigned_to_self_report: '%{name} 接管了举报 %{target}'
+        change_email_user: '%{name} 更改了用户 %{target} 的电子邮件地址'
+        confirm_user: '%{name} 确认了用户 %{target} 的电子邮件地址'
+        create_custom_emoji: '%{name} 添加了新的自定义表情 %{target}'
+        create_domain_block: '%{name} 屏蔽了域名 %{target}'
+        create_email_domain_block: '%{name} 屏蔽了电子邮件域名 %{target}'
+        demote_user: '%{name} 对用户 %{target} 进行了降任操作'
+        destroy_domain_block: '%{name} 解除了对域名 %{target} 的屏蔽'
+        destroy_email_domain_block: '%{name} 解除了对电子邮件域名 %{target} 的屏蔽'
+        destroy_status: '%{name} 删除了 %{target} 的嘟文'
+        disable_2fa_user: '%{name} 停用了用户 %{target} 的双重认证'
+        disable_custom_emoji: '%{name} 停用了自定义表情 %{target}'
+        disable_user: '%{name} 将用户 %{target} 设置为禁止登录'
+        enable_custom_emoji: '%{name} 启用了自定义表情 %{target}'
+        enable_user: '%{name} 将用户 %{target} 设置为允许登录'
+        memorialize_account: '%{name} 将 %{target} 设置为追悼帐户'
+        promote_user: '%{name} 对用户 %{target} 进行了升任操作'
+        remove_avatar_user: '%{name} 删除了 %{target} 的头像'
+        reopen_report: '%{name} 重开了举报 %{target}'
+        reset_password_user: '%{name} 重置了用户 %{target} 的密码'
+        resolve_report: '%{name} 处理了举报 %{target}'
+        silence_account: '%{name} 隐藏了用户 %{target}'
+        suspend_account: '%{name} 封禁了用户 %{target}'
+        unassigned_report: '%{name} 放弃了举报 %{target} 的接管'
+        unsilence_account: '%{name} 解除了用户 %{target} 的隐藏状态'
+        unsuspend_account: '%{name} 解除了用户 %{target} 的封禁状态'
+        update_custom_emoji: '%{name} 更新了自定义表情 %{target}'
+        update_status: '%{name} 刷新了 %{target} 的嘟文'
       title: 运营日志
+      deleted_status: （状态已删除）
     custom_emojis:
       by_domain: 域名
       copied_msg: 成功将表情复制到本地
@@ -224,7 +241,9 @@ zh-CN:
         suspend: 自动封禁
       severity: 屏蔽级别
       show:
-        affected_accounts: 将会影响到数据库中的 %{count} 个帐户
+        affected_accounts:
+          one: 影响数据库中 1 位用户
+          other: 影响数据库中 %{count} 位用户
         retroactive:
           silence: 对此域名的所有帐户解除隐藏
           suspend: 对此域名的所有帐户解除封禁
@@ -255,6 +274,7 @@ zh-CN:
         expired: 已失效
         title: 筛选
       title: 邀请用户
+      deactivate_all: 全部禁用
     report_notes:
       created_msg: 举报记录建立成功！
       destroyed_msg: 举报记录删除成功！
@@ -326,7 +346,8 @@ zh-CN:
         desc_html: 在个人资料页上显示管理人员标志
         title: 显示管理人员标志
       site_description:
-        desc_html: 用于首页展示以及 meta 标签中的网站简介。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>
+        desc_html: 用于首页展示以及 meta 标签中的网站简介。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和
+          <code>&lt;em&gt;</code>
         title: 本站简介
       site_description_extended:
         desc_html: 可以填写行为守则、规定、指南或其他本站特有的内容。可以使用 HTML 标签
@@ -342,6 +363,11 @@ zh-CN:
         desc_html: 在主页显示公共时间轴
         title: 时间轴预览
       title: 网站设置
+      custom_css:
+        title: 自定义 CSS
+      preview_sensitive_media:
+        desc_html: 即使媒体文件被标记为敏感内容，其他站点上的链接预览仍会显示其缩略图
+        title: 在 OpenGraph 预览中显示敏感内容
     statuses:
       back_to_account: 返回帐户信息页
       batch:
@@ -362,14 +388,42 @@ zh-CN:
       title: WebSub
       topic: Topic
     title: 管理
+    dashboard:
+      config: 设置
+      feature_deletions: 帐号删除
+      feature_invites: 邀请链接
+      feature_registrations: 注册
+      features: 特性
+      hidden_service: 与暗网互联
+      open_reports: 待处理举报
+      recent_users: 新用户
+      search: 全文搜索
+      single_user_mode: 单用户模式
+      software: 软件
+      space: 空间用量
+      title: 大盘
+      total_users: 总用户数
+      trends: 趋势
+      week_interactions: 本周互动
+      week_users_active: 本周活跃用户
+      week_users_new: 本周新用户
+    relays:
+      add_new: 添加中继
+      description_html: <strong>消息中继</strong>是一种中间服务器，用于在订阅它和向它推送消息的服务器之间大量交换嘟文。<strong>它可以帮助中小型实例发现长毛象宇宙中的内容</strong>，而无需本地用户手动关注其他远程实例上的用户。
+      enable_hint: 一经启用，你的服务器会订阅此中继的所有嘟文，并向其发送本服务器的公共嘟文。
+      inbox_url: 中继 URL
+      pending: 等待中继确认
+      save_and_enable: 保存并启用
+      status: 状态
+      title: 中继
   admin_mailer:
     new_report:
-      body: "%{reporter} 举报了用户 %{target}"
+      body: '%{reporter} 举报了用户 %{target}'
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
       subject: 来自 %{instance} 的用户举报（#%{id}）
   application_mailer:
     notification_preferences: 更改电子邮件首选项
-    salutation: "%{name}："
+    salutation: '%{name}：'
     settings: 使用此链接更改你的电子邮件首选项：%{link}
     view: 点此链接查看详情：
     view_profile: 查看个人资料页
@@ -419,18 +473,18 @@ zh-CN:
     title: 关注 %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}时"
-      about_x_months: "%{count}个月"
-      about_x_years: "%{count}年"
-      almost_x_years: "%{count}年"
+      about_x_hours: '%{count}时'
+      about_x_months: '%{count}个月'
+      about_x_years: '%{count}年'
+      almost_x_years: '%{count}年'
       half_a_minute: 刚刚
-      less_than_x_minutes: "%{count}分"
+      less_than_x_minutes: '%{count}分'
       less_than_x_seconds: 刚刚
-      over_x_years: "%{count}年"
-      x_days: "%{count}天"
-      x_minutes: "%{count}分"
-      x_months: "%{count}个月"
-      x_seconds: "%{count}秒"
+      over_x_years: '%{count}年'
+      x_days: '%{count}天'
+      x_minutes: '%{count}分'
+      x_months: '%{count}个月'
+      x_seconds: '%{count}秒'
   deletes:
     bad_password_msg: 想得美，黑客！密码输入错误
     confirm_password: 输入你当前的密码来验证身份
@@ -450,12 +504,14 @@ zh-CN:
     '500':
       content: 抱歉，我们的后台出错了。
       title: 这个页面有问题
-    noscript_html: 使用 Mastodon 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon 应用</a>。
+    noscript_html: 使用 Mastodon 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon
+      应用</a>。
   exports:
     archive_takeout:
       date: 日期
       download: 下载你的存档
-      hint_html: 你可以请求一份帐户数据存档，其中包含你的<strong>嘟文和已上传的媒体文件</strong>。导出的数据为 ActivityPub 格式，因而可以被兼容的软件读取。每次允许请求存档的间隔至少为 7 天。
+      hint_html: 你可以请求一份帐户数据存档，其中包含你的<strong>嘟文和已上传的媒体文件</strong>。导出的数据为 ActivityPub
+        格式，因而可以被兼容的软件读取。每次允许请求存档的间隔至少为 7 天。
       in_progress: 正在准备你的存档……
       request: 请求你的存档
       size: 大小
@@ -502,7 +558,9 @@ zh-CN:
     expires_in_prompt: 永不过期
     generate: 生成邀请链接
     invited_by: 你的邀请人是：
-    max_uses: "%{count} 次"
+    max_uses:
+      one: 1 次
+      other: '%{count} 次'
     max_uses_prompt: 无限制
     prompt: 生成分享链接，邀请他人在本实例注册
     table:
@@ -527,38 +585,38 @@ zh-CN:
     digest:
       action: 查看所有通知
       body: 以下是自%{since}你最后一次登录以来错过的消息的摘要
-      mention: "%{name} 在嘟文中提到了你："
+      mention: '%{name} 在嘟文中提到了你：'
       new_followers_summary:
         one: 而且，你不在的时候，有一个人关注了你！耶！
         other: 而且，你不在的时候，有 %{count} 个人关注了你！好棒！
-      subject: "自从你最后一次登录以来，你错过了 %{count} 条新通知 \U0001F418"
+      subject: 自从你最后一次登录以来，你错过了 %{count} 条新通知 🐘
       title: 在你不在的这段时间……
     favourite:
       body: 你的嘟文被 %{name} 收藏了：
-      subject: "%{name} 收藏了你的嘟文"
+      subject: '%{name} 收藏了你的嘟文'
       title: 新的收藏
     follow:
-      body: "%{name} 关注了你！"
-      subject: "%{name} 关注了你"
+      body: '%{name} 关注了你！'
+      subject: '%{name} 关注了你'
       title: 新的关注者
     follow_request:
       action: 处理关注请求
-      body: "%{name} 向你发送了关注请求！"
+      body: '%{name} 向你发送了关注请求！'
       subject: 来自 %{name} 的关注请求
       title: 新的关注请求
     mention:
       action: 回复
-      body: "%{name} 在嘟文中提到了你："
-      subject: "%{name} 提到了你"
+      body: '%{name} 在嘟文中提到了你：'
+      subject: '%{name} 提到了你'
       title: 新的提及
     reblog:
       body: 你的嘟文被 %{name} 转嘟了：
-      subject: "%{name} 转嘟了你的嘟文"
+      subject: '%{name} 转嘟了你的嘟文'
       title: 新的转嘟
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: '%n%u'
         units:
           billion: B
           million: M
@@ -571,7 +629,7 @@ zh-CN:
     next: 下一页
     older: 更早
     prev: 上一页
-    truncate: "…"
+    truncate: …
   preferences:
     languages: 语言
     other: 其他
@@ -582,6 +640,7 @@ zh-CN:
     missing_resource: 无法确定你的帐户的跳转 URL
     proceed: 确认关注
     prompt: 你正准备关注：
+    no_account_html: 还没有帐号？你可以<a href='%{sign_up_path}' target='_blank'>注册一个</a>
   remote_unfollow:
     error: 错误
     title: 标题
@@ -608,7 +667,7 @@ zh-CN:
       uc_browser: UC浏览器
       weibo: 新浪微博
     current_session: 当前会话
-    description: "%{platform} 上的 %{browser}"
+    description: '%{platform} 上的 %{browser}'
     explanation: 你的 Mastodon 帐户目前已在这些浏览器上登录。
     ip: IP 地址
     platforms:
@@ -645,8 +704,12 @@ zh-CN:
   statuses:
     attached:
       description: 附加媒体：%{attached}
-      image: "%{count} 张图片"
-      video: "%{count} 个视频"
+      image:
+        one: '%{count} 张图片'
+        other: '%{count} 张图片'
+      video:
+        one: '%{count} 段视频'
+        other: '%{count} 段视频'
     boosted_from_html: 转嘟自 %{acct_link}
     content_warning: 内容警告：%{warning}
     disallowed_hashtags:
@@ -661,7 +724,7 @@ zh-CN:
       private: 不能置顶非公开的嘟文
       reblog: 不能置顶转嘟
     show_more: 显示更多
-    title: "%{name}：“%{quote}”"
+    title: '%{name}：“%{quote}”'
     visibilities:
       private: 仅关注者
       private_long: 只有关注你的用户能看到
@@ -674,14 +737,14 @@ zh-CN:
     reblogged: 转嘟
     sensitive_content: 敏感内容
   terms:
-    title: "%{instance} 使用条款和隐私权政策"
+    title: '%{instance} 使用条款和隐私权政策'
   themes:
     contrast: 高对比度
     default: Mastodon
     mastodon-light: Mastodon（亮色主题）
   time:
     formats:
-      default: "%Y年%-m月%d日 %H:%M"
+      default: '%Y年%-m月%d日 %H:%M'
   two_factor_authentication:
     code_hint: 输入认证器生成的代码以确认操作
     description_html: 启用<strong>双重认证</strong>后，你需要输入手机认证器生成的代码才能登录
@@ -690,7 +753,7 @@ zh-CN:
     enabled: 双重认证已启用
     enabled_success: 双重认证启用成功
     generate_recovery_codes: 生成恢复代码
-    instructions_html: "<strong>请使用 Google 身份验证器或其他 TOTP 双重认证手机应用扫描此处的二维码</strong>。启用双重认证后，你需要输入该应用生成的代码来登录你的帐户。"
+    instructions_html: <strong>请使用 Google 身份验证器或其他 TOTP 双重认证手机应用扫描此处的二维码</strong>。启用双重认证后，你需要输入该应用生成的代码来登录你的帐户。
     lost_recovery_codes: 如果你的手机不慎丢失，你可以使用恢复代码来重新获得对帐户的访问权。如果你遗失了恢复代码，可以在此处重新生成。之前使用的恢复代码将会失效。
     manual_instructions: 如果你无法扫描二维码，请手动输入下列文本：
     recovery_codes: 备份恢复代码
@@ -708,11 +771,13 @@ zh-CN:
       edit_profile_step: 你可以自定义你的个人资料，包括上传头像、横幅图片、更改昵称等等。如果你想在新的关注者关注你之前对他们进行审核，你也可以选择为你的帐户开启保护。
       explanation: 下面是几个小贴士，希望它们能帮到你
       final_action: 开始嘟嘟
-      final_step: '开始嘟嘟吧！即便你现在没有关注者，其他人仍然能在本站时间轴或者话题标签等地方看到你的公开嘟文。试着用 #introductions 这个话题标签介绍一下自己吧。'
+      final_step: '开始嘟嘟吧！即便你现在没有关注者，其他人仍然能在本站时间轴或者话题标签等地方看到你的公开嘟文。试着用 #introductions
+        这个话题标签介绍一下自己吧。'
       full_handle: 你的完整用户地址
       full_handle_hint: 你需要把这个告诉你的朋友们，这样他们就能从另一个实例向你发送信息或者关注你。
       review_preferences_action: 更改首选项
-      review_preferences_step: 记得调整你的偏好设置，比如你想接收什么类型的邮件，或者你想把你的嘟文可见范围默认设置为什么级别。如果你没有晕动病的话，考虑一下启用“自动播放 GIF 动画”这个选项吧。
+      review_preferences_step: 记得调整你的偏好设置，比如你想接收什么类型的邮件，或者你想把你的嘟文可见范围默认设置为什么级别。如果你没有晕动病的话，考虑一下启用“自动播放
+        GIF 动画”这个选项吧。
       subject: 欢迎来到 Mastodon
       tip_bridge_html: 如果你刚从 Twitter 来到这里，你可以在<a href="%{bridge_url}">桥梁站（bridge app）</a>上寻找你的朋友。当然，前提是他们也登录了桥梁站！
       tip_federated_timeline: 跨站公共时间轴可以让你一窥更广阔的 Mastodon 网络。不过，由于它只显示你的邻居们所订阅的内容，所以并不是全部。
@@ -720,10 +785,22 @@ zh-CN:
       tip_local_timeline: 本站时间轴可以让你一窥 %{instance} 上的用户。他们就是离你最近的邻居！
       tip_mobile_webapp: 如果你的移动设备浏览器允许你将 Mastodon 添加到主屏幕，你就能够接收推送消息。它就像本地应用一样好使！
       tips: 小贴士
-      title: "%{name}，欢迎你的加入！"
+      title: '%{name}，欢迎你的加入！'
   users:
     invalid_email: 输入的电子邮件地址无效
     invalid_otp_token: 输入的双重认证代码无效
     otp_lost_help_html: 如果你不慎丢失了所有的代码，请联系 %{email} 寻求帮助
     seamless_external_login: 因为你是通过外部服务登录的，所以密码和电子邮件地址设置都不可用。
     signed_in_as: 当前登录的帐户：
+  filters:
+    contexts:
+      notifications: 通知
+      public: 公共时间线
+      thread: 对话
+    edit:
+      title: 编辑过滤器
+    index:
+      delete: 删除
+      title: 过滤器
+    new:
+      title: 添加过滤器
