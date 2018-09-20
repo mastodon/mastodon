@@ -13,6 +13,10 @@ class REST::AccountSerializer < ActiveModel::Serializer
   class FieldSerializer < ActiveModel::Serializer
     attributes :name, :value
 
+    attribute :verified_at, if: :verifiable?
+
+    delegate :verifiable?, to: :object
+
     def value
       Formatter.instance.format_field(object.account, object.value)
     end

@@ -54,6 +54,8 @@ sk:
     nothing_here: Nič tu nie je!
     people_followed_by: Ľudia, ktorých %{name} sleduje
     people_who_follow: Ľudia sledujúci %{name}
+    pin_errors:
+      following: Musíš už následovať toho človeka, ktorého si praješ zviditeľniť
     posts:
       one: Príspevok
       other: Príspevky
@@ -220,6 +222,7 @@ sk:
       updated_msg: Emoji bolo úspešne aktualizované!
       upload: Nahrať
     dashboard:
+      backlog: odložené aktivity
       config: Nastavenia
       feature_deletions: Vymazanie účtov
       feature_invites: Pozvánky
@@ -299,6 +302,7 @@ sk:
     relays:
       add_new: Pridaj novú priechodnú oporu
       description_html: "<strong>Federovací mostík</strong> je prechodný server ktorý obmieňa veľké množstvá verejných príspevkov medzi tými servermi ktoré na od neho odoberajú, aj doňho prispievajú. <strong>Môže to pomôcť malým a stredným instanciám objavovať federovaný obsah</strong>, čo inak vyžaduje aby miestni užívatelia ručne následovali iných ľudí zo vzdialených instancií."
+      enable_hint: Ak povolíš, tvoj server bude odoberať všetky verejné príspevky z tohto mostu, a začne posielať verejné príspevky tvojho servera na tento most.
       inbox_url: URL mostu
       pending: Čakám na povolenie od prechodného mostu
       save_and_enable: Uložiť a povoliť
@@ -388,6 +392,7 @@ sk:
         desc_html: Toto je vhodné miesto pre vaše pravidlá, oboznámenia a iné veci, ktorými je vaša instancia špecifická. Je možné tu používať HTML kód
         title: Vlastné doplňujúce informácie
       site_short_description:
+        desc_html: Zobrazené na bočnom paneli a pri meta tagoch. Popíš čo je Mastodon, a čo robí tento server iným, v jednom paragrafe. Pokiaľ toto necháš prázdne, bude tu zobrazený základný popis instancie.
         title: Krátky popis instancie
       site_terms:
         desc_html: Môžete si napísať vaše vlastné pravidla o súkromí, prevádzke, alebo aj iné legality. Môžete tu používať HTML kód
@@ -410,6 +415,7 @@ sk:
       media:
         title: Médiá
       no_media: Žiadné médiá
+      no_status_selected: Žiadne príspevky neboli zmenené, keďže si žiadne nemal/a zvolené
       title: Statusy na účte
       with_media: S médiami
     subscriptions:
@@ -419,12 +425,18 @@ sk:
       last_delivery: Posledné doručenie
       title: WebSub
       topic: Téma
-    title: Administrácia
+    suspensions:
+      bad_acct_msg: Hodnota pre potvrdenie sa nezhoduje. Si si istý/á že zamrazuješ ten správny účet?
+      hint_html: 'Pre potvrdenie zamrazenia účtu, prosím napíš %{value} do následujúceho políčka:'
+      proceed: Pokračuj
+      title: Zamraziť %{acct}
+      warning_html: 'Zamrazením tohto účtu budú dáta na tomto účte <strong>nenávratne</strong> zmazané, zahŕňajúc:'
+    title: Spravovanie
   admin_mailer:
     new_report:
-      body: "%{reporter} nahlásil %{target}"
-      body_remote: Niekto z %{domain} nahlásil %{target}
-      subject: Nový report pre %{instance} (#%{id})
+      body: "%{reporter} nahlásil/a %{target}"
+      body_remote: Niekto z %{domain} nahlásil/a %{target}
+      subject: Nové hlásenie pre %{instance} (#%{id})
   application_mailer:
     notification_preferences: Zmeniť e-mailové voľby
     salutation: "%{name},"
@@ -551,6 +563,10 @@ sk:
     true_privacy_html: Prosím ber na vedomie, <strong> že ozajstné súkromie sa dá dosiahnúť iba za pomoci end-to-end enkrypcie</strong>.
     unlocked_warning_html: Hocikto ťa môže následovať aby mohol/a ihneď vidieť tvoje súkromné príspevky. %{lock_link} aby si mohla skontrolovať a odmietať sledovateľov.
     unlocked_warning_title: Tvoj účet nieje zamknutý
+  footer:
+    developers: Vývojári
+    more: Viac…
+    resources: Podklady
   generic:
     changes_saved_msg: Zmeny boli úspešne uložené!
     save_changes: Uložiť zmeny
@@ -667,6 +683,9 @@ sk:
     no_account_html: Nemáš ešte účet? Môžeš sa <a href='%{sign_up_path}' target='_blank'>zaregistrovať tu</a>
     proceed: Začni následovať
     prompt: 'Budeš sledovať:'
+  remote_interaction:
+    proceed: Pokračuj k interakcii
+    prompt: 'Chceš narábať s týmto príspevkom:'
   remote_unfollow:
     error: Chyba
     title: Názov
@@ -741,6 +760,7 @@ sk:
       private: Neverejné príspevky nemôžu byť pripnuté
       reblog: Pozdvihnutie sa nedá pripnúť
     show_more: Ukáž viac
+    sign_in_to_participate: Prihlás sa pre zapojenie do diskusie
     visibilities:
       private: Iba pre sledovateľov
       private_long: Ukáž iba následovateľom

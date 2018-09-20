@@ -13,18 +13,22 @@
       = render 'application/card', account: @invite.user.account
 
   = f.simple_fields_for :account do |ff|
-    .input-with-append
-      = ff.input :username, autofocus: true, placeholder: t('simple_form.labels.defaults.username'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.username'), :autocomplete => 'off' }
-      .append
-        = "@#{site_hostname}"
+    .fields-group
+      = ff.input :username, wrapper: :with_label, autofocus: true, label: t('simple_form.labels.defaults.username'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.username'), :autocomplete => 'off' }, append: "@#{site_hostname}", hint: t('simple_form.hints.defaults.username', domain: site_hostname)
 
-  = f.input :email, placeholder: t('simple_form.labels.defaults.email'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.email'), :autocomplete => 'off' }
-  = f.input :password, placeholder: t('simple_form.labels.defaults.password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.password'), :autocomplete => 'off' }
-  = f.input :password_confirmation, placeholder: t('simple_form.labels.defaults.confirm_password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_password'), :autocomplete => 'off' }
+  .fields-group
+    = f.input :email, wrapper: :with_label, label: t('simple_form.labels.defaults.email'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.email'), :autocomplete => 'off' }
+
+  .fields-group
+    = f.input :password, wrapper: :with_label, label: t('simple_form.labels.defaults.password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.password'), :autocomplete => 'off' }
+  .fields-group
+    = f.input :password_confirmation, wrapper: :with_label, label: t('simple_form.labels.defaults.confirm_password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_password'), :autocomplete => 'off' }
+
   = f.input :invite_code, as: :hidden
+
+  %p.hint= t('auth.agreement_html', rules_path: about_more_path, terms_path: terms_path)
 
   .actions
     = f.button :button, t('auth.register'), type: :submit
 
-  %p.hint.subtle-hint=t('auth.agreement_html', rules_path: about_more_path, terms_path: terms_path)
 .form-footer= render 'auth/shared/links'

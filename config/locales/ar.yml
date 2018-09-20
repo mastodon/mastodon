@@ -616,9 +616,11 @@ ar:
       action: معاينة كافة الإشعارات
       body: هذا هو مُلَخَّص الرسائل التي فاتتك وذلك منذ آخر زيارة لك في  %{since}
       mention: "%{name} أشار إليك في :"
-      new_followers_summary: و لقد تحصلت على %{count} متتبعين جدد أثناء فترة غيابك ! رائع !
+      new_followers_summary:
+        one: و لقد تحصّلت أيضا على متابِع جديد أثناء فترة غيابك! يا للروعة!
       subject:
         one: "إشعار جديد واحد منذ آخر زيارة لك لـ \U0001F418"
+        other: "%{count} إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
       title: أثناء فترة غيابك …
     favourite:
       body: 'أُعجب %{name} بمنشورك :'
@@ -744,7 +746,9 @@ ar:
         other: "%{count} فيديوهات"
     boosted_from_html: تم إعادة ترقيته مِن %{acct_link}
     content_warning: 'تحذير عن المحتوى : %{warning}'
-    disallowed_hashtags: 'يحتوي على وسوم ممنوعة : %{tags}'
+    disallowed_hashtags:
+      one: 'يحتوي على وسم ممنوع:  %{tags}'
+      other: 'يحتوي على أحد الوسوم الممنوعة: %{tags}'
     language_detection: اكتشاف اللغة تلقائيا
     open_in_web: إفتح في الويب
     over_character_limit: تم تجاوز حد الـ %{max} حرف المسموح بها
