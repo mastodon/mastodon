@@ -50,6 +50,12 @@ code {
         color: $highlight-text-color;
       }
     }
+
+    code {
+      border-radius: 3px;
+      padding: 0.2em 0.4em;
+      background: darken($ui-base-color, 12%);
+    }
   }
 
   .card {
@@ -136,6 +142,8 @@ code {
   }
 
   .input.with_block_label {
+    padding-top: 15px;
+
     & > label {
       font-family: inherit;
       font-size: 16px;
@@ -148,9 +156,8 @@ code {
       margin-bottom: 15px;
     }
 
-    li {
-      float: left;
-      width: 50%;
+    ul {
+      columns: 2;
     }
   }
 
@@ -346,7 +353,7 @@ code {
     position: relative;
 
     .input input {
-      padding-right: 127px;
+      padding-right: 142px;
     }
 
     .append {
@@ -360,6 +367,20 @@ code {
       font-family: inherit;
       pointer-events: none;
       cursor: default;
+      max-width: 140px;
+      white-space: nowrap;
+      overflow: hidden;
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 1px;
+        width: 5px;
+        background-image: linear-gradient(to right, rgba($ui-base-color, 0), $ui-base-color);
+      }
     }
   }
 }
@@ -590,5 +611,20 @@ code {
 
   .button {
     display: block;
+  }
+}
+
+.scope-danger {
+  color: $warning-red;
+}
+
+.form_admin_settings_site_short_description,
+.form_admin_settings_site_description,
+.form_admin_settings_site_extended_description,
+.form_admin_settings_site_terms,
+.form_admin_settings_custom_css,
+.form_admin_settings_closed_registrations_message {
+  textarea {
+    font-family: 'mastodon-font-monospace', monospace;
   }
 }
