@@ -166,7 +166,7 @@ XML
     expect(created_statuses.first.reblog.text).to eq 'Overwatch rocks'
   end
 
-  it 'ignores reblogs if it failed to retreive reblogged statuses' do
+  it 'ignores reblogs if it failed to retrieve reblogged statuses' do
     stub_request(:get, 'https://overwatch.com/users/tracer/updates/1').to_return(status: 404)
 
     actor = Fabricate(:account, username: 'tracer', domain: 'overwatch.com')

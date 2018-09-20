@@ -7,7 +7,6 @@ module.exports = {
   exclude: /node_modules/,
   loader: 'babel-loader',
   options: {
-    forceEnv: env,
     cacheDirectory: env === 'development' ? false : resolve(__dirname, '..', '..', '..', 'tmp', 'cache', 'babel-loader'),
   },
 };

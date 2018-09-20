@@ -6,7 +6,7 @@ services:
     image: postgres:9.6-alpine
     networks:
       - internal_network
-### Uncomment to enable DB persistance
+### Uncomment to enable DB persistence
 #    volumes:
 #      - ./postgres:/var/lib/postgresql/data
 
@@ -15,7 +15,7 @@ services:
     image: redis:4.0-alpine
     networks:
       - internal_network
-### Uncomment to enable REDIS persistance
+### Uncomment to enable REDIS persistence
 #    volumes:
 #      - ./redis:/data
 
@@ -26,7 +26,7 @@ services:
 #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
 #    networks:
 #      - internal_network
-#### Uncomment to enable ES persistance
+#### Uncomment to enable ES persistence
 ##    volumes:
 ##      - ./elasticsearch:/usr/share/elasticsearch/data
 

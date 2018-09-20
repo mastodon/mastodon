@@ -1,3 +1,91 @@
 ---
 cy:
-  doorkeeper: {}
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Enw rhaglen
+        scopes: Cwmpasau
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Awdurdodi
+        cancel: Diddymu
+        destroy: Dinistrio
+        edit: Golygu
+        submit: Cyflwyno
+      confirmations:
+        destroy: Ydych chi'n sicr?
+      edit:
+        title: Golygwch rhaglen
+      form:
+        error: Wps! Gwiriwch eich ffurflen am gamgymeriadau posib
+      index:
+        application: Rhaglen
+        delete: Dileu
+        name: Enw
+        new: Rhaglen newydd
+        scopes: Cwmpasau
+        show: Dangoswch
+        title: Eich rhaglenni
+      new:
+        title: Rhaglen newydd
+      show:
+        scopes: Cwmpasau
+        title: 'Rhaglen: %{name}'
+    authorizations:
+      buttons:
+        authorize: Awdurdodi
+      error:
+        title: Mae rhywbeth wedi mynd o'i le
+      new:
+        able_to: Mi fydd a'r gallu i
+        title: Angen awdurdodi
+      show:
+        title: Copiwch y côd awdurdodi a gludiwch i'r rhaglen
+    authorized_applications:
+      confirmations:
+        revoke: Ydych chi'n sicr?
+      index:
+        application: Rhaglen
+        created_at: Awdurdodedig
+        scopes: Cwmpasau
+        title: Eich rhaglenni awdurdodedig
+    errors:
+      messages:
+        access_denied: Mae perchennog yr adnodd neu'r gweinydd awdurdodi wedi atal y cais.
+    flash:
+      applications:
+        create:
+          notice: Crewyd y rhaglen.
+        destroy:
+          notice: Dilewyd y rhaglen.
+        update:
+          notice: Diweddarwyd y rhaglen.
+      authorized_applications:
+        destroy:
+          notice: Diddymwyd y cais.
+    layouts:
+      admin:
+        nav:
+          applications: Rhaglenni
+          oauth2_provider: Darparwr OAuth2
+      application:
+        title: Mae awdurdodiad OAuth yn ofynnol
+    scopes:
+      push: derbyniwch eich hysbysiadau PUSH
+      read: darllenwch holl ddata eich cyfrif
+      read:accounts: gwelwch wybodaeth y cyfrif
+      read:favourites: gwelwch eich ffefrynnau
+      read:filters: gwelwch eich hidlwyr
+      read:lists: gwelwch eich rhestrau
+      read:notifications: gwelwch eich hysbysiadau
+      read:reports: gwelwch eich adroddiadau
+      read:statuses: gwelwch pob statws
+      write: addaswch ddata eich cyfri
+      write:accounts: addaswch eich proffil
+      write:blocks: blociwch gyfrifon a parthau
+      write:filters: crewch hidlwyr
+      write:follows: dilynwch bobl
+      write:lists: crëwch restrau
+      write:media: uwchlwythwch ffeiliau cyfryngau
+      write:notifications: cliriwch eich hysbysiadau

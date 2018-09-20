@@ -265,6 +265,20 @@
     }
   }
 
+  .verified {
+    border: 1px solid rgba($valid-value-color, 0.5);
+    background: rgba($valid-value-color, 0.25);
+
+    a {
+      color: $valid-value-color;
+      font-weight: 500;
+    }
+
+    &__mark {
+      color: $valid-value-color;
+    }
+  }
+
   dl:last-child {
     border-bottom: 0;
   }

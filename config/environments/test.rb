@@ -23,7 +23,7 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # The default store, file_store is shared by processses parallely executed
+  # The default store, file_store is shared by processes parallelly executed
   # and should not be used.
   config.cache_store = :memory_store
 
