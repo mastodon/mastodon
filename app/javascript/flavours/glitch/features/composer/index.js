@@ -242,7 +242,7 @@ const handlers = {
     }
 
     // Submit disabled:
-    if (isSubmitting || isUploading || (!!text.length && !text.trim().length && !anyMedia)) {
+    if (isSubmitting || isUploading || (!text.trim().length && !anyMedia)) {
       return;
     }
 
@@ -415,7 +415,7 @@ class Composer extends React.Component {
       spoilersAlwaysOn,
     } = this.props;
 
-    let disabledButton = isSubmitting || isUploading || (!!text.length && !text.trim().length && !anyMedia);
+    let disabledButton = isSubmitting || isUploading || (!text.trim().length && !anyMedia);
 
     return (
       <div className='composer'>
