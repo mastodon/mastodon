@@ -7,13 +7,13 @@ module HomeHelper
     }
   end
 
-  def account_link_to(account, button = '')
+  def account_link_to(account, button = '', size: 36, path: nil)
     content_tag(:div, class: 'account') do
       content_tag(:div, class: 'account__wrapper') do
         section = if account.nil?
                     content_tag(:div, class: 'account__display-name') do
                       content_tag(:div, class: 'account__avatar-wrapper') do
-                        content_tag(:div, '', class: 'account__avatar', style: "background-image: url(#{full_asset_url('avatars/original/missing.png', skip_pipeline: true)})")
+                        content_tag(:div, '', class: 'account__avatar', style: "width: #{size}px; height: #{size}px; background-size: #{size}px #{size}px; background-image: url(#{full_asset_url('avatars/original/missing.png', skip_pipeline: true)})")
                       end +
                         content_tag(:span, class: 'display-name') do
                           content_tag(:strong, t('about.contact_missing')) +
@@ -21,9 +21,9 @@ module HomeHelper
                         end
                     end
                   else
-                    link_to(TagManager.instance.url_for(account), class: 'account__display-name') do
+                    link_to(path || TagManager.instance.url_for(account), class: 'account__display-name') do
                       content_tag(:div, class: 'account__avatar-wrapper') do
-                        content_tag(:div, '', class: 'account__avatar', style: "background-image: url(#{account.avatar.url})")
+                        content_tag(:div, '', class: 'account__avatar', style: "width: #{size}px; height: #{size}px; background-size: #{size}px #{size}px; background-image: url(#{account.avatar.url})")
                       end +
                         content_tag(:span, class: 'display-name') do
                           content_tag(:bdi) do
@@ -46,6 +46,14 @@ module HomeHelper
       1
     else
       '1+'
+    end
+  end
+
+  def custom_field_classes(field)
+    if field.verified?
+      'verified'
+    else
+      'emojify'
     end
   end
 end

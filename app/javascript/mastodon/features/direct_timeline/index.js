@@ -17,9 +17,9 @@ const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'direct', 'unread']) > 0,
 });
 
-@connect(mapStateToProps)
+export default @connect(mapStateToProps)
 @injectIntl
-export default class DirectTimeline extends React.PureComponent {
+class DirectTimeline extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,

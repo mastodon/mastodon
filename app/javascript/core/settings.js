@@ -50,3 +50,27 @@ delegate(document, '#account_locked', 'change', ({ target }) => {
     lock.style.display = 'none';
   }
 });
+
+delegate(document, '.input-copy input', 'click', ({ target }) => {
+  target.select();
+});
+
+delegate(document, '.input-copy button', 'click', ({ target }) => {
+  const input = target.parentNode.querySelector('input');
+
+  input.focus();
+  input.select();
+
+  try {
+    if (document.execCommand('copy')) {
+      input.blur();
+      target.parentNode.classList.add('copied');
+
+    setTimeout(() => {
+        target.parentNode.classList.remove('copied');
+      }, 700);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+});
