@@ -15,6 +15,7 @@ const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
+  edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
 });
 
 @injectIntl
@@ -26,6 +27,10 @@ export default class Header extends ImmutablePureComponent {
     onBlock: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
+
+  openEditProfile = () => {
+    window.open('/settings/profile', '_blank');
+  }
 
   render () {
     const { account, intl } = this.props;
@@ -77,6 +82,12 @@ export default class Header extends ImmutablePureComponent {
           </div>
         );
       }
+    } else {
+      actionBtn = (
+        <div className='account--action-button'>
+          <IconButton size={26} icon='pencil' title={intl.formatMessage(messages.edit_profile)} onClick={this.openEditProfile} />
+        </div>
+      );
     }
 
     if (account.get('moved') && !account.getIn(['relationship', 'following'])) {
