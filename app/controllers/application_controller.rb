@@ -58,6 +58,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def truthy_param?(key)
+    ActiveModel::Type::Boolean.new.cast(params[key])
+  end
+
   def forbidden
     respond_with_error(403)
   end

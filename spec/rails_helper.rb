@@ -29,6 +29,7 @@ Devise::Test::ControllerHelpers.module_eval do
       value: resource.activate_session(warden.request),
       expires: 1.year.from_now,
       httponly: true,
+      same_site: :lax,
     }
   end
 end

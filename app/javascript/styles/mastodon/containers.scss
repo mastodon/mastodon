@@ -718,6 +718,14 @@
       a {
         color: lighten($ui-highlight-color, 8%);
       }
+
+      dl:first-child .verified {
+        border-radius: 0 4px 0 0;
+      }
+
+      .verified a {
+        color: $valid-value-color;
+      }
     }
 
     .account__header__content {

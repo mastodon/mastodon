@@ -13,4 +13,18 @@ class Oauth::AuthorizationsController < Doorkeeper::AuthorizationsController
   def store_current_location
     store_location_for(:user, request.url)
   end
+
+  def render_success
+    if skip_authorization? || (matching_token? && !truthy_param?('force_login'))
+      redirect_or_render authorize_response
+    elsif Doorkeeper.configuration.api_only
+      render json: pre_auth
+    else
+      render :new
+    end
+  end
+
+  def truthy_param?(key)
+    ActiveModel::Type::Boolean.new.cast(params[key])
+  end
 end
