@@ -5,8 +5,9 @@
   = render 'shared/error_messages', object: @custom_emoji
 
   .fields-group
-    = f.input :shortcode, placeholder: t('admin.custom_emojis.shortcode'), hint: t('admin.custom_emojis.shortcode_hint')
-    = f.input :image, input_html: { accept: 'image/png' }, hint: t('admin.custom_emojis.image_hint')
+    = f.input :shortcode, wrapper: :with_label, label: t('admin.custom_emojis.shortcode'), hint: t('admin.custom_emojis.shortcode_hint')
+  .fields-group
+    = f.input :image, wrapper: :with_label, input_html: { accept: 'image/png' }, hint: t('admin.custom_emojis.image_hint')
 
   .actions
     = f.button :button, t('admin.custom_emojis.upload'), type: :submit
