@@ -453,7 +453,7 @@ it:
     didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
     forgot_password: Hai dimenticato la tua password?
     login: Entra
-    logout: Sloggati
+    logout: Esci da Mastodon
     migrate_account: Sposta ad un account differente
     migrate_account_html: Se vuoi che questo account sia reindirizzato a uno diverso,
       puoi <a href="%{path}">configurarlo qui</a>.
@@ -511,6 +511,9 @@ it:
     noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript.
       In alternativa puoi provare una delle <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">app
       native</a> per Mastodon per la tua piattaforma.
+    '500':
+      content: Siamo spiacenti, ma qualcosa non ha funzionato dal nostro lato.
+      title: Questa pagina non è corretta
   exports:
     archive_takeout:
       date: Data
@@ -657,6 +660,8 @@ it:
       il tuo account
     proceed: Conferma
     prompt: 'Stai per seguire:'
+    no_account_html: Non hai un account? Puoi <a href='%{sign_up_path}' target='_blank'>iscriverti
+      qui</a>
   remote_unfollow:
     error: Errore
     title: Titolo
@@ -667,6 +672,7 @@ it:
       blackberry: Blackberry
       chrome: Chrome
       generic: Browser sconosciuto
+      firefox: Firefox
     current_session: Sessione corrente
     description: '%{browser} su %{platform}'
     explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al
@@ -812,6 +818,10 @@ it:
       title: Filtri
     new:
       title: Aggiungi filtro
+    edit:
+      title: Modifica filtro
+    errors:
+      invalid_context: Contesto mancante o non valido
   footer:
     developers: Sviluppatori
     more: Altro…
