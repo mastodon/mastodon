@@ -1,6 +1,6 @@
 cy:
   about:
-    about_hashtag_html: Dyma dwtiau cyhoeddus wedi eu tagio gyda <strong>#%{hashtag}</strong>.
+    about_hashtag_html: Dyma dŵtiau cyhoeddus wedi eu tagio gyda <strong>#%{hashtag}</strong>.
       Gallwch ryngweithio gyda nhw os oes gennych gyfrif yn unrhyw le yn y bydysawd.
     about_this: Ynghylch
     administered_by: 'Gweinyddir gan:'
@@ -8,11 +8,12 @@ cy:
     apps: Apiau symudol
     contact: Cyswllt
     documentation: Dogfennaeth
-    learn_more: Dysgu mwy
+    learn_more: Dysgwch fwy
     privacy_policy: Polisi preifatrwydd
     source_code: Cod ffynhonnell
     status_count_after:
       one: statws
+      other: statws
     terms: Telerau gwasanaeth
     user_count_after:
       one: defnyddiwr
@@ -39,12 +40,19 @@ cy:
       not_a_product_body: Nid yw Mastodon yn rhwydwaith fasnachol. Nid oes hysbysebion,
         cloddio data na gerddi caeedig. Nid oes awdurdod canolog.
       not_a_product_title: Rwyt yn berson, nid yn gynnyrch
-      real_conversation_title: Wedi ei adeiladu ar gyfer trafodaeth go iawn
+      real_conversation_title: Wedi ei adeiladu ar gyfer sgyrsiau go iawn
       within_reach_title: Bob tro o fewn gafael
+      real_conversation_body: Gyda'r modd i ddefnyddio hyd at 500 o nodau a chefnogaeth
+        ar gyfer cynnwys gronynnol a rhybuddion cyfryngau, mae modd i chi fynegi'ch
+        hun yn y ffordd yr hoffech chi.
+      within_reach_body: Nifer o apiau ar gyfer iOS, Android, a nifer blatfformau
+        eraill diolch i amgylchedd API hygyrch i ddatblygwyr sy'n caniatau i chi gadw
+        mewn cysylltiad a'ch ffrindiau o unrhywle.
     generic_description: Mae %{domain} yn un gweinydd yn y rhwydwaith
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
     user_count_before: Cartref i
     status_count_before: Pwy ysgrifennodd
+    other_instances: Rhestr achosion
   accounts:
     choices_html: 'Dewisiadau %{name}:'
     follow: Dilynwch
@@ -150,7 +158,7 @@ cy:
         title: Trefn
       promote: Hyrwyddo
       protocol: Protocol
-      push_subscription_expires: Tanysgrifiad PUSH yn dod i ben
+      push_subscription_expires: Tanysgrifiad PuSH yn dod i ben
       resend_confirmation:
         already_confirmed: Mae'r defnyddiwr hwn wedi ei gadarnhau yn barod
         success: E-bost cadarnhau wedi ei anfon yn llwyddiannus!
@@ -166,7 +174,9 @@ cy:
       salmon_url: URL Eog
       memorialize: Troi yn gofeb
       redownload: Adnewyddwch afatar
-      remove_avatar: Dilewch afatar
+      remove_avatar: Dilëwch afatar
+      perform_full_suspension: Ataliwch yn llwyr
+      statuses: ''
     custom_emojis:
       by_domain: Parth
       copy: Copïo
@@ -185,7 +195,7 @@ cy:
       new:
         title: Ychwanegu emoji personol newydd
       overwrite: Trosysgrifio
-      shortcode_hint: O leiaf 2 lythyren, dim ond llythrennau alffaniwmerig a tanlinellau
+      shortcode_hint: O leiaf 2 nodyn, dim ond nodau alffaniwmerig a tanlinellau
       unlisted: Heb ei restru
       update_failed_msg: Ni allwyd diweddaru'r emoji hwnnw
       updated_msg: Llwyddwyd i ddiweddaru'r emoji!
@@ -207,9 +217,14 @@ cy:
       week_interactions: ymadweithiau yr wythnos hon
       week_users_active: gweithredol yr wythnos hon
       week_users_new: defnyddwyr yr wythnos hon
+      backlog: tasgau heb eu cwblhau
+      feature_deletions: Dileadau cyfrif
+      feature_relay: Relái ffederasiwn
+      hidden_service: Ffedarasiwn a gwasanaethau cudd
+      single_user_mode: Modd un defnyddiwr
     instances:
       domain_name: Parth
-      account_count: Cyfrifoedd hysbys
+      account_count: Cyfrifon hysbys
       reset: Ailosod
       search: Chwilio
       title: INSTANCES hysbys
@@ -236,6 +251,26 @@ cy:
         create_email_domain_block: Cosbrestrwyd parth e-bost %{target} gan %{name}
         demote_user: Diraddiodd %{name} y defnyddiwr %{target}
         destroy_domain_block: Dadflociodd %{name} y parth %{target}
+        destroy_status: Cafodd %{name} wared ar statws gan %{target}
+        disable_2fa_user: Diffoddodd %{name} ar ofyniad dau gam ar gyfer y defnyddiwr
+          %{target}
+        disable_custom_emoji: Diffoddodd %{name} emoji %{target}
+        disable_user: Diffoddodd %{name} mewngofnodi ar gyfer y defnyddiwr %{target}
+        enable_custom_emoji: Galluogodd %{name} emoji %{target}
+        enable_user: Galluogodd %{name} mewngofnodi ar gyfer y defnyddiwr %{target}
+        memorialize_account: Newidodd %{name} gyfrif %{target} i dudalen goffau
+        promote_user: Dyrchafodd %{name} y defnyddiwr %{target}
+        remove_avatar_user: Cafodd %{name} wared ar afatar %{target}
+        reopen_report: Ailagorodd %{name} adroddiad %{target}
+        reset_password_user: Ailosododd %{name} gyfrinair y defnyddiwr %{target}
+        resolve_report: Datrusodd %{name} adroddiad %{target}
+        silence_account: Tawelodd %{name} gyfrif %{target}
+        suspend_account: Ataliodd %{name} gyfrif %{target}
+        unassigned_report: Dadbenododd %{name} adroddiad %{target}
+        unsilence_account: Terfynodd %{name} dawelu cyfrif %{target}
+        unsuspend_account: Terfynodd %{name} yr ataliad ar gyfrif %{target}
+        update_custom_emoji: Diweddarodd %{name} emoji %{target}
+        update_status: Diweddarodd %{name} statws gan %{taget}
       deleted_status: (statws wedi ei ddileu)
       title: Log archwilio
     domain_blocks:
@@ -246,6 +281,14 @@ cy:
           noop: Dim
           silence: Tawelwch
           suspend: Atal
+          desc_html: Mae <strong>Tawelu</strong> yn gwneud twtiau y cyfrif yn anweledig
+            i unrhyw un nad yw'n dilyn y cyfrif. Mae <strong>Atal</strong> yn cael
+            gwared ar holl gynnwys, cyfryngau a data proffil y cyfrif. Defnyddiwch
+            <strong>Dim</strong> os ydych chi ond am wrthod dogfennau cyfryngau.
+        hint: Ni fydd y bloc parth yn atal cread cofnodion cyfrif yn y bas data, ond
+          mi fydd yn gosod dulliau cymedroli penodol ôl-weithredol ac awtomatig ar
+          y cyfrifau hynny.
+        title: Bloc parth newydd
       reject_media: Gwrthod dogfennau cyfryngau
       severities:
         noop: Dim
@@ -258,8 +301,15 @@ cy:
           other: '%{count} o gyfrifoedd yn y bas data wedi eu hefeithio'
         retroactive:
           silence: Dad-dawelu pob cyfri presennol o'r parth hwn
+          suspend: Dad-atal pob cyfrif o'r parth hwn sy'n bodoli
         undo: Dadwneud
+        title: Dadwneud bloc parth ar gyfer %{domain}
       undo: Dadwneud
+      add_new: Ychwanegu
+      created_msg: Mae'r bloc parth nawr yn cael ei brosesu
+      destroyed_msg: Mae'r bloc parth wedi ei ddadwneud
+      reject_media_hint: Dileu dogfennau cyfryngau wedi eu cadw yn lleol ac yn gwrthod
+        i lawrlwytho unrhyw rai yn y dyfodol. Amherthnasol i ataliadau
     email_domain_blocks:
       add_new: Ychwanegu
       created_msg: Llwyddwyd i ychwanegu parth e-bost i'r gosbrestr
@@ -268,6 +318,7 @@ cy:
       domain: Parth
       new:
         create: Ychwanegu parth
+        title: Cofnod newydd yng nghosbrestr e-byst
       title: Cosbrestr e-bost
     invites:
       filter:
@@ -279,6 +330,7 @@ cy:
     relays:
       save_and_enable: Cadw a galluogi
       status: Statws
+      add_new: Ychwanegau relái newydd
     reports:
       account:
         note: nodyn
