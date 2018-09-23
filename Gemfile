@@ -34,7 +34,7 @@ gem 'devise', '~> 4.4'
 gem 'devise-two-factor', '~> 3.0'
 
 group :pam_authentication, optional: true do
-  gem 'devise_pam_authenticatable2', '~> 9.1'
+  gem 'devise_pam_authenticatable2', '~> 9.2'
 end
 
 gem 'net-ldap', '~> 0.10'
@@ -87,7 +87,7 @@ gem 'tty-command', '~> 0.8', require: false
 gem 'tty-prompt', '~> 0.16', require: false
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2018'
-gem 'webpacker', '~> 3.4'
+gem 'webpacker', '~> 3.5'
 gem 'webpush'
 
 gem 'json-ld', '~> 2.2'
@@ -103,7 +103,7 @@ group :development, :test do
 end
 
 group :production, :test do
-  gem 'private_address_check', '~> 0.4.1'
+  gem 'private_address_check', '~> 0.5'
 end
 
 group :test do

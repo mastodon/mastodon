@@ -29,8 +29,8 @@ const messages = defineMessages({
   publish_without_community: { id: 'compose_form.publish_without_community', defaultMessage: 'Toot without Local' },
 });
 
-@injectIntl
-export default class ComposeForm extends ImmutablePureComponent {
+export default @injectIntl
+class ComposeForm extends ImmutablePureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,

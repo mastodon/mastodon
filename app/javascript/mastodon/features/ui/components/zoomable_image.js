@@ -137,6 +137,7 @@ export default class ZoomableImage extends React.PureComponent {
           role='presentation'
           ref={this.setImageRef}
           alt={alt}
+          title={alt}
           src={src}
           style={{
             transform: `scale(${scale})`,

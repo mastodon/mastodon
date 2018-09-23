@@ -4,8 +4,11 @@
       - account.fields.each do |field|
         %dl
           %dt.emojify{ title: field.name }= Formatter.instance.format_field(account, field.name, custom_emojify: true)
-          %dd.emojify{ title: field.value }= Formatter.instance.format_field(account, field.value, custom_emojify: true)
-
+          %dd{ title: field.value, class: custom_field_classes(field) }
+            - if field.verified?
+              %span.verified__mark{ title: t('accounts.link_verified_on', date: l(field.verified_at)) }
+                = fa_icon 'check'
+            = Formatter.instance.format_field(account, field.value, custom_emojify: true)
   = account_badge(account)
 
   - if account.note.present?

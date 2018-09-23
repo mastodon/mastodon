@@ -31,7 +31,7 @@ class FetchOEmbedService
 
     return if @endpoint_url.blank?
 
-    @endpoint_url = Addressable::URI.parse(@endpoint_url).to_s
+    @endpoint_url = (Addressable::URI.parse(@url) + @endpoint_url).to_s
   rescue Addressable::URI::InvalidURIError
     @endpoint_url = nil
   end
