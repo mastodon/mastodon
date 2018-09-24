@@ -444,7 +444,63 @@ cy:
     confirm_password: Mewnbynnwch eich cyfrinair presennol i gadarnhau mai chi sydd yno
     proceed: Dileu cyfrif
     success_msg: Llwyddwyd i ddileu eich cyfrif
+  errors:
+    '403': Nid oes gennych ganiatad i weld y dudalen hon.
+    '404': Nid yw'r dudalen yr oeddech yn chwilio amdani'n bodoli.
+    '410': Nid yw'r dudalen yr oeddech yn chwilio amdani'n bodoli mwyach.
+    '422':
+      content: Methwyd i ddilysu diogelwch. A ydych chi'n blocio cwcîs?
+      title: Methwyd i ddilysu diogelwch
+    '500':
+      content: Mae'n ddrwg gennym ni, ond fe aeth rhywbeth o'i le ar ein rhan ni.
+      title: Nid yw'r dudalen hon yn gywir
+    noscript_html: I ddefnyddio ap gwê Mastodon, caniatewch JavaScript os gwlwch yn dda. Fel arall, gallwch drio un o'r <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apiau cynhenid</a> ar gyfer Mastodon ar eich platfform.
+  exports:
+    archive_takeout:
+      date: Dyddiad
+      download: Lawrlwythwch eich archif
+      size: Maint
+    blocks: Yr ydych yn blocio
+    csv: CSV
+    follows: Yr ydych yn dilyn
+    mutes: Yr ydych yn tawelu
+  filters:
+    contexts:
+      home: Ffrwd gartref
+      notifications: Hysbysiadau
+      public: Ffrwd gyhoeddus
+      thread: Sgyrsiau
+    edit:
+      title: Golygu hidlydd
+    index:
+      delete: Dileu
+      title: Hidlyddion
+    new:
+      title: Ychwanegu hidlydd newydd
+  followers:
+    domain: Parth
+    followers_count: Nifer y dilynwyr
+    lock_link: Cloi eich cyfri
+    unlocked_warning_title: Nid yw eich cyfrif wedi ei gloi
+  footer:
+    developers: Datblygwyr
+    more: Mwy…
+    resources: Adnoddau
+  generic:
+    changes_saved_msg: Llwyddwyd i gadw y newidiadau!
+    save_changes: Cadw newidiadau
+    validation_errors:
+      one: Mae rhywbeth o'i le o hyd! Edrychwch ar y gwall isod os gwelwch yn dda
+      other: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
+  imports:
+    types:
+      blocking: Rhestr blocio
+      following: Rhestr dilyn
+      muting: Rhestr tawelu
+    upload: Uwchlwytho
+  in_memoriam_html: ''
   invites:
+    delete: Dadactifadu
     expires_in:
       '86400': 1 dydd
     max_uses_prompt: Dim terfyn
