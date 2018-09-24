@@ -19,6 +19,7 @@ module Admin
       theme
       thumbnail
       hero
+      lildude
       min_invite_role
       activity_api_enabled
       peers_api_enabled
@@ -41,6 +42,7 @@ module Admin
     UPLOAD_SETTINGS = %w(
       thumbnail
       hero
+      lildude
     ).freeze
 
     def edit
