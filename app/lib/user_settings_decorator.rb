@@ -25,6 +25,7 @@ class UserSettingsDecorator
     user.settings['delete_modal']            = delete_modal_preference if change?('setting_delete_modal')
     user.settings['auto_play_gif']           = auto_play_gif_preference if change?('setting_auto_play_gif')
     user.settings['display_sensitive_media'] = display_sensitive_media_preference if change?('setting_display_sensitive_media')
+    user.settings['expand_spoilers']         = expand_spoilers_preference if change?('setting_expand_spoilers')
     user.settings['reduce_motion']           = reduce_motion_preference if change?('setting_reduce_motion')
     user.settings['system_font_ui']          = system_font_ui_preference if change?('setting_system_font_ui')
     user.settings['noindex']                 = noindex_preference if change?('setting_noindex')
@@ -70,6 +71,10 @@ class UserSettingsDecorator
 
   def display_sensitive_media_preference
     boolean_cast_setting 'setting_display_sensitive_media'
+  end
+
+  def expand_spoilers_preference
+    boolean_cast_setting 'setting_expand_spoilers'
   end
 
   def reduce_motion_preference

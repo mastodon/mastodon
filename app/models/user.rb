@@ -96,7 +96,7 @@ class User < ApplicationRecord
 
   delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
            :reduce_motion, :system_font_ui, :noindex, :theme, :display_sensitive_media, :hide_network,
-           :default_language, to: :settings, prefix: :setting, allow_nil: false
+           :expand_spoilers, :default_language, to: :settings, prefix: :setting, allow_nil: false
 
   attr_reader :invite_code
 
