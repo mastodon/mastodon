@@ -1,28 +1,39 @@
----
 cy:
   about:
-    about_hashtag_html: Dyma dŵtiau cyhoeddus wedi eu tagio gyda <strong>#%{hashtag}</strong>. Gallwch ryngweithio gyda nhw os oes gennych gyfrif yn unrhyw le yn y bydysawd.
-    about_mastodon_html: Mae Mastodon yn rwydwaith cymdeithasol sy'n seiliedig ar brotocolau gwe a meddalwedd cod agored rhad ac am ddim. Yn debyg i e-bost mae'n ddatganoledig.
+    about_hashtag_html: Dyma dŵtiau cyhoeddus wedi eu tagio gyda <strong>#%{hashtag}</strong>.
+      Gallwch ryngweithio gyda nhw os oes gennych gyfrif yn unrhyw le yn y bydysawd.
+    about_mastodon_html: Mae Mastodon yn rwydwaith cymdeithasol sy'n seiliedig ar
+      brotocolau gwe a meddalwedd cod agored rhad ac am ddim. Yn debyg i e-bost mae'n
+      ddatganoledig.
     about_this: Ynghylch
     administered_by: 'Gweinyddir gan:'
     api: API
     apps: Apiau symudol
-    closed_registrations: Mae Mastodon yn rwydwaith cymdeithasol sy'n seiliedig ar brotocolau gwe a meddalwedd cod agored rhad ac am ddim. Mae'n ddatganoledig fel e-bost.
+    closed_registrations: ''
     contact: Cyswllt
     contact_missing: Heb ei osod
     contact_unavailable: Ddim yn berthnasol
     documentation: Dogfennaeth
-    extended_description_html: |
-      <h3>Lle da ar gyfer rheolau</h3>
-      <p>Nid yw'r disgrifiad estynedig wedi ei osod eto.</p>
+    extended_description_html: '<h3>Lle da ar gyfer rheolau</h3>
+
+      <p>Nid yw''r disgrifiad estynedig wedi ei osod eto.</p>
+
+      '
     features:
-      humane_approach_body: Gan ddysgu o fethiannau rhwydweithiau eraill, mae Mastodon yn anelu i wneud penderfyniadau dylunio moesol i ymladd camddefnydd o gyfryngau cymdeithasol.
+      humane_approach_body: Gan ddysgu o fethiannau rhwydweithiau eraill, mae Mastodon
+        yn anelu i wneud penderfyniadau dylunio moesol i ymladd camddefnydd o gyfryngau
+        cymdeithasol.
       humane_approach_title: Agwedd fwy dynol
-      not_a_product_body: Nid yw Mastodon yn rhwydwaith fasnachol. Nid oes hysbysebion, cloddio data na gerddi caeedig. Nid oes awdurdod canolog.
+      not_a_product_body: Nid yw Mastodon yn rhwydwaith fasnachol. Nid oes hysbysebion,
+        cloddio data na gerddi caeedig. Nid oes awdurdod canolog.
       not_a_product_title: Rwyt yn berson, nid yn gynnyrch
-      real_conversation_body: Gyda'r modd i ddefnyddio hyd at 500 o nodau a chefnogaeth ar gyfer cynnwys gronynnol a rhybuddion cyfryngau, mae modd i chi fynegi'ch hun yn y ffordd yr hoffech chi.
+      real_conversation_body: Gyda'r modd i ddefnyddio hyd at 500 o nodau a chefnogaeth
+        ar gyfer cynnwys gronynnol a rhybuddion cyfryngau, mae modd i chi fynegi'ch
+        hun yn y ffordd yr hoffech chi.
       real_conversation_title: Wedi ei adeiladu ar gyfer sgyrsiau go iawn
-      within_reach_body: Nifer o apiau ar gyfer iOS, Android, a nifer blatfformau eraill diolch i amgylchedd API hygyrch i ddatblygwyr sy'n caniatau i chi gadw mewn cysylltiad a'ch ffrindiau o unrhywle.
+      within_reach_body: Nifer o apiau ar gyfer iOS, Android, a nifer blatfformau
+        eraill diolch i amgylchedd API hygyrch i ddatblygwyr sy'n caniatau i chi gadw
+        mewn cysylltiad a'ch ffrindiau o unrhywle.
       within_reach_title: Bob tro o fewn gafael
     generic_description: Mae %{domain} yn un gweinydd yn y rhwydwaith
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
@@ -155,7 +166,7 @@ cy:
         report: adrodd
         targeted_reports: Adroddiadau am y cyfri hwn
       silence: Tawelu
-      statuses: ''
+      statuses: Statysau
       subscribe: Tanysgrifio
       title: Cyfrifon
       unconfirmed_email: E-bost heb ei gadarnhau
@@ -175,7 +186,8 @@ cy:
         demote_user: Diraddiodd %{name} y defnyddiwr %{target}
         destroy_domain_block: Dadflociodd %{name} y parth %{target}
         destroy_status: Cafodd %{name} wared ar statws gan %{target}
-        disable_2fa_user: Diffoddodd %{name} ar ofyniad dau gam ar gyfer y defnyddiwr %{target}
+        disable_2fa_user: Diffoddodd %{name} ar ofyniad dau gam ar gyfer y defnyddiwr
+          %{target}
         disable_custom_emoji: Diffoddodd %{name} emoji %{target}
         disable_user: Diffoddodd %{name} mewngofnodi ar gyfer y defnyddiwr %{target}
         enable_custom_emoji: Galluogodd %{name} emoji %{target}
@@ -193,7 +205,7 @@ cy:
         unsuspend_account: Terfynodd %{name} yr ataliad ar gyfrif %{target}
         update_custom_emoji: Diweddarodd %{name} emoji %{target}
         update_status: Diweddarodd %{name} statws gan %{taget}
-      deleted_status: "(statws wedi ei ddileu)"
+      deleted_status: (statws wedi ei ddileu)
       title: Log archwilio
     custom_emojis:
       by_domain: Parth
@@ -247,15 +259,21 @@ cy:
       domain: Parth
       new:
         create: Creu bloc
-        hint: Ni fydd y bloc parth yn atal cread cofnodion cyfrif yn y bas data, ond mi fydd yn gosod dulliau cymedroli penodol ôl-weithredol ac awtomatig ar y cyfrifau hynny.
+        hint: Ni fydd y bloc parth yn atal cread cofnodion cyfrif yn y bas data, ond
+          mi fydd yn gosod dulliau cymedroli penodol ôl-weithredol ac awtomatig ar
+          y cyfrifau hynny.
         severity:
-          desc_html: Mae <strong>Tawelu</strong> yn gwneud twtiau y cyfrif yn anweledig i unrhyw un nad yw'n dilyn y cyfrif. Mae <strong>Atal</strong> yn cael gwared ar holl gynnwys, cyfryngau a data proffil y cyfrif. Defnyddiwch <strong>Dim</strong> os ydych chi ond am wrthod dogfennau cyfryngau.
+          desc_html: Mae <strong>Tawelu</strong> yn gwneud twtiau y cyfrif yn anweledig
+            i unrhyw un nad yw'n dilyn y cyfrif. Mae <strong>Atal</strong> yn cael
+            gwared ar holl gynnwys, cyfryngau a data proffil y cyfrif. Defnyddiwch
+            <strong>Dim</strong> os ydych chi ond am wrthod dogfennau cyfryngau.
           noop: Dim
           silence: Tawelwch
           suspend: Atal
         title: Bloc parth newydd
       reject_media: Gwrthod dogfennau cyfryngau
-      reject_media_hint: Dileu dogfennau cyfryngau wedi eu cadw yn lleol ac yn gwrthod i lawrlwytho unrhyw rai yn y dyfodol. Amherthnasol i ataliadau
+      reject_media_hint: Dileu dogfennau cyfryngau wedi eu cadw yn lleol ac yn gwrthod
+        i lawrlwytho unrhyw rai yn y dyfodol. Amherthnasol i ataliadau
       severities:
         noop: Dim
         silence: Tawelwch
@@ -264,7 +282,7 @@ cy:
       show:
         affected_accounts:
           one: Mae un cyfri yn y bas data wedi ei effeithio
-          other: "%{count} o gyfrifoedd yn y bas data wedi eu hefeithio"
+          other: '%{count} o gyfrifoedd yn y bas data wedi eu hefeithio'
         retroactive:
           silence: Dad-dawelu pob cyfri presennol o'r parth hwn
           suspend: Dad-atal pob cyfrif o'r parth hwn sy'n bodoli
@@ -287,7 +305,7 @@ cy:
       domain_name: Parth
       reset: Ailosod
       search: Chwilio
-      title: INSTANCES hysbys
+      title: Achosion hysbys
     invites:
       filter:
         all: Pob
@@ -321,7 +339,8 @@ cy:
         create_and_resolve: Datruswch a nodyn
         create_and_unresolve: Ailagorwch a nodyn
         delete: Dilëwch
-        placeholder: Disgrifiwch pa weithredoedd sydd wedi eu cymryd, neu unrhyw ddiweddariadau eraill...
+        placeholder: Disgrifiwch pa weithredoedd sydd wedi eu cymryd, neu unrhyw ddiweddariadau
+          eraill...
       reopen: Ailagorwch adroddiad
       report: 'Adroddiad #%{id}'
       reported_by: Adroddwyd gan
@@ -333,13 +352,18 @@ cy:
       unassign: Dadneilltuo
       unresolved: Heb ei ddatrys
       updated_at: Diweddarwyd
+      assign_to_self: Aseinio i mi
+      assigned: Cymedrolwr wedi'i aseinio
     settings:
       activity_api_enabled:
         title: Cyhoeddwch ystatedgau agregau am weithgaredd defnyddwyr
       contact_information:
         email: E-bost busnes
+        username: Enw defnyddiwr cyswllt
       hero:
         title: Delwedd arwr
+        desc_html: Yn cael ei arddangos ar y dudadlen flaen. Awgrymir 600x100px oleia.
+          Pan nad yw wedi ei osod, mae'n ymddangos fel mân-lun yr achos
       registrations:
         deletion:
           desc_html: Caniatewch i unrhywun i ddileu eu cyfrif
@@ -354,6 +378,24 @@ cy:
       timeline_preview:
         title: Rhagolwg o'r ffrwd
       title: Gosodiadau'r wefan
+      bootstrap_timeline_accounts:
+        title: Dilyn diofyn i ddefnyddwyr newydd
+      custom_css:
+        desc_html: Addaswch wedd gyda CSS wedi lwytho ar bob tudalen
+      peers_api_enabled:
+        desc_html: Enwau parth y mae'r achos hwn wedi dod ar ei draws yn y ffedysawd
+        title: Cyhoeddi rhestr o achosion dargynfyddiedig
+      site_description:
+        title: Disgrifiad achos
+      site_description_extended:
+        desc_html: Lle da ar gyfer eich côd ymddygiad, rheolau, canllawiau a phethau
+          eraill sy'n gwneud eich achos yn whanol. Mae modd i chi ddefnyddio tagiau
+          HTML
+      site_short_description:
+        title: Disgrifiad byr o'r achos
+      site_title: Enw'r achos
+      thumbnail:
+        title: Mân-lun yr achos
     statuses:
       back_to_account: Yn ôl i dudalen y cyfrif
       batch:
@@ -381,7 +423,7 @@ cy:
       subject: Cwyn newydd am %{instance} {#%{id}}
   application_mailer:
     notification_preferences: Newid gosodiadau e-bost
-    salutation: "%{name},"
+    salutation: '%{name},'
     view_profile: Gweld proffil
     view_status: Gweld statws
   applications:
@@ -395,14 +437,17 @@ cy:
     change_password: Cyfrinair
     confirm_email: Cadarnhau e-bost
     delete_account: Dileu cyfrif
-    delete_account_html: Os hoffech chi ddileu eich cyfrif, mae modd <a href="%{path}">parhau yma</a>. Bydd gofyn i chi gadarnhau.
+    delete_account_html: Os hoffech chi ddileu eich cyfrif, mae modd <a href="%{path}">parhau
+      yma</a>. Bydd gofyn i chi gadarnhau.
     didnt_get_confirmation: Heb dderbyn cyfarwyddiadau cadarnhau?
     forgot_password: Wedi anghofio'ch cyfrinair?
-    invalid_reset_password_token: Tocyn ailosod cyfrinair yn annilys neu wedi dod i ben. Gwnewch gais am un newydd os gwelwch yn dda.
+    invalid_reset_password_token: Tocyn ailosod cyfrinair yn annilys neu wedi dod
+      i ben. Gwnewch gais am un newydd os gwelwch yn dda.
     login: Mewngofnodwch
     logout: Allgofnodwch
     migrate_account: Symud i gyfrif gwahanol
-    migrate_account_html: Os hoffech chi ailgyfeirio'r cyfrif hwn at un gwahanol, mae modd <a href="%{path}">ei ffurfweddu yma</a>.
+    migrate_account_html: Os hoffech chi ailgyfeirio'r cyfrif hwn at un gwahanol,
+      mae modd <a href="%{path}">ei ffurfweddu yma</a>.
     or: neu
     or_log_in_with: Neu logiwch mewn a
     providers:
@@ -427,21 +472,22 @@ cy:
     title: Dilynwch %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
-      about_x_months: "%{count}mo"
-      about_x_years: "%{count}y"
-      almost_x_years: "%{count}y"
+      about_x_hours: '%{count}h'
+      about_x_months: '%{count}mo'
+      about_x_years: '%{count}y'
+      almost_x_years: '%{count}y'
       half_a_minute: Newydd fod
-      less_than_x_minutes: "%{count}m"
+      less_than_x_minutes: '%{count}m'
       less_than_x_seconds: Newydd fod
-      over_x_years: "%{count}y"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
-      x_months: "%{count}mo"
-      x_seconds: "%{count}s"
+      over_x_years: '%{count}y'
+      x_days: '%{count}d'
+      x_minutes: '%{count}m'
+      x_months: '%{count}mo'
+      x_seconds: '%{count}s'
   deletes:
     bad_password_msg: Go dda, hacwyr! Cyfrinair anghywir
-    confirm_password: Mewnbynnwch eich cyfrinair presennol i gadarnhau mai chi sydd yno
+    confirm_password: Mewnbynnwch eich cyfrinair presennol i gadarnhau mai chi sydd
+      yno
     proceed: Dileu cyfrif
     success_msg: Llwyddwyd i ddileu eich cyfrif
   errors:
@@ -454,7 +500,9 @@ cy:
     '500':
       content: Mae'n ddrwg gennym ni, ond fe aeth rhywbeth o'i le ar ein rhan ni.
       title: Nid yw'r dudalen hon yn gywir
-    noscript_html: I ddefnyddio ap gwê Mastodon, caniatewch JavaScript os gwlwch yn dda. Fel arall, gallwch drio un o'r <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apiau cynhenid</a> ar gyfer Mastodon ar eich platfform.
+    noscript_html: I ddefnyddio ap gwê Mastodon, caniatewch JavaScript os gwlwch yn
+      dda. Fel arall, gallwch drio un o'r <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apiau
+      cynhenid</a> ar gyfer Mastodon ar eich platfform.
   exports:
     archive_takeout:
       date: Dyddiad
@@ -491,13 +539,18 @@ cy:
     save_changes: Cadw newidiadau
     validation_errors:
       one: Mae rhywbeth o'i le o hyd! Edrychwch ar y gwall isod os gwelwch yn dda
-      other: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
+      other: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch
+        yn dda
   imports:
     types:
       blocking: Rhestr blocio
       following: Rhestr dilyn
       muting: Rhestr tawelu
     upload: Uwchlwytho
+    preface: Mae modd mewnforio data yr ydych wedi allforio o achos arall, megis rhestr
+      o bobl yr ydych yn ei ddilyn neu yn blocio.
+    success: Uwchlwyddwyd eich data yn llwyddiannus ac fe fydd yn cael ei brosesu
+      mewn da bryd
   in_memoriam_html: ''
   invites:
     delete: Dadactifadu
@@ -506,8 +559,11 @@ cy:
     max_uses_prompt: Dim terfyn
     table:
       uses: Defnyddiau
+    prompt: Cynhyrchwch a rhannwch ddolenni gyda eraill i ganiatau mynediad i'r achos
+      hwn
   migrations:
     proceed: Cadw
+    currently_redirecting: ''
   moderation:
     title: Cymedroli
   notification_mailer:
@@ -531,7 +587,7 @@ cy:
       alipay: ''
       blackberry: ''
     current_session: Sesiwn cyfredol
-    description: "%{browser} ar %{platform}"
+    description: '%{browser} ar %{platform}'
     title: Sesiynau
   themes:
     contrast: Cyferbyniad uchel
@@ -539,8 +595,8 @@ cy:
     mastodon-light: Mastodon (golau)
   time:
     formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
+      default: '%b %d, %Y, %H:%M'
+      month: '%b %Y'
   user_mailer:
     welcome:
       subject: Croeso i Mastodon
