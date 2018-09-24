@@ -1,10 +1,11 @@
+---
 cy:
   activerecord:
     attributes:
       doorkeeper/application:
         name: Enw rhaglen
-        scopes: Cwmpasau
         redirect_uri: Ailgyfeirio URI
+        scopes: Cwmpasau
         website: Gwefan cais
     errors:
       models:
@@ -29,25 +30,25 @@ cy:
         title: Golygwch rhaglen
       form:
         error: Wps! Gwiriwch eich ffurflen am gamgymeriadau posib
+      help:
+        native_redirect_uri: Defnyddiwch %{native_redirect_uri} ar gyfer profion lleol
+        redirect_uri: Defnyddiwch un llinell i bob URI
       index:
         application: Rhaglen
         delete: Dileu
         name: Enw
         new: Rhaglen newydd
+        scopes: Cwmpasau
         show: Dangoswch
         title: Eich rhaglenni
-        scopes: Cwmpasau
       new:
         title: Rhaglen newydd
       show:
-        title: 'Rhaglen: %{name}'
-        scopes: Cwmpasau
         actions: Gweithredoedd
         application_id: Allwedd cleient
+        scopes: Cwmpasau
         secret: Cyfrinach Cleient
-      help:
-        native_redirect_uri: Defnyddiwch %{native_redirect_uri} ar gyfer profion lleol
-        redirect_uri: Defnyddiwch un llinell i bob URI
+        title: 'Rhaglen: %{name}'
     authorizations:
       buttons:
         authorize: Awdurdodi
@@ -60,23 +61,20 @@ cy:
       show:
         title: Copiwch y côd awdurdodi a gludiwch i'r rhaglen
     authorized_applications:
+      buttons:
+        revoke: Diddymu
       confirmations:
         revoke: Ydych chi'n sicr?
       index:
         application: Rhaglen
         created_at: Awdurdodedig
-        title: Eich rhaglenni awdurdodedig
         scopes: Cwmpasau
-      buttons:
-        revoke: Diddymu
+        title: Eich rhaglenni awdurdodedig
     errors:
       messages:
-        access_denied: Mae perchennog yr adnodd neu'r gweinydd awdurdodi wedi atal
-          y cais.
+        access_denied: Mae perchennog yr adnodd neu'r gweinydd awdurdodi wedi atal y cais.
         invalid_redirect_uri: Nid yw'r uri ailgyfeirio cynnwysiedig yn gyfredol.
-        invalid_request: Nid yw'r cais yn cynnwys paramedr angenrheidiol, yn cynnwys
-          paramader paramedr nad yw'n cael ei gefnogi, neu wedi ei gamffurfio mewn
-          rhyw fodd arall.
+        invalid_request: Nid yw'r cais yn cynnwys paramedr angenrheidiol, yn cynnwys paramader paramedr nad yw'n cael ei gefnogi, neu wedi ei gamffurfio mewn rhyw fodd arall.
     flash:
       applications:
         create:
@@ -96,11 +94,14 @@ cy:
       application:
         title: Mae awdurdodiad OAuth yn ofynnol
     scopes:
+      follow: addaswch berthnasau cyfrif
       push: derbyniwch eich hysbysiadau PUSH
       read: darllenwch holl ddata eich cyfrif
       read:accounts: gwelwch wybodaeth y cyfrif
+      read:blocks: gwlewch eich blociau
       read:favourites: gwelwch eich ffefrynnau
       read:filters: gwelwch eich hidlwyr
+      read:follows: gwelwch eich dilynwyr
       read:lists: gwelwch eich rhestrau
       read:notifications: gwelwch eich hysbysiadau
       read:reports: gwelwch eich adroddiadau
@@ -112,8 +113,5 @@ cy:
       write:follows: dilynwch bobl
       write:lists: crëwch restrau
       write:media: uwchlwythwch ffeiliau cyfryngau
-      write:notifications: cliriwch eich hysbysiadau
-      follow: addaswch berthnasau cyfrif
-      read:blocks: gwlewch eich blociau
-      read:follows: gwelwch eich dilynwyr
       write:mutes: tawelwch bobl a sgyrsiau
+      write:notifications: cliriwch eich hysbysiadau
