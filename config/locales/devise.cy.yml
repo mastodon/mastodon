@@ -34,19 +34,32 @@ cy:
         title: Newidwyd cyfrinair
       reconfirmation_instructions:
         explanation: Cadarnhewch y cyferiad newydd i newid eich e-bost.
+        extra: Os nad chi wnaeth y newid hwn, anwybyddwch yr e-bost hwn os gwelwch yn dda. Ni fydd y cyfeiriad e-bost ar gyfer y cyfrif Mastodon yn newid nes eich bod yn mynd at y ddolen uchod.
         subject: 'Mastodon: Cadarnhewch e-bost i %{instance}'
         title: Gwiriwch cyfeiriad e-bost
       reset_password_instructions:
         action: Newid cyfrinair
         explanation: Gofynnoch am gyfrinair newydd i'ch cyfrif.
+        extra: Os na wnaethoch gais am hyn, anwybyddwch yr e-bost hwn os gwelwch yn dda. Ni fydd eich cyfrinair yn newid nes i chi fynd at y ddolen uchod a chreu un newydd.
         subject: 'Mastodon: Ailosodwch cyfarwyddiadau cyfrinair'
         title: Ailosod cyfrinair
       unlock_instructions:
         subject: 'Mastodon: Cyfarwyddiadau datgloi'
     omniauth_callbacks:
       failure: Methu eich dilysu o %{kind} oherwydd "%{reason}".
+      success: Dilyswyd yn llwyddiannus o gyfrif %{kind}.
+    passwords:
+      no_token: Nid oes modd cael mynediad i'r dudalen hon heb ddod drwy e-bost ailosod cyfrinair. Os ydych yn dod o e-bost ailosod cyfrinair, gwnewch yn siŵr y defnyddioch chi'r URL a ddarparwyd yn ei gyfanrwydd.
+      send_instructions: Os yw eich cyfeiriad e-bost yn bresennol yn ein bas data, mi fyddwch yn derbyn dolen yn eich blwch e-bost ymhen cwpl o funudau. Os nad ydych yn derbyn yr e-bost hwn, edrychwch yn eich ffolder spam os gwelwch yn dda.
+      send_paranoid_instructions: Os yw eich cyfeiriad e-bost yn bresennol yn ein bas data, mi fyddwch yn derbyn dolen yn eich blwch e-bost ymhen cwpl o funudau. Os nad ydych yn derbyn yr e-bost hwn, edrychwch yn eich ffolder spam os gwelwch yn dda.
+      updated: Mae eich cyfrinair wedi ei newid yn llwyddiannus. Yr ydych wedi mewngofnodi.
+      updated_not_active: Mae eich cyfrinair wedi ei newid yn llwyddiannus.
     registrations:
+      destroyed: Hwyl fawr! Mae eich cyfrif wedi ei ganslo'n llwyddiannus. Gobeithiwn eich gweld eto'n fuan.
       signed_up: Croeso! Rydych wedi llwyddo i ymuno.
+      signed_up_but_inactive: Yr ydych wedi cofrestru'n llwyddiannus. Fodd bynnag, ni allwn eich mewngofnodi achos nid yw eich cyfrif wedi ei actifadu eto.
+      signed_up_but_locked: Yr ydych wedi cofrestru'n llwyddiannus. Fodd bynnag, ni allwn eich mewngofnodi achos fod eich cyfrif wedi ei gloi.
+      signed_up_but_unconfirmed: Mae neges gyda dolen cadarnhau wedi ei anfon i'ch cyfeiriad e-bost. Dilynwch y ddolen er mwyn actifadu eich cyfrif. Edrychwch yn eich ffolder sbam os na dderbynioch chi'r e-bost hwn os gwelwch yn dda.
       update_needs_confirmation: Rydych wedi diweddaru eich cyfrif yn llwyddiannus, ond mae angen i ni wirio eich cyfeiriad e-bost newydd. Edrychwch ar eich e-byst a dilynwch y ddolen gadarnhau er mwyn cadarnhau eich cyfeiriad e-bost newydd. Edrychwch ar eich ffolder sbam os na dderbynioch chi yr e-bost hwn.
       updated: Mae eich cyfrif wedi ei ddiweddaru yn llwyddiannus.
     sessions:
@@ -54,6 +67,8 @@ cy:
       signed_in: Mewngofnodwyd yn llwyddiannus.
       signed_out: Allgofnodwyd yn llwyddiannus.
     unlocks:
+      send_instructions: Mi fyddwch yn derbyn e-bost a cyfarwyddiadau ynghylch sut i ddatgloi eich cyfrif ymhen cwpl o funudau. Edrychwch yn eich ffolder sbam os na dderbynioch chi'r e-bost hwn os gwelwch yn dda.
+      send_paranoid_instructions: Os yw eich cyfrif yn bodoli, mi fyddwch yn derbyn e-bost a cyfarwyddiadau o sut i ddatgloi eich cyfrif ymhen cwpl o funudau. Edrychwch yn eich ffolder sbam os na dderbynioch chi'r e-bost hwn os gwelwch yn dda.
       unlocked: Mae eich cyfrif wedi ei ddatgloi'n llwyddiannus. Mewngofnodwch i barhau.
   errors:
     messages:
@@ -62,3 +77,6 @@ cy:
       expired: wedi dod i ben, gwnewch gais am un newydd os gwelwch yn dda
       not_found: heb ei ganfod
       not_locked: heb ei gloi
+      not_saved:
+        one: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd 1 gwall:'
+        other: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
