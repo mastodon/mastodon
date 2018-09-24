@@ -145,6 +145,19 @@ body.rtl {
     margin-right: 6px;
   }
 
+  .status__action-bar {
+
+    &__counter {
+      margin-right: 0;
+      margin-left: 11px;
+
+      .status__action-bar-button {
+        margin-right: 0;
+        margin-left: 4px;
+      }
+    }
+  }
+
   .status__action-bar-button {
     float: right;
     margin-right: 0;
