@@ -46,7 +46,7 @@ class InstancePresenter
   end
 
   def mascot
-    @hero ||= Rails.cache.fetch('site_uploads/mascot') { SiteUpload.find_by(var: 'mascot') }
+    @mascot ||= Rails.cache.fetch('site_uploads/mascot') { SiteUpload.find_by(var: 'mascot') }
   end
   
 end
