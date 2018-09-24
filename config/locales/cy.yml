@@ -241,6 +241,14 @@ cy:
           title: Caniatewch wahoddiadau gan
         open:
           desc_html: Caniatewch i unrhywun greu cyfrif
+          title: Agorwch cofrestru
+      hero:
+        title: Delwedd arwr
+      show_staff_badge:
+        title: Dangos bathodyn staff
+      timeline_preview:
+        title: Rhagolwg o'r ffrwd
+      title: Gosodiadau'r wefan
     action_logs:
       actions:
         assigned_to_self_report: Aseiniodd %{name} adroddiad %{target} i'w hunan
@@ -310,6 +318,7 @@ cy:
       destroyed_msg: Mae'r bloc parth wedi ei ddadwneud
       reject_media_hint: Dileu dogfennau cyfryngau wedi eu cadw yn lleol ac yn gwrthod
         i lawrlwytho unrhyw rai yn y dyfodol. Amherthnasol i ataliadau
+      title: Blociau parth
     email_domain_blocks:
       add_new: Ychwanegu
       created_msg: Llwyddwyd i ychwanegu parth e-bost i'r gosbrestr
@@ -331,6 +340,9 @@ cy:
       save_and_enable: Cadw a galluogi
       status: Statws
       add_new: Ychwanegau relái newydd
+      inbox_url: URL relái
+      pending: Aros am gymeradywaeth i'r relái
+      setup: Sefydlu cysylltiad relái
     reports:
       account:
         note: nodyn
@@ -347,6 +359,8 @@ cy:
         create_and_resolve: Datruswch a nodyn
         create_and_unresolve: Ailagorwch a nodyn
         delete: Dilëwch
+        placeholder: Disgrifiwch pa weithredoedd sydd wedi eu cymryd, neu unrhyw ddiweddariadau
+          eraill...
       reopen: Ailagorwch adroddiad
       report: 'Adroddiad #%{id}'
       report_contents: Cynnwys
@@ -361,8 +375,34 @@ cy:
       unresolved: Heb ei ddatrys
       updated_at: Diweddarwyd
       view: GWELD / GWEDD
+      action_taken_by: Gwnathpwyd hyn gan
+    report_notes:
+      created_msg: Llwyddwyd i greu nodyn adroddiad!
+      destroyed_msg: Llwyddwyd i ddileu nodyn adroddiad!
+    statuses:
+      back_to_account: Yn ôl i dudalen y cyfrif
+      batch:
+        delete: Dileu
+        nsfw_off: Marcio fel nad yw'n sensitif
+        nsfw_on: Marcio'n sensitif
+      failed_to_execute: Methwyd a gweithredu
+      media:
+        title: Cyfryngau
+      no_media: Dim cyfryngau
+      no_status_selected: Ni newidwyd dim statws achos ni ddewiswyd dim un
+      with_media: A chyfryngau
+    subscriptions:
+      confirmed: Wedi'i gadarnhau
+      expires_in: Dod i ben ymhen
+      title: WebSub
+      topic: Pwnc
+    suspensions:
+      proceed: Parhau
+    title: Gweinyddiaeth
   auth:
     change_password: Cyfrinair
+    confirm_email: Cadarnhau e-bost
+    delete_account: Dileu cyfrif
   authorize_follow:
     follow: Dilynwch
     title: Dilynwch %{acct}
@@ -410,3 +450,20 @@ cy:
   user_mailer:
     welcome:
       subject: Croeso i Mastodon
+  admin_mailer:
+    new_report:
+      body: Mae %{reporter} wedi cwyno am %{target}
+      body_remote: Mae rhywun o %{domain} wedi cwyno . am %{target}
+      subject: Cwyn newydd am %{instance} {#%{id}}
+  application_mailer:
+    notification_preferences: Newid gosodiadau e-bost
+    salutation: '%{name},'
+    view_profile: Gweld proffil
+    view_status: Gweld statws
+  applications:
+    created: Cais wedi ei greu'n llwyddiannus
+    destroyed: Cais wedi ei ddileu'n llwyddiannus
+    regenerate_token: Adfywio tocyn mynediad
+    token_regenerated: Adfywiwyd y tocyn mynediad yn llwyddiannus
+    warning: Byddwch yn ofalus a'r data hyn. Peidiwch a'i rannu byth!
+    your_token: Eich tocyn mynediad
