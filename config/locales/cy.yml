@@ -403,9 +403,39 @@ cy:
     change_password: Cyfrinair
     confirm_email: Cadarnhau e-bost
     delete_account: Dileu cyfrif
+    delete_account_html: Os hoffech chi ddileu eich cyfrif, mae modd <a href="%{path}">parhau
+      yma</a>. Bydd gofyn i chi gadarnhau.
+    didnt_get_confirmation: Heb dderbyn cyfarwyddiadau cadarnhau?
+    forgot_password: Wedi anghofio'ch cyfrinair?
+    invalid_reset_password_token: Tocyn ailosod cyfrinair yn annilys neu wedi dod
+      i ben. Gwnewch gais am un newydd os gwelwch yn dda.
+    login: Mewngofnodwch
+    logout: Allgofnodwch
+    migrate_account: Symud i gyfrif gwahanol
+    migrate_account_html: Os hoffech chi ailgyfeirio'r cyfrif hwn at un gwahanol,
+      mae modd <a href="%{path}">ei ffurfweddu yma</a>.
+    or: neu
+    or_log_in_with: Neu logiwch mewn a
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Cofrestrwch
+    register_elsewhere: Cofrestrwch ar weinydd gwahanol
+    resend_confirmation: Ailanfon cyfarwyddiadau cadarnhau
+    reset_password: Ailosodwch eich cyfrinair
+    security: Diogelwch
+    set_new_password: Gosodwch gyfrinair newydd
   authorize_follow:
     follow: Dilynwch
     title: Dilynwch %{acct}
+    already_following: Yr ydych yn dilyn y cyfrif hwn yn barod
+    error: Yn anffodus, roedd gwall tra'n edrych am y cyfrif anghysbell
+    follow_request: 'Yr ydych wedi anfon cais dilyn at:'
+    following: 'Llwyddiant! Yr ydych yn awr yn dilyn:'
+    post_follow:
+      close: Neu, gallwch gau'r ffenest hon.
+      return: Dangoswch broffil y defnyddiwr
+      web: I'r wê
   invites:
     expires_in:
       '86400': 1 dydd
@@ -467,3 +497,23 @@ cy:
     token_regenerated: Adfywiwyd y tocyn mynediad yn llwyddiannus
     warning: Byddwch yn ofalus a'r data hyn. Peidiwch a'i rannu byth!
     your_token: Eich tocyn mynediad
+  datetime:
+    distance_in_words:
+      about_x_hours: '%{count}h'
+      about_x_months: '%{count}mo'
+      about_x_years: '%{count}y'
+      almost_x_years: '%{count}y'
+      half_a_minute: Newydd fod
+      less_than_x_minutes: '%{count}m'
+      less_than_x_seconds: Newydd fod
+      over_x_years: '%{count}y'
+      x_days: '%{count}d'
+      x_minutes: '%{count}m'
+      x_months: '%{count}mo'
+      x_seconds: '%{count}s'
+  deletes:
+    bad_password_msg: Go dda, hacwyr! Cyfrinair anghywir
+    confirm_password: Mewnbynnwch eich cyfrinair presennol i gadarnhau mai chi sydd
+      yno
+    proceed: Dileu cyfrif
+    success_msg: Llwyddwyd i ddileu eich cyfrif
