@@ -59,7 +59,8 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   isComposing: state.getIn(['compose', 'is_composing']),
-  hasComposingText: state.getIn(['compose', 'text']) !== '',
+  hasComposingText: state.getIn(['compose', 'text']).trim().length !== 0,
+  hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
   dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
 });
 
@@ -201,6 +202,7 @@ class UI extends React.PureComponent {
     children: PropTypes.node,
     isComposing: PropTypes.bool,
     hasComposingText: PropTypes.bool,
+    hasMediaAttachments: PropTypes.bool,
     location: PropTypes.object,
     intl: PropTypes.object.isRequired,
     dropdownMenuIsOpen: PropTypes.bool,
@@ -211,9 +213,9 @@ class UI extends React.PureComponent {
   };
 
   handleBeforeUnload = (e) => {
-    const { intl, isComposing, hasComposingText } = this.props;
+    const { intl, isComposing, hasComposingText, hasMediaAttachments } = this.props;
 
-    if (isComposing && hasComposingText) {
+    if (isComposing && (hasComposingText || hasMediaAttachments)) {
       // Setting returnValue to any string causes confirmation dialog.
       // Many browsers no longer display this text to users,
       // but we set user-friendly message for other browsers, e.g. Edge.
