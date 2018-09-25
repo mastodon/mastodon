@@ -2,6 +2,7 @@ import React from 'react';
 import Motion from 'flavours/glitch/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import { defineMessages, FormattedMessage } from 'react-intl';
+import { profileLink } from 'flavours/glitch/util/backend_links';
 
 //  This is the spring used with our motion.
 const motionSpring = spring(1, { damping: 35, stiffness: 400 });
@@ -20,6 +21,10 @@ const messages = defineMessages({
 
 //  The component.
 export default function ComposerWarning () {
+  let lockedLink = <FormattedMessage {...messages.locked} />;
+  if (profileLink !== undefined) {
+    lockedLink = <a href={profileLink}>{lockedLink}</a>;
+  }
   return (
     <Motion
       defaultStyle={{
@@ -43,7 +48,7 @@ export default function ComposerWarning () {
         >
           <FormattedMessage
             {...messages.disclaimer}
-            values={{ locked: <a href='/settings/profile'><FormattedMessage {...messages.locked} /></a> }}
+            values={{ locked: lockedLink }}
           />
         </div>
       )}

@@ -13,6 +13,7 @@ import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import { createSelector } from 'reselect';
 import { fetchLists } from 'flavours/glitch/actions/lists';
+import { preferencesLink, profileLink, signOutLink } from 'flavours/glitch/util/backend_links';
 
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -157,9 +158,9 @@ export default class GettingStarted extends ImmutablePureComponent {
             <ColumnSubheading text={intl.formatMessage(messages.lists_subheading)} />
             {listItems}
             <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
-            <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
+            { preferencesLink !== undefined && <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href={preferencesLink} /> }
             <ColumnLink icon='cogs' text={intl.formatMessage(messages.settings)} onClick={openSettings} />
-            <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
+            <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href={signOutLink} method='delete' />
           </div>
 
           <div className='getting-started__footer'>

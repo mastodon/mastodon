@@ -5,6 +5,7 @@ import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_cont
 import { NavLink } from 'react-router-dom';
 import { defineMessages, injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
 import { me, isStaff } from 'flavours/glitch/util/initial_state';
+import { profileLink, accountAdminLink } from 'flavours/glitch/util/backend_links';
 
 const messages = defineMessages({
   mention: { id: 'account.mention', defaultMessage: 'Mention @{name}' },
@@ -77,7 +78,9 @@ export default class ActionBar extends React.PureComponent {
     menu.push(null);
 
     if (account.get('id') === me) {
-      menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
+      if (profileLink !== undefined) {
+        menu.push({ text: intl.formatMessage(messages.edit_profile), href: profileLink });
+      }
     } else {
       if (account.getIn(['relationship', 'following'])) {
         if (account.getIn(['relationship', 'showing_reblogs'])) {
@@ -131,9 +134,12 @@ export default class ActionBar extends React.PureComponent {
       }
     }
 
-    if (account.get('id') !== me && isStaff) {
+    if (account.get('id') !== me && isStaff && (accountAdminLink !== undefined)) {
       menu.push(null);
-      menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: `/admin/accounts/${account.get('id')}` });
+      menu.push({
+        text: intl.formatMessage(messages.admin_account, { name: account.get('username') }),
+        href: accountAdminLink(account.get('id')),
+      });
     }
 
     return (

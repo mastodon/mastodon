@@ -12,6 +12,7 @@ import Permalink from 'flavours/glitch/components/permalink';
 
 //  Utils.
 import { hiddenComponent } from 'flavours/glitch/util/react_helpers';
+import { profileLink } from 'flavours/glitch/util/backend_links';
 
 //  Messages.
 const messages = defineMessages({
@@ -28,12 +29,14 @@ export default function DrawerAccount ({ account }) {
   if (!account) {
     return (
       <div className='drawer--account'>
-        <a
-          className='edit'
-          href='/settings/profile'
-        >
-          <FormattedMessage {...messages.edit} />
-        </a>
+        { profileLink !== undefined && (
+          <a
+            className='edit'
+            href={ profileLink }
+          >
+            <FormattedMessage {...messages.edit} />
+          </a>
+        )}
       </div>
     );
   }
@@ -59,10 +62,12 @@ export default function DrawerAccount ({ account }) {
       >
         <strong>@{account.get('acct')}</strong>
       </Permalink>
-      <a
-        className='edit'
-        href='/settings/profile'
-      ><FormattedMessage {...messages.edit} /></a>
+      { profileLink !== undefined && (
+        <a
+          className='edit'
+          href={ profileLink }
+        ><FormattedMessage {...messages.edit} /></a>
+      )}
     </div>
   );
 }

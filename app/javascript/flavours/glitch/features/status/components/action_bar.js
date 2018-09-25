@@ -5,6 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
 import { defineMessages, injectIntl } from 'react-intl';
 import { me, isStaff } from 'flavours/glitch/util/initial_state';
+import { accountAdminLink, statusAdminLink } from 'flavours/glitch/util/backend_links';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -148,10 +149,20 @@ export default class ActionBar extends React.PureComponent {
       menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick });
       menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick });
       menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
-      if (isStaff) {
+      if (isStaff && (accountAdminLink || statusAdminLink)) {
         menu.push(null);
-        menu.push({ text: intl.formatMessage(messages.admin_account, { name: status.getIn(['account', 'username']) }), href: `/admin/accounts/${status.getIn(['account', 'id'])}` });
-        menu.push({ text: intl.formatMessage(messages.admin_status), href: `/admin/accounts/${status.getIn(['account', 'id'])}/statuses/${status.get('id')}` });
+        if (accountAdminLink !== undefined) {
+          menu.push({
+            text: intl.formatMessage(messages.admin_account, { name: status.getIn(['account', 'username']) }),
+            href: accountAdminLink(status.getIn(['account', 'id'])),
+          });
+        }
+        if (statusAdminLink !== undefined) {
+          menu.push({
+            text: intl.formatMessage(messages.admin_status),
+            href: statusAdminLink(status.getIn(['account', 'id']), status.get('id')),
+          });
+        }
       }
     }
 

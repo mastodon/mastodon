@@ -10,6 +10,7 @@ import Icon from 'flavours/glitch/components/icon';
 
 //  Utils.
 import { conditionalRender } from 'flavours/glitch/util/react_helpers';
+import { signOutLink } from 'flavours/glitch/util/backend_links';
 
 //  Messages.
 const messages = defineMessages({
@@ -109,7 +110,7 @@ export default function DrawerHeader ({
       <a
         aria-label={intl.formatMessage(messages.logout)}
         data-method='delete'
-        href='/auth/sign_out'
+        href={ signOutLink }
         title={intl.formatMessage(messages.logout)}
       ><Icon icon='sign-out' /></a>
     </nav>

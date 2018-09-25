@@ -2,6 +2,7 @@ import React from 'react';
 import Motion from 'flavours/glitch/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import { defineMessages, FormattedMessage } from 'react-intl';
+import { termsLink} from 'flavours/glitch/util/backend_links';
 
 //  This is the spring used with our motion.
 const motionSpring = spring(1, { damping: 35, stiffness: 400 });
@@ -42,7 +43,8 @@ export default function ComposerDirectWarning () {
           }}
         >
           <span>
-            <FormattedMessage {...messages.disclaimer} /> <a href='/terms' target='_blank'><FormattedMessage {...messages.learn_more} /></a>
+            <FormattedMessage {...messages.disclaimer} />
+            { termsLink !== undefined && <a href={termsLink} target='_blank'><FormattedMessage {...messages.learn_more} /></a> }
           </span>
         </div>
       )}

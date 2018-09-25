@@ -5,6 +5,7 @@ import { injectIntl, defineMessages } from 'react-intl';
 
 //  Our imports
 import LocalSettingsNavigationItem from './item';
+import { preferencesLink } from 'flavours/glitch/util/backend_links';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -71,7 +72,7 @@ export default class LocalSettingsNavigation extends React.PureComponent {
         />
         <LocalSettingsNavigationItem
           active={index === 5}
-          href='/settings/preferences'
+          href={ preferencesLink }
           index={5}
           icon='sliders'
           title={intl.formatMessage(messages.preferences)}
