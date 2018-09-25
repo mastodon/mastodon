@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import IconButton from '../../../components/icon_button';
+import BotIcon from '../../../components/bot_icon';
 import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -67,6 +68,7 @@ class Avatar extends ImmutablePureComponent {
             onBlur={this.handleMouseOut}
           >
             <span style={{ display: 'none' }}>{account.get('acct')}</span>
+            <BotIcon account={account} />
           </a>
         )}
       </Motion>
