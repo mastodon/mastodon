@@ -46,8 +46,8 @@ body.rtl {
   .column-header__buttons {
     left: 0;
     right: auto;
-    margin-left: -15px;
-    margin-right: 0;
+    margin-left: 0;
+    margin-right: -15px;
   }
 
   .column-inline-form .icon-button {
@@ -139,6 +139,19 @@ body.rtl {
   .activity-stream .detailed-status.light .detailed-status__meta span > span {
     margin-left: 0;
     margin-right: 6px;
+  }
+
+  .status__action-bar {
+
+    &__counter {
+      margin-right: 0;
+      margin-left: 11px;
+
+      .status__action-bar-button {
+        margin-right: 0;
+        margin-left: 4px;
+      }
+    }
   }
 
   .status__action-bar-button {

@@ -60,6 +60,13 @@ class ActionBar extends React.PureComponent {
     });
   }
 
+  isStatusesPageActive = (match, location) => {
+    if (!match) {
+      return false;
+    }
+    return !location.pathname.match(/\/(followers|following)\/?$/);
+  }
+
   render () {
     const { account, intl } = this.props;
 
@@ -147,7 +154,7 @@ class ActionBar extends React.PureComponent {
 
         <div className='account__action-bar'>
           <div className='account__action-bar-links'>
-            <NavLink exact activeClassName='active' className='account__action-bar__tab' to={`/accounts/${account.get('id')}`} title={intl.formatNumber(account.get('statuses_count'))}>
+            <NavLink isActive={this.isStatusesPageActive} activeClassName='active' className='account__action-bar__tab' to={`/accounts/${account.get('id')}`} title={intl.formatNumber(account.get('statuses_count'))}>
               <FormattedMessage id='account.posts' defaultMessage='Toots' />
               <strong>{shortNumberFormat(account.get('statuses_count'))}</strong>
             </NavLink>

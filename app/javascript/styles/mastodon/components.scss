@@ -552,7 +552,7 @@
 
       .character-counter {
         cursor: default;
-        font-family: 'mastodon-font-sans-serif', sans-serif;
+        font-family: $font-sans-serif, sans-serif;
         font-size: 14px;
         font-weight: 600;
         color: $lighter-text-color;
@@ -1110,6 +1110,12 @@
     vertical-align: middle;
     margin-right: 5px;
   }
+
+  .bot-icon {
+    position: absolute;
+    bottom: -.333em;
+    left: -.333em;
+  }
 }
 
 a .account__avatar {
@@ -1327,10 +1333,22 @@ a .account__avatar {
 .account__header__avatar {
   background-size: 90px 90px;
   display: block;
+  font-size: 1.5em;
   height: 90px;
   margin: 0 auto 10px;
-  overflow: hidden;
+  position: relative;
   width: 90px;
+
+  .bot-icon {
+    color: $dark-text-color;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    .light & {
+      color: $inverted-text-color;
+    }
+  }
 }
 
 .account-authorize {
@@ -5117,7 +5135,7 @@ noscript {
       width: 100%;
       border: none;
       padding: 10px;
-      font-family: 'mastodon-font-monospace', monospace;
+      font-family: $font-monospace, monospace;
       background: $ui-base-color;
       color: $primary-text-color;
       font-size: 14px;
@@ -5358,9 +5376,11 @@ noscript {
   overflow: hidden;
   margin: 20px -10px -20px;
   border-bottom: 0;
+  border-top: 0;
 
   dl {
-    border-top: 1px solid lighten($ui-base-color, 8%);
+    border-top: 1px solid lighten($ui-base-color, 4%);
+    border-bottom: 0;
     display: flex;
   }
 
@@ -5387,6 +5407,11 @@ noscript {
     flex: 1 1 auto;
     color: $primary-text-color;
     background: $ui-base-color;
+
+    &.verified {
+      border: 1px solid rgba($valid-value-color, 0.5);
+      background: rgba($valid-value-color, 0.25);
+    }
   }
 }
 

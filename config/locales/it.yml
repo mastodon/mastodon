@@ -415,7 +415,7 @@ it:
     didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
     forgot_password: Hai dimenticato la tua password?
     login: Entra
-    logout: Sloggati
+    logout: Esci da Mastodon
     migrate_account: Sposta ad un account differente
     migrate_account_html: Se vuoi che questo account sia reindirizzato a uno diverso, puoi <a href="%{path}">configurarlo qui</a>.
     or: o
@@ -464,6 +464,9 @@ it:
     '422':
       content: Verifica di sicurezza non riuscita. Stai bloccando i cookies?
       title: Verifica di sicurezza non riuscita
+    '500':
+      content: Siamo spiacenti, ma qualcosa non ha funzionato dal nostro lato.
+      title: Questa pagina non è corretta
     noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">app native</a> per Mastodon per la tua piattaforma.
   exports:
     archive_takeout:
@@ -484,6 +487,10 @@ it:
       notifications: Notifiche
       public: Timeline pubbliche
       thread: Conversazioni
+    edit:
+      title: Modifica filtro
+    errors:
+      invalid_context: Contesto mancante o non valido
     index:
       delete: Cancella
       title: Filtri
@@ -608,6 +615,7 @@ it:
   remote_follow:
     acct: Inserisci il tuo username@dominio da cui vuoi seguire questo utente
     missing_resource: Impossibile trovare l'URL di reindirizzamento richiesto per il tuo account
+    no_account_html: Non hai un account? Puoi <a href='%{sign_up_path}' target='_blank'>iscriverti qui</a>
     proceed: Conferma
     prompt: 'Stai per seguire:'
   remote_unfollow:
@@ -619,6 +627,7 @@ it:
     browsers:
       blackberry: Blackberry
       chrome: Chrome
+      firefox: Firefox
       generic: Browser sconosciuto
     current_session: Sessione corrente
     description: "%{browser} su %{platform}"
