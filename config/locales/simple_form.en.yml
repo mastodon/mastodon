@@ -25,6 +25,9 @@ en:
         phrase: Will be matched regardless of casing in text or content warning of a toot
         scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
         setting_default_language: The language of your toots can be detected automatically, but it's not always accurate
+        setting_display_media_default: Hide media marked as sensitive
+        setting_display_media_hide_all: Always hide all media
+        setting_display_media_show_all: Always show media marked as sensitive
         setting_hide_network: Who you follow and who follows you will not be shown on your profile
         setting_noindex: Affects your public profile and status pages
         setting_theme: Affects how Mastodon looks when you're logged in from any device.
@@ -72,7 +75,10 @@ en:
         setting_default_privacy: Post privacy
         setting_default_sensitive: Always mark media as sensitive
         setting_delete_modal: Show confirmation dialog before deleting a toot
-        setting_display_sensitive_media: Always show media marked as sensitive
+        setting_display_media: Media display
+        setting_display_media_default: Default
+        setting_display_media_hide_all: Hide all
+        setting_display_media_show_all: Show all
         setting_expand_spoilers: Always expand toots marked with content warnings
         setting_hide_network: Hide your network
         setting_noindex: Opt-out of search engine indexing
