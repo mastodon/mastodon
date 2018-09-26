@@ -1,7 +1,7 @@
 $no-columns-breakpoint: 600px;
 
 code {
-  font-family: 'mastodon-font-monospace', monospace;
+  font-family: $font-monospace, monospace;
   font-weight: 400;
 }
 
@@ -474,7 +474,7 @@ code {
     width: 100%;
     border: none;
     padding: 10px;
-    font-family: 'mastodon-font-monospace', monospace;
+    font-family: $font-monospace, monospace;
     background: $ui-base-color;
     color: $primary-text-color;
     font-size: 14px;
@@ -718,7 +718,7 @@ code {
 .form_admin_settings_custom_css,
 .form_admin_settings_closed_registrations_message {
   textarea {
-    font-family: 'mastodon-font-monospace', monospace;
+    font-family: $font-monospace, monospace;
   }
 }
 
@@ -742,7 +742,7 @@ code {
     border: 0;
     padding: 10px;
     font-size: 14px;
-    font-family: 'mastodon-font-monospace', monospace;
+    font-family: $font-monospace, monospace;
   }
 
   button {

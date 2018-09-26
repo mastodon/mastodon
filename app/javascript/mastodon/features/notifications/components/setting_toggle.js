@@ -10,7 +10,6 @@ export default class SettingToggle extends React.PureComponent {
     settings: ImmutablePropTypes.map.isRequired,
     settingPath: PropTypes.array.isRequired,
     label: PropTypes.node.isRequired,
-    meta: PropTypes.node,
     onChange: PropTypes.func.isRequired,
   }
 
@@ -19,14 +18,13 @@ export default class SettingToggle extends React.PureComponent {
   }
 
   render () {
-    const { prefix, settings, settingPath, label, meta } = this.props;
+    const { prefix, settings, settingPath, label } = this.props;
     const id = ['setting-toggle', prefix, ...settingPath].filter(Boolean).join('-');
 
     return (
       <div className='setting-toggle'>
         <Toggle id={id} checked={settings.getIn(settingPath)} onChange={this.onChange} onKeyDown={this.onKeyDown} />
         <label htmlFor={id} className='setting-toggle__label'>{label}</label>
-        {meta && <span className='setting-meta__label'>{meta}</span>}
       </div>
     );
   }
