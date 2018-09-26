@@ -310,10 +310,11 @@ class Account < ApplicationRecord
     attributes :name, :value, :verified_at, :account, :errors
 
     def initialize(account, attributes)
+      char_limit = account.local? ? 255 : 8092
       @account     = account
       @attributes  = attributes
-      @name        = attributes['name'].strip[0, 255]
-      @value       = attributes['value'].strip[0, 255]
+      @name        = attributes['name'].strip[0, char_limit]
+      @value       = attributes['value'].strip[0, char_limit]
       @verified_at = attributes['verified_at']&.to_datetime
       @errors      = {}
     end
