@@ -140,7 +140,7 @@ class Header extends ImmutablePureComponent {
     } else {
       actionBtn = (
         <div className='account--action-button'>
-          <IconButton size={26} icon='pencil' title={intl.formatMessage(messages.edit_profile)} onClick={this.openEditProfile} />
+          <IconButton size={26} icon='pencil-alt' title={intl.formatMessage(messages.edit_profile)} onClick={this.openEditProfile} />
         </div>
       );
     }
