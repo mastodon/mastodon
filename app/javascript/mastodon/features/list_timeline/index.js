@@ -154,7 +154,7 @@ class ListTimeline extends React.PureComponent {
             </button>
 
             <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleDeleteClick}>
-              <i className='fas fa-trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
+              <i className='fas fa-trash-alt' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
           </div>
 

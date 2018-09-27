@@ -109,7 +109,7 @@ class GettingStarted extends ImmutablePureComponent {
     if (!multiColumn) {
       navItems.push(
         <ColumnSubheading key={i++} text={intl.formatMessage(messages.settings_subheading)} />,
-        <ColumnLink key={i++} icon='gears' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
+        <ColumnLink key={i++} icon='cogs' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
       );
 
       height += 34 + 48;
