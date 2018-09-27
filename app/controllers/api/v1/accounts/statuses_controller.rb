@@ -81,7 +81,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
 
   def prev_path
     unless @statuses.empty?
-      api_v1_account_statuses_url pagination_params(since_id: pagination_since_id)
+      api_v1_account_statuses_url pagination_params(min_id: pagination_since_id)
     end
   end
 
