@@ -8,7 +8,7 @@ const ColumnLink = ({ icon, text, to, href, method, badge }) => {
   if (href) {
     return (
       <a href={href} className='column-link' data-method={method}>
-        <i className={`fa fa-fw fa-${icon} column-link__icon`} />
+        <i className={`fas fa-fw fa-${icon} column-link__icon`} />
         {text}
         {badgeElement}
       </a>
@@ -16,7 +16,7 @@ const ColumnLink = ({ icon, text, to, href, method, badge }) => {
   } else {
     return (
       <Link to={to} className='column-link'>
-        <i className={`fa fa-fw fa-${icon} column-link__icon`} />
+        <i className={`fas fa-fw fa-${icon} column-link__icon`} />
         {text}
         {badgeElement}
       </Link>

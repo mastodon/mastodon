@@ -25,7 +25,7 @@ class LoadGap extends React.PureComponent {
 
     return (
       <button className='load-more load-gap' disabled={disabled} onClick={this.handleClick} aria-label={intl.formatMessage(messages.load_more)}>
-        <i className='fa fa-ellipsis-h' />
+        <i className='fas fa-ellipsis-h' />
       </button>
     );
   }

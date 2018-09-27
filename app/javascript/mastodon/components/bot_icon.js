@@ -13,7 +13,7 @@ export default class BotIcon extends ImmutablePureComponent {
 
     if (account.get('bot')) {
       return (
-        <i className='fa fa-fw fa-robot bot-icon' />
+        <i className='fas fa-fw fa-robot bot-icon' />
       );
     }
 

@@ -631,11 +631,13 @@
 
 .status__content,
 .reply-indicator__content {
+  position: relative;
   font-size: 15px;
   line-height: 20px;
   word-wrap: break-word;
   font-weight: 400;
   overflow: hidden;
+  text-overflow: ellipsis;
   white-space: pre-wrap;
   padding-top: 2px;
   color: $primary-text-color;
@@ -673,7 +675,7 @@
     &:hover {
       text-decoration: underline;
 
-      .fa {
+      .fas {
         color: lighten($dark-text-color, 7%);
       }
     }
@@ -688,7 +690,7 @@
       }
     }
 
-    .fa {
+    .fas {
       color: $dark-text-color;
     }
   }
@@ -718,6 +720,26 @@
     &.status__content__text--visible {
       display: block;
     }
+  }
+}
+
+.status__content.status__content--collapsed {
+  max-height: 20px * 15; // 15 lines is roughly above 500 characters
+}
+
+.status__content__read-more-button {
+  display: block;
+  font-size: 15px;
+  line-height: 20px;
+  color: lighten($ui-highlight-color, 8%);
+  border: 0;
+  background: transparent;
+  padding: 0;
+  padding-top: 8px;
+
+  &:hover,
+  &:active {
+    text-decoration: underline;
   }
 }
 
@@ -1474,7 +1496,7 @@ a.account__display-name {
   font-size: 15px;
   position: relative;
 
-  .fa {
+  .fas {
     color: $highlight-text-color;
   }
 
@@ -2022,7 +2044,7 @@ a.account__display-name {
   border-bottom: 2px solid lighten($ui-base-color, 8%);
   transition: all 50ms linear;
 
-  .fa {
+  .fas {
     font-weight: 400;
     font-size: 16px;
   }
@@ -3252,7 +3274,7 @@ a.status-card {
   overflow: hidden;
   display: flex;
 
-  .fa {
+  .fas {
     font-size: 34px;
     margin-right: 10px;
   }
@@ -3469,7 +3491,7 @@ a.status-card {
     outline: 0 !important;
   }
 
-  .fa {
+  .fas {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -3523,7 +3545,7 @@ a.status-card {
   font-size: 16px;
   cursor: default;
 
-  .fa {
+  .fas {
     display: inline-block;
     margin-right: 5px;
   }
@@ -3542,7 +3564,7 @@ a.status-card {
     font-size: 16px;
     color: $dark-text-color;
 
-    .fa {
+    .fas {
       display: inline-block;
       margin-right: 5px;
     }
@@ -4440,7 +4462,7 @@ a.status-card {
     justify-content: center;
     font-size: 26px;
 
-    .fa {
+    .fas {
       display: block;
     }
   }
@@ -4478,7 +4500,7 @@ a.status-card {
       display: block;
     }
 
-    .fa {
+    .fas {
       color: $dark-text-color;
     }
   }
@@ -5425,7 +5447,7 @@ noscript {
     font-size: 16px;
     cursor: default;
 
-    .fa {
+    .fas {
       display: inline-block;
       margin-right: 5px;
     }
