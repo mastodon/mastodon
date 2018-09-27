@@ -65,8 +65,8 @@ class Search extends React.PureComponent {
         </label>
 
         <div role='button' tabIndex='0' className='search__icon' onClick={this.handleClear}>
-          <i className={classNames('fas fa-search', { active: !hasValue })} />
-          <i aria-label={intl.formatMessage(messages.search)} className={classNames('fas fa-times-circle', { active: hasValue })} />
+          <i className={classNames('fa fa-search', { active: !hasValue })} />
+          <i aria-label={intl.formatMessage(messages.search)} className={classNames('fa fa-times-circle', { active: hasValue })} />
         </div>
       </div>
     );

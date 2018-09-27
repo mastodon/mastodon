@@ -173,8 +173,8 @@ export default class Card extends React.PureComponent {
 
             <div className='status-card__actions'>
               <div>
-                <button onClick={this.handleEmbedClick}><i className={`fas fa-${iconVariant}`} /></button>
-                <a href={card.get('url')} target='_blank' rel='noopener'><i className='fas fa-external-link-alt' /></a>
+                <button onClick={this.handleEmbedClick}><i className={`fa fa-${iconVariant}`} /></button>
+                <a href={card.get('url')} target='_blank' rel='noopener'><i className='fa fa-external-link' /></a>
               </div>
             </div>
           </div>

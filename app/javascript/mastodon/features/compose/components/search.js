@@ -116,8 +116,8 @@ class Search extends React.PureComponent {
         </label>
 
         <div role='button' tabIndex='0' className='search__icon' onClick={this.handleClear}>
-          <i className={`fas fa-search ${hasValue ? '' : 'active'}`} />
-          <i aria-label={intl.formatMessage(messages.placeholder)} className={`fas fa-times-circle ${hasValue ? 'active' : ''}`} />
+          <i className={`fa fa-search ${hasValue ? '' : 'active'}`} />
+          <i aria-label={intl.formatMessage(messages.placeholder)} className={`fa fa-times-circle ${hasValue ? 'active' : ''}`} />
         </div>
 
         <Overlay show={expanded && !hasValue} placement='bottom' target={this}>

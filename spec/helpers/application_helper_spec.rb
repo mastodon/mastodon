@@ -55,7 +55,7 @@ describe ApplicationHelper do
 
   describe 'fa_icon' do
     it 'returns a tag of fixed-width cog' do
-      expect(helper.fa_icon('cog fw')).to eq '<i class="fas fa-cog fa-fw"></i>'
+      expect(helper.fa_icon('cog fw')).to eq '<i class="fa fa-cog fa-fw"></i>'
     end
   end
 
