@@ -83,7 +83,7 @@ class Notification extends ImmutablePureComponent {
         <div className='notification notification-follow focusable' tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage({ id: 'notification.follow', defaultMessage: '{name} followed you' }, { name: account.get('acct') }), notification.get('created_at'))}>
           <div className='notification__message'>
             <div className='notification__favourite-icon-wrapper'>
-              <i className='fa fa-fw fa-user-plus' />
+              <i className='fas fa-fw fa-user-plus' />
             </div>
 
             <FormattedMessage id='notification.follow' defaultMessage='{name} followed you' values={{ name: link }} />
@@ -116,7 +116,7 @@ class Notification extends ImmutablePureComponent {
         <div className='notification notification-favourite focusable' tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage({ id: 'notification.favourite', defaultMessage: '{name} favourited your status' }, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
             <div className='notification__favourite-icon-wrapper'>
-              <i className='fa fa-fw fa-star star-icon' />
+              <i className='fas fa-fw fa-star star-icon' />
             </div>
             <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
           </div>
@@ -135,7 +135,7 @@ class Notification extends ImmutablePureComponent {
         <div className='notification notification-reblog focusable' tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage({ id: 'notification.reblog', defaultMessage: '{name} boosted your status' }, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
             <div className='notification__favourite-icon-wrapper'>
-              <i className='fa fa-fw fa-retweet' />
+              <i className='fas fa-fw fa-retweet' />
             </div>
             <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
           </div>
