@@ -1132,12 +1132,6 @@
     vertical-align: middle;
     margin-right: 5px;
   }
-
-  .bot-icon {
-    position: absolute;
-    bottom: -.333em;
-    left: -.333em;
-  }
 }
 
 a .account__avatar {
@@ -1355,22 +1349,10 @@ a .account__avatar {
 .account__header__avatar {
   background-size: 90px 90px;
   display: block;
-  font-size: 1.5em;
   height: 90px;
   margin: 0 auto 10px;
-  position: relative;
+  overflow: hidden;
   width: 90px;
-
-  .bot-icon {
-    color: $dark-text-color;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-
-    .light & {
-      color: $inverted-text-color;
-    }
-  }
 }
 
 .account-authorize {
