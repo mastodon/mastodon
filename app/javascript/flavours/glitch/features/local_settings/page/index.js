@@ -108,6 +108,14 @@ export default class LocalSettingsPage extends React.PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
+          item={['preselect_on_reply']}
+          id='mastodon-settings--preselect_on_reply'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.preselect_on_reply' defaultMessage='Pre-select usernames past the first when replying to a toot with multiple participants' />
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
           item={['confirm_missing_media_description']}
           id='mastodon-settings--confirm_missing_media_description'
           onChange={onChange}
