@@ -2,7 +2,7 @@
 
 >   Now with automated deploys!
 
-[![Build Status](https://img.shields.io/circleci/project/github/glitch-soc/mastodon.svg)](https://travis-ci.org/glitch-soc/mastodon)
+[![Build Status](https://img.shields.io/circleci/project/github/glitch-soc/mastodon.svg)][circleci]
 
 [circleci]: https://circleci.com/gh/glitch-soc/mastodon
 
