@@ -6,7 +6,7 @@ import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
 import classNames from 'classnames';
-import { autoPlayGif, displaySensitiveMedia } from '../initial_state';
+import { autoPlayGif, displayMedia } from '../initial_state';
 
 const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
@@ -197,7 +197,7 @@ class MediaGallery extends React.PureComponent {
   };
 
   state = {
-    visible: !this.props.sensitive || displaySensitiveMedia,
+    visible: displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all',
   };
 
   componentWillReceiveProps (nextProps) {

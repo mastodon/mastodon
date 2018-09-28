@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AutosuggestEmoji /> renders emoji with custom url 1`] = `
+<div
+  className="autosuggest-emoji"
+>
+  <img
+    alt="foobar"
+    className="emojione"
+    src="http://example.com/emoji.png"
+  />
+  :foobar:
+</div>
+`;
+
+exports[`<AutosuggestEmoji /> renders native emoji 1`] = `
+<div
+  className="autosuggest-emoji"
+>
+  <img
+    alt="💙"
+    className="emojione"
+    src="/emoji/1f499.svg"
+  />
+  :foobar:
+</div>
+`;

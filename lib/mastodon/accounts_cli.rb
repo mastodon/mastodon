@@ -170,8 +170,29 @@ module Mastodon
         exit(1)
       end
 
-      say("Deleting user with #{account.statuses_count}, this might take a while...")
+      say("Deleting user with #{account.statuses_count} statuses, this might take a while...")
       SuspendAccountService.new.call(account, remove_user: true)
+      say('OK', :green)
+    end
+
+    desc 'backup USERNAME', 'Request a backup for a user'
+    long_desc <<-LONG_DESC
+      Request a new backup for an account with a given USERNAME.
+
+      The backup will be created in Sidekiq asynchronously, and
+      the user will receive an e-mail with a link to it once
+      it's done.
+    LONG_DESC
+    def backup(username)
+      account = Account.find_local(username)
+
+      if account.nil?
+        say('No user with such username', :red)
+        exit(1)
+      end
+
+      backup = account.user.backups.create!
+      BackupWorker.perform_async(backup.id)
       say('OK', :green)
     end
 
