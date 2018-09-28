@@ -96,7 +96,7 @@ export default class LocalSettingsPage extends React.PureComponent {
       </div>
     ),
     ({ intl, onChange, settings }) => (
-      <div className='glitch local-settings_page compose_box_opts'>
+      <div className='glitch local-settings__page compose_box_opts'>
         <h1><FormattedMessage id='settings.compose_box_opts' defaultMessage='Compose box options' /></h1>
         <LocalSettingsPageItem
           settings={settings}
