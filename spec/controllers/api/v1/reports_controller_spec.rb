@@ -12,16 +12,6 @@ RSpec.describe Api::V1::ReportsController, type: :controller do
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
-  describe 'GET #index' do
-    let(:scopes) { 'read:reports' }
-
-    it 'returns http success' do
-      get :index
-
-      expect(response).to have_http_status(200)
-    end
-  end
-
   describe 'POST #create' do
     let(:scopes)  { 'write:reports' }
     let!(:status) { Fabricate(:status) }
