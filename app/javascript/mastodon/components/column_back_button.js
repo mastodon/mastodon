@@ -19,7 +19,7 @@ export default class ColumnBackButton extends React.PureComponent {
   render () {
     return (
       <button onClick={this.handleClick} className='column-back-button'>
-        <i className='fas fa-fw fa-chevron-left column-back-button__icon' />
+        <i className='fa fa-fw fa-chevron-left column-back-button__icon' />
         <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
       </button>
     );

@@ -675,7 +675,7 @@
     &:hover {
       text-decoration: underline;
 
-      .fas {
+      .fa {
         color: lighten($dark-text-color, 7%);
       }
     }
@@ -690,7 +690,7 @@
       }
     }
 
-    .fas {
+    .fa {
       color: $dark-text-color;
     }
   }
@@ -1132,12 +1132,6 @@
     vertical-align: middle;
     margin-right: 5px;
   }
-
-  .bot-icon {
-    position: absolute;
-    bottom: -.333em;
-    left: -.333em;
-  }
 }
 
 a .account__avatar {
@@ -1355,22 +1349,10 @@ a .account__avatar {
 .account__header__avatar {
   background-size: 90px 90px;
   display: block;
-  font-size: 1.5em;
   height: 90px;
   margin: 0 auto 10px;
-  position: relative;
+  overflow: hidden;
   width: 90px;
-
-  .bot-icon {
-    color: $dark-text-color;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-
-    .light & {
-      color: $inverted-text-color;
-    }
-  }
 }
 
 .account-authorize {
@@ -1496,7 +1478,7 @@ a.account__display-name {
   font-size: 15px;
   position: relative;
 
-  .fas {
+  .fa {
     color: $highlight-text-color;
   }
 
@@ -2044,7 +2026,7 @@ a.account__display-name {
   border-bottom: 2px solid lighten($ui-base-color, 8%);
   transition: all 50ms linear;
 
-  .fas {
+  .fa {
     font-weight: 400;
     font-size: 16px;
   }
@@ -3274,7 +3256,7 @@ a.status-card {
   overflow: hidden;
   display: flex;
 
-  .fas {
+  .fa {
     font-size: 34px;
     margin-right: 10px;
   }
@@ -3491,7 +3473,7 @@ a.status-card {
     outline: 0 !important;
   }
 
-  .fas {
+  .fa {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -3545,7 +3527,7 @@ a.status-card {
   font-size: 16px;
   cursor: default;
 
-  .fas {
+  .fa {
     display: inline-block;
     margin-right: 5px;
   }
@@ -3564,7 +3546,7 @@ a.status-card {
     font-size: 16px;
     color: $dark-text-color;
 
-    .fas {
+    .fa {
       display: inline-block;
       margin-right: 5px;
     }
@@ -4462,7 +4444,7 @@ a.status-card {
     justify-content: center;
     font-size: 26px;
 
-    .fas {
+    .fa {
       display: block;
     }
   }
@@ -4500,7 +4482,7 @@ a.status-card {
       display: block;
     }
 
-    .fas {
+    .fa {
       color: $dark-text-color;
     }
   }
@@ -5447,7 +5429,7 @@ noscript {
     font-size: 16px;
     cursor: default;
 
-    .fas {
+    .fa {
       display: inline-block;
       margin-right: 5px;
     }

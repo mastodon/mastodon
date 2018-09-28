@@ -262,11 +262,11 @@ class OnboardingModal extends React.PureComponent {
 
     const nextOrDoneBtn = hasMore ? (
       <button onClick={this.handleNext} className='onboarding-modal__nav onboarding-modal__next shake-bottom'>
-        <FormattedMessage id='onboarding.next' defaultMessage='Next' /> <i className='fas fa-fw fa-chevron-right' />
+        <FormattedMessage id='onboarding.next' defaultMessage='Next' /> <i className='fa fa-fw fa-chevron-right' />
       </button>
     ) : (
       <button onClick={this.handleClose} className='onboarding-modal__nav onboarding-modal__done shake-bottom'>
-        <FormattedMessage id='onboarding.done' defaultMessage='Done' /> <i className='fas fa-fw fa-check' />
+        <FormattedMessage id='onboarding.done' defaultMessage='Done' /> <i className='fa fa-fw fa-check' />
       </button>
     );
 

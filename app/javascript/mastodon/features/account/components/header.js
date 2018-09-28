@@ -3,7 +3,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import IconButton from '../../../components/icon_button';
-import BotIcon from '../../../components/bot_icon';
 import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -68,7 +67,6 @@ class Avatar extends ImmutablePureComponent {
             onBlur={this.handleMouseOut}
           >
             <span style={{ display: 'none' }}>{account.get('acct')}</span>
-            <BotIcon account={account} />
           </a>
         )}
       </Motion>
@@ -140,7 +138,7 @@ class Header extends ImmutablePureComponent {
     } else {
       actionBtn = (
         <div className='account--action-button'>
-          <IconButton size={26} icon='pencil-alt' title={intl.formatMessage(messages.edit_profile)} onClick={this.openEditProfile} />
+          <IconButton size={26} icon='pencil' title={intl.formatMessage(messages.edit_profile)} onClick={this.openEditProfile} />
         </div>
       );
     }
@@ -150,7 +148,7 @@ class Header extends ImmutablePureComponent {
     }
 
     if (account.get('locked')) {
-      lockedIcon = <i className='fas fa-lock' />;
+      lockedIcon = <i className='fa fa-lock' />;
     }
 
     const content         = { __html: account.get('note_emojified') };
@@ -177,7 +175,7 @@ class Header extends ImmutablePureComponent {
                   <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} />
 
                   <dd className={pair.get('verified_at') && 'verified'} title={pair.get('value_plain')}>
-                    {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><i className='fas fa-check verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
+                    {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><i className='fa fa-check verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
                   </dd>
                 </dl>
               ))}

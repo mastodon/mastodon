@@ -95,22 +95,22 @@ class ColumnHeader extends React.PureComponent {
     }
 
     if (multiColumn && pinned) {
-      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={onPin}><i className='fas fa-times' /> <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' /></button>;
+      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={onPin}><i className='fa fa fa-times' /> <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' /></button>;
 
       moveButtons = (
         <div key='move-buttons' className='column-header__setting-arrows'>
-          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='text-btn column-header__setting-btn' onClick={this.handleMoveLeft}><i className='fas fa-chevron-left' /></button>
-          <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='text-btn column-header__setting-btn' onClick={this.handleMoveRight}><i className='fas fa-chevron-right' /></button>
+          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='text-btn column-header__setting-btn' onClick={this.handleMoveLeft}><i className='fa fa-chevron-left' /></button>
+          <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='text-btn column-header__setting-btn' onClick={this.handleMoveRight}><i className='fa fa-chevron-right' /></button>
         </div>
       );
     } else if (multiColumn) {
-      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={onPin}><i className='fas fa-plus' /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
+      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={onPin}><i className='fa fa fa-plus' /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
     }
 
     if (!pinned && (multiColumn || showBackButton)) {
       backButton = (
         <button onClick={this.handleBackClick} className='column-header__back-button'>
-          <i className='fas fa-fw fa-chevron-left column-back-button__icon' />
+          <i className='fa fa-fw fa-chevron-left column-back-button__icon' />
           <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
         </button>
       );
@@ -126,7 +126,7 @@ class ColumnHeader extends React.PureComponent {
     }
 
     if (children || multiColumn) {
-      collapseButton = <button className={collapsibleButtonClassName} title={formatMessage(collapsed ? messages.show : messages.hide)} aria-label={formatMessage(collapsed ? messages.show : messages.hide)} aria-pressed={collapsed ? 'false' : 'true'} onClick={this.handleToggleClick}><i className='fas fa-sliders-h' /></button>;
+      collapseButton = <button className={collapsibleButtonClassName} title={formatMessage(collapsed ? messages.show : messages.hide)} aria-label={formatMessage(collapsed ? messages.show : messages.hide)} aria-pressed={collapsed ? 'false' : 'true'} onClick={this.handleToggleClick}><i className='fa fa-sliders' /></button>;
     }
 
     const hasTitle = icon && title;
@@ -136,7 +136,7 @@ class ColumnHeader extends React.PureComponent {
         <h1 className={buttonClassName}>
           {hasTitle && (
             <button onClick={this.handleTitleClick}>
-              <i className={`fas fa-fw fa-${icon} column-header__icon`} />
+              <i className={`fa fa-fw fa-${icon} column-header__icon`} />
               {title}
             </button>
           )}

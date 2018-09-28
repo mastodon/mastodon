@@ -353,10 +353,10 @@ class Video extends React.PureComponent {
 
           <div className='video-player__buttons-bar'>
             <div className='video-player__buttons left'>
-              <button type='button' aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} onClick={this.togglePlay}><i className={classNames('fas fa-fw', { 'fa-play': paused, 'fa-pause': !paused })} /></button>
-              <button type='button' aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} onClick={this.toggleMute}><i className={classNames('fas fa-fw', { 'fa-volume-off': muted, 'fa-volume-up': !muted })} /></button>
+              <button type='button' aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} onClick={this.togglePlay}><i className={classNames('fa fa-fw', { 'fa-play': paused, 'fa-pause': !paused })} /></button>
+              <button type='button' aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} onClick={this.toggleMute}><i className={classNames('fa fa-fw', { 'fa-volume-off': muted, 'fa-volume-up': !muted })} /></button>
 
-              {!onCloseVideo && <button type='button' aria-label={intl.formatMessage(messages.hide)} onClick={this.toggleReveal}><i className='fas fa-fw fa-eye' /></button>}
+              {!onCloseVideo && <button type='button' aria-label={intl.formatMessage(messages.hide)} onClick={this.toggleReveal}><i className='fa fa-fw fa-eye' /></button>}
 
               {(detailed || fullscreen) &&
                 <span>
@@ -368,9 +368,9 @@ class Video extends React.PureComponent {
             </div>
 
             <div className='video-player__buttons right'>
-              {(!fullscreen && onOpenVideo) && <button type='button' aria-label={intl.formatMessage(messages.expand)} onClick={this.handleOpenVideo}><i className='fas fa-fw fa-expand' /></button>}
-              {onCloseVideo && <button type='button' aria-label={intl.formatMessage(messages.close)} onClick={this.handleCloseVideo}><i className='fas fa-fw fa-compress' /></button>}
-              <button type='button' aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} onClick={this.toggleFullscreen}><i className={classNames('fas fa-fw', { 'fa-expand-arrows-alt': !fullscreen, 'fa-compress': fullscreen })} /></button>
+              {(!fullscreen && onOpenVideo) && <button type='button' aria-label={intl.formatMessage(messages.expand)} onClick={this.handleOpenVideo}><i className='fa fa-fw fa-expand' /></button>}
+              {onCloseVideo && <button type='button' aria-label={intl.formatMessage(messages.close)} onClick={this.handleCloseVideo}><i className='fa fa-fw fa-compress' /></button>}
+              <button type='button' aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} onClick={this.toggleFullscreen}><i className={classNames('fa fa-fw', { 'fa-arrows-alt': !fullscreen, 'fa-compress': fullscreen })} /></button>
             </div>
           </div>
         </div>

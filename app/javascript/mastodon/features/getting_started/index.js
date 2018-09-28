@@ -109,7 +109,7 @@ class GettingStarted extends ImmutablePureComponent {
     if (!multiColumn) {
       navItems.push(
         <ColumnSubheading key={i++} text={intl.formatMessage(messages.settings_subheading)} />,
-        <ColumnLink key={i++} icon='cogs' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
+        <ColumnLink key={i++} icon='gears' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
       );
 
       height += 34 + 48;
@@ -120,7 +120,7 @@ class GettingStarted extends ImmutablePureComponent {
         {multiColumn && <div className='column-header__wrapper'>
           <h1 className='column-header'>
             <button>
-              <i className='fas fa-bars fa-fw column-header__icon' />
+              <i className='fa fa-bars fa-fw column-header__icon' />
               <FormattedMessage id='getting_started.heading' defaultMessage='Getting started' />
             </button>
           </h1>

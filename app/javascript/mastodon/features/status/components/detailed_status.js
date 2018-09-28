@@ -94,10 +94,10 @@ export default class DetailedStatus extends ImmutablePureComponent {
     }
 
     if (status.get('visibility') === 'private') {
-      reblogLink = <i className={`fas fa-${reblogIcon}`} />;
+      reblogLink = <i className={`fa fa-${reblogIcon}`} />;
     } else {
       reblogLink = (<Link to={`/statuses/${status.get('id')}/reblogs`} className='detailed-status__link'>
-        <i className={`fas fa-${reblogIcon}`} />
+        <i className={`fa fa-${reblogIcon}`} />
         <span className='detailed-status__reblogs'>
           <FormattedNumber value={status.get('reblogs_count')} />
         </span>
@@ -119,7 +119,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
           <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener'>
             <FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
           </a>{applicationLink} · {reblogLink} · <Link to={`/statuses/${status.get('id')}/favourites`} className='detailed-status__link'>
-            <i className='fas fa-star' />
+            <i className='fa fa-star' />
             <span className='detailed-status__favorites'>
               <FormattedNumber value={status.get('favourites_count')} />
             </span>

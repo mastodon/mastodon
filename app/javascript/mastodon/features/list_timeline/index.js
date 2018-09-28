@@ -150,11 +150,11 @@ class ListTimeline extends React.PureComponent {
         >
           <div className='column-header__links'>
             <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleEditClick}>
-              <i className='fas fa-pencil-alt' /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
+              <i className='fa fa-pencil' /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
             </button>
 
             <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleDeleteClick}>
-              <i className='fas fa-trash-alt' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
+              <i className='fa fa-trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
           </div>
 
