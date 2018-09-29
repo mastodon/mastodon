@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_20_232245) do
+ActiveRecord::Schema.define(version: 2018_09_29_222014) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -123,6 +124,18 @@ ActiveRecord::Schema.define(version: 2018_08_20_232245) do
     t.string "uri"
     t.index ["account_id", "target_account_id"], name: "index_blocks_on_account_id_and_target_account_id", unique: true
     t.index ["target_account_id"], name: "index_blocks_on_target_account_id"
+  end
+
+  create_table "conversation_accounts", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "conversation_id"
+    t.bigint "participant_account_ids", default: [], null: false, array: true
+    t.bigint "status_ids", default: [], null: false, array: true
+    t.bigint "last_status_id"
+    t.index ["account_id", "conversation_id", "participant_account_ids"], name: "index_unique_conversations", unique: true
+    t.index ["account_id"], name: "index_conversation_accounts_on_account_id"
+    t.index ["conversation_id"], name: "index_conversation_accounts_on_conversation_id"
+    t.index ["last_status_id"], name: "index_conversation_accounts_on_last_status_id"
   end
 
   create_table "conversation_mutes", force: :cascade do |t|
