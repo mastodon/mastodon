@@ -186,6 +186,7 @@ ActiveRecord::Schema.define(version: 2018_10_18_205649) do
     t.datetime "updated_at", null: false
     t.integer "severity", default: 0
     t.boolean "reject_media", default: false, null: false
+    t.boolean "reject_reports", default: false, null: false
     t.index ["domain"], name: "index_domain_blocks_on_domain", unique: true
   end
 
