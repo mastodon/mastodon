@@ -20,7 +20,7 @@ module Paginable
       query
     }
 
-    scope :paginate_by_id, ->(limit, **options) {
+    scope :paginate_by_id, ->(limit, options = {}) {
       if options[:min_id].present?
         paginate_by_min_id(limit, options[:min_id]).reverse
       else
