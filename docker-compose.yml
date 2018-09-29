@@ -61,12 +61,12 @@ services:
       - db
       - redis
 
-  sidekiq_default:
+  sidekiq_default_first:
     build: .
     image: tootsuite/mastodon
     restart: always
     env_file: .env.production
-    command: bundle exec sidekiq -c 24 -q default
+    command: bundle exec sidekiq -c 24 -q default -q push
     depends_on:
       - db
       - redis
@@ -76,12 +76,12 @@ services:
     volumes:
       - ./public/system:/mastodon/public/system
 
-  sidekiq_push_a:
+  sidekiq_push_first:
     build: .
     image: gargron/mastodon
     restart: always
     env_file: .env.production
-    command: bundle exec sidekiq -c 12 -q push -q default
+    command: bundle exec sidekiq -c 24 -q push -q default
     depends_on:
       - db
       - redis
@@ -91,42 +91,12 @@ services:
     volumes:
       - ./public/system:/mastodon/public/system
 
-  sidekiq_push_b:
+  sidekiq_all:
     build: .
     image: gargron/mastodon
     restart: always
     env_file: .env.production
-    command: bundle exec sidekiq -c 12 -q push -q default
-    depends_on:
-      - db
-      - redis
-    networks:
-      - external_network
-      - internal_network
-    volumes:
-      - ./public/system:/mastodon/public/system
-
-  sidekiq_push_c:
-    build: .
-    image: gargron/mastodon
-    restart: always
-    env_file: .env.production
-    command: bundle exec sidekiq -c 12 -q push -q default
-    depends_on:
-      - db
-      - redis
-    networks:
-      - external_network
-      - internal_network
-    volumes:
-      - ./public/system:/mastodon/public/system
-
-  sidekiq_mailers_pull:
-    build: .
-    image: gargron/mastodon
-    restart: always
-    env_file: .env.production
-    command: bundle exec sidekiq -c 12 -q mailers -q pull
+    command: bundle exec sidekiq -c 24 -q default,1 -q push,1 -q mailers,1 -q pull,1
     depends_on:
       - db
       - redis
