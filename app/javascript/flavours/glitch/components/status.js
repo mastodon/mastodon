@@ -566,7 +566,7 @@ export default class Status extends ImmutablePureComponent {
             parseClick={parseClick}
             disabled={!router}
           />
-          {!isCollapsed || !muted ? (
+          {!isCollapsed || !(muted || !settings.getIn(['collapsed', 'show_action_bar'])) ? (
             <StatusActionBar
               {...other}
               status={status}

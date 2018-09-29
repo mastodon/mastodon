@@ -18,6 +18,7 @@ const messages = {
   'settings.auto_collapse_notifications': 'Notifications',
   'settings.auto_collapse_reblogs': 'Boosts',
   'settings.auto_collapse_replies': 'Replies',
+  'settings.show_action_bar': 'Show action buttons in collapsed toots',
   'settings.close': 'Close',
   'settings.collapsed_statuses': 'Collapsed toots',
   'settings.enable_collapsed': 'Enable collapsed toots',

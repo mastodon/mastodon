@@ -269,6 +269,18 @@ export default class LocalSettingsPage extends React.PureComponent {
             <FormattedMessage id='settings.image_backgrounds_media' defaultMessage='Preview collapsed toot media' />
           </LocalSettingsPageItem>
         </section>
+        <section>
+          <h2></h2>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['collapsed', 'show_action_bar']}
+            id='mastodon-settings--collapsed-show-action-bar'
+            onChange={onChange}
+            dependsOn={[['collapsed', 'enabled']]}
+          >
+            <FormattedMessage id='settings.show_action_bar' defaultMessage='Show action buttons in collapsed toots' />
+          </LocalSettingsPageItem>
+        </section>
       </div>
     ),
     ({ onChange, settings }) => (
