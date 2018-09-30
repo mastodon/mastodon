@@ -17,7 +17,8 @@ export default class ColumnSettings extends React.PureComponent {
   };
 
   state = {
-    open: this.tags().length > 0
+    open: this.tags().length > 0,
+    mode: this.props.settings.get('tagMode') || 'all'
   };
 
   tags() {
@@ -29,6 +30,16 @@ export default class ColumnSettings extends React.PureComponent {
   toggle(settings, onChange, value) {
     if (!value && this.tags().length > 0) { onChange('tags', []) }
     this.setState({ open: !this.state.open })
+  };
+
+  isChecked(value) {
+    return this.state.mode == value
+  };
+
+  check(value) {
+    return () => {
+      this.setState({ mode: value })
+    }
   };
 
   render () {
@@ -48,8 +59,8 @@ export default class ColumnSettings extends React.PureComponent {
           </div>
         </div>
         {this.state.open &&
-          <div className="column-setting__hashtags">
-            <div className="column-setting__row">
+          <div className='column-settings__hashtags'>
+            <div className='column-settings__section'>
               <AsyncSelect
                 isMulti
                 autoFocus
@@ -58,13 +69,30 @@ export default class ColumnSettings extends React.PureComponent {
                 settingPath={['tags']}
                 onChange={(value) => { onChange('tags', value) }}
                 loadOptions={onLoad}
-                className="column-settings__hashtag-select"
-                name="tags" />
+                className='column-settings__hashtag-select'
+                name='tags' />
             </div>
-            <div className='column-settings__row'>
-              <SettingToggle prefix='additional_hashtags_or' settings={settings} settingPath={['orOperation']} onChange={onChange} label={
-                <FormattedMessage id='hashtag.column_settings.include_tag_intersection' defaultMessage='Display toots with all of these hashtags' />
-              } />
+            <div className='column-settings__section'>
+              <ul>
+                <li className='radio'>
+                  <label>
+                    <input className='radio_buttons' type='radio' value='all' name='tagMode' checked={this.isChecked('all')} onChange={this.check('all')} id='tag_mode_and' />
+                    <FormattedMessage id='hashtag.column_settings.all_tags_mode' defaultMessage='All of these tags' />
+                  </label>
+                </li>
+                <li className='radio'>
+                  <label>
+                    <input className='radio_buttons' type='radio' value='or' name='tagMode' checked={this.isChecked('or')} onChange={this.check('or')} id='tag_mode_or' />
+                    <FormattedMessage id='hashtag.column_settings.any_tags_mode' defaultMessage='Any of these tags' />
+                  </label>
+                </li>
+                <li className='radio'>
+                  <label>
+                    <input className='radio_buttons' type='radio' value='not' name='tagMode' checked={this.isChecked('not')} onChange={this.check('not')} id='tag_mode_not' />
+                    <FormattedMessage id='hashtag.column_settings.none_tags_mode' defaultMessage='None of these tags' />
+                  </label>
+                </li>
+              </ul>
             </div>
           </div>
         }
