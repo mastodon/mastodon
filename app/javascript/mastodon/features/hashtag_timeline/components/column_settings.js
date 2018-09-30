@@ -42,6 +42,15 @@ export default class ColumnSettings extends React.PureComponent {
     }
   };
 
+  modeOption (value) {
+    return <li className='radio'>
+            <label>
+              <input className='radio_buttons' type='radio' value={value} name='tagMode' checked={this.isChecked(value)} onChange={this.check(value)} id={`tag_mode_${value}`} />
+              <FormattedMessage id={`hashtag.column_settings.${value}_tags_mode`} />
+            </label>
+          </li>
+  }
+
   render () {
     const { settings, onChange, onLoad } = this.props;
 
@@ -74,24 +83,9 @@ export default class ColumnSettings extends React.PureComponent {
             </div>
             <div className='column-settings__section'>
               <ul>
-                <li className='radio'>
-                  <label>
-                    <input className='radio_buttons' type='radio' value='all' name='tagMode' checked={this.isChecked('all')} onChange={this.check('all')} id='tag_mode_and' />
-                    <FormattedMessage id='hashtag.column_settings.all_tags_mode' defaultMessage='All of these tags' />
-                  </label>
-                </li>
-                <li className='radio'>
-                  <label>
-                    <input className='radio_buttons' type='radio' value='or' name='tagMode' checked={this.isChecked('or')} onChange={this.check('or')} id='tag_mode_or' />
-                    <FormattedMessage id='hashtag.column_settings.any_tags_mode' defaultMessage='Any of these tags' />
-                  </label>
-                </li>
-                <li className='radio'>
-                  <label>
-                    <input className='radio_buttons' type='radio' value='not' name='tagMode' checked={this.isChecked('not')} onChange={this.check('not')} id='tag_mode_not' />
-                    <FormattedMessage id='hashtag.column_settings.none_tags_mode' defaultMessage='None of these tags' />
-                  </label>
-                </li>
+                {this.modeOption('all')}
+                {this.modeOption('any')}
+                {this.modeOption('none')}
               </ul>
             </div>
           </div>
