@@ -71,7 +71,7 @@ export default class Favourites extends ImmutablePureComponent {
     const pinned = !!columnId;
 
     return (
-      <Column ref={this.setRef} name='favourites'>
+      <Column ref={this.setRef} name='favourites' label={intl.formatMessage(messages.heading)}>
         <ColumnHeader
           icon='star'
           title={intl.formatMessage(messages.heading)}

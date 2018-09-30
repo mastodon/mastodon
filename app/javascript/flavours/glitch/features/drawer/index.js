@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { defineMessages } from 'react-intl';
 import classNames from 'classnames';
 
 //  Actions.
@@ -24,6 +25,11 @@ import DrawerSearch from './search';
 //  Utils.
 import { me } from 'flavours/glitch/util/initial_state';
 import { wrap } from 'flavours/glitch/util/redux_helpers';
+
+//  Messages.
+const messages = defineMessages({
+  compose: { id: 'navigation_bar.compose', defaultMessage: 'Compose new toot' },
+});
 
 //  State mapping.
 const mapStateToProps = state => ({
@@ -96,7 +102,7 @@ class Drawer extends React.Component {
 
     //  The result.
     return (
-      <div className={computedClass}>
+      <div className={computedClass} role='region' aria-label={intl.formatMessage(messages.compose)}>
         {multiColumn ? (
           <DrawerHeader
             columns={columns}

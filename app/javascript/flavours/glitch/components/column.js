@@ -9,6 +9,7 @@ export default class Column extends React.PureComponent {
     children: PropTypes.node,
     extraClasses: PropTypes.string,
     name: PropTypes.string,
+    label: PropTypes.string,
   };
 
   scrollTop () {
@@ -42,10 +43,10 @@ export default class Column extends React.PureComponent {
   }
 
   render () {
-    const { children, extraClasses, name } = this.props;
+    const { children, extraClasses, name, label } = this.props;
 
     return (
-      <div role='region' data-column={name} className={`column ${extraClasses || ''}`} ref={this.setRef}>
+      <div role='region' aria-label={label} data-column={name} className={`column ${extraClasses || ''}`} ref={this.setRef}>
         {children}
       </div>
     );

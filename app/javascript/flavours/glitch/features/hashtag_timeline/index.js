@@ -88,7 +88,7 @@ export default class HashtagTimeline extends React.PureComponent {
     const pinned = !!columnId;
 
     return (
-      <Column ref={this.setRef} name='hashtag'>
+      <Column ref={this.setRef} name='hashtag' label={`#${id}`}>
         <ColumnHeader
           icon='hashtag'
           active={hasUnread}
