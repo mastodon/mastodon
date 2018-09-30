@@ -18,7 +18,7 @@ export default class ColumnSettings extends React.PureComponent {
 
   state = {
     open: this.tags().length > 0,
-    mode: this.props.settings.get('tagMode') || 'all'
+    mode: this.props.settings.get('tagMode') || 'any'
   };
 
   tags() {
@@ -49,7 +49,7 @@ export default class ColumnSettings extends React.PureComponent {
             name='tagMode'
             checked={this.state.mode == value}
             onChange={() => { this.setMode(value) }} />
-          <FormattedMessage id={`hashtag.column_settings.${value}_tags_mode`} />
+          <FormattedMessage id={`hashtag.column_settings.tag_mode.${value}`} />
         </label>
       </li>
     );
@@ -87,8 +87,8 @@ export default class ColumnSettings extends React.PureComponent {
             </div>
             <div className='column-settings__section'>
               <ul>
-                {this.modeOption('all')}
                 {this.modeOption('any')}
+                {this.modeOption('all')}
                 {this.modeOption('none')}
               </ul>
             </div>
