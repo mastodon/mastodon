@@ -27,28 +27,32 @@ export default class ColumnSettings extends React.PureComponent {
     })
   };
 
-  toggle(settings, onChange, value) {
-    if (!value && this.tags().length > 0) { onChange('tags', []) }
+  toggleOpen () {
+    if (!this.state.open && this.tags().length > 0) { this.props.onChange('tags', []) }
     this.setState({ open: !this.state.open })
   };
 
-  isChecked(value) {
-    return this.state.mode == value
-  };
-
-  check(value) {
-    return () => {
-      this.setState({ mode: value })
-    }
+  setMode (value) {
+    this.props.onChange('tagMode', value)
+    this.setState({ mode: value })
   };
 
   modeOption (value) {
-    return <li className='radio'>
-            <label>
-              <input className='radio_buttons' type='radio' value={value} name='tagMode' checked={this.isChecked(value)} onChange={this.check(value)} id={`tag_mode_${value}`} />
-              <FormattedMessage id={`hashtag.column_settings.${value}_tags_mode`} />
-            </label>
-          </li>
+    return (
+      <li className='radio'>
+        <label>
+          <input
+            id={`tag_mode_${value}`}
+            className='radio_buttons'
+            type='radio'
+            value={value}
+            name='tagMode'
+            checked={this.state.mode == value}
+            onChange={() => { this.setMode(value) }} />
+          <FormattedMessage id={`hashtag.column_settings.${value}_tags_mode`} />
+        </label>
+      </li>
+    );
   }
 
   render () {
@@ -60,7 +64,7 @@ export default class ColumnSettings extends React.PureComponent {
           <div className='setting-toggle'>
             <Toggle
               id='hashtag.column_settings.tag_toggle'
-              onChange={() => { this.toggle(settings, onChange, !this.state.open) }}
+              onChange={this.toggleOpen}
               checked={this.state.open} />
             <span className='setting-toggle__label'>
               <FormattedMessage id='hashtag.column_settings.tag_toggle' defaultMessage='Include additional tags in this column' />
