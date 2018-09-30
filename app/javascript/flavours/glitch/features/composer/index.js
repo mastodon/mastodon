@@ -102,6 +102,7 @@ function mapStateToProps (state) {
     anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
     spoilersAlwaysOn: spoilersAlwaysOn,
     mediaDescriptionConfirmation: state.getIn(['local_settings', 'confirm_missing_media_description']),
+    preselectOnReply: state.getIn(['local_settings', 'preselect_on_reply']),
   };
 };
 
@@ -328,13 +329,14 @@ class Composer extends React.Component {
       isSubmitting,
       preselectDate,
       text,
+      preselectOnReply,
     } = this.props;
     let selectionEnd, selectionStart;
 
     //  Caret/selection handling.
     if (focusDate !== prevProps.focusDate) {
       switch (true) {
-      case preselectDate !== prevProps.preselectDate:
+      case preselectDate !== prevProps.preselectDate && preselectOnReply:
         selectionStart = text.search(/\s/) + 1;
         selectionEnd = text.length;
         break;
@@ -534,6 +536,7 @@ Composer.propTypes = {
   anyMedia: PropTypes.bool,
   spoilersAlwaysOn: PropTypes.bool,
   mediaDescriptionConfirmation: PropTypes.bool,
+  preselectOnReply: PropTypes.bool,
 
   //  Dispatch props.
   onCancelReply: PropTypes.func,
