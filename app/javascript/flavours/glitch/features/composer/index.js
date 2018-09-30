@@ -347,6 +347,7 @@ class Composer extends React.Component {
       if (textarea) {
         textarea.setSelectionRange(selectionStart, selectionEnd);
         textarea.focus();
+        textarea.scrollIntoView();
       }
 
     //  Refocuses the textarea after submitting.
