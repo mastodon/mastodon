@@ -12,7 +12,7 @@ gem 'thor', '~> 0.20'
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.0'
 gem 'makara', '~> 0.4'
-gem 'pghero', '~> 2.1'
+gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.2', '< 2.3'
 
 gem 'aws-sdk-s3', '~> 1.9', require: false
@@ -24,13 +24,13 @@ gem 'streamio-ffmpeg', '~> 3.0'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.5'
-gem 'bootsnap', '~> 1.3'
+gem 'bootsnap', '~> 1.3', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.6'
 gem 'iso-639'
 gem 'chewy', '~> 5.0'
 gem 'cld3', '~> 3.2.0'
-gem 'devise', '~> 4.4'
+gem 'devise', '~> 4.5'
 gem 'devise-two-factor', '~> 3.0'
 
 group :pam_authentication, optional: true do
@@ -57,10 +57,10 @@ gem 'httplog', '~> 1.0'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.1'
 gem 'link_header', '~> 0.0'
-gem 'mime-types', '~> 3.1', require: 'mime/types/columnar'
+gem 'mime-types', '~> 3.2', require: 'mime/types/columnar'
 gem 'nokogiri', '~> 1.8'
 gem 'nsa', '~> 0.2'
-gem 'oj', '~> 3.5'
+gem 'oj', '~> 3.6'
 gem 'ostatus2', '~> 2.0'
 gem 'ox', '~> 2.9'
 gem 'posix-spawn', git: 'https://github.com/rtomayko/posix-spawn', ref: '58465d2e213991f8afb13b984854a49fcdcc980c'
@@ -75,8 +75,8 @@ gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 0.10'
 gem 'ruby-progressbar', '~> 1.4'
 gem 'sanitize', '~> 4.6'
-gem 'sidekiq', '~> 5.1'
-gem 'sidekiq-scheduler', '~> 2.2'
+gem 'sidekiq', '~> 5.2'
+gem 'sidekiq-scheduler', '~> 3.0'
 gem 'sidekiq-unique-jobs', '~> 5.0'
 gem 'sidekiq-bulk', '~>0.1.1'
 gem 'simple-navigation', '~> 4.0'
@@ -85,7 +85,7 @@ gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.1.3'
 gem 'strong_migrations', '~> 0.2'
 gem 'tty-command', '~> 0.8', require: false
-gem 'tty-prompt', '~> 0.16', require: false
+gem 'tty-prompt', '~> 0.17', require: false
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2018'
 gem 'webpacker', '~> 3.5'
@@ -104,7 +104,7 @@ group :development, :test do
 end
 
 group :production, :test do
-  gem 'private_address_check', '~> 0.4.1'
+  gem 'private_address_check', '~> 0.5'
 end
 
 group :test do
@@ -133,7 +133,7 @@ group :development do
   gem 'bundler-audit', '~> 0.6', require: false
   gem 'scss_lint', '~> 0.57', require: false
 
-  gem 'capistrano', '~> 3.10'
+  gem 'capistrano', '~> 3.11'
   gem 'capistrano-rails', '~> 1.3'
   gem 'capistrano-rbenv', '~> 2.1'
   gem 'capistrano-yarn', '~> 2.0'
