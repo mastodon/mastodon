@@ -1,3 +1,117 @@
 ---
 cy:
-  doorkeeper: {}
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Enw rhaglen
+        redirect_uri: Ailgyfeirio URI
+        scopes: Cwmpasau
+        website: Gwefan cais
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: ni all gynnwys dernyn.
+              invalid_uri: rhaid iddo fod yn URI cyfredol.
+              relative_uri: rhaid iddo fod yn URI absoliwt.
+              secured_uri: rhaid iddo fod yn URI HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Awdurdodi
+        cancel: Diddymu
+        destroy: Dinistrio
+        edit: Golygu
+        submit: Cyflwyno
+      confirmations:
+        destroy: Ydych chi'n sicr?
+      edit:
+        title: Golygwch rhaglen
+      form:
+        error: Wps! Gwiriwch eich ffurflen am gamgymeriadau posib
+      help:
+        native_redirect_uri: Defnyddiwch %{native_redirect_uri} ar gyfer profion lleol
+        redirect_uri: Defnyddiwch un llinell i bob URI
+      index:
+        application: Rhaglen
+        delete: Dileu
+        name: Enw
+        new: Rhaglen newydd
+        scopes: Cwmpasau
+        show: Dangoswch
+        title: Eich rhaglenni
+      new:
+        title: Rhaglen newydd
+      show:
+        actions: Gweithredoedd
+        application_id: Allwedd cleient
+        scopes: Cwmpasau
+        secret: Cyfrinach Cleient
+        title: 'Rhaglen: %{name}'
+    authorizations:
+      buttons:
+        authorize: Awdurdodi
+        deny: Gwrthod
+      error:
+        title: Mae rhywbeth wedi mynd o'i le
+      new:
+        able_to: Mi fydd a'r gallu i
+        title: Angen awdurdodi
+      show:
+        title: Copiwch y côd awdurdodi a gludiwch i'r rhaglen
+    authorized_applications:
+      buttons:
+        revoke: Diddymu
+      confirmations:
+        revoke: Ydych chi'n sicr?
+      index:
+        application: Rhaglen
+        created_at: Awdurdodedig
+        scopes: Cwmpasau
+        title: Eich rhaglenni awdurdodedig
+    errors:
+      messages:
+        access_denied: Mae perchennog yr adnodd neu'r gweinydd awdurdodi wedi atal y cais.
+        invalid_redirect_uri: Nid yw'r uri ailgyfeirio cynnwysiedig yn gyfredol.
+        invalid_request: Nid yw'r cais yn cynnwys paramedr angenrheidiol, yn cynnwys paramader paramedr nad yw'n cael ei gefnogi, neu wedi ei gamffurfio mewn rhyw fodd arall.
+    flash:
+      applications:
+        create:
+          notice: Crewyd y rhaglen.
+        destroy:
+          notice: Dilewyd y rhaglen.
+        update:
+          notice: Diweddarwyd y rhaglen.
+      authorized_applications:
+        destroy:
+          notice: Diddymwyd y cais.
+    layouts:
+      admin:
+        nav:
+          applications: Rhaglenni
+          oauth2_provider: Darparwr OAuth2
+      application:
+        title: Mae awdurdodiad OAuth yn ofynnol
+    scopes:
+      follow: addaswch berthnasau cyfrif
+      push: derbyniwch eich hysbysiadau PUSH
+      read: darllenwch holl ddata eich cyfrif
+      read:accounts: gwelwch wybodaeth y cyfrif
+      read:blocks: gwlewch eich blociau
+      read:favourites: gwelwch eich ffefrynnau
+      read:filters: gwelwch eich hidlwyr
+      read:follows: gwelwch eich dilynwyr
+      read:lists: gwelwch eich rhestrau
+      read:notifications: gwelwch eich hysbysiadau
+      read:reports: gwelwch eich adroddiadau
+      read:statuses: gwelwch pob statws
+      write: addaswch ddata eich cyfri
+      write:accounts: addaswch eich proffil
+      write:blocks: blociwch gyfrifon a parthau
+      write:filters: crewch hidlwyr
+      write:follows: dilynwch bobl
+      write:lists: crëwch restrau
+      write:media: uwchlwythwch ffeiliau cyfryngau
+      write:mutes: tawelwch bobl a sgyrsiau
+      write:notifications: cliriwch eich hysbysiadau

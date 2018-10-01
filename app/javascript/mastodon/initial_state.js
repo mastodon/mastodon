@@ -5,7 +5,8 @@ const getMeta = (prop) => initialState && initialState.meta && initialState.meta
 
 export const reduceMotion = getMeta('reduce_motion');
 export const autoPlayGif = getMeta('auto_play_gif');
-export const displaySensitiveMedia = getMeta('display_sensitive_media');
+export const displayMedia = getMeta('display_media');
+export const expandSpoilers = getMeta('expand_spoilers');
 export const unfollowModal = getMeta('unfollow_modal');
 export const boostModal = getMeta('boost_modal');
 export const deleteModal = getMeta('delete_modal');
