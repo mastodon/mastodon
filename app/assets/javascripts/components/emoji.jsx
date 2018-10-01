@@ -302,7 +302,7 @@ const json = {
   'TearOfTheGoddess': '//ddragon.leagueoflegends.com/cdn/7.4.1/img/item/3070.png',
 
   // Japan Esports Icons
-  'DFM': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3295.png',
+  // 'DFM': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3295.png',
   'PGM': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3296.png',
   'USG': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3297.png',
   '7H': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3298.png',
@@ -311,7 +311,33 @@ const json = {
   'BC': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3547.png',
   'SZ': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3516.png',
   'CGA': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3515.png',
-  'BE': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/1196.png'
+  'BE': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/1196.png',
+
+  // WCS2018 Icons
+  'KT': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3744.png',
+  'AF': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3740.png',
+  'GEN': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3741.png',
+  'RNG': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3762.png',
+  'IG': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3759.png',
+  'EDG': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3759.png',
+  'FNC': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3733.png',
+  'VIT': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3738.png',
+  'G2': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3734.png',
+  'TL': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3767.png',
+  '100T': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3763.png',
+  'C9': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3764.png',
+  'FW': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3752.png',
+  'MAD': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3757.png',
+  'GRX': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3753.png',
+  'PVB': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3775.png',
+  'KBM': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3730.png',
+  'GMB': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3746.png',
+  'INF': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3751.png',
+  'SUP': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3770.png',
+  'DFM': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3747.png',
+  'KLG': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3731.png',
+  'DW': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3769.png',
+  'ASC': '//ddragon.leagueoflegends.com/cdn/8.19.1/img/profileicon/3739.png'
 };
 
 const toImage = str => originalToImage(shortnameToImage(unicodeToImage(str)));
