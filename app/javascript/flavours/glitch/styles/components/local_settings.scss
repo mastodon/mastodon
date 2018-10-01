@@ -60,6 +60,11 @@
   outline: none;
   transition: background .3s;
 
+  .text-icon-button {
+    color: inherit;
+    transition: unset;
+  }
+
   &:hover {
     background: $ui-secondary-color;
   }
