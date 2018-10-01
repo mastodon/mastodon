@@ -6,7 +6,6 @@ class TagsController < ApplicationController
   before_action :set_body_classes
   before_action :set_instance_presenter
 
-
   def show
     @tag = Tag.find_by!(name: params[:id].downcase)
 
@@ -53,7 +52,7 @@ class TagsController < ApplicationController
     ActivityPub::CollectionPresenter.new(
       id: tag_url(@tag, params.slice(:tags, :tag_mode)),
       type: :ordered,
-      size: @tag.statuses.count
+      size: @tag.statuses.count,
       items: @statuses.map { |s| ActivityPub::TagManager.instance.uri_for(s) }
     )
   end

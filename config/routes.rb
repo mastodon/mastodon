@@ -117,9 +117,7 @@ Rails.application.routes.draw do
     get :player
   end
 
-  resources :tags,   only: [:show] do
-    get :intersection, on: :collection
-  end
+  resources :tags,   only: [:show]
   resources :emojis, only: [:show]
   resources :invites, only: [:index, :create, :destroy]
   resources :filters, except: [:show]

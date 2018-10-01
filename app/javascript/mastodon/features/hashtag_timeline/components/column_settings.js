@@ -56,8 +56,6 @@ export default class ColumnSettings extends React.PureComponent {
   }
 
   render () {
-    const { settings, onChange, onLoad } = this.props;
-
     return (
       <div>
         <div className='column-settings__row'>
@@ -78,10 +76,10 @@ export default class ColumnSettings extends React.PureComponent {
                 isMulti
                 autoFocus
                 value={this.tags()}
-                settings={settings}
+                settings={this.props.settings}
                 settingPath={['tags']}
-                onChange={(value) => { onChange('tags', value) }}
-                loadOptions={onLoad}
+                onChange={(value) => { this.props.onChange('tags', value) }}
+                loadOptions={this.props.onLoad}
                 className='column-settings__hashtag-select'
                 name='tags' />
             </div>

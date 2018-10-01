@@ -9,7 +9,6 @@ const mapStateToProps = (state, { columnId }) => {
   const index   = columns.findIndex(c => c.get('uuid') === columnId);
 
   if (!(columnId && index >= 0)) {
-    console.log("column must be pinned to save changes to tags")
     return {}
   }
 
