@@ -36,6 +36,7 @@ class Settings::PreferencesController < ApplicationController
       :setting_default_privacy,
       :setting_default_sensitive,
       :setting_default_language,
+      :setting_default_federation,
       :setting_unfollow_modal,
       :setting_boost_modal,
       :setting_delete_modal,
