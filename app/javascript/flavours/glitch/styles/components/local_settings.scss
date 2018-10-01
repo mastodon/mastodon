@@ -95,3 +95,18 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+@media screen and (max-width: 630px) {
+  .glitch.local-settings__navigation {
+    width: 40px;
+    flex-shrink: 0;
+  }
+
+  .glitch.local-settings__navigation__item {
+    padding: 10px;
+
+    span:last-of-type {
+      display: none;
+    }
+  }
+}
