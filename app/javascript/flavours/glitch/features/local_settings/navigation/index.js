@@ -73,7 +73,7 @@ export default class LocalSettingsNavigation extends React.PureComponent {
           active={index === 5}
           href='/settings/preferences'
           index={5}
-          icon='cog'
+          icon='sliders'
           title={intl.formatMessage(messages.preferences)}
         />
         <LocalSettingsNavigationItem
