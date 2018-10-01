@@ -17,6 +17,12 @@ class Api::V1::Timelines::TagController < Api::BaseController
     @tag = Tag.find_by(name: params[:id].downcase)
   end
 
+  def load_additional_tags
+    @additional = Tag.where(
+      name: Array(params[:tags]).map { |tag| tag.gsub('#','').downcase }
+    ) if params[:tags]
+  end
+
   def load_statuses
     cached_tagged_statuses
   end
@@ -47,6 +53,7 @@ class Api::V1::Timelines::TagController < Api::BaseController
 
   def tag_timeline_statuses
     Status.as_tag_timeline(@tag, current_account, truthy_param?(:local))
+          .modify_tag_query(load_additional_tags, params[:tag_mode])
   end
 
   def insert_pagination_headers

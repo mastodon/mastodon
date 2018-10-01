@@ -58,9 +58,9 @@ class HashtagTimeline extends React.PureComponent {
 
   componentDidMount () {
     const { dispatch } = this.props;
-    const { id } = this.props.params;
+    const { id, tagMode, tags } = this.props.params;
 
-    dispatch(expandHashtagTimeline(id));
+    dispatch(expandHashtagTimeline(id, { tagMode, tags }));
     this._subscribe(dispatch, id);
   }
 
