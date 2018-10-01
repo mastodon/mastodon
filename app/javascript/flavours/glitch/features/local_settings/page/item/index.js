@@ -17,6 +17,7 @@ export default class LocalSettingsPageItem extends React.PureComponent {
     options: PropTypes.arrayOf(PropTypes.shape({
       value: PropTypes.string.isRequired,
       message: PropTypes.string.isRequired,
+      hint: PropTypes.string,
     })),
     settings: ImmutablePropTypes.map.isRequired,
     placeholder: PropTypes.string,
@@ -62,6 +63,7 @@ export default class LocalSettingsPageItem extends React.PureComponent {
               disabled={!enabled}
             />
             {opt.message}
+            {opt.hint && <span class='hint'>{opt.hint}</span>}
           </label>
         );
       });
