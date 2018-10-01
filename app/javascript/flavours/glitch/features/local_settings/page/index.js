@@ -186,6 +186,15 @@ export default class LocalSettingsPage extends React.PureComponent {
         >
           <FormattedMessage id='settings.enable_collapsed' defaultMessage='Enable collapsed toots' />
         </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['collapsed', 'show_action_bar']}
+          id='mastodon-settings--collapsed-show-action-bar'
+          onChange={onChange}
+          dependsOn={[['collapsed', 'enabled']]}
+        >
+          <FormattedMessage id='settings.show_action_bar' defaultMessage='Show action buttons in collapsed toots' />
+        </LocalSettingsPageItem>
         <section>
           <h2><FormattedMessage id='settings.auto_collapse' defaultMessage='Automatic collapsing' /></h2>
           <LocalSettingsPageItem
@@ -267,18 +276,6 @@ export default class LocalSettingsPage extends React.PureComponent {
             dependsOn={[['collapsed', 'enabled']]}
           >
             <FormattedMessage id='settings.image_backgrounds_media' defaultMessage='Preview collapsed toot media' />
-          </LocalSettingsPageItem>
-        </section>
-        <section>
-          <h2></h2>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['collapsed', 'show_action_bar']}
-            id='mastodon-settings--collapsed-show-action-bar'
-            onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-          >
-            <FormattedMessage id='settings.show_action_bar' defaultMessage='Show action buttons in collapsed toots' />
           </LocalSettingsPageItem>
         </section>
       </div>
