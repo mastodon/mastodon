@@ -4,6 +4,7 @@ class CreateConversationAccounts < ActiveRecord::Migration[5.2]
       t.belongs_to :account, foreign_key: { on_delete: :cascade }, index: true
       t.belongs_to :conversation, foreign_key: { on_delete: :cascade }
       t.bigint :participant_account_ids, array: true, null: false, default: []
+      t.bigint :status_ids, array: true, null: false, default: []
       t.belongs_to :last_status, foreign_key: { on_delete: :nullify, to_table: :statuses }
     end
 

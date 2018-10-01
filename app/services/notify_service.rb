@@ -8,9 +8,10 @@ class NotifyService < BaseService
 
     return if recipient.user.nil? || blocked?
 
-    create_notification
-    push_notification if @notification.browserable?
-    send_email if email_enabled?
+    create_notification!
+    push_notification! if @notification.browserable?
+    push_to_conversation! if direct_message?
+    send_email! if email_enabled?
   rescue ActiveRecord::RecordInvalid
     return
   end
@@ -100,18 +101,23 @@ class NotifyService < BaseService
     end
   end
 
-  def create_notification
+  def create_notification!
     @notification.save!
   end
 
-  def push_notification
+  def push_notification!
     return if @notification.activity.nil?
 
     Redis.current.publish("timeline:#{@recipient.id}", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
-    send_push_notifications
+    send_push_notifications!
   end
 
-  def send_push_notifications
+  def push_to_conversation!
+    return if @notification.activity.nil?
+    ConversationAccount.add_status(@recipient, @notification.target_status)
+  end
+
+  def send_push_notifications!
     subscriptions_ids = ::Web::PushSubscription.where(user_id: @recipient.user.id)
                                                .select { |subscription| subscription.pushable?(@notification) }
                                                .map(&:id)
@@ -121,7 +127,7 @@ class NotifyService < BaseService
     end
   end
 
-  def send_email
+  def send_email!
     return if @notification.activity.nil?
     NotificationMailer.public_send(@notification.type, @recipient, @notification).deliver_later(wait: 2.minutes)
   end

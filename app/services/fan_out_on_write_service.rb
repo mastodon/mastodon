@@ -13,7 +13,7 @@ class FanOutOnWriteService < BaseService
     if status.direct_visibility?
       deliver_to_mentioned_followers(status)
       deliver_to_direct_timelines(status)
-      deliver_to_conversations(status)
+      deliver_to_own_conversation(status)
     else
       deliver_to_followers(status)
       deliver_to_lists(status)
@@ -100,20 +100,11 @@ class FanOutOnWriteService < BaseService
     status.mentions.includes(:account).each do |mention|
       Redis.current.publish("timeline:direct:#{mention.account.id}", @payload) if mention.account.local?
     end
+
     Redis.current.publish("timeline:direct:#{status.account.id}", @payload) if status.account.local?
   end
 
-  def deliver_to_conversations(status)
-    Rails.logger.debug "Delivering status #{status.id} to conversations"
-
-    mentioned_accounts = status.mentions.includes(:account).map(&:account)
-    participants       = (mentioned_accounts - [status.account]).map(&:id).sort
-    inbox_owners       = mentioned_accounts.select(&:local?) + (status.account.local? ? [status.account] : [])
-
-    inbox_owners.each do |inbox_owner|
-      entry = ConversationAccount.find_or_initialize_by(account: inbox_owner, conversation: status.conversation, participant_account_ids: participants)
-      entry.last_status = status
-      entry.save
-    end
+  def deliver_to_own_conversation(status)
+    ConversationAccount.add_status(status.account, status)
   end
 end

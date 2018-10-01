@@ -5496,3 +5496,40 @@ noscript {
     }
   }
 }
+
+.conversation {
+  padding: 10px;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  cursor: pointer;
+
+  &__header {
+    display: flex;
+    margin-bottom: 8px;
+  }
+
+  &__avatars {
+    overflow: hidden;
+    flex: 1 1 auto;
+
+    & > div {
+      display: flex;
+      flex-wrap: none;
+      width: 900px;
+    }
+
+    .account__avatar {
+      margin-right: 4px;
+    }
+  }
+
+  &__time {
+    flex: 0 0 auto;
+    font-size: 14px;
+    color: $darker-text-color;
+    text-align: right;
+
+    .display-name {
+      color: $secondary-text-color;
+    }
+  }
+}
