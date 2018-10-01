@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 import classnames from 'classnames';
 
-const MAX_HEIGHT = 322; // 20px * 16 (+ 2px padding at the top)
+const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
 
 export default class StatusContent extends React.PureComponent {
 
