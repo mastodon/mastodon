@@ -38,30 +38,35 @@ export default class LocalSettingsNavigation extends React.PureComponent {
           active={index === 0}
           index={0}
           onNavigate={onNavigate}
+          icon='cogs'
           title={intl.formatMessage(messages.general)}
         />
         <LocalSettingsNavigationItem
           active={index === 1}
           index={1}
           onNavigate={onNavigate}
+          icon='pencil'
           title={intl.formatMessage(messages.compose)}
         />
         <LocalSettingsNavigationItem
           active={index === 2}
           index={2}
           onNavigate={onNavigate}
+          textIcon='CW'
           title={intl.formatMessage(messages.content_warnings)}
         />
         <LocalSettingsNavigationItem
           active={index === 3}
           index={3}
           onNavigate={onNavigate}
+          icon='angle-double-up'
           title={intl.formatMessage(messages.collapsed)}
         />
         <LocalSettingsNavigationItem
           active={index === 4}
           index={4}
           onNavigate={onNavigate}
+          icon='image'
           title={intl.formatMessage(messages.media)}
         />
         <LocalSettingsNavigationItem
@@ -76,6 +81,7 @@ export default class LocalSettingsNavigation extends React.PureComponent {
           className='close'
           index={6}
           onNavigate={onClose}
+          icon='times'
           title={intl.formatMessage(messages.close)}
         />
       </nav>

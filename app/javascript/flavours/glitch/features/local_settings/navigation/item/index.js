@@ -12,6 +12,7 @@ export default class LocalSettingsPage extends React.PureComponent {
     className: PropTypes.string,
     href: PropTypes.string,
     icon: PropTypes.string,
+    textIcon: PropTypes.string,
     index: PropTypes.number.isRequired,
     onNavigate: PropTypes.func,
     title: PropTypes.string,
@@ -32,6 +33,7 @@ export default class LocalSettingsPage extends React.PureComponent {
       className,
       href,
       icon,
+      textIcon,
       onNavigate,
       title,
     } = this.props;
@@ -40,14 +42,14 @@ export default class LocalSettingsPage extends React.PureComponent {
       active,
     }, className);
 
-    const iconElem = icon ? <i className={`fa fa-fw fa-${icon}`} /> : null;
+    const iconElem = icon ? <i className={`fa fa-fw fa-${icon}`} /> : (textIcon ? <span className='text-icon-button'>{textIcon}</span> : null);
 
     if (href) return (
       <a
         href={href}
         className={finalClassName}
       >
-        {iconElem} {title}
+        {iconElem} <span>{title}</span>
       </a>
     );
     else if (onNavigate) return (
@@ -57,7 +59,7 @@ export default class LocalSettingsPage extends React.PureComponent {
         tabIndex='0'
         className={finalClassName}
       >
-        {iconElem} {title}
+        {iconElem} <span>{title}</span>
       </a>
     );
     else return null;
