@@ -182,7 +182,7 @@ export default class FederationDropdown extends React.PureComponent {
   handleModalActionClick = (e) => {
     e.preventDefault();
 
-    const { value } = this.options[Boolean(e.currentTarget.getAttribute('data-index'))];
+    const { value } = this.options[e.currentTarget.getAttribute('data-index')];
 
     this.props.onModalClose();
     this.props.onChange(value);
