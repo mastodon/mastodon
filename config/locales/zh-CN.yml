@@ -11,7 +11,7 @@ zh-CN:
     contact: 联系方式
     contact_missing: 未设定
     contact_unavailable: 未公开
-    documentation: 文件
+    documentation: 文档
     extended_description_html: |
       <h3>这里可以写一些规定</h3>
       <p>本站尚未设置详细介绍。</p>
@@ -28,15 +28,15 @@ zh-CN:
     hosted_on: 一个在 %{domain} 上运行的 Mastodon 实例
     learn_more: 了解详情
     other_instances: 其他实例
-    privacy_policy: 隐私条款
+    privacy_policy: 隐私政策
     source_code: 源代码
     status_count_after:
-      one: 状态
+      one: 条嘟文
     status_count_before: 他们共嘟出了
     terms: 使用条款
     user_count_after:
-      one: 用户
-      other: 用户
+      one: 位用户
+      other: 位用户
     user_count_before: 这里共注册有
     what_is_mastodon: Mastodon 是什么？
   accounts:
@@ -53,7 +53,7 @@ zh-CN:
     people_followed_by: "%{name} 关注的人"
     people_who_follow: 关注 %{name} 的人
     posts:
-      one: 嘟嘟
+      one: 嘟文
       other: 嘟文
     posts_tab_heading: 嘟文
     posts_with_replies: 嘟文和回复
@@ -190,7 +190,7 @@ zh-CN:
         unsuspend_account: "%{name} 解除了用户 %{target} 的封禁状态"
         update_custom_emoji: "%{name} 更新了自定义表情 %{target}"
         update_status: "%{name} 刷新了 %{target} 的嘟文"
-      deleted_status: "（状态已删除）"
+      deleted_status: "（嘟文已删除）"
       title: 运营日志
     custom_emojis:
       by_domain: 域名
@@ -218,24 +218,26 @@ zh-CN:
       updated_msg: 表情更新成功！
       upload: 上传新表情
     dashboard:
-      config: 设置
-      feature_deletions: 帐号删除
+      backlog: 未处理任务数
+      config: 服务器配置
+      feature_deletions: 帐户删除
       feature_invites: 邀请链接
-      feature_registrations: 注册
-      features: 特性
-      hidden_service: 与暗网互联
-      open_reports: 待处理举报
+      feature_registrations: 公开注册
+      feature_relay: 同步中继
+      features: 功能
+      hidden_service: 匿名服务连通性
+      open_reports: 待处理举报数
       recent_users: 新用户
       search: 全文搜索
       single_user_mode: 单用户模式
       software: 软件
-      space: 空间用量
-      title: 大盘
+      space: 存储使用情况
+      title: 仪表盘
       total_users: 总用户数
       trends: 趋势
-      week_interactions: 本周互动
-      week_users_active: 本周活跃用户
-      week_users_new: 本周新用户
+      week_interactions: 本周互动数
+      week_users_active: 本周活跃用户数
+      week_users_new: 本周新用户数
     domain_blocks:
       add_new: 添加新条目
       created_msg: 正在进行域名屏蔽
@@ -259,8 +261,8 @@ zh-CN:
       severity: 屏蔽级别
       show:
         affected_accounts:
-          one: 影响数据库中 1 位用户
-          other: 影响数据库中 %{count} 位用户
+          one: 将会影响到数据库中的 1 个帐户
+          other: 将会影响到数据库中的 %{count} 个帐户
         retroactive:
           silence: 对此域名的所有帐户解除隐藏
           suspend: 对此域名的所有帐户解除封禁
@@ -285,7 +287,7 @@ zh-CN:
       search: 搜索
       title: 已知实例
     invites:
-      deactivate_all: 全部禁用
+      deactivate_all: 撤销所有邀请链接
       filter:
         all: 全部
         available: 可用
@@ -293,12 +295,13 @@ zh-CN:
         title: 筛选
       title: 邀请用户
     relays:
-      add_new: 添加中继
-      description_html: "<strong>消息中继</strong>是一种中间服务器，用于在订阅它和向它推送消息的服务器之间大量交换嘟文。<strong>它可以帮助中小型实例发现长毛象宇宙中的内容</strong>，而无需本地用户手动关注其他远程实例上的用户。"
-      enable_hint: 一经启用，你的服务器会订阅此中继的所有嘟文，并向其发送本服务器的公共嘟文。
+      add_new: 添加新的中继
+      description_html: "<strong>同步中继</strong>是一种中间服务器，各实例可以通过订阅中继和向中继推送信息的方式来大量交换公开嘟文。<strong>它可以帮助中小型实例发现网络中的内容</strong>，而无需本地用户手动关注其他远程实例上的用户。"
+      enable_hint: 启用此功能后，你的实例会订阅此中继的所有公开嘟文，并同时向其推送本服务器的公开嘟文。
       inbox_url: 中继 URL
       pending: 等待中继确认
       save_and_enable: 保存并启用
+      setup: 设置中继连接
       status: 状态
       title: 中继
     report_notes:
@@ -347,6 +350,7 @@ zh-CN:
         email: 用于联系的公开电子邮件地址
         username: 用于联系的公开用户名
       custom_css:
+        desc_html: 通过 CSS 代码调整所有页面的显示效果
         title: 自定义 CSS
       hero:
         desc_html: 用于在首页展示。推荐分辨率 600×100px 以上。未指定的情况下将默认使用本站缩略图
@@ -355,8 +359,8 @@ zh-CN:
         desc_html: 截至目前本实例在网络中已发现的域名
         title: 公开已知实例的列表
       preview_sensitive_media:
-        desc_html: 即使媒体文件被标记为敏感内容，其他站点上的链接预览仍会显示其缩略图
-        title: 在 OpenGraph 预览中显示敏感内容
+        desc_html: 始终在站外链接预览中展示缩略图，无论媒体内容是否标记为敏感
+        title: 在 OpenGraph 预览中显示敏感媒体内容
       registrations:
         closed_message:
           desc_html: 本站关闭注册期间的提示信息。可以使用 HTML 标签
@@ -517,16 +521,19 @@ zh-CN:
     storage: 媒体文件存储
   filters:
     contexts:
+      home: 主页时间轴
       notifications: 通知
-      public: 公共时间线
+      public: 公共时间轴
       thread: 对话
     edit:
       title: 编辑过滤器
+    errors:
+      invalid_irreversible: 此功能只适用于主页时间轴或通知
     index:
       delete: 删除
       title: 过滤器
     new:
-      title: 添加过滤器
+      title: 添加新的过滤器
   followers:
     domain: 域名
     explanation_html: 为保证你的嘟文的隐私安全，你应当经常检查你的关注者列表。<strong>受保护的嘟文将会发送到所有关注者所在的实例上</strong>。有些实例使用的软件代码或其管理员可能不会尊重你的隐私设置，因此你应当复查一下关注者列表，并移除那些你无法信任的关注者。
