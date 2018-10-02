@@ -415,7 +415,7 @@
     background-size: cover;
     background-position: center;
     position: absolute;
-    color: inherit;
+    color: $ui-primary-color;
     text-decoration: none;
     border-radius: 4px;
 
@@ -433,6 +433,14 @@
         border-radius: 4px;
       }
     }
+  }
+
+  &__icons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
   }
 }
 
