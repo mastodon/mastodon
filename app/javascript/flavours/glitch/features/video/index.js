@@ -5,7 +5,7 @@ import { fromJS } from 'immutable';
 import { throttle } from 'lodash';
 import classNames from 'classnames';
 import { isFullscreen, requestFullscreen, exitFullscreen } from 'flavours/glitch/util/fullscreen';
-import { displaySensitiveMedia } from 'flavours/glitch/util/initial_state';
+import { displayMedia } from 'flavours/glitch/util/initial_state';
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
@@ -114,7 +114,7 @@ export default class Video extends React.PureComponent {
     fullscreen: false,
     hovered: false,
     muted: false,
-    revealed: this.props.revealed === undefined ? (!this.props.sensitive || displaySensitiveMedia) : this.props.revealed,
+    revealed: this.props.revealed === undefined ? (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all') : this.props.revealed,
   };
 
   setPlayerRef = c => {

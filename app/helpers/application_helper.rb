@@ -7,8 +7,8 @@ module ApplicationHelper
     follow
   ).freeze
 
-  def active_nav_class(path)
-    current_page?(path) ? 'active' : ''
+  def active_nav_class(*paths)
+    paths.any? { |path| current_page?(path) } ? 'active' : ''
   end
 
   def active_link_to(label, path, **options)

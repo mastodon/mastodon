@@ -14,6 +14,7 @@ const getMeta = (prop) => initialState && initialState.meta && initialState.meta
 export const reduceMotion = getMeta('reduce_motion');
 export const autoPlayGif = getMeta('auto_play_gif');
 export const displaySensitiveMedia = getMeta('display_sensitive_media');
+export const displayMedia = getMeta('display_media') || (getMeta('display_sensitive_media') ? 'show_all' : 'default');
 export const unfollowModal = getMeta('unfollow_modal');
 export const boostModal = getMeta('boost_modal');
 export const favouriteModal = getMeta('favourite_modal');
