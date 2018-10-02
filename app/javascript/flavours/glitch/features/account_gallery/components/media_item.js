@@ -14,6 +14,15 @@ export default class MediaItem extends ImmutablePureComponent {
     visible: displayMedia !== 'hide_all' && !this.props.media.getIn(['status', 'sensitive']) || displayMedia === 'show_all',
   };
 
+  handleClick = () => {
+    if (!this.state.visible) {
+      this.setState({ visible: true });
+      return true;
+    }
+
+    return false;
+  }
+
   render () {
     const { media } = this.props;
     const { visible } = this.state;
@@ -50,6 +59,7 @@ export default class MediaItem extends ImmutablePureComponent {
           href={status.get('url')}
           style={style}
           title={title}
+          onInterceptClick={this.handleClick}
         >
           {icon}
           {label}
