@@ -24,7 +24,7 @@ export default class MediaItem extends ImmutablePureComponent {
     const y = ((focusY / -2) + .5) * 100;
     const style = {};
 
-    let label, icon;
+    let label, icon, title;
 
     if (media.get('type') === 'gifv') {
       label = <span className='media-gallery__gifv__label'>GIF</span>;
@@ -33,17 +33,24 @@ export default class MediaItem extends ImmutablePureComponent {
     if (visible) {
       style.backgroundImage    = `url(${media.get('preview_url')})`;
       style.backgroundPosition = `${x}% ${y}%`;
+      title                    = media.get('description');
     } else {
       icon = (
         <span className='account-gallery__item__icons'>
           <i className='fa fa-eye-slash' />
         </span>
       );
+      title = status.get('spoiler_text') || media.get('description');
     }
 
     return (
       <div className='account-gallery__item'>
-        <Permalink to={`/statuses/${status.get('id')}`} href={status.get('url')} style={style}>
+        <Permalink
+          to={`/statuses/${status.get('id')}`}
+          href={status.get('url')}
+          style={style}
+          title={title}
+        >
           {icon}
           {label}
         </Permalink>
