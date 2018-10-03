@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import BotIcon from './bot_icon';
 import { autoPlayGif } from '../initial_state';
 
 export default class Avatar extends React.PureComponent {
@@ -66,9 +65,7 @@ export default class Avatar extends React.PureComponent {
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
         style={style}
-      >
-        <BotIcon account={account} />
-      </div>
+      />
     );
   }
 

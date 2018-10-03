@@ -642,13 +642,14 @@
 }
 
 .status__content,
-.reply-indicator__content,
-.quote-indicator__content {
+.reply-indicator__content {
+  position: relative;
   font-size: 15px;
   line-height: 20px;
   word-wrap: break-word;
   font-weight: 400;
   overflow: hidden;
+  text-overflow: ellipsis;
   white-space: pre-wrap;
   padding-top: 2px;
   color: $primary-text-color;
@@ -731,6 +732,26 @@
     &.status__content__text--visible {
       display: block;
     }
+  }
+}
+
+.status__content.status__content--collapsed {
+  max-height: 20px * 15; // 15 lines is roughly above 500 characters
+}
+
+.status__content__read-more-button {
+  display: block;
+  font-size: 15px;
+  line-height: 20px;
+  color: lighten($ui-highlight-color, 8%);
+  border: 0;
+  background: transparent;
+  padding: 0;
+  padding-top: 8px;
+
+  &:hover,
+  &:active {
+    text-decoration: underline;
   }
 }
 
@@ -1200,12 +1221,6 @@
     vertical-align: middle;
     margin-right: 5px;
   }
-
-  .bot-icon {
-    position: absolute;
-    bottom: -.333em;
-    left: -.333em;
-  }
 }
 
 a .account__avatar {
@@ -1423,22 +1438,10 @@ a .account__avatar {
 .account__header__avatar {
   background-size: 90px 90px;
   display: block;
-  font-size: 1.5em;
   height: 90px;
   margin: 0 auto 10px;
-  position: relative;
+  overflow: hidden;
   width: 90px;
-
-  .bot-icon {
-    color: $dark-text-color;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-
-    .light & {
-      color: $inverted-text-color;
-    }
-  }
 }
 
 .account-authorize {

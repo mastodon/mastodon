@@ -85,8 +85,9 @@ class Notification extends ImmutablePureComponent {
             <div className='notification__favourite-icon-wrapper'>
               <i className='fa fa-fw fa-user-plus' />
             </div>
-
-            <FormattedMessage id='notification.follow' defaultMessage='{name} followed you' values={{ name: link }} />
+            <span title={notification.get('created_at')}>
+              <FormattedMessage id='notification.follow' defaultMessage='{name} followed you' values={{ name: link }} />
+            </span>
           </div>
 
           <AccountContainer id={account.get('id')} withNote={false} hidden={this.props.hidden} />

@@ -10,7 +10,6 @@ describe('<Avatar />', () => {
     display_name: 'Alice',
     avatar: '/animated/alice.gif',
     avatar_static: '/static/alice.jpg',
-    bot: true,
   });
 
   const size     = 100;
