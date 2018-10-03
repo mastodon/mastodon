@@ -267,9 +267,9 @@ GEM
       domain_name (~> 0.5)
     http-form_data (2.1.0)
     http_accept_language (2.1.1)
-    httplog (1.0.2)
-      colorize (~> 0.8)
+    httplog (1.1.1)
       rack (>= 1.0)
+      rainbow (>= 2.0.0)
     i18n (1.1.0)
       concurrent-ruby (~> 1.0)
     i18n-tasks (0.9.21)
@@ -692,7 +692,7 @@ DEPENDENCIES
   http (~> 3.2)
   http_accept_language (~> 2.1)
   http_parser.rb (~> 0.6)!
-  httplog (~> 1.0)
+  httplog (~> 1.1)
   i18n-tasks (~> 0.9)
   idn-ruby
   iso-639
