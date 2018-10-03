@@ -53,6 +53,10 @@ class Api::BaseController < ApplicationController
     [params[:limit].to_i.abs, default_limit * 2].min
   end
 
+  def params_slice(*keys)
+    params.slice(*keys).permit(*keys)
+  end
+
   def current_resource_owner
     @current_user ||= User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
   end
