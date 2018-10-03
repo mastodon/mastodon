@@ -66,7 +66,7 @@ class ConversationAccount < ApplicationRecord
       return if conversation.nil? || conversation.last_status_id != status.id
 
       while (last_status_id = conversation.status_ids.pop)
-        last_status = Status.find(last_status_id)
+        last_status = Status.find_by(id: last_status_id)
         break if last_status
       end
 
