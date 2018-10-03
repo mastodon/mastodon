@@ -16,8 +16,8 @@ gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.2', '< 2.3'
 
 gem 'aws-sdk-s3', '~> 1.20', require: false
-gem 'fog-core', '~> 1.45'
-gem 'fog-openstack', '~> 0.3', require: false
+gem 'fog-core', '~> 2.1'
+gem 'fog-openstack', '~> 1.0', require: false
 gem 'paperclip', '~> 6.0'
 gem 'paperclip-av-transcoder', '~> 0.6'
 gem 'streamio-ffmpeg', '~> 3.0'
@@ -96,11 +96,11 @@ gem 'rdf-normalize', '~> 0.3'
 
 group :development, :test do
   gem 'fabrication', '~> 2.20'
-  gem 'fuubar', '~> 2.2'
+  gem 'fuubar', '~> 2.3'
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-byebug', '~> 3.6'
   gem 'pry-rails', '~> 0.3'
-  gem 'rspec-rails', '~> 3.7'
+  gem 'rspec-rails', '~> 3.8'
 end
 
 group :production, :test do
