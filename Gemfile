@@ -27,6 +27,7 @@ gem 'addressable', '~> 2.5'
 gem 'bootsnap', '~> 1.3', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.6'
+gem 'colorize'
 gem 'iso-639'
 gem 'chewy', '~> 5.0'
 gem 'cld3', '~> 3.2.0'
@@ -65,7 +66,7 @@ gem 'ox', '~> 2.10'
 gem 'posix-spawn', git: 'https://github.com/rtomayko/posix-spawn', ref: '58465d2e213991f8afb13b984854a49fcdcc980c'
 gem 'pundit', '~> 1.1'
 gem 'premailer-rails'
-gem 'rack-attack', '~> 5.2'
+gem 'rack-attack', '~> 5.4'
 gem 'rack-cors', '~> 1.0', require: 'rack/cors'
 gem 'rails-i18n', '~> 5.1'
 gem 'rails-settings-cached', '~> 0.6'
@@ -127,7 +128,7 @@ group :development do
   gem 'letter_opener', '~> 1.4'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.55', require: false
+  gem 'rubocop', '~> 0.59', require: false
   gem 'brakeman', '~> 4.2', require: false
   gem 'bundler-audit', '~> 0.6', require: false
   gem 'scss_lint', '~> 0.57', require: false
