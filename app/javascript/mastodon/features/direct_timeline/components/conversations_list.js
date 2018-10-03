@@ -18,12 +18,12 @@ export default class ConversationsList extends ImmutablePureComponent {
 
   getCurrentIndex = id => this.props.conversationIds.indexOf(id)
 
-  handleMoveUp = (id) => {
+  handleMoveUp = id => {
     const elementIndex = this.getCurrentIndex(id) - 1;
     this._selectChild(elementIndex);
   }
 
-  handleMoveDown = (id) => {
+  handleMoveDown = id => {
     const elementIndex = this.getCurrentIndex(id) + 1;
     this._selectChild(elementIndex);
   }

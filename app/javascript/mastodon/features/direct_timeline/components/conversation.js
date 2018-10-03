@@ -16,7 +16,7 @@ export default class Conversation extends ImmutablePureComponent {
   };
 
   static propTypes = {
-    conversation: ImmutablePropTypes.map.isRequired,
+    conversationId: PropTypes.string.isRequired,
     accounts: ImmutablePropTypes.list.isRequired,
     lastStatus: ImmutablePropTypes.map.isRequired,
     onMoveUp: PropTypes.func,
@@ -33,11 +33,11 @@ export default class Conversation extends ImmutablePureComponent {
   }
 
   handleHotkeyMoveUp = () => {
-    this.props.onMoveUp(this.props.conversation.get('id'));
+    this.props.onMoveUp(this.props.conversationId);
   }
 
   handleHotkeyMoveDown = () => {
-    this.props.onMoveDown(this.props.conversation.get('id'));
+    this.props.onMoveDown(this.props.conversationId);
   }
 
   render () {
