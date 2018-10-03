@@ -12,6 +12,8 @@ class LanguageDetector
   def detect(text, account)
     input_text = prepare_text(text)
     return if input_text.blank?
+    return detect_language_code(input_text, true) unless account.local?
+
     detect_language_code(input_text) || default_locale(account)
   end
 
@@ -31,8 +33,9 @@ class LanguageDetector
     text.size < CHARACTER_THRESHOLD
   end
 
-  def detect_language_code(text)
-    return if unreliable_input?(text)
+  def detect_language_code(text, force = false)
+    return if !force && unreliable_input?(text)
+
     result = @identifier.find_language(text)
     iso6391(result.language.to_s).to_sym if result.reliable?
   end
@@ -75,6 +78,6 @@ class LanguageDetector
   end
 
   def default_locale(account)
-    account.user_locale&.to_sym || I18n.default_locale
+    return account.user_locale&.to_sym || I18n.default_locale if account.local?
   end
 end
