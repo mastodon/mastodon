@@ -106,11 +106,11 @@ describe LanguageDetector do
       end
 
       describe 'remote user' do
-        it 'force use detector' do
+        it 'nil for foreign user when language is not present' do
           string = '안녕하세요'
           result = described_class.instance.detect(string, account_remote)
 
-          expect(result).to eq :ko
+          expect(result).to eq nil
         end
       end
 
