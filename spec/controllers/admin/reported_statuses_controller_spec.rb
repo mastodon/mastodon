@@ -13,7 +13,7 @@ describe Admin::ReportedStatusesController do
 
   describe 'POST #create' do
     subject do
-      -> { post :create, params: { :report_id  => report, action => '', :form_status_batch => { status_ids: status_ids } } }
+      -> { post :create, params: { :report_id => report, action => '', :form_status_batch => { status_ids: status_ids } } }
     end
 
     let(:action) { 'nsfw_on' }
