@@ -94,7 +94,7 @@ RSpec.describe User, type: :model do
       it 'returns a relation of users who is, or was at last time, online with the given IP address' do
         specifieds = [
           Fabricate(:user, current_sign_in_ip: '0.0.0.42', last_sign_in_ip: '0.0.0.0'),
-          Fabricate(:user, current_sign_in_ip: nil, last_sign_in_ip: '0.0.0.42')
+          Fabricate(:user, current_sign_in_ip: nil, last_sign_in_ip: '0.0.0.42'),
         ]
         Fabricate(:user, current_sign_in_ip: '0.0.0.0', last_sign_in_ip: '0.0.0.0')
 

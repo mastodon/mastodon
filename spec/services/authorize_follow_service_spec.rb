@@ -27,7 +27,7 @@ RSpec.describe AuthorizeFollowService, type: :service do
 
     before do
       FollowRequest.create(account: bob, target_account: sender)
-      stub_request(:post, "http://salmon.example.com/").to_return(:status => 200, :body => "", :headers => {})
+      stub_request(:post, "http://salmon.example.com/").to_return(status: 200, body: "", headers: {})
       subject.call(bob, sender)
     end
 

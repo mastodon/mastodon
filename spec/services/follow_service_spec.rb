@@ -101,7 +101,7 @@ RSpec.describe FollowService, type: :service do
       let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, protocol: :ostatus, locked: true, username: 'bob', domain: 'example.com', salmon_url: 'http://salmon.example.com')).account }
 
       before do
-        stub_request(:post, "http://salmon.example.com/").to_return(:status => 200, :body => "", :headers => {})
+        stub_request(:post, "http://salmon.example.com/").to_return(status: 200, body: "", headers: {})
         subject.call(sender, bob.acct)
       end
 
@@ -121,7 +121,7 @@ RSpec.describe FollowService, type: :service do
       let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, protocol: :ostatus, username: 'bob', domain: 'example.com', salmon_url: 'http://salmon.example.com', hub_url: 'http://hub.example.com')).account }
 
       before do
-        stub_request(:post, "http://salmon.example.com/").to_return(:status => 200, :body => "", :headers => {})
+        stub_request(:post, "http://salmon.example.com/").to_return(status: 200, body: "", headers: {})
         stub_request(:post, "http://hub.example.com/").to_return(status: 202)
         subject.call(sender, bob.acct)
       end
@@ -168,7 +168,7 @@ RSpec.describe FollowService, type: :service do
     let(:bob) { Fabricate(:user, account: Fabricate(:account, username: 'bob', domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox')).account }
 
     before do
-      stub_request(:post, "http://example.com/inbox").to_return(:status => 200, :body => "", :headers => {})
+      stub_request(:post, "http://example.com/inbox").to_return(status: 200, body: "", headers: {})
       subject.call(sender, bob.acct)
     end
 

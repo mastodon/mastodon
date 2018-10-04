@@ -23,7 +23,7 @@ RSpec.describe UnfollowService, type: :service do
 
     before do
       sender.follow!(bob)
-      stub_request(:post, "http://salmon.example.com/").to_return(:status => 200, :body => "", :headers => {})
+      stub_request(:post, "http://salmon.example.com/").to_return(status: 200, body: "", headers: {})
       subject.call(sender, bob)
     end
 

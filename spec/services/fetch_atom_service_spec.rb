@@ -57,7 +57,7 @@ RSpec.describe FetchAtomService, type: :service do
       context 'content type is application/atom+xml' do
         let(:content_type) { 'application/atom+xml' }
 
-        it { is_expected.to eq [url, {:prefetched_body=>""}, :ostatus] }
+        it { is_expected.to eq [url, { prefetched_body: "" }, :ostatus] }
       end
 
       context 'content_type is json' do
@@ -73,7 +73,7 @@ RSpec.describe FetchAtomService, type: :service do
       end
 
       context 'has link header' do
-        let(:headers) { { 'Link' => '<http://example.com/foo>; rel="alternate"; type="application/activity+json"', } }
+        let(:headers) { { 'Link' => '<http://example.com/foo>; rel="alternate"; type="application/activity+json"' } }
 
         it { is_expected.to eq [1, { prefetched_body: json, id: true }, :activitypub] }
       end

@@ -15,7 +15,7 @@ describe Api::Web::PushSubscriptionsController do
           p256dh: 'BEm_a0bdPDhf0SOsrnB2-ategf1hHoCnpXgQsFj5JCkcoMrMt2WHoPfEYOYPzOIs9mZE8ZUaD7VA5vouy0kEkr8=',
           auth: 'eH_C8rq2raXqlcBVDa1gLg==',
         },
-      }
+      },
     }
   end
 
@@ -27,8 +27,8 @@ describe Api::Web::PushSubscriptionsController do
           favourite: false,
           reblog: true,
           mention: false,
-        }
-      }
+        },
+      },
     }
   end
 

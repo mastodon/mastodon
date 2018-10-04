@@ -15,7 +15,7 @@ Rails.application.configure do
   # Configure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
   config.public_file_server.headers = {
-    'Cache-Control' => "public, max-age=#{1.hour.to_i}"
+    'Cache-Control' => "public, max-age=#{1.hour.to_i}",
   }
   config.assets.digest = false
 
@@ -67,6 +67,6 @@ if ENV['PAM_ENABLED'] == 'true'
       usernames: Set['pam_user1', 'pam_user2'],
       servicenames: Set['pam_test', 'pam_test_controlled'],
       password: '123456',
-      env: { email: 'pam@example.com' }
+      env: { email: 'pam@example.com' },
     }
 end

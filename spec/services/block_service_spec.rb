@@ -21,7 +21,7 @@ RSpec.describe BlockService, type: :service do
     let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', domain: 'example.com', salmon_url: 'http://salmon.example.com')).account }
 
     before do
-      stub_request(:post, "http://salmon.example.com/").to_return(:status => 200, :body => "", :headers => {})
+      stub_request(:post, "http://salmon.example.com/").to_return(status: 200, body: "", headers: {})
       subject.call(sender, bob)
     end
 

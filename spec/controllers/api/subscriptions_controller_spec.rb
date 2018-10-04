@@ -23,7 +23,7 @@ RSpec.describe Api::SubscriptionsController, type: :controller do
     context 'with invalid subscription' do
       before do
         expect_any_instance_of(Account).to receive_message_chain(:subscription, :valid?).and_return(false)
-        get :show, params: { :id => account.id }
+        get :show, params: { id: account.id }
       end
 
       it 'returns http success' do
@@ -36,7 +36,7 @@ RSpec.describe Api::SubscriptionsController, type: :controller do
     let(:feed) { File.read(File.join(Rails.root, 'spec', 'fixtures', 'push', 'feed.atom')) }
 
     before do
-      stub_request(:post, "https://quitter.no/main/push/hub").to_return(:status => 200, :body => "", :headers => {})
+      stub_request(:post, "https://quitter.no/main/push/hub").to_return(status: 200, body: "", headers: {})
       stub_request(:get, "https://quitter.no/avatar/7477-300-20160211190340.png").to_return(request_fixture('avatar.txt'))
       stub_request(:get, "https://quitter.no/notice/1269244").to_return(status: 404)
       stub_request(:get, "https://quitter.no/notice/1265331").to_return(status: 404)
