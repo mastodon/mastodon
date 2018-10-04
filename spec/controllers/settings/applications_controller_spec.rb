@@ -121,7 +121,7 @@ describe Settings::ApplicationsController do
       def call_update
         patch :update, params: {
           id: app.id,
-                doorkeeper_application: opts
+          doorkeeper_application: opts
         }
         response
       end
