@@ -140,12 +140,12 @@ describe Settings::ApplicationsController do
       before do
         patch :update, params: {
           id: app.id,
-                doorkeeper_application: {
-                  name: '',
-                  redirect_uri: '',
-                  website: '',
-                  scopes: []
-                }
+          doorkeeper_application: {
+            name: '',
+            redirect_uri: '',
+            website: '',
+            scopes: []
+          }
         }
       end
 
