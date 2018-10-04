@@ -21,7 +21,6 @@ describe Settings::ApplicationsController do
     end
   end
 
-
   describe 'GET #show' do
     it 'returns http success' do
       get :show, params: { id: app.id }

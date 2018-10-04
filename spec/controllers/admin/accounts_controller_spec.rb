@@ -75,7 +75,6 @@ RSpec.describe Admin::AccountsController, type: :controller do
     end
   end
 
-
   describe 'POST #subscribe' do
     subject { post :subscribe, params: { id: account.id } }
 
