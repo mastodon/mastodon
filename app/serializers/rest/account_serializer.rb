@@ -11,11 +11,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   has_many :emojis, serializer: REST::CustomEmojiSerializer
 
   class FieldSerializer < ActiveModel::Serializer
-    attributes :name, :value
-
-    attribute :verified_at, if: :verifiable?
-
-    delegate :verifiable?, to: :object
+    attributes :name, :value, :verified_at
 
     def value
       Formatter.instance.format_field(object.account, object.value)
