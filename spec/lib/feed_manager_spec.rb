@@ -185,7 +185,7 @@ RSpec.describe FeedManager do
     it 'trims timelines if they will have more than FeedManager::MAX_ITEMS' do
       account = Fabricate(:account)
       status = Fabricate(:status)
-      members = FeedManager::MAX_ITEMS.times.map { |count| [count, count] }
+      members = Array.new(FeedManager::MAX_ITEMS) { |count| [count, count] }
       Redis.current.zadd("feed:home:#{account.id}", members)
 
       FeedManager.instance.push_to_home(account, status)
@@ -230,7 +230,7 @@ RSpec.describe FeedManager do
       it 'does not save a new reblog of a recently-reblogged status' do
         account = Fabricate(:account)
         reblogged = Fabricate(:status)
-        reblogs = 2.times.map { Fabricate(:status, reblog: reblogged) }
+        reblogs = Array.new(2) { Fabricate(:status, reblog: reblogged) }
 
         # The first reblog will be accepted
         FeedManager.instance.push_to_home(account, reblogs.first)
@@ -242,7 +242,7 @@ RSpec.describe FeedManager do
       it 'does not save a new reblog of a multiply-reblogged-then-unreblogged status' do
         account   = Fabricate(:account)
         reblogged = Fabricate(:status)
-        reblogs = 3.times.map { Fabricate(:status, reblog: reblogged) }
+        reblogs = Array.new(3) { Fabricate(:status, reblog: reblogged) }
 
         # Accept the reblogs
         FeedManager.instance.push_to_home(account, reblogs[0])
@@ -258,7 +258,7 @@ RSpec.describe FeedManager do
       it 'saves a new reblog of a long-ago-reblogged status' do
         account = Fabricate(:account)
         reblogged = Fabricate(:status)
-        reblogs = 2.times.map { Fabricate(:status, reblog: reblogged) }
+        reblogs = Array.new(2) { Fabricate(:status, reblog: reblogged) }
 
         # The first reblog will be accepted
         FeedManager.instance.push_to_home(account, reblogs.first)
@@ -376,7 +376,7 @@ RSpec.describe FeedManager do
 
     it 'leaves a multiply-reblogged status if another reblog was in feed' do
       reblogged = Fabricate(:status)
-      reblogs   = 3.times.map { Fabricate(:status, reblog: reblogged) }
+      reblogs   = Array.new(3) { Fabricate(:status, reblog: reblogged) }
 
       reblogs.each do |reblog|
         FeedManager.instance.push_to_home(receiver, reblog)

@@ -734,7 +734,7 @@ RSpec.describe Account, type: :model do
 
     describe 'recent' do
       it 'returns a relation of accounts sorted by recent creation' do
-        matches = 2.times.map { Fabricate(:account) }
+        matches = Array.new(2) { Fabricate(:account) }
         expect(Account.recent).to match_array(matches)
       end
     end
