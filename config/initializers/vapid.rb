@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.configure do
-
   # You can generate the keys using the following command (first is the private key, second is the public one)
   # You should only generate this once per instance. If you later decide to change it, all push subscription will
   # be invalidated, requiring the users to access the website again to resubscribe.

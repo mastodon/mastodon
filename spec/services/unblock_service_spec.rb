@@ -23,7 +23,7 @@ RSpec.describe UnblockService, type: :service do
 
     before do
       sender.block!(bob)
-      stub_request(:post, "http://salmon.example.com/").to_return(:status => 200, :body => "", :headers => {})
+      stub_request(:post, "http://salmon.example.com/").to_return(status: 200, body: "", headers: {})
       subject.call(sender, bob)
     end
 

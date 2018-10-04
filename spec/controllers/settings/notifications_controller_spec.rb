@@ -25,7 +25,7 @@ describe Settings::NotificationsController do
         user: {
           notification_emails: { follow: '1' },
           interactions: { must_be_follower: '0' },
-        }
+        },
       }
 
       expect(response).to redirect_to(settings_notifications_path)

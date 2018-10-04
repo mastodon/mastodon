@@ -4,8 +4,8 @@ require 'rails_helper'
 
 describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true do
   before do
-    double(:api_oembed_url => '')
-    double(:account_stream_entry_url => '')
+    double(api_oembed_url: '')
+    double(account_stream_entry_url: '')
     allow(view).to receive(:show_landing_strip?).and_return(true)
     allow(view).to receive(:site_title).and_return('example site')
     allow(view).to receive(:site_hostname).and_return('example.com')
@@ -50,7 +50,7 @@ describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true d
     assign(:account, alice)
     assign(:type, reply.stream_entry.activity_type.downcase)
     assign(:ancestors, reply.stream_entry.activity.ancestors(1, bob) )
-    assign(:descendant_threads, [{ statuses: reply.stream_entry.activity.descendants(1)}])
+    assign(:descendant_threads, [{ statuses: reply.stream_entry.activity.descendants(1) }])
 
     render
 

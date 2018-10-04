@@ -41,7 +41,7 @@ RSpec.describe Api::PushController, type: :controller do
 
         expect(service).to have_received(:call).with(
           account,
-          'https://callback.host/api',
+          'https://callback.host/api'
         )
         expect(response).to have_http_status(202)
       end

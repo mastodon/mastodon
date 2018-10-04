@@ -10,7 +10,7 @@ Fabricator(:media_attachment) do
       when nil
         attachment_fixture ['attachment.gif', 'attachment.jpg', 'attachment.webm'].sample
       end,
-      nil
+      nil,
     ].sample
   end
 end

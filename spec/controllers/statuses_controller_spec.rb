@@ -95,7 +95,7 @@ describe StatusesController do
       it 'assigns @descendant_threads for several threads sharing the same descendant' do
         status = Fabricate(:status)
         child = Fabricate(:status, in_reply_to_id: status.id)
-        grandchildren = 2.times.map { Fabricate(:status, in_reply_to_id: child.id) }
+        grandchildren = Array.new(2) { Fabricate(:status, in_reply_to_id: child.id) }
 
         get :show, params: { account_username: status.account.username, id: status.id }
 

@@ -10,7 +10,6 @@ describe Settings::MigrationsController do
   end
 
   describe 'GET #show' do
-
     context 'when user is not sign in' do
       subject { get :show }
 
@@ -45,7 +44,6 @@ describe Settings::MigrationsController do
   end
 
   describe 'PUT #update' do
-
     context 'when user is not sign in' do
       subject { put :update }
 

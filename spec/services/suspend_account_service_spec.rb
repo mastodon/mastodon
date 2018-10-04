@@ -32,7 +32,7 @@ RSpec.describe SuspendAccountService, type: :service do
           account.favourites,
           account.active_relationships,
           account.passive_relationships,
-          account.subscriptions
+          account.subscriptions,
         ].map(&:count)
       }.from([1, 1, 1, 1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0, 0, 0, 0])
     end

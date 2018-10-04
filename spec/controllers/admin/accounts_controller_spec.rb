@@ -45,7 +45,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
         username: 'username',
         display_name: 'display name',
         email: 'local-part@domain',
-        ip: '0.0.0.42'
+        ip: '0.0.0.42',
       }
     end
 
@@ -74,7 +74,6 @@ RSpec.describe Admin::AccountsController, type: :controller do
       expect(response).to have_http_status(200)
     end
   end
-
 
   describe 'POST #subscribe' do
     subject { post :subscribe, params: { id: account.id } }

@@ -275,7 +275,7 @@ RSpec.describe Account, type: :model do
 
     subject { Fabricate(:account) }
 
-    context 'when the status is a reblog of another status'do
+    context 'when the status is a reblog of another status' do
       let(:original_reblog) do
         author = Fabricate(:account, username: 'original_reblogger')
         Fabricate(:status, reblog: original_status, account: author)
@@ -734,7 +734,7 @@ RSpec.describe Account, type: :model do
 
     describe 'recent' do
       it 'returns a relation of accounts sorted by recent creation' do
-        matches = 2.times.map { Fabricate(:account) }
+        matches = Array.new(2) { Fabricate(:account) }
         expect(Account.recent).to match_array(matches)
       end
     end

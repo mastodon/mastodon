@@ -23,7 +23,7 @@ RSpec.describe FavouriteService, type: :service do
     let(:status) { Fabricate(:status, account: bob, uri: 'tag:example.com:blahblah') }
 
     before do
-      stub_request(:post, "http://salmon.example.com/").to_return(:status => 200, :body => "", :headers => {})
+      stub_request(:post, "http://salmon.example.com/").to_return(status: 200, body: "", headers: {})
       subject.call(sender, status)
     end
 
@@ -44,7 +44,7 @@ RSpec.describe FavouriteService, type: :service do
     let(:status) { Fabricate(:status, account: bob) }
 
     before do
-      stub_request(:post, "http://example.com/inbox").to_return(:status => 200, :body => "", :headers => {})
+      stub_request(:post, "http://example.com/inbox").to_return(status: 200, body: "", headers: {})
       subject.call(sender, status)
     end
 

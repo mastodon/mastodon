@@ -41,7 +41,7 @@ describe AccountFilter do
         silenced: true,
         username: 'test',
         display_name: 'name',
-        email: 'user@example.com',
+        email: 'user@example.com'
       )
 
       allow(Account).to receive(:where).and_return(Account.none)
