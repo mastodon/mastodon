@@ -5,7 +5,7 @@ ruby '>= 2.3.0', '< 2.6.0'
 
 gem 'pkg-config', '~> 1.3'
 
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 gem 'rails', '~> 5.2.1'
 gem 'thor', '~> 0.20'
 
@@ -117,7 +117,7 @@ group :test do
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.16', require: false
   gem 'webmock', '~> 3.4'
-  gem 'parallel_tests', '~> 2.21'
+  gem 'parallel_tests', '~> 2.23'
 end
 
 group :development do
