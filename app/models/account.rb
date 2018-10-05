@@ -312,8 +312,8 @@ class Account < ApplicationRecord
     def initialize(account, attributes)
       @account     = account
       @attributes  = attributes
-      @name        = attributes['name'].strip[0, 255]
-      @value       = attributes['value'].strip[0, 255]
+      @name        = attributes['name'].strip[0, string_limit]
+      @value       = attributes['value'].strip[0, string_limit]
       @verified_at = attributes['verified_at']&.to_datetime
       @errors      = {}
     end
@@ -322,8 +322,18 @@ class Account < ApplicationRecord
       verified_at.present?
     end
 
+    def value_for_verification
+      @value_for_verification ||= begin
+        if account.local?
+          value
+        else
+          ActionController::Base.helpers.strip_tags(value)
+        end
+      end
+    end
+
     def verifiable?
-      value.present? && value.start_with?('http://', 'https://')
+      value_for_verification.present? && value_for_verification.start_with?('http://', 'https://')
     end
 
     def mark_verified!
@@ -333,6 +343,16 @@ class Account < ApplicationRecord
 
     def to_h
       { name: @name, value: @value, verified_at: @verified_at }
+    end
+
+    private
+
+    def string_limit
+      if account.local?
+        255
+      else
+        2047
+      end
     end
   end
 
