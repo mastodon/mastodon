@@ -1,7 +1,8 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
-# Table name: conversation_accounts
+# Table name: account_conversations
 #
 #  id                      :bigint(8)        not null, primary key
 #  account_id              :bigint(8)
@@ -11,7 +12,8 @@
 #  last_status_id          :bigint(8)
 #
 
-class ConversationAccount < ApplicationRecord
+
+class AccountConversation < ApplicationRecord
   after_commit :push_to_streaming_api
 
   belongs_to :account

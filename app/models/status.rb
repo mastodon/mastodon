@@ -483,7 +483,7 @@ class Status < ApplicationRecord
     inbox_owners       = mentioned_accounts.select(&:local?) + (account.local? ? [account] : [])
 
     inbox_owners.each do |inbox_owner|
-      ConversationAccount.remove_status(inbox_owner, self)
+      AccountConversation.remove_status(inbox_owner, self)
     end
   end
 end

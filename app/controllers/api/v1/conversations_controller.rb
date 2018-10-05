@@ -17,7 +17,7 @@ class Api::V1::ConversationsController < Api::BaseController
   private
 
   def paginated_conversations
-    ConversationAccount.where(account: current_account)
+    AccountConversation.where(account: current_account)
                        .paginate_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
   end
 

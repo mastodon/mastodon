@@ -114,7 +114,7 @@ class NotifyService < BaseService
 
   def push_to_conversation!
     return if @notification.activity.nil?
-    ConversationAccount.add_status(@recipient, @notification.target_status)
+    AccountConversation.add_status(@recipient, @notification.target_status)
   end
 
   def send_push_notifications!

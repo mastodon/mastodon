@@ -105,6 +105,6 @@ class FanOutOnWriteService < BaseService
   end
 
   def deliver_to_own_conversation(status)
-    ConversationAccount.add_status(status.account, status)
+    AccountConversation.add_status(status.account, status)
   end
 end

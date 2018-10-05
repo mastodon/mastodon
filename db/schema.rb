@@ -15,6 +15,18 @@ ActiveRecord::Schema.define(version: 2018_09_29_222014) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "account_conversations", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "conversation_id"
+    t.bigint "participant_account_ids", default: [], null: false, array: true
+    t.bigint "status_ids", default: [], null: false, array: true
+    t.bigint "last_status_id"
+    t.index ["account_id", "conversation_id", "participant_account_ids"], name: "index_unique_conversations", unique: true
+    t.index ["account_id"], name: "index_account_conversations_on_account_id"
+    t.index ["conversation_id"], name: "index_account_conversations_on_conversation_id"
+    t.index ["last_status_id"], name: "index_account_conversations_on_last_status_id"
+  end
+
   create_table "account_domain_blocks", force: :cascade do |t|
     t.string "domain"
     t.datetime "created_at", null: false
@@ -124,18 +136,6 @@ ActiveRecord::Schema.define(version: 2018_09_29_222014) do
     t.string "uri"
     t.index ["account_id", "target_account_id"], name: "index_blocks_on_account_id_and_target_account_id", unique: true
     t.index ["target_account_id"], name: "index_blocks_on_target_account_id"
-  end
-
-  create_table "conversation_accounts", force: :cascade do |t|
-    t.bigint "account_id"
-    t.bigint "conversation_id"
-    t.bigint "participant_account_ids", default: [], null: false, array: true
-    t.bigint "status_ids", default: [], null: false, array: true
-    t.bigint "last_status_id"
-    t.index ["account_id", "conversation_id", "participant_account_ids"], name: "index_unique_conversations", unique: true
-    t.index ["account_id"], name: "index_conversation_accounts_on_account_id"
-    t.index ["conversation_id"], name: "index_conversation_accounts_on_conversation_id"
-    t.index ["last_status_id"], name: "index_conversation_accounts_on_last_status_id"
   end
 
   create_table "conversation_mutes", force: :cascade do |t|
@@ -610,6 +610,9 @@ ActiveRecord::Schema.define(version: 2018_09_29_222014) do
     t.index ["user_id"], name: "index_web_settings_on_user_id", unique: true
   end
 
+  add_foreign_key "account_conversations", "accounts", on_delete: :cascade
+  add_foreign_key "account_conversations", "conversations", on_delete: :cascade
+  add_foreign_key "account_conversations", "statuses", column: "last_status_id", on_delete: :nullify
   add_foreign_key "account_domain_blocks", "accounts", name: "fk_206c6029bd", on_delete: :cascade
   add_foreign_key "account_moderation_notes", "accounts"
   add_foreign_key "account_moderation_notes", "accounts", column: "target_account_id"

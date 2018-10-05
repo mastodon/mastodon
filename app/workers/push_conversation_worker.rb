@@ -4,7 +4,7 @@ class PushConversationWorker
   include Sidekiq::Worker
 
   def perform(conversation_account_id)
-    conversation = ConversationAccount.find(conversation_account_id)
+    conversation = AccountConversation.find(conversation_account_id)
     message      = InlineRenderer.render(conversation, conversation.account, :conversation)
     timeline_id  = "timeline:direct:#{conversation.account_id}"
 
