@@ -45,7 +45,6 @@ class Status extends ImmutablePureComponent {
   static propTypes = {
     status: ImmutablePropTypes.map,
     account: ImmutablePropTypes.map,
-    askReplyConfirmation: PropTypes.bool,
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
     onReblog: PropTypes.func,
@@ -72,7 +71,6 @@ class Status extends ImmutablePureComponent {
     'account',
     'muted',
     'hidden',
-    'askReplyConfirmation',
   ]
 
   handleClick = () => {
@@ -109,9 +107,8 @@ class Status extends ImmutablePureComponent {
   }
 
   handleHotkeyReply = e => {
-    let { onReply, askReplyConfirmation } = this.props;
     e.preventDefault();
-    onReply(this._properStatus(), this.context.router.history, askReplyConfirmation);
+    this.props.onReply(this._properStatus(), this.context.router.history);
   }
 
   handleHotkeyFavourite = () => {

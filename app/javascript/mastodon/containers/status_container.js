@@ -45,7 +45,6 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props),
-    askReplyConfirmation: state.getIn(['compose', 'text']).trim().length !== 0,
   });
 
   return mapStateToProps;
@@ -53,16 +52,19 @@ const makeMapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
 
-  onReply (status, router, confirm = false) {
-    if (confirm) {
-      dispatch(openModal('CONFIRM', {
-        message: intl.formatMessage(messages.replyMessage),
-        confirm: intl.formatMessage(messages.replyConfirm),
-        onConfirm: () => dispatch(replyCompose(status, router)),
-      }));
-    } else {
-      dispatch(replyCompose(status, router));
-    }
+  onReply (status, router) {
+    dispatch((_, getState) => {
+      let state = getState();
+      if (state.getIn(['compose', 'text']).trim().length !== 0) {
+        dispatch(openModal('CONFIRM', {
+          message: intl.formatMessage(messages.replyMessage),
+          confirm: intl.formatMessage(messages.replyConfirm),
+          onConfirm: () => dispatch(replyCompose(status, router)),
+        }));
+      } else {
+        dispatch(replyCompose(status, router));
+      }
+    });
   },
 
   onModalReblog (status) {

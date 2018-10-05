@@ -65,7 +65,6 @@ class StatusActionBar extends ImmutablePureComponent {
     onPin: PropTypes.func,
     withDismiss: PropTypes.bool,
     intl: PropTypes.object.isRequired,
-    askReplyConfirmation: PropTypes.bool,
   };
 
   // Avoid checking props that are functions (and whose equality will always
@@ -76,8 +75,7 @@ class StatusActionBar extends ImmutablePureComponent {
   ]
 
   handleReplyClick = () => {
-    let { askReplyConfirmation, onReply } = this.props;
-    onReply(this.props.status, this.context.router.history, askReplyConfirmation);
+    this.props.onReply(this.props.status, this.context.router.history);
   }
 
   handleShareClick = () => {
