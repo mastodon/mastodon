@@ -201,7 +201,7 @@ describe ApplicationController, type: :controller do
   describe 'raise_not_found' do
     it 'raises error' do
       controller.params[:unmatched_route] = 'unmatched'
-      expect{ controller.raise_not_found }.to raise_error(ActionController::RoutingError, 'No route matches unmatched')
+      expect { controller.raise_not_found }.to raise_error(ActionController::RoutingError, 'No route matches unmatched')
     end
   end
 
