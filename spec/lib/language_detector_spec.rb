@@ -90,7 +90,7 @@ describe LanguageDetector do
         end
 
         it 'uses nil when account is present but has no locale' do
-          result  = described_class.instance.detect('', account_without_user_locale)
+          result = described_class.instance.detect('', account_without_user_locale)
 
           expect(result).to eq nil
         end

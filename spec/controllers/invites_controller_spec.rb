@@ -43,7 +43,7 @@ describe InvitesController do
       let(:user) { Fabricate(:user, moderator: false, admin: true) }
 
       it 'succeeds to create a invite' do
-        expect{ subject }.to change { Invite.count }.by(1)
+        expect { subject }.to change { Invite.count }.by(1)
         expect(subject).to redirect_to invites_path
         expect(Invite.last).to have_attributes(user_id: user.id, max_uses: 10)
       end

@@ -15,9 +15,9 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.2', '< 2.3'
 
-gem 'aws-sdk-s3', '~> 1.9', require: false
-gem 'fog-core', '~> 1.45'
-gem 'fog-openstack', '~> 0.1', require: false
+gem 'aws-sdk-s3', '~> 1.20', require: false
+gem 'fog-core', '~> 2.1'
+gem 'fog-openstack', '~> 1.0', require: false
 gem 'paperclip', '~> 6.0'
 gem 'paperclip-av-transcoder', '~> 0.6'
 gem 'streamio-ffmpeg', '~> 3.0'
@@ -50,7 +50,7 @@ gem 'goldfinger', '~> 2.1'
 gem 'hiredis', '~> 0.6'
 gem 'redis-namespace', '~> 1.5'
 gem 'htmlentities', '~> 4.3'
-gem 'http', '~> 3.2'
+gem 'http', '~> 3.3'
 gem 'http_accept_language', '~> 2.1'
 gem 'http_parser.rb', '~> 0.6', git: 'https://github.com/tmm1/http_parser.rb', ref: '54b17ba8c7d8d20a16dfc65d1775241833219cf2'
 gem 'httplog', '~> 1.1'
@@ -96,11 +96,11 @@ gem 'rdf-normalize', '~> 0.3'
 
 group :development, :test do
   gem 'fabrication', '~> 2.20'
-  gem 'fuubar', '~> 2.2'
+  gem 'fuubar', '~> 2.3'
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-byebug', '~> 3.6'
   gem 'pry-rails', '~> 0.3'
-  gem 'rspec-rails', '~> 3.7'
+  gem 'rspec-rails', '~> 3.8'
 end
 
 group :production, :test do
@@ -115,7 +115,7 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.16', require: false
-  gem 'webmock', '~> 3.3'
+  gem 'webmock', '~> 3.4'
   gem 'parallel_tests', '~> 2.21'
 end
 
@@ -129,7 +129,7 @@ group :development do
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
   gem 'rubocop', '~> 0.59', require: false
-  gem 'brakeman', '~> 4.2', require: false
+  gem 'brakeman', '~> 4.3', require: false
   gem 'bundler-audit', '~> 0.6', require: false
   gem 'scss_lint', '~> 0.57', require: false
 
