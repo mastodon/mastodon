@@ -254,7 +254,7 @@ RSpec.describe User, type: :model do
 
   it_behaves_like 'Settings-extended' do
     def create!
-      User.create!(account: Fabricate(:account), email: 'foo@mastodon.space', password: 'abcd1234' )
+      User.create!(account: Fabricate(:account), email: 'foo@mastodon.space', password: 'abcd1234')
     end
 
     def fabricate

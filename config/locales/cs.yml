@@ -47,7 +47,7 @@ cs:
       one: Sledovatel
       other: Sledovatelé
     following: Sleduje
-    joined: Připojil/a se dne %{date}
+    joined: Připojil/a se v %{date}
     media: Média
     moved_html: 'Účet %{name} byl přesunut na %{new_profile_link}:'
     network_hidden: Tato informace není k dispozici
@@ -519,7 +519,7 @@ cs:
     '500':
       content: Omlouváme se, ale něco se pokazilo u nás.
       title: Tato stránka není správná
-    noscript_html: Pro použití webové aplikace Mastodon prosím povolte JavaScript. Nebo zkuste jednu z <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">nativních aplikací</a> pro Mastodon pro vaši platformu.
+    noscript_html: Pro použití webové aplikace Mastodon prosím povolte JavaScript. Nebo zkuste jednu z <a href="%{apps_path}">nativních aplikací</a> pro Mastodon pro vaši platformu.
   exports:
     archive_takeout:
       date: Datum
@@ -675,10 +675,10 @@ cs:
     acct: Napište svou přezdívku@doménu, ze které chcete jednat
     missing_resource: Nemůžeme najít požadované přesměrovací URL pro váš účet
     no_account_html: Ještě nemáte účet? Můžete se <a href='%{sign_up_path}' target='_blank'>registrovat zde</a>
-    proceed: Pokračujte pro sledování
+    proceed: Pokračovat ke sledování
     prompt: 'Budete sledovat:'
   remote_interaction:
-    proceed: Pokračujte k interakci
+    proceed: Pokračovat k interakci
     prompt: 'Chcete interagovat s tímto tootem:'
   remote_unfollow:
     error: Chyba

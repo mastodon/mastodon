@@ -8,7 +8,7 @@ class AccountFilter
   end
 
   def results
-    scope = Account.alphabetic
+    scope = Account.recent
 
     params.each do |key, value|
       scope.merge!(scope_for(key, value)) if value.present?
@@ -29,8 +29,8 @@ class AccountFilter
       Account.where(domain: value)
     when 'silenced'
       Account.silenced
-    when 'recent'
-      Account.recent
+    when 'alphabetic'
+      Account.reorder(nil).alphabetic
     when 'suspended'
       Account.suspended
     when 'username'

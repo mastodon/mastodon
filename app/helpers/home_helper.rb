@@ -48,4 +48,12 @@ module HomeHelper
       '1+'
     end
   end
+
+  def custom_field_classes(field)
+    if field.verified?
+      'verified'
+    else
+      'emojify'
+    end
+  end
 end

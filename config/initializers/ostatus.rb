@@ -7,7 +7,7 @@ web_host = ENV.fetch('WEB_DOMAIN') { host }
 alternate_domains = ENV.fetch('ALTERNATE_DOMAINS') { '' }
 
 Rails.application.configure do
-  https    = Rails.env.production? || ENV['LOCAL_HTTPS'] == 'true'
+  https = Rails.env.production? || ENV['LOCAL_HTTPS'] == 'true'
 
   config.x.local_domain = host
   config.x.web_domain   = web_host
