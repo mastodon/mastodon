@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'optparse'
-require 'colorize'
 require 'tty-command'
 require 'tty-prompt'
 
@@ -390,25 +388,6 @@ namespace :mastodon do
     end
   end
 
-  namespace :push do
-    desc 'Unsubscribes from PuSH updates of feeds nobody follows locally'
-    task clear: :environment do
-      Pubsubhubbub::UnsubscribeWorker.push_bulk(Account.remote.without_followers.where.not(subscription_expires_at: nil).pluck(:id))
-    end
-  end
-
-  namespace :settings do
-    desc 'Open registrations on this instance'
-    task open_registrations: :environment do
-      Setting.open_registrations = true
-    end
-
-    desc 'Close registrations on this instance'
-    task close_registrations: :environment do
-      Setting.open_registrations = false
-    end
-  end
-
   namespace :webpush do
     desc 'Generate VAPID key'
     task generate_vapid_key: :environment do
@@ -426,8 +405,4 @@ def disable_log_stdout!
   ActiveRecord::Base.logger    = dev_null
   HttpLog.configuration.logger = dev_null
   Paperclip.options[:log]      = false
-end
-
-def prepare_for_options!
-  2.times { ARGV.shift }
 end

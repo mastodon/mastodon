@@ -880,7 +880,7 @@ RSpec.describe OStatus::AtomSerializer do
 
       ProcessInteractionService.new.call(envelope, block.target_account)
 
-      expect{ block.reload }.to raise_error ActiveRecord::RecordNotFound
+      expect { block.reload }.to raise_error ActiveRecord::RecordNotFound
     end
   end
 

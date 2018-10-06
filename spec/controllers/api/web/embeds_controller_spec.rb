@@ -14,7 +14,7 @@ describe Api::Web::EmbedsController do
 
     context 'when successfully finds status' do
       let(:status) { Fabricate(:status) }
-      let(:url) { "http://#{ Rails.configuration.x.web_domain }/@#{status.account.username}/#{status.id}" }
+      let(:url) { "http://#{Rails.configuration.x.web_domain}/@#{status.account.username}/#{status.id}" }
 
       it 'returns a right response' do
         expect(response).to have_http_status :ok
