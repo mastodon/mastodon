@@ -37,6 +37,13 @@ describe HashtagQueryService, type: :service do
       expect(results).to include both
     end
 
+    it 'ignores an invalid mode' do
+      results = subject.call(tag1, { tags: [tag2.name], tag_mode: :wark })
+      expect(results).to     include status1
+      expect(results).to_not include status2
+      expect(results).to     include both
+    end
+
     it 'handles not being passed additional tags' do
       results = subject.call(tag1, { tag_mode: :any })
       expect(results).to     include status1
