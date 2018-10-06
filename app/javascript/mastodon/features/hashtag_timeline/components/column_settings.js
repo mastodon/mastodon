@@ -21,7 +21,7 @@ export default class ColumnSettings extends React.PureComponent {
     mode: this.props.settings.get('tagMode') || 'any'
   };
 
-  tags() {
+  tags () {
     return Array.from(this.props.settings.get('tags') || []).map((tag) => {
       return tag.toJSON ? tag.toJSON() : tag
     })
@@ -32,9 +32,9 @@ export default class ColumnSettings extends React.PureComponent {
     this.setState({ open: !this.state.open })
   };
 
-  setMode (value) {
-    this.props.onChange('tagMode', value)
-    this.setState({ mode: value })
+  setMode (mode) {
+    this.props.onChange('tagMode', mode)
+    this.setState({ mode })
   };
 
   modeOption (value) {
