@@ -8,3 +8,11 @@
 .public-layout .public-account-header__image img[src="/headers/original/missing.png"] {
   height: 360px;
 }
+
+.simple_form .actions {
+  flex-direction: column;
+  .g-recaptcha {
+    margin: auto;
+    margin-bottom: 15px;
+  }
+}

@@ -10,8 +10,8 @@
     - if ENV['RECAPTCHA_ENABLED'] == 'true'
       %script(src='https://www.google.com/recaptcha/api.js' async defer)
       .g-recaptcha{data: {:sitekey => "#{ENV['RECAPTCHA_SITE_KEY']}"}}
-      = f.button :button, t('auth.register'), type: :submit, class: 'button button-alternative'
+      = f.button :button, t('auth.register'), type: :submit, class: 'button button-primary'
     - else
-      = f.button :button, t('auth.register'), type: :submit, class: 'button button-alternative'
+      = f.button :button, t('auth.register'), type: :submit, class: 'button button-primary'
 
   %p.hint.subtle-hint=t('auth.agreement_html', rules_path: about_more_path, terms_path: terms_path)
