@@ -364,7 +364,8 @@ export default class Status extends ImmutablePureComponent {
   }
 
   shouldUpdateScroll = (prevRouterProps, { location }) => {
-    return !(location.state && location.state.mastodonModalOpen)
+    if ((((prevRouterProps || {}).location || {}).state || {}).mastodonModalOpen) return false;
+    return !(location.state && location.state.mastodonModalOpen);
   }
 
   render () {

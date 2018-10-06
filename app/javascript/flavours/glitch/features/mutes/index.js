@@ -43,6 +43,7 @@ export default class Mutes extends ImmutablePureComponent {
   }
 
   shouldUpdateScroll = (prevRouterProps, { location }) => {
+    if ((((prevRouterProps || {}).location || {}).state || {}).mastodonModalOpen) return false;
     return !(location.state && location.state.mastodonModalOpen);
   }
 

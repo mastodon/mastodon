@@ -150,6 +150,7 @@ export default class ScrollableList extends PureComponent {
   }
 
   defaultShouldUpdateScroll = (prevRouterProps, { location }) => {
+    if ((((prevRouterProps || {}).location || {}).state || {}).mastodonModalOpen) return false;
     return !(location.state && location.state.mastodonModalOpen);
   }
 

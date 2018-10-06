@@ -43,7 +43,8 @@ export default class Blocks extends ImmutablePureComponent {
   }
 
   shouldUpdateScroll = (prevRouterProps, { location }) => {
-    return !(location.state && location.state.mastodonModalOpen)
+    if ((((prevRouterProps || {}).location || {}).state || {}).mastodonModalOpen) return false;
+    return !(location.state && location.state.mastodonModalOpen);
   }
 
   render () {
