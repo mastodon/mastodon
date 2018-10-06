@@ -16,18 +16,15 @@ class TagsController < ApplicationController
       end
 
       format.rss do
-        @statuses = Status.as_tag_timeline(@tag)
-                          .modify_tag_query(params[:tags], params[:tag_model])
-                          .limit(PAGE_SIZE)
+        @statuses = HashtagQueryService.new.call(@tag, params.slice(:tags, :tag_mode)).limit(PAGE_SIZE)
         @statuses = cache_collection(@statuses, Status)
 
         render xml: RSS::TagSerializer.render(@tag, @statuses)
       end
 
       format.json do
-        @statuses = Status.as_tag_timeline(@tag, current_account, params[:local])
-                          .modify_tag_query(params[:tags], params[:tag_model])
-                          .paginate_by_max_id(PAGE_SIZE, params[:max_id])
+        @statuses = HashtagQueryService.new.call(@tag, params.slice(:tags, :tag_mode), current_account, params[:local])
+                                       .paginate_by_max_id(PAGE_SIZE, params[:max_id])
         @statuses = cache_collection(@statuses, Status)
 
         render json: collection_presenter,

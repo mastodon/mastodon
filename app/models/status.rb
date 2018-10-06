@@ -79,25 +79,16 @@ class Status < ApplicationRecord
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).where('accounts.domain IS NULL OR accounts.domain NOT IN (?)', account.excluded_from_timeline_domains) }
-  scope :tagged_with_all, ->(additional) {
-    additional.each_with_index.reduce(all) do |result, (tag, index)|
+  scope :tagged_with_all, ->(tags) {
+    Array(tags).each_with_index.reduce(all) do |result, (tag, index)|
       result.joins("INNER JOIN statuses_tags t#{index} ON t#{index}.status_id = statuses.id AND t#{index}.tag_id = #{tag.id}")
     end
   }
-  scope :not_tagged_with, ->(additional) {
-    additional.each_with_index.reduce(all) do |result, (tag, index)|
+  scope :tagged_with_none, ->(tags) {
+    Array(tags).each_with_index.reduce(all) do |result, (tag, index)|
       result.joins("LEFT OUTER JOIN statuses_tags t#{index} ON t#{index}.status_id = statuses.id AND t#{index}.tag_id = #{tag.id}")
             .where("t#{index}.tag_id IS NULL")
     end
-  }
-
-  scope :modify_tag_query, ->(additional, mode) {
-    return all unless additional.presence
-    case (mode || :any).to_sym
-    when :all  then tagged_with_all(additional)
-    when :any  then merge(tagged_with(additional))
-    when :none then not_tagged_with(additional)
-    end.distinct
   }
 
   cache_associated :account,

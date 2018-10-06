@@ -102,7 +102,7 @@ class HashtagTimeline extends React.PureComponent {
           multiColumn={multiColumn}
           showBackButton
         >
-          <ColumnSettingsContainer columnId={columnId} />
+          {columnId && <ColumnSettingsContainer columnId={columnId} />}
         </ColumnHeader>
 
         <StatusListContainer

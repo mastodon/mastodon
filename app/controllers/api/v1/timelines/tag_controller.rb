@@ -49,8 +49,7 @@ class Api::V1::Timelines::TagController < Api::BaseController
   end
 
   def tag_timeline_statuses
-    Status.as_tag_timeline(@tag, current_account, truthy_param?(:local))
-          .modify_tag_query(load_additional_tags, params[:tag_mode])
+    HashtagQueryService.new.call(@tag, params.slice(:tags, :tag_mode), current_account, truthy_param?(:local))
   end
 
   def insert_pagination_headers

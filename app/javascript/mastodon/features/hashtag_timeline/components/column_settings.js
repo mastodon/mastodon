@@ -62,7 +62,7 @@ export default class ColumnSettings extends React.PureComponent {
           <div className='setting-toggle'>
             <Toggle
               id='hashtag.column_settings.tag_toggle'
-              onChange={this.toggleOpen}
+              onChange={() => { this.toggleOpen() }}
               checked={this.state.open} />
             <span className='setting-toggle__label'>
               <FormattedMessage id='hashtag.column_settings.tag_toggle' defaultMessage='Include additional tags in this column' />
