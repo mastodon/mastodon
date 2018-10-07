@@ -9,7 +9,7 @@ if ENV['STATSD_ADDR'].present?
   ::NSA.inform_statsd(statsd) do |informant|
     informant.collect(:action_controller, :web)
     informant.collect(:active_record, :db)
-    informant.collect(:cache, :cache)
+    informant.collect(:active_support_cache, :cache)
     informant.collect(:sidekiq, :sidekiq)
   end
 end

@@ -20,7 +20,7 @@ module Paperclip
     private
 
     def needs_convert?
-      needs_different_geometry? || needs_different_format?
+      needs_different_geometry? || needs_different_format? || needs_metadata_stripping?
     end
 
     def needs_different_geometry?
@@ -30,6 +30,10 @@ module Paperclip
 
     def needs_different_format?
       @format.present? && @current_format != @format
+    end
+
+    def needs_metadata_stripping?
+      @attachment.instance.respond_to?(:local?) && @attachment.instance.local?
     end
   end
 end
