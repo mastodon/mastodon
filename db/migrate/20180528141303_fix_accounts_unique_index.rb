@@ -62,7 +62,7 @@ class FixAccountsUniqueIndex < ActiveRecord::Migration[5.2]
           # Since domain is in the GROUP BY clause, both accounts
           # are always either going to be local or not local, so only
           # one check is needed. Since we cannot support two users with
-          # the same username locally, one has to go. 😢
+          # the same username locally, one has to go.
           other_account.user&.destroy
         end
 

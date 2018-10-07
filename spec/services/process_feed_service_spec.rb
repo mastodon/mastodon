@@ -4,7 +4,7 @@ RSpec.describe ProcessFeedService, type: :service do
   subject { ProcessFeedService.new }
 
   describe 'processing a feed' do
-    let(:body) { File.read(File.join(Rails.root, 'spec', 'fixtures', 'xml', 'mastodon.atom')) }
+    let(:body) { File.read(Rails.root.join('spec', 'fixtures', 'xml', 'mastodon.atom')) }
     let(:account) { Fabricate(:account, username: 'localhost', domain: 'kickass.zone') }
 
     before do
