@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 2018_09_29_222014) do
     t.index ["account_id", "conversation_id", "participant_account_ids"], name: "index_unique_conversations", unique: true
     t.index ["account_id"], name: "index_account_conversations_on_account_id"
     t.index ["conversation_id"], name: "index_account_conversations_on_conversation_id"
-    t.index ["last_status_id"], name: "index_account_conversations_on_last_status_id"
   end
 
   create_table "account_domain_blocks", force: :cascade do |t|
@@ -612,7 +611,6 @@ ActiveRecord::Schema.define(version: 2018_09_29_222014) do
 
   add_foreign_key "account_conversations", "accounts", on_delete: :cascade
   add_foreign_key "account_conversations", "conversations", on_delete: :cascade
-  add_foreign_key "account_conversations", "statuses", column: "last_status_id", on_delete: :nullify
   add_foreign_key "account_domain_blocks", "accounts", name: "fk_206c6029bd", on_delete: :cascade
   add_foreign_key "account_moderation_notes", "accounts"
   add_foreign_key "account_moderation_notes", "accounts", column: "target_account_id"

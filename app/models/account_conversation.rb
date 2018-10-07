@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: account_conversations
@@ -12,13 +11,14 @@
 #  last_status_id          :bigint(8)
 #
 
-
 class AccountConversation < ApplicationRecord
   after_commit :push_to_streaming_api
 
   belongs_to :account
   belongs_to :conversation
   belongs_to :last_status, class_name: 'Status'
+
+  before_validation :set_last_status
 
   def participant_account_ids=(arr)
     self[:participant_account_ids] = arr.sort
@@ -56,8 +56,7 @@ class AccountConversation < ApplicationRecord
 
     def add_status(recipient, status)
       conversation = find_or_initialize_by(account: recipient, conversation_id: status.conversation_id, participant_account_ids: participants_from_status(recipient, status))
-      conversation.status_ids << conversation.last_status_id if conversation.last_status_id.present?
-      conversation.last_status = status
+      conversation.status_ids << status.id
       conversation.save
       conversation
     end
@@ -65,17 +64,13 @@ class AccountConversation < ApplicationRecord
     def remove_status(recipient, status)
       conversation = find_by(account: recipient, conversation_id: status.conversation_id, participant_account_ids: participants_from_status(recipient, status))
 
-      return if conversation.nil? || conversation.last_status_id != status.id
+      return if conversation.nil?
 
-      while (last_status_id = conversation.status_ids.pop)
-        last_status = Status.find_by(id: last_status_id)
-        break if last_status
-      end
+      conversation.status_ids.delete(status.id)
 
-      if last_status.nil? && last_status_id.nil?
+      if conversation.status_ids.empty?
         conversation.destroy
       else
-        conversation.last_status = last_status
         conversation.save
       end
 
@@ -91,14 +86,14 @@ class AccountConversation < ApplicationRecord
 
   private
 
-  def push_to_streaming_api
-    return unless subscribed_to_timeline?
+  def set_last_status
+    self.status_ids     = status_ids.sort
+    self.last_status_id = status_ids.last
+  end
 
-    if destroyed?
-      # Redis.current.publish(streaming_channel, Oj.dump(event: :delete, payload: id, queued_at: (Time.now.to_f * 1000.0).to_i))
-    else
-      PushConversationWorker.perform_async(id)
-    end
+  def push_to_streaming_api
+    return if destroyed? || !subscribed_to_timeline?
+    PushConversationWorker.perform_async(id)
   end
 
   def subscribed_to_timeline?
