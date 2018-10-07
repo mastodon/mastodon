@@ -3,7 +3,7 @@ require "rails_helper"
 feature "Log in" do
   given(:email)        { "test@examle.com" }
   given(:password)     { "password" }
-  given(:confirmed_at) { Time.now }
+  given(:confirmed_at) { Time.zone.now }
 
   background do
     Fabricate(:user, email: email, password: password, confirmed_at: confirmed_at)
