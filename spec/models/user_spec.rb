@@ -67,7 +67,7 @@ RSpec.describe User, type: :model do
     describe 'confirmed' do
       it 'returns an array of users who are confirmed' do
         user_1 = Fabricate(:user, confirmed_at: nil)
-        user_2 = Fabricate(:user, confirmed_at: Time.now)
+        user_2 = Fabricate(:user, confirmed_at: Time.zone.now)
         expect(User.confirmed).to match_array([user_2])
       end
     end
