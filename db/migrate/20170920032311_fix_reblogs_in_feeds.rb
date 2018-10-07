@@ -28,7 +28,7 @@ class FixReblogsInFeeds < ActiveRecord::Migration[5.1]
 
       -- So, first, we iterate over the user's feed to find any reblogs.
       local items = redis.call('zrange', timeline_key, 0, -1, 'withscores')
-      
+
       for i = 1, #items, 2 do
         local reblogged_id = items[i]
         local reblogging_id = items[i + 1]

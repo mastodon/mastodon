@@ -50,7 +50,7 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
 
       describe 'when form_two_factor_confirmation parameter is not provided' do
         it 'raises ActionController::ParameterMissing' do
-          expect { post :create, params: { } }.to raise_error(ActionController::ParameterMissing)
+          expect { post :create, params: {} }.to raise_error(ActionController::ParameterMissing)
         end
       end
 

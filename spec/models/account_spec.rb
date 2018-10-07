@@ -275,7 +275,7 @@ RSpec.describe Account, type: :model do
 
     subject { Fabricate(:account) }
 
-    context 'when the status is a reblog of another status'do
+    context 'when the status is a reblog of another status' do
       let(:original_reblog) do
         author = Fabricate(:account, username: 'original_reblogger')
         Fabricate(:status, reblog: original_status, account: author)

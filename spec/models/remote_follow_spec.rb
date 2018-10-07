@@ -34,7 +34,7 @@ RSpec.describe RemoteFollow do
     subject { remote_follow.valid? }
 
     context 'attrs with acct' do
-      let(:attrs) { { acct: 'gargron@quitter.no' }}
+      let(:attrs) { { acct: 'gargron@quitter.no' } }
 
       it do
         is_expected.to be true
@@ -42,7 +42,7 @@ RSpec.describe RemoteFollow do
     end
 
     context 'attrs without acct' do
-      let(:attrs) { { } }
+      let(:attrs) { {} }
 
       it do
         is_expected.to be false

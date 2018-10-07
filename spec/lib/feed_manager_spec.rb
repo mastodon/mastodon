@@ -393,7 +393,7 @@ RSpec.describe FeedManager do
     end
 
     it 'sends push updates' do
-      status  = Fabricate(:status)
+      status = Fabricate(:status)
 
       FeedManager.instance.push_to_home(receiver, status)
 

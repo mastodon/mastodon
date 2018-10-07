@@ -37,6 +37,8 @@ class ImportWorker
   end
 
   def import_rows
-    CSV.new(import_contents).reject(&:blank?)
+    rows = CSV.new(import_contents).reject(&:blank?)
+    rows = rows.take(FollowLimitValidator.limit_for_account(@import.account)) if @import.type == 'following'
+    rows
   end
 end

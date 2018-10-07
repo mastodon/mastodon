@@ -8,6 +8,7 @@ describe ApplicationController, type: :controller do
     def index
       send_export_file
     end
+
     def export_data
       @export.account.username
     end
