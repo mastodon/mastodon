@@ -9,6 +9,7 @@
 #  participant_account_ids :bigint(8)        default([]), not null, is an Array
 #  status_ids              :bigint(8)        default([]), not null, is an Array
 #  last_status_id          :bigint(8)
+#  lock_version            :integer          default(0), not null
 #
 
 class AccountConversation < ApplicationRecord
@@ -59,6 +60,8 @@ class AccountConversation < ApplicationRecord
       conversation.status_ids << status.id
       conversation.save
       conversation
+    rescue ActiveRecord::StaleObjectError
+      retry
     end
 
     def remove_status(recipient, status)
@@ -75,6 +78,8 @@ class AccountConversation < ApplicationRecord
       end
 
       conversation
+    rescue ActiveRecord::StaleObjectError
+      retry
     end
 
     private
