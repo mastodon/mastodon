@@ -3,7 +3,7 @@
 class VerifyLinkService < BaseService
   def call(field)
     @link_back = ActivityPub::TagManager.instance.url_for(field.account)
-    @url       = field.value
+    @url       = field.value_for_verification
 
     perform_request!
 
