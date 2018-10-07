@@ -28,7 +28,7 @@ export default class ColumnSettings extends React.PureComponent {
   };
 
   toggleOpen () {
-    if (!this.state.open && this.tags().length > 0) { this.props.onChange('tags', []) }
+    if (this.state.open && this.tags().length > 0) { this.props.onChange('tags', []) }
     this.setState({ open: !this.state.open })
   };
 
