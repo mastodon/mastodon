@@ -296,6 +296,10 @@ Rails.application.routes.draw do
       resources :notifications, only: [:index, :show] do
         collection do
           post :clear
+          post :dismiss # Deprecated
+        end
+
+        member do
           post :dismiss
         end
       end
