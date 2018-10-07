@@ -47,6 +47,7 @@ module Settings
       record.update!(value: value)
 
       Rails.cache.write(Setting.cache_key(key, @object), value)
+      value
     end
 
     def [](key)
