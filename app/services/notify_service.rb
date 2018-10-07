@@ -12,6 +12,7 @@ class NotifyService < BaseService
     push_notification if @notification.browserable?
     send_email if email_enabled?
   rescue ActiveRecord::RecordInvalid
+    return
   end
 
   private
