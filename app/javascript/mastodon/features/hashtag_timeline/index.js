@@ -39,7 +39,7 @@ class HashtagTimeline extends React.PureComponent {
   title = () => {
     const { id, tags, tagMode } = this.props.params
     if ((tags || []).length) {
-      let additional = tags.map((t) => { return t.value }).join(', ')
+      let additional = tags.map((t) => { return t.label }).join(', ')
       switch(tagMode) {
         case 'any':  return <FormattedMessage id='hashtag.column_header.tag_mode.any'  values={{id, additional}} defaultMessage='{id} or {additional}' />
         case 'all':  return <FormattedMessage id='hashtag.column_header.tag_mode.all'  values={{id, additional}} defaultMessage='{id} and {additional}' />
