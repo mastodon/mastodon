@@ -5,7 +5,7 @@ import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import ColumnSettingsContainer from './containers/column_settings_container';
-import { expandHashtagTimeline } from '../../actions/timelines';
+import { expandHashtagTimeline, clearTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { FormattedMessage } from 'react-intl';
 import { connectHashtagStream } from '../../actions/streaming';
@@ -79,10 +79,19 @@ class HashtagTimeline extends React.PureComponent {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.params.id !== this.props.params.id) {
-      this.props.dispatch(expandHashtagTimeline(nextProps.params.id));
-      this._unsubscribe();
-      this._subscribe(this.props.dispatch, nextProps.params.id);
+    const { id, tags, tagMode } = nextProps.params
+    if (
+      id !== this.props.params.id ||
+      tags !== this.props.params.tags ||
+      tagMode !== this.props.params.tagMode
+    ) {
+      if (id !== this.props.params.id) {
+        this._unsubscribe();
+        this._subscribe(this.props.dispatch, nextProps.params.id);
+      } else {
+        this.props.dispatch(clearTimeline(`hashtag:${id}`));
+      }
+      this.props.dispatch(expandHashtagTimeline(id, { tags, tagMode }));
     }
   }
 
@@ -95,7 +104,8 @@ class HashtagTimeline extends React.PureComponent {
   }
 
   handleLoadMore = maxId => {
-    this.props.dispatch(expandHashtagTimeline(this.props.params.id, { maxId }));
+    const { id, tags, tagMode } = this.props.params
+    this.props.dispatch(expandHashtagTimeline(id, { maxId, tags, tagMode }));
   }
 
   render () {

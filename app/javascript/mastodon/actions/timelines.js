@@ -4,6 +4,7 @@ import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
 export const TIMELINE_UPDATE  = 'TIMELINE_UPDATE';
 export const TIMELINE_DELETE  = 'TIMELINE_DELETE';
+export const TIMELINE_CLEAR   = 'TIMELINE_CLEAR';
 
 export const TIMELINE_EXPAND_REQUEST = 'TIMELINE_EXPAND_REQUEST';
 export const TIMELINE_EXPAND_SUCCESS = 'TIMELINE_EXPAND_SUCCESS';
@@ -41,6 +42,12 @@ export function deleteFromTimelines(id) {
       references,
       reblogOf,
     });
+  };
+};
+
+export function clearTimeline(timeline) {
+  return (dispatch) => {
+    dispatch({ type: TIMELINE_CLEAR, timeline })
   };
 };
 
