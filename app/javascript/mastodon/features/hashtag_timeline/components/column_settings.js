@@ -17,25 +17,31 @@ export default class ColumnSettings extends React.PureComponent {
 
   state = {
     open: this.tags().length > 0,
-    mode: this.props.settings.get('tagMode') || 'any'
+    mode: this.props.settings.get('tagMode') || 'any',
   };
 
   tags () {
     return Array.from(this.props.settings.get('tags') || []).map((tag) => {
       return tag.toJSON ? tag.toJSON() : tag;
-    })
+    });
   };
 
-  toggleOpen () {
+  onSelect = (value) => {
+    this.props.onChange('tags', value);
+  };
+
+  onToggle = () => {
     if (this.state.open && this.tags().length > 0) {
       this.props.onChange('tags', []);
     }
     this.setState({ open: !this.state.open });
   };
 
-  setMode (mode) {
-    this.props.onChange('tagMode', mode);
-    this.setState({ mode });
+  setMode = (mode) => {
+    return () => {
+      this.props.onChange('tagMode', mode);
+      this.setState({ mode });
+    };
   };
 
   modeOption (value) {
@@ -49,7 +55,8 @@ export default class ColumnSettings extends React.PureComponent {
             value={value}
             name='tagMode'
             checked={this.state.mode === value}
-            onChange={() => { this.setMode(value); }} />
+            onChange={this.setMode(value)}
+          />
           {this.modeLabel(value)}
         </label>
       </li>
@@ -62,7 +69,7 @@ export default class ColumnSettings extends React.PureComponent {
     case 'all':  return <FormattedMessage id='hashtag.column_settings.tag_mode.all' defaultMessage='All of these' />;
     case 'none': return <FormattedMessage id='hashtag.column_settings.tag_mode.none' defaultMessage='None of these' />;
     }
-    return;
+    return '';
   };
 
   render () {
@@ -72,7 +79,7 @@ export default class ColumnSettings extends React.PureComponent {
           <div className='setting-toggle'>
             <Toggle
               id='hashtag.column_settings.tag_toggle'
-              onChange={() => { this.toggleOpen(); }}
+              onChange={this.onToggle}
               checked={this.state.open}
             />
             <span className='setting-toggle__label'>
@@ -89,7 +96,7 @@ export default class ColumnSettings extends React.PureComponent {
                 value={this.tags()}
                 settings={this.props.settings}
                 settingPath={['tags']}
-                onChange={(value) => { this.props.onChange('tags', value); }}
+                onChange={this.onSelect}
                 loadOptions={this.props.onLoad}
                 className='column-settings__hashtag-select'
                 name='tags'

@@ -42,10 +42,11 @@ class HashtagTimeline extends React.PureComponent {
       let additional = tags.map((t) => {
         return t.label;
       }).join(', ');
-      return switch(tagMode) {
-      case 'any':  <FormattedMessage id='hashtag.column_header.tag_mode.any'  values={{ id, additional }} defaultMessage='{id} or {additional}' />;
-      case 'all':  <FormattedMessage id='hashtag.column_header.tag_mode.all'  values={{ id, additional }} defaultMessage='{id} and {additional}' />;
-      case 'none': <FormattedMessage id='hashtag.column_header.tag_mode.none' values={{ id, additional }} defaultMessage='{id} without {additional}' />;
+      switch(tagMode) {
+      case 'any':  return <FormattedMessage id='hashtag.column_header.tag_mode.any'  values={{ id, additional }} defaultMessage='{id} or {additional}' />;
+      case 'all':  return <FormattedMessage id='hashtag.column_header.tag_mode.all'  values={{ id, additional }} defaultMessage='{id} and {additional}' />;
+      case 'none': return <FormattedMessage id='hashtag.column_header.tag_mode.none' values={{ id, additional }} defaultMessage='{id} without {additional}' />;
+      default:     return '';
       }
     } else {
       return id;
