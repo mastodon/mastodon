@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { injectIntl, FormattedMessage } from 'react-intl';
-import SettingToggle from '../../notifications/components/setting_toggle';
-import Toggle from 'react-toggle'
-import AsyncSelect from 'react-select/lib/Async'
+import Toggle from 'react-toggle';
+import AsyncSelect from 'react-select/lib/Async';
 
 @injectIntl
 export default class ColumnSettings extends React.PureComponent {
@@ -23,18 +22,20 @@ export default class ColumnSettings extends React.PureComponent {
 
   tags () {
     return Array.from(this.props.settings.get('tags') || []).map((tag) => {
-      return tag.toJSON ? tag.toJSON() : tag
+      return tag.toJSON ? tag.toJSON() : tag;
     })
   };
 
   toggleOpen () {
-    if (this.state.open && this.tags().length > 0) { this.props.onChange('tags', []) }
-    this.setState({ open: !this.state.open })
+    if (this.state.open && this.tags().length > 0) {
+      this.props.onChange('tags', []);
+    }
+    this.setState({ open: !this.state.open });
   };
 
   setMode (mode) {
-    this.props.onChange('tagMode', mode)
-    this.setState({ mode })
+    this.props.onChange('tagMode', mode);
+    this.setState({ mode });
   };
 
   modeOption (value) {
@@ -47,8 +48,8 @@ export default class ColumnSettings extends React.PureComponent {
             type='radio'
             value={value}
             name='tagMode'
-            checked={this.state.mode == value}
-            onChange={() => { this.setMode(value) }} />
+            checked={this.state.mode === value}
+            onChange={() => { this.setMode(value); }} />
           {this.modeLabel(value)}
         </label>
       </li>
@@ -57,10 +58,11 @@ export default class ColumnSettings extends React.PureComponent {
 
   modeLabel (value) {
     switch(value) {
-      case 'any':  return <FormattedMessage id='hashtag.column_settings.tag_mode.any' defaultMessage='Any of these' />
-      case 'all':  return <FormattedMessage id='hashtag.column_settings.tag_mode.all' defaultMessage='All of these' />
-      case 'none': return <FormattedMessage id='hashtag.column_settings.tag_mode.none' defaultMessage='None of these' />
+    case 'any':  return <FormattedMessage id='hashtag.column_settings.tag_mode.any' defaultMessage='Any of these' />;
+    case 'all':  return <FormattedMessage id='hashtag.column_settings.tag_mode.all' defaultMessage='All of these' />;
+    case 'none': return <FormattedMessage id='hashtag.column_settings.tag_mode.none' defaultMessage='None of these' />;
     }
+    return;
   };
 
   render () {
@@ -70,8 +72,9 @@ export default class ColumnSettings extends React.PureComponent {
           <div className='setting-toggle'>
             <Toggle
               id='hashtag.column_settings.tag_toggle'
-              onChange={() => { this.toggleOpen() }}
-              checked={this.state.open} />
+              onChange={() => { this.toggleOpen(); }}
+              checked={this.state.open}
+            />
             <span className='setting-toggle__label'>
               <FormattedMessage id='hashtag.column_settings.tag_toggle' defaultMessage='Include additional tags in this column' />
             </span>
@@ -86,10 +89,11 @@ export default class ColumnSettings extends React.PureComponent {
                 value={this.tags()}
                 settings={this.props.settings}
                 settingPath={['tags']}
-                onChange={(value) => { this.props.onChange('tags', value) }}
+                onChange={(value) => { this.props.onChange('tags', value); }}
                 loadOptions={this.props.onLoad}
                 className='column-settings__hashtag-select'
-                name='tags' />
+                name='tags'
+              />
             </div>
             <div className='column-settings__section'>
               <ul>

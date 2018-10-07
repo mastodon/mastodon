@@ -37,16 +37,18 @@ class HashtagTimeline extends React.PureComponent {
   }
 
   title = () => {
-    const { id, tags, tagMode } = this.props.params
+    const { id, tags, tagMode } = this.props.params;
     if ((tags || []).length) {
-      let additional = tags.map((t) => { return t.label }).join(', ')
-      switch(tagMode) {
-        case 'any':  return <FormattedMessage id='hashtag.column_header.tag_mode.any'  values={{id, additional}} defaultMessage='{id} or {additional}' />
-        case 'all':  return <FormattedMessage id='hashtag.column_header.tag_mode.all'  values={{id, additional}} defaultMessage='{id} and {additional}' />
-        case 'none': return <FormattedMessage id='hashtag.column_header.tag_mode.none' values={{id, additional}} defaultMessage='{id} without {additional}' />
+      let additional = tags.map((t) => {
+        return t.label;
+      }).join(', ');
+      return switch(tagMode) {
+      case 'any':  <FormattedMessage id='hashtag.column_header.tag_mode.any'  values={{ id, additional }} defaultMessage='{id} or {additional}' />;
+      case 'all':  <FormattedMessage id='hashtag.column_header.tag_mode.all'  values={{ id, additional }} defaultMessage='{id} and {additional}' />;
+      case 'none': <FormattedMessage id='hashtag.column_header.tag_mode.none' values={{ id, additional }} defaultMessage='{id} without {additional}' />;
       }
     } else {
-      return id
+      return id;
     }
   }
 
@@ -79,7 +81,7 @@ class HashtagTimeline extends React.PureComponent {
   }
 
   componentWillReceiveProps (nextProps) {
-    const { id, tags, tagMode } = nextProps.params
+    const { id, tags, tagMode } = nextProps.params;
     if (
       id !== this.props.params.id ||
       tags !== this.props.params.tags ||
@@ -104,7 +106,7 @@ class HashtagTimeline extends React.PureComponent {
   }
 
   handleLoadMore = maxId => {
-    const { id, tags, tagMode } = this.props.params
+    const { id, tags, tagMode } = this.props.params;
     this.props.dispatch(expandHashtagTimeline(id, { maxId, tags, tagMode }));
   }
 

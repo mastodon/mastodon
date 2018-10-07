@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import ColumnSettings from '../components/column_settings';
-import { saveSettings } from '../../../actions/settings';
 import { changeColumnParams } from '../../../actions/columns';
 import api from '../../../api';
 
@@ -9,7 +8,7 @@ const mapStateToProps = (state, { columnId }) => {
   const index   = columns.findIndex(c => c.get('uuid') === columnId);
 
   if (!(columnId && index >= 0)) {
-    return {}
+    return {};
   }
 
   return { settings: columns.get(index).get('params') };
@@ -23,10 +22,10 @@ const mapDispatchToProps = (dispatch, { columnId }) => ({
   onLoad (value) {
     return api().get('/api/v2/search', { params: { q: value } }).then(response => {
       return (response.data.hashtags || []).map((tag) => {
-        return { value: tag.name, label: `#${tag.name}` }
-      })
-    })
-  }
+        return { value: tag.name, label: `#${tag.name}` };
+      });
+    });
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ColumnSettings);
