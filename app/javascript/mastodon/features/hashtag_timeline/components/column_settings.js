@@ -49,11 +49,19 @@ export default class ColumnSettings extends React.PureComponent {
             name='tagMode'
             checked={this.state.mode == value}
             onChange={() => { this.setMode(value) }} />
-          <FormattedMessage id={`hashtag.column_settings.tag_mode.${value}`} />
+          {this.modeLabel(value)}
         </label>
       </li>
     );
-  }
+  };
+
+  modeLabel (value) {
+    switch(value) {
+      case 'any':  return <FormattedMessage id='hashtag.column_settings.tag_mode.any' defaultMessage='Any of these' />
+      case 'all':  return <FormattedMessage id='hashtag.column_settings.tag_mode.all' defaultMessage='All of these' />
+      case 'none': return <FormattedMessage id='hashtag.column_settings.tag_mode.none' defaultMessage='None of these' />
+    }
+  };
 
   render () {
     return (

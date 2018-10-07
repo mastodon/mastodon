@@ -36,6 +36,20 @@ class HashtagTimeline extends React.PureComponent {
     }
   }
 
+  title = () => {
+    const { id, tags, tagMode } = this.props.params
+    if ((tags || []).length) {
+      let additional = tags.map((t) => { return t.value }).join(', ')
+      switch(tagMode) {
+        case 'any':  return <FormattedMessage id='hashtag.column_header.tag_mode.any'  values={{id, additional}} defaultMessage='{id} or {additional}' />
+        case 'all':  return <FormattedMessage id='hashtag.column_header.tag_mode.all'  values={{id, additional}} defaultMessage='{id} and {additional}' />
+        case 'none': return <FormattedMessage id='hashtag.column_header.tag_mode.none' values={{id, additional}} defaultMessage='{id} without {additional}' />
+      }
+    } else {
+      return id
+    }
+  }
+
   handleMove = (dir) => {
     const { columnId, dispatch } = this.props;
     dispatch(moveColumn(columnId, dir));
@@ -94,7 +108,7 @@ class HashtagTimeline extends React.PureComponent {
         <ColumnHeader
           icon='hashtag'
           active={hasUnread}
-          title={id}
+          title={this.title()}
           onPin={this.handlePin}
           onMove={this.handleMove}
           onClick={this.handleHeaderClick}
