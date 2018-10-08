@@ -6,6 +6,7 @@ services:
     image: postgres:9.6-alpine
     networks:
       - internal_network
+### Uncomment to enable DB persistence
     volumes:
       - ./postgres:/var/lib/postgresql/data
 
@@ -14,6 +15,7 @@ services:
     image: redis:4.0-alpine
     networks:
       - internal_network
+### Uncomment to enable REDIS persistence
     volumes:
       - ./redis:/data
 

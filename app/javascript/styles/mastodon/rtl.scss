@@ -46,8 +46,8 @@ body.rtl {
   .column-header__buttons {
     left: 0;
     right: auto;
-    margin-left: -15px;
-    margin-right: 0;
+    margin-left: 0;
+    margin-right: -15px;
   }
 
   .column-inline-form .icon-button {
@@ -76,10 +76,6 @@ body.rtl {
   .setting-toggle {
     margin-left: 0;
     margin-right: 8px;
-  }
-
-  .setting-meta__label {
-    float: left;
   }
 
   .status__avatar {
@@ -143,6 +139,19 @@ body.rtl {
   .activity-stream .detailed-status.light .detailed-status__meta span > span {
     margin-left: 0;
     margin-right: 6px;
+  }
+
+  .status__action-bar {
+
+    &__counter {
+      margin-right: 0;
+      margin-left: 11px;
+
+      .status__action-bar-button {
+        margin-right: 0;
+        margin-left: 4px;
+      }
+    }
   }
 
   .status__action-bar-button {
@@ -283,6 +292,20 @@ body.rtl {
         padding-left: 5px;
         padding-right: 5px;
       }
+    }
+  }
+
+  .public-layout {
+    .header {
+      .nav-button {
+        margin-left: 8px;
+        margin-right: 0;
+      }
+    }
+
+    .public-account-header__tabs {
+      margin-left: 0;
+      margin-right: 20px;
     }
   }
 }

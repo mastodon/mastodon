@@ -28,7 +28,7 @@ describe ApplicationController, type: :controller do
       expect(I18n.locale).to eq :fa
     end
 
-    it 'sets available and compatible langauge if none of available languages are preferred' do
+    it 'sets available and compatible language if none of available languages are preferred' do
       request.headers['Accept-Language'] = 'fa-IR'
       get 'success'
       expect(I18n.locale).to eq :fa

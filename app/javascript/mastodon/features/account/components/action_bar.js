@@ -36,8 +36,8 @@ const messages = defineMessages({
   unendorse: { id: 'account.unendorse', defaultMessage: 'Don\'t feature on profile' },
 });
 
-@injectIntl
-export default class ActionBar extends React.PureComponent {
+export default @injectIntl
+class ActionBar extends React.PureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
@@ -58,6 +58,13 @@ export default class ActionBar extends React.PureComponent {
     navigator.share({
       url: this.props.account.get('url'),
     });
+  }
+
+  isStatusesPageActive = (match, location) => {
+    if (!match) {
+      return false;
+    }
+    return !location.pathname.match(/\/(followers|following)\/?$/);
   }
 
   render () {
@@ -147,7 +154,7 @@ export default class ActionBar extends React.PureComponent {
 
         <div className='account__action-bar'>
           <div className='account__action-bar-links'>
-            <NavLink exact activeClassName='active' className='account__action-bar__tab' to={`/accounts/${account.get('id')}`} title={intl.formatNumber(account.get('statuses_count'))}>
+            <NavLink isActive={this.isStatusesPageActive} activeClassName='active' className='account__action-bar__tab' to={`/accounts/${account.get('id')}`} title={intl.formatNumber(account.get('statuses_count'))}>
               <FormattedMessage id='account.posts' defaultMessage='Toots' />
               <strong>{shortNumberFormat(account.get('statuses_count'))}</strong>
             </NavLink>

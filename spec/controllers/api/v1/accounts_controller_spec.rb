@@ -154,7 +154,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
     before do
       user.account.follow!(other_account)
-      post :mute, params: {id: other_account.id }
+      post :mute, params: { id: other_account.id }
     end
 
     it 'returns http success' do
@@ -182,7 +182,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
     before do
       user.account.follow!(other_account)
-      post :mute, params: {id: other_account.id, notifications: false }
+      post :mute, params: { id: other_account.id, notifications: false }
     end
 
     it 'returns http success' do

@@ -48,6 +48,7 @@ en:
       other: Followers
     following: Following
     joined: Joined %{date}
+    link_verified_on: Ownership of this link was checked on %{date}
     media: Media
     moved_html: "%{name} has moved to %{new_profile_link}:"
     network_hidden: This information is not available
@@ -367,6 +368,9 @@ en:
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to instance thumbnail
         title: Hero image
+      mascot:
+        desc_html: Displayed on multiple pages. At least 293px × 205px recommended. When not set, falls back to instance thumbnail
+        title: Mascot image
       peers_api_enabled:
         desc_html: Domain names this instance has encountered in the fediverse
         title: Publish list of discovered instances
@@ -460,7 +464,7 @@ en:
     warning: Be very careful with this data. Never share it with anyone!
     your_token: Your access token
   auth:
-    agreement_html: By signing up you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
+    agreement_html: By clicking "Sign up" below you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
     change_password: Password
     confirm_email: Confirm email
     delete_account: Delete account
@@ -527,7 +531,7 @@ en:
     '500':
       content: We're sorry, but something went wrong on our end.
       title: This page is not correct
-    noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">native apps</a> for Mastodon for your platform.
+    noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Mastodon for your platform.
   exports:
     archive_takeout:
       date: Date
@@ -916,8 +920,12 @@ en:
       tips: Tips
       title: Welcome aboard, %{name}!
   users:
+    follow_limit_reached: You cannot follow more than %{limit} people
     invalid_email: The e-mail address is invalid
     invalid_otp_token: Invalid two-factor code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
+  verification:
+    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
+    verification: Verification

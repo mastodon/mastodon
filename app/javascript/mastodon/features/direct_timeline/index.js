@@ -1,25 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
-import { expandDirectTimeline } from '../../actions/timelines';
+import { expandConversations } from '../../actions/conversations';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import { connectDirectStream } from '../../actions/streaming';
+import ConversationsListContainer from './containers/conversations_list_container';
 
 const messages = defineMessages({
   title: { id: 'column.direct', defaultMessage: 'Direct messages' },
 });
 
-const mapStateToProps = state => ({
-  hasUnread: state.getIn(['timelines', 'direct', 'unread']) > 0,
-});
-
-@connect(mapStateToProps)
+export default @connect()
 @injectIntl
-export default class DirectTimeline extends React.PureComponent {
+class DirectTimeline extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -52,7 +48,7 @@ export default class DirectTimeline extends React.PureComponent {
   componentDidMount () {
     const { dispatch } = this.props;
 
-    dispatch(expandDirectTimeline());
+    dispatch(expandConversations());
     this.disconnect = dispatch(connectDirectStream());
   }
 
@@ -68,11 +64,11 @@ export default class DirectTimeline extends React.PureComponent {
   }
 
   handleLoadMore = maxId => {
-    this.props.dispatch(expandDirectTimeline({ maxId }));
+    this.props.dispatch(expandConversations({ maxId }));
   }
 
   render () {
-    const { intl, shouldUpdateScroll, hasUnread, columnId, multiColumn } = this.props;
+    const { intl, hasUnread, columnId, multiColumn, shouldUpdateScroll } = this.props;
     const pinned = !!columnId;
 
     return (
@@ -88,14 +84,7 @@ export default class DirectTimeline extends React.PureComponent {
           multiColumn={multiColumn}
         />
 
-        <StatusListContainer
-          trackScroll={!pinned}
-          scrollKey={`direct_timeline-${columnId}`}
-          timelineId='direct'
-          onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.direct' defaultMessage="You don't have any direct messages yet. When you send or receive one, it will show up here." />}
-          shouldUpdateScroll={shouldUpdateScroll}
-        />
+        <ConversationsListContainer shouldUpdateScroll={shouldUpdateScroll} />
       </Column>
     );
   }

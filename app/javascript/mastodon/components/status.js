@@ -35,8 +35,8 @@ export const textForScreenReader = (intl, status, rebloggedByText = false) => {
   return values.join(', ');
 };
 
-@injectIntl
-export default class Status extends ImmutablePureComponent {
+export default @injectIntl
+class Status extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -285,7 +285,7 @@ export default class Status extends ImmutablePureComponent {
               </a>
             </div>
 
-            <StatusContent status={status} onClick={this.handleClick} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} />
+            <StatusContent status={status} onClick={this.handleClick} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} collapsable />
 
             {media}
 

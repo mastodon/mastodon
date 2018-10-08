@@ -304,6 +304,7 @@ gl:
       enable_hint: Unha vez activado, o seu servidor suscribirase a todos os toots públicos de este servidor, e tamén comezará a eviar a el os toots públicos do servidor.
       inbox_url: URL do repetidor
       pending: Agardando polo permiso do repetidor
+      save_and_enable: Gardar e activar
       setup: Configurar a conexión ao repetidor
       status: Estado
       title: Repetidores
@@ -518,7 +519,7 @@ gl:
     '500':
       content: Sentímolo, pero algo do noso lado falloou.
       title: Esta páxina non é correcta
-    noscript_html: Para utilizar a aplicación web de Mastodon debe habilitar JavaScript. De xeito alternativo, intente unha das <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apps nativas</a> para Mastodon da súa plataforma.
+    noscript_html: Para utilizar a aplicación web de Mastodon debe habilitar JavaScript. De xeito alternativo, intente unha das <a href="%{apps_path}">apps nativas</a> para Mastodon da súa plataforma.
   exports:
     archive_takeout:
       date: Data
