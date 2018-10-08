@@ -487,7 +487,8 @@ const startWorker = (workerId) => {
   });
 
   app.get('/api/v1/streaming/direct', (req, res) => {
-    streamFrom(`timeline:direct:${req.accountId}`, req, streamToHttp(req, res), streamHttpEnd(req), true);
+    const channel = `timeline:direct:${req.accountId}`;
+    streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req, subscriptionHeartbeat(channel)), true);
   });
 
   app.get('/api/v1/streaming/hashtag', (req, res) => {
@@ -533,9 +534,11 @@ const startWorker = (workerId) => {
       ws.isAlive = true;
     });
 
+    let channel;
+
     switch(location.query.stream) {
     case 'user':
-      const channel = `timeline:${req.accountId}`;
+      channel = `timeline:${req.accountId}`;
       streamFrom(channel, req, streamToWs(req, ws), streamWsEnd(req, ws, subscriptionHeartbeat(channel)));
       break;
     case 'user:notification':
@@ -554,7 +557,8 @@ const startWorker = (workerId) => {
       streamFrom(`timeline:hashtag:${process.env.DEFAULT_HASHTAG.toLowerCase()}:media`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
       break;
     case 'direct':
-      streamFrom(`timeline:direct:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+      channel = `timeline:direct:${req.accountId}`;
+      streamFrom(channel, req, streamToWs(req, ws), streamWsEnd(req, ws, subscriptionHeartbeat(channel)), true);
       break;
     case 'hashtag':
       streamFrom(`timeline:hashtag:${location.query.tag.toLowerCase()}`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
@@ -577,7 +581,7 @@ const startWorker = (workerId) => {
           return;
         }
 
-        const channel = `timeline:list:${listId}`;
+        channel = `timeline:list:${listId}`;
         streamFrom(channel, req, streamToWs(req, ws), streamWsEnd(req, ws, subscriptionHeartbeat(channel)));
       });
       break;
