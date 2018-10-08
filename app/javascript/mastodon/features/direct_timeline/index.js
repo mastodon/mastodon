@@ -5,7 +5,7 @@ import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import { expandConversations } from '../../actions/conversations';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connectDirectStream } from '../../actions/streaming';
 import ConversationsListContainer from './containers/conversations_list_container';
 
@@ -84,7 +84,14 @@ class DirectTimeline extends React.PureComponent {
           multiColumn={multiColumn}
         />
 
-        <ConversationsListContainer shouldUpdateScroll={shouldUpdateScroll} />
+        <ConversationsListContainer
+          trackScroll={!pinned}
+          scrollKey={`direct_timeline-${columnId}`}
+          timelineId='direct'
+          onLoadMore={this.handleLoadMore}
+          emptyMessage={<FormattedMessage id='empty_column.direct' defaultMessage="You don't have any direct messages yet. When you send or receive one, it will show up here." />}
+          shouldUpdateScroll={shouldUpdateScroll}
+        />
       </Column>
     );
   }
