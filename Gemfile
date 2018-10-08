@@ -15,7 +15,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.2', '< 2.3'
 
-gem 'aws-sdk-s3', '~> 1.20', require: false
+gem 'aws-sdk-s3', '~> 1.21', require: false
 gem 'fog-core', '~> 2.1'
 gem 'fog-openstack', '~> 1.0', require: false
 gem 'paperclip', '~> 6.0'
