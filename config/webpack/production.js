@@ -50,11 +50,11 @@ module.exports = merge(sharedConfig, {
     minimize: true,
     minimizer: [
       new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
         sourceMap: true,
 
         uglifyOptions: {
-          mangle: true,
-
           compress: {
             warnings: false,
           },
