@@ -20,6 +20,7 @@ module Admin
       skin
       thumbnail
       hero
+      mascot
       min_invite_role
       activity_api_enabled
       peers_api_enabled
@@ -42,6 +43,7 @@ module Admin
     UPLOAD_SETTINGS = %w(
       thumbnail
       hero
+      mascot
     ).freeze
 
     def edit
