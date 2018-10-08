@@ -299,7 +299,6 @@ uk:
       comment:
         none: Немає
       created_at: Створено
-      id: ID
       mark_as_resolved: Відмітити як вирішену
       mark_as_unresolved: Відмітити як невирішену
       notes:
@@ -310,7 +309,6 @@ uk:
         placeholder: Опишіть, які дії були виконані, або інші зміни, що стосуються справи...
       reopen: Перевідкрити скаргу
       report: 'Скарга #%{id}'
-      report_contents: Зміст
       reported_account: Акаунт порушника
       reported_by: Відправник скарги
       resolved: Вирішено
@@ -318,12 +316,10 @@ uk:
       silence_account: Заглушити акаунт
       status: Статус
       suspend_account: Заблокувати акаунт
-      target: Ціль
       title: Скарги
       unassign: Зняти призначення
       unresolved: Невирішені
       updated_at: Оновлені
-      view: Подивитися
     settings:
       activity_api_enabled:
         desc_html: Кількість локальних постів, активних та нових користувачів у тижневих розрізах
@@ -488,7 +484,7 @@ uk:
     '500':
       content: Пробачте, та щось пішло не так з нашого боку.
       title: Ця сторінка неправильна
-    noscript_html: Для використання веб-застосунку Mastodon, будь-ласка увімкніть JavaScript. Якщо у вас немає такої можливості, скористайтесь одним із <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">нативних застосунків</a> для Mastodon для вашої платформи.
+    noscript_html: Для використання веб-застосунку Mastodon, будь-ласка увімкніть JavaScript. Якщо у вас немає такої можливості, скористайтесь одним із <a href="%{apps_path}">нативних застосунків</a> для Mastodon для вашої платформи.
   exports:
     archive_takeout:
       date: Дата

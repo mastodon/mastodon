@@ -120,6 +120,7 @@ ja:
       moderation_notes: モデレーションメモ
       most_recent_activity: 直近の活動
       most_recent_ip: 直近のIP
+      no_limits_imposed: 制限なし
       not_subscribed: 購読していない
       order:
         alphabetic: アルファベット順
@@ -155,8 +156,10 @@ ja:
         report: レポート
         targeted_reports: このアカウントについてのレポート
       silence: サイレンス
+      silenced: サイレンス済み
       statuses: トゥート数
       subscribe: 購読する
+      suspended: 停止済み
       title: アカウント
       unconfirmed_email: 確認待ちのメールアドレス
       undo_silenced: サイレンスから戻す
@@ -300,8 +303,13 @@ ja:
       title: 招待
     relays:
       add_new: リレーを追加
+      delete: 削除
       description_html: "<strong>連合リレー</strong>とは、登録しているサーバー間の公開トゥートを仲介するサーバーです。<strong>中小規模のサーバーが連合のコンテンツを見つけるのを助けます。</strong>これを使用しない場合、ローカルユーザーがリモートユーザーを手動でフォローする必要があります。"
+      disable: 無効化
+      disabled: 無効
+      enable: 有効化
       enable_hint: 有効にすると、リレーから全ての公開トゥートを受信するようになり、またこのサーバーの全ての公開トゥートをリレーに送信するようになります。
+      enabled: 有効
       inbox_url: リレーURL
       pending: リレーサーバーの承認待ちです
       save_and_enable: 保存して有効にする
@@ -322,7 +330,6 @@ ja:
       comment:
         none: なし
       created_at: レポート日時
-      id: ID
       mark_as_resolved: 解決済みとしてマーク
       mark_as_unresolved: 未解決として再び開く
       notes:
@@ -333,7 +340,6 @@ ja:
         placeholder: どのような措置が取られたか、または関連する更新を記述してください…
       reopen: 再び開く
       report: レポート#%{id}
-      report_contents: 内容
       reported_account: 報告対象アカウント
       reported_by: 報告者
       resolved: 解決済み
@@ -341,12 +347,10 @@ ja:
       silence_account: アカウントをサイレンス
       status: ステータス
       suspend_account: アカウントを停止
-      target: ターゲット
       title: レポート
       unassign: 担当を外す
       unresolved: 未解決
       updated_at: 更新日時
-      view: 表示
     settings:
       activity_api_enabled:
         desc_html: 週ごとのローカルに投稿されたトゥート数、アクティブなユーザー数、新規登録者数
@@ -523,7 +527,7 @@ ja:
     '500':
       content: もうしわけありませんが、なにかが間違っています。
       title: このページは正しくありません
-    noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodonネイティブアプリ</a>を探すことができます。
+    noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="%{apps_path}">Mastodonネイティブアプリ</a>を探すことができます。
   exports:
     archive_takeout:
       date: 日時

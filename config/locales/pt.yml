@@ -244,20 +244,16 @@ pt:
       are_you_sure: Tens a certeza?
       comment:
         none: Nenhum
-      id: ID
       mark_as_resolved: Marcar como resolvido
       report: 'Denúncia #%{id}'
-      report_contents: Conteúdos
       reported_account: Conta denunciada
       reported_by: Denúnciada por
       resolved: Resolvido
       silence_account: Conta silenciada
       status: Estado
       suspend_account: Conta suspensa
-      target: Alvo
       title: Denúncias
       unresolved: Por resolver
-      view: Ver
     settings:
       activity_api_enabled:
         desc_html: Contagem semanais de publicações locais, utilizadores activos e novos registos
@@ -405,7 +401,7 @@ pt:
     '500':
       content: Desculpe, mas algo correu mal.
       title: Esta página não está correta
-    noscript_html: Para usar o aplicativo web do Mastodon, por favor ativa o JavaScript. Alternativamente, experimenta um dos <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apps nativos</a> para o Mastodon na sua plataforma.
+    noscript_html: Para usar o aplicativo web do Mastodon, por favor ativa o JavaScript. Alternativamente, experimenta um dos <a href="%{apps_path}">apps nativos</a> para o Mastodon na sua plataforma.
   exports:
     blocks: Bloqueaste
     csv: CSV

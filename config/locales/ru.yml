@@ -6,7 +6,7 @@ ru:
     about_this: Об этом узле
     administered_by: 'Администратор узла:'
     api: API
-    apps: Мобильные приложения
+    apps: Приложения
     closed_registrations: В данный момент регистрация на этом узле закрыта. Но вы можете найти другой узел, создать на нём учётную запись и получить доступ к той же сети оттуда.
     contact: Связаться
     contact_missing: Не установлено
@@ -51,7 +51,7 @@ ru:
       many: подписчиков
       one: подписчик
       other: подписчиков
-    following: Подписан(а)
+    following: подписки
     joined: 'Дата регистрации: %{date}'
     media: Медиа
     moved_html: "%{name} переехал(а) на %{new_profile_link}:"
@@ -206,7 +206,7 @@ ru:
     custom_emojis:
       by_domain: Домен
       copied_msg: Локальная копия эмодзи успешно создана
-      copy: Скопироват
+      copy: Копировать
       copy_failed_msg: Не удалось создать локальную копию эмодзи
       created_msg: Эмодзи успешно создано!
       delete: Удалить
@@ -231,11 +231,11 @@ ru:
     dashboard:
       backlog: задачи
       config: Конфигурация
-      feature_deletions: Аккаунтов удалено
+      feature_deletions: Удаление аккаунтов
       feature_invites: Пригласительные ссылки
-      feature_registrations: Регистрации
-      feature_relay: Ретрансляторов сети
-      features: Нововведения
+      feature_registrations: Регистрация
+      feature_relay: Ретрансляторы
+      features: Возможности
       hidden_service: Федерация со скрытыми сервисами
       open_reports: открытых жалоб
       recent_users: Недавние пользователи
@@ -300,7 +300,7 @@ ru:
       search: Поиск
       title: Известные узлы
     invites:
-      deactivate_all: Удалить все
+      deactivate_all: Отключить все
       filter:
         all: Все
         available: Актуальные
@@ -314,7 +314,7 @@ ru:
       inbox_url: URL ретранслятора
       pending: Ожидание подтверждения ретранслятора
       save_and_enable: Сохранить и включить
-      setup: Настроте соединение с ретранслятором
+      setup: Настроить соединение с ретранслятором
       status: Состояние
       title: Ретрансляторы
     report_notes:
@@ -331,7 +331,6 @@ ru:
       comment:
         none: Нет
       created_at: Создано
-      id: ID
       mark_as_resolved: Отметить как разрешенную
       mark_as_unresolved: Отметить как неразрешённую
       notes:
@@ -342,7 +341,6 @@ ru:
         placeholder: Опишите, какие действия были приняты, или любые другие подробности…
       reopen: Переоткрыть жалобу
       report: 'Жалоба #%{id}'
-      report_contents: Содержимое
       reported_account: Аккаунт нарушителя
       reported_by: Отправитель жалобы
       resolved: Разрешено
@@ -350,12 +348,10 @@ ru:
       silence_account: Заглушить аккаунт
       status: Статус
       suspend_account: Блокировать аккаунт
-      target: Цель
       title: Жалобы
       unassign: Снять назначение
       unresolved: Неразрешенные
       updated_at: Обновлена
-      view: Просмотреть
     settings:
       activity_api_enabled:
         desc_html: Подсчёт количества локальных статусов, активных пользователей и новых регистраций на еженедельной основе
@@ -405,7 +401,7 @@ ru:
         title: Расширенное описание узла
       site_short_description:
         desc_html: Отображается в боковой панели и в тегах. Опишите, что такое Mastodon и что делает именно этот узел особенным. Если пусто, используется описание узла по умолчанию.
-        title: Короткое описание узла
+        title: Краткое описание узла
       site_terms:
         desc_html: Вы можете добавить сюда собственную политику конфиденциальности, пользовательское соглашение и другие документы. Можно использовать теги HTML.
         title: Условия использования
@@ -532,7 +528,7 @@ ru:
     '500':
       content: Приносим извинения, но на нашей стороне что-то пошло не так.
       title: Страница неверна
-    noscript_html: Для работы с Mastodon, пожалуйста, включите JavaScript. Кроме того, вы можете использовать одно из <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">приложений</a> Mastodon для Вашей платформы.
+    noscript_html: Для работы с Mastodon, пожалуйста, включите JavaScript. Кроме того, вы можете использовать одно из <a href="%{apps_path}">приложений</a> Mastodon для Вашей платформы.
   exports:
     archive_takeout:
       date: Дата
@@ -791,7 +787,7 @@ ru:
       ownership: Нельзя закрепить чужой статус
       private: Нельзя закрепить непубличный статус
       reblog: Нельзя закрепить продвинутый статус
-    show_more: Подробнее
+    show_more: Ещё
     sign_in_to_participate: Войдите, чтобы принять участие в дискуссии
     title: '%{name}: "%{quote}"'
     visibilities:

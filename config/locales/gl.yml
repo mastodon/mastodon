@@ -304,6 +304,7 @@ gl:
       enable_hint: Unha vez activado, o seu servidor suscribirase a todos os toots públicos de este servidor, e tamén comezará a eviar a el os toots públicos do servidor.
       inbox_url: URL do repetidor
       pending: Agardando polo permiso do repetidor
+      save_and_enable: Gardar e activar
       setup: Configurar a conexión ao repetidor
       status: Estado
       title: Repetidores
@@ -321,7 +322,6 @@ gl:
       comment:
         none: Nada
       created_at: Reportado
-      id: ID
       mark_as_resolved: Marcar como resolto
       mark_as_unresolved: Marcar como non resolto
       notes:
@@ -332,7 +332,6 @@ gl:
         placeholder: Describe qué medidas foron tomadas, ou calquer outra información relacionada...
       reopen: Voltar a abrir o informe
       report: 'Informe #%{id}'
-      report_contents: Contidos
       reported_account: Conta reportada
       reported_by: Reportada por
       resolved: Resolto
@@ -340,12 +339,10 @@ gl:
       silence_account: Acalar conta
       status: Estado
       suspend_account: Suspender conta
-      target: Obxetivo
       title: Informes
       unassign: Non asignar
       unresolved: Non resolto
       updated_at: Actualizado
-      view: Vista
     settings:
       activity_api_enabled:
         desc_html: Conta de estados publicados localmente, usuarias activas, e novos rexistros por semana
@@ -522,7 +519,7 @@ gl:
     '500':
       content: Sentímolo, pero algo do noso lado falloou.
       title: Esta páxina non é correcta
-    noscript_html: Para utilizar a aplicación web de Mastodon debe habilitar JavaScript. De xeito alternativo, intente unha das <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apps nativas</a> para Mastodon da súa plataforma.
+    noscript_html: Para utilizar a aplicación web de Mastodon debe habilitar JavaScript. De xeito alternativo, intente unha das <a href="%{apps_path}">apps nativas</a> para Mastodon da súa plataforma.
   exports:
     archive_takeout:
       date: Data

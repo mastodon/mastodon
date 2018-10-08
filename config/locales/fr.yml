@@ -322,7 +322,6 @@ fr:
       comment:
         none: Aucun
       created_at: Signalé
-      id: ID
       mark_as_resolved: Marquer comme résolu
       mark_as_unresolved: Marquer comme non-résolu
       notes:
@@ -333,7 +332,6 @@ fr:
         placeholder: Décrivez quelles actions ont été prises, ou toute autre mise à jour…
       reopen: Ré-ouvrir le signalement
       report: 'Signalement #%{id}'
-      report_contents: Contenu
       reported_account: Compte signalé
       reported_by: Signalé par
       resolved: Résolus
@@ -341,12 +339,10 @@ fr:
       silence_account: Masquer le compte
       status: Statut
       suspend_account: Suspendre le compte
-      target: Cible
       title: Signalements
       unassign: Dés-assigner
       unresolved: Non résolus
       updated_at: Mis à jour
-      view: Voir
     settings:
       activity_api_enabled:
         desc_html: Nombre de statuts affichés localement, d’utilisateur·ice·s actif·ve·s et de nouveaux enregistrements dans les registres hebdomadaires
@@ -523,7 +519,7 @@ fr:
     '500':
       content: Nous sommes désolé·e·s, mais quelque chose s’est mal passé de notre côté.
       title: Cette page n’est pas correcte
-    noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript. Sinon, essayez l’une des <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">applications natives</a> pour Mastodon pour votre plate-forme.
+    noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript. Sinon, essayez l’une des <a href="%{apps_path}">applications natives</a> pour Mastodon pour votre plate-forme.
   exports:
     archive_takeout:
       date: Date

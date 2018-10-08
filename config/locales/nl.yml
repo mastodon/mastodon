@@ -322,7 +322,6 @@ nl:
       comment:
         none: Geen
       created_at: Gerapporteerd op
-      id: ID
       mark_as_resolved: Markeer als opgelost
       mark_as_unresolved: Markeer als onopgelost
       notes:
@@ -333,7 +332,6 @@ nl:
         placeholder: Beschrijf welke acties zijn ondernomen of andere gerelateerde opmerkingen…
       reopen: Rapportage heropenen
       report: 'Rapportage #%{id}'
-      report_contents: Inhoud
       reported_account: Gerapporteerde account
       reported_by: Gerapporteerd door
       resolved: Opgelost
@@ -341,12 +339,10 @@ nl:
       silence_account: Account negeren
       status: Toot
       suspend_account: Account opschorten
-      target: Gerapporteerde account
       title: Rapportages
       unassign: Niet langer toewijzen
       unresolved: Onopgelost
       updated_at: Bijgewerkt
-      view: Weergeven
     settings:
       activity_api_enabled:
         desc_html: Wekelijks overzicht van de hoeveelheid lokale toots, actieve gebruikers en nieuwe registraties
@@ -523,7 +519,7 @@ nl:
     '500':
       content: Het spijt ons, er is aan onze kant iets fout gegaan.
       title: Er is iets mis
-    noscript_html: Schakel JavaScript in om de webapp van Mastodon te kunnen gebruiken. Als alternatief kan je een <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon-app</a> zoeken voor jouw platform.
+    noscript_html: Schakel JavaScript in om de webapp van Mastodon te kunnen gebruiken. Als alternatief kan je een <a href="%{apps_path}">Mastodon-app</a> zoeken voor jouw platform.
   exports:
     archive_takeout:
       date: Datum

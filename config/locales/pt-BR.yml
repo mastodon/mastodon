@@ -320,7 +320,6 @@ pt-BR:
       comment:
         none: Nenhum
       created_at: Denunciado
-      id: ID
       mark_as_resolved: Marcar como resolvido
       mark_as_unresolved: Marcar como não resolvido
       notes:
@@ -331,7 +330,6 @@ pt-BR:
         placeholder: Descreva que ações foram tomadas, ou quaisquer outras atualizações relacionadas…
       reopen: Reabrir denúncia
       report: 'Denúncia #%{id}'
-      report_contents: Conteúdos
       reported_account: Conta denunciada
       reported_by: Denunciada por
       resolved: Resolvido
@@ -339,12 +337,10 @@ pt-BR:
       silence_account: Silenciar conta
       status: Status
       suspend_account: Suspender conta
-      target: Alvo
       title: Denúncias
       unassign: Desatribuir
       unresolved: Não resolvido
       updated_at: Atualizado
-      view: Visualizar
     settings:
       activity_api_enabled:
         desc_html: Contagem de status postados localmente, usuários ativos e novos cadastros filtrados semanalmente
@@ -521,7 +517,7 @@ pt-BR:
     '500':
       content: Desculpe, algo deu errado.
       title: Esta página não está certa
-    noscript_html: Para usar o aplicativo web do Mastodon, por favor ative o JavaScript. Ou, se quiser, experimente um dos <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apps nativos</a> para o Mastodon em sua plataforma.
+    noscript_html: Para usar o aplicativo web do Mastodon, por favor ative o JavaScript. Ou, se quiser, experimente um dos <a href="%{apps_path}">apps nativos</a> para o Mastodon em sua plataforma.
   exports:
     archive_takeout:
       date: Data

@@ -322,7 +322,6 @@ co:
       comment:
         none: Nisunu
       created_at: Palisatu
-      id: ID
       mark_as_resolved: Indicà cum’è chjosu
       mark_as_unresolved: Indicà cum’è sempre apertu
       notes:
@@ -333,7 +332,6 @@ co:
         placeholder: Per parlà di l’azzione pigliate, o altre messe à ghjornu nant’à u signalamentu…
       reopen: Riapre u signalamentu
       report: 'Signalamente #%{id}'
-      report_contents: Cuntenuti
       reported_account: Contu palisatu
       reported_by: Palisatu da
       resolved: Scioltu è chjosu
@@ -341,12 +339,10 @@ co:
       silence_account: Silenzà u contu
       status: Statutu
       suspend_account: Suspende u contu
-      target: Oggettu
       title: Signalamenti
       unassign: Disassignà
       unresolved: Micca sciolti
       updated_at: Messi à ghjornu
-      view: Vede
     settings:
       activity_api_enabled:
         desc_html: Numeri di statuti creati quì, utilizatori attivi, è arregistramenti novi tutte e settimane
@@ -523,7 +519,7 @@ co:
     '500':
       content: Scusate, mà c’hè statu un prublemu cù u nostru servore.
       title: Sta pagina ùn hè curretta
-    noscript_html: Mastodon nant’à u web hà bisognu di JavaScript per funziunà. Pudete ancu pruvà <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">l’applicazione native</a> per a vostra piattaforma.
+    noscript_html: Mastodon nant’à u web hà bisognu di JavaScript per funziunà. Pudete ancu pruvà <a href="%{apps_path}">l’applicazione native</a> per a vostra piattaforma.
   exports:
     archive_takeout:
       date: Data

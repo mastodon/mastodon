@@ -300,7 +300,14 @@ eu:
       title: Gonbidapenak
     relays:
       add_new: Gehitu hari berria
+      description_html: "<strong>Federazio errele</strong> bat zerbitzari tartekari bat da, bertara harpidetutako eta bertan argitaratzen duten zerbitzarien artean toot publiko kopuru handiak banatzen ditu. <strong>Zerbitzari txiki eta ertainei Fedibertsoko edukia aurkitzen laguntzen die</strong>, bestela erabiltzaile lokalek eskuz jarraitu beharko lituzkete urruneko zerbitzarietako erabiltzaileak."
+      enable_hint: Behin gaituta, zure zerbitzaria errele honetako toot publiko guztietara harpidetuko da, eta zerbitzari honetako toot publikoak errelera bidaltzen hasiko da.
+      inbox_url: Errelearen URLa
+      pending: Erreleak onartzearen zain
+      save_and_enable: Gorde eta gaitu
+      setup: Ezarri errele konexio bat
       status: Mezuak
+      title: Erreleak
     report_notes:
       created_msg: Salaketa oharra ongi sortu da!
       destroyed_msg: Salaketa oharra ongi ezabatu da!
@@ -315,7 +322,6 @@ eu:
       comment:
         none: Bat ere ez
       created_at: Salatua
-      id: ID
       mark_as_resolved: Markatu konpondutako gisa
       mark_as_unresolved: Markatu konpondu gabeko gisa
       notes:
@@ -326,7 +332,6 @@ eu:
         placeholder: Azaldu hartutako neurriak, edo erlazioa duten bestelako berriak...
       reopen: Berrireki salaketa
       report: 'Salaketa #%{id}'
-      report_contents: Edukiak
       reported_account: Salatutako kontua
       reported_by: Salatzailea
       resolved: Konponduta
@@ -334,12 +339,10 @@ eu:
       silence_account: Isilarazi kontua
       status: Mezua
       suspend_account: Kanporatu kontua
-      target: Helburua
       title: Salaketak
       unassign: Kendu esleipena
       unresolved: Konpondu gabea
       updated_at: Eguneratua
-      view: Ikusi
     settings:
       activity_api_enabled:
         desc_html: Lokalki bidalitako mezu kopurua, erabiltzaile aktiboak, eta izen emate berriak asteko
@@ -424,6 +427,7 @@ eu:
     suspensions:
       bad_acct_msg: Berrespen balioa ez dator bat. Dagokion kontua kanporatzen ari zara?
       hint_html: 'Kontuaren kanporatzea berresteko, sartu %{value} beheko eremuan:'
+      proceed: Jarraitu
       title: Kanporatu %{acct}
       warning_html: 'Kontu hau kanporatzeak <strong>behin betiko</strong> ezabatuko ditu kontu honetako datuak, hauek barne:'
     title: Administrazioa
@@ -515,7 +519,7 @@ eu:
     '500':
       content: Sentitzen dugu, zerbait okerra gertatu da gure aldean.
       title: Orri hau ez da zuzena
-    noscript_html: Mastodon web aplikazioa erabiltzeko, gaitu JavaScript. Bestela, probatu Mastodon plataformarako <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">aplikazio natibo</a>ren bat.
+    noscript_html: Mastodon web aplikazioa erabiltzeko, gaitu JavaScript. Bestela, probatu Mastodon plataformarako <a href="%{apps_path}">aplikazio natibo</a>ren bat.
   exports:
     archive_takeout:
       date: Data
@@ -674,6 +678,9 @@ eu:
     no_account_html: Ez duzu konturik? <a href='%{sign_up_path}' target='_blank'>Izena eman</a> dezakezu
     proceed: Ekin jarraitzeari
     prompt: 'Hau jarraituko duzu:'
+  remote_interaction:
+    proceed: Jarraitu interakziora
+    prompt: 'Toot honekin interakzioa nahi duzu:'
   remote_unfollow:
     error: Errorea
     title: Izenburua
@@ -757,6 +764,7 @@ eu:
       private: Ezin dira publikoak ez diren toot-ak finkatu
       reblog: Bultzada bat ezin da finkatu
     show_more: Erakutsi gehiago
+    sign_in_to_participate: Eman izena elkarrizketan parte hartzeko
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Jarraitzaileak besterik ez

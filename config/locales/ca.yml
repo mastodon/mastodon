@@ -322,7 +322,6 @@ ca:
       comment:
         none: Cap
       created_at: Reportat
-      id: ID
       mark_as_resolved: Marca com a resolt
       mark_as_unresolved: Marcar sense resoldre
       notes:
@@ -333,7 +332,6 @@ ca:
         placeholder: Descriu les accions que s'han pres o qualsevol altra actualització relacionada…
       reopen: Reobrir informe
       report: 'Informe #%{id}'
-      report_contents: Contingut
       reported_account: Compte reportat
       reported_by: Reportat per
       resolved: Resolt
@@ -341,12 +339,10 @@ ca:
       silence_account: Silencia el compte
       status: Estat
       suspend_account: Suspèn el compte
-      target: Objectiu
       title: Informes
       unassign: Treure assignació
       unresolved: No resolt
       updated_at: Actualitzat
-      view: Visualització
     settings:
       activity_api_enabled:
         desc_html: Compte d'estatus publicats localment, usuaris actius i registres nous en períodes setmanals
@@ -523,7 +519,7 @@ ca:
     '500':
       content: Ho sentim, però alguna cosa ha fallat a la nostra banda.
       title: Aquesta pàgina no es correcta
-    noscript_html: Per a utilitzar Mastodon, activa el JavaScript. També pots provar una de les <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md"> aplicacions natives</a> de Mastodon per a la vostra plataforma.
+    noscript_html: Per a utilitzar Mastodon, activa el JavaScript. També pots provar una de les <a href="%{apps_path}"> aplicacions natives</a> de Mastodon per a la vostra plataforma.
   exports:
     archive_takeout:
       date: Data

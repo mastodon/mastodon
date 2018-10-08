@@ -87,16 +87,6 @@ module SignatureVerification
     end.join("\n")
   end
 
-  def matches_time_window?
-    begin
-      time_sent = DateTime.httpdate(request.headers['Date'])
-    rescue ArgumentError
-      return false
-    end
-
-    (Time.now.utc - time_sent).abs <= 30
-  end
-
   def body_digest
     "SHA-256=#{Digest::SHA256.base64digest(request_body)}"
   end

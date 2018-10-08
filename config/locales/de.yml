@@ -31,9 +31,9 @@ de:
     privacy_policy: Datenschutzerklärung
     source_code: Quellcode
     status_count_after:
-      one: Status
-      other: Status
-    status_count_before: die
+      one: Statusmeldung
+      other: Statusmeldungen
+    status_count_before: mit
     terms: Nutzungsbedingungen
     user_count_after:
       one: Benutzer
@@ -41,7 +41,7 @@ de:
     user_count_before: Zuhause für
     what_is_mastodon: Was ist Mastodon?
   accounts:
-    choices_html: "%{name} empfielt:"
+    choices_html: "%{name} empfiehlt:"
     follow: Folgen
     followers:
       one: Folgende
@@ -304,6 +304,7 @@ de:
       enable_hint: Sobald aktiviert wird dein Server alle öffentlichen Beiträge dieses Relays abonnieren und wird alle öffentlichen Beiträge dieses Servers an es senden.
       inbox_url: Relay-URL
       pending: Warte auf Zustimmung des Relays
+      save_and_enable: Speichern und aktivieren
       setup: Relayverbindung einrichten
       status: Status
       title: Relays
@@ -321,7 +322,6 @@ de:
       comment:
         none: Kein
       created_at: Gemeldet
-      id: ID
       mark_as_resolved: Als gelöst markieren
       mark_as_unresolved: Als ungelöst markieren
       notes:
@@ -332,7 +332,6 @@ de:
         placeholder: Beschreibe, welche Maßnahmen ergriffen wurden oder irgendwelche andere Neuigkeiten…
       reopen: Meldung wieder öffnen
       report: 'Meldung #%{id}'
-      report_contents: Inhalt
       reported_account: Gemeldetes Konto
       reported_by: Gemeldet von
       resolved: Gelöst
@@ -340,12 +339,10 @@ de:
       silence_account: Konto stummschalten
       status: Status
       suspend_account: Konto sperren
-      target: Ziel
       title: Meldungen
       unassign: Zuweisung entfernen
       unresolved: Ungelöst
       updated_at: Aktualisiert
-      view: Ansehen
     settings:
       activity_api_enabled:
         desc_html: Anzahl der lokal geposteten Beiträge, aktiven Nutzern und neuen Registrierungen in wöchentlichen Zusammenfassungen
@@ -522,7 +519,7 @@ de:
     '500':
       content: Bitte verzeih, etwas ist bei uns schief gegangen.
       title: Diese Seite ist kaputt
-    noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
+    noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
   exports:
     archive_takeout:
       date: Datum

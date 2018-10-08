@@ -34,12 +34,14 @@ pl:
       few: wpisów
       many: wpisów
       one: wpisu
+      other: wpisów
     status_count_before: Są autorami
     terms: Zasady użytkowania
     user_count_after:
       few: użytkowników
       many: użytkowników
       one: użytkownik
+      other: użytkowników
     user_count_before: Z serwera korzysta
     what_is_mastodon: Czym jest Mastodon?
   accounts:
@@ -49,11 +51,10 @@ pl:
       few: śledzących
       many: śledzących
       one: śledzący
-    following:
-      few: śledzonych
-      many: śledzonych
-      one: śledzony
+      other: Śledzących
+    following: Śledzonych
     joined: Dołączył(a) %{date}
+    link_verified_on: Własność tego odnośnika została sprawdzona %{date}
     media: Zawartość multimedialna
     moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
     network_hidden: Ta informacja nie jest dostępna
@@ -66,6 +67,8 @@ pl:
       few: wpisy
       many: wpisów
       one: wpis
+      other: Wpisów
+    posts_tab_heading: Wpisy
     posts_with_replies: Wpisy z odpowiedziami
     reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
@@ -126,6 +129,7 @@ pl:
       moderation_notes: Notatki moderacyjne
       most_recent_activity: Najnowsza aktywność
       most_recent_ip: Ostatnie IP
+      no_limits_imposed: Nie nałożono ograniczeń
       not_subscribed: Nie zasubskrybowano
       order:
         alphabetic: Alfabetycznie
@@ -161,8 +165,10 @@ pl:
         report: zgłoszeń
         targeted_reports: Zgłoszenia dotyczące tego użytkownika
       silence: Wycisz
+      silenced: Wyciszono
       statuses: Wpisy
       subscribe: Subskrybuj
+      suspended: Zawieszono
       title: Konta
       unconfirmed_email: Niepotwierdzony adres e-mail
       undo_silenced: Cofnij wyciszenie
@@ -200,6 +206,7 @@ pl:
         unsuspend_account: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
         update_custom_emoji: "%{name} zaktualizował(a) emoji %{target}"
         update_status: "%{name} zaktualizował(a) wpis użytkownika %{target}"
+      deleted_status: "(usunięty wpis)"
       title: Dziennik działań administracyjnych
     custom_emojis:
       by_domain: Domeny
@@ -306,8 +313,13 @@ pl:
       title: Zaproszenia
     relays:
       add_new: Dodaj nowy
+      delete: Usuń
       description_html: "<strong>Przekaźnik federacji</strong> jest pośredniczącym serwerem wymieniającym duże ilości publicznych wpisów pomiędzy serwerami które subskrybują je i publikują na nich. <strong>Pomaga to małym i średnim instancją poznawać nową zawartość z Fediwersum</strong>, co w innym przypadku wymagałoby od użytkowników ręcznego śledzenia osób z innych serwerów."
+      disable: Wyłącz
+      disabled: Wyłączony
+      enable: Włącz
       enable_hint: Jeżeli włączone, Twój serwer zasubskrybuje wszystkie publiczne wpisy z tego przekaźnika i zacznie wysyłać tam publiczne wpisy z tego serwera.
+      enabled: Włączony
       inbox_url: Adres przekaźnika
       pending: Oczekiwanie na przyjęcie przez przekaźnik
       save_and_enable: Zapisz i aktywuj
@@ -328,7 +340,6 @@ pl:
       comment:
         none: Brak
       created_at: Zgłoszono
-      id: ID
       mark_as_resolved: Oznacz jako rozwiązane
       mark_as_unresolved: Oznacz jako nierozwiązane
       notes:
@@ -339,7 +350,6 @@ pl:
         placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia…
       reopen: Otwórz ponownie
       report: 'Zgłoszenie #%{id}'
-      report_contents: Zawartość
       reported_account: Zgłoszone konto
       reported_by: Zgłaszający
       resolved: Rozwiązane
@@ -347,12 +357,10 @@ pl:
       silence_account: Wycisz konto
       status: Stan
       suspend_account: Zawieś konto
-      target: Cel
       title: Zgłoszenia
       unassign: Cofnij przypisanie
       unresolved: Nierozwiązane
       updated_at: Zaktualizowano
-      view: Wyświetl
     settings:
       activity_api_enabled:
         desc_html: Liczy publikowane lokalnie wpisy, aktywnych użytkowników i nowe rejestracje w ciągu danego tygodnia
@@ -363,6 +371,9 @@ pl:
       contact_information:
         email: Służbowy adres e-mail
         username: Nazwa użytkownika do kontaktu
+      custom_css:
+        desc_html: Modyfikuj wygląd pliku CSS ładowanego na każdej stronie
+        title: Niestandardowy CSS
       hero:
         desc_html: Wyświetlany na stronie głównej. Zalecany jest rozmiar przynajmniej 600x100 pikseli. Jeżeli nie ustawiony, zostanie użyta miniatura instancji.
         title: Obraz bohatera
@@ -526,7 +537,7 @@ pl:
     '500':
       content: Przepraszamy, coś poszło nie tak, po naszej stronie.
       title: Ta strona jest nieprawidłowa
-    noscript_html: Aby korzystać z aplikacji Mastodon, włącz JavaScript. Możesz też skorzystać z jednej z <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">natywnych aplikacji</a> obsługującej Twoje urządzenie.
+    noscript_html: Aby korzystać z aplikacji Mastodon, włącz JavaScript. Możesz też skorzystać z jednej z <a href="%{apps_path}">natywnych aplikacji</a> obsługującej Twoje urządzenie.
   exports:
     archive_takeout:
       date: Data
@@ -886,6 +897,7 @@ pl:
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Aby kontynuować, wprowadź kod wyświetlany przez aplikację uwierzytelniającą
     description_html: Jeśli włączysz <strong>uwierzytelnianie dwuetapowe</strong>, logowanie się będzie wymagało podania tokenu wyświetlonego na Twoim telefonie.
@@ -926,8 +938,12 @@ pl:
       tips: Wskazówki
       title: Witaj na pokładzie, %{name}!
   users:
+    follow_limit_reached: Nie możesz śledzić więcej niż %{limit} osób
     invalid_email: Adres e-mail jest niepoprawny
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
     otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowany jako:'
+  verification:
+    explanation_html: 'Możesz <strong>zweryfikować siebie jako właściciela stron, do których odnośniki znajdują się w metadanych</strong>. Aby to zrobić, strona musi zawierać odnośnik do Twojego profilu na Mastodonie. Odnośnik <strong>musi</strong> zawierać atrybut <code>rel="me"</code>. Jego zawartość nie ma znaczenia. Przykład:'
+    verification: Weryfikacja

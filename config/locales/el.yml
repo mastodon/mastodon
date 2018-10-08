@@ -322,7 +322,6 @@ el:
       comment:
         none: Κανένα
       created_at: Αναφέρθηκε
-      id: ID
       mark_as_resolved: Σημειωμένο ως επιλυμένο
       mark_as_unresolved: Σημειωμένο ως ανεπίλυτο
       notes:
@@ -333,7 +332,6 @@ el:
         placeholder: Περιέγραψε τις ενέργειες που έγιναν, ή οποιαδήποτε άλλη ενημέρωση...
       reopen: Ξανάνοιξε την καταγγελία
       report: 'Καταγγελία #%{id}'
-      report_contents: Περιεχόμενα
       reported_account: Αναφερόμενος λογαριασμός
       reported_by: Αναφέρθηκε από
       resolved: Επιλύθηκε
@@ -341,12 +339,10 @@ el:
       silence_account: Αποσιώπηση λογαριασμού
       status: Κατάσταση
       suspend_account: Ανέστειλε λογαριασμό
-      target: Αποδέκτης
       title: Αναφορές
       unassign: Αποσύνδεση
       unresolved: Άλυτη
       updated_at: Ενημερωμένη
-      view: Εμφάνιση
     settings:
       activity_api_enabled:
         desc_html: Καταμέτρηση τοπικών δημοσιεύσεων, ενεργών χρηστών και νέων εγγραφών σε εβδομαδιαίες ομαδοποιήσεις
@@ -523,7 +519,7 @@ el:
     '500':
       content: Λυπούμαστε, κάτι πήγε στραβά από τη δική μας μεριά.
       title: Η σελίδα αυτή δεν είναι σωστή
-    noscript_html: Για να χρησιμοποιήσετε τη δικτυακή εφαρμογή του Mastodon, ενεργοποίησε την Javascript. Εναλλακτικά, δοκίμασε μια από τις <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">εφαρμογές</a> για το Mastodon στην πλατφόρμα σου.
+    noscript_html: Για να χρησιμοποιήσετε τη δικτυακή εφαρμογή του Mastodon, ενεργοποίησε την Javascript. Εναλλακτικά, δοκίμασε μια από τις <a href="%{apps_path}">εφαρμογές</a> για το Mastodon στην πλατφόρμα σου.
   exports:
     archive_takeout:
       date: Ημερομηνία

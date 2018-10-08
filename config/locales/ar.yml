@@ -30,17 +30,23 @@ ar:
     other_instances: خوادم أخرى
     privacy_policy: سياسة الخصوصية
     source_code: الشفرة المصدرية
-    status_count_after: منشورات
+    status_count_after:
+      one: منشور
+      other: منشورات
     status_count_before: نشروا
     terms: شروط الخدمة
-    user_count_after: مستخدِمين
+    user_count_after:
+      one: مستخدِم
+      other: مستخدِمين
     user_count_before: يستضيف
     what_is_mastodon: ما هو ماستدون ؟
   accounts:
     choices_html: 'توصيات %{name} :'
     follow: إتبع
-    followers: متابِعون
-    following: يتابعون
+    followers:
+      one: مُتابِع
+      other: مُتابِعون
+    following: مُتابَع
     joined: انضم·ت في %{date}
     media: الوسائط
     moved_html: "%{name} إنتقلَ إلى %{new_profile_link} :"
@@ -50,7 +56,9 @@ ar:
     people_who_follow: الأشخاص الذين يتبعون %{name}
     pin_errors:
       following: يجب أن تكون مِن متابعي حساب الشخص الذي تريد إبرازه
-    posts: تبويقات
+    posts:
+      one: تبويق
+      other: تبويقات
     posts_tab_heading: تبويقات
     posts_with_replies: التبويقات و الردود
     reserved_username: إسم المستخدم محجوز
@@ -256,7 +264,9 @@ ar:
         suspend: تعليق
       severity: الشدة
       show:
-        affected_accounts: هناك %{count} حسابات في قاعدة البيانات متأثرة بذلك
+        affected_accounts:
+          one: حساب واحد معني في قاعدة البيانات
+          other: "%{count} حسابات معنية في قاعدة البيانات"
         retroactive:
           silence: إلغاء الكتم عن كافة الحسابات المتواجدة على هذا النطاق
           suspend: إلغاء التعليق المفروض على كافة حسابات هذا النطاق
@@ -313,7 +323,6 @@ ar:
       comment:
         none: لا شيء
       created_at: ذكرت
-      id: معرّف ID
       mark_as_resolved: إعتبار التقرير كمحلول
       mark_as_unresolved: علام كغير محلولة
       notes:
@@ -324,7 +333,6 @@ ar:
         placeholder: قم بوصف الإجراءات التي تم اتخاذها أو أي تحديثات أخرى ذات علاقة …
       reopen: إعادة فتح التقرير
       report: 'التقرير #%{id}'
-      report_contents: المحتويات
       reported_account: حساب مُبلّغ عنه
       reported_by: أبلغ عنه من طرف
       resolved: معالجة
@@ -332,12 +340,10 @@ ar:
       silence_account: كتم و إخفاء الحساب
       status: الحالة
       suspend_account: فرض تعليق على الحساب
-      target: الهدف
       title: التقارير
       unassign: إلغاء تعيين
       unresolved: غير معالجة
       updated_at: محدث
-      view: عرض
     settings:
       activity_api_enabled:
         desc_html: عدد المنشورات المحلية و المستخدمين النشطين و التسجيلات الأسبوعية الجديدة
@@ -358,6 +364,7 @@ ar:
         desc_html: أسماء النطاقات التي إلتقى بها مثيل الخادوم على البيئة الموحَّدة فيديفرس
         title: نشر عدد مثيلات الخوادم التي تم مصادفتها
       preview_sensitive_media:
+        desc_html: روابط المُعَاينة على مواقع الويب الأخرى ستقوم بعرض صُوَر مصغّرة حتى و إن كانت الوسائط حساسة.
         title: إظهار الصور الحساسة في مُعاينات أوبن غراف
       registrations:
         closed_message:
@@ -510,7 +517,7 @@ ar:
     '500':
       content: نحن متأسفون، لقد حدث خطأ ما مِن جانبنا.
       title: هذه الصفحة خاطئة
-    noscript_html: يرجى تفعيل الجافا سكريبت لاستخدام تطبيق الويب لماستدون، أو عِوض ذلك قوموا بتجريب إحدى <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">التطبيقات الأصلية</a> الدّاعمة لماستدون على منصّتكم.
+    noscript_html: يرجى تفعيل الجافا سكريبت لاستخدام تطبيق الويب لماستدون، أو عِوض ذلك قوموا بتجريب إحدى <a href="%{apps_path}">التطبيقات الأصلية</a> الدّاعمة لماستدون على منصّتكم.
   exports:
     archive_takeout:
       date: التاريخ
@@ -532,6 +539,9 @@ ar:
       thread: المحادثات
     edit:
       title: تعديل عامل التصفية
+    errors:
+      invalid_context: لم تقم بتحديد أي مجال أو أنّ المجال غير صالح
+      invalid_irreversible: إلّا مجالات الإشعارات و الخيط الرئيسي معنية بالتصفية اللارجعية
     index:
       delete: إزالة
       title: عوامل التصفية
@@ -553,9 +563,11 @@ ar:
   generic:
     changes_saved_msg: تم حفظ التعديلات بنجاح !
     save_changes: حفظ التغييرات
-    validation_errors: هناك شيء ليس على ما يرام ! رجاءًا تحقق من الأخطاء الـ %{count} أسفله
+    validation_errors:
+      one: هناك شيء ما لا يبدو أنه على ما يُرام بعدُ. يُرجى الإطلاع على الخطأ أدناه
+      other: هناك شيء ليس على ما يُرام! يُرجى معاينة الأخطاء الـ %{count} التالية
   imports:
-    preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
+    preface: بإمكانك استيراد بيانات قد قُمتَ بتصديرها مِن مثيل خادوم آخَر، كقوائم المستخدِمين الذين كنتَ تتابِعهم أو قُمتَ بحظرهم.
     success: تم تحميل بياناتك بنجاح وسيتم معالجتها في الوقت المناسب
     types:
       blocking: قائمة المحظورين
@@ -576,7 +588,9 @@ ar:
     expires_in_prompt: أبدا
     generate: توليد
     invited_by: 'تمت دعوتك من طرف :'
-    max_uses: "%{count} استخدامات"
+    max_uses:
+      one: استعمال واحد
+      other: "%{count} استخدامات"
     max_uses_prompt: بلا حدود
     prompt: توليد و مشاركة روابط للسماح للآخَرين بالنفاذ إلى مثيل الخادوم هذا
     table:
@@ -602,8 +616,12 @@ ar:
       action: معاينة كافة الإشعارات
       body: هذا هو مُلَخَّص الرسائل التي فاتتك وذلك منذ آخر زيارة لك في  %{since}
       mention: "%{name} أشار إليك في :"
-      new_followers_summary: و لقد تحصلت على %{count} متتبعين جدد أثناء فترة غيابك ! رائع !
-      subject: "%{count} إشعارات جديدة منذ زيارتك الأخيرة \U0001F418"
+      new_followers_summary:
+        one: و لقد تحصّلت أيضا على متابِع جديد أثناء فترة غيابك! يا للروعة!
+        other: رائع، لقد قام بمتابعتك %{count} مُتابِعون جُدد أثناء فترة غيابك عن ماستدون !
+      subject:
+        one: "إشعار جديد واحد منذ آخر زيارة لك لـ \U0001F418"
+        other: "%{count} إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
       title: أثناء فترة غيابك …
     favourite:
       body: 'أُعجب %{name} بمنشورك :'
@@ -721,11 +739,17 @@ ar:
   statuses:
     attached:
       description: 'مُرفَق : %{attached}'
-      image: "%{count} صور"
-      video: "%{count} فيديوهات"
+      image:
+        one: "%{count} صورة"
+        other: "%{count} صُوَر"
+      video:
+        one: "%{count} فيديو"
+        other: "%{count} فيديوهات"
     boosted_from_html: تم إعادة ترقيته مِن %{acct_link}
     content_warning: 'تحذير عن المحتوى : %{warning}'
-    disallowed_hashtags: 'يحتوي على وسوم ممنوعة : %{tags}'
+    disallowed_hashtags:
+      one: 'يحتوي على وسم ممنوع:  %{tags}'
+      other: 'يحتوي على أحد الوسوم الممنوعة: %{tags}'
     language_detection: اكتشاف اللغة تلقائيا
     open_in_web: إفتح في الويب
     over_character_limit: تم تجاوز حد الـ %{max} حرف المسموح بها
@@ -746,7 +770,7 @@ ar:
       unlisted_long: يُمكن لأيٍ كان رُؤيتَه و لكن لن يُعرَض على الخيوط العامة
   stream_entries:
     pinned: تبويق مثبّت
-    reblogged: رقى
+    reblogged: رقّاه
     sensitive_content: محتوى حساس
   terms:
     title: شروط الخدمة وسياسة الخصوصية على %{instance}

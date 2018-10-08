@@ -31,8 +31,8 @@ const messages = defineMessages({
   utilBtns_kancolle: { id: 'compose_form.utilBtns_kancolle', defaultMessage: 'KanColle HashTag' },
 });
 
-@injectIntl
-export default class ComposeForm extends ImmutablePureComponent {
+export default @injectIntl
+class ComposeForm extends ImmutablePureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,

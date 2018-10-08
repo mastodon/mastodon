@@ -271,7 +271,6 @@ sv:
       comment:
         none: Ingen
       created_at: Anmäld
-      id: ID
       mark_as_resolved: Markera som löst
       mark_as_unresolved: Markera som olöst
       notes:
@@ -282,7 +281,6 @@ sv:
         placeholder: Beskriv vilka åtgärder som vidtagits eller andra uppdateringar till den här anmälan.
       reopen: Återuppta anmälan
       report: 'Anmäl #%{id}'
-      report_contents: Innehåll
       reported_account: Anmält konto
       reported_by: Anmäld av
       resolved: Löst
@@ -290,12 +288,10 @@ sv:
       silence_account: Tysta ner konto
       status: Status
       suspend_account: Suspendera konto
-      target: Mål
       title: Anmälningar
       unassign: Otilldela
       unresolved: Olösta
       updated_at: Uppdaterad
-      view: Granska
     settings:
       activity_api_enabled:
         desc_html: Räkning av lokalt postade statusar, aktiva användare och nyregistreringar per vecka
@@ -456,7 +452,7 @@ sv:
     '500':
       content: Vi är ledsna, men något gick fel från vårat håll.
       title: Den här sidan är inte korrekt
-    noscript_html: För att använda Mastodon webbapplikationen, vänligen aktivera JavaScript. Alternativt kan du prova en av <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">inhemska appar</a> för Mastodon för din plattform.
+    noscript_html: För att använda Mastodon webbapplikationen, vänligen aktivera JavaScript. Alternativt kan du prova en av <a href="%{apps_path}">inhemska appar</a> för Mastodon för din plattform.
   exports:
     archive_takeout:
       date: Datum

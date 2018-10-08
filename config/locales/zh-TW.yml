@@ -5,10 +5,13 @@ zh-TW:
     about_mastodon_html: Mastodon （長毛象）是一個<em>自由、開放原始碼</em>的社群網站。它是一個分散式的服務，避免您的通訊被單一商業機構壟斷操控。請您選擇一家您信任的 Mastodon 站點，在上面建立帳號，然後您就可以和任一 Mastodon 站點上的使用者互通，享受無縫的<em>社群網路</em>交流。
     about_this: 關於本站
     administered_by: 管理者：
+    api: API
+    apps: Mobile apps
     closed_registrations: 本站暫時停止接受註冊。
     contact: 聯絡我們
     contact_missing: 未設定
     contact_unavailable: 未公開
+    documentation: 文件
     extended_description_html: |
       <h3>這裡可以寫一些網站規則</h3>
       <p>本站點未有詳細介紹</p>
@@ -26,14 +29,18 @@ zh-TW:
     learn_more: 了解詳細
     other_instances: 其他站點
     source_code: 原始碼
-    status_count_after: 條嘟嘟
+    status_count_after:
+      one: 狀態
     status_count_before: 他們共嘟出了
-    user_count_after: 位使用者
+    terms: 使用條款
+    user_count_after:
+      one: 使用者
     user_count_before: 這裡共註冊有
     what_is_mastodon: 什麼是 Mastodon?
   accounts:
     follow: 關注
-    followers: 關注者
+    followers:
+      other: 關注者
     following: 正在關注
     media: 媒體
     moved_html: "%{name} 已經搬遷到 %{new_profile_link}:"
@@ -41,7 +48,10 @@ zh-TW:
     nothing_here: 暫時沒有內容可供顯示!
     people_followed_by: "%{name} 關注的人"
     people_who_follow: 關注 %{name} 的人
-    posts: 嘟文
+    posts:
+      one: 嘟掉
+      other: 嘟文
+    posts_tab_heading: 嘟文
     posts_with_replies: 嘟文與回覆
     reserved_username: 此用戶名已被保留
     roles:
@@ -271,7 +281,6 @@ zh-TW:
       comment:
         none: 無
       created_at: 日期
-      id: ID
       mark_as_resolved: 標記為「已解決」
       mark_as_unresolved: 標記為「未解決」
       notes:
@@ -282,7 +291,6 @@ zh-TW:
         placeholder: 記錄已執行的動作，或其他相關的更新...
       reopen: 重開檢舉
       report: '檢舉 #%{id}'
-      report_contents: 檢舉內容
       reported_account: 被檢舉使用者
       reported_by: 檢舉人
       resolved: 已解決
@@ -290,12 +298,10 @@ zh-TW:
       silence_account: 靜音使用者
       status: 狀態
       suspend_account: 停權使用者
-      target: 對象
       title: 檢舉
       unassign: 取消指派
       unresolved: 未解決
       updated_at: 更新
-      view: 檢視
     settings:
       activity_api_enabled:
         desc_html: 本站使用者發佈的嘟文數量，以及本站的活躍使用者與一週內新使用者數量
@@ -456,7 +462,7 @@ zh-TW:
     '500':
       content: 抱歉，我們的後台出現問題了。
       title: 這個頁面有問題
-    noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon 應用</a>。
+    noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="%{apps_path}">Mastodon 應用</a>。
   exports:
     archive_takeout:
       date: 日期

@@ -69,7 +69,7 @@ const expandNormalizedNotifications = (state, notifications, next) => {
     }
 
     if (!next) {
-      mutable.set('hasMore', true);
+      mutable.set('hasMore', false);
     }
 
     mutable.set('isLoading', false);

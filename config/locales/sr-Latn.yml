@@ -246,20 +246,16 @@ sr-Latn:
       are_you_sure: Da li ste sigurni?
       comment:
         none: Ništa
-      id: ID
       mark_as_resolved: Označi kao rešen
       report: 'Prijava #%{id}'
-      report_contents: Sadržaj
       reported_account: Prijavljeni nalog
       reported_by: Prijavio
       resolved: Rešeni
       silence_account: Ućutkaj nalog
       status: Status
       suspend_account: Suspenduj nalog
-      target: Cilj
       title: Prijave
       unresolved: Nerešeni
-      view: Pogledaj
     settings:
       bootstrap_timeline_accounts:
         desc_html: Odvojite više korisničkih imena zarezom. Radi samo za lokalne i otključane naloge. Ako je prazno, onda se odnosi na sve lokalne administratore.
@@ -395,7 +391,7 @@ sr-Latn:
     '500':
       content: Izvinjavamo se, nešto je pošlo po zlu sa ove strane.
       title: Strana nije ispravna
-    noscript_html: Da biste koristili Mastodont veb aplikaciju, omogućite JavaScript. U suprotnom, probajte neku od <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">originalnih aplikacija</a> za Mastodont za Vašu platformu.
+    noscript_html: Da biste koristili Mastodont veb aplikaciju, omogućite JavaScript. U suprotnom, probajte neku od <a href="%{apps_path}">originalnih aplikacija</a> za Mastodont za Vašu platformu.
   exports:
     blocks: Blokirali ste
     csv: CSV

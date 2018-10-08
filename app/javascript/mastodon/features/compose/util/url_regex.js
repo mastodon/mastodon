@@ -170,7 +170,7 @@ export const urlRegex = (function() {
       ')'                                   +
     '\\)',
     'i');
-  // Valid end-of-path chracters (so /foo. does not gobble the period).
+  // Valid end-of-path characters (so /foo. does not gobble the period).
   // 1. Allow =&# for empty URL parameters and other URL-join artifacts
   regexen.validUrlPathEndingChars = regexSupplant(/[^#{spaces_group}\(\)\?!\*';:=\,\.\$%\[\]#{pd}~&\|@]|(?:#{validUrlBalancedParens})/i);
   // Allow @ in a url, but only in the middle. Catch things like http://example.com/@user/

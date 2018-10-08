@@ -41,13 +41,13 @@ oc:
     user_count_before: Ostal de
     what_is_mastodon: Qu’es Mastodon ?
   accounts:
-    choices_html: 'Recomandacion de %{name} :'
+    choices_html: 'Recomandacions de %{name} :'
     follow: Sègre
     followers:
       one: Seguidor
       other: Seguidors
     following: Abonaments
-    joined: Arribèt lo %{date}
+    joined: Arribèt en %{date}
     media: Mèdias
     moved_html: "%{name} a mudat a %{new_profile_link} :"
     network_hidden: Aquesta informacion es pas disponibla
@@ -323,7 +323,6 @@ oc:
       comment:
         none: Pas cap
       created_at: Creacion
-      id: ID
       mark_as_resolved: Marcar coma resolgut
       mark_as_unresolved: Marcar coma pas resolgut
       notes:
@@ -334,7 +333,6 @@ oc:
         placeholder: Explicatz las accions que son estadas menadas o quicòm de ligat al senhalament…
       reopen: Tornar dobrir lo rapòrt
       report: 'Senhalament #%{id}'
-      report_contents: Contengut
       reported_account: Compte senhalat
       reported_by: Senhalat per
       resolved: Resolgut
@@ -342,12 +340,10 @@ oc:
       silence_account: Metre lo compte en silenci
       status: Estatut
       suspend_account: Suspendre lo compte
-      target: Cibla
       title: Senhalament
       unassign: Levar
       unresolved: Pas resolgut
       updated_at: Actualizat
-      view: Veire
     settings:
       activity_api_enabled:
         desc_html: Nombre d’estatuts publicats, d’utilizaires actius e de novèlas inscripcions en rapòrt setmanièr
@@ -580,7 +576,7 @@ oc:
     '500':
       content: Un quicomet a pas foncionat coma caliá.
       title: Aquesta pagina es pas corrècta
-    noscript_html: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">una aplicacion</a> per vòstra plataforma coma alernativa.
+    noscript_html: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar <a href="%{apps_path}">una aplicacion</a> per vòstra plataforma coma alernativa.
   exports:
     archive_takeout:
       date: Data

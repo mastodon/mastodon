@@ -33,13 +33,17 @@ it:
     status_count_after: stati
     status_count_before: Che hanno pubblicato
     terms: Termini di Servizio
-    user_count_after: utenti
+    user_count_after:
+      one: utente
+      other: utenti
     user_count_before: Home di
     what_is_mastodon: Che cos'è Mastodon?
   accounts:
     choices_html: 'Suggerimenti da %{name}:'
     follow: Segui
-    followers: Seguaci
+    followers:
+      one: Seguace
+      other: Seguaci
     following: Segui
     joined: Dal %{date}
     media: Media
@@ -50,7 +54,10 @@ it:
     people_who_follow: Persone che seguono %{name}
     pin_errors:
       following: Devi gia seguire la persona che vuoi promuovere
-    posts: Posts
+    posts:
+      one: Toot
+      other: Toot
+    posts_tab_heading: Toot
     posts_with_replies: Toot e risposte
     reserved_username: Il nome utente è gia stato preso
     roles:
@@ -215,8 +222,10 @@ it:
     dashboard:
       backlog: backlogged jobs
       config: Configurazione
+      feature_deletions: Cancellazioni di account
       feature_invites: Link di invito
       feature_registrations: Registrazioni
+      feature_relay: Ripetitore di federazione
       features: Funzionalità
       hidden_service: Federazione con servizi nascosti
       open_reports: apri report
@@ -227,7 +236,7 @@ it:
       space: Utilizzo dello spazio
       title: Dashboard
       total_users: utenti totali
-      trends: Trends
+      trends: Tendenze
       week_interactions: interazioni per questa settimana
       week_users_active: attivi questa settimana
       week_users_new: utenti questa settimana
@@ -286,17 +295,24 @@ it:
         title: Filtro
       title: Inviti
     relays:
+      add_new: Aggiungi ripetitore
+      description_html: Un <strong>ripetitore di federazione</strong> è un server che fa da intermediario e scambia grandi quantità di toot pubblici tra server che si collegano e pubblicano su di esso. <strong>Può aiutare server piccoli e medi a ottenere contenuti dal fediverse</strong>, che altrimenti riceverebbero solo se i loro utenti locali seguissero altre persone su server remoti.
+      enable_hint: Dopo l'attivazione, il vostro server riceverà tutti i toot pubblici da questo ripetitore, e inizierà a inviargli i suoi toot pubblici.
       inbox_url: Url Relay
+      pending: In attesa dell'approvazione del ripetitore
+      save_and_enable: Salva e attiva
+      setup: Crea una connessione con un ripetitore
+      title: Ripetitori
     reports:
       account:
         note: note
+        report: rapporto
       action_taken_by: Azione intrapresa da
       are_you_sure: Sei sicuro?
       assign_to_self: Assegna a me
       assigned: Moderatore assegnato
       comment:
         none: Nessuno
-      id: ID
       mark_as_resolved: Segna come risolto
       mark_as_unresolved: Segna come non risolto
       notes:
@@ -306,17 +322,15 @@ it:
         delete: Elimina
       reopen: Riapri rapporto
       report: 'Rapporto #%{id}'
-      report_contents: Contenuti
       reported_by: Inviato da
       resolved: Risolto
       silence_account: Silenzia account
       status: Stato
       suspend_account: Sospendi account
-      target: Obbiettivo
+      title: Rapporti
       unassign: Non assegnare
       unresolved: Non risolto
       updated_at: Aggiornato
-      view: Mostra
     settings:
       activity_api_enabled:
         desc_html: Conteggi degli status pubblicati localmente, degli utenti attivi e delle nuove registrazioni in gruppi settimanali
@@ -325,6 +339,9 @@ it:
         title: Seguiti predefiniti per i nuovi utenti
       contact_information:
         username: Nome utente del contatto
+      custom_css:
+        desc_html: Modifica l'aspetto con il CSS caricato in ogni pagina
+        title: CSS personalizzato
       peers_api_enabled:
         desc_html: Nomi di dominio che questa istanza ha incontrato nella fediverse
         title: Pubblica elenco di istanze scoperte
@@ -348,10 +365,13 @@ it:
         title: Mostra badge staff
       site_description:
         title: Descrizione istanza
+      site_short_description:
+        title: Breve descrizione dell'istanza
       site_terms:
         title: Termini di servizio personalizzati
       site_title: Nome istanza
       timeline_preview:
+        desc_html: Mostra la timeline pubblica sulla pagina iniziale
         title: Anteprima timeline
       title: Impostazioni sito
     statuses:
@@ -395,7 +415,7 @@ it:
     didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
     forgot_password: Hai dimenticato la tua password?
     login: Entra
-    logout: Sloggati
+    logout: Esci da Mastodon
     migrate_account: Sposta ad un account differente
     migrate_account_html: Se vuoi che questo account sia reindirizzato a uno diverso, puoi <a href="%{path}">configurarlo qui</a>.
     or: o
@@ -444,7 +464,10 @@ it:
     '422':
       content: Verifica di sicurezza non riuscita. Stai bloccando i cookies?
       title: Verifica di sicurezza non riuscita
-    noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">app native</a> per Mastodon per la tua piattaforma.
+    '500':
+      content: Siamo spiacenti, ma qualcosa non ha funzionato dal nostro lato.
+      title: Questa pagina non è corretta
+    noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="%{apps_path}">app native</a> per Mastodon per la tua piattaforma.
   exports:
     archive_takeout:
       date: Data
@@ -458,6 +481,21 @@ it:
     follows: Stai seguendo
     mutes: Stai silenziando
     storage: Archiviazione media
+  filters:
+    contexts:
+      home: Timeline home
+      notifications: Notifiche
+      public: Timeline pubbliche
+      thread: Conversazioni
+    edit:
+      title: Modifica filtro
+    errors:
+      invalid_context: Contesto mancante o non valido
+    index:
+      delete: Cancella
+      title: Filtri
+    new:
+      title: Aggiungi filtro
   followers:
     domain: Dominio
     explanation_html: Se vuoi garantire la privacy dei tuoi status, devi sapere chi ti sta seguendo. <strong>I tuoi status privati vengono inviati a tutte le istanze su cui hai dei seguaci</strong>. Puoi controllare chi sono i tuoi seguaci, ed eliminarli se non hai fiducia che la tua privacy venga rispettata dallo staff o dal software di quelle istanze.
@@ -465,6 +503,9 @@ it:
     purge: Elimina dai seguaci
     true_privacy_html: Tieni presente che <strong>l'effettiva riservatezza si può ottenere solo con la crittografia end-to-end</strong>.
     unlocked_warning_html: Chiunque può seguirti per vedere immediatamente i tuoi status privati. %{lock_link} per poter esaminare e respingere gli utenti che vogliono seguirti.
+  footer:
+    developers: Sviluppatori
+    more: Altro…
   generic:
     changes_saved_msg: Modifiche effettuate con successo!
     save_changes: Salva modifiche
@@ -492,6 +533,7 @@ it:
       '86400': 1 giorno
     expires_in_prompt: Mai
     generate: Genera
+    invited_by: 'Sei stato invitato da:'
     max_uses:
       other: "%{count} utilizzi"
     max_uses_prompt: Nessun limite
@@ -573,6 +615,7 @@ it:
   remote_follow:
     acct: Inserisci il tuo username@dominio da cui vuoi seguire questo utente
     missing_resource: Impossibile trovare l'URL di reindirizzamento richiesto per il tuo account
+    no_account_html: Non hai un account? Puoi <a href='%{sign_up_path}' target='_blank'>iscriverti qui</a>
     proceed: Conferma
     prompt: 'Stai per seguire:'
   remote_unfollow:
@@ -584,6 +627,7 @@ it:
     browsers:
       blackberry: Blackberry
       chrome: Chrome
+      firefox: Firefox
       generic: Browser sconosciuto
     current_session: Sessione corrente
     description: "%{browser} su %{platform}"
@@ -661,7 +705,7 @@ it:
     recovery_codes_regenerated: I codici di recupero sono stati rigenerati
     recovery_instructions_html: Se perdi il telefono, puoi usare uno dei codici di recupero qui sotto per riottenere l'accesso al tuo account. <strong>Conserva i codici di recupero in un posto sicuro</strong>. Ad esempio puoi stamparli e conservarli insieme ad altri documenti importanti.
     setup: Configura
-    wrong_code: Il codice inserito non è corretto! Assicurati che l'orario del server e l'orario del dispotivo siano corretti.
+    wrong_code: Il codice inserito non è corretto! Assicurati che l'orario del server e l'orario del dispositivo siano corretti.
   user_mailer:
     backup_ready:
       explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!

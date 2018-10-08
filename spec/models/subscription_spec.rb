@@ -18,7 +18,7 @@ RSpec.describe Subscription, type: :model do
   end
 
   describe 'lease_seconds' do
-    it 'returns the time remaing until expiration' do
+    it 'returns the time remaining until expiration' do
       datetime = 1.day.from_now
       subscription = Subscription.new(expires_at: datetime)
       travel_to(datetime - 12.hours) do

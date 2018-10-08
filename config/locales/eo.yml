@@ -311,7 +311,6 @@ eo:
       comment:
         none: Nenio
       created_at: Signalita
-      id: ID
       mark_as_resolved: Marki solvita
       mark_as_unresolved: Marki nesolvita
       notes:
@@ -322,7 +321,6 @@ eo:
         placeholder: Priskribu faritajn agojn, aŭ ajnan novan informon pri tiu signalo…
       reopen: Remalfermi signalon
       report: 'Signalo #%{id}'
-      report_contents: Enhavo
       reported_account: Signalita konto
       reported_by: Signalita de
       resolved: Solvita
@@ -330,12 +328,10 @@ eo:
       silence_account: Kaŝi konton
       status: Mesaĝoj
       suspend_account: Haltigi konton
-      target: Celo
       title: Signaloj
       unassign: Malasigni
       unresolved: Nesolvita
       updated_at: Ĝisdatigita
-      view: Vidi
     settings:
       activity_api_enabled:
         desc_html: Sumo de lokaj mesaĝoj, aktivaj uzantoj, kaj novaj registriĝoj laŭsemajne
@@ -505,7 +501,7 @@ eo:
       title: Ĉi tiu paĝo ne estas ĝusta
     noscript_html: |-
       Por uzi la retan aplikaĵon de Mastodon, bonvolu ebligi JavaScript. Alimaniere, provu unu el la
-      <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">operaciumaj aplikaĵoj</a> por Mastodon por via platformo.
+      <a href="%{apps_path}">operaciumaj aplikaĵoj</a> por Mastodon por via platformo.
   exports:
     archive_takeout:
       date: Dato

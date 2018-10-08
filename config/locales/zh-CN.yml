@@ -5,10 +5,13 @@ zh-CN:
     about_mastodon_html: Mastodon（长毛象）是一个建立在开放式网络协议和自由、开源软件之上的社交网络，有着类似于电子邮件的分布式设计。
     about_this: 关于本实例
     administered_by: 本实例的管理员：
+    api: API
+    apps: 移动应用
     closed_registrations: 这个实例目前没有开放注册。不过，你可以前往其他实例注册一个帐户，同样可以加入到这个网络中哦！
     contact: 联系方式
     contact_missing: 未设定
     contact_unavailable: 未公开
+    documentation: 文档
     extended_description_html: |
       <h3>这里可以写一些规定</h3>
       <p>本站尚未设置详细介绍。</p>
@@ -25,23 +28,34 @@ zh-CN:
     hosted_on: 一个在 %{domain} 上运行的 Mastodon 实例
     learn_more: 了解详情
     other_instances: 其他实例
+    privacy_policy: 隐私政策
     source_code: 源代码
-    status_count_after: 条嘟文
+    status_count_after:
+      one: 条嘟文
     status_count_before: 他们共嘟出了
-    user_count_after: 位用户
+    terms: 使用条款
+    user_count_after:
+      one: 位用户
+      other: 位用户
     user_count_before: 这里共注册有
     what_is_mastodon: Mastodon 是什么？
   accounts:
     follow: 关注
-    followers: 关注者
+    followers:
+      one: 关注者
+      other: 关注者
     following: 正在关注
+    joined: 加入于 %{date}
     media: 媒体
     moved_html: "%{name} 已经迁移到 %{new_profile_link}："
     network_hidden: 此信息不可用。
     nothing_here: 这里神马都没有！
     people_followed_by: "%{name} 关注的人"
     people_who_follow: 关注 %{name} 的人
-    posts: 嘟文
+    posts:
+      one: 嘟文
+      other: 嘟文
+    posts_tab_heading: 嘟文
     posts_with_replies: 嘟文和回复
     reserved_username: 此用户名已被保留
     roles:
@@ -176,6 +190,7 @@ zh-CN:
         unsuspend_account: "%{name} 解除了用户 %{target} 的封禁状态"
         update_custom_emoji: "%{name} 更新了自定义表情 %{target}"
         update_status: "%{name} 刷新了 %{target} 的嘟文"
+      deleted_status: "（嘟文已删除）"
       title: 运营日志
     custom_emojis:
       by_domain: 域名
@@ -202,6 +217,27 @@ zh-CN:
       update_failed_msg: 表情更新失败！
       updated_msg: 表情更新成功！
       upload: 上传新表情
+    dashboard:
+      backlog: 未处理任务数
+      config: 服务器配置
+      feature_deletions: 帐户删除
+      feature_invites: 邀请链接
+      feature_registrations: 公开注册
+      feature_relay: 同步中继
+      features: 功能
+      hidden_service: 匿名服务连通性
+      open_reports: 待处理举报数
+      recent_users: 新用户
+      search: 全文搜索
+      single_user_mode: 单用户模式
+      software: 软件
+      space: 存储使用情况
+      title: 仪表盘
+      total_users: 总用户数
+      trends: 趋势
+      week_interactions: 本周互动数
+      week_users_active: 本周活跃用户数
+      week_users_new: 本周新用户数
     domain_blocks:
       add_new: 添加新条目
       created_msg: 正在进行域名屏蔽
@@ -224,7 +260,9 @@ zh-CN:
         suspend: 自动封禁
       severity: 屏蔽级别
       show:
-        affected_accounts: 将会影响到数据库中的 %{count} 个帐户
+        affected_accounts:
+          one: 将会影响到数据库中的 1 个帐户
+          other: 将会影响到数据库中的 %{count} 个帐户
         retroactive:
           silence: 对此域名的所有帐户解除隐藏
           suspend: 对此域名的所有帐户解除封禁
@@ -249,12 +287,23 @@ zh-CN:
       search: 搜索
       title: 已知实例
     invites:
+      deactivate_all: 撤销所有邀请链接
       filter:
         all: 全部
         available: 可用
         expired: 已失效
         title: 筛选
       title: 邀请用户
+    relays:
+      add_new: 添加新的中继
+      description_html: "<strong>同步中继</strong>是一种中间服务器，各实例可以通过订阅中继和向中继推送信息的方式来大量交换公开嘟文。<strong>它可以帮助中小型实例发现网络中的内容</strong>，而无需本地用户手动关注其他远程实例上的用户。"
+      enable_hint: 启用此功能后，你的实例会订阅此中继的所有公开嘟文，并同时向其推送本服务器的公开嘟文。
+      inbox_url: 中继 URL
+      pending: 等待中继确认
+      save_and_enable: 保存并启用
+      setup: 设置中继连接
+      status: 状态
+      title: 中继
     report_notes:
       created_msg: 举报记录建立成功！
       destroyed_msg: 举报记录删除成功！
@@ -269,7 +318,6 @@ zh-CN:
       comment:
         none: 没有
       created_at: 举报时间
-      id: ID
       mark_as_resolved: 标记为“已处理”
       mark_as_unresolved: 标记为“未处理”
       notes:
@@ -280,7 +328,6 @@ zh-CN:
         placeholder: 描述已经执行的操作，或其他任何相关的跟进情况
       reopen: 重开举报
       report: '举报 #%{id}'
-      report_contents: 内容
       reported_account: 举报用户
       reported_by: 举报人
       resolved: 已处理
@@ -288,12 +335,10 @@ zh-CN:
       silence_account: 隐藏用户
       status: 状态
       suspend_account: 封禁用户
-      target: 被举报人
       title: 举报
       unassign: 取消接管
       unresolved: 未处理
       updated_at: 更新时间
-      view: 查看
     settings:
       activity_api_enabled:
         desc_html: 本站用户发布的嘟文数，以及本站的活跃用户数和一周内新用户数
@@ -304,12 +349,18 @@ zh-CN:
       contact_information:
         email: 用于联系的公开电子邮件地址
         username: 用于联系的公开用户名
+      custom_css:
+        desc_html: 通过 CSS 代码调整所有页面的显示效果
+        title: 自定义 CSS
       hero:
         desc_html: 用于在首页展示。推荐分辨率 600×100px 以上。未指定的情况下将默认使用本站缩略图
         title: 主题图片
       peers_api_enabled:
         desc_html: 截至目前本实例在网络中已发现的域名
         title: 公开已知实例的列表
+      preview_sensitive_media:
+        desc_html: 始终在站外链接预览中展示缩略图，无论媒体内容是否标记为敏感
+        title: 在 OpenGraph 预览中显示敏感媒体内容
       registrations:
         closed_message:
           desc_html: 本站关闭注册期间的提示信息。可以使用 HTML 标签
@@ -454,7 +505,7 @@ zh-CN:
     '500':
       content: 抱歉，我们的后台出错了。
       title: 这个页面有问题
-    noscript_html: 使用 Mastodon 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon 应用</a>。
+    noscript_html: 使用 Mastodon 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="%{apps_path}">Mastodon 应用</a>。
   exports:
     archive_takeout:
       date: 日期
@@ -468,6 +519,21 @@ zh-CN:
     follows: 关注的用户
     mutes: 隐藏的用户
     storage: 媒体文件存储
+  filters:
+    contexts:
+      home: 主页时间轴
+      notifications: 通知
+      public: 公共时间轴
+      thread: 对话
+    edit:
+      title: 编辑过滤器
+    errors:
+      invalid_irreversible: 此功能只适用于主页时间轴或通知
+    index:
+      delete: 删除
+      title: 过滤器
+    new:
+      title: 添加新的过滤器
   followers:
     domain: 域名
     explanation_html: 为保证你的嘟文的隐私安全，你应当经常检查你的关注者列表。<strong>受保护的嘟文将会发送到所有关注者所在的实例上</strong>。有些实例使用的软件代码或其管理员可能不会尊重你的隐私设置，因此你应当复查一下关注者列表，并移除那些你无法信任的关注者。
@@ -506,7 +572,9 @@ zh-CN:
     expires_in_prompt: 永不过期
     generate: 生成邀请链接
     invited_by: 你的邀请人是：
-    max_uses: "%{count} 次"
+    max_uses:
+      one: 1 次
+      other: "%{count} 次"
     max_uses_prompt: 无限制
     prompt: 生成分享链接，邀请他人在本实例注册
     table:
@@ -584,6 +652,7 @@ zh-CN:
   remote_follow:
     acct: 请输入你的“用户名@实例域名”
     missing_resource: 无法确定你的帐户的跳转 URL
+    no_account_html: 还没有帐号？你可以<a href='%{sign_up_path}' target='_blank'>注册一个</a>
     proceed: 确认关注
     prompt: 你正准备关注：
   remote_unfollow:
@@ -649,8 +718,12 @@ zh-CN:
   statuses:
     attached:
       description: 附加媒体：%{attached}
-      image: "%{count} 张图片"
-      video: "%{count} 个视频"
+      image:
+        one: "%{count} 张图片"
+        other: "%{count} 张图片"
+      video:
+        one: "%{count} 段视频"
+        other: "%{count} 段视频"
     boosted_from_html: 转嘟自 %{acct_link}
     content_warning: 内容警告：%{warning}
     disallowed_hashtags:

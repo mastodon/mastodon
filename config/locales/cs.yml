@@ -47,7 +47,7 @@ cs:
       one: Sledovatel
       other: Sledovatelé
     following: Sleduje
-    joined: Připojil/a se %{date}
+    joined: Připojil/a se v %{date}
     media: Média
     moved_html: 'Účet %{name} byl přesunut na %{new_profile_link}:'
     network_hidden: Tato informace není k dispozici
@@ -322,7 +322,6 @@ cs:
       comment:
         none: Žádné
       created_at: Nahlášené
-      id: ID
       mark_as_resolved: Označit jako vyřešené
       mark_as_unresolved: Označit jako nevyřešené
       notes:
@@ -333,7 +332,6 @@ cs:
         placeholder: Popište, jaké akce byly vykonány, nebo jakékoliv jiné související aktuality...
       reopen: Znovu otevřít nahlášení
       report: 'Nahlásit #%{id}'
-      report_contents: Obsah
       reported_account: Nahlášený účet
       reported_by: Nahlášeno uživatelem
       resolved: Vyřešeno
@@ -341,12 +339,10 @@ cs:
       silence_account: Utišit účet
       status: Stav
       suspend_account: Suspendovat účet
-      target: Cíl
       title: Nahlášení
       unassign: Odebrat
       unresolved: Nevyřešeno
       updated_at: Aktualizováno
-      view: Zobrazit
     settings:
       activity_api_enabled:
         desc_html: Počty lokálně publikovaných příspěvků, aktivních uživatelů a nových registrací, v týdenních intervalech
@@ -523,7 +519,7 @@ cs:
     '500':
       content: Omlouváme se, ale něco se pokazilo u nás.
       title: Tato stránka není správná
-    noscript_html: Pro použití webové aplikace Mastodon prosím povolte JavaScript. Nebo zkuste jednu z <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">nativních aplikací</a> pro Mastodon pro vaši platformu.
+    noscript_html: Pro použití webové aplikace Mastodon prosím povolte JavaScript. Nebo zkuste jednu z <a href="%{apps_path}">nativních aplikací</a> pro Mastodon pro vaši platformu.
   exports:
     archive_takeout:
       date: Datum
@@ -679,10 +675,10 @@ cs:
     acct: Napište svou přezdívku@doménu, ze které chcete jednat
     missing_resource: Nemůžeme najít požadované přesměrovací URL pro váš účet
     no_account_html: Ještě nemáte účet? Můžete se <a href='%{sign_up_path}' target='_blank'>registrovat zde</a>
-    proceed: Pokračujte pro sledování
+    proceed: Pokračovat ke sledování
     prompt: 'Budete sledovat:'
   remote_interaction:
-    proceed: Pokračujte k interakci
+    proceed: Pokračovat k interakci
     prompt: 'Chcete interagovat s tímto tootem:'
   remote_unfollow:
     error: Chyba
@@ -778,7 +774,7 @@ cs:
       unlisted_long: Všichni mohou vidět, ale není zahrnut ve veřejných časových osách
   stream_entries:
     pinned: Připnutý toot
-    reblogged: boostnutý
+    reblogged: boostnul/a
     sensitive_content: Citlivý obsah
   terms:
     body_html: |
@@ -831,7 +827,7 @@ cs:
 
       <p>Ano. Cookies jsou malé soubory, které stránka nebo její poskytovatel uloží na pevný disk vašeho počítače (pokud to dovolíte). Tyto cookies umožňují stránce rozpoznat váš prohlížeč a, pokud máte registrovaný účet, přidružit ho s vaším registrovaným účtem.</p>
 
-      <p>POužíváme cookies pro pochopení a ukládání vašich předvoleb pro budoucí návštěvy.</p>
+      <p>Používáme cookies pro pochopení a ukládání vašich předvoleb pro budoucí návštěvy.</p>
 
       <hr class="spacer" />
 
@@ -847,7 +843,7 @@ cs:
 
       <h3 id="children">Používání stránky dětmi</h3>
 
-      <p>Pokud se tento server nachází v EU nebo EHP: Naše stránka, produkty a služby jsou všechny směřovány na lidi, kterým je alespoň 16 let. Pokud je vám méně než 16, dle požadavků nařízení GDPR (<a href="https://cs.wikipedia.org/wiki/Obecn%C3%A9_na%C5%99%C3%ADzen%C3%AD_o_ochran%C4%9B_osobn%C3%ADch_%C3%BAdaj%C5%AF">Obecné nařízení o ochě sobních údajů</a>) </p>
+      <p>Pokud se tento server nachází v EU nebo EHP: Naše stránka, produkty a služby jsou všechny směřovány na lidi, kterým je alespoň 16 let. Pokud je vám méně než 16, dle požadavků nařízení GDPR (<a href="https://cs.wikipedia.org/wiki/Obecn%C3%A9_na%C5%99%C3%ADzen%C3%AD_o_ochran%C4%9B_osobn%C3%ADch_%C3%BAdaj%C5%AF">Obecné nařízení o ochě sobních údajů</a>) tuto stránku nepoužívejte.</p>
 
       <p>Pokud se tento server nachází v USA: Naše stránka, produkty a služby jsou všechny směřovány na lidi, kterým je alespoň 13 let. Pokud je vám méně než 13, dle požadavků zákona COPPA (<a href="https://cs.wikipedia.org/wiki/Children%27s_online_privacy_protection_act">Children's Online Privacy Protection Act</a>) tuto stránku nepoužívejte.</p>
 

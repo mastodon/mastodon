@@ -244,20 +244,16 @@ hu:
       are_you_sure: Biztos vagy benne?
       comment:
         none: Egyik sem
-      id: ID
       mark_as_resolved: Megjelölés megoldottként
       report: "#%{id} számú jelentés"
-      report_contents: Tartalom
       reported_account: Bejelentett fiók
       reported_by: 'Jelentette:'
       resolved: Megoldott
       silence_account: Felhasználó némítása
       status: Állapot
       suspend_account: Felhasználó felfüggesztése
-      target: Cél
       title: Jelentések
       unresolved: Megoldatlan
-      view: Megtekintés
     settings:
       activity_api_enabled:
         desc_html: Helyi tülkök, aktív felhasználók és új regisztrációk száma heti bontásban
@@ -402,7 +398,7 @@ hu:
     '500':
       content: Sajnáljuk, valami hiba történt a mi oldalunkon.
       title: Az oldal nem megfelelő
-    noscript_html: A Mastodon webalkalmazás használatához engedélyezned kell a JavaScriptet. A másik megoldás, hogy kipróbálod az egyik, a platformodnak megfelelő <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">alkalmazást</a>.
+    noscript_html: A Mastodon webalkalmazás használatához engedélyezned kell a JavaScriptet. A másik megoldás, hogy kipróbálod az egyik, a platformodnak megfelelő <a href="%{apps_path}">alkalmazást</a>.
   exports:
     blocks: Tiltólistádon
     csv: CSV

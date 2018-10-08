@@ -271,7 +271,6 @@ zh-HK:
       comment:
         none: 沒有
       created_at: 日期
-      id: ID
       mark_as_resolved: 標示為「已處理」
       mark_as_unresolved: 標示為「未處理」
       notes:
@@ -282,7 +281,6 @@ zh-HK:
         placeholder: 記錄已執行的動作，或其他相關的更新……
       reopen: 重開舉報
       report: '舉報 #%{id}'
-      report_contents: 舉報內容
       reported_account: 舉報用戶
       reported_by: 舉報者
       resolved: 已處理
@@ -290,12 +288,10 @@ zh-HK:
       silence_account: 將用戶靜音
       status: 狀態
       suspend_account: 將用戶停權
-      target: 對象
       title: 舉報
       unassign: 取消指派
       unresolved: 未處理
       updated_at: 更新
-      view: 檢視
     settings:
       activity_api_enabled:
         desc_html: 本站用戶發佈的文章，以及本站的活躍用戶和一週內新用戶數
@@ -456,7 +452,7 @@ zh-HK:
     '500':
       content: 抱歉，我們的後台出錯了。
       title: 這個頁面有問題
-    noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon 應用</a>。
+    noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="%{apps_path}">Mastodon 應用</a>。
   exports:
     archive_takeout:
       date: 日期

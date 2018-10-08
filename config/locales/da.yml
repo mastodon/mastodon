@@ -1,7 +1,7 @@
 ---
 da:
   about:
-    about_hashtag_html: Disse er offentlige toots der indeholder tagget <strong>#%{hashtag}</strong>. Du kan interagere med dem hvis du har en konto hvor som helst i fediverset.
+    about_hashtag_html: Disse er offentlige trut der indeholder tagget <strong>#%{hashtag}</strong>. Du kan interagere med dem hvis du har en konto hvor som helst i fediverset.
     about_mastodon_html: Mastodon er et socialt netværk der er baseret på åbne web protokoller og frit, open-source source software. Der er decentraliseret ligesom e-mail tjenester.
     about_this: Om
     administered_by: 'Administreret af:'
@@ -20,7 +20,7 @@ da:
       humane_approach_title: En mere human tilgang
       not_a_product_body: Mastodon er ikke et kommercielt netværk. Ingen reklamer, ingen datamining, ingen indhegnet haver. Der er ingen central regering.
       not_a_product_title: Du er en person, ikke et produkt
-      real_conversation_body: Med 500 tegn til din rådighed og understøttelse af granulært indhold og multimedie advarsler, kan du udtrykke dig på en hvilken som helst måde du ønsker.
+      real_conversation_body: Med 500 tegn til din rådighed og understøttelse af granulært indhold og medie advarsler, kan du udtrykke dig på en hvilken som helst måde du ønsker.
       real_conversation_title: Bygget til rigtige samtaler
       within_reach_body: Adskillige apps for iOS, Android og andre platforme takket være et udviklervenligt API økosystem tillader dig at holde kontakten med dine venner hvor som helst.
       within_reach_title: Altid indenfor rækkevidde
@@ -48,7 +48,7 @@ da:
       other: Følgere
     following: Følger
     joined: Tilmeldt den %{date}
-    media: Multimedia
+    media: Medier
     moved_html: "%{name} er flyttet til %{new_profile_link}:"
     network_hidden: Denne information er ikke tilgængelig
     nothing_here: Der er intet her!
@@ -110,7 +110,7 @@ da:
         remote: Fjernt
         title: Placering
       login_status: Status på login
-      media_attachments: Multimedie bilag
+      media_attachments: Medie bilag
       memorialize: Omdan til et memoriam
       moderation:
         all: Alle
@@ -256,7 +256,7 @@ da:
           silence: Dæmp
           suspend: Udeluk
         title: Ny domæne blokering
-      reject_media: Afvis multimedie filer
+      reject_media: Afvis medie filer
       reject_media_hint: Fjerner lokalt lagrede multimedie filer og nægter at hente nogen i fremtiden. Irrelevant for udelukkelser
       severities:
         noop: Ingen
@@ -322,7 +322,6 @@ da:
       comment:
         none: Ingen
       created_at: Anmeldt
-      id: ID
       mark_as_resolved: Marker som værende løst
       mark_as_unresolved: Marker som værende uløst
       notes:
@@ -333,7 +332,6 @@ da:
         placeholder: Beskriv hvilke handlinger der er blevet udført, eller andre relevante opdateringer...
       reopen: Genåben anmeldelse
       report: 'Anmeldelse #%{id}'
-      report_contents: Indhold
       reported_account: Anmeldt konto
       reported_by: Anmeldt af
       resolved: Løst
@@ -341,12 +339,10 @@ da:
       silence_account: Dæmp konto
       status: Status
       suspend_account: Udeluk konto
-      target: Mål
       title: Anmeldelser
       unassign: Utildel
       unresolved: Uløst
       updated_at: Opdateret
-      view: Se
     settings:
       activity_api_enabled:
         desc_html: Antal af lokalt opslåede statusser, aktive brugere, og nye registreringer i ugentlige opdelinger
@@ -523,7 +519,7 @@ da:
     '500':
       content: Beklager men der gik noget galt i vores ende.
       title: Siden er ikke korrekt
-    noscript_html: For at bruge Mastodon web applikationen, aktiver JavaScript. Alternativt kan du prøve en af disse <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apps</a> til Mastodon for din platform.
+    noscript_html: For at bruge Mastodon web applikationen, aktiver JavaScript. Alternativt kan du prøve en af disse <a href="%{apps_path}">apps</a> til Mastodon for din platform.
   exports:
     archive_takeout:
       date: Dato
@@ -736,7 +732,7 @@ da:
     delete: Sletning af konto
     development: Udvikling
     edit_profile: Rediger profil
-    export: Data exportering
+    export: Data eksportering
     followers: Godkendte følgere
     import: Importer
     migrate: Konto migrering

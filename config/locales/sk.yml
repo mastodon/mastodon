@@ -4,11 +4,14 @@ sk:
     about_hashtag_html: Toto sú verejné toot príspevky otagované <strong>#%{hashtag}</strong>. Ak máš účet niekde vo fediverse, môžeš ich používať.
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch. Jej zrojový kód je otvorený a je decentralizovaná podobne ako email.
     about_this: O tejto instancii
-    administered_by: 'Správca je:'
-    closed_registrations: Registrácie sú momentálne uzatvorené. Avšak, môžeš nájsť nejaký iný Mastodon server kde si založ účet a získaj tak prístup do presne tej istej siete, odtiaľ.
+    administered_by: 'Správcom je:'
+    api: API
+    apps: Mobilné aplikácie
+    closed_registrations: Registrácie sú na tomto serveri momentálne uzatvorené. Avšak, môžeš nájsť nejaký iný Mastodon server kde si založ účet a získaj tak prístup do presne tej istej siete, odtiaľ.
     contact: Kontakt
     contact_missing: Nezadané
     contact_unavailable: Neuvedené
+    documentation: Dokumentácia
     extended_description_html: |
       <h3>Pravidlá</h3>
       <p>Žiadne zatiaľ nie sú</p>
@@ -25,23 +28,38 @@ sk:
     hosted_on: Mastodon hostovaný na %{domain}
     learn_more: Zisti viac
     other_instances: Zoznam ďalších inštancií
+    privacy_policy: Ustanovenia o súkromí
     source_code: Zdrojový kód
-    status_count_after: príspevkov
+    status_count_after:
+      one: status
+      other: statusy
     status_count_before: Ktorí napísali
-    user_count_after: užívateľov
+    terms: Podmienky užívania
+    user_count_after:
+      one: užívateľ
+      other: užívateľov
     user_count_before: Domov pre
     what_is_mastodon: Čo je Mastodon?
   accounts:
+    choices_html: "%{name}vé voľby:"
     follow: Sledovať
-    followers: Sledujúci
-    following: Sleduje
+    followers:
+      one: Následovateľ
+      other: Sledovatelia
+    following: Sledovaní
+    joined: Pridal/a sa %{date}
     media: Médiá
     moved_html: "%{name} účet bol presunutý na %{new_profile_link}:"
     network_hidden: Táto informácia nieje k dispozícii
     nothing_here: Nič tu nie je!
     people_followed_by: Ľudia, ktorých %{name} sleduje
     people_who_follow: Ľudia sledujúci %{name}
-    posts: Príspevky
+    pin_errors:
+      following: Musíš už následovať toho človeka, ktorého si praješ zviditeľniť
+    posts:
+      one: Príspevok
+      other: Príspevky
+    posts_tab_heading: Príspevky
     posts_with_replies: Príspevky s odpoveďami
     reserved_username: Prihlasovacie meno je rezervované
     roles:
@@ -75,20 +93,20 @@ sk:
       disabled: Blokovaný
       display_name: Zobraziť meno
       domain: Doména
-      edit: Upraviť
-      email: Email
-      email_status: Stav Email
+      edit: Uprav
+      email: Emailová adresa
+      email_status: Stav emailu
       enable: Povoliť
       enabled: Povolený
       feed_url: URL časovej osi
       followers: Sledujúci
       followers_url: URL sledujúcich
-      follows: Sledovaní
+      follows: Sledovania
       inbox_url: URL prijatých správ
       ip: IP
       location:
         all: Všetko
-        local: Lokálne
+        local: Miestne
         remote: Federované
         title: Lokácia
       login_status: Status prihlásenia
@@ -176,6 +194,7 @@ sk:
         unsuspend_account: "%{name} zrušil/a blokovanie účtu používateľa %{target}"
         update_custom_emoji: "%{name} aktualizoval/a emoji %{target}"
         update_status: "%{name} aktualizoval/a status pre %{target}"
+      deleted_status: "(zmazaný príspevok)"
       title: Kontrólny záznam
     custom_emojis:
       by_domain: Doména
@@ -203,6 +222,7 @@ sk:
       updated_msg: Emoji bolo úspešne aktualizované!
       upload: Nahrať
     dashboard:
+      backlog: odložené aktivity
       config: Nastavenia
       feature_deletions: Vymazanie účtov
       feature_invites: Pozvánky
@@ -212,9 +232,16 @@ sk:
       hidden_service: Federácia so skritými službami
       open_reports: otvorené hlásenia
       recent_users: Nedávny užívatelia
+      search: Celofrázové vyhľadávanie
+      single_user_mode: Jednouživateľské rozhranie
       software: Softvér
       space: Využitie miesta
+      title: Spravovacie rozhranie
       total_users: užívateľov celkovo
+      trends: Trendy
+      week_interactions: Tohto týždňové interakcie
+      week_users_active: aktívni tento týždeň
+      week_users_new: užívateľov počas tohto týždňa
     domain_blocks:
       add_new: Pridať nový
       created_msg: Doména je v procese blokovania
@@ -265,6 +292,7 @@ sk:
       search: Hľadať
       title: Známe instancie
     invites:
+      deactivate_all: Pozastaviť všetky
       filter:
         all: Všetky
         available: Dostupné
@@ -274,7 +302,13 @@ sk:
     relays:
       add_new: Pridaj novú priechodnú oporu
       description_html: "<strong>Federovací mostík</strong> je prechodný server ktorý obmieňa veľké množstvá verejných príspevkov medzi tými servermi ktoré na od neho odoberajú, aj doňho prispievajú. <strong>Môže to pomôcť malým a stredným instanciám objavovať federovaný obsah</strong>, čo inak vyžaduje aby miestni užívatelia ručne následovali iných ľudí zo vzdialených instancií."
+      enable_hint: Ak povolíš, tvoj server bude odoberať všetky verejné príspevky z tohto mostu, a začne posielať verejné príspevky tvojho servera na tento most.
+      inbox_url: URL mostu
+      pending: Čakám na povolenie od prechodného mostu
+      save_and_enable: Uložiť a povoliť
+      setup: Nastav prepojenie s mostom
       status: Stav
+      title: Mosty
     report_notes:
       created_msg: Poznámka o nahlásení úspešne vytvorená!
       destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
@@ -289,7 +323,6 @@ sk:
       comment:
         none: Žiadne
       created_at: Nahlásené
-      id: Identifikácia
       mark_as_resolved: Označiť ako vyriešené
       mark_as_unresolved: Označ ako nevyriešené
       notes:
@@ -300,7 +333,6 @@ sk:
         placeholder: Opíš aké opatrenia boli urobené, alebo akékoľvek iné súvisiace aktualizácie…
       reopen: Znovu otvor report
       report: Nahlásiť
-      report_contents: Obsah
       reported_account: Nahlásený účet
       reported_by: Nahlásené užívateľom
       resolved: Vyriešené
@@ -308,12 +340,10 @@ sk:
       silence_account: Zamĺčať účet
       status: Stav
       suspend_account: Pozastaviť účet
-      target: Cieľ
       title: Reporty
       unassign: Odobrať
       unresolved: Nevyriešené
       updated_at: Aktualizované
-      view: Zobraziť
     settings:
       activity_api_enabled:
         desc_html: Sčítanie lokálne publikovaných príspevkov, aktívnych užívateľov, a nových registrácii, v týždenných intervaloch
@@ -324,6 +354,9 @@ sk:
       contact_information:
         email: Pracovný e-mail
         username: Kontaktné užívateľské meno
+      custom_css:
+        desc_html: Uprav vzhľad pomocou CSS, ktoré je načítané na každej stránke
+        title: Vlastné CSS
       hero:
         desc_html: Zobrazuje sa na hlavnej stránke. Doporučuje sa rozlišenie aspoň 600x100px Pokiaľ tu nieje nič dodané, bude nastavený základný orázok tohoto serveru
         title: Obrázok hrdinu
@@ -358,6 +391,9 @@ sk:
       site_description_extended:
         desc_html: Toto je vhodné miesto pre vaše pravidlá, oboznámenia a iné veci, ktorými je vaša instancia špecifická. Je možné tu používať HTML kód
         title: Vlastné doplňujúce informácie
+      site_short_description:
+        desc_html: Zobrazené na bočnom paneli a pri meta tagoch. Popíš čo je Mastodon, a čo robí tento server iným, v jednom paragrafe. Pokiaľ toto necháš prázdne, bude tu zobrazený základný popis instancie.
+        title: Krátky popis instancie
       site_terms:
         desc_html: Môžete si napísať vaše vlastné pravidla o súkromí, prevádzke, alebo aj iné legality. Môžete tu používať HTML kód
         title: Vlastné pravidlá prevádzky
@@ -379,6 +415,7 @@ sk:
       media:
         title: Médiá
       no_media: Žiadné médiá
+      no_status_selected: Žiadne príspevky neboli zmenené, keďže si žiadne nemal/a zvolené
       title: Statusy na účte
       with_media: S médiami
     subscriptions:
@@ -388,12 +425,18 @@ sk:
       last_delivery: Posledné doručenie
       title: WebSub
       topic: Téma
-    title: Administrácia
+    suspensions:
+      bad_acct_msg: Hodnota pre potvrdenie sa nezhoduje. Si si istý/á že zamrazuješ ten správny účet?
+      hint_html: 'Pre potvrdenie zamrazenia účtu, prosím napíš %{value} do následujúceho políčka:'
+      proceed: Pokračuj
+      title: Zamraziť %{acct}
+      warning_html: 'Zamrazením tohto účtu budú dáta na tomto účte <strong>nenávratne</strong> zmazané, zahŕňajúc:'
+    title: Spravovanie
   admin_mailer:
     new_report:
-      body: "%{reporter} nahlásil %{target}"
-      body_remote: Niekto z %{domain} nahlásil %{target}
-      subject: Nový report pre %{instance} (#%{id})
+      body: "%{reporter} nahlásil/a %{target}"
+      body_remote: Niekto z %{domain} nahlásil/a %{target}
+      subject: Nové hlásenie pre %{instance} (#%{id})
   application_mailer:
     notification_preferences: Zmeniť e-mailové voľby
     salutation: "%{name},"
@@ -410,7 +453,7 @@ sk:
     warning: Na tieto údaje dávajte ohromný pozor. Nikdy ich s nikým nezďieľajte!
     your_token: Váš prístupový token
   auth:
-    agreement_html: V rámci registrácie súhlasíš, že sa budeš riadiť <a href="%{rules_path}"> pravidlami tejto instancie</a>, a taktiež <a href="%{terms_path}"> našími servisnými podmienkami </a>.
+    agreement_html: V rámci registrácie súhlasíš, že sa budeš riadiť <a href="%{rules_path}"> pravidlami tejto instancie</a>, a taktiež <a href="%{terms_path}"> našími prevoznými podmienkami</a>.
     change_password: Heslo
     confirm_email: Potvrdiť email
     delete_account: Vymazať účet
@@ -477,7 +520,7 @@ sk:
     '500':
       content: Ospravedlňujeme sa. Niečo sa pokazilo na našom konci.
       title: Táto stránka nieje v poriadku
-    noscript_html: Aby bolo možné používať Mastodon web aplikáciu, prosím povoľte JavaScript. Alebo skúste jednu z <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md"> aplikácii </a> dostupných pre vašu platformu.
+    noscript_html: Aby bolo možné používať Mastodon web aplikáciu, prosím povoľte JavaScript. Alebo skúste jednu z <a href="%{apps_path}"> aplikácii </a> dostupných pre vašu platformu.
   exports:
     archive_takeout:
       date: Dátum
@@ -520,6 +563,10 @@ sk:
     true_privacy_html: Prosím ber na vedomie, <strong> že ozajstné súkromie sa dá dosiahnúť iba za pomoci end-to-end enkrypcie</strong>.
     unlocked_warning_html: Hocikto ťa môže následovať aby mohol/a ihneď vidieť tvoje súkromné príspevky. %{lock_link} aby si mohla skontrolovať a odmietať sledovateľov.
     unlocked_warning_title: Tvoj účet nieje zamknutý
+  footer:
+    developers: Vývojári
+    more: Viac…
+    resources: Podklady
   generic:
     changes_saved_msg: Zmeny boli úspešne uložené!
     save_changes: Uložiť zmeny
@@ -636,6 +683,9 @@ sk:
     no_account_html: Nemáš ešte účet? Môžeš sa <a href='%{sign_up_path}' target='_blank'>zaregistrovať tu</a>
     proceed: Začni následovať
     prompt: 'Budeš sledovať:'
+  remote_interaction:
+    proceed: Pokračuj k interakcii
+    prompt: 'Chceš narábať s týmto príspevkom:'
   remote_unfollow:
     error: Chyba
     title: Názov
@@ -669,18 +719,18 @@ sk:
       windows: Microsoft Windows
     revoke: Zamietni
     revoke_success: Sezóna úspešne zamietnutá
-    title: Sezóna
+    title: Sezóny
   settings:
-    authorized_apps: Autorizované aplikácie
+    authorized_apps: Povolené aplikácie
     back: Späť na Mastodon
     delete: Vymazanie účtu
     development: Vývoj
     edit_profile: Uprav profil
     export: Exportovať dáta
-    followers: Povolení sledovatelia
+    followers: Povolení následovatelia
     import: Importovať
     migrate: Presunúť účet
-    notifications: Oznámenia
+    notifications: Oboznámenia
     preferences: Voľby
     settings: Nastavenia
     two_factor_authentication: Dvoj-faktorové overenie
@@ -710,6 +760,7 @@ sk:
       private: Neverejné príspevky nemôžu byť pripnuté
       reblog: Pozdvihnutie sa nedá pripnúť
     show_more: Ukáž viac
+    sign_in_to_participate: Prihlás sa pre zapojenie do diskusie
     visibilities:
       private: Iba pre sledovateľov
       private_long: Ukáž iba následovateľom
@@ -765,7 +816,7 @@ sk:
       tip_bridge_html: Ak prichádzaš z Twitteru, môžeš svojích priateľov nájsť na Mastodone pomocou tzv. <a href="%{bridge_url}">mostíkovej aplikácie</a>. Ale tá funguje iba ak ju aj oni niekedy použili!
       tip_federated_timeline: Federovaná os zobrazuje sieť Mastodonu až po jej hranice. Ale zahŕňa iba ľúdí ktorých ostatní okolo teba sledujú, takže predsa nieje úplne celistvá.
       tip_following: Správcu servera následuješ automaticky. Môžeš ale nájsť mnoho iných zaujímavých ľudí ak prezrieš tak lokálnu, ako aj globálne federovanú os.
-      tip_local_timeline: Lokálna os je celkový pohľad na aktivitu užívateľov %{instance}. Toto sú tvoji najbližší susedia!
+      tip_local_timeline: Miestna časová os je celkový pohľad na aktivitu užívateľov %{instance}. Toto sú tvoji najbližší susedia!
       tip_mobile_webapp: Pokiaľ ti prehliadač ponúkne možnosť pridať Mastodon na tvoju obrazovku, môžeš potom dostávať notifikácie skoro ako z natívnej aplikácie!
       tips: Tipy
       title: Vitaj na palube, %{name}!
