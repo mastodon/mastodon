@@ -19,6 +19,8 @@ class ActivityPub::Activity::Undo < ActivityPub::Activity
   private
 
   def undo_announce
+    return if object_uri.nil?
+
     status   = Status.find_by(uri: object_uri, account: @account)
     status ||= Status.find_by(uri: @object['atomUri'], account: @account) if @object.is_a?(Hash) && @object['atomUri'].present?
 
