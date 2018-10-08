@@ -7,7 +7,7 @@ import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import StatusList from '../../components/status_list';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { debounce } from 'lodash';
 
@@ -21,9 +21,9 @@ const mapStateToProps = state => ({
   hasMore: !!state.getIn(['status_lists', 'bookmarks', 'next']),
 });
 
-@connect(mapStateToProps)
+export default @connect(mapStateToProps)
 @injectIntl
-export default class Bookmarks extends ImmutablePureComponent {
+class Bookmarks extends ImmutablePureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -70,6 +70,8 @@ export default class Bookmarks extends ImmutablePureComponent {
     const { intl, statusIds, columnId, multiColumn, hasMore, isLoading } = this.props;
     const pinned = !!columnId;
 
+    const emptyMessage = <FormattedMessage id='empty_column.bookmarked_statuses' defaultMessage="You don't have any bookmark toots yet. When you bookmark one, it will show up here." />;
+
     return (
       <Column ref={this.setRef} name='bookmarks'>
         <ColumnHeader
@@ -90,6 +92,7 @@ export default class Bookmarks extends ImmutablePureComponent {
           hasMore={hasMore}
           isLoading={isLoading}
           onScrollToBottom={this.handleScrollToBottom}
+          emptyMessage={emptyMessage}
         />
       </Column>
     );
