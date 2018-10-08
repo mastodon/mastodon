@@ -48,4 +48,8 @@ class Form::AdminSettings
     :custom_css=,
     to: Setting
   )
+
+  def flavour_and_skin
+    "#{Setting.flavour}/#{Setting.skin}"
+  end
 end

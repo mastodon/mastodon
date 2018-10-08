@@ -80,4 +80,10 @@ class Themes
   def skins_for(name)
     @conf[name]['skin'].keys
   end
+
+  def flavours_and_skins
+    flavours.map do |flavour|
+      [flavour, skins_for(flavour).map{ |skin| [flavour, skin] }]
+    end
+  end
 end
