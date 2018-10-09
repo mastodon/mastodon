@@ -825,6 +825,7 @@
 
   &.status-direct {
     background: lighten($ui-base-color, 8%);
+    border-bottom-color: lighten($ui-base-color, 12%);
   }
 
   &.light {
@@ -5494,5 +5495,46 @@ noscript {
         stroke: lighten($highlight-text-color, 6%) !important;
       }
     }
+  }
+}
+
+.conversation {
+  padding: 14px 10px;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  cursor: pointer;
+
+  &__header {
+    display: flex;
+    margin-bottom: 15px;
+  }
+
+  &__avatars {
+    overflow: hidden;
+    flex: 1 1 auto;
+
+    & > div {
+      display: flex;
+      flex-wrap: none;
+      width: 900px;
+    }
+
+    .account__avatar {
+      margin-right: 10px;
+    }
+  }
+
+  &__time {
+    flex: 0 0 auto;
+    font-size: 14px;
+    color: $darker-text-color;
+    text-align: right;
+
+    .display-name {
+      color: $secondary-text-color;
+    }
+  }
+
+  .attachment-list.compact {
+    margin-top: 15px;
   }
 }
