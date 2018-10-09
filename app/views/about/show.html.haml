@@ -13,14 +13,14 @@
       .column-0
         .brand
           = link_to root_url do
-            = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+            = image_tag asset_pack_path('logo.png'), alt: 'Mastodon'
 
       - if Setting.timeline_preview
         .column-1
           .landing-page__forms
             .brand
               = link_to root_url do
-                = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+                = image_tag asset_pack_path('logo.png'), alt: 'Mastodon'
 
             = render 'forms'
 
@@ -29,7 +29,7 @@
           .landing-page__forms
             .brand
               = link_to root_url do
-                = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+                = image_tag asset_pack_path('logo.png'), alt: 'Mastodon'
 
             = render 'forms'
 
@@ -42,7 +42,7 @@
             .landing-page__short-description
               .row
                 .landing-page__logo
-                  = image_tag asset_pack_path('logo_transparent.svg'), alt: 'Mastodon'
+                  = image_tag asset_pack_path('logo_icon.png'), alt: 'Mastodon'
 
                 %h1
                   = @instance_presenter.site_title
@@ -74,7 +74,7 @@
             .landing-page__short-description
               .row
                 .landing-page__logo
-                  = image_tag asset_pack_path('logo_transparent.svg'), alt: 'Mastodon'
+                  = image_tag asset_pack_path('logo_icon.png'), alt: 'Mastodon'
 
                 %h1
                   = @instance_presenter.site_title
