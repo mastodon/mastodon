@@ -13,7 +13,7 @@ gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.1'
 gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
-gem 'dotenv-rails', '~> 2.2', '< 2.3'
+gem 'dotenv-rails', '~> 2.5'
 
 gem 'aws-sdk-s3', '~> 1.21', require: false
 gem 'fog-core', '~> 2.1'
