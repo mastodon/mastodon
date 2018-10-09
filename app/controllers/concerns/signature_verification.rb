@@ -22,6 +22,12 @@ module SignatureVerification
       return
     end
 
+    if request.headers['Date'].present? && !matches_time_window?
+      @signature_verification_failure_reason = 'Signed request date outside acceptable time window'
+      @signed_request_account = nil
+      return
+    end
+
     raw_signature    = request.headers['Signature']
     signature_params = {}
 
@@ -94,7 +100,7 @@ module SignatureVerification
       return false
     end
 
-    (Time.now.utc - time_sent).abs <= 30
+    (Time.now.utc - time_sent).abs <= 12.hours
   end
 
   def body_digest
