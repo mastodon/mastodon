@@ -81,4 +81,20 @@ module ApplicationHelper
     output << 'rtl' if locale_direction == 'rtl'
     output.reject(&:blank?).join(' ')
   end
+
+  def cdn_host
+    ENV['CDN_HOST'].presence
+  end
+
+  def cdn_host?
+    cdn_host.present?
+  end
+
+  def storage_host
+    ENV['S3_ALIAS_HOST'].presence || ENV['S3_CLOUDFRONT_HOST'].presence
+  end
+
+  def storage_host?
+    storage_host.present?
+  end
 end
