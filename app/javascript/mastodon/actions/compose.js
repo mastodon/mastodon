@@ -133,21 +133,20 @@ export function submitCompose() {
       dispatch(insertIntoTagHistory(response.data.tags, status));
       dispatch(submitComposeSuccess({ ...response.data }));
 
-      // To make the app more responsive, immediately get the status into the columns
+      // To make the app more responsive, immediately push the status
+      // into the columns
 
-      const insertIfOnline = (timelineId) => {
+      const insertIfOnline = timelineId => {
         if (getState().getIn(['timelines', timelineId, 'items', 0]) !== null) {
           dispatch(updateTimeline(timelineId, { ...response.data }));
         }
       };
 
-      insertIfOnline('home');
-
-      if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
+      if (response.data.visibility !== 'direct') {
+        insertIfOnline('home');
+      } else if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
         insertIfOnline('community');
         insertIfOnline('public');
-      } else if (response.data.visibility === 'direct') {
-        insertIfOnline('direct');
       }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
