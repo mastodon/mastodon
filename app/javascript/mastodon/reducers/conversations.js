@@ -1,5 +1,7 @@
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import {
+  CONVERSATIONS_MOUNT,
+  CONVERSATIONS_UNMOUNT,
   CONVERSATIONS_FETCH_REQUEST,
   CONVERSATIONS_FETCH_SUCCESS,
   CONVERSATIONS_FETCH_FAIL,
@@ -11,6 +13,7 @@ const initialState = ImmutableMap({
   items: ImmutableList(),
   isLoading: false,
   hasMore: true,
+  mounted: false,
 });
 
 const conversationToMap = item => ImmutableMap({
@@ -73,6 +76,10 @@ export default function conversations(state = initialState, action) {
     return expandNormalizedConversations(state, action.conversations, action.next);
   case CONVERSATIONS_UPDATE:
     return updateConversation(state, action.conversation);
+  case CONVERSATIONS_MOUNT:
+    return state.update('mounted', count => count + 1);
+  case CONVERSATIONS_UNMOUNT:
+    return state.update('mounted', count => count - 1);
   default:
     return state;
   }

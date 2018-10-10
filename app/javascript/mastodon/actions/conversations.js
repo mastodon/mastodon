@@ -5,10 +5,21 @@ import {
   importFetchedStatus,
 } from './importer';
 
+export const CONVERSATIONS_MOUNT   = 'CONVERSATIONS_MOUNT';
+export const CONVERSATIONS_UNMOUNT = 'CONVERSATIONS_UNMOUNT';
+
 export const CONVERSATIONS_FETCH_REQUEST = 'CONVERSATIONS_FETCH_REQUEST';
 export const CONVERSATIONS_FETCH_SUCCESS = 'CONVERSATIONS_FETCH_SUCCESS';
 export const CONVERSATIONS_FETCH_FAIL    = 'CONVERSATIONS_FETCH_FAIL';
 export const CONVERSATIONS_UPDATE        = 'CONVERSATIONS_UPDATE';
+
+export const mountConversations = () => ({
+  type: CONVERSATIONS_MOUNT,
+});
+
+export const unmountConversations = () => ({
+  type: CONVERSATIONS_UNMOUNT,
+});
 
 export const expandConversations = ({ maxId } = {}) => (dispatch, getState) => {
   dispatch(expandConversationsRequest());
