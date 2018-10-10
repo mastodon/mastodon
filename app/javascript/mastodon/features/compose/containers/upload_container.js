@@ -22,8 +22,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(openModal('FOCAL_POINT', { id }));
   },
 
-  onSubmit () {
-    dispatch(submitCompose());
+  onSubmit (router) {
+    dispatch(submitCompose(router));
   },
 
 });

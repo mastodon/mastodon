@@ -56,7 +56,7 @@ export function changeCompose(text) {
   };
 };
 
-export function replyCompose(status, router) {
+export function replyCompose(status, routerHistory) {
   return (dispatch, getState) => {
     dispatch({
       type: COMPOSE_REPLY,
@@ -64,7 +64,7 @@ export function replyCompose(status, router) {
     });
 
     if (!getState().getIn(['compose', 'mounted'])) {
-      router.push('/statuses/new');
+      routerHistory.push('/statuses/new');
     }
   };
 };
@@ -81,7 +81,7 @@ export function resetCompose() {
   };
 };
 
-export function mentionCompose(account, router) {
+export function mentionCompose(account, routerHistory) {
   return (dispatch, getState) => {
     dispatch({
       type: COMPOSE_MENTION,
@@ -89,12 +89,12 @@ export function mentionCompose(account, router) {
     });
 
     if (!getState().getIn(['compose', 'mounted'])) {
-      router.push('/statuses/new');
+      routerHistory.push('/statuses/new');
     }
   };
 };
 
-export function directCompose(account, router) {
+export function directCompose(account, routerHistory) {
   return (dispatch, getState) => {
     dispatch({
       type: COMPOSE_DIRECT,
@@ -102,12 +102,12 @@ export function directCompose(account, router) {
     });
 
     if (!getState().getIn(['compose', 'mounted'])) {
-      router.push('/statuses/new');
+      routerHistory.push('/statuses/new');
     }
   };
 };
 
-export function submitCompose() {
+export function submitCompose(routerHistory) {
   return function (dispatch, getState) {
     const status = getState().getIn(['compose', 'text'], '');
     const media  = getState().getIn(['compose', 'media_attachments']);
@@ -142,7 +142,9 @@ export function submitCompose() {
         }
       };
 
-      if (response.data.visibility !== 'direct') {
+      if (response.data.visibility === 'direct' && getState().getIn(['conversations', 'mounted']) <= 0) {
+        routerHistory.push('/timelines/direct');
+      } else if (response.data.visibility !== 'direct') {
         insertIfOnline('home');
       } else if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
         insertIfOnline('community');
