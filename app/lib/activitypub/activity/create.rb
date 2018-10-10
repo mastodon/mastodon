@@ -28,6 +28,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     process_status_params
     process_tags
+    process_audience
 
     ApplicationRecord.transaction do
       @status = Status.create!(@params)
@@ -66,10 +67,25 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     end
   end
 
+  def process_audience
+    (as_array(@object['to']) + as_array(@object['cc'])).uniq.each do |audience|
+      next if audience == ActivityPub::TagManager::COLLECTIONS[:public]
+
+      # Unlike with tags, there is no point in resolving accounts we don't already
+      # know here, because silent mentions would only be used for local access
+      # control anyway
+      account = account_from_uri(audience)
+
+      next if account.nil? || @mentions.any? { |mention| mention.account_id == account.id }
+
+      @mentions << Mention.new(account: account, silent: true)
+    end
+  end
+
   def attach_tags(status)
     @tags.each do |tag|
       status.tags << tag
-      TrendingTags.record_use!(hashtag, status.account, status.created_at) if status.public_visibility?
+      TrendingTags.record_use!(tag, status.account, status.created_at) if status.public_visibility?
     end
 
     @mentions.each do |mention|
@@ -113,7 +129,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     return if account.nil?
 
-    @mentions << Mention.new(account: account)
+    @mentions << Mention.new(account: account, silent: false)
   end
 
   def process_emoji(tag)
