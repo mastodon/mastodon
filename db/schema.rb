@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_20_232245) do
+ActiveRecord::Schema.define(version: 2018_10_07_025445) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_conversations", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "conversation_id"
+    t.bigint "participant_account_ids", default: [], null: false, array: true
+    t.bigint "status_ids", default: [], null: false, array: true
+    t.bigint "last_status_id"
+    t.integer "lock_version", default: 0, null: false
+    t.index ["account_id", "conversation_id", "participant_account_ids"], name: "index_unique_conversations", unique: true
+    t.index ["account_id"], name: "index_account_conversations_on_account_id"
+    t.index ["conversation_id"], name: "index_account_conversations_on_conversation_id"
+  end
 
   create_table "account_domain_blocks", force: :cascade do |t|
     t.string "domain"
@@ -359,6 +372,15 @@ ActiveRecord::Schema.define(version: 2018_08_20_232245) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
+  create_table "pghero_space_stats", force: :cascade do |t|
+    t.text "database"
+    t.text "schema"
+    t.text "relation"
+    t.bigint "size"
+    t.datetime "captured_at"
+    t.index ["database", "captured_at"], name: "index_pghero_space_stats_on_database_and_captured_at"
+  end
+
   create_table "preview_cards", force: :cascade do |t|
     t.string "url", default: "", null: false
     t.string "title", default: "", null: false
@@ -597,6 +619,8 @@ ActiveRecord::Schema.define(version: 2018_08_20_232245) do
     t.index ["user_id"], name: "index_web_settings_on_user_id", unique: true
   end
 
+  add_foreign_key "account_conversations", "accounts", on_delete: :cascade
+  add_foreign_key "account_conversations", "conversations", on_delete: :cascade
   add_foreign_key "account_domain_blocks", "accounts", name: "fk_206c6029bd", on_delete: :cascade
   add_foreign_key "account_moderation_notes", "accounts"
   add_foreign_key "account_moderation_notes", "accounts", column: "target_account_id"
