@@ -184,7 +184,7 @@ function main() {
   });
 
   delegate(document, '.input-copy button', 'click', ({ target }) => {
-    const input = target.parentNode.querySelector('input');
+    const input = target.parentNode.querySelector('.input-copy__wrapper input');
 
     input.focus();
     input.select();
