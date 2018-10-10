@@ -78,6 +78,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
       next if account.nil? || @mentions.any? { |mention| mention.account_id == account.id }
 
+      # If there is at least one silent mention, then the status can be considered
+      # as a limited-audience status, and not strictly a direct message
+      @params[:visibility] = :limited
+
       @mentions << Mention.new(account: account, silent: true)
     end
   end

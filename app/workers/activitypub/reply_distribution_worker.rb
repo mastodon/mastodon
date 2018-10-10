@@ -21,7 +21,7 @@ class ActivityPub::ReplyDistributionWorker
   private
 
   def skip_distribution?
-    @status.private_visibility? || @status.direct_visibility?
+    !(@status.public_visibility? || @status.unlisted_visibility?)
   end
 
   def inboxes
