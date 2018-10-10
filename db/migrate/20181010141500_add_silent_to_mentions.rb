@@ -1,5 +1,23 @@
+require Rails.root.join('lib', 'mastodon', 'migration_helpers')
+
 class AddSilentToMentions < ActiveRecord::Migration[5.2]
-  def change
-    add_column :mentions, :silent, :boolean, null: true, default: nil
+  include Mastodon::MigrationHelpers
+
+  disable_ddl_transaction!
+
+  def up
+    safety_assured do
+      add_column_with_default(
+        :mentions,
+        :silent,
+        :boolean,
+        allow_null: false,
+        default: false
+      )
+    end
+  end
+
+  def down
+    remove_column :mentions, :silent
   end
 end

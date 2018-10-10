@@ -8,7 +8,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  account_id :bigint(8)
-#  silent     :boolean
+#  silent     :boolean          default(FALSE), not null
 #
 
 class Mention < ApplicationRecord
