@@ -498,7 +498,8 @@ const startWorker = (workerId) => {
     const { tag } = req.query;
 
     if (!tag || tag.length === 0) {
-      return httpNotFound(res);
+      httpNotFound(res);
+      return;
     }
 
     streamFrom(`timeline:hashtag:${tag.toLowerCase()}`, req, streamToHttp(req, res), streamHttpEnd(req), true);
@@ -508,7 +509,8 @@ const startWorker = (workerId) => {
     const { tag } = req.query;
 
     if (!tag || tag.length === 0) {
-      return httpNotFound(res);
+      httpNotFound(res);
+      return;
     }
 
     streamFrom(`timeline:hashtag:${tag.toLowerCase()}:local`, req, streamToHttp(req, res), streamHttpEnd(req), true);
@@ -519,7 +521,8 @@ const startWorker = (workerId) => {
 
     authorizeListAccess(listId, req, authorized => {
       if (!authorized) {
-        return httpNotFound(res);
+        httpNotFound(res);
+        return;
       }
 
       const channel = `timeline:list:${listId}`;
