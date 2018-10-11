@@ -1,3 +1,7 @@
+## 2.5.2
+
+- Fix XSS vulnerability (#8959)
+
 ## 2.5.1
 
 - Fix some local images not having their EXIF metadata stripped on upload (#8714)
