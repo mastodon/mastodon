@@ -13,7 +13,7 @@ gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.1'
 gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
-gem 'dotenv-rails', '~> 2.2', '< 2.3'
+gem 'dotenv-rails', '~> 2.5'
 
 gem 'aws-sdk-s3', '~> 1.21', require: false
 gem 'fog-core', '~> 2.1'
@@ -109,7 +109,7 @@ end
 group :test do
   gem 'capybara', '~> 3.9'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 1.8'
+  gem 'faker', '~> 1.9'
   gem 'microformats', '~> 4.0'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
@@ -121,7 +121,7 @@ end
 group :development do
   gem 'active_record_query_trace', '~> 1.5'
   gem 'annotate', '~> 2.7'
-  gem 'better_errors', '~> 2.4'
+  gem 'better_errors', '~> 2.5'
   gem 'binding_of_caller', '~> 0.7'
   gem 'bullet', '~> 5.7'
   gem 'letter_opener', '~> 1.4'
@@ -133,7 +133,7 @@ group :development do
   gem 'scss_lint', '~> 0.57', require: false
 
   gem 'capistrano', '~> 3.11'
-  gem 'capistrano-rails', '~> 1.3'
+  gem 'capistrano-rails', '~> 1.4'
   gem 'capistrano-rbenv', '~> 2.1'
   gem 'capistrano-yarn', '~> 2.0'
 
