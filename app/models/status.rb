@@ -174,6 +174,10 @@ class Status < ApplicationRecord
     private_visibility? || direct_visibility? || limited_visibility?
   end
 
+  def distributable?
+    public_visibility? || unlisted_visibility?
+  end
+
   def with_media?
     media_attachments.any?
   end
