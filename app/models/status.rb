@@ -89,10 +89,12 @@ class Status < ApplicationRecord
                    :conversation,
                    :status_stat,
                    :tags,
+                   :stream_entry,
                    active_mentions: :account,
                    reblog: [
                      :account,
                      :application,
+                     :stream_entry,
                      :tags,
                      :media_attachments,
                      :conversation,
