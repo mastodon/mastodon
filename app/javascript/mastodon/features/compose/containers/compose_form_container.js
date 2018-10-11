@@ -33,8 +33,13 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changeCompose(text));
   },
 
+<<<<<<< HEAD
   onSubmit (withCommunity) {
     dispatch(submitCompose(withCommunity));
+=======
+  onSubmit (router) {
+    dispatch(submitCompose(router));
+>>>>>>> super/master
   },
 
   onClearSuggestions () {
