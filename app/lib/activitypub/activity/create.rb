@@ -69,7 +69,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def attach_tags(status)
     @tags.each do |tag|
       status.tags << tag
-      TrendingTags.record_use!(hashtag, status.account, status.created_at) if status.public_visibility?
+      TrendingTags.record_use!(tag, status.account, status.created_at) if status.public_visibility?
     end
 
     @mentions.each do |mention|
