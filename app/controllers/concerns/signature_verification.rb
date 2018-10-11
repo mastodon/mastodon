@@ -95,7 +95,7 @@ module SignatureVerification
 
   def matches_time_window?
     begin
-      time_sent = DateTime.httpdate(request.headers['Date'])
+      time_sent = Time.httpdate(request.headers['Date'])
     rescue ArgumentError
       return false
     end
