@@ -96,8 +96,8 @@ class ActivityPub::Activity
   end
 
   def notify_about_mentions(status)
-    status.mentions.includes(:account).each do |mention|
-      next unless mention.active? && mention.account.local? && audience_includes?(mention.account)
+    status.active_mentions.includes(:account).each do |mention|
+      next unless mention.account.local? && audience_includes?(mention.account)
       NotifyService.new.call(mention.account, mention)
     end
   end

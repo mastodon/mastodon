@@ -52,6 +52,7 @@ class Status < ApplicationRecord
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
   has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :thread
   has_many :mentions, dependent: :destroy
+  has_many :active_mentions, -> { active }, class_name: 'Mention'
   has_many :media_attachments, dependent: :nullify
 
   has_and_belongs_to_many :tags
@@ -88,17 +89,15 @@ class Status < ApplicationRecord
                    :conversation,
                    :status_stat,
                    :tags,
-                   :stream_entry,
-                   mentions: :account,
+                   active_mentions: :account,
                    reblog: [
                      :account,
                      :application,
-                     :stream_entry,
                      :tags,
                      :media_attachments,
                      :conversation,
                      :status_stat,
-                     mentions: :account,
+                     active_mentions: :account,
                    ],
                    thread: :account
 

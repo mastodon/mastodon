@@ -85,7 +85,7 @@ class AccountConversation < ApplicationRecord
     private
 
     def participants_from_status(recipient, status)
-      ((status.mentions.pluck(:account_id) + [status.account_id]).uniq - [recipient.id]).sort
+      ((status.active_mentions.pluck(:account_id) + [status.account_id]).uniq - [recipient.id]).sort
     end
   end
 

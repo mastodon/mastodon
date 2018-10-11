@@ -99,7 +99,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def ordered_mentions
-    object.mentions.to_a.reject(&:silent?).sort_by(&:id)
+    object.active_mentions.to_a.sort_by(&:id)
   end
 
   class ApplicationSerializer < ActiveModel::Serializer
