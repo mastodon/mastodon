@@ -367,6 +367,9 @@ ja:
       hero:
         desc_html: フロントページに表示されます。サイズは600x100px以上推奨です。未設定の場合、インスタンスのサムネイルが使用されます
         title: ヒーローイメージ
+      mascot:
+        desc_html: 複数のページに表示されます。サイズは293x205px以上推奨です。未設定の場合、インスタンスのサムネイルが使用されます
+        title: マスコットイメージ
       peers_api_enabled:
         desc_html: 連合内でこのインスタンスが遭遇したドメインの名前
         title: 接続しているインスタンスのリストを公開する
@@ -575,6 +578,7 @@ ja:
     resources: リソース
   generic:
     changes_saved_msg: 正常に変更されました！
+    copy: コピー
     save_changes: 変更を保存
     validation_errors:
       one: エラーが発生しました！ 以下のエラーを確認してください
@@ -916,6 +920,7 @@ ja:
       tips: 豆知識
       title: ようこそ、%{name} ！
   users:
+    follow_limit_reached: あなたは現在 %{limit} 人以上フォローできません
     invalid_email: メールアドレスが無効です
     invalid_otp_token: 二段階認証コードが間違っています
     otp_lost_help_html: どちらも使用できない場合、%{email} に連絡を取ると解決できるかもしれません
