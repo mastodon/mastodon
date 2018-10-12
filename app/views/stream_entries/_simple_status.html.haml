@@ -4,19 +4,20 @@
       %time.time-ago{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
     %data.dt-published{ value: status.created_at.to_time.iso8601 }
 
-    = link_to TagManager.instance.url_for(status.account), class: 'status__display-name p-author h-card', target: stream_link_target, rel: 'noopener' do
-      .status__avatar
-        %div
-          - if current_account&.user&.setting_auto_play_gif || autoplay
-            = image_tag status.account.avatar_original_url, width: 48, height: 48, alt: '', class: 'u-photo account__avatar'
-          - else
-            = image_tag status.account.avatar_static_url, width: 48, height: 48, alt: '', class: 'u-photo account__avatar'
-      %span.display-name
-        %bdi
-          %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true, autoplay: autoplay)
-        %span.display-name__account
-          = acct(status.account)
-          = fa_icon('lock') if status.account.locked?
+    .p-author.h-card
+      = link_to TagManager.instance.url_for(status.account), class: 'status__display-name u-url', target: stream_link_target, rel: 'noopener' do
+        .status__avatar
+          %div
+            - if current_account&.user&.setting_auto_play_gif || autoplay
+              = image_tag status.account.avatar_original_url, width: 48, height: 48, alt: '', class: 'u-photo account__avatar'
+            - else
+              = image_tag status.account.avatar_static_url, width: 48, height: 48, alt: '', class: 'u-photo account__avatar'
+        %span.display-name
+          %bdi
+            %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true, autoplay: autoplay)
+          %span.display-name__account
+            = acct(status.account)
+            = fa_icon('lock') if status.account.locked?
   .status__content.emojify<
     - if status.spoiler_text?
       %p{ :style => ('margin-bottom: 0' unless current_account&.user&.setting_expand_spoilers) }<
