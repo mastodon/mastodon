@@ -22,6 +22,12 @@ module SignatureVerification
       return
     end
 
+    if request.headers['Date'].present? && !matches_time_window?
+      @signature_verification_failure_reason = 'Signed request date outside acceptable time window'
+      @signed_request_account = nil
+      return
+    end
+
     raw_signature    = request.headers['Signature']
     signature_params = {}
 
@@ -76,7 +82,7 @@ module SignatureVerification
   def build_signed_string(signed_headers)
     signed_headers = 'date' if signed_headers.blank?
 
-    signed_headers.split(' ').map do |signed_header|
+    signed_headers.downcase.split(' ').map do |signed_header|
       if signed_header == Request::REQUEST_TARGET
         "#{Request::REQUEST_TARGET}: #{request.method.downcase} #{request.path}"
       elsif signed_header == 'digest'
@@ -85,6 +91,16 @@ module SignatureVerification
         "#{signed_header}: #{request.headers[to_header_name(signed_header)]}"
       end
     end.join("\n")
+  end
+
+  def matches_time_window?
+    begin
+      time_sent = Time.httpdate(request.headers['Date'])
+    rescue ArgumentError
+      return false
+    end
+
+    (Time.now.utc - time_sent).abs <= 12.hours
   end
 
   def body_digest

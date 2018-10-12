@@ -14,6 +14,10 @@ const messages = defineMessages({
 export default @injectIntl
 class Upload extends ImmutablePureComponent {
 
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
     intl: PropTypes.object.isRequired,
@@ -37,7 +41,7 @@ class Upload extends ImmutablePureComponent {
 
   handleSubmit = () => {
     this.handleInputBlur();
-    this.props.onSubmit();
+    this.props.onSubmit(this.context.router.history);
   }
 
   handleUndoClick = () => {
