@@ -16,6 +16,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       search_enabled: Chewy.enabled?,
       version: Mastodon::Version.to_s,
       invites_enabled: Setting.min_invite_role == 'user',
+      mascot: instance_presenter.mascot&.file&.url,
     }
 
     if object.current_account
@@ -55,5 +56,11 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   def media_attachments
     { accept_content_types: MediaAttachment::IMAGE_FILE_EXTENSIONS + MediaAttachment::VIDEO_FILE_EXTENSIONS + MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES }
+  end
+
+  private
+
+  def instance_presenter
+    @instance_presenter ||= InstancePresenter.new
   end
 end
