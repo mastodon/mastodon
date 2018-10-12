@@ -120,7 +120,7 @@ end
 group :development do
   gem 'active_record_query_trace', '~> 1.5'
   gem 'annotate', '~> 2.7'
-  gem 'better_errors', '~> 2.4'
+  gem 'better_errors', '~> 2.5'
   gem 'binding_of_caller', '~> 0.7'
   gem 'bullet', '~> 5.7'
   gem 'letter_opener', '~> 1.4'

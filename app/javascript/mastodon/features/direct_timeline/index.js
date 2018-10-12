@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
-import { expandConversations } from '../../actions/conversations';
+import { mountConversations, unmountConversations, expandConversations } from '../../actions/conversations';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connectDirectStream } from '../../actions/streaming';
@@ -48,11 +48,14 @@ class DirectTimeline extends React.PureComponent {
   componentDidMount () {
     const { dispatch } = this.props;
 
+    dispatch(mountConversations());
     dispatch(expandConversations());
     this.disconnect = dispatch(connectDirectStream());
   }
 
   componentWillUnmount () {
+    this.props.dispatch(unmountConversations());
+
     if (this.disconnect) {
       this.disconnect();
       this.disconnect = null;

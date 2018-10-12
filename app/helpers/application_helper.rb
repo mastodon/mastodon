@@ -83,7 +83,7 @@ module ApplicationHelper
   end
 
   def cdn_host
-    ENV['CDN_HOST'].presence
+    Rails.configuration.action_controller.asset_host
   end
 
   def cdn_host?
@@ -91,10 +91,10 @@ module ApplicationHelper
   end
 
   def storage_host
-    ENV['S3_ALIAS_HOST'].presence || ENV['S3_CLOUDFRONT_HOST'].presence
+    "https://#{ENV['S3_ALIAS_HOST'].presence || ENV['S3_CLOUDFRONT_HOST']}"
   end
 
   def storage_host?
-    storage_host.present?
+    ENV['S3_ALIAS_HOST'].present? || ENV['S3_CLOUDFRONT_HOST'].present?
   end
 end
