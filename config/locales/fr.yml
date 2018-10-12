@@ -48,6 +48,7 @@ fr:
       other: Abonné⋅e⋅s
     following: Abonnements
     joined: Inscrit·e en %{date}
+    link_verified_on: La propriété de ce lien a été vérifiée le %{date}
     media: Médias
     moved_html: "%{name} a changé de compte pour %{new_profile_link} :"
     network_hidden: Cette information n’est pas disponible
@@ -120,6 +121,7 @@ fr:
       moderation_notes: Notes de modération
       most_recent_activity: Dernière activité
       most_recent_ip: Adresse IP la plus récente
+      no_limits_imposed: Aucune limite imposée
       not_subscribed: Non abonné
       order:
         alphabetic: Alphabétique
@@ -155,8 +157,10 @@ fr:
         report: signalement
         targeted_reports: Signalements créés visant ce compte
       silence: Masquer
+      silenced: Silencié
       statuses: Statuts
       subscribe: S’abonner
+      suspended: Suspendu
       title: Comptes
       unconfirmed_email: Courriel non-confirmé
       undo_silenced: Démasquer
@@ -300,8 +304,13 @@ fr:
       title: Invitations
     relays:
       add_new: Ajouter un nouveau relais
+      delete: Effacer
       description_html: Un <strong>relai de fédération</strong> est un serveur intermédiaire qui échange de grandes quantités de pouets entre les serveurs qui publient dessus et ceux qui y sont abonnés. <strong>Il peut aider les petites et moyennes instances à découvrir du contenu sur le fediverse</strong>, ce qui normalement nécessiterait que les membres locaux suivent des gens inscrits sur des serveurs distants.
+      disable: Désactiver
+      disabled: Désactivé
+      enable: Activé
       enable_hint: Une fois activé, votre serveur souscrira à tous les pouets publics présents sur ce relais et y enverra ses propres pouets publics.
+      enabled: Activé
       inbox_url: URL de relais
       pending: En attente de l'approbation du relai
       save_and_enable: Sauvegarder et activer
@@ -452,7 +461,7 @@ fr:
     warning: Soyez prudent⋅e avec ces données. Ne les partagez pas !
     your_token: Votre jeton d’accès
   auth:
-    agreement_html: En vous inscrivant, vous souscrivez <a href="%{rules_path}">aux règles de l’instance</a> et à <a href="%{terms_path}">nos conditions d’utilisation</a>.
+    agreement_html: En cliquant sur "S'inscrire" ci-dessous, vous souscrivez <a href="%{rules_path}">aux règles de l’instance</a> et à <a href="%{terms_path}">nos conditions d’utilisation</a>.
     change_password: Mot de passe
     confirm_email: Confirmer mon adresse mail
     delete_account: Supprimer le compte
@@ -619,7 +628,7 @@ fr:
   notification_mailer:
     digest:
       action: Voir toutes les notifications
-      body: 'Voici ce que vous avez raté sur ${instance} depuis votre dernière visite le %{since} :'
+      body: Voici un bref résumé des messages que vous auriez raté depuis votre dernière visite le %{since}
       mention: "%{name} vous a mentionné⋅e dans :"
       new_followers_summary:
         one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
@@ -913,3 +922,6 @@ fr:
     otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
+  verification:
+    explanation_html: 'Vous pouvez <strong>vérifier vous-même que vous êtes le propriétaire des liens dans les métadonnées de votre profil</strong>. Pour cela, le site Web lié doit contenir un lien vers votre profil Mastodon. Le lien de retour <strong>doit</strong>avoir un attribut <code>rel="me"</code>. Le contenu textuel du lien n''a pas d''importance. En voici un exemple :'
+    verification: Vérification

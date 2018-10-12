@@ -1,13 +1,13 @@
 ---
 cs:
   about:
-    about_hashtag_html: Toto jsou veřejné tooty označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv na fediverse, můžete s nimi interagovat.
+    about_hashtag_html: Tohle jsou veřejné tooty označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv na fediverse, můžete s nimi interagovat.
     about_mastodon_html: Mastodon je sociální síť založená na otevřených webových protokolech a svobodném, otevřeném softwaru. Je decentrovalizovaná jako e-mail.
     about_this: O této instanci
-    administered_by: 'Server spravuje:'
+    administered_by: 'Instanci spravuje:'
     api: API
     apps: Mobilní aplikace
-    closed_registrations: Registrace na této instanci jsou momentálně uzavřené. Můžete si však najít jinou instanci, vytvořit si na ní účet a získat z ní přístup do naprosto stejné sítě.
+    closed_registrations: Registrace na této instanci jsou momentálně uzavřené. Ale pozor! Můžete si najít jinou instanci, vytvořit si na ní účet a získat z ní přístup do naprosto stejné sítě.
     contact: Kontakt
     contact_missing: Nenastaveno
     contact_unavailable: Neuvedeno
@@ -46,8 +46,9 @@ cs:
     followers:
       one: Sledovatel
       other: Sledovatelé
-    following: Sleduje
+    following: Sledovaní
     joined: Připojil/a se v %{date}
+    link_verified_on: Vlastnictví tohoto odkazu bylo zkontrolováno %{date}
     media: Média
     moved_html: 'Účet %{name} byl přesunut na %{new_profile_link}:'
     network_hidden: Tato informace není k dispozici
@@ -114,12 +115,13 @@ cs:
       memorialize: Změnit na "in memoriam"
       moderation:
         all: Vše
-        silenced: Utišen
-        suspended: Suspendován
+        silenced: Utišen/a
+        suspended: Suspendován/a
         title: Moderace
       moderation_notes: Moderační poznámky
       most_recent_activity: Nejnovější aktivita
       most_recent_ip: Nejnovější IP
+      no_limits_imposed: Nejsou nastavena žádná omezení
       not_subscribed: Neodebírá
       order:
         alphabetic: Abecedně
@@ -155,8 +157,10 @@ cs:
         report: nahlášení
         targeted_reports: Nahlášení vytvořena o tomto účtu
       silence: Utišit
+      silenced: Utišen/a
       statuses: Příspěvky
       subscribe: Odebírat
+      suspended: Suspendován/a
       title: Účty
       unconfirmed_email: Nepotvrzený e-mail
       undo_silenced: Zrušit utišení
@@ -300,8 +304,13 @@ cs:
       title: Pozvánky
     relays:
       add_new: Přidat nový most
+      delete: Smazat
       description_html: "<strong>Federovací most</strong> je přechodný server, který vyměňuje velká množství veřejných tootů mezi servery, které z něj odebírají a poblikují na něj. <strong>Může pomoci malým a středně velkým serverům objevovat obsah z fediverse</strong>, což by jinak vyžadovalo, aby místní uživatelé manuálně sledovali jiné lidi na vzdálených serverech."
+      disable: Zakázat
+      disabled: Zakázáno
+      enable: Povolit
       enable_hint: Je-li tohle povoleno, začne váš server odebírat všechny veřejné tooty z tohoto mostu a odesílat na něj své vlastní veřejné tooty.
+      enabled: Povoleno
       inbox_url: URL mostu
       pending: Čekám na souhlas mostu
       save_and_enable: Uložit a povolit
@@ -452,7 +461,7 @@ cs:
     warning: Buďte s těmito daty velmi opatrní. Nikdy je s nikým nesdílejte!
     your_token: Váš přístupový token
   auth:
-    agreement_html: Registrací souhlasíte s následováním <a href="%{rules_path}">pravidel této instance</a> a <a href="%{terms_path}">našich podmínek používání</a>.
+    agreement_html: Kliknutím na tlačítko „Registrovat“ souhlasíte s následováním <a href="%{rules_path}">pravidel této instance</a> a <a href="%{terms_path}">našich podmínek používání</a>.
     change_password: Heslo
     confirm_email: Potvrdit e-mail
     delete_account: Odstranit účet
@@ -759,7 +768,7 @@ cs:
     over_character_limit: limit %{max} znaků byl překročen
     pin_errors:
       limit: Už jste si připnul/a maximální počet tootů
-      ownership: Nelže připnout toot někoho jiného
+      ownership: Nelze připnout toot někoho jiného
       private: Nelze připnout neveřejné tooty
       reblog: Nelze připnout boostnutí
     show_more: Zobrazit více
@@ -912,3 +921,6 @@ cs:
     otp_lost_help_html: Pokud jste ztratil/a přístup k oběma, můžete se spojit %{email}
     seamless_external_login: Jste přihlášen/a přes externí službu, nastavení hesla a e-mailu proto nejsou dostupná.
     signed_in_as: 'Přihlášen/a jako:'
+  verification:
+    explanation_html: 'Můžete se <strong>ověřit jako vlastník odkazů v metadatech profilu</strong>. Pro tento účel musí stránka v odkazu obsahovat odkaz zpět na váš profil na Mastodonu. Odkaz zpět <strong>musí</strong> mít atribut <code>rel="me"</code>. Na textu odkazu nezáleží. Zde je příklad:'
+    verification: Ověření
