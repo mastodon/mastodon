@@ -4,6 +4,11 @@ export function autoUnfoldCW (settings, status) {
   }
 
   const rawRegex = settings.getIn(['content_warnings', 'filter']);
+
+  if (!rawRegex) {
+    return true;
+  }
+
   let regex      = null;
 
   try {
