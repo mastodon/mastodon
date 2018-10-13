@@ -617,6 +617,9 @@ const startWorker = (workerId) => {
   }, 30000);
 
   if (process.env.SOCKET || process.env.PORT && isNaN(+process.env.PORT)) {
+    if (process.env.SOCKET && fs.existsSync(process.env.SOCKET)) {
+      fs.unlinkSync(process.env.SOCKET);
+    }
     server.listen(process.env.SOCKET || process.env.PORT, () => {
       fs.chmodSync(server.address(), 0o666);
       log.info(`Worker ${workerId} now listening on ${server.address()}`);
