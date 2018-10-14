@@ -437,6 +437,7 @@ class Composer extends React.Component {
           intl={intl}
           onChange={handleChangeSpoiler}
           onSubmit={handleSubmit}
+          onSecondarySubmit={handleSecondarySubmit}
           text={spoilerText}
           ref={handleRefSpoilerText}
         />

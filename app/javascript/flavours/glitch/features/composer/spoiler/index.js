@@ -25,12 +25,18 @@ const handlers = {
     ctrlKey,
     keyCode,
     metaKey,
+    altKey,
   }) {
-    const { onSubmit } = this.props;
+    const { onSubmit, onSecondarySubmit } = this.props;
 
     //  We submit the status on control/meta + enter.
     if (onSubmit && keyCode === 13 && (ctrlKey || metaKey)) {
       onSubmit();
+    }
+
+    // Submit the status with secondary visibility on alt + enter.
+    if (onSecondarySubmit && keyCode === 13 && altKey) {
+      onSecondarySubmit();
     }
   },
 
@@ -87,5 +93,6 @@ ComposerSpoiler.propTypes = {
   intl: PropTypes.object.isRequired,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
+  onSecondarySubmit: PropTypes.func,
   text: PropTypes.string,
 };
