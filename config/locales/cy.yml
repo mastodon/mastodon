@@ -7,7 +7,7 @@ cy:
     administered_by: 'Gweinyddir gan:'
     api: API
     apps: Apiau symudol
-    closed_registrations: Mae Mastodon yn rwydwaith cymdeithasol sy'n seiliedig ar brotocolau gwe a meddalwedd cod agored rhad ac am ddim. Mae'n ddatganoledig fel e-bost.
+    closed_registrations: ''
     contact: Cyswllt
     contact_missing: Heb ei osod
     contact_unavailable: Ddim yn berthnasol
@@ -155,7 +155,7 @@ cy:
         report: adrodd
         targeted_reports: Adroddiadau am y cyfri hwn
       silence: Tawelu
-      statuses: ''
+      statuses: Statysau
       subscribe: Tanysgrifio
       title: Cyfrifon
       unconfirmed_email: E-bost heb ei gadarnhau
@@ -287,7 +287,7 @@ cy:
       domain_name: Parth
       reset: Ailosod
       search: Chwilio
-      title: INSTANCES hysbys
+      title: Achosion hysbys
     invites:
       filter:
         all: Pob
@@ -311,6 +311,8 @@ cy:
         report: adroddiad
       action_taken_by: Gwnathpwyd hyn gan
       are_you_sure: Ydych chi'n sicr?
+      assign_to_self: Aseinio i mi
+      assigned: Cymedrolwr wedi'i aseinio
       comment:
         none: Dim
       created_at: Adroddwyd
@@ -336,10 +338,19 @@ cy:
     settings:
       activity_api_enabled:
         title: Cyhoeddwch ystatedgau agregau am weithgaredd defnyddwyr
+      bootstrap_timeline_accounts:
+        title: Dilyn diofyn i ddefnyddwyr newydd
       contact_information:
         email: E-bost busnes
+        username: Enw defnyddiwr cyswllt
+      custom_css:
+        desc_html: Addaswch wedd gyda CSS wedi lwytho ar bob tudalen
       hero:
+        desc_html: Yn cael ei arddangos ar y dudadlen flaen. Awgrymir 600x100px oleia. Pan nad yw wedi ei osod, mae'n ymddangos fel mân-lun yr achos
         title: Delwedd arwr
+      peers_api_enabled:
+        desc_html: Enwau parth y mae'r achos hwn wedi dod ar ei draws yn y ffedysawd
+        title: Cyhoeddi rhestr o achosion dargynfyddiedig
       registrations:
         deletion:
           desc_html: Caniatewch i unrhywun i ddileu eu cyfrif
@@ -351,6 +362,15 @@ cy:
           title: Agorwch cofrestru
       show_staff_badge:
         title: Dangos bathodyn staff
+      site_description:
+        title: Disgrifiad achos
+      site_description_extended:
+        desc_html: Lle da ar gyfer eich côd ymddygiad, rheolau, canllawiau a phethau eraill sy'n gwneud eich achos yn whanol. Mae modd i chi ddefnyddio tagiau HTML
+      site_short_description:
+        title: Disgrifiad byr o'r achos
+      site_title: Enw'r achos
+      thumbnail:
+        title: Mân-lun yr achos
       timeline_preview:
         title: Rhagolwg o'r ffrwd
       title: Gosodiadau'r wefan
@@ -493,6 +513,8 @@ cy:
       one: Mae rhywbeth o'i le o hyd! Edrychwch ar y gwall isod os gwelwch yn dda
       other: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
   imports:
+    preface: Mae modd mewnforio data yr ydych wedi allforio o achos arall, megis rhestr o bobl yr ydych yn ei ddilyn neu yn blocio.
+    success: Uwchlwyddwyd eich data yn llwyddiannus ac fe fydd yn cael ei brosesu mewn da bryd
     types:
       blocking: Rhestr blocio
       following: Rhestr dilyn
@@ -504,9 +526,11 @@ cy:
     expires_in:
       '86400': 1 dydd
     max_uses_prompt: Dim terfyn
+    prompt: Cynhyrchwch a rhannwch ddolenni gyda eraill i ganiatau mynediad i'r achos hwn
     table:
       uses: Defnyddiau
   migrations:
+    currently_redirecting: ''
     proceed: Cadw
   moderation:
     title: Cymedroli
