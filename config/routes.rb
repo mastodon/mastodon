@@ -309,11 +309,11 @@ Rails.application.routes.draw do
         collection do
           post :clear
           post :dismiss # Deprecated
+          delete :destroy_multiple
         end
 
         member do
           post :dismiss
-          delete :destroy_multiple
         end
       end
 
