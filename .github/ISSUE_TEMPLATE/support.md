@@ -4,16 +4,7 @@ about: Ask for help with your deployment
 
 ---
 
-### Summary of the problem
+We primarily use GitHub as a bug and feature tracker. For usage questions, troubleshooting of deployments and other individual technical assistance, please use one of the resources below:
 
-What were you trying to do?
-
-What happens?
-
-What should have happened?
-
-### Details
-
-What version or commit hash of Mastodon are you using?
-
-How are you deploying Mastodon?
+- https://discourse.joinmastodon.org
+- #mastodon on irc.freenode.net
