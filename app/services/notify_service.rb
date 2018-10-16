@@ -59,9 +59,14 @@ class NotifyService < BaseService
     @notification.target_status.in_reply_to_account_id == @recipient.id && @notification.target_status.thread&.direct_visibility?
   end
 
+  def from_staff?
+    @notification.from_account.local? && @notification.from_account.user.present? && @notification.from_account.user.staff?
+  end
+
   def optional_non_following_and_direct?
     direct_message? &&
       @recipient.user.settings.interactions['must_be_following_dm'] &&
+      !from_staff? &&
       !following_sender? &&
       !response_to_recipient?
   end
