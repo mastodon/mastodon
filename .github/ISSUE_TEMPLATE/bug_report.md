@@ -1,19 +1,27 @@
 ---
 name: Bug Report
-about: Create a report to help us improve
+about: If something isn't working as expected
 
 ---
 
-Make sure that you are submitting a new bug that was not previously reported or already fixed.
+<!-- Make sure that you are submitting a new bug that was not previously reported or already fixed -->
 
-### Summary of the problem
+<!-- Please use a concise and distinct title for the issue -->
 
-What were you trying to do?
+### Expected behaviour
 
-What happened?
+<!-- What should have happened? -->
 
-What should have happened?
+### Actual behaviour
 
-### Details
+<!-- What happened? -->
 
-What version or commit hash of Mastodon did you find this bug in?
+### Steps to reproduce the problem
+
+<!-- What were you trying to do? -->
+
+### Specifications
+
+<!-- What version or commit hash of Mastodon did you find this bug in? -->
+
+<!-- If a front-end issue, what browser and operating systems were you using? -->
