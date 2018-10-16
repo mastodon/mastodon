@@ -4,8 +4,8 @@ about: Suggest an idea for this project
 
 ---
 
-[Issue text goes here].
+Describe your idea for a feature.
 
-* * * *
+Why do you think this feature is needed? Who would benefit from it?
 
-- [ ] I searched or browsed the repo’s other issues to ensure this is not a duplicate.
+Could it be implemented as a 3rd party application using the REST API, or does it need to be part of the core functionality?
