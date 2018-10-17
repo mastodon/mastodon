@@ -238,6 +238,10 @@ class Status < ApplicationRecord
       left_outer_joins(:status_stat).select('statuses.id, greatest(statuses.updated_at, status_stats.updated_at) AS updated_at')
     end
 
+    def selectable_visibilities
+      visibilities.keys - %w(direct limited)
+    end
+
     def in_chosen_languages(account)
       where(language: nil).or where(language: account.chosen_languages)
     end
