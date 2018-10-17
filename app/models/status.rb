@@ -239,7 +239,7 @@ class Status < ApplicationRecord
     end
 
     def selectable_visibilities
-      visibilities.keys - ['direct', 'limited']
+      visibilities.keys - %w(direct limited)
     end
 
     def in_chosen_languages(account)
