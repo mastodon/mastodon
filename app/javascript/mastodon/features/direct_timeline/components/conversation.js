@@ -8,6 +8,7 @@ import DisplayName from '../../../components/display_name';
 import Avatar from '../../../components/avatar';
 import AttachmentList from '../../../components/attachment_list';
 import { HotKeys } from 'react-hotkeys';
+import classNames from 'classnames';
 
 export default class Conversation extends ImmutablePureComponent {
 
@@ -19,8 +20,10 @@ export default class Conversation extends ImmutablePureComponent {
     conversationId: PropTypes.string.isRequired,
     accounts: ImmutablePropTypes.list.isRequired,
     lastStatus: ImmutablePropTypes.map.isRequired,
+    unread:PropTypes.bool.isRequired,
     onMoveUp: PropTypes.func,
     onMoveDown: PropTypes.func,
+    markRead: PropTypes.func.isRequired,
   };
 
   handleClick = () => {
@@ -28,7 +31,12 @@ export default class Conversation extends ImmutablePureComponent {
       return;
     }
 
-    const { lastStatus } = this.props;
+    const { lastStatus, unread, markRead } = this.props;
+
+    if (unread) {
+      markRead();
+    }
+
     this.context.router.history.push(`/statuses/${lastStatus.get('id')}`);
   }
 
@@ -41,7 +49,7 @@ export default class Conversation extends ImmutablePureComponent {
   }
 
   render () {
-    const { accounts, lastStatus, lastAccount } = this.props;
+    const { accounts, lastStatus, lastAccount, unread } = this.props;
 
     if (lastStatus === null) {
       return null;
@@ -61,7 +69,7 @@ export default class Conversation extends ImmutablePureComponent {
 
     return (
       <HotKeys handlers={handlers}>
-        <div className='conversation focusable' tabIndex='0' onClick={this.handleClick} role='button'>
+        <div className={classNames('conversation', 'focusable', { 'conversation--unread': unread })} tabIndex='0' onClick={this.handleClick} role='button'>
           <div className='conversation__header'>
             <div className='conversation__avatars'>
               <div>{accounts.map(account => <Avatar key={account.get('id')} size={36} account={account} />)}</div>
