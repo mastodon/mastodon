@@ -10,6 +10,8 @@ class FanOutOnWriteService < BaseService
 
     if status.direct_visibility?
       deliver_to_own_conversation(status)
+    elsif status.limited_visibility?
+      deliver_to_mentioned_followers(status)
     else
       deliver_to_self(status) if status.account.local?
       deliver_to_followers(status)
@@ -50,6 +52,16 @@ class FanOutOnWriteService < BaseService
       FeedInsertWorker.push_bulk(lists) do |list|
         [status.id, list.id, :list]
       end
+    end
+  end
+
+  def deliver_to_mentioned_followers(status)
+    Rails.logger.debug "Delivering status #{status.id} to limited followers"
+
+    status.mentions.includes(:account).each do |mention|
+      mentioned_account = mention.account
+      next if !mentioned_account.local? || !mentioned_account.following?(status.account) || FeedManager.instance.filter?(:home, status, mention.account_id)
+      FeedManager.instance.push_to_home(mentioned_account, status)
     end
   end
 
