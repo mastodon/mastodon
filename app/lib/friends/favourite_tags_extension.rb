@@ -9,7 +9,7 @@ module Friends
       DEFAULT_TAGS = [
         "デレラジ",
         "デレパ",
-        "imasstation",
+        "imas_MOR",
         "millionradio",
         "SideM",
       ].freeze
