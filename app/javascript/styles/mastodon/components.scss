@@ -5503,6 +5503,11 @@ noscript {
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: pointer;
 
+  &--unread {
+    background: lighten($ui-base-color, 8%);
+    border-bottom-color: lighten($ui-base-color, 12%);
+  }
+
   &__header {
     display: flex;
     margin-bottom: 15px;
