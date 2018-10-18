@@ -12,7 +12,7 @@ class BatchedRemoveStatusService < BaseService
   def call(statuses)
     statuses = Status.where(id: statuses.map(&:id)).includes(:account, :stream_entry).flat_map { |status| [status] + status.reblogs.includes(:account, :stream_entry).to_a }
 
-    @mentions = statuses.map { |s| [s.id, s.mentions.includes(:account).to_a] }.to_h
+    @mentions = statuses.map { |s| [s.id, s.active_mentions.includes(:account).to_a] }.to_h
     @tags     = statuses.map { |s| [s.id, s.tags.pluck(:name)] }.to_h
 
     @stream_entry_batches  = []

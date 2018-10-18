@@ -177,6 +177,7 @@ en:
         create_domain_block: "%{name} blocked domain %{target}"
         create_email_domain_block: "%{name} blacklisted e-mail domain %{target}"
         demote_user: "%{name} demoted user %{target}"
+        destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_block: "%{name} unblocked domain %{target}"
         destroy_email_domain_block: "%{name} whitelisted e-mail domain %{target}"
         destroy_status: "%{name} removed status by %{target}"
@@ -369,7 +370,7 @@ en:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to instance thumbnail
         title: Hero image
       mascot:
-        desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to instance thumbnail
+        desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
         title: Mascot image
       peers_api_enabled:
         desc_html: Domain names this instance has encountered in the fediverse

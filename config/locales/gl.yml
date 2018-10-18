@@ -48,6 +48,7 @@ gl:
       other: Seguidoras
     following: Seguindo
     joined: Uneuse %{date}
+    link_verified_on: A propiedade de esta ligazón foi comprobada en %{date}
     media: Medios
     moved_html: "%{name} mudouse a %{new_profile_link}:"
     network_hidden: A información non está dispoñible
@@ -120,6 +121,7 @@ gl:
       moderation_notes: Notas de moderación
       most_recent_activity: Actividade máis recente
       most_recent_ip: IP máis recente
+      no_limits_imposed: Sen límites impostos
       not_subscribed: Non suscrita
       order:
         alphabetic: Alfabética
@@ -155,8 +157,10 @@ gl:
         report: informar
         targeted_reports: Informes feitos sobre esta conta
       silence: Acalar
+      silenced: Acalada
       statuses: Estados
       subscribe: Subscribir
+      suspended: Suspendida
       title: Contas
       unconfirmed_email: Correo-e non confirmado
       undo_silenced: Desfacer acalar
@@ -300,8 +304,13 @@ gl:
       title: Convida
     relays:
       add_new: Engadir un novo repetidor
+      delete: Eliminar
       description_html: Un <strong>repetidor da federación</strong> é un servidor intermedio que intercambia grandes volumes de toots públicos entre servidores que se suscriban e publiquen nel. <strong>Pode axudar a servidores pequenos e medios a descubrir contido no fediverso</strong>, o que de outro xeito precisaría que as usuarias locais seguisen a outra xente en servidores remotos.
+      disable: Desactivar
+      disabled: Desactivada
+      enable: Activar
       enable_hint: Unha vez activado, o seu servidor suscribirase a todos os toots públicos de este servidor, e tamén comezará a eviar a el os toots públicos do servidor.
+      enabled: Activada
       inbox_url: URL do repetidor
       pending: Agardando polo permiso do repetidor
       save_and_enable: Gardar e activar
@@ -452,7 +461,7 @@ gl:
     warning: Teña moito tino con estos datos. Nunca os comparta con ninguén!
     your_token: O seu testemuño de acceso
   auth:
-    agreement_html: Rexistrándose acorda seguir <a href="%{rules_path}">as normas da instancia</a> e <a href="%{terms_path}">os termos do servizo</a>.
+    agreement_html: Ao pulsar "Rexistrar" vostede acorda seguir <a href="%{rules_path}">as normas da instancia</a> e <a href="%{terms_path}">os termos do servizo</a>.
     change_password: Contrasinal
     confirm_email: Confirmar correo-e
     delete_account: Eliminar conta
@@ -913,3 +922,6 @@ gl:
     otp_lost_help_html: Si perde o acceso a ambos, pode contactar con %{email}
     seamless_external_login: Está conectado a través de un servizo externo, polo que os axustes de contrasinal e correo-e non están dispoñibles.
     signed_in_as: 'Rexistrada como:'
+  verification:
+    explanation_html: 'Pode <strong>validarse a vostede mesma como a dona das ligazóns nos metadatos do seu perfil</strong>. Para esto, o sitio web ligado debe conter unha ligazón de retorno ao perfil de Mastodon. Esta ligazón de retorno <strong>ten que</strong> ter un atributo <code>rel="me"</code>. O texto da ligazón non importa. Aquí ten un exemplo:'
+    verification: Validación
