@@ -127,7 +127,7 @@ export default class Status extends ImmutablePureComponent {
     if (status.get('favourited')) {
       this.props.dispatch(unfavourite(status));
     } else {
-      if (e.shiftKey || !favouriteModal) {
+      if ((e && e.shiftKey) || !favouriteModal) {
         this.handleModalFavourite(status);
       } else {
         this.props.dispatch(openModal('FAVOURITE', { status, onFavourite: this.handleModalFavourite }));
@@ -164,7 +164,7 @@ export default class Status extends ImmutablePureComponent {
     if (status.get('reblogged')) {
       this.props.dispatch(unreblog(status));
     } else {
-      if (e.shiftKey || !boostModal) {
+      if ((e && e.shiftKey) || !boostModal) {
         this.handleModalReblog(status);
       } else {
         this.props.dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog }));
