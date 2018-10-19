@@ -1,56 +1,37 @@
-CONTRIBUTING
+Contributing
 ============
 
-There are three ways in which you can contribute to this repository:
+Thank you for considering contributing to Mastodon 🐘 
 
-1. By improving the documentation
-2. By working on the back-end application
-3. By working on the front-end application
+You can contribute in the following ways:
 
-Choosing what to work on in a large open source project is not easy. The list of [GitHub issues](https://github.com/tootsuite/mastodon/issues) may provide some ideas, but not every feature request has been greenlit. Likewise, not every change or feature that resolves a personal itch will be merged into the main repository. Some communication ahead of time may be wise. If your addition creates a new feature or setting, or otherwise changes how things work in some substantial way, please remember to submit a correlating pull request to document your changes in the [documentation](http://github.com/tootsuite/documentation).
+- Finding and reporting bugs
+- Translating the Mastodon interface into various languages
+- Contributing code to Mastodon by fixing bugs or implementing features
+- Improving the documentation
 
-Below are the guidelines for working on pull requests:
+## Bug reports
 
-## General
+Bug reports and feature suggestions can be submitted to [GitHub Issues](https://github.com/tootsuite/mastodon/issues). Please make sure that you are not submitting duplicates, and that a similar report or request has not already been resolved or rejected in the past using the search function. Please also use descriptive, concise titles.
 
-- 2 spaces indentation
+## Translations
+
+You can submit translations via [Weblate](https://weblate.joinmastodon.org/). They are periodically merged into the codebase.
+
+[![Mastodon translation statistics by language](https://weblate.joinmastodon.org/widgets/mastodon/-/multi-auto.svg)](https://weblate.joinmastodon.org/)
+
+## Pull requests
+
+Please use clean, concise titles for your pull requests. We use commit squashing, so the final commit in the master branch will carry the title of the pull request.
+
+The smaller the set of changes in the pull request is, the quicker it can be reviewed and merged. Splitting tasks into multiple smaller pull requests is often preferable.
+
+**Pull requests that do not pass automated checks may not be reviewed**. In particular, you need to keep in mind:
+
+- Unit and integration tests (rspec, jest)
+- Code style rules (rubocop, eslint)
+- Normalization of locale files (i18n-tasks)
 
 ## Documentation
 
-- No spelling mistakes
-- No orthographic mistakes
-- No Markdown syntax errors
-
-## Requirements
-
-- Ruby
-- Node.js
-- PostgreSQL
-- Redis
-- Nginx (optional)
-
-## Back-end application
-
-It is expected that you have a working development environment set up. The development environment includes [rubocop](https://github.com/bbatsov/rubocop), which checks your Ruby code for compliance with our style guide and best practices. Sublime Text, likely like other editors, has a [Rubocop plugin](https://github.com/pderichs/sublime_rubocop) that runs checks on files as you edit them. The codebase also has a test suite.
-
-* The codebase is not perfect, at the time of writing, but it is expected that you do not introduce new code style violations
-* The rspec test suite must pass
-* To the extent that it is possible, verify your changes. In the best case, by adding new tests to the test suite. At the very least, by running the server or console and checking it manually
-* If you are introducing new strings to the user interface, they must be using localization methods
-
-If your code has syntax errors that won't let it run, it's a good sign that the pull request isn't ready for submission yet.
-
-## Front-end application
-
-It is expected that you have a working development environment set up (see back-end application section). This project includes an ESLint configuration file, with which you can lint your changes.
-
-* Avoid grave ESLint violations
-* Verify that your changes work
-* If you are introducing new strings, they must be using localization methods
-
-If the JavaScript or CSS assets won't compile due to a syntax error, it's a good sign that the pull request isn't ready for submission yet.
-
-## Translate
-
-You can contribute to translating Mastodon via Weblate at [weblate.joinmastodon.org](https://weblate.joinmastodon.org/).
-[![Mastodon translation statistics by language](https://weblate.joinmastodon.org/widgets/mastodon/-/multi-auto.svg)](https://weblate.joinmastodon.org/)
+The [Mastodon documentation](https://docs.joinmastodon.org) is a statically generated site. You can [submit merge requests to mastodon/docs](https://source.joinmastodon.org/mastodon/docs).
