@@ -115,6 +115,10 @@ group :test do
   gem 'simplecov', '~> 0.16', require: false
   gem 'webmock', '~> 3.4'
   gem 'parallel_tests', '~> 2.23'
+
+  # devise_pam_authenticatable2 is enabled when test.
+  # Without it, rspec will always fail.
+  gem 'devise_pam_authenticatable2', '~> 9.2'
 end
 
 group :development do
