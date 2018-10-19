@@ -10,17 +10,17 @@ You can contribute in the following ways:
 - Contributing code to Mastodon by fixing bugs or implementing features
 - Improving the documentation
 
-### Bug reports
+## Bug reports
 
 Bug reports and feature suggestions can be submitted to [GitHub Issues](https://github.com/tootsuite/mastodon/issues). Please make sure that you are not submitting duplicates, and that a similar report or request has not already been resolved or rejected in the past using the search function. Please also use descriptive, concise titles.
 
-### Translations
+## Translations
 
 You can submit translations via [Weblate](https://weblate.joinmastodon.org/). They are periodically merged into the codebase.
 
 [![Mastodon translation statistics by language](https://weblate.joinmastodon.org/widgets/mastodon/-/multi-auto.svg)](https://weblate.joinmastodon.org/)
 
-### Pull requests
+## Pull requests
 
 Please use clean, concise titles for your pull requests. We use commit squashing, so the final commit in the master branch will carry the title of the pull request.
 
@@ -32,6 +32,6 @@ The smaller the set of changes in the pull request is, the quicker it can be rev
 - Code style rules (rubocop, eslint)
 - Normalization of locale files (i18n-tasks)
 
-### Documentation
+## Documentation
 
 The [Mastodon documentation](https://docs.joinmastodon.org) is a statically generated site. You can [submit merge requests to mastodon/docs](https://source.joinmastodon.org/mastodon/docs).
