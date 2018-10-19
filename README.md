@@ -35,7 +35,7 @@ Click below to **learn more** in a video:
 
 ## Features
 
-<img src="https://docs.joinmastodon.org/elephant.svg" align="right" height="300" />
+<img src="https://docs.joinmastodon.org/elephant.svg" align="right" width="30%" />
 
 **No vendor lock-in: Fully interoperable with any conforming platform**
 
