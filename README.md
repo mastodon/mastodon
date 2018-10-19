@@ -13,17 +13,17 @@
 [weblate]: https://weblate.joinmastodon.org/engage/mastodon/
 [docker]: https://hub.docker.com/r/tootsuite/mastodon/
 
-Mastodon is a **free, open-source social network server** based on ActivityPub. Follow friends and discover new ones. Publish anything you want: links, pictures, text, video. All servers of Mastodon are interoperable (**federation**), i.e. users on one server can seamlessly communicate with users from another one. This includes non-Mastodon software that also implements ActivityPub!
+Mastodon is a **free, open-source social network server** based on ActivityPub. Follow friends and discover new ones. Publish anything you want: links, pictures, text, video. All servers of Mastodon are interoperable as a federated network, i.e. users on one server can seamlessly communicate with users from another one. This includes non-Mastodon software that also implements ActivityPub!
 
-Learn more in the video below:
+Click below to **learn more** in a video:
 
-[![Screenshot](https://i.imgur.com/qrNOiSp.png)][youtube_demo]
+[![Screenshot](https://blog.joinmastodon.org/2018/06/why-activitypub-is-the-future/ezgif-2-60f1b00403.gif)][youtube_demo]
 
 [youtube_demo]: https://www.youtube.com/watch?v=IPSbNdBmWKE
 
-## Navigation
+## Navigation 
 
-- [Project homepage](https://joinmastodon.org)
+- [Project homepage 🐘](https://joinmastodon.org)
 - [Support the development via Patreon][patreon]
 - [View sponsors](https://joinmastodon.org/sponsors)
 - [Blog](https://blog.joinmastodon.org)
@@ -35,25 +35,27 @@ Learn more in the video below:
 
 ## Features
 
-- **No vendor lock-in: Fully interoperable with any conforming platform**
+<img src="https://docs.joinmastodon.org/elephant.svg" align="right" height="300" />
 
-  It doesn't have to be Mastodon, whatever implements ActivityPub is part of the social network! [Learn more](https://blog.joinmastodon.org/2018/06/why-activitypub-is-the-future/)
+**No vendor lock-in: Fully interoperable with any conforming platform**
 
-- **Real-time, chronological timeline updates**
+It doesn't have to be Mastodon, whatever implements ActivityPub is part of the social network! [Learn more](https://blog.joinmastodon.org/2018/06/why-activitypub-is-the-future/)
 
-  See the updates of people you're following appear in real-time in the UI via WebSockets. There's a firehose view as well!
+**Real-time, chronological timeline updates**
 
-- **Media attachments like images and short videos**
+See the updates of people you're following appear in real-time in the UI via WebSockets. There's a firehose view as well!
 
-  Upload and view images and WebM/MP4 videos attached to the updates. Videos with no audio track are treated like GIFs; normal videos are looped - like vines!
+**Media attachments like images and short videos**
 
-- **Safety and moderation tools**
+Upload and view images and WebM/MP4 videos attached to the updates. Videos with no audio track are treated like GIFs; normal videos are looped - like vines!
 
-  Private posts, locked accounts, phrase filtering, muting, blocking and all sorts of other features, along with a reporting and moderation system. [Learn more](https://blog.joinmastodon.org/2018/07/cage-the-mastodon/)
+**Safety and moderation tools**
 
-- **OAuth2 and a straightforward REST API**
+Private posts, locked accounts, phrase filtering, muting, blocking and all sorts of other features, along with a reporting and moderation system. [Learn more](https://blog.joinmastodon.org/2018/07/cage-the-mastodon/)
 
-  Mastodon acts as an OAuth2 provider so 3rd party apps can use the REST and Streaming APIs, resulting in a rich app ecosystem with a lot of choice!
+**OAuth2 and a straightforward REST API**
+
+Mastodon acts as an OAuth2 provider so 3rd party apps can use the REST and Streaming APIs, resulting in a rich app ecosystem with a lot of choice!
 
 ## Deployment
 
