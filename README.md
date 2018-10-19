@@ -1,13 +1,17 @@
 ![Mastodon](https://i.imgur.com/NhZc40l.png)
 ========
 
+[![GitHub release](https://img.shields.io/github/release/tootsuite/mastodon.svg)][releases]
 [![Build Status](https://img.shields.io/circleci/project/github/tootsuite/mastodon.svg)][circleci]
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/tootsuite/mastodon.svg)][code_climate]
 [![Translation status](https://weblate.joinmastodon.org/widgets/mastodon/-/svg-badge.svg)][weblate]
+[![Docker Pulls](https://img.shields.io/docker/pulls/tootsuite/mastodon.svg)][docker]
 
+[releases]: https://github.com/tootsuite/mastodon/releases
 [circleci]: https://circleci.com/gh/tootsuite/mastodon
 [code_climate]: https://codeclimate.com/github/tootsuite/mastodon
 [weblate]: https://weblate.joinmastodon.org/engage/mastodon/
+[docker]: https://hub.docker.com/r/tootsuite/mastodon/
 
 Mastodon is a **free, open-source social network server** based on ActivityPub. Follow friends and discover new ones. Publish anything you want: links, pictures, text, video. All servers of Mastodon are interoperable (**federation**), i.e. users on one server can seamlessly communicate with users from another one. This includes non-Mastodon software that also implements ActivityPub!
 
@@ -19,12 +23,13 @@ Learn more in the video below:
 
 ## Navigation
 
+- [Project homepage](https://joinmastodon.org)
 - [Support the development via Patreon][patreon]
+- [View sponsors](https://joinmastodon.org/sponsors)
 - [Blog](https://blog.joinmastodon.org)
 - [Documentation](https://docs.joinmastodon.org)
-- [List of servers](https://joinmastodon.org/#getting-started)
-- [List of apps](https://joinmastodon.org/apps)
-- [List of sponsors](https://joinmastodon.org/sponsors)
+- [Browse Mastodon servers](https://joinmastodon.org/#getting-started)
+- [Browse Mastodon apps](https://joinmastodon.org/apps)
 
 [patreon]: https://www.patreon.com/mastodon
 
@@ -60,10 +65,10 @@ Learn more in the video below:
 
 **Requirements:**
 
-- PostgreSQL 9.5+
-- Redis
-- Ruby 2.4+
-- Node.js 8+
+- **PostgreSQL** 9.5+
+- **Redis**
+- **Ruby** 2.4+
+- **Node.js** 8+
 
 The repository includes deployment configurations for **Docker and docker-compose**, but also a few specific platforms like **Heroku**, **Scalingo**, and **Nanobox**. The [**stand-alone** installation guide](https://docs.joinmastodon.org/administration/installation/) is available in the documentation.
 
@@ -73,7 +78,7 @@ A **Vagrant** configuration is included for development purposes.
 
 Mastodon is **free, open source software** licensed under **AGPLv3**.
 
-You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository. To get started, take a look at the [CONTRIBUTING.md](CONTRIBUTING.md)
+You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository, or submit translations using Weblate. To get started, take a look at [CONTRIBUTING.md](CONTRIBUTING.md)
 
 **IRC channel**: #mastodon on irc.freenode.net
 
