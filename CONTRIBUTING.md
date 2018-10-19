@@ -24,6 +24,8 @@ You can submit translations via [Weblate](https://weblate.joinmastodon.org/). Th
 
 Please use clean, concise titles for your pull requests. We use commit squashing, so the final commit in the master branch will carry the title of the pull request.
 
+The smaller the set of changes in the pull request is, the quicker it can be reviewed and merged. Splitting tasks into multiple smaller pull requests is often preferable.
+
 **Pull requests that do not pass automated checks may not be reviewed**. In particular, you need to keep in mind:
 
 - Unit and integration tests (rspec, jest)
