@@ -120,6 +120,7 @@ export function submitCompose() {
   return function (dispatch, getState) {
     let status = getState().getIn(['compose', 'text'], '');
     let media  = getState().getIn(['compose', 'media_attachments']);
+    let spoilerText = getState().getIn(['compose', 'spoiler_text'], '');
 
     if ((!status || !status.length) && media.size === 0) {
       return;
@@ -133,8 +134,8 @@ export function submitCompose() {
       status,
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
       media_ids: media.map(item => item.get('id')),
-      sensitive: getState().getIn(['compose', 'sensitive']),
-      spoiler_text: getState().getIn(['compose', 'spoiler_text'], ''),
+      sensitive: getState().getIn(['compose', 'sensitive']) || spoilerText.length > 0,
+      spoiler_text: spoilerText,
       visibility: getState().getIn(['compose', 'privacy']),
     }, {
       headers: {
