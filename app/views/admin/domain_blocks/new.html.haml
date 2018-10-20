@@ -17,5 +17,8 @@
   .fields-group
     = f.input :reject_media, as: :boolean, wrapper: :with_label, label: I18n.t('admin.domain_blocks.reject_media'), hint: I18n.t('admin.domain_blocks.reject_media_hint')
 
+  .fields-group
+    = f.input :reject_reports, as: :boolean, wrapper: :with_label, label: I18n.t('admin.domain_blocks.reject_reports'), hint: I18n.t('admin.domain_blocks.reject_reports_hint')
+
   .actions
     = f.button :button, t('.create'), type: :submit
