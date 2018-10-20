@@ -37,17 +37,18 @@ class HashtagTimeline extends React.PureComponent {
   }
 
   title = () => {
-    const { id, tags, tagMode } = this.props.params;
+    const { id, tags } = this.props.params;
     if ((tags || []).length) {
-      let additional = tags.map((t) => {
-        return t.label;
-      }).join(', ');
-      switch(tagMode) {
-      case 'any':  return <FormattedMessage id='hashtag.column_header.tag_mode.any'  values={{ id, additional }} defaultMessage='{id} or {additional}' />;
-      case 'all':  return <FormattedMessage id='hashtag.column_header.tag_mode.all'  values={{ id, additional }} defaultMessage='{id} and {additional}' />;
-      case 'none': return <FormattedMessage id='hashtag.column_header.tag_mode.none' values={{ id, additional }} defaultMessage='{id} without {additional}' />;
-      default:     return '';
-      }
+      // let additional = tags.map((t) => {
+      //   return t.label;
+      // }).join(', ');
+      // switch(tagMode) {
+      // case 'any':  return <FormattedMessage id='hashtag.column_header.tag_mode.any'  values={{ id, additional }} defaultMessage='{id} or {additional}' />;
+      // case 'all':  return <FormattedMessage id='hashtag.column_header.tag_mode.all'  values={{ id, additional }} defaultMessage='{id} and {additional}' />;
+      // case 'none': return <FormattedMessage id='hashtag.column_header.tag_mode.none' values={{ id, additional }} defaultMessage='{id} without {additional}' />;
+      // default:     return '';
+      // }
+      return ''; // TODO: fix for all tag modes
     } else {
       return id;
     }
@@ -75,18 +76,17 @@ class HashtagTimeline extends React.PureComponent {
 
   componentDidMount () {
     const { dispatch } = this.props;
-    const { id, tagMode, tags } = this.props.params;
+    const { id, tags } = this.props.params;
 
-    dispatch(expandHashtagTimeline(id, { tagMode, tags }));
+    dispatch(expandHashtagTimeline(id, { tags }));
     this._subscribe(dispatch, id);
   }
 
   componentWillReceiveProps (nextProps) {
-    const { id, tags, tagMode } = nextProps.params;
+    const { id, tags } = nextProps.params;
     if (
       id !== this.props.params.id ||
-      tags !== this.props.params.tags ||
-      tagMode !== this.props.params.tagMode
+      tags !== this.props.params.tags
     ) {
       if (id !== this.props.params.id) {
         this._unsubscribe();
@@ -94,7 +94,7 @@ class HashtagTimeline extends React.PureComponent {
       } else {
         this.props.dispatch(clearTimeline(`hashtag:${id}`));
       }
-      this.props.dispatch(expandHashtagTimeline(id, { tags, tagMode }));
+      this.props.dispatch(expandHashtagTimeline(id, { tags }));
     }
   }
 
@@ -107,8 +107,8 @@ class HashtagTimeline extends React.PureComponent {
   }
 
   handleLoadMore = maxId => {
-    const { id, tags, tagMode } = this.props.params;
-    this.props.dispatch(expandHashtagTimeline(id, { maxId, tags, tagMode }));
+    const { id, tags } = this.props.params;
+    this.props.dispatch(expandHashtagTimeline(id, { maxId, tags }));
   }
 
   render () {

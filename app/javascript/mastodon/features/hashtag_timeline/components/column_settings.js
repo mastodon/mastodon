@@ -16,55 +16,56 @@ export default class ColumnSettings extends React.PureComponent {
   };
 
   state = {
-    open: this.tags().length > 0,
-    mode: this.props.settings.get('tagMode') || 'any',
+    open: this.hasTags()
   };
 
-  tags () {
-    return Array.from(this.props.settings.get('tags') || []).map((tag) => {
-      return tag.toJSON ? tag.toJSON() : tag;
-    });
+  hasTags () {
+    return ['all', 'any', 'none'].map((mode) => {
+      return this.tags(mode).length > 0;
+    }).includes(true);
+  }
+
+  tags (mode) {
+    let tags = this.props.settings.getIn(['tags', mode]) || [];
+    if (tags.toJSON) {
+      return tags.toJSON();
+    } else {
+      return tags;
+    }
   };
 
-  onSelect = (value) => {
-    this.props.onChange('tags', value);
+  onSelect = (mode) => {
+    return (value) => {
+      this.props.onChange(['tags', mode], value);
+    }
   };
 
   onToggle = () => {
-    if (this.state.open && this.tags().length > 0) {
-      this.props.onChange('tags', []);
+    if (this.state.open && this.hasTags()) {
+      this.props.onChange('tags', {});
     }
     this.setState({ open: !this.state.open });
   };
 
-  setMode = (mode) => {
-    return () => {
-      this.props.onChange('tagMode', mode);
-      this.setState({ mode });
-    };
-  };
+  modeSelect (mode) {
+    return <div className='column-settings__section'>
+      {this.modeLabel(mode)}
+      <AsyncSelect
+        isMulti
+        autoFocus
+        value={this.tags(mode)}
+        settings={this.props.settings}
+        settingPath={['tags', mode]}
+        onChange={this.onSelect(mode)}
+        loadOptions={this.props.onLoad}
+        classNamePrefix='column-settings__hashtag-select'
+        name='tags'
+      />
+    </div>
+  }
 
-  modeOption (value) {
-    return (
-      <li className='radio'>
-        <label>
-          <input
-            id={`tag_mode_${value}`}
-            className='radio_buttons'
-            type='radio'
-            value={value}
-            name='tagMode'
-            checked={this.state.mode === value}
-            onChange={this.setMode(value)}
-          />
-          {this.modeLabel(value)}
-        </label>
-      </li>
-    );
-  };
-
-  modeLabel (value) {
-    switch(value) {
+  modeLabel (mode) {
+    switch(mode) {
     case 'any':  return <FormattedMessage id='hashtag.column_settings.tag_mode.any' defaultMessage='Any of these' />;
     case 'all':  return <FormattedMessage id='hashtag.column_settings.tag_mode.all' defaultMessage='All of these' />;
     case 'none': return <FormattedMessage id='hashtag.column_settings.tag_mode.none' defaultMessage='None of these' />;
@@ -89,26 +90,9 @@ export default class ColumnSettings extends React.PureComponent {
         </div>
         {this.state.open &&
           <div className='column-settings__hashtags'>
-            <div className='column-settings__section'>
-              <AsyncSelect
-                isMulti
-                autoFocus
-                value={this.tags()}
-                settings={this.props.settings}
-                settingPath={['tags']}
-                onChange={this.onSelect}
-                loadOptions={this.props.onLoad}
-                classNamePrefix='column-settings__hashtag-select'
-                name='tags'
-              />
-            </div>
-            <div className='column-settings__section'>
-              <ul>
-                {this.modeOption('any')}
-                {this.modeOption('all')}
-                {this.modeOption('none')}
-              </ul>
-            </div>
+            {this.modeSelect('any')}
+            {this.modeSelect('all')}
+            {this.modeSelect('none')}
           </div>
         }
       </div>
