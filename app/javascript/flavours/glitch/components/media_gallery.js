@@ -215,6 +215,7 @@ export default class MediaGallery extends React.PureComponent {
     standalone: PropTypes.bool,
     letterbox: PropTypes.bool,
     fullwidth: PropTypes.bool,
+    hidden: PropTypes.bool,
     media: ImmutablePropTypes.list.isRequired,
     size: PropTypes.object,
     onOpenMedia: PropTypes.func.isRequired,
@@ -235,6 +236,14 @@ export default class MediaGallery extends React.PureComponent {
     }
   }
 
+  componentDidUpdate (prevProps) {
+    if (this.node && this.node.offsetWidth) {
+      this.setState({
+        width: this.node.offsetWidth,
+      });
+    }
+  }
+
   handleOpen = () => {
     this.setState({ visible: !this.state.visible });
   }
@@ -244,6 +253,7 @@ export default class MediaGallery extends React.PureComponent {
   }
 
   handleRef = (node) => {
+    this.node = node;
     if (node /*&& this.isStandaloneEligible()*/) {
       // offsetWidth triggers a layout, so only calculate when we need to
       this.setState({
