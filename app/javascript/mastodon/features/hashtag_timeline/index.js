@@ -38,20 +38,27 @@ class HashtagTimeline extends React.PureComponent {
 
   title = () => {
     const { id, tags } = this.props.params;
-    if ((tags || []).length) {
-      // let additional = tags.map((t) => {
-      //   return t.label;
-      // }).join(', ');
-      // switch(tagMode) {
-      // case 'any':  return <FormattedMessage id='hashtag.column_header.tag_mode.any'  values={{ id, additional }} defaultMessage='{id} or {additional}' />;
-      // case 'all':  return <FormattedMessage id='hashtag.column_header.tag_mode.all'  values={{ id, additional }} defaultMessage='{id} and {additional}' />;
-      // case 'none': return <FormattedMessage id='hashtag.column_header.tag_mode.none' values={{ id, additional }} defaultMessage='{id} without {additional}' />;
-      // default:     return '';
-      // }
-      return ''; // TODO: fix for all tag modes
-    } else {
-      return id;
+    let title = [id];
+    if (this.additionalFor('any')) {
+      title.push(<FormattedMessage id='hashtag.column_header.tag_mode.any'  values={{ additional: this.additionalFor('any') }} defaultMessage=' or {additional}' />);
     }
+    if (this.additionalFor('all')) {
+      title.push(<FormattedMessage id='hashtag.column_header.tag_mode.all'  values={{ additional: this.additionalFor('all') }} defaultMessage=' and {additional}' />);
+    }
+    if (this.additionalFor('none')) {
+      title.push(<FormattedMessage id='hashtag.column_header.tag_mode.none' values={{ additional: this.additionalFor('none') }} defaultMessage=' without {additional}' />);
+    }
+    return title;
+  }
+
+  additionalFor = (mode) => {
+    const { tags } = this.props.params;
+
+    if ((tags[mode] || []).length == 0) {
+      return "";
+    }
+
+    return tags[mode].map((tag) => { return tag.value; }).join('/');
   }
 
   handleMove = (dir) => {

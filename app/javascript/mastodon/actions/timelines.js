@@ -96,8 +96,8 @@ export const expandListTimeline            = (id, { maxId } = {}, done = noOp) =
 export const expandHashtagTimeline         = (hashtag, { maxId, tags } = {}, done = noOp) => {
   return expandTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`, {
     max_id: maxId,
-    any: parseTags(tags, 'all'),
-    all: parseTags(tags, 'any'),
+    any: parseTags(tags, 'any'),
+    all: parseTags(tags, 'all'),
     none: parseTags(tags, 'none')
   }, done);
 };

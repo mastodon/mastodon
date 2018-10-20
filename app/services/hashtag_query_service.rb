@@ -2,17 +2,20 @@
 
 class HashtagQueryService < BaseService
   def call(tag, params, account = nil, local = false)
-    @query      = Status.as_tag_timeline(tag, account, local)
-    @additional = Tag.where(name: Array(params[:tags]).map(&:downcase)) if params[:tags]
-    @mode       = params.fetch(:tag_mode, :any).to_sym
-    @account    = account
-    @local      = local
+    any  = tags_for(params[:any])
+    all  = tags_for(params[:all])
+    none = tags_for(params[:none])
 
-    return @query unless @additional.presence && [:all, :any, :none].include?(@mode)
-    case @mode
-    when :any then  @query.or(Status.as_tag_timeline(@additional, @account, @local)).distinct
-    when :all then  @query.tagged_with_all(@additional)
-    when :none then @query.tagged_with_none(@additional)
-    end
+    @query = Status.as_tag_timeline(tag, account, local)
+          .tagged_with_all(all)
+          .tagged_with_none(none)
+    @query = @query.or(self.class.new.call(any, params.except(:any), account, local)) if any
+    @query
+  end
+
+  private
+
+  def tags_for(tags)
+    Tag.where(name: tags.map(&:downcase)) if tags.presence
   end
 end
