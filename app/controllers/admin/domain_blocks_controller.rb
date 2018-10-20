@@ -46,7 +46,7 @@ module Admin
     end
 
     def resource_params
-      params.require(:domain_block).permit(:domain, :severity, :reject_media, :retroactive)
+      params.require(:domain_block).permit(:domain, :severity, :reject_media, :reject_reports, :retroactive)
     end
 
     def retroactive_unblock?
