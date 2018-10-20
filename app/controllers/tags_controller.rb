@@ -16,7 +16,7 @@ class TagsController < ApplicationController
       end
 
       format.rss do
-        @statuses = HashtagQueryService.new.call(@tag, params.slice(:any, :all, :none)).distinct.limit(PAGE_SIZE)
+        @statuses = HashtagQueryService.new.call(@tag, params.slice(:any, :all, :none)).limit(PAGE_SIZE)
         @statuses = cache_collection(@statuses, Status)
 
         render xml: RSS::TagSerializer.render(@tag, @statuses)
@@ -24,7 +24,6 @@ class TagsController < ApplicationController
 
       format.json do
         @statuses = HashtagQueryService.new.call(@tag, params.slice(:any, :all, :none), current_account, params[:local])
-                                       .distinct
                                        .paginate_by_max_id(PAGE_SIZE, params[:max_id])
         @statuses = cache_collection(@statuses, Status)
 
