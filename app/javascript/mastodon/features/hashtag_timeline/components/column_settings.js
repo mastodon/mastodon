@@ -98,7 +98,7 @@ export default class ColumnSettings extends React.PureComponent {
                 settingPath={['tags']}
                 onChange={this.onSelect}
                 loadOptions={this.props.onLoad}
-                className='column-settings__hashtag-select'
+                classNamePrefix='column-settings__hashtag-select'
                 name='tags'
               />
             </div>
