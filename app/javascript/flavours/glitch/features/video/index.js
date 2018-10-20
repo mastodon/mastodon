@@ -220,6 +220,11 @@ export default class Video extends React.PureComponent {
   }
 
   componentDidUpdate (prevProps) {
+    if (this.player && this.player.offsetWidth && !this.state.fullscreen) {
+      this.setState({
+        containerWidth: this.player.offsetWidth,
+      });
+    }
     if (this.video && this.state.revealed && this.props.preventPlayback && !prevProps.preventPlayback) {
       this.video.pause();
     }
