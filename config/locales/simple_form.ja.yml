@@ -1,17 +1,16 @@
----
 ja:
   simple_form:
     hints:
       defaults:
         autofollow: 招待から登録した人が自動的にあなたをフォローするようになります
-        avatar: "%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます"
+        avatar: '%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます'
         bot: このアカウントは主に自動で動作し、人が見ていない可能性があります
         context: フィルターを適用する対象 (複数選択可)
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
         display_name: あと<span class="name-counter">%{count}</span>文字入力できます。
         email: 確認のメールが送信されます
         fields: プロフィールに表として4つまでの項目を表示することができます
-        header: "%{size}までのPNG、GIF、JPGが利用可能です。 %{dimensions}pxまで縮小されます"
+        header: '%{size}までのPNG、GIF、JPGが利用可能です。 %{dimensions}pxまで縮小されます'
         inbox_url: 使用したいリレーサーバーのトップページからURLをコピーします
         irreversible: フィルターが後で削除されても、除外されたトゥートは元に戻せなくなります
         locale: ユーザーインターフェース、メールやプッシュ通知の言語
@@ -86,6 +85,7 @@ ja:
         username: ユーザー名
         username_or_email: ユーザー名またはメールアドレス
         whole_word: 単語全体にマッチ
+        setting_expand_spoilers: 閲覧注意としてマークされたトゥートを常に展開する
       interactions:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック
@@ -100,6 +100,6 @@ ja:
         report: 通報を受けた時にメールで通知する
     'no': いいえ
     required:
-      mark: "*"
+      mark: '*'
       text: 必須
     'yes': はい
