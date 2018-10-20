@@ -55,7 +55,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
       request.env['devise.mapping'] = Devise.mappings[:user]
     end
 
-    context 'using PAM authentication' do
+    context 'using PAM authentication', if: ENV['PAM_ENABLED'] == 'true' do
       context 'using a valid password' do
         before do
           post :create, params: { user: { email: "pam_user1", password: '123456' } }
