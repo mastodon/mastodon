@@ -21,7 +21,10 @@ class PostStatusService < BaseService
 
     media  = validate_media!(options[:media_ids])
     status = nil
-    text   = '.' if text.blank? && options[:spoiler_text].present?
+    if text.blank? && options[:spoiler_text].present?
+     text = '.'
+     text = media.find(&:video?) ? '📹' : '🖼' if media.size > 0
+    end
 
     ApplicationRecord.transaction do
       status = account.statuses.create!(text: text,
