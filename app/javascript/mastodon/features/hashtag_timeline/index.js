@@ -37,8 +37,7 @@ class HashtagTimeline extends React.PureComponent {
   }
 
   title = () => {
-    const { id, tags } = this.props.params;
-    let title = [id];
+    let title = [this.props.params.id];
     if (this.additionalFor('any')) {
       title.push(<FormattedMessage id='hashtag.column_header.tag_mode.any'  values={{ additional: this.additionalFor('any') }} defaultMessage=' or {additional}' />);
     }
@@ -54,11 +53,13 @@ class HashtagTimeline extends React.PureComponent {
   additionalFor = (mode) => {
     const { tags } = this.props.params;
 
-    if ((tags[mode] || []).length == 0) {
-      return "";
+    if ((tags[mode] || []).length > 0) {
+      return tags[mode].map((tag) => {
+        return tag.value;
+      }).join('/');
+    } else {
+      return '';
     }
-
-    return tags[mode].map((tag) => { return tag.value; }).join('/');
   }
 
   handleMove = (dir) => {

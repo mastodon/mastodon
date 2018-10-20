@@ -2990,11 +2990,13 @@ a.status-card {
       background: lighten($ui-base-color, 8%);
     }
 
-    &__multi-value__label, &__input {
+    &__multi-value__label,
+    &__input {
       color: $darker-text-color;
     }
 
-    &__indicator-separator, &__dropdown-indicator {
+    &__indicator-separator,
+    &__dropdown-indicator {
       display: none;
     }
   }

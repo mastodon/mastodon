@@ -16,7 +16,7 @@ export default class ColumnSettings extends React.PureComponent {
   };
 
   state = {
-    open: this.hasTags()
+    open: this.hasTags(),
   };
 
   hasTags () {
@@ -37,7 +37,7 @@ export default class ColumnSettings extends React.PureComponent {
   onSelect = (mode) => {
     return (value) => {
       this.props.onChange(['tags', mode], value);
-    }
+    };
   };
 
   onToggle = () => {
@@ -48,20 +48,22 @@ export default class ColumnSettings extends React.PureComponent {
   };
 
   modeSelect (mode) {
-    return <div className='column-settings__section'>
-      {this.modeLabel(mode)}
-      <AsyncSelect
-        isMulti
-        autoFocus
-        value={this.tags(mode)}
-        settings={this.props.settings}
-        settingPath={['tags', mode]}
-        onChange={this.onSelect(mode)}
-        loadOptions={this.props.onLoad}
-        classNamePrefix='column-settings__hashtag-select'
-        name='tags'
-      />
-    </div>
+    return (
+      <div className='column-settings__section'>
+        {this.modeLabel(mode)}
+        <AsyncSelect
+          isMulti
+          autoFocus
+          value={this.tags(mode)}
+          settings={this.props.settings}
+          settingPath={['tags', mode]}
+          onChange={this.onSelect(mode)}
+          loadOptions={this.props.onLoad}
+          classNamePrefix='column-settings__hashtag-select'
+          name='tags'
+        />
+      </div>
+    );
   }
 
   modeLabel (mode) {

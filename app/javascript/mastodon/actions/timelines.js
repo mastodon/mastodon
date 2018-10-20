@@ -54,8 +54,10 @@ export function clearTimeline(timeline) {
 const noOp = () => {};
 
 const parseTags = (tags = {}, mode) => {
-  return (tags[mode] || []).map((tag) => { return tag.value; });
-}
+  return (tags[mode] || []).map((tag) => {
+    return tag.value;
+  });
+};
 
 export function expandTimeline(timelineId, path, params = {}, done = noOp) {
   return (dispatch, getState) => {
@@ -98,7 +100,7 @@ export const expandHashtagTimeline         = (hashtag, { maxId, tags } = {}, don
     max_id: maxId,
     any: parseTags(tags, 'any'),
     all: parseTags(tags, 'all'),
-    none: parseTags(tags, 'none')
+    none: parseTags(tags, 'none'),
   }, done);
 };
 

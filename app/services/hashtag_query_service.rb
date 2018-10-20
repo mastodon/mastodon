@@ -7,8 +7,8 @@ class HashtagQueryService < BaseService
     none = tags_for(params[:none])
 
     @query = Status.as_tag_timeline(tag, account, local)
-          .tagged_with_all(all)
-          .tagged_with_none(none)
+                   .tagged_with_all(all)
+                   .tagged_with_none(none)
     @query = @query.or(self.class.new.call(any, params.except(:any), account, local)) if any
     @query
   end
