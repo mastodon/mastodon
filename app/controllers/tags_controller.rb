@@ -48,7 +48,7 @@ class TagsController < ApplicationController
 
   def collection_presenter
     ActivityPub::CollectionPresenter.new(
-      id: tag_url(@tag, params.slice(:tags, :tag_mode)),
+      id: tag_url(@tag, params.slice(:any, :all, :none)),
       type: :ordered,
       size: @tag.statuses.count,
       items: @statuses.map { |s| ActivityPub::TagManager.instance.uri_for(s) }
