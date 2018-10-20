@@ -43,6 +43,13 @@ const handlers = {
   handleRefSpoilerText (spoilerText) {
     this.spoilerText = spoilerText;
   },
+
+  //  When the escape key is released, we focus the UI.
+  handleKeyUp ({ key }) {
+    if (key === 'Escape') {
+      document.querySelector('.ui').parentElement.focus();
+    }
+  },
 };
 
 //  The component.
@@ -56,7 +63,7 @@ export default class ComposerSpoiler extends React.PureComponent {
 
   //  Rendering.
   render () {
-    const { handleKeyDown, handleRefSpoilerText } = this.handlers;
+    const { handleKeyDown, handleKeyUp, handleRefSpoilerText } = this.handlers;
     const {
       hidden,
       intl,
@@ -75,6 +82,7 @@ export default class ComposerSpoiler extends React.PureComponent {
             id='glitch.composer.spoiler.input'
             onChange={onChange}
             onKeyDown={handleKeyDown}
+            onKeyUp={handleKeyUp}
             placeholder={intl.formatMessage(messages.placeholder)}
             type='text'
             value={text}
