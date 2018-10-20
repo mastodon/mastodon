@@ -80,14 +80,14 @@ class Status < ApplicationRecord
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).where('accounts.domain IS NULL OR accounts.domain NOT IN (?)', account.excluded_from_timeline_domains) }
   scope :tagged_with_all, ->(tags) {
-    Array(tags).each_with_index.reduce(self) do |result, (tag, index)|
-      result.joins("INNER JOIN statuses_tags t#{index} ON t#{index}.status_id = statuses.id AND t#{index}.tag_id = #{tag.id}")
+    Array(tags).map(&:id).map(&:to_i).reduce(self) do |result, id|
+      result.joins("INNER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}")
     end
   }
   scope :tagged_with_none, ->(tags) {
-    Array(tags).each_with_index.reduce(self) do |result, (tag, index)|
-      result.joins("LEFT OUTER JOIN statuses_tags t#{index} ON t#{index}.status_id = statuses.id AND t#{index}.tag_id = #{tag.id}")
-            .where("t#{index}.tag_id IS NULL")
+    Array(tags).map(&:id).map(&:to_i).reduce(self) do |result, id|
+      result.joins("LEFT OUTER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}")
+            .where("t#{id}.tag_id IS NULL")
     end
   }
 
