@@ -52,11 +52,13 @@ class Api::V1::StatusesController < Api::BaseController
                                          status_params[:status],
                                          status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
                                          media_ids: status_params[:media_ids],
-                                         sensitive: check_media(),
+                                         sensitive: status_params[:sensitive],
                                          spoiler_text: status_params[:spoiler_text],
                                          visibility: status_params[:visibility],
                                          application: doorkeeper_token.application,
                                          idempotency: request.headers['Idempotency-Key'])
+
+    @status.update(sensitive: check_media)
 
     render json: @status, serializer: REST::StatusSerializer
   end
