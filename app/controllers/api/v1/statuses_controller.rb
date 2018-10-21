@@ -49,7 +49,7 @@ class Api::V1::StatusesController < Api::BaseController
 
   def create
 
-    check_media
+    status_params[:sensitive] = check_media
 
     @status = PostStatusService.new.call(current_user.account,
                                          status_params[:status],
@@ -141,10 +141,11 @@ class Api::V1::StatusesController < Api::BaseController
           puts response.medical?
 
           if response.adult? || response.violence? || response.medical? then
-            status_params[:sensitive] = "true"
+            return true
           end
         end
       end
+      return false
     end
   end
 end
