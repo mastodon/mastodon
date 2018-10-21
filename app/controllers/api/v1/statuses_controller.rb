@@ -52,7 +52,7 @@ class Api::V1::StatusesController < Api::BaseController
                                          status_params[:status],
                                          status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
                                          media_ids: status_params[:media_ids],
-                                         check_media,
+                                         check_media(),
                                          spoiler_text: status_params[:spoiler_text],
                                          visibility: status_params[:visibility],
                                          application: doorkeeper_token.application,
