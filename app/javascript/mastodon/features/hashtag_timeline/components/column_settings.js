@@ -20,9 +20,7 @@ export default class ColumnSettings extends React.PureComponent {
   };
 
   hasTags () {
-    return ['all', 'any', 'none'].map((mode) => {
-      return this.tags(mode).length > 0;
-    }).includes(true);
+    return ['all', 'any', 'none'].map(mode => this.tags(mode).length > 0).includes(true);
   }
 
   tags (mode) {

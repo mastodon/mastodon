@@ -16,6 +16,7 @@ const mapStateToProps = (state, props) => ({
 
 export default @connect(mapStateToProps)
 class HashtagTimeline extends React.PureComponent {
+
   disconnects = [];
 
   static propTypes = {
