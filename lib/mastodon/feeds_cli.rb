@@ -54,6 +54,11 @@ module Mastodon
       elsif username.present?
         account = Account.find_local(username)
 
+        if account.nil?
+          say("Account #{username} is not found", :red)
+          exit(1)
+        end
+
         if options[:background]
           RegenerationWorker.perform_async(account.id) unless options[:dry_run]
         else
