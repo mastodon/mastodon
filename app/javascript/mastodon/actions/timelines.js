@@ -14,9 +14,13 @@ export const TIMELINE_SCROLL_TOP = 'TIMELINE_SCROLL_TOP';
 
 export const TIMELINE_DISCONNECT = 'TIMELINE_DISCONNECT';
 
-export function updateTimeline(timeline, status) {
+export function updateTimeline(timeline, status, accept) {
   return (dispatch, getState) => {
     const references = status.reblog ? getState().get('statuses').filter((item, itemId) => (itemId === status.reblog.id || item.get('reblog') === status.reblog.id)).map((_, itemId) => itemId) : [];
+
+    if (typeof accept === 'function' && !accept(status)) {
+      return;
+    }
 
     dispatch(importFetchedStatus(status));
 

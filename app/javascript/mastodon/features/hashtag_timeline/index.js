@@ -16,6 +16,7 @@ const mapStateToProps = (state, props) => ({
 
 export default @connect(mapStateToProps)
 class HashtagTimeline extends React.PureComponent {
+  disconnects = [];
 
   static propTypes = {
     params: PropTypes.object.isRequired,
@@ -53,10 +54,8 @@ class HashtagTimeline extends React.PureComponent {
   additionalFor = (mode) => {
     const { tags } = this.props.params;
 
-    if ((tags[mode] || []).length > 0) {
-      return tags[mode].map((tag) => {
-        return tag.value;
-      }).join('/');
+    if (tags && (tags[mode] || []).length > 0) {
+      return tags[mode].map(tag => tag.value).join('/');
     } else {
       return '';
     }
@@ -71,15 +70,23 @@ class HashtagTimeline extends React.PureComponent {
     this.column.scrollTop();
   }
 
-  _subscribe (dispatch, id) {
-    this.disconnect = dispatch(connectHashtagStream(id));
+  _subscribe (dispatch, id, tags = {}) {
+    let any  = (tags.any || []).map(tag => tag.value);
+    let all  = (tags.all || []).map(tag => tag.value);
+    let none = (tags.none || []).map(tag => tag.value);
+
+    [id, ...any].map((tag) => {
+      this.disconnects.push(dispatch(connectHashtagStream(id, tag, (status) => {
+        let tags = status.tags.map(tag => tag.name);
+        return all.filter(tag => tags.includes(tag)).length === all.length &&
+               none.filter(tag => tags.includes(tag)).length === 0;
+      })));
+    });
   }
 
   _unsubscribe () {
-    if (this.disconnect) {
-      this.disconnect();
-      this.disconnect = null;
-    }
+    this.disconnects.map(disconnect => disconnect());
+    this.disconnects = [];
   }
 
   componentDidMount () {
@@ -87,21 +94,15 @@ class HashtagTimeline extends React.PureComponent {
     const { id, tags } = this.props.params;
 
     dispatch(expandHashtagTimeline(id, { tags }));
-    this._subscribe(dispatch, id);
   }
 
   componentWillReceiveProps (nextProps) {
+    const { dispatch, params } = this.props;
     const { id, tags } = nextProps.params;
-    if (
-      id !== this.props.params.id ||
-      tags !== this.props.params.tags
-    ) {
-      if (id !== this.props.params.id) {
-        this._unsubscribe();
-        this._subscribe(this.props.dispatch, nextProps.params.id);
-      } else {
-        this.props.dispatch(clearTimeline(`hashtag:${id}`));
-      }
+    if (id !== params.id || tags !== params.tags) {
+      this._unsubscribe();
+      this._subscribe(dispatch, id, tags);
+      this.props.dispatch(clearTimeline(`hashtag:${id}`));
       this.props.dispatch(expandHashtagTimeline(id, { tags }));
     }
   }
