@@ -246,12 +246,12 @@ body.rtl {
 
   .simple_form .label_input__append {
     right: auto;
-    left: 0;
+    left: 3px;
 
     &::after {
       right: auto;
       left: 0;
-      background-image: linear-gradient(to left, rgba($ui-base-color, 0), $ui-base-color);
+      background-image: linear-gradient(to left, rgba(darken($ui-base-color, 10%), 0), darken($ui-base-color, 10%));
     }
   }
 
