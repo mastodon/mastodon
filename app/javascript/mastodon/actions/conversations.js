@@ -13,6 +13,8 @@ export const CONVERSATIONS_FETCH_SUCCESS = 'CONVERSATIONS_FETCH_SUCCESS';
 export const CONVERSATIONS_FETCH_FAIL    = 'CONVERSATIONS_FETCH_FAIL';
 export const CONVERSATIONS_UPDATE        = 'CONVERSATIONS_UPDATE';
 
+export const CONVERSATIONS_READ = 'CONVERSATIONS_READ';
+
 export const mountConversations = () => ({
   type: CONVERSATIONS_MOUNT,
 });
@@ -20,6 +22,15 @@ export const mountConversations = () => ({
 export const unmountConversations = () => ({
   type: CONVERSATIONS_UNMOUNT,
 });
+
+export const markConversationRead = conversationId => (dispatch, getState) => {
+  dispatch({
+    type: CONVERSATIONS_READ,
+    id: conversationId,
+  });
+
+  api(getState).post(`/api/v1/conversations/${conversationId}/read`);
+};
 
 export const expandConversations = ({ maxId } = {}) => (dispatch, getState) => {
   dispatch(expandConversationsRequest());

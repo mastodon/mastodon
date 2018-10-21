@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Api::V1::ReportsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:reports' }, except: [:create]
   before_action -> { doorkeeper_authorize! :write, :'write:reports' }, only: [:create]
   before_action :require_user!
 
