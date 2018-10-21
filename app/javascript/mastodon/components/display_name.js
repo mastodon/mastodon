@@ -22,7 +22,8 @@ export default class DisplayName extends React.PureComponent {
 
     return (
       <span className='display-name'>
-        <bdi><strong className='display-name__html' dangerouslySetInnerHTML={displayNameHtml} /></bdi> {suffix}
+        <bdi><strong className='display-name__html' dangerouslySetInnerHTML={displayNameHtml} /></bdi>
+        <span>{suffix}</span>
       </span>
     );
   }
