@@ -48,6 +48,9 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def create
+
+    check_media
+
     @status = PostStatusService.new.call(current_user.account,
                                          status_params[:status],
                                          status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
@@ -57,8 +60,6 @@ class Api::V1::StatusesController < Api::BaseController
                                          visibility: status_params[:visibility],
                                          application: doorkeeper_token.application,
                                          idempotency: request.headers['Idempotency-Key'])
-
-    @status.update(sensitive: check_media)
 
     render json: @status, serializer: REST::StatusSerializer
   end
@@ -140,12 +141,10 @@ class Api::V1::StatusesController < Api::BaseController
           puts response.medical?
 
           if response.adult? || response.violence? || response.medical? then
-            return true
+            status_params[:sensitive] = "true"
           end
         end
       end
-
-      return false
     end
   end
 end
