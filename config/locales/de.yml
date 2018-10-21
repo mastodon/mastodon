@@ -140,7 +140,7 @@ de:
         most_recent: Neueste
         title: Sortierung
       outbox_url: Postausgangs-URL
-      perform_full_suspension: Vollständige Sperre durchführen
+      perform_full_suspension: Sperren
       profile_url: Profil-URL
       promote: Befördern
       protocol: Protokoll
@@ -214,6 +214,7 @@ de:
         unsuspend_account: '%{name} hat die Sperrung von %{target}s Account aufgehoben'
         update_custom_emoji: '%{name} hat das %{target} Emoji aktualisiert'
         update_status: '%{name} hat den Status von %{target} aktualisiert'
+        destroy_custom_emoji: '%{name} zerstörte Emoji %{target}'
       deleted_status: (gelöschter Beitrag)
       title: Überprüfungsprotokoll
     custom_emojis:
@@ -300,6 +301,9 @@ de:
         undo: Zurücknehmen
       title: Domain-Blockaden
       undo: Zurücknehmen
+      reject_reports: Meldungen ablehnen
+      reject_reports_hint: Ignoriere alle Meldungen von dieser Domain. Irrelevant
+        für Sperrungen
     email_domain_blocks:
       add_new: Neue hinzufügen
       created_msg: E-Mail-Domain-Blockade erfolgreich erstellt
@@ -456,6 +460,10 @@ de:
         desc_html: Auf der Frontseite die öffentliche Zeitleiste anzeigen
         title: Zeitleisten-Vorschau
       title: Instanz-Einstellungen
+      mascot:
+        desc_html: Angezeigt auf mehreren Seiten. Mehr als 293x205px empfohlen. Wenn
+          es nicht gesetzt wurde wird es auf das Standard-Maskottchen zurückfallen
+        title: Maskottchen-Bild
     statuses:
       back_to_account: Zurück zum Konto
       batch:
@@ -650,6 +658,7 @@ de:
     validation_errors:
       one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
       other: Etwas ist noch nicht ganz richtig! Bitte korrigiere %{count} Fehler
+    copy: Kopieren
   imports:
     preface: Daten, die du aus einer anderen Instanz exportiert hast, kannst du hier
       importieren. Beispielsweise die Liste derjenigen, denen du folgst oder die du
@@ -1066,8 +1075,10 @@ de:
     seamless_external_login: Du bist angemeldet über einen Drittanbieter-Dienst, weswegen
       Passwort- und E-Maileinstellungen nicht verfügbar sind.
     signed_in_as: 'Angemeldet als:'
+    follow_limit_reached: Du kannst nicht mehr als %{limit} Leuten folgen
   verification:
     explanation_html: 'Du kannst <strong>bestätigen, dass die Links in deinen Profil-Metadaten
       dir gehören</strong>. Dafür muss die verlinkte Website einen Link zurück auf
       dein Mastodon-Profil enthalten. Dieser Link <strong>muss</strong> ein <code>rel="me"</code>-Attribut
       enthalten. Der Linktext is dabei egal. Hier ist ein Beispiel:'
+    verification: Verifizierung
