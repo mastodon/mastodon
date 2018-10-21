@@ -48,14 +48,11 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def create
-
-    check_media
-
     @status = PostStatusService.new.call(current_user.account,
                                          status_params[:status],
                                          status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
                                          media_ids: status_params[:media_ids],
-                                         sensitive: status_params[:sensitive],
+                                         check_media,
                                          spoiler_text: status_params[:spoiler_text],
                                          visibility: status_params[:visibility],
                                          application: doorkeeper_token.application,
@@ -141,10 +138,12 @@ class Api::V1::StatusesController < Api::BaseController
           puts response.medical?
 
           if response.adult? || response.violence? || response.medical? then
-            status_params[:sensitive] = true
+            return true
           end
         end
       end
+
+      return false
     end
   end
 end
