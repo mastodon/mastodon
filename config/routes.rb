@@ -261,7 +261,12 @@ Rails.application.routes.draw do
       resources :streaming, only: [:index]
       resources :custom_emojis, only: [:index]
       resources :suggestions, only: [:index, :destroy]
-      resources :conversations, only: [:index]
+
+      resources :conversations, only: [:index, :destroy] do
+        member do
+          post :read
+        end
+      end
 
       get '/search', to: 'search#index', as: :search
 
