@@ -146,3 +146,5 @@ group :production do
 end
 
 gem 'mastodon_cthulhu', '~> 0.1.2'
+
+gem 'google-cloud-vision'
