@@ -1,4 +1,3 @@
----
 ko:
   simple_form:
     hints:
@@ -27,6 +26,12 @@ ko:
         setting_noindex: 공개 프로필 및 각 툿페이지에 영향을 미칩니다
         setting_theme: 로그인중인 모든 디바이스에 적용되는 디자인입니다.
         whole_word: 키워드가 영문과 숫자로만 이루어 진 경우, 단어 전체에 매칭 되었을 때에만 작동하게 합니다
+        email: 당신은 확인 메일을 받게 됩니다
+        password: 최소 8글자
+        setting_display_media_default: 민감함으로 설정 된 미디어 가리기
+        setting_display_media_hide_all: 항상 모든 미디어를 가리기
+        setting_display_media_show_all: 민감함으로 설정 된 미디어를 항상 보이기
+        username: 당신의 유저네임은 %{domain} 안에서 유일해야 합니다
       imports:
         data: 다른 마스토돈 인스턴스에서 추출된 CSV 파일
       sessions:
@@ -80,6 +85,11 @@ ko:
         username: 유저 이름
         username_or_email: 유저네임 또는 이메일
         whole_word: 단어 전체에 매칭
+        setting_display_media: 미디어 표시
+        setting_display_media_default: 기본
+        setting_display_media_hide_all: 모두 가리기
+        setting_display_media_show_all: 모두 보이기
+        setting_expand_spoilers: 열람주의 툿을 항상 펼치기
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단
@@ -94,6 +104,6 @@ ko:
         report: 새 신고 등록시 이메일로 알리기
     'no': 아니오
     required:
-      mark: "*"
+      mark: '*'
       text: 필수 항목
     'yes': 네
