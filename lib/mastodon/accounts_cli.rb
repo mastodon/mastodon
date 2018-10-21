@@ -252,6 +252,18 @@ module Mastodon
         end
       end
 
+      # Cleanup first 9 accounts on each dead servers
+      unless dead_servers.empty? || options[:dry_run]
+        dead_servers.each do |domain|
+          Account.where(domain: domain).each do |account|
+            SuspendAccountService.new.call(account)
+            account.destroy
+            culled += 1
+            say('.', :green, false)
+          end
+        end
+      end
+
       say
       say("Removed #{culled} accounts (#{dead_servers.size} dead servers)#{dry_run}", :green)
 
