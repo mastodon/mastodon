@@ -211,7 +211,7 @@ GEM
     fast_blank (1.0.0)
     fastimage (2.1.4)
     ffi (1.9.25)
-    fog-core (2.1.2)
+    fog-core (2.1.0)
       builder
       excon (~> 0.58)
       formatador (~> 0.2)
@@ -219,8 +219,8 @@ GEM
     fog-json (1.2.0)
       fog-core
       multi_json (~> 1.10)
-    fog-openstack (1.0.3)
-      fog-core (~> 2.1)
+    fog-openstack (0.3.7)
+      fog-core (>= 1.45, <= 2.1.0)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
     formatador (0.2.5)
@@ -678,8 +678,8 @@ DEPENDENCIES
   faker (~> 1.9)
   fast_blank (~> 1.0)
   fastimage
-  fog-core (~> 2.1)
-  fog-openstack (~> 1.0)
+  fog-core (<= 2.1.0)
+  fog-openstack (~> 0.3)
   fuubar (~> 2.3)
   goldfinger (~> 2.1)
   hamlit-rails (~> 0.2)
@@ -766,4 +766,4 @@ RUBY VERSION
    ruby 2.5.3p105
 
 BUNDLED WITH
-   1.16.5
+   1.16.6
