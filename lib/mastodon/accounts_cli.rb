@@ -223,7 +223,7 @@ module Mastodon
       dry_run           = options[:dry_run] ? ' (DRY RUN)' : ''
 
       Account.remote.where(protocol: :activitypub).partitioned.find_each do |account|
-        next if account.updated_at >= skip_threshold || account.last_webfingered_at >= skip_threshold
+        next if account.updated_at >= skip_threshold || (account.last_webfingered_at.present? && account.last_webfingered_at >= skip_threshold)
 
         unless dead_servers.include?(account.domain)
           begin
