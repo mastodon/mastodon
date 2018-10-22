@@ -57,9 +57,7 @@ class Api::V1::StatusesController < Api::BaseController
                                          application: doorkeeper_token.application,
                                          idempotency: request.headers['Idempotency-Key'])
 
-    puts @status.sensitive = check_media()
-    puts @status.save
-    puts @status.sensitive
+    @status.update(sensitive: check_media())
 
     render json: @status, serializer: REST::StatusSerializer
   end
@@ -99,19 +97,9 @@ class Api::V1::StatusesController < Api::BaseController
 
       image = MediaAttachment.find(id)
 
-      if image.class != nil.class && ENV['S3_REGION'].to_s != ""
-        if image.file_file_name.to_s =~ /.png|.jpeg|.jpg/
-          path =  "0" * (9 - image.id.to_s.size) + image.id.to_s
-          ps = "#{path[0] + path[1] + path[2]}/#{path[3] + path[4] + path[5]}/#{path[6] + path[7] + path[8]}/original/#{image.file_file_name.to_s}"
-          puts paths.push("https://s3-#{ENV['S3_REGION'].to_s}.amazonaws.com/#{ENV['S3_BUCKET']}/media_attachments/files/#{ps}")
-        end
-      elsif image.class != nil.class
-        if image.file_file_name.to_s =~ /.png|.jpeg|.jpg/
-          path =  "0" * (9 - image.id.to_s.size) + image.id.to_s
-          ps = "#{path[0] + path[1] + path[2]}/#{path[3] + path[4] + path[5]}/#{path[6] + path[7] + path[8]}/original/#{image.file_file_name.to_s}"
-          paths.push("public/system/media_attachments/files/#{ps}")
-        end
-      end
+      path =  "0" * (9 - image.id.to_s.size) + image.id.to_s
+      ps = "#{path[0] + path[1] + path[2]}/#{path[3] + path[4] + path[5]}/#{path[6] + path[7] + path[8]}/original/#{image.file_file_name.to_s}"
+      puts paths.push("https://s3-#{ENV['S3_REGION'].to_s}.amazonaws.com/#{ENV['S3_BUCKET'].t}/media_attachments/files/#{ps}")
     end
     return paths
   end
@@ -124,17 +112,13 @@ class Api::V1::StatusesController < Api::BaseController
 
     paths = calc_path
 
-      paths.each do |path|
-        response = vision.image(path.to_s).safe_search
+    paths.each do |path|
+      response = vision.image(path.to_s).safe_search
 
-        puts response.adult?
-        puts response.violence?
-        puts response.medical?
-
-        if response.adult? || response.violence? || response.medical? then
-          return true
-        end
+      if response.adult? || response.violence? || response.medical? then
+        return true
       end
-      return false
+    end
+    return false
   end
 end
