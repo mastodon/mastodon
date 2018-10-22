@@ -3,7 +3,7 @@ services:
 
   db:
     restart: always
-    image: postgres:9.6-alpine
+    image: postgres:10.5-alpine
     networks:
       - internal_network
 ### Uncomment to enable DB persistence
