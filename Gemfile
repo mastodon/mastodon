@@ -17,7 +17,7 @@ gem 'dotenv-rails', '~> 2.5'
 
 gem 'aws-sdk-s3', '~> 1.21', require: false
 gem 'fog-core', '<= 2.1.0'
-gem 'fog-openstack', '~> 0.3', require: false
+gem 'fog-openstack', '~> 1.0', require: false
 gem 'paperclip', '~> 6.0'
 gem 'paperclip-av-transcoder', '~> 0.6'
 gem 'streamio-ffmpeg', '~> 3.0'
