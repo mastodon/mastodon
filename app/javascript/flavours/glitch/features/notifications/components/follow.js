@@ -63,13 +63,13 @@ export default class NotificationFollow extends ImmutablePureComponent {
     //  Links to the display name.
     const displayName = account.get('display_name_html') || account.get('username');
     const link = (
-      <Permalink
+      <bdi><Permalink
         className='notification__display-name'
         href={account.get('url')}
         title={account.get('acct')}
         to={`/accounts/${account.get('id')}`}
         dangerouslySetInnerHTML={{ __html: displayName }}
-      />
+      /></bdi>
     );
 
     //  Renders.
