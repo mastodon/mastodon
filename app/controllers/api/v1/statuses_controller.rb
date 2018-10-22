@@ -1,5 +1,6 @@
 require "google/cloud/vision"
 require "json"
+require "open-uri"
 
 # frozen_string_literal: true
 
@@ -115,6 +116,7 @@ class Api::V1::StatusesController < Api::BaseController
     vision = Google::Cloud::Vision.new project: keys["project_id"]
 
     paths.each do |path|
+
       response = vision.image(path.to_s).safe_search
 
       if response.adult? || response.violence? || response.medical? then
