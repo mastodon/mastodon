@@ -47,11 +47,14 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def create
+
+    status_params[:sensitive] = true
+
     @status = PostStatusService.new.call(current_user.account,
                                          status_params[:status],
                                          status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
                                          media_ids: status_params[:media_ids],
-                                         sensitive: check_media(),
+                                         sensitive: status_params[:sensitive],
                                          spoiler_text: status_params[:spoiler_text],
                                          visibility: status_params[:visibility],
                                          application: doorkeeper_token.application,
@@ -85,38 +88,5 @@ class Api::V1::StatusesController < Api::BaseController
 
   def pagination_params(core_params)
     params.slice(:limit).permit(:limit).merge(core_params)
-  end
-
-  def calc_path
-
-    paths = Array.new
-
-    status_params[:media_ids].each do |id|
-
-      image = MediaAttachment.find(id)
-
-      path =  "0" * (9 - image.id.to_s.size) + image.id.to_s
-      ps = "#{path[0] + path[1] + path[2]}/#{path[3] + path[4] + path[5]}/#{path[6] + path[7] + path[8]}/original/#{image.file_file_name.to_s}"
-      puts paths.push("https://s3-#{ENV['S3_REGION'].to_s}.amazonaws.com/#{ENV['S3_BUCKET'].t}/media_attachments/files/#{ps}")
-    end
-    return paths
-  end
-
-  def check_media
-
-    env = JSON.parse(File.open("./key.json").read).to_h
-
-    vision = Google::Cloud::Vision.new project: env["project_id"].to_s
-
-    paths = calc_path
-
-    paths.each do |path|
-      response = vision.image(path.to_s).safe_search
-
-      if response.adult? || response.violence? || response.medical? then
-        return true
-      end
-    end
-    return true
   end
 end
