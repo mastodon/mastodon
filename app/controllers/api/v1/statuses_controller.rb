@@ -47,9 +47,6 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def create
-
-    status_params[:sensitive] = "true"
-
     @status = PostStatusService.new.call(current_user.account,
                                          status_params[:status],
                                          status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
