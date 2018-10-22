@@ -146,7 +146,9 @@ export function submitCompose(routerHistory) {
         routerHistory.push('/timelines/direct');
       } else if (response.data.visibility !== 'direct') {
         insertIfOnline('home');
-      } else if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
+      }
+
+      if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
         insertIfOnline('community');
         insertIfOnline('public');
       }
