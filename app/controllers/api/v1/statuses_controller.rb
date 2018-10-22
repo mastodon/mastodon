@@ -120,7 +120,7 @@ class Api::V1::StatusesController < Api::BaseController
 
     Dotenv.load
 
-    key_path = ENV['VISION_KEYFILE'].to_s
+    key_path = "./key.json"
     puts key_path
 
     if key_path.to_s != "" then
