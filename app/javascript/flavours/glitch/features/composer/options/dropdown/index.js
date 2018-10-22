@@ -131,7 +131,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
     this.state = {
       needsModalUpdate: false,
       open: false,
-      placement: null,
+      placement: 'bottom',
     };
   }
 
