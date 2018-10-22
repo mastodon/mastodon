@@ -124,7 +124,6 @@ class Api::V1::StatusesController < Api::BaseController
 
     paths = calc_path
 
-    if paths != nil
       paths.each do |path|
         response = vision.image(path.to_s).safe_search
 
@@ -136,11 +135,7 @@ class Api::V1::StatusesController < Api::BaseController
           return true
         end
       end
-
-      return false
-
-    else
-      return false
     end
+      return false
   end
 end
