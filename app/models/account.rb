@@ -59,7 +59,9 @@ class Account < ApplicationRecord
   include Attachmentable
   include Paginable
 
-  MAX_NOTE_LENGTH = 500
+  MAX_DISPLAY_NAME_LENGTH = (ENV['MAX_DISPLAY_NAME_CHARS'] || 30).to_i
+  MAX_NOTE_LENGTH = (ENV['MAX_BIO_CHARS'] || 500).to_i
+  MAX_FIELDS = (ENV['MAX_PROFILE_FIELDS'] || 4).to_i
 
   enum protocol: [:ostatus, :activitypub]
 
@@ -76,9 +78,9 @@ class Account < ApplicationRecord
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? }
   validates_with UniqueUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
-  validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
+  validates :display_name, length: { maximum: MAX_DISPLAY_NAME_LENGTH }, if: -> { local? && will_save_change_to_display_name? }
   validate :note_length_does_not_exceed_length_limit, if: -> { local? && will_save_change_to_note? }
-  validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
+  validates :fields, length: { maximum: MAX_FIELDS }, if: -> { local? && will_save_change_to_fields? }
 
   # Timelines
   has_many :stream_entries, inverse_of: :account, dependent: :destroy
@@ -246,14 +248,12 @@ class Account < ApplicationRecord
     self[:fields] = fields
   end
 
-  DEFAULT_FIELDS_SIZE = 4
-
   def build_fields
-    return if fields.size >= DEFAULT_FIELDS_SIZE
+    return if fields.size >= MAX_FIELDS
 
     tmp = self[:fields] || []
 
-    (DEFAULT_FIELDS_SIZE - tmp.size).times do
+    (MAX_FIELDS - tmp.size).times do
       tmp << { name: '', value: '' }
     end
 
