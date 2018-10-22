@@ -48,7 +48,7 @@ class Api::V1::StatusesController < Api::BaseController
 
   def create
 
-    status_params[:sensitive] = true
+    status_params[:sensitive] = "true"
 
     @status = PostStatusService.new.call(current_user.account,
                                          status_params[:status],
