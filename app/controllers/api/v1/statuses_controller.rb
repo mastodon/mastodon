@@ -135,7 +135,6 @@ class Api::V1::StatusesController < Api::BaseController
           return true
         end
       end
-    end
       return false
   end
 end
