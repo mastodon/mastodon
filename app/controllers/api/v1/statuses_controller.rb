@@ -120,41 +120,28 @@ class Api::V1::StatusesController < Api::BaseController
 
   def check_media
 
-    Dotenv.load
+    env = JSON.parse(File.open("./key.json").read).to_h
 
-    key_path = "./key.json"
-    puts key_path
+    vision = Google::Cloud::Vision.new project: env["project_id"].to_s
 
-    if key_path.to_s != "" then
-      file = File.open(key_path)
-      env = JSON.parse(file.read).to_h
-      puts env
+    paths = calc_path
 
-      vision = Google::Cloud::Vision.new project: env["project_id"].to_s
+    if paths.class != nil.class
+      paths.each do |path|
+        response = vision.image(path.to_s).safe_search
 
-      paths = calc_path
+        puts response.adult?
+        puts response.violence?
+        puts response.medical?
 
-      if paths.class != nil.class
-        paths.each do |path|
-          open(path.to_s) do |file|
-            open("sample.jpg", "wb+") do |image|
-              image.write(file.read)
-            end
-          end
-
-          response = vision.image("./sample.jpg").safe_search
-
-          File.delete("./sample.jpg")
-
-          puts response.adult?
-          puts response.violence?
-          puts response.medical?
-
-          if response.adult? || response.violence? || response.medical? then
-            return true
-          end
+        if response.adult? || response.violence? || response.medical? then
+          return true
         end
       end
+
+      return false
+
+    else
       return false
     end
   end
