@@ -12,7 +12,7 @@ services:
 
   redis:
     restart: always
-    image: redis:4.0-alpine
+    image: redis:5.0.0-alpine3.8
     networks:
       - internal_network
 ### Uncomment to enable REDIS persistence
