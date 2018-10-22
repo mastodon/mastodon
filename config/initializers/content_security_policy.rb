@@ -31,7 +31,6 @@ if Rails.env.production?
   end
 end
 
-
 # Report CSP violations to a specified URI
 # For further information see the following documentation:
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only

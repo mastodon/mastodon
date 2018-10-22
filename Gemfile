@@ -16,8 +16,8 @@ gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.5'
 
 gem 'aws-sdk-s3', '~> 1.21', require: false
-gem 'fog-core', '~> 2.1'
-gem 'fog-openstack', '~> 1.0', require: false
+gem 'fog-core', '<= 2.1.0'
+gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
 gem 'paperclip-av-transcoder', '~> 0.6'
 gem 'streamio-ffmpeg', '~> 3.0'
@@ -64,7 +64,7 @@ gem 'oj', '~> 3.6'
 gem 'ostatus2', '~> 2.0'
 gem 'ox', '~> 2.10'
 gem 'posix-spawn', git: 'https://github.com/rtomayko/posix-spawn', ref: '58465d2e213991f8afb13b984854a49fcdcc980c'
-gem 'pundit', '~> 1.1'
+gem 'pundit', '~> 2.0'
 gem 'premailer-rails'
 gem 'rack-attack', '~> 5.4'
 gem 'rack-cors', '~> 1.0', require: 'rack/cors'
@@ -82,7 +82,7 @@ gem 'simple-navigation', '~> 4.0'
 gem 'simple_form', '~> 4.0'
 gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.1.3'
-gem 'strong_migrations', '~> 0.2'
+gem 'strong_migrations', '~> 0.3'
 gem 'tty-command', '~> 0.8', require: false
 gem 'tty-prompt', '~> 0.17', require: false
 gem 'twitter-text', '~> 1.14'

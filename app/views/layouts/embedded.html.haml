@@ -4,6 +4,12 @@
     %meta{ charset: 'utf-8' }/
     %meta{ name: 'robots', content: 'noindex' }/
 
+    - if cdn_host?
+      %link{ rel: 'dns-prefetch', href: cdn_host }/
+
+    - if storage_host?
+      %link{ rel: 'dns-prefetch', href: storage_host }/
+
     = javascript_pack_tag "locales", integrity: true, crossorigin: 'anonymous'
     - if @theme
       - if @theme[:supported_locales].include? I18n.locale.to_s
@@ -12,4 +18,6 @@
         = javascript_pack_tag "locales/#{@theme[:flavour]}/en", integrity: true, crossorigin: 'anonymous'
     = render partial: 'layouts/theme', object: @core
     = render partial: 'layouts/theme', object: @theme
+
+  %body.embed
     = yield
