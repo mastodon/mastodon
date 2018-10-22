@@ -1,6 +1,7 @@
 require "google/cloud/vision"
 require "dotenv"
 require "json"
+require "open-uri"
 
 # frozen_string_literal: true
 
@@ -48,9 +49,6 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def create
-
-    status_params[:sensitive] = check_media
-
     @status = PostStatusService.new.call(current_user.account,
                                          status_params[:status],
                                          status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
@@ -60,6 +58,10 @@ class Api::V1::StatusesController < Api::BaseController
                                          visibility: status_params[:visibility],
                                          application: doorkeeper_token.application,
                                          idempotency: request.headers['Idempotency-Key'])
+
+    puts @status.sensitive = check_media()
+    puts @status.save
+    puts @status.sensitive
 
     render json: @status, serializer: REST::StatusSerializer
   end
@@ -134,7 +136,15 @@ class Api::V1::StatusesController < Api::BaseController
 
       if paths.class != nil.class
         paths.each do |path|
-          response = vision.image(path.to_s).safe_search
+          open(path.to_s) do |file|
+            open("sample.jpg", "wb+") do |image|
+              image.write(file.read)
+            end
+          end
+
+          response = vision.image("./sample.jpg").safe_search
+
+          File.delete("./sample.jpg")
 
           puts response.adult?
           puts response.violence?
