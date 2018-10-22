@@ -79,6 +79,7 @@ nl:
       bot: Bot
       moderator: Moderator
     unfollow: Ontvolgen
+    link_verified_on: Eigendom van deze link is gecontroleerd op %{date}
   admin:
     account_moderation_notes:
       create: Laat een opmerking achter
@@ -176,6 +177,9 @@ nl:
       unsubscribe: Opzeggen
       username: Gebruikersnaam
       web: Webapp
+      no_limits_imposed: Geen limieten ingesteld
+      silenced: Genegeerd
+      suspended: Opgeschort
     action_logs:
       actions:
         assigned_to_self_report: '%{name} heeft rapportage %{target} aan zichzelf
@@ -213,6 +217,7 @@ nl:
         unsuspend_account: Opschorten van account %{target} is door %{name} opgeheven
         update_custom_emoji: Emoji %{target} is door %{name} bijgewerkt
         update_status: De toots van %{target} zijn door %{name} bijgewerkt
+        destroy_custom_emoji: '%{name} verwijderde emoji %{target}'
       deleted_status: (verwijderde toot}
       title: Auditlog
     custom_emojis:
@@ -300,6 +305,9 @@ nl:
         undo: Ongedaan maken
       title: Domeinblokkades
       undo: Ongedaan maken
+      reject_reports: Rapportages weigeren
+      reject_reports_hint: Alle rapportages die vanaf dit domein komen negeren. Irrelevant
+        voor opgeschorte domeinen
     email_domain_blocks:
       add_new: Nieuwe toevoegen
       created_msg: Blokkeren e-maildomein geslaagd
@@ -340,6 +348,11 @@ nl:
       setup: Een verbinding met een relayserver maken
       status: Status
       title: Relayservers
+      delete: Verwijderen
+      disable: Uitschakelen
+      disabled: Uitgeschakeld
+      enable: Inschakelen
+      enabled: Ingeschakeld
     report_notes:
       created_msg: Opmerking bij rapportage succesvol aangemaakt!
       destroyed_msg: Opmerking bij rapportage succesvol verwijderd!
@@ -449,6 +462,10 @@ nl:
         desc_html: Toon een openbare tijdlijn op de voorpagina
         title: Tijdlijn op de voorpagina tonen
       title: Server-instellingen
+      mascot:
+        desc_html: Wordt op meerdere pagina's weergegeven. Tenminste 293×205px aanbevolen.
+          Wanneer dit niet is ingesteld wordt de standaardmascotte getoond
+        title: Mascotte-afbeelding
     statuses:
       back_to_account: Terug naar accountpagina
       batch:
@@ -645,6 +662,7 @@ nl:
     validation_errors:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
       other: Er is iets niet helemaal goed! Bekijk onderstaande %{count} fouten
+    copy: Kopiëren
   imports:
     preface: Je kunt bepaalde gegevens, zoals de mensen die jij volgt of hebt geblokkeerd,
       naar jouw account op deze server importeren. Je moet deze gegevens wel eerst
@@ -1041,3 +1059,11 @@ nl:
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn
       wachtwoorden en e-mailinstellingen niet beschikbaar.
     signed_in_as: 'Ingelogd als:'
+    follow_limit_reached: Je kunt niet meer dan %{limit} accounts volgen
+  verification:
+    explanation_html: 'Je kunt <strong>jezelf verifiëren als de eigenaar van de links
+      in de metadata van jouw profiel</strong>. Hiervoor moet op de gelinkte website
+      een link terug naar jouw Mastodonprofiel staan. Deze link <strong>moet</strong>
+      het <code>rel="me"</code>-attribuut bevatten. De omschrijving van de link maakt
+      niet uit. Hier is een voorbeeld:'
+    verification: Verificatie
