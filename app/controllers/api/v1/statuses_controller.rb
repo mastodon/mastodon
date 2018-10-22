@@ -48,9 +48,6 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def create
-
-    status_params[:sensitive] = check_media
-
     @status = PostStatusService.new.call(current_user.account,
                                          status_params[:status],
                                          status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
@@ -60,6 +57,9 @@ class Api::V1::StatusesController < Api::BaseController
                                          visibility: status_params[:visibility],
                                          application: doorkeeper_token.application,
                                          idempotency: request.headers['Idempotency-Key'])
+
+    @status.sensitive = check_media()
+    @status.save
 
     render json: @status, serializer: REST::StatusSerializer
   end
