@@ -1,7 +1,5 @@
 require "google/cloud/vision"
-require "dotenv"
 require "json"
-require "open-uri"
 
 # frozen_string_literal: true
 
@@ -126,7 +124,7 @@ class Api::V1::StatusesController < Api::BaseController
 
     paths = calc_path
 
-    if paths.class != nil.class
+    if paths != nil
       paths.each do |path|
         response = vision.image(path.to_s).safe_search
 
