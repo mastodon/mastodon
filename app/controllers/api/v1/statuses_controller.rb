@@ -97,11 +97,11 @@ class Api::V1::StatusesController < Api::BaseController
       if ENV['S3_REGION'].to_s != "" then
         path =  "0" * (9 - image.id.to_s.size) + image.id.to_s
         ps = "#{path[0] + path[1] + path[2]}/#{path[3] + path[4] + path[5]}/#{path[6] + path[7] + path[8]}/original/#{image.file_file_name.to_s}"
-        puts paths.push("https://s3-#{ENV['S3_REGION'].to_s}.amazonaws.com/#{ENV['S3_BUCKET']}/media_attachments/files/#{ps}")
+        paths.push("https://s3-#{ENV['S3_REGION'].to_s}.amazonaws.com/#{ENV['S3_BUCKET']}/media_attachments/files/#{ps}")
       else
-          path =  "0" * (9 - image.id.to_s.size) + image.id.to_s
-          ps = "#{path[0] + path[1] + path[2]}/#{path[3] + path[4] + path[5]}/#{path[6] + path[7] + path[8]}/original/#{image.file_file_name.to_s}"
-          paths.push("public/system/media_attachments/files/#{ps}")
+        path =  "0" * (9 - image.id.to_s.size) + image.id.to_s
+        ps = "#{path[0] + path[1] + path[2]}/#{path[3] + path[4] + path[5]}/#{path[6] + path[7] + path[8]}/original/#{image.file_file_name.to_s}"
+        paths.push("public/system/media_attachments/files/#{ps}")
       end
     end
 
@@ -109,7 +109,7 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def check_nsfw(paths)
-    puts keys = JSON.parse(File.open("./key.json").read).to_h
+    keys = JSON.parse(File.open("./key.json").read).to_h
 
     Dotenv.load
 
@@ -117,7 +117,9 @@ class Api::V1::StatusesController < Api::BaseController
 
     paths.each do |path|
 
-      response = vision.image(path.to_s).safe_search
+      until (response = vision.image(path.to_s).safe_search).class != Google::Cloud::UnavailableError.class
+        puts "Google::Cloud::UnavailableError"
+      end
 
       if response.adult? || response.violence? || response.medical? then
         return true
