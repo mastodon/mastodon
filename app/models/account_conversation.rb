@@ -10,6 +10,7 @@
 #  status_ids              :bigint(8)        default([]), not null, is an Array
 #  last_status_id          :bigint(8)
 #  lock_version            :integer          default(0), not null
+#  unread                  :boolean          default(FALSE), not null
 #
 
 class AccountConversation < ApplicationRecord
@@ -58,6 +59,7 @@ class AccountConversation < ApplicationRecord
     def add_status(recipient, status)
       conversation = find_or_initialize_by(account: recipient, conversation_id: status.conversation_id, participant_account_ids: participants_from_status(recipient, status))
       conversation.status_ids << status.id
+      conversation.unread = status.account_id != recipient.id
       conversation.save
       conversation
     rescue ActiveRecord::StaleObjectError
@@ -85,7 +87,7 @@ class AccountConversation < ApplicationRecord
     private
 
     def participants_from_status(recipient, status)
-      ((status.mentions.pluck(:account_id) + [status.account_id]).uniq - [recipient.id]).sort
+      ((status.active_mentions.pluck(:account_id) + [status.account_id]).uniq - [recipient.id]).sort
     end
   end
 

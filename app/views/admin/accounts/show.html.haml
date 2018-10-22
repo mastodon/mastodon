@@ -106,7 +106,7 @@
       - if @account.user&.otp_required_for_login?
         = link_to t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete, class: 'button' if can?(:disable_2fa, @account.user)
       - unless @account.memorial?
-        = link_to t('admin.accounts.memorialize'), memorialize_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button' if can?(:memorialize, @account)
+        = link_to t('admin.accounts.memorialize'), memorialize_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button button--destructive' if can?(:memorialize, @account)
     - else
       = link_to t('admin.accounts.redownload'), redownload_admin_account_path(@account.id), method: :post, class: 'button' if can?(:redownload, @account)
 
@@ -114,7 +114,7 @@
     - if @account.silenced?
       = link_to t('admin.accounts.undo_silenced'), admin_account_silence_path(@account.id), method: :delete, class: 'button' if can?(:unsilence, @account)
     - else
-      = link_to t('admin.accounts.silence'), admin_account_silence_path(@account.id), method: :post, class: 'button' if can?(:silence, @account)
+      = link_to t('admin.accounts.silence'), admin_account_silence_path(@account.id), method: :post, class: 'button button--destructive' if can?(:silence, @account)
 
     - if @account.local?
       - unless @account.user_confirmed?
@@ -123,7 +123,7 @@
     - if @account.suspended?
       = link_to t('admin.accounts.undo_suspension'), admin_account_suspension_path(@account.id), method: :delete, class: 'button' if can?(:unsuspend, @account)
     - else
-      = link_to t('admin.accounts.perform_full_suspension'), new_admin_account_suspension_path(@account.id), class: 'button' if can?(:suspend, @account)
+      = link_to t('admin.accounts.perform_full_suspension'), new_admin_account_suspension_path(@account.id), class: 'button button--destructive' if can?(:suspend, @account)
 
 - if !@account.local? && @account.hub_url.present?
   %hr.spacer/

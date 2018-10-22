@@ -36,6 +36,17 @@ class REST::StatusSerializer < ActiveModel::Serializer
     !current_user.nil?
   end
 
+  def visibility
+    # This visibility is masked behind "private"
+    # to avoid API changes because there are no
+    # UX differences
+    if object.limited_visibility?
+      'private'
+    else
+      object.visibility
+    end
+  end
+
   def uri
     OStatus::TagManager.instance.uri_for(object)
   end
@@ -88,7 +99,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def ordered_mentions
-    object.mentions.to_a.sort_by(&:id)
+    object.active_mentions.to_a.sort_by(&:id)
   end
 
   class ApplicationSerializer < ActiveModel::Serializer
