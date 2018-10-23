@@ -5328,11 +5328,11 @@ noscript {
   }
 
   &__account {
-    background: #444b5d;
+    background: lighten($ui-base-color, 13%);
   }
 
   &__lists {
-    background: #444b5d;
+    background: lighten($ui-base-color, 13%);
     height: 50vh;
     border-radius: 0 0 8px 8px;
     overflow-y: auto;
@@ -5340,13 +5340,13 @@ noscript {
 
   .list {
     padding: 10px;
-    border-bottom: 1px solid #393f4f;
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
   }
 
   .list__wrapper {
     display: flex;
   }
-  
+
   .list__display-name {
     flex: 1 1 auto;
     overflow: hidden;
