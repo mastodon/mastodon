@@ -427,7 +427,7 @@ code {
 
     &__append {
       position: absolute;
-      right: 1px;
+      right: 3px;
       top: 1px;
       padding: 10px;
       padding-bottom: 9px;
@@ -460,8 +460,19 @@ code {
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
-  box-shadow: 0 0 5px rgba($base-shadow-color, 0.2);
   text-align: center;
+
+  &.notice {
+    border: 1px solid rgba($valid-value-color, 0.5);
+    background: rgba($valid-value-color, 0.25);
+    color: $valid-value-color;
+  }
+
+  &.alert {
+    border: 1px solid rgba($error-value-color, 0.5);
+    background: rgba($error-value-color, 0.25);
+    color: $error-value-color;
+  }
 
   p {
     margin-bottom: 15px;
@@ -551,12 +562,12 @@ code {
 .oauth-prompt,
 .follow-prompt {
   margin-bottom: 30px;
-  text-align: center;
   color: $darker-text-color;
 
   h2 {
     font-size: 16px;
     margin-bottom: 30px;
+    text-align: center;
   }
 
   strong {

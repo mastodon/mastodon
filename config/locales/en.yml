@@ -128,7 +128,7 @@ en:
         most_recent: Most recent
         title: Order
       outbox_url: Outbox URL
-      perform_full_suspension: Perform full suspension
+      perform_full_suspension: Suspend
       profile_url: Profile URL
       promote: Promote
       protocol: Protocol
@@ -177,6 +177,7 @@ en:
         create_domain_block: "%{name} blocked domain %{target}"
         create_email_domain_block: "%{name} blacklisted e-mail domain %{target}"
         demote_user: "%{name} demoted user %{target}"
+        destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_block: "%{name} unblocked domain %{target}"
         destroy_email_domain_block: "%{name} whitelisted e-mail domain %{target}"
         destroy_status: "%{name} removed status by %{target}"
@@ -262,6 +263,8 @@ en:
         title: New domain block
       reject_media: Reject media files
       reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
+      reject_reports: Reject reports
+      reject_reports_hint: Ignore all reports coming from this domain. Irrelevant for suspensions
       severities:
         noop: None
         silence: Silence
@@ -345,9 +348,7 @@ en:
       reported_by: Reported by
       resolved: Resolved
       resolved_msg: Report successfully resolved!
-      silence_account: Silence account
       status: Status
-      suspend_account: Suspend account
       title: Reports
       unassign: Unassign
       unresolved: Unresolved
@@ -369,7 +370,7 @@ en:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to instance thumbnail
         title: Hero image
       mascot:
-        desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to instance thumbnail
+        desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
         title: Mascot image
       peers_api_enabled:
         desc_html: Domain names this instance has encountered in the fediverse
