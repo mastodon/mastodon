@@ -178,7 +178,7 @@ export function submitCompose(routerHistory, withCommunity) {
         insertIfOnline('home');
       }
       
-      if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
+      if (response.data.visibility === 'public') {
         if (hasDefaultHashtag) {
           // Refresh the community timeline only if there is default hashtag
           insertIfOnline('community');
