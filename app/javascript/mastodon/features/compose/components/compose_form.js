@@ -92,7 +92,7 @@ class ComposeForm extends ImmutablePureComponent {
       return;
     }
 
-    this.props.onSubmit(this.context.router.history, withCommunity);
+    this.props.onSubmit(this.context.router ? this.context.router.history : null, withCommunity);
   }
 
   handleSubmitWithoutCommunity = () => {
