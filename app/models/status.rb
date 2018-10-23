@@ -25,6 +25,8 @@
 #
 
 class Status < ApplicationRecord
+  before_destroy :unlink_from_conversations
+
   include Paginable
   include Streamable
   include Cacheable
@@ -36,7 +38,7 @@ class Status < ApplicationRecord
 
   update_index('statuses#status', :proper) if Chewy.enabled?
 
-  enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
+  enum visibility: [:public, :unlisted, :private, :direct, :limited], _suffix: :visibility
 
   belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
 
@@ -50,7 +52,8 @@ class Status < ApplicationRecord
   has_many :favourites, inverse_of: :status, dependent: :destroy
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
   has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :thread
-  has_many :mentions, dependent: :destroy
+  has_many :mentions, dependent: :destroy, inverse_of: :status
+  has_many :active_mentions, -> { active }, class_name: 'Mention', inverse_of: :status
   has_many :media_attachments, dependent: :nullify
 
   has_and_belongs_to_many :tags
@@ -89,7 +92,7 @@ class Status < ApplicationRecord
                    :status_stat,
                    :tags,
                    :stream_entry,
-                   mentions: :account,
+                   active_mentions: :account,
                    reblog: [
                      :account,
                      :application,
@@ -98,7 +101,7 @@ class Status < ApplicationRecord
                      :media_attachments,
                      :conversation,
                      :status_stat,
-                     mentions: :account,
+                     active_mentions: :account,
                    ],
                    thread: :account
 
@@ -175,7 +178,11 @@ class Status < ApplicationRecord
   end
 
   def hidden?
-    private_visibility? || direct_visibility?
+    private_visibility? || direct_visibility? || limited_visibility?
+  end
+
+  def distributable?
+    public_visibility? || unlisted_visibility?
   end
 
   def with_media?
@@ -239,6 +246,10 @@ class Status < ApplicationRecord
       left_outer_joins(:status_stat).select('statuses.id, greatest(statuses.updated_at, status_stats.updated_at) AS updated_at')
     end
 
+    def selectable_visibilities
+      visibilities.keys - %w(direct limited)
+    end
+
     def in_chosen_languages(account)
       where(language: nil).or where(language: account.chosen_languages)
     end
@@ -249,7 +260,7 @@ class Status < ApplicationRecord
 
     def as_direct_timeline(account, limit = 20, max_id = nil, since_id = nil, cache_ids = false)
       # direct timeline is mix of direct message from_me and to_me.
-      # 2 querys are executed with pagination.
+      # 2 queries are executed with pagination.
       # constant expression using arel_table is required for partial index
 
       # _from_me part does not require any timeline filters
@@ -484,5 +495,16 @@ class Status < ApplicationRecord
 
     reblog&.decrement_count!(:reblogs_count) if reblog?
     thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
+  end
+
+  def unlink_from_conversations
+    return unless direct_visibility?
+
+    mentioned_accounts = mentions.includes(:account).map(&:account)
+    inbox_owners       = mentioned_accounts.select(&:local?) + (account.local? ? [account] : [])
+
+    inbox_owners.each do |inbox_owner|
+      AccountConversation.remove_status(inbox_owner, self)
+    end
   end
 end

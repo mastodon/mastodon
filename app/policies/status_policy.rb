@@ -14,7 +14,7 @@ class StatusPolicy < ApplicationPolicy
   def show?
     return false if local_only? && (current_account.nil? || !current_account.local?)
 
-    if direct?
+    if requires_mention?
       owned? || mention_exists?
     elsif private?
       owned? || following_author? || mention_exists?
@@ -24,7 +24,7 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def reblog?
-    !direct? && (!private? || owned?) && show? && !blocking_author?
+    !requires_mention? && (!private? || owned?) && show? && !blocking_author?
   end
 
   def favourite?
@@ -43,8 +43,8 @@ class StatusPolicy < ApplicationPolicy
 
   private
 
-  def direct?
-    record.direct_visibility?
+  def requires_mention?
+    record.direct_visibility? || record.limited_visibility?
   end
 
   def owned?

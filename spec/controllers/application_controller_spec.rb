@@ -94,7 +94,7 @@ describe ApplicationController, type: :controller do
 
   describe 'helper_method :current_theme' do
     it 'returns "default" when theme wasn\'t changed in admin settings' do
-      allow(Setting).to receive(:default_settings).and_return({'theme' => 'default'})
+      allow(Setting).to receive(:default_settings).and_return({ 'theme' => 'default' })
 
       expect(controller.view_context.current_theme).to eq 'default'
     end
@@ -197,7 +197,7 @@ describe ApplicationController, type: :controller do
   describe 'raise_not_found' do
     it 'raises error' do
       controller.params[:unmatched_route] = 'unmatched'
-      expect{ controller.raise_not_found }.to raise_error(ActionController::RoutingError, 'No route matches unmatched')
+      expect { controller.raise_not_found }.to raise_error(ActionController::RoutingError, 'No route matches unmatched')
     end
   end
 

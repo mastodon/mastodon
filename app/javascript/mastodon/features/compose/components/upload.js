@@ -11,8 +11,12 @@ const messages = defineMessages({
   description: { id: 'upload_form.description', defaultMessage: 'Describe for the visually impaired' },
 });
 
-@injectIntl
-export default class Upload extends ImmutablePureComponent {
+export default @injectIntl
+class Upload extends ImmutablePureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
@@ -37,7 +41,7 @@ export default class Upload extends ImmutablePureComponent {
 
   handleSubmit = () => {
     this.handleInputBlur();
-    this.props.onSubmit();
+    this.props.onSubmit(this.context.router.history);
   }
 
   handleUndoClick = () => {

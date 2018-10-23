@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Api::V1::Timelines::HomeController do
   render_views
 
-  let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice'), current_sign_in_at: 1.day.ago) }
+  let(:user) { Fabricate(:user, account: Fabricate(:account, username: 'alice'), current_sign_in_at: 1.day.ago) }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }

@@ -46,8 +46,8 @@ body.rtl {
   .column-header__buttons {
     left: 0;
     right: auto;
-    margin-left: -15px;
-    margin-right: 0;
+    margin-left: 0;
+    margin-right: -15px;
   }
 
   .column-inline-form .icon-button {
@@ -76,10 +76,6 @@ body.rtl {
   .setting-toggle {
     margin-left: 0;
     margin-right: 8px;
-  }
-
-  .setting-meta__label {
-    float: left;
   }
 
   .status__avatar {
@@ -145,6 +141,19 @@ body.rtl {
     margin-right: 6px;
   }
 
+  .status__action-bar {
+
+    &__counter {
+      margin-right: 0;
+      margin-left: 11px;
+
+      .status__action-bar-button {
+        margin-right: 0;
+        margin-left: 4px;
+      }
+    }
+  }
+
   .status__action-bar-button {
     float: right;
     margin-right: 0;
@@ -187,6 +196,10 @@ body.rtl {
     right: -2.14285714em;
   }
 
+  .admin-wrapper {
+    direction: rtl;
+  }
+
   .admin-wrapper .sidebar ul a i.fa,
   a.table-action-link i.fa {
     margin-right: 0;
@@ -205,12 +218,33 @@ body.rtl {
     right: 0;
   }
 
+  .simple_form .input.radio_buttons .radio {
+    left: auto;
+    right: 0;
+  }
+
+  .simple_form .input.radio_buttons .radio > label {
+    padding-right: 28px;
+    padding-left: 0;
+  }
+
   .simple_form .input-with-append .input input {
     padding-left: 142px;
     padding-right: 0;
   }
 
-  .simple_form .input-with-append .append {
+  .simple_form .input.boolean label.checkbox {
+    left: auto;
+    right: 0;
+  }
+
+  .simple_form .input.boolean .label_input,
+  .simple_form .input.boolean .hint {
+    padding-left: 0;
+    padding-right: 28px;
+  }
+
+  .simple_form .label_input__append {
     right: auto;
     left: 0;
 
@@ -219,6 +253,10 @@ body.rtl {
       left: 0;
       background-image: linear-gradient(to left, rgba($ui-base-color, 0), $ui-base-color);
     }
+  }
+
+  .simple_form select {
+    background: darken($ui-base-color, 10%) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 12%))}'/></svg>") no-repeat left 8px center / auto 16px;
   }
 
   .table th,
@@ -234,6 +272,10 @@ body.rtl {
   .landing-page .header-wrapper .mascot {
     right: 60px;
     left: auto;
+  }
+
+  .landing-page__call-to-action .row__information-board {
+    direction: rtl;
   }
 
   .landing-page .header .hero .floats .float-1 {
@@ -284,5 +326,29 @@ body.rtl {
         padding-right: 5px;
       }
     }
+  }
+
+  .public-layout {
+    .header {
+      .nav-button {
+        margin-left: 8px;
+        margin-right: 0;
+      }
+    }
+
+    .public-account-header__tabs {
+      margin-left: 0;
+      margin-right: 20px;
+    }
+  }
+}
+
+.landing-page__information {
+  .account__display-name {
+    margin-right: 0;
+  }
+
+  .account__avatar-wrapper {
+    margin-left: 0;
   }
 }

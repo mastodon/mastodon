@@ -1,2 +1,58 @@
 ---
 ast:
+  simple_form:
+    hints:
+      defaults:
+        autofollow: La xente que se rexistre pente la invitación va siguite automáticamente
+        bot: Esta cuenta fai principalmente aiciones automatizaes y podría nun supervisase
+        digest: Namái s'unvia tres un periodu llargu d'inactividá y namái si recibiesti cualesquier mensaxe personal na to ausencia
+        display_name:
+          one: Queda <span class="name-counter">1</span> caráuter
+          other: Queden <span class="name-counter">%{count}</span> caráuteres
+        irreversible: Los toots peñeraos van desapaecer de mou irreversible, magar que se desanicie la peñera dempués
+        note:
+          one: Queda <span class="note-counter">1</span> caráuter
+          other: Queden <span class="note-counter">%{count}</span> caráuteres
+        setting_hide_network: La xente que sigas y teas siguiendo nun va amosase nel perfil
+        setting_theme: Afeuta al aspeutu de Mastodon cuando anicies sesión dende cualesquier preséu.
+    labels:
+      account:
+        fields:
+          name: Etiqueta
+          value: Conteníu
+      defaults:
+        avatar: Avatar
+        bot: Esta cuenta ye d'un robó
+        chosen_languages: Peñera de llingües
+        confirm_new_password: Confirmación de la contraseña nueva
+        current_password: Contraseña actual
+        data: Datos
+        display_name: Nome a amosar
+        fields: Datos meta del perfil
+        header: Testera
+        locale: Llingua de la interfaz
+        locked: Bloquiar cuenta
+        new_password: Contraseña nueva
+        note: Bio
+        otp_attempt: Códigu de verificación en dos pasos
+        password: Contraseña
+        setting_auto_play_gif: Reproducir GIFs automáticamente
+        setting_default_language: Llingua d'espublización
+        setting_default_privacy: Privacidá d'espublizaciones
+        severity: Severidá
+        username: Nome d'usuariu
+        username_or_email: Nome d'usuariu o corréu
+      interactions:
+        must_be_follower: Bloquiar avisos de persones que nun son siguidores
+        must_be_following: Bloquiar avisos de persones que nun sigues
+        must_be_following_dm: Bloquiar mensaxes direutos de persones que nun sigues
+      notification_emails:
+        favourite: Unviar un corréu cuando daquién conseñe como favoritu los tos estaos
+        follow: Unviar un corréu cuando daquién te siga
+        follow_request: Unviar un corréu cuando daquién solicite siguite
+        mention: Unviar un corréu cuando daquién te mente
+    'no': Non
+    required:
+      mark: "*"
+      text: ríquese
+    'yes': Sí
