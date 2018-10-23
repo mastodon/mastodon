@@ -58,6 +58,9 @@ class Api::V1::StatusesController < Api::BaseController
                                          application: doorkeeper_token.application,
                                          idempotency: request.headers['Idempotency-Key'])
 
+    logger.debug @status.sensitive
+    logger.debug check_nsfw(set_image_path)
+
     render json: @status, serializer: REST::StatusSerializer
   end
 
@@ -97,11 +100,11 @@ class Api::V1::StatusesController < Api::BaseController
       if ENV['S3_REGION'].to_s != "" then
         path =  "0" * (9 - image.id.to_s.size) + image.id.to_s
         ps = "#{path[0] + path[1] + path[2]}/#{path[3] + path[4] + path[5]}/#{path[6] + path[7] + path[8]}/original/#{image.file_file_name.to_s}"
-        paths.push("https://s3-#{ENV['S3_REGION'].to_s}.amazonaws.com/#{ENV['S3_BUCKET']}/media_attachments/files/#{ps}")
+        logger.debug paths.push("https://s3-#{ENV['S3_REGION'].to_s}.amazonaws.com/#{ENV['S3_BUCKET']}/media_attachments/files/#{ps}")
       else
         path =  "0" * (9 - image.id.to_s.size) + image.id.to_s
         ps = "#{path[0] + path[1] + path[2]}/#{path[3] + path[4] + path[5]}/#{path[6] + path[7] + path[8]}/original/#{image.file_file_name.to_s}"
-        paths.push("public/system/media_attachments/files/#{ps}")
+        logger.debug paths.push("public/system/media_attachments/files/#{ps}")
       end
     end
 
@@ -115,15 +118,18 @@ class Api::V1::StatusesController < Api::BaseController
 
     vision = Google::Cloud::Vision.new project: keys["project_id"]
 
+    logger.debug keys
+    logger.debug vision
+
     paths.each do |path|
 
       response = vision.image(path.to_s)
 
-      res = response.safe_search
+      logger.debug res = response.safe_search
 
-      until res.class == SafeSearch.class
+      until res.class != SafeSearch.class
         puts "Google Cloud Vision usng ......"
-        res = response.safe_search
+        logger.debug res = response.safe_search
       end
 
       if res.adult? || res.violence? || res.medical? then
