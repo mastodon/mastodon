@@ -1,11 +1,17 @@
 ---
 name: Feature Request
-about: Suggest an idea for this project
+about: I have a suggestion
 
 ---
 
-[Issue text goes here].
+<!-- Please use a concise and distinct title for the issue -->
 
-* * * *
+<!-- Consider: Could it be implemented as a 3rd party app using the REST API instead? -->
 
-- [ ] I searched or browsed the repo’s other issues to ensure this is not a duplicate.
+### Pitch
+
+<!-- Describe your idea for a feature. Make sure it has not already been suggested/implemented/turned down before -->
+
+### Motivation
+
+<!-- Why do you think this feature is needed? Who would benefit from it? -->
