@@ -1,3 +1,4 @@
+---
 ko:
   simple_form:
     hints:
@@ -10,6 +11,7 @@ ko:
         display_name:
           one: <span class="name-counter">1</span> 글자 남음
           other: <span class="name-counter">%{count}</span> 글자 남음
+        email: 당신은 확인 메일을 받게 됩니다
         fields: 당신의 프로파일에 최대 4개까지 표 형식으로 나타낼 수 있습니다
         header: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 다운스케일 됨
         inbox_url: 사용 할 릴레이 서버의 프론트페이지에서 URL을 복사합니다
@@ -19,19 +21,18 @@ ko:
         note:
           one: <span class="note-counter">1</span> 글자 남음
           other: <span class="note-counter">%{count}</span> 글자 남음
+        password: 최소 8글자
         phrase: 툿 내용이나 CW 내용 안에서 대소문자 구분 없이 매칭 됩니다
         scopes: 애플리케이션에 허용할 API들입니다. 최상위 스코프를 선택하면 개별적인 것은 선택하지 않아도 됩니다.
         setting_default_language: 작성한 툿의 언어는 자동으로 인식할 수 있지만, 언제나 정확한 건 아닙니다
-        setting_hide_network: 나를 팔로우 하는 사람들과 내가 팔로우 하는 사람들이 내 프로필에 표시되지 않게 합니다
-        setting_noindex: 공개 프로필 및 각 툿페이지에 영향을 미칩니다
-        setting_theme: 로그인중인 모든 디바이스에 적용되는 디자인입니다.
-        whole_word: 키워드가 영문과 숫자로만 이루어 진 경우, 단어 전체에 매칭 되었을 때에만 작동하게 합니다
-        email: 당신은 확인 메일을 받게 됩니다
-        password: 최소 8글자
         setting_display_media_default: 민감함으로 설정 된 미디어 가리기
         setting_display_media_hide_all: 항상 모든 미디어를 가리기
         setting_display_media_show_all: 민감함으로 설정 된 미디어를 항상 보이기
+        setting_hide_network: 나를 팔로우 하는 사람들과 내가 팔로우 하는 사람들이 내 프로필에 표시되지 않게 합니다
+        setting_noindex: 공개 프로필 및 각 툿페이지에 영향을 미칩니다
+        setting_theme: 로그인중인 모든 디바이스에 적용되는 디자인입니다.
         username: 당신의 유저네임은 %{domain} 안에서 유일해야 합니다
+        whole_word: 키워드가 영문과 숫자로만 이루어 진 경우, 단어 전체에 매칭 되었을 때에만 작동하게 합니다
       imports:
         data: 다른 마스토돈 인스턴스에서 추출된 CSV 파일
       sessions:
@@ -74,6 +75,11 @@ ko:
         setting_default_privacy: 툿 프라이버시
         setting_default_sensitive: 미디어를 언제나 민감한 컨텐츠로 설정
         setting_delete_modal: 툿 삭제 전 확인 창을 표시
+        setting_display_media: 미디어 표시
+        setting_display_media_default: 기본
+        setting_display_media_hide_all: 모두 가리기
+        setting_display_media_show_all: 모두 보이기
+        setting_expand_spoilers: 열람주의 툿을 항상 펼치기
         setting_hide_network: 내 네트워크 숨기기
         setting_noindex: 검색엔진의 인덱싱을 거절
         setting_reduce_motion: 애니메이션 줄이기
@@ -85,11 +91,6 @@ ko:
         username: 유저 이름
         username_or_email: 유저네임 또는 이메일
         whole_word: 단어 전체에 매칭
-        setting_display_media: 미디어 표시
-        setting_display_media_default: 기본
-        setting_display_media_hide_all: 모두 가리기
-        setting_display_media_show_all: 모두 보이기
-        setting_expand_spoilers: 열람주의 툿을 항상 펼치기
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단
@@ -104,6 +105,6 @@ ko:
         report: 새 신고 등록시 이메일로 알리기
     'no': 아니오
     required:
-      mark: '*'
+      mark: "*"
       text: 필수 항목
     'yes': 네
