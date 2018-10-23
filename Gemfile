@@ -16,8 +16,8 @@ gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.5'
 
 gem 'aws-sdk-s3', '~> 1.21', require: false
-gem 'fog-core', '~> 2.1'
-gem 'fog-openstack', '~> 1.0', require: false
+gem 'fog-core', '<= 2.1.0'
+gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
 gem 'paperclip-av-transcoder', '~> 0.6'
 gem 'streamio-ffmpeg', '~> 3.0'
@@ -81,7 +81,7 @@ gem 'simple-navigation', '~> 4.0'
 gem 'simple_form', '~> 4.0'
 gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.1.3'
-gem 'strong_migrations', '~> 0.2'
+gem 'strong_migrations', '~> 0.3'
 gem 'tty-command', '~> 0.8', require: false
 gem 'tty-prompt', '~> 0.17', require: false
 gem 'twitter-text', '~> 1.14'
@@ -114,7 +114,7 @@ group :test do
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.16', require: false
   gem 'webmock', '~> 3.4'
-  gem 'parallel_tests', '~> 2.23'
+  gem 'parallel_tests', '~> 2.24'
 end
 
 group :development do

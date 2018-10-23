@@ -3,9 +3,11 @@
 class Api::V1::ConversationsController < Api::BaseController
   LIMIT = 20
 
-  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }
+  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, only: :index
+  before_action -> { doorkeeper_authorize! :write, :'write:conversations' }, except: :index
   before_action :require_user!
-  after_action :insert_pagination_headers
+  before_action :set_conversation, except: :index
+  after_action :insert_pagination_headers, only: :index
 
   respond_to :json
 
@@ -14,7 +16,21 @@ class Api::V1::ConversationsController < Api::BaseController
     render json: @conversations, each_serializer: REST::ConversationSerializer
   end
 
+  def read
+    @conversation.update!(unread: false)
+    render json: @conversation, serializer: REST::ConversationSerializer
+  end
+
+  def destroy
+    @conversation.destroy!
+    render_empty
+  end
+
   private
+
+  def set_conversation
+    @conversation = AccountConversation.where(account: current_account).find(params[:id])
+  end
 
   def paginated_conversations
     AccountConversation.where(account: current_account)
