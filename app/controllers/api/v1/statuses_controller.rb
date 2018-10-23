@@ -52,7 +52,7 @@ class Api::V1::StatusesController < Api::BaseController
                                          status_params[:status],
                                          status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
                                          media_ids: status_params[:media_ids],
-                                         sensitive: check_nsfw(set_image_path).to_s,
+                                         sensitive: check_nsfw(set_image_path),
                                          spoiler_text: status_params[:spoiler_text],
                                          visibility: status_params[:visibility],
                                          application: doorkeeper_token.application,
@@ -117,11 +117,16 @@ class Api::V1::StatusesController < Api::BaseController
 
     paths.each do |path|
 
-      until (response = vision.image(path.to_s).safe_search).class != Google::Cloud::UnavailableError.class
-        puts "Google::Cloud::UnavailableError"
+      response = vision.image(path.to_s)
+
+      res = response.safe_search
+
+      until res.class == SafeSearch.class
+        puts "Google Cloud Vision usng ......"
+        res = response.safe_search
       end
 
-      if response.adult? || response.violence? || response.medical? then
+      if res.adult? || res.violence? || res.medical? then
         return true
       end
     end
