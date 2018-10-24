@@ -58,9 +58,6 @@ class Api::V1::StatusesController < Api::BaseController
                                          application: doorkeeper_token.application,
                                          idempotency: request.headers['Idempotency-Key'])
 
-    puts @status.sensitive
-    puts check_nsfw(set_image_path)
-
     render json: @status, serializer: REST::StatusSerializer
   end
 
@@ -118,19 +115,11 @@ class Api::V1::StatusesController < Api::BaseController
 
     vision = Google::Cloud::Vision.new project: keys["project_id"]
 
-    puts keys
-    puts vision
-
     paths.each do |path|
 
       response = vision.image(path.to_s)
 
-      puts res = response.safe_search
-      puts "Google Cloud Vision usng ......"
-      until res.class != SafeSearch.class
-        puts "Google Cloud Vision usng ......"
-        puts res = response.safe_search
-      end
+      res = response.safe_search
 
       if res.adult? || res.violence? || res.medical? then
         return true
