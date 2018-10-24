@@ -8,7 +8,7 @@ class RemoveStatusService < BaseService
     @status       = status
     @account      = status.account
     @tags         = status.tags.pluck(:name).to_a
-    @mentions     = status.mentions.includes(:account).to_a
+    @mentions     = status.active_mentions.includes(:account).to_a
     @reblogs      = status.reblogs.to_a
     @stream_entry = status.stream_entry
     @options      = options

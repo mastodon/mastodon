@@ -15,7 +15,7 @@ export default function DisplayName ({
   //  The result.
   return account ? (
     <span className={computedClass}>
-      <strong className='display-name__html' dangerouslySetInnerHTML={{ __html: account.get('display_name_html') }} />
+      <bdi><strong className='display-name__html' dangerouslySetInnerHTML={{ __html: account.get('display_name_html') }} /></bdi>
       {inline ? ' ' : null}
       <span className='display-name__account'>@{account.get('acct')}</span>
     </span>

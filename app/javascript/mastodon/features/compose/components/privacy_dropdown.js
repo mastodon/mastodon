@@ -164,7 +164,7 @@ class PrivacyDropdown extends React.PureComponent {
 
   state = {
     open: false,
-    placement: null,
+    placement: 'bottom',
   };
 
   handleToggle = ({ target }) => {
