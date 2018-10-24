@@ -1,6 +1,5 @@
 require "google/cloud/vision"
 require "json"
-require "open-uri"
 
 # frozen_string_literal: true
 
