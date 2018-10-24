@@ -117,12 +117,14 @@ class Api::V1::StatusesController < Api::BaseController
 
     paths.each do |path|
 
-      response = vision.image(path.to_s)
+      if path.to_s =~ /.jpg|.jpeg|.png/
+        response = vision.image(path.to_s)
 
-      res = response.safe_search
+        res = response.safe_search
 
-      if res.adult? || res.violence? || res.medical? then
-        return true
+        if res.adult? || res.violence? || res.medical? then
+          return true
+        end
       end
     end
     return false
