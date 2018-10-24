@@ -175,6 +175,7 @@ jobs:
       - *attach_workspace
       - run: bundle exec i18n-tasks check-normalized
       - run: bundle exec i18n-tasks unused
+      - run: bundle exec i18n-tasks missing-plural-keys
 
 workflows:
   version: 2
