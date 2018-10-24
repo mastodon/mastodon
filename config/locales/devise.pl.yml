@@ -20,7 +20,7 @@ pl:
         action: Zweryfikuj adres e-mail
         explanation: Utworzyłeś(-aś) konto na %{host} podając ten adres e-mail. Jedno kliknięcie dzieli Cię od aktywacji tego konta. Jeżeli to nie Ty, zignoruj ten e-mail.
         extra_html: Przeczytaj też <a href="%{terms_path}">regulamin instancji</a> i <a href="%{policy_path}">nasze zasady użytkowania</a>.
-        subject: 'Mastodon: Instrukcje weryfikacji adresu e-mail'
+        subject: 'Mastodon: Instrukcje weryfikacji adresu e-mail na %{instance}'
         title: Zweryfikuj adres e-mail
       email_changed:
         explanation: 'Adres e-mail dla Twojego konta zostanie zmieniony na:'
@@ -35,7 +35,7 @@ pl:
       reconfirmation_instructions:
         explanation: Potwierdź nowy adres aby zmienić e-mail.
         extra: Jeżeli nie próbowałeś(-aś) zmienić e-maila, zignoruj tą wiadomość. Adres e-mail przypisany do konta Mastodona nie ulegnie zmianie, jeżeli nie użyjesz powyższego odnośniku.
-        subject: 'Mastodon: Potwierdź adres e-mail na &{instance}'
+        subject: 'Mastodon: Potwierdź adres e-mail na %{instance}'
         title: Zweryfikuj adres e-mail
       reset_password_instructions:
         action: Zmień hasło
