@@ -1,4 +1,20 @@
 GIT
+  remote: https://github.com/Gargron/i18n-tasks.git
+  revision: 7a57fbe7000f4f8120e250a757ab345c28c6885c
+  ref: 7a57fbe7000f4f8120e250a757ab345c28c6885c
+  specs:
+    i18n-tasks (0.9.27)
+      activesupport (>= 4.0.2)
+      ast (>= 2.1.0)
+      erubi
+      highline (>= 2.0.0)
+      i18n
+      parser (>= 2.2.3.0)
+      rails-i18n
+      rainbow (>= 2.2.2, < 4.0)
+      terminal-table (>= 1.5.1)
+
+GIT
   remote: https://github.com/rtomayko/posix-spawn
   revision: 58465d2e213991f8afb13b984854a49fcdcc980c
   ref: 58465d2e213991f8afb13b984854a49fcdcc980c
@@ -272,15 +288,6 @@ GEM
       rainbow (>= 2.0.0)
     i18n (1.1.1)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (0.9.27)
-      activesupport (>= 4.0.2)
-      ast (>= 2.1.0)
-      erubi
-      highline (>= 2.0.0)
-      i18n
-      parser (>= 2.2.3.0)
-      rainbow (>= 2.2.2, < 4.0)
-      terminal-table (>= 1.5.1)
     idn-ruby (0.1.0)
     ipaddress (0.8.3)
     iso-639 (0.2.8)
@@ -691,7 +698,7 @@ DEPENDENCIES
   http_accept_language (~> 2.1)
   http_parser.rb (~> 0.6)!
   httplog (~> 1.1)
-  i18n-tasks (~> 0.9)
+  i18n-tasks (~> 0.9)!
   idn-ruby
   iso-639
   json-ld (~> 2.2)
