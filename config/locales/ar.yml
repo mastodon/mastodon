@@ -162,8 +162,8 @@ ar:
       web: الويب
     action_logs:
       actions:
-        assigned_to_self_report: قام {name} بتعيين التقرير٪ {target} لأنفسهم
-        change_email_user: غيّر٪ {name} عنوان البريد الإلكتروني للمستخدم٪ {target}
+        assigned_to_self_report: قام %{name} بتعيين التقرير %{target} لأنفسهم
+        change_email_user: غيّر %{name} عنوان البريد الإلكتروني للمستخدم %{target}
         confirm_user: "%{name} قد قام بتأكيد عنوان البريد الإلكتروني لـ %{target}"
         create_custom_emoji: "%{name} قام برفع إيموجي جديد %{target}"
         create_domain_block: "%{name} قام بحجب نطاق %{target}"
@@ -179,13 +179,13 @@ ar:
         enable_user: لقد قام %{name} بتنشيط تسجيل الدخول للمستخدِم %{target}
         memorialize_account: لقد قام %{name} بتحويل حساب %{target} إلى صفحة تذكارية
         promote_user: "%{name} قام بترقية المستخدم %{target}"
-        remove_avatar_user: تمت إزالة٪ {name} الصورة الرمزية٪ {target}
-        reopen_report: تمت إعادة فتح التقرير {name}٪ {target}
+        remove_avatar_user: تمت إزالة %{name} الصورة الرمزية %{target}
+        reopen_report: تمت إعادة فتح التقرير %{name} %{target}
         reset_password_user: "%{name} لقد قام بإعادة تعيين الكلمة السرية الخاصة بـ %{target}"
         resolve_report: قام %{name} بحل التقرير %{target}
         silence_account: لقد قام %{name} بكتم حساب %{target}
         suspend_account: لقد قام %{name} بتعليق حساب %{target}
-        unassigned_report: "٪ {name} تقرير غير معتمد٪ {target}"
+        unassigned_report: "%{name} تقرير غير معتمد %{target}"
         unsilence_account: لقد قام %{name} بإلغاء الكتم عن حساب %{target}
         unsuspend_account: لقد قام %{name} بإلغاء التعليق المفروض على حساب %{target}
         update_custom_emoji: "%{name} قام بتحديث الإيموجي %{target}"
@@ -431,7 +431,7 @@ ar:
   admin_mailer:
     new_report:
       body: قام %{reporter} بالإبلاغ عن %{target}
-      body_remote: أبلغ شخص ما من٪ {domain} عن٪ {target}
+      body_remote: أبلغ شخص ما من %{domain} عن %{target}
       subject: تقرير جديد ل%{instance} (#%{id})
   application_mailer:
     notification_preferences: تعديل خيارات البريد الإلكتروني
