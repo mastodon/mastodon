@@ -88,8 +88,8 @@ cy:
         invalid_grant: Mae'r grant dilysu a ddarparwyd yn annilys, wedi dod i ben,
           wedi'i wrthod, ddim yn cyfateb a'r URI ailgyferio a ddefnyddiwyd yn y cais
           dilysu, neu wedi ei ddarparu i gleient arall.
-        invalid_resource_owner: Nid yw credeb perchennog yr adnodd yn ddilys, neu
-          ni ellir canfod perchennog yr adnodd
+        invalid_resource_owner: Nid yw meini prawf perchennog yr adnodd yn ddilys,
+          neu ni ellir canfod perchennog yr adnodd
         invalid_scope: Mae'r sgôp a geisiwyd amdano yn annilys, anhysbys, neu'n gamffurfiedig.
         invalid_token:
           expired: Daeth y tocyn mynediad i ben
@@ -106,6 +106,8 @@ cy:
           hwn yn defnyddio'r dull hwn.
         unsupported_response_type: Nid yw'r gweinydd awdurdodi yn cefnogi y math yma
           o ymateb.
+        unsupported_grant_type: Nid yw'r math o ganiatad awdurdodi yma'n cael ei gefnogi
+          gan y gweinydd awdurdodi.
     flash:
       applications:
         create:
