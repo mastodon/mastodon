@@ -6,6 +6,9 @@ require_relative 'cli_helper'
 
 module Mastodon
   class FeedsCLI < Thor
+    def self.exit_on_failure?
+      true
+    end
     option :all, type: :boolean, default: false
     option :background, type: :boolean, default: false
     option :dry_run, type: :boolean, default: false

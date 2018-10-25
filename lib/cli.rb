@@ -9,6 +9,10 @@ require_relative 'mastodon/settings_cli'
 
 module Mastodon
   class CLI < Thor
+    def self.exit_on_failure?
+      true
+    end
+
     desc 'media SUBCOMMAND ...ARGS', 'Manage media files'
     subcommand 'media', Mastodon::MediaCLI
 
