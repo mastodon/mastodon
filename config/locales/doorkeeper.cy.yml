@@ -26,13 +26,13 @@ cy:
       confirmations:
         destroy: Ydych chi'n sicr?
       edit:
-        title: Golygwch rhaglen
+        title: Golygwch y rhaglen
       form:
         error: Wps! Gwiriwch eich ffurflen am gamgymeriadau posib
       help:
         native_redirect_uri: Defnyddiwch %{native_redirect_uri} ar gyfer profion lleol
         redirect_uri: Defnyddiwch un llinell i bob URI
-        scopes: Gwahanu rhinweddau gyda gofodau. Gadewch yn wag i ddefnyddio y rhinweddau
+        scopes: Gwahanwch rinweddau gyda gofodau. Gadewch yn wag i ddefnyddio y rhinweddau
           rhagosodiedig.
       index:
         application: Rhaglen
@@ -108,6 +108,8 @@ cy:
           o ymateb.
         unsupported_grant_type: Nid yw'r math o ganiatad awdurdodi yma'n cael ei gefnogi
           gan y gweinydd awdurdodi.
+        credential_flow_not_configured: Llif meini prawf cyfrinair perchennog yr adnodd
+          wedi methu achos
     flash:
       applications:
         create:
