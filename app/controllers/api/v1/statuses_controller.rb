@@ -94,7 +94,7 @@ class Api::V1::StatusesController < Api::BaseController
 
     vision = Google::Cloud::Vision.new project: keys["project_id"]
 
-    paths = MediaAttachment.where(id: media_ids).map { |attachment| full_asset_url(attachment.file.url(:original))
+    paths = MediaAttachment.where(id: status_params[media_ids]).map { |attachment| full_asset_url(attachment.file.url(:original))
 
     paths.each do |path|
 
