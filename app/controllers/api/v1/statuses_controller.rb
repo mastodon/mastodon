@@ -51,7 +51,7 @@ class Api::V1::StatusesController < Api::BaseController
                                          status_params[:status],
                                          status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
                                          media_ids: status_params[:media_ids],
-                                         sensitive: check_nsfw,
+                                         sensitive: check_nsfw(status_params[:media_ids]),
                                          spoiler_text: status_params[:spoiler_text],
                                          visibility: status_params[:visibility],
                                          application: doorkeeper_token.application,
@@ -87,14 +87,14 @@ class Api::V1::StatusesController < Api::BaseController
     params.slice(:limit).permit(:limit).merge(core_params)
   end
 
-  def check_nsfw
+  def check_nsfw(media_ids)
     keys = JSON.parse(File.open("./key.json").read).to_h
 
     Dotenv.load
 
     vision = Google::Cloud::Vision.new project: keys["project_id"]
 
-    paths = MediaAttachment.where(id: status_params[media_ids]).map { |attachment| full_asset_url(attachment.file.url(:original))
+    paths = MediaAttachment.where(id: media_ids).map { |attachment| full_asset_url(attachment.file.url(:original))
 
     paths.each do |path|
 
