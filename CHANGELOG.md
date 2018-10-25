@@ -43,6 +43,8 @@ All notable changes to this project will be documented in this file.
 - Add `description` meta tag (#8941)
 - Add `Content-Security-Policy` header (#8957)
 - Add cache for the instance info API (#8765)
+- Add suggested follows to search screen in mobile layout (#9010)
+- Add CORS header to `/.well-known/*` routes (#9083)
 
 ### Changed
 
@@ -57,6 +59,7 @@ All notable changes to this project will be documented in this file.
 - Change style of success and failure messages (#8973)
 - Change DM filtering to always allow DMs from staff (#8993)
 - Change recommended Ruby version to 2.5.3 (#9003)
+- Change docker-compose default to persist volumes in current directory (#9055)
 
 ### Deprecated
 
@@ -85,6 +88,8 @@ All notable changes to this project will be documented in this file.
 - Fix crash in streaming API when tag param missing (#8955)
 - Fix hotkeys not working when no element is focused (#8998)
 - Fix some hotkeys not working on detailed status view (#9006)
+- Fix og:url on status pages (#9047)
+- Fix upload option buttons only being visible on hover (#9074)
 
 ## [2.5.2] - 2018-10-12
 ### Security
