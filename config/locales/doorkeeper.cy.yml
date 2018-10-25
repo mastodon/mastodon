@@ -109,13 +109,14 @@ cy:
         unsupported_grant_type: Nid yw'r math o ganiatad awdurdodi yma'n cael ei gefnogi
           gan y gweinydd awdurdodi.
         credential_flow_not_configured: Llif meini prawf cyfrinair perchennog yr adnodd
-          wedi methu achos
+          wedi methu achos fod Doorkeeper.configure.resource_owner_from_credentials
+          heb ei ffurfweddu.
     flash:
       applications:
         create:
           notice: Crewyd y rhaglen.
         destroy:
-          notice: Dilewyd y rhaglen.
+          notice: Dileëwyd y rhaglen.
         update:
           notice: Diweddarwyd y rhaglen.
       authorized_applications:
