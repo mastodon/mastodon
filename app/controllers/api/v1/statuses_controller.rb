@@ -1,3 +1,6 @@
+require "google/cloud/vision"
+require "json"
+
 # frozen_string_literal: true
 
 class Api::V1::StatusesController < Api::BaseController
@@ -48,7 +51,7 @@ class Api::V1::StatusesController < Api::BaseController
                                          status_params[:status],
                                          status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
                                          media_ids: status_params[:media_ids],
-                                         sensitive: status_params[:sensitive],
+                                         sensitive: ENV['VISION_KEYFILE'] ? check_nsfw(set_image_path) : status_params[:sensitive],
                                          spoiler_text: status_params[:spoiler_text],
                                          visibility: status_params[:visibility],
                                          application: doorkeeper_token.application,
@@ -82,5 +85,48 @@ class Api::V1::StatusesController < Api::BaseController
 
   def pagination_params(core_params)
     params.slice(:limit).permit(:limit).merge(core_params)
+  end
+
+  def set_image_path
+    paths = Array.new
+
+    if status_params[:media_ids].class != nil.class
+      status_params[:media_ids].each do |id|
+
+        image = MediaAttachment.find(id)
+
+        path =  "0" * (9 - image.id.to_s.size) + image.id.to_s
+
+        ps = "#{path[0] + path[1] + path[2]}/#{path[3] + path[4] + path[5]}/#{path[6] + path[7] + path[8]}/original/#{image.file_file_name.to_s}"
+
+        if ENV['S3_REGION'].to_s != "" then          
+          paths.push("https://s3-#{ENV['S3_REGION'].to_s}.amazonaws.com/#{ENV['S3_BUCKET']}/media_attachments/files/#{ps}")
+        else
+          paths.push("public/system/media_attachments/files/#{ps}")
+        end
+      end
+    end
+
+    return paths
+  end
+
+  def check_nsfw(paths)
+    keys = JSON.parse(File.open(ENV["VISION_KEYFILE"]).read).to_h
+
+    vision = Google::Cloud::Vision.new project: keys["project_id"]
+
+    paths.each do |path|
+
+      if path.to_s =~ /.jpg|.jpeg|.png/
+        response = vision.image(path.to_s)
+
+        res = response.safe_search
+
+        if res.adult? || res.violence? || res.medical? then
+          return true
+        end
+      end
+    end
+    return false
   end
 end
