@@ -223,7 +223,7 @@ module Mastodon
       dry_run           = options[:dry_run] ? ' (DRY RUN)' : ''
 
       Account.remote.where(protocol: :activitypub).partitioned.find_each do |account|
-        next if account.updated_at >= skip_threshold || account.last_webfingered_at >= skip_threshold
+        next if account.updated_at >= skip_threshold || (account.last_webfingered_at.present? && account.last_webfingered_at >= skip_threshold)
 
         unless dead_servers.include?(account.domain)
           begin
@@ -239,7 +239,7 @@ module Mastodon
           end
         end
 
-        if [404, 410].include?(code) || dead_servers.include?(account.domain)
+        if [404, 410].include?(code)
           unless options[:dry_run]
             SuspendAccountService.new.call(account)
             account.destroy
@@ -249,6 +249,18 @@ module Mastodon
           say('.', :green, false)
         else
           say('.', nil, false)
+        end
+      end
+
+      # Remove dead servers
+      unless dead_servers.empty? || options[:dry_run]
+        dead_servers.each do |domain|
+          Account.where(domain: domain).find_each do |account|
+            SuspendAccountService.new.call(account)
+            account.destroy
+            culled += 1
+            say('.', :green, false)
+          end
         end
       end
 

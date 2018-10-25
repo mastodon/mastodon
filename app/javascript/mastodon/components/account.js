@@ -30,6 +30,9 @@ class Account extends ImmutablePureComponent {
     onMuteNotifications: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     hidden: PropTypes.bool,
+    actionIcon: PropTypes.string,
+    actionTitle: PropTypes.string,
+    onActionClick: PropTypes.func,
   };
 
   handleFollow = () => {
@@ -52,8 +55,12 @@ class Account extends ImmutablePureComponent {
     this.props.onMuteNotifications(this.props.account, false);
   }
 
+  handleAction = () => {
+    this.props.onActionClick(this.props.account);
+  }
+
   render () {
-    const { account, intl, hidden } = this.props;
+    const { account, intl, hidden, onActionClick, actionIcon, actionTitle } = this.props;
 
     if (!account) {
       return <div />;
@@ -70,7 +77,9 @@ class Account extends ImmutablePureComponent {
 
     let buttons;
 
-    if (account.get('id') !== me && account.get('relationship', null) !== null) {
+    if (onActionClick && actionIcon) {
+      buttons = <IconButton icon={actionIcon} title={actionTitle} onClick={this.handleAction} />;
+    } else if (account.get('id') !== me && account.get('relationship', null) !== null) {
       const following = account.getIn(['relationship', 'following']);
       const requested = account.getIn(['relationship', 'requested']);
       const blocking  = account.getIn(['relationship', 'blocking']);
