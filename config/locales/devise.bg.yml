@@ -8,16 +8,16 @@ bg:
     failure:
       already_authenticated: Вече си вътре в профила си.
       inactive: Профилът ти все още не е активиран.
-      invalid: Невалиден имейл адрес или парола.
+      invalid: Невалиден %{authentication_keys}.
       last_attempt: Разполагаш с още един опит преди профилът ти да бъде заключен.
       locked: Профилът ти е заключен.
-      not_found_in_database: Невалидни стойности за %{authentication_keys} или парола.
+      not_found_in_database: Невалиден %{authentication_keys}.
       timeout: Сесията ти изтече, моля влез отново, за да продължиш.
       unauthenticated: Преди да продължиш, трябва да влезеш в профила си или да се регистрираш.
       unconfirmed: Преди да продължиш, трябва да потвърдиш регистрацията си.
     mailer:
       confirmation_instructions:
-        subject: 'Mastodon: Инструкции за потвърждаване'
+        subject: 'Mastodon: Инструкции за потвърждаване %{instance}'
       password_change:
         subject: 'Mastodon: Паролата е променена'
       reset_password_instructions:

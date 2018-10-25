@@ -1,19 +1,56 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import AccountContainer from '../../../containers/account_container';
 import StatusContainer from '../../../containers/status_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Hashtag from '../../../components/hashtag';
 
-export default class SearchResults extends ImmutablePureComponent {
+const messages = defineMessages({
+  dismissSuggestion: { id: 'suggestions.dismiss', defaultMessage: 'Dismiss suggestion' },
+});
+
+export default @injectIntl
+class SearchResults extends ImmutablePureComponent {
 
   static propTypes = {
     results: ImmutablePropTypes.map.isRequired,
+    suggestions: ImmutablePropTypes.list.isRequired,
+    fetchSuggestions: PropTypes.func.isRequired,
+    dismissSuggestion: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
   };
 
+  componentDidMount () {
+    this.props.fetchSuggestions();
+  }
+
   render () {
-    const { results } = this.props;
+    const { intl, results, suggestions, dismissSuggestion } = this.props;
+
+    if (results.isEmpty() && !suggestions.isEmpty()) {
+      return (
+        <div className='search-results'>
+          <div className='trends'>
+            <div className='trends__header'>
+              <i className='fa fa-user-plus fa-fw' />
+              <FormattedMessage id='suggestions.header' defaultMessage='You might be interested in…' />
+            </div>
+
+            {suggestions && suggestions.map(accountId => (
+              <AccountContainer
+                key={accountId}
+                id={accountId}
+                actionIcon='times'
+                actionTitle={intl.formatMessage(messages.dismissSuggestion)}
+                onActionClick={dismissSuggestion}
+              />
+            ))}
+          </div>
+        </div>
+      );
+    }
 
     let accounts, statuses, hashtags;
     let count = 0;

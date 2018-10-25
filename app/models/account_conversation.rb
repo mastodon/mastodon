@@ -58,6 +58,9 @@ class AccountConversation < ApplicationRecord
 
     def add_status(recipient, status)
       conversation = find_or_initialize_by(account: recipient, conversation_id: status.conversation_id, participant_account_ids: participants_from_status(recipient, status))
+
+      return conversation if conversation.status_ids.include?(status.id)
+
       conversation.status_ids << status.id
       conversation.unread = status.account_id != recipient.id
       conversation.save

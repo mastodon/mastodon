@@ -6,6 +6,9 @@ require_relative 'cli_helper'
 
 module Mastodon
   class FeedsCLI < Thor
+    def self.exit_on_failure?
+      true
+    end
     option :all, type: :boolean, default: false
     option :background, type: :boolean, default: false
     option :dry_run, type: :boolean, default: false
@@ -53,6 +56,11 @@ module Mastodon
         end
       elsif username.present?
         account = Account.find_local(username)
+
+        if account.nil?
+          say("Account #{username} is not found", :red)
+          exit(1)
+        end
 
         if options[:background]
           RegenerationWorker.perform_async(account.id) unless options[:dry_run]
