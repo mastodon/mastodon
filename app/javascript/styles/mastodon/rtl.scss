@@ -130,17 +130,6 @@ body.rtl {
     float: left;
   }
 
-  .activity-stream .detailed-status.light .detailed-status__display-name > div {
-    float: right;
-    margin-right: 0;
-    margin-left: 10px;
-  }
-
-  .activity-stream .detailed-status.light .detailed-status__meta span > span {
-    margin-left: 0;
-    margin-right: 6px;
-  }
-
   .status__action-bar {
 
     &__counter {
@@ -172,6 +161,10 @@ body.rtl {
   .privacy-dropdown__option__icon {
     margin-left: 10px;
     margin-right: 0;
+  }
+
+  .detailed-status__display-name .display-name {
+    text-align: right;
   }
 
   .detailed-status__display-avatar {

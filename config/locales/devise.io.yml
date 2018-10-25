@@ -8,16 +8,16 @@ io:
     failure:
       already_authenticated: Tu ya esas enirinta.
       inactive: Tua konto ankore ne konfirmesas.
-      invalid: Nejusta retpost-adreso o pasvorto.
+      invalid: Nejusta %{authentication_keys}.
       last_attempt: Tu ankore povas probar unfoye ante ke tua konto esos extingita.
       locked: Tua konto esas extingita.
-      not_found_in_database: Nejusta retpost-adreso o pasvorto.
+      not_found_in_database: Nejusta %{authentication_keys}.
       timeout: Tua kunsido expiris. Voluntez rienirar por durar.
       unauthenticated: Tu devas enirar o membreskar por durar.
       unconfirmed: Tu devas konfirmar tua konto por durar.
     mailer:
       confirmation_instructions:
-        subject: Instrucioni por konfirmar
+        subject: Instrucioni por konfirmar %{instance}
       password_change:
         subject: Tua pasvorto chanjesis senprobleme.
       reset_password_instructions:
