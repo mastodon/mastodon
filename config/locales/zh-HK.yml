@@ -224,9 +224,7 @@ zh-HK:
         suspend: 自動刪除
       severity: 阻隔分級
       show:
-        affected_accounts:
-          one: 資料庫中有 %{count} 個用戶受影響
-          other: 資料庫中有%{count}個用戶受影響
+        affected_accounts: 資料庫中有%{count}個用戶受影響
         retroactive:
           silence: 對此域名的所有用戶取消靜音
           suspend: 對此域名的所有用戶取消除名
@@ -530,7 +528,7 @@ zh-HK:
   notification_mailer:
     digest:
       action: 查看所有通知
-      body: 這是自從你在%{since}使用%{instance}以後，你錯失了的訊息︰
+      body: 這是自從你在%{since}使用以後，你錯失了的訊息︰
       mention: "%{name} 在此提及了你︰"
       new_followers_summary:
         one: 你新獲得了 1 位關注者了！恭喜！

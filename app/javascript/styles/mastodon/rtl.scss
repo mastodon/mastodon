@@ -73,7 +73,7 @@ body.rtl {
     float: left;
   }
 
-  .setting-toggle {
+  .setting-toggle__label {
     margin-left: 0;
     margin-right: 8px;
   }
@@ -130,17 +130,6 @@ body.rtl {
     float: left;
   }
 
-  .activity-stream .detailed-status.light .detailed-status__display-name > div {
-    float: right;
-    margin-right: 0;
-    margin-left: 10px;
-  }
-
-  .activity-stream .detailed-status.light .detailed-status__meta span > span {
-    margin-left: 0;
-    margin-right: 6px;
-  }
-
   .status__action-bar {
 
     &__counter {
@@ -172,6 +161,10 @@ body.rtl {
   .privacy-dropdown__option__icon {
     margin-left: 10px;
     margin-right: 0;
+  }
+
+  .detailed-status__display-name .display-name {
+    text-align: right;
   }
 
   .detailed-status__display-avatar {
@@ -246,12 +239,12 @@ body.rtl {
 
   .simple_form .label_input__append {
     right: auto;
-    left: 0;
+    left: 3px;
 
     &::after {
       right: auto;
       left: 0;
-      background-image: linear-gradient(to left, rgba($ui-base-color, 0), $ui-base-color);
+      background-image: linear-gradient(to left, rgba(darken($ui-base-color, 10%), 0), darken($ui-base-color, 10%));
     }
   }
 
@@ -341,14 +334,22 @@ body.rtl {
       margin-right: 20px;
     }
   }
-}
 
-.landing-page__information {
-  .account__display-name {
-    margin-right: 0;
+  .landing-page__information {
+    .account__display-name {
+      margin-right: 0;
+      margin-left: 5px;
+    }
+
+    .account__avatar-wrapper {
+      margin-left: 12px;
+      margin-right: 0;
+    }
   }
 
-  .account__avatar-wrapper {
+  .card__bar .display-name {
     margin-left: 0;
+    margin-right: 15px;
+    text-align: right;
   }
 }
