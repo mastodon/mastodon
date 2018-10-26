@@ -77,6 +77,7 @@ es:
       bot: Bot
       moderator: Moderador
     unfollow: Dejar de seguir
+    link_verified_on: La propiedad de este vínculo fue verificada el %{date}
   admin:
     account_moderation_notes:
       create: Crear
@@ -176,6 +177,7 @@ es:
       web: Web
       silenced: Silenciado
       suspended: Susependido
+      no_limits_imposed: Sin límites impuestos
     action_logs:
       actions:
         assigned_to_self_report: '%{name} se ha asignado la denuncia %{target} a sí
@@ -212,6 +214,7 @@ es:
         unsuspend_account: '%{name} desactivó la suspensión de la cuenta de %{target}'
         update_custom_emoji: '%{name} actualizó el emoji %{target}'
         update_status: '%{name} actualizó el estado de %{target}'
+        destroy_custom_emoji: '%{name} destruyó el emoji %{target}'
       deleted_status: (estado borrado)
       title: Log de auditoría
     custom_emojis:
@@ -300,6 +303,8 @@ es:
       title: Bloques de Dominio
       undo: Deshacer
       reject_reports: Rechazar informes
+      reject_reports_hint: Ignore todos los reportes de este dominio. Irrelevante
+        para suspensiones
     email_domain_blocks:
       add_new: Añadir nuevo
       created_msg: Dominio de correo añadido a la lista negra con éxito
@@ -454,6 +459,8 @@ es:
       title: Ajustes del sitio
       mascot:
         title: Imagen de la mascota
+        desc_html: Mostrado en múltiples páginas. Se recomienda un tamaño mínimo de
+          293x205px. Cuando no se especifica, se muestra la mascota por defecto
     statuses:
       back_to_account: Volver a la cuenta
       batch:
@@ -505,8 +512,8 @@ es:
     warning: Ten mucho cuidado con estos datos. ¡No los compartas con nadie!
     your_token: Tu token de acceso
   auth:
-    agreement_html: Al registrarte, acepta seguir <a href="%{rules_path}">las reglas
-      de la instancia</a> y <a href="%{terms_path}">nuestros términos de servicio</a>.
+    agreement_html: Al hacer click en "Registrarse" acepta seguir <a href="%{rules_path}">las
+      reglas de la instancia</a> y <a href="%{terms_path}">nuestros términos de servicio</a>.
     change_password: Contraseña
     confirm_email: Confirmar email
     delete_account: Borrar cuenta
@@ -948,3 +955,10 @@ es:
       los ajustes de contraseña y correo no están disponibles.
     signed_in_as: 'Sesión iniciada como:'
     follow_limit_reached: No puedes seguir a más de %{limit} personas
+  verification:
+    explanation_html: 'Puedes <strong> verificarte a ti mismo como el dueño de los
+      links en los metadatos de tu perfil </strong>. Para eso, el sitio vinculado
+      debe contener un vínculo a tu perfil de Mastodon. El vínculo en tu sitio <strong>
+      debe </strong> tener un atributo <code> rel="me"</code>. El texto del vínculo
+      no importa. Aquí un ejemplo:'
+    verification: Verificación
