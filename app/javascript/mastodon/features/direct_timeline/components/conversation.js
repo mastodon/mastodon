@@ -56,6 +56,7 @@ export default class Conversation extends ImmutablePureComponent {
         otherAccounts={accounts}
         onMoveUp={this.handleHotkeyMoveUp}
         onMoveDown={this.handleHotkeyMoveDown}
+        onClick={this.handleClick}
       />
     );
   }
