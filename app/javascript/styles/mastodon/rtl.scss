@@ -352,4 +352,22 @@ body.rtl {
     margin-right: 15px;
     text-align: right;
   }
+
+  .fa-chevron-left::before {
+    content: "\F054";
+  }
+
+  .fa-chevron-right::before {
+    content: "\F053";
+  }
+
+  .column-back-button__icon {
+    margin-right: 0;
+    margin-left: 5px;
+  }
+
+  .column-header__setting-arrows .column-header__setting-btn:last-child {
+    padding-left: 0;
+    padding-right: 10px;
+  }
 }

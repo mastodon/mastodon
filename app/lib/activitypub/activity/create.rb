@@ -130,7 +130,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if tag['name'].blank?
 
     hashtag = tag['name'].gsub(/\A#/, '').mb_chars.downcase
-    hashtag = Tag.where(name: hashtag).first_or_create(name: hashtag)
+    hashtag = Tag.where(name: hashtag).first_or_create!(name: hashtag)
 
     return if @tags.include?(hashtag)
 
