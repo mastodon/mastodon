@@ -14,6 +14,7 @@ import IconButton from 'flavours/glitch/components/icon_button';
 //  Utils.
 import Motion from 'flavours/glitch/util/optional_motion';
 import { assignHandlers } from 'flavours/glitch/util/react_helpers';
+import { isUserTouching } from 'flavours/glitch/util/is_mobile';
 
 //  Messages.
 const messages = defineMessages({
@@ -130,7 +131,7 @@ export default class ComposerUploadFormItem extends React.PureComponent {
       hovered,
       dirtyDescription,
     } = this.state;
-    const active = hovered || focused;
+    const active = hovered || focused || isUserTouching();
     const computedClass = classNames('composer--upload_form--item', { active });
     const x = ((focusX /  2) + .5) * 100;
     const y = ((focusY / -2) + .5) * 100;
