@@ -46,7 +46,8 @@ class MigrateAccountConversations < ActiveRecord::Migration[5.2]
   private
 
   def estimate_rows(query)
-    query.explain.scan(/ rows=([\d]+)/).first&.first&.to_i || 0
+    result = execute("EXPLAIN #{query.to_sql}").first
+    result['QUERY PLAN'].scan(/ rows=([\d]+)/).first&.first&.to_i || 0
   end
 
   def say_progress(migrated, total, started_time)
