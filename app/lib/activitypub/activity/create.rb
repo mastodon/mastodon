@@ -90,11 +90,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     # If the payload was delivered to a specific inbox, the inbox owner must have
     # access to it, unless they already have access to it anyway
-    return if @options[:delivered_to_account_id].nil? || @mentions.any? { mention.account_id == @options[:delivered_to_account_id] }
+    return if @options[:delivered_to_account_id].nil? || @mentions.any? { |mention| mention.account_id == @options[:delivered_to_account_id] }
 
     @mentions << Mention.new(account_id: @options[:delivered_to_account_id], silent: true)
 
-    return unless @param[:visibility] == :direct
+    return unless @params[:visibility] == :direct
 
     @params[:visibility] = :limited
   end
