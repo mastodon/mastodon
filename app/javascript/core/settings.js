@@ -1,27 +1,13 @@
 //  This file will be loaded on settings pages, regardless of theme.
 
-const { length } = require('stringz');
 const { delegate } = require('rails-ujs');
 import emojify from '../mastodon/features/emoji/emoji';
 
 delegate(document, '#account_display_name', 'input', ({ target }) => {
-  const nameCounter = document.querySelector('.name-counter');
-  const name        = document.querySelector('.card .display-name strong');
-
-  if (nameCounter) {
-    nameCounter.textContent = 30 - length(target.value);
-  }
+  const name = document.querySelector('.card .display-name strong');
 
   if (name) {
     name.innerHTML = emojify(target.value);
-  }
-});
-
-delegate(document, '#account_note', 'input', ({ target }) => {
-  const noteCounter = document.querySelector('.note-counter');
-
-  if (noteCounter) {
-    noteCounter.textContent = 500 - length(target.value);
   }
 });
 

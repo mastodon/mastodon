@@ -4,23 +4,17 @@ fr:
     hints:
       defaults:
         autofollow: Les personnes qui s’inscrivent grâce à l’invitation vous suivront automatiquement
-        avatar: Au format PNG, GIF ou JPG. 2 Mo maximum. Sera réduit à %{dimensions}px
+        avatar: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
         bot: Ce compte exécute principalement des actions automatisées et pourrait ne pas être surveillé
         context: Un ou plusieurs contextes où le filtre devrait s’appliquer
         digest: Uniquement envoyé après une longue période d’inactivité et uniquement si vous avez reçu des messages personnels pendant votre absence
-        display_name:
-          one: <span class="name-counter">1</span> caractère restant
-          other: <span class="name-counter">%{count}</span> caractères restants
         email: Vous recevrez un courriel de confirmation
         fields: Vous pouvez avoir jusqu’à 4 éléments affichés en tant que tableau sur votre profil
-        header: Au format PNG, GIF ou JPG. 2 Mo maximum. Sera réduit à %{dimensions}px
+        header: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
         inbox_url: Copiez l’URL depuis la page d’accueil du relais que vous souhaitez utiliser
         irreversible: Les pouets filtrés disparaîtront irrémédiablement, même si le filtre est supprimé plus tard
         locale: La langue de l’interface, des courriels et des notifications
         locked: Vous devrez approuver chaque abonné⋅e et vos statuts ne s’afficheront qu’à vos abonné⋅es
-        note:
-          one: <span class="note-counter">1</span> caractère restant
-          other: <span class="note-counter">%{count}</span> caractères restants
         password: Utilisez au moins 8 caractères
         phrase: Sera trouvé sans que la case ou l’avertissement de contenu du pouet soit pris en compte
         scopes: À quelles APIs l’application sera autorisée à accéder. Si vous sélectionnez un périmètre de haut-niveau, vous n’avez pas besoin de sélectionner les individuels.

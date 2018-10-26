@@ -15,6 +15,7 @@
         %span.display-name
           %bdi
             %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true, autoplay: autoplay)
+          &nbsp;
           %span.display-name__account
             = acct(status.account)
             = fa_icon('lock') if status.account.locked?
