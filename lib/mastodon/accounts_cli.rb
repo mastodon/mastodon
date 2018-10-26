@@ -7,6 +7,9 @@ require_relative 'cli_helper'
 
 module Mastodon
   class AccountsCLI < Thor
+    def self.exit_on_failure?
+      true
+    end
     option :all, type: :boolean
     desc 'rotate [USERNAME]', 'Generate and broadcast new keys'
     long_desc <<-LONG_DESC

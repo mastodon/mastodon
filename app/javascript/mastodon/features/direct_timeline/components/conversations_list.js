@@ -9,14 +9,14 @@ import { debounce } from 'lodash';
 export default class ConversationsList extends ImmutablePureComponent {
 
   static propTypes = {
-    conversationIds: ImmutablePropTypes.list.isRequired,
+    conversations: ImmutablePropTypes.list.isRequired,
     hasMore: PropTypes.bool,
     isLoading: PropTypes.bool,
     onLoadMore: PropTypes.func,
     shouldUpdateScroll: PropTypes.func,
   };
 
-  getCurrentIndex = id => this.props.conversationIds.indexOf(id)
+  getCurrentIndex = id => this.props.conversations.findIndex(x => x.get('id') === id)
 
   handleMoveUp = id => {
     const elementIndex = this.getCurrentIndex(id) - 1;
@@ -41,22 +41,22 @@ export default class ConversationsList extends ImmutablePureComponent {
   }
 
   handleLoadOlder = debounce(() => {
-    const last = this.props.conversationIds.last();
+    const last = this.props.conversations.last();
 
-    if (last) {
-      this.props.onLoadMore(last);
+    if (last && last.get('last_status')) {
+      this.props.onLoadMore(last.get('last_status'));
     }
   }, 300, { leading: true })
 
   render () {
-    const { conversationIds, onLoadMore, ...other } = this.props;
+    const { conversations, onLoadMore, ...other } = this.props;
 
     return (
       <ScrollableList {...other} onLoadMore={onLoadMore && this.handleLoadOlder} scrollKey='direct' ref={this.setRef}>
-        {conversationIds.map(item => (
+        {conversations.map(item => (
           <ConversationContainer
-            key={item}
-            conversationId={item}
+            key={item.get('id')}
+            conversationId={item.get('id')}
             onMoveUp={this.handleMoveUp}
             onMoveDown={this.handleMoveDown}
           />
