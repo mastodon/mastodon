@@ -94,7 +94,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     @mentions << Mention.new(account_id: @options[:delivered_to_account_id], silent: true)
 
-    return unless @param[:visibility] == :direct
+    return unless @params[:visibility] == :direct
 
     @params[:visibility] = :limited
   end
