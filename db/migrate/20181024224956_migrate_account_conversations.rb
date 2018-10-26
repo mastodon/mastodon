@@ -46,7 +46,7 @@ class MigrateAccountConversations < ActiveRecord::Migration[5.2]
   private
 
   def estimate_rows(query)
-    result = execute("EXPLAIN #{query.to_sql}").first
+    result = exec_query("EXPLAIN #{query.to_sql}").first
     result['QUERY PLAN'].scan(/ rows=([\d]+)/).first&.first&.to_i || 0
   end
 
