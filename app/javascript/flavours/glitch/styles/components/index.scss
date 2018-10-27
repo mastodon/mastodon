@@ -732,6 +732,42 @@
   a {
     color: $dark-text-color;
   }
+
+  &__footer {
+    flex: 0 0 auto;
+    padding: 10px;
+    padding-top: 20px;
+
+    ul {
+      margin-bottom: 10px;
+    }
+
+    ul li {
+      display: inline;
+    }
+
+    p {
+      color: $dark-text-color;
+      font-size: 13px;
+      margin-bottom: 20px;
+
+      a {
+        color: $dark-text-color;
+        text-decoration: underline;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $darker-text-color;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 .column-link__badge {
