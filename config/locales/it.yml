@@ -538,6 +538,7 @@ it:
     post_follow:
       close: Oppure puoi chiudere questa finestra.
       return: Mostra il profilo dell'utente
+      web: Vai al web
     title: Segui %{acct}
   datetime:
     distance_in_words:
@@ -622,6 +623,8 @@ it:
     unlocked_warning_html: Chiunque può seguirti per vedere immediatamente i tuoi
       status privati. %{lock_link} per poter esaminare e respingere gli utenti che
       vogliono seguirti.
+    lock_link: Blocca il tuo account
+    unlocked_warning_title: Il tuo account non è bloccato
   footer:
     developers: Sviluppatori
     more: Altro…
@@ -632,6 +635,7 @@ it:
       one: Qualcosa ancora non va bene! Per favore, controlla l'errore qui sotto
       other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori
         qui sotto
+    copy: Copia
   imports:
     preface: Puoi importare alcune informazioni, come le persone che segui o hai bloccato
       su questo server, da file creati da un esportazione su un altro server.
@@ -756,13 +760,29 @@ it:
       chrome: Chrome
       firefox: Firefox
       generic: Browser sconosciuto
+      edge: Microsoft Edge
+      ie: Internet Explorer
+      opera: Opera
+      safari: Safari
     current_session: Sessione corrente
     description: '%{browser} su %{platform}'
     explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al
       tuo account Mastodon.
     platforms:
       other: piattaforma sconosciuta
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     title: Sessioni
+    ip: IP
   settings:
     authorized_apps: Applicazioni autorizzate
     back: Torna a Mastodon
@@ -807,6 +827,7 @@ it:
       public_long: Tutti lo possono vedere
       unlisted: Pubblico, ma non visibile sulla timeline pubblica
       unlisted_long: Tutti lo possono vedere, ma non compare nelle timeline pubbliche
+    sign_in_to_participate: Accedi per partecipare alla conversazione
   stream_entries:
     pinned: Toot fissato in cima
     reblogged: condiviso
@@ -890,3 +911,6 @@ it:
     invalid_otp_token: Codice d'accesso non valido
     seamless_external_login: Ti sei collegato per mezzo di un servizio esterno, quindi
       le impostazioni di email e password non sono disponibili.
+  remote_interaction:
+    proceed: Continua per interagire
+    prompt: 'Vuoi interagire con questo toot:'
