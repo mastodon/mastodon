@@ -78,7 +78,7 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
       allResults = [];
 
     if (values.length > 2) {
-      values = [values[0], values[1]];
+      values = [value, values[0], values[1]];
     }
 
     if (include.length || exclude.length) {
