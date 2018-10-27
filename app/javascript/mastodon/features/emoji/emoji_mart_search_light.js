@@ -2,7 +2,7 @@
 // https://github.com/missive/emoji-mart/blob/5f2ffcc/src/utils/emoji-index.js
 
 import data from './emoji_mart_data_light';
-import { getData, getSanitizedData, intersect } from './emoji_utils';
+import { getData, getSanitizedData, uniq, intersect } from './emoji_utils';
 
 let originalPool = {};
 let index = {};
@@ -103,7 +103,7 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
       }
     }
 
-    allResults = values.map((value) => {
+    const searchValue = (value) => {
       let aPool = pool,
         aIndex = index,
         length = 0;
@@ -150,15 +150,23 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
       }
 
       return aIndex.results;
-    }).filter(a => a);
+    };
 
-    if (allResults.length > 1) {
-      results = intersect.apply(null, allResults);
-    } else if (allResults.length) {
-      results = allResults[0];
+    if (values.length > 1) {
+      results = searchValue(value);
     } else {
       results = [];
     }
+
+    allResults = values.map(searchValue).filter(a => a);
+
+    if (allResults.length > 1) {
+      allResults = intersect.apply(null, allResults);
+    } else if (allResults.length) {
+      allResults = allResults[0];
+    }
+
+    results = uniq(results.concat(allResults));
   }
 
   if (results) {
