@@ -1,17 +1,20 @@
----
 tr:
   simple_form:
     hints:
       defaults:
-        avatar: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px büyüklüğüne indirgenecektir
+        avatar: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz.
+          %{dimensions}px büyüklüğüne indirgenecektir
         display_name: <span class="name-counter">%{count}</span> karakter kaldı
-        header: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px büyüklüğüne indirgenecektir.
-        locked: Takipçilerinizi manuel olarak kabul etmenizi ve gönderilerinizi varsayılan olarak sadece takipçilerinizin göreceği şekilde paylaşmanızı sağlar.
+        header: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz.
+          %{dimensions}px büyüklüğüne indirgenecektir.
+        locked: Takipçilerinizi manuel olarak kabul etmenizi ve gönderilerinizi varsayılan
+          olarak sadece takipçilerinizin göreceği şekilde paylaşmanızı sağlar.
         note: <span class="note-counter">%{count}</span> karakter kaldı
       imports:
         data: Diğer Mastodon sunucusundan dışarı aktardığınız CSV dosyası
       sessions:
-        otp: Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.
+        otp: Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan
+          birini giriniz.
     labels:
       defaults:
         avatar: Profil resmi
@@ -46,6 +49,6 @@ tr:
         reblog: Biri durumumu paylaştığında, bana e-posta gönder
     'no': Hayır
     required:
-      mark: "*"
+      mark: '*'
       text: gerekli
     'yes': Evet
