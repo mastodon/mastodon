@@ -1,23 +1,29 @@
----
 sl:
   about:
-    about_hashtag_html: To so javni tuti, označeni z <strong>#%{hashtag}</strong>. Z njimi se lahko povežete, če imate račun kjerkoli v fediversu.
-    about_mastodon_html: Mastodon je socialno omrežje, ki temelji na odprtih spletnih protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran, kot e-pošta.
+    about_hashtag_html: To so javni tuti, označeni z <strong>#%{hashtag}</strong>.
+      Z njimi se lahko povežete, če imate račun kjerkoli v fediversu.
+    about_mastodon_html: Mastodon je socialno omrežje, ki temelji na odprtih spletnih
+      protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran,
+      kot e-pošta.
     about_this: O Mastodonu
     administered_by: 'Upravlja:'
-    closed_registrations: Registracije so trenutno zaprte na tem vozlišču. Vendar! Tukaj lahko najdete druga vozlišča, na katerih se prijavite in dostopate do istega omrežja od tam.
+    closed_registrations: Registracije so trenutno zaprte na tem vozlišču. Vendar!
+      Tukaj lahko najdete druga vozlišča, na katerih se prijavite in dostopate do
+      istega omrežja od tam.
     contact: Kontakt
     contact_missing: Ni nastavljeno
     contact_unavailable: Ni na voljo
-    extended_description_html: |
-      <h3>Dober prostor za pravila</h3>
+    extended_description_html: '<h3>Dober prostor za pravila</h3>
+
       <p>Razširjen opis še ni bil nastavljen.</p>
+
+      '
     features:
       humane_approach_title: Bolj human pristop
       not_a_product_title: Ti si oseba, ne izdelek
       real_conversation_title: Zgrajen za pravi pogovor
       within_reach_title: Vedno na dosegu roke
-    generic_description: "%{domain} je en strežnik v omrežju"
+    generic_description: '%{domain} je en strežnik v omrežju'
     hosted_on: Mastodon gostuje na %{domain}
     learn_more: Spoznaj več
     other_instances: Seznam vozlišč
@@ -27,17 +33,21 @@ sl:
     user_count_after: uporabniki
     user_count_before: Dom za
     what_is_mastodon: Kaj je Mastodon?
+    api: API
+    apps: Mobilne aplikacije
+    documentation: Dokumentacija
   accounts:
     follow: Sledi
     followers: Sledilci
     following: Sledim
     media: Medij
-    moved_html: "%{name} se je prestavil na %{new_profile_link}:"
+    moved_html: '%{name} se je prestavil na %{new_profile_link}:'
     network_hidden: Te informacije niso na voljo
     nothing_here: Nič ni tukaj!
     people_followed_by: Ljudje, ki jim sledi %{name}
     people_who_follow: Ljudje, ki sledijo %{name}
-    posts: Tuti
+    posts:
+      one: Trob
     posts_with_replies: Tuti in odgovori
     reserved_username: Uporabniško ime je zasedeno
     roles:
@@ -100,3 +110,11 @@ sl:
         most_recent: Najnovejše
         title: Red
       promote: Spodbujanje
+  remote_interaction:
+    prompt: 'Želite interakcijo s tem trobom:'
+  statuses:
+    pin_errors:
+      ownership: Trob nekoga drugega ne more biti pripet
+      private: Nejavnega troba ni mogoče pripeti
+  stream_entries:
+    pinned: Pripet trob
