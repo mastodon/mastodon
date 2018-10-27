@@ -1,10 +1,10 @@
----
 pt:
   simple_form:
     hints:
       defaults:
         avatar: PNG, GIF or JPG. Arquivos até %{size}. Vão ser reduzidos para %{dimensions}px
-        digest: Enviado após um longo período de inatividade e apenas se foste mencionado na tua ausência
+        digest: Enviado após um longo período de inatividade e apenas se foste mencionado
+          na tua ausência
         display_name:
           one: <span class="name-counter">1</span> caracter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
@@ -14,11 +14,13 @@ pt:
           one: <span class="note-counter">1</span> caracter restante
           other: <span class="note-counter">%{count}</span> caracteres restantes
         setting_noindex: Afecta o teu perfil público e as páginas das tuas publicações
-        setting_theme: Afecta a aparência do Mastodon quando entras na tua conta em qualquer dispositivo.
+        setting_theme: Afecta a aparência do Mastodon quando entras na tua conta em
+          qualquer dispositivo.
       imports:
         data: Arquivo CSV exportado de outra instância do Mastodon
       sessions:
-        otp: Inserir o código de autenticação de dois factores do teu telemóvel ou usa um dos códigos de recuperação.
+        otp: Inserir o código de autenticação de dois factores do teu telemóvel ou
+          usa um dos códigos de recuperação.
     labels:
       defaults:
         avatar: Imagem de Perfil
@@ -63,6 +65,6 @@ pt:
         reblog: Enviar e-mail quando alguém partilha uma publicação tua
     'no': Não
     required:
-      mark: "*"
+      mark: '*'
       text: obrigatório
     'yes': Sim
