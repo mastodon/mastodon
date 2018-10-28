@@ -9,6 +9,7 @@ import DisplayName from './display_name';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import AttachmentList from './attachment_list';
+import Card from '../features/status/components/card';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { MediaGallery, Video } from '../features/ui/util/async-components';
@@ -256,6 +257,14 @@ class Status extends ImmutablePureComponent {
           </Bundle>
         );
       }
+    } else if (status.get('spoiler_text').length === 0 && status.get('card')) {
+      media = (
+        <Card
+          onOpenMedia={this.props.onOpenMedia}
+          card={status.get('card')}
+          compact
+        />
+      );
     }
 
     if (otherAccounts) {

@@ -30,22 +30,16 @@ cs:
     other_instances: Seznam instancí
     privacy_policy: Zásady soukromí
     source_code: Zdrojový kód
-    status_count_after:
-      one: příspěvek
-      other: příspěvků
+    status_count_after: příspěvků
     status_count_before: Kteří napsali
     terms: Podmínky používání
-    user_count_after:
-      one: uživatele
-      other: uživatelů
+    user_count_after: uživatelů
     user_count_before: Domov
     what_is_mastodon: Co je Mastodon?
   accounts:
     choices_html: 'Volby uživatele %{name}:'
     follow: Sledovat
-    followers:
-      one: Sledovatel
-      other: Sledovatelé
+    followers: Sledovatelé
     following: Sledovaní
     joined: Připojil/a se v %{date}
     link_verified_on: Vlastnictví tohoto odkazu bylo zkontrolováno %{date}
@@ -57,9 +51,7 @@ cs:
     people_who_follow: Lidé, kteří sledují uživatele %{name}
     pin_errors:
       following: Musíte již sledovat osobu, kterou chcete podpořit
-    posts:
-      one: Toot
-      other: Tooty
+    posts: Tooty
     posts_tab_heading: Tooty
     posts_with_replies: Tooty a odpovědi
     reserved_username: Toto uživatelské jméno je rezervováno
@@ -268,9 +260,7 @@ cs:
         suspend: Suspendovat
       severity: Přísnost
       show:
-        affected_accounts:
-          one: Jeden účet v databázi byl ovlivněn
-          other: "%{count} účtů v databázi byl ovlivněn"
+        affected_accounts: "%{count} účtů v databázi byl ovlivněn"
         retroactive:
           silence: Odtišit všechny existující účty z této domény
           suspend: Zrušit suspenzaci všech existujících účtů z této domény
@@ -562,9 +552,7 @@ cs:
     followers_count: Počet sledovatelů
     lock_link: Zamkněte svůj účet
     purge: Odstranit ze sledovatelů
-    success:
-      one: V průběhu utišování sledovatelů z jedné domény...
-      other: V průběhu utišování sledovatelů z %{count} domén...
+    success: V průběhu utišování sledovatelů z %{count} domén...
     true_privacy_html: Berte prosím na vědomí, že <strong>skutečného soukromí se dá dosáhnout pouze za pomoci end-to-end šifrování</strong>.
     unlocked_warning_html: Kdokoliv vás může sledovat a okamžitě vidět vaše soukromé příspěvky. %{lock_link}, abyste mohl/a zkontrolovat a odmítnout sledovatele.
     unlocked_warning_title: Váš účet není zamknutý
@@ -575,9 +563,7 @@ cs:
   generic:
     changes_saved_msg: Změny byly úspěšně uloženy!
     save_changes: Uložit změny
-    validation_errors:
-      one: Něco ještě není úplně v pořádku! Prosím zkontrolujte chybu níže
-      other: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
+    validation_errors: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
   imports:
     preface: Můžete importovat data, která jste exportoval/a z jiné instance, jako například seznam lidí, které sledujete či blokujete.
     success: Vaše data byla úspěšně nahrána a nyní budou zpracována v daný čas
@@ -600,9 +586,7 @@ cs:
     expires_in_prompt: Nikdy
     generate: Vygenerovat
     invited_by: 'Byl/a jste pozván/a uživatelem:'
-    max_uses:
-      one: 1 použití
-      other: "%{count} použití"
+    max_uses: "%{count} použití"
     max_uses_prompt: Bez limitu
     prompt: Vygenerujte a sdílejte s ostatními odkazy a umožněte jim přístup na tuto instanci
     table:
@@ -628,12 +612,8 @@ cs:
       action: Zobrazit všechna oznámení
       body: Zde najdete stručný souhrn zpráv, které jste zmeškal/a od vaší poslední návštěvy %{since}
       mention: "%{name} vás zmínil/a v:"
-      new_followers_summary:
-        one: Navíc jste získal/a jednoho nového sledovatele, zatímco jste byl/a pryč! Hurá!
-        other: Navíc jste získal/a %{count} nových sledovatelů, zatímco jste byl/a pryč! Hurá!
-      subject:
-        one: "Jedno nové oznámení od vaší poslední návštěvy \U0001F418"
-        other: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
+      new_followers_summary: Navíc jste získal/a %{count} nových sledovatelů, zatímco jste byl/a pryč! Hurá!
+      subject: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
       title: Ve vaší absenci...
     favourite:
       body: 'Váš příspěvek si oblíbil/a %{name}:'
@@ -750,17 +730,11 @@ cs:
   statuses:
     attached:
       description: 'Přiloženo: %{attached}'
-      image:
-        one: "%{count} obrázek"
-        other: "%{count} obrázků"
-      video:
-        one: "%{count} video"
-        other: "%{count} videí"
+      image: "%{count} obrázků"
+      video: "%{count} videí"
     boosted_from_html: Boostnuto z %{acct_link}
     content_warning: 'Varování o obsahu: %{warning}'
-    disallowed_hashtags:
-      one: 'obsahuje nepovolený hashtag: %{tags}'
-      other: 'obsahuje nepovolené hashtagy: %{tags}'
+    disallowed_hashtags: 'obsahuje nepovolené hashtagy: %{tags}'
     language_detection: Zjistit jazyk automaticky
     open_in_web: Otevřít na webu
     over_character_limit: limit %{max} znaků byl překročen
