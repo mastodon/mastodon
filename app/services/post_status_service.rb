@@ -23,7 +23,7 @@ class PostStatusService < BaseService
     status = nil
     text   = options.delete(:spoiler_text) if text.blank? && options[:spoiler_text].present?
 
-    in_reply_to = Status.find(in_reply_to.reblog_of_id) if in_reply_to.reblog?
+    in_reply_to = Status.find(in_reply_to.reblog_of_id) if in_reply_to&.reblog?
 
     ApplicationRecord.transaction do
       status = account.statuses.create!(text: text,
