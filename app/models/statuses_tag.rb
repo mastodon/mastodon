@@ -20,7 +20,7 @@ class StatusesTag < ApplicationRecord
 
     def get_data
       unless redis.exists('trend_tags_management_data')
-        redis.hset('trend_tags_management_data', 'updated_at', Time.now.utc.iso8601)
+        redis.hset('trend_tags_management_data', 'updated_at', Time.now.utc.as_json)
       end
       [
         aggregate_tags_in,
