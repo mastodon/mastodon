@@ -63,6 +63,7 @@ class FetchLinkCardService < BaseService
 
   def attach_card
     @status.preview_cards << @card
+    Rails.cache.delete(@status)
   end
 
   def parse_urls

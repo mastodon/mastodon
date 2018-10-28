@@ -14,4 +14,12 @@
 
 class StatusStat < ApplicationRecord
   belongs_to :status, inverse_of: :status_stat
+
+  after_commit :reset_parent_cache
+
+  private
+
+  def reset_parent_cache
+    Rails.cache.delete("statuses/#{status_id}")
+  end
 end

@@ -10,6 +10,7 @@ module Mastodon
     def self.exit_on_failure?
       true
     end
+
     option :prefix
     option :suffix
     option :overwrite, type: :boolean

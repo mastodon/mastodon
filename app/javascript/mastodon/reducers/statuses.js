@@ -12,6 +12,7 @@ import {
   QUOTE_REVEAL,
   QUOTE_HIDE,
 } from '../actions/statuses';
+import { STATUS_CARD_FETCH_SUCCESS } from '../actions/cards';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STATUS_IMPORT, STATUSES_IMPORT } from '../actions/importer';
 import { Map as ImmutableMap, fromJS } from 'immutable';
@@ -75,6 +76,8 @@ export default function statuses(state = initialState, action) {
     });
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.references);
+  case STATUS_CARD_FETCH_SUCCESS:
+    return state.setIn([action.id, 'card'], fromJS(action.card));
   default:
     return state;
   }

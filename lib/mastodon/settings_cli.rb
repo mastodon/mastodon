@@ -9,6 +9,7 @@ module Mastodon
     def self.exit_on_failure?
       true
     end
+
     desc 'open', 'Open registrations'
     def open
       Setting.open_registrations = true
