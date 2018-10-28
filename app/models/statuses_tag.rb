@@ -44,7 +44,7 @@ class StatusesTag < ApplicationRecord
         r.lpush('trend_tags_history', previous_score.to_json)
         r.del('trend_tags')
         r.zadd('trend_tags', score) unless score.empty?
-        r.hmset('trend_tags_management_data', 'updated_at', Time.now.utc.iso8601, 'level_L', level.to_json, 'trend_L', trend.to_json)
+        r.hmset('trend_tags_management_data', 'updated_at', Time.now.utc.as_json, 'level_L', level.to_json, 'trend_L', trend.to_json)
       end
     end
 
