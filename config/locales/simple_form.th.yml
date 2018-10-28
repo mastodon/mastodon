@@ -1,3 +1,4 @@
+---
 th:
   simple_form:
     hints:
@@ -7,16 +8,14 @@ th:
           one: <span class="name-counter">1</span> character left
           other: <span class="name-counter">%{count}</span> characters left
         header: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
-        locked: Requires you to manually approve followers and defaults post privacy
-          to followers-only
+        locked: Requires you to manually approve followers and defaults post privacy to followers-only
         note:
           one: <span class="name-counter">1</span> character left
           other: <span class="note-counter">%{count}</span> characters left
       imports:
         data: CSV file exported from another Mastodon instance
       sessions:
-        otp: Enter the Two-factor code from your phone or use one of your recovery
-          codes.
+        otp: Enter the Two-factor code from your phone or use one of your recovery codes.
     labels:
       defaults:
         avatar: Avatar
@@ -51,6 +50,6 @@ th:
         reblog: Send e-mail when someone boosts your status
     'no': ไม่
     required:
-      mark: '*'
+      mark: "*"
       text: required
     'yes': ใช่

@@ -1,11 +1,7 @@
+---
 hr:
   about:
-    about_mastodon_html: Mastodon je <em>besplatna, open-source</em> socijalna mreža.
-      <em>Decentralizirana</em> alternativa komercijalnim platformama, izbjegava rizik
-      toga da jedna tvrtka monopolizira vašu komunikaciju. Izaberite server kojem
-      ćete vjerovati &mdash; koji god odabrali, moći ćete komunicirati sa svima ostalima.
-      Bilo tko može imati svoju vlastitu Mastodon instancu i sudjelovati u <em>socijalnoj
-      mreži</em> bez problema.
+    about_mastodon_html: Mastodon je <em>besplatna, open-source</em> socijalna mreža. <em>Decentralizirana</em> alternativa komercijalnim platformama, izbjegava rizik toga da jedna tvrtka monopolizira vašu komunikaciju. Izaberite server kojem ćete vjerovati &mdash; koji god odabrali, moći ćete komunicirati sa svima ostalima. Bilo tko može imati svoju vlastitu Mastodon instancu i sudjelovati u <em>socijalnoj mreži</em> bez problema.
     about_this: O ovoj instanci
     closed_registrations: Registracije na ovoj instanci su trenutno zatvorene.
     contact: Kontakt
@@ -45,18 +41,18 @@ hr:
     title: Slijedi %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: '%{count}s'
-      about_x_months: '%{count}mj'
-      about_x_years: '%{count}g'
-      almost_x_years: '%{count}g'
+      about_x_hours: "%{count}s"
+      about_x_months: "%{count}mj"
+      about_x_years: "%{count}g"
+      almost_x_years: "%{count}g"
       half_a_minute: upravo
-      less_than_x_minutes: '%{count}m'
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: upravo
-      over_x_years: '%{count}g'
-      x_days: '%{count}d'
-      x_minutes: '%{count}m'
-      x_months: '%{count}mj'
-      x_seconds: '%{count}sek'
+      over_x_years: "%{count}g"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mj"
+      x_seconds: "%{count}sek"
   exports:
     blocks: Blokirao si
     csv: CSV
@@ -69,9 +65,7 @@ hr:
       one: Nešto ne štima! Vidi grešku ispod
       other: Nešto još uvijek ne štima! Vidi %{count} greške ispod
   imports:
-    preface: Možeš uvesti određene podatke kao što su svi ljudi koje slijediš ili
-      blokiraš u svoj račun na ovoj instanci, sa fajlova kreiranih izvozom sa druge
-      instance.
+    preface: Možeš uvesti određene podatke kao što su svi ljudi koje slijediš ili blokiraš u svoj račun na ovoj instanci, sa fajlova kreiranih izvozom sa druge instance.
     success: Tvoji podaci su uspješno uploadani i bit će obrađeni u dogledno vrijeme
     types:
       blocking: Lista blokiranih
@@ -80,34 +74,33 @@ hr:
     upload: Upload
   notification_mailer:
     digest:
-      body: 'Ovo je kratak sažetak propuštenog %{instance} od tvog prošlog posjeta
-        %{since}:'
-      mention: '%{name} te je spomenuo:'
+      body: 'Ovo je kratak sažetak propuštenog %{instance} od tvog prošlog posjeta %{since}:'
+      mention: "%{name} te je spomenuo:"
       new_followers_summary:
         one: Imaš novog sljedbenika! Yay!
         other: Imaš %{count} novih sljedbenika! Prekrašno!
       subject:
-        one: 1 nova notifikacija od tvog prošlog posjeta 🐘
-        other: '%{count} novih notifikacija od tvog prošlog posjeta 🐘'
+        one: "1 nova notifikacija od tvog prošlog posjeta \U0001F418"
+        other: "%{count} novih notifikacija od tvog prošlog posjeta \U0001F418"
     favourite:
       body: 'Tvoj status je %{name} označio kao omiljen:'
-      subject: '%{name} je označio kao omiljen tvoj status'
+      subject: "%{name} je označio kao omiljen tvoj status"
     follow:
-      body: '%{name} te sada slijedi!'
-      subject: '%{name} te sada slijedi'
+      body: "%{name} te sada slijedi!"
+      subject: "%{name} te sada slijedi"
     follow_request:
-      body: '%{name} je zatražio da te slijedi'
+      body: "%{name} je zatražio da te slijedi"
       subject: 'Sljedbenik na čekanju: %{name}'
     mention:
       body: 'Spomenuo te je %{name} u:'
       subject: Spomenuo te je %{name}
     reblog:
       body: 'Tvoj status je potaknut od %{name}:'
-      subject: '%{name} je potakao tvoj status'
+      subject: "%{name} je potakao tvoj status"
   number:
     human:
       decimal_units:
-        format: '%n%u'
+        format: "%n%u"
         units:
           billion: B
           million: M
@@ -145,16 +138,12 @@ hr:
     sensitive_content: Osjetljivi sadržaj
   time:
     formats:
-      default: '%b %d, %Y, %H:%M'
+      default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
-    description_html: Ako omogućiš <strong>dvo-faktorsku autentifikaciju</strong>,
-      prijavljivanje će zahtjevati da kod sebe imaš svoj mobitel, koji će generirati
-      tokene koje ćeš unijeti.
+    description_html: Ako omogućiš <strong>dvo-faktorsku autentifikaciju</strong>, prijavljivanje će zahtjevati da kod sebe imaš svoj mobitel, koji će generirati tokene koje ćeš unijeti.
     disable: Onemogući
     enable: Omogući
-    instructions_html: <strong>Skeniraj ovaj QR kod u Google Authenticator ili sličnu
-      aplikaciju na svom telefonu</strong>. Od sada, ta aplikacija će generirati tokene
-      koje ćeš unijeti pri prijavljivanju.
+    instructions_html: "<strong>Skeniraj ovaj QR kod u Google Authenticator ili sličnu aplikaciju na svom telefonu</strong>. Od sada, ta aplikacija će generirati tokene koje ćeš unijeti pri prijavljivanju."
   users:
     invalid_email: E-mail adresa nije valjana
     invalid_otp_token: Nevaljani dvo-faktorski kod
