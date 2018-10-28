@@ -262,6 +262,7 @@ class Status extends ImmutablePureComponent {
         <Card
           onOpenMedia={this.props.onOpenMedia}
           card={status.get('card')}
+          compact
         />
       );
     }
