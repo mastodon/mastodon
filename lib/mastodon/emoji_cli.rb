@@ -7,6 +7,10 @@ require_relative 'cli_helper'
 
 module Mastodon
   class EmojiCLI < Thor
+    def self.exit_on_failure?
+      true
+    end
+
     option :prefix
     option :suffix
     option :overwrite, type: :boolean

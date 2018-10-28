@@ -130,17 +130,6 @@ body.rtl {
     float: left;
   }
 
-  .activity-stream .detailed-status.light .detailed-status__display-name > div {
-    float: right;
-    margin-right: 0;
-    margin-left: 10px;
-  }
-
-  .activity-stream .detailed-status.light .detailed-status__meta span > span {
-    margin-left: 0;
-    margin-right: 6px;
-  }
-
   .status__action-bar {
 
     &__counter {
@@ -172,6 +161,10 @@ body.rtl {
   .privacy-dropdown__option__icon {
     margin-left: 10px;
     margin-right: 0;
+  }
+
+  .detailed-status__display-name .display-name {
+    text-align: right;
   }
 
   .detailed-status__display-avatar {
@@ -358,5 +351,23 @@ body.rtl {
     margin-left: 0;
     margin-right: 15px;
     text-align: right;
+  }
+
+  .fa-chevron-left::before {
+    content: "\F054";
+  }
+
+  .fa-chevron-right::before {
+    content: "\F053";
+  }
+
+  .column-back-button__icon {
+    margin-right: 0;
+    margin-left: 5px;
+  }
+
+  .column-header__setting-arrows .column-header__setting-btn:last-child {
+    padding-left: 0;
+    padding-right: 10px;
   }
 }

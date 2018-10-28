@@ -7,6 +7,7 @@ class InvitesController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_pack
+  before_action :set_body_classes
 
   def index
     authorize :invite, :create?
@@ -48,5 +49,9 @@ class InvitesController < ApplicationController
 
   def resource_params
     params.require(:invite).permit(:max_uses, :expires_in, :autofollow)
+  end
+
+  def set_body_classes
+    @body_classes = 'admin'
   end
 end

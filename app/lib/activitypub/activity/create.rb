@@ -81,11 +81,22 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       @mentions << Mention.new(account: account, silent: true)
 
       # If there is at least one silent mention, then the status can be considered
-      # as a limited-audience status, and not strictly a direct message
+      # as a limited-audience status, and not strictly a direct message, but only
+      # if we considered a direct message in the first place
       next unless @params[:visibility] == :direct
 
       @params[:visibility] = :limited
     end
+
+    # If the payload was delivered to a specific inbox, the inbox owner must have
+    # access to it, unless they already have access to it anyway
+    return if @options[:delivered_to_account_id].nil? || @mentions.any? { |mention| mention.account_id == @options[:delivered_to_account_id] }
+
+    @mentions << Mention.new(account_id: @options[:delivered_to_account_id], silent: true)
+
+    return unless @params[:visibility] == :direct
+
+    @params[:visibility] = :limited
   end
 
   def attach_tags(status)
@@ -118,7 +129,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if tag['name'].blank?
 
     hashtag = tag['name'].gsub(/\A#/, '').mb_chars.downcase
-    hashtag = Tag.where(name: hashtag).first_or_create(name: hashtag)
+    hashtag = Tag.where(name: hashtag).first_or_create!(name: hashtag)
 
     return if @tags.include?(hashtag)
 

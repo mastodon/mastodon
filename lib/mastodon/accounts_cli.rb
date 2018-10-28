@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
-require 'rubygems/package'
+require 'set'
 require_relative '../../config/boot'
 require_relative '../../config/environment'
 require_relative 'cli_helper'
 
 module Mastodon
   class AccountsCLI < Thor
+    def self.exit_on_failure?
+      true
+    end
+
     option :all, type: :boolean
     desc 'rotate [USERNAME]', 'Generate and broadcast new keys'
     long_desc <<-LONG_DESC
@@ -207,33 +211,25 @@ module Mastodon
       Accounts that have had confirmed activity within the last week
       are excluded from the checks.
 
-      If 10 or more accounts from the same domain cannot be queried
-      due to a connection error (such as missing DNS records) then
-      the domain is considered dead, and all other accounts from it
-      are deleted without further querying.
+      Domains that are unreachable are not checked.
 
       With the --dry-run option, no deletes will actually be carried
       out.
     LONG_DESC
     def cull
-      domain_thresholds = Hash.new { |hash, key| hash[key] = 0 }
-      skip_threshold    = 7.days.ago
-      culled            = 0
-      dead_servers      = []
-      dry_run           = options[:dry_run] ? ' (DRY RUN)' : ''
+      skip_threshold = 7.days.ago
+      culled         = 0
+      skip_domains   = Set.new
+      dry_run        = options[:dry_run] ? ' (DRY RUN)' : ''
 
       Account.remote.where(protocol: :activitypub).partitioned.find_each do |account|
         next if account.updated_at >= skip_threshold || (account.last_webfingered_at.present? && account.last_webfingered_at >= skip_threshold)
 
-        unless dead_servers.include?(account.domain)
+        unless skip_domains.include?(account.domain)
           begin
             code = Request.new(:head, account.uri).perform(&:code)
           rescue HTTP::ConnectionError
-            domain_thresholds[account.domain] += 1
-
-            if domain_thresholds[account.domain] >= 10
-              dead_servers << account.domain
-            end
+            skip_domains << account.domain
           rescue StandardError
             next
           end
@@ -252,24 +248,12 @@ module Mastodon
         end
       end
 
-      # Remove dead servers
-      unless dead_servers.empty? || options[:dry_run]
-        dead_servers.each do |domain|
-          Account.where(domain: domain).find_each do |account|
-            SuspendAccountService.new.call(account)
-            account.destroy
-            culled += 1
-            say('.', :green, false)
-          end
-        end
-      end
-
       say
-      say("Removed #{culled} accounts (#{dead_servers.size} dead servers)#{dry_run}", :green)
+      say("Removed #{culled} accounts. #{skip_domains.size} servers skipped#{dry_run}", skip_domains.empty? ? :green : :yellow)
 
-      unless dead_servers.empty?
-        say('R.I.P.:', :yellow)
-        dead_servers.each { |domain| say('    ' + domain) }
+      unless skip_domains.empty?
+        say('The following servers were not available during the check:', :yellow)
+        skip_domains.each { |domain| say('    ' + domain) }
       end
     end
 

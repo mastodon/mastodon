@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'sidekiq-bulk'
-
 class Settings::FollowerDomainsController < Settings::BaseController
   def show
     @account = current_account
