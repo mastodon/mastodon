@@ -240,10 +240,6 @@ class Status < ApplicationRecord
   before_validation :set_local
 
   class << self
-    def cache_ids
-      left_outer_joins(:status_stat).select('statuses.id, greatest(statuses.updated_at, status_stats.updated_at) AS updated_at')
-    end
-
     def selectable_visibilities
       visibilities.keys - %w(direct limited)
     end
