@@ -17,7 +17,8 @@ class FetchLinkCardService < BaseService
 
     return if @url.nil? || @status.preview_cards.any?
 
-    @url = @url.to_s
+    @mentions = status.mentions
+    @url      = @url.to_s
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
@@ -81,9 +82,16 @@ class FetchLinkCardService < BaseService
     uri.host.blank? || TagManager.instance.local_url?(uri.to_s) || !%w(http https).include?(uri.scheme)
   end
 
+  def mention_link?(a)
+    return false if @mentions.nil?
+    @mentions.any? do |mention|
+      a['href'] == TagManager.instance.url_for(mention.target)
+    end
+  end
+
   def skip_link?(a)
     # Avoid links for hashtags and mentions (microformats)
-    a['rel']&.include?('tag') || a['class']&.include?('u-url')
+    a['rel']&.include?('tag') || a['class']&.include?('u-url') || mention_link?(a)
   end
 
   def attempt_oembed

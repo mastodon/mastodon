@@ -25,7 +25,7 @@ class VerifyLinkService < BaseService
   end
 
   def link_back_present?
-    return false if @body.empty?
+    return false if @body.blank?
 
     links = Nokogiri::HTML(@body).xpath('//a[contains(concat(" ", normalize-space(@rel), " "), " me ")]|//link[contains(concat(" ", normalize-space(@rel), " "), " me ")]')
 

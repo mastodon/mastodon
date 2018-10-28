@@ -136,7 +136,7 @@ pl:
         most_recent: Najnowsze
         title: Kolejność
       outbox_url: Adres skrzynki nadawczej
-      perform_full_suspension: Całkowicie zawieś
+      perform_full_suspension: Zawieś
       profile_url: Adres profilu
       promote: Podnieś uprawnienia
       protocol: Protokół
@@ -185,6 +185,7 @@ pl:
         create_domain_block: "%{name} zablokował(a) domenę %{target}"
         create_email_domain_block: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
         demote_user: "%{name} zdegradował(a) użytkownika %{target}"
+        destroy_custom_emoji: "%{name} usunął(-ęła) emoji %{target}"
         destroy_domain_block: "%{name} odblokował(a) domenę %{target}"
         destroy_email_domain_block: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
         destroy_status: "%{name} usunął(-ęła) wpis użytkownika %{target}"
@@ -270,6 +271,8 @@ pl:
         title: Nowa blokada domen
       reject_media: Odrzucaj pliki multimedialne
       reject_media_hint: Usuwa przechowywane lokalnie pliki multimedialne i nie pozwala na ich pobieranie. Nieprzydatne przy zawieszeniu
+      reject_reports: Odrzucaj zgłoszenia
+      reject_reports_hint: Zgłoszenia z tej instancji będą ignorowane. Nieprzydatne przy zawieszeniu
       severities:
         noop: Nic nie rób
         silence: Wycisz
@@ -375,6 +378,9 @@ pl:
       hero:
         desc_html: Wyświetlany na stronie głównej. Zalecany jest rozmiar przynajmniej 600x100 pikseli. Jeżeli nie ustawiony, zostanie użyta miniatura instancji.
         title: Obraz bohatera
+      mascot:
+        desc_html: Wyświetlany na wielu stronach. Zalecany jest rozmiar przynajmniej 293px × 205px. Jeżeli nie ustawiono, zostanie użyta domyślna.
+        title: Obraz maskotki
       peers_api_enabled:
         desc_html: Nazwy domen, z którymi ta instancja wchodziła w interakcje
         title: Publikuj listę znanych instancji
