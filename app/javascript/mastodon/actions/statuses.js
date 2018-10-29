@@ -3,7 +3,6 @@ import openDB from '../storage/db';
 import { evictStatus } from '../storage/modifier';
 
 import { deleteFromTimelines } from './timelines';
-import { fetchStatusCard } from './cards';
 import { importFetchedStatus, importFetchedStatuses, importAccount, importStatus } from './importer';
 
 export const STATUS_FETCH_REQUEST = 'STATUS_FETCH_REQUEST';
@@ -86,7 +85,6 @@ export function fetchStatus(id) {
     const skipLoading = getState().getIn(['statuses', id], null) !== null;
 
     dispatch(fetchContext(id));
-    dispatch(fetchStatusCard(id));
 
     if (skipLoading) {
       return;

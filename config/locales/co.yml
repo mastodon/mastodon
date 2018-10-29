@@ -128,7 +128,7 @@ co:
         most_recent: Più ricente
         title: Urdine
       outbox_url: URL di l’outbox
-      perform_full_suspension: Fà una suspensione cumpleta
+      perform_full_suspension: Suspende
       profile_url: URL di u prufile
       promote: Prumove
       protocol: Prutucollu
@@ -177,6 +177,7 @@ co:
         create_domain_block: "%{name} hà bluccatu u duminiu %{target}"
         create_email_domain_block: "%{name} hà messu u duminiu e-mail %{target} nant’a lista nera"
         demote_user: "%{name} hà ritrugradatu l’utilizatore %{target}"
+        destroy_custom_emoji: "%{name} hà sguassatu l'emoji %{target}"
         destroy_domain_block: "%{name} hà sbluccatu u duminiu %{target}"
         destroy_email_domain_block: "%{name} hà messu u duminiu e-mail %{target} nant’a lista bianca"
         destroy_status: "%{name} hà toltu u statutu di %{target}"
@@ -262,6 +263,8 @@ co:
         title: Novu blucchime di duminiu
       reject_media: Righjittà i fugliali media
       reject_media_hint: Sguassa tutti i media caricati è ricusa caricamenti futuri. Inutile per una suspensione
+      reject_reports: Righjittà i rapporti
+      reject_reports_hint: Ignurà tutti i signalamenti chì venenu d'issu duminiu. Senz'oghjettu pè e suspensione
       severities:
         noop: Nisuna
         silence: Silenzà
@@ -366,6 +369,9 @@ co:
       hero:
         desc_html: Affissatu nant’a pagina d’accolta. Ricumandemu almenu 600x100px. S’ellu ùn hè micca definiti, a vignetta di l’istanza sarà usata
         title: Ritrattu di cuprendula
+      mascot:
+        desc_html: Affissata nant'à parechje pagine. Almenu 293x205px ricumandatu. S'ella hè lasciata viota, a mascotta predefinita sarà utilizata
+        title: Ritrattu di a mascotta
       peers_api_enabled:
         desc_html: Indirizzi st’istanza hà vistu indè u fediverse
         title: Pubblicà a lista d’istanza cunnisciute
@@ -574,6 +580,7 @@ co:
     resources: Risorze
   generic:
     changes_saved_msg: Cambiamenti salvati!
+    copy: Cupià
     save_changes: Salvà e mudificazione
     validation_errors:
       one: Qualcosa ùn và bè! Verificate u prublemu quì sottu
@@ -915,6 +922,7 @@ co:
       tips: Cunsiglii
       title: Benvenutu·a, %{name}!
   users:
+    follow_limit_reached: Ùn pidete seguità più di %{limit} conti
     invalid_email: L’indirizzu e-mail ùn hè currettu
     invalid_otp_token: U codice d’identificazione ùn hè currettu
     otp_lost_help_html: S’è voi avete persu i dui, pudete cuntattà %{email}

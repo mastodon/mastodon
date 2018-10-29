@@ -21,7 +21,6 @@ window.addEventListener('message', e => {
 });
 
 function main() {
-  const { length } = require('stringz');
   const IntlMessageFormat = require('intl-messageformat').default;
   const { timeAgoString } = require('../mastodon/components/relative_timestamp');
   const { delegate } = require('rails-ujs');
@@ -133,23 +132,10 @@ function main() {
   });
 
   delegate(document, '#account_display_name', 'input', ({ target }) => {
-    const nameCounter = document.querySelector('.name-counter');
-    const name        = document.querySelector('.card .display-name strong');
-
-    if (nameCounter) {
-      nameCounter.textContent = 30 - length(target.value);
-    }
+    const name = document.querySelector('.card .display-name strong');
 
     if (name) {
       name.innerHTML = emojify(target.value);
-    }
-  });
-
-  delegate(document, '#account_note', 'input', ({ target }) => {
-    const noteCounter = document.querySelector('.note-counter');
-
-    if (noteCounter) {
-      noteCounter.textContent = 160 - length(target.value);
     }
   });
 

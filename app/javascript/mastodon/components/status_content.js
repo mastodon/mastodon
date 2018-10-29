@@ -159,7 +159,7 @@ export default class StatusContent extends React.PureComponent {
     }
 
     const readMoreButton = (
-      <button className='status__content__read-more-button' onClick={this.props.onClick}>
+      <button className='status__content__read-more-button' onClick={this.props.onClick} key='read-more'>
         <FormattedMessage id='status.read_more' defaultMessage='Read more' /><i className='fa fa-fw fa-angle-right' />
       </button>
     );
@@ -197,6 +197,7 @@ export default class StatusContent extends React.PureComponent {
         <div
           ref={this.setRef}
           tabIndex='0'
+          key='content'
           className={classNames}
           style={directionStyle}
           dangerouslySetInnerHTML={content}

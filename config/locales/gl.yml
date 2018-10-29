@@ -22,7 +22,7 @@ gl:
       not_a_product_title: Vostede é unha persoa, non un producto
       real_conversation_body: Con 500 caracteres a súa disposición, soporte para contido polo miúdo e avisos sobre o contido, pode expresarse vostede con libertade.
       real_conversation_title: Construído para conversacións reais
-      within_reach_body: Existen múltiples aplicativos para iOS, Android e outras plataformas grazas a un entorno API amigable para o desenvolvedor que lle permite estar ao tanto cos seus amigos en calquer lugar.
+      within_reach_body: Existen múltiples aplicacións para iOS, Android e outras plataformas grazas a un entorno API amigable para o desenvolvedor que lle permite estar ao tanto cos seus amigos en calquer lugar.
       within_reach_title: Sempre en contacto
     generic_description: "%{domain} é un servidor na rede"
     hosted_on: Mastodon aloxado en %{domain}
@@ -128,7 +128,7 @@ gl:
         most_recent: Máis recente
         title: Orde
       outbox_url: URL caixa de saída
-      perform_full_suspension: Suspender completamente
+      perform_full_suspension: Suspender
       profile_url: URL do perfil
       promote: Promocionar
       protocol: Protocolo
@@ -177,6 +177,7 @@ gl:
         create_domain_block: "%{name} bloqueou o dominio %{target}"
         create_email_domain_block: "%{name} engadeu a lista negra o dominio de correo %{target}"
         demote_user: "%{name} degradou a usuaria %{target}"
+        destroy_custom_emoji: "%{name} destruíu emoji %{target}"
         destroy_domain_block: "%{name} desbloqueou o dominio %{target}"
         destroy_email_domain_block: "%{name} meteu na lista blanca de correo o dominio %{target}"
         destroy_status: "%{name} eliminou o estado de %{target}"
@@ -262,6 +263,8 @@ gl:
         title: Novo bloqueo de dominio
       reject_media: Rexeitar ficheiros de medios
       reject_media_hint: Eliminar ficheiros de medios almacenados localmente e rexeita descargalos no futuro. Irrelevante para as suspensións
+      reject_reports: Rexeitar informes
+      reject_reports_hint: Ignorar todos os informes procedentes de este dominio. Irrelevante para as suspensións
       severities:
         noop: Ningún
         silence: Silenciar
@@ -366,6 +369,9 @@ gl:
       hero:
         desc_html: Mostrado na portada. Recoméndase 600x100px como mínimo. Si non se establece, mostrará a imaxe por omisión da instancia
         title: Imáxe Heróe
+      mascot:
+        desc_html: Mostrado en varias páxinas. Recoméndase 293x205 como mínimo. Se non se establece publícase a mascota por omisión
+        title: Imaxe da mascota
       peers_api_enabled:
         desc_html: Nome de dominio que esta instancia atopou no fediverso
         title: Publicar lista de instancias descubertas
@@ -470,7 +476,7 @@ gl:
     login: Conectar
     logout: Desconectar
     migrate_account: Mover a unha conta diferente
-    migrate_account_html: Si desexa redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
+    migrate_account_html: Se desexa redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
     or: ou
     or_log_in_with: ou conectar con
     providers:
@@ -574,6 +580,7 @@ gl:
     resources: Recursos
   generic:
     changes_saved_msg: Cambios gardados correctamente!!
+    copy: Copiar
     save_changes: Gardar cambios
     validation_errors:
       one: Algo non está ben de todo! Por favor revise abaixo o erro
@@ -734,7 +741,7 @@ gl:
     revoke_success: A sesión revocouse con éxito
     title: Sesións
   settings:
-    authorized_apps: Apps autorizados
+    authorized_apps: Apps autorizadas
     back: Voltar a Mastodon
     delete: Eliminación da conta
     development: Desenvolvemento
@@ -747,7 +754,7 @@ gl:
     preferences: Preferencias
     settings: Axustes
     two_factor_authentication: Validar Doble Factor
-    your_apps: Os seus aplicativos
+    your_apps: As súas aplicacións
   statuses:
     attached:
       description: 'Axenado: %{attached}'
@@ -915,6 +922,7 @@ gl:
       tips: Consellos
       title: Benvida, %{name}!
   users:
+    follow_limit_reached: Non pode seguir a máis de %{limit} persoas
     invalid_email: O enderezo de correo non é válido
     invalid_otp_token: Código de doble-factor non válido
     otp_lost_help_html: Si perde o acceso a ambos, pode contactar con %{email}

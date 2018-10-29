@@ -126,6 +126,7 @@ class ApplicationController < ActionController::Base
   def respond_with_error(code)
     respond_to do |format|
       format.any  { head code }
+
       format.html do
         set_locale
         render "errors/#{code}", layout: 'error', status: code
