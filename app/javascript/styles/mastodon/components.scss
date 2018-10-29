@@ -1669,6 +1669,7 @@ a.account__display-name {
   padding: 4px 0;
   border-radius: 4px;
   box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+  z-index: 9999;
 
   ul {
     list-style: none;
@@ -2560,6 +2561,9 @@ a.status-card {
   display: block;
   margin-top: 5px;
   font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .status-card__image {
@@ -2582,6 +2586,31 @@ a.status-card {
   .status-card__title {
     white-space: inherit;
   }
+}
+
+.status-card.compact {
+  border-color: lighten($ui-base-color, 4%);
+
+  &.interactive {
+    border: 0;
+  }
+
+  .status-card__content {
+    padding: 8px;
+    padding-top: 10px;
+  }
+
+  .status-card__title {
+    white-space: nowrap;
+  }
+
+  .status-card__image {
+    flex: 0 0 60px;
+  }
+}
+
+a.status-card.compact:hover {
+  background-color: lighten($ui-base-color, 4%);
 }
 
 .status-card__image-image {
