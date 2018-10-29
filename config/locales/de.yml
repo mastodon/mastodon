@@ -22,7 +22,7 @@ de:
       not_a_product_title: Du bist ein Mensch und keine Ware
       real_conversation_body: Mit 500 Zeichen pro Beitrag und der Ermöglichung präziser Inhalts- und Bilderwarnungen kannst du dich so ausdrücken, wie du es möchtest.
       real_conversation_title: Für das echte Gespräch gemacht
-      within_reach_body: Verschiedene Apps für iOS, Android und andere Plattformen erlauben dir dank unserem blühenden API-Ökosystem, dich von überall auf dem Laufenden zu halten.
+      within_reach_body: Verschiedene Apps für iOS, Android und andere Plattformen erlauben dir, dank unseres blühenden API-Ökosystems, dich von überall auf dem Laufenden zu halten.
       within_reach_title: Immer für dich da
     generic_description: "%{domain} ist ein Server im Netzwerk"
     hosted_on: Mastodon, beherbergt auf %{domain}
@@ -121,13 +121,14 @@ de:
       moderation_notes: Moderationsnotizen
       most_recent_activity: Letzte Aktivität
       most_recent_ip: Letzte IP-Adresse
+      no_limits_imposed: Keine Limits eingesetzt
       not_subscribed: Nicht abonniert
       order:
         alphabetic: Alphabetisch
         most_recent: Neueste
         title: Sortierung
       outbox_url: Postausgangs-URL
-      perform_full_suspension: Vollständige Sperre durchführen
+      perform_full_suspension: Sperren
       profile_url: Profil-URL
       promote: Befördern
       protocol: Protokoll
@@ -176,6 +177,7 @@ de:
         create_domain_block: "%{name} hat die Domain %{target} blockiert"
         create_email_domain_block: "%{name} hat die E-Mail-Domain %{target} geblacklistet"
         demote_user: "%{name} stufte Benutzer:in %{target} herunter"
+        destroy_custom_emoji: "%{name} zerstörte Emoji %{target}"
         destroy_domain_block: "%{name} hat die Domain %{target} entblockt"
         destroy_email_domain_block: "%{name} hat die E-Mail-Domain %{target} gewhitelistet"
         destroy_status: "%{name} hat Status von %{target} entfernt"
@@ -261,6 +263,8 @@ de:
         title: Neue Domain-Blockade
       reject_media: Mediendateien ablehnen
       reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
+      reject_reports: Meldungen ablehnen
+      reject_reports_hint: Ignoriere alle Meldungen von dieser Domain. Irrelevant für Sperrungen
       severities:
         noop: Kein
         silence: Stummschaltung
@@ -365,6 +369,9 @@ de:
       hero:
         desc_html: Wird auf der Startseite angezeigt. Mindestens 600x100px sind empfohlen. Wenn es nicht gesetzt wurde, wird das Instanz-Thumbnail dafür verwendet
         title: Bild für Startseite
+      mascot:
+        desc_html: Angezeigt auf mehreren Seiten. Mehr als 293x205px empfohlen. Wenn es nicht gesetzt wurde wird es auf das Standard-Maskottchen zurückfallen
+        title: Maskottchen-Bild
       peers_api_enabled:
         desc_html: Domain-Namen dieser Instanz, die im Fediverse gefunden wurden
         title: Veröffentliche Liste von gefundenen Instanzen
@@ -573,6 +580,7 @@ de:
     resources: Ressourcen
   generic:
     changes_saved_msg: Änderungen gespeichert!
+    copy: Kopieren
     save_changes: Änderungen speichern
     validation_errors:
       one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
@@ -916,6 +924,7 @@ de:
       tips: Tipps
       title: Willkommen an Bord, %{name}!
   users:
+    follow_limit_reached: Du kannst nicht mehr als %{limit} Leuten folgen
     invalid_email: Ungültige E-Mail-Adresse
     invalid_otp_token: Ungültiger Zwei-Faktor-Authentisierungs-Code
     otp_lost_help_html: Wenn Du beides nicht mehr weißt, melde Dich bei uns unter der E-Mailadresse %{email}
@@ -923,3 +932,4 @@ de:
     signed_in_as: 'Angemeldet als:'
   verification:
     explanation_html: 'Du kannst <strong>bestätigen, dass die Links in deinen Profil-Metadaten dir gehören</strong>. Dafür muss die verlinkte Website einen Link zurück auf dein Mastodon-Profil enthalten. Dieser Link <strong>muss</strong> ein <code>rel="me"</code>-Attribut enthalten. Der Linktext is dabei egal. Hier ist ein Beispiel:'
+    verification: Verifizierung

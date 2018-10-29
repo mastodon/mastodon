@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 - Add conversations API (#8832)
 - Add limit for the number of people that can be followed from one account (#8807)
 - Add admin setting to customize mascot (#8766)
-- Add support for more granular ActivityPub audiences from other software, i.e. circles (#8950)
+- Add support for more granular ActivityPub audiences from other software, i.e. circles (#8950, #9093)
 - Add option to block all reports from a domain (#8830)
 - Add user preference to always expand toots marked with content warnings (#8762)
 - Add user preference to always hide all media (#8569)
@@ -45,6 +45,9 @@ All notable changes to this project will be documented in this file.
 - Add cache for the instance info API (#8765)
 - Add suggested follows to search screen in mobile layout (#9010)
 - Add CORS header to `/.well-known/*` routes (#9083)
+- Add `card` attribute to statuses returned from REST API (#9120)
+- Add in-stream link preview (#9120)
+- Add support for ActivityPub `Page` objects (#9121) 
 
 ### Changed
 
@@ -60,11 +63,13 @@ All notable changes to this project will be documented in this file.
 - Change DM filtering to always allow DMs from staff (#8993)
 - Change recommended Ruby version to 2.5.3 (#9003)
 - Change docker-compose default to persist volumes in current directory (#9055)
+- Change character counters on edit profile page to input length limit (#9100)
 
 ### Deprecated
 
 - `GET /api/v1/timelines/direct` → `GET /api/v1/conversations` (#8832)
 - `POST /api/v1/notifications/dismiss` → `POST /api/v1/notifications/:id/dismiss` (#8905)
+- `GET /api/v1/statuses/:id/card` → `card` attributed included in status (#9120)
 
 ### Removed
 
@@ -90,6 +95,12 @@ All notable changes to this project will be documented in this file.
 - Fix some hotkeys not working on detailed status view (#9006)
 - Fix og:url on status pages (#9047)
 - Fix upload option buttons only being visible on hover (#9074)
+- Fix tootctl not returning exit code 1 on wrong arguments (#9094) 
+- Fix preview cards for appearing for profiles mentioned in toot (#6934) 
+- Fix local accounts sometimes being duplicated as faux-remote (#9109)
+- Fix emoji search when the shortcode has multiple separators (#9124)
+- Fix dropdowns sometimes being partially obscured by other elements (#9126) 
+- Fix cache not updating when reply/boost/favourite counters or media sensitivity update (#9119) 
 
 ## [2.5.2] - 2018-10-12
 ### Security
