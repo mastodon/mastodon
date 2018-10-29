@@ -24,9 +24,6 @@ import {
   STATUS_UNMUTE_SUCCESS,
 } from 'flavours/glitch/actions/statuses';
 import {
-  STATUS_CARD_FETCH_SUCCESS
-} from 'flavours/glitch/actions/cards';
-import {
   TIMELINE_UPDATE,
   TIMELINE_DELETE,
   TIMELINE_EXPAND_SUCCESS,
@@ -146,8 +143,6 @@ export default function statuses(state = initialState, action) {
     return normalizeStatuses(state, action.statuses);
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.references);
-  case STATUS_CARD_FETCH_SUCCESS:
-    return state.setIn([action.id, 'card'], fromJS(action.card));
   default:
     return state;
   }

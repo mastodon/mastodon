@@ -8,7 +8,7 @@ import MediaGallery from 'flavours/glitch/components/media_gallery';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 import { Link } from 'react-router-dom';
 import { FormattedDate, FormattedNumber } from 'react-intl';
-import CardContainer from '../containers/card_container';
+import Card from './card';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Video from 'flavours/glitch/features/video';
 import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
@@ -83,7 +83,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         );
         mediaIcon = 'picture-o';
       }
-    } else media = <CardContainer onOpenMedia={this.props.onOpenMedia} statusId={status.get('id')} />;
+    } else media = <Card onOpenMedia={this.props.onOpenMedia} card={status.get('card', null)} />;
 
     if (status.get('application')) {
       applicationLink = <span> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener'>{status.getIn(['application', 'name'])}</a></span>;
