@@ -177,6 +177,7 @@ el:
         create_domain_block: Ο/Η %{name} μπλόκαρε τον τομέα %{target}
         create_email_domain_block: Ο/Η %{name} έβαλε τον τομέα email %{target} σε μαύρη λίστα
         demote_user: Ο/Η %{name} υποβίβασε το χρήστη %{target}
+        destroy_custom_emoji: Ο/Η %{name} κατέστρεψε το emoji %{target}
         destroy_domain_block: Ο/Η %{name} ξεμπλόκαρε τον τομέα %{target}
         destroy_email_domain_block: Ο/Η %{name} έβαλε τον τομέα email %{target} σε λευκή λίστα
         destroy_status: Ο/Η %{name} αφαίρεσε την κατάσταση του/της %{target}
@@ -262,6 +263,8 @@ el:
         title: Αποκλεισμός νέου τομέα
       reject_media: Απόρριψη πολυμέσων
       reject_media_hint: Αφαιρεί τα τοπικά αποθηκευμένα αρχεία πολυμέσων και αποτρέπει τη λήψη άλλων στο μέλλον. Δεν έχει σημασία για τις αναστολές
+      reject_reports: Απόρριψη καταγγελιών
+      reject_reports_hint: Αγνόηση όσων καταγγελιών προέρχονται από αυτό τον τομέα. Δεν σχετίζεται με τις παύσεις
       severities:
         noop: Κανένα
         silence: Αποσιώπηση
@@ -366,6 +369,9 @@ el:
       hero:
         desc_html: Εμφανίζεται στην μπροστινή σελίδα. Συνίσταται τουλάχιστον 600x100px. Όταν λείπει, χρησιμοποιείται η μικρογραφία του κόμβου
         title: Εικόνα ήρωα
+      mascot:
+        desc_html: Εμφάνιση σε πολλαπλές σελίδες. Προτεινόμενο 293x205px τουλάχιστον. Αν δεν έχει οριστεί, χρησιμοποιεί την προεπιλεγμένη μασκότ
+        title: Εικόνα μασκότ
       peers_api_enabled:
         desc_html: Ονόματα τομέων που αυτός ο κόμβος έχει ήδη συναντήσει στο fediverse
         title: Δημοσίευση λίστας κόμβων που έχουν ανακαλυφθεί
@@ -574,6 +580,7 @@ el:
     resources: Πόροι
   generic:
     changes_saved_msg: Οι αλλαγές αποθηκεύτηκαν!
+    copy: Αντιγραφή
     save_changes: Αποθήκευσε τις αλλαγές
     validation_errors:
       one: Κάτι δεν είναι εντάξει ακόμα! Για κοίταξε το παρακάτω σφάλμα
@@ -914,6 +921,7 @@ el:
       tips: Συμβουλές
       title: Καλώς όρισες, %{name}!
   users:
+    follow_limit_reached: Δεν μπορείς να ακολουθήσεις περισσότερα από %{limit} άτομα
     invalid_email: Η διεύθυνση email είναι άκυρη
     invalid_otp_token: Άκυρος κωδικός πιστοποίησης 2 παραγόντων (2FA)
     otp_lost_help_html: Αν χάσεις και τα δύο, μπορείς να επικοινωνήσεις με τον/την %{email}

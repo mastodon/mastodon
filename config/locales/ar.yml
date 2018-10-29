@@ -120,7 +120,7 @@ ar:
         most_recent: الأحدث
         title: الترتيب
       outbox_url: رابط صندوق الصادر
-      perform_full_suspension: تعطيل الحساب بالكامل
+      perform_full_suspension: تعطيل
       profile_url: رابط الملف الشخصي
       promote: ترقية
       protocol: البروتوكول
@@ -169,6 +169,7 @@ ar:
         create_domain_block: "%{name} قام بحجب نطاق %{target}"
         create_email_domain_block: "%{name} قد قام بحظر نطاق البريد الإلكتروني %{target}"
         demote_user: "%{name} قد قام بإنزال الرتبة الوظيفية لـ %{target}"
+        destroy_custom_emoji: قام %{name} بحذف الإيموجي %{target}
         destroy_domain_block: "%{name} قام بإلغاء الحجب عن النطاق %{target}"
         destroy_email_domain_block: قام %{name} بإضافة نطاق البريد الإلكتروني %{target} إلى اللائحة البيضاء
         destroy_status: لقد قام %{name} بحذف منشور %{target}
@@ -254,6 +255,7 @@ ar:
         title: حجب نطاق جديد
       reject_media: رفض ملفات الوسائط
       reject_media_hint: يزيل ملفات الوسائط المخزنة محليًا ويرفض تنزيل أي ملفات في المستقبل. غير ذي صلة للتعليق
+      reject_reports: رفض التقارير
       severities:
         noop: لا شيء
         silence: إخفاء أو كتم
@@ -361,7 +363,7 @@ ar:
         desc_html: أسماء النطاقات التي إلتقى بها مثيل الخادوم على البيئة الموحَّدة فيديفرس
         title: نشر عدد مثيلات الخوادم التي تم مصادفتها
       preview_sensitive_media:
-        desc_html: روابط المُعَاينة على مواقع الويب الأخرى ستقوم بعرض صُوَر مصغّرة حتى و إن كانت الوسائط حساسة.
+        desc_html: روابط المُعَاينة على مواقع الويب الأخرى ستقوم بعرض صُوَر مصغّرة حتى و إن كانت الوسائط حساسة
         title: إظهار الصور الحساسة في مُعاينات أوبن غراف
       registrations:
         closed_message:
@@ -559,6 +561,7 @@ ar:
     resources: الموارد
   generic:
     changes_saved_msg: تم حفظ التعديلات بنجاح !
+    copy: نسخ
     save_changes: حفظ التغييرات
     validation_errors: هناك شيء ليس على ما يُرام! يُرجى معاينة الأخطاء الـ %{count} التالية
   imports:
@@ -804,8 +807,11 @@ ar:
       tips: نصائح
       title: أهلاً بك، %{name} !
   users:
+    follow_limit_reached: لا يمكنك متابعة أكثر مِن %{limit} أشخاص
     invalid_email: عنوان البريد الإلكتروني غير صالح
     invalid_otp_token: رمز المصادقة بخطوتين غير صالح
     otp_lost_help_html: إن فقدتَهُما ، يمكنك الإتصال بـ %{email}
     seamless_external_login: لقد قمت بتسجيل الدخول عبر خدمة خارجية، إنّ إعدادات الكلمة السرية و البريد الإلكتروني غير متوفرة.
     signed_in_as: 'تم تسجيل دخولك بصفة :'
+  verification:
+    verification: التحقق

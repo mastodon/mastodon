@@ -128,7 +128,7 @@ fr:
         most_recent: Plus récent
         title: Tri
       outbox_url: URL de sortie
-      perform_full_suspension: Effectuer une suspension complète
+      perform_full_suspension: Suspendre
       profile_url: URL du profil
       promote: Promouvoir
       protocol: Protocole
@@ -177,6 +177,7 @@ fr:
         create_domain_block: "%{name} a bloqué le domaine %{target}"
         create_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste noire"
         demote_user: "%{name} a rétrogradé l’utilisateur·ice %{target}"
+        destroy_custom_emoji: "%{name} a détruit l'émoticône %{target}"
         destroy_domain_block: "%{name} a débloqué le domaine %{target}"
         destroy_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste blanche"
         destroy_status: "%{name} a enlevé le statut de %{target}"
@@ -262,6 +263,8 @@ fr:
         title: Nouveau blocage de domaine
       reject_media: Fichiers média rejetés
       reject_media_hint: Supprime localement les fichiers média stockés et refuse d’en télécharger ultérieurement. Ne concerne pas les suspensions
+      reject_reports: Rapports de rejet
+      reject_reports_hint: Ignorez tous les rapports provenant de ce domaine. Sans objet pour les suspensions
       severities:
         noop: Aucune
         silence: Masquer
@@ -366,6 +369,9 @@ fr:
       hero:
         desc_html: Affichée sur la page d’accueil. Au moins 600x100px recommandé. Lorsqu’elle n’est pas définie, se rabat sur la vignette de l’instance
         title: Image d’en-tête
+      mascot:
+        desc_html: Affiché sur plusieurs pages. Au moins 293×205px recommandé. Lorsqu'il n'est pas défini, retombe à la mascotte par défaut
+        title: Image de la mascotte
       peers_api_enabled:
         desc_html: Noms des domaines que cette instance a découvert dans le fediverse
         title: Publier la liste des instances découvertes
@@ -574,6 +580,7 @@ fr:
     resources: Ressources
   generic:
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
+    copy: Copier
     save_changes: Enregistrer les modifications
     validation_errors:
       one: Quelque chose ne va pas ! Vérifiez l’erreur ci-dessous
@@ -915,6 +922,7 @@ fr:
       tips: Astuces
       title: Bienvenue à bord, %{name} !
   users:
+    follow_limit_reached: Vous ne pouvez pas suivre plus de %{limit} personnes
     invalid_email: L’adresse courriel est invalide
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
     otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
