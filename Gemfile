@@ -95,7 +95,7 @@ gem 'rdf-normalize', '~> 0.3'
 group :development, :test do
   gem 'fabrication', '~> 2.20'
   gem 'fuubar', '~> 2.3'
-  gem 'i18n-tasks', '~> 0.9', require: false, git: 'https://github.com/Gargron/i18n-tasks.git', ref: 'ab6e10878ccdb6243f934f30372276d260c14251'
+  gem 'i18n-tasks', '~> 0.9', require: false, git: 'https://github.com/glebm/i18n-tasks.git', branch: 'master', ref: 'a1c9089b4ffed4f33e3b3a1bb2378d7a23445c0f'
   gem 'pry-byebug', '~> 3.6'
   gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 3.8'
