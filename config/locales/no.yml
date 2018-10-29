@@ -1,38 +1,26 @@
+---
 'no':
   about:
-    about_hashtag_html: Dette er offentlige toots merket med <strong>#%{hashtag}</strong>.
-      Du kan interagere med dem om du har en konto et sted i fediverset.
-    about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>.
-      Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan
-      det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon.
-      Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere
-      med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale
-      nettverket.
+    about_hashtag_html: Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.
+    about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
     about_this: Om denne instansen
     closed_registrations: Registreringer er for øyeblikket lukket på denne instansen.
     contact: Kontakt
     contact_missing: Ikke innstilt
     contact_unavailable: Ikke tilgjengelig
-    extended_description_html: '<h3>En god plassering for regler</h3>
-
+    extended_description_html: |
+      <h3>En god plassering for regler</h3>
       <p>En utvidet beskrivelse er ikke satt opp ennå.</p>
-
-      '
     features:
-      humane_approach_body: Mastodon har tatt lærdom fra andre nettverk og har til
-        mål å gjøre etiske designvalg for å bekjempe misbruk av sosiale medier.
+      humane_approach_body: Mastodon har tatt lærdom fra andre nettverk og har til mål å gjøre etiske designvalg for å bekjempe misbruk av sosiale medier.
       humane_approach_title: En mer menneskelig tilnærming
-      not_a_product_body: Mastodon er ikke et kommerst nettverk. Ingen reklame, ingen
-        datainnsamling, ingen innhegnede hager. Det finnes ingen sentral myndighet.
+      not_a_product_body: Mastodon er ikke et kommerst nettverk. Ingen reklame, ingen datainnsamling, ingen innhegnede hager. Det finnes ingen sentral myndighet.
       not_a_product_title: Du er en person, ikke et produkt
-      real_conversation_body: Med 500 tegn til din disposisjon og støtte for granulært
-        innhold og media-advarsler kan du uttrykke deg på den måten du selv vil.
+      real_conversation_body: Med 500 tegn til din disposisjon og støtte for granulært innhold og media-advarsler kan du uttrykke deg på den måten du selv vil.
       real_conversation_title: Laget for ekte samtaler
-      within_reach_body: Takket være et utviklingsvennlig API-økosystem vil flere
-        apper for iOS, Android og andre plattformer la deg holde kontakten med dine
-        venner hvor som helst.
+      within_reach_body: Takket være et utviklingsvennlig API-økosystem vil flere apper for iOS, Android og andre plattformer la deg holde kontakten med dine venner hvor som helst.
       within_reach_title: Alltid innen rekkevidde
-    generic_description: '%{domain} er en tjener i nettverket'
+    generic_description: "%{domain} er en tjener i nettverket"
     hosted_on: Mastodon driftet på %{domain}
     learn_more: Lær mer
     other_instances: Andre instanser
@@ -47,7 +35,7 @@
     followers: Følgere
     following: Følger
     media: Media
-    moved_html: '%{name} har flyttet til %{new_profile_link}:'
+    moved_html: "%{name} har flyttet til %{new_profile_link}:"
     nothing_here: Det er ingenting her!
     people_followed_by: Folk som %{name} følger
     people_who_follow: Folk som følger %{name}
@@ -147,30 +135,29 @@
       web: Web
     action_logs:
       actions:
-        confirm_user: '%{name} bekreftet e-postadresse for bruker %{target}'
-        create_custom_emoji: '%{name} lastet opp ny emoji %{target}'
-        create_domain_block: '%{name} blokkerte domenet %{target}'
-        create_email_domain_block: '%{name} svartelistet e-postdomenet %{target}'
-        demote_user: '%{name} degraderte bruker %{target}'
-        destroy_domain_block: '%{name} fjernet blokkeringen av domenet %{target}'
-        destroy_email_domain_block: '%{name} hvitelistet e-postdomenet %{target}'
-        destroy_status: '%{name} fjernet status av %{target}'
-        disable_2fa_user: '%{name} deaktiverte tofaktor-autentiseringskravet for bruker
-          %{target}'
-        disable_custom_emoji: '%{name} deaktiverte emoji %{target}'
-        disable_user: '%{name} deaktiverte innlogging for bruker %{target}'
-        enable_custom_emoji: '%{name} aktiverte emoji %{target}'
-        enable_user: '%{name} aktiverte innlogging for bruker %{target}'
-        memorialize_account: '%{name} endret %{target}s konto til en minneside'
-        promote_user: '%{name} oppgraderte bruker %{target}'
-        reset_password_user: '%{name} nullstilte passordet til bruker %{target}'
-        resolve_report: '%{name} avviste rapporten %{target}'
-        silence_account: '%{name} forstummet %{target}s konto'
-        suspend_account: '%{name} suspendert %{target}s konto'
-        unsilence_account: '%{name} fjernet forstummingen av %{target}s konto'
-        unsuspend_account: '%{name} opphevde suspenderingen av %{target}s konto'
-        update_custom_emoji: '%{name} oppdaterte emoji %{target}'
-        update_status: '%{name} oppdaterte status for %{target}'
+        confirm_user: "%{name} bekreftet e-postadresse for bruker %{target}"
+        create_custom_emoji: "%{name} lastet opp ny emoji %{target}"
+        create_domain_block: "%{name} blokkerte domenet %{target}"
+        create_email_domain_block: "%{name} svartelistet e-postdomenet %{target}"
+        demote_user: "%{name} degraderte bruker %{target}"
+        destroy_domain_block: "%{name} fjernet blokkeringen av domenet %{target}"
+        destroy_email_domain_block: "%{name} hvitelistet e-postdomenet %{target}"
+        destroy_status: "%{name} fjernet status av %{target}"
+        disable_2fa_user: "%{name} deaktiverte tofaktor-autentiseringskravet for bruker %{target}"
+        disable_custom_emoji: "%{name} deaktiverte emoji %{target}"
+        disable_user: "%{name} deaktiverte innlogging for bruker %{target}"
+        enable_custom_emoji: "%{name} aktiverte emoji %{target}"
+        enable_user: "%{name} aktiverte innlogging for bruker %{target}"
+        memorialize_account: "%{name} endret %{target}s konto til en minneside"
+        promote_user: "%{name} oppgraderte bruker %{target}"
+        reset_password_user: "%{name} nullstilte passordet til bruker %{target}"
+        resolve_report: "%{name} avviste rapporten %{target}"
+        silence_account: "%{name} forstummet %{target}s konto"
+        suspend_account: "%{name} suspendert %{target}s konto"
+        unsilence_account: "%{name} fjernet forstummingen av %{target}s konto"
+        unsuspend_account: "%{name} opphevde suspenderingen av %{target}s konto"
+        update_custom_emoji: "%{name} oppdaterte emoji %{target}"
+        update_status: "%{name} oppdaterte status for %{target}"
       title: Revisionslogg
     custom_emojis:
       by_domain: Domene
@@ -204,21 +191,15 @@
       domain: Domene
       new:
         create: Lag blokkering
-        hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i
-          databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder
-          på de kontoene.
+        hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder på de kontoene.
         severity:
-          desc_html: <strong>Målbind</strong> gjør kontoens poster usynlige for alle
-            som ikke følger den. <strong>Utvis</strong> fjerner alt innhold, media
-            og profildata fra kontoen. Bruk <strong>Ingen</strong> hvis du bare vil
-            fjerne mediafiler.
+          desc_html: "<strong>Målbind</strong> gjør kontoens poster usynlige for alle som ikke følger den. <strong>Utvis</strong> fjerner alt innhold, media og profildata fra kontoen. Bruk <strong>Ingen</strong> hvis du bare vil fjerne mediafiler."
           noop: Ingen
           silence: Målbind
           suspend: Utvis
         title: Ny domeneblokkering
       reject_media: Avvis mediefiler
-      reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned
-        i fremtiden. Irrelevant for utvisninger
+      reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
       severities:
         noop: Ingen
         silence: Målbind
@@ -227,7 +208,7 @@
       show:
         affected_accounts:
           one: En konto i databasen påvirket
-          other: '%{count} kontoer i databasen påvirket'
+          other: "%{count} kontoer i databasen påvirket"
         retroactive:
           silence: Avmålbind alle eksisterende kontoer fre dette domenet
           suspend: Avutvis alle eksisterende kontoer fra dette domenet
@@ -273,12 +254,10 @@
       unresolved: Uløst
     settings:
       activity_api_enabled:
-        desc_html: Antall lokale statusposter, aktive brukere og nye registreringer
-          i ukentlige oppdelinger
+        desc_html: Antall lokale statusposter, aktive brukere og nye registreringer i ukentlige oppdelinger
         title: Publiser samlet statistikk om brukeraktiviteter
       bootstrap_timeline_accounts:
-        desc_html: Separer flere brukernavn med komma. Kun lokale og ulåste kontoer
-          vil kunne brukes. Dersom tomt er standarden alle lokale administratorer.
+        desc_html: Separer flere brukernavn med komma. Kun lokale og ulåste kontoer vil kunne brukes. Dersom tomt er standarden alle lokale administratorer.
         title: Standard følgere for nye brukere
       contact_information:
         email: Skriv en offentlig e-postadresse
@@ -288,8 +267,7 @@
         title: Publiser liste over oppdagede instanser
       registrations:
         closed_message:
-          desc_html: Vises på forsiden når registreringer er lukket<br>Du kan bruke
-            HTML-tagger
+          desc_html: Vises på forsiden når registreringer er lukket<br>Du kan bruke HTML-tagger
           title: Melding for lukket registrering
         deletion:
           desc_html: Tillat alle å slette sin konto
@@ -304,15 +282,13 @@
         desc_html: Vis personalemerke på brukersiden
         title: Vis personalemerke
       site_description:
-        desc_html: Vises som et avsnitt på forsiden og brukes som en meta-tagg. Du
-          kan bruke HTML-tagger, spesielt <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
+        desc_html: Vises som et avsnitt på forsiden og brukes som en meta-tagg. Du kan bruke HTML-tagger, spesielt <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
         title: Nettstedsbeskrivelse
       site_description_extended:
         desc_html: Vises på side for utvidet informasjon.<br>Du kan bruke HTML-tagger
         title: Utvidet nettstedsinformasjon
       site_terms:
-        desc_html: Du kan skrive din egen personverns-strategi, bruksviklår og andre
-          regler. Du kan bruke HTML tagger
+        desc_html: Du kan skrive din egen personverns-strategi, bruksviklår og andre regler. Du kan bruke HTML tagger
         title: Skreddersydde bruksvilkår
       site_title: Nettstedstittel
       thumbnail:
@@ -344,11 +320,11 @@
     title: Administrasjon
   admin_mailer:
     new_report:
-      body: '%{reporter} har rapportert %{target}'
+      body: "%{reporter} har rapportert %{target}"
       subject: Ny rapport for %{instance} (#%{id})
   application_mailer:
     notification_preferences: Endre e-post innstillingene
-    salutation: '%{name},'
+    salutation: "%{name},"
     settings: 'Endre foretrukne e-postinnstillinger: %{link}'
     view: 'Se:'
     view_profile: Vis Profil
@@ -362,28 +338,23 @@
     warning: Vær veldig forsiktig med denne data. Aldri del den med noen!
     your_token: Din tilgangsnøkkel
   auth:
-    agreement_html: Ved å registrere deg godtar du å følge <a href="%{rules_path}">instansens
-      regler</a> og <a href="%{terms_path}">våre brukervilkår</a>.
+    agreement_html: Ved å registrere deg godtar du å følge <a href="%{rules_path}">instansens regler</a> og <a href="%{terms_path}">våre brukervilkår</a>.
     delete_account: Slett konto
-    delete_account_html: Hvis du ønsker å slette din konto kan du <a href="%{path}">fortsette
-      her</a>. Du vil bli spurt om bekreftelse.
+    delete_account_html: Hvis du ønsker å slette din konto kan du <a href="%{path}">fortsette her</a>. Du vil bli spurt om bekreftelse.
     didnt_get_confirmation: Mottok du ikke instruksjoner om bekreftelse?
     forgot_password: Har du glemt passordet ditt?
-    invalid_reset_password_token: Tilbakestillingsnøkkelen for passord er ugyldig
-      eller utløpt. Vennligst be om en ny.
+    invalid_reset_password_token: Tilbakestillingsnøkkelen for passord er ugyldig eller utløpt. Vennligst be om en ny.
     login: Innlogging
     logout: Logg ut
     migrate_account: Flytt til en annen konto
-    migrate_account_html: Hvis du ønsker å henvise denne kontoen til en annen, kan
-      du <a href="%{path}">konfigurere det her</a>.
+    migrate_account_html: Hvis du ønsker å henvise denne kontoen til en annen, kan du <a href="%{path}">konfigurere det her</a>.
     register: Bli med
     resend_confirmation: Send bekreftelsesinstruksjoner på nytt
     reset_password: Nullstill passord
     security: Sikkerhet
     set_new_password: Sett nytt passord
   authorize_follow:
-    error: Uheldigvis skjedde det en feil da vi prøvde å få tak i en bruker fra en
-      annen instans
+    error: Uheldigvis skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans
     follow: Følg
     follow_request: 'Du har sendt en følgeforespørsel til:'
     following: 'Suksess! Nå følger du:'
@@ -394,30 +365,25 @@
     title: Følg %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: '%{count} timer'
-      about_x_months: '%{count} mnd'
-      about_x_years: '%{count} år'
-      almost_x_years: '%{count} år'
+      about_x_hours: "%{count} timer"
+      about_x_months: "%{count} mnd"
+      about_x_years: "%{count} år"
+      almost_x_years: "%{count} år"
       half_a_minute: Nettopp
-      less_than_x_minutes: '%{count} min'
+      less_than_x_minutes: "%{count} min"
       less_than_x_seconds: Nettopp
-      over_x_years: '%{count} år'
-      x_days: '%{count} dager'
-      x_minutes: '%{count} min'
-      x_months: '%{count} mnd'
-      x_seconds: '%{count} sek'
+      over_x_years: "%{count} år"
+      x_days: "%{count} dager"
+      x_minutes: "%{count} min"
+      x_months: "%{count} mnd"
+      x_seconds: "%{count} sek"
   deletes:
     bad_password_msg: Godt forsøk, hacker! Feil passord
     confirm_password: Skriv inn ditt passord for å verifisere din identitet
-    description_html: Dette vil <strong>permanent, irreversibelt</strong> fjerne innhold
-      fra din konto og deaktivere den. Ditt brukernavn vil forbli reservert for å
-      forhindre fremtidige etterligninger.
+    description_html: Dette vil <strong>permanent, irreversibelt</strong> fjerne innhold fra din konto og deaktivere den. Ditt brukernavn vil forbli reservert for å forhindre fremtidige etterligninger.
     proceed: Slett konto
     success_msg: Din konto ble slettet
-    warning_html: Kun sletting av innhold fra denne instansen er garantert. Innhold
-      som har blitt delt i stor utstrekning vil sannsynligvis legge igjen spor. Tjenere
-      som er frakoblet og tjenere som ikke abbonerer på dine oppdatereringer vil ikke
-      oppdatere sine databaser.
+    warning_html: Kun sletting av innhold fra denne instansen er garantert. Innhold som har blitt delt i stor utstrekning vil sannsynligvis legge igjen spor. Tjenere som er frakoblet og tjenere som ikke abbonerer på dine oppdatereringer vil ikke oppdatere sine databaser.
     warning_title: Tilgjengelighet av spredt innhold
   errors:
     '403': Du har ikke tillatelse til å vise denne siden.
@@ -430,9 +396,7 @@
     '500':
       content: Beklager men noe gikk galt ved vår ende.
       title: Denne siden er ikke korrekt
-    noscript_html: For å bruke Mastodon webapplikasjon må du aktivere JavaScript.
-      Alternativt kan du forsøke en av de mange <a href="%{apps_path}">integrerte
-      appene</a> for Mastodon til din plattform.
+    noscript_html: For å bruke Mastodon webapplikasjon må du aktivere JavaScript. Alternativt kan du forsøke en av de mange <a href="%{apps_path}">integrerte appene</a> for Mastodon til din plattform.
   exports:
     blocks: Du blokkerer
     csv: CSV
@@ -441,11 +405,7 @@
     storage: Medialagring
   followers:
     domain: Domene
-    explanation_html: Hvis du vil styre hvem som ser statusene dine, må du være klar
-      over hvem som følger deg. <strong>Dine private statuser leveres til alle instanser
-      der du har følgere</strong>. Du bør kanskje se over dem, og fjerne følgere hvis
-      du ikke stoler på at ditt privatliv vil bli respektert av staben eller programvaren
-      på de instansene.
+    explanation_html: Hvis du vil styre hvem som ser statusene dine, må du være klar over hvem som følger deg. <strong>Dine private statuser leveres til alle instanser der du har følgere</strong>. Du bør kanskje se over dem, og fjerne følgere hvis du ikke stoler på at ditt privatliv vil bli respektert av staben eller programvaren på de instansene.
     followers_count: Antall følgere
     lock_link: Lås kontoen din
     purge: Fjern fra følgere
@@ -453,8 +413,7 @@
       one: I ferd med å mykblokkere følgere fra ett domene...
       other: I ferd med å mykblokkere følgere fra %{count} domener...
     true_privacy_html: Merk deg at <strong>virkelig privatliv kun kan oppnås med ende-til-ende-kryptering</strong>.
-    unlocked_warning_html: Alle kan følge deg for å umiddelbart se dine private statuser.
-      %{lock_link} for å kunne se over og avvise følgere.
+    unlocked_warning_html: Alle kan følge deg for å umiddelbart se dine private statuser. %{lock_link} for å kunne se over og avvise følgere.
     unlocked_warning_title: Din konto er ikke låst
   generic:
     changes_saved_msg: Vellykket lagring av endringer!
@@ -463,8 +422,7 @@
       one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
   imports:
-    preface: Du kan importere data om brukere du følger eller blokkerer til kontoen
-      din på denne instansen med eksportfiler fra andre instanser.
+    preface: Du kan importere data om brukere du følger eller blokkerer til kontoen din på denne instansen med eksportfiler fra andre instanser.
     success: Dine data ble mottatt og vil bli behandlet så fort som mulig
     types:
       blocking: Blokkeringsliste
@@ -485,7 +443,7 @@
     generate: Generer
     max_uses:
       one: 1 uke
-      other: '%{count} bruk'
+      other: "%{count} bruk"
     max_uses_prompt: Ubegrenset
     prompt: Generer og del lenker med andre for å gi tilgang til denne instansen
     table:
@@ -497,8 +455,7 @@
       limit: Du har nådd det maksimale antall lister
   media_attachments:
     validations:
-      images_and_video: Kan ikke legge ved video på en status som allerede inneholder
-        bilder
+      images_and_video: Kan ikke legge ved video på en status som allerede inneholder bilder
       too_many: Kan ikke legge ved mer enn 4 filer
   migrations:
     acct: brukernavn@domene til den nye kontoen
@@ -510,27 +467,26 @@
   notification_mailer:
     digest:
       action: Vis alle varslinger
-      body: Her er en kort oppsummering av hva du har gått glipp av siden du sist
-        logget inn den %{since}
-      mention: '%{name} nevnte deg i:'
+      body: Her er en kort oppsummering av hva du har gått glipp av siden du sist logget inn den %{since}
+      mention: "%{name} nevnte deg i:"
       new_followers_summary:
         one: I tillegg har du fått en ny følger mens du var borte. Hurra!
         other: I tillegg har du har fått %{count} nye følgere mens du var borte! Imponerende!
       subject:
-        one: 1 ny hendelse siden ditt siste besøk 🐘
-        other: '%{count} nye hendelser siden ditt siste besøk 🐘'
+        one: "1 ny hendelse siden ditt siste besøk \U0001F418"
+        other: "%{count} nye hendelser siden ditt siste besøk \U0001F418"
       title: I ditt fravær…
     favourite:
       body: 'Statusen din ble likt av %{name}:'
-      subject: '%{name} likte statusen din'
+      subject: "%{name} likte statusen din"
       title: Ny favoritt
     follow:
-      body: '%{name} følger deg!'
-      subject: '%{name} følger deg'
+      body: "%{name} følger deg!"
+      subject: "%{name} følger deg"
       title: Ny følger
     follow_request:
       action: Behandle følgerforespørsler
-      body: '%{name} har bedt om lov til å følge deg'
+      body: "%{name} har bedt om lov til å følge deg"
       subject: 'Ventende følginger: %{name}'
       title: Ny følgerforespørsel
     mention:
@@ -540,23 +496,23 @@
       title: Ny nevning
     reblog:
       body: 'Din status ble fremhevd av %{name}:'
-      subject: '%{name} fremhevde din status'
+      subject: "%{name} fremhevde din status"
       title: Ny fremheving
   number:
     human:
       decimal_units:
-        format: '%n%u'
+        format: "%n%u"
         units:
           billion: B
           million: M
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: ' '
+          unit: " "
   pagination:
     next: Neste
     prev: Forrige
-    truncate: '&hellip;'
+    truncate: "&hellip;"
   preferences:
     languages: Språk
     other: Annet
@@ -589,7 +545,7 @@
       uc_browser: UCBrowser
       weibo: Weibo
     current_session: Nåværende økt
-    description: '%{browser} på %{platform}'
+    description: "%{browser} på %{platform}"
     explanation: Dette er nettlesere innlogget på din Mastodon-konto akkurat nå.
     ip: IP-adresse
     platforms:
@@ -645,71 +601,45 @@
     reblogged: fremhevde
     sensitive_content: Følsomt innhold
   terms:
-    title: '%{instance} Personvern og villkår for bruk av nettstedet'
+    title: "%{instance} Personvern og villkår for bruk av nettstedet"
   themes:
     default: Mastodon
   time:
     formats:
-      default: '%-d. %b %Y, %H:%M'
+      default: "%-d. %b %Y, %H:%M"
   two_factor_authentication:
     code_hint: Tast koden som ble generert av din autentiseringsapp for å bekrefte
-    description_html: Hvis du skrur på <strong>tofaktorautentisering</strong> må du
-      ha din telefon for å logge inn. Denne vil generere koder som du må taste inn.
+    description_html: Hvis du skrur på <strong>tofaktorautentisering</strong> må du ha din telefon for å logge inn. Denne vil generere koder som du må taste inn.
     disable: Skru av
     enable: Skru på
     enabled: To-faktor autentisering er aktivert
     enabled_success: Aktivering av tofaktorautentisering vellykket
     generate_recovery_codes: Generér gjenopprettingskoder
-    instructions_html: <strong>Scan denne QR-koden med Google Authenticator eller
-      en lignende app på telefonen din</strong>. Fra nå av vil denne applikasjonen
-      generere koder for deg som skal brukes under innlogging.
-    lost_recovery_codes: Gjenopprettingskoder lar deg gjenoppnå tilgang til din konto
-      hvis du mister din telefon. Hvis du har mistet gjenopprettingskodene, kan du
-      regenerere dem her. Dine gamle gjenopprettingskoder vil bli ugyldige.
-    manual_instructions: 'Hvis du ikke får scannet QR-koden må du skrive inn følgende
-      kode manuelt:'
+    instructions_html: "<strong>Scan denne QR-koden med Google Authenticator eller en lignende app på telefonen din</strong>. Fra nå av vil denne applikasjonen generere koder for deg som skal brukes under innlogging."
+    lost_recovery_codes: Gjenopprettingskoder lar deg gjenoppnå tilgang til din konto hvis du mister din telefon. Hvis du har mistet gjenopprettingskodene, kan du regenerere dem her. Dine gamle gjenopprettingskoder vil bli ugyldige.
+    manual_instructions: 'Hvis du ikke får scannet QR-koden må du skrive inn følgende kode manuelt:'
     recovery_codes: Reservekoder
     recovery_codes_regenerated: Generering av reservekoder fullført
-    recovery_instructions_html: Hvis du skulle miste tilgang til telefonen din, kan
-      du bruke en av gjenopprettingskodene nedenfor til å gjenopprette tilgang til
-      din konto. <strong>Oppbevar gjenopprettingskodene sikkert</strong>, for eksempel
-      ved å skrive dem ut og gjemme dem på et lurt sted bare du vet om.
+    recovery_instructions_html: Hvis du skulle miste tilgang til telefonen din, kan du bruke en av gjenopprettingskodene nedenfor til å gjenopprette tilgang til din konto. <strong>Oppbevar gjenopprettingskodene sikkert</strong>, for eksempel ved å skrive dem ut og gjemme dem på et lurt sted bare du vet om.
     setup: Sett opp
-    wrong_code: Den angitte koden var ugyldig! Stemmer instansens tid overalt med
-      enhetens tid?
+    wrong_code: Den angitte koden var ugyldig! Stemmer instansens tid overalt med enhetens tid?
   user_mailer:
     welcome:
       edit_profile_action: Sett opp profil
-      edit_profile_step: Du kan tilpasse din profil ved å laste opp en avatar, overskrift,
-        endre ditt visningsnavn med mer. Hvis du vil godkjenne hvilke personer som
-        får lov til å følge deg kan du låse kontoen.
+      edit_profile_step: Du kan tilpasse din profil ved å laste opp en avatar, overskrift, endre ditt visningsnavn med mer. Hvis du vil godkjenne hvilke personer som får lov til å følge deg kan du låse kontoen.
       explanation: Her er noen tips for å komme i gang
       final_action: Start postingen
-      final_step: 'Start å poste! Selv uten følgere kan dine offentlige meldinger
-        bli sett av andre, for eksempel på den lokale tidslinjen og i emneknagger.
-        Du kan introdusere deg selv ved å bruke emneknaggen #introductions.'
+      final_step: 'Start å poste! Selv uten følgere kan dine offentlige meldinger bli sett av andre, for eksempel på den lokale tidslinjen og i emneknagger. Du kan introdusere deg selv ved å bruke emneknaggen #introductions.'
       full_handle: Ditt fullstendige brukernavn
-      full_handle_hint: Dette er hva du forteller venner slik at de kan sende melding
-        eller følge deg fra en annen instanse.
+      full_handle_hint: Dette er hva du forteller venner slik at de kan sende melding eller følge deg fra en annen instanse.
       review_preferences_action: Endre innstillinger
-      review_preferences_step: Husk å justere dine innstillinger, som hvilke e-poster
-        du ønsker å motta, eller hvor private du ønsker at dine poster skal være som
-        standard. Hvis du ikke har bevegelsessyke kan du skru på automatisk avspilling
-        av GIF-animasjoner.
+      review_preferences_step: Husk å justere dine innstillinger, som hvilke e-poster du ønsker å motta, eller hvor private du ønsker at dine poster skal være som standard. Hvis du ikke har bevegelsessyke kan du skru på automatisk avspilling av GIF-animasjoner.
       subject: Velkommen til Mastodon
-      tip_bridge_html: Hvis du kommer fra Twitter kan du finne dine venner på Mastodon
-        ved å bruke en <a href="%{bridge_url}">bro app</a>. Men det fungerer kun dersom
-        de også bruker bro-appen!
-      tip_federated_timeline: Den forente tidslinjen blir konstant matet med meldinger
-        fra Mastodon-nettverket. Men den inkluderer bare personer dine naboer abbonerer
-        på, så den er ikke komplett.
-      tip_following: Du følger din tjeners administrator(er) som standard. For å finne
-        mer interessante personer, sjekk den lokale og forente tidslinjen.
-      tip_local_timeline: Den lokale tidslinjen blir kontant matet med meldinger fra
-        personer på %{instance}. Dette er dine nærmeste naboer!
-      tip_mobile_webapp: Hvis din mobile nettleser tilbyr deg å legge Mastadon til
-        din hjemmeskjerm kan du motta push-varslinger. Det er nesten som en integrert
-        app på mange måter!
+      tip_bridge_html: Hvis du kommer fra Twitter kan du finne dine venner på Mastodon ved å bruke en <a href="%{bridge_url}">bro app</a>. Men det fungerer kun dersom de også bruker bro-appen!
+      tip_federated_timeline: Den forente tidslinjen blir konstant matet med meldinger fra Mastodon-nettverket. Men den inkluderer bare personer dine naboer abbonerer på, så den er ikke komplett.
+      tip_following: Du følger din tjeners administrator(er) som standard. For å finne mer interessante personer, sjekk den lokale og forente tidslinjen.
+      tip_local_timeline: Den lokale tidslinjen blir kontant matet med meldinger fra personer på %{instance}. Dette er dine nærmeste naboer!
+      tip_mobile_webapp: Hvis din mobile nettleser tilbyr deg å legge Mastadon til din hjemmeskjerm kan du motta push-varslinger. Det er nesten som en integrert app på mange måter!
       tips: Tips
       title: Velkommen ombord, %{name}!
   users:

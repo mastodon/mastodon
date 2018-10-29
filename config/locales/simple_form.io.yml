@@ -1,3 +1,4 @@
+---
 io:
   simple_form:
     hints:
@@ -5,14 +6,12 @@ io:
         avatar: En la formato PNG, GIF o JPG. Til 2Mo. Esos mikrigita a %{dimensions}px
         display_name: 30 signi maxime
         header: En la formato PNG, GIF o JPG. Til 2Mo. Esos mikrigita a %{dimensions}px
-        locked: Tu devos aprobar omna demandi di sequado, e tua mesaji esos senchanje
-          nur por tua sequanti.
+        locked: Tu devos aprobar omna demandi di sequado, e tua mesaji esos senchanje nur por tua sequanti.
         note: 160 signi maxime
       imports:
         data: Dosiero CSV de altra instaluro di Mastodon
       sessions:
-        otp: Enter the Two-factor code from your phone or use one of your recovery
-          codes.
+        otp: Enter the Two-factor code from your phone or use one of your recovery codes.
     labels:
       defaults:
         avatar: Profilimajo
@@ -47,6 +46,6 @@ io:
         reblog: Sendar retpost-mesajo, kande ulu diskonocigas mesajo da tu
     'no': 'No'
     required:
-      mark: '*'
+      mark: "*"
       text: bezonata
     'yes': 'Yes'

@@ -1,16 +1,14 @@
+---
 hu:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF vagy JPG. Maximum %{size}. Át lesz méretezve %{dimensions}
-          pixelre
-        digest: Csak hosszú távollét esetén küldve és csak ha személyes üzenetet kaptál
-          távollétedben
+        avatar: PNG, GIF vagy JPG. Maximum %{size}. Át lesz méretezve %{dimensions} pixelre
+        digest: Csak hosszú távollét esetén küldve és csak ha személyes üzenetet kaptál távollétedben
         display_name:
           one: <span class="name-counter">1</span>karakter maradt
           other: <span class="name-counter">%{count}</span>karakter maradt
-        header: PNG, GIF vagy JPG. Maximum %{size}. Át lesz méretezve %{dimensions}
-          pixelre
+        header: PNG, GIF vagy JPG. Maximum %{size}. Át lesz méretezve %{dimensions} pixelre
         locked: Egyenként engedélyezned kell a követőidet
         note:
           one: <span class="note-counter">1</span>karakter maradt
@@ -20,8 +18,7 @@ hu:
       imports:
         data: Egy másik Mastodon szerverről exportált CSV fájl
       sessions:
-        otp: Add meg a Második-faktor kódodat a telefonodról vagy használd az egyik
-          tartalék bejelentkező kódodat.
+        otp: Add meg a Második-faktor kódodat a telefonodról vagy használd az egyik tartalék bejelentkező kódodat.
     labels:
       defaults:
         avatar: Profilkép
@@ -66,6 +63,6 @@ hu:
         reblog: E-mail küldése amikor valaki reblogolja az állapotod
     'no': Nem
     required:
-      mark: '*'
+      mark: "*"
       text: kötelező
     'yes': Igen

@@ -1,3 +1,4 @@
+---
 hr:
   simple_form:
     hints:
@@ -5,8 +6,7 @@ hr:
         avatar: PNG, GIF ili JPG. Najviše %{size}. Bit će smanjen na %{dimensions}px
         display_name: Najviše 30 znakova
         header: PNG, GIF ili JPG. Najviše %{size}. Bit će smanjen na %{dimensions}px
-        locked: traži te da ručno odobriš sljedbenike i postavlja privatnost postova
-          na dostupnu samo sljedbenicima
+        locked: traži te da ručno odobriš sljedbenike i postavlja privatnost postova na dostupnu samo sljedbenicima
         note: Najviše 160 znakova
       imports:
         data: CSV fajl izvezen iz druge Mastodon instance
@@ -37,12 +37,11 @@ hr:
         digest: Šalji mi e-mailove s notifikacijama
         favourite: Pošalji mi e-mail kad netko lajka moj status
         follow: Pošalji mi e-mail kad me netko počne slijediti
-        follow_request: Pošalji mi e-mail kad mi netko pošalje zahtjev da me želi
-          slijediti
+        follow_request: Pošalji mi e-mail kad mi netko pošalje zahtjev da me želi slijediti
         mention: Pošalji mi e-mail kad me netko spomene
         reblog: Pošalji mi e-mail kad netko rebloga moj status
     'no': Ne
     required:
-      mark: '*'
+      mark: "*"
       text: traženo
     'yes': Da
