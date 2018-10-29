@@ -73,7 +73,7 @@ const formatMessage = (messageId, locale, values = {}) =>
   (new IntlMessageFormat(locales[locale][messageId], locale)).format(values);
 
 const htmlToPlainText = html =>
-  unescape(html.replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n').replace(/<[^>]*>/g, ''));
+  unescape(html.replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n').replace(/<[^>]*>/g, '').replace(/&apos;/g, '\''));
 
 const handlePush = (event) => {
   const { access_token, notification_id, preferred_locale, title, body, icon } = event.data.json();
