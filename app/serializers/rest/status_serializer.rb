@@ -20,6 +20,8 @@ class REST::StatusSerializer < ActiveModel::Serializer
   has_many :tags
   has_many :emojis, serializer: REST::CustomEmojiSerializer
 
+  has_one :preview_card, key: :card, serializer: REST::PreviewCardSerializer
+
   def id
     object.id.to_s
   end

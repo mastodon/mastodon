@@ -3,7 +3,7 @@ import ConversationsList from '../components/conversations_list';
 import { expandConversations } from '../../../actions/conversations';
 
 const mapStateToProps = state => ({
-  conversationIds: state.getIn(['conversations', 'items']).map(x => x.get('id')),
+  conversations: state.getIn(['conversations', 'items']),
   isLoading: state.getIn(['conversations', 'isLoading'], true),
   hasMore: state.getIn(['conversations', 'hasMore'], false),
 });

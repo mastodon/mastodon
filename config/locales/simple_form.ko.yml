@@ -8,24 +8,24 @@ ko:
         bot: 사람들에게 계정이 사람이 아님을 알립니다
         context: 필터를 적용 할 한 개 이상의 컨텍스트
         digest: 오랫동안 활동하지 않았을 때 받은 멘션들에 대한 요약 받기
-        display_name:
-          one: <span class="name-counter">1</span> 글자 남음
-          other: <span class="name-counter">%{count}</span> 글자 남음
+        email: 당신은 확인 메일을 받게 됩니다
         fields: 당신의 프로파일에 최대 4개까지 표 형식으로 나타낼 수 있습니다
         header: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 다운스케일 됨
         inbox_url: 사용 할 릴레이 서버의 프론트페이지에서 URL을 복사합니다
         irreversible: 필터링 된 툿은 나중에 필터가 사라지더라도 돌아오지 않게 됩니다
         locale: 유저 인터페이스, 이메일, 푸시 알림 언어
         locked: 수동으로 팔로워를 승인하고, 기본 툿 프라이버시 설정을 팔로워 전용으로 변경
-        note:
-          one: <span class="note-counter">1</span> 글자 남음
-          other: <span class="note-counter">%{count}</span> 글자 남음
+        password: 최소 8글자
         phrase: 툿 내용이나 CW 내용 안에서 대소문자 구분 없이 매칭 됩니다
         scopes: 애플리케이션에 허용할 API들입니다. 최상위 스코프를 선택하면 개별적인 것은 선택하지 않아도 됩니다.
         setting_default_language: 작성한 툿의 언어는 자동으로 인식할 수 있지만, 언제나 정확한 건 아닙니다
+        setting_display_media_default: 민감함으로 설정 된 미디어 가리기
+        setting_display_media_hide_all: 항상 모든 미디어를 가리기
+        setting_display_media_show_all: 민감함으로 설정 된 미디어를 항상 보이기
         setting_hide_network: 나를 팔로우 하는 사람들과 내가 팔로우 하는 사람들이 내 프로필에 표시되지 않게 합니다
         setting_noindex: 공개 프로필 및 각 툿페이지에 영향을 미칩니다
         setting_theme: 로그인중인 모든 디바이스에 적용되는 디자인입니다.
+        username: 당신의 유저네임은 %{domain} 안에서 유일해야 합니다
         whole_word: 키워드가 영문과 숫자로만 이루어 진 경우, 단어 전체에 매칭 되었을 때에만 작동하게 합니다
       imports:
         data: 다른 마스토돈 인스턴스에서 추출된 CSV 파일
@@ -69,6 +69,11 @@ ko:
         setting_default_privacy: 툿 프라이버시
         setting_default_sensitive: 미디어를 언제나 민감한 컨텐츠로 설정
         setting_delete_modal: 툿 삭제 전 확인 창을 표시
+        setting_display_media: 미디어 표시
+        setting_display_media_default: 기본
+        setting_display_media_hide_all: 모두 가리기
+        setting_display_media_show_all: 모두 보이기
+        setting_expand_spoilers: 열람주의 툿을 항상 펼치기
         setting_hide_network: 내 네트워크 숨기기
         setting_noindex: 검색엔진의 인덱싱을 거절
         setting_reduce_motion: 애니메이션 줄이기
