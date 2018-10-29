@@ -558,9 +558,7 @@ cy:
     followers_count: Nifer y dilynwyr
     lock_link: Cloi eich cyfrif
     purge: Dileu o dilynwyr
-    success:
-      one: Yn y broses o ysgafn-flocio dilynwyr o un parth...
-      other: Yn y broses o ysgafn-flocio dilynwyr o %{count} parth...
+    success: Yn y broses o ysgafn-flocio dilynwyr o %{count} parth...
     true_privacy_html: Cofiwch <strong>mai ond amgryptio pen-i-ben all sicrhau gwir breifatrwydd</strong>.
     unlocked_warning_html: Gall unrhywun eich dilyn yn syth i weld eich tŵtiau preifat. %{lock_link} i gael adolygu a gwrthod dilynwyr.
     unlocked_warning_title: Nid yw eich cyfrif wedi ei gloi
@@ -595,9 +593,7 @@ cy:
     expires_in_prompt: Byth
     generate: Cynhyrchu
     invited_by: 'Cawsoch eich gwahodd gan:'
-    max_uses:
-      one: 1 defnydd
-      other: "%{count} defnydd"
+    max_uses: "%{count} defnydd"
     max_uses_prompt: Dim terfyn
     prompt: Cynhyrchwch a rhannwch ddolenni gyda eraill i ganiatau mynediad i'r achos hwn
     table:
@@ -623,12 +619,8 @@ cy:
       action: Gweld holl hysbysiadau
       body: Dyma grynodeb byr o'r holl negeseuon golloch chi ers eich ymweliad diwethaf ar %{since}
       mention: 'Soniodd %{name} amdanoch chi:'
-      new_followers_summary:
-        one: Hefyd, rydych wedi ennill dilynwr newydd tra eich bod i ffwrdd! Hwrê!
-        other: Hefyd, rydych wedi ennill %{count} dilynwr newydd tra eich bod i ffwrdd! Hwrê!
-      subject:
-        one: "1 hysbysiad newydd ers eich ymweliad diwethaf \U0001F418"
-        other: "%{count} hysbysiad newydd ers eich ymweliad diwethaf \U0001F418"
+      new_followers_summary: Hefyd, rydych wedi ennill %{count} dilynwr newydd tra eich bod i ffwrdd! Hwrê!
+      subject: "%{count} hysbysiad newydd ers eich ymweliad diwethaf \U0001F418"
       title: Yn eich absenoldeb...
     favourite:
       body: 'Cafodd eich statws ei hoffi gan %{name}:'
@@ -745,17 +737,11 @@ cy:
   statuses:
     attached:
       description: 'Ynghlwm: %{attached}'
-      image:
-        one: "%{count} llun"
-        other: "%{count} o luniau"
-      video:
-        one: "%{count} fideo"
-        other: "%{count} fideo"
+      image: "%{count} o luniau"
+      video: "%{count} fideo"
     boosted_from_html: Wedi ei fŵstio %{acct_link}
     content_warning: 'Rhybudd cynnwys: %{warning}'
-    disallowed_hashtags:
-      one: 'yn cynnwys hashnod gwaharddedig: %{tags}'
-      other: 'yn cynnwys yr hashnod gwaharddedig: %{tags}'
+    disallowed_hashtags: 'yn cynnwys yr hashnod gwaharddedig: %{tags}'
     language_detection: Canfod iaith yn awtomataidd
     open_in_web: Agor yn y wê
     over_character_limit: wedi mynd heibio'r uchafswm nodyn o %{max}
