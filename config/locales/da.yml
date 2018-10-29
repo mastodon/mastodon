@@ -48,6 +48,7 @@ da:
       other: Følgere
     following: Følger
     joined: Tilmeldt den %{date}
+    link_verified_on: Ejerskabet af dette link blev tjekket den %{date}
     media: Medier
     moved_html: "%{name} er flyttet til %{new_profile_link}:"
     network_hidden: Denne information er ikke tilgængelig
@@ -126,7 +127,7 @@ da:
         most_recent: Seneste
         title: Rækkefølge
       outbox_url: Link til udgående
-      perform_full_suspension: Udfør fuld udelukkelse
+      perform_full_suspension: Udeluk
       profile_url: Link til profil
       promote: Forfrem
       protocol: Protokol
@@ -155,8 +156,10 @@ da:
         report: anmeld
         targeted_reports: Anmeldelser fra denne konto
       silence: Dæmp
+      silenced: Dæmpet
       statuses: Statusser
       subscribe: Abonner
+      suspended: Udelukket
       title: Konti
       unconfirmed_email: Ikke-bekræftet email
       undo_silenced: Fortryd dæmpning
@@ -258,6 +261,7 @@ da:
         title: Ny domæne blokering
       reject_media: Afvis medie filer
       reject_media_hint: Fjerner lokalt lagrede multimedie filer og nægter at hente nogen i fremtiden. Irrelevant for udelukkelser
+      reject_reports: Afvis anmeldelser
       severities:
         noop: Ingen
         silence: Dæmp
