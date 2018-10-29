@@ -15,7 +15,6 @@ import settings from './settings';
 import local_settings from './local_settings';
 import push_notifications from './push_notifications';
 import status_lists from './status_lists';
-import cards from './cards';
 import mutes from './mutes';
 import reports from './reports';
 import contexts from './contexts';
@@ -47,7 +46,6 @@ const reducers = {
   settings,
   local_settings,
   push_notifications,
-  cards,
   mutes,
   reports,
   contexts,
