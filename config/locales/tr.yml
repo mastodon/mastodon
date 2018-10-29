@@ -1,7 +1,11 @@
----
 tr:
   about:
-    about_mastodon_html: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezileştirilmemiş</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir.
+    about_mastodon_html: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır.
+      <em>Merkezileştirilmemiş</em> yapısı sayesinde diğer ticari sosyal platformların
+      aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer.
+      Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz.
+      Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon
+      <em>sosyal ağına</em> dahil edebilir.
     about_this: Bu sunucu hakkında
     closed_registrations: Bu sunucu şu anda yeni kayıt almamaktadır.
     contact: İletişim
@@ -80,14 +84,19 @@ tr:
       domain: Domain
       new:
         create: Yeni blok oluştur
-        hint: Domain bloğu, veri tabanında hesap kayıtlarının oluşturulmasını engellemez, fakat o hesapların üzerine otomatik olarak belirli yönetim metodlarını olarak uygular.
+        hint: Domain bloğu, veri tabanında hesap kayıtlarının oluşturulmasını engellemez,
+          fakat o hesapların üzerine otomatik olarak belirli yönetim metodlarını olarak
+          uygular.
         severity:
-          desc_html: "<strong>Susturma</strong>, uygulanan hesabın gönderilerini, o hesabı takip etmeyen diğer herkese gizler. <strong>Uzaklaştırma</strong> hesabın bütün içeriğini, ortam dosyalarını ve profil verisini siler."
+          desc_html: <strong>Susturma</strong>, uygulanan hesabın gönderilerini, o
+            hesabı takip etmeyen diğer herkese gizler. <strong>Uzaklaştırma</strong>
+            hesabın bütün içeriğini, ortam dosyalarını ve profil verisini siler.
           silence: Sustur
           suspend: Uzaklaştır
         title: Yeni domain bloğu
       reject_media: Ortam dosyalarını reddetme
-      reject_media_hint: Yerel olarak depolanmış ortam dosyalarını ve gelecekte indirilecek olanları reddeder. Uzaklaştırma için uygun değildir
+      reject_media_hint: Yerel olarak depolanmış ortam dosyalarını ve gelecekte indirilecek
+        olanları reddeder. Uzaklaştırma için uygun değildir
       severities:
         silence: Sustur
         suspend: Uzaklaştır
@@ -99,7 +108,7 @@ tr:
         retroactive:
           silence: Bu domaindeki tüm hesapların üzerindeki susturulma işlemini kaldır
           suspend: Bu domaindeki tüm hesapların üzerindeki uzaklaştırma işlemini kaldır
-        title: "%{domain} domain'i için yapılan işlemi geri al"
+        title: '%{domain} domain''i için yapılan işlemi geri al'
         undo: Geri al
       title: Domain Blokları
       undo: Geri al
@@ -124,12 +133,15 @@ tr:
         username: Bir kullanıcı adı giriniz
       registrations:
         closed_message:
-          desc_html: Kayıt alımları kapatıldığında ana sayfada görüntülenecek mesajdır. <br> HTML etiketleri kullanabilirsiniz
+          desc_html: Kayıt alımları kapatıldığında ana sayfada görüntülenecek mesajdır.
+            <br> HTML etiketleri kullanabilirsiniz
           title: Kayıt alımları kapatılma mesajı
         open:
           title: Kayıt alımları
       site_description:
-        desc_html: Ana sayfada paragraf olarak görüntülenecek bilgidir.<br>Özellikle <code>&lt;a&gt;</code> ve <code>&lt;em&gt;</code> olmak suretiyle HTML etiketlerini kullanabilirsiniz.
+        desc_html: Ana sayfada paragraf olarak görüntülenecek bilgidir.<br>Özellikle
+          <code>&lt;a&gt;</code> ve <code>&lt;em&gt;</code> olmak suretiyle HTML etiketlerini
+          kullanabilirsiniz.
         title: Site açıklaması
       site_description_extended:
         desc_html: Harici bilgi sayfasında gösterilir.<br>HTML etiketleri girebilirsiniz
@@ -162,27 +174,28 @@ tr:
   authorize_follow:
     error: Uzak hesap aranırken bir hata oluştu
     follow: Takip et
-    title: "%{acct}'i takip et"
+    title: '%{acct}''i takip et'
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}sa"
-      about_x_months: "%{count}ay"
-      about_x_years: "%{count}yıl"
-      almost_x_years: "%{count}yıl"
+      about_x_hours: '%{count}sa'
+      about_x_months: '%{count}ay'
+      about_x_years: '%{count}yıl'
+      almost_x_years: '%{count}yıl'
       half_a_minute: Şimdi
-      less_than_x_minutes: "%{count}ay"
+      less_than_x_minutes: '%{count}ay'
       less_than_x_seconds: Şimdi
-      over_x_years: "%{count}yıl"
-      x_days: "%{count}gün"
-      x_minutes: "%{count}dk"
-      x_months: "%{count}ay"
-      x_seconds: "%{count}sn"
+      over_x_years: '%{count}yıl'
+      x_days: '%{count}gün'
+      x_minutes: '%{count}dk'
+      x_months: '%{count}ay'
+      x_seconds: '%{count}sn'
   errors:
     '403': Bu sayfayı görmek için izniniz yok.
     '404': Aradığınız sayfa bulunamadı.
     '410': Aradığınız sayfa artık yok.
     '422':
-      content: Güvenlik doğrulaması başarısız oldu. Site cookie'lerini engellemiş olabilirsiniz.
+      content: Güvenlik doğrulaması başarısız oldu. Site cookie'lerini engellemiş
+        olabilirsiniz.
       title: Güvenlik doğrulamasu başarısız
   exports:
     blocks: Blokladıklarınız
@@ -192,15 +205,23 @@ tr:
     storage: Ortam deposu
   followers:
     domain: Domain
-    explanation_html: Eğer gönderilerinizin gizliliğini garanti altına almak istiyorsanız, sizi kimin takip ettiğinden emin olmak zorundasınız. <strong> Gizli gönderileriniz, takipçilerinizin olduğu bütün sunuculara iletilir</strong>. Gönderilerinizi gözden geçirmek isteyebilir, ve o sunuculardaki yazılımın veya ilgili çalışanın, gizliliğinizi suistimal edeceğinizi düşünüyorsanız, o sunucudaki takipçilerinizi silebilirsiniz.
+    explanation_html: Eğer gönderilerinizin gizliliğini garanti altına almak istiyorsanız,
+      sizi kimin takip ettiğinden emin olmak zorundasınız. <strong> Gizli gönderileriniz,
+      takipçilerinizin olduğu bütün sunuculara iletilir</strong>. Gönderilerinizi
+      gözden geçirmek isteyebilir, ve o sunuculardaki yazılımın veya ilgili çalışanın,
+      gizliliğinizi suistimal edeceğinizi düşünüyorsanız, o sunucudaki takipçilerinizi
+      silebilirsiniz.
     followers_count: Takipçi sayısı
     lock_link: Hesabımı kilitle
     purge: Takipçilerimden çıkar
     success:
       one: Domaindeki takipçilerin engellenmesi sürüyor...
-      other: "%{count} domaindeki takipçilerin engellenmesi sürüyor..."
-    true_privacy_html: 'Lütfen aklınızda bulundurun: <strong>gerçek gizlilik yalnızca uçtan-uca şifreleme ile sağlanır</strong>.'
-    unlocked_warning_html: Herhangi bir kişi sizi takip edebilir ve paylaştığınız gizli gönderilerinizi görebilir. %{lock_link}'e tıklayarak takipçilerinizi gözden geçirebilir ve reddedebilirsiniz.
+      other: '%{count} domaindeki takipçilerin engellenmesi sürüyor...'
+    true_privacy_html: 'Lütfen aklınızda bulundurun: <strong>gerçek gizlilik yalnızca
+      uçtan-uca şifreleme ile sağlanır</strong>.'
+    unlocked_warning_html: Herhangi bir kişi sizi takip edebilir ve paylaştığınız
+      gizli gönderilerinizi görebilir. %{lock_link}'e tıklayarak takipçilerinizi gözden
+      geçirebilir ve reddedebilirsiniz.
     unlocked_warning_title: Hesabınız kilitlendi
   generic:
     changes_saved_msg: Değişiklikler başarıyla kaydedildi!
@@ -209,7 +230,9 @@ tr:
       one: Bir şeyler ters gitti! Lütfen aşağıdaki hatayı gözden geçiriniz
       other: Bir şeyler ters gitti! Lütfen aşağıdaki %{count} hatayı gözden geçiriniz
   imports:
-    preface: Diğer sunucudan alarak oluşturduğunuz dosyalar sayesinde, bu sunucudaki hesabınıza takipçilerinizi aktarabilir veya istemediğiniz kişileri otomatik olarak engelleyebilirsiniz.
+    preface: Diğer sunucudan alarak oluşturduğunuz dosyalar sayesinde, bu sunucudaki
+      hesabınıza takipçilerinizi aktarabilir veya istemediğiniz kişileri otomatik
+      olarak engelleyebilirsiniz.
     success: Verileriniz başarıyla yüklendi ve zaman içinde işlenecek
     types:
       blocking: Engellenenler listesi
@@ -222,33 +245,33 @@ tr:
       too_many: 4'ten fazla dosya ekleyemezsiniz
   notification_mailer:
     digest:
-      body: 'Son ziyaretiniz olan %{since}''den beri''da kaçırdığınız şeylerin özeti:'
-      mention: "%{name} senden bahsetti:"
+      body: Son ziyaretiniz olan %{since}'den beri'da kaçırdığınız şeylerin özeti
+      mention: '%{name} senden bahsetti:'
       new_followers_summary:
         one: Yeni bir takipçiniz var!
         other: Yeni %{count} takipçiniz var!
       subject:
-        one: "Son ziyaretinizden beri 1 yeni bildiriminiz var \U0001F418"
-        other: "Son ziyaretinizden beri %{count} yeni bildiriminiz var \U0001F418"
+        one: Son ziyaretinizden beri 1 yeni bildiriminiz var 🐘
+        other: Son ziyaretinizden beri %{count} yeni bildiriminiz var 🐘
     favourite:
-      body: "%{name} durumunuzu favorilere ekledi:"
-      subject: "%{name} favorilere ekledi"
+      body: '%{name} durumunuzu favorilere ekledi:'
+      subject: '%{name} favorilere ekledi'
     follow:
-      body: "%{name} sizi takip etmeye başladı!"
-      subject: "%{name} sizi takip etmeye başladı"
+      body: '%{name} sizi takip etmeye başladı!'
+      subject: '%{name} sizi takip etmeye başladı'
     follow_request:
-      body: "%{name} size takip isteği gönderdi"
+      body: '%{name} size takip isteği gönderdi'
       subject: 'Takip isteği: %{name}'
     mention:
-      body: "%{name} sizden bahsetti:"
-      subject: "%{name} sizden bahsetti"
+      body: '%{name} sizden bahsetti:'
+      subject: '%{name} sizden bahsetti'
     reblog:
-      body: "%{name} durumunuzu boost etti:"
-      subject: "%{name} durumunuzu boost etti"
+      body: '%{name} durumunuzu boost etti:'
+      subject: '%{name} durumunuzu boost etti'
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: '%n%u'
         units:
           billion: B
           million: M
@@ -259,7 +282,7 @@ tr:
   pagination:
     next: Sonraki
     prev: Önceki
-    truncate: "&hellip;"
+    truncate: '&hellip;'
   remote_follow:
     acct: Takip edeceğiniz kişiyi kullaniciadi@sunuculinki şeklinde giriniz
     missing_resource: Hesabınız için yönlendirme linki bulunamadı
@@ -277,7 +300,7 @@ tr:
     two_factor_authentication: İki-faktörlü doğrulama
   statuses:
     open_in_web: Web sayfasında aç
-    over_character_limit: "%{max} karakter limiti aşıldı"
+    over_character_limit: '%{max} karakter limiti aşıldı'
     show_more: Daha fazla
     visibilities:
       private: Sadece takipçiler
@@ -291,19 +314,29 @@ tr:
     sensitive_content: Hassas içerik
   time:
     formats:
-      default: "%b %d, %Y, %H:%M"
+      default: '%b %d, %Y, %H:%M'
   two_factor_authentication:
     code_hint: Onaylamak için kimlik doğrulama uygulamanızın oluşturduğu kodu giriniz
-    description_html: Eğer <strong>iki-faktörlü kimlik doğrulamayı</strong> aktif ederseniz, giriş yaparken sizin için giriş kodu üreten telefonunuza ihtiyaç duyacaksınız.
+    description_html: Eğer <strong>iki-faktörlü kimlik doğrulamayı</strong> aktif
+      ederseniz, giriş yaparken sizin için giriş kodu üreten telefonunuza ihtiyaç
+      duyacaksınız.
     disable: Devre dışı bırak
     enable: Aktifleştir
     enabled_success: İki-faktörlü kimlik doğrulama başarıyla aktif edildi
     generate_recovery_codes: Kurtarma Kodlarını Oluştur
-    instructions_html: <strong>Bu QR kodunu, telefonunuzdaki <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">Google Authenticator</a> veya benzer bir TOTP uygulamasıyla taratınız</strong>. Bundan sonra giriş yaparken uygulamanın ürettiği kodu kullanarak giriş yapacaksınız.
-    lost_recovery_codes: Kurtarma kodları telefonunuzu kaybettiğiniz durumlarda hesabınıza erişim yapabilmenize olanak tanır. Eğer kurtarma kodlarınızı kaybettiyseniz burada tekrar oluşturabilirsiniz. Eski kurtarma kodlarınız geçersiz hale gelecektir.
-    manual_instructions: 'Eğer QR kodunu taratamıyorsanız ve elle giriş yapmanız gerekiyorsa buradaki gizli düz metni girebilirsiniz:'
+    instructions_html: <strong>Bu QR kodunu, telefonunuzdaki <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">Google
+      Authenticator</a> veya benzer bir TOTP uygulamasıyla taratınız</strong>. Bundan
+      sonra giriş yaparken uygulamanın ürettiği kodu kullanarak giriş yapacaksınız.
+    lost_recovery_codes: Kurtarma kodları telefonunuzu kaybettiğiniz durumlarda hesabınıza
+      erişim yapabilmenize olanak tanır. Eğer kurtarma kodlarınızı kaybettiyseniz
+      burada tekrar oluşturabilirsiniz. Eski kurtarma kodlarınız geçersiz hale gelecektir.
+    manual_instructions: 'Eğer QR kodunu taratamıyorsanız ve elle giriş yapmanız gerekiyorsa
+      buradaki gizli düz metni girebilirsiniz:'
     recovery_codes_regenerated: Kurtarma kodları başarıyla oluşturuldu
-    recovery_instructions_html: 'Eğer telefonunuza erişiminizi kaybederseniz, aşağıdaki kurtarma kodlarından birini kullanarak hesabınıza giriş yapabilirsiniz. Kurtarma kodlarınızı güvenli halde tutunuz. Örneğin: kodların çıktısını alıp diğer önemli belgeleriniz ile birlikte saklayabilirsiniz.'
+    recovery_instructions_html: 'Eğer telefonunuza erişiminizi kaybederseniz, aşağıdaki
+      kurtarma kodlarından birini kullanarak hesabınıza giriş yapabilirsiniz. Kurtarma
+      kodlarınızı güvenli halde tutunuz. Örneğin: kodların çıktısını alıp diğer önemli
+      belgeleriniz ile birlikte saklayabilirsiniz.'
     setup: Kuruluma başla
     wrong_code: Girdiğiniz kod geçersiz! Telefonunuzun saati geri/ileri kalmış olabilir.
   users:
