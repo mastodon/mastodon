@@ -514,7 +514,7 @@ RSpec.describe Formatter do
     subject { Formatter.instance.sanitize(html, Sanitize::Config::MASTODON_STRICT) }
 
     it 'sanitizes' do
-      is_expected.to eq 'alert("Hello")'
+      is_expected.to eq ''
     end
   end
 end
