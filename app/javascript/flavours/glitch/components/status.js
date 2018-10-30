@@ -486,7 +486,7 @@ export default class Status extends ImmutablePureComponent {
           compact
         />
       );
-      //TODO: set mediaIcon?
+      mediaIcon = 'link';
     }
 
     //  Here we prepare extra data-* attributes for CSS selectors.
