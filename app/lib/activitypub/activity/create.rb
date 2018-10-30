@@ -2,7 +2,7 @@
 
 class ActivityPub::Activity::Create < ActivityPub::Activity
   SUPPORTED_TYPES = %w(Note).freeze
-  CONVERTED_TYPES = %w(Image Video Article).freeze
+  CONVERTED_TYPES = %w(Image Video Article Page).freeze
 
   def perform
     return if delete_arrived_first?(object_uri) || unsupported_object_type? || invalid_origin?(@object['id'])

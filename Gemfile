@@ -59,7 +59,7 @@ gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.2', require: 'mime/types/columnar'
 gem 'nokogiri', '~> 1.8'
 gem 'nsa', '~> 0.2'
-gem 'oj', '~> 3.6'
+gem 'oj', '~> 3.7'
 gem 'ostatus2', '~> 2.0'
 gem 'ox', '~> 2.10'
 gem 'posix-spawn', git: 'https://github.com/rtomayko/posix-spawn', ref: '58465d2e213991f8afb13b984854a49fcdcc980c'
@@ -72,7 +72,7 @@ gem 'rails-settings-cached', '~> 0.6'
 gem 'redis', '~> 4.0', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 0.10'
-gem 'sanitize', '~> 4.6'
+gem 'sanitize', '~> 5.0'
 gem 'sidekiq', '~> 5.2'
 gem 'sidekiq-scheduler', '~> 3.0'
 gem 'sidekiq-unique-jobs', '~> 5.0'
@@ -95,7 +95,7 @@ gem 'rdf-normalize', '~> 0.3'
 group :development, :test do
   gem 'fabrication', '~> 2.20'
   gem 'fuubar', '~> 2.3'
-  gem 'i18n-tasks', '~> 0.9', require: false, git: 'https://github.com/Gargron/i18n-tasks.git', ref: '7a57fbe7000f4f8120e250a757ab345c28c6885c'
+  gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-byebug', '~> 3.6'
   gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 3.8'
@@ -114,7 +114,7 @@ group :test do
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.16', require: false
   gem 'webmock', '~> 3.4'
-  gem 'parallel_tests', '~> 2.25'
+  gem 'parallel_tests', '~> 2.26'
 end
 
 group :development do
@@ -126,7 +126,7 @@ group :development do
   gem 'letter_opener', '~> 1.4'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.59', require: false
+  gem 'rubocop', '~> 0.60', require: false
   gem 'brakeman', '~> 4.3', require: false
   gem 'bundler-audit', '~> 0.6', require: false
   gem 'scss_lint', '~> 0.57', require: false

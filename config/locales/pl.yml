@@ -279,10 +279,7 @@ pl:
         suspend: Zawieś
       severity: Priorytet
       show:
-        affected_accounts:
-          many: Dotyczy %{count} kont w bazie danych
-          one: Dotyczy jednego konta w bazie danych
-          other: Dotyczy %{count} kont w bazie danych
+        affected_accounts: Dotyczy %{count} kont w bazie danych
         retroactive:
           silence: Odwołaj wyciszenie wszystkich kont w tej domenie
           suspend: Odwołaj zawieszenie wszystkich kont w tej domenie
@@ -376,7 +373,7 @@ pl:
         desc_html: Modyfikuj wygląd pliku CSS ładowanego na każdej stronie
         title: Niestandardowy CSS
       hero:
-        desc_html: Wyświetlany na stronie głównej. Zalecany jest rozmiar przynajmniej 600x100 pikseli. Jeżeli nie ustawiony, zostanie użyta miniatura instancji.
+        desc_html: Wyświetlany na stronie głównej. Zalecany jest rozmiar przynajmniej 600x100 pikseli. Jeżeli nie ustawiony, zostanie użyta miniatura instancji
         title: Obraz bohatera
       mascot:
         desc_html: Wyświetlany na wielu stronach. Zalecany jest rozmiar przynajmniej 293px × 205px. Jeżeli nie ustawiono, zostanie użyta domyślna.
@@ -577,9 +574,7 @@ pl:
     followers_count: Liczba śledzących
     lock_link: Zablokuj swoje konto
     purge: Przestań śledzić
-    success:
-      one: W trakcie usuwania śledzących z jednej domeny…
-      other: W trakcie usuwania śledzących z %{count} domen…
+    success: W trakcie usuwania śledzących z %{count} domen…
     true_privacy_html: Pamiętaj, że <strong>rzeczywista prywatność może zostać uzyskana wyłącznie dzięki szyfrowaniu end-to-end</strong>.
     unlocked_warning_html: Każdy może Cię śledzić, dzięki czemu może zobaczyć Twoje niepubliczne wpisy. %{lock_link} aby móc kontrolować, kto Cię śledzi.
     unlocked_warning_title: Twoje konto nie jest zablokowane
@@ -786,9 +781,7 @@ pl:
         other: "%{count} filmów"
     boosted_from_html: Podbito przez %{acct_link}
     content_warning: 'Ostrzeżenie o zawartości: %{warning}'
-    disallowed_hashtags:
-      one: 'zawiera niedozwolony hashtag: %{tags}'
-      other: 'zawiera niedozwolone hashtagi: %{tags}'
+    disallowed_hashtags: 'zawiera niedozwolone hashtagi: %{tags}'
     language_detection: Automatycznie wykrywaj język
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
