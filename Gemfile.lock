@@ -1,21 +1,4 @@
 GIT
-  remote: https://github.com/glebm/i18n-tasks.git
-  revision: a1c9089b4ffed4f33e3b3a1bb2378d7a23445c0f
-  ref: a1c9089b4ffed4f33e3b3a1bb2378d7a23445c0f
-  branch: master
-  specs:
-    i18n-tasks (0.9.27)
-      activesupport (>= 4.0.2)
-      ast (>= 2.1.0)
-      erubi
-      highline (>= 2.0.0)
-      i18n
-      parser (>= 2.2.3.0)
-      rails-i18n
-      rainbow (>= 2.2.2, < 4.0)
-      terminal-table (>= 1.5.1)
-
-GIT
   remote: https://github.com/rtomayko/posix-spawn
   revision: 58465d2e213991f8afb13b984854a49fcdcc980c
   ref: 58465d2e213991f8afb13b984854a49fcdcc980c
@@ -289,6 +272,16 @@ GEM
       rainbow (>= 2.0.0)
     i18n (1.1.1)
       concurrent-ruby (~> 1.0)
+    i18n-tasks (0.9.28)
+      activesupport (>= 4.0.2)
+      ast (>= 2.1.0)
+      erubi
+      highline (>= 2.0.0)
+      i18n
+      parser (>= 2.2.3.0)
+      rails-i18n
+      rainbow (>= 2.2.2, < 4.0)
+      terminal-table (>= 1.5.1)
     idn-ruby (0.1.0)
     ipaddress (0.8.3)
     iso-639 (0.2.8)
@@ -396,7 +389,7 @@ GEM
     parallel (1.12.1)
     parallel_tests (2.26.0)
       parallel
-    parser (2.5.1.2)
+    parser (2.5.3.0)
       ast (~> 2.4.0)
     pastel (0.7.2)
       equatable (~> 0.5.0)
@@ -459,7 +452,7 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
-    rails-i18n (5.1.1)
+    rails-i18n (5.1.2)
       i18n (>= 0.7, < 2)
       railties (>= 5.0, < 6)
     rails-settings-cached (0.6.6)
@@ -699,7 +692,7 @@ DEPENDENCIES
   http_accept_language (~> 2.1)
   http_parser.rb (~> 0.6)!
   httplog (~> 1.1)
-  i18n-tasks (~> 0.9)!
+  i18n-tasks (~> 0.9)
   idn-ruby
   iso-639
   json-ld (~> 2.2)
