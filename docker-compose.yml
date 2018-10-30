@@ -77,7 +77,7 @@ services:
 
   sidekiq_push_first:
     build: .
-    image: gargron/mastodon
+    image: tootsuite/mastodon
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq -c 24 -q push -q default
@@ -92,7 +92,7 @@ services:
 
   sidekiq_all:
     build: .
-    image: gargron/mastodon
+    image: tootsuite/mastodon
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq -c 24 -q default,1 -q push,1 -q mailers,1 -q pull,1
