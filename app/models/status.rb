@@ -434,6 +434,9 @@ class Status < ApplicationRecord
   end
 
   def set_conversation
+    # clients might send the ID of the boost itself instead of the boosted status
+    self.thread = thread.reblog if thread&.reblog?
+
     self.reply = !(in_reply_to_id.nil? && thread.nil?) unless reply
 
     if reply? && !thread.nil?
