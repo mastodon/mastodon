@@ -48,6 +48,7 @@ es:
       other: Seguidores
     following: Siguiendo
     joined: Se unió el %{date}
+    link_verified_on: La propiedad de este vínculo fue verificada el %{date}
     media: Media
     moved_html: "%{name} se ha trasladado a %{new_profile_link}:"
     network_hidden: Esta información no está disponible
@@ -120,13 +121,14 @@ es:
       moderation_notes: Notas de moderación
       most_recent_activity: Actividad más reciente
       most_recent_ip: IP más reciente
+      no_limits_imposed: Sin límites impuestos
       not_subscribed: No se está suscrito
       order:
         alphabetic: Alfabético
         most_recent: Más reciente
         title: Orden
       outbox_url: URL de bandeja de salida
-      perform_full_suspension: Performar suspensión completa
+      perform_full_suspension: Suspender
       profile_url: URL del perfil
       promote: Promocionar
       protocol: Protocolo
@@ -155,8 +157,10 @@ es:
         report: reportar
         targeted_reports: Reportes hechos sobre esta cuenta
       silence: Silenciar
+      silenced: Silenciado
       statuses: Estados
       subscribe: Suscribir
+      suspended: Susependido
       title: Cuentas
       unconfirmed_email: Correo electrónico sin confirmar
       undo_silenced: Des-silenciar
@@ -173,6 +177,7 @@ es:
         create_domain_block: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block: "%{name} puso en lista negra el dominio de correos %{target}"
         demote_user: "%{name} degradó al usuario %{target}"
+        destroy_custom_emoji: "%{name} destruyó el emoji %{target}"
         destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
         destroy_email_domain_block: "%{name} puso en lista blanca el dominio de correos %{target}"
         destroy_status: "%{name} eliminó el estado de %{target}"
@@ -258,6 +263,8 @@ es:
         title: Nuevo bloque de dominio
       reject_media: Rechazar archivos multimedia
       reject_media_hint: Remueve localmente archivos multimedia almacenados para descargar cualquiera en el futuro. Irrelevante para suspensiones
+      reject_reports: Rechazar informes
+      reject_reports_hint: Ignore todos los reportes de este dominio. Irrelevante para suspensiones
       severities:
         noop: Ninguno
         silence: Silenciar
@@ -300,8 +307,13 @@ es:
       title: Invitaciones
     relays:
       add_new: Añadir un nuevo relés
+      delete: Borrar
       description_html: Un <strong>relés de federation</strong> es un servidor intermedio que intercambia grandes volúmenes de toots públicos entre servidores que se suscriben y publican en él. <strong>Puede ayudar a servidores pequeños y medianos a descubir contenido del fediverso</strong>, que de otra manera requeriría que los usuarios locales siguiesen manialmente a personas de servidores remotos.
+      disable: Deshabilitar
+      disabled: Deshabilitado
+      enable: Hablitar
       enable_hint: Una vez conectado, tu servidor se suscribirá a todos los toots públicos de este relés, y comenzará a enviar los toots públicos de este servidor hacia él.
+      enabled: Habilitado
       inbox_url: URL del relés
       pending: Esperando la aprobación del relés
       save_and_enable: Guardar y conectar
@@ -357,6 +369,9 @@ es:
       hero:
         desc_html: Mostrado en la página principal. Recomendable al menos 600x100px. Por defecto se establece a la miniatura de la instancia
         title: Imagen de portada
+      mascot:
+        desc_html: Mostrado en múltiples páginas. Se recomienda un tamaño mínimo de 293x205px. Cuando no se especifica, se muestra la mascota por defecto
+        title: Imagen de la mascota
       peers_api_enabled:
         desc_html: Nombres de dominio que esta instancia ha encontrado en el fediverso
         title: Publicar lista de instancias descubiertas
@@ -450,7 +465,7 @@ es:
     warning: Ten mucho cuidado con estos datos. ¡No los compartas con nadie!
     your_token: Tu token de acceso
   auth:
-    agreement_html: Al registrarte, acepta seguir <a href="%{rules_path}">las reglas de la instancia</a> y <a href="%{terms_path}">nuestros términos de servicio</a>.
+    agreement_html: Al hacer click en "Registrarse" acepta seguir <a href="%{rules_path}">las reglas de la instancia</a> y <a href="%{terms_path}">nuestros términos de servicio</a>.
     change_password: Contraseña
     confirm_email: Confirmar email
     delete_account: Borrar cuenta
@@ -565,6 +580,7 @@ es:
     resources: Recursos
   generic:
     changes_saved_msg: "¡Cambios guardados con éxito!"
+    copy: Copiar
     save_changes: Guardar cambios
     validation_errors:
       one: "¡Algo no está bien! Por favor, revisa el error"
@@ -825,8 +841,12 @@ es:
       tips: Tips
       title: Te damos la bienvenida a bordo, %{name}!
   users:
+    follow_limit_reached: No puedes seguir a más de %{limit} personas
     invalid_email: La dirección de correo es incorrecta
     invalid_otp_token: Código de dos factores incorrecto
     otp_lost_help_html: Si perdiste al acceso a ambos, puedes ponerte en contancto con %{email}
     seamless_external_login: Has iniciado sesión desde un servicio externo, así que los ajustes de contraseña y correo no están disponibles.
     signed_in_as: 'Sesión iniciada como:'
+  verification:
+    explanation_html: 'Puedes <strong> verificarte a ti mismo como el dueño de los links en los metadatos de tu perfil </strong>. Para eso, el sitio vinculado debe contener un vínculo a tu perfil de Mastodon. El vínculo en tu sitio <strong> debe </strong> tener un atributo <code> rel="me"</code>. El texto del vínculo no importa. Aquí un ejemplo:'
+    verification: Verificación

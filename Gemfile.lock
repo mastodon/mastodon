@@ -1,20 +1,4 @@
 GIT
-  remote: https://github.com/Gargron/i18n-tasks.git
-  revision: 7a57fbe7000f4f8120e250a757ab345c28c6885c
-  ref: 7a57fbe7000f4f8120e250a757ab345c28c6885c
-  specs:
-    i18n-tasks (0.9.27)
-      activesupport (>= 4.0.2)
-      ast (>= 2.1.0)
-      erubi
-      highline (>= 2.0.0)
-      i18n
-      parser (>= 2.2.3.0)
-      rails-i18n
-      rainbow (>= 2.2.2, < 4.0)
-      terminal-table (>= 1.5.1)
-
-GIT
   remote: https://github.com/rtomayko/posix-spawn
   revision: 58465d2e213991f8afb13b984854a49fcdcc980c
   ref: 58465d2e213991f8afb13b984854a49fcdcc980c
@@ -199,7 +183,7 @@ GEM
     docile (1.3.0)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
-    doorkeeper (5.0.1)
+    doorkeeper (5.0.2)
       railties (>= 4.2)
     dotenv (2.5.0)
     dotenv-rails (2.5.0)
@@ -288,6 +272,16 @@ GEM
       rainbow (>= 2.0.0)
     i18n (1.1.1)
       concurrent-ruby (~> 1.0)
+    i18n-tasks (0.9.28)
+      activesupport (>= 4.0.2)
+      ast (>= 2.1.0)
+      erubi
+      highline (>= 2.0.0)
+      i18n
+      parser (>= 2.2.3.0)
+      rails-i18n
+      rainbow (>= 2.2.2, < 4.0)
+      terminal-table (>= 1.5.1)
     idn-ruby (0.1.0)
     ipaddress (0.8.3)
     iso-639 (0.2.8)
@@ -359,8 +353,8 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
-    nokogumbo (1.5.0)
-      nokogiri
+    nokogumbo (2.0.0)
+      nokogiri (~> 1.8, >= 1.8.4)
     nsa (0.2.4)
       activesupport (>= 4.2, < 6)
       concurrent-ruby (~> 1.0.0)
@@ -393,9 +387,9 @@ GEM
       av (~> 0.9.0)
       paperclip (>= 2.5.2)
     parallel (1.12.1)
-    parallel_tests (2.25.0)
+    parallel_tests (2.26.0)
       parallel
-    parser (2.5.1.2)
+    parser (2.5.3.0)
       ast (~> 2.4.0)
     pastel (0.7.2)
       equatable (~> 0.5.0)
@@ -458,7 +452,7 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
-    rails-i18n (5.1.1)
+    rails-i18n (5.1.2)
       i18n (>= 0.7, < 2)
       railties (>= 5.0, < 6)
     rails-settings-cached (0.6.6)
@@ -528,24 +522,24 @@ GEM
       rspec-core (~> 3.0, >= 3.0.0)
       sidekiq (>= 2.4.0)
     rspec-support (3.8.0)
-    rubocop (0.59.2)
+    rubocop (0.60.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.5, != 2.5.1.1)
       powerpack (~> 0.1)
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (~> 1.0, >= 1.0.1)
-    ruby-progressbar (1.9.0)
+      unicode-display_width (~> 1.4.0)
+    ruby-progressbar (1.10.0)
     ruby-saml (1.9.0)
       nokogiri (>= 1.5.10)
     rufus-scheduler (3.5.2)
       fugit (~> 1.1, >= 1.1.5)
     safe_yaml (1.0.4)
-    sanitize (4.6.6)
+    sanitize (5.0.0)
       crass (~> 1.0.2)
-      nokogiri (>= 1.4.4)
-      nokogumbo (~> 1.4)
+      nokogiri (>= 1.8.0)
+      nokogumbo (~> 2.0)
     sass (3.6.0)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -625,7 +619,7 @@ GEM
       unf (~> 0.1.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2018.6)
+    tzinfo-data (1.2018.7)
       tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
@@ -699,7 +693,7 @@ DEPENDENCIES
   http_accept_language (~> 2.1)
   http_parser.rb (~> 0.6)!
   httplog (~> 1.1)
-  i18n-tasks (~> 0.9)!
+  i18n-tasks (~> 0.9)
   idn-ruby
   iso-639
   json-ld (~> 2.2)
@@ -724,7 +718,7 @@ DEPENDENCIES
   ox (~> 2.10)
   paperclip (~> 6.0)
   paperclip-av-transcoder (~> 0.6)
-  parallel_tests (~> 2.25)
+  parallel_tests (~> 2.26)
   pg (~> 1.1)
   pghero (~> 2.2)
   pkg-config (~> 1.3)
@@ -748,8 +742,8 @@ DEPENDENCIES
   rqrcode (~> 0.10)
   rspec-rails (~> 3.8)
   rspec-sidekiq (~> 3.0)
-  rubocop (~> 0.59)
-  sanitize (~> 4.6)
+  rubocop (~> 0.60)
+  sanitize (~> 5.0)
   scss_lint (~> 0.57)
   sidekiq (~> 5.2)
   sidekiq-bulk (~> 0.1.1)

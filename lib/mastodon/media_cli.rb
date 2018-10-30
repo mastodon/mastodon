@@ -6,6 +6,10 @@ require_relative 'cli_helper'
 
 module Mastodon
   class MediaCLI < Thor
+    def self.exit_on_failure?
+      true
+    end
+
     option :days, type: :numeric, default: 7
     option :background, type: :boolean, default: false
     option :verbose, type: :boolean, default: false

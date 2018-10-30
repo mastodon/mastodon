@@ -89,6 +89,7 @@ class Status < ApplicationRecord
                    :conversation,
                    :status_stat,
                    :tags,
+                   :preview_cards,
                    :stream_entry,
                    active_mentions: :account,
                    reblog: [
@@ -96,6 +97,7 @@ class Status < ApplicationRecord
                      :application,
                      :stream_entry,
                      :tags,
+                     :preview_cards,
                      :media_attachments,
                      :conversation,
                      :status_stat,
@@ -161,6 +163,10 @@ class Status < ApplicationRecord
 
   def target
     reblog
+  end
+
+  def preview_card
+    preview_cards.first
   end
 
   def title
@@ -234,10 +240,6 @@ class Status < ApplicationRecord
   before_validation :set_local
 
   class << self
-    def cache_ids
-      left_outer_joins(:status_stat).select('statuses.id, greatest(statuses.updated_at, status_stats.updated_at) AS updated_at')
-    end
-
     def selectable_visibilities
       visibilities.keys - %w(direct limited)
     end

@@ -31,7 +31,7 @@ class NotifyService < BaseService
   end
 
   def blocked_reblog?
-    @recipient.muting_reblogs?(@notification.from_account)
+    false
   end
 
   def blocked_follow_request?
