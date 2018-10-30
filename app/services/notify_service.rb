@@ -66,7 +66,6 @@ class NotifyService < BaseService
   def optional_non_following_and_direct?
     direct_message? &&
       @recipient.user.settings.interactions['must_be_following_dm'] &&
-      !from_staff? &&
       !following_sender? &&
       !response_to_recipient?
   end
@@ -86,6 +85,9 @@ class NotifyService < BaseService
   def blocked?
     blocked   = @recipient.suspended?                            # Skip if the recipient account is suspended anyway
     blocked ||= from_self?                                       # Skip for interactions with self
+
+    return blocked if from_staff?
+
     blocked ||= domain_blocking?                                 # Skip for domain blocked accounts
     blocked ||= @recipient.blocking?(@notification.from_account) # Skip for blocked accounts
     blocked ||= @recipient.muting_notifications?(@notification.from_account)
