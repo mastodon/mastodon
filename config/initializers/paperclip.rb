@@ -36,6 +36,8 @@ if ENV['S3_ENABLED'] == 'true'
     },
     s3_options: {
       signature_version: ENV.fetch('S3_SIGNATURE_VERSION') { 'v4' },
+      http_open_timeout: 5,
+      http_read_timeout: 5,
     }
   )
 
