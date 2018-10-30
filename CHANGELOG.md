@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 - Add conversations API (#8832)
 - Add limit for the number of people that can be followed from one account (#8807)
 - Add admin setting to customize mascot (#8766)
-- Add support for more granular ActivityPub audiences from other software, i.e. circles (#8950, #9093)
+- Add support for more granular ActivityPub audiences from other software, i.e. circles (#8950, #9093, #9150)
 - Add option to block all reports from a domain (#8830)
 - Add user preference to always expand toots marked with content warnings (#8762)
 - Add user preference to always hide all media (#8569)
@@ -30,7 +30,6 @@ All notable changes to this project will be documented in this file.
 - Add PostgreSQL disk space growth tracking in PGHero (#8906)
 - Add button for disabling local account to report quick actions bar (#9024)
 - Add Czech language (#8594)
-- Add `Clear-Site-Data` header when logging out (#8627)
 - Add `same-site` (`lax`) attribute to cookies (#8626)
 - Add support for styled scrollbars in Firefox Nightly (#8653)
 - Add highlight to the active tab in web UI profiles (#8673)
@@ -64,6 +63,9 @@ All notable changes to this project will be documented in this file.
 - Change recommended Ruby version to 2.5.3 (#9003)
 - Change docker-compose default to persist volumes in current directory (#9055)
 - Change character counters on edit profile page to input length limit (#9100)
+- Change notification filtering to always let through messages from staff (#9152) 
+- Change "hide boosts from user" function also hiding notifications about boosts (#9147)
+- Change CSS `detailed-status__wrapper` class actually wrap the detailed status (#8547)
 
 ### Deprecated
 
@@ -89,18 +91,21 @@ All notable changes to this project will be documented in this file.
 - Fix some dark emojis not having a white outline (#8597)
 - Fix media description not being displayed in various media modals (#8678)
 - Fix generated URLs of desktop notifications missing base URL (#8758)
-- Fix RTL styles (#8764, #8767, #8823, #8897, #9005, #9007, #9018, #9021)
+- Fix RTL styles (#8764, #8767, #8823, #8897, #9005, #9007, #9018, #9021, #9145, #9146)
 - Fix crash in streaming API when tag param missing (#8955)
 - Fix hotkeys not working when no element is focused (#8998)
 - Fix some hotkeys not working on detailed status view (#9006)
 - Fix og:url on status pages (#9047)
 - Fix upload option buttons only being visible on hover (#9074)
 - Fix tootctl not returning exit code 1 on wrong arguments (#9094) 
-- Fix preview cards for appearing for profiles mentioned in toot (#6934) 
+- Fix preview cards for appearing for profiles mentioned in toot (#6934, #9158) 
 - Fix local accounts sometimes being duplicated as faux-remote (#9109)
 - Fix emoji search when the shortcode has multiple separators (#9124)
 - Fix dropdowns sometimes being partially obscured by other elements (#9126) 
 - Fix cache not updating when reply/boost/favourite counters or media sensitivity update (#9119) 
+- Fix empty display name precedence over username in web UI (#9163) 
+- Fix td instead of th in sessions table header (#9162)
+- Fix handling of content types with profile (#9132) 
 
 ## [2.5.2] - 2018-10-12
 ### Security
