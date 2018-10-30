@@ -10,7 +10,12 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
         @status = find_existing_status
-        process_status if @status.nil?
+
+        if @status.nil?
+          process_status
+        elsif @options[:delivered_to_account_id].present?
+          postprocess_audience_and_deliver
+        end
       else
         raise Mastodon::RaceConditionError
       end
@@ -97,6 +102,19 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return unless @params[:visibility] == :direct
 
     @params[:visibility] = :limited
+  end
+
+  def postprocess_audience_and_deliver
+    return if @status.mentions.find_by(account_id: @options[:delivered_to_account_id])
+
+    delivered_to_account = Account.find(@options[:delivered_to_account_id])
+
+    @status.mentions.create(account: delivered_to_account, silent: true)
+    @status.update(visibility: :limited) if @status.direct_visibility?
+
+    return unless delivered_to_account.following?(@account)
+
+    FeedInsertWorker.perform_async(@status.id, delivered_to_account.id, :home)
   end
 
   def attach_tags(status)
