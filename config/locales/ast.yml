@@ -24,10 +24,13 @@ ast:
     hosted_on: Mastodon ta agospiáu en %{domain}
     learn_more: Deprendi más
     source_code: Códigu fonte
-    status_count_after: estaos
+    status_count_after:
+      other: estaos
     terms: Términos del serviciu
     user_count_after: usuarios
     what_is_mastodon: ¿Qué ye Mastodon?
+    status_count_before: Que crearon
+    user_count_before: Ye'l llar de
   accounts:
     followers:
       one: Siguidor
@@ -119,6 +122,8 @@ ast:
       warning_html: 'El suspender esta cuenta va desaniciar <strong>de mou irreversible</strong>
         los sos datos qu''inclúin:'
     title: Alministración
+    relays:
+      save_and_enable: Guardar y activar
   admin_mailer:
     new_report:
       body_remote: Daquién dende %{domain} informó de %{target}
@@ -128,8 +133,9 @@ ast:
     invalid_url: La URL apurrida nun ye válida
     warning: Ten curiáu con estos datos, ¡enxamás nun los compartas con naide!
   auth:
-    agreement_html: Aniciando sesión aceutes siguir <a href="%{rules_path}">les regles
-      de la instancia</a> y <a href="%{terms_path}">los nuesos términos del serviciu</a>.
+    agreement_html: Faciendo clic en «Aniciar sesión» aceutes siguir <a href="%{rules_path}">
+      les regles de la instancia</a> y <a href="%{terms_path}">los nuesos términos
+      del serviciu</a>.
     change_password: Contraseña
     delete_account_html: Si deseyes desaniciar la to cuenta, pues <a href="%{path}">siguir
       equí</a>. Va pidísete la confirmación.
@@ -140,6 +146,10 @@ ast:
       saml: SAML
     register: Rexistrase
     security: Seguranza
+    delete_account: Desaniciu de la cuenta
+    migrate_account: Mudase a otra cuenta
+    migrate_account_html: Si deseyes redirixir esta cuenta a otra, pues <a href="%{path}">
+      configuralo equí</a>.
   authorize_follow:
     already_following: Yá tas siguiendo a esta cuenta
     error: Desafortunadamente, hebo un fallu guetando la cuenta remota
@@ -175,9 +185,15 @@ ast:
     contexts:
       public: Llinies temporales públiques
       thread: Conversaciones
+      notifications: Avisos
+    index:
+      title: Peñeres
+    new:
+      title: Amestar una peñera nueva
   followers:
     domain: Dominiu
     followers_count: Númberu de siguidores
+    purge: Desaniciar de los siguidores
   invites:
     expires_in:
       '1800': 30 minutos
@@ -193,6 +209,9 @@ ast:
       other: '%{count} usos'
     table:
       uses: Usos
+      expires_at: Data de caducidá
+    delete: Desactivar
+    expired: Caducó
   lists:
     errors:
       limit: Algamesti la cantidá máxima de llistes
@@ -202,6 +221,7 @@ ast:
       too_many: Nun puen axuntase más de 4 ficheros
   migrations:
     acct: nome_usuariu@dominiu de la cuenta nueva
+    proceed: Guardar
   notification_mailer:
     digest:
       body: Equí hai un resume de los mensaxes que nun viesti dende la última visita'l
@@ -219,6 +239,10 @@ ast:
       body: '%{name} mentóte en:'
       subject: '%{name} mentóte'
       title: Mención nueva
+    reblog:
+      body: '%{name} compartió''l to estáu:'
+      subject: '%{name} compartió''l to estáu'
+      title: Compartición nueva de toot
   number:
     human:
       decimal_units:
@@ -228,6 +252,7 @@ ast:
   preferences:
     languages: Llingües
     web: Web
+    publishing: Espublización
   remote_follow:
     acct: Introduz el nome_usuariu@dominiu dende'l que lo quies facer
     no_account_html: ¿Nun tienes una cuenta? Pues <a href='%{sign_up_path}' target='_blank'>rexistrate
@@ -283,6 +308,9 @@ ast:
     preferences: Preferencies
     settings: Axustes
     two_factor_authentication: Autenticación en dos pasos
+    export: Esportación de datos
+    followers: Siguidores autorizaos
+    import: Importación
   statuses:
     attached:
       image:
@@ -293,12 +321,18 @@ ast:
         other: '%{count} vídeos'
     pin_errors:
       limit: Yá fixesti'l númberu máxiumu de toots
+      ownership: Nun pue fixase'l toot d'otra persona
+      private: Nun puen fixase los toots que nun seyan públicos
+      reblog: Nun pue fixase un toot compartíu
     show_more: Amosar más
     title: '%{name}: «%{quote}»'
     visibilities:
       private: Namái siguidores
+    boosted_from_html: Compartióse'l toot dende %{acct_link}
+    language_detection: Deteutala automáticamente
   stream_entries:
     sensitive_content: Conteníu sensible
+    reblogged: compartióse
   themes:
     default: Mastodon
   two_factor_authentication:
@@ -323,3 +357,14 @@ ast:
     invalid_email: La direición de corréu nun ye válida
     seamless_external_login: Aniciesti sesión pente un serviciu esternu, polo que
       los axustes de la contraseña y corréu nun tán disponibles.
+  generic:
+    changes_saved_msg: ¡Los cambeos guardáronse con ésitu!
+    save_changes: Guardar cambeos
+  imports:
+    preface: Pues importar los datos qu'esportares dende otra instancia, como por
+      exemplu la llista de persones que bloquiares o tubieres siguiendo.
+    types:
+      blocking: Llista de xente bloquiao
+      following: Llista de siguidores
+      muting: Llista de xente silenciao
+    upload: Xubir
