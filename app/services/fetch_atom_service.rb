@@ -37,9 +37,11 @@ class FetchAtomService < BaseService
   def process_response(response, terminal = false)
     return nil if response.code != 200
 
-    if response.mime_type == 'application/atom+xml'
+    response_type = response.headers['Content-type']
+
+    if response_type == 'application/atom+xml'
       [@url, { prefetched_body: response.body_with_limit }, :ostatus]
-    elsif ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(response.mime_type)
+    elsif ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(response_type)
       body = response.body_with_limit
       json = body_to_json(body)
       if supported_context?(json) && equals_or_includes_any?(json['type'], ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES) && json['inbox'].present?
@@ -55,7 +57,7 @@ class FetchAtomService < BaseService
 
       if link_header&.find_link(%w(rel alternate))
         process_link_headers(link_header)
-      elsif response.mime_type == 'text/html'
+      elsif response_type == 'text/html'
         process_html(response)
       end
     end
