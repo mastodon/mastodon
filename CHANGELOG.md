@@ -3,7 +3,7 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [2.6.0] - 2018-10-30
 ### Added
 
 - Add link ownership verification (#8703)
@@ -46,7 +46,7 @@ All notable changes to this project will be documented in this file.
 - Add CORS header to `/.well-known/*` routes (#9083)
 - Add `card` attribute to statuses returned from REST API (#9120)
 - Add in-stream link preview (#9120)
-- Add support for ActivityPub `Page` objects (#9121) 
+- Add support for ActivityPub `Page` objects (#9121)
 
 ### Changed
 
@@ -63,7 +63,7 @@ All notable changes to this project will be documented in this file.
 - Change recommended Ruby version to 2.5.3 (#9003)
 - Change docker-compose default to persist volumes in current directory (#9055)
 - Change character counters on edit profile page to input length limit (#9100)
-- Change notification filtering to always let through messages from staff (#9152) 
+- Change notification filtering to always let through messages from staff (#9152)
 - Change "hide boosts from user" function also hiding notifications about boosts (#9147)
 - Change CSS `detailed-status__wrapper` class actually wrap the detailed status (#8547)
 
@@ -97,15 +97,15 @@ All notable changes to this project will be documented in this file.
 - Fix some hotkeys not working on detailed status view (#9006)
 - Fix og:url on status pages (#9047)
 - Fix upload option buttons only being visible on hover (#9074)
-- Fix tootctl not returning exit code 1 on wrong arguments (#9094) 
-- Fix preview cards for appearing for profiles mentioned in toot (#6934, #9158) 
+- Fix tootctl not returning exit code 1 on wrong arguments (#9094)
+- Fix preview cards for appearing for profiles mentioned in toot (#6934, #9158)
 - Fix local accounts sometimes being duplicated as faux-remote (#9109)
 - Fix emoji search when the shortcode has multiple separators (#9124)
-- Fix dropdowns sometimes being partially obscured by other elements (#9126) 
-- Fix cache not updating when reply/boost/favourite counters or media sensitivity update (#9119) 
-- Fix empty display name precedence over username in web UI (#9163) 
+- Fix dropdowns sometimes being partially obscured by other elements (#9126)
+- Fix cache not updating when reply/boost/favourite counters or media sensitivity update (#9119)
+- Fix empty display name precedence over username in web UI (#9163)
 - Fix td instead of th in sessions table header (#9162)
-- Fix handling of content types with profile (#9132) 
+- Fix handling of content types with profile (#9132)
 
 ## [2.5.2] - 2018-10-12
 ### Security
