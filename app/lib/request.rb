@@ -2,6 +2,7 @@
 
 require 'ipaddr'
 require 'socket'
+require 'resolv'
 
 class Request
   REQUEST_TARGET = '(request-target)'
@@ -94,7 +95,7 @@ class Request
   end
 
   def timeout
-    { write: 10, connect: 10, read: 10 }
+    { connect: 1, read: 10, write: 10 }
   end
 
   def http_client
@@ -139,16 +140,23 @@ class Request
   class Socket < TCPSocket
     class << self
       def open(host, *args)
-        return super host, *args if thru_hidden_service? host
+        return super(host, *args) if thru_hidden_service?(host)
+
         outer_e = nil
-        Addrinfo.foreach(host, nil, nil, :SOCK_STREAM) do |address|
-          begin
-            raise Mastodon::HostValidationError if PrivateAddressCheck.private_address? IPAddr.new(address.ip_address)
-            return super address.ip_address, *args
-          rescue => e
-            outer_e = e
+
+        Resolv::DNS.open do |dns|
+          dns.timeouts = 1
+
+          dns.each_address(host) do |address|
+            begin
+              raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(IPAddr.new(address.to_s))
+              return super(address.to_s, *args)
+            rescue => e
+              outer_e = e
+            end
           end
         end
+
         raise outer_e if outer_e
       end
 
