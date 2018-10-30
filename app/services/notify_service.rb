@@ -51,8 +51,12 @@ class NotifyService < BaseService
     @recipient.user.settings.interactions['must_be_following'] && !following_sender?
   end
 
+  def message?
+    @notification.type == :mention
+  end
+
   def direct_message?
-    @notification.type == :mention && @notification.target_status.direct_visibility?
+    message? && @notification.target_status.direct_visibility?
   end
 
   def response_to_recipient?
@@ -86,7 +90,7 @@ class NotifyService < BaseService
     blocked   = @recipient.suspended?                            # Skip if the recipient account is suspended anyway
     blocked ||= from_self?                                       # Skip for interactions with self
 
-    return blocked if from_staff?
+    return blocked if message? && from_staff?
 
     blocked ||= domain_blocking?                                 # Skip for domain blocked accounts
     blocked ||= @recipient.blocking?(@notification.from_account) # Skip for blocked accounts
