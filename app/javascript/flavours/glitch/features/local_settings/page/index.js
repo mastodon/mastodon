@@ -304,6 +304,14 @@ export default class LocalSettingsPage extends React.PureComponent {
         >
           <FormattedMessage id='settings.media_fullwidth' defaultMessage='Full-width media previews' />
         </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['inline_preview_cards']}
+          id='mastodon-settings--inline-preview-cards'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.inline_preview_cards' defaultMessage='Inline preview cards for external links' />
+        </LocalSettingsPageItem>
       </div>
     ),
   ];

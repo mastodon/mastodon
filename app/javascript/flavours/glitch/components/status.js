@@ -478,7 +478,7 @@ export default class Status extends ImmutablePureComponent {
       if (!status.get('sensitive') && !(status.get('spoiler_text').length > 0) && settings.getIn(['collapsed', 'backgrounds', 'preview_images'])) {
         background = attachments.getIn([0, 'preview_url']);
       }
-    } else if (status.get('card')) {
+    } else if (status.get('card') && settings.get('inline_preview_cards')) {
       media = (
         <Card
           onOpenMedia={this.props.onOpenMedia}
