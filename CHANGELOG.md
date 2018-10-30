@@ -3,6 +3,12 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [2.6.1] - 2018-10-30
+### Fixed
+
+- Fix resolving resources by URL not working due to a regression in #9132 (#9171)
+- Fix reducer error in web UI when a conversation has no last status (#9173)
+
 ## [2.6.0] - 2018-10-30
 ### Added
 
