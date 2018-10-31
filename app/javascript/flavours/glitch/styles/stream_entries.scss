@@ -175,12 +175,6 @@
 .embed,
 .public-layout {
   .status {
-    .status__info .status__display-name {
-      display: block;
-      max-width: 100%;
-      padding-right: 25px;
-    }
-
     .status__info {
       font-size: 15px;
       display: initial;
@@ -200,6 +194,10 @@
       max-width: 100%;
       padding-right: 25px;
       margin: initial;
+
+      .display-name strong {
+        display: inline;
+      }
     }
 
     .status__avatar {
