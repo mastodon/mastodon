@@ -30,19 +30,32 @@ sl:
         oblikovati etične načrte za boj proti zlorabi socialnih medijev.
       not_a_product_body: Mastodon ni komercialno omrežje. Brez oglaševanja, brez
         podatkovnega rudarjenja, brez obzidanih vrtov. Ni osrednjega organa.
+      real_conversation_body: S 500 znaki, ki so vam na voljo, in podporo za zrnate
+        vsebine ter opozorila pred mediji, se lahko izrazite tako, kot želite.
+      within_reach_body: Zahvaljujoč razvijalcem prijaznemu API ekosistemu, obstaja
+        več aplikacija za iOS, Arduino in druge platforme, ki vam omogočajo, da sledite
+        svojim prijateljem kjerkoli.
     generic_description: '%{domain} je en strežnik v omrežju'
     hosted_on: Mastodon gostuje na %{domain}
     learn_more: Spoznaj več
     other_instances: Seznam vozlišč
     source_code: Izvorna koda
-    status_count_after: statusi
+    status_count_after:
+      one: stanje
+      other: stanja
     status_count_before: Kdo je avtor
-    user_count_after: uporabniki
+    user_count_after:
+      one: uporabnik
+      other: uporabniki
     user_count_before: Dom za
     what_is_mastodon: Kaj je Mastodon?
+    privacy_policy: Politika zasebnosti
+    terms: Pogoji storitve
   accounts:
     follow: Sledi
-    followers: Sledilci
+    followers:
+      one: Sledilec
+      other: Sledilci
     following: Sledim
     media: Medij
     moved_html: '%{name} se je prestavil na %{new_profile_link}:'
@@ -62,11 +75,18 @@ sl:
       bot: Robot
       moderator: Mod
     unfollow: Prenehaj slediti
+    choices_html: '%{name} izbire:'
+    joined: Se je pridružil na %{date}
+    link_verified_on: Lastništvo te povezave je bilo preverjeno na %{date}
+    pin_errors:
+      following: Verjetno že sledite osebi, ki jo želite potrditi
+    posts_tab_heading: Trobi
   admin:
     account_moderation_notes:
       create: Pusti sporočilo
       created_msg: Uspešno ustvarjena opomba moderiranja!
       delete: Izbriši
+      destroyed_msg: Moderirana opomba je uspešno uničena!
     accounts:
       are_you_sure: Ali si prepričan?
       avatar: Avatar
@@ -117,6 +137,8 @@ sl:
         most_recent: Najnovejše
         title: Red
       promote: Spodbujanje
+      demote: Ponižaj
+      display_name: Prikazno ime
   remote_interaction:
     prompt: 'Želite interakcijo s tem trobom:'
   statuses:
