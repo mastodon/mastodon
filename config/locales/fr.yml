@@ -48,6 +48,7 @@ fr:
       other: Abonné⋅e⋅s
     following: Abonnements
     joined: Inscrit·e en %{date}
+    link_verified_on: La propriété de ce lien a été vérifiée le %{date}
     media: Médias
     moved_html: "%{name} a changé de compte pour %{new_profile_link} :"
     network_hidden: Cette information n’est pas disponible
@@ -120,13 +121,14 @@ fr:
       moderation_notes: Notes de modération
       most_recent_activity: Dernière activité
       most_recent_ip: Adresse IP la plus récente
+      no_limits_imposed: Aucune limite imposée
       not_subscribed: Non abonné
       order:
         alphabetic: Alphabétique
         most_recent: Plus récent
         title: Tri
       outbox_url: URL de sortie
-      perform_full_suspension: Effectuer une suspension complète
+      perform_full_suspension: Suspendre
       profile_url: URL du profil
       promote: Promouvoir
       protocol: Protocole
@@ -155,8 +157,10 @@ fr:
         report: signalement
         targeted_reports: Signalements créés visant ce compte
       silence: Masquer
+      silenced: Silencié
       statuses: Statuts
       subscribe: S’abonner
+      suspended: Suspendu
       title: Comptes
       unconfirmed_email: Courriel non-confirmé
       undo_silenced: Démasquer
@@ -173,6 +177,7 @@ fr:
         create_domain_block: "%{name} a bloqué le domaine %{target}"
         create_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste noire"
         demote_user: "%{name} a rétrogradé l’utilisateur·ice %{target}"
+        destroy_custom_emoji: "%{name} a détruit l'émoticône %{target}"
         destroy_domain_block: "%{name} a débloqué le domaine %{target}"
         destroy_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste blanche"
         destroy_status: "%{name} a enlevé le statut de %{target}"
@@ -258,6 +263,8 @@ fr:
         title: Nouveau blocage de domaine
       reject_media: Fichiers média rejetés
       reject_media_hint: Supprime localement les fichiers média stockés et refuse d’en télécharger ultérieurement. Ne concerne pas les suspensions
+      reject_reports: Rapports de rejet
+      reject_reports_hint: Ignorez tous les rapports provenant de ce domaine. Sans objet pour les suspensions
       severities:
         noop: Aucune
         silence: Masquer
@@ -300,8 +307,13 @@ fr:
       title: Invitations
     relays:
       add_new: Ajouter un nouveau relais
+      delete: Effacer
       description_html: Un <strong>relai de fédération</strong> est un serveur intermédiaire qui échange de grandes quantités de pouets entre les serveurs qui publient dessus et ceux qui y sont abonnés. <strong>Il peut aider les petites et moyennes instances à découvrir du contenu sur le fediverse</strong>, ce qui normalement nécessiterait que les membres locaux suivent des gens inscrits sur des serveurs distants.
+      disable: Désactiver
+      disabled: Désactivé
+      enable: Activé
       enable_hint: Une fois activé, votre serveur souscrira à tous les pouets publics présents sur ce relais et y enverra ses propres pouets publics.
+      enabled: Activé
       inbox_url: URL de relais
       pending: En attente de l'approbation du relai
       save_and_enable: Sauvegarder et activer
@@ -322,7 +334,6 @@ fr:
       comment:
         none: Aucun
       created_at: Signalé
-      id: ID
       mark_as_resolved: Marquer comme résolu
       mark_as_unresolved: Marquer comme non-résolu
       notes:
@@ -333,20 +344,15 @@ fr:
         placeholder: Décrivez quelles actions ont été prises, ou toute autre mise à jour…
       reopen: Ré-ouvrir le signalement
       report: 'Signalement #%{id}'
-      report_contents: Contenu
       reported_account: Compte signalé
       reported_by: Signalé par
       resolved: Résolus
       resolved_msg: Signalement résolu avec succès !
-      silence_account: Masquer le compte
       status: Statut
-      suspend_account: Suspendre le compte
-      target: Cible
       title: Signalements
       unassign: Dés-assigner
       unresolved: Non résolus
       updated_at: Mis à jour
-      view: Voir
     settings:
       activity_api_enabled:
         desc_html: Nombre de statuts affichés localement, d’utilisateur·ice·s actif·ve·s et de nouveaux enregistrements dans les registres hebdomadaires
@@ -363,6 +369,9 @@ fr:
       hero:
         desc_html: Affichée sur la page d’accueil. Au moins 600x100px recommandé. Lorsqu’elle n’est pas définie, se rabat sur la vignette de l’instance
         title: Image d’en-tête
+      mascot:
+        desc_html: Affiché sur plusieurs pages. Au moins 293×205px recommandé. Lorsqu'il n'est pas défini, retombe à la mascotte par défaut
+        title: Image de la mascotte
       peers_api_enabled:
         desc_html: Noms des domaines que cette instance a découvert dans le fediverse
         title: Publier la liste des instances découvertes
@@ -456,7 +465,7 @@ fr:
     warning: Soyez prudent⋅e avec ces données. Ne les partagez pas !
     your_token: Votre jeton d’accès
   auth:
-    agreement_html: En vous inscrivant, vous souscrivez <a href="%{rules_path}">aux règles de l’instance</a> et à <a href="%{terms_path}">nos conditions d’utilisation</a>.
+    agreement_html: En cliquant sur "S'inscrire" ci-dessous, vous souscrivez <a href="%{rules_path}">aux règles de l’instance</a> et à <a href="%{terms_path}">nos conditions d’utilisation</a>.
     change_password: Mot de passe
     confirm_email: Confirmer mon adresse mail
     delete_account: Supprimer le compte
@@ -523,7 +532,7 @@ fr:
     '500':
       content: Nous sommes désolé·e·s, mais quelque chose s’est mal passé de notre côté.
       title: Cette page n’est pas correcte
-    noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript. Sinon, essayez l’une des <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">applications natives</a> pour Mastodon pour votre plate-forme.
+    noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript. Sinon, essayez l’une des <a href="%{apps_path}">applications natives</a> pour Mastodon pour votre plate-forme.
   exports:
     archive_takeout:
       date: Date
@@ -571,6 +580,7 @@ fr:
     resources: Ressources
   generic:
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
+    copy: Copier
     save_changes: Enregistrer les modifications
     validation_errors:
       one: Quelque chose ne va pas ! Vérifiez l’erreur ci-dessous
@@ -623,7 +633,7 @@ fr:
   notification_mailer:
     digest:
       action: Voir toutes les notifications
-      body: 'Voici ce que vous avez raté sur ${instance} depuis votre dernière visite le %{since} :'
+      body: Voici un bref résumé des messages que vous auriez raté depuis votre dernière visite le %{since}
       mention: "%{name} vous a mentionné⋅e dans :"
       new_followers_summary:
         one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
@@ -912,8 +922,12 @@ fr:
       tips: Astuces
       title: Bienvenue à bord, %{name} !
   users:
+    follow_limit_reached: Vous ne pouvez pas suivre plus de %{limit} personnes
     invalid_email: L’adresse courriel est invalide
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
     otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
+  verification:
+    explanation_html: 'Vous pouvez <strong>vérifier vous-même que vous êtes le propriétaire des liens dans les métadonnées de votre profil</strong>. Pour cela, le site Web lié doit contenir un lien vers votre profil Mastodon. Le lien de retour <strong>doit</strong>avoir un attribut <code>rel="me"</code>. Le contenu textuel du lien n''a pas d''importance. En voici un exemple :'
+    verification: Vérification

@@ -5,10 +5,13 @@ zh-TW:
     about_mastodon_html: Mastodon （長毛象）是一個<em>自由、開放原始碼</em>的社群網站。它是一個分散式的服務，避免您的通訊被單一商業機構壟斷操控。請您選擇一家您信任的 Mastodon 站點，在上面建立帳號，然後您就可以和任一 Mastodon 站點上的使用者互通，享受無縫的<em>社群網路</em>交流。
     about_this: 關於本站
     administered_by: 管理者：
+    api: API
+    apps: Mobile apps
     closed_registrations: 本站暫時停止接受註冊。
     contact: 聯絡我們
     contact_missing: 未設定
     contact_unavailable: 未公開
+    documentation: 文件
     extended_description_html: |
       <h3>這裡可以寫一些網站規則</h3>
       <p>本站點未有詳細介紹</p>
@@ -26,9 +29,10 @@ zh-TW:
     learn_more: 了解詳細
     other_instances: 其他站點
     source_code: 原始碼
-    status_count_after: 條嘟嘟
+    status_count_after: 狀態
     status_count_before: 他們共嘟出了
-    user_count_after: 位使用者
+    terms: 使用條款
+    user_count_after: 使用者
     user_count_before: 這裡共註冊有
     what_is_mastodon: 什麼是 Mastodon?
   accounts:
@@ -42,6 +46,7 @@ zh-TW:
     people_followed_by: "%{name} 關注的人"
     people_who_follow: 關注 %{name} 的人
     posts: 嘟文
+    posts_tab_heading: 嘟文
     posts_with_replies: 嘟文與回覆
     reserved_username: 此用戶名已被保留
     roles:
@@ -224,9 +229,7 @@ zh-TW:
         suspend: 自動封鎖
       severity: 嚴重度
       show:
-        affected_accounts:
-          one: 資料庫中有一個使用者受到影響
-          other: 資料庫中有%{count}個使用者受影響
+        affected_accounts: 資料庫中有%{count}個使用者受影響
         retroactive:
           silence: 對此網域的所有使用者取消靜音
           suspend: 對此網域的所有使用者取消封鎖
@@ -271,7 +274,6 @@ zh-TW:
       comment:
         none: 無
       created_at: 日期
-      id: ID
       mark_as_resolved: 標記為「已解決」
       mark_as_unresolved: 標記為「未解決」
       notes:
@@ -282,20 +284,15 @@ zh-TW:
         placeholder: 記錄已執行的動作，或其他相關的更新...
       reopen: 重開檢舉
       report: '檢舉 #%{id}'
-      report_contents: 檢舉內容
       reported_account: 被檢舉使用者
       reported_by: 檢舉人
       resolved: 已解決
       resolved_msg: 檢舉已處理!
-      silence_account: 靜音使用者
       status: 狀態
-      suspend_account: 停權使用者
-      target: 對象
       title: 檢舉
       unassign: 取消指派
       unresolved: 未解決
       updated_at: 更新
-      view: 檢視
     settings:
       activity_api_enabled:
         desc_html: 本站使用者發佈的嘟文數量，以及本站的活躍使用者與一週內新使用者數量
@@ -456,7 +453,7 @@ zh-TW:
     '500':
       content: 抱歉，我們的後台出現問題了。
       title: 這個頁面有問題
-    noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon 應用</a>。
+    noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="%{apps_path}">Mastodon 應用</a>。
   exports:
     archive_takeout:
       date: 日期
@@ -476,18 +473,14 @@ zh-TW:
     followers_count: 關注者數量
     lock_link: 將你的帳戶設定為私人
     purge: 移除關注者
-    success:
-      one: 正準備軟性封鎖 1 個網域的關注者……
-      other: 正準備軟性封鎖 %{count} 個網域的關注者……
+    success: 正準備軟性封鎖 %{count} 個網域的關注者……
     true_privacy_html: 請謹記，唯有<strong>點對點加密方可以真正確保你的隱私</strong>。
     unlocked_warning_html: 任何人都可以在關注你後立即查看非公開的嘟文。只要%{lock_link}，你就可以審核並拒絕關注請求。
     unlocked_warning_title: 你的帳戶是公開的
   generic:
     changes_saved_msg: 已成功儲存修改!
     save_changes: 儲存修改
-    validation_errors:
-      one: 送出的資料有問題
-      other: 送出的資料有 %{count} 個問題
+    validation_errors: 送出的資料有 %{count} 個問題
   imports:
     preface: 您可以在此匯入您在其他站點所匯出的資料檔，包括關注的使用者、封鎖的使用者名單。
     success: 資料檔上傳成功，正在匯入，請稍候
@@ -510,9 +503,7 @@ zh-TW:
     expires_in_prompt: 永不過期
     generate: 建立邀請連結
     invited_by: 你的邀請人是：
-    max_uses:
-      one: 1 次
-      other: "%{count} 次"
+    max_uses: "%{count} 次"
     max_uses_prompt: 無限制
     prompt: 建立分享連結，邀請他人在本站點註冊
     table:
@@ -538,12 +529,8 @@ zh-TW:
       action: 閱覽所有通知
       body: 以下是自%{since}你最後一次登入以來錯過的訊息摘要
       mention: "%{name} 在此提及了你:"
-      new_followers_summary:
-        one: 而且，你不在的時候，有一個人關注你! 耶!
-        other: 而且，你不在的時候，有 %{count} 個人關注你了! 好棒!
-      subject:
-        one: "自從上次登入以來，你收到 1 則新的通知 \U0001F418"
-        other: "自從上次登入以來，你收到 %{count} 則新的通知 \U0001F418"
+      new_followers_summary: 而且，你不在的時候，有 %{count} 個人關注你了! 好棒!
+      subject: "自從上次登入以來，你收到 %{count} 則新的通知 \U0001F418"
       title: 你不在的時候...
     favourite:
       body: '你的嘟文被 %{name} 加入了最愛:'
@@ -649,17 +636,11 @@ zh-TW:
   statuses:
     attached:
       description: 附件： %{attached}
-      image:
-        one: "%{count} 幅圖片"
-        other: "%{count} 幅圖片"
-      video:
-        one: "%{count} 段影片"
-        other: "%{count} 段影片"
+      image: "%{count} 幅圖片"
+      video: "%{count} 段影片"
     boosted_from_html: 轉嘟自 %{acct_link}
     content_warning: 內容警告： %{warning}
-    disallowed_hashtags:
-      one: 包含不允許的標籤： %{tags}
-      other: 包含不允許的標籤： %{tags}
+    disallowed_hashtags: 包含不允許的標籤： %{tags}
     language_detection: 自動偵測語言
     open_in_web: 以網頁開啟
     over_character_limit: 超過了 %{max} 字的限制

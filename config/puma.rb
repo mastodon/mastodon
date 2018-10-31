@@ -1,7 +1,7 @@
 threads_count = ENV.fetch('MAX_THREADS') { 5 }.to_i
 threads threads_count, threads_count
 
-if ENV['SOCKET'] then
+if ENV['SOCKET']
   bind 'unix://' + ENV['SOCKET']
 else
   port ENV.fetch('PORT') { 3000 }

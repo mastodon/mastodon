@@ -67,7 +67,7 @@ describe Auth::ConfirmationsController, type: :controller do
   end
 
   describe 'PATCH #finish_signup' do
-    subject { patch :finish_signup, params: { user: { email: email }} }
+    subject { patch :finish_signup, params: { user: { email: email } } }
 
     let(:user) { Fabricate(:user) }
     before do

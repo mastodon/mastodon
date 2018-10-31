@@ -217,16 +217,14 @@ zh-HK:
           suspend: 自動刪除
         title: 新增域名阻隔
       reject_media: 拒絕媒體檔案
-      reject_media_hint: 刪除本地緩存的媒體檔案，再也不在未來下載這個站點的檔案。和自動刪除無關。
+      reject_media_hint: 刪除本地緩存的媒體檔案，再也不在未來下載這個站點的檔案。和自動刪除無關
       severities:
         noop: 無
         silence: 自動靜音
         suspend: 自動刪除
       severity: 阻隔分級
       show:
-        affected_accounts:
-          one: 資料庫中有 %{count} 個用戶受影響
-          other: 資料庫中有%{count}個用戶受影響
+        affected_accounts: 資料庫中有%{count}個用戶受影響
         retroactive:
           silence: 對此域名的所有用戶取消靜音
           suspend: 對此域名的所有用戶取消除名
@@ -271,7 +269,6 @@ zh-HK:
       comment:
         none: 沒有
       created_at: 日期
-      id: ID
       mark_as_resolved: 標示為「已處理」
       mark_as_unresolved: 標示為「未處理」
       notes:
@@ -282,20 +279,15 @@ zh-HK:
         placeholder: 記錄已執行的動作，或其他相關的更新……
       reopen: 重開舉報
       report: '舉報 #%{id}'
-      report_contents: 舉報內容
       reported_account: 舉報用戶
       reported_by: 舉報者
       resolved: 已處理
       resolved_msg: 舉報已處理。
-      silence_account: 將用戶靜音
       status: 狀態
-      suspend_account: 將用戶停權
-      target: 對象
       title: 舉報
       unassign: 取消指派
       unresolved: 未處理
       updated_at: 更新
-      view: 檢視
     settings:
       activity_api_enabled:
         desc_html: 本站用戶發佈的文章，以及本站的活躍用戶和一週內新用戶數
@@ -307,7 +299,7 @@ zh-HK:
         email: 輸入一個公開的電郵地址
         username: 輸入用戶名稱
       hero:
-        desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會默認為服務站縮圖。
+        desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會默認為服務站縮圖
         title: 主題圖片
       peers_api_enabled:
         desc_html: 現時本服務站在網絡中已發現的域名
@@ -456,7 +448,7 @@ zh-HK:
     '500':
       content: 抱歉，我們的後台出錯了。
       title: 這個頁面有問題
-    noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon 應用</a>。
+    noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="%{apps_path}">Mastodon 應用</a>。
   exports:
     archive_takeout:
       date: 日期
@@ -536,7 +528,7 @@ zh-HK:
   notification_mailer:
     digest:
       action: 查看所有通知
-      body: 這是自從你在%{since}使用%{instance}以後，你錯失了的訊息︰
+      body: 這是自從你在%{since}使用以後，你錯失了的訊息︰
       mention: "%{name} 在此提及了你︰"
       new_followers_summary:
         one: 你新獲得了 1 位關注者了！恭喜！
@@ -739,6 +731,6 @@ zh-HK:
   users:
     invalid_email: 電郵地址格式不正確
     invalid_otp_token: 雙重認證確認碼不正確
-    otp_lost_help_html: 如果你無法訪問這兩者，可以通過 %{email} 與我們聯繫。
+    otp_lost_help_html: 如果你無法訪問這兩者，可以通過 %{email} 與我們聯繫
     seamless_external_login: 由於你是從外部系統登入，所以不能設定密碼和電郵。
     signed_in_as: 目前登入的帳戶：

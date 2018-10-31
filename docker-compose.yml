@@ -22,9 +22,8 @@ services:
 #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
 #    networks:
 #      - internal_network
-#### Uncomment to enable ES persistance
-##    volumes:
-##      - ./elasticsearch:/usr/share/elasticsearch/data
+#    volumes:
+#      - ./elasticsearch:/usr/share/elasticsearch/data
 
   web:
     build:
@@ -70,7 +69,7 @@ services:
     image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
     restart: always
     env_file: .env.production
-    command: bundle exec sidekiq -q default -q push -q mailers -q pull
+    command: bundle exec sidekiq
     depends_on:
       - db
       - redis

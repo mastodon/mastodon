@@ -13,8 +13,8 @@ const mapStateToProps = (state, props) => ({
   hasUnread: state.getIn(['timelines', `hashtag:${props.params.id}`, 'unread']) > 0,
 });
 
-@connect(mapStateToProps)
-export default class HashtagTimeline extends React.PureComponent {
+export default @connect(mapStateToProps)
+class HashtagTimeline extends React.PureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,

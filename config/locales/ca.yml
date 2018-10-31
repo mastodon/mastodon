@@ -48,6 +48,7 @@ ca:
       other: Seguidors
     following: Seguint
     joined: Unit des de %{date}
+    link_verified_on: La propietat d'aquest enllaç s'ha verificat el %{date}
     media: Mèdia
     moved_html: "%{name} s'ha mogut a %{new_profile_link}:"
     network_hidden: Aquesta informació no està disponible
@@ -120,13 +121,14 @@ ca:
       moderation_notes: Notes de moderació
       most_recent_activity: Activitat més recent
       most_recent_ip: IP més recent
+      no_limits_imposed: Sense límits imposats
       not_subscribed: No subscrit
       order:
         alphabetic: Alfabètic
         most_recent: Més recent
         title: Ordre
       outbox_url: URL de la bústia de sortida
-      perform_full_suspension: Aplica una suspensió completa
+      perform_full_suspension: Suspèn
       profile_url: URL del perfil
       promote: Promociona
       protocol: Protocol
@@ -155,8 +157,10 @@ ca:
         report: informe
         targeted_reports: Informes realitzats sobre aquest compte
       silence: Silenci
+      silenced: Silenciat
       statuses: Estats
       subscribe: Subscriu
+      suspended: Suspès
       title: Comptes
       unconfirmed_email: Correu electrònic sense confirmar
       undo_silenced: Deixa de silenciar
@@ -173,6 +177,7 @@ ca:
         create_domain_block: "%{name} ha blocat el domini %{target}"
         create_email_domain_block: "%{name} ha afegit a la llista negra el domini del correu electrònic %{target}"
         demote_user: "%{name} ha degradat l'usuari %{target}"
+        destroy_custom_emoji: "%{name} ha destruït l'emoji %{target}"
         destroy_domain_block: "%{name} ha desblocat el domini %{target}"
         destroy_email_domain_block: "%{name} ha afegit a la llista negra el domini de correu electrònic %{target}"
         destroy_status: "%{name} eliminat l'estat per %{target}"
@@ -240,8 +245,8 @@ ca:
       total_users: usuaris en total
       trends: Tendències
       week_interactions: interaccions d'aquesta setmana
-      week_users_active: actiu aquesta setmana
-      week_users_new: usuaris aquesta setmana
+      week_users_active: usuaris actius aquesta setmana
+      week_users_new: nous usuaris aquest setmana
     domain_blocks:
       add_new: Afegeix
       created_msg: El bloqueig de domini ara s'està processant
@@ -258,6 +263,8 @@ ca:
         title: Bloqueig de domini nou
       reject_media: Rebutja els fitxers multimèdia
       reject_media_hint: Elimina els fitxers multimèdia emmagatzemats localment i impedeix baixar-ne cap en el futur. Irrellevant en les suspensions
+      reject_reports: Rebutja informes
+      reject_reports_hint: Ignora tots els informes procedents d'aquest domini. No és rellevant per a les suspensions
       severities:
         noop: Cap
         silence: Silenci
@@ -300,8 +307,13 @@ ca:
       title: Convida
     relays:
       add_new: Afegiu un nou relay
+      delete: Esborra
       description_html: Un <strong>relay de federació</strong> és un servidor intermediari que intercanvia grans volums de toots públics entre servidors que es subscriuen i publiquen en ell. <strong>Pot ajudar a servidors petits i mitjans a descobrir contingut del fedivers</strong>, no fent necessari que els usuaris locals manualment segueixin altres persones de servidors remots.
+      disable: Inhabilita
+      disabled: Desactivat
+      enable: Activat
       enable_hint: Una vegada habilitat, el teu servidor es subscriurà a tots els toots públics d'aquest relay i començarà a enviar-hi tots els toots públics d'aquest servidor.
+      enabled: Activat
       inbox_url: URL del Relay
       pending: S'està esperant l'aprovació del relay
       save_and_enable: Desa i activa
@@ -322,7 +334,6 @@ ca:
       comment:
         none: Cap
       created_at: Reportat
-      id: ID
       mark_as_resolved: Marca com a resolt
       mark_as_unresolved: Marcar sense resoldre
       notes:
@@ -333,20 +344,15 @@ ca:
         placeholder: Descriu les accions que s'han pres o qualsevol altra actualització relacionada…
       reopen: Reobrir informe
       report: 'Informe #%{id}'
-      report_contents: Contingut
       reported_account: Compte reportat
       reported_by: Reportat per
       resolved: Resolt
       resolved_msg: Informe resolt amb èxit!
-      silence_account: Silencia el compte
       status: Estat
-      suspend_account: Suspèn el compte
-      target: Objectiu
       title: Informes
       unassign: Treure assignació
       unresolved: No resolt
       updated_at: Actualitzat
-      view: Visualització
     settings:
       activity_api_enabled:
         desc_html: Compte d'estatus publicats localment, usuaris actius i registres nous en períodes setmanals
@@ -363,6 +369,9 @@ ca:
       hero:
         desc_html: Es mostra en pàgina frontal. Recomanat 600x100px al menys. Si no es configura es mostrarà el de la instància
         title: Imatge d’heroi
+      mascot:
+        desc_html: Es mostra a diverses pàgines. Es recomana com a mínim 293 × 205px. Si no està configurat, torna a la mascota predeterminada
+        title: Imatge de la mascota
       peers_api_enabled:
         desc_html: Els noms de domini que ha trobat aquesta instància al fediverse
         title: Publica la llista d'instàncies descobertes
@@ -456,7 +465,7 @@ ca:
     warning: Aneu amb compte amb aquestes dades. No les compartiu mai amb ningú!
     your_token: El teu identificador d'accés
   auth:
-    agreement_html: En inscriure't, acceptes seguir <a href="%{rules_path}">els nostres termes del servei</a> i <a href="%{terms_path}">la nostra política de privadesa</a>.
+    agreement_html: Al fer clic en "Registre" acceptes respectar <a href="%{rules_path}">els nostres termes del servei</a> i <a href="%{terms_path}">la nostra política de privadesa</a>.
     change_password: Contrasenya
     confirm_email: Confirmar correu electrònic
     delete_account: Suprimeix el compte
@@ -523,7 +532,7 @@ ca:
     '500':
       content: Ho sentim, però alguna cosa ha fallat a la nostra banda.
       title: Aquesta pàgina no es correcta
-    noscript_html: Per a utilitzar Mastodon, activa el JavaScript. També pots provar una de les <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md"> aplicacions natives</a> de Mastodon per a la vostra plataforma.
+    noscript_html: Per a utilitzar Mastodon, activa el JavaScript. També pots provar una de les <a href="%{apps_path}"> aplicacions natives</a> de Mastodon per a la vostra plataforma.
   exports:
     archive_takeout:
       date: Data
@@ -571,6 +580,7 @@ ca:
     resources: Recursos
   generic:
     changes_saved_msg: Els canvis s'han desat correctament!
+    copy: Copia
     save_changes: Desa els canvis
     validation_errors:
       one: Alguna cosa no va bé! Si us plau, revisa l'error
@@ -623,7 +633,7 @@ ca:
   notification_mailer:
     digest:
       action: Veure totes les notificacions
-      body: Un resum del que et vas perdre en %{instance} desde la darrera visita el %{since}
+      body: Un resum del que et vas perdre desde la darrera visita el %{since}
       mention: "%{name} t'ha mencionat en:"
       new_followers_summary:
         one: A més, has adquirit un nou seguidor durant la teva absència! Visca!
@@ -912,8 +922,12 @@ ca:
       tips: Consells
       title: Benvingut a bord, %{name}!
   users:
+    follow_limit_reached: No pots seguir més de %{limit} persones
     invalid_email: L'adreça de correu no és correcta
     invalid_otp_token: El codi de dos factors no és correcte
     otp_lost_help_html: Si has perdut l'accés a tots dos pots contactar per %{email}
     seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'
+  verification:
+    explanation_html: 'Pots <strong>verificar-te com a propietari dels enllaços a les metadades del teu perfil</strong>. Per això, el lloc web enllaçat ha de contenir un enllaç al teu perfil de Mastodon. El vincle <strong>ha de</strong> tenir l''atribut <code>rel="me"</code>. El contingut del text de l''enllaç no importa. Aquí tens un exemple:'
+    verification: Verificació

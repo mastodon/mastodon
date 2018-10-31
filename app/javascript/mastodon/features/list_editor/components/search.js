@@ -19,9 +19,9 @@ const mapDispatchToProps = dispatch => ({
   onChange: value => dispatch(changeListSuggestions(value)),
 });
 
-@connect(mapStateToProps, mapDispatchToProps)
+export default @connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
-export default class Search extends React.PureComponent {
+class Search extends React.PureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,

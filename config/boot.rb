@@ -5,10 +5,10 @@ require 'bootsnap' # Speed up boot time by caching expensive operations.
 
 Bootsnap.setup(
   cache_dir:            'tmp/cache',
-  development_mode:     ENV['RAILS_ENV'] == 'development',
+  development_mode:     ENV.fetch('RAILS_ENV', 'development') == 'development',
   load_path_cache:      true,
   autoload_paths_cache: true,
-  disable_trace:        true,
+  disable_trace:        false,
   compile_cache_iseq:   false,
   compile_cache_yaml:   false
 )
