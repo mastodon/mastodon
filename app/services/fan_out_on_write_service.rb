@@ -58,10 +58,8 @@ class FanOutOnWriteService < BaseService
   def deliver_to_mentioned_followers(status)
     Rails.logger.debug "Delivering status #{status.id} to limited followers"
 
-    status.mentions.includes(:account).each do |mention|
-      mentioned_account = mention.account
-      next if !mentioned_account.local? || !mentioned_account.following?(status.account) || FeedManager.instance.filter?(:home, status, mention.account_id)
-      FeedManager.instance.push_to_home(mentioned_account, status)
+    FeedInsertWorker.push_bulk(status.mentions.includes(:account).map(&:account).select { |mentioned_account| mentioned_account.local? && mentioned_account.following?(status.account) }) do |follower|
+      [status.id, follower.id, :home]
     end
   end
 
