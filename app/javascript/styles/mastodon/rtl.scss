@@ -199,10 +199,14 @@ body.rtl {
     margin-left: 5px;
   }
 
-  .simple_form .check_boxes .checkbox label,
-  .simple_form .input.with_label.boolean label.checkbox {
+  .simple_form .check_boxes .checkbox label {
     padding-left: 0;
     padding-right: 25px;
+  }
+
+  .simple_form .input.with_label.boolean label.checkbox {
+    padding-left: 25px;
+    padding-right: 0;
   }
 
   .simple_form .check_boxes .checkbox input[type="checkbox"],
@@ -369,5 +373,10 @@ body.rtl {
   .column-header__setting-arrows .column-header__setting-btn:last-child {
     padding-left: 0;
     padding-right: 10px;
+  }
+
+  .simple_form .input.radio_buttons .radio > label input {
+    left: auto;
+    right: 0;
   }
 }
