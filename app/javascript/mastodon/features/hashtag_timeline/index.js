@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
+import Outlet from '../../components/outlet';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import { expandHashtagTimeline } from '../../actions/timelines';
@@ -101,6 +102,8 @@ class HashtagTimeline extends React.PureComponent {
           multiColumn={multiColumn}
           showBackButton
         />
+
+        <Outlet name='below-header' />
 
         <StatusListContainer
           trackScroll={!pinned}

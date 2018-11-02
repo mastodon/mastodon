@@ -263,7 +263,6 @@ Rails.application.routes.draw do
       resources :suggestions, only: [:index, :destroy]
 
       get '/search', to: 'search#index', as: :search
-      get '/plugins/outlets', to: 'plugins#outlets', as: :outlets
 
       resources :follows,      only: [:create]
       resources :media,        only: [:create, :update]
