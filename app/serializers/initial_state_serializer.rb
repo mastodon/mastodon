@@ -25,16 +25,18 @@ class InitialStateSerializer < ActiveModel::Serializer
       search_enabled: Chewy.enabled?,
       version: Mastodon::Version.to_s,
       invites_enabled: Setting.min_invite_role == 'user',
+      mascot: instance_presenter.mascot&.file&.url,
     }
 
     if object.current_account
-      store[:me]                      = object.current_account.id.to_s
-      store[:unfollow_modal]          = object.current_account.user.setting_unfollow_modal
-      store[:boost_modal]             = object.current_account.user.setting_boost_modal
-      store[:delete_modal]            = object.current_account.user.setting_delete_modal
-      store[:auto_play_gif]           = object.current_account.user.setting_auto_play_gif
-      store[:display_sensitive_media] = object.current_account.user.setting_display_sensitive_media
-      store[:reduce_motion]           = object.current_account.user.setting_reduce_motion
+      store[:me]              = object.current_account.id.to_s
+      store[:unfollow_modal]  = object.current_account.user.setting_unfollow_modal
+      store[:boost_modal]     = object.current_account.user.setting_boost_modal
+      store[:delete_modal]    = object.current_account.user.setting_delete_modal
+      store[:auto_play_gif]   = object.current_account.user.setting_auto_play_gif
+      store[:display_media]   = object.current_account.user.setting_display_media
+      store[:expand_spoilers] = object.current_account.user.setting_expand_spoilers
+      store[:reduce_motion]   = object.current_account.user.setting_reduce_motion
     end
 
     store
@@ -67,5 +69,11 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   def announcements
     Announcement.all
+  end
+
+  private
+
+  def instance_presenter
+    @instance_presenter ||= InstancePresenter.new
   end
 end

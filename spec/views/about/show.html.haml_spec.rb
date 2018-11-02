@@ -20,6 +20,7 @@ describe 'about/show.html.haml', without_verify_partial_doubles: true do
                                 github_name: 'somename',
                                 thumbnail: nil,
                                 hero: nil,
+                                mascot: nil,
                                 user_count: 0,
                                 status_count: 0,
                                 contact_account: nil,

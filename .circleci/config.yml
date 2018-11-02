@@ -13,6 +13,9 @@ aliases:
           ALLOW_NOPAM: true
           CONTINUOUS_INTEGRATION: true
           DISABLE_SIMPLECOV: true
+          PAM_ENABLED: true
+          PAM_DEFAULT_SERVICE: pam_test
+          PAM_CONTROLLED_SERVICE: pam_test_controlled
     working_directory: ~/projects/mastodon/
 
   - &attach_workspace
@@ -172,6 +175,8 @@ jobs:
       - *attach_workspace
       - run: bundle exec i18n-tasks check-normalized
       - run: bundle exec i18n-tasks unused
+      - run: bundle exec i18n-tasks missing -t plural
+      - run: bundle exec i18n-tasks check-consistent-interpolations
 
 workflows:
   version: 2

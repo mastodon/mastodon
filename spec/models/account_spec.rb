@@ -275,7 +275,7 @@ RSpec.describe Account, type: :model do
 
     subject { Fabricate(:account) }
 
-    context 'when the status is a reblog of another status'do
+    context 'when the status is a reblog of another status' do
       let(:original_reblog) do
         author = Fabricate(:account, username: 'original_reblogger')
         Fabricate(:status, reblog: original_status, account: author)
@@ -559,7 +559,7 @@ RSpec.describe Account, type: :model do
     end
 
     context 'when is local' do
-      it 'is invalid if the username is not unique in case-insensitive comparsion among local accounts' do
+      it 'is invalid if the username is not unique in case-insensitive comparison among local accounts' do
         account_1 = Fabricate(:account, username: 'the_doctor')
         account_2 = Fabricate.build(:account, username: 'the_Doctor')
         account_2.valid?

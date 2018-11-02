@@ -8,24 +8,24 @@ pt-BR:
         bot: Essa conta executa principalmente ações automatizadas e pode não ser monitorada
         context: Um ou mais contextos onde o filtro deve ser aplicado
         digest: Enviado após um longo período de inatividade com um resumo das menções que você recebeu em sua ausência
-        display_name:
-          one: <span class="name-counter">1</span> caracter restante
-          other: <span class="name-counter">%{count}</span> caracteres restantes
+        email: Você receberá um email de confirmação
         fields: Você pode ter até 4 itens exibidos em forma de tabela no seu perfil
         header: PNG, GIF or JPG. Arquivos de até %{size}. Eles serão diminuídos para %{dimensions}px
         inbox_url: Copie a URL da página inicial do repetidor que você quer usar
         irreversible: Os toots filtrados vão desaparecer irreversivelmente, mesmo se o filtro for removido depois
         locale: O idioma das telas de usuário, e-mails e notificações push
         locked: Requer aprovação manual de seguidores
-        note:
-          one: <span class="note-counter">1</span> caracter restante
-          other: <span class="note-counter">%{count}</span> caracteres restantes
+        password: Use pelo menos 8 caracteres
         phrase: Vai coincidir, independente de maiúsculas ou minúsculas, no texto ou no aviso de conteúdo de um toot
         scopes: Quais APIs a aplicação vai ter permissão de acessar. Se você selecionar um escopo de alto nível, você não precisa selecionar individualmente os outros.
         setting_default_language: O idioma de seus toots pode ser detectado automaticamente, mas isso nem sempre é preciso
+        setting_display_media_default: Esconder mídia marcada como sensível
+        setting_display_media_hide_all: Sempre esconder todas as mídias
+        setting_display_media_show_all: Sempre mostrar mídia marcada como sensível
         setting_hide_network: Quem você segue e quem segue você não serão exibidos no seu perfil
         setting_noindex: Afeta seu perfil público e as páginas de suas postagens
         setting_theme: Afeta a aparência do Mastodon quando em sua conta em qualquer aparelho.
+        username: Seu nome de usuário será único em %{domain}
         whole_word: Quando a palavra ou frase é inteiramente alfanumérica, ela será aplicada somente se corresponder a palavra inteira
       imports:
         data: Arquivo CSV exportado de outra instância do Mastodon
@@ -69,7 +69,11 @@ pt-BR:
         setting_default_privacy: Privacidade das postagens
         setting_default_sensitive: Sempre marcar mídia como sensível
         setting_delete_modal: Mostrar diálogo de confirmação antes de deletar uma postagem
-        setting_display_sensitive_media: Sempre exibir mídia marcada como sensível
+        setting_display_media: Exibição das mídias
+        setting_display_media_default: Padrão
+        setting_display_media_hide_all: Esconder tudo
+        setting_display_media_show_all: Mostrar tudo
+        setting_expand_spoilers: Sempre expandir toots marcados com aviso de conteúdo
         setting_hide_network: Esconder as suas redes
         setting_noindex: Não quero ser indexado por mecanismos de busca
         setting_reduce_motion: Reduz movimento em animações
@@ -92,6 +96,7 @@ pt-BR:
         follow_request: Mandar um e-maill quando alguém solicitar ser seu seguidor
         mention: Mandar um e-mail quando alguém te mencionar
         reblog: Mandar um e-mail quando alguém compartilhar suas postagens
+        report: Mandar um e-mail quando uma nova denúncia é submetida
     'no': Não
     required:
       mark: "*"

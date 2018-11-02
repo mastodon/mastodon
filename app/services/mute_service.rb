@@ -5,11 +5,13 @@ class MuteService < BaseService
     return if account.id == target_account.id
 
     mute = account.mute!(target_account, notifications: notifications)
+
     if mute.hide_notifications?
       BlockWorker.perform_async(account.id, target_account.id)
     else
-      FeedManager.instance.clear_from_timeline(account, target_account)
+      MuteWorker.perform_async(account.id, target_account.id)
     end
+
     mute
   end
 end

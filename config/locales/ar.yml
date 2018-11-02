@@ -39,9 +39,10 @@ ar:
   accounts:
     choices_html: 'توصيات %{name} :'
     follow: إتبع
-    followers: متابِعون
-    following: يتابعون
+    followers: مُتابِعون
+    following: مُتابَع
     joined: انضم·ت في %{date}
+    link_verified_on: تم التحقق مِن مالك هذا الرابط بتاريخ %{date}
     media: الوسائط
     moved_html: "%{name} إنتقلَ إلى %{new_profile_link} :"
     network_hidden: إنّ المعطيات غير متوفرة
@@ -112,13 +113,14 @@ ar:
       moderation_notes: ملاحظات الإشراف
       most_recent_activity: آخر نشاط حديث
       most_recent_ip: أحدث عنوان إيبي
+      no_limits_imposed: مِن دون حدود مشروطة
       not_subscribed: غير مشترك
       order:
         alphabetic: أبجديًا
         most_recent: الأحدث
         title: الترتيب
       outbox_url: رابط صندوق الصادر
-      perform_full_suspension: تعطيل الحساب بالكامل
+      perform_full_suspension: تعطيل
       profile_url: رابط الملف الشخصي
       promote: ترقية
       protocol: البروتوكول
@@ -147,8 +149,10 @@ ar:
         report: التقرير
         targeted_reports: التقريرات التي أُنشِأت ضد هذا الحساب
       silence: سكتهم
+      silenced: تم كتمه
       statuses: المنشورات
       subscribe: اشترك
+      suspended: تم تعليقه
       title: الحسابات
       unconfirmed_email: البريد الإلكتروني غير المؤكد
       undo_silenced: رفع الصمت
@@ -158,13 +162,14 @@ ar:
       web: الويب
     action_logs:
       actions:
-        assigned_to_self_report: قام {name} بتعيين التقرير٪ {target} لأنفسهم
-        change_email_user: غيّر٪ {name} عنوان البريد الإلكتروني للمستخدم٪ {target}
+        assigned_to_self_report: قام %{name} بتعيين التقرير %{target} لأنفسهم
+        change_email_user: غيّر %{name} عنوان البريد الإلكتروني للمستخدم %{target}
         confirm_user: "%{name} قد قام بتأكيد عنوان البريد الإلكتروني لـ %{target}"
         create_custom_emoji: "%{name} قام برفع إيموجي جديد %{target}"
         create_domain_block: "%{name} قام بحجب نطاق %{target}"
         create_email_domain_block: "%{name} قد قام بحظر نطاق البريد الإلكتروني %{target}"
         demote_user: "%{name} قد قام بإنزال الرتبة الوظيفية لـ %{target}"
+        destroy_custom_emoji: قام %{name} بحذف الإيموجي %{target}
         destroy_domain_block: "%{name} قام بإلغاء الحجب عن النطاق %{target}"
         destroy_email_domain_block: قام %{name} بإضافة نطاق البريد الإلكتروني %{target} إلى اللائحة البيضاء
         destroy_status: لقد قام %{name} بحذف منشور %{target}
@@ -175,13 +180,13 @@ ar:
         enable_user: لقد قام %{name} بتنشيط تسجيل الدخول للمستخدِم %{target}
         memorialize_account: لقد قام %{name} بتحويل حساب %{target} إلى صفحة تذكارية
         promote_user: "%{name} قام بترقية المستخدم %{target}"
-        remove_avatar_user: تمت إزالة٪ {name} الصورة الرمزية٪ {target}
-        reopen_report: تمت إعادة فتح التقرير {name}٪ {target}
+        remove_avatar_user: تمت إزالة %{name} الصورة الرمزية %{target}
+        reopen_report: تمت إعادة فتح التقرير %{name} %{target}
         reset_password_user: "%{name} لقد قام بإعادة تعيين الكلمة السرية الخاصة بـ %{target}"
         resolve_report: قام %{name} بحل التقرير %{target}
         silence_account: لقد قام %{name} بكتم حساب %{target}
         suspend_account: لقد قام %{name} بتعليق حساب %{target}
-        unassigned_report: "٪ {name} تقرير غير معتمد٪ {target}"
+        unassigned_report: "%{name} تقرير غير معتمد %{target}"
         unsilence_account: لقد قام %{name} بإلغاء الكتم عن حساب %{target}
         unsuspend_account: لقد قام %{name} بإلغاء التعليق المفروض على حساب %{target}
         update_custom_emoji: "%{name} قام بتحديث الإيموجي %{target}"
@@ -250,13 +255,14 @@ ar:
         title: حجب نطاق جديد
       reject_media: رفض ملفات الوسائط
       reject_media_hint: يزيل ملفات الوسائط المخزنة محليًا ويرفض تنزيل أي ملفات في المستقبل. غير ذي صلة للتعليق
+      reject_reports: رفض التقارير
       severities:
         noop: لا شيء
         silence: إخفاء أو كتم
         suspend: تعليق
       severity: الشدة
       show:
-        affected_accounts: هناك %{count} حسابات في قاعدة البيانات متأثرة بذلك
+        affected_accounts: "%{count} حسابات معنية في قاعدة البيانات"
         retroactive:
           silence: إلغاء الكتم عن كافة الحسابات المتواجدة على هذا النطاق
           suspend: إلغاء التعليق المفروض على كافة حسابات هذا النطاق
@@ -290,7 +296,12 @@ ar:
       title: الدعوات
     relays:
       add_new: إضافة مُرحّل جديد
+      delete: حذف
+      disable: تعطيل
+      disabled: مُعطَّل
+      enable: تشغيل
       enable_hint: عندما تقوم بتنشيط هذه الميزة، سوف يشترك خادومك في جميع التبويقات القادمة مِن هذا المُرحِّل و سيشرع كذلك بإرسال كافة التبويقات العمومية إليه.
+      enabled: مُشغَّل
       inbox_url: رابط المُرحّل
       pending: في انتظار تسريح المُرحِّل
       save_and_enable: حفظ وتشغيل
@@ -313,7 +324,6 @@ ar:
       comment:
         none: لا شيء
       created_at: ذكرت
-      id: معرّف ID
       mark_as_resolved: إعتبار التقرير كمحلول
       mark_as_unresolved: علام كغير محلولة
       notes:
@@ -324,20 +334,15 @@ ar:
         placeholder: قم بوصف الإجراءات التي تم اتخاذها أو أي تحديثات أخرى ذات علاقة …
       reopen: إعادة فتح التقرير
       report: 'التقرير #%{id}'
-      report_contents: المحتويات
       reported_account: حساب مُبلّغ عنه
       reported_by: أبلغ عنه من طرف
       resolved: معالجة
       resolved_msg: تم حل تقرير بنجاح!
-      silence_account: كتم و إخفاء الحساب
       status: الحالة
-      suspend_account: فرض تعليق على الحساب
-      target: الهدف
       title: التقارير
       unassign: إلغاء تعيين
       unresolved: غير معالجة
       updated_at: محدث
-      view: عرض
     settings:
       activity_api_enabled:
         desc_html: عدد المنشورات المحلية و المستخدمين النشطين و التسجيلات الأسبوعية الجديدة
@@ -358,6 +363,7 @@ ar:
         desc_html: أسماء النطاقات التي إلتقى بها مثيل الخادوم على البيئة الموحَّدة فيديفرس
         title: نشر عدد مثيلات الخوادم التي تم مصادفتها
       preview_sensitive_media:
+        desc_html: روابط المُعَاينة على مواقع الويب الأخرى ستقوم بعرض صُوَر مصغّرة حتى و إن كانت الوسائط حساسة
         title: إظهار الصور الحساسة في مُعاينات أوبن غراف
       registrations:
         closed_message:
@@ -427,7 +433,7 @@ ar:
   admin_mailer:
     new_report:
       body: قام %{reporter} بالإبلاغ عن %{target}
-      body_remote: أبلغ شخص ما من٪ {domain} عن٪ {target}
+      body_remote: أبلغ شخص ما من %{domain} عن %{target}
       subject: تقرير جديد ل%{instance} (#%{id})
   application_mailer:
     notification_preferences: تعديل خيارات البريد الإلكتروني
@@ -445,7 +451,7 @@ ar:
     warning: كن حذرا مع هذه البيانات. لا تقم أبدا بمشاركتها مع الآخَرين !
     your_token: رمز نفاذك
   auth:
-    agreement_html: بقبولك التسجيل فإنك تُصرِّح قبول <a href="%{rules_path}">قواعد مثيل الخادوم</a> و <a href="%{terms_path}">شروط الخدمة التي نوفرها لك</a>.
+    agreement_html: بمجرد النقر على "التسجيل" أسفله، فإنك تُصرِّح قبول <a href="%{rules_path}">قواعد مثيل الخادوم</a> و <a href="%{terms_path}">شروط الخدمة التي نوفرها لك</a>.
     change_password: الكلمة السرية
     confirm_email: تأكيد عنوان البريد الإلكتروني
     delete_account: حذف حساب
@@ -510,7 +516,7 @@ ar:
     '500':
       content: نحن متأسفون، لقد حدث خطأ ما مِن جانبنا.
       title: هذه الصفحة خاطئة
-    noscript_html: يرجى تفعيل الجافا سكريبت لاستخدام تطبيق الويب لماستدون، أو عِوض ذلك قوموا بتجريب إحدى <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">التطبيقات الأصلية</a> الدّاعمة لماستدون على منصّتكم.
+    noscript_html: يرجى تفعيل الجافا سكريبت لاستخدام تطبيق الويب لماستدون، أو عِوض ذلك قوموا بتجريب إحدى <a href="%{apps_path}">التطبيقات الأصلية</a> الدّاعمة لماستدون على منصّتكم.
   exports:
     archive_takeout:
       date: التاريخ
@@ -532,6 +538,9 @@ ar:
       thread: المحادثات
     edit:
       title: تعديل عامل التصفية
+    errors:
+      invalid_context: لم تقم بتحديد أي مجال أو أنّ المجال غير صالح
+      invalid_irreversible: إلّا مجالات الإشعارات و الخيط الرئيسي معنية بالتصفية اللارجعية
     index:
       delete: إزالة
       title: عوامل التصفية
@@ -552,10 +561,11 @@ ar:
     resources: الموارد
   generic:
     changes_saved_msg: تم حفظ التعديلات بنجاح !
+    copy: نسخ
     save_changes: حفظ التغييرات
-    validation_errors: هناك شيء ليس على ما يرام ! رجاءًا تحقق من الأخطاء الـ %{count} أسفله
+    validation_errors: هناك شيء ليس على ما يُرام! يُرجى معاينة الأخطاء الـ %{count} التالية
   imports:
-    preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
+    preface: بإمكانك استيراد بيانات قد قُمتَ بتصديرها مِن مثيل خادوم آخَر، كقوائم المستخدِمين الذين كنتَ تتابِعهم أو قُمتَ بحظرهم.
     success: تم تحميل بياناتك بنجاح وسيتم معالجتها في الوقت المناسب
     types:
       blocking: قائمة المحظورين
@@ -602,8 +612,8 @@ ar:
       action: معاينة كافة الإشعارات
       body: هذا هو مُلَخَّص الرسائل التي فاتتك وذلك منذ آخر زيارة لك في  %{since}
       mention: "%{name} أشار إليك في :"
-      new_followers_summary: و لقد تحصلت على %{count} متتبعين جدد أثناء فترة غيابك ! رائع !
-      subject: "%{count} إشعارات جديدة منذ زيارتك الأخيرة \U0001F418"
+      new_followers_summary: رائع، لقد قام بمتابعتك %{count} مُتابِعون جُدد أثناء فترة غيابك عن ماستدون !
+      subject: "%{count} إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
       title: أثناء فترة غيابك …
     favourite:
       body: 'أُعجب %{name} بمنشورك :'
@@ -721,11 +731,11 @@ ar:
   statuses:
     attached:
       description: 'مُرفَق : %{attached}'
-      image: "%{count} صور"
+      image: "%{count} صُوَر"
       video: "%{count} فيديوهات"
     boosted_from_html: تم إعادة ترقيته مِن %{acct_link}
     content_warning: 'تحذير عن المحتوى : %{warning}'
-    disallowed_hashtags: 'يحتوي على وسوم ممنوعة : %{tags}'
+    disallowed_hashtags: 'يحتوي على أحد الوسوم الممنوعة: %{tags}'
     language_detection: اكتشاف اللغة تلقائيا
     open_in_web: إفتح في الويب
     over_character_limit: تم تجاوز حد الـ %{max} حرف المسموح بها
@@ -746,7 +756,7 @@ ar:
       unlisted_long: يُمكن لأيٍ كان رُؤيتَه و لكن لن يُعرَض على الخيوط العامة
   stream_entries:
     pinned: تبويق مثبّت
-    reblogged: رقى
+    reblogged: رقّاه
     sensitive_content: محتوى حساس
   terms:
     title: شروط الخدمة وسياسة الخصوصية على %{instance}
@@ -797,8 +807,11 @@ ar:
       tips: نصائح
       title: أهلاً بك، %{name} !
   users:
+    follow_limit_reached: لا يمكنك متابعة أكثر مِن %{limit} أشخاص
     invalid_email: عنوان البريد الإلكتروني غير صالح
     invalid_otp_token: رمز المصادقة بخطوتين غير صالح
     otp_lost_help_html: إن فقدتَهُما ، يمكنك الإتصال بـ %{email}
     seamless_external_login: لقد قمت بتسجيل الدخول عبر خدمة خارجية، إنّ إعدادات الكلمة السرية و البريد الإلكتروني غير متوفرة.
     signed_in_as: 'تم تسجيل دخولك بصفة :'
+  verification:
+    verification: التحقق

@@ -1,11 +1,104 @@
 ---
 cy:
   simple_form:
-    labels:
+    hints:
       defaults:
+        autofollow: Bydd pobl sy'n cofrestru drwy'r gwahoddiad yn eich dilyn yn awtomatig
+        avatar: PNG, GIF neu JPG. %{size} ar y mwyaf. Caiff ei israddio i %{dimensions}px
+        bot: Mae'r cyfrif hwn yn perfformio gweithredoedd awtomatig yn bennaf ac mae'n bosib nad yw'n cael ei fonitro
+        context: Un neu fwy cyd-destun lle dylai'r hidlydd weithio
+        digest: Ond yn cael eu hanfon ar ôl cyfnod hir o anweithgarwch ac ond os ydych wedi derbyn unrhyw negeseuon personol yn eich absenoldeb
+        email: Byddwch yn derbyn e-bost i gadarnhau
+        fields: Mae modd i chi arddangos hyd at 4 eitem fel tabl ar eich proffil
+        header: PNG, GIF neu JPG. %{size} ar y mwyaf. Ceith ei israddio i %{dimensions}px
+        inbox_url: Copïwch yr URL o dudalen flaen y relái yr ydych am ei ddefnyddio
+        irreversible: Bydd tŵtiau wedi eu hidlo yn diflannu am byth, hyd yn oed os ceith yr hidlydd ei ddileu'n hwyrach
+        locale: Iaith y rhyngwyneb, e-byst a hysbysiadau push
+        locked: Ei wneud yn ofynnol i chi i ganiatau dilynwyr a llaw
+        password: Defnyddiwch oleiaf 8 nodyn
+        phrase: Caiff ei gyfateb heb ystyriaeth o briflythrennu mewn testun neu rhybudd ynghylch cynnwys tŵt
+        scopes: Pa APIau y bydd gan y rhaglen ganiatad i gael mynediad iddynt. Os dewiswch maes lefel uchaf, yna nid oes angen dewis rhai unigol.
+        setting_default_language: Mae modd adnabod iaith eich tŵtiau yn awtomatig, ond nid yw bob tro'n gywir
+        setting_display_media_default: Cuddio cyfryngau wedi eu marcio'n sensitif
+        setting_display_media_hide_all: Cuddio cyfryngau bob tro
+        setting_display_media_show_all: Dangos cyfryngau wedi eu marcio'n sensitif bob tro
+        setting_hide_network: Ni fydd y rheini yr ydych yn eu dilyn a phwy sy'n eich dilyn chi yn cael ei ddangos ar eich proffil
+        setting_noindex: Mae hyn yn effeithio ar eich proffil cyhoeddus a'ch tudalennau statws
+        setting_theme: Mae hyn yn effeithio ar sut olwg sydd ar Matododon pan yr ydych wedi mewngofnodi o unrhyw ddyfais.
+        username: Bydd eich enw defnyddiwr yn unigryw ar %{domain}
+        whole_word: Os yw'r allweddair neu'r ymadrodd yn alffaniwmerig yn unig, mi fydd ond yn cael ei osod os yw'n cyfateb a'r gair cyfan
+      imports:
+        data: Allforiwyd dogfen CSV o achos Mastodon arall
+      sessions:
+        otp: 'Mewnbynnwch y cod dau gam a gynhyrchwyd gan eich ap ffôn neu defnyddiwch un o''ch codau adfer:'
+      user:
+        chosen_languages: Wedi eu dewis, dim ond tŵtiau yn yr ieithoedd hyn bydd yn cael eu harddangos mewn ffrydiau cyhoeddus
+    labels:
+      account:
+        fields:
+          name: Label
+          value: Cynnwys
+      defaults:
+        autofollow: Gwahodd i ddilyn eich cyfrif
+        avatar: Afatar
+        bot: Cyfrif bot yw hwn
+        chosen_languages: Hidlo ieithoedd
+        confirm_new_password: Cadarnhau cyfrinair newydd
         confirm_password: Cadarnhau cyfrinair
+        context: Hidlo cyd-destunau
+        current_password: Cyfrinair presennol
+        data: Data
+        display_name: Enw arddangos
         email: Cyfeiriad e-bost
+        expires_in: Yn dod i ben ar ôl
+        fields: Metadata proffil
         header: Pennyn
+        inbox_url: URL y mewnflwch relái
+        irreversible: Gollwng yn hytrach na chuddio
+        locale: Iaith y rhyngwyneb
+        locked: Cloi cyfrif
+        max_uses: Uchafswm y nifer o ddefnyddiau
         new_password: Cyfrinair newydd
+        note: Bywgraffiad
+        otp_attempt: Côd dau gam
         password: Cyfrinair
+        phrase: Allweddair neu ymadrodd
+        setting_auto_play_gif: Chwarae GIFs wedi'u hanimeiddio yn awtomatig
+        setting_boost_modal: Dangos deialog cadarnhad cyn bŵstio
+        setting_default_language: Cyhoeddi iaith
+        setting_default_privacy: Cyfrinachedd cyhoeddi
+        setting_default_sensitive: Marcio cyfryngau fel eu bod yn sensitif bob tro
+        setting_delete_modal: Dangos deialog cadarnhau cyn dileu tŵt
+        setting_display_media: Arddangos cyfryngau
+        setting_display_media_default: Rhagosodiad
+        setting_display_media_hide_all: Cuddio oll
+        setting_display_media_show_all: Dangos oll
+        setting_expand_spoilers: Ymestyn tŵtiau wedi'u marcio a rhybudd cynnwys bob tro
+        setting_hide_network: Cuddio eich rhwydwaith
+        setting_noindex: Dewis peidio mynegeio peiriant chwilota
+        setting_reduce_motion: Lleihau mudiant mewn animeiddiadau
+        setting_system_font_ui: Defnyddio ffont rhagosodedig y system
+        setting_theme: Thema'r wefan
+        setting_unfollow_modal: Dangos deialog cadarnhau cyn dad-ddilyn rhywun
+        severity: Difrifoldeb
+        type: Modd mewnforio
         username: Enw defnyddiwr
+        username_or_email: Enw defnyddiwr neu e-bost
+        whole_word: Gair cyfan
+      interactions:
+        must_be_follower: Blocio hysbysiadau o bobl nad ydynt yn eich dilyn
+        must_be_following: Blocio hysbysiadau o bobl nad ydych yn eu dilyn
+        must_be_following_dm: Blocio negeseuon uniongyrchol o bobl nad ydych yn eu dilyn
+      notification_emails:
+        digest: Anfonwch e-byst crynhoi
+        favourite: Anfon e-bost pan mae rhywun yn ffefrynnu eich statws
+        follow: Anfon e-bost pan mae rhywun yn eich dilyn chi
+        follow_request: Anfon e-bost pan mae rhywun yn gofyn i chi i'w dilyn
+        mention: Anfon e-bost pan mae rhywun yn eich crybwyll
+        reblog: Anfon e-bost pan mae rhywun yn bŵstio eich statws
+        report: Anfon e-bost pan y cyflwynir adroddiad newydd
+    'no': Na
+    required:
+      mark: "*"
+      text: gofynnol
+    'yes': Ie

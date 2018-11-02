@@ -57,7 +57,7 @@ RSpec.describe FetchAtomService, type: :service do
       context 'content type is application/atom+xml' do
         let(:content_type) { 'application/atom+xml' }
 
-        it { is_expected.to eq [url, {:prefetched_body=>""}, :ostatus] }
+        it { is_expected.to eq [url, { :prefetched_body => "" }, :ostatus] }
       end
 
       context 'content_type is json' do

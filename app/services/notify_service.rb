@@ -8,9 +8,10 @@ class NotifyService < BaseService
 
     return if recipient.user.nil? || blocked?
 
-    create_notification
-    push_notification if @notification.browserable?
-    send_email if email_enabled?
+    create_notification!
+    push_notification! if @notification.browserable?
+    push_to_conversation! if direct_message?
+    send_email! if email_enabled?
   rescue ActiveRecord::RecordInvalid
     return
   end
@@ -30,7 +31,7 @@ class NotifyService < BaseService
   end
 
   def blocked_reblog?
-    @recipient.muting_reblogs?(@notification.from_account)
+    false
   end
 
   def blocked_follow_request?
@@ -50,12 +51,20 @@ class NotifyService < BaseService
     @recipient.user.settings.interactions['must_be_following'] && !following_sender?
   end
 
+  def message?
+    @notification.type == :mention
+  end
+
   def direct_message?
-    @notification.type == :mention && @notification.target_status.direct_visibility?
+    message? && @notification.target_status.direct_visibility?
   end
 
   def response_to_recipient?
     @notification.target_status.in_reply_to_account_id == @recipient.id && @notification.target_status.thread&.direct_visibility?
+  end
+
+  def from_staff?
+    @notification.from_account.local? && @notification.from_account.user.present? && @notification.from_account.user.staff?
   end
 
   def optional_non_following_and_direct?
@@ -80,6 +89,9 @@ class NotifyService < BaseService
   def blocked?
     blocked   = @recipient.suspended?                            # Skip if the recipient account is suspended anyway
     blocked ||= from_self?                                       # Skip for interactions with self
+
+    return blocked if message? && from_staff?
+
     blocked ||= domain_blocking?                                 # Skip for domain blocked accounts
     blocked ||= @recipient.blocking?(@notification.from_account) # Skip for blocked accounts
     blocked ||= @recipient.muting_notifications?(@notification.from_account)
@@ -100,18 +112,23 @@ class NotifyService < BaseService
     end
   end
 
-  def create_notification
+  def create_notification!
     @notification.save!
   end
 
-  def push_notification
+  def push_notification!
     return if @notification.activity.nil?
 
     Redis.current.publish("timeline:#{@recipient.id}", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
-    send_push_notifications
+    send_push_notifications!
   end
 
-  def send_push_notifications
+  def push_to_conversation!
+    return if @notification.activity.nil?
+    AccountConversation.add_status(@recipient, @notification.target_status)
+  end
+
+  def send_push_notifications!
     subscriptions_ids = ::Web::PushSubscription.where(user_id: @recipient.user.id)
                                                .select { |subscription| subscription.pushable?(@notification) }
                                                .map(&:id)
@@ -121,7 +138,7 @@ class NotifyService < BaseService
     end
   end
 
-  def send_email
+  def send_email!
     return if @notification.activity.nil?
     NotificationMailer.public_send(@notification.type, @recipient, @notification).deliver_later(wait: 2.minutes)
   end

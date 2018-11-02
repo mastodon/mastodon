@@ -1,4 +1,4 @@
 Fabricator(:list) do
   account
-  title   "MyString"
+  title "MyString"
 end
