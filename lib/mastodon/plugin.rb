@@ -2,14 +2,16 @@ module Mastodon
   class Plugin
     class NoCodeSpecifiedError < Exception; end
     class InvalidAssetType < Exception; end
+    VALID_ASSET_TYPES = [:scss, :js]
+
     Outlet = Struct.new(:name, :component, :props)
 
     attr_accessor :name
-    attr_reader :assets, :actions, :outlets
+    attr_reader :actions, :outlets
 
     def initialize
       @root = Dir.pwd
-      @assets, @actions, @outlets = Set.new, Set.new, Set.new
+      @actions, @outlets = Set.new, Set.new
     end
 
     # defined by the plugin
@@ -19,42 +21,17 @@ module Mastodon
 
     private
 
-    # Add translation files
-    # example usage: `plugin.use_translations("locales")`
-    # ^^ look in /plugins/example/locales and add the translations in `{locale}.json`
-    # NB: these keys will take precedence over the ones in the core app
-    def use_translations(path)
-      raise NoCodeSpecifiedError.new unless path
-      Rails.application.config.i18n.load_path += Dir[path_prefix "#{path}/*.yml"]
-    end
-
     # Add an api route
     # This will add a line in the routes.rb file to the api namespace to allow for custom API endpoints
     # example usage: `plugin.use_route(:get, "examples/:id", "examples#show")`
     # ^^ create an endpoint at /api/v1/examples/:id which routes to the show action on ExamplesController
-    # NB: be sure to define a controller action using the 'use_class' or 'extend_class' option!
+    # NB: be sure to define a controller action by adding a controller or using the 'extend_class' option!
     def use_route(verb, route, action)
       @actions.add Proc.new {
         Rails.application.routes.prepend do
           namespace(:api, path: 'api/v1', defaults: {format: :json}) { send(verb, { route => action }) }
         end
-      }.to_proc
-    end
-
-    # Add an asset
-    # example usage: `plugin.use_asset("components/example.js")`
-    # ^^ load the file at /plugins/example/components/example.js into the asset pipeline
-    # NB: you can load both javascript and scss files in this way
-    def use_asset(path)
-      raise InvalidAssetType.new unless [:scss, :js].include? path.split('.').last.to_sym
-      @assets.add path_prefix(path, rails_root: false)
-    end
-
-    # Add a directory of assets
-    # example usage: `plugin.use_asset_directory("components")`
-    # ^^ load all js / scss files in the /plugins/example/components folder into the asset pipeline
-    def use_asset_directory(glob)
-      use_directory(glob) { |path| use_asset(path) }
+      }
     end
 
     # Apply a component to an outlet
@@ -65,14 +42,6 @@ module Mastodon
       @outlets.add Outlet.new(outlet, component, props)
     end
 
-    # Create a new ruby class
-    # example usage: plugin.use_class("models/example")`
-    # ^^ run the code defined in /plugins/example/models/example.rb
-    # NB: You want use this only to define entirely new classes, use 'extend_class' to override existing functionality
-    def use_class(path)
-      @actions.add Proc.new { require path_prefix path }.to_proc
-    end
-
     # Extend an existing ruby class
     # example usage: `plugin.extend_class("Status") { def hello!; puts "Hi!"; end }`
     # ^^ define a new method 'hello!' which can be called on the existing Status class
@@ -80,15 +49,9 @@ module Mastodon
     #     check out this post: https://meta.discourse.org/t/tips-for-overriding-existing-discourse-methods-in-plugins/83389
     def extend_class(const, &block)
       raise NoCodeSpecifiedError.new unless block_given?
-      @actions.add Proc.new { const.constantize.class_eval(&block) }.to_proc
+      @actions.add Proc.new { const.constantize.class_eval(&block) }
     end
 
-    # Add a directory of classes
-    # example usage: `plugin.use_class_directory("models")`
-    # ^^ load all ruby classes defined in files in the /plugins/example/models folder
-    def use_class_directory(glob)
-      use_directory(glob) { |path| use_class(path) }
-    end
 
     # Add a new table to the database
     # example usage: `plugin.use_database_table(:examples) { |t| t.string :title }`
@@ -109,18 +72,16 @@ module Mastodon
 
     # Add a new fabricator for testing
     # example usage: `plugin.use_fabricator(:example) { title { "Example!" } }`
-    # ^^ create a new fabricator for the Example class defined using use_class
+    # ^^ create a new fabricator for the Example class
     # NB: Yes, you should be writing tests for your plugins ;)
     def use_fabricator(name, &block)
       return unless Rails.env.test?
       raise NoCodeSpecifiedError.new unless block_given?
-      @actions.add Proc.new { Fabricator(name, &block) }.to_proc
+      @actions.add Proc.new { Fabricator(name, &block) }
     end
 
-    def path_prefix(path = nil, rails_root: true)
-      path = [@root, path].compact.join('/')
-      path = path.sub("#{Rails.root}/", '') unless rails_root
-      path
+    def path_prefix(path = nil)
+      [@root, path].compact.join('/')
     end
 
     def use_directory(glob)

@@ -6,8 +6,12 @@ const { safeLoad } = require('js-yaml');
 const { readFileSync } = require('fs');
 
 const configPath = resolve('config', 'webpacker.yml');
+const pluginPath = resolve('config', 'plugins.yml')
 const loadersDir = join(__dirname, 'loaders');
-const settings = safeLoad(readFileSync(configPath), 'utf8')[env.RAILS_ENV || env.NODE_ENV];
+const pluginAssets = safeLoad(readFileSync(pluginPath), 'utf8').assets
+let settings = safeLoad(readFileSync(configPath), 'utf8')[env.RAILS_ENV || env.NODE_ENV];
+settings.resolved_paths = pluginAssets
+console.log(settings)
 
 const themePath = resolve('config', 'themes.yml');
 const themes = safeLoad(readFileSync(themePath), 'utf8');
