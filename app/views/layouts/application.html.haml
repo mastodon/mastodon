@@ -15,6 +15,7 @@
 
     = stylesheet_pack_tag 'common', media: 'all'
     = stylesheet_pack_tag current_theme, media: 'all'
+    = stylesheet_pack_tag 'plugins', media: 'all'
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
     = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
     = javascript_pack_tag 'plugins', integrity: true, crossorigin: 'anonymous'

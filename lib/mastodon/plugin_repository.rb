@@ -5,7 +5,7 @@ module Mastodon
     include Singleton
 
     def initialize!
-      File.write 'config/outlets.yml', config[:outlets].to_yaml
+      File.write 'app/javascript/mastodon/outlets.js', "module.exports = #{config[:outlets].to_json};"
       File.write 'app/javascript/packs/plugins.js', config[:requires].join("\n")
     end
 
@@ -38,7 +38,7 @@ module Mastodon
       end
 
       # add assets to file for webpacker to pick up
-      plugin.assets.each { |asset| config[:requires] << "require('../../../#{asset}')" }
+      plugin.assets.each { |asset| config[:requires] << "require('../../../#{asset}');" }
 
       # call all generic actions associated with this plugin
       plugin.actions.map(&:call)

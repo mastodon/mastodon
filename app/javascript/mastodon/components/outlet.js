@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { outlets } from '../initial_state';
+import outlets from '../outlets';
 
 export default class Outlet extends React.PureComponent {
 
