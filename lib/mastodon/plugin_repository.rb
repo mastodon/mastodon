@@ -5,13 +5,14 @@ module Mastodon
     include Singleton
 
     def initialize!
-      File.write 'config/plugins.yml', configure_plugins.to_yaml
+      File.write 'config/outlets.yml', config[:outlets].to_yaml
+      File.write 'app/javascript/packs/plugins.js', config[:requires].join("\n")
     end
 
     private
 
-    def configure_plugins
-      Dir[plugin_path].reduce(default_config) do |config, file|
+    def config
+      @config ||= Dir[plugin_path].reduce(default_config) do |config, file|
         path = File.dirname(file)
         name  = path.split('/').last
         klass = "Mastodon::Plugins::#{name.camelize}"
@@ -31,16 +32,13 @@ module Mastodon
       # call user-defined setup
       plugin.setup!
 
-      # load ruby files
-      Dir['**/*.rb'].map(&method(:load))
-
       # add outlets to file for adding to initial_state
       plugin.outlets.each do |outlet|
-        config['outlets'][outlet.name] = config['outlets'][outlet.name] << outlet.as_json.except('name')
+        config[:outlets][outlet.name] = config[:outlets][outlet.name] << outlet.as_json.except('name')
       end
 
       # add assets to file for webpacker to pick up
-      config['assets'] << [path, :assets].join('/')
+      plugin.assets.each { |asset| config[:requires] << "require('../../../#{asset}')" }
 
       # call all generic actions associated with this plugin
       plugin.actions.map(&:call)
@@ -54,7 +52,7 @@ module Mastodon
     end
 
     def default_config
-      { 'outlets' => Hash.new { [] }, 'assets' => [] }
+      { outlets: Hash.new { [] }, requires: [] }
     end
   end
 end

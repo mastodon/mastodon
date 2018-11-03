@@ -61,4 +61,6 @@ docker-compose.override.yml
 # Ignore plugin files
 /plugins/*
 !/plugins/.keep
-/config/plugins.yml
+/app/javascript/packs/plugins.js
+/config/outlets.yml
+!/config/plugins/.keep

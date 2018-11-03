@@ -7,11 +7,11 @@ module Mastodon
     Outlet = Struct.new(:name, :component, :props)
 
     attr_accessor :name
-    attr_reader :actions, :outlets
+    attr_reader :actions, :outlets, :assets
 
     def initialize
       @root = Dir.pwd
-      @actions, @outlets = Set.new, Set.new
+      @actions, @outlets, @assets = Set.new, Set.new, Set.new
     end
 
     # defined by the plugin
@@ -20,6 +20,22 @@ module Mastodon
     end
 
     private
+
+    def use_asset(path)
+      @assets.add path_prefix(path).gsub([Rails.root.to_s, '/'].join, '')
+    end
+
+    def use_asset_directory(glob)
+      use_directory(glob) { |path| use_asset(path) }
+    end
+
+    def use_class(path)
+      @actions.add Proc.new { require path_prefix path }
+    end
+
+    def use_class_directory(glob)
+      use_directory(glob) { |path| use_class(path) }
+    end
 
     # Add an api route
     # This will add a line in the routes.rb file to the api namespace to allow for custom API endpoints
