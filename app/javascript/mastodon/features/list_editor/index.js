@@ -22,9 +22,9 @@ const mapDispatchToProps = dispatch => ({
   onReset: () => dispatch(resetListEditor()),
 });
 
-@connect(mapStateToProps, mapDispatchToProps)
+export default @connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
-export default class ListEditor extends ImmutablePureComponent {
+class ListEditor extends ImmutablePureComponent {
 
   static propTypes = {
     listId: PropTypes.string.isRequired,

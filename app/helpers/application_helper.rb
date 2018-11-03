@@ -7,8 +7,8 @@ module ApplicationHelper
     follow
   ).freeze
 
-  def active_nav_class(path)
-    current_page?(path) ? 'active' : ''
+  def active_nav_class(*paths)
+    paths.any? { |path| current_page?(path) } ? 'active' : ''
   end
 
   def active_link_to(label, path, **options)
@@ -80,5 +80,21 @@ module ApplicationHelper
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
     output << 'rtl' if locale_direction == 'rtl'
     output.reject(&:blank?).join(' ')
+  end
+
+  def cdn_host
+    Rails.configuration.action_controller.asset_host
+  end
+
+  def cdn_host?
+    cdn_host.present?
+  end
+
+  def storage_host
+    "https://#{ENV['S3_ALIAS_HOST'].presence || ENV['S3_CLOUDFRONT_HOST']}"
+  end
+
+  def storage_host?
+    ENV['S3_ALIAS_HOST'].present? || ENV['S3_CLOUDFRONT_HOST'].present?
   end
 end

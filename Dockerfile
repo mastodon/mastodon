@@ -1,5 +1,5 @@
-FROM node:8.11.3-alpine as node
-FROM ruby:2.4.4-alpine3.6
+FROM node:8.12.0-alpine as node
+FROM ruby:2.4.5-alpine3.8
 
 LABEL maintainer="https://github.com/tootsuite/mastodon" \
       description="Your self-hosted, globally interconnected microblogging community"

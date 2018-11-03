@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
+  get '.well-known/change-password', to: redirect('/auth/edit')
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
   get 'custom.css', to: 'custom_css#show', as: :custom_css
@@ -261,6 +262,12 @@ Rails.application.routes.draw do
       resources :custom_emojis, only: [:index]
       resources :suggestions, only: [:index, :destroy]
 
+      resources :conversations, only: [:index, :destroy] do
+        member do
+          post :read
+        end
+      end
+
       get '/search', to: 'search#index', as: :search
 
       resources :follows,      only: [:create]
@@ -268,7 +275,7 @@ Rails.application.routes.draw do
       resources :blocks,       only: [:index]
       resources :mutes,        only: [:index]
       resources :favourites,   only: [:index]
-      resources :reports,      only: [:index, :create]
+      resources :reports,      only: [:create]
       resources :filters,      only: [:index, :create, :show, :update, :destroy]
       resources :endorsements, only: [:index]
 
@@ -295,6 +302,10 @@ Rails.application.routes.draw do
       resources :notifications, only: [:index, :show] do
         collection do
           post :clear
+          post :dismiss # Deprecated
+        end
+
+        member do
           post :dismiss
         end
       end

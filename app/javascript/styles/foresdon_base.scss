@@ -471,8 +471,13 @@ body {
 
 .status {
   border: none;
+
   &.status-direct {
-    background: none;
+    border-radius: $foresdon-primary-border-radius;
+
+    &.status-direct:not(.read) {
+      background: $foresdon-ui-accent-overlay;
+    }
   }
 }
 
@@ -549,7 +554,7 @@ body {
 // Notifications
 .notification {
   margin: 0 3px $foresdon-default-margin-bottom 0;
-  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  background-color: rgba($foresdon-ui-base-color, $foresdon-background-filter-alpha);
   border-radius: $foresdon-primary-border-radius;
 
   & .status__wrapper {

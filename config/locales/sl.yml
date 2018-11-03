@@ -5,10 +5,13 @@ sl:
     about_mastodon_html: Mastodon je socialno omrežje, ki temelji na odprtih spletnih protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran, kot e-pošta.
     about_this: O Mastodonu
     administered_by: 'Upravlja:'
+    api: API
+    apps: Mobilne aplikacije
     closed_registrations: Registracije so trenutno zaprte na tem vozlišču. Vendar! Tukaj lahko najdete druga vozlišča, na katerih se prijavite in dostopate do istega omrežja od tam.
     contact: Kontakt
     contact_missing: Ni nastavljeno
     contact_unavailable: Ni na voljo
+    documentation: Dokumentacija
     extended_description_html: |
       <h3>Dober prostor za pravila</h3>
       <p>Razširjen opis še ni bil nastavljen.</p>
@@ -37,7 +40,11 @@ sl:
     nothing_here: Nič ni tukaj!
     people_followed_by: Ljudje, ki jim sledi %{name}
     people_who_follow: Ljudje, ki sledijo %{name}
-    posts: Tuti
+    posts:
+      few: Trob
+      one: Trob
+      other: Trob
+      two: Trob
     posts_with_replies: Tuti in odgovori
     reserved_username: Uporabniško ime je zasedeno
     roles:
@@ -100,3 +107,11 @@ sl:
         most_recent: Najnovejše
         title: Red
       promote: Spodbujanje
+  remote_interaction:
+    prompt: 'Želite interakcijo s tem trobom:'
+  statuses:
+    pin_errors:
+      ownership: Trob nekoga drugega ne more biti pripet
+      private: Nejavnega troba ni mogoče pripeti
+  stream_entries:
+    pinned: Pripet trob

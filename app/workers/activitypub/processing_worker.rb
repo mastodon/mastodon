@@ -5,7 +5,7 @@ class ActivityPub::ProcessingWorker
 
   sidekiq_options backtrace: true
 
-  def perform(account_id, body)
-    ActivityPub::ProcessCollectionService.new.call(body, Account.find(account_id), override_timestamps: true)
+  def perform(account_id, body, delivered_to_account_id = nil)
+    ActivityPub::ProcessCollectionService.new.call(body, Account.find(account_id), override_timestamps: true, delivered_to_account_id: delivered_to_account_id)
   end
 end

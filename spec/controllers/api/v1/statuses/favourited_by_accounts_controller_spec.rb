@@ -25,7 +25,6 @@ RSpec.describe Api::V1::Statuses::FavouritedByAccountsController, type: :control
         expect(response.headers['Link'].links.size).to eq(2)
       end
     end
-
   end
 
   context 'without an oauth token' do

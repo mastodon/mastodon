@@ -48,6 +48,7 @@ en:
       other: Followers
     following: Following
     joined: Joined %{date}
+    link_verified_on: Ownership of this link was checked on %{date}
     media: Media
     moved_html: "%{name} has moved to %{new_profile_link}:"
     network_hidden: This information is not available
@@ -120,13 +121,14 @@ en:
       moderation_notes: Moderation notes
       most_recent_activity: Most recent activity
       most_recent_ip: Most recent IP
+      no_limits_imposed: No limits imposed
       not_subscribed: Not subscribed
       order:
         alphabetic: Alphabetic
         most_recent: Most recent
         title: Order
       outbox_url: Outbox URL
-      perform_full_suspension: Perform full suspension
+      perform_full_suspension: Suspend
       profile_url: Profile URL
       promote: Promote
       protocol: Protocol
@@ -155,8 +157,10 @@ en:
         report: report
         targeted_reports: Reports made about this account
       silence: Silence
+      silenced: Silenced
       statuses: Statuses
       subscribe: Subscribe
+      suspended: Suspended
       title: Accounts
       unconfirmed_email: Unconfirmed E-mail
       undo_silenced: Undo silence
@@ -173,6 +177,7 @@ en:
         create_domain_block: "%{name} blocked domain %{target}"
         create_email_domain_block: "%{name} blacklisted e-mail domain %{target}"
         demote_user: "%{name} demoted user %{target}"
+        destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_block: "%{name} unblocked domain %{target}"
         destroy_email_domain_block: "%{name} whitelisted e-mail domain %{target}"
         destroy_status: "%{name} removed status by %{target}"
@@ -258,6 +263,8 @@ en:
         title: New domain block
       reject_media: Reject media files
       reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
+      reject_reports: Reject reports
+      reject_reports_hint: Ignore all reports coming from this domain. Irrelevant for suspensions
       severities:
         noop: None
         silence: Silence
@@ -300,8 +307,13 @@ en:
       title: Invites
     relays:
       add_new: Add new relay
+      delete: Delete
       description_html: A <strong>federation relay</strong> is an intermediary server that exchanges large volumes of public toots between servers that subscribe and publish to it. <strong>It can help small and medium servers discover content from the fediverse</strong>, which would otherwise require local users manually following other people on remote servers.
+      disable: Disable
+      disabled: Disabled
+      enable: Enable
       enable_hint: Once enabled, your server will subscribe to all public toots from this relay, and will begin sending this server's public toots to it.
+      enabled: Enabled
       inbox_url: Relay URL
       pending: Waiting for relay's approval
       save_and_enable: Save and enable
@@ -322,7 +334,6 @@ en:
       comment:
         none: None
       created_at: Reported
-      id: ID
       mark_as_resolved: Mark as resolved
       mark_as_unresolved: Mark as unresolved
       notes:
@@ -333,20 +344,15 @@ en:
         placeholder: Describe what actions have been taken, or any other related updates...
       reopen: Reopen report
       report: 'Report #%{id}'
-      report_contents: Contents
       reported_account: Reported account
       reported_by: Reported by
       resolved: Resolved
       resolved_msg: Report successfully resolved!
-      silence_account: Silence account
       status: Status
-      suspend_account: Suspend account
-      target: Target
       title: Reports
       unassign: Unassign
       unresolved: Unresolved
       updated_at: Updated
-      view: View
     settings:
       activity_api_enabled:
         desc_html: Counts of locally posted statuses, active users, and new registrations in weekly buckets
@@ -363,6 +369,9 @@ en:
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to instance thumbnail
         title: Hero image
+      mascot:
+        desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
+        title: Mascot image
       peers_api_enabled:
         desc_html: Domain names this instance has encountered in the fediverse
         title: Publish list of discovered instances
@@ -456,7 +465,7 @@ en:
     warning: Be very careful with this data. Never share it with anyone!
     your_token: Your access token
   auth:
-    agreement_html: By signing up you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
+    agreement_html: By clicking "Sign up" below you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
     change_password: Password
     confirm_email: Confirm email
     delete_account: Delete account
@@ -523,7 +532,7 @@ en:
     '500':
       content: We're sorry, but something went wrong on our end.
       title: This page is not correct
-    noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">native apps</a> for Mastodon for your platform.
+    noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Mastodon for your platform.
   exports:
     archive_takeout:
       date: Date
@@ -571,6 +580,7 @@ en:
     resources: Resources
   generic:
     changes_saved_msg: Changes successfully saved!
+    copy: Copy
     save_changes: Save changes
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
@@ -912,8 +922,12 @@ en:
       tips: Tips
       title: Welcome aboard, %{name}!
   users:
+    follow_limit_reached: You cannot follow more than %{limit} people
     invalid_email: The e-mail address is invalid
     invalid_otp_token: Invalid two-factor code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
+  verification:
+    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
+    verification: Verification

@@ -58,6 +58,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def truthy_param?(key)
+    ActiveModel::Type::Boolean.new.cast(params[key])
+  end
+
   def forbidden
     respond_with_error(403)
   end
@@ -122,6 +126,7 @@ class ApplicationController < ActionController::Base
   def respond_with_error(code)
     respond_to do |format|
       format.any  { head code }
+
       format.html do
         set_locale
         render "errors/#{code}", layout: 'error', status: code
