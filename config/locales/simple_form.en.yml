@@ -8,24 +8,24 @@ en:
         bot: This account mainly performs automated actions and might not be monitored
         context: One or multiple contexts where the filter should apply
         digest: Only sent after a long period of inactivity and only if you have received any personal messages in your absence
-        display_name:
-          one: <span class="name-counter">1</span> character left
-          other: <span class="name-counter">%{count}</span> characters left
+        email: You will be sent a confirmation e-mail
         fields: You can have up to 4 items displayed as a table on your profile
         header: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
         inbox_url: Copy the URL from the frontpage of the relay you want to use
         irreversible: Filtered toots will disappear irreversibly, even if filter is later removed
         locale: The language of the user interface, e-mails and push notifications
         locked: Requires you to manually approve followers
-        note:
-          one: <span class="note-counter">1</span> character left
-          other: <span class="note-counter">%{count}</span> characters left
+        password: Use at least 8 characters
         phrase: Will be matched regardless of casing in text or content warning of a toot
         scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
         setting_default_language: The language of your toots can be detected automatically, but it's not always accurate
+        setting_display_media_default: Hide media marked as sensitive
+        setting_display_media_hide_all: Always hide all media
+        setting_display_media_show_all: Always show media marked as sensitive
         setting_hide_network: Who you follow and who follows you will not be shown on your profile
         setting_noindex: Affects your public profile and status pages
         setting_theme: Affects how Mastodon looks when you're logged in from any device.
+        username: Your username will be unique on %{domain}
         whole_word: When the keyword or phrase is alphanumeric only, it will only be applied if it matches the whole word
       imports:
         data: CSV file exported from another Mastodon instance
@@ -69,7 +69,11 @@ en:
         setting_default_privacy: Post privacy
         setting_default_sensitive: Always mark media as sensitive
         setting_delete_modal: Show confirmation dialog before deleting a toot
-        setting_display_sensitive_media: Always show media marked as sensitive
+        setting_display_media: Media display
+        setting_display_media_default: Default
+        setting_display_media_hide_all: Hide all
+        setting_display_media_show_all: Show all
+        setting_expand_spoilers: Always expand toots marked with content warnings
         setting_hide_network: Hide your network
         setting_noindex: Opt-out of search engine indexing
         setting_reduce_motion: Reduce motion in animations

@@ -31,9 +31,9 @@ fa:
     privacy_policy: سیاست رازداری
     source_code: کدهای منبع
     status_count_after:
-      one: نوشته
-      other: نوشته
-    status_count_before: که جمعاً
+      one: چیز نوشته‌اند
+      other: چیز نوشته‌اند
+    status_count_before: که در کنار هم
     terms: شرایط کاربری
     user_count_after:
       one: کاربر
@@ -48,6 +48,7 @@ fa:
       other: پیگیر
     following: پی می‌گیرد
     joined: کاربر از %{date}
+    link_verified_on: مالکیت این نشانی در تاریخ %{date} بررسی شد
     media: عکس و ویدیو
     moved_html: "%{name} حساب خود را به %{new_profile_link} منتقل کرده است:"
     network_hidden: این اطلاعات در دسترس نیست
@@ -120,13 +121,14 @@ fa:
       moderation_notes: یادداشت مدیر
       most_recent_activity: آخرین فعالیت‌ها
       most_recent_ip: آخرین IP ها
+      no_limits_imposed: بدون محدودیت
       not_subscribed: عضو نیست
       order:
         alphabetic: الفبایی
         most_recent: تازه‌ترین‌ها
         title: ترتیب
       outbox_url: نشانی صندوق خروجی
-      perform_full_suspension: انجام تعلیق کامل
+      perform_full_suspension: تعلیق
       profile_url: نشانی نمایه
       promote: ترفیع‌دادن
       protocol: پروتکل
@@ -155,8 +157,10 @@ fa:
         report: گزارش
         targeted_reports: گزارش‌ها دربارهٔ این حساب
       silence: بی‌صدا
+      silenced: بی‌صداشده
       statuses: نوشته‌ها
       subscribe: اشتراک
+      suspended: تعلیق‌شده
       title: حساب‌ها
       unconfirmed_email: ایمیل تأییدنشده
       undo_silenced: واگردانی بی‌صداکردن
@@ -173,6 +177,7 @@ fa:
         create_domain_block: "%{name} دامین %{target} را مسدود کرد"
         create_email_domain_block: "%{name} دامین ایمیل %{target} را مسدود کرد"
         demote_user: "%{name} مقام کاربر %{target} را تنزل داد"
+        destroy_custom_emoji: "%{name} شکلک %{target} را حذف کرد"
         destroy_domain_block: "%{name} دامین %{target} را باز کرد"
         destroy_email_domain_block: "%{name} دامین ایمیل %{target} را باز کرد"
         destroy_status: "%{name} نوشته‌ای از %{target} را پاک کرد"
@@ -258,6 +263,8 @@ fa:
         title: مسدودسازی دامین دیگر
       reject_media: نپذیرفتن پرونده‌های تصویری
       reject_media_hint: تصویرهای ذخیره‌شده در این‌جا را پاک می‌کند و جلوی دریافت تصویرها را در آینده می‌گیرد. بی‌تأثیر برای معلق‌شده‌ها
+      reject_reports: نپذیرفتن گزارش‌ها
+      reject_reports_hint: گزارش‌هایی را که از این دامین می‌آید نادیده می‌گیرد. بی‌تأثیر برای معلق‌شده‌ها
       severities:
         noop: هیچ
         silence: بی‌صداکردن
@@ -300,8 +307,13 @@ fa:
       title: دعوت‌ها
     relays:
       add_new: افزودن رلهٔ تازه
+      delete: حذف
       description_html: یک <strong>رلهٔ میان‌سروری</strong> (federation relay) یک سرور میانجی است که حجم زیادی از بوق‌های عمومی را بین سرورهای گوناگونی که عضوش می‌شوند جابه‌جا می‌کند. <strong>رله‌ها به سرورهای کوچک و متوسط کمک می‌کنند تا مطالب عمومی بیشتری را بیابند.</strong> اگر رله نباشد، این مطالب عمومی تنها وقتی پیدا می‌شوند که کاربران محلی خودشان پیگیر کاربران روی سرورهای دیگر شوند.
+      disable: غیرفعال‌کردن
+      disabled: غیرفعال
+      enable: فعال‌سازی
       enable_hint: اگر فعال باشد، سرور شما عضو همهٔ بوق‌های عمومی‌ای را که از این رله می‌آید می‌گیرد، و بوق‌های عمومی این سرور را به آن می‌فرستند.
+      enabled: فعال
       inbox_url: نشانی رله
       pending: در انتظار پذیرش رله
       save_and_enable: ذخیره و فعال‌سازی
@@ -322,7 +334,6 @@ fa:
       comment:
         none: خالی
       created_at: گزارش‌شده
-      id: شناسه
       mark_as_resolved: علامت‌گذاری به عنوان حل‌شده
       mark_as_unresolved: علامت‌گذاری به عنوان حل‌نشده
       notes:
@@ -333,20 +344,15 @@ fa:
         placeholder: کارهایی را که در این باره انجام شده، یا هر به‌روزرسانی دیگری را بنویسید...
       reopen: دوباره به جریان بیندازید
       report: 'گزارش #%{id}'
-      report_contents: محتوا
       reported_account: حساب گزارش‌شده
       reported_by: گزارش از طرف
       resolved: حل‌شده
       resolved_msg: گزارش با موفقیت حل شد!
-      silence_account: بی‌صدا کردن حساب
       status: نوشته
-      suspend_account: معلق‌کردن حساب
-      target: هدف
       title: گزارش‌ها
       unassign: پس‌گرفتن مسئولیت
       unresolved: حل‌نشده
       updated_at: به‌روز شد
-      view: نمایش
     settings:
       activity_api_enabled:
         desc_html: تعداد بوق‌های محلی، کاربران فعال، و کاربران تازه در هر هفته
@@ -363,6 +369,9 @@ fa:
       hero:
         desc_html: در صفحهٔ آغازین نمایش می‌یابد. دست‌کم ۶۰۰×۱۰۰ پیکسل توصیه می‌شود. اگر تعیین نشود، با تصویر بندانگشتی سرور جایگزین خواهد شد
         title: تصویر سربرگ
+      mascot:
+        desc_html: در صفحه‌های گوناگونی نمایش می‌یابد. دست‌کم ۲۹۳×۲۰۵ پیکسل. اگر تعیین نشود، با تصویر پیش‌فرض جایگزین خواهد شد
+        title: تصویر نماد
       peers_api_enabled:
         desc_html: دامین‌هایی که این سرور به آن‌ها برخورده است
         title: انتشار فهرست سرورهای یافته‌شده
@@ -456,7 +465,7 @@ fa:
     warning: خیلی مواظب این اطلاعات باشید و آن را به هیچ کس ندهید!
     your_token: کد دسترسی شما
   auth:
-    agreement_html: پیش از عضو شدن باید <a href="%{rules_path}">قوانین این سرور</a> و <a href="%{terms_path}">شرایط استفادهٔ</a> ما را بپذیرید.
+    agreement_html: با کلیک روی دکمهٔ عضو شدن، شما <a href="%{rules_path}">قوانین این سرور</a> و <a href="%{terms_path}">شرایط استفادهٔ</a> ما را می‌پذیرید.
     change_password: رمز
     confirm_email: تأیید ایمیل
     delete_account: پاک‌کردن حساب
@@ -523,7 +532,7 @@ fa:
     '500':
       content: شرمنده، یک چیزی از سمت ما اشتباه شده.
       title: این صفحه درست نیست
-    noscript_html: برای استفاده از نسخهٔ تحت وب ماستدون، لطفاً جاوااسکریپت را فعال کنید. یا به جایش می‌توانید <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">یک اپ ماستدون</a> را به‌کار ببرید.
+    noscript_html: برای استفاده از نسخهٔ تحت وب ماستدون، لطفاً جاوااسکریپت را فعال کنید. یا به جایش می‌توانید <a href="%{apps_path}">یک اپ ماستدون</a> را به‌کار ببرید.
   exports:
     archive_takeout:
       date: تاریخ
@@ -571,6 +580,7 @@ fa:
     resources: منابع
   generic:
     changes_saved_msg: تغییرات با موفقیت ذخیره شدند!
+    copy: رونوشت
     save_changes: ذخیرهٔ تغییرات
     validation_errors:
       one: یک چیزی هنوز درست نیست! لطفاً خطاهای زیر را ببینید
@@ -831,8 +841,12 @@ fa:
       tips: نکته‌ها
       title: خوش آمدید، کاربر %{name}!
   users:
+    follow_limit_reached: شما نمی‌توانید بیش از %{limit} نفر را پی بگیرید
     invalid_email: نشانی ایمیل نامعتبر است
     invalid_otp_token: کد ورود دومرحله‌ای نامعتبر است
     otp_lost_help_html: اگر شما دسترسی به هیچ‌کدامشان ندارید، باید با ایمیل %{email} تماس بگیرید
     seamless_external_login: شما با یک سرویس خارج از مجموعه وارد شده‌اید، به همین دلیل تنظیمات ایمیل و رمز برای شما در دسترس نیست.
     signed_in_as: 'واردشده به نام:'
+  verification:
+    explanation_html: 'شما می‌توانید <strong>خود را به عنوان مالک صفحه‌ای که در نمایه‌تان به آن پیوند داده‌اید تأیید کنید.</strong> برای این کار، صفحه‌ای که به آن پیوند داده‌اید، خودش باید پیوندی به نمایهٔ ماستدون شما داشته باشد. پیوند در آن صفحه <strong>باید</strong> عبارت <code>rel="me"</code> را به عنوان attribute در خود داشته باشد. محتوای متن پیوند اهمتی ندارد. یک نمونه از چنین پیوندی:'
+    verification: تأیید

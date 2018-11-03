@@ -53,6 +53,11 @@ table {
   border-spacing: 0;
 }
 
+html {
+  scrollbar-face-color: lighten($ui-base-color, 4%);
+  scrollbar-track-color: rgba($base-overlay-background, 0.1);
+}
+
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;

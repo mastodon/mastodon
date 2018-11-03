@@ -29,7 +29,7 @@ class FetchLinkCardService < BaseService
     end
 
     attach_card if @card&.persisted?
-  rescue HTTP::Error, Addressable::URI::InvalidURIError, Mastodon::LengthValidationError => e
+  rescue HTTP::Error, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
     Rails.logger.debug "Error fetching link #{@url}: #{e}"
     nil
   end
@@ -62,6 +62,7 @@ class FetchLinkCardService < BaseService
 
   def attach_card
     @status.preview_cards << @card
+    Rails.cache.delete(@status)
   end
 
   def parse_urls
@@ -81,40 +82,48 @@ class FetchLinkCardService < BaseService
     uri.host.blank? || TagManager.instance.local_url?(uri.to_s) || !%w(http https).include?(uri.scheme)
   end
 
+  def mention_link?(a)
+    @status.mentions.any? do |mention|
+      a['href'] == TagManager.instance.url_for(mention.account)
+    end
+  end
+
   def skip_link?(a)
     # Avoid links for hashtags and mentions (microformats)
-    a['rel']&.include?('tag') || a['class']&.include?('u-url')
+    a['rel']&.include?('tag') || a['class']&.include?('u-url') || mention_link?(a)
   end
 
   def attempt_oembed
-    embed = FetchOEmbedService.new.call(@url, html: @html)
+    service = FetchOEmbedService.new
+    embed   = service.call(@url, html: @html)
+    url     = Addressable::URI.parse(service.endpoint_url)
 
     return false if embed.nil?
 
     @card.type          = embed[:type]
     @card.title         = embed[:title]         || ''
     @card.author_name   = embed[:author_name]   || ''
-    @card.author_url    = embed[:author_url]    || ''
+    @card.author_url    = embed[:author_url].present? ? (url + embed[:author_url]).to_s : ''
     @card.provider_name = embed[:provider_name] || ''
-    @card.provider_url  = embed[:provider_url]  || ''
+    @card.provider_url  = embed[:provider_url].present? ? (url + embed[:provider_url]).to_s : ''
     @card.width         = 0
     @card.height        = 0
 
     case @card.type
     when 'link'
-      @card.image_remote_url = embed[:thumbnail_url] if embed[:thumbnail_url].present?
+      @card.image_remote_url = (url + embed[:thumbnail_url]).to_s if embed[:thumbnail_url].present?
     when 'photo'
       return false if embed[:url].blank?
 
-      @card.embed_url        = embed[:url]
-      @card.image_remote_url = embed[:url]
+      @card.embed_url        = (url + embed[:url]).to_s
+      @card.image_remote_url = (url + embed[:url]).to_s
       @card.width            = embed[:width].presence  || 0
       @card.height           = embed[:height].presence || 0
     when 'video'
       @card.width            = embed[:width].presence  || 0
       @card.height           = embed[:height].presence || 0
       @card.html             = Formatter.instance.sanitize(embed[:html], Sanitize::Config::MASTODON_OEMBED)
-      @card.image_remote_url = embed[:thumbnail_url] if embed[:thumbnail_url].present?
+      @card.image_remote_url = (url + embed[:thumbnail_url]).to_s if embed[:thumbnail_url].present?
     when 'rich'
       # Most providers rely on <script> tags, which is a no-no
       return false
@@ -146,7 +155,7 @@ class FetchLinkCardService < BaseService
 
     @card.title            = meta_property(page, 'og:title').presence || page.at_xpath('//title')&.content || ''
     @card.description      = meta_property(page, 'og:description').presence || meta_property(page, 'description') || ''
-    @card.image_remote_url = meta_property(page, 'og:image') if meta_property(page, 'og:image')
+    @card.image_remote_url = (Addressable::URI.parse(@url) + meta_property(page, 'og:image')).to_s if meta_property(page, 'og:image')
 
     return if @card.title.blank? && @card.html.blank?
 

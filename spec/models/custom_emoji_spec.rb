@@ -4,7 +4,7 @@ RSpec.describe CustomEmoji, type: :model do
   describe '#search' do
     let(:custom_emoji) { Fabricate(:custom_emoji, shortcode: shortcode) }
 
-    subject  { described_class.search(search_term) }
+    subject { described_class.search(search_term) }
 
     context 'shortcode is exact' do
       let(:shortcode) { 'blobpats' }

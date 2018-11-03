@@ -4,15 +4,13 @@ zh-CN:
     hints:
       defaults:
         autofollow: 通过邀请链接注册的用户将会自动关注你
-        avatar: 文件大小限制 %{size}，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 400×400px
+        avatar: 文件大小限制 %{size}，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 %{dimensions}px
         bot: 来自这个帐户的绝大多数操作都是自动进行的，并且可能无人监控
         digest: 仅在你长时间未登录，且收到了私信时发送
-        display_name: 还能输入 <span class="name-counter">%{count}</span> 个字符
         fields: 这将会在个人资料页上以表格的形式展示，最多 4 个项目
-        header: 文件大小限制 %{size}，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 700×335px
+        header: 文件大小限制 %{size}，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 %{dimensions}px
         locale: 用户界面、电子邮件和推送通知中使用的语言
         locked: 你需要手动审核所有关注请求
-        note: 还能输入 <span class="note-counter">%{count}</span> 个字符
         setting_default_language: 嘟文语言自动检测的结果有可能不准确（此设置仅影响你的嘟文）
         setting_hide_network: 你关注的人和关注你的人将不会在你的个人资料页上展示
         setting_noindex: 此设置会影响到你的公开个人资料以及嘟文页面
@@ -55,7 +53,6 @@ zh-CN:
         setting_default_privacy: 嘟文默认可见范围
         setting_default_sensitive: 总是将我发送的媒体文件标记为敏感内容
         setting_delete_modal: 在删除嘟文前询问我
-        setting_display_sensitive_media: 总是显示标记为敏感的媒体文件
         setting_hide_network: 隐藏你的社交网络
         setting_noindex: 禁止搜索引擎建立索引
         setting_reduce_motion: 降低过渡动画效果

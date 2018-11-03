@@ -5,10 +5,12 @@ require_relative '../../config/boot'
 require_relative '../../config/environment'
 require_relative 'cli_helper'
 
-# rubocop:disable Rails/Output
-
 module Mastodon
   class EmojiCLI < Thor
+    def self.exit_on_failure?
+      true
+    end
+
     option :prefix
     option :suffix
     option :overwrite, type: :boolean
@@ -77,5 +79,3 @@ module Mastodon
     end
   end
 end
-
-# rubocop:enable Rails/Output

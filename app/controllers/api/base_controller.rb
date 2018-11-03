@@ -53,8 +53,8 @@ class Api::BaseController < ApplicationController
     [params[:limit].to_i.abs, default_limit * 2].min
   end
 
-  def truthy_param?(key)
-    ActiveModel::Type::Boolean.new.cast(params[key])
+  def params_slice(*keys)
+    params.slice(*keys).permit(*keys)
   end
 
   def current_resource_owner

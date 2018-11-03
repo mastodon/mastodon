@@ -95,8 +95,8 @@ class User < ApplicationRecord
   has_many :session_activations, dependent: :destroy
 
   delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
-           :reduce_motion, :system_font_ui, :noindex, :theme, :display_sensitive_media, :hide_network,
-           :default_language, to: :settings, prefix: :setting, allow_nil: false
+           :reduce_motion, :system_font_ui, :noindex, :theme, :display_media, :hide_network,
+           :expand_spoilers, :default_language, to: :settings, prefix: :setting, allow_nil: false
 
   attr_reader :invite_code
 
@@ -314,6 +314,14 @@ class User < ApplicationRecord
   def self.authenticate_with_pam(attributes = {})
     return nil unless Devise.pam_authentication
     super
+  end
+
+  def show_all_media?
+    setting_display_media == 'show_all'
+  end
+
+  def hide_all_media?
+    setting_display_media == 'hide_all'
   end
 
   protected

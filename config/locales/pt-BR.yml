@@ -48,6 +48,7 @@ pt-BR:
       other: Seguidores
     following: Seguindo
     joined: Participa desde %{date}
+    link_verified_on: A posse desse link foi checada em %{date}
     media: Mídia
     moved_html: "%{name} se mudou para %{new_profile_link}:"
     network_hidden: Esta informação não está disponível
@@ -120,13 +121,14 @@ pt-BR:
       moderation_notes: Notas de moderação
       most_recent_activity: Atividade mais recente
       most_recent_ip: IP mais recente
+      no_limits_imposed: Nenhum limite imposto
       not_subscribed: Não está inscrito
       order:
         alphabetic: Alfabética
         most_recent: Mais recente
         title: Ordem
       outbox_url: URL da caixa de saída
-      perform_full_suspension: Aplicar suspensão total
+      perform_full_suspension: Suspender
       profile_url: URL do perfil
       promote: Promover
       protocol: Protocolo
@@ -155,8 +157,10 @@ pt-BR:
         report: relatórios
         targeted_reports: Denúncias feitas sobre esta conta
       silence: Silenciar
+      silenced: Silenciado
       statuses: Postagens
       subscribe: Inscrever-se
+      suspended: Suspenso
       title: Contas
       unconfirmed_email: E-mail não confirmado
       undo_silenced: Retirar silenciamento
@@ -173,6 +177,7 @@ pt-BR:
         create_domain_block: "%{name} bloqueou o domínio %{target}"
         create_email_domain_block: "%{name} colocou o domínio de e-mail %{target} na lista negra"
         demote_user: "%{name} rebaixou o usuário %{target}"
+        destroy_custom_emoji: "%{name} destruiu emoji %{target}"
         destroy_domain_block: "%{name} desbloqueou o domínio %{target}"
         destroy_email_domain_block: "%{name} retirou o domínio de e-mail %{target} da lista negra"
         destroy_status: "%{name} removeu postagem feita por %{target}"
@@ -258,6 +263,8 @@ pt-BR:
         title: Novo bloqueio de domínio
       reject_media: Rejeitar arquivos de mídia
       reject_media_hint: Remove arquivos de mídia armazenados localmente e recusa quaisquer outros no futuro. Irrelevante para suspensões
+      reject_reports: Rejeitar denúncias
+      reject_reports_hint: Ignorar todas as denúncias vindas deste domíno. Irrelevante para suspensões
       severities:
         noop: Nenhum
         silence: Silêncio
@@ -300,9 +307,16 @@ pt-BR:
       title: Convites
     relays:
       add_new: Adicionar novo repetidor
+      delete: Excluir
       description_html: Um <strong>repetidor de federação</strong> é um servidor intermediário que troca um grande volume de toots públicos entre servidores que se inscrevem e publicam nele. <strong>O repetidor pode ser usado para ajudar servidores pequenos e médios a descobrir conteúdo do fediverso</strong>, que normalmente precisariam que usuários locais manualmente seguissem outras pessoas em servidores remotos.
+      disable: Desativar
+      disabled: Desabilitar
+      enable: Habilitar
       enable_hint: Uma vez habilitado, seu servidor vai se inscrever para receber todos os toots públicos desse repetidor; E vai começar a enviar todos os toots públicos desse servidor para o repetidor.
+      enabled: Habilitado
       inbox_url: URL do repetidor
+      pending: Esperando pela aprovação do repetidor
+      save_and_enable: Salvar e habilitar
       setup: Configurar uma conexão de repetidor
       status: Status
       title: Repetidores
@@ -320,7 +334,6 @@ pt-BR:
       comment:
         none: Nenhum
       created_at: Denunciado
-      id: ID
       mark_as_resolved: Marcar como resolvido
       mark_as_unresolved: Marcar como não resolvido
       notes:
@@ -331,20 +344,15 @@ pt-BR:
         placeholder: Descreva que ações foram tomadas, ou quaisquer outras atualizações relacionadas…
       reopen: Reabrir denúncia
       report: 'Denúncia #%{id}'
-      report_contents: Conteúdos
       reported_account: Conta denunciada
       reported_by: Denunciada por
       resolved: Resolvido
       resolved_msg: Denúncia resolvida com sucesso!
-      silence_account: Silenciar conta
       status: Status
-      suspend_account: Suspender conta
-      target: Alvo
       title: Denúncias
       unassign: Desatribuir
       unresolved: Não resolvido
       updated_at: Atualizado
-      view: Visualizar
     settings:
       activity_api_enabled:
         desc_html: Contagem de status postados localmente, usuários ativos e novos cadastros filtrados semanalmente
@@ -361,6 +369,9 @@ pt-BR:
       hero:
         desc_html: Aparece na página inicial. Ao menos 600x100px é recomendado. Se não estiver definido, o thumbnail da instância é usado no lugar
         title: Imagem de capa
+      mascot:
+        desc_html: Mostrado em diversas páginas. Ao menos 293×205px recomendado. Quando não está configurado, o mascote padrão é mostrado
+        title: Imagem do mascote
       peers_api_enabled:
         desc_html: Nomes de domínio que essa instância encontrou no fediverso
         title: Publicar lista de instâncias descobertas
@@ -521,7 +532,7 @@ pt-BR:
     '500':
       content: Desculpe, algo deu errado.
       title: Esta página não está certa
-    noscript_html: Para usar o aplicativo web do Mastodon, por favor ative o JavaScript. Ou, se quiser, experimente um dos <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apps nativos</a> para o Mastodon em sua plataforma.
+    noscript_html: Para usar o aplicativo web do Mastodon, por favor ative o JavaScript. Ou, se quiser, experimente um dos <a href="%{apps_path}">apps nativos</a> para o Mastodon em sua plataforma.
   exports:
     archive_takeout:
       date: Data
@@ -569,6 +580,7 @@ pt-BR:
     resources: Recursos
   generic:
     changes_saved_msg: Mudanças salvas com sucesso!
+    copy: Copiar
     save_changes: Salvar mudanças
     validation_errors:
       one: Algo não está certo! Por favor, reveja o erro abaixo
@@ -910,8 +922,12 @@ pt-BR:
       tips: Dicas
       title: Boas-vindas a bordo, %{name}!
   users:
+    follow_limit_reached: Você não pode seguir mais que %{limit} pessoas
     invalid_email: O endereço de e-mail é inválido
     invalid_otp_token: Código de autenticação inválido
     otp_lost_help_html: Se você perder o acesso à ambos, você pode entrar em contato com %{email}
     seamless_external_login: Você está logado usando um serviço externo, então configurações de e-mail e senha não estão disponíveis.
     signed_in_as: 'Acesso como:'
+  verification:
+    explanation_html: 'Você pode <strong>verificar-se como tendo posse dos links nos metadados do seu perfil</strong>. Para isso, o site conectado deve conter um link de volta para o seu perfil do Mastodon. O link de volta <strong>deve</strong> conter um atributo <code>rel="me"</code>. O conteúdo ou texto do link não importa. Aqui está um exemplo:'
+    verification: Verificação

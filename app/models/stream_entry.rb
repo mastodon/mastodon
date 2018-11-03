@@ -48,7 +48,7 @@ class StreamEntry < ApplicationRecord
   end
 
   def mentions
-    orphaned? ? [] : status.mentions.map(&:account)
+    orphaned? ? [] : status.active_mentions.map(&:account)
   end
 
   private
