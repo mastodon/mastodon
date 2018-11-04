@@ -47,9 +47,6 @@ module Mastodon
 
       # call all generic actions associated with this plugin
       plugin.actions.map(&:call)
-
-      # add translations to load path
-      Rails.application.config.i18n.load_path << [path, :locales, '*.yml'].join('/')
     end
 
     def plugin_path

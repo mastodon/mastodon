@@ -1,16 +1,11 @@
 module Mastodon
   class Plugin
     class NoCodeSpecifiedError < Exception; end
-    class InvalidAssetType < Exception; end
-    VALID_ASSET_TYPES = [:scss, :js]
-
     NamedPath = Struct.new(:name, :path, :type)
 
-    attr_accessor :name
     attr_reader :actions, :paths, :assets
 
     def initialize
-      @root = Dir.pwd
       @actions, @paths, @assets = Set.new, Set.new, Set.new
     end
 
@@ -77,7 +72,6 @@ module Mastodon
       raise NoCodeSpecifiedError.new unless block_given?
       @actions.add Proc.new { const.constantize.class_eval(&block) }
     end
-
 
     # Add a new table to the database
     # example usage: `use_database_table(:examples) { |t| t.string :title }`
