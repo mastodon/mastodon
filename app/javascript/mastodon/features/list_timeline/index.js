@@ -10,7 +10,7 @@ import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { connectListStream } from '../../actions/streaming';
 import { expandListTimeline } from '../../actions/timelines';
-import { fetchList, deleteList } from '../../actions/lists';
+import { fetchList, deleteList, updateList } from '../../actions/lists';
 import { openModal } from '../../actions/modal';
 import MissingIndicator from '../../components/missing_indicator';
 import LoadingIndicator from '../../components/loading_indicator';
@@ -19,6 +19,9 @@ import Icon from 'mastodon/components/icon';
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
   deleteConfirm: { id: 'confirmations.delete_list.confirm', defaultMessage: 'Delete' },
+  all_replies:   { id: 'lists.replies_policy.all_replies', defaultMessage: 'to any followed user' },
+  no_replies:    { id: 'lists.replies_policy.no_replies', defaultMessage: 'none' },
+  list_replies:  { id: 'lists.replies_policy.list_replies', defaultMessage: 'only to list' },
 });
 
 const mapStateToProps = (state, props) => ({
@@ -131,11 +134,19 @@ class ListTimeline extends React.PureComponent {
     }));
   }
 
+  handleRepliesPolicyClick = () => {
+    const { dispatch, list } = this.props;
+    const { id } = this.props.params;
+    const replies_policy = { 'all_replies': 'no_replies', 'no_replies': 'list_replies', 'list_replies': 'all_replies' }[list.get('replies_policy')];
+    dispatch(updateList(id, undefined, false, replies_policy));
+  }
+
   render () {
-    const { shouldUpdateScroll, hasUnread, columnId, multiColumn, list } = this.props;
+    const { shouldUpdateScroll, hasUnread, columnId, multiColumn, list, intl } = this.props;
     const { id } = this.props.params;
     const pinned = !!columnId;
     const title  = list ? list.get('title') : id;
+    const replies_policy = list ? list.get('replies_policy') : undefined;
 
     if (typeof list === 'undefined') {
       return (
@@ -174,6 +185,12 @@ class ListTimeline extends React.PureComponent {
             <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleDeleteClick}>
               <Icon id='trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
+
+            { replies_policy !== undefined && (
+              <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleRepliesPolicyClick}>
+                <i className='fa fa-reply' /> <FormattedMessage id='lists.replies_policy.title' defaultMessage='Show replies: {policy}' values={{ policy: intl.formatMessage(messages[replies_policy]) }} />
+              </button>
+            )}
           </div>
         </ColumnHeader>
 
