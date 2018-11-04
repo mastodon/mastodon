@@ -14,7 +14,7 @@ module Mastodon
 
     # defined by the plugin
     def setup!
-      raise NotImplementedError.new
+      raise NotImplementedError.new, "Please define a setup! method"
     end
 
     private
@@ -30,7 +30,7 @@ module Mastodon
     end
 
     def use_class(path)
-      @actions.add proc { require path_prefix path }
+      @actions.add(proc { require path_prefix path })
     end
 
     def use_class_directory(glob)
@@ -59,9 +59,9 @@ module Mastodon
     # ^^ create an endpoint at /api/v1/examples/:id which routes to the show action on ExamplesController
     # NB: be sure to define a controller action by adding a controller or using the 'extend_class' option!
     def use_route(verb, route, action)
-      @actions.add proc {
+      @actions.add(proc {)
         Rails.application.routes.prepend do
-          namespace(:api, path: 'api/v1', defaults: { format: :json }) { send(verb, { route => action }) }
+          namespace(:api, path: 'api/v1', defaults: { format: :json }) { send(verb, route => action) }
         end
       }
     end
@@ -72,7 +72,7 @@ module Mastodon
     # NB: Be sure you know what you're doing here! For some tips on how to effectively overwrite ruby methods,
     #     check out this post: https://meta.discourse.org/t/tips-for-overriding-existing-discourse-methods-in-plugins/83389
     def extend_class(const, &block)
-      @actions.add proc { const.constantize.class_eval(&block) }
+      @actions.add(proc { const.constantize.class_eval(&block) })
     end
 
     # Add a new table to the database
@@ -96,7 +96,7 @@ module Mastodon
     # NB: Yes, you should be writing tests for your plugins ;)
     def use_fabricator(name, &block)
       return unless Rails.env.test?
-      @actions.add proc { Fabricator(name, &block) }
+      @actions.add(proc { Fabricator(name, &block) })
     end
 
     def path_prefix(path = nil, relative: false)

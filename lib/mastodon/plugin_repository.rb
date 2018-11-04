@@ -24,7 +24,7 @@ module Mastodon
 
         Dir.chdir(path) do
           if load('plugin.rb') && Object.const_defined?(klass)
-            configure_plugin(config, klass.constantize.new, path)
+            configure_plugin(config, klass.constantize.new)
           else
             Rails.logger.warn "Unable to install plugin #{name}; check that the plugin has a plugin.rb file which defines a class named '#{klass}'"
           end
@@ -33,16 +33,16 @@ module Mastodon
       end
     end
 
-    def configure_plugin(config, plugin, path)
+    def configure_plugin(config, plugin)
       # call user-defined setup
       plugin.setup!
 
       # add outlet and translation information
-      plugin.paths.each do |path|
-        type = :"#{path.type}s"
-        name = path.name
-        path = path.path
-        config[type][name] = config[type][name] << "require('../../../#{path}')"
+      plugin.paths.each do |p|
+        type = :"#{p.type}s"
+        name = p.name
+
+        config[type][p.name] = config[type][p.name] << "require('../../../#{p.path}')"
       end
 
       # add assets to file for webpacker to pick up
