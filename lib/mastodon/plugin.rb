@@ -4,14 +4,14 @@ module Mastodon
     class InvalidAssetType < Exception; end
     VALID_ASSET_TYPES = [:scss, :js]
 
-    Outlet = Struct.new(:name, :path)
+    NamedPath = Struct.new(:name, :path, :type)
 
     attr_accessor :name
-    attr_reader :actions, :outlets, :assets
+    attr_reader :actions, :paths, :assets
 
     def initialize
       @root = Dir.pwd
-      @actions, @outlets, @assets = Set.new, Set.new, Set.new
+      @actions, @paths, @assets = Set.new, Set.new, Set.new
     end
 
     # defined by the plugin
@@ -22,9 +22,9 @@ module Mastodon
     private
 
     def use_asset(path, outlet: nil)
-      path = path_prefix(path).gsub([Rails.root.to_s, '/'].join, '')
+      path = path_prefix(path, relative: true)
       @assets.add path
-      @outlets.add Outlet.new(outlet, path) if outlet
+      @paths.add NamedPath.new(outlet, path, :outlet) if outlet
     end
 
     def use_asset_directory(glob)
@@ -39,9 +39,25 @@ module Mastodon
       use_directory(glob) { |path| use_class(path) }
     end
 
+    # Add translation overrides
+    # example usage: `use_translations("locales")`
+    # ^^ search for all .js files (for example en.js) for translation overrides in the
+    # NB: The translation files take the following format:
+    # module.exports = {
+    #   "<translation_key>": "overriding value"
+    # }
+    def use_translations(path)
+      use_directory(path) do |path|
+        @paths.add NamedPath.new(
+          path.split('/').last.gsub('.js', ''),
+          path_prefix(path, relative: true),
+          :locale
+        )
+      end
+    end
+
     # Add an api route
-    # This will add a line in the routes.rb file to the api namespace to allow for custom API endpoints
-    # example usage: `plugin.use_route(:get, "examples/:id", "examples#show")`
+    # example usage: `use_route(:get, "examples/:id", "examples#show")`
     # ^^ create an endpoint at /api/v1/examples/:id which routes to the show action on ExamplesController
     # NB: be sure to define a controller action by adding a controller or using the 'extend_class' option!
     def use_route(verb, route, action)
@@ -53,7 +69,7 @@ module Mastodon
     end
 
     # Extend an existing ruby class
-    # example usage: `plugin.extend_class("Status") { def hello!; puts "Hi!"; end }`
+    # example usage: `extend_class("Status") { def hello!; puts "Hi!"; end }`
     # ^^ define a new method 'hello!' which can be called on the existing Status class
     # NB: Be sure you know what you're doing here! For some tips on how to effectively overwrite ruby methods,
     #     check out this post: https://meta.discourse.org/t/tips-for-overriding-existing-discourse-methods-in-plugins/83389
@@ -64,7 +80,7 @@ module Mastodon
 
 
     # Add a new table to the database
-    # example usage: `plugin.use_database_table(:examples) { |t| t.string :title }`
+    # example usage: `use_database_table(:examples) { |t| t.string :title }`
     # ^^ create a new 'examples' table in the database which has timestamps
     # NB: the block here is passed to create_table in a normal migration,
     #     so you can use anything that create_table will accept here.
@@ -81,7 +97,7 @@ module Mastodon
     end
 
     # Add a new fabricator for testing
-    # example usage: `plugin.use_fabricator(:example) { title { "Example!" } }`
+    # example usage: `use_fabricator(:example) { title { "Example!" } }`
     # ^^ create a new fabricator for the Example class
     # NB: Yes, you should be writing tests for your plugins ;)
     def use_fabricator(name, &block)
@@ -90,8 +106,8 @@ module Mastodon
       @actions.add Proc.new { Fabricator(name, &block) }
     end
 
-    def path_prefix(path = nil)
-      [@root, path].compact.join('/')
+    def path_prefix(path = nil, relative: false)
+      "#{Dir.pwd}/#{path}".tap { |p| p.gsub!("#{Rails.root.to_s}/", '') if relative }
     end
 
     def use_directory(glob)

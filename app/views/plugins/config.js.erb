@@ -1,0 +1,12 @@
+module.exports = {
+  outlets: {
+  <% @outlets.each do |key, value| %>
+    "<%= key %>": [<%= raw value.join(',') %>],
+  <% end %>
+  },
+  locales: {
+  <% @locales.each do |key, value| %>
+    "<%= key %>": [<%= raw value.join(',') %>],
+  <% end %>
+  }
+}

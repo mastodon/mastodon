@@ -41,6 +41,10 @@ locales.forEach(locale => {
 import messages from '../../app/javascript/mastodon/locales/${locale}.json';
 import localeData from ${JSON.stringify(localeDataPath)};
 import { setLocale } from '../../app/javascript/mastodon/locales';
+import { locales } from '../../app/javascript/mastodon/pluginConfig';
+if (locales.${locale}) {
+  Object.assign(messages, ...locales.${locale});
+}
 setLocale({messages, localeData});
 `;
   fs.writeFileSync(localePath, localeContent, 'utf8');

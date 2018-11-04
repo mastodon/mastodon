@@ -6,10 +6,10 @@ module Mastodon
 
     def initialize!
       File.write 'app/javascript/packs/plugins.js', config[:requires].join("\n")
-      File.write 'app/javascript/mastodon/outlets.js', ApplicationController.render(
-        template: 'plugins/outlets',
+      File.write 'app/javascript/mastodon/pluginConfig.js', ApplicationController.render(
+        template: 'plugins/config',
         format: :js,
-        assigns: config.slice(:outlets)
+        assigns: config.slice(:outlets, :locales)
       )
     end
 
@@ -36,9 +36,10 @@ module Mastodon
       # call user-defined setup
       plugin.setup!
 
-      # add outlets to file for adding to initial_state
-      plugin.outlets.each do |outlet|
-        config[:outlets][outlet.name] = config[:outlets][outlet.name] << outlet.as_json.except('name')
+      # add outlet and translation information
+      plugin.paths.each do |path|
+        type, name, path = :"#{path.type}s", path.name, path.path
+        config[type][name] = config[type][name] << "require('../../../#{path}')"
       end
 
       # add assets to file for webpacker to pick up
@@ -56,7 +57,7 @@ module Mastodon
     end
 
     def default_config
-      { outlets: Hash.new { [] }, requires: [] }
+      { outlets: Hash.new { [] }, locales: Hash.new { [] }, requires: [] }
     end
   end
 end
