@@ -94,7 +94,7 @@ module Mastodon
     end
 
     # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
-    config.autoload_paths += Dir[Rails.root.join('plugins', ENV.fetch('MASTODON_PLUGIN_SET', 'default'), '*')]
+    # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
     config.active_job.queue_adapter = :sidekiq
 
