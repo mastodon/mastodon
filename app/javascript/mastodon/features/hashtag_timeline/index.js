@@ -103,7 +103,7 @@ class HashtagTimeline extends React.PureComponent {
           showBackButton
         />
 
-        <Outlet name='after-hashtag-header' />
+        <Outlet name='after-hashtag-header' title={id} />
 
         <StatusListContainer
           trackScroll={!pinned}

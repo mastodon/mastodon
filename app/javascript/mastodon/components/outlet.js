@@ -1,19 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import outlets from '../outlets';
 
-export default class Outlet extends React.PureComponent {
-
-  static propTypes = {
-    name: PropTypes.string,
-  };
-
-  render () {
-    const { name } = this.props;
-    if (!outlets[name]) {
-      return null;
-    }
-    
-    return outlets[name].map(outlet => React.createElement(outlet.component, outlet.props));
-  }
+export default function Outlet(props = {}) {
+  let outlet = outlets[props.name] || [];
+  return outlet.map(outlet => React.createElement(outlet.component.default, props));
 }

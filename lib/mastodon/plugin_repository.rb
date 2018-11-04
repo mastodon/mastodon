@@ -1,3 +1,5 @@
+require_relative './plugin'
+
 module Mastodon
   class PluginRepository
     include Singleton

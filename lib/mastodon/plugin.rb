@@ -4,7 +4,7 @@ module Mastodon
     class InvalidAssetType < Exception; end
     VALID_ASSET_TYPES = [:scss, :js]
 
-    Outlet = Struct.new(:name, :path, :props)
+    Outlet = Struct.new(:name, :path)
 
     attr_accessor :name
     attr_reader :actions, :outlets, :assets
@@ -21,10 +21,10 @@ module Mastodon
 
     private
 
-    def use_asset(path, outlet: nil, props: {})
+    def use_asset(path, outlet: nil)
       path = path_prefix(path).gsub([Rails.root.to_s, '/'].join, '')
       @assets.add path
-      @outlets.add Outlet.new(outlet, path, props) if outlet
+      @outlets.add Outlet.new(outlet, path) if outlet
     end
 
     def use_asset_directory(glob)

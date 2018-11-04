@@ -99,7 +99,7 @@ class Compose extends React.PureComponent {
     return (
       <div className='drawer' role='region' aria-label={intl.formatMessage(messages.compose)}>
         {header}
-        <Outlet name='after-drawer-header' />
+        <Outlet name='after-drawer-header' title='home' />
 
         {(multiColumn || isSearchPage) && <SearchContainer /> }
 
