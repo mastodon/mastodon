@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative './plugin'
 
 module Mastodon
@@ -25,7 +26,7 @@ module Mastodon
           if load('plugin.rb') && Object.const_defined?(klass)
             configure_plugin(config, klass.constantize.new, path)
           else
-            puts "Unable to install plugin #{name}; check that the plugin has a plugin.rb file which defines a class named '#{klass}'"
+            Rails.logger.warn "Unable to install plugin #{name}; check that the plugin has a plugin.rb file which defines a class named '#{klass}'"
           end
           config
         end
@@ -38,7 +39,9 @@ module Mastodon
 
       # add outlet and translation information
       plugin.paths.each do |path|
-        type, name, path = :"#{path.type}s", path.name, path.path
+        type = :"#{path.type}s"
+        name = path.name
+        path = path.path
         config[type][name] = config[type][name] << "require('../../../#{path}')"
       end
 

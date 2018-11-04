@@ -1,12 +1,15 @@
+# frozen_string_literal: true
+
 module Mastodon
   class Plugin
-    class NoCodeSpecifiedError < Exception; end
     NamedPath = Struct.new(:name, :path, :type)
 
     attr_reader :actions, :paths, :assets
 
     def initialize
-      @actions, @paths, @assets = Set.new, Set.new, Set.new
+      @actions = Set.new
+      @paths   = Set.new
+      @assets  = Set.new
     end
 
     # defined by the plugin
@@ -27,7 +30,7 @@ module Mastodon
     end
 
     def use_class(path)
-      @actions.add Proc.new { require path_prefix path }
+      @actions.add proc { require path_prefix path }
     end
 
     def use_class_directory(glob)
@@ -42,10 +45,10 @@ module Mastodon
     #   "<translation_key>": "overriding value"
     # }
     def use_translations(path)
-      use_directory(path) do |path|
+      use_directory(path) do |p|
         @paths.add NamedPath.new(
-          path.split('/').last.gsub('.js', ''),
-          path_prefix(path, relative: true),
+          p.split('/').last.gsub('.js', ''),
+          path_prefix(p, relative: true),
           :locale
         )
       end
@@ -56,9 +59,9 @@ module Mastodon
     # ^^ create an endpoint at /api/v1/examples/:id which routes to the show action on ExamplesController
     # NB: be sure to define a controller action by adding a controller or using the 'extend_class' option!
     def use_route(verb, route, action)
-      @actions.add Proc.new {
+      @actions.add proc {
         Rails.application.routes.prepend do
-          namespace(:api, path: 'api/v1', defaults: {format: :json}) { send(verb, { route => action }) }
+          namespace(:api, path: 'api/v1', defaults: { format: :json }) { send(verb, { route => action }) }
         end
       }
     end
@@ -69,8 +72,7 @@ module Mastodon
     # NB: Be sure you know what you're doing here! For some tips on how to effectively overwrite ruby methods,
     #     check out this post: https://meta.discourse.org/t/tips-for-overriding-existing-discourse-methods-in-plugins/83389
     def extend_class(const, &block)
-      raise NoCodeSpecifiedError.new unless block_given?
-      @actions.add Proc.new { const.constantize.class_eval(&block) }
+      @actions.add proc { const.constantize.class_eval(&block) }
     end
 
     # Add a new table to the database
@@ -79,9 +81,7 @@ module Mastodon
     # NB: the block here is passed to create_table in a normal migration,
     #     so you can use anything that create_table will accept here.
     def use_database_table(table_name, &block)
-      raise NoCodeSpecifiedError.new unless block_given?
       return if ActiveRecord::Base.connection.table_exists?(table_name)
-      puts "Adding #{table_name} for plugin #{name}..."
 
       migration = ActiveRecord::Migration.new
       def migration.up(table_name, &block)
@@ -96,12 +96,13 @@ module Mastodon
     # NB: Yes, you should be writing tests for your plugins ;)
     def use_fabricator(name, &block)
       return unless Rails.env.test?
-      raise NoCodeSpecifiedError.new unless block_given?
-      @actions.add Proc.new { Fabricator(name, &block) }
+      @actions.add proc { Fabricator(name, &block) }
     end
 
     def path_prefix(path = nil, relative: false)
-      "#{Dir.pwd}/#{path}".tap { |p| p.gsub!("#{Rails.root.to_s}/", '') if relative }
+      result = "#{Dir.pwd}/#{path}"
+      result = result.gsub(Rails.root.join('').to_s, '') if relative
+      result
     end
 
     def use_directory(glob)
