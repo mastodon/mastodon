@@ -1,0 +1,12 @@
+module.exports = {
+  <% @outlets.each do |name, plugs| %>
+    "<%= name %>": [
+      <% plugs.each do |plug| %>
+        {
+          component: require('../../../<%= plug['path'] %>'),
+          props: <%= raw plug['props'].to_json %>
+        },
+      <% end %>
+    ],
+  <% end %>
+}

@@ -5,8 +5,12 @@ module Mastodon
     include Singleton
 
     def initialize!
-      File.write 'app/javascript/mastodon/outlets.js', "module.exports = #{config[:outlets].to_json};"
       File.write 'app/javascript/packs/plugins.js', config[:requires].join("\n")
+      File.write 'app/javascript/mastodon/outlets.js', ApplicationController.render(
+        template: 'plugins/outlets',
+        format: :js,
+        assigns: config.slice(:outlets)
+      )
     end
 
     private

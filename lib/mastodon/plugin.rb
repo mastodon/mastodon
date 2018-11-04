@@ -4,7 +4,7 @@ module Mastodon
     class InvalidAssetType < Exception; end
     VALID_ASSET_TYPES = [:scss, :js]
 
-    Outlet = Struct.new(:name, :component, :props)
+    Outlet = Struct.new(:name, :path, :props)
 
     attr_accessor :name
     attr_reader :actions, :outlets, :assets
@@ -21,8 +21,10 @@ module Mastodon
 
     private
 
-    def use_asset(path)
-      @assets.add path_prefix(path).gsub([Rails.root.to_s, '/'].join, '')
+    def use_asset(path, outlet: nil, props: {})
+      path = path_prefix(path).gsub([Rails.root.to_s, '/'].join, '')
+      @assets.add path
+      @outlets.add Outlet.new(outlet, path, props) if outlet
     end
 
     def use_asset_directory(glob)
@@ -48,14 +50,6 @@ module Mastodon
           namespace(:api, path: 'api/v1', defaults: {format: :json}) { send(verb, { route => action }) }
         end
       }
-    end
-
-    # Apply a component to an outlet
-    # example usage: `plugin.use_outlet("after-header", "ExampleComponent", { name: 'name' })`
-    # ^^ in the after-header outlet in the interface, render <ExampleComponent name=name />
-    # NB: You may need to PR an outlet to the core repo if one doesn't exist yet
-    def use_outlet(outlet, component, props = {})
-      @outlets.add Outlet.new(outlet, component, props)
     end
 
     # Extend an existing ruby class

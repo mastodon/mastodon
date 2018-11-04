@@ -11,6 +11,7 @@ import SearchContainer from './containers/search_container';
 import Motion from '../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import SearchResultsContainer from './containers/search_results_container';
+import Outlet from '../../components/outlet';
 import { changeComposing } from '../../actions/compose';
 import elephantUIPlane from '../../../images/elephant_ui_plane.svg';
 
@@ -98,6 +99,7 @@ class Compose extends React.PureComponent {
     return (
       <div className='drawer' role='region' aria-label={intl.formatMessage(messages.compose)}>
         {header}
+        <Outlet name='after-drawer-header' />
 
         {(multiColumn || isSearchPage) && <SearchContainer /> }
 
