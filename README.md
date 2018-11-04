@@ -13,9 +13,9 @@
 [weblate]: https://weblate.joinmastodon.org/engage/mastodon/
 [docker]: https://hub.docker.com/r/tootsuite/mastodon/
 
-Mastodon is a **free, open-source social network server** based on ActivityPub. Follow friends and discover new ones. Publish anything you want: links, pictures, text, video. All servers of Mastodon are interoperable as a federated network, i.e. users on one server can seamlessly communicate with users from another one. This includes non-Mastodon software that also implements ActivityPub!
+Mastodon is a **free** and **open-source social network server** based on ActivityPub. Follow friends and discover new ones as well as publish anything you want: links, pictures, texts, and videos. All servers of Mastodon are interoperable as a federated network, i.e., users on one server can seamlessly communicate with users from another one. This includes non-Mastodon software that also implements ActivityPub!
 
-Click below to **learn more** in a video:
+Click the GIF below to **learn more** in a video:
 
 [![Screenshot](https://blog.joinmastodon.org/2018/06/why-activitypub-is-the-future/ezgif-2-60f1b00403.gif)][youtube_demo]
 
