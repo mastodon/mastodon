@@ -66,10 +66,7 @@ export function normalizeStatus(status, normalOldStatus) {
       const quote_spoilerText = status.quote.spoiler_text || '';
       const quote_searchContent = [quote_spoilerText, status.quote.content].join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
 
-      const quote_emojiMap = normalStatus.quote.emojis.reduce((obj, emoji) => {
-        obj[`:${emoji.shortcode}:`] = emoji;
-        return obj;
-      }, {});
+      const quote_emojiMap = makeEmojiMap(normalStatus.quote);
 
       const quote_account_emojiMap = makeEmojiMap(status.quote.account);
       const displayName = normalStatus.quote.account.display_name.length === 0 ? normalStatus.quote.account.username : normalStatus.quote.account.display_name;
@@ -86,7 +83,7 @@ export function normalizeStatus(status, normalOldStatus) {
       let _contentHtml = docElem.textContent;
       normalStatus.quote.contentHtml  = '<p>'+emojify(_contentHtml.substr(0, 150), quote_emojiMap) + (_contentHtml.substr(150) ? '...' : '')+'</p>';
       normalStatus.quote.spoilerHtml  = emojify(escapeTextContentForBrowser(quote_spoilerText), quote_emojiMap);
-      normalStatus.quote_hidden       = quote_spoilerText.length > 0 || normalStatus.quote.sensitive;
+      normalStatus.quote_hidden       = expandSpoilers ? false : quote_spoilerText.length > 0 || normalStatus.quote.sensitive;
     }
   }
 
