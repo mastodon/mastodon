@@ -9,6 +9,8 @@ import { List as ImmutableList } from 'immutable';
 import classNames from 'classnames';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
 
+const MOUSE_IDLE_DELAY = 300;
+
 export default class ScrollableList extends PureComponent {
 
   static contextTypes = {
@@ -37,6 +39,8 @@ export default class ScrollableList extends PureComponent {
 
   state = {
     fullscreen: null,
+    mouseMovedRecently: false,
+    scrollToTopOnMouseIdle: false,
   };
 
   intersectionObserverWrapper = new IntersectionObserverWrapper();
@@ -60,6 +64,47 @@ export default class ScrollableList extends PureComponent {
     trailing: true,
   });
 
+  mouseIdleTimer = null;
+
+  clearMouseIdleTimer = () => {
+    if (this.mouseIdleTimer === null) {
+      return;
+    }
+    clearTimeout(this.mouseIdleTimer);
+    this.mouseIdleTimer = null;
+  };
+
+  handleMouseMove = throttle(() => {
+    // As long as the mouse keeps moving, clear and restart the idle timer.
+    this.clearMouseIdleTimer();
+    this.mouseIdleTimer =
+      setTimeout(this.handleMouseIdle, MOUSE_IDLE_DELAY);
+
+    this.setState(({
+      mouseMovedRecently,
+      scrollToTopOnMouseIdle,
+    }) => ({
+      mouseMovedRecently: true,
+      // Only set scrollToTopOnMouseIdle if we just started moving and were
+      // scrolled to the top. Otherwise, just retain the previous state.
+      scrollToTopOnMouseIdle:
+        mouseMovedRecently
+          ? scrollToTopOnMouseIdle
+          : (this.node.scrollTop === 0),
+    }));
+  }, MOUSE_IDLE_DELAY / 2);
+
+  handleMouseIdle = () => {
+    if (this.state.scrollToTopOnMouseIdle) {
+      this.node.scrollTop = 0;
+      this.props.onScrollToTop();
+    }
+    this.setState({
+      mouseMovedRecently: false,
+      scrollToTopOnMouseIdle: false,
+    });
+  }
+
   componentDidMount () {
     this.attachScrollListener();
     this.attachIntersectionObserver();
@@ -73,7 +118,7 @@ export default class ScrollableList extends PureComponent {
     const someItemInserted = React.Children.count(prevProps.children) > 0 &&
       React.Children.count(prevProps.children) < React.Children.count(this.props.children) &&
       this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props);
-    if (someItemInserted && this.node.scrollTop > 0) {
+    if ((someItemInserted && this.node.scrollTop > 0) || this.state.mouseMovedRecently) {
       return this.node.scrollHeight - this.node.scrollTop;
     } else {
       return null;
@@ -93,6 +138,7 @@ export default class ScrollableList extends PureComponent {
   }
 
   componentWillUnmount () {
+    this.clearMouseIdleTimer();
     this.detachScrollListener();
     this.detachIntersectionObserver();
     detachFullscreenListener(this.onFullScreenChange);
@@ -151,7 +197,7 @@ export default class ScrollableList extends PureComponent {
 
     if (isLoading || childrenCount > 0 || !emptyMessage) {
       scrollableArea = (
-        <div className={classNames('scrollable', { fullscreen })} ref={this.setRef}>
+        <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove}>
           <div role='feed' className='item-list'>
             {prepend}
 
