@@ -7,11 +7,7 @@ const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
 
   const mapStateToProps = state => ({
-<<<<<<< HEAD
     status: getStatus(state, { id: state.getIn(['compose', 'quote_from']) }),
-=======
-    status: getStatus(state, state.getIn(['compose', 'quote_from'])),
->>>>>>> 057244329... [New] Implement a feature of quote
   });
 
   return mapStateToProps;
