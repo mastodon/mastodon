@@ -42,7 +42,7 @@ class FollowService < BaseService
     follow_request = FollowRequest.create!(account: source_account, target_account: target_account, show_reblogs: reblogs)
 
     if target_account.local?
-      NotifyService.new.call(target_account, follow_request)
+      LocalNotificationWorker.perform_async(target_account.id, follow_request.id, follow_request.class.name)
     elsif target_account.ostatus?
       NotificationWorker.perform_async(build_follow_request_xml(follow_request), source_account.id, target_account.id)
       AfterRemoteFollowRequestWorker.perform_async(follow_request.id)
@@ -57,7 +57,7 @@ class FollowService < BaseService
     follow = source_account.follow!(target_account, reblogs: reblogs)
 
     if target_account.local?
-      NotifyService.new.call(target_account, follow)
+      LocalNotificationWorker.perform_async(target_account.id, follow.id, follow.class.name)
     else
       Pubsubhubbub::SubscribeWorker.perform_async(target_account.id) unless target_account.subscribed?
       NotificationWorker.perform_async(build_follow_xml(follow), source_account.id, target_account.id)
