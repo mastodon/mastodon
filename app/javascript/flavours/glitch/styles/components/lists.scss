@@ -51,3 +51,44 @@
     margin-bottom: 0;
   }
 }
+
+.list-adder {
+  background: $ui-base-color;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+  width: 380px;
+  overflow: hidden;
+
+  @media screen and (max-width: 420px) {
+    width: 90%;
+  }
+
+  &__account {
+    background: lighten($ui-base-color, 13%);
+  }
+
+  &__lists {
+    background: lighten($ui-base-color, 13%);
+    height: 50vh;
+    border-radius: 0 0 8px 8px;
+    overflow-y: auto;
+  }
+
+  .list {
+    padding: 10px;
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
+  }
+
+  .list__wrapper {
+    display: flex;
+  }
+
+  .list__display-name {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+  }
+}
