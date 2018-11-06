@@ -12,14 +12,23 @@ class ResolveAccountService < BaseService
   # @param [String] uri User URI in the form of username@domain
   # @return [Account]
   def call(uri, update_profile = true, redirected = nil)
-    @username, @domain = uri.split('@')
-    @update_profile    = update_profile
+    @update_profile = update_profile
 
-    return Account.find_local(@username) if TagManager.instance.local_domain?(@domain)
+    if uri.is_a?(Account)
+      @account  = uri
+      @username = @account.username
+      @domain   = @account.domain
 
-    @account = Account.find_remote(@username, @domain)
+      return @account if @account.local? || !webfinger_update_due?
+    else
+      @username, @domain = uri.split('@')
 
-    return @account unless webfinger_update_due?
+      return Account.find_local(@username) if TagManager.instance.local_domain?(@domain)
+
+      @account = Account.find_remote(@username, @domain)
+
+      return @account unless webfinger_update_due?
+    end
 
     Rails.logger.debug "Looking up webfinger for #{uri}"
 

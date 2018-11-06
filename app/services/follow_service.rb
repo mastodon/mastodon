@@ -7,9 +7,9 @@ class FollowService < BaseService
   # @param [Account] source_account From which to follow
   # @param [String, Account] uri User URI to follow in the form of username@domain (or account record)
   # @param [true, false, nil] reblogs Whether or not to show reblogs, defaults to true
-  def call(source_account, uri, reblogs: nil)
+  def call(source_account, target_account, reblogs: nil)
     reblogs = true if reblogs.nil?
-    target_account = uri.is_a?(Account) ? uri : ResolveAccountService.new.call(uri)
+    target_account = ResolveAccountService.new.call(target_account)
 
     raise ActiveRecord::RecordNotFound if target_account.nil? || target_account.id == source_account.id || target_account.suspended?
     raise Mastodon::NotPermittedError  if target_account.blocking?(source_account) || source_account.blocking?(target_account)
