@@ -9,7 +9,7 @@ class FollowService < BaseService
   # @param [true, false, nil] reblogs Whether or not to show reblogs, defaults to true
   def call(source_account, target_account, reblogs: nil)
     reblogs = true if reblogs.nil?
-    target_account = ResolveAccountService.new.call(target_account)
+    target_account = ResolveAccountService.new.call(target_account, skip_webfinger: true)
 
     raise ActiveRecord::RecordNotFound if target_account.nil? || target_account.id == source_account.id || target_account.suspended?
     raise Mastodon::NotPermittedError  if target_account.blocking?(source_account) || source_account.blocking?(target_account)
