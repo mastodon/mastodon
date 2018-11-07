@@ -44,7 +44,7 @@ module Mastodon
       if options[:background]
         MediaAttachment.where.not(remote_url: '').where.not(file_file_name: nil).where('created_at < ?', time_ago).select(:id, :file_file_size).reorder(nil).find_in_batches do |media_attachments|
           queued += media_attachments.size
-          size   += media_attachments.inject(0) { |sum, m| sum + (m.file_file_size || 0) }
+          size   += media_attachments.reduce(0) { |sum, m| sum + (m.file_file_size || 0) }
           Maintenance::UncacheMediaWorker.push_bulk(media_attachments.map(&:id)) unless options[:dry_run]
         end
       else
