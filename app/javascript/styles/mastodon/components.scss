@@ -2092,6 +2092,16 @@ a.account__display-name {
   @supports(display: grid) { // hack to fix Chrome <57
     contain: strict;
   }
+
+  &--flex {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__append {
+    flex: 1 1 auto;
+    position: relative;
+  }
 }
 
 .scrollable.fullscreen {

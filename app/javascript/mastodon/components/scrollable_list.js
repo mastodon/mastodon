@@ -8,6 +8,7 @@ import { throttle } from 'lodash';
 import { List as ImmutableList } from 'immutable';
 import classNames from 'classnames';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
+import LoadingIndicator from './loading_indicator';
 
 const MOUSE_IDLE_DELAY = 300;
 
@@ -25,6 +26,7 @@ export default class ScrollableList extends PureComponent {
     trackScroll: PropTypes.bool,
     shouldUpdateScroll: PropTypes.func,
     isLoading: PropTypes.bool,
+    showLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
     prepend: PropTypes.node,
     alwaysPrepend: PropTypes.bool,
@@ -70,6 +72,7 @@ export default class ScrollableList extends PureComponent {
     if (this.mouseIdleTimer === null) {
       return;
     }
+
     clearTimeout(this.mouseIdleTimer);
     this.mouseIdleTimer = null;
   };
@@ -77,8 +80,7 @@ export default class ScrollableList extends PureComponent {
   handleMouseMove = throttle(() => {
     // As long as the mouse keeps moving, clear and restart the idle timer.
     this.clearMouseIdleTimer();
-    this.mouseIdleTimer =
-      setTimeout(this.handleMouseIdle, MOUSE_IDLE_DELAY);
+    this.mouseIdleTimer = setTimeout(this.handleMouseIdle, MOUSE_IDLE_DELAY);
 
     this.setState(({
       mouseMovedRecently,
@@ -97,8 +99,12 @@ export default class ScrollableList extends PureComponent {
   handleMouseIdle = () => {
     if (this.state.scrollToTopOnMouseIdle) {
       this.node.scrollTop = 0;
-      this.props.onScrollToTop();
+
+      if (this.props.onScrollToTop) {
+        this.props.onScrollToTop();
+      }
     }
+
     this.setState({
       mouseMovedRecently: false,
       scrollToTopOnMouseIdle: false,
@@ -169,12 +175,14 @@ export default class ScrollableList extends PureComponent {
 
   getFirstChildKey (props) {
     const { children } = props;
-    let firstChild = children;
+    let firstChild     = children;
+
     if (children instanceof ImmutableList) {
       firstChild = children.get(0);
     } else if (Array.isArray(children)) {
       firstChild = children[0];
     }
+
     return firstChild && firstChild.key;
   }
 
@@ -182,20 +190,32 @@ export default class ScrollableList extends PureComponent {
     this.node = c;
   }
 
-  handleLoadMore = (e) => {
+  handleLoadMore = e => {
     e.preventDefault();
     this.props.onLoadMore();
   }
 
   render () {
-    const { children, scrollKey, trackScroll, shouldUpdateScroll, isLoading, hasMore, prepend, alwaysPrepend, alwaysShowScrollbar, emptyMessage, onLoadMore } = this.props;
+    const { children, scrollKey, trackScroll, shouldUpdateScroll, showLoading, isLoading, hasMore, prepend, alwaysPrepend, alwaysShowScrollbar, emptyMessage, onLoadMore } = this.props;
     const { fullscreen } = this.state;
     const childrenCount = React.Children.count(children);
 
     const loadMore     = (hasMore && childrenCount > 0 && onLoadMore) ? <LoadMore visible={!isLoading} onClick={this.handleLoadMore} /> : null;
     let scrollableArea = null;
 
-    if (isLoading || childrenCount > 0 || !emptyMessage) {
+    if (showLoading) {
+      scrollableArea = (
+        <div className='scrollable scrollable--flex' ref={this.setRef}>
+          <div role='feed' className='item-list'>
+            {prepend}
+          </div>
+
+          <div className='scrollable__append'>
+            <LoadingIndicator />
+          </div>
+        </div>
+      );
+    } else if (isLoading || childrenCount > 0 || !emptyMessage) {
       scrollableArea = (
         <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove}>
           <div role='feed' className='item-list'>
