@@ -14,7 +14,7 @@ class FollowLimitValidator < ActiveModel::Validator
       if account.following_count < LIMIT
         LIMIT
       else
-        [account.followers_count * RATIO, LIMIT].max
+        [(account.followers_count * RATIO).round, LIMIT].max
       end
     end
   end
