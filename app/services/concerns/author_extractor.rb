@@ -18,6 +18,6 @@ module AuthorExtractor
       acct   = "#{username}@#{domain}"
     end
 
-    ResolveAccountService.new.call(acct, update_profile)
+    ResolveAccountService.new.call(acct, update_profile: update_profile)
   end
 end
