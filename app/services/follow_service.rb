@@ -7,9 +7,9 @@ class FollowService < BaseService
   # @param [Account] source_account From which to follow
   # @param [String, Account] uri User URI to follow in the form of username@domain (or account record)
   # @param [true, false, nil] reblogs Whether or not to show reblogs, defaults to true
-  def call(source_account, uri, reblogs: nil)
+  def call(source_account, target_account, reblogs: nil)
     reblogs = true if reblogs.nil?
-    target_account = uri.is_a?(Account) ? uri : ResolveAccountService.new.call(uri)
+    target_account = ResolveAccountService.new.call(target_account, skip_webfinger: true)
 
     raise ActiveRecord::RecordNotFound if target_account.nil? || target_account.id == source_account.id || target_account.suspended?
     raise Mastodon::NotPermittedError  if target_account.blocking?(source_account) || source_account.blocking?(target_account)
@@ -42,7 +42,7 @@ class FollowService < BaseService
     follow_request = FollowRequest.create!(account: source_account, target_account: target_account, show_reblogs: reblogs)
 
     if target_account.local?
-      NotifyService.new.call(target_account, follow_request)
+      LocalNotificationWorker.perform_async(target_account.id, follow_request.id, follow_request.class.name)
     elsif target_account.ostatus?
       NotificationWorker.perform_async(build_follow_request_xml(follow_request), source_account.id, target_account.id)
       AfterRemoteFollowRequestWorker.perform_async(follow_request.id)
@@ -57,7 +57,7 @@ class FollowService < BaseService
     follow = source_account.follow!(target_account, reblogs: reblogs)
 
     if target_account.local?
-      NotifyService.new.call(target_account, follow)
+      LocalNotificationWorker.perform_async(target_account.id, follow.id, follow.class.name)
     else
       Pubsubhubbub::SubscribeWorker.perform_async(target_account.id) unless target_account.subscribed?
       NotificationWorker.perform_async(build_follow_xml(follow), source_account.id, target_account.id)
