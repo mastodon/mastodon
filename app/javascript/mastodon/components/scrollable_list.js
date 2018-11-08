@@ -41,8 +41,6 @@ export default class ScrollableList extends PureComponent {
 
   state = {
     fullscreen: null,
-    mouseMovedRecently: false,
-    scrollToTopOnMouseIdle: false,
   };
 
   intersectionObserverWrapper = new IntersectionObserverWrapper();
@@ -67,6 +65,8 @@ export default class ScrollableList extends PureComponent {
   });
 
   mouseIdleTimer = null;
+  mouseMovedRecently = false;
+  scrollToTopOnMouseIdle = false;
 
   clearMouseIdleTimer = () => {
     if (this.mouseIdleTimer === null) {
@@ -82,38 +82,34 @@ export default class ScrollableList extends PureComponent {
     this.clearMouseIdleTimer();
     this.mouseIdleTimer = setTimeout(this.handleMouseIdle, MOUSE_IDLE_DELAY);
 
-    this.setState(({
-      mouseMovedRecently,
-      scrollToTopOnMouseIdle,
-    }) => ({
-      mouseMovedRecently: true,
-      // Only set scrollToTopOnMouseIdle if we just started moving and were
-      // scrolled to the top. Otherwise, just retain the previous state.
-      scrollToTopOnMouseIdle:
-        mouseMovedRecently
-          ? scrollToTopOnMouseIdle
-          : (this.node.scrollTop === 0),
-    }));
-  }, MOUSE_IDLE_DELAY / 2);
-
-  handleMouseIdle = () => {
-    if (this.state.scrollToTopOnMouseIdle) {
-      this.node.scrollTop = 0;
-
-      if (this.props.onScrollToTop) {
-        this.props.onScrollToTop();
-      }
+    if (!this.mouseMovedRecently && this.node.scrollTop === 0) {
+      // Only set if we just started moving and are scrolled to the top.
+      this.scrollToTopOnMouseIdle = true;
     }
 
-    this.setState({
-      mouseMovedRecently: false,
-      scrollToTopOnMouseIdle: false,
-    });
+    // Save setting this flag for last, so we can do the comparison above.
+    this.mouseMovedRecently = true;
+  }, MOUSE_IDLE_DELAY / 2);
+
+  handleWheel = throttle(() => {
+    this.scrollToTopOnMouseIdle = false;
+  }, 150, {
+    trailing: true,
+  });
+
+  handleMouseIdle = () => {
+    if (this.scrollToTopOnMouseIdle) {
+      this.node.scrollTop = 0;
+    }
+
+    this.mouseMovedRecently = false;
+    this.scrollToTopOnMouseIdle = false;
   }
 
   componentDidMount () {
     this.attachScrollListener();
     this.attachIntersectionObserver();
+
     attachFullscreenListener(this.onFullScreenChange);
 
     // Handle initial scroll posiiton
@@ -124,7 +120,8 @@ export default class ScrollableList extends PureComponent {
     const someItemInserted = React.Children.count(prevProps.children) > 0 &&
       React.Children.count(prevProps.children) < React.Children.count(this.props.children) &&
       this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props);
-    if ((someItemInserted && this.node.scrollTop > 0) || this.state.mouseMovedRecently) {
+
+    if ((someItemInserted && this.node.scrollTop > 0) || this.mouseMovedRecently) {
       return this.node.scrollHeight - this.node.scrollTop;
     } else {
       return null;
@@ -167,10 +164,12 @@ export default class ScrollableList extends PureComponent {
 
   attachScrollListener () {
     this.node.addEventListener('scroll', this.handleScroll);
+    this.node.addEventListener('wheel', this.handleWheel);
   }
 
   detachScrollListener () {
     this.node.removeEventListener('scroll', this.handleScroll);
+    this.node.removeEventListener('wheel', this.handleWheel);
   }
 
   getFirstChildKey (props) {
