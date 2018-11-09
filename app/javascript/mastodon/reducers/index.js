@@ -26,6 +26,7 @@ import custom_emojis from './custom_emojis';
 import custom_templates from './custom_templates';
 import lists from './lists';
 import listEditor from './list_editor';
+import listAdder from './list_adder';
 import filters from './filters';
 import conversations from './conversations';
 import suggestions from './suggestions';
@@ -58,6 +59,7 @@ const reducers = {
   custom_templates,
   lists,
   listEditor,
+  listAdder,
   filters,
   conversations,
   suggestions,

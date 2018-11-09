@@ -578,6 +578,9 @@
         "id": "account.unendorse"
       },
       {
+        "id": "account.add_or_remove_from_list"
+      },
+      {
         "defaultMessage": "Information below may reflect the user's profile incompletely.",
         "id": "account.disclaimer_full"
       },
@@ -1443,6 +1446,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/keyboard_shortcuts/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Remove from list",
+        "id": "lists.account.remove"
+      },
+      {
+        "defaultMessage": "Add to list",
+        "id": "lists.account.add"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/list_adder/components/list.json"
   },
   {
     "descriptors": [
