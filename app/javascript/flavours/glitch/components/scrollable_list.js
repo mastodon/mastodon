@@ -8,6 +8,7 @@ import { throttle } from 'lodash';
 import { List as ImmutableList } from 'immutable';
 import classNames from 'classnames';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from 'flavours/glitch/util/fullscreen';
+import LoadingIndicator from './loading_indicator';
 
 export default class ScrollableList extends PureComponent {
 
@@ -23,6 +24,7 @@ export default class ScrollableList extends PureComponent {
     trackScroll: PropTypes.bool,
     shouldUpdateScroll: PropTypes.func,
     isLoading: PropTypes.bool,
+    showLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
     prepend: PropTypes.node,
     emptyMessage: PropTypes.node,
@@ -131,12 +133,14 @@ export default class ScrollableList extends PureComponent {
 
   getFirstChildKey (props) {
     const { children } = props;
-    let firstChild = children;
+    let firstChild     = children;
+
     if (children instanceof ImmutableList) {
       firstChild = children.get(0);
     } else if (Array.isArray(children)) {
       firstChild = children[0];
     }
+
     return firstChild && firstChild.key;
   }
 
@@ -144,7 +148,7 @@ export default class ScrollableList extends PureComponent {
     this.node = c;
   }
 
-  handleLoadMore = (e) => {
+  handleLoadMore = e => {
     e.preventDefault();
     this.props.onLoadMore();
   }
@@ -155,14 +159,26 @@ export default class ScrollableList extends PureComponent {
   }
 
   render () {
-    const { children, scrollKey, trackScroll, shouldUpdateScroll, isLoading, hasMore, prepend, emptyMessage, onLoadMore } = this.props;
+    const { children, scrollKey, trackScroll, shouldUpdateScroll, showLoading, isLoading, hasMore, prepend, emptyMessage, onLoadMore } = this.props;
     const { fullscreen } = this.state;
     const childrenCount = React.Children.count(children);
 
     const loadMore     = (hasMore && childrenCount > 0 && onLoadMore) ? <LoadMore visible={!isLoading} onClick={this.handleLoadMore} /> : null;
     let scrollableArea = null;
 
-    if (isLoading || childrenCount > 0 || !emptyMessage) {
+    if (showLoading) {
+      scrollableArea = (
+        <div className='scrollable scrollable--flex' ref={this.setRef}>
+          <div role='feed' className='item-list'>
+            {prepend}
+          </div>
+
+          <div className='scrollable__append'>
+            <LoadingIndicator />
+          </div>
+        </div>
+      );
+    } else if (isLoading || childrenCount > 0 || !emptyMessage) {
       scrollableArea = (
         <div className={classNames('scrollable', { fullscreen })} ref={this.setRef}>
           <div role='feed' className='item-list'>

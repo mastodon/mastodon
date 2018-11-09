@@ -101,6 +101,7 @@ export function expandTimelineRequest(timeline) {
   return {
     type: TIMELINE_EXPAND_REQUEST,
     timeline,
+    skipLoading: true,
   };
 };
 
@@ -111,6 +112,7 @@ export function expandTimelineSuccess(timeline, statuses, next, partial) {
     statuses,
     next,
     partial,
+    skipLoading: true,
   };
 };
 
@@ -119,6 +121,7 @@ export function expandTimelineFail(timeline, error) {
     type: TIMELINE_EXPAND_FAIL,
     timeline,
     error,
+    skipLoading: true,
   };
 };
 

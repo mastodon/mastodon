@@ -24,7 +24,7 @@ export default class StatusList extends ImmutablePureComponent {
     hasMore: PropTypes.bool,
     prepend: PropTypes.node,
     emptyMessage: PropTypes.node,
-    timelineId: PropTypes.string.isRequired,
+    timelineId: PropTypes.string,
   };
 
   static defaultProps = {
@@ -121,7 +121,7 @@ export default class StatusList extends ImmutablePureComponent {
     }
 
     return (
-      <ScrollableList {...other} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
+      <ScrollableList {...other} showLoading={isLoading && statusIds.size === 0} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
         {scrollableContent}
       </ScrollableList>
     );

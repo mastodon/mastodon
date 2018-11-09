@@ -11,6 +11,7 @@ import HeaderContainer from './containers/header_container';
 import ColumnBackButton from '../../components/column_back_button';
 import { List as ImmutableList } from 'immutable';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { FormattedMessage } from 'react-intl';
 
 const mapStateToProps = (state, { params: { accountId }, withReplies = false }) => {
   const path = withReplies ? `${accountId}:with_replies` : accountId;
@@ -77,12 +78,14 @@ export default class AccountTimeline extends ImmutablePureComponent {
 
         <StatusList
           prepend={<HeaderContainer accountId={this.props.params.accountId} />}
+          alwaysPrepend
           scrollKey='account_timeline'
           statusIds={statusIds}
           featuredStatusIds={featuredStatusIds}
           isLoading={isLoading}
           hasMore={hasMore}
           onLoadMore={this.handleLoadMore}
+          emptyMessage={<FormattedMessage id='empty_column.account_timeline' defaultMessage='No toots here!' />}
         />
       </Column>
     );
