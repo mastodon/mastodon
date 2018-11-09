@@ -16,7 +16,6 @@ export const TIMELINE_CONTEXT_UPDATE = 'CONTEXT_UPDATE';
 
 export function updateTimeline(timeline, status) {
   return (dispatch, getState) => {
-    const references = status.reblog ? getState().get('statuses').filter((item, itemId) => (itemId === status.reblog.id || item.get('reblog') === status.reblog.id)).map((_, itemId) => itemId) : [];
     const parents = [];
 
     if (status.in_reply_to_id) {
@@ -32,7 +31,6 @@ export function updateTimeline(timeline, status) {
       type: TIMELINE_UPDATE,
       timeline,
       status,
-      references,
     });
 
     if (parents.length > 0) {
