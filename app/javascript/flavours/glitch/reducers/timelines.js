@@ -49,7 +49,7 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial) =>
   }));
 };
 
-const updateTimeline = (state, timeline, status, references) => {
+const updateTimeline = (state, timeline, status) => {
   const top        = state.getIn([timeline, 'top']);
   const ids        = state.getIn([timeline, 'items'], ImmutableList());
   const includesId = ids.includes(status.get('id'));
@@ -64,7 +64,6 @@ const updateTimeline = (state, timeline, status, references) => {
   return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
     if (!top) mMap.set('unread', unread + 1);
     if (top && ids.size > 40) newIds = newIds.take(20);
-    if (status.getIn(['reblog', 'id'], null) !== null) newIds = newIds.filterNot(item => references.includes(item));
     mMap.set('items', newIds.unshift(status.get('id')));
   }));
 };
@@ -119,7 +118,7 @@ export default function timelines(state = initialState, action) {
   case TIMELINE_EXPAND_SUCCESS:
     return expandNormalizedTimeline(state, action.timeline, fromJS(action.statuses), action.next, action.partial);
   case TIMELINE_UPDATE:
-    return updateTimeline(state, action.timeline, fromJS(action.status), action.references);
+    return updateTimeline(state, action.timeline, fromJS(action.status));
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.accountId, action.references, action.reblogOf);
   case ACCOUNT_BLOCK_SUCCESS:
