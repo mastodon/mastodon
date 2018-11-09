@@ -1847,7 +1847,7 @@ a.account__display-name {
 }
 
 .column {
-  width: 330px;
+  width: 350px;
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -2091,6 +2091,16 @@ a.account__display-name {
 
   @supports(display: grid) { // hack to fix Chrome <57
     contain: strict;
+  }
+
+  &--flex {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__append {
+    flex: 1 1 auto;
+    position: relative;
   }
 }
 
@@ -3022,6 +3032,26 @@ a.status-card.compact:hover {
   display: block;
   font-weight: 500;
   margin-bottom: 10px;
+
+  .column-settings__hashtag-select {
+    &__control {
+      @include search-input();
+    }
+
+    &__multi-value {
+      background: lighten($ui-base-color, 8%);
+    }
+
+    &__multi-value__label,
+    &__input {
+      color: $darker-text-color;
+    }
+
+    &__indicator-separator,
+    &__dropdown-indicator {
+      display: none;
+    }
+  }
 }
 
 .column-settings__row {
@@ -3473,36 +3503,10 @@ a.status-card.compact:hover {
 }
 
 .search__input {
-  outline: 0;
-  box-sizing: border-box;
   display: block;
-  width: 100%;
-  border: none;
   padding: 10px;
   padding-right: 30px;
-  font-family: inherit;
-  background: $ui-base-color;
-  color: $darker-text-color;
-  font-size: 14px;
-  margin: 0;
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
-  }
-
-  &:focus {
-    background: lighten($ui-base-color, 4%);
-  }
-
-  @media screen and (max-width: 600px) {
-    font-size: 16px;
-  }
+  @include search-input();
 }
 
 .search__icon {
@@ -5341,6 +5345,47 @@ noscript {
 
   .search {
     margin-bottom: 0;
+  }
+}
+
+.list-adder {
+  background: $ui-base-color;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+  width: 380px;
+  overflow: hidden;
+
+  @media screen and (max-width: 420px) {
+    width: 90%;
+  }
+
+  &__account {
+    background: lighten($ui-base-color, 13%);
+  }
+
+  &__lists {
+    background: lighten($ui-base-color, 13%);
+    height: 50vh;
+    border-radius: 0 0 8px 8px;
+    overflow-y: auto;
+  }
+
+  .list {
+    padding: 10px;
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
+  }
+
+  .list__wrapper {
+    display: flex;
+  }
+
+  .list__display-name {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
   }
 }
 

@@ -53,9 +53,13 @@ table {
   border-spacing: 0;
 }
 
+html {
+  scrollbar-color: lighten($ui-base-color, 4%) transparent;
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-thumb {
