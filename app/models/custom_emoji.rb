@@ -29,11 +29,11 @@ class CustomEmoji < ApplicationRecord
 
   has_one :local_counterpart, -> { where(domain: nil) }, class_name: 'CustomEmoji', primary_key: :shortcode, foreign_key: :shortcode
 
-  has_attached_file :image, styles: { static: { format: 'png', convert_options: '-coalesce -strip' } }
+  has_attached_file :image, styles: { static: { format: 'png', source_file_options: '-channel rgba -background "rgba(0,0,0,0)"', convert_options: '-coalesce -strip' } }
 
   before_validation :downcase_domain
 
-  validates_attachment :image, content_type: { content_type: 'image/png' }, presence: true, size: { less_than: LIMIT }
+  validates_attachment :image, content_type: { content_type: ['image/png', 'image/svg+xml', 'image/svg'] }, presence: true, size: { less_than: LIMIT }
   validates :shortcode, uniqueness: { scope: :domain }, format: { with: /\A#{SHORTCODE_RE_FRAGMENT}\z/ }, length: { minimum: 2 }
 
   scope :local,      -> { where(domain: nil) }
