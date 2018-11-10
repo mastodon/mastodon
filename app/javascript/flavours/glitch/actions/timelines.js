@@ -64,6 +64,7 @@ const noOp = () => {};
 export function expandTimeline(timelineId, path, params = {}, done = noOp) {
   return (dispatch, getState) => {
     const timeline = getState().getIn(['timelines', timelineId], ImmutableMap());
+    const isLoadingMore = !!params.max_id;
 
     if (timeline.get('isLoading')) {
       done();
@@ -74,14 +75,14 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
       params.since_id = timeline.getIn(['items', 0]);
     }
 
-    dispatch(expandTimelineRequest(timelineId));
+    dispatch(expandTimelineRequest(timelineId, isLoadingMore));
 
     api(getState).get(path, { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
-      dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null, response.code === 206));
+      dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null, response.code === 206, isLoadingMore));
       done();
     }).catch(error => {
-      dispatch(expandTimelineFail(timelineId, error));
+      dispatch(expandTimelineFail(timelineId, error, isLoadingMore));
       done();
     });
   };
@@ -97,31 +98,31 @@ export const expandAccountMediaTimeline = (accountId, { maxId } = {}) => expandT
 export const expandHashtagTimeline      = (hashtag, { maxId } = {}, done = noOp) => expandTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`, { max_id: maxId }, done);
 export const expandListTimeline         = (id, { maxId } = {}, done = noOp) => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`, { max_id: maxId }, done);
 
-export function expandTimelineRequest(timeline) {
+export function expandTimelineRequest(timeline, isLoadingMore) {
   return {
     type: TIMELINE_EXPAND_REQUEST,
     timeline,
-    skipLoading: true,
+    skipLoading: !isLoadingMore,
   };
 };
 
-export function expandTimelineSuccess(timeline, statuses, next, partial) {
+export function expandTimelineSuccess(timeline, statuses, next, partial, isLoadingMore) {
   return {
     type: TIMELINE_EXPAND_SUCCESS,
     timeline,
     statuses,
     next,
     partial,
-    skipLoading: true,
+    skipLoading: !isLoadingMore,
   };
 };
 
-export function expandTimelineFail(timeline, error) {
+export function expandTimelineFail(timeline, error, isLoadingMore) {
   return {
     type: TIMELINE_EXPAND_FAIL,
     timeline,
     error,
-    skipLoading: true,
+    skipLoading: !isLoadingMore,
   };
 };
 

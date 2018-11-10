@@ -28,6 +28,7 @@ export function fetchFavouritedStatuses() {
 export function fetchFavouritedStatusesRequest() {
   return {
     type: FAVOURITED_STATUSES_FETCH_REQUEST,
+    skipLoading: true,
   };
 };
 
@@ -36,6 +37,7 @@ export function fetchFavouritedStatusesSuccess(statuses, next) {
     type: FAVOURITED_STATUSES_FETCH_SUCCESS,
     statuses,
     next,
+    skipLoading: true,
   };
 };
 
@@ -43,6 +45,7 @@ export function fetchFavouritedStatusesFail(error) {
   return {
     type: FAVOURITED_STATUSES_FETCH_FAIL,
     error,
+    skipLoading: true,
   };
 };
 
