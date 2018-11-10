@@ -29,7 +29,14 @@ class CustomEmoji < ApplicationRecord
 
   has_one :local_counterpart, -> { where(domain: nil) }, class_name: 'CustomEmoji', primary_key: :shortcode, foreign_key: :shortcode
 
-  has_attached_file :image, styles: { static: { format: 'png', source_file_options: '-channel rgba -background "rgba(0,0,0,0)"', convert_options: '-coalesce -strip' } }
+  has_attached_file :image, styles: {
+    static: {
+      format: 'png',
+      source_file_options: '-channel rgba -background "rgba(0,0,0,0)"',
+      convert_options: '-coalesce -strip',
+      geometry: '200x200>',
+    },
+  }
 
   before_validation :downcase_domain
 
