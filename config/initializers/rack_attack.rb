@@ -45,19 +45,19 @@ class Rack::Attack
     req.ip == '127.0.0.1' || req.ip == '::1'
   end
 
-  throttle('throttle_authenticated_api', limit: 300, period: 5.minutes) do |req|
+  throttle('throttle_authenticated_api', limit: (ENV['AUTHENTICATED_API_LIMIT'] || 300).to_i, period: 5.minutes) do |req|
     req.api_request? && req.authenticated_user_id
   end
 
-  throttle('throttle_unauthenticated_api', limit: 7_500, period: 5.minutes) do |req|
+  throttle('throttle_unauthenticated_api', limit: (ENV['UNAUTHENTICATED_API_LIMIT'] || 7500).to_i, period: 5.minutes) do |req|
     req.ip if req.api_request?
   end
 
-  throttle('throttle_media', limit: 30, period: 30.minutes) do |req|
+  throttle('throttle_media', limit: (ENV['MEDIA_API_LIMIT'] || 5).to_i, period: 5.minutes) do |req|
     req.authenticated_user_id if req.post? && req.path.start_with?('/api/v1/media')
   end
 
-  throttle('protected_paths', limit: 25, period: 5.minutes) do |req|
+  throttle('protected_paths', limit: (ENV['PROTECTED_PATHS_LIMIT'] || 25).to_i, period: 5.minutes) do |req|
     req.ip if req.post? && req.path =~ PROTECTED_PATHS_REGEX
   end
 
