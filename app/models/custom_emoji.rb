@@ -23,20 +23,20 @@ class CustomEmoji < ApplicationRecord
 
   SHORTCODE_RE_FRAGMENT = '[a-zA-Z0-9_]{2,}'
 
+  STATIC_EMOJI_STYLE = {
+    format: 'png',
+    source_file_options: '-channel rgba -background "rgba(0,0,0,0)"',
+    convert_options: '-coalesce -strip',
+    geometry: '200x200>',
+  }.freeze
+
   SCAN_RE = /(?<=[^[:alnum:]:]|\n|^)
     :(#{SHORTCODE_RE_FRAGMENT}):
     (?=[^[:alnum:]:]|$)/x
 
   has_one :local_counterpart, -> { where(domain: nil) }, class_name: 'CustomEmoji', primary_key: :shortcode, foreign_key: :shortcode
 
-  has_attached_file :image, styles: {
-    static: {
-      format: 'png',
-      source_file_options: '-channel rgba -background "rgba(0,0,0,0)"',
-      convert_options: '-coalesce -strip',
-      geometry: '200x200>',
-    },
-  }
+  has_attached_file :image, styles: ->(f) { emoji_styles f }
 
   before_validation :downcase_domain
 
@@ -52,6 +52,7 @@ class CustomEmoji < ApplicationRecord
   include Attachmentable
 
   after_commit :remove_entity_cache
+  before_create :set_extension
 
   def local?
     domain.nil?
@@ -75,6 +76,21 @@ class CustomEmoji < ApplicationRecord
     def search(shortcode)
       where('"custom_emojis"."shortcode" ILIKE ?', "%#{shortcode}%")
     end
+
+    private
+
+    def emoji_styles(attachment)
+      if ['image/svg', 'image/svg+xml'].include?(attachment.instance.image_content_type) && ENV['ALLOW_UNSAFE_UPLOADS'] != 'true'
+        {
+          static: STATIC_EMOJI_STYLE,
+          original: STATIC_EMOJI_STYLE,
+        }
+      else
+        {
+          static: STATIC_EMOJI_STYLE,
+        }
+      end
+    end
   end
 
   private
@@ -85,5 +101,13 @@ class CustomEmoji < ApplicationRecord
 
   def downcase_domain
     self.domain = domain.downcase unless domain.nil?
+  end
+
+  def set_extension
+    return if image_file_name.nil?
+    basename = File.basename(image_file_name, '.*')
+    if ['image/svg', 'image/svg+xml'].include?(image_content_type) && ENV['ALLOW_UNSAFE_UPLOADS'] != 'true'
+      image.instance_write(:file_name, basename + '.png')
+    end
   end
 end
