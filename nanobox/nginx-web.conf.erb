@@ -47,8 +47,10 @@ http {
             try_files $uri @rails;
         }
 
-        location ~ ^/(emoji|packs|system/media_attachments/files|system/accounts/avatars) {
+        location ~ ^/(emoji|packs|system/media_attachments/files|system/accounts/avatars|system/custom_emojis/images) {
             add_header Cache-Control "public, max-age=31536000, immutable";
+            add_header Strict-Transport-Security "max-age=31536000";
+            add_header Content-Security-Policy "default-src 'none'; style-src 'unsafe-inline'; media-src data:; img-src 'self' data:";
             try_files $uri @rails;
         }
 
