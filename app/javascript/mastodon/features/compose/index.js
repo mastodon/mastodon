@@ -112,9 +112,9 @@ class Compose extends React.PureComponent {
             <AnnouncementsContainer />
             <FavouriteTagsContainer />
             <TrendTagsContainer />
-            {multiColumn && (
+            {multiColumn && mascot && (
               <div className='drawer__inner__mastodon'>
-                <img alt='' draggable='false' src={mascot || elephantUIPlane} />
+                <img alt='' draggable='false' src={mascot} />
               </div>
             )}
           </div>}
