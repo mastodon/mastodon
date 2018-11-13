@@ -23,6 +23,7 @@ export default class StatusList extends ImmutablePureComponent {
     isPartial: PropTypes.bool,
     hasMore: PropTypes.bool,
     prepend: PropTypes.node,
+    alwaysPrepend: PropTypes.bool,
     emptyMessage: PropTypes.node,
     timelineId: PropTypes.string,
   };

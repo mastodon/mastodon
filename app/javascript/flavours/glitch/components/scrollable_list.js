@@ -27,6 +27,7 @@ export default class ScrollableList extends PureComponent {
     showLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
     prepend: PropTypes.node,
+    alwaysPrepend: PropTypes.bool,
     emptyMessage: PropTypes.node,
     children: PropTypes.node,
   };
@@ -159,7 +160,7 @@ export default class ScrollableList extends PureComponent {
   }
 
   render () {
-    const { children, scrollKey, trackScroll, shouldUpdateScroll, showLoading, isLoading, hasMore, prepend, emptyMessage, onLoadMore } = this.props;
+    const { children, scrollKey, trackScroll, shouldUpdateScroll, showLoading, isLoading, hasMore, prepend, alwaysPrepend, emptyMessage, onLoadMore } = this.props;
     const { fullscreen } = this.state;
     const childrenCount = React.Children.count(children);
 
@@ -203,8 +204,12 @@ export default class ScrollableList extends PureComponent {
       );
     } else {
       scrollableArea = (
-        <div className='empty-column-indicator' ref={this.setRef}>
-          {emptyMessage}
+        <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column' }}>
+          {alwaysPrepend && prepend}
+
+          <div className='empty-column-indicator'>
+            {emptyMessage}
+          </div>
         </div>
       );
     }
