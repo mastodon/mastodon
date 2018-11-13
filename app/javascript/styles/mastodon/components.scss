@@ -5423,3 +5423,36 @@ noscript {
     }
   }
 }
+
+.error-boundary {
+  img {
+    display: block;
+    max-width: 470px;
+    width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 400;
+  }
+
+  p {
+    color: $primary-text-color;
+    font-size: 15px;
+    line-height: 20px;
+
+    a {
+      color: $primary-text-color;
+      text-decoration: underline;
+    }
+
+    ul {
+      list-style: disc inside;
+    }
+  }
+}
