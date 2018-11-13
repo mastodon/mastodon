@@ -11,6 +11,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attribute :muted, if: :current_user?
   attribute :bookmarked, if: :current_user?
   attribute :pinned, if: :pinnable?
+  attribute :local_only if :local?
 
   belongs_to :reblog, serializer: REST::StatusSerializer
   belongs_to :application
