@@ -32,7 +32,7 @@ class AccountsController < ApplicationController
 
       format.atom do
         @entries = @account.stream_entries.where(hidden: false).with_includes.paginate_by_max_id(PAGE_SIZE, params[:max_id], params[:since_id])
-        render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.feed(@account, @entries.reject { |entry| entry.status.nil? }))
+        render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.feed(@account, @entries.reject { |entry| entry.status.nil? || entry.status.local_only? }))
       end
 
       format.rss do
