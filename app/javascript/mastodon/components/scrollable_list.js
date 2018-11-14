@@ -59,6 +59,13 @@ export default class ScrollableList extends PureComponent {
       } else if (this.props.onScroll) {
         this.props.onScroll();
       }
+
+      if (!this.lastScrollWasSynthetic) {
+        // If the last scroll wasn't caused by setScrollTop(), assume it was
+        // intentional and cancel any pending scroll reset on mouse idle
+        this.scrollToTopOnMouseIdle = false;
+      }
+      this.lastScrollWasSynthetic = false;
     }
   }, 150, {
     trailing: true,
@@ -66,7 +73,15 @@ export default class ScrollableList extends PureComponent {
 
   mouseIdleTimer = null;
   mouseMovedRecently = false;
+  lastScrollWasSynthetic = false;
   scrollToTopOnMouseIdle = false;
+
+  setScrollTop = newScrollTop => {
+    if (this.node.scrollTop !== newScrollTop) {
+      this.lastScrollWasSynthetic = true;
+      this.node.scrollTop = newScrollTop;
+    }
+  };
 
   clearMouseIdleTimer = () => {
     if (this.mouseIdleTimer === null) {
@@ -99,7 +114,7 @@ export default class ScrollableList extends PureComponent {
 
   handleMouseIdle = () => {
     if (this.scrollToTopOnMouseIdle) {
-      this.node.scrollTop = 0;
+      this.setScrollTop(0);
     }
 
     this.mouseMovedRecently = false;
@@ -121,7 +136,7 @@ export default class ScrollableList extends PureComponent {
       React.Children.count(prevProps.children) < React.Children.count(this.props.children) &&
       this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props);
 
-    if ((someItemInserted && this.node.scrollTop > 0) || this.mouseMovedRecently) {
+    if (someItemInserted && (this.node.scrollTop > 0 || this.mouseMovedRecently)) {
       return this.node.scrollHeight - this.node.scrollTop;
     } else {
       return null;
@@ -132,11 +147,7 @@ export default class ScrollableList extends PureComponent {
     // Reset the scroll position when a new child comes in in order not to
     // jerk the scrollbar around if you're already scrolled down the page.
     if (snapshot !== null) {
-      const newScrollTop = this.node.scrollHeight - snapshot;
-
-      if (this.node.scrollTop !== newScrollTop) {
-        this.node.scrollTop = newScrollTop;
-      }
+      this.setScrollTop(this.node.scrollHeight - snapshot);
     }
   }
 
