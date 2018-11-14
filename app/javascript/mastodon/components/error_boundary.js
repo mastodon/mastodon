@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-export default
-class ErrorBoundary extends React.PureComponent {
+export default class ErrorBoundary extends React.PureComponent {
 
   static propTypes = {
     children: PropTypes.node,
@@ -11,14 +10,15 @@ class ErrorBoundary extends React.PureComponent {
 
   state = {
     hasError: false,
+    stackTrace: undefined,
   }
 
-  componentDidCatch() {
-    this.setState({ hasError: true });
+  componentDidCatch(error) {
+    this.setState({ hasError: true, stackTrace: error.stack });
   }
 
   render() {
-    const { hasError } = this.state;
+    const { hasError, stackTrace } = this.state;
 
     if (!hasError) return this.props.children;
 
@@ -37,6 +37,17 @@ class ErrorBoundary extends React.PureComponent {
                     defaultMessage='Report a bug in the {issuetracker}'
                     values={{ issuetracker: <a href='https://github.com/tootsuite/mastodon/issues' rel='noopener' target='_blank'><FormattedMessage id='web_app_crash.issue_tracker' defaultMessage='issue tracker' /></a> }}
                   />
+                  { stackTrace !== undefined && (
+                    <details>
+                      <summary><FormattedMessage id='web_app_crash.stack_trace' defaultMessage='Debug information' /></summary>
+                      <textarea
+                        className='web_app_crash-stacktrace'
+                        value={stackTrace.toString()}
+                        rows='10'
+                        readOnly
+                      />
+                    </details>
+                  )}
                 </li>
                 <li>
                   <FormattedMessage id='web_app_crash.reload_page' defaultMessage='Reload the current page' />
