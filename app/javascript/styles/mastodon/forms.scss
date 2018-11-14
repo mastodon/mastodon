@@ -330,9 +330,12 @@ code {
     }
 
     input[type=text],
+    input[type=number],
     input[type=email],
-    input[type=password] {
-      border-bottom-color: $valid-value-color;
+    input[type=password],
+    textarea,
+    select {
+      border-color: lighten($error-red, 12%);
     }
 
     .error {
