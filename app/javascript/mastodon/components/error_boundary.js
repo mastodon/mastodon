@@ -22,6 +22,11 @@ export default class ErrorBoundary extends React.PureComponent {
     });
   }
 
+  handleReload(e) {
+    e.preventDefault();
+    window.location.reload();
+  }
+
   render() {
     const { hasError, stackTrace, componentStack } = this.state;
 
@@ -66,7 +71,11 @@ export default class ErrorBoundary extends React.PureComponent {
                   )}
                 </li>
                 <li>
-                  <FormattedMessage id='web_app_crash.reload_page' defaultMessage='Reload the current page' />
+                  <FormattedMessage
+                    id='web_app_crash.reload_page'
+                    defaultMessage='{reload} the current page'
+                    values={{ reload: <a href='#' onClick={this.handleReload}><FormattedMessage id='web_app_crash.reload' defaultMessage='Reload' /></a> }}
+                  />
                 </li>
                 <li>
                   <FormattedMessage
