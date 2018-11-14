@@ -11,16 +11,32 @@ export default class ErrorBoundary extends React.PureComponent {
   state = {
     hasError: false,
     stackTrace: undefined,
+    componentStack: undefined,
   }
 
-  componentDidCatch(error) {
-    this.setState({ hasError: true, stackTrace: error.stack });
+  componentDidCatch(error, info) {
+    this.setState({
+      hasError: true,
+      stackTrace: error.stack,
+      componentStack: info && info.componentStack,
+    });
   }
 
   render() {
-    const { hasError, stackTrace } = this.state;
+    const { hasError, stackTrace, componentStack } = this.state;
 
     if (!hasError) return this.props.children;
+
+    let debugInfo = '';
+    if (stackTrace) {
+      debugInfo += 'Stack trace\n-----------\n\n```\n' + stackTrace.toString() + '\n```';
+    }
+    if (componentStack) {
+      if (debugInfo) {
+        debugInfo += '\n\n\n';
+      }
+      debugInfo += 'React component stack\n---------------------\n\n```\n' + componentStack.toString() + '\n```';
+    }
 
     return (
       <div tabIndex='-1'>
@@ -37,12 +53,12 @@ export default class ErrorBoundary extends React.PureComponent {
                     defaultMessage='Report a bug in the {issuetracker}'
                     values={{ issuetracker: <a href='https://github.com/tootsuite/mastodon/issues' rel='noopener' target='_blank'><FormattedMessage id='web_app_crash.issue_tracker' defaultMessage='issue tracker' /></a> }}
                   />
-                  { stackTrace !== undefined && (
+                  { debugInfo !== '' && (
                     <details>
-                      <summary><FormattedMessage id='web_app_crash.stack_trace' defaultMessage='Debug information' /></summary>
+                      <summary><FormattedMessage id='web_app_crash.debug_info' defaultMessage='Debug information' /></summary>
                       <textarea
                         className='web_app_crash-stacktrace'
-                        value={stackTrace.toString()}
+                        value={debugInfo}
                         rows='10'
                         readOnly
                       />
