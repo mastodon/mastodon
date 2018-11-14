@@ -55,6 +55,12 @@ npm-debug.log
 yarn-error.log
 yarn-debug.log
 
-# Ignore Docker option files
+#########################################################
+# DISALLOW EVERYTHING DOCKER == TRUE
+####### KEEP THIS CRAP OFF MY SERVER
 docker-compose.override.yml
+.docker
+docker/*
+########################################################
 
+.ruby-version
