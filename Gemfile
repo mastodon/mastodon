@@ -106,7 +106,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.10'
+  gem 'capybara', '~> 3.11'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 1.9'
   gem 'microformats', '~> 4.0'
@@ -114,7 +114,7 @@ group :test do
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.16', require: false
   gem 'webmock', '~> 3.4'
-  gem 'parallel_tests', '~> 2.26'
+  gem 'parallel_tests', '~> 2.27'
 end
 
 group :development do
@@ -122,7 +122,7 @@ group :development do
   gem 'annotate', '~> 2.7'
   gem 'better_errors', '~> 2.5'
   gem 'binding_of_caller', '~> 0.7'
-  gem 'bullet', '~> 5.7'
+  gem 'bullet', '~> 5.9'
   gem 'letter_opener', '~> 1.4'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'

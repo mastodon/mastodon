@@ -25,7 +25,7 @@ export default class StatusList extends ImmutablePureComponent {
     prepend: PropTypes.node,
     emptyMessage: PropTypes.node,
     alwaysPrepend: PropTypes.bool,
-    timelineId: PropTypes.string.isRequired,
+    timelineId: PropTypes.string,
   };
 
   static defaultProps = {
@@ -104,6 +104,7 @@ export default class StatusList extends ImmutablePureComponent {
           onMoveUp={this.handleMoveUp}
           onMoveDown={this.handleMoveDown}
           contextType={timelineId}
+          showThread
         />
       ))
     ) : null;
@@ -117,12 +118,13 @@ export default class StatusList extends ImmutablePureComponent {
           onMoveUp={this.handleMoveUp}
           onMoveDown={this.handleMoveDown}
           contextType={timelineId}
+          showThread
         />
       )).concat(scrollableContent);
     }
 
     return (
-      <ScrollableList {...other} onLoadMore={onLoadMore && this.handleLoadOlder} shouldUpdateScroll={shouldUpdateScroll} ref={this.setRef}>
+      <ScrollableList {...other} showLoading={isLoading && statusIds.size === 0} onLoadMore={onLoadMore && this.handleLoadOlder} shouldUpdateScroll={shouldUpdateScroll} ref={this.setRef}>
         {scrollableContent}
       </ScrollableList>
     );
