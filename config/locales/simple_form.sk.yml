@@ -1,32 +1,47 @@
----
 sk:
   simple_form:
     hints:
       defaults:
-        autofollow: Ľudia ktorí sa zaregistrujú prostredníctvom pozvánky, ťa budú inheď následovať
+        autofollow: Ľudia ktorí sa zaregistrujú prostredníctvom pozvánky, ťa budú
+          inheď následovať
         avatar: PNG, GIF alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
         bot: Tento účet vykonáva hlavne automatizované akcie, a je pravdepodobne nespravovaný
         context: Jedno, alebo viac kritérií, v ktorých má byť filtrovanie uplatnené
-        digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak si obdŕžal/a nejaké osobné správy kým si bol/a preč
+        digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak si obdŕžal/a
+          nejaké osobné správy kým si bol/a preč
         fields: Môžeš mať 4 položky na svojom profile zobrazené vo forme tabuľky
         header: PNG, GIF alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
         inbox_url: Skopíruj adresu z hlavnej stránky mostíka, ktorý chceš používať
-        irreversible: Vytriedené príspevky zmiznú nenávratne, aj keď triedenie neskôr zrušíš
+        irreversible: Vytriedené príspevky zmiznú nenávratne, aj keď triedenie neskôr
+          zrušíš
         locale: Jazyk užívateľského rozhrania, emailových a nástenkových oboznámení
         locked: Vyžaduje manuálne schvalovať sledujúcich
-        phrase: Zhoda sa nájde nezávisle od toho, či je text napísaný, veľkými, alebo malými písmenami, či už v tele, alebo v hlavičke
-        scopes: Ktoré API budú povolené aplikácii pre prístup. Ak vyberieš vrcholný stupeň, nemusíš už potom vyberať po jednom.
-        setting_default_language: Jazyk tvojích príspevkov môže byť zistený automaticky, ale nieje to vždy presné
-        setting_hide_network: Koho následuješ, a kto následuje teba nebude zobrazené na tvojom profile
+        phrase: Zhoda sa nájde nezávisle od toho, či je text napísaný, veľkými, alebo
+          malými písmenami, či už v tele, alebo v hlavičke
+        scopes: Ktoré API budú povolené aplikácii pre prístup. Ak vyberieš vrcholný
+          stupeň, nemusíš už potom vyberať po jednom.
+        setting_default_language: Jazyk tvojích príspevkov môže byť zistený automaticky,
+          ale nieje to vždy presné
+        setting_hide_network: Koho následuješ, a kto následuje teba nebude zobrazené
+          na tvojom profile
         setting_noindex: Ovplyvňuje verejný profil a stránky s príspevkami
         setting_theme: Ovplyvňuje ako Mastodon vyzerá pri prihlásení z hociakého zariadenia.
-        whole_word: Ak je kľúčové slovo, alebo fráza poskladaná iba s písmen a čísel, bude použité iba ak sa zhoduje s celým výrazom
+        whole_word: Ak je kľúčové slovo, alebo fráza poskladaná iba s písmen a čísel,
+          bude použité iba ak sa zhoduje s celým výrazom
+        email: Bude ti odoslaný potvrdzujúci email
+        password: Zadaj aspoň osem znakov
+        setting_display_media_default: Skryť médiá označené ako citlivé
+        setting_display_media_hide_all: Vždy ukryť všetky médiá
+        setting_display_media_show_all: Stále ukazuj médiá označené ako citlivé
+        username: Tvoja prezývka bude unikátna pre server %{domain}
       imports:
         data: CSV súbor vyexportovaný z inej Mastodon inštancie
       sessions:
-        otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích obnovovacích kódov:'
+        otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích
+          obnovovacích kódov:'
       user:
-        chosen_languages: Keď je zaškrtnuté, tak iba príspevky vo vybraných jazykoch budú zobrazené vo verejnej osi
+        chosen_languages: Keď je zaškrtnuté, tak iba príspevky vo vybraných jazykoch
+          budú zobrazené vo verejnej osi
     labels:
       account:
         fields:
@@ -68,7 +83,8 @@ sk:
         setting_reduce_motion: Redukovať pohyb v animáciách
         setting_system_font_ui: Použiť základné systémové písmo
         setting_theme: Vzhľad webu
-        setting_unfollow_modal: Zobrazuj potvrdzovacie okno pred skončením sledovania iného užívateľa
+        setting_unfollow_modal: Zobrazuj potvrdzovacie okno pred skončením sledovania
+          iného užívateľa
         severity: Závažnosť
         type: Typ importu
         username: Prezývka
@@ -88,6 +104,6 @@ sk:
         report: Poslať e-mail ak niekto dodá nové hlásenie
     'no': Nie
     required:
-      mark: "*"
+      mark: '*'
       text: povinné
     'yes': Áno
