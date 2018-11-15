@@ -232,7 +232,7 @@ export default class MediaGallery extends React.PureComponent {
 
   componentWillReceiveProps (nextProps) {
     if (!is(nextProps.media, this.props.media)) {
-      this.setState({ visible: !nextProps.sensitive });
+      this.setState({ visible: nextProps.revealed === undefined ? (displayMedia !== 'hide_all' && !nextProps.sensitive || displayMedia === 'show_all') : nextProps.revealed });
     }
   }
 
