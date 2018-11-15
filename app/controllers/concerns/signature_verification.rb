@@ -43,7 +43,12 @@ module SignatureVerification
       return
     end
 
-    account = account_from_key_id(signature_params['keyId'])
+    account_stoplight = Stoplight("source:#{request.ip}") { account_from_key_id(signature_params['keyId']) }
+      .with_fallback { nil }
+      .with_threshold(1)
+      .with_cool_off_time(5.minutes.seconds)
+
+    account = account_stoplight.run
 
     if account.nil?
       @signature_verification_failure_reason = "Public key not found for key #{signature_params['keyId']}"
