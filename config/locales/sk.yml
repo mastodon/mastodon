@@ -56,7 +56,7 @@ sk:
     followers:
       other: Sledovatelia
       one: Sledujúci
-    following: Sledovaní
+    following: Sledovaných
     joined: Pridal/a sa %{date}
     media: Médiá
     moved_html: '%{name} účet bol presunutý na %{new_profile_link}:'
@@ -77,7 +77,7 @@ sk:
       bot: Automat
       moderator: Moderátor
     unfollow: Prestať sledovať
-    link_verified_on: Vlastníctvo tohto odkazu bolo skontrolované dňa %{date}
+    link_verified_on: Vlastníctvo tohto odkazu bolo skontrolované %{date}
   admin:
     account_moderation_notes:
       create: Zanechaj poznámku
@@ -211,6 +211,7 @@ sk:
         unsuspend_account: '%{name} zrušil/a blokovanie účtu používateľa %{target}'
         update_custom_emoji: '%{name} aktualizoval/a emoji %{target}'
         update_status: '%{name} aktualizoval/a status pre %{target}'
+        destroy_custom_emoji: '%{name} zničil/a %{target} emoji'
       deleted_status: (zmazaný príspevok)
       title: Kontrólny záznam
     custom_emojis:
@@ -456,6 +457,10 @@ sk:
         desc_html: Zobraziť verejnú nástenku na hlavnej stránke
         title: Náhľad nástenky
       title: Nastavenia stránky
+      mascot:
+        desc_html: Zobrazované na viacerých stránkach. Odporúčaná veľkosť aspoň 293×205px.
+          Pokiaľ nieje nahraté, bude zobrazený základný maskot
+        title: Obrázok maskota
     statuses:
       back_to_account: Späť na účet
       batch:
@@ -652,6 +657,7 @@ sk:
       one: Niečo nieje úplne v poriadku! Prosím skontroluj chybu
       other: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetkých %{count}
         chýb
+    copy: Kopírovať
   imports:
     preface: Môžeš importovať dáta ktoré si exportoval/a z iného Mastodon serveru,
       ako sú napríklad zoznamy ľudí ktorých sleduješ, alebo blokuješ.
@@ -833,7 +839,9 @@ sk:
         other: '%{count} videí'
     boosted_from_html: Povýšené od %{acct_link}
     content_warning: 'Varovanie o obsahu: %{warning}'
-    disallowed_hashtags: 'obsahuje nepovolené haštagy: %{tags}'
+    disallowed_hashtags:
+      one: 'obsahoval nepovolený hashtag: %{tags}'
+      other: 'obsahoval nepovolené hashtagy: %{tags}'
     language_detection: Zisti jazyk automaticky
     open_in_web: Otvor v okne prehliadača
     over_character_limit: limit počtu %{max} znakov bol presiahnutý
@@ -938,3 +946,6 @@ sk:
     seamless_external_login: Si prihlásená/ý cez externú službu, takže nastavenia
       hesla a emailu ti niesú prístupné.
     signed_in_as: 'Prihlásený ako:'
+    follow_limit_reached: Nemôžeš následovať viac ako %{limit} ľudí
+  verification:
+    verification: Overenie
