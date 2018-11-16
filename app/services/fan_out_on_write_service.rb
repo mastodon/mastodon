@@ -16,6 +16,7 @@ class FanOutOnWriteService < BaseService
       deliver_to_self(status) if status.account.local?
       deliver_to_followers(status)
       deliver_to_lists(status)
+      deliver_to_self_lists(status)
     end
 
     return if status.account.silenced? || !status.public_visibility? || status.reblog?
@@ -50,6 +51,16 @@ class FanOutOnWriteService < BaseService
     Rails.logger.debug "Delivering status #{status.id} to lists"
 
     status.account.lists_for_local_distribution.select(:id).reorder(nil).find_in_batches do |lists|
+      FeedInsertWorker.push_bulk(lists) do |list|
+        [status.id, list.id, :list]
+      end
+    end
+  end
+
+  def deliver_to_self_lists(status)
+    Rails.logger.debug "Delivering status #{status.id} to own lists"
+
+    List.where(account_id: status.account.id).select(:id).reorder(nil).find_in_batches do |lists|
       FeedInsertWorker.push_bulk(lists) do |list|
         [status.id, list.id, :list]
       end
