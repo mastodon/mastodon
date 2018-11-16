@@ -94,17 +94,16 @@ class Status < ApplicationRecord
     end
   }
 
-  cache_associated :account,
-                   :application,
+  cache_associated :application,
                    :media_attachments,
                    :conversation,
                    :status_stat,
                    :tags,
                    :preview_cards,
                    :stream_entry,
-                   active_mentions: :account,
+                   account: :account_stat,
+                   active_mentions: { account: :account_stat },
                    reblog: [
-                     :account,
                      :application,
                      :stream_entry,
                      :tags,
@@ -112,9 +111,10 @@ class Status < ApplicationRecord
                      :media_attachments,
                      :conversation,
                      :status_stat,
-                     active_mentions: :account,
+                     account: :account_stat,
+                     active_mentions: { account: :account_stat },
                    ],
-                   thread: :account
+                   thread: { account: :account_stat }
 
   delegate :domain, to: :account, prefix: true
 
@@ -348,7 +348,7 @@ class Status < ApplicationRecord
 
       return if account_ids.empty?
 
-      accounts = Account.where(id: account_ids).each_with_object({}) { |a, h| h[a.id] = a }
+      accounts = Account.where(id: account_ids).includes(:account_stat).each_with_object({}) { |a, h| h[a.id] = a }
 
       cached_items.each do |item|
         item.account = accounts[item.account_id]
@@ -475,12 +475,7 @@ class Status < ApplicationRecord
   def increment_counter_caches
     return if direct_visibility?
 
-    if association(:account).loaded?
-      account.update_attribute(:statuses_count, account.statuses_count + 1)
-    else
-      Account.where(id: account_id).update_all('statuses_count = COALESCE(statuses_count, 0) + 1')
-    end
-
+    account&.increment_count!(:statuses_count)
     reblog&.increment_count!(:reblogs_count) if reblog?
     thread&.increment_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end
@@ -488,12 +483,7 @@ class Status < ApplicationRecord
   def decrement_counter_caches
     return if direct_visibility? || marked_for_mass_destruction?
 
-    if association(:account).loaded?
-      account.update_attribute(:statuses_count, [account.statuses_count - 1, 0].max)
-    else
-      Account.where(id: account_id).update_all('statuses_count = GREATEST(COALESCE(statuses_count, 0) - 1, 0)')
-    end
-
+    account&.decrement_count!(:statuses_count)
     reblog&.decrement_count!(:reblogs_count) if reblog?
     thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_26_034033) do
+ActiveRecord::Schema.define(version: 2018_11_16_184611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,16 @@ ActiveRecord::Schema.define(version: 2018_10_26_034033) do
     t.index ["target_account_id"], name: "index_account_pins_on_target_account_id"
   end
 
+  create_table "account_stats", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "statuses_count", default: 0, null: false
+    t.bigint "following_count", default: 0, null: false
+    t.bigint "followers_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_stats_on_account_id", unique: true
+  end
+
   create_table "accounts", force: :cascade do |t|
     t.string "username", default: "", null: false
     t.string "domain"
@@ -85,9 +95,6 @@ ActiveRecord::Schema.define(version: 2018_10_26_034033) do
     t.boolean "suspended", default: false, null: false
     t.boolean "locked", default: false, null: false
     t.string "header_remote_url", default: "", null: false
-    t.integer "statuses_count", default: 0, null: false
-    t.integer "followers_count", default: 0, null: false
-    t.integer "following_count", default: 0, null: false
     t.datetime "last_webfingered_at"
     t.string "inbox_url", default: "", null: false
     t.string "outbox_url", default: "", null: false
@@ -629,6 +636,7 @@ ActiveRecord::Schema.define(version: 2018_10_26_034033) do
   add_foreign_key "account_moderation_notes", "accounts", column: "target_account_id"
   add_foreign_key "account_pins", "accounts", column: "target_account_id", on_delete: :cascade
   add_foreign_key "account_pins", "accounts", on_delete: :cascade
+  add_foreign_key "account_stats", "accounts", on_delete: :cascade
   add_foreign_key "accounts", "accounts", column: "moved_to_account_id", on_delete: :nullify
   add_foreign_key "admin_action_logs", "accounts", on_delete: :cascade
   add_foreign_key "backups", "users", on_delete: :nullify
