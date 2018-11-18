@@ -1,3 +1,34 @@
+# Ecosteader's instance of Mastodon
+
+This fork of the `tootsuite/mastodon/` repo to continue the work that was started 
+with the original `indie/spacemin` RoR site ... development on this fork will likely 
+follow the Apache-friendly ways. Please help share ECOLOGICAL DEMOCRACY that may 
+someday heal the planet. 
+
+## Contributing
+
+Mastodon is **free, open source software** 
+licensed under **AGPLv3**.
+
+=====================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ![Mastodon](https://i.imgur.com/NhZc40l.png)
 ========
 
