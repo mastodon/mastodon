@@ -24,7 +24,7 @@ module Mastodon
 
         Dir.chdir(path) do
           if load('plugin.rb') && Object.const_defined?(klass)
-            configure_plugin(config, klass.constantize.new)
+            configure_plugin(config, klass.constantize)
           else
             Rails.logger.warn "Unable to install plugin #{name}; check that the plugin has a plugin.rb file which defines a class named '#{klass}'"
           end
@@ -34,9 +34,6 @@ module Mastodon
     end
 
     def configure_plugin(config, plugin)
-      # call user-defined setup
-      plugin.setup!
-
       # add outlet and translation information
       plugin.paths.each do |p|
         type = :"#{p.type}s"
