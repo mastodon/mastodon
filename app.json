@@ -3,12 +3,7 @@
   "description": "A GNU Social-compatible microblogging server",
   "repository": "https://github.com/tootsuite/mastodon",
   "logo": "https://github.com/tootsuite.png",
-  "env": {
-    "HEROKU": {
-      "description": "Leave this as true",
-      "value": "true",
-      "required": true
-    },
+  "env": 
     "LOCAL_DOMAIN": {
       "description": "The domain that your Mastodon instance will run on (this can be appname.herokuapp.com or a custom domain)",
       "required": true
@@ -93,22 +88,10 @@
       "required": false
     }
   },
-  "buildpacks": [
-    {
-      "url": "https://github.com/heroku/heroku-buildpack-apt"
-    },
-    {
-      "url": "heroku/nodejs"
-    },
-    {
-      "url": "heroku/ruby"
-    }
-  ],
   "scripts": {
     "postdeploy": "bundle exec rails db:migrate && bundle exec rails db:seed"
   },
   "addons": [
-    "heroku-postgresql",
-    "heroku-redis"
-  ]
+    "postgresql",
+    ]
 }
