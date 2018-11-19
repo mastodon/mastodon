@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_26_034033) do
+ActiveRecord::Schema.define(version: 2018_11_16_004743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -318,6 +318,12 @@ ActiveRecord::Schema.define(version: 2018_10_26_034033) do
     t.index ["target_account_id"], name: "index_mutes_on_target_account_id"
   end
 
+  create_table "nnclds", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.integer "taggings_count", default: 0
+    t.index ["name"], name: "index_nnclds_on_name", unique: true
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.bigint "activity_id", null: false
     t.string "activity_type", null: false
@@ -552,6 +558,18 @@ ActiveRecord::Schema.define(version: 2018_10_26_034033) do
     t.string "domain"
     t.bigint "account_id", null: false
     t.index ["account_id", "callback_url"], name: "index_subscriptions_on_account_id_and_callback_url", unique: true
+  end
+
+  create_table "taggings", id: :serial, force: :cascade do |t|
+    t.integer "nncld_id"
+    t.string "taggable_type"
+    t.integer "taggable_id"
+    t.string "tagger_type"
+    t.integer "tagger_id"
+    t.string "context", limit: 128
+    t.datetime "created_at"
+    t.index ["nncld_id"], name: "index_taggings_on_nncld_id"
+    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
   end
 
   create_table "tags", force: :cascade do |t|
