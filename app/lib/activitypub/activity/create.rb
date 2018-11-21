@@ -67,7 +67,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         visibility: visibility_from_audience,
         thread: replied_to_status,
         conversation: conversation_from_uri(@object['conversation']),
-        media_attachment_ids: process_attachments.take(4).map(&:id),
+        media_attachment_ids: process_attachments.map(&:id),
       }
     end
   end
