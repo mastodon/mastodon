@@ -120,7 +120,7 @@ export default class Video extends React.PureComponent {
   setPlayerRef = c => {
     this.player = c;
 
-    if (c) {
+    if (c && c.offsetWidth && c.offsetWidth != this.state.containerWidth) {
       this.setState({
         containerWidth: c.offsetWidth,
       });
@@ -220,7 +220,7 @@ export default class Video extends React.PureComponent {
   }
 
   componentDidUpdate (prevProps) {
-    if (this.player && this.player.offsetWidth && !this.state.fullscreen) {
+    if (this.player && this.player.offsetWidth && this.player.offsetWidth != this.state.containerWidth && !this.state.fullscreen) {
       this.setState({
         containerWidth: this.player.offsetWidth,
       });
@@ -294,6 +294,8 @@ export default class Video extends React.PureComponent {
     const progress = (currentTime / duration) * 100;
     const playerStyle = {};
 
+    const computedClass = classNames('video-player', { inactive: !revealed, detailed, inline: inline && !fullscreen, fullscreen, letterbox, 'full-width': fullwidth });
+
     let { width, height } = this.props;
 
     if (inline && containerWidth) {
@@ -302,6 +304,8 @@ export default class Video extends React.PureComponent {
 
       playerStyle.width  = width;
       playerStyle.height = height;
+    } else if (inline) {
+      return (<div className={computedClass} ref={this.setPlayerRef} tabindex={0}></div>);
     }
 
     let warning;
@@ -322,7 +326,7 @@ export default class Video extends React.PureComponent {
 
     return (
       <div
-        className={classNames('video-player', { inactive: !revealed, detailed, inline: inline && !fullscreen, fullscreen, letterbox, 'full-width': fullwidth })}
+        className={computedClass}
         style={playerStyle}
         ref={this.setPlayerRef}
         onMouseEnter={this.handleMouseEnter}
