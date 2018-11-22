@@ -146,7 +146,7 @@ class Request
         time_slot = 10.0 / addresses.size
 
         addresses.each do |address|
-          ::Timeout::timeout(time_slot, HTTP::TimeoutError) do
+          ::Timeout.timeout(time_slot, HTTP::TimeoutError) do
             begin
               raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(IPAddr.new(address.ip_address))
               return super(address.ip_address, *args)
