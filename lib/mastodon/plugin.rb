@@ -53,7 +53,7 @@ module Mastodon
     # example usage: `use_route(:get, "examples/:id", "examples#show")`
     # ^^ create an endpoint at /api/v1/examples/:id which routes to the show action on ExamplesController
     # NB: be sure to define a controller action by adding a controller or using the 'extend_class' option!
-    def self.use_route(&block)
+    def self.use_routes(&block)
       actions.add(proc { Rails.application.routes.prepend(&block) })
     end
 
