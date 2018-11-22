@@ -94,7 +94,7 @@ class Request
   end
 
   def timeout
-    { connect: 10, read: 10, write: 10 }
+    { connect: nil, read: 10, write: 10 }
   end
 
   def http_client
@@ -141,16 +141,18 @@ class Request
       def open(host, *args)
         return super(host, *args) if thru_hidden_service?(host)
 
-        outer_e = nil
+        outer_e   = nil
+        addresses = Addrinfo.getaddrinfo(host, nil, nil, :SOCK_STREAM).take(2)
+        time_slot = 10.0 / addresses.size
 
-        Addrinfo.foreach(host, nil, nil, :SOCK_STREAM) do |address|
-          begin
-            raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(IPAddr.new(address.ip_address))
-            return super(address.ip_address, *args)
-          rescue HTTP::TimeoutError => e
-            raise e
-          rescue => e
-            outer_e = e
+        addresses.each do |address|
+          ::Timeout::timeout(time_slot, HTTP::TimeoutError) do
+            begin
+              raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(IPAddr.new(address.ip_address))
+              return super(address.ip_address, *args)
+            rescue => e
+              outer_e = e
+            end
           end
         end
 
