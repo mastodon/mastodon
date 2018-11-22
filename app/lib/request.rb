@@ -45,7 +45,7 @@ class Request
     end
 
     begin
-      yield response.extend(ClientLimit)
+      yield response.extend(ClientLimit) if block_given?
     ensure
       http_client.close
     end
