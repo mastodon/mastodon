@@ -237,7 +237,7 @@ export default class MediaGallery extends React.PureComponent {
   }
 
   componentDidUpdate (prevProps) {
-    if (this.node && this.node.offsetWidth) {
+    if (this.node && this.node.offsetWidth && this.node.offsetWidth != this.state.width) {
       this.setState({
         width: this.node.offsetWidth,
       });
@@ -254,8 +254,7 @@ export default class MediaGallery extends React.PureComponent {
 
   handleRef = (node) => {
     this.node = node;
-    if (node /*&& this.isStandaloneEligible()*/) {
-      // offsetWidth triggers a layout, so only calculate when we need to
+    if (node && node.offsetWidth && node.offsetWidth != this.state.width) {
       this.setState({
         width: node.offsetWidth,
       });
@@ -276,10 +275,14 @@ export default class MediaGallery extends React.PureComponent {
 
     const style = {};
 
+    const computedClass = classNames('media-gallery', { 'full-width': fullwidth });
+
     if (this.isStandaloneEligible() && width) {
       style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
     } else if (width) {
       style.height = width / (16/9);
+    } else {
+      return (<div className={computedClass} ref={this.handleRef}></div>);
     }
 
     if (!visible) {
@@ -298,8 +301,6 @@ export default class MediaGallery extends React.PureComponent {
         children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} letterbox={letterbox} displayWidth={width} />);
       }
     }
-
-    const computedClass = classNames('media-gallery', { 'full-width': fullwidth });
 
     return (
       <div className={computedClass} style={style} ref={this.handleRef}>
