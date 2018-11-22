@@ -81,9 +81,9 @@ describe Request do
       end
 
       it 'raises Mastodon::ValidationError' do
-        allow(Addrinfo).to receive(:foreach).with('example.com', nil, nil, :SOCK_STREAM)
-                                            .and_yield(Addrinfo.new(["AF_INET", 0, "example.com", "0.0.0.0"], :PF_INET, :SOCK_STREAM))
-                                            .and_yield(Addrinfo.new(["AF_INET6", 0, "example.com", "2001:db8::face"], :PF_INET6, :SOCK_STREAM))
+        allow(Addrinfo).to receive(:getaddrinfo).with('example.com', nil, nil, :SOCK_STREAM)
+                                            .and_return([Addrinfo.new(["AF_INET", 0, "example.com", "0.0.0.0"], :PF_INET, :SOCK_STREAM), Addrinfo.new(["AF_INET6", 0, "example.com", "2001:db8::face"], :PF_INET6, :SOCK_STREAM)])
+
         expect { subject.perform }.to raise_error Mastodon::ValidationError
       end
     end
