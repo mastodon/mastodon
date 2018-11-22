@@ -2,6 +2,7 @@
 
 require 'ipaddr'
 require 'socket'
+require 'resolv'
 
 class Request
   REQUEST_TARGET = '(request-target)'
@@ -141,19 +142,24 @@ class Request
       def open(host, *args)
         return super(host, *args) if thru_hidden_service?(host)
 
-        outer_e   = nil
-        addresses = Addrinfo.getaddrinfo(host, nil, nil, :SOCK_STREAM).take(2)
-        time_slot = 10.0 / addresses.size
+        outer_e = nil
 
-        addresses.each do |address|
-          begin
-            raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(IPAddr.new(address.ip_address))
+        Resolv::DNS.open do |dns|
+          dns.timeouts = 1
 
-            ::Timeout.timeout(time_slot, HTTP::TimeoutError) do
-              return super(address.ip_address, *args)
+          addresses = dns.getaddresses(host).take(2)
+          time_slot = 10.0 / addresses.size
+
+          addresses.each do |address|
+            begin
+              raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(IPAddr.new(address.to_s))
+
+              ::Timeout.timeout(time_slot, HTTP::TimeoutError) do
+                return super(address.to_s, *args)
+              end
+            rescue => e
+              outer_e = e
             end
-          rescue => e
-            outer_e = e
           end
         end
 
