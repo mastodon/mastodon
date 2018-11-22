@@ -139,16 +139,21 @@ class Request
   class Socket < TCPSocket
     class << self
       def open(host, *args)
-        return super host, *args if thru_hidden_service? host
+        return super(host, *args) if thru_hidden_service?(host)
+
         outer_e = nil
+
         Addrinfo.foreach(host, nil, nil, :SOCK_STREAM) do |address|
           begin
-            raise Mastodon::HostValidationError if PrivateAddressCheck.private_address? IPAddr.new(address.ip_address)
-            return super address.ip_address, *args
+            raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(IPAddr.new(address.ip_address))
+            return super(address.ip_address, *args)
+          rescue HTTP::TimeoutError => e
+            raise e
           rescue => e
             outer_e = e
           end
         end
+
         raise outer_e if outer_e
       end
 
