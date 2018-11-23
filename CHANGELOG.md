@@ -3,6 +3,40 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [2.6.2] - 2018-11-23
+### Added
+
+- Add Page to whitelisted ActivityPub types (#9188)
+- Add 20px to column width in web UI (#9227)
+- Add amount of freed disk space in `tootctl media remove` (#9229, #9239, #9288)
+- Add "Show thread" link to self-replies (#9228)
+
+### Changed
+
+- Change order of Atom and RSS links so Atom is first (#9302)
+- Change Nginx configuration for Nanobox apps (#9310)
+- Change the follow action to appear instant in web UI (#9220)
+- Change how the ActiveRecord connection is instantiated in on_worker_boot (#9238)
+- Change `tootctl accounts cull` to always touch accounts so they can be skipped (#9293)
+- Change mime type comparison to ignore JSON-LD profile (#9179)
+
+### Fixed
+
+- Fix web UI crash when conversation has no last status (#9207)
+- Fix follow limit validator reporting lower number past threshold (#9230)
+- Fix form validation flash message color and input borders (#9235)
+- Fix invalid twitter:player cards being displayed (#9254)
+- Fix emoji update date being processed incorrectly (#9255)
+- Fix playing embed resetting if status is reloaded in web UI (#9270, #9275)
+- Fix web UI crash when favouriting a deleted status (#9272)
+- Fix intermediary arrays being created for hash maps (#9291)
+- Fix filter ID not being a string in REST API (#9303)
+
+### Security
+
+- Fix multiple remote account deletions being able to deadlock the database (#9292)
+- Fix HTTP connection timeout of 10s not being enforced (#9329)
+
 ## [2.6.1] - 2018-10-30
 ### Fixed
 
