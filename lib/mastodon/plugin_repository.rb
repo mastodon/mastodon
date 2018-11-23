@@ -40,6 +40,12 @@ module Mastodon
       # add assets to file for webpacker to pick up
       plugin.assets.each { |asset| config[:requires] << "require('../../../#{asset}');" }
 
+      # add folders to autoload paths
+      plugin.folders.each { |folder| ActiveSupport::Dependencies.autoload_paths << folder }
+
+      # add routes to application routes
+      plugin.routes.each { |routes| Rails.application.routes.prepend(&routes) }
+
       # call all generic actions associated with this plugin
       plugin.actions.map(&:call)
     end

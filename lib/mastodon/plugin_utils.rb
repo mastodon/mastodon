@@ -14,4 +14,8 @@ module PluginUtils
   def folders_in_directory(path)
     Dir.children(path_prefix(path)).each { |child| yield [relative_path_prefix(path), child].join('/') }
   end
+
+  def add_autoload_path(path)
+    ActiveSupport::Dependencies.autoload_paths << path
+  end
 end
