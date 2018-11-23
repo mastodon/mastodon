@@ -35,9 +35,7 @@ module Mastodon
 
     def configure_plugin(config, plugin)
       # add outlet and translation information
-      plugin.paths.each do |p|
-        config[p.type][p.name] = config[p.type][p.name] << "require('../../../#{p.path}')"
-      end
+      plugin.paths.each { |p| config[p.type][p.name] += Array("require('../../../#{p.path}')") }
 
       # add assets to file for webpacker to pick up
       plugin.assets.each { |asset| config[:requires] << "require('../../../#{asset}');" }
