@@ -7,7 +7,7 @@ module Mastodon
 
     def initialize!
       File.write 'app/javascript/packs/plugins.js', config[:requires].join("\n")
-      File.write 'app/javascript/mastodon/pluginConfig.js', ApplicationController.render(
+      File.write 'app/javascript/mastodon/plugin_config.js', ApplicationController.render(
         template: 'plugins/config',
         format: :js,
         assigns: config.slice(:outlets, :locales)

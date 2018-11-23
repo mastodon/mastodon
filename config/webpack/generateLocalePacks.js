@@ -41,7 +41,7 @@ locales.forEach(locale => {
 import messages from '../../app/javascript/mastodon/locales/${locale}.json';
 import localeData from ${JSON.stringify(localeDataPath)};
 import { setLocale } from '../../app/javascript/mastodon/locales';
-import { locales } from '../../app/javascript/mastodon/pluginConfig';
+import { locales } from '../../app/javascript/mastodon/plugin_config';
 if (locales.${locale}) {
   Object.assign(messages, ...locales.${locale});
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { outlets } from '../pluginConfig';
+import { outlets } from '../plugin_config';
 
 export default function Outlet(props = {}) {
   let outlet = outlets[props.name] || [];
