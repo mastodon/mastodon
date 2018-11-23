@@ -36,10 +36,7 @@ module Mastodon
     def configure_plugin(config, plugin)
       # add outlet and translation information
       plugin.paths.each do |p|
-        type = :"#{p.type}s"
-        name = p.name
-
-        config[type][p.name] = config[type][p.name] << "require('../../../#{p.path}')"
+        config[p.type][p.name] = config[p.type][p.name] << "require('../../../#{p.path}')"
       end
 
       # add assets to file for webpacker to pick up
