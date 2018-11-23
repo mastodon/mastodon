@@ -3,17 +3,14 @@
 module Mastodon
   module Plugins
     class <%= plugin_class_name %> < Mastodon::Plugin
+      # automatically loads files from this plugin directory
+      # all ruby files go under /app
+      # all assets (js, scss, and images) go under /assets
+      # all translation files go under /locales
+      initialize!
+
       # uncomment this line to prevent Mastodon from loading this plugin
       # disable!
-
-      # automatically load assets (js, scss, and various image types) under the /assets directory
-      use_assets
-
-      # automatically load translation files under the /locales directory
-      use_translations
-
-      # automatically load ruby classes under the /app directory
-      use_classes
     end
   end
 end
