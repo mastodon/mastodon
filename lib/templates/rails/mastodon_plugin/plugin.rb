@@ -11,6 +11,21 @@ module Mastodon
 
       # uncomment this line to prevent Mastodon from loading this plugin
       # disable!
+
+      # add a React component to the interface via an outlet
+      # use_outlet "assets/my-component.js", "outlet-name"
+
+      # add paths to the routes file
+      # use_routes do
+      #   get "api/v1/example", to: "api/examples#index"
+      # end
+
+      # add an extension to an existing class
+      # use_extension "ExistingClass" do
+      #   def hello_world
+      #     puts "hello world!"
+      #   end
+      # end
     end
   end
 end
