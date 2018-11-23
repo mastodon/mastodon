@@ -17,19 +17,22 @@ module Mastodon
     private
 
     def config
+      plugin_path    = "plugins/#{ENV.fetch('MASTODON_PLUGIN_SET', 'default')}/*/plugin.rb"
+      default_config = { outlets: Hash.new { [] }, locales: Hash.new { [] }, requires: [] }
+
       @config ||= Dir[plugin_path].reduce(default_config) do |config, file|
         path = File.dirname(file)
         name  = path.split('/').last
         klass = "Mastodon::Plugins::#{name.camelize}"
 
-        Dir.chdir(path) do
-          if load('plugin.rb') && Object.const_defined?(klass)
-            configure_plugin(config, klass.constantize)
-          else
-            Rails.logger.warn "Unable to install plugin #{name}; check that the plugin has a plugin.rb file which defines a class named '#{klass}'"
-          end
-          config
+        Dir.chdir(path) { load 'plugin.rb' }
+        if Object.const_defined?(klass)
+          configure_plugin(config, klass.constantize)
+        else
+          Rails.logger.warn "Unable to install plugin #{name}; check that the plugin has a plugin.rb file which defines a class named '#{klass}'"
         end
+
+        config
       end
     end
 
@@ -50,14 +53,6 @@ module Mastodon
 
       # call all generic actions associated with this plugin
       plugin.actions.map(&:call)
-    end
-
-    def plugin_path
-      "plugins/#{ENV.fetch('MASTODON_PLUGIN_SET', 'default')}/*/plugin.rb"
-    end
-
-    def default_config
-      { outlets: Hash.new { [] }, locales: Hash.new { [] }, requires: [] }
     end
   end
 end
