@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_16_184611) do
+ActiveRecord::Schema.define(version: 2018_11_23_115944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -389,6 +389,14 @@ ActiveRecord::Schema.define(version: 2018_11_16_184611) do
     t.bigint "size"
     t.datetime "captured_at"
     t.index ["database", "captured_at"], name: "index_pghero_space_stats_on_database_and_captured_at"
+  end
+
+  create_table "plugin_datas", force: :cascade do |t|
+    t.string "plugin_name", null: false
+    t.jsonb "plugin_data", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plugin_name"], name: "index_plugin_datas_on_plugin_name"
   end
 
   create_table "preview_cards", force: :cascade do |t|
