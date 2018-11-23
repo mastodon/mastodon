@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PluginUtils
   def path_prefix(path = '')
     "#{Dir.pwd}/#{path}"
