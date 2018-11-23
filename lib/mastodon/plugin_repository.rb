@@ -34,6 +34,8 @@ module Mastodon
     end
 
     def configure_plugin(config, plugin)
+      return if plugin.disabled
+
       # add outlet and translation information
       plugin.paths.each { |p| config[p.type][p.name] += Array("require('../../../#{p.path}')") }
 

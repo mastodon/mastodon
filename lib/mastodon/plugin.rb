@@ -11,12 +11,14 @@ module Mastodon
     @@folders = Set.new
     @@routes  = Set.new
     @@actions = Set.new
+    @@disabled = false
 
     cattr_reader :paths
     cattr_reader :assets
     cattr_reader :folders
     cattr_reader :routes
     cattr_reader :actions
+    cattr_reader :disabled
 
     def self.use_classes
       folders_in_directory('app') { |folder| @@folders.add(folder) }
@@ -47,6 +49,10 @@ module Mastodon
 
     def self.use_fabricator(name, &block)
       @@actions.add(proc { Fabricator(name, &block) }) unless Rails.env.test?
+    end
+
+    def self.disable!
+      @@disabled = true
     end
   end
 end
