@@ -18,7 +18,9 @@ id:
     nothing_here: Tidak ada apapun disini!
     people_followed_by: Orang yang diikuti %{name}
     people_who_follow: Orang-orang yang mengikuti %{name}
-    posts: Postingan
+    posts:
+      one: Toot
+      other: Toots
     unfollow: Berhenti mengikuti
   admin:
     accounts:
@@ -114,9 +116,7 @@ id:
       reported_account: Akun yang dilaporkan
       reported_by: Dilaporkan oleh
       resolved: Terseleseikan
-      silence_account: Akun yang didiamkan
       status: Status
-      suspend_account: Akun yang disuspen
       title: Laporan
       unresolved: Belum Terseleseikan
     settings:
@@ -184,7 +184,7 @@ id:
     '410': Halaman yang anda cari sudah tidak dapat ditemukan lagi.
     '422':
       content: Verifikasi keamanan gagal. Apa anda memblokir cookie?
-      title: Verifikasi keamanan gagal.
+      title: Verifikasi keamanan gagal
   exports:
     blocks: Anda blokir
     csv: CSV
@@ -206,9 +206,7 @@ id:
   generic:
     changes_saved_msg: Perubahan berhasil disimpan!
     save_changes: Simpan perubahan
-    validation_errors:
-      one: Ada yang tidak beres! Mohon tinjau error dibawah ini
-      other: Ada yang tidak beres! Mohon tinjau error dibawah ini
+    validation_errors: Ada yang tidak beres! Mohon tinjau error dibawah ini
   imports:
     preface: Anda bisa mengimpor data tertentu seperti orang-orang yang anda ikuti atau anda blokir di server ini, dari file yang dibuat oleh fitur expor di server lain.
     success: Data anda berhasil diupload dan akan diproses sesegera mungkin
@@ -223,7 +221,7 @@ id:
       too_many: Tidak dapat melampirkan lebih dari 4 file
   notification_mailer:
     digest:
-      body: 'Ini adalah ringkasan singkat yang anda lewatkan pada %{instance} sejak kunjungan terakhir anda pada %{since}:'
+      body: 'Ini adalah ringkasan singkat yang anda lewatkan pada sejak kunjungan terakhir anda pada %{since}:'
       mention: "%{name} menyebut anda di:"
       new_followers_summary:
         one: Anda mendapatkan satu pengikut baru! Hore!

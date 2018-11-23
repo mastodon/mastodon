@@ -48,6 +48,7 @@ ja:
       other: フォロワー
     following: フォロー中
     joined: "%{date} に登録"
+    link_verified_on: このリンクの所有権は %{date} に確認されました
     media: メディア
     moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
     network_hidden: この情報は利用できません
@@ -176,6 +177,7 @@ ja:
         create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
         create_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストに追加しました"
         demote_user: "%{name} さんが %{target} さんを降格しました"
+        destroy_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を削除しました"
         destroy_domain_block: "%{name} さんがドメイン %{target} のブロックを外しました"
         destroy_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストから外しました"
         destroy_status: "%{name} さんが %{target} さんの投稿を削除しました"
@@ -261,6 +263,8 @@ ja:
         title: 新規ドメインブロック
       reject_media: メディアファイルを拒否
       reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
+      reject_reports: レポートを拒否
+      reject_reports_hint: このドメインからのすべてのレポートを無視します。停止とは無関係です
       severities:
         noop: なし
         silence: サイレンス
@@ -344,9 +348,7 @@ ja:
       reported_by: 報告者
       resolved: 解決済み
       resolved_msg: レポートを解決済みにしました！
-      silence_account: アカウントをサイレンス
       status: ステータス
-      suspend_account: アカウントを停止
       title: レポート
       unassign: 担当を外す
       unresolved: 未解決
@@ -367,6 +369,9 @@ ja:
       hero:
         desc_html: フロントページに表示されます。サイズは600x100px以上推奨です。未設定の場合、インスタンスのサムネイルが使用されます
         title: ヒーローイメージ
+      mascot:
+        desc_html: 複数のページに表示されます。サイズは293x205px以上推奨です。未設定の場合、標準のマスコットが使用されます
+        title: マスコットイメージ
       peers_api_enabled:
         desc_html: 連合内でこのインスタンスが遭遇したドメインの名前
         title: 接続しているインスタンスのリストを公開する
@@ -460,7 +465,7 @@ ja:
     warning: このデータは気をつけて取り扱ってください。他の人と共有しないでください！
     your_token: アクセストークン
   auth:
-    agreement_html: 登録すると <a href="%{rules_path}">インスタンスのルール</a> と <a href="%{terms_path}">プライバシーポリシー</a> に従うことに同意したことになります。
+    agreement_html: 登録するをクリックすると <a href="%{rules_path}">インスタンスのルール</a> と <a href="%{terms_path}">プライバシーポリシー</a> に従うことに同意したことになります。
     change_password: パスワード
     confirm_email: メールアドレスの確認
     delete_account: アカウントの削除
@@ -527,7 +532,7 @@ ja:
     '500':
       content: もうしわけありませんが、なにかが間違っています。
       title: このページは正しくありません
-    noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodonネイティブアプリ</a>を探すことができます。
+    noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="%{apps_path}">Mastodonネイティブアプリ</a>を探すことができます。
   exports:
     archive_takeout:
       date: 日時
@@ -575,6 +580,7 @@ ja:
     resources: リソース
   generic:
     changes_saved_msg: 正常に変更されました！
+    copy: コピー
     save_changes: 変更を保存
     validation_errors:
       one: エラーが発生しました！ 以下のエラーを確認してください
@@ -915,8 +921,12 @@ ja:
       tips: 豆知識
       title: ようこそ、%{name} ！
   users:
+    follow_limit_reached: あなたは現在 %{limit} 人以上フォローできません
     invalid_email: メールアドレスが無効です
     invalid_otp_token: 二段階認証コードが間違っています
     otp_lost_help_html: どちらも使用できない場合、%{email} に連絡を取ると解決できるかもしれません
     seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
     signed_in_as: '下記でログイン中:'
+  verification:
+    explanation_html: <strong>プロフィール内のリンクの所有者であることを認証することができます</strong>。そのためにはリンクされたウェブサイトにMastodonプロフィールへのリンクが含まれている必要があります。リンクには<code>rel="me"</code>属性を<strong>必ず</strong>与えなければなりません。リンクのテキストについては重要ではありません。以下は例です：
+    verification: 認証

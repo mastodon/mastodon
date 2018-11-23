@@ -87,7 +87,7 @@ tr:
           suspend: Uzaklaştır
         title: Yeni domain bloğu
       reject_media: Ortam dosyalarını reddetme
-      reject_media_hint: Yerel olarak depolanmış ortam dosyalarını ve gelecekte indirilecek olanları reddeder. Uzaklaştırma için uygun değildir.
+      reject_media_hint: Yerel olarak depolanmış ortam dosyalarını ve gelecekte indirilecek olanları reddeder. Uzaklaştırma için uygun değildir
       severities:
         silence: Sustur
         suspend: Uzaklaştır
@@ -97,8 +97,8 @@ tr:
           one: Veritabanındaki bir hesap etkilendi
           other: Veritabanındaki %{count} hesap etkilendi
         retroactive:
-          silence: Bu domaindeki tüm hesapların üzerindeki susturulma işlemini kaldır.
-          suspend: Bu domaindeki tüm hesapların üzerindeki uzaklaştırma işlemini kaldır.
+          silence: Bu domaindeki tüm hesapların üzerindeki susturulma işlemini kaldır
+          suspend: Bu domaindeki tüm hesapların üzerindeki uzaklaştırma işlemini kaldır
         title: "%{domain} domain'i için yapılan işlemi geri al"
         undo: Geri al
       title: Domain Blokları
@@ -115,9 +115,7 @@ tr:
       reported_account: Şikayet edilen hesap
       reported_by: Şikayet eden
       resolved: Giderildi
-      silence_account: Hesabı sustur
       status: Durum
-      suspend_account: Hesabı uzaklaştır
       title: Şikayetler
       unresolved: Giderilmedi
     settings:
@@ -126,7 +124,7 @@ tr:
         username: Bir kullanıcı adı giriniz
       registrations:
         closed_message:
-          desc_html: Kayıt alımları kapatıldığında ana sayfada görüntülenecek mesajdır. <br> HTML etiketleri kullanabilirsiniz.
+          desc_html: Kayıt alımları kapatıldığında ana sayfada görüntülenecek mesajdır. <br> HTML etiketleri kullanabilirsiniz
           title: Kayıt alımları kapatılma mesajı
         open:
           title: Kayıt alımları
@@ -134,7 +132,7 @@ tr:
         desc_html: Ana sayfada paragraf olarak görüntülenecek bilgidir.<br>Özellikle <code>&lt;a&gt;</code> ve <code>&lt;em&gt;</code> olmak suretiyle HTML etiketlerini kullanabilirsiniz.
         title: Site açıklaması
       site_description_extended:
-        desc_html: Harici bilgi sayfasında gösterilir.<br>HTML etiketleri girebilirsiniz.
+        desc_html: Harici bilgi sayfasında gösterilir.<br>HTML etiketleri girebilirsiniz
         title: Sunucu hakkında detaylı bilgi
       site_title: Site başlığı
       title: Site Ayarları
@@ -162,7 +160,7 @@ tr:
     security: Kimlik bilgileri
     set_new_password: Yeni parola oluştur
   authorize_follow:
-    error: Uzak hesap aranırken bir hata oluştu.
+    error: Uzak hesap aranırken bir hata oluştu
     follow: Takip et
     title: "%{acct}'i takip et"
   datetime:
@@ -220,11 +218,11 @@ tr:
     upload: Yükle
   media_attachments:
     validations:
-      images_and_video: Halihazırda görsel içeren bir gönderiye video ekleyemezsiniz.
+      images_and_video: Halihazırda görsel içeren bir gönderiye video ekleyemezsiniz
       too_many: 4'ten fazla dosya ekleyemezsiniz
   notification_mailer:
     digest:
-      body: 'Son ziyaretiniz olan %{since}''den beri %{instance}''da kaçırdığınız şeylerin özeti:'
+      body: 'Son ziyaretiniz olan %{since}''den beri''da kaçırdığınız şeylerin özeti:'
       mention: "%{name} senden bahsetti:"
       new_followers_summary:
         one: Yeni bir takipçiniz var!
@@ -287,7 +285,7 @@ tr:
       public: Herkese açık
       public_long: Herkese açık zaman tüneline gönder
       unlisted: Listelenmemiş
-      unlisted_long: Herkes görebilir fakat herkese açık zaman tünellerinde listelenmez.
+      unlisted_long: Herkes görebilir fakat herkese açık zaman tünellerinde listelenmez
   stream_entries:
     reblogged: boost edildi
     sensitive_content: Hassas içerik
@@ -299,7 +297,7 @@ tr:
     description_html: Eğer <strong>iki-faktörlü kimlik doğrulamayı</strong> aktif ederseniz, giriş yaparken sizin için giriş kodu üreten telefonunuza ihtiyaç duyacaksınız.
     disable: Devre dışı bırak
     enable: Aktifleştir
-    enabled_success: İki-faktörlü kimlik doğrulama başarıyla aktif edildi.
+    enabled_success: İki-faktörlü kimlik doğrulama başarıyla aktif edildi
     generate_recovery_codes: Kurtarma Kodlarını Oluştur
     instructions_html: <strong>Bu QR kodunu, telefonunuzdaki <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">Google Authenticator</a> veya benzer bir TOTP uygulamasıyla taratınız</strong>. Bundan sonra giriş yaparken uygulamanın ürettiği kodu kullanarak giriş yapacaksınız.
     lost_recovery_codes: Kurtarma kodları telefonunuzu kaybettiğiniz durumlarda hesabınıza erişim yapabilmenize olanak tanır. Eğer kurtarma kodlarınızı kaybettiyseniz burada tekrar oluşturabilirsiniz. Eski kurtarma kodlarınız geçersiz hale gelecektir.

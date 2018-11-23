@@ -8,22 +8,25 @@ ca:
         bot: Aquest compte realitza principalment accions automatitzades i pot no estar controlat per cap persona
         context: Un o diversos contextos on s'ha d'aplicar el filtre
         digest: Només s'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
-        display_name:
-          one: <span class="name-counter">1</span> càracter restant
-          other: <span class="name-counter">%{count}</span> càracters restans
+        email: Se t'enviarà un correu electrònic de confirmació
         fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
         header: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
+        inbox_url: Copia l'URL des de la pàgina principal del relay que vols utilitzar
         irreversible: Els nodes filtrats desapareixeran de manera irreversible, fins i tot si el filtre es retira més tard
         locale: El llenguatge de l’interfície d’usuari, els correus i les notificacions push
         locked: Requereix que aprovis manualment els seguidors
-        note:
-          one: <span class="note-counter">1</span> càracter restant
-          other: <span class="note-counter">%{count}</span> caràcters restants
+        password: Utilitza com a mínim 8 caràcters
         phrase: Es combinarà independentment del format en el text o l'avís de contingut d'un toot
+        scopes: A quines API es permetrà l'accés a l'aplicació. Si selecciones un àmbit d'alt nivell, no cal que seleccionis un d'individual.
         setting_default_language: La llengua dels teus toots pot ser detectada automàticament però no sempre acuradament
+        setting_display_media_default: Amaga els multimèdia marcats com a sensibles
+        setting_display_media_hide_all: Sempre oculta tots els multimèdia
+        setting_display_media_show_all: Mostra sempre els elements multimèdia marcats com a sensibles
         setting_hide_network: Qui tu segueixes i els que et segueixen a tu no es mostraran en el teu perfil
         setting_noindex: Afecta el teu perfil públic i les pàgines d'estat
         setting_theme: Afecta l'aspecte de Mastodon quan es visita des de qualsevol dispositiu.
+        username: El teu nom d'usuari serà únic a %{domain}
+        whole_word: Quan la paraula clau o la frase sigui només alfanumèrica, s'aplicarà si coincideix amb la paraula sencera
       imports:
         data: Fitxer CSV exportat des de una altra instància de Mastodon
       sessions:
@@ -50,6 +53,7 @@ ca:
         expires_in: Expira després
         fields: Metadades del perfil
         header: Capçalera
+        inbox_url: URL de la safata d'entrada del relay
         irreversible: Cau en lloc d'ocultar
         locale: Llengua de la interfície
         locked: Fes aquest compte privat
@@ -65,6 +69,11 @@ ca:
         setting_default_privacy: Privacitat de les publicacions
         setting_default_sensitive: Marca sempre els elements multimèdia com a sensibles
         setting_delete_modal: Mostra la finestra de confirmació abans de suprimir un toot
+        setting_display_media: Visualització multimèdia
+        setting_display_media_default: Per defecte
+        setting_display_media_hide_all: Amaga-ho tot
+        setting_display_media_show_all: Mostra-ho tot
+        setting_expand_spoilers: Sempre amplia els toots marcats amb advertències de contingut
         setting_hide_network: Amaga la teva xarxa
         setting_noindex: Desactivació de la indexació del motor de cerca
         setting_reduce_motion: Redueix el moviment en animacions
@@ -75,6 +84,7 @@ ca:
         type: Importa el tipus
         username: Nom d'usuari
         username_or_email: Nom d'usuari o adreça electrònica
+        whole_word: Paraula sencera
       interactions:
         must_be_follower: Blocar les notificacions de persones que no et segueixen
         must_be_following: Bloca les notificacions de persones que no segueixes
@@ -86,6 +96,7 @@ ca:
         follow_request: Envia un correu electrònic si algú sol·licita seguir-te
         mention: Envia un correu electrònic si algú et menciona
         reblog: Envia un correu electrònic si algú comparteix el teu estat
+        report: Envia un correu electrònic quan s'enviï un nou informe
     'no': 'No'
     required:
       mark: "*"

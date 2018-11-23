@@ -15,7 +15,7 @@ RSpec.describe Api::SalmonController, type: :controller do
   describe 'POST #update' do
     context 'with valid post data' do
       before do
-        post :update, params: { id: account.id }, body: File.read(File.join(Rails.root, 'spec', 'fixtures', 'salmon', 'mention.xml'))
+        post :update, params: { id: account.id }, body: File.read(Rails.root.join('spec', 'fixtures', 'salmon', 'mention.xml'))
       end
 
       it 'contains XML in the request body' do
@@ -54,7 +54,7 @@ RSpec.describe Api::SalmonController, type: :controller do
         service = double(call: false)
         allow(VerifySalmonService).to receive(:new).and_return(service)
 
-        post :update, params: { id: account.id }, body: File.read(File.join(Rails.root, 'spec', 'fixtures', 'salmon', 'mention.xml'))
+        post :update, params: { id: account.id }, body: File.read(Rails.root.join('spec', 'fixtures', 'salmon', 'mention.xml'))
       end
 
       it 'returns http client error' do

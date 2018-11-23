@@ -12,12 +12,12 @@ class BatchedRemoveStatusService < BaseService
   def call(statuses)
     statuses = Status.where(id: statuses.map(&:id)).includes(:account, :stream_entry).flat_map { |status| [status] + status.reblogs.includes(:account, :stream_entry).to_a }
 
-    @mentions = statuses.map { |s| [s.id, s.mentions.includes(:account).to_a] }.to_h
-    @tags     = statuses.map { |s| [s.id, s.tags.pluck(:name)] }.to_h
+    @mentions = statuses.each_with_object({}) { |s, h| h[s.id] = s.active_mentions.includes(:account).to_a }
+    @tags     = statuses.each_with_object({}) { |s, h| h[s.id] = s.tags.pluck(:name) }
 
     @stream_entry_batches  = []
     @salmon_batches        = []
-    @json_payloads         = statuses.map { |s| [s.id, Oj.dump(event: :delete, payload: s.id.to_s)] }.to_h
+    @json_payloads         = statuses.each_with_object({}) { |s, h| h[s.id] = Oj.dump(event: :delete, payload: s.id.to_s) }
     @activity_xml          = {}
 
     # Ensure that rendered XML reflects destroyed state
@@ -39,7 +39,6 @@ class BatchedRemoveStatusService < BaseService
     # Cannot be batched
     statuses.each do |status|
       unpush_from_public_timelines(status)
-      unpush_from_direct_timelines(status) if status.direct_visibility?
       batch_salmon_slaps(status) if status.local?
     end
 
@@ -93,16 +92,6 @@ class BatchedRemoveStatusService < BaseService
         redis.publish("timeline:hashtag:#{hashtag}", payload)
         redis.publish("timeline:hashtag:#{hashtag}:local", payload) if status.local?
       end
-    end
-  end
-
-  def unpush_from_direct_timelines(status)
-    payload = @json_payloads[status.id]
-    redis.pipelined do
-      @mentions[status.id].each do |mention|
-        redis.publish("timeline:direct:#{mention.account.id}", payload) if mention.account.local?
-      end
-      redis.publish("timeline:direct:#{status.account.id}", payload) if status.account.local?
     end
   end
 

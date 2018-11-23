@@ -1,6 +1,7 @@
 import {
   TIMELINE_UPDATE,
   TIMELINE_DELETE,
+  TIMELINE_CLEAR,
   TIMELINE_EXPAND_SUCCESS,
   TIMELINE_EXPAND_REQUEST,
   TIMELINE_EXPAND_FAIL,
@@ -86,6 +87,10 @@ const deleteStatus = (state, id, accountId, references) => {
   return state;
 };
 
+const clearTimeline = (state, timeline) => {
+  return state.updateIn([timeline, 'items'], list => list.clear());
+};
+
 const filterTimelines = (state, relationship, statuses) => {
   let references;
 
@@ -126,6 +131,8 @@ export default function timelines(state = initialState, action) {
     return updateTimeline(state, action.timeline, fromJS(action.status));
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.accountId, action.references, action.reblogOf);
+  case TIMELINE_CLEAR:
+    return clearTimeline(state, action.timeline);
   case ACCOUNT_BLOCK_SUCCESS:
   case ACCOUNT_MUTE_SUCCESS:
     return filterTimelines(state, action.relationship, action.statuses);

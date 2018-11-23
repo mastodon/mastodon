@@ -8,24 +8,24 @@ gl:
         bot: Esta conta realiza principalmente accións automatizadas e podería non estar monitorizada
         context: Un ou varios contextos onde se debería aplicar o filtro
         digest: Enviar só tras un longo período de inactividade e só si recibeu algunha mensaxe personal na súa ausencia
-        display_name:
-          one: <span class="name-counter">1</span> caracter restante
-          other: <span class="name-counter">%{count}</span> caracteres restantes
+        email: Enviaráselle un correo-e de confirmación
         fields: Pode ter ate 4 elementos no seu perfil mostrados como unha táboa
         header: PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
         inbox_url: Copiar o URL desde a páxina de inicio do repetidor que quere utilizar
         irreversible: Os toots filtrados desaparecerán de xeito irreversible, incluso si despois se elimina o filtro
         locale: O idioma da interface de usuaria, correos e notificacións
         locked: Require que vostede acepte as seguidoras de xeito manual
-        note:
-          one: <span class="note-counter">1</span> caracter restante
-          other: <span class="note-counter">%{count}</span> caracteres restantes
+        password: Utilice 8 caracteres ao menos
         phrase: Concordará independentemente das maiúsculas ou avisos de contido no toot
         scopes: A que APIs terá acceso a aplicación. Si selecciona un ámbito de alto nivel, non precisa seleccionar elementos individuais.
         setting_default_language: Pódese detectar automáticamente o idioma dos seus toots, mais non sempre é preciso
+        setting_display_media_default: Ocultar medios marcados como sensibles
+        setting_display_media_hide_all: Ocultar sempre os medios
+        setting_display_media_show_all: Mostrar sempre os medios marcados como sensibles
         setting_hide_network: Non se mostrará no seu perfil quen a segue e quen a está a seguir
         setting_noindex: Afecta ao seu perfil público e páxinas de estado
         setting_theme: Afecta ao aspecto de Mastodon en calquer dispositivo cando está conectada.
+        username: O seu nome de usuaria será único en %{domain}
         whole_word: Si a chave ou frase de paso é só alfanumérica, só se aplicará si concorda a palabra completa
       imports:
         data: Ficheiro CSV exportado desde outra instancia Mastodon
@@ -69,6 +69,11 @@ gl:
         setting_default_privacy: Intimidade da publicación
         setting_default_sensitive: Marcar sempre multimedia como sensible
         setting_delete_modal: Solicitar confirmación antes de eliminar unha mensaxe
+        setting_display_media: Mostrar medios
+        setting_display_media_default: Por omisión
+        setting_display_media_hide_all: Ocultar todo
+        setting_display_media_show_all: Mostrar todo
+        setting_expand_spoilers: Despregar sempre as mensaxes marcadas con avisos de contido
         setting_hide_network: Agochar a súa rede
         setting_noindex: Pedir non aparecer nas buscas dos motores de busca
         setting_reduce_motion: Reducir o movemento nas animacións

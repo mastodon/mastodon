@@ -11,7 +11,7 @@ class AddReblogsToFollows < ActiveRecord::Migration[5.1]
       add_column_with_default :follow_requests, :show_reblogs, :boolean, default: true, allow_null: false
     end
   end
-  
+
   def down
     remove_column :follows, :show_reblogs
     remove_column :follow_requests, :show_reblogs

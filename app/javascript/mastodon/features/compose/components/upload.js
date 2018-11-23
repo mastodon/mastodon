@@ -14,6 +14,10 @@ const messages = defineMessages({
 export default @injectIntl
 class Upload extends ImmutablePureComponent {
 
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
     intl: PropTypes.object.isRequired,
@@ -37,14 +41,16 @@ class Upload extends ImmutablePureComponent {
 
   handleSubmit = () => {
     this.handleInputBlur();
-    this.props.onSubmit();
+    this.props.onSubmit(this.context.router.history);
   }
 
-  handleUndoClick = () => {
+  handleUndoClick = e => {
+    e.stopPropagation();
     this.props.onUndo(this.props.media.get('id'));
   }
 
-  handleFocalPointClick = () => {
+  handleFocalPointClick = e => {
+    e.stopPropagation();
     this.props.onOpenFocalPoint(this.props.media.get('id'));
   }
 
@@ -61,6 +67,10 @@ class Upload extends ImmutablePureComponent {
   }
 
   handleInputFocus = () => {
+    this.setState({ focused: true });
+  }
+
+  handleClick = () => {
     this.setState({ focused: true });
   }
 
@@ -84,7 +94,7 @@ class Upload extends ImmutablePureComponent {
     const y = ((focusY / -2) + .5) * 100;
 
     return (
-      <div className='compose-form__upload' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <div className='compose-form__upload' tabIndex='0' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} onClick={this.handleClick} role='button'>
         <Motion defaultStyle={{ scale: 0.8 }} style={{ scale: spring(1, { stiffness: 180, damping: 12 }) }}>
           {({ scale }) => (
             <div className='compose-form__upload-thumbnail' style={{ transform: `scale(${scale})`, backgroundImage: `url(${media.get('preview_url')})`, backgroundPosition: `${x}% ${y}%` }}>

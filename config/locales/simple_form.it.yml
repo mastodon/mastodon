@@ -8,24 +8,24 @@ it:
         bot: Questo account esegue principalmente operazioni automatiche e potrebbe non essere tenuto sotto controllo da una persona
         context: Uno o più contesti nei quali il filtro dovrebbe essere applicato
         digest: Inviata solo dopo un lungo periodo di inattività e solo se hai ricevuto qualche messaggio personale in tua assenza
-        display_name:
-          one: <span class="name-counter">1</span> carattere rimanente
-          other: <span class="name-counter">%{count}</span> caratteri rimanenti
+        email: Ti manderemo una email di conferma
         fields: Puoi avere fino a 4 voci visualizzate come una tabella sul tuo profilo
         header: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
         inbox_url: Copia la URL dalla pagina iniziale del ripetitore che vuoi usare
         irreversible: I toot filtrati scompariranno in modo irreversibile, anche se il filtro viene eliminato
         locale: La lingua dell'interfaccia utente, di email e notifiche push
         locked: Richiede che approvi i follower manualmente
-        note:
-          one: <span class="note-counter">1</span> carattere rimanente
-          other: <span class="note-counter">%{count}</span> caratteri rimanenti
+        password: Usa almeno 8 caratteri
         phrase: Il confronto sarà eseguito ignorando minuscole/maiuscole e i content warning
         scopes: A quali API l'applicazione potrà avere accesso. Se selezionate un ambito di alto livello, non c'è bisogno di selezionare quelle singole.
         setting_default_language: La lingua dei tuoi toot può essere individuata automaticamente, ma il risultato non è sempre accurato
+        setting_display_media_default: Nascondi media segnati come sensibili
+        setting_display_media_hide_all: Nascondi sempre tutti i media
+        setting_display_media_show_all: Nascondi sempre i media segnati come sensibili
         setting_hide_network: Chi segui e chi segue te non saranno mostrati sul tuo profilo
         setting_noindex: Ha effetto sul tuo profilo pubblico e sulle pagine degli status
         setting_theme: Ha effetto sul modo in cui Mastodon verrà visualizzato quando sarai collegato da qualsiasi dispositivo.
+        username: Il tuo nome utente sarà unico su %{domain}
         whole_word: Quando la parola chiave o la frase è solo alfanumerica, si applica solo se corrisponde alla parola intera
       imports:
         data: File CSV esportato da un'altra istanza di Mastodon
@@ -69,6 +69,11 @@ it:
         setting_default_privacy: Privacy dei post
         setting_default_sensitive: Segna sempre i media come sensibili
         setting_delete_modal: Mostra dialogo di conferma prima di eliminare un toot
+        setting_display_media: Visualizzazione dei media
+        setting_display_media_default: Predefinita
+        setting_display_media_hide_all: Nascondi tutti
+        setting_display_media_show_all: Mostra tutti
+        setting_expand_spoilers: Espandi sempre toot con content warning
         setting_hide_network: Nascondi la tua rete
         setting_noindex: Non indicizzare dai motori di ricerca
         setting_reduce_motion: Riduci movimento nelle animazioni

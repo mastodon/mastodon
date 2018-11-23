@@ -12,11 +12,15 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
   private
 
   def delete_person
-    SuspendAccountService.new.call(@account)
-    @account.destroy!
+    lock_or_return("delete_in_progress:#{@account.id}") do
+      SuspendAccountService.new.call(@account)
+      @account.destroy!
+    end
   end
 
   def delete_note
+    return if object_uri.nil?
+
     @status   = Status.find_by(uri: object_uri, account: @account)
     @status ||= Status.find_by(uri: @object['atomUri'], account: @account) if @object.is_a?(Hash) && @object['atomUri'].present?
 

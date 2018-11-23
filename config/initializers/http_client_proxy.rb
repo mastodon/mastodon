@@ -6,7 +6,7 @@ Rails.application.configure do
     raise "No proxy host" unless proxy.host
 
     host = proxy.host
-    host = host[1...-1] if host[0] == '[' #for IPv6 address
+    host = host[1...-1] if host[0] == '[' # for IPv6 address
     config.x.http_client_proxy[:proxy] = { proxy_address: host, proxy_port: proxy.port, proxy_username: proxy.user, proxy_password: proxy.password }.compact
   end
 

@@ -4,33 +4,33 @@ fr:
     hints:
       defaults:
         autofollow: Les personnes qui s’inscrivent grâce à l’invitation vous suivront automatiquement
-        avatar: Au format PNG, GIF ou JPG. 2 Mo maximum. Sera réduit à %{dimensions}px
+        avatar: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
         bot: Ce compte exécute principalement des actions automatisées et pourrait ne pas être surveillé
         context: Un ou plusieurs contextes où le filtre devrait s’appliquer
         digest: Uniquement envoyé après une longue période d’inactivité et uniquement si vous avez reçu des messages personnels pendant votre absence
-        display_name:
-          one: <span class="name-counter">1</span> caractère restant
-          other: <span class="name-counter">%{count}</span> caractères restants
+        email: Vous recevrez un courriel de confirmation
         fields: Vous pouvez avoir jusqu’à 4 éléments affichés en tant que tableau sur votre profil
-        header: Au format PNG, GIF ou JPG. 2 Mo maximum. Sera réduit à %{dimensions}px
+        header: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
         inbox_url: Copiez l’URL depuis la page d’accueil du relais que vous souhaitez utiliser
         irreversible: Les pouets filtrés disparaîtront irrémédiablement, même si le filtre est supprimé plus tard
         locale: La langue de l’interface, des courriels et des notifications
         locked: Vous devrez approuver chaque abonné⋅e et vos statuts ne s’afficheront qu’à vos abonné⋅es
-        note:
-          one: <span class="note-counter">1</span> caractère restant
-          other: <span class="note-counter">%{count}</span> caractères restants
+        password: Utilisez au moins 8 caractères
         phrase: Sera trouvé sans que la case ou l’avertissement de contenu du pouet soit pris en compte
         scopes: À quelles APIs l’application sera autorisée à accéder. Si vous sélectionnez un périmètre de haut-niveau, vous n’avez pas besoin de sélectionner les individuels.
         setting_default_language: La langue de vos pouets peut être détectée automatiquement, mais ça n’est pas toujours pertinent
+        setting_display_media_default: Masquer les supports marqués comme sensibles
+        setting_display_media_hide_all: Toujours masquer tous les médias
+        setting_display_media_show_all: Toujours afficher les médias marqués comme sensibles
         setting_hide_network: Ceux que vous suivez et ceux qui vous suivent ne seront pas affichés sur votre profil
         setting_noindex: Affecte votre profil public ainsi que vos statuts
         setting_theme: Affecte l’apparence de Mastodon quand vous êtes connecté·e depuis n’importe quel appareil.
+        username: Votre nom d’utilisateur sera unique sur %{domain}
         whole_word: Lorsque le mot-clef ou la phrase-clef est uniquement alphanumérique, ça sera uniquement appliqué s’il correspond au mot entier
       imports:
         data: Un fichier CSV généré par une autre instance de Mastodon
       sessions:
-        otp: 'Entrez le code d’authentification à deux facteurs généré par l''application de votre téléphone ou utilisez un de vos codes de récupération :'
+        otp: 'Entrez le code d’authentification à deux facteurs généré par l’application de votre téléphone ou utilisez un de vos codes de récupération :'
       user:
         chosen_languages: Lorsque coché, seuls les pouets dans les langues sélectionnées seront affichés sur les fils publics
     labels:
@@ -69,6 +69,11 @@ fr:
         setting_default_privacy: Confidentialité des statuts
         setting_default_sensitive: Toujours marquer les médias comme sensibles
         setting_delete_modal: Afficher une fenêtre de confirmation avant de supprimer un pouet
+        setting_display_media: Affichage des médias
+        setting_display_media_default: Défaut
+        setting_display_media_hide_all: Masquer tout
+        setting_display_media_show_all: Montrer tout
+        setting_expand_spoilers: Toujours développer les pouëts marqués d’un avertissement de contenu
         setting_hide_network: Cacher votre réseau
         setting_noindex: Demander aux moteurs de recherche de ne pas indexer vos informations personnelles
         setting_reduce_motion: Réduire la vitesse des animations
@@ -91,7 +96,7 @@ fr:
         follow_request: Envoyer un courriel lorsque quelqu’un demande à me suivre
         mention: Envoyer un courriel lorsque quelqu’un me mentionne
         reblog: Envoyer un courriel lorsque quelqu’un partage mes statuts
-        report: Envoyer un courriel lorsqu'un nouveau rapport est soumis
+        report: Envoyer un courriel lorsqu’un nouveau rapport est soumis
     'no': Non
     required:
       mark: "*"

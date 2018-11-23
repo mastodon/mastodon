@@ -4,28 +4,28 @@ co:
     hints:
       defaults:
         autofollow: Quelli·e chì s'arregistranu cù l'invitazione saranu autumaticamente abbunati·e à voi
-        avatar: Furmatu PNG, GIF o JPG. 2Mo o menu. Sarà ridottu à %{dimensions}px
+        avatar: Furmatu PNG, GIF o JPG. %{size} o menu. Sarà ridottu à %{dimensions}px
         bot: Stu contu hè autumatizatu è ùn hè forse micca survegliatu
         context: Cuntestu·i induve u filtru deve esse applicatu
         digest: Solu mandatu dopu à una longa perioda d’inattività, è solu s’elli ci sò novi missaghji diretti
-        display_name:
-          one: Ci ferma <span class="name-counter">1</span> caratteru
-          other: Ci fermanu <span class="name-counter">%{count}</span> caratteri
+        email: Avete da riceve un'e-mail di cunfirmazione
         fields: Pudete avè fin’à 4 elementi mustrati cum’un tavulone nant’à u vostru prufile
-        header: Furmatu PNG, GIF o JPG. 2Mo o menu. Sarà ridottu à %{dimensions}px
+        header: Furmatu PNG, GIF o JPG. %{size} o menu. Sarà ridottu à %{dimensions}px
         inbox_url: Cupiate l'URL di a pagina d'accolta di u ripetitore chì vulete utilizà
         irreversible: I statuti filtrati saranu sguassati di manera irreversibile, ancu s'ellu hè toltu u filtru
         locale: A lingua di l'interfaccia utilizatore, di l'e-mail è di e nutificazione push
         locked: Duvarete appruvà e dumande d’abbunamentu
-        note:
-          one: Ci ferma <span class="name-counter">1</span> caratteru
-          other: Ci fermanu <span class="name-counter">%{count}</span> caratteri
+        password: Ci volenu almenu 8 caratteri
         phrase: Sarà trovu senza primura di e maiuscule o di l'avertimenti
         scopes: L'API à quelle l'applicazione averà accessu. S'è voi selezziunate un parametru d'altu livellu, un c'hè micca bisognu di selezziunà quell'individuali.
         setting_default_language: A lingua di i vostri statuti pò esse induvinata autumaticamente, mà ùn marchja micca sempre bè
+        setting_display_media_default: Piattà i media marcati cum'è sensibili
+        setting_display_media_hide_all: Sempre piattà tutti i media
+        setting_display_media_show_all: Sempre affissà i media marcati cum'è sensibili
         setting_hide_network: I vostri abbunati è abbunamenti ùn saranu micca mustrati nant’à u vostru prufile
         setting_noindex: Tocca à u vostru prufile pubblicu è i vostri statuti
         setting_theme: Tocca à l’apparenza di Mastodon quandu site cunnettatu·a da qualch’apparechju.
+        username: U vostru cugnome sarà unicu nant'à %{domain}
         whole_word: Quandu a parolla o a frasa sana hè alfanumerica, sarà applicata solu s'ella currisponde à a parolla sana
       imports:
         data: Un fugliale CSV da un’altr’istanza di Mastodon
@@ -69,6 +69,11 @@ co:
         setting_default_privacy: Cunfidenzialità di i statuti
         setting_default_sensitive: Sempre cunsiderà media cum’è sensibili
         setting_delete_modal: Mustrà une cunfirmazione per toglie un statutu
+        setting_display_media: Affissera di i media
+        setting_display_media_default: Predefinitu
+        setting_display_media_hide_all: Piattà tuttu
+        setting_display_media_show_all: Affissà tuttu
+        setting_expand_spoilers: Sempre slibrà i statutu marcati cù un'avertimentu CW
         setting_hide_network: Piattà a vostra rete
         setting_noindex: Dumandà à i motori di ricerca internet d’un pudè micca esse truvatu·a cusì
         setting_reduce_motion: Fà chì l’animazione vanu più pianu

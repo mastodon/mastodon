@@ -4,28 +4,28 @@ de:
     hints:
       defaults:
         autofollow: Leute die sich über deine Einladung registrieren werden dir automatisch folgen
-        avatar: PNG, GIF oder JPG. Maximal %{size}. Wird auf 400×400 px herunterskaliert
+        avatar: PNG, GIF oder JPG. Maximal %{size}. Wird auf %{dimensions} px herunterskaliert
         bot: Dieses Konto führt lediglich automatisierte Aktionen durch und wird möglicherweise nicht überwacht
         context: Ein oder mehrere Aspekte, wo der Filter greifen soll
         digest: Wenn du lange Zeit inaktiv bist, wird dir eine Zusammenfassung von Erwähnungen in deiner Abwesenheit zugeschickt
-        display_name:
-          one: <span class="name-counter">1</span> Zeichen verbleibt
-          other: <span class="name-counter">%{count}</span> Zeichen verbleiben
+        email: Du wirst ein Bestätigungs-E-Mail erhalten
         fields: Du kannst bis zu 4 Elemente als Tabelle dargestellt auf deinem Profil anzeigen lassen
-        header: PNG, GIF oder JPG. Maximal %{size}. Wird auf 700×335 px herunterskaliert
+        header: PNG, GIF oder JPG. Maximal %{size}. Wird auf %{dimensions} px herunterskaliert
         inbox_url: Kopiere die URL von der Startseite des gewünschten Relays
         irreversible: Gefilterte Beiträge werden unwiderruflich gefiltert, selbst wenn der Filter später entfernt wurde
         locale: Die Sprache der Oberfläche, E-Mails und Push-Benachrichtigungen
         locked: Wer dir folgen möchte, muss um deine Erlaubnis bitten
-        note:
-          one: <span class="note-counter">1</span> Zeichen verbleibt
-          other: <span class="note-counter">%{count}</span> Zeichen verbleiben
+        password: Verwende mindestens 8 Zeichen
         phrase: Wird unabhängig vom umgebenen Text oder Inhaltswarnung eines Beitrags verglichen
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
         setting_default_language: Die Sprache der Beiträge kann automatisch erkannt werden, aber dies ist nicht immer genau
+        setting_display_media_default: Verstecke Medien, die als sensibel markiert sind
+        setting_display_media_hide_all: Alle Medien immer verstecken
+        setting_display_media_show_all: Medien, die als sensibel markiert sind, immer anzeigen
         setting_hide_network: Wem du folgst und wer dir folgt wird in deinem Profil nicht angezeigt
         setting_noindex: Betrifft dein öffentliches Profil und deine Beiträge
         setting_theme: Wirkt sich darauf aus, wie Mastodon aussieht, egal auf welchem Gerät du eingeloggt bist.
+        username: Dein Benutzer:innen-Name wird auf %{domain} nur einmal vorkommen
         whole_word: Wenn das Schlüsselwort oder -phrase nur Buchstaben und Zahlen enthält, wird es nur angewendet werden, wenn es dem ganzen Wort entspricht
       imports:
         data: CSV-Datei, die aus einer anderen Mastodon-Instanz exportiert wurde
@@ -69,6 +69,11 @@ de:
         setting_default_privacy: Beitragssichtbarkeit
         setting_default_sensitive: Medien immer als heikel markieren
         setting_delete_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag gelöscht wird
+        setting_display_media: Medien-Anzeige
+        setting_display_media_default: Standard
+        setting_display_media_hide_all: Alle verstecken
+        setting_display_media_show_all: Alle anzeigen
+        setting_expand_spoilers: Toots mit Inhaltswarnungen immer ausklappen
         setting_hide_network: Blende dein Netzwerk aus
         setting_noindex: Suchmaschinen-Indexierung verhindern
         setting_reduce_motion: Bewegung in Animationen verringern

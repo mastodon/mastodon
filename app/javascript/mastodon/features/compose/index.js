@@ -14,6 +14,7 @@ import SearchResultsContainer from './containers/search_results_container';
 import Outlet from '../../components/outlet';
 import { changeComposing } from '../../actions/compose';
 import elephantUIPlane from '../../../images/elephant_ui_plane.svg';
+import { mascot } from '../../initial_state';
 
 const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -109,7 +110,7 @@ class Compose extends React.PureComponent {
             <ComposeFormContainer />
             {multiColumn && (
               <div className='drawer__inner__mastodon'>
-                <img alt='' draggable='false' src={elephantUIPlane} />
+                <img alt='' draggable='false' src={mascot || elephantUIPlane} />
               </div>
             )}
           </div>}

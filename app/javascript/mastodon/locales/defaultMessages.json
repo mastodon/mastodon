@@ -309,6 +309,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Read more",
+        "id": "status.read_more"
+      },
+      {
         "defaultMessage": "Show more",
         "id": "status.show_more"
       },
@@ -345,6 +349,10 @@
       {
         "defaultMessage": "{name} boosted",
         "id": "status.reblogged_by"
+      },
+      {
+        "defaultMessage": "Show thread",
+        "id": "status.show_thread"
       }
     ],
     "path": "app/javascript/mastodon/components/status.json"
@@ -396,6 +404,14 @@
       {
         "defaultMessage": "Block",
         "id": "confirmations.block.confirm"
+      },
+      {
+        "defaultMessage": "Reply",
+        "id": "confirmations.reply.confirm"
+      },
+      {
+        "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
+        "id": "confirmations.reply.message"
       },
       {
         "defaultMessage": "Are you sure you want to block {name}?",
@@ -458,6 +474,15 @@
       }
     ],
     "path": "app/javascript/mastodon/features/account_timeline/containers/header_container.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "No toots here!",
+        "id": "empty_column.account_timeline"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account_timeline/index.json"
   },
   {
     "descriptors": [
@@ -564,6 +589,10 @@
       {
         "defaultMessage": "Don't feature on profile",
         "id": "account.unendorse"
+      },
+      {
+        "defaultMessage": "Add or Remove from lists",
+        "id": "account.add_or_remove_from_list"
       },
       {
         "defaultMessage": "Information below may reflect the user's profile incompletely.",
@@ -860,6 +889,14 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "Dismiss suggestion",
+        "id": "suggestions.dismiss"
+      },
+      {
+        "defaultMessage": "You might be interested in…",
+        "id": "suggestions.header"
+      },
       {
         "defaultMessage": "People",
         "id": "search_results.accounts"
@@ -1255,6 +1292,39 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Any of these",
+        "id": "hashtag.column_settings.tag_mode.any"
+      },
+      {
+        "defaultMessage": "All of these",
+        "id": "hashtag.column_settings.tag_mode.all"
+      },
+      {
+        "defaultMessage": "None of these",
+        "id": "hashtag.column_settings.tag_mode.none"
+      },
+      {
+        "defaultMessage": "Include additional tags in this column",
+        "id": "hashtag.column_settings.tag_toggle"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/hashtag_timeline/components/column_settings.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "or {additional}",
+        "id": "hashtag.column_header.tag_mode.any"
+      },
+      {
+        "defaultMessage": "and {additional}",
+        "id": "hashtag.column_header.tag_mode.all"
+      },
+      {
+        "defaultMessage": "without {additional}",
+        "id": "hashtag.column_header.tag_mode.none"
+      },
+      {
         "defaultMessage": "There is nothing in this hashtag yet.",
         "id": "empty_column.hashtag"
       }
@@ -1423,6 +1493,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/keyboard_shortcuts/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Remove from list",
+        "id": "lists.account.remove"
+      },
+      {
+        "defaultMessage": "Add to list",
+        "id": "lists.account.add"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/list_adder/components/list.json"
   },
   {
     "descriptors": [
@@ -1766,6 +1849,14 @@
       {
         "defaultMessage": "Detailed conversation view",
         "id": "status.detailed_status"
+      },
+      {
+        "defaultMessage": "Reply",
+        "id": "confirmations.reply.confirm"
+      },
+      {
+        "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
+        "id": "confirmations.reply.message"
       },
       {
         "defaultMessage": "Are you sure you want to block {name}?",
@@ -2116,6 +2207,10 @@
       {
         "defaultMessage": "Sensitive content",
         "id": "status.sensitive_warning"
+      },
+      {
+        "defaultMessage": "Media hidden",
+        "id": "status.media_hidden"
       },
       {
         "defaultMessage": "Click to view",

@@ -8,14 +8,14 @@ ja:
         bot: このアカウントは主に自動で動作し、人が見ていない可能性があります
         context: フィルターを適用する対象 (複数選択可)
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
-        display_name: あと<span class="name-counter">%{count}</span>文字入力できます。
+        email: 確認のメールが送信されます
         fields: プロフィールに表として4つまでの項目を表示することができます
         header: "%{size}までのPNG、GIF、JPGが利用可能です。 %{dimensions}pxまで縮小されます"
         inbox_url: 使用したいリレーサーバーのトップページからURLをコピーします
         irreversible: フィルターが後で削除されても、除外されたトゥートは元に戻せなくなります
         locale: ユーザーインターフェース、メールやプッシュ通知の言語
         locked: フォロワーを手動で承認する必要があります
-        note: あと<span class="note-counter">%{count}</span>文字入力できます。
+        password: 少なくとも8文字は入力してください
         phrase: トゥートの大文字小文字や閲覧注意に関係なく一致
         scopes: アプリの API に許可するアクセス権を選択してください。最上位のスコープを選択する場合、個々のスコープを選択する必要はありません。
         setting_default_language: トゥートの言語は自動的に検出されますが、必ずしも正確とは限りません
@@ -25,6 +25,7 @@ ja:
         setting_hide_network: フォローとフォロワーの情報がプロフィールページで見られないようにします
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
         setting_theme: ログインしている全てのデバイスで適用されるデザインです。
+        username: あなたのユーザー名は %{domain} の中で重複していない必要があります
         whole_word: キーワードまたはフレーズが英数字のみの場合、単語全体と一致する場合のみ適用されるようになります
       imports:
         data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
@@ -72,6 +73,7 @@ ja:
         setting_display_media_default: 標準
         setting_display_media_hide_all: 非表示
         setting_display_media_show_all: 表示
+        setting_expand_spoilers: 閲覧注意としてマークされたトゥートを常に展開する
         setting_hide_network: 繋がりを隠す
         setting_noindex: 検索エンジンによるインデックスを拒否する
         setting_reduce_motion: アニメーションの動きを減らす

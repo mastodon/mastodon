@@ -116,9 +116,7 @@ th:
       reported_account: รายงานแอคเคาท์
       reported_by: รายงานโดย
       resolved: จัดการแล้ว
-      silence_account: แอคเค๊าท์ที่ปิดเสียง
       status: สถานะ
-      suspend_account: แอคเค๊าท์ที่หยุดไว้
       title: รายงาน
       unresolved: Unresolved
     settings:
@@ -226,7 +224,7 @@ th:
       too_many: แนบมากกว่า 4 ไฟล์ไม่ได้
   notification_mailer:
     digest:
-      body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
+      body: Here is a brief summary of the messages you missed since your last visit on %{since}
       mention: "%{name} ส่งข้อความถึงคุณ:"
       new_followers_summary:
         one: ยินดีด้วยคุณได้ผู้ติดตามคนใหม่! Yay!

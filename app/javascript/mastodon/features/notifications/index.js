@@ -153,6 +153,7 @@ class Notifications extends React.PureComponent {
         scrollKey={`notifications-${columnId}`}
         trackScroll={!pinned}
         isLoading={isLoading}
+        showLoading={isLoading && notifications.size === 0}
         hasMore={hasMore}
         emptyMessage={emptyMessage}
         onLoadMore={this.handleLoadOlder}
