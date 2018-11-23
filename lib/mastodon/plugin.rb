@@ -14,22 +14,12 @@ module Mastodon
 
     private
 
-    def self.use_asset(path, outlet: nil)
-      path = path_prefix(path, relative: true)
-      assets.add path
-      paths.add NamedPath.new(outlet, path, :outlet) if outlet
+    def self.use_classes
+      @@actions.add(proc { Rails.application.paths.add relative_path_prefix, eager_load: true })
     end
 
-    def self.use_asset_directory(glob)
-      use_directory(glob) { |path| use_asset(path) }
-    end
-
-    def self.use_class(path)
-      actions.add(proc { require path_prefix path })
-    end
-
-    def self.use_class_directory(glob)
-      use_directory(glob) { |path| use_class(path) }
+    def self.use_assets
+      use_directory('assets', '{js,scss,jpg,jpeg,png,svg}') { |asset| assets.add(asset) }
     end
 
     # Add translation overrides
@@ -39,14 +29,18 @@ module Mastodon
     # module.exports = {
     #   "<translation_key>": "overriding value"
     # }
-    def self.use_translations(path)
-      use_directory(path) do |p|
+    def self.use_translations(path = 'locales')
+      use_directory('locales', 'js') do |p|
         @@paths.add NamedPath.new(
           p.split('/').last.gsub('.js', ''),
-          path_prefix(p, relative: true),
+          relative_path_prefix(p),
           :locale
         )
       end
+    end
+
+    def self.use_outlet(path, outlet)
+      paths.add NamedPath.new(outlet, relative_path_prefix(path), :outlet)
     end
 
     # Add an api route
@@ -66,21 +60,6 @@ module Mastodon
       actions.add(proc { const.constantize.class_eval(&block) })
     end
 
-    # Add a new table to the database
-    # example usage: `use_database_table(:examples) { |t| t.string :title }`
-    # ^^ create a new 'examples' table in the database which has timestamps
-    # NB: the block here is passed to create_table in a normal migration,
-    #     so you can use anything that create_table will accept here.
-    def self.use_database_table(table_name, &block)
-      return if ActiveRecord::Base.connection.table_exists?(table_name)
-
-      migration = ActiveRecord::Migration.new
-      def migration.up(table_name, &block)
-        create_table table_name.to_s.pluralize, &block
-      end
-      migration.up(table_name, &block)
-    end
-
     # Add a new fabricator for testing
     # example usage: `use_fabricator(:example) { title { "Example!" } }`
     # ^^ create a new fabricator for the Example class
@@ -89,14 +68,16 @@ module Mastodon
       actions.add(proc { Fabricator(name, &block) }) unless Rails.env.test?
     end
 
-    def self.path_prefix(path = nil, relative: false)
-      result = "#{Dir.pwd}/#{path}"
-      result = result.gsub(Rails.root.join('').to_s, '') if relative
-      result
+    def self.path_prefix(path = '')
+      "#{Dir.pwd}/#{path}"
     end
 
-    def self.use_directory(glob)
-      Dir.chdir(path_prefix) { Dir.glob("#{glob}/*.*").each { |path| yield path } }
+    def self.relative_path_prefix(path = '')
+      path_prefix(path).gsub(Rails.root.join('').to_s, '').delete_suffix('/').delete_prefix('/')
+    end
+
+    def self.use_directory(glob, ext)
+      Dir.chdir(path_prefix) { Dir.glob("#{glob}/*.#{ext}").each { |path| yield path } }
     end
   end
 end
