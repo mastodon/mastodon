@@ -1,0 +1,2 @@
+class PluginData < ApplicationRecord
+end
