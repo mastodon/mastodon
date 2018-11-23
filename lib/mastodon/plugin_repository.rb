@@ -20,7 +20,7 @@ module Mastodon
       plugin_path    = "plugins/#{ENV.fetch('MASTODON_PLUGIN_SET', 'default')}/*/plugin.rb"
       default_config = { outlets: Hash.new { [] }, locales: Hash.new { [] }, requires: [] }
 
-      @config ||= Dir[plugin_path].reduce(default_config) do |config, file|
+      @config ||= Dir[plugin_path].each_with_object(default_config) do |file, config|
         path = File.dirname(file)
         name  = path.split('/').last
         klass = "Mastodon::Plugins::#{name.camelize}"
@@ -31,8 +31,6 @@ module Mastodon
         else
           Rails.logger.warn "Unable to install plugin #{name}; check that the plugin has a plugin.rb file which defines a class named '#{klass}'"
         end
-
-        config
       end
     end
 
