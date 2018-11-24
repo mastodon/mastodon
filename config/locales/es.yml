@@ -260,11 +260,6 @@ es:
       reject_media_hint: Remueve localmente archivos multimedia almacenados para descargar cualquiera en el futuro. Irrelevante para suspensiones
       reject_reports: Rechazar informes
       reject_reports_hint: Ignore todos los reportes de este dominio. Irrelevante para suspensiones
-      severities:
-        noop: Ninguno
-        silence: Silenciar
-        suspend: Suspender
-      severity: Severidad
       show:
         affected_accounts:
           one: Una cuenta en la base de datos afectada
@@ -274,7 +269,6 @@ es:
           suspend: Des-suspender todas las cuentas existentes de este dominio
         title: Deshacer bloque de dominio para %{domain}
         undo: Deshacer
-      title: Bloques de Dominio
       undo: Deshacer
     email_domain_blocks:
       add_new: Añadir nuevo
@@ -287,10 +281,6 @@ es:
         title: Nueva entrada en la lista negra de correo
       title: Lista negra de correo
     instances:
-      account_count: Cuentas conocidas
-      domain_name: Dominio
-      reset: Reiniciar
-      search: Buscar
       title: Instancias conocidas
     invites:
       deactivate_all: Desactivar todos

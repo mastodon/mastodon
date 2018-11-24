@@ -260,11 +260,6 @@ it:
       reject_media_hint: Rimuovi i file media salvati in locale e blocca i download futuri. Irrilevante per le sospensioni
       reject_reports: Respingi rapporti
       reject_reports_hint: Ignora tutti i rapporti provenienti da questo dominio. Irrilevante per sospensioni
-      severities:
-        noop: Nessuno
-        silence: Silenzia
-        suspend: Sospendi
-      severity: Severità
       show:
         affected_accounts:
           one: Interessato un solo account nel database
@@ -274,7 +269,6 @@ it:
           suspend: Annulla la sospensione di tutti gli account esistenti da questo dominio
         title: Annulla il blocco del dominio per %{domain}
         undo: Annulla
-      title: Blocchi dominio
       undo: Annulla
     email_domain_blocks:
       add_new: Aggiungi nuovo
@@ -287,10 +281,6 @@ it:
         title: Nuova voce della lista nera delle email
       title: Lista nera email
     instances:
-      account_count: Accounts conosciuti
-      domain_name: Dominio
-      reset: Reimposta
-      search: Cerca
       title: Istanze conosciute
     invites:
       deactivate_all: Disattiva tutto

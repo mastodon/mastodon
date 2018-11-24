@@ -213,11 +213,6 @@ sv:
         title: Nytt domänblock
       reject_media: Avvisa mediafiler
       reject_media_hint: Raderar lokalt lagrade mediefiler och förhindrar möjligheten att ladda ner något i framtiden. Irrelevant för suspensioner
-      severities:
-        noop: Ingen
-        silence: Tysta ner
-        suspend: Suspendera
-      severity: Svårighet
       show:
         affected_accounts:
           one: Ett konto i databasen drabbades
@@ -227,7 +222,6 @@ sv:
           suspend: Ta bort suspendering från alla befintliga konton på den här domänen
         title: Ångra domänblockering för %{domain}
         undo: Ångra
-      title: Domänblockering
       undo: Ångra
     email_domain_blocks:
       add_new: Lägg till ny
@@ -240,10 +234,6 @@ sv:
         title: Ny E-postdomänblocklistningsinmatning
       title: E-postdomänblock
     instances:
-      account_count: Kända konton
-      domain_name: Domän
-      reset: Återställa
-      search: Sök
       title: Kända instanser
     invites:
       filter:

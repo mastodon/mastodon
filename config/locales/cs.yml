@@ -269,11 +269,6 @@ cs:
       reject_media_hint: Odstraní lokálně uložené soubory a odmítne jejich stažení v budoucnosti. Irelevantní pro suspenzace
       reject_reports: Odmítnout nahlášení
       reject_reports_hint: Ignorovat všechna nahlášení pocházející z této domény. Nepodstatné pro suspenzace
-      severities:
-        noop: Žádné
-        silence: Utišit
-        suspend: Suspendovat
-      severity: Přísnost
       show:
         affected_accounts:
           few: "%{count} účty v databázi byly ovlivněny"
@@ -284,7 +279,6 @@ cs:
           suspend: Zrušit suspenzaci všech existujících účtů z této domény
         title: Zrušit blokaci domény %{domain}
         undo: Odvolat
-      title: Doménové blokace
       undo: Odvolat
     email_domain_blocks:
       add_new: Přidat nový
@@ -297,10 +291,6 @@ cs:
         title: Nový e-mail pro zablokování
       title: Černá listina e-mailů
     instances:
-      account_count: Známé účty
-      domain_name: Doména
-      reset: Resetovat
-      search: Hledat
       title: Známé instance
     invites:
       deactivate_all: Deaktivovat vše
