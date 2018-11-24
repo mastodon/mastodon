@@ -95,7 +95,6 @@ module Admin
         :remote,
         :by_domain,
         :silenced,
-        :alphabetic,
         :suspended,
         :username,
         :display_name,
