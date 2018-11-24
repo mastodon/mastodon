@@ -18,7 +18,7 @@ class TrendingTags
     def get(limit)
       key     = "#{KEY}:#{Time.now.utc.beginning_of_day.to_i}"
       tag_ids = redis.zrevrange(key, 0, limit - 1).map(&:to_i)
-      tags    = Tag.where(id: tag_ids).to_a.map { |tag| [tag.id, tag] }.to_h
+      tags    = Tag.where(id: tag_ids).to_a.each_with_object({}) { |tag, h| h[tag.id] = tag }
       tag_ids.map { |tag_id| tags[tag_id] }.compact
     end
 
