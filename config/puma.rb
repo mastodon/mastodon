@@ -13,7 +13,9 @@ workers     ENV.fetch('WEB_CONCURRENCY') { 2 }
 preload_app!
 
 on_worker_boot do
-  ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
+  ActiveSupport.on_load(:active_record) do
+    ActiveRecord::Base.establish_connection
+  end
 end
 
 plugin :tmp_restart
