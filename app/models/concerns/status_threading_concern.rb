@@ -86,9 +86,6 @@ module StatusThreadingConcern
 
     # Order ancestors/descendants by tree path
     statuses.sort_by! { |status| ids.index(status.id) }
-
-    # Bring self-replies to the top
-    statuses.sort_by! { |status| status.in_reply_to_account_id == status.account_id ? -1 : 0 }
   end
 
   def relations_map_for_account(account, account_ids, domains)
