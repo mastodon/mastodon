@@ -146,18 +146,18 @@ sk:
       redownload: Obnoviť avatar
       remove_avatar: Odstrániť avatár
       resend_confirmation:
-        already_confirmed: Tento používateľ už bol potvrdený
-        send: Znova odoslať potvrdzovací e-mail
-        success: Potvrdený e-mail bol úspešne odoslaný!
-      reset: Reset
-      reset_password: Obnoviť heslo
+        already_confirmed: Tento užívateľ už je potvrdený
+        send: Znovu odoslať potvrdzovací email
+        success: Potvrdzujúci email bol úspešne odoslaný!
+      reset: Resetuj
+      reset_password: Obnov heslo
       resubscribe: Znovu odoberať
       role: Oprávnenia
       roles:
         admin: Administrátor
         moderator: Moderátor
         staff: Člen
-        user: Používateľ
+        user: Užívateľ
       salmon_url: Salmon adresa
       search: Hľadať
       shared_inbox_url: URL zdieľanej schránky
@@ -479,7 +479,7 @@ sk:
       confirmed: Potvrdené
       expires_in: Vyprší do
       last_delivery: Posledné doručenie
-      title: WebSub
+      title: WebSubskripcie
       topic: Téma
     suspensions:
       bad_acct_msg: Hodnota pre potvrdenie sa nezhoduje. Si si istý/á že zamrazuješ
@@ -650,10 +650,10 @@ sk:
     resources: Podklady
   generic:
     changes_saved_msg: Zmeny boli úspešne uložené!
-    save_changes: Uložiť zmeny
+    save_changes: Ulož zmeny
     validation_errors:
       few: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetky %{count} chyby
-      one: Niečo nieje úplne v poriadku! Prosím skontroluj chybu
+      one: Niečo nieje úplne v poriadku! Prosím skontroluj danú chybu
       other: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetkých %{count}
         chýb
     copy: Kopírovať
@@ -841,7 +841,7 @@ sk:
     disallowed_hashtags:
       one: 'obsahoval nepovolený hashtag: %{tags}'
       other: 'obsahoval nepovolené hashtagy: %{tags}'
-    language_detection: Zisti jazyk automaticky
+    language_detection: Jazyk zisti automaticky
     open_in_web: Otvor v okne prehliadača
     over_character_limit: limit počtu %{max} znakov bol presiahnutý
     pin_errors:
