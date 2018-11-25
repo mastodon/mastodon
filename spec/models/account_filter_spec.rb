@@ -17,23 +17,6 @@ describe AccountFilter do
     end
   end
 
-  describe 'when an IP address is provided' do
-    it 'filters with IP when valid' do
-      filter = described_class.new(ip: '127.0.0.1')
-      allow(User).to receive(:with_recent_ip_address).and_return(User.none)
-
-      filter.results
-      expect(User).to have_received(:with_recent_ip_address).with('127.0.0.1')
-    end
-
-    it 'skips IP when invalid' do
-      filter = described_class.new(ip: '345.678.901.234')
-      expect(User).not_to receive(:with_recent_ip_address)
-
-      filter.results
-    end
-  end
-
   describe 'with valid params' do
     it 'combines filters on Account' do
       filter = described_class.new(
