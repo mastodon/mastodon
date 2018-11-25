@@ -94,6 +94,7 @@ module Admin
         :local,
         :remote,
         :by_domain,
+        :active,
         :silenced,
         :suspended,
         :username,

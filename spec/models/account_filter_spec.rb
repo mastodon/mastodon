@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe AccountFilter do
   describe 'with empty params' do
-    it 'defaults to recent account list' do
+    it 'defaults to recent local not-suspended account list' do
       filter = described_class.new({})
 
-      expect(filter.results).to eq Account.recent
+      expect(filter.results).to eq Account.local.recent.without_suspended
     end
   end
 
@@ -60,13 +60,13 @@ describe AccountFilter do
     end
 
     describe 'that call account methods' do
-      %i(local remote silenced alphabetic suspended).each do |option|
+      %i(local remote silenced suspended).each do |option|
         it "delegates the #{option} option" do
           allow(Account).to receive(option).and_return(Account.none)
           filter = described_class.new({ option => true })
           filter.results
 
-          expect(Account).to have_received(option)
+          expect(Account).to have_received(option).at_least(1)
         end
       end
     end
