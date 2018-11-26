@@ -5,19 +5,25 @@ class AccountFilter
 
   def initialize(params)
     @params = params
+    set_defaults!
   end
 
   def results
-    scope = Account.recent
+    scope = Account.recent.includes(:user)
 
     params.each do |key, value|
-      scope.merge!(scope_for(key, value)) if value.present?
+      scope.merge!(scope_for(key, value.to_s.strip)) if value.present?
     end
 
     scope
   end
 
   private
+
+  def set_defaults!
+    params['local']  = '1' if params['remote'].blank?
+    params['active'] = '1' if params['suspended'].blank? && params['silenced'].blank?
+  end
 
   def scope_for(key, value)
     case key.to_s
@@ -27,10 +33,10 @@ class AccountFilter
       Account.remote
     when 'by_domain'
       Account.where(domain: value)
+    when 'active'
+      Account.without_suspended
     when 'silenced'
       Account.silenced
-    when 'alphabetic'
-      Account.reorder(nil).alphabetic
     when 'suspended'
       Account.suspended
     when 'username'
@@ -40,11 +46,7 @@ class AccountFilter
     when 'email'
       accounts_with_users.merge User.matches_email(value)
     when 'ip'
-      if valid_ip?(value)
-        accounts_with_users.merge User.with_recent_ip_address(value)
-      else
-        Account.default_scoped
-      end
+      valid_ip?(value) ? accounts_with_users.where('users.current_sign_in_ip <<= ?', value) : Account.none
     when 'staff'
       accounts_with_users.merge User.staff
     else
@@ -57,8 +59,7 @@ class AccountFilter
   end
 
   def valid_ip?(value)
-    IPAddr.new(value)
-    true
+    IPAddr.new(value) && true
   rescue IPAddr::InvalidAddressError
     false
   end

@@ -123,6 +123,7 @@ class Account < ApplicationRecord
   scope :suspended, -> { where(suspended: true) }
   scope :without_suspended, -> { where(suspended: false) }
   scope :recent, -> { reorder(id: :desc) }
+  scope :bots, -> { where(actor_type: %w(Application Service)) }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
   scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
   scope :matches_username, ->(value) { where(arel_table[:username].matches("#{value}%")) }
