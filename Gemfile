@@ -15,7 +15,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.5'
 
-gem 'aws-sdk-s3', '~> 1.24', require: false
+gem 'aws-sdk-s3', '~> 1.25', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -76,9 +76,9 @@ gem 'sanitize', '~> 5.0'
 gem 'sidekiq', '~> 5.2'
 gem 'sidekiq-scheduler', '~> 3.0'
 gem 'sidekiq-unique-jobs', '~> 5.0'
-gem 'sidekiq-bulk', '~>0.1.1'
+gem 'sidekiq-bulk', '~>0.2.0'
 gem 'simple-navigation', '~> 4.0'
-gem 'simple_form', '~> 4.0'
+gem 'simple_form', '~> 4.1'
 gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.1.3'
 gem 'strong_migrations', '~> 0.3'
