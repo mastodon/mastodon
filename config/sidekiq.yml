@@ -36,3 +36,6 @@
   pghero_scheduler:
     cron: '0 0 * * *'
     class: Scheduler::PgheroScheduler
+  deletion_scheduler:
+    cron: '<%= Random.rand(0..59) %> <%= Random.rand(0..23) %> * * *'
+    class: Scheduler::DeletionScheduler

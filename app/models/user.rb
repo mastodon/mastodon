@@ -70,6 +70,7 @@ class User < ApplicationRecord
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
   has_many :backups, inverse_of: :user
+  has_one :deletion_schedule, dependent: :destroy
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?
