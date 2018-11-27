@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_16_184611) do
+ActiveRecord::Schema.define(version: 2018_11_27_130500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -235,7 +235,7 @@ ActiveRecord::Schema.define(version: 2018_11_16_184611) do
     t.index ["target_account_id"], name: "index_follows_on_target_account_id"
   end
 
-  create_table "identities", id: :serial, force: :cascade do |t|
+  create_table "identities", force: :cascade do |t|
     t.integer "user_id"
     t.string "provider", default: "", null: false
     t.string "uid", default: "", null: false
