@@ -1,73 +1,68 @@
+---
 sl:
   about:
-    about_hashtag_html: To so javni tuti, označeni z <strong>#%{hashtag}</strong>.
-      Z njimi se lahko povežete, če imate račun kjerkoli v fediversu.
-    about_mastodon_html: Mastodon je socialno omrežje, ki temelji na odprtih spletnih
-      protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran,
-      kot e-pošta.
+    about_hashtag_html: To so javni tuti, označeni z <strong>#%{hashtag}</strong>. Z njimi se lahko povežete, če imate račun kjerkoli v fediversu.
+    about_mastodon_html: Mastodon je socialno omrežje, ki temelji na odprtih spletnih protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran, kot e-pošta.
     about_this: O Mastodonu
     administered_by: 'Upravlja:'
     api: API
     apps: Mobilne aplikacije
-    closed_registrations: Registracije so trenutno zaprte na tem vozlišču. Vendar!
-      Tukaj lahko najdete druga vozlišča, na katerih se prijavite in dostopate do
-      istega omrežja od tam.
+    closed_registrations: Registracije so trenutno zaprte na tem vozlišču. Vendar! Tukaj lahko najdete druga vozlišča, na katerih se prijavite in dostopate do istega omrežja od tam.
     contact: Kontakt
     contact_missing: Ni nastavljeno
     contact_unavailable: Ni na voljo
     documentation: Dokumentacija
-    extended_description_html: '<h3>Dober prostor za pravila</h3>
-
+    extended_description_html: |
+      <h3>Dober prostor za pravila</h3>
       <p>Razširjen opis še ni bil nastavljen.</p>
-
-      '
     features:
+      humane_approach_body: Na podlagi učenja od neuspehov drugih omrežij, želi Mastodon oblikovati etične načrte za boj proti zlorabi socialnih medijev.
       humane_approach_title: Bolj human pristop
+      not_a_product_body: Mastodon ni komercialno omrežje. Brez oglaševanja, brez podatkovnega rudarjenja, brez obzidanih vrtov. Ni osrednjega organa.
       not_a_product_title: Ti si oseba, ne izdelek
+      real_conversation_body: S 500 znaki, ki so vam na voljo, in podporo za zrnate vsebine ter opozorila pred mediji, se lahko izrazite tako, kot želite.
       real_conversation_title: Zgrajen za pravi pogovor
+      within_reach_body: Zahvaljujoč razvijalcem prijaznemu API ekosistemu, obstaja več aplikacija za iOS, Arduino in druge platforme, ki vam omogočajo, da sledite svojim prijateljem kjerkoli.
       within_reach_title: Vedno na dosegu roke
-      humane_approach_body: Na podlagi učenja od neuspehov drugih omrežij, želi Mastodon
-        oblikovati etične načrte za boj proti zlorabi socialnih medijev.
-      not_a_product_body: Mastodon ni komercialno omrežje. Brez oglaševanja, brez
-        podatkovnega rudarjenja, brez obzidanih vrtov. Ni osrednjega organa.
-      real_conversation_body: S 500 znaki, ki so vam na voljo, in podporo za zrnate
-        vsebine ter opozorila pred mediji, se lahko izrazite tako, kot želite.
-      within_reach_body: Zahvaljujoč razvijalcem prijaznemu API ekosistemu, obstaja
-        več aplikacija za iOS, Arduino in druge platforme, ki vam omogočajo, da sledite
-        svojim prijateljem kjerkoli.
-    generic_description: '%{domain} je en strežnik v omrežju'
+    generic_description: "%{domain} je en strežnik v omrežju"
     hosted_on: Mastodon gostuje na %{domain}
     learn_more: Spoznaj več
     other_instances: Seznam vozlišč
+    privacy_policy: Politika zasebnosti
     source_code: Izvorna koda
     status_count_after:
       one: stanje
       other: stanja
     status_count_before: Kdo je avtor
+    terms: Pogoji storitve
     user_count_after:
       one: uporabnik
       other: uporabniki
     user_count_before: Dom za
     what_is_mastodon: Kaj je Mastodon?
-    privacy_policy: Politika zasebnosti
-    terms: Pogoji storitve
   accounts:
+    choices_html: "%{name} izbire:"
     follow: Sledi
     followers:
       one: Sledilec
       other: Sledilci
     following: Sledim
+    joined: Se je pridružil na %{date}
+    link_verified_on: Lastništvo te povezave je bilo preverjeno na %{date}
     media: Medij
-    moved_html: '%{name} se je prestavil na %{new_profile_link}:'
+    moved_html: "%{name} se je prestavil na %{new_profile_link}:"
     network_hidden: Te informacije niso na voljo
     nothing_here: Nič ni tukaj!
     people_followed_by: Ljudje, ki jim sledi %{name}
     people_who_follow: Ljudje, ki sledijo %{name}
+    pin_errors:
+      following: Verjetno že sledite osebi, ki jo želite potrditi
     posts:
       few: Trob
       one: Trob
       other: Trob
       two: Trob
+    posts_tab_heading: Trobi
     posts_with_replies: Tuti in odgovori
     reserved_username: Uporabniško ime je zasedeno
     roles:
@@ -75,12 +70,6 @@ sl:
       bot: Robot
       moderator: Mod
     unfollow: Prenehaj slediti
-    choices_html: '%{name} izbire:'
-    joined: Se je pridružil na %{date}
-    link_verified_on: Lastništvo te povezave je bilo preverjeno na %{date}
-    pin_errors:
-      following: Verjetno že sledite osebi, ki jo želite potrditi
-    posts_tab_heading: Trobi
   admin:
     account_moderation_notes:
       create: Pusti sporočilo
@@ -101,9 +90,11 @@ sl:
       confirm: Potrdi
       confirmed: Potrjeno
       confirming: Potrjujem
+      demote: Ponižaj
       disable: Onemogoči
       disable_two_factor_authentication: Onemogoči 2FA
       disabled: Onemogočeno
+      display_name: Prikazno ime
       domain: Domena
       edit: Uredi
       email: E-pošta
@@ -137,8 +128,6 @@ sl:
         most_recent: Najnovejše
         title: Red
       promote: Spodbujanje
-      demote: Ponižaj
-      display_name: Prikazno ime
   remote_interaction:
     prompt: 'Želite interakcijo s tem trobom:'
   statuses:

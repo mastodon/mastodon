@@ -1,7 +1,7 @@
+---
 ast:
   about:
-    about_mastodon_html: Mastodon ye una rede social basada en protocolos abiertos
-      y software de códigu llibre. Ye descentralizada, como'l corréu electrónicu.
+    about_mastodon_html: Mastodon ye una rede social basada en protocolos abiertos y software de códigu llibre. Ye descentralizada, como'l corréu electrónicu.
     about_this: Tocante a
     administered_by: 'Alministráu por:'
     api: API
@@ -9,15 +9,12 @@ ast:
     contact_missing: Nun s'afitó
     contact_unavailable: N/D
     documentation: Documentación
-    extended_description_html: '<h3>Un llugar bonu pa les regles</h3>
-
+    extended_description_html: |
+      <h3>Un llugar bonu pa les regles</h3>
       <p>Entá nun se configuró la descripción estendida.</p>
-
-      '
     features:
       humane_approach_title: Una visión más humana
-      not_a_product_body: Mastodon nun ye una rede comercial, nun hai anuncios, nun
-        recueye datos o nun pon muries a xardinos. Nin siquier tien una autoridá central.
+      not_a_product_body: Mastodon nun ye una rede comercial, nun hai anuncios, nun recueye datos o nun pon muries a xardinos. Nin siquier tien una autoridá central.
       not_a_product_title: Yes una persona, non un productu
       real_conversation_title: Fechu pa conversaciones de verdá
       within_reach_title: Siempres al algame
@@ -26,29 +23,29 @@ ast:
     source_code: Códigu fonte
     status_count_after:
       other: estaos
+    status_count_before: Que crearon
     terms: Términos del serviciu
     user_count_after: usuarios
-    what_is_mastodon: ¿Qué ye Mastodon?
-    status_count_before: Que crearon
     user_count_before: Ye'l llar de
+    what_is_mastodon: "¿Qué ye Mastodon?"
   accounts:
     followers:
       one: Siguidor
       other: Siguidores
     joined: Xunióse en %{date}
-    moved_html: '%{name} mudóse a %{new_profile_link}:'
+    moved_html: "%{name} mudóse a %{new_profile_link}:"
     network_hidden: Esta información nun ta disponible
-    nothing_here: ¡Equí nun hai nada!
+    nothing_here: "¡Equí nun hai nada!"
     people_followed_by: Persones a les que sigue %{name}
     people_who_follow: Persones que siguen a %{name}
+    posts:
+      other: Toots
     reserved_username: El nome d'usuariu ta acutáu
     roles:
       bot: Robó
-    posts:
-      other: Toots
   admin:
     accounts:
-      are_you_sure: ¿De xuru?
+      are_you_sure: "¿De xuru?"
       avatar: Avatar
       by_domain: Dominiu
       domain: Dominiu
@@ -72,9 +69,9 @@ ast:
       web: Web
     action_logs:
       actions:
-        create_domain_block: '%{name} bloquió''l dominiu %{target}'
-        disable_custom_emoji: '%{name} desactivó''l fustaxe %{target}'
-        disable_user: '%{name} desactivó l''aniciu de sesión del usuariu %{target}'
+        create_domain_block: "%{name} bloquió'l dominiu %{target}"
+        disable_custom_emoji: "%{name} desactivó'l fustaxe %{target}"
+        disable_user: "%{name} desactivó l'aniciu de sesión del usuariu %{target}"
     custom_emojis:
       by_domain: Dominiu
       copy_failed_msg: Nun pudo facese una copia llocal d'esi fustaxe
@@ -103,8 +100,10 @@ ast:
         available: Disponible
         expired: Caducó
       title: Invitaciones
+    relays:
+      save_and_enable: Guardar y activar
     reports:
-      are_you_sure: ¿De xuru?
+      are_you_sure: "¿De xuru?"
       status: Estáu
     settings:
       registrations:
@@ -119,37 +118,30 @@ ast:
     subscriptions:
       title: WebSub
     suspensions:
-      warning_html: 'El suspender esta cuenta va desaniciar <strong>de mou irreversible</strong>
-        los sos datos qu''inclúin:'
+      warning_html: 'El suspender esta cuenta va desaniciar <strong>de mou irreversible</strong> los sos datos qu''inclúin:'
     title: Alministración
-    relays:
-      save_and_enable: Guardar y activar
   admin_mailer:
     new_report:
       body_remote: Daquién dende %{domain} informó de %{target}
   application_mailer:
-    salutation: '%{name},'
+    salutation: "%{name},"
   applications:
     invalid_url: La URL apurrida nun ye válida
     warning: Ten curiáu con estos datos, ¡enxamás nun los compartas con naide!
   auth:
-    agreement_html: Faciendo clic en «Aniciar sesión» aceutes siguir <a href="%{rules_path}">
-      les regles de la instancia</a> y <a href="%{terms_path}">los nuesos términos
-      del serviciu</a>.
+    agreement_html: Faciendo clic en «Aniciar sesión» aceutes siguir <a href="%{rules_path}"> les regles de la instancia</a> y <a href="%{terms_path}">los nuesos términos del serviciu</a>.
     change_password: Contraseña
-    delete_account_html: Si deseyes desaniciar la to cuenta, pues <a href="%{path}">siguir
-      equí</a>. Va pidísete la confirmación.
-    forgot_password: ¿Escaeciesti la contraseña?
+    delete_account: Desaniciu de la cuenta
+    delete_account_html: Si deseyes desaniciar la to cuenta, pues <a href="%{path}">siguir equí</a>. Va pidísete la confirmación.
+    forgot_password: "¿Escaeciesti la contraseña?"
     login: Aniciar sesión
+    migrate_account: Mudase a otra cuenta
+    migrate_account_html: Si deseyes redirixir esta cuenta a otra, pues <a href="%{path}"> configuralo equí</a>.
     providers:
       cas: CAS
       saml: SAML
     register: Rexistrase
     security: Seguranza
-    delete_account: Desaniciu de la cuenta
-    migrate_account: Mudase a otra cuenta
-    migrate_account_html: Si deseyes redirixir esta cuenta a otra, pues <a href="%{path}">
-      configuralo equí</a>.
   authorize_follow:
     already_following: Yá tas siguiendo a esta cuenta
     error: Desafortunadamente, hebo un fallu guetando la cuenta remota
@@ -163,7 +155,7 @@ ast:
       half_a_minute: Púramente agora
       less_than_x_seconds: Púramente agora
   deletes:
-    bad_password_msg: ¡Bon intentu, crackers! Contraseña incorreuta
+    bad_password_msg: "¡Bon intentu, crackers! Contraseña incorreuta"
     confirm_password: Introduz la contraseña pa verificar la to identidá
   errors:
     '403': Nun tienes permisu pa ver esta páxina.
@@ -176,16 +168,14 @@ ast:
   exports:
     archive_takeout:
       date: Data
-      hint_html: Pues solicitar un archivu colos tos <strong>toots y ficheros xubíos</strong>.
-        Los datos esportaos van tar nel formatu ActivityPub, llexible pa cualesquier
-        software que seya compatible. Pues solicitar un archivu cada 7 díes.
+      hint_html: Pues solicitar un archivu colos tos <strong>toots y ficheros xubíos</strong>. Los datos esportaos van tar nel formatu ActivityPub, llexible pa cualesquier software que seya compatible. Pues solicitar un archivu cada 7 díes.
       size: Tamañu
     csv: CSV
   filters:
     contexts:
+      notifications: Avisos
       public: Llinies temporales públiques
       thread: Conversaciones
-      notifications: Avisos
     index:
       title: Peñeres
     new:
@@ -194,7 +184,19 @@ ast:
     domain: Dominiu
     followers_count: Númberu de siguidores
     purge: Desaniciar de los siguidores
+  generic:
+    changes_saved_msg: "¡Los cambeos guardáronse con ésitu!"
+    save_changes: Guardar cambeos
+  imports:
+    preface: Pues importar los datos qu'esportares dende otra instancia, como por exemplu la llista de persones que bloquiares o tubieres siguiendo.
+    types:
+      blocking: Llista de xente bloquiao
+      following: Llista de siguidores
+      muting: Llista de xente silenciao
+    upload: Xubir
   invites:
+    delete: Desactivar
+    expired: Caducó
     expires_in:
       '1800': 30 minutos
       '21600': 6 hores
@@ -206,12 +208,10 @@ ast:
     invited_by: 'Convidóte:'
     max_uses:
       one: 1 usu
-      other: '%{count} usos'
+      other: "%{count} usos"
     table:
-      uses: Usos
       expires_at: Data de caducidá
-    delete: Desactivar
-    expired: Caducó
+      uses: Usos
   lists:
     errors:
       limit: Algamesti la cantidá máxima de llistes
@@ -224,39 +224,37 @@ ast:
     proceed: Guardar
   notification_mailer:
     digest:
-      body: Equí hai un resume de los mensaxes que nun viesti dende la última visita'l
-        %{since}
-      mention: '%{name} mentóte en:'
+      body: Equí hai un resume de los mensaxes que nun viesti dende la última visita'l %{since}
+      mention: "%{name} mentóte en:"
       subject:
-        other: '%{count} avisos nuevos dende la última visita 🐘'
+        other: "%{count} avisos nuevos dende la última visita \U0001F418"
     follow:
-      body: ¡Agora %{name} ta siguiéndote!
+      body: "¡Agora %{name} ta siguiéndote!"
       title: Siguidor nuevu
     follow_request:
-      body: '%{name} solicitó siguite'
+      body: "%{name} solicitó siguite"
       title: Petición nueva de siguimientu
     mention:
-      body: '%{name} mentóte en:'
-      subject: '%{name} mentóte'
+      body: "%{name} mentóte en:"
+      subject: "%{name} mentóte"
       title: Mención nueva
     reblog:
-      body: '%{name} compartió''l to estáu:'
-      subject: '%{name} compartió''l to estáu'
+      body: "%{name} compartió'l to estáu:"
+      subject: "%{name} compartió'l to estáu"
       title: Compartición nueva de toot
   number:
     human:
       decimal_units:
-        format: '%n%u'
+        format: "%n%u"
   pagination:
     next: Siguiente
   preferences:
     languages: Llingües
-    web: Web
     publishing: Espublización
+    web: Web
   remote_follow:
     acct: Introduz el nome_usuariu@dominiu dende'l que lo quies facer
-    no_account_html: ¿Nun tienes una cuenta? Pues <a href='%{sign_up_path}' target='_blank'>rexistrate
-      equí</a>
+    no_account_html: "¿Nun tienes una cuenta? Pues <a href='%{sign_up_path}' target='_blank'>rexistrate equí</a>"
     proceed: Siguir
     prompt: 'Vas siguir a:'
   remote_interaction:
@@ -284,7 +282,7 @@ ast:
       uc_browser: UCBrowser
       weibo: Weibo
     current_session: Sesión actual
-    description: '%{browser} en %{platform}'
+    description: "%{browser} en %{platform}"
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -304,35 +302,35 @@ ast:
     authorized_apps: Aplicaciones autorizaes
     back: Volver a Mastodon
     edit_profile: Edición del perfil
+    export: Esportación de datos
+    followers: Siguidores autorizaos
+    import: Importación
     notifications: Avisos
     preferences: Preferencies
     settings: Axustes
     two_factor_authentication: Autenticación en dos pasos
-    export: Esportación de datos
-    followers: Siguidores autorizaos
-    import: Importación
   statuses:
     attached:
       image:
-        one: '%{count} imaxe'
-        other: '%{count} imáxenes'
+        one: "%{count} imaxe"
+        other: "%{count} imáxenes"
       video:
-        one: '%{count} videu'
-        other: '%{count} vídeos'
+        one: "%{count} videu"
+        other: "%{count} vídeos"
+    boosted_from_html: Compartióse'l toot dende %{acct_link}
+    language_detection: Deteutala automáticamente
     pin_errors:
       limit: Yá fixesti'l númberu máxiumu de toots
       ownership: Nun pue fixase'l toot d'otra persona
       private: Nun puen fixase los toots que nun seyan públicos
       reblog: Nun pue fixase un toot compartíu
     show_more: Amosar más
-    title: '%{name}: «%{quote}»'
+    title: "%{name}: «%{quote}»"
     visibilities:
       private: Namái siguidores
-    boosted_from_html: Compartióse'l toot dende %{acct_link}
-    language_detection: Deteutala automáticamente
   stream_entries:
-    sensitive_content: Conteníu sensible
     reblogged: compartióse
+    sensitive_content: Conteníu sensible
   themes:
     default: Mastodon
   two_factor_authentication:
@@ -341,30 +339,14 @@ ast:
     enabled: L'autenticación en dos pasos ta activada
     enabled_success: L'autenticación en dos pasos activóse con ésitu
     generate_recovery_codes: Xenerar códigos de recuperación
-    lost_recovery_codes: Los códigos de recuperación permítente recuperar l'accesu
-      a la cuenta si pierdes el teléfonu. Si tamién pierdes esos códigos, pues xeneralos
-      de nueves equí. Los códigos de recuperación vieyos van invalidase.
-    manual_instructions: 'Si nun pues escaniar el códigu QR y precises introducilu
-      a mano, equí ta''l secretu en testu planu:'
+    lost_recovery_codes: Los códigos de recuperación permítente recuperar l'accesu a la cuenta si pierdes el teléfonu. Si tamién pierdes esos códigos, pues xeneralos de nueves equí. Los códigos de recuperación vieyos van invalidase.
+    manual_instructions: 'Si nun pues escaniar el códigu QR y precises introducilu a mano, equí ta''l secretu en testu planu:'
     recovery_codes: Códigos de recuperación
   user_mailer:
     welcome:
-      full_handle_hint: Esto ye lo que-yos diríes a los collacios pa que puean unviate
-        mensaxes o siguite dende otra instancia.
+      full_handle_hint: Esto ye lo que-yos diríes a los collacios pa que puean unviate mensaxes o siguite dende otra instancia.
       subject: Afáyate en Mastodon
       tips: Conseyos
   users:
     invalid_email: La direición de corréu nun ye válida
-    seamless_external_login: Aniciesti sesión pente un serviciu esternu, polo que
-      los axustes de la contraseña y corréu nun tán disponibles.
-  generic:
-    changes_saved_msg: ¡Los cambeos guardáronse con ésitu!
-    save_changes: Guardar cambeos
-  imports:
-    preface: Pues importar los datos qu'esportares dende otra instancia, como por
-      exemplu la llista de persones que bloquiares o tubieres siguiendo.
-    types:
-      blocking: Llista de xente bloquiao
-      following: Llista de siguidores
-      muting: Llista de xente silenciao
-    upload: Xubir
+    seamless_external_login: Aniciesti sesión pente un serviciu esternu, polo que los axustes de la contraseña y corréu nun tán disponibles.
