@@ -4658,13 +4658,17 @@ a.status-card.compact:hover {
   z-index: 5;
 }
 
-.detailed, .fullscreen {
-  .video-player__volume__current, .video-player__volume::before {
+.detailed,
+.fullscreen {
+  .video-player__volume__current,
+  .video-player__volume::before {
     bottom: 27px;
   }
+
   .video-player__volume__handle {
     bottom: 23px;
   }
+
 }
 
 .video-player {

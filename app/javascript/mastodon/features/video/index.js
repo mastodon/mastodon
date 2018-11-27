@@ -192,8 +192,7 @@ class Video extends React.PureComponent {
       var slideamt = x;
       if(x > 1) {
         slideamt = 1;
-      }
-      else if(x < 0) {
+      } else if(x < 0) {
         slideamt = 0;
       }
       this.video.volume = slideamt;
@@ -416,7 +415,8 @@ class Video extends React.PureComponent {
                 <span
                   className={classNames('video-player__volume__handle')}
                   tabIndex='0'
-                  style={{ left: `${volumeHandleLoc}px`}} />
+                  style={{ left: `${volumeHandleLoc}px` }}
+                />
               </div>
 
               {(detailed || fullscreen) &&
