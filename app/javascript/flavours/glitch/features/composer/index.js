@@ -30,6 +30,7 @@ import {
   closeModal,
   openModal,
 } from 'flavours/glitch/actions/modal';
+import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
 
 //  Components.
 import ComposerOptions from './options';
@@ -165,6 +166,8 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       message: intl.formatMessage(messages.missingDescriptionMessage),
       confirm: intl.formatMessage(messages.missingDescriptionConfirm),
       onConfirm: () => dispatch(submitCompose(routerHistory)),
+      onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_missing_media_description'], false)),
+      onConfirm: () => dispatch(submitCompose()),
     }));
   },
   onSubmit(routerHistory) {
