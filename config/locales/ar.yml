@@ -33,11 +33,19 @@ ar:
     status_count_after:
       one: منشور
       other: منشورات
+      zero: منشورات
+      two: منشورات
+      few: منشورات
+      many: منشورات
     status_count_before: نشروا
     terms: شروط الخدمة
     user_count_after:
       one: مستخدم
       other: مستخدمين
+      zero: مستخدمين
+      two: مستخدمين
+      few: مستخدمين
+      many: مستخدمين
     user_count_before: يستضيف
     what_is_mastodon: ما هو ماستدون ؟
   accounts:
@@ -46,6 +54,10 @@ ar:
     followers:
       one: متابِع
       other: متابِعون
+      zero: متابِعون
+      two: متابِعون
+      few: متابِعون
+      many: متابِعون
     following: مُتابَع
     joined: انضم·ت في %{date}
     link_verified_on: تم التحقق مِن مالك هذا الرابط بتاريخ %{date}
@@ -60,6 +72,10 @@ ar:
     posts:
       one: تبويق
       other: تبويقات
+      zero: تبويقات
+      two: تبويقات
+      few: تبويقات
+      many: تبويقات
     posts_tab_heading: تبويقات
     posts_with_replies: التبويقات و الردود
     reserved_username: إسم المستخدم محجوز
@@ -273,6 +289,10 @@ ar:
         affected_accounts:
           one: حساب واحد معني في قاعدة البيانات
           other: "%{count} حسابات معنية في قاعدة البيانات"
+          zero: "حسابات معنية في قاعدة البيانات"
+          two: "حسابات معنية في قاعدة البيانات"
+          few: "%{count} حسابات معنية في قاعدة البيانات"
+          many: "%{count} حسابات معنية في قاعدة البيانات"
         retroactive:
           silence: إلغاء الكتم عن كافة الحسابات المتواجدة على هذا النطاق
           suspend: إلغاء التعليق المفروض على كافة حسابات هذا النطاق
@@ -599,6 +619,10 @@ ar:
     max_uses:
       one: استخدام واحد
       other: "%{count} استخدامات"
+      zero: "استخدامات"
+      two: "استخدامات"
+      few: "%{count} استخدامات"
+      many: "%{count} استخدامات"
     max_uses_prompt: بلا حدود
     prompt: توليد و مشاركة روابط للسماح للآخَرين بالنفاذ إلى مثيل الخادوم هذا
     table:
