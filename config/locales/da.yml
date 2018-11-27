@@ -122,10 +122,6 @@ da:
       most_recent_activity: Seneste aktivitet
       most_recent_ip: Senest IP
       not_subscribed: Ikke abonneret
-      order:
-        alphabetic: Alfabetisk
-        most_recent: Seneste
-        title: Rækkefølge
       outbox_url: Link til udgående
       perform_full_suspension: Udeluk
       profile_url: Link til profil
@@ -304,8 +300,13 @@ da:
       title: Invitationer
     relays:
       add_new: Tilføj nyt relay
+      delete: Slet
       description_html: Et <strong>federation relay</strong> er en mellemleds server der udveksler store mængder af offentlige trut mellem servere der abonnerer på og offentliggør til det. <strong>Det kan hjælpe små og mellemstore servere opdage indhold fra fediverset</strong>, hvilket der ellers ville kræve at lokale brugere manuelt følger andre folk på fjerne servere.
+      disable: Deaktiver
+      disabled: Deaktiveret
+      enable: Aktiver
       enable_hint: Når dette er aktiveret, vil serveren abonnere på alle offentlige trut fra dette relay, og vil begynde at sende offentlige trut fra denne server dertil.
+      enabled: Aktiveret
       inbox_url: Link til relay
       pending: Venter på godkendelse fra relæet
       save_and_enable: Gem og aktiver
@@ -569,6 +570,7 @@ da:
     resources: Ressourcer
   generic:
     changes_saved_msg: Ændringerne blev gemt!
+    copy: Kopier
     save_changes: Gem ændringer
     validation_errors:
       one: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende fejl forneden

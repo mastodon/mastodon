@@ -32,9 +32,6 @@
 #  suspended               :boolean          default(FALSE), not null
 #  locked                  :boolean          default(FALSE), not null
 #  header_remote_url       :string           default(""), not null
-#  statuses_count          :integer          default(0), not null
-#  followers_count         :integer          default(0), not null
-#  following_count         :integer          default(0), not null
 #  last_webfingered_at     :datetime
 #  inbox_url               :string           default(""), not null
 #  outbox_url              :string           default(""), not null
@@ -49,7 +46,7 @@
 #
 
 class Account < ApplicationRecord
-  USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.]+[a-z0-9_]+)?/i
+  USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
   MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
 
   include AccountAvatar
@@ -58,6 +55,7 @@ class Account < ApplicationRecord
   include AccountInteractions
   include Attachmentable
   include Paginable
+  include AccountCounters
 
   MAX_DISPLAY_NAME_LENGTH = (ENV['MAX_DISPLAY_NAME_CHARS'] || 30).to_i
   MAX_NOTE_LENGTH = (ENV['MAX_BIO_CHARS'] || 500).to_i
@@ -124,14 +122,13 @@ class Account < ApplicationRecord
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
-  scope :without_followers, -> { where(followers_count: 0) }
-  scope :with_followers, -> { where('followers_count > 0') }
   scope :expiring, ->(time) { remote.where.not(subscription_expires_at: nil).where('subscription_expires_at < ?', time) }
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
   scope :silenced, -> { where(silenced: true) }
   scope :suspended, -> { where(suspended: true) }
   scope :without_suspended, -> { where(suspended: false) }
   scope :recent, -> { reorder(id: :desc) }
+  scope :bots, -> { where(actor_type: %w(Application Service)) }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
   scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
   scope :matches_username, ->(value) { where(arel_table[:username].matches("#{value}%")) }
@@ -388,7 +385,9 @@ class Account < ApplicationRecord
         LIMIT ?
       SQL
 
-      find_by_sql([sql, limit])
+      records = find_by_sql([sql, limit])
+      ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
+      records
     end
 
     def advanced_search_for(terms, account, limit = 10, following = false)
@@ -415,7 +414,7 @@ class Account < ApplicationRecord
           LIMIT ?
         SQL
 
-        find_by_sql([sql, account.id, account.id, account.id, limit])
+        records = find_by_sql([sql, account.id, account.id, account.id, limit])
       else
         sql = <<-SQL.squish
           SELECT
@@ -431,8 +430,11 @@ class Account < ApplicationRecord
           LIMIT ?
         SQL
 
-        find_by_sql([sql, account.id, account.id, limit])
+        records = find_by_sql([sql, account.id, account.id, limit])
       end
+
+      ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
+      records
     end
 
     private

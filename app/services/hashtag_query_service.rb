@@ -2,15 +2,14 @@
 
 class HashtagQueryService < BaseService
   def call(tag, params, account = nil, local = false)
-    any  = tags_for(params[:any])
+    tags = tags_for(Array(tag.name) | Array(params[:any])).pluck(:id)
     all  = tags_for(params[:all])
     none = tags_for(params[:none])
 
-    @query = Status.as_tag_timeline(tag, account, local)
-                   .tagged_with_all(all)
-                   .tagged_with_none(none)
-    @query = @query.distinct.or(self.class.new.call(any, params.except(:any), account, local).distinct) if any
-    @query
+    Status.distinct
+          .as_tag_timeline(tags, account, local)
+          .tagged_with_all(all)
+          .tagged_with_none(none)
   end
 
   private
