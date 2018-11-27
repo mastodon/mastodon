@@ -22,8 +22,10 @@ ast:
     learn_more: Deprendi más
     source_code: Códigu fonte
     status_count_after: estaos
+    status_count_before: Que crearon
     terms: Términos del serviciu
     user_count_after: usuarios
+    user_count_before: Ye'l llar de
     what_is_mastodon: "¿Qué ye Mastodon?"
   accounts:
     followers:
@@ -35,6 +37,7 @@ ast:
     nothing_here: "¡Equí nun hai nada!"
     people_followed_by: Persones a les que sigue %{name}
     people_who_follow: Persones que siguen a %{name}
+    posts: Toots
     reserved_username: El nome d'usuariu ta acutáu
     roles:
       bot: Robó
@@ -95,6 +98,8 @@ ast:
         available: Disponible
         expired: Caducó
       title: Invitaciones
+    relays:
+      save_and_enable: Guardar y activar
     reports:
       are_you_sure: "¿De xuru?"
       status: Estáu
@@ -122,11 +127,14 @@ ast:
     invalid_url: La URL apurrida nun ye válida
     warning: Ten curiáu con estos datos, ¡enxamás nun los compartas con naide!
   auth:
-    agreement_html: Aniciando sesión aceutes siguir <a href="%{rules_path}">les regles de la instancia</a> y <a href="%{terms_path}">los nuesos términos del serviciu</a>.
+    agreement_html: Faciendo clic en «Aniciar sesión» aceutes siguir <a href="%{rules_path}"> les regles de la instancia</a> y <a href="%{terms_path}">los nuesos términos del serviciu</a>.
     change_password: Contraseña
+    delete_account: Desaniciu de la cuenta
     delete_account_html: Si deseyes desaniciar la to cuenta, pues <a href="%{path}">siguir equí</a>. Va pidísete la confirmación.
     forgot_password: "¿Escaeciesti la contraseña?"
     login: Aniciar sesión
+    migrate_account: Mudase a otra cuenta
+    migrate_account_html: Si deseyes redirixir esta cuenta a otra, pues <a href="%{path}"> configuralo equí</a>.
     providers:
       cas: CAS
       saml: SAML
@@ -163,12 +171,30 @@ ast:
     csv: CSV
   filters:
     contexts:
+      notifications: Avisos
       public: Llinies temporales públiques
       thread: Conversaciones
+    index:
+      title: Peñeres
+    new:
+      title: Amestar una peñera nueva
   followers:
     domain: Dominiu
     followers_count: Númberu de siguidores
+    purge: Desaniciar de los siguidores
+  generic:
+    changes_saved_msg: "¡Los cambeos guardáronse con ésitu!"
+    save_changes: Guardar cambeos
+  imports:
+    preface: Pues importar los datos qu'esportares dende otra instancia, como por exemplu la llista de persones que bloquiares o tubieres siguiendo.
+    types:
+      blocking: Llista de xente bloquiao
+      following: Llista de siguidores
+      muting: Llista de xente silenciao
+    upload: Xubir
   invites:
+    delete: Desactivar
+    expired: Caducó
     expires_in:
       '1800': 30 minutos
       '21600': 6 hores
@@ -182,6 +208,7 @@ ast:
       one: 1 usu
       other: "%{count} usos"
     table:
+      expires_at: Data de caducidá
       uses: Usos
   lists:
     errors:
@@ -192,6 +219,7 @@ ast:
       too_many: Nun puen axuntase más de 4 ficheros
   migrations:
     acct: nome_usuariu@dominiu de la cuenta nueva
+    proceed: Guardar
   notification_mailer:
     digest:
       body: Equí hai un resume de los mensaxes que nun viesti dende la última visita'l %{since}
@@ -208,6 +236,10 @@ ast:
       body: "%{name} mentóte en:"
       subject: "%{name} mentóte"
       title: Mención nueva
+    reblog:
+      body: "%{name} compartió'l to estáu:"
+      subject: "%{name} compartió'l to estáu"
+      title: Compartición nueva de toot
   number:
     human:
       decimal_units:
@@ -216,6 +248,7 @@ ast:
     next: Siguiente
   preferences:
     languages: Llingües
+    publishing: Espublización
     web: Web
   remote_follow:
     acct: Introduz el nome_usuariu@dominiu dende'l que lo quies facer
@@ -267,6 +300,9 @@ ast:
     authorized_apps: Aplicaciones autorizaes
     back: Volver a Mastodon
     edit_profile: Edición del perfil
+    export: Esportación de datos
+    followers: Siguidores autorizaos
+    import: Importación
     notifications: Avisos
     preferences: Preferencies
     settings: Axustes
@@ -279,13 +315,19 @@ ast:
       video:
         one: "%{count} videu"
         other: "%{count} vídeos"
+    boosted_from_html: Compartióse'l toot dende %{acct_link}
+    language_detection: Deteutala automáticamente
     pin_errors:
       limit: Yá fixesti'l númberu máxiumu de toots
+      ownership: Nun pue fixase'l toot d'otra persona
+      private: Nun puen fixase los toots que nun seyan públicos
+      reblog: Nun pue fixase un toot compartíu
     show_more: Amosar más
     title: "%{name}: «%{quote}»"
     visibilities:
       private: Namái siguidores
   stream_entries:
+    reblogged: compartióse
     sensitive_content: Conteníu sensible
   themes:
     default: Mastodon
