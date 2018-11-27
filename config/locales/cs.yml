@@ -33,11 +33,13 @@ cs:
     status_count_after:
       one: příspěvek
       other: příspěvků
+      few: příspěvků
     status_count_before: Kteří napsali
     terms: Podmínky používání
     user_count_after:
       one: uživatele
       other: uživatelů
+      few: uživatelů
     user_count_before: Domov
     what_is_mastodon: Co je Mastodon?
   accounts:
@@ -46,6 +48,7 @@ cs:
     followers:
       one: Sledovatel
       other: Sledovatelé
+      few: Sledovatelé
     following: Sledovaných
     joined: Připojil/a se v %{date}
     link_verified_on: Vlastnictví tohoto odkazu bylo zkontrolováno %{date}
@@ -60,6 +63,7 @@ cs:
     posts:
       one: Toot
       other: Tooty
+      few: Tooty
     posts_tab_heading: Tooty
     posts_with_replies: Tooty a odpovědi
     reserved_username: Toto uživatelské jméno je rezervováno
@@ -274,6 +278,7 @@ cs:
         affected_accounts:
           one: Jeden účet v databázi byl ovlivněn
           other: "%{count} účtů v databázi bylo ovlivněno"
+          few: "%{count} účtů v databázi bylo ovlivněno"
         retroactive:
           silence: Odtišit všechny existující účty z této domény
           suspend: Zrušit suspenzaci všech existujících účtů z této domény
@@ -571,6 +576,7 @@ cs:
     success:
       one: V průběhu blokování sledovatelů z jedné domény...
       other: V průběhu blokování sledovatelů z %{count} domény...
+      few: V průběhu blokování sledovatelů z %{count} domény...
     true_privacy_html: Berte prosím na vědomí, že <strong>skutečného soukromí se dá dosáhnout pouze za pomoci end-to-end šifrování</strong>.
     unlocked_warning_html: Kdokoliv vás může sledovat a okamžitě vidět vaše soukromé příspěvky. %{lock_link}, abyste mohl/a zkontrolovat a odmítnout sledovatele.
     unlocked_warning_title: Váš účet není zamknutý
@@ -585,6 +591,7 @@ cs:
     validation_errors:
       one: Něco ještě není úplně v pořádku! Prosím zkontrolujte chybu níže
       other: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
+      few: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
   imports:
     preface: Můžete importovat data, která jste exportoval/a z jiné instance, jako například seznam lidí, které sledujete či blokujete.
     success: Vaše data byla úspěšně nahrána a nyní budou zpracována v daný čas
@@ -610,6 +617,7 @@ cs:
     max_uses:
       one: 1 použití
       other: "%{count} použití"
+      few: "%{count} použití"
     max_uses_prompt: Bez limitu
     prompt: Vygenerujte a sdílejte s ostatními odkazy a umožněte jim přístup na tuto instanci
     table:
@@ -638,9 +646,11 @@ cs:
       new_followers_summary:
         one: Navíc jste získal/a jednoho nového sledovatele, zatímco jste byl/a pryč! Hurá!
         other: Navíc jste získal/a %{count} nových sledovatelů, zatímco jste byl/a pryč! Hurá!
+        few: Navíc jste získal/a %{count} nových sledovatelů, zatímco jste byl/a pryč! Hurá!
       subject:
         one: "1 nové oznámení od vaší poslední návštěvy \U0001F418"
         other: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
+        few: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
       title: Ve vaší nepřítomnosti...
     favourite:
       body: 'Váš příspěvek si oblíbil/a %{name}:'
@@ -760,14 +770,17 @@ cs:
       image:
         one: "%{count} obrázek"
         other: "%{count} obrázků"
+        few: "%{count} obrázků"
       video:
         one: "%{count} video"
         other: "%{count} videí"
+        few: "%{count} videí"
     boosted_from_html: Boostnuto z %{acct_link}
     content_warning: 'Varování o obsahu: %{warning}'
     disallowed_hashtags:
       one: 'obsahoval nepovolený hashtag: %{tags}'
       other: 'obsahoval nepovolené hashtagy: %{tags}'
+      few: 'obsahoval nepovolené hashtagy: %{tags}'
     language_detection: Zjistit jazyk automaticky
     open_in_web: Otevřít na webu
     over_character_limit: limit %{max} znaků byl překročen
