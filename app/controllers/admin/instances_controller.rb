@@ -31,7 +31,7 @@ module Admin
     end
 
     def subscribeable_accounts
-      Account.with_followers.remote.where(domain: params[:by_domain])
+      Account.remote.where(protocol: :ostatus).where(domain: params[:by_domain])
     end
 
     def filter_params
