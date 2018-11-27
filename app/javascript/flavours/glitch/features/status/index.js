@@ -24,6 +24,7 @@ import {
   mentionCompose,
   directCompose,
 } from 'flavours/glitch/actions/compose';
+import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
 import { blockAccount } from 'flavours/glitch/actions/accounts';
 import { muteStatus, unmuteStatus, deleteStatus } from 'flavours/glitch/actions/statuses';
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
@@ -98,7 +99,7 @@ const makeMapStateToProps = () => {
       ancestorsIds,
       descendantsIds,
       settings: state.get('local_settings'),
-      askReplyConfirmation: state.getIn(['compose', 'text']).trim().length !== 0,
+      askReplyConfirmation: state.getIn(['local_settings', 'confirm_before_clearing_draft']) && state.getIn(['compose', 'text']).trim().length !== 0,
     };
   };
 
@@ -196,6 +197,7 @@ export default class Status extends ImmutablePureComponent {
       dispatch(openModal('CONFIRM', {
         message: intl.formatMessage(messages.replyMessage),
         confirm: intl.formatMessage(messages.replyConfirm),
+        onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_before_clearing_draft'], false)),
         onConfirm: () => dispatch(replyCompose(status, this.context.router.history)),
       }));
     } else {

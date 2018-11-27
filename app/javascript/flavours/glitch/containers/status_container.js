@@ -22,6 +22,7 @@ import { muteStatus, unmuteStatus, deleteStatus } from 'flavours/glitch/actions/
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initReport } from 'flavours/glitch/actions/reports';
 import { openModal } from 'flavours/glitch/actions/modal';
+import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/util/initial_state';
 
@@ -71,10 +72,11 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onReply (status, router) {
     dispatch((_, getState) => {
       let state = getState();
-      if (state.getIn(['compose', 'text']).trim().length !== 0) {
+      if (state.getIn(['local_settings', 'confirm_before_clearing_draft']) && state.getIn(['compose', 'text']).trim().length !== 0) {
         dispatch(openModal('CONFIRM', {
           message: intl.formatMessage(messages.replyMessage),
           confirm: intl.formatMessage(messages.replyConfirm),
+          onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_before_clearing_draft'], false)),
           onConfirm: () => dispatch(replyCompose(status, router)),
         }));
       } else {

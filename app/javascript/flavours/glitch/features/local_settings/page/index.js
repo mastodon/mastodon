@@ -128,6 +128,14 @@ export default class LocalSettingsPage extends React.PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
+          item={['confirm_before_clearing_draft']}
+          id='mastodon-settings--confirm_before_clearing_draft'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.confirm_before_clearing_draft' defaultMessage='Show confirmation dialog before clearing draft' />
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
           item={['side_arm']}
           id='mastodon-settings--side_arm'
           options={[
