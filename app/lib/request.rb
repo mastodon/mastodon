@@ -163,7 +163,11 @@ class Request
           end
         end
 
-        raise outer_e if outer_e
+        if outer_e
+          raise outer_e
+        else
+          raise SocketError, "No address for #{host}"
+        end
       end
 
       alias new open
