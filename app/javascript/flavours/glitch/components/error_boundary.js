@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { preferencesLink } from 'flavours/glitch/util/backend_links';
 
 export default class ErrorBoundary extends React.PureComponent {
 
@@ -75,13 +76,15 @@ export default class ErrorBoundary extends React.PureComponent {
                   values={{ reload: <a href='#' onClick={this.handleReload}><FormattedMessage id='web_app_crash.reload' defaultMessage='Reload' /></a> }}
                 />
               </li>
-              <li>
-                <FormattedMessage
-                  id='web_app_crash.change_your_settings'
-                  defaultMessage='Change your {settings}'
-                  values={{ settings: <a href='/settings/preferences'><FormattedMessage id='web_app_crash.settings' defaultMessage='settings' /></a> }}
-                />
-              </li>
+              { preferencesLink !== undefined && (
+                <li>
+                  <FormattedMessage
+                    id='web_app_crash.change_your_settings'
+                    defaultMessage='Change your {settings}'
+                    values={{ settings: <a href={preferencesLink}><FormattedMessage id='web_app_crash.settings' defaultMessage='settings' /></a> }}
+                  />
+                </li>
+              )}
             </ul>
           </p>
         </div>
