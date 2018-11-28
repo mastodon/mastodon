@@ -30,16 +30,34 @@ ar:
     other_instances: خوادم أخرى
     privacy_policy: سياسة الخصوصية
     source_code: الشفرة المصدرية
-    status_count_after: منشورات
+    status_count_after:
+      few: منشورات
+      many: منشورات
+      one: منشور
+      other: منشورات
+      two: منشورات
+      zero: منشورات
     status_count_before: نشروا
     terms: شروط الخدمة
-    user_count_after: مستخدِمين
+    user_count_after:
+      few: مستخدمين
+      many: مستخدمين
+      one: مستخدم
+      other: مستخدمين
+      two: مستخدمين
+      zero: مستخدمين
     user_count_before: يستضيف
     what_is_mastodon: ما هو ماستدون ؟
   accounts:
     choices_html: 'توصيات %{name} :'
     follow: إتبع
-    followers: مُتابِعون
+    followers:
+      few: متابِعون
+      many: متابِعون
+      one: متابِع
+      other: متابِعون
+      two: متابِعون
+      zero: متابِعون
     following: مُتابَع
     joined: انضم·ت في %{date}
     link_verified_on: تم التحقق مِن مالك هذا الرابط بتاريخ %{date}
@@ -51,7 +69,13 @@ ar:
     people_who_follow: الأشخاص الذين يتبعون %{name}
     pin_errors:
       following: يجب أن تكون مِن متابعي حساب الشخص الذي تريد إبرازه
-    posts: تبويقات
+    posts:
+      few: تبويقات
+      many: تبويقات
+      one: تبويق
+      other: تبويقات
+      two: تبويقات
+      zero: تبويقات
     posts_tab_heading: تبويقات
     posts_with_replies: التبويقات و الردود
     reserved_username: إسم المستخدم محجوز
@@ -115,10 +139,6 @@ ar:
       most_recent_ip: أحدث عنوان إيبي
       no_limits_imposed: مِن دون حدود مشروطة
       not_subscribed: غير مشترك
-      order:
-        alphabetic: أبجديًا
-        most_recent: الأحدث
-        title: الترتيب
       outbox_url: رابط صندوق الصادر
       perform_full_suspension: تعطيل
       profile_url: رابط الملف الشخصي
@@ -262,7 +282,13 @@ ar:
         suspend: تعليق
       severity: الشدة
       show:
-        affected_accounts: "%{count} حسابات معنية في قاعدة البيانات"
+        affected_accounts:
+          few: "%{count} حسابات معنية في قاعدة البيانات"
+          many: "%{count} حسابات معنية في قاعدة البيانات"
+          one: حساب واحد معني في قاعدة البيانات
+          other: "%{count} حسابات معنية في قاعدة البيانات"
+          two: حسابات معنية في قاعدة البيانات
+          zero: حسابات معنية في قاعدة البيانات
         retroactive:
           silence: إلغاء الكتم عن كافة الحسابات المتواجدة على هذا النطاق
           suspend: إلغاء التعليق المفروض على كافة حسابات هذا النطاق
@@ -586,7 +612,13 @@ ar:
     expires_in_prompt: أبدا
     generate: توليد
     invited_by: 'تمت دعوتك من طرف :'
-    max_uses: "%{count} استخدامات"
+    max_uses:
+      few: "%{count} استخدامات"
+      many: "%{count} استخدامات"
+      one: استخدام واحد
+      other: "%{count} استخدامات"
+      two: استخدامات
+      zero: استخدامات
     max_uses_prompt: بلا حدود
     prompt: توليد و مشاركة روابط للسماح للآخَرين بالنفاذ إلى مثيل الخادوم هذا
     table:

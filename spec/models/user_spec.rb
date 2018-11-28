@@ -89,18 +89,6 @@ RSpec.describe User, type: :model do
         expect(User.matches_email('specified')).to match_array([specified])
       end
     end
-
-    describe 'with_recent_ip_address' do
-      it 'returns a relation of users who is, or was at last time, online with the given IP address' do
-        specifieds = [
-          Fabricate(:user, current_sign_in_ip: '0.0.0.42', last_sign_in_ip: '0.0.0.0'),
-          Fabricate(:user, current_sign_in_ip: nil, last_sign_in_ip: '0.0.0.42')
-        ]
-        Fabricate(:user, current_sign_in_ip: '0.0.0.0', last_sign_in_ip: '0.0.0.0')
-
-        expect(User.with_recent_ip_address('0.0.0.42')).to match_array(specifieds)
-      end
-    end
   end
 
   let(:account) { Fabricate(:account, username: 'alice') }
