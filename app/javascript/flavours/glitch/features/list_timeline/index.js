@@ -17,9 +17,9 @@ import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
   deleteConfirm: { id: 'confirmations.delete_list.confirm', defaultMessage: 'Delete' },
-  all_replies:   { id: 'lists.replies_policy.all_replies', defaultMessage: 'to any followed user' },
-  no_replies:    { id: 'lists.replies_policy.no_replies', defaultMessage: 'none' },
-  list_replies:  { id: 'lists.replies_policy.list_replies', defaultMessage: 'only to list' },
+  all_replies:   { id: 'lists.replies_policy.all_replies', defaultMessage: 'any followed user' },
+  no_replies:    { id: 'lists.replies_policy.no_replies', defaultMessage: 'no one' },
+  list_replies:  { id: 'lists.replies_policy.list_replies', defaultMessage: 'members of the list' },
 });
 
 const mapStateToProps = (state, props) => ({
@@ -114,11 +114,10 @@ export default class ListTimeline extends React.PureComponent {
     }));
   }
 
-  handleRepliesPolicyClick = () => {
+  handleRepliesPolicyChange = ({ target }) => {
     const { dispatch, list } = this.props;
     const { id } = this.props.params;
-    const replies_policy = {'all_replies': 'no_replies', 'no_replies': 'list_replies', 'list_replies': 'all_replies'}[list.get('replies_policy')];
-    this.props.dispatch(updateList(id, undefined, false, replies_policy));
+    this.props.dispatch(updateList(id, undefined, false, target.value));
   }
 
   render () {
@@ -166,14 +165,25 @@ export default class ListTimeline extends React.PureComponent {
             <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleDeleteClick}>
               <i className='fa fa-trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
-
-            { replies_policy !== undefined && (
-              <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleRepliesPolicyClick}>
-                <i className='fa fa-reply' /> <FormattedMessage id='lists.replies_policy.title' defaultMessage='Show replies: {policy}' values={{ policy: intl.formatMessage(messages[replies_policy]) }} />
-              </button>
-             )
-            }
           </div>
+
+          { replies_policy !== undefined && (
+            <div>
+              <div className='column-settings__row'>
+                <fieldset>
+                  <legend><FormattedMessage id='lists.replies_policy.title' defaultMessage='Show replies to:' /></legend>
+                  { ['no_replies', 'list_replies', 'all_replies'].map(policy => (
+                    <div className='setting-radio'>
+                      <input className='setting-radio__input' id={['setting', 'radio', id, policy].join('-')} type='radio' value={policy} checked={replies_policy === policy} onChange={this.handleRepliesPolicyChange} />
+                      <label className='setting-radio__label' htmlFor={['setting', 'radio', id, policy].join('-')}>
+                        <FormattedMessage {...messages[policy]} />
+                      </label>
+                    </div>
+                  ))}
+                </fieldset>
+              </div>
+            </div>
+          )}
 
           <hr />
         </ColumnHeader>
