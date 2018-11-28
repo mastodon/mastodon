@@ -91,26 +91,26 @@ export default class Status extends ImmutablePureComponent {
     fullscreen: false,
     isExpanded: undefined,
     threadExpanded: undefined,
+    statusId: undefined,
   };
-
-  componentWillMount () {
-    this.props.dispatch(fetchStatus(this.props.params.statusId));
-  }
 
   componentDidMount () {
     attachFullscreenListener(this.onFullScreenChange);
+    this.props.dispatch(fetchStatus(this.props.params.statusId));
   }
 
-  componentWillReceiveProps (nextProps) {
-    if (this.state.isExpanded === undefined) {
-      const isExpanded = autoUnfoldCW(nextProps.settings, nextProps.status);
-      if (isExpanded !== undefined) this.setState({ isExpanded: isExpanded });
+  static getDerivedStateFromProps(props, state) {
+    if (state.statusId === props.params.statusId || !props.params.statusId) {
+      return null;
     }
-    if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
-      this._scrolledIntoView = false;
-      this.props.dispatch(fetchStatus(nextProps.params.statusId));
-      this.setState({ isExpanded: autoUnfoldCW(nextProps.settings, nextProps.status), threadExpanded: undefined });
-    }
+
+    props.dispatch(fetchStatus(props.params.statusId));
+
+    return {
+      threadExpanded: undefined,
+      isExpanded: autoUnfoldCW(props.settings, props.status),
+      statusId: props.params.statusId,
+    };
   }
 
   handleExpandedToggle = () => {
@@ -338,20 +338,17 @@ export default class Status extends ImmutablePureComponent {
     this.node = c;
   }
 
-  componentDidUpdate () {
-    if (this._scrolledIntoView) {
-      return;
-    }
+  componentDidUpdate (prevProps) {
+    if (this.props.params.statusId !== prevProps.params.statusId && this.props.params.statusId) {
+      const { status, ancestorsIds } = this.props;
 
-    const { status, ancestorsIds } = this.props;
+      if (status && ancestorsIds && ancestorsIds.size > 0) {
+        const element = this.node.querySelectorAll('.focusable')[ancestorsIds.size - 1];
 
-    if (status && ancestorsIds && ancestorsIds.size > 0) {
-      const element = this.node.querySelectorAll('.focusable')[ancestorsIds.size - 1];
-
-      window.requestAnimationFrame(() => {
-        element.scrollIntoView(true);
-      });
-      this._scrolledIntoView = true;
+        window.requestAnimationFrame(() => {
+          element.scrollIntoView(true);
+        });
+      }
     }
   }
 
