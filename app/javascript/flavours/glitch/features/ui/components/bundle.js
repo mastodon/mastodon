@@ -52,6 +52,11 @@ class Bundle extends React.Component {
   load = (props) => {
     const { fetchComponent, onFetch, onFetchSuccess, onFetchFail, renderDelay } = props || this.props;
 
+    if (fetchComponent === undefined) {
+      this.setState({ mod: null });
+      return Promise.resolve();
+    }
+
     onFetch();
 
     if (Bundle.cache[fetchComponent.name]) {
