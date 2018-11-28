@@ -28,7 +28,8 @@ class SearchService < BaseService
 
   def perform_statuses_search!
     statuses = StatusesIndex.filter(terms: { searchable_by: [account.id, 6755] })
-                            .query(multi_match: { type: 'most_fields', query: query, operator: 'and', fields: %w(text text.stemmed) })
+                            .query(match: { 'text.stemmed': { query: query, operator: 'and'}})
+                            .order(created_at: { order: 'desc' })
                             .limit(limit)
                             .objects
                             .compact
