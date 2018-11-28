@@ -1,0 +1,32 @@
+.error-boundary {
+  h1 {
+    font-size: 26px;
+    line-height: 36px;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: $primary-text-color;
+    font-size: 15px;
+    line-height: 20px;
+
+    a {
+      color: $primary-text-color;
+      text-decoration: underline;
+    }
+
+    ul {
+      list-style: disc;
+      margin-left: 0;
+      padding-left: 1em;
+    }
+
+    textarea.web_app_crash-stacktrace {
+      width: 100%;
+      resize: none;
+      white-space: pre;
+      font-family: $font-monospace, monospace;
+    }
+  }
+}

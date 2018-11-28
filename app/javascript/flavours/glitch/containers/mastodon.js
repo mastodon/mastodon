@@ -12,6 +12,7 @@ import { connectUserStream } from 'flavours/glitch/actions/streaming';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { getLocale } from 'locales';
 import initialState from 'flavours/glitch/util/initial_state';
+import ErrorBoundary from 'flavours/glitch/components/error_boundary';
 
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
@@ -61,11 +62,13 @@ export default class Mastodon extends React.PureComponent {
     return (
       <IntlProvider locale={locale} messages={messages}>
         <Provider store={store}>
-          <BrowserRouter basename='/web'>
-            <ScrollContext>
-              <Route path='/' component={UI} />
-            </ScrollContext>
-          </BrowserRouter>
+          <ErrorBoundary>
+            <BrowserRouter basename='/web'>
+              <ScrollContext>
+                <Route path='/' component={UI} />
+              </ScrollContext>
+            </BrowserRouter>
+          </ErrorBoundary>
         </Provider>
       </IntlProvider>
     );
