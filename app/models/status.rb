@@ -290,13 +290,10 @@ class Status < ApplicationRecord
     def as_tag_timeline(tag, account = nil, local_only = false)
       if account
         query = timeline_scope(local_only, false, false).tagged_with(tag)
-
-        apply_timeline_filters(query, account, local_only)
       else
         query = timeline_scope(local_only, true, false).tagged_with(tag)
-
-        apply_timeline_filters(query, account, local_only)
       end
+      apply_timeline_filters(query, account, local_only)
     end
 
     def as_outbox_timeline(account)
