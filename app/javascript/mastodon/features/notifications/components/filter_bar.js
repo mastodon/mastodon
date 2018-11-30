@@ -6,11 +6,12 @@ export default class FilterBar extends React.PureComponent {
 
   // static propTypes = {
   //   onClick: PropTypes.func.isRequired,
+  //   isSelected: PropTypes.bool.isRequired
   // };
 
   render () {
     return (
-      <div>
+      <div className='notification__filter-bar'>
         <button
           onClick={() => console.log('all')}
         >

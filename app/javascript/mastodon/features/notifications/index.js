@@ -20,6 +20,7 @@ const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
 });
 
+// TODO: Modify this to filter notifications
 const getNotifications = createSelector([
   state => ImmutableList(state.getIn(['settings', 'notifications', 'shows']).filter(item => !item).keys()),
   state => state.getIn(['notifications', 'items']),

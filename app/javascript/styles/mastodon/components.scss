@@ -1483,6 +1483,30 @@ a.account__display-name {
   }
 }
 
+.notification__filter-bar {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  background: $ui-base-color;
+  padding: 0 5px;
+
+  & > button {
+    display: inline;
+    color: $primary-text-color;
+    background: transparent;
+    border: 0;
+    padding: 5px 5px 10px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+
+    &:hover {
+      background: lighten($ui-base-color, 4%);
+    }
+  }
+}
+
 .notification__message {
   margin: 0 10px 0 68px;
   padding: 8px 0 0;
