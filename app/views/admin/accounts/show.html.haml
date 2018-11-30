@@ -68,7 +68,7 @@
               %time.formatted{ datetime: @account.user_current_sign_in_at.iso8601, title: l(@account.user_current_sign_in_at) }
                 = l @account.user_current_sign_in_at
             - else
-              Never
+              \-
       - else
         %tr
           %th= t('admin.accounts.profile_url')

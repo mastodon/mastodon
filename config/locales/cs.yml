@@ -30,17 +30,26 @@ cs:
     other_instances: Seznam instancí
     privacy_policy: Zásady soukromí
     source_code: Zdrojový kód
-    status_count_after: příspěvků
+    status_count_after:
+      few: příspěvků
+      one: příspěvek
+      other: příspěvků
     status_count_before: Kteří napsali
     terms: Podmínky používání
-    user_count_after: uživatelů
+    user_count_after:
+      few: uživatelů
+      one: uživatele
+      other: uživatelů
     user_count_before: Domov
     what_is_mastodon: Co je Mastodon?
   accounts:
     choices_html: 'Volby uživatele %{name}:'
     follow: Sledovat
-    followers: Sledovatelé
-    following: Sledovaní
+    followers:
+      few: Sledovatelé
+      one: Sledovatel
+      other: Sledovatelé
+    following: Sledovaných
     joined: Připojil/a se v %{date}
     link_verified_on: Vlastnictví tohoto odkazu bylo zkontrolováno %{date}
     media: Média
@@ -51,7 +60,10 @@ cs:
     people_who_follow: Lidé, kteří sledují uživatele %{name}
     pin_errors:
       following: Musíte již sledovat osobu, kterou chcete podpořit
-    posts: Tooty
+    posts:
+      few: Tooty
+      one: Toot
+      other: Tooty
     posts_tab_heading: Tooty
     posts_with_replies: Tooty a odpovědi
     reserved_username: Toto uživatelské jméno je rezervováno
@@ -115,10 +127,6 @@ cs:
       most_recent_ip: Nejnovější IP
       no_limits_imposed: Nejsou nastavena žádná omezení
       not_subscribed: Neodebírá
-      order:
-        alphabetic: Abecedně
-        most_recent: Nejnovější
-        title: Pořadí
       outbox_url: URL odchozích zpráv
       perform_full_suspension: Suspendovat
       profile_url: URL profilu
@@ -263,7 +271,10 @@ cs:
         suspend: Suspendovat
       severity: Přísnost
       show:
-        affected_accounts: "%{count} účtů v databázi byl ovlivněn"
+        affected_accounts:
+          few: "%{count} účtů v databázi bylo ovlivněno"
+          one: Jeden účet v databázi byl ovlivněn
+          other: "%{count} účtů v databázi bylo ovlivněno"
         retroactive:
           silence: Odtišit všechny existující účty z této domény
           suspend: Zrušit suspenzaci všech existujících účtů z této domény
@@ -482,7 +493,7 @@ cs:
     already_following: Tento účet již sledujete
     error: Při hledání vzdáleného účtu bohužel nastala chyba
     follow: Sledovat
-    follow_request: 'Poslal/a jste žádost o sledování uživateli:'
+    follow_request: 'Poslal/a jste požadavek o sledování uživateli:'
     following: 'Podařilo se! Nyní sledujete uživatele:'
     post_follow:
       close: Nebo můžete toto okno klidně zavřít.
@@ -506,7 +517,7 @@ cs:
   deletes:
     bad_password_msg: Dobrý pokus, hackeři! Nesprávné heslo
     confirm_password: Zadejte svoje současné heslo pro ověření vaší identity
-    description_html: Tímto <strong>trvale a nenávratně</strong> odstraníte obsah z vašeho účtu a deaktivuje ho. Vaše uživatelské jméno zůstane rezervované pro zabránění budoucím napodobováním.
+    description_html: Tímto <strong>trvale a nenávratně</strong> odstraníte obsah z vašeho účtu a deaktivujete ho. Vaše uživatelské jméno zůstane rezervované pro zabránění budoucím napodobováním.
     proceed: Odstranit účet
     success_msg: Váš účet byl úspěšně odstraněn
     warning_html: Pouze vymazání obsahu z této konkrétní instance je zaručeno. Obsah, který byl široce sdílen, po sobě pravděpodobně zanechá stopy. U offline serverů a serverů, které vaše aktualizace již neodebírají, nebudou databáze aktualizovány.
@@ -535,7 +546,7 @@ cs:
     csv: CSV
     follows: Sledujete
     mutes: Ignorujete
-    storage: Úložisko médií
+    storage: Paměť médií
   filters:
     contexts:
       home: Domovská časová osa
@@ -558,7 +569,10 @@ cs:
     followers_count: Počet sledovatelů
     lock_link: Zamkněte svůj účet
     purge: Odstranit ze sledovatelů
-    success: V průběhu utišování sledovatelů z %{count} domén...
+    success:
+      few: V průběhu blokování sledovatelů z %{count} domény...
+      one: V průběhu blokování sledovatelů z jedné domény...
+      other: V průběhu blokování sledovatelů z %{count} domény...
     true_privacy_html: Berte prosím na vědomí, že <strong>skutečného soukromí se dá dosáhnout pouze za pomoci end-to-end šifrování</strong>.
     unlocked_warning_html: Kdokoliv vás může sledovat a okamžitě vidět vaše soukromé příspěvky. %{lock_link}, abyste mohl/a zkontrolovat a odmítnout sledovatele.
     unlocked_warning_title: Váš účet není zamknutý
@@ -570,7 +584,10 @@ cs:
     changes_saved_msg: Změny byly úspěšně uloženy!
     copy: Kopírovat
     save_changes: Uložit změny
-    validation_errors: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
+    validation_errors:
+      few: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
+      one: Něco ještě není úplně v pořádku! Prosím zkontrolujte chybu níže
+      other: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
   imports:
     preface: Můžete importovat data, která jste exportoval/a z jiné instance, jako například seznam lidí, které sledujete či blokujete.
     success: Vaše data byla úspěšně nahrána a nyní budou zpracována v daný čas
@@ -593,7 +610,10 @@ cs:
     expires_in_prompt: Nikdy
     generate: Vygenerovat
     invited_by: 'Byl/a jste pozván/a uživatelem:'
-    max_uses: "%{count} použití"
+    max_uses:
+      few: "%{count} použití"
+      one: 1 použití
+      other: "%{count} použití"
     max_uses_prompt: Bez limitu
     prompt: Vygenerujte a sdílejte s ostatními odkazy a umožněte jim přístup na tuto instanci
     table:
@@ -619,8 +639,14 @@ cs:
       action: Zobrazit všechna oznámení
       body: Zde najdete stručný souhrn zpráv, které jste zmeškal/a od vaší poslední návštěvy %{since}
       mention: "%{name} vás zmínil/a v:"
-      new_followers_summary: Navíc jste získal/a %{count} nových sledovatelů, zatímco jste byl/a pryč! Hurá!
-      subject: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
+      new_followers_summary:
+        few: Navíc jste získal/a %{count} nových sledovatelů, zatímco jste byl/a pryč! Hurá!
+        one: Navíc jste získal/a jednoho nového sledovatele, zatímco jste byl/a pryč! Hurá!
+        other: Navíc jste získal/a %{count} nových sledovatelů, zatímco jste byl/a pryč! Hurá!
+      subject:
+        few: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
+        one: "1 nové oznámení od vaší poslední návštěvy \U0001F418"
+        other: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
       title: Ve vaší nepřítomnosti...
     favourite:
       body: 'Váš příspěvek si oblíbil/a %{name}:'
@@ -631,10 +657,10 @@ cs:
       subject: "%{name} vás nyní sleduje"
       title: Nový sledovatel
     follow_request:
-      action: Spravovat žádosti o sledování
-      body: "%{name} žádá o povolení vás následovat"
+      action: Spravovat požadavky o sledování
+      body: "%{name} požádal/a o povolení vás sledovat"
       subject: 'Čekající sledovatel: %{name}'
-      title: Nová žádost o sledování
+      title: Nový požadavek o sledování
     mention:
       action: Odpovědět
       body: 'Byl/a jste zmíněn/a uživatelem %{name} v:'
@@ -656,7 +682,7 @@ cs:
           trillion: bil
   pagination:
     newer: Novější
-    next: Starší
+    next: Další
     older: Starší
     prev: Před
     truncate: "&hellip;"
@@ -737,11 +763,20 @@ cs:
   statuses:
     attached:
       description: 'Přiloženo: %{attached}'
-      image: "%{count} obrázků"
-      video: "%{count} videí"
+      image:
+        few: "%{count} obrázků"
+        one: "%{count} obrázek"
+        other: "%{count} obrázků"
+      video:
+        few: "%{count} videí"
+        one: "%{count} video"
+        other: "%{count} videí"
     boosted_from_html: Boostnuto z %{acct_link}
     content_warning: 'Varování o obsahu: %{warning}'
-    disallowed_hashtags: 'obsahuje nepovolené hashtagy: %{tags}'
+    disallowed_hashtags:
+      few: 'obsahoval nepovolené hashtagy: %{tags}'
+      one: 'obsahoval nepovolený hashtag: %{tags}'
+      other: 'obsahoval nepovolené hashtagy: %{tags}'
     language_detection: Zjistit jazyk automaticky
     open_in_web: Otevřít na webu
     over_character_limit: limit %{max} znaků byl překročen
@@ -865,7 +900,7 @@ cs:
     generate_recovery_codes: Vygenerovat záložní kódy
     instructions_html: "<strong>Naskenujte tento QR kód Google Authenticatorem nebo jinou TOTP aplikací na vašem telefonu</strong>. Od teď bude tato aplikace generovat tokeny, které budete muset zadat při přihlášení."
     lost_recovery_codes: Záložní kódy vám dovolí dostat se k vašemu účtu, pokud ztratíte telefon. Ztratíte-li záložní kódy, můžete je zde znovu vygenerovat. Vaše staré záložní kódy budou zneplatněny.
-    manual_instructions: 'Nemůžete-li oskenovat QR kód a je potřebovat ho zadat ručně, zde je tajemství v prostém textu:'
+    manual_instructions: 'Nemůžete-li oskenovat QR kód a je potřeba ho zadat ručně, zde je tajemství v prostém textu:'
     recovery_codes: Záložní kódy pro obnovu
     recovery_codes_regenerated: Záložní kódy byly úspěšně znovu vygenerované
     recovery_instructions_html: Ztratíte-li někdy přístup k vašemu telefonu, můžete k získání přístupu k účtu použít jeden ze záložních kódů. <strong>Uchovávejte tyto kódy v bezpečí</strong>. Můžete si je například vytisknout a uložit je mezi jiné důležité dokumenty.
