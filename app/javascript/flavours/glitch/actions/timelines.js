@@ -12,34 +12,13 @@ export const TIMELINE_SCROLL_TOP = 'TIMELINE_SCROLL_TOP';
 
 export const TIMELINE_DISCONNECT = 'TIMELINE_DISCONNECT';
 
-export const TIMELINE_CONTEXT_UPDATE = 'CONTEXT_UPDATE';
-
 export function updateTimeline(timeline, status) {
   return (dispatch, getState) => {
-    const parents = [];
-
-    if (status.in_reply_to_id) {
-      let parent = getState().getIn(['statuses', status.in_reply_to_id]);
-
-      while (parent && parent.get('in_reply_to_id')) {
-        parents.push(parent.get('id'));
-        parent = getState().getIn(['statuses', parent.get('in_reply_to_id')]);
-      }
-    }
-
     dispatch({
       type: TIMELINE_UPDATE,
       timeline,
       status,
     });
-
-    if (parents.length > 0) {
-      dispatch({
-        type: TIMELINE_CONTEXT_UPDATE,
-        status,
-        references: parents,
-      });
-    }
   };
 };
 
