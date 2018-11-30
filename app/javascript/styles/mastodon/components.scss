@@ -1488,21 +1488,33 @@ a.account__display-name {
   flex-wrap: nowrap;
   justify-content: space-between;
   background: $ui-base-color;
-  padding: 0 5px;
 
   & > button {
-    display: inline;
+    flex-grow: 1;
     color: $primary-text-color;
     background: transparent;
     border: 0;
-    padding: 5px 5px 10px;
+    padding: 5px 5px 4px;
+    border-bottom: 4px solid transparent;
     text-decoration: none;
     font-weight: 400;
     font-size: 15px;
     line-height: 18px;
 
+    &:first-child {
+      padding-left: 10px;
+    }
+
+    &:last-child {
+      padding-right: 10px;
+    }
+
     &:hover {
       background: lighten($ui-base-color, 4%);
+    }
+
+    &:active {
+      border-bottom-color: $highlight-text-color;
     }
   }
 }
