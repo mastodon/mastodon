@@ -3,6 +3,30 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [2.6.4] - 2018-11-30
+### Fixed
+
+- Fix yarn dependencies not installing due to yanked event-stream package (#9401)
+
+## [2.6.3] - 2018-11-30
+### Added
+
+- Add hyphen to characters allowed in remote usernames (#9345)
+
+### Changed
+
+- Change server user count to exclude suspended accounts (#9380)
+
+### Fixed
+
+- Fix ffmpeg processing sometimes stalling due to overfilled stdout buffer (#9368)
+- Fix missing DNS records raising the wrong kind of exception (#9379)
+- Fix already queued deliveries still trying to reach inboxes marked as unavailable (#9358)
+
+### Security
+
+- Fix TLS handshake timeout not being enforced (#9381)
+
 ## [2.6.2] - 2018-11-23
 ### Added
 
