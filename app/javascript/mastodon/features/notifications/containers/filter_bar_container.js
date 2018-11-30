@@ -8,8 +8,6 @@ const makeMapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
   selectFilter (newActiveFilter) {
-    // for start just set the Filter state
-    // then handle the push notifs
     dispatch(changeSetting(['notifications', 'filter'], newActiveFilter));
   }
 })
