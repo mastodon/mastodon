@@ -21,9 +21,10 @@ export default class ColumnSettings extends React.PureComponent {
   render () {
     const { settings, pushSettings, onChange, onClear } = this.props;
 
-    const alertStr = <FormattedMessage id='notifications.column_settings.alert' defaultMessage='Desktop notifications' />;
-    const showStr  = <FormattedMessage id='notifications.column_settings.show' defaultMessage='Show in column' />;
-    const soundStr = <FormattedMessage id='notifications.column_settings.sound' defaultMessage='Play sound' />;
+    const filterStr = <FormattedMessage id='notifications.column_settings.filter_bar' defaultMessage='Show quick filtering bar' />;
+    const alertStr  = <FormattedMessage id='notifications.column_settings.alert' defaultMessage='Desktop notifications' />;
+    const showStr   = <FormattedMessage id='notifications.column_settings.show' defaultMessage='Show in column' />;
+    const soundStr  = <FormattedMessage id='notifications.column_settings.sound' defaultMessage='Play sound' />;
 
     const showPushSettings = pushSettings.get('browserSupport') && pushSettings.get('isSubscribed');
     const pushStr = showPushSettings && <FormattedMessage id='notifications.column_settings.push' defaultMessage='Push notifications' />;
@@ -32,6 +33,12 @@ export default class ColumnSettings extends React.PureComponent {
       <div>
         <div className='column-settings__row'>
           <ClearColumnButton onClick={onClear} />
+        </div>
+
+        <div role='filter' aria-labelledby='show-filter-bar'>
+          <div className='column-settings__row'>
+            <SettingToggle id='show-filter-bar' prefix='notifications' settings={settings} settingPath={['showFilterBar']} onChange={onChange} label={filterStr} />
+          </div>
         </div>
 
         <div role='group' aria-labelledby='notifications-follow'>

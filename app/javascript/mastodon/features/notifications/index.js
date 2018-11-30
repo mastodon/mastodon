@@ -21,17 +21,19 @@ const messages = defineMessages({
 });
 
 const getNotifications = createSelector([
+  state => state.getIn(['settings', 'notifications', 'showFilterBar']),
   state => state.getIn(['settings', 'notifications', 'filter']),
   state => ImmutableList(state.getIn(['settings', 'notifications', 'shows']).filter(item => !item).keys()),
   state => state.getIn(['notifications', 'items']),
-], (allowedType, excludedTypes, notifications) => {
-  if (allowedType === 'all') {
+], (showFilterBar, allowedType, excludedTypes, notifications) => {
+  if (!showFilterBar || allowedType === 'all') {
     return notifications.filterNot(item => item !== null && excludedTypes.includes(item.get('type')));
   }
   return notifications.filter(item => item !== null && allowedType === item.get('type'))
 });
 
 const mapStateToProps = state => ({
+  showFilterBar: state.getIn(['settings', 'notifications', 'showFilterBar']),
   notifications: getNotifications(state),
   isLoading: state.getIn(['notifications', 'isLoading'], true),
   isUnread: state.getIn(['notifications', 'unread']) > 0,
@@ -124,11 +126,15 @@ class Notifications extends React.PureComponent {
   }
 
   render () {
-    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore } = this.props;
+    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore, showFilterBar } = this.props;
     const pinned = !!columnId;
     const emptyMessage = <FormattedMessage id='empty_column.notifications' defaultMessage="You don't have any notifications yet. Interact with others to start the conversation." />;
 
     let scrollableContent = null;
+
+    const filterBarContainer = showFilterBar
+      ? (<FilterBarContainer />)
+      : null
 
     if (isLoading && this.scrollableContent) {
       scrollableContent = this.scrollableContent;
@@ -186,7 +192,7 @@ class Notifications extends React.PureComponent {
         >
           <ColumnSettingsContainer />
         </ColumnHeader>
-        <FilterBarContainer />
+        {filterBarContainer}
         {scrollContainer}
       </Column>
     );
