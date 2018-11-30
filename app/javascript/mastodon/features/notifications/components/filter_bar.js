@@ -6,13 +6,15 @@ export default class FilterBar extends React.PureComponent {
 
   // static propTypes = {
   //   onClick: PropTypes.func.isRequired,
-  //   isSelected: PropTypes.bool.isRequired
+  //   selectedFilter: PropTypes.string.isRequired
   // };
 
   render () {
+    const { selectedFilter } = this.props
     return (
       <div className='notification__filter-bar'>
         <button
+          className={selectedFilter === 'all' ? 'active' : ''}
           onClick={() => console.log('all')}
         >
           <FormattedMessage
@@ -21,6 +23,7 @@ export default class FilterBar extends React.PureComponent {
           />
         </button>
         <button
+          className={selectedFilter === 'mentions' ? 'active' : ''}
           onClick={() => console.log('mentions')}
         >
           <FormattedMessage
@@ -29,6 +32,7 @@ export default class FilterBar extends React.PureComponent {
           />
         </button>
         <button
+          className={selectedFilter === 'favourites' ? 'active' : ''}
           onClick={() => console.log('favourites')}
         >
           <FormattedMessage
@@ -37,14 +41,16 @@ export default class FilterBar extends React.PureComponent {
           />
         </button>
         <button
-          onClick={() => console.log('Boosts')}
+          className={selectedFilter === 'boosts' ? 'active' : ''}
+          onClick={() => console.log('boosts')}
         >
           <FormattedMessage
-            id='notifications.filter.Boosts'
+            id='notifications.filter.boosts'
             defaultMessage='Boosts'
           />
         </button>
         <button
+          className={selectedFilter === 'follows' ? 'active' : ''}
           onClick={() => console.log('follows')}
         >
           <FormattedMessage
