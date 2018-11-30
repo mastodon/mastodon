@@ -19,9 +19,9 @@ import Icon from 'mastodon/components/icon';
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
   deleteConfirm: { id: 'confirmations.delete_list.confirm', defaultMessage: 'Delete' },
-  all_replies:   { id: 'lists.replies_policy.all_replies', defaultMessage: 'to any followed user' },
-  no_replies:    { id: 'lists.replies_policy.no_replies', defaultMessage: 'none' },
-  list_replies:  { id: 'lists.replies_policy.list_replies', defaultMessage: 'only to list' },
+  all_replies:   { id: 'lists.replies_policy.all_replies', defaultMessage: 'any followed user' },
+  no_replies:    { id: 'lists.replies_policy.no_replies', defaultMessage: 'no one' },
+  list_replies:  { id: 'lists.replies_policy.list_replies', defaultMessage: 'members of the list' },
 });
 
 const mapStateToProps = (state, props) => ({
@@ -134,15 +134,14 @@ class ListTimeline extends React.PureComponent {
     }));
   }
 
-  handleRepliesPolicyClick = () => {
-    const { dispatch, list } = this.props;
+  handleRepliesPolicyChange = ({ target }) => {
+    const { dispatch } = this.props;
     const { id } = this.props.params;
-    const replies_policy = { 'all_replies': 'no_replies', 'no_replies': 'list_replies', 'list_replies': 'all_replies' }[list.get('replies_policy')];
-    dispatch(updateList(id, undefined, false, replies_policy));
+    dispatch(updateList(id, undefined, false, target.value));
   }
 
   render () {
-    const { shouldUpdateScroll, hasUnread, columnId, multiColumn, list, intl } = this.props;
+    const { shouldUpdateScroll, hasUnread, columnId, multiColumn, list } = this.props;
     const { id } = this.props.params;
     const pinned = !!columnId;
     const title  = list ? list.get('title') : id;
@@ -187,9 +186,21 @@ class ListTimeline extends React.PureComponent {
             </button>
 
             { replies_policy !== undefined && (
-              <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleRepliesPolicyClick}>
-                <i className='fa fa-reply' /> <FormattedMessage id='lists.replies_policy.title' defaultMessage='Show replies: {policy}' values={{ policy: intl.formatMessage(messages[replies_policy]) }} />
-              </button>
+              <div>
+                <div className='column-settings__row'>
+                  <fieldset>
+                    <legend><FormattedMessage id='lists.replies_policy.title' defaultMessage='Show replies to:' /></legend>
+                    { ['no_replies', 'list_replies', 'all_replies'].map(policy => (
+                      <div className='setting-radio'>
+                        <input className='setting-radio__input' id={['setting', 'radio', id, policy].join('-')} type='radio' value={policy} checked={replies_policy === policy} onChange={this.handleRepliesPolicyChange} />
+                        <label className='setting-radio__label' htmlFor={['setting', 'radio', id, policy].join('-')}>
+                          <FormattedMessage {...messages[policy]} />
+                        </label>
+                      </div>
+                    ))}
+                  </fieldset>
+                </div>
+              </div>
             )}
           </div>
         </ColumnHeader>
