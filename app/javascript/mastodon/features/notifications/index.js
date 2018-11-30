@@ -9,6 +9,7 @@ import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import NotificationContainer from './containers/notification_container';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
+import FilterBarContainer from './containers/filter_bar_container';
 import { createSelector } from 'reselect';
 import { List as ImmutableList } from 'immutable';
 import { debounce } from 'lodash';
@@ -179,7 +180,7 @@ class Notifications extends React.PureComponent {
         >
           <ColumnSettingsContainer />
         </ColumnHeader>
-
+        <FilterBarContainer />
         {scrollContainer}
       </Column>
     );
