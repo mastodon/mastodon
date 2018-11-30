@@ -42,13 +42,13 @@ class HashtagTimeline extends React.PureComponent {
   title = () => {
     let title = [this.props.params.id];
     if (this.additionalFor('any')) {
-      title.push(<FormattedMessage id='hashtag.column_header.tag_mode.any'  values={{ additional: this.additionalFor('any') }} defaultMessage=' or {additional}' />);
+      title.push(' ', <FormattedMessage id='hashtag.column_header.tag_mode.any'  values={{ additional: this.additionalFor('any') }} defaultMessage='or {additional}' />);
     }
     if (this.additionalFor('all')) {
-      title.push(<FormattedMessage id='hashtag.column_header.tag_mode.all'  values={{ additional: this.additionalFor('all') }} defaultMessage=' and {additional}' />);
+      title.push(' ', <FormattedMessage id='hashtag.column_header.tag_mode.all'  values={{ additional: this.additionalFor('all') }} defaultMessage='and {additional}' />);
     }
     if (this.additionalFor('none')) {
-      title.push(<FormattedMessage id='hashtag.column_header.tag_mode.none' values={{ additional: this.additionalFor('none') }} defaultMessage=' without {additional}' />);
+      title.push(' ', <FormattedMessage id='hashtag.column_header.tag_mode.none' values={{ additional: this.additionalFor('none') }} defaultMessage='without {additional}' />);
     }
     return title;
   }
