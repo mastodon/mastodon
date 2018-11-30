@@ -1490,31 +1490,41 @@ a.account__display-name {
   background: $ui-base-color;
 
   & > button {
+    position: relative;
     flex-grow: 1;
     color: $primary-text-color;
-    background: transparent;
-    border: 0;
-    padding: 5px 5px 4px;
-    border-bottom: 4px solid transparent;
+    padding: 5px 5px 12px;
     text-decoration: none;
     font-weight: 400;
     font-size: 15px;
     line-height: 18px;
-
-    &:first-child {
-      padding-left: 10px;
-    }
-
-    &:last-child {
-      padding-right: 10px;
-    }
-
-    &:hover {
-      background: lighten($ui-base-color, 4%);
-    }
+    background: darken($ui-base-color, 4%);
+    border: 0;
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    cursor: default;
 
     &.active {
-      border-bottom-color: $highlight-text-color;
+      color: $secondary-text-color;
+
+      &::before,
+      &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 0;
+        transform: translateX(-50%);
+        border-style: solid;
+        border-width: 0 10px 10px;
+        border-color: transparent transparent lighten($ui-base-color, 8%);
+      }
+
+      &::after {
+        bottom: -1px;
+        border-color: transparent transparent $ui-base-color;
+      }
     }
   }
 }
