@@ -33,7 +33,7 @@ const initialState = ImmutableMap({
     }),
 
     filter: 'all',
-    showFilterBar: 'true',
+    showFilterBar: true,
 
     shows: ImmutableMap({
       follow: true,
