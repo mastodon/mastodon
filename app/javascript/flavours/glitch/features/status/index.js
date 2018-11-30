@@ -65,31 +65,28 @@ const makeMapStateToProps = () => {
 
     if (status) {
       ancestorsIds = ancestorsIds.withMutations(mutable => {
-        function addAncestor(id) {
-          if (id) {
-            const inReplyTo = state.getIn(['contexts', 'inReplyTos', id]);
+        let id = status.get('in_reply_to_id');
 
-            mutable.unshift(id);
-            addAncestor(inReplyTo);
-          }
+        while (id) {
+          mutable.unshift(id);
+          id = state.getIn(['contexts', 'inReplyTos', id]);
         }
-
-        addAncestor(status.get('in_reply_to_id'));
       });
 
       descendantsIds = descendantsIds.withMutations(mutable => {
-        function addDescendantOf(id) {
+        const ids = [status.get('id')];
+
+        while (ids.length > 0) {
+          let id        = ids.shift();
           const replies = state.getIn(['contexts', 'replies', id]);
 
           if (replies) {
             replies.forEach(reply => {
               mutable.push(reply);
-              addDescendantOf(reply);
+              ids.unshift(reply);
             });
           }
         }
-
-        addDescendantOf(status.get('id'));
       });
     }
 
