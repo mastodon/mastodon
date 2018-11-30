@@ -23,8 +23,8 @@ export default class FilterBar extends React.PureComponent {
           />
         </button>
         <button
-          className={selectedFilter === 'mentions' ? 'active' : ''}
-          onClick={() => selectFilter('mentions')}
+          className={selectedFilter === 'mention' ? 'active' : ''}
+          onClick={() => selectFilter('mention')}
         >
           <FormattedMessage
             id='notifications.filter.mentions'
@@ -32,8 +32,8 @@ export default class FilterBar extends React.PureComponent {
           />
         </button>
         <button
-          className={selectedFilter === 'favourites' ? 'active' : ''}
-          onClick={() => selectFilter('favourites')}
+          className={selectedFilter === 'favourite' ? 'active' : ''}
+          onClick={() => selectFilter('favourite')}
         >
           <FormattedMessage
             id='notifications.filter.favourites'
@@ -41,8 +41,8 @@ export default class FilterBar extends React.PureComponent {
           />
         </button>
         <button
-          className={selectedFilter === 'boosts' ? 'active' : ''}
-          onClick={() => selectFilter('boosts')}
+          className={selectedFilter === 'reblog' ? 'active' : ''}
+          onClick={() => selectFilter('reblog')}
         >
           <FormattedMessage
             id='notifications.filter.boosts'
@@ -50,8 +50,8 @@ export default class FilterBar extends React.PureComponent {
           />
         </button>
         <button
-          className={selectedFilter === 'follows' ? 'active' : ''}
-          onClick={() => selectFilter('follows')}
+          className={selectedFilter === 'follow' ? 'active' : ''}
+          onClick={() => selectFilter('follow')}
         >
           <FormattedMessage
             id='notifications.filter.follows'

@@ -20,11 +20,16 @@ const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
 });
 
-// TODO: Modify this to filter notifications
 const getNotifications = createSelector([
+  state => state.getIn(['settings', 'notifications', 'filter']),
   state => ImmutableList(state.getIn(['settings', 'notifications', 'shows']).filter(item => !item).keys()),
   state => state.getIn(['notifications', 'items']),
-], (excludedTypes, notifications) => notifications.filterNot(item => item !== null && excludedTypes.includes(item.get('type'))));
+], (allowedType, excludedTypes, notifications) => {
+  if (allowedType === 'all') {
+    return notifications.filterNot(item => item !== null && excludedTypes.includes(item.get('type')));
+  }
+  return notifications.filter(item => item !== null && allowedType === item.get('type'))
+});
 
 const mapStateToProps = state => ({
   notifications: getNotifications(state),
