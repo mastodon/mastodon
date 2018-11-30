@@ -376,7 +376,7 @@ export default class Status extends ImmutablePureComponent {
   }
 
   componentDidUpdate (prevProps) {
-    if (this.props.params.statusId !== prevProps.params.statusId && this.props.params.statusId) {
+    if (this.props.params.statusId && (this.props.params.statusId !== prevProps.params.statusId || prevProps.ancestorsIds.size < this.props.ancestorsIds.size)) {
       const { status, ancestorsIds } = this.props;
 
       if (status && ancestorsIds && ancestorsIds.size > 0) {
