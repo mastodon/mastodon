@@ -32,6 +32,8 @@ const initialState = ImmutableMap({
       mention: true,
     }),
 
+    filter: 'all',
+
     shows: ImmutableMap({
       follow: true,
       favourite: true,

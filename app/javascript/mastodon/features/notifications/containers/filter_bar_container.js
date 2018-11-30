@@ -1,8 +1,17 @@
 import { connect } from 'react-redux';
 import FilterBar from '../components/filter_bar';
+import { changeSetting } from '../../../actions/settings';
 
-const makeMapStateToProps = () => undefined;
+const makeMapStateToProps = state => ({
+  selectedFilter: state.getIn(['settings', 'notifications', 'filter'])
+});
 
-const mapDispatchToProps = dispatch => undefined;
+const mapDispatchToProps = (dispatch, { intl }) => ({
+  selectFilter (newActiveFilter) {
+    // for start just set the Filter state
+    // then handle the push notifs
+    dispatch(changeSetting(['notifications', 'filter'], newActiveFilter));
+  }
+})
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(FilterBar);

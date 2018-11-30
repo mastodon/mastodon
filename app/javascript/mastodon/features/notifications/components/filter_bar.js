@@ -4,18 +4,18 @@ import { FormattedMessage } from 'react-intl';
 
 export default class FilterBar extends React.PureComponent {
 
-  // static propTypes = {
-  //   onClick: PropTypes.func.isRequired,
-  //   selectedFilter: PropTypes.string.isRequired
-  // };
+  static propTypes = {
+    selectFilter: PropTypes.func.isRequired,
+    selectedFilter: PropTypes.string.isRequired
+  };
 
   render () {
-    const { selectedFilter } = this.props
+    const { selectFilter, selectedFilter } = this.props
     return (
       <div className='notification__filter-bar'>
         <button
           className={selectedFilter === 'all' ? 'active' : ''}
-          onClick={() => console.log('all')}
+          onClick={() => selectFilter('all')}
         >
           <FormattedMessage
             id='notifications.filter.all'
@@ -24,7 +24,7 @@ export default class FilterBar extends React.PureComponent {
         </button>
         <button
           className={selectedFilter === 'mentions' ? 'active' : ''}
-          onClick={() => console.log('mentions')}
+          onClick={() => selectFilter('mentions')}
         >
           <FormattedMessage
             id='notifications.filter.mentions'
@@ -33,7 +33,7 @@ export default class FilterBar extends React.PureComponent {
         </button>
         <button
           className={selectedFilter === 'favourites' ? 'active' : ''}
-          onClick={() => console.log('favourites')}
+          onClick={() => selectFilter('favourites')}
         >
           <FormattedMessage
             id='notifications.filter.favourites'
@@ -42,7 +42,7 @@ export default class FilterBar extends React.PureComponent {
         </button>
         <button
           className={selectedFilter === 'boosts' ? 'active' : ''}
-          onClick={() => console.log('boosts')}
+          onClick={() => selectFilter('boosts')}
         >
           <FormattedMessage
             id='notifications.filter.boosts'
@@ -51,7 +51,7 @@ export default class FilterBar extends React.PureComponent {
         </button>
         <button
           className={selectedFilter === 'follows' ? 'active' : ''}
-          onClick={() => console.log('follows')}
+          onClick={() => selectFilter('follows')}
         >
           <FormattedMessage
             id='notifications.filter.follows'
