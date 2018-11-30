@@ -15,7 +15,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.5'
 
-gem 'aws-sdk-s3', '~> 1.25', require: false
+gem 'aws-sdk-s3', '~> 1.27', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -83,7 +83,7 @@ gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.1.3'
 gem 'strong_migrations', '~> 0.3'
 gem 'tty-command', '~> 0.8', require: false
-gem 'tty-prompt', '~> 0.17', require: false
+gem 'tty-prompt', '~> 0.18', require: false
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2018'
 gem 'webpacker', '~> 3.5'

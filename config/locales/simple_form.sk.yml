@@ -8,18 +8,24 @@ sk:
         bot: Tento účet vykonáva hlavne automatizované akcie, a je pravdepodobne nespravovaný
         context: Jedno, alebo viac kritérií, v ktorých má byť filtrovanie uplatnené
         digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak si obdŕžal/a nejaké osobné správy kým si bol/a preč
-        fields: Môžeš mať 4 položky na svojom profile zobrazené vo forme tabuľky
-        header: PNG, GIF alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
+        email: Bude ti odoslaný potvrdzujúci email
+        fields: Až štyri položky môžeš mať na svojom profile zobrazené vo forme tabuľky
+        header: PNG, GIF, alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
         inbox_url: Skopíruj adresu z hlavnej stránky mostíka, ktorý chceš používať
         irreversible: Vytriedené príspevky zmiznú nenávratne, aj keď triedenie neskôr zrušíš
         locale: Jazyk užívateľského rozhrania, emailových a nástenkových oboznámení
         locked: Vyžaduje manuálne schvalovať sledujúcich
+        password: Zadaj aspoň osem znakov
         phrase: Zhoda sa nájde nezávisle od toho, či je text napísaný, veľkými, alebo malými písmenami, či už v tele, alebo v hlavičke
         scopes: Ktoré API budú povolené aplikácii pre prístup. Ak vyberieš vrcholný stupeň, nemusíš už potom vyberať po jednom.
         setting_default_language: Jazyk tvojích príspevkov môže byť zistený automaticky, ale nieje to vždy presné
+        setting_display_media_default: Skryť médiá označené ako citlivé
+        setting_display_media_hide_all: Vždy ukryť všetky médiá
+        setting_display_media_show_all: Stále ukazuj médiá označené ako citlivé
         setting_hide_network: Koho následuješ, a kto následuje teba nebude zobrazené na tvojom profile
         setting_noindex: Ovplyvňuje verejný profil a stránky s príspevkami
         setting_theme: Ovplyvňuje ako Mastodon vyzerá pri prihlásení z hociakého zariadenia.
+        username: Tvoja prezývka bude unikátna pre server %{domain}
         whole_word: Ak je kľúčové slovo, alebo fráza poskladaná iba s písmen a čísel, bude použité iba ak sa zhoduje s celým výrazom
       imports:
         data: CSV súbor vyexportovaný z inej Mastodon inštancie
@@ -63,6 +69,11 @@ sk:
         setting_default_privacy: Súkromie príspevkov
         setting_default_sensitive: Označ všetky mediálne súbory ako chúlostivé
         setting_delete_modal: Zobrazuj potvrdzovacie okno pred vymazaním toot-u
+        setting_display_media: Zobrazovanie médií
+        setting_display_media_default: Štandard
+        setting_display_media_hide_all: Skryť všetky
+        setting_display_media_show_all: Ukáž všetky
+        setting_expand_spoilers: Stále rozbaľ príspevky označené varovaním o obsahu
         setting_hide_network: Ukri svoju sieť kontaktov
         setting_noindex: Nezaraďuj príspevky do indexu pre vyhľadávče
         setting_reduce_motion: Redukovať pohyb v animáciách

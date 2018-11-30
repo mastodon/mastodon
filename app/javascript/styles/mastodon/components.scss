@@ -4658,6 +4658,19 @@ a.status-card.compact:hover {
   z-index: 5;
 }
 
+.detailed,
+.fullscreen {
+  .video-player__volume__current,
+  .video-player__volume::before {
+    bottom: 27px;
+  }
+
+  .video-player__volume__handle {
+    bottom: 23px;
+  }
+
+}
+
 .video-player {
   overflow: hidden;
   position: relative;
@@ -4806,7 +4819,7 @@ a.status-card.compact:hover {
 
   &__time-current {
     color: $white;
-    margin-left: 10px;
+    margin-left: 60px;
   }
 
   &__time-sep {
@@ -4817,6 +4830,48 @@ a.status-card.compact:hover {
   &__time-sep,
   &__time-total {
     color: $white;
+  }
+
+  &__volume {
+    cursor: pointer;
+    height: 24px;
+    display: inline;
+
+    &::before {
+      content: "";
+      width: 50px;
+      background: rgba($white, 0.35);
+      border-radius: 4px;
+      display: block;
+      position: absolute;
+      height: 4px;
+      left: 70px;
+      bottom: 20px;
+    }
+
+    &__current {
+      display: block;
+      position: absolute;
+      height: 4px;
+      border-radius: 4px;
+      left: 70px;
+      bottom: 20px;
+      background: lighten($ui-highlight-color, 8%);
+    }
+
+    &__handle {
+      position: absolute;
+      z-index: 3;
+      border-radius: 50%;
+      width: 12px;
+      height: 12px;
+      bottom: 16px;
+      left: 70px;
+      transition: opacity .1s ease;
+      background: lighten($ui-highlight-color, 8%);
+      box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
+      pointer-events: none;
+    }
   }
 
   &__seek {
