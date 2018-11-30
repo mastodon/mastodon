@@ -35,7 +35,7 @@ export default class ColumnSettings extends React.PureComponent {
           <ClearColumnButton onClick={onClear} />
         </div>
 
-        <div role='filter' aria-labelledby='show-filter-bar'>
+        <div role='group' aria-labelledby='show-filter-bar'>
           <div className='column-settings__row'>
             <SettingToggle id='show-filter-bar' prefix='notifications' settings={settings} settingPath={['showFilterBar']} onChange={onChange} label={filterStr} />
           </div>

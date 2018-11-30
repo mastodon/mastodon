@@ -29,7 +29,7 @@ const getNotifications = createSelector([
   if (!showFilterBar || allowedType === 'all') {
     return notifications.filterNot(item => item !== null && excludedTypes.includes(item.get('type')));
   }
-  return notifications.filter(item => item !== null && allowedType === item.get('type'))
+  return notifications.filter(item => item !== null && allowedType === item.get('type'));
 });
 
 const mapStateToProps = state => ({
@@ -47,6 +47,7 @@ class Notifications extends React.PureComponent {
   static propTypes = {
     columnId: PropTypes.string,
     notifications: ImmutablePropTypes.list.isRequired,
+    showFilterBar: PropTypes.bool.isRequired,
     dispatch: PropTypes.func.isRequired,
     shouldUpdateScroll: PropTypes.func,
     intl: PropTypes.object.isRequired,
@@ -134,7 +135,7 @@ class Notifications extends React.PureComponent {
 
     const filterBarContainer = showFilterBar
       ? (<FilterBarContainer />)
-      : null
+      : null;
 
     if (isLoading && this.scrollableContent) {
       scrollableContent = this.scrollableContent;
