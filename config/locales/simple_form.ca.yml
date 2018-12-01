@@ -1,38 +1,51 @@
----
 ca:
   simple_form:
     hints:
       defaults:
-        autofollow: Les persones que es registrin a través de la invitació et seguiran automàticament
+        autofollow: Les persones que es registrin a través de la invitació et seguiran
+          automàticament
         avatar: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
-        bot: Aquest compte realitza principalment accions automatitzades i pot no estar controlat per cap persona
+        bot: Aquest compte realitza principalment accions automatitzades i pot no
+          estar controlat per cap persona
         context: Un o diversos contextos on s'ha d'aplicar el filtre
-        digest: Només s'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
+        digest: Només s'envia després d'un llarg període d'inactivitat amb un resum
+          de les mencions que has rebut en la teva absència
         email: Se t'enviarà un correu electrònic de confirmació
         fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
         header: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
         inbox_url: Copia l'URL des de la pàgina principal del relay que vols utilitzar
-        irreversible: Els nodes filtrats desapareixeran de manera irreversible, fins i tot si el filtre es retira més tard
-        locale: El llenguatge de l’interfície d’usuari, els correus i les notificacions push
+        irreversible: Els nodes filtrats desapareixeran de manera irreversible, fins
+          i tot si el filtre es retira més tard
+        locale: El llenguatge de l’interfície d’usuari, els correus i les notificacions
+          push
         locked: Requereix que aprovis manualment els seguidors
         password: Utilitza com a mínim 8 caràcters
-        phrase: Es combinarà independentment del format en el text o l'avís de contingut d'un toot
-        scopes: A quines API es permetrà l'accés a l'aplicació. Si selecciones un àmbit d'alt nivell, no cal que seleccionis un d'individual.
-        setting_default_language: La llengua dels teus toots pot ser detectada automàticament però no sempre acuradament
+        phrase: Es combinarà independentment del format en el text o l'avís de contingut
+          d'un toot
+        scopes: A quines API es permetrà l'accés a l'aplicació. Si selecciones un
+          àmbit d'alt nivell, no cal que seleccionis un d'individual.
+        setting_default_language: La llengua dels teus toots pot ser detectada automàticament
+          però no sempre acuradament
         setting_display_media_default: Amaga els multimèdia marcats com a sensibles
         setting_display_media_hide_all: Sempre oculta tots els multimèdia
-        setting_display_media_show_all: Mostra sempre els elements multimèdia marcats com a sensibles
-        setting_hide_network: Qui tu segueixes i els que et segueixen a tu no es mostraran en el teu perfil
+        setting_display_media_show_all: Mostra sempre els elements multimèdia marcats
+          com a sensibles
+        setting_hide_network: Qui tu segueixes i els que et segueixen a tu no es mostraran
+          en el teu perfil
         setting_noindex: Afecta el teu perfil públic i les pàgines d'estat
-        setting_theme: Afecta l'aspecte de Mastodon quan es visita des de qualsevol dispositiu.
+        setting_theme: Afecta l'aspecte de Mastodon quan es visita des de qualsevol
+          dispositiu.
         username: El teu nom d'usuari serà únic a %{domain}
-        whole_word: Quan la paraula clau o la frase sigui només alfanumèrica, s'aplicarà si coincideix amb la paraula sencera
+        whole_word: Quan la paraula clau o la frase sigui només alfanumèrica, s'aplicarà
+          si coincideix amb la paraula sencera
       imports:
         data: Fitxer CSV exportat des de una altra instància de Mastodon
       sessions:
-        otp: 'Introdueix el codi de dos factors generat per el teu telèfon o utilitza un dels teus codis de recuperació:'
+        otp: 'Introdueix el codi de dos factors generat per el teu telèfon o utilitza
+          un dels teus codis de recuperació:'
       user:
-        chosen_languages: Quan estigui marcat, només es mostraran els toots de les llengües seleccionades en les línies de temps públiques
+        chosen_languages: Quan estigui marcat, només es mostraran els toots de les
+          llengües seleccionades en les línies de temps públiques
     labels:
       account:
         fields:
@@ -64,22 +77,25 @@ ca:
         password: Contrasenya
         phrase: Paraula clau o frase
         setting_auto_play_gif: Reproducció automàtica de GIFs animats
-        setting_boost_modal: Mostra la finestra de confirmació abans d'un retoot
+        setting_boost_modal: Mostra la finestra de confirmació abans d'impulsar
         setting_default_language: Llengua de les publicacions
         setting_default_privacy: Privacitat de les publicacions
         setting_default_sensitive: Marca sempre els elements multimèdia com a sensibles
-        setting_delete_modal: Mostra la finestra de confirmació abans de suprimir un toot
+        setting_delete_modal: Mostra la finestra de confirmació abans de suprimir
+          un toot
         setting_display_media: Visualització multimèdia
         setting_display_media_default: Per defecte
         setting_display_media_hide_all: Amaga-ho tot
         setting_display_media_show_all: Mostra-ho tot
-        setting_expand_spoilers: Sempre amplia els toots marcats amb advertències de contingut
+        setting_expand_spoilers: Sempre amplia els toots marcats amb advertències
+          de contingut
         setting_hide_network: Amaga la teva xarxa
         setting_noindex: Desactivació de la indexació del motor de cerca
         setting_reduce_motion: Redueix el moviment en animacions
         setting_system_font_ui: Utilitza el tipus de lletra predeterminat del sistema
         setting_theme: Tema del lloc
-        setting_unfollow_modal: Mostra el diàleg de confirmació abans de deixar de seguir a algú
+        setting_unfollow_modal: Mostra el diàleg de confirmació abans de deixar de
+          seguir a algú
         severity: Severitat
         type: Importa el tipus
         username: Nom d'usuari
@@ -91,7 +107,8 @@ ca:
         must_be_following_dm: Bloca els missatges directes de persones que no segueixes
       notification_emails:
         digest: Envia un resum per correu electrònic
-        favourite: Envia un correu electrònic si algú marca com a preferit el teu estat
+        favourite: Envia un correu electrònic si algú marca com a preferit el teu
+          estat
         follow: Envia un correu electrònic si algú et segueix
         follow_request: Envia un correu electrònic si algú sol·licita seguir-te
         mention: Envia un correu electrònic si algú et menciona
@@ -99,6 +116,6 @@ ca:
         report: Envia un correu electrònic quan s'enviï un nou informe
     'no': 'No'
     required:
-      mark: "*"
+      mark: '*'
       text: necessari
     'yes': Sí
