@@ -15,7 +15,7 @@ export const TIMELINE_SCROLL_TOP = 'TIMELINE_SCROLL_TOP';
 export const TIMELINE_DISCONNECT = 'TIMELINE_DISCONNECT';
 
 export function updateTimeline(timeline, status, accept) {
-  return (dispatch, getState) => {
+  return dispatch => {
     if (typeof accept === 'function' && !accept(status)) {
       return;
     }
