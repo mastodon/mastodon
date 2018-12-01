@@ -5,8 +5,8 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
 import AsyncSelect from 'react-select/lib/Async';
 
-@injectIntl
-export default class ColumnSettings extends React.PureComponent {
+export default @injectIntl
+class ColumnSettings extends React.PureComponent {
 
   static propTypes = {
     settings: ImmutablePropTypes.map.isRequired,
