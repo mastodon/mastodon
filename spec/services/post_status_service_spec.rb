@@ -25,6 +25,19 @@ RSpec.describe PostStatusService, type: :service do
     expect(status.thread).to eq in_reply_to_status
   end
 
+  it 'creates response to the original status of boost' do
+    boosted_status = Fabricate(:status)
+    in_reply_to_status = Fabricate(:status, reblog: boosted_status)
+    account = Fabricate(:account)
+    text = "test status update"
+
+    status = subject.call(account, text, in_reply_to_status)
+
+    expect(status).to be_persisted
+    expect(status.text).to eq text
+    expect(status.thread).to eq boosted_status
+  end
+
   it 'creates a sensitive status' do
     status = create_status_with_options(sensitive: true)
 

@@ -24,8 +24,8 @@ RSpec.describe Admin::AccountsController, type: :controller do
         expect(h[:local]).to eq '1'
         expect(h[:remote]).to eq '1'
         expect(h[:by_domain]).to eq 'domain'
+        expect(h[:active]).to eq '1'
         expect(h[:silenced]).to eq '1'
-        expect(h[:alphabetic]).to eq '1'
         expect(h[:suspended]).to eq '1'
         expect(h[:username]).to eq 'username'
         expect(h[:display_name]).to eq 'display name'
@@ -39,8 +39,8 @@ RSpec.describe Admin::AccountsController, type: :controller do
         local: '1',
         remote: '1',
         by_domain: 'domain',
+        active: '1',
         silenced: '1',
-        alphabetic: '1',
         suspended: '1',
         username: 'username',
         display_name: 'display name',
