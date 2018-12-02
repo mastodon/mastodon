@@ -3,6 +3,15 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [2.6.5] - 2018-12-01
+### Changed
+
+- Change lists to display replies to others on the list and list owner (#9324)
+
+### Fixed
+
+- Fix failures caused by commonly-used JSON-LD contexts being unavailable (#9412)
+
 ## [2.6.4] - 2018-11-30
 ### Fixed
 
