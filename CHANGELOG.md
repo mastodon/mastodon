@@ -1,3 +1,13 @@
+## 2.5.3
+
+- Fix already queued deliveries still trying to reach inboxes marked as unavailable (#9358)
+- Fix ffmpeg processing sometimes stalling due to overfilled stdout buffer (#9368)
+- Fix failures caused by commonly-used JSON-LD contexts being unavailable (#9412)
+- Fix yarn dependencies not installing due to yanked event-stream package (#9401)
+- Fix TLS handshake timeout not being enforced (#9381)
+- Fix HTTP connection timeout of 10s not being enforced (#9329)
+- Fix multiple remote account deletions being able to deadlock the database (#9292)
+
 ## 2.5.2
 
 - Fix XSS vulnerability (#8959)
