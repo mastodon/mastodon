@@ -106,7 +106,7 @@ export function expandNotifications({ maxId } = {}, done = noOp) {
     };
 
     if (!maxId && notifications.get('items').size > 0) {
-      params.since_id = notifications.getIn(['items', 0]);
+      params.since_id = notifications.getIn(['items', 0, 'id']);
     }
 
     dispatch(expandNotificationsRequest(isLoadingMore));

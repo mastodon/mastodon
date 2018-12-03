@@ -290,6 +290,10 @@ GEM
     json-ld (2.2.1)
       multi_json (~> 1.12)
       rdf (>= 2.2.8, < 4.0)
+    json-ld-preloaded (2.2.3)
+      json-ld (>= 2.2, < 4.0)
+      multi_json (~> 1.12)
+      rdf (>= 2.2, < 4.0)
     jsonapi-renderer (0.2.0)
     jwt (2.1.0)
     kaminari (1.1.1)
@@ -693,6 +697,7 @@ DEPENDENCIES
   idn-ruby
   iso-639
   json-ld (~> 2.2)
+  json-ld-preloaded (~> 2.2)
   kaminari (~> 1.1)
   letter_opener (~> 1.4)
   letter_opener_web (~> 1.3)
