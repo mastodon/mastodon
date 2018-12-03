@@ -30,37 +30,49 @@ export default class FilterBar extends React.PureComponent {
           className={selectedFilter === 'mention' ? 'active' : ''}
           onClick={this.onClick('mention')}
         >
-          <FormattedMessage
-            id='notifications.filter.mentions'
-            defaultMessage='Mentions'
-          />
+          {/*
+            <FormattedMessage
+              id='notifications.filter.mentions'
+              defaultMessage='Mentions'
+            />
+          */}
+          @
         </button>
         <button
           className={selectedFilter === 'favourite' ? 'active' : ''}
           onClick={this.onClick('favourite')}
         >
-          <FormattedMessage
-            id='notifications.filter.favourites'
-            defaultMessage='Favourites'
-          />
+          {/*
+            <FormattedMessage
+              id='notifications.filter.favourites'
+              defaultMessage='Favourites'
+            />
+          */}
+          <i className='fa fa-fw fa-star' />
         </button>
         <button
           className={selectedFilter === 'reblog' ? 'active' : ''}
           onClick={this.onClick('reblog')}
         >
-          <FormattedMessage
-            id='notifications.filter.boosts'
-            defaultMessage='Boosts'
-          />
+          {/*
+            <FormattedMessage
+              id='notifications.filter.boosts'
+              defaultMessage='Boosts'
+            />
+          */}
+          <i className='fa fa-fw fa-retweet' />
         </button>
         <button
           className={selectedFilter === 'follow' ? 'active' : ''}
           onClick={this.onClick('follow')}
         >
-          <FormattedMessage
-            id='notifications.filter.follows'
-            defaultMessage='Follows'
-          />
+          {/*
+            <FormattedMessage
+              id='notifications.filter.follows'
+              defaultMessage='Follows'
+            />
+          */}
+          <i className='fa fa-fw fa-user-plus' />
         </button>
       </div>
     );
