@@ -29,9 +29,18 @@ export default class DetailedStatus extends ImmutablePureComponent {
   };
 
   handleAccountClick = (e) => {
-    if (e.button === 0) {
+    if (e.button === 0 && !(e.ctrlKey || e.altKey || e.metaKey)) {
       e.preventDefault();
       this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
+    }
+
+    e.stopPropagation();
+  }
+
+  parseClick = (e, destination) => {
+    if (e.button === 0 && !(e.ctrlKey || e.altKey || e.metaKey)) {
+      e.preventDefault();
+      this.context.router.history.push(destination);
     }
 
     e.stopPropagation();
@@ -122,6 +131,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
           expanded={expanded}
           collapsed={false}
           onExpandedToggle={onToggleHidden}
+          parseClick={this.parseClick}
         />
 
         <div className='detailed-status__meta'>
