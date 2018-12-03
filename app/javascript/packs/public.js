@@ -63,7 +63,7 @@ function main() {
       content.textContent = timeAgoString({
         formatMessage: ({ id, defaultMessage }, values) => (new IntlMessageFormat(messages[id] || defaultMessage, locale)).format(values),
         formatDate: (date, options) => (new Intl.DateTimeFormat(locale, options)).format(date),
-      }, datetime, now, datetime.getFullYear());
+      }, datetime, now, now.getFullYear());
     });
 
     const reactComponents = document.querySelectorAll('[data-component]');

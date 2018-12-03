@@ -9,6 +9,7 @@ import { expandHashtagTimeline, clearTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { FormattedMessage } from 'react-intl';
 import { connectHashtagStream } from '../../actions/streaming';
+import { isEqual } from 'lodash';
 
 const mapStateToProps = (state, props) => ({
   hasUnread: state.getIn(['timelines', `hashtag:${props.params.id}`, 'unread']) > 0,
@@ -41,13 +42,13 @@ class HashtagTimeline extends React.PureComponent {
   title = () => {
     let title = [this.props.params.id];
     if (this.additionalFor('any')) {
-      title.push(<FormattedMessage id='hashtag.column_header.tag_mode.any'  values={{ additional: this.additionalFor('any') }} defaultMessage=' or {additional}' />);
+      title.push(' ', <FormattedMessage id='hashtag.column_header.tag_mode.any'  values={{ additional: this.additionalFor('any') }} defaultMessage='or {additional}' />);
     }
     if (this.additionalFor('all')) {
-      title.push(<FormattedMessage id='hashtag.column_header.tag_mode.all'  values={{ additional: this.additionalFor('all') }} defaultMessage=' and {additional}' />);
+      title.push(' ', <FormattedMessage id='hashtag.column_header.tag_mode.all'  values={{ additional: this.additionalFor('all') }} defaultMessage='and {additional}' />);
     }
     if (this.additionalFor('none')) {
-      title.push(<FormattedMessage id='hashtag.column_header.tag_mode.none' values={{ additional: this.additionalFor('none') }} defaultMessage=' without {additional}' />);
+      title.push(' ', <FormattedMessage id='hashtag.column_header.tag_mode.none' values={{ additional: this.additionalFor('none') }} defaultMessage='without {additional}' />);
     }
     return title;
   }
@@ -100,7 +101,7 @@ class HashtagTimeline extends React.PureComponent {
   componentWillReceiveProps (nextProps) {
     const { dispatch, params } = this.props;
     const { id, tags } = nextProps.params;
-    if (id !== params.id || tags !== params.tags) {
+    if (id !== params.id || !isEqual(tags, params.tags)) {
       this._unsubscribe();
       this._subscribe(dispatch, id, tags);
       this.props.dispatch(clearTimeline(`hashtag:${id}`));

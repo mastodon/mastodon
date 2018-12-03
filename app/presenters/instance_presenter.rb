@@ -18,11 +18,11 @@ class InstancePresenter
   end
 
   def user_count
-    Rails.cache.fetch('user_count') { User.confirmed.count }
+    Rails.cache.fetch('user_count') { User.confirmed.joins(:account).merge(Account.without_suspended).count }
   end
 
   def status_count
-    Rails.cache.fetch('local_status_count') { Account.local.sum(:statuses_count) }
+    Rails.cache.fetch('local_status_count') { Account.local.joins(:account_stat).sum('account_stats.statuses_count') }.to_i
   end
 
   def domain_count

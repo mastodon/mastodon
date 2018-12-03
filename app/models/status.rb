@@ -94,17 +94,16 @@ class Status < ApplicationRecord
     end
   }
 
-  cache_associated :account,
-                   :application,
+  cache_associated :application,
                    :media_attachments,
                    :conversation,
                    :status_stat,
                    :tags,
                    :preview_cards,
                    :stream_entry,
-                   active_mentions: :account,
+                   account: :account_stat,
+                   active_mentions: { account: :account_stat },
                    reblog: [
-                     :account,
                      :application,
                      :stream_entry,
                      :tags,
@@ -112,9 +111,10 @@ class Status < ApplicationRecord
                      :media_attachments,
                      :conversation,
                      :status_stat,
-                     active_mentions: :account,
+                     account: :account_stat,
+                     active_mentions: { account: :account_stat },
                    ],
-                   thread: :account
+                   thread: { account: :account_stat }
 
   delegate :domain, to: :account, prefix: true
 
@@ -321,19 +321,19 @@ class Status < ApplicationRecord
     end
 
     def favourites_map(status_ids, account_id)
-      Favourite.select('status_id').where(status_id: status_ids).where(account_id: account_id).map { |f| [f.status_id, true] }.to_h
+      Favourite.select('status_id').where(status_id: status_ids).where(account_id: account_id).each_with_object({}) { |f, h| h[f.status_id] = true }
     end
 
     def reblogs_map(status_ids, account_id)
-      select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).reorder(nil).map { |s| [s.reblog_of_id, true] }.to_h
+      select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).reorder(nil).each_with_object({}) { |s, h| h[s.reblog_of_id] = true }
     end
 
     def mutes_map(conversation_ids, account_id)
-      ConversationMute.select('conversation_id').where(conversation_id: conversation_ids).where(account_id: account_id).map { |m| [m.conversation_id, true] }.to_h
+      ConversationMute.select('conversation_id').where(conversation_id: conversation_ids).where(account_id: account_id).each_with_object({}) { |m, h| h[m.conversation_id] = true }
     end
 
     def pins_map(status_ids, account_id)
-      StatusPin.select('status_id').where(status_id: status_ids).where(account_id: account_id).map { |p| [p.status_id, true] }.to_h
+      StatusPin.select('status_id').where(status_id: status_ids).where(account_id: account_id).each_with_object({}) { |p, h| h[p.status_id] = true }
     end
 
     def reload_stale_associations!(cached_items)
@@ -348,7 +348,7 @@ class Status < ApplicationRecord
 
       return if account_ids.empty?
 
-      accounts = Account.where(id: account_ids).map { |a| [a.id, a] }.to_h
+      accounts = Account.where(id: account_ids).includes(:account_stat).each_with_object({}) { |a, h| h[a.id] = a }
 
       cached_items.each do |item|
         item.account = accounts[item.account_id]
@@ -445,6 +445,8 @@ class Status < ApplicationRecord
   end
 
   def set_conversation
+    self.thread = thread.reblog if thread&.reblog?
+
     self.reply = !(in_reply_to_id.nil? && thread.nil?) unless reply
 
     if reply? && !thread.nil?
@@ -475,12 +477,7 @@ class Status < ApplicationRecord
   def increment_counter_caches
     return if direct_visibility?
 
-    if association(:account).loaded?
-      account.update_attribute(:statuses_count, account.statuses_count + 1)
-    else
-      Account.where(id: account_id).update_all('statuses_count = COALESCE(statuses_count, 0) + 1')
-    end
-
+    account&.increment_count!(:statuses_count)
     reblog&.increment_count!(:reblogs_count) if reblog?
     thread&.increment_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end
@@ -488,12 +485,7 @@ class Status < ApplicationRecord
   def decrement_counter_caches
     return if direct_visibility? || marked_for_mass_destruction?
 
-    if association(:account).loaded?
-      account.update_attribute(:statuses_count, [account.statuses_count - 1, 0].max)
-    else
-      Account.where(id: account_id).update_all('statuses_count = GREATEST(COALESCE(statuses_count, 0) - 1, 0)')
-    end
-
+    account&.decrement_count!(:statuses_count)
     reblog&.decrement_count!(:reblogs_count) if reblog?
     thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end

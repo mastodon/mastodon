@@ -17,8 +17,8 @@ export default [{
       },
       relativeTime: {
         future: {
-          one: "dins {0} an",
-          other: "dins {0} ans",
+          one: "d’aquí {0} an",
+          other: "d’aquí {0} ans",
         },
         past: {
           one: "fa {0} an",
@@ -35,8 +35,8 @@ export default [{
       },
       relativeTime: {
         future: {
-          one: "dins {0} mes",
-          other: "dins {0} meses",
+          one: "d’aquí {0} mes",
+          other: "d’aquí {0} meses",
         },
         past: {
           one: "fa {0} mes",
@@ -53,8 +53,8 @@ export default [{
       },
       relativeTime: {
         future: {
-          one: "dins {0} jorn",
-          other: "dins {0} jorns",
+          one: "d’aquí {0} jorn",
+          other: "d’aquí {0} jorns",
         },
         past: {
           one: "fa {0} jorn",
@@ -66,8 +66,8 @@ export default [{
       displayName: "ora",
       relativeTime: {
         future: {
-          one: "dins {0} ora",
-          other: "dins {0} oras",
+          one: "d’aquí {0} ora",
+          other: "d’aquí {0} oras",
         },
         past: {
           one: "fa {0} ora",
@@ -79,8 +79,8 @@ export default [{
       displayName: "minuta",
       relativeTime: {
         future: {
-          one: "dins {0} minuta",
-          other: "dins {0} minutas",
+          one: "d’aquí {0} minuta",
+          other: "d’aquí {0} minutas",
         },
         past: {
           one: "fa {0} minuta",
@@ -95,8 +95,8 @@ export default [{
       },
       relativeTime: {
         future: {
-          one: "dins {0} segonda",
-          other: "dins {0} segondas",
+          one: "d’aquí {0} segonda",
+          other: "d’aquí {0} segondas",
         },
         past: {
           one: "fa {0} segonda",

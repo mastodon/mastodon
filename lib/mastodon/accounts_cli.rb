@@ -242,8 +242,9 @@ module Mastodon
           end
 
           culled += 1
-          say('.', :green, false)
+          say('+', :green, false)
         else
+          account.touch # Touch account even during dry run to avoid getting the account into the window again
           say('.', nil, false)
         end
       end

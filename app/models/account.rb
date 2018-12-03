@@ -32,9 +32,6 @@
 #  suspended               :boolean          default(FALSE), not null
 #  locked                  :boolean          default(FALSE), not null
 #  header_remote_url       :string           default(""), not null
-#  statuses_count          :integer          default(0), not null
-#  followers_count         :integer          default(0), not null
-#  following_count         :integer          default(0), not null
 #  last_webfingered_at     :datetime
 #  inbox_url               :string           default(""), not null
 #  outbox_url              :string           default(""), not null
@@ -49,20 +46,19 @@
 #
 
 class Account < ApplicationRecord
-  USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.]+[a-z0-9_]+)?/i
+  USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
   MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
 
+  include AccountAssociations
   include AccountAvatar
   include AccountFinderConcern
   include AccountHeader
   include AccountInteractions
   include Attachmentable
   include Paginable
+  include AccountCounters
 
   enum protocol: [:ostatus, :activitypub]
-
-  # Local users
-  has_one :user, inverse_of: :account
 
   validates :username, presence: true
 
@@ -78,55 +74,15 @@ class Account < ApplicationRecord
   validates :note, length: { maximum: 160 }, if: -> { local? && will_save_change_to_note? }
   validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
 
-  # Timelines
-  has_many :stream_entries, inverse_of: :account, dependent: :destroy
-  has_many :statuses, inverse_of: :account, dependent: :destroy
-  has_many :favourites, inverse_of: :account, dependent: :destroy
-  has_many :mentions, inverse_of: :account, dependent: :destroy
-  has_many :notifications, inverse_of: :account, dependent: :destroy
-
-  # Pinned statuses
-  has_many :status_pins, inverse_of: :account, dependent: :destroy
-  has_many :pinned_statuses, -> { reorder('status_pins.created_at DESC') }, through: :status_pins, class_name: 'Status', source: :status
-
-  # Endorsements
-  has_many :account_pins, inverse_of: :account, dependent: :destroy
-  has_many :endorsed_accounts, through: :account_pins, class_name: 'Account', source: :target_account
-
-  # Media
-  has_many :media_attachments, dependent: :destroy
-
-  # PuSH subscriptions
-  has_many :subscriptions, dependent: :destroy
-
-  # Report relationships
-  has_many :reports
-  has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id
-
-  has_many :report_notes, dependent: :destroy
-  has_many :custom_filters, inverse_of: :account, dependent: :destroy
-
-  # Moderation notes
-  has_many :account_moderation_notes, dependent: :destroy
-  has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, dependent: :destroy
-
-  # Lists
-  has_many :list_accounts, inverse_of: :account, dependent: :destroy
-  has_many :lists, through: :list_accounts
-
-  # Account migrations
-  belongs_to :moved_to_account, class_name: 'Account', optional: true
-
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
-  scope :without_followers, -> { where(followers_count: 0) }
-  scope :with_followers, -> { where('followers_count > 0') }
   scope :expiring, ->(time) { remote.where.not(subscription_expires_at: nil).where('subscription_expires_at < ?', time) }
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
   scope :silenced, -> { where(silenced: true) }
   scope :suspended, -> { where(suspended: true) }
   scope :without_suspended, -> { where(suspended: false) }
   scope :recent, -> { reorder(id: :desc) }
+  scope :bots, -> { where(actor_type: %w(Application Service)) }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
   scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
   scope :matches_username, ->(value) { where(arel_table[:username].matches("#{value}%")) }
@@ -385,7 +341,9 @@ class Account < ApplicationRecord
         LIMIT ?
       SQL
 
-      find_by_sql([sql, limit])
+      records = find_by_sql([sql, limit])
+      ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
+      records
     end
 
     def advanced_search_for(terms, account, limit = 10, following = false)
@@ -412,7 +370,7 @@ class Account < ApplicationRecord
           LIMIT ?
         SQL
 
-        find_by_sql([sql, account.id, account.id, account.id, limit])
+        records = find_by_sql([sql, account.id, account.id, account.id, limit])
       else
         sql = <<-SQL.squish
           SELECT
@@ -428,8 +386,11 @@ class Account < ApplicationRecord
           LIMIT ?
         SQL
 
-        find_by_sql([sql, account.id, account.id, limit])
+        records = find_by_sql([sql, account.id, account.id, limit])
       end
+
+      ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
+      records
     end
 
     private
@@ -450,6 +411,7 @@ class Account < ApplicationRecord
   before_create :generate_keys
   before_validation :normalize_domain
   before_validation :prepare_contents, if: :local?
+  before_destroy :clean_feed_manager
 
   private
 
@@ -474,5 +436,20 @@ class Account < ApplicationRecord
 
   def emojifiable_text
     [note, display_name, fields.map(&:value)].join(' ')
+  end
+
+  def clean_feed_manager
+    reblog_key       = FeedManager.instance.key(:home, id, 'reblogs')
+    reblogged_id_set = Redis.current.zrange(reblog_key, 0, -1)
+
+    Redis.current.pipelined do
+      Redis.current.del(FeedManager.instance.key(:home, id))
+      Redis.current.del(reblog_key)
+
+      reblogged_id_set.each do |reblogged_id|
+        reblog_set_key = FeedManager.instance.key(:home, id, "reblogs:#{reblogged_id}")
+        Redis.current.del(reblog_set_key)
+      end
+    end
   end
 end

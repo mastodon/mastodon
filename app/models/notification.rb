@@ -75,7 +75,7 @@ class Notification < ApplicationRecord
 
       return if account_ids.empty?
 
-      accounts = Account.where(id: account_ids).map { |a| [a.id, a] }.to_h
+      accounts = Account.where(id: account_ids).includes(:account_stat).each_with_object({}) { |a, h| h[a.id] = a }
 
       cached_items.each do |item|
         item.from_account = accounts[item.from_account_id]
