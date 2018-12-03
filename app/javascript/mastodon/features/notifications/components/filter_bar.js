@@ -1,12 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
-export default class FilterBar extends React.PureComponent {
+const tooltips = defineMessages({
+  mentions: { id: 'notifications.filter.mentions', defaultMessage: 'Mentions' },
+  favourites: { id: 'notifications.filter.favourites', defaultMessage: 'Favourites' },
+  boosts: { id: 'notifications.filter.boosts', defaultMessage: 'Boosts' },
+  follows: { id: 'notifications.filter.follows', defaultMessage: 'Follows' },
+});
+
+export default @injectIntl
+class FilterBar extends React.PureComponent {
 
   static propTypes = {
     selectFilter: PropTypes.func.isRequired,
     selectedFilter: PropTypes.string.isRequired,
+    intl: PropTypes.object.isRequired,
   };
 
   onClick (notificationType) {
@@ -14,7 +23,7 @@ export default class FilterBar extends React.PureComponent {
   }
 
   render () {
-    const { selectedFilter } = this.props;
+    const { selectedFilter, intl } = this.props;
     return (
       <div className='notification__filter-bar'>
         <button
@@ -29,49 +38,29 @@ export default class FilterBar extends React.PureComponent {
         <button
           className={selectedFilter === 'mention' ? 'active' : ''}
           onClick={this.onClick('mention')}
+          title={intl.formatMessage(tooltips.mentions)}
         >
-          {/*
-            <FormattedMessage
-              id='notifications.filter.mentions'
-              defaultMessage='Mentions'
-            />
-          */}
           @
         </button>
         <button
           className={selectedFilter === 'favourite' ? 'active' : ''}
           onClick={this.onClick('favourite')}
+          title={intl.formatMessage(tooltips.favourites)}
         >
-          {/*
-            <FormattedMessage
-              id='notifications.filter.favourites'
-              defaultMessage='Favourites'
-            />
-          */}
           <i className='fa fa-fw fa-star' />
         </button>
         <button
           className={selectedFilter === 'reblog' ? 'active' : ''}
           onClick={this.onClick('reblog')}
+          title={intl.formatMessage(tooltips.boosts)}
         >
-          {/*
-            <FormattedMessage
-              id='notifications.filter.boosts'
-              defaultMessage='Boosts'
-            />
-          */}
           <i className='fa fa-fw fa-retweet' />
         </button>
         <button
           className={selectedFilter === 'follow' ? 'active' : ''}
           onClick={this.onClick('follow')}
+          title={intl.formatMessage(tooltips.follows)}
         >
-          {/*
-            <FormattedMessage
-              id='notifications.filter.follows'
-              defaultMessage='Follows'
-            />
-          */}
           <i className='fa fa-fw fa-user-plus' />
         </button>
       </div>
