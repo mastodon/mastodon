@@ -88,7 +88,9 @@ class Notification extends ImmutablePureComponent {
             </div>
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.follow' defaultMessage='{name} followed you' values={{ name: link }} />
-              <RelativeTimestamp timestamp={notification.get('created_at')} />
+              <span className='notification__relative_time'>
+                <RelativeTimestamp timestamp={notification.get('created_at')} />
+              </span>
             </span>
           </div>
           <AccountContainer id={account.get('id')} withNote={false} hidden={this.props.hidden} />
@@ -121,7 +123,9 @@ class Notification extends ImmutablePureComponent {
               <i className='fa fa-fw fa-star star-icon' />
             </div>
             <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
-            <RelativeTimestamp timestamp={notification.get('created_at')} />
+            <span className='notification__relative_time'>
+              <RelativeTimestamp className='notification__relative_time' timestamp={notification.get('created_at')} />
+            </span>
           </div>
 
           <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss hidden={!!this.props.hidden} />
@@ -141,7 +145,9 @@ class Notification extends ImmutablePureComponent {
               <i className='fa fa-fw fa-retweet' />
             </div>
             <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
-            <RelativeTimestamp timestamp={notification.get('created_at')} />
+            <span className='notification__relative_time'>
+              <RelativeTimestamp className='notification__relative_time' timestamp={notification.get('created_at')} />
+            </span>
           </div>
 
           <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss hidden={this.props.hidden} />
