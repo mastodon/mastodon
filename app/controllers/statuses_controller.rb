@@ -111,6 +111,10 @@ class StatusesController < ApplicationController
         else
           @descendant_threads << create_descendant_thread(starting_depth, statuses)
 
+          # The thread is broken, assume it's a reply to the root status
+          starting_depth = 0
+
+          # ... unless we can find its ancestor in one of the already-processed threads
           @descendant_threads.reverse_each do |descendant_thread|
             statuses = descendant_thread[:statuses]
 
