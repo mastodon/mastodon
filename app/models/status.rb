@@ -426,7 +426,7 @@ class Status < ApplicationRecord
   end
 
   def store_uri
-    update_attribute(:uri, ActivityPub::TagManager.instance.uri_for(self)) if uri.nil?
+    update_column(:uri, ActivityPub::TagManager.instance.uri_for(self)) if uri.nil?
   end
 
   def prepare_contents
