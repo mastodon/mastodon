@@ -40,7 +40,7 @@ class FilterBar extends React.PureComponent {
           onClick={this.onClick('mention')}
           title={intl.formatMessage(tooltips.mentions)}
         >
-          @
+          <i className='fa fa-fw fa-at' />
         </button>
         <button
           className={selectedFilter === 'favourite' ? 'active' : ''}
