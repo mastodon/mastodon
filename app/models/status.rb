@@ -236,8 +236,8 @@ class Status < ApplicationRecord
     update_status_stat!(key => [public_send(key) - 1, 0].max)
   end
 
-  after_create  :increment_counter_caches
-  after_destroy :decrement_counter_caches
+  after_create_commit  :increment_counter_caches
+  after_destroy_commit :decrement_counter_caches
 
   after_create_commit :store_uri, if: :local?
   after_create_commit :update_statistics, if: :local?
