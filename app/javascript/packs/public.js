@@ -133,9 +133,12 @@ function main() {
 
   delegate(document, '#account_display_name', 'input', ({ target }) => {
     const name = document.querySelector('.card .display-name strong');
-
     if (name) {
-      name.textContent = emojify(target.value);
+      if (target.value) {
+        name.textContent = emojify(target.value);
+      } else {
+        name.textContent = document.querySelector('#default_account_display_name').textContent;
+      }
     }
   });
 
