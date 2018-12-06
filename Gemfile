@@ -6,7 +6,7 @@ ruby '>= 2.3.0', '< 2.6.0'
 gem 'pkg-config', '~> 1.3'
 
 gem 'puma', '~> 3.12'
-gem 'rails', '~> 5.2.1'
+gem 'rails', '~> 5.2.2'
 gem 'thor', '~> 0.20'
 
 gem 'hamlit-rails', '~> 0.2'
@@ -108,7 +108,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.11'
+  gem 'capybara', '~> 3.12'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 1.9'
   gem 'microformats', '~> 4.0'
@@ -128,7 +128,7 @@ group :development do
   gem 'letter_opener', '~> 1.4'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.60', require: false
+  gem 'rubocop', '~> 0.61', require: false
   gem 'brakeman', '~> 4.3', require: false
   gem 'bundler-audit', '~> 0.6', require: false
   gem 'scss_lint', '~> 0.57', require: false
