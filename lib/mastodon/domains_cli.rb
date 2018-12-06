@@ -22,11 +22,7 @@ module Mastodon
       dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
 
       Account.where(domain: domain).find_each do |account|
-        unless options[:dry_run]
-          SuspendAccountService.new.call(account)
-          account.destroy
-        end
-
+        SuspendAccountService.new.call(account, destroy: true) unless options[:dry_run]
         removed += 1
         say('.', :green, false)
       end

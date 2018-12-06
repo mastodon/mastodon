@@ -43,12 +43,15 @@
 #  featured_collection_url :string
 #  fields                  :jsonb
 #  actor_type              :string
+#  discoverable            :boolean
 #
 
 class Account < ApplicationRecord
   USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
   MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
+  MIN_FOLLOWERS_DISCOVERY = 10
 
+  include AccountAssociations
   include AccountAvatar
   include AccountFinderConcern
   include AccountHeader
@@ -58,9 +61,6 @@ class Account < ApplicationRecord
   include AccountCounters
 
   enum protocol: [:ostatus, :activitypub]
-
-  # Local users
-  has_one :user, inverse_of: :account
 
   validates :username, presence: true
 
@@ -75,46 +75,6 @@ class Account < ApplicationRecord
   validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
   validates :note, length: { maximum: 160 }, if: -> { local? && will_save_change_to_note? }
   validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
-
-  # Timelines
-  has_many :stream_entries, inverse_of: :account, dependent: :destroy
-  has_many :statuses, inverse_of: :account, dependent: :destroy
-  has_many :favourites, inverse_of: :account, dependent: :destroy
-  has_many :bookmarks, inverse_of: :account, dependent: :destroy
-  has_many :mentions, inverse_of: :account, dependent: :destroy
-  has_many :notifications, inverse_of: :account, dependent: :destroy
-
-  # Pinned statuses
-  has_many :status_pins, inverse_of: :account, dependent: :destroy
-  has_many :pinned_statuses, -> { reorder('status_pins.created_at DESC') }, through: :status_pins, class_name: 'Status', source: :status
-
-  # Endorsements
-  has_many :account_pins, inverse_of: :account, dependent: :destroy
-  has_many :endorsed_accounts, through: :account_pins, class_name: 'Account', source: :target_account
-
-  # Media
-  has_many :media_attachments, dependent: :destroy
-
-  # PuSH subscriptions
-  has_many :subscriptions, dependent: :destroy
-
-  # Report relationships
-  has_many :reports
-  has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id
-
-  has_many :report_notes, dependent: :destroy
-  has_many :custom_filters, inverse_of: :account, dependent: :destroy
-
-  # Moderation notes
-  has_many :account_moderation_notes, dependent: :destroy
-  has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, dependent: :destroy
-
-  # Lists
-  has_many :list_accounts, inverse_of: :account, dependent: :destroy
-  has_many :lists, through: :list_accounts
-
-  # Account migrations
-  belongs_to :moved_to_account, class_name: 'Account', optional: true
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
@@ -131,6 +91,10 @@ class Account < ApplicationRecord
   scope :matches_display_name, ->(value) { where(arel_table[:display_name].matches("#{value}%")) }
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
   scope :searchable, -> { where(suspended: false).where(moved_to_account_id: nil) }
+  scope :discoverable, -> { where(silenced: false).where(discoverable: true).joins(:account_stat).where(AccountStat.arel_table[:followers_count].gteq(MIN_FOLLOWERS_DISCOVERY)) }
+  scope :tagged_with, ->(tag) { joins(:accounts_tags).where(accounts_tags: { tag_id: tag }) }
+  scope :popular, -> { order('account_stats.followers_count desc') }
+  scope :by_recent_status, -> { order('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc') }
 
   delegate :email,
            :unconfirmed_email,
@@ -214,6 +178,40 @@ class Account < ApplicationRecord
 
   def keypair
     @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
+  end
+
+  def tags_as_strings=(tag_names)
+    tag_names.map! { |name| name.mb_chars.downcase }
+    tag_names.uniq!(&:to_s)
+
+    # Existing hashtags
+    hashtags_map = Tag.where(name: tag_names).each_with_object({}) { |tag, h| h[tag.name] = tag }
+
+    # Initialize not yet existing hashtags
+    tag_names.each do |name|
+      next if hashtags_map.key?(name)
+      hashtags_map[name.downcase] = Tag.new(name: name)
+    end
+
+    # Remove hashtags that are to be deleted
+    tags.each do |tag|
+      if hashtags_map.key?(tag.name)
+        hashtags_map.delete(tag.name)
+      else
+        transaction do
+          tags.delete(tag)
+          tag.decrement_count!(:accounts_count)
+        end
+      end
+    end
+
+    # Add hashtags that were so far missing
+    hashtags_map.each_value do |tag|
+      transaction do
+        tags << tag
+        tag.increment_count!(:accounts_count)
+      end
+    end
   end
 
   def fields
@@ -453,6 +451,7 @@ class Account < ApplicationRecord
   before_create :generate_keys
   before_validation :normalize_domain
   before_validation :prepare_contents, if: :local?
+  before_destroy :clean_feed_manager
 
   private
 
@@ -477,5 +476,20 @@ class Account < ApplicationRecord
 
   def emojifiable_text
     [note, display_name, fields.map(&:value)].join(' ')
+  end
+
+  def clean_feed_manager
+    reblog_key       = FeedManager.instance.key(:home, id, 'reblogs')
+    reblogged_id_set = Redis.current.zrange(reblog_key, 0, -1)
+
+    Redis.current.pipelined do
+      Redis.current.del(FeedManager.instance.key(:home, id))
+      Redis.current.del(reblog_key)
+
+      reblogged_id_set.each do |reblogged_id|
+        reblog_set_key = FeedManager.instance.key(:home, id, "reblogs:#{reblogged_id}")
+        Redis.current.del(reblog_set_key)
+      end
+    end
   end
 end
