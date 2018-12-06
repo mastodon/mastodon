@@ -1489,6 +1489,7 @@ a.account__display-name {
   cursor: default;
   color: $darker-text-color;
   font-size: 15px;
+  line-height: 22px;
   position: relative;
 
   .fa {
@@ -1496,7 +1497,7 @@ a.account__display-name {
   }
 
   > span {
-    display: block;
+    display: inline;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -1524,6 +1525,10 @@ a.account__display-name {
     color: $primary-text-color;
     text-decoration: underline;
   }
+}
+
+.notification__relative_time {
+  float: right;
 }
 
 .display-name {
