@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Notification, type: :model do
-  describe '#from_account' do
-    pending
-  end
-
   describe '#target_status' do
     let(:notification) { Fabricate(:notification, activity: activity) }
     let(:status)       { Fabricate(:status) }
