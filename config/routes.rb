@@ -80,6 +80,11 @@ Rails.application.routes.draw do
   get  '/interact/:id', to: 'remote_interaction#new', as: :remote_interaction
   post '/interact/:id', to: 'remote_interaction#create'
 
+  get '/explore', to: 'directories#index', as: :explore
+  get '/explore/popular', to: 'directories#index', as: :explore_popular
+  get '/explore/:id', to: 'directories#show', as: :explore_hashtag
+  get '/explore/:id/popular', to: 'directories#show', as: :explore_hashtag_popular
+
   namespace :settings do
     resource :profile, only: [:show, :update]
     resource :preferences, only: [:show, :update]
@@ -207,6 +212,13 @@ Rails.application.routes.draw do
     end
 
     resources :account_moderation_notes, only: [:create, :destroy]
+
+    resources :tags, only: [:index] do
+      member do
+        post :hide
+        post :unhide
+      end
+    end
   end
 
   get '/admin', to: redirect('/admin/dashboard', status: 302)

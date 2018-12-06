@@ -11,11 +11,30 @@
 
 class Tag < ApplicationRecord
   has_and_belongs_to_many :statuses
+  has_and_belongs_to_many :accounts
+
+  has_one :account_tag_stat, dependent: :destroy
 
   HASHTAG_NAME_RE = '[[:word:]_]*[[:alpha:]_·][[:word:]_]*'
   HASHTAG_RE = /(?:^|[^\/\)\w])#(#{HASHTAG_NAME_RE})/i
 
   validates :name, presence: true, uniqueness: true, format: { with: /\A#{HASHTAG_NAME_RE}\z/i }
+
+  scope :discoverable, -> { joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).where(account_tag_stats: { hidden: false }).order(name: :asc) }
+  scope :hidden, -> { where(account_tag_stats: { hidden: true }) }
+
+  delegate :accounts_count,
+           :accounts_count=,
+           :increment_count!,
+           :decrement_count!,
+           :hidden?,
+           to: :account_tag_stat
+
+  after_save :save_account_tag_stat
+
+  def account_tag_stat
+    super || build_account_tag_stat
+  end
 
   def to_param
     name
@@ -42,5 +61,12 @@ class Tag < ApplicationRecord
       pattern = sanitize_sql_like(term.strip) + '%'
       Tag.where('lower(name) like lower(?)', pattern).order(:name).limit(limit)
     end
+  end
+
+  private
+
+  def save_account_tag_stat
+    return unless account_tag_stat&.changed?
+    account_tag_stat.save
   end
 end
