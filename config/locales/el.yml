@@ -82,6 +82,7 @@ el:
       bot: Μποτ (αυτόματος λογαριασμός)
       moderator: Μεσολαβητής
     unfollow: Διακοπή παρακολούθησης
+    last_active: τελευταία ενεργός/ή
   admin:
     account_moderation_notes:
       create: Άφησε σημείωση
@@ -132,13 +133,14 @@ el:
         silenced: Αποσιωπημένα
         suspended: Σε αναστολή
         title: Μεσολάβηση
+        active: Ενεργός/ή
       moderation_notes: Σημειώσεις μεσολάβησης
       most_recent_activity: Πιο πρόσφατη δραστηριότητα
       most_recent_ip: Πιο πρόσφατη IP
       no_limits_imposed: Χωρίς όρια
       not_subscribed: Άνευ συνδρομής
       outbox_url: URL εξερχομένων
-      perform_full_suspension: Κάνε πλήρη αναστολή
+      perform_full_suspension: Αναστολή
       profile_url: URL προφίλ
       promote: Προβίβασε
       protocol: Πρωτόκολλο
@@ -494,6 +496,14 @@ el:
       warning_html: 'Αναστέλλοντας αυτό το λογαριασμό θα διαγραφούν <strong>αμετάκλητα</strong>
         δεδομένα του, μεταξύ των οποίων:'
     title: Διαχείριση
+    tags:
+      accounts: Λογαριασμοί
+      hidden: Κρυμμένες
+      hide: Απόκρυψη από κατάλογο
+      name: Ταμπέλα
+      title: Ταμπέλες
+      unhide: Εμφάνιση σε κατάλογο
+      visible: Εμφανείς
   admin_mailer:
     new_report:
       body: Ο/Η %{reporter} κατήγγειλε τον/την %{target}
@@ -515,7 +525,7 @@ el:
     warning: Μεγάλη προσοχή με αυτά τα στοιχεία. Μην τα μοιραστείς ποτέ με κανέναν!
     your_token: Το διακριτικό πρόσβασής σου (access token)
   auth:
-    agreement_html: Με την εγγραφή σου, συμφωνείς να ακολουθείς <a href="%{rules_path}">τους
+    agreement_html: Επιλέγοντας το "Εγγραφή", συμφωνείς πως δέχεσαι <a href="%{rules_path}">τους
       κανόνες αυτού του κόμβου</a> και <a href="%{terms_path}">τους όρους χρήσης του</a>.
     change_password: Συνθηματικό
     confirm_email: Επιβεβαίωση email
@@ -1079,3 +1089,12 @@ el:
       περιέχει την ιδιότητα (attribute) <code>rel="me"</code>. Το περιεχόμενο του
       κειμένου δεν έχει σημασία. Για παράδειγμα:'
     verification: Πιστοποίηση
+  directories:
+    directory: Κατάλογος λογαριασμών
+    explanation: Βρες χρήστες βάσει των ενδιαφερόντων τους
+    explore_mastodon: Εξερεύνησε %{title}
+    most_popular: Δημοφιλείς
+    most_recently_active: Πρόσφατα ενεργοί
+    people:
+      one: '%{count} άτομο'
+      other: '%{count} άτομα'
