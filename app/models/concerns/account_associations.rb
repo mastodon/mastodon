@@ -49,5 +49,8 @@ module AccountAssociations
 
     # Account migrations
     belongs_to :moved_to_account, class_name: 'Account', optional: true
+
+    # Hashtags
+    has_and_belongs_to_many :tags
   end
 end
