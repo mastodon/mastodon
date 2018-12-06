@@ -190,7 +190,7 @@ class Account < ApplicationRecord
     # Initialize not yet existing hashtags
     tag_names.each do |name|
       next if hashtags_map.key?(name)
-      hashtags_map[name.downcase] = Tag.new(name: name)
+      hashtags_map[name.mb_chars.downcase] = Tag.new(name: name)
     end
 
     # Remove hashtags that are to be deleted
