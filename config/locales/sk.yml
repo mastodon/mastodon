@@ -83,6 +83,7 @@ sk:
       bot: Automat
       moderator: Moderátor
     unfollow: Prestaň sledovať
+    last_active: poslednýkrát aktívny
   admin:
     account_moderation_notes:
       create: Zanechaj poznámku
@@ -133,6 +134,7 @@ sk:
         silenced: Umlčané
         suspended: Suspendované
         title: Moderácia
+        active: Aktívny/a
       moderation_notes: Moderátorské poznámky
       most_recent_activity: Posledná aktivita
       most_recent_ip: Posledná IP
@@ -492,6 +494,13 @@ sk:
       warning_html: 'Zamrazením tohto účtu budú dáta na tomto účte <strong>nenávratne</strong>
         zmazané, zahŕňajúc:'
     title: Spravovanie
+    tags:
+      accounts: Účty
+      hidden: Skryté
+      hide: Ukri od databázy
+      title: Hashtagy
+      unhide: Ukáž v databáze
+      visible: Viditeľné
   admin_mailer:
     new_report:
       body: '%{reporter} nahlásil/a %{target}'
@@ -572,10 +581,10 @@ sk:
     description_html: Týmto <strong> natrvalo, nenavrátiteľne </strong> vymažeš obsah
       tvojho účtu, a deaktivuješ ho. Tvoja prezývka ale ostane rezervovaná ako prevencia
       pred budúcimi impersonáciami.
-    proceed: Vymazať účet
-    success_msg: Váš účet bol úspešne vymazaný
-    warning_html: Iba vymazanie obsahu z tejto konkrétnej instancie je garantované.
-      Obsah ktorý bol zdieľaný široko-ďaleko pravdepodobne zanechá nejaké stopy. Servery
+    proceed: Vymaž účet
+    success_msg: Tvoj účet bol úspešne vymazaný
+    warning_html: Iba vymazanie obsahu z tejto konkrétnej instancie je zaručené. Obsah,
+      ktorý bol zdieľaný široko-ďaleko pravdepodobne zanechá nejaké stopy. Servery
       ktoré sú offline a tie ktoré ignorujú tvoje zmeny teda nezaktualizujú svoje
       databázy.
     warning_title: Dostupnosť rozšírovaného obsahu
@@ -965,3 +974,5 @@ sk:
       tvoj Mastodon profil. Tento spätný odkaz <strong>musí</strong> mať prívlastok
       <code>rel="me"</code>. Na texte odkazu nezáleží. Tu je príklad:'
     verification: Overenie
+  directories:
+    directory: Databáza profilov
