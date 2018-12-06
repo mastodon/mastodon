@@ -135,7 +135,7 @@ function main() {
     const name = document.querySelector('.card .display-name strong');
 
     if (name) {
-      name.innerHTML = emojify(target.value);
+      name.textContent = emojify(target.value);
     }
   });
 
