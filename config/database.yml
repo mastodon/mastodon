@@ -3,8 +3,6 @@ default: &default
   pool: <%= ENV["DB_POOL"] || ENV['MAX_THREADS'] || 5 %>
   timeout: 5000
   encoding: unicode
-  variables:
-    statement_timeout: 60000
 
 development:
   <<: *default
