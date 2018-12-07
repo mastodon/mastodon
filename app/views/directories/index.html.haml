@@ -4,9 +4,11 @@
 - content_for :header_tags do
   %meta{ name: 'description', content: t('directories.explanation') }
 
-  = opengraph 'og:site_name', site_title
+  = opengraph 'og:site_name', t('about.hosted_on', domain: site_hostname)
+  = opengraph 'og:type', 'website'
   = opengraph 'og:title', t('directories.explore_mastodon', title: site_title)
   = opengraph 'og:description', t('directories.explanation')
+  = opengraph 'og:image', File.join(root_url, 'android-chrome-192x192.png')
 
 .page-header
   %h1= t('directories.explore_mastodon', title: site_title)
