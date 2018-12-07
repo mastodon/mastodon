@@ -181,11 +181,11 @@ class Account < ApplicationRecord
   end
 
   def tags_as_strings=(tag_names)
-    tag_names.map! { |name| name.mb_chars.downcase }
-    tag_names.uniq!(&:to_s)
+    tag_names.map! { |name| name.mb_chars.downcase.to_s }
+    tag_names.uniq!
 
     # Existing hashtags
-    hashtags_map = Tag.where(name: tag_names).each_with_object({}) { |tag, h| h[tag.name.mb_chars.downcase.to_s] = tag }
+    hashtags_map = Tag.where(name: tag_names).each_with_object({}) { |tag, h| h[tag.name] = tag }
 
     # Initialize not yet existing hashtags
     tag_names.each do |name|
