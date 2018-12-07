@@ -189,6 +189,11 @@
   &--under-tabs {
     border-radius: 0 0 4px 4px;
   }
+
+  &--flexible {
+    box-sizing: border-box;
+    min-height: 100%;
+  }
 }
 
 .account-role {
