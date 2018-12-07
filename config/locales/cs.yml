@@ -82,6 +82,7 @@ cs:
       bot: Robot
       moderator: Moderátor
     unfollow: Přestat sledovat
+    last_active: naposledy aktivní
   admin:
     account_moderation_notes:
       create: Zanechat poznámku
@@ -132,6 +133,7 @@ cs:
         silenced: Utišen/a
         suspended: Suspendován/a
         title: Moderace
+        active: Aktivní
       moderation_notes: Moderační poznámky
       most_recent_activity: Nejnovější aktivita
       most_recent_ip: Nejnovější IP
@@ -486,6 +488,14 @@ cs:
       warning_html: 'Suspenzace tohoto účtu <strong>nenávratně</strong> smaže z tohoto
         účtu data, včetně:'
     title: Administrace
+    tags:
+      accounts: Účty
+      hidden: Skryté
+      hide: Skrýt z adresáře
+      name: Hashtag
+      title: Hashtagy
+      unhide: Zobrazit v adresáři
+      visible: Viditelné
   admin_mailer:
     new_report:
       body: '%{reporter} nahlásil/a uživatele %{target}'
@@ -1051,3 +1061,12 @@ cs:
       na váš profil na Mastodonu. Odkaz zpět <strong>musí</strong> mít atribut <code>rel="me"</code>.
       Na textu odkazu nezáleží. Zde je příklad:'
     verification: Ověření
+  directories:
+    directory: Adresář profilů
+    explanation: Objevujte uživatele podle jejich zájmů
+    explore_mastodon: Prozkoumejte %{title}
+    most_popular: Nejpopulárnější
+    most_recently_active: Naposledy aktivní
+    people:
+      one: '%{count} osoba'
+      other: '%{count} osob'
