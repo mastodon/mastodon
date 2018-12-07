@@ -54,6 +54,7 @@ pl:
       other: Śledzących
     following: Śledzonych
     joined: Dołączył(a) %{date}
+    last_active: ostatnio aktywny(-a)
     link_verified_on: Własność tego odnośnika została sprawdzona %{date}
     media: Zawartość multimedialna
     moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
@@ -122,6 +123,7 @@ pl:
       media_attachments: Załączniki multimedialne
       memorialize: Przełącz na „In Memoriam”
       moderation:
+        active: Aktywne
         all: Wszystkie
         silenced: Wyciszone
         suspended: Zawieszone
@@ -445,6 +447,14 @@ pl:
       proceed: Przejdź
       title: Zawieś %{acct}
       warning_html: 'Zawieszenie konta będzie skutkowało <strong>nieodwracalnym</strong> usunięciem danych z tego konta, wliczając:'
+    tags:
+      accounts: Konta
+      hidden: Ukryte
+      hide: Ukryj w katalogu
+      name: Hashtag
+      title: Hashtagi
+      unhide: Pokazuj w katalogu
+      visible: Widoczne
     title: Administracja
   admin_mailer:
     new_report:
@@ -523,6 +533,17 @@ pl:
     success_msg: Twoje konto zostało pomyślnie usunięte
     warning_html: Możemy usunąć zawartość jedynie w obrębie tej instancji. Zawartość udostępniona publicznie pozostawia trwałe ślady. Serwery niepodłączone do sieci bądź nieśledzące Twoich aktualizacji mogą zachować Twoje dane.
     warning_title: Dostępność usuniętej zawartości
+  directories:
+    directory: Katalog profilów
+    explanation: Poznaj profile na podstawie zainteresowań
+    explore_mastodon: Odkrywaj %{title}
+    most_popular: Napopularniejsi
+    most_recently_active: Ostatnio aktywni
+    people:
+      few: "%{count} osoby"
+      many: "%{count} osób"
+      one: "%{count} osoba"
+      other: "%{count} osób"
   errors:
     '403': Nie masz uprawnień, aby wyświetlić tę stronę.
     '404': Strona, którą próbujesz odwiedzić, nie istnieje.
