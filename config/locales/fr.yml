@@ -83,6 +83,7 @@ fr:
       bot: Robot
       moderator: Modérateur·trice
     unfollow: Ne plus suivre
+    last_active: actif dernièrement
   admin:
     account_moderation_notes:
       create: Laisser un commentaire
@@ -133,6 +134,7 @@ fr:
         silenced: Masqués
         suspended: Suspendus
         title: Modération
+        active: Actif
       moderation_notes: Notes de modération
       most_recent_activity: Dernière activité
       most_recent_ip: Adresse IP la plus récente
@@ -496,6 +498,14 @@ fr:
       warning_html: 'Suspendre ce compte effacera <strong>irréversiblement</strong>
         les données de ce compte, ce qui inclut :'
     title: Administration
+    tags:
+      accounts: Comptes
+      hidden: Masqué
+      hide: Masquer dans l'annuaire
+      name: Hashtag
+      title: Hashtags
+      unhide: Afficher dans l'annuaire
+      visible: Visible
   admin_mailer:
     new_report:
       body: '%{reporter} a signalé %{target}'
@@ -1090,3 +1100,12 @@ fr:
       <strong>doit</strong>avoir un attribut <code>rel="me"</code>. Le contenu textuel
       du lien n''a pas d''importance. En voici un exemple :'
     verification: Vérification
+  directories:
+    directory: Annuaire des profils
+    explanation: Découvrir des utilisateurs en se basant sur leurs centres d'intérêt
+    explore_mastodon: Explorer %{title}
+    most_popular: Les plus populaires
+    most_recently_active: Les actifs les plus récents
+    people:
+      one: '%{count} personne'
+      other: '%{count} personne'
