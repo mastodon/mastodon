@@ -20,7 +20,7 @@ class Tag < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true, format: { with: /\A#{HASHTAG_NAME_RE}\z/i }
 
-  scope :discoverable, -> { joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).where(account_tag_stats: { hidden: false }).order(name: :asc) }
+  scope :discoverable, -> { joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).where(account_tag_stats: { hidden: false }).order('account_tag_stats.accounts_count desc') }
   scope :hidden, -> { where(account_tag_stats: { hidden: true }) }
 
   delegate :accounts_count,
