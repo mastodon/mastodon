@@ -185,7 +185,7 @@ class Account < ApplicationRecord
     tag_names.uniq!(&:to_s)
 
     # Existing hashtags
-    hashtags_map = Tag.where(name: tag_names).each_with_object({}) { |tag, h| h[tag.name.mb_chars.downcase] = tag }
+    hashtags_map = Tag.where(name: tag_names).each_with_object({}) { |tag, h| h[tag.name.mb_chars.downcase.to_s] = tag }
 
     # Initialize not yet existing hashtags
     tag_names.each do |name|
