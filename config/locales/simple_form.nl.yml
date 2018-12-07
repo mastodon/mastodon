@@ -8,24 +8,24 @@ nl:
         bot: Dit is een geautomatiseerd account en wordt mogelijk niet gemonitord
         context: Een of meerdere locaties waar de filter actief moet zijn
         digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
-        display_name:
-          one: <span class="name-counter">1</span> teken over
-          other: <span class="name-counter">%{count}</span> tekens over
+        email: Je krijgt een bevestigingsmail
         fields: Je kan maximaal 4 items als een tabel op je profiel weergeven
         header: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
         inbox_url: Kopieer de URL van de voorpagina van de relayserver die je wil gebruiken
         irreversible: Gefilterde toots verdwijnen onomkeerbaar, zelfs als de filter later wordt verwijderd
         locale: De taal van de gebruikersomgeving, e-mails en pushmeldingen
         locked: Vereist dat je handmatig volgers moet accepteren
-        note:
-          one: <span class="note-counter">1</span> teken over
-          other: <span class="note-counter">%{count}</span> tekens over
+        password: Gebruik tenminste 8 tekens
         phrase: Komt overeen ongeacht hoofd-/kleine letters of tekstwaarschuwingen
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
         setting_default_language: De taal van jouw toots kan automatisch worden gedetecteerd, maar het is niet altijd accuraat
+        setting_display_media_default: Als gevoelig gemarkeerde media verbergen
+        setting_display_media_hide_all: Media altijd verbergen
+        setting_display_media_show_all: Als gevoelig gemarkeerde media altijd verbergen
         setting_hide_network: Wie jij volgt en wie jou volgen wordt niet op jouw profiel getoond
         setting_noindex: Heeft invloed op jouw openbare profiel en toots
         setting_theme: Heeft invloed op hoe de webapp van Mastodon eruitziet (op elk apparaat waarmee je inlogt).
+        username: Jouw gebruikersnaam is uniek op %{domain}
         whole_word: Wanneer het trefwoord of zinsdeel alfanumeriek is, wordt het alleen gefilterd wanneer het hele woord overeenkomt
       imports:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
@@ -69,6 +69,11 @@ nl:
         setting_default_privacy: Standaardzichtbaarheid van jouw toots
         setting_default_sensitive: Media altijd als gevoelig markeren
         setting_delete_modal: Vraag voor het verwijderen van een toot een bevestiging
+        setting_display_media: Mediaweergave
+        setting_display_media_default: Standaard
+        setting_display_media_hide_all: Alles verbergen
+        setting_display_media_show_all: Alles tonen
+        setting_expand_spoilers: Altijd toots met tekstwaarschuwingen uitklappen
         setting_hide_network: Jouw volgers en wie je volgt verbergen
         setting_noindex: Jouw toots niet door zoekmachines laten indexeren
         setting_reduce_motion: Langzamere animaties

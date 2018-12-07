@@ -59,6 +59,7 @@ class MediaAttachment < ApplicationRecord
     format: 'mp4',
     convert_options: {
       output: {
+        'loglevel' => 'fatal',
         'movflags' => 'faststart',
         'pix_fmt'  => 'yuv420p',
         'vf'       => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
@@ -130,6 +131,7 @@ class MediaAttachment < ApplicationRecord
     "#{x},#{y}"
   end
 
+  after_commit :reset_parent_cache, on: :update
   before_create :prepare_description, unless: :local?
   before_create :set_shortcode
   before_post_process :set_type_and_extension
@@ -229,5 +231,10 @@ class MediaAttachment < ApplicationRecord
       duration: movie.duration,
       bitrate: movie.bitrate,
     }
+  end
+
+  def reset_parent_cache
+    return if status_id.nil?
+    Rails.cache.delete("statuses/#{status_id}")
   end
 end

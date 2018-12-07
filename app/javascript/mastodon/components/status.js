@@ -9,6 +9,7 @@ import DisplayName from './display_name';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import AttachmentList from './attachment_list';
+import Card from '../features/status/components/card';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { MediaGallery, Video } from '../features/ui/util/async-components';
@@ -66,6 +67,7 @@ class Status extends ImmutablePureComponent {
     unread: PropTypes.bool,
     onMoveUp: PropTypes.func,
     onMoveDown: PropTypes.func,
+    showThread: PropTypes.bool,
   };
 
   // Avoid checking props that are functions (and whose equality will always
@@ -167,7 +169,7 @@ class Status extends ImmutablePureComponent {
     let media = null;
     let statusAvatar, prepend, rebloggedByText;
 
-    const { intl, hidden, featured, otherAccounts, unread } = this.props;
+    const { intl, hidden, featured, otherAccounts, unread, showThread } = this.props;
 
     let { status, account, ...other } = this.props;
 
@@ -256,6 +258,14 @@ class Status extends ImmutablePureComponent {
           </Bundle>
         );
       }
+    } else if (status.get('spoiler_text').length === 0 && status.get('card')) {
+      media = (
+        <Card
+          onOpenMedia={this.props.onOpenMedia}
+          card={status.get('card')}
+          compact
+        />
+      );
     }
 
     if (otherAccounts) {
@@ -299,6 +309,12 @@ class Status extends ImmutablePureComponent {
             <StatusContent status={status} onClick={this.handleClick} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} collapsable />
 
             {media}
+
+            {showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) && (
+              <button className='status__content__read-more-button' onClick={this.handleClick}>
+                <FormattedMessage id='status.show_thread' defaultMessage='Show thread' />
+              </button>
+            )}
 
             <StatusActionBar status={status} account={account} {...other} />
           </div>

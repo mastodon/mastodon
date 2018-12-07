@@ -21,7 +21,7 @@ const conversationToMap = item => ImmutableMap({
   id: item.id,
   unread: item.unread,
   accounts: ImmutableList(item.accounts.map(a => a.id)),
-  last_status: item.last_status.id,
+  last_status: item.last_status ? item.last_status.id : null,
 });
 
 const updateConversation = (state, item) => state.update('items', list => {
@@ -56,7 +56,13 @@ const expandNormalizedConversations = (state, conversations, next) => {
 
         list = list.concat(items);
 
-        return list.sortBy(x => x.get('last_status'), (a, b) => compareId(a, b) * -1);
+        return list.sortBy(x => x.get('last_status'), (a, b) => {
+          if(a === null || b === null) {
+            return -1;
+          }
+
+          return compareId(a, b) * -1;
+        });
       });
     }
 

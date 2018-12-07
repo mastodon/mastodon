@@ -15,9 +15,9 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.5'
 
-gem 'aws-sdk-s3', '~> 1.21', require: false
-gem 'fog-core', '~> 2.1'
-gem 'fog-openstack', '~> 1.0', require: false
+gem 'aws-sdk-s3', '~> 1.23', require: false
+gem 'fog-core', '<= 2.1.0'
+gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
 gem 'paperclip-av-transcoder', '~> 0.6'
 gem 'streamio-ffmpeg', '~> 3.0'
@@ -59,7 +59,7 @@ gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.2', require: 'mime/types/columnar'
 gem 'nokogiri', '~> 1.8'
 gem 'nsa', '~> 0.2'
-gem 'oj', '~> 3.6'
+gem 'oj', '~> 3.7'
 gem 'ostatus2', '~> 2.0'
 gem 'ox', '~> 2.10'
 gem 'posix-spawn', git: 'https://github.com/rtomayko/posix-spawn', ref: '58465d2e213991f8afb13b984854a49fcdcc980c'
@@ -72,7 +72,7 @@ gem 'rails-settings-cached', '~> 0.6'
 gem 'redis', '~> 4.0', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 0.10'
-gem 'sanitize', '~> 4.6'
+gem 'sanitize', '~> 5.0'
 gem 'sidekiq', '~> 5.2'
 gem 'sidekiq-scheduler', '~> 3.0'
 gem 'sidekiq-unique-jobs', '~> 5.0'
@@ -90,6 +90,7 @@ gem 'webpacker', '~> 3.5'
 gem 'webpush'
 
 gem 'json-ld', '~> 2.2'
+gem 'json-ld-preloaded', '~> 2.2'
 gem 'rdf-normalize', '~> 0.3'
 
 group :development, :test do
@@ -106,7 +107,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.9'
+  gem 'capybara', '~> 3.10'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 1.9'
   gem 'microformats', '~> 4.0'
@@ -114,7 +115,7 @@ group :test do
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.16', require: false
   gem 'webmock', '~> 3.4'
-  gem 'parallel_tests', '~> 2.23'
+  gem 'parallel_tests', '~> 2.26'
 end
 
 group :development do
@@ -126,7 +127,7 @@ group :development do
   gem 'letter_opener', '~> 1.4'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.59', require: false
+  gem 'rubocop', '~> 0.60', require: false
   gem 'brakeman', '~> 4.3', require: false
   gem 'bundler-audit', '~> 0.6', require: false
   gem 'scss_lint', '~> 0.57', require: false

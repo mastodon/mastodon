@@ -642,9 +642,8 @@ const startWorker = (workerId) => {
 const attachServerWithConfig = (server, onSuccess) => {
   if (process.env.SOCKET || process.env.PORT && isNaN(+process.env.PORT)) {
     server.listen(process.env.SOCKET || process.env.PORT, () => {
-      fs.chmodSync(server.address(), 0o666);
-
       if (onSuccess) {
+        fs.chmodSync(server.address(), 0o666);
         onSuccess(server.address());
       }
     });

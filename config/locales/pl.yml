@@ -136,7 +136,7 @@ pl:
         most_recent: Najnowsze
         title: Kolejność
       outbox_url: Adres skrzynki nadawczej
-      perform_full_suspension: Całkowicie zawieś
+      perform_full_suspension: Zawieś
       profile_url: Adres profilu
       promote: Podnieś uprawnienia
       protocol: Protokół
@@ -185,6 +185,7 @@ pl:
         create_domain_block: "%{name} zablokował(a) domenę %{target}"
         create_email_domain_block: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
         demote_user: "%{name} zdegradował(a) użytkownika %{target}"
+        destroy_custom_emoji: "%{name} usunął(-ęła) emoji %{target}"
         destroy_domain_block: "%{name} odblokował(a) domenę %{target}"
         destroy_email_domain_block: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
         destroy_status: "%{name} usunął(-ęła) wpis użytkownika %{target}"
@@ -270,16 +271,15 @@ pl:
         title: Nowa blokada domen
       reject_media: Odrzucaj pliki multimedialne
       reject_media_hint: Usuwa przechowywane lokalnie pliki multimedialne i nie pozwala na ich pobieranie. Nieprzydatne przy zawieszeniu
+      reject_reports: Odrzucaj zgłoszenia
+      reject_reports_hint: Zgłoszenia z tej instancji będą ignorowane. Nieprzydatne przy zawieszeniu
       severities:
         noop: Nic nie rób
         silence: Wycisz
         suspend: Zawieś
       severity: Priorytet
       show:
-        affected_accounts:
-          many: Dotyczy %{count} kont w bazie danych
-          one: Dotyczy jednego konta w bazie danych
-          other: Dotyczy %{count} kont w bazie danych
+        affected_accounts: Dotyczy %{count} kont w bazie danych
         retroactive:
           silence: Odwołaj wyciszenie wszystkich kont w tej domenie
           suspend: Odwołaj zawieszenie wszystkich kont w tej domenie
@@ -373,8 +373,11 @@ pl:
         desc_html: Modyfikuj wygląd pliku CSS ładowanego na każdej stronie
         title: Niestandardowy CSS
       hero:
-        desc_html: Wyświetlany na stronie głównej. Zalecany jest rozmiar przynajmniej 600x100 pikseli. Jeżeli nie ustawiony, zostanie użyta miniatura instancji.
+        desc_html: Wyświetlany na stronie głównej. Zalecany jest rozmiar przynajmniej 600x100 pikseli. Jeżeli nie ustawiony, zostanie użyta miniatura instancji
         title: Obraz bohatera
+      mascot:
+        desc_html: Wyświetlany na wielu stronach. Zalecany jest rozmiar przynajmniej 293px × 205px. Jeżeli nie ustawiono, zostanie użyta domyślna.
+        title: Obraz maskotki
       peers_api_enabled:
         desc_html: Nazwy domen, z którymi ta instancja wchodziła w interakcje
         title: Publikuj listę znanych instancji
@@ -571,9 +574,7 @@ pl:
     followers_count: Liczba śledzących
     lock_link: Zablokuj swoje konto
     purge: Przestań śledzić
-    success:
-      one: W trakcie usuwania śledzących z jednej domeny…
-      other: W trakcie usuwania śledzących z %{count} domen…
+    success: W trakcie usuwania śledzących z %{count} domen…
     true_privacy_html: Pamiętaj, że <strong>rzeczywista prywatność może zostać uzyskana wyłącznie dzięki szyfrowaniu end-to-end</strong>.
     unlocked_warning_html: Każdy może Cię śledzić, dzięki czemu może zobaczyć Twoje niepubliczne wpisy. %{lock_link} aby móc kontrolować, kto Cię śledzi.
     unlocked_warning_title: Twoje konto nie jest zablokowane
@@ -780,9 +781,7 @@ pl:
         other: "%{count} filmów"
     boosted_from_html: Podbito przez %{acct_link}
     content_warning: 'Ostrzeżenie o zawartości: %{warning}'
-    disallowed_hashtags:
-      one: 'zawiera niedozwolony hashtag: %{tags}'
-      other: 'zawiera niedozwolone hashtagi: %{tags}'
+    disallowed_hashtags: 'zawiera niedozwolone hashtagi: %{tags}'
     language_detection: Automatycznie wykrywaj język
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony

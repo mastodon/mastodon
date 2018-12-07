@@ -4,33 +4,33 @@ oc:
     hints:
       defaults:
         autofollow: Lo monde que se marcan gràcia a l’invitacion vos segràn automaticament
-        avatar: PNG, GIF o JPG. Maximum 2 Mo. Serà retalhat en %{dimensions}px
+        avatar: PNG, GIF o JPG. Maximum %{size}. Serà retalhat en %{dimensions}px
         bot: Avisar lo monde qu’aqueste compte es pas d’una persona
         context: Un o mai de contèxtes ont lo filtre deuriá s’aplicar
         digest: Solament enviat aprèp un long moment d’inactivitat e solament s’avètz recebut de messatges personals pendent vòstra abséncia
-        display_name:
-          one: Demòra encara <span class="name-counter">1</span> caractèr
-          other: Demòran encara <span class="name-counter">%{count}</span> caractèrs
+        email: Vos mandarem un corrièl de confirmacion
         fields: Podètz far veire cap a 4 elements sus vòstre perfil
-        header: PNG, GIF o JPG. Maximum 2 Mo. Serà retalhada en %{dimensions}px
+        header: PNG, GIF o JPG. Maximum %{size}. Serà retalhada en %{dimensions}px
         inbox_url: Copiatz l’URL de la pagina màger del relai que volètz utilizar
         irreversible: Los tuts filtrats desapareisseràn irreversiblament, encara que lo filtre siá suprimit mai tard
         locale: La lenga de l’interfàcia d’utilizacion, los messatges e las notificacions
         locked: Demanda qu’acceptetz manualament lo mond que vos sègon e botarà la visibilitat de vòstras publicacions coma accessiblas a vòstres seguidors solament
-        note:
-          one: Demòra encara <span class="name-counter">1</span> caractèr
-          other: Demòran encara <span class="name-counter">%{count}</span> caractèrs
+        password: Utilizatz almens 8 caractèrs
         phrase: Serà pres en compte que siá en majuscula o minuscula o dins un avertiment de contengut sensible
         scopes: A quinas APIs poiràn accedir las aplicacions. Se seleccionatz un encastre de naut nivèl, fa pas mestièr de seleccionar los nivèls mai basses.
         setting_default_language: La lenga de vòstres tuts pòt èsser detectada automaticament, mas de còps es pas corrèctament determinada
+        setting_display_media_default: Rescondre los mèdias marcats coma sensibles
+        setting_display_media_hide_all: Totjorn rescondre los mèdias
+        setting_display_media_show_all: Totjorn mostrar los mèdias marcats coma sensibles
         setting_hide_network: Vòstre perfil mostrarà pas los que vos sègon e lo monde que seguètz
         setting_noindex: Aquò es destinat a vòstre perfil public e vòstra pagina d’estatuts
         setting_theme: Aquò càmbia lo tèma grafic de Mastodon quand sètz connectat qual que siasque lo periferic.
+        username: Vòstre nom d’utilizaire serà unic sus %{domain}
         whole_word: Quand lo mot-clau o frasa es solament alfranumeric, serà pas qu’aplicat se correspond al mot complèt
       imports:
         data: Fichièr CSV exportat d’una autra instància Mastodon
       sessions:
-        otp: 'Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstra aplicacion mobil o utilizatz un de vòstres còdis de recuperacion :'
+        otp: 'Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstra aplicacion mobil o utilizatz un de vòstres còdis de recuperacion :'
       user:
         chosen_languages: Quand seleccionadas, solament los tuts dins las lengas triadas seràn mostrats dins vòstre flux d’actualitat
     labels:
@@ -69,10 +69,15 @@ oc:
         setting_default_privacy: Confidencialitat dels tuts
         setting_default_sensitive: Totjorn marcar los mèdias coma sensibles
         setting_delete_modal: Mostrar una fenèstra de confirmacion abans de suprimir un estatut
+        setting_display_media: Afichatge dels mèdias
+        setting_display_media_default: Defaut
+        setting_display_media_hide_all: O rescondre tot
+        setting_display_media_show_all: O mostrar tot
+        setting_expand_spoilers: Totjorn desplegar los tuts marcats amb un avertiment de contengut
         setting_hide_network: Amagar vòstre malhum
         setting_noindex: Èsser pas indexat pels motors de recèrca
         setting_reduce_motion: Reduire la velocitat de las animacions
-        setting_system_font_ui: Utilizar la polissa del sisèma
+        setting_system_font_ui: Utilizar la polissa del sistèma
         setting_theme: Tèma del site
         setting_unfollow_modal: Mostrar una confirmacion abans de quitar de sègre qualqu’un
         severity: Severitat
