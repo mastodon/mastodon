@@ -29,4 +29,13 @@ RSpec.describe Admin::InstancesController, type: :controller do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe 'POST #resubscribe' do
+    it 'redirects to admin_instances_path with 302' do
+      post :resubscribe, params: { by_domain: 'hoge' }
+
+      expect(response).to redirect_to(admin_instances_path)
+      expect(response).to have_http_status(302)
+    end
+  end
 end
