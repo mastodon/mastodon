@@ -1,5 +1,5 @@
 - content_for :page_title do
-  = t('directories.explore_mastodon')
+  = t('directories.explore_mastodon', title: site_title)
 
 - content_for :header_tags do
   %meta{ name: 'description', content: t('directories.explanation') }
