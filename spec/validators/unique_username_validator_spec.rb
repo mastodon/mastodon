@@ -15,14 +15,6 @@ describe UniqueUsernameValidator do
       expect(account).to be_valid
     end
 
-    it 'adds an error when the username is already used with ignoring dots' do
-      pending 'allowing dots in username is still in development'
-      Fabricate(:account, username: 'abcd.ef')
-      account = double(username: 'ab.cdef', persisted?: false, errors: double(add: nil))
-      subject.validate(account)
-      expect(account.errors).to have_received(:add)
-    end
-
     it 'adds an error when the username is already used with ignoring cases' do
       Fabricate(:account, username: 'ABCdef')
       account = double(username: 'abcDEF', persisted?: false, errors: double(add: nil))
