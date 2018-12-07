@@ -1,3 +1,4 @@
+import escapeTextContentForBrowser from 'escape-html';
 import loadPolyfills from '../mastodon/load_polyfills';
 import ready from '../mastodon/ready';
 import { start } from '../mastodon/common';
@@ -133,9 +134,12 @@ function main() {
 
   delegate(document, '#account_display_name', 'input', ({ target }) => {
     const name = document.querySelector('.card .display-name strong');
-
     if (name) {
-      name.innerHTML = emojify(target.value);
+      if (target.value) {
+        name.innerHTML = emojify(escapeTextContentForBrowser(target.value));
+      } else {
+        name.textContent = document.querySelector('#default_account_display_name').textContent;
+      }
     }
   });
 
