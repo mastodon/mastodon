@@ -185,12 +185,12 @@ class Account < ApplicationRecord
     tag_names.uniq!(&:to_s)
 
     # Existing hashtags
-    hashtags_map = Tag.where(name: tag_names).each_with_object({}) { |tag, h| h[tag.name] = tag }
+    hashtags_map = Tag.where(name: tag_names).each_with_object({}) { |tag, h| h[tag.name.mb_chars.downcase] = tag }
 
     # Initialize not yet existing hashtags
     tag_names.each do |name|
       next if hashtags_map.key?(name)
-      hashtags_map[name.mb_chars.downcase] = Tag.new(name: name)
+      hashtags_map[name] = Tag.new(name: name)
     end
 
     # Remove hashtags that are to be deleted
