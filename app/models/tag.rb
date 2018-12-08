@@ -12,6 +12,7 @@
 class Tag < ApplicationRecord
   has_and_belongs_to_many :statuses
   has_and_belongs_to_many :accounts
+  has_and_belongs_to_many :sample_accounts, -> { searchable.discoverable.popular.limit(3) }, class_name: 'Account'
 
   has_one :account_tag_stat, dependent: :destroy
 
@@ -20,7 +21,7 @@ class Tag < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true, format: { with: /\A#{HASHTAG_NAME_RE}\z/i }
 
-  scope :discoverable, -> { joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).where(account_tag_stats: { hidden: false }).order('account_tag_stats.accounts_count desc') }
+  scope :discoverable, -> { joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).where(account_tag_stats: { hidden: false }).order(Arel.sql('account_tag_stats.accounts_count desc')) }
   scope :hidden, -> { where(account_tag_stats: { hidden: true }) }
 
   delegate :accounts_count,
@@ -34,6 +35,10 @@ class Tag < ApplicationRecord
 
   def account_tag_stat
     super || build_account_tag_stat
+  end
+
+  def cached_sample_accounts
+    Rails.cache.fetch("#{cache_key}/sample_accounts", expires_in: 12.hours) { sample_accounts }
   end
 
   def to_param
