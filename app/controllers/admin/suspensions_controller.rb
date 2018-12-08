@@ -33,10 +33,6 @@ module Admin
 
     private
 
-    def set_account
-      @account = Account.find(params[:account_id])
-    end
-
     def suspension_params
       params.require(:form_admin_suspension_confirmation).permit(:acct, :report_id)
     end

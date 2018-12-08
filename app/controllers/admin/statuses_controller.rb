@@ -41,10 +41,6 @@ module Admin
       params.require(:form_status_batch).permit(:action, status_ids: [])
     end
 
-    def set_account
-      @account = Account.find(params[:account_id])
-    end
-
     def current_params
       page = (params[:page] || 1).to_i
 

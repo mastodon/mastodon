@@ -11,10 +11,4 @@ class Api::V1::Accounts::ListsController < Api::BaseController
     @lists = @account.lists.where(account: current_account)
     render json: @lists, each_serializer: REST::ListSerializer
   end
-
-  private
-
-  def set_account
-    @account = Account.find(params[:account_id])
-  end
 end

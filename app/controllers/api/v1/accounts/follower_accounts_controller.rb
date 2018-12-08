@@ -14,10 +14,6 @@ class Api::V1::Accounts::FollowerAccountsController < Api::BaseController
 
   private
 
-  def set_account
-    @account = Account.find(params[:account_id])
-  end
-
   def load_accounts
     return [] if @account.user_hides_network? && current_account.id != @account.id
 

@@ -3,6 +3,7 @@
 module Admin
   class ChangeEmailsController < BaseController
     before_action :set_account
+    before_action :set_user
     before_action :require_local_account!
 
     def show
@@ -31,8 +32,7 @@ module Admin
 
     private
 
-    def set_account
-      @account = Account.find(params[:account_id])
+    def set_user
       @user = @account.user
     end
 

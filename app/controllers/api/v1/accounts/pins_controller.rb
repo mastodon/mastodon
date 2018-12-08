@@ -22,10 +22,6 @@ class Api::V1::Accounts::PinsController < Api::BaseController
 
   private
 
-  def set_account
-    @account = Account.find(params[:account_id])
-  end
-
   def relationships_presenter
     AccountRelationshipsPresenter.new([@account.id], current_user.account_id)
   end

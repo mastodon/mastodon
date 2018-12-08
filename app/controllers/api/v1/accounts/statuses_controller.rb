@@ -14,10 +14,6 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
 
   private
 
-  def set_account
-    @account = Account.find(params[:account_id])
-  end
-
   def load_statuses
     cached_account_statuses
   end
