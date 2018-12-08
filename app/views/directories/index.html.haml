@@ -57,5 +57,5 @@
               %small= t('directories.people', count: tag.accounts_count)
 
             .avatar-stack
-              - tag.accounts.limit(3).each do |account|
+              - tag.cached_sample_accounts.each do |account|
                 = image_tag current_account&.user&.setting_auto_play_gif ? account.avatar_original_url : account.avatar_static_url, width: 48, height: 48, alt: '', class: 'account__avatar'
