@@ -94,7 +94,7 @@ class Account < ApplicationRecord
   scope :discoverable, -> { where(silenced: false).where(discoverable: true).joins(:account_stat).where(AccountStat.arel_table[:followers_count].gteq(MIN_FOLLOWERS_DISCOVERY)) }
   scope :tagged_with, ->(tag) { joins(:accounts_tags).where(accounts_tags: { tag_id: tag }) }
   scope :popular, -> { order('account_stats.followers_count desc') }
-  scope :by_recent_status, -> { order('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc') }
+  scope :by_recent_status, -> { order(Arel.sql('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc')) }
 
   delegate :email,
            :unconfirmed_email,
@@ -181,8 +181,8 @@ class Account < ApplicationRecord
   end
 
   def tags_as_strings=(tag_names)
-    tag_names.map! { |name| name.mb_chars.downcase }
-    tag_names.uniq!(&:to_s)
+    tag_names.map! { |name| name.mb_chars.downcase.to_s }
+    tag_names.uniq!
 
     # Existing hashtags
     hashtags_map = Tag.where(name: tag_names).each_with_object({}) { |tag, h| h[tag.name] = tag }
@@ -190,7 +190,7 @@ class Account < ApplicationRecord
     # Initialize not yet existing hashtags
     tag_names.each do |name|
       next if hashtags_map.key?(name)
-      hashtags_map[name.downcase] = Tag.new(name: name)
+      hashtags_map[name] = Tag.new(name: name)
     end
 
     # Remove hashtags that are to be deleted
