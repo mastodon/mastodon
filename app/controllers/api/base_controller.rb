@@ -5,7 +5,6 @@ class Api::BaseController < ApplicationController
   DEFAULT_ACCOUNTS_LIMIT = 40
 
   include RateLimitHeaders
-  include AccountSettableConcern
 
   skip_before_action :store_current_location
   skip_before_action :check_user_permissions

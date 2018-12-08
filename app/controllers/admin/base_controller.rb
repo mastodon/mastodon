@@ -4,7 +4,6 @@ module Admin
   class BaseController < ApplicationController
     include Authorization
     include AccountableConcern
-    include AccountSettableConcern
 
     layout 'admin'
 
