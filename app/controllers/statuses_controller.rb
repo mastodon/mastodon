@@ -10,7 +10,7 @@ class StatusesController < ApplicationController
 
   layout 'public'
 
-  before_action :set_account
+  before_action :set_local_account!
   before_action :set_status
   before_action :set_instance_presenter
   before_action :set_link_headers
@@ -73,10 +73,6 @@ class StatusesController < ApplicationController
       next_status = statuses.pop
       { statuses: statuses, starting_depth: starting_depth, next_status: next_status }
     end
-  end
-
-  def set_account
-    @account = Account.find_local!(params[:account_username])
   end
 
   def set_ancestors

@@ -5,7 +5,7 @@ class ActivityPub::OutboxesController < Api::BaseController
 
   include SignatureVerification
 
-  before_action :set_account
+  before_action :set_local_account!
   before_action :set_statuses
 
   def show
@@ -13,10 +13,6 @@ class ActivityPub::OutboxesController < Api::BaseController
   end
 
   private
-
-  def set_account
-    @account = Account.find_local!(params[:account_username])
-  end
 
   def outbox_presenter
     if page_requested?

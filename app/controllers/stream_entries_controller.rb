@@ -6,7 +6,7 @@ class StreamEntriesController < ApplicationController
 
   layout 'public'
 
-  before_action :set_account
+  before_action :set_local_account!
   before_action :set_stream_entry
   before_action :set_link_headers
   before_action :check_account_suspension
@@ -34,10 +34,6 @@ class StreamEntriesController < ApplicationController
   end
 
   private
-
-  def set_account
-    @account = Account.find_local!(params[:account_username])
-  end
 
   def set_link_headers
     response.headers['Link'] = LinkHeader.new(

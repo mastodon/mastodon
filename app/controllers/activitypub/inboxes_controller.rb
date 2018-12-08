@@ -3,7 +3,7 @@
 class ActivityPub::InboxesController < Api::BaseController
   include SignatureVerification
 
-  before_action :set_account
+  before_action :set_local_account!, if: -> { params[:account_username] }
 
   def create
     if signed_request_account
@@ -16,10 +16,6 @@ class ActivityPub::InboxesController < Api::BaseController
   end
 
   private
-
-  def set_account
-    @account = Account.find_local!(params[:account_username]) if params[:account_username]
-  end
 
   def body
     @body ||= request.body.read

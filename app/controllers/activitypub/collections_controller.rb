@@ -3,7 +3,7 @@
 class ActivityPub::CollectionsController < Api::BaseController
   include SignatureVerification
 
-  before_action :set_account
+  before_action :set_local_account!
   before_action :set_size
   before_action :set_statuses
 
@@ -16,10 +16,6 @@ class ActivityPub::CollectionsController < Api::BaseController
   end
 
   private
-
-  def set_account
-    @account = Account.find_local!(params[:account_username])
-  end
 
   def set_statuses
     @statuses = scope_for_collection
