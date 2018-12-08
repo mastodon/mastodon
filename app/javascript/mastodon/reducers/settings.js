@@ -32,8 +32,11 @@ const initialState = ImmutableMap({
       mention: true,
     }),
 
-    filter: 'all',
-    showFilterBar: true,
+    quickFilter: ImmutableMap({
+      active: 'all',
+      show: true,
+      advanced: false,
+    }),
 
     shows: ImmutableMap({
       follow: true,

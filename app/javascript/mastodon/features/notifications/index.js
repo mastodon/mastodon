@@ -21,8 +21,8 @@ const messages = defineMessages({
 });
 
 const getNotifications = createSelector([
-  state => state.getIn(['settings', 'notifications', 'showFilterBar']),
-  state => state.getIn(['settings', 'notifications', 'filter']),
+  state => state.getIn(['settings', 'notifications', 'quickFilter', 'show']),
+  state => state.getIn(['settings', 'notifications', 'quickFilter', 'active']),
   state => ImmutableList(state.getIn(['settings', 'notifications', 'shows']).filter(item => !item).keys()),
   state => state.getIn(['notifications', 'items']),
 ], (showFilterBar, allowedType, excludedTypes, notifications) => {
@@ -33,7 +33,7 @@ const getNotifications = createSelector([
 });
 
 const mapStateToProps = state => ({
-  showFilterBar: state.getIn(['settings', 'notifications', 'showFilterBar']),
+  showFilterBar: state.getIn(['settings', 'notifications', 'quickFilter', 'show']),
   notifications: getNotifications(state),
   isLoading: state.getIn(['notifications', 'isLoading'], true),
   isUnread: state.getIn(['notifications', 'unread']) > 0,

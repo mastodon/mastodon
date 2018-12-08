@@ -15,6 +15,7 @@ class FilterBar extends React.PureComponent {
   static propTypes = {
     selectFilter: PropTypes.func.isRequired,
     selectedFilter: PropTypes.string.isRequired,
+    advancedMode: PropTypes.bool.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -23,8 +24,29 @@ class FilterBar extends React.PureComponent {
   }
 
   render () {
-    const { selectedFilter, intl } = this.props;
-    return (
+    const { selectedFilter, advancedMode, intl } = this.props;
+    const renderedElement = !advancedMode ? (
+      <div className='notification__filter-bar'>
+        <button
+          className={selectedFilter === 'all' ? 'active' : ''}
+          onClick={this.onClick('all')}
+        >
+          <FormattedMessage
+            id='notifications.filter.all'
+            defaultMessage='All'
+          />
+        </button>
+        <button
+          className={selectedFilter === 'mention' ? 'active' : ''}
+          onClick={this.onClick('mention')}
+        >
+          <FormattedMessage
+            id='notifications.filter.mentions'
+            defaultMessage='Mentions'
+          />
+        </button>
+      </div>
+    ) : (
       <div className='notification__filter-bar'>
         <button
           className={selectedFilter === 'all' ? 'active' : ''}
@@ -65,6 +87,7 @@ class FilterBar extends React.PureComponent {
         </button>
       </div>
     );
+    return renderedElement;
   }
 
 }
