@@ -17,11 +17,5 @@ module Admin
       log_action :demote, @user
       redirect_to admin_account_path(@user.account_id)
     end
-
-    private
-
-    def set_user
-      @user = Account.find(params[:account_id]).user || raise(ActiveRecord::RecordNotFound)
-    end
   end
 end

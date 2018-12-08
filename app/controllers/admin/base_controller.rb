@@ -15,5 +15,9 @@ module Admin
     def set_body_classes
       @body_classes = 'admin'
     end
+
+    def set_user
+      @user = Account.find(params[:account_id]).user || raise(ActiveRecord::RecordNotFound)
+    end
   end
 end
