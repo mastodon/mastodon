@@ -40,6 +40,8 @@ cs:
         discoverable_html: <a href="%{path}" target="_blank">Adresář</a> dovoluje
           lidem najít účty podle zájmů a aktivity. Vyžaduje alespoň %{min_followers}
           sledovatelů
+        setting_aggregate_reblogs: Nezobrazovat nové boosty pro tooty, které byly
+          nedávno boostnuty (ovlivňuje pouze nově přijaté boosty)
       imports:
         data: Soubor CSV exportován z jiné instance Mastodon
       sessions:
@@ -101,6 +103,7 @@ cs:
         username_or_email: Uživatelské jméno nebo e-mail
         whole_word: Celé slovo
         discoverable: Zveřejnit tento účet v adresáři
+        setting_aggregate_reblogs: Seskupovat boosty v časových osách
       interactions:
         must_be_follower: Blokovat oznámení od lidí, kteří vás nesledují
         must_be_following: Blokovat oznámení od lidí, které nesledujete
