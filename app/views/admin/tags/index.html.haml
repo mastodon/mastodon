@@ -1,0 +1,19 @@
+- content_for :page_title do
+  = t('admin.tags.title')
+
+.filters
+  .filter-subset
+    %strong= t('admin.reports.status')
+    %ul
+      %li= filter_link_to t('admin.tags.visible'), hidden: nil
+      %li= filter_link_to t('admin.tags.hidden'), hidden: '1'
+
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('admin.tags.name')
+        %th= t('admin.tags.accounts')
+        %th
+    %tbody
+      = render @tags
