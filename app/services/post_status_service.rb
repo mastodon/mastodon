@@ -61,7 +61,7 @@ class PostStatusService < BaseService
 
     media = MediaAttachment.where(status_id: nil).where(id: media_ids.take(4).map(&:to_i))
 
-    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if media.size > 1 && media.find(&:video?)
+    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if media.size > 1 && media.find { |x| x.audio? || x.video? }
 
     media
   end

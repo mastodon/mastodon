@@ -22,14 +22,16 @@
 class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
 
-  enum type: [:image, :gifv, :video, :unknown]
+  enum type: %i(image gifv video unknown audio)
 
-  IMAGE_FILE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif'].freeze
-  VIDEO_FILE_EXTENSIONS = ['.webm', '.mp4', '.m4v', '.mov'].freeze
+  IMAGE_FILE_EXTENSIONS = %w(.jpg .jpeg .png .gif).freeze
+  VIDEO_FILE_EXTENSIONS = %w(.webm .mp4 .m4v .mov).freeze
+  AUDIO_FILE_EXTENSIONS = %w(.ogg .oga .mp3).freeze
 
-  IMAGE_MIME_TYPES             = ['image/jpeg', 'image/png', 'image/gif'].freeze
-  VIDEO_MIME_TYPES             = ['video/webm', 'video/mp4', 'video/quicktime'].freeze
-  VIDEO_CONVERTIBLE_MIME_TYPES = ['video/webm', 'video/quicktime'].freeze
+  IMAGE_MIME_TYPES             = %w(image/jpeg image/png image/gif).freeze
+  VIDEO_MIME_TYPES             = %w(video/webm video/mp4 video/quicktime).freeze
+  VIDEO_CONVERTIBLE_MIME_TYPES = %w(video/webm video/quicktime).freeze
+  AUDIO_MIME_TYPES             = %w(audio/ogg video/ogg audio/mpeg).freeze
 
   IMAGE_STYLES = {
     original: {
@@ -73,6 +75,23 @@ class MediaAttachment < ApplicationRecord
     },
   }.freeze
 
+  VIDEO_CONVERTED_STYLES = {
+    small: VIDEO_STYLES[:small],
+    original: VIDEO_FORMAT,
+  }.freeze
+
+  AUDIO_STYLES = {
+    original: {
+      format: 'ogg',
+      convert_options: {},
+    },
+  }.freeze
+
+  GIFV_STYLES = {
+    small: IMAGE_STYLES[:small],
+    original: VIDEO_FORMAT,
+  }.freeze
+
   IMAGE_LIMIT = 8.megabytes
   VIDEO_LIMIT = 40.megabytes
 
@@ -84,7 +103,7 @@ class MediaAttachment < ApplicationRecord
                     processors: ->(f) { file_processors f },
                     convert_options: { all: '-quality 90 -strip' }
 
-  validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES
+  validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
   validates_attachment_size :file, less_than: IMAGE_LIMIT, unless: :video?
   validates_attachment_size :file, less_than: VIDEO_LIMIT, if: :video?
   remotable_attachment :file, VIDEO_LIMIT
@@ -142,26 +161,24 @@ class MediaAttachment < ApplicationRecord
 
     def file_styles(f)
       if f.instance.file_content_type == 'image/gif'
-        {
-          small: IMAGE_STYLES[:small],
-          original: VIDEO_FORMAT,
-        }
-      elsif IMAGE_MIME_TYPES.include? f.instance.file_content_type
+        GIFV_STYLES
+      elsif IMAGE_MIME_TYPES.include?(f.instance.file_content_type)
         IMAGE_STYLES
       elsif VIDEO_CONVERTIBLE_MIME_TYPES.include?(f.instance.file_content_type)
-        {
-          small: VIDEO_STYLES[:small],
-          original: VIDEO_FORMAT,
-        }
-      else
+        VIDEO_CONVERTED_STYLES
+      elsif VIDEO_MIME_TYPES.include?(f.instance.file_content_type)
         VIDEO_STYLES
+      else
+        AUDIO_STYLES
       end
     end
 
     def file_processors(f)
       if f.file_content_type == 'image/gif'
         [:gif_transcoder]
-      elsif VIDEO_MIME_TYPES.include? f.file_content_type
+      elsif AUDIO_MIME_TYPES.include?(f.file_content_type)
+        [:transcoder]
+      elsif VIDEO_MIME_TYPES.include?(f.file_content_type)
         [:video_transcoder]
       else
         [:lazy_thumbnail]
@@ -187,7 +204,13 @@ class MediaAttachment < ApplicationRecord
   end
 
   def set_type_and_extension
-    self.type = VIDEO_MIME_TYPES.include?(file_content_type) ? :video : :image
+    self.type = if VIDEO_MIME_TYPES.include?(file_content_type)
+                  :video
+                elsif AUDIO_MIME_TYPES.include?(file_content_type)
+                  :audio
+                else
+                  :image
+                end
   end
 
   def set_meta
@@ -230,7 +253,7 @@ class MediaAttachment < ApplicationRecord
       frame_rate: movie.frame_rate,
       duration: movie.duration,
       bitrate: movie.bitrate,
-    }
+    }.compact
   end
 
   def reset_parent_cache

@@ -12,7 +12,7 @@ import AttachmentList from './attachment_list';
 import Card from '../features/status/components/card';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { MediaGallery, Video } from '../features/ui/util/async-components';
+import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import classNames from 'classnames';
 
@@ -111,6 +111,10 @@ class Status extends ImmutablePureComponent {
 
   renderLoadingVideoPlayer () {
     return <div className='media-spoiler-video' style={{ height: '110px' }} />;
+  }
+
+  renderLoadingAudioPlayer () {
+    return <div className='media-spoiler-video' style={{ height: '61px' }} />;
   }
 
   handleOpenVideo = (media, startTime) => {
@@ -231,6 +235,14 @@ class Status extends ImmutablePureComponent {
             compact
             media={status.get('media_attachments')}
           />
+        );
+      } else if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
+        const audio = status.getIn(['media_attachments', 0]);
+
+        media = (
+          <Bundle fetchComponent={Audio} loading={this.renderLoadingAudioPlayer} >
+            {Component => <Component src={audio.get('url')} duration={audio.getIn(['meta', 'original', 'duration'])} />}
+          </Bundle>
         );
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         const video = status.getIn(['media_attachments', 0]);

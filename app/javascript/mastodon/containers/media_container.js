@@ -5,6 +5,7 @@ import { IntlProvider, addLocaleData } from 'react-intl';
 import { getLocale } from '../locales';
 import MediaGallery from '../components/media_gallery';
 import Video from '../features/video';
+import Audio from '../features/audio';
 import Card from '../features/status/components/card';
 import ModalRoot from '../components/modal_root';
 import MediaModal from '../features/ui/components/media_modal';
@@ -13,7 +14,7 @@ import { List as ImmutableList, fromJS } from 'immutable';
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
 
-const MEDIA_COMPONENTS = { MediaGallery, Video, Card };
+const MEDIA_COMPONENTS = { MediaGallery, Video, Audio, Card };
 
 export default class MediaContainer extends PureComponent {
 

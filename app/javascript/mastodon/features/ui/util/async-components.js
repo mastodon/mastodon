@@ -122,6 +122,10 @@ export function Video () {
   return import(/* webpackChunkName: "features/video" */'../../video');
 }
 
+export function Audio () {
+  return import(/* webpackChunkName: "features/audio" */'../../audio');
+}
+
 export function EmbedModal () {
   return import(/* webpackChunkName: "modals/embed_modal" */'../components/embed_modal');
 }

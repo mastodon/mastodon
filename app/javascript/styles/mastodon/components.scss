@@ -505,6 +505,7 @@
 
     .compose-form__upload-thumbnail {
       border-radius: 4px;
+      background-color: $base-shadow-color;
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
@@ -4944,6 +4945,36 @@ a.status-card.compact:hover {
         padding-bottom: 10px;
       }
     }
+  }
+}
+
+.audio-player {
+  .video-player__controls {
+    position: static;
+    background: transparent;
+    padding-top: 6px;
+  }
+
+  .video-player__buttons button {
+    color: $darker-text-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: lighten($darker-text-color, 4%);
+    }
+  }
+
+  .video-player__time-sep,
+  .video-player__time-total,
+  .video-player__time-current {
+    color: $dark-text-color;
+    line-height: 23px;
+  }
+
+  .video-player__seek::before,
+  .video-player__volume::before {
+    background: lighten($ui-base-color, 8%);
   }
 }
 

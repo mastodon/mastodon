@@ -5,6 +5,7 @@ class MediaController < ApplicationController
 
   before_action :set_media_attachment
   before_action :verify_permitted_status!
+  before_action :check_playable!, only: :player
 
   def show
     redirect_to @media_attachment.file.url(:original)
@@ -12,7 +13,7 @@ class MediaController < ApplicationController
 
   def player
     @body_classes = 'player'
-    raise ActiveRecord::RecordNotFound unless @media_attachment.video? || @media_attachment.gifv?
+    @autoplay     = truthy_param?(:autoplay) || truthy_param?(:auto_play)
   end
 
   private
@@ -26,5 +27,13 @@ class MediaController < ApplicationController
   rescue Mastodon::NotPermittedError
     # Reraise in order to get a 404 instead of a 403 error code
     raise ActiveRecord::RecordNotFound
+  end
+
+  def check_playable!
+    raise ActiveRecord::RecordNotFound unless playable?
+  end
+
+  def playable?
+    @media_attachment.video? || @media_attachment.gifv? || @media_attachment.audio?
   end
 end

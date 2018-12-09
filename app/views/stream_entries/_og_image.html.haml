@@ -25,6 +25,11 @@
         = opengraph 'og:video:height', media.file.meta.dig('original', 'height')
         = opengraph 'twitter:player:width', media.file.meta.dig('original', 'width')
         = opengraph 'twitter:player:height', media.file.meta.dig('original', 'height')
+    - elsif media.audio?
+      - player_card = true
+      = opengraph 'og:audio', full_asset_url(media.file.url(:original))
+      = opengraph 'og:audio:secure_url', full_asset_url(media.file.url(:original))
+      = opengraph 'og:audio:type', media.file_content_type
   - if player_card
     = opengraph 'twitter:card', 'player'
   - else
