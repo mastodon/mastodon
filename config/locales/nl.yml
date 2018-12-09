@@ -197,7 +197,7 @@ nl:
         disable_2fa_user: Vereisten tweestapsverificatie van %{target} zijn door %{name}
           uitgeschakeld
         disable_custom_emoji: Emoji %{target} is door %{name} uitgeschakeld
-        disable_user: Aanmelden voor %{target} is door %{name} uitgeschakeld
+        disable_user: Inloggen voor %{target} is door %{name} uitgeschakeld
         enable_custom_emoji: Emoji %{target} is door %{name} ingeschakeld
         enable_user: Inloggen voor %{target} is door %{name} ingeschakeld
         memorialize_account: Account %{target} is door %{name} in een gedenkpagina
@@ -536,13 +536,13 @@ nl:
     forgot_password: Wachtwoord vergeten?
     invalid_reset_password_token: De code om jouw wachtwoord opnieuw in te stellen
       is verlopen. Vraag een nieuwe aan.
-    login: Aanmelden
-    logout: Afmelden
-    migrate_account: Naar een andere account verhuizen
+    login: Inloggen
+    logout: Uitloggen
+    migrate_account: Naar een ander account verhuizen
     migrate_account_html: Wanneer je dit account naar een ander account wilt doorverwijzen,
       kun je <a href="%{path}">dit hier instellen</a>.
     or: of
-    or_log_in_with: Of aanmelden met
+    or_log_in_with: Of inloggen met
     providers:
       cas: CAS
       saml: SAML
@@ -990,8 +990,8 @@ nl:
   two_factor_authentication:
     code_hint: Voer de code in die door de authenticatie-app gegenereerd is
     description_html: Na het instellen van <strong>tweestapsverificatie</strong>,
-      kun jij je alleen aanmelden als je jouw mobiele telefoon bij je hebt. Hiermee
-      genereer je namelijk de in te voeren aanmeldcode.
+      kun je alleen inloggen als je jouw mobiele telefoon bij je hebt. Hiermee genereer
+      je namelijk de in te voeren aanmeldcode.
     disable: Uitschakelen
     enable: Inschakelen
     enabled: Tweestapsverificatie is ingeschakeld
@@ -999,7 +999,7 @@ nl:
     generate_recovery_codes: Herstelcodes genereren
     instructions_html: <strong>Scan deze QR-code in Google Authenticator of een soortgelijke
       app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes
-      die je bij het aanmelden moet invoeren.
+      die je bij het inloggen moet invoeren.
     lost_recovery_codes: Met herstelcodes kun je toegang tot jouw account krijgen
       wanneer je jouw telefoon bent kwijtgeraakt. Wanneer je jouw herstelcodes bent
       kwijtgeraakt, kan je ze hier opnieuw genereren. Jouw oude herstelcodes zijn
