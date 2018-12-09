@@ -37,6 +37,8 @@ sk:
         discoverable_html: Táto <a href="%{path}" target="_blank">databáza</a> umožňuje
           ľudom nájsť profily podľa záujmu a aktívnosti. Vyžaduje aby mali aspoň %{min_followers}
           sledovateľov
+        setting_aggregate_reblogs: Neukazuj nové povýšenia pre hlášky, ktoré už boli
+          len nedávno povýšené (týka sa iba nanovo získaných povýšení)
       imports:
         data: CSV súbor vyexportovaný z inej Mastodon inštancie
       sessions:
@@ -99,6 +101,7 @@ sk:
         username_or_email: Prezívka, alebo email
         whole_word: Celé slovo
         discoverable: Zaraď tento účet do databázy
+        setting_aggregate_reblogs: Skupinové povýšenia v osi
       interactions:
         must_be_follower: Blokovať oznámenia od užívateľov, ktorí ťa nesledujú
         must_be_following: Blokovať oboznámenia ohľadom ľudí ktorých nesleduješ
