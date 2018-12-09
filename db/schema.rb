@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_27_165847) do
+ActiveRecord::Schema.define(version: 2018_12_04_215309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,7 +63,17 @@ ActiveRecord::Schema.define(version: 2018_11_27_165847) do
     t.bigint "followers_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "last_status_at"
     t.index ["account_id"], name: "index_account_stats_on_account_id", unique: true
+  end
+
+  create_table "account_tag_stats", force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "accounts_count", default: 0, null: false
+    t.boolean "hidden", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_account_tag_stats_on_tag_id", unique: true
   end
 
   create_table "accounts", force: :cascade do |t|
@@ -106,11 +116,19 @@ ActiveRecord::Schema.define(version: 2018_11_27_165847) do
     t.string "featured_collection_url"
     t.jsonb "fields"
     t.string "actor_type"
+    t.boolean "discoverable"
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["moved_to_account_id"], name: "index_accounts_on_moved_to_account_id"
     t.index ["uri"], name: "index_accounts_on_uri"
     t.index ["url"], name: "index_accounts_on_url"
+  end
+
+  create_table "accounts_tags", id: false, force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "tag_id", null: false
+    t.index ["account_id", "tag_id"], name: "index_accounts_tags_on_account_id_and_tag_id"
+    t.index ["tag_id", "account_id"], name: "index_accounts_tags_on_tag_id_and_account_id", unique: true
   end
 
   create_table "admin_action_logs", force: :cascade do |t|
@@ -649,6 +667,7 @@ ActiveRecord::Schema.define(version: 2018_11_27_165847) do
   add_foreign_key "account_pins", "accounts", column: "target_account_id", on_delete: :cascade
   add_foreign_key "account_pins", "accounts", on_delete: :cascade
   add_foreign_key "account_stats", "accounts", on_delete: :cascade
+  add_foreign_key "account_tag_stats", "tags", on_delete: :cascade
   add_foreign_key "accounts", "accounts", column: "moved_to_account_id", on_delete: :nullify
   add_foreign_key "admin_action_logs", "accounts", on_delete: :cascade
   add_foreign_key "backups", "users", on_delete: :nullify

@@ -95,7 +95,7 @@ class User < ApplicationRecord
 
   delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :favourite_modal, :delete_modal,
            :reduce_motion, :system_font_ui, :noindex, :flavour, :skin, :display_media, :hide_network,
-           :expand_spoilers, :default_language, to: :settings, prefix: :setting, allow_nil: false
+           :expand_spoilers, :default_language, :aggregate_reblogs, to: :settings, prefix: :setting, allow_nil: false
 
   attr_reader :invite_code
 
@@ -229,6 +229,10 @@ class User < ApplicationRecord
 
   def hides_network?
     @hides_network ||= settings.hide_network
+  end
+
+  def aggregates_reblogs?
+    @aggregates_reblogs ||= settings.aggregate_reblogs
   end
 
   def token_for_app(a)

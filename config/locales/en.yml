@@ -48,6 +48,7 @@ en:
       other: Followers
     following: Following
     joined: Joined %{date}
+    last_active: last active
     link_verified_on: Ownership of this link was checked on %{date}
     media: Media
     moved_html: "%{name} has moved to %{new_profile_link}:"
@@ -114,6 +115,7 @@ en:
       media_attachments: Media attachments
       memorialize: Turn into memoriam
       moderation:
+        active: Active
         all: All
         silenced: Silenced
         suspended: Suspended
@@ -439,6 +441,14 @@ en:
       proceed: Proceed
       title: Suspend %{acct}
       warning_html: 'Suspending this account will <strong>irreversibly</strong> delete data from this account, which includes:'
+    tags:
+      accounts: Accounts
+      hidden: Hidden
+      hide: Hide from directory
+      name: Hashtag
+      title: Hashtags
+      unhide: Show in directory
+      visible: Visible
     title: Administration
   admin_mailer:
     new_report:
@@ -517,6 +527,15 @@ en:
     success_msg: Your account was successfully deleted
     warning_html: Only deletion of content from this particular instance is guaranteed. Content that has been widely shared is likely to leave traces. Offline servers and servers that have unsubscribed from your updates will not update their databases.
     warning_title: Disseminated content availability
+  directories:
+    directory: Profile directory
+    explanation: Discover users based on their interests
+    explore_mastodon: Explore %{title}
+    most_popular: Most popular
+    most_recently_active: Most recently active
+    people:
+      one: "%{count} person"
+      other: "%{count} people"
   errors:
     '403': You don't have permission to view this page.
     '404': The page you were looking for doesn't exist.
