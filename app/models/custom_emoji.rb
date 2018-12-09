@@ -77,6 +77,6 @@ class CustomEmoji < ApplicationRecord
   end
 
   def downcase_domain
-    self.domain = domain.downcase if self.domain != nil
+    self.domain = domain.downcase if !domain.nil?
   end
 end
