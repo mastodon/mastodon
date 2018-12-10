@@ -73,7 +73,7 @@ class User < ApplicationRecord
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?
-  validates_with EmailMxValidator, if: :email_changed?
+  validates_with EmailMxValidator, if: :validate_email_dns?
 
   scope :recent, -> { order(id: :desc) }
   scope :admins, -> { where(admin: true) }
@@ -359,5 +359,9 @@ class User < ApplicationRecord
 
   def needs_feed_update?
     last_sign_in_at < ACTIVE_DURATION.ago
+  end
+
+  def validate_email_dns?
+    email_changed? && !(Rails.env.test? || Rails.env.development?)
   end
 end
