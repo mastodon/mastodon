@@ -18,7 +18,7 @@ module Admin
 
     def unhide
       authorize @tag, :unhide?
-      @tag.account_tag_stat.update!(hidden: true)
+      @tag.account_tag_stat.update!(hidden: false)
       redirect_to admin_tags_path(@filter_params)
     end
 
