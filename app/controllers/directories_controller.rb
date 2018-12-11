@@ -9,10 +9,12 @@ class DirectoriesController < ApplicationController
   before_action :set_accounts
 
   def index
+    return not_found unless Setting.profile_directory
     render :index
   end
 
   def show
+    return not_found unless Setting.profile_directory
     render :index
   end
 
