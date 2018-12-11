@@ -58,12 +58,7 @@ class Pubsubhubbub::SubscribeService < BaseService
   end
 
   def locate_subscription
-    subscription = Subscription.find_by(account: account, callback_url: callback)
-
-    if subscription.nil?
-      subscription = Subscription.new(account: account, callback_url: callback)
-    end
-
+    subscription = Subscription.find_or_initialize_by(account: account, callback_url: callback)
     subscription.domain = domain
     subscription.save!
     subscription
