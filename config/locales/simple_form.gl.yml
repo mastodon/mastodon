@@ -39,6 +39,8 @@ gl:
         discoverable_html: O <a href="%{path}" target="_blank">directorio</a> permite
           atopar contas en función de intereses e actividade. Require ter ao menos
           %{min_followers} seguidoras
+        setting_aggregate_reblogs: Non mostrar novas promocións de toots que foron
+          promocionados recentemente (só afecta a promocións recén recibidas)
       imports:
         data: Ficheiro CSV exportado desde outra instancia Mastodon
       sessions:
@@ -101,6 +103,7 @@ gl:
         username_or_email: Nome de usuaria ou Correo-e
         whole_word: Palabra completa
         discoverable: Incluír esta conta no directorio
+        setting_aggregate_reblogs: Agrupar promocións nas liñas temporais
       interactions:
         must_be_follower: Bloquear as notificacións de non-seguidoras
         must_be_following: Bloquea as notificacións de personas que non segue
