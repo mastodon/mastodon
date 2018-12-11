@@ -16,7 +16,7 @@
 
       %tr
         %th= t('admin.accounts.avatar')
-        %th
+        %td
           = link_to @account.avatar.url(:original) do
             = image_tag @account.avatar.url(:original), alt: '', width: 40, height: 40, class: 'avatar'
           - if @account.local? && @account.avatar?
