@@ -209,7 +209,7 @@ export default class ScrollableList extends PureComponent {
     const { fullscreen } = this.state;
     const childrenCount = React.Children.count(children);
 
-    const loadMore     = (hasMore && childrenCount > 0 && onLoadMore) ? <LoadMore visible={!isLoading} onClick={this.handleLoadMore} /> : null;
+    const loadMore     = (hasMore && onLoadMore) ? <LoadMore visible={!isLoading} onClick={this.handleLoadMore} /> : null;
     let scrollableArea = null;
 
     if (showLoading) {
@@ -224,7 +224,7 @@ export default class ScrollableList extends PureComponent {
           </div>
         </div>
       );
-    } else if (isLoading || childrenCount > 0 || !emptyMessage) {
+    } else if (isLoading || childrenCount > 0 || hasMore || !emptyMessage) {
       scrollableArea = (
         <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove}>
           <div role='feed' className='item-list'>
