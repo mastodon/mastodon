@@ -36,7 +36,7 @@ class LoadMoreMedia extends ImmutablePureComponent {
     return (
       <LoadMore
         disabled={this.props.disabled}
-        onLoadMore={this.handleLoadMore}
+        onClick={this.handleLoadMore}
       />
     );
   }
@@ -120,6 +120,7 @@ class AccountGallery extends ImmutablePureComponent {
                 <LoadMoreMedia
                   key={'more:' + medias.getIn(index + 1, 'id')}
                   maxId={index > 0 ? medias.getIn(index - 1, 'id') : null}
+                  onLoadMore={this.handleLoadMore}
                 />
               ) : (
                 <MediaItem
