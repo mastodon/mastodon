@@ -92,7 +92,7 @@ module Admin::ActionLogsHelper
       opposite_verbs?(log) ? 'negative' : 'positive'
     when :update, :reset_password, :disable_2fa, :memorialize, :change_email
       'neutral'
-    when :demote, :silence, :disable, :suspend, :remove_avatar, :reopen
+    when :demote, :silence, :disable, :suspend, :remove_avatar, :remove_header, :reopen
       'negative'
     when :destroy
       opposite_verbs?(log) ? 'positive' : 'negative'
