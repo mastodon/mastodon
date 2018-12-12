@@ -67,7 +67,7 @@ export default class AccountGallery extends ImmutablePureComponent {
 
   handleScrollToBottom = () => {
     if (this.props.hasMore) {
-      this.handleLoadMore(this.props.medias.last().getIn(['status', 'id']));
+      this.handleLoadMore(this.props.medias.size > 0 ? this.props.medias.last().getIn(['status', 'id']) : undefined);
     }
   }
 

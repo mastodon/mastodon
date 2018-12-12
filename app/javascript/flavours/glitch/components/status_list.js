@@ -55,7 +55,7 @@ export default class StatusList extends ImmutablePureComponent {
   }
 
   handleLoadOlder = debounce(() => {
-    this.props.onLoadMore(this.props.statusIds.last());
+    this.props.onLoadMore(this.props.statusIds.size > 0 ? this.props.statusIds.last() : undefined);
   }, 300, { leading: true })
 
   _selectChild (index) {
