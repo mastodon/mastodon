@@ -9,17 +9,27 @@ class ResolveAccountService < BaseService
   # Find or create a local account for a remote user.
   # When creating, look up the user's webfinger and fetch all
   # important information from their feed
-  # @param [String] uri User URI in the form of username@domain
+  # @param [String, Account] uri User URI in the form of username@domain
+  # @param [Hash] options
   # @return [Account]
-  def call(uri, update_profile = true, redirected = nil)
-    @username, @domain = uri.split('@')
-    @update_profile    = update_profile
+  def call(uri, options = {})
+    @options = options
 
-    return Account.find_local(@username) if TagManager.instance.local_domain?(@domain)
+    if uri.is_a?(Account)
+      @account  = uri
+      @username = @account.username
+      @domain   = @account.domain
 
-    @account = Account.find_remote(@username, @domain)
+      return @account if @account.local? || !webfinger_update_due?
+    else
+      @username, @domain = uri.split('@')
 
-    return @account unless webfinger_update_due?
+      return Account.find_local(@username) if TagManager.instance.local_domain?(@domain)
+
+      @account = Account.find_remote(@username, @domain)
+
+      return @account unless webfinger_update_due?
+    end
 
     Rails.logger.debug "Looking up webfinger for #{uri}"
 
@@ -30,8 +40,8 @@ class ResolveAccountService < BaseService
     if confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
       @username = confirmed_username
       @domain   = confirmed_domain
-    elsif redirected.nil?
-      return call("#{confirmed_username}@#{confirmed_domain}", update_profile, true)
+    elsif options[:redirected].nil?
+      return call("#{confirmed_username}@#{confirmed_domain}", options.merge(redirected: true))
     else
       Rails.logger.debug 'Requested and returned acct URIs do not match'
       return
@@ -76,7 +86,7 @@ class ResolveAccountService < BaseService
   end
 
   def webfinger_update_due?
-    @account.nil? || @account.possibly_stale?
+    @account.nil? || ((!@options[:skip_webfinger] || @account.ostatus?) && @account.possibly_stale?)
   end
 
   def activitypub_ready?
@@ -93,7 +103,7 @@ class ResolveAccountService < BaseService
   end
 
   def update_profile?
-    @update_profile
+    @options[:update_profile]
   end
 
   def handle_activitypub

@@ -29,7 +29,7 @@ class FetchAtomService < BaseService
 
   def perform_request(&block)
     accept = 'text/html'
-    accept = 'application/activity+json, application/ld+json, application/atom+xml, ' + accept unless @unsupported_activity
+    accept = 'application/activity+json, application/ld+json; profile="https://www.w3.org/ns/activitystreams", application/atom+xml, ' + accept unless @unsupported_activity
 
     Request.new(:get, @url).add_headers('Accept' => accept).perform(&block)
   end
@@ -39,7 +39,7 @@ class FetchAtomService < BaseService
 
     if response.mime_type == 'application/atom+xml'
       [@url, { prefetched_body: response.body_with_limit }, :ostatus]
-    elsif ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(response.mime_type)
+    elsif ['application/activity+json', 'application/ld+json'].include?(response.mime_type)
       body = response.body_with_limit
       json = body_to_json(body)
       if supported_context?(json) && equals_or_includes_any?(json['type'], ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES) && json['inbox'].present?
