@@ -22,7 +22,7 @@ export default class ColumnSettings extends React.PureComponent {
     const { settings, pushSettings, onChange, onClear } = this.props;
 
     const filterShowStr = <FormattedMessage id='notifications.column_settings.filter_bar.show' defaultMessage='Show' />;
-    const filterAdvancedStr = <FormattedMessage id='notifications.column_settings.filter_bar.advanced' defaultMessage='Advanced view' />;
+    const filterAdvancedStr = <FormattedMessage id='notifications.column_settings.filter_bar.advanced' defaultMessage='Display all categories' />;
     const alertStr  = <FormattedMessage id='notifications.column_settings.alert' defaultMessage='Desktop notifications' />;
     const showStr   = <FormattedMessage id='notifications.column_settings.show' defaultMessage='Show in column' />;
     const soundStr  = <FormattedMessage id='notifications.column_settings.sound' defaultMessage='Play sound' />;
