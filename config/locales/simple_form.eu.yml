@@ -42,6 +42,8 @@ eu:
         discoverable_html: <a href="%{path}" target="_blank">Direktorioa</a>k Jendea
           interesen eta jardueraren arabera aurkitzea ahalbidetzen du. Gutxienez %{min_followers}
           jarraitzaile behar dira bertan agertzeko
+        setting_aggregate_reblogs: Ez erakutsi buktzada berriak berriki bultzada jaso
+          duten tootentzat (berriki jasotako bultzadei eragiten die besterik ez)
       imports:
         data: Beste Mastodon instantzia batetik esportatutako CSV fitxategia
       sessions:
@@ -106,6 +108,7 @@ eu:
         username_or_email: Erabiltzaile-izena edo e-mail helbidea
         whole_word: Hitz osoa
         discoverable: Zerrendatu kontu hau direktorioan
+        setting_aggregate_reblogs: Taldekatu bultzadak denbora-lerroetan
       interactions:
         must_be_follower: Blokeatu jarraitzaile ez direnen jakinarazpenak
         must_be_following: Blokeatu zuk jarraitzen ez dituzunen jakinarazpenak
