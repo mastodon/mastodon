@@ -21,7 +21,6 @@ const messages = defineMessages({
 });
 
 const getNotifications = createSelector([
-  // TODO: Remove the first two arguments and simplify
   state => state.getIn(['settings', 'notifications', 'quickFilter', 'show']),
   state => state.getIn(['settings', 'notifications', 'quickFilter', 'active']),
   state => ImmutableList(state.getIn(['settings', 'notifications', 'shows']).filter(item => !item).keys()),
@@ -30,6 +29,7 @@ const getNotifications = createSelector([
   if (!showFilterBar || allowedType === 'all') {
     // used if user changed the notification settings after loading the notifications from the server
     // otherwise a list of notifications will come pre-filtered from the backend
+    // we need to turn it off for FilterBar in order not to block ourselves from seeing a specific category
     return notifications.filterNot(item => item !== null && excludedTypes.includes(item.get('type')));
   }
   return notifications.filter(item => item !== null && allowedType === item.get('type'));
