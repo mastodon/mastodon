@@ -107,8 +107,8 @@ export default class AccountGallery extends ImmutablePureComponent {
       );
     }
 
-    if (!isLoading && medias.size > 0 && hasMore) {
-      loadOlder = <LoadMore onClick={this.handleLoadOlder} />;
+    if (hasMore) {
+      loadOlder = <LoadMore visible={!isLoading} onClick={this.handleLoadOlder} />;
     }
 
     return (
@@ -116,10 +116,10 @@ export default class AccountGallery extends ImmutablePureComponent {
         <ColumnBackButton />
 
         <ScrollContainer scrollKey='account_gallery' shouldUpdateScroll={this.shouldUpdateScroll}>
-          <div className='scrollable' onScroll={this.handleScroll}>
+          <div className='scrollable scrollable--flex' onScroll={this.handleScroll}>
             <HeaderContainer accountId={this.props.params.accountId} />
 
-            <div className='account-gallery__container'>
+            <div role='feed' className='account-gallery__container'>
               {medias.map((media, index) => media === null ? (
                 <LoadMoreMedia
                   key={'more:' + medias.getIn(index + 1, 'id')}
@@ -134,6 +134,12 @@ export default class AccountGallery extends ImmutablePureComponent {
               ))}
               {loadOlder}
             </div>
+
+            {isLoading && medias.size === 0 && (
+              <div className='scrollable__append'>
+                <LoadingIndicator />
+              </div>
+            )}
           </div>
         </ScrollContainer>
       </Column>
