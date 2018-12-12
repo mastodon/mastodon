@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import FilterBar from '../components/filter_bar';
-import { changeSetting } from '../../../actions/settings';
+import { setFilter } from '../../../actions/notifications';
 
 const makeMapStateToProps = state => ({
   selectedFilter: state.getIn(['settings', 'notifications', 'quickFilter', 'active']),
@@ -9,7 +9,7 @@ const makeMapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => ({
   selectFilter (newActiveFilter) {
-    dispatch(changeSetting(['notifications', 'quickFilter', 'active'], newActiveFilter));
+    dispatch(setFilter(newActiveFilter));
   },
 });
 
