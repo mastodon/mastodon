@@ -8,18 +8,22 @@ namespace :mastodon do
     desc 'migrate AccountConversation'
     task accountConversation: :environment do
       migrated  = 0
-      Status.unscoped.local.where(visibility: :direct).includes(:account, mentions: :account).find_each do |status|
-        AccountConversation.add_status(status.account, status)
-        migrated += 1
-  
+      Status.unscoped.local.where(visibility: :direct).includes(:account, mentions: :account).find_in_batches do |statuses|
+        statuses.each do |status|
+          AccountConversation.add_status(status.account, status)
+        end
+
+        migrated += statuses.length
         puts "Migrated #{migrated} rows"
       end
   
       puts
-      Notification.joins(mention: :status).where(activity_type: 'Mention', statuses: { visibility: :direct }).includes(:account, mention: { status: [:account, mentions: :account] }).find_each do |notification|
-        AccountConversation.add_status(notification.account, notification.target_status)
-        migrated += 1
-  
+      Notification.joins(mention: :status).where(activity_type: 'Mention', statuses: { visibility: :direct }).includes(:account, mention: { status: [:account, mentions: :account] }).find_in_batches do |notifications|
+        notifications.each do |notification|
+          AccountConversation.add_status(notification.account, notification.target_status)
+        end
+
+        migrated += notifications.length
         puts "Migrated #{migrated} rows"
       end  
     end
