@@ -100,7 +100,6 @@ export default class Following extends ImmutablePureComponent {
           shouldUpdateScroll={this.shouldUpdateScroll}
           prepend={<HeaderContainer accountId={this.props.params.accountId} hideTabs />}
           alwaysPrepend
-          alwaysShowScrollbar
           emptyMessage={emptyMessage}
         >
           {accountIds.map(id =>
