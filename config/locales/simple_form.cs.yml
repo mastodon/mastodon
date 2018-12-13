@@ -1,55 +1,40 @@
+---
 cs:
   simple_form:
     hints:
       defaults:
-        autofollow: Lidé, kteří se zaregistrují přes pozvání, vás budou automaticky
-          sledovat
-        avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions}
-          px
+        autofollow: Lidé, kteří se zaregistrují přes pozvání, vás budou automaticky sledovat
+        avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         bot: Tento účet provádí hlavně automatizované akce a nemusí být spravován
         context: Jedno či více kontextů, ve kterých má být filtr uplatněn
-        digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste při
-          své nepřítomnosti obdržel/a osobní zprávy
+        digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste při své nepřítomnosti obdržel/a osobní zprávy
+        discoverable_html: <a href="%{path}" target="_blank">Adresář</a> dovoluje lidem najít účty podle zájmů a aktivity. Vyžaduje alespoň %{min_followers} sledovatelů
         email: Bude vám poslán potvrzovací e-mail
         fields: Na profilu můžete mít až 4 položky zobrazené jako tabulka
-        header: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions}
-          px
+        header: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         inbox_url: Zkopírujte URL z hlavní stránky mostu, který chcete použít
-        irreversible: Filtrované tooty nenávratně zmizí, i pokud bude filtr později
-          odstraněn
+        irreversible: Filtrované tooty nenávratně zmizí, i pokud bude filtr později odstraněn
         locale: Jazyk uživatelského rozhraní, e-mailů a oznámení push
         locked: Vyžaduje manuální schvalování sledovatelů
         password: Použijte alespoň 8 znaků
-        phrase: Shoda bude nalezena bez ohledu na velikost písmen v těle tootu či
-          varování o obsahu
-        scopes: Které API bude aplikace povolena používat. Pokud vyberete rozsah nejvyššího
-          stupně, nebudete je muset vybírat po jednom.
-        setting_default_language: Jazyk vašich tootů může být detekován automaticky,
-          není to však vždy přesné
+        phrase: Shoda bude nalezena bez ohledu na velikost písmen v těle tootu či varování o obsahu
+        scopes: Které API bude aplikace povolena používat. Pokud vyberete rozsah nejvyššího stupně, nebudete je muset vybírat po jednom.
+        setting_aggregate_reblogs: Nezobrazovat nové boosty pro tooty, které byly nedávno boostnuty (ovlivňuje pouze nově přijaté boosty)
+        setting_default_language: Jazyk vašich tootů může být detekován automaticky, není to však vždy přesné
         setting_display_media_default: Skrývat média označená jako citlivá
         setting_display_media_hide_all: Vždy skrývat všechna média
         setting_display_media_show_all: Vždy zobrazovat média označená jako citlivá
-        setting_hide_network: Koho sledujete a kdo sleduje vás nebude zobrazeno na
-          vašem profilu
+        setting_hide_network: Koho sledujete a kdo sleduje vás nebude zobrazeno na vašem profilu
         setting_noindex: Ovlivňuje váš veřejný profil a stránky příspěvků
-        setting_theme: Ovlivňuje jak Mastodon vypadá, jste-li přihlášen na libovolném
-          zařízení.
+        setting_theme: Ovlivňuje jak Mastodon vypadá, jste-li přihlášen na libovolném zařízení.
         username: Vaše uživatelské jméno bude na %{domain} unikátní
-        whole_word: Je-li klíčové slovo či fráze pouze alfanumerická, bude aplikována
-          pouze, pokud se shoduje s celým slovem
-        discoverable_html: <a href="%{path}" target="_blank">Adresář</a> dovoluje
-          lidem najít účty podle zájmů a aktivity. Vyžaduje alespoň %{min_followers}
-          sledovatelů
-        setting_aggregate_reblogs: Nezobrazovat nové boosty pro tooty, které byly
-          nedávno boostnuty (ovlivňuje pouze nově přijaté boosty)
+        whole_word: Je-li klíčové slovo či fráze pouze alfanumerická, bude aplikována pouze, pokud se shoduje s celým slovem
       imports:
         data: Soubor CSV exportován z jiné instance Mastodon
       sessions:
-        otp: 'Napište dvoufaktorový kód vygenerovaný vaší mobilní aplikací, nebo použijte
-          jeden z vašich záložních kódů:'
+        otp: 'Napište dvoufaktorový kód vygenerovaný vaší mobilní aplikací, nebo použijte jeden z vašich záložních kódů:'
       user:
-        chosen_languages: Je-li tohle zaškrtnuto, budou ve veřejných časových osách
-          zobrazeny pouze tooty ve zvolených jazycích
+        chosen_languages: Je-li tohle zaškrtnuto, budou ve veřejných časových osách zobrazeny pouze tooty ve zvolených jazycích
     labels:
       account:
         fields:
@@ -65,6 +50,7 @@ cs:
         context: Kontexty filtrů
         current_password: Současné heslo
         data: Data
+        discoverable: Zveřejnit tento účet v adresáři
         display_name: Zobrazované jméno
         email: E-mailová adresa
         expires_in: Expirovat po
@@ -80,6 +66,7 @@ cs:
         otp_attempt: Dvoufaktorový kód
         password: Heslo
         phrase: Klíčové slovo či fráze
+        setting_aggregate_reblogs: Seskupovat boosty v časových osách
         setting_auto_play_gif: Automaticky přehrávat animace GIF
         setting_boost_modal: Zobrazovat před boostnutím potvrzovací okno
         setting_default_language: Jazyk příspěvků
@@ -102,8 +89,6 @@ cs:
         username: Uživatelské jméno
         username_or_email: Uživatelské jméno nebo e-mail
         whole_word: Celé slovo
-        discoverable: Zveřejnit tento účet v adresáři
-        setting_aggregate_reblogs: Seskupovat boosty v časových osách
       interactions:
         must_be_follower: Blokovat oznámení od lidí, kteří vás nesledují
         must_be_following: Blokovat oznámení od lidí, které nesledujete
@@ -118,6 +103,6 @@ cs:
         report: Posílat e-maily, je-li odesláno nové nahlášení
     'no': Ne
     required:
-      mark: '*'
+      mark: "*"
       text: požadováno
     'yes': Ano
