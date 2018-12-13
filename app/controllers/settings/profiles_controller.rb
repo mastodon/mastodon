@@ -30,7 +30,6 @@ class Settings::ProfilesController < Settings::BaseController
       @account.build_fields
       render :show
     end
-
   end
 
   private
