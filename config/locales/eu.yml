@@ -48,6 +48,7 @@ eu:
       other: jarraitzaile
     following: Jarraitzen
     joined: "%{date}(e)an elkartua"
+    last_active: azkenekoz aktiboa
     link_verified_on: 'Esteka honen jabetzaren egiaztaketa data: %{date}'
     media: Multimedia
     moved_html: "%{name} hona lekualdatu da %{new_profile_link}:"
@@ -114,6 +115,7 @@ eu:
       media_attachments: Multimedia eranskinak
       memorialize: Bihurtu memoriala
       moderation:
+        active: Aktiboa
         all: Denak
         silenced: Isilarazita
         suspended: Kanporatua
@@ -439,6 +441,14 @@ eu:
       proceed: Jarraitu
       title: Kanporatu %{acct}
       warning_html: 'Kontu hau kanporatzeak <strong>behin betiko</strong> ezabatuko ditu kontu honetako datuak, hauek barne:'
+    tags:
+      accounts: Kontuak
+      hidden: Ezkutatuta
+      hide: Ezkutatu direktoriotik
+      name: Traola
+      title: Traolak
+      unhide: Erakutsi direktorioan
+      visible: Ikusgai
     title: Administrazioa
   admin_mailer:
     new_report:
@@ -517,6 +527,15 @@ eu:
     success_msg: Zure kontua ongi ezabatu da
     warning_html: Instantzia honetako edukiak ezabatzea besterik ezin da bermatu. Asko partekatu den edukiaren arrastoak geratzea izan liteke. Deskonektatuta dauden zerbitzariak edo zure eguneraketetatik harpidetza kendu duten zerbitzariek ez dituzte beraien datu-baseak eguneratuko.
     warning_title: Sakabanatutako edukiaren eskuragarritasuna
+  directories:
+    directory: Profilen direktorioa
+    explanation: Deskubritu erabiltzaileak interesen arabera
+    explore_mastodon: Esploratu %{title}
+    most_popular: Puri-purian
+    most_recently_active: Azkenaldian aktibo
+    people:
+      one: pertsona %{count}
+      other: "%{count} pertsona"
   errors:
     '403': Ez duzu orri hau ikusteko baimenik.
     '404': Bilatu duzun orria ez da existitzen.
@@ -786,7 +805,7 @@ eu:
   stream_entries:
     pinned: Finkatutako toot-a
     reblogged: "(r)en bultzada"
-    sensitive_content: Eduki hunkigarria
+    sensitive_content: 'Kontuz: Eduki hunkigarria'
   terms:
     body_html: |
       <h2>Pribatutasun politika</h2>

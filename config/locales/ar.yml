@@ -60,6 +60,7 @@ ar:
       zero: متابِعون
     following: مُتابَع
     joined: انضم·ت في %{date}
+    last_active: آخر نشاط
     link_verified_on: تم التحقق مِن مالك هذا الرابط بتاريخ %{date}
     media: الوسائط
     moved_html: "%{name} إنتقلَ إلى %{new_profile_link} :"
@@ -130,6 +131,7 @@ ar:
       media_attachments: الوسائط المرفقة
       memorialize: تحول إلى صفحة للذاكرة
       moderation:
+        active: نشِط
         all: الكل
         silenced: تم كتمه
         suspended: مُجَمَّد
@@ -455,6 +457,12 @@ ar:
       hint_html: 'لتأكيد إجراء تعليق الحساب، يُرجى إدخال %{value} في الحقل التالي:'
       proceed: مواصلة
       title: تعليق الحساب %{acct}
+    tags:
+      accounts: الحسابات
+      hidden: المخفية
+      name: الوسم
+      title: الوسوم
+      visible: ظاهر
     title: الإدارة
   admin_mailer:
     new_report:
@@ -531,6 +539,9 @@ ar:
     proceed: حذف حساب
     success_msg: تم حذف حسابك بنجاح
     warning_title: توافر المحتوى المنشور و المبعثَر
+  directories:
+    explore_mastodon: استكشف %{title}
+    most_popular: المشهورة
   errors:
     '403': ليس لك الصلاحيات الكافية لعرض هذه الصفحة.
     '404': إنّ الصفحة التي تبحث عنها لا وجود لها أصلا.
@@ -645,7 +656,13 @@ ar:
       body: هذا هو مُلَخَّص الرسائل التي فاتتك وذلك منذ آخر زيارة لك في  %{since}
       mention: "%{name} أشار إليك في :"
       new_followers_summary: رائع، لقد قام بمتابعتك %{count} مُتابِعون جُدد أثناء فترة غيابك عن ماستدون !
-      subject: "%{count} إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
+      subject:
+        few: "%{count} إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
+        many: "%{count} إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
+        one: "إشعار واحد منذ آخر زيارة لك لـ \U0001F418"
+        other: "%{count} إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
+        two: "إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
+        zero: "إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
       title: أثناء فترة غيابك …
     favourite:
       body: 'أُعجب %{name} بمنشورك :'
@@ -763,8 +780,20 @@ ar:
   statuses:
     attached:
       description: 'مُرفَق : %{attached}'
-      image: "%{count} صُوَر"
-      video: "%{count} فيديوهات"
+      image:
+        few: "%{count} صور"
+        many: "%{count} صور"
+        one: صورة %{count}
+        other: "%{count} صور"
+        two: صور
+        zero: صور
+      video:
+        few: "%{count} فيديوهات"
+        many: "%{count} فيديوهات"
+        one: فيديو %{count}
+        other: "%{count} فيديوهات"
+        two: فيديوهات
+        zero: فيديوهات
     boosted_from_html: تم إعادة ترقيته مِن %{acct_link}
     content_warning: 'تحذير عن المحتوى : %{warning}'
     disallowed_hashtags: 'يحتوي على أحد الوسوم الممنوعة: %{tags}'
