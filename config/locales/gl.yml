@@ -48,6 +48,7 @@ gl:
       other: Seguidoras
     following: Seguindo
     joined: Uneuse %{date}
+    last_active: última actividade
     link_verified_on: A propiedade de esta ligazón foi comprobada en %{date}
     media: Medios
     moved_html: "%{name} mudouse a %{new_profile_link}:"
@@ -114,6 +115,7 @@ gl:
       media_attachments: Anexos de medios
       memorialize: Convertir a lembranza
       moderation:
+        active: Activa
         all: Todo
         silenced: Acalado
         suspended: Suspendido
@@ -213,11 +215,11 @@ gl:
       image_hint: PNG ate 50KB
       listed: Listado
       new:
-        title: Engadir novo emoji personalizado
+        title: Engadir novo emoji persoalizado
       overwrite: Sobrescribir
       shortcode: Código corto
       shortcode_hint: Cando menos 2 caracteres, só caracteres alfanuméricos e subliñados
-      title: Emojis personalizados
+      title: Emojis persoalizados
       unlisted: Non listado
       update_failed_msg: Non se puido actualizar ese emoji
       updated_msg: Actualizouse correctamente o emoji!
@@ -361,7 +363,7 @@ gl:
         username: Nome de usuaria de contacto
       custom_css:
         desc_html: Modificar o aspecto con CSS cargado en cada páxina
-        title: CSS personalizado
+        title: CSS persoalizado
       hero:
         desc_html: Mostrado na portada. Recoméndase 600x100px como mínimo. Si non se establece, mostrará a imaxe por omisión da instancia
         title: Imáxe Heróe
@@ -398,13 +400,13 @@ gl:
         title: Descrición da instancia
       site_description_extended:
         desc_html: Un bo lugar para o seu código de conducta, regras, guías e outras cousas que distingan a súa instancia. Pode utilizar etiquetas HTML
-        title: Información extendida da personalización
+        title: Información extendida da persoalización
       site_short_description:
         desc_html: Mostrado na barra lateral e nas etiquetas meta. Describe o que é Mastodon e que fai especial a este servidor nun só parágrafo. Si está baldeiro, mostrará a descrición da instancia.
         title: Descrición curta da instancia
       site_terms:
         desc_html: Pode escribir a súa propia política de intimidade, termos de servizo ou aclaracións legais. Pode utilizar etiquetas HTML
-        title: Termos de servizo personalizados
+        title: Termos de servizo persoalizados
       site_title: Nome da instancia
       thumbnail:
         desc_html: Utilizado para vistas previsas vía OpenGraph e API. Recoméndase 1200x630px
@@ -439,6 +441,14 @@ gl:
       proceed: Proceder
       title: Suspender %{acct}
       warning_html: 'Ao suspender esta conta eliminará <strong>de xeito irreversible</strong> os datos de esta conta, que inclúe:'
+    tags:
+      accounts: Contas
+      hidden: Ocultas
+      hide: Ocultar do directorio
+      name: Etiqueta
+      title: Etiquetas
+      unhide: Mostrar en directorio
+      visible: Visible
     title: Administración
   admin_mailer:
     new_report:
@@ -517,6 +527,15 @@ gl:
     success_msg: A súa conta eliminouse correctamente
     warning_html: Só se garantiza a eliminación de contido de esta instancia. O contido que foi compartido con outras instancias é probable que deixe rastros. O servidores fora de liña e servidores que se desuscribiron das súas actualizacións non actualizarán as súas bases de datos.
     warning_title: Dispoñibilidade do contido espallado
+  directories:
+    directory: Directorio de perfil
+    explanation: Descubra usuarias según o seu interese
+    explore_mastodon: Explorar %{title}
+    most_popular: Máis popular
+    most_recently_active: Máis activa recentemente
+    people:
+      one: "%{count} persoa"
+      other: "%{count} persoas"
   errors:
     '403': Non ten permiso para ver esta páxina.
     '404': A páxina que está a buscar non existe.
@@ -806,7 +825,7 @@ gl:
       <p>Toda a información que recollemos podería ser utilizada dos seguintes xeitos:</p>
 
       <ul>
-        <li>Para proporcionar a funcionabiliade básica de Mastodon. Só pode interactuar co contido de outra xente e publicar o seu propio contido si está conectada. Por exemplo, podería seguir outra xente e ver as súas publicacións combinadas nunha liña temporal inicial personalizada.</li>
+        <li>Para proporcionar a funcionabiliade básica de Mastodon. Só pode interactuar co contido de outra xente e publicar o seu propio contido si está conectada. Por exemplo, podería seguir outra xente e ver as súas publicacións combinadas nunha liña temporal inicial persoalizada.</li>
         <li>Para axudar a moderar a comunidade, por exemplo comparando o seu enderezo IP con outros coñecidos para evitar esquivar os rexeitamentos ou outras infraccións.</li>
         <li>O endero de correo electrónico que nos proporciona podería ser utilizado para enviarlle información, notificacións sobre outra xente que interactúa cos seus contidos ou lle envía mensaxes, e para respostar a consultas, e/ou outras cuestións ou peticións.</li>
       </ul>
@@ -815,7 +834,7 @@ gl:
 
       <h3 id="protect">Cómo proxetemos os seus datos?</h3>
 
-      <p>Implementamos varias medidas de seguridade para protexer os seus datos personais cando introduce, envía ou accede a súa información personal. Entre outras medidas, a súa sesión de navegación, así como o tráfico entre os seus aplicativos e o API están aseguradas mediante SSL, e o seu contrasinal está camuflado utilizando un algoritmo potente de unha sóa vía. Pode habilitar a autenticación de doble factor para protexer o acceso a súa conta aínda máis.</p>
+      <p>Implementamos varias medidas de seguridade para protexer os seus datos personais cando introduce, envía ou accede a súa información persoal. Entre outras medidas, a súa sesión de navegación, así como o tráfico entre os seus aplicativos e o API están aseguradas mediante SSL, e o seu contrasinal está camuflado utilizando un algoritmo potente de unha sóa vía. Pode habilitar a autenticación de doble factor para protexer o acceso a súa conta aínda máis.</p>
 
       <hr class="spacer" />
 
@@ -901,7 +920,7 @@ gl:
       title: Leve o ficheiro
     welcome:
       edit_profile_action: Configurar perfil
-      edit_profile_step: Vostede pode personalizar o seu perfil subindo un avatar, cabeceira, cambiar o seu nome público e aínda máis. Si restrinxe a súa conta pode revisar a conta das personas que solicitan seguilas antes de permitirlles o acceso aos seus toots.
+      edit_profile_step: Vostede pode persoalizar o seu perfil subindo un avatar, cabeceira, cambiar o seu nome público e aínda máis. Si restrinxe a súa conta pode revisar a conta das personas que solicitan seguilas antes de permitirlles o acceso aos seus toots.
       explanation: Aquí ten alunhas endereitas para ir aprendendo
       final_action: Comece a publicar
       final_step: 'Publique! Incluso sin seguidoras as súas mensaxes serán vistas por outras, por exemplo na liña temporal local e nas etiquetas. Podería presentarse no #fediverso utilizando a etiqueta #introductions.'
