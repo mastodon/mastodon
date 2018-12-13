@@ -28,7 +28,6 @@ if Rails.env.production?
     p.worker_src      :self, assets_host
     p.connect_src     :self, :blob, Rails.configuration.x.streaming_api_base_url, *data_hosts
     p.manifest_src    :self, assets_host
-    p.form_action     :self
   end
 end
 
