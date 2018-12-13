@@ -31,11 +31,15 @@ sr:
     privacy_policy: Полиса приватности
     source_code: Изворни код
     status_count_after:
+      few: статуси
+      many: статуси
       one: статус
       other: статуси
     status_count_before: Који су написали
     terms: Услови коришћења
     user_count_after:
+      few: корисници
+      many: корисници
       one: корисник
       other: корисници
     user_count_before: Дом за
@@ -44,6 +48,8 @@ sr:
     choices_html: "%{name}'s избори:"
     follow: Запрати
     followers:
+      few: Пратиоци
+      many: Пратиоци
       one: Пратиоц
       other: Пратиоци
     following: Пратим
@@ -58,6 +64,8 @@ sr:
     pin_errors:
       following: Морате пратити ову особу ако хоћете да потврдите
     posts:
+      few: Трубе
+      many: Трубе
       one: Труба
       other: Трубе
     posts_tab_heading: Трубе
@@ -767,14 +775,20 @@ sr:
     attached:
       description: 'У прилогу: %{attached}'
       image:
+        few: "%{count} слика"
+        many: "%{count} слика"
         one: "%{count} слику"
         other: "%{count} слика"
       video:
+        few: "%{count} видео записа"
+        many: "%{count} видео записа"
         one: "%{count} видео запис"
         other: "%{count} видео записа"
     boosted_from_html: Подржано од %{acct_link}
     content_warning: 'Упозорење на садржај: %{warning}'
     disallowed_hashtags:
+      few: 'садржи забрањене хештегове: %{tags}'
+      many: 'садржи забрањене хештегове: %{tags}'
       one: 'садржи забрањени хештег: %{tags}'
       other: 'садржи забрањене хештегове: %{tags}'
     language_detection: Аутоматскo откривање језика
