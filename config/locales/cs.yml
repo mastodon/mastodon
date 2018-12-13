@@ -48,9 +48,10 @@ cs:
     followers:
       few: Sledovatelé
       one: Sledovatel
-      other: Sledovatelé
+      other: Sledovatelů
     following: Sledovaných
     joined: Připojil/a se v %{date}
+    last_active: naposledy aktivní
     link_verified_on: Vlastnictví tohoto odkazu bylo zkontrolováno %{date}
     media: Média
     moved_html: 'Účet %{name} byl přesunut na %{new_profile_link}:'
@@ -63,7 +64,7 @@ cs:
     posts:
       few: Tooty
       one: Toot
-      other: Tooty
+      other: Tootů
     posts_tab_heading: Tooty
     posts_with_replies: Tooty a odpovědi
     reserved_username: Toto uživatelské jméno je rezervováno
@@ -118,6 +119,7 @@ cs:
       media_attachments: Mediální přílohy
       memorialize: Změnit na „in memoriam“
       moderation:
+        active: Aktivní
         all: Vše
         silenced: Utišen/a
         suspended: Suspendován/a
@@ -444,6 +446,14 @@ cs:
       proceed: Pokračovat
       title: Suspendovat účet %{acct}
       warning_html: 'Suspenzace tohoto účtu <strong>nenávratně</strong> smaže z tohoto účtu data, včetně:'
+    tags:
+      accounts: Účty
+      hidden: Skryté
+      hide: Skrýt z adresáře
+      name: Hashtag
+      title: Hashtagy
+      unhide: Zobrazit v adresáři
+      visible: Viditelné
     title: Administrace
   admin_mailer:
     new_report:
@@ -522,6 +532,16 @@ cs:
     success_msg: Váš účet byl úspěšně odstraněn
     warning_html: Pouze vymazání obsahu z této konkrétní instance je zaručeno. Obsah, který byl široce sdílen, po sobě pravděpodobně zanechá stopy. U offline serverů a serverů, které vaše aktualizace již neodebírají, nebudou databáze aktualizovány.
     warning_title: Dostupnost rozšířeného obsahu
+  directories:
+    directory: Adresář profilů
+    explanation: Objevujte uživatele podle jejich zájmů
+    explore_mastodon: Prozkoumejte %{title}
+    most_popular: Nejpopulárnější
+    most_recently_active: Naposledy aktivní
+    people:
+      few: "%{count} lidí"
+      one: "%{count} člověk"
+      other: "%{count} lidí"
   errors:
     '403': Nemáte povolení zobrazit tuto stránku.
     '404': Stránka, kterou hledáte, neexistuje.

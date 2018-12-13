@@ -48,6 +48,7 @@ de:
       other: Follower
     following: Folgt
     joined: Beigetreten am %{date}
+    last_active: zuletzt aktiv
     link_verified_on: Besitz des Links wurde überprüft am %{date}
     media: Medien
     moved_html: "%{name} ist auf %{new_profile_link} umgezogen:"
@@ -114,6 +115,7 @@ de:
       media_attachments: Medienanhänge
       memorialize: In Gedenkmal verwandeln
       moderation:
+        active: Aktiv
         all: Alle
         silenced: Stummgeschaltet
         suspended: Gesperrt
@@ -439,6 +441,14 @@ de:
       proceed: Fortfahren
       title: "%{acct} sperren"
       warning_html: 'Die Sperrung des Benutzerkontos wird <strong>unwiederrufliche</strong> Schäden hervorrufen und alle Daten löschen, die folgendes beinhalten:'
+    tags:
+      accounts: Konten
+      hidden: Versteckt
+      hide: Vor Verzeichnis verstecken
+      name: Hashtag
+      title: Hashtags
+      unhide: Zeige in Verzeichnis
+      visible: Sichtbar
     title: Administration
   admin_mailer:
     new_report:
@@ -815,7 +825,7 @@ de:
 
       <h3 id="protect">Wie beschützen wir deine Informationen?</h3>
 
-      <p>Wir implementieren eine Reihe von Sicherheitsmaßnahmen, um die Sicherheit deiner persönlichen Information sicherzustellen, wenn du persönliche Informationen eingibst, übermittelst oder auf sie zugreifst. Neben anderen Dingen, wird sowohl deine Browsersitzung, als auch der Datenverkehr zischen deinen Anwendungen und der Programmierschnittstelle (API) mit SSL gesichert, dein Passwort wird mit einem starken Einwegalgorithmus gehasht. Du kannst Zwei-Faktor-Authentifizierung aktivieren, um den Zugriff auf dein Konto zusätzlich abzusichern.</p>
+      <p>Wir implementieren eine Reihe von Sicherheitsmaßnahmen, um die Sicherheit deiner persönlichen Information sicherzustellen, wenn du persönliche Informationen eingibst, übermittelst oder auf sie zugreifst. Neben anderen Dingen, wird sowohl deine Browsersitzung, als auch der Datenverkehr zwischen deinen Anwendungen und der Programmierschnittstelle (API) mit SSL gesichert, dein Passwort wird mit einem starken Einwegalgorithmus gehasht. Du kannst Zwei-Faktor-Authentifizierung aktivieren, um den Zugriff auf dein Konto zusätzlich abzusichern.</p>
 
       <hr class="spacer" />
 
@@ -830,7 +840,7 @@ de:
 
       <p>Du kannst ein Archiv deines Inhalts anfordern und herunterladen, inkludierend deiner Beiträge, Medienanhänge, Profilbilder und Headerbilder.</p>
 
-      <p>Du kannst dein Konto unwiderruflich jederzeit löschen.</p>
+      <p>Du kannst dein Konto jederzeit unwiderruflich  löschen.</p>
 
       <hr class="spacer"/>
 
@@ -864,9 +874,9 @@ de:
 
       <h3 id="changes">Änderung an unserer Datenschutzerklärung</h3>
 
-      <p>Wenn wir uns entscheiden, Änderungen an unserer Datenschutzerklärung vorzunehmen, werden wird diese Änderungen auf dieser Seite bekannt geben.</p>
+      <p>Wenn wir uns entscheiden, Änderungen an unserer Datenschutzerklärung vorzunehmen, werden wird diese Änderungen auf dieser Seite bekannt gegeben.</p>
 
-      <p>Dies ist eine Übersetzung, Irrtümer und Übersetzungsfehler vorbehalten. Im Zweifelsfall gilt die englische Originalversion</p>
+      <p>Dies ist eine Übersetzung, Irrtümer und Übersetzungsfehler vorbehalten. Im Zweifelsfall gilt die englische Originalversion.</p>
 
       <p>Dieses Dokument ist CC-BY-SA. Es wurde zuletzt aktualisiert am 7. März 2018.</p>
 
