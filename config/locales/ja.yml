@@ -48,6 +48,7 @@ ja:
       other: フォロワー
     following: フォロー中
     joined: "%{date} に登録"
+    last_active: 最後の活動
     link_verified_on: このリンクの所有権は %{date} に確認されました
     media: メディア
     moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
@@ -114,6 +115,7 @@ ja:
       media_attachments: 添付されたメディア
       memorialize: 追悼アカウント化
       moderation:
+        active: 有効
         all: すべて
         silenced: サイレンス中
         suspended: 停止中
@@ -439,6 +441,14 @@ ja:
       proceed: 完全に活動停止させる
       title: "%{acct} を停止"
       warning_html: 'このアカウントを停止すると、このアカウントから次のようなデータが<strong>不可逆的に</strong>削除されます:'
+    tags:
+      accounts: アカウント
+      hidden: 非表示
+      hide: ディレクトリから隠す
+      name: ハッシュタグ
+      title: ハッシュタグ
+      unhide: ディレクトリに表示する
+      visible: 表示
     title: 管理
   admin_mailer:
     new_report:
@@ -517,6 +527,14 @@ ja:
     success_msg: アカウントは正常に削除されました
     warning_html: 削除が保証されるのはこのインスタンス上のコンテンツのみです。他のインスタンス等、外部に広く共有されたコンテンツについては痕跡が残ることがあります。また、現在接続できないサーバーや、あなたの更新を受け取らなくなったサーバーに対しては、削除は反映されません。
     warning_title: 共有されたコンテンツについて
+  directories:
+    directory: ディレクトリ
+    explore_mastodon: "%{title}を探索"
+    most_popular: 人気順
+    most_recently_active: 直近の活動順
+    people:
+      one: "%{count} 人"
+      other: "%{count} 人"
   errors:
     '403': このページを表示する権限がありません。
     '404': お探しのページは見つかりませんでした。
