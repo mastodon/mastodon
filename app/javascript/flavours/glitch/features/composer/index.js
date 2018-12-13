@@ -159,15 +159,15 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onSelectSuggestion(position, token, suggestion) {
     dispatch(selectComposeSuggestion(position, token, suggestion));
   },
-  onMediaDescriptionConfirm() {
+  onMediaDescriptionConfirm(routerHistory) {
     dispatch(openModal('CONFIRM', {
       message: intl.formatMessage(messages.missingDescriptionMessage),
       confirm: intl.formatMessage(messages.missingDescriptionConfirm),
-      onConfirm: () => dispatch(submitCompose()),
+      onConfirm: () => dispatch(submitCompose(routerHistory)),
     }));
   },
-  onSubmit() {
-    dispatch(submitCompose());
+  onSubmit(routerHistory) {
+    dispatch(submitCompose(routerHistory));
   },
   onUndoUpload(id) {
     dispatch(undoUploadCompose(id));
@@ -256,9 +256,9 @@ const handlers = {
           inputs[firstWithoutDescription].focus();
         }
       }
-      onMediaDescriptionConfirm();
+      onMediaDescriptionConfirm(this.context.router ? this.context.router.history : null);
     } else if (onSubmit) {
-      onSubmit();
+      onSubmit(this.context.router ? this.context.router.history : null);
     }
   },
 
@@ -561,6 +561,10 @@ Composer.propTypes = {
   onUnmount: PropTypes.func,
   onUpload: PropTypes.func,
   onMediaDescriptionConfirm: PropTypes.func,
+};
+
+Composer.contextTypes = {
+  router: PropTypes.object,
 };
 
 //  Connecting and export.
