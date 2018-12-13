@@ -16,13 +16,21 @@ class Settings::ProfilesController < Settings::BaseController
   end
 
   def update
-    if UpdateAccountService.new.call(@account, account_params)
+    update_result = begin
+      UpdateAccountService.new.call(@account, account_params)
+    rescue Mastodon::DimensionsValidationError => de
+      @account.errors.add(:avatar, "#{I18n.t('simple_form.labels.defaults.avatar_img_error')}. #{de.message}")
+      false
+    end
+
+    if update_result
       ActivityPub::UpdateDistributionWorker.perform_async(@account.id)
       redirect_to settings_profile_path, notice: I18n.t('generic.changes_saved_msg')
     else
       @account.build_fields
       render :show
     end
+
   end
 
   private
