@@ -176,6 +176,7 @@ Rails.application.routes.draw do
         post :disable
         post :redownload
         post :remove_avatar
+        post :remove_header
         post :memorialize
       end
 

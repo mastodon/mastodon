@@ -30,18 +30,25 @@ eo:
     other_instances: Listo de nodoj
     privacy_policy: Privateca politiko
     source_code: Fontkodo
-    status_count_after: mesaĝoj
+    status_count_after:
+      one: mesaĝo
+      other: mesaĝoj
     status_count_before: Kie skribiĝis
     terms: Uzkondiĉoj
-    user_count_after: uzantoj
+    user_count_after:
+      one: uzanto
+      other: uzantoj
     user_count_before: Hejmo de
     what_is_mastodon: Kio estas Mastodon?
   accounts:
     choices_html: 'Proponoj de %{name}:'
     follow: Sekvi
-    followers: Sekvantoj
+    followers:
+      one: Sekvanto
+      other: Sekvantoj
     following: Sekvatoj
     joined: Aliĝis je %{date}
+    link_verified_on: Proprieto de ĉi tiu ligilo estis kontrolita je %{date}
     media: Aŭdovidaĵoj
     moved_html: "%{name} moviĝis al %{new_profile_link}:"
     network_hidden: Tiu informo ne estas disponebla
@@ -50,7 +57,10 @@ eo:
     people_who_follow: Sekvantoj de %{name}
     pin_errors:
       following: Vi devas sekvi la homon, kiun vi volas proponi
-    posts: Mesaĝoj
+    posts:
+      one: Mesaĝo
+      other: Mesaĝoj
+    posts_tab_heading: Mesaĝoj
     posts_with_replies: Mesaĝoj kaj respondoj
     reserved_username: La uzantnomo estas rezervita
     roles:
@@ -111,9 +121,10 @@ eo:
       moderation_notes: Kontrolaj notoj
       most_recent_activity: Lasta ago
       most_recent_ip: Lasta IP
+      no_limits_imposed: Neniu limito trudita
       not_subscribed: Ne abonita
       outbox_url: Elira URL
-      perform_full_suspension: Tute haltigi
+      perform_full_suspension: Haltigi
       profile_url: Profila URL
       promote: Plirangigi
       protocol: Protokolo
@@ -142,8 +153,10 @@ eo:
         report: signalo
         targeted_reports: Signaloj kreitaj de ĉi tiu konto
       silence: Kaŝi
+      silenced: Silentigita
       statuses: Mesaĝoj
       subscribe: Aboni
+      suspended: Haltigita
       title: Kontoj
       unconfirmed_email: Nekonfirmita retadreso
       undo_silenced: Malfari kaŝon
@@ -160,6 +173,7 @@ eo:
         create_domain_block: "%{name} blokis domajnon %{target}"
         create_email_domain_block: "%{name} metis en nigran liston domajnon %{target}"
         demote_user: "%{name} degradis uzanton %{target}"
+        destroy_custom_emoji: "%{name} neniigis la emoĝion %{target}"
         destroy_domain_block: "%{name} malblokis domajnon %{target}"
         destroy_email_domain_block: "%{name} metis en blankan liston domajnon %{target}"
         destroy_status: "%{name} forigis mesaĝojn de %{target}"
@@ -287,9 +301,15 @@ eo:
       title: Invitoj
     relays:
       add_new: Aldoni novan ripetilon
+      delete: Forigi
       description_html: "<strong>Fratara ripetilo</strong> estas survoja servilo, kiu interŝanĝas grandan kvanton de publikaj mesaĝoj inter serviloj, kiuj abonas kaj publikigas al ĝi. <strong>Ĝi povas helpi etajn kaj mezgrandajn servilojn malkovri enhavon de la fediverse</strong>, kio normale postulus al lokaj uzantoj mane sekvi homojn de foraj serviloj."
+      disable: Malebligi
+      disabled: Malebligita
+      enable: Ebligi
       enable_hint: Post ebligo, via servilo abonos ĉiujn publikajn mesaĝojn de tiu ripetilo, kaj komencos sendi publikajn mesaĝojn de la servilo al ĝi.
+      enabled: Malebligita
       inbox_url: URL de la ripetilo
+      save_and_enable: Konservi kaj ebligi
       setup: Agordi konekton al ripetilo
       status: Stato
       title: Ripetiloj
@@ -336,6 +356,9 @@ eo:
       contact_information:
         email: Publika retadreso
         username: Kontakta uzantnomo
+      custom_css:
+        desc_html: Ŝanĝi la aspekton per CSS ŝargita en ĉiu pago
+        title: Propra CSS
       hero:
         desc_html: Montrata en la ĉefpaĝo. Almenaŭ 600x100px rekomendita. Kiam ne agordita, la bildeto de la nodo estos uzata
         title: Kapbildo
@@ -404,6 +427,11 @@ eo:
       last_delivery: Lasta livero
       title: WebSub
       topic: Temo
+    suspensions:
+      hint_html: 'Por konformi la haltigo de la konto, bonvolu enigi %{value} en la kampo sube:'
+      proceed: Daŭrigita
+      title: Haltigi %{acct}
+      warning_html: 'Haltigi ĉi tiu konton forigos <strong>senrevene</strong> datumojn de ĉi tiu konto, inklusive de:'
     title: Administrado
   admin_mailer:
     new_report:
@@ -426,7 +454,7 @@ eo:
     warning: Estu tre atenta kun ĉi tiu datumo. Neniam diskonigu ĝin al iu ajn!
     your_token: Via alira ĵetono
   auth:
-    agreement_html: Per registriĝo, vi konsentas kun <a href="%{rules_path}">la reguloj de nia nodo</a> kaj <a href="%{terms_path}">niaj uzkondiĉoj</a>.
+    agreement_html: Klakante “Registriĝi” sube, vi konsentas kun <a href="%{rules_path}">la reguloj de la nodo</a> kaj <a href="%{terms_path}">niaj uzkondiĉoj</a>.
     change_password: Pasvorto
     confirm_email: Konfirmi retadreson
     delete_account: Forigi konton
@@ -543,6 +571,7 @@ eo:
     resources: Rimedoj
   generic:
     changes_saved_msg: Ŝanĝoj sukcese konservitaj!
+    copy: Kopii
     save_changes: Konservi ŝanĝojn
     validation_errors:
       one: Io mise okazis! Bonvolu konsulti la suban erar-raporton
@@ -762,6 +791,7 @@ eo:
   time:
     formats:
       default: "%Y-%m-%d %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Enmetu la kodon kreitan de via aŭtentiga aplikaĵo por konfirmi
     description_html: Se vi ebligas <strong>dufaktoran aŭtentigon</strong>, vi bezonos vian poŝtelefonon por ensaluti, ĉar ĝi kreos nombrojn, kiujn vi devos enmeti.
@@ -802,8 +832,11 @@ eo:
       tips: Konsiloj
       title: Bonvenon, %{name}!
   users:
+    follow_limit_reached: Vi ne povas sekvi pli da %{limit} homojn
     invalid_email: La retadreso estas nevalida
     invalid_otp_token: Nevalida kodo de dufaktora aŭtentigo
     otp_lost_help_html: Se vi perdas aliron al ambaŭ, vi povas kontakti %{email}
     seamless_external_login: Vi estas ensalutinta per ekstera servo, do pasvortaj kaj retadresaj agordoj ne estas disponeblaj.
     signed_in_as: 'Ensalutinta kiel:'
+  verification:
+    verification: Kontrolo

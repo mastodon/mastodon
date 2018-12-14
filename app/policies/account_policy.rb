@@ -33,6 +33,10 @@ class AccountPolicy < ApplicationPolicy
     staff?
   end
 
+  def remove_header?
+    staff?
+  end
+
   def subscribe?
     admin?
   end

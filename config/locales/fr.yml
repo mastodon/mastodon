@@ -48,6 +48,7 @@ fr:
       other: Abonné⋅e⋅s
     following: Abonnements
     joined: Inscrit·e en %{date}
+    last_active: actif dernièrement
     link_verified_on: La propriété de ce lien a été vérifiée le %{date}
     media: Médias
     moved_html: "%{name} a changé de compte pour %{new_profile_link} :"
@@ -114,6 +115,7 @@ fr:
       media_attachments: Fichiers médias
       memorialize: Convertir en mémorial
       moderation:
+        active: Actif
         all: Tous
         silenced: Masqués
         suspended: Suspendus
@@ -187,7 +189,7 @@ fr:
         remove_avatar_user: "%{name} a supprimé l’avatar de %{target}"
         reopen_report: "%{name} a rouvert le signalement %{target}"
         reset_password_user: "%{name} a réinitialisé le mot de passe de %{target}"
-        resolve_report: "%{name} a résolu la dénonciation de %{target}"
+        resolve_report: "%{name} a résolu le signalement %{target}"
         silence_account: "%{name} a mis le compte %{target} en mode silence"
         suspend_account: "%{name} a suspendu le compte %{target}"
         unassigned_report: "%{name} a désassigné le signalement %{target}"
@@ -436,9 +438,17 @@ fr:
     suspensions:
       bad_acct_msg: La valeur de confirmation n'a pas correspondu. Êtes-vous certain de suspendre le bon compte ?
       hint_html: 'Pour confirmer la suspension du compte, veuillez entrer %{value} dans le champ ci-dessous :'
-      proceed: Traité
+      proceed: Confirmer
       title: Suspension de %{acct}
       warning_html: 'Suspendre ce compte effacera <strong>irréversiblement</strong> les données de ce compte, ce qui inclut :'
+    tags:
+      accounts: Comptes
+      hidden: Masqué
+      hide: Masquer dans l'annuaire
+      name: Hashtag
+      title: Hashtags
+      unhide: Afficher dans l'annuaire
+      visible: Visible
     title: Administration
   admin_mailer:
     new_report:
@@ -517,6 +527,15 @@ fr:
     success_msg: Votre compte a été supprimé avec succès
     warning_html: Seule la suppression du contenu depuis cette instance est garantie. Le contenu qui a été partagé est susceptible de laisser des traces. Les serveurs hors-ligne ainsi que ceux n’étant plus abonnés à vos publications ne mettront pas leur base de données à jour.
     warning_title: Disponibilité du contenu disséminé
+  directories:
+    directory: Annuaire des profils
+    explanation: Découvrir des utilisateurs en se basant sur leurs centres d'intérêt
+    explore_mastodon: Explorer %{title}
+    most_popular: Les plus populaires
+    most_recently_active: Les actifs les plus récents
+    people:
+      one: "%{count} personne"
+      other: "%{count} personne"
   errors:
     '403': Vous n’avez pas accès à cette page.
     '404': La page que vous recherchez n’existe pas.
