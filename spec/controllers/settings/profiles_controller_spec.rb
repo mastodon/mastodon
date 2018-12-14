@@ -45,7 +45,7 @@ RSpec.describe Settings::ProfilesController, type: :controller do
       allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
       account = Fabricate(:account, user: @user, display_name: 'AvatarTest')
       put :update, params: { account: { avatar: fixture_file_upload('files/4096x4097.png', 'image/png') } }
-      expect(response.body).to include(I18n.t('simple_form.labels.defaults.avatar_img_error'))
+      expect(response.body).to include('images are not supported')
     end
   end
 end

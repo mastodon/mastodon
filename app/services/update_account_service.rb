@@ -5,12 +5,17 @@ class UpdateAccountService < BaseService
     was_locked    = account.locked
     update_method = raise_error ? :update! : :update
 
-    account.send(update_method, params).tap do |ret|
-      next unless ret
+    begin
+      account.send(update_method, params).tap do |ret|
+        next unless ret
 
-      authorize_all_follow_requests(account) if was_locked && !account.locked
-      check_links(account)
-      process_hashtags(account)
+        authorize_all_follow_requests(account) if was_locked && !account.locked
+        check_links(account)
+        process_hashtags(account)
+      end
+    rescue Mastodon::DimensionsValidationError => de
+      account.errors.add(:avatar, de.message)
+      false
     end
   end
 
