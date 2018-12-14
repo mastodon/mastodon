@@ -158,7 +158,7 @@ class Header extends ImmutablePureComponent {
     const badge           = account.get('bot') ? (<div className='roles'><div className='account-role bot'><FormattedMessage id='account.badges.bot' defaultMessage='Bot' /></div></div>) : null;
 
     return (
-      <div className={classNames('account__header', { inactive: !!account.get('moved') })} style={{ backgroundImage: `url(${account.get('header')})` }}>
+      <div className={classNames('account__header', { inactive: !!account.get('moved') })} style={{ backgroundImage: `url(${autoPlayGif ? account.get('header') : account.get('header_static')})` }}>
         <div>
           <Avatar account={account} />
 
