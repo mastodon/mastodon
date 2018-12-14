@@ -1,4 +1,3 @@
----
 ko:
   simple_form:
     hints:
@@ -27,6 +26,9 @@ ko:
         setting_theme: 로그인중인 모든 디바이스에 적용되는 디자인입니다.
         username: 당신의 유저네임은 %{domain} 안에서 유일해야 합니다
         whole_word: 키워드가 영문과 숫자로만 이루어 진 경우, 단어 전체에 매칭 되었을 때에만 작동하게 합니다
+        discoverable_html: <a href="%{path}" target="_blank">디렉토리</a> 는 사람들의 관심사와
+          활동에 관련 된 계정들을 찾을 수 있게 해 줍니다. 최소 %{min_followers}명의 팔로어가 필요합니다
+        setting_aggregate_reblogs: 내가 부스트 했던 툿은 새로 부스트 되어도 보여주지 않습니다
       imports:
         data: 다른 마스토돈 인스턴스에서 추출된 CSV 파일
       sessions:
@@ -85,6 +87,8 @@ ko:
         username: 유저 이름
         username_or_email: 유저네임 또는 이메일
         whole_word: 단어 전체에 매칭
+        discoverable: 이 계정을 디렉토리에서 찾을 수 있도록 합니다
+        setting_aggregate_reblogs: 타임라인의 부스트를 그룹화
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단
@@ -99,6 +103,6 @@ ko:
         report: 새 신고 등록시 이메일로 알리기
     'no': 아니오
     required:
-      mark: "*"
+      mark: '*'
       text: 필수 항목
     'yes': 네
