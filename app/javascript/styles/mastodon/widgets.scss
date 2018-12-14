@@ -300,6 +300,9 @@
       font-size: 18px;
       font-weight: 700;
       color: $primary-text-color;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       .fa {
         color: $darker-text-color;
