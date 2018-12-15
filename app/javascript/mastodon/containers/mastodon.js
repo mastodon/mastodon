@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider, connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import configureStore from '../store/configureStore';
-import { showOnboardingOnce } from '../actions/onboarding';
+import { INTRODUCTION_VERSION } from '../actions/onboarding';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { ScrollContext } from 'react-router-scroll-4';
 import UI from '../features/ui';
@@ -24,11 +24,11 @@ store.dispatch(hydrateAction);
 store.dispatch(fetchCustomEmojis());
 
 const mapStateToProps = state => ({
-  showIntroduction: !state.getIn(['settings', 'onboarded'], false),
+  showIntroduction: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
 });
 
 @connect(mapStateToProps)
-class MastodonMount extends React.Component {
+class MastodonMount extends React.PureComponent {
 
   static propTypes = {
     showIntroduction: PropTypes.bool,
@@ -42,9 +42,11 @@ class MastodonMount extends React.Component {
     }
 
     return (
-      <ScrollContext>
-        <Route path='/' component={UI} />
-      </ScrollContext>
+      <BrowserRouter basename='/web'>
+        <ScrollContext>
+          <Route path='/' component={UI} />
+        </ScrollContext>
+      </BrowserRouter>
     );
   }
 
@@ -58,12 +60,6 @@ export default class Mastodon extends React.PureComponent {
 
   componentDidMount() {
     this.disconnect = store.dispatch(connectUserStream());
-
-    // Desktop notifications
-    // Ask after 2 minutes
-    if (typeof window.Notification !== 'undefined' && Notification.permission === 'default') {
-      window.setTimeout(() => Notification.requestPermission(), 120 * 1000);
-    }
   }
 
   componentWillUnmount () {
@@ -79,9 +75,7 @@ export default class Mastodon extends React.PureComponent {
     return (
       <IntlProvider locale={locale} messages={messages}>
         <Provider store={store}>
-          <BrowserRouter basename='/web'>
-            <MastodonMount />
-          </BrowserRouter>
+          <MastodonMount />
         </Provider>
       </IntlProvider>
     );

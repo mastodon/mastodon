@@ -1,0 +1,110 @@
+.introduction {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__pager {
+    width: 50vw;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  &__frame-wrapper {
+    opacity: 0;
+    transition: opacity 500ms linear;
+
+    &.active {
+      opacity: 1;
+      transition: opacity 50ms linear;
+    }
+  }
+
+  &__frame {
+    border-radius: 10px;
+    background: darken($ui-base-color, 8%);
+    box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+    overflow: hidden;
+    width: 50vw;
+  }
+
+  &__illustration {
+    height: 50vh;
+
+    img {
+      object-fit: cover;
+      display: block;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__text {
+    border-top: 2px solid $ui-highlight-color;
+
+    &--centered {
+      padding: 25px;
+      padding-bottom: 30px;
+      text-align: center;
+    }
+
+    &--columnized {
+      display: flex;
+
+      & > div {
+        flex: 1 1 33.33%;
+        text-align: center;
+        padding: 25px;
+        padding-bottom: 30px;
+      }
+    }
+
+    h3 {
+      font-size: 24px;
+      line-height: 1.5;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 15px;
+      font-weight: 400;
+      color: $darker-text-color;
+    }
+  }
+
+  &__dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+  }
+
+  &__dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 14px;
+    border: 1px solid $ui-highlight-color;
+    background: transparent;
+    margin: 0 3px;
+    cursor: pointer;
+
+    &:hover {
+      background: lighten($ui-base-color, 8%);
+    }
+
+    &.active {
+      cursor: default;
+      background: $ui-highlight-color;
+    }
+  }
+
+  &__action {
+    padding: 25px;
+    padding-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
