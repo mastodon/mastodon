@@ -48,6 +48,7 @@ oc:
       other: Seguidors
     following: Abonaments
     joined: Arribèt en %{date}
+    last_active: darrièra activitat
     link_verified_on: La proprietat d’aqueste ligam foguèt verificada lo %{date}
     media: Mèdias
     moved_html: "%{name} a mudat a %{new_profile_link} :"
@@ -114,9 +115,10 @@ oc:
       media_attachments: Mèdias enviats
       memorialize: Passar en memorial
       moderation:
-        all: Tot
-        silenced: Rescondut
-        suspended: Suspendut
+        active: Actius
+        all: Totes
+        silenced: Resconduts
+        suspended: Suspenduts
         title: Moderacion
       moderation_notes: Nòtas de moderacion
       most_recent_activity: Activitat mai recenta
@@ -439,6 +441,14 @@ oc:
       proceed: Tractat
       title: Suspension de %{acct}
       warning_html: 'Suspendre aqueste compte suprimirà <strong>irreversiblament</strong> las donadas del compte, aquò compren :'
+    tags:
+      accounts: Comptes
+      hidden: Amagat
+      hide: Amagar dins l’annuari
+      name: Etiqueta
+      title: Etiquetas
+      unhide: Aparéisser dins l’annuari
+      visible: Visible
     title: Administracion
   admin_mailer:
     new_report:
@@ -573,6 +583,15 @@ oc:
     success_msg: Compte ben suprimit
     warning_html: La supression del contengut d’aquesta instància es sola assegurada. Lo contengut fòrça partejat daissarà probablament de traças. Los servidors fòra-linha e los que vos sègon pas mai auràn pas la mesa a jorn de lor basa de donada.
     warning_title: Disponibilitat del contengut difusat
+  directories:
+    directory: Annuari de perfils
+    explanation: Trobar d’utilizaires segon lor interèsses
+    explore_mastodon: Explorar %{title}
+    most_popular: Mai populars
+    most_recently_active: Mai actius recentament
+    people:
+      one: "%{count} persona"
+      other: "%{count} personas"
   errors:
     '403': Avètz pas l’autorizacion de veire aquesta pagina.
     '404': La pagina que recercatz existís pas.
