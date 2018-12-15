@@ -144,7 +144,11 @@ export function submitCompose(routerHistory) {
 
       if (response.data.visibility === 'direct' && getState().getIn(['conversations', 'mounted']) <= 0 && routerHistory) {
         routerHistory.push('/timelines/direct');
-      } else if (response.data.visibility !== 'direct') {
+      } else if (routerHistory && routerHistory.location.pathname === '/statuses/new' && window.history.state) {
+        routerHistory.goBack();
+      }
+
+      if (response.data.visibility !== 'direct') {
         insertIfOnline('home');
       }
 
