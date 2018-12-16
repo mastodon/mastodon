@@ -81,6 +81,7 @@ function mapStateToProps (state) {
     focusDate: state.getIn(['compose', 'focusDate']),
     caretPosition: state.getIn(['compose', 'caretPosition']),
     isSubmitting: state.getIn(['compose', 'is_submitting']),
+    isChangingUpload: state.getIn(['compose', 'is_changing_upload']),
     isUploading: state.getIn(['compose', 'is_uploading']),
     layout: state.getIn(['local_settings', 'layout']),
     media: state.getIn(['compose', 'media_attachments']),
@@ -228,6 +229,7 @@ const handlers = {
       onChangeText,
       onSubmit,
       isSubmitting,
+      isChangingUpload,
       isUploading,
       media,
       anyMedia,
@@ -243,7 +245,7 @@ const handlers = {
     }
 
     // Submit disabled:
-    if (isSubmitting || isUploading || (!text.trim().length && !anyMedia)) {
+    if (isSubmitting || isUploading || isChangingUpload || (!text.trim().length && !anyMedia)) {
       return;
     }
 
@@ -386,6 +388,7 @@ class Composer extends React.Component {
       anyMedia,
       intl,
       isSubmitting,
+      isChangingUpload,
       isUploading,
       layout,
       media,
@@ -418,7 +421,7 @@ class Composer extends React.Component {
       spoilersAlwaysOn,
     } = this.props;
 
-    let disabledButton = isSubmitting || isUploading || (!text.trim().length && !anyMedia);
+    let disabledButton = isSubmitting || isUploading || isChangingUpload || (!text.trim().length && !anyMedia);
 
     return (
       <div className='composer'>
@@ -518,6 +521,7 @@ Composer.propTypes = {
   focusDate: PropTypes.instanceOf(Date),
   caretPosition: PropTypes.number,
   isSubmitting: PropTypes.bool,
+  isChangingUpload: PropTypes.bool,
   isUploading: PropTypes.bool,
   layout: PropTypes.string,
   media: ImmutablePropTypes.list,
