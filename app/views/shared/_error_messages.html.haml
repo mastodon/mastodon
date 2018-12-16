@@ -1,3 +1,3 @@
 - if object.errors.any?
-  .flash-message#error_explanation
+  .flash-message.alert#error_explanation
     %strong= t('generic.validation_errors', count: object.errors.count)

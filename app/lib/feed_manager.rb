@@ -40,7 +40,11 @@ class FeedManager
   end
 
   def push_to_list(list, status)
-    return false if status.reply? && status.in_reply_to_account_id != status.account_id
+    if status.reply? && status.in_reply_to_account_id != status.account_id
+      should_filter = status.in_reply_to_account_id != list.account_id
+      should_filter &&= !ListAccount.where(list_id: list.id, account_id: status.in_reply_to_account_id).exists?
+      return false if should_filter
+    end
     return false unless add_to_feed(:list, list.id, status)
     trim(:list, list.id)
     PushUpdateWorker.perform_async(list.account_id, status.id, "timeline:list:#{list.id}") if push_update_required?("timeline:list:#{list.id}")
