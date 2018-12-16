@@ -2,7 +2,7 @@
 
 module Admin
   class AccountsController < BaseController
-    before_action :set_account, only: [:show, :subscribe, :unsubscribe, :redownload, :remove_avatar, :enable, :disable, :memorialize]
+    before_action :set_account, only: [:show, :subscribe, :unsubscribe, :redownload, :remove_avatar, :remove_header, :enable, :disable, :memorialize]
     before_action :require_remote_account!, only: [:subscribe, :unsubscribe, :redownload]
     before_action :require_local_account!, only: [:enable, :disable, :memorialize]
 
@@ -67,6 +67,17 @@ module Admin
       @account.save!
 
       log_action :remove_avatar, @account.user
+
+      redirect_to admin_account_path(@account.id)
+    end
+
+    def remove_header
+      authorize @account, :remove_header?
+
+      @account.header = nil
+      @account.save!
+
+      log_action :remove_header, @account.user
 
       redirect_to admin_account_path(@account.id)
     end

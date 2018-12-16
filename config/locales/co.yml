@@ -48,6 +48,7 @@ co:
       other: Abbunati
     following: Abbunamenti
     joined: Quì dapoi %{date}
+    last_active: ultima attività
     link_verified_on: A pruprietà d'issu ligame hè stata verificata u %{date}
     media: Media
     moved_html: "%{name} hà cambiatu di contu, avà hè nant’à %{new_profile_link}:"
@@ -114,6 +115,7 @@ co:
       media_attachments: Media aghjunti
       memorialize: Trasfurmà in mimuriale
       moderation:
+        active: Attivu
         all: Tutti
         silenced: Silenzati
         suspended: Suspesi
@@ -439,6 +441,14 @@ co:
       proceed: Cuntinuà
       title: Suspende %{acct}
       warning_html: 'A suspensione di u contu sguasserà di manera <strong>irreversibile</strong> i so dati, cum''è:'
+    tags:
+      accounts: Conti
+      hidden: Piattatu
+      hide: Piattà di l'annuariu
+      name: Hashtag
+      title: Hashtag
+      unhide: Mustrà in l'annuariu
+      visible: Visibile
     title: Amministrazione
   admin_mailer:
     new_report:
@@ -517,6 +527,15 @@ co:
     success_msg: U vostru contu hè statu sguassatu
     warning_html: Pudete esse sicuru·a solu chì u cuntenutu sarà sguassatu di st’istanza. S’ellu hè statu spartutu in altrò, sarà forse sempre quallà.
     warning_title: Dispunibilità di i cuntenuti sparsi
+  directories:
+    directory: Annuariu di i prufili
+    explanation: Scopre utilizatori à partesi di i so centri d'interessu
+    explore_mastodon: Scopre à %{title}
+    most_popular: I più pupulari
+    most_recently_active: Attività a più fresca
+    people:
+      one: "%{count} persona"
+      other: "%{count} persone"
   errors:
     '403': Ùn site micca auturizatu·a à vede sta pagina.
     '404': Sta pagina ùn esiste micca.

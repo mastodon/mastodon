@@ -74,12 +74,14 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
       params.since_id = timeline.getIn(['items', 0]);
     }
 
+    const isLoadingRecent = !!params.since_id;
+
     dispatch(expandTimelineRequest(timelineId, isLoadingMore));
 
     api(getState).get(path, { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedStatuses(response.data));
-      dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null, response.code === 206, isLoadingMore));
+      dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null, response.code === 206, isLoadingRecent, isLoadingMore));
       done();
     }).catch(error => {
       dispatch(expandTimelineFail(timelineId, error, isLoadingMore));
@@ -112,13 +114,14 @@ export function expandTimelineRequest(timeline, isLoadingMore) {
   };
 };
 
-export function expandTimelineSuccess(timeline, statuses, next, partial, isLoadingMore) {
+export function expandTimelineSuccess(timeline, statuses, next, partial, isLoadingRecent, isLoadingMore) {
   return {
     type: TIMELINE_EXPAND_SUCCESS,
     timeline,
     statuses,
     next,
     partial,
+    isLoadingRecent,
     skipLoading: !isLoadingMore,
   };
 };
