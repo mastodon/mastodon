@@ -16,11 +16,18 @@
 
       %tr
         %th= t('admin.accounts.avatar')
-        %th
+        %td
           = link_to @account.avatar.url(:original) do
             = image_tag @account.avatar.url(:original), alt: '', width: 40, height: 40, class: 'avatar'
           - if @account.local? && @account.avatar?
             = table_link_to 'trash', t('admin.accounts.remove_avatar'), remove_avatar_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:remove_avatar, @account)
+      %tr
+        %th= t('admin.accounts.header')
+        %td
+          = link_to @account.header.url(:original) do
+            = image_tag @account.header.url(:original), alt: '', width: 128, height: 40, class: 'header'
+          - if @account.local? && @account.header?
+            = table_link_to 'trash', t('admin.accounts.remove_header'), remove_header_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:remove_header, @account)
 
       - if @account.local?
         %tr

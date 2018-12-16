@@ -7,6 +7,13 @@ describe Admin::SuspensionsController do
     sign_in Fabricate(:user, admin: true), scope: :user
   end
 
+  describe 'GET #new' do
+    it 'returns 200' do
+      get :new, params: { account_id: Fabricate(:account).id, report_id: Fabricate(:report).id }
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe 'POST #create' do
     it 'redirects to admin accounts page' do
       account = Fabricate(:account, suspended: false)

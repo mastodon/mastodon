@@ -15,7 +15,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.5'
 
-gem 'aws-sdk-s3', '~> 1.27', require: false
+gem 'aws-sdk-s3', '~> 1.30', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -70,7 +70,7 @@ gem 'rack-attack', '~> 5.4'
 gem 'rack-cors', '~> 1.0', require: 'rack/cors'
 gem 'rails-i18n', '~> 5.1'
 gem 'rails-settings-cached', '~> 0.6'
-gem 'redis', '~> 4.0', require: ['redis', 'redis/connection/hiredis']
+gem 'redis', '~> 4.1', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 0.10'
 gem 'sanitize', '~> 5.0'
@@ -91,7 +91,7 @@ gem 'webpacker', '~> 3.5'
 gem 'webpush'
 
 gem 'json-ld', '~> 2.2'
-gem 'json-ld-preloaded', '~> 2.2'
+gem 'json-ld-preloaded', '~> 3.0'
 gem 'rdf-normalize', '~> 0.3'
 
 group :development, :test do
@@ -125,7 +125,7 @@ group :development do
   gem 'better_errors', '~> 2.5'
   gem 'binding_of_caller', '~> 0.7'
   gem 'bullet', '~> 5.9'
-  gem 'letter_opener', '~> 1.4'
+  gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
   gem 'rubocop', '~> 0.61', require: false

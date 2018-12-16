@@ -62,6 +62,9 @@
   .fields-group
     = f.input :preview_sensitive_media, as: :boolean, wrapper: :with_label, label: t('admin.settings.preview_sensitive_media.title'), hint: t('admin.settings.preview_sensitive_media.desc_html')
 
+  .fields-group
+    = f.input :profile_directory, as: :boolean, wrapper: :with_label, label: t('admin.settings.profile_directory.title'), hint: t('admin.settings.profile_directory.desc_html')
+
   %hr.spacer/
 
   .fields-group

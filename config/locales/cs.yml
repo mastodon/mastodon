@@ -31,7 +31,7 @@ cs:
     privacy_policy: Zásady soukromí
     source_code: Zdrojový kód
     status_count_after:
-      few: příspěvků
+      few: příspěvky
       one: příspěvek
       other: příspěvků
     status_count_before: Kteří napsali
@@ -48,9 +48,10 @@ cs:
     followers:
       few: Sledovatelé
       one: Sledovatel
-      other: Sledovatelé
+      other: Sledovatelů
     following: Sledovaných
     joined: Připojil/a se v %{date}
+    last_active: naposledy aktivní
     link_verified_on: Vlastnictví tohoto odkazu bylo zkontrolováno %{date}
     media: Média
     moved_html: 'Účet %{name} byl přesunut na %{new_profile_link}:'
@@ -63,7 +64,7 @@ cs:
     posts:
       few: Tooty
       one: Toot
-      other: Tooty
+      other: Tootů
     posts_tab_heading: Tooty
     posts_with_replies: Tooty a odpovědi
     reserved_username: Toto uživatelské jméno je rezervováno
@@ -118,6 +119,7 @@ cs:
       media_attachments: Mediální přílohy
       memorialize: Změnit na „in memoriam“
       moderation:
+        active: Aktivní
         all: Vše
         silenced: Utišen/a
         suspended: Suspendován/a
@@ -272,7 +274,7 @@ cs:
       severity: Přísnost
       show:
         affected_accounts:
-          few: "%{count} účtů v databázi bylo ovlivněno"
+          few: "%{count} účty v databázi byly ovlivněny"
           one: Jeden účet v databázi byl ovlivněn
           other: "%{count} účtů v databázi bylo ovlivněno"
         retroactive:
@@ -444,6 +446,14 @@ cs:
       proceed: Pokračovat
       title: Suspendovat účet %{acct}
       warning_html: 'Suspenzace tohoto účtu <strong>nenávratně</strong> smaže z tohoto účtu data, včetně:'
+    tags:
+      accounts: Účty
+      hidden: Skryté
+      hide: Skrýt z adresáře
+      name: Hashtag
+      title: Hashtagy
+      unhide: Zobrazit v adresáři
+      visible: Viditelné
     title: Administrace
   admin_mailer:
     new_report:
@@ -522,6 +532,16 @@ cs:
     success_msg: Váš účet byl úspěšně odstraněn
     warning_html: Pouze vymazání obsahu z této konkrétní instance je zaručeno. Obsah, který byl široce sdílen, po sobě pravděpodobně zanechá stopy. U offline serverů a serverů, které vaše aktualizace již neodebírají, nebudou databáze aktualizovány.
     warning_title: Dostupnost rozšířeného obsahu
+  directories:
+    directory: Adresář profilů
+    explanation: Objevujte uživatele podle jejich zájmů
+    explore_mastodon: Prozkoumejte %{title}
+    most_popular: Nejpopulárnější
+    most_recently_active: Naposledy aktivní
+    people:
+      few: "%{count} lidé"
+      one: "%{count} člověk"
+      other: "%{count} lidí"
   errors:
     '403': Nemáte povolení zobrazit tuto stránku.
     '404': Stránka, kterou hledáte, neexistuje.
@@ -570,9 +590,9 @@ cs:
     lock_link: Zamkněte svůj účet
     purge: Odstranit ze sledovatelů
     success:
-      few: V průběhu blokování sledovatelů z %{count} domény...
+      few: V průběhu blokování sledovatelů ze %{count} domén...
       one: V průběhu blokování sledovatelů z jedné domény...
-      other: V průběhu blokování sledovatelů z %{count} domény...
+      other: V průběhu blokování sledovatelů z %{count} domén...
     true_privacy_html: Berte prosím na vědomí, že <strong>skutečného soukromí se dá dosáhnout pouze za pomoci end-to-end šifrování</strong>.
     unlocked_warning_html: Kdokoliv vás může sledovat a okamžitě vidět vaše soukromé příspěvky. %{lock_link}, abyste mohl/a zkontrolovat a odmítnout sledovatele.
     unlocked_warning_title: Váš účet není zamknutý
@@ -585,7 +605,7 @@ cs:
     copy: Kopírovat
     save_changes: Uložit změny
     validation_errors:
-      few: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
+      few: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyby níže
       one: Něco ještě není úplně v pořádku! Prosím zkontrolujte chybu níže
       other: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
   imports:
@@ -640,11 +660,11 @@ cs:
       body: Zde najdete stručný souhrn zpráv, které jste zmeškal/a od vaší poslední návštěvy %{since}
       mention: "%{name} vás zmínil/a v:"
       new_followers_summary:
-        few: Navíc jste získal/a %{count} nových sledovatelů, zatímco jste byl/a pryč! Hurá!
+        few: Navíc jste získal/a %{count} nové sledovatele, zatímco jste byl/a pryč! Hurá!
         one: Navíc jste získal/a jednoho nového sledovatele, zatímco jste byl/a pryč! Hurá!
         other: Navíc jste získal/a %{count} nových sledovatelů, zatímco jste byl/a pryč! Hurá!
       subject:
-        few: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
+        few: "%{count} nová oznámení od vaší poslední návštěvy \U0001F418"
         one: "1 nové oznámení od vaší poslední návštěvy \U0001F418"
         other: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
       title: Ve vaší nepřítomnosti...
@@ -764,11 +784,11 @@ cs:
     attached:
       description: 'Přiloženo: %{attached}'
       image:
-        few: "%{count} obrázků"
+        few: "%{count} obrázky"
         one: "%{count} obrázek"
         other: "%{count} obrázků"
       video:
-        few: "%{count} videí"
+        few: "%{count} videa"
         one: "%{count} video"
         other: "%{count} videí"
     boosted_from_html: Boostnuto z %{acct_link}

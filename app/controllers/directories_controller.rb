@@ -3,6 +3,7 @@
 class DirectoriesController < ApplicationController
   layout 'public'
 
+  before_action :check_enabled
   before_action :set_instance_presenter
   before_action :set_tag, only: :show
   before_action :set_tags
@@ -21,6 +22,10 @@ class DirectoriesController < ApplicationController
 
   def set_pack
     use_pack 'share'
+  end
+
+  def check_enabled
+    return not_found unless Setting.profile_directory
   end
 
   def set_tag
