@@ -7,7 +7,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import Avatar from 'flavours/glitch/components/avatar';
 import IconButton from 'flavours/glitch/components/icon_button';
 
-import { me } from 'flavours/glitch/util/initial_state';
+import { autoPlayGif, me } from 'flavours/glitch/util/initial_state';
 import classNames from 'classnames';
 
 const messages = defineMessages({
@@ -108,7 +108,7 @@ export default class Header extends ImmutablePureComponent {
 
     return (
       <div className='account__header__wrapper'>
-        <div className={classNames('account__header', { inactive: !!account.get('moved') })} style={{ backgroundImage: `url(${account.get('header')})` }}>
+        <div className={classNames('account__header', { inactive: !!account.get('moved') })} style={{ backgroundImage: `url(${autoPlayGif ? account.get('header') : account.get('header_static')})` }}>
           <div>
             <a
               href={account.get('url')}
