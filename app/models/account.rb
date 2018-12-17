@@ -94,6 +94,7 @@ class Account < ApplicationRecord
   scope :discoverable, -> { searchable.where(silenced: false).where(discoverable: true).joins(:account_stat).where(AccountStat.arel_table[:followers_count].gteq(MIN_FOLLOWERS_DISCOVERY)).by_recent_status }
   scope :tagged_with, ->(tag) { joins(:accounts_tags).where(accounts_tags: { tag_id: tag }) }
   scope :by_recent_status, -> { order(Arel.sql('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc')) }
+  scope :popular, -> { order('account_stats.followers_count desc') }
 
   delegate :email,
            :unconfirmed_email,
