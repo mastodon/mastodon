@@ -9,6 +9,6 @@
     = render partial: 'layouts/theme', object: (@theme || { pack: 'common', flavour: 'glitch', skin: 'default' })
   %body.error
     .dialog
-      %img{ alt: Setting.default_settings['site_title'], src: '/oops.gif' }/
+      %img{ alt: Setting.default_settings['site_title'], src: '/oops.png' }/
       %div
         %h1= yield :content
