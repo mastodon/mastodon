@@ -5,13 +5,20 @@ start();
 
 function loaded() {
   const TimelineContainer = require('../mastodon/containers/timeline_container').default;
+  const FormContainer     = require('../mastodon/containers/registration_form_container').default;
   const React             = require('react');
   const ReactDOM          = require('react-dom');
-  const mountNode         = document.getElementById('mastodon-timeline');
+  const formMoutNode      = document.getElementById('mastodon-registration-form');
+  const timelineMountNode = document.getElementById('mastodon-timeline');
 
-  if (mountNode !== null) {
-    const props = JSON.parse(mountNode.getAttribute('data-props'));
-    ReactDOM.render(<TimelineContainer {...props} />, mountNode);
+  if (timelineMountNode !== null) {
+    const props = JSON.parse(timelineMountNode.getAttribute('data-props'));
+    ReactDOM.render(<TimelineContainer {...props} />, timelineMountNode);
+  }
+
+  if (formMoutNode!== null) {
+    const props = JSON.parse(formMoutNode.getAttribute('data-props'));
+    ReactDOM.render( <FormContainer {...props} />, formMoutNode);
   }
 }
 

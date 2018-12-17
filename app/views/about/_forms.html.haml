@@ -1,5 +1,8 @@
 - if @instance_presenter.open_registrations
-  = render 'registration'
+  .simple_form
+    #mastodon-registration-form{ data: { props: Oj.dump(registration_form_props) } }
+    %p.hint.subtle-hint=t('auth.agreement_html', rules_path: about_more_path, terms_path: terms_path)
+
 - else
   = link_to t('auth.register_elsewhere'), 'https://joinmastodon.org', class: 'button button-primary'
 
