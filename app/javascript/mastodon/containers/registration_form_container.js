@@ -20,7 +20,6 @@ export default class RegistrationForm extends React.Component {
     hostName: PropTypes.string.isRequired,
   };
 
-
   constructor() {
     super();
     this.state = {
@@ -28,7 +27,7 @@ export default class RegistrationForm extends React.Component {
       email: '',
       password: '',
       confirmPassword: '',
-      errors:   {
+      errors: {
         username: '',
         email: '',
         password: '',
@@ -36,13 +35,6 @@ export default class RegistrationForm extends React.Component {
       },
     };
   }
-
-  isNotErrors = () => (
-    this.state.errors.username        === null &&
-    this.state.errors.email           === null &&
-    this.state.errors.password        === null &&
-    this.state.errors.confirmPassword === null
-  );
 
   handleChange = (key) => {
     return (e) => {
@@ -62,6 +54,17 @@ export default class RegistrationForm extends React.Component {
   render () {
     const csrfToken = document.querySelector('meta[name=csrf-token]').content;
 
+    const hasErrorClass = (key) => (
+      this.state.errors[key] !== null ? 'field_with_errors' : ''
+    );
+
+    const hasNotErrors = () => (
+      this.state.errors.username        === null &&
+      this.state.errors.email           === null &&
+      this.state.errors.password        === null &&
+      this.state.errors.confirmPassword === null
+    );
+
     return (
       <form
         className='simple_form new_user'
@@ -71,7 +74,7 @@ export default class RegistrationForm extends React.Component {
         noValidate
       >
         <input type='hidden' name='authenticity_token' value={csrfToken} />
-        <div className='input label_input__wrapper'>
+        <div className={hasErrorClass('username') + ' input label_input__wrapper'}>
           <input
             placeholder={this.props.usernameLabel}
             required
@@ -85,12 +88,11 @@ export default class RegistrationForm extends React.Component {
         </div>
 
 
-        <div className='input'>
+        <div className={'input ' + hasErrorClass('email')}>
           <input
             placeholder={this.props.emailLabel}
             type='email'
             required
-            autoComplete='off'
             value={this.state.email}
             name='user[email]'
             onChange={this.handleChange('email')}
@@ -98,7 +100,7 @@ export default class RegistrationForm extends React.Component {
           <span className='error'>{ this.state.errors.email}</span>
         </div>
 
-        <div className='input'>
+        <div className={'input ' + hasErrorClass('password')}>
           <input
             placeholder={this.props.passwordLabel}
             required
@@ -110,7 +112,7 @@ export default class RegistrationForm extends React.Component {
           <span className='error'>{ this.state.errors.password}</span>
         </div>
 
-        <div className='input'>
+        <div className={'input ' + hasErrorClass('confirmPassword')}>
           <input
             placeholder={this.props.confirmPasswordLabel}
             required
@@ -125,7 +127,7 @@ export default class RegistrationForm extends React.Component {
         <button
           type='submit'
           className='btn button button-primary'
-          disabled={!this.isNotErrors()}
+          disabled={!hasNotErrors()}
         >
           {this.props.buttonLabel}
         </button>
