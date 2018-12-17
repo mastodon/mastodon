@@ -606,6 +606,7 @@
   &__append {
     flex: 1 1 auto;
     position: relative;
+    min-height: 120px;
   }
 }
 
@@ -992,7 +993,6 @@
     transform: translateX(-50%);
     margin: 82px 0 0 50%;
     white-space: nowrap;
-    animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
 }
 
@@ -1001,11 +1001,20 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 0;
-  height: 0;
+  width: 42px;
+  height: 42px;
   box-sizing: border-box;
+  background-color: transparent;
   border: 0 solid lighten($ui-base-color, 26%);
+  border-width: 6px;
   border-radius: 50%;
+}
+
+.no-reduce-motion .loading-indicator span {
+  animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
+
+.no-reduce-motion .loading-indicator__figure {
   animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
 

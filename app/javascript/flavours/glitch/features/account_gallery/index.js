@@ -107,7 +107,7 @@ export default class AccountGallery extends ImmutablePureComponent {
       );
     }
 
-    if (hasMore) {
+    if (hasMore && !(isLoading && medias.size === 0)) {
       loadOlder = <LoadMore visible={!isLoading} onClick={this.handleLoadOlder} />;
     }
 
