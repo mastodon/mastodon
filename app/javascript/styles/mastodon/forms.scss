@@ -103,6 +103,14 @@ code {
     margin-top: 4px;
   }
 
+  span.error {
+    display: block;
+    font-weight: 500;
+    color: lighten($error-red, 12%);
+    margin-top: 4px;
+  }
+
+
   p.hint {
     margin-bottom: 15px;
     color: $darker-text-color;
