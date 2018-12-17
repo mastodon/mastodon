@@ -1925,6 +1925,10 @@ a.account__display-name {
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
+  position: sticky;
+  left: 0px;
+  z-index: 3;
+  background-color: darken($ui-base-color, 7%);
 }
 
 .drawer__tab {
@@ -3470,6 +3474,7 @@ a.status-card.compact:hover {
   border-radius: 4px;
   margin-left: 40px;
   overflow: hidden;
+  z-index: 4;
 
   &.top {
     transform-origin: 50% 100%;
