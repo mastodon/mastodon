@@ -7,6 +7,17 @@ module HomeHelper
     }
   end
 
+  def registration_form_props
+    {
+      usernameLabel: t('simple_form.labels.defaults.username'),
+      emailLabel: t('simple_form.labels.defaults.email'),
+      passwordLabel: t('simple_form.labels.defaults.password'),
+      confirmPasswordLabel: t('simple_form.labels.defaults.confirm_password'),
+      buttonLabel: t('auth.register'),
+      hostName: site_hostname,
+    }
+  end
+
   def account_link_to(account, button = '', size: 36, path: nil)
     content_tag(:div, class: 'account') do
       content_tag(:div, class: 'account__wrapper') do
