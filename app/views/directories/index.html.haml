@@ -16,10 +16,6 @@
 
 .grid
   .column-0
-    .account__section-headline
-      = active_link_to t('directories.most_recently_active'), @tag ? explore_hashtag_path(@tag) : explore_path
-      = active_link_to t('directories.most_popular'), @tag ? explore_hashtag_popular_path(@tag) : explore_popular_path
-
     - if @accounts.empty?
       = nothing_here
     - else
@@ -29,10 +25,10 @@
             - @accounts.each do |account|
               %tr
                 %td= account_link_to account
-                %td.accounts-table__count
+                %td.accounts-table__count.optional
                   = number_to_human account.statuses_count, strip_insignificant_zeros: true
                   %small= t('accounts.posts', count: account.statuses_count).downcase
-                %td.accounts-table__count
+                %td.accounts-table__count.optional
                   = number_to_human account.followers_count, strip_insignificant_zeros: true
                   %small= t('accounts.followers', count: account.followers_count).downcase
                 %td.accounts-table__count
