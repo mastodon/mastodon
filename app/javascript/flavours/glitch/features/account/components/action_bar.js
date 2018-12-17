@@ -164,7 +164,7 @@ export default class ActionBar extends React.PureComponent {
 
             <NavLink exact activeClassName='active' className='account__action-bar__tab' to={`/accounts/${account.get('id')}/followers`}>
               <FormattedMessage id='account.followers' defaultMessage='Followers' />
-              <strong><FormattedNumber value={account.get('followers_count')} /></strong>
+              <strong>{ account.get('followers_count') < 0 ? '-' : <FormattedNumber value={account.get('followers_count')} /> }</strong>
             </NavLink>
           </div>
         </div>

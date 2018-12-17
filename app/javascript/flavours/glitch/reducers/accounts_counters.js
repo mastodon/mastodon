@@ -141,9 +141,9 @@ export default function accountsCounters(state = initialState, action) {
     if (action.alreadyFollowing) {
       return state;
     }
-    return state.updateIn([action.relationship.id, 'followers_count'], num => num + 1);
+    return state.updateIn([action.relationship.id, 'followers_count'], num => num < 0 ? num : num + 1);
   case ACCOUNT_UNFOLLOW_SUCCESS:
-    return state.updateIn([action.relationship.id, 'followers_count'], num => Math.max(0, num - 1));
+    return state.updateIn([action.relationship.id, 'followers_count'], num => num < 0 ? num : Math.max(0, num - 1));
   default:
     return state;
   }
