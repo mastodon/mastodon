@@ -137,7 +137,7 @@ class FetchLinkCardService < BaseService
     detector.strip_tags = true
 
     guess      = detector.detect(@html, @html_charset)
-    encoding   = guess&.fetch(:confidence, 0) > 60 ? guess&.fetch(:encoding, nil) : nil
+    encoding   = guess&.fetch(:confidence, 0).to_i > 60 ? guess&.fetch(:encoding, nil) : nil
     page       = Nokogiri::HTML(@html, nil, encoding)
     player_url = meta_property(page, 'twitter:player')
 
