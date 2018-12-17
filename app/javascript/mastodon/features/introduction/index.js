@@ -10,7 +10,7 @@ import screenFederation from '../../../images/screen_federation.svg';
 import screenInteractions from '../../../images/screen_interactions.svg';
 import logoTransparent from '../../../images/logo_transparent.svg';
 
-const FrameWelcome = ({ onNext }) => (
+const FrameWelcome = ({ domain, onNext }) => (
   <div className='introduction__frame'>
     <div className='introduction__illustration' style={{ background: `url(${logoTransparent}) no-repeat center center / auto 80%` }}>
       <img src={screenHello} alt='' />
@@ -18,7 +18,7 @@ const FrameWelcome = ({ onNext }) => (
 
     <div className='introduction__text introduction__text--centered'>
       <h3><FormattedMessage id='introduction.welcome.headline' defaultMessage='First steps' /></h3>
-      <p><FormattedMessage id='introduction.welcome.text' defaultMessage="Since this is your first time, let's go over the basics of Mastodon so you can make it your new home. You will be able to share and exchange messages with your followers all across the fediverse, since Mastodon is decentralized. But this server is special—it hosts your profile, so remember its name." /></p>
+      <p><FormattedMessage id='introduction.welcome.text' defaultMessage="Welcome to the fediverse! In a few moments, you'll be able to broadcast messages and talk to your friends across a wide variety of servers. But this server, {domain}, is special—it hosts your profile, so remember its name." values={{ domain: <code>{domain}</code> }} /></p>
     </div>
 
     <div className='introduction__action'>
@@ -28,6 +28,7 @@ const FrameWelcome = ({ onNext }) => (
 );
 
 FrameWelcome.propTypes = {
+  domain: PropTypes.string.isRequired,
   onNext: PropTypes.func.isRequired,
 };
 
@@ -97,10 +98,11 @@ FrameInteractions.propTypes = {
   onNext: PropTypes.func.isRequired,
 };
 
-@connect()
+@connect(state => ({ domain: state.getIn(['meta', 'domain']) }))
 export default class Introduction extends React.PureComponent {
 
   static propTypes = {
+    domain: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired,
   };
 
@@ -110,7 +112,7 @@ export default class Introduction extends React.PureComponent {
 
   componentWillMount () {
     this.pages = [
-      <FrameWelcome onNext={this.handleNext} />,
+      <FrameWelcome domain={this.props.domain} onNext={this.handleNext} />,
       <FrameFederation onNext={this.handleNext} />,
       <FrameInteractions onNext={this.handleFinish} />,
     ];

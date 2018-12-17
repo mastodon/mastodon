@@ -10,6 +10,8 @@
   }
 
   &__pager {
+    background: darken($ui-base-color, 8%);
+    box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
     overflow: hidden;
   }
 
@@ -38,8 +40,6 @@
   }
 
   &__frame {
-    background: darken($ui-base-color, 8%);
-    box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
     overflow: hidden;
   }
 
@@ -61,12 +61,6 @@
 
   &__text {
     border-top: 2px solid $ui-highlight-color;
-
-    &--centered {
-      padding: 25px;
-      padding-bottom: 30px;
-      text-align: center;
-    }
 
     &--columnized {
       display: flex;
@@ -97,9 +91,25 @@
     }
 
     p {
-      font-size: 15px;
+      font-size: 16px;
+      line-height: 24px;
       font-weight: 400;
       color: $darker-text-color;
+
+      code {
+        display: inline-block;
+        background: darken($ui-base-color, 8%);
+        font-size: 15px;
+        border: 1px solid lighten($ui-base-color, 8%);
+        border-radius: 2px;
+        padding: 1px 3px;
+      }
+    }
+
+    &--centered {
+      padding: 25px;
+      padding-bottom: 30px;
+      text-align: center;
     }
   }
 
