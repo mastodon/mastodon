@@ -4,10 +4,27 @@
   justify-content: center;
   align-items: center;
 
+  @media screen and (max-width: 920px) {
+    background: darken($ui-base-color, 8%);
+    display: block !important;
+  }
+
   &__pager {
-    width: 50vw;
-    border-radius: 10px;
     overflow: hidden;
+  }
+
+  &__pager,
+  &__frame {
+    border-radius: 10px;
+    width: 50vw;
+    min-width: 920px;
+
+    @media screen and (max-width: 920px) {
+      min-width: 0;
+      width: 100%;
+      border-radius: 0;
+      box-shadow: none;
+    }
   }
 
   &__frame-wrapper {
@@ -21,15 +38,17 @@
   }
 
   &__frame {
-    border-radius: 10px;
     background: darken($ui-base-color, 8%);
     box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
     overflow: hidden;
-    width: 50vw;
   }
 
   &__illustration {
     height: 50vh;
+
+    @media screen and (max-width: 630px) {
+      height: auto;
+    }
 
     img {
       object-fit: cover;
@@ -58,6 +77,16 @@
         padding: 25px;
         padding-bottom: 30px;
       }
+
+      @media screen and (max-width: 630px) {
+        display: block;
+        padding: 15px 0;
+        padding-bottom: 20px;
+
+        & > div {
+          padding: 10px 25px;
+        }
+      }
     }
 
     h3 {
@@ -79,6 +108,10 @@
     align-items: center;
     justify-content: center;
     padding: 25px;
+
+    @media screen and (max-width: 630px) {
+      display: none;
+    }
   }
 
   &__dot {
