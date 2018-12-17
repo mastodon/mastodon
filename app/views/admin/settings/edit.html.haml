@@ -65,6 +65,9 @@
   .fields-group
     = f.input :profile_directory, as: :boolean, wrapper: :with_label, label: t('admin.settings.profile_directory.title'), hint: t('admin.settings.profile_directory.desc_html')
 
+  .fields-group
+    = f.input :hide_followers_count, as: :boolean, wrapper: :with_label, label: t('admin.settings.hide_followers_count.title'), hint: t('admin.settings.hide_followers_count.desc_html')
+
   %hr.spacer/
 
   .fields-group

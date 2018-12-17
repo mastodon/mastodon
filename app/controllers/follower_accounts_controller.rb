@@ -37,7 +37,7 @@ class FollowerAccountsController < ApplicationController
 
   def collection_presenter
     options = { type: :ordered }
-    options[:size] = @account.followers_count
+    options[:size] = @account.followers_count unless Setting.hide_followers_count
     if params[:page].present?
       ActivityPub::CollectionPresenter.new(
         id: account_followers_url(@account, page: params.fetch(:page, 1)),

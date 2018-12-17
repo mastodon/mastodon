@@ -29,6 +29,7 @@ module Admin
       preview_sensitive_media
       custom_css
       profile_directory
+      hide_followers_count
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
@@ -41,6 +42,7 @@ module Admin
       show_known_fediverse_at_about_page
       preview_sensitive_media
       profile_directory
+      hide_followers_count
     ).freeze
 
     UPLOAD_SETTINGS = %w(
