@@ -5,8 +5,8 @@ import Joi from 'joi-browser';
 const validator = {
   username: Joi.object().keys({ username: Joi.string().max(30).required() }),
   email: Joi.object().keys({ email: Joi.string().email().required() }),
-  password: Joi.object().keys({ password: Joi.string().min(6).required() }),
-  confirmPassword: Joi.object().keys({ confirmPassword: Joi.string().min(6).required() }),
+  password: Joi.object().keys({ password: Joi.string().min(8).required() }),
+  confirmPassword: Joi.object().keys({ confirmPassword: Joi.string().min(8).required() }),
 };
 
 export default class RegistrationForm extends React.Component {
