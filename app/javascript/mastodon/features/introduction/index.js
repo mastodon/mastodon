@@ -8,10 +8,11 @@ import { closeOnboarding } from '../../actions/onboarding';
 import screenHello from '../../../images/screen_hello.svg';
 import screenFederation from '../../../images/screen_federation.svg';
 import screenInteractions from '../../../images/screen_interactions.svg';
+import logoTransparent from '../../../images/logo_transparent.svg';
 
 const FrameWelcome = ({ onNext }) => (
   <div className='introduction__frame'>
-    <div className='introduction__illustration'>
+    <div className='introduction__illustration' style={{ background: `url(${logoTransparent}) no-repeat center center / auto 80%` }}>
       <img src={screenHello} alt='' />
     </div>
 
