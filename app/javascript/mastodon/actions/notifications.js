@@ -8,6 +8,7 @@ import {
   importFetchedStatuses,
 } from './importer';
 import { defineMessages } from 'react-intl';
+import { List as ImmutableList } from 'immutable';
 import { unescapeHTML } from '../utils/html';
 import { getFilters, regexFromFilters } from '../selectors';
 
@@ -17,6 +18,8 @@ export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
 export const NOTIFICATIONS_EXPAND_REQUEST = 'NOTIFICATIONS_EXPAND_REQUEST';
 export const NOTIFICATIONS_EXPAND_SUCCESS = 'NOTIFICATIONS_EXPAND_SUCCESS';
 export const NOTIFICATIONS_EXPAND_FAIL    = 'NOTIFICATIONS_EXPAND_FAIL';
+
+export const NOTIFICATIONS_FILTER_SET = 'NOTIFICATIONS_FILTER_SET';
 
 export const NOTIFICATIONS_CLEAR      = 'NOTIFICATIONS_CLEAR';
 export const NOTIFICATIONS_SCROLL_TOP = 'NOTIFICATIONS_SCROLL_TOP';
@@ -88,10 +91,16 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
 
 const excludeTypesFromSettings = state => state.getIn(['settings', 'notifications', 'shows']).filter(enabled => !enabled).keySeq().toJS();
 
+const excludeTypesFromFilter = filter => {
+  const allTypes = ImmutableList(['follow', 'favourite', 'reblog', 'mention']);
+  return allTypes.filterNot(item => item === filter).toJS();
+};
+
 const noOp = () => {};
 
 export function expandNotifications({ maxId } = {}, done = noOp) {
   return (dispatch, getState) => {
+    const activeFilter = getState().getIn(['settings', 'notifications', 'quickFilter', 'active']);
     const notifications = getState().get('notifications');
     const isLoadingMore = !!maxId;
 
@@ -102,7 +111,9 @@ export function expandNotifications({ maxId } = {}, done = noOp) {
 
     const params = {
       max_id: maxId,
-      exclude_types: excludeTypesFromSettings(getState()),
+      exclude_types: activeFilter === 'all'
+        ? excludeTypesFromSettings(getState())
+        : excludeTypesFromFilter(activeFilter),
     };
 
     if (!maxId && notifications.get('items').size > 0) {
@@ -165,5 +176,16 @@ export function scrollTopNotifications(top) {
   return {
     type: NOTIFICATIONS_SCROLL_TOP,
     top,
+  };
+};
+
+export function setFilter (filterType) {
+  return dispatch => {
+    dispatch({
+      type: NOTIFICATIONS_FILTER_SET,
+      path: ['notifications', 'quickFilter', 'active'],
+      value: filterType,
+    });
+    dispatch(expandNotifications());
   };
 };
