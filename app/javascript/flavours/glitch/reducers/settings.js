@@ -1,4 +1,5 @@
 import { SETTING_CHANGE, SETTING_SAVE } from 'flavours/glitch/actions/settings';
+import { NOTIFICATIONS_FILTER_SET } from 'flavours/glitch/actions/notifications';
 import { COLUMN_ADD, COLUMN_REMOVE, COLUMN_MOVE } from 'flavours/glitch/actions/columns';
 import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
 import { EMOJI_USE } from 'flavours/glitch/actions/emojis';
@@ -32,6 +33,12 @@ const initialState = ImmutableMap({
       favourite: true,
       reblog: true,
       mention: true,
+    }),
+
+    quickFilter: ImmutableMap({
+      active: 'all',
+      show: true,
+      advanced: false,
     }),
 
     shows: ImmutableMap({
@@ -99,6 +106,7 @@ export default function settings(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
     return hydrate(state, action.state.get('settings'));
+  case NOTIFICATIONS_FILTER_SET:
   case SETTING_CHANGE:
     return state
       .setIn(action.path, action.value)
