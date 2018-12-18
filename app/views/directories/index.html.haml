@@ -29,7 +29,7 @@
                   = number_to_human account.statuses_count, strip_insignificant_zeros: true
                   %small= t('accounts.posts', count: account.statuses_count).downcase
                 %td.accounts-table__count.optional
-                  = Setting.hide_followers_count ? '-' : (number_to_human account.followers_count, strip_insignificant_zeros: true)
+                  = (Setting.hide_followers_count || account.user&.setting_hide_followers_count) ? '-' : (number_to_human account.followers_count, strip_insignificant_zeros: true)
                   %small= t('accounts.followers', count: account.followers_count).downcase
                 %td.accounts-table__count
                   - if account.last_status_at.present?

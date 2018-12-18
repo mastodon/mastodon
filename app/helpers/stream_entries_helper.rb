@@ -73,7 +73,7 @@ module StreamEntriesHelper
       ].join(' '),
     ]
 
-    unless Setting.hide_followers_count
+    unless Setting.hide_followers_count || account.user&.setting_hide_followers_count
       prepend_stats << [
         number_to_human(account.followers_count, strip_insignificant_zeros: true),
         I18n.t('accounts.followers', count: account.followers_count),

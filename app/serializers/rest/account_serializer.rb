@@ -53,6 +53,6 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def followers_count
-    Setting.hide_followers_count ? -1 : object.followers_count
+    (Setting.hide_followers_count || object.user&.setting_hide_followers_count) ? -1 : object.followers_count
   end
 end
