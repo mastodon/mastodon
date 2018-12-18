@@ -1,4 +1,4 @@
-FROM node:8.12.0-alpine as node
+FROM node:8.14.0-alpine as node
 FROM ruby:2.4.5-alpine3.8
 
 LABEL maintainer="https://github.com/tootsuite/mastodon" \

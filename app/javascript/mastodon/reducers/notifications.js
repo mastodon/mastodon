@@ -3,6 +3,7 @@ import {
   NOTIFICATIONS_EXPAND_SUCCESS,
   NOTIFICATIONS_EXPAND_REQUEST,
   NOTIFICATIONS_EXPAND_FAIL,
+  NOTIFICATIONS_FILTER_SET,
   NOTIFICATIONS_CLEAR,
   NOTIFICATIONS_SCROLL_TOP,
 } from '../actions/notifications';
@@ -98,6 +99,8 @@ export default function notifications(state = initialState, action) {
     return state.set('isLoading', true);
   case NOTIFICATIONS_EXPAND_FAIL:
     return state.set('isLoading', false);
+  case NOTIFICATIONS_FILTER_SET:
+    return state.set('items', ImmutableList()).set('hasMore', true);
   case NOTIFICATIONS_SCROLL_TOP:
     return updateTop(state, action.top);
   case NOTIFICATIONS_UPDATE:

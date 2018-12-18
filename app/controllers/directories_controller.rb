@@ -37,22 +37,12 @@ class DirectoriesController < ApplicationController
   end
 
   def set_accounts
-    @accounts = Account.searchable.discoverable.page(params[:page]).per(50).tap do |query|
+    @accounts = Account.discoverable.page(params[:page]).per(30).tap do |query|
       query.merge!(Account.tagged_with(@tag.id)) if @tag
-
-      if popular_requested?
-        query.merge!(Account.popular)
-      else
-        query.merge!(Account.by_recent_status)
-      end
     end
   end
 
   def set_instance_presenter
     @instance_presenter = InstancePresenter.new
-  end
-
-  def popular_requested?
-    request.path.ends_with?('/popular')
   end
 end
