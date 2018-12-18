@@ -445,12 +445,19 @@
   }
 }
 
+.notification__filter-bar,
 .account__section-headline {
   background: darken($ui-base-color, 4%);
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
   display: flex;
 
+  button {
+    background: darken($ui-base-color, 4%);
+    border: 0;
+  }
+
+  button,
   a {
     display: block;
     flex: 1 1 auto;
