@@ -229,18 +229,6 @@
   margin-bottom: 10px;
 }
 
-.moved-account-widget,
-.memoriam-widget,
-.box-widget,
-.contact-widget,
-.landing-page__information.contact-widget {
-  @media screen and (max-width: $no-gap-breakpoint) {
-    margin-bottom: 0;
-    box-shadow: none;
-    border-radius: 0;
-  }
-}
-
 .page-header {
   background: lighten($ui-base-color, 8%);
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
@@ -261,11 +249,20 @@
     font-size: 15px;
     color: $darker-text-color;
   }
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    margin-top: 0;
+    background: lighten($ui-base-color, 4%);
+
+    h1 {
+      font-size: 24px;
+    }
+  }
 }
 
 .directory {
   background: $ui-base-color;
-  border-radius: 0 0 4px 4px;
+  border-radius: 4px;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
 
   &__tag {
@@ -406,5 +403,25 @@
       font-weight: 400;
       font-size: 14px;
     }
+  }
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    tbody td.optional {
+      display: none;
+    }
+  }
+}
+
+.moved-account-widget,
+.memoriam-widget,
+.box-widget,
+.contact-widget,
+.landing-page__information.contact-widget,
+.directory,
+.page-header {
+  @media screen and (max-width: $no-gap-breakpoint) {
+    margin-bottom: 0;
+    box-shadow: none;
+    border-radius: 0;
   }
 }
