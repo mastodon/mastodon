@@ -6,18 +6,24 @@ import StatusListContainer from 'flavours/glitch/features/ui/containers/status_l
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
 import { expandCommunityTimeline } from 'flavours/glitch/actions/timelines';
-import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'flavours/glitch/actions/columns';
+import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
-import SectionHeadline from './components/section_headline';
 import { connectCommunityStream } from 'flavours/glitch/actions/streaming';
 
 const messages = defineMessages({
   title: { id: 'column.community', defaultMessage: 'Local timeline' },
 });
 
-const mapStateToProps = (state, { onlyMedia }) => ({
-  hasUnread: state.getIn(['timelines', `community${onlyMedia ? ':media' : ''}`, 'unread']) > 0,
-});
+const mapStateToProps = (state, { onlyMedia, columnId }) => {
+  const uuid = columnId;
+  const columns = state.getIn(['settings', 'columns']);
+  const index = columns.findIndex(c => c.get('uuid') === uuid);
+
+  return {
+    hasUnread: state.getIn(['timelines', `community${onlyMedia ? ':media' : ''}`, 'unread']) > 0,
+    onlyMedia: (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'community', 'other', 'onlyMedia']),
+  };
+};
 
 @connect(mapStateToProps)
 @injectIntl
@@ -25,6 +31,10 @@ export default class CommunityTimeline extends React.PureComponent {
 
   static defaultProps = {
     onlyMedia: false,
+  };
+
+  static contextTypes = {
+    router: PropTypes.object,
   };
 
   static propTypes = {
@@ -93,26 +103,9 @@ export default class CommunityTimeline extends React.PureComponent {
     return !(location.state && location.state.mastodonModalOpen)
   }
 
-  handleHeadlineLinkClick = e => {
-    const { columnId, dispatch } = this.props;
-    const onlyMedia = /\/media$/.test(e.currentTarget.href);
-
-    dispatch(changeColumnParams(columnId, { other: { onlyMedia } }));
-  }
-
   render () {
     const { intl, hasUnread, columnId, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
-
-    const headline = (
-      <SectionHeadline
-        timelineId='community'
-        to='/timelines/public/local'
-        pinned={pinned}
-        onlyMedia={onlyMedia}
-        onClick={this.handleHeadlineLinkClick}
-      />
-    );
 
     return (
       <Column ref={this.setRef} name='local' label={intl.formatMessage(messages.title)}>
@@ -126,12 +119,10 @@ export default class CommunityTimeline extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
         >
-          <ColumnSettingsContainer />
+          <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
 
         <StatusListContainer
-          prepend={headline}
-          alwaysPrepend
           trackScroll={!pinned}
           scrollKey={`community_timeline-${columnId}`}
           shouldUpdateScroll={this.shouldUpdateScroll}
