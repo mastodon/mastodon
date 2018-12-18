@@ -339,6 +339,26 @@
   display: block;
   font-weight: 500;
   margin-bottom: 10px;
+
+  .column-settings__hashtag-select {
+    &__control {
+      @include search-input();
+    }
+
+    &__multi-value {
+      background: lighten($ui-base-color, 8%);
+    }
+
+    &__multi-value__label,
+    &__input {
+      color: $darker-text-color;
+    }
+
+    &__indicator-separator,
+    &__dropdown-indicator {
+      display: none;
+    }
+  }
 }
 
 .column-settings__row {

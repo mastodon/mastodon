@@ -27,7 +27,7 @@ export default class HashtagTimeline extends React.PureComponent {
     const { dispatch, hashtag } = this.props;
 
     dispatch(expandHashtagTimeline(hashtag));
-    this.disconnect = dispatch(connectHashtagStream(hashtag));
+    this.disconnect = dispatch(connectHashtagStream(hashtag, hashtag));
   }
 
   componentWillUnmount () {

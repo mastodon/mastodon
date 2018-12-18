@@ -3,36 +3,10 @@
 }
 
 .search__input {
-  outline: 0;
-  box-sizing: border-box;
   display: block;
-  width: 100%;
-  border: none;
   padding: 10px;
   padding-right: 30px;
-  font-family: inherit;
-  background: $ui-base-color;
-  color: $darker-text-color;
-  font-size: 14px;
-  margin: 0;
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
-  }
-
-  &:focus {
-    background: lighten($ui-base-color, 4%);
-  }
-
-  @media screen and (max-width: 600px) {
-    font-size: 16px;
-  }
+  @include search-input();
 }
 
 .search__icon {
