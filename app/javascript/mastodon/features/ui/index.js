@@ -294,6 +294,7 @@ class UI extends React.PureComponent {
 
   componentWillMount () {
     window.addEventListener('beforeunload', this.handleBeforeUnload, false);
+
     document.addEventListener('dragenter', this.handleDragEnter, false);
     document.addEventListener('dragover', this.handleDragOver, false);
     document.addEventListener('drop', this.handleDrop, false);
@@ -304,8 +305,13 @@ class UI extends React.PureComponent {
       navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
     }
 
+    if (typeof window.Notification !== 'undefined' && Notification.permission === 'default') {
+      window.setTimeout(() => Notification.requestPermission(), 120 * 1000);
+    }
+
     this.props.dispatch(expandHomeTimeline());
     this.props.dispatch(expandNotifications());
+
     setTimeout(() => this.props.dispatch(fetchFilters()), 500);
   }
 

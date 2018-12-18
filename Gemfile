@@ -40,7 +40,7 @@ end
 gem 'net-ldap', '~> 0.10'
 gem 'omniauth-cas', '~> 1.1'
 gem 'omniauth-saml', '~> 1.10'
-gem 'omniauth', '~> 1.2'
+gem 'omniauth', '~> 1.9'
 
 gem 'doorkeeper', '~> 5.0'
 gem 'fast_blank', '~> 1.0'
