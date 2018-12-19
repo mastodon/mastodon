@@ -548,11 +548,13 @@ ar:
     directory: سِجلّ الحسابات
     explanation: استكشف مستخدِمين آخرين حسب المواضيع التي تهمهم
     explore_mastodon: استكشف %{title}
-    most_popular: المشهورة
-    most_recently_active: الناشطين مؤخرا
     people:
+      few: "%{count} شخص"
+      many: "%{count} شخص"
       one: "%{count} شخص"
       other: "%{count} شخص"
+      two: "%{count} شخص"
+      zero: "%{count} شخص"
   errors:
     '403': ليس لك الصلاحيات الكافية لعرض هذه الصفحة.
     '404': إنّ الصفحة التي تبحث عنها لا وجود لها أصلا.
