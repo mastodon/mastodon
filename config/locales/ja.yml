@@ -104,6 +104,7 @@ ja:
       followers: フォロワー数
       followers_url: Followers URL
       follows: フォロー数
+      header: ヘッダー
       inbox_url: Inbox URL
       ip: IP
       location:
@@ -115,10 +116,10 @@ ja:
       media_attachments: 添付されたメディア
       memorialize: 追悼アカウント化
       moderation:
-        active: 有効
+        active: アクティブ
         all: すべて
-        silenced: サイレンス中
-        suspended: 停止中
+        silenced: サイレンス済み
+        suspended: 停止済み
         title: モデレーション
       moderation_notes: モデレーションメモ
       most_recent_activity: 直近の活動
@@ -134,6 +135,7 @@ ja:
       push_subscription_expires: PuSH購読期限
       redownload: アバターの更新
       remove_avatar: アイコンを削除
+      remove_header: ヘッダーを削除
       resend_confirmation:
         already_confirmed: メールアドレスは確認済みです
         send: 確認メールを再送
@@ -229,6 +231,7 @@ ja:
       config: 構成
       feature_deletions: アカウント削除
       feature_invites: 招待リンク
+      feature_profile_directory: ディレクトリ
       feature_registrations: 新規登録
       feature_relay: 連合リレー
       features: 機能
@@ -376,6 +379,9 @@ ja:
       preview_sensitive_media:
         desc_html: 他のウェブサイトにリンクを貼った際、メディアが閲覧注意としてマークされていてもサムネイルが表示されます
         title: OpenGraphによるプレビューで閲覧注意のメディアも表示する
+      profile_directory:
+        desc_html: ユーザーが見つかりやすくできるようになります
+        title: ディレクトリを有効にする
       registrations:
         closed_message:
           desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
@@ -529,6 +535,7 @@ ja:
     warning_title: 共有されたコンテンツについて
   directories:
     directory: ディレクトリ
+    explanation: 興味のある人を見つけよう
     explore_mastodon: "%{title}を探索"
     people:
       one: "%{count} 人"
