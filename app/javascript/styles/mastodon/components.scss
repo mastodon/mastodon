@@ -2107,6 +2107,7 @@ a.account__display-name {
   &__append {
     flex: 1 1 auto;
     position: relative;
+    min-height: 120px;
   }
 }
 
@@ -2900,7 +2901,6 @@ a.status-card.compact:hover {
     transform: translateX(-50%);
     margin: 82px 0 0 50%;
     white-space: nowrap;
-    animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
 }
 
@@ -2909,11 +2909,20 @@ a.status-card.compact:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 0;
-  height: 0;
+  width: 42px;
+  height: 42px;
   box-sizing: border-box;
+  background-color: transparent;
   border: 0 solid lighten($ui-base-color, 26%);
+  border-width: 6px;
   border-radius: 50%;
+}
+
+.no-reduce-motion .loading-indicator span {
+  animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
+
+.no-reduce-motion .loading-indicator__figure {
   animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
 
@@ -3789,25 +3798,6 @@ a.status-card.compact:hover {
   flex-direction: column;
 }
 
-.onboarding-modal__pager {
-  height: 80vh;
-  width: 80vw;
-  max-width: 520px;
-  max-height: 470px;
-
-  .react-swipeable-view-container > div {
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    user-select: text;
-  }
-}
-
 .error-modal__body {
   height: 80vh;
   width: 80vw;
@@ -3839,22 +3829,6 @@ a.status-card.compact:hover {
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-@media screen and (max-width: 550px) {
-  .onboarding-modal {
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-  }
-
-  .onboarding-modal__pager {
-    width: 100%;
-    height: auto;
-    max-width: none;
-    max-height: none;
-    flex: 1 1 auto;
-  }
 }
 
 .onboarding-modal__paginator,
@@ -3905,124 +3879,6 @@ a.status-card.compact:hover {
   justify-content: center;
 }
 
-.onboarding-modal__dots {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.onboarding-modal__dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 14px;
-  background: darken($ui-secondary-color, 16%);
-  margin: 0 3px;
-  cursor: pointer;
-
-  &:hover {
-    background: darken($ui-secondary-color, 18%);
-  }
-
-  &.active {
-    cursor: default;
-    background: darken($ui-secondary-color, 24%);
-  }
-}
-
-.onboarding-modal__page__wrapper {
-  pointer-events: none;
-  padding: 25px;
-  padding-bottom: 0;
-
-  &.onboarding-modal__page__wrapper--active {
-    pointer-events: auto;
-  }
-}
-
-.onboarding-modal__page {
-  cursor: default;
-  line-height: 21px;
-
-  h1 {
-    font-size: 18px;
-    font-weight: 500;
-    color: $inverted-text-color;
-    margin-bottom: 20px;
-  }
-
-  a {
-    color: $highlight-text-color;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: lighten($highlight-text-color, 4%);
-    }
-  }
-
-  .navigation-bar a {
-    color: inherit;
-  }
-
-  p {
-    font-size: 16px;
-    color: $lighter-text-color;
-    margin-top: 10px;
-    margin-bottom: 10px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-
-    strong {
-      font-weight: 500;
-      background: $ui-base-color;
-      color: $secondary-text-color;
-      border-radius: 4px;
-      font-size: 14px;
-      padding: 3px 6px;
-
-      @each $lang in $cjk-langs {
-        &:lang(#{$lang}) {
-          font-weight: 700;
-        }
-      }
-    }
-  }
-}
-
-.onboarding-modal__page__wrapper-0 {
-  background: url('../images/elephant_ui_greeting.svg') no-repeat left bottom / auto 250px;
-  height: 100%;
-  padding: 0;
-}
-
-.onboarding-modal__page-one {
-  &__lead {
-    padding: 65px;
-    padding-top: 45px;
-    padding-bottom: 0;
-    margin-bottom: 10px;
-
-    h1 {
-      font-size: 26px;
-      line-height: 36px;
-      margin-bottom: 8px;
-    }
-
-    p {
-      margin-bottom: 0;
-    }
-  }
-
-  &__extra {
-    padding-right: 65px;
-    padding-left: 185px;
-    text-align: center;
-  }
-}
-
 .display-case {
   text-align: center;
   font-size: 15px;
@@ -4042,92 +3898,6 @@ a.status-card.compact:hover {
     font-weight: 500;
     padding: 10px;
     border-radius: 4px;
-  }
-}
-
-.onboarding-modal__page-two,
-.onboarding-modal__page-three,
-.onboarding-modal__page-four,
-.onboarding-modal__page-five {
-  p {
-    text-align: left;
-  }
-
-  .figure {
-    background: darken($ui-base-color, 8%);
-    color: $secondary-text-color;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    padding: 10px;
-    text-align: center;
-    font-size: 14px;
-    box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.3);
-
-    .onboarding-modal__image {
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-
-    &.non-interactive {
-      pointer-events: none;
-      text-align: left;
-    }
-  }
-}
-
-.onboarding-modal__page-four__columns {
-  .row {
-    display: flex;
-    margin-bottom: 20px;
-
-    & > div {
-      flex: 1 1 0;
-      margin: 0 10px;
-
-      &:first-child {
-        margin-left: 0;
-      }
-
-      &:last-child {
-        margin-right: 0;
-      }
-
-      p {
-        text-align: center;
-      }
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  .column-header {
-    color: $primary-text-color;
-  }
-}
-
-@media screen and (max-width: 320px) and (max-height: 600px) {
-  .onboarding-modal__page p {
-    font-size: 14px;
-    line-height: 20px;
-  }
-
-  .onboarding-modal__page-two .figure,
-  .onboarding-modal__page-three .figure,
-  .onboarding-modal__page-four .figure,
-  .onboarding-modal__page-five .figure {
-    font-size: 12px;
-    margin-bottom: 10px;
-  }
-
-  .onboarding-modal__page-four__columns .row {
-    margin-bottom: 10px;
-  }
-
-  .onboarding-modal__page-four__columns .column-header {
-    padding: 5px;
-    font-size: 12px;
   }
 }
 
@@ -5030,12 +4800,21 @@ a.status-card.compact:hover {
   }
 }
 
+.notification__filter-bar,
 .account__section-headline {
   background: darken($ui-base-color, 4%);
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
   display: flex;
+  flex-shrink: 0;
 
+  button {
+    background: darken($ui-base-color, 4%);
+    border: 0;
+    margin: 0;
+  }
+
+  button,
   a {
     display: block;
     flex: 1 1 auto;
