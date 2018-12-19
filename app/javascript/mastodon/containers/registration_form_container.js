@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Joi from 'joi-browser';
+import { injectIntl } from 'react-intl';
 
 const validator = {
   username: Joi.object().keys({ username: Joi.string().max(30).required() }),
@@ -9,9 +10,10 @@ const validator = {
   confirmPassword: Joi.object().keys({ confirmPassword: Joi.string().min(8).required() }),
 };
 
-export default class RegistrationForm extends React.Component {
+class RegistrationForm extends React.Component {
 
   static propTypes = {
+    intl: PropTypes.object.isRequired,
     usernameLabel: PropTypes.string.isRequired,
     emailLabel: PropTypes.string.isRequired,
     passwordLabel: PropTypes.string.isRequired,
@@ -137,3 +139,5 @@ export default class RegistrationForm extends React.Component {
   }
 
 }
+
+export default injectIntl(RegistrationForm);
