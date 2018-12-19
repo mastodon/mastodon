@@ -4806,10 +4806,12 @@ a.status-card.compact:hover {
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
   display: flex;
+  flex-shrink: 0;
 
   button {
     background: darken($ui-base-color, 4%);
     border: 0;
+    margin: 0;
   }
 
   button,
