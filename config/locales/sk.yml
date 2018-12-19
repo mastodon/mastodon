@@ -233,6 +233,7 @@ sk:
       config: Nastavenia
       feature_deletions: Vymazanie účtov
       feature_invites: Pozvánky
+      feature_profile_directory: Katalóg profilov
       feature_registrations: Registrácie
       feature_relay: Federovací mostík
       features: Vymoženosti
@@ -381,6 +382,9 @@ sk:
       preview_sensitive_media:
         desc_html: Náhľad adresy z iných instancií, bude zobrazený aj vtedy, keď sú dané médiá označené ako senzitívne
         title: Ukazuj aj chúlostivé médiá v náhľadoch OpenGraph
+      profile_directory:
+        desc_html: Povoliť užívateľom aby boli nájdení
+        title: Zapni profilový katalóg
       registrations:
         closed_message:
           desc_html: Toto sa zobrazí na hlavnej stránke v prípade že sú registrácie uzavreté. Možno tu použiť aj HTML kód
@@ -533,7 +537,7 @@ sk:
     warning_html: Iba vymazanie obsahu z tejto konkrétnej instancie je zaručené. Obsah, ktorý bol zdieľaný široko-ďaleko pravdepodobne zanechá nejaké stopy. Servery ktoré sú offline a tie ktoré ignorujú tvoje zmeny teda nezaktualizujú svoje databázy.
     warning_title: Dostupnosť rozšírovaného obsahu
   directories:
-    directory: Databáza profilov
+    directory: Katalóg profilov
     explanation: Pátraj po užívateľoch podľa ich záujmov
     explore_mastodon: Prebádaj %{title}
     people:
@@ -605,10 +609,10 @@ sk:
     validation_errors:
       few: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetky %{count} chyby
       one: Niečo nieje úplne v poriadku! Prosím skontroluj danú chybu
-      other: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetkých %{count} chýb
+      other: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetky %{count} nižšie uvedené pochybenia
   imports:
-    preface: Môžeš importovať dáta ktoré si exportoval/a z iného Mastodon serveru, ako sú napríklad zoznamy ľudí ktorých sleduješ, alebo blokuješ.
-    success: Tvoje dáta boli nahraté úspešne, a budú teraz spracované v danom čase
+    preface: Môžeš nahrať dáta ktoré si exportoval/a z iného Mastodon serveru, ako sú napríklad zoznamy ľudí ktorých sleduješ, alebo blokuješ.
+    success: Tvoje dáta boli nahraté úspešne, a teraz budú spracované v danom čase
     types:
       blocking: Zoznam blokovaných
       following: Zoznam sledovaných
@@ -795,12 +799,12 @@ sk:
       few: 'obsahoval nepovolené hashtagy: %{tags}'
       one: 'obsahoval nepovolený hashtag: %{tags}'
       other: 'obsahoval nepovolené hashtagy: %{tags}'
-    language_detection: Jazyk zisti automaticky
-    open_in_web: Otvor v okne prehliadača
-    over_character_limit: limit počtu %{max} znakov bol presiahnutý
+    language_detection: Zisti automaticky
+    open_in_web: Otvor v okne na webe
+    over_character_limit: limit %{max} znakov bol presiahnutý
     pin_errors:
-      limit: Už ste si pripli ten najvyšší možný počet príspevkov
-      ownership: Nemožno pripnúť príspevok od niekoho iného
+      limit: Už si si pripol ten najvyšší možný počet hlášok
+      ownership: Nieje možné pripnúť hlášku od niekoho iného
       private: Neverejné príspevky nemôžu byť pripnuté
       reblog: Pozdvihnutie sa nedá pripnúť
     show_more: Ukáž viac
