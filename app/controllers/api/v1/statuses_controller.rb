@@ -47,13 +47,14 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def create
-    nsfw = status_params[:sensitive]
+    #nsfw = status_params[:sensitive]
 
     @status = PostStatusService.new.call(current_user.account,
                                          status_params[:status],
                                          status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
                                          media_ids: status_params[:media_ids],
-                                         sensitive: nsfw == true ? true : check_nsfw(set_image_path),
+                                         sensitive: status_params[:sensitive],
+                                         #sensitive: nsfw == true ? true : check_nsfw(set_image_path),
                                          spoiler_text: status_params[:spoiler_text],
                                          visibility: status_params[:visibility],
                                          application: doorkeeper_token.application,
