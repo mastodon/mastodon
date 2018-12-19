@@ -15,6 +15,7 @@ module HomeHelper
       confirmPasswordLabel: t('simple_form.labels.defaults.confirm_password'),
       buttonLabel: t('auth.register'),
       hostName: site_hostname,
+      locale: I18n.locale,
     }
   end
 

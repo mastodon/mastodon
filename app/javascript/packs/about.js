@@ -1,5 +1,10 @@
 import loadPolyfills from '../mastodon/load_polyfills';
 import { start } from '../mastodon/common';
+import { getLocale } from '../mastodon/locales';
+import { addLocaleData, IntlProvider } from 'react-intl';
+
+const { localeData, messages } = getLocale();
+addLocaleData(localeData);
 
 start();
 
@@ -18,7 +23,11 @@ function loaded() {
 
   if (formMoutNode!== null) {
     const props = JSON.parse(formMoutNode.getAttribute('data-props'));
-    ReactDOM.render( <FormContainer {...props} />, formMoutNode);
+    ReactDOM.render(
+      <IntlProvider locale={props.locale} messages={messages}>
+        <FormContainer {...props} />
+      </IntlProvider>
+      , formMoutNode);
   }
 }
 
