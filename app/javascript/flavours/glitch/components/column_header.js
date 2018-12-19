@@ -47,6 +47,15 @@ export default class ColumnHeader extends React.PureComponent {
     animatingNCD: false,
   };
 
+  historyBack = () => {
+    // if history is exhausted, or we would leave mastodon, just go to root.
+    if (window.history.state) {
+      this.context.router.history.goBack();
+    } else {
+      this.context.router.history.push('/');
+    }
+  }
+
   handleToggleClick = (e) => {
     e.stopPropagation();
     this.setState({ collapsed: !this.state.collapsed, animating: true });
@@ -65,12 +74,7 @@ export default class ColumnHeader extends React.PureComponent {
   }
 
   handleBackClick = () => {
-    // if history is exhausted, or we would leave mastodon, just go to root.
-    if (window.history.state) {
-      this.context.router.history.goBack();
-    } else {
-      this.context.router.history.push('/');
-    }
+    this.historyBack();
   }
 
   handleTransitionEnd = () => {
@@ -81,13 +85,20 @@ export default class ColumnHeader extends React.PureComponent {
     this.setState({ animatingNCD: false });
   }
 
+  handlePin = () => {
+    if (!this.props.pinned) {
+      this.historyBack();
+    }
+    this.props.onPin();
+  }
+
   onEnterCleaningMode = () => {
     this.setState({ animatingNCD: true });
     this.props.onEnterCleaningMode(!this.props.notifCleaningActive);
   }
 
   render () {
-    const { intl, icon, active, children, pinned, onPin, multiColumn, extraButton, showBackButton, intl: { formatMessage }, notifCleaning, notifCleaningActive } = this.props;
+    const { intl, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, notifCleaning, notifCleaningActive } = this.props;
     const { collapsed, animating, animatingNCD } = this.state;
 
     let title = this.props.title;
@@ -132,7 +143,7 @@ export default class ColumnHeader extends React.PureComponent {
     }
 
     if (multiColumn && pinned) {
-      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={onPin}><i className='fa fa fa-times' /> <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' /></button>;
+      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><i className='fa fa fa-times' /> <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' /></button>;
 
       moveButtons = (
         <div key='move-buttons' className='column-header__setting-arrows'>
@@ -141,7 +152,7 @@ export default class ColumnHeader extends React.PureComponent {
         </div>
       );
     } else if (multiColumn) {
-      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={onPin}><i className='fa fa fa-plus' /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
+      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><i className='fa fa fa-plus' /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
     }
 
     if (!pinned && (multiColumn || showBackButton)) {
