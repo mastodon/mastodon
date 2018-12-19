@@ -1372,6 +1372,79 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "First steps",
+        "id": "introduction.welcome.headline"
+      },
+      {
+        "defaultMessage": "Welcome to the fediverse! In a few moments, you'll be able to broadcast messages and talk to your friends across a wide variety of servers. But this server, {domain}, is special—it hosts your profile, so remember its name.",
+        "id": "introduction.welcome.text"
+      },
+      {
+        "defaultMessage": "Let's go!",
+        "id": "introduction.welcome.action"
+      },
+      {
+        "defaultMessage": "Home",
+        "id": "introduction.federation.home.headline"
+      },
+      {
+        "defaultMessage": "Posts from people you follow will appear in your home feed. You can follow anyone on any server!",
+        "id": "introduction.federation.home.text"
+      },
+      {
+        "defaultMessage": "Local",
+        "id": "introduction.federation.local.headline"
+      },
+      {
+        "defaultMessage": "Public posts from people on the same server as you will appear in the local timeline.",
+        "id": "introduction.federation.local.text"
+      },
+      {
+        "defaultMessage": "Federated",
+        "id": "introduction.federation.federated.headline"
+      },
+      {
+        "defaultMessage": "Public posts from other servers of the fediverse will appear in the federated timeline.",
+        "id": "introduction.federation.federated.text"
+      },
+      {
+        "defaultMessage": "Next",
+        "id": "introduction.federation.action"
+      },
+      {
+        "defaultMessage": "Reply",
+        "id": "introduction.interactions.reply.headline"
+      },
+      {
+        "defaultMessage": "You can reply to other people's and your own toots, which will chain them together in a conversation.",
+        "id": "introduction.interactions.reply.text"
+      },
+      {
+        "defaultMessage": "Boost",
+        "id": "introduction.interactions.reblog.headline"
+      },
+      {
+        "defaultMessage": "You can share other people's toots with your followers by boosting them.",
+        "id": "introduction.interactions.reblog.text"
+      },
+      {
+        "defaultMessage": "Favourite",
+        "id": "introduction.interactions.favourite.headline"
+      },
+      {
+        "defaultMessage": "You can save a toot for later, and let the author know that you liked it, by favouriting it.",
+        "id": "introduction.interactions.favourite.text"
+      },
+      {
+        "defaultMessage": "Finish tutorial!",
+        "id": "introduction.interactions.action"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/introduction/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Keyboard Shortcuts",
         "id": "keyboard_shortcuts.heading"
       },
@@ -1613,6 +1686,14 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Show",
+        "id": "notifications.column_settings.filter_bar.show"
+      },
+      {
+        "defaultMessage": "Display all categories",
+        "id": "notifications.column_settings.filter_bar.advanced"
+      },
+      {
         "defaultMessage": "Desktop notifications",
         "id": "notifications.column_settings.alert"
       },
@@ -1627,6 +1708,10 @@
       {
         "defaultMessage": "Push notifications",
         "id": "notifications.column_settings.push"
+      },
+      {
+        "defaultMessage": "Quick filter bar",
+        "id": "notifications.column_settings.filter_bar.category"
       },
       {
         "defaultMessage": "New followers:",
@@ -1646,6 +1731,31 @@
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/column_settings.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Mentions",
+        "id": "notifications.filter.mentions"
+      },
+      {
+        "defaultMessage": "Favourites",
+        "id": "notifications.filter.favourites"
+      },
+      {
+        "defaultMessage": "Boosts",
+        "id": "notifications.filter.boosts"
+      },
+      {
+        "defaultMessage": "Follows",
+        "id": "notifications.filter.follows"
+      },
+      {
+        "defaultMessage": "All",
+        "id": "notifications.filter.all"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/notifications/components/filter_bar.json"
   },
   {
     "descriptors": [
