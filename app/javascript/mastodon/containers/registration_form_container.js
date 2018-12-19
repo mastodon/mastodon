@@ -44,9 +44,14 @@ class RegistrationForm extends React.Component {
       let value = e.target.value;
       let result = Joi.validate({ [key]: value }, validator[key]);
 
-      if (result.error)
-        errors[key]= result.error.details[0].message;
-      else
+      if (result.error) {
+        const type = 'validate.' + result.error.details[0].type;
+
+        if (type === 'validate.string.min' || type === 'validate.string.max')
+          errors[key] = this.props.intl.formatMessage({ id: type }, { n: result.error.details[0].context.limit });
+        else
+          errors[key] = this.props.intl.formatMessage({ id: type });
+      } else
         errors[key] = null;
 
       this.setState({ [key]: value, errors: errors });
