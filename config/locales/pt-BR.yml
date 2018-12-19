@@ -48,6 +48,7 @@ pt-BR:
       other: Seguidores
     following: Seguindo
     joined: Participa desde %{date}
+    last_active: última atividade
     link_verified_on: A posse desse link foi checada em %{date}
     media: Mídia
     moved_html: "%{name} se mudou para %{new_profile_link}:"
@@ -114,6 +115,7 @@ pt-BR:
       media_attachments: Mídia(s) anexada(s)
       memorialize: Tornar um memorial
       moderation:
+        active: Ativo
         all: Todos
         silenced: Silenciados
         suspended: Suspensos
@@ -227,6 +229,7 @@ pt-BR:
       config: Configuração
       feature_deletions: Remoção de contas
       feature_invites: Convites
+      feature_profile_directory: Diretório de perfis
       feature_registrations: Cadastros
       feature_relay: Repetidor da federação
       features: Funcionalidades
@@ -374,6 +377,9 @@ pt-BR:
       preview_sensitive_media:
         desc_html: A pré-visualização do link em outros sites vai incluir uma miniatura mesmo se a mídia estiver marcada como sensível
         title: Mostrar mídia sensível em pré-visualizações OpenGraph
+      profile_directory:
+        desc_html: Permitir que usuários possam ser descobertos
+        title: Ativar diretório de perfis
       registrations:
         closed_message:
           desc_html: Exibido na página inicial quando cadastros estão fechados. Você pode usar tags HTML
@@ -439,6 +445,14 @@ pt-BR:
       proceed: Prosseguir
       title: Suspender %{acct}
       warning_html: 'Suspender essa conta vai remover <strong>irreversivelmente</strong> dados dessa conta, o que inclui:'
+    tags:
+      accounts: Contas
+      hidden: Escondido
+      hide: Esconder do diretório
+      name: Hashtag
+      title: Hashtags
+      unhide: Mostrar no diretório
+      visible: Visível
     title: Administração
   admin_mailer:
     new_report:
@@ -517,6 +531,13 @@ pt-BR:
     success_msg: A sua conta foi excluída com sucesso
     warning_html: Apenas a exclusão de conteúdo desta instância em particular é garantida. Conteúdo que tenha sido largamente compartilhado muito provavelmente deixará traços. Servidores offline e servidores que se desinscreveram de suas atualizações não irão atualizar as suas bases de dados.
     warning_title: Disponibilidade de conteúdo disseminado
+  directories:
+    directory: Diretório de perfis
+    explanation: Descobrir usuários baseado em seus interesses
+    explore_mastodon: Explorar %{title}
+    people:
+      one: "%{count} pessoas"
+      other: "%{count} pessoa"
   errors:
     '403': Você não tem permissão para ver esta página.
     '404': A página pela qual você está procurando não existe.

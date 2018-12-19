@@ -48,6 +48,7 @@ ca:
       other: Seguidors
     following: Seguint
     joined: Unit des de %{date}
+    last_active: darrer actiu
     link_verified_on: La propietat d'aquest enllaç s'ha verificat el %{date}
     media: Mèdia
     moved_html: "%{name} s'ha mogut a %{new_profile_link}:"
@@ -114,6 +115,7 @@ ca:
       media_attachments: Adjunts multimèdia
       memorialize: Converteix-lo en memorial
       moderation:
+        active: Actiu
         all: Tot
         silenced: Silenciat
         suspended: Suspès
@@ -227,6 +229,7 @@ ca:
       config: Configuració
       feature_deletions: Supressions del compte
       feature_invites: Enllaços de convits
+      feature_profile_directory: Directori de perfils
       feature_registrations: Registres
       feature_relay: Relay de la Federació
       features: Característiques
@@ -374,6 +377,9 @@ ca:
       preview_sensitive_media:
         desc_html: Les visualitzacions prèvies d'enllaços d'altres llocs web mostraran una miniatura encara que els mitjans de comunicació estiguin marcats com a sensibles
         title: Mostra els mitjans sensibles a les previsualitzacions d'OpenGraph
+      profile_directory:
+        desc_html: Permet als usuaris ser descoberts
+        title: Habilita el directori de perfils
       registrations:
         closed_message:
           desc_html: Apareix en la primera pàgina quan es tanquen els registres. Pots utilitzar etiquetes HTML
@@ -439,6 +445,14 @@ ca:
       proceed: Procedeix
       title: Suspèn %{acct}
       warning_html: 'Suspenen aquest compte esborrarà <strong>irreversiblement</strong> les dades del compte, incloent:'
+    tags:
+      accounts: Comptes
+      hidden: Amagat
+      hide: Ocult del directori
+      name: Etiqueta
+      title: Etiquetes
+      unhide: Mostra en el directori
+      visible: Visible
     title: Administració
   admin_mailer:
     new_report:
@@ -517,6 +531,13 @@ ca:
     success_msg: El compte s'ha eliminat correctament
     warning_html: Només és garantida l'eliminació d'aquesta particular instància. El contingut que s'ha compartit àmpliament deixa petjades. Els servidors fora de línia i els que ja no estan subscrits no actualitzaran les seves bases de dades.
     warning_title: Disponibilitat de contingut disseminat
+  directories:
+    directory: Directori de perfils
+    explanation: Descobreix usuaris segons els seus interessos
+    explore_mastodon: Explora %{title}
+    people:
+      one: "%{count} persona"
+      other: "%{count} gent"
   errors:
     '403': No tens permís per a veure aquesta pàgina.
     '404': La pàgina que estàs cercant no existeix.

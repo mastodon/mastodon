@@ -229,6 +229,7 @@ de:
       config: Konfiguration
       feature_deletions: Kontolöschung
       feature_invites: Einladungslinks
+      feature_profile_directory: Profilverzeichnis
       feature_registrations: Registrierung
       feature_relay: Föderations-Relay
       features: Eigenschaften
@@ -376,6 +377,9 @@ de:
       preview_sensitive_media:
         desc_html: Linkvorschauen auf anderen Webseiten werden ein Vorschaubild anzeigen, obwohl die Medien als heikel gekennzeichnet sind
         title: Heikle Medien in OpenGraph-Vorschauen anzeigen
+      profile_directory:
+        desc_html: Erlaube Benutzer auffindbar zu sein
+        title: Aktiviere Profilverzeichnis
       registrations:
         closed_message:
           desc_html: Wird auf der Frontseite angezeigt, wenn die Registrierung geschlossen ist. Du kannst HTML-Tags benutzen
@@ -527,6 +531,13 @@ de:
     success_msg: Dein Konto wurde erfolgreich gelöscht
     warning_html: Wir können nur dafür garantieren, dass die Inhalte auf dieser einen Instanz gelöscht werden. Bei Inhalten, die weit verbreitet wurden, ist es wahrscheinlich, dass Spuren bleiben werden. Server, die offline sind oder keine Benachrichtigungen von deinem Konto mehr empfangen, werden ihre Datenbanken nicht bereinigen.
     warning_title: Verfügbarkeit verstreuter Inhalte
+  directories:
+    directory: Profilverzeichnis
+    explanation: Entdecke Benutzer basierend auf deren Interessen
+    explore_mastodon: Entdecke %{title}
+    people:
+      one: "%{count} Person"
+      other: "%{count} Leute"
   errors:
     '403': Dir fehlt die Befugnis, diese Seite sehen zu können.
     '404': Diese Seite existiert nicht.
