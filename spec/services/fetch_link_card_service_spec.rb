@@ -17,6 +17,8 @@ RSpec.describe FetchLinkCardService, type: :service do
     stub_request(:head, 'https://github.com/qbi/WannaCry').to_return(status: 404)
     stub_request(:head, 'http://example.com/test-').to_return(status: 200, headers: { 'Content-Type' => 'text/html' })
     stub_request(:get, 'http://example.com/test-').to_return(request_fixture('idn.txt'))
+    stub_request(:head, 'http://example.com/windows-1251').to_return(status: 200, headers: { 'Content-Type' => 'text/html' })
+    stub_request(:get, 'http://example.com/windows-1251').to_return(request_fixture('windows-1251.txt'))
 
     subject.call(status)
   end
@@ -54,6 +56,15 @@ RSpec.describe FetchLinkCardService, type: :service do
       it 'works with koi8-r' do
         expect(a_request(:get, 'http://example.com/koi8-r')).to have_been_made.at_least_once
         expect(status.preview_cards.first.title).to eq("Московя начинаетъ только въ XVI ст. привлекать внимане иностранцевъ.")
+      end
+    end
+
+    context do
+      let(:status) { Fabricate(:status, text: 'Check out http://example.com/windows-1251') }
+
+      it 'works with windows-1251' do
+        expect(a_request(:get, 'http://example.com/windows-1251')).to have_been_made.at_least_once
+        expect(status.preview_cards.first.title).to eq('сэмпл текст')
       end
     end
 
