@@ -23,7 +23,7 @@ import DrawerResults from './results';
 import DrawerSearch from './search';
 
 //  Utils.
-import { me } from 'flavours/glitch/util/initial_state';
+import { me, mascot } from 'flavours/glitch/util/initial_state';
 import { wrap } from 'flavours/glitch/util/redux_helpers';
 
 //  Messages.
@@ -127,7 +127,7 @@ class Drawer extends React.Component {
             <Composer />
             {multiColumn && (
               <div className='drawer__inner__mastodon'>
-                <button className='mastodon' onClick={onClickElefriend} />
+                {mascot ? <img alt='' draggable='false' src={mascot} /> : <button className='mastodon' onClick={onClickElefriend} />}
               </div>
             )}
           </div>}
