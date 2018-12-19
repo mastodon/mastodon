@@ -46,11 +46,7 @@ class RegistrationForm extends React.Component {
 
       if (result.error) {
         const type = 'validate.' + result.error.details[0].type;
-
-        if (type === 'validate.string.min' || type === 'validate.string.max')
-          errors[key] = this.props.intl.formatMessage({ id: type }, { n: result.error.details[0].context.limit });
-        else
-          errors[key] = this.props.intl.formatMessage({ id: type });
+        errors[key] = this.props.intl.formatMessage({ id: type }, { n: result.error.details[0].context.limit });
       } else
         errors[key] = null;
 
