@@ -121,10 +121,17 @@ class Drawer extends React.Component {
             submitted={submitted}
             value={searchValue}
           /> }
-        <div className='contents'>
-          {!isSearchPage && <DrawerAccount account={account} />}
-          {!isSearchPage && <Composer />}
-          {multiColumn && <button className='mastodon' onClick={onClickElefriend} />}
+        <div className='drawer__pager'>
+          {!isSearchPage && <div className='drawer__inner'>
+            <DrawerAccount account={account} />
+            <Composer />
+            {multiColumn && (
+              <div className='drawer__inner__mastodon'>
+                <button className='mastodon' onClick={onClickElefriend} />
+              </div>
+            )}
+          </div>}
+
           {(multiColumn || isSearchPage) &&
             <DrawerResults
               results={results}

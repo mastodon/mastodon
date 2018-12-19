@@ -1,9 +1,10 @@
 .drawer {
+  width: 300px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  overflow-y: hidden;
   padding: 10px 5px;
-  width: 300px;
   flex: none;
 
   &:first-child {
@@ -37,41 +38,6 @@
   }
 
   .react-swipeable-view-container & { height: 100% }
-
-  & > .contents {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    padding: 0;
-    flex-grow: 1;
-    background: lighten($ui-base-color, 13%);
-    overflow-x: hidden;
-    overflow-y: auto;
-
-    & > .mastodon {
-      flex: 1;
-      border: none;
-      cursor: inherit;
-    }
-  }
-
-  @for $i from 0 through 3 {
-    &.mbstobon-#{$i} > .contents {
-      @if $i == 3 {
-        background: url('~flavours/glitch/images/wave-drawer.png') no-repeat bottom / 100% auto, lighten($ui-base-color, 13%);
-      } @else {
-        background: url('~flavours/glitch/images/wave-drawer-glitched.png') no-repeat bottom / 100% auto, lighten($ui-base-color, 13%);
-      }
-
-      & > .mastodon {
-        background: url("~flavours/glitch/images/mbstobon-ui-#{$i}.png") no-repeat left bottom / contain;
-
-        @if $i != 3 {
-          filter: contrast(50%) brightness(50%);
-        }
-      }
-    }
-  }
 }
 
 .drawer--header {
@@ -341,6 +307,31 @@
   }
 }
 
+.drawer__inner__mastodon {
+  background: lighten($ui-base-color, 13%) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color($ui-base-color)}"/></svg>') no-repeat bottom / 100% auto;
+  flex: 1;
+  min-height: 47px;
+
+  > img {
+    display: block;
+    object-fit: contain;
+    object-position: bottom left;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    user-drag: none;
+    user-select: none;
+  }
+
+  > .mastodon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    cursor: inherit;
+  }
+}
+
 .pseudo-drawer {
   background: lighten($ui-base-color, 13%);
   font-size: 13px;
@@ -355,4 +346,22 @@
   width: 100%;
   height: 100%;
   background: rgba($base-overlay-background, 0.5);
+}
+
+@for $i from 0 through 3 {
+  .mbstobon-#{$i} .drawer__inner__mastodon {
+    @if $i == 3 {
+      background: url('~flavours/glitch/images/wave-drawer.png') no-repeat bottom / 100% auto, lighten($ui-base-color, 13%);
+    } @else {
+      background: url('~flavours/glitch/images/wave-drawer-glitched.png') no-repeat bottom / 100% auto, lighten($ui-base-color, 13%);
+    }
+
+    & > .mastodon {
+      background: url("~flavours/glitch/images/mbstobon-ui-#{$i}.png") no-repeat left bottom / contain;
+
+      @if $i != 3 {
+        filter: contrast(50%) brightness(50%);
+      }
+    }
+  }
 }
