@@ -12,6 +12,9 @@ class UpdateAccountService < BaseService
       check_links(account)
       process_hashtags(account)
     end
+  rescue Mastodon::DimensionsValidationError => de
+    account.errors.add(:avatar, de.message)
+    false
   end
 
   private
