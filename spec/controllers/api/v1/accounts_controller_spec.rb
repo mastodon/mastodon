@@ -19,6 +19,29 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
   end
 
+  describe 'POST #create' do
+    let(:app) { Fabricate(:application) }
+    let(:token) { Doorkeeper::AccessToken.find_or_create_for(app, nil, 'read write', nil, false) }
+
+    before do
+      post :create, params: { username: 'test', password: '12345678', email: 'hello@world.tld' }
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(200)
+    end
+
+    it 'returns a new access token as JSON' do
+      expect(body_as_json[:access_token]).to_not be_blank
+    end
+
+    it 'creates a user' do
+      user = User.find_by(email: 'hello@world.tld')
+      expect(user).to_not be_nil
+      expect(user.created_by_application_id).to eq app.id
+    end
+  end
+
   describe 'GET #show' do
     let(:scopes) { 'read:accounts' }
 
