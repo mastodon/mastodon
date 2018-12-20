@@ -294,6 +294,12 @@
         text-decoration: underline;
         color: $primary-text-color;
       }
+
+      @media screen and (max-width: $no-gap-breakpoint) {
+        &.optional {
+          display: none;
+        }
+      }
     }
 
     .nav-button {
