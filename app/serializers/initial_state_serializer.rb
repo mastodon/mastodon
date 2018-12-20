@@ -6,12 +6,7 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
 
-  has_many :custom_emojis, serializer: REST::CustomEmojiSerializer
   has_many :announcements, serializer: REST::AnnouncementSerializer
-
-  def custom_emojis
-    CustomEmoji.local.where(disabled: false)
-  end
 
   def meta
     store = {

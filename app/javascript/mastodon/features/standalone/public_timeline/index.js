@@ -6,7 +6,7 @@ import { expandPublicTimeline } from '../../../actions/timelines';
 import Column from '../../../components/column';
 import ColumnHeader from '../../../components/column_header';
 import { defineMessages, injectIntl } from 'react-intl';
-import { connectCommunityStream } from '../../../actions/streaming';
+import { connectPublicStream } from '../../../actions/streaming';
 
 const messages = defineMessages({
   title: { id: 'standalone.public_title', defaultMessage: 'A look inside...' },
