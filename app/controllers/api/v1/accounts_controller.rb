@@ -5,11 +5,12 @@ class Api::V1::AccountsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :follow, :'write:follows' }, only: [:follow, :unfollow]
   before_action -> { doorkeeper_authorize! :follow, :'write:mutes' }, only: [:mute, :unmute]
   before_action -> { doorkeeper_authorize! :follow, :'write:blocks' }, only: [:block, :unblock]
-  before_action -> { doorkeeper_authorize! }, only: [:create]
+  before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, only: [:create]
 
   before_action :require_user!, except: [:show, :create]
   before_action :set_account, except: [:create]
   before_action :check_account_suspension, only: [:show]
+  before_action :check_enabled_registrations, only: [:create]
 
   respond_to :json
 
@@ -76,5 +77,9 @@ class Api::V1::AccountsController < Api::BaseController
 
   def account_params
     params.permit(:username, :email, :password)
+  end
+
+  def check_enabled_registrations
+    forbidden if single_user_mode? || !Setting.open_registrations
   end
 end
