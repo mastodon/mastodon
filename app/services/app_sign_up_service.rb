@@ -6,7 +6,7 @@ class AppSignUpService < BaseService
 
     user_params    = params.slice(:email, :password)
     account_params = params.slice(:username)
-    user           = User.create!(user_params.merge(password_confirmation: user_params[:password], account_attributes: account_params))
+    user           = User.create!(user_params.merge(created_by_application: app, password_confirmation: user_params[:password], account_attributes: account_params))
 
     Doorkeeper::AccessToken.create!(application: app,
                                     resource_owner_id: user.id,

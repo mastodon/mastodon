@@ -36,6 +36,7 @@
 #  invite_id                 :bigint(8)
 #  remember_token            :string
 #  chosen_languages          :string           is an Array
+#  created_by_application_id :bigint(8)
 #
 
 class User < ApplicationRecord
@@ -66,6 +67,7 @@ class User < ApplicationRecord
 
   belongs_to :account, inverse_of: :user
   belongs_to :invite, counter_cache: :uses, optional: true
+  belongs_to :created_by_application, class_name: 'Doorkeeper::Application', optional: true
   accepts_nested_attributes_for :account
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
