@@ -66,8 +66,10 @@
               = t('admin.accounts.enabled')
               = table_link_to 'lock', t('admin.accounts.disable'), disable_admin_account_path(@account.id), method: :post if can?(:disable, @account.user)
         %tr
-          %th= t('admin.accounts.most_recent_ip')
-          %td= @account.user_current_sign_in_ip
+          %th= t('admin.accounts.account_created')
+          %td
+            %time.formatted{ datetime: @account.created_at.iso8601, title: l(@account.created_at) }
+              = l @account.created_at
         %tr
           %th= t('admin.accounts.most_recent_activity')
           %td
@@ -76,6 +78,9 @@
                 = l @account.user_current_sign_in_at
             - else
               \-
+        %tr
+          %th= t('admin.accounts.most_recent_ip')
+          %td= @account.user_current_sign_in_ip
       - else
         %tr
           %th= t('admin.accounts.profile_url')
