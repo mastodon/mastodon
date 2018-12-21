@@ -29,6 +29,7 @@
   %p.hint= t('auth.agreement_html', rules_path: about_more_path, terms_path: terms_path)
 
   .actions
+    = render partial: 'auth/shared/recaptcha'
     = f.button :button, sign_up_message, type: :submit
 
 .form-footer= render 'auth/shared/links'

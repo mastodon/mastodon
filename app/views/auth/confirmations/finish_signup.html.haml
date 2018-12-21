@@ -12,4 +12,5 @@
     = f.input :email, wrapper: :with_label, required: true, hint: false
 
   .actions
-    = f.submit t('auth.confirm_email'), class: 'button'
+    = render partial: 'auth/shared/recaptcha'
+    = f.submit t('auth.confirm_email'), class: 'button recaptcha', disabled: true

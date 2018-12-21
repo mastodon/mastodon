@@ -8,6 +8,7 @@ class Auth::SessionsController < Devise::SessionsController
   skip_before_action :require_no_authentication, only: [:create]
   skip_before_action :check_user_permissions, only: [:destroy]
   prepend_before_action :authenticate_with_two_factor, if: :two_factor_enabled?, only: [:create]
+  prepend_before_action :check_recaptcha, only: [:create]
   before_action :set_instance_presenter, only: [:new]
   before_action :set_body_classes
 
@@ -126,5 +127,35 @@ class Auth::SessionsController < Devise::SessionsController
 
   def continue_after?
     truthy_param?(:continue)
+  end
+
+  def check_recaptcha
+    unless is_human?
+      self.resource = resource_class.new sign_in_params
+      set_instance_presenter
+      flash.now[:alert] = 'BOT access detected by reCAPTCHA. Please retry.'
+      respond_with_navigational(resource) { render :new }
+    end
+  end
+
+  concerning :RecaptchaFeature do
+    if ENV['RECAPTCHA_ENABLED'] == 'true'
+      def is_human?
+        g_recaptcha_response = params["g-recaptcha-response"]
+        return false unless g_recaptcha_response.present?
+        verify_by_recaptcha g_recaptcha_response
+      end
+      def verify_by_recaptcha(g_recaptcha_response)
+        conn = Faraday.new(url: 'https://www.google.com')
+        res = conn.post '/recaptcha/api/siteverify', {
+            secret: ENV['RECAPTCHA_SECRET_KEY'],
+            response: g_recaptcha_response
+        }
+        j = JSON.parse(res.body)
+        j['success'] && j['score'] > 0.5
+      end
+    else
+      def is_human?; true end
+    end
   end
 end
