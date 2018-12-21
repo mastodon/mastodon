@@ -393,6 +393,9 @@ ar:
       preview_sensitive_media:
         desc_html: روابط المُعَاينة على مواقع الويب الأخرى ستقوم بعرض صُوَر مصغّرة حتى و إن كانت الوسائط حساسة
         title: إظهار الصور الحساسة في مُعاينات أوبن غراف
+      profile_directory:
+        desc_html: السماح للمستخدمين الكشف عن حساباتهم
+        title: تفعيل سجل الملفات الشخصية
       registrations:
         closed_message:
           desc_html: يتم عرضه على الصفحة الرئيسية عندما يتم غلق تسجيل الحسابات الجديدة. يمكنكم إستخدام علامات الأيتش تي أم أل HTML
@@ -460,8 +463,10 @@ ar:
     tags:
       accounts: الحسابات
       hidden: المخفية
+      hide: الإخفاء عن سجل الحسابات
       name: الوسم
       title: الوسوم
+      unhide: إظهاره في سجل حسابات المستخدمين
       visible: ظاهر
     title: الإدارة
   admin_mailer:
@@ -540,7 +545,16 @@ ar:
     success_msg: تم حذف حسابك بنجاح
     warning_title: توافر المحتوى المنشور و المبعثَر
   directories:
+    directory: سِجلّ الحسابات
+    explanation: استكشف مستخدِمين آخرين حسب المواضيع التي تهمهم
     explore_mastodon: استكشف %{title}
+    people:
+      few: "%{count} شخص"
+      many: "%{count} شخص"
+      one: "%{count} شخص"
+      other: "%{count} شخص"
+      two: "%{count} شخص"
+      zero: "%{count} شخص"
   errors:
     '403': ليس لك الصلاحيات الكافية لعرض هذه الصفحة.
     '404': إنّ الصفحة التي تبحث عنها لا وجود لها أصلا.

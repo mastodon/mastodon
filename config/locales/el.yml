@@ -19,7 +19,7 @@ el:
       humane_approach_body: Μαθαίνοντας από τις αποτυχίες άλλων δικτύων, το Mastodon στοχεύει να κάνει σχεδιαστικά ηθικές επιλογές για να καταπολεμήσει την κακόβουλη χρήση των κοινωνικών δικτύων.
       humane_approach_title: Μια πιο ανθρώπινη προσέγγιση
       not_a_product_body: Το Mastodon δεν είναι ένα εμπορικό δίκτυο. Δεν έχει διαφημίσεις, δεν έχει εξόρυξη δεδομένων, δεν έχει περιφραγμένους κήπους. Δεν υπάρχει κεντρικό σημείο ελέγχου.
-      not_a_product_title: Είσαι ένας άνθρωπος, όχι κάποιο προϊόν
+      not_a_product_title: Είσαι άνθρωπος, όχι προϊόν
       real_conversation_body: Με 500 χαρακτήρες στη διάθεσή σου και υποστήριξη για λεπτομερή έλεγχο και προειδοποιήσεις πολυμέσων, μπορείς να εκφραστείς με τον τρόπο που θέλεις.
       real_conversation_title: Φτιαγμένο για αληθινή συζήτηση
       within_reach_body: Οι πολλαπλές εφαρμογές για το iOS, το Android και τις υπόλοιπες πλατφόρμες, χάρη σε ένα φιλικό προς τους προγραμματιστές οικοσύστημα API, σου επιτρέπουν να κρατάς επαφή με τους φίλους και τις φίλες σου οπουδήποτε.
@@ -222,13 +222,14 @@ el:
       title: Προσαρμοσμένα emoji
       unlisted: Μη καταχωρημένα
       update_failed_msg: Αδυναμία ενημέρωσης του emoji
-      updated_msg: Επιτυχής ενημέρωση του Emoji!
+      updated_msg: Επιτυχής ενημέρωση του emoji!
       upload: Ανέβασμα
     dashboard:
       backlog: χρονοκαθυστερημένες εργασίες
       config: Διαμόρφωση
       feature_deletions: Διαγραφή λογαριασμών
       feature_invites: Σύνδεσμοι προσκλήσεων
+      feature_profile_directory: Κατάλογος χρηστών
       feature_registrations: Εγγραφές
       feature_relay: Ανταποκριτής ομοσπονδίας
       features: Λειτουργίες
@@ -267,7 +268,7 @@ el:
         noop: Κανένα
         silence: Αποσιώπηση
         suspend: Αναστολή
-      severity: Αυστηρότητα
+      severity: Βαρύτητα
       show:
         affected_accounts:
           one: Επηρεάζεται ένας λογαριασμός στη βάση δεδομένων
@@ -331,14 +332,14 @@ el:
       assigned: Αρμόδιος συντονιστής
       comment:
         none: Κανένα
-      created_at: Αναφέρθηκε
+      created_at: Καταγγέλθηκε
       mark_as_resolved: Σημειωμένο ως επιλυμένο
       mark_as_unresolved: Σημειωμένο ως ανεπίλυτο
       notes:
         create: Πρόσθεσε σημείωση
         create_and_resolve: Επίλυσε με σημείωση
         create_and_unresolve: Ξανάνοιξε με σημείωση
-        delete: Διέγραψε
+        delete: Διαγραφή
         placeholder: Περιέγραψε τις ενέργειες που έγιναν, ή οποιαδήποτε άλλη ενημέρωση...
       reopen: Ξανάνοιξε την καταγγελία
       report: 'Καταγγελία #%{id}'
@@ -376,6 +377,9 @@ el:
       preview_sensitive_media:
         desc_html: Οι προεπισκοπήσεις συνδέσμων σε τρίτους ιστότοπους θα είναι ορατές ακόμα κι όταν το πολυμέσο έχει σημειωθεί ως ευαίσθητο
         title: Εμφάνιση ευαίσθητων πολυμέσων στις προεπισκοπήσεις OpenGraph
+      profile_directory:
+        desc_html: Να επιτρέπεται ο εντοπισμός των χρηστών
+        title: Ενεργοποίηση του καταλόγου χρηστών
       registrations:
         closed_message:
           desc_html: Εμφανίζεται στην εισαγωγική σελίδα όταν οι εγγραφές είναι κλειστές. Μπορείς να χρησιμοποιήσεις HTML tags
@@ -508,7 +512,7 @@ el:
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ω"
-      about_x_months: "%{count}μη"
+      about_x_months: "%{count}μ"
       about_x_years: "%{count}ε"
       almost_x_years: "%{count}ε"
       half_a_minute: Μόλις τώρα
