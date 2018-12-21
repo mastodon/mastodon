@@ -167,7 +167,6 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       confirm: intl.formatMessage(messages.missingDescriptionConfirm),
       onConfirm: () => dispatch(submitCompose(routerHistory)),
       onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_missing_media_description'], false)),
-      onConfirm: () => dispatch(submitCompose()),
     }));
   },
   onSubmit(routerHistory) {
