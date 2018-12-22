@@ -70,6 +70,9 @@ en:
       moderator: Mod
     unfollow: Unfollow
   admin:
+    account_actions:
+      action: Perform action
+      title: Perform moderation action on %{acct}
     account_moderation_notes:
       create: Leave note
       created_msg: Moderation note successfully created!
@@ -173,6 +176,7 @@ en:
         assigned_to_self_report: "%{name} assigned report %{target} to themselves"
         change_email_user: "%{name} changed the e-mail address of user %{target}"
         confirm_user: "%{name} confirmed e-mail address of user %{target}"
+        create_account_warning: "%{name} sent a warning to %{target}"
         create_custom_emoji: "%{name} uploaded new emoji %{target}"
         create_domain_block: "%{name} blocked domain %{target}"
         create_email_domain_block: "%{name} blacklisted e-mail domain %{target}"
@@ -441,12 +445,6 @@ en:
       last_delivery: Last delivery
       title: WebSub
       topic: Topic
-    suspensions:
-      bad_acct_msg: The confirmation value didn't match up. Are you suspending the right account?
-      hint_html: 'To confirm the suspension of the account, please enter %{value} into the field below:'
-      proceed: Proceed
-      title: Suspend %{acct}
-      warning_html: 'Suspending this account will <strong>irreversibly</strong> delete data from this account, which includes:'
     tags:
       accounts: Accounts
       hidden: Hidden
@@ -456,6 +454,12 @@ en:
       unhide: Show in directory
       visible: Visible
     title: Administration
+    warning_presets:
+      add_new: Add new
+      delete: Delete
+      edit: Edit
+      edit_preset: Edit warning preset
+      title: Manage warning presets
   admin_mailer:
     new_report:
       body: "%{reporter} has reported %{target}"
@@ -922,6 +926,22 @@ en:
       explanation: You requested a full backup of your Mastodon account. It's now ready for download!
       subject: Your archive is ready for download
       title: Archive takeout
+    warning:
+      explanation:
+        disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
+        silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
+        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
+      review_server_policies: Review server policies
+      subject:
+        disable: Your account %{acct} has been frozen
+        none: Warning for %{acct}
+        silence: Your account %{acct} has been limited
+        suspend: Your account %{acct} has been suspended
+      title:
+        disable: Account frozen
+        none: Warning
+        silence: Account limited
+        suspend: Account suspended
     welcome:
       edit_profile_action: Setup profile
       edit_profile_step: You can customize your profile by uploading an avatar, header, changing your display name and more. If you’d like to review new followers before they’re allowed to follow you, you can lock your account.
