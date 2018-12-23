@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import emojify from '../../../emoji';
+import emojify from '../../emoji/emoji';
 import { debounce } from 'react-decoration';
 const loadScriptOnce = require('load-script-once');
 

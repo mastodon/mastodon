@@ -15,6 +15,8 @@ class SendInteractionService < BaseService
     delivery = build_request.perform
 
     raise Mastodon::UnexpectedResponseError, delivery unless delivery.code > 199 && delivery.code < 300
+
+    delivery.connection&.close
   end
 
   private

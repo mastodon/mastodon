@@ -28,6 +28,7 @@ import StatusContainer from '../../containers/status_container';
 import { openModal } from '../../actions/modal';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { HotKeys } from 'react-hotkeys';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -38,9 +39,9 @@ const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
 
   const mapStateToProps = (state, props) => ({
-    status: getStatus(state, Number(props.params.statusId)),
-    ancestorsIds: state.getIn(['contexts', 'ancestors', Number(props.params.statusId)]),
-    descendantsIds: state.getIn(['contexts', 'descendants', Number(props.params.statusId)]),
+    status: getStatus(state, props.params.statusId),
+    ancestorsIds: state.getIn(['contexts', 'ancestors', props.params.statusId]),
+    descendantsIds: state.getIn(['contexts', 'descendants', props.params.statusId]),
     me: state.getIn(['meta', 'me']),
     boostModal: state.getIn(['meta', 'boost_modal']),
     deleteModal: state.getIn(['meta', 'delete_modal']),
@@ -64,7 +65,7 @@ export default class Status extends ImmutablePureComponent {
     status: ImmutablePropTypes.map,
     ancestorsIds: ImmutablePropTypes.list,
     descendantsIds: ImmutablePropTypes.list,
-    me: PropTypes.number,
+    me: PropTypes.string,
     boostModal: PropTypes.bool,
     deleteModal: PropTypes.bool,
     autoPlayGif: PropTypes.bool,
@@ -72,12 +73,13 @@ export default class Status extends ImmutablePureComponent {
   };
 
   componentWillMount () {
-    this.props.dispatch(fetchStatus(Number(this.props.params.statusId)));
+    this.props.dispatch(fetchStatus(this.props.params.statusId));
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
-      this.props.dispatch(fetchStatus(Number(nextProps.params.statusId)));
+      this._scrolledIntoView = false;
+      this.props.dispatch(fetchStatus(nextProps.params.statusId));
     }
   }
 
@@ -151,8 +153,106 @@ export default class Status extends ImmutablePureComponent {
     this.props.dispatch(openModal('EMBED', { url: status.get('url') }));
   }
 
+  handleHotkeyMoveUp = () => {
+    this.handleMoveUp(this.props.status.get('id'));
+  }
+
+  handleHotkeyMoveDown = () => {
+    this.handleMoveDown(this.props.status.get('id'));
+  }
+
+  handleHotkeyReply = e => {
+    e.preventDefault();
+    this.handleReplyClick(this.props.status);
+  }
+
+  handleHotkeyFavourite = () => {
+    this.handleFavouriteClick(this.props.status);
+  }
+
+  handleHotkeyBoost = () => {
+    this.handleReblogClick(this.props.status);
+  }
+
+  handleHotkeyMention = e => {
+    e.preventDefault();
+    this.handleMentionClick(this.props.status);
+  }
+
+  handleHotkeyOpenProfile = () => {
+    this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
+  }
+
+  handleMoveUp = id => {
+    const { status, ancestorsIds, descendantsIds } = this.props;
+
+    if (id === status.get('id')) {
+      this._selectChild(ancestorsIds.size - 1);
+    } else {
+      let index = ancestorsIds.indexOf(id);
+
+      if (index === -1) {
+        index = descendantsIds.indexOf(id);
+        this._selectChild(ancestorsIds.size + index);
+      } else {
+        this._selectChild(index - 1);
+      }
+    }
+  }
+
+  handleMoveDown = id => {
+    const { status, ancestorsIds, descendantsIds } = this.props;
+
+    if (id === status.get('id')) {
+      this._selectChild(ancestorsIds.size + 1);
+    } else {
+      let index = ancestorsIds.indexOf(id);
+
+      if (index === -1) {
+        index = descendantsIds.indexOf(id);
+        this._selectChild(ancestorsIds.size + index + 2);
+      } else {
+        this._selectChild(index + 1);
+      }
+    }
+  }
+
+  _selectChild (index) {
+    const element = this.node.querySelectorAll('.focusable')[index];
+
+    if (element) {
+      element.focus();
+    }
+  }
+
   renderChildren (list) {
-    return list.map(id => <StatusContainer key={id} id={id} />);
+    return list.map(id => (
+      <StatusContainer
+        key={id}
+        id={id}
+        onMoveUp={this.handleMoveUp}
+        onMoveDown={this.handleMoveDown}
+      />
+    ));
+  }
+
+  setRef = c => {
+    this.node = c;
+  }
+
+  componentDidUpdate () {
+    if (this._scrolledIntoView) {
+      return;
+    }
+
+    const { status, ancestorsIds } = this.props;
+
+    if (status && ancestorsIds && ancestorsIds.size > 0) {
+      const element = this.node.querySelectorAll('.focusable')[ancestorsIds.size - 1];
+
+      element.scrollIntoView(true);
+      this._scrolledIntoView = true;
+    }
   }
 
   render () {
@@ -176,34 +276,48 @@ export default class Status extends ImmutablePureComponent {
       descendants = <div>{this.renderChildren(descendantsIds)}</div>;
     }
 
+    const handlers = {
+      moveUp: this.handleHotkeyMoveUp,
+      moveDown: this.handleHotkeyMoveDown,
+      reply: this.handleHotkeyReply,
+      favourite: this.handleHotkeyFavourite,
+      boost: this.handleHotkeyBoost,
+      mention: this.handleHotkeyMention,
+      openProfile: this.handleHotkeyOpenProfile,
+    };
+
     return (
       <Column>
         <ColumnBackButton />
 
         <ScrollContainer scrollKey='thread'>
-          <div className='scrollable detailed-status__wrapper'>
+          <div className='scrollable detailed-status__wrapper' ref={this.setRef}>
             {ancestors}
 
-            <DetailedStatus
-              status={status}
-              autoPlayGif={autoPlayGif}
-              me={me}
-              onOpenVideo={this.handleOpenVideo}
-              onOpenMedia={this.handleOpenMedia}
-            />
+            <HotKeys handlers={handlers}>
+              <div className='focusable' tabIndex='0'>
+                <DetailedStatus
+                  status={status}
+                  autoPlayGif={autoPlayGif}
+                  me={me}
+                  onOpenVideo={this.handleOpenVideo}
+                  onOpenMedia={this.handleOpenMedia}
+                />
 
-            <ActionBar
-              status={status}
-              me={me}
-              onReply={this.handleReplyClick}
-              onFavourite={this.handleFavouriteClick}
-              onReblog={this.handleReblogClick}
-              onDelete={this.handleDeleteClick}
-              onMention={this.handleMentionClick}
-              onReport={this.handleReport}
-              onPin={this.handlePin}
-              onEmbed={this.handleEmbed}
-            />
+                <ActionBar
+                  status={status}
+                  me={me}
+                  onReply={this.handleReplyClick}
+                  onFavourite={this.handleFavouriteClick}
+                  onReblog={this.handleReblogClick}
+                  onDelete={this.handleDeleteClick}
+                  onMention={this.handleMentionClick}
+                  onReport={this.handleReport}
+                  onPin={this.handlePin}
+                  onEmbed={this.handleEmbed}
+                />
+              </div>
+            </HotKeys>
 
             {descendants}
           </div>

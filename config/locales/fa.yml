@@ -1,6 +1,7 @@
 ---
 fa:
   about:
+    about_hashtag_html: این‌ها نوشته‌های عمومی هستند که برچسب (هشتگ) <strong>#%{hashtag}</strong> را دارند. اگر شما روی هر سروری حساب داشته باشید می‌توانید به این نوشته‌ها واکنش نشان دهید.
     about_mastodon_html: ماستدون (Mastodon) یک شبکهٔ اجتماعی است که بر اساس پروتکل‌های آزاد وب و نرم‌افزارهای آزاد و کدباز ساخته شده است. این شبکه مانند ایمیل غیرمتمرکز است.
     about_this: درباره
     closed_registrations: ثبت‌نام روی این سرور هم‌اینک فعال نیست. اما شما می‌توانید سرور دیگری بیابید و با حسابی که آن‌جا می‌سازید دقیقاً به همین شبکه دسترسی داشته باشید.
@@ -49,6 +50,13 @@ fa:
       admin: مدیر
     unfollow: پایان پیگیری
   admin:
+    account_moderation_notes:
+      account: مدیر
+      create: نوشتن
+      created_at: تاریخ
+      created_msg: یادداشت مدیر با موفقیت ساخته شد!
+      delete: پاک کردن
+      destroyed_msg: یادداشت مدیر با موفقیت پاک شد!
     accounts:
       are_you_sure: آیا مطمئن هستید؟
       confirm: تأیید
@@ -75,6 +83,7 @@ fa:
         silenced: بی‌صدا شده
         suspended: معلق شده
         title: مدیریت
+      moderation_notes: یادداشت مدیر
       most_recent_activity: آخرین فعالیت‌ها
       most_recent_ip: آخرین IP ها
       not_subscribed: عضو نیست
@@ -108,6 +117,25 @@ fa:
       unsubscribe: لغو اشتراک
       username: نام کاربری
       web: وب
+    custom_emojis:
+      copied_msg: نسخهٔ محلی شکلک با موفقیت ساخته شد
+      copy: نسخه‌برداری
+      copy_failed_msg: نشد که نسخهٔ محلی این شکلک ساخته شود
+      created_msg: این شکلک با موفقیت ساخته شد!
+      delete: پاک کردن
+      destroyed_msg: این شکلک با موفقیت پاک شد!
+      disable: غیرفعال‌سازی
+      disabled_msg: این شکلک با موفقیت غیرفعال شد
+      emoji: شکلک
+      enable: فعال‌سازی
+      enabled_msg: این شکلک با موفقیت فعال شد
+      image_hint: پروندهٔ PNG حداکثر 50KB
+      new:
+        title: افزودن شکلک سفارشی
+      shortcode: کد کوتاه
+      shortcode_hint: دست‌کم ۲ نویسه و تنها شامل حروف، اعداد و زیرخط
+      title: شکلک‌های سفارشی
+      upload: بارگذاری
     domain_blocks:
       add_new: افزودن تازه
       created_msg: مسدودکردن دامین در حال انجام است
@@ -140,9 +168,21 @@ fa:
         undo: واگردانی
       title: دامین‌های مسدودشده
       undo: واگردانی
+    email_domain_blocks:
+      add_new: افزودن تازه
+      created_msg: مسدودسازی دامین ایمیل با موفقیت ساخته شد
+      delete: Delete
+      destroyed_msg: مسدودسازی دامین ایمیل با موفقیت پاک شد
+      domain: دامین
+      new:
+        create: ساختن مسدودسازی
+        title: مسدودسازی دامین ایمیل تازه
+      title: مسدودسازی دامین‌های ایمیل
     instances:
       account_count: حساب‌های شناخته‌شده
       domain_name: دامین
+      reset: بازنشانی
+      search: جستجو
       title: سرورهای شناخته‌شده
     reports:
       action_taken_by: انجام‌دهنده
@@ -294,8 +334,11 @@ fa:
     '410': صفحه‌ای که به دنبالش بودید دیگر وجود ندارد.
     '422':
       content: تأیید امنیتی انجام نشد. آیا مرورگر شما کوکی‌ها را مسدود می‌کند؟
-      title: تأیید امنیتی شکست خورد
+      title: تأیید امنیتی کار نکرد
     '429': درخواست‌های بیش از حد
+    '500':
+      content: شرمنده، یک چیزی از سمت ما اشتباه شده.
+      title: این صفحه درست نیست
     noscript_html: برای استفاده از نسخهٔ تحت وب ماستدون، لطفاً جاوااسکریپت را فعال کنید. یا به جایش می‌توانید یک اپ ماستدون را به‌کار ببرید.
   exports:
     blocks: حساب‌های مسدودشده
@@ -376,6 +419,11 @@ fa:
     next: بعدی
     prev: قبلی
     truncate: "&hellip;"
+  preferences:
+    languages: زبان‌ها
+    other: سایر
+    publishing: انتشار
+    web: وب
   push_notifications:
     favourite:
       title: "%{name} نوشتهٔ شما را پسندید"
@@ -443,6 +491,7 @@ fa:
     export: برون‌سپاری داده‌ها
     followers: پیگیران مورد تأیید
     import: درون‌ریزی
+    notifications: اعلان‌ها
     preferences: ترجیحات
     settings: تنظیمات
     two_factor_authentication: ورود دومرحله‌ای
@@ -538,6 +587,8 @@ fa:
 
       <p>این نوشته اقتباسی است از <a href="https://github.com/discourse/discourse">سیاست رازداری Discourse</a>.</p>
     title: شرایط استفاده و سیاست رازداری %{instance}
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%d %b %Y, %H:%M"

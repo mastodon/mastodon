@@ -1,0 +1,339 @@
+.activity-stream {
+  clear: both;
+  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+
+  .entry {
+    background: $simple-background-color;
+
+    .detailed-status.light,
+    .status.light {
+      border-bottom: 1px solid $ui-secondary-color;
+      animation: none;
+    }
+
+    &:last-child {
+      &,
+      .detailed-status.light,
+      .status.light {
+        border-bottom: 0;
+        border-radius: 0 0 4px 4px;
+      }
+    }
+
+    &:first-child {
+      &,
+      .detailed-status.light,
+      .status.light {
+        border-radius: 4px 4px 0 0;
+      }
+
+      &:last-child {
+        &,
+        .detailed-status.light,
+        .status.light {
+          border-radius: 4px;
+        }
+      }
+    }
+
+    @media screen and (max-width: 740px) {
+      &,
+      .detailed-status.light,
+      .status.light {
+        border-radius: 0 !important;
+      }
+    }
+  }
+
+  &.with-header {
+    .entry {
+      &:first-child {
+        &,
+        .detailed-status.light,
+        .status.light {
+          border-radius: 0;
+        }
+
+        &:last-child {
+          &,
+          .detailed-status.light,
+          .status.light {
+            border-radius: 0 0 4px 4px;
+          }
+        }
+      }
+    }
+  }
+
+  .status.light {
+    padding: 14px 14px 14px (48px + 14px * 2);
+    position: relative;
+    min-height: 48px;
+    cursor: default;
+
+    .status__header {
+      font-size: 15px;
+
+      .status__meta {
+        float: right;
+        font-size: 14px;
+
+        .status__relative-time {
+          color: $ui-primary-color;
+        }
+      }
+    }
+
+    .status__display-name {
+      display: block;
+      max-width: 100%;
+      padding-right: 25px;
+      color: $ui-base-color;
+    }
+
+    .status__avatar {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      width: 48px;
+      height: 48px;
+
+      & > div {
+        width: 48px;
+        height: 48px;
+      }
+
+      img {
+        display: block;
+        border-radius: 4px;
+      }
+    }
+
+    .display-name {
+      display: block;
+      max-width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      strong {
+        font-weight: 500;
+        color: $ui-base-color;
+      }
+
+      span {
+        font-size: 14px;
+        color: $ui-primary-color;
+      }
+    }
+
+    .status__content {
+      color: $ui-base-color;
+
+      a {
+        color: $ui-highlight-color;
+      }
+
+      a.status__content__spoiler-link {
+        color: $primary-text-color;
+        background: $ui-primary-color;
+
+        &:hover {
+          background: lighten($ui-primary-color, 8%);
+        }
+      }
+    }
+  }
+
+  .detailed-status.light {
+    padding: 14px;
+    background: $simple-background-color;
+    cursor: default;
+
+    .detailed-status__display-name {
+      display: block;
+      overflow: hidden;
+      margin-bottom: 15px;
+
+      & > div {
+        float: left;
+        margin-right: 10px;
+      }
+
+      .display-name {
+        display: block;
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        strong {
+          font-weight: 500;
+          color: $ui-base-color;
+        }
+
+        span {
+          font-size: 14px;
+          color: $ui-primary-color;
+        }
+      }
+    }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+
+      img {
+        display: block;
+        border-radius: 4px;
+      }
+    }
+
+    .status__content {
+      color: $ui-base-color;
+
+      a {
+        color: $ui-highlight-color;
+      }
+
+      a.status__content__spoiler-link {
+        color: $primary-text-color;
+        background: $ui-primary-color;
+
+        &:hover {
+          background: lighten($ui-primary-color, 8%);
+        }
+      }
+    }
+
+    .detailed-status__meta {
+      margin-top: 15px;
+      color: $ui-primary-color;
+      font-size: 14px;
+      line-height: 18px;
+
+      a {
+        color: inherit;
+      }
+
+      span > span {
+        font-weight: 500;
+        font-size: 12px;
+        margin-left: 6px;
+        display: inline-block;
+      }
+    }
+
+    .status-card {
+      border-color: lighten($ui-secondary-color, 4%);
+      color: darken($ui-primary-color, 4%);
+
+      &:hover {
+        background: lighten($ui-secondary-color, 4%);
+      }
+    }
+
+    .status-card__title,
+    .status-card__description {
+      color: $ui-base-color;
+    }
+
+    .status-card__image {
+      background: $ui-secondary-color;
+    }
+  }
+
+  .media-spoiler {
+    background: $ui-primary-color;
+    color: $white;
+    transition: all 100ms linear;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: darken($ui-primary-color, 5%);
+      color: unset;
+    }
+  }
+
+  .pre-header {
+    padding: 14px 0;
+    padding-left: (48px + 14px * 2);
+    padding-bottom: 0;
+    margin-bottom: -4px;
+    color: $ui-primary-color;
+    font-size: 14px;
+    position: relative;
+
+    .pre-header__icon {
+      position: absolute;
+      left: (48px + 14px * 2 - 30px);
+    }
+
+    .status__display-name.muted strong {
+      color: $ui-primary-color;
+    }
+  }
+
+  .open-in-web-link {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.embed {
+  .activity-stream {
+    box-shadow: none;
+
+    .entry {
+
+      .detailed-status.light {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .detailed-status__display-name {
+          flex: 1;
+          margin: 0 5px 15px 0;
+        }
+
+        .button.button-secondary.logo-button {
+          flex: 0 auto;
+          font-size: 14px;
+
+          svg {
+            width: 20px;
+            height: auto;
+            vertical-align: middle;
+            margin-right: 5px;
+
+            path:first-child {
+              fill: $ui-primary-color;
+            }
+
+            path:last-child {
+              fill: $simple-background-color;
+            }
+          }
+
+          &:active,
+          &:focus,
+          &:hover {
+            svg path:first-child {
+              fill: lighten($ui-primary-color, 4%);
+            }
+          }
+        }
+
+        .status__content,
+        .detailed-status__meta {
+          flex: 100%;
+        }
+      }
+    }
+  }
+}

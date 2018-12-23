@@ -33,7 +33,7 @@ class FetchRemoteResourceService < BaseService
   end
 
   def body
-    fetched_atom_feed.second
+    fetched_atom_feed.second[:prefetched_body]
   end
 
   def protocol

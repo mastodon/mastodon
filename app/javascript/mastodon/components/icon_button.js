@@ -1,7 +1,8 @@
 import React from 'react';
-import Motion from 'react-motion/lib/Motion';
+import Motion from '../features/ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 export default class IconButton extends React.PureComponent {
 
@@ -50,42 +51,41 @@ export default class IconButton extends React.PureComponent {
       ...(this.props.active ? this.props.activeStyle : {}),
     };
 
-    const classes = ['icon-button'];
+    const {
+      active,
+      animate,
+      className,
+      disabled,
+      expanded,
+      icon,
+      inverted,
+      overlay,
+      pressed,
+      tabIndex,
+      title,
+    } = this.props;
 
-    if (this.props.active) {
-      classes.push('active');
-    }
-
-    if (this.props.disabled) {
-      classes.push('disabled');
-    }
-
-    if (this.props.inverted) {
-      classes.push('inverted');
-    }
-
-    if (this.props.overlay) {
-      classes.push('overlayed');
-    }
-
-    if (this.props.className) {
-      classes.push(this.props.className);
-    }
+    const classes = classNames(className, 'icon-button', {
+      active,
+      disabled,
+      inverted,
+      overlayed: overlay,
+    });
 
     return (
-      <Motion defaultStyle={{ rotate: this.props.active ? -360 : 0 }} style={{ rotate: this.props.animate ? spring(this.props.active ? -360 : 0, { stiffness: 120, damping: 7 }) : 0 }}>
+      <Motion defaultStyle={{ rotate: active ? -360 : 0 }} style={{ rotate: animate ? spring(active ? -360 : 0, { stiffness: 120, damping: 7 }) : 0 }}>
         {({ rotate }) =>
           <button
-            aria-label={this.props.title}
-            aria-pressed={this.props.pressed}
-            aria-expanded={this.props.expanded}
-            title={this.props.title}
-            className={classes.join(' ')}
+            aria-label={title}
+            aria-pressed={pressed}
+            aria-expanded={expanded}
+            title={title}
+            className={classes}
             onClick={this.handleClick}
             style={style}
-            tabIndex={this.props.tabIndex}
+            tabIndex={tabIndex}
           >
-            <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${this.props.icon}`} aria-hidden='true' />
+            <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${icon}`} aria-hidden='true' />
           </button>
         }
       </Motion>

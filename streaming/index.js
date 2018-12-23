@@ -80,7 +80,7 @@ const startWorker = (workerId) => {
     development: {
       user:     process.env.DB_USER || pg.defaults.user,
       password: process.env.DB_PASS || pg.defaults.password,
-      database: 'mastodon_development',
+      database: process.env.DB_NAME || 'mastodon_development',
       host:     process.env.DB_HOST || pg.defaults.host,
       port:     process.env.DB_PORT || pg.defaults.port,
       max:      10,
@@ -264,7 +264,7 @@ const startWorker = (workerId) => {
       const transmit = () => {
         const now            = new Date().getTime();
         const delta          = now - queued_at;
-        const encodedPayload = typeof payload === 'number' ? payload : JSON.stringify(payload);
+        const encodedPayload = typeof payload === 'object' ? JSON.stringify(payload) : payload;
 
         log.silly(req.requestId, `Transmitting for ${req.accountId}: ${event} ${encodedPayload} Delay: ${delta}ms`);
         output(event, encodedPayload);

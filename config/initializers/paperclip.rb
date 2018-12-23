@@ -7,6 +7,8 @@ Paperclip.interpolates :filename do |attachment, style|
   [basename(attachment, style), extension(attachment, style)].delete_if(&:blank?).join('.')
 end
 
+Paperclip::Attachment.default_options[:use_timestamp]  = false
+
 if ENV['S3_ENABLED'] == 'true'
   Aws.eager_autoload!(services: %w(S3))
 
@@ -18,7 +20,6 @@ if ENV['S3_ENABLED'] == 'true'
   Paperclip::Attachment.default_options[:s3_headers]     = { 'Cache-Control' => 'max-age=315576000' }
   Paperclip::Attachment.default_options[:s3_permissions] = ENV.fetch('S3_PERMISSION') { 'public-read' }
   Paperclip::Attachment.default_options[:s3_region]      = ENV.fetch('S3_REGION') { 'us-east-1' }
-  Paperclip::Attachment.default_options[:use_timestamp]  = false
 
   Paperclip::Attachment.default_options[:s3_credentials] = {
     bucket: ENV.fetch('S3_BUCKET'),
@@ -48,6 +49,7 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
       provider: 'OpenStack',
       openstack_username: ENV.fetch('SWIFT_USERNAME'),
       openstack_project_name: ENV.fetch('SWIFT_TENANT'),
+      openstack_tenant: ENV.fetch('SWIFT_TENANT'), # Some OpenStack-v2 ignores project_name but needs tenant
       openstack_api_key: ENV.fetch('SWIFT_PASSWORD'),
       openstack_auth_url: ENV.fetch('SWIFT_AUTH_URL'),
       openstack_domain_name: ENV['SWIFT_DOMAIN_NAME'] || 'default',
@@ -55,7 +57,7 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
       openstack_cache_ttl: ENV['SWIFT_CACHE_TTL'] || 60,
     },
     fog_directory: ENV.fetch('SWIFT_CONTAINER'),
-    fog_host: ENV.fetch('SWIFT_OBJECT_URL'),
+    fog_host: ENV['SWIFT_OBJECT_URL'],
     fog_public: true
   )
 else

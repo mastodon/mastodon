@@ -1,0 +1,13 @@
+<p>안녕하세요 <%= @resource.email %> 님!</p>
+
+<p><%= @instance %>에 새로 계정을 만들었습니다.</p>
+
+<p>아래 링크를 눌러 회원가입을 완료 하세요:<br>
+<%= link_to '계정 활성화', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>만약 위의 링크가 작동하지 않는다면 아래 URL을 복사하여 주소창에 붙여넣으세요</p>
+<span><%= confirmation_url(@resource, confirmation_token: @token) %></span>
+
+<p> <%= link_to '약관', terms_url %>도 확인 바랍니다.</p>
+
+<p><%= @instance %> 드림</p>

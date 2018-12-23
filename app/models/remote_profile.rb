@@ -10,11 +10,11 @@ class RemoteProfile
   end
 
   def root
-    @root ||= document.at_xpath('/atom:feed|/atom:entry', atom: TagManager::XMLNS)
+    @root ||= document.at_xpath('/atom:feed|/atom:entry', atom: OStatus::TagManager::XMLNS)
   end
 
   def author
-    @author ||= root.at_xpath('./atom:author|./dfrn:owner', atom: TagManager::XMLNS, dfrn: TagManager::DFRN_XMLNS)
+    @author ||= root.at_xpath('./atom:author|./dfrn:owner', atom: OStatus::TagManager::XMLNS, dfrn: OStatus::TagManager::DFRN_XMLNS)
   end
 
   def hub_link
@@ -22,15 +22,15 @@ class RemoteProfile
   end
 
   def display_name
-    @display_name ||= author.at_xpath('./poco:displayName', poco: TagManager::POCO_XMLNS)&.content
+    @display_name ||= author.at_xpath('./poco:displayName', poco: OStatus::TagManager::POCO_XMLNS)&.content
   end
 
   def note
-    @note ||= author.at_xpath('./atom:summary|./poco:note', atom: TagManager::XMLNS, poco: TagManager::POCO_XMLNS)&.content
+    @note ||= author.at_xpath('./atom:summary|./poco:note', atom: OStatus::TagManager::XMLNS, poco: OStatus::TagManager::POCO_XMLNS)&.content
   end
 
   def scope
-    @scope ||= author.at_xpath('./mastodon:scope', mastodon: TagManager::MTDN_XMLNS)&.content
+    @scope ||= author.at_xpath('./mastodon:scope', mastodon: OStatus::TagManager::MTDN_XMLNS)&.content
   end
 
   def avatar
@@ -48,6 +48,6 @@ class RemoteProfile
   private
 
   def link_href_from_xml(xml, type)
-    xml.at_xpath(%(./atom:link[@rel="#{type}"]/@href), atom: TagManager::XMLNS)&.content
+    xml.at_xpath(%(./atom:link[@rel="#{type}"]/@href), atom: OStatus::TagManager::XMLNS)&.content
   end
 end

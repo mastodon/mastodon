@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class ProcessFeedService < BaseService
-  def call(body, account)
+  def call(body, account, options = {})
+    @options = options
+
     xml = Nokogiri::XML(body)
     xml.encoding = 'utf-8'
 
@@ -16,11 +18,11 @@ class ProcessFeedService < BaseService
   end
 
   def process_entries(xml, account)
-    xml.xpath('//xmlns:entry', xmlns: TagManager::XMLNS).reverse_each.map { |entry| process_entry(entry, account) }.compact
+    xml.xpath('//xmlns:entry', xmlns: OStatus::TagManager::XMLNS).reverse_each.map { |entry| process_entry(entry, account) }.compact
   end
 
   def process_entry(xml, account)
-    activity = OStatus::Activity::General.new(xml, account)
+    activity = OStatus::Activity::General.new(xml, account, @options)
     activity.specialize&.perform if activity.status?
   rescue ActiveRecord::RecordInvalid => e
     Rails.logger.debug "Nothing was saved for #{activity.id} because: #{e}"

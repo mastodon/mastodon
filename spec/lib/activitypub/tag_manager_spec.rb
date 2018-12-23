@@ -108,7 +108,7 @@ RSpec.describe ActivityPub::TagManager do
 
     it 'returns the local status for OStatus tag: URI' do
       status = Fabricate(:status)
-      expect(subject.uri_to_resource(::TagManager.instance.uri_for(status), Status)).to eq status
+      expect(subject.uri_to_resource(OStatus::TagManager.instance.uri_for(status), Status)).to eq status
     end
 
     it 'returns the local status for OStatus StreamEntry URL' do

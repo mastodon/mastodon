@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePureComponent from 'react-immutable-pure-component';
 import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
 import getRectFromEntry from '../features/ui/util/get_rect_from_entry';
+import { is } from 'immutable';
 
-export default class IntersectionObserverArticle extends ImmutablePureComponent {
+// Diff these props in the "rendered" state
+const updateOnPropsForRendered = ['id', 'index', 'listLength'];
+// Diff these props in the "unrendered" state
+const updateOnPropsForUnrendered = ['id', 'index', 'listLength', 'cachedHeight'];
+
+export default class IntersectionObserverArticle extends React.Component {
 
   static propTypes = {
     intersectionObserverWrapper: PropTypes.object.isRequired,
@@ -22,18 +27,15 @@ export default class IntersectionObserverArticle extends ImmutablePureComponent 
   }
 
   shouldComponentUpdate (nextProps, nextState) {
-    if (!nextState.isIntersecting && nextState.isHidden) {
-      // It's only if we're not intersecting (i.e. offscreen) and isHidden is true
-      // that either "isIntersecting" or "isHidden" matter, and then they're
-      // the only things that matter (and updated ARIA attributes).
-      return this.state.isIntersecting || !this.state.isHidden || nextProps.listLength !== this.props.listLength;
-    } else if (nextState.isIntersecting && !this.state.isIntersecting) {
-      // If we're going from a non-intersecting state to an intersecting state,
-      // (i.e. offscreen to onscreen), then we definitely need to re-render
+    const isUnrendered = !this.state.isIntersecting && (this.state.isHidden || this.props.cachedHeight);
+    const willBeUnrendered = !nextState.isIntersecting && (nextState.isHidden || nextProps.cachedHeight);
+    if (!!isUnrendered !== !!willBeUnrendered) {
+      // If we're going from rendered to unrendered (or vice versa) then update
       return true;
     }
-    // Otherwise, diff based on "updateOnProps" and "updateOnStates"
-    return super.shouldComponentUpdate(nextProps, nextState);
+    // Otherwise, diff based on props
+    const propsToDiff = isUnrendered ? updateOnPropsForUnrendered : updateOnPropsForRendered;
+    return !propsToDiff.every(prop => is(nextProps[prop], this.props[prop]));
   }
 
   componentDidMount () {
@@ -56,26 +58,31 @@ export default class IntersectionObserverArticle extends ImmutablePureComponent 
   }
 
   handleIntersection = (entry) => {
-    const { onHeightChange, saveHeightKey, id } = this.props;
+    this.entry = entry;
 
-    if (this.node && this.node.children.length !== 0) {
-      // save the height of the fully-rendered element
-      this.height = getRectFromEntry(entry).height;
+    scheduleIdleTask(this.calculateHeight);
+    this.setState(this.updateStateAfterIntersection);
+  }
 
-      if (onHeightChange && saveHeightKey) {
-        onHeightChange(saveHeightKey, id, this.height);
-      }
+  updateStateAfterIntersection = (prevState) => {
+    if (prevState.isIntersecting && !this.entry.isIntersecting) {
+      scheduleIdleTask(this.hideIfNotIntersecting);
     }
+    return {
+      isIntersecting: this.entry.isIntersecting,
+      isHidden: false,
+    };
+  }
 
-    this.setState((prevState) => {
-      if (prevState.isIntersecting && !entry.isIntersecting) {
-        scheduleIdleTask(this.hideIfNotIntersecting);
-      }
-      return {
-        isIntersecting: entry.isIntersecting,
-        isHidden: false,
-      };
-    });
+  calculateHeight = () => {
+    const { onHeightChange, saveHeightKey, id } = this.props;
+    // save the height of the fully-rendered element (this is expensive
+    // on Chrome, where we need to fall back to getBoundingClientRect)
+    this.height = getRectFromEntry(this.entry).height;
+
+    if (onHeightChange && saveHeightKey) {
+      onHeightChange(saveHeightKey, id, this.height);
+    }
   }
 
   hideIfNotIntersecting = () => {

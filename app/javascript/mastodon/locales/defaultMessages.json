@@ -135,6 +135,31 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "now",
+        "id": "relative_time.just_now"
+      },
+      {
+        "defaultMessage": "{number}s",
+        "id": "relative_time.seconds"
+      },
+      {
+        "defaultMessage": "{number}m",
+        "id": "relative_time.minutes"
+      },
+      {
+        "defaultMessage": "{number}h",
+        "id": "relative_time.hours"
+      },
+      {
+        "defaultMessage": "{number}d",
+        "id": "relative_time.days"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/relative_timestamp.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Delete",
         "id": "status.delete"
       },
@@ -157,6 +182,10 @@
       {
         "defaultMessage": "Share",
         "id": "status.share"
+      },
+      {
+        "defaultMessage": "More",
+        "id": "status.more"
       },
       {
         "defaultMessage": "Reply to thread",
@@ -226,39 +255,6 @@
       }
     ],
     "path": "app/javascript/mastodon/components/status.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Toggle sound",
-        "id": "video_player.toggle_sound"
-      },
-      {
-        "defaultMessage": "Toggle visibility",
-        "id": "video_player.toggle_visible"
-      },
-      {
-        "defaultMessage": "Expand video",
-        "id": "video_player.expand"
-      },
-      {
-        "defaultMessage": "Sensitive content",
-        "id": "status.sensitive_warning"
-      },
-      {
-        "defaultMessage": "Click to view",
-        "id": "status.sensitive_toggle"
-      },
-      {
-        "defaultMessage": "Media hidden",
-        "id": "status.media_hidden"
-      },
-      {
-        "defaultMessage": "Video could not be played",
-        "id": "video_player.video_error"
-      }
-    ],
-    "path": "app/javascript/mastodon/components/video_player.json"
   },
   {
     "descriptors": [
@@ -517,6 +513,22 @@
         "id": "emoji_button.search"
       },
       {
+        "defaultMessage": "No emojos!! (╯°□°）╯︵ ┻━┻",
+        "id": "emoji_button.not_found"
+      },
+      {
+        "defaultMessage": "Custom",
+        "id": "emoji_button.custom"
+      },
+      {
+        "defaultMessage": "Frequently used",
+        "id": "emoji_button.recent"
+      },
+      {
+        "defaultMessage": "Search results",
+        "id": "emoji_button.search_results"
+      },
+      {
         "defaultMessage": "People",
         "id": "emoji_button.people"
       },
@@ -624,6 +636,26 @@
       {
         "defaultMessage": "Search",
         "id": "search.placeholder"
+      },
+      {
+        "defaultMessage": "Advanced search format",
+        "id": "search_popout.search_format"
+      },
+      {
+        "defaultMessage": "hashtag",
+        "id": "search_popout.tips.hashtag"
+      },
+      {
+        "defaultMessage": "user",
+        "id": "search_popout.tips.user"
+      },
+      {
+        "defaultMessage": "status",
+        "id": "search_popout.tips.status"
+      },
+      {
+        "defaultMessage": "Simple text returns matching display names, usernames and hashtags",
+        "id": "search_popout.tips.text"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/search.json"
@@ -640,20 +672,24 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Undo",
-        "id": "upload_form.undo"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/compose/components/upload_form.json"
-  },
-  {
-    "descriptors": [
-      {
         "defaultMessage": "Uploading...",
         "id": "upload_progress.label"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/upload_progress.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Undo",
+        "id": "upload_form.undo"
+      },
+      {
+        "defaultMessage": "Describe for the visually impaired",
+        "id": "upload_form.description"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/upload.json"
   },
   {
     "descriptors": [
@@ -682,10 +718,6 @@
       {
         "defaultMessage": "locked",
         "id": "compose_form.lock_disclaimer.lock"
-      },
-      {
-        "defaultMessage": "Your private status will be delivered to mentioned users on {domains}. Do you trust {domainsCount, plural, one {that server} other {those servers}}? Post privacy only works on Mastodon instances. If {domains} {domainsCount, plural, one {is not a Mastodon instance} other {are not Mastodon instances}}, there will be no indication that your post is private, and it may be boosted or otherwise made visible to unintended recipients.",
-        "id": "compose_form.privacy_disclaimer"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/containers/warning_container.json"
@@ -880,11 +912,7 @@
         "id": "column.home"
       },
       {
-        "defaultMessage": "Your home feed is empty. If you have been inactive for a while, it will be regenerated for you soon.",
-        "id": "empty_column.home.inactivity"
-      },
-      {
-        "defaultMessage": "You aren't following anyone yet. Visit {public} or use search to get started and meet other users.",
+        "defaultMessage": "Your home timeline is empty! Visit {public} or use search to get started and meet other users.",
         "id": "empty_column.home"
       },
       {
@@ -1330,15 +1358,6 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/upload_area.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Close",
-        "id": "lightbox.close"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/ui/components/video_modal.json"
   },
   {
     "descriptors": [

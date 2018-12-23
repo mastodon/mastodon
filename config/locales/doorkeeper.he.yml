@@ -1,5 +1,5 @@
 ---
-he :
+he:
   activerecord:
     attributes:
       doorkeeper/application:
@@ -72,7 +72,7 @@ he :
     errors:
       messages:
         access_denied: בעלי המשאב או שרת ההרשאה דחו את הבקשה.
-        credential_flow_not_configured: 'התהליך "Resource Owner Password Credentials" נכשל בשל חוסר בתצורת Doorkeeper.configure.resource_owner_from_credentials.'
+        credential_flow_not_configured: התהליך "Resource Owner Password Credentials" נכשל בשל חוסר בתצורת Doorkeeper.configure.resource_owner_from_credentials.
         invalid_client: הרשאת הלקוח נכשלה עקב לקוח שאינו ידוע, חוסר בהרשאת לקוח או שיטת הרשאה שאינה נתמכת.
         invalid_grant: חוזה ההרשאה המצורף אינו חוקי, אינו תקף, מבוטל, או שאינו מתאים לקישורית ההפניה שבשימוש על ידי בקשת ההרשאה, או שהופק על ידי לקוח אחר.
         invalid_redirect_uri: קישורית ההפניה המצורפת אינה חוקית.

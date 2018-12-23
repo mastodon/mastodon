@@ -18,7 +18,6 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: web_host, protocol: https ? 'https://' : 'http://', trailing_slash: false }
   config.x.streaming_api_base_url          = 'ws://localhost:4000'
-  config.x.use_ostatus_privacy             = true
 
   if Rails.env.production?
     config.x.streaming_api_base_url = ENV.fetch('STREAMING_API_BASE_URL') { "ws#{https ? 's' : ''}://#{web_host}" }

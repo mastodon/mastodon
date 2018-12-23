@@ -3,8 +3,8 @@ fr:
   devise:
     confirmations:
       confirmed: Votre compte a été validé.
-      send_instructions: Vous allez recevoir les instructions nécessaires à la confirmation de votre compte dans quelques minutes. S’il vous plaît, dans le cas où vous ne recevriez pas ce message, vérifiez votre dossier d’indésirables.
-      send_paranoid_instructions: Si votre adresse électronique existe dans notre base de données, vous allez bientôt recevoir un courriel contenant les instructions de confirmation de votre compte. S’il vous plaît, dans le cas où vous ne recevriez pas ce message, vérifiez votre dossier d’indésirables.
+      send_instructions: Vous allez recevoir les instructions nécessaires à la confirmation de votre compte dans quelques minutes. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
+      send_paranoid_instructions: Si votre adresse électronique existe dans notre base de données, vous allez bientôt recevoir un courriel contenant les instructions de confirmation de votre compte. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
     failure:
       already_authenticated: Vous êtes déjà connecté⋅e
       inactive: Votre compte n’est pas encore activé.
@@ -17,7 +17,7 @@ fr:
       unconfirmed: Vous devez valider votre compte pour continuer.
     mailer:
       confirmation_instructions:
-        subject: "Merci de confirmer votre inscription sur %{instance}"
+        subject: Merci de confirmer votre inscription sur %{instance}
       password_change:
         subject: Votre mot de passe a été modifié avec succés.
       reset_password_instructions:
@@ -29,8 +29,8 @@ fr:
       success: Authentifié avec succès via %{kind}.
     passwords:
       no_token: Vous ne pouvez accéder à cette page sans passer par un courriel de réinitialisation de mot de passe. Si vous êtes passé⋅e par un courriel de ce type, assurez-vous d’utiliser l’URL complète.
-      send_instructions: Vous allez recevoir les instructions de réinitialisation du mot de passe dans quelques instants. S’il vous plaît, dans le cas où vous ne recevriez pas ce message, vérifiez votre dossier d’indésirables.
-      send_paranoid_instructions: Si votre addresse électronique existe dans notre base de données, vous allez recevoir un lien de réinitialisation par courriel. S’il vous plaît, dans le cas où vous ne recevriez pas ce message, vérifiez votre dossier d’indésirables.
+      send_instructions: Vous allez recevoir les instructions de réinitialisation du mot de passe dans quelques instants. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
+      send_paranoid_instructions: Si votre adresse électronique existe dans notre base de données, vous allez recevoir un lien de réinitialisation par courriel. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
       updated: Votre mot de passe a été modifié avec succès, vous êtes maintenant connecté⋅e
       updated_not_active: Votre mot de passe a été modifié avec succès.
     registrations:
@@ -46,8 +46,8 @@ fr:
       signed_in: Connecté.
       signed_out: Déconnecté.
     unlocks:
-      send_instructions: Vous allez recevoir les instructions nécessaires au déverrouillage de votre compte dans quelques instants. S’il vous plaît, dans le cas où vous ne recevriez pas ce message, vérifiez votre dossier d’indésirables.
-      send_paranoid_instructions: Si votre compte existe, vous allez bientôt recevoir un courriel contenant les instructions pour le déverrouiller. S’il vous plaît, dans le cas où vous ne recevriez pas ce message, vérifiez votre dossier d’indésirables.
+      send_instructions: Vous allez recevoir les instructions nécessaires au déverrouillage de votre compte dans quelques instants. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
+      send_paranoid_instructions: Si votre compte existe, vous allez bientôt recevoir un courriel contenant les instructions pour le déverrouiller. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
       unlocked: Votre compte a été déverrouillé avec succès, vous êtes maintenant connecté⋅e.
   errors:
     messages:
@@ -58,4 +58,4 @@ fr:
       not_locked: n’était pas verrouillé⋅e
       not_saved:
         one: 'Une erreur a empêché ce(tte) %{resource} d’être sauvegardé⋅e :'
-        other: '%{count} erreurs ont empêché %{resource} d’être sauvegardé⋅e :'
+        other: "%{count} erreurs ont empêché %{resource} d’être sauvegardé⋅e :"

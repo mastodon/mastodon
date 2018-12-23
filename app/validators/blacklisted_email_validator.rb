@@ -12,6 +12,7 @@ class BlacklistedEmailValidator < ActiveModel::Validator
   end
 
   def on_blacklist?(value)
+    return true if EmailDomainBlock.block?(value)
     return false if Rails.configuration.x.email_domains_blacklist.blank?
 
     domains = Rails.configuration.x.email_domains_blacklist.gsub('.', '\.')

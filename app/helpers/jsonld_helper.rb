@@ -22,7 +22,18 @@ module JsonLdHelper
     graph.dump(:normalize)
   end
 
-  def fetch_resource(uri)
+  def fetch_resource(uri, id)
+    unless id
+      json = fetch_resource_without_id_validation(uri)
+      return unless json
+      uri = json['id']
+    end
+
+    json = fetch_resource_without_id_validation(uri)
+    json.present? && json['id'] == uri ? json : nil
+  end
+
+  def fetch_resource_without_id_validation(uri)
     response = build_request(uri).perform
     return if response.code != 200
     body_to_json(response.to_s)

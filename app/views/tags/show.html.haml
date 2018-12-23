@@ -1,19 +1,50 @@
 - content_for :page_title do
   = "##{@tag.name}"
 
-.compact-header
-  %h1<
-    = link_to site_title, root_path
-    %br
-    %small ##{@tag.name}
+- content_for :header_tags do
+  %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
+  = javascript_pack_tag 'about', integrity: true, crossorigin: 'anonymous'
+  = render 'og'
 
-- if @statuses.empty?
-  .accounts-grid
-    = render partial: 'accounts/nothing_here'
-- else
-  .activity-stream.h-feed
-    = render partial: 'stream_entries/status', collection: @statuses, as: :status
+.landing-page.tag-page
+  .features
+    .container
+      #mastodon-timeline{ data: { props: Oj.dump(default_props.merge(hashtag: @tag.name)) } }
 
-- if @statuses.size == 20
-  .pagination
-    = link_to safe_join([t('pagination.next'), fa_icon('chevron-right')], ' '), tag_url(@tag, max_id: @statuses.last.id), class: 'next', rel: 'next'
+      .about-mastodon
+        .about-hashtag
+          .brand
+            = link_to root_url do
+              = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+
+          %p= t 'about.about_hashtag_html', hashtag: @tag.name
+
+          .cta
+            = link_to t('auth.login'), new_user_session_path, class: 'button button-secondary'
+            = link_to t('about.learn_more'), root_url, class: 'button button-alternative'
+
+        .features-list
+          .features-list__row
+            .text
+              %h6= t 'about.features.real_conversation_title'
+              = t 'about.features.real_conversation_body'
+            .visual
+              = fa_icon 'fw comments'
+          .features-list__row
+            .text
+              %h6= t 'about.features.not_a_product_title'
+              = t 'about.features.not_a_product_body'
+            .visual
+              = fa_icon 'fw users'
+          .features-list__row
+            .text
+              %h6= t 'about.features.within_reach_title'
+              = t 'about.features.within_reach_body'
+            .visual
+              = fa_icon 'fw mobile'
+          .features-list__row
+            .text
+              %h6= t 'about.features.humane_approach_title'
+              = t 'about.features.humane_approach_body'
+            .visual
+              = fa_icon 'fw leaf'

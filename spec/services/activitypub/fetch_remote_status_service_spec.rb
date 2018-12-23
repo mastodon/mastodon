@@ -15,21 +15,11 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
     }
   end
 
-  let(:create) do
-    {
-      '@context': 'https://www.w3.org/ns/activitystreams',
-      id: "https://#{valid_domain}/@foo/1234/activity",
-      type: 'Create',
-      actor: ActivityPub::TagManager.instance.uri_for(sender),
-      object: note,
-    }
-  end
-
   subject { described_class.new }
 
   describe '#call' do
     before do
-      subject.call(object[:id], Oj.dump(object))
+      subject.call(object[:id], prefetched_body: Oj.dump(object))
     end
 
     context 'with Note object' do
@@ -40,35 +30,6 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
         
         expect(status).to_not be_nil
         expect(status.text).to eq 'Lorem ipsum'
-      end
-    end
-
-    context 'with Create activity' do
-      let(:object) { create }
-
-      it 'creates status' do
-        status = sender.statuses.first
-        
-        expect(status).to_not be_nil
-        expect(status.text).to eq 'Lorem ipsum'
-      end
-    end
-
-    context 'with Announce activity' do
-      let(:status) { Fabricate(:status, account: recipient) }
-
-      let(:object) do
-        {
-          '@context': 'https://www.w3.org/ns/activitystreams',
-          id: "https://#{valid_domain}/@foo/1234/activity",
-          type: 'Announce',
-          actor: ActivityPub::TagManager.instance.uri_for(sender),
-          object: ActivityPub::TagManager.instance.uri_for(status),
-        }
-      end
-
-      it 'creates a reblog by sender of status' do
-        expect(sender.reblogged?(status)).to be true
       end
     end
   end

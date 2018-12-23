@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TransitionMotion from 'react-motion/lib/TransitionMotion';
-import spring from 'react-motion/lib/spring';
 import BundleContainer from '../containers/bundle_container';
 import BundleModalError from './bundle_modal_error';
 import ModalLoading from './modal_loading';
@@ -35,6 +33,10 @@ export default class ModalRoot extends React.PureComponent {
     onClose: PropTypes.func.isRequired,
   };
 
+  state = {
+    revealed: false,
+  };
+
   handleKeyUp = (e) => {
     if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27)
          && !!this.props.type) {
@@ -51,6 +53,8 @@ export default class ModalRoot extends React.PureComponent {
       this.activeElement = document.activeElement;
 
       this.getSiblings().forEach(sibling => sibling.setAttribute('inert', true));
+    } else if (!nextProps.type) {
+      this.setState({ revealed: false });
     }
   }
 
@@ -59,6 +63,11 @@ export default class ModalRoot extends React.PureComponent {
       this.getSiblings().forEach(sibling => sibling.removeAttribute('inert'));
       this.activeElement.focus();
       this.activeElement = null;
+    }
+    if (this.props.type) {
+      requestAnimationFrame(() => {
+        this.setState({ revealed: true });
+      });
     }
   }
 
@@ -74,14 +83,6 @@ export default class ModalRoot extends React.PureComponent {
     this.node = ref;
   }
 
-  willEnter () {
-    return { opacity: 0, scale: 0.98 };
-  }
-
-  willLeave () {
-    return { opacity: spring(0), scale: spring(0.98) };
-  }
-
   renderLoading = modalId => () => {
     return ['MEDIA', 'VIDEO', 'BOOST', 'CONFIRM', 'ACTIONS'].indexOf(modalId) === -1 ? <ModalLoading /> : null;
   }
@@ -94,38 +95,30 @@ export default class ModalRoot extends React.PureComponent {
 
   render () {
     const { type, props, onClose } = this.props;
+    const { revealed } = this.state;
     const visible = !!type;
-    const items = [];
 
-    if (visible) {
-      items.push({
-        key: type,
-        data: { type, props },
-        style: { opacity: spring(1), scale: spring(1, { stiffness: 120, damping: 14 }) },
-      });
+    if (!visible) {
+      return (
+        <div className='modal-root' ref={this.setRef} style={{ opacity: 0 }} />
+      );
     }
 
     return (
-      <TransitionMotion
-        styles={items}
-        willEnter={this.willEnter}
-        willLeave={this.willLeave}
-      >
-        {interpolatedStyles =>
-          <div className='modal-root' ref={this.setRef}>
-            {interpolatedStyles.map(({ key, data: { type, props }, style }) => (
-              <div key={key} style={{ pointerEvents: visible ? 'auto' : 'none' }}>
-                <div role='presentation' className='modal-root__overlay' style={{ opacity: style.opacity }} onClick={onClose} />
-                <div role='dialog' className='modal-root__container' style={{ opacity: style.opacity, transform: `translateZ(0px) scale(${style.scale})` }}>
-                  <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
-                    {(SpecificComponent) => <SpecificComponent {...props} onClose={onClose} />}
-                  </BundleContainer>
-                </div>
-              </div>
-            ))}
+      <div className='modal-root' ref={this.setRef} style={{ opacity: revealed ? 1 : 0 }}>
+        <div style={{ pointerEvents: visible ? 'auto' : 'none' }}>
+          <div role='presentation' className='modal-root__overlay' onClick={onClose} />
+          <div role='dialog' className='modal-root__container'>
+            {
+              visible ?
+                (<BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
+                  {(SpecificComponent) => <SpecificComponent {...props} onClose={onClose} />}
+                </BundleContainer>) :
+              null
+            }
           </div>
-        }
-      </TransitionMotion>
+        </div>
+      </div>
     );
   }
 

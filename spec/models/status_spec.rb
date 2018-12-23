@@ -173,6 +173,22 @@ RSpec.describe Status, type: :model do
     end
   end
 
+  describe '.not_in_filtered_languages' do
+    context 'for accounts with language filters' do
+      let(:user) { Fabricate(:user, filtered_languages: ['en']) }
+
+      it 'does not include statuses in filtered languages' do
+        status = Fabricate(:status, language: 'en')
+        expect(Status.not_in_filtered_languages(user.account)).not_to include status
+      end
+
+      it 'includes status with unknown language' do
+        status = Fabricate(:status, language: nil)
+        expect(Status.not_in_filtered_languages(user.account)).to include status
+      end
+    end
+  end
+
   describe '.as_home_timeline' do
     let(:account) { Fabricate(:account) }
     let(:followed) { Fabricate(:account) }

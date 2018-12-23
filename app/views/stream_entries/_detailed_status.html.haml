@@ -15,16 +15,16 @@
   .status__content.p-name.emojify<
     - if status.spoiler_text?
       %p{ style: 'margin-bottom: 0' }<
-        %span.p-summary> #{status.spoiler_text}&nbsp;
+        %span.p-summary> #{Formatter.instance.format_spoiler(status)}&nbsp;
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
-    .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
+    .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status, custom_emojify: true)
 
   - if !status.media_attachments.empty?
     - if status.media_attachments.first.video?
       - video = status.media_attachments.first
       %div{ data: { component: 'Video', props: Oj.dump(src: video.file.url(:original), preview: video.file.url(:small), sensitive: status.sensitive?, width: 670, height: 380) }}
     - else
-      %div{ data: { component: 'MediaGallery', props: Oj.dump(height: 380, 'autoPlayGif': current_account&.user&.setting_auto_play_gif, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }) }}
+      %div{ data: { component: 'MediaGallery', props: Oj.dump(height: 380, sensitive: status.sensitive?, standalone: true, 'autoPlayGif': current_account&.user&.setting_auto_play_gif, 'reduceMotion': current_account&.user&.setting_reduce_motion, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }) }}
   - elsif status.preview_cards.first
     %div{ data: { component: 'Card', props: Oj.dump('maxDescription': 160, card: ActiveModelSerializers::SerializableResource.new(status.preview_cards.first, serializer: REST::PreviewCardSerializer).as_json) }}
 
@@ -39,9 +39,16 @@
       - else
         = link_to status.application.name, status.application.website, class: 'detailed-status__application', target: '_blank', rel: 'noopener'
       ·
-    %span<
-      = fa_icon('retweet')
-      %span= status.reblogs_count
+    - if status.direct_visibility?
+      %span<
+        = fa_icon('envelope')
+    - elsif status.private_visibility?
+      %span<
+        = fa_icon('lock')
+    - else
+      %span<
+        = fa_icon('retweet')
+        %span= status.reblogs_count
     ·
     %span<
       = fa_icon('star')

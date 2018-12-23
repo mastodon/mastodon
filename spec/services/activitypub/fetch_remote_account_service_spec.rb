@@ -16,7 +16,7 @@ RSpec.describe ActivityPub::FetchRemoteAccountService do
   end
 
   describe '#call' do
-    let(:account) { subject.call('https://example.com/alice') }
+    let(:account) { subject.call('https://example.com/alice', id: true) }
 
     shared_examples 'sets profile data' do
       it 'returns an account' do

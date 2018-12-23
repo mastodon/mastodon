@@ -1,0 +1,67 @@
+---
+sv:
+  simple_form:
+    hints:
+      defaults:
+        avatar: Högst 2 MB. Kommer nedskalas till 120x120px
+        digest: Skickas efter en lång period av inaktivitet med en sammanfattning av anmärkningar du har fått under din frånvaro
+        display_name:
+          one: <span class="name-counter">1</span> tecken kvar
+          other: <span class="name-counter">%{count}</span> tecken kvar
+        header: NG, GIF eller JPG. Högst 2 MB. Kommer nedskalas till 700x335px
+        locked: Kräver dig att manuellt godkänna följare
+        note:
+          one: <span class="note-counter">1</span> tecken kvar
+          other: <span class="note-counter">%{count}</span> tecken kvar
+        setting_noindex: Påverkar din offentliga profil och status sidor
+        setting_theme: Påverkar hur Mastodon ser ut när du är inloggad från vilken enhet som helst.
+      imports:
+        data: CSV-fil som exporteras från en annan Mastodon-instans
+      sessions:
+        otp: Ange tvåfaktorkoden från din telefon eller använd någon av dina återställningskoder.
+      user:
+        filtered_languages: Kontrollerade språk filtreras från offentliga tidslinjer för dig
+    labels:
+      defaults:
+        avatar: Avatar
+        confirm_new_password: Bekräfta nytt lösenord
+        confirm_password: Bekräfta lösenord
+        current_password: Nuvarande lösenord
+        data: Data
+        display_name: Visningsnamn
+        email: E-postadress
+        filtered_languages: Filtrerade språk
+        header: Rubrik
+        locale: Språk
+        locked: Lås konto
+        new_password: Nytt lösenord
+        note: Biografi
+        otp_attempt: Tvåfaktorkod
+        password: Lösenord
+        setting_auto_play_gif: Auto-play animerade GIF-filer
+        setting_boost_modal: Visa bekräftelsedialog innan du knuffar
+        setting_default_privacy: Postintegritet
+        setting_default_sensitive: Markera alltid media som känsligt
+        setting_delete_modal: Visa bekräftelse innan du raderar en toot
+        setting_noindex: Uteslutning av sökmotorindexering
+        setting_system_font_ui: Använd systemets standardfont
+        setting_theme: Sidans tema
+        setting_unfollow_modal: Visa bekräftelse innan du slutar följa någon
+        severity: Strikthet
+        type: Importtyp
+        username: Användarnamn
+      interactions:
+        must_be_follower: Blockera meddelanden från icke-följare
+        must_be_following: Blockera meddelanden från personer du inte följer
+      notification_emails:
+        digest: Skicka sammandrag via e-post
+        favourite: Skicka e-post när någon favoriterar din status
+        follow: Skicka e-post när någon följer dig
+        follow_request: Skicka e-post när någon begär att följa dig
+        mention: Skicka e-post när någon nämner dig
+        reblog: Skicka e-post när någon knuffar din status
+    'no': Nej
+    required:
+      mark: "*"
+      text: obligatorisk
+    'yes': Ja

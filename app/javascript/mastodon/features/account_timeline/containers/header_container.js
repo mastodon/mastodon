@@ -27,7 +27,7 @@ const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();
 
   const mapStateToProps = (state, { accountId }) => ({
-    account: getAccount(state, Number(accountId)),
+    account: getAccount(state, accountId),
     me: state.getIn(['meta', 'me']),
     unfollowModal: state.getIn(['meta', 'unfollow_modal']),
   });

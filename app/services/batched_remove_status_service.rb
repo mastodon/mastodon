@@ -18,7 +18,7 @@ class BatchedRemoveStatusService < BaseService
     @stream_entry_batches  = []
     @salmon_batches        = []
     @activity_json_batches = []
-    @json_payloads         = statuses.map { |s| [s.id, Oj.dump(event: :delete, payload: s.id)] }.to_h
+    @json_payloads         = statuses.map { |s| [s.id, Oj.dump(event: :delete, payload: s.id.to_s)] }.to_h
     @activity_json         = {}
     @activity_xml          = {}
 
@@ -29,7 +29,7 @@ class BatchedRemoveStatusService < BaseService
     statuses.group_by(&:account_id).each do |_, account_statuses|
       account = account_statuses.first.account
 
-      unpush_from_home_timelines(account_statuses)
+      unpush_from_home_timelines(account, account_statuses)
 
       if account.local?
         batch_stream_entries(account, account_statuses)
@@ -72,18 +72,21 @@ class BatchedRemoveStatusService < BaseService
     end
   end
 
-  def unpush_from_home_timelines(statuses)
-    account    = statuses.first.account
-    recipients = account.followers.local.pluck(:id)
+  def unpush_from_home_timelines(account, statuses)
+    recipients = account.followers.local.to_a
 
-    recipients << account.id if account.local?
+    recipients << account if account.local?
 
-    recipients.each do |follower_id|
-      unpush(follower_id, statuses)
+    recipients.each do |follower|
+      statuses.each do |status|
+        FeedManager.instance.unpush(:home, follower, status)
+      end
     end
   end
 
   def unpush_from_public_timelines(status)
+    return unless status.public_visibility?
+
     payload = @json_payloads[status.id]
 
     redis.pipelined do
@@ -104,28 +107,6 @@ class BatchedRemoveStatusService < BaseService
 
     recipients.each do |recipient_id|
       @salmon_batches << [build_xml(status.stream_entry), status.account_id, recipient_id]
-    end
-  end
-
-  def unpush(follower_id, statuses)
-    key = FeedManager.instance.key(:home, follower_id)
-
-    originals = statuses.reject(&:reblog?)
-    reblogs   = statuses.select(&:reblog?)
-
-    # Quickly remove all originals
-    redis.pipelined do
-      originals.each do |status|
-        redis.zremrangebyscore(key, status.id, status.id)
-        redis.publish("timeline:#{follower_id}", @json_payloads[status.id])
-      end
-    end
-
-    # For reblogs, re-add original status to feed, unless the reblog
-    # was not in the feed in the first place
-    reblogs.each do |status|
-      redis.zadd(key, status.reblog_of_id, status.reblog_of_id) unless redis.zscore(key, status.reblog_of_id).nil?
-      redis.publish("timeline:#{follower_id}", @json_payloads[status.id])
     end
   end
 

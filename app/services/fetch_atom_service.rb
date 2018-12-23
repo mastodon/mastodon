@@ -41,10 +41,11 @@ class FetchAtomService < BaseService
     return nil if @response.code != 200
 
     if @response.mime_type == 'application/atom+xml'
-      [@url, @response.to_s, :ostatus]
+      [@url, { prefetched_body: @response.to_s }, :ostatus]
     elsif ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(@response.mime_type)
-      if supported_activity?(@response.to_s)
-        [@url, @response.to_s, :activitypub]
+      json = body_to_json(@response.to_s)
+      if supported_context?(json) && json['type'] == 'Person' && json['inbox'].present?
+        [json['id'], { prefetched_body: @response.to_s, id: true }, :activitypub]
       else
         @unsupported_activity = true
         nil
@@ -78,11 +79,5 @@ class FetchAtomService < BaseService
     result ||= process(atom_link.href, terminal: true) unless atom_link.nil?
 
     result
-  end
-
-  def supported_activity?(body)
-    json = body_to_json(body)
-    return false unless supported_context?(json)
-    json['type'] == 'Person' ? json['inbox'].present? : true
   end
 end

@@ -1,6 +1,7 @@
 ---
 pt-BR:
   about:
+    about_hashtag_html: Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Voce pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.
     about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos e software gratuito e de código aberto. É descentralizada como e-mail.
     about_this: Sobre
     closed_registrations: Cadastros estão atualmente fechados nesta instância. No entanto! Você pode procurar uma instância diferente na qual possa criar uma conta e acessar a mesma rede por lá.
@@ -10,9 +11,9 @@ pt-BR:
     description_headline: O que é %{domain}?
     domain_count_after: outras instâncias
     domain_count_before: Conectado a
-    extended_description_html:
-      <h3>Um bom lugar para as regras</h3>
-      <p>A descrição extendida ainda não foi definida.</p>
+    extended_description_html: |
+      <h3>Um bom lugar para regras</h3>
+      <p>A descrição da instância ainda não foi feita.</p>
     features:
       humane_approach_body: Aprendendo com erros de outras redes, Mastodon tem como objetivo fazer decisões éticas de design para combater o desuso de redes sociais.
       humane_approach_title: Uma abordagem mais humana
@@ -49,6 +50,13 @@ pt-BR:
       admin: Administrador
     unfollow: Deixar de seguir
   admin:
+    account_moderation_notes:
+      account: Moderador
+      create: Criar
+      created_at: Data
+      created_msg: Nota de moderação criada com sucesso!
+      delete: Excluir
+      destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
       are_you_sure: Você tem certeza?
       confirm: Confirmar
@@ -58,8 +66,9 @@ pt-BR:
       domain: Domínio
       edit: Editar
       email: E-mail
-      feed_url: Feed URL
+      feed_url: URL do feed
       followers: Seguidores
+      followers_url: URL de seguidores
       follows: Segue
       inbox_url: Inbox URL
       ip: IP
@@ -74,6 +83,7 @@ pt-BR:
         silenced: Silenciados
         suspended: Suspensos
         title: Moderação
+      moderation_notes: Notas de moderação
       most_recent_activity: Atividade mais recente
       most_recent_ip: IP mais recente
       not_subscribed: Não inscrito
@@ -81,7 +91,7 @@ pt-BR:
         alphabetic: Alfabética
         most_recent: Mais recente
         title: Ordem
-      outbox_url: Outbox URL
+      outbox_url: URL da Outbox
       perform_full_suspension: Efetue suspensão total
       profile_url: URL do perfil
       protocol: Protocolo
@@ -93,6 +103,7 @@ pt-BR:
       resubscribe: Reinscrever-se
       salmon_url: Salmon URL
       search: Pesquisar
+      shared_inbox_url: URL da Inbox Compartilhada
       show:
         created_reports: Relatórios criados por esta conta
         report: relatórios
@@ -106,6 +117,25 @@ pt-BR:
       unsubscribe: Desinscrever-se
       username: Nome de usuário
       web: Web
+    custom_emojis:
+      copied_msg: Cópia local do emoji criada com sucesso!
+      copy: Copiar
+      copy_failed_msg: Não foi possível criar uma cópia local deste emoji
+      created_msg: Emoji criado com sucesso!
+      delete: Excluir
+      destroyed_msg: Emoji deletado com sucesso!
+      disable: Desabilitar
+      disabled_msg: Emoji desabilitado com sucesso!
+      emoji: Emoji
+      enable: Habilitar
+      enabled_msg: Emoji habilitado com sucesso!
+      image_hint: PNG de até 50KB
+      new:
+        title: Adicionar novo emoji customizado
+      shortcode: Atalho
+      shortcode_hint: Pelo menos 2 caracteres, apenas caracteres alfanuméricos e underscores
+      title: Emojis customizados
+      upload: Enviar
     domain_blocks:
       add_new: Adicionar novo
       created_msg: Bloqueio de domínio está sendo processado
@@ -115,7 +145,7 @@ pt-BR:
         create: Criar bloqueio
         hint: O bloqueio de domínio não prevenirá a criação de entradas de contas na base de dados, mas vai reatroativa e automaticamente aplicar métodos específicos de moderação nestas contas.
         severity:
-          desc_html: "O <strong>Silêncio</strong> fará com que as postagens da conta fiquem invisíveis para qualquer um que não a esteja seguindo. A <strong>Suspensão</strong> removerá todo o conteúdo da conta, mídia e dados de perfil. Use <strong>Nenhum</strong> se você apenas deseja rejeitar arquivos de mídia."
+          desc_html: O <strong>Silêncio</strong> fará com que as postagens da conta fiquem invisíveis para qualquer um que não a esteja seguindo. A <strong>Suspensão</strong> removerá todo o conteúdo da conta, mídia e dados de perfil. Use <strong>Nenhum</strong> se você apenas deseja rejeitar arquivos de mídia.
           noop: Nenhum
           silence: Silêncio
           suspend: Suspensão
@@ -138,9 +168,21 @@ pt-BR:
         undo: Retirar
       title: Bloqueios de domínio
       undo: Retirar
+    email_domain_blocks:
+      add_new: Adicionar novo
+      created_msg: Bloqueio de domínio de e-mail criado com sucesso
+      delete: Excluir
+      destroyed_msg: Bloqueio de domínio de e-mail excluído com sucesso
+      domain: Domínio
+      new:
+        create: Criar bloqueio
+        title: Novo bloqueio de domínio de e-mail
+      title: Bloqueio de Domínio de E-mail
     instances:
       account_count: Contas conhecidas
       domain_name: Domínio
+      reset: Resetar
+      search: Buscar
       title: Instâncias conhecidas
     reports:
       action_taken_by: Ação realizada por
@@ -193,6 +235,9 @@ pt-BR:
         desc_html: Você pode escrever a sua própria política de privacidade, termos de serviço, entre outras coisas.Você pode usar tags HTML.
         title: Termos de serviço customizados
       site_title: Nome da instância
+      thumbnail:
+        desc_html: Usada para prévias via OpenGraph e API. Recomenda-se 1200x630px
+        title: Thumbnail da instância
       timeline_preview:
         desc_html: Exibir a timeline pública na página inicial
         title: Prévia da timeline
@@ -201,8 +246,8 @@ pt-BR:
       back_to_account: Voltar para página da conta
       batch:
         delete: Deletar
-        nsfw_off: NSFW OFF
-        nsfw_on: NSFW ON
+        nsfw_off: NSFW ATIVADO
+        nsfw_on: NSFW DESATIVADO
       execute: Executar
       failed_to_execute: Falha em executar
       media:
@@ -226,7 +271,7 @@ pt-BR:
       subject: Nova denúncia sobre %{instance} (#%{id})
   application_mailer:
     salutation: "%{name},"
-    settings: 'Change e-mail preferences: %{link}'
+    settings: 'Mudar e-mail de preferência: %{link}'
     signature: Notificações do Mastodon de %{instance}
     view: 'Visualizar:'
   applications:
@@ -291,7 +336,10 @@ pt-BR:
       content: A verificação de segurança falhou. Você desativou o uso de cookies?
       title: Falha na verificação de segurança
     '429': Muitas requisições
-    noscript_html: Para usar o aplicativo web do Mastodon, por favor ative o JavaScript. Alternativamente, experimente um dos <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apps nativos</a> para o Mastodon para a sua plataforma.
+    '500':
+      content: Desculpe, algo deu errado.
+      title: Esta página não está certa
+    noscript_html: Para usar o aplicativo web do Mastodon, por favor ative o JavaScript. Ou, se quiser, experimente um dos <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apps nativos</a> para o Mastodon em sua plataforma.
   exports:
     blocks: Você bloqueou
     csv: CSV
@@ -371,6 +419,11 @@ pt-BR:
     next: Próximo
     prev: Anterior
     truncate: "&hellip;"
+  preferences:
+    languages: Idiomas
+    other: Outro
+    publishing: Publicação
+    web: Web
   push_notifications:
     favourite:
       title: "%{name} favoritou a sua postagem"
@@ -422,7 +475,7 @@ pt-BR:
       ios: iOS
       linux: Linux
       mac: Mac
-      other: unknown platform
+      other: Plataforma desconhecida
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -438,6 +491,7 @@ pt-BR:
     export: Exportar dados
     followers: Seguidores autorizados
     import: Importar
+    notifications: Notificações
     preferences: Preferências
     settings: Configurações
     two_factor_authentication: Autenticação em dois passos
@@ -446,6 +500,7 @@ pt-BR:
     open_in_web: Abrir na web
     over_character_limit: limite de caracteres de %{max} excedido
     pin_errors:
+      limit: Muitos toots fixados
       ownership: Toots de outras pessoas não podem ser fixados
       private: Toot não-público não pode ser fixado
       reblog: Um compartilhamento não pode ser fixado
@@ -532,6 +587,8 @@ pt-BR:
 
       <p>Originalmente adaptado da <a href="https://github.com/discourse/discourse">política de privacidade do Discourse</a>.</p>
     title: "%{instance} Termos de Serviço e Política de Privacidade"
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

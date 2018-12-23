@@ -6,7 +6,7 @@ oc:
         name: Nom
         redirect_uri: URL de redireccion
         scopes: Encastres
-        website: Aplicacion web
+        website: Site de l’aplicacion
     errors:
       models:
         doorkeeper/application:
@@ -51,7 +51,7 @@ oc:
         callback_urls: urls de rapèls
         scopes: Encastres
         secret: Secret
-        title: 'Aplicacion : %{name}'
+        title: Aplicacion : %{name}
     authorizations:
       buttons:
         authorize: Autorizar
@@ -63,7 +63,7 @@ oc:
         prompt: L’aplicacion %{client_name} demanda l’accès al vòstre compte.
         title: Cal l’autorizacion
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: Copiatz lo còdi d’autorizacion e pegatz-lo dins l’aplicacion.
     authorized_applications:
       buttons:
         revoke: Revocar
