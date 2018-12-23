@@ -1,0 +1,29 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', integrity: true, async: true, crossorigin: 'anonymous'
+
+- content_for :page_title do
+  = t('admin.followers.title', acct: @account.acct)
+
+.filters
+  .filter-subset
+    %strong= t('admin.accounts.location.title')
+    %ul
+      %li= link_to t('admin.accounts.location.local'), admin_account_followers_path(@account.id), class: 'selected'
+  .back-link{ style: 'flex: 1 1 auto; text-align: right' }
+    = link_to admin_account_path(@account.id) do
+      %i.fa.fa-chevron-left.fa-fw
+      = t('admin.followers.back_to_account')
+
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('admin.accounts.username')
+        %th= t('admin.accounts.role')
+        %th= t('admin.accounts.most_recent_ip')
+        %th= t('admin.accounts.most_recent_activity')
+        %th
+    %tbody
+      = render partial: 'admin/accounts/account', collection: @followers.map{|a| a.account}
+
+= paginate @followers

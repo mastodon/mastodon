@@ -89,7 +89,9 @@
         %td= number_to_human @account.following_count
       %tr
         %th= t('admin.accounts.followers')
-        %td= number_to_human @account.followers_count
+        %td
+          = number_to_human @account.followers_count
+          = link_to t('admin.accounts.followers_local', local: number_to_human(@account.local_followers_count)), admin_account_followers_path(@account.id)
       %tr
         %th= t('admin.accounts.statuses')
         %td= link_to number_to_human(@account.statuses_count), admin_account_statuses_path(@account.id)

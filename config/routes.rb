@@ -191,6 +191,7 @@ Rails.application.routes.draw do
       resource :reset, only: [:create]
       resource :action, only: [:new, :create], controller: 'account_actions'
       resources :statuses, only: [:index, :create, :update, :destroy]
+      resources :followers, only: [:index]
 
       resource :confirmation, only: [:create] do
         collection do
