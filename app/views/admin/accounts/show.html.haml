@@ -64,7 +64,7 @@
               = table_link_to 'unlock', t('admin.accounts.enable'), enable_admin_account_path(@account.id), method: :post if can?(:enable, @account.user)
             - else
               = t('admin.accounts.enabled')
-              = table_link_to 'lock', t('admin.accounts.disable'), disable_admin_account_path(@account.id), method: :post if can?(:disable, @account.user)
+              = table_link_to 'lock', t('admin.accounts.disable'), new_admin_account_action_path(@account.id, type: 'disable') if can?(:disable, @account.user)
         %tr
           %th= t('admin.accounts.most_recent_ip')
           %td= @account.user_current_sign_in_ip
@@ -119,18 +119,18 @@
 
   %div{ style: 'float: left' }
     - if @account.silenced?
-      = link_to t('admin.accounts.undo_silenced'), admin_account_silence_path(@account.id), method: :delete, class: 'button' if can?(:unsilence, @account)
+      = link_to t('admin.accounts.undo_silenced'), unsilence_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unsilence, @account)
     - else
-      = link_to t('admin.accounts.silence'), admin_account_silence_path(@account.id), method: :post, class: 'button button--destructive' if can?(:silence, @account)
+      = link_to t('admin.accounts.silence'), new_admin_account_action_path(@account.id, type: 'silence'), class: 'button button--destructive' if can?(:silence, @account)
 
     - if @account.local?
       - unless @account.user_confirmed?
         = link_to t('admin.accounts.confirm'), admin_account_confirmation_path(@account.id), method: :post, class: 'button' if can?(:confirm, @account.user)
 
     - if @account.suspended?
-      = link_to t('admin.accounts.undo_suspension'), admin_account_suspension_path(@account.id), method: :delete, class: 'button' if can?(:unsuspend, @account)
+      = link_to t('admin.accounts.undo_suspension'), unsuspend_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unsuspend, @account)
     - else
-      = link_to t('admin.accounts.perform_full_suspension'), new_admin_account_suspension_path(@account.id), class: 'button button--destructive' if can?(:suspend, @account)
+      = link_to t('admin.accounts.perform_full_suspension'), new_admin_account_action_path(@account.id, type: 'suspend'), class: 'button button--destructive' if can?(:suspend, @account)
 
 - if !@account.local? && @account.hub_url.present?
   %hr.spacer/
@@ -181,6 +181,10 @@
         %tr
           %th= t('admin.accounts.followers_url')
           %td= link_to @account.followers_url, @account.followers_url
+
+%hr.spacer/
+
+= render @warnings
 
 %hr.spacer/
 

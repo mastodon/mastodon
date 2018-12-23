@@ -57,7 +57,7 @@ cs:
     moved_html: 'Účet %{name} byl přesunut na %{new_profile_link}:'
     network_hidden: Tato informace není k dispozici
     nothing_here: Tady nic není!
-    people_followed_by: Lidé, které %{name} sleduje
+    people_followed_by: Lidé, které sleduje %{name}
     people_who_follow: Lidé, kteří sledují uživatele %{name}
     pin_errors:
       following: Musíte již sledovat osobu, kterou chcete podpořit
@@ -107,7 +107,7 @@ cs:
       feed_url: URL proudu
       followers: Sledovatelé
       followers_url: URL sledovatelů
-      follows: Sleduje
+      follows: Sledovaní
       inbox_url: URL přijatých zpráv
       ip: IP
       location:
@@ -233,6 +233,7 @@ cs:
       config: Konfigurace
       feature_deletions: Smazání účtů
       feature_invites: Pozvánky
+      feature_profile_directory: Adresář profilů
       feature_registrations: Registrace
       feature_relay: Federovací most
       features: Vlastnosti
@@ -362,7 +363,7 @@ cs:
         title: Publikovat hromadné statistiky o uživatelské aktivitě
       bootstrap_timeline_accounts:
         desc_html: Je-li uživatelskch jmen více, oddělujte je čárkami. Lze zadat pouze místní a odemknuté účty. Je-li tohle prázdné, jsou výchozí hodnotou všichni místní administrátoři.
-        title: Výchozí sledování pro nové uživatele
+        title: Výchozí sledovaní pro nové uživatele
       contact_information:
         email: Pracovní e-mail
         username: Uživatelské jméno kontaktu
@@ -381,6 +382,9 @@ cs:
       preview_sensitive_media:
         desc_html: Náhledy odkazů na jiných stránkách budou zobrazeny i pokud jsou media označena jako citlivá
         title: Zobrazovat v náhledech OpenGraph i citlivá média
+      profile_directory:
+        desc_html: Dovolit uživatelům být objevitelní
+        title: Povolit adresář profilů
       registrations:
         closed_message:
           desc_html: Zobrazí se na hlavní stránce, jsou-li registrace uzavřeny. Můžete použít i HTML značky
@@ -392,7 +396,7 @@ cs:
           disabled: Nikdo
           title: Povolit pozvánky od
         open:
-          desc_html: Povolit každému vytvořit si účet
+          desc_html: Dovolit každému vytvořit si účet
           title: Zpřístupnit registraci
       show_known_fediverse_at_about_page:
         desc_html: Je-li toto zapnuto, zobrazí se v náhledu tooty ze všech známých serverů na fediverse. Jinak budou zobrazeny pouze místní tooty.
@@ -440,12 +444,6 @@ cs:
       last_delivery: Poslední doručení
       title: WebSub
       topic: Téma
-    suspensions:
-      bad_acct_msg: Hodnota pro potvrzení neodpovídá. Suspendujete správný účet?
-      hint_html: 'Pro potvrzení suspenzace účtu prosím zadejte do pole níže %{value}:'
-      proceed: Pokračovat
-      title: Suspendovat účet %{acct}
-      warning_html: 'Suspenzace tohoto účtu <strong>nenávratně</strong> smaže z tohoto účtu data, včetně:'
     tags:
       accounts: Účty
       hidden: Skryté
@@ -605,7 +603,7 @@ cs:
     validation_errors:
       few: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyby níže
       one: Něco ještě není úplně v pořádku! Prosím zkontrolujte chybu níže
-      other: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
+      other: Něco není úplně v pořádku! Prosím zkontrolujte %{count} pochybení níže
   imports:
     preface: Můžete importovat data, která jste exportoval/a z jiné instance, jako například seznam lidí, které sledujete či blokujete.
     success: Vaše data byla úspěšně nahrána a nyní budou zpracována v daný čas
@@ -660,7 +658,7 @@ cs:
       new_followers_summary:
         few: Navíc jste získal/a %{count} nové sledovatele, zatímco jste byl/a pryč! Hurá!
         one: Navíc jste získal/a jednoho nového sledovatele, zatímco jste byl/a pryč! Hurá!
-        other: Navíc jste získal/a %{count} nových sledovatelů, zatímco jste byl/a pryč! Hurá!
+        other: Taktéž jste získal/a %{count} nových sledovatelů, zatímco jste byl/a pryč! Vynikající!
       subject:
         few: "%{count} nová oznámení od vaší poslední návštěvy \U0001F418"
         one: "1 nové oznámení od vaší poslední návštěvy \U0001F418"
@@ -825,7 +823,7 @@ cs:
       <ul>
         <li><em>Základní informace o účtu</em>: Pokud se na tomto serveru zaregistrujete, můžeme vás požádat o zadání uživatelského jména, e-mailové adresy a hesla. Můžete také zadat dodatečné profilové informace, jako například zobrazované jméno a krátký životopis, a nahrát si profilovou fotografii a hlavičkový obrázek. Uživatelské i zobrazované jméno, životopis, profilová fotografie a hlavičkový obrázek jsou vždy uvedeny veřejně.</li>
         <li><em>Příspěvky, sledovatelé a další veřejné informace</em>: Seznam lidí, které sledujete, je uveden veřejně, totéž platí i pro vaše sledovatele. Když sem nahrajete zprávu, bude uloženo datum a čas, společně s aplikací, ze které jste zprávu odeslali. Zprávy mohou obsahovat mediální přílohy, jako jsou obrázky a videa. Veřejné a neuvedené příspěvky jsou dostupné veřejně. Pokud na vašem profilu uvedete příspěvek, je to také veřejně dostupná informace. Vaše příspěvky jsou doručeny vašim sledovatelům, což v některých případech znamená, že budou doručeny na různé servery, na kterých budou ukládány kopie. Pokud příspěvky smažete, bude tohle taktéž doručeno vašim sledovatelům. Akce znovusdílení nebo oblíbení jiného příspěvku je vždy veřejná.</li>
-        <li><em>Příspěvky přímé a pouze pro sledovatele</em>: Všechny příspěvky jsou uloženy a zpracovány na serveru. Příspěvky pouze pro sledovatele jsou doručeny vašim sledovatelům a uživateům v nich zmíněných a přímé příspěvky jsou doručeny pouze uživatelům v nich zmíněných. V některých případech tohle znamená, že budou doručeny na různé servery, na kterých budou ukládány kopie. Snažíme se omezit přístup k těmto příspěvkům pouze na autorizované uživatele, ovšem jiné servery tak nemusejí učinit. Proto je důležité posoudit servery, ke kterým vaši sledovatelé patří. V nastavení si můžete zapnout volbu pro manuální schvalování či odmítnutí nových sledovatelů. <em>Prosím mějte na paměti, že operátoři tohoto serveru a kteréhokoliv přijímacího serveru mohou tyto zprávy vidět</em> a příjemci mohou vytvořit jejich snímek, zkopírovat je, nebo je jinak sdílet. <em>Nesdílejte přes Mastodon jakékoliv nebezpečné informace.</em></li>
+        <li><em>Příspěvky přímé a pouze pro sledovatele</em>: Všechny příspěvky jsou uloženy a zpracovány na serveru. Příspěvky pouze pro sledovatele jsou doručeny vašim sledovatelům a uživatelům v nich zmíněným a přímé příspěvky jsou doručeny pouze uživatelům v nich zmíněným. V některých případech tohle znamená, že budou doručeny na různé servery, na kterých budou ukládány kopie. Snažíme se omezit přístup k těmto příspěvkům pouze na autorizované uživatele, ovšem jiné servery tak nemusejí učinit. Proto je důležité posoudit servery, ke kterým vaši sledovatelé patří. V nastavení si můžete zapnout volbu pro manuální schvalování či odmítnutí nových sledovatelů. <em>Prosím mějte na paměti, že operátoři tohoto serveru a kteréhokoliv přijímacího serveru mohou tyto zprávy vidět</em> a příjemci mohou vytvořit jejich snímek, zkopírovat je, nebo je jinak sdílet. <em>Nesdílejte přes Mastodon jakékoliv nebezpečné informace.</em></li>
         <li><em>IP adresy a další metadata</em>: Když se přihlásíte, zaznamenáváme IP adresu, ze které se přihlašujete, jakožto i název vašeho webového prohlížeče. Všechny vaše webové relace jsou v nastavení přístupné k vašemu posouzení a odvolání. Nejpozdější IP adresa použita je uložena maximálně do 12 měsíců. Můžeme také uchovávat serverové záznamy, které obsahují IP adresy každého požadavku odeslaného na náš server.</li>
       </ul>
 
@@ -940,7 +938,6 @@ cs:
       review_preferences_action: Změnit nastavení
       review_preferences_step: Nezapomeňte si nastavit své volby, například jaké e-maily chcete přijímat či jak soukromé mají být vaše příspěvky ve výchozím stavu. Nemáte-li epilepsii, můžete si nastavit automatické přehrávání obrázků GIF.
       subject: Vítejte na Mastodonu
-      tip_bridge_html: Pokud přicházíte z Twitteru, můžete najít vaše přátele na Mastodonu pomocí <a href="%{bridge_url}">mostové aplikace</a>. Funguje ovšem pouze, pokud ji oni také někdy použili!
       tip_federated_timeline: Federovaná časová osa je náhled celé sítě Mastodon. Zahrnuje ovšem pouze lidi, které sledují vaši sousedé, takže není úplná.
       tip_following: Administrátora/y serveru sledujete automaticky. Chcete-li najít další zajímavé lidi, podívejte se na místní a federované časové osy.
       tip_local_timeline: Místní časová osa je náhled lidí na %{instance}. Toto jsou vaši nejbližší sousedé!

@@ -229,6 +229,7 @@ gl:
       config: Axustes
       feature_deletions: Borrado de contas
       feature_invites: Ligazóns de convite
+      feature_profile_directory: Directorio do perfil
       feature_registrations: Rexistros
       feature_relay: Repetidores de federación
       features: Características
@@ -376,6 +377,9 @@ gl:
       preview_sensitive_media:
         desc_html: A vista previa de ligazóns de outros sitios web mostrará unha imaxe incluso si os medios están marcados como sensibles
         title: Mostrar medios sensibles con vista previa OpenGraph
+      profile_directory:
+        desc_html: Permitir que as usuarias poidan ser descubertas
+        title: Activar o directorio de perfil
       registrations:
         closed_message:
           desc_html: Mostrado na páxina de portada cando o rexistro está pechado. Pode utilizar etiquetas HTML
@@ -435,12 +439,6 @@ gl:
       last_delivery: Última entrega
       title: WebSub
       topic: Asunto
-    suspensions:
-      bad_acct_msg: O valor de confirmación non é coincidente. Está a suspender a conta correcta?
-      hint_html: 'Para confirmar a suspensión da conta introduza %{value} no campo inferior:'
-      proceed: Proceder
-      title: Suspender %{acct}
-      warning_html: 'Ao suspender esta conta eliminará <strong>de xeito irreversible</strong> os datos de esta conta, que inclúe:'
     tags:
       accounts: Contas
       hidden: Ocultas
@@ -926,7 +924,6 @@ gl:
       review_preferences_action: Cambiar preferencias
       review_preferences_step: Lembre establecer as preferencias, tales como qué correos-e lle querería recibir, ou o nivel de intimidade por omisión para as súas mensaxes. Se non lle molestan as imaxes con movemento, pode escoller que os GIF se reproduzan automáticamente.
       subject: Benvida a Mastodon
-      tip_bridge_html: Si chega desde a Twitter, pode atopar aos seus amigos en Mastodon utilizando o <a href="%{bridge_url}">aplicativo ponte</a>. Só funciona si eles tamén utilizan o aplicativo ponte!
       tip_federated_timeline: A liña temporal federada é unha visión ampla da rede Mastodon. Pero so inclúe xente a que segue xente que vostede segue, así que non é completa.
       tip_following: Por omisión vostede segue ao Admin do seu servidor. Para atopar máis xente interesante, mire nas liñas temporais local e federada.
       tip_local_timeline: A liña temporal local é unha ollada xeral sobre a xente en %{instance}. Son as súas veciñas máis próximas!

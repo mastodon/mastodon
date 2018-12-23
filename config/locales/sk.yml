@@ -233,6 +233,7 @@ sk:
       config: Nastavenia
       feature_deletions: Vymazanie účtov
       feature_invites: Pozvánky
+      feature_profile_directory: Katalóg profilov
       feature_registrations: Registrácie
       feature_relay: Federovací mostík
       features: Vymoženosti
@@ -381,6 +382,9 @@ sk:
       preview_sensitive_media:
         desc_html: Náhľad adresy z iných instancií, bude zobrazený aj vtedy, keď sú dané médiá označené ako senzitívne
         title: Ukazuj aj chúlostivé médiá v náhľadoch OpenGraph
+      profile_directory:
+        desc_html: Povoliť užívateľom aby boli nájdení
+        title: Zapni profilový katalóg
       registrations:
         closed_message:
           desc_html: Toto sa zobrazí na hlavnej stránke v prípade že sú registrácie uzavreté. Možno tu použiť aj HTML kód
@@ -440,12 +444,6 @@ sk:
       last_delivery: Posledné doručenie
       title: WebSub
       topic: Téma
-    suspensions:
-      bad_acct_msg: Hodnota pre potvrdenie sa nezhoduje. Si si istý/á že zamrazuješ ten správny účet?
-      hint_html: 'Pre potvrdenie zamrazenia účtu, prosím napíš %{value} do následujúceho políčka:'
-      proceed: Pokračuj
-      title: Zamraziť %{acct}
-      warning_html: 'Zamrazením tohto účtu budú dáta na tomto účte <strong>nenávratne</strong> zmazané, zahŕňajúc:'
     tags:
       accounts: Účty
       hidden: Skryté
@@ -533,7 +531,7 @@ sk:
     warning_html: Iba vymazanie obsahu z tejto konkrétnej instancie je zaručené. Obsah, ktorý bol zdieľaný široko-ďaleko pravdepodobne zanechá nejaké stopy. Servery ktoré sú offline a tie ktoré ignorujú tvoje zmeny teda nezaktualizujú svoje databázy.
     warning_title: Dostupnosť rozšírovaného obsahu
   directories:
-    directory: Databáza profilov
+    directory: Katalóg profilov
     explanation: Pátraj po užívateľoch podľa ich záujmov
     explore_mastodon: Prebádaj %{title}
     people:
@@ -605,10 +603,10 @@ sk:
     validation_errors:
       few: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetky %{count} chyby
       one: Niečo nieje úplne v poriadku! Prosím skontroluj danú chybu
-      other: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetkých %{count} chýb
+      other: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetky %{count} nižšie uvedené pochybenia
   imports:
-    preface: Môžeš importovať dáta ktoré si exportoval/a z iného Mastodon serveru, ako sú napríklad zoznamy ľudí ktorých sleduješ, alebo blokuješ.
-    success: Tvoje dáta boli nahraté úspešne, a budú teraz spracované v danom čase
+    preface: Môžeš nahrať dáta ktoré si exportoval/a z iného Mastodon serveru, ako sú napríklad zoznamy ľudí ktorých sleduješ, alebo blokuješ.
+    success: Tvoje dáta boli nahraté úspešne, a teraz budú spracované v danom čase
     types:
       blocking: Zoznam blokovaných
       following: Zoznam sledovaných
@@ -795,12 +793,12 @@ sk:
       few: 'obsahoval nepovolené hashtagy: %{tags}'
       one: 'obsahoval nepovolený hashtag: %{tags}'
       other: 'obsahoval nepovolené hashtagy: %{tags}'
-    language_detection: Jazyk zisti automaticky
-    open_in_web: Otvor v okne prehliadača
-    over_character_limit: limit počtu %{max} znakov bol presiahnutý
+    language_detection: Zisti automaticky
+    open_in_web: Otvor v okne na webe
+    over_character_limit: limit %{max} znakov bol presiahnutý
     pin_errors:
-      limit: Už ste si pripli ten najvyšší možný počet príspevkov
-      ownership: Nemožno pripnúť príspevok od niekoho iného
+      limit: Už si si pripol ten najvyšší možný počet hlášok
+      ownership: Nieje možné pripnúť hlášku od niekoho iného
       private: Neverejné príspevky nemôžu byť pripnuté
       reblog: Pozdvihnutie sa nedá pripnúť
     show_more: Ukáž viac
@@ -865,7 +863,6 @@ sk:
       review_preferences_action: Zmeniť nastavenia
       review_preferences_step: Daj si záležať na svojích nastaveniach, napríklad že aké emailové notifikácie chceš dostávať, alebo pod aký level súkromia sa tvoje príspevky majú sami automaticky zaradiť. Pokiaľ nemáš malátnosť z pohybu, môžeš si zvoliť aj automatické spúšťanie GIF animácií.
       subject: Vitaj na Mastodone
-      tip_bridge_html: Ak prichádzaš z Twitteru, môžeš svojích priateľov nájsť na Mastodone pomocou tzv. <a href="%{bridge_url}">mostíkovej aplikácie</a>. Ale tá funguje iba ak ju aj oni niekedy použili!
       tip_federated_timeline: Federovaná os zobrazuje sieť Mastodonu až po jej hranice. Ale zahŕňa iba ľúdí ktorých ostatní okolo teba sledujú, takže predsa nieje úplne celistvá.
       tip_following: Správcu servera následuješ automaticky. Môžeš ale nájsť mnoho iných zaujímavých ľudí ak prezrieš tak lokálnu, ako aj globálne federovanú os.
       tip_local_timeline: Miestna časová os je celkový pohľad na aktivitu užívateľov %{instance}. Toto sú tvoji najbližší susedia!
