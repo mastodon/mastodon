@@ -31,6 +31,7 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
 
 const unescapeHTML = (html) => {
   const wrapper = document.createElement('div');
+  html = html.replace(/<br \/>|<br>|\n/, ' ');
   wrapper.innerHTML = html;
   return wrapper.textContent;
 };

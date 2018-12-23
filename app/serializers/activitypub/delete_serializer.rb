@@ -13,7 +13,7 @@ class ActivityPub::DeleteSerializer < ActiveModel::Serializer
     end
 
     def atom_uri
-      ::TagManager.instance.uri_for(object)
+      OStatus::TagManager.instance.uri_for(object)
     end
   end
 

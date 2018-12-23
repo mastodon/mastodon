@@ -4,19 +4,23 @@ nl:
     hints:
       defaults:
         avatar: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 120x120px
-        display_name: Maximaal 30 tekens
+        digest: Wordt na een lange periode van inactiviteit verzonden, met een samenvatting van vermeldingen tijdens je afwezigheid.
+        display_name:
+          one: <span class="name-counter">1</span> teken over
+          other: <span class="name-counter">%{count}</span> tekens over
         header: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 700x335px
         locked: Vereist dat je handmatig volgers moet accepteren en stelt de privacy van toots standaard in op alleen volgers
         note:
           one: <span class="note-counter">1</span> teken over
           other: <span class="note-counter">%{count}</span> tekens over
         setting_noindex: Heeft invloed op jouw openbare profiel en toots
+        setting_theme: Heeft invloed op hoe de webapp van Mastodon er uit ziet, op elk apparaat waarmee je inlogt.
       imports:
-        data: CSV-bestand dat op een andere Mastodon-server werd geëxporteerd 
+        data: CSV-bestand dat op een andere Mastodon-server werd geëxporteerd
       sessions:
-        otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcode's.        
+        otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcode's.
       user:
-        filtered_languages: De geselecteerde talen worden uit de lokale en globale tijdlijn verwijderd.        
+        filtered_languages: De geselecteerde talen worden uit de lokale en globale tijdlijn verwijderd.
     labels:
       defaults:
         avatar: Avatar
@@ -40,6 +44,7 @@ nl:
         setting_default_sensitive: Media altijd als gevoelig markeren
         setting_delete_modal: Vraag voor het verwijderen van een toot een bevestiging
         setting_noindex: Jouw toots niet door zoekmachines laten indexeren
+        setting_reduce_motion: Langzamere animaties
         setting_system_font_ui: Standaardlettertype van jouw systeem gebruiken
         setting_unfollow_modal: Vraag voor het ontvolgen van iemand een bevestiging
         type: Importtype
@@ -54,8 +59,8 @@ nl:
         follow_request: Verstuur een e-mail wanneer iemand jou wilt volgen
         mention: Verstuur een e-mail wanneer iemand jou vermeld
         reblog: Verstuur een e-mail wanneer iemand jouw toot heeft geboost
-    'no': 'Nee'
+    'no': Nee
     required:
       mark: "*"
       text: vereist
-    'yes': 'Ja'
+    'yes': Ja

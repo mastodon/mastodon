@@ -5,14 +5,18 @@ class ActivityPub::FetchRemoteAccountService < BaseService
 
   # Should be called when uri has already been checked for locality
   # Does a WebFinger roundtrip on each call
-  def call(uri, prefetched_json = nil)
-    @json = body_to_json(prefetched_json) || fetch_resource(uri)
+  def call(uri, id: true, prefetched_body: nil)
+    @json = if prefetched_body.nil?
+              fetch_resource(uri, id)
+            else
+              body_to_json(prefetched_body)
+            end
 
     return unless supported_context? && expected_type?
 
     @uri      = @json['id']
     @username = @json['preferredUsername']
-    @domain   = Addressable::URI.parse(uri).normalized_host
+    @domain   = Addressable::URI.parse(@uri).normalized_host
 
     return unless verified_webfinger?
 
@@ -27,16 +31,14 @@ class ActivityPub::FetchRemoteAccountService < BaseService
     webfinger                            = Goldfinger.finger("acct:#{@username}@#{@domain}")
     confirmed_username, confirmed_domain = split_acct(webfinger.subject)
 
-    return true if @username.casecmp(confirmed_username).zero? && @domain.casecmp(confirmed_domain).zero?
+    return webfinger.link('self')&.href == @uri if @username.casecmp(confirmed_username).zero? && @domain.casecmp(confirmed_domain).zero?
 
     webfinger                            = Goldfinger.finger("acct:#{confirmed_username}@#{confirmed_domain}")
-    confirmed_username, confirmed_domain = split_acct(webfinger.subject)
+    @username, @domain                   = split_acct(webfinger.subject)
     self_reference                       = webfinger.link('self')
 
+    return false unless @username.casecmp(confirmed_username).zero? && @domain.casecmp(confirmed_domain).zero?
     return false if self_reference&.href != @uri
-
-    @username = confirmed_username
-    @domain   = confirmed_domain
 
     true
   rescue Goldfinger::Error

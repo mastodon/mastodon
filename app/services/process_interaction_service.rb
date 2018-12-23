@@ -13,7 +13,7 @@ class ProcessInteractionService < BaseService
     xml = Nokogiri::XML(body)
     xml.encoding = 'utf-8'
 
-    account = author_from_xml(xml.at_xpath('/xmlns:entry', xmlns: TagManager::XMLNS))
+    account = author_from_xml(xml.at_xpath('/xmlns:entry', xmlns: OStatus::TagManager::XMLNS))
 
     return if account.nil? || account.suspended?
 
@@ -54,13 +54,13 @@ class ProcessInteractionService < BaseService
   private
 
   def mentions_account?(xml, account)
-    xml.xpath('/xmlns:entry/xmlns:link[@rel="mentioned"]', xmlns: TagManager::XMLNS).each { |mention_link| return true if [TagManager.instance.uri_for(account), TagManager.instance.url_for(account)].include?(mention_link.attribute('href').value) }
+    xml.xpath('/xmlns:entry/xmlns:link[@rel="mentioned"]', xmlns: OStatus::TagManager::XMLNS).each { |mention_link| return true if [OStatus::TagManager.instance.uri_for(account), OStatus::TagManager.instance.url_for(account)].include?(mention_link.attribute('href').value) }
     false
   end
 
   def verb(xml)
-    raw = xml.at_xpath('//activity:verb', activity: TagManager::AS_XMLNS).content
-    TagManager::VERBS.key(raw)
+    raw = xml.at_xpath('//activity:verb', activity: OStatus::TagManager::AS_XMLNS).content
+    OStatus::TagManager::VERBS.key(raw)
   rescue
     :post
   end
@@ -104,7 +104,7 @@ class ProcessInteractionService < BaseService
   end
 
   def delete_post!(xml, account)
-    status = Status.find(xml.at_xpath('//xmlns:id', xmlns: TagManager::XMLNS).content)
+    status = Status.find(xml.at_xpath('//xmlns:id', xmlns: OStatus::TagManager::XMLNS).content)
 
     return if status.nil?
 
@@ -137,12 +137,12 @@ class ProcessInteractionService < BaseService
 
   def status(xml)
     uri = activity_id(xml)
-    return nil unless TagManager.instance.local_id?(uri)
-    Status.find(TagManager.instance.unique_tag_to_local_id(uri, 'Status'))
+    return nil unless OStatus::TagManager.instance.local_id?(uri)
+    Status.find(OStatus::TagManager.instance.unique_tag_to_local_id(uri, 'Status'))
   end
 
   def activity_id(xml)
-    xml.at_xpath('//activity:object', activity: TagManager::AS_XMLNS).at_xpath('./xmlns:id', xmlns: TagManager::XMLNS).content
+    xml.at_xpath('//activity:object', activity: OStatus::TagManager::AS_XMLNS).at_xpath('./xmlns:id', xmlns: OStatus::TagManager::XMLNS).content
   end
 
   def salmon

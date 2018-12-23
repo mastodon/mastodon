@@ -1,0 +1,10 @@
+%tr
+  %td
+    = simple_format(h(account_moderation_note.content))
+  %td
+    = account_moderation_note.account.acct
+  %td
+    %time.formatted{ datetime: account_moderation_note.created_at.iso8601, title: l(account_moderation_note.created_at) }
+      = l account_moderation_note.created_at
+  %td
+    = link_to t('admin.account_moderation_notes.delete'), admin_account_moderation_note_path(account_moderation_note), method: :delete

@@ -102,12 +102,20 @@ class User < ApplicationRecord
     settings.auto_play_gif
   end
 
+  def setting_reduce_motion
+    settings.reduce_motion
+  end
+
   def setting_system_font_ui
     settings.system_font_ui
   end
 
   def setting_noindex
     settings.noindex
+  end
+
+  def setting_theme
+    settings.theme
   end
 
   def token_for_app(a)

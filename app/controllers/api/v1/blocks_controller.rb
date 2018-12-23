@@ -15,19 +15,17 @@ class Api::V1::BlocksController < Api::BaseController
   private
 
   def load_accounts
-    default_accounts.merge(paginated_blocks).to_a
-  end
-
-  def default_accounts
-    Account.includes(:blocked_by).references(:blocked_by)
+    paginated_blocks.map(&:target_account)
   end
 
   def paginated_blocks
-    Block.where(account: current_account).paginate_by_max_id(
-      limit_param(DEFAULT_ACCOUNTS_LIMIT),
-      params[:max_id],
-      params[:since_id]
-    )
+    @paginated_blocks ||= Block.eager_load(:target_account)
+                               .where(account: current_account)
+                               .paginate_by_max_id(
+                                 limit_param(DEFAULT_ACCOUNTS_LIMIT),
+                                 params[:max_id],
+                                 params[:since_id]
+                               )
   end
 
   def insert_pagination_headers
@@ -41,21 +39,21 @@ class Api::V1::BlocksController < Api::BaseController
   end
 
   def prev_path
-    unless @accounts.empty?
+    unless paginated_blocks.empty?
       api_v1_blocks_url pagination_params(since_id: pagination_since_id)
     end
   end
 
   def pagination_max_id
-    @accounts.last.blocked_by_ids.last
+    paginated_blocks.last.id
   end
 
   def pagination_since_id
-    @accounts.first.blocked_by_ids.first
+    paginated_blocks.first.id
   end
 
   def records_continue?
-    @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
+    paginated_blocks.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
   end
 
   def pagination_params(core_params)

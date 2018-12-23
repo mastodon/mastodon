@@ -4,36 +4,33 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   include JsonLdHelper
 
   # Should be called when uri has already been checked for locality
-  def call(uri, prefetched_json = nil)
-    @json = body_to_json(prefetched_json) || fetch_resource(uri)
+  def call(uri, id: true, prefetched_body: nil)
+    @json = if prefetched_body.nil?
+              fetch_resource(uri, id)
+            else
+              body_to_json(prefetched_body)
+            end
 
-    return unless supported_context?
+    return unless supported_context? && expected_type?
 
-    activity = activity_json
-    actor_id = value_or_id(activity['actor'])
-
-    return unless expected_type?(activity) && trustworthy_attribution?(uri, actor_id)
+    return if actor_id.nil? || !trustworthy_attribution?(@json['id'], actor_id)
 
     actor = ActivityPub::TagManager.instance.uri_to_resource(actor_id, Account)
-    actor = ActivityPub::FetchRemoteAccountService.new.call(actor_id) if actor.nil?
+    actor = ActivityPub::FetchRemoteAccountService.new.call(actor_id, id: true) if actor.nil?
 
     return if actor.suspended?
 
-    ActivityPub::Activity.factory(activity, actor).perform
+    ActivityPub::Activity.factory(activity_json, actor).perform
   end
 
   private
 
   def activity_json
-    if %w(Note Article).include? @json['type']
-      {
-        'type'   => 'Create',
-        'actor'  => first_of_value(@json['attributedTo']),
-        'object' => @json,
-      }
-    else
-      @json
-    end
+    { 'type' => 'Create', 'actor' => actor_id, 'object' => @json }
+  end
+
+  def actor_id
+    first_of_value(@json['attributedTo'])
   end
 
   def trustworthy_attribution?(uri, attributed_to)
@@ -44,7 +41,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
     super(@json)
   end
 
-  def expected_type?(json)
-    %w(Create Announce).include? json['type']
+  def expected_type?
+    %w(Note Article).include? @json['type']
   end
 end

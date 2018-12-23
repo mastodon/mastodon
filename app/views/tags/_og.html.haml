@@ -1,0 +1,6 @@
+= opengraph 'og:site_name', t('about.hosted_on', domain: site_hostname)
+= opengraph 'og:url', tag_url(@tag)
+= opengraph 'og:type', 'website'
+= opengraph 'og:title', "##{@tag.name}"
+= opengraph 'og:description', t('about.about_hashtag_html', hashtag: @tag.name)
+= opengraph 'twitter:card', 'summary'

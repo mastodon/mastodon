@@ -8,10 +8,12 @@ ko:
           one: <span class="name-counter">1</span> 글자 남음
           other: <span class="name-counter">%{count}</span> 글자 남음
         header: PNG, GIF 혹은 JPG. 최대 2MB. 700x335px로 다운스케일 됨
-        locked: 수동으로 팔로워를 승인하고, 기본 Toot 프라이버시 설정을 팔로워 전용으로 변경
+        locked: 수동으로 팔로워를 승인하고, 기본 툿 프라이버시 설정을 팔로워 전용으로 변경
         note:
           one: <span class="note-counter">1</span> 글자 남음
           other: <span class="note-counter">%{count}</span> 글자 남음
+        setting_noindex: 공개 프로필 및 각 툿페이지에 영향을 미칩니다
+        setting_theme: 로그인중인 모든 디바이스에 적용되는 디자인입니다.
       imports:
         data: 다른 마스토돈 인스턴스에서 추출된 CSV 파일
       sessions:
@@ -35,9 +37,14 @@ ko:
         otp_attempt: 2단계 인증 코드
         password: 비밀번호
         setting_auto_play_gif: 애니메이션 GIF를 자동 재생
-        setting_boost_modal: 부스트 전 확인 창을 보여주기
-        setting_default_privacy: Toot 프라이버시
-        setting_delete_modal: Toot 삭제 전 확인 창을 보여주기
+        setting_boost_modal: 부스트 전 확인 창을 표시
+        setting_default_privacy: 툿 프라이버시
+        setting_default_sensitive: 미디어를 언제나 민감한 컨텐츠로 설정
+        setting_delete_modal: 툿 삭제 전 확인 창을 표시
+        setting_noindex: 검색엔진의 인덱싱을 거절
+        setting_system_font_ui: 시스템의 초기 설정 폰트를 사용
+        setting_theme: 사이트 테마
+        setting_unfollow_modal: 언팔로우 전 언팔로우 확인 표시
         severity: 심각도
         type: 불러오기 종류
         username: 유저 이름
@@ -50,9 +57,9 @@ ko:
         follow: 누군가 나를 팔로우 했을 때 이메일 보내기
         follow_request: 누군가 나를 팔로우 하길 원할 때 이메일 보내기
         mention: 누군가 나에게 답장했을 때 이메일 보내기
-        reblog: 누군가 내 Toot을 부스트 했을 때 이메일 보내기
-    'no': '아니오'
+        reblog: 누군가 내 툿을 부스트 했을 때 이메일 보내기
+    'no': 아니오
     required:
       mark: "*"
       text: 필수 항목
-    'yes': '네'
+    'yes': 네

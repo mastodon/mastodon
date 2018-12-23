@@ -1,6 +1,7 @@
 ---
 nl:
   about:
+    about_hashtag_html: Dit zijn openbare toots die getagged zijn met <strong>#%{hashtag}</strong>. Je kunt er op reageren of iets anders mee doen als je op Mastodon (of ergens anders in de fediverse) een account hebt.
     about_mastodon_html: Mastodon is een <em>vrij, gratis en open-source</em> sociaal netwerk. Een <em>gedecentraliseerd</em> alternatief voor commerciële platforms. Het voorkomt de risico's van een enkel bedrijf dat jouw communicatie monopoliseert. Kies een server die je vertrouwt &mdash; welke je ook kiest, je kunt met elke andere server communiceren. Iedereen kan een eigen Mastodon-server draaien en naadloos deelnemen in het <em>sociale netwerk</em>.
     about_this: Over deze server
     closed_registrations: Registreren op deze server is momenteel uitgeschakeld.
@@ -37,6 +38,7 @@ nl:
     follow: Volgen
     followers: Volgers
     following: Volgend
+    media: Media
     nothing_here: Hier is niets!
     people_followed_by: Mensen die %{name} volgt
     people_who_follow: Mensen die %{name} volgen
@@ -48,6 +50,13 @@ nl:
       admin: Beheerder
     unfollow: Ontvolgen
   admin:
+    account_moderation_notes:
+      account: Moderator
+      create: Aanmaken
+      created_at: Datum
+      created_msg: Aanmaken van opmerking voor moderatoren geslaagd!
+      delete: Verwijderen
+      destroyed_msg: Verwijderen van opmerking voor moderatoren geslaagd!
     accounts:
       are_you_sure: Weet je het zeker?
       confirm: Bevestigen
@@ -74,15 +83,18 @@ nl:
         silenced: Genegeerd
         suspended: Opgeschort
         title: Moderatie
+      moderation_notes: Opmerkingen voor moderatoren
       most_recent_activity: Laatst actief
       most_recent_ip: Laatst gebruikt IP-adres
       not_subscribed: Niet geabonneerd
       order:
         alphabetic: Alfabetisch
         most_recent: Meest recent
-        title: 
+        title: Sorteren
+      outbox_url: Outbox-URL
       perform_full_suspension: Volledig opschorten
       profile_url: Profiel-URL
+      protocol: Protocol
       public: Openbaar
       push_subscription_expires: PuSH-abonnement verloopt op
       redownload: Avatar vernieuwen
@@ -105,6 +117,25 @@ nl:
       unsubscribe: Opzeggen
       username: Gebruikersnaam
       web: Webapp
+    custom_emojis:
+      copied_msg: Lokale kopie van emoji maken geslaagd
+      copy: Kopiëren
+      copy_failed_msg: Kan geen lokale kopie van deze emoji maken
+      created_msg: Aanmaken van emoji geslaagd!
+      delete: Verwijderen
+      destroyed_msg: Verwijderen van emoji geslaagd!
+      disable: Uitschakelen
+      disabled_msg: Uitschakelen van deze emoji geslaagd
+      emoji: Emoji
+      enable: Inschakelen
+      enabled_msg: Inschakelen van deze emoji geslaagd
+      image_hint: PNG van max. 50KB
+      new:
+        title: Lokale emoji toevoegen
+      shortcode: Shortcode
+      shortcode_hint: Tenminste 2 tekens (alleen alfanumeriek en underscores)
+      title: Lokale emoji’s
+      upload: Uploaden
     domain_blocks:
       add_new: Nieuwe toevoegen
       created_msg: Domeinblokkade wordt nu verwerkt
@@ -137,9 +168,21 @@ nl:
         undo: Ongedaan maken
       title: Domeinblokkades
       undo: Ongedaan maken
+    email_domain_blocks:
+      add_new: Nieuwe toevoegen
+      created_msg: Blokkeren e-maildomein geslaagd
+      delete: Verwijderen
+      destroyed_msg: Deblokkeren e-maildomein geslaagd
+      domain: Domein
+      new:
+        create: Blokkeren
+        title: Nieuw e-maildomein blokkeren
+      title: E-maildomeinen blokkeren
     instances:
       account_count: Bekende accounts
       domain_name: Domein
+      reset: Opnieuw
+      search: Zoeken
       title: Bekende servers
     reports:
       action_taken_by: Actie uitgevoerd door
@@ -213,6 +256,7 @@ nl:
         title: Media
       no_media: Geen media
       title: Toots van account
+      with_media: Met media
     subscriptions:
       callback_url: Callback-URL
       confirmed: Bevestigd
@@ -226,11 +270,18 @@ nl:
       body: "%{reporter} heeft %{target} gerapporteerd"
       subject: Nieuwe toots gerapporteerd op %{instance} (#%{id})
   application_mailer:
+    salutation: "%{name},"
     settings: 'E-mailvoorkeuren wijzigen: %{link}'
     signature: Mastodon-meldingen van %{instance}
     view: 'Bekijk:'
   applications:
+    created: Aanmaken toepassing geslaagd
+    destroyed: Verwijderen toepassing geslaagd
     invalid_url: De opgegeven URL is ongeldig
+    regenerate_token: Toegangscode opnieuw aanmaken
+    token_regenerated: Opnieuw aanmaken toegangscode geslaagd
+    warning: Wees voorzichtig met deze gegevens. Deel het nooit met iemand anders!
+    your_token: Jouw toegangscode
   auth:
     agreement_html: Wanneer je op registreren klikt ga je akkoord met <a href="%{rules_path}">onze gebruikersvoorwaarden</a> en <a href="%{terms_path}">ons privacybeleid</a>.
     change_password: Beveiliging
@@ -238,6 +289,7 @@ nl:
     delete_account_html: Wanneer je jouw account graag wilt verwijderen, kan je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
     didnt_get_confirmation: Geen bevestigingsinstructies ontvangen?
     forgot_password: Wachtwoord vergeten?
+    invalid_reset_password_token: De code om jouw wachtwoord opnieuw in te stellen is verlopen. Vraag een nieuwe aan.
     login: Aanmelden
     logout: Afmelden
     register: Registreren
@@ -284,6 +336,9 @@ nl:
       content: Veiligheidsverificatie mislukt. Blokkeer je toevallig cookies?
       title: Veiligheidsverificatie mislukt
     '429': Te veel verbindingsaanvragen.
+    '500':
+      content: Het spijt ons, er is aan onze kant iets fout gegaan.
+      title: Er is iets mis
     noscript_html: Schakel JavaScript in om de webapp van Mastodon te kunnen gebruiken. Als alternatief kan je een <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon-app</a> zoeken voor jouw platform.
   exports:
     blocks: Jij blokkeert
@@ -318,7 +373,7 @@ nl:
       following: Volglijst
       muting: Negeerlijst
     upload: Uploaden
-  landing_strip_html: "<strong>%{name}</strong> is een gebruiker op %{link_to_root_path}. Je kunt deze volgen en ermee communiceren als je ergens in deze fediverse een account hebt."
+  landing_strip_html: "<strong>%{name}</strong> is een gebruiker op %{link_to_root_path}. Je kunt deze volgen en ermee communiceren als je op Mastodon (of ergens anders in de fediverse) een account hebt."
   landing_strip_signup_html: Als je dat niet hebt, kun je je <a href="%{sign_up_path}">hier registreren</a>.
   media_attachments:
     validations:
@@ -364,11 +419,18 @@ nl:
     next: Volgende
     prev: Vorige
     truncate: "&hellip;"
+  preferences:
+    languages: Talen
+    other: Overig
+    publishing: Publiceren
+    web: Webapp
   push_notifications:
     favourite:
       title: "%{name} markeerde jouw toot als favoriet"
     follow:
       title: "%{name} volgt jou nu"
+    group:
+      title: "%{count} meldingen"
     mention:
       action_boost: Boost
       action_expand: Meer tonen
@@ -423,12 +485,13 @@ nl:
   settings:
     authorized_apps: Geautoriseerde apps
     back: Terug naar Mastodon
-    delete: Account deletion
+    delete: Account verwijderen
     development: Ontwikkelaars
     edit_profile: Profiel bewerken
-    export: Export
+    export: Exporteren
     followers: Geautoriseerde volgers
-    import: Import
+    import: Importeren
+    notifications: Meldingen
     preferences: Voorkeuren
     settings: Instellingen
     two_factor_authentication: Tweestapsverificatie
@@ -437,9 +500,9 @@ nl:
     open_in_web: In de webapp openen
     over_character_limit: Limiet van %{max} tekens overschreden
     pin_errors:
-      limit:  Te veel toots vastgezet
+      limit: Te veel toots vastgezet
       ownership: Een toot van iemand anders kan niet worden vastgezet
-      private:  Alleen openbare toots kunnen worden vastgezet
+      private: Alleen openbare toots kunnen worden vastgezet
       reblog: Een boost kan niet worden vastgezet
     show_more: Meer tonen
     visibilities:
@@ -524,6 +587,8 @@ nl:
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Terms of Service and Privacy Policy"
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%d %B %Y om %H:%M"
@@ -546,3 +611,4 @@ nl:
   users:
     invalid_email: E-mailadres is ongeldig
     invalid_otp_token: Ongeldige tweestaps-aanmeldcode
+    signed_in_as: 'Ingelogd als:'

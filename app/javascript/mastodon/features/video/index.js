@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { throttle } from 'lodash';
 import classNames from 'classnames';
+import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
@@ -69,41 +70,13 @@ const getPointerPosition = (el, event) => {
   return position;
 };
 
-const isFullscreen = () => document.fullscreenElement ||
-  document.webkitFullscreenElement ||
-  document.mozFullScreenElement ||
-  document.msFullscreenElement;
-
-const exitFullscreen = () => {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.webkitExitFullscreen) {
-    document.webkitExitFullscreen();
-  } else if (document.mozCancelFullScreen) {
-    document.mozCancelFullScreen();
-  } else if (document.msExitFullscreen) {
-    document.msExitFullscreen();
-  }
-};
-
-const requestFullscreen = el => {
-  if (el.requestFullscreen) {
-    el.requestFullscreen();
-  } else if (el.webkitRequestFullscreen) {
-    el.webkitRequestFullscreen();
-  } else if (el.mozRequestFullScreen) {
-    el.mozRequestFullScreen();
-  } else if (el.msRequestFullscreen) {
-    el.msRequestFullscreen();
-  }
-};
-
 @injectIntl
 export default class Video extends React.PureComponent {
 
   static propTypes = {
     preview: PropTypes.string,
     src: PropTypes.string.isRequired,
+    alt: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
     sensitive: PropTypes.bool,
@@ -236,6 +209,12 @@ export default class Video extends React.PureComponent {
     }
   }
 
+  handleProgress = () => {
+    if (this.video.buffered.length > 0) {
+      this.setState({ buffer: this.video.buffered.end(0) / this.video.duration * 100 });
+    }
+  }
+
   handleOpenVideo = () => {
     this.video.pause();
     this.props.onOpenVideo(this.video.currentTime);
@@ -247,8 +226,8 @@ export default class Video extends React.PureComponent {
   }
 
   render () {
-    const { preview, src, width, height, startTime, onOpenVideo, onCloseVideo, intl } = this.props;
-    const { progress, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
+    const { preview, src, width, height, startTime, onOpenVideo, onCloseVideo, intl, alt } = this.props;
+    const { progress, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
 
     return (
       <div className={classNames('video-player', { inactive: !revealed, inline: width && height && !fullscreen, fullscreen })} style={{ width, height }} ref={this.setPlayerRef} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
@@ -256,10 +235,11 @@ export default class Video extends React.PureComponent {
           ref={this.setVideoRef}
           src={src}
           poster={preview}
-          preload={!!startTime}
+          preload={startTime ? 'auto' : 'none'}
           loop
           role='button'
           tabIndex='0'
+          aria-label={alt}
           width={width}
           height={height}
           onClick={this.togglePlay}
@@ -267,6 +247,7 @@ export default class Video extends React.PureComponent {
           onPause={this.handlePause}
           onTimeUpdate={this.handleTimeUpdate}
           onLoadedData={this.handleLoadedData}
+          onProgress={this.handleProgress}
         />
 
         <button className={classNames('video-player__spoiler', { active: !revealed })} onClick={this.toggleReveal}>
@@ -276,6 +257,7 @@ export default class Video extends React.PureComponent {
 
         <div className={classNames('video-player__controls', { active: paused || hovered })}>
           <div className='video-player__seek' onMouseDown={this.handleMouseDown} ref={this.setSeekRef}>
+            <div className='video-player__seek__buffer' style={{ width: `${buffer}%` }} />
             <div className='video-player__seek__progress' style={{ width: `${progress}%` }} />
 
             <span

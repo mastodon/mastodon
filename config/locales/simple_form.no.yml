@@ -1,19 +1,17 @@
+---
 'no':
   simple_form:
     hints:
       defaults:
-        avatar: 'PNG, GIF eller JPG. Maksimalt 2MB. Vil bli nedskalert til 120x120px'
+        avatar: PNG, GIF eller JPG. Maksimalt 2MB. Vil bli nedskalert til 120x120px
         display_name: Maksimalt 30 tegn
-        header: 'PNG, GIF eller JPG. Maksimalt 2MB. Vil bli nedskalert til 700x335px'
-        locked: >-
-          Krever at du manuelt godkjenner følgere og setter standardbeskyttelse
-          av poster til kun-følgere
+        header: PNG, GIF eller JPG. Maksimalt 2MB. Vil bli nedskalert til 700x335px
+        locked: Krever at du manuelt godkjenner følgere og setter standardbeskyttelse av poster til kun-følgere
         note: Maksimalt 160 tegn
       imports:
         data: CSV-fil eksportert fra en annen Mastodon instans
       sessions:
-        otp: >-
-          Skriv tofaktorkoden fra din telefon eller bruk en av gjenopprettingskodene.
+        otp: Skriv tofaktorkoden fra din telefon eller bruk en av gjenopprettingskodene.
     labels:
       defaults:
         avatar: Profilbilde
@@ -48,7 +46,6 @@
         reblog: Send e-post når noen fremhever din status
     'no': Nei
     required:
-      mark: '*'
+      mark: "*"
       text: påkrevd
     'yes': Ja
-

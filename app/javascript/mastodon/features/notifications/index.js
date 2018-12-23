@@ -86,6 +86,24 @@ export default class Notifications extends React.PureComponent {
     this.column = c;
   }
 
+  handleMoveUp = id => {
+    const elementIndex = this.props.notifications.findIndex(item => item.get('id') === id) - 1;
+    this._selectChild(elementIndex);
+  }
+
+  handleMoveDown = id => {
+    const elementIndex = this.props.notifications.findIndex(item => item.get('id') === id) + 1;
+    this._selectChild(elementIndex);
+  }
+
+  _selectChild (index) {
+    const element = this.column.node.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
+
+    if (element) {
+      element.focus();
+    }
+  }
+
   render () {
     const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore } = this.props;
     const pinned = !!columnId;
@@ -96,7 +114,15 @@ export default class Notifications extends React.PureComponent {
     if (isLoading && this.scrollableContent) {
       scrollableContent = this.scrollableContent;
     } else if (notifications.size > 0 || hasMore) {
-      scrollableContent = notifications.map((item) => <NotificationContainer key={item.get('id')} notification={item} accountId={item.get('account')} />);
+      scrollableContent = notifications.map((item) => (
+        <NotificationContainer
+          key={item.get('id')}
+          notification={item}
+          accountId={item.get('account')}
+          onMoveUp={this.handleMoveUp}
+          onMoveDown={this.handleMoveDown}
+        />
+      ));
     } else {
       scrollableContent = null;
     }

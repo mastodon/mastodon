@@ -7,30 +7,248 @@ eo:
     description_headline: Kio estas %{domain}?
     domain_count_after: aliaj aperaĵoj
     domain_count_before: Konektita al
+    hosted_on: Mastodon gastigita sur %{domain}
+    learn_more: Lernu pli
     other_instances: Aliaj aperaĵoj
     source_code: Fontkodo
     status_count_after: mesaĝoj
     status_count_before: Kiu publikigis
     user_count_after: uzantoj
     user_count_before: Hejmo de
+    what_is_mastodon: Kio estas Mastodon?
   accounts:
     follow: Sekvi
     followers: Sekvantoj
     following: Sekvatoj
+    media: Kumunikiloj
     nothing_here: Estas nenio ĉi tie!
     people_followed_by: Sekvatoj de %{name}
     people_who_follow: Sekvantoj de %{name}
     posts: Mesaĝoj
+    posts_with_replies: Tootoj kun respondaj
     remote_follow: Fore sekvi
+    reserved_username: La usantnomo estas reservis
+    roles:
+      admin: Administranto
     unfollow: Malsekvi
+  admin:
+    accounts:
+      are_you_sure: Ĉu vi certe?
+      confirm: Confirmi
+      confirmed: Confirmis
+      disable_two_factor_authentication: Malebligi 2FA
+      display_name: Montri nomo
+      domain: Domajno
+      edit: Redakti
+      email: Retpoŝto
+      followers: Sekvantoj
+      followers_url: Sekvantoj URL
+      follows: Sekvatoj
+      ip: IP
+      location:
+        all: Ĉio
+        local: Loka
+        remote: Fora
+        title: Loko
+      media_attachments: Komunkiloj kunsendaĵo
+      moderation:
+        all: Ĉio
+        silenced: Silentis
+        suspended: Suspendis
+        title: Moderulo
+      most_recent_activity: Ple freŝa aktiveco
+      most_recent_ip: Ple freŝa IP
+      not_subscribed: Ne abonis
+      order:
+        alphabetic: Alfabetiko
+        most_recent: Ple freŝa
+        title: Ordono
+      perform_full_suspension: Fari kompleta suspendi
+      profile_url: Profilo URL
+      protocol: Protokolo
+      public: Publika
+      push_subscription_expires: PuSH subscription expires
+      redownload: Refreŝigi avataro
+      reset: Restarigi
+      reset_password: Restarigi pasvorto
+      resubscribe: Reaboni
+      salmon_url: Salmon URL
+      search: Serĉi
+      shared_inbox_url: Shared Inbox URL
+      show:
+        created_reports: Raportoj kreita de ĉi tiu konto
+        report: raporto
+        targeted_reports: Raportoj kreita al ĉi tiu konton
+      silence: Silenti
+      statuses: Statusoj
+      subscribe: Aboni
+      title: Kontoj
+      undo_silenced: Malfari silenti
+      undo_suspension: Malfari suspendi
+      unsubscribe: Malaboni
+      username: Uzantnomo
+      web: Ret
+    custom_emojis:
+      copied_msg: Sukcese kreis loka kopio de la emojio
+      copy: Kopi
+      copy_failed_msg: Could not make a local copy of that emoji
+      created_msg: Emojio estas kreita sukcesa!
+      delete: Forigi
+      destroyed_msg: Emojio estas forigis sukcesa!
+      disable: Malebligi
+      disabled_msg: Emojio estas malebligis sukcesa
+      emoji: Emojio
+      enable: Ebligi
+      enabled_msg: Emojio estas ebligis sukcesa
+      image_hint: PNG ĝis 50KB
+      new:
+        title: Aldoni nova kutimo emojio
+      shortcode: Malongakodo
+      shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
+      title: Kutimoj emojioj
+      upload: Alŝuti
+    domain_blocks:
+      add_new: Aldoni novo
+      created_msg: Domajno bloko nun estas procesita
+      destroyed_msg: Domajno bloko estas malfaris
+      domain: Domajno
+      new:
+        create: Krei bloko
+        severity:
+          noop: Nenio
+          silence: Silenti
+          suspend: Suspendi
+        title: Nova domajno bloko
+      reject_media: Reject media files
+      severities:
+        noop: Nenio
+        silence: Silenti
+        suspend: Suspendi
+      severity: Severeco
+      show:
+        affected_accounts:
+          one: Unu konto en la datumbazo esta afekta
+          other: "%{count} kontoj en la datumbazo esta afekta"
+        retroactive:
+          silence: Malfari silenti ĉio konton de ĉi tiu domajno
+          suspend: Malfari suspendi ĉio konton de ĉi tiu domajno
+        title: Malfari domajno bloko por %{domain}
+        undo: Malfari
+      title: Domajnoj blokoj
+      undo: Malfari
+    email_domain_blocks:
+      add_new: Aldoni novo
+      created_msg: Retpoŝto domajno bloko estas kreita sukcesa
+      delete: Forigi
+      destroyed_msg: Retpoŝto domajno bloko estas foriga sukcesa
+      domain: Domajno
+      new:
+        create: Aldoni bloko
+        title: Nova retpoŝto domajno bloko
+      title: Retpoŝto domajno bloko
+    instances:
+      account_count: Konataj kontoj
+      domain_name: Domajno
+      reset: Restarigi
+      search: Serĉi
+      title: Konataj petskriboj
+    reports:
+      action_taken_by: Action taken by
+      are_you_sure: Ĉu vi certe?
+      comment:
+        label: komento
+        none: Nenio
+      delete: Forigi
+      id: ID
+      mark_as_resolved: Marki kiel solvita
+      nsfw:
+        'false': Ne kaŝi kumunikiloj kunsendaĵoj
+        'true': Kaŝi kumunikiloj kunsendaĵoj
+      report: 'Raporto #%{id}'
+      report_contents: Enhavo
+      reported_account: Raportis konto
+      reported_by: Raporta de
+      resolved: Solvita
+      silence_account: Silenti konton
+      status: Statusoj
+      suspend_account: Suspendi konton
+      target: Celo
+      title: Raportoj
+      unresolved: Ne solvita
+      view: Vidi
+    settings:
+      bootstrap_timeline_accounts:
+        desc_html: Disigi multaj uzantnomoj per komo. Nur lokaj kaj malsloŝi kontoj estus operaci. Defaŭlo Defaŭlo kiam malplena estas ĉio lokaj administristoj.
+        title: Defaŭltoj sakvatoj al novoj uzantoj
+      contact_information:
+        email: Afero retpoŝto
+        username: kontakto uzantnomo
+      registrations:
+        closed_message:
+          desc_html: Vidigis sur antaŭpaĝo kian registrado estas fermis. Vi povas uzi HTML
+          title: Fermis registrado mesaĝo
+        deletion:
+          desc_html: Permesi ĉiuj forigi ilian konton
+          title: Malfermi konto forigo
+        open:
+          desc_html: Permesi ĉiuj krei konto
+          title: Malfermi registrado
+      site_description:
+        title: Priskribo de petskribo
+      site_description_extended:
+        title: Kutimo etendis informaĵo
+      site_terms:
+        desc_html: Vi povas skribi via politika pri privateco reguloj de servo aŭ aliaj senpagaj. Vi povas uzi HTML
+        title: Kutimoj reguloj de servo
+      site_title: Petskribo nomo
+      thumbnail:
+        desc_html: Uzis por antaŭvido vojo OpenGraph kaj API. 1200x630px rekomendis
+        title: Bildeto de petskribo
+      timeline_preview:
+        desc_html: Vidigi publika tempolinio sur surteriĝo paĝo
+        title: Antaŭvido de tempolinio
+      title: Retparaĝoj preferoj
+    statuses:
+      back_to_account: Irienigi al konton paĝon
+      batch:
+        delete: Forigi
+        nsfw_off: Malŝalti NSFW
+        nsfw_on: Ŝalti NSFW
+      execute: Execute
+      failed_to_execute: Failed to execute
+      media:
+        hide: Kaŝi kumunikiloj
+        show: Vidigi kumunikiloj
+        title: Kumunikiloj
+      no_media: Neniu Kumunikilo
+      title: Kontoj statusoj
+      with_media: Kun kumunikiloj
+    subscriptions:
+      callback_url: Callback URL
+      confirmed: Confirmis
+      expires_in: Finiĝus en
+      last_delivery: plej freŝa transdono
+      title: WebSub
+      topic: Topic
+    title: Administri
+  admin_mailer:
+    new_report:
+      body: "%{reporter} raportis %{target}"
+      subject: Nova raporto por %{instance} (#%{id})
   application_mailer:
     settings: 'Ŝanĝi la retpoŝt-mesaĝajn preferojn: %{link}'
     signature: Sciigoj de Mastodon el %{instance}
     view: 'Vidi:'
   applications:
+    created: Aplikaĵo sukcesa kreis
+    destroyed: Aplikaĵo sukcesa forigis
     invalid_url: La URL donita ne estas valida
+    regenerate_token: Regeneri aliron signon
+    token_regenerated: Aliro signo regeneris sukcese
+    your_token: Via aliro signo
   auth:
     change_password: Ŝanĝi pasvorton
+    delete_account: Forigi konton
     didnt_get_confirmation: Ĉu vi ne ricevis la instrukciojn por konfirmi?
     forgot_password: Pasvorto forgesita?
     login: Ensaluti
@@ -42,6 +260,12 @@ eo:
   authorize_follow:
     error: Bedaŭrinde, okazis eraro provante konsulti la foran konton
     follow: Sekvi
+    follow_request: 'Vi sendis sekvatin peton al:'
+    following: 'Sukceso! Vi nun sekvi:'
+    post_follow:
+      close: Aŭ, Vi justa povas fermi ĉi tion.
+      return: Ilienigi al la uzantoan profilon
+      web: Iri al reto
     title: Sekvi %{acct}
   datetime:
     distance_in_words:
@@ -58,10 +282,16 @@ eo:
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
   exports:
-    blocks: Vi blokas
+    blocks: Via blokoj
     csv: CSV
-    follows: Vi sekvas
+    follows: Via sekvatoj
+    mutes: Via silentoj
     storage: Mediaĵa konservado
+  followers:
+    domain: Domajno
+    followers_count: Nombro de sekvatoj
+    lock_link: Ŝlosi via konton
+    purge: Forigi de sakvantoj
   generic:
     changes_saved_msg: Ŝanĝoj senprobleme konservitaj!
     powered_by: povigita de %{link}
@@ -75,9 +305,14 @@ eo:
     types:
       blocking: Listo de blokitoj
       following: Listo de sekvatoj
+      muting: Listo de silentoj
     upload: Alporti
   landing_strip_html: "<strong>%{name}</strong> estas uzanto en %{link_to_root_path}. Vi povas sekvi tiun aŭ interagi kun tiu, se vi havas konton ie ajn en la Fediverse."
   landing_strip_signup_html: Se vi ne havas, vi povas <a href="%{sign_up_path}">membriĝi ĉi tie.</a>.
+  media_attachments:
+    validations:
+      images_and_video: Vi ne povas alligi video al statuson kiu jam havas bilojn
+      too_many: Vi ne povas alligi pli ol 4 dosieroj
   notification_mailer:
     digest:
       body: 'Jen eta resumo de tio, kio okazis en %{instance}, ekde kiam vi laste vizitis en %{since}:'
@@ -117,32 +352,79 @@ eo:
   pagination:
     next: Sekva
     prev: Malsekva
+  preferences:
+    languages: Lingvoj
+    other: Aliaj
+    publishing: Publikigi
+    web: Ret
+  push_notifications:
+    favourite:
+      title: "%{name} preferitis via statuso"
+    follow:
+      title: "%{name} estas sekvantas vin"
+    group:
+      title: "%{count} sciigoj"
+    mention:
+      action_boost: Akceli
+      action_expand: Pli
+      action_favourite: Preferi
+      title: "%{name} menciitis vin"
+    reblog:
+      title: "%{name} akcelis via statuson"
   remote_follow:
     acct: Enmetu vian uzantnomo@aperaĵo de kie vi volas sekvi tiun uzanton
     missing_resource: La URL de plusendado ne povis esti trovita
     proceed: Daŭrigi por plusendi
     prompt: 'Vi eksekvos:'
+  sessions:
+    activity: Lasta Aktiveco
+    browser: Retumilo
+    current_session: Aktuala sesio
+    description: "%{browser} sur %{platform}"
+    explanation: Ĉi tiuj estas la retumiloj nun ensalutinda en via Mastodon konton.
+    ip: IP
+    revoke: Revoki
+    revoke_success: La sesio estas revokis
+    title: Sesioj
   settings:
     authorized_apps: Rajtigitaj aplikaĵoj
     back: Reveni al Mastodon
+    delete: Konto forigo
+    development: Evoluno
     edit_profile: Redakti la profilon
     export: Elporti datumojn
+    followers: Rajtigis sekvantoj
     import: Alporti
+    notifications: Avizoj
     preferences: Preferoj
     settings: Agordoj
     two_factor_authentication: Dufaktora aŭtentigo
+    your_apps: Via aplikaĵoj
   statuses:
     open_in_web: Malfermi retumile
     over_character_limit: limo de %{max} signoj trapasita
+    pin_errors:
+      limit: Tro multaj tootoj fiksis
+      ownership: Aliaja tooto ne povas esti fiksis
+      private: Nepublika tooto ne povas esti fixis
+      reblog: Diskonigo ne povas esti fiksis
     show_more: Montri pli
     visibilities:
       private: Montri nur al sekvantoj
+      private_long: Montri nur al sekvantoj
       public: Publika
+      public_long: Ĉiuj povas vidi
       unlisted: Publika, sed ne aperos en publikaj tempolinioj
+      unlisted_long: Publika, sed ne aperos en publikaj tempolinioj
   stream_entries:
     click_to_show: Alklaki por montri
+    pinned: Fiksis
     reblogged: diskonigis
     sensitive_content: Tikla enhavo
+  terms:
+    title: "%{instance} Reguloj de servo kaj Politikaj pri privatecoj"
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

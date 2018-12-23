@@ -43,7 +43,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       text: text_from_content || '',
       language: language_from_content,
       spoiler_text: @object['summary'] || '',
-      created_at: @object['published'] || Time.now.utc,
+      created_at: @options[:override_timestamps] ? nil : @object['published'],
       reply: @object['inReplyTo'].present?,
       sensitive: @object['sensitive'] || false,
       visibility: visibility_from_audience,
@@ -61,11 +61,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         process_hashtag tag, status
       when 'Mention'
         process_mention tag, status
+      when 'Emoji'
+        process_emoji tag, status
       end
     end
   end
 
   def process_hashtag(tag, status)
+    return if tag['name'].blank?
+
     hashtag = tag['name'].gsub(/\A#/, '').mb_chars.downcase
     hashtag = Tag.where(name: hashtag).first_or_initialize(name: hashtag)
 
@@ -73,26 +77,47 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_mention(tag, status)
+    return if tag['href'].blank?
+
     account = account_from_uri(tag['href'])
-    account = FetchRemoteAccountService.new.call(tag['href']) if account.nil?
+    account = FetchRemoteAccountService.new.call(tag['href'], id: false) if account.nil?
     return if account.nil?
     account.mentions.create(status: status)
+  end
+
+  def process_emoji(tag, _status)
+    return if skip_download?
+    return if tag['name'].blank? || tag['icon'].blank? || tag['icon']['url'].blank?
+
+    shortcode = tag['name'].delete(':')
+    image_url = tag['icon']['url']
+    uri       = tag['id']
+    updated   = tag['updated']
+    emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: @account.domain)
+
+    return unless emoji.nil? || emoji.updated_at >= updated
+
+    emoji ||= CustomEmoji.new(domain: @account.domain, shortcode: shortcode, uri: uri)
+    emoji.image_remote_url = image_url
+    emoji.save
   end
 
   def process_attachments(status)
     return unless @object['attachment'].is_a?(Array)
 
     @object['attachment'].each do |attachment|
-      next if unsupported_media_type?(attachment['mediaType'])
+      next if unsupported_media_type?(attachment['mediaType']) || attachment['url'].blank?
 
       href             = Addressable::URI.parse(attachment['url']).normalize.to_s
-      media_attachment = MediaAttachment.create(status: status, account: status.account, remote_url: href)
+      media_attachment = MediaAttachment.create(status: status, account: status.account, remote_url: href, description: attachment['name'].presence)
 
       next if skip_download?
 
       media_attachment.file_remote_url = href
       media_attachment.save
     end
+  rescue Addressable::URI::InvalidURIError => e
+    Rails.logger.debug e
   end
 
   def resolve_thread(status)
@@ -102,8 +127,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def conversation_from_uri(uri)
     return nil if uri.nil?
-    return Conversation.find_by(id: TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')) if TagManager.instance.local_id?(uri)
-    Conversation.find_by(uri: uri) || Conversation.create!(uri: uri)
+    return Conversation.find_by(id: OStatus::TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')) if OStatus::TagManager.instance.local_id?(uri)
+    Conversation.find_by(uri: uri) || Conversation.create(uri: uri)
   end
 
   def visibility_from_audience

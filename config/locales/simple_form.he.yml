@@ -3,19 +3,19 @@ he:
   simple_form:
     hints:
       defaults:
-        avatar: 'PNG, GIF או JPG. מקסימום 2MB. גודל התמונה יוקטן ל-120x120px'
+        avatar: PNG, GIF או JPG. מקסימום 2MB. גודל התמונה יוקטן ל-120x120px
         display_name:
-          one: 'נותרה אות<span class="name-counter">אחת</span>'
-          other: 'נותרו<span class="name-counter">%{count}</span> אותיות'
-        header: 'PNG, GIF או JPG. מקסימום 2MB. גודל התמונה יוקטן 700x335px'
-        locked: 'מחייב אישור עוקבים באופן ידני. פרטיות ההודעות תהיה עוקבים-בלבד אלא אם יצוין אחרת'
+          one: נותרה אות<span class="name-counter">אחת</span>
+          other: נותרו<span class="name-counter">%{count}</span> אותיות
+        header: PNG, GIF או JPG. מקסימום 2MB. גודל התמונה יוקטן 700x335px
+        locked: מחייב אישור עוקבים באופן ידני. פרטיות ההודעות תהיה עוקבים-בלבד אלא אם יצוין אחרת
         note:
-          one: 'נותרה אות<span class="note-counter">אחת</span>'
-          other: 'נותרו <span class="note-counter">%{count}</span> אותיות'
+          one: נותרה אות<span class="note-counter">אחת</span>
+          other: נותרו <span class="note-counter">%{count}</span> אותיות
       imports:
-        data: 'קובץ CSV שיוצא משרת מסטודון אחר'
+        data: קובץ CSV שיוצא משרת מסטודון אחר
       sessions:
-        otp: 'נא להקליד קוד אימות דו-שלבי ממכשירך או קוד אחזור גישה.'
+        otp: נא להקליד קוד אימות דו-שלבי ממכשירך או קוד אחזור גישה.
       user:
         filtered_languages: בחירת שפות להסתרה מציר הזמן הציבורי שלך.
     labels:
@@ -26,7 +26,7 @@ he:
         current_password: סיסמא נוכחית
         data: מידע
         display_name: שם להצגה
-        email: 'כתובת דוא"ל'
+        email: כתובת דוא"ל
         header: ראשה
         locale: שפה
         locked: הפוך חשבון לפרטי
@@ -44,14 +44,14 @@ he:
         must_be_follower: חסימת התראות משאינם עוקבים
         must_be_following: חסימת התראות משאינם נעקבים
       notification_emails:
-        digest: 'שליחת הודעות דוא"ל מסכמות'
-        favourite: 'שליחת דוא"ל כשמחבבים חצרוץ'
-        follow: 'שליחת דוא"ל כשנוספות עוקבות'
-        follow_request: 'שליחת דוא"ל כשמבקשים לעקוב'
-        mention: 'שליחת דוא"ל כשפונים אלייך'
-        reblog: 'שליחת דוא"ל כשמהדהדים חצרוץ שלך'
-    'no': 'לא'
+        digest: שליחת הודעות דוא"ל מסכמות
+        favourite: שליחת דוא"ל כשמחבבים חצרוץ
+        follow: שליחת דוא"ל כשנוספות עוקבות
+        follow_request: שליחת דוא"ל כשמבקשים לעקוב
+        mention: שליחת דוא"ל כשפונים אלייך
+        reblog: שליחת דוא"ל כשמהדהדים חצרוץ שלך
+    'no': לא
     required:
       mark: "*"
       text: שדה חובה
-    'yes': 'כן'
+    'yes': כן

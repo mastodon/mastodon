@@ -34,7 +34,7 @@ RSpec.describe FavouriteService do
     it 'sends a salmon slap' do
       expect(a_request(:post, "http://salmon.example.com/").with { |req|
         xml = OStatus2::Salmon.new.unpack(req.body)
-        xml.match(TagManager::VERBS[:favorite])
+        xml.match(OStatus::TagManager::VERBS[:favorite])
       }).to have_been_made.once
     end
   end

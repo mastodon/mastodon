@@ -1,6 +1,7 @@
 ---
 oc:
   about:
+    about_hashtag_html: Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.
     about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
     about_this: A prepaus d’aquesta instància
     closed_registrations: Las inscripcions son clavadas pel moment sus aquesta instància.
@@ -49,6 +50,13 @@ oc:
       admin: Admin
     unfollow: Quitar de sègre
   admin:
+    account_moderation_notes:
+      account: Moderator
+      create: Crear
+      created_at: Data
+      created_msg: Nòta de moderacion ben creada !
+      delete: Suprimir
+      destroyed_msg: Nòta de moderacion ben suprimida !
     accounts:
       are_you_sure: Sètz segur ?
       confirm: Confirmar
@@ -60,13 +68,14 @@ oc:
       email: Corrièl
       feed_url: Flux URL
       followers: Seguidors
+      followers_url: URL dels seguidors
       follows: Abonaments
       inbox_url: URL de recepcion
       ip: IP
       location:
-        all: Tot
-        local: Local
-        remote: Alonhat
+        all: Totes
+        local: Locals
+        remote: Alonhats
         title: Emplaçament
       media_attachments: Mèdias ajustats
       moderation:
@@ -74,6 +83,7 @@ oc:
         silenced: Rescondut
         suspended: Suspendut
         title: Moderacion
+      moderation_notes: Nòtas de moderacion
       most_recent_activity: Activitat mai recenta
       most_recent_ip: IP mai recenta
       not_subscribed: Pas seguidor
@@ -93,6 +103,7 @@ oc:
       resubscribe: Se tornar abonar
       salmon_url: URL Salmon
       search: Cercar
+      shared_inbox_url: URL de recepcion partejada
       show:
         created_reports: Rapòrts creat per aqueste compte
         report: rapòrt
@@ -106,6 +117,25 @@ oc:
       unsubscribe: Se desabonar
       username: Nom d’utilizaire
       web: Web
+    custom_emojis:
+      copied_msg: Còpia locala de l’emoji ben creada
+      copy: Copiar
+      copy_failed_msg: Fracàs de la còpia locala de l’emoji
+      created_msg: Emoji ben creat !
+      delete: Suprimir
+      destroyed_msg: Emojo ben suprimit !
+      disable: Desactivar
+      disabled_msg: Aqueste emoji es ben desactivat
+      emoji: Emoji
+      enable: Activar
+      enabled_msg: Aqueste emoji es ben activat
+      image_hint: PNG cap a 50Ko
+      new:
+        title: Ajustar un nòu emoji personal
+      shortcode: Acorchi
+      shortcode_hint: Almens 2 caractèrs, solament alfanumerics e jonhent bas
+      title: Emojis personals
+      upload: Enviar
     domain_blocks:
       add_new: N’ajustar un nòu
       created_msg: Domeni blocat es a èsser tractat
@@ -138,9 +168,21 @@ oc:
         undo: Restablir
       title: Blòc de domeni
       undo: Restablir
+    email_domain_blocks:
+      add_new: Ajustar
+      created_msg: Blocatge del domeni de corrièl ben plaçat
+      delete: Suprimir
+      destroyed_msg: Blocatge del domeni de corrièl ben levat
+      domain: Domeni
+      new:
+        create: Crear un blocatge
+        title: Nòu blocatge de domeni de corrièl
+      title: Blocatge de domeni de corrièl
     instances:
       account_count: Comptes coneguts
       domain_name: Domeni
+      reset: Reïnicializar
+      search: Cercar
       title: Instàncias conegudas
     reports:
       action_taken_by: Mesura menada per
@@ -167,6 +209,9 @@ oc:
       unresolved: Pas resolguts
       view: Veire
     settings:
+      bootstrap_timeline_accounts:
+        desc_html: Separatz los noms d’utilizaire amb de virgula. Pas que los comptes locals e pas clavats foncionaràn. Se lo camp es void los admins seràn selecionats.
+        title: Per defaut los nouvenguts sègon
       contact_information:
         email: Picatz una adreça de corrièl
         username: Picatz un nom d’utilizaire
@@ -190,6 +235,9 @@ oc:
         desc_html: Afichada sus la pagina de las condicions d’utilizacion<br>Podètz utilizar de balisas HTML
         title: Politica de confidencialitat del site
       site_title: Títol del site
+      thumbnail:
+        desc_html: Servís pels apercebuts via OpenGraph e las API. Talha de 1200x630px recomandada.
+        title: Miniatura de l’instància
       timeline_preview:
         desc_html: Mostrar lo flux public sus la pagina d’acuèlh
         title: Apercebut flux public
@@ -291,8 +339,8 @@ oc:
     - dissabte
     formats:
       default: "%e/%m/%Y"
-      long: Lo %-d %b de %Y
-      short: "%e %B"
+      long: Lo %e %B de %Y
+      short: "%e %b. de %Y"
     month_names:
     - 
     - de genièr
@@ -366,6 +414,9 @@ oc:
       content: Verificacion de seguretat fracassada. Blocatz los cookies ?
       title: Verificacion de seguretat fracassada
     '429': Lo servidor mòla (subrecargada)
+    '500':
+      content: Un quicomet a pas foncionat coma caliá.
+      title: Aquesta pagina es incorrècta
     noscript_html: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">una aplicacion</a> per vòstra plataforma coma alernativa.
   exports:
     blocks: Personas que blocatz
@@ -446,6 +497,11 @@ oc:
     next: Seguent
     prev: Precedent
     truncate: "&hellip;"
+  preferences:
+    languages: Lengas
+    other: Autre
+    publishing: Publicar
+    web: Interfàcia Web
   push_notifications:
     favourite:
       title: "%{name} a mes vòstre estatut en favorit"
@@ -513,6 +569,7 @@ oc:
     export: Export donadas
     followers: Seguidors autorizats
     import: Importar
+    notifications: Notificacions
     preferences: Preferéncias
     settings: Paramètres
     two_factor_authentication: Autentificacion en dos temps
@@ -521,6 +578,7 @@ oc:
     open_in_web: Dobrir sul web
     over_character_limit: limit de %{max} caractèrs passat
     pin_errors:
+      limit: Tròp de tuts penjats
       ownership: Se pòt pas penjar lo tut de qualqu’un mai
       private: Se pòt pas penjar los tuts pas publics
       reblog: Se pòt pas penjar un tut partejat
@@ -607,6 +665,8 @@ oc:
 
       <p>Prima adaptacion de la <a href="https://github.com/discourse/discourse">politica de confidencialitat de Discourse</a>.</p>
     title: Condicions d’utilizacion e politica de confidencialitat de %{instance}
+  themes:
+    default: Mastodon
   time:
     formats:
       default: Lo %d %b de %Y a %Ho%M

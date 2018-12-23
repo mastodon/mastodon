@@ -5,6 +5,7 @@ require 'rails_helper'
 describe ApplicationController, type: :controller do
   controller do
     include UserTrackingConcern
+
     def show
       render plain: 'show'
     end
@@ -49,6 +50,7 @@ describe ApplicationController, type: :controller do
       get :show
 
       expect_updated_sign_in_at(user)
+      expect(Redis.current.get("account:#{user.account_id}:regeneration")).to eq 'true'
       expect(RegenerationWorker).to have_received(:perform_async)
     end
 

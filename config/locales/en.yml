@@ -1,6 +1,7 @@
 ---
 en:
   about:
+    about_hashtag_html: These are public toots tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
     about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
     about_this: About
     closed_registrations: Registrations are currently closed on this instance. However! You can find a different instance to make an account on and get access to the very same network from there.
@@ -49,6 +50,13 @@ en:
       admin: Admin
     unfollow: Unfollow
   admin:
+    account_moderation_notes:
+      account: Moderator
+      create: Create
+      created_at: Date
+      created_msg: Moderation note successfully created!
+      delete: Delete
+      destroyed_msg: Moderation note successfully destroyed!
     accounts:
       are_you_sure: Are you sure?
       confirm: Confirm
@@ -75,6 +83,7 @@ en:
         silenced: Silenced
         suspended: Suspended
         title: Moderation
+      moderation_notes: Moderation notes
       most_recent_activity: Most recent activity
       most_recent_ip: Most recent IP
       not_subscribed: Not subscribed
@@ -108,6 +117,25 @@ en:
       unsubscribe: Unsubscribe
       username: Username
       web: Web
+    custom_emojis:
+      copied_msg: Successfully created local copy of the emoji
+      copy: Copy
+      copy_failed_msg: Could not make a local copy of that emoji
+      created_msg: Emoji successfully created!
+      delete: Delete
+      destroyed_msg: Emojo successfully destroyed!
+      disable: Disable
+      disabled_msg: Successfully disabled that emoji
+      emoji: Emoji
+      enable: Enable
+      enabled_msg: Successfully enabled that emoji
+      image_hint: PNG up to 50KB
+      new:
+        title: Add new custom emoji
+      shortcode: Shortcode
+      shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
+      title: Custom emojis
+      upload: Upload
     domain_blocks:
       add_new: Add new
       created_msg: Domain block is now being processed
@@ -140,6 +168,16 @@ en:
         undo: Undo
       title: Domain Blocks
       undo: Undo
+    email_domain_blocks:
+      add_new: Add new
+      created_msg: Email domain block successfully created
+      delete: Delete
+      destroyed_msg: Email domain block successfully deleted
+      domain: Domain
+      new:
+        create: Create block
+        title: New email domain block
+      title: Email Domain Block
     instances:
       account_count: Known accounts
       domain_name: Domain
@@ -298,6 +336,9 @@ en:
       content: Security verification failed. Are you blocking cookies?
       title: Security verification failed
     '429': Throttled
+    '500':
+      content: We're sorry, but something went wrong on our end.
+      title: This page is not correct
     noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">native apps</a> for Mastodon for your platform.
   exports:
     blocks: You block
@@ -378,6 +419,11 @@ en:
     next: Next
     prev: Prev
     truncate: "&hellip;"
+  preferences:
+    languages: Languages
+    other: Other
+    publishing: Publishing
+    web: Web
   push_notifications:
     favourite:
       title: "%{name} favourited your status"
@@ -445,6 +491,7 @@ en:
     export: Data export
     followers: Authorized followers
     import: Import
+    notifications: Notifications
     preferences: Preferences
     settings: Settings
     two_factor_authentication: Two-factor Authentication
@@ -540,6 +587,8 @@ en:
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Terms of Service and Privacy Policy"
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

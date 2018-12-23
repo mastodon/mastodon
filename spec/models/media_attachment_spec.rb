@@ -17,7 +17,6 @@ RSpec.describe MediaAttachment, type: :model do
       expect(media.file.meta["original"]["height"]).to eq 128
       expect(media.file.meta["original"]["aspect"]).to eq 1.0
     end
-
   end
 
   describe 'non-animated gif non-conversion' do
@@ -48,6 +47,14 @@ RSpec.describe MediaAttachment, type: :model do
       expect(media.file.meta["small"]["width"]).to eq 400
       expect(media.file.meta["small"]["height"]).to eq 267
       expect(media.file.meta["small"]["aspect"]).to eq 400.0/267
+    end
+  end
+
+  describe 'descriptions for remote attachments' do
+    it 'are cut off at 140 characters' do
+      media = Fabricate(:media_attachment, description: 'foo' * 1000, remote_url: 'http://example.com/blah.jpg')
+
+      expect(media.description.size).to be <= 420
     end
   end
 end

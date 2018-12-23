@@ -3,22 +3,24 @@ fr:
   simple_form:
     hints:
       defaults:
-        avatar: Au format PNG, GIF ou JPG. 2Mo maximum. Sera réduit à 120x120px
+        avatar: Au format PNG, GIF ou JPG. 2 Mo maximum. Sera réduit à 120x120px
+        digest: Envoyé après une longue période d’inactivité et contient un résumé des notifications que vous avez reçues pendant votre absence
         display_name:
           one: <span class="name-counter">1</span> caractère restant
           other: <span class="name-counter">%{count}</span> caractères restants
-        header: Au format PNG, GIF ou JPG. 2Mo maximum. Sera réduit à 700x335px
+        header: Au format PNG, GIF ou JPG. 2 Mo maximum. Sera réduit à 700x335px
         locked: Vous devrez approuver chaque abonné⋅e et vos statuts ne s’afficheront qu’à vos abonné⋅es
         note:
           one: <span class="note-counter">1</span> caractère restant
           other: <span class="note-counter">%{count}</span> caractères restants
         setting_noindex: Affecte votre profil public ainsi que vos statuts
+        setting_theme: Affecte l’apparence de Mastodon quand vous êtes connecté·e depuis n’importe quel appareil.
       imports:
         data: Un fichier CSV généré par une autre instance de Mastodon
       sessions:
         otp: Entrez le code d’authentification à deux facteurs depuis votre téléphone ou utilisez un de vos codes de récupération.
       user:
-        filtered_languages: Les langues sélectionnées seront retirées de vos fils publics.
+        filtered_languages: Les langues sélectionnées seront filtrées hors de vos fils publics pour vous
     labels:
       defaults:
         avatar: Image de profil
@@ -37,13 +39,15 @@ fr:
         otp_attempt: Code d’identification à deux facteurs
         password: Mot de passe
         setting_auto_play_gif: Lire automatiquement les GIFs animés
-        setting_boost_modal: Afficher un dialogue de confirmation avant de partager
+        setting_boost_modal: Afficher une fenêtre de confirmation avant de partager
         setting_default_privacy: Confidentialité des statuts
         setting_default_sensitive: Toujours marquer les médias comme sensibles
-        setting_delete_modal: Afficher un dialogue de confirmation avant de supprimer un pouet
+        setting_delete_modal: Afficher une fenêtre de confirmation avant de supprimer un pouet
         setting_noindex: Demander aux moteurs de recherche de ne pas indexer vos informations personnelles
+        setting_reduce_motion: Réduire la vitesse des animations
         setting_system_font_ui: Utiliser la police par défaut du système
-        setting_unfollow_modal: Afficher un dialogue de confirmation avant de vous désabonner d’un compte
+        setting_theme: Thème du site
+        setting_unfollow_modal: Afficher une fenêtre de confirmation avant de vous désabonner d’un compte
         severity: Séverité
         type: Type d’import
         username: Identifiant

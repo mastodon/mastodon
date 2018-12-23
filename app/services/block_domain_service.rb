@@ -26,6 +26,7 @@ class BlockDomainService < BaseService
   def clear_media!
     clear_account_images
     clear_account_attachments
+    clear_emojos
   end
 
   def suspend_accounts!
@@ -51,6 +52,10 @@ class BlockDomainService < BaseService
     end
   end
 
+  def clear_emojos
+    emojis_from_blocked_domains.destroy_all
+  end
+
   def blocked_domain
     domain_block.domain
   end
@@ -61,5 +66,9 @@ class BlockDomainService < BaseService
 
   def media_from_blocked_domain
     MediaAttachment.joins(:account).merge(blocked_domain_accounts).reorder(nil)
+  end
+
+  def emojis_from_blocked_domains
+    CustomEmoji.where(domain: blocked_domain)
   end
 end

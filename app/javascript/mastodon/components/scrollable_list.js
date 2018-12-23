@@ -6,6 +6,8 @@ import LoadMore from './load_more';
 import IntersectionObserverWrapper from '../features/ui/util/intersection_observer_wrapper';
 import { throttle } from 'lodash';
 import { List as ImmutableList } from 'immutable';
+import classNames from 'classnames';
+import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
 
 export default class ScrollableList extends PureComponent {
 
@@ -66,6 +68,7 @@ export default class ScrollableList extends PureComponent {
   componentDidMount () {
     this.attachScrollListener();
     this.attachIntersectionObserver();
+    attachFullscreenListener(this.onFullScreenChange);
 
     // Handle initial scroll posiiton
     this.handleScroll();
@@ -92,6 +95,11 @@ export default class ScrollableList extends PureComponent {
   componentWillUnmount () {
     this.detachScrollListener();
     this.detachIntersectionObserver();
+    detachFullscreenListener(this.onFullScreenChange);
+  }
+
+  onFullScreenChange = () => {
+    this.setState({ fullscreen: isFullscreen() });
   }
 
   attachIntersectionObserver () {
@@ -137,34 +145,9 @@ export default class ScrollableList extends PureComponent {
     return this._lastMouseMove !== null && ((new Date()) - this._lastMouseMove < 600);
   }
 
-  handleKeyDown = (e) => {
-    if (['PageDown', 'PageUp'].includes(e.key) || (e.ctrlKey && ['End', 'Home'].includes(e.key))) {
-      const article = (() => {
-        switch (e.key) {
-        case 'PageDown':
-          return e.target.nodeName === 'ARTICLE' && e.target.nextElementSibling;
-        case 'PageUp':
-          return e.target.nodeName === 'ARTICLE' && e.target.previousElementSibling;
-        case 'End':
-          return this.node.querySelector('[role="feed"] > article:last-of-type');
-        case 'Home':
-          return this.node.querySelector('[role="feed"] > article:first-of-type');
-        default:
-          return null;
-        }
-      })();
-
-
-      if (article) {
-        e.preventDefault();
-        article.focus();
-        article.scrollIntoView();
-      }
-    }
-  }
-
   render () {
     const { children, scrollKey, trackScroll, shouldUpdateScroll, isLoading, hasMore, prepend, emptyMessage } = this.props;
+    const { fullscreen } = this.state;
     const childrenCount = React.Children.count(children);
 
     const loadMore     = (hasMore && childrenCount > 0) ? <LoadMore visible={!isLoading} onClick={this.handleLoadMore} /> : null;
@@ -172,8 +155,8 @@ export default class ScrollableList extends PureComponent {
 
     if (isLoading || childrenCount > 0 || !emptyMessage) {
       scrollableArea = (
-        <div className='scrollable' ref={this.setRef} onMouseMove={this.handleMouseMove} onMouseLeave={this.handleMouseLeave}>
-          <div role='feed' className='item-list' onKeyDown={this.handleKeyDown}>
+        <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove} onMouseLeave={this.handleMouseLeave}>
+          <div role='feed' className='item-list'>
             {prepend}
 
             {React.Children.map(this.props.children, (child, index) => (

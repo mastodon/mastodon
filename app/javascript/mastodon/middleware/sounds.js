@@ -12,7 +12,11 @@ const createAudio = sources => {
 const play = audio => {
   if (!audio.paused) {
     audio.pause();
-    audio.fastSeek(0);
+    if (typeof audio.fastSeek === 'function') {
+      audio.fastSeek(0);
+    } else {
+      audio.seek(0);
+    }
   }
 
   audio.play();

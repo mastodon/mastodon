@@ -3,15 +3,24 @@ de:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF oder JPG. Maximal 2MB. Wird auf 120x120px herunterskaliert
-        display_name: '<span class="name-counter">%{count}</span> Zeichen verbleiben'
-        header: PNG, GIF oder JPG. Maximal 2MB. Wird auf 700x335px herunterskaliert
-        locked: Erlaubt dir, Profile zu überprüfen, bevor sie dir folgen können
-        note: '<span class="note-counter">%{count}</span> Zeichen verbleiben'
+        avatar: PNG, GIF oder JPG. Maximal 2 MB. Wird auf 120×120 px herunterskaliert
+        digest: Wenn du lange Zeit inaktiv bist, wird dir eine Zusammenfassung von Erwähnungen in deiner Abwesenheit zugeschickt
+        display_name:
+          one: <span class="name-counter">1</span> Zeichen verbleibt
+          other: <span class="name-counter">%{count}</span> Zeichen verbleiben
+        header: PNG, GIF oder JPG. Maximal 2 MB. Wird auf 700×335 px herunterskaliert
+        locked: Wer dir folgen möchte, muss um deine Erlaubnis bitten
+        note:
+          one: <span class="note-counter">1</span> Zeichen verbleibt
+          other: <span class="note-counter">%{count}</span> Zeichen verbleiben
+        setting_noindex: Betrifft dein öffentliches Profil und deine Beiträge
+        setting_theme: Wirkt sich darauf aus, wie Mastodon aussieht, egal auf welchem Gerät du eingeloggt bist.
       imports:
-        data: CSV-Datei, die von einer anderen Mastodon-Instanz exportiert wurde
+        data: CSV-Datei, die aus einer anderen Mastodon-Instanz exportiert wurde
       sessions:
         otp: Gib den Zwei-Faktor-Authentisierungs-Code von deinem Telefon ein oder benutze einen deiner Wiederherstellungscodes.
+      user:
+        filtered_languages: Ausgewählte Sprachen werden aus deinen öffentlichen Zeitleisten gefiltert
     labels:
       defaults:
         avatar: Profilbild
@@ -20,7 +29,8 @@ de:
         current_password: Derzeitiges Passwort
         data: Daten
         display_name: Anzeigename
-        email: E-Mail-Addresse
+        email: E-Mail-Adresse
+        filtered_languages: Gefilterte Sprachen
         header: Kopfbild
         locale: Sprache
         locked: Gesperrtes Profil
@@ -29,13 +39,20 @@ de:
         otp_attempt: Zwei-Faktor-Authentisierungs-Code
         password: Passwort
         setting_auto_play_gif: Animierte GIFs automatisch abspielen
-        setting_boost_modal: Zeige einen Bestätigungsdialog vor dem Teilen
-        setting_default_privacy: Beitragsprivatspäre
+        setting_boost_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag geteilt wird
+        setting_default_privacy: Beitragssichtbarkeit
+        setting_default_sensitive: Medien immer als heikel markieren
+        setting_delete_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag gelöscht wird
+        setting_noindex: Suchmaschinen-Indexierung verhindern
+        setting_reduce_motion: Bewegung in Animationen verringern
+        setting_system_font_ui: Standardschriftart des Systems verwenden
+        setting_theme: Theme der Website
+        setting_unfollow_modal: Bestätigungsdialog anzeigen, bevor jemand entfolgt wird
         severity: Gewichtung
         type: Importtyp
         username: Profilname
       interactions:
-        must_be_follower: Benachrichtigungen von Nicht-Folgern blockieren
+        must_be_follower: Benachrichtigungen von Nicht-Folgenden blockieren
         must_be_following: Benachrichtigungen von Profilen blockieren, denen ich nicht folge
       notification_emails:
         digest: Schicke Übersichts-E-Mails
@@ -44,8 +61,8 @@ de:
         follow_request: E-Mail senden, wenn mir jemand folgen möchte
         mention: E-Mail senden, wenn mich jemand erwähnt
         reblog: E-Mail senden, wenn jemand meinen Beitrag teilt
-    'no': 'Nein'
+    'no': Nein
     required:
       mark: "*"
       text: Pflichtfeld
-    'yes': 'Ja'
+    'yes': Ja

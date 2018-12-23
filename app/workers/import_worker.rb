@@ -12,13 +12,8 @@ class ImportWorker
   def perform(import_id)
     @import = Import.find(import_id)
 
-    case @import.type
-    when 'blocking'
-      process_blocks
-    when 'following'
-      process_follows
-    when 'muting'
-      process_mutes
+    Import::RelationshipWorker.push_bulk(import_rows) do |row|
+      [@import.account_id, row.first, relationship_type]
     end
 
     @import.destroy
@@ -26,49 +21,22 @@ class ImportWorker
 
   private
 
-  def from_account
-    @import.account
-  end
-
   def import_contents
     Paperclip.io_adapters.for(@import.data).read
   end
 
+  def relationship_type
+    case @import.type
+    when 'following'
+      'follow'
+    when 'blocking'
+      'block'
+    when 'muting'
+      'mute'
+    end
+  end
+
   def import_rows
     CSV.new(import_contents).reject(&:blank?)
-  end
-
-  def process_mutes
-    import_rows.each do |row|
-      begin
-        target_account = ResolveRemoteAccountService.new.call(row.first)
-        next if target_account.nil?
-        MuteService.new.call(from_account, target_account)
-      rescue Mastodon::UnexpectedResponseError, HTTP::Error, OpenSSL::SSL::SSLError
-        next
-      end
-    end
-  end
-
-  def process_blocks
-    import_rows.each do |row|
-      begin
-        target_account = ResolveRemoteAccountService.new.call(row.first)
-        next if target_account.nil?
-        BlockService.new.call(from_account, target_account)
-      rescue Mastodon::UnexpectedResponseError, HTTP::Error, OpenSSL::SSL::SSLError
-        next
-      end
-    end
-  end
-
-  def process_follows
-    import_rows.each do |row|
-      begin
-        FollowService.new.call(from_account, row.first)
-      rescue Mastodon::NotPermittedError, ActiveRecord::RecordNotFound, Mastodon::UnexpectedResponseError, HTTP::Error, OpenSSL::SSL::SSLError
-        next
-      end
-    end
   end
 end

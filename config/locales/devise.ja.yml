@@ -8,10 +8,10 @@ ja:
     failure:
       already_authenticated: 既にログイン済みです。
       inactive: あなたのアカウントはまだ有効化されていません。
-      invalid: '%{authentication_keys}かパスワードが誤っています。'
+      invalid: "%{authentication_keys}かパスワードが誤っています。"
       last_attempt: あと1回失敗するとアカウントがロックされます。
       locked: アカウントはロックされました。
-      not_found_in_database: '%{authentication_keys}かパスワードが誤っています'
+      not_found_in_database: "%{authentication_keys}かパスワードが誤っています。"
       timeout: セッションの有効期限が切れました。続行するには再度ログインしてください。
       unauthenticated: 続行するにはログインするか、アカウントを作成してください。
       unconfirmed: 続行するにはメールアドレスを確認する必要があります。
@@ -25,8 +25,8 @@ ja:
       unlock_instructions:
         subject: 'Mastodon: アカウントのロックの解除'
     omniauth_callbacks:
-      failure: '%{reason}によって%{kind}からのアクセスを認証できませんでした。'
-      success: '%{kind}からのアクセスは正常に認証されました。'
+      failure: "%{reason}によって%{kind}からのアクセスを認証できませんでした。"
+      success: "%{kind}からのアクセスは正常に認証されました。"
     passwords:
       no_token: パスワード再発行のメール以外からこのページにアクセスすることはできません。 パスワード再発行のメールからアクセスしたのにもかかわらずこのメッセージが表示される場合は、アクセスしたURLが間違っていないか確認してください。
       send_instructions: パスワード再発行の方法が記載されたメールが間もなく送信されます。
@@ -52,10 +52,10 @@ ja:
   errors:
     messages:
       already_confirmed: は確認されました。ログインを試してください。
-      confirmation_period_expired: '%{period}以内に確認が必要です。再度試してください。'
+      confirmation_period_expired: "%{period}以内に確認が必要です。再度試してください。"
       expired: は期限切れです。再度試してください。
       not_found: 見つかりません。
       not_locked: ロックされていません。
       not_saved:
-        one: 'エラーが発生したため、%{resource}の保存に失敗しました。'
+        one: エラーが発生したため、%{resource}の保存に失敗しました。
         other: "%{count}個のエラーが発生したため、保存に失敗しました。 %{resource}"

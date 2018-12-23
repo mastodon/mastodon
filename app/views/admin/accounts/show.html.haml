@@ -129,3 +129,25 @@
         %tr
           %th= t('admin.accounts.followers_url')
           %td= link_to @account.followers_url, @account.followers_url
+
+%hr
+%h3= t('admin.accounts.moderation_notes')
+
+= simple_form_for @account_moderation_note, url: admin_account_moderation_notes_path do |f|
+  = render 'shared/error_messages', object: @account_moderation_note
+
+  = f.input :content
+  = f.hidden_field :target_account_id
+
+  .actions
+  = f.button :button, t('admin.account_moderation_notes.create'), type: :submit
+
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th
+        %th= t('admin.account_moderation_notes.account')
+        %th= t('admin.account_moderation_notes.created_at')
+    %tbody
+      = render @moderation_notes

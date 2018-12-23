@@ -10,20 +10,6 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
-  class ImageSerializer < ActiveModel::Serializer
-    include RoutingHelper
-
-    attributes :type, :url
-
-    def type
-      'Image'
-    end
-
-    def url
-      full_asset_url(object.url(:original))
-    end
-  end
-
   class EndpointsSerializer < ActiveModel::Serializer
     include RoutingHelper
 
@@ -36,8 +22,8 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
 
   has_one :endpoints, serializer: EndpointsSerializer
 
-  has_one :icon,  serializer: ImageSerializer, if: :avatar_exists?
-  has_one :image, serializer: ImageSerializer, if: :header_exists?
+  has_one :icon,  serializer: ActivityPub::ImageSerializer, if: :avatar_exists?
+  has_one :image, serializer: ActivityPub::ImageSerializer, if: :header_exists?
 
   def id
     account_url(object)
