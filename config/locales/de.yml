@@ -229,6 +229,7 @@ de:
       config: Konfiguration
       feature_deletions: Kontolöschung
       feature_invites: Einladungslinks
+      feature_profile_directory: Profilverzeichnis
       feature_registrations: Registrierung
       feature_relay: Föderations-Relay
       features: Eigenschaften
@@ -376,6 +377,9 @@ de:
       preview_sensitive_media:
         desc_html: Linkvorschauen auf anderen Webseiten werden ein Vorschaubild anzeigen, obwohl die Medien als heikel gekennzeichnet sind
         title: Heikle Medien in OpenGraph-Vorschauen anzeigen
+      profile_directory:
+        desc_html: Erlaube Benutzer auffindbar zu sein
+        title: Aktiviere Profilverzeichnis
       registrations:
         closed_message:
           desc_html: Wird auf der Frontseite angezeigt, wenn die Registrierung geschlossen ist. Du kannst HTML-Tags benutzen
@@ -435,12 +439,6 @@ de:
       last_delivery: Letzte Zustellung
       title: WebSub
       topic: Thema
-    suspensions:
-      bad_acct_msg: Der Bestätigungswert stimmt nicht überein. Sperrst du das richtige Benutzerkonto?
-      hint_html: 'Um die Sperrung des Benutzerkontos zu genehmigen tippe %{value} in das Feld unten ein:'
-      proceed: Fortfahren
-      title: "%{acct} sperren"
-      warning_html: 'Die Sperrung des Benutzerkontos wird <strong>unwiederrufliche</strong> Schäden hervorrufen und alle Daten löschen, die folgendes beinhalten:'
     tags:
       accounts: Konten
       hidden: Versteckt
@@ -527,6 +525,13 @@ de:
     success_msg: Dein Konto wurde erfolgreich gelöscht
     warning_html: Wir können nur dafür garantieren, dass die Inhalte auf dieser einen Instanz gelöscht werden. Bei Inhalten, die weit verbreitet wurden, ist es wahrscheinlich, dass Spuren bleiben werden. Server, die offline sind oder keine Benachrichtigungen von deinem Konto mehr empfangen, werden ihre Datenbanken nicht bereinigen.
     warning_title: Verfügbarkeit verstreuter Inhalte
+  directories:
+    directory: Profilverzeichnis
+    explanation: Entdecke Benutzer basierend auf deren Interessen
+    explore_mastodon: Entdecke %{title}
+    people:
+      one: "%{count} Person"
+      other: "%{count} Leute"
   errors:
     '403': Dir fehlt die Befugnis, diese Seite sehen zu können.
     '404': Diese Seite existiert nicht.
@@ -921,7 +926,6 @@ de:
       review_preferences_action: Einstellungen ändern
       review_preferences_step: Stelle sicher, dass du deine Einstellungen einstellst, wie zum Beispiel welche E-Mails du gerne erhalten möchtest oder was für Privatsphäreneinstellungen voreingestellt werden sollten. Wenn dir beim Ansehen von GIFs nicht schwindelig wird, dann kannst du auch das automatische Abspielen dieser aktivieren.
       subject: Willkommen bei Mastodon
-      tip_bridge_html: Wenn du gerade von Twitter kommst, dann kannst du deine Freunde auf Mastodon mithilfe der <a href="%{bridge_url}">Bridge-App</a> finden. Es funktioniert aber auch nur, wenn diese die Bridge-App vorher verwendet haben!
       tip_federated_timeline: Die föderierte Zeitleiste ist die sehr große Ansicht vom Mastodon-Netzwerk. Sie enthält aber auch nur Leute, denen du und deine Nachbarn folgen, sie ist also nicht komplett.
       tip_following: Du folgst standardmäßig deinen Server-Admin(s). Um mehr interessante Leute zu finden, kannst du die lokale oder öffentliche Zeitleiste durchsuchen.
       tip_local_timeline: Die lokale Zeitleiste ist eine Ansicht aller Leute auf %{instance}. Diese sind deine Nachbarn!

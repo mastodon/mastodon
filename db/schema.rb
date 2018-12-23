@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_07_011115) do
+ActiveRecord::Schema.define(version: 2018_12_13_185533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,23 @@ ActiveRecord::Schema.define(version: 2018_12_07_011115) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tag_id"], name: "index_account_tag_stats_on_tag_id", unique: true
+  end
+
+  create_table "account_warning_presets", force: :cascade do |t|
+    t.text "text", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "account_warnings", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "target_account_id"
+    t.integer "action", default: 0, null: false
+    t.text "text", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_warnings_on_account_id"
+    t.index ["target_account_id"], name: "index_account_warnings_on_target_account_id"
   end
 
   create_table "accounts", force: :cascade do |t|
@@ -668,6 +685,8 @@ ActiveRecord::Schema.define(version: 2018_12_07_011115) do
   add_foreign_key "account_pins", "accounts", on_delete: :cascade
   add_foreign_key "account_stats", "accounts", on_delete: :cascade
   add_foreign_key "account_tag_stats", "tags", on_delete: :cascade
+  add_foreign_key "account_warnings", "accounts", column: "target_account_id", on_delete: :cascade
+  add_foreign_key "account_warnings", "accounts", on_delete: :nullify
   add_foreign_key "accounts", "accounts", column: "moved_to_account_id", on_delete: :nullify
   add_foreign_key "admin_action_logs", "accounts", on_delete: :cascade
   add_foreign_key "backups", "users", on_delete: :nullify

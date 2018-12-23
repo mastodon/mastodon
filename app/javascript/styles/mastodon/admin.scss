@@ -542,6 +542,10 @@ a.name-tag,
     border-left-color: lighten($error-red, 12%);
   }
 
+  &.warning {
+    border-left-color: $gold-star;
+  }
+
   &__bubble {
     padding: 16px;
     padding-left: 14px;
