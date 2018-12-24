@@ -155,6 +155,14 @@ class Account < ApplicationRecord
     ResolveAccountService.new.call(acct)
   end
 
+  def silence!
+    update!(silenced: true)
+  end
+
+  def unsilence!
+    update!(silenced: false)
+  end
+
   def suspend!
     transaction do
       user&.disable! if local?
