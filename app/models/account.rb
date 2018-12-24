@@ -230,7 +230,7 @@ class Account < ApplicationRecord
     fields     = []
     old_fields = self[:fields] || []
 
-    if attributes.is_?(Array)
+    if attributes.is_a?(Array)
       attributes.each do |attr|
         next if attr[:name].blank?
 
