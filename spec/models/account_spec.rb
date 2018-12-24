@@ -601,6 +601,12 @@ RSpec.describe Account, type: :model do
         account.valid?
         expect(account).to model_have_error_on_field(:note)
       end
+
+      it 'is valid if the note has 160 characters when endlines are counted as one character' do
+        account = Fabricate.build(:account, note: Faker::Lorem.characters(159).insert(1, "\r\n"))
+        account.valid?
+        expect(account).to be_valid
+      end
     end
 
     context 'when is remote' do

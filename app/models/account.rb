@@ -112,6 +112,11 @@ class Account < ApplicationRecord
 
   delegate :chosen_languages, to: :user, prefix: false, allow_nil: true
 
+  # Convert newlines so validation doesn't count them as two characters
+  def note=(val)
+    self['note'] = val.gsub("\r\n", "\n")
+  end
+
   def local?
     domain.nil?
   end
