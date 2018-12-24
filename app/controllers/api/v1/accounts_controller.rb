@@ -76,7 +76,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def account_params
-    params.permit(:username, :email, :password)
+    params.permit(:username, :email, :password, :agreement)
   end
 
   def check_enabled_registrations

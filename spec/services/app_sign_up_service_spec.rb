@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe AppSignUpService, type: :service do
   let(:app) { Fabricate(:application, scopes: 'read write') }
-  let(:good_params) { { username: 'alice', password: '12345678', email: 'good@email.com' } }
+  let(:good_params) { { username: 'alice', password: '12345678', email: 'good@email.com', agreement: true } }
 
   subject { described_class.new }
 

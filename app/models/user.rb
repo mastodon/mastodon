@@ -76,6 +76,7 @@ class User < ApplicationRecord
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?
   validates_with EmailMxValidator, if: :validate_email_dns?
+  validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
 
   scope :recent, -> { order(id: :desc) }
   scope :admins, -> { where(admin: true) }
@@ -296,7 +297,7 @@ class User < ApplicationRecord
       end
 
     if resource.blank?
-      resource = new(email: attributes[:email])
+      resource = new(email: attributes[:email], agreement: true)
       if Devise.check_at_sign && !resource[:email].index('@')
         resource[:email] = Rpam2.getenv(resource.find_pam_service, attributes[:email], attributes[:password], 'email', false)
         resource[:email] = "#{attributes[:email]}@#{resource.find_pam_suffix}" unless resource[:email]
@@ -309,7 +310,7 @@ class User < ApplicationRecord
     resource = joins(:account).find_by(accounts: { username: attributes[Devise.ldap_uid.to_sym].first })
 
     if resource.blank?
-      resource = new(email: attributes[:mail].first, account_attributes: { username: attributes[Devise.ldap_uid.to_sym].first })
+      resource = new(email: attributes[:mail].first, agreement: true, account_attributes: { username: attributes[Devise.ldap_uid.to_sym].first })
       resource.ldap_setup(attributes)
     end
 
