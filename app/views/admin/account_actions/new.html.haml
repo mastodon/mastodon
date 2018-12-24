@@ -1,0 +1,26 @@
+- content_for :page_title do
+  = t('admin.account_actions.title', acct: @account.acct)
+
+= simple_form_for @account_action, url: admin_account_action_path(@account.id) do |f|
+  = f.input :report_id, as: :hidden
+
+  .fields-group
+    = f.input :type, collection: Admin::AccountAction.types_for_account(@account), include_blank: false, wrapper: :with_block_label, label_method: ->(type) { I18n.t("simple_form.labels.admin_account_action.types.#{type}")}, hint: t('simple_form.hints.admin_account_action.type_html', acct: @account.acct)
+
+  - if @account.local?
+    %hr.spacer/
+
+    .fields-group
+      = f.input :send_email_notification, as: :boolean, wrapper: :with_label
+
+    %hr.spacer/
+
+    - unless @warning_presets.empty?
+      .fields-group
+        = f.input :warning_preset_id, collection: @warning_presets, label_method: :text, wrapper: :with_block_label
+
+    .fields-group
+      = f.input :text, as: :text, wrapper: :with_block_label, hint: t('simple_form.hints.admin_account_action.text_html', path: admin_warning_presets_path)
+
+  .actions
+    = f.button :button, t('admin.account_actions.action'), type: :submit
