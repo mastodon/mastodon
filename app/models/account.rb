@@ -231,17 +231,15 @@ class Account < ApplicationRecord
     old_fields = self[:fields] || []
 
     Array.wrap(attributes).each do |attr|
-      if attr.is_a?(Hash)
-        next if attr[:name].blank?
+      next if !attr.is_a?(Hash) || attr[:name].blank?
 
-        previous = old_fields.find { |item| item['value'] == attr[:value] }
+      previous = old_fields.find { |item| item['value'] == attr[:value] }
 
-        if previous && previous['verified_at'].present?
-          attr[:verified_at] = previous['verified_at']
-        end
-
-        fields << attr
+      if previous && previous['verified_at'].present?
+        attr[:verified_at] = previous['verified_at']
       end
+
+      fields << attr
     end
 
     self[:fields] = fields
