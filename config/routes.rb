@@ -139,6 +139,7 @@ Rails.application.routes.draw do
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
     resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resources :action_logs, only: [:index]
+    resources :warning_presets, except: [:new]
     resource :settings, only: [:edit, :update]
 
     resources :invites, only: [:index, :create, :destroy] do
@@ -160,7 +161,14 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :reports, only: [:index, :show, :update] do
+    resources :reports, only: [:index, :show] do
+      member do
+        post :assign_to_self
+        post :unassign
+        post :reopen
+        post :resolve
+      end
+
       resources :reported_statuses, only: [:create]
     end
 
@@ -171,7 +179,8 @@ Rails.application.routes.draw do
         post :subscribe
         post :unsubscribe
         post :enable
-        post :disable
+        post :unsilence
+        post :unsuspend
         post :redownload
         post :remove_avatar
         post :remove_header
@@ -180,8 +189,7 @@ Rails.application.routes.draw do
 
       resource :change_email, only: [:show, :update]
       resource :reset, only: [:create]
-      resource :silence, only: [:create, :destroy]
-      resource :suspension, only: [:new, :create, :destroy]
+      resource :action, only: [:new, :create], controller: 'account_actions'
       resources :statuses, only: [:index, :create, :update, :destroy]
 
       resource :confirmation, only: [:create] do
