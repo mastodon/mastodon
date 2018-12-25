@@ -234,7 +234,6 @@ class Account < ApplicationRecord
       if !attr.is_a?(Hash) || attr[:name].blank?
         raise ArgumentError, 'One of custom field attributes has invalid format'
       end
-      
       previous = old_fields.find { |item| item['value'] == attr[:value] }
 
       if previous && previous['verified_at'].present?
