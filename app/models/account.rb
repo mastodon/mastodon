@@ -231,8 +231,10 @@ class Account < ApplicationRecord
     old_fields = self[:fields] || []
 
     Array.wrap(attributes).each do |attr|
-      next if !attr.is_a?(Hash) || attr[:name].blank?
-
+      if !attr.is_a?(Hash) || attr[:name].blank?
+        raise ArgumentError, 'One of custom field attributes has invalid format'
+      end
+      
       previous = old_fields.find { |item| item['value'] == attr[:value] }
 
       if previous && previous['verified_at'].present?
