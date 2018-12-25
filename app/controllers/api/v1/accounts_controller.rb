@@ -80,6 +80,6 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def check_enabled_registrations
-    forbidden if single_user_mode? || !Setting.open_registrations
+    forbidden if single_user_mode? || !Setting.open_registrations || !Setting.open_registrations_api
   end
 end
