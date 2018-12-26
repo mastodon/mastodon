@@ -6,7 +6,7 @@ class ActivityPub::Activity::Follow < ActivityPub::Activity
 
     return if target_account.nil? || !target_account.local? || delete_arrived_first?(@json['id']) || @account.requested?(target_account)
 
-    if target_account.blocking?(@account) || target_account.domain_blocking?(@account.domain)
+    if target_account.blocking?(@account) || target_account.domain_blocking?(@account.domain) || target_account.moved?
       reject_follow_request!(target_account)
       return
     end
