@@ -34,7 +34,7 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
       end
 
       it 'processes payload with actor if valid signature exists' do
-        payload['signature'] = {'type' => 'RsaSignature2017'}
+        payload['signature'] = { 'type' => 'RsaSignature2017' }
 
         expect_any_instance_of(ActivityPub::LinkedDataSignature).to receive(:verify_account!).and_return(actor)
         expect(ActivityPub::Activity).to receive(:factory).with(instance_of(Hash), actor, instance_of(Hash))
@@ -43,7 +43,7 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
       end
 
       it 'does not process payload if invalid signature exists' do
-        payload['signature'] = {'type' => 'RsaSignature2017'}
+        payload['signature'] = { 'type' => 'RsaSignature2017' }
 
         expect_any_instance_of(ActivityPub::LinkedDataSignature).to receive(:verify_account!).and_return(nil)
         expect(ActivityPub::Activity).not_to receive(:factory)

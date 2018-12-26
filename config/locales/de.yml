@@ -22,7 +22,7 @@ de:
       not_a_product_title: Du bist ein Mensch und keine Ware
       real_conversation_body: Mit 500 Zeichen pro Beitrag und der Ermöglichung präziser Inhalts- und Bilderwarnungen kannst du dich so ausdrücken, wie du es möchtest.
       real_conversation_title: Für das echte Gespräch gemacht
-      within_reach_body: Verschiedene Apps für iOS, Android und andere Plattformen erlauben dir dank unserem blühenden API-Ökosystem, dich von überall auf dem Laufenden zu halten.
+      within_reach_body: Verschiedene Apps für iOS, Android und andere Plattformen erlauben dir, dank unseres blühenden API-Ökosystems, dich von überall auf dem Laufenden zu halten.
       within_reach_title: Immer für dich da
     generic_description: "%{domain} ist ein Server im Netzwerk"
     hosted_on: Mastodon, beherbergt auf %{domain}
@@ -31,23 +31,24 @@ de:
     privacy_policy: Datenschutzerklärung
     source_code: Quellcode
     status_count_after:
-      one: Status
-      other: Status
-    status_count_before: die
+      one: Statusmeldung
+      other: Statusmeldungen
+    status_count_before: mit
     terms: Nutzungsbedingungen
     user_count_after:
-      one: Benutzer
-      other: Benutzer
+      one: Benutzer:in
+      other: Benutzer:innen
     user_count_before: Zuhause für
     what_is_mastodon: Was ist Mastodon?
   accounts:
-    choices_html: "%{name} empfielt:"
+    choices_html: "%{name} empfiehlt:"
     follow: Folgen
     followers:
       one: Folgende
       other: Follower
     following: Folgt
     joined: Beigetreten am %{date}
+    link_verified_on: Besitz des Links wurde überprüft am %{date}
     media: Medien
     moved_html: "%{name} ist auf %{new_profile_link} umgezogen:"
     network_hidden: Diese Informationen sind nicht verfügbar
@@ -120,13 +121,14 @@ de:
       moderation_notes: Moderationsnotizen
       most_recent_activity: Letzte Aktivität
       most_recent_ip: Letzte IP-Adresse
+      no_limits_imposed: Keine Limits eingesetzt
       not_subscribed: Nicht abonniert
       order:
         alphabetic: Alphabetisch
         most_recent: Neueste
         title: Sortierung
       outbox_url: Postausgangs-URL
-      perform_full_suspension: Vollständige Sperre durchführen
+      perform_full_suspension: Sperren
       profile_url: Profil-URL
       promote: Befördern
       protocol: Protokoll
@@ -135,7 +137,7 @@ de:
       redownload: Avatar neu laden
       remove_avatar: Profilbild entfernen
       resend_confirmation:
-        already_confirmed: Dieser Benutzer wurde bereits bestätigt
+        already_confirmed: Diese:r Benutzer:in wurde bereits bestätigt
         send: Bestätigungsmail erneut senden
         success: Bestätigungs-E-Mail erfolgreich gesendet!
       reset: Zurücksetzen
@@ -144,7 +146,7 @@ de:
       role: Berechtigungen
       roles:
         admin: Administrator
-        moderator: Moderator
+        moderator: Moderator:in
         staff: Mitarbeiter
         user: Nutzer
       salmon_url: Salmon-URL
@@ -155,8 +157,10 @@ de:
         report: Meldung
         targeted_reports: Meldungen über dieses Konto
       silence: Stummschalten
+      silenced: Stummgeschaltet
       statuses: Beiträge
       subscribe: Abonnieren
+      suspended: Gesperrt
       title: Konten
       unconfirmed_email: Unbestätigte E-Mail-Adresse
       undo_silenced: Stummschaltung zurücknehmen
@@ -172,20 +176,21 @@ de:
         create_custom_emoji: "%{name} hat neues Emoji %{target} hochgeladen"
         create_domain_block: "%{name} hat die Domain %{target} blockiert"
         create_email_domain_block: "%{name} hat die E-Mail-Domain %{target} geblacklistet"
-        demote_user: "%{name} stufte Benutzer %{target} herunter"
+        demote_user: "%{name} stufte Benutzer:in %{target} herunter"
+        destroy_custom_emoji: "%{name} zerstörte Emoji %{target}"
         destroy_domain_block: "%{name} hat die Domain %{target} entblockt"
         destroy_email_domain_block: "%{name} hat die E-Mail-Domain %{target} gewhitelistet"
         destroy_status: "%{name} hat Status von %{target} entfernt"
-        disable_2fa_user: "%{name} hat Zwei-Faktor-Anforderung für Benutzer %{target} deaktiviert"
+        disable_2fa_user: "%{name} hat Zwei-Faktor-Anforderung für Benutzer:in %{target} deaktiviert"
         disable_custom_emoji: "%{name} hat das %{target} Emoji deaktiviert"
-        disable_user: "%{name} hat den Login für Benutzer  %{target} deaktiviert"
+        disable_user: "%{name} hat den Login für Benutzer:in  %{target} deaktiviert"
         enable_custom_emoji: "%{name} hat das %{target} Emoji aktiviert"
-        enable_user: "%{name} hat die Anmeldung für den Benutzer %{target} aktiviert"
+        enable_user: "%{name} hat die Anmeldung für di:en Benutzer:in %{target} aktiviert"
         memorialize_account: "%{name} hat %{target}s Profil in eine Gedenkseite umgewandelt"
         promote_user: "%{name} hat %{target} befördert"
         remove_avatar_user: "%{name} hat das Profilbild von %{target} entfernt"
         reopen_report: "%{name} hat die Meldung %{target} wieder geöffnet"
-        reset_password_user: "%{name} hat das Passwort für den Benutzer %{target} zurückgesetzt"
+        reset_password_user: "%{name} hat das Passwort für di:en Benutzer:in %{target} zurückgesetzt"
         resolve_report: "%{name} hat die Meldung %{target} bearbeitet"
         silence_account: "%{name} hat %{target}s Account stummgeschaltet"
         suspend_account: "%{name} hat %{target}s Account gesperrt"
@@ -237,11 +242,11 @@ de:
       software: Software
       space: Speicherverbrauch
       title: Übersicht
-      total_users: Benutzer Insgesamt
+      total_users: Benutzer:innen insgesamt
       trends: Trends
       week_interactions: Interaktionen diese Woche
       week_users_active: Aktiv diese Woche
-      week_users_new: Benutzer diese Woche
+      week_users_new: Benutzer:innen diese Woche
     domain_blocks:
       add_new: Neu hinzufügen
       created_msg: Die Domain-Blockade wird nun durchgeführt
@@ -258,6 +263,8 @@ de:
         title: Neue Domain-Blockade
       reject_media: Mediendateien ablehnen
       reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
+      reject_reports: Meldungen ablehnen
+      reject_reports_hint: Ignoriere alle Meldungen von dieser Domain. Irrelevant für Sperrungen
       severities:
         noop: Kein
         silence: Stummschaltung
@@ -300,10 +307,16 @@ de:
       title: Einladungen
     relays:
       add_new: Neues Relay hinzufügen
+      delete: Löschen
       description_html: Ein <strong>Föderierungsrelay</strong> ist ein vermittelnder Server, der eine große Anzahl öffentlicher Beiträge zwischen Servern austauscht, die es abonnieren und zu ihm veröffentlichen.<strong> Es kann kleinen und mittleren Servern dabei helfen, Inhalte des Fediverse zu entdecken</strong>, was andernfalls das manuelle Folgen anderer Leute auf entfernten Servern durch lokale Nutzer erfordern würde.
+      disable: Ausschalten
+      disabled: Ausgeschaltet
+      enable: Einschalten
       enable_hint: Sobald aktiviert wird dein Server alle öffentlichen Beiträge dieses Relays abonnieren und wird alle öffentlichen Beiträge dieses Servers an es senden.
+      enabled: Eingeschaltet
       inbox_url: Relay-URL
       pending: Warte auf Zustimmung des Relays
+      save_and_enable: Speichern und aktivieren
       setup: Relayverbindung einrichten
       status: Status
       title: Relays
@@ -321,7 +334,6 @@ de:
       comment:
         none: Kein
       created_at: Gemeldet
-      id: ID
       mark_as_resolved: Als gelöst markieren
       mark_as_unresolved: Als ungelöst markieren
       notes:
@@ -332,20 +344,15 @@ de:
         placeholder: Beschreibe, welche Maßnahmen ergriffen wurden oder irgendwelche andere Neuigkeiten…
       reopen: Meldung wieder öffnen
       report: 'Meldung #%{id}'
-      report_contents: Inhalt
       reported_account: Gemeldetes Konto
       reported_by: Gemeldet von
       resolved: Gelöst
       resolved_msg: Meldung erfolgreich gelöst!
-      silence_account: Konto stummschalten
       status: Status
-      suspend_account: Konto sperren
-      target: Ziel
       title: Meldungen
       unassign: Zuweisung entfernen
       unresolved: Ungelöst
       updated_at: Aktualisiert
-      view: Ansehen
     settings:
       activity_api_enabled:
         desc_html: Anzahl der lokal geposteten Beiträge, aktiven Nutzern und neuen Registrierungen in wöchentlichen Zusammenfassungen
@@ -362,6 +369,9 @@ de:
       hero:
         desc_html: Wird auf der Startseite angezeigt. Mindestens 600x100px sind empfohlen. Wenn es nicht gesetzt wurde, wird das Instanz-Thumbnail dafür verwendet
         title: Bild für Startseite
+      mascot:
+        desc_html: Angezeigt auf mehreren Seiten. Mehr als 293x205px empfohlen. Wenn es nicht gesetzt wurde wird es auf das Standard-Maskottchen zurückfallen
+        title: Maskottchen-Bild
       peers_api_enabled:
         desc_html: Domain-Namen dieser Instanz, die im Fediverse gefunden wurden
         title: Veröffentliche Liste von gefundenen Instanzen
@@ -455,7 +465,7 @@ de:
     warning: Sei mit diesen Daten sehr vorsichtig. Teile sie mit niemandem!
     your_token: Dein Zugangs-Token
   auth:
-    agreement_html: Indem du dich registrierst, erklärst du dich mit den Regeln, die <a href="%{rules_path}">auf dieser Instanz gelten</a> und der <a href="%{terms_path}">Datenschutzerklärung</a> einverstanden.
+    agreement_html: Indem du dich registrierst, erklärst du dich mit den untenstehenden <a href="%{rules_path}">Regeln dieser Instanz</a> und der <a href="%{terms_path}">Datenschutzerklärung</a> einverstanden.
     change_password: Passwort
     confirm_email: E-Mail bestätigen
     delete_account: Konto löschen
@@ -522,7 +532,7 @@ de:
     '500':
       content: Bitte verzeih, etwas ist bei uns schief gegangen.
       title: Diese Seite ist kaputt
-    noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
+    noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
   exports:
     archive_takeout:
       date: Datum
@@ -570,6 +580,7 @@ de:
     resources: Ressourcen
   generic:
     changes_saved_msg: Änderungen gespeichert!
+    copy: Kopieren
     save_changes: Änderungen speichern
     validation_errors:
       one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
@@ -786,9 +797,9 @@ de:
       <h3 id="collect">Welche Informationen sammeln wir?</h3>
 
       <ul>
-        <li><em>Grundlegende Kontoinformationen</em>: Wenn du dich auf diesem Server registrierst, wirst du darum gebeten, einen Benutzernamen, eine E-Mail-Adresse und ein Passwort einzugeben. Du kannst auch zusätzliche Profilinformationen wie etwa einen Anzeigenamen oder eine Biografie eingeben und ein Profilbild oder ein Headerbild hochladen. Der Benutzername, der Anzeigename, die Biografie, das Profilbild und das Headerbild werden immer öffentlich angezeigt.</li>
+        <li><em>Grundlegende Kontoinformationen</em>: Wenn du dich auf diesem Server registrierst, wirst du darum gebeten, einen Benutzer:innen-Namen, eine E-Mail-Adresse und ein Passwort einzugeben. Du kannst auch zusätzliche Profilinformationen wie etwa einen Anzeigenamen oder eine Biografie eingeben und ein Profilbild oder ein Headerbild hochladen. Der Benutzer:innen-Name, der Anzeigename, die Biografie, das Profilbild und das Headerbild werden immer öffentlich angezeigt.</li>
         <li><em>Beiträge, Folge- und andere öffentliche Informationen</em>: Die Liste der Leute, denen du folgst, wird öffentlich gezeigt, das gleiche gilt für deine Folgenden (Follower). Sobald du eine Nachricht übermittelst, wird das Datum und die Uhrzeit gemeinsam mit der Information, welche Anwendung du dafür verwendet hast, gespeichert. Nachricht können Medienanhänge enthalten, etwa Bilder und Videos. Öffentliche und ungelistete Beiträge sind öffentlich verfügbar. Sobald du einen Beitrag auf deinem Profil featurest, sind dies auch öffentlich verfügbare Informationen. Deine Beiträge werden an deine Folgenden ausgeliefert, was in manchen Fällen bedeutet, dass sie an andere Server ausgeliefert werden und dort Kopien gespeichert werden. Sobald du Beiträge löschst, wird dies ebenso an deine Follower ausgeliefert. Die Handlungen des Teilens und Favorisieren eines anderen Beitrages ist immer öffentlich.</li>
-        <li><em>Direkte und "Nur Folgende"-Beiträge</em>: Alle Beiträge werden auf dem Server gespeichert und verarbeitet. "Nur Folgende"-Beiträge werden an deine Folgenden und an Benutzer, die du in ihnen erwähnst, ausgeliefert, direkte Beiträge nur an in ihnen erwähnte Benutzer. In manchen Fällen bedeutet dass, dass sie an andere Server ausgeliefert werden und dort Kopien gespeichert werden. Wir bemühen uns nach bestem Wissen und Gewissen, den Zugriff auf diese Beiträge auf nur autorisierte Personen einzuschränken, jedoch könnten andere Server dabei scheitern. Deswegen ist es wichtig, die Server, zu denen deine Folgenden gehören, zu überprüfen. Du kannst eine Option in den Einstellungen umschalten, um neue Folgenden manuell anzunehmen oder abzuweisen. <em>Bitte beachte, dass die Betreiber des Server und jedes empfangenden Servers solche Nachrichten anschauen könnten</em> und dass Empfänger von diesen eine Bildschirmkopie erstellen könnten, sie kopieren oder anderweitig weiterverteilen könnten. <em>Teile nicht irgendwelche gefährlichen Informationen über Mastodon.</em></li>
+        <li><em>Direkte und "Nur Folgende"-Beiträge</em>: Alle Beiträge werden auf dem Server gespeichert und verarbeitet. "Nur Folgende"-Beiträge werden an deine Folgenden und an Benutzer:innen, die du in ihnen erwähnst, ausgeliefert, direkte Beiträge nur an in ihnen erwähnte Benutzer:innen. In manchen Fällen bedeutet dass, dass sie an andere Server ausgeliefert werden und dort Kopien gespeichert werden. Wir bemühen uns nach bestem Wissen und Gewissen, den Zugriff auf diese Beiträge auf nur autorisierte Personen einzuschränken, jedoch könnten andere Server dabei scheitern. Deswegen ist es wichtig, die Server, zu denen deine Folgenden gehören, zu überprüfen. Du kannst eine Option in den Einstellungen umschalten, um neue Folgenden manuell anzunehmen oder abzuweisen. <em>Bitte beachte, dass die Betreiber des Server und jedes empfangenden Servers solche Nachrichten anschauen könnten</em> und dass Empfänger von diesen eine Bildschirmkopie erstellen könnten, sie kopieren oder anderweitig weiterverteilen könnten. <em>Teile nicht irgendwelche gefährlichen Informationen über Mastodon.</em></li>
         <li><em>Internet Protocol-Adressen (IP-Adressen) und andere Metadaten</em>: Sobald du dich anmeldest, erfassen wir sowohl die IP-Adresse, von der aus du dich anmeldest, als auch den Namen deine Browseranwendung. Alle angemeldeten Sitzungen (Sessions) sind für deine Überprüfung und Widerruf in den Einstellungen verfügbar. Die letzte verwendete IP-Adresse wird bis zu 12 Monate lang gespeichert. Wir könnten auch Serverprotokoll behalten, welche die IP-Adresse von jeder Anfrage an unseren Server enthalten.</li>
       </ul>
 
@@ -818,7 +829,7 @@ de:
 
       <ul>
         <li>Serverprotokolle, die IP-Adressen von allen deinen Anfragen an diesen Server, falls solche Protokolle behalten werden, für nicht mehr als 90 Tage behalten.</li>
-        <li>registrierten Benutzern zu geordnete IP-Adressen nicht länger als 12 Monate behalten.</li>
+        <li>registrierten Benutzer:innen zugeordnete IP-Adressen nicht länger als 12 Monate behalten.</li>
       </ul>
 
       <p>Du kannst ein Archiv deines Inhalts anfordern und herunterladen, inkludierend deiner Beiträge, Medienanhänge, Profilbilder und Headerbilder.</p>
@@ -913,8 +924,12 @@ de:
       tips: Tipps
       title: Willkommen an Bord, %{name}!
   users:
+    follow_limit_reached: Du kannst nicht mehr als %{limit} Leuten folgen
     invalid_email: Ungültige E-Mail-Adresse
     invalid_otp_token: Ungültiger Zwei-Faktor-Authentisierungs-Code
     otp_lost_help_html: Wenn Du beides nicht mehr weißt, melde Dich bei uns unter der E-Mailadresse %{email}
     seamless_external_login: Du bist angemeldet über einen Drittanbieter-Dienst, weswegen Passwort- und E-Maileinstellungen nicht verfügbar sind.
     signed_in_as: 'Angemeldet als:'
+  verification:
+    explanation_html: 'Du kannst <strong>bestätigen, dass die Links in deinen Profil-Metadaten dir gehören</strong>. Dafür muss die verlinkte Website einen Link zurück auf dein Mastodon-Profil enthalten. Dieser Link <strong>muss</strong> ein <code>rel="me"</code>-Attribut enthalten. Der Linktext is dabei egal. Hier ist ein Beispiel:'
+    verification: Verifizierung

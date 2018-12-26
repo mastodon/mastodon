@@ -354,7 +354,7 @@ class OStatus::AtomSerializer
     append_element(entry, 'summary', status.spoiler_text, 'xml:lang': status.language) if status.spoiler_text?
     append_element(entry, 'content', Formatter.instance.format(status).to_str || '.', type: 'html', 'xml:lang': status.language)
 
-    status.mentions.sort_by(&:id).each do |mentioned|
+    status.active_mentions.sort_by(&:id).each do |mentioned|
       append_element(entry, 'link', nil, rel: :mentioned, 'ostatus:object-type': OStatus::TagManager::TYPES[:person], href: OStatus::TagManager.instance.uri_for(mentioned.account))
     end
 

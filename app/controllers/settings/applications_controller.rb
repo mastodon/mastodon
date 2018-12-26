@@ -6,6 +6,7 @@ class Settings::ApplicationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_application, only: [:show, :update, :destroy, :regenerate]
   before_action :prepare_scopes, only: [:create, :update]
+  before_action :set_body_classes
 
   def index
     @applications = current_user.applications.order(id: :desc).page(params[:page])
@@ -68,5 +69,9 @@ class Settings::ApplicationsController < ApplicationController
   def prepare_scopes
     scopes = params.fetch(:doorkeeper_application, {}).fetch(:scopes, nil)
     params[:doorkeeper_application][:scopes] = scopes.join(' ') if scopes.is_a? Array
+  end
+
+  def set_body_classes
+    @body_classes = 'admin'
   end
 end

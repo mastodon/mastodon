@@ -8,24 +8,24 @@ cs:
         bot: Tento účet provádí hlavně automatizované akce a nemusí být spravován
         context: Jedno či více kontextů, ve kterých má být filtr uplatněn
         digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste při své nepřítomnosti obdržel/a osobní zprávy
-        display_name:
-          one: Zbývá <span class="name-counter">1</span> znak
-          other: Zbývá vám <span class="name-counter">%{count}</span> znaků
+        email: Bude vám poslán potvrzovací e-mail
         fields: Na profilu můžete mít až 4 položky zobrazené jako tabulka
         header: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšena na %{dimensions} px
         inbox_url: Zkopírujte URL z hlavní stránky mostu, který chcete použít
         irreversible: Filtrované tooty nenávratně zmizí, i pokud bude filtr později odstraněn
         locale: Jazyk uživatelského rozhraní, e-mailů a oznámení push
         locked: Vyžaduje manuální schvalování sledovatelů
-        note:
-          one: Zbývá <span class="note-counter">1</span>znak
-          other: Zbývá <span class="note-counter">%{count}</span> znaků
+        password: Použijte alespoň 8 znaků
         phrase: Shoda bude nalezena bez ohledu na velikost písmen v těle tootu či varování o obsahu
         scopes: Které API bude aplikace povolena používat. Pokud vyberete rozsah nejvyššího stupně, nebudete je muset vybírat po jednom.
         setting_default_language: Jazyk vašich tootů může být detekován automaticky, není to však vždy přesné
+        setting_display_media_default: Skrývat média označená jako citlivá
+        setting_display_media_hide_all: Vždy skrývat všechna média
+        setting_display_media_show_all: Vždy zobrazovat média označená jako citlivá
         setting_hide_network: Koho sledujete a kdo sleduje vás nebude zobrazeno na vašem profilu
         setting_noindex: Ovlivňuje váš veřejný profil a stránky příspěvků
         setting_theme: Ovlivňuje jak Mastodon vypadá, jste-li přihlášen na libovolném zařízení.
+        username: Vaše uživatelské jméno bude na %{domain} unikátní
         whole_word: Je-li klíčové slovo či fráze pouze alfanumerická, bude aplikována pouze, pokud se shoduje s celým slovem
       imports:
         data: Soubor CSV exportován z jiné instance Mastodon
@@ -69,7 +69,11 @@ cs:
         setting_default_privacy: Soukromí příspěvků
         setting_default_sensitive: Vždy označovat média jako citlivá
         setting_delete_modal: Zobrazovat před smazáním tootu potvrzovací okno
-        setting_display_sensitive_media: Vždy zobrazovat média označená jako citlivá
+        setting_display_media: Zobrazování médií
+        setting_display_media_default: Výchozí
+        setting_display_media_hide_all: Skrýt vše
+        setting_display_media_show_all: Zobrazit vše
+        setting_expand_spoilers: Vždy rozbalit tooty označené varováními o obsahu
         setting_hide_network: Skrýt svou síť
         setting_noindex: Neindexovat svůj profil vyhledávači
         setting_reduce_motion: Redukovat pohyb v animacích

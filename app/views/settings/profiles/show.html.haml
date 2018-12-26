@@ -4,16 +4,21 @@
 = simple_form_for @account, url: settings_profile_path, html: { method: :put } do |f|
   = render 'shared/error_messages', object: @account
 
-  .fields-group
-    = f.input :display_name, placeholder: t('simple_form.labels.defaults.display_name'), hint: t('simple_form.hints.defaults.display_name', count: 30 - @account.display_name.size).html_safe
-    = f.input :note, placeholder: t('simple_form.labels.defaults.note'), hint: t('simple_form.hints.defaults.note', count: 160 - @account.note.size).html_safe
+  .fields-row
+    .fields-row__column.fields-group.fields-row__column-6
+      = f.input :display_name, wrapper: :with_label, input_html: { maxlength: 30 }, hint: false
+      = f.input :note, wrapper: :with_label, input_html: { maxlength: 160 }, hint: false
 
-  = render 'application/card', account: @account
+  .fields-row
+    .fields-row__column.fields-row__column-6
+      = render 'application/card', account: @account
 
-  .fields-group
-    = f.input :avatar, wrapper: :with_label, input_html: { accept: AccountAvatar::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.avatar', dimensions: '400x400', size: number_to_human_size(AccountAvatar::LIMIT))
+    .fields-row__column.fields-group.fields-row__column-6
+      = f.input :avatar, wrapper: :with_label, input_html: { accept: AccountAvatar::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.avatar', dimensions: '400x400', size: number_to_human_size(AccountAvatar::LIMIT))
 
-    = f.input :header, wrapper: :with_label, input_html: { accept: AccountHeader::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.header', dimensions: '1500x500', size: number_to_human_size(AccountHeader::LIMIT))
+      = f.input :header, wrapper: :with_label, input_html: { accept: AccountHeader::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.header', dimensions: '1500x500', size: number_to_human_size(AccountHeader::LIMIT))
+
+  %hr.spacer/
 
   .fields-group
     = f.input :locked, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.locked')
@@ -21,15 +26,27 @@
   .fields-group
     = f.input :bot, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.bot')
 
-  .fields-group
-    .input.with_block_label
-      %label= t('simple_form.labels.defaults.fields')
-      %span.hint= t('simple_form.hints.defaults.fields')
+  %hr.spacer/
 
-      = f.simple_fields_for :fields do |fields_f|
-        .row
-          = fields_f.input :name, placeholder: t('simple_form.labels.account.fields.name')
-          = fields_f.input :value, placeholder: t('simple_form.labels.account.fields.value')
+  .fields-row
+    .fields-row__column.fields-group.fields-row__column-6
+      .input.with_block_label
+        %label= t('simple_form.labels.defaults.fields')
+        %span.hint= t('simple_form.hints.defaults.fields')
+
+        = f.simple_fields_for :fields do |fields_f|
+          .row
+            = fields_f.input :name, placeholder: t('simple_form.labels.account.fields.name'), input_html: { maxlength: 255 }
+            = fields_f.input :value, placeholder: t('simple_form.labels.account.fields.value'), input_html: { maxlength: 255 }
+
+    .fields-row__column.fields-group.fields-row__column-6
+      %h6= t('verification.verification')
+      %p.hint= t('verification.explanation_html')
+
+      .input-copy
+        .input-copy__wrapper
+          %input{ type: :text, maxlength: '999', spellcheck: 'false', readonly: 'true', value: link_to('Mastodon', ActivityPub::TagManager.instance.url_for(@account), rel: 'me').to_str }
+        %button{ type: :button }= t('generic.copy')
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
@@ -38,3 +55,9 @@
 
 %h6= t('auth.migrate_account')
 %p.muted-hint= t('auth.migrate_account_html', path: settings_migration_path)
+
+- if open_deletion?
+  %hr.spacer/
+
+  %h6= t('auth.delete_account')
+  %p.muted-hint= t('auth.delete_account_html', path: settings_delete_path)

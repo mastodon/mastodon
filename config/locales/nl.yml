@@ -48,6 +48,7 @@ nl:
       other: Volgers
     following: Volgend
     joined: Geregistreerd in %{date}
+    link_verified_on: Eigendom van deze link is gecontroleerd op %{date}
     media: Media
     moved_html: "%{name} is verhuisd naar %{new_profile_link}:"
     network_hidden: Deze informatie is niet beschikbaar
@@ -120,13 +121,14 @@ nl:
       moderation_notes: Opmerkingen voor moderatoren
       most_recent_activity: Laatst actief
       most_recent_ip: Laatst gebruikt IP-adres
+      no_limits_imposed: Geen limieten ingesteld
       not_subscribed: Niet geabonneerd
       order:
         alphabetic: Alfabetisch
         most_recent: Meest recent
         title: Sorteren
       outbox_url: Outbox-URL
-      perform_full_suspension: Volledig opschorten
+      perform_full_suspension: Opschorten
       profile_url: Profiel-URL
       promote: Promoveren
       protocol: Protocol
@@ -155,8 +157,10 @@ nl:
         report: gerapporteerd
         targeted_reports: Over dit account aangemaakte rapportages
       silence: Negeren
+      silenced: Genegeerd
       statuses: Toots
       subscribe: Abonneren
+      suspended: Opgeschort
       title: Accounts
       unconfirmed_email: Onbevestigd e-mailadres
       undo_silenced: Niet langer negeren
@@ -173,6 +177,7 @@ nl:
         create_domain_block: Domein %{target} is door %{name} geblokkeerd
         create_email_domain_block: E-maildomein %{target} is door %{name} op de zwarte lijst geplaatst
         demote_user: Gebruiker %{target} is door %{name} gedegradeerd
+        destroy_custom_emoji: "%{name} verwijderde emoji %{target}"
         destroy_domain_block: Domein %{target} is door %{name} gedeblokkeerd
         destroy_email_domain_block: E-maildomein %{target} is door %{name} op de witte lijst geplaatst
         destroy_status: Toot van %{target} is door %{name} verwijderd
@@ -258,6 +263,8 @@ nl:
         title: Nieuwe domeinblokkade
       reject_media: Mediabestanden verwerpen
       reject_media_hint: Verwijderd lokaal opgeslagen mediabestanden en weigert deze in de toekomst te downloaden. Irrelevant voor opgeschorte domeinen
+      reject_reports: Rapportages weigeren
+      reject_reports_hint: Alle rapportages die vanaf dit domein komen negeren. Irrelevant voor opgeschorte domeinen
       severities:
         noop: Geen
         silence: Negeren
@@ -300,8 +307,13 @@ nl:
       title: Uitnodigingen
     relays:
       add_new: Nieuwe relayserver toevoegen
+      delete: Verwijderen
       description_html: Een <strong>federatierelay</strong> is een tussenliggende server die grote hoeveelheden openbare toots uitwisselt tussen servers die zich hierop hebben geabonneerd. <strong>Het kan kleine en middelgrote servers helpen om content uit de fediverse te ontdekken</strong>, waarvoor anders lokale gebruikers handmatig mensen van externe servers moeten volgen.
+      disable: Uitschakelen
+      disabled: Uitgeschakeld
+      enable: Inschakelen
       enable_hint: Eenmaal ingeschakeld gaat jouw server zich op alle openbare toots van deze relayserver abonneren en stuurt het de openbare toots van jouw server naar de relayserver.
+      enabled: Ingeschakeld
       inbox_url: Relay-URL
       pending: Aan het wachten op toestemming van de relayserver
       save_and_enable: Opslaan en inschakelen
@@ -322,7 +334,6 @@ nl:
       comment:
         none: Geen
       created_at: Gerapporteerd op
-      id: ID
       mark_as_resolved: Markeer als opgelost
       mark_as_unresolved: Markeer als onopgelost
       notes:
@@ -333,20 +344,15 @@ nl:
         placeholder: Beschrijf welke acties zijn ondernomen of andere gerelateerde opmerkingen…
       reopen: Rapportage heropenen
       report: 'Rapportage #%{id}'
-      report_contents: Inhoud
       reported_account: Gerapporteerde account
       reported_by: Gerapporteerd door
       resolved: Opgelost
       resolved_msg: Rapportage succesvol opgelost!
-      silence_account: Account negeren
       status: Toot
-      suspend_account: Account opschorten
-      target: Gerapporteerde account
       title: Rapportages
       unassign: Niet langer toewijzen
       unresolved: Onopgelost
       updated_at: Bijgewerkt
-      view: Weergeven
     settings:
       activity_api_enabled:
         desc_html: Wekelijks overzicht van de hoeveelheid lokale toots, actieve gebruikers en nieuwe registraties
@@ -363,6 +369,9 @@ nl:
       hero:
         desc_html: Wordt op de voorpagina getoond. Tenminste 600x100px aanbevolen. Wanneer dit niet is ingesteld wordt de thumbnail van de Mastodonserver getoond
         title: Hero-afbeelding
+      mascot:
+        desc_html: Wordt op meerdere pagina's weergegeven. Tenminste 293×205px aanbevolen. Wanneer dit niet is ingesteld wordt de standaardmascotte getoond
+        title: Mascotte-afbeelding
       peers_api_enabled:
         desc_html: Domeinnamen die deze server in de fediverse is tegengekomen
         title: Lijst van bekende servers publiceren
@@ -523,7 +532,7 @@ nl:
     '500':
       content: Het spijt ons, er is aan onze kant iets fout gegaan.
       title: Er is iets mis
-    noscript_html: Schakel JavaScript in om de webapp van Mastodon te kunnen gebruiken. Als alternatief kan je een <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon-app</a> zoeken voor jouw platform.
+    noscript_html: Schakel JavaScript in om de webapp van Mastodon te kunnen gebruiken. Als alternatief kan je een <a href="%{apps_path}">Mastodon-app</a> zoeken voor jouw platform.
   exports:
     archive_takeout:
       date: Datum
@@ -571,6 +580,7 @@ nl:
     resources: Hulpmiddelen
   generic:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
+    copy: Kopiëren
     save_changes: Wijzigingen opslaan
     validation_errors:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
@@ -912,8 +922,12 @@ nl:
       tips: Tips
       title: Welkom aan boord %{name}!
   users:
+    follow_limit_reached: Je kunt niet meer dan %{limit} accounts volgen
     invalid_email: E-mailadres is ongeldig
     invalid_otp_token: Ongeldige tweestaps-aanmeldcode
     otp_lost_help_html: Als je toegang tot beiden kwijt bent geraakt, neem dan contact op via %{email}
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.
     signed_in_as: 'Ingelogd als:'
+  verification:
+    explanation_html: 'Je kunt <strong>jezelf verifiëren als de eigenaar van de links in de metadata van jouw profiel</strong>. Hiervoor moet op de gelinkte website een link terug naar jouw Mastodonprofiel staan. Deze link <strong>moet</strong> het <code>rel="me"</code>-attribuut bevatten. De omschrijving van de link maakt niet uit. Hier is een voorbeeld:'
+    verification: Verificatie

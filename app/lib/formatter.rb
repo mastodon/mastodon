@@ -27,7 +27,7 @@ class Formatter
       return html.html_safe # rubocop:disable Rails/OutputSafety
     end
 
-    linkable_accounts = status.mentions.map(&:account)
+    linkable_accounts = status.active_mentions.map(&:account)
     linkable_accounts << status.account
 
     html = raw_content
@@ -128,9 +128,9 @@ class Formatter
     return html if emojis.empty?
 
     emoji_map = if animate
-                  emojis.map { |e| [e.shortcode, full_asset_url(e.image.url)] }.to_h
+                  emojis.each_with_object({}) { |e, h| h[e.shortcode] = full_asset_url(e.image.url) }
                 else
-                  emojis.map { |e| [e.shortcode, full_asset_url(e.image.url(:static))] }.to_h
+                  emojis.each_with_object({}) { |e, h| h[e.shortcode] = full_asset_url(e.image.url(:static)) }
                 end
 
     i                     = -1

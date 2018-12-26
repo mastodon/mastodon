@@ -22,7 +22,7 @@ gl:
       not_a_product_title: Vostede é unha persoa, non un producto
       real_conversation_body: Con 500 caracteres a súa disposición, soporte para contido polo miúdo e avisos sobre o contido, pode expresarse vostede con libertade.
       real_conversation_title: Construído para conversacións reais
-      within_reach_body: Existen múltiples aplicativos para iOS, Android e outras plataformas grazas a un entorno API amigable para o desenvolvedor que lle permite estar ao tanto cos seus amigos en calquer lugar.
+      within_reach_body: Existen múltiples aplicacións para iOS, Android e outras plataformas grazas a un entorno API amigable para o desenvolvedor que lle permite estar ao tanto cos seus amigos en calquer lugar.
       within_reach_title: Sempre en contacto
     generic_description: "%{domain} é un servidor na rede"
     hosted_on: Mastodon aloxado en %{domain}
@@ -48,6 +48,7 @@ gl:
       other: Seguidoras
     following: Seguindo
     joined: Uneuse %{date}
+    link_verified_on: A propiedade de esta ligazón foi comprobada en %{date}
     media: Medios
     moved_html: "%{name} mudouse a %{new_profile_link}:"
     network_hidden: A información non está dispoñible
@@ -120,13 +121,14 @@ gl:
       moderation_notes: Notas de moderación
       most_recent_activity: Actividade máis recente
       most_recent_ip: IP máis recente
+      no_limits_imposed: Sen límites impostos
       not_subscribed: Non suscrita
       order:
         alphabetic: Alfabética
         most_recent: Máis recente
         title: Orde
       outbox_url: URL caixa de saída
-      perform_full_suspension: Suspender completamente
+      perform_full_suspension: Suspender
       profile_url: URL do perfil
       promote: Promocionar
       protocol: Protocolo
@@ -155,8 +157,10 @@ gl:
         report: informar
         targeted_reports: Informes feitos sobre esta conta
       silence: Acalar
+      silenced: Acalada
       statuses: Estados
       subscribe: Subscribir
+      suspended: Suspendida
       title: Contas
       unconfirmed_email: Correo-e non confirmado
       undo_silenced: Desfacer acalar
@@ -173,6 +177,7 @@ gl:
         create_domain_block: "%{name} bloqueou o dominio %{target}"
         create_email_domain_block: "%{name} engadeu a lista negra o dominio de correo %{target}"
         demote_user: "%{name} degradou a usuaria %{target}"
+        destroy_custom_emoji: "%{name} destruíu emoji %{target}"
         destroy_domain_block: "%{name} desbloqueou o dominio %{target}"
         destroy_email_domain_block: "%{name} meteu na lista blanca de correo o dominio %{target}"
         destroy_status: "%{name} eliminou o estado de %{target}"
@@ -258,6 +263,8 @@ gl:
         title: Novo bloqueo de dominio
       reject_media: Rexeitar ficheiros de medios
       reject_media_hint: Eliminar ficheiros de medios almacenados localmente e rexeita descargalos no futuro. Irrelevante para as suspensións
+      reject_reports: Rexeitar informes
+      reject_reports_hint: Ignorar todos os informes procedentes de este dominio. Irrelevante para as suspensións
       severities:
         noop: Ningún
         silence: Silenciar
@@ -300,10 +307,16 @@ gl:
       title: Convida
     relays:
       add_new: Engadir un novo repetidor
+      delete: Eliminar
       description_html: Un <strong>repetidor da federación</strong> é un servidor intermedio que intercambia grandes volumes de toots públicos entre servidores que se suscriban e publiquen nel. <strong>Pode axudar a servidores pequenos e medios a descubrir contido no fediverso</strong>, o que de outro xeito precisaría que as usuarias locais seguisen a outra xente en servidores remotos.
+      disable: Desactivar
+      disabled: Desactivada
+      enable: Activar
       enable_hint: Unha vez activado, o seu servidor suscribirase a todos os toots públicos de este servidor, e tamén comezará a eviar a el os toots públicos do servidor.
+      enabled: Activada
       inbox_url: URL do repetidor
       pending: Agardando polo permiso do repetidor
+      save_and_enable: Gardar e activar
       setup: Configurar a conexión ao repetidor
       status: Estado
       title: Repetidores
@@ -321,7 +334,6 @@ gl:
       comment:
         none: Nada
       created_at: Reportado
-      id: ID
       mark_as_resolved: Marcar como resolto
       mark_as_unresolved: Marcar como non resolto
       notes:
@@ -332,20 +344,15 @@ gl:
         placeholder: Describe qué medidas foron tomadas, ou calquer outra información relacionada...
       reopen: Voltar a abrir o informe
       report: 'Informe #%{id}'
-      report_contents: Contidos
       reported_account: Conta reportada
       reported_by: Reportada por
       resolved: Resolto
       resolved_msg: Resolveuse con éxito o informe!
-      silence_account: Acalar conta
       status: Estado
-      suspend_account: Suspender conta
-      target: Obxetivo
       title: Informes
       unassign: Non asignar
       unresolved: Non resolto
       updated_at: Actualizado
-      view: Vista
     settings:
       activity_api_enabled:
         desc_html: Conta de estados publicados localmente, usuarias activas, e novos rexistros por semana
@@ -362,6 +369,9 @@ gl:
       hero:
         desc_html: Mostrado na portada. Recoméndase 600x100px como mínimo. Si non se establece, mostrará a imaxe por omisión da instancia
         title: Imáxe Heróe
+      mascot:
+        desc_html: Mostrado en varias páxinas. Recoméndase 293x205 como mínimo. Se non se establece publícase a mascota por omisión
+        title: Imaxe da mascota
       peers_api_enabled:
         desc_html: Nome de dominio que esta instancia atopou no fediverso
         title: Publicar lista de instancias descubertas
@@ -455,7 +465,7 @@ gl:
     warning: Teña moito tino con estos datos. Nunca os comparta con ninguén!
     your_token: O seu testemuño de acceso
   auth:
-    agreement_html: Rexistrándose acorda seguir <a href="%{rules_path}">as normas da instancia</a> e <a href="%{terms_path}">os termos do servizo</a>.
+    agreement_html: Ao pulsar "Rexistrar" vostede acorda seguir <a href="%{rules_path}">as normas da instancia</a> e <a href="%{terms_path}">os termos do servizo</a>.
     change_password: Contrasinal
     confirm_email: Confirmar correo-e
     delete_account: Eliminar conta
@@ -466,7 +476,7 @@ gl:
     login: Conectar
     logout: Desconectar
     migrate_account: Mover a unha conta diferente
-    migrate_account_html: Si desexa redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
+    migrate_account_html: Se desexa redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
     or: ou
     or_log_in_with: ou conectar con
     providers:
@@ -522,7 +532,7 @@ gl:
     '500':
       content: Sentímolo, pero algo do noso lado falloou.
       title: Esta páxina non é correcta
-    noscript_html: Para utilizar a aplicación web de Mastodon debe habilitar JavaScript. De xeito alternativo, intente unha das <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apps nativas</a> para Mastodon da súa plataforma.
+    noscript_html: Para utilizar a aplicación web de Mastodon debe habilitar JavaScript. De xeito alternativo, intente unha das <a href="%{apps_path}">apps nativas</a> para Mastodon da súa plataforma.
   exports:
     archive_takeout:
       date: Data
@@ -570,6 +580,7 @@ gl:
     resources: Recursos
   generic:
     changes_saved_msg: Cambios gardados correctamente!!
+    copy: Copiar
     save_changes: Gardar cambios
     validation_errors:
       one: Algo non está ben de todo! Por favor revise abaixo o erro
@@ -730,7 +741,7 @@ gl:
     revoke_success: A sesión revocouse con éxito
     title: Sesións
   settings:
-    authorized_apps: Apps autorizados
+    authorized_apps: Apps autorizadas
     back: Voltar a Mastodon
     delete: Eliminación da conta
     development: Desenvolvemento
@@ -743,7 +754,7 @@ gl:
     preferences: Preferencias
     settings: Axustes
     two_factor_authentication: Validar Doble Factor
-    your_apps: Os seus aplicativos
+    your_apps: As súas aplicacións
   statuses:
     attached:
       description: 'Axenado: %{attached}'
@@ -911,8 +922,12 @@ gl:
       tips: Consellos
       title: Benvida, %{name}!
   users:
+    follow_limit_reached: Non pode seguir a máis de %{limit} persoas
     invalid_email: O enderezo de correo non é válido
     invalid_otp_token: Código de doble-factor non válido
     otp_lost_help_html: Si perde o acceso a ambos, pode contactar con %{email}
     seamless_external_login: Está conectado a través de un servizo externo, polo que os axustes de contrasinal e correo-e non están dispoñibles.
     signed_in_as: 'Rexistrada como:'
+  verification:
+    explanation_html: 'Pode <strong>validarse a vostede mesma como a dona das ligazóns nos metadatos do seu perfil</strong>. Para esto, o sitio web ligado debe conter unha ligazón de retorno ao perfil de Mastodon. Esta ligazón de retorno <strong>ten que</strong> ter un atributo <code>rel="me"</code>. O texto da ligazón non importa. Aquí ten un exemplo:'
+    verification: Validación

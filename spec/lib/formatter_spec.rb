@@ -170,12 +170,11 @@ RSpec.describe Formatter do
     end
   end
 
-
   describe '#format_spoiler' do
     subject { Formatter.instance.format_spoiler(status) }
 
     context 'given a post containing plain text' do
-      let(:status)  { Fabricate(:status, text: 'text', spoiler_text: 'Secret!', uri: nil) }
+      let(:status) { Fabricate(:status, text: 'text', spoiler_text: 'Secret!', uri: nil) }
 
       it 'Returns the spoiler text' do
         is_expected.to eq 'Secret!'
@@ -184,7 +183,7 @@ RSpec.describe Formatter do
 
     context 'given a post with an emoji shortcode at the start' do
       let!(:emoji) { Fabricate(:custom_emoji) }
-      let(:status)  { Fabricate(:status, text: 'text', spoiler_text: ':coolcat: Secret!', uri: nil) }
+      let(:status) { Fabricate(:status, text: 'text', spoiler_text: ':coolcat: Secret!', uri: nil) }
       let(:text) { ':coolcat: Beep boop' }
 
       it 'converts the shortcode to an image tag' do
@@ -207,7 +206,7 @@ RSpec.describe Formatter do
       end
 
       context 'given a post containing plain text' do
-        let(:status)  { Fabricate(:status, text: 'text', uri: nil) }
+        let(:status) { Fabricate(:status, text: 'text', uri: nil) }
 
         it 'paragraphizes the text' do
           is_expected.to eq '<p>text</p>'
@@ -215,7 +214,7 @@ RSpec.describe Formatter do
       end
 
       context 'given a post containing line feeds' do
-        let(:status)  { Fabricate(:status, text: "line\nfeed", uri: nil) }
+        let(:status) { Fabricate(:status, text: "line\nfeed", uri: nil) }
 
         it 'removes line feeds' do
           is_expected.not_to include "\n"
@@ -367,7 +366,7 @@ RSpec.describe Formatter do
     subject { Formatter.instance.plaintext(status) }
 
     context 'given a post with local status' do
-      let(:status)  { Fabricate(:status, text: '<p>a text by a nerd who uses an HTML tag in text</p>', uri: nil) }
+      let(:status) { Fabricate(:status, text: '<p>a text by a nerd who uses an HTML tag in text</p>', uri: nil) }
 
       it 'returns the raw text' do
         is_expected.to eq '<p>a text by a nerd who uses an HTML tag in text</p>'
@@ -375,7 +374,7 @@ RSpec.describe Formatter do
     end
 
     context 'given a post with remote status' do
-      let(:status)  { Fabricate(:status, account: remote_account, text: '<script>alert("Hello")</script>') }
+      let(:status) { Fabricate(:status, account: remote_account, text: '<script>alert("Hello")</script>') }
 
       it 'returns tag-stripped text' do
         is_expected.to eq ''
@@ -515,7 +514,7 @@ RSpec.describe Formatter do
     subject { Formatter.instance.sanitize(html, Sanitize::Config::MASTODON_STRICT) }
 
     it 'sanitizes' do
-      is_expected.to eq 'alert("Hello")'
+      is_expected.to eq ''
     end
   end
 end

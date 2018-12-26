@@ -5,24 +5,14 @@ sr-Latn:
       defaults:
         avatar: PNG, GIF ili JPG. Najviše %{size}. Biće smanjena na %{dimensions}px
         digest: Poslato posle dužeg perioda neaktivnosti sa pregledom svih bitnih stvari koje ste dobili dok ste bili odsutni
-        display_name:
-          few: <span class="name-counter">%{count}</span> karaktera preostala
-          many: <span class="name-counter">%{count}</span> karaktera preostalo
-          one: <span class="name-counter">1</span> karakter preostao
-          other: <span class="name-counter">%{count}</span> karaktera preostalo
         header: PNG, GIF ili JPG. Najviše %{size}. Biće smanjena na %{dimensions}px
         locked: Zahteva da pojedinačno odobrite pratioce
-        note:
-          few: <span class="note-counter">%{count}</span> karaktera preostal
-          many: <span class="note-counter">%{count}</span> karaktera preostalo
-          one: <span class="note-counter">1</span> karakter preostao
-          other: <span class="note-counter">%{count}</span> karaktera preostalo
         setting_noindex: Utiče na Vaš javni profil i statusne strane
         setting_theme: Utiče kako će Mastodont izgledati kada ste prijavljeni sa bilo kog uređaja.
       imports:
         data: CSV fajl izvezen sa druge Mastodont instance
       sessions:
-        otp: Unesite dvofaktorski kod sa Vašeg telefona ili koristite jedan od kodova za oporavak.
+        otp: 'Unesite dvofaktorski kod sa Vašeg telefona ili koristite jedan od kodova za oporavak:'
     labels:
       defaults:
         avatar: Avatar

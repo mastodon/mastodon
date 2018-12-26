@@ -27,8 +27,12 @@ const messages = defineMessages({
   publishLoud: { id: 'compose_form.publish_loud', defaultMessage: '{publish}!' },
 });
 
-@injectIntl
-export default class ComposeForm extends ImmutablePureComponent {
+export default @injectIntl
+class ComposeForm extends ImmutablePureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
@@ -84,7 +88,7 @@ export default class ComposeForm extends ImmutablePureComponent {
       return;
     }
 
-    this.props.onSubmit();
+    this.props.onSubmit(this.context.router ? this.context.router.history : null);
   }
 
   onSuggestionsClearRequested = () => {

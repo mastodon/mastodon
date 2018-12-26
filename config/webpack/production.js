@@ -50,11 +50,11 @@ module.exports = merge(sharedConfig, {
     minimize: true,
     minimizer: [
       new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
         sourceMap: true,
 
         uglifyOptions: {
-          mangle: true,
-
           compress: {
             warnings: false,
           },
@@ -69,7 +69,6 @@ module.exports = merge(sharedConfig, {
 
   plugins: [
     new CompressionPlugin({
-      asset: '[path].gz[query]',
       algorithm: compressionAlgorithm,
       test: /\.(js|css|html|json|ico|svg|eot|otf|ttf)$/,
     }),

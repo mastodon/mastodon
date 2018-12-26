@@ -36,6 +36,6 @@ class ActivityPub::InboxesController < Api::BaseController
   end
 
   def process_payload
-    ActivityPub::ProcessingWorker.perform_async(signed_request_account.id, body.force_encoding('UTF-8'))
+    ActivityPub::ProcessingWorker.perform_async(signed_request_account.id, body.force_encoding('UTF-8'), @account&.id)
   end
 end

@@ -15,8 +15,8 @@ const mapStateToProps = (state, props) => ({
   isLocal: state.getIn(['settings', 'tag', `${props.params.id}`, 'shows', 'local'], false),
 });
 
-@connect(mapStateToProps)
-export default class HashtagTimeline extends React.PureComponent {
+export default @connect(mapStateToProps)
+class HashtagTimeline extends React.PureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,

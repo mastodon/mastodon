@@ -4,6 +4,7 @@ class Settings::MigrationsController < ApplicationController
   layout 'admin'
 
   before_action :authenticate_user!
+  before_action :set_body_classes
 
   def show
     @migration = Form::Migration.new(account: current_account.moved_to_account)
@@ -30,5 +31,9 @@ class Settings::MigrationsController < ApplicationController
   def migration_account_changed?
     current_account.moved_to_account_id != @migration.account&.id &&
       current_account.id != @migration.account&.id
+  end
+
+  def set_body_classes
+    @body_classes = 'admin'
   end
 end

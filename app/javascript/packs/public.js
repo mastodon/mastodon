@@ -21,7 +21,6 @@ window.addEventListener('message', e => {
 });
 
 function main() {
-  const { length } = require('stringz');
   const IntlMessageFormat = require('intl-messageformat').default;
   const { timeAgoString } = require('../mastodon/components/relative_timestamp');
   const { delegate } = require('rails-ujs');
@@ -68,6 +67,7 @@ function main() {
     });
 
     const reactComponents = document.querySelectorAll('[data-component]');
+
     if (reactComponents.length > 0) {
       import(/* webpackChunkName: "containers/media_container" */ '../mastodon/containers/media_container')
         .then(({ default: MediaContainer }) => {
@@ -80,6 +80,7 @@ function main() {
     }
 
     const parallaxComponents = document.querySelectorAll('.parallax');
+
     if (parallaxComponents.length > 0 ) {
       new Rellax('.parallax', { speed: -1 });
     }
@@ -87,6 +88,7 @@ function main() {
     const history = createHistory();
     const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
     const location = history.location;
+
     if (detailedStatuses.length === 1 && (!location.state || !location.state.scrolledToDetailedStatus)) {
       detailedStatuses[0].scrollIntoView();
       history.replace(location.pathname, { ...location.state, scrolledToDetailedStatus: true });
@@ -130,23 +132,10 @@ function main() {
   });
 
   delegate(document, '#account_display_name', 'input', ({ target }) => {
-    const nameCounter = document.querySelector('.name-counter');
-    const name        = document.querySelector('.card .display-name strong');
-
-    if (nameCounter) {
-      nameCounter.textContent = 30 - length(target.value);
-    }
+    const name = document.querySelector('.card .display-name strong');
 
     if (name) {
       name.innerHTML = emojify(target.value);
-    }
-  });
-
-  delegate(document, '#account_note', 'input', ({ target }) => {
-    const noteCounter = document.querySelector('.note-counter');
-
-    if (noteCounter) {
-      noteCounter.textContent = 160 - length(target.value);
     }
   });
 
@@ -173,6 +162,30 @@ function main() {
       lock.style.display = 'inline';
     } else {
       lock.style.display = 'none';
+    }
+  });
+
+  delegate(document, '.input-copy input', 'click', ({ target }) => {
+    target.select();
+  });
+
+  delegate(document, '.input-copy button', 'click', ({ target }) => {
+    const input = target.parentNode.querySelector('.input-copy__wrapper input');
+
+    input.focus();
+    input.select();
+
+    try {
+      if (document.execCommand('copy')) {
+        input.blur();
+        target.parentNode.classList.add('copied');
+
+        setTimeout(() => {
+          target.parentNode.classList.remove('copied');
+        }, 700);
+      }
+    } catch (err) {
+      console.error(err);
     }
   });
 }

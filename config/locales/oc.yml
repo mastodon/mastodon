@@ -41,13 +41,14 @@ oc:
     user_count_before: Ostal de
     what_is_mastodon: Qu’es Mastodon ?
   accounts:
-    choices_html: 'Recomandacion de %{name} :'
+    choices_html: 'Recomandacions de %{name} :'
     follow: Sègre
     followers:
       one: Seguidor
       other: Seguidors
     following: Abonaments
-    joined: Arribèt lo %{date}
+    joined: Arribèt en %{date}
+    link_verified_on: La proprietat d’aqueste ligam foguèt verificada lo %{date}
     media: Mèdias
     moved_html: "%{name} a mudat a %{new_profile_link} :"
     network_hidden: Aquesta informacion es pas disponibla
@@ -120,13 +121,14 @@ oc:
       moderation_notes: Nòtas de moderacion
       most_recent_activity: Activitat mai recenta
       most_recent_ip: IP mai recenta
+      no_limits_imposed: Cap de limit impausat
       not_subscribed: Pas seguidor
       order:
         alphabetic: Alfabetic
         most_recent: Mai recent
         title: Ordre
       outbox_url: URL Outbox
-      perform_full_suspension: Botar en tren la suspension complèta
+      perform_full_suspension: Suspendre
       profile_url: URL del perfil
       promote: Promòure
       protocol: Protocòl
@@ -137,14 +139,13 @@ oc:
       resend_confirmation:
         already_confirmed: Aqueste utilizaire es ja confirmat
         send: Tornar mandar lo corrièl de confirmacion
-        success: Corrièl de confirmacion corrèctament mandat !
+        success: Corrièl de confirmacion corrèctament mandat !
       reset: Reïnicializar
       reset_password: Reïnicializar lo senhal
       resubscribe: Se tornar abonar
       role: Permissions
       roles:
         admin: Administrator
-        bot: Robòt
         moderator: Moderador
         staff: Personnal
         user: Uitlizaire
@@ -156,8 +157,10 @@ oc:
         report: rapòrt
         targeted_reports: Rapòrts faches tocant aqueste compte
       silence: Silenci
+      silenced: Rescondut
       statuses: Estatuts
       subscribe: S’abonar
+      suspended: Suspendut
       title: Comptes
       unconfirmed_email: Adreça pas confirmada
       undo_silenced: Levar lo silenci
@@ -174,6 +177,7 @@ oc:
         create_domain_block: "%{name} bloquèt lo domeni %{target}"
         create_email_domain_block: "%{name} botèt a la lista nègra lo domeni de corrièl %{target}"
         demote_user: "%{name} retragradèt l‘utilizaire %{target}"
+        destroy_custom_emoji: "%{name} destruguèt l’emoji %{target}"
         destroy_domain_block: "%{name} desbloquèt lo domeni %{target}"
         destroy_email_domain_block: "%{name} botèt a la lista blanca lo domeni de corrièl %{target}"
         destroy_status: "%{name} levèt l‘estatut a %{target}"
@@ -259,6 +263,8 @@ oc:
         title: Nòu blocatge domeni
       reject_media: Regetar los fichièrs mèdias
       reject_media_hint: Lèva los fichièrs gardats localament e regèta las demandas de telecargament dins lo futur. Servís pas a res per las suspensions
+      reject_reports: Regetar los senhalaments
+      reject_reports_hint: Ignorer totes los senhalaments que venon d’aqueste domeni. Pas pertiment per las suspensions
       severities:
         noop: Cap
         silence: Silenci
@@ -301,8 +307,13 @@ oc:
       title: Convits
     relays:
       add_new: Ajustar un nòu relai
+      delete: Suprimir
       description_html: Un <strong> relai de federacion</strong> es un servidor intermediari qu’escàmbia de bèls volumes de tuts publics entre servidors que son abonats e i publican.<strong>Pòt ajudar de pichons e mejans servidors a trobar de contenguts del fediverse estant</strong>, qu’autrament demandariá als utilizaires locals de s’abonar manualament a d’autres monde marcats sus de servidors alonhats.
+      disable: Desactivar
+      disabled: Desactivat
+      enable: Activar
       enable_hint: Un còp activat, vòstre servidor s’abonarà a totes los tuts publics del relai estant, e començarà de mandar sos tuts publics a aqueste d’enlà.
+      enabled: Activat
       inbox_url: URL del relai
       pending: En espèra d’aprovacion del relai
       save_and_enable: Salvar e activar
@@ -323,7 +334,6 @@ oc:
       comment:
         none: Pas cap
       created_at: Creacion
-      id: ID
       mark_as_resolved: Marcar coma resolgut
       mark_as_unresolved: Marcar coma pas resolgut
       notes:
@@ -334,20 +344,15 @@ oc:
         placeholder: Explicatz las accions que son estadas menadas o quicòm de ligat al senhalament…
       reopen: Tornar dobrir lo rapòrt
       report: 'Senhalament #%{id}'
-      report_contents: Contengut
       reported_account: Compte senhalat
       reported_by: Senhalat per
       resolved: Resolgut
       resolved_msg: Rapòrt corrèctament resolgut  !
-      silence_account: Metre lo compte en silenci
       status: Estatut
-      suspend_account: Suspendre lo compte
-      target: Cibla
       title: Senhalament
       unassign: Levar
       unresolved: Pas resolgut
       updated_at: Actualizat
-      view: Veire
     settings:
       activity_api_enabled:
         desc_html: Nombre d’estatuts publicats, d’utilizaires actius e de novèlas inscripcions en rapòrt setmanièr
@@ -364,6 +369,9 @@ oc:
       hero:
         desc_html: Mostrat en primièra pagina. Almens 600x100px recomandat. S’es pas configurat l’imatge de l’instància serà mostrat
         title: Imatge de l’eròi
+      mascot:
+        desc_html: Mostrat sus mantun paginas. Almens 293×205px recomandat. S’es pas configurat, mostrarem la mascòta per defaut
+        title: Imatge de la mascòta
       peers_api_enabled:
         desc_html: Noms de domeni qu’aquesta instància a trobats pel fediverse
         title: Publica la lista de las instàncias conegudas
@@ -430,11 +438,11 @@ oc:
       title: WebSub
       topic: Subjècte
     suspensions:
-      bad_acct_msg: La valor de confirmacion a pas coïncidit. Sètz a suspendre lo bon compte ?
+      bad_acct_msg: La valor de confirmacion a pas coïncidit. Sètz a suspendre lo bon compte ?
       hint_html: 'Per confirmar la suspension del compte, picatz %{value} al camp çai-jos :'
       proceed: Tractat
       title: Suspension de %{acct}
-      warning_html: 'Suspendre aqueste compte suprimirà <strong>irreversiblament</strong> las donadas del compte, aquò compren :'
+      warning_html: 'Suspendre aqueste compte suprimirà <strong>irreversiblament</strong> las donadas del compte, aquò compren :'
     title: Administracion
   admin_mailer:
     new_report:
@@ -525,7 +533,7 @@ oc:
     formats:
       default: "%e/%m/%Y"
       long: Lo %e %B de %Y
-      short: "%e %b. de %Y"
+      short: "%e %B de %Y"
     month_names:
     - None
     - de genièr
@@ -549,7 +557,7 @@ oc:
       about_x_hours: "%{count} h"
       about_x_months: "%{count} meses"
       about_x_years: "%{count} ans"
-      almost_x_years: "%{count}ans"
+      almost_x_years: "%{count} ans"
       half_a_minute: Ara
       less_than_x_minutes: "%{count} min"
       less_than_x_seconds: Ara meteis
@@ -580,7 +588,7 @@ oc:
     '500':
       content: Un quicomet a pas foncionat coma caliá.
       title: Aquesta pagina es pas corrècta
-    noscript_html: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">una aplicacion</a> per vòstra plataforma coma alernativa.
+    noscript_html: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar <a href="%{apps_path}">una aplicacion</a> per vòstra plataforma coma alernativa.
   exports:
     archive_takeout:
       date: Data
@@ -628,6 +636,7 @@ oc:
     resources: Ressorsas
   generic:
     changes_saved_msg: Cambiaments ben realizats !
+    copy: Copiar
     save_changes: Salvar los cambiaments
     validation_errors:
       one: I a quicòm que truca ! Mercés de corregir l’error çai-jos
@@ -843,11 +852,12 @@ oc:
       <h2>Politica de confidencialitat</h2>
       <h3 id="collect">Quinas informacions reculhèm ?</h3>
 
-      <li>
-      <ul><em>Inforacions de basa del compte</em> :  se vos marcatz sus aqueste servidor, vos podèm demandar de picar un escais-nom, una adreça de corrièl e un senhal. Podètz tanben ajustar d’informacions de perfil addicionalas coma un nom de far veire, una biografia, un imatge de perfil e una banièra. L’escais-nom, lo nom d’afichatge, la biografia, l’imatge de perfil e la banièra son totjorn indicats per èsser vist publicament.</li>
-      <li><em>Publicacions, abonaments e autras informacions publicas</em> : La lista del monde que seguètz es visibla publicament, tot parièr per vòstres seguidors. Quand enviatz un messatge, la data e l’ora son gardats, l’aplicacion qu’avètz utilizada tanben. Los messatges pòdon conténer de mèdias juntats coma d’imatge e vidèos. Las publicacions publicas e pas listadas son disponiblas publicament. Quand penjatz una publicacion per vòstre perfil, aquò tanben es visible per tot lo monde. Vòstras publicacions son mandadas a vòstre seguidors, dins qualques cases aquò significa que passaràn per diferents servidors e seràn copiadas e gardadas sus aqueles servidors. Quand escafatz de publicacions, aquò es tanben mandat a vòstre seguidors. L’acion de partejar o d’ajustar als favorits una publicacion es totjorn quicòm de public.</li>
-      <li><em>Publicacions dirèctas e solament pels seguidors</em> :</li> totas las publicacions son gardadas e tractadas pel servidor. Las publicacions pas que per vòstres seguidors son enviadas a vòstres seguidors e las personas mencionadas dedins, las publicacions dirèctas son pas qu’enviadas a las personas mencionadas. Dins qualques cases aquò significa que passaràn per diferents servidors, copiadas e gardadas sus eles. Ensagem de limitar l’accès a aquelas publicacions a monde autorizat, mas los demai servidors pòdon fracar a far parièr. A causa d’aquò es fòrça important de repassar los servidors d’apertenéncia de vòstres seguidors. Podètz activar una opcion per autorizar o regetar una demanda de seguiment dins los paramètres. <em>Vos cal pas oblidar que’ls administrators dels servidors e dels servidors de recepcion pòdon veire aqueles messatges</em>, e que’ls destinataris pòdon realizar de captura d’ecran, copiar e tornar partejar los messatges.<em>Partegetz pas cap informacion perilhosa sus Mastodon</em><li>.
-      <li><em>Adreças IP e autras metadonadas</em> : quand vos connectatz, enregistrem l’adreça IP qu’utilizatz per establir la connexion, e tanben lo nom de vòstre navigador. Totas las sessions de connexion son disponiblas per que las repassetz e tiretz dins los paramètres. Las darrièras adreças IP son salvagardas fins a 12 meses. Podèm tanben gardar de jornals d’audit del servidor que pòdon conténer las adreças IP de cada requèstas mandadas a nòstre servidor.</li>
+      <ul>
+        <li><em>Inforacions de basa del compte</em> :  se vos marcatz sus aqueste servidor, vos podèm demandar de picar un escais-nom, una adreça de corrièl e un senhal. Podètz tanben ajustar d’informacions de perfil addicionalas coma un nom de far veire, una biografia, un imatge de perfil e una banièra. L’escais-nom, lo nom d’afichatge, la biografia, l’imatge de perfil e la banièra son totjorn indicats per èsser vistes publicament.</li>
+        <li><em>Publicacions, abonaments e autras informacions publicas</em> : La lista del monde que seguètz es visibla publicament, tot parièr per vòstres seguidors. Quand enviatz un messatge, la data e l’ora son gardats, l’aplicacion qu’avètz utilizada tanben. Los messatges pòdon conténer de mèdias juntats coma d’imatge e vidèos. Las publicacions publicas e pas listadas son disponiblas publicament. Quand penjatz una publicacion per vòstre perfil, aquò tanben es visible per tot lo monde. Vòstras publicacions son mandadas a vòstre seguidors, dins qualques cases aquò significa que passaràn per diferents servidors e seràn copiadas e gardadas sus aqueles servidors. Quand escafatz de publicacions, aquò es tanben mandat a vòstre seguidors. L’accion de partejar o d’ajustar als favorits una publicacion es totjorn quicòm de public.</li>
+       <li><em>Publicacions dirèctas e solament pels seguidors</em> :</li> totas las publicacions son gardadas e tractadas pel servidor. Las publicacions pas que per vòstres seguidors son enviadas a vòstres seguidors e las personas mencionadas dedins, las publicacions dirèctas son pas qu’enviadas a las personas mencionadas. Dins qualques cases aquò significa que passaràn per diferents servidors, copiadas e gardadas sus eles. Ensagem de limitar l’accès a aquelas publicacions a monde autorizat, mas los demai servidors pòdon fracar a far parièr. A causa d’aquò es fòrça important de repassar los servidors d’apertenéncia de vòstres seguidors. Podètz activar una opcion per autorizar o regetar una demanda de seguiment dins los paramètres. <em>Vos cal pas oblidar que’ls administrators dels servidors e dels servidors de recepcion pòdon veire aqueles messatges</em>, e que’ls destinataris pòdon realizar de captura d’ecran, copiar e tornar partejar los messatges.<em>Partegetz pas cap informacion perilhosa sus Mastodon</em><li>.
+        <li><em>Adreças IP e autras metadonadas</em> : quand vos connectatz, enregistrem l’adreça IP qu’utilizatz per establir la connexion, e tanben lo nom de vòstre navigador. Totas las sessions de connexion son disponiblas per que las repassetz e tiretz dins los paramètres. Las darrièras adreças IP son salvagardas fins a 12 meses. Podèm tanben gardar de jornals d’audit del servidor que pòdon conténer las adreças IP de cada requèstas mandadas a nòstre servidor.</li>
+
       </ul>
 
       <hr class="spacer" />
@@ -874,9 +884,53 @@ oc:
       <p>Farem esfòrces per :</p>
 
       <ul>
-      <li>Gardar los jornals del servidor que contenon las adreças IP de totas las demandas al servidor pas mai de 90 jorns.</li>
-      <li>Gardar las adreças IP ligadas als utilizaires e lors publicacions pas mai de 12 messes.</li>
+       <li>Gardar los jornals del servidor que contenon las adreças IP de totas las demandas al servidor pas mai de 90 jorns.</li>
+       <li>Gardar las adreças IP ligadas als utilizaires e lors publicacions pas mai de 12 messes.</li>
       </ul>
+
+      <p>Podètz demandar e telecargar vòstre archiu de contengut, amb vòstras publicacions, los mèdias enviats, l’imatge de perfil e l’imatge de bandièra.</p>
+
+      <p>Podètz suprimir sens anullacion possibla vòstre compte quand volgatz.</p>
+
+      <hr class="spacer"/>
+
+
+      <h3 id="cookies">Utilizem de cookies ?</h3>
+
+      <p>Òc-ben. Los cookies son de pichons fichièrs qu’un site o sos provesidors de servicis plaçan dins lo disc dur de vòstre ordenador via lo navigator Web (Se los acceptatz). Aqueles cookies permeton al site de reconéisser vòstre navigator e se tenètz un compte enregistrat de l’associar a vòstre compte.</p>
+
+      <p>Empleguem de cookies per comprendre e enregistrar vòstras preferéncias per vòstras visitas venentas</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Divulguem d’informacions a de tèrces ?</h3>
+
+
+      <p>Vendèm pas, comercem o qualque transferiment que siasque a de tèrces vòstras informacions personalas identificablas. Aquò inclutz pas los tèrces partits de confisança que nos assiston a menar nòstre site, menar nòstre afar o vos servir, baste que son d’acòrd per gardar aquelas informacions confidencialas. Pòt tanben arribar que liberèssem vòstras informacions quand cresèm qu’es apropriat d’o far per se sometre a la lei, per refortir nòstras politicas, o per protegir los dreches, proprietats o seguritat de qualqu’un o de nosautres.</p>
+
+      <p>Vòstre contengut public pòt èsser telecargat per los autres servidors del malhum. Vòstras publicacions publicas e las dels seguidors solament son enviadas als servidors qu’albergan vòstres seguidors, los messatges dirèctes son mandats als servidors dels destinaris se son pas de vòstra instància.</p>
+
+      <p>Quand autorizatz una aplicacion d’utilizar vòstre compte, segon l’encastre que volètz permetre, pòt accedir a l’informacion de vòstre perfil public, vòstra lista d’abonaments, vòstres seguidors, vòstras listas, totas vòstras publicacions e vòstres favorits. Las aplicacions pòdon pas jamai accedir a vòstra adreça electronica o vòstre senhal.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Utilizacion del site pels enfants</h3>
+
+      <p>S’aqueste servidor es en EU o la EEA : òstre site, nòstres produches e servicis son totas a destinacion de monde de mai de 16 ans. S’avètz mens de 16 ans, per cumplir lo RGPD (<a href="https://ca.wikipedia.org/wiki/Reglament_General_de_Protecci%C3%B3_de_Dades">Reglament General de Proteccion de Donadas</a>) utilizetz pas aqueste site.</p>
+
+      <p>S’aqueste servidor se tròba en los Estats Units : nòstre site, nòstres produches e servicis son totas a destinacion de monde de mai de 13 ans. S’avètz mens de 13 ans, per acontentar las exigéncias del COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) utilizetz pas aqueste site.</p>
+
+      <p>Las exigéncias legalas pòdon èsser diferentas se lo servidor es en una autra juridiccion</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Cambiament dins nòstra politica de confidencialitat</h3>
+
+      <p>Se decidèm de cambiar nòstra politica de confidencialitat, publicarem los cambiaments sus aquesta pagina.</p>
+
+      <p>Aqueste document es jos licéncia CC-BY-SA. Darrièra mesa a jorn lo 4 de març de 2018</p>
+
+      <p>Prima adaptacion de la <a href="https://github.com/discourse/discourse">politica de confidencialitat de Discourse</a>.</p>
     title: Condicions d’utilizacion e politica de confidencialitat de %{instance}
   themes:
     contrast: Fòrt contrast
@@ -926,8 +980,12 @@ oc:
       tips: Astúcias
       title: Vos desirem la benvenguda a bòrd %{name} !
   users:
+    follow_limit_reached: Podètz pas sègre mai de %{limit} personas
     invalid_email: L’adreça de corrièl es invalida
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid
     otp_lost_help_html: Se perdatz l’accès al dos, podètz benlèu contactar %{email}
     seamless_external_login: Sètz connectat via un servici extèrn, los paramètres de senhal e de corrièl son doncas pas disponibles.
     signed_in_as: 'Session a :'
+  verification:
+    explanation_html: 'Podètz <strong>verificar vosautres meteisses coma proprietari dels ligams per las metadonadas de vòstre perfil</strong>. Per aquò far, lo site Web ligat deu conténer un ligam cap a vòstre perfil Mastodon. Lo ligam <strong>deu</strong> aver un atribut <code>rel="me"</code>. Lo contengut tèxte del ligam impòrta pas. Vaquí un exemple :'
+    verification: Verificacion

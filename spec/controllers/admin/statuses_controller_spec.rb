@@ -24,7 +24,7 @@ describe Admin::StatusesController do
     end
 
     it 'returns http success with media' do
-      get :index, params: { account_id: account.id , media: true }
+      get :index, params: { account_id: account.id, media: true }
 
       statuses = assigns(:statuses).to_a
       expect(statuses.size).to eq 1

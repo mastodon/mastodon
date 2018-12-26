@@ -4,7 +4,8 @@
 = simple_form_for(resource, as: resource_name, url: session_path(resource_name), method: :post) do |f|
   %p.hint{ style: 'margin-bottom: 25px' }= t('simple_form.hints.sessions.otp')
 
-  = f.input :otp_attempt, type: :number, placeholder: t('simple_form.labels.defaults.otp_attempt'), input_html: { 'aria-label' => t('simple_form.labels.defaults.otp_attempt'), :autocomplete => 'off' }, required: true, autofocus: true
+  .fields-group
+    = f.input :otp_attempt, type: :number, wrapper: :with_label, label: t('simple_form.labels.defaults.otp_attempt'), input_html: { 'aria-label' => t('simple_form.labels.defaults.otp_attempt'), :autocomplete => 'off' }, autofocus: true
 
   .actions
     = f.button :button, t('auth.login'), type: :submit

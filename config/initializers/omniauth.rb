@@ -3,7 +3,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 end
 
 Devise.setup do |config|
-  # Devise omniauth strategies
+  # Devise omniauth strategies
   options = {}
   options[:redirect_at_sign_in] = ENV['OAUTH_REDIRECT_AT_SIGN_IN'] == 'true'
 
@@ -38,7 +38,7 @@ Devise.setup do |config|
     saml_options = options
     saml_options[:assertion_consumer_service_url] = ENV['SAML_ACS_URL'] if ENV['SAML_ACS_URL']
     saml_options[:issuer] = ENV['SAML_ISSUER'] if ENV['SAML_ISSUER']
-    saml_options[:idp_sso_target_url] = ENV['SAML_IDP_SSO_TARGET_URL']  if ENV['SAML_IDP_SSO_TARGET_URL']
+    saml_options[:idp_sso_target_url] = ENV['SAML_IDP_SSO_TARGET_URL'] if ENV['SAML_IDP_SSO_TARGET_URL']
     saml_options[:idp_sso_target_url_runtime_params] = ENV['SAML_IDP_SSO_TARGET_PARAMS'] if ENV['SAML_IDP_SSO_TARGET_PARAMS'] # FIXME: Should be parsable Hash
     saml_options[:idp_cert] = ENV['SAML_IDP_CERT'] if ENV['SAML_IDP_CERT']
     saml_options[:idp_cert_fingerprint] = ENV['SAML_IDP_CERT_FINGERPRINT'] if ENV['SAML_IDP_CERT_FINGERPRINT']
@@ -62,5 +62,4 @@ Devise.setup do |config|
     saml_options[:uid_attribute] = ENV['SAML_UID_ATTRIBUTE'] if ENV['SAML_UID_ATTRIBUTE']
     config.omniauth :saml, saml_options
   end
-
 end

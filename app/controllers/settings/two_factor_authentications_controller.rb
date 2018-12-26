@@ -6,6 +6,7 @@ module Settings
 
     before_action :authenticate_user!
     before_action :verify_otp_required, only: [:create]
+    before_action :set_body_classes
 
     def show
       @confirmation = Form::TwoFactorConfirmation.new
@@ -42,6 +43,10 @@ module Settings
     def acceptable_code?
       current_user.validate_and_consume_otp!(confirmation_params[:code]) ||
         current_user.invalidate_otp_backup_code!(confirmation_params[:code])
+    end
+
+    def set_body_classes
+      @body_classes = 'admin'
     end
   end
 end

@@ -1,3 +1,93 @@
 ---
 ro:
-  simple_form: {}
+  simple_form:
+    hints:
+      defaults:
+        autofollow: Persoanele care se înregistrează datorită invitației tale te vor urmări automat
+        avatar: PNG, GIF sau JPG. Cel mult %{size}. Va fi redimensionată la %{dimensions}px
+        bot: Acest cont performează în cea mai mare parte acțiuni automate și nu poate fi monitorizat
+        context: Contextele în care filtrul trebuie aplicat
+        digest: Este trimis doar după o lungă perioadă de inactivitate și numai dacă primești mesaje personale în perioada de absență
+        fields: Poti afișa pană la maxim 4 adrese sub formă de tabel pe pofilul tău
+        header: PNG, GIF sau JPG. Cel mult %{size}. Vor fi redimensionate la %{dimensions}px
+        inbox_url: Copiază adresa URL de pe prima pagină a reului pe care vrei să îl utilizezi
+        irreversible: Postările sortate vor dispărea ireversibil, chiar dacă filtrul este ulterior șters
+        locale: Limba interfaței de utilizator, e-mailurile si notificările push
+        locked: Necesită aprobare manuală a urmăritorilor
+        phrase: Vor fi potrivite indiferent de textul din casetă sau advertismentul unei postări
+        scopes: La care API-uri aplicația are nevoie de acces. Dacă selectezi un scop principal nu mai e nevoie să selectezi fiecare sub-scop al acestuia.
+        setting_default_language: Limba postărilor tale poate fi detectată automat, dar nu este întotdeauna precisă
+        setting_hide_network: Pe cine urmărești și cine te urmărește nu vor fi afișați pe profilul tău
+        setting_noindex: Afecteazâ profilul tău public și statusurile tale
+        setting_theme: Afecteazâ modul în care arată interfața pe toate dispozitivele pe care ești conectat.
+        whole_word: Când fraza sau cuvântul este doar alfanumeric, acesta se aplică doar dacă există o potrivire completă
+      imports:
+        data: Fișierul CSV exportat de la o altă instanță
+      sessions:
+        otp: 'Introdu codul pentru dubla protecție generat de telefonul mobil sau unul din codurile de rezervă:'
+      user:
+        chosen_languages: Doar postările în limbile selectate vor fi afișate în fluxurile publice
+    labels:
+      account:
+        fields:
+          name: Etichetă
+          value: Conținut
+      defaults:
+        autofollow: Invită să te urmărească
+        avatar: Fotografie de profil
+        bot: Acesta este un cont automat (bot)
+        chosen_languages: Limbile filtrului
+        confirm_new_password: Confirmă noua parolă
+        confirm_password: Confirmă parola
+        context: Contextele filtrului
+        current_password: Parola actuală
+        data: Data
+        display_name: Numele afișat
+        email: Adresa de e-mail
+        expires_in: Expiră după
+        fields: Rețele externe - Unde mai poți fi găsit
+        header: Antet
+        inbox_url: Adresa URL a inbox-ului
+        irreversible: Lasă înloc să ascunzi
+        locale: Limbă
+        locked: Cont Privat
+        max_uses: Numărul maxim de utilizatori
+        new_password: Parola nouă
+        note: Descriere
+        otp_attempt: Cod dublă protecție
+        password: Parolă
+        phrase: Cuvânt sau frază
+        setting_auto_play_gif: Redă automat animațiile GIF
+        setting_boost_modal: Arată dialogul de confirmare înainte de a redistribui
+        setting_default_language: În ce limbă postezi
+        setting_default_privacy: Cine vede postările tale
+        setting_default_sensitive: Întotdeauna marchează conținutul media ca sensibil
+        setting_delete_modal: Arată dialogul de confirmare înainte de a șterge o postare
+        setting_hide_network: Ascunde rețeaua
+        setting_noindex: Nu permite motoarelor de căutare să indexeze rețeaua ta
+        setting_reduce_motion: Redu mișcarea în animații
+        setting_system_font_ui: Utilizează fontul standard as sistemului
+        setting_theme: Tema siteului
+        setting_unfollow_modal: Arată dialogul de confirmare înainte de a nu mai urmări pe cineva
+        severity: Severitate
+        type: Ce importați
+        username: Nume de utilizator
+        username_or_email: Numele de utilizator sau adresa de E-mail
+        whole_word: Cuvânt întreg
+      interactions:
+        must_be_follower: Blochează notificările de la persoane care nu te urmăresc
+        must_be_following: Blochează notificările de la persoane pe care nu le urmărești
+        must_be_following_dm: Blochează mesajele directe de la persoane pe care nu le urmărești
+      notification_emails:
+        digest: Trimite rezumate
+        favourite: Trimite e-mail când cineva favorizează unul din statusurile tale
+        follow: Trimite e-mail când cineva te urmărește
+        follow_request: Trimite e-mail când cineva trimite o cerere de urmărire
+        mention: Trimite e-mail când cineva te menționează
+        reblog: Trimite e-mail când cineva redistribuie unul din statusurile tale
+        report: Trimite e-mail când un raport nou este trimis
+    'no': Nu
+    required:
+      mark: "*"
+      text: obligatoriu
+    'yes': Da

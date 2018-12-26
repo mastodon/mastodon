@@ -728,9 +728,9 @@ RSpec.describe OStatus::AtomSerializer do
     it 'appends id element with unique tag' do
       block = Fabricate(:block)
 
-      time_before = Time.now
+      time_before = Time.zone.now
       block_salmon = OStatus::AtomSerializer.new.block_salmon(block)
-      time_after = Time.now
+      time_after = Time.zone.now
 
       expect(block_salmon.id.text).to(
         eq(OStatus::TagManager.instance.unique_tag(time_before.utc, block.id, 'Block'))
@@ -815,9 +815,9 @@ RSpec.describe OStatus::AtomSerializer do
     it 'appends id element with unique tag' do
       block = Fabricate(:block)
 
-      time_before = Time.now
+      time_before = Time.zone.now
       unblock_salmon = OStatus::AtomSerializer.new.unblock_salmon(block)
-      time_after = Time.now
+      time_after = Time.zone.now
 
       expect(unblock_salmon.id.text).to(
         eq(OStatus::TagManager.instance.unique_tag(time_before.utc, block.id, 'Block'))
@@ -880,7 +880,7 @@ RSpec.describe OStatus::AtomSerializer do
 
       ProcessInteractionService.new.call(envelope, block.target_account)
 
-      expect{ block.reload }.to raise_error ActiveRecord::RecordNotFound
+      expect { block.reload }.to raise_error ActiveRecord::RecordNotFound
     end
   end
 
@@ -994,9 +994,9 @@ RSpec.describe OStatus::AtomSerializer do
     it 'appends id element with unique tag' do
       favourite = Fabricate(:favourite)
 
-      time_before = Time.now
+      time_before = Time.zone.now
       unfavourite_salmon = OStatus::AtomSerializer.new.unfavourite_salmon(favourite)
-      time_after = Time.now
+      time_after = Time.zone.now
 
       expect(unfavourite_salmon.id.text).to(
         eq(OStatus::TagManager.instance.unique_tag(time_before.utc, favourite.id, 'Favourite'))
@@ -1179,9 +1179,9 @@ RSpec.describe OStatus::AtomSerializer do
       follow = Fabricate(:follow)
       follow.destroy!
 
-      time_before = Time.now
+      time_before = Time.zone.now
       unfollow_salmon = OStatus::AtomSerializer.new.unfollow_salmon(follow)
-      time_after = Time.now
+      time_after = Time.zone.now
 
       expect(unfollow_salmon.id.text).to(
         eq(OStatus::TagManager.instance.unique_tag(time_before.utc, follow.id, 'Follow'))
@@ -1327,9 +1327,9 @@ RSpec.describe OStatus::AtomSerializer do
     it 'appends id element with unique tag' do
       follow_request = Fabricate(:follow_request)
 
-      time_before = Time.now
+      time_before = Time.zone.now
       authorize_follow_request_salmon = OStatus::AtomSerializer.new.authorize_follow_request_salmon(follow_request)
-      time_after = Time.now
+      time_after = Time.zone.now
 
       expect(authorize_follow_request_salmon.id.text).to(
         eq(OStatus::TagManager.instance.unique_tag(time_before.utc, follow_request.id, 'FollowRequest'))
@@ -1396,9 +1396,9 @@ RSpec.describe OStatus::AtomSerializer do
     it 'appends id element with unique tag' do
       follow_request = Fabricate(:follow_request)
 
-      time_before = Time.now
+      time_before = Time.zone.now
       reject_follow_request_salmon = OStatus::AtomSerializer.new.reject_follow_request_salmon(follow_request)
-      time_after = Time.now
+      time_after = Time.zone.now
 
       expect(reject_follow_request_salmon.id.text).to(
         eq(OStatus::TagManager.instance.unique_tag(time_before.utc, follow_request.id, 'FollowRequest'))

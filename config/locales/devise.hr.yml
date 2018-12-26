@@ -16,7 +16,7 @@ hr:
       unconfirmed: Moraš potvrditi svoju email adresu prije no što nastaviš.
     mailer:
       confirmation_instructions:
-        subject: 'Mastodon: Upute za potvrđivanje'
+        subject: 'Mastodon: Upute za potvrđivanje %{instance}'
       email_changed:
         subject: 'Mastodon: Email adresa je promijenjena'
         title: Nova email adresa
@@ -58,6 +58,4 @@ hr:
       expired: je istekao, zatraži novu
       not_found: nije nađen
       not_locked: nije zaključan
-      not_saved:
-        one: '1 greška je zabranila da ovaj %{resource} bude sačuvan:'
-        other: "%{count} greške su zabranile da ovaj %{resource} bude sačuvan:"
+      not_saved: "%{count} greške su zabranile da ovaj %{resource} bude sačuvan:"

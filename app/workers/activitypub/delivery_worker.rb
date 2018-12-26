@@ -11,6 +11,8 @@ class ActivityPub::DeliveryWorker
   HEADERS = { 'Content-Type' => 'application/activity+json' }.freeze
 
   def perform(json, source_account_id, inbox_url, options = {})
+    return if DeliveryFailureTracker.unavailable?(inbox_url)
+
     @options        = options.with_indifferent_access
     @json           = json
     @source_account = Account.find(source_account_id)

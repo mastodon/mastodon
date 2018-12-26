@@ -18,8 +18,8 @@ const messages = defineMessages({
 
 export const previewState = 'previewMediaModal';
 
-@injectIntl
-export default class MediaModal extends ImmutablePureComponent {
+export default @injectIntl
+class MediaModal extends ImmutablePureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.list.isRequired,
@@ -149,7 +149,7 @@ export default class MediaModal extends ImmutablePureComponent {
             startTime={time || 0}
             onCloseVideo={onClose}
             detailed
-            description={image.get('description')}
+            alt={image.get('description')}
             key={image.get('url')}
           />
         );

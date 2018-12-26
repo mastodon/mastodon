@@ -1,13 +1,13 @@
 ---
 cs:
   about:
-    about_hashtag_html: Toto jsou veřejné tooty označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv na fediverse, můžete s nimi interagovat.
+    about_hashtag_html: Tohle jsou veřejné tooty označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv na fediverse, můžete s nimi interagovat.
     about_mastodon_html: Mastodon je sociální síť založená na otevřených webových protokolech a svobodném, otevřeném softwaru. Je decentrovalizovaná jako e-mail.
     about_this: O této instanci
-    administered_by: 'Server spravuje:'
+    administered_by: 'Instanci spravuje:'
     api: API
     apps: Mobilní aplikace
-    closed_registrations: Registrace na této instanci jsou momentálně uzavřené. Můžete si však najít jinou instanci, vytvořit si na ní účet a získat z ní přístup do naprosto stejné sítě.
+    closed_registrations: Registrace na této instanci jsou momentálně uzavřené. Ale pozor! Můžete si najít jinou instanci, vytvořit si na ní účet a získat z ní přístup do naprosto stejné sítě.
     contact: Kontakt
     contact_missing: Nenastaveno
     contact_unavailable: Neuvedeno
@@ -16,7 +16,7 @@ cs:
       <h3>Dobré místo pro pravidla</h3>
       <p>Rozšířený popis ještě nebyl nastaven.</p>
     features:
-      humane_approach_body: Mastodon, poučen z chyb jiných sociálních sítí, se snaží bojovat se zneužíváním sociálních sítí vytvářením etických možností.
+      humane_approach_body: Mastodon se učí z chyb jiných sociálních sítí a volením etických rozhodnutí při designu se snaží bojovat s jejich zneužíváním.
       humane_approach_title: Lidštější přístup
       not_a_product_body: Mastodon není komerční síť. Žádné reklamy, žádné dolování dat, žádné hranice. Žádná centrální autorita.
       not_a_product_title: Jste osoba, ne produkt
@@ -25,29 +25,24 @@ cs:
       within_reach_body: Několik aplikací pro iOS, Android a jiné platformy vám díky jednoduchému API ekosystému dovolují držet krok s vašimi přáteli, ať už jste kdekoliv.
       within_reach_title: Vždy v dosahu
     generic_description: "%{domain} je jedním ze serverů v síti"
-    hosted_on: Mastodon hostovaný na %{domain}
+    hosted_on: Instance Mastodon na adrese %{domain}
     learn_more: Zjistit více
     other_instances: Seznam instancí
     privacy_policy: Zásady soukromí
     source_code: Zdrojový kód
-    status_count_after:
-      one: příspěvek
-      other: příspěvků
+    status_count_after: příspěvků
     status_count_before: Kteří napsali
     terms: Podmínky používání
-    user_count_after:
-      one: uživatele
-      other: uživatelů
+    user_count_after: uživatelů
     user_count_before: Domov
     what_is_mastodon: Co je Mastodon?
   accounts:
     choices_html: 'Volby uživatele %{name}:'
     follow: Sledovat
-    followers:
-      one: Sledovatel
-      other: Sledovatelé
-    following: Sleduje
-    joined: Připojil/a se %{date}
+    followers: Sledovatelé
+    following: Sledovaní
+    joined: Připojil/a se v %{date}
+    link_verified_on: Vlastnictví tohoto odkazu bylo zkontrolováno %{date}
     media: Média
     moved_html: 'Účet %{name} byl přesunut na %{new_profile_link}:'
     network_hidden: Tato informace není k dispozici
@@ -56,9 +51,7 @@ cs:
     people_who_follow: Lidé, kteří sledují uživatele %{name}
     pin_errors:
       following: Musíte již sledovat osobu, kterou chcete podpořit
-    posts:
-      one: Toot
-      other: Tooty
+    posts: Tooty
     posts_tab_heading: Tooty
     posts_with_replies: Tooty a odpovědi
     reserved_username: Toto uživatelské jméno je rezervováno
@@ -111,22 +104,23 @@ cs:
         title: Umístění
       login_status: Stav přihlášení
       media_attachments: Mediální přílohy
-      memorialize: Změnit na "in memoriam"
+      memorialize: Změnit na „in memoriam“
       moderation:
         all: Vše
-        silenced: Utišen
-        suspended: Suspendován
+        silenced: Utišen/a
+        suspended: Suspendován/a
         title: Moderace
       moderation_notes: Moderační poznámky
       most_recent_activity: Nejnovější aktivita
       most_recent_ip: Nejnovější IP
+      no_limits_imposed: Nejsou nastavena žádná omezení
       not_subscribed: Neodebírá
       order:
         alphabetic: Abecedně
         most_recent: Nejnovější
         title: Pořadí
       outbox_url: URL odchozích zpráv
-      perform_full_suspension: Provést plnou suspenzaci
+      perform_full_suspension: Suspendovat
       profile_url: URL profilu
       promote: Povýšit
       protocol: Protokol
@@ -155,8 +149,10 @@ cs:
         report: nahlášení
         targeted_reports: Nahlášení vytvořena o tomto účtu
       silence: Utišit
+      silenced: Utišen/a
       statuses: Příspěvky
       subscribe: Odebírat
+      suspended: Suspendován/a
       title: Účty
       unconfirmed_email: Nepotvrzený e-mail
       undo_silenced: Zrušit utišení
@@ -173,6 +169,7 @@ cs:
         create_domain_block: "%{name} zablokoval/a doménu %{target}"
         create_email_domain_block: "%{name} přidal/a e-mailovou doménu %{target} na černou listinu"
         demote_user: "%{name} degradoval/a uživatele %{target}"
+        destroy_custom_emoji: "%{name} zničil/a emoji %{target}"
         destroy_domain_block: "%{name} odblokoval/a doménu %{target}"
         destroy_email_domain_block: "%{name} odebral/a e-mailovou doménu %{target} z černé listiny"
         destroy_status: "%{name} odstranil/a příspěvek uživatele %{target}"
@@ -181,7 +178,7 @@ cs:
         disable_user: "%{name} zakázal/a přihlašování pro uživatele %{target}"
         enable_custom_emoji: "%{name} povolil/a emoji %{target}"
         enable_user: "%{name} povolil/a přihlašování pro uživatele %{target}"
-        memorialize_account: '%{name} změnil/a účet %{target} na stránku "in memoriam"'
+        memorialize_account: "%{name} změnil/a účet %{target} na stránku „in memoriam“"
         promote_user: "%{name} povýšil/a uživatele %{target}"
         remove_avatar_user: "%{name} odstranil/a avatar uživatele %{target}"
         reopen_report: "%{name} znovuotevřel/a nahlášení %{target}"
@@ -258,15 +255,15 @@ cs:
         title: Nová doménová blokace
       reject_media: Odmítat mediální soubory
       reject_media_hint: Odstraní lokálně uložené soubory a odmítne jejich stažení v budoucnosti. Irelevantní pro suspenzace
+      reject_reports: Odmítnout nahlášení
+      reject_reports_hint: Ignorovat všechna nahlášení pocházející z této domény. Nepodstatné pro suspenzace
       severities:
         noop: Žádné
         silence: Utišit
         suspend: Suspendovat
       severity: Přísnost
       show:
-        affected_accounts:
-          one: Jeden účet v databázi byl ovlivněn
-          other: "%{count} účtů v databázi byl ovlivněn"
+        affected_accounts: "%{count} účtů v databázi byl ovlivněn"
         retroactive:
           silence: Odtišit všechny existující účty z této domény
           suspend: Zrušit suspenzaci všech existujících účtů z této domény
@@ -300,8 +297,13 @@ cs:
       title: Pozvánky
     relays:
       add_new: Přidat nový most
+      delete: Smazat
       description_html: "<strong>Federovací most</strong> je přechodný server, který vyměňuje velká množství veřejných tootů mezi servery, které z něj odebírají a poblikují na něj. <strong>Může pomoci malým a středně velkým serverům objevovat obsah z fediverse</strong>, což by jinak vyžadovalo, aby místní uživatelé manuálně sledovali jiné lidi na vzdálených serverech."
+      disable: Zakázat
+      disabled: Zakázáno
+      enable: Povolit
       enable_hint: Je-li tohle povoleno, začne váš server odebírat všechny veřejné tooty z tohoto mostu a odesílat na něj své vlastní veřejné tooty.
+      enabled: Povoleno
       inbox_url: URL mostu
       pending: Čekám na souhlas mostu
       save_and_enable: Uložit a povolit
@@ -322,7 +324,6 @@ cs:
       comment:
         none: Žádné
       created_at: Nahlášené
-      id: ID
       mark_as_resolved: Označit jako vyřešené
       mark_as_unresolved: Označit jako nevyřešené
       notes:
@@ -333,20 +334,15 @@ cs:
         placeholder: Popište, jaké akce byly vykonány, nebo jakékoliv jiné související aktuality...
       reopen: Znovu otevřít nahlášení
       report: 'Nahlásit #%{id}'
-      report_contents: Obsah
       reported_account: Nahlášený účet
       reported_by: Nahlášeno uživatelem
       resolved: Vyřešeno
       resolved_msg: Nahlášení úspěšně vyřešeno!
-      silence_account: Utišit účet
       status: Stav
-      suspend_account: Suspendovat účet
-      target: Cíl
       title: Nahlášení
       unassign: Odebrat
       unresolved: Nevyřešeno
       updated_at: Aktualizováno
-      view: Zobrazit
     settings:
       activity_api_enabled:
         desc_html: Počty lokálně publikovaných příspěvků, aktivních uživatelů a nových registrací, v týdenních intervalech
@@ -361,8 +357,11 @@ cs:
         desc_html: Pozměnit vzhled pomocí šablony CSS načtené na každé stránce
         title: Vlastní CSS
       hero:
-        desc_html: Zobrazuje se na hlavní stránce. Doporučuje se rozlišení alespoň 600x100px. Pokud toto není nastavené, bude zobrazena miniatura instance
+        desc_html: Zobrazuje se na hlavní stránce. Doporučuje se rozlišení alespoň 600x100 px. Pokud toto není nastaveno, bude zobrazena miniatura instance
         title: Hlavní obrázek
+      mascot:
+        desc_html: Zobrazuje se na hlavní stránce. Doporučuje se rozlišení alespoň 293x205 px. Pokud toto není nastaveno, bude zobrazen výchozí maskot
+        title: Obrázek maskota
       peers_api_enabled:
         desc_html: Domény, na které tato instance narazila ve fediverse
         title: Zveřejnit seznam objevených instancí
@@ -456,7 +455,7 @@ cs:
     warning: Buďte s těmito daty velmi opatrní. Nikdy je s nikým nesdílejte!
     your_token: Váš přístupový token
   auth:
-    agreement_html: Registrací souhlasíte s následováním <a href="%{rules_path}">pravidel této instance</a> a <a href="%{terms_path}">našich podmínek používání</a>.
+    agreement_html: Kliknutím na tlačítko „Registrovat“ souhlasíte s následováním <a href="%{rules_path}">pravidel této instance</a> a <a href="%{terms_path}">našich podmínek používání</a>.
     change_password: Heslo
     confirm_email: Potvrdit e-mail
     delete_account: Odstranit účet
@@ -523,7 +522,7 @@ cs:
     '500':
       content: Omlouváme se, ale něco se pokazilo u nás.
       title: Tato stránka není správná
-    noscript_html: Pro použití webové aplikace Mastodon prosím povolte JavaScript. Nebo zkuste jednu z <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">nativních aplikací</a> pro Mastodon pro vaši platformu.
+    noscript_html: Pro použití webové aplikace Mastodon prosím povolte JavaScript. Nebo zkuste jednu z <a href="%{apps_path}">nativních aplikací</a> pro Mastodon pro vaši platformu.
   exports:
     archive_takeout:
       date: Datum
@@ -559,9 +558,7 @@ cs:
     followers_count: Počet sledovatelů
     lock_link: Zamkněte svůj účet
     purge: Odstranit ze sledovatelů
-    success:
-      one: V průběhu utišování sledovatelů z jedné domény...
-      other: V průběhu utišování sledovatelů z %{count} domén...
+    success: V průběhu utišování sledovatelů z %{count} domén...
     true_privacy_html: Berte prosím na vědomí, že <strong>skutečného soukromí se dá dosáhnout pouze za pomoci end-to-end šifrování</strong>.
     unlocked_warning_html: Kdokoliv vás může sledovat a okamžitě vidět vaše soukromé příspěvky. %{lock_link}, abyste mohl/a zkontrolovat a odmítnout sledovatele.
     unlocked_warning_title: Váš účet není zamknutý
@@ -571,10 +568,9 @@ cs:
     resources: Zdroje
   generic:
     changes_saved_msg: Změny byly úspěšně uloženy!
+    copy: Kopírovat
     save_changes: Uložit změny
-    validation_errors:
-      one: Něco ještě není úplně v pořádku! Prosím zkontrolujte chybu níže
-      other: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
+    validation_errors: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
   imports:
     preface: Můžete importovat data, která jste exportoval/a z jiné instance, jako například seznam lidí, které sledujete či blokujete.
     success: Vaše data byla úspěšně nahrána a nyní budou zpracována v daný čas
@@ -597,9 +593,7 @@ cs:
     expires_in_prompt: Nikdy
     generate: Vygenerovat
     invited_by: 'Byl/a jste pozván/a uživatelem:'
-    max_uses:
-      one: 1 použití
-      other: "%{count} použití"
+    max_uses: "%{count} použití"
     max_uses_prompt: Bez limitu
     prompt: Vygenerujte a sdílejte s ostatními odkazy a umožněte jim přístup na tuto instanci
     table:
@@ -625,13 +619,9 @@ cs:
       action: Zobrazit všechna oznámení
       body: Zde najdete stručný souhrn zpráv, které jste zmeškal/a od vaší poslední návštěvy %{since}
       mention: "%{name} vás zmínil/a v:"
-      new_followers_summary:
-        one: Navíc jste získal/a jednoho nového sledovatele, zatímco jste byl/a pryč! Hurá!
-        other: Navíc jste získal/a %{count} nových sledovatelů, zatímco jste byl/a pryč! Hurá!
-      subject:
-        one: "Jedno nové oznámení od vaší poslední návštěvy \U0001F418"
-        other: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
-      title: Ve vaší absenci...
+      new_followers_summary: Navíc jste získal/a %{count} nových sledovatelů, zatímco jste byl/a pryč! Hurá!
+      subject: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
+      title: Ve vaší nepřítomnosti...
     favourite:
       body: 'Váš příspěvek si oblíbil/a %{name}:'
       subject: "%{name} si oblíbil/a váš příspěvek"
@@ -679,10 +669,10 @@ cs:
     acct: Napište svou přezdívku@doménu, ze které chcete jednat
     missing_resource: Nemůžeme najít požadované přesměrovací URL pro váš účet
     no_account_html: Ještě nemáte účet? Můžete se <a href='%{sign_up_path}' target='_blank'>registrovat zde</a>
-    proceed: Pokračujte pro sledování
+    proceed: Pokračovat ke sledování
     prompt: 'Budete sledovat:'
   remote_interaction:
-    proceed: Pokračujte k interakci
+    proceed: Pokračovat k interakci
     prompt: 'Chcete interagovat s tímto tootem:'
   remote_unfollow:
     error: Chyba
@@ -747,28 +737,22 @@ cs:
   statuses:
     attached:
       description: 'Přiloženo: %{attached}'
-      image:
-        one: "%{count} obrázek"
-        other: "%{count} obrázků"
-      video:
-        one: "%{count} video"
-        other: "%{count} videí"
+      image: "%{count} obrázků"
+      video: "%{count} videí"
     boosted_from_html: Boostnuto z %{acct_link}
     content_warning: 'Varování o obsahu: %{warning}'
-    disallowed_hashtags:
-      one: 'obsahuje nepovolený hashtag: %{tags}'
-      other: 'obsahuje nepovolené hashtagy: %{tags}'
+    disallowed_hashtags: 'obsahuje nepovolené hashtagy: %{tags}'
     language_detection: Zjistit jazyk automaticky
     open_in_web: Otevřít na webu
     over_character_limit: limit %{max} znaků byl překročen
     pin_errors:
       limit: Už jste si připnul/a maximální počet tootů
-      ownership: Nelže připnout toot někoho jiného
+      ownership: Nelze připnout toot někoho jiného
       private: Nelze připnout neveřejné tooty
       reblog: Nelze připnout boostnutí
     show_more: Zobrazit více
     sign_in_to_participate: Chcete-li se účastnit této konverzace, přihlaste se
-    title: '%{name}: "%{quote}"'
+    title: "%{name}: „%{quote}“"
     visibilities:
       private: Pouze pro sledovatele
       private_long: Zobrazit pouze sledovatelům
@@ -778,7 +762,7 @@ cs:
       unlisted_long: Všichni mohou vidět, ale není zahrnut ve veřejných časových osách
   stream_entries:
     pinned: Připnutý toot
-    reblogged: boostnutý
+    reblogged: boostnul/a
     sensitive_content: Citlivý obsah
   terms:
     body_html: |
@@ -787,7 +771,7 @@ cs:
 
       <ul>
         <li><em>Základní informace o účtu</em>: Pokud se na tomto serveru zaregistrujete, můžeme vás požádat o zadání uživatelského jména, e-mailové adresy a hesla. Můžete také zadat dodatečné profilové informace, jako například zobrazované jméno a krátký životopis, a nahrát si profilovou fotografii a hlavičkový obrázek. Uživatelské i zobrazované jméno, životopis, profilová fotografie a hlavičkový obrázek jsou vždy uvedeny veřejně.</li>
-        <li><em>Příspěvky, sledovatelé a další veřejné informace</em>: Seznam lidí, které sledujete, je uveden veřejně, totéž platí i pro vaše sledovatele. Když sem nahrajete zprávu, bude uloženo datum a čas, společně s aplikací, ze které jste zprávu odeslali. Zprávy mohou obsahovat mediální přílohy, jako jsou obrázky a videa. Veřejné a nezobrazované příspěvky jsou dostupné veřejně. Pokud na vašem profilu uvedete příspěvek, je to také veřejně dostupná informace. Vaše příspěvky jsou doručeny vašim sledovatelům, což v některých případech znamená, že budou doručeny na různé servery, na kterých budou ukládány kopie. Pokud příspěvky smažete, bude tohle taktéž doručeno vašim sledovatelům. Akce znovusdílení nebo oblíbení jiného příspěvku je vždy veřejná.</li>
+        <li><em>Příspěvky, sledovatelé a další veřejné informace</em>: Seznam lidí, které sledujete, je uveden veřejně, totéž platí i pro vaše sledovatele. Když sem nahrajete zprávu, bude uloženo datum a čas, společně s aplikací, ze které jste zprávu odeslali. Zprávy mohou obsahovat mediální přílohy, jako jsou obrázky a videa. Veřejné a neuvedené příspěvky jsou dostupné veřejně. Pokud na vašem profilu uvedete příspěvek, je to také veřejně dostupná informace. Vaše příspěvky jsou doručeny vašim sledovatelům, což v některých případech znamená, že budou doručeny na různé servery, na kterých budou ukládány kopie. Pokud příspěvky smažete, bude tohle taktéž doručeno vašim sledovatelům. Akce znovusdílení nebo oblíbení jiného příspěvku je vždy veřejná.</li>
         <li><em>Příspěvky přímé a pouze pro sledovatele</em>: Všechny příspěvky jsou uloženy a zpracovány na serveru. Příspěvky pouze pro sledovatele jsou doručeny vašim sledovatelům a uživateům v nich zmíněných a přímé příspěvky jsou doručeny pouze uživatelům v nich zmíněných. V některých případech tohle znamená, že budou doručeny na různé servery, na kterých budou ukládány kopie. Snažíme se omezit přístup k těmto příspěvkům pouze na autorizované uživatele, ovšem jiné servery tak nemusejí učinit. Proto je důležité posoudit servery, ke kterým vaši sledovatelé patří. V nastavení si můžete zapnout volbu pro manuální schvalování či odmítnutí nových sledovatelů. <em>Prosím mějte na paměti, že operátoři tohoto serveru a kteréhokoliv přijímacího serveru mohou tyto zprávy vidět</em> a příjemci mohou vytvořit jejich snímek, zkopírovat je, nebo je jinak sdílet. <em>Nesdílejte přes Mastodon jakékoliv nebezpečné informace.</em></li>
         <li><em>IP adresy a další metadata</em>: Když se přihlásíte, zaznamenáváme IP adresu, ze které se přihlašujete, jakožto i název vašeho webového prohlížeče. Všechny vaše webové relace jsou v nastavení přístupné k vašemu posouzení a odvolání. Nejpozdější IP adresa použita je uložena maximálně do 12 měsíců. Můžeme také uchovávat serverové záznamy, které obsahují IP adresy každého požadavku odeslaného na náš server.</li>
       </ul>
@@ -831,7 +815,7 @@ cs:
 
       <p>Ano. Cookies jsou malé soubory, které stránka nebo její poskytovatel uloží na pevný disk vašeho počítače (pokud to dovolíte). Tyto cookies umožňují stránce rozpoznat váš prohlížeč a, pokud máte registrovaný účet, přidružit ho s vaším registrovaným účtem.</p>
 
-      <p>POužíváme cookies pro pochopení a ukládání vašich předvoleb pro budoucí návštěvy.</p>
+      <p>Používáme cookies pro pochopení a ukládání vašich předvoleb pro budoucí návštěvy.</p>
 
       <hr class="spacer" />
 
@@ -847,7 +831,7 @@ cs:
 
       <h3 id="children">Používání stránky dětmi</h3>
 
-      <p>Pokud se tento server nachází v EU nebo EHP: Naše stránka, produkty a služby jsou všechny směřovány na lidi, kterým je alespoň 16 let. Pokud je vám méně než 16, dle požadavků nařízení GDPR (<a href="https://cs.wikipedia.org/wiki/Obecn%C3%A9_na%C5%99%C3%ADzen%C3%AD_o_ochran%C4%9B_osobn%C3%ADch_%C3%BAdaj%C5%AF">Obecné nařízení o ochě sobních údajů</a>) </p>
+      <p>Pokud se tento server nachází v EU nebo EHP: Naše stránka, produkty a služby jsou všechny směřovány na lidi, kterým je alespoň 16 let. Pokud je vám méně než 16, dle požadavků nařízení GDPR (<a href="https://cs.wikipedia.org/wiki/Obecn%C3%A9_na%C5%99%C3%ADzen%C3%AD_o_ochran%C4%9B_osobn%C3%ADch_%C3%BAdaj%C5%AF">Obecné nařízení o ochraně sobních údajů</a>) tuto stránku nepoužívejte.</p>
 
       <p>Pokud se tento server nachází v USA: Naše stránka, produkty a služby jsou všechny směřovány na lidi, kterým je alespoň 13 let. Pokud je vám méně než 13, dle požadavků zákona COPPA (<a href="https://cs.wikipedia.org/wiki/Children%27s_online_privacy_protection_act">Children's Online Privacy Protection Act</a>) tuto stránku nepoužívejte.</p>
 
@@ -859,7 +843,7 @@ cs:
 
       <p>Rozhodneme-li se naše zásady soukromí změnit, zveřejníme tyto změny na této stránce.</p>
 
-      <p>Tento dokument je dostupný pod licencí CC-BY-SA. Byl naposledy aktualizován 7 března 2018.</p>
+      <p>Tento dokument je dostupný pod licencí CC-BY-SA. Byl naposledy aktualizován 7. března 2018.</p>
 
       <p>Původně adaptováno ze <a href="https://github.com/discourse/discourse">zásad soukromí Discourse</a>.</p>
     title: Podmínky používání a zásady soukromí %{instance}
@@ -897,13 +881,13 @@ cs:
       edit_profile_step: Můžete si přizpůsobit svůj profil nahráním avataru a obrázku na hlavičce, změnou zobrazovaného jména a dalších. Chcete-li posoudit nové sledovatele předtím, než vás mohou sledovat, můžete svůj účet uzamknout.
       explanation: Zde je pár tipů na začátek
       final_action: Začněte přispívat
-      final_step: 'Začněte psát! I když nemáte sledovatele, mohou vaše zprávy vidět jiní lidé, například na místní časové ose a mezi hashtagy. Můžete se ostatním představit pomocí hashtagu #introductions.'
+      final_step: 'Začněte přispívat! I když nemáte sledovatele, mohou vaše zprávy vidět jiní lidé, například na místní časové ose a mezi hashtagy. Můžete se ostatním představit pomocí hashtagu #introductions.'
       full_handle: Vaše celá adresa profilu
       full_handle_hint: Tohle je, co byste řekl/a svým přátelům, aby vám mohli posílat zprávy nebo vás sledovat z jiné instance.
       review_preferences_action: Změnit nastavení
       review_preferences_step: Nezapomeňte si nastavit své volby, například jaké e-maily chcete přijímat či jak soukromé mají být vaše příspěvky ve výchozím stavu. Nemáte-li epilepsii, můžete si nastavit automatické přehrávání obrázků GIF.
       subject: Vítejte na Mastodonu
-      tip_bridge_html: Pokud přicházíte z Twitteru, můžete najít vaše přátele na Mastodonu pomocí <a href="%{bridge_url}">mostové aplikace</a>. Funguje ovšem pouze, pokud ji oni někdy také použili!
+      tip_bridge_html: Pokud přicházíte z Twitteru, můžete najít vaše přátele na Mastodonu pomocí <a href="%{bridge_url}">mostové aplikace</a>. Funguje ovšem pouze, pokud ji oni také někdy použili!
       tip_federated_timeline: Federovaná časová osa je náhled celé sítě Mastodon. Zahrnuje ovšem pouze lidi, které sledují vaši sousedé, takže není úplná.
       tip_following: Administrátora/y serveru sledujete automaticky. Chcete-li najít další zajímavé lidi, podívejte se na místní a federované časové osy.
       tip_local_timeline: Místní časová osa je náhled lidí na %{instance}. Toto jsou vaši nejbližší sousedé!
@@ -911,8 +895,12 @@ cs:
       tips: Tipy
       title: Vítejte na palubě, %{name}!
   users:
+    follow_limit_reached: Nemůžete sledovat více než %{limit} lidí
     invalid_email: E-mailová adresa je neplatná
     invalid_otp_token: Neplatný kód pro dvoufaktorovou autentikaci
     otp_lost_help_html: Pokud jste ztratil/a přístup k oběma, můžete se spojit %{email}
     seamless_external_login: Jste přihlášen/a přes externí službu, nastavení hesla a e-mailu proto nejsou dostupná.
     signed_in_as: 'Přihlášen/a jako:'
+  verification:
+    explanation_html: 'Můžete se <strong>ověřit jako vlastník odkazů v metadatech profilu</strong>. Pro tento účel musí stránka v odkazu obsahovat odkaz zpět na váš profil na Mastodonu. Odkaz zpět <strong>musí</strong> mít atribut <code>rel="me"</code>. Na textu odkazu nezáleží. Zde je příklad:'
+    verification: Ověření

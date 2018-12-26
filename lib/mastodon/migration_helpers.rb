@@ -342,8 +342,8 @@ module Mastodon
 
       say "Migrating #{table_name}.#{column} (~#{total.to_i} rows)"
 
-      started_time = Time.now
-      last_time = Time.now
+      started_time = Time.zone.now
+      last_time = Time.zone.now
       migrated = 0
       loop do
         stop_row = nil
@@ -375,13 +375,13 @@ module Mastodon
         end
 
         migrated += batch_size
-        if Time.now - last_time > 1
+        if Time.zone.now - last_time > 1
           status = "Migrated #{migrated} rows"
 
           percentage = 100.0 * migrated / total
           status += " (~#{sprintf('%.2f', percentage)}%, "
 
-          remaining_time = (100.0 - percentage) * (Time.now - started_time) / percentage
+          remaining_time = (100.0 - percentage) * (Time.zone.now - started_time) / percentage
 
           status += "#{(remaining_time / 60).to_i}:"
           status += sprintf('%02d', remaining_time.to_i % 60)
@@ -397,7 +397,7 @@ module Mastodon
           status += ')'
 
           say status, true
-          last_time = Time.now
+          last_time = Time.zone.now
         end
 
         # There are no more rows left to update.
@@ -835,7 +835,7 @@ module Mastodon
       columns(table).find { |column| column.name == name }
     end
 
-    # This will replace the first occurance of a string in a column with
+    # This will replace the first occurrence of a string in a column with
     # the replacement
     # On postgresql we can use `regexp_replace` for that.
     # On mysql we find the location of the pattern, and overwrite it

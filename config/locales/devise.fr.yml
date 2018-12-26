@@ -8,10 +8,10 @@ fr:
     failure:
       already_authenticated: Vous êtes déjà connecté⋅e.
       inactive: Votre compte n’est pas encore activé.
-      invalid: Courriel ou mot de passe incorrect.
+      invalid: "%{authentication_keys} incorrect."
       last_attempt: Vous avez droit à une tentative avant que votre compte ne soit verrouillé.
       locked: Votre compte est verrouillé.
-      not_found_in_database: Courriel ou mot de passe invalide.
+      not_found_in_database: "%{authentication_keys} invalide."
       timeout: Votre session a expiré. Veuillez vous reconnecter pour continuer.
       unauthenticated: Vous devez vous connecter ou vous inscrire pour continuer.
       unconfirmed: Vous devez valider votre compte pour continuer.

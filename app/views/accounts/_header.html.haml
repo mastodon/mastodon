@@ -3,7 +3,10 @@
     = image_tag account.header.url, class: 'parallax'
   .public-account-header__bar
     = link_to short_account_url(account), class: 'avatar' do
-      = image_tag account.avatar.url
+      - if current_account&.user&.setting_auto_play_gif
+        = image_tag account.avatar_original_url
+      - else
+        = image_tag account.avatar_static_url
     .public-account-header__tabs
       .public-account-header__tabs__name
         %h1
@@ -13,7 +16,7 @@
             = fa_icon('lock') if account.locked?
       .public-account-header__tabs__tabs
         .details-counters
-          .counter{ class: active_nav_class(short_account_url(account)) }
+          .counter{ class: active_nav_class(short_account_url(account), short_account_with_replies_url(account), short_account_media_url(account)) }
             = link_to short_account_url(account), class: 'u-url u-uid', title: number_with_delimiter(account.statuses_count) do
               %span.counter-number= number_to_human account.statuses_count, strip_insignificant_zeros: true
               %span.counter-label= t('accounts.posts', count: account.statuses_count)

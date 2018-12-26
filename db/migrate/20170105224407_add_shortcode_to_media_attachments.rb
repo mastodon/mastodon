@@ -8,7 +8,7 @@ class AddShortcodeToMediaAttachments < ActiveRecord::Migration[5.0]
   end
 
   def down
-  	remove_index :media_attachments, :shortcode
-  	remove_column :media_attachments, :shortcode
+    remove_index :media_attachments, :shortcode
+    remove_column :media_attachments, :shortcode
   end
 end
