@@ -4,6 +4,7 @@ require 'singleton'
 
 class FeedManager
   include Singleton
+  include Redisable
 
   MAX_ITEMS = 400
 
@@ -141,10 +142,6 @@ class FeedManager
   end
 
   private
-
-  def redis
-    Redis.current
-  end
 
   def push_update_required?(timeline_id)
     redis.exists("subscribed:#{timeline_id}")

@@ -2,6 +2,7 @@
 
 class FollowService < BaseService
   include StreamEntryRenderer
+  include Redisable
 
   # Follow a remote user, notify remote user about the follow
   # @param [Account] source_account From which to follow
@@ -67,10 +68,6 @@ class FollowService < BaseService
     MergeWorker.perform_async(target_account.id, source_account.id)
 
     follow
-  end
-
-  def redis
-    Redis.current
   end
 
   def build_follow_request_xml(follow_request)

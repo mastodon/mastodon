@@ -2,6 +2,7 @@
 
 class RemoveStatusService < BaseService
   include StreamEntryRenderer
+  include Redisable
 
   def call(status, **options)
     @payload      = Oj.dump(event: :delete, payload: status.id.to_s)
@@ -150,9 +151,5 @@ class RemoveStatusService < BaseService
 
     Redis.current.publish('timeline:public:media', @payload)
     Redis.current.publish('timeline:public:local:media', @payload) if @status.local?
-  end
-
-  def redis
-    Redis.current
   end
 end

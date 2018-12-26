@@ -13,6 +13,9 @@ class PostStatusService < BaseService
   # @option [Doorkeeper::Application] :application
   # @option [String] :idempotency Optional idempotency key
   # @return [Status]
+
+  include Redisable
+
   def call(account, text, in_reply_to = nil, **options)
     if options[:idempotency].present?
       existing_id = redis.get("idempotency:status:#{account.id}:#{options[:idempotency]}")
@@ -79,10 +82,6 @@ class PostStatusService < BaseService
 
   def process_hashtags_service
     ProcessHashtagsService.new
-  end
-
-  def redis
-    Redis.current
   end
 
   def bump_potential_friendship(account, status)
