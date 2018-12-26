@@ -1,6 +1,10 @@
 import {
+  FAVOURITED_STATUSES_FETCH_REQUEST,
   FAVOURITED_STATUSES_FETCH_SUCCESS,
+  FAVOURITED_STATUSES_FETCH_FAIL,
+  FAVOURITED_STATUSES_EXPAND_REQUEST,
   FAVOURITED_STATUSES_EXPAND_SUCCESS,
+  FAVOURITED_STATUSES_EXPAND_FAIL,
 } from '../actions/favourites';
 import {
   PINNED_STATUSES_FETCH_SUCCESS,
@@ -30,6 +34,7 @@ const normalizeList = (state, listType, statuses, next) => {
   return state.update(listType, listMap => listMap.withMutations(map => {
     map.set('next', next);
     map.set('loaded', true);
+    map.set('isLoading', false);
     map.set('items', ImmutableList(statuses.map(item => item.id)));
   }));
 };
@@ -37,6 +42,7 @@ const normalizeList = (state, listType, statuses, next) => {
 const appendToList = (state, listType, statuses, next) => {
   return state.update(listType, listMap => listMap.withMutations(map => {
     map.set('next', next);
+    map.set('isLoading', false);
     map.set('items', map.get('items').concat(statuses.map(item => item.id)));
   }));
 };
@@ -55,6 +61,12 @@ const removeOneFromList = (state, listType, status) => {
 
 export default function statusLists(state = initialState, action) {
   switch(action.type) {
+  case FAVOURITED_STATUSES_FETCH_REQUEST:
+  case FAVOURITED_STATUSES_EXPAND_REQUEST:
+    return state.setIn(['favourites', 'isLoading'], true);
+  case FAVOURITED_STATUSES_FETCH_FAIL:
+  case FAVOURITED_STATUSES_EXPAND_FAIL:
+    return state.setIn(['favourites', 'isLoading'], false);
   case FAVOURITED_STATUSES_FETCH_SUCCESS:
     return normalizeList(state, 'favourites', action.statuses, action.next);
   case FAVOURITED_STATUSES_EXPAND_SUCCESS:

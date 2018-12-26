@@ -3,15 +3,16 @@ zh-CN:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: 名称
-        redirect_uri: 登录回调地址
+        name: 应用名称
+        redirect_uri: 重定向 URI
         scopes: 权限范围
+        website: 应用网站
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: 不能包含片段（#）
+              fragment_present: 不能包含网址片段（#）
               invalid_uri: 必须是有效的 URL 格式
               relative_uri: 必须是绝对的 URL 地址
               secured_uri: 必须是 HTTPS/SSL 的 URL 地址
@@ -30,60 +31,65 @@ zh-CN:
       form:
         error: 抱歉! 提交信息的时候遇到了下面的错误
       help:
-        native_redirect_uri: 使用 %{native_redirect_uri} 作为本地测试
+        native_redirect_uri: 本地测试请使用 %{native_redirect_uri}
         redirect_uri: 每行只能有一个 URL
-        scopes: 用空格隔开权限范围，留空则使用默认设置
+        scopes: 用空格分割权限范围，留空则使用默认设置
       index:
-        callback_url: 登录回调地址
+        application: 应用
+        callback_url: 回调 URL
+        delete: 删除
         name: 名称
         new: 创建新应用
+        scopes: 权限范围
+        show: 显示
         title: 你的应用
       new:
         title: 创建新应用
       show:
         actions: 操作
         application_id: 应用 ID
-        callback_urls: 登录回调地址
+        callback_urls: 回调 URL
         scopes: 权限范围
-        secret: 私钥
+        secret: 应用密钥
         title: 应用：%{name}
     authorizations:
       buttons:
-        authorize: 授权
-        deny: 拒绝
+        authorize: 同意授权
+        deny: 拒绝授权
       error:
-        title: 存在错误
+        title: 发生错误
       new:
-        able_to: 此应用将会
-        prompt: 授权 %{client_name} 使用你的帐号?
-        title: 需要你授权
+        able_to: 此应用将能够
+        prompt: 授权 %{client_name} 使用你的帐户？
+        title: 需要授权
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: 接下来请复制此处的授权代码并粘贴到应用中。
     authorized_applications:
       buttons:
-        revoke: 注销
+        revoke: 撤销授权
       confirmations:
-        revoke: 确定要注销此应用的认证信息吗?
+        revoke: 确定要撤销对此应用的授权吗？
       index:
         application: 应用
         created_at: 授权时间
         date_format: "%Y-%m-%d %H:%M:%S"
-        title: 你授权的应用列表
+        scopes: 权限范围
+        title: 已授权的应用列表
     errors:
       messages:
-        access_denied: 用户或服务器拒绝了请求
-        credential_flow_not_configured: Resource Owner Password Credentials flow failed，原因是 Doorkeeper.configure.resource_owner_from_credentials 尚未设置。
-        invalid_client: 由于未知、不支持或没有客户端，认证失败
-        invalid_grant: 授权方式无效，或者登录回调地址无效、过期或已被撤销
+        access_denied: 资源所有者或服务器拒绝了请求
+        credential_flow_not_configured: 由于 Doorkeeper.configure.resource_owner_from_credentials 尚未配置，应用验证授权流程失败。
+        invalid_client: 由于应用信息未知、未提交认证信息或使用了不支持的认证方式，认证失败
+        invalid_grant: 授权方式无效、过期或已被撤销、与授权请求中的回调地址不一致，或使用了其他应用的回调地址
         invalid_redirect_uri: 无效的登录回调地址
-        invalid_request: 这个请求缺少必要的参数，或者参数值、格式不正确
-        invalid_resource_owner: 资源所有者认证无效或没有所有者
-        invalid_scope: 请求范围无效、未知或格式不正确
+        invalid_request: 请求缺少必要的参数，或者参数值、格式不正确
+        invalid_resource_owner: 资源所有者认证无效，或找不到所有者
+        invalid_scope: 请求的权限范围无效、未知或格式不正确
         invalid_token:
           expired: 访问令牌已过期
           revoked: 访问令牌已被吊销
           unknown: 访问令牌无效
-        resource_owner_authenticator_not_configured: Resource Owner find failed，原因是 Doorkeeper.configure.resource_owner_authenticator 尚未设置。
+        resource_owner_authenticator_not_configured: 由于 Doorkeeper.configure.resource_owner_authenticator 尚未配置，查找资源所有者失败。
         server_error: 服务器异常，无法处理请求
         temporarily_unavailable: 服务器维护中或负载过高，暂时无法处理请求
         unauthorized_client: 未授权的应用，请求无法执行
@@ -99,16 +105,15 @@ zh-CN:
           notice: 应用修改成功
       authorized_applications:
         destroy:
-          notice: 已成功注销了应用的认证信息
+          notice: 已成功撤销对此应用的授权
     layouts:
       admin:
         nav:
           applications: 应用
-          home: 首页
           oauth2_provider: OAuth2 提供商
       application:
-        title: OAuth 认证
+        title: 需要 OAuth 认证
     scopes:
-      follow: 关注（或取消关注），屏蔽（或取消屏蔽）用户
-      read: 读取你的账户数据
+      follow: 关注或屏蔽用户
+      read: 读取你的帐户数据
       write: 为你发表嘟文

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProcessFeedService < BaseService
-  def call(body, account, options = {})
+  def call(body, account, **options)
     @options = options
 
     xml = Nokogiri::XML(body)

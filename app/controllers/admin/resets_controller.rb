@@ -2,17 +2,19 @@
 
 module Admin
   class ResetsController < BaseController
-    before_action :set_account
+    before_action :set_user
 
     def create
-      @account.user.send_reset_password_instructions
+      authorize @user, :reset_password?
+      @user.send_reset_password_instructions
+      log_action :reset_password, @user
       redirect_to admin_accounts_path
     end
 
     private
 
-    def set_account
-      @account = Account.find(params[:account_id])
+    def set_user
+      @user = Account.find(params[:account_id]).user || raise(ActiveRecord::RecordNotFound)
     end
   end
 end

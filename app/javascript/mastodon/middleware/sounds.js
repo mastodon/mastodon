@@ -15,7 +15,7 @@ const play = audio => {
     if (typeof audio.fastSeek === 'function') {
       audio.fastSeek(0);
     } else {
-      audio.seek(0);
+      audio.currentTime = 0;
     }
   }
 

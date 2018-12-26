@@ -7,8 +7,8 @@ class RemoteFollow
 
   validates :acct, presence: true
 
-  def initialize(attrs = {})
-    @acct = attrs[:acct].gsub(/\A@/, '').strip unless attrs[:acct].nil?
+  def initialize(attrs = nil)
+    @acct = attrs[:acct].gsub(/\A@/, '').strip if !attrs.nil? && !attrs[:acct].nil?
   end
 
   def valid?

@@ -13,14 +13,17 @@ module Admin
       closed_registrations_message
       open_deletion
       timeline_preview
+      show_staff_badge
       bootstrap_timeline_accounts
       thumbnail
+      min_invite_role
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
       open_registrations
       open_deletion
       timeline_preview
+      show_staff_badge
     ).freeze
 
     UPLOAD_SETTINGS = %w(
@@ -28,10 +31,13 @@ module Admin
     ).freeze
 
     def edit
+      authorize :settings, :show?
       @admin_settings = Form::AdminSettings.new
     end
 
     def update
+      authorize :settings, :update?
+
       settings_params.each do |key, value|
         if UPLOAD_SETTINGS.include?(key)
           upload = SiteUpload.where(var: key).first_or_initialize(var: key)

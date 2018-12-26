@@ -9,7 +9,7 @@ RSpec::Matchers.define :model_have_error_on_field do |expected|
 
   failure_message do |record|
     keys = record.errors.keys
-    
+
     "expect record.errors(#{keys}) to include #{expected}"
   end
 end

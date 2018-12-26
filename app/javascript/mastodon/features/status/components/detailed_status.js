@@ -22,7 +22,6 @@ export default class DetailedStatus extends ImmutablePureComponent {
     status: ImmutablePropTypes.map.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     onOpenVideo: PropTypes.func.isRequired,
-    autoPlayGif: PropTypes.bool,
   };
 
   handleAccountClick = (e) => {
@@ -70,12 +69,11 @@ export default class DetailedStatus extends ImmutablePureComponent {
             media={status.get('media_attachments')}
             height={300}
             onOpenMedia={this.props.onOpenMedia}
-            autoPlayGif={this.props.autoPlayGif}
           />
         );
       }
     } else if (status.get('spoiler_text').length === 0) {
-      media = <CardContainer statusId={status.get('id')} />;
+      media = <CardContainer onOpenMedia={this.props.onOpenMedia} statusId={status.get('id')} />;
     }
 
     if (status.get('application')) {

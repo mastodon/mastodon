@@ -3,10 +3,12 @@
 module Admin
   class InstancesController < BaseController
     def index
+      authorize :instance, :index?
       @instances = ordered_instances
     end
 
     def resubscribe
+      authorize :instance, :resubscribe?
       params.require(:by_domain)
       Pubsubhubbub::SubscribeWorker.push_bulk(subscribeable_accounts.pluck(:id))
       redirect_to admin_instances_path

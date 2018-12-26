@@ -19,6 +19,9 @@
     = f.input :timeline_preview, as: :boolean, wrapper: :with_label, label: t('admin.settings.timeline_preview.title'), hint: t('admin.settings.timeline_preview.desc_html')
 
   .fields-group
+    = f.input :show_staff_badge, as: :boolean, wrapper: :with_label, label: t('admin.settings.show_staff_badge.title'), hint: t('admin.settings.show_staff_badge.desc_html')
+
+  .fields-group
     = f.input :open_registrations, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.open.title'), hint: t('admin.settings.registrations.open.desc_html')
 
   .fields-group
@@ -26,6 +29,11 @@
 
   .fields-group
     = f.input :closed_registrations_message, as: :text, wrapper: :with_block_label, label: t('admin.settings.registrations.closed_message.title'), hint: t('admin.settings.registrations.closed_message.desc_html'), input_html: { rows: 8 }
+
+  %hr/
+
+  .fields-group
+    = f.input :min_invite_role, wrapper: :with_label, collection: %i(disabled user moderator admin), label: t('admin.settings.registrations.min_invite_role.title'), label_method: lambda { |role| role == :disabled ? t('admin.settings.registrations.min_invite_role.disabled') : t("admin.accounts.roles.#{role}") }, as: :radio_buttons, include_blank: false, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
 
   %hr/
 

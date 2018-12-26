@@ -72,6 +72,25 @@ export default class IconButton extends React.PureComponent {
       overlayed: overlay,
     });
 
+    if (!animate) {
+      // Perf optimization: avoid unnecessary <Motion> components unless
+      // we actually need to animate.
+      return (
+        <button
+          aria-label={title}
+          aria-pressed={pressed}
+          aria-expanded={expanded}
+          title={title}
+          className={classes}
+          onClick={this.handleClick}
+          style={style}
+          tabIndex={tabIndex}
+        >
+          <i className={`fa fa-fw fa-${icon}`} aria-hidden='true' />
+        </button>
+      );
+    }
+
     return (
       <Motion defaultStyle={{ rotate: active ? -360 : 0 }} style={{ rotate: animate ? spring(active ? -360 : 0, { stiffness: 120, damping: 7 }) : 0 }}>
         {({ rotate }) =>

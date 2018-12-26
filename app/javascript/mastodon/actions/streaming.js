@@ -1,4 +1,4 @@
-import createStream from '../stream';
+import { connectStream } from '../stream';
 import {
   updateTimeline,
   deleteFromTimelines,
@@ -12,42 +12,19 @@ import { getLocale } from '../locales';
 const { messages } = getLocale();
 
 export function connectTimelineStream (timelineId, path, pollingRefresh = null) {
-  return (dispatch, getState) => {
-    const streamingAPIBaseURL = getState().getIn(['meta', 'streaming_api_base_url']);
-    const accessToken = getState().getIn(['meta', 'access_token']);
+
+  return connectStream (path, pollingRefresh, (dispatch, getState) => {
     const locale = getState().getIn(['meta', 'locale']);
-    let polling = null;
-
-    const setupPolling = () => {
-      polling = setInterval(() => {
-        pollingRefresh(dispatch);
-      }, 20000);
-    };
-
-    const clearPolling = () => {
-      if (polling) {
-        clearInterval(polling);
-        polling = null;
-      }
-    };
-
-    const subscription = createStream(streamingAPIBaseURL, accessToken, path, {
-
-      connected () {
-        if (pollingRefresh) {
-          clearPolling();
-        }
+    return {
+      onConnect() {
         dispatch(connectTimeline(timelineId));
       },
 
-      disconnected () {
-        if (pollingRefresh) {
-          setupPolling();
-        }
+      onDisconnect() {
         dispatch(disconnectTimeline(timelineId));
       },
 
-      received (data) {
+      onReceive (data) {
         switch(data.event) {
         case 'update':
           dispatch(updateTimeline(timelineId, JSON.parse(data.payload)));
@@ -60,26 +37,8 @@ export function connectTimelineStream (timelineId, path, pollingRefresh = null) 
           break;
         }
       },
-
-      reconnected () {
-        if (pollingRefresh) {
-          clearPolling();
-          pollingRefresh(dispatch);
-        }
-        dispatch(connectTimeline(timelineId));
-      },
-
-    });
-
-    const disconnect = () => {
-      if (subscription) {
-        subscription.close();
-      }
-      clearPolling();
     };
-
-    return disconnect;
-  };
+  });
 }
 
 function refreshHomeTimelineAndNotification (dispatch) {
@@ -92,3 +51,4 @@ export const connectCommunityStream = () => connectTimelineStream('community', '
 export const connectMediaStream = () => connectTimelineStream('community', 'public:local');
 export const connectPublicStream = () => connectTimelineStream('public', 'public');
 export const connectHashtagStream = (tag) => connectTimelineStream(`hashtag:${tag}`, `hashtag&tag=${tag}`);
+export const connectListStream = (id) => connectTimelineStream(`list:${id}`, `list&list=${id}`);

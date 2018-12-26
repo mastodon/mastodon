@@ -74,6 +74,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.statuses_count    = outbox_total_items    if outbox_total_items.present?
     @account.following_count   = following_total_items if following_total_items.present?
     @account.followers_count   = followers_total_items if followers_total_items.present?
+    @account.moved_to_account  = moved_account         if @json['movedTo'].present?
   end
 
   def after_protocol_change!
@@ -106,12 +107,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def url
     return if @json['url'].blank?
-
-    value = first_of_value(@json['url'])
-
-    return value if value.is_a?(String)
-
-    value['href']
+    url_to_href(@json['url'], 'text/html')
   end
 
   def outbox_total_items
@@ -135,6 +131,12 @@ class ActivityPub::ProcessAccountService < BaseService
     @collections[type] = collection.is_a?(Hash) && collection['totalItems'].present? && collection['totalItems'].is_a?(Numeric) ? collection['totalItems'] : nil
   rescue HTTP::Error, OpenSSL::SSL::SSLError
     @collections[type] = nil
+  end
+
+  def moved_account
+    account   = ActivityPub::TagManager.instance.uri_to_resource(@json['movedTo'], Account)
+    account ||= ActivityPub::FetchRemoteAccountService.new.call(@json['movedTo'], id: true)
+    account
   end
 
   def skip_download?

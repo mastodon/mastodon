@@ -19,7 +19,7 @@ class Api::V1::ReportsController < Api::BaseController
       comment: report_params[:comment]
     )
 
-    User.admins.includes(:account).each { |u| AdminMailer.new_report(u.account, @report).deliver_later }
+    User.staff.includes(:account).each { |u| AdminMailer.new_report(u.account, @report).deliver_later }
 
     render json: @report, serializer: REST::ReportSerializer
   end

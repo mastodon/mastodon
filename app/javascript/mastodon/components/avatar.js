@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { autoPlayGif } from '../initial_state';
 
 export default class Avatar extends React.PureComponent {
 
@@ -8,12 +9,12 @@ export default class Avatar extends React.PureComponent {
     account: ImmutablePropTypes.map.isRequired,
     size: PropTypes.number.isRequired,
     style: PropTypes.object,
-    animate: PropTypes.bool,
     inline: PropTypes.bool,
+    animate: PropTypes.bool,
   };
 
   static defaultProps = {
-    animate: false,
+    animate: autoPlayGif,
     size: 20,
     inline: false,
   };

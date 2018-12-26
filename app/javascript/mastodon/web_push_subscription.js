@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { store } from './containers/mastodon';
 import { setBrowserSupport, setSubscription, clearSubscription } from './actions/push_notifications';
+import { pushNotificationsSetting } from './settings';
 
 // Taken from https://www.npmjs.com/package/web-push
 const urlBase64ToUint8Array = (base64String) => {
@@ -35,16 +36,33 @@ const subscribe = (registration) =>
 const unsubscribe = ({ registration, subscription }) =>
   subscription ? subscription.unsubscribe().then(() => registration) : registration;
 
-const sendSubscriptionToBackend = (subscription) =>
-  axios.post('/api/web/push_subscriptions', {
-    subscription,
-  }).then(response => response.data);
+const sendSubscriptionToBackend = (subscription) => {
+  const params = { subscription };
+
+  const me = store.getState().getIn(['meta', 'me']);
+  if (me) {
+    const data = pushNotificationsSetting.get(me);
+    if (data) {
+      params.data = data;
+    }
+  }
+
+  return axios.post('/api/web/push_subscriptions', params).then(response => response.data);
+};
 
 // Last one checks for payload support: https://web-push-book.gauntface.com/chapter-06/01-non-standards-browsers/#no-payload
 const supportsPushNotifications = ('serviceWorker' in navigator && 'PushManager' in window && 'getKey' in PushSubscription.prototype);
 
 export function register () {
   store.dispatch(setBrowserSupport(supportsPushNotifications));
+  const me = store.getState().getIn(['meta', 'me']);
+
+  if (me && !pushNotificationsSetting.get(me)) {
+    const alerts = store.getState().getIn(['push_notifications', 'alerts']);
+    if (alerts) {
+      pushNotificationsSetting.set(me, { alerts: alerts });
+    }
+  }
 
   if (supportsPushNotifications) {
     if (!getApplicationServerKey()) {
@@ -79,6 +97,9 @@ export function register () {
         // it means that the backend subscription is valid (and was set during hydration)
         if (!(subscription instanceof PushSubscription)) {
           store.dispatch(setSubscription(subscription));
+          if (me) {
+            pushNotificationsSetting.set(me, { alerts: subscription.alerts });
+          }
         }
       })
       .catch(error => {
@@ -90,6 +111,9 @@ export function register () {
 
         // Clear alerts and hide UI settings
         store.dispatch(clearSubscription());
+        if (me) {
+          pushNotificationsSetting.remove(me);
+        }
 
         try {
           getRegistration()

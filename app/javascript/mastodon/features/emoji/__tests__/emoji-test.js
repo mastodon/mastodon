@@ -57,5 +57,21 @@ describe('emoji', () => {
     it('does an emoji whose filename is irregular', () => {
       expect(emojify('↙️')).toEqual('<img draggable="false" class="emojione" alt="↙️" title=":arrow_lower_left:" src="/emoji/2199.svg" />');
     });
+
+    it('avoid emojifying on invisible text', () => {
+      expect(emojify('<a href="http://example.com/test%F0%9F%98%84"><span class="invisible">http://</span><span class="ellipsis">example.com/te</span><span class="invisible">st😄</span></a>'))
+        .toEqual('<a href="http://example.com/test%F0%9F%98%84"><span class="invisible">http://</span><span class="ellipsis">example.com/te</span><span class="invisible">st😄</span></a>');
+      expect(emojify('<span class="invisible">:luigi:</span>', { ':luigi:': { static_url: 'luigi.exe' } }))
+        .toEqual('<span class="invisible">:luigi:</span>');
+    });
+
+    it('avoid emojifying on invisible text with nested tags', () => {
+      expect(emojify('<span class="invisible">😄<span class="foo">bar</span>😴</span>😇'))
+        .toEqual('<span class="invisible">😄<span class="foo">bar</span>😴</span><img draggable="false" class="emojione" alt="😇" title=":innocent:" src="/emoji/1f607.svg" />');
+      expect(emojify('<span class="invisible">😄<span class="invisible">😕</span>😴</span>😇'))
+        .toEqual('<span class="invisible">😄<span class="invisible">😕</span>😴</span><img draggable="false" class="emojione" alt="😇" title=":innocent:" src="/emoji/1f607.svg" />');
+      expect(emojify('<span class="invisible">😄<br/>😴</span>😇'))
+        .toEqual('<span class="invisible">😄<br/>😴</span><img draggable="false" class="emojione" alt="😇" title=":innocent:" src="/emoji/1f607.svg" />');
+    });
   });
 });
