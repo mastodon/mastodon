@@ -6,6 +6,7 @@ import IconButton from '../../../components/icon_button';
 import DisplayName from '../../../components/display_name';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { isRtl } from '../../../rtl';
 
 const messages = defineMessages({
   cancel: { id: 'reply_indicator.cancel', defaultMessage: 'Cancel' },
@@ -42,7 +43,10 @@ export default class ReplyIndicator extends ImmutablePureComponent {
       return null;
     }
 
-    const content  = { __html: status.get('contentHtml') };
+    const content = { __html: status.get('contentHtml') };
+    const style   = {
+      direction: isRtl(status.get('search_index')) ? 'rtl' : 'ltr',
+    };
 
     return (
       <div className='reply-indicator'>
@@ -55,7 +59,7 @@ export default class ReplyIndicator extends ImmutablePureComponent {
           </a>
         </div>
 
-        <div className='reply-indicator__content' dangerouslySetInnerHTML={content} />
+        <div className='reply-indicator__content' style={style} dangerouslySetInnerHTML={content} />
       </div>
     );
   }

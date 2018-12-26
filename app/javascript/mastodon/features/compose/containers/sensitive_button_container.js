@@ -47,7 +47,7 @@ class SensitiveButton extends React.PureComponent {
             'compose-form__sensitive-button--visible': visible,
           });
           return (
-            <div className={className} style={{ transform: `translateZ(0) scale(${scale})` }}>
+            <div className={className} style={{ transform: `scale(${scale})` }}>
               <IconButton
                 className='compose-form__sensitive-button__icon'
                 title={intl.formatMessage(messages.title)}

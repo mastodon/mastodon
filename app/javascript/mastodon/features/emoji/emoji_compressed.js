@@ -64,14 +64,14 @@ Object.keys(emojiMap).forEach(key => {
 
 Object.keys(emojiIndex.emojis).forEach(key => {
   const { native } = emojiIndex.emojis[key];
-  const { short_names, search, unified } = emojiMartData.emojis[key];
+  let { short_names, search, unified } = emojiMartData.emojis[key];
   if (short_names[0] !== key) {
     throw new Error('The compresser expects the first short_code to be the ' +
       'key. It may need to be rewritten if the emoji change such that this ' +
       'is no longer the case.');
   }
 
-  short_names.splice(0, 1); // first short name can be inferred from the key
+  short_names = short_names.slice(1); // first short name can be inferred from the key
 
   const searchData = [native, short_names, search];
   if (unicodeToUnifiedName(native) !== unified) {

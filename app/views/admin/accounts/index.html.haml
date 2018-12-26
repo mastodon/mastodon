@@ -31,6 +31,11 @@
         - else
           = filter_link_to t('admin.accounts.moderation.suspended'), suspended: '1'
   .filter-subset
+    %strong= t('admin.accounts.role')
+    %ul
+      %li= filter_link_to t('admin.accounts.moderation.all'), staff: nil
+      %li= filter_link_to t('admin.accounts.roles.staff'), staff: '1'
+  .filter-subset
     %strong= t('admin.accounts.order.title')
     %ul
       %li= filter_link_to t('admin.accounts.order.alphabetic'), recent: nil
@@ -42,7 +47,7 @@
       - if params[key].present?
         = hidden_field_tag key, params[key]
 
-    - %i(username display_name email ip).each do |key|
+    - %i(username by_domain display_name email ip).each do |key|
       .input.string.optional
         = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.accounts.#{key}")
 
@@ -56,9 +61,7 @@
       %tr
         %th= t('admin.accounts.username')
         %th= t('admin.accounts.domain')
-        %th= t('admin.accounts.protocol')
-        %th= t('admin.accounts.confirmed')
-        %th= fa_icon 'paper-plane-o'
+        %th
         %th
     %tbody
       = render @accounts

@@ -319,7 +319,7 @@ class OStatus::AtomSerializer
 
   private
 
-  def append_element(parent, name, content = nil, attributes = {})
+  def append_element(parent, name, content = nil, **attributes)
     element = Ox::Element.new(name)
     attributes.each { |k, v| element[k] = sanitize_str(v) }
     element << sanitize_str(content) unless content.nil?

@@ -31,6 +31,7 @@ import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 import uuid from '../uuid';
+import { me } from '../initial_state';
 
 const initialState = ImmutableMap({
   mounted: false,
@@ -49,7 +50,6 @@ const initialState = ImmutableMap({
   media_attachments: ImmutableList(),
   suggestion_token: null,
   suggestions: ImmutableList(),
-  me: null,
   default_privacy: 'public',
   default_sensitive: false,
   resetFileKey: Math.floor((Math.random() * 0x10000)),
@@ -58,7 +58,6 @@ const initialState = ImmutableMap({
 
 function statusToTextMentions(state, status) {
   let set = ImmutableOrderedSet([]);
-  let me  = state.get('me');
 
   if (status.getIn(['account', 'id']) !== me) {
     set = set.add(`@${status.getIn(['account', 'acct'])} `);

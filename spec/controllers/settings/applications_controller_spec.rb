@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe Settings::ApplicationsController do
   render_views
-  
+
   let!(:user) { Fabricate(:user) }
   let!(:app) { Fabricate(:application, owner: user) }
-  
+
   before do
     sign_in user, scope: :user
   end
@@ -21,7 +21,7 @@ describe Settings::ApplicationsController do
     end
   end
 
-  
+
   describe 'GET #show' do
     it 'returns http success' do
       get :show, params: { id: app.id }
@@ -110,7 +110,7 @@ describe Settings::ApplicationsController do
       end
     end
   end
-  
+
   describe 'PATCH #update' do
     context 'success' do
       let(:opts) {
@@ -131,7 +131,7 @@ describe Settings::ApplicationsController do
         call_update
         expect(app.reload.website).to eql(opts[:website])
       end
-      
+
       it 'redirects back to applications page' do
         expect(call_update).to redirect_to(settings_applications_path)
       end

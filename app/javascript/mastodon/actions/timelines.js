@@ -118,6 +118,7 @@ export const refreshCommunityTimeline    = () => refreshTimeline('community', '/
 export const refreshAccountTimeline      = accountId => refreshTimeline(`account:${accountId}`, `/api/v1/accounts/${accountId}/statuses`);
 export const refreshAccountMediaTimeline = accountId => refreshTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { only_media: true });
 export const refreshHashtagTimeline      = hashtag => refreshTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`);
+export const refreshListTimeline         = id => refreshTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`);
 
 export function refreshTimelineFail(timeline, error, skipLoading) {
   return {
@@ -158,6 +159,7 @@ export const expandCommunityTimeline    = () => expandTimeline('community', '/ap
 export const expandAccountTimeline      = accountId => expandTimeline(`account:${accountId}`, `/api/v1/accounts/${accountId}/statuses`);
 export const expandAccountMediaTimeline = accountId => expandTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { only_media: true });
 export const expandHashtagTimeline      = hashtag => expandTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`);
+export const expandListTimeline         = id => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`);
 
 export function expandTimelineRequest(timeline) {
   return {

@@ -10,22 +10,25 @@ class ProcessMentionsService < BaseService
   def call(status)
     return unless status.local?
 
-    status.text.scan(Account::MENTION_RE).each do |match|
-      username, domain  = match.first.split('@')
-      mentioned_account = Account.find_remote(username, domain)
-
-      if mentioned_account.nil? && !domain.nil?
-        begin
-          mentioned_account = follow_remote_account_service.call(match.first.to_s)
-        rescue Goldfinger::Error, HTTP::Error
-          mentioned_account = nil
-        end
+    status.text = status.text.gsub(Account::MENTION_RE) do |match|
+      begin
+        mentioned_account = resolve_remote_account_service.call($1)
+      rescue Goldfinger::Error, HTTP::Error
+        mentioned_account = nil
       end
 
-      next if mentioned_account.nil?
+      if mentioned_account.nil?
+        username, domain  = $1.split('@')
+        mentioned_account = Account.find_remote(username, domain)
+      end
+
+      next match if mentioned_account.nil? || (!mentioned_account.local? && mentioned_account.ostatus? && status.stream_entry.hidden?)
 
       mentioned_account.mentions.where(status: status).first_or_create(status: status)
+      "@#{mentioned_account.acct}"
     end
+
+    status.save!
 
     status.mentions.includes(:account).each do |mention|
       create_notification(status, mention)
@@ -54,7 +57,7 @@ class ProcessMentionsService < BaseService
     ).as_json).sign!(status.account))
   end
 
-  def follow_remote_account_service
-    @follow_remote_account_service ||= ResolveRemoteAccountService.new
+  def resolve_remote_account_service
+    ResolveRemoteAccountService.new
   end
 end

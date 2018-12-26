@@ -1,10 +1,18 @@
 ---
 ar:
   devise:
+    confirmations:
+      confirmed: تم التحقق من عنوان بريدك الإلكتروني بنجاح.
     failure:
+      already_authenticated: لقد تم تسجيل دخولك من قبل.
       inactive: لم يتم تنشيط حسابك بعد.
+      last_attempt: بإمكانك إعادة المحاولة مرة واحدة قبل أن يتم قفل حسابك.
       locked: إن حسابك مقفل.
+      unauthenticated: يجب عليك تسجيل الدخول أو إنشاء حساب قبل المواصلة.
+      unconfirmed: يجب عليك تأكيد عنوان بريدك الإلكتروني قبل المواصلة.
     mailer:
+      confirmation_instructions:
+        subject: 'ماستدون : تعليمات التأكيد لمثيل الخادوم  %{instance}'
       password_change:
         subject: 'ماستدون : تم تغيير كلمة المرور'
       reset_password_instructions:
@@ -15,6 +23,7 @@ ar:
       updated: تم تغيير كلمة المرور بنجاح. أنت مسجل الآن.
       updated_not_active: تم تغيير كلمة المرور بنجاح.
     registrations:
+      destroyed: إلى اللقاء ! لقد تم إلغاء حسابك. نتمنى أن نراك مجددا.
       signed_up: أهلا وسهلا ! تم تسجيل دخولك بنجاح.
       updated: تم تحديث حسابك بنجاح.
     sessions:

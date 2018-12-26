@@ -40,6 +40,7 @@ module Mastodon
       :fa,
       :fi,
       :fr,
+      :gl,
       :he,
       :hr,
       :hu,

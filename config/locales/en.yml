@@ -39,15 +39,17 @@ en:
     followers: Followers
     following: Following
     media: Media
+    moved_html: "%{name} has moved to %{new_profile_link}:"
     nothing_here: There is nothing here!
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
     posts: Toots
-    posts_with_replies: Toots with replies
+    posts_with_replies: Toots and replies
     remote_follow: Remote follow
     reserved_username: The username is reserved
     roles:
       admin: Admin
+      moderator: Mod
     unfollow: Unfollow
   admin:
     account_moderation_notes:
@@ -59,13 +61,19 @@ en:
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
       are_you_sure: Are you sure?
+      by_domain: Domain
       confirm: Confirm
       confirmed: Confirmed
+      demote: Demote
+      disable: Disable
       disable_two_factor_authentication: Disable 2FA
+      disabled: Disabled
       display_name: Display name
       domain: Domain
       edit: Edit
       email: E-mail
+      enable: Enable
+      enabled: Enabled
       feed_url: Feed URL
       followers: Followers
       followers_url: Followers URL
@@ -77,7 +85,9 @@ en:
         local: Local
         remote: Remote
         title: Location
+      login_status: Login status
       media_attachments: Media attachments
+      memorialize: Turn into memoriam
       moderation:
         all: All
         silenced: Silenced
@@ -94,6 +104,7 @@ en:
       outbox_url: Outbox URL
       perform_full_suspension: Perform full suspension
       profile_url: Profile URL
+      promote: Promote
       protocol: Protocol
       public: Public
       push_subscription_expires: PuSH subscription expires
@@ -101,6 +112,12 @@ en:
       reset: Reset
       reset_password: Reset password
       resubscribe: Resubscribe
+      role: Permissions
+      roles:
+        admin: Administrator
+        moderator: Moderator
+        staff: Staff
+        user: User
       salmon_url: Salmon URL
       search: Search
       shared_inbox_url: Shared Inbox URL
@@ -117,7 +134,34 @@ en:
       unsubscribe: Unsubscribe
       username: Username
       web: Web
+    action_logs:
+      actions:
+        confirm_user: "%{name} confirmed e-mail address of user %{target}"
+        create_custom_emoji: "%{name} uploaded new emoji %{target}"
+        create_domain_block: "%{name} blocked domain %{target}"
+        create_email_domain_block: "%{name} blacklisted e-mail domain %{target}"
+        demote_user: "%{name} demoted user %{target}"
+        destroy_domain_block: "%{name} unblocked domain %{target}"
+        destroy_email_domain_block: "%{name} whitelisted e-mail domain %{target}"
+        destroy_status: "%{name} removed status by %{target}"
+        disable_2fa_user: "%{name} disabled two factor requirement for user %{target}"
+        disable_custom_emoji: "%{name} disabled emoji %{target}"
+        disable_user: "%{name} disabled login for user %{target}"
+        enable_custom_emoji: "%{name} enabled emoji %{target}"
+        enable_user: "%{name} enabled login for user %{target}"
+        memorialize_account: "%{name} turned %{target}'s account into a memoriam page"
+        promote_user: "%{name} promoted user %{target}"
+        reset_password_user: "%{name} reset password of user %{target}"
+        resolve_report: "%{name} dismissed report %{target}"
+        silence_account: "%{name} silenced %{target}'s account"
+        suspend_account: "%{name} suspended %{target}'s account"
+        unsilence_account: "%{name} unsilenced %{target}'s account"
+        unsuspend_account: "%{name} unsuspended %{target}'s account"
+        update_custom_emoji: "%{name} updated emoji %{target}"
+        update_status: "%{name} updated status by %{target}"
+      title: Audit log
     custom_emojis:
+      by_domain: Domain
       copied_msg: Successfully created local copy of the emoji
       copy: Copy
       copy_failed_msg: Could not make a local copy of that emoji
@@ -130,11 +174,16 @@ en:
       enable: Enable
       enabled_msg: Successfully enabled that emoji
       image_hint: PNG up to 50KB
+      listed: Listed
       new:
         title: Add new custom emoji
+      overwrite: Overwrite
       shortcode: Shortcode
       shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
       title: Custom emojis
+      unlisted: Unlisted
+      update_failed_msg: Could not update that emoji
+      updated_msg: Emoji successfully updated!
       upload: Upload
     domain_blocks:
       add_new: Add new
@@ -166,24 +215,31 @@ en:
           suspend: Unsuspend all existing accounts from this domain
         title: Undo domain block for %{domain}
         undo: Undo
-      title: Domain Blocks
+      title: Domain blocks
       undo: Undo
     email_domain_blocks:
       add_new: Add new
-      created_msg: Email domain block successfully created
+      created_msg: Successfully added e-mail domain to blacklist
       delete: Delete
-      destroyed_msg: Email domain block successfully deleted
+      destroyed_msg: Successfully deleted e-mail domain from blacklist
       domain: Domain
       new:
-        create: Create block
-        title: New email domain block
-      title: Email Domain Block
+        create: Add domain
+        title: New e-mail blacklist entry
+      title: E-mail blacklist
     instances:
       account_count: Known accounts
       domain_name: Domain
       reset: Reset
       search: Search
-      title: Known Instances
+      title: Known instances
+    invites:
+      filter:
+        all: All
+        available: Available
+        expired: Expired
+        title: Filter
+      title: Invites
     reports:
       action_taken_by: Action taken by
       are_you_sure: Are you sure?
@@ -222,9 +278,15 @@ en:
         deletion:
           desc_html: Allow anyone to delete their account
           title: Open account deletion
+        min_invite_role:
+          disabled: No one
+          title: Allow invitations by
         open:
           desc_html: Allow anyone to create an account
           title: Open registration
+      show_staff_badge:
+        desc_html: Show a staff badge on a user page
+        title: Show staff badge
       site_description:
         desc_html: Introductory paragraph on the frontpage and in meta tags. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Instance description
@@ -241,7 +303,7 @@ en:
       timeline_preview:
         desc_html: Display public timeline on landing page
         title: Timeline preview
-      title: Site Settings
+      title: Site settings
     statuses:
       back_to_account: Back to account page
       batch:
@@ -283,7 +345,7 @@ en:
     warning: Be very careful with this data. Never share it with anyone!
     your_token: Your access token
   auth:
-    agreement_html: By signing up you agree to <a href="%{rules_path}">our terms of service</a> and <a href="%{terms_path}">privacy policy</a>.
+    agreement_html: By signing up you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
     change_password: Security
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
@@ -292,6 +354,8 @@ en:
     invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
     login: Log in
     logout: Logout
+    migrate_account: Move to a different account
+    migrate_account_html: If you wish to redirect this account to a different one, you can <a href="%{path}">configure it here</a>.
     register: Sign up
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
@@ -373,12 +437,43 @@ en:
       following: Following list
       muting: Muting list
     upload: Upload
+  in_memoriam_html: In Memoriam.
+  invites:
+    delete: Deactivate
+    expired: Expired
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '86400': 1 day
+    expires_in_prompt: Never
+    generate: Generate
+    max_uses:
+      one: 1 use
+      other: "%{count} uses"
+    max_uses_prompt: No limit
+    prompt: Generate and share links with others to grant access to this instance
+    table:
+      expires_at: Expires
+      uses: Uses
+    title: Invite people
   landing_strip_html: "<strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse."
   landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  lists:
+    errors:
+      limit: You have reached the maximum amount of lists
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a status that already contains images
       too_many: Cannot attach more than 4 files
+  migrations:
+    acct: username@domain of the new account
+    currently_redirecting: 'Your profile is set to redirect to:'
+    proceed: Save
+    updated_msg: Your account migration setting successfully updated!
+  moderation:
+    title: Moderation
   notification_mailer:
     digest:
       body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
@@ -491,20 +586,22 @@ en:
     export: Data export
     followers: Authorized followers
     import: Import
+    migrate: Account migration
     notifications: Notifications
     preferences: Preferences
     settings: Settings
-    two_factor_authentication: Two-factor Authentication
+    two_factor_authentication: Two-factor Auth
     your_apps: Your applications
   statuses:
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
     pin_errors:
-      limit: Too many toots pinned
+      limit: You have already pinned the maximum number of toots
       ownership: Someone else's toot cannot be pinned
       private: Non-public toot cannot be pinned
       reblog: A boost cannot be pinned
     show_more: Show more
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Followers-only
       private_long: Only show to followers

@@ -18,8 +18,8 @@ RSpec.describe AfterBlockService do
     end
 
     it "clears account's statuses" do
-      FeedManager.instance.push(:home, account, status)
-      FeedManager.instance.push(:home, account, other_account_status)
+      FeedManager.instance.push_to_home(account, status)
+      FeedManager.instance.push_to_home(account, other_account_status)
 
       is_expected.to change {
         Redis.current.zrange(home_timeline_key, 0, -1)

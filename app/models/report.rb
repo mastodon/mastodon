@@ -3,6 +3,7 @@
 #
 # Table name: reports
 #
+#  id                         :integer          not null, primary key
 #  status_ids                 :integer          default([]), not null, is an Array
 #  comment                    :text             default(""), not null
 #  action_taken               :boolean          default(FALSE), not null
@@ -10,7 +11,6 @@
 #  updated_at                 :datetime         not null
 #  account_id                 :integer          not null
 #  action_taken_by_account_id :integer
-#  id                         :integer          not null, primary key
 #  target_account_id          :integer          not null
 #
 

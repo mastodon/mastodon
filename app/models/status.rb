@@ -5,7 +5,6 @@
 #
 #  id                     :integer          not null, primary key
 #  uri                    :string
-#  account_id             :integer          not null
 #  text                   :text             default(""), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -14,8 +13,6 @@
 #  url                    :string
 #  sensitive              :boolean          default(FALSE), not null
 #  visibility             :integer          default("public"), not null
-#  in_reply_to_account_id :integer
-#  application_id         :integer
 #  spoiler_text           :text             default(""), not null
 #  reply                  :boolean          default(FALSE), not null
 #  favourites_count       :integer          default(0), not null
@@ -23,6 +20,9 @@
 #  language               :string
 #  conversation_id        :integer
 #  local                  :boolean
+#  account_id             :integer          not null
+#  application_id         :integer
+#  in_reply_to_account_id :integer
 #
 
 class Status < ApplicationRecord
@@ -175,7 +175,7 @@ class Status < ApplicationRecord
     end
 
     def reblogs_map(status_ids, account_id)
-      select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).map { |s| [s.reblog_of_id, true] }.to_h
+      select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).reorder(nil).map { |s| [s.reblog_of_id, true] }.to_h
     end
 
     def mutes_map(conversation_ids, account_id)
@@ -278,6 +278,7 @@ class Status < ApplicationRecord
 
   def set_visibility
     self.visibility = (account.locked? ? :private : :public) if visibility.nil?
+    self.visibility = reblog.visibility if reblog?
     self.sensitive  = false if sensitive.nil?
   end
 

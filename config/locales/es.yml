@@ -1,6 +1,7 @@
 ---
 es:
   about:
+    about_hashtag_html: Estos son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Puedes interactuar con ellos si tienes una cuenta en cualquier parte del fediverso.
     about_mastodon_html: Mastodon es un servidor de red social <em>libre y de código abierto</em>. Una alternativa <em>descentralizada</em> a plataformas comerciales, que evita el riesgo de que una única compañía monopolice tu comunicación. Cualquiera puede ejecutar Mastodon y participar sin problemas en la <em>red social</em>.
     about_this: Acerca de esta instancia
     closed_registrations: Los registros están actualmente cerrados en esta instancia.
@@ -21,7 +22,7 @@ es:
       real_conversation_body: Con 500 caracteres a tu disposición y soporte para contenido granular y advertencias de contenido, puedes expresarte como quieras.
       real_conversation_title: Hecho para verdaderas conversaciones
       within_reach_body: Aplicaciones múltiples para iOS, Android, y otras plataformas gracias a un ecosistema de APIs amigable al desarrollador para permitirte estar con tus amigos donde sea.
-      within_reach_title: Always within reach
+      within_reach_title: Siempre al alcance
     find_another_instance: Busca otra instancia
     generic_description: "%{domain} es un servidor en la red"
     hosted_on: Mastodon hosteado en %{domain}
@@ -38,6 +39,7 @@ es:
     followers: Seguidores
     following: Siguiendo
     media: Media
+    moved_html: "%{name} se ha trasladado a %{new_profile_link}:"
     nothing_here: "¡No hay nada aquí!"
     people_followed_by: Usuarios a quien %{name} sigue
     people_who_follow: Usuarios que siguen a %{name}
@@ -47,17 +49,31 @@ es:
     reserved_username: El nombre de usuario está reservado
     roles:
       admin: Administrador
+      moderator: Moderador
     unfollow: Dejar de seguir
   admin:
+    account_moderation_notes:
+      account: Moderador
+      create: Crear
+      created_at: Fecha
+      created_msg: "¡Nota de moderación creada con éxito!"
+      delete: Borrar
+      destroyed_msg: "¡Nota de moderación destruida con éxito!"
     accounts:
       are_you_sure: "¿Estás seguro?"
+      by_domain: Dominio
       confirm: Confirmar
       confirmed: Confirmado
+      demote: Degradar
+      disable: Deshabilitar
       disable_two_factor_authentication: Desactivar autenticación de dos factores
+      disabled: Deshabilitada
       display_name: Nombre
       domain: Dominio
       edit: Editar
       email: E-mail
+      enable: Habilitar
+      enabled: Habilitada
       feed_url: URL de notificaciones
       followers: Seguidores
       followers_url: URL de los seguidores
@@ -69,12 +85,15 @@ es:
         local: Local
         remote: Remoto
         title: Localización
+      login_status: Estado del login
       media_attachments: Multimedia
+      memorialize: Convertir en memorial
       moderation:
         all: Todos
         silenced: Silenciados
         suspended: Suspendidos
         title: Moderación
+      moderation_notes: Notas de moderación
       most_recent_activity: Actividad más reciente
       most_recent_ip: IP más reciente
       not_subscribed: No se está suscrito
@@ -85,6 +104,7 @@ es:
       outbox_url: URL de bandeja de salida
       perform_full_suspension: Performar suspensión completa
       profile_url: URL del perfil
+      promote: Promocionar
       protocol: Protocolo
       public: Público
       push_subscription_expires: Expiración de la suscripción PuSH
@@ -92,6 +112,11 @@ es:
       reset: Reiniciar
       reset_password: Reiniciar contraseña
       resubscribe: Re-suscribir
+      role: Permisos
+      roles:
+        admin: Administrador
+        moderator: Moderador
+        user: Usuario
       salmon_url: URL de salmón
       search: Buscar
       shared_inbox_url: URL de bandeja compartida
@@ -108,6 +133,56 @@ es:
       unsubscribe: Desuscribir
       username: Nombre de usuario
       web: Web
+    action_logs:
+      actions:
+        confirm_user: "%{name} confirmó la dirección de correo del usuario %{target}"
+        create_custom_emoji: "%{name} subió un nuevo emoji %{target}"
+        create_domain_block: "%{name} bloqueó el dominio %{target}"
+        create_email_domain_block: "%{name} puso en lista negra el dominio de correos %{target}"
+        demote_user: "%{name} degradó al usuario %{target}"
+        destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
+        destroy_email_domain_block: "%{name} puso en lista blanca el dominio de correos %{target}"
+        destroy_status: "%{name} eliminó el estado de %{target}"
+        disable_2fa_user: "%{name} deshabilitó el requerimiento de dos factores para el usuario %{target}"
+        disable_custom_emoji: "%{name} deshabilitó el emoji %{target}"
+        disable_user: "%{name} deshabilitó el acceso del usuario %{target}"
+        enable_custom_emoji: "%{name} habilitó el emoji %{target}"
+        enable_user: "%{name} habilitó el acceso del usuario %{target}"
+        memorialize_account: "%{name} convirtió la cuenta de %{target} en una página de memorial"
+        promote_user: "%{name} promoción al usuario %{target}"
+        reset_password_user: "%{name} restauró la contraseña del usuario %{target}"
+        resolve_report: "%{name} desestimó el reporte %{target}"
+        silence_account: "%{name} silenció la cuenta de %{target}"
+        suspend_account: "%{name} suspendió la cuenta de %{target}"
+        unsilence_account: "%{name} desactivó el silenciado de la cuenta de %{target}"
+        unsuspend_account: "%{name} desactivó la suspensión de la cuenta de %{target}"
+        update_custom_emoji: "%{name} actualizó el emoji %{target}"
+        update_status: "%{name} actualizó el estado de %{target}"
+      title: Log de auditoría
+    custom_emojis:
+      copied_msg: Copia local del emoji creada con éxito
+      copy: Copiar
+      copy_failed_msg: No se pudo realizar una copia local de ese emoji
+      created_msg: "¡Emoji creado con éxito!"
+      delete: Borrar
+      destroyed_msg: "¡Emojo destruido con éxito!"
+      disable: Deshabilitar
+      disabled_msg: Se deshabilitó con éxito ese emoji
+      emoji: Emoji
+      enable: Habilitar
+      enabled_msg: Se habilitó con éxito ese emoji
+      image_hint: PNG de hasta 50KB
+      listed: Listados
+      new:
+        title: Añadir nuevo emoji personalizado
+      overwrite: Sobrescribir
+      shortcode: Código de atajo
+      shortcode_hint: Al menos 2 caracteres, solo caracteres alfanuméricos y guiones bajos
+      title: Emojis personalizados
+      unlisted: Sin listar
+      update_failed_msg: No se pudo actualizar ese emoji
+      updated_msg: "¡Emoji actualizado con éxito!"
+      upload: Subir
     domain_blocks:
       add_new: Añadir nuevo
       created_msg: El bloque de dominio está siendo procesado
@@ -140,12 +215,29 @@ es:
         undo: Deshacer
       title: Bloques de Dominio
       undo: Deshacer
+    email_domain_blocks:
+      add_new: Añadir nuevo
+      created_msg: Dominio de correo añadido a la lista negra con éxito
+      delete: Borrar
+      destroyed_msg: Dominio de correo borrado de la lista negra con éxito
+      domain: Dominio
+      new:
+        create: Añadir dominio
+        title: Nueva entrada en la lista negra de correo
+      title: Lista negra de correo
     instances:
       account_count: Cuentas conocidas
       domain_name: Dominio
       reset: Reiniciar
       search: Buscar
       title: Instancias conocidas
+    invites:
+      filter:
+        all: Todas
+        available: Disponibles
+        expired: Expiradas
+        title: Filtrar
+      title: Invitaciones
     reports:
       action_taken_by: Acción tomada por
       are_you_sure: "¿Estás seguro?"
@@ -172,7 +264,7 @@ es:
       view: Ver
     settings:
       bootstrap_timeline_accounts:
-        desc_html: Separa nombres de usuarios múltiples con coma. Solo funcionará con cuentas desbloqueadas. Si está vacío, el predeterminado son todos los administradores locales
+        desc_html: Separa con comas los nombres de usuario. Solo funcionará para cuentas locales desbloqueadas. Si se deja vacío, se tomará como valor por defecto a todos los administradores locales.
         title: Seguimientos predeterminados para usuarios nuevos
       contact_information:
         email: Correo de trabajo
@@ -184,9 +276,15 @@ es:
         deletion:
           desc_html: Permite a cualquiera a eliminar su cuenta
           title: Eliminación de cuenta abierta
+        min_invite_role:
+          disabled: Nadie
+          title: Permitir invitaciones de
         open:
           desc_html: Permite a cualquiera a registrar una cuenta
           title: Registro abierto
+      show_staff_badge:
+        desc_html: Mostrar un parche de staff en la página de un usuario
+        title: Mostrar parche de staff
       site_description:
         desc_html: Párrafo introductorio en la portada y en meta tags. Puedes usar tags HTML, en particular <code>&lt;a&gt;</code> y <code>&lt;em&gt;</code>.
         title: Descripción de instancia
@@ -232,6 +330,7 @@ es:
       body: "%{reporter} ha reportado a %{target}"
       subject: Nuevo reporte para la %{instance} (#%{id})
   application_mailer:
+    salutation: "%{name},"
     settings: 'Cambiar preferencias de correo: %{link}'
     signature: Notificaciones de Mastodon desde %{instance}
     view: 'Vista:'
@@ -246,12 +345,15 @@ es:
   auth:
     agreement_html: Al registrarte aceptas <a href="%{rules_path}">nuestros y términos y condiciones del servicio</a> y <a href="%{terms_path}">nuestras políticas de privacidda</a>.
     change_password: Cambiar contraseña
+    delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
     didnt_get_confirmation: "¿No recibió el correo de confirmación?"
     forgot_password: "¿Olvidaste tu contraseña?"
     invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
     login: Iniciar sesión
     logout: Cerrar sesión
+    migrate_account: Mudarse a otra cuenta
+    migrate_account_html: Si deseas redireccionar esta cuenta a otra distinta, puedes <a href="%{path}">configurarlo aquí</a>.
     register: Registrarse
     resend_confirmation: Volver a enviar el correo de confirmación
     reset_password: Restablecer contraseña
@@ -296,11 +398,15 @@ es:
       content: Verificación de seguridad fallida. ¿Estás bloqueando algunas cookies?
       title: Verificación de seguridad fallida
     '429': Asfixiado
+    '500':
+      content: Lo sentimos, algo ha funcionado mal por nuestra parte.
+      title: Esta página no es correcta
     noscript_html: Para usar la aplicación web de Mastodon, por favor activa Javascript. Alternativamente, prueba alguna de las <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">aplicaciones nativas</a> para Mastodon para tu plataforma.
   exports:
     blocks: Personas que has bloqueado
     csv: CSV
     follows: Personas que sigues
+    mutes: Tienes en silencio
     storage: Almacenamiento
   followers:
     domain: Dominio
@@ -329,19 +435,47 @@ es:
       following: Lista de seguidos
       muting: Lista de silenciados
     upload: Cargar
+  in_memoriam_html: In Memoriam.
+  invites:
+    delete: Desactivar
+    expired: Expiradas
+    expires_in:
+      '1800': 30 minutos
+      '21600': 6 horas
+      '3600': 1 hora
+      '43200': 12 horas
+      '86400': 1 día
+    expires_in_prompt: Nunca
+    generate: Generar
+    max_uses:
+      one: 1 uso
+      other: "%{count} usos"
+    max_uses_prompt: Sin límite
+    prompt: Generar y compartir enlaces con otros para conceder acceso a este nodo
+    table:
+      expires_at: Expira
+      uses: Usos
+    title: Invitar a gente
   landing_strip_html: "<strong>%{name}</strong> es un usuario en %{link_to_root_path}. Puedes seguirlo(a) o interactuar con el o ella si tienes una cuenta en cualquier parte del fediverse."
   landing_strip_signup_html: Si no tienes una, puedes <a href="%{sign_up_path}">registrarte aquí</a>.
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
       too_many: No se pueden adjuntar más de 4 archivos
+  migrations:
+    acct: username@domain de la nueva cuenta
+    currently_redirecting: 'Tu perfil está redireccionado a:'
+    proceed: Guardar
+    updated_msg: "¡La configuración de migración de tu cuenta  ha sido actualizada con éxito!"
+  moderation:
+    title: Moderación
   notification_mailer:
     digest:
       body: 'Un resumen de lo que te perdiste en %{instance} desde tu última visita el %{since}:'
       mention: "%{name} te ha mencionado en:"
       new_followers_summary:
-        one: "¡Hurra! Alguien más te ha comenzado a seguir"
-        other: "¡Genial! Te han seguido %{count} nuevas personas"
+        one: "¡Hurra! ¡Tienes un nuevo seguidor!"
+        other: "¡Genial! ¡Tienes %{count} nuevos seguidores!"
       subject:
         one: "1 nueva notificación desde tu última visita \U0001F418"
         other: "%{count} nuevas notificaciones desde tu última visita \U0001F418"
@@ -358,7 +492,7 @@ es:
       body: 'Fuiste mencionado por %{name} en:'
       subject: Fuiste mencionado por %{name}
     reblog:
-      body: "%{name} ha retooteado tu estado"
+      body: "%{name} ha retooteado tu estado:"
       subject: "%{name} ha retooteado tu estado"
   number:
     human:
@@ -375,6 +509,11 @@ es:
     next: Próximo
     prev: Anterior
     truncate: "&hellip;"
+  preferences:
+    languages: Idiomas
+    other: Otros
+    publishing: Publicación
+    web: Web
   push_notifications:
     favourite:
       title: "%A {name} le gustó tu estado"
@@ -383,7 +522,7 @@ es:
     group:
       title: "%{count} notificaciones"
     mention:
-      action_boost: Boost
+      action_boost: Retoot
       action_expand: Mostrar más
       action_favourite: Me Gusta
       title: "%{name} te mencionó"
@@ -391,7 +530,7 @@ es:
       title: "%{name} boosteó tu estado"
   remote_follow:
     acct: Ingesa el usuario@dominio de la persona que quieres seguir
-    missing_resource: No se pudo encontrar la URL de redirección necesaria para su cuenta.
+    missing_resource: No se pudo encontrar la URL de redirección requerida para tu cuenta
     proceed: Proceder a seguir
     prompt: 'Vas a seguir a:'
   sessions:
@@ -430,15 +569,20 @@ es:
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
-    revoke: Revoke
+    revoke: Revocar
     revoke_success: Sesión revocada exitosamente
     title: Sesiones
   settings:
     authorized_apps: Aplicaciones autorizadas
     back: Volver al inicio
+    delete: Borrar cuenta
+    development: Desarrollo
     edit_profile: Editar perfil
     export: Exportar información
+    followers: Seguidores autorizados
     import: Importar
+    migrate: Migración de cuenta
+    notifications: Notificaciones
     preferences: Preferencias
     settings: Ajustes
     two_factor_authentication: Autenticación de dos factores
@@ -534,6 +678,8 @@ es:
 
       <p>Adaptado originalmente del <a href="https://github.com/discourse/discourse">discurso de las políticas de privacidad</a>.</p>
     title: Términos del Servicio y Políticas de Privacidad de %{instance}
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%d de %b del %Y, %H:%M"
@@ -542,11 +688,14 @@ es:
     description_html: Si habilitas la <strong>autenticación de dos factores</strong>, se requerirá estar en posesión de su teléfono, lo que generará tokens para que usted pueda iniciar sesión.
     disable: Deshabilitar
     enable: Habilitar
+    enabled: La autenticación de dos factores está activada
     enabled_success: Verificación de dos factores activada exitosamente
     generate_recovery_codes: generar códigos de recuperación
     instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en su teléfono</strong>. Desde ahora, esta aplicación va a generar tokens que tienes que ingresar cuando quieras iniciar sesión."
     lost_recovery_codes: Los códigos de recuperación te permiten obtener acceso a tu cuenta si pierdes tu teléfono. Si has perdido tus códigos de recuperación, puedes regenerarlos aquí. Tus viejos códigos de recuperación se harán inválidos.
+    manual_instructions: 'Si no puedes escanear el código QR y necesitas introducirlo manualmente, este es el secreto en texto plano:'
     recovery_codes: Hacer copias de seguridad de tus códigos de recuperación
+    recovery_codes_regenerated: Códigos de recuperación regenerados con éxito
     recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos importantes.
     setup: Configurar
     wrong_code: "¡El código ingresado es inválido! ¿El dispositivo y tiempo del servidor están correctos?"
