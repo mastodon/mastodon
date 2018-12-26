@@ -81,7 +81,7 @@ module StatusThreadingConcern
   end
 
   def find_statuses_from_tree_path(ids, account, promote: false)
-    statuses    = statuses_with_accounts(ids).to_a
+    statuses    = Status.with_accounts(ids).to_a
     account_ids = statuses.map(&:account_id).uniq
     domains     = statuses.map(&:account_domain).compact.uniq
     relations   = relations_map_for_account(account, account_ids, domains)
@@ -124,9 +124,5 @@ module StatusThreadingConcern
       following: Account.following_map(account_ids, account.id),
       domain_blocking_by_domain: Account.domain_blocking_map_by_domain(domains, account.id),
     }
-  end
-
-  def statuses_with_accounts(ids)
-    Status.where(id: ids).includes(:account)
   end
 end
