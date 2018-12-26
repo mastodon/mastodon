@@ -59,6 +59,7 @@ class Account < ApplicationRecord
   include Attachmentable
   include Paginable
   include AccountCounters
+  include DomainNormalizable
 
   enum protocol: [:ostatus, :activitypub]
 
@@ -457,7 +458,6 @@ class Account < ApplicationRecord
   end
 
   before_create :generate_keys
-  before_validation :normalize_domain
   before_validation :prepare_contents, if: :local?
   before_destroy :clean_feed_manager
 
@@ -479,7 +479,7 @@ class Account < ApplicationRecord
   def normalize_domain
     return if local?
 
-    self.domain = TagManager.instance.normalize_domain(domain)
+    super
   end
 
   def emojifiable_text
