@@ -120,6 +120,7 @@ ar:
       followers: المتابِعون
       followers_url: عنوان رابط المتابِعين
       follows: يتابع
+      header: الرأسية
       inbox_url: رابط صندوق الوارد
       ip: عنوان الإيبي
       location:
@@ -150,6 +151,7 @@ ar:
       push_subscription_expires: انتهاء الاشتراك ”PuSH“
       redownload: تحديث الصورة الرمزية
       remove_avatar: حذف الصورة الرمزية
+      remove_header: حذف الرأسية
       resend_confirmation:
         already_confirmed: هذا المستخدم مؤكد بالفعل
         send: أعد إرسال رسالة البريد الالكتروني الخاصة بالتأكيد
@@ -245,6 +247,7 @@ ar:
       config: الإعداد
       feature_deletions: الحسابات المحذوفة
       feature_invites: روابط الدعوات
+      feature_profile_directory: دليل الحسابات
       feature_registrations: التسجيلات
       feature_relay: المُرحّل الفديرالي
       features: الميّزات
@@ -608,7 +611,13 @@ ar:
     changes_saved_msg: تم حفظ التعديلات بنجاح !
     copy: نسخ
     save_changes: حفظ التغييرات
-    validation_errors: هناك شيء ليس على ما يُرام! يُرجى معاينة الأخطاء الـ %{count} التالية
+    validation_errors:
+      few: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
+      many: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
+      one: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الخطأ أدناه
+      other: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
+      two: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
+      zero: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
   imports:
     preface: بإمكانك استيراد بيانات قد قُمتَ بتصديرها مِن مثيل خادوم آخَر، كقوائم المستخدِمين الذين كنتَ تتابِعهم أو قُمتَ بحظرهم.
     success: تم تحميل بياناتك بنجاح وسيتم معالجتها في الوقت المناسب
@@ -702,7 +711,7 @@ ar:
           billion: B
           million: M
           quadrillion: Q
-          thousand: K
+          thousand: ألف
           trillion: T
           unit: ''
   pagination:
@@ -804,7 +813,13 @@ ar:
         zero: فيديوهات
     boosted_from_html: تم إعادة ترقيته مِن %{acct_link}
     content_warning: 'تحذير عن المحتوى : %{warning}'
-    disallowed_hashtags: 'يحتوي على أحد الوسوم الممنوعة: %{tags}'
+    disallowed_hashtags:
+      few: 'يحتوي على وسوم غير مسموح بها: %{tags}'
+      many: 'يحتوي على وسوم غير مسموح بها: %{tags}'
+      one: 'يحتوي على وسم غير مسموح به: %{tags}'
+      other: 'يحتوي على وسوم غير مسموح بها: %{tags}'
+      two: 'يحتوي على وسوم غير مسموح بها: %{tags}'
+      zero: 'يحتوي على وسوم غير مسموح بها: %{tags}'
     language_detection: اكتشاف اللغة تلقائيا
     open_in_web: إفتح في الويب
     over_character_limit: تم تجاوز حد الـ %{max} حرف المسموح بها
