@@ -369,6 +369,8 @@ Rails.application.routes.draw do
       namespace :push do
         resource :subscription, only: [:create, :show, :update, :destroy]
       end
+
+      get :keybase_proofs, to: 'keybase_proofs#index', defaults: { format: 'json' }
     end
 
     namespace :v2 do
