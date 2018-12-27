@@ -139,6 +139,10 @@ class Account < ApplicationRecord
     "#{username}@#{Rails.configuration.x.local_domain}"
   end
 
+  def local_followers_count
+    Follow.where(target_account_id: id).count
+  end
+
   def to_webfinger_s
     "acct:#{local_username_and_domain}"
   end
