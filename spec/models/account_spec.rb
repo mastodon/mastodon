@@ -604,6 +604,7 @@ RSpec.describe Account, type: :model do
 
       it 'is valid if the note has 160 characters when endlines are counted as one character' do
         account = Fabricate.build(:account, note: Faker::Lorem.characters(159).insert(1, "\r\n"))
+        account.save
         account.valid?
         expect(account).to be_valid
       end

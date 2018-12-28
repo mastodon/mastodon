@@ -112,11 +112,6 @@ class Account < ApplicationRecord
 
   delegate :chosen_languages, to: :user, prefix: false, allow_nil: true
 
-  # Convert newlines so validation doesn't count them as two characters
-  def note=(val)
-    self['note'] = val.gsub("\r\n", "\n")
-  end
-
   def local?
     domain.nil?
   end
@@ -462,11 +457,17 @@ class Account < ApplicationRecord
   end
 
   before_create :generate_keys
+  before_validation :normalize_note
   before_validation :normalize_domain
   before_validation :prepare_contents, if: :local?
   before_destroy :clean_feed_manager
 
   private
+
+  # Convert newlines so validation doesn't count them as two characters
+  def normalize_note
+    self.note = note.gsub("\r\n", "\n")
+  end
 
   def prepare_contents
     display_name&.strip!
