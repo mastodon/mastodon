@@ -169,6 +169,7 @@ ja:
       unsubscribe: 購読の解除
       username: ユーザー名
       web: Web
+      followers_local: (%{local} ローカル)
     action_logs:
       actions:
         assigned_to_self_report: '%{name} さんがレポート %{target} を自身の担当に割り当てました'
@@ -200,6 +201,7 @@ ja:
         unsuspend_account: '%{name} さんが %{target} さんの停止を解除しました'
         update_custom_emoji: '%{name} さんがカスタム絵文字 %{target} を更新しました'
         update_status: '%{name} さんが %{target} さんの投稿を更新しました'
+        create_account_warning: '%{name} が %{target} に対して警告を送信しました'
       deleted_status: (削除済)
       title: 操作履歴
     custom_emojis:
@@ -452,6 +454,17 @@ ja:
       unhide: ディレクトリに表示する
       visible: 表示
     title: 管理
+    account_actions:
+      action: アクションを実行
+      title: '%{acct} に対して措置を実行'
+    followers:
+      title: '%{acct} のフォロワー'
+    warning_presets:
+      add_new: 新規追加
+      delete: 削除
+      edit: 編集
+      edit_preset: プリセット警告文を編集
+      title: プリセット警告文を管理
   admin_mailer:
     new_report:
       body: '%{reporter} が %{target} を通報しました'
@@ -899,6 +912,11 @@ ja:
         none: 警告
         silence: アカウントがサイレンスにされました
         suspend: アカウントが停止されました
+      explanation:
+        disable: アカウントが凍結されている間、データはそのまま残りますが、凍結が解除されるまでは何の操作もできません。
+        silence: あなたのアカウントは制限されていますが、あなたをフォローしているユーザーのみ、このサーバー上の投稿を見ることができます。そしてあなたは様々な公開リストから除外されるかもしれません。ただし、他のユーザーは手動であなたをフォローすることができます。
+        suspend: あなたのアカウントは停止されています。あなたの投稿とアップロードされたメディアファイルは、このサーバーとあなたのフォロワーが参加していたサーバーから完全に削除されました。
+      review_server_policies: サーバーのポリシーを確認
   users:
     follow_limit_reached: あなたは現在 %{limit} 人以上フォローできません
     invalid_email: メールアドレスが無効です
