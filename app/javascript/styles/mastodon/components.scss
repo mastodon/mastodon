@@ -1861,6 +1861,13 @@ a.account__display-name {
 
   > .scrollable {
     background: $ui-base-color;
+    scrollbar-width: thin;
+    scrollbar-color: lighten($ui-base-color, 4%) rgba($base-overlay-background, 0.1);
+    transition: scrollbar-color 0.2s;
+
+    &:hover {
+      scrollbar-color: lighten($ui-base-color, 6%) $ui-base-color;
+    }
   }
 }
 
