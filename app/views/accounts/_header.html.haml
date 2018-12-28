@@ -39,5 +39,5 @@
           %strong= number_to_human account.following_count, strip_insignificant_zeros: true
           = t('accounts.following', count: account.following_count)
         = link_to account_followers_url(account) do
-          %strong= number_to_human account.followers_count, strip_insignificant_zeros: true
+          %strong= hide_followers_count(account) ? '-' : (number_to_human account.followers_count, strip_insignificant_zeros: true)
           = t('accounts.followers', count: account.followers_count)
