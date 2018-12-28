@@ -68,6 +68,13 @@ RSpec.describe PostStatusService, type: :service do
     expect(status.visibility).to eq "private"
   end
 
+  it 'creates a status with limited visibility for silenced users' do
+    status = subject.call(Fabricate(:account, silenced: true), 'test', nil, visibility: :public)
+
+    expect(status).to be_persisted
+    expect(status.visibility).to eq "unlisted"
+  end
+
   it 'creates a status for the given application' do
     application = Fabricate(:application)
 

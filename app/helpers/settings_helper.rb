@@ -30,6 +30,7 @@ module SettingsHelper
     ja: '日本語',
     ka: 'ქართული',
     ko: '한국어',
+    ml: 'മലയാളം',
     nl: 'Nederlands',
     no: 'Norsk',
     oc: 'Occitan',

@@ -191,6 +191,7 @@ Rails.application.routes.draw do
       resource :reset, only: [:create]
       resource :action, only: [:new, :create], controller: 'account_actions'
       resources :statuses, only: [:index, :create, :update, :destroy]
+      resources :followers, only: [:index]
 
       resource :confirmation, only: [:create] do
         collection do
@@ -336,7 +337,7 @@ Rails.application.routes.draw do
         resources :relationships, only: :index
       end
 
-      resources :accounts, only: [:show] do
+      resources :accounts, only: [:create, :show] do
         resources :statuses, only: :index, controller: 'accounts/statuses'
         resources :followers, only: :index, controller: 'accounts/follower_accounts'
         resources :following, only: :index, controller: 'accounts/following_accounts'
