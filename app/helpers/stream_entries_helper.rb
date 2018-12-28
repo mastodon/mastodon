@@ -60,7 +60,7 @@ module StreamEntriesHelper
     end
   end
 
-  def hide_followers_count(account)
+  def hide_followers_count?(account)
     Setting.hide_followers_count || account.user&.setting_hide_followers_count
   end
 
@@ -77,7 +77,7 @@ module StreamEntriesHelper
       ].join(' '),
     ]
 
-    unless hide_followers_count(account)
+    unless hide_followers_count?(account)
       prepend_stats << [
         number_to_human(account.followers_count, strip_insignificant_zeros: true),
         I18n.t('accounts.followers', count: account.followers_count),

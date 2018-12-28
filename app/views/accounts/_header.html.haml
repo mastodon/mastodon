@@ -24,8 +24,8 @@
               %span.counter-label= t('accounts.following', count: account.following_count)
 
           .counter{ class: active_nav_class(account_followers_url(account)) }
-            = link_to account_followers_url(account), title: hide_followers_count(account) ? nil : number_with_delimiter(account.followers_count) do
-              %span.counter-number= hide_followers_count(account) ? '-' : (number_to_human account.followers_count, strip_insignificant_zeros: true)
+            = link_to account_followers_url(account), title: hide_followers_count?(account) ? nil : number_with_delimiter(account.followers_count) do
+              %span.counter-number= hide_followers_count?(account) ? '-' : (number_to_human account.followers_count, strip_insignificant_zeros: true)
               %span.counter-label= t('accounts.followers', count: account.followers_count)
         .spacer
         .public-account-header__tabs__tabs__buttons
@@ -39,5 +39,5 @@
           %strong= number_to_human account.following_count, strip_insignificant_zeros: true
           = t('accounts.following', count: account.following_count)
         = link_to account_followers_url(account) do
-          %strong= hide_followers_count(account) ? '-' : (number_to_human account.followers_count, strip_insignificant_zeros: true)
+          %strong= hide_followers_count?(account) ? '-' : (number_to_human account.followers_count, strip_insignificant_zeros: true)
           = t('accounts.followers', count: account.followers_count)
