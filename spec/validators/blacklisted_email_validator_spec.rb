@@ -4,12 +4,11 @@ require 'rails_helper'
 
 RSpec.describe BlacklistedEmailValidator, type: :validator do
   describe '#validate' do
-    let(:user)   { double(email: email, errors: errors) }
+    let(:user)   { double(email: 'info@mail.com', errors: errors) }
     let(:errors) { double(add: nil) }
-    let(:email)  { 'info@mail.com' }
 
     before do
-      allow_any_instance_of(described_class).to receive(:blocked_email?).with(email) { blocked_email }
+      allow_any_instance_of(described_class).to receive(:blocked_email?) { blocked_email }
       described_class.new.validate(user)
     end
 
