@@ -14,8 +14,12 @@ class SearchService < BaseService
         results.merge!(url_resource_results) unless url_resource.nil?
       elsif query.present?
         results[:accounts] = perform_accounts_search! if account_searchable?
-        results[:statuses] = perform_statuses_search! if full_text_searchable?
         results[:hashtags] = perform_hashtags_search! if hashtag_searchable?
+        begin
+          results[:statuses] = perform_statuses_search! if full_text_searchable?
+        rescue Faraday::ConnectionFailed
+          results[:statuses] = []
+        end
       end
     end
   end
