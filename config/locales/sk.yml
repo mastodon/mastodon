@@ -183,6 +183,7 @@ sk:
       unsubscribe: Prestaň odoberať
       username: Prezývka
       web: Web
+      followers_local: (%{local} local)
     action_logs:
       actions:
         assigned_to_self_report: '%{name}pridelil/a hlásenie užívateľa %{target}sebe'
@@ -998,6 +999,12 @@ sk:
       explanation:
         disable: Pokiaľ je tvoj účet zamrazený, tvoje dáta zostávajú nedoknuté, ale
           nemôžeš v rámci neho nič robiť, až kým nebude odomknutý.
+        silence: Kým je tvoj účet obmedzený, tvoje hlášky na tomto serveri uvidia
+          iba tí ľudia, ktorí ťa už následujú, a môžeš byť vylúčený/á z rôznych verejných
+          záznamov. Ostatní ťa však stále budú môcť následovať manuálne.
+        suspend: Tvoj účet bol vylúčený, a všetky tvoje hlášky a nahraté médiálné
+          súbory boli nenávratne zmazané z tohto serveru, a zo serverov na ktorých
+          si mal následovateľov.
       review_server_policies: Prehodnoť pravidlá servera
       subject:
         disable: Tvoj účet %{acct} bol zamrazený
@@ -1008,7 +1015,7 @@ sk:
         disable: Účet bol zamrazený
         none: Varovanie
         silence: Účet bol obmedzený
-        suspend: Účet bol vylúčený
+        suspend: Tvoj účet bol vylúčený
   users:
     follow_limit_reached: Nemôžeš následovať viac ako %{limit} ľudí
     invalid_email: Emailová adresa je neplatná
