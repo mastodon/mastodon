@@ -510,6 +510,7 @@ fr:
       title: Effectuer une action de modération sur %{acct}
     followers:
       back_to_account: Retour au compte
+      title: Abonné⋅e⋅s de %{acct}
     warning_presets:
       add_new: Ajouter un nouveau
       delete: Effacer
@@ -1104,6 +1105,24 @@ fr:
         disable: Lorsque votre compte est gelé, les données de votre compte demeurent
           intactes, mais vous ne pouvez effectuer aucune action jusqu'à ce qu'il soit
           débloqué.
+        silence: Lorsque votre compte est limité, seulement les utilisateurs qui vous
+          suivent déjà verront vos pouets sur ce serveur, et vous pourriez être exclu
+          de plusieurs listes publiques. Néanmoins, d'autres utilisateurs peuvent
+          vous suivre manuellement.
+        suspend: Votre compte a été suspendu, et tous vos pouets et vos fichiers multimédia
+          téléversés ont été supprimés irréversiblement de ce serveur, et des serveurs
+          où vous aviez des abonné⋅e⋅s.
+      review_server_policies: Passer en revue les politiques du serveur
+      subject:
+        disable: Votre compte %{acct} a été gelé
+        none: Avertissement pour %{acct}
+        silence: Votre compte %{acct} a été limité
+        suspend: Votre compte %{acct} a été suspendu
+      title:
+        disable: Compte gelé
+        none: Avertissement
+        silence: Compte limité
+        suspend: Compte suspendu
   users:
     follow_limit_reached: Vous ne pouvez pas suivre plus de %{limit} personnes
     invalid_email: L’adresse courriel est invalide
