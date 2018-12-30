@@ -1,5 +1,4 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { env } = require('../configuration.js');
 
 module.exports = {
   test: /\.s?css$/i,
