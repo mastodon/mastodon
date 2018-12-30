@@ -82,10 +82,10 @@ class FollowService < BaseService
   end
 
   def build_json(follow_request)
-    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
+    ActiveModelSerializers::SerializableResource.new(
       follow_request,
       serializer: ActivityPub::FollowSerializer,
       adapter: ActivityPub::Adapter
-    ).as_json).sign!(follow_request.account))
+    ).to_json
   end
 end

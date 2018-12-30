@@ -27,11 +27,11 @@ class BlockService < BaseService
   end
 
   def build_json(block)
-    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
+    ActiveModelSerializers::SerializableResource.new(
       block,
       serializer: ActivityPub::BlockSerializer,
       adapter: ActivityPub::Adapter
-    ).as_json).sign!(block.account))
+    ).to_json
   end
 
   def build_xml(block)
