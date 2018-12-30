@@ -62,11 +62,13 @@ module SignatureVerification
 
     return account unless verify_signature(account, signature, compare_signed_string).nil?
 
-    if account.possibly_stale?
-      account = account.refresh!
-    else
-      account = account_refresh_key(account)
-    end
+    account_stoplight = Stoplight("source:#{request.ip}") { account.possibly_stale? ? account.refresh! : account_refresh_key(account) }
+      .with_fallback { nil }
+      .with_threshold(1)
+      .with_cool_off_time(5.minutes.seconds)
+      .with_error_handler { |error, handle| error.is_a?(HTTP::Error) ? handle.call(error) : raise(error) }
+
+    account = account_stoplight.run
 
     if account.nil?
       @signature_verification_failure_reason = "Public key not found for key #{signature_params['keyId']}"
