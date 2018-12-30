@@ -5817,6 +5817,11 @@ lodash.templatesettings@^4.0.0:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
   integrity sha512-UejweD1pDoXu+AD825lWwp4ZGtSwgnpZxb3JDViD7StjQz+Nb/6l093lx4OQ0foGWNRoc19mWy7BzL+UAK2iVg==
 
+lodash@^4.7.11:
+  version "4.17.11"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
+  integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
+
 loglevel@^1.4.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.6.1.tgz#e0fc95133b6ef276cdc8887cdaf24aa6f156f8fa"
@@ -9229,10 +9234,12 @@ stringstream@~0.0.4:
   resolved "https://registry.yarnpkg.com/stringstream/-/stringstream-0.0.6.tgz#7880225b0d4ad10e30927d167a1d6f2fd3b33a72"
   integrity sha512-87GEBAkegbBcweToUrdzf3eLhWNg06FJTebl4BVJz/JgWy8CvEr9dRtX5qWphiynMSQlxxi+QqN0z5T32SLlhA==
 
-stringz@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/stringz/-/stringz-0.3.0.tgz#58a311a8c791eee1a68f5f188b3db5e66ff49360"
-  integrity sha512-sQmNkR3Pv3ZtJzR6heG+VxxW5ESgQJDPyrE7xmprY+0dRJYjWFG9/FghHQL6JQoWqN9Vueabu4c5W/jbzPU3HA==
+stringz@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/stringz/-/stringz-1.0.0.tgz#d2acba994e4ce3c725ee15c86fff4281280d2025"
+  integrity sha512-oaqFaIAmw1MJmdPNiBqocHHrC0VzJTL3CI1z5uXm3NQSE3AyDU152ZPTSJSOKk+9z1Cm3LZzgLFjCTb8SXZvag==
+  dependencies:
+    unicode-astral-regex "^1.0.1"
 
 strip-ansi@^3.0.0, strip-ansi@^3.0.1:
   version "3.0.1"
@@ -9629,6 +9636,11 @@ underscore@~1.4.4:
   version "1.4.4"
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.4.4.tgz#61a6a32010622afa07963bf325203cf12239d604"
   integrity sha1-YaajIBBiKvoHljvzJSA88SI51gQ=
+
+unicode-astral-regex@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/unicode-astral-regex/-/unicode-astral-regex-1.0.1.tgz#2cab8529480646f9614ddbc7b62158ad05123feb"
+  integrity sha512-UP6cmDeiWi8bMDmkyXLRsDuVPTvPjh8Wsz+pHu1VkGgTBl4pUceYAdHXY0cdc6Q3+Z2q7QMzi/0E7L/S/yOvFw==
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
