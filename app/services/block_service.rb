@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class BlockService < BaseService
-  include StreamEntryRenderer
-
   def call(account, target_account)
     return if account.id == target_account.id
 
