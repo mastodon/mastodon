@@ -17,6 +17,13 @@ module.exports = {
         sourceMap: true,
       },
     },
-    'sass-loader',
+    {
+      loader: 'sass-loader',
+      options: {
+        fiber: require('fibers'),
+        implementation: require('sass'),
+        sourceMap: true,
+      },
+    },
   ],
 };
