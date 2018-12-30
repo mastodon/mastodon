@@ -6,4 +6,4 @@ const mapStateToProps = state => ({
   isModalOpen: !!state.get('modal').modalType,
 });
 
-export default connect(mapStateToProps, null, null, { withRef: true })(ColumnsArea);
+export default connect(mapStateToProps, null, null, { forwardRef: true })(ColumnsArea);
