@@ -139,6 +139,10 @@ class User < ApplicationRecord
     confirmed_at.present?
   end
 
+  def invited?
+    invite_id.present?
+  end
+
   def staff?
     admin? || moderator?
   end

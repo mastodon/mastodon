@@ -17,7 +17,7 @@ module Admin
       account_action.save!
 
       if account_action.with_report?
-        redirect_to admin_report_path(account_action.report)
+        redirect_to admin_reports_path
       else
         redirect_to admin_account_path(@account.id)
       end
