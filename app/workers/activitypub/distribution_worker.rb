@@ -31,7 +31,14 @@ class ActivityPub::DistributionWorker
   end
 
   def inboxes
-    @inboxes ||= @account.followers.inboxes
+    # Deliver the status to all followers.
+    # If the status is a reply to another local status, also forward it to that
+    # status' authors' followers.
+    @inboxes ||= if @status.reply? && @status.thread.account.local? && @status.distributable?
+                   @account.followers.or(@status.thread.account.followers).inboxes
+                 else
+                   @account.followers.inboxes
+                 end
   end
 
   def signed_payload
