@@ -5,7 +5,7 @@ module AccountFinderConcern
 
   class_methods do
     def representative!
-      find_remote(Setting.site_contact_username.gsub(/\A@/, ''), nil) || raise(ActiveRecord::RecordNotFound)
+      find_local!(Setting.site_contact_username.gsub(/\A@/, ''))
     end
 
     def find_local!(username)
@@ -17,7 +17,7 @@ module AccountFinderConcern
     end
 
     def representative
-      find_remote(Setting.site_contact_username.gsub(/\A@/, ''), nil)
+      find_local(Setting.site_contact_username.gsub(/\A@/, ''))
     end
 
     def find_local(username)
