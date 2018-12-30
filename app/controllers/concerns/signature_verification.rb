@@ -83,6 +83,8 @@ module SignatureVerification
       @signed_request_account = account
       @signed_request_account
     end
+  rescue OpenSSL::PKey::RSAError
+    nil
   end
 
   def build_signed_string(signed_headers)
