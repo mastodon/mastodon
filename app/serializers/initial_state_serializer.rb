@@ -17,6 +17,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       version: Mastodon::Version.to_s,
       invites_enabled: Setting.min_invite_role == 'user',
       mascot: instance_presenter.mascot&.file&.url,
+      profile_directory: Setting.profile_directory,
     }
 
     if object.current_account

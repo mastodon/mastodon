@@ -15,5 +15,6 @@ export const searchEnabled = getMeta('search_enabled');
 export const invitesEnabled = getMeta('invites_enabled');
 export const version = getMeta('version');
 export const mascot = getMeta('mascot');
+export const profile_directory = getMeta('profile_directory');
 
 export default initialState;
