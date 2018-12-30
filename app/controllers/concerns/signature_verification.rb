@@ -64,9 +64,17 @@ module SignatureVerification
 
     if account.possibly_stale?
       account = account.refresh!
-
-      return account unless verify_signature(account, signature, compare_signed_string).nil?
+    else
+      account = account_refresh_key(account)
     end
+
+    if account.nil?
+      @signature_verification_failure_reason = "Public key not found for key #{signature_params['keyId']}"
+      @signed_request_account = nil
+      return
+    end
+
+    return account unless verify_signature(account, signature, compare_signed_string).nil?
 
     @signature_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri}"
     @signed_request_account = nil
@@ -132,5 +140,10 @@ module SignatureVerification
       account ||= ActivityPub::FetchRemoteKeyService.new.call(key_id, id: false)
       account
     end
+  end
+
+  def account_refresh_key(account)
+    return if account.local? || !account.activitypub?
+    ActivityPub::FetchRemoteAccountService.new.call(account.uri, only_key: true)
   end
 end
