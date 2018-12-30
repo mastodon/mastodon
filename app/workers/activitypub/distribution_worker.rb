@@ -12,7 +12,7 @@ class ActivityPub::DistributionWorker
     return if skip_distribution?
 
     ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
-      [signed_payload, @account.id, inbox_url]
+      [payload, @account.id, inbox_url]
     end
 
     relay! if relayable?
@@ -35,20 +35,24 @@ class ActivityPub::DistributionWorker
   end
 
   def signed_payload
-    @signed_payload ||= Oj.dump(ActivityPub::LinkedDataSignature.new(payload).sign!(@account))
+    Oj.dump(ActivityPub::LinkedDataSignature.new(unsigned_payload).sign!(@account))
   end
 
-  def payload
-    @payload ||= ActiveModelSerializers::SerializableResource.new(
+  def unsigned_payload
+    ActiveModelSerializers::SerializableResource.new(
       @status,
       serializer: ActivityPub::ActivitySerializer,
       adapter: ActivityPub::Adapter
     ).as_json
   end
 
+  def payload
+    @payload ||= @status.distributable? ? signed_payload : Oj.dump(unsigned_payload)
+  end
+
   def relay!
     ActivityPub::DeliveryWorker.push_bulk(Relay.enabled.pluck(:inbox_url)) do |inbox_url|
-      [signed_payload, @account.id, inbox_url]
+      [payload, @account.id, inbox_url]
     end
   end
 end
