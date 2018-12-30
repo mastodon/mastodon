@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me, invitesEnabled, version } from '../../initial_state';
+import { me, invitesEnabled, version, profile_directory } from '../../initial_state';
 import { fetchFollowRequests } from '../../actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import { Link } from 'react-router-dom';
@@ -136,7 +136,7 @@ class GettingStarted extends ImmutablePureComponent {
 
           <div className='getting-started__footer'>
             <ul>
-              <li><a href='/explore' target='_blank'><FormattedMessage id='getting_started.directory' defaultMessage='Profile directory' /></a> · </li>
+              {profile_directory && <li><a href='/explore' target='_blank'><FormattedMessage id='getting_started.directory' defaultMessage='Profile directory' /></a> · </li>}
               {invitesEnabled && <li><a href='/invites' target='_blank'><FormattedMessage id='getting_started.invite' defaultMessage='Invite people' /></a> · </li>}
               {multiColumn && <li><Link to='/keyboard-shortcuts'><FormattedMessage id='navigation_bar.keyboard_shortcuts' defaultMessage='Hotkeys' /></Link> · </li>}
               <li><a href='/auth/edit'><FormattedMessage id='getting_started.security' defaultMessage='Security' /></a> · </li>
