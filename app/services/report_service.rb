@@ -52,6 +52,6 @@ class ReportService < BaseService
   end
 
   def some_local_account
-    @some_local_account ||= Account.local.where(suspended: false).first
+    @some_local_account ||= Account.find_local(Setting.site_contact_username.gsub(/\A@/, '')) || Account.local.where(suspended: false).first
   end
 end
