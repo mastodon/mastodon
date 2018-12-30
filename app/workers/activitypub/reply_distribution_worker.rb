@@ -37,6 +37,6 @@ class ActivityPub::ReplyDistributionWorker
   end
 
   def payload
-    @payload ||= @status.public_visibility? || @status.unlisted_visibility? ? signed_payload : Oj.dump(unsigned_payload)
+    @payload ||= @status.distributable? ? signed_payload : Oj.dump(unsigned_payload)
   end
 end
