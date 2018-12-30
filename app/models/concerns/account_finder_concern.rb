@@ -4,12 +4,20 @@ module AccountFinderConcern
   extend ActiveSupport::Concern
 
   class_methods do
+    def representative!
+      find_remote(Setting.site_contact_username.gsub(/\A@/, ''), nil) || raise(ActiveRecord::RecordNotFound)
+    end
+
     def find_local!(username)
       find_local(username) || raise(ActiveRecord::RecordNotFound)
     end
 
     def find_remote!(username, domain)
       find_remote(username, domain) || raise(ActiveRecord::RecordNotFound)
+    end
+
+    def representative
+      find_remote(Setting.site_contact_username.gsub(/\A@/, ''), nil)
     end
 
     def find_local(username)

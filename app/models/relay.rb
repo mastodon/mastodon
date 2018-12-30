@@ -68,7 +68,7 @@ class Relay < ApplicationRecord
   end
 
   def some_local_account
-    @some_local_account ||= Account.find_local(Setting.site_contact_username.gsub(/\A@/, '')) || Account.local.find_by(suspended: false)
+    @some_local_account ||= Account.representative || Account.local.find_by(suspended: false)
   end
 
   def ensure_disabled
