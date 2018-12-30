@@ -5,12 +5,7 @@ module.exports = {
   test: /\.s?css$/i,
   use: [
     MiniCssExtractPlugin.loader,
-    {
-      loader: 'css-loader',
-      options: {
-        minimize: env.NODE_ENV === 'production',
-      },
-    },
+    'css-loader',
     {
       loader: 'postcss-loader',
       options: {
