@@ -36,6 +36,7 @@ module.exports = {
   env: {
     CDN_HOST: env.CDN_HOST,
     NODE_ENV: env.NODE_ENV,
+    DEFAULT_HASHTAG: env.DEFAULT_HASHTAG,
   },
   loadersDir,
   output,

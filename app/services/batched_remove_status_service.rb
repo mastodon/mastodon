@@ -95,6 +95,10 @@ class BatchedRemoveStatusService < BaseService
       @tags[status.id].each do |hashtag|
         redis.publish("timeline:hashtag:#{hashtag}", payload)
         redis.publish("timeline:hashtag:#{hashtag}:local", payload) if status.local?
+        if status.media_attachments.any?
+          redis.publish("timeline:hashtag:#{hashtag}:media", payload)
+          redis.publish("timeline:hashtag:#{hashtag}:local:media", payload) if status.local?
+        end
       end
     end
   end

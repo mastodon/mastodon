@@ -21,6 +21,7 @@ class FanOutOnWriteService < BaseService
     return if status.account.silenced? || !status.public_visibility? || status.reblog?
 
     deliver_to_hashtags(status)
+    deliver_to_hashtags_media(status) if status.media_attachments.any?
 
     return if status.reply? && status.in_reply_to_account_id != status.account_id
 
@@ -74,6 +75,15 @@ class FanOutOnWriteService < BaseService
     status.tags.pluck(:name).each do |hashtag|
       Redis.current.publish("timeline:hashtag:#{hashtag}", @payload)
       Redis.current.publish("timeline:hashtag:#{hashtag}:local", @payload) if status.local?
+    end
+  end
+
+  def deliver_to_hashtags_media(status)
+    Rails.logger.debug "Delivering status #{status.id} to hashtags media"
+
+    status.tags.pluck(:name).each do |hashtag|
+      Redis.current.publish("timeline:hashtag:#{hashtag}:media", @payload)
+      Redis.current.publish("timeline:hashtag:#{hashtag}:local:media", @payload) if status.local?
     end
   end
 
