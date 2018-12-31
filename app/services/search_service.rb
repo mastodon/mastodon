@@ -35,6 +35,8 @@ class SearchService < BaseService
                             .compact
 
     statuses.reject { |status| StatusFilter.new(status, account).filtered? }
+  rescue Faraday::ConnectionFailed
+    []
   end
 
   def perform_hashtags_search!

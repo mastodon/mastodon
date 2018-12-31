@@ -88,7 +88,7 @@ const deleteStatus = (state, id, accountId, references) => {
 };
 
 const clearTimeline = (state, timeline) => {
-  return state.updateIn([timeline, 'items'], list => ImmutableList());
+  return state.set(timeline, initialTimeline);
 };
 
 const filterTimelines = (state, relationship, statuses) => {
