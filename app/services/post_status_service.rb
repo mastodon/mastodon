@@ -44,7 +44,6 @@ class PostStatusService < BaseService
     DistributionWorker.perform_async(status.id)
     Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
     ActivityPub::DistributionWorker.perform_async(status.id)
-    ActivityPub::ReplyDistributionWorker.perform_async(status.id) if status.reply? && status.thread.account.local?
 
     if options[:idempotency].present?
       redis.setex("idempotency:status:#{account.id}:#{options[:idempotency]}", 3_600, status.id)
