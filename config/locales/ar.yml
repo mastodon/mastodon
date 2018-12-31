@@ -117,7 +117,7 @@ ar:
       confirming: التأكد
       demote: إنزال الرُتبة الوظيفية
       disable: تعطيل
-      disable_two_factor_authentication: تعطيل 2FA
+      disable_two_factor_authentication: تعطيل المصادقة بخطوتين
       disabled: معطَّل
       display_name: عرض الإسم
       domain: النطاق
@@ -140,7 +140,7 @@ ar:
         title: الموقع
       login_status: وضع الدخول
       media_attachments: الوسائط المرفقة
-      memorialize: تحول إلى صفحة للذاكرة
+      memorialize: تحويل الحساب إلى صفحة ذكرى
       moderation:
         active: نشِط
         all: الكل
@@ -153,7 +153,7 @@ ar:
       no_limits_imposed: مِن دون حدود مشروطة
       not_subscribed: غير مشترك
       outbox_url: رابط صندوق الصادر
-      perform_full_suspension: تعطيل
+      perform_full_suspension: تعليق الحساب
       profile_url: رابط الملف الشخصي
       promote: ترقية
       protocol: البروتوكول
@@ -168,8 +168,8 @@ ar:
         success: تم إرسال رسالة التأكيد بنجاح!
       reset: إعادة التعيين
       reset_password: إعادة ضبط كلمة السر
-      resubscribe: اشترك مرة أخرى
-      role: التصريحات
+      resubscribe: إعادة الإشتراك
+      role: الصلاحيات
       roles:
         admin: مدير
         moderator: مشرف
@@ -181,8 +181,8 @@ ar:
       show:
         created_reports: البلاغات التي أنشأها هذا الحساب
         report: التقرير
-        targeted_reports: التقريرات التي أُنشِأت ضد هذا الحساب
-      silence: سكتهم
+        targeted_reports: الشكاوي التي أُنشِأت ضد هذا الحساب
+      silence: كتم
       silenced: تم كتمه
       statuses: المنشورات
       subscribe: اشترك
@@ -217,10 +217,10 @@ ar:
         memorialize_account: لقد قام %{name} بتحويل حساب %{target} إلى صفحة تذكارية
         promote_user: '%{name} قام بترقية المستخدم %{target}'
         remove_avatar_user: تمت إزالة %{name} الصورة الرمزية %{target}
-        reopen_report: تمت إعادة فتح التقرير %{name} %{target}
+        reopen_report: تمت إعادة فتح الشكوى %{name} %{target}
         reset_password_user: '%{name} لقد قام بإعادة تعيين الكلمة السرية الخاصة بـ
           %{target}'
-        resolve_report: قام %{name} بحل التقرير %{target}
+        resolve_report: قام %{name} بحل الشكوى %{target}
         silence_account: لقد قام %{name} بكتم حساب %{target}
         suspend_account: لقد قام %{name} بتعليق حساب %{target}
         unassigned_report: '%{name} تقرير غير معتمد %{target}'
@@ -265,7 +265,7 @@ ar:
       feature_relay: المُرحّل الفديرالي
       features: الميّزات
       hidden_service: الفيديرالية مع الخدمات الخفية
-      open_reports: فتح التقريرات
+      open_reports: فتح الشكاوي
       recent_users: أحدث المستخدِمين
       search: البحث النصي الكامل
       single_user_mode: وضع المستخدِم الأوحد
@@ -297,7 +297,7 @@ ar:
       reject_media: رفض ملفات الوسائط
       reject_media_hint: يزيل ملفات الوسائط المخزنة محليًا ويرفض تنزيل أي ملفات في
         المستقبل. غير ذي صلة للتعليق
-      reject_reports: رفض التقارير
+      reject_reports: رفض الشكاوي
       severities:
         noop: لا شيء
         silence: إخفاء أو كتم
@@ -358,10 +358,8 @@ ar:
       status: الحالة
       title: المُرحّلات
     report_notes:
-      created_msg: '41/5000
-
-        تم إنشاء ملاحظة التقرير بنجاح!'
-      destroyed_msg: تم حذف ملاحظة التقرير بنجاح!
+      created_msg: تم إنشاء ملاحظة الشكوى بنجاح!
+      destroyed_msg: تم حذف ملاحظة الشكوى بنجاح!
     reports:
       account:
         note: ملحوظة
@@ -373,7 +371,7 @@ ar:
       comment:
         none: لا شيء
       created_at: ذكرت
-      mark_as_resolved: إعتبار التقرير كمحلول
+      mark_as_resolved: إعتبار الشكوى كمحلولة
       mark_as_unresolved: علام كغير محلولة
       notes:
         create: اضف ملاحظة
@@ -382,14 +380,14 @@ ar:
         delete: حذف
         placeholder: قم بوصف الإجراءات التي تم اتخاذها أو أي تحديثات أخرى ذات علاقة
           …
-      reopen: إعادة فتح التقرير
-      report: 'التقرير #%{id}'
+      reopen: إعادة فتح الشكوى
+      report: 'الشكوى #%{id}'
       reported_account: حساب مُبلّغ عنه
       reported_by: أبلغ عنه من طرف
       resolved: معالجة
       resolved_msg: تم حل تقرير بنجاح!
       status: الحالة
-      title: التقارير
+      title: الشكاوي
       unassign: إلغاء تعيين
       unresolved: غير معالجة
       updated_at: محدث
@@ -474,15 +472,15 @@ ar:
       back_to_account: العودة إلى صفحة الحساب
       batch:
         delete: حذف
-        nsfw_off: ضع علامة انها غير حساسة
-        nsfw_on: ضع علامة انها حساسة
+        nsfw_off: تعيينه كمنشور غير حساس
+        nsfw_on: تعيينه كمنشور حساس
       failed_to_execute: خطأ في التفعيل
       media:
         title: الوسائط
-      no_media: لا يوجد وسائط
+      no_media: لا تحتوي على وسائط
       no_status_selected: لم يطرأ أي تغيير على أي منشور بما أنه لم يتم اختيار أي واحد
       title: منشورات الحساب
-      with_media: بالوسائط
+      with_media: تحتوي على وسائط
     subscriptions:
       callback_url: عاود الاتصال بالعنوان
       confirmed: مؤكَّد
@@ -704,7 +702,7 @@ ar:
     prompt: توليد و مشاركة روابط للسماح للآخَرين بالنفاذ إلى مثيل الخادوم هذا
     table:
       expires_at: تنتهي مدة صلاحيتها في
-      uses: يستخدِم
+      uses: عدد الاستخدامات
     title: دعوة أشخاص
   lists:
     errors:
