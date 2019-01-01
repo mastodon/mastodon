@@ -94,6 +94,8 @@ Rails.application.routes.draw do
       resources :follows, only: :index, controller: :following_accounts
       resources :blocks, only: :index, controller: :blocked_accounts
       resources :mutes, only: :index, controller: :muted_accounts
+      resources :lists, only: :index, controller: :lists
+      resources :domain_blocks, only: :index, controller: :blocked_domains
     end
 
     resource :two_factor_authentication, only: [:show, :create, :destroy]
