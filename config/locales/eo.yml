@@ -48,6 +48,7 @@ eo:
       other: Sekvantoj
     following: Sekvatoj
     joined: Aliĝis je %{date}
+    last_active: laste aktiva
     link_verified_on: Proprieto de ĉi tiu ligilo estis kontrolita je %{date}
     media: Aŭdovidaĵoj
     moved_html: "%{name} moviĝis al %{new_profile_link}:"
@@ -114,6 +115,7 @@ eo:
       media_attachments: Ligitaj aŭdovidaĵoj
       memorialize: Ŝanĝi al memoro
       moderation:
+        active: Aktiva
         all: Ĉio
         silenced: Silentigitaj
         suspended: Haltigitaj
@@ -150,7 +152,6 @@ eo:
       shared_inbox_url: URL de kunhavigita leterkesto
       show:
         created_reports: Signaloj kreitaj de ĉi tiu konto
-        report: signalo
         targeted_reports: Signaloj kreitaj de ĉi tiu konto
       silence: Kaŝi
       silenced: Silentigita
@@ -227,6 +228,7 @@ eo:
       config: Agordado
       feature_deletions: Forigo de kontoj
       feature_invites: Invitaj ligiloj
+      feature_profile_directory: Profilujo
       feature_registrations: Registriĝoj
       feature_relay: Federacia ripetilo
       features: Funkcioj
@@ -368,6 +370,9 @@ eo:
       preview_sensitive_media:
         desc_html: Antaŭvido de ligiloj en aliaj retejoj montros bildeton eĉ se la aŭdovidaĵo estas markita kiel tikla
         title: Montri tiklajn aŭdovidaĵojn en la antaŭvidoj de OpenGraph
+      profile_directory:
+        desc_html: Permesi al uzantoj esti troveblaj
+        title: Ebligi la profilujon
       registrations:
         closed_message:
           desc_html: Montrita sur la hejma paĝo kiam registriĝoj estas fermitaj. Vi povas uzi HTML-etikedojn
@@ -427,11 +432,12 @@ eo:
       last_delivery: Lasta livero
       title: WebSub
       topic: Temo
-    suspensions:
-      hint_html: 'Por konformi la haltigo de la konto, bonvolu enigi %{value} en la kampo sube:'
-      proceed: Daŭrigita
-      title: Haltigi %{acct}
-      warning_html: 'Haltigi ĉi tiu konton forigos <strong>senrevene</strong> datumojn de ĉi tiu konto, inklusive de:'
+    tags:
+      hide: Kaŝi de la profilujo
+      name: Kradvorto
+      title: Kradvortoj
+      unhide: Montri en la profilujo
+      visible: Videbla
     title: Administrado
   admin_mailer:
     new_report:
@@ -510,6 +516,13 @@ eo:
     success_msg: Via konto estis sukcese forigita
     warning_html: La forigo de la enhavo estas certa nur por ĉi tiu aparta nodo. Enhavo, kiu estis disvastigita verŝajne lasos spurojn. Eksterretaj serviloj kaj serviloj, kiuj ne abonas viajn ĝisdatigojn ne ĝisdatigos siajn datumbazojn.
     warning_title: Disponebleco de disvastigita enhavo
+  directories:
+    directory: Profilujo
+    explanation: Malkovru uzantojn per iliaj interesoj
+    explore_mastodon: Esplori %{title}
+    people:
+      one: "%{count} personoj"
+      other: "%{count} personoj"
   errors:
     '403': Vi ne havas la rajton por vidi ĉi tiun paĝon.
     '404': La paĝo, kiun vi serĉas, ne ekzistas.
@@ -824,7 +837,6 @@ eo:
       review_preferences_action: Ŝanĝi preferojn
       review_preferences_step: Estu certa ke vi agordis viajn preferojn, kiel kiujn retmesaĝojn vi ŝatus ricevi, aŭ kiun dekomencan privatecan nivelon vi ŝatus ke viaj mesaĝoj havu. Se tio ne ĝenas vin, vi povas ebligi aŭtomatan ekigon de GIF-oj.
       subject: Bonvenon en Mastodon
-      tip_bridge_html: Se vi venas de Twitter, vi povas trovi viajn amikojn en Mastodon per uzo de la <a href="%{bridge_url}">ponta aplikaĵo</a>. Tamen, tio funkcias nur se ankaŭ ili uzis la pontan aplikaĵon!
       tip_federated_timeline: La fratara tempolinio estas antaŭvido de la reto de Mastodon. Sed ĝi enhavas nur homojn, kiuj estas sekvataj de aliaj homoj de via nodo, do ĝi ne estas kompleta.
       tip_following: Vi dekomence sekvas la administrantojn de via servilo. Por trovi pli da interesaj homoj, rigardu la lokan kaj frataran tempoliniojn.
       tip_local_timeline: La loka tempolinio estas antaŭvido de la homoj en %{instance}. Ĉi tiuj estas viaj apudaj najbaroj!

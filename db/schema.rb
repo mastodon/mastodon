@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_07_011115) do
+ActiveRecord::Schema.define(version: 2018_12_26_021420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,23 @@ ActiveRecord::Schema.define(version: 2018_12_07_011115) do
     t.index ["tag_id"], name: "index_account_tag_stats_on_tag_id", unique: true
   end
 
+  create_table "account_warning_presets", force: :cascade do |t|
+    t.text "text", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "account_warnings", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "target_account_id"
+    t.integer "action", default: 0, null: false
+    t.text "text", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_warnings_on_account_id"
+    t.index ["target_account_id"], name: "index_account_warnings_on_target_account_id"
+  end
+
   create_table "accounts", force: :cascade do |t|
     t.string "username", default: "", null: false
     t.string "domain"
@@ -117,6 +134,7 @@ ActiveRecord::Schema.define(version: 2018_12_07_011115) do
     t.jsonb "fields"
     t.string "actor_type"
     t.boolean "discoverable"
+    t.string "also_known_as", array: true
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["moved_to_account_id"], name: "index_accounts_on_moved_to_account_id"
@@ -620,8 +638,10 @@ ActiveRecord::Schema.define(version: 2018_12_07_011115) do
     t.bigint "invite_id"
     t.string "remember_token"
     t.string "chosen_languages", array: true
+    t.bigint "created_by_application_id"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["created_by_application_id"], name: "index_users_on_created_by_application_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -656,6 +676,8 @@ ActiveRecord::Schema.define(version: 2018_12_07_011115) do
   add_foreign_key "account_pins", "accounts", on_delete: :cascade
   add_foreign_key "account_stats", "accounts", on_delete: :cascade
   add_foreign_key "account_tag_stats", "tags", on_delete: :cascade
+  add_foreign_key "account_warnings", "accounts", column: "target_account_id", on_delete: :cascade
+  add_foreign_key "account_warnings", "accounts", on_delete: :nullify
   add_foreign_key "accounts", "accounts", column: "moved_to_account_id", on_delete: :nullify
   add_foreign_key "admin_action_logs", "accounts", on_delete: :cascade
   add_foreign_key "backups", "users", on_delete: :nullify
@@ -711,6 +733,7 @@ ActiveRecord::Schema.define(version: 2018_12_07_011115) do
   add_foreign_key "subscriptions", "accounts", name: "fk_9847d1cbb5", on_delete: :cascade
   add_foreign_key "users", "accounts", name: "fk_50500f500d", on_delete: :cascade
   add_foreign_key "users", "invites", on_delete: :nullify
+  add_foreign_key "users", "oauth_applications", column: "created_by_application_id", on_delete: :nullify
   add_foreign_key "web_push_subscriptions", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade
   add_foreign_key "web_push_subscriptions", "users", on_delete: :cascade
   add_foreign_key "web_settings", "users", name: "fk_11910667b2", on_delete: :cascade

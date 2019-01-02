@@ -48,6 +48,7 @@ ko:
       other: 팔로워
     following: 팔로잉
     joined: "%{date}에 가입함"
+    last_active: 최근 활동
     link_verified_on: "%{date}에 이 링크의 소유가 확인되었습니다"
     media: 미디어
     moved_html: "%{name}은 %{new_profile_link}으로 이동되었습니다:"
@@ -103,6 +104,7 @@ ko:
       followers: 팔로워 수
       followers_url: 팔로워 URL
       follows: 팔로잉 수
+      header: 헤더
       inbox_url: 수신함 URL
       ip: IP
       location:
@@ -114,6 +116,7 @@ ko:
       media_attachments: 첨부된 미디어
       memorialize: 메모리엄으로 전환
       moderation:
+        active: 활동
         all: 전체
         silenced: 침묵 중
         suspended: 정지 중
@@ -132,6 +135,7 @@ ko:
       push_subscription_expires: PuSH 구독 기간 만료
       redownload: 아바타 업데이트
       remove_avatar: 아바타 지우기
+      remove_header: 헤더 삭제
       resend_confirmation:
         already_confirmed: 이 사용자는 이미 확인되었습니다
         send: 다시 확인 이메일
@@ -150,7 +154,6 @@ ko:
       shared_inbox_url: 공유된 inbox URL
       show:
         created_reports: 이 계정에서 제출된 신고
-        report: 신고
         targeted_reports: 이 계정에 대한 신고
       silence: 침묵
       silenced: 침묵 됨
@@ -227,6 +230,7 @@ ko:
       config: 설정
       feature_deletions: 계정 삭제
       feature_invites: 초대 링크
+      feature_profile_directory: 프로필 디렉토리
       feature_registrations: 가입
       feature_relay: 연합 릴레이
       features: 기능
@@ -376,6 +380,9 @@ ko:
       preview_sensitive_media:
         desc_html: 민감한 미디어로 설정되었더라도 다른 웹사이트에서 링크 미리보기에 썸네일을 보여줍니다
         title: 민감한 미디어를 오픈그래프 미리보기에 보여주기
+      profile_directory:
+        desc_html: 유저들이 발견 될 수 있도록 허용
+        title: 프로필 디렉토리 활성화
       registrations:
         closed_message:
           desc_html: 신규 등록을 받지 않을 때 프론트 페이지에 표시됩니다. HTML 태그를 사용할 수 있습니다
@@ -435,12 +442,14 @@ ko:
       last_delivery: 최종 발송
       title: WebSub
       topic: 토픽
-    suspensions:
-      bad_acct_msg: 확인값이 일치하지 않습니다. 정지하려는 계정이 맞습니까?
-      hint_html: '이 계정을 정지하려면 %{value}를 아래 입력칸에 입력하세요:'
-      proceed: 완전히 정지시키기
-      title: "%{acct} 정지하기"
-      warning_html: '이 계정을 정지하면 계정의 데이터를 모두 삭제하며 <strong>되돌릴 수 없습니다</strong>. 이것은 다음을 포함합니다:'
+    tags:
+      accounts: 계정들
+      hidden: 숨겨짐
+      hide: 디렉토리에서 숨기기
+      name: 해시태그
+      title: 해시태그
+      unhide: 디렉토리에 표시
+      visible: 보여짐
     title: 관리
   admin_mailer:
     new_report:
@@ -519,6 +528,13 @@ ko:
     success_msg: 계정이 성공적으로 삭제되었습니다
     warning_html: 삭제가 보장되는 것은 이 인스턴스 상에서의 컨텐츠에 한합니다. 타 인스턴스 등, 외부에 멀리 공유된 컨텐츠는 흔적이 남아 삭제되지 않는 경우도 있습니다. 그리고 현재 접속이 불가능한 서버나, 업데이트를 받지 않게 된 서버에 대해서는 삭제가 반영되지 않을 수도 있습니다.
     warning_title: 공유된 컨텐츠에 대해서
+  directories:
+    directory: 프로필 디렉토리
+    explanation: 관심사에 대한 유저들을 발견합니다
+    explore_mastodon: "%{title} 탐사하기"
+    people:
+      one: "%{count}명"
+      other: "%{count}명"
   errors:
     '403': 이 페이지를 표시할 권한이 없습니다.
     '404': 당신이 찾으려는 페이지는 존재하지 않습니다.
@@ -912,7 +928,6 @@ ko:
       review_preferences_action: 설정 바꾸기
       review_preferences_step: 당신의 설정을 확인하세요. 어떤 이메일로 알림을 받을 것인지, 기본적으로 어떤 프라이버시 설정을 사용할 것인지, 멀미가 없다면 GIF를 자동 재생하도록 설정할 수도 있습니다.
       subject: 마스토돈에 오신 것을 환영합니다
-      tip_bridge_html: 만약 트위터에서 오셨다면 <a href="%{bridge_url}">브리지 앱</a>을 통해 마스토돈에 있는 친구들을 찾을 수 있습니다. 친구들도 이 앱을 사용했을 때만 작동합니다!
       tip_federated_timeline: 연합 타임라인은 마스토돈 네트워크의 소방호스입니다. 다만 여기엔 당신의 이웃들이 구독 중인 것만 뜹니다, 모든 것이 다 오는 것은 아니예요.
       tip_following: 기본적으로 서버의 관리자를 팔로우 하도록 되어 있습니다. 흥미로운 사람들을 더 찾으려면 로컬과 연합 타임라인을 확인해 보세요.
       tip_local_timeline: 로컬 타임라인은 %{instance}의 소방호스입니다. 여기 있는 사람들은 당신의 이웃들이에요!

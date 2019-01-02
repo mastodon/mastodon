@@ -18,6 +18,7 @@ en:
     mailer:
       confirmation_instructions:
         action: Verify email address
+        action_with_app: Confirm and return to %{app}
         explanation: You have created an account on %{host} with this email address. You are one click away from activating it. If this wasn't you, please ignore this email.
         extra_html: Please also check out <a href="%{terms_path}">the rules of the instance</a> and <a href="%{policy_path}">our terms of service</a>.
         subject: 'Mastodon: Confirmation instructions for %{instance}'

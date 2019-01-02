@@ -104,6 +104,7 @@ co:
       followers: Abbunati
       followers_url: URL di l’abbunati
       follows: Abbunamenti
+      header: Intistatura
       inbox_url: URL di l’inbox
       ip: IP
       location:
@@ -134,6 +135,7 @@ co:
       push_subscription_expires: Spirata di l’abbunamentu PuSH
       redownload: Mette à ghjornu i ritratti
       remove_avatar: Toglie l’avatar
+      remove_header: Toglie l'intistatura
       resend_confirmation:
         already_confirmed: St’utilizatore hè digià cunfirmatu
         send: Rimandà un’e-mail di cunfirmazione
@@ -152,7 +154,6 @@ co:
       shared_inbox_url: URL di l’inbox spartuta
       show:
         created_reports: Signalamenti creati da stu contu
-        report: Signalamentu
         targeted_reports: Signalamenti creati contr’à stu contu
       silence: Silenzà
       silenced: Silenzatu
@@ -229,6 +230,7 @@ co:
       config: Cunfigurazione
       feature_deletions: Sguassamenti di conti
       feature_invites: Ligami d'invitazione
+      feature_profile_directory: Annuariu di i prufili
       feature_registrations: Arregistramenti
       feature_relay: Ripetitore di federazione
       features: Funziunalità
@@ -376,6 +378,9 @@ co:
       preview_sensitive_media:
         desc_html: E priviste di i ligami nant'à l'altri siti mustreranu una vignetta ancu s'ellu hè marcatu cum'è sensibile u media
         title: Vede media sensibili in e viste OpenGraph
+      profile_directory:
+        desc_html: Auturizà a scuperta di l'utilizatori
+        title: Attivà l'annuariu di i prufili
       registrations:
         closed_message:
           desc_html: Affissatu nant’a pagina d’accolta quandu l’arregistramenti sò chjosi. Pudete fà usu di u furmattu HTML
@@ -435,12 +440,6 @@ co:
       last_delivery: Ultima arricata
       title: WebSub
       topic: Sughjettu
-    suspensions:
-      bad_acct_msg: U valore di cunfirmazione ùn era micca curretta. Site sicuru·a di suspende u bonu contu?
-      hint_html: 'Per cunfirmà a suspensione di u contu, entrate %{value} quì sottu:'
-      proceed: Cuntinuà
-      title: Suspende %{acct}
-      warning_html: 'A suspensione di u contu sguasserà di manera <strong>irreversibile</strong> i so dati, cum''è:'
     tags:
       accounts: Conti
       hidden: Piattatu
@@ -927,7 +926,6 @@ co:
       review_preferences_action: Mudificà e priferenze
       review_preferences_step: Quì pudete adattà u cumpurtamentu di Mastodon à e vostre priferenze, cum’è l’email che vulete riceve, u nivellu di cunfidenzialità predefinitu di i vostri statuti, o u cumpurtamentu di i GIF animati.
       subject: Benvenutu·a nant’à Mastodon
-      tip_bridge_html: S’è voi venite di Twitter, pudete truvà i vostri amichi da quallà chì sò nant’à Mastodon cù a <a href="%{bridge_url}">bridge app</a>. Mà ùn marchja chè s’elli l’anu ancu usata!
       tip_federated_timeline: A linea pubblica glubale mostra i statuti da altre istanze nant’a rete Mastodon, mà ùn hè micca cumpleta perchè ci sò soli i conti à quelli sò abbunati membri di a vostr’istanza.
       tip_following: Site digià abbunatu·a à l’amministratori di u vostru servore. Per truvà d’altre parsone da siguità, pudete pruvà e linee pubbliche.
       tip_local_timeline: A linea pubblica lucale ghjè una vista crunulogica di i statuti di a ghjente nant’à %{instance}. Quessi sò i vostri cunvicini!

@@ -104,6 +104,7 @@ ja:
       followers: フォロワー数
       followers_url: Followers URL
       follows: フォロー数
+      header: ヘッダー
       inbox_url: Inbox URL
       ip: IP
       location:
@@ -115,10 +116,10 @@ ja:
       media_attachments: 添付されたメディア
       memorialize: 追悼アカウント化
       moderation:
-        active: 有効
+        active: アクティブ
         all: すべて
-        silenced: サイレンス中
-        suspended: 停止中
+        silenced: サイレンス済み
+        suspended: 停止済み
         title: モデレーション
       moderation_notes: モデレーションメモ
       most_recent_activity: 直近の活動
@@ -134,6 +135,7 @@ ja:
       push_subscription_expires: PuSH購読期限
       redownload: アバターの更新
       remove_avatar: アイコンを削除
+      remove_header: ヘッダーを削除
       resend_confirmation:
         already_confirmed: メールアドレスは確認済みです
         send: 確認メールを再送
@@ -152,7 +154,6 @@ ja:
       shared_inbox_url: Shared Inbox URL
       show:
         created_reports: このアカウントで作られたレポート
-        report: レポート
         targeted_reports: このアカウントについてのレポート
       silence: サイレンス
       silenced: サイレンス済み
@@ -229,6 +230,7 @@ ja:
       config: 構成
       feature_deletions: アカウント削除
       feature_invites: 招待リンク
+      feature_profile_directory: ディレクトリ
       feature_registrations: 新規登録
       feature_relay: 連合リレー
       features: 機能
@@ -376,6 +378,9 @@ ja:
       preview_sensitive_media:
         desc_html: 他のウェブサイトにリンクを貼った際、メディアが閲覧注意としてマークされていてもサムネイルが表示されます
         title: OpenGraphによるプレビューで閲覧注意のメディアも表示する
+      profile_directory:
+        desc_html: ユーザーが見つかりやすくできるようになります
+        title: ディレクトリを有効にする
       registrations:
         closed_message:
           desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
@@ -435,12 +440,6 @@ ja:
       last_delivery: 最終配送
       title: WebSub
       topic: トピック
-    suspensions:
-      bad_acct_msg: 値が一致しませんでした。停止しようとしているアカウントに間違いはありませんか？
-      hint_html: 'アカウントの停止を確認するには、以下のフィールドに %{value} と入力してください:'
-      proceed: 完全に活動停止させる
-      title: "%{acct} を停止"
-      warning_html: 'このアカウントを停止すると、このアカウントから次のようなデータが<strong>不可逆的に</strong>削除されます:'
     tags:
       accounts: アカウント
       hidden: 非表示
@@ -529,6 +528,7 @@ ja:
     warning_title: 共有されたコンテンツについて
   directories:
     directory: ディレクトリ
+    explanation: 興味のある人を見つけよう
     explore_mastodon: "%{title}を探索"
     people:
       one: "%{count} 人"
@@ -925,7 +925,6 @@ ja:
       review_preferences_action: 設定の変更
       review_preferences_step: 受け取りたいメールや投稿の公開範囲などの設定を必ず行ってください。不快でないならアニメーション GIF の自動再生を有効にすることもできます。
       subject: Mastodon へようこそ
-      tip_bridge_html: もし Twitter から来られたのであれば、<a href="%{bridge_url}">bridge app</a> を使用することで Mastodon での友達のアカウントを探すこともできます。ただし bridge app を使用したことのある相手に限ります！
       tip_federated_timeline: 連合タイムラインは Mastodon ネットワークの流れを見られるものです。ただしあなたと同じインスタンスの人がフォローしている人だけが含まれるので、それが全てではありません。
       tip_following: 標準では自動でインスタンスの管理者をフォローしています。もっと興味のある人たちを見つけるには、ローカルタイムラインと連合タイムラインを確認してください。
       tip_local_timeline: ローカルタイムラインは %{instance} にいる人々の流れを見られるものです。彼らはあなたと同じインスタンスにいる隣人のようなものです！
