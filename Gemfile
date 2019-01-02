@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.3.0', '< 2.6.0'
+ruby '>= 2.4.0', '< 2.7.0'
 
 gem 'pkg-config', '~> 1.3'
 
@@ -29,7 +29,7 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.6'
 gem 'iso-639'
 gem 'chewy', '~> 5.0'
-gem 'cld3', '~> 3.2.0'
+gem 'cld3', '~> 3.2.3'
 gem 'devise', '~> 4.5'
 gem 'devise-two-factor', '~> 3.0'
 
@@ -115,7 +115,7 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.16', require: false
-  gem 'webmock', '~> 3.4'
+  gem 'webmock', '~> 3.5'
   gem 'parallel_tests', '~> 2.27'
 end
 

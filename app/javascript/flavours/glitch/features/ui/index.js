@@ -303,7 +303,7 @@ export default class UI extends React.Component {
   }
 
   setColumnsAreaRef = c => {
-    this.columnsAreaNode = c.getWrappedInstance().getWrappedInstance();
+    this.columnsAreaNode = c.getWrappedInstance();
   }
 
   handleHotkeyNew = e => {

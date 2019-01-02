@@ -26,13 +26,16 @@ class PostStatusService < BaseService
      text = media.find(&:video?) ? '📹' : '🖼' if media.size > 0
     end
 
+    visibility = options[:visibility] || account.user&.setting_default_privacy
+    visibility = :unlisted if visibility == :public && account.silenced
+
     ApplicationRecord.transaction do
       status = account.statuses.create!(text: text,
                                         media_attachments: media || [],
                                         thread: in_reply_to,
                                         sensitive: (options[:sensitive].nil? ? account.user&.setting_default_sensitive : options[:sensitive]) || options[:spoiler_text].present?,
                                         spoiler_text: options[:spoiler_text] || '',
-                                        visibility: options[:visibility] || account.user&.setting_default_privacy,
+                                        visibility: visibility,
                                         language: language_from_option(options[:language]) || account.user&.setting_default_language&.presence || LanguageDetector.instance.detect(text, account),
                                         application: options[:application])
     end
@@ -46,7 +49,6 @@ class PostStatusService < BaseService
     unless status.local_only?
       Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
       ActivityPub::DistributionWorker.perform_async(status.id)
-      ActivityPub::ReplyDistributionWorker.perform_async(status.id) if status.reply? && status.thread.account.local?
     end
 
     if options[:idempotency].present?

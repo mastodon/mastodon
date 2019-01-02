@@ -106,19 +106,19 @@ RSpec.describe User, type: :model do
     end
 
     it 'should allow a non-blacklisted user to be created' do
-      user = User.new(email: 'foo@example.com', account: account, password: password)
+      user = User.new(email: 'foo@example.com', account: account, password: password, agreement: true)
 
       expect(user.valid?).to be_truthy
     end
 
     it 'should not allow a blacklisted user to be created' do
-      user = User.new(email: 'foo@mvrht.com', account: account, password: password)
+      user = User.new(email: 'foo@mvrht.com', account: account, password: password, agreement: true)
 
       expect(user.valid?).to be_falsey
     end
 
     it 'should not allow a subdomain blacklisted user to be created' do
-      user = User.new(email: 'foo@mvrht.com.topdomain.tld', account: account, password: password)
+      user = User.new(email: 'foo@mvrht.com.topdomain.tld', account: account, password: password, agreement: true)
 
       expect(user.valid?).to be_falsey
     end
@@ -210,17 +210,17 @@ RSpec.describe User, type: :model do
     end
 
     it 'should not allow a user to be created unless they are whitelisted' do
-      user = User.new(email: 'foo@example.com', account: account, password: password)
+      user = User.new(email: 'foo@example.com', account: account, password: password, agreement: true)
       expect(user.valid?).to be_falsey
     end
 
     it 'should allow a user to be created if they are whitelisted' do
-      user = User.new(email: 'foo@mastodon.space', account: account, password: password)
+      user = User.new(email: 'foo@mastodon.space', account: account, password: password, agreement: true)
       expect(user.valid?).to be_truthy
     end
 
     it 'should not allow a user with a whitelisted top domain as subdomain in their email address to be created' do
-      user = User.new(email: 'foo@mastodon.space.userdomain.com', account: account, password: password)
+      user = User.new(email: 'foo@mastodon.space.userdomain.com', account: account, password: password, agreement: true)
       expect(user.valid?).to be_falsey
     end
 
@@ -242,7 +242,7 @@ RSpec.describe User, type: :model do
 
   it_behaves_like 'Settings-extended' do
     def create!
-      User.create!(account: Fabricate(:account), email: 'foo@mastodon.space', password: 'abcd1234')
+      User.create!(account: Fabricate(:account), email: 'foo@mastodon.space', password: 'abcd1234', agreement: true)
     end
 
     def fabricate

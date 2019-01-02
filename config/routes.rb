@@ -95,6 +95,8 @@ Rails.application.routes.draw do
       resources :follows, only: :index, controller: :following_accounts
       resources :blocks, only: :index, controller: :blocked_accounts
       resources :mutes, only: :index, controller: :muted_accounts
+      resources :lists, only: :index, controller: :lists
+      resources :domain_blocks, only: :index, controller: :blocked_domains
     end
 
     resource :two_factor_authentication, only: [:show, :create, :destroy]
@@ -194,6 +196,7 @@ Rails.application.routes.draw do
       resource :reset, only: [:create]
       resource :action, only: [:new, :create], controller: 'account_actions'
       resources :statuses, only: [:index, :show, :create, :update, :destroy]
+      resources :followers, only: [:index]
 
       resource :confirmation, only: [:create] do
         collection do
@@ -348,7 +351,7 @@ Rails.application.routes.draw do
         resources :relationships, only: :index
       end
 
-      resources :accounts, only: [:show] do
+      resources :accounts, only: [:create, :show] do
         resources :statuses, only: :index, controller: 'accounts/statuses'
         resources :followers, only: :index, controller: 'accounts/follower_accounts'
         resources :following, only: :index, controller: 'accounts/following_accounts'
