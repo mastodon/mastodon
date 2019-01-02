@@ -1,6 +1,6 @@
 import axios from 'axios';
 import ready from './ready';
-import LinkHeader from './link_header';
+import LinkHeader from 'http-link-header';
 
 export const getLinks = response => {
   const value = response.headers.link;
