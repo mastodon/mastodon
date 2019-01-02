@@ -73,7 +73,7 @@ module Mastodon
     def create(username)
       account  = Account.new(username: username)
       password = SecureRandom.hex
-      user     = User.new(email: options[:email], password: password, admin: options[:role] == 'admin', moderator: options[:role] == 'moderator', confirmed_at: Time.now.utc)
+      user     = User.new(email: options[:email], password: password, agreement: true, admin: options[:role] == 'admin', moderator: options[:role] == 'moderator', confirmed_at: options[:confirmed] ? Time.now.utc : nil)
 
       if options[:reattach]
         account = Account.find_local(username) || Account.new(username: username)
@@ -298,6 +298,66 @@ module Mastodon
         say('No account(s) given', :red)
         exit(1)
       end
+    end
+
+    desc 'follow ACCT', 'Make all local accounts follow account specified by ACCT'
+    long_desc <<-LONG_DESC
+      Make all local accounts follow an account specified by ACCT. ACCT can be
+      a simple username, in case of a local user. It can also be in the format
+      username@domain, in case of a remote user.
+    LONG_DESC
+    def follow(acct)
+      target_account = ResolveAccountService.new.call(acct)
+      processed      = 0
+      failed         = 0
+
+      if target_account.nil?
+        say("Target account (#{acct}) could not be resolved", :red)
+        exit(1)
+      end
+
+      Account.local.without_suspended.find_each do |account|
+        begin
+          FollowService.new.call(account, target_account)
+          processed += 1
+          say('.', :green, false)
+        rescue StandardError
+          failed += 1
+          say('.', :red, false)
+        end
+      end
+
+      say("OK, followed target from #{processed} accounts, skipped #{failed}", :green)
+    end
+
+    desc 'unfollow ACCT', 'Make all local accounts unfollow account specified by ACCT'
+    long_desc <<-LONG_DESC
+      Make all local accounts unfollow an account specified by ACCT. ACCT can be
+      a simple username, in case of a local user. It can also be in the format
+      username@domain, in case of a remote user.
+    LONG_DESC
+    def unfollow(acct)
+      target_account = Account.find_remote(*acct.split('@'))
+      processed      = 0
+      failed         = 0
+
+      if target_account.nil?
+        say("Target account (#{acct}) was not found", :red)
+        exit(1)
+      end
+
+      target_account.followers.local.find_each do |account|
+        begin
+          UnfollowService.new.call(account, target_account)
+          processed += 1
+          say('.', :green, false)
+        rescue StandardError
+          failed += 1
+          say('.', :red, false)
+        end
+      end
+
+      say("OK, unfollowed target from #{processed} accounts, skipped #{failed}", :green)
     end
 
     private

@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const { basename, dirname, join, relative, resolve } = require('path');
 const { sync } = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const AssetsManifestPlugin = require('webpack-assets-manifest');
 const { env, settings, core, flavours, output, loadersDir } = require('./configuration.js');
 const localePacks = require('./generateLocalePacks');
 
@@ -100,10 +100,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: env.NODE_ENV === 'production' ? '[name]-[contenthash].css' : '[name].css',
     }),
-    new ManifestPlugin({
-      publicPath: output.publicPath,
-      writeToFileEmit: true,
-      filter: file => !file.isAsset || file.isModuleAsset,
+    new AssetsManifestPlugin({
+      publicPath: true,
+      writeToDisk: true,
     }),
   ],
 

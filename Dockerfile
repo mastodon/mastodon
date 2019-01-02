@@ -31,6 +31,8 @@ RUN apk -U upgrade \
     libidn-dev \
     libressl \
     libtool \
+    libxml2-dev \
+    libxslt-dev \
     postgresql-dev \
     protobuf-dev \
     python \
@@ -43,6 +45,8 @@ RUN apk -U upgrade \
     imagemagick \
     libidn \
     libpq \
+    libxml2 \
+    libxslt \
     protobuf \
     tini \
     tzdata \
@@ -67,7 +71,7 @@ COPY stack-fix.c /lib
 RUN gcc -shared -fPIC /lib/stack-fix.c -o /lib/stack-fix.so
 RUN rm /lib/stack-fix.c
 
-RUN bundle config build.nokogiri --with-iconv-lib=/usr/local/lib --with-iconv-include=/usr/local/include \
+RUN bundle config build.nokogiri --use-system-libraries --with-iconv-lib=/usr/local/lib --with-iconv-include=/usr/local/include \
  && bundle install -j$(getconf _NPROCESSORS_ONLN) --deployment --without test development \
  && yarn install --pure-lockfile --ignore-engines \
  && yarn cache clean

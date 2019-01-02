@@ -26,9 +26,9 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
     context 'when actor differs from sender' do
       let(:forwarder) { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/other_account') }
 
-      it 'processes payload with sender if no signature exists' do
-        expect_any_instance_of(ActivityPub::LinkedDataSignature).not_to receive(:verify_account!)
-        expect(ActivityPub::Activity).to receive(:factory).with(instance_of(Hash), forwarder, instance_of(Hash))
+      it 'does not process payload if no signature exists' do
+        expect_any_instance_of(ActivityPub::LinkedDataSignature).to receive(:verify_account!).and_return(nil)
+        expect(ActivityPub::Activity).not_to receive(:factory)
 
         subject.call(json, forwarder)
       end
