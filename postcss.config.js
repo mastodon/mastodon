@@ -1,13 +1,7 @@
-module.exports = {
+module.exports = ({ env }) => ({
   plugins: {
-    autoprefixer: {
-      browsers: [
-        'last 2 versions',
-        'IE >= 11',
-        'iOS >= 9',
-      ],
-    },
+    autoprefixer: {},
     'postcss-object-fit-images': {},
-    cssnano: {},
+    cssnano: env === 'production' ? {} : false,
   },
-};
+});
