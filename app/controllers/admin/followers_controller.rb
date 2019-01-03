@@ -8,15 +8,11 @@ module Admin
 
     def index
       authorize :account, :index?
-      @followers = followers.recent.page(params[:page]).per(PER_PAGE)
+      @followers = @account.followers.local.recent.page(params[:page]).per(PER_PAGE)
     end
 
     def set_account
       @account = Account.find(params[:account_id])
-    end
-
-    def followers
-      Follow.includes(:account).where(target_account: @account)
     end
   end
 end
