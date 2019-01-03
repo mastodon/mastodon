@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe UnreservedUsernameValidator, type: :validator do
   describe '#validate' do
     before do
-      allow(validator).to receive(:reserved_username?).with(username) { reserved_username }
+      allow(validator).to receive(:reserved_username?) { reserved_username }
       validator.validate(account)
     end
 
@@ -13,7 +13,7 @@ RSpec.describe UnreservedUsernameValidator, type: :validator do
     let(:account)   { double(username: username, errors: errors) }
     let(:errors )   { double(add: nil) }
 
-    context 'account.username.nil?' do
+    context '@username.nil?' do
       let(:username)  { nil }
 
       it 'not calls errors.add' do
@@ -21,7 +21,7 @@ RSpec.describe UnreservedUsernameValidator, type: :validator do
       end
     end
 
-    context '!account.username.nil?' do
+    context '!@username.nil?' do
       let(:username)  { '' }
 
       context 'reserved_username?' do
@@ -32,7 +32,7 @@ RSpec.describe UnreservedUsernameValidator, type: :validator do
         end
       end
 
-      context 'unless reserved_username?' do
+      context '!reserved_username?' do
         let(:reserved_username) { false }
 
         it 'not calls erros.add' do
