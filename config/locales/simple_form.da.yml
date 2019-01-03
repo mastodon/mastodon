@@ -34,6 +34,7 @@ da:
           hvilken som helst enhed.
         whole_word: Når nøgle ordet eller udtrykket kun er alfanumerisk, vil det kun
           blive brugt hvis det passer hele ordet
+        username: Dit brugernavn vil være unikt på %{domain}
       imports:
         data: CSV fil eksporteret fra en anden Mastodon instans
       sessions:
@@ -93,6 +94,10 @@ da:
         username: Brugernavn
         username_or_email: Brugernavn eller Email
         whole_word: Helt ord
+        setting_display_media: Visning af medier
+        setting_display_media_hide_all: Skjul alle
+        setting_display_media_show_all: Vis alle
+        setting_expand_spoilers: Udvid altid trut der er markeret med indholdsadvarsler
       interactions:
         must_be_follower: Bloker notifikationer fra folk der ikke følger dig
         must_be_following: Bloker notifikationer fra folk du ikke følger
@@ -105,6 +110,11 @@ da:
         mention: Send e-mail når nogen nævner dig
         reblog: Send email når nogen fremhæver din status
         report: Send email når en ny anmeldelse bliver indsendt
+      admin_account_action:
+        type: Handling
+        types:
+          disable: Deaktiver
+          none: Gør intet
     'no': Nej
     required:
       mark: '*'
