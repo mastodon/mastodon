@@ -62,9 +62,8 @@ module Admin
     def redownload
       authorize @account, :redownload?
 
-      @account.reset_avatar!
-      @account.reset_header!
-      @account.save!
+      @account.update!(last_webfingered_at: nil)
+      ResolveAccountService.new.call(@account)
 
       redirect_to admin_account_path(@account.id)
     end
