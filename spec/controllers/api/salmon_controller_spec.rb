@@ -40,7 +40,7 @@ RSpec.describe Api::SalmonController, type: :controller do
       end
     end
 
-    context 'with invalid post data' do
+    context 'with empty post data' do
       before do
         request.env['RAW_POST_DATA'] = ''
         post :update, params: { id: account.id }
@@ -48,6 +48,20 @@ RSpec.describe Api::SalmonController, type: :controller do
 
       it 'returns http client error' do
         expect(response).to have_http_status(400)
+      end
+    end
+
+    context 'with invalid post data' do
+      before do
+        service = double(call: false)
+        allow(VerifySalmonService).to receive(:new).and_return(service)
+
+        request.env['RAW_POST_DATA'] = File.read(File.join(Rails.root, 'spec', 'fixtures', 'salmon', 'mention.xml'))
+        post :update, params: { id: account.id }
+      end
+
+      it 'returns http client error' do
+        expect(response).to have_http_status(401)
       end
     end
   end

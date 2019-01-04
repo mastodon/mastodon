@@ -7,6 +7,7 @@ import RelativeTimestamp from './relative_timestamp';
 import DisplayName from './display_name';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
+import AttachmentList from './attachment_list';
 import { FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { MediaGallery, Video } from '../features/ui/util/async-components';
@@ -42,15 +43,12 @@ export default class Status extends ImmutablePureComponent {
     onBlock: PropTypes.func,
     onEmbed: PropTypes.func,
     onHeightChange: PropTypes.func,
+    onToggleHidden: PropTypes.func,
     muted: PropTypes.bool,
     hidden: PropTypes.bool,
     onMoveUp: PropTypes.func,
     onMoveDown: PropTypes.func,
   };
-
-  state = {
-    isExpanded: false,
-  }
 
   // Avoid checking props that are functions (and whose equality will always
   // evaluate to false. See react-immutable-pure-component for usage.
@@ -60,8 +58,6 @@ export default class Status extends ImmutablePureComponent {
     'muted',
     'hidden',
   ]
-
-  updateOnStates = ['isExpanded']
 
   handleClick = () => {
     if (!this.context.router) {
@@ -81,7 +77,7 @@ export default class Status extends ImmutablePureComponent {
   }
 
   handleExpandedToggle = () => {
-    this.setState({ isExpanded: !this.state.isExpanded });
+    this.props.onToggleHidden(this._properStatus());
   };
 
   renderLoadingMediaGallery () {
@@ -144,8 +140,7 @@ export default class Status extends ImmutablePureComponent {
     let media = null;
     let statusAvatar, prepend;
 
-    const { hidden }     = this.props;
-    const { isExpanded } = this.state;
+    const { hidden, featured } = this.props;
 
     let { status, account, ...other } = this.props;
 
@@ -162,7 +157,14 @@ export default class Status extends ImmutablePureComponent {
       );
     }
 
-    if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
+    if (featured) {
+      prepend = (
+        <div className='status__prepend'>
+          <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-thumb-tack status__prepend-icon' /></div>
+          <FormattedMessage id='status.pinned' defaultMessage='Pinned toot' />
+        </div>
+      );
+    } else if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
       const display_name_html = { __html: status.getIn(['account', 'display_name_html']) };
 
       prepend = (
@@ -176,9 +178,14 @@ export default class Status extends ImmutablePureComponent {
       status  = status.get('reblog');
     }
 
-    if (status.get('media_attachments').size > 0 && !this.props.muted) {
-      if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
-
+    if (status.get('media_attachments').size > 0) {
+      if (this.props.muted || status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
+        media = (
+          <AttachmentList
+            compact
+            media={status.get('media_attachments')}
+          />
+        );
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         const video = status.getIn(['media_attachments', 0]);
 
@@ -190,6 +197,7 @@ export default class Status extends ImmutablePureComponent {
                 src={video.get('url')}
                 width={239}
                 height={110}
+                inline
                 sensitive={status.get('sensitive')}
                 onOpenVideo={this.handleOpenVideo}
               />
@@ -240,7 +248,7 @@ export default class Status extends ImmutablePureComponent {
               </a>
             </div>
 
-            <StatusContent status={status} onClick={this.handleClick} expanded={isExpanded} onExpandedToggle={this.handleExpandedToggle} />
+            <StatusContent status={status} onClick={this.handleClick} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} />
 
             {media}
 

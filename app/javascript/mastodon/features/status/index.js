@@ -21,12 +21,19 @@ import {
   mentionCompose,
 } from '../../actions/compose';
 import { blockAccount } from '../../actions/accounts';
-import { muteStatus, unmuteStatus, deleteStatus } from '../../actions/statuses';
+import {
+  muteStatus,
+  unmuteStatus,
+  deleteStatus,
+  hideStatus,
+  revealStatus,
+} from '../../actions/statuses';
 import { initMuteModal } from '../../actions/mutes';
 import { initReport } from '../../actions/reports';
 import { makeGetStatus } from '../../selectors';
 import { ScrollContainer } from 'react-router-scroll-4';
 import ColumnBackButton from '../../components/column_back_button';
+import ColumnHeader from '../../components/column_header';
 import StatusContainer from '../../containers/status_container';
 import { openModal } from '../../actions/modal';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -39,6 +46,8 @@ const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
   blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
+  revealAll: { id: 'status.show_more_all', defaultMessage: 'Show more for all' },
+  hideAll: { id: 'status.show_less_all', defaultMessage: 'Show less for all' },
 });
 
 const makeMapStateToProps = () => {
@@ -160,6 +169,25 @@ export default class Status extends ImmutablePureComponent {
       this.props.dispatch(unmuteStatus(status.get('id')));
     } else {
       this.props.dispatch(muteStatus(status.get('id')));
+    }
+  }
+
+  handleToggleHidden = (status) => {
+    if (status.get('hidden')) {
+      this.props.dispatch(revealStatus(status.get('id')));
+    } else {
+      this.props.dispatch(hideStatus(status.get('id')));
+    }
+  }
+
+  handleToggleAll = () => {
+    const { status, ancestorsIds, descendantsIds } = this.props;
+    const statusIds = [status.get('id')].concat(ancestorsIds.toJS(), descendantsIds.toJS());
+
+    if (status.get('hidden')) {
+      this.props.dispatch(revealStatus(statusIds));
+    } else {
+      this.props.dispatch(hideStatus(statusIds));
     }
   }
 
@@ -293,7 +321,7 @@ export default class Status extends ImmutablePureComponent {
 
   render () {
     let ancestors, descendants;
-    const { status, ancestorsIds, descendantsIds } = this.props;
+    const { status, ancestorsIds, descendantsIds, intl } = this.props;
     const { fullscreen } = this.state;
 
     if (status === null) {
@@ -325,7 +353,12 @@ export default class Status extends ImmutablePureComponent {
 
     return (
       <Column>
-        <ColumnBackButton />
+        <ColumnHeader
+          showBackButton
+          extraButton={(
+            <button className='column-header__button' title={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll} aria-pressed={status.get('hidden') ? 'false' : 'true'}><i className={`fa fa-${status.get('hidden') ? 'eye-slash' : 'eye'}`} /></button>
+          )}
+        />
 
         <ScrollContainer scrollKey='thread'>
           <div className={classNames('scrollable', 'detailed-status__wrapper', { fullscreen })} ref={this.setRef}>
@@ -337,6 +370,7 @@ export default class Status extends ImmutablePureComponent {
                   status={status}
                   onOpenVideo={this.handleOpenVideo}
                   onOpenMedia={this.handleOpenMedia}
+                  onToggleHidden={this.handleToggleHidden}
                 />
 
                 <ActionBar

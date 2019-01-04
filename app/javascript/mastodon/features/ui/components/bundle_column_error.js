@@ -13,7 +13,7 @@ const messages = defineMessages({
   retry: { id: 'bundle_column_error.retry', defaultMessage: 'Try again' },
 });
 
-class BundleColumnError extends React.Component {
+class BundleColumnError extends React.PureComponent {
 
   static propTypes = {
     onRetry: PropTypes.func.isRequired,

@@ -4,6 +4,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Overlay from 'react-overlays/lib/Overlay';
 import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
+import { searchEnabled } from '../../../initial_state';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
@@ -17,7 +18,7 @@ class SearchPopout extends React.PureComponent {
 
   render () {
     const { style } = this.props;
-
+    const extraInformation = searchEnabled ? <FormattedMessage id='search_popout.tips.full_text' defaultMessage='Simple text returns statuses you have written, favourited, boosted, or have been mentioned in, as well as matching usernames, display names, and hashtags.' /> : <FormattedMessage id='search_popout.tips.text' defaultMessage='Simple text returns matching display names, usernames and hashtags' />;
     return (
       <div style={{ ...style, position: 'absolute', width: 285 }}>
         <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>
@@ -32,7 +33,7 @@ class SearchPopout extends React.PureComponent {
                 <li><em>URL</em> <FormattedMessage id='search_popout.tips.status' defaultMessage='status' /></li>
               </ul>
 
-              <FormattedMessage id='search_popout.tips.text' defaultMessage='Simple text returns matching display names, usernames and hashtags' />
+              {extraInformation}
             </div>
           )}
         </Motion>

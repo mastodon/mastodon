@@ -66,4 +66,16 @@ class UserMailer < Devise::Mailer
       mail to: @resource.email, subject: I18n.t('user_mailer.welcome.subject')
     end
   end
+
+  def backup_ready(user, backup)
+    @resource = user
+    @instance = Rails.configuration.x.local_domain
+    @backup   = backup
+
+    return if @resource.disabled?
+
+    I18n.with_locale(@resource.locale || I18n.default_locale) do
+      mail to: @resource.email, subject: I18n.t('user_mailer.backup_ready.subject')
+    end
+  end
 end

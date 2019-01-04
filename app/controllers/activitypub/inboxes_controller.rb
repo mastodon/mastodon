@@ -11,7 +11,7 @@ class ActivityPub::InboxesController < Api::BaseController
       process_payload
       head 202
     else
-      [signature_verification_failure_reason, 401]
+      render plain: signature_verification_failure_reason, status: 401
     end
   end
 

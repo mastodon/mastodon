@@ -15,7 +15,13 @@ import {
   unpin,
 } from '../actions/interactions';
 import { blockAccount } from '../actions/accounts';
-import { muteStatus, unmuteStatus, deleteStatus } from '../actions/statuses';
+import {
+  muteStatus,
+  unmuteStatus,
+  deleteStatus,
+  hideStatus,
+  revealStatus,
+} from '../actions/statuses';
 import { initMuteModal } from '../actions/mutes';
 import { initReport } from '../actions/reports';
 import { openModal } from '../actions/modal';
@@ -125,6 +131,14 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       dispatch(unmuteStatus(status.get('id')));
     } else {
       dispatch(muteStatus(status.get('id')));
+    }
+  },
+
+  onToggleHidden (status) {
+    if (status.get('hidden')) {
+      dispatch(revealStatus(status.get('id')));
+    } else {
+      dispatch(hideStatus(status.get('id')));
     }
   },
 

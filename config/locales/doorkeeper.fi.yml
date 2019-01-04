@@ -57,7 +57,7 @@ fi:
         prompt: Applikaatio %{client_name} pyytää lupaa tilillesi
         title: Valtuutus vaaditaan
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: Kopioi tämä valtuutuskoodi ja liitä se applikaatioon.
     authorized_applications:
       buttons:
         revoke: Evää
@@ -73,7 +73,7 @@ fi:
       messages:
         access_denied: Resurssin omistaja tai valtuutus palvelin hylkäsi pyynnönr.
         credential_flow_not_configured: Resurssin omistajan salasana epäonnistui koska Doorkeeper.configure.resource_owner_from_credentials ei ole konfiguroitu.
-        invalid_client: Asiakkaan valtuutus epäonnistui koska tuntematon asiakas, asiakas ei sisältänyt valtuutusta, tai tukematon valtuutus tapa
+        invalid_client: Asiakkaan valtuutus epäonnistui koska tuntematon asiakas, asiakas ei sisältänyt valtuutusta, tai tukematon valtuutus tapa.
         invalid_grant: Antamasi valtuutus lupa on joko väärä, erääntynyt, peruttu, ei vastaa uudelleenohjaus URI jota käytetään valtuutus pyynnössä, tai se myönnettin toiselle asiakkaalle.
         invalid_redirect_uri: Uudelleenohjaus uri ei ole oikein.
         invalid_request: Pyynnöstä puutti parametri, sisältää tukemattoman parametri arvonn, tai on korruptoitunut.

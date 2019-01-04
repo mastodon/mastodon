@@ -10,6 +10,7 @@ class StreamEntriesController < ApplicationController
   before_action :set_stream_entry
   before_action :set_link_headers
   before_action :check_account_suspension
+  before_action :set_cache_headers
 
   def show
     respond_to do |format|
@@ -19,6 +20,10 @@ class StreamEntriesController < ApplicationController
       end
 
       format.atom do
+        unless @stream_entry.hidden?
+          skip_session!
+          expires_in 3.minutes, public: true
+        end
         render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.entry(@stream_entry, true))
       end
     end

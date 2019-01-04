@@ -22,8 +22,4 @@ class Api::V1::Accounts::SearchController < Api::BaseController
       following: truthy_param?(:following)
     )
   end
-
-  def truthy_param?(key)
-    params[key] == 'true'
-  end
 end

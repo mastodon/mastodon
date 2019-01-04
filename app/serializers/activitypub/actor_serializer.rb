@@ -4,7 +4,7 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   include RoutingHelper
 
   attributes :id, :type, :following, :followers,
-             :inbox, :outbox,
+             :inbox, :outbox, :featured,
              :preferred_username, :name, :summary,
              :url, :manually_approves_followers
 
@@ -51,6 +51,10 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
 
   def outbox
     account_outbox_url(object)
+  end
+
+  def featured
+    account_collection_url(object, :featured)
   end
 
   def endpoints

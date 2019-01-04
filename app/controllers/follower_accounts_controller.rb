@@ -7,7 +7,9 @@ class FollowerAccountsController < ApplicationController
     @follows = Follow.where(target_account: @account).recent.page(params[:page]).per(FOLLOW_PER_PAGE).preload(:account)
 
     respond_to do |format|
-      format.html
+      format.html do
+        @relationships = AccountRelationshipsPresenter.new(@follows.map(&:account_id), current_user.account_id) if user_signed_in?
+      end
 
       format.json do
         render json: collection_presenter,

@@ -1,0 +1,14 @@
+- content_for :page_title do
+  = t('auth.confirm_email')
+
+= simple_form_for(current_user, as: 'user', url: finish_signup_path, html: { role: 'form'}) do |f|
+  - if @show_errors && current_user.errors.any?
+    #error_explanation
+      - current_user.errors.full_messages.each do |msg|
+        = msg
+        %br
+
+  = f.input :email
+
+  .actions
+    = f.submit t('auth.confirm_email'), class: 'button'

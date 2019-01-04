@@ -23,8 +23,8 @@ export const STATUS_UNMUTE_REQUEST = 'STATUS_UNMUTE_REQUEST';
 export const STATUS_UNMUTE_SUCCESS = 'STATUS_UNMUTE_SUCCESS';
 export const STATUS_UNMUTE_FAIL    = 'STATUS_UNMUTE_FAIL';
 
-export const STATUS_SET_HEIGHT = 'STATUS_SET_HEIGHT';
-export const STATUSES_CLEAR_HEIGHT = 'STATUSES_CLEAR_HEIGHT';
+export const STATUS_REVEAL = 'STATUS_REVEAL';
+export const STATUS_HIDE   = 'STATUS_HIDE';
 
 export function fetchStatusRequest(id, skipLoading) {
   return {
@@ -219,16 +219,24 @@ export function unmuteStatusFail(id, error) {
   };
 };
 
-export function setStatusHeight (id, height) {
+export function hideStatus(ids) {
+  if (!Array.isArray(ids)) {
+    ids = [ids];
+  }
+
   return {
-    type: STATUS_SET_HEIGHT,
-    id,
-    height,
+    type: STATUS_HIDE,
+    ids,
   };
 };
 
-export function clearStatusesHeight () {
+export function revealStatus(ids) {
+  if (!Array.isArray(ids)) {
+    ids = [ids];
+  }
+
   return {
-    type: STATUSES_CLEAR_HEIGHT,
+    type: STATUS_REVEAL,
+    ids,
   };
 };

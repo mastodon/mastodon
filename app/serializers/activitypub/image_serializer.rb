@@ -4,6 +4,7 @@ class ActivityPub::ImageSerializer < ActiveModel::Serializer
   include RoutingHelper
 
   attributes :type, :media_type, :url
+  attribute :focal_point, if: :focal_point?
 
   def type
     'Image'
@@ -15,5 +16,13 @@ class ActivityPub::ImageSerializer < ActiveModel::Serializer
 
   def media_type
     object.content_type
+  end
+
+  def focal_point?
+    object.respond_to?(:meta) && object.meta.is_a?(Hash) && object.meta['focus'].is_a?(Hash)
+  end
+
+  def focal_point
+    [object.meta['focus']['x'], object.meta['focus']['y']]
   end
 end

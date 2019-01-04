@@ -17,6 +17,8 @@ class ActivityPub::Activity::Reject < ActivityPub::Activity
 
     follow_request = FollowRequest.find_by(account: target_account, target_account: @account)
     follow_request&.reject!
+
+    UnfollowService.new.call(target_account, @account) if target_account.following?(@account)
   end
 
   def target_uri

@@ -2,7 +2,7 @@ module Twitter
   class Regex
 
     REGEXEN[:valid_general_url_path_chars] = /[^\p{White_Space}\(\)\?]/iou
-    REGEXEN[:valid_url_path_ending_chars] = /[^\p{White_Space}\(\)\?!\*';:=\,\.\$%\[\]\p{Pd}~&\|@]|(?:#{REGEXEN[:valid_url_balanced_parens]})/iou
+    REGEXEN[:valid_url_path_ending_chars] = /[^\p{White_Space}\(\)\?!\*';:=\,\.\$%\[\]~&\|@]|(?:#{REGEXEN[:valid_url_balanced_parens]})/iou
     REGEXEN[:valid_url_balanced_parens] = /
       \(
         (?:

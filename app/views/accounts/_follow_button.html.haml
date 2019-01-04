@@ -1,0 +1,23 @@
+- relationships ||= nil
+
+- unless account.memorial? || account.moved?
+  - if user_signed_in?
+    - requested = relationships ? relationships.requested[account.id].present? : current_account.requested?(account)
+    - following = relationships ? relationships.following[account.id].present? : current_account.following?(account)
+
+  - if user_signed_in? && current_account.id != account.id && !requested
+    .controls
+      - if following
+        = link_to account_unfollow_path(account), data: { method: :post }, class: 'icon-button' do
+          = fa_icon 'user-times'
+          = t('accounts.unfollow')
+      - else
+        = link_to account_follow_path(account), data: { method: :post }, class: 'icon-button' do
+          = fa_icon 'user-plus'
+          = t('accounts.follow')
+  - elsif !user_signed_in?
+    .controls
+      .remote-follow
+        = link_to account_remote_follow_path(account), class: 'icon-button' do
+          = fa_icon 'user-plus'
+          = t('accounts.remote_follow')

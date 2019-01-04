@@ -13,9 +13,9 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def follow
-    FollowService.new.call(current_user.account, @account.acct, reblogs: params[:reblogs])
+    FollowService.new.call(current_user.account, @account.acct, reblogs: truthy_param?(:reblogs))
 
-    options = @account.locked? ? {} : { following_map: { @account.id => { reblogs: params[:reblogs] } }, requested_map: { @account.id => false } }
+    options = @account.locked? ? {} : { following_map: { @account.id => { reblogs: truthy_param?(:reblogs) } }, requested_map: { @account.id => false } }
 
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships(options)
   end
@@ -26,7 +26,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def mute
-    MuteService.new.call(current_user.account, @account, notifications: params[:notifications])
+    MuteService.new.call(current_user.account, @account, notifications: truthy_param?(:notifications))
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships
   end
 

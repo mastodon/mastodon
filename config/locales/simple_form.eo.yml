@@ -3,42 +3,69 @@ eo:
   simple_form:
     hints:
       defaults:
-        avatar: En la formato PNG, GIF aŭ JPG. Ĝis 2Mo. Estos malgrandigita al 120x120px
-        display_name: 30 signoj pleje
-        header: En la formato PNG, GIF aŭ JPG. Ĝis 2Mo. Estos malgrandigita al 700x335px
-        locked: Vi devos aprobi ĉiun peton de sekvado, kaj viaj mesaĝoj estos senŝanĝe nur por viaj sekvantoj.
-        note: 160 signoj pleje
+        avatar: Formato PNG, GIF aŭ JPG. Ĝis 2MB. Estos malgrandigita al 400x400px
+        digest: Sendita nur post longa tempo de neaktiveco, kaj nur se vi ricevis personan mesaĝon en via foresto
+        display_name:
+          one: <span class="name-counter">1</span> signo restas
+          other: <span class="name-counter">%{count}</span> signoj restas
+        header: Formato PNG, GIF aŭ JPG. Ĝis 2MB. Estos malgrandigita al 700x335px
+        locked: Vi devos aprobi ĉiun peton de sekvado mane
+        note:
+          one: <span class="note-counter">1</span> signo restas
+          other: <span class="note-counter">%{count}</span> signoj restas
+        setting_noindex: Influas vian publikan profilon kaj mesaĝajn paĝojn
+        setting_theme: Influas kiel Mastodon aspektas kiam vi ensalutis en ajna aparato.
       imports:
-        data: Dosiero CSV el alia aperaĵo de Mastodon
+        data: CSV-dosiero el alia nodo de Mastodon
+      sessions:
+        otp: Enmetu la kodon de dufaktora aŭtentigo el via telefono aŭ uzu unu el la realiraj kodoj.
+      user:
+        filtered_languages: Markitaj lingvoj estos elfiltritaj de publikaj tempolinioj por vi
     labels:
       defaults:
         avatar: Profilbildo
         confirm_new_password: Konfirmi novan pasvorton
-        confirm_password: Konfirmi la pasvorton
+        confirm_password: Konfirmi pasvorton
         current_password: Nuna pasvorto
         data: Datumoj
         display_name: Publika nomo
-        email: Retpoŝt-adreso
-        header: Kapbildo
+        email: Retadreso
+        expires_in: Eksvalidiĝas post
+        filtered_languages: Filtritaj lingvoj
+        header: Fonbildo
         locale: Lingvo
-        locked: Privatigi la konton
+        locked: Ŝlosi konton
+        max_uses: Maksimuma nombro de uzoj
         new_password: Nova pasvorto
         note: Sinprezento
-        otp_attempt: Dufaktora identigilo
+        otp_attempt: Kodo de dufaktora aŭtentigo
         password: Pasvorto
-        setting_default_privacy: Videbleco de la mesaĝoj
-        type: Tipo de alportado
+        setting_auto_play_gif: Aŭtomate ekigi GIF-ojn
+        setting_boost_modal: Montri fenestron por konfirmi antaŭ ol diskonigi
+        setting_default_privacy: Mesaĝa videbleco
+        setting_default_sensitive: Ĉiam marki aŭdovidaĵojn tiklaj
+        setting_delete_modal: Montri fenestron por konfirmi antaŭ ol forigi mesaĝon
+        setting_display_sensitive_media: Ĉiam montri aŭdovidaĵon markitajn tiklaj
+        setting_noindex: Ellistiĝi de retserĉila indeksado
+        setting_reduce_motion: Malrapidigi animaciojn
+        setting_system_font_ui: Uzi la dekomencan tiparon de la sistemo
+        setting_theme: Reteja etoso
+        setting_unfollow_modal: Montri fenestron por konfirmi antaŭ ol ĉesi sekvi iun
+        severity: Graveco
+        type: Importa tipo
         username: Uzantnomo
+        username_or_email: Uzantnomo aŭ Retadreso
       interactions:
-        must_be_follower: Kaŝi la sciigojn de homoj, kiuj ne sekvas vin
-        must_be_following: Kaŝi la sciigojn de homoj, kiujn vi ne sekvas
+        must_be_follower: Bloki sciigojn de nesekvantoj
+        must_be_following: Bloki sciigojn de homoj, kiujn vi ne sekvas
+        must_be_following_dm: Bloki rektajn mesaĝojn de homoj, kiujn vi ne sekvas
       notification_emails:
-        digest: Sendi resumajn retpoŝt-mesaĝojn
-        favourite: Sendi retpoŝt-mesaĝon, kiam iu favoras mesaĝon de vi
-        follow: Sendi retpoŝt-mesaĝon, kiam iu eksekvas vin
-        follow_request: Sendi retpoŝt-mesaĝon, kiam iu petas sekvi vin
-        mention: Sendi retpoŝt-mesaĝon, kiam iu mencias vin
-        reblog: Sendi retpoŝt-mesaĝon, kiam iu diskonigas mesaĝon de vi
+        digest: Sendi resumajn retmesaĝojn
+        favourite: Sendi retmesaĝon kiam iu stelumas vian mesaĝon
+        follow: Sendi retmesaĝon kiam iu sekvas vin
+        follow_request: Sendi retmesaĝon kiam iu petas sekvi vin
+        mention: Sendi retmesaĝon kiam iu mencias vin
+        reblog: Sendi retmesaĝon kiam iu diskonigas vian mesaĝon
     'no': Ne
     required:
       mark: "*"

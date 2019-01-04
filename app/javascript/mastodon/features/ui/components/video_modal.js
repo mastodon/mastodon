@@ -16,7 +16,7 @@ export default class VideoModal extends ImmutablePureComponent {
     const { media, time, onClose } = this.props;
 
     return (
-      <div className='modal-root__modal media-modal'>
+      <div className='modal-root__modal video-modal'>
         <div>
           <Video
             preview={media.get('preview_url')}

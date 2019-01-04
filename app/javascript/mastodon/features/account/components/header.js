@@ -13,6 +13,7 @@ const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
+  unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
 });
 
 class Avatar extends ImmutablePureComponent {
@@ -69,6 +70,7 @@ export default class Header extends ImmutablePureComponent {
   static propTypes = {
     account: ImmutablePropTypes.map,
     onFollow: PropTypes.func.isRequired,
+    onBlock: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -80,11 +82,20 @@ export default class Header extends ImmutablePureComponent {
     }
 
     let info        = '';
+    let mutingInfo  = '';
     let actionBtn   = '';
     let lockedIcon  = '';
 
     if (me !== account.get('id') && account.getIn(['relationship', 'followed_by'])) {
       info = <span className='account--follows-info'><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>;
+    } else if (me !== account.get('id') && account.getIn(['relationship', 'blocking'])) {
+      info = <span className='account--follows-info'><FormattedMessage id='account.blocked' defaultMessage='Blocked' /></span>;
+    }
+
+    if (me !== account.get('id') && account.getIn(['relationship', 'muting'])) {
+      mutingInfo = <span className='account--muting-info'><FormattedMessage id='account.muted' defaultMessage='Muted' /></span>;
+    } else if (me !== account.get('id') && account.getIn(['relationship', 'domain_blocking'])) {
+      mutingInfo = <span className='account--muting-info'><FormattedMessage id='account.domain_blocked' defaultMessage='Domain hidden' /></span>;
     }
 
     if (me !== account.get('id')) {
@@ -98,6 +109,12 @@ export default class Header extends ImmutablePureComponent {
         actionBtn = (
           <div className='account--action-button'>
             <IconButton size={26} icon={account.getIn(['relationship', 'following']) ? 'user-times' : 'user-plus'} active={account.getIn(['relationship', 'following'])} title={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.props.onFollow} />
+          </div>
+        );
+      } else if (account.getIn(['relationship', 'blocking'])) {
+        actionBtn = (
+          <div className='account--action-button'>
+            <IconButton size={26} icon='unlock-alt' title={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />
           </div>
         );
       }
@@ -124,6 +141,7 @@ export default class Header extends ImmutablePureComponent {
           <div className='account__header__content' dangerouslySetInnerHTML={content} />
 
           {info}
+          {mutingInfo}
           {actionBtn}
         </div>
       </div>

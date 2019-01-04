@@ -24,6 +24,10 @@ class Report < ApplicationRecord
 
   validates :comment, length: { maximum: 1000 }
 
+  def object_type
+    :flag
+  end
+
   def statuses
     Status.where(id: status_ids).includes(:account, :media_attachments, :mentions)
   end
