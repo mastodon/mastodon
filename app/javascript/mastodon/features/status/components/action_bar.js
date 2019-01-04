@@ -13,6 +13,10 @@ const messages = defineMessages({
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
+  mute: { id: 'status.mute', defaultMessage: 'Mute @{name}' },
+  muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
+  unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
+  block: { id: 'status.block', defaultMessage: 'Block @{name}' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
   share: { id: 'status.share', defaultMessage: 'Share' },
   pin: { id: 'status.pin', defaultMessage: 'Pin on profile' },
@@ -34,6 +38,9 @@ export default class ActionBar extends React.PureComponent {
     onFavourite: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
+    onMute: PropTypes.func,
+    onMuteConversation: PropTypes.func,
+    onBlock: PropTypes.func,
     onReport: PropTypes.func,
     onPin: PropTypes.func,
     onEmbed: PropTypes.func,
@@ -60,6 +67,18 @@ export default class ActionBar extends React.PureComponent {
     this.props.onMention(this.props.status.get('account'), this.context.router.history);
   }
 
+  handleMuteClick = () => {
+    this.props.onMute(this.props.status.get('account'));
+  }
+
+  handleConversationMuteClick = () => {
+    this.props.onMuteConversation(this.props.status);
+  }
+
+  handleBlockClick = () => {
+    this.props.onBlock(this.props.status.get('account'));
+  }
+
   handleReport = () => {
     this.props.onReport(this.props.status);
   }
@@ -83,6 +102,7 @@ export default class ActionBar extends React.PureComponent {
     const { status, intl } = this.props;
 
     const publicStatus = ['public', 'unlisted'].includes(status.get('visibility'));
+    const mutingConversation = status.get('muted');
 
     let menu = [];
 
@@ -95,10 +115,15 @@ export default class ActionBar extends React.PureComponent {
         menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
       }
 
+      menu.push(null);
+      menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
+      menu.push(null);
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
       menu.push(null);
+      menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick });
+      menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick });
       menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
     }
 

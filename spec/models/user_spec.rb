@@ -148,6 +148,14 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#confirm' do
+    it 'sets email to unconfirmed_email' do
+      user = Fabricate.build(:user, confirmed_at: Time.now.utc, unconfirmed_email: 'new-email@example.com')
+      user.confirm
+      expect(user.email).to eq 'new-email@example.com'
+    end
+  end
+
   describe '#disable_two_factor!' do
     it 'saves false for otp_required_for_login' do
       user = Fabricate.build(:user, otp_required_for_login: true)

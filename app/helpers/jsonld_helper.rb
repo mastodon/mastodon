@@ -39,6 +39,10 @@ module JsonLdHelper
     !json.nil? && equals_or_includes?(json['@context'], ActivityPub::TagManager::CONTEXT)
   end
 
+  def unsupported_uri_scheme?(uri)
+    !uri.start_with?('http://', 'https://')
+  end
+
   def canonicalize(json)
     graph = RDF::Graph.new << JSON::LD::API.toRdf(json)
     graph.dump(:normalize)

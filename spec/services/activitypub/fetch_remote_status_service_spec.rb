@@ -21,6 +21,8 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
   describe '#call' do
     before do
+      sender.update(uri: ActivityPub::TagManager.instance.uri_for(sender))
+
       stub_request(:head, 'https://example.com/watch?v=12345').to_return(status: 404, body: '')
       subject.call(object[:id], prefetched_body: Oj.dump(object))
     end
@@ -48,13 +50,13 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
             {
               type: 'Link',
               mimeType: 'application/x-bittorrent',
-              href: 'https://example.com/12345.torrent',
+              href: "https://#{valid_domain}/12345.torrent",
             },
 
             {
               type: 'Link',
               mimeType: 'text/html',
-              href: 'https://example.com/watch?v=12345',
+              href: "https://#{valid_domain}/watch?v=12345",
             },
           ],
         }
@@ -64,8 +66,8 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
         status = sender.statuses.first
 
         expect(status).to_not be_nil
-        expect(status.url).to eq 'https://example.com/watch?v=12345'
-        expect(strip_tags(status.text)).to eq 'Nyan Cat 10 hours remix https://example.com/watch?v=12345'
+        expect(status.url).to eq "https://#{valid_domain}/watch?v=12345"
+        expect(strip_tags(status.text)).to eq "Nyan Cat 10 hours remix https://#{valid_domain}/watch?v=12345"
       end
     end
   end

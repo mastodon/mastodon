@@ -29,7 +29,7 @@ class ProviderDiscovery < OEmbed::ProviderDiscovery
       end
 
       if format.nil? || format == :xml
-        provider_endpoint ||= html.at_xpath('//link[@type="application/xml+oembed"]')&.attribute('href')&.value
+        provider_endpoint ||= html.at_xpath('//link[@type="text/xml+oembed"]')&.attribute('href')&.value
         format ||= :xml if provider_endpoint
       end
 

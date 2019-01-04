@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { defineMessages, injectIntl } from 'react-intl';
 import ColumnSettings from '../components/column_settings';
-import { changeSetting, saveSettings } from '../../../actions/settings';
+import { changeSetting } from '../../../actions/settings';
 import { clearNotifications } from '../../../actions/notifications';
-import { changeAlerts as changePushNotifications, saveSettings as savePushNotificationSettings } from '../../../actions/push_notifications';
+import { changeAlerts as changePushNotifications } from '../../../actions/push_notifications';
 import { openModal } from '../../../actions/modal';
 
 const messages = defineMessages({
@@ -18,17 +18,12 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
 
-  onChange (key, checked) {
-    if (key[0] === 'push') {
-      dispatch(changePushNotifications(key.slice(1), checked));
+  onChange (path, checked) {
+    if (path[0] === 'push') {
+      dispatch(changePushNotifications(path.slice(1), checked));
     } else {
-      dispatch(changeSetting(['notifications', ...key], checked));
+      dispatch(changeSetting(['notifications', ...path], checked));
     }
-  },
-
-  onSave () {
-    dispatch(saveSettings());
-    dispatch(savePushNotificationSettings());
   },
 
   onClear () {

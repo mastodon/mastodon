@@ -116,6 +116,7 @@ ca:
       roles:
         admin: Administrador
         moderator: Moderador
+        staff: Personal
         user: Usuari
       salmon_url: URL Salmon
       search: Cerca
@@ -160,6 +161,7 @@ ca:
         update_status: "%{name} estat actualizat per %{target}"
       title: Registre d'auditoria
     custom_emojis:
+      by_domain: Domini
       copied_msg: S'ha creat correctament la còpia local del emoji
       copy: Copia
       copy_failed_msg: No s'ha pogut fer una còpia local d'aquest emoji
@@ -458,6 +460,9 @@ ca:
     title: Convida persones
   landing_strip_html: "<strong>%{name}</strong> és un usuari/a de %{link_to_root_path}. Pots seguir-lo/la o interactuar amb ell/a si tens un compte a qualsevol node del fediverse."
   landing_strip_signup_html: Si no en tens, pots <a href="%{sign_up_path}">registrar-te aquí</a>.
+  lists:
+    errors:
+      limit: Has assolit la quantitat màxima de llistes
   media_attachments:
     validations:
       images_and_video: No es pot adjuntar un vídeo a una publicació que ja contingui imatges
@@ -596,6 +601,7 @@ ca:
       private: No es pot fixar el toot no públic
       reblog: No es pot fixar un impuls
     show_more: Mostrar més
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Només seguidors
       private_long: Mostra només als seguidors

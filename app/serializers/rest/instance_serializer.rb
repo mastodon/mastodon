@@ -27,7 +27,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   end
 
   def thumbnail
-    full_asset_url(instance_presenter.thumbnail.file.url) if instance_presenter.thumbnail
+    instance_presenter.thumbnail ? full_asset_url(instance_presenter.thumbnail.file.url) : full_pack_url('preview.jpg')
   end
 
   def stats

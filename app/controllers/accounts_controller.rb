@@ -2,7 +2,8 @@
 
 class AccountsController < ApplicationController
   include AccountControllerConcern
-  include SignatureVerification
+
+  before_action :set_cache_headers
 
   def show
     respond_to do |format|
@@ -26,10 +27,11 @@ class AccountsController < ApplicationController
       end
 
       format.json do
-        render json: @account,
-               serializer: ActivityPub::ActorSerializer,
-               adapter: ActivityPub::Adapter,
-               content_type: 'application/activity+json'
+        skip_session!
+
+        render_cached_json(['activitypub', 'actor', @account.cache_key], content_type: 'application/activity+json') do
+          ActiveModelSerializers::SerializableResource.new(@account, serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter)
+        end
       end
     end
   end

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Create < ActivityPub::Activity
-  SUPPORTED_TYPES = %w(Article Note).freeze
-  CONVERTED_TYPES = %w(Image Video).freeze
+  SUPPORTED_TYPES = %w(Note).freeze
+  CONVERTED_TYPES = %w(Image Video Article).freeze
 
   def perform
-    return if delete_arrived_first?(object_uri) || unsupported_object_type?
+    return if delete_arrived_first?(object_uri) || unsupported_object_type? || invalid_origin?(@object['id'])
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
@@ -213,7 +213,14 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def object_url
     return if @object['url'].blank?
-    url_to_href(@object['url'], 'text/html')
+
+    url_candidate = url_to_href(@object['url'], 'text/html')
+
+    if invalid_origin?(url_candidate)
+      nil
+    else
+      url_candidate
+    end
   end
 
   def content_language_map?
@@ -243,6 +250,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def skip_download?
     return @skip_download if defined?(@skip_download)
     @skip_download ||= DomainBlock.find_by(domain: @account.domain)&.reject_media?
+  end
+
+  def invalid_origin?(url)
+    return true if unsupported_uri_scheme?(url)
+
+    needle   = Addressable::URI.parse(url).host
+    haystack = Addressable::URI.parse(@account.uri).host
+
+    !haystack.casecmp(needle).zero?
   end
 
   def reply_to_local?
