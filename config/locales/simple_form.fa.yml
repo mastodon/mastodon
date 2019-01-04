@@ -3,7 +3,7 @@ fa:
   simple_form:
     hints:
       defaults:
-        avatar: یکی از قالب‌های PNG یا  GIF یا JPG. بیشترین اندازه ۲ مگابایت. تصویر به اندازهٔ ۱۲۰×۱۲۰ پیکسل تبدیل خواهد شد.
+        avatar: یکی از قالب‌های PNG یا  GIF یا JPG. بیشترین اندازه ۲ مگابایت. تصویر به اندازهٔ ۱۲۰×۱۲۰ پیکسل تبدیل خواهد شد
         digest: پس از مدت طولانی عدم فعالیت فرستاده می‌شود، شامل خلاصه‌ای از مواردی که در نبودتان از شما نام برده شده
         display_name:
           one: <span class="name-counter">1</span> حرف باقی مانده
@@ -20,7 +20,7 @@ fa:
       sessions:
         otp: کد تأیید دومرحله‌ای را از تلفن خود وارد کنید یا یکی از کدهای بازیابی را به کار ببرید.
       user:
-        filtered_languages: زبان‌های انتخاب‌شده از فهرست عمومی نوشته‌هایی که می‌بینید حذف می‌شوند.
+        filtered_languages: زبان‌های انتخاب‌شده از فهرست عمومی نوشته‌هایی که می‌بینید حذف می‌شوند
     labels:
       defaults:
         avatar: تصویر نمایه
@@ -30,10 +30,12 @@ fa:
         data: داده‌ها
         display_name: نمایش به نام
         email: نشانی ایمیل
+        expires_in: تاریخ انقضا
         filtered_languages: زبان‌های فیلترشده
         header: تصویر زمینه
         locale: زبان
         locked: خصوصی‌کردن حساب
+        max_uses: بیشترین شمار استفاده
         new_password: رمز تازه
         note: دربارهٔ شما
         otp_attempt: کد ورود دومرحله‌ای
@@ -44,6 +46,7 @@ fa:
         setting_default_sensitive: همیشه تصاویر را به عنوان حساس علامت بزن
         setting_delete_modal: پیش از پاک کردن یک نوشته پیغام تأیید نشان بده
         setting_noindex: درخواست از موتورهای جستجو برای لغو فهرست‌سازی
+        setting_reduce_motion: کاستن از حرکت در پویانمایی‌ها
         setting_system_font_ui: به‌کاربردن قلم پیش‌فرض سیستم
         setting_theme: تم سایت
         setting_unfollow_modal: نمایش پیغام تأیید پیش از لغو پیگیری دیگران
@@ -53,6 +56,7 @@ fa:
       interactions:
         must_be_follower: مسدودکردن اعلان‌های همه به جز پیگیران
         must_be_following: مسدودکردن اعلان‌های کسانی که شما پی نمی‌گیرید
+        must_be_following_dm: مسدودکردن پیغام‌های خصوصی کسانی که شما پی نمی‌گیرید
       notification_emails:
         digest: خلاصه‌کردن چند اعلان در یک ایمیل
         favourite: وقتی کسی نوشتهٔ شما پسندید ایمیل بفرست

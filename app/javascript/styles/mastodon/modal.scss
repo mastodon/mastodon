@@ -1,0 +1,20 @@
+.modal-layout {
+  background: $ui-base-color url('../images/wave-modal.png') repeat-x bottom fixed;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 0;
+}
+
+.modal-layout__mastodon {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  > * {
+    flex: 1;
+    max-height: 235px;
+    background: url('../images/mastodon-ui.png') no-repeat left bottom / contain;
+  }
+}

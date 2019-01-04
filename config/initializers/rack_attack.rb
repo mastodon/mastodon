@@ -53,7 +53,7 @@ class Rack::Attack
     req.ip if req.api_request?
   end
 
-  throttle('protected_paths', limit: 5, period: 5.minutes) do |req|
+  throttle('protected_paths', limit: 25, period: 5.minutes) do |req|
     req.ip if req.post? && req.path =~ PROTECTED_PATHS_REGEX
   end
 

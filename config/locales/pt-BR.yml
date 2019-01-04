@@ -1,10 +1,10 @@
 ---
 pt-BR:
   about:
-    about_hashtag_html: Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Voce pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.
+    about_hashtag_html: Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.
     about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos e software gratuito e de código aberto. É descentralizada como e-mail.
     about_this: Sobre
-    closed_registrations: Cadastros estão atualmente fechados nesta instância. No entanto! Você pode procurar uma instância diferente na qual possa criar uma conta e acessar a mesma rede por lá.
+    closed_registrations: Os cadastros estão atualmente fechados nesta instância. No entanto, você pode procurar uma instância diferente na qual possa criar uma conta e acessar a mesma rede por lá.
     contact: Contato
     contact_missing: Não definido
     contact_unavailable: N/A
@@ -21,15 +21,15 @@ pt-BR:
       not_a_product_title: Você é uma pessoa e não um produto
       real_conversation_body: Com 500 caracteres à sua disposição e suporte para conteúdo granular e avisos de conteúdo, você pode se expressar da maneira que desejar.
       real_conversation_title: Feito para conversas reais
-      within_reach_body: Vários apps para iOS, Android e outras plataformas graças a um ecossistema de API amigável para desenvolvedores proporcionam que você possa se manter atualizado sobre seus amigos de qualquer lugar.
-      within_reach_title: Sempre a seu alcance
+      within_reach_body: Vários apps para iOS, Android e outras plataformas graças a um ecossistema de API amigável para desenvolvedores permitem que você possa se manter atualizado sobre seus amigos de qualquer lugar.
+      within_reach_title: Sempre ao seu alcance
     find_another_instance: Encontre outra instância
     generic_description: "%{domain} é um servidor na rede"
     hosted_on: Mastodon hospedado em %{domain}
     learn_more: Saiba mais
     other_instances: Lista de instâncias
-    source_code: Código fonte
-    status_count_after: postagens
+    source_code: Código-fonte
+    status_count_after: publicações
     status_count_before: Autores de
     user_count_after: usuários
     user_count_before: Casa de
@@ -85,7 +85,7 @@ pt-BR:
         local: Local
         remote: Remoto
         title: Localização
-      login_status: Status de login
+      login_status: Situação de login
       media_attachments: Mídia(s) anexada(s)
       memorialize: Tornar um memorial
       moderation:
@@ -96,13 +96,13 @@ pt-BR:
       moderation_notes: Notas de moderação
       most_recent_activity: Atividade mais recente
       most_recent_ip: IP mais recente
-      not_subscribed: Não inscrito
+      not_subscribed: Não está inscrito
       order:
         alphabetic: Alfabética
         most_recent: Mais recente
         title: Ordem
-      outbox_url: URL da Outbox
-      perform_full_suspension: Efetue suspensão total
+      outbox_url: URL da caixa de saída
+      perform_full_suspension: Aplicar suspensão total
       profile_url: URL do perfil
       promote: Promover
       protocol: Protocolo
@@ -116,19 +116,20 @@ pt-BR:
       roles:
         admin: Administrador
         moderator: Moderador
+        staff: Equipe
         user: Usuário
       salmon_url: URL Salmon
       search: Pesquisar
-      shared_inbox_url: URL da Inbox Compartilhada
+      shared_inbox_url: URL da caixa de entrada compartilhada
       show:
         created_reports: Denúncias criadas por esta conta
         report: relatórios
         targeted_reports: Denúncias feitas sobre esta conta
-      silence: Silêncio
+      silence: Silenciar
       statuses: Postagens
       subscribe: Inscrever-se
       title: Contas
-      undo_silenced: Desativar silêncio
+      undo_silenced: Retirar silenciamento
       undo_suspension: Retirar suspensão
       unsubscribe: Desinscrever-se
       username: Nome de usuário
@@ -160,6 +161,7 @@ pt-BR:
         update_status: "%{name} atualizou o estado de %{target}"
       title: Auditar relatório
     custom_emojis:
+      by_domain: Domínio
       copied_msg: Cópia local do emoji criada com sucesso
       copy: Copiar
       copy_failed_msg: Não foi possível criar uma cópia local deste emoji
@@ -343,7 +345,7 @@ pt-BR:
     warning: Tenha cuidado com estes dados. Nunca compartilhe com alguém!
     your_token: Seu token de acesso
   auth:
-    agreement_html: Cadastrando-se você concorda com <a href="%{rules_path}">nossos termos de serviço</a> e <a href="%{terms_path}">política de privacidade</a>.
+    agreement_html: Cadastrando-se você concorda em seguir <a href="%{rules_path}">as regras da instância</a> e <a href="%{terms_path}">os nossos termos de serviço</a>.
     change_password: Segurança
     delete_account: Excluir conta
     delete_account_html: Se você deseja excluir a sua conta, você pode <a href="%{path}">prosseguir para cá</a>. Uma confirmação será requisitada.
@@ -594,11 +596,12 @@ pt-BR:
     open_in_web: Abrir na web
     over_character_limit: limite de caracteres de %{max} excedido
     pin_errors:
-      limit: Muitos toots fixados
+      limit: Você já fixou o máximo de toots possíveis
       ownership: Toots de outras pessoas não podem ser fixados
       private: Toot não-público não pode ser fixado
       reblog: Um compartilhamento não pode ser fixado
     show_more: Mostrar mais
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Apenas seguidores
       private_long: Mostrar apenas para seguidores

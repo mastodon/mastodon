@@ -116,6 +116,7 @@ pl:
       roles:
         admin: Administrator
         moderator: Moderator
+        staff: Ekipa
         user: Użytkownik
       salmon_url: Adres Salmon
       search: Szukaj
@@ -160,6 +161,7 @@ pl:
         update_status: "%{name} zaktualizował wpis użytkownika %{target}"
       title: Dziennik działań administracyjnych
     custom_emojis:
+      by_domain: Domeny
       copied_msg: Pomyślnie utworzono lokalną kopię emoji
       copy: Kopiuj
       copy_failed_msg: Nie udało się utworzyć lokalnej kopii emoji
@@ -264,12 +266,18 @@ pl:
       unresolved: Nierozwiązane
       view: Wyświetl
     settings:
+      activity_api_enabled:
+        desc_html: Liczy publikowane lokalnie wpisy, aktywnych użytkowników i nowe rejestracje w ciągu danego tygodnia
+        title: Publikuj zbiorowe statystyki o aktywności użytkowników
       bootstrap_timeline_accounts:
         desc_html: Oddzielaj nazwy użytkowników przecinkami. Działa tylko dla niezablokowanych kont w obrębie instancji. Jeżeli puste, zostaną użyte konta administratorów instancji.
         title: Domyślnie obserwowani użytkownicy
       contact_information:
         email: Służbowy adres e-mail
         username: Nazwa użytkownika do kontaktu
+      peers_api_enabled:
+        desc_html: Nazwy domen, z którymi ta instancja wchodziła w interakcje
+        title: Publikuj listę znanych instancji
       registrations:
         closed_message:
           desc_html: Wyświetlana na stronie głównej, gdy możliwość otwarej rejestracji nie jest dostępna. Możesz korzystać z tagów HTML
@@ -344,7 +352,7 @@ pl:
     warning: Przechowuj te dane ostrożnie. Nie udostępniaj ich nikomu!
     your_token: Twój token dostępu
   auth:
-    agreement_html: Rejestrując się, oświadczasz, że zapoznałeś się z <a href="%{rules_path}">naszymi zasadami użytkowania</a> i <a href="%{terms_path}">polityką prywatności</a>.
+    agreement_html: Rejestrując się, oświadczasz, że zapoznałeś się z <a href="%{rules_path}">informacjami o instancji</a> i <a href="%{terms_path}">zasadami korzystania z usługi</a>.
     change_password: Bezpieczeństwo
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
@@ -472,7 +480,7 @@ pl:
     acct: nazwa@domena nowego konta
     currently_redirecting: 'Obecnie Twoje konto przekierowuje do:'
     proceed: Zapisz
-    updated_msg: Pomyślnie zaktualizowano ustawienia i migracji Twojego konta!
+    updated_msg: Pomyślnie zaktualizowano ustawienia migracji Twojego konta!
   moderation:
     title: Moderacja
   notification_mailer:
@@ -606,6 +614,7 @@ pl:
       private: Nie możesz przypiąć niepublicznego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
     show_more: Pokaż więcej
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Tylko dla śledzących
       private_long: Widoczne tylko dla osób, które Cię śledzą

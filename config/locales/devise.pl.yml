@@ -18,8 +18,12 @@ pl:
     mailer:
       confirmation_instructions:
         subject: 'Mastodon: Instrukcje weryfikacji adresu e-mail'
+      email_changed:
+        subject: 'Mastodon: Zmieniono adres e-mail'
       password_change:
-        subject: 'Mastodon: Hasło zmienione'
+        subject: 'Mastodon: Zmieniono hasło'
+      reconfirmation_instructions:
+        subject: 'Mastodon: Potwierdź adres e-mail na &{instance}'
       reset_password_instructions:
         subject: 'Mastodon: Instrukcje ustawienia nowego hasła'
       unlock_instructions:

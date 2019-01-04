@@ -18,8 +18,12 @@ ja:
     mailer:
       confirmation_instructions:
         subject: 'Mastodon: メールアドレスの確認'
+      email_changed:
+        subject: 'Mastodon: メールアドレスの変更'
       password_change:
         subject: 'Mastodon: パスワードが変更されました'
+      reconfirmation_instructions:
+        subject: 'Mastodon: %{instance}のメールを確認する'
       reset_password_instructions:
         subject: 'Mastodon: パスワード再発行'
       unlock_instructions:
