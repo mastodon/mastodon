@@ -11,8 +11,8 @@
 #
 
 class Mention < ApplicationRecord
-  belongs_to :account, inverse_of: :mentions, required: true
-  belongs_to :status, required: true
+  belongs_to :account, inverse_of: :mentions
+  belongs_to :status
 
   has_one :notification, as: :activity, dependent: :destroy
 

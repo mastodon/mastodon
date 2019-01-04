@@ -9,6 +9,6 @@
 #
 
 class ConversationMute < ApplicationRecord
-  belongs_to :account, required: true
-  belongs_to :conversation, required: true
+  belongs_to :account
+  belongs_to :conversation
 end

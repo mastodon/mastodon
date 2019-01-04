@@ -1,0 +1,12 @@
+<%= t 'devise.mailer.confirmation_instructions.title' %>
+
+===
+
+<%= t 'devise.mailer.confirmation_instructions.explanation', host: site_hostname %>
+
+=> <%= confirmation_url(@resource, confirmation_token: @token) %>
+
+<%= strip_tags(t('devise.mailer.confirmation_instructions.extra_html', terms_path: about_more_url, policy_path: terms_url)) %>
+
+=> <%= about_more_url %>
+=> <%= terms_url %>

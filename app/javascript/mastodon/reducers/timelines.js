@@ -30,7 +30,7 @@ const initialTimeline = ImmutableMap({
   items: ImmutableList(),
 });
 
-const normalizeTimeline = (state, timeline, statuses, next) => {
+const normalizeTimeline = (state, timeline, statuses, next, isPartial) => {
   const oldIds    = state.getIn([timeline, 'items'], ImmutableList());
   const ids       = ImmutableList(statuses.map(status => status.get('id'))).filter(newId => !oldIds.includes(newId));
   const wasLoaded = state.getIn([timeline, 'loaded']);
@@ -40,7 +40,8 @@ const normalizeTimeline = (state, timeline, statuses, next) => {
     mMap.set('loaded', true);
     mMap.set('isLoading', false);
     if (!hadNext) mMap.set('next', next);
-    mMap.set('items', wasLoaded ? ids.concat(oldIds) : ids);
+    mMap.set('items', wasLoaded ? ids.concat(oldIds) : oldIds.concat(ids));
+    mMap.set('isPartial', isPartial);
   }));
 };
 
@@ -124,7 +125,7 @@ export default function timelines(state = initialState, action) {
   case TIMELINE_EXPAND_FAIL:
     return state.update(action.timeline, initialTimeline, map => map.set('isLoading', false));
   case TIMELINE_REFRESH_SUCCESS:
-    return normalizeTimeline(state, action.timeline, fromJS(action.statuses), action.next);
+    return normalizeTimeline(state, action.timeline, fromJS(action.statuses), action.next, action.partial);
   case TIMELINE_EXPAND_SUCCESS:
     return appendNormalizedTimeline(state, action.timeline, fromJS(action.statuses), action.next);
   case TIMELINE_UPDATE:

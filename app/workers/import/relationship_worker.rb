@@ -7,7 +7,7 @@ class Import::RelationshipWorker
 
   def perform(account_id, target_account_uri, relationship)
     from_account   = Account.find(account_id)
-    target_account = ResolveRemoteAccountService.new.call(target_account_uri)
+    target_account = ResolveAccountService.new.call(target_account_uri)
 
     return if target_account.nil?
 

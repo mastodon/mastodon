@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class NotificationMailer < ApplicationMailer
-  helper StreamEntriesHelper
+  helper :stream_entries
+
+  add_template_helper RoutingHelper
 
   def mention(recipient, notification)
     @me     = recipient

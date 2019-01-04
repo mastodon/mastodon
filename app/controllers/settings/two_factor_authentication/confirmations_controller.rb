@@ -6,6 +6,7 @@ module Settings
       layout 'admin'
 
       before_action :authenticate_user!
+      before_action :ensure_otp_secret
 
       def new
         prepare_two_factor_form
@@ -37,6 +38,10 @@ module Settings
         @confirmation = Form::TwoFactorConfirmation.new
         @provision_url = current_user.otp_provisioning_uri(current_user.email, issuer: Rails.configuration.x.local_domain)
         @qrcode = RQRCode::QRCode.new(@provision_url)
+      end
+
+      def ensure_otp_secret
+        redirect_to settings_two_factor_authentication_path unless current_user.otp_secret
       end
     end
   end

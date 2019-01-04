@@ -17,7 +17,7 @@ RSpec.describe Settings::ImportsController, type: :controller do
   describe 'POST #create' do
     it 'redirects to settings path with successful following import' do
       service = double(call: nil)
-      allow(ResolveRemoteAccountService).to receive(:new).and_return(service)
+      allow(ResolveAccountService).to receive(:new).and_return(service)
       post :create, params: {
         import: {
           type: 'following',
@@ -30,7 +30,7 @@ RSpec.describe Settings::ImportsController, type: :controller do
 
     it 'redirects to settings path with successful blocking import' do
       service = double(call: nil)
-      allow(ResolveRemoteAccountService).to receive(:new).and_return(service)
+      allow(ResolveAccountService).to receive(:new).and_return(service)
       post :create, params: {
         import: {
           type: 'blocking',

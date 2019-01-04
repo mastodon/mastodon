@@ -10,9 +10,9 @@
 #
 
 class ListAccount < ApplicationRecord
-  belongs_to :list, required: true
-  belongs_to :account, required: true
-  belongs_to :follow, required: true
+  belongs_to :list
+  belongs_to :account
+  belongs_to :follow
 
   validates :account_id, uniqueness: { scope: :list_id }
 
