@@ -23,7 +23,7 @@ describe UserMailer, type: :mailer do
 
     it 'renders confirmation instructions' do
       receiver.update!(locale: nil)
-      expect(mail.body.encoded).to include receiver.email
+      expect(mail.body.encoded).to include I18n.t('devise.mailer.confirmation_instructions.title')
       expect(mail.body.encoded).to include 'spec'
       expect(mail.body.encoded).to include Rails.configuration.x.local_domain
     end
@@ -38,7 +38,7 @@ describe UserMailer, type: :mailer do
 
     it 'renders reconfirmation instructions' do
       receiver.update!(email: 'new-email@example.com', locale: nil)
-      expect(mail.body.encoded).to include 'new-email@example.com'
+      expect(mail.body.encoded).to include I18n.t('devise.mailer.reconfirmation_instructions.title')
       expect(mail.body.encoded).to include 'spec'
       expect(mail.body.encoded).to include Rails.configuration.x.local_domain
       expect(mail.subject).to eq I18n.t('devise.mailer.reconfirmation_instructions.subject',
@@ -52,7 +52,7 @@ describe UserMailer, type: :mailer do
 
     it 'renders reset password instructions' do
       receiver.update!(locale: nil)
-      expect(mail.body.encoded).to include receiver.email
+      expect(mail.body.encoded).to include I18n.t('devise.mailer.reset_password_instructions.title')
       expect(mail.body.encoded).to include 'spec'
     end
 
@@ -65,7 +65,7 @@ describe UserMailer, type: :mailer do
 
     it 'renders password change notification' do
       receiver.update!(locale: nil)
-      expect(mail.body.encoded).to include receiver.email
+      expect(mail.body.encoded).to include I18n.t('devise.mailer.password_change.title')
     end
 
     include_examples 'localized subject',
@@ -77,7 +77,7 @@ describe UserMailer, type: :mailer do
 
     it 'renders email change notification' do
       receiver.update!(locale: nil)
-      expect(mail.body.encoded).to include receiver.email
+      expect(mail.body.encoded).to include I18n.t('devise.mailer.email_changed.title')
     end
 
     include_examples 'localized subject',

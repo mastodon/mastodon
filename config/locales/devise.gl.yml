@@ -17,11 +17,32 @@ gl:
       unconfirmed: Debe confirmar o seu enderezo de correo antes de continuar.
     mailer:
       confirmation_instructions:
+        action: Validar enderezo de correo-e
+        explanation: Creou unha conta en %{host} con este enderezo de correo. Está a punto de activalo, si non foi vostede quen fixo a petición, por favor ignore este correo.
+        extra_html: Por favor, lea tamén <a href="%{terms_path}">as normas da instancia</a> e <a href="%{policy_path}">os termos do servizo</a>.
         subject: 'Mastodon: Instruccións de confirmación para %{instance}'
+        title: Verificar enderezo de correo-e
+      email_changed:
+        explanation: 'O seu enderezo de correo para esta conta foi cambiado a:'
+        extra: Si non fixo a petición de cambio de correo-e é probable que alguén obtivese acceso a súa conta. Por favor, cambie o contrasinal inmediatamente ou contacte coa administración da instancia si non ten acceso a súa conta.
+        subject: 'Mastodon: email cambiado'
+        title: Novo enderezo de correo
       password_change:
+        explanation: Cambiouse o contrasinal da súa conta.
+        extra: Si non cambio o contrasinal, é probable que alguén obtivese acceso a súa conta. Por favor cambie o contrasinal inmediatamente ou contacte coa administración da instancia si non ten acceso a súa conta.
         subject: 'Mastodon: contrasinal cambiado'
+        title: Contrainal cambiado
+      reconfirmation_instructions:
+        explanation: Confirme o novo enderezo para cambiar o correo-e.
+        extra: Si vostede non fixo esta petición, ignore este correo por favor. Este enderezo de correo-e para a conta Mastodon non cambiará ate que acceda a ligazón superior.
+        subject: 'Mastodon: Confirme email para %{instance}'
+        title: Verificación do enderezo de correo-e
       reset_password_instructions:
+        action: Cambiar contrasinal
+        explanation: Solicitou un novo contrasinal para a súa conta.
+        extra: Si non fixo esta solicitude, por favor ignore este correo. O seu contrasinal non cambiará ate que acceda a ligazón superior e cree unha nova.
         subject: 'Mastodon: Instruccións para restablecer o contrasinal'
+        title: Restablecer contrasinal
       unlock_instructions:
         subject: 'Mastodon: Instruccións para desbloquear'
     omniauth_callbacks:

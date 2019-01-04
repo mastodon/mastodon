@@ -23,7 +23,6 @@ export default class ColumnHeader extends React.PureComponent {
     icon: PropTypes.string.isRequired,
     active: PropTypes.bool,
     multiColumn: PropTypes.bool,
-    focusable: PropTypes.bool,
     showBackButton: PropTypes.bool,
     children: PropTypes.node,
     pinned: PropTypes.bool,
@@ -31,10 +30,6 @@ export default class ColumnHeader extends React.PureComponent {
     onMove: PropTypes.func,
     onClick: PropTypes.func,
   };
-
-  static defaultProps = {
-    focusable: true,
-  }
 
   state = {
     collapsed: true,
@@ -68,7 +63,7 @@ export default class ColumnHeader extends React.PureComponent {
   }
 
   render () {
-    const { title, icon, active, children, pinned, onPin, multiColumn, focusable, showBackButton, intl: { formatMessage } } = this.props;
+    const { title, icon, active, children, pinned, onPin, multiColumn, showBackButton, intl: { formatMessage } } = this.props;
     const { collapsed, animating } = this.state;
 
     const wrapperClassName = classNames('column-header__wrapper', {
@@ -135,11 +130,13 @@ export default class ColumnHeader extends React.PureComponent {
 
     return (
       <div className={wrapperClassName}>
-        <h1 tabIndex={focusable ? 0 : null} role='button' className={buttonClassName} aria-label={title} onClick={this.handleTitleClick}>
-          <i className={`fa fa-fw fa-${icon} column-header__icon`} />
-          <span className='column-header__title'>
-            {title}
-          </span>
+        <h1 className={buttonClassName}>
+          <button onClick={this.handleTitleClick}>
+            <i className={`fa fa-fw fa-${icon} column-header__icon`} />
+            <span className='column-header__title'>
+              {title}
+            </span>
+          </button>
 
           <div className='column-header__buttons'>
             {backButton}

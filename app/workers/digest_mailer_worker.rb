@@ -9,7 +9,7 @@ class DigestMailerWorker
 
   def perform(user_id)
     @user = User.find(user_id)
-    deliver_digest if user_receives_digest?
+    deliver_digest if @user.allows_digest_emails?
   end
 
   private
@@ -17,9 +17,5 @@ class DigestMailerWorker
   def deliver_digest
     NotificationMailer.digest(user.account).deliver_now!
     user.touch(:last_emailed_at)
-  end
-
-  def user_receives_digest?
-    user.settings.notification_emails['digest']
   end
 end

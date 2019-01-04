@@ -17,15 +17,32 @@ ja:
       unconfirmed: 続行するにはメールアドレスを確認する必要があります。
     mailer:
       confirmation_instructions:
+        action: メールアドレスの確認
+        explanation: このメールアドレスで%{host}にアカウントを作成しました。有効にするまであと一歩です。もし心当たりがない場合、申し訳ありませんがこのメールを無視してください。
+        extra_html: また <a href="%{terms_path}">インスタンスのルール</a> と <a href="%{policy_path}">利用規約</a> もお読みください。
         subject: 'Mastodon: メールアドレスの確認'
+        title: メールアドレスの確認
       email_changed:
+        explanation: 'アカウントのメールアドレスは以下のように変更されます:'
+        extra: メールアドレスの変更を行っていない場合、他の誰かがあなたのアカウントにアクセスした可能性があります。すぐにパスワードを変更するか、アカウントがロックされている場合はインスタンス管理者に連絡してください。
         subject: 'Mastodon: メールアドレスの変更'
+        title: 新しいメールアドレス
       password_change:
+        explanation: パスワードが変更されました。
+        extra: パスワードの変更を行っていない場合、他の誰かがあなたのアカウントにアクセスした可能性があります。すぐにパスワードを変更するか、アカウントがロックされている場合はインスタンス管理者に連絡してください。
         subject: 'Mastodon: パスワードが変更されました'
+        title: パスワードの変更
       reconfirmation_instructions:
+        explanation: メールアドレスを変更するため新しいアドレスを確認してください。
+        extra: この変更に心当たりがない場合、このメールを無視してください。上記リンク先にアクセスするまでアカウントのメールアドレスは変更されません。
         subject: 'Mastodon: %{instance}のメールを確認する'
+        title: メールアドレスの確認
       reset_password_instructions:
+        action: パスワードの変更
+        explanation: あなたのアカウントに対しパスワードの再発行が要求されました。
+        extra: この要求に心当たりがない場合、このメールを無視してください。上記リンク先にアクセスし新しいものを作成するまでパスワードは変更されません。
         subject: 'Mastodon: パスワード再発行'
+        title: パスワード再発行
       unlock_instructions:
         subject: 'Mastodon: アカウントのロックの解除'
     omniauth_callbacks:

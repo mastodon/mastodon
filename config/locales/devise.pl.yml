@@ -17,15 +17,32 @@ pl:
       unconfirmed: Zweryfikuj adres e-mail, aby kontynuować.
     mailer:
       confirmation_instructions:
+        action: Zweryfikuj adres e-mail
+        explanation: Utworzyłeś konto na %{host} podając ten adres e-mail. Jedno kliknięcie dzieli Cię od aktywacji tego konta. Jeżeli to nie Ty, zignoruj ten e-mail.
+        extra_html: Przeczytaj też <a href="%{terms_path}">regulamin instancji</a> i <a href="%{policy_path}">nasze zasady użytkowania</a>.
         subject: 'Mastodon: Instrukcje weryfikacji adresu e-mail'
+        title: Zweryfikuj adres e-mail
       email_changed:
+        explanation: 'Adres e-mail dla Twojego konta zostanie zmieniony na:'
+        extra: Jeżeli nie próbowałeś zmienić adresu e-mail, prawdopodobnie ktoś uzyskał dostęp do Twojego konta. Zmień natychmiastowo hasło lub skontaktuj się z administratorem isntancji, jeżeli nie masz dostępu do konta.
         subject: 'Mastodon: Zmieniono adres e-mail'
+        title: Nowy adres e-mail
       password_change:
+        explanation: Hasło do Twojego konta zostało zmienione.
+        extra: Jeżeli nie zmieniałeś hasła, prawdopodobnie ktoś uzyskał dostęp do Twojego konta. Zmień hasło natychmiastowo lub skontaktuj się z administratorem instancji, jeżeli nie masz dostępu do konta.
         subject: 'Mastodon: Zmieniono hasło'
+        title: Zmieniono hasło
       reconfirmation_instructions:
+        explanation: Potwierdź nowy adres aby zmienić e-mail.
+        extra: Jeżeli nie próbowałeś zmienić e-maila, zignoruj tą wiadomość. Adres e-mail przypisany do konta Mastodona nie ulegnie zmianie, jeżeli nie użyjesz powyższego odnośniku.
         subject: 'Mastodon: Potwierdź adres e-mail na &{instance}'
+        title: Zweryfikuj adres e-mail
       reset_password_instructions:
+        action: Zmień hasło
+        explanation: Próbowałeś uzyskać nowe hasło do swojego konta.
+        extra: Jeżeli to nie Ty, zignoruj tą wiadomość. Twoje hasło nie ulegnie zmianie, jeżeli nie wykorzystasz powyższego odnośnika i nie utworzysz nowego hasła.
         subject: 'Mastodon: Instrukcje ustawienia nowego hasła'
+        title: Przywracanie hasła
       unlock_instructions:
         subject: 'Mastodon: Instrukcje odblokowania konta'
     omniauth_callbacks:
@@ -38,7 +55,7 @@ pl:
       updated: Twoje hasło zostało zmienione. Jesteś zalogowany/a.
       updated_not_active: Twoje hasło zostało zmienione.
     registrations:
-      destroyed: Twoje konto zostało anulowane. Mamy jednak nadzieję, że do nas wrócisz. Do zobaczenia!
+      destroyed: Twoje konto zostało zawieszone. Mamy jednak nadzieję, że do nas wrócisz. Do zobaczenia!
       signed_up: Twoje konto zostało utworzone. Witamy!
       signed_up_but_inactive: Twoje konto zostało utworzone. Nie mogliśmy Cię jednak zalogować, ponieważ konto nie zostało jeszcze aktywowane.
       signed_up_but_locked: Twoje konto zostało utworzone. Nie mogliśmy Cię jednak zalogować, ponieważ konto jest zablokowane.

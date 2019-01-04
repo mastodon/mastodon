@@ -17,15 +17,32 @@ zh-CN:
       unconfirmed: 继续操作前请先确认你的帐户。
     mailer:
       confirmation_instructions:
+        action: 验证电子邮件地址
+        explanation: 你在 %{host} 上使用这个电子邮件地址创建了一个帐户。只需点击下面的链接，即可完成激活。如果你并没有创建过帐户，请忽略此邮件。
+        extra_html: 请记得阅读<a href="%{terms_path}">本实例的相关规定</a>和<a href="%{policy_path}">我们的使用条款</a>。
         subject: Mastodon：确认 %{instance} 帐户信息
+        title: 验证电子邮件地址
       email_changed:
-        subject: Mastodon：电子邮件地址已被修改
+        explanation: 你的帐户的电子邮件地址即将变更为：
+        extra: 如果你并没有请求更改你的电子邮件地址，则他人很有可能已经入侵你的帐户。请立即更改你的密码；如果你已经无法访问你的帐户，请联系实例的管理员请求协助。
+        subject: Mastodon：电子邮件地址已被更改
+        title: 新电子邮件地址
       password_change:
-        subject: Mastodon：密码已被重置
+        explanation: 你的帐户的密码已被更改。
+        extra: 如果你并没有请求更改你的密码，则他人很有可能已经入侵你的帐户。请立即更改你的密码；如果你已经无法访问你的帐户，请联系实例的管理员请求协助。
+        subject: Mastodon：密码已被更改
+        title: 密码已被重置
       reconfirmation_instructions:
+        explanation: 点击下面的链接来确认你的新电子邮件地址。
+        extra: 如果你并没有请求本次变更，请忽略此邮件。Mastodon 帐户的电子邮件地址只有在你点击上面的链接后才会更改。
         subject: Mastodon：确认 %{instance} 电子邮件地址
+        title: 验证电子邮件地址
       reset_password_instructions:
+        action: 更改密码
+        explanation: 点击下面的链接来更改帐户的密码。
+        extra: 如果你并没有请求本次变更，请忽略此邮件。你的密码只有在你点击上面的链接并输入新密码后才会更改。
         subject: Mastodon：重置密码信息
+        title: 重置密码
       unlock_instructions:
         subject: Mastodon：帐户解锁信息
     omniauth_callbacks:

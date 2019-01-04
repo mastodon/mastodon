@@ -183,11 +183,10 @@ namespace :mastodon do
   end
 
   namespace :emails do
-    desc 'Send out digest e-mails'
+    desc 'Send out digest e-mails (deprecated)'
     task digest: :environment do
-      User.confirmed.joins(:account).where(accounts: { silenced: false, suspended: false }).where('current_sign_in_at < ?', 20.days.ago).find_each do |user|
-        DigestMailerWorker.perform_async(user.id)
-      end
+      # No-op
+      # This task is now executed via sidekiq-scheduler
     end
   end
 
@@ -352,6 +351,15 @@ namespace :mastodon do
 
       PreviewCard.where(embed_url: '', type: :photo).delete_all
       LinkCrawlWorker.push_bulk status_ids
+    end
+
+    desc 'Remove all home feed regeneration markers'
+    task remove_regeneration_markers: :environment do
+      keys = Redis.current.keys('account:*:regeneration')
+
+      Redis.current.pipelined do
+        keys.each { |key| Redis.current.del(key) }
+      end
     end
 
     desc 'Check every known remote account and delete those that no longer exist in origin'

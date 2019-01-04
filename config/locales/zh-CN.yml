@@ -336,10 +336,12 @@ zh-CN:
       body: "%{reporter} 举报了用户 %{target}。"
       subject: 来自 %{instance} 的用户举报（#%{id}）
   application_mailer:
+    notification_preferences: 更改电子邮件首选项
     salutation: "%{name}："
     settings: 使用此链接更改你的电子邮件首选项：%{link}
-    signature: 这是一封来自 %{instance} 的 Mastodon 电子邮件通知。
     view: 点此链接查看详情：
+    view_profile: 查看个人资料页
+    view_status: 查看嘟文
   applications:
     created: 应用创建成功
     destroyed: 应用删除成功
@@ -476,27 +478,36 @@ zh-CN:
     title: 运营
   notification_mailer:
     digest:
-      body: 自从你最后一次（时间是%{since}）登录 %{instance} 以来，你错过了这些嘟嘟滴滴：
+      action: 查看所有通知
+      body: 以下是自%{since}你最后一次登录以来错过的消息的摘要
       mention: "%{name} 在嘟文中提到了你："
       new_followers_summary:
-        one: 有个人关注了你！耶！
-        other: 有 %{count} 个人关注了你！好棒！
+        one: 而且，你不在的时候，有一个人关注了你！耶！
+        other: 而且，你不在的时候，有 %{count} 个人关注了你！好棒！
       subject: "自从你最后一次登录以来，你错过了 %{count} 条新通知 \U0001F418"
+      title: 在你不在的这段时间……
     favourite:
       body: 你的嘟文被 %{name} 收藏了：
       subject: "%{name} 收藏了你的嘟文"
+      title: 新的收藏
     follow:
       body: "%{name} 关注了你！"
       subject: "%{name} 关注了你"
+      title: 新的关注者
     follow_request:
+      action: 处理关注请求
       body: "%{name} 向你发送了关注请求！"
       subject: 来自 %{name} 的关注请求
+      title: 新的关注请求
     mention:
+      action: 回复
       body: "%{name} 在嘟文中提到了你："
       subject: "%{name} 提到了你"
+      title: 新的提及
     reblog:
       body: 你的嘟文被 %{name} 转嘟了：
       subject: "%{name} 转嘟了你的嘟文"
+      title: 新的转嘟
   number:
     human:
       decimal_units:
@@ -580,7 +591,7 @@ zh-CN:
     back: 回到 Mastodon
     delete: 删除帐户
     development: 开发
-    edit_profile: 更改个人信息
+    edit_profile: 更改个人资料
     export: 导出
     followers: 已授权的关注者
     import: 导入
@@ -701,6 +712,25 @@ zh-CN:
     recovery_instructions_html: 如果你的手机无法使用，你可以使用下列任意一个恢复代码来重新获得对帐户的访问权。<strong>请妥善保管好你的恢复代码</strong>（例如，你可以将它们打印出来，然后和其他重要的文件放在一起）。
     setup: 设置
     wrong_code: 输入的认证码无效！请核对一下你的设备显示的时间，如果正确，你可能需要联系一下实例的管理员，让他们校准服务器的时间。
+  user_mailer:
+    welcome:
+      edit_profile_action: 设置个人资料
+      edit_profile_step: 你可以自定义你的个人资料，包括上传头像、横幅图片、更改昵称等等。如果你想在新的关注者关注你之前对他们进行审核，你也可以选择为你的帐户开启保护。
+      explanation: 下面是几个小贴士，希望它们能帮到你
+      final_action: 开始嘟嘟
+      final_step: '开始嘟嘟吧！即便你现在没有关注者，其他人仍然能在本站时间轴或者话题标签等地方看到你的公开嘟文。试着用 #introductions 这个话题标签介绍一下自己吧。'
+      full_handle: 你的完整用户地址
+      full_handle_hint: 你需要把这个告诉你的朋友们，这样他们就能从另一个实例向你发送信息或者关注你。
+      review_preferences_action: 更改首选项
+      review_preferences_step: 记得调整你的偏好设置，比如你想接收什么类型的邮件，或者你想把你的嘟文可见范围默认设置为什么级别。如果你没有晕动病的话，考虑一下启用“自动播放 GIF 动画”这个选项吧。
+      subject: 欢迎来到 Mastodon
+      tip_bridge_html: 如果你刚从 Twitter 来到这里，你可以在<a href="%{bridge_url}">桥梁站（bridge app）</a>上寻找你的朋友。当然，前提是他们也登录了桥梁站！
+      tip_federated_timeline: 跨站公共时间轴可以让你一窥更广阔的 Mastodon 网络。不过，由于它只显示你的邻居们所订阅的内容，所以并不是全部。
+      tip_following: 默认情况下，你会自动关注你所在实例的管理员。想结交更多有趣的人的话，记得多逛逛本站时间轴和跨站公共时间轴哦。
+      tip_local_timeline: 本站时间轴可以让你一窥 %{instance} 上的用户。他们就是离你最近的邻居！
+      tip_mobile_webapp: 如果你的移动设备浏览器允许你将 Mastodon 添加到主屏幕，你就能够接收推送消息。它就像本地应用一样好使！
+      tips: 小贴士
+      title: "%{name}，欢迎你的加入！"
   users:
     invalid_email: 输入的电子邮件地址无效
     invalid_otp_token: 输入的双重认证代码无效

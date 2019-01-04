@@ -1,0 +1,9 @@
+<%= t 'devise.mailer.reconfirmation_instructions.title' %>
+
+===
+
+<%= t 'devise.mailer.reconfirmation_instructions.explanation' %>
+
+=> <%= confirmation_url(@resource, confirmation_token: @token) %>
+
+<%= t 'devise.mailer.reconfirmation_instructions.extra' %>

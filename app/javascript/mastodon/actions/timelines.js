@@ -19,13 +19,14 @@ export const TIMELINE_DISCONNECT = 'TIMELINE_DISCONNECT';
 
 export const TIMELINE_CONTEXT_UPDATE = 'CONTEXT_UPDATE';
 
-export function refreshTimelineSuccess(timeline, statuses, skipLoading, next) {
+export function refreshTimelineSuccess(timeline, statuses, skipLoading, next, partial) {
   return {
     type: TIMELINE_REFRESH_SUCCESS,
     timeline,
     statuses,
     skipLoading,
     next,
+    partial,
   };
 };
 
@@ -88,7 +89,7 @@ export function refreshTimeline(timelineId, path, params = {}) {
   return function (dispatch, getState) {
     const timeline = getState().getIn(['timelines', timelineId], ImmutableMap());
 
-    if (timeline.get('isLoading') || timeline.get('online')) {
+    if (timeline.get('isLoading') || (timeline.get('online') && !timeline.get('isPartial'))) {
       return;
     }
 
@@ -104,8 +105,12 @@ export function refreshTimeline(timelineId, path, params = {}) {
     dispatch(refreshTimelineRequest(timelineId, skipLoading));
 
     api(getState).get(path, { params }).then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
-      dispatch(refreshTimelineSuccess(timelineId, response.data, skipLoading, next ? next.uri : null));
+      if (response.status === 206) {
+        dispatch(refreshTimelineSuccess(timelineId, [], skipLoading, null, true));
+      } else {
+        const next = getLinks(response).refs.find(link => link.rel === 'next');
+        dispatch(refreshTimelineSuccess(timelineId, response.data, skipLoading, next ? next.uri : null, false));
+      }
     }).catch(error => {
       dispatch(refreshTimelineFail(timelineId, error, skipLoading));
     });

@@ -94,12 +94,12 @@ export default class AccountGallery extends ImmutablePureComponent {
             </div>
 
             <div className='account-gallery__container'>
-              {medias.map(media =>
+              {medias.map(media => (
                 <MediaItem
                   key={media.get('id')}
                   media={media}
                 />
-              )}
+              ))}
               {loadMore}
             </div>
           </div>

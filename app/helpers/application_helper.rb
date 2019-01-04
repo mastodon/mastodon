@@ -22,8 +22,16 @@ module ApplicationHelper
   end
 
   def add_rtl_body_class(other_classes)
-    other_classes = "#{other_classes} rtl" if [:ar, :fa, :he].include?(I18n.locale)
+    other_classes = "#{other_classes} rtl" if locale_direction == 'rtl'
     other_classes
+  end
+
+  def locale_direction
+    if [:ar, :fa, :he].include?(I18n.locale)
+      'rtl'
+    else
+      'ltr'
+    end
   end
 
   def favicon_path

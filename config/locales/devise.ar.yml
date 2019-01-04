@@ -17,11 +17,24 @@ ar:
       unconfirmed: يجب عليك تأكيد عنوان بريدك الإلكتروني قبل المواصلة.
     mailer:
       confirmation_instructions:
+        action: للتحقق من عنوان البريد الإلكتروني
         subject: 'ماستدون : تعليمات التأكيد لمثيل الخادوم  %{instance}'
+        title: للتحقق من عنوان البريد الإلكتروني
+      email_changed:
+        subject: 'ماستدون : تم استبدال عنوان بريدك الإلكتروني'
+        title: عنوان البريد الإلكتروني الجديد
       password_change:
+        explanation: تم تغيير كلمة السر الخاصة بحسابك.
         subject: 'ماستدون : تم تغيير كلمة المرور'
+        title: تم تغيير كلمة السر
+      reconfirmation_instructions:
+        subject: 'ماستدون : تأكيد كلمة السر الخاصة بـ %{instance}'
+        title: التحقق من عنوان البريد الإلكتروني
       reset_password_instructions:
+        action: تغيير كلمة السر
+        explanation: لقد قمت بطلب تغيير كلمة السر الخاصة بحسابك.
         subject: 'ماستدون : تعليمات إستعادة كلمة المرور'
+        title: إعادة تعيين كلمة السر
       unlock_instructions:
         subject: 'ماستدون : تعليمات فك القفل'
     omniauth_callbacks:
@@ -42,5 +55,6 @@ ar:
       signed_out: تم تسجيل خروجك بنجاح.
   errors:
     messages:
+      expired: إنتهت مدة صلاحيته، الرجاء طلب واحد جديد
       not_found: لا يوجد
       not_locked: ليس مقفلاً

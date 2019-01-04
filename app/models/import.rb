@@ -20,7 +20,7 @@ class Import < ApplicationRecord
 
   self.inheritance_column = false
 
-  belongs_to :account, required: true
+  belongs_to :account
 
   enum type: [:following, :blocking, :muting]
 

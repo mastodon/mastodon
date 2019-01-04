@@ -1,0 +1,76 @@
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell.hero
+                  .email-row
+                    .col-6
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.text-center.padded
+                              %table.hero-icon{ align: 'center', cellspacing: 0, cellpadding: 0 }
+                                %tbody
+                                  %tr
+                                    %td
+                                      = image_tag full_pack_url('icon_email.png'), alt: ''
+
+                              %h1= t 'devise.mailer.confirmation_instructions.title'
+
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell.content-start
+                  .email-row
+                    .col-6
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.text-center
+                              %p= t 'devise.mailer.confirmation_instructions.explanation', host: site_hostname
+
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell
+                  %table.column{ cellspacing: 0, cellpadding: 0 }
+                    %tbody
+                      %tr
+                        %td.column-cell.button-cell
+                          %table.button{ align: 'center', cellspacing: 0, cellpadding: 0 }
+                            %tbody
+                              %tr
+                                %td.button-primary
+                                  = link_to confirmation_url(@resource, confirmation_token: @token) do
+                                    %span= t 'devise.mailer.confirmation_instructions.action'
+
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell
+                  .email-row
+                    .col-6
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.text-center
+                              %p= t 'devise.mailer.confirmation_instructions.extra_html', terms_path: about_more_url, policy_path: terms_url

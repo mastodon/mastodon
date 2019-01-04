@@ -17,15 +17,32 @@ en:
       unconfirmed: You have to confirm your email address before continuing.
     mailer:
       confirmation_instructions:
+        action: Verify email address
+        explanation: You have created an account on %{host} with this email address. You are one click away from activating it. If this wasn't you, please ignore this email.
+        extra_html: Please also check out <a href="%{terms_path}">the rules of the instance</a> and <a href="%{policy_path}">our terms of service</a>.
         subject: 'Mastodon: Confirmation instructions for %{instance}'
+        title: Verify email address
       email_changed:
+        explanation: 'The email address for your account is being changed to:'
+        extra: If you did not change your email, it is likely that someone has gained access to your account. Please change your password immediately or contact the instance admin if you're locked out of your account.
         subject: 'Mastodon: Email changed'
+        title: New email address
       password_change:
+        explanation: The password for your account has been changed.
+        extra: If you did not change your password, it is likely that someone has gained access to your account. Please change your password immediately or contact the instance admin if you're locked out of your account.
         subject: 'Mastodon: Password changed'
+        title: Password changed
       reconfirmation_instructions:
+        explanation: Confirm the new address to change your email.
+        extra: If this change wasn't initiated by you, please ignore this email. The email address for the Mastodon account won't change until you access the link above.
         subject: 'Mastodon: Confirm email for %{instance}'
+        title: Verify email address
       reset_password_instructions:
+        action: Change password
+        explanation: You requested a new password for your account.
+        extra: If you didn't request this, please ignore this email. Your password won't change until you access the link above and create a new one.
         subject: 'Mastodon: Reset password instructions'
+        title: Password reset
       unlock_instructions:
         subject: 'Mastodon: Unlock instructions'
     omniauth_callbacks:

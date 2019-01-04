@@ -338,10 +338,12 @@ en:
       body: "%{reporter} has reported %{target}"
       subject: New report for %{instance} (#%{id})
   application_mailer:
+    notification_preferences: Change e-mail preferences
     salutation: "%{name},"
     settings: 'Change e-mail preferences: %{link}'
-    signature: Mastodon notifications from %{instance}
     view: 'View:'
+    view_profile: View Profile
+    view_status: View status
   applications:
     created: Application successfully created
     destroyed: Application successfully deleted
@@ -482,29 +484,38 @@ en:
     title: Moderation
   notification_mailer:
     digest:
-      body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
+      action: View all notifications
+      body: Here is a brief summary of the messages you missed since your last visit on %{since}
       mention: "%{name} mentioned you in:"
       new_followers_summary:
-        one: You have acquired one new follower! Yay!
-        other: You have gotten %{count} new followers! Amazing!
+        one: Also, you have acquired one new follower while being away! Yay!
+        other: Also, you have acquired %{count} new followers while being away! Amazing!
       subject:
         one: "1 new notification since your last visit \U0001F418"
         other: "%{count} new notifications since your last visit \U0001F418"
+      title: In your absence…
     favourite:
       body: 'Your status was favourited by %{name}:'
       subject: "%{name} favourited your status"
+      title: New favourite
     follow:
       body: "%{name} is now following you!"
       subject: "%{name} is now following you"
+      title: New follower
     follow_request:
+      action: Manage follow requests
       body: "%{name} has requested to follow you"
       subject: 'Pending follower: %{name}'
+      title: New follow request
     mention:
+      action: Reply
       body: 'You were mentioned by %{name} in:'
       subject: You were mentioned by %{name}
+      title: New mention
     reblog:
       body: 'Your status was boosted by %{name}:'
       subject: "%{name} boosted your status"
+      title: New boost
   number:
     human:
       decimal_units:
@@ -552,12 +563,14 @@ en:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: Unknown browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -711,6 +724,25 @@ en:
     recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. <strong>Keep the recovery codes safe</strong>. For example, you may print them and store them with other important documents.
     setup: Set up
     wrong_code: The entered code was invalid! Are server time and device time correct?
+  user_mailer:
+    welcome:
+      edit_profile_action: Setup profile
+      edit_profile_step: You can customize your profile by uploading an avatar, header, changing your display name and more. If you’d like to review new followers before they’re allowed to follow you, you can lock your account.
+      explanation: Here are some tips to get you started
+      final_action: Start posting
+      final_step: 'Start posting! Even without followers your public messages may be seen by others, for example on the local timeline and in hashtags. You may want to introduce yourself on the #introductions hashtag.'
+      full_handle: Your full handle
+      full_handle_hint: This is what you would tell your friends so they can message or follow you from another instance.
+      review_preferences_action: Change preferences
+      review_preferences_step: Make sure to set your preferences, such as which emails you'd like to receive, or what privacy level you’d like your posts to default to. If you don’t have motion sickness, you could choose to enable GIF autoplay.
+      subject: Welcome to Mastodon
+      tip_bridge_html: If you are coming from Twitter, you can find your friends on Mastodon by using the <a href="%{bridge_url}">bridge app</a>. It only works if they also used the bridge app though!
+      tip_federated_timeline: The federated timeline is a firehose view of the Mastodon network. But it only includes people your neighbours are subscribed to, so it's not complete.
+      tip_following: You follow your server's admin(s) by default. To find more interesting people, check the local and federated timelines.
+      tip_local_timeline: The local timeline is a firehose view of people on %{instance}. These are your immediate neighbours!
+      tip_mobile_webapp: If your mobile browser offers you to add Mastodon to your homescreen, you can receive push notifications. It acts like a native app in many ways!
+      tips: Tips
+      title: Welcome aboard, %{name}!
   users:
     invalid_email: The e-mail address is invalid
     invalid_otp_token: Invalid two-factor code

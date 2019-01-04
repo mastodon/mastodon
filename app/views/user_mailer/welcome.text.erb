@@ -1,0 +1,30 @@
+<%= t 'user_mailer.welcome.title', name: @resource.account.username %> <%= t 'user_mailer.welcome.explanation' %>
+
+===
+
+<%= t 'user_mailer.welcome.full_handle' %> (<%= "@#{@resource.account.username}@#{@instance}" %>)
+<%= t 'user_mailer.welcome.full_handle_hint', instance: @instance %>
+
+---
+
+<%= t 'user_mailer.welcome.edit_profile_step' %>
+
+=> <%= settings_profile_url %>
+
+<%= t 'user_mailer.welcome.review_preferences_step' %>
+
+=> <%= settings_preferences_url %>
+
+<%= t 'user_mailer.welcome.final_step' %>
+
+=> <%= web_url %>
+
+---
+
+<%= t 'user_mailer.welcome.tips' %>
+
+* <%= t 'user_mailer.welcome.tip_mobile_webapp' %>
+* <%= strip_tags(t('user_mailer.welcome.tip_bridge_html')) %> (https://bridge.joinmastodon.org)
+* <%= t 'user_mailer.welcome.tip_following' %>
+* <%= t 'user_mailer.welcome.tip_local_timeline', instance: @instance %>
+* <%= t 'user_mailer.welcome.tip_federated_timeline' %>

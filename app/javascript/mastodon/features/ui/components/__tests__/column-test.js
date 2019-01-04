@@ -21,13 +21,13 @@ describe('<Column />', () => {
           <div className='scrollable' />
         </Column>
       );
-      wrapper.find(ColumnHeader).simulate('click');
+      wrapper.find(ColumnHeader).find('button').simulate('click');
       expect(global.requestAnimationFrame.mock.calls.length).toEqual(1);
     });
 
     it('does not try to scroll if there is no scrollable content', () => {
       const wrapper = mount(<Column heading='notifications' />);
-      wrapper.find(ColumnHeader).simulate('click');
+      wrapper.find(ColumnHeader).find('button').simulate('click');
       expect(global.requestAnimationFrame.mock.calls.length).toEqual(0);
     });
   });

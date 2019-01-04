@@ -18,7 +18,10 @@
         %tr
           %th= t('admin.accounts.role')
           %td
-            = t("admin.accounts.roles.#{@account.user&.role}")
+            - if @account.user.nil?
+              = t("admin.accounts.moderation.suspended")
+            - else
+              = t("admin.accounts.roles.#{@account.user&.role}")
             = table_link_to 'angle-double-up', t('admin.accounts.promote'), promote_admin_account_role_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:promote, @account.user)
             = table_link_to 'angle-double-down', t('admin.accounts.demote'), demote_admin_account_role_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:demote, @account.user)
         %tr

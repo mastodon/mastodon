@@ -14,7 +14,7 @@
 #
 
 class Invite < ApplicationRecord
-  belongs_to :user, required: true
+  belongs_to :user
   has_many :users, inverse_of: :invite
 
   scope :available, -> { where(expires_at: nil).or(where('expires_at >= ?', Time.now.utc)) }
