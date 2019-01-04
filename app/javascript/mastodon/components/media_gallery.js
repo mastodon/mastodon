@@ -6,7 +6,7 @@ import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
 import classNames from 'classnames';
-import { autoPlayGif } from '../initial_state';
+import { autoPlayGif, displaySensitiveMedia } from '../initial_state';
 
 const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
@@ -116,16 +116,21 @@ class Item extends React.PureComponent {
     let thumbnail = '';
 
     if (attachment.get('type') === 'image') {
-      const previewUrl = attachment.get('preview_url');
+      const previewUrl   = attachment.get('preview_url');
       const previewWidth = attachment.getIn(['meta', 'small', 'width']);
 
-      const originalUrl = attachment.get('url');
-      const originalWidth = attachment.getIn(['meta', 'original', 'width']);
+      const originalUrl    = attachment.get('url');
+      const originalWidth  = attachment.getIn(['meta', 'original', 'width']);
 
       const hasSize = typeof originalWidth === 'number' && typeof previewWidth === 'number';
 
       const srcSet = hasSize ? `${originalUrl} ${originalWidth}w, ${previewUrl} ${previewWidth}w` : null;
-      const sizes = hasSize ? `(min-width: 1025px) ${320 * (width / 100)}px, ${width}vw` : null;
+      const sizes  = hasSize ? `(min-width: 1025px) ${320 * (width / 100)}px, ${width}vw` : null;
+
+      const focusX = attachment.getIn(['meta', 'focus', 'x']) || 0;
+      const focusY = attachment.getIn(['meta', 'focus', 'y']) || 0;
+      const x      = ((focusX /  2) + .5) * 100;
+      const y      = ((focusY / -2) + .5) * 100;
 
       thumbnail = (
         <a
@@ -134,7 +139,14 @@ class Item extends React.PureComponent {
           onClick={this.handleClick}
           target='_blank'
         >
-          <img src={previewUrl} srcSet={srcSet} sizes={sizes} alt={attachment.get('description')} title={attachment.get('description')} />
+          <img
+            src={previewUrl}
+            srcSet={srcSet}
+            sizes={sizes}
+            alt={attachment.get('description')}
+            title={attachment.get('description')}
+            style={{ objectPosition: `${x}% ${y}%` }}
+          />
         </a>
       );
     } else if (attachment.get('type') === 'gifv') {
@@ -187,7 +199,7 @@ export default class MediaGallery extends React.PureComponent {
   };
 
   state = {
-    visible: !this.props.sensitive,
+    visible: !this.props.sensitive || displaySensitiveMedia,
   };
 
   componentWillReceiveProps (nextProps) {
@@ -205,7 +217,7 @@ export default class MediaGallery extends React.PureComponent {
   }
 
   handleRef = (node) => {
-    if (node && this.isStandaloneEligible()) {
+    if (node /*&& this.isStandaloneEligible()*/) {
       // offsetWidth triggers a layout, so only calculate when we need to
       this.setState({
         width: node.offsetWidth,
@@ -227,15 +239,12 @@ export default class MediaGallery extends React.PureComponent {
     const style = {};
 
     if (this.isStandaloneEligible()) {
-      if (!visible && width) {
-        // only need to forcibly set the height in "sensitive" mode
+      if (width) {
         style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
-      } else {
-        // layout automatically, using image's natural aspect ratio
-        style.height = '';
       }
+    } else if (width) {
+      style.height = width / (16/9);
     } else {
-      // crop the image
       style.height = height;
     }
 
@@ -249,7 +258,7 @@ export default class MediaGallery extends React.PureComponent {
       }
 
       children = (
-        <button className='media-spoiler' onClick={this.handleOpen} style={style} ref={this.handleRef}>
+        <button type='button' className='media-spoiler' onClick={this.handleOpen} style={style} ref={this.handleRef}>
           <span className='media-spoiler__warning'>{warning}</span>
           <span className='media-spoiler__trigger'><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
         </button>
@@ -265,7 +274,7 @@ export default class MediaGallery extends React.PureComponent {
     }
 
     return (
-      <div className='media-gallery' style={style}>
+      <div className='media-gallery' style={style} ref={this.handleRef}>
         <div className={classNames('spoiler-button', { 'spoiler-button--visible': visible })}>
           <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={visible ? 'eye' : 'eye-slash'} overlay onClick={this.handleOpen} />
         </div>

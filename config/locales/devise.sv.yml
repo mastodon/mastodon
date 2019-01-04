@@ -17,11 +17,32 @@ sv:
       unconfirmed: Du måste bekräfta din e-postadress innan du fortsätter.
     mailer:
       confirmation_instructions:
+        action: Verifiera e-postadress
+        explanation: Du har skapat ett konto på %{host} med den här e-postadressen. Du är ett klick bort från att aktivera det. Om det inte var du ignorerar det här e-postmeddelandet.
+        extra_html: Kolla gärna också <a href="%{terms_path}">instansens regler</a> och <a href="%{policy_path}">våra användarvillkor</a>.
         subject: 'Mastodon: Bekräftelsesinstruktioner för %{instance}'
+        title: Verifiera e-postadress
+      email_changed:
+        explanation: 'E-postadressen för ditt konto ändras till:'
+        extra: Om du inte ändrade din e-post är det troligt att någon har fått tillgång till ditt konto. Vänligen ändra ditt lösenord omedelbart eller kontakta instansadministratören om du är låst ur ditt konto.
+        subject: 'Mastodon: E-post ändrad'
+        title: Ny e-postadress
       password_change:
+        explanation: Lösenordet för ditt konto har ändrats.
+        extra: Om du inte ändrade ditt lösenord är det troligt att någon har fått tillgång till ditt konto. Vänligen ändra ditt lösenord omedelbart eller kontakta instansadministratören om du är utelåst från ditt konto.
         subject: 'Mastodon: Lösenord ändrat'
+        title: lösenordet ändrat
+      reconfirmation_instructions:
+        explanation: Bekräfta den nya adressen för att ändra din e-postadress.
+        extra: Om den här ändringen inte initierades av dig kan du ignorerar det här e-postmeddelandet. E-postadressen för Mastodon-kontot ändras inte förrän du kommer åt länken ovan.
+        subject: 'Mastodon: Bekräfta e-post för %{instance}'
+        title: Verifiera e-postadressen
       reset_password_instructions:
+        action: Ändra lösenord
+        explanation: Du begärde ett nytt lösenord för ditt konto.
+        extra: Om du inte begärt detta kan du ignorerar det här e-postmeddelandet. Ditt lösenord ändras inte förrän du öppnar länken ovan och skapar ett nytt.
         subject: 'Mastodon: Instruktioner för återställning av lösenord'
+        title: Lösenordsåterställning
       unlock_instructions:
         subject: 'Mastodon: Lås upp instruktioner'
     omniauth_callbacks:
@@ -31,7 +52,7 @@ sv:
       no_token: Du kan inte komma åt den här sidan utan att komma från ett e-postmeddelande för lösenordsåterställning. Om du kommer från ett lösenordsåterställt e-postmeddelande, var vänlig och se till att du använde hela webbadressen.
       send_instructions: Om din e-postadress finns i vår databas, får du en länk för återställning av lösenord på din e-postadress om några minuter. Kontrollera din spammapp om du inte fick det här e-postmeddelandet.
       send_paranoid_instructions: Om din e-postadress finns i vår databas, får du en länk för återställning av lösenord på din e-postadress om några minuter. Kontrollera din spammapp om du inte fick det här e-postmeddelandet.
-      updated: Your password has been changed successfully. You are now signed in.
+      updated: Ditt lösenord har ändrats framgångsrikt. Du är nu inloggad.
       updated_not_active: Ditt lösenord har ändrats. Du är nu inloggad.
     registrations:
       destroyed: Adjö! Ditt konto har blivit nerstängt. Vi hoppas att vi ses snart igen.

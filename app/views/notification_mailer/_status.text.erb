@@ -1,3 +1,8 @@
+<% if status.spoiler_text? %>
+<%= raw status.spoiler_text %>
+----
+
+<% end %>
 <%= raw Formatter.instance.plaintext(status) %>
 
 <%= raw t('application_mailer.view')%> <%= web_url("statuses/#{status.id}") %>

@@ -8,7 +8,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
   shared_examples 'localized subject' do |*args, **kwrest|
     it 'renders subject localized for the locale of the receiver' do
-      locale = I18n.available_locales.sample
+      locale = %i(de en).sample
       receiver.update!(locale: locale)
       expect(mail.subject).to eq I18n.t(*args, kwrest.merge(locale: locale))
     end

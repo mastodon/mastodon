@@ -23,7 +23,6 @@ oc:
       real_conversation_title: Fach per de conversacions vertadièras
       within_reach_body: Multiplas aplicacion per iOS, Android, e autras plataformas mercés a un entorn API de bon utilizar, vos permet de gardar lo contacte pertot.
       within_reach_title: Totjorn al costat
-    find_another_instance: Trobar mai instàncias
     generic_description: "%{domain} es un dels servidors del malhum"
     hosted_on: Mastodon albergat sus %{domain}
     learn_more: Ne saber mai
@@ -354,7 +353,6 @@ oc:
     your_token: Vòstre geton d’accès
   auth:
     agreement_html: En vos marcar acceptatz <a href="%{rules_path}">las règlas de l’instància</a> e <a href="%{terms_path}">politica de confidencialitat</a>.
-    change_password: Seguretat
     delete_account: Suprimir lo compte
     delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
     didnt_get_confirmation: Avètz pas recebut las instruccions de confirmacion ?
@@ -364,9 +362,13 @@ oc:
     logout: Se desconnectar
     migrate_account: Mudar endacòm mai
     migrate_account_html: Se volètz mandar los visitors d’aqueste compte a un autre, podètz<a href="%{path}"> o configurar aquí</a>.
+    providers:
+      cas: CAS
+      saml: SAML
     register: Se marcar
     resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
+    security: Seguretat
     set_new_password: Picar un nòu senhal
   authorize_follow:
     error: O planhèm, i a agut una error al moment de cercar lo compte
@@ -388,7 +390,7 @@ oc:
     - dv
     - ds
     abbr_month_names:
-    - 
+    - None
     - gen
     - feb
     - mar
@@ -414,7 +416,7 @@ oc:
       long: Lo %e %B de %Y
       short: "%e %b. de %Y"
     month_names:
-    - 
+    - None
     - de genièr
     - de febrièr
     - de març

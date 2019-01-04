@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 import NotificationsContainer from './containers/notifications_container';
 import PropTypes from 'prop-types';
@@ -55,6 +56,7 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   isComposing: state.getIn(['compose', 'is_composing']),
   hasComposingText: state.getIn(['compose', 'text']) !== '',
+  dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
 });
 
 const keyMap = {
@@ -84,10 +86,93 @@ const keyMap = {
   goToMuted: 'g m',
 };
 
+class SwitchingColumnsArea extends React.PureComponent {
+
+  static propTypes = {
+    children: PropTypes.node,
+    location: PropTypes.object,
+    onLayoutChange: PropTypes.func.isRequired,
+  };
+
+  state = {
+    mobile: isMobile(window.innerWidth),
+  };
+
+  componentWillMount () {
+    window.addEventListener('resize', this.handleResize, { passive: true });
+  }
+
+  componentDidUpdate (prevProps) {
+    if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
+      this.node.handleChildrenContentChange();
+    }
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = debounce(() => {
+    // The cached heights are no longer accurate, invalidate
+    this.props.onLayoutChange();
+
+    this.setState({ mobile: isMobile(window.innerWidth) });
+  }, 500, {
+    trailing: true,
+  });
+
+  setRef = c => {
+    this.node = c.getWrappedInstance().getWrappedInstance();
+  }
+
+  render () {
+    const { children } = this.props;
+    const { mobile } = this.state;
+
+    return (
+      <ColumnsAreaContainer ref={this.setRef} singleColumn={mobile}>
+        <WrappedSwitch>
+          <Redirect from='/' to='/getting-started' exact />
+          <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
+          <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
+          <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
+          <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
+          <WrappedRoute path='/timelines/public/local' component={CommunityTimeline} content={children} />
+          <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
+          <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
+
+          <WrappedRoute path='/notifications' component={Notifications} content={children} />
+          <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
+          <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
+
+          <WrappedRoute path='/statuses/new' component={Compose} content={children} />
+          <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
+          <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} />
+          <WrappedRoute path='/statuses/:statusId/favourites' component={Favourites} content={children} />
+
+          <WrappedRoute path='/accounts/:accountId' exact component={AccountTimeline} content={children} />
+          <WrappedRoute path='/accounts/:accountId/with_replies' component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
+          <WrappedRoute path='/accounts/:accountId/followers' component={Followers} content={children} />
+          <WrappedRoute path='/accounts/:accountId/following' component={Following} content={children} />
+          <WrappedRoute path='/accounts/:accountId/media' component={AccountGallery} content={children} />
+
+          <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
+          <WrappedRoute path='/blocks' component={Blocks} content={children} />
+          <WrappedRoute path='/mutes' component={Mutes} content={children} />
+          <WrappedRoute path='/lists' component={Lists} content={children} />
+
+          <WrappedRoute component={GenericNotFound} content={children} />
+        </WrappedSwitch>
+      </ColumnsAreaContainer>
+    );
+  }
+
+}
+
 @connect(mapStateToProps)
 @injectIntl
 @withRouter
-export default class UI extends React.Component {
+export default class UI extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,
@@ -100,10 +185,10 @@ export default class UI extends React.Component {
     hasComposingText: PropTypes.bool,
     location: PropTypes.object,
     intl: PropTypes.object.isRequired,
+    dropdownMenuIsOpen: PropTypes.bool,
   };
 
   state = {
-    width: window.innerWidth,
     draggingOver: false,
   };
 
@@ -118,14 +203,10 @@ export default class UI extends React.Component {
     }
   }
 
-  handleResize = debounce(() => {
+  handleLayoutChange = () => {
     // The cached heights are no longer accurate, invalidate
     this.props.dispatch(clearHeight());
-
-    this.setState({ width: window.innerWidth });
-  }, 500, {
-    trailing: true,
-  });
+  }
 
   handleDragEnter = (e) => {
     e.preventDefault();
@@ -193,7 +274,6 @@ export default class UI extends React.Component {
 
   componentWillMount () {
     window.addEventListener('beforeunload', this.handleBeforeUnload, false);
-    window.addEventListener('resize', this.handleResize, { passive: true });
     document.addEventListener('dragenter', this.handleDragEnter, false);
     document.addEventListener('dragover', this.handleDragOver, false);
     document.addEventListener('drop', this.handleDrop, false);
@@ -214,28 +294,8 @@ export default class UI extends React.Component {
     };
   }
 
-  shouldComponentUpdate (nextProps) {
-    if (nextProps.isComposing !== this.props.isComposing) {
-      // Avoid expensive update just to toggle a class
-      this.node.classList.toggle('is-composing', nextProps.isComposing);
-
-      return false;
-    }
-
-    // Why isn't this working?!?
-    // return super.shouldComponentUpdate(nextProps, nextState);
-    return true;
-  }
-
-  componentDidUpdate (prevProps) {
-    if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
-      this.columnsAreaNode.handleChildrenContentChange();
-    }
-  }
-
   componentWillUnmount () {
     window.removeEventListener('beforeunload', this.handleBeforeUnload);
-    window.removeEventListener('resize', this.handleResize);
     document.removeEventListener('dragenter', this.handleDragEnter);
     document.removeEventListener('dragover', this.handleDragOver);
     document.removeEventListener('drop', this.handleDrop);
@@ -245,10 +305,6 @@ export default class UI extends React.Component {
 
   setRef = c => {
     this.node = c;
-  }
-
-  setColumnsAreaRef = c => {
-    this.columnsAreaNode = c.getWrappedInstance().getWrappedInstance();
   }
 
   handleHotkeyNew = e => {
@@ -350,8 +406,8 @@ export default class UI extends React.Component {
   }
 
   render () {
-    const { width, draggingOver } = this.state;
-    const { children } = this.props;
+    const { draggingOver } = this.state;
+    const { children, isComposing, location, dropdownMenuIsOpen } = this.props;
 
     const handlers = {
       help: this.handleHotkeyToggleHelp,
@@ -374,42 +430,12 @@ export default class UI extends React.Component {
 
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef}>
-        <div className='ui' ref={this.setRef}>
+        <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
           <TabsBar />
 
-          <ColumnsAreaContainer ref={this.setColumnsAreaRef} singleColumn={isMobile(width)}>
-            <WrappedSwitch>
-              <Redirect from='/' to='/getting-started' exact />
-              <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
-              <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
-              <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
-              <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
-              <WrappedRoute path='/timelines/public/local' component={CommunityTimeline} content={children} />
-              <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
-              <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
-
-              <WrappedRoute path='/notifications' component={Notifications} content={children} />
-              <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
-              <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
-
-              <WrappedRoute path='/statuses/new' component={Compose} content={children} />
-              <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
-              <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} />
-              <WrappedRoute path='/statuses/:statusId/favourites' component={Favourites} content={children} />
-
-              <WrappedRoute path='/accounts/:accountId' exact component={AccountTimeline} content={children} />
-              <WrappedRoute path='/accounts/:accountId/followers' component={Followers} content={children} />
-              <WrappedRoute path='/accounts/:accountId/following' component={Following} content={children} />
-              <WrappedRoute path='/accounts/:accountId/media' component={AccountGallery} content={children} />
-
-              <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
-              <WrappedRoute path='/blocks' component={Blocks} content={children} />
-              <WrappedRoute path='/mutes' component={Mutes} content={children} />
-              <WrappedRoute path='/lists' component={Lists} content={children} />
-
-              <WrappedRoute component={GenericNotFound} content={children} />
-            </WrappedSwitch>
-          </ColumnsAreaContainer>
+          <SwitchingColumnsArea location={location} onLayoutChange={this.handleLayoutChange}>
+            {children}
+          </SwitchingColumnsArea>
 
           <NotificationsContainer />
           <LoadingBarContainer className='loading-bar' />

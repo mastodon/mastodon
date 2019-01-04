@@ -8,7 +8,13 @@ class UnreservedUsernameValidator < ActiveModel::Validator
 
   private
 
+  def pam_controlled?(value)
+    return false unless Devise.pam_authentication && Devise.pam_controlled_service
+    Rpam2.account(Devise.pam_controlled_service, value).present?
+  end
+
   def reserved_username?(value)
+    return true if pam_controlled?(value)
     return false unless Setting.reserved_usernames
     Setting.reserved_usernames.include?(value.downcase)
   end

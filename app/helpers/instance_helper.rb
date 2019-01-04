@@ -2,7 +2,7 @@
 
 module InstanceHelper
   def site_title
-    Setting.site_title.presence || site_hostname
+    Setting.site_title
   end
 
   def site_hostname

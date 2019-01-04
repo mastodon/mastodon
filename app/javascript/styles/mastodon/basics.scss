@@ -47,6 +47,10 @@ body {
     padding-bottom: 0;
   }
 
+  &.player {
+    text-align: center;
+  }
+
   &.embed {
     background: transparent;
     margin: 0;
@@ -118,5 +122,6 @@ button {
     height: 100%;
     align-items: center;
     justify-content: center;
+    outline: 0 !important;
   }
 }

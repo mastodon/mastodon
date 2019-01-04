@@ -11,7 +11,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { getAccountGallery } from '../../selectors';
 import MediaItem from './components/media_item';
 import HeaderContainer from '../account_timeline/containers/header_container';
-import { FormattedMessage } from 'react-intl';
 import { ScrollContainer } from 'react-router-scroll-4';
 import LoadMore from '../../components/load_more';
 
@@ -88,10 +87,6 @@ export default class AccountGallery extends ImmutablePureComponent {
         <ScrollContainer scrollKey='account_gallery'>
           <div className='scrollable' onScroll={this.handleScroll}>
             <HeaderContainer accountId={this.props.params.accountId} />
-
-            <div className='account-section-headline'>
-              <FormattedMessage id='account.media' defaultMessage='Media' />
-            </div>
 
             <div className='account-gallery__container'>
               {medias.map(media => (

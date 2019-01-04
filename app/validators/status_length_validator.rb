@@ -23,6 +23,8 @@ class StatusLengthValidator < ActiveModel::Validator
   end
 
   def countable_text(status)
+    return '' if status.text.nil?
+
     status.text.dup.tap do |new_text|
       new_text.gsub!(FetchLinkCardService::URL_PATTERN, 'x' * 23)
       new_text.gsub!(Account::MENTION_RE, '@\2')

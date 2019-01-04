@@ -102,7 +102,7 @@ const initialState = ImmutableMap();
 export default function accounts(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
-    return state.merge(action.state.get('accounts'));
+    return normalizeAccounts(state, Object.values(action.state.get('accounts').toJS()));
   case ACCOUNT_FETCH_SUCCESS:
   case NOTIFICATIONS_UPDATE:
     return normalizeAccount(state, action.account);

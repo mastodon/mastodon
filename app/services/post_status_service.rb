@@ -21,17 +21,18 @@ class PostStatusService < BaseService
 
     media  = validate_media!(options[:media_ids])
     status = nil
+    text   = options.delete(:spoiler_text) if text.blank? && options[:spoiler_text].present?
+    text   = '.' if text.blank? && !media.empty?
 
     ApplicationRecord.transaction do
       status = account.statuses.create!(text: text,
+                                        media_attachments: media || [],
                                         thread: in_reply_to,
                                         sensitive: options[:sensitive],
                                         spoiler_text: options[:spoiler_text] || '',
                                         visibility: options[:visibility] || account.user&.setting_default_privacy,
                                         language: LanguageDetector.instance.detect(text, account),
                                         application: options[:application])
-
-      attach_media(status, media)
     end
 
     process_mentions_service.call(status)
@@ -62,11 +63,6 @@ class PostStatusService < BaseService
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if media.size > 1 && media.find(&:video?)
 
     media
-  end
-
-  def attach_media(status, media)
-    return if media.nil?
-    media.update(status_id: status.id)
   end
 
   def process_mentions_service

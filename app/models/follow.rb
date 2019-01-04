@@ -13,6 +13,7 @@
 
 class Follow < ApplicationRecord
   include Paginable
+  include RelationshipCacheable
 
   belongs_to :account, counter_cache: :following_count
 

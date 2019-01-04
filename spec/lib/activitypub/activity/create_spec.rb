@@ -202,7 +202,7 @@ RSpec.describe ActivityPub::Activity::Create do
           attachment: [
             {
               type: 'Document',
-              mime_type: 'image/png',
+              mediaType: 'image/png',
               url: 'http://example.com/attachment.png',
             },
           ],
@@ -217,6 +217,31 @@ RSpec.describe ActivityPub::Activity::Create do
       end
     end
 
+    context 'with media attachments with focal points' do
+      let(:object_json) do
+        {
+          id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+          type: 'Note',
+          content: 'Lorem ipsum',
+          attachment: [
+            {
+              type: 'Document',
+              mediaType: 'image/png',
+              url: 'http://example.com/attachment.png',
+              focalPoint: [0.5, -0.7],
+            },
+          ],
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+
+        expect(status).to_not be_nil
+        expect(status.media_attachments.map(&:focus)).to include('0.5,-0.7')
+      end
+    end
+
     context 'with media attachments missing url' do
       let(:object_json) do
         {
@@ -226,7 +251,7 @@ RSpec.describe ActivityPub::Activity::Create do
           attachment: [
             {
               type: 'Document',
-              mime_type: 'image/png',
+              mediaType: 'image/png',
             },
           ],
         }

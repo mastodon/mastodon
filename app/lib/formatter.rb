@@ -19,6 +19,8 @@ class Formatter
 
     raw_content = status.text
 
+    return '' if raw_content.blank?
+
     unless status.local?
       html = reformat(raw_content)
       html = encode_custom_emojis(html, status.emojis) if options[:custom_emojify]
