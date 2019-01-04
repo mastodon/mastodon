@@ -95,6 +95,14 @@ export default class LocalSettingsPage extends React.PureComponent {
           >
             <FormattedMessage id='settings.navbar_under' defaultMessage='Navbar at the bottom (Mobile only)' />
           </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['swipe_to_change_columns']}
+            id='mastodon-settings--swipe_to_change_columns'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.swipe_to_change_columns' defaultMessage='Allow swiping to change columns (Mobile only)' />
+          </LocalSettingsPageItem>
         </section>
       </div>
     ),

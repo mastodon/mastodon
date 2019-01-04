@@ -9,6 +9,7 @@ const initialState = ImmutableMap({
   layout    : 'auto',
   stretch   : true,
   navbar_under : false,
+  swipe_to_change_columns: true,
   side_arm  : 'none',
   side_arm_reply_mode : 'keep',
   show_reply_count : false,

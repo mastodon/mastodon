@@ -46,6 +46,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
   static propTypes = {
     intl: PropTypes.object.isRequired,
     columns: ImmutablePropTypes.list.isRequired,
+    swipeToChangeColumns: PropTypes.bool,
     singleColumn: PropTypes.bool,
     children: PropTypes.node,
   };
@@ -153,7 +154,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
   }
 
   render () {
-    const { columns, children, singleColumn, intl } = this.props;
+    const { columns, children, singleColumn, swipeToChangeColumns, intl } = this.props;
     const { shouldAnimate } = this.state;
 
     const columnIndex = getIndex(this.context.router.history.location.pathname);
@@ -163,7 +164,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
       const floatingActionButton = shouldHideFAB(this.context.router.history.location.pathname) ? null : <Link key='floating-action-button' to='/statuses/new' className='floating-action-button' aria-label={intl.formatMessage(messages.publish)}><i className='fa fa-pencil' /></Link>;
 
       return columnIndex !== -1 ? [
-        <ReactSwipeableViews key='content' index={columnIndex} onChangeIndex={this.handleSwipe} onTransitionEnd={this.handleAnimationEnd} animateTransitions={shouldAnimate} springConfig={{ duration: '400ms', delay: '0s', easeFunction: 'ease' }} style={{ height: '100%' }}>
+        <ReactSwipeableViews key='content' index={columnIndex} onChangeIndex={this.handleSwipe} onTransitionEnd={this.handleAnimationEnd} animateTransitions={shouldAnimate} springConfig={{ duration: '400ms', delay: '0s', easeFunction: 'ease' }} style={{ height: '100%' }} disabled={!swipeToChangeColumns}>
           {links.map(this.renderView)}
         </ReactSwipeableViews>,
 
