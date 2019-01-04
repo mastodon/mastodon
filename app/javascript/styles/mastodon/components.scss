@@ -548,6 +548,13 @@
   }
 }
 
+.compose-form__live-preview {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  background: $ui-base-color;
+}
+
 .emojione {
   display: inline-block;
   font-size: inherit;
@@ -678,6 +685,43 @@
       display: block;
     }
   }
+}
+
+.MathJax_Display {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+$blackboardcolor: #103212;
+$blackboardcolor: #3A5849;
+$blackboardcolor: #315653;
+.mathjaxified__content {
+    background-color: darken($blackboardcolor, 10%);
+    border: 4px solid #423325 !important;
+    padding: 4px 6px 4px 68px !important;
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: 0px;
+        right: 10px;
+        height: 5px;
+        width: 12px;
+        background-color: rgb(107, 55, 32);
+        border-bottom: 1px solid #14128a;
+    }
+    &:before {
+        content: "";
+        position: absolute;
+        bottom: 0px;
+        right: 29px;
+        height: 1px;
+        width: 6px;
+        background-color: #939393;
+    }
+}
+
+.mathjaxified__content + .mathjaxified__content {
+    border-top: 0px !important;
 }
 
 .status__content__spoiler-link {
