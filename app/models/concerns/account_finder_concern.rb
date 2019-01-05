@@ -4,10 +4,6 @@ module AccountFinderConcern
   extend ActiveSupport::Concern
 
   class_methods do
-    def representative!
-      find_local!(Setting.site_contact_username.gsub(/\A@/, ''))
-    end
-
     def find_local!(username)
       find_local(username) || raise(ActiveRecord::RecordNotFound)
     end
