@@ -16,7 +16,7 @@ describe Api::V1::Timelines::TagController do
 
     describe 'GET #show' do
       before do
-        PostStatusService.new.call(user.account, 'It is a #test')
+        PostStatusService.new.call(user.account, text: 'It is a #test')
       end
 
       it 'returns http success' do
