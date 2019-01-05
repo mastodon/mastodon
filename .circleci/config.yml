@@ -186,17 +186,17 @@ workflows:
       - install-ruby2.6:
           requires:
             - install
-            - install-ruby2.5
       - install-ruby2.5:
           requires:
             - install
+            - install-ruby2.6
       - install-ruby2.4:
           requires:
             - install
-            - install-ruby2.5
+            - install-ruby2.6
       - build:
           requires:
-            - install-ruby2.5
+            - install-ruby2.6
       - test-ruby2.6:
           requires:
             - install-ruby2.6
@@ -214,4 +214,4 @@ workflows:
             - install
       - check-i18n:
           requires:
-            - install-ruby2.5
+            - install-ruby2.6

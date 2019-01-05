@@ -50,7 +50,7 @@ class User < ApplicationRecord
   # every day. Raising the duration reduces the amount of expensive
   # RegenerationWorker jobs that need to be run when those people come
   # to check their feed
-  ACTIVE_DURATION = ENV.fetch('USER_ACTIVE_DAYS', 7).to_i.days
+  ACTIVE_DURATION = ENV.fetch('USER_ACTIVE_DAYS', 7).to_i.days.freeze
 
   devise :two_factor_authenticatable,
          otp_secret_encryption_key: Rails.configuration.x.otp_secret
@@ -83,9 +83,11 @@ class User < ApplicationRecord
   scope :moderators, -> { where(moderator: true) }
   scope :staff, -> { admins.or(moderators) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
+  scope :enabled, -> { where(disabled: false) }
   scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
   scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended: false }) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
+  scope :emailable, -> { confirmed.enabled.joins(:account).merge(Account.searchable) }
 
   before_validation :sanitize_languages
 
