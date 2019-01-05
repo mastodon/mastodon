@@ -8,7 +8,7 @@ class UrlValidator < ActiveModel::EachValidator
   private
 
   def compliant?(url)
-    parsed_url = Addressable::URI.parse(url).normalize
-    !parsed_url.nil? && %w(http https).include?(parsed_url.scheme) && parsed_url.host
+    parsed_url = Addressable::URI.parse(url)
+    parsed_url && %w(http https).include?(parsed_url.scheme) && parsed_url.host
   end
 end
