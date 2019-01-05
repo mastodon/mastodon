@@ -199,6 +199,12 @@ export default class Card extends React.PureComponent {
           {thumbnail}
         </div>
       );
+    } else {
+      embed = (
+        <div className='status-card__image'>
+          <i className='fa fa-file-text' />
+        </div>
+      );
     }
 
     return (
