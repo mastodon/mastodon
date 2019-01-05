@@ -8,8 +8,8 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
   let!(:jeff)   { Fabricate(:user).account }
   let!(:hank)   { Fabricate(:account, username: 'hank', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 
-  let(:status1) { PostStatusService.new.call(alice, 'Hello @bob@example.com') }
-  let(:status2) { PostStatusService.new.call(alice, 'Another status') }
+  let(:status1) { PostStatusService.new.call(alice, text: 'Hello @bob@example.com') }
+  let(:status2) { PostStatusService.new.call(alice, text: 'Another status') }
 
   before do
     allow(Redis.current).to receive_messages(publish: nil)
