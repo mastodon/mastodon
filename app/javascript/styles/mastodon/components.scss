@@ -2587,6 +2587,15 @@ a.status-card {
   flex: 0 0 100px;
   background: lighten($ui-base-color, 8%);
   position: relative;
+
+  .fa {
+    font-size: 21px;
+    position: absolute;
+    transform-origin: 50% 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .status-card.horizontal {
@@ -4046,6 +4055,7 @@ a.status-card.compact:hover {
     color: $highlight-text-color;
   }
 
+  .status__content,
   .status__content p {
     color: $inverted-text-color;
   }
