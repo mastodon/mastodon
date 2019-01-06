@@ -5,7 +5,7 @@ class RegenerationWorker
 
   sidekiq_options unique: :until_executed
 
-  def perform(account_id, _ = :home)
+  def perform(account_id)
     account = Account.find(account_id)
     PrecomputeFeedService.new.call(account)
   rescue ActiveRecord::RecordNotFound
