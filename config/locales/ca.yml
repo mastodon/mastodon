@@ -152,7 +152,6 @@ ca:
       shared_inbox_url: URL de la safata d'entrada compartida
       show:
         created_reports: Informes creats per aquest compte
-        report: informe
         targeted_reports: Informes realitzats sobre aquest compte
       silence: Silenci
       silenced: Silenciat
@@ -439,12 +438,6 @@ ca:
       last_delivery: Últim lliurament
       title: WebSub
       topic: Tema
-    suspensions:
-      bad_acct_msg: El valor de confirmació no s'ha trobat. Estàs suspenen el compte correcte?
-      hint_html: 'Per confirmar la suspensió del compte, introdueix %{value} al camp següent:'
-      proceed: Procedeix
-      title: Suspèn %{acct}
-      warning_html: 'Suspenen aquest compte esborrarà <strong>irreversiblement</strong> les dades del compte, incloent:'
     tags:
       accounts: Comptes
       hidden: Amagat
@@ -931,7 +924,6 @@ ca:
       review_preferences_action: Canviar preferències
       review_preferences_step: Assegura't d'establir les teves preferències, com ara els correus electrònics que vols rebre o el nivell de privadesa per defecte que t'agradaria que tinguin les teves entrades. Si no tens malaltia de moviment, pots optar per habilitar la reproducció automàtica de GIF.
       subject: Benvingut/da a Mastodon
-      tip_bridge_html: Si vens de Twitter, pots trobar els teus amics a Mastodon mitjançant l'aplicació <a href="%{bridge_url}"> bridge </a>. Només funciona si també ells usen aquesta aplicació pont!
       tip_federated_timeline: La línia de temps federada és el cabal principal de la xarxa Mastodon. Però només inclou les persones a les quals els teus veïns estan subscrits, de manera que no està complet.
       tip_following: Per defecte segueixes als administradors del servidor. Per trobar més persones interessants, consulta les línies de temps local i federada.
       tip_local_timeline: La línia de temps local és la vista del flux de publicacions dels usuaris de %{instance}. Aquests usuaris són els teus veïns més propers!

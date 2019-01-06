@@ -191,58 +191,6 @@ RSpec.describe Admin::AccountsController, type: :controller do
     end
   end
 
-  describe 'POST #disable' do
-    subject { post :disable, params: { id: account.id } }
-
-    let(:current_user) { Fabricate(:user, admin: current_user_admin) }
-    let(:account) { Fabricate(:account, user: user) }
-    let(:user) { Fabricate(:user, disabled: false, admin: target_user_admin) }
-
-    context 'when user is admin' do
-      let(:current_user_admin) { true }
-
-      context 'when target user is admin' do
-        let(:target_user_admin) { true }
-
-        it 'fails to disable account' do
-          is_expected.to have_http_status :forbidden
-          expect(user.reload).not_to be_disabled
-        end
-      end
-
-      context 'when target user is not admin' do
-        let(:target_user_admin) { false }
-
-        it 'succeeds in disabling account' do
-          is_expected.to redirect_to admin_account_path(account.id)
-          expect(user.reload).to be_disabled
-        end
-      end
-    end
-
-    context 'when user is not admin' do
-      let(:current_user_admin) { false }
-
-      context 'when target user is admin' do
-        let(:target_user_admin) { true }
-
-        it 'fails to disable account' do
-          is_expected.to have_http_status :forbidden
-          expect(user.reload).not_to be_disabled
-        end
-      end
-
-      context 'when target user is not admin' do
-        let(:target_user_admin) { false }
-
-        it 'fails to disable account' do
-          is_expected.to have_http_status :forbidden
-          expect(user.reload).not_to be_disabled
-        end
-      end
-    end
-  end
-
   describe 'POST #redownload' do
     subject { post :redownload, params: { id: account.id } }
 

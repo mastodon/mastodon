@@ -2,6 +2,13 @@
 en:
   simple_form:
     hints:
+      account_warning_preset:
+        text: You can use toot syntax, such as URLs, hashtags and mentions
+      admin_account_action:
+        send_email_notification: The user will receive an explanation of what happened with their account
+        text_html: Optional. You can use toot syntax. You can <a href="%{path}">add warning presets</a> to save time
+        type_html: Choose what to do with <strong>%{acct}</strong>
+        warning_preset_id: Optional. You can still add custom text to end of the preset
       defaults:
         autofollow: People who sign up through the invite will automatically follow you
         avatar: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
@@ -40,6 +47,18 @@ en:
         fields:
           name: Label
           value: Content
+      account_warning_preset:
+        text: Preset text
+      admin_account_action:
+        send_email_notification: Notify the user per e-mail
+        text: Custom warning
+        type: Action
+        types:
+          disable: Disable
+          none: Do nothing
+          silence: Silence
+          suspend: Suspend and irreversibly delete account data
+        warning_preset_id: Use a warning preset
       defaults:
         autofollow: Invite to follow your account
         avatar: Avatar

@@ -104,6 +104,7 @@ fr:
       followers: Abonné⋅e⋅s
       followers_url: URL des abonné·e·s
       follows: Abonnements
+      header: Entête
       inbox_url: URL d’entrée
       ip: Adresse IP
       location:
@@ -134,6 +135,7 @@ fr:
       push_subscription_expires: Expiration de l’abonnement PuSH
       redownload: Rafraîchir les avatars
       remove_avatar: Supprimer l’avatar
+      remove_header: Supprimer l'entête
       resend_confirmation:
         already_confirmed: Cet·te utilisateur·ice est déjà confirmé·e
         send: Renvoyer un courriel de confirmation
@@ -152,7 +154,6 @@ fr:
       shared_inbox_url: URL de la boite de réception partagée
       show:
         created_reports: Signalements créés par ce compte
-        report: signalement
         targeted_reports: Signalements créés visant ce compte
       silence: Masquer
       silenced: Silencié
@@ -439,12 +440,6 @@ fr:
       last_delivery: Dernière livraison
       title: WebSub
       topic: Sujet
-    suspensions:
-      bad_acct_msg: La valeur de confirmation n'a pas correspondu. Êtes-vous certain de suspendre le bon compte ?
-      hint_html: 'Pour confirmer la suspension du compte, veuillez entrer %{value} dans le champ ci-dessous :'
-      proceed: Confirmer
-      title: Suspension de %{acct}
-      warning_html: 'Suspendre ce compte effacera <strong>irréversiblement</strong> les données de ce compte, ce qui inclut :'
     tags:
       accounts: Comptes
       hidden: Masqué
@@ -931,7 +926,6 @@ fr:
       review_preferences_action: Modifier les préférences
       review_preferences_step: Assurez-vous de définir vos préférences, telles que les courriels que vous aimeriez recevoir ou le niveau de confidentialité auquel vous aimeriez que vos messages soient soumis par défaut. Si vous n’avez pas le mal des transports, vous pouvez choisir d’activer la lecture automatique des GIF.
       subject: Bienvenue sur Mastodon
-      tip_bridge_html: Si vous venez de Twitter, vous pouvez retrouver vos ami·e·s sur Mastodon en utilisant l’<a href="%{bridge_url}">application de mise en relation</a>. Cela ne fonctionne que s’il·elle·s ont aussi utilisé cette application !
       tip_federated_timeline: La fil public global est une vue en direct du réseau Mastodon. Mais elle n’inclut que les personnes auxquelles vos voisin·es sont abonné·e·s, donc elle n’est pas complète.
       tip_following: Vous suivez les administrateur·rice·s de votre serveur par défaut. Pour trouver d’autres personnes intéressantes, consultez les fils publics local et global.
       tip_local_timeline: Le fil public local est une vue des personnes sur %{instance}. Ce sont vos voisines et voisins immédiats !

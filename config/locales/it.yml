@@ -150,7 +150,6 @@ it:
       shared_inbox_url: URL Inbox Condiviso
       show:
         created_reports: Rapporti creati da questo account
-        report: segnala
         targeted_reports: Rapporti che riguardano questo account
       silence: Silenzia
       silenced: Silenziato
@@ -429,12 +428,6 @@ it:
       confirmed: Confermato
       expires_in: Scade in
       topic: Argomento
-    suspensions:
-      bad_acct_msg: Il valore di conferma non corrisponde. Stai sospendendo l'account giusto?
-      hint_html: 'Per confermare la sospensione dell''account, inserisci %{value} nel campo qui sotto:'
-      proceed: Continua
-      title: Sospendi %{acct}
-      warning_html: 'La sospensione dell''account comporta la cancellazione <strong>irreversibile</strong> dei suoi dati, che comprendono:'
     title: Amministrazione
   application_mailer:
     notification_preferences: Cambia preferenze email
@@ -792,7 +785,6 @@ it:
       review_preferences_action: Cambia preferenze
       review_preferences_step: Dovresti impostare le tue preferenze, ad esempio quali email vuoi ricevere oppure il livello predefinito di privacy per i tuoi post. Se le immagini in movimento non ti danno fastidio, puoi abilitare l'animazione automatica delle GIF.
       subject: Benvenuto/a su Mastodon
-      tip_bridge_html: Se vieni da Twitter, puoi trovare i tuoi amici su Mastodon usando la<a href="%{bridge_url}">app bridge</a>. Ma funziona solo se anche loro la usano!
       tip_federated_timeline: La timeline federata visualizza uno dopo l'altro i messaggi pubblicati su Mastodon. Ma comprende solo gli utenti seguiti dai tuoi vicini, quindi non è completa.
       tip_following: Per impostazione predefinita, segui l'amministratore/i del tuo server. Per trovare utenti più interessanti, dà un'occhiata alle timeline locale e federata.
       tip_local_timeline: La timeline locale visualizza uno dopo l'altro i messaggi degli utenti di %{instance}. Questi sono i tuoi vicini!

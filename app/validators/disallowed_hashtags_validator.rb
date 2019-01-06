@@ -4,13 +4,18 @@ class DisallowedHashtagsValidator < ActiveModel::Validator
   def validate(status)
     return unless status.local? && !status.reblog?
 
-    tags = Extractor.extract_hashtags(status.text)
-    tags.keep_if { |tag| disallowed_hashtags.include? tag.downcase }
+    @status = status
+    tags    = select_tags
 
     status.errors.add(:text, I18n.t('statuses.disallowed_hashtags', tags: tags.join(', '), count: tags.size)) unless tags.empty?
   end
 
   private
+
+  def select_tags
+    tags = Extractor.extract_hashtags(@status.text)
+    tags.keep_if { |tag| disallowed_hashtags.include? tag.downcase }
+  end
 
   def disallowed_hashtags
     return @disallowed_hashtags if @disallowed_hashtags

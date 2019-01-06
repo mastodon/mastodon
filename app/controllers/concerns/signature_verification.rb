@@ -47,6 +47,7 @@ module SignatureVerification
       .with_fallback { nil }
       .with_threshold(1)
       .with_cool_off_time(5.minutes.seconds)
+      .with_error_handler { |error, handle| error.is_a?(HTTP::Error) ? handle.call(error) : raise(error) }
 
     account = account_stoplight.run
 

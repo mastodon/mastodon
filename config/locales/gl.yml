@@ -104,6 +104,7 @@ gl:
       followers: Seguidoras
       followers_url: URL das seguidoras
       follows: Segue
+      header: Cabeceira
       inbox_url: URL da Caixa de entrada
       ip: IP
       location:
@@ -134,6 +135,7 @@ gl:
       push_subscription_expires: A suscrición PuSH caduca
       redownload: Actualizar avatar
       remove_avatar: Eliminar avatar
+      remove_header: Eliminar cabeceira
       resend_confirmation:
         already_confirmed: Este usuario ya está confirmado
         send: Reenviar el correo electrónico de confirmación
@@ -152,7 +154,6 @@ gl:
       shared_inbox_url: URL da caixa de entrada compartida
       show:
         created_reports: Informes creados por esta conta
-        report: informar
         targeted_reports: Informes feitos sobre esta conta
       silence: Acalar
       silenced: Acalada
@@ -439,12 +440,6 @@ gl:
       last_delivery: Última entrega
       title: WebSub
       topic: Asunto
-    suspensions:
-      bad_acct_msg: O valor de confirmación non é coincidente. Está a suspender a conta correcta?
-      hint_html: 'Para confirmar a suspensión da conta introduza %{value} no campo inferior:'
-      proceed: Proceder
-      title: Suspender %{acct}
-      warning_html: 'Ao suspender esta conta eliminará <strong>de xeito irreversible</strong> os datos de esta conta, que inclúe:'
     tags:
       accounts: Contas
       hidden: Ocultas
@@ -931,7 +926,6 @@ gl:
       review_preferences_action: Cambiar preferencias
       review_preferences_step: Lembre establecer as preferencias, tales como qué correos-e lle querería recibir, ou o nivel de intimidade por omisión para as súas mensaxes. Se non lle molestan as imaxes con movemento, pode escoller que os GIF se reproduzan automáticamente.
       subject: Benvida a Mastodon
-      tip_bridge_html: Si chega desde a Twitter, pode atopar aos seus amigos en Mastodon utilizando o <a href="%{bridge_url}">aplicativo ponte</a>. Só funciona si eles tamén utilizan o aplicativo ponte!
       tip_federated_timeline: A liña temporal federada é unha visión ampla da rede Mastodon. Pero so inclúe xente a que segue xente que vostede segue, así que non é completa.
       tip_following: Por omisión vostede segue ao Admin do seu servidor. Para atopar máis xente interesante, mire nas liñas temporais local e federada.
       tip_local_timeline: A liña temporal local é unha ollada xeral sobre a xente en %{instance}. Son as súas veciñas máis próximas!

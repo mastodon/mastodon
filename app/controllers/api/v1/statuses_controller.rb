@@ -50,17 +50,18 @@ class Api::V1::StatusesController < Api::BaseController
     #nsfw = status_params[:sensitive]
 
     @status = PostStatusService.new.call(current_user.account,
-                                         status_params[:status],
-                                         status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
+                                         text: status_params[:status],
+                                         thread: status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
                                          media_ids: status_params[:media_ids],
                                          sensitive: status_params[:sensitive],
                                          #sensitive: nsfw == true ? true : check_nsfw(set_image_path),
                                          spoiler_text: status_params[:spoiler_text],
                                          visibility: status_params[:visibility],
+                                         scheduled_at: status_params[:scheduled_at],
                                          application: doorkeeper_token.application,
                                          idempotency: request.headers['Idempotency-Key'])
 
-    render json: @status, serializer: REST::StatusSerializer
+    render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
   end
 
   def destroy
@@ -83,7 +84,7 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def status_params
-    params.permit(:status, :in_reply_to_id, :sensitive, :spoiler_text, :visibility, media_ids: [])
+    params.permit(:status, :in_reply_to_id, :sensitive, :spoiler_text, :visibility, :scheduled_at, media_ids: [])
   end
 
   def pagination_params(core_params)

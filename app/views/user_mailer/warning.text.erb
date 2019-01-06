@@ -1,0 +1,9 @@
+<%= t "user_mailer.warning.title.#{@warning.action}" %>
+
+===
+
+<% unless @warning.none_action? %>
+<%= t "user_mailer.warning.explanation.#{@warning.action}" %>
+
+<% end %>
+<%= @warning.text %>

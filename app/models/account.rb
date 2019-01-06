@@ -44,6 +44,7 @@
 #  fields                  :jsonb
 #  actor_type              :string
 #  discoverable            :boolean
+#  also_known_as           :string           is an Array
 #
 
 class Account < ApplicationRecord
@@ -59,6 +60,7 @@ class Account < ApplicationRecord
   include Attachmentable
   include Paginable
   include AccountCounters
+  include DomainNormalizable
 
   enum protocol: [:ostatus, :activitypub]
 
@@ -73,7 +75,7 @@ class Account < ApplicationRecord
   validates_with UniqueUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
-  validates :note, length: { maximum: 160 }, if: -> { local? && will_save_change_to_note? }
+  validates :note, note_length: { maximum: 160 }, if: -> { local? && will_save_change_to_note? }
   validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
 
   scope :remote, -> { where.not(domain: nil) }
@@ -83,6 +85,7 @@ class Account < ApplicationRecord
   scope :silenced, -> { where(silenced: true) }
   scope :suspended, -> { where(suspended: true) }
   scope :without_suspended, -> { where(suspended: false) }
+  scope :without_silenced, -> { where(silenced: false) }
   scope :recent, -> { reorder(id: :desc) }
   scope :bots, -> { where(actor_type: %w(Application Service)) }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
@@ -90,8 +93,8 @@ class Account < ApplicationRecord
   scope :matches_username, ->(value) { where(arel_table[:username].matches("#{value}%")) }
   scope :matches_display_name, ->(value) { where(arel_table[:display_name].matches("#{value}%")) }
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
-  scope :searchable, -> { where(suspended: false).where(moved_to_account_id: nil) }
-  scope :discoverable, -> { searchable.where(silenced: false).where(discoverable: true).joins(:account_stat).where(AccountStat.arel_table[:followers_count].gteq(MIN_FOLLOWERS_DISCOVERY)).by_recent_status }
+  scope :searchable, -> { without_suspended.where(moved_to_account_id: nil) }
+  scope :discoverable, -> { searchable.without_silenced.where(discoverable: true).joins(:account_stat).where(AccountStat.arel_table[:followers_count].gteq(MIN_FOLLOWERS_DISCOVERY)).by_recent_status }
   scope :tagged_with, ->(tag) { joins(:accounts_tags).where(accounts_tags: { tag_id: tag }) }
   scope :by_recent_status, -> { order(Arel.sql('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc')) }
   scope :popular, -> { order('account_stats.followers_count desc') }
@@ -138,6 +141,10 @@ class Account < ApplicationRecord
     "#{username}@#{Rails.configuration.x.local_domain}"
   end
 
+  def local_followers_count
+    Follow.where(target_account_id: id).count
+  end
+
   def to_webfinger_s
     "acct:#{local_username_and_domain}"
   end
@@ -153,6 +160,14 @@ class Account < ApplicationRecord
   def refresh!
     return if local?
     ResolveAccountService.new.call(acct)
+  end
+
+  def silence!
+    update!(silenced: true)
+  end
+
+  def unsilence!
+    update!(silenced: false)
   end
 
   def suspend!
@@ -212,6 +227,10 @@ class Account < ApplicationRecord
         tag.increment_count!(:accounts_count)
       end
     end
+  end
+
+  def also_known_as
+    self[:also_known_as] || []
   end
 
   def fields
@@ -449,7 +468,6 @@ class Account < ApplicationRecord
   end
 
   before_create :generate_keys
-  before_validation :normalize_domain
   before_validation :prepare_contents, if: :local?
   before_destroy :clean_feed_manager
 
@@ -471,7 +489,7 @@ class Account < ApplicationRecord
   def normalize_domain
     return if local?
 
-    self.domain = TagManager.instance.normalize_domain(domain)
+    super
   end
 
   def emojifiable_text
