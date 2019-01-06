@@ -572,7 +572,9 @@ en:
       size: Size
     blocks: You block
     csv: CSV
+    domain_blocks: Domain blocks
     follows: You follow
+    lists: Lists
     mutes: You mute
     storage: Media storage
   filters:
@@ -728,6 +730,10 @@ en:
     error: Error
     title: Title
     unfollowed: Unfollowed
+  scheduled_statuses:
+    over_daily_limit: You have exceeded the limit of %{limit} scheduled toots for that day
+    over_total_limit: You have exceeded the limit of %{limit} scheduled toots
+    too_soon: The scheduled date must be in the future
   sessions:
     activity: Last activity
     browser: Browser
