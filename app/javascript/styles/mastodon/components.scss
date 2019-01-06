@@ -2588,7 +2588,7 @@ a.status-card {
   background: lighten($ui-base-color, 8%);
   position: relative;
 
-  .fa {
+  & > .fa {
     font-size: 21px;
     position: absolute;
     transform-origin: 50% 50%;
