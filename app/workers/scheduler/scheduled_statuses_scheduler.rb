@@ -7,7 +7,7 @@ class Scheduler::ScheduledStatusesScheduler
 
   def perform
     due_statuses.find_each do |scheduled_status|
-      PublishScheduledStatusWorker.perform_at(scheduled_status.scheduled_at)
+      PublishScheduledStatusWorker.perform_at(scheduled_status.scheduled_at, scheduled_status.id)
     end
   end
 
