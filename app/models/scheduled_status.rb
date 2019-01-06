@@ -17,7 +17,7 @@ class ScheduledStatus < ApplicationRecord
   DAILY_LIMIT = 25
 
   belongs_to :account, inverse_of: :scheduled_statuses
-  has_many :media_attachments, inverse_of: :scheduled_status, dependent: :destroy
+  has_many :media_attachments, inverse_of: :scheduled_status, dependent: :nullify
 
   validate :validate_future_date
   validate :validate_total_limit
