@@ -167,10 +167,10 @@ class PostStatusService < BaseService
 
   def scheduled_options
     @options.tap do |options_hash|
-      options_hash[:in_reply_to_status_id] = options_hash.delete(:thread)&.id
-      options_hash[:application_id]        = options_hash.delete(:application)&.id
-      options_hash[:scheduled_at]          = nil
-      options_hash[:idempotency]           = nil
+      options_hash[:in_reply_to_id] = options_hash.delete(:thread)&.id
+      options_hash[:application_id] = options_hash.delete(:application)&.id
+      options_hash[:scheduled_at]   = nil
+      options_hash[:idempotency]    = nil
     end
   end
 end
