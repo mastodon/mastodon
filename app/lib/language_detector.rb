@@ -5,9 +5,9 @@ class LanguageDetector
 
   CHARACTER_THRESHOLD = 140
 
-  def initialize
-    @identifier = CLD3::NNetLanguageIdentifier.new(1, 2048)
-  end
+  #def initialize
+  #  @identifier = CLD3::NNetLanguageIdentifier.new(1, 2048)
+  #end
 
   def detect(text, account)
     input_text = prepare_text(text)
@@ -17,9 +17,10 @@ class LanguageDetector
   end
 
   def language_names
-    @language_names =
-      CLD3::TaskContextParams::LANGUAGE_NAMES.map { |name| iso6391(name.to_s).to_sym }
-                                             .uniq
+    #@language_names =
+    #  CLD3::TaskContextParams::LANGUAGE_NAMES.map { |name| iso6391(name.to_s).to_sym }
+    #                                         .uniq
+    [:ja]
   end
 
   private
@@ -35,8 +36,9 @@ class LanguageDetector
   def detect_language_code(text)
     return if unreliable_input?(text)
 
-    result = @identifier.find_language(text)
-    iso6391(result.language.to_s).to_sym if result.reliable?
+    #result = @identifier.find_language(text)
+    #iso6391(result.language.to_s).to_sym if result.reliable?
+    return :ja
   end
 
   def iso6391(bcp47)
