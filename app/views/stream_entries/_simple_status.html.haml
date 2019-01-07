@@ -37,15 +37,15 @@
 
   .status__action-bar
     .status__action-bar__counter
-      = link_to remote_interaction_path(status), class: 'status__action-bar-button icon-button modal-button', style: 'font-size: 18px; width: 23.1429px; height: 23.1429px; line-height: 23.15px;' do
+      = link_to remote_interaction_path(status, type: :reply), class: 'status__action-bar-button icon-button modal-button', style: 'font-size: 18px; width: 23.1429px; height: 23.1429px; line-height: 23.15px;' do
         = fa_icon 'reply fw'
       .status__action-bar__counter__label= obscured_counter status.replies_count
-    = link_to remote_interaction_path(status), class: 'status__action-bar-button icon-button modal-button', style: 'font-size: 18px; width: 23.1429px; height: 23.1429px; line-height: 23.15px;' do
+    = link_to remote_interaction_path(status, type: :reblog), class: 'status__action-bar-button icon-button modal-button', style: 'font-size: 18px; width: 23.1429px; height: 23.1429px; line-height: 23.15px;' do
       - if status.public_visibility? || status.unlisted_visibility?
         = fa_icon 'retweet fw'
       - elsif status.private_visibility?
         = fa_icon 'lock fw'
       - else
         = fa_icon 'envelope fw'
-    = link_to remote_interaction_path(status), class: 'status__action-bar-button icon-button modal-button', style: 'font-size: 18px; width: 23.1429px; height: 23.1429px; line-height: 23.15px;' do
+    = link_to remote_interaction_path(status, type: :favourite), class: 'status__action-bar-button icon-button modal-button', style: 'font-size: 18px; width: 23.1429px; height: 23.1429px; line-height: 23.15px;' do
       = fa_icon 'star fw'
