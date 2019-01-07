@@ -38,6 +38,10 @@ class ActivityPub::TagManager
     end
   end
 
+  def generate_uri_for(_target)
+    URI.join(root_url, 'payloads', SecureRandom.uuid)
+  end
+
   def activity_uri_for(target)
     raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
 
@@ -82,6 +86,8 @@ class ActivityPub::TagManager
   end
 
   def local_uri?(uri)
+    return false if uri.nil?
+
     uri  = Addressable::URI.parse(uri)
     host = uri.normalized_host
     host = "#{host}:#{uri.port}" if uri.port
@@ -95,6 +101,8 @@ class ActivityPub::TagManager
   end
 
   def uri_to_resource(uri, klass)
+    return if uri.nil?
+
     if local_uri?(uri)
       case klass.name
       when 'Account'

@@ -3,43 +3,70 @@ ar:
   simple_form:
     hints:
       defaults:
+        autofollow: سوف يتابعك تلقائيًا الأشخاص الذين يقومون بالتسجيل من خلال الدعوة
         avatar: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير 2MB. سيتم تصغيره إلى 400x400px
+        bot: يُعلِم أنّ هذا الحساب لا يمثل شخصًا
+        context: واحد أو أكثر من السياقات التي يجب أن ينطبق عليها عامل التصفية
         digest: تُرسَل إليك بعد مُضيّ مدة مِن خمول نشاطك و فقط إذا ما تلقيت رسائل شخصية مباشِرة أثناء فترة غيابك مِن الشبكة
+        display_name:
+          one: <span class="name-counter">1</span> حرف باق
+          other: <span class="name-counter">%{count}</span> حرف باق
+        fields: يُمكنك عرض 4 عناصر على شكل جدول في ملفك الشخصي
         header: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير 2MB. سيتم تصغيره إلى 700x335px
+        irreversible: التبويقات التي تم تصفيتها ستختفي لا محالة حتى و إن تمت إزالة عامِل التصفية لاحقًا
+        locale: لغة واجهة المستخدم و الرسائل الإلكترونية و الإشعارات
         locked: يتطلب منك الموافقة يدويا على طلبات المتابعة
+        note:
+          one: <span class="note-counter">1</span> حرف باق
+          other: <span class="note-counter">%{count}</span> حرف باق
+        scopes: ما هي المجالات المسموح بها في التطبيق ؟ إن قمت باختيار أعلى المجالات فيمكنك الإستغناء عن الخَيار اليدوي.
+        setting_default_language: يمكن الكشف التلقائي للّغة اللتي استخدمتها في تحرير تبويقاتك ، غيرَ أنّ العملية ليست دائما دقيقة
+        setting_hide_network: الحسابات التي تُتابعها و التي تُتابِعك على حد سواء لن تُعرَض على صفحتك الشخصية
         setting_noindex: ذلك يؤثر على حالة ملفك الشخصي و صفحاتك
         setting_theme: ذلك يؤثر على الشكل الذي سيبدو عليه ماستدون عندما تقوم بالدخول مِن أي جهاز.
       imports:
         data: ملف CSV تم تصديره مِن مثيل خادوم ماستدون آخر
       sessions:
-        otp: قم بإدخال رمز المصادقة بخطوتين مِن هاتفك أو إستخدم أحد رموز النفاذ الإحتياطية.
+        otp: 'قم بإدخال رمز المصادقة بخطوتين الذي قام بتوليده تطبيق جهازك أو إستخدم أحد رموز النفاذ الإحتياطية :'
       user:
-        filtered_languages: سوف يتم تصفية و إخفاء اللغات المختارة من خيوطك العمومية
+        chosen_languages: لن تظهر على الخيوط العمومية إلّا التبويقات المنشورة في اللغات المختارة
     labels:
+      account:
+        fields:
+          name: التسمية
+          value: المحتوى
       defaults:
+        autofollow: إرسال دعوة لمتابعة حسابك
         avatar: الصورة الرمزية
+        bot: إنّ هذا الحساب روبوت آلي
+        chosen_languages: تصفية اللغات
         confirm_new_password: تأكيد كلمة السر الجديدة
         confirm_password: تأكيد كلمة السر
+        context: تصفية السياقات
         current_password: كلمة السر الحالية
         data: البيانات
         display_name: الإسم المعروض
         email: عنوان البريد الإلكتروني
         expires_in: تنتهي مدة صلاحيته بعد
-        filtered_languages: اللغات التي تم تصفيتها
+        fields: واصفات بيانات الملف الشخصي
         header: الرأسية
-        locale: اللغة
+        irreversible: إسقاط بدلا من إخفائها
+        locale: لغة الواجهة
         locked: تجميد الحساب
         max_uses: عدد مرات استخدام الرابط
         new_password: كلمة السر الجديدة
         note: السيرة الذاتية
         otp_attempt: رمز المصادقة بخطوتين
         password: كلمة السر
+        phrase: كلمة مفتاح أو عبارة
         setting_auto_play_gif: تشغيل تلقائي لِوَسائط جيف المتحركة
         setting_boost_modal: إظهار مربع حوار للتأكيد قبل ترقية أي تبويق
+        setting_default_language: لغة النشر
         setting_default_privacy: خصوصية المنشور
         setting_default_sensitive: إعتبر الوسائط دائما كمحتوى حساس
         setting_delete_modal: إظهار مربع حوار للتأكيد قبل حذف أي تبويق
         setting_display_sensitive_media: دائمًا إظهار الوسائط الحساسة
+        setting_hide_network: إخفِ شبكتك
         setting_noindex: عدم السماح لمحركات البحث بفهرسة ملفك الشخصي
         setting_reduce_motion: تخفيض عدد الصور في الوسائط المتحركة
         setting_system_font_ui: إستخدم الخطوط الإفتراضية للنظام

@@ -60,6 +60,10 @@
   }
 }
 
+.media-standalone__body {
+  overflow: hidden;
+}
+
 .account-header {
   width: 400px;
   margin: 0 auto;
@@ -96,7 +100,7 @@
 
   .name {
     flex: 1 1 auto;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
     width: calc(100% - 88px);
 
     .username {

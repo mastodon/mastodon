@@ -1,5 +1,6 @@
 import api, { getLinks } from '../api';
 import { fetchRelationships } from './accounts';
+import { importFetchedAccounts } from './importer';
 
 export const BLOCKS_FETCH_REQUEST = 'BLOCKS_FETCH_REQUEST';
 export const BLOCKS_FETCH_SUCCESS = 'BLOCKS_FETCH_SUCCESS';
@@ -15,6 +16,7 @@ export function fetchBlocks() {
 
     api(getState).get('/api/v1/blocks').then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(importFetchedAccounts(response.data));
       dispatch(fetchBlocksSuccess(response.data, next ? next.uri : null));
       dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => dispatch(fetchBlocksFail(error)));
@@ -54,6 +56,7 @@ export function expandBlocks() {
 
     api(getState).get(url).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(importFetchedAccounts(response.data));
       dispatch(expandBlocksSuccess(response.data, next ? next.uri : null));
       dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => dispatch(expandBlocksFail(error)));

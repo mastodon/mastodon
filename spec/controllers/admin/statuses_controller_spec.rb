@@ -20,7 +20,7 @@ describe Admin::StatusesController do
 
       statuses = assigns(:statuses).to_a
       expect(statuses.size).to eq 2
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'returns http success with media' do
@@ -28,19 +28,19 @@ describe Admin::StatusesController do
 
       statuses = assigns(:statuses).to_a
       expect(statuses.size).to eq 1
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
   describe 'POST #create' do
     subject do
-      -> { post :create, params: { account_id: account.id, form_status_batch: { action: action, status_ids: status_ids } } }
+      -> { post :create, params: { :account_id => account.id, action => '', :form_status_batch => { status_ids: status_ids } } }
     end
 
     let(:action) { 'nsfw_on' }
     let(:status_ids) { [media_attached_status.id] }
 
-    context 'updates sensitive column to true' do
+    context 'when action is nsfw_on' do
       it 'updates sensitive column' do
         is_expected.to change {
           media_attached_status.reload.sensitive
@@ -48,7 +48,7 @@ describe Admin::StatusesController do
       end
     end
 
-    context 'updates sensitive column to false' do
+    context 'when action is nsfw_off' do
       let(:action) { 'nsfw_off' }
       let(:sensitive) { false }
 
@@ -59,49 +59,19 @@ describe Admin::StatusesController do
       end
     end
 
-    it 'redirects to account statuses page' do
-      subject.call
-      expect(response).to redirect_to(admin_account_statuses_path(account.id))
-    end
-  end
+    context 'when action is delete' do
+      let(:action) { 'delete' }
 
-  describe 'PATCH #update' do
-    subject do
-      -> { patch :update, params: { account_id: account.id, id: media_attached_status, status: { sensitive: sensitive } } }
-    end
-
-    context 'updates sensitive column to true' do
-      it 'updates sensitive column' do
-        is_expected.to change {
-          media_attached_status.reload.sensitive
-        }.from(false).to(true)
-      end
-    end
-
-    context 'updates sensitive column to false' do
-      let(:sensitive) { false }
-
-      it 'updates sensitive column' do
-        is_expected.to change {
-          media_attached_status.reload.sensitive
-        }.from(true).to(false)
+      it 'removes a status' do
+        allow(RemovalWorker).to receive(:perform_async)
+        subject.call
+        expect(RemovalWorker).to have_received(:perform_async).with(status_ids.first)
       end
     end
 
     it 'redirects to account statuses page' do
       subject.call
       expect(response).to redirect_to(admin_account_statuses_path(account.id))
-    end
-  end
-
-  describe 'DELETE #destroy' do
-    it 'removes a status' do
-      allow(RemovalWorker).to receive(:perform_async)
-
-      delete :destroy, params: { account_id: account.id, id: status }
-      expect(response).to have_http_status(:success)
-      expect(RemovalWorker).
-        to have_received(:perform_async).with(status.id)
     end
   end
 end

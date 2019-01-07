@@ -1,11 +1,22 @@
+import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { NotificationStack } from 'react-notification';
 import { dismissAlert } from '../../../actions/alerts';
 import { getAlerts } from '../../../selectors';
 
-const mapStateToProps = state => ({
-  notifications: getAlerts(state),
-});
+const mapStateToProps = (state, { intl }) => {
+  const notifications = getAlerts(state);
+
+  notifications.forEach(notification => ['title', 'message'].forEach(key => {
+    const value = notification[key];
+
+    if (typeof value === 'object') {
+      notification[key] = intl.formatMessage(value);
+    }
+  }));
+
+  return { notifications };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -15,4 +26,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NotificationStack);
+export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(NotificationStack));

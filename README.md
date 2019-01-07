@@ -1,23 +1,23 @@
 ![Mastodon](https://i.imgur.com/NhZc40l.png)
 ========
 
-[![Build Status](https://img.shields.io/travis/tootsuite/mastodon.svg)][travis]
+[![Build Status](https://img.shields.io/circleci/project/github/tootsuite/mastodon.svg)][circleci]
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/tootsuite/mastodon.svg)][code_climate]
 
-[travis]: https://travis-ci.org/tootsuite/mastodon
+[circleci]: https://circleci.com/gh/tootsuite/mastodon
 [code_climate]: https://codeclimate.com/github/tootsuite/mastodon
 
 Mastodon is a **free, open-source social network server** based on **open web protocols** like ActivityPub and OStatus. The social focus of the project is a viable decentralized alternative to commercial social media silos that returns the control of the content distribution channels to the people. The technical focus of the project is a good user interface, a clean REST API for 3rd party apps and robust anti-abuse tools.
 
 Click on the screenshot below to watch a demo of the UI:
 
-[![Screenshot](https://i.imgur.com/pG3Nnz3.jpg)][youtube_demo]
+[![Screenshot](https://i.imgur.com/qrNOiSp.png)][youtube_demo]
 
-[youtube_demo]: https://www.youtube.com/watch?v=YO1jQ8_rAMU
+[youtube_demo]: https://www.youtube.com/watch?v=IPSbNdBmWKE
 
 **Ruby on Rails** is used for the back-end, while **React.js** and Redux are used for the dynamic front-end. A static front-end for public resources (profiles and statuses) is also provided.
 
-If you would like, you can [support the development of this project on Patreon][patreon] or [Liberapay][liberapay]. Alternatively, you can donate to this BTC address: `17j2g7vpgHhLuXhN4bueZFCvdxxieyRVWd`
+If you would like, you can [support the development of this project on Patreon][patreon] or [Liberapay][liberapay].
 
 [patreon]: https://www.patreon.com/user?u=619786
 [liberapay]: https://liberapay.com/Mastodon/

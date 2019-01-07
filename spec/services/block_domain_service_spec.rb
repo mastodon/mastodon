@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe BlockDomainService do
+RSpec.describe BlockDomainService, type: :service do
   let(:bad_account) { Fabricate(:account, username: 'badguy666', domain: 'evil.org') }
   let(:bad_status1) { Fabricate(:status, account: bad_account, text: 'You suck') }
   let(:bad_status2) { Fabricate(:status, account: bad_account, text: 'Hahaha') }

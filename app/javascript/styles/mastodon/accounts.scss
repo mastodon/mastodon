@@ -1,5 +1,5 @@
 .card {
-  background-color: lighten($ui-base-color, 4%);
+  background-color: $base-shadow-color;
   background-size: cover;
   background-position: center;
   border-radius: 4px 4px 0 0;
@@ -75,10 +75,14 @@
     small {
       display: block;
       font-size: 14px;
-      color: $ui-highlight-color;
+      color: $highlight-text-color;
       font-weight: 400;
       overflow: hidden;
       text-overflow: ellipsis;
+
+      .fa {
+        margin-left: 3px;
+      }
     }
   }
 
@@ -113,7 +117,7 @@
     width: 33.3%;
     box-sizing: border-box;
     flex: 0 0 auto;
-    color: $ui-primary-color;
+    color: $darker-text-color;
     padding: 5px 10px 0;
     margin-bottom: 10px;
     border-right: 1px solid lighten($ui-base-color, 4%);
@@ -143,7 +147,7 @@
 
     &.active {
       &::after {
-        border-bottom: 4px solid $ui-highlight-color;
+        border-bottom: 4px solid $highlight-text-color;
         opacity: 1;
       }
     }
@@ -178,7 +182,7 @@
     font-size: 14px;
     line-height: 18px;
     padding: 0 15px;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
   }
 
   @media screen and (max-width: 480px) {
@@ -256,7 +260,7 @@
   .current {
     background: $simple-background-color;
     border-radius: 100px;
-    color: $ui-base-color;
+    color: $inverted-text-color;
     cursor: default;
     margin: 0 10px;
   }
@@ -268,7 +272,7 @@
   .older,
   .newer {
     text-transform: uppercase;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
   }
 
   .older {
@@ -293,7 +297,7 @@
 
   .disabled {
     cursor: default;
-    color: lighten($ui-base-color, 10%);
+    color: lighten($inverted-text-color, 10%);
   }
 
   @media screen and (max-width: 700px) {
@@ -322,6 +326,15 @@
   z-index: 2;
   position: relative;
 
+  &.empty img {
+    position: absolute;
+    opacity: 0.2;
+    height: 200px;
+    left: 0;
+    bottom: 0;
+    pointer-events: none;
+  }
+
   @media screen and (max-width: 740px) {
     border-radius: 0;
     box-shadow: none;
@@ -332,7 +345,7 @@
     width: 335px;
     background: $simple-background-color;
     border-radius: 4px;
-    color: $ui-base-color;
+    color: $inverted-text-color;
     margin: 0 5px 10px;
     position: relative;
 
@@ -344,7 +357,7 @@
       overflow: hidden;
       height: 100px;
       border-radius: 4px 4px 0 0;
-      background-color: lighten($ui-base-color, 4%);
+      background-color: lighten($inverted-text-color, 4%);
       background-size: cover;
       background-position: center;
       position: relative;
@@ -392,7 +405,7 @@
 
       a {
         display: block;
-        color: $ui-base-color;
+        color: $inverted-text-color;
         text-decoration: none;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -414,7 +427,7 @@
     }
 
     .username {
-      color: lighten($ui-base-color, 34%);
+      color: $lighter-text-color;
       font-size: 14px;
       font-weight: 400;
     }
@@ -422,11 +435,25 @@
     .account__header__content {
       padding: 10px 15px;
       padding-top: 15px;
-      color: lighten($ui-base-color, 26%);
+      color: $lighter-text-color;
       word-wrap: break-word;
       overflow: hidden;
       text-overflow: ellipsis;
       height: 5.5em;
+      position: relative;
+
+      &::after {
+        display: block;
+        content: "";
+        width: 100%;
+        height: 100px;
+        position: absolute;
+        bottom: 0;
+        background: linear-gradient(to bottom, rgba($simple-background-color, 0.01) 0%, rgba($simple-background-color, 1) 100%);
+        left: 0;
+        border-radius: 0 0 4px 4px;
+        pointer-events: none;
+      }
     }
   }
 }
@@ -434,34 +461,43 @@
 .nothing-here {
   width: 100%;
   display: block;
-  color: $ui-primary-color;
+  color: $light-text-color;
   font-size: 14px;
   font-weight: 500;
   text-align: center;
-  padding: 60px 0;
-  padding-top: 55px;
+  padding: 130px 0;
+  padding-top: 125px;
   margin: 0 auto;
   cursor: default;
 }
 
 .account-card {
-  padding: 14px 10px;
-  background: $simple-background-color;
   border-radius: 4px;
   text-align: left;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+  background: $simple-background-color;
 
-  .detailed-status__display-name {
+  &__header {
+    background: $base-shadow-color;
+    background-size: cover;
+    background-position: center center;
+    height: 90px;
+    border-radius: 4px 4px 0 0;
+  }
+
+  & > .detailed-status__display-name {
     display: block;
     overflow: hidden;
-    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
 
     &:last-child {
       margin-bottom: 0;
     }
 
-    & > div {
-      float: left;
+    & > div:first-child {
+      flex: 0 0 auto;
       margin-right: 10px;
       width: 48px;
       height: 48px;
@@ -470,15 +506,21 @@
     .avatar {
       display: block;
       border-radius: 4px;
+      margin: 0;
     }
 
     .display-name {
+      flex: 1 0 auto;
       display: block;
       max-width: 100%;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
       cursor: default;
+
+      & > .detailed-status__display-name {
+        margin-bottom: 0;
+      }
 
       strong {
         font-weight: 500;
@@ -493,7 +535,7 @@
 
       span {
         font-size: 14px;
-        color: $ui-primary-color;
+        color: $light-text-color;
       }
     }
 
@@ -506,9 +548,28 @@
     }
   }
 
-  .account__header__content {
-    font-size: 14px;
-    color: $ui-base-color;
+  .counter {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    color: $light-text-color;
+    padding: 0 10px;
+    cursor: default;
+    text-align: center;
+    position: relative;
+    line-height: 24px;
+
+    .counter-label {
+      font-size: 12px;
+      display: block;
+      text-transform: uppercase;
+    }
+
+    .counter-number {
+      font-weight: 500;
+      font-size: 16px;
+      color: $inverted-text-color;
+      font-family: 'mastodon-font-display', sans-serif;
+    }
   }
 }
 
@@ -522,18 +583,18 @@
     display: inline-block;
     padding: 15px;
     text-decoration: none;
-    color: $ui-highlight-color;
+    color: $highlight-text-color;
     text-transform: uppercase;
     font-weight: 500;
 
     &:hover,
     &:active,
     &:focus {
-      color: lighten($ui-highlight-color, 8%);
+      color: lighten($highlight-text-color, 8%);
     }
 
     &.active {
-      color: $ui-base-color;
+      color: $inverted-text-color;
       cursor: default;
     }
   }
@@ -561,5 +622,59 @@
     color: lighten($error-red, 12%);
     background-color: rgba(lighten($error-red, 12%), 0.1);
     border-color: rgba(lighten($error-red, 12%), 0.5);
+  }
+}
+
+.account__header__fields {
+  padding: 0;
+  margin: 15px -15px -15px;
+  border: 0 none;
+  border-top: 1px solid lighten($ui-base-color, 4%);
+  border-bottom: 1px solid lighten($ui-base-color, 4%);
+  font-size: 14px;
+  line-height: 20px;
+
+  dl {
+    display: flex;
+    border-bottom: 1px solid lighten($ui-base-color, 4%);
+  }
+
+  dt,
+  dd {
+    box-sizing: border-box;
+    padding: 14px;
+    text-align: center;
+    max-height: 48px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  dt {
+    font-weight: 500;
+    width: 120px;
+    flex: 0 0 auto;
+    color: $secondary-text-color;
+    background: rgba(darken($ui-base-color, 8%), 0.5);
+  }
+
+  dd {
+    flex: 1 1 auto;
+    color: $darker-text-color;
+  }
+
+  a {
+    color: $highlight-text-color;
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+
+  dl:last-child {
+    border-bottom: 0;
   }
 }

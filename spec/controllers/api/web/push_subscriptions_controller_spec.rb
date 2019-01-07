@@ -59,10 +59,10 @@ describe Api::Web::PushSubscriptionsController do
 
         push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
 
-        expect(push_subscription.data['follow']).to eq(alerts_payload[:data][:follow])
-        expect(push_subscription.data['favourite']).to eq(alerts_payload[:data][:favourite])
-        expect(push_subscription.data['reblog']).to eq(alerts_payload[:data][:reblog])
-        expect(push_subscription.data['mention']).to eq(alerts_payload[:data][:mention])
+        expect(push_subscription.data['alerts']['follow']).to eq(alerts_payload[:data][:alerts][:follow].to_s)
+        expect(push_subscription.data['alerts']['favourite']).to eq(alerts_payload[:data][:alerts][:favourite].to_s)
+        expect(push_subscription.data['alerts']['reblog']).to eq(alerts_payload[:data][:alerts][:reblog].to_s)
+        expect(push_subscription.data['alerts']['mention']).to eq(alerts_payload[:data][:alerts][:mention].to_s)
       end
     end
   end
@@ -81,10 +81,10 @@ describe Api::Web::PushSubscriptionsController do
 
       push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
 
-      expect(push_subscription.data['follow']).to eq(alerts_payload[:data][:follow])
-      expect(push_subscription.data['favourite']).to eq(alerts_payload[:data][:favourite])
-      expect(push_subscription.data['reblog']).to eq(alerts_payload[:data][:reblog])
-      expect(push_subscription.data['mention']).to eq(alerts_payload[:data][:mention])
+      expect(push_subscription.data['alerts']['follow']).to eq(alerts_payload[:data][:alerts][:follow].to_s)
+      expect(push_subscription.data['alerts']['favourite']).to eq(alerts_payload[:data][:alerts][:favourite].to_s)
+      expect(push_subscription.data['alerts']['reblog']).to eq(alerts_payload[:data][:alerts][:reblog].to_s)
+      expect(push_subscription.data['alerts']['mention']).to eq(alerts_payload[:data][:alerts][:mention].to_s)
     end
   end
 end

@@ -45,7 +45,7 @@ RSpec.describe Api::V1::FavouritesController, type: :controller do
       context 'with read scope and valid resource owner' do
         before do
           allow(controller).to receive(:doorkeeper_token) do
-            Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read')
+            Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:favourites')
           end
         end
 

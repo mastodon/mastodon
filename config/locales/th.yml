@@ -29,11 +29,13 @@ th:
       are_you_sure: แน่ใจนะ?
       confirm: ยืนยัน
       confirmed: ยึนยันแล้ว
+      confirming: ยืนยัน
       disable_two_factor_authentication: Disable 2FA
       display_name: ชื่อสำหรับดีสเพล
       domain: โดแมน
       edit: แก้ไข
       email: อีเมล์
+      email_status: สถานะอีเมล
       feed_url: Feed URL
       followers: ผู้ติดตาม
       follows: ติดตาม
@@ -59,6 +61,10 @@ th:
       profile_url: Profile URL
       public: สาธารณะ
       push_subscription_expires: PuSH subscription expires
+      resend_confirmation:
+        already_confirmed: ผู้ใช้รายนี้ได้รับการยืนยันแล้ว
+        send: ส่งอีเมลยืนยันอีกครั้ง
+        success: ยืนยันอีเมลเรียบร้อยแล้ว!
       reset_password: รีเซ็ตรหัสผ่าน
       salmon_url: Salmon URL
       show:
@@ -108,9 +114,7 @@ th:
       title: Known Instances
     reports:
       comment:
-        label: คอมเม้นต์
         none: None
-      delete: ลบ
       id: ไอดี
       mark_as_resolved: ทำเครื่องหมายว่าจัดการแล้ว
       report: 'Report #%{id}'

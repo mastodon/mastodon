@@ -10,7 +10,7 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
     return unless request.patch? && params[:user]
     if @user.update(user_params)
       @user.skip_reconfirmation!
-      sign_in(@user, bypass: true)
+      bypass_sign_in(@user)
       redirect_to root_path, notice: I18n.t('devise.confirmations.send_instructions')
     else
       @show_errors = true

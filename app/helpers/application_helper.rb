@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  DANGEROUS_SCOPES = %w(
+    read
+    write
+    follow
+  ).freeze
+
   def active_nav_class(path)
     current_page?(path) ? 'active' : ''
   end
@@ -43,6 +49,10 @@ module ApplicationHelper
     Rails.env.production? ? site_title : "#{site_title} (Dev)"
   end
 
+  def class_for_scope(scope)
+    'scope-danger' if DANGEROUS_SCOPES.include?(scope.to_s)
+  end
+
   def can?(action, record)
     return false if record.nil?
     policy(record).public_send("#{action}?")
@@ -62,5 +72,9 @@ module ApplicationHelper
 
   def opengraph(property, content)
     tag(:meta, content: content, property: property)
+  end
+
+  def react_component(name, props = {})
+    content_tag(:div, nil, data: { component: name.to_s.camelcase, props: Oj.dump(props) })
   end
 end

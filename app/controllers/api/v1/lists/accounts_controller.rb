@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::Lists::AccountsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read },    only: [:show]
-  before_action -> { doorkeeper_authorize! :write }, except: [:show]
+  before_action -> { doorkeeper_authorize! :read, :'read:lists' },    only:  [:show]
+  before_action -> { doorkeeper_authorize! :write, :'write:lists' }, except: [:show]
 
   before_action :require_user!
   before_action :set_list
@@ -88,7 +88,7 @@ class Api::V1::Lists::AccountsController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.permit(:limit).merge(core_params)
+    params.slice(:limit).permit(:limit).merge(core_params)
   end
 
   def unlimited?

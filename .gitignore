@@ -36,9 +36,10 @@ config/deploy/*
 .vscode/
 .idea/
 
-# Ignore postgres + redis volume optionally created by docker-compose
+# Ignore postgres + redis + elasticsearch volume optionally created by docker-compose
 postgres
 redis
+elasticsearch
 
 # Ignore Apple files
 .DS_Store

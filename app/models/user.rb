@@ -3,7 +3,7 @@
 #
 # Table name: users
 #
-#  id                        :integer          not null, primary key
+#  id                        :bigint(8)        not null, primary key
 #  email                     :string           default(""), not null
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
@@ -30,18 +30,19 @@
 #  last_emailed_at           :datetime
 #  otp_backup_codes          :string           is an Array
 #  filtered_languages        :string           default([]), not null, is an Array
-#  account_id                :integer          not null
+#  account_id                :bigint(8)        not null
 #  disabled                  :boolean          default(FALSE), not null
 #  moderator                 :boolean          default(FALSE), not null
-#  invite_id                 :integer
+#  invite_id                 :bigint(8)
 #  remember_token            :string
+#  chosen_languages          :string           is an Array
 #
 
 class User < ApplicationRecord
   include Settings::Extend
   include Omniauthable
 
-  ACTIVE_DURATION = 14.days
+  ACTIVE_DURATION = 7.days
 
   devise :two_factor_authenticatable,
          otp_secret_encryption_key: Rails.configuration.x.otp_secret
@@ -65,6 +66,7 @@ class User < ApplicationRecord
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?
+  validates_with EmailMxValidator, if: :email_changed?
 
   scope :recent, -> { order(id: :desc) }
   scope :admins, -> { where(admin: true) }
@@ -86,8 +88,8 @@ class User < ApplicationRecord
   has_many :session_activations, dependent: :destroy
 
   delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
-           :reduce_motion, :system_font_ui, :noindex, :theme, :display_sensitive_media,
-           to: :settings, prefix: :setting, allow_nil: false
+           :reduce_motion, :system_font_ui, :noindex, :theme, :display_sensitive_media, :hide_network,
+           :default_language, to: :settings, prefix: :setting, allow_nil: false
 
   attr_accessor :invite_code
 
@@ -219,6 +221,10 @@ class User < ApplicationRecord
     settings.notification_emails['digest']
   end
 
+  def hides_network?
+    @hides_network ||= settings.hide_network
+  end
+
   def token_for_app(a)
     return nil if a.nil? || a.owner != self
     Doorkeeper::AccessToken
@@ -245,7 +251,7 @@ class User < ApplicationRecord
   end
 
   def web_push_subscription(session)
-    session.web_push_subscription.nil? ? nil : session.web_push_subscription.as_payload
+    session.web_push_subscription.nil? ? nil : session.web_push_subscription
   end
 
   def invite_code=(code)
@@ -312,7 +318,9 @@ class User < ApplicationRecord
   private
 
   def sanitize_languages
-    filtered_languages.reject!(&:blank?)
+    return if chosen_languages.nil?
+    chosen_languages.reject!(&:blank?)
+    self.chosen_languages = nil if chosen_languages.empty?
   end
 
   def prepare_new_user!

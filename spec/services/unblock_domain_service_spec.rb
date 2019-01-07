@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe UnblockDomainService do
+describe UnblockDomainService, type: :service do
   subject { described_class.new }
 
   describe 'call' do

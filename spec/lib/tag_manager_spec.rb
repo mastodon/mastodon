@@ -6,7 +6,7 @@ RSpec.describe TagManager do
 
     around do |example|
       original_local_domain = Rails.configuration.x.local_domain
-      Rails.configuration.x.local_domain = 'domain'
+      Rails.configuration.x.local_domain = 'domain.test'
 
       example.run
 
@@ -18,11 +18,11 @@ RSpec.describe TagManager do
     end
 
     it 'returns true if the slash-stripped string equals to local domain' do
-      expect(TagManager.instance.local_domain?('DoMaIn/')).to eq true
+      expect(TagManager.instance.local_domain?('DoMaIn.Test/')).to eq true
     end
 
     it 'returns false for irrelevant string' do
-      expect(TagManager.instance.local_domain?('DoMaIn!')).to eq false
+      expect(TagManager.instance.local_domain?('DoMaIn.Test!')).to eq false
     end
   end
 
@@ -31,7 +31,7 @@ RSpec.describe TagManager do
 
     around do |example|
       original_web_domain = Rails.configuration.x.web_domain
-      Rails.configuration.x.web_domain = 'domain'
+      Rails.configuration.x.web_domain = 'domain.test'
 
       example.run
 
@@ -43,11 +43,11 @@ RSpec.describe TagManager do
     end
 
     it 'returns true if the slash-stripped string equals to web domain' do
-      expect(TagManager.instance.web_domain?('DoMaIn/')).to eq true
+      expect(TagManager.instance.web_domain?('DoMaIn.Test/')).to eq true
     end
 
     it 'returns false for string with irrelevant characters' do
-      expect(TagManager.instance.web_domain?('DoMaIn!')).to eq false
+      expect(TagManager.instance.web_domain?('DoMaIn.Test!')).to eq false
     end
   end
 
@@ -57,7 +57,7 @@ RSpec.describe TagManager do
     end
 
     it 'returns normalized domain' do
-      expect(TagManager.instance.normalize_domain('DoMaIn/')).to eq 'domain'
+      expect(TagManager.instance.normalize_domain('DoMaIn.Test/')).to eq 'domain.test'
     end
   end
 
@@ -69,18 +69,18 @@ RSpec.describe TagManager do
     end
 
     it 'returns true if the normalized string with port is local URL' do
-      Rails.configuration.x.web_domain = 'domain:42'
-      expect(TagManager.instance.local_url?('https://DoMaIn:42/')).to eq true
+      Rails.configuration.x.web_domain = 'domain.test:42'
+      expect(TagManager.instance.local_url?('https://DoMaIn.Test:42/')).to eq true
     end
 
     it 'returns true if the normalized string without port is local URL' do
-      Rails.configuration.x.web_domain = 'domain'
-      expect(TagManager.instance.local_url?('https://DoMaIn/')).to eq true
+      Rails.configuration.x.web_domain = 'domain.test'
+      expect(TagManager.instance.local_url?('https://DoMaIn.Test/')).to eq true
     end
 
     it 'returns false for string with irrelevant characters' do
-      Rails.configuration.x.web_domain = 'domain'
-      expect(TagManager.instance.local_url?('https://domainn/')).to eq false
+      Rails.configuration.x.web_domain = 'domain.test'
+      expect(TagManager.instance.local_url?('https://domainn.test/')).to eq false
     end
   end
 
@@ -88,19 +88,19 @@ RSpec.describe TagManager do
     # The following comparisons MUST be case-insensitive.
 
     it 'returns true if the needle has a correct username and domain for remote user' do
-      expect(TagManager.instance.same_acct?('username@domain', 'UsErNaMe@DoMaIn')).to eq true
+      expect(TagManager.instance.same_acct?('username@domain.test', 'UsErNaMe@DoMaIn.Test')).to eq true
     end
 
     it 'returns false if the needle is missing a domain for remote user' do
-      expect(TagManager.instance.same_acct?('username@domain', 'UsErNaMe')).to eq false
+      expect(TagManager.instance.same_acct?('username@domain.test', 'UsErNaMe')).to eq false
     end
 
     it 'returns false if the needle has an incorrect domain for remote user' do
-      expect(TagManager.instance.same_acct?('username@domain', 'UsErNaMe@incorrect')).to eq false
+      expect(TagManager.instance.same_acct?('username@domain.test', 'UsErNaMe@incorrect.test')).to eq false
     end
 
     it 'returns false if the needle has an incorrect username for remote user' do
-      expect(TagManager.instance.same_acct?('username@domain', 'incorrect@DoMaIn')).to eq false
+      expect(TagManager.instance.same_acct?('username@domain.test', 'incorrect@DoMaIn.test')).to eq false
     end
 
     it 'returns true if the needle has a correct username and domain for local user' do

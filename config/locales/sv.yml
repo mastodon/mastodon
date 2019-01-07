@@ -4,12 +4,13 @@ sv:
     about_hashtag_html: Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>. Du kan interagera med dem om du har ett konto någonstans i federationen.
     about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
     about_this: Om
+    administered_by: 'Administreras av:'
     closed_registrations: Registreringar är för närvarande stängda i denna instans. Dock så kan du hitta en annan instans för att skapa ett konto och få tillgång till samma nätverk från det.
     contact: Kontakt
     contact_missing: Inte inställd
     contact_unavailable: N/A
     description_headline: Vad är %{domain}?
-    domain_count_after: annan instans
+    domain_count_after: andra instanser
     domain_count_before: Uppkopplad mot
     extended_description_html: |
       <h3>En bra plats för regler</h3>
@@ -29,7 +30,7 @@ sv:
     other_instances: Instanslista
     source_code: Källkod
     status_count_after: statusar
-    status_count_before: Vem författade
+    status_count_before: Som skapat
     user_count_after: användare
     user_count_before: Hem till
     what_is_mastodon: Vad är Mastodon?
@@ -39,6 +40,7 @@ sv:
     following: Följer
     media: Media
     moved_html: "%{name} har flyttat till %{new_profile_link}:"
+    network_hidden: Denna information är inte tillgänglig
     nothing_here: Det finns inget här!
     people_followed_by: Personer som %{name} följer
     people_who_follow: Personer som följer %{name}
@@ -48,21 +50,29 @@ sv:
     reserved_username: Användarnamnet är reserverat
     roles:
       admin: Admin
-      moderator: Moderera
+      bot: Bot
+      moderator: Moderator
     unfollow: Sluta följa
   admin:
     account_moderation_notes:
-      account: Moderator
-      create: Skapa
-      created_at: Datum
+      create: Lämna kommentar
       created_msg: Modereringsnotering skapad utan problem!
       delete: Ta bort
       destroyed_msg: Modereringsnotering borttagen utan problem!
     accounts:
       are_you_sure: Är du säker?
+      avatar: Avatar
       by_domain: Domän
+      change_email:
+        changed_msg: E-postadressen har ändrats!
+        current_email: Nuvarande E-postadress
+        label: Byt E-postadress
+        new_email: Ny E-postadress
+        submit: Byt E-postadress
+        title: Byt E-postadress för %{username}
       confirm: Bekräfta
       confirmed: Bekräftad
+      confirming: Bekräftande
       demote: Degradera
       disable: inaktivera
       disable_two_factor_authentication: Inaktivera 2FA
@@ -71,6 +81,7 @@ sv:
       domain: Domän
       edit: Redigera
       email: E-post
+      email_status: E-poststatus
       enable: Aktivera
       enabled: Aktiverad
       feed_url: Flödes URL
@@ -108,6 +119,11 @@ sv:
       public: Offentlig
       push_subscription_expires: PuSH-prenumerationen löper ut
       redownload: Uppdatera avatar
+      remove_avatar: Ta bort avatar
+      resend_confirmation:
+        already_confirmed: Den här användaren är redan bekräftad
+        send: Skicka om e-postbekräftelse
+        success: Bekräftelsemeddelande skickas framgångsrikt!
       reset: Återställ
       reset_password: Återställ lösenord
       resubscribe: Starta en ny prenumeration
@@ -128,6 +144,7 @@ sv:
       statuses: Status
       subscribe: Prenumerera
       title: Konton
+      unconfirmed_email: Obekräftad E-postadress
       undo_silenced: Ångra tystnad
       undo_suspension: Ångra avstängning
       unsubscribe: Avsluta prenumeration
@@ -135,6 +152,8 @@ sv:
       web: Webb
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} tilldelade anmälan %{target} till sig själv"
+        change_email_user: "%{name} bytte e-postadress för användare %{target}"
         confirm_user: "%{name} bekräftade e-postadress för användare %{target}"
         create_custom_emoji: "%{name} laddade upp ny emoji %{target}"
         create_domain_block: "%{name} blockerade domän %{target}"
@@ -150,10 +169,13 @@ sv:
         enable_user: "%{name} aktiverade inloggning för användare %{target}"
         memorialize_account: "%{name} omvandlade %{target}s konto till en memoriam-sida"
         promote_user: "%{name} flyttade upp användare %{target}"
+        remove_avatar_user: "%{name} tog bort %{target}s avatar"
+        reopen_report: "%{name} återupptog anmälan %{target}"
         reset_password_user: "%{name} återställde lösenord för användaren %{target}"
-        resolve_report: "%{name} avvisade anmälan %{target}"
+        resolve_report: "%{name} löste anmälan %{target}"
         silence_account: "%{name} tystade ner %{target}s konto"
         suspend_account: "%{name} suspenderade %{target}s konto"
+        unassigned_report: "%{name} otilldelade anmälan %{target}"
         unsilence_account: "%{name} återljudade %{target}s konto"
         unsuspend_account: "%{name} aktiverade %{target}s konto"
         update_custom_emoji: "%{name} uppdaterade emoji %{target}"
@@ -239,29 +261,44 @@ sv:
         expired: Utgångna
         title: Filtrera
       title: Inbjudningar
+    report_notes:
+      created_msg: Anmälningsanteckning har skapats!
+      destroyed_msg: Anmälningsanteckning har raderats!
     reports:
+      account:
+        note: anteckning
+        report: anmälan
       action_taken_by: Åtgärder vidtagna av
       are_you_sure: Är du säker?
+      assign_to_self: Tilldela till mig
+      assigned: Tilldelad moderator
       comment:
-        label: Kommentar
         none: Ingen
-      delete: Radera
+      created_at: Anmäld
       id: ID
       mark_as_resolved: Markera som löst
-      nsfw:
-        'false': Visa bifogade mediafiler
-        'true': Dölj bifogade mediafiler
+      mark_as_unresolved: Markera som olöst
+      notes:
+        create: Lägg till anteckning
+        create_and_resolve: Lös med anteckning
+        create_and_unresolve: Återuppta med anteckning
+        delete: Radera
+        placeholder: Beskriv vilka åtgärder som vidtagits eller andra uppdateringar till den här anmälan.
+      reopen: Återuppta anmälan
       report: 'Anmäl #%{id}'
       report_contents: Innehåll
       reported_account: Anmält konto
       reported_by: Anmäld av
       resolved: Löst
+      resolved_msg: Anmälan har lösts framgångsrikt!
       silence_account: Tysta ner konto
       status: Status
       suspend_account: Suspendera konto
       target: Mål
       title: Anmälningar
+      unassign: Otilldela
       unresolved: Olösta
+      updated_at: Uppdaterad
       view: Granska
     settings:
       activity_api_enabled:
@@ -319,13 +356,10 @@ sv:
       back_to_account: Tillbaka till kontosidan
       batch:
         delete: Radera
-        nsfw_off: NSFW AV
-        nsfw_on: NSFW PÅ
-      execute: Utför
+        nsfw_off: Markera som ej känslig
+        nsfw_on: Markera som känslig
       failed_to_execute: Misslyckades att utföra
       media:
-        hide: Dölj media
-        show: Visa media
         title: Media
       no_media: Ingen media
       title: Kontostatus
@@ -341,6 +375,7 @@ sv:
   admin_mailer:
     new_report:
       body: "%{reporter} har rapporterat %{target}"
+      body_remote: Någon från %{domain} har rapporterat %{target}
       subject: Ny rapport för %{instance} (#%{id})
   application_mailer:
     notification_preferences: Ändra e-postinställningar
@@ -382,13 +417,14 @@ sv:
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
   authorize_follow:
+    already_following: Du följer redan detta konto
     error: Tyvärr inträffade ett fel när vi kontrollerade fjärrkontot
     follow: Följ
     follow_request: 'Du har skickat en följaförfrågan till:'
     following: 'Succé! Du följer nu:'
     post_follow:
       close: Eller så kan du stänga detta fönster.
-      return: Återgå till användarens profil
+      return: Visa användarens profil
       web: Gå till webb
     title: Följ %{acct}
   datetime:
@@ -429,7 +465,7 @@ sv:
     archive_takeout:
       date: Datum
       download: Ladda ner ditt arkiv
-      hint_html: Du kan begära ett arkiv av dina <strong>toots och uppladdad media</strong>. Den exporterade datan kommer att vara i ActivityPub-format och läsbar av kompatibel programvara.
+      hint_html: Du kan begära ett arkiv av dina <strong>toots och uppladdad media</strong>. Den exporterade datan kommer att vara i ActivityPub-format och läsbar av kompatibel programvara. Du kan begära ett arkiv var sjunde dag.
       in_progress: Kompilerar ditt arkiv...
       request: Efterfråga ditt arkiv
       size: Storlek
@@ -474,9 +510,11 @@ sv:
       '21600': 6 timmar
       '3600': 1 timma
       '43200': 12 timmar
+      '604800': 1 vecka
       '86400': 1 dag
     expires_in_prompt: Aldrig
     generate: Skapa
+    invited_by: 'Du blev inbjuden av:'
     max_uses:
       one: 1 användning
       other: "%{count} användningar"
@@ -513,7 +551,7 @@ sv:
       subject:
         one: "1 nytt meddelande sedan ditt senaste besök \U0001F418"
         other: "%{count} nya meddelanden sedan ditt senaste besök \U0001F418"
-      title: I din frånvaro…
+      title: I din frånvaro...
     favourite:
       body: 'Din status favoriserades av %{name}:'
       subject: "%{name} favoriserade din status"
@@ -546,7 +584,7 @@ sv:
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: enhet
+          unit: " "
   pagination:
     newer: Nyare
     next: Nästa
@@ -558,25 +596,15 @@ sv:
     other: Annat
     publishing: Publicering
     web: Webb
-  push_notifications:
-    favourite:
-      title: "%{name} favoriserade din status"
-    follow:
-      title: "%{name} följer nu dig"
-    group:
-      title: "%{count} meddelanden"
-    mention:
-      action_boost: Knuffa
-      action_expand: Visa mer
-      action_favourite: Favoriter
-      title: "%{name} nämnde dig"
-    reblog:
-      title: "%{name} boostade din status"
   remote_follow:
     acct: Ange ditt användarnamn@domän du vill följa från
     missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för ditt konto
     proceed: Fortsätt för att följa
     prompt: 'Du kommer att följa:'
+  remote_unfollow:
+    error: Fel
+    title: Titel
+    unfollowed: Slutade följa
   sessions:
     activity: Senaste aktivitet
     browser: Webbläsare
@@ -634,6 +662,20 @@ sv:
     two_factor_authentication: Tvåstegsautentisering
     your_apps: Dina applikationer
   statuses:
+    attached:
+      description: 'Bifogad: %{attached}'
+      image:
+        one: "%{count} bild"
+        other: "%{count} bilder"
+      video:
+        one: "%{count} video"
+        other: "%{count} videor"
+    boosted_from_html: Boosted från %{acct_link}
+    content_warning: 'Innehållsvarning: %{warning}'
+    disallowed_hashtags:
+      one: 'innehöll en otillåten hashtag: %{tags}'
+      other: 'innehöll de otillåtna hashtagarna: %{tags}'
+    language_detection: Lista ut språk automatiskt
     open_in_web: Öppna på webben
     over_character_limit: teckengräns på %{max} har överskridits
     pin_errors:
@@ -658,75 +700,90 @@ sv:
   terms:
     body_html: |
       <h2>Integritetspolicy</h2>
-
-      <h3 id="collect">Vilken information samlar vi in</h3>
-
-      <p>Vi samlar in information från dig när du registrerar dig på vår webbplats och samlar in data när du deltar i forumet genom att läsa, skriva och utvärdera innehållet som delas här.</p>
-
-      <p>När du registrerar dig på vår webbplats kan du bli ombedd att ange ditt namn och din e-postadress. Du kan dock besöka vår webbplats utan att registrera dig. Din e-postadress kommer att verifieras med ett e-postmeddelande som innehåller en unik länk. Om den länken besöks vet vi att du kontrollerar e-postadressen.</p>
-
-      <p>När vi registrerar och postar registrerar vi den IP-adress som posten härstammar från. Vi kan också behålla serverns loggar som innehåller IP-adress för varje begäran till vår server.</p>
-
-      <h3 id="use">Vad använder vi din information för?</h3>
-
-      <p>Vilken som helst information vi samlar in från dig kan användas på något av följande sätt:</p>
+      <h3 id="collect">Vilken information samlar vi in?</h3>
 
       <ul>
-        <li>För att personifiera din upplevelse &mdash; Din information hjälper oss att bättre svara på dina individuella behov.</li>
-        <li>För att förbättra vår webbplats &mdash; Vi strävar kontinuerligt efter att förbättra våra erbjudanden på webbplatsen baserat på information och feedback vi mottar från dig.</li>
-        <li>För att förbättra kundtjänst &mdash; Din information hjälper oss att effektivt svara på dina kundserviceförfrågningar och supportbehov.</li>
-        <li>För att skicka periodiska e-postmeddelanden &mdash; Den e-postadress du anger kan användas för att skicka information, meddelanden som du begär om ändringar i ämnen eller som svar på ditt användarnamn, svara på förfrågningar och / eller andra förfrågningar eller frågor.</li>
+        <li><em>Grundläggande kontoinformation</em>: Det användarnamn du väljer, visningsnamn, biografi, avatar/profilbild och bakgrundsbild kommer alltid vara tillgängliga för alla som kan nå webbsidan. </li>
+        <li><em>Inlägg, vem du följer och annan tillgänglig information</em>: Dina följare och de konton du följer är alltid tillgängliga. När du skapar ett nytt inlägg sparas datum och tid för meddelandet, samt vilket program du använde för att skapa inlägget. Detta gäller även bilder och media som inlägg kan innehålla.Både "Publika" och "Olistade" inlägg kan vara tillgängliga för alla som har åtkomst till webbsidan. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+        <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
       </ul>
 
-      <h3 id="protect">Hur skyddar vi din information?</h3>
+      <hr class="spacer" />
 
-      <p>Vi genomför en rad säkerhetsåtgärder för att upprätthålla säkerheten för din personliga information när du anger, lämnar in eller har tillgång till din personliga information.</p>
+      <h3 id="use">What do we use your information for?</h3>
 
-      <h3 id="data-retention">Vad är policyn för lagring av data?</h3>
-
-      <p>Vi kommer att göra en ansträngning för:</p>
+      <p>Any of the information we collect from you may be used in the following ways:</p>
 
       <ul>
-        <li>Behåll serverloggar som innehåller IP-adressen för alla förfrågningar till den här servern inte mer än 90 dagar.</li>
-        <li>Behåll IP-adresserna i samband med registrerade användare och deras inlägg inte längre än 5 år.</li>
+        <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+        <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+        <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
       </ul>
 
-      <h3 id="cookies">Använder vi cookies?</h3>
+      <hr class="spacer" />
 
-      <p>Ja. Cookies är små filer som en webbplats eller tjänstleverantör överför till datorns hårddisk via din webbläsare (om du tillåter). Dessa cookies tillåter webbplatsen att känna igen din webbläsare och, om du har ett registrerat konto, associerar det med ditt registrerade konto.</p>
+      <h3 id="protect">How do we protect your information?</h3>
 
-      <p>Vi använder cookies för att förstå och spara dina inställningar för framtida besök och sammanställa sammanlagda data om webbplatsstrafik och webbplatsinteraktion så att vi kan erbjuda bättre sajtupplevelser och verktyg i framtiden. Vi kan komma överens med tredje parts tjänsteleverantörer för att hjälpa oss att bättre förstå våra besökare. Dessa tjänsteleverantörer får inte använda den information som samlas in för vår räkning utom för att hjälpa oss att bedriva och förbättra vår verksamhet.</p>
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
 
-      <h3 id="disclose">Avslöjar vi information till utomstående parter?</h3>
+      <hr class="spacer" />
 
-      <p>Vi säljer inte, handlar eller på annat sätt överför dina personuppgifter till utomstående parter. Det här omfattar inte betrodda tredje parter som hjälper oss att driva vår webbplats, bedriva vår verksamhet eller service dig, så länge dessa parter är överens om att hålla denna information konfidentiell. Vi kan också släppa din information när vi anser att utgåvan är lämplig för att följa lagen, tillämpa vår webbplatspolicy eller skydda vår eller andra rättigheter, egendom eller säkerhet. Däremot kan personuppgifter som inte identifieras personligen lämnas till andra parter för marknadsföring, reklam eller annan användning.</p>
+      <h3 id="data-retention">What is our data retention policy?</h3>
 
-      <h3 id="third-party">Tredjepartslänkar</h3>
+      <p>We will make a good faith effort to:</p>
 
-      <p>Ibland kan vi, efter eget gottfinnande, inkludera eller erbjuda produkter från tredje part eller tjänster på vår webbplats. Dessa tredje parts webbplatser har separata och oberoende sekretesspolicyer. Vi har därför inget ansvar eller ansvar för innehållet och aktiviteterna för dessa länkade webbplatser. Ändå försöker vi skydda integriteten på vår webbplats och välkomna eventuella återkopplingar om dessa webbplatser.</p>
+      <ul>
+        <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+        <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+      </ul>
 
-      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
+      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
 
-      <p>Vår webbplats, produkter och tjänster riktas alla till personer som är minst 13 år gamla. Om den här servern är i USA, och du är under 13 år, enligt kraven i COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) ska du inte använda denna sida.</p>
+      <p>You may irreversibly delete your account at any time.</p>
 
-      <h3 id="online">Endast online sekretesspolicy</h3>
+      <hr class="spacer"/>
 
-      <p>Denna online sekretesspolicy gäller endast information som samlas in via vår webbplats och inte till information som samlas in offline.</p>
+      <h3 id="cookies">Do we use cookies?</h3>
 
-      <h3 id="consent">Ditt samtycke</h3>
+      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
 
-      <p>Genom att använda vår webbplats godkänner du vår hemsida sekretesspolicy.</p>
+      <p>We use cookies to understand and save your preferences for future visits.</p>
 
-      <h3 id="changes">Ändringar i vår sekretesspolicy</h3>
+      <hr class="spacer" />
 
-      <p>Om vi bestämmer oss för att ändra vår integritetspolicy, lägger vi in de ändringar på den här sidan.</p>
+      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
 
-      <p>This document is CC-BY-SA. It was last updated May 31, 2013.</p>
+      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
 
-      <p>Ursprungligen anpassad från <a href="https://github.com/discourse/discourse">Discourse integritetspolicy</a>.</p>
+      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
+
+      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Site usage by children</h3>
+
+      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
+
+      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+
+      <p>Law requirements can be different if this server is in another jurisdiction.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Changes to our Privacy Policy</h3>
+
+      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+
+      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
+
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Användarvillkor och Sekretesspolicy"
   themes:
+    contrast: Hög kontrast
     default: Mastodon
+    mastodon-light: Mastodon (ljust)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -772,5 +829,6 @@ sv:
   users:
     invalid_email: E-postadressen är ogiltig
     invalid_otp_token: Ogiltig tvåfaktorkod
+    otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
     seamless_external_login: Du är inloggad via en extern tjänst, så lösenord och e-postinställningar är inte tillgängliga.
     signed_in_as: 'Inloggad som:'

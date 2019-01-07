@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::BlocksController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :follow }
+  before_action -> { doorkeeper_authorize! :follow, :'read:blocks' }
   before_action :require_user!
   after_action :insert_pagination_headers
 
@@ -57,6 +57,6 @@ class Api::V1::BlocksController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.permit(:limit).merge(core_params)
+    params.slice(:limit).permit(:limit).merge(core_params)
   end
 end

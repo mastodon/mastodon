@@ -8,14 +8,9 @@
   %p.hint= t('doorkeeper.applications.help.native_redirect_uri', native_redirect_uri: Doorkeeper.configuration.native_redirect_uri)
 
 .field-group
-  = f.input :scopes,
-    label: t('activerecord.attributes.doorkeeper/application.scopes'),
-    collection: Doorkeeper.configuration.scopes,
-    wrapper: :with_label,
-    include_blank: false,
-    label_method: lambda { |scope| safe_join([scope, content_tag(:span, t("doorkeeper.scopes.#{scope}"), class: 'hint')]) },
-    selected: f.object.scopes.all,
-    required: false,
-    as: :check_boxes,
-    collection_wrapper_tag: 'ul',
-    item_wrapper_tag: 'li'
+  .input.with_block_label
+    %label= t('activerecord.attributes.doorkeeper/application.scopes')
+    %span.hint= t('simple_form.hints.defaults.scopes')
+
+  - Doorkeeper.configuration.scopes.group_by { |s| s.split(':').first }.each do |k, v|
+    = f.input :scopes, label: false, hint: false, collection: v.sort, wrapper: :with_block_label, include_blank: false, label_method: lambda { |scope| safe_join([content_tag(:samp, scope, class: class_for_scope(scope)), content_tag(:span, t("doorkeeper.scopes.#{scope}"), class: 'hint')]) }, selected: f.object.scopes.all, required: false, as: :check_boxes, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'

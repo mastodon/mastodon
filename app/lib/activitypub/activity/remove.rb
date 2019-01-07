@@ -6,7 +6,7 @@ class ActivityPub::Activity::Remove < ActivityPub::Activity
 
     status = status_from_uri(object_uri)
 
-    return unless status.account_id == @account.id
+    return unless !status.nil? && status.account_id == @account.id
 
     pin = StatusPin.find_by(account: @account, status: status)
     pin&.destroy!

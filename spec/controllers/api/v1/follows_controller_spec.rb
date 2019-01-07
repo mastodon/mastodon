@@ -4,7 +4,7 @@ RSpec.describe Api::V1::FollowsController, type: :controller do
   render_views
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'follow') }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'write:follows') }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
@@ -24,7 +24,7 @@ RSpec.describe Api::V1::FollowsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'creates account for remote user' do
@@ -45,7 +45,7 @@ RSpec.describe Api::V1::FollowsController, type: :controller do
 
     it 'returns http success if already following, too' do
       post :create, params: { uri: 'gargron@quitter.no' }
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 end

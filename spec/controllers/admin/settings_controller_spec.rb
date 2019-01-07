@@ -14,7 +14,7 @@ RSpec.describe Admin::SettingsController, type: :controller do
       it 'returns http success' do
         get :edit
 
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
     end
 

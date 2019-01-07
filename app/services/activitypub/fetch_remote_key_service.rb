@@ -17,7 +17,7 @@ class ActivityPub::FetchRemoteKeyService < BaseService
         @json = fetch_resource(uri, id)
       end
     else
-      @json = body_to_json(prefetched_body)
+      @json = body_to_json(prefetched_body, compare_id: id ? uri : nil)
     end
 
     return unless supported_context?(@json) && expected_type?
@@ -43,7 +43,7 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   end
 
   def person?
-    @json['type'] == 'Person'
+    equals_or_includes_any?(@json['type'], ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES)
   end
 
   def public_key?
@@ -55,6 +55,6 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   end
 
   def confirmed_owner?
-    @owner['type'] == 'Person' && value_or_id(@owner['publicKey']) == @json['id']
+    equals_or_includes_any?(@owner['type'], ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES) && value_or_id(@owner['publicKey']) == @json['id']
   end
 end

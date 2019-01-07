@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ProcessMentionsService do
+RSpec.describe ProcessMentionsService, type: :service do
   let(:account) { Fabricate(:account, username: 'alice') }
   let(:status)  { Fabricate(:status, account: account, text: "Hello @#{remote_user.acct}") }
 

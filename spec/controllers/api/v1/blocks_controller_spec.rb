@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.describe Api::V1::BlocksController, type: :controller do
   render_views
 
-  let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'follow') }
+  let(:user)   { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
+  let(:scopes) { 'read:blocks' }
+  let(:token)  { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
 
   before { allow(controller).to receive(:doorkeeper_token) { token } }
 
@@ -47,7 +48,16 @@ RSpec.describe Api::V1::BlocksController, type: :controller do
 
     it 'returns http success' do
       get :index
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
+    end
+
+    context 'with wrong scopes' do
+      let(:scopes) { 'write:blocks' }
+
+      it 'returns http forbidden' do
+        get :index
+        expect(response).to have_http_status(403)
+      end
     end
   end
 end

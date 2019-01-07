@@ -7,7 +7,7 @@ describe Api::V1::Statuses::MutesController do
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
   let(:app)   { Fabricate(:application, name: 'Test app', website: 'http://testapp.com') }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'write', application: app) }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'write:mutes', application: app) }
 
   context 'with an oauth token' do
     before do
@@ -22,7 +22,7 @@ describe Api::V1::Statuses::MutesController do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
 
       it 'creates a conversation mute' do
@@ -39,7 +39,7 @@ describe Api::V1::Statuses::MutesController do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
 
       it 'destroys the conversation mute' do

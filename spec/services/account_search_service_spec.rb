@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe AccountSearchService do
+describe AccountSearchService, type: :service do
   describe '.call' do
     describe 'with a query to ignore' do
       it 'returns empty array for missing query' do
@@ -135,6 +135,25 @@ describe AccountSearchService do
 
         results = subject.call('newuser@remote.com', 10, nil, resolve: false)
         expect(service).not_to have_received(:call)
+      end
+    end
+
+    describe 'should not include suspended accounts' do
+      it 'returns the fuzzy match first, and does not return suspended exacts' do
+        partial = Fabricate(:account, username: 'exactness')
+        exact = Fabricate(:account, username: 'exact', suspended: true)
+
+        results = subject.call('exact', 10)
+        expect(results.size).to eq 1
+        expect(results).to eq [partial]
+      end
+
+      it "does not return suspended remote accounts" do
+        remote = Fabricate(:account, username: 'a', domain: 'remote', display_name: 'e', suspended: true)
+
+        results = subject.call('a@example.com', 2)
+        expect(results.size).to eq 0
+        expect(results).to eq []
       end
     end
   end

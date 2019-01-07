@@ -2,20 +2,28 @@
   %td.id
     = "##{report.id}"
   %td.target
-    = link_to report.target_account.acct, admin_account_path(report.target_account.id)
+    = admin_account_link_to report.target_account
   %td.reporter
-    = link_to report.account.acct, admin_account_path(report.account.id)
-  %td.comment
-    %span{ title: report.comment }
+    - if report.account.local?
+      = admin_account_link_to report.account
+    - else
+      = report.account.domain
+  %td
+    %div{ title: report.comment }
       = truncate(report.comment, length: 30, separator: ' ')
-  %td.stats
-    - unless report.statuses.empty?
-      %span{ title: t('admin.accounts.statuses') }
-        = fa_icon('comment')
-        = report.statuses.count
-    - unless report.media_attachments.empty?
-      %span{ title: t('admin.accounts.media_attachments') }
-        = fa_icon('camera')
-        = report.media_attachments.count
+    %div
+      - unless report.statuses.empty?
+        %span{ title: t('admin.accounts.statuses') }
+          = fa_icon('comment')
+          = report.statuses.count
+      - unless report.media_attachments.empty?
+        %span{ title: t('admin.accounts.media_attachments') }
+          = fa_icon('camera')
+          = report.media_attachments.count
+  %td
+    - if report.assigned_account.nil?
+      \-
+    - else
+      = admin_account_link_to report.assigned_account
   %td
     = table_link_to 'circle', t('admin.reports.view'), admin_report_path(report)

@@ -3,12 +3,18 @@
 class Api::V1::StatusesController < Api::BaseController
   include Authorization
 
-  before_action :authorize_if_got_token, except:            [:create, :destroy]
-  before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy]
+  before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :destroy]
+  before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :destroy]
   before_action :require_user!, except:  [:show, :context, :card]
   before_action :set_status, only:       [:show, :context, :card]
 
   respond_to :json
+
+  # This API was originally unlimited, pagination cannot be introduced without
+  # breaking backwards-compatibility. Arbitrarily high number to cover most
+  # conversations as quasi-unlimited, it would be too much work to render more
+  # than this anyway
+  CONTEXT_LIMIT = 4_096
 
   def show
     cached  = Rails.cache.read(@status.cache_key)
@@ -17,8 +23,8 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def context
-    ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(current_account)
-    descendants_results = @status.descendants(current_account)
+    ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(CONTEXT_LIMIT, current_account)
+    descendants_results = @status.descendants(CONTEXT_LIMIT, current_account)
     loaded_ancestors    = cache_collection(ancestors_results, Status)
     loaded_descendants  = cache_collection(descendants_results, Status)
 
@@ -76,11 +82,6 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.permit(:limit).merge(core_params)
-  end
-
-  def authorize_if_got_token
-    request_token = Doorkeeper::OAuth::Token.from_request(request, *Doorkeeper.configuration.access_token_methods)
-    doorkeeper_authorize! :read if request_token
+    params.slice(:limit).permit(:limit).merge(core_params)
   end
 end

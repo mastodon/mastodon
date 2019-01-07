@@ -12,7 +12,7 @@ RSpec.describe Api::V1::CustomEmojisController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 end

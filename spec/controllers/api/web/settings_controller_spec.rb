@@ -13,7 +13,7 @@ describe Api::Web::SettingsController do
       patch :update, format: :json, params: { data: { 'onboarded' => true } }
 
       user.reload
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
       expect(user_web_setting.data['onboarded']).to eq('true')
     end
 

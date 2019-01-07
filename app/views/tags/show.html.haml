@@ -2,6 +2,8 @@
   = "##{@tag.name}"
 
 - content_for :header_tags do
+  %link{ rel: 'alternate', type: 'application/rss+xml', href: tag_url(@tag, format: 'rss') }/
+
   %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
   = javascript_pack_tag 'about', integrity: true, crossorigin: 'anonymous'
   = render 'og'
@@ -34,3 +36,5 @@
               %p= t 'about.about_mastodon_html'
 
               = render 'features'
+
+#modal-container

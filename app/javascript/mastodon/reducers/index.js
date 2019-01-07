@@ -6,6 +6,7 @@ import alerts from './alerts';
 import { loadingBarReducer } from 'react-redux-loading-bar';
 import modal from './modal';
 import user_lists from './user_lists';
+import domain_lists from './domain_lists';
 import accounts from './accounts';
 import accounts_counters from './accounts_counters';
 import statuses from './statuses';
@@ -25,6 +26,7 @@ import height_cache from './height_cache';
 import custom_emojis from './custom_emojis';
 import lists from './lists';
 import listEditor from './list_editor';
+import filters from './filters';
 
 const reducers = {
   dropdown_menu,
@@ -34,6 +36,7 @@ const reducers = {
   loadingBar: loadingBarReducer,
   modal,
   user_lists,
+  domain_lists,
   status_lists,
   accounts,
   accounts_counters,
@@ -53,6 +56,7 @@ const reducers = {
   custom_emojis,
   lists,
   listEditor,
+  filters,
 };
 
 export default combineReducers(reducers);

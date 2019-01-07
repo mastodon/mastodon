@@ -11,6 +11,7 @@ export const links = [
 
   <NavLink className='tabs-bar__link secondary' to='/timelines/public/local' data-preview-title-id='column.community' data-preview-icon='users' ><i className='fa fa-fw fa-users' /><FormattedMessage id='tabs_bar.local_timeline' defaultMessage='Local' /></NavLink>,
   <NavLink className='tabs-bar__link secondary' exact to='/timelines/public' data-preview-title-id='column.public' data-preview-icon='globe' ><i className='fa fa-fw fa-globe' /><FormattedMessage id='tabs_bar.federated_timeline' defaultMessage='Federated' /></NavLink>,
+  <NavLink className='tabs-bar__link primary' to='/search' data-preview-title-id='tabs_bar.search' data-preview-icon='bell' ><i className='fa fa-fw fa-search' /><FormattedMessage id='tabs_bar.search' defaultMessage='Search' /></NavLink>,
 
   <NavLink className='tabs-bar__link primary' style={{ flexGrow: '0', flexBasis: '30px' }} to='/getting-started' data-preview-title-id='getting_started.heading' data-preview-icon='bars' ><i className='fa fa-fw fa-bars' /></NavLink>,
 ];

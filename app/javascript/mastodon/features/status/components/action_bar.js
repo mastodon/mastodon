@@ -8,9 +8,13 @@ import { me } from '../../../initial_state';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
+  redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
+  direct: { id: 'status.direct', defaultMessage: 'Direct message @{name}' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
+  reblog_private: { id: 'status.reblog_private', defaultMessage: 'Boost to original audience' },
+  cancel_reblog_private: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   mute: { id: 'status.mute', defaultMessage: 'Mute @{name}' },
@@ -37,6 +41,7 @@ export default class ActionBar extends React.PureComponent {
     onReblog: PropTypes.func.isRequired,
     onFavourite: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
+    onDirect: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
     onMute: PropTypes.func,
     onMuteConversation: PropTypes.func,
@@ -61,6 +66,14 @@ export default class ActionBar extends React.PureComponent {
 
   handleDeleteClick = () => {
     this.props.onDelete(this.props.status);
+  }
+
+  handleRedraftClick = () => {
+    this.props.onDelete(this.props.status, true);
+  }
+
+  handleDirectClick = () => {
+    this.props.onDirect(this.props.status.get('account'), this.context.router.history);
   }
 
   handleMentionClick = () => {
@@ -108,19 +121,26 @@ export default class ActionBar extends React.PureComponent {
 
     if (publicStatus) {
       menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
+      menu.push(null);
     }
 
     if (me === status.getIn(['account', 'id'])) {
       if (publicStatus) {
         menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
+      } else {
+        if (status.get('visibility') === 'private') {
+          menu.push({ text: intl.formatMessage(status.get('reblogged') ? messages.cancel_reblog_private : messages.reblog_private), action: this.handleReblogClick });
+        }
       }
 
       menu.push(null);
       menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
+      menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
+      menu.push({ text: intl.formatMessage(messages.direct, { name: status.getIn(['account', 'username']) }), action: this.handleDirectClick });
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick });
       menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick });
@@ -141,7 +161,7 @@ export default class ActionBar extends React.PureComponent {
       <div className='detailed-status__action-bar'>
         <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_id', null) === null ? 'reply' : 'reply-all'} onClick={this.handleReplyClick} /></div>
         <div className='detailed-status__button'><IconButton disabled={reblog_disabled} active={status.get('reblogged')} title={reblog_disabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
-        <div className='detailed-status__button'><IconButton animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
+        <div className='detailed-status__button'><IconButton className='star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} /></div>
         {shareButton}
 
         <div className='detailed-status__action-bar-dropdown'>

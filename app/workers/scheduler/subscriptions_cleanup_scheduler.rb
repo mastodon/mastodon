@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'sidekiq-scheduler'
-
 class Scheduler::SubscriptionsCleanupScheduler
   include Sidekiq::Worker
 
