@@ -19,9 +19,9 @@ const mapDispatchToProps = dispatch => ({
   onSubmit: () => dispatch(submitListEditor(false)),
 });
 
-@connect(mapStateToProps, mapDispatchToProps)
+export default @connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
-export default class ListForm extends React.PureComponent {
+class ListForm extends React.PureComponent {
 
   static propTypes = {
     value: PropTypes.string.isRequired,
