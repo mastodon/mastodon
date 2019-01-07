@@ -723,9 +723,17 @@ en:
     no_account_html: Don't have an account? You can <a href='%{sign_up_path}' target='_blank'>sign up here</a>
     proceed: Proceed to follow
     prompt: 'You are going to follow:'
+    reason_html: "<strong>Why is this step necessary?</strong> <code>%{instance}</code> might not be the server where you are registered, so we need to redirect you to your home server first."
   remote_interaction:
-    proceed: Proceed to interact
-    prompt: 'You want to interact with this toot:'
+    favourite:
+      proceed: Proceed to favourite
+      prompt: 'You want to favourite this toot:'
+    reblog:
+      proceed: Proceed to boost
+      prompt: 'You want to boost this toot:'
+    reply:
+      proceed: Proceed to reply
+      prompt: 'You want to reply to this toot:'
   remote_unfollow:
     error: Error
     title: Title
