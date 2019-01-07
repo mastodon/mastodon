@@ -192,7 +192,7 @@ Rails.application.routes.draw do
       resource :change_email, only: [:show, :update]
       resource :reset, only: [:create]
       resource :action, only: [:new, :create], controller: 'account_actions'
-      resources :statuses, only: [:index, :create, :update, :destroy]
+      resources :statuses, only: [:index, :show, :create, :update, :destroy]
       resources :followers, only: [:index]
 
       resource :confirmation, only: [:create] do
@@ -283,6 +283,7 @@ Rails.application.routes.draw do
       resources :streaming, only: [:index]
       resources :custom_emojis, only: [:index]
       resources :suggestions, only: [:index, :destroy]
+      resources :scheduled_statuses, only: [:index, :show, :update, :destroy]
 
       resources :conversations, only: [:index, :destroy] do
         member do

@@ -10,9 +10,9 @@ class UnfollowFollowWorker
     old_target_account = Account.find(old_target_account_id)
     new_target_account = Account.find(new_target_account_id)
 
-    UnfollowService.new.call(follower_account, old_target_account)
     FollowService.new.call(follower_account, new_target_account)
-  rescue ActiveRecord::RecordNotFound
+    UnfollowService.new.call(follower_account, old_target_account)
+  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     true
   end
 end

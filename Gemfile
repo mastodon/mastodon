@@ -52,7 +52,7 @@ gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 3.3'
 gem 'http_accept_language', '~> 2.1'
 gem 'http_parser.rb', '~> 0.6', git: 'https://github.com/tmm1/http_parser.rb', ref: '54b17ba8c7d8d20a16dfc65d1775241833219cf2'
-gem 'httplog', '~> 1.1'
+gem 'httplog', '~> 1.2'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.1'
 gem 'link_header', '~> 0.0'
@@ -127,7 +127,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.61', require: false
+  gem 'rubocop', '~> 0.62', require: false
   gem 'brakeman', '~> 4.3', require: false
   gem 'bundler-audit', '~> 0.6', require: false
   gem 'scss_lint', '~> 0.57', require: false

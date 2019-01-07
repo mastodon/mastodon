@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_26_021420) do
+ActiveRecord::Schema.define(version: 2019_01_03_124754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -336,7 +336,9 @@ ActiveRecord::Schema.define(version: 2018_12_26_021420) do
     t.json "file_meta"
     t.bigint "account_id"
     t.text "description"
+    t.bigint "scheduled_status_id"
     t.index ["account_id"], name: "index_media_attachments_on_account_id"
+    t.index ["scheduled_status_id"], name: "index_media_attachments_on_scheduled_status_id"
     t.index ["shortcode"], name: "index_media_attachments_on_shortcode", unique: true
     t.index ["status_id"], name: "index_media_attachments_on_status_id"
   end
@@ -485,6 +487,14 @@ ActiveRecord::Schema.define(version: 2018_12_26_021420) do
     t.bigint "assigned_account_id"
     t.index ["account_id"], name: "index_reports_on_account_id"
     t.index ["target_account_id"], name: "index_reports_on_target_account_id"
+  end
+
+  create_table "scheduled_statuses", force: :cascade do |t|
+    t.bigint "account_id"
+    t.datetime "scheduled_at"
+    t.jsonb "params"
+    t.index ["account_id"], name: "index_scheduled_statuses_on_account_id"
+    t.index ["scheduled_at"], name: "index_scheduled_statuses_on_scheduled_at"
   end
 
   create_table "session_activations", force: :cascade do |t|
@@ -700,6 +710,7 @@ ActiveRecord::Schema.define(version: 2018_12_26_021420) do
   add_foreign_key "list_accounts", "lists", on_delete: :cascade
   add_foreign_key "lists", "accounts", on_delete: :cascade
   add_foreign_key "media_attachments", "accounts", name: "fk_96dd81e81b", on_delete: :nullify
+  add_foreign_key "media_attachments", "scheduled_statuses", on_delete: :nullify
   add_foreign_key "media_attachments", "statuses", on_delete: :nullify
   add_foreign_key "mentions", "accounts", name: "fk_970d43f9d1", on_delete: :cascade
   add_foreign_key "mentions", "statuses", on_delete: :cascade
@@ -718,6 +729,7 @@ ActiveRecord::Schema.define(version: 2018_12_26_021420) do
   add_foreign_key "reports", "accounts", column: "assigned_account_id", on_delete: :nullify
   add_foreign_key "reports", "accounts", column: "target_account_id", name: "fk_eb37af34f0", on_delete: :cascade
   add_foreign_key "reports", "accounts", name: "fk_4b81f7522c", on_delete: :cascade
+  add_foreign_key "scheduled_statuses", "accounts", on_delete: :cascade
   add_foreign_key "session_activations", "oauth_access_tokens", column: "access_token_id", name: "fk_957e5bda89", on_delete: :cascade
   add_foreign_key "session_activations", "users", name: "fk_e5fda67334", on_delete: :cascade
   add_foreign_key "status_pins", "accounts", name: "fk_d4cb435b62", on_delete: :cascade
