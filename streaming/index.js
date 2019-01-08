@@ -307,6 +307,7 @@ const startWorker = (workerId) => {
 
   const PUBLIC_ENDPOINTS = [
     '/api/v1/streaming/public',
+    '/api/v1/streaming/public/allow_local_only',
     '/api/v1/streaming/public/local',
     '/api/v1/streaming/public/remote',
     '/api/v1/streaming/hashtag',
@@ -362,7 +363,7 @@ const startWorker = (workerId) => {
     });
   };
 
-  const streamFrom = (ids, req, output, attachCloseHandler, needsFiltering = false, notificationOnly = false) => {
+  const streamFrom = (ids, req, output, attachCloseHandler, needsFiltering = false, notificationOnly = false, allowLocalOnly = false) => {
     const accountId  = req.accountId || req.remoteAddress;
     const streamType = notificationOnly ? ' (notification)' : '';
 
@@ -393,7 +394,7 @@ const startWorker = (workerId) => {
       }
 
       // Only send local-only statuses to logged-in users
-      if (event === 'update' && payload.local_only && !req.accountId) {
+      if (event === 'update' && payload.local_only && !req.accountId || !allowLocalOnly) {
         log.silly(req.requestId, `Message ${payload.id} filtered because it was local-only`);
         return;
       }
@@ -562,14 +563,16 @@ const startWorker = (workerId) => {
     const onlyMedia = req.query.only_media === '1' || req.query.only_media === 'true';
     const channel   = onlyMedia ? 'timeline:public:media' : 'timeline:public';
 
-    streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req), true);
+    const allowLocalOnly = req.query.allow_local_only === '1' || req.query.allow_local_only === 'true';
+
+    streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req), true, false, allowLocalOnly);
   });
 
   app.get('/api/v1/streaming/public/local', (req, res) => {
     const onlyMedia = req.query.only_media === '1' || req.query.only_media === 'true';
     const channel   = onlyMedia ? 'timeline:public:local:media' : 'timeline:public:local';
 
-    streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req), true);
+    streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req), true, false, true);
   });
 
   app.get('/api/v1/streaming/public/remote', (req, res) => {
@@ -645,8 +648,11 @@ const startWorker = (workerId) => {
     case 'public':
       streamFrom('timeline:public', req, streamToWs(req, ws), streamWsEnd(req, ws), true);
       break;
+    case 'public:allow_local_only':
+      streamFrom('timeline:public', req, streamToWs(req, ws), streamWsEnd(req, ws), true, false, true);
+      break;
     case 'public:local':
-      streamFrom('timeline:public:local', req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+      streamFrom('timeline:public:local', req, streamToWs(req, ws), streamWsEnd(req, ws), true, false, true);
       break;
     case 'public:remote':
       streamFrom('timeline:public:remote', req, streamToWs(req, ws), streamWsEnd(req, ws), true);
@@ -654,8 +660,11 @@ const startWorker = (workerId) => {
     case 'public:media':
       streamFrom('timeline:public:media', req, streamToWs(req, ws), streamWsEnd(req, ws), true);
       break;
+    case 'public:allow_local_only:media':
+      streamFrom('timeline:public:media', req, streamToWs(req, ws), streamWsEnd(req, ws), true, false, true);
+      break;
     case 'public:local:media':
-      streamFrom('timeline:public:local:media', req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+      streamFrom('timeline:public:local:media', req, streamToWs(req, ws), streamWsEnd(req, ws), true, false, true);
       break;
     case 'public:remote:media':
       streamFrom('timeline:public:remote:media', req, streamToWs(req, ws), streamWsEnd(req, ws), true);
