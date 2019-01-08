@@ -188,6 +188,8 @@ pl:
       invited_by: Zaproszony(-a) przez
       joined: Dołączył(-a)
       warn: Ostrzeż
+      header: Nagłówek
+      remove_header: Usuń nagłówek
     action_logs:
       actions:
         assigned_to_self_report: '%{name} przypisał(a) sobie zgłoszenie %{target}'
@@ -297,13 +299,20 @@ pl:
       reject_reports_hint: Zgłoszenia z tej instancji będą ignorowane. Nieprzydatne
         przy zawieszeniu
       show:
-        affected_accounts: Dotyczy %{count} kont w bazie danych
+        affected_accounts:
+          one: Dotknęło jedno konto w bazie danych
+          other: Dotknęło %{count} kont w bazie danych
         retroactive:
           silence: Odwołaj wyciszenie wszystkich kont w tej domenie
           suspend: Odwołaj zawieszenie wszystkich kont w tej domenie
         title: Odwołaj blokadę dla domeny %{domain}
         undo: Cofnij
       undo: Cofnij
+      rejecting_media: pliki multimedialne są odrzucane
+      rejecting_reports: zgłoszenia są odrzucane
+      severity:
+        silence: wyciszono
+        suspend: zawieszono
     email_domain_blocks:
       add_new: Dodaj nową
       created_msg: Pomyślnie utworzono blokadę domeny e-mail
@@ -316,6 +325,19 @@ pl:
       title: Blokowanie domen e-mail
     instances:
       title: Znane instancje
+      delivery_available: Doręczanie jest dostępne
+      known_accounts:
+        one: '%{count} znane konto'
+        other: '%{count} znane konta'
+      moderation:
+        all: Wszystkie
+        limited: Ograniczone
+        title: Moderacja
+      total_blocked_by_us: Zablokowane przez nas
+      total_followed_by_them: Śledzeni przez nich
+      total_followed_by_us: Śledzeni przez nas
+      total_reported: Zgłoszenia dotyczące ich
+      total_storage: Załączniki multimedialne
     invites:
       deactivate_all: Unieważnij wszystkie
       filter:
@@ -624,6 +646,8 @@ pl:
     follows: Śledzeni
     mutes: Wyciszeni
     storage: Urządzenie przechowujące dane
+    domain_blocks: Blokady domen
+    lists: Listy
   filters:
     contexts:
       home: Strona główna
