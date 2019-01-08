@@ -85,10 +85,6 @@ id:
         title: Pemblokiran domain baru
       reject_media: Tolak berkas media
       reject_media_hint: Hapus file media yang tersimpan dan menolak semua unduhan nantinya. Tidak terpengaruh dengan suspen
-      severities:
-        silence: Diamkan
-        suspend: Suspen
-      severity: Keparahan
       show:
         affected_accounts:
           one: Satu akun di dalam database terpengaruh
@@ -98,10 +94,7 @@ id:
           suspend: Hapus suspen terhadap akun pada domain ini
         title: Hapus pemblokiran domain %{domain}
         undo: Undo
-      title: Pemblokiran Domain
     instances:
-      account_count: Akun yang diketahui
-      domain_name: Domain
       title: Server yang diketahui
     reports:
       comment:

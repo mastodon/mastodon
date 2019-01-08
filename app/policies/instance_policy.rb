@@ -5,7 +5,7 @@ class InstancePolicy < ApplicationPolicy
     admin?
   end
 
-  def resubscribe?
+  def show?
     admin?
   end
 end
