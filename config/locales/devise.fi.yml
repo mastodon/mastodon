@@ -1,11 +1,10 @@
+---
 fi:
   devise:
     confirmations:
       confirmed: Sähköpostiosoitteen vahvistus onnistui.
-      send_instructions: Saat kohta sähköpostitse ohjeet, kuinka vahvistat sähköpostiosoitteen.
-        Jos et saa viestiä, tarkista roskapostikansio.
-      send_paranoid_instructions: Jos sähköpostiosoite on tietokannassamme, saat pian
-        ohjeet, kuinka vahvistat osoitteen. Jos et saa viestiä, tarkista roskapostikansio.
+      send_instructions: Saat kohta sähköpostitse ohjeet, kuinka vahvistat sähköpostiosoitteen. Jos et saa viestiä, tarkista roskapostikansio.
+      send_paranoid_instructions: Jos sähköpostiosoite on tietokannassamme, saat pian ohjeet, kuinka vahvistat osoitteen. Jos et saa viestiä, tarkista roskapostikansio.
     failure:
       already_authenticated: Olet jo kirjautunut sisään.
       inactive: Tiliäsi ei ole vielä aktivoitu.
@@ -19,38 +18,29 @@ fi:
     mailer:
       confirmation_instructions:
         action: Vahvista sähköpostiosoite
-        explanation: Olet luonut tilin palvelimelle %{host} käyttäen tätä sähköpostiosoitetta.
-          Aktivoi tili yhdellä klikkauksella. Jos et luonut tiliä itse, voit jättää
-          tämän viestin huomiotta.
-        extra_html: Katso myös <a href="%{terms_path}">instanssin säännöt</a> ja <a
-          href="%{policy_path}">käyttöehdot</a>.
+        explanation: Olet luonut tilin palvelimelle %{host} käyttäen tätä sähköpostiosoitetta. Aktivoi tili yhdellä klikkauksella. Jos et luonut tiliä itse, voit jättää tämän viestin huomiotta.
+        extra_html: Katso myös <a href="%{terms_path}">instanssin säännöt</a> ja <a href="%{policy_path}">käyttöehdot</a>.
         subject: 'Mastodon: Vahvistusohjeet - %{instance}'
         title: Vahvista sähköpostiosoite
       email_changed:
         explanation: 'Tilin sähköpostiosoitteeksi vaihdetaan:'
-        extra: Jos et vaihtanut sähköpostiosoitettasi, joku muu on todennäköisesti
-          päässyt käyttämään tiliäsi. Vaihda salasanasi viipymättä. Jos et pääse kirjautumaan
-          tilillesi, ota yhteyttä instanssin ylläpitäjään.
+        extra: Jos et vaihtanut sähköpostiosoitettasi, joku muu on todennäköisesti päässyt käyttämään tiliäsi. Vaihda salasanasi viipymättä. Jos et pääse kirjautumaan tilillesi, ota yhteyttä instanssin ylläpitäjään.
         subject: 'Mastodon: Sähköpostiosoite vaihdettu'
         title: Uusi sähköpostiosoite
       password_change:
         explanation: Tilin salasana on vaihdettu.
-        extra: Jos et vaihtanut salasanaasi, joku muu on todennäköisesti päässyt käyttämään
-          tiliäsi. Vaihda salasanasi viipymättä. Jos et pääse kirjautumaan tilillesi,
-          ota yhteyttä instanssin ylläpitäjään.
+        extra: Jos et vaihtanut salasanaasi, joku muu on todennäköisesti päässyt käyttämään tiliäsi. Vaihda salasanasi viipymättä. Jos et pääse kirjautumaan tilillesi, ota yhteyttä instanssin ylläpitäjään.
         subject: 'Mastodon: Salasana vaihdettu'
         title: Salasana vaihdettu
       reconfirmation_instructions:
         explanation: Vahvista uusi sähköpostiosoite, niin muutos astuu voimaan.
-        extra: Jos et tehnyt muutosta itse, voit jättää tämän viestin huomiotta. Mastodon-tilin
-          sähköpostiosoitetta ei vaihdeta, ennen kuin klikkaat yllä olevaa linkkiä.
+        extra: Jos et tehnyt muutosta itse, voit jättää tämän viestin huomiotta. Mastodon-tilin sähköpostiosoitetta ei vaihdeta, ennen kuin klikkaat yllä olevaa linkkiä.
         subject: 'Mastodon: Vahvista sähköpostiosoite - %{instance}'
         title: Vahvista sähköpostiosoite
       reset_password_instructions:
         action: Vaihda salasana
         explanation: Pyysit tilillesi uuden salasanan.
-        extra: Jos et tehnyt pyyntöä itse, voit jättää tämän viestin huomiotta. Salasanaasi
-          ei vaihdeta, ennen kuin klikkaat yllä olevaa linkkiä ja luot uuden salasanan.
+        extra: Jos et tehnyt pyyntöä itse, voit jättää tämän viestin huomiotta. Salasanaasi ei vaihdeta, ennen kuin klikkaat yllä olevaa linkkiä ja luot uuden salasanan.
         subject: 'Mastodon: Ohjeet salasanan vaihtoon'
         title: Salasanan vaihto
       unlock_instructions:
@@ -59,37 +49,26 @@ fi:
       failure: Tunnistautuminen lähteestä %{kind} ei onnistunut, koska "%{reason}".
       success: Tunnistautuminen tililtä %{kind} onnistui.
     passwords:
-      no_token: Tälle sivulle pääsee vain salasananvaihtoviestin kautta. Jos tiedät
-        tulevasi salasananvaihtoviestin kautta, varmista, että käytät koko viestissä
-        mainittua URL-osoitetta.
-      send_instructions: Jos sähköpostiosoite on tietokannassamme, siihen lähetetään
-        pian linkki salasanan vaihtoon. Jos et saa viestiä, tarkista roskapostikansio.
-      send_paranoid_instructions: Jos sähköpostiosoite on tietokannassamme, siihen
-        lähetetään pian linkki salasanan vaihtoon. Jos et saa viestiä, tarkista roskapostikansio.
+      no_token: Tälle sivulle pääsee vain salasananvaihtoviestin kautta. Jos tiedät tulevasi salasananvaihtoviestin kautta, varmista, että käytät koko viestissä mainittua URL-osoitetta.
+      send_instructions: Jos sähköpostiosoite on tietokannassamme, siihen lähetetään pian linkki salasanan vaihtoon. Jos et saa viestiä, tarkista roskapostikansio.
+      send_paranoid_instructions: Jos sähköpostiosoite on tietokannassamme, siihen lähetetään pian linkki salasanan vaihtoon. Jos et saa viestiä, tarkista roskapostikansio.
       updated: Salasanan vaihto onnistui. Olet nyt kirjautunut sisään.
       updated_not_active: Salasanan vaihto onnistui.
     registrations:
       destroyed: Tilisi on poistettu. Näkemiin ja tervetuloa uudelleen!
       signed_up: Tervetuloa! Rekisteröityminen onnistui.
-      signed_up_but_inactive: Rekisteröityminen onnistui. Emme kuitenkaan voi kirjata
-        sinua sisään, sillä tiliäsi ei ole vielä aktivoitu.
-      signed_up_but_locked: Rekisteröityminen onnistui. Emme kuitenkaan voi kirjata
-        sinua sisään, sillä tilisi on lukittu.
-      signed_up_but_unconfirmed: Sähköpostiosoitteeseesi on lähetetty vahvistuslinkki.
-        Aktivoi tili seuraamalla linkkiä. Jos et saanut viestiä, tarkista roskapostikansio.
-      update_needs_confirmation: Tilin päivitys onnistui, mutta uusi sähköpostiosoite
-        on vahvistettava. Tarkista sähköpostisi ja vahvista uusi sähköpostiosoite
-        seuraamalla vahvistuslinkkiä. Jos et saanut viestiä, tarkista roskapostikansio.
+      signed_up_but_inactive: Rekisteröityminen onnistui. Emme kuitenkaan voi kirjata sinua sisään, sillä tiliäsi ei ole vielä aktivoitu.
+      signed_up_but_locked: Rekisteröityminen onnistui. Emme kuitenkaan voi kirjata sinua sisään, sillä tilisi on lukittu.
+      signed_up_but_unconfirmed: Sähköpostiosoitteeseesi on lähetetty vahvistuslinkki. Aktivoi tili seuraamalla linkkiä. Jos et saanut viestiä, tarkista roskapostikansio.
+      update_needs_confirmation: Tilin päivitys onnistui, mutta uusi sähköpostiosoite on vahvistettava. Tarkista sähköpostisi ja vahvista uusi sähköpostiosoite seuraamalla vahvistuslinkkiä. Jos et saanut viestiä, tarkista roskapostikansio.
       updated: Tilin päivitys onnistui.
     sessions:
       already_signed_out: Uloskirjautuminen onnistui.
       signed_in: Sisäänkirjautuminen onnistui.
       signed_out: Uloskirjautuminen onnistui.
     unlocks:
-      send_instructions: Saat pian sähköpostitse ohjeet tilin lukituksen poistoon.
-        Jos et saanut viestiä, tarkista roskapostikansio.
-      send_paranoid_instructions: Jos tili on olemassa, saat pian sähköpostitse ohjeet
-        tilin lukituksen poistoon. Jos et saanut viestiä, tarkista roskapostikansio.
+      send_instructions: Saat pian sähköpostitse ohjeet tilin lukituksen poistoon. Jos et saanut viestiä, tarkista roskapostikansio.
+      send_paranoid_instructions: Jos tili on olemassa, saat pian sähköpostitse ohjeet tilin lukituksen poistoon. Jos et saanut viestiä, tarkista roskapostikansio.
       unlocked: Tilin lukituksen poisto onnistui. Jatka kirjautumalla sisään.
   errors:
     messages:
@@ -100,4 +79,4 @@ fi:
       not_locked: ei ollut lukittu
       not_saved:
         one: '1 virhe esti kohteen %{resource} tallennuksen:'
-        other: '%{count} virhettä esti kohteen %{resource} tallennuksen:'
+        other: "%{count} virhettä esti kohteen %{resource} tallennuksen:"
