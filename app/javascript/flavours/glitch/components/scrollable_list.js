@@ -58,6 +58,13 @@ export default class ScrollableList extends PureComponent {
       } else if (this.props.onScroll) {
         this.props.onScroll();
       }
+
+      if (!this.lastScrollWasSynthetic) {
+        // If the last scroll wasn't caused by setScrollTop(), assume it was
+        // intentional and cancel any pending scroll reset on mouse idle
+        this.scrollToTopOnMouseIdle = false;
+      }
+      this.lastScrollWasSynthetic = false;
     }
   }, 150, {
     trailing: true,
@@ -65,7 +72,15 @@ export default class ScrollableList extends PureComponent {
 
   mouseIdleTimer = null;
   mouseMovedRecently = false;
+  lastScrollWasSynthetic = false;
   scrollToTopOnMouseIdle = false;
+
+  setScrollTop = newScrollTop => {
+    if (this.node.scrollTop !== newScrollTop) {
+      this.lastScrollWasSynthetic = true;
+      this.node.scrollTop = newScrollTop;
+    }
+  };
 
   clearMouseIdleTimer = () => {
     if (this.mouseIdleTimer === null) {
@@ -97,7 +112,7 @@ export default class ScrollableList extends PureComponent {
 
   handleMouseIdle = () => {
     if (this.scrollToTopOnMouseIdle) {
-      this.node.scrollTop = 0;
+      this.setScrollTop(0);
     }
     this.mouseMovedRecently = false;
     this.scrollToTopOnMouseIdle = false;
@@ -123,9 +138,7 @@ export default class ScrollableList extends PureComponent {
   updateScrollBottom = (snapshot) => {
     const newScrollTop = this.node.scrollHeight - snapshot;
 
-    if (this.node.scrollTop !== newScrollTop) {
-      this.node.scrollTop = newScrollTop;
-    }
+    this.setScrollTop(newScrollTop);
   }
 
   getSnapshotBeforeUpdate (prevProps, prevState) {
