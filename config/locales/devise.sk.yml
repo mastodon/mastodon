@@ -18,6 +18,7 @@ sk:
     mailer:
       confirmation_instructions:
         action: Potvŕď emailovú adresu
+        action_with_app: Potvrď a vráť sa na %{app}
         explanation: S touto emailovou adresou si si vytvoril/a účet na %{host}. Si iba jeden klik od jeho aktivácie. Pokiaľ si to ale nebol/a ty, prosím ignoruj tento email.
         extra_html: Prosím pozri sa aj na <a href="%{terms_path}"> pravidlá tohto servera,</a> a <a href="%{policy_path}"> naše užívaťeľské podiemky</a>.
         subject: 'Mastodon: Potvrdzovacie inštrukcie pre %{instance}'
@@ -29,7 +30,7 @@ sk:
         title: Nová emailová adresa
       password_change:
         explanation: Heslo k tvojmu účtu bolo zmenené.
-        extra: Pokiaľ si nezmenil/a svoje heslo, je pravdepodobné že niekto iný získal prístup k tvojmu účtu. Naliehavo preto prosím zmeň svoje heslo, alebo kontaktuj administrátora tohto serveru pokiaľ si vymknutý/á zo svojho účtu.
+        extra: Ak si heslo nezmenil/a, je pravdepodobné že niekto iný získal prístup k tvojmu účtu. Naliehavo preto prosím zmeň svoje heslo, alebo kontaktuj administrátora tohto serveru pokiaľ si vymknutý/á zo svojho účtu.
         subject: 'Mastodon: Heslo bolo zmenené'
         title: Heslo bolo zmenené
       reconfirmation_instructions:

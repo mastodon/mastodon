@@ -94,7 +94,7 @@ class GettingStarted extends ImmutablePureComponent {
 
       if (profile_directory) {
         navItems.push(
-          <ColumnLink key={i++} icon='address-book' text={intl.formatMessage(messages.profile_directory)} href='/explore' />,
+          <ColumnLink key={i++} icon='address-book' text={intl.formatMessage(messages.profile_directory)} href='/explore' />
         );
 
         height += 48;
@@ -107,11 +107,10 @@ class GettingStarted extends ImmutablePureComponent {
       height += 34;
     } else if (profile_directory) {
       navItems.push(
-        <ColumnSubheading key={i++} text={intl.formatMessage(messages.discover)} />,
-        <ColumnLink key={i++} icon='address-book' text={intl.formatMessage(messages.profile_directory)} href='/explore' />,
+        <ColumnLink key={i++} icon='address-book' text={intl.formatMessage(messages.profile_directory)} href='/explore' />
       );
 
-      height += 34 + 48;
+      height += 48;
     }
 
     navItems.push(
