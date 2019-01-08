@@ -64,6 +64,10 @@ module SettingsHelper
     HUMAN_LOCALES[locale]
   end
 
+  def identity_proof_providers
+    AccountIdentityProof::PROVIDER_MAP.values
+  end
+
   def filterable_languages
     LanguageDetector.instance.language_names.select(&HUMAN_LOCALES.method(:key?))
   end

@@ -1,0 +1,5 @@
+
+= simple_form_for proof, url: settings_identity_proof_path(proof.id), html: { method: :put } do |f|
+  = render partial: 'settings/identity_proofs/proof_fields', locals: { f: f, proof: proof, with_id: true, show_remote_fields: true }
+
+%hr#settings_publishing/

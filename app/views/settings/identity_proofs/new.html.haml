@@ -1,0 +1,9 @@
+- content_for :page_title do
+  = t('settings.identity_proofs')
+
+= I18n.t('account_identity_proofs.new_explanation')
+
+%hr.spacer/
+
+= simple_form_for @proof, url: settings_identity_proofs_path, html: { method: :post } do |f|
+  = render partial: 'settings/identity_proofs/proof_fields', locals: { f: f, proof: @proof, with_id: false, show_remote_fields: false }

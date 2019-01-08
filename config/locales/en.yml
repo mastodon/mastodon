@@ -69,6 +69,15 @@ en:
       bot: Bot
       moderator: Mod
     unfollow: Unfollow
+  account_identity_proofs:
+    keybase_errors:
+      token: Keybase tokens are hashes of signatures and must be 66 hex characters
+      remote_invalid: Keybase does not recognize this token as a signature of Keybase user %{kb_username}.
+    update:
+      success: Proof saved. Waiting for %{provider} to pull this update.
+    new_explanation: |
+      Linking your identity here with a proof provider lets you use cryptographic features over there
+      using this Mastodon identity as an anchor.
   admin:
     account_actions:
       action: Perform action
@@ -824,6 +833,7 @@ en:
     export: Data export
     featured_tags: Featured hashtags
     followers: Authorized followers
+    identity_proofs: Identity Proofs
     import: Import
     migrate: Account migration
     notifications: Notifications

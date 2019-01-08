@@ -107,6 +107,7 @@ Rails.application.routes.draw do
     end
 
     resource :follower_domains, only: [:show, :update]
+    resources :identity_proofs, only: [:index, :show, :new, :create, :update]
 
     resources :applications, except: [:edit] do
       member do
