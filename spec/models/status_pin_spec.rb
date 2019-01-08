@@ -37,5 +37,36 @@ RSpec.describe StatusPin, type: :model do
 
       expect(StatusPin.new(account: account, status: status).save).to be false
     end
+
+    max_pins = 5
+    it 'does not allow pins above the max' do
+      account = Fabricate(:account)
+      status = []
+
+      (max_pins + 1).times do |i|
+        status[i] = Fabricate(:status, account: account)
+      end
+
+      max_pins.times do |i|
+        expect(StatusPin.new(account: account, status: status[i]).save).to be true
+      end
+
+      expect(StatusPin.new(account: account, status: status[max_pins]).save).to be false
+    end
+
+    it 'allows pins above the max for remote accounts' do
+      account = Fabricate(:account, domain: 'remote.test', username: 'bob', url: 'https://remote.test/')
+      status = []
+
+      (max_pins + 1).times do |i|
+        status[i] = Fabricate(:status, account: account)
+      end
+
+      max_pins.times do |i|
+        expect(StatusPin.new(account: account, status: status[i]).save).to be true
+      end
+
+      expect(StatusPin.new(account: account, status: status[max_pins]).save).to be true
+    end
   end
 end

@@ -7,35 +7,35 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me } from '../../initial_state';
+import { me, invitesEnabled } from '../../initial_state';
 import { fetchFollowRequests } from '../../actions/accounts';
 import { List as ImmutableList } from 'immutable';
+import { Link } from 'react-router-dom';
+import NavigationBar from '../compose/components/navigation_bar';
 
 const messages = defineMessages({
-  heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
   home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
   notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
   public_timeline: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
-  navigation_subheading: { id: 'column_subheading.navigation', defaultMessage: 'Navigation' },
   settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings' },
   community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
+  direct: { id: 'navigation_bar.direct', defaultMessage: 'Direct messages' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
-  sign_out: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
+  domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
-  info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
-  keyboard_shortcuts: { id: 'navigation_bar.keyboard_shortcuts', defaultMessage: 'Keyboard shortcuts' },
+  discover: { id: 'navigation_bar.discover', defaultMessage: 'Discover' },
+  personal: { id: 'navigation_bar.personal', defaultMessage: 'Personal' },
+  security: { id: 'navigation_bar.security', defaultMessage: 'Security' },
 });
 
 const mapStateToProps = state => ({
   myAccount: state.getIn(['accounts', me]),
-  columns: state.getIn(['settings', 'columns']),
   unreadFollowRequests: state.getIn(['user_lists', 'follow_requests', 'items'], ImmutableList()).size,
-  unreadNotifications: state.getIn(['notifications', 'unread']),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -75,60 +75,76 @@ export default class GettingStarted extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, myAccount, columns, multiColumn, unreadFollowRequests, unreadNotifications } = this.props;
+    const { intl, myAccount, multiColumn, unreadFollowRequests } = this.props;
 
     const navItems = [];
+    let i = 1;
+    let height = (multiColumn) ? 0 : 60;
 
     if (multiColumn) {
-      if (!columns.find(item => item.get('id') === 'HOME')) {
-        navItems.push(<ColumnLink key='0' icon='home' text={intl.formatMessage(messages.home_timeline)} to='/timelines/home' />);
-      }
+      navItems.push(
+        <ColumnSubheading key={i++} text={intl.formatMessage(messages.discover)} />,
+        <ColumnLink key={i++} icon='users' text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />,
+        <ColumnLink key={i++} icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />,
+        <ColumnSubheading key={i++} text={intl.formatMessage(messages.personal)} />
+      );
 
-      if (!columns.find(item => item.get('id') === 'NOTIFICATIONS')) {
-        navItems.push(<ColumnLink key='1' icon='bell' text={intl.formatMessage(messages.notifications)} badge={badgeDisplay(unreadNotifications)} to='/notifications' />);
-      }
-
-      if (!columns.find(item => item.get('id') === 'COMMUNITY')) {
-        navItems.push(<ColumnLink key='2' icon='users' text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />);
-      }
-
-      if (!columns.find(item => item.get('id') === 'PUBLIC')) {
-        navItems.push(<ColumnLink key='3' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />);
-      }
+      height += 34*2 + 48*2;
     }
 
     navItems.push(
-      <ColumnLink key='4' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
-      <ColumnLink key='5' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
+      <ColumnLink key={i++} icon='envelope' text={intl.formatMessage(messages.direct)} to='/timelines/direct' />,
+      <ColumnLink key={i++} icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
+      <ColumnLink key={i++} icon='list-ul' text={intl.formatMessage(messages.lists)} to='/lists' />
     );
 
+    height += 48*3;
+
     if (myAccount.get('locked')) {
-      navItems.push(<ColumnLink key='6' icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
+      navItems.push(<ColumnLink key={i++} icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
+      height += 48;
     }
 
-    if (multiColumn) {
-      navItems.push(<ColumnLink key='7' icon='question' text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' />);
-    }
+    if (!multiColumn) {
+      navItems.push(
+        <ColumnSubheading key={i++} text={intl.formatMessage(messages.settings_subheading)} />,
+        <ColumnLink key={i++} icon='gears' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
+      );
 
-    navItems.push(<ColumnLink key='8' icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />);
+      height += 34 + 48;
+    }
 
     return (
-      <Column icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile>
-        <div className='getting-started__wrapper'>
-          <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />
+      <Column>
+        {multiColumn && <div className='column-header__wrapper'>
+          <h1 className='column-header'>
+            <button>
+              <i className='fa fa-bars fa-fw column-header__icon' />
+              <FormattedMessage id='getting_started.heading' defaultMessage='Getting started' />
+            </button>
+          </h1>
+        </div>}
+
+        <div className='getting-started__wrapper' style={{ height }}>
+          {!multiColumn && <NavigationBar account={myAccount} />}
           {navItems}
-          <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
-          <ColumnLink icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />
-          <ColumnLink icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
-          <ColumnLink icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
-          <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
-          <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
         </div>
 
-        <div className='static-content getting-started'>
-          <p>
-            <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.faq' defaultMessage='FAQ' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/User-guide.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.userguide' defaultMessage='User Guide' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.appsshort' defaultMessage='Apps' /></a>
-          </p>
+        {!multiColumn && <div className='flex-spacer' />}
+
+        <div className='getting-started getting-started__footer'>
+          <ul>
+            <li><a href='https://bridge.joinmastodon.org/' target='_blank'><FormattedMessage id='getting_started.find_friends' defaultMessage='Find friends from Twitter' /></a> · </li>
+            {invitesEnabled && <li><a href='/invites' target='_blank'><FormattedMessage id='getting_started.invite' defaultMessage='Invite people' /></a> · </li>}
+            {multiColumn && <li><Link to='/keyboard-shortcuts'><FormattedMessage id='navigation_bar.keyboard_shortcuts' defaultMessage='Hotkeys' /></Link> · </li>}
+            <li><a href='/auth/edit'><FormattedMessage id='getting_started.security' defaultMessage='Security' /></a> · </li>
+            <li><a href='/about/more' target='_blank'><FormattedMessage id='navigation_bar.info' defaultMessage='About this instance' /></a> · </li>
+            <li><a href='/terms' target='_blank'><FormattedMessage id='getting_started.terms' defaultMessage='Terms of service' /></a> · </li>
+            <li><a href='/settings/applications' target='_blank'><FormattedMessage id='getting_started.developers' defaultMessage='Developers' /></a> · </li>
+            <li><a href='https://github.com/tootsuite/documentation#documentation' target='_blank'><FormattedMessage id='getting_started.documentation' defaultMessage='Documentation' /></a> · </li>
+            <li><a href='/auth/sign_out' data-method='delete'><FormattedMessage id='navigation_bar.logout' defaultMessage='Logout' /></a></li>
+          </ul>
+
           <p>
             <FormattedMessage
               id='getting_started.open_source_notice'

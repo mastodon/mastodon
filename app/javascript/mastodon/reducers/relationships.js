@@ -23,6 +23,14 @@ const normalizeRelationships = (state, relationships) => {
   return state;
 };
 
+const setDomainBlocking = (state, accounts, blocking) => {
+  return state.withMutations(map => {
+    accounts.forEach(id => {
+      map.setIn([id, 'domain_blocking'], blocking);
+    });
+  });
+};
+
 const initialState = ImmutableMap();
 
 export default function relationships(state = initialState, action) {
@@ -37,9 +45,9 @@ export default function relationships(state = initialState, action) {
   case RELATIONSHIPS_FETCH_SUCCESS:
     return normalizeRelationships(state, action.relationships);
   case DOMAIN_BLOCK_SUCCESS:
-    return state.setIn([action.accountId, 'domain_blocking'], true);
+    return setDomainBlocking(state, action.accounts, true);
   case DOMAIN_UNBLOCK_SUCCESS:
-    return state.setIn([action.accountId, 'domain_blocking'], false);
+    return setDomainBlocking(state, action.accounts, false);
   default:
     return state;
   }

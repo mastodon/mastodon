@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
 
   include Localized
   include UserTrackingConcern
+  include SessionTrackingConcern
 
   helper_method :current_account
   helper_method :current_session
@@ -19,6 +20,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::RoutingError, with: :not_found
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
+  rescue_from ActionController::UnknownFormat, with: :not_acceptable
   rescue_from Mastodon::NotPermittedError, with: :forbidden
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
@@ -39,11 +41,11 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin!
-    redirect_to root_path unless current_user&.admin?
+    forbidden unless current_user&.admin?
   end
 
   def require_staff!
-    redirect_to root_path unless current_user&.staff?
+    forbidden unless current_user&.staff?
   end
 
   def check_suspension
@@ -70,6 +72,10 @@ class ApplicationController < ActionController::Base
 
   def unprocessable_entity
     respond_with_error(422)
+  end
+
+  def not_acceptable
+    respond_with_error(406)
   end
 
   def single_user_mode?

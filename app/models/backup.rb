@@ -3,8 +3,8 @@
 #
 # Table name: backups
 #
-#  id                :integer          not null, primary key
-#  user_id           :integer
+#  id                :bigint(8)        not null, primary key
+#  user_id           :bigint(8)
 #  dump_file_name    :string
 #  dump_content_type :string
 #  dump_file_size    :integer

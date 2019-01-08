@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TagsController < ApplicationController
+  PAGE_SIZE = 20
+
   before_action :set_body_classes
   before_action :set_instance_presenter
 
@@ -13,8 +15,15 @@ class TagsController < ApplicationController
         @initial_state_json   = serializable_resource.to_json
       end
 
+      format.rss do
+        @statuses = Status.as_tag_timeline(@tag).limit(PAGE_SIZE)
+        @statuses = cache_collection(@statuses, Status)
+
+        render xml: RSS::TagSerializer.render(@tag, @statuses)
+      end
+
       format.json do
-        @statuses = Status.as_tag_timeline(@tag, current_account, params[:local]).paginate_by_max_id(20, params[:max_id])
+        @statuses = Status.as_tag_timeline(@tag, current_account, params[:local]).paginate_by_max_id(PAGE_SIZE, params[:max_id])
         @statuses = cache_collection(@statuses, Status)
 
         render json: collection_presenter,

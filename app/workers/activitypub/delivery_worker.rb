@@ -3,6 +3,9 @@
 class ActivityPub::DeliveryWorker
   include Sidekiq::Worker
 
+  STOPLIGHT_FAILURE_THRESHOLD = 10
+  STOPLIGHT_COOLDOWN = 60
+
   sidekiq_options queue: 'push', retry: 16, dead: false
 
   HEADERS = { 'Content-Type' => 'application/activity+json' }.freeze
@@ -14,9 +17,6 @@ class ActivityPub::DeliveryWorker
 
     perform_request
 
-    raise Mastodon::UnexpectedResponseError, @response unless response_successful?
-
-    @response.connection&.close
     failure_tracker.track_success!
   rescue => e
     failure_tracker.track_failure!
@@ -32,11 +32,23 @@ class ActivityPub::DeliveryWorker
   end
 
   def perform_request
-    @response = build_request.perform
+    light = Stoplight(@inbox_url) do
+      build_request.perform do |response|
+        raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response)
+      end
+    end
+
+    light.with_threshold(STOPLIGHT_FAILURE_THRESHOLD)
+         .with_cool_off_time(STOPLIGHT_COOLDOWN)
+         .run
   end
 
-  def response_successful?
-    @response.code > 199 && @response.code < 300
+  def response_successful?(response)
+    (200...300).cover?(response.code)
+  end
+
+  def response_error_unsalvageable?(response)
+    (400...500).cover?(response.code) && response.code != 429
   end
 
   def failure_tracker

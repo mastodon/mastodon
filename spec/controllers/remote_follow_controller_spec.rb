@@ -10,7 +10,7 @@ describe RemoteFollowController do
       account = Fabricate(:account)
       get :new, params: { account_username: account.to_param }
 
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
       expect(response).to render_template(:new)
       expect(assigns(:remote_follow).acct).to be_nil
     end
@@ -20,7 +20,7 @@ describe RemoteFollowController do
       account = Fabricate(:account)
       get :new, params: { account_username: account.to_param }
 
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
       expect(response).to render_template(:new)
       expect(assigns(:remote_follow).acct).to eq 'user@example.com'
     end

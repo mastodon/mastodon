@@ -24,14 +24,13 @@ describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true d
     assign(:stream_entry, status.stream_entry)
     assign(:account, alice)
     assign(:type, status.stream_entry.activity_type.downcase)
+    assign(:descendant_threads, [])
 
     render
 
     mf2 = Microformats.parse(rendered)
 
-    expect(mf2.entry.name.to_s).to eq status.text
     expect(mf2.entry.url.to_s).not_to be_empty
-
     expect(mf2.entry.author.name.to_s).to eq alice.display_name
     expect(mf2.entry.author.url.to_s).not_to be_empty
   end
@@ -48,16 +47,14 @@ describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true d
     assign(:stream_entry, reply.stream_entry)
     assign(:account, alice)
     assign(:type, reply.stream_entry.activity_type.downcase)
-    assign(:ancestors, reply.stream_entry.activity.ancestors(bob) )
-    assign(:descendants, reply.stream_entry.activity.descendants(bob))
+    assign(:ancestors, reply.stream_entry.activity.ancestors(1, bob) )
+    assign(:descendant_threads, [{ statuses: reply.stream_entry.activity.descendants(1)}])
 
     render
 
     mf2 = Microformats.parse(rendered)
 
-    expect(mf2.entry.name.to_s).to eq reply.text
     expect(mf2.entry.url.to_s).not_to be_empty
-
     expect(mf2.entry.comment.url.to_s).not_to be_empty
     expect(mf2.entry.comment.author.name.to_s).to eq carl.display_name
     expect(mf2.entry.comment.author.url.to_s).not_to be_empty
@@ -75,6 +72,7 @@ describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true d
     assign(:stream_entry, status.stream_entry)
     assign(:account, alice)
     assign(:type, status.stream_entry.activity_type.downcase)
+    assign(:descendant_threads, [])
 
     render
 

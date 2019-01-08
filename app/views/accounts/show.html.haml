@@ -8,6 +8,7 @@
     %meta{ name: 'robots', content: 'noindex' }/
 
   %link{ rel: 'salmon', href: api_salmon_url(@account.id) }/
+  %link{ rel: 'alternate', type: 'application/rss+xml', href: account_url(@account, format: 'rss') }/
   %link{ rel: 'alternate', type: 'application/atom+xml', href: account_url(@account, format: 'atom') }/
   %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@account) }/
 

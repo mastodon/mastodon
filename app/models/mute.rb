@@ -3,11 +3,11 @@
 #
 # Table name: mutes
 #
-#  id                 :integer          not null, primary key
+#  id                 :bigint(8)        not null, primary key
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
-#  account_id         :integer          not null
-#  target_account_id  :integer          not null
+#  account_id         :bigint(8)        not null
+#  target_account_id  :bigint(8)        not null
 #  hide_notifications :boolean          default(TRUE), not null
 #
 

@@ -3,8 +3,8 @@ de:
   devise:
     confirmations:
       confirmed: Deine E-Mail-Adresse wurde bestätigt.
-      send_instructions: Du erhältst in wenigen Minuten eine E-Mail. Darin wird erklärt, wie du deine E-Mail-Adresse bestätigen kannst. Schau bitte auch in deinen Spam-Ordner!
-      send_paranoid_instructions: Falls deine E-Mail-Adresse in unserer Datenbank hinterlegt ist, erhältst du in wenigen Minuten eine E-Mail. Darin wird erklärt, wie du deine E-Mail-Adresse bestätigen kannst. Schau bitte auch in deinen Spam-Ordner!
+      send_instructions: Du wirst in wenigen Minuten eine E-Mail erhalten. Darin wird erklärt, wie du deine E-Mail-Adresse bestätigen kannst. Schau bitte auch in deinem Spam-Ordner nach, wenn du diese E-Mail nicht erhalten hast.
+      send_paranoid_instructions: Falls deine E-Mail-Adresse in unserer Datenbank hinterlegt ist, wirst du in wenigen Minuten eine E-Mail erhalten. Darin wird erklärt, wie du deine E-Mail-Adresse bestätigen kannst. Schau bitte auch in deinem Spam-Ordner nach, wenn du diese E-Mail nicht erhalten hast.
     failure:
       already_authenticated: Du bist bereits angemeldet.
       inactive: Dein Konto wurde noch nicht aktiviert.
@@ -73,10 +73,10 @@ de:
   errors:
     messages:
       already_confirmed: wurde bereits bestätigt, bitte versuche dich anzumelden
-      confirmation_period_expired: muss innerhalb %{period} bestätigt werden, bitte fordere einen neuen Link an.
-      expired: ist abgelaufen, bitte neu anfordern.
-      not_found: wurde nicht gefunden.
+      confirmation_period_expired: muss innerhalb %{period} bestätigt werden, bitte fordere einen neuen Link an
+      expired: ist abgelaufen, bitte neu anfordern
+      not_found: nicht gefunden
       not_locked: ist nicht gesperrt
       not_saved:
-        one: 'Konnte %{resource} nicht speichern: ein Fehler.'
-        other: 'Konnte %{resource} nicht speichern: %{count} Fehler.'
+        one: '1 Fehler hat verhindert, dass %{resource} gespeichert wurde:'
+        other: "%{count} Fehler verhinderten, dass %{resource} gespeichert wurde:"

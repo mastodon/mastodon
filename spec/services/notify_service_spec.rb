@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe NotifyService do
+RSpec.describe NotifyService, type: :service do
   subject do
     -> { described_class.new.call(recipient, activity) }
   end

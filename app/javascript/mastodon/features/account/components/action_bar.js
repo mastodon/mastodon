@@ -3,11 +3,13 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 import { Link } from 'react-router-dom';
-import { defineMessages, injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { me } from '../../../initial_state';
+import { shortNumberFormat } from '../../../utils/numbers';
 
 const messages = defineMessages({
   mention: { id: 'account.mention', defaultMessage: 'Mention @{name}' },
+  direct: { id: 'account.direct', defaultMessage: 'Direct message @{name}' },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -22,6 +24,14 @@ const messages = defineMessages({
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unhide {domain}' },
   hideReblogs: { id: 'account.hide_reblogs', defaultMessage: 'Hide boosts from @{name}' },
   showReblogs: { id: 'account.show_reblogs', defaultMessage: 'Show boosts from @{name}' },
+  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
+  preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
+  follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
+  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
+  lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
+  blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
+  domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
+  mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
 });
 
 @injectIntl
@@ -32,6 +42,7 @@ export default class ActionBar extends React.PureComponent {
     onFollow: PropTypes.func,
     onBlock: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
+    onDirect: PropTypes.func.isRequired,
     onReblogToggle: PropTypes.func.isRequired,
     onReport: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
@@ -52,16 +63,29 @@ export default class ActionBar extends React.PureComponent {
     let menu = [];
     let extraInfo = '';
 
-    menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
+    if (account.get('id') !== me) {
+      menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
+      menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.props.onDirect });
+      menu.push(null);
+    }
 
     if ('share' in navigator) {
       menu.push({ text: intl.formatMessage(messages.share, { name: account.get('username') }), action: this.handleShare });
+      menu.push(null);
     }
-
-    menu.push(null);
 
     if (account.get('id') === me) {
       menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
+      menu.push({ text: intl.formatMessage(messages.preferences), href: '/settings/preferences' });
+      menu.push({ text: intl.formatMessage(messages.pins), to: '/pinned' });
+      menu.push(null);
+      menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests' });
+      menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites' });
+      menu.push({ text: intl.formatMessage(messages.lists), to: '/lists' });
+      menu.push(null);
+      menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
+      menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks' });
+      menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
     } else {
       if (account.getIn(['relationship', 'following'])) {
         if (account.getIn(['relationship', 'showing_reblogs'])) {
@@ -116,25 +140,25 @@ export default class ActionBar extends React.PureComponent {
         {extraInfo}
 
         <div className='account__action-bar'>
-          <div className='account__action-bar-dropdown'>
-            <DropdownMenuContainer items={menu} icon='bars' size={24} direction='right' />
-          </div>
-
           <div className='account__action-bar-links'>
             <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}`}>
               <span><FormattedMessage id='account.posts' defaultMessage='Toots' /></span>
-              <strong><FormattedNumber value={account.get('statuses_count')} /></strong>
+              <strong>{shortNumberFormat(account.get('statuses_count'))}</strong>
             </Link>
 
             <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}/following`}>
               <span><FormattedMessage id='account.follows' defaultMessage='Follows' /></span>
-              <strong><FormattedNumber value={account.get('following_count')} /></strong>
+              <strong>{shortNumberFormat(account.get('following_count'))}</strong>
             </Link>
 
             <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}/followers`}>
               <span><FormattedMessage id='account.followers' defaultMessage='Followers' /></span>
-              <strong><FormattedNumber value={account.get('followers_count')} /></strong>
+              <strong>{shortNumberFormat(account.get('followers_count'))}</strong>
             </Link>
+          </div>
+
+          <div className='account__action-bar-dropdown'>
+            <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
           </div>
         </div>
       </div>

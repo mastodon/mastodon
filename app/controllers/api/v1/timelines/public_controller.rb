@@ -45,7 +45,7 @@ class Api::V1::Timelines::PublicController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.permit(:local, :limit, :only_media).merge(core_params)
+    params.slice(:local, :limit, :only_media).permit(:local, :limit, :only_media).merge(core_params)
   end
 
   def next_path

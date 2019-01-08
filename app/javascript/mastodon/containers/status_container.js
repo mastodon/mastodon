@@ -5,6 +5,7 @@ import { makeGetStatus } from '../selectors';
 import {
   replyCompose,
   mentionCompose,
+  directCompose,
 } from '../actions/compose';
 import {
   reblog,
@@ -27,10 +28,13 @@ import { initReport } from '../actions/reports';
 import { openModal } from '../actions/modal';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { boostModal, deleteModal } from '../initial_state';
+import { showAlertForError } from '../actions/alerts';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
+  redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
+  redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? You will lose all replies, boosts and favourites to it.' },
   blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
 });
 
@@ -38,7 +42,7 @@ const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
 
   const mapStateToProps = (state, props) => ({
-    status: getStatus(state, props.id),
+    status: getStatus(state, props),
   });
 
   return mapStateToProps;
@@ -83,19 +87,26 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onEmbed (status) {
-    dispatch(openModal('EMBED', { url: status.get('url') }));
+    dispatch(openModal('EMBED', {
+      url: status.get('url'),
+      onError: error => dispatch(showAlertForError(error)),
+    }));
   },
 
-  onDelete (status) {
+  onDelete (status, withRedraft = false) {
     if (!deleteModal) {
-      dispatch(deleteStatus(status.get('id')));
+      dispatch(deleteStatus(status.get('id'), withRedraft));
     } else {
       dispatch(openModal('CONFIRM', {
-        message: intl.formatMessage(messages.deleteMessage),
-        confirm: intl.formatMessage(messages.deleteConfirm),
-        onConfirm: () => dispatch(deleteStatus(status.get('id'))),
+        message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
+        confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
+        onConfirm: () => dispatch(deleteStatus(status.get('id'), withRedraft)),
       }));
     }
+  },
+
+  onDirect (account, router) {
+    dispatch(directCompose(account, router));
   },
 
   onMention (account, router) {

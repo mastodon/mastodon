@@ -29,7 +29,7 @@ de:
       edit:
         title: Anwendung bearbeiten
       form:
-        error: Hoppla! Bitte überprüfe das Formular auf Fehler!
+        error: Hoppla! Bitte überprüfe das Formular auf mögliche Fehler
       help:
         native_redirect_uri: "%{native_redirect_uri} für lokale Tests benutzen"
         redirect_uri: Bitte benutze eine Zeile pro URI
@@ -59,7 +59,7 @@ de:
       error:
         title: Ein Fehler ist aufgetreten
       new:
-        able_to: 'Sie wird folgende Befugnisse haben:'
+        able_to: Es wird in der Lage sein zu
         prompt: Die Anwendung %{client_name} verlangt Zugriff auf dein Konto
         title: Autorisierung erforderlich
       show:
@@ -83,7 +83,7 @@ de:
         invalid_grant: Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde widerrufen, einem anderen Client ausgestellt oder der Weiterleitungs-URI stimmt nicht mit der Autorisierungs-Anfrage überein.
         invalid_redirect_uri: Der beigefügte Weiterleitungs-URI ist ungültig.
         invalid_request: Die Anfrage enthält ein nicht-unterstütztes Argument, ein Parameter fehlt, oder sie ist anderweitig fehlerhaft.
-        invalid_resource_owner: Die angegebenen Zugangsdaten für den »resource owner« sind ungültig, oder dieses Profil existiert nicht.
+        invalid_resource_owner: Die angegebenen Zugangsdaten für den Ressourcenbesitzer sind ungültig oder der Ressourcenbesitzer kann nicht gefunden werden
         invalid_scope: Die angeforderte Befugnis ist ungültig, unbekannt oder fehlerhaft.
         invalid_token:
           expired: Der Zugriffs-Token ist abgelaufen
@@ -114,6 +114,29 @@ de:
       application:
         title: OAuth-Autorisierung nötig
     scopes:
-      follow: Konten folgen, blocken, entblocken und entfolgen
-      read: deine Daten auslesen
-      write: Beiträge in deinem Namen veröffentlichen
+      follow: Kontenbeziehungen verändern
+      push: erhalte deine Push-Benachrichtigungen
+      read: all deine Daten lesen
+      read:accounts: deine Konteninformationen einsehen
+      read:blocks: deine Blockaden einsehen
+      read:favourites: deine Favoriten ansehen
+      read:filters: deine Filter ansehen
+      read:follows: deine Follows sehen
+      read:lists: deine Listen sehen
+      read:mutes: deine Stummschaltungen einsehen
+      read:notifications: deine Benachrichtigungen sehen
+      read:reports: deine Meldungen sehen
+      read:search: in deinem Namen suchen
+      read:statuses: alle Beiträge sehen
+      write: all deine Benutzerdaten verändern
+      write:accounts: dein Profil bearbeiten
+      write:blocks: Domains und Konten blockieren
+      write:favourites: Beiträge favorisieren
+      write:filters: Filter erstellen
+      write:follows: Leuten folgen
+      write:lists: Listen erstellen
+      write:media: Mediendateien hochladen
+      write:mutes: Leute und Konversationen stummschalten
+      write:notifications: deine Benachrichtigungen leeren
+      write:reports: andere Leute melden
+      write:statuses: Beiträge veröffentlichen

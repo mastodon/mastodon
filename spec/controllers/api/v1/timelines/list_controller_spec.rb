@@ -13,7 +13,7 @@ describe Api::V1::Timelines::ListController do
   end
 
   context 'with a user context' do
-    let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read') }
+    let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:lists') }
 
     describe 'GET #show' do
       before do
@@ -24,7 +24,7 @@ describe Api::V1::Timelines::ListController do
 
       it 'returns http success' do
         get :show, params: { id: list.id }
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
     end
   end

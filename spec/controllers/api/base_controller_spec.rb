@@ -23,7 +23,7 @@ describe Api::BaseController do
     it 'does not protect from forgery' do
       ActionController::Base.allow_forgery_protection = true
       post 'success'
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 

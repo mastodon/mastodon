@@ -3,11 +3,11 @@
 #
 # Table name: admin_action_logs
 #
-#  id               :integer          not null, primary key
-#  account_id       :integer
+#  id               :bigint(8)        not null, primary key
+#  account_id       :bigint(8)
 #  action           :string           default(""), not null
 #  target_type      :string
-#  target_id        :integer
+#  target_id        :bigint(8)
 #  recorded_changes :text             default(""), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -35,6 +35,11 @@ class Admin::ActionLog < ApplicationRecord
       self.recorded_changes = target.attributes
     when :update, :promote, :demote
       self.recorded_changes = target.previous_changes
+    when :change_email
+      self.recorded_changes = ActiveSupport::HashWithIndifferentAccess.new(
+        email: [target.email, nil],
+        unconfirmed_email: [nil, target.unconfirmed_email]
+      )
     end
   end
 end

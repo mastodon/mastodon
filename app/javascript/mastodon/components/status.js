@@ -37,6 +37,8 @@ export default class Status extends ImmutablePureComponent {
     onFavourite: PropTypes.func,
     onReblog: PropTypes.func,
     onDelete: PropTypes.func,
+    onDirect: PropTypes.func,
+    onMention: PropTypes.func,
     onPin: PropTypes.func,
     onOpenMedia: PropTypes.func,
     onOpenVideo: PropTypes.func,
@@ -88,8 +90,8 @@ export default class Status extends ImmutablePureComponent {
     return <div className='media-spoiler-video' style={{ height: '110px' }} />;
   }
 
-  handleOpenVideo = startTime => {
-    this.props.onOpenVideo(this._properStatus().getIn(['media_attachments', 0]), startTime);
+  handleOpenVideo = (media, startTime) => {
+    this.props.onOpenVideo(media, startTime);
   }
 
   handleHotkeyReply = e => {
@@ -118,12 +120,16 @@ export default class Status extends ImmutablePureComponent {
     this.context.router.history.push(`/accounts/${this._properStatus().getIn(['account', 'id'])}`);
   }
 
-  handleHotkeyMoveUp = () => {
-    this.props.onMoveUp(this.props.status.get('id'));
+  handleHotkeyMoveUp = e => {
+    this.props.onMoveUp(this.props.status.get('id'), e.target.getAttribute('data-featured'));
   }
 
-  handleHotkeyMoveDown = () => {
-    this.props.onMoveDown(this.props.status.get('id'));
+  handleHotkeyMoveDown = e => {
+    this.props.onMoveDown(this.props.status.get('id'), e.target.getAttribute('data-featured'));
+  }
+
+  handleHotkeyToggleHidden = () => {
+    this.props.onToggleHidden(this._properStatus());
   }
 
   _properStatus () {
@@ -154,6 +160,21 @@ export default class Status extends ImmutablePureComponent {
           {status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}
           {status.get('content')}
         </div>
+      );
+    }
+
+    if (status.get('filtered') || status.getIn(['reblog', 'filtered'])) {
+      const minHandlers = this.props.muted ? {} : {
+        moveUp: this.handleHotkeyMoveUp,
+        moveDown: this.handleHotkeyMoveDown,
+      };
+
+      return (
+        <HotKeys handlers={minHandlers}>
+          <div className='status__wrapper status__wrapper--filtered focusable' tabIndex='0'>
+            <FormattedMessage id='status.filtered' defaultMessage='Filtered' />
+          </div>
+        </HotKeys>
       );
     }
 
@@ -206,7 +227,7 @@ export default class Status extends ImmutablePureComponent {
         );
       } else {
         media = (
-          <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
+          <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery}>
             {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} />}
           </Bundle>
         );
@@ -228,11 +249,12 @@ export default class Status extends ImmutablePureComponent {
       openProfile: this.handleHotkeyOpenProfile,
       moveUp: this.handleHotkeyMoveUp,
       moveDown: this.handleHotkeyMoveDown,
+      toggleHidden: this.handleHotkeyToggleHidden,
     };
 
     return (
       <HotKeys handlers={handlers}>
-        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0}>
+        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null}>
           {prepend}
 
           <div className={classNames('status', `status-${status.get('visibility')}`, { muted: this.props.muted }, { mathjaxified__content: isMathjaxifyable(status.get('content')) })} data-id={status.get('id')}>

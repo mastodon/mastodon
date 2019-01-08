@@ -30,13 +30,13 @@ RSpec.describe OStatus::AtomSerializer do
     end
 
     it 'appends activity:object with target account' do
-      target_account = Fabricate(:account, domain: 'domain', uri: 'https://domain/id')
+      target_account = Fabricate(:account, domain: 'domain.test', uri: 'https://domain.test/id')
       follow_request = Fabricate(:follow_request, target_account: target_account)
 
       follow_request_salmon = serialize(follow_request)
 
       object = follow_request_salmon.nodes.find { |node| node.name == 'activity:object' }
-      expect(object.id.text).to eq 'https://domain/id'
+      expect(object.id.text).to eq 'https://domain.test/id'
     end
   end
 
@@ -386,12 +386,6 @@ RSpec.describe OStatus::AtomSerializer do
         expect(entry.category[:term]).to eq 'tag'
       end
 
-      it 'appends category element for NSFW if status is sensitive' do
-        status = Fabricate(:status, sensitive: true)
-        entry = OStatus::AtomSerializer.new.entry(status.stream_entry)
-        expect(entry.category[:term]).to eq 'nsfw'
-      end
-
       it 'appends link elements for media attachments' do
         file = attachment_fixture('attachment.jpg')
         media_attachment = Fabricate(:media_attachment, file: file)
@@ -419,20 +413,20 @@ RSpec.describe OStatus::AtomSerializer do
 
         entry = OStatus::AtomSerializer.new.entry(remote_status.stream_entry, true)
         entry.nodes.delete_if { |node| node[:type] == 'application/activity+json' } # Remove ActivityPub link to simplify test
-        xml = OStatus::AtomSerializer.render(entry).gsub('cb6e6126.ngrok.io', 'remote')
+        xml = OStatus::AtomSerializer.render(entry).gsub('cb6e6126.ngrok.io', 'remote.test')
 
         remote_status.destroy!
         remote_account.destroy!
 
         account = Account.create!(
-          domain: 'remote',
+          domain: 'remote.test',
           username: 'username',
           last_webfingered_at: Time.now.utc
         )
 
         ProcessFeedService.new.call(xml, account)
 
-        expect(Status.find_by(uri: "https://remote/users/#{remote_status.account.to_param}/statuses/#{remote_status.id}")).to be_instance_of Status
+        expect(Status.find_by(uri: "https://remote.test/users/#{remote_status.account.to_param}/statuses/#{remote_status.id}")).to be_instance_of Status
       end
     end
 
@@ -782,13 +776,13 @@ RSpec.describe OStatus::AtomSerializer do
     end
 
     it 'appends activity:object element with target account' do
-      target_account = Fabricate(:account, domain: 'domain', uri: 'https://domain/id')
+      target_account = Fabricate(:account, domain: 'domain.test', uri: 'https://domain.test/id')
       block = Fabricate(:block, target_account: target_account)
 
       block_salmon = OStatus::AtomSerializer.new.block_salmon(block)
 
       object = block_salmon.nodes.find { |node| node.name == 'activity:object' }
-      expect(object.id.text).to eq 'https://domain/id'
+      expect(object.id.text).to eq 'https://domain.test/id'
     end
 
     it 'returns element whose rendered view triggers block when processed' do
@@ -869,13 +863,13 @@ RSpec.describe OStatus::AtomSerializer do
     end
 
     it 'appends activity:object element with target account' do
-      target_account = Fabricate(:account, domain: 'domain', uri: 'https://domain/id')
+      target_account = Fabricate(:account, domain: 'domain.test', uri: 'https://domain.test/id')
       block = Fabricate(:block, target_account: target_account)
 
       unblock_salmon = OStatus::AtomSerializer.new.unblock_salmon(block)
 
       object = unblock_salmon.nodes.find { |node| node.name == 'activity:object' }
-      expect(object.id.text).to eq 'https://domain/id'
+      expect(object.id.text).to eq 'https://domain.test/id'
     end
 
     it 'returns element whose rendered view triggers block when processed' do
@@ -1130,13 +1124,13 @@ RSpec.describe OStatus::AtomSerializer do
     end
 
     it 'appends activity:object element with target account' do
-      target_account = Fabricate(:account, domain: 'domain', uri: 'https://domain/id')
+      target_account = Fabricate(:account, domain: 'domain.test', uri: 'https://domain.test/id')
       follow = Fabricate(:follow, target_account: target_account)
 
       follow_salmon = OStatus::AtomSerializer.new.follow_salmon(follow)
 
       object = follow_salmon.nodes.find { |node| node.name == 'activity:object' }
-      expect(object.id.text).to eq 'https://domain/id'
+      expect(object.id.text).to eq 'https://domain.test/id'
     end
 
     it 'includes description' do
@@ -1248,14 +1242,14 @@ RSpec.describe OStatus::AtomSerializer do
     end
 
     it 'appends activity:object element with target account' do
-      target_account = Fabricate(:account, domain: 'domain', uri: 'https://domain/id')
+      target_account = Fabricate(:account, domain: 'domain.test', uri: 'https://domain.test/id')
       follow = Fabricate(:follow, target_account: target_account)
       follow.destroy!
 
       unfollow_salmon = OStatus::AtomSerializer.new.unfollow_salmon(follow)
 
       object = unfollow_salmon.nodes.find { |node| node.name == 'activity:object' }
-      expect(object.id.text).to eq 'https://domain/id'
+      expect(object.id.text).to eq 'https://domain.test/id'
     end
 
     it 'returns element whose rendered view triggers unfollow when processed' do

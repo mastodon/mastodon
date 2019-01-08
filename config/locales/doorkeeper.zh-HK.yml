@@ -5,15 +5,17 @@ zh-HK:
       doorkeeper/application:
         name: 名稱
         redirect_uri: 轉接 URI
+        scopes: 權限範圍
+        website: 應用網站
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: URI 不可包含 "#fragment" 部份
-              invalid_uri: 必需有正確的 URI.
-              relative_uri: 必需為絕對 URI.
-              secured_uri: 必需使用有 HTTPS/SSL 加密的 URI.
+              fragment_present: URI 不可包含 "#fragment" 部份。
+              invalid_uri: 必需有正確的 URI。
+              relative_uri: 必需為完整 URI。
+              secured_uri: 必需使用有 HTTPS/SSL 加密的 URI。
   doorkeeper:
     applications:
       buttons:
@@ -31,11 +33,15 @@ zh-HK:
       help:
         native_redirect_uri: 使用 %{native_redirect_uri} 作局部測試
         redirect_uri: 每行輸入一個 URI
-        scopes: 請用半形空格分開權限範圍 (scope)。留空表示使用預設的權限範圍
+        scopes: 請用半形空格分開權限範圍 (scope)。留空表示使用預設的權限範圍。
       index:
+        application: 應用
         callback_url: 回傳網址
+        delete: 刪除
         name: 名稱
         new: 新增應用程式
+        scopes: 權限範圍
+        show: 顯示
         title: 你的應用程式
       new:
         title: 新增應用程式
@@ -57,7 +63,7 @@ zh-HK:
         prompt: 應用程式 %{client_name} 要求得到你用戶的部份權限
         title: 需要用戶授權
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: 請把這個授權碼複製到應用程式中。
     authorized_applications:
       buttons:
         revoke: 取消授權
@@ -77,7 +83,7 @@ zh-HK:
         invalid_grant: 授權申請 (authorization grant) 不正確、過期、已被取消，或者無法對應授權請求 (authorization request) 內的轉接 URI，或者屬於別的用戶程式。
         invalid_redirect_uri: 不正確的轉接網址。
         invalid_request: 請求缺少了必要的參數、包含了不支援的參數、或者其他輸入錯誤。
-        invalid_resource_owner: 資源擁有者的登入資訊錯誤、或者無法找到該資源擁有者。
+        invalid_resource_owner: 資源擁有者的登入資訊錯誤、或者無法找到該資源擁有者
         invalid_scope: 請求的權限範圍 (scope) 不正確、未有定義、或者輸入錯誤。
         invalid_token:
           expired: access token 已經過期
@@ -88,7 +94,7 @@ zh-HK:
         temporarily_unavailable: 認證伺服器由於臨時負荷過重或者維護，目前未能處理請求。
         unauthorized_client: 用戶程式無權用此方法 (method) 請行這個請求。
         unsupported_grant_type: 授權伺服器不支援這個授權類型 (grant type)。
-        unsupported_response_type: 授權伺服器不支援這個回應類型 (response type).
+        unsupported_response_type: 授權伺服器不支援這個回應類型 (response type)。
     flash:
       applications:
         create:
@@ -109,5 +115,6 @@ zh-HK:
         title: 需要 OAuth 授權
     scopes:
       follow: 關注、封鎖、解除封鎖及取消關注用戶
+      push: 接收你的帳號的推送通知
       read: 閱讀你的用戶資料
       write: 以你的名義發佈文章

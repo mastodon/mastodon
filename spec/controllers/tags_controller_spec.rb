@@ -12,7 +12,7 @@ RSpec.describe TagsController, type: :controller do
     context 'when tag exists' do
       it 'returns http success' do
         get :show, params: { id: 'test', max_id: late.id }
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
 
       it 'renders application layout' do
@@ -25,7 +25,7 @@ RSpec.describe TagsController, type: :controller do
       it 'returns http missing for non-existent tag' do
         get :show, params: { id: 'none' }
 
-        expect(response).to have_http_status(:missing)
+        expect(response).to have_http_status(404)
       end
     end
   end

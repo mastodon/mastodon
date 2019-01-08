@@ -25,7 +25,7 @@ RSpec.describe Admin::EmailDomainBlocksController, type: :controller do
       assigned = assigns(:email_domain_blocks)
       expect(assigned.count).to eq 1
       expect(assigned.klass).to be EmailDomainBlock
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -34,7 +34,7 @@ RSpec.describe Admin::EmailDomainBlocksController, type: :controller do
       get :new
 
       expect(assigns(:email_domain_block)).to be_instance_of(EmailDomainBlock)
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 

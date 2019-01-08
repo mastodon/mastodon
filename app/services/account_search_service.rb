@@ -65,9 +65,9 @@ class AccountSearchService < BaseService
   def exact_match
     @_exact_match ||= begin
       if domain_is_local?
-        search_from.find_local(query_username)
+        search_from.without_suspended.find_local(query_username)
       else
-        search_from.find_remote(query_username, query_domain)
+        search_from.without_suspended.find_remote(query_username, query_domain)
       end
     end
   end

@@ -27,7 +27,7 @@ class FetchRemoteAccountService < BaseService
 
     account = author_from_xml(xml.at_xpath('/xmlns:feed', xmlns: OStatus::TagManager::XMLNS), false)
 
-    UpdateRemoteProfileService.new.call(xml, account) unless account.nil?
+    UpdateRemoteProfileService.new.call(xml, account) if account.present? && trusted_domain?(url, account)
 
     account
   rescue TypeError
@@ -36,5 +36,10 @@ class FetchRemoteAccountService < BaseService
   rescue Nokogiri::XML::XPath::SyntaxError
     Rails.logger.debug 'Invalid XML or missing namespace'
     nil
+  end
+
+  def trusted_domain?(url, account)
+    domain = Addressable::URI.parse(url).normalized_host
+    domain.casecmp(account.domain).zero? || domain.casecmp(Addressable::URI.parse(account.remote_url.presence || account.uri).normalized_host).zero?
   end
 end

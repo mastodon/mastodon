@@ -2,12 +2,24 @@
 
 class BootstrapTimelineService < BaseService
   def call(source_account)
-    bootstrap_timeline_accounts.each do |target_account|
-      FollowService.new.call(source_account, target_account)
-    end
+    @source_account = source_account
+
+    autofollow_inviter!
+    autofollow_bootstrap_timeline_accounts!
   end
 
   private
+
+  def autofollow_inviter!
+    return unless @source_account&.user&.invite&.autofollow?
+    FollowService.new.call(@source_account, @source_account.user.invite.user.account)
+  end
+
+  def autofollow_bootstrap_timeline_accounts!
+    bootstrap_timeline_accounts.each do |target_account|
+      FollowService.new.call(@source_account, target_account)
+    end
+  end
 
   def bootstrap_timeline_accounts
     return @bootstrap_timeline_accounts if defined?(@bootstrap_timeline_accounts)

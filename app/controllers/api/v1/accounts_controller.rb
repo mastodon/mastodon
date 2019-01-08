@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
 class Api::V1::AccountsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read }, except: [:follow, :unfollow, :block, :unblock, :mute, :unmute]
-  before_action -> { doorkeeper_authorize! :follow }, only: [:follow, :unfollow, :block, :unblock, :mute, :unmute]
+  before_action -> { authorize_if_got_token! :read, :'read:accounts' }, except: [:follow, :unfollow, :block, :unblock, :mute, :unmute]
+  before_action -> { doorkeeper_authorize! :follow, :'write:follows' }, only: [:follow, :unfollow]
+  before_action -> { doorkeeper_authorize! :follow, :'write:mutes' }, only: [:mute, :unmute]
+  before_action -> { doorkeeper_authorize! :follow, :'write:blocks' }, only: [:block, :unblock]
+
   before_action :require_user!, except: [:show]
   before_action :set_account
+  before_action :check_account_suspension, only: [:show]
 
   respond_to :json
 
@@ -53,5 +57,9 @@ class Api::V1::AccountsController < Api::BaseController
 
   def relationships(**options)
     AccountRelationshipsPresenter.new([@account.id], current_user.account_id, options)
+  end
+
+  def check_account_suspension
+    gone if @account.suspended?
   end
 end

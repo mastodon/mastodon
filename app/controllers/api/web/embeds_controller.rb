@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::Web::EmbedsController < Api::BaseController
+class Api::Web::EmbedsController < Api::Web::BaseController
   respond_to :json
 
   before_action :require_user!
@@ -9,9 +9,12 @@ class Api::Web::EmbedsController < Api::BaseController
     status = StatusFinder.new(params[:url]).status
     render json: status, serializer: OEmbedSerializer, width: 400
   rescue ActiveRecord::RecordNotFound
-    oembed = OEmbed::Providers.get(params[:url])
-    render json: Oj.dump(oembed.fields)
-  rescue OEmbed::NotFound
-    render json: {}, status: :not_found
+    oembed = FetchOEmbedService.new.call(params[:url])
+
+    if oembed
+      render json: oembed
+    else
+      render json: {}, status: :not_found
+    end
   end
 end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::Timelines::HomeController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read }, only: [:show]
+  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, only: [:show]
   before_action :require_user!, only: [:show]
   after_action :insert_pagination_headers, unless: -> { @statuses.empty? }
 
@@ -43,7 +43,7 @@ class Api::V1::Timelines::HomeController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.permit(:local, :limit).merge(core_params)
+    params.slice(:local, :limit).permit(:local, :limit).merge(core_params)
   end
 
   def next_path

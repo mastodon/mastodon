@@ -21,6 +21,7 @@ module Admin
       activity_api_enabled
       peers_api_enabled
       show_known_fediverse_at_about_page
+      preview_sensitive_media
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
@@ -31,6 +32,7 @@ module Admin
       activity_api_enabled
       peers_api_enabled
       show_known_fediverse_at_about_page
+      preview_sensitive_media
     ).freeze
 
     UPLOAD_SETTINGS = %w(

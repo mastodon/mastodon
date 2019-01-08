@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::FollowsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :follow }
+  before_action -> { doorkeeper_authorize! :follow, :'write:follows' }
   before_action :require_user!
 
   respond_to :json

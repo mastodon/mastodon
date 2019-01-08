@@ -8,6 +8,7 @@ let originalPool = {};
 let index = {};
 let emojisList = {};
 let emoticonsList = {};
+let customEmojisList = [];
 
 for (let emoji in data.emojis) {
   let emojiData = data.emojis[emoji];
@@ -28,7 +29,18 @@ for (let emoji in data.emojis) {
   originalPool[id] = emojiData;
 }
 
+function clearCustomEmojis(pool) {
+  customEmojisList.forEach((emoji) => {
+    let emojiId = emoji.id || emoji.short_names[0];
+
+    delete pool[emojiId];
+    delete emojisList[emojiId];
+  });
+}
+
 function addCustomToPool(custom, pool) {
+  if (customEmojisList.length) clearCustomEmojis(pool);
+
   custom.forEach((emoji) => {
     let emojiId = emoji.id || emoji.short_names[0];
 
@@ -37,10 +49,18 @@ function addCustomToPool(custom, pool) {
       emojisList[emojiId] = getSanitizedData(emoji);
     }
   });
+
+  customEmojisList = custom;
+  index = {};
 }
 
-function search(value, { emojisToShowFilter, maxResults, include, exclude, custom = [] } = {}) {
-  addCustomToPool(custom, originalPool);
+function search(value, { emojisToShowFilter, maxResults, include, exclude, custom } = {}) {
+  if (custom !== undefined) {
+    if (customEmojisList !== custom)
+      addCustomToPool(custom, originalPool);
+  } else {
+    custom = [];
+  }
 
   maxResults = maxResults || 75;
   include = include || [];
@@ -143,7 +163,7 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
 
   if (results) {
     if (emojisToShowFilter) {
-      results = results.filter((result) => emojisToShowFilter(data.emojis[result.id].unified));
+      results = results.filter((result) => emojisToShowFilter(data.emojis[result.id]));
     }
 
     if (results && results.length > maxResults) {

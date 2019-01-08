@@ -10,8 +10,8 @@ class InvitesController < ApplicationController
   def index
     authorize :invite, :create?
 
-    @invites = Invite.where(user: current_user)
-    @invite  = Invite.new(expires_in: 1.day.to_i)
+    @invites = invites
+    @invite  = Invite.new
   end
 
   def create
@@ -23,13 +23,13 @@ class InvitesController < ApplicationController
     if @invite.save
       redirect_to invites_path
     else
-      @invites = Invite.where(user: current_user)
+      @invites = invites
       render :index
     end
   end
 
   def destroy
-    @invite = Invite.where(user: current_user).find(params[:id])
+    @invite = invites.find(params[:id])
     authorize @invite, :destroy?
     @invite.expire!
     redirect_to invites_path
@@ -37,7 +37,11 @@ class InvitesController < ApplicationController
 
   private
 
+  def invites
+    Invite.where(user: current_user)
+  end
+
   def resource_params
-    params.require(:invite).permit(:max_uses, :expires_in)
+    params.require(:invite).permit(:max_uses, :expires_in, :autofollow)
   end
 end

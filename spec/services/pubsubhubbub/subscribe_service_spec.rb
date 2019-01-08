@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Pubsubhubbub::SubscribeService do
+describe Pubsubhubbub::SubscribeService, type: :service do
   describe '#call' do
     subject { described_class.new }
     let(:user_account) { Fabricate(:account) }

@@ -57,7 +57,7 @@ export default class Lists extends ImmutablePureComponent {
     }
 
     return (
-      <Column icon='bars' heading={intl.formatMessage(messages.heading)}>
+      <Column icon='list-ul' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
 
         <NewListForm />
@@ -66,7 +66,7 @@ export default class Lists extends ImmutablePureComponent {
           <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
 
           {lists.map(list =>
-            <ColumnLink key={list.get('id')} to={`/timelines/list/${list.get('id')}`} icon='bars' text={list.get('title')} />
+            <ColumnLink key={list.get('id')} to={`/timelines/list/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
           )}
         </div>
       </Column>

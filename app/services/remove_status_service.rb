@@ -20,6 +20,8 @@ class RemoveStatusService < BaseService
     remove_reblogs
     remove_from_hashtags
     remove_from_public
+    remove_from_media if status.media_attachments.any?
+    remove_from_direct if status.direct_visibility?
 
     @status.destroy!
 
@@ -41,13 +43,13 @@ class RemoveStatusService < BaseService
   end
 
   def remove_from_followers
-    @account.followers.local.find_each do |follower|
+    @account.followers_for_local_distribution.find_each do |follower|
       FeedManager.instance.unpush_from_home(follower, @status)
     end
   end
 
   def remove_from_lists
-    @account.lists.select(:id, :account_id).find_each do |list|
+    @account.lists_for_local_distribution.select(:id, :account_id).find_each do |list|
       FeedManager.instance.unpush_from_list(list, @status)
     end
   end
@@ -65,7 +67,9 @@ class RemoveStatusService < BaseService
     # delete notification - so here, we explicitly
     # send it to them
 
-    target_accounts = (@mentions.map(&:account).reject(&:local?) + @reblogs.map(&:account).reject(&:local?)).uniq(&:id)
+    target_accounts = (@mentions.map(&:account).reject(&:local?) + @reblogs.map(&:account).reject(&:local?))
+    target_accounts << @status.reblog.account if @status.reblog? && !@status.reblog.account.local?
+    target_accounts.uniq!(&:id)
 
     # Ostatus
     NotificationWorker.push_bulk(target_accounts.select(&:ostatus?).uniq(&:domain)) do |target_account|
@@ -128,6 +132,20 @@ class RemoveStatusService < BaseService
 
     Redis.current.publish('timeline:public', @payload)
     Redis.current.publish('timeline:public:local', @payload) if @status.local?
+  end
+
+  def remove_from_media
+    return unless @status.public_visibility?
+
+    Redis.current.publish('timeline:public:media', @payload)
+    Redis.current.publish('timeline:public:local:media', @payload) if @status.local?
+  end
+
+  def remove_from_direct
+    @mentions.each do |mention|
+      Redis.current.publish("timeline:direct:#{mention.account.id}", @payload) if mention.account.local?
+    end
+    Redis.current.publish("timeline:direct:#{@account.id}", @payload) if @account.local?
   end
 
   def redis

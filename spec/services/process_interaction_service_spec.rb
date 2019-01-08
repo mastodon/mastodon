@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ProcessInteractionService do
+RSpec.describe ProcessInteractionService, type: :service do
   let(:receiver) { Fabricate(:user, email: 'alice@example.com', account: Fabricate(:account, username: 'alice')).account }
   let(:sender)   { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
   let(:remote_sender) { Fabricate(:account, username: 'carol', domain: 'localdomain.com', uri: 'https://webdomain.com/users/carol') }

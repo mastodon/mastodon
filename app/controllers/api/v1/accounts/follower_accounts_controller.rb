@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::Accounts::FollowerAccountsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read }
+  before_action -> { doorkeeper_authorize! :read, :'read:accounts' }
   before_action :set_account
   after_action :insert_pagination_headers
 
@@ -19,6 +19,8 @@ class Api::V1::Accounts::FollowerAccountsController < Api::BaseController
   end
 
   def load_accounts
+    return [] if @account.user_hides_network? && current_account.id != @account.id
+
     default_accounts.merge(paginated_follows).to_a
   end
 
@@ -63,6 +65,6 @@ class Api::V1::Accounts::FollowerAccountsController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.permit(:limit).merge(core_params)
+    params.slice(:limit).permit(:limit).merge(core_params)
   end
 end
