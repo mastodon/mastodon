@@ -2,6 +2,13 @@
 sk:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Môžeš používať rovnakú syntaxiu ako v rámci príspevkov, čiže URL, haštagy, a spomenutia
+      admin_account_action:
+        send_email_notification: Užívateľ dostane vysvetlenie ohľadom toho, čo sa stalo s ich účtom
+        text_html: Voliteľné. Môžeš používať rovnakú syntaxiu ako v príspevkoch. Môžeš pridať <a href="%{path}">varovné predlohy</a> a ušetriť tak čas
+        type_html: Vyber si, čo urobiť s účtom <strong>%{acct}</strong>
+        warning_preset_id: Voliteľné. Stále môžeš vložiť vlastný text na samý koniec predlohy
       defaults:
         autofollow: Ľudia ktorí sa zaregistrujú prostredníctvom pozvánky, ťa budú inheď následovať
         avatar: PNG, GIF alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
@@ -40,6 +47,18 @@ sk:
         fields:
           name: Označenie
           value: Obsah
+      account_warning_preset:
+        text: Text predlohy
+      admin_account_action:
+        send_email_notification: Oznám užívateľovi cez email
+        text: Špecifické varovanie
+        type: Úkon
+        types:
+          disable: Deaktivuj
+          none: Neurob nič
+          silence: Utíšenie
+          suspend: Vylúč a nenávratne vymaž dáta na účte
+        warning_preset_id: Použi varovnú predlohu
       defaults:
         autofollow: Pozvi k následovaniu tvojho profilu
         avatar: Avatar
@@ -90,12 +109,12 @@ sk:
         username_or_email: Prezívka, alebo email
         whole_word: Celé slovo
       interactions:
-        must_be_follower: Blokovať oznámenia od užívateľov, ktorí ťa nesledujú
-        must_be_following: Blokovať oboznámenia ohľadom ľudí ktorých nesleduješ
-        must_be_following_dm: Blokovať súkromné správy od ľudí ktorých nesleduješ
+        must_be_follower: Blokuj oboznámenia ohľadom užívateľov, ktorí ťa nesledujú
+        must_be_following: Blokuj oboznámenia ohľadom ľudí ktorých nesleduješ
+        must_be_following_dm: Blokuj súkromné správy od ľudí ktorých nesleduješ
       notification_emails:
-        digest: Posielať súhrnné emaily
-        favourite: Poslať email ak niekto označí váš príspevok ako obľúbený
+        digest: Posielaj súhrnné emaily
+        favourite: Poslať email ak si niekto obľúbi tvoj príspevok
         follow: Poslať email, ak ťa niekto začne následovať
         follow_request: Zaslať email ak ti niekto pošle žiadosť o sledovanie
         mention: Poslať email ak ťa niekto spomenie v svojom príspevku
