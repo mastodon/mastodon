@@ -22,7 +22,19 @@ describe JsonLdHelper do
   end
 
   describe '#first_of_value' do
-    pending
+    context 'value.is_a?(Array)' do
+      it 'returns value.first' do
+        value = ['a']
+        expect(helper.first_of_value(value)).to be 'a'
+      end
+    end
+
+    context '!value.is_a?(Array)' do
+      it 'returns value' do
+        value = 'a'
+        expect(helper.first_of_value(value)).to be 'a'
+      end
+    end
   end
 
   describe '#supported_context?' do
