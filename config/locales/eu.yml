@@ -70,6 +70,9 @@ eu:
       moderator: Moderatzailea
     unfollow: Utzi jarraitzeari
   admin:
+    account_actions:
+      action: Burutu ekintza
+      title: Burutu moderazio ekintza %{acct} kontuan
     account_moderation_notes:
       create: Sortu oharra
       created_msg: Moderazio oharra ongi sortu da!
@@ -102,8 +105,10 @@ eu:
       enabled: Gaituta
       feed_url: Jarioaren URL-a
       followers: Jarraitzaileak
+      followers_local: "(%{local} lokala)"
       followers_url: Jarraitzaileen URL-a
       follows: Jarraitzen du
+      header: Goiburua
       inbox_url: Sarrera ontziaren URL-a
       ip: IP
       location:
@@ -134,6 +139,7 @@ eu:
       push_subscription_expires: Push harpidetzaren iraugitzea
       redownload: Freskatu abatarra
       remove_avatar: Kendu abatarra
+      remove_header: Kendu goiburua
       resend_confirmation:
         already_confirmed: Erabiltzaile hau berretsita dago
         send: Birbidali baieztapen e-maila
@@ -170,6 +176,7 @@ eu:
         assigned_to_self_report: "%{name}(e)k %{target} salaketa bere buruari esleitu dio"
         change_email_user: "%{name}(e)k %{target}(r)en e-mail helbidea aldatu du"
         confirm_user: "%{name}(e)k %{target}(r)en e-mail helbidea berretsi du"
+        create_account_warning: "%{name}-k abisua bidali dio %{target}-ri"
         create_custom_emoji: "%{name}(e)k emoji berria kargatu du %{target}"
         create_domain_block: "%{name}(e)k %{target} domeinua blokeatu du"
         create_email_domain_block: "%{name}(e)k %{target} e-mail helbideen domeinua zerrenda beltzean sartu du"
@@ -228,6 +235,7 @@ eu:
       config: Konfigurazioa
       feature_deletions: Kontu ezabaketak
       feature_invites: Gonbidapen estekak
+      feature_profile_directory: Profil-direktorioa
       feature_registrations: Izen emateak
       feature_relay: Federazio haria
       features: Ezaugarriak
@@ -262,11 +270,6 @@ eu:
       reject_media_hint: Lokalki gordetako multimedia fitxategiak ezabatzen ditu eta etorkizunean fitxategi berriak deskargatzeari uko egingo dio. Ez du garrantzirik kanporaketetan
       reject_reports: Errefusatu salaketak
       reject_reports_hint: Ezikusi domeinu honetatik jasotako salaketak. Kanporatzeentzako garrantzirik gabekoa
-      severities:
-        noop: Bat ere ez
-        silence: Isilarazi
-        suspend: Kanporatu
-      severity: Larritasuna
       show:
         affected_accounts:
           one: Datu-baseko kontu bati eragiten dio
@@ -276,7 +279,6 @@ eu:
           suspend: Kendu kanporatzeko agindua domeinu honetako kontu guztiei
         title: Desegin %{domain} domeinuko blokeoa
         undo: Desegin
-      title: Domeinuen blokeoak
       undo: Desegin
     email_domain_blocks:
       add_new: Gehitu berria
@@ -288,11 +290,10 @@ eu:
         create: Gehitu domeinua
         title: Sarrera berria e-mail zerrenda beltzean
       title: E-mail zerrenda beltza
+    followers:
+      back_to_account: Itzuli kontura
+      title: "%{acct} kontuaren jarraitzaileak"
     instances:
-      account_count: Kontu ezagunak
-      domain_name: Domeinua
-      reset: Berrezarri
-      search: Bilatu
       title: Instantzia ezagunak
     invites:
       deactivate_all: Desgaitu guztiak
@@ -375,6 +376,9 @@ eu:
       preview_sensitive_media:
         desc_html: Beste webguneetako esteken aurrebistak iruditxoa izango du multimedia hunkigarri gisa markatzen bada ere
         title: Erakutsi multimedia hunkigarria OpenGraph aurrebistetan
+      profile_directory:
+        desc_html: Baimendu erabiltzaileak aurkigarriak izatea
+        title: Gaitu profil-direktorioa
       registrations:
         closed_message:
           desc_html: Azaleko orrian bistaratua izen ematea ixten denean. HTML etiketak erabili ditzakezu
@@ -443,6 +447,12 @@ eu:
       unhide: Erakutsi direktorioan
       visible: Ikusgai
     title: Administrazioa
+    warning_presets:
+      add_new: Gehitu berria
+      delete: Ezabatu
+      edit: Editatu
+      edit_preset: Editatu abisu aurre-ezarpena
+      title: Kudeatu abisu aurre-ezarpenak
   admin_mailer:
     new_report:
       body: "%{reporter}(e)k %{target} salatu du"
@@ -698,9 +708,6 @@ eu:
     no_account_html: Ez duzu konturik? <a href='%{sign_up_path}' target='_blank'>Izena eman</a> dezakezu
     proceed: Ekin jarraitzeari
     prompt: 'Hau jarraituko duzu:'
-  remote_interaction:
-    proceed: Jarraitu interakziora
-    prompt: 'Toot honekin interakzioa nahi duzu:'
   remote_unfollow:
     error: Errorea
     title: Izenburua
@@ -909,6 +916,19 @@ eu:
       explanation: Zure Mastodon kontuaren babes-kopia osoa eskatu duzu. Deskargatzeko prest dago!
       subject: Zure artxiboa deskargatzeko prest dago
       title: Artxiboa jasotzea
+    warning:
+      explanation:
+        disable: Zure kontua izoztuta dagoen bitartean, zure kontua bere horretan dirau, baina ezin duzu ekintzarik burutu desblokeatzen den arte.
+        silence: Zure kontua murriztua dagoen bitartean, jada zu jarraitzen zaituztenak besterik ez dituzte zure Toot-ak ikusiko zerbitzari honetan, eta agian zerrenda publikoetatik kenduko zaizu. Hala ere besteek oraindik zu jarraitu zaitzakete.
+      review_server_policies: Berrikusi zerbitzariko politikak
+      subject:
+        disable: Zure  %{acct} kontua izoztu da
+        none: "%{acct} konturako abisua"
+        silence: Zure  %{acct} kontua murriztu da
+      title:
+        disable: Kontu izoztua
+        none: Abisua
+        silence: Kontu murriztua
     welcome:
       edit_profile_action: Ezarri profila
       edit_profile_step: Pertsonalizatu profila abatar bat igoz, goiburu bat, zure pantaila-izena aldatuz eta gehiago. Jarraitzaile berriak onartu aurretik gainbegiratu nahi badituzu, kontua giltzaperatu dezakezu.

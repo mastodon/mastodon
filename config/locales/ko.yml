@@ -70,6 +70,9 @@ ko:
       moderator: 모더레이터
     unfollow: 팔로우 해제
   admin:
+    account_actions:
+      action: 조치 취하기
+      title: "%{acct} 계정에 조정 취하기"
     account_moderation_notes:
       create: 모더레이션 노트 작성하기
       created_msg: 모더레이션 기록이 성공적으로 작성되었습니다!
@@ -102,6 +105,7 @@ ko:
       enabled: 활성화된
       feed_url: 피드 URL
       followers: 팔로워 수
+      followers_local: "(%{local} 로컬)"
       followers_url: 팔로워 URL
       follows: 팔로잉 수
       header: 헤더
@@ -172,6 +176,7 @@ ko:
         assigned_to_self_report: "%{name}이 리포트 %{target}을 자신에게 할당했습니다"
         change_email_user: "%{name}이 %{target}의 이메일 주소를 변경했습니다"
         confirm_user: "%{name}이 %{target}의 이메일 주소를 컨펌했습니다"
+        create_account_warning: "%{name}가 %{target}에게 경고 보냄"
         create_custom_emoji: "%{name}이 새로운 에모지 %{target}를 추가했습니다"
         create_domain_block: "%{name}이 도메인 %{target}를 차단했습니다"
         create_email_domain_block: "%{name}이 이메일 도메인 %{target}를 차단했습니다"
@@ -267,11 +272,6 @@ ko:
       reject_media_hint: 로컬에 저장된 미디어 파일을 삭제하고, 이후로도 다운로드를 거부합니다. 정지와는 관계 없습니다
       reject_reports: 신고 거부
       reject_reports_hint: 이 도메인으로부터의 모든 신고를 무시합니다. 정지와는 무관합니다
-      severities:
-        noop: 없음
-        silence: 침묵
-        suspend: 정지
-      severity: 심각도
       show:
         affected_accounts:
           one: 데이터베이스 중 1개의 계정에 영향을 끼칩니다
@@ -281,7 +281,6 @@ ko:
           suspend: 이 도메인에 존재하는 모든 계정의 계정 정지를 해제
         title: "%{domain}의 도메인 차단을 해제"
         undo: 실행 취소
-      title: 도메인 차단
       undo: 실행 취소
     email_domain_blocks:
       add_new: 새로 추가
@@ -293,11 +292,10 @@ ko:
         create: 차단 규칙 생성
         title: 새 이메일 도메인 차단
       title: Email 도메인 차단
+    followers:
+      back_to_account: 계정으로 돌아가기
+      title: "%{acct}의 팔로워"
     instances:
-      account_count: 알려진 계정의 수
-      domain_name: 도메인 이름
-      reset: 리셋
-      search: 검색
       title: 알려진 인스턴스들
     invites:
       deactivate_all: 전부 비활성화
@@ -451,6 +449,12 @@ ko:
       unhide: 디렉토리에 표시
       visible: 보여짐
     title: 관리
+    warning_presets:
+      add_new: 새로 추가
+      delete: 삭제
+      edit: 편집
+      edit_preset: 경고 틀 수정
+      title: 경고 틀 관리
   admin_mailer:
     new_report:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
@@ -706,9 +710,6 @@ ko:
     no_account_html: 계정이 없나요? <a href='%{sign_up_path}' target='_blank'>여기에서 가입 할 수 있습니다</a>
     proceed: 팔로우 하기
     prompt: '팔로우 하려 하고 있습니다:'
-  remote_interaction:
-    proceed: 진행
-    prompt: '이 게시물에 상호작용하려 하고 있습니다:'
   remote_unfollow:
     error: 에러
     title: 타이틀
@@ -917,6 +918,22 @@ ko:
       explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
       subject: 당신의 아카이브를 다운로드 가능합니다
       title: 아카이브 테이크 아웃
+    warning:
+      explanation:
+        disable: 당신의 계정이 동결 된 동안 당신의 계정은 유지 됩니다. 하지만 잠금이 풀릴 때까지 당신은 아무 것도 할 수 없습니다.
+        silence: 당신의 계정이 제한 된 동안엔 당신의 팔로워 이외엔 툿을 받아 볼 수 없고 공개 리스팅에서 제외 됩니다. 하지만 다른 사람들은 여전히 당신을 팔로우 가능합니다.
+        suspend: 당신의 계정은 정지 되었으며, 모든 툿과 업로드 한 미디어가 서버에서 삭제 되어 되돌릴 수 없습니다.
+      review_server_policies: 서버 정책 검토하기
+      subject:
+        disable: 당신의 계정 %{acct}가 동결 되었습니다
+        none: "%{acct}에게의 경고"
+        silence: 당신의 계정 %{acct}가 제한 되었습니다
+        suspend: 당신의 계정 %{acct}가 정지 되었습니다
+      title:
+        disable: 계정 동결 됨
+        none: 경고
+        silence: 계정 제한 됨
+        suspend: 계정 정지 됨
     welcome:
       edit_profile_action: 프로필 설정
       edit_profile_step: 아바타, 헤더를 업로드하고, 사람들에게 표시 될 이름을 바꾸는 것으로 당신의 프로필을 커스텀 할 수 있습니다. 사람들이 당신을 팔로우 하기 전에 리뷰를 거치게 하고 싶다면 계정을 잠그면 됩니다.

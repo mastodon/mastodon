@@ -75,10 +75,6 @@ io:
         title: New domain block
       reject_media: Reject media files
       reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
-      severities:
-        silence: Silence
-        suspend: Suspend
-      severity: Severity
       show:
         affected_accounts:
           one: One account in the database affected
@@ -88,11 +84,8 @@ io:
           suspend: Unsuspend all existing accounts from this domain
         title: Undo domain block for %{domain}
         undo: Undo
-      title: Domain Blocks
       undo: Undo
     instances:
-      account_count: Known accounts
-      domain_name: Domain
       title: Known Instances
     reports:
       comment:

@@ -119,8 +119,6 @@ RSpec.describe ResolveAccountService, type: :service do
         expect(account.actor_type).to eq 'Person'
       end
     end
-
-    pending
   end
 
   it 'processes one remote account at a time using locks' do

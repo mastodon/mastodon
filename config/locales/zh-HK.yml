@@ -213,11 +213,6 @@ zh-HK:
         title: 新增域名阻隔
       reject_media: 拒絕媒體檔案
       reject_media_hint: 刪除本地緩存的媒體檔案，再也不在未來下載這個站點的檔案。和自動刪除無關
-      severities:
-        noop: 無
-        silence: 自動靜音
-        suspend: 自動刪除
-      severity: 阻隔分級
       show:
         affected_accounts: 資料庫中有%{count}個用戶受影響
         retroactive:
@@ -225,7 +220,6 @@ zh-HK:
           suspend: 對此域名的所有用戶取消除名
         title: 撤銷 %{domain} 的域名阻隔
         undo: 撤銷
-      title: 域名阻隔
       undo: 撤銷
     email_domain_blocks:
       add_new: 加入新項目
@@ -238,10 +232,6 @@ zh-HK:
         title: 新增電郵網域阻隔
       title: 電郵網域阻隔
     instances:
-      account_count: 已知帳號
-      domain_name: 域名
-      reset: 重設
-      search: 搜索
       title: 已知服務站
     invites:
       filter:
