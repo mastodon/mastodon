@@ -18,6 +18,7 @@ oc:
     mailer:
       confirmation_instructions:
         action: Verificar l’adreça de corrièl
+        action_with_app: Confirmar e tornar a %{app}
         explanation: Venètz de crear un compte sus %{host} amb aquesta adreça de corrièl. Vos manca pas qu’un clic per l’activar. S’èra pas vosautre mercés de far pas cas a aqueste messatge.
         extra_html: Pensatz tanben de gaitar <a href="%{terms_path}">las règlas de l’instància</a> e <a href="%{policy_path}">nòstres tèrmes e condicions d’utilizacion</a>.
         subject: 'Mastodon : consignas de confirmacion per %{instance}'
