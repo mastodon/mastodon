@@ -273,12 +273,7 @@ cs:
       reject_media: Odmítat mediální soubory
       reject_media_hint: Odstraní lokálně uložené soubory a odmítne jejich stažení v budoucnosti. Nepodstatné pro pozastavení
       reject_reports: Odmítnout nahlášení
-      reject_reports_hint: Ignorovat všechna nahlášení pocházející z této domény. Nepodstatné pro pozastavení
-      severities:
-        noop: Žádné
-        silence: Utišit
-        suspend: Pozastavit
-      severity: Přísnost
+      reject_reports_hint: Ignorovat všechna nahlášení pocházející z této domény. Nepodstatné pro suspenzace
       show:
         affected_accounts:
           few: "%{count} účty v databázi byly ovlivněny"
@@ -289,7 +284,6 @@ cs:
           suspend: Zrušit pozastavení všech existujících účtů z této domény
         title: Zrušit blokaci domény %{domain}
         undo: Odvolat
-      title: Doménové blokace
       undo: Odvolat
     email_domain_blocks:
       add_new: Přidat nový
@@ -305,10 +299,6 @@ cs:
       back_to_account: Zpět na účet
       title: Sledovatelé uživatele %{acct}
     instances:
-      account_count: Známé účty
-      domain_name: Doména
-      reset: Resetovat
-      search: Hledat
       title: Známé instance
     invites:
       deactivate_all: Deaktivovat vše
