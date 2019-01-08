@@ -3,7 +3,7 @@
 class LanguageDetector
   include Singleton
 
-  CHARACTER_THRESHOLD = 140
+  CHARACTER_THRESHOLD = 20
 
   def initialize
     @identifier = CLD3::NNetLanguageIdentifier.new(1, 2048)
