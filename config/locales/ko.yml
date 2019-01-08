@@ -267,11 +267,6 @@ ko:
       reject_media_hint: 로컬에 저장된 미디어 파일을 삭제하고, 이후로도 다운로드를 거부합니다. 정지와는 관계 없습니다
       reject_reports: 신고 거부
       reject_reports_hint: 이 도메인으로부터의 모든 신고를 무시합니다. 정지와는 무관합니다
-      severities:
-        noop: 없음
-        silence: 침묵
-        suspend: 정지
-      severity: 심각도
       show:
         affected_accounts:
           one: 데이터베이스 중 1개의 계정에 영향을 끼칩니다
@@ -281,7 +276,6 @@ ko:
           suspend: 이 도메인에 존재하는 모든 계정의 계정 정지를 해제
         title: "%{domain}의 도메인 차단을 해제"
         undo: 실행 취소
-      title: 도메인 차단
       undo: 실행 취소
     email_domain_blocks:
       add_new: 새로 추가
@@ -294,10 +288,6 @@ ko:
         title: 새 이메일 도메인 차단
       title: Email 도메인 차단
     instances:
-      account_count: 알려진 계정의 수
-      domain_name: 도메인 이름
-      reset: 리셋
-      search: 검색
       title: 알려진 인스턴스들
     invites:
       deactivate_all: 전부 비활성화
