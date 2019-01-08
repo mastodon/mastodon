@@ -194,6 +194,11 @@ $no-columns-breakpoint: 600px;
       color: $valid-value-color;
       font-weight: 500;
     }
+
+    .negative-hint {
+      color: $error-value-color;
+      font-weight: 500;
+    }
   }
 
   @media screen and (max-width: $no-columns-breakpoint) {
