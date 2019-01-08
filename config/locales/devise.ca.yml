@@ -18,6 +18,7 @@ ca:
     mailer:
       confirmation_instructions:
         action: Verifica l'adreça de correu
+        action_with_app: Confirma i torna a %{app}
         explanation: Has creat un compte a %{host} amb aquesta adreça de correu electrònic. Estàs a un sol clic de l'activació. Si no fos així, ignora aquest correu electrònic.
         extra_html: Si us plau consulta també <a href="%{terms_path}"> les regles de la instància</a> i <a href="%{policy_path}"> les nostres condicions de servei</a>.
         subject: 'Mastodon: Instruccions de confirmació %{instance}'

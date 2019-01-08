@@ -2,6 +2,13 @@
 el:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Μπορεις να χρησιμοποιήσεις συντακτικό ενός τουτ όπως διευθύνσεις URL, ταμπέλες και αναφορές
+      admin_account_action:
+        send_email_notification: Ο χρήστης θα λάβει μια εξήγηση του τι συνέβη με τον λογαριασμό του
+        text_html: Προαιρετικό. Μπορείς να χρησιμοποιήσεις συντακτικό ενός τουτ. Μπορείς να <a href="%{path}">ορίσεις προκαθορισμένες προειδοποιήσεις</a> για να γλυτώσεις χρόνο
+        type_html: Διάλεξε τι θα κανείς με τον  <strong>%{acct}</strong>
+        warning_preset_id: Προαιρετικό. Μπορείς να προσθέσεις επιπλέον κείμενο μετά το προκαθορισμένο κείμενο
       defaults:
         autofollow: Όσοι εγγραφούν μέσω της πρόσκλησης θα σε ακολουθούν αυτόματα
         avatar: PNG, GIF ή JPG. Έως %{size}. Θα περιοριστεί σε διάσταση %{dimensions}px
@@ -40,6 +47,18 @@ el:
         fields:
           name: Ταμπέλα
           value: Περιεχόμενο
+      account_warning_preset:
+        text: Προκαθορισμένο κείμενο
+      admin_account_action:
+        send_email_notification: Ενημέρωση χρήστη μέσω email
+        text: Προσαρμοσμένη προειδοποίηση
+        type: Ενέργεια
+        types:
+          disable: Απενεργοποίηση
+          none: Καμία ενέργεια
+          silence: Αποσιώπηση
+          suspend: Αναστολή και αμετάκλητη διαγραφή στοιχείων λογαριασμού
+        warning_preset_id: Χρήση προκαθορισμένης προειδοποίησης
       defaults:
         autofollow: Προσκάλεσε για να ακολουθήσουν το λογαριασμό σου
         avatar: Αβατάρ

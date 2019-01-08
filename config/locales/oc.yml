@@ -70,6 +70,9 @@ oc:
       moderator: Moderador
     unfollow: Quitar de sègre
   admin:
+    account_actions:
+      action: Realizar una accion
+      title: Realizar una accion de moderacion sus %{acct}
     account_moderation_notes:
       create: Crear una nòta
       created_msg: Nòta de moderacion ben creada !
@@ -102,6 +105,7 @@ oc:
       enabled: Activat
       feed_url: Flux URL
       followers: Seguidors
+      followers_local: "(%{local} local)"
       followers_url: URL dels seguidors
       follows: Abonaments
       header: Bandièra
@@ -172,6 +176,7 @@ oc:
         assigned_to_self_report: "%{name} s’assignèt lo rapòrt %{target}"
         change_email_user: "%{name} cambièt l’adreça de corrièl de %{target}"
         confirm_user: "%{name} confirmèt l’adreça a %{target}"
+        create_account_warning: "%{name} mandèt un avertiment a %{target}"
         create_custom_emoji: "%{name} mandèt un nòu emoji %{target}"
         create_domain_block: "%{name} bloquèt lo domeni %{target}"
         create_email_domain_block: "%{name} botèt a la lista nègra lo domeni de corrièl %{target}"
@@ -265,11 +270,6 @@ oc:
       reject_media_hint: Lèva los fichièrs gardats localament e regèta las demandas de telecargament dins lo futur. Servís pas a res per las suspensions
       reject_reports: Regetar los senhalaments
       reject_reports_hint: Ignorar totes los senhalaments que venon d’aqueste domeni. Pas pertiment per las suspensions
-      severities:
-        noop: Cap
-        silence: Silenci
-        suspend: Suspendre
-      severity: Severitat
       show:
         affected_accounts:
           one: Un compte de la basa de donadas tocat
@@ -279,7 +279,6 @@ oc:
           suspend: Levar la suspension de totes los comptes d’aqueste domeni
         title: Restablir lo blocatge de domeni de %{domain}
         undo: Restablir
-      title: Blòc de domeni
       undo: Restablir
     email_domain_blocks:
       add_new: Ajustar
@@ -291,11 +290,10 @@ oc:
         create: Crear un blocatge
         title: Nòu blocatge de domeni de corrièl
       title: Blocatge de domeni de corrièl
+    followers:
+      back_to_account: Tornar al compte
+      title: Seguidors de %{acct}
     instances:
-      account_count: Comptes coneguts
-      domain_name: Domeni
-      reset: Reïnicializar
-      search: Cercar
       title: Instàncias conegudas
     invites:
       deactivate_all: O desactivar tot
@@ -449,6 +447,12 @@ oc:
       unhide: Aparéisser dins l’annuari
       visible: Visible
     title: Administracion
+    warning_presets:
+      add_new: N’ajustar un nòu
+      delete: Escafar
+      edit: Modificar
+      edit_preset: Modificar lo tèxt predefinit d’avertiment
+      title: Gerir los tèxtes predefinits
   admin_mailer:
     new_report:
       body: "%{reporter} a senhalat %{target}"
@@ -760,9 +764,6 @@ oc:
     no_account_html: Avètz pas cap de compte ? Podètz <a href='%{sign_up_path}' target='_blank'>vos marcar aquí</a>
     proceed: Clicatz per sègre
     prompt: 'Sètz per sègre :'
-  remote_interaction:
-    proceed: Confirmar l’interaccion
-    prompt: 'Volètz interagir amb aqueste tut :'
   remote_unfollow:
     error: Error
     title: Títol
@@ -973,6 +974,22 @@ oc:
       explanation: Avètz demandat una salvagarda complèta de vòstre compte Mastodon. Es prèsta per telecargament !
       subject: Vòstre archiu es prèst per telecargament
       title: Archiu per emportar
+    warning:
+      explanation:
+        disable: Quand vòstre compte es gelat, las donadas d’aqueste demòran senceras, mas podètz pas realizar cap d’accion fins que siá desblocat.
+        silence: Del temps que vòstre compte es limitat, solament lo monde que vos sègon veiràn vòstres tuts sus aqueste servidor, e poiriatz èsser tirat de mantunas listas publicas. Pasmens, d’autres vos pòdon sègre manualament.
+        suspend: Vòstre compte es suspendut e totes vòstres tuts e fichièrs enviats son estats suprimits sens retorn possible d’aqueste servidor e los de vòstres seguidors.
+      review_server_policies: Repassar las politicas del servidor
+      subject:
+        disable: Vòstre compte %{acct} es gelat
+        none: Avertiment per %{acct}
+        silence: Vòstre compte %{acct} es limitat
+        suspend: Vòstre compte %{acct} es suspendut
+      title:
+        disable: Compte gelat
+        none: Avertiment
+        silence: Compte limitat
+        suspend: Compte suspendut
     welcome:
       edit_profile_action: Configuracion del perfil
       edit_profile_step: Podètz personalizar lo perfil en mandar un avatard, cambiar l’escais-nom e mai. Se volètz repassar las demandas d’abonaments abans que los nòus seguidors pòscan veire vòstre perfil, podètz clavar vòstre compte.

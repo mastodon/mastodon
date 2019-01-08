@@ -70,6 +70,9 @@ ja:
       moderator: Mod
     unfollow: フォロー解除
   admin:
+    account_actions:
+      action: アクションを実行
+      title: "%{acct}さんに対してアクションを実行"
     account_moderation_notes:
       create: 書き込む
       created_msg: モデレーションメモを書き込みました！
@@ -102,6 +105,7 @@ ja:
       enabled: 有効
       feed_url: フィードURL
       followers: フォロワー数
+      followers_local: "(%{local} ローカル)"
       followers_url: Followers URL
       follows: フォロー数
       header: ヘッダー
@@ -172,6 +176,7 @@ ja:
         assigned_to_self_report: "%{name} さんがレポート %{target} を自身の担当に割り当てました"
         change_email_user: "%{name} さんが %{target} さんのメールアドレスを変更しました"
         confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
+        create_account_warning: "%{name} さんが %{target} さんに警告メールを送信しました"
         create_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を追加しました"
         create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
         create_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストに追加しました"
@@ -256,7 +261,7 @@ ja:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
-          desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。メディアファイルの拒否は<strong>なし</strong>を使います。"
+          desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。メディアファイルを拒否したいだけの場合は<strong>なし</strong>を使います。"
           noop: なし
           silence: サイレンス
           suspend: 停止
@@ -265,11 +270,6 @@ ja:
       reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
       reject_reports: レポートを拒否
       reject_reports_hint: このドメインからのレポートをすべて無視します。停止とは無関係です
-      severities:
-        noop: なし
-        silence: サイレンス
-        suspend: 停止
-      severity: 深刻度
       show:
         affected_accounts:
           one: データベース中の一つのアカウントに影響します
@@ -279,7 +279,6 @@ ja:
           suspend: このドメインからの存在するすべてのアカウントの停止を戻す
         title: "%{domain}のドメインブロックを戻す"
         undo: 元に戻す
-      title: ドメインブロック
       undo: 元に戻す
     email_domain_blocks:
       add_new: 新規追加
@@ -291,11 +290,10 @@ ja:
         create: ドメインを追加
         title: メールアドレス用ブラックリスト新規追加
       title: メールブラックリスト
+    followers:
+      back_to_account: 戻る
+      title: "%{acct}さんのフォロワー"
     instances:
-      account_count: 既知のアカウント数
-      domain_name: ドメイン名
-      reset: リセット
-      search: 検索
       title: 既知のインスタンス
     invites:
       deactivate_all: すべて無効化
@@ -449,6 +447,12 @@ ja:
       unhide: ディレクトリに表示する
       visible: 表示
     title: 管理
+    warning_presets:
+      add_new: 追加
+      delete: 削除
+      edit: 編集
+      edit_preset: プリセット警告文を編集
+      title: プリセット警告文を管理
   admin_mailer:
     new_report:
       body: "%{reporter} が %{target} を通報しました"
@@ -703,9 +707,6 @@ ja:
     no_account_html: アカウントをお持ちではないですか？<a href='%{sign_up_path}' target='_blank'>こちら</a>からサインアップできます
     proceed: フォローする
     prompt: 'フォローしようとしています:'
-  remote_interaction:
-    proceed: 進む
-    prompt: 'このトゥートに返信しようとしています:'
   remote_unfollow:
     error: エラー
     title: タイトル
@@ -914,6 +915,22 @@ ja:
       explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
       subject: アーカイブの準備ができました
       title: アーカイブの取り出し
+    warning:
+      explanation:
+        disable: アカウントが凍結されている間、データはそのまま残りますが、凍結が解除されるまでは何の操作もできません。
+        silence: あなたのアカウントは制限されていますが、あなたをフォローしているユーザーのみ、このサーバー上の投稿を見ることができます。そしてあなたは様々な公開リストから除外されるかもしれません。ただし、他のユーザーは手動であなたをフォローすることができます。
+        suspend: あなたのアカウントは停止されています。あなたの投稿とアップロードされたメディアファイルは、このサーバーとあなたのフォロワーが参加していたサーバーから完全に削除されました。
+      review_server_policies: サーバーのポリシーを確認
+      subject:
+        disable: あなたのアカウント %{acct} は凍結されています
+        none: "%{acct} に対する警告"
+        silence: あなたのアカウント %{acct} はサイレンスにされています
+        suspend: あなたのアカウント %{acct} は停止されています
+      title:
+        disable: アカウントが凍結されました
+        none: 警告
+        silence: アカウントがサイレンスにされました
+        suspend: アカウントが停止されました
     welcome:
       edit_profile_action: プロフィールを設定
       edit_profile_step: アバター画像やヘッダー画像をアップロードしたり、表示名やその他プロフィールを変更しカスタマイズすることができます。新しいフォロワーからのフォローを許可する前に検討したい場合、アカウントを承認制にすることができます。

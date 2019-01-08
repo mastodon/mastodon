@@ -211,11 +211,6 @@ fi:
         title: Uusi verkkotunnuksen esto
       reject_media: Hylkää mediatiedostot
       reject_media_hint: Poistaa paikallisesti tallennetut mediatiedostot eikä lataa niitä enää jatkossa. Ei merkitystä jäähyn kohdalla
-      severities:
-        noop: Ei mitään
-        silence: Hiljennys
-        suspend: Jäähy
-      severity: Vakavuus
       show:
         affected_accounts:
           one: Vaikuttaa yhteen tiliin tietokannassa
@@ -225,7 +220,6 @@ fi:
           suspend: Peru kaikkien tässä verkkotunnuksessa jo olemassa olevien tilien jäähy
         title: Peru verkkotunnuksen %{domain} esto
         undo: Peru
-      title: Verkkotunnusten estot
       undo: Peru
     email_domain_blocks:
       add_new: Lisää uusi
@@ -238,10 +232,6 @@ fi:
         title: Uusi sähköpostiestolistan merkintä
       title: Sähköpostiestolista
     instances:
-      account_count: Tiedossa olevat tilit
-      domain_name: Verkkotunnus
-      reset: Palauta
-      search: Hae
       title: Tiedossa olevat instanssit
     invites:
       filter:

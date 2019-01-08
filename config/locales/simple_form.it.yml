@@ -2,6 +2,13 @@
 it:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Puoi usare la sintassi dei toot, come URL, hashtag e menzioni
+      admin_account_action:
+        send_email_notification: L'utente riceverà una spiegazione di ciò che è successo con suo account
+        text_html: Opzionale. Puoi usare la sintassi dei toot. Puoi <a href="%{path}">aggiungere avvisi preimpostati</a> per risparmiare tempo
+        type_html: Decidi cosa fare con <strong>%{acct}</strong>
+        warning_preset_id: Opzionale. Puoi aggiungere un testo personalizzato alla fine di quello preimpostato
       defaults:
         autofollow: Le persone che si iscrivono attraverso l'invito ti seguiranno automaticamente
         avatar: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
@@ -40,6 +47,18 @@ it:
         fields:
           name: Etichetta
           value: Contenuto
+      account_warning_preset:
+        text: Testo preimpostato
+      admin_account_action:
+        send_email_notification: Informa l'utente via email
+        text: Avviso personalizzato
+        type: Azione
+        types:
+          disable: Disabilita
+          none: Non fare nulla
+          silence: Silenzia
+          suspend: Sospendi e cancella i dati dell'account in modo irreversibile
+        warning_preset_id: Usa un avviso preimpostato
       defaults:
         autofollow: Invita a seguire il tuo account
         avatar: Avatar
