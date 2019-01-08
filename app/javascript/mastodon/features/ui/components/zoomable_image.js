@@ -133,6 +133,7 @@ export default class ZoomableImage extends React.PureComponent {
         ref={this.setContainerRef}
         style={{ overflow }}
       >
+	<figure>
         <img
           role='presentation'
           ref={this.setImageRef}
@@ -145,6 +146,8 @@ export default class ZoomableImage extends React.PureComponent {
           }}
           onClick={this.handleClick}
         />
+	<figcaption style={{textAlign: 'center'}}>{alt}</figcaption>
+	</figure>
       </div>
     );
   }
