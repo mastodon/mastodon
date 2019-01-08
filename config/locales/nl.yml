@@ -70,6 +70,9 @@ nl:
       moderator: Moderator
     unfollow: Ontvolgen
   admin:
+    account_actions:
+      action: Actie uitvoeren
+      title: Moderatieactie op %{acct} uitvoeren
     account_moderation_notes:
       create: Laat een opmerking achter
       created_msg: Aanmaken van opmerking voor moderatoren geslaagd!
@@ -102,6 +105,7 @@ nl:
       enabled: Ingeschakeld
       feed_url: Feed-URL
       followers: Volgers
+      followers_local: "(%{local} lokaal)"
       followers_url: Volgers-URL
       follows: Volgt
       header: Omslagfoto
@@ -172,6 +176,7 @@ nl:
         assigned_to_self_report: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
         change_email_user: "%{name} veranderde het e-mailadres van gebruiker %{target}"
         confirm_user: E-mailadres van gebruiker %{target} is door %{name} bevestigd
+        create_account_warning: "%{name} verzond een waarschuwing naar %{target}"
         create_custom_emoji: Nieuwe emoji %{target} is door %{name} geüpload
         create_domain_block: Domein %{target} is door %{name} geblokkeerd
         create_email_domain_block: E-maildomein %{target} is door %{name} op de zwarte lijst geplaatst
@@ -265,11 +270,6 @@ nl:
       reject_media_hint: Verwijderd lokaal opgeslagen mediabestanden en weigert deze in de toekomst te downloaden. Irrelevant voor opgeschorte domeinen
       reject_reports: Rapportages weigeren
       reject_reports_hint: Alle rapportages die vanaf dit domein komen negeren. Irrelevant voor opgeschorte domeinen
-      severities:
-        noop: Geen
-        silence: Negeren
-        suspend: Opschorten
-      severity: Zwaarte
       show:
         affected_accounts:
           one: Eén account in de database aangepast
@@ -279,7 +279,6 @@ nl:
           suspend: Alle opgeschorte accounts van dit domein niet langer opschorten
         title: Domeinblokkade voor %{domain} ongedaan maken
         undo: Ongedaan maken
-      title: Domeinblokkades
       undo: Ongedaan maken
     email_domain_blocks:
       add_new: Nieuwe toevoegen
@@ -291,11 +290,10 @@ nl:
         create: Blokkeren
         title: Nieuw e-maildomein blokkeren
       title: E-maildomeinen blokkeren
+    followers:
+      back_to_account: Terug naar account
+      title: Volgers van %{acct}
     instances:
-      account_count: Bekende accounts
-      domain_name: Domein
-      reset: Opnieuw
-      search: Zoeken
       title: Bekende servers
     invites:
       deactivate_all: Alles deactiveren
@@ -449,6 +447,12 @@ nl:
       unhide: In gebruikersgids tonen
       visible: Zichtbaar
     title: Beheer
+    warning_presets:
+      add_new: Nieuwe toevoegen
+      delete: Verwijderen
+      edit: Bewerken
+      edit_preset: Voorinstelling van waarschuwing bewerken
+      title: Voorinstellingen van waarschuwingen beheren
   admin_mailer:
     new_report:
       body: "%{reporter} heeft %{target} gerapporteerd"
@@ -912,6 +916,18 @@ nl:
       explanation: Je hebt een volledige back-up van jouw Mastodon-account opgevraagd. Het staat nu klaar om te worden gedownload!
       subject: Jouw archief staat klaar om te worden gedownload
       title: Archief ophalen
+    warning:
+      review_server_policies: Serverbeleid bekijken
+      subject:
+        disable: Jouw account %{acct} is bevroren
+        none: Waarschuwing voor %{acct}
+        silence: Jouw account %{acct} is nu beperkt
+        suspend: Jouw account %{acct} is opgeschort
+      title:
+        disable: Account bevroren
+        none: Waarschuwing
+        silence: Account beperkt
+        suspend: Account opgeschort
     welcome:
       edit_profile_action: Profiel instellen
       edit_profile_step: Je kunt jouw profiel aanpassen door een avatar (profielfoto) en omslagfoto te uploaden, jouw weergavenaam in te stellen en iets over jezelf te vertellen. Wanneer je nieuwe volgers eerst wilt goedkeuren, kun je jouw account besloten maken.

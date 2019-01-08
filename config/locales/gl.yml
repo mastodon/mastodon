@@ -70,6 +70,9 @@ gl:
       moderator: Mod
     unfollow: Deixar de seguir
   admin:
+    account_actions:
+      action: Realizar acción
+      title: Realizar acción de moderación sobre %{acct}
     account_moderation_notes:
       create: Deixar nota
       created_msg: Nota a moderación creada con éxito!
@@ -102,6 +105,7 @@ gl:
       enabled: Habilitado
       feed_url: URL fonte
       followers: Seguidoras
+      followers_local: "(local %{local})"
       followers_url: URL das seguidoras
       follows: Segue
       header: Cabeceira
@@ -172,6 +176,7 @@ gl:
         assigned_to_self_report: "%{name} asignou o informe %{target} a ela misma"
         change_email_user: "%{name} cambiou o enderezo de correo-e da usuaria %{target}"
         confirm_user: "%{name} comfirmou o enderezo de correo da usuaria %{target}"
+        create_account_warning: "%{name} enviou un aviso sobre %{target}"
         create_custom_emoji: "%{name} subeu un novo emoji %{target}"
         create_domain_block: "%{name} bloqueou o dominio %{target}"
         create_email_domain_block: "%{name} engadeu a lista negra o dominio de correo %{target}"
@@ -226,7 +231,7 @@ gl:
       updated_msg: Actualizouse correctamente o emoji!
       upload: Subir
     dashboard:
-      backlog: backlogged jobs
+      backlog: traballos respaldados
       config: Axustes
       feature_deletions: Borrado de contas
       feature_invites: Ligazóns de convite
@@ -265,11 +270,6 @@ gl:
       reject_media_hint: Eliminar ficheiros de medios almacenados localmente e rexeita descargalos no futuro. Irrelevante para as suspensións
       reject_reports: Rexeitar informes
       reject_reports_hint: Ignorar todos os informes procedentes de este dominio. Irrelevante para as suspensións
-      severities:
-        noop: Ningún
-        silence: Silenciar
-        suspend: Suspender
-      severity: Severidade
       show:
         affected_accounts:
           one: Afectoulle a unha conta na base de datos
@@ -279,7 +279,6 @@ gl:
           suspend: Non suspender todas as contas existentes de este dominio
         title: Desfacer o bloqueo de dominio para %{domain}
         undo: Desfacer
-      title: Bloqueos de domino
       undo: Desfacer
     email_domain_blocks:
       add_new: Engadir novo
@@ -291,11 +290,10 @@ gl:
         create: Engadir dominio
         title: Nova entrada la lista negra de e-mail
       title: Lista negra de E-mail
+    followers:
+      back_to_account: Voltar a Conta
+      title: Seguidoras de %{acct}
     instances:
-      account_count: Contas coñecidas
-      domain_name: Dominio
-      reset: Restablecer
-      search: Buscar
       title: Instancias coñecidas
     invites:
       deactivate_all: Desactivar todo
@@ -449,6 +447,12 @@ gl:
       unhide: Mostrar en directorio
       visible: Visible
     title: Administración
+    warning_presets:
+      add_new: Engadir novo
+      delete: Eliminar
+      edit: Editar
+      edit_preset: Editar aviso preestablecido
+      title: Xestionar avisos preestablecidos
   admin_mailer:
     new_report:
       body: "%{reporter} informou sobre %{target}"
@@ -912,6 +916,22 @@ gl:
       explanation: Solicitou un respaldo completo da súa conta de Mastodon. Xa está listo para descargar!
       subject: O seu ficheiro xa está listo para descargar
       title: Leve o ficheiro
+    warning:
+      explanation:
+        disable: Cando a súa conta está conxelada, os datos permanecen intactos, pero non pode levar a fin accións ate que se desbloquea.
+        silence: Mentras a conta está limitada, só a xente que actualmente a segue verá os seus toots en este servidor, e vostede podería estar excluída de varias listas públicas. Porén, outras persoas poderíana seguila de xeito manual.
+        suspend: A súa conta foi suspendida, e todos os seus toots e medios subidos foron eliminados de este servidor de xeito irreversible, e dos servidores onde tivese seguidoras.
+      review_server_policies: Revisar políticas do servidor
+      subject:
+        disable: A súa conta %{acct} foi conxelada
+        none: Aviso para %{acct}
+        silence: A súa conta %{acct} foi limitada
+        suspend: A súa conta %{acct} foi suspendida
+      title:
+        disable: Conta conxelada
+        none: Aviso
+        silence: Conta limitada
+        suspend: Conta suspendida
     welcome:
       edit_profile_action: Configurar perfil
       edit_profile_step: Vostede pode persoalizar o seu perfil subindo un avatar, cabeceira, cambiar o seu nome público e aínda máis. Si restrinxe a súa conta pode revisar a conta das personas que solicitan seguilas antes de permitirlles o acceso aos seus toots.

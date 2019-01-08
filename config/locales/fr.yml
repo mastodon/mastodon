@@ -70,6 +70,9 @@ fr:
       moderator: Modérateur·trice
     unfollow: Ne plus suivre
   admin:
+    account_actions:
+      action: Effectuer une action
+      title: Effectuer une action de modération sur %{acct}
     account_moderation_notes:
       create: Laisser un commentaire
       created_msg: Note de modération créée avec succès !
@@ -102,6 +105,7 @@ fr:
       enabled: Activé
       feed_url: URL du flux
       followers: Abonné⋅e⋅s
+      followers_local: "(%{local} local)"
       followers_url: URL des abonné·e·s
       follows: Abonnements
       header: Entête
@@ -172,6 +176,7 @@ fr:
         assigned_to_self_report: "%{name} s’est assigné·e le signalement de %{target}"
         change_email_user: "%{name} a modifié l’adresse de courriel de l’utilisateur·rice %{target}"
         confirm_user: "%{name} adresse courriel confirmée de l’utilisateur·ice %{target}"
+        create_account_warning: "%{name} a envoyé une attention à %{target}"
         create_custom_emoji: "%{name} a importé de nouveaux émojis %{target}"
         create_domain_block: "%{name} a bloqué le domaine %{target}"
         create_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste noire"
@@ -265,11 +270,6 @@ fr:
       reject_media_hint: Supprime localement les fichiers média stockés et refuse d’en télécharger ultérieurement. Ne concerne pas les suspensions
       reject_reports: Rapports de rejet
       reject_reports_hint: Ignorez tous les rapports provenant de ce domaine. Sans objet pour les suspensions
-      severities:
-        noop: Aucune
-        silence: Masquer
-        suspend: Suspendre
-      severity: Séverité
       show:
         affected_accounts:
           one: Un compte affecté dans la base de données
@@ -279,7 +279,6 @@ fr:
           suspend: Annuler la suspension sur tous les comptes existants pour ce domaine
         title: Annuler le blocage de domaine pour %{domain}
         undo: Annuler
-      title: Blocage de domaines
       undo: Annuler
     email_domain_blocks:
       add_new: Ajouter
@@ -291,11 +290,10 @@ fr:
         create: Créer le blocage
         title: Nouveau blocage de domaine de courriel
       title: Blocage de domaines de courriel
+    followers:
+      back_to_account: Retour au compte
+      title: Abonné⋅e⋅s de %{acct}
     instances:
-      account_count: Comptes connus
-      domain_name: Domaine
-      reset: Réinitialiser
-      search: Rechercher
       title: Instances connues
     invites:
       deactivate_all: Tout désactiver
@@ -449,6 +447,12 @@ fr:
       unhide: Afficher dans l'annuaire
       visible: Visible
     title: Administration
+    warning_presets:
+      add_new: Ajouter un nouveau
+      delete: Effacer
+      edit: Éditer
+      edit_preset: Éditer la présélection d'attention
+      title: Gérer les présélections d'attention
   admin_mailer:
     new_report:
       body: "%{reporter} a signalé %{target}"
@@ -912,6 +916,22 @@ fr:
       explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon. Elle est maintenant prête à être téléchargée !
       subject: Votre archive est prête à être téléchargée
       title: Récupération de l’archive
+    warning:
+      explanation:
+        disable: Lorsque votre compte est gelé, les données de votre compte demeurent intactes, mais vous ne pouvez effectuer aucune action jusqu'à ce qu'il soit débloqué.
+        silence: Lorsque votre compte est limité, seulement les utilisateurs qui vous suivent déjà verront vos pouets sur ce serveur, et vous pourriez être exclu de plusieurs listes publiques. Néanmoins, d'autres utilisateurs peuvent vous suivre manuellement.
+        suspend: Votre compte a été suspendu, et tous vos pouets et vos fichiers multimédia téléversés ont été supprimés irréversiblement de ce serveur, et des serveurs où vous aviez des abonné⋅e⋅s.
+      review_server_policies: Passer en revue les politiques du serveur
+      subject:
+        disable: Votre compte %{acct} a été gelé
+        none: Avertissement pour %{acct}
+        silence: Votre compte %{acct} a été limité
+        suspend: Votre compte %{acct} a été suspendu
+      title:
+        disable: Compte gelé
+        none: Avertissement
+        silence: Compte limité
+        suspend: Compte suspendu
     welcome:
       edit_profile_action: Configuration du profil
       edit_profile_step: Vous pouvez personnaliser votre profil en téléchargeant un avatar, une image d’en-tête, en changeant votre pseudo et plus encore. Si vous souhaitez examiner les nouveaux·lles abonné·e·s avant qu’il·elle·s ne soient autorisé·e·s à vous suivre, vous pouvez verrouiller votre compte.

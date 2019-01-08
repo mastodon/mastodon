@@ -70,6 +70,9 @@ de:
       moderator: Moderator
     unfollow: Entfolgen
   admin:
+    account_actions:
+      action: Aktion ausführen
+      title: Moderationsaktion auf %{acct} ausführen
     account_moderation_notes:
       create: Notiz erstellen
       created_msg: Moderationsnotiz erfolgreich erstellt!
@@ -102,6 +105,7 @@ de:
       enabled: Freigegeben
       feed_url: Feed-URL
       followers: Folger
+      followers_local: "(%{local} lokal)"
       followers_url: URL des Folgenden
       follows: Folgt
       header: Header
@@ -172,6 +176,7 @@ de:
         assigned_to_self_report: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
         change_email_user: "%{name} hat die E-Mail-Adresse des Nutzers %{target} geändert"
         confirm_user: "%{name} hat die E-Mail-Adresse von %{target} bestätigt"
+        create_account_warning: "%{name} hat eine Warnung an %{target} gesendet"
         create_custom_emoji: "%{name} hat neues Emoji %{target} hochgeladen"
         create_domain_block: "%{name} hat die Domain %{target} blockiert"
         create_email_domain_block: "%{name} hat die E-Mail-Domain %{target} geblacklistet"
@@ -265,11 +270,6 @@ de:
       reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
       reject_reports: Meldungen ablehnen
       reject_reports_hint: Ignoriere alle Meldungen von dieser Domain. Irrelevant für Sperrungen
-      severities:
-        noop: Kein
-        silence: Stummschaltung
-        suspend: Sperren
-      severity: Schweregrad
       show:
         affected_accounts:
           one: Ein Konto in der Datenbank betroffen
@@ -279,7 +279,6 @@ de:
           suspend: Alle existierenden Konten dieser Domain entsperren
         title: Domain-Blockade für %{domain} zurücknehmen
         undo: Zurücknehmen
-      title: Domain-Blockaden
       undo: Zurücknehmen
     email_domain_blocks:
       add_new: Neue hinzufügen
@@ -291,11 +290,10 @@ de:
         create: Blockade erstellen
         title: Neue E-Mail-Domain-Blockade
       title: E-Mail-Domain-Blockade
+    followers:
+      back_to_account: Zurück zum Account
+      title: "%{acct}'s Follower"
     instances:
-      account_count: Bekannte Konten
-      domain_name: Domain
-      reset: Zurücksetzen
-      search: Suchen
       title: Bekannte Instanzen
     invites:
       deactivate_all: Alle deaktivieren
@@ -449,6 +447,12 @@ de:
       unhide: Zeige in Verzeichnis
       visible: Sichtbar
     title: Administration
+    warning_presets:
+      add_new: Neu hinzufügen
+      delete: Löschen
+      edit: Bearbeiten
+      edit_preset: Warnungsvorlage bearbeiten
+      title: Warnungsvorlagen verwalten
   admin_mailer:
     new_report:
       body: "%{reporter} hat %{target} gemeldet"
@@ -914,6 +918,22 @@ de:
       explanation: Du hast ein vollständiges Backup von deinem Mastodon-Account angefragt. Es kann jetzt heruntergeladen werden!
       subject: Dein Archiv ist bereit zum Download
       title: Archiv-Download
+    warning:
+      explanation:
+        disable: Solange dein Account eingefroren ist sind deine Benutzerdaten intakt, aber du kannst nichts tun bis dein Account entsperrt wurde.
+        silence: Solange dein Account limitiert ist können nur Leute, die dir bereits folgen deine Beiträge auf dem Server sehen und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
+        suspend: Dein Account wurde gesperrt und alle deine Beiträge und hochgeladenen Medien wurden unwiderruflich vom Server und anderen Servern wo du Follower hattest gelöscht.
+      review_server_policies: Serverrichtlinien ansehen
+      subject:
+        disable: Dein Account %{acct} wurde eingefroren
+        none: Warnung für %{acct}
+        silence: Dein Account %{acct} wurde limitiert
+        suspend: Dein Account %{acct} wurde gesperrt
+      title:
+        disable: Account eingefroren
+        none: Warnung
+        silence: Account limitiert
+        suspend: Account gesperrt
     welcome:
       edit_profile_action: Profil einstellen
       edit_profile_step: Du kannst dein Profil anpassen, indem du einen Avatar oder ein Titelbild hochlädst oder deinen Anzeigenamen änderst und mehr. Wenn du deine Follower vorher überprüfen möchtest, bevor sie dir folgen können, dann kannst du dein Profil sperren.

@@ -138,7 +138,7 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'dashboard#index'
 
     resources :subscriptions, only: [:index]
-    resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
+    resources :domain_blocks, only: [:new, :create, :show, :destroy]
     resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resources :action_logs, only: [:index]
     resources :warning_presets, except: [:new]
@@ -157,11 +157,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :instances, only: [:index] do
-      collection do
-        post :resubscribe
-      end
-    end
+    resources :instances, only: [:index, :show], constraints: { id: /[^\/]+/ }
 
     resources :reports, only: [:index, :show] do
       member do

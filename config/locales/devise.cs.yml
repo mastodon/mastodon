@@ -18,6 +18,7 @@ cs:
     mailer:
       confirmation_instructions:
         action: Potvrdit e-mailovou adresu
+        action_with_app: Potvrdit a navrátit se do %{app}
         explanation: S touto e-mailovou adresou jste si vytvořil/a účet na %{host}. K jeho aktivaci vám zbývá jedno kliknutí. Pokud jste to nebyl/a vy, ignorujte této e-mail.
         extra_html: Prosím podívejte se také na <a href="%{terms_path}">pravidla této instance</a> a <a href="%{policy_path}">naše podmínky používání</a>.
         subject: 'Mastodon: Potvrzovací instrukce pro %{instance}'

@@ -70,6 +70,9 @@ pt-BR:
       moderator: Moderador
     unfollow: Deixar de seguir
   admin:
+    account_actions:
+      action: Tomar uma ação
+      title: Realizar uma ação de moderação em %{acct}
     account_moderation_notes:
       create: Criar uma advertência
       created_msg: Nota de moderação criada com sucesso!
@@ -102,8 +105,10 @@ pt-BR:
       enabled: Ativado
       feed_url: URL do feed
       followers: Seguidores
+      followers_local: "(%{local} local)"
       followers_url: URL de seguidores
       follows: Segue
+      header: Cabeçalho
       inbox_url: URL da caixa de entrada
       ip: IP
       location:
@@ -134,6 +139,7 @@ pt-BR:
       push_subscription_expires: Inscrição PuSH expira
       redownload: Atualizar avatar
       remove_avatar: Remover avatar
+      remove_header: Remover cabeçalho
       resend_confirmation:
         already_confirmed: Este usuário já está confirmado
         send: Re-enviar o e-mail de confirmação
@@ -170,6 +176,7 @@ pt-BR:
         assigned_to_self_report: "%{name} designou a denúncia %{target} para si"
         change_email_user: "%{name} mudou o endereço de e-mail do usuário %{target}"
         confirm_user: "%{name} confirmou o endereço de e-mail do usuário %{target}"
+        create_account_warning: "%{name} enviou um aviso para %{target}"
         create_custom_emoji: "%{name} enviou o emoji novo %{target}"
         create_domain_block: "%{name} bloqueou o domínio %{target}"
         create_email_domain_block: "%{name} colocou o domínio de e-mail %{target} na lista negra"
@@ -263,11 +270,6 @@ pt-BR:
       reject_media_hint: Remove arquivos de mídia armazenados localmente e recusa quaisquer outros no futuro. Irrelevante para suspensões
       reject_reports: Rejeitar denúncias
       reject_reports_hint: Ignorar todas as denúncias vindas deste domíno. Irrelevante para suspensões
-      severities:
-        noop: Nenhum
-        silence: Silêncio
-        suspend: Suspensão
-      severity: Rigidez
       show:
         affected_accounts:
           one: Uma conta no banco de dados foi afetada
@@ -277,7 +279,6 @@ pt-BR:
           suspend: Retirar suspensão de todas as contas neste domínio
         title: Retirar bloqueio de domínio de %{domain}
         undo: Retirar
-      title: Bloqueios de domínio
       undo: Retirar
     email_domain_blocks:
       add_new: Adicionar novo
@@ -289,11 +290,10 @@ pt-BR:
         create: Adicionar domínio
         title: Novo bloqueio de domínio de e-mail
       title: Bloqueio de Domínio de E-mail
+    followers:
+      back_to_account: Voltar para a conta
+      title: Pessoas que seguem %{acct}
     instances:
-      account_count: Contas conhecidas
-      domain_name: Domínio
-      reset: Resetar
-      search: Buscar
       title: Instâncias conhecidas
     invites:
       deactivate_all: Desativar todos
@@ -447,6 +447,12 @@ pt-BR:
       unhide: Mostrar no diretório
       visible: Visível
     title: Administração
+    warning_presets:
+      add_new: Adicionar um novo
+      delete: Excluir
+      edit: Editar
+      edit_preset: Editar o aviso pré-definido
+      title: Gerenciar os avisos pré-definidos
   admin_mailer:
     new_report:
       body: "%{reporter} denunciou %{target}"
@@ -910,6 +916,22 @@ pt-BR:
       explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
       subject: Seu arquivo está pronto para ser baixado
       title: Baixar arquivo
+    warning:
+      explanation:
+        disable: Enquanto sua conta está congelada, seus dados estão intactos, mas você não pode realizar nenhuma ação até que sua conta seja desbloqueada.
+        silence: Enquanto sua conta está limitada, somente pessoas que já estão seguindo você poderão ver seus toots nesse servidor, e você pode ser excluído de diversas listagens públicas. No entanto, outros ainda podem seguir você manualmente.
+        suspend: Sua conta está suspensa e todos os seus toots e mídias foram irreversivelmente removidas desse servidor e de servidores onde você tinha seguidores.
+      review_server_policies: Revisar as políticas do servidor
+      subject:
+        disable: Sua conta %{acct} foi congelada
+        none: Aviso para %{acct}
+        silence: Sua conta %{acct} foi limitada
+        suspend: Sua conta %{acct} foi suspensa
+      title:
+        disable: Conta congelada
+        none: Aviso
+        silence: Conta limitada
+        suspend: Conta suspensa
     welcome:
       edit_profile_action: Configurar perfil
       edit_profile_step: Você pode customizar o seu perfil enviando um avatar, uma imagem de topo, mudando seu nome de exibição, dentre outros. Se você gostaria de aprovar novos seguidores antes que eles possam seguir você, você pode trancar a sua conta.
