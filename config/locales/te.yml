@@ -1,7 +1,130 @@
 ---
 te:
   about:
+    about_hashtag_html: ఇవి <strong>#%{hashtag}</strong>తో ట్గాగ్ చేయబడిన పబ్లిక్ టూట్లు. ఫెడివర్స్ లో ఎక్కడ ఖాతావున్నా వీటిలో పాల్గొనవచ్చు.
+    about_mastodon_html: మాస్టొడాన్ అనేది ఒక సామాజిక మాధ్యమం. ఇది పూర్తిగా ఉచితం మరియు స్వేచ్ఛా సాఫ్టువేరు. ఈమెయిల్ లాగానే ఇది వికేంద్రీకరించబడినది.
     about_this: గురించి
     administered_by: 'నిర్వహణలో:'
+    api: API
+    apps: మొబైల్ యాప్స్
+    closed_registrations: ప్రస్తుతం ఈ ఇన్స్టెన్స్ లో రిజిస్టేషన్లు మూసివేయబడ్డాయి. అయితే, వేరే ఇన్స్టెన్స్ లో ఖాతా తెరచికూడా ఈ ఇన్స్టెన్స్ ను అక్కడినుండే యాక్సెస్ చేయవచ్చు.
     contact: సంప్రదించండి
+    contact_missing: ఇంకా సెట్ చేయలేదు
     contact_unavailable: వర్తించదు
+    documentation: పత్రీకరణ
+    extended_description_html: |
+      <h3>నియమాలకు ఒక మంచి ప్రదేశం</h3>
+      <p>మరింత విశదీకరణ ఇంకా సెట్ చేయబడలేదు.</p>
+    features:
+      humane_approach_body: వేరే సామాజిక మాధ్యమాల వైఫల్యాల నుండి నేర్చుకుని, నైతిక రూపకల్పనలతో సామాజిక మాధ్యమాల దుర్వినియోగంపై  మాస్టొడాన్ పోరాటం చేసే లక్ష్యంతో పనిచేస్తుంది.
+      humane_approach_title: మరింత మానవత్వంతో కూడిన విధానం
+      not_a_product_body: మాస్టొడాన్ వ్యాపార సంబంధిత మాధ్యమం కాదు. ఎటువంటి ప్రకటనలు, డేటా మైనింగ్, కంచెలు లేనిది. ఏ కేంద్ర అధికరమూ లేదు.
+      not_a_product_title: మీరొక వ్యక్తి, వస్తువు కాదు.
+      real_conversation_body: With 500 characters at your disposal and support for granular content and media warnings, you can express yourself the way you want to.
+      real_conversation_title: నిజమైన సంభాషణలకోసం నిర్మించబడింది
+      within_reach_body: ఆండ్రాయిడ్, iOS మరియు ఇతర ప్లాట్ఫాంలకు వివిధరకాల యాప్స్ వున్నాయి. డెవలపర్ సహిత API వ్యవస్థే ఇందుకు మూలకారణం. ఇవి మీ స్ణేహితులతో అన్నివేళలా అందుబాటులో వుండడానికి సహాయపడతాయి.
+      within_reach_title: ఎల్లప్పుడూ అందుబాటులో
+    generic_description: "%{domain} అనేది నెట్వర్కులోని ఒక సర్వరు"
+    hosted_on: మాస్టొడాన్ %{domain} లో హోస్టు చేయబడింది
+    learn_more: మరింత తెలుసుకోండి
+    other_instances: ఇన్స్టాన్స్ ల జాబితా
+    privacy_policy: గోప్యత విధానము
+    source_code: సోర్సు కోడ్
+    status_count_after:
+      one: స్థితి
+      other: స్థితులు
+    status_count_before: ఎవరు రాశారు
+    terms: సేవా నిబంధనలు
+    user_count_after:
+      one: వినియోగదారు
+      other: వినియోగదారులు
+    user_count_before: హోం కు
+    what_is_mastodon: మాస్టొడాన్ అంటే ఏమిటి?
+  accounts:
+    choices_html: "%{name}'s ఎంపికలు:"
+    follow: అనుసరించు
+    followers:
+      one: అనుచరి
+      other: అనుచరులు
+    following: అనుసరిస్తున్నారు
+    joined: "%{date}న చేరారు"
+    last_active: చివరిగా క్రియాశీలకంగా వుంది
+    link_verified_on: ఈ లంకె యొక్క యాజమాన్యాన్ని చివరిగా పరిశీలించింది %{date}న
+    media: మీడియా
+    moved_html: "%{name} ఈ %{new_profile_link}కు మారారు:"
+    network_hidden: ఈ సమాచారం అందుబాటులో లేదు
+    nothing_here: ఇక్కడ ఏమీ లేదు!
+    people_followed_by: "%{name} అనుసరించే వ్యక్తులు"
+    people_who_follow: "%{name}ను అనుసరించే వ్యక్తులు"
+    pin_errors:
+      following: మీరు ధృవీకరించాలనుకుంటున్న వ్యక్తిని మీరిప్పటికే అనుసరిస్తూ వుండాలి
+    posts:
+      one: టూటు
+      other: టూట్లు
+    posts_tab_heading: టూట్లు
+    posts_with_replies: టూట్లు మరియు ప్రత్యుత్తరాలు
+    reserved_username: ఈ username రిజర్వ్ చేయబడింది
+    roles:
+      admin: నిర్వాహకులు
+      bot: బోట్
+      moderator: నియంత్రికుడు
+    unfollow: అనుసరించవద్దు
+  admin:
+    account_actions:
+      action: చర్య తీసుకో
+      title: "%{acct}పై మోడరేషన్ చర్యను తీసుకో"
+    account_moderation_notes:
+      create: ఏదైనా గమనికను వదులు
+      created_msg: మోడరేషన్ గమనిక విజయవంతంగా సృష్టించబడింది!
+      delete: తీసివేయి
+      destroyed_msg: మోడరేషన్ గమనిక విజయవంతంగా తొలగించబడింది!
+    accounts:
+      are_you_sure: ఖచ్ఛితమేగా?
+      avatar: అవతారం
+      by_domain: డొమైను
+      change_email:
+        changed_msg: ఖాతా యొక్క ఈమెయిల్ విజయవంతంగా మార్చబడింది!
+        current_email: ప్రస్తుత ఈమెయిల్
+        label: ఈమెయిల్ ను మార్చు
+        new_email: కొత్త ఈమెయిల్
+        submit: ఈమెయిల్ ను మార్చు
+        title: "%{username} యొక్క ఈమెయిల్ ను మార్చు"
+      confirm: ధృవీకరించు
+      confirmed: ధృవీకరించబడింది
+      confirming: ధృవీకరిస్తుంది
+      demote: స్థానం తగ్గించు
+      disable: అచేతనం చేయి
+      disable_two_factor_authentication: 2FAను అచేతనం చేయి
+      disabled: అచేతనం చేయబడింది
+      display_name: పేరును చూపు
+      domain: డొమైను
+      edit: మార్చు
+      email: ఈమెయిల్
+      email_status: ఈమెయిల్ స్థితి
+      enable: చేతనం
+      enabled: చేతనం చేయబడింది
+      feed_url: ఫీడ్ URL
+      followers: అనుచరులు
+      followers_local: "(%{local} local)"
+      followers_url: అనుచరుల URL
+      follows: అనుసరిస్తున్నారు
+      header: Header
+      inbox_url: ఇన్ బాక్స్ URL
+      ip: IP
+      location:
+        all: అన్నీ
+        local: లోకల్
+        remote: రిమోట్
+        title: లొకేషన్
+      login_status: లాగిన్ స్థితి
+      media_attachments: మీడియా అటాచ్మెంట్లు
+      memorialize: Turn into memoriam
+      moderation:
+        active: యాక్టివ్
+        all: అన్నీ
+        silenced: నిశ్శబ్ధం చేయబడింది
+        suspended: నిషేధించబడింది
+        title: మోడరేషన్
+      moderation_notes: మోడరేషన్ నోట్స్
+      most_recent_activity: ఇటీవల యాక్టివిటీ
+      most_recent_ip: ఇటీవలి IP

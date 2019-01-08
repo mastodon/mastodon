@@ -2,6 +2,13 @@
 cs:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Můžete používat syntaxi tootů, jako například URL, hashtagy a zmínky
+      admin_account_action:
+        send_email_notification: Uživatel obdrží vysvětlení toho, co se stalo s jeho účtem
+        text_html: Volitelné. Můžete používat syntaxi tootů. Pro ušetření času si můžete <a href="%{path}">přidat přednastavení pro varování</a>
+        type_html: Vyberte, co chcete udělat s účtem <strong>%{acct}</strong>
+        warning_preset_id: Volitelné. Můžete stále vložit na konec přednastavení vlastní text
       defaults:
         autofollow: Lidé, kteří se zaregistrují přes pozvání, vás budou automaticky sledovat
         avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
@@ -40,8 +47,20 @@ cs:
         fields:
           name: Označení
           value: Obsah
+      account_warning_preset:
+        text: Text přednastavení
+      admin_account_action:
+        send_email_notification: Informovat uživatele e-mailem
+        text: Vlastní varování
+        type: Akce
+        types:
+          disable: Deaktivovat
+          none: Nic nedělat
+          silence: Utišit
+          suspend: Pozastavit a nenávratně smazat data účtu
+        warning_preset_id: Použít přednastavení pro varování
       defaults:
-        autofollow: Pozvěte ke sledování vašeho účtu
+        autofollow: Pozvat ke sledování vašeho účtu
         avatar: Avatar
         bot: Tohle je účet robota
         chosen_languages: Filtrovat jazyky

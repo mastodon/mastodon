@@ -1,7 +1,5 @@
 %tr
   %td
-    = link_to instance.domain, admin_accounts_path(by_domain: instance.domain)
+    = link_to instance.domain, admin_instance_path(instance)
   %td.count
     = instance.accounts_count
-  %td
-    = table_link_to 'paper-plane-o', t('admin.accounts.resubscribe'), resubscribe_admin_instances_url(by_domain: instance.domain), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }

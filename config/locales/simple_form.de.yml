@@ -2,6 +2,13 @@
 de:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Du kannst Toot-Syntax benutzen, wie zum Beispiel URLs, Hashtags und Erwähnungen
+      admin_account_action:
+        send_email_notification: Der Benutzer erhält eine Erklärung, was mit seinem Account geschehen ist
+        text_html: Optional. Du kannst Toot-Syntax benutzen. Du kannst <a href="%{path}">Warnungsvorlagen</a> benutzen um Zeit zu sparen
+        type_html: Wähle aus, was du mit <strong>%{acct}</strong> machen möchtest
+        warning_preset_id: Optional. Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen
       defaults:
         autofollow: Leute die sich über deine Einladung registrieren werden dir automatisch folgen
         avatar: PNG, GIF oder JPG. Maximal %{size}. Wird auf %{dimensions} px herunterskaliert
@@ -40,6 +47,18 @@ de:
         fields:
           name: Bezeichnung
           value: Inhalt
+      account_warning_preset:
+        text: Vorlagentext
+      admin_account_action:
+        send_email_notification: Benachrichtige den Nutzer per E-Mail
+        text: Eigene Warnung
+        type: Aktion
+        types:
+          disable: Deaktivieren
+          none: Nichts tun
+          silence: Stummschalten
+          suspend: Deaktivieren und unwiderruflich Benutzerdaten löschen
+        warning_preset_id: Benutze eine Warnungsvorlage
       defaults:
         autofollow: Einladen, um deinen Account zu folgen
         avatar: Profilbild
