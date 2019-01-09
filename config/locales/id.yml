@@ -50,10 +50,6 @@ id:
       most_recent_activity: Aktivitas terbaru
       most_recent_ip: IP terbaru
       not_subscribed: Tidak berlangganan
-      order:
-        alphabetic: Alfabetik
-        most_recent: Terbaru
-        title: Urutan
       perform_full_suspension: Lakukan suspen penuh
       profile_url: URL profil
       public: Publik
@@ -66,7 +62,6 @@ id:
       salmon_url: URL Salmon
       show:
         created_reports: Laporan yang dibuat oleh akun ini
-        report: laporan
         targeted_reports: Laporan yang dibuat tentang akun ini
       silence: Diam
       statuses: Status
@@ -90,10 +85,6 @@ id:
         title: Pemblokiran domain baru
       reject_media: Tolak berkas media
       reject_media_hint: Hapus file media yang tersimpan dan menolak semua unduhan nantinya. Tidak terpengaruh dengan suspen
-      severities:
-        silence: Diamkan
-        suspend: Suspen
-      severity: Keparahan
       show:
         affected_accounts:
           one: Satu akun di dalam database terpengaruh
@@ -103,10 +94,7 @@ id:
           suspend: Hapus suspen terhadap akun pada domain ini
         title: Hapus pemblokiran domain %{domain}
         undo: Undo
-      title: Pemblokiran Domain
     instances:
-      account_count: Akun yang diketahui
-      domain_name: Domain
       title: Server yang diketahui
     reports:
       comment:
@@ -221,7 +209,7 @@ id:
       too_many: Tidak dapat melampirkan lebih dari 4 file
   notification_mailer:
     digest:
-      body: 'Ini adalah ringkasan singkat yang anda lewatkan pada sejak kunjungan terakhir anda pada %{since}:'
+      body: Ini adalah ringkasan singkat yang anda lewatkan pada sejak kunjungan terakhir anda pada %{since}
       mention: "%{name} menyebut anda di:"
       new_followers_summary:
         one: Anda mendapatkan satu pengikut baru! Hore!

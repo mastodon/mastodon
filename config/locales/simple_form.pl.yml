@@ -8,15 +8,18 @@ pl:
         bot: To konto wykonuje głównie zautomatyzowane działania i może nie być monitorowane
         context: Jedno lub wiele miejsc, w których filtr zostanie zastosowany
         digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
+        discoverable_html: <a href="%{path}" target="_blank">Katalog</a> pozwala znaleźć konta na podstawie zainteresowań i aktywności. Profil musi śledzić przynajmniej %{min_followers} osób
         fields: Możesz ustawić maksymalnie 4 niestandardowe pola wyświetlane jako tabela na Twoim profilu
         header: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
         inbox_url: Skopiuj adres ze strony głównej przekaźnika, którego chcesz użyć
         irreversible: Filtrowane wpisy znikną bezpowrotnie, nawet gdy filtr zostanie usunięty
         locale: Język interfejsu, wiadomości e-mail i powiadomieniach push
         locked: Musisz akceptować prośby o śledzenie
+        password: Użyj co najmniej 8 znaków
         phrase: Zostanie wykryte nawet, gdy znajduje się za ostrzeżeniem o zawartości
         scopes: Wybór API, do których aplikacja będzie miała dostęp. Jeżeli wybierzesz nadrzędny zakres, nie musisz wybierać jego elementów.
         setting_default_language: Język Twoich wpisów może być wykrywany automatycznie, ale nie zawsze jest to dokładne
+        setting_display_media_show_all: Zawsze pokazuj zawartość multimedialną jako wrażliwą
         setting_hide_network: Informacje o tym, kto Cię śledzi i kogo śledzisz nie będą widoczne
         setting_noindex: Wpływa na widoczność strony profilu i Twoich wpisów
         setting_theme: Zmienia wygląd Mastodona po zalogowaniu z dowolnego urządzenia.
@@ -42,6 +45,7 @@ pl:
         context: Filtruj zawartość
         current_password: Obecne hasło
         data: Dane
+        discoverable: Wyświetlaj ten profil w katalogu
         display_name: Widoczna nazwa
         email: Adres e-mail
         expires_in: Wygaśnie po
@@ -64,6 +68,8 @@ pl:
         setting_default_privacy: Widoczność wpisów
         setting_default_sensitive: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
         setting_delete_modal: Pytaj o potwierdzenie przed usunięciem wpisu
+        setting_display_media_hide_all: Ukryj wszystko
+        setting_display_media_show_all: Pokaż wszystko
         setting_hide_network: Ukryj swoją sieć
         setting_noindex: Nie indeksuj mojego profilu w wyszukiwarkach internetowych
         setting_reduce_motion: Ogranicz ruch w animacjach

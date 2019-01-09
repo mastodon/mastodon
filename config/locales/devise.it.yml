@@ -18,6 +18,7 @@ it:
     mailer:
       confirmation_instructions:
         action: Verifica indirizzo email
+        action_with_app: Conferma e torna a %{app}
         explanation: Hai creato un account su %{host} con questo indirizzo email. Sei lonatno solo un clic dall'attivarlo. Se non sei stato tu, per favore ignora questa email.
         extra_html: Per favore controlla<a href="%{terms_path}">le regole dell'istanza</a> e <a href="%{policy_path}">i nostri termini di servizio</a>.
         subject: 'Mastodon: Istruzioni di conferma per %{instance}'

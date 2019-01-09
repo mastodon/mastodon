@@ -54,6 +54,7 @@ pl:
       other: Śledzących
     following: Śledzonych
     joined: Dołączył(a) %{date}
+    last_active: ostatnio aktywny(-a)
     link_verified_on: Własność tego odnośnika została sprawdzona %{date}
     media: Zawartość multimedialna
     moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
@@ -122,6 +123,7 @@ pl:
       media_attachments: Załączniki multimedialne
       memorialize: Przełącz na „In Memoriam”
       moderation:
+        active: Aktywne
         all: Wszystkie
         silenced: Wyciszone
         suspended: Zawieszone
@@ -131,10 +133,6 @@ pl:
       most_recent_ip: Ostatnie IP
       no_limits_imposed: Nie nałożono ograniczeń
       not_subscribed: Nie zasubskrybowano
-      order:
-        alphabetic: Alfabetycznie
-        most_recent: Najnowsze
-        title: Kolejność
       outbox_url: Adres skrzynki nadawczej
       perform_full_suspension: Zawieś
       profile_url: Adres profilu
@@ -162,7 +160,6 @@ pl:
       shared_inbox_url: Adres udostępnianej skrzynki
       show:
         created_reports: Zgłoszenia tego użytkownika
-        report: zgłoszeń
         targeted_reports: Zgłoszenia dotyczące tego użytkownika
       silence: Wycisz
       silenced: Wyciszono
@@ -239,6 +236,7 @@ pl:
       config: Konfiguracja
       feature_deletions: Usuwanie kont
       feature_invites: Zaproszenia
+      feature_profile_directory: Katalog profilów
       feature_registrations: Rejestracja
       feature_relay: Przekazywanie federacji
       features: Możliwości
@@ -273,11 +271,6 @@ pl:
       reject_media_hint: Usuwa przechowywane lokalnie pliki multimedialne i nie pozwala na ich pobieranie. Nieprzydatne przy zawieszeniu
       reject_reports: Odrzucaj zgłoszenia
       reject_reports_hint: Zgłoszenia z tej instancji będą ignorowane. Nieprzydatne przy zawieszeniu
-      severities:
-        noop: Nic nie rób
-        silence: Wycisz
-        suspend: Zawieś
-      severity: Priorytet
       show:
         affected_accounts: Dotyczy %{count} kont w bazie danych
         retroactive:
@@ -285,7 +278,6 @@ pl:
           suspend: Odwołaj zawieszenie wszystkich kont w tej domenie
         title: Odwołaj blokadę dla domeny %{domain}
         undo: Cofnij
-      title: Zablokowane domeny
       undo: Cofnij
     email_domain_blocks:
       add_new: Dodaj nową
@@ -298,10 +290,6 @@ pl:
         title: Nowa blokada domeny e-mail
       title: Blokowanie domen e-mail
     instances:
-      account_count: Znane konta
-      domain_name: Domena
-      reset: Przywróć
-      search: Szukaj
       title: Znane instancje
     invites:
       deactivate_all: Unieważnij wszystkie
@@ -376,7 +364,7 @@ pl:
         desc_html: Wyświetlany na stronie głównej. Zalecany jest rozmiar przynajmniej 600x100 pikseli. Jeżeli nie ustawiony, zostanie użyta miniatura instancji
         title: Obraz bohatera
       mascot:
-        desc_html: Wyświetlany na wielu stronach. Zalecany jest rozmiar przynajmniej 293px × 205px. Jeżeli nie ustawiono, zostanie użyta domyślna.
+        desc_html: Wyświetlany na wielu stronach. Zalecany jest rozmiar przynajmniej 293px × 205px. Jeżeli nie ustawiono, zostanie użyta domyślna
         title: Obraz maskotki
       peers_api_enabled:
         desc_html: Nazwy domen, z którymi ta instancja wchodziła w interakcje
@@ -384,6 +372,9 @@ pl:
       preview_sensitive_media:
         desc_html: Podgląd odnośników na innych instancjach będzie wyświetlał miniaturę nawet jeśli zawartość multimedialna zostanie oznaczona jako wrażliwa
         title: Wyświetlaj zawartość wrażliwą w podglądzie OpenGraph
+      profile_directory:
+        desc_html: Pozwalaj na poznawanie użytkowników
+        title: Włącz katalog profilów
       registrations:
         closed_message:
           desc_html: Wyświetlana na stronie głównej, gdy możliwość otwarej rejestracji nie jest dostępna. Możesz korzystać z tagów HTML
@@ -443,12 +434,14 @@ pl:
       last_delivery: Ostatnio doręczono
       title: WebSub
       topic: Temat
-    suspensions:
-      bad_acct_msg: Zawartość potwierdzenia nie zgadza się. Czy próbujesz zawiesić właściwe konto?
-      hint_html: 'Aby potwierdzić zawieszenie konta, wprowadź %{value} w poniższe pole:'
-      proceed: Przejdź
-      title: Zawieś %{acct}
-      warning_html: 'Zawieszenie konta będzie skutkowało <strong>nieodwracalnym</strong> usunięciem danych z tego konta, wliczając:'
+    tags:
+      accounts: Konta
+      hidden: Ukryte
+      hide: Ukryj w katalogu
+      name: Hashtag
+      title: Hashtagi
+      unhide: Pokazuj w katalogu
+      visible: Widoczne
     title: Administracja
   admin_mailer:
     new_report:
@@ -527,6 +520,15 @@ pl:
     success_msg: Twoje konto zostało pomyślnie usunięte
     warning_html: Możemy usunąć zawartość jedynie w obrębie tej instancji. Zawartość udostępniona publicznie pozostawia trwałe ślady. Serwery niepodłączone do sieci bądź nieśledzące Twoich aktualizacji mogą zachować Twoje dane.
     warning_title: Dostępność usuniętej zawartości
+  directories:
+    directory: Katalog profilów
+    explanation: Poznaj profile na podstawie zainteresowań
+    explore_mastodon: Odkrywaj %{title}
+    people:
+      few: "%{count} osoby"
+      many: "%{count} osób"
+      one: "%{count} osoba"
+      other: "%{count} osób"
   errors:
     '403': Nie masz uprawnień, aby wyświetlić tę stronę.
     '404': Strona, którą próbujesz odwiedzić, nie istnieje.
@@ -703,9 +705,6 @@ pl:
     no_account_html: Nie masz konta? Możesz <a href='%{sign_up_path}' target='_blank'>zarejestrować się tutaj</a>
     proceed: Śledź
     prompt: 'Zamierzasz śledzić:'
-  remote_interaction:
-    proceed: Przejdź do interakcji
-    prompt: 'Chcesz dokonać interakcji z tym wpisem:'
   remote_unfollow:
     error: Błąd
     title: Tytuł
@@ -927,7 +926,6 @@ pl:
       review_preferences_action: Zmień ustawienia
       review_preferences_step: Upewnij się, że zmieniłeś(-aś) ustawienia, takie jak maile, które chciałbyś otrzymywać lub domyślne opcje prywatności. Jeżeli nie masz choroby lokomocyjnej, możesz włączyć automatyczne odtwarzanie animacji GIF.
       subject: Witaj w Mastodonie
-      tip_bridge_html: Jeżeli przybywasz z Twittera, możesz znaleźć znajomych na Mastodonie używając <a href="%{bridge_url}">aplikacji mostku</a>. Działa to tylko, jeżeli oni również z niej korzystali!
       tip_federated_timeline: Oś czasu federacji przedstawia całą sieć Mastodona. Wyświetla tylko wpisy osób, które śledzą użytkownicy Twojej instancji, więc nie jest kompletna.
       tip_following: Domyślnie śledzisz administratora/ów swojej instancji. Aby znaleźć więcej ciekawych ludzi, zajrzyj na lokalną i federalną oś czasu.
       tip_local_timeline: Lokalna oś czasu przedstawia osoby z %{instance}. To Twoi najbliżsi sąsiedzi!

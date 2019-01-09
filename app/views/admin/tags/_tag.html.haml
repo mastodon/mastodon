@@ -1,0 +1,12 @@
+%tr
+  %td
+    = link_to explore_hashtag_path(tag) do
+      = fa_icon 'hashtag'
+      = tag.name
+  %td
+    = t('directories.people', count: tag.accounts_count)
+  %td
+    - if tag.hidden?
+      = table_link_to 'eye', t('admin.tags.unhide'), unhide_admin_tag_path(tag.id, **@filter_params), method: :post
+    - else
+      = table_link_to 'eye-slash', t('admin.tags.hide'), hide_admin_tag_path(tag.id, **@filter_params), method: :post

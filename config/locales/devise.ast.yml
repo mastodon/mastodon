@@ -1,2 +1,30 @@
 ---
-ast: {}
+ast:
+  devise:
+    failure:
+      already_authenticated: Yá aniciesti sesión.
+      inactive: Entá nun s'activó la cuenta.
+      last_attempt: Tienes un intentu más enantes de bloquiar la cuenta.
+      locked: La cuenta ta bloquiada.
+      timeout: La sesión caducó. Volvi aniciar sesión pa siguir, por favor.
+      unauthenticated: Precises aniciar sesión o rexistrate enantes de siguir.
+    mailer:
+      confirmation_instructions:
+        explanation: Creesti una cuenta en %{host} con esta direición de corréu. Tas a un clic d'activala. Si nun fuisti tu, inora esti corréu.
+      email_changed:
+        title: Direición de corréu nueva
+      reset_password_instructions:
+        explanation: Solicitesti una contraseña nueva pa la cuenta.
+        extra: Si nun solicitesti esto, inora esti corréu. La contraseña nun va camudar hasta que nun accedas al enllaz d'enriba y crees una nueva.
+    registrations:
+      signed_up: "¡Afáyate! Rexistréstite con ésitu."
+      signed_up_but_unconfirmed: Unvióse un mensaxe de confirmación a la direición de corréu. Sigui l'enllaz p'activar la cuenta. Comprueba la carpeta Puxarra si nun recibiesti esti corréu, por favor.
+      updated: La cuenta anovóse con ésitu.
+    unlocks:
+      send_instructions: Nunos minutos vas recibir un corréu coles instrucciones pa cómo desbloquiar la cuenta. Comprueba la carpeta Puxarra si nun lu recibiesti.
+      send_paranoid_instructions: Si esiste la cuenta, nun momentu vas recibir un corréu coles instrucciones pa cómo desbloquiala. Comprueba la carpeta Puxarra si nun recibiesti esti corréu.
+      unlocked: La cuenta desbloquióse con ésitu. Anicia sesión pa siguir, por favor.
+  errors:
+    messages:
+      already_confirmed: yá se confirmó, volvi aniciar sesión
+      not_found: nun s'alcontró

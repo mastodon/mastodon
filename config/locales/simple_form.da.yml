@@ -2,6 +2,8 @@
 da:
   simple_form:
     hints:
+      admin_account_action:
+        type_html: Vælg hvad du vil gøre med <strong>%{acct}</strong>
       defaults:
         autofollow: Folk der har oprettet sig gennem invitationen vil automatisk følge dig
         avatar: PNG, GIF eller JPG. Højest %{size}. Vil blive skaleret ned til %{dimensions}px
@@ -19,9 +21,12 @@ da:
         phrase: Vil blive parret uanset om der er store eller små bogstaver i teksten eller om der er en advarsel om et trut
         scopes: Hvilke APIs applikationen vil få adgang til. Hvis du vælger et højtlevel omfang, behøver du ikke vælge enkeltstående.
         setting_default_language: Sproget for dine trut kan blive fundet automatisk, men det er ikke altid præcist
+        setting_display_media_default: Skjul medier markeret som følsomt
+        setting_display_media_hide_all: Skjul altid alle medier
         setting_hide_network: Hvem du følger og hvem der følger dig vil ikke blive vist på din profil
         setting_noindex: Påvirker din offentlige profil og status sider
         setting_theme: Påvirker hvordan Mastodon ser ud når du er logget ind via en hvilken som helst enhed.
+        username: Dit brugernavn vil være unikt på %{domain}
         whole_word: Når nøgle ordet eller udtrykket kun er alfanumerisk, vil det kun blive brugt hvis det passer hele ordet
       imports:
         data: CSV fil eksporteret fra en anden Mastodon instans
@@ -34,6 +39,11 @@ da:
         fields:
           name: Etiket
           value: Indhold
+      admin_account_action:
+        type: Handling
+        types:
+          disable: Deaktiver
+          none: Gør intet
       defaults:
         autofollow: Inviter til at følge din konto
         avatar: Profilbillede
@@ -65,6 +75,11 @@ da:
         setting_default_privacy: Privatliv
         setting_default_sensitive: Marker altid medier som værende følsomt
         setting_delete_modal: Vis bekræftelses dialog før du sletter et trut
+        setting_display_media: Visning af medier
+        setting_display_media_default: Standard
+        setting_display_media_hide_all: Skjul alle
+        setting_display_media_show_all: Vis alle
+        setting_expand_spoilers: Udvid altid trut der er markeret med indholdsadvarsler
         setting_hide_network: Skjul dit netværk
         setting_noindex: Frameld dig søgemaskiners indeksering
         setting_reduce_motion: Reducer animationers bevægelse

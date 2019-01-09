@@ -4,14 +4,9 @@ module Admin
   class DomainBlocksController < BaseController
     before_action :set_domain_block, only: [:show, :destroy]
 
-    def index
-      authorize :domain_block, :index?
-      @domain_blocks = DomainBlock.page(params[:page])
-    end
-
     def new
       authorize :domain_block, :create?
-      @domain_block = DomainBlock.new
+      @domain_block = DomainBlock.new(domain: params[:_domain])
     end
 
     def create
@@ -22,7 +17,7 @@ module Admin
       if @domain_block.save
         DomainBlockWorker.perform_async(@domain_block.id)
         log_action :create, @domain_block
-        redirect_to admin_domain_blocks_path, notice: I18n.t('admin.domain_blocks.created_msg')
+        redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
       else
         render :new
       end
@@ -36,7 +31,7 @@ module Admin
       authorize @domain_block, :destroy?
       UnblockDomainService.new.call(@domain_block, retroactive_unblock?)
       log_action :destroy, @domain_block
-      redirect_to admin_domain_blocks_path, notice: I18n.t('admin.domain_blocks.destroyed_msg')
+      redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.destroyed_msg')
     end
 
     private

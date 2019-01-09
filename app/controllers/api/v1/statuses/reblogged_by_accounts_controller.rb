@@ -21,7 +21,7 @@ class Api::V1::Statuses::RebloggedByAccountsController < Api::BaseController
   end
 
   def default_accounts
-    Account.includes(:statuses).references(:statuses)
+    Account.includes(:statuses, :account_stat).references(:statuses)
   end
 
   def paginated_statuses
