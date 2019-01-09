@@ -1,20 +1,19 @@
 sk:
   about:
-    about_hashtag_html: Toto sú verejné hlášky otagované <strong>#%{hashtag}</strong>.
+    about_hashtag_html: Toto sú verejné príspevky otagované <strong>#%{hashtag}</strong>.
       Ak máš účet niekde vo fediverse, môžeš ich využívať.
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových
-      protokoloch a na slobodnom, otvorenom softvéri. Je decentralizovaná podobne
-      ako email.
+      protokoloch a na slobodnom softvéri. Je decentralizovaná, podobne ako email.
     about_this: O tejto instancii
     administered_by: 'Správcom je:'
     api: API
-    apps: Mobilné aplikácie
+    apps: Aplikácie
     closed_registrations: Registrácie sú na tomto serveri momentálne uzatvorené. Avšak,
       môžeš nájsť nejaký iný Mastodon server kde si založ účet a získaj tak prístup
-      do presne tej istej siete, odtiaľ.
+      do presne tej istej siete odtiaľ.
     contact: Kontakt
-    contact_missing: Nezadané
-    contact_unavailable: Neuvedené
+    contact_missing: Nezadaný
+    contact_unavailable: Neuvedený
     documentation: Dokumentácia
     extended_description_html: '<h3>Pravidlá</h3>
 
@@ -61,8 +60,8 @@ sk:
       one: Sledujúci
       other: Sledovatelia
     following: Sledovaní
-    joined: Pridal/a sa %{date}
-    last_active: poslednýkrát aktívny
+    joined: Pridal/a sa v %{date}
+    last_active: naposledy aktívny
     link_verified_on: Vlastníctvo tohto odkazu bolo skontrolované %{date}
     media: Médiá
     moved_html: '%{name} účet bol presunutý na %{new_profile_link}:'
@@ -138,7 +137,7 @@ sk:
         active: Aktívny/a
         all: Všetko
         silenced: Umlčané
-        suspended: Suspendované
+        suspended: Vylúčený/á
         title: Moderácia
       moderation_notes: Moderátorské poznámky
       most_recent_activity: Posledná aktivita
@@ -301,18 +300,19 @@ sk:
       show:
         affected_accounts:
           few: '%{count} účty v databáze ovplyvnených'
-          one: Jeden účet v databáze ovplyvnený
-          other: '%{count} účtov v databáze ovplyvnených'
+          one: Jeden účet v databáze bol ovplyvnený
+          other: '%{count} účtov v databáze bolo ovplyvnených'
         retroactive:
-          silence: Zrušiť stíšenie všetkých existujúcich účtov z tejto domény
-          suspend: Zrušiť suspendáciu všetkých existujúcich účtov z tejto domény
-        title: Zrušiť blokovanie domény pre %{domain}
+          silence: Zruš stíšenie všetkých existujúcich účtov z tejto domény
+          suspend: Zruš suspendáciu všetkých existujúcich účtov z tejto domény
+        title: Zruš blokovanie domény %{domain}
         undo: Vrátiť späť
-      undo: Späť
+      undo: Odvolaj blokovanie domény
       rejecting_media: odmietanie médiálnych súborov
       rejecting_reports: odmietané hlásenia
       severity:
         silence: utíšené
+        suspend: vylúčený
     email_domain_blocks:
       add_new: Pridaj nový
       created_msg: Emailová doména bola úspešne pridaná do zoznamu zakázaných
@@ -327,7 +327,20 @@ sk:
       back_to_account: Späť na účet
       title: Následovatielia užívateľa %{acct}
     instances:
-      title: Známe instancie
+      title: Federácia
+      delivery_available: Je v dosahu doručovania
+      known_accounts:
+        one: '%{count} známy účet'
+        other: '%{count} známe účty'
+      moderation:
+        all: Všetky
+        limited: Obmedzené
+        title: Moderácia
+      total_blocked_by_us: Nami blokované
+      total_followed_by_them: Nimi sledované
+      total_followed_by_us: Nami sledované
+      total_reported: Nahlásenia o nich
+      total_storage: Mediálne prílohy
     invites:
       deactivate_all: Pozastaviť všetky
       filter:
@@ -634,6 +647,8 @@ sk:
     follows: Následujete
     mutes: Stíšil/a si
     storage: Úložisko médií
+    domain_blocks: Blokované domény
+    lists: Zoznamy
   filters:
     contexts:
       home: Domáca os
@@ -920,7 +935,7 @@ sk:
       \ sú doručené tvojím sledovateľom a užívateľom ktorí sú v nich spomenutí, pričom\
       \ priame príspevky sú doručené iba tím užívateľom ktorí sú v nich spomenutí.\
       \ V niektorých prípadoch to môže znamenať, že tieto príspevkz sú doručené aj\
-      \ vrámci iných serverov, a kópie príspevkov sú tam uložené.\nV dobrej viere\
+      \ v rámci iných serverov, a kópie príspevkov sú na nich uložené.\nV dobrej viere\
       \ robíme všetko preto, aby bol prístup k tímto príspevkom vymedzený iba pre\
       \ oprávnených používateľov, ale môže sa stať, že iné servery v tomto ohľade\
       \ zlyhajú. Preto je dôležité prezrieť si a zhodnotiť, na aké servery patria\
@@ -1044,3 +1059,15 @@ sk:
       tvoj Mastodon profil. Tento spätný odkaz <strong>musí</strong> mať prívlastok
       <code>rel="me"</code>. Na texte odkazu nezáleží. Tu je príklad:'
     verification: Overenie
+  remote_interaction:
+    favourite:
+      proceed: Pokračuj k obľúbeniu
+      prompt: 'Chceš si obľúbiť tento príspevok:'
+    reblog:
+      proceed: Pokračuj k vyzdvihnutiu
+      prompt: 'Chceš vyzdvihnúť tento príspevok:'
+    reply:
+      proceed: Pokračuj odpovedaním
+      prompt: 'Chceš odpovedať na tento príspevok:'
+  scheduled_statuses:
+    too_soon: Dátum musí byť stanovený do budúcnosti
