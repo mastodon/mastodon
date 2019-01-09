@@ -1117,3 +1117,14 @@ gl:
   remote_interaction:
     favourite:
       proceed: Darlle a favorito
+      prompt: 'Vostede quere favorecer este toot:'
+    reblog:
+      proceed: Darlle a promocionar
+      prompt: 'Vostede quere promocionar este toot:'
+    reply:
+      proceed: Respostar
+      prompt: 'Vostede quere respostar a este toot:'
+  scheduled_statuses:
+    over_daily_limit: Excedeu o límite de %{limit} toots programados para ese día
+    over_total_limit: Excedeu o límite de %{limit} toots programados
+    too_soon: A data de programación debe estar no futuro
