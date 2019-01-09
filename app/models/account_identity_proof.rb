@@ -49,13 +49,24 @@ class AccountIdentityProof < ApplicationRecord
       errors.add(:token, I18n.t('account_identity_proofs.keybase_errors.remote_invalid', kb_username: provider_username))
       return false
     end
+    self.is_live = nil
     self.is_valid = true
     save
   end
 
   def valid_in_keybase?
-    Keybase::Proof.new(provider_username, account.try(:username), token).is_remote_valid?
-  rescue KeyError
-    false
+    Keybase::Proof.new(self).valid?
+  end
+
+  def success_redirect(useragent)
+    if self.keybase?
+      Keybase::Proof.new(self).success_redirect_url(useragent)
+    end
+  end
+
+  def remote_profile_pic_url
+    if self.keybase?
+      Keybase::Proof.new(self).profile_pic_url
+    end
   end
 end

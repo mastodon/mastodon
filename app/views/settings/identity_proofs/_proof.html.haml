@@ -1,5 +1,24 @@
 
-= simple_form_for proof, url: settings_identity_proof_path(proof.id), html: { method: :put } do |f|
-  = render partial: 'settings/identity_proofs/proof_fields', locals: { f: f, proof: proof, with_id: true, show_remote_fields: true }
+= simple_form_for proof, url: settings_identity_proofs_path, html: { method: :post } do |f|
+  .fields-row
+    .fields-group.fields-row__column.fields-row__column-6
+      = f.input :provider, as: :hidden
+      = f.input :provider_username, as: :hidden
+      = f.input :token, as: :hidden
 
-%hr#settings_publishing/
+      %table.table
+        %tbody
+          %tr
+            %td.text-center.padded
+              %center
+                .avatar= image_tag current_account.avatar.url(:original), width: 50
+                = "I am "
+                %strong="#{current_account.username} "
+                = "on #{identity_proof_my_domain}."
+            %td.text-center.padded
+              %center
+                - provider_pic_url = proof.remote_profile_pic_url || default_provider_pic_url(proof.provider)
+                .avatar= image_tag provider_pic_url, width: 50
+                ="I am "
+                %strong="#{proof.provider_username} "
+                ="on #{proof.provider}."

@@ -72,9 +72,12 @@ en:
   account_identity_proofs:
     keybase_errors:
       token: Keybase tokens are hashes of signatures and must be 66 hex characters
-      remote_invalid: Keybase does not recognize this token as a signature of Keybase user %{kb_username}.
-    update:
-      success: Proof saved. Waiting for %{provider} to pull this update.
+      remote_invalid: |
+        Keybase does not recognize this token as a signature of Keybase user %{kb_username}.
+        Please retry from Keybase.
+    save:
+      button: "Yes, authorize"
+      failed: "The cryptographic connection failed. Please try again from %{provider}."
     new_explanation: |
       Linking your identity here with a proof provider lets you use cryptographic features over there
       using this Mastodon identity as an anchor.

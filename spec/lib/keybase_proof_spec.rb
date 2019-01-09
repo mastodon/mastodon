@@ -5,48 +5,77 @@ require 'keybase_proof'
 
 describe Keybase::Proof do
   let(:keybase_proof) do
-    described_class.new('cryptoalice', 'alice', '11111111111111111111111111', 'mastodon.fake')
+    local_proof = AccountIdentityProof.new(
+      provider: 'Keybase',
+      provider_username: 'cryptoalice',
+      token: '11111111111111111111111111'
+    )
+    described_class.new(local_proof, 'alice')
+  end
+  let(:query_params) do
+    'domain=mastodon.social&kb_username=cryptoalice&sig_hash=11111111111111111111111111&username=alice'
   end
 
-  describe 'is_remote_valid?' do
-    before do
-      base_url = 'https://keybase.io/_/api/1.0/sig/proof_valid.json'
-      params = "domain=mastodon.fake&kb_username=cryptoalice&username=alice&sig_hash=11111111111111111111111111"
-      json_response_body = '{"status":{"code":0,"name":"OK"},"proof_valid":true}'
+  describe 'valid?' do
+    let(:base_url) { 'https://keybase.io/_/api/1.0/sig/proof_valid.json' }
 
-      stub_request(:get, "#{base_url}?#{params}").to_return(status: 200, body: json_response_body)
+    context 'when valid' do
+      before do
+        json_response_body = '{"status":{"code":0,"name":"OK"},"proof_valid":true}'
+        stub_request(:get, "#{base_url}?#{query_params}").to_return(status: 200, body: json_response_body)
+      end
+
+      it 'calls out to keybase and returns true' do
+        expect(keybase_proof.valid?).to eq true
+      end
     end
 
-    it 'calls out to keybase and returns proof_valid' do
-      expect(keybase_proof.is_remote_valid?).to eq true
+    context 'when invalid' do
+      before do
+        json_response_body = '{"status":{"code":0,"name":"OK"},"proof_valid":false}'
+        stub_request(:get, "#{base_url}?#{query_params}").to_return(status: 200, body: json_response_body)
+      end
+
+      it 'calls out to keybase and returns false' do
+        expect(keybase_proof.valid?).to eq false
+      end
+    end
+
+    context 'with an unexpected api response' do
+      before do
+        json_response_body = '{"status":{"code":100,"desc":"wrong size hex_id","fields":{"sig_hash":"wrong size hex_id"},"name":"INPUT_ERROR"}}'
+        stub_request(:get, "#{base_url}?#{query_params}").to_return(status: 200, body: json_response_body)
+      end
+
+      it 'swallows the error and returns false' do
+        expect(keybase_proof.valid?).to eq false
+      end
     end
   end
 
-  describe 'is_remote_live?' do
-    before do
-      base_url = 'https://keybase.io/_/api/1.0/sig/proof_live.json'
-      params = "domain=mastodon.fake&kb_username=cryptoalice&username=alice&sig_hash=11111111111111111111111111"
-      json_response_body = '{"status":{"code":0,"name":"OK"},"proof_live":false}'
+  describe 'remote_status' do
+    let(:base_url) { 'https://keybase.io/_/api/1.0/sig/proof_live.json' }
 
-      stub_request(:get, "#{base_url}?#{params}").to_return(status: 200, body: json_response_body)
+    context 'with a normal response' do
+      before do
+        json_response_body = '{"status":{"code":0,"name":"OK"},"proof_live":false,"proof_valid":true}'
+        stub_request(:get, "#{base_url}?#{query_params}").to_return(status: 200, body: json_response_body)
+      end
+
+      it 'calls out to keybase and returns the status fields as is_valid and is_live' do
+        expect(keybase_proof.remote_status).to eq( {is_valid: true, is_live: false} )
+      end
     end
 
-    it 'calls out to keybase and returns proof_live' do
-      expect(keybase_proof.is_remote_live?).to eq false
-    end
-  end
+    context 'with an unexpected keybase response' do
+      before do
+        json_response_body = '{"status":{"code":100,"desc":"missing non-optional field sig_hash","fields":{"sig_hash":"missing non-optional field sig_hash"},"name":"INPUT_ERROR"}}'
+        stub_request(:get, "#{base_url}?#{query_params}").to_return(status: 200, body: json_response_body)
+      end
 
-  describe 'keybase returns something unexpected' do
-    before do
-      base_url = 'https://keybase.io/_/api/1.0/sig/proof_valid.json'
-      params = "domain=mastodon.fake&kb_username=cryptoalice&username=alice&sig_hash=11111111111111111111111111"
-      json_response_body = '{"status":{"code":100,"desc":"wrong size hex_id","fields":{"sig_hash":"wrong size hex_id"},"name":"INPUT_ERROR"}}'
-
-      stub_request(:get, "#{base_url}?#{params}").to_return(status: 200, body: json_response_body)
-    end
-
-    it 'is_remote_valid? is false' do
-      expect(keybase_proof.is_remote_valid?).to eq false
+      it 'raises a KeyError' do
+        expect { keybase_proof.remote_status }.to raise_error KeyError
+      end
     end
   end
 end

@@ -7,8 +7,8 @@ class KeybaseProofWorker
 
   def perform(proof_id)
     proof = AccountIdentityProof.keybase.with_account_username.find(proof_id)
-    kb_proof = Keybase::Proof.new(proof.provider_username, proof.username, proof.token)
-    proof.assign_attributes(is_valid: kb_proof.is_remote_valid?, is_live: kb_proof.is_remote_live?)
+    remote_status = Keybase::Proof.new(proof, proof.username).remote_status
+    proof.assign_attributes(remote_status.slice(:is_valid, :is_live))
 
     proof.save!
   end

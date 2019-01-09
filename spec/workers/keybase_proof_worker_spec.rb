@@ -7,17 +7,17 @@ describe KeybaseProofWorker do
   let(:proof) { Fabricate(:account_identity_proof) }
 
   describe 'perform' do
-    let(:remote_proof) { double(is_remote_valid?: true, is_remote_live?: false) }
+    let(:remote_proof) { double(remote_status: {is_valid: true, is_live: false}) }
 
     before do
       allow(Keybase::Proof).to receive(:new).
-        with(proof.provider_username, proof.account.username, proof.token).
+        with(instance_of(AccountIdentityProof), proof.account.username).
         and_return(remote_proof)
     end
 
     it 'calls Keybase::Proof object correctly' do
       expect(Keybase::Proof).to receive(:new).
-        with(proof.provider_username, proof.account.username, proof.token).
+        with(instance_of(AccountIdentityProof), proof.account.username).
         and_return(remote_proof)
 
       described_class.new.perform(proof.id)

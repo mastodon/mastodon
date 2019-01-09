@@ -1,52 +1,74 @@
 module Keybase
   class Proof
-    def initialize(kb_username, local_username, token, domain=nil)
-      @kb_username = kb_username
-      @local_username = local_username
-      @token = token
-      @domain = domain or Keybase.local_domain
+    def initialize(account_identity_proof, username=nil)
+      @kb_username = account_identity_proof.provider_username
+      @token = account_identity_proof.token
+      @account_identity_proof = account_identity_proof
+      @domain = ExternalProofService.my_domain
+      @base_url = ExternalProofService::Keybase.base_url
+      @_local_username = username
     end
 
-    def is_remote_valid?
-      @is_remote_valid ||= fetch_proof_valid_from_keybase
+    def local_username
+      # performance optimization: allow initializing with this
+      # value to prevent this additional query from running
+      @_local_username ||= @account_identity_proof.account.username
+    end
+
+    def valid?
+      get_from_keybase(
+        endpoint: '/_/api/1.0/sig/proof_valid.json',
+        query_params: to_keybase_params
+      ).fetch(:proof_valid)
     rescue KeyError
       false
     end
 
-    def is_remote_live?
-      @is_remote_live ||= fetch_proof_live_from_keybase
+    def remote_status
+      result = get_from_keybase(
+        endpoint: '/_/api/1.0/sig/proof_live.json',
+        query_params: to_keybase_params
+      )
+      { is_valid: result.fetch(:proof_valid), is_live: result.fetch(:proof_live) }
+    end
+
+    def profile_pic_url
+      get_from_keybase(
+        endpoint: '/_/api/1.0/user/pic_url.json',
+        query_params: { username: @kb_username }
+      ).fetch(:pic_url)
     rescue KeyError
-      false
+      nil
+    end
+
+    def success_redirect_url(useragent)
+      useragent ||= "unknown"
+      params = to_keybase_params
+      params[:kb_ua] = useragent
+      build_url('/_/proof_creation_success', params)
     end
 
     private
 
-    def fetch_proof_valid_from_keybase
-      uri = uri_for('/_/api/1.0/sig/proof_valid.json')
-      Request.new(:get, uri.to_s).perform do |response|
-        as_hash = JSON.parse(response.body, symbolize_names: true)
-        as_hash.fetch(:proof_valid)
-      end
-    end
-
-    def fetch_proof_live_from_keybase
-      uri = uri_for('/_/api/1.0/sig/proof_live.json')
-      Request.new(:get, uri.to_s).perform do |response|
-        as_hash = JSON.parse(response.body, symbolize_names: true)
-        as_hash.fetch(:proof_live)
-      end
-    end
-
-    def uri_for(endpoint)
-      uri = URI.parse(Keybase.base_url + endpoint)
-      query_params = {
+    def to_keybase_params
+      {
         domain: @domain,
         kb_username: @kb_username,
-        username: @local_username,
+        username: local_username,
         sig_hash: @token
       }
+    end
+
+    def get_from_keybase(endpoint:, query_params:)
+      Request.new(:get, build_url(endpoint, query_params)).perform do |response|
+        JSON.parse(response.body, symbolize_names: true)
+      end
+    end
+
+    def build_url(endpoint, query_params)
+      uri = URI.parse(@base_url + endpoint)
       uri.query = URI.encode_www_form(query_params)
-      uri
+      uri.to_s
     end
   end
 end

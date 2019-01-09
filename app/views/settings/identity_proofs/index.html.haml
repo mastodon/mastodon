@@ -1,4 +1,7 @@
 - content_for :page_title do
   = t('settings.identity_proofs')
 
-= render partial: 'settings/identity_proofs/proof', collection: @proofs, as: :proof
+- if @proofs.empty?
+  = I18n.t('account_identity_proofs.new_explanation')
+- else
+  = render partial: 'settings/identity_proofs/proof', collection: @proofs, as: :proof

@@ -12,9 +12,6 @@ describe Settings::IdentityProofsController do
   let(:postable_params) do
     { account_identity_proof: {provider: provider, provider_username: kbname, token: valid_token} }
   end
-  let(:putable_params) do
-    { id: findable_id, account_identity_proof: {provider: provider, provider_username: kbname, token: valid_token} }
-  end
 
   before do
     sign_in user, scope: :user
@@ -22,18 +19,9 @@ describe Settings::IdentityProofsController do
 
   describe 'new proof creation' do
     context 'GET #new with no existing proofs' do
-      it 'gets an empty form' do
+      it 'redirects to :index' do
         get :new
-
-        expect(response.body).to match /<h2>.*Identity Proofs/im
-        expect(response.body).to match /<label.*>Provider<\/label>/im
-        expect(response.body).to match /<label.*>Provider username<\/label>/im
-        expect(response.body).to match /<label.*>Token<\/label>/im
-      end
-
-      it 'shows the helpful explanation' do
-        get :new
-        expect(response.body).to match I18n.t('account_identity_proofs.new_explanation')
+        expect(response).to redirect_to settings_identity_proofs_path
       end
     end
 
@@ -42,6 +30,7 @@ describe Settings::IdentityProofsController do
         before do
           allow(KeybaseProofWorker).to receive(:perform_in)
           allow_any_instance_of(AccountIdentityProof).to receive(:save_if_valid_remotely) { true }
+          allow_any_instance_of(AccountIdentityProof).to receive(:success_redirect) { root_url }
         end
 
         it 'serializes a KeybaseProofWorker' do
@@ -49,14 +38,10 @@ describe Settings::IdentityProofsController do
           post :create, params: postable_params
         end
 
-        it 'flashes success' do
+        it 'delegates redirection to the proof provider' do
+          expect_any_instance_of(AccountIdentityProof).to receive(:success_redirect)
           post :create, params: postable_params
-          expect(flash[:info]).to eq I18n.t('account_identity_proofs.update.success', provider: 'Keybase')
-        end
-
-        it 'redirects to index' do
-          post :create, params: postable_params
-          expect(response).to redirect_to(settings_identity_proofs_url)
+          expect(response).to redirect_to root_url
         end
       end
 
@@ -65,21 +50,22 @@ describe Settings::IdentityProofsController do
           allow_any_instance_of(AccountIdentityProof).to receive(:save_if_valid_remotely) { false }
         end
 
-        it 'renders :new' do
+        it 'redirects to :index' do
           post :create, params: postable_params
-          expect(response).to render_template(:new)
+          expect(response).to redirect_to settings_identity_proofs_path
         end
 
-        it 'does not render empty fields' do
+        it 'flashes a helpful message' do
           post :create, params: postable_params
-          expect(response.body).to match /<textarea.*account_identity_proof\[token\].*#{Regexp.quote(valid_token)}/m
+          expect(flash[:alert]).to eq I18n.t('account_identity_proofs.save.failed', provider: 'Keybase')
         end
       end
 
-      context 'it can also do an update if the provider and username match' do
+      context 'it can also do an update if the provider and username match an existing proof' do
         before do
           allow(KeybaseProofWorker).to receive(:perform_in)
           Fabricate(:account_identity_proof, account: user.account, provider: provider, provider_username: kbname)
+          allow_any_instance_of(AccountIdentityProof).to receive(:success_redirect) { root_url }
         end
 
         it 'calls save_if_valid_remotely with the new token' do
@@ -94,88 +80,27 @@ describe Settings::IdentityProofsController do
 
   describe 'GET #index' do
     context 'with no existing proofs' do
-      it 'redirects to new' do
+      it 'shows the helpful explanation' do
         get :index
-        expect(response).to redirect_to new_settings_identity_proof_url
+        expect(response.body).to match I18n.t('account_identity_proofs.new_explanation')
       end
     end
+
     context 'with two proofs' do
       before do
         @proof1 = Fabricate(:account_identity_proof, account: user.account)
         @proof2 = Fabricate(:account_identity_proof, account: user.account)
+        allow_any_instance_of(AccountIdentityProof).to receive(:remote_profile_pic_url) { }
       end
 
-      it 'has the first proof token on the page' do
+      it 'has the first proof username on the page' do
         get :index
-        expect(response.body).to match /#{Regexp.quote(@proof1.token)}/
+        expect(response.body).to match /#{Regexp.quote(@proof1.provider_username)}/
       end
 
-      it 'has the second proof token on the page' do
+      it 'has the second proof username on the page' do
         get :index
-        expect(response.body).to match /#{Regexp.quote(@proof2.token)}/
-      end
-    end
-  end
-
-  describe 'PUT #update' do
-    context 'with an unfindable id' do
-      let(:unfindable_params) do
-        putable_params.tap { |params| params[:id] = unfindable_id }
-      end
-
-      it '404s' do
-        put :update, params: unfindable_params
-        expect(response).to have_http_status(:not_found)
-      end
-    end
-    context 'with two proofs' do
-      before do
-        @proof1 = Fabricate(:account_identity_proof, account: user.account)
-        @proof2 = Fabricate(:account_identity_proof, account: user.account)
-      end
-
-      context 'updating one of them' do
-        let(:update_params) do
-          putable_params.tap { |params| params[:account_identity_proof][:id] = @proof1.id }
-        end
-
-        context 'when saving works' do
-          before do
-            allow(KeybaseProofWorker).to receive(:perform_in)
-            allow_any_instance_of(AccountIdentityProof).to receive(:save_if_valid_remotely) { true }
-          end
-
-          it 'serializes a KeybaseProofWorker' do
-            expect(KeybaseProofWorker).to receive(:perform_in)
-            put :update, params: update_params
-          end
-
-          it 'flashes success' do
-            put :update, params: update_params
-            expect(flash[:info]).to eq I18n.t('account_identity_proofs.update.success', provider: 'Keybase')
-          end
-
-          it 'redirects to index' do
-            put :update, params: update_params
-            expect(response).to redirect_to(settings_identity_proofs_url)
-          end
-        end
-
-        context 'when saving fails' do
-          before do
-            allow_any_instance_of(AccountIdentityProof).to receive(:save_if_valid_remotely) { false }
-          end
-
-          it 'renders :show' do
-            put :update, params: update_params
-            expect(response).to render_template(:show)
-          end
-
-          it 'renders the token field with the new, unsaved token value' do
-            put :update, params: update_params
-            expect(response.body).to match /<textarea.*account_identity_proof\[token\].*#{Regexp.quote(valid_token)}/m
-          end
-        end
+        expect(response.body).to match /#{Regexp.quote(@proof2.provider_username)}/
       end
     end
   end
