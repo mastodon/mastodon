@@ -60,7 +60,6 @@ tr:
       salmon_url: Salmon Linki
       show:
         created_reports: Bu hesap tarafından gelen şikayetler
-        report: şikayet
         targeted_reports: Bu hesaba gelen şikayetler
       silence: Sustur
       statuses: Durumlar
@@ -84,10 +83,6 @@ tr:
         title: Yeni domain bloğu
       reject_media: Ortam dosyalarını reddetme
       reject_media_hint: Yerel olarak depolanmış ortam dosyalarını ve gelecekte indirilecek olanları reddeder. Uzaklaştırma için uygun değildir
-      severities:
-        silence: Sustur
-        suspend: Uzaklaştır
-      severity: İşlem
       show:
         affected_accounts:
           one: Veritabanındaki bir hesap etkilendi
@@ -97,11 +92,8 @@ tr:
           suspend: Bu domaindeki tüm hesapların üzerindeki uzaklaştırma işlemini kaldır
         title: "%{domain} domain'i için yapılan işlemi geri al"
         undo: Geri al
-      title: Domain Blokları
       undo: Geri al
     instances:
-      account_count: Bilinen hesaplar
-      domain_name: Domain
       title: Bilinen Sunucular
     reports:
       comment:

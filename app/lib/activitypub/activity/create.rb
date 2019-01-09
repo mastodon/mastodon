@@ -210,7 +210,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def resolve_thread(status)
-    return unless status.reply? && status.thread.nil?
+    return unless status.reply? && status.thread.nil? && Request.valid_url?(in_reply_to_uri)
     ThreadResolveWorker.perform_async(status.id, in_reply_to_uri)
   end
 

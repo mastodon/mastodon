@@ -48,6 +48,7 @@ ko:
       other: 팔로워
     following: 팔로잉
     joined: "%{date}에 가입함"
+    last_active: 최근 활동
     link_verified_on: "%{date}에 이 링크의 소유가 확인되었습니다"
     media: 미디어
     moved_html: "%{name}은 %{new_profile_link}으로 이동되었습니다:"
@@ -69,6 +70,9 @@ ko:
       moderator: 모더레이터
     unfollow: 팔로우 해제
   admin:
+    account_actions:
+      action: 조치 취하기
+      title: "%{acct} 계정에 조정 취하기"
     account_moderation_notes:
       create: 모더레이션 노트 작성하기
       created_msg: 모더레이션 기록이 성공적으로 작성되었습니다!
@@ -101,8 +105,10 @@ ko:
       enabled: 활성화된
       feed_url: 피드 URL
       followers: 팔로워 수
+      followers_local: "(%{local} 로컬)"
       followers_url: 팔로워 URL
       follows: 팔로잉 수
+      header: 헤더
       inbox_url: 수신함 URL
       ip: IP
       location:
@@ -114,6 +120,7 @@ ko:
       media_attachments: 첨부된 미디어
       memorialize: 메모리엄으로 전환
       moderation:
+        active: 활동
         all: 전체
         silenced: 침묵 중
         suspended: 정지 중
@@ -132,6 +139,7 @@ ko:
       push_subscription_expires: PuSH 구독 기간 만료
       redownload: 아바타 업데이트
       remove_avatar: 아바타 지우기
+      remove_header: 헤더 삭제
       resend_confirmation:
         already_confirmed: 이 사용자는 이미 확인되었습니다
         send: 다시 확인 이메일
@@ -150,7 +158,6 @@ ko:
       shared_inbox_url: 공유된 inbox URL
       show:
         created_reports: 이 계정에서 제출된 신고
-        report: 신고
         targeted_reports: 이 계정에 대한 신고
       silence: 침묵
       silenced: 침묵 됨
@@ -169,6 +176,7 @@ ko:
         assigned_to_self_report: "%{name}이 리포트 %{target}을 자신에게 할당했습니다"
         change_email_user: "%{name}이 %{target}의 이메일 주소를 변경했습니다"
         confirm_user: "%{name}이 %{target}의 이메일 주소를 컨펌했습니다"
+        create_account_warning: "%{name}가 %{target}에게 경고 보냄"
         create_custom_emoji: "%{name}이 새로운 에모지 %{target}를 추가했습니다"
         create_domain_block: "%{name}이 도메인 %{target}를 차단했습니다"
         create_email_domain_block: "%{name}이 이메일 도메인 %{target}를 차단했습니다"
@@ -227,6 +235,7 @@ ko:
       config: 설정
       feature_deletions: 계정 삭제
       feature_invites: 초대 링크
+      feature_profile_directory: 프로필 디렉토리
       feature_registrations: 가입
       feature_relay: 연합 릴레이
       features: 기능
@@ -263,11 +272,6 @@ ko:
       reject_media_hint: 로컬에 저장된 미디어 파일을 삭제하고, 이후로도 다운로드를 거부합니다. 정지와는 관계 없습니다
       reject_reports: 신고 거부
       reject_reports_hint: 이 도메인으로부터의 모든 신고를 무시합니다. 정지와는 무관합니다
-      severities:
-        noop: 없음
-        silence: 침묵
-        suspend: 정지
-      severity: 심각도
       show:
         affected_accounts:
           one: 데이터베이스 중 1개의 계정에 영향을 끼칩니다
@@ -277,7 +281,6 @@ ko:
           suspend: 이 도메인에 존재하는 모든 계정의 계정 정지를 해제
         title: "%{domain}의 도메인 차단을 해제"
         undo: 실행 취소
-      title: 도메인 차단
       undo: 실행 취소
     email_domain_blocks:
       add_new: 새로 추가
@@ -289,11 +292,10 @@ ko:
         create: 차단 규칙 생성
         title: 새 이메일 도메인 차단
       title: Email 도메인 차단
+    followers:
+      back_to_account: 계정으로 돌아가기
+      title: "%{acct}의 팔로워"
     instances:
-      account_count: 알려진 계정의 수
-      domain_name: 도메인 이름
-      reset: 리셋
-      search: 검색
       title: 알려진 인스턴스들
     invites:
       deactivate_all: 전부 비활성화
@@ -376,6 +378,9 @@ ko:
       preview_sensitive_media:
         desc_html: 민감한 미디어로 설정되었더라도 다른 웹사이트에서 링크 미리보기에 썸네일을 보여줍니다
         title: 민감한 미디어를 오픈그래프 미리보기에 보여주기
+      profile_directory:
+        desc_html: 유저들이 발견 될 수 있도록 허용
+        title: 프로필 디렉토리 활성화
       registrations:
         closed_message:
           desc_html: 신규 등록을 받지 않을 때 프론트 페이지에 표시됩니다. HTML 태그를 사용할 수 있습니다
@@ -435,13 +440,21 @@ ko:
       last_delivery: 최종 발송
       title: WebSub
       topic: 토픽
-    suspensions:
-      bad_acct_msg: 확인값이 일치하지 않습니다. 정지하려는 계정이 맞습니까?
-      hint_html: '이 계정을 정지하려면 %{value}를 아래 입력칸에 입력하세요:'
-      proceed: 완전히 정지시키기
-      title: "%{acct} 정지하기"
-      warning_html: '이 계정을 정지하면 계정의 데이터를 모두 삭제하며 <strong>되돌릴 수 없습니다</strong>. 이것은 다음을 포함합니다:'
+    tags:
+      accounts: 계정들
+      hidden: 숨겨짐
+      hide: 디렉토리에서 숨기기
+      name: 해시태그
+      title: 해시태그
+      unhide: 디렉토리에 표시
+      visible: 보여짐
     title: 관리
+    warning_presets:
+      add_new: 새로 추가
+      delete: 삭제
+      edit: 편집
+      edit_preset: 경고 틀 수정
+      title: 경고 틀 관리
   admin_mailer:
     new_report:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
@@ -519,6 +532,13 @@ ko:
     success_msg: 계정이 성공적으로 삭제되었습니다
     warning_html: 삭제가 보장되는 것은 이 인스턴스 상에서의 컨텐츠에 한합니다. 타 인스턴스 등, 외부에 멀리 공유된 컨텐츠는 흔적이 남아 삭제되지 않는 경우도 있습니다. 그리고 현재 접속이 불가능한 서버나, 업데이트를 받지 않게 된 서버에 대해서는 삭제가 반영되지 않을 수도 있습니다.
     warning_title: 공유된 컨텐츠에 대해서
+  directories:
+    directory: 프로필 디렉토리
+    explanation: 관심사에 대한 유저들을 발견합니다
+    explore_mastodon: "%{title} 탐사하기"
+    people:
+      one: "%{count}명"
+      other: "%{count}명"
   errors:
     '403': 이 페이지를 표시할 권한이 없습니다.
     '404': 당신이 찾으려는 페이지는 존재하지 않습니다.
@@ -690,9 +710,6 @@ ko:
     no_account_html: 계정이 없나요? <a href='%{sign_up_path}' target='_blank'>여기에서 가입 할 수 있습니다</a>
     proceed: 팔로우 하기
     prompt: '팔로우 하려 하고 있습니다:'
-  remote_interaction:
-    proceed: 진행
-    prompt: '이 게시물에 상호작용하려 하고 있습니다:'
   remote_unfollow:
     error: 에러
     title: 타이틀
@@ -901,6 +918,22 @@ ko:
       explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
       subject: 당신의 아카이브를 다운로드 가능합니다
       title: 아카이브 테이크 아웃
+    warning:
+      explanation:
+        disable: 당신의 계정이 동결 된 동안 당신의 계정은 유지 됩니다. 하지만 잠금이 풀릴 때까지 당신은 아무 것도 할 수 없습니다.
+        silence: 당신의 계정이 제한 된 동안엔 당신의 팔로워 이외엔 툿을 받아 볼 수 없고 공개 리스팅에서 제외 됩니다. 하지만 다른 사람들은 여전히 당신을 팔로우 가능합니다.
+        suspend: 당신의 계정은 정지 되었으며, 모든 툿과 업로드 한 미디어가 서버에서 삭제 되어 되돌릴 수 없습니다.
+      review_server_policies: 서버 정책 검토하기
+      subject:
+        disable: 당신의 계정 %{acct}가 동결 되었습니다
+        none: "%{acct}에게의 경고"
+        silence: 당신의 계정 %{acct}가 제한 되었습니다
+        suspend: 당신의 계정 %{acct}가 정지 되었습니다
+      title:
+        disable: 계정 동결 됨
+        none: 경고
+        silence: 계정 제한 됨
+        suspend: 계정 정지 됨
     welcome:
       edit_profile_action: 프로필 설정
       edit_profile_step: 아바타, 헤더를 업로드하고, 사람들에게 표시 될 이름을 바꾸는 것으로 당신의 프로필을 커스텀 할 수 있습니다. 사람들이 당신을 팔로우 하기 전에 리뷰를 거치게 하고 싶다면 계정을 잠그면 됩니다.
@@ -912,7 +945,6 @@ ko:
       review_preferences_action: 설정 바꾸기
       review_preferences_step: 당신의 설정을 확인하세요. 어떤 이메일로 알림을 받을 것인지, 기본적으로 어떤 프라이버시 설정을 사용할 것인지, 멀미가 없다면 GIF를 자동 재생하도록 설정할 수도 있습니다.
       subject: 마스토돈에 오신 것을 환영합니다
-      tip_bridge_html: 만약 트위터에서 오셨다면 <a href="%{bridge_url}">브리지 앱</a>을 통해 마스토돈에 있는 친구들을 찾을 수 있습니다. 친구들도 이 앱을 사용했을 때만 작동합니다!
       tip_federated_timeline: 연합 타임라인은 마스토돈 네트워크의 소방호스입니다. 다만 여기엔 당신의 이웃들이 구독 중인 것만 뜹니다, 모든 것이 다 오는 것은 아니예요.
       tip_following: 기본적으로 서버의 관리자를 팔로우 하도록 되어 있습니다. 흥미로운 사람들을 더 찾으려면 로컬과 연합 타임라인을 확인해 보세요.
       tip_local_timeline: 로컬 타임라인은 %{instance}의 소방호스입니다. 여기 있는 사람들은 당신의 이웃들이에요!

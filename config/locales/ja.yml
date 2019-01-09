@@ -48,6 +48,7 @@ ja:
       other: フォロワー
     following: フォロー中
     joined: "%{date} に登録"
+    last_active: 最後の活動
     link_verified_on: このリンクの所有権は %{date} に確認されました
     media: メディア
     moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
@@ -69,6 +70,9 @@ ja:
       moderator: Mod
     unfollow: フォロー解除
   admin:
+    account_actions:
+      action: アクションを実行
+      title: "%{acct}さんに対してアクションを実行"
     account_moderation_notes:
       create: 書き込む
       created_msg: モデレーションメモを書き込みました！
@@ -101,8 +105,10 @@ ja:
       enabled: 有効
       feed_url: フィードURL
       followers: フォロワー数
+      followers_local: "(%{local} ローカル)"
       followers_url: Followers URL
       follows: フォロー数
+      header: ヘッダー
       inbox_url: Inbox URL
       ip: IP
       location:
@@ -114,9 +120,10 @@ ja:
       media_attachments: 添付されたメディア
       memorialize: 追悼アカウント化
       moderation:
+        active: アクティブ
         all: すべて
-        silenced: サイレンス中
-        suspended: 停止中
+        silenced: サイレンス済み
+        suspended: 停止済み
         title: モデレーション
       moderation_notes: モデレーションメモ
       most_recent_activity: 直近の活動
@@ -132,6 +139,7 @@ ja:
       push_subscription_expires: PuSH購読期限
       redownload: アバターの更新
       remove_avatar: アイコンを削除
+      remove_header: ヘッダーを削除
       resend_confirmation:
         already_confirmed: メールアドレスは確認済みです
         send: 確認メールを再送
@@ -150,7 +158,6 @@ ja:
       shared_inbox_url: Shared Inbox URL
       show:
         created_reports: このアカウントで作られたレポート
-        report: レポート
         targeted_reports: このアカウントについてのレポート
       silence: サイレンス
       silenced: サイレンス済み
@@ -169,6 +176,7 @@ ja:
         assigned_to_self_report: "%{name} さんがレポート %{target} を自身の担当に割り当てました"
         change_email_user: "%{name} さんが %{target} さんのメールアドレスを変更しました"
         confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
+        create_account_warning: "%{name} さんが %{target} さんに警告メールを送信しました"
         create_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を追加しました"
         create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
         create_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストに追加しました"
@@ -227,6 +235,7 @@ ja:
       config: 構成
       feature_deletions: アカウント削除
       feature_invites: 招待リンク
+      feature_profile_directory: ディレクトリ
       feature_registrations: 新規登録
       feature_relay: 連合リレー
       features: 機能
@@ -252,7 +261,7 @@ ja:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
-          desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。メディアファイルの拒否は<strong>なし</strong>を使います。"
+          desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。メディアファイルを拒否したいだけの場合は<strong>なし</strong>を使います。"
           noop: なし
           silence: サイレンス
           suspend: 停止
@@ -261,11 +270,6 @@ ja:
       reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
       reject_reports: レポートを拒否
       reject_reports_hint: このドメインからのレポートをすべて無視します。停止とは無関係です
-      severities:
-        noop: なし
-        silence: サイレンス
-        suspend: 停止
-      severity: 深刻度
       show:
         affected_accounts:
           one: データベース中の一つのアカウントに影響します
@@ -275,7 +279,6 @@ ja:
           suspend: このドメインからの存在するすべてのアカウントの停止を戻す
         title: "%{domain}のドメインブロックを戻す"
         undo: 元に戻す
-      title: ドメインブロック
       undo: 元に戻す
     email_domain_blocks:
       add_new: 新規追加
@@ -287,11 +290,10 @@ ja:
         create: ドメインを追加
         title: メールアドレス用ブラックリスト新規追加
       title: メールブラックリスト
+    followers:
+      back_to_account: 戻る
+      title: "%{acct}さんのフォロワー"
     instances:
-      account_count: 既知のアカウント数
-      domain_name: ドメイン名
-      reset: リセット
-      search: 検索
       title: 既知のインスタンス
     invites:
       deactivate_all: すべて無効化
@@ -374,6 +376,9 @@ ja:
       preview_sensitive_media:
         desc_html: 他のウェブサイトにリンクを貼った際、メディアが閲覧注意としてマークされていてもサムネイルが表示されます
         title: OpenGraphによるプレビューで閲覧注意のメディアも表示する
+      profile_directory:
+        desc_html: ユーザーが見つかりやすくできるようになります
+        title: ディレクトリを有効にする
       registrations:
         closed_message:
           desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
@@ -433,13 +438,21 @@ ja:
       last_delivery: 最終配送
       title: WebSub
       topic: トピック
-    suspensions:
-      bad_acct_msg: 値が一致しませんでした。停止しようとしているアカウントに間違いはありませんか？
-      hint_html: 'アカウントの停止を確認するには、以下のフィールドに %{value} と入力してください:'
-      proceed: 完全に活動停止させる
-      title: "%{acct} を停止"
-      warning_html: 'このアカウントを停止すると、このアカウントから次のようなデータが<strong>不可逆的に</strong>削除されます:'
+    tags:
+      accounts: アカウント
+      hidden: 非表示
+      hide: ディレクトリから隠す
+      name: ハッシュタグ
+      title: ハッシュタグ
+      unhide: ディレクトリに表示する
+      visible: 表示
     title: 管理
+    warning_presets:
+      add_new: 追加
+      delete: 削除
+      edit: 編集
+      edit_preset: プリセット警告文を編集
+      title: プリセット警告文を管理
   admin_mailer:
     new_report:
       body: "%{reporter} が %{target} を通報しました"
@@ -517,6 +530,13 @@ ja:
     success_msg: アカウントは正常に削除されました
     warning_html: 削除が保証されるのはこのインスタンス上のコンテンツのみです。他のインスタンス等、外部に広く共有されたコンテンツについては痕跡が残ることがあります。また、現在接続できないサーバーや、あなたの更新を受け取らなくなったサーバーに対しては、削除は反映されません。
     warning_title: 共有されたコンテンツについて
+  directories:
+    directory: ディレクトリ
+    explanation: 興味のある人を見つけよう
+    explore_mastodon: "%{title}を探索"
+    people:
+      one: "%{count} 人"
+      other: "%{count} 人"
   errors:
     '403': このページを表示する権限がありません。
     '404': お探しのページは見つかりませんでした。
@@ -687,9 +707,6 @@ ja:
     no_account_html: アカウントをお持ちではないですか？<a href='%{sign_up_path}' target='_blank'>こちら</a>からサインアップできます
     proceed: フォローする
     prompt: 'フォローしようとしています:'
-  remote_interaction:
-    proceed: 進む
-    prompt: 'このトゥートに返信しようとしています:'
   remote_unfollow:
     error: エラー
     title: タイトル
@@ -898,6 +915,22 @@ ja:
       explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
       subject: アーカイブの準備ができました
       title: アーカイブの取り出し
+    warning:
+      explanation:
+        disable: アカウントが凍結されている間、データはそのまま残りますが、凍結が解除されるまでは何の操作もできません。
+        silence: あなたのアカウントは制限されていますが、あなたをフォローしているユーザーのみ、このサーバー上の投稿を見ることができます。そしてあなたは様々な公開リストから除外されるかもしれません。ただし、他のユーザーは手動であなたをフォローすることができます。
+        suspend: あなたのアカウントは停止されています。あなたの投稿とアップロードされたメディアファイルは、このサーバーとあなたのフォロワーが参加していたサーバーから完全に削除されました。
+      review_server_policies: サーバーのポリシーを確認
+      subject:
+        disable: あなたのアカウント %{acct} は凍結されています
+        none: "%{acct} に対する警告"
+        silence: あなたのアカウント %{acct} はサイレンスにされています
+        suspend: あなたのアカウント %{acct} は停止されています
+      title:
+        disable: アカウントが凍結されました
+        none: 警告
+        silence: アカウントがサイレンスにされました
+        suspend: アカウントが停止されました
     welcome:
       edit_profile_action: プロフィールを設定
       edit_profile_step: アバター画像やヘッダー画像をアップロードしたり、表示名やその他プロフィールを変更しカスタマイズすることができます。新しいフォロワーからのフォローを許可する前に検討したい場合、アカウントを承認制にすることができます。
@@ -909,7 +942,6 @@ ja:
       review_preferences_action: 設定の変更
       review_preferences_step: 受け取りたいメールや投稿の公開範囲などの設定を必ず行ってください。不快でないならアニメーション GIF の自動再生を有効にすることもできます。
       subject: Mastodon へようこそ
-      tip_bridge_html: もし Twitter から来られたのであれば、<a href="%{bridge_url}">bridge app</a> を使用することで Mastodon での友達のアカウントを探すこともできます。ただし bridge app を使用したことのある相手に限ります！
       tip_federated_timeline: 連合タイムラインは Mastodon ネットワークの流れを見られるものです。ただしあなたと同じインスタンスの人がフォローしている人だけが含まれるので、それが全てではありません。
       tip_following: 標準では自動でインスタンスの管理者をフォローしています。もっと興味のある人たちを見つけるには、ローカルタイムラインと連合タイムラインを確認してください。
       tip_local_timeline: ローカルタイムラインは %{instance} にいる人々の流れを見られるものです。彼らはあなたと同じインスタンスにいる隣人のようなものです！

@@ -2,12 +2,20 @@
 eu:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Toot sintaxia erabili dezakezu, URLak, traolak eta aipamenak
+      admin_account_action:
+        send_email_notification: Erabiltzaileak bere kontuarekin gertatutakoaren azalpen bat jasoko du
+        text_html: Aukerakoa. Toot sintaxia erabili dezakezu. <a href="%{path}">Abisu aurre-ezarpenak</a> gehitu ditzakezu denbora aurrezteko
+        type_html: Erabaki zer egin <strong>%{acct}</strong> kontuarekin
+        warning_preset_id: Aukerakoa. Zure testua gehitu dezakezu aurre-ezarpenaren ostean
       defaults:
         autofollow: Gonbidapena erabiliz izena ematen dutenek automatikoki jarraituko dizute
         avatar: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px neurrira eskalatuko da
         bot: Kontu honek nagusiki automatizatutako ekintzak burutzen ditu eta agian ez du inork monitorizatzen
         context: Iragazkia aplikatzeko testuinguru bat edo batzuk
         digest: Soilik jarduerarik gabeko epe luze bat eta gero, eta soilik ez zeudela mezu pertsonalen bat jaso baduzu
+        discoverable_html: <a href="%{path}" target="_blank">Direktorioa</a>k Jendea interesen eta jardueraren arabera aurkitzea ahalbidetzen du. Gutxienez %{min_followers} jarraitzaile behar dira bertan agertzeko
         email: Baieztapen e-mail bat bidaliko zaizu
         fields: 4 elementu bistaratu ditzakezu taula batean zure profilean
         header: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px eskalara txikituko da
@@ -18,6 +26,7 @@ eu:
         password: Erabili 8 karaktere gutxienez
         phrase: Bat egingo du Maiuskula/minuskula kontuan hartu gabe eta edukiaren abisua kontuan hartu gabe
         scopes: Zeintzuk API atzitu ditzakeen aplikazioak. Goi mailako arloa aukeratzen baduzu, ez dituzu azpikoak aukeratu behar.
+        setting_aggregate_reblogs: Ez erakutsi buktzada berriak berriki bultzada jaso duten tootentzat (berriki jasotako bultzadei eragiten die besterik ez)
         setting_default_language: Zure Toot-en hizkuntza automatikoki antzeman daiteke, baina ez da beti zehatza
         setting_display_media_default: Ezkutatu hunkigarri gisa markatutako multimedia
         setting_display_media_hide_all: Ezkutatu multimedia guztia beti
@@ -38,6 +47,17 @@ eu:
         fields:
           name: Etiketa
           value: Edukia
+      account_warning_preset:
+        text: Aurrez ezarritako testua
+      admin_account_action:
+        send_email_notification: Jakinarazi erabiltzaileari e-mail bidez
+        text: Abisu pertsonalizatua
+        type: Ekintza
+        types:
+          disable: Desaktibatu
+          none: Ez egin ezer
+          silence: Isiltarazi
+        warning_preset_id: Erabili aurre-ezarritako abisu bat
       defaults:
         autofollow: Gonbidatu zure kontua jarraitzera
         avatar: Abatarra
@@ -48,6 +68,7 @@ eu:
         context: Iragazkiaren testuinguruak
         current_password: Oraingo pasahitza
         data: Datuak
+        discoverable: Zerrendatu kontu hau direktorioan
         display_name: Pantaila-izena
         email: E-mail helbidea
         expires_in: Iraungitzea
@@ -63,6 +84,7 @@ eu:
         otp_attempt: Bi faktoreetako kodea
         password: Pasahitza
         phrase: Hitz edo esaldi gakoa
+        setting_aggregate_reblogs: Taldekatu bultzadak denbora-lerroetan
         setting_auto_play_gif: Erreproduzitu GIF animatuak automatikoki
         setting_boost_modal: Erakutsi baieztapen elkarrizketa-koadroa bultzada eman aurretik
         setting_default_language: Argitalpenen hizkuntza

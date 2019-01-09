@@ -51,6 +51,7 @@ const initialState = ImmutableMap({
   in_reply_to: null,
   is_composing: false,
   is_submitting: false,
+  is_changing_upload: false,
   is_uploading: false,
   progress: 0,
   media_attachments: ImmutableList(),
@@ -79,6 +80,7 @@ function clearAll(state) {
     map.set('spoiler', false);
     map.set('spoiler_text', '');
     map.set('is_submitting', false);
+    map.set('is_changing_upload', false);
     map.set('in_reply_to', null);
     map.set('privacy', state.get('default_privacy'));
     map.set('sensitive', false);
@@ -248,13 +250,15 @@ export default function compose(state = initialState, action) {
       map.set('idempotencyKey', uuid());
     });
   case COMPOSE_SUBMIT_REQUEST:
-  case COMPOSE_UPLOAD_CHANGE_REQUEST:
     return state.set('is_submitting', true);
+  case COMPOSE_UPLOAD_CHANGE_REQUEST:
+    return state.set('is_changing_upload', true);
   case COMPOSE_SUBMIT_SUCCESS:
     return clearAll(state);
   case COMPOSE_SUBMIT_FAIL:
-  case COMPOSE_UPLOAD_CHANGE_FAIL:
     return state.set('is_submitting', false);
+  case COMPOSE_UPLOAD_CHANGE_FAIL:
+    return state.set('is_changing_upload', false);
   case COMPOSE_UPLOAD_REQUEST:
     return state.set('is_uploading', true);
   case COMPOSE_UPLOAD_SUCCESS:
@@ -300,7 +304,7 @@ export default function compose(state = initialState, action) {
     return insertEmoji(state, action.position, action.emoji, action.needsSpace);
   case COMPOSE_UPLOAD_CHANGE_SUCCESS:
     return state
-      .set('is_submitting', false)
+      .set('is_changing_upload', false)
       .update('media_attachments', list => list.map(item => {
         if (item.get('id') === action.media.id) {
           return fromJS(action.media);

@@ -30,7 +30,6 @@ export default class ScrollableList extends PureComponent {
     hasMore: PropTypes.bool,
     prepend: PropTypes.node,
     alwaysPrepend: PropTypes.bool,
-    alwaysShowScrollbar: PropTypes.bool,
     emptyMessage: PropTypes.node,
     children: PropTypes.node,
   };
@@ -50,7 +49,7 @@ export default class ScrollableList extends PureComponent {
       const { scrollTop, scrollHeight, clientHeight } = this.node;
       const offset = scrollHeight - scrollTop - clientHeight;
 
-      if (400 > offset && this.props.onLoadMore && !this.props.isLoading) {
+      if (400 > offset && this.props.onLoadMore && this.props.hasMore && !this.props.isLoading) {
         this.props.onLoadMore();
       }
 
@@ -206,11 +205,11 @@ export default class ScrollableList extends PureComponent {
   }
 
   render () {
-    const { children, scrollKey, trackScroll, shouldUpdateScroll, showLoading, isLoading, hasMore, prepend, alwaysPrepend, alwaysShowScrollbar, emptyMessage, onLoadMore } = this.props;
+    const { children, scrollKey, trackScroll, shouldUpdateScroll, showLoading, isLoading, hasMore, prepend, alwaysPrepend, emptyMessage, onLoadMore } = this.props;
     const { fullscreen } = this.state;
     const childrenCount = React.Children.count(children);
 
-    const loadMore     = (hasMore && childrenCount > 0 && onLoadMore) ? <LoadMore visible={!isLoading} onClick={this.handleLoadMore} /> : null;
+    const loadMore     = (hasMore && onLoadMore) ? <LoadMore visible={!isLoading} onClick={this.handleLoadMore} /> : null;
     let scrollableArea = null;
 
     if (showLoading) {
@@ -225,7 +224,7 @@ export default class ScrollableList extends PureComponent {
           </div>
         </div>
       );
-    } else if (isLoading || childrenCount > 0 || !emptyMessage) {
+    } else if (isLoading || childrenCount > 0 || hasMore || !emptyMessage) {
       scrollableArea = (
         <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove}>
           <div role='feed' className='item-list'>
@@ -249,10 +248,8 @@ export default class ScrollableList extends PureComponent {
         </div>
       );
     } else {
-      const scrollable = alwaysShowScrollbar;
-
       scrollableArea = (
-        <div className={classNames({ scrollable, fullscreen })} ref={this.setRef} style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column' }}>
+        <div className={classNames('scrollable scrollable--flex', { fullscreen })} ref={this.setRef}>
           {alwaysPrepend && prepend}
 
           <div className='empty-column-indicator'>

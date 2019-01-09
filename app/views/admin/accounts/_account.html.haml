@@ -13,3 +13,6 @@
       %time.time-ago{ datetime: account.user_current_sign_in_at.iso8601, title: l(account.user_current_sign_in_at) }= l account.user_current_sign_in_at
     - else
       \-
+  %td
+    = table_link_to 'circle', t('admin.accounts.web'), web_path("accounts/#{account.id}")
+    = table_link_to 'globe', t('admin.accounts.public'), TagManager.instance.url_for(account)

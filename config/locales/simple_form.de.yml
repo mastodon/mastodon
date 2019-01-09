@@ -2,12 +2,20 @@
 de:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Du kannst Toot-Syntax benutzen, wie zum Beispiel URLs, Hashtags und Erwähnungen
+      admin_account_action:
+        send_email_notification: Der Benutzer erhält eine Erklärung, was mit seinem Account geschehen ist
+        text_html: Optional. Du kannst Toot-Syntax benutzen. Du kannst <a href="%{path}">Warnungsvorlagen</a> benutzen um Zeit zu sparen
+        type_html: Wähle aus, was du mit <strong>%{acct}</strong> machen möchtest
+        warning_preset_id: Optional. Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen
       defaults:
         autofollow: Leute die sich über deine Einladung registrieren werden dir automatisch folgen
         avatar: PNG, GIF oder JPG. Maximal %{size}. Wird auf %{dimensions} px herunterskaliert
         bot: Dieses Konto führt lediglich automatisierte Aktionen durch und wird möglicherweise nicht überwacht
         context: Ein oder mehrere Aspekte, wo der Filter greifen soll
         digest: Wenn du lange Zeit inaktiv bist, wird dir eine Zusammenfassung von Erwähnungen in deiner Abwesenheit zugeschickt
+        discoverable_html: Das <a href="%{path}" target="_blank">Verzeichnis</a> lässt dich neue Benutzerkonten finden basierend auf Interessen und Aktivitäten. Dies benötigt mindestens %{min_followers} Follower
         email: Du wirst ein Bestätigungs-E-Mail erhalten
         fields: Du kannst bis zu 4 Elemente als Tabelle dargestellt auf deinem Profil anzeigen lassen
         header: PNG, GIF oder JPG. Maximal %{size}. Wird auf %{dimensions} px herunterskaliert
@@ -18,6 +26,7 @@ de:
         password: Verwende mindestens 8 Zeichen
         phrase: Wird unabhängig vom umgebenen Text oder Inhaltswarnung eines Beitrags verglichen
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
+        setting_aggregate_reblogs: Zeige keine neuen Boosts für Beiträge, die nicht kürzlich geboostet wurden (dies betrifft nur neulich erhaltene Boosts)
         setting_default_language: Die Sprache der Beiträge kann automatisch erkannt werden, aber dies ist nicht immer genau
         setting_display_media_default: Verstecke Medien, die als sensibel markiert sind
         setting_display_media_hide_all: Alle Medien immer verstecken
@@ -38,6 +47,18 @@ de:
         fields:
           name: Bezeichnung
           value: Inhalt
+      account_warning_preset:
+        text: Vorlagentext
+      admin_account_action:
+        send_email_notification: Benachrichtige den Nutzer per E-Mail
+        text: Eigene Warnung
+        type: Aktion
+        types:
+          disable: Deaktivieren
+          none: Nichts tun
+          silence: Stummschalten
+          suspend: Deaktivieren und unwiderruflich Benutzerdaten löschen
+        warning_preset_id: Benutze eine Warnungsvorlage
       defaults:
         autofollow: Einladen, um deinen Account zu folgen
         avatar: Profilbild
@@ -48,6 +69,7 @@ de:
         context: Aspekte filtern
         current_password: Derzeitiges Passwort
         data: Daten
+        discoverable: Dieses Benutzerkonto im Verzeichnis auflisten
         display_name: Anzeigename
         email: E-Mail-Adresse
         expires_in: Läuft ab
@@ -63,6 +85,7 @@ de:
         otp_attempt: Zwei-Faktor-Authentisierungs-Code
         password: Passwort
         phrase: Schlagwort oder Phrase
+        setting_aggregate_reblogs: Gruppenboosts in Zeitleisten
         setting_auto_play_gif: Animierte GIFs automatisch abspielen
         setting_boost_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag geteilt wird
         setting_default_language: Beitragssprache

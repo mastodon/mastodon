@@ -1,0 +1,57 @@
+- content_for :page_title do
+  = t('directories.explore_mastodon', title: site_title)
+
+- content_for :header_tags do
+  %meta{ name: 'description', content: t('directories.explanation') }
+
+  = opengraph 'og:site_name', t('about.hosted_on', domain: site_hostname)
+  = opengraph 'og:type', 'website'
+  = opengraph 'og:title', t('directories.explore_mastodon', title: site_title)
+  = opengraph 'og:description', t('directories.explanation')
+  = opengraph 'og:image', File.join(root_url, 'android-chrome-192x192.png')
+
+.page-header
+  %h1= t('directories.explore_mastodon', title: site_title)
+  %p= t('directories.explanation')
+
+.grid
+  .column-0
+    - if @accounts.empty?
+      = nothing_here
+    - else
+      .directory
+        %table.accounts-table
+          %tbody
+            - @accounts.each do |account|
+              %tr
+                %td= account_link_to account
+                %td.accounts-table__count.optional
+                  = number_to_human account.statuses_count, strip_insignificant_zeros: true
+                  %small= t('accounts.posts', count: account.statuses_count).downcase
+                %td.accounts-table__count.optional
+                  = number_to_human account.followers_count, strip_insignificant_zeros: true
+                  %small= t('accounts.followers', count: account.followers_count).downcase
+                %td.accounts-table__count
+                  - if account.last_status_at.present?
+                    %time.time-ago{ datetime: account.last_status_at.iso8601, title: l(account.last_status_at) }= l account.last_status_at
+                  - else
+                    \-
+                  %small= t('accounts.last_active')
+
+      = paginate @accounts
+
+  .column-1
+    - if @tags.empty?
+      .nothing-here.nothing-here--flexible
+    - else
+      - @tags.each do |tag|
+        .directory__tag{ class: tag.id == @tag&.id ? 'active' : nil }
+          = link_to explore_hashtag_path(tag) do
+            %h4
+              = fa_icon 'hashtag'
+              = tag.name
+              %small= t('directories.people', count: tag.accounts_count)
+
+            .avatar-stack
+              - tag.cached_sample_accounts.each do |account|
+                = image_tag current_account&.user&.setting_auto_play_gif ? account.avatar_original_url : account.avatar_static_url, width: 48, height: 48, alt: '', class: 'account__avatar'

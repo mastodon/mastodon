@@ -26,10 +26,10 @@ const initialTimeline = ImmutableMap({
   items: ImmutableList(),
 });
 
-const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial) => {
+const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, isLoadingRecent) => {
   return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
     mMap.set('isLoading', false);
-    if (!next) mMap.set('hasMore', false);
+    if (!next && !isLoadingRecent) mMap.set('hasMore', false);
 
     if (!statuses.isEmpty()) {
       mMap.update('items', ImmutableList(), oldIds => {
@@ -88,7 +88,7 @@ const deleteStatus = (state, id, accountId, references) => {
 };
 
 const clearTimeline = (state, timeline) => {
-  return state.updateIn([timeline, 'items'], list => list.clear());
+  return state.set(timeline, initialTimeline);
 };
 
 const filterTimelines = (state, relationship, statuses) => {
@@ -126,7 +126,7 @@ export default function timelines(state = initialState, action) {
   case TIMELINE_EXPAND_FAIL:
     return state.update(action.timeline, initialTimeline, map => map.set('isLoading', false));
   case TIMELINE_EXPAND_SUCCESS:
-    return expandNormalizedTimeline(state, action.timeline, fromJS(action.statuses), action.next, action.partial);
+    return expandNormalizedTimeline(state, action.timeline, fromJS(action.statuses), action.next, action.partial, action.isLoadingRecent);
   case TIMELINE_UPDATE:
     return updateTimeline(state, action.timeline, fromJS(action.status));
   case TIMELINE_DELETE:

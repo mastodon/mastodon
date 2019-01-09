@@ -48,6 +48,7 @@ pt-BR:
       other: Seguidores
     following: Seguindo
     joined: Participa desde %{date}
+    last_active: última atividade
     link_verified_on: A posse desse link foi checada em %{date}
     media: Mídia
     moved_html: "%{name} se mudou para %{new_profile_link}:"
@@ -69,6 +70,9 @@ pt-BR:
       moderator: Moderador
     unfollow: Deixar de seguir
   admin:
+    account_actions:
+      action: Tomar uma ação
+      title: Realizar uma ação de moderação em %{acct}
     account_moderation_notes:
       create: Criar uma advertência
       created_msg: Nota de moderação criada com sucesso!
@@ -101,8 +105,10 @@ pt-BR:
       enabled: Ativado
       feed_url: URL do feed
       followers: Seguidores
+      followers_local: "(%{local} local)"
       followers_url: URL de seguidores
       follows: Segue
+      header: Cabeçalho
       inbox_url: URL da caixa de entrada
       ip: IP
       location:
@@ -114,6 +120,7 @@ pt-BR:
       media_attachments: Mídia(s) anexada(s)
       memorialize: Tornar um memorial
       moderation:
+        active: Ativo
         all: Todos
         silenced: Silenciados
         suspended: Suspensos
@@ -132,6 +139,7 @@ pt-BR:
       push_subscription_expires: Inscrição PuSH expira
       redownload: Atualizar avatar
       remove_avatar: Remover avatar
+      remove_header: Remover cabeçalho
       resend_confirmation:
         already_confirmed: Este usuário já está confirmado
         send: Re-enviar o e-mail de confirmação
@@ -150,7 +158,6 @@ pt-BR:
       shared_inbox_url: URL da caixa de entrada compartilhada
       show:
         created_reports: Denúncias criadas por esta conta
-        report: relatórios
         targeted_reports: Denúncias feitas sobre esta conta
       silence: Silenciar
       silenced: Silenciado
@@ -169,6 +176,7 @@ pt-BR:
         assigned_to_self_report: "%{name} designou a denúncia %{target} para si"
         change_email_user: "%{name} mudou o endereço de e-mail do usuário %{target}"
         confirm_user: "%{name} confirmou o endereço de e-mail do usuário %{target}"
+        create_account_warning: "%{name} enviou um aviso para %{target}"
         create_custom_emoji: "%{name} enviou o emoji novo %{target}"
         create_domain_block: "%{name} bloqueou o domínio %{target}"
         create_email_domain_block: "%{name} colocou o domínio de e-mail %{target} na lista negra"
@@ -227,6 +235,7 @@ pt-BR:
       config: Configuração
       feature_deletions: Remoção de contas
       feature_invites: Convites
+      feature_profile_directory: Diretório de perfis
       feature_registrations: Cadastros
       feature_relay: Repetidor da federação
       features: Funcionalidades
@@ -261,11 +270,6 @@ pt-BR:
       reject_media_hint: Remove arquivos de mídia armazenados localmente e recusa quaisquer outros no futuro. Irrelevante para suspensões
       reject_reports: Rejeitar denúncias
       reject_reports_hint: Ignorar todas as denúncias vindas deste domíno. Irrelevante para suspensões
-      severities:
-        noop: Nenhum
-        silence: Silêncio
-        suspend: Suspensão
-      severity: Rigidez
       show:
         affected_accounts:
           one: Uma conta no banco de dados foi afetada
@@ -275,7 +279,6 @@ pt-BR:
           suspend: Retirar suspensão de todas as contas neste domínio
         title: Retirar bloqueio de domínio de %{domain}
         undo: Retirar
-      title: Bloqueios de domínio
       undo: Retirar
     email_domain_blocks:
       add_new: Adicionar novo
@@ -287,11 +290,10 @@ pt-BR:
         create: Adicionar domínio
         title: Novo bloqueio de domínio de e-mail
       title: Bloqueio de Domínio de E-mail
+    followers:
+      back_to_account: Voltar para a conta
+      title: Pessoas que seguem %{acct}
     instances:
-      account_count: Contas conhecidas
-      domain_name: Domínio
-      reset: Resetar
-      search: Buscar
       title: Instâncias conhecidas
     invites:
       deactivate_all: Desativar todos
@@ -374,6 +376,9 @@ pt-BR:
       preview_sensitive_media:
         desc_html: A pré-visualização do link em outros sites vai incluir uma miniatura mesmo se a mídia estiver marcada como sensível
         title: Mostrar mídia sensível em pré-visualizações OpenGraph
+      profile_directory:
+        desc_html: Permitir que usuários possam ser descobertos
+        title: Ativar diretório de perfis
       registrations:
         closed_message:
           desc_html: Exibido na página inicial quando cadastros estão fechados. Você pode usar tags HTML
@@ -433,13 +438,21 @@ pt-BR:
       last_delivery: Última entrega
       title: WebSub
       topic: Tópico
-    suspensions:
-      bad_acct_msg: Os valores de confirmação não correspondem. Você está suspendendo a conta certa?
-      hint_html: 'Para confirmar a suspensão da conta, por favor digite %{value} no campo abaixo:'
-      proceed: Prosseguir
-      title: Suspender %{acct}
-      warning_html: 'Suspender essa conta vai remover <strong>irreversivelmente</strong> dados dessa conta, o que inclui:'
+    tags:
+      accounts: Contas
+      hidden: Escondido
+      hide: Esconder do diretório
+      name: Hashtag
+      title: Hashtags
+      unhide: Mostrar no diretório
+      visible: Visível
     title: Administração
+    warning_presets:
+      add_new: Adicionar um novo
+      delete: Excluir
+      edit: Editar
+      edit_preset: Editar o aviso pré-definido
+      title: Gerenciar os avisos pré-definidos
   admin_mailer:
     new_report:
       body: "%{reporter} denunciou %{target}"
@@ -517,6 +530,13 @@ pt-BR:
     success_msg: A sua conta foi excluída com sucesso
     warning_html: Apenas a exclusão de conteúdo desta instância em particular é garantida. Conteúdo que tenha sido largamente compartilhado muito provavelmente deixará traços. Servidores offline e servidores que se desinscreveram de suas atualizações não irão atualizar as suas bases de dados.
     warning_title: Disponibilidade de conteúdo disseminado
+  directories:
+    directory: Diretório de perfis
+    explanation: Descobrir usuários baseado em seus interesses
+    explore_mastodon: Explorar %{title}
+    people:
+      one: "%{count} pessoas"
+      other: "%{count} pessoa"
   errors:
     '403': Você não tem permissão para ver esta página.
     '404': A página pela qual você está procurando não existe.
@@ -688,9 +708,6 @@ pt-BR:
     no_account_html: Não tem uma conta? Você pode <a href='%{sign_up_path}' target='_blank'>cadastrar-se aqui</a>
     proceed: Prosseguir para seguir
     prompt: 'Você irá seguir:'
-  remote_interaction:
-    proceed: Continue para interagir
-    prompt: 'Você quer interagir com este toot:'
   remote_unfollow:
     error: Erro
     title: Título
@@ -899,6 +916,22 @@ pt-BR:
       explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
       subject: Seu arquivo está pronto para ser baixado
       title: Baixar arquivo
+    warning:
+      explanation:
+        disable: Enquanto sua conta está congelada, seus dados estão intactos, mas você não pode realizar nenhuma ação até que sua conta seja desbloqueada.
+        silence: Enquanto sua conta está limitada, somente pessoas que já estão seguindo você poderão ver seus toots nesse servidor, e você pode ser excluído de diversas listagens públicas. No entanto, outros ainda podem seguir você manualmente.
+        suspend: Sua conta está suspensa e todos os seus toots e mídias foram irreversivelmente removidas desse servidor e de servidores onde você tinha seguidores.
+      review_server_policies: Revisar as políticas do servidor
+      subject:
+        disable: Sua conta %{acct} foi congelada
+        none: Aviso para %{acct}
+        silence: Sua conta %{acct} foi limitada
+        suspend: Sua conta %{acct} foi suspensa
+      title:
+        disable: Conta congelada
+        none: Aviso
+        silence: Conta limitada
+        suspend: Conta suspensa
     welcome:
       edit_profile_action: Configurar perfil
       edit_profile_step: Você pode customizar o seu perfil enviando um avatar, uma imagem de topo, mudando seu nome de exibição, dentre outros. Se você gostaria de aprovar novos seguidores antes que eles possam seguir você, você pode trancar a sua conta.
@@ -910,7 +943,6 @@ pt-BR:
       review_preferences_action: Mudar as preferências
       review_preferences_step: Não se esqueça de configurar suas preferências, como quais e-mails você gostaria de receber, que nível de privacidade você gostaria que seus posts tenham por padrão. Se você não sofre de enjôo com movimento, você pode habilitar GIFs animando automaticamente.
       subject: Boas-vindas ao Mastodon
-      tip_bridge_html: Se você está vindo do Twitter, você pode encontrar pessoas conhecidas que estão no Mastodon usando <a href="%{bridge_url}">app de associação</a>. Mas só funciona se as pessoas também estiverem usando o app!
       tip_federated_timeline: A timeline global é uma visão contínua da rede do Mastodon. Mas ela só inclui pessoas que outras pessoas da sua instância estão seguindo, então não é a rede completa.
       tip_following: Você vai seguir administrador(es) da sua instância por padrão. Para encontrar mais gente interessante, confira as timelines local e global.
       tip_local_timeline: A timeline local é uma visão contínua das pessoas que estão em %{instance}. Esses são seus vizinhos próximos!

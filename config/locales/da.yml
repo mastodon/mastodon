@@ -69,6 +69,8 @@ da:
       moderator: Moderator
     unfollow: Følg ikke længere
   admin:
+    account_actions:
+      action: Udfør handling
     account_moderation_notes:
       create: Læg en note
       created_msg: Moderator notat succesfuldt oprettet!
@@ -149,7 +151,6 @@ da:
       shared_inbox_url: Link til delt indbakke
       show:
         created_reports: Anmeldelser oprettet af denne konto
-        report: anmeld
         targeted_reports: Anmeldelser fra denne konto
       silence: Dæmp
       silenced: Dæmpet
@@ -258,11 +259,6 @@ da:
       reject_media: Afvis medie filer
       reject_media_hint: Fjerner lokalt lagrede multimedie filer og nægter at hente nogen i fremtiden. Irrelevant for udelukkelser
       reject_reports: Afvis anmeldelser
-      severities:
-        noop: Ingen
-        silence: Dæmp
-        suspend: Udeluk
-      severity: Alvorlighed
       show:
         affected_accounts:
           one: En konto i databasen påvirket
@@ -272,7 +268,6 @@ da:
           suspend: Fjern udelukkelsen af alle eksisterende konti fra dette domæne
         title: Annuller domæne blokeringen for domænet %{domain}
         undo: Fortryd
-      title: Domæne blokeringer
       undo: Fortryd
     email_domain_blocks:
       add_new: Tilføj ny
@@ -284,11 +279,9 @@ da:
         create: Tilføj domæne
         title: Ny email blokade opslag
       title: Email sortliste
+    followers:
+      back_to_account: Tilbage til konto
     instances:
-      account_count: Kendte konti
-      domain_name: Domæne
-      reset: Nulstil
-      search: Søg
       title: Kendte instanser
     invites:
       deactivate_all: Deaktiver alle
@@ -427,12 +420,9 @@ da:
       last_delivery: Sidste levering
       title: Websub
       topic: Emne
-    suspensions:
-      bad_acct_msg: Bekræftelsværdien stemte ikke overens. Er du ved at udelukke den rigtige konto?
-      hint_html: 'For at bekræfte udelukkelsen af kontoen, indtast venligst %{value} i nedenstående felt:'
-      proceed: Fortsæt
-      title: Udeluk %{acct}
-      warning_html: 'Udelukkelse af denne konto vil <strong>uigenkaldeligt</strong> slette al data fra denne konto, hvilket indebærer:'
+    tags:
+      accounts: Kontoer
+      hidden: Skjult
     title: Administration
   admin_mailer:
     new_report:
@@ -682,9 +672,6 @@ da:
     no_account_html: Har du ikke en konto? Du kan <a href='%{sign_up_path}' target='_blank'>oprette dig her</a>
     proceed: Fortsæt for at følge
     prompt: 'Du er ved at følge:'
-  remote_interaction:
-    proceed: Fortsæt for at interagere
-    prompt: 'Du ønsker at interagere med dette trut:'
   remote_unfollow:
     error: Fejl
     title: Titel
@@ -824,7 +811,6 @@ da:
       review_preferences_action: Ændre præferencer
       review_preferences_step: Vær sikker på at sætte dine præferencer, så som hvilke emails du kunne tænke dig at modtage, eller hvilket niveau af privatliv der skal være standard for dine opslag. Hvis du kunne tænke dig ikke at blive køresyg, kan du vælge at aktivere automatisk afspilning af GIFfer.
       subject: Velkommen til Mastodon
-      tip_bridge_html: Hvis du kommer fra Twitter, kan du finde dine venner på Mastodon ved at bruge <a href="%{bridge_url}">bridge appen</a>. Den virker dog kun hvis de også bruger bridge appen!
       tip_federated_timeline: Den delte tidslinje er et brandslange agtigt indblik over Mastodon netværket. Men det inkluderer kun folk dine naboer abonnerer på, så den er ikke fuldendt.
       tip_following: Du følger som standard administratoren(e) for den server du er på. For at finde flere folk, tjek både den lokale og fælles tidslinje.
       tip_local_timeline: Den lokale tidslinje er et have af folk i %{instance}. Disse er dine umiddelbare naboer!

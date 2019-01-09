@@ -7,7 +7,7 @@ RSpec.describe PostStatusService, type: :service do
     account = Fabricate(:account)
     text = "test status update"
 
-    status = subject.call(account, text)
+    status = subject.call(account, text: text)
 
     expect(status).to be_persisted
     expect(status.text).to eq text
@@ -18,11 +18,22 @@ RSpec.describe PostStatusService, type: :service do
     account = Fabricate(:account)
     text = "test status update"
 
-    status = subject.call(account, text, in_reply_to_status)
+    status = subject.call(account, text: text, thread: in_reply_to_status)
 
     expect(status).to be_persisted
     expect(status.text).to eq text
     expect(status.thread).to eq in_reply_to_status
+  end
+
+  it 'schedules a status' do
+    account = Fabricate(:account)
+    future  = Time.now.utc + 2.hours
+
+    status = subject.call(account, text: 'Hi future!', scheduled_at: future)
+
+    expect(status).to be_a ScheduledStatus
+    expect(status.scheduled_at).to eq future
+    expect(status.params['text']).to eq 'Hi future!'
   end
 
   it 'creates response to the original status of boost' do
@@ -31,7 +42,7 @@ RSpec.describe PostStatusService, type: :service do
     account = Fabricate(:account)
     text = "test status update"
 
-    status = subject.call(account, text, in_reply_to_status)
+    status = subject.call(account, text: text, thread: in_reply_to_status)
 
     expect(status).to be_persisted
     expect(status.text).to eq text
@@ -68,6 +79,13 @@ RSpec.describe PostStatusService, type: :service do
     expect(status.visibility).to eq "private"
   end
 
+  it 'creates a status with limited visibility for silenced users' do
+    status = subject.call(Fabricate(:account, silenced: true), text: 'test', visibility: :public)
+
+    expect(status).to be_persisted
+    expect(status.visibility).to eq "unlisted"
+  end
+
   it 'creates a status for the given application' do
     application = Fabricate(:application)
 
@@ -81,7 +99,7 @@ RSpec.describe PostStatusService, type: :service do
     account = Fabricate(:account)
     text = 'This is an English text.'
 
-    status = subject.call(account, text)
+    status = subject.call(account, text: text)
 
     expect(status.language).to eq 'en'
   end
@@ -92,7 +110,7 @@ RSpec.describe PostStatusService, type: :service do
     allow(ProcessMentionsService).to receive(:new).and_return(mention_service)
     account = Fabricate(:account)
 
-    status = subject.call(account, "test status update")
+    status = subject.call(account, text: "test status update")
 
     expect(ProcessMentionsService).to have_received(:new)
     expect(mention_service).to have_received(:call).with(status)
@@ -104,7 +122,7 @@ RSpec.describe PostStatusService, type: :service do
     allow(ProcessHashtagsService).to receive(:new).and_return(hashtags_service)
     account = Fabricate(:account)
 
-    status = subject.call(account, "test status update")
+    status = subject.call(account, text: "test status update")
 
     expect(ProcessHashtagsService).to have_received(:new)
     expect(hashtags_service).to have_received(:call).with(status)
@@ -117,7 +135,7 @@ RSpec.describe PostStatusService, type: :service do
 
     account = Fabricate(:account)
 
-    status = subject.call(account, "test status update")
+    status = subject.call(account, text: "test status update")
 
     expect(DistributionWorker).to have_received(:perform_async).with(status.id)
     expect(Pubsubhubbub::DistributionWorker).to have_received(:perform_async).with(status.stream_entry.id)
@@ -128,7 +146,7 @@ RSpec.describe PostStatusService, type: :service do
     allow(LinkCrawlWorker).to receive(:perform_async)
     account = Fabricate(:account)
 
-    status = subject.call(account, "test status update")
+    status = subject.call(account, text: "test status update")
 
     expect(LinkCrawlWorker).to have_received(:perform_async).with(status.id)
   end
@@ -139,8 +157,7 @@ RSpec.describe PostStatusService, type: :service do
 
     status = subject.call(
       account,
-      "test status update",
-      nil,
+      text: "test status update",
       media_ids: [media.id],
     )
 
@@ -153,8 +170,7 @@ RSpec.describe PostStatusService, type: :service do
     expect do
       subject.call(
         account,
-        "test status update",
-        nil,
+        text: "test status update",
         media_ids: [
           Fabricate(:media_attachment, account: account),
           Fabricate(:media_attachment, account: account),
@@ -175,8 +191,7 @@ RSpec.describe PostStatusService, type: :service do
     expect do
       subject.call(
         account,
-        "test status update",
-        nil,
+        text: "test status update",
         media_ids: [
           Fabricate(:media_attachment, type: :video, account: account),
           Fabricate(:media_attachment, type: :image, account: account),
@@ -190,12 +205,12 @@ RSpec.describe PostStatusService, type: :service do
 
   it 'returns existing status when used twice with idempotency key' do
     account = Fabricate(:account)
-    status1 = subject.call(account, 'test', nil, idempotency: 'meepmeep')
-    status2 = subject.call(account, 'test', nil, idempotency: 'meepmeep')
+    status1 = subject.call(account, text: 'test', idempotency: 'meepmeep')
+    status2 = subject.call(account, text: 'test', idempotency: 'meepmeep')
     expect(status2.id).to eq status1.id
   end
 
   def create_status_with_options(**options)
-    subject.call(Fabricate(:account), 'test', nil, options)
+    subject.call(Fabricate(:account), options.merge(text: 'test'))
   end
 end

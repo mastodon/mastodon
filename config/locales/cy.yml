@@ -142,7 +142,6 @@ cy:
       shared_inbox_url: URL Mewnflwch wedi ei rannu
       show:
         created_reports: Adroddiadau a grewyd gan y cyfri hwn
-        report: adrodd
         targeted_reports: Adroddiadau am y cyfri hwn
       silence: Tawelu
       silenced: Tawelwyd
@@ -253,11 +252,6 @@ cy:
       reject_media_hint: Dileu dogfennau cyfryngau wedi eu cadw yn lleol ac yn gwrthod i lawrlwytho unrhyw rai yn y dyfodol. Amherthnasol i ataliadau
       reject_reports: Gwrthod adroddiadau
       reject_reports_hint: Anwybyddu'r holl adroddiadau sy'n dod o'r parth hwn. Amherthnasol i ataliadau
-      severities:
-        noop: Dim
-        silence: Tawelu
-        suspend: Atal
-      severity: Difrifoldeb
       show:
         affected_accounts: "%{count} o gyfrifoedd yn y bas data wedi eu hefeithio"
         retroactive:
@@ -265,7 +259,6 @@ cy:
           suspend: Dad-atal pob cyfrif o'r parth hwn sy'n bodoli
         title: Dadwneud blocio parth ar gyfer %{domain}
         undo: Dadwneud
-      title: Blociau parth
       undo: Dadwneud
     email_domain_blocks:
       add_new: Ychwanegu
@@ -278,10 +271,6 @@ cy:
         title: Cofnod newydd yng nghosbrestr e-byst
       title: Cosbrestr e-bost
     instances:
-      account_count: Cyfrifau hysbys
-      domain_name: Parth
-      reset: Ailosod
-      search: Chwilio
       title: Achosion hysbys
     invites:
       deactivate_all: Diffodd pob un
@@ -423,12 +412,6 @@ cy:
       last_delivery: Danfoniad diwethaf
       title: WebSub
       topic: Pwnc
-    suspensions:
-      bad_acct_msg: Nid yw'r gwerthoedd cadarnhau yn cyfateb. Ydych chi'n atal y cyfrif cywir?
-      hint_html: 'I gadarnhau atal y cyfrif, mewnbynwch %{value} yn y maes isod:'
-      proceed: Parhau
-      title: Atal %{acct}
-      warning_html: 'Mi fydd atal y cyfrif hwn yn dileu data <strong>am byth</strong> o''r cyfrif hwn, gan gynnwys:'
     title: Gweinyddiaeth
   admin_mailer:
     new_report:
@@ -667,9 +650,6 @@ cy:
     no_account_html: Heb gyfrif? Mae modd i chi <a href='%{sign_up_path}' target='_blank'>gofrestru yma</a>
     proceed: Ymlaen i ddilyn
     prompt: 'Yr ydych am ddilyn:'
-  remote_interaction:
-    proceed: Ymlaen i ryngweithio
-    prompt: 'Rydych eisiau rhyngweithio a''r tŵt hwn:'
   remote_unfollow:
     error: Gwall
     title: Teitl
@@ -883,7 +863,6 @@ cy:
       review_preferences_action: Newid dewisiadau
       review_preferences_step: Gwnewch yn siŵr i chi osod eich dewisiadau, megis pa e-byst hoffech eu derbyn, neu ba lefel preifatrwydd hoffech eich tŵtiau ragosod i. Os nad oes gennych salwch symud, gallwch ddewis i ganiatau chwarae GIFs yn awtomatig.
       subject: Croeso i Mastodon
-      tip_bridge_html: Os ydych yn dod o Twitter, mae modd i chi ganfod eich ffrindiau ar Mastodon drwy ddefnyddio'r <a href="%{bridge_url}">1ap pontio</a>2. Mae hyn ond yn gweithio os ydynt hwythau yn defnyddio'r ap pontio hefyd!
       tip_federated_timeline: Mae'r ffrwd ffederasiwn yn olwg firehose o'r rhwydwaith Mastodon. Ond mae ond yn cynnwys y bobl mae eich cymdogion wedi ymrestru iddynt, felly nid yw'n gyflawn.
       tip_following: Rydych yn dilyn goruwchwyliwr eich gweinydd yn ddiofyn. I ganfod pobl mwy diddorol, edrychwch ar y ffrydiau lleol a'r rhai wedi ei ffedereiddio.
       tip_local_timeline: Mae'r ffrwd leol yn olwg firehose o bobl ar %{instance}. Dyma eich cymdogion agosaf!

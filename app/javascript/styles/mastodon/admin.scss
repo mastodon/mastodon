@@ -151,6 +151,20 @@ $no-columns-breakpoint: 600px;
       font-weight: 500;
     }
 
+    .directory__tag a {
+      box-shadow: none;
+    }
+
+    .directory__tag h4 {
+      font-size: 18px;
+      font-weight: 700;
+      color: $primary-text-color;
+      text-transform: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
     & > p {
       font-size: 14px;
       line-height: 18px;
@@ -540,6 +554,10 @@ a.name-tag,
 
   &.negative {
     border-left-color: lighten($error-red, 12%);
+  }
+
+  &.warning {
+    border-left-color: $gold-star;
   }
 
   &__bubble {

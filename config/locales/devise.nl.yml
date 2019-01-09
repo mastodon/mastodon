@@ -19,6 +19,7 @@ nl:
     mailer:
       confirmation_instructions:
         action: E-mailadres verifiëren
+        action_with_app: Bevestigen en naar %{app} teruggaan
         explanation: Je hebt een account op %{host} aangemaakt en met één klik kun je deze activeren. Wanneer jij dit account niet hebt aangemaakt, mag je deze e-mail negeren.
         extra_html: Bekijk ook de <a href="%{terms_path}">regels van de Mastodonserver</a> en <a href="%{policy_path}">onze gebruiksvoorwaarden</a>.
         subject: 'Mastodon: E-mail bevestigen voor %{instance}'
@@ -47,8 +48,8 @@ nl:
       unlock_instructions:
         subject: 'Mastodon: Instructies om opschorten account ongedaan te maken'
     omniauth_callbacks:
-      failure: Kon je niet aanmelden met jouw %{kind} account, omdat "%{reason}".
-      success: Successvol aangemeld met jouw %{kind} account.
+      failure: Kon je niet inloggen met jouw %{kind} account, omdat "%{reason}".
+      success: Succesvol met jouw %{kind} account ingelogd.
     passwords:
       no_token: Je kunt deze pagina niet benaderen zonder dat je een e-mail om je wachtwoord opnieuw in te stellen hebt ontvangen.
       send_instructions: Je ontvangt via e-mail instructies hoe je jouw wachtwoord opnieuw moet instellen. Kijk tussen je spam wanneer niks werd ontvangen.

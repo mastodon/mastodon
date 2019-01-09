@@ -61,7 +61,6 @@ th:
       salmon_url: Salmon URL
       show:
         created_reports: รายงานที่ถูกสร้างโดย แอคเคาท์นี้
-        report: รายงาน
         targeted_reports: รายงานเกี่ยวกับแอคเคาท์นี้
       silence: ปิดเสียง
       statuses: สถานะ
@@ -85,10 +84,6 @@ th:
         title: การบล๊อกโดเมนใหม่
       reject_media: ไม่อนุมัติไฟล์สื่อ
       reject_media_hint: ลบไฟล์สื่อที่เก็บไว้ในเครื่อง และ ป้องกันการดาวน์โหลดในอนาคต. Irrelevant for suspensions
-      severities:
-        silence: ปิดเสียง
-        suspend: หยุดไว้
-      severity: Severity
       show:
         affected_accounts:
           one: มีผลต่อหนึ่งแอคเค๊าท์ในฐานข้อมูล
@@ -98,11 +93,8 @@ th:
           suspend: ยกเลิกการหยุดทุกแอคเค๊าท์จากโดเมน
         title: ยกเลิกการบล๊อกโดเมน %{domain}
         undo: ยกเลิก
-      title: บล๊อกโดเมน
       undo: ยกเลิก
     instances:
-      account_count: Known accounts
-      domain_name: ชื่อโดเมน
       title: Known Instances
     reports:
       comment:

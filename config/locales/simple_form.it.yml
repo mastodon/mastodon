@@ -2,12 +2,20 @@
 it:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Puoi usare la sintassi dei toot, come URL, hashtag e menzioni
+      admin_account_action:
+        send_email_notification: L'utente riceverà una spiegazione di ciò che è successo con suo account
+        text_html: Opzionale. Puoi usare la sintassi dei toot. Puoi <a href="%{path}">aggiungere avvisi preimpostati</a> per risparmiare tempo
+        type_html: Decidi cosa fare con <strong>%{acct}</strong>
+        warning_preset_id: Opzionale. Puoi aggiungere un testo personalizzato alla fine di quello preimpostato
       defaults:
         autofollow: Le persone che si iscrivono attraverso l'invito ti seguiranno automaticamente
         avatar: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
         bot: Questo account esegue principalmente operazioni automatiche e potrebbe non essere tenuto sotto controllo da una persona
         context: Uno o più contesti nei quali il filtro dovrebbe essere applicato
         digest: Inviata solo dopo un lungo periodo di inattività e solo se hai ricevuto qualche messaggio personale in tua assenza
+        discoverable_html: La <a href="%{path}" target="_blank">directory</a> permette alle persone di trovare account in base a determinati interessi o attività. Richiede almeno %{min_followers} seguaci
         email: Ti manderemo una email di conferma
         fields: Puoi avere fino a 4 voci visualizzate come una tabella sul tuo profilo
         header: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
@@ -18,6 +26,7 @@ it:
         password: Usa almeno 8 caratteri
         phrase: Il confronto sarà eseguito ignorando minuscole/maiuscole e i content warning
         scopes: A quali API l'applicazione potrà avere accesso. Se selezionate un ambito di alto livello, non c'è bisogno di selezionare quelle singole.
+        setting_aggregate_reblogs: Non mostrare nuove condivisioni per toot che sono stati condivisi di recente (ha effetto solo sulle nuove condivisioni)
         setting_default_language: La lingua dei tuoi toot può essere individuata automaticamente, ma il risultato non è sempre accurato
         setting_display_media_default: Nascondi media segnati come sensibili
         setting_display_media_hide_all: Nascondi sempre tutti i media
@@ -38,6 +47,18 @@ it:
         fields:
           name: Etichetta
           value: Contenuto
+      account_warning_preset:
+        text: Testo preimpostato
+      admin_account_action:
+        send_email_notification: Informa l'utente via email
+        text: Avviso personalizzato
+        type: Azione
+        types:
+          disable: Disabilita
+          none: Non fare nulla
+          silence: Silenzia
+          suspend: Sospendi e cancella i dati dell'account in modo irreversibile
+        warning_preset_id: Usa un avviso preimpostato
       defaults:
         autofollow: Invita a seguire il tuo account
         avatar: Avatar
@@ -48,6 +69,7 @@ it:
         context: Contesti del filtro
         current_password: Password corrente
         data: Data
+        discoverable: Inserisci questo account nella directory
         display_name: Nome visualizzato
         email: Indirizzo email
         expires_in: Scade dopo
@@ -63,6 +85,7 @@ it:
         otp_attempt: Codice due-fattori
         password: Password
         phrase: Parola chiave o frase
+        setting_aggregate_reblogs: Raggruppa condivisioni in timeline
         setting_auto_play_gif: Play automatico GIF animate
         setting_boost_modal: Mostra dialogo di conferma prima del boost
         setting_default_language: Lingua dei post

@@ -48,6 +48,7 @@ nl:
       other: Volgers
     following: Volgend
     joined: Geregistreerd in %{date}
+    last_active: laatst actief
     link_verified_on: Eigendom van deze link is gecontroleerd op %{date}
     media: Media
     moved_html: "%{name} is verhuisd naar %{new_profile_link}:"
@@ -69,6 +70,9 @@ nl:
       moderator: Moderator
     unfollow: Ontvolgen
   admin:
+    account_actions:
+      action: Actie uitvoeren
+      title: Moderatieactie op %{acct} uitvoeren
     account_moderation_notes:
       create: Laat een opmerking achter
       created_msg: Aanmaken van opmerking voor moderatoren geslaagd!
@@ -101,8 +105,10 @@ nl:
       enabled: Ingeschakeld
       feed_url: Feed-URL
       followers: Volgers
+      followers_local: "(%{local} lokaal)"
       followers_url: Volgers-URL
       follows: Volgt
+      header: Omslagfoto
       inbox_url: Inbox-URL
       ip: IP
       location:
@@ -114,6 +120,7 @@ nl:
       media_attachments: Mediabijlagen
       memorialize: In gedenkpagina veranderen
       moderation:
+        active: Actief
         all: Alles
         silenced: Genegeerd
         suspended: Opgeschort
@@ -132,6 +139,7 @@ nl:
       push_subscription_expires: PuSH-abonnement verloopt op
       redownload: Avatar vernieuwen
       remove_avatar: Avatar verwijderen
+      remove_header: Omslagfoto verwijderen
       resend_confirmation:
         already_confirmed: Deze gebruiker is al bevestigd
         send: Verzend bevestigingsmail opnieuw
@@ -150,7 +158,6 @@ nl:
       shared_inbox_url: Gedeelde inbox-URL
       show:
         created_reports: Door dit account aangemaakte rapportages
-        report: gerapporteerd
         targeted_reports: Over dit account aangemaakte rapportages
       silence: Negeren
       silenced: Genegeerd
@@ -169,6 +176,7 @@ nl:
         assigned_to_self_report: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
         change_email_user: "%{name} veranderde het e-mailadres van gebruiker %{target}"
         confirm_user: E-mailadres van gebruiker %{target} is door %{name} bevestigd
+        create_account_warning: "%{name} verzond een waarschuwing naar %{target}"
         create_custom_emoji: Nieuwe emoji %{target} is door %{name} geüpload
         create_domain_block: Domein %{target} is door %{name} geblokkeerd
         create_email_domain_block: E-maildomein %{target} is door %{name} op de zwarte lijst geplaatst
@@ -179,7 +187,7 @@ nl:
         destroy_status: Toot van %{target} is door %{name} verwijderd
         disable_2fa_user: Vereisten tweestapsverificatie van %{target} zijn door %{name} uitgeschakeld
         disable_custom_emoji: Emoji %{target} is door %{name} uitgeschakeld
-        disable_user: Aanmelden voor %{target} is door %{name} uitgeschakeld
+        disable_user: Inloggen voor %{target} is door %{name} uitgeschakeld
         enable_custom_emoji: Emoji %{target} is door %{name} ingeschakeld
         enable_user: Inloggen voor %{target} is door %{name} ingeschakeld
         memorialize_account: Account %{target} is door %{name} in een gedenkpagina veranderd
@@ -227,6 +235,7 @@ nl:
       config: Configuratie
       feature_deletions: Verwijderen van account
       feature_invites: Uitnodigingen
+      feature_profile_directory: Gebruikersgids
       feature_registrations: Registraties
       feature_relay: Federatierelay
       features: Functies
@@ -261,11 +270,6 @@ nl:
       reject_media_hint: Verwijderd lokaal opgeslagen mediabestanden en weigert deze in de toekomst te downloaden. Irrelevant voor opgeschorte domeinen
       reject_reports: Rapportages weigeren
       reject_reports_hint: Alle rapportages die vanaf dit domein komen negeren. Irrelevant voor opgeschorte domeinen
-      severities:
-        noop: Geen
-        silence: Negeren
-        suspend: Opschorten
-      severity: Zwaarte
       show:
         affected_accounts:
           one: Eén account in de database aangepast
@@ -275,7 +279,6 @@ nl:
           suspend: Alle opgeschorte accounts van dit domein niet langer opschorten
         title: Domeinblokkade voor %{domain} ongedaan maken
         undo: Ongedaan maken
-      title: Domeinblokkades
       undo: Ongedaan maken
     email_domain_blocks:
       add_new: Nieuwe toevoegen
@@ -287,11 +290,10 @@ nl:
         create: Blokkeren
         title: Nieuw e-maildomein blokkeren
       title: E-maildomeinen blokkeren
+    followers:
+      back_to_account: Terug naar account
+      title: Volgers van %{acct}
     instances:
-      account_count: Bekende accounts
-      domain_name: Domein
-      reset: Opnieuw
-      search: Zoeken
       title: Bekende servers
     invites:
       deactivate_all: Alles deactiveren
@@ -374,6 +376,9 @@ nl:
       preview_sensitive_media:
         desc_html: Linkvoorvertoningen op andere websites hebben een thumbnail, zelfs als een afbeelding of video als gevoelig is gemarkeerd
         title: Gevoelige afbeeldingen en video's in OpenGraph-voorvertoningen tonen
+      profile_directory:
+        desc_html: Gebruikers toestaan om vindbaar te zijn
+        title: Gebruikersgids inschakelen
       registrations:
         closed_message:
           desc_html: Wordt op de voorpagina weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld<br>En ook hier kan je HTML gebruiken
@@ -433,13 +438,21 @@ nl:
       last_delivery: Laatste bezorging
       title: WebSub
       topic: Account
-    suspensions:
-      bad_acct_msg: De bevestigingswaarde kwam niet overeen. Schort je wel het juiste account op?
-      hint_html: Vul in het veld hieronder %{value} in, om het opschorten van dit account te bevestigen.
-      proceed: Ga verder
-      title: "%{acct} opschorten"
-      warning_html: 'Door het opschorten van dit account worden gegevens van dit account <strong>permanent</strong> verwijderd, waaronder:'
+    tags:
+      accounts: Accounts
+      hidden: Verborgen
+      hide: Niet in gebruikersgids tonen
+      name: Hashtag
+      title: Hashtags
+      unhide: In gebruikersgids tonen
+      visible: Zichtbaar
     title: Beheer
+    warning_presets:
+      add_new: Nieuwe toevoegen
+      delete: Verwijderen
+      edit: Bewerken
+      edit_preset: Voorinstelling van waarschuwing bewerken
+      title: Voorinstellingen van waarschuwingen beheren
   admin_mailer:
     new_report:
       body: "%{reporter} heeft %{target} gerapporteerd"
@@ -469,12 +482,12 @@ nl:
     didnt_get_confirmation: Geen bevestigingsinstructies ontvangen?
     forgot_password: Wachtwoord vergeten?
     invalid_reset_password_token: De code om jouw wachtwoord opnieuw in te stellen is verlopen. Vraag een nieuwe aan.
-    login: Aanmelden
-    logout: Afmelden
-    migrate_account: Naar een andere account verhuizen
+    login: Inloggen
+    logout: Uitloggen
+    migrate_account: Naar een ander account verhuizen
     migrate_account_html: Wanneer je dit account naar een ander account wilt doorverwijzen, kun je <a href="%{path}">dit hier instellen</a>.
     or: of
-    or_log_in_with: Of aanmelden met
+    or_log_in_with: Of inloggen met
     providers:
       cas: CAS
       saml: SAML
@@ -517,6 +530,13 @@ nl:
     success_msg: Jouw account is succesvol verwijderd
     warning_html: We kunnen alleen garanderen dat jouw gegevens op deze server worden verwijderd. Berichten (toots), incl. media, die veel zijn gedeeld laten mogelijk sporen achter. Offline servers en servers die niet meer op jouw updates zijn geabonneerd zullen niet hun databases updaten.
     warning_title: Verwijdering gegevens op andere servers
+  directories:
+    directory: Gebruikersgids
+    explanation: Ontdek gebruikers aan de hand van hun interesses
+    explore_mastodon: "%{title} verkennen"
+    people:
+      one: "%{count} gebruikers"
+      other: "%{count} gebruikers"
   errors:
     '403': Jij hebt geen toestemming om deze pagina te bekijken.
     '404': De pagina waarnaar jij op zoek bent bestaat niet.
@@ -688,9 +708,6 @@ nl:
     no_account_html: Heb je geen account? Je kunt er <a href='%{sign_up_path}' target='_blank'>hier een registreren</a>
     proceed: Ga verder om te volgen
     prompt: 'Jij gaat volgen:'
-  remote_interaction:
-    proceed: Ga de interactie aan
-    prompt: 'Jij wilt de interactie aangaan met deze toot:'
   remote_unfollow:
     error: Fout
     title: Titel
@@ -880,13 +897,13 @@ nl:
       month: "%b %Y"
   two_factor_authentication:
     code_hint: Voer de code in die door de authenticatie-app gegenereerd is
-    description_html: Na het instellen van <strong>tweestapsverificatie</strong>, kun jij je alleen aanmelden als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren aanmeldcode.
+    description_html: Na het instellen van <strong>tweestapsverificatie</strong>, kun je alleen inloggen als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren aanmeldcode.
     disable: Uitschakelen
     enable: Inschakelen
     enabled: Tweestapsverificatie is ingeschakeld
     enabled_success: Inschakelen tweestapsverificatie geslaagd
     generate_recovery_codes: Herstelcodes genereren
-    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het aanmelden moet invoeren."
+    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het inloggen moet invoeren."
     lost_recovery_codes: Met herstelcodes kun je toegang tot jouw account krijgen wanneer je jouw telefoon bent kwijtgeraakt. Wanneer je jouw herstelcodes bent kwijtgeraakt, kan je ze hier opnieuw genereren. Jouw oude herstelcodes zijn daarna ongeldig.
     manual_instructions: Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder geheime code in gewone tekst.
     recovery_codes: Herstelcodes back-uppen
@@ -899,6 +916,18 @@ nl:
       explanation: Je hebt een volledige back-up van jouw Mastodon-account opgevraagd. Het staat nu klaar om te worden gedownload!
       subject: Jouw archief staat klaar om te worden gedownload
       title: Archief ophalen
+    warning:
+      review_server_policies: Serverbeleid bekijken
+      subject:
+        disable: Jouw account %{acct} is bevroren
+        none: Waarschuwing voor %{acct}
+        silence: Jouw account %{acct} is nu beperkt
+        suspend: Jouw account %{acct} is opgeschort
+      title:
+        disable: Account bevroren
+        none: Waarschuwing
+        silence: Account beperkt
+        suspend: Account opgeschort
     welcome:
       edit_profile_action: Profiel instellen
       edit_profile_step: Je kunt jouw profiel aanpassen door een avatar (profielfoto) en omslagfoto te uploaden, jouw weergavenaam in te stellen en iets over jezelf te vertellen. Wanneer je nieuwe volgers eerst wilt goedkeuren, kun je jouw account besloten maken.
@@ -910,7 +939,6 @@ nl:
       review_preferences_action: Instellingen veranderen
       review_preferences_step: Zorg dat je jouw instellingen naloopt, zoals welke e-mails je wilt ontvangen of voor wie jouw berichten standaard zichtbaar moeten zijn. Wanneer je geen last hebt van bewegende beelden, kun je het afspelen van geanimeerde GIF's inschakelen.
       subject: Welkom op Mastodon
-      tip_bridge_html: Wanneer je hiervoor op Twitter zat, kun je jouw vrienden op Mastodon vinden door gebruik te maken van de <a href="%{bridge_url}">bridge-app</a>. Het werkt echter alleen wanneer zij ook deze bridge-app hebben gebruikt!
       tip_federated_timeline: De globale tijdlijn toont berichten in het Mastodonnetwerk. Het bevat echter alleen berichten van mensen waar jouw buren mee zijn verbonden, dus het is niet compleet.
       tip_following: Je volgt standaard de beheerder(s) van jouw Mastodonserver. Bekijk de lokale en de globale tijdlijnen om meer interessante mensen te vinden.
       tip_local_timeline: De lokale tijdlijn toont berichten van mensen op %{instance}. Dit zijn jouw naaste buren!

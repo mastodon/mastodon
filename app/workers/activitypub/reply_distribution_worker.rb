@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Obsolete but kept around to make sure existing jobs do not fail after upgrade.
+# Should be removed in a subsequent release.
+
 class ActivityPub::ReplyDistributionWorker
   include Sidekiq::Worker
 
@@ -12,7 +15,7 @@ class ActivityPub::ReplyDistributionWorker
     return unless @account.present? && @status.distributable?
 
     ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
-      [signed_payload, @status.account_id, inbox_url]
+      [payload, @status.account_id, inbox_url]
     end
   rescue ActiveRecord::RecordNotFound
     true
@@ -25,14 +28,18 @@ class ActivityPub::ReplyDistributionWorker
   end
 
   def signed_payload
-    @signed_payload ||= Oj.dump(ActivityPub::LinkedDataSignature.new(payload).sign!(@status.account))
+    Oj.dump(ActivityPub::LinkedDataSignature.new(unsigned_payload).sign!(@status.account))
   end
 
-  def payload
-    @payload ||= ActiveModelSerializers::SerializableResource.new(
+  def unsigned_payload
+    ActiveModelSerializers::SerializableResource.new(
       @status,
       serializer: ActivityPub::ActivitySerializer,
       adapter: ActivityPub::Adapter
     ).as_json
+  end
+
+  def payload
+    @payload ||= @status.distributable? ? signed_payload : Oj.dump(unsigned_payload)
   end
 end

@@ -48,6 +48,7 @@ de:
       other: Follower
     following: Folgt
     joined: Beigetreten am %{date}
+    last_active: zuletzt aktiv
     link_verified_on: Besitz des Links wurde überprüft am %{date}
     media: Medien
     moved_html: "%{name} ist auf %{new_profile_link} umgezogen:"
@@ -69,6 +70,9 @@ de:
       moderator: Moderator
     unfollow: Entfolgen
   admin:
+    account_actions:
+      action: Aktion ausführen
+      title: Moderationsaktion auf %{acct} ausführen
     account_moderation_notes:
       create: Notiz erstellen
       created_msg: Moderationsnotiz erfolgreich erstellt!
@@ -101,8 +105,10 @@ de:
       enabled: Freigegeben
       feed_url: Feed-URL
       followers: Folger
+      followers_local: "(%{local} lokal)"
       followers_url: URL des Folgenden
       follows: Folgt
+      header: Header
       inbox_url: Posteingangs-URL
       ip: IP-Adresse
       location:
@@ -114,6 +120,7 @@ de:
       media_attachments: Medienanhänge
       memorialize: In Gedenkmal verwandeln
       moderation:
+        active: Aktiv
         all: Alle
         silenced: Stummgeschaltet
         suspended: Gesperrt
@@ -132,6 +139,7 @@ de:
       push_subscription_expires: PuSH-Abonnement läuft aus
       redownload: Avatar neu laden
       remove_avatar: Profilbild entfernen
+      remove_header: Header entfernen
       resend_confirmation:
         already_confirmed: Diese:r Benutzer:in wurde bereits bestätigt
         send: Bestätigungsmail erneut senden
@@ -150,7 +158,6 @@ de:
       shared_inbox_url: Geteilter Posteingang URL
       show:
         created_reports: Meldungen durch dieses Konto
-        report: Meldung
         targeted_reports: Meldungen über dieses Konto
       silence: Stummschalten
       silenced: Stummgeschaltet
@@ -169,6 +176,7 @@ de:
         assigned_to_self_report: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
         change_email_user: "%{name} hat die E-Mail-Adresse des Nutzers %{target} geändert"
         confirm_user: "%{name} hat die E-Mail-Adresse von %{target} bestätigt"
+        create_account_warning: "%{name} hat eine Warnung an %{target} gesendet"
         create_custom_emoji: "%{name} hat neues Emoji %{target} hochgeladen"
         create_domain_block: "%{name} hat die Domain %{target} blockiert"
         create_email_domain_block: "%{name} hat die E-Mail-Domain %{target} geblacklistet"
@@ -227,6 +235,7 @@ de:
       config: Konfiguration
       feature_deletions: Kontolöschung
       feature_invites: Einladungslinks
+      feature_profile_directory: Profilverzeichnis
       feature_registrations: Registrierung
       feature_relay: Föderations-Relay
       features: Eigenschaften
@@ -261,11 +270,6 @@ de:
       reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
       reject_reports: Meldungen ablehnen
       reject_reports_hint: Ignoriere alle Meldungen von dieser Domain. Irrelevant für Sperrungen
-      severities:
-        noop: Kein
-        silence: Stummschaltung
-        suspend: Sperren
-      severity: Schweregrad
       show:
         affected_accounts:
           one: Ein Konto in der Datenbank betroffen
@@ -275,7 +279,6 @@ de:
           suspend: Alle existierenden Konten dieser Domain entsperren
         title: Domain-Blockade für %{domain} zurücknehmen
         undo: Zurücknehmen
-      title: Domain-Blockaden
       undo: Zurücknehmen
     email_domain_blocks:
       add_new: Neue hinzufügen
@@ -287,11 +290,10 @@ de:
         create: Blockade erstellen
         title: Neue E-Mail-Domain-Blockade
       title: E-Mail-Domain-Blockade
+    followers:
+      back_to_account: Zurück zum Account
+      title: "%{acct}'s Follower"
     instances:
-      account_count: Bekannte Konten
-      domain_name: Domain
-      reset: Zurücksetzen
-      search: Suchen
       title: Bekannte Instanzen
     invites:
       deactivate_all: Alle deaktivieren
@@ -374,6 +376,9 @@ de:
       preview_sensitive_media:
         desc_html: Linkvorschauen auf anderen Webseiten werden ein Vorschaubild anzeigen, obwohl die Medien als heikel gekennzeichnet sind
         title: Heikle Medien in OpenGraph-Vorschauen anzeigen
+      profile_directory:
+        desc_html: Erlaube Benutzer auffindbar zu sein
+        title: Aktiviere Profilverzeichnis
       registrations:
         closed_message:
           desc_html: Wird auf der Frontseite angezeigt, wenn die Registrierung geschlossen ist. Du kannst HTML-Tags benutzen
@@ -433,13 +438,21 @@ de:
       last_delivery: Letzte Zustellung
       title: WebSub
       topic: Thema
-    suspensions:
-      bad_acct_msg: Der Bestätigungswert stimmt nicht überein. Sperrst du das richtige Benutzerkonto?
-      hint_html: 'Um die Sperrung des Benutzerkontos zu genehmigen tippe %{value} in das Feld unten ein:'
-      proceed: Fortfahren
-      title: "%{acct} sperren"
-      warning_html: 'Die Sperrung des Benutzerkontos wird <strong>unwiederrufliche</strong> Schäden hervorrufen und alle Daten löschen, die folgendes beinhalten:'
+    tags:
+      accounts: Konten
+      hidden: Versteckt
+      hide: Vor Verzeichnis verstecken
+      name: Hashtag
+      title: Hashtags
+      unhide: Zeige in Verzeichnis
+      visible: Sichtbar
     title: Administration
+    warning_presets:
+      add_new: Neu hinzufügen
+      delete: Löschen
+      edit: Bearbeiten
+      edit_preset: Warnungsvorlage bearbeiten
+      title: Warnungsvorlagen verwalten
   admin_mailer:
     new_report:
       body: "%{reporter} hat %{target} gemeldet"
@@ -517,6 +530,13 @@ de:
     success_msg: Dein Konto wurde erfolgreich gelöscht
     warning_html: Wir können nur dafür garantieren, dass die Inhalte auf dieser einen Instanz gelöscht werden. Bei Inhalten, die weit verbreitet wurden, ist es wahrscheinlich, dass Spuren bleiben werden. Server, die offline sind oder keine Benachrichtigungen von deinem Konto mehr empfangen, werden ihre Datenbanken nicht bereinigen.
     warning_title: Verfügbarkeit verstreuter Inhalte
+  directories:
+    directory: Profilverzeichnis
+    explanation: Entdecke Benutzer basierend auf deren Interessen
+    explore_mastodon: Entdecke %{title}
+    people:
+      one: "%{count} Person"
+      other: "%{count} Leute"
   errors:
     '403': Dir fehlt die Befugnis, diese Seite sehen zu können.
     '404': Diese Seite existiert nicht.
@@ -688,9 +708,6 @@ de:
     no_account_html: Noch keinen Account? Du kannst dich <a href='%{sign_up_path}' target='_blank'>hier anmelden</a>
     proceed: Weiter
     prompt: 'Du wirst dieser Person folgen:'
-  remote_interaction:
-    proceed: Fortfahren zum Interagieren
-    prompt: 'Du wirst mit diesem Beitrag interagieren:'
   remote_unfollow:
     error: Fehler
     title: Titel
@@ -815,7 +832,7 @@ de:
 
       <h3 id="protect">Wie beschützen wir deine Informationen?</h3>
 
-      <p>Wir implementieren eine Reihe von Sicherheitsmaßnahmen, um die Sicherheit deiner persönlichen Information sicherzustellen, wenn du persönliche Informationen eingibst, übermittelst oder auf sie zugreifst. Neben anderen Dingen, wird sowohl deine Browsersitzung, als auch der Datenverkehr zischen deinen Anwendungen und der Programmierschnittstelle (API) mit SSL gesichert, dein Passwort wird mit einem starken Einwegalgorithmus gehasht. Du kannst Zwei-Faktor-Authentifizierung aktivieren, um den Zugriff auf dein Konto zusätzlich abzusichern.</p>
+      <p>Wir implementieren eine Reihe von Sicherheitsmaßnahmen, um die Sicherheit deiner persönlichen Information sicherzustellen, wenn du persönliche Informationen eingibst, übermittelst oder auf sie zugreifst. Neben anderen Dingen, wird sowohl deine Browsersitzung, als auch der Datenverkehr zwischen deinen Anwendungen und der Programmierschnittstelle (API) mit SSL gesichert, dein Passwort wird mit einem starken Einwegalgorithmus gehasht. Du kannst Zwei-Faktor-Authentifizierung aktivieren, um den Zugriff auf dein Konto zusätzlich abzusichern.</p>
 
       <hr class="spacer" />
 
@@ -830,7 +847,7 @@ de:
 
       <p>Du kannst ein Archiv deines Inhalts anfordern und herunterladen, inkludierend deiner Beiträge, Medienanhänge, Profilbilder und Headerbilder.</p>
 
-      <p>Du kannst dein Konto unwiderruflich jederzeit löschen.</p>
+      <p>Du kannst dein Konto jederzeit unwiderruflich  löschen.</p>
 
       <hr class="spacer"/>
 
@@ -864,9 +881,9 @@ de:
 
       <h3 id="changes">Änderung an unserer Datenschutzerklärung</h3>
 
-      <p>Wenn wir uns entscheiden, Änderungen an unserer Datenschutzerklärung vorzunehmen, werden wird diese Änderungen auf dieser Seite bekannt geben.</p>
+      <p>Wenn wir uns entscheiden, Änderungen an unserer Datenschutzerklärung vorzunehmen, werden wird diese Änderungen auf dieser Seite bekannt gegeben.</p>
 
-      <p>Dies ist eine Übersetzung, Irrtümer und Übersetzungsfehler vorbehalten. Im Zweifelsfall gilt die englische Originalversion</p>
+      <p>Dies ist eine Übersetzung, Irrtümer und Übersetzungsfehler vorbehalten. Im Zweifelsfall gilt die englische Originalversion.</p>
 
       <p>Dieses Dokument ist CC-BY-SA. Es wurde zuletzt aktualisiert am 7. März 2018.</p>
 
@@ -901,6 +918,22 @@ de:
       explanation: Du hast ein vollständiges Backup von deinem Mastodon-Account angefragt. Es kann jetzt heruntergeladen werden!
       subject: Dein Archiv ist bereit zum Download
       title: Archiv-Download
+    warning:
+      explanation:
+        disable: Solange dein Account eingefroren ist sind deine Benutzerdaten intakt, aber du kannst nichts tun bis dein Account entsperrt wurde.
+        silence: Solange dein Account limitiert ist können nur Leute, die dir bereits folgen deine Beiträge auf dem Server sehen und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
+        suspend: Dein Account wurde gesperrt und alle deine Beiträge und hochgeladenen Medien wurden unwiderruflich vom Server und anderen Servern wo du Follower hattest gelöscht.
+      review_server_policies: Serverrichtlinien ansehen
+      subject:
+        disable: Dein Account %{acct} wurde eingefroren
+        none: Warnung für %{acct}
+        silence: Dein Account %{acct} wurde limitiert
+        suspend: Dein Account %{acct} wurde gesperrt
+      title:
+        disable: Account eingefroren
+        none: Warnung
+        silence: Account limitiert
+        suspend: Account gesperrt
     welcome:
       edit_profile_action: Profil einstellen
       edit_profile_step: Du kannst dein Profil anpassen, indem du einen Avatar oder ein Titelbild hochlädst oder deinen Anzeigenamen änderst und mehr. Wenn du deine Follower vorher überprüfen möchtest, bevor sie dir folgen können, dann kannst du dein Profil sperren.
@@ -912,7 +945,6 @@ de:
       review_preferences_action: Einstellungen ändern
       review_preferences_step: Stelle sicher, dass du deine Einstellungen einstellst, wie zum Beispiel welche E-Mails du gerne erhalten möchtest oder was für Privatsphäreneinstellungen voreingestellt werden sollten. Wenn dir beim Ansehen von GIFs nicht schwindelig wird, dann kannst du auch das automatische Abspielen dieser aktivieren.
       subject: Willkommen bei Mastodon
-      tip_bridge_html: Wenn du gerade von Twitter kommst, dann kannst du deine Freunde auf Mastodon mithilfe der <a href="%{bridge_url}">Bridge-App</a> finden. Es funktioniert aber auch nur, wenn diese die Bridge-App vorher verwendet haben!
       tip_federated_timeline: Die föderierte Zeitleiste ist die sehr große Ansicht vom Mastodon-Netzwerk. Sie enthält aber auch nur Leute, denen du und deine Nachbarn folgen, sie ist also nicht komplett.
       tip_following: Du folgst standardmäßig deinen Server-Admin(s). Um mehr interessante Leute zu finden, kannst du die lokale oder öffentliche Zeitleiste durchsuchen.
       tip_local_timeline: Die lokale Zeitleiste ist eine Ansicht aller Leute auf %{instance}. Diese sind deine Nachbarn!
