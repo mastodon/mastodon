@@ -84,19 +84,17 @@ RSpec.describe Api::V1::MediaController, type: :controller do
         post :create, params: { file: fixture_file_upload('files/attachment.webm', 'video/webm') }
       end
 
-      it 'returns http success' do
+      it do
+        # returns http success
         expect(response).to have_http_status(200)
-      end
 
-      it 'creates a media attachment' do
+        # creates a media attachment
         expect(MediaAttachment.first).to_not be_nil
-      end
 
-      it 'uploads a file' do
+        # uploads a file
         expect(MediaAttachment.first).to have_attached_file(:file)
-      end
 
-      it 'returns media ID in JSON' do
+        # returns media ID in JSON
         expect(body_as_json[:id]).to eq MediaAttachment.first.id.to_s
       end
     end
