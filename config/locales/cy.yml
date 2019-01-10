@@ -131,6 +131,7 @@ cy:
         silenced: Wedi ei dawelu
         suspended: Wedi ei atal
         title: Cymedroli
+        active: Yn weithredol
       moderation_notes: Nodiadau cymedroli
       most_recent_activity: Gweithgarwch diweddaraf
       most_recent_ip: IP diweddaraf
@@ -178,6 +179,9 @@ cy:
       web: Gwe
       deleted: Wedi dileu
       header: Pennawd
+      invited_by: Gwahoddwyd gan
+      joined: Ymunodd
+      warn: Rhybuddio
     action_logs:
       actions:
         assigned_to_self_report: Aseiniodd %{name} adroddiad %{target} i'w hunan
@@ -302,7 +306,10 @@ cy:
         title: Cofnod newydd yng nghosbrestr e-byst
       title: Cosbrestr e-bost
     instances:
-      title: Achosion hysbys
+      title: Ffederasiwn
+      moderation:
+        all: Pob
+        limited: Gyfyngedig
     invites:
       deactivate_all: Diffodd pob un
       filter:
@@ -467,6 +474,15 @@ cy:
       title: WebSub
       topic: Pwnc
     title: Gweinyddiaeth
+    account_actions:
+      action: Cyflawni gweithred
+    tags:
+      accounts: Cyfrifon
+      hidden: Cudd
+      name: Hashnod
+    warning_presets:
+      delete: Dileu
+      edit: Golygu
   admin_mailer:
     new_report:
       body: Mae %{reporter} wedi cwyno am %{target}
@@ -561,7 +577,7 @@ cy:
     '422':
       content: Methwyd i ddilysu diogelwch. A ydych chi'n blocio cwcîs?
       title: Methwyd i ddilysu diogelwch
-    '429': Crogwyd
+    '429': Wedi'i arafu
     '500':
       content: Mae'n ddrwg gennym ni, ond fe aeth rhywbeth o'i le ar ein rhan ni.
       title: Nid yw'r dudalen hon yn gywir
@@ -799,7 +815,8 @@ cy:
     attached:
       description: 'Ynghlwm: %{attached}'
       image: '%{count} o luniau'
-      video: '%{count} fideo'
+      video:
+        one: '%{count} fideo'
     boosted_from_html: Wedi ei fŵstio %{acct_link}
     content_warning: 'Rhybudd cynnwys: %{warning}'
     disallowed_hashtags: 'yn cynnwys yr hashnod gwaharddedig: %{tags}'
@@ -1004,6 +1021,12 @@ cy:
         gweithio fel ap cynhenid!
       tips: Awgrymiadau
       title: Croeso, %{name}!
+    warning:
+      title:
+        disable: Cyfrif wedi'i rewi
+        none: Rhybudd
+        silence: Cyfrif cyfyngedig
+        suspend: Cyfrif wedi'i rewi
   users:
     follow_limit_reached: Nid oes modd i chi ddilyn mwy na %{limit} o bobl
     invalid_email: Mae'r cyfeiriad e-bost hwn yn annilys
