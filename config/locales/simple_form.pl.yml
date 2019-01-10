@@ -2,6 +2,13 @@
 pl:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Możesz korzystać ze składni której używasz we wpisach, takiej jak adresy URL, hashtagi i wspomnienia
+      admin_account_action:
+        send_email_notification: Użytkownik otrzyma informację, co stało się z jego kontem
+        text_html: Możesz używać składni której używasz we wpisach. Możesz <a href="%{path}">dodać szablon ostrzeżenia</a> aby zaoszczędzić czas
+        type_html: Wybierz co chcesz zrobić z <strong>%{acct}</strong>
+        warning_preset_id: Nieobowiązkowe. Możesz dodać niestandardowy tekst do końcowki szablonu
       defaults:
         autofollow: Osoby, które zarejestrują się z Twojego zaproszenia automatycznie zaczną Cię śledzić
         avatar: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
@@ -35,6 +42,18 @@ pl:
         fields:
           name: Nazwa
           value: Zawartość
+      account_warning_preset:
+        text: Tekst szablonu
+      admin_account_action:
+        send_email_notification: Powiadom użytkownika mailem
+        text: Niestandardowe ostrzeżenie
+        type: Działanie
+        types:
+          disable: Wyłącz
+          none: Nie rób niczego
+          silence: Wycisz
+          suspend: Zawieś i nieodwracalnie usuń dane konta
+        warning_preset_id: Użyj szablonu ostrzeżenia
       defaults:
         autofollow: Zapraszaj do śledzenia swojego konta
         avatar: Awatar

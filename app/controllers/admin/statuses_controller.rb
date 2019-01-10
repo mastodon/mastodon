@@ -26,7 +26,7 @@ module Admin
       authorize :status, :index?
 
       @statuses = @account.statuses.where(id: params[:id])
-      authorize @statuses[0], :show?
+      authorize @statuses.first, :show?
 
       @form = Form::StatusBatch.new
     end

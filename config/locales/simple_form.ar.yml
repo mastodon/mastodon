@@ -2,6 +2,10 @@
 ar:
   simple_form:
     hints:
+      account_warning_preset:
+        text: بإمكانك استخدام نفس القواعد التي نجدها في التبويقات كعناوين الروابط والوسوم والإشارات
+      admin_account_action:
+        send_email_notification: سوف يتلقى المستخدم رسالة تُفسِّر ما حدث على حسابه
       defaults:
         autofollow: سوف يتابعك تلقائيًا الأشخاص الذين يقومون بالتسجيل من خلال الدعوة
         avatar: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير %{size}. سيتم تصغيره إلى %{dimensions}px
@@ -37,6 +41,15 @@ ar:
         fields:
           name: التسمية
           value: المحتوى
+      admin_account_action:
+        send_email_notification: إشعار المستخدِم عبر البريد الإلكتروني
+        text: تحذير مخصص
+        type: الإجراء
+        types:
+          disable: تعطيل
+          none: لا تفعل شيئا
+          silence: كتم
+          suspend: تعليق و حذف كافة بيانات الحساب
       defaults:
         autofollow: إرسال دعوة لمتابعة حسابك
         avatar: الصورة الرمزية

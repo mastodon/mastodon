@@ -2,6 +2,13 @@
 eu:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Toot sintaxia erabili dezakezu, URLak, traolak eta aipamenak
+      admin_account_action:
+        send_email_notification: Erabiltzaileak bere kontuarekin gertatutakoaren azalpen bat jasoko du
+        text_html: Aukerakoa. Toot sintaxia erabili dezakezu. <a href="%{path}">Abisu aurre-ezarpenak</a> gehitu ditzakezu denbora aurrezteko
+        type_html: Erabaki zer egin <strong>%{acct}</strong> kontuarekin
+        warning_preset_id: Aukerakoa. Zure testua gehitu dezakezu aurre-ezarpenaren ostean
       defaults:
         autofollow: Gonbidapena erabiliz izena ematen dutenek automatikoki jarraituko dizute
         avatar: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px neurrira eskalatuko da
@@ -40,6 +47,17 @@ eu:
         fields:
           name: Etiketa
           value: Edukia
+      account_warning_preset:
+        text: Aurrez ezarritako testua
+      admin_account_action:
+        send_email_notification: Jakinarazi erabiltzaileari e-mail bidez
+        text: Abisu pertsonalizatua
+        type: Ekintza
+        types:
+          disable: Desaktibatu
+          none: Ez egin ezer
+          silence: Isiltarazi
+        warning_preset_id: Erabili aurre-ezarritako abisu bat
       defaults:
         autofollow: Gonbidatu zure kontua jarraitzera
         avatar: Abatarra
