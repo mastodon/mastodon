@@ -28,5 +28,8 @@
                 %strong="#{@proof.provider_username} "
                 ="on #{@proof.provider}."
 
-  .actions
-    = f.button :button, t('account_identity_proofs.save.button'), type: :submit
+  .fields-row
+    .fields-group.fields-row__column.fields-row__column-6
+      .actions
+        = link_to t('account_identity_proofs.save.cancel'), settings_identity_proofs_url, class: 'button button-alternative-2', style: 'width: 25%'
+        = f.button :button, t('account_identity_proofs.save.button'), type: :submit, class: 'button button-primary', style: 'width 75%'

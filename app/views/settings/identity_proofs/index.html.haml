@@ -4,4 +4,16 @@
 - if @proofs.empty?
   = I18n.t('account_identity_proofs.new_explanation')
 - else
-  = render partial: 'settings/identity_proofs/proof', collection: @proofs, as: :proof
+  .table-wrapper
+    %table.table{style: 'width: 80%'}
+      %thead
+        %tr
+          %th{ style: 'font-size: 16px; text-align: center' }
+            .avatar= image_tag current_account.avatar.url(:original), width: 50
+          %th{ style: 'font-size: 16px; text-align: center; vertical-align: middle' }
+            %strong{style: 'font-size: 18px'}="#{current_account.username} "
+            ="on #{identity_proof_my_domain}"
+          %th{ style: 'font-size: 16px; text-align: center; width: 50%' }
+            =I18n.t('account_identity_proofs.index.status_header')
+      %tbody
+        = render partial: 'settings/identity_proofs/proof', collection: @proofs, as: :proof

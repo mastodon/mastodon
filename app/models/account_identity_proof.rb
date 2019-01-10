@@ -58,6 +58,18 @@ class AccountIdentityProof < ApplicationRecord
     Keybase::Proof.new(self).valid?
   end
 
+  def remote_url
+    if keybase?
+      Keybase::Proof.new(self).url
+    end
+  end
+
+  def status_img_url
+    if keybase?
+      Keybase::Proof.new(self).badge_pic_url
+    end
+  end
+
   def success_redirect(useragent)
     if self.keybase?
       Keybase::Proof.new(self).success_redirect_url(useragent)

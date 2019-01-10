@@ -48,6 +48,15 @@ module Keybase
       build_url('/_/proof_creation_success', params)
     end
 
+    def badge_pic_url
+      params = { domain: @domain, username: local_username }
+      build_url("/#{@kb_username}/proof_badge/#{@token}", params)
+    end
+
+    def url
+      build_url("/#{@kb_username}/sigchain\##{@token}", {})
+    end
+
     private
 
     def to_keybase_params

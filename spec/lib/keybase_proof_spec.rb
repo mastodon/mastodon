@@ -78,4 +78,14 @@ describe Keybase::Proof do
       end
     end
   end
+
+  describe 'badge_pic_url' do
+    let(:expected_url) do
+      'https://keybase.io/cryptoalice/proof_badge/11111111111111111111111111?domain=mastodon.social&username=alice'
+    end
+
+    it 'builds the url correctly' do
+      expect(keybase_proof.badge_pic_url).to eq expected_url
+    end
+  end
 end
