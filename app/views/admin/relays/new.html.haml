@@ -1,0 +1,13 @@
+- content_for :page_title do
+  = t('admin.relays.add_new')
+
+= simple_form_for @relay, url: admin_relays_path do |f|
+  = render 'shared/error_messages', object: @relay
+
+  .field-group
+    = f.input :inbox_url, as: :string, wrapper: :with_block_label
+
+  .actions
+    = f.button :button, t('admin.relays.save_and_enable'), type: :submit
+
+  %p.hint.subtle-hint= t('admin.relays.enable_hint')

@@ -51,7 +51,7 @@ export default class PublicTimeline extends React.PureComponent {
     const { intl } = this.props;
 
     return (
-      <Column ref={this.setRef}>
+      <Column ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='globe'
           title={intl.formatMessage(messages.title)}

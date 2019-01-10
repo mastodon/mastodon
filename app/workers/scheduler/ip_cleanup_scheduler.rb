@@ -5,6 +5,8 @@ class Scheduler::IpCleanupScheduler
 
   RETENTION_PERIOD = 1.year
 
+  sidekiq_options unique: :until_executed, retry: 0
+
   def perform
     time_ago = RETENTION_PERIOD.ago
     SessionActivation.where('updated_at < ?', time_ago).destroy_all

@@ -14,6 +14,8 @@ class ActivityPub::DistributionWorker
     ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
       [signed_payload, @account.id, inbox_url]
     end
+
+    relay! if relayable?
   rescue ActiveRecord::RecordNotFound
     true
   end
@@ -22,6 +24,10 @@ class ActivityPub::DistributionWorker
 
   def skip_distribution?
     @status.direct_visibility?
+  end
+
+  def relayable?
+    @status.public_visibility?
   end
 
   def inboxes
@@ -38,5 +44,11 @@ class ActivityPub::DistributionWorker
       serializer: ActivityPub::ActivitySerializer,
       adapter: ActivityPub::Adapter
     ).as_json
+  end
+
+  def relay!
+    ActivityPub::DeliveryWorker.push_bulk(Relay.enabled.pluck(:inbox_url)) do |inbox_url|
+      [signed_payload, @account.id, inbox_url]
+    end
   end
 end

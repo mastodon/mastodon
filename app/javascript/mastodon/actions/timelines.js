@@ -55,7 +55,7 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
       return;
     }
 
-    if (!params.max_id && timeline.get('items', ImmutableList()).size > 0) {
+    if (!params.max_id && !params.pinned && timeline.get('items', ImmutableList()).size > 0) {
       params.since_id = timeline.getIn(['items', 0]);
     }
 

@@ -8,7 +8,7 @@
   - if @report.unresolved?
     %div{ style: 'float: right' }
       = link_to t('admin.reports.silence_account'), admin_report_path(@report, outcome: 'silence'), method: :put, class: 'button'
-      = link_to t('admin.reports.suspend_account'), admin_report_path(@report, outcome: 'suspend'), method: :put, class: 'button'
+      = link_to t('admin.reports.suspend_account'), new_admin_account_suspension_path(@report.target_account_id, report_id: @report.id), class: 'button'
     %div{ style: 'float: left' }
       = link_to t('admin.reports.mark_as_resolved'), admin_report_path(@report, outcome: 'resolve'), method: :put, class: 'button'
   - else

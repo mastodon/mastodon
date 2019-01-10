@@ -4,14 +4,14 @@ sv:
     hints:
       defaults:
         autofollow: Användarkonton som skapas genom din inbjudan kommer automatiskt följa dig
-        avatar: Högst 2 MB. Kommer att skalas ner till 400x400px
+        avatar: Högst %{size}. Kommer att skalas ner till %{dimensions}px
         bot: Detta konto utför huvudsakligen automatiserade åtgärder och kanske inte övervakas
         digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
         display_name:
           one: <span class="name-counter">1</span> tecken kvar
           other: <span class="name-counter">%{count}</span> tecken kvar
         fields: Du kan ha upp till 4 objekt visade som en tabell på din profil
-        header: NG, GIF eller JPG. Högst 2 MB. Kommer nedskalas till 700x335px
+        header: NG, GIF eller JPG. Högst %{size}. Kommer nedskalas till %{dimensions}px
         locale: Användargränssnittets språk, e-post och push aviseringar
         locked: Kräver att du manuellt godkänner följare
         note:

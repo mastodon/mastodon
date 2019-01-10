@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { debounce } from 'lodash';
 import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import DomainContainer from '../../containers/domain_container';
 import { fetchDomainBlocks, expandDomainBlocks } from '../../actions/domain_blocks';
-import { defineMessages, injectIntl } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { debounce } from 'lodash';
 import ScrollableList from '../../components/scrollable_list';
 
 const messages = defineMessages({
@@ -28,6 +28,7 @@ export default class Blocks extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
+    shouldUpdateScroll: PropTypes.func,
     domains: ImmutablePropTypes.orderedSet,
     intl: PropTypes.object.isRequired,
   };
@@ -41,7 +42,7 @@ export default class Blocks extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { intl, domains } = this.props;
+    const { intl, domains, shouldUpdateScroll } = this.props;
 
     if (!domains) {
       return (
@@ -51,10 +52,17 @@ export default class Blocks extends ImmutablePureComponent {
       );
     }
 
+    const emptyMessage = <FormattedMessage id='empty_column.domain_blocks' defaultMessage='There are no hidden domains yet.' />;
+
     return (
       <Column icon='minus-circle' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
-        <ScrollableList scrollKey='domain_blocks' onLoadMore={this.handleLoadMore}>
+        <ScrollableList
+          scrollKey='domain_blocks'
+          onLoadMore={this.handleLoadMore}
+          shouldUpdateScroll={shouldUpdateScroll}
+          emptyMessage={emptyMessage}
+        >
           {domains.map(domain =>
             <DomainContainer key={domain} domain={domain} />
           )}

@@ -22,6 +22,7 @@ const messages = defineMessages({
   community: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
+  compose: { id: 'navigation_bar.compose', defaultMessage: 'Compose new toot' },
 });
 
 const mapStateToProps = (state, ownProps) => ({
@@ -95,7 +96,7 @@ export default class Compose extends React.PureComponent {
     }
 
     return (
-      <div className='drawer'>
+      <div className='drawer' role='region' aria-label={intl.formatMessage(messages.compose)}>
         {header}
 
         {(multiColumn || isSearchPage) && <SearchContainer /> }

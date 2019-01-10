@@ -3,12 +3,16 @@
 class LanguageDetector
   include Singleton
 
+  CHARACTER_THRESHOLD = 140
+
   def initialize
     @identifier = CLD3::NNetLanguageIdentifier.new(1, 2048)
   end
 
   def detect(text, account)
-    detect_language_code(text) || default_locale(account)
+    input_text = prepare_text(text)
+    return if input_text.blank?
+    detect_language_code(input_text) || default_locale(account)
   end
 
   def language_names
@@ -23,8 +27,13 @@ class LanguageDetector
     simplify_text(text).strip
   end
 
+  def unreliable_input?(text)
+    text.size < CHARACTER_THRESHOLD
+  end
+
   def detect_language_code(text)
-    result = @identifier.find_language(prepare_text(text))
+    return if unreliable_input?(text)
+    result = @identifier.find_language(text)
     iso6391(result.language.to_s).to_sym if result.reliable?
   end
 
@@ -66,6 +75,6 @@ class LanguageDetector
   end
 
   def default_locale(account)
-    account.user_locale&.to_sym
+    account.user_locale&.to_sym || I18n.default_locale
   end
 end

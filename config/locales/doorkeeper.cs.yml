@@ -4,3 +4,139 @@ cs:
     attributes:
       doorkeeper/application:
         name: Název aplikace
+        redirect_uri: URI přesměrování
+        scopes: Rozsahy
+        website: Stránka aplikace
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: nesmí obsahovat fragment.
+              invalid_uri: musí být platné URI.
+              relative_uri: musí být apsolutní URI.
+              secured_uri: musí být URI HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizovat
+        cancel: Zrušit
+        destroy: Zničit
+        edit: Upravit
+        submit: Odeslat
+      confirmations:
+        destroy: Jste si jistý/á?
+      edit:
+        title: Upravit aplikaci
+      form:
+        error: A jéje! Zkontrolujte svůj formulář kvůli případným chybám
+      help:
+        native_redirect_uri: Použijte %{native_redirect_uri} pro místní testy
+        redirect_uri: Jedno URI na řádek
+        scopes: Oddělujte rozsahy mezerami. Pro použití výchozích rozsahů zanechte prázdné.
+      index:
+        application: Aplikace
+        callback_url: Zpáteční URL
+        delete: Smazat
+        name: Název
+        new: Nová aplikace
+        scopes: Rozsahy
+        show: Zobrazit
+        title: Vaše aplikace
+      new:
+        title: Nová aplikace
+      show:
+        actions: Akce
+        application_id: Klientský klíč
+        callback_urls: Zpáteční URL
+        scopes: Rozsahy
+        secret: Klientské tajemství
+        title: 'Aplikace: %{name}'
+    authorizations:
+      buttons:
+        authorize: Ověřit
+        deny: Zamítnout
+      error:
+        title: Vyskytla se chyba
+      new:
+        able_to: Bude moci
+        prompt: Aplikace %{client_name} vyžaduje přístup k vašemu účtu
+        title: Je vyžadována autorizace
+      show:
+        title: Zkopírujte tento autorizační kód a vložte ho do aplikace.
+    authorized_applications:
+      buttons:
+        revoke: Zamítnout
+      confirmations:
+        revoke: Jste si jistý/á?
+      index:
+        application: Aplikace
+        created_at: Autorizováno
+        date_format: "%d.%m.%Y %H:%M:%S"
+        scopes: Rozsahy
+        title: Vaše autorizované aplikace
+    errors:
+      messages:
+        access_denied: Vlastník zdroje či autorizační server zamítl požadavek.
+        credential_flow_not_configured: Proud Resource Owner Password Credentials selhal, protože Doorkeeper.configure.resource_owner_from_credentials nebylo nakonfigurováno.
+        invalid_client: Ověření klienta selhalo kvůli neznámému klientovi, chybějící klientské autentikaci či nepodporované autentikační metodě.
+        invalid_grant: Poskytnuté oprávnění je neplatné, vypršelé, zamítnuté, neshoduje se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno jinému klientu.
+        invalid_redirect_uri: Přesměrovací URI není platné.
+        invalid_request: Požadavku chybí pžadovaný parametr, obsahuje nepodporovanou hodnotu parametru, či je jinak malformovaný.
+        invalid_resource_owner: Poskytnuté přihlašovací údaje vlastníka zdroje nejsou platné, nebo vlastník zdroje nemůže být nalezen
+        invalid_scope: Požadovaný rozsah je neplatný, neznámý, nebo malformovaný.
+        invalid_token:
+          expired: Přístupový token vypršel
+          revoked: Přístupový token byl zamítnut
+          unknown: Přístupový token je neplatný
+        resource_owner_authenticator_not_configured: Nález Resource Owner selhal, protože Doorkeeper.configure.resource_owner_authenticator nebylo nakonfigurováno.
+        server_error: Autorizační server se setkal s neočekávanou chybou, která mu zabránila ve vykonání požadavku.
+        temporarily_unavailable: Autorizační server vás nyní nemůže obsloužit kvůli dočasnému přetížení či údržbě serveru.
+        unauthorized_client: Klient není autorizován k vykonání tohoto požadavku touto metodou.
+        unsupported_grant_type: Tento typ oprávnění není podporován autorizačním serverem.
+        unsupported_response_type: Autorizační server nepodporuje tento typ odpovědi.
+    flash:
+      applications:
+        create:
+          notice: Aplikace vytvořena.
+        destroy:
+          notice: Aplikace smazána.
+        update:
+          notice: Aplikace aktualizována.
+      authorized_applications:
+        destroy:
+          notice: Aplikace zamítnuta.
+    layouts:
+      admin:
+        nav:
+          applications: Aplikace
+          oauth2_provider: Poskytovatel OAuth2
+      application:
+        title: Je požadována autorizace OAuth
+    scopes:
+      follow: upravovat vztahy mezi profily
+      push: přijímat vaše push oznámení
+      read: vidět všechna data vašeho účtu
+      read:accounts: vidět informace o účtech
+      read:blocks: vidět vaše blokace
+      read:favourites: vidět vaše oblíbení
+      read:filters: vidět vaše filtry
+      read:follows: vidět vaše sledování
+      read:lists: vidět vaše seznamy
+      read:mutes: vidět vaše ignorace
+      read:notifications: vidět vaše oznámení
+      read:reports: vidět vaše nahlášení
+      read:search: vyhledávat za vás
+      read:statuses: vidět všechny příspěvky
+      write: měnit všechna data vašeho účtu
+      write:accounts: měnit váš profil
+      write:blocks: blokovat účty a domény
+      write:favourites: oblibovat si příspěvky
+      write:filters: vytvářet filtry
+      write:follows: sledovat lidi
+      write:lists: vytvářet seznamy
+      write:media: nahrávat mediální soubory
+      write:mutes: ignorovat lidi a konverzace
+      write:notifications: vymazávat vaše oznámení
+      write:reports: nahlašovat jiné uživatele
+      write:statuses: publikovat příspěvky

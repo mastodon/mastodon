@@ -104,7 +104,9 @@ class ActivityPub::Activity
 
   def crawl_links(status)
     return if status.spoiler_text?
-    LinkCrawlWorker.perform_async(status.id)
+
+    # Spread out crawling randomly to avoid DDoSing the link
+    LinkCrawlWorker.perform_in(rand(1..59).seconds, status.id)
   end
 
   def distribute_to_followers(status)

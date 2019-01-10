@@ -9,9 +9,6 @@ zh-TW:
     contact: 聯絡我們
     contact_missing: 未設定
     contact_unavailable: 未公開
-    description_headline: 關於 %{domain}？
-    domain_count_after: 個站點相連
-    domain_count_before: 與其他
     extended_description_html: |
       <h3>這裡可以寫一些網站規則</h3>
       <p>本站點未有詳細介紹</p>
@@ -46,7 +43,6 @@ zh-TW:
     people_who_follow: 關注 %{name} 的人
     posts: 嘟文
     posts_with_replies: 嘟文與回覆
-    remote_follow: 跨站關注
     reserved_username: 此用戶名已被保留
     roles:
       admin: 管理員
@@ -488,7 +484,6 @@ zh-TW:
     unlocked_warning_title: 你的帳戶是公開的
   generic:
     changes_saved_msg: 已成功儲存修改!
-    powered_by: 網站由 %{link} 開發
     save_changes: 儲存修改
     validation_errors:
       one: 送出的資料有問題
@@ -524,8 +519,6 @@ zh-TW:
       expires_at: 失效時間
       uses: 已使用次數
     title: 邀請使用者
-  landing_strip_html: "<strong>%{name}</strong> 是一個在 %{link_to_root_path} 的使用者。只要您有任何 Mastodon 站點、或者聯盟站點的帳戶，便可以跨站關注此站使用者，或者與他們互動。"
-  landing_strip_signup_html: 如果您沒有這些帳戶，歡迎在<a href="%{sign_up_path}">這裡註冊</a>。
   lists:
     errors:
       limit: 你所建立的列表數量已經達到上限
@@ -685,7 +678,6 @@ zh-TW:
       unlisted: 公開，但不在公共時間軸顯示
       unlisted_long: 所有人都能看到，但不會出現在公共時間軸上
   stream_entries:
-    click_to_show: 點選顯示
     pinned: 置頂嘟文
     reblogged: 轉嘟
     sensitive_content: 敏感內容

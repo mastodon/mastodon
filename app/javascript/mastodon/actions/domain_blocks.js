@@ -128,7 +128,7 @@ export function expandDomainBlocks() {
   return (dispatch, getState) => {
     const url = getState().getIn(['domain_lists', 'blocks', 'next']);
 
-    if (url === null) {
+    if (!url) {
       return;
     }
 

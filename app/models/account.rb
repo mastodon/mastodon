@@ -68,6 +68,7 @@ class Account < ApplicationRecord
 
   # Remote user validations
   validates :username, uniqueness: { scope: :domain, case_sensitive: true }, if: -> { !local? && will_save_change_to_username? }
+  validates :username, format: { with: /\A#{USERNAME_RE}\z/i }, if: -> { !local? && will_save_change_to_username? }
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? }
@@ -87,6 +88,10 @@ class Account < ApplicationRecord
   # Pinned statuses
   has_many :status_pins, inverse_of: :account, dependent: :destroy
   has_many :pinned_statuses, -> { reorder('status_pins.created_at DESC') }, through: :status_pins, class_name: 'Status', source: :status
+
+  # Endorsements
+  has_many :account_pins, inverse_of: :account, dependent: :destroy
+  has_many :endorsed_accounts, through: :account_pins, class_name: 'Account', source: :target_account
 
   # Media
   has_many :media_attachments, dependent: :destroy
@@ -186,6 +191,13 @@ class Account < ApplicationRecord
   def refresh!
     return if local?
     ResolveAccountService.new.call(acct)
+  end
+
+  def suspend!
+    transaction do
+      user&.disable! if local?
+      update!(suspended: true)
+    end
   end
 
   def unsuspend!

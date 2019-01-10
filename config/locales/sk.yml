@@ -9,9 +9,6 @@ sk:
     contact: Kontakt
     contact_missing: Nezadané
     contact_unavailable: Neuvedené
-    description_headline: Čo je %{domain}?
-    domain_count_after: ďalším instanciám
-    domain_count_before: Pripojený k
     extended_description_html: |
       <h3>Pravidlá</h3>
       <p>Žiadne zatiaľ nie sú</p>
@@ -46,7 +43,6 @@ sk:
     people_who_follow: Ľudia sledujúci %{name}
     posts: Príspevky
     posts_with_replies: Príspevky s odpoveďami
-    remote_follow: Sleduj vzdialeného
     reserved_username: Prihlasovacie meno je rezervované
     roles:
       admin: Administrátor
@@ -206,6 +202,19 @@ sk:
       update_failed_msg: Nebolo možné aktualizovať toto emoji
       updated_msg: Emoji bolo úspešne aktualizované!
       upload: Nahrať
+    dashboard:
+      config: Nastavenia
+      feature_deletions: Vymazanie účtov
+      feature_invites: Pozvánky
+      feature_registrations: Registrácie
+      feature_relay: Federovací mostík
+      features: Vymoženosti
+      hidden_service: Federácia so skritými službami
+      open_reports: otvorené hlásenia
+      recent_users: Nedávny užívatelia
+      software: Softvér
+      space: Využitie miesta
+      total_users: užívateľov celkovo
     domain_blocks:
       add_new: Pridať nový
       created_msg: Doména je v procese blokovania
@@ -259,9 +268,13 @@ sk:
       filter:
         all: Všetky
         available: Dostupné
-        expired: Expirované
+        expired: Vypršalo
         title: Filtrovať
       title: Pozvánky
+    relays:
+      add_new: Pridaj novú priechodnú oporu
+      description_html: "<strong>Federovací mostík</strong> je prechodný server ktorý obmieňa veľké množstvá verejných príspevkov medzi tými servermi ktoré na od neho odoberajú, aj doňho prispievajú. <strong>Môže to pomôcť malým a stredným instanciám objavovať federovaný obsah</strong>, čo inak vyžaduje aby miestni užívatelia ručne následovali iných ľudí zo vzdialených instancií."
+      status: Stav
     report_notes:
       created_msg: Poznámka o nahlásení úspešne vytvorená!
       destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
@@ -423,11 +436,11 @@ sk:
   authorize_follow:
     already_following: Tento účet už následuješ
     error: Naneštastie nastala chyba pri hľadaní vzdialeného účtu
-    follow: Následovať
-    follow_request: 'Poslali ste požiadavku následovať užívateľa:'
-    following: 'Podarilo sa! Teraz už následujete užívateľa:'
+    follow: Následuj
+    follow_request: 'Poslal/a si žiadosť následovať užívateľa:'
+    following: 'Podarilo sa! Teraz už následuješ užívateľa:'
     post_follow:
-      close: Alebo môžete iba zatvoriť toto okno.
+      close: Alebo môžeš iba zatvoriť toto okno.
       return: Ukáž užívateľov profil
       web: Prejdi do siete
     title: Následuj %{acct}
@@ -509,7 +522,6 @@ sk:
     unlocked_warning_title: Tvoj účet nieje zamknutý
   generic:
     changes_saved_msg: Zmeny boli úspešne uložené!
-    powered_by: poháňané vďaka %{link}
     save_changes: Uložiť zmeny
     validation_errors:
       few: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetky %{count} chyby
@@ -547,8 +559,6 @@ sk:
       expires_at: Vyprší
       uses: Používa
     title: Pozvi ľudí
-  landing_strip_html: "<strong>%{name}</strong> je užívateľ na serveri %{link_to_root_path}. Ty ich môžeš následovať a môžeš s nimi interaktovať pokiaľ máš účet kdekoľvek v rámci fediversa."
-  landing_strip_signup_html: Pokiaľ ešte nemáš, môžeš <a href="%{sign_up_path}">si tu vytvoriť účet</a>.
   lists:
     errors:
       limit: Dosiahli ste maximálny možný počet zoznamov
@@ -635,6 +645,7 @@ sk:
     browser: Prehliadač
     browsers:
       alipay: Alipay
+      blackberry: RIM Blackberry
       chrome: Google Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -707,7 +718,6 @@ sk:
       unlisted: Nezaradené
       unlisted_long: Všetci môžu vidieť, ale nieje zaradené do verejnej osi
   stream_entries:
-    click_to_show: Klikni pre zobrazenie
     pinned: Pripnutý toot
     reblogged: vyzdvihnutý
     sensitive_content: Senzitívny obsah

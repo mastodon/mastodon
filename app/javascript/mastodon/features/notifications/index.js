@@ -165,7 +165,7 @@ export default class Notifications extends React.PureComponent {
     );
 
     return (
-      <Column ref={this.setColumnRef}>
+      <Column ref={this.setColumnRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='bell'
           active={isUnread}

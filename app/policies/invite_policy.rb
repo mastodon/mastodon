@@ -9,6 +9,10 @@ class InvitePolicy < ApplicationPolicy
     min_required_role?
   end
 
+  def deactivate_all?
+    admin?
+  end
+
   def destroy?
     owner? || (Setting.min_invite_role == 'admin' ? admin? : staff?)
   end

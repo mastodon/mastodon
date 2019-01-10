@@ -1,0 +1,20 @@
+- content_for :page_title do
+  = t('admin.relays.title')
+
+.simple_form
+  %p.hint= t('admin.relays.description_html')
+  = link_to @relays.empty? ? t('admin.relays.setup') : t('admin.relays.add_new'), new_admin_relay_path, class: 'block-button'
+
+- unless @relays.empty?
+  %hr.spacer
+
+  .table-wrapper
+    %table.table
+      %thead
+        %tr
+          %th= t('admin.relays.inbox_url')
+          %th= t('admin.relays.status')
+          %th
+      %tbody
+        = render @relays
+

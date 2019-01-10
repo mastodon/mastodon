@@ -50,6 +50,7 @@ export default class ExtendedVideoPlayer extends React.PureComponent {
           role='button'
           tabIndex='0'
           aria-label={alt}
+          title={alt}
           muted={muted}
           controls={controls}
           loop={!controls}

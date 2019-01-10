@@ -80,15 +80,7 @@ const handlePush = (event) => {
 
   // Placeholder until more information can be loaded
   event.waitUntil(
-    notify({
-      title,
-      body,
-      icon,
-      tag: notification_id,
-      timestamp: new Date(),
-      badge: '/badge.png',
-      data: { access_token, preferred_locale, url: '/web/notifications' },
-    }).then(() => fetchFromApi(`/api/v1/notifications/${notification_id}`, 'get', access_token)).then(notification => {
+    fetchFromApi(`/api/v1/notifications/${notification_id}`, 'get', access_token).then(notification => {
       const options = {};
 
       options.title     = formatMessage(`notification.${notification.type}`, preferred_locale, { name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
@@ -112,6 +104,16 @@ const handlePush = (event) => {
       }
 
       return notify(options);
+    }).catch(() => {
+      return notify({
+        title,
+        body,
+        icon,
+        tag: notification_id,
+        timestamp: new Date(),
+        badge: '/badge.png',
+        data: { access_token, preferred_locale, url: '/web/notifications' },
+      });
     })
   );
 };

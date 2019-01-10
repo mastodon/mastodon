@@ -6,7 +6,7 @@ class Maintenance::RedownloadAccountMediaWorker
   sidekiq_options queue: 'pull', retry: false
 
   def perform(account_id)
-    account = Account.find(account_id)
+    account = account_id.is_a?(Account) ? account_id : Account.find(account_id)
     account.reset_avatar!
     account.reset_header!
     account.save

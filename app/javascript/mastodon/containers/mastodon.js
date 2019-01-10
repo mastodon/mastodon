@@ -38,13 +38,6 @@ export default class Mastodon extends React.PureComponent {
       window.setTimeout(() => Notification.requestPermission(), 60 * 1000);
     }
 
-    // Protocol handler
-    // Ask after 5 minutes
-    if (typeof navigator.registerProtocolHandler !== 'undefined') {
-      const handlerUrl = window.location.protocol + '//' + window.location.host + '/intent?uri=%s';
-      window.setTimeout(() => navigator.registerProtocolHandler('web+mastodon', handlerUrl, 'Mastodon'), 5 * 60 * 1000);
-    }
-
     store.dispatch(showOnboardingOnce());
   }
 

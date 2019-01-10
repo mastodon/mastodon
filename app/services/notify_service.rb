@@ -123,7 +123,7 @@ class NotifyService < BaseService
 
   def send_email
     return if @notification.activity.nil?
-    NotificationMailer.public_send(@notification.type, @recipient, @notification).deliver_later
+    NotificationMailer.public_send(@notification.type, @recipient, @notification).deliver_later(wait: 2.minutes)
   end
 
   def email_enabled?

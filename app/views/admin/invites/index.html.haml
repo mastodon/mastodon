@@ -9,22 +9,28 @@
       %li= filter_link_to t('admin.invites.filter.available'), available: 1, expired: nil
       %li= filter_link_to t('admin.invites.filter.expired'), available: nil, expired: 1
 
+%hr.spacer/
+
 - if policy(:invite).create?
   %p= t('invites.prompt')
 
   = render 'invites/form'
 
-  %hr/
+  %hr.spacer/
 
-%table.table
-  %thead
-    %tr
-      %th
-      %th= t('invites.table.uses')
-      %th= t('invites.table.expires_at')
-      %th
-      %th
-  %tbody
-    = render @invites
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th
+        %th= t('invites.table.uses')
+        %th= t('invites.table.expires_at')
+        %th
+        %th
+    %tbody
+      = render @invites
 
 = paginate @invites
+
+- if policy(:invite).deactivate_all?
+  = link_to t('admin.invites.deactivate_all'), deactivate_all_admin_invites_path, method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button'

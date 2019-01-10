@@ -1,0 +1,17 @@
+.form-container
+  .follow-prompt
+    %h2= t('remote_interaction.prompt')
+
+    .public-layout
+      .activity-stream.activity-stream--highlighted
+        = render 'stream_entries/status', status: @status
+
+  = simple_form_for @remote_follow, as: :remote_follow, url: remote_interaction_path(@status) do |f|
+    = render 'shared/error_messages', object: @remote_follow
+
+    = f.input :acct, placeholder: t('remote_follow.acct'), input_html: { autocapitalize: 'none', autocorrect: 'off' }
+
+    .actions
+      = f.button :button, t('remote_interaction.proceed'), type: :submit
+
+    %p.hint.subtle-hint= t('remote_follow.no_account_html', sign_up_path: open_registrations? ? new_user_registration_path : 'https://joinmastodon.org/#getting-started')
