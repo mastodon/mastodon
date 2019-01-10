@@ -3,9 +3,10 @@ uk:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF, або JPG. Максимум - 2МБ. Буде зменшено до 400x400px
+        avatar: PNG, GIF, або JPG. Максимум - 2МБ. Буде зменшено до %{dimensions}px
+        bot: Цей аккаунт в основному виконує автоматичні дії та може не відстежуватіся
         display_name: 'Залишилося символів: <span class="name-counter">%{count}</span>'
-        header: PNG, GIF, або JPG. Максимум - 2МБ. Буде зменшено до 700x335px
+        header: PNG, GIF, або JPG. Максимум - 2МБ. Буде зменшено до %{dimensions}px
         locked: Буде вимагати від Вас самостійного підтверждення підписників, змінить приватність постів за замовчуванням на "тільки для підписників"
         note: 'Осталось символов: <span class="note-counter">%{count}</span>'
       imports:

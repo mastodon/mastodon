@@ -9,9 +9,6 @@ sv:
     contact: Kontakt
     contact_missing: Inte inställd
     contact_unavailable: N/A
-    description_headline: Vad är %{domain}?
-    domain_count_after: andra instanser
-    domain_count_before: Uppkopplad mot
     extended_description_html: |
       <h3>En bra plats för regler</h3>
       <p>Den utökade beskrivningen har inte konfigurerats ännu.</p>
@@ -46,7 +43,6 @@ sv:
     people_who_follow: Personer som följer %{name}
     posts: Toots
     posts_with_replies: Toots med svar
-    remote_follow: Avlägsen följare
     reserved_username: Användarnamnet är reserverat
     roles:
       admin: Admin
@@ -488,7 +484,6 @@ sv:
     unlocked_warning_title: Ditt konto är inte låst
   generic:
     changes_saved_msg: Ändringar sparades framgångsrikt!
-    powered_by: drivs av %{link}
     save_changes: Spara ändringar
     validation_errors:
       one: Något är inte riktigt rätt ännu! Kontrollera felet nedan
@@ -524,8 +519,6 @@ sv:
       expires_at: Utgår
       uses: Användningar
     title: Bjud in andra
-  landing_strip_html: "<strong>%{name}</strong> är en användare på %{link_to_root_path}. Du kan följa dem eller interagera med dem om du har ett konto någonstans i federationen."
-  landing_strip_signup_html: Om du inte gör det, så kan du <a href="%{sign_up_path}">registrera dig här</a>.
   lists:
     errors:
       limit: Du har nått det maximala antalet listor
@@ -693,7 +686,6 @@ sv:
       unlisted: Olistade
       unlisted_long: Alla kan se, men listas inte på offentliga tidslinjer
   stream_entries:
-    click_to_show: Klicka för att visa
     pinned: Fäst toot
     reblogged: boostad
     sensitive_content: Känsligt innehåll

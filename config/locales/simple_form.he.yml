@@ -3,12 +3,12 @@ he:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF או JPG. מקסימום 2MB. גודל התמונה יוקטן ל-400x400px
+        avatar: PNG, GIF או JPG. מקסימום %{size}. גודל התמונה יוקטן ל-%{dimensions}px
         digest: נשלח לאחר תקופה ארוכה של אי-פעילות עם סיכום איזכורים שקיבלת בהעדרך
         display_name:
           one: נותרה אות<span class="name-counter">אחת</span>
           other: נותרו<span class="name-counter">%{count}</span> אותיות
-        header: PNG, GIF או JPG. מקסימום 2MB. גודל התמונה יוקטן 700x335px
+        header: PNG, GIF או JPG. מקסימום %{size}. גודל התמונה יוקטן %{dimensions}px
         locked: מחייב אישור עוקבים באופן ידני. פרטיות ההודעות תהיה עוקבים-בלבד אלא אם יצוין אחרת
         note:
           one: נותרה אות<span class="note-counter">אחת</span>

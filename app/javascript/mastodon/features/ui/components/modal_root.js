@@ -41,14 +41,15 @@ export default class ModalRoot extends React.PureComponent {
   };
 
   getSnapshotBeforeUpdate () {
-    const visible = !!this.props.type;
-    return {
-      overflowY: visible ? 'hidden' : null,
-    };
+    return { visible: !!this.props.type };
   }
 
-  componentDidUpdate (prevProps, prevState, { overflowY }) {
-    document.body.style.overflowY = overflowY;
+  componentDidUpdate (prevProps, prevState, { visible }) {
+    if (visible) {
+      document.body.classList.add('with-modals--active');
+    } else {
+      document.body.classList.remove('with-modals--active');
+    }
   }
 
   renderLoading = modalId => () => {

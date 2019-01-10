@@ -4,7 +4,7 @@ ca:
     hints:
       defaults:
         autofollow: Les persones que es registrin a través de la invitació et seguiran automàticament
-        avatar: PNG, GIF o JPG. Màxim 2MB. S'escalarà a 400x400px
+        avatar: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
         bot: Aquest compte realitza principalment accions automatitzades i pot no estar controlat per cap persona
         context: Un o diversos contextos on s'ha d'aplicar el filtre
         digest: Només s'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
@@ -12,7 +12,7 @@ ca:
           one: <span class="name-counter">1</span> càracter restant
           other: <span class="name-counter">%{count}</span> càracters restans
         fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
-        header: PNG, GIF o JPG. Màxim 2MB. S'escalarà a 700x335px
+        header: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
         irreversible: Els nodes filtrats desapareixeran de manera irreversible, fins i tot si el filtre es retira més tard
         locale: El llenguatge de l’interfície d’usuari, els correus i les notificacions push
         locked: Requereix que aprovis manualment els seguidors

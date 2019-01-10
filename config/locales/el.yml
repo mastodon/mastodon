@@ -5,13 +5,13 @@ el:
     about_mastodon_html: Το Mastodon είναι ένα κοινωνικό δίκτυο που βασίζεται σε ανοιχτά δικτυακά πρωτόκολλα και ελεύθερο λογισμικό ανοιχτού κώδικα. Είναι αποκεντρωμένο όπως το e-mail.
     about_this: Σχετικά
     administered_by: 'Διαχειρίζεται από:'
+    api: API
+    apps: Εφαρμογές κινητών
     closed_registrations: Αυτή τη στιγμή οι εγγραφές σε αυτό τον κόμβο είναι κλειστές. Αλλά! Μπορείς να βρεις έναν άλλο κόμβο για να ανοίξεις λογαριασμό και να έχεις πρόσβαση από εκεί στο ίδιο ακριβώς δίκτυο.
     contact: Επικοινωνία
     contact_missing: Δεν έχει οριστεί
     contact_unavailable: Μ/Δ
-    description_headline: Τι είναι το %{domain};
-    domain_count_after: άλλους διακομιστές
-    domain_count_before: Συνδέεται με
+    documentation: Τεκμηρίωση
     extended_description_html: |
       <h3>Ένα καλό σημείο για κανόνες</h3>
       <p>Η αναλυτική περιγραφή δεν έχει ακόμα οριστεί</p>
@@ -28,25 +28,39 @@ el:
     hosted_on: Το Mastodon φιλοξενείται στο %{domain}
     learn_more: Μάθε περισσότερα
     other_instances: Λίστα κόμβων
+    privacy_policy: Πολιτική απορρήτου
     source_code: Πηγαίος κώδικας
-    status_count_after: καταστάσεις
-    status_count_before: Που έχουν γράψει
-    user_count_after: χρήστες
+    status_count_after:
+      one: δημοσίευση
+      other: δημοσιεύσεις
+    status_count_before: Που έγραψαν
+    terms: Όροι χρήσης
+    user_count_after:
+      one: χρήστης
+      other: χρήστες
     user_count_before: Σπίτι για
     what_is_mastodon: Τι είναι το Mastodon;
   accounts:
+    choices_html: 'Επιλογές του/της %{name}:'
     follow: Ακολούθησε
-    followers: Ακόλουθοι
+    followers:
+      one: Ακόλουθος
+      other: Ακόλουθοι
     following: Ακολουθεί
+    joined: Εγγράφηκε στις %{date}
     media: Πολυμέσα
     moved_html: 'Ο/Η %{name} μετακόμισε στο %{new_profile_link}:'
     network_hidden: Αυτή η πληροφορία δεν είναι διαθέσιμη
     nothing_here: Δεν υπάρχει τίποτα εδώ!
     people_followed_by: Χρήστες που ακολουθεί ο/η %{name}
     people_who_follow: Χρήστες που ακολουθούν τον/την %{name}
-    posts: Τουτ
+    pin_errors:
+      following: Πρέπει ήδη να ακολουθείς το άτομο που θέλεις να επιδοκιμάσεις
+    posts:
+      one: Τουτ
+      other: Τουτ
+    posts_tab_heading: Τουτ
     posts_with_replies: Τουτ και απαντήσεις
-    remote_follow: Απομακρυσμένη παρακολούθηση
     reserved_username: Το όνομα χρήστη είναι κατειλημμένο
     roles:
       admin: Διαχειριστής
@@ -180,6 +194,7 @@ el:
         unsuspend_account: Ο/Η %{name} ήρε την παύση του λογαριασμού του χρήστη %{target}
         update_custom_emoji: Ο/Η %{name} ενημέρωσε το emoji %{target}
         update_status: Ο/Η %{name} ενημέρωσε την κατάσταση του/της %{target}
+      deleted_status: "(διαγραμμένη δημοσίευση)"
       title: Αρχείο ελέγχου
     custom_emojis:
       by_domain: Τομέας
@@ -206,6 +221,27 @@ el:
       update_failed_msg: Αδυναμία ενημέρωσης του emoji
       updated_msg: Επιτυχής ενημέρωση του Emoji!
       upload: Ανέβασμα
+    dashboard:
+      backlog: χρονοκαθυστερημένες εργασίες
+      config: Διαμόρφωση
+      feature_deletions: Διαγραφή λογαριασμών
+      feature_invites: Σύνδεσμοι προσκλήσεων
+      feature_registrations: Εγγραφές
+      feature_relay: Ανταποκριτής ομοσπονδίας
+      features: Λειτουργίες
+      hidden_service: Ομοσπονδία με κρυμμένες υπηρεσίες
+      open_reports: ανοιχτές καταγγελίες
+      recent_users: Πρόσφατοι χρήστες
+      search: Αναζήτηση πλήρους κειμένου
+      single_user_mode: Λειτουργία μοναδιαίου χρήστη
+      software: Λογισμικό
+      space: Κατανάλωση χώρου
+      title: Ταμπλό
+      total_users: χρήστες συνολικά
+      trends: Τάσεις
+      week_interactions: αλληλεπιδράσεις αυτή την εβδομάδα
+      week_users_active: ενεργοί αυτή την εβδομάδα
+      week_users_new: χρήστες αυτή την εβδομάδα
     domain_blocks:
       add_new: Προσθήκη νέου
       created_msg: Ο αποκλεισμός τομέα είναι υπό επεξεργασία
@@ -255,12 +291,23 @@ el:
       search: Αναζήτηση
       title: Γνωστοί κόμβοι
     invites:
+      deactivate_all: Απενεργοποίηση όλων
       filter:
         all: Όλες
         available: Διαθέσιμες
         expired: Ληγμένες
         title: Φίλτρο
       title: Προσκλήσεις
+    relays:
+      add_new: Πρόσθεσε νέο ανταποκριτή (relay)
+      description_html: Ο <strong>ομοσπονδιακός ανταποκριτής</strong> είναι ένας ενδιάμεσος εξυπηρετητής (server) που ανταλλάσσει μεγάλους όγκους δημόσιων τουτ μεταξύ εξυπηρετητών που εγγράφονται και δημοσιεύουν σε αυτόν. <strong>Βοηθάει μικρούς και μεσαίους εξυπηρετητές να ανακαλύψουν περιεχόμενο στο fediverse</strong>, που υπό άλλες συνθήκες θα χρειαζόταν κάποιους τοπικούς χρήστες που να ακολουθούν χρήστες σε απομακρυσμένους εξυπηρετητές.
+      enable_hint: Μόλις ενεργοποιηθεί, ο εξυπηρετητής (server) σου θα εγγραφεί σε όλα τα δημόσια τουτ αυτού του ανταποκριτή (relay) και θα αρχίσει να προωθεί τα δικά του δημόσια τουτ σε αυτόν.
+      inbox_url: URL ανταποκριτή
+      pending: Περιμένοντας την έγκριση του ανταποκριτή
+      save_and_enable: Αποθήκευση και ενεργοποίηση
+      setup: Όρισε μια σύνδεση ανταπόκρισης
+      status: Κατάσταση
+      title: Ανταποκριτές
     report_notes:
       created_msg: Επιτυχής δημιουργία σημείωσης καταγγελίας!
       destroyed_msg: Επιτυχής διαγραφή σημείωσης καταγγελίας!
@@ -310,12 +357,18 @@ el:
       contact_information:
         email: Επαγγελματικό email
         username: Όνομα χρήστη επικοινωνίας
+      custom_css:
+        desc_html: Τροποποίηση της εμφάνισης μέσω CSS που φορτώνεται σε κάθε σελίδα
+        title: Προσαρμοσμένο CSS
       hero:
         desc_html: Εμφανίζεται στην μπροστινή σελίδα. Συνίσταται τουλάχιστον 600x100px. Όταν λείπει, χρησιμοποιείται η μικρογραφία του κόμβου
         title: Εικόνα ήρωα
       peers_api_enabled:
         desc_html: Ονόματα τομέων που αυτός ο κόμβος έχει ήδη συναντήσει στο fediverse
         title: Δημοσίευση λίστας κόμβων που έχουν ανακαλυφθεί
+      preview_sensitive_media:
+        desc_html: Οι προεπισκοπήσεις συνδέσμων σε τρίτους ιστότοπους θα είναι ορατές ακόμα κι όταν το πολυμέσο έχει σημειωθεί ως ευαίσθητο
+        title: Εμφάνιση ευαίσθητων πολυμέσων στις προεπισκοπήσεις OpenGraph
       registrations:
         closed_message:
           desc_html: Εμφανίζεται στην εισαγωγική σελίδα όταν οι εγγραφές είναι κλειστές. Μπορείς να χρησιμοποιήσεις HTML tags
@@ -336,11 +389,14 @@ el:
         desc_html: Δείξε ένα σήμα προσωπικού στη σελίδα ενός χρήστη
         title: Δείξε διακριτικό προσωπικού
       site_description:
-        desc_html: Εισαγωγική παράγραφος στην αρχική σελίδα και στα meta tags. Μπορείς να χρησιμοποιήσεις HTML tags, συγκεκριμένα <code>&lt; a&gt;</code> και <code> &lt; em&gt;</code>.
+        desc_html: Εισαγωγική παράγραφος στην αρχική σελίδα. Περιέγραψε τι κάνει αυτό τον διακομιστή Mastodon διαφορετικό και ό,τι άλλο ενδιαφέρον. Μπορείς να χρησιμοποιήσεις HTML tags, συγκεκριμένα <code>&lt; a&gt;</code> και <code> &lt; em&gt;</code>.
         title: Περιγραφή κόμβου
       site_description_extended:
         desc_html: Ένα καλό μέρος για τον κώδικα δεοντολογίας, τους κανόνες, τις οδηγίες και ό,τι άλλο διαφοροποιεί τον κόμβο σου. Δέχεται και κώδικα HTML
         title: Προσαρμοσμένες εκτεταμένες πληροφορίες
+      site_short_description:
+        desc_html: Εμφανίζεται στην πλαϊνή μπάρα και στα meta tags. Περιέγραψε τι είναι το Mastodon και τι κάνει αυτό τον διακομιστή ιδιαίτερο σε μια παράγραφο. Αν μείνει κενό, θα πάρει την προκαθορισμένη περιγραφή του κόμβου.
+        title: Σύντομη περιγραφή του κόμβου
       site_terms:
         desc_html: Μπορείς να γράψεις τη δική σου πολιτική απορρήτου, όρους χρήσης ή άλλους νομικούς όρους. Μπορείς να χρησιμοποιήσεις HTML tags
         title: Προσαρμοσμένοι όροι χρήσης της υπηρεσίας
@@ -362,6 +418,7 @@ el:
       media:
         title: Πολυμέσα
       no_media: Χωρίς πολυμέσα
+      no_status_selected: Καμία δημοσίευση δεν άλλαξε αφού καμία δεν ήταν επιλεγμένη
       title: Καταστάσεις λογαριασμού
       with_media: Με πολυμέσα
     subscriptions:
@@ -371,6 +428,12 @@ el:
       last_delivery: Τελευταία παράδοση
       title: WebSub
       topic: Θέμα
+    suspensions:
+      bad_acct_msg: Η τιμή επιβεβαίωσης δεν ταιριάζει. Σίγουρα αναστέλλεις το σωστό λογαριασμό;
+      hint_html: 'Για να επιβεβαιώσεις την αναστολή του λογαριασμού, γράψε %{value} στο ακόλουθο πεδίο:'
+      proceed: Συνέχεια
+      title: Αναστολή %{acct}
+      warning_html: 'Αναστέλλοντας αυτό το λογαριασμό θα διαγραφούν <strong>αμετάκλητα</strong> δεδομένα του, μεταξύ των οποίων:'
     title: Διαχείριση
   admin_mailer:
     new_report:
@@ -502,10 +565,13 @@ el:
     true_privacy_html: Έχε υπ' όψιν σου πως <strong>η πραγματική ιδιωτικότητα επιτυγχάνεται μόνο με κρυπτογράφηση από άκρη σε άκρη</strong>.
     unlocked_warning_html: Μπορεί ο οποιοσδήποτε να σε ακολουθήσει και να βλέπει κατευθείαν τις ιδιωτικές ενημερώσεις σου. %{lock_link} για να αναθεωρήσεις και απορρίψεις ακόλουθους.
     unlocked_warning_title: Ο λογαριασμός σου δεν είναι κλειδωμένος
+  footer:
+    developers: Ανάπτυξη
+    more: Περισσότερα…
+    resources: Πόροι
   generic:
     changes_saved_msg: Οι αλλαγές αποθηκεύτηκαν!
-    powered_by: παρέχεται από %{link}
-    save_changes: Αποθήκευσε αλλαγές
+    save_changes: Αποθήκευσε τις αλλαγές
     validation_errors:
       one: Κάτι δεν είναι εντάξει ακόμα! Για κοίταξε το παρακάτω σφάλμα
       other: Κάτι δεν είναι εντάξει ακόμα! Για κοίταξε τα παρακάτω %{count} σφάλματα
@@ -540,8 +606,6 @@ el:
       expires_at: Λήγει
       uses: Χρήσεις
     title: Προσκάλεσε άτομα
-  landing_strip_html: Ο/Η <strong>%{name}</strong> είναι χρήστης στο %{link_to_root_path}. Μπορείς να ακολουθήσεις ή να αλληλεπιδράσεις μαζί τους αν έχεις λογαριασμό οπουδήποτε στο fediverse.
-  landing_strip_signup_html: Αν όχι, μπορείς να <a href="%{sign_up_path}">γραφτείς εδώ</a>.
   lists:
     errors:
       limit: Έχεις φτάσει το μέγιστο πλήθος επιτρεπτών λιστών
@@ -595,11 +659,11 @@ el:
       decimal_units:
         format: "%n%u"
         units:
-          billion: Δις.
-          million: Εκ.
-          quadrillion: Τετρ.
-          thousand: Χ.
-          trillion: Τρις.
+          billion: δις.
+          million: εκ.
+          quadrillion: τετράκις.
+          thousand: χ.
+          trillion: τρις.
   pagination:
     newer: Νεότερο
     next: Επόμενο
@@ -612,11 +676,14 @@ el:
     publishing: Δημοσίευση
     web: Διαδίκτυο
   remote_follow:
-    acct: Γράψε το ΌνομαΧρήστη@τομέας από όπου θέλεις να ακολουθήσεις
+    acct: Γράψε το ΌνομαΧρήστη@τομέα από όπου θέλεις να εκτελέσεις την ενέργεια αυτή
     missing_resource: Δεν βρέθηκε το απαιτούμενο URL ανακατεύθυνσης για το λογαριασμό σου
     no_account_html: Δεν έχεις λογαριασμό; Μπορείς <a href='%{sign_up_path}' target='_blank'>να γραφτείς εδώ</a>
     proceed: Συνέχισε για να ακολουθήσεις
     prompt: 'Θα ακολουθήσεις:'
+  remote_interaction:
+    proceed: Συνέχισε για να αλληλεπιδράσεις
+    prompt: 'Θέλεις να αλληλεπιδράσεις με αυτό το τουτ:'
   remote_unfollow:
     error: Σφάλμα
     title: Τίτλος
@@ -700,16 +767,16 @@ el:
       private: Τα μη δημόσια τουτ δεν καρφιτσώνονται
       reblog: Οι προωθήσεις δεν καρφιτσώνονται
     show_more: Δείξε περισσότερα
+    sign_in_to_participate: Εγγράφου για να συμμετάσχεις στη συζήτηση
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Μόνο ακόλουθοι
       private_long: Εμφάνιση μόνο σε ακόλουθους
       public: Δημόσιο
       public_long: Βλέπει οποιοσδήποτε
-      unlisted: Ακαταχώριστο
+      unlisted: Μη καταχωρημένο
       unlisted_long: Βλέπει οποιοσδήποτε, αλλά δεν καταχωρείται στις δημόσιες ροές
   stream_entries:
-    click_to_show: Κλικ για εμφάνιση
     pinned: Καρφιτσωμένο τουτ
     reblogged: προωθημένο
     sensitive_content: Ευαίσθητο περιεχόμενο
@@ -803,6 +870,7 @@ el:
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Βάλε τον κωδικό που δημιούργησε η εφαρμογή πιστοποίησής σου για επιβεβαίωση
     description_html: Αν ενεργοποιήσεις την <strong>πιστοποίηση 2 παραγόντων (2FA)</strong>, για να συνδεθείς θα πρέπει να έχεις το τηλέφωνό σου, που θα σου δημιουργήσει κλειδιά εισόδου.

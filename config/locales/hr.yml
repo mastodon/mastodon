@@ -5,9 +5,6 @@ hr:
     about_this: O ovoj instanci
     closed_registrations: Registracije na ovoj instanci su trenutno zatvorene.
     contact: Kontakt
-    description_headline: Što je %{domain}?
-    domain_count_after: druge instance
-    domain_count_before: Spojen na
     other_instances: Druge instance
     source_code: Izvorni kod
     status_count_after: statusi
@@ -22,7 +19,6 @@ hr:
     people_followed_by: Ljudi koje %{name} slijedi
     people_who_follow: Ljudi koji slijede %{name}
     posts: Postovi
-    remote_follow: Remote follow
     unfollow: Prestani slijediti
   application_mailer:
     settings: 'Promijeni e-mail postavke: %{link}'
@@ -64,7 +60,6 @@ hr:
     storage: Pohrana media zapisa
   generic:
     changes_saved_msg: Izmjene su uspješno sačuvane!
-    powered_by: omogućuje %{link}
     save_changes: Sačuvaj izmjene
     validation_errors:
       one: Nešto ne štima! Vidi grešku ispod
@@ -77,8 +72,6 @@ hr:
       following: Lista onih koje slijedim
       muting: Lista utišanih
     upload: Upload
-  landing_strip_html: "<strong>%{name}</strong> je korisnik na %{link_to_root_path}. Možeš ih slijediti ili komunicirati s njima ako imaš račun igdje u fediversu."
-  landing_strip_signup_html: Ako nemaš, možeš se <a href="%{sign_up_path}">registrirati ovdje</a>.
   notification_mailer:
     digest:
       body: 'Ovo je kratak sažetak propuštenog %{instance} od tvog prošlog posjeta %{since}:'
@@ -141,7 +134,6 @@ hr:
       public: Javno
       unlisted: Javno, no nemoj prikazati na javnom timelineu
   stream_entries:
-    click_to_show: Klikni da bi prikazao
     reblogged: potaknut
     sensitive_content: Osjetljivi sadržaj
   time:

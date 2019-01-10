@@ -58,13 +58,14 @@ RSpec.describe StreamEntriesHelper, type: :helper do
       expect(acct).to eq '@user@foreign_server.com'
     end
 
-    it 'is the shortname for non embedded local accounts' do
+    it 'is fully qualified for non embedded local accounts' do
+      allow(Rails.configuration.x).to receive(:local_domain).and_return('local_domain')
       set_not_embedded_view
       account = Account.new(domain: nil, username: 'user')
 
       acct = helper.acct(account)
 
-      expect(acct).to eq '@user'
+      expect(acct).to eq '@user@local_domain'
     end
   end
 

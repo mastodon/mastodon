@@ -39,3 +39,10 @@ delegate(document, '.media-spoiler-hide-button', 'click', () => {
     element.click();
   });
 });
+
+delegate(document, '#domain_block_severity', 'change', ({ target }) => {
+  const rejectMediaDiv = document.querySelector('.input.with_label.domain_block_reject_media');
+  if (rejectMediaDiv) {
+    rejectMediaDiv.style.display = (target.value === 'suspend') ? 'none' : 'block';
+  }
+});

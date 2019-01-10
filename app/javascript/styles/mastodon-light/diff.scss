@@ -169,6 +169,10 @@
   color: $white;
 }
 
+.dropdown-menu__separator {
+  border-bottom-color: lighten($ui-base-color, 12%);
+}
+
 // Change the background colors of modals
 .actions-modal,
 .boost-modal,
@@ -280,4 +284,88 @@
       color: $primary-text-color;
     }
   }
+}
+
+.flash-message {
+  box-shadow: none;
+
+  &.notice {
+    background: rgba($success-green, 0.5);
+    color: lighten($success-green, 12%);
+  }
+
+  &.alert {
+    background: rgba($error-red, 0.5);
+    color: lighten($error-red, 12%);
+  }
+}
+
+.simple_form,
+.table-form {
+  .warning {
+    box-shadow: none;
+    background: rgba($error-red, 0.5);
+    text-shadow: none;
+  }
+}
+
+.status__content,
+.reply-indicator__content {
+  a {
+    color: $highlight-text-color;
+  }
+}
+
+.button.logo-button {
+  color: $white;
+
+  svg path:first-child {
+    fill: $white;
+  }
+}
+
+.public-layout {
+  .header,
+  .public-account-header,
+  .public-account-bio {
+    box-shadow: none;
+  }
+
+  .header {
+    background: lighten($ui-base-color, 12%);
+  }
+
+  .public-account-header {
+    &__image {
+      background: lighten($ui-base-color, 12%);
+
+      &::after {
+        box-shadow: none;
+      }
+    }
+
+    &__tabs {
+      &__name {
+        h1,
+        h1 small {
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+.account__section-headline a.active::after {
+  border-color: transparent transparent $white;
+}
+
+.hero-widget,
+.box-widget,
+.contact-widget,
+.landing-page__information.contact-widget,
+.moved-account-widget,
+.memoriam-widget,
+.activity-stream,
+.nothing-here {
+  box-shadow: none;
 }

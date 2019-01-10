@@ -1,241 +1,98 @@
 .card {
-  background-color: $base-shadow-color;
-  background-size: cover;
-  background-position: center;
-  border-radius: 4px 4px 0 0;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
-  overflow: hidden;
-  position: relative;
-  display: flex;
-
-  &::after {
-    background: rgba(darken($ui-base-color, 8%), 0.5);
+  & > a {
     display: block;
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
 
-  @media screen and (max-width: 740px) {
-    border-radius: 0;
-    box-shadow: none;
-  }
+    @media screen and (max-width: $no-gap-breakpoint) {
+      box-shadow: none;
+    }
 
-  .card__illustration {
-    padding: 60px 0;
-    position: relative;
-    flex: 1 1 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .card__bio {
-    max-width: 260px;
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: rgba(darken($ui-base-color, 8%), 0.8);
-    position: relative;
-    z-index: 2;
-  }
-
-  &.compact {
-    padding: 30px 0;
-    border-radius: 4px;
-
-    .avatar {
-      margin-bottom: 0;
-
-      img {
-        object-fit: cover;
+    &:hover,
+    &:active,
+    &:focus {
+      .card__bar {
+        background: lighten($ui-base-color, 8%);
       }
     }
   }
 
-  .name {
-    display: block;
-    font-size: 20px;
-    line-height: 18px * 1.5;
-    color: $primary-text-color;
-    padding: 10px 15px;
-    padding-bottom: 0;
-    font-weight: 500;
+  &__img {
+    height: 130px;
     position: relative;
-    z-index: 2;
-    margin-bottom: 30px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    small {
-      display: block;
-      font-size: 14px;
-      color: $highlight-text-color;
-      font-weight: 400;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      .fa {
-        margin-left: 3px;
-      }
-    }
-  }
-
-  .avatar {
-    width: 120px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
+    background: darken($ui-base-color, 12%);
+    border-radius: 4px 4px 0 0;
 
     img {
-      width: 120px;
-      height: 120px;
       display: block;
-      border-radius: 120px;
-      box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
-    }
-  }
-
-  .roles {
-    margin-bottom: 30px;
-    padding: 0 15px;
-  }
-
-  .details-counters {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-  }
-
-  .counter {
-    width: 33.3%;
-    box-sizing: border-box;
-    flex: 0 0 auto;
-    color: $darker-text-color;
-    padding: 5px 10px 0;
-    margin-bottom: 10px;
-    border-right: 1px solid lighten($ui-base-color, 4%);
-    cursor: default;
-    text-align: center;
-    position: relative;
-
-    a {
-      display: block;
-    }
-
-    &:last-child {
-      border-right: 0;
-    }
-
-    &::after {
-      display: block;
-      content: "";
-      position: absolute;
-      bottom: -10px;
-      left: 0;
       width: 100%;
-      border-bottom: 4px solid $ui-primary-color;
-      opacity: 0.5;
-      transition: all 400ms ease;
+      height: 100%;
+      margin: 0;
+      object-fit: cover;
+      border-radius: 4px 4px 0 0;
     }
 
-    &.active {
-      &::after {
-        border-bottom: 4px solid $highlight-text-color;
-        opacity: 1;
+    @media screen and (max-width: 600px) {
+      height: 200px;
+    }
+
+    @media screen and (max-width: $no-gap-breakpoint) {
+      display: none;
+    }
+  }
+
+  &__bar {
+    position: relative;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: lighten($ui-base-color, 4%);
+    border-radius: 0 0 4px 4px;
+
+    @media screen and (max-width: $no-gap-breakpoint) {
+      border-radius: 0;
+    }
+
+    .avatar {
+      flex: 0 0 auto;
+      width: 48px;
+      height: 48px;
+      padding-top: 2px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        margin: 0;
+        border-radius: 4px;
+        background: darken($ui-base-color, 8%);
       }
     }
 
-    &:hover {
-      &::after {
-        opacity: 1;
-        transition-duration: 100ms;
+    .display-name {
+      margin-left: 15px;
+      text-align: left;
+
+      strong {
+        font-size: 15px;
+        color: $primary-text-color;
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
-    }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .counter-label {
-      font-size: 12px;
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .counter-number {
-      font-weight: 500;
-      font-size: 18px;
-      color: $primary-text-color;
-      font-family: 'mastodon-font-display', sans-serif;
-    }
-  }
-
-  .bio {
-    font-size: 14px;
-    line-height: 18px;
-    padding: 0 15px;
-    color: $secondary-text-color;
-  }
-
-  @media screen and (max-width: 480px) {
-    display: block;
-
-    .card__bio {
-      max-width: none;
-    }
-
-    .name,
-    .roles {
-      text-align: center;
-      margin-bottom: 15px;
-    }
-
-    .bio {
-      margin-bottom: 15px;
-    }
-  }
-}
-
-.card,
-.account-grid-card {
-  .controls {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    z-index: 2;
-
-    .icon-button {
-      color: rgba($white, 0.8);
-      text-decoration: none;
-      font-size: 13px;
-      line-height: 13px;
-      font-weight: 500;
-
-      .fa {
+      span {
+        display: block;
+        font-size: 14px;
+        color: $darker-text-color;
         font-weight: 400;
-        margin-right: 5px;
-      }
-
-      &:hover,
-      &:active,
-      &:focus {
-        color: $white;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }
-}
-
-.account-grid-card .controls {
-  left: auto;
-  right: 15px;
 }
 
 .pagination {
@@ -314,289 +171,23 @@
   }
 }
 
-.accounts-grid {
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
-  background: darken($simple-background-color, 8%);
-  border-radius: 0 0 4px 4px;
-  padding: 20px 5px;
-  padding-bottom: 10px;
-  overflow: hidden;
-  display: flex;
-  flex-wrap: wrap;
-  z-index: 2;
-  position: relative;
-
-  &.empty img {
-    position: absolute;
-    opacity: 0.2;
-    height: 200px;
-    left: 0;
-    bottom: 0;
-    pointer-events: none;
-  }
-
-  @media screen and (max-width: 740px) {
-    border-radius: 0;
-    box-shadow: none;
-  }
-
-  .account-grid-card {
-    box-sizing: border-box;
-    width: 335px;
-    background: $simple-background-color;
-    border-radius: 4px;
-    color: $inverted-text-color;
-    margin: 0 5px 10px;
-    position: relative;
-
-    @media screen and (max-width: 740px) {
-      width: calc(100% - 10px);
-    }
-
-    .account-grid-card__header {
-      overflow: hidden;
-      height: 100px;
-      border-radius: 4px 4px 0 0;
-      background-color: lighten($inverted-text-color, 4%);
-      background-size: cover;
-      background-position: center;
-      position: relative;
-
-      &::after {
-        background: rgba(darken($ui-base-color, 8%), 0.5);
-        display: block;
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-      }
-    }
-
-    .account-grid-card__avatar {
-      box-sizing: border-box;
-      padding: 15px;
-      position: absolute;
-      z-index: 2;
-      top: 100px - (40px + 2px);
-      left: -2px;
-    }
-
-    .avatar {
-      width: 80px;
-      height: 80px;
-
-      img {
-        display: block;
-        width: 80px;
-        height: 80px;
-        border-radius: 80px;
-        border: 2px solid $simple-background-color;
-        background: $simple-background-color;
-      }
-    }
-
-    .name {
-      padding: 15px;
-      padding-top: 10px;
-      padding-left: 15px + 80px + 15px;
-
-      a {
-        display: block;
-        color: $inverted-text-color;
-        text-decoration: none;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        font-weight: 500;
-
-        &:hover {
-          .display_name {
-            text-decoration: underline;
-          }
-        }
-      }
-    }
-
-    .display_name {
-      font-size: 16px;
-      display: block;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-
-    .username {
-      color: $lighter-text-color;
-      font-size: 14px;
-      font-weight: 400;
-    }
-
-    .account__header__content {
-      padding: 10px 15px;
-      padding-top: 15px;
-      color: $lighter-text-color;
-      word-wrap: break-word;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      height: 5.5em;
-      position: relative;
-
-      &::after {
-        display: block;
-        content: "";
-        width: 100%;
-        height: 100px;
-        position: absolute;
-        bottom: 0;
-        background: linear-gradient(to bottom, rgba($simple-background-color, 0.01) 0%, rgba($simple-background-color, 1) 100%);
-        left: 0;
-        border-radius: 0 0 4px 4px;
-        pointer-events: none;
-      }
-    }
-  }
-}
-
 .nothing-here {
-  width: 100%;
-  display: block;
+  background: $ui-base-color;
+  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
   color: $light-text-color;
   font-size: 14px;
   font-weight: 500;
   text-align: center;
-  padding: 130px 0;
-  padding-top: 125px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: default;
-}
-
-.account-card {
   border-radius: 4px;
-  text-align: left;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
-  background: $simple-background-color;
+  padding: 20px;
+  min-height: 30vh;
 
-  &__header {
-    background: $base-shadow-color;
-    background-size: cover;
-    background-position: center center;
-    height: 90px;
-    border-radius: 4px 4px 0 0;
-  }
-
-  & > .detailed-status__display-name {
-    display: block;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    padding: 10px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-
-    & > div:first-child {
-      flex: 0 0 auto;
-      margin-right: 10px;
-      width: 48px;
-      height: 48px;
-    }
-
-    .avatar {
-      display: block;
-      border-radius: 4px;
-      margin: 0;
-    }
-
-    .display-name {
-      flex: 1 0 auto;
-      display: block;
-      max-width: 100%;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      cursor: default;
-
-      & > .detailed-status__display-name {
-        margin-bottom: 0;
-      }
-
-      strong {
-        font-weight: 500;
-        color: $ui-base-color;
-
-        @each $lang in $cjk-langs {
-          &:lang(#{$lang}) {
-            font-weight: 700;
-          }
-        }
-      }
-
-      span {
-        font-size: 14px;
-        color: $light-text-color;
-      }
-    }
-
-    &:hover {
-      .display-name {
-        strong {
-          text-decoration: none;
-        }
-      }
-    }
-  }
-
-  .counter {
-    box-sizing: border-box;
-    flex: 0 0 auto;
-    color: $light-text-color;
-    padding: 0 10px;
-    cursor: default;
-    text-align: center;
-    position: relative;
-    line-height: 24px;
-
-    .counter-label {
-      font-size: 12px;
-      display: block;
-      text-transform: uppercase;
-    }
-
-    .counter-number {
-      font-weight: 500;
-      font-size: 16px;
-      color: $inverted-text-color;
-      font-family: 'mastodon-font-display', sans-serif;
-    }
-  }
-}
-
-.activity-stream-tabs {
-  background: $simple-background-color;
-  border-bottom: 1px solid $ui-secondary-color;
-  position: relative;
-  z-index: 2;
-
-  a {
-    display: inline-block;
-    padding: 15px;
-    text-decoration: none;
-    color: $highlight-text-color;
-    text-transform: uppercase;
-    font-weight: 500;
-
-    &:hover,
-    &:active,
-    &:focus {
-      color: lighten($highlight-text-color, 8%);
-    }
-
-    &.active {
-      color: $inverted-text-color;
-      cursor: default;
-    }
+  &--under-tabs {
+    border-radius: 0 0 4px 4px;
   }
 }
 
@@ -629,14 +220,14 @@
   padding: 0;
   margin: 15px -15px -15px;
   border: 0 none;
-  border-top: 1px solid lighten($ui-base-color, 4%);
-  border-bottom: 1px solid lighten($ui-base-color, 4%);
+  border-top: 1px solid lighten($ui-base-color, 12%);
+  border-bottom: 1px solid lighten($ui-base-color, 12%);
   font-size: 14px;
   line-height: 20px;
 
   dl {
     display: flex;
-    border-bottom: 1px solid lighten($ui-base-color, 4%);
+    border-bottom: 1px solid lighten($ui-base-color, 12%);
   }
 
   dt,

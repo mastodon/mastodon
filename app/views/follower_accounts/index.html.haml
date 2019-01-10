@@ -8,6 +8,11 @@
 = render 'accounts/header', account: @account
 
 - if @account.user_hides_network?
-  = render 'accounts/follow_grid_hidden'
+  .nothing-here= t('accounts.network_hidden')
+- elsif @follows.empty?
+  = nothing_here
 - else
-  = render 'accounts/follow_grid', follows: @follows, accounts: @follows.map(&:account)
+  .card-grid
+    = render partial: 'application/card', collection: @follows.map(&:account), as: :account
+
+  = paginate @follows

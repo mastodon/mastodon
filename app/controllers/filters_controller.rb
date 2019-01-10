@@ -52,6 +52,6 @@ class FiltersController < ApplicationController
   end
 
   def resource_params
-    params.require(:custom_filter).permit(:phrase, :expires_in, :irreversible, context: [])
+    params.require(:custom_filter).permit(:phrase, :expires_in, :irreversible, :whole_word, context: [])
   end
 end

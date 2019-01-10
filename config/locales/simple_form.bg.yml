@@ -3,9 +3,9 @@ bg:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF или JPG. До 2MB. Ще бъде смалена до 400x400 пиксела
+        avatar: PNG, GIF или JPG. До %{size}. Ще бъде смалена до %{dimensions} пиксела
         display_name: До 30 символа
-        header: PNG, GIF или JPG. До 2MB. Ще бъде смалена до 700x335 пиксела
+        header: PNG, GIF или JPG. До %{size}. Ще бъде смалена до %{dimensions} пиксела
         locked: Изисква ръчно одобрение на последователите. По подразбиране, публикациите са достъпни само до последователи.
         note: До 160 символа
       imports:

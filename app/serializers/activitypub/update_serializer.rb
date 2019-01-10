@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ActivityPub::UpdateSerializer < ActiveModel::Serializer
-  attributes :id, :type, :actor
+  attributes :id, :type, :actor, :to
 
   has_one :object, serializer: ActivityPub::ActorSerializer
 
@@ -15,5 +15,9 @@ class ActivityPub::UpdateSerializer < ActiveModel::Serializer
 
   def actor
     ActivityPub::TagManager.instance.uri_for(object)
+  end
+
+  def to
+    [ActivityPub::TagManager::COLLECTIONS[:public]]
   end
 end

@@ -42,7 +42,14 @@ class User < ApplicationRecord
   include Settings::Extend
   include Omniauthable
 
-  ACTIVE_DURATION = 7.days
+  # The home and list feeds will be stored in Redis for this amount
+  # of time, and status fan-out to followers will include only people
+  # within this time frame. Lowering the duration may improve performance
+  # if lots of people sign up, but not a lot of them check their feed
+  # every day. Raising the duration reduces the amount of expensive
+  # RegenerationWorker jobs that need to be run when those people come
+  # to check their feed
+  ACTIVE_DURATION = ENV.fetch('USER_ACTIVE_DAYS', 7).to_i.days
 
   devise :two_factor_authenticatable,
          otp_secret_encryption_key: Rails.configuration.x.otp_secret
@@ -91,7 +98,7 @@ class User < ApplicationRecord
            :reduce_motion, :system_font_ui, :noindex, :theme, :display_sensitive_media, :hide_network,
            :default_language, to: :settings, prefix: :setting, allow_nil: false
 
-  attr_accessor :invite_code
+  attr_reader :invite_code
 
   def pam_conflict(_)
     # block pam login tries on traditional account
@@ -209,16 +216,16 @@ class User < ApplicationRecord
     save!
   end
 
-  def active_for_authentication?
-    super && !disabled?
-  end
-
   def setting_default_privacy
     settings.default_privacy || (account.locked? ? 'private' : 'public')
   end
 
   def allows_digest_emails?
     settings.notification_emails['digest']
+  end
+
+  def allows_report_emails?
+    settings.notification_emails['report']
   end
 
   def hides_network?
@@ -255,7 +262,7 @@ class User < ApplicationRecord
   end
 
   def invite_code=(code)
-    self.invite  = Invite.find_by(code: code) unless code.blank?
+    self.invite  = Invite.find_by(code: code) if code.present?
     @invite_code = code
   end
 

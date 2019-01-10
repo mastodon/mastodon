@@ -1,4 +1,7 @@
 import loadPolyfills from '../mastodon/load_polyfills';
+import { start } from '../mastodon/common';
+
+start();
 
 function loaded() {
   const ComposeContainer = require('../mastodon/containers/compose_container').default;

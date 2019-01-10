@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ActivityPub::DeleteActorSerializer < ActiveModel::Serializer
-  attributes :id, :type, :actor
+  attributes :id, :type, :actor, :to
   attribute :virtual_object, key: :object
 
   def id
@@ -18,5 +18,9 @@ class ActivityPub::DeleteActorSerializer < ActiveModel::Serializer
 
   def virtual_object
     actor
+  end
+
+  def to
+    [ActivityPub::TagManager::COLLECTIONS[:public]]
   end
 end

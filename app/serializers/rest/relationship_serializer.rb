@@ -2,7 +2,8 @@
 
 class REST::RelationshipSerializer < ActiveModel::Serializer
   attributes :id, :following, :showing_reblogs, :followed_by, :blocking,
-             :muting, :muting_notifications, :requested, :domain_blocking
+             :muting, :muting_notifications, :requested, :domain_blocking,
+             :endorsed
 
   def id
     object.id.to_s
@@ -40,5 +41,9 @@ class REST::RelationshipSerializer < ActiveModel::Serializer
 
   def domain_blocking
     instance_options[:relationships].domain_blocking[object.id] || false
+  end
+
+  def endorsed
+    instance_options[:relationships].endorsed[object.id] || false
   end
 end

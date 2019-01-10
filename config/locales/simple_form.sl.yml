@@ -3,13 +3,13 @@ sl:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF ali JPG. Največ 2MB. Zmanjšana bo na 400x400px
+        avatar: PNG, GIF ali JPG. Največ %{size}. Zmanjšana bo na %{dimensions}px
         bot: Opozarja ljudi, da račun ne predstavlja osebe
         digest: Pošlje se le po dolgem obdobju nedejavnosti in samo, če ste prejeli osebna sporočila v vaši odsotnosti
         display_name:
           one: <span class="name-counter">1</span> znak ostane
           other: <span class="name-counter">%{count}</span> znakov ostane
         fields: Na svojem profilu lahko imate do 4 predmete prikazane kot tabelo.
-        header: PNG, GIF ali JPG. Največ 2MB. Zmanjšana bo na 700x335px
+        header: PNG, GIF ali JPG. Največ %{size}. Zmanjšana bo na %{dimensions}px
       imports:
         data: Izvožena CSV datoteka iz drugega Mastodon vozlišča

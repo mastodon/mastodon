@@ -1,39 +1,140 @@
-.footer {
-  text-align: center;
-  margin-top: 30px;
-  padding-bottom: 60px;
-  font-size: 12px;
-  color: $darker-text-color;
+.public-layout {
+  .footer {
+    text-align: left;
+    padding-top: 20px;
+    padding-bottom: 60px;
+    font-size: 12px;
+    color: lighten($ui-base-color, 34%);
 
-  .footer__domain {
-    font-weight: 500;
-
-    a {
-      color: inherit;
-      text-decoration: none;
+    @media screen and (max-width: $no-gap-breakpoint) {
+      padding-left: 20px;
+      padding-right: 20px;
     }
-  }
 
-  .powered-by,
-  .single-user-login {
-    font-weight: 400;
+    .grid {
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
 
-    a {
-      color: inherit;
-      text-decoration: underline;
-      font-weight: 500;
+      .column-0 {
+        grid-column: 1;
+        grid-row: 1;
+        min-width: 0;
+      }
 
-      &:hover {
+      .column-1 {
+        grid-column: 2;
+        grid-row: 1;
+        min-width: 0;
+      }
+
+      .column-2 {
+        grid-column: 3;
+        grid-row: 1;
+        min-width: 0;
+        text-align: center;
+
+        h4 a {
+          color: lighten($ui-base-color, 34%);
+        }
+      }
+
+      .column-3 {
+        grid-column: 4;
+        grid-row: 1;
+        min-width: 0;
+      }
+
+      .column-4 {
+        grid-column: 5;
+        grid-row: 1;
+        min-width: 0;
+      }
+
+      @media screen and (max-width: 690px) {
+        grid-template-columns: 1fr 2fr 1fr;
+
+        .column-0,
+        .column-1 {
+          grid-column: 1;
+        }
+
+        .column-1 {
+          grid-row: 2;
+        }
+
+        .column-2 {
+          grid-column: 2;
+        }
+
+        .column-3,
+        .column-4 {
+          grid-column: 3;
+        }
+
+        .column-4 {
+          grid-row: 2;
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        .column-1 {
+          display: block;
+        }
+      }
+
+      @media screen and (max-width: $no-gap-breakpoint) {
+        .column-0,
+        .column-1,
+        .column-3,
+        .column-4 {
+          display: none;
+        }
+      }
+    }
+
+    h4 {
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: $darker-text-color;
+
+      a {
+        color: inherit;
         text-decoration: none;
       }
     }
 
-    img {
-      margin: 0 4px;
-      position: relative;
-      bottom: -1px;
-      height: 18px;
-      vertical-align: top;
+    ul a {
+      text-decoration: none;
+      color: lighten($ui-base-color, 34%);
+
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+
+    .brand {
+      svg {
+        display: block;
+        height: 36px;
+        width: auto;
+        margin: 0 auto;
+
+        path {
+          fill: lighten($ui-base-color, 34%);
+        }
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        svg path {
+          fill: lighten($ui-base-color, 38%);
+        }
+      }
     }
   }
 }

@@ -18,11 +18,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def enable?
-    admin?
+    staff?
   end
 
   def disable?
-    admin? && !record.admin?
+    staff? && !record.admin?
   end
 
   def promote?

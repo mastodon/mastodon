@@ -5,13 +5,13 @@ en:
     about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
     about_this: About
     administered_by: 'Administered by:'
+    api: API
+    apps: Mobile apps
     closed_registrations: Registrations are currently closed on this instance. However! You can find a different instance to make an account on and get access to the very same network from there.
     contact: Contact
     contact_missing: Not set
     contact_unavailable: N/A
-    description_headline: What is %{domain}?
-    domain_count_after: other instances
-    domain_count_before: Connected to
+    documentation: Documentation
     extended_description_html: |
       <h3>A good place for rules</h3>
       <p>The extended description has not been set up yet.</p>
@@ -28,25 +28,39 @@ en:
     hosted_on: Mastodon hosted on %{domain}
     learn_more: Learn more
     other_instances: Instance list
+    privacy_policy: Privacy policy
     source_code: Source code
-    status_count_after: statuses
+    status_count_after:
+      one: status
+      other: statuses
     status_count_before: Who authored
-    user_count_after: users
+    terms: Terms of service
+    user_count_after:
+      one: user
+      other: users
     user_count_before: Home to
     what_is_mastodon: What is Mastodon?
   accounts:
+    choices_html: "%{name}'s choices:"
     follow: Follow
-    followers: Followers
+    followers:
+      one: Follower
+      other: Followers
     following: Following
+    joined: Joined %{date}
     media: Media
     moved_html: "%{name} has moved to %{new_profile_link}:"
     network_hidden: This information is not available
     nothing_here: There is nothing here!
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
-    posts: Toots
+    pin_errors:
+      following: You must be already following the person you want to endorse
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Toots and replies
-    remote_follow: Remote follow
     reserved_username: The username is reserved
     roles:
       admin: Admin
@@ -180,6 +194,7 @@ en:
         unsuspend_account: "%{name} unsuspended %{target}'s account"
         update_custom_emoji: "%{name} updated emoji %{target}"
         update_status: "%{name} updated status by %{target}"
+      deleted_status: "(deleted status)"
       title: Audit log
     custom_emojis:
       by_domain: Domain
@@ -206,6 +221,27 @@ en:
       update_failed_msg: Could not update that emoji
       updated_msg: Emoji successfully updated!
       upload: Upload
+    dashboard:
+      backlog: backlogged jobs
+      config: Configuration
+      feature_deletions: Account deletions
+      feature_invites: Invite links
+      feature_registrations: Registrations
+      feature_relay: Federation relay
+      features: Features
+      hidden_service: Federation with hidden services
+      open_reports: open reports
+      recent_users: Recent users
+      search: Full-text search
+      single_user_mode: Single user mode
+      software: Software
+      space: Space usage
+      title: Dashboard
+      total_users: users in total
+      trends: Trends
+      week_interactions: interactions this week
+      week_users_active: active this week
+      week_users_new: users this week
     domain_blocks:
       add_new: Add new
       created_msg: Domain block is now being processed
@@ -255,12 +291,23 @@ en:
       search: Search
       title: Known instances
     invites:
+      deactivate_all: Deactivate all
       filter:
         all: All
         available: Available
         expired: Expired
         title: Filter
       title: Invites
+    relays:
+      add_new: Add new relay
+      description_html: A <strong>federation relay</strong> is an intermediary server that exchanges large volumes of public toots between servers that subscribe and publish to it. <strong>It can help small and medium servers discover content from the fediverse</strong>, which would otherwise require local users manually following other people on remote servers.
+      enable_hint: Once enabled, your server will subscribe to all public toots from this relay, and will begin sending this server's public toots to it.
+      inbox_url: Relay URL
+      pending: Waiting for relay's approval
+      save_and_enable: Save and enable
+      setup: Setup a relay connection
+      status: Status
+      title: Relays
     report_notes:
       created_msg: Report note successfully created!
       destroyed_msg: Report note successfully deleted!
@@ -310,6 +357,9 @@ en:
       contact_information:
         email: Business e-mail
         username: Contact username
+      custom_css:
+        desc_html: Modify the look with CSS loaded on every page
+        title: Custom CSS
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to instance thumbnail
         title: Hero image
@@ -339,11 +389,14 @@ en:
         desc_html: Show a staff badge on a user page
         title: Show staff badge
       site_description:
-        desc_html: Introductory paragraph on the frontpage and in meta tags. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
+        desc_html: Introductory paragraph on the frontpage. Describe what makes this Mastodon server special and anything else important. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Instance description
       site_description_extended:
         desc_html: A good place for your code of conduct, rules, guidelines and other things that set your instance apart. You can use HTML tags
         title: Custom extended information
+      site_short_description:
+        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph. If empty, defaults to instance description.
+        title: Short instance description
       site_terms:
         desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML tags
         title: Custom terms of service
@@ -365,6 +418,7 @@ en:
       media:
         title: Media
       no_media: No media
+      no_status_selected: No statuses were changed as none were selected
       title: Account statuses
       with_media: With media
     subscriptions:
@@ -374,6 +428,12 @@ en:
       last_delivery: Last delivery
       title: WebSub
       topic: Topic
+    suspensions:
+      bad_acct_msg: The confirmation value didn't match up. Are you suspending the right account?
+      hint_html: 'To confirm the suspension of the account, please enter %{value} into the field below:'
+      proceed: Proceed
+      title: Suspend %{acct}
+      warning_html: 'Suspending this account will <strong>irreversibly</strong> delete data from this account, which includes:'
     title: Administration
   admin_mailer:
     new_report:
@@ -505,9 +565,12 @@ en:
     true_privacy_html: Please mind that <strong>true privacy can only be achieved with end-to-end encryption</strong>.
     unlocked_warning_html: Anyone can follow you to immediately view your private statuses. %{lock_link} to be able to review and reject followers.
     unlocked_warning_title: Your account is not locked
+  footer:
+    developers: Developers
+    more: More…
+    resources: Resources
   generic:
     changes_saved_msg: Changes successfully saved!
-    powered_by: powered by %{link}
     save_changes: Save changes
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
@@ -543,8 +606,6 @@ en:
       expires_at: Expires
       uses: Uses
     title: Invite people
-  landing_strip_html: "<strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse."
-  landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   lists:
     errors:
       limit: You have reached the maximum amount of lists
@@ -616,11 +677,14 @@ en:
     publishing: Publishing
     web: Web
   remote_follow:
-    acct: Enter your username@domain you want to follow from
+    acct: Enter your username@domain you want to act from
     missing_resource: Could not find the required redirect URL for your account
     no_account_html: Don't have an account? You can <a href='%{sign_up_path}' target='_blank'>sign up here</a>
     proceed: Proceed to follow
     prompt: 'You are going to follow:'
+  remote_interaction:
+    proceed: Proceed to interact
+    prompt: 'You want to interact with this toot:'
   remote_unfollow:
     error: Error
     title: Title
@@ -704,6 +768,7 @@ en:
       private: Non-public toot cannot be pinned
       reblog: A boost cannot be pinned
     show_more: Show more
+    sign_in_to_participate: Sign in to participate in the conversation
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Followers-only
@@ -713,7 +778,6 @@ en:
       unlisted: Unlisted
       unlisted_long: Everyone can see, but not listed on public timelines
   stream_entries:
-    click_to_show: Click to show
     pinned: Pinned toot
     reblogged: boosted
     sensitive_content: Sensitive content
@@ -807,6 +871,7 @@ en:
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Enter the code generated by your authenticator app to confirm
     description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
