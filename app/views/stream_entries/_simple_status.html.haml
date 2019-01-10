@@ -29,9 +29,23 @@
   - if !status.media_attachments.empty?
     - if status.media_attachments.first.video?
       - video = status.media_attachments.first
-      = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, width: 610, height: 343, inline: true, alt: video.description
+      = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, width: 610, height: 343, inline: true, alt: video.description do
+        .attachment-list
+          .attachment-list__icon
+            = fa_icon 'link'
+          %ul.attachment-list__list
+            - status.media_attachments.each do |media|
+              %li
+                = link_to File.basename(media.remote_url.presence || media.file.url), (media.remote_url.presence || media.file.url), title: media.description
     - else
-      = react_component :media_gallery, height: 343, sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, 'autoPlayGif': current_account&.user&.setting_auto_play_gif || autoplay, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }
+      = react_component :media_gallery, height: 343, sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, 'autoPlayGif': current_account&.user&.setting_auto_play_gif || autoplay, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json } do
+        .attachment-list
+          .attachment-list__icon
+            = fa_icon 'link'
+          %ul.attachment-list__list
+            - status.media_attachments.each do |media|
+              %li
+                = link_to File.basename(media.remote_url.presence || media.file.url), (media.remote_url.presence || media.file.url), title: media.description
   - elsif status.preview_card
     = react_component :card, 'maxDescription': 160, card: ActiveModelSerializers::SerializableResource.new(status.preview_card, serializer: REST::PreviewCardSerializer).as_json
 
