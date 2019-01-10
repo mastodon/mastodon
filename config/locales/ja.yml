@@ -285,6 +285,11 @@ ja:
         title: '%{domain}のドメインブロックを戻す'
         undo: 元に戻す
       undo: 元に戻す
+      rejecting_media: メディアファイルを拒否中
+      rejecting_reports: レポートを拒否中
+      severity:
+        silence: サイレンス中
+        suspend: 停止中
     email_domain_blocks:
       add_new: 新規追加
       created_msg: ブラックリストに追加しました
@@ -300,6 +305,19 @@ ja:
       title: '%{acct}さんのフォロワー'
     instances:
       title: 既知のインスタンス
+      delivery_available: 配送可能
+      known_accounts:
+        one: 既知のアカウント数 %{count}
+        other: 既知のアカウント数 %{count}
+      moderation:
+        all: すべて
+        limited: 制限あり
+        title: モデレーション
+      total_blocked_by_us: ブロック合計
+      total_followed_by_them: 被フォロー合計
+      total_followed_by_us: フォロー合計
+      total_reported: レポート合計
+      total_storage: 添付されたメディア
     invites:
       deactivate_all: すべて無効化
       filter:
@@ -570,6 +588,8 @@ ja:
     follows: フォロー
     mutes: ミュート
     storage: メディア
+    domain_blocks: 非表示にしたドメイン
+    lists: リスト
   filters:
     contexts:
       home: ホームタイムライン
