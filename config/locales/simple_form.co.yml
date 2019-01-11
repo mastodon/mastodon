@@ -2,6 +2,13 @@
 co:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Pudete utilizà a sintassa di i statuti, per esempiu l'URL, hashtag, minzione
+      admin_account_action:
+        send_email_notification: L'utilizatore hà da riceve una spiegazione di cio chì hè accadutu à u so contu
+        text_html: In uzzione. Pudete utilizà a sintassa di i statuti. Pudete ancu <a href="%{path}">aghjustà preselezzione d'avertimentu</a> per piglià tempu
+        type_html: Sceglie chì fà cù <strong>%{acct}</strong>
+        warning_preset_id: In uzzione. Pudete sempre aghjustà un testu persunalizatu à a fine di a preselezzione
       defaults:
         autofollow: Quelli·e chì s'arregistranu cù l'invitazione saranu autumaticamente abbunati·e à voi
         avatar: Furmatu PNG, GIF o JPG. %{size} o menu. Sarà ridottu à %{dimensions}px
@@ -40,6 +47,18 @@ co:
         fields:
           name: Label
           value: Cuntinutu
+      account_warning_preset:
+        text: Testu preselezziunatu
+      admin_account_action:
+        send_email_notification: Nutificà l'utilizatore cù un'e-mail
+        text: Avertimentu persunalizatu
+        type: Azzione
+        types:
+          disable: Disattivà
+          none: Ùn fà nunda
+          silence: Silenzà
+          suspend: Suspende è sguassà i dati di u contu di manera irreversibile
+        warning_preset_id: Utilizà un'avertimentu preselezziunatu
       defaults:
         autofollow: Invità à siguità u vostru contu
         avatar: Ritrattu di prufile

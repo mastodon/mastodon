@@ -2,6 +2,13 @@
 ko:
   simple_form:
     hints:
+      account_warning_preset:
+        text: URL, 해시태그, 멘션과 같은 툿 문법을 사용할 수 있습니다
+      admin_account_action:
+        send_email_notification: 유저는 어떤 일이 일어났는 지에 대한 설명을 받게 됩니다
+        text_html: 선택사항. 툿 문법을 사용할 수 있습니다. <a href="%{path}">경고 틀을 추가</a>하여 시간을 절약할 수 있습니다
+        type_html: "<strong>%{acct}</strong>에 대해 취할 행동 선택"
+        warning_preset_id: 선택사항. 틀의 마지막에 임의의 텍스트를 추가 할 수 있습니다
       defaults:
         autofollow: 이 초대를 통해 가입하는 사람은 당신을 자동으로 팔로우 하게 됩니다
         avatar: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 다운스케일 될 것임
@@ -40,6 +47,18 @@ ko:
         fields:
           name: 라벨
           value: 내용
+      account_warning_preset:
+        text: 프리셋 텍스트
+      admin_account_action:
+        send_email_notification: 이메일로 유저에게 알리기
+        text: 커스텀 경고
+        type: 조치
+        types:
+          disable: 비활성화
+          none: 아무 것도 하지 않기
+          silence: 침묵
+          suspend: 정지하고 되돌릴 수 없는 데이터 삭제
+        warning_preset_id: 경고 틀 사용하기
       defaults:
         autofollow: 초대를 통한 팔로우
         avatar: 아바타

@@ -260,11 +260,6 @@ ru:
         title: Новая доменная блокировка
       reject_media: Запретить медиаконтент
       reject_media_hint: Удаляет локально хранимый медиаконтент и запрещает его загрузку в будущем. Не имеет значения в случае блокировки
-      severities:
-        noop: Ничего
-        silence: Глушение
-        suspend: Блокировка
-      severity: Строгость
       show:
         affected_accounts:
           few: Влияет на %{count} аккаунта в базе данных
@@ -276,7 +271,6 @@ ru:
           suspend: Снять блокировку со всех существующих аккаунтов этого домена
         title: Снять блокировку с домена %{domain}
         undo: Отменить
-      title: Доменные блокировки
       undo: Отменить
     email_domain_blocks:
       add_new: Добавить новую
@@ -289,10 +283,6 @@ ru:
         title: Новая доменная блокировка еmail
       title: Доменная блокировка email
     instances:
-      account_count: Известных аккаунтов
-      domain_name: Домен
-      reset: Сбросить
-      search: Поиск
       title: Известные узлы
     invites:
       deactivate_all: Отключить все
@@ -683,9 +673,6 @@ ru:
     no_account_html: Нет учётной записи? Вы можете <a href='%{sign_up_path}' target='_blank'>зарегистрироваться здесь</a>
     proceed: Продолжить подписку
     prompt: 'Вы хотите подписаться на:'
-  remote_interaction:
-    proceed: Продолжить
-    prompt: 'Вы собираетесь взаимодействовать со статусом:'
   remote_unfollow:
     error: Ошибка
     title: Заголовок

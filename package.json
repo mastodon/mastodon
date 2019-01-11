@@ -10,8 +10,8 @@
     "build:production": "cross-env RAILS_ENV=production NODE_ENV=production ./bin/webpack",
     "manage:translations": "node ./config/webpack/translationRunner.js",
     "start": "node ./streaming/index.js",
-    "test": "npm run test:lint && npm run test:jest",
-    "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ streaming/",
+    "test": "${npm_execpath} run test:lint && ${npm_execpath} run test:jest",
+    "test:lint": "eslint --ext=js .",
     "test:jest": "cross-env NODE_ENV=test jest --coverage"
   },
   "repository": {
@@ -21,7 +21,8 @@
   "browserslist": [
     "last 2 versions",
     "IE >= 11",
-    "iOS >= 9"
+    "iOS >= 9",
+    "not dead"
   ],
   "private": true,
   "dependencies": {
@@ -103,7 +104,7 @@
     "react-notification": "^6.8.4",
     "react-overlays": "^0.8.3",
     "react-redux": "^6.0.0",
-    "react-redux-loading-bar": "^4.1.0",
+    "react-redux-loading-bar": "^4.0.8",
     "react-router-dom": "^4.1.1",
     "react-router-scroll-4": "^1.0.0-beta.1",
     "react-select": "^2.2.0",

@@ -2,6 +2,13 @@
 oc:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Podètz utilizar la sintaxi dels tuts, coma las URL, las etiquetas e las mencions
+      admin_account_action:
+        send_email_notification: L’utilizaire recebrà una explicacion de çò qu’arribèt a son compte
+        text_html: Opcional. Podètz utilizar la sintaxi dels tuts. Podètz <a href="%{path}">ajustar un avertiment personalizat</a> per estalviar de temps
+        type_html: Causir de qué far amb <strong>%{acct}</strong>
+        warning_preset_id: Opcional. Podètz ajustar un tèxt personalizat a a fin de çò predefinit
       defaults:
         autofollow: Lo monde que se marcan gràcia a l’invitacion vos segràn automaticament
         avatar: PNG, GIF o JPG. Maximum %{size}. Serà retalhat en %{dimensions}px
@@ -40,6 +47,18 @@ oc:
         fields:
           name: Nom
           value: Contengut
+      account_warning_preset:
+        text: Tèxt predefinit
+      admin_account_action:
+        send_email_notification: Avisar l’utilizaire per corrièl
+        text: Avertiment personalizat
+        type: Accions
+        types:
+          disable: Desactivar
+          none: Far pas res
+          silence: Metre en silence
+          suspend: Suspendre e escafar per de bon las donadas del compte
+        warning_preset_id: Utilizar un avertiment predefinit
       defaults:
         autofollow: Convidar a sègre vòstre compte
         avatar: Avatar

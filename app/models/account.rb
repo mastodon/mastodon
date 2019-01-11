@@ -44,6 +44,7 @@
 #  fields                  :jsonb
 #  actor_type              :string
 #  discoverable            :boolean
+#  also_known_as           :string           is an Array
 #
 
 class Account < ApplicationRecord
@@ -78,7 +79,7 @@ class Account < ApplicationRecord
   validates_with UniqueUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates :display_name, length: { maximum: MAX_DISPLAY_NAME_LENGTH }, if: -> { local? && will_save_change_to_display_name? }
-  validate :note_length_does_not_exceed_length_limit, if: -> { local? && will_save_change_to_note? }
+  validates :note, note_length: { maximum: MAX_NOTE_LENGTH }, if: -> { local? && will_save_change_to_note? }
   validates :fields, length: { maximum: MAX_FIELDS }, if: -> { local? && will_save_change_to_fields? }
 
   scope :remote, -> { where.not(domain: nil) }
@@ -230,6 +231,10 @@ class Account < ApplicationRecord
         tag.increment_count!(:accounts_count)
       end
     end
+  end
+
+  def also_known_as
+    self[:also_known_as] || []
   end
 
   def fields
@@ -481,22 +486,6 @@ class Account < ApplicationRecord
     keypair = OpenSSL::PKey::RSA.new(2048)
     self.private_key = keypair.to_pem
     self.public_key  = keypair.public_key.to_pem
-  end
-
-  YAML_START = "---\r\n"
-  YAML_END = "\r\n...\r\n"
-
-  def note_length_does_not_exceed_length_limit
-    note_without_metadata = note
-    if note.start_with? YAML_START
-      idx = note.index YAML_END
-      unless idx.nil?
-        note_without_metadata = note[(idx + YAML_END.length) .. -1]
-      end
-    end
-    if note_without_metadata.mb_chars.grapheme_length > MAX_NOTE_LENGTH
-      errors.add(:note, "can't be longer than 500 graphemes")
-    end
   end
 
   def normalize_domain

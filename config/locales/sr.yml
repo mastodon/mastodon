@@ -268,11 +268,6 @@ sr:
       reject_media_hint: Уклања локално ускладиштене мултимедијске фајлове и одбија да их скида убудуће. Небитно је за суспензију
       reject_reports: Одбаци извештај
       reject_reports_hint: Игнориши све извештаје који долазе са овог домена. Небитно је за суспензије
-      severities:
-        noop: Ништа
-        silence: Ућуткавање
-        suspend: Суспензија
-      severity: Оштрина
       show:
         affected_accounts:
           few: Утиче на %{count} налога у бази
@@ -284,7 +279,6 @@ sr:
           suspend: Уклони суспензије за све постојеће налоге са овог домена
         title: Поништи блокаду домена за %{domain}
         undo: Поништи
-      title: Блокаде домена
       undo: Поништи
     email_domain_blocks:
       add_new: Додај нови
@@ -297,10 +291,6 @@ sr:
         title: Нова ставка е-поштe у црној листи
       title: Црна листа E-поште
     instances:
-      account_count: Познати налози
-      domain_name: Домен
-      reset: Ресетуј
-      search: Претрага
       title: Познате инстанце
     invites:
       deactivate_all: Деактивирај све
@@ -701,9 +691,6 @@ sr:
     no_account_html: Немате налог? Можете се <a href='%{sign_up_path}' target='_blank'>пријавити овде</a>
     proceed: Наставите да би сте запратили
     prompt: 'Запратићете:'
-  remote_interaction:
-    proceed: Наставите за интеракцију
-    prompt: 'Желите да интерактирате са овом трубом:'
   remote_unfollow:
     error: Грешка
     title: Наслов
