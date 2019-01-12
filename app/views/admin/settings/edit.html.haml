@@ -2,24 +2,41 @@
   = t('admin.settings.title')
 
 = simple_form_for @admin_settings, url: admin_settings_path, html: { method: :patch } do |f|
-  .actions.actions--top
-    = f.button :button, t('generic.save_changes'), type: :submit
 
   .fields-group
-    = f.input :site_title, placeholder: t('admin.settings.site_title')
-    = f.input :site_short_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_short_description.title'), hint: t('admin.settings.site_short_description.desc_html'), input_html: { rows: 2 }
-    = f.input :site_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_description.title'), hint: t('admin.settings.site_description.desc_html'), input_html: { rows: 4 }
-    = f.input :site_contact_username, placeholder: t('admin.settings.contact_information.username')
-    = f.input :site_contact_email, placeholder: t('admin.settings.contact_information.email')
-
-  %hr/
+    = f.input :site_title, wrapper: :with_label, label: t('admin.settings.site_title')
 
   .fields-group
     = f.input :theme, collection: Themes.instance.names, label_method: lambda { |theme| I18n.t("themes.#{theme}", default: theme) }, wrapper: :with_label, include_blank: false
-    = f.input :thumbnail, as: :file, wrapper: :with_block_label, label: t('admin.settings.thumbnail.title'), hint: t('admin.settings.thumbnail.desc_html')
-    = f.input :hero, as: :file, wrapper: :with_block_label, label: t('admin.settings.hero.title'), hint: t('admin.settings.hero.desc_html')
 
-  %hr/
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :site_contact_username, wrapper: :with_label, label: t('admin.settings.contact_information.username')
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :site_contact_email, wrapper: :with_label, label: t('admin.settings.contact_information.email')
+
+  .fields-group
+    = f.input :site_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_description.title'), hint: t('admin.settings.site_description.desc_html'), input_html: { rows: 4 }
+
+  .fields-group
+    = f.input :site_short_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_short_description.title'), hint: t('admin.settings.site_short_description.desc_html'), input_html: { rows: 2 }
+
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :thumbnail, as: :file, wrapper: :with_block_label, label: t('admin.settings.thumbnail.title'), hint: t('admin.settings.thumbnail.desc_html')
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :hero, as: :file, wrapper: :with_block_label, label: t('admin.settings.hero.title'), hint: t('admin.settings.hero.desc_html')
+
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :mascot, as: :file, wrapper: :with_block_label, label: t('admin.settings.mascot.title'), hint: t('admin.settings.mascot.desc_html')
+
+  %hr.spacer/
+
+  .fields-group
+    = f.input :bootstrap_timeline_accounts, wrapper: :with_block_label, label: t('admin.settings.bootstrap_timeline_accounts.title'), hint: t('admin.settings.bootstrap_timeline_accounts.desc_html')
+
+  %hr.spacer/
 
   .fields-group
     = f.input :timeline_preview, as: :boolean, wrapper: :with_label, label: t('admin.settings.timeline_preview.title'), hint: t('admin.settings.timeline_preview.desc_html')
@@ -37,27 +54,6 @@
     = f.input :open_deletion, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.deletion.title'), hint: t('admin.settings.registrations.deletion.desc_html')
 
   .fields-group
-    = f.input :closed_registrations_message, as: :text, wrapper: :with_block_label, label: t('admin.settings.registrations.closed_message.title'), hint: t('admin.settings.registrations.closed_message.desc_html'), input_html: { rows: 8 }
-
-  %hr/
-
-  .fields-group
-    = f.input :min_invite_role, wrapper: :with_label, collection: %i(disabled user moderator admin), label: t('admin.settings.registrations.min_invite_role.title'), label_method: lambda { |role| role == :disabled ? t('admin.settings.registrations.min_invite_role.disabled') : t("admin.accounts.roles.#{role}") }, as: :radio_buttons, include_blank: false, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
-
-  %hr/
-
-  .fields-group
-    = f.input :site_extended_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_description_extended.title'), hint: t('admin.settings.site_description_extended.desc_html'), input_html: { rows: 8 }
-    = f.input :site_terms, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_terms.title'), hint: t('admin.settings.site_terms.desc_html'), input_html: { rows: 8 }
-    = f.input :custom_css, wrapper: :with_block_label, as: :text, input_html: { rows: 8 }, label: t('admin.settings.custom_css.title'), hint: t('admin.settings.custom_css.desc_html')
-  %hr/
-
-  .fields-group
-    = f.input :bootstrap_timeline_accounts, wrapper: :with_block_label, label: t('admin.settings.bootstrap_timeline_accounts.title'), hint: t('admin.settings.bootstrap_timeline_accounts.desc_html')
-
-  %hr/
-
-  .fields-group
     = f.input :activity_api_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.activity_api_enabled.title'), hint: t('admin.settings.activity_api_enabled.desc_html')
 
   .fields-group
@@ -65,6 +61,17 @@
 
   .fields-group
     = f.input :preview_sensitive_media, as: :boolean, wrapper: :with_label, label: t('admin.settings.preview_sensitive_media.title'), hint: t('admin.settings.preview_sensitive_media.desc_html')
+
+  %hr.spacer/
+
+  .fields-group
+    = f.input :min_invite_role, wrapper: :with_label, collection: %i(disabled user moderator admin), label: t('admin.settings.registrations.min_invite_role.title'), label_method: lambda { |role| role == :disabled ? t('admin.settings.registrations.min_invite_role.disabled') : t("admin.accounts.roles.#{role}") }, include_blank: false, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+
+  .fields-group
+    = f.input :closed_registrations_message, as: :text, wrapper: :with_block_label, label: t('admin.settings.registrations.closed_message.title'), hint: t('admin.settings.registrations.closed_message.desc_html'), input_html: { rows: 8 }
+    = f.input :site_extended_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_description_extended.title'), hint: t('admin.settings.site_description_extended.desc_html'), input_html: { rows: 8 }
+    = f.input :site_terms, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_terms.title'), hint: t('admin.settings.site_terms.desc_html'), input_html: { rows: 8 }
+    = f.input :custom_css, wrapper: :with_block_label, as: :text, input_html: { rows: 8 }, label: t('admin.settings.custom_css.title'), hint: t('admin.settings.custom_css.desc_html')
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

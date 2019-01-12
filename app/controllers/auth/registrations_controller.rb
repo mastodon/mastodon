@@ -8,7 +8,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :set_sessions, only: [:edit, :update]
   before_action :set_instance_presenter, only: [:new, :create, :update]
-  before_action :set_body_classes, only: [:new, :create]
+  before_action :set_body_classes, only: [:new, :create, :edit, :update]
 
   def destroy
     not_found
@@ -81,7 +81,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def set_body_classes
-    @body_classes = 'lighter'
+    @body_classes = %w(edit update).include?(action_name) ? 'admin' : 'lighter'
   end
 
   def set_invite

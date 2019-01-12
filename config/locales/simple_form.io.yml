@@ -3,11 +3,9 @@ io:
   simple_form:
     hints:
       defaults:
-        avatar: En la formato PNG, GIF o JPG. Til 2Mo. Esos mikrigita a %{dimensions}px
-        display_name: 30 signi maxime
-        header: En la formato PNG, GIF o JPG. Til 2Mo. Esos mikrigita a %{dimensions}px
+        avatar: En la formato PNG, GIF o JPG. Til %{size}. Esos mikrigita a %{dimensions}px
+        header: En la formato PNG, GIF o JPG. Til %{size}. Esos mikrigita a %{dimensions}px
         locked: Tu devos aprobar omna demandi di sequado, e tua mesaji esos senchanje nur por tua sequanti.
-        note: 160 signi maxime
       imports:
         data: Dosiero CSV de altra instaluro di Mastodon
       sessions:

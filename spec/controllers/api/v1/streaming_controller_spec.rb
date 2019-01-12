@@ -31,7 +31,7 @@ describe Api::V1::StreamingController do
 
     describe 'GET #index' do
       it 'redirects to streaming host' do
-        get :index, params: {access_token: 'deadbeef', stream: 'public'}
+        get :index, params: { access_token: 'deadbeef', stream: 'public' }
         expect(response).to have_http_status(301)
         request_uri = URI.parse(request.url)
         redirect_to_uri = URI.parse(response.location)
@@ -42,5 +42,4 @@ describe Api::V1::StreamingController do
       end
     end
   end
-
 end

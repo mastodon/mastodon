@@ -5,7 +5,7 @@ import { fromJS } from 'immutable';
 import { throttle } from 'lodash';
 import classNames from 'classnames';
 import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
-import { displaySensitiveMedia } from '../../initial_state';
+import { displayMedia } from '../../initial_state';
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
@@ -84,8 +84,8 @@ export const getPointerPosition = (el, event) => {
   return position;
 };
 
-@injectIntl
-export default class Video extends React.PureComponent {
+export default @injectIntl
+class Video extends React.PureComponent {
 
   static propTypes = {
     preview: PropTypes.string,
@@ -111,7 +111,7 @@ export default class Video extends React.PureComponent {
     fullscreen: false,
     hovered: false,
     muted: false,
-    revealed: !this.props.sensitive || displaySensitiveMedia,
+    revealed: displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all',
   };
 
   setPlayerRef = c => {
@@ -252,11 +252,12 @@ export default class Video extends React.PureComponent {
   }
 
   handleOpenVideo = () => {
-    const { src, preview, width, height } = this.props;
+    const { src, preview, width, height, alt } = this.props;
     const media = fromJS({
       type: 'video',
       url: src,
       preview_url: preview,
+      description: alt,
       width,
       height,
     });
@@ -271,7 +272,7 @@ export default class Video extends React.PureComponent {
   }
 
   render () {
-    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, detailed } = this.props;
+    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, detailed, sensitive } = this.props;
     const { containerWidth, currentTime, duration, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
     const progress = (currentTime / duration) * 100;
     const playerStyle = {};
@@ -293,6 +294,13 @@ export default class Video extends React.PureComponent {
       preload = 'metadata';
     } else {
       preload = 'none';
+    }
+
+    let warning;
+    if (sensitive) {
+      warning = <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />;
+    } else {
+      warning = <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />;
     }
 
     return (
@@ -327,7 +335,7 @@ export default class Video extends React.PureComponent {
         />
 
         <button type='button' className={classNames('video-player__spoiler', { active: !revealed })} onClick={this.toggleReveal}>
-          <span className='video-player__spoiler__title'><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
+          <span className='video-player__spoiler__title'>{warning}</span>
           <span className='video-player__spoiler__subtitle'><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
         </button>
 

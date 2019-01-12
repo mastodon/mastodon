@@ -8,17 +8,45 @@
       %li= filter_link_to t('admin.reports.unresolved'), resolved: nil
       %li= filter_link_to t('admin.reports.resolved'), resolved: '1'
 
-.table-wrapper
-  %table.table
-    %thead
-      %tr
-        %th= t('admin.reports.id')
-        %th= t('admin.reports.target')
-        %th= t('admin.reports.reported_by')
-        %th= t('admin.reports.report_contents')
-        %th= t('admin.reports.assigned')
-        %th
-    %tbody
-      = render @reports
+- @reports.group_by(&:target_account_id).each do |target_account_id, reports|
+  - target_account = reports.first.target_account
+  .report-card
+    .report-card__profile
+      = account_link_to target_account, '', size: 36, path: admin_account_path(target_account.id)
+      .report-card__profile__stats
+        = link_to pluralize(target_account.targeted_moderation_notes.count, t('admin.reports.account.note')), admin_account_path(target_account.id)
+        %br/
+        - if target_account.suspended?
+          %span.red= t('admin.accounts.suspended')
+        - elsif target_account.silenced?
+          %span.red= t('admin.accounts.silenced')
+        - elsif target_account.user&.disabled?
+          %span.red= t('admin.accounts.disabled')
+        - else
+          %span.neutral= t('admin.accounts.no_limits_imposed')
+    .report-card__summary
+      - reports.each do |report|
+        .report-card__summary__item
+          .report-card__summary__item__reported-by
+            - if report.account.local?
+              = admin_account_link_to report.account
+            - else
+              = report.account.domain
+          .report-card__summary__item__content
+            = link_to admin_report_path(report) do
+              .one-line= report.comment.presence || t('admin.reports.comment.none')
 
+              %span.report-card__summary__item__content__icon{ title: t('admin.accounts.statuses') }
+                = fa_icon('comment')
+                = report.statuses.count
+
+              %span.report-card__summary__item__content__icon{ title: t('admin.accounts.media_attachments') }
+                = fa_icon('camera')
+                = report.media_attachments.count
+
+          .report-card__summary__item__assigned
+            - if report.assigned_account.present?
+              = admin_account_link_to report.assigned_account
+            - else
+              \-
 = paginate @reports

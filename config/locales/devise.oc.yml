@@ -8,10 +8,10 @@ oc:
     failure:
       already_authenticated: Sètz ja connectat.
       inactive: Vòstre compte es pas encara activat.
-      invalid: Corrièl o senhal invalid.
+      invalid: "%{authentication_keys} invalida."
       last_attempt: Vos demòra un ensag abans que vòstre compte siasque blocat.
       locked: Vòstre compte es blocat.
-      not_found_in_database: Corrièl o senhal invalid.
+      not_found_in_database: "%{authentication_keys} invalida."
       timeout: Vòstra session a expirat. Mercés de vos tornar connectar per contunhar.
       unauthenticated: Vos cal vos connectar o marcar abans de contunhar.
       unconfirmed: Vos cal confirmar vòstra adreça de corrièl abans de contunhar.

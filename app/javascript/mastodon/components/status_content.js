@@ -53,6 +53,8 @@ const isMathjaxifyable = str => {
     .reduce((prev, elem) => prev || elem, false);
 }
 
+const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
+
 export default class StatusContent extends React.PureComponent {
 
   static contextTypes = {
@@ -64,10 +66,12 @@ export default class StatusContent extends React.PureComponent {
     expanded: PropTypes.bool,
     onExpandedToggle: PropTypes.func,
     onClick: PropTypes.func,
+    collapsable: PropTypes.bool,
   };
 
   state = {
     hidden: true,
+    collapsed: null, //  `collapsed: null` indicates that an element doesn't need collapsing, while `true` or `false` indicates that it does (and is/isn't).
   };
 
   _updateStatusLinks () {
@@ -100,6 +104,7 @@ export default class StatusContent extends React.PureComponent {
       link.setAttribute('target', '_blank');
       link.setAttribute('rel', 'noopener');
     }
+
     loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe',
 	               (err, script) => {
 	                 if (err) {
@@ -136,18 +141,16 @@ export default class StatusContent extends React.PureComponent {
 		               MathJax.Hub.Queue(["Typeset", MathJax.Hub, node]);
 	                 }
 	               });
-  }
 
-  componentDidMount () {
-    this._updateStatusLinks();
-  }
-
-  componentDidMount () {
-    this._updateStatusLinks();
-  }
-
-  componentDidMount () {
-    this._updateStatusLinks();
+    if (
+      this.props.collapsable
+      && this.props.onClick
+      && this.state.collapsed === null
+      && node.clientHeight > MAX_HEIGHT
+      && this.props.status.get('spoiler_text').length === 0
+    ) {
+      this.setState({ collapsed: true });
+    }
   }
 
   componentDidMount () {
@@ -208,6 +211,11 @@ export default class StatusContent extends React.PureComponent {
     }
   }
 
+  handleCollapsedClick = (e) => {
+    e.preventDefault();
+    this.setState({ collapsed: !this.state.collapsed });
+  }
+
   setRef = (c) => {
     this.node = c;
   }
@@ -227,11 +235,18 @@ export default class StatusContent extends React.PureComponent {
     const classNames = classnames('status__content', {
       'status__content--with-action': this.props.onClick && this.context.router,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
+      'status__content--collapsed': this.state.collapsed === true,
     });
 
     if (isRtl(status.get('search_index'))) {
       directionStyle.direction = 'rtl';
     }
+
+    const readMoreButton = (
+      <button className='status__content__read-more-button' onClick={this.props.onClick} key='read-more'>
+        <FormattedMessage id='status.read_more' defaultMessage='Read more' /><i className='fa fa-fw fa-angle-right' />
+      </button>
+    );
 
     if (status.get('spoiler_text').length > 0) {
       let mentionsPlaceholder = '';
@@ -262,17 +277,24 @@ export default class StatusContent extends React.PureComponent {
         </div>
       );
     } else if (this.props.onClick) {
-      return (
+      const output = [
         <div
           ref={this.setRef}
           tabIndex='0'
+          key='content'
           className={classNames}
           style={directionStyle}
+          dangerouslySetInnerHTML={content}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
-          dangerouslySetInnerHTML={content}
-        />
-      );
+        />,
+      ];
+
+      if (this.state.collapsed) {
+        output.push(readMoreButton);
+      }
+
+      return output;
     } else {
       return (
         <div

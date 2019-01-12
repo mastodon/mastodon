@@ -8,11 +8,11 @@ nl:
     failure:
       already_authenticated: Je bent al ingelogd.
       inactive: Jouw account is nog niet geactiveerd.
-      invalid: Ongeldig e-mailadres of wachtwoord.
+      invalid: Ongeldig %{authentication_keys}.
       invalid_token: Ongeldige bevestigingscode.
       last_attempt: Je hebt nog één poging over voordat jouw account wordt opgeschort.
       locked: Jouw account is opgeschort.
-      not_found_in_database: Ongeldig e-mailadres of wachtwoord.
+      not_found_in_database: Ongeldig %{authentication_keys}.
       timeout: Jouw sessie is verlopen, log opnieuw in.
       unauthenticated: Je dient in te loggen of te registreren.
       unconfirmed: Je dient eerst jouw account te bevestigen.

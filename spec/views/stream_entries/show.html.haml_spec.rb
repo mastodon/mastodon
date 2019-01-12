@@ -49,8 +49,8 @@ describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true d
     assign(:stream_entry, reply.stream_entry)
     assign(:account, alice)
     assign(:type, reply.stream_entry.activity_type.downcase)
-    assign(:ancestors, reply.stream_entry.activity.ancestors(1, bob) )
-    assign(:descendant_threads, [{ statuses: reply.stream_entry.activity.descendants(1)}])
+    assign(:ancestors, reply.stream_entry.activity.ancestors(1, bob))
+    assign(:descendant_threads, [{ statuses: reply.stream_entry.activity.descendants(1) }])
 
     render
 

@@ -48,6 +48,7 @@ co:
       other: Abbunati
     following: Abbunamenti
     joined: Quì dapoi %{date}
+    link_verified_on: A pruprietà d'issu ligame hè stata verificata u %{date}
     media: Media
     moved_html: "%{name} hà cambiatu di contu, avà hè nant’à %{new_profile_link}:"
     network_hidden: St'infurmazione ùn hè micca dispunibule
@@ -120,13 +121,14 @@ co:
       moderation_notes: Note di muderazione
       most_recent_activity: Attività più ricente
       most_recent_ip: IP più ricente
+      no_limits_imposed: Nisuna limita imposta
       not_subscribed: Micca abbunatu
       order:
         alphabetic: Alfabeticu
         most_recent: Più ricente
         title: Urdine
       outbox_url: URL di l’outbox
-      perform_full_suspension: Fà una suspensione cumpleta
+      perform_full_suspension: Suspende
       profile_url: URL di u prufile
       promote: Prumove
       protocol: Prutucollu
@@ -155,8 +157,10 @@ co:
         report: Signalamentu
         targeted_reports: Signalamenti creati contr’à stu contu
       silence: Silenzà
+      silenced: Silenzatu
       statuses: Statuti
       subscribe: Abbunassi
+      suspended: Suspesu
       title: Conti
       unconfirmed_email: E-mail micca cunfirmatu
       undo_silenced: Ùn silenzà più
@@ -173,6 +177,7 @@ co:
         create_domain_block: "%{name} hà bluccatu u duminiu %{target}"
         create_email_domain_block: "%{name} hà messu u duminiu e-mail %{target} nant’a lista nera"
         demote_user: "%{name} hà ritrugradatu l’utilizatore %{target}"
+        destroy_custom_emoji: "%{name} hà sguassatu l'emoji %{target}"
         destroy_domain_block: "%{name} hà sbluccatu u duminiu %{target}"
         destroy_email_domain_block: "%{name} hà messu u duminiu e-mail %{target} nant’a lista bianca"
         destroy_status: "%{name} hà toltu u statutu di %{target}"
@@ -258,6 +263,8 @@ co:
         title: Novu blucchime di duminiu
       reject_media: Righjittà i fugliali media
       reject_media_hint: Sguassa tutti i media caricati è ricusa caricamenti futuri. Inutile per una suspensione
+      reject_reports: Righjittà i rapporti
+      reject_reports_hint: Ignurà tutti i signalamenti chì venenu d'issu duminiu. Senz'oghjettu pè e suspensione
       severities:
         noop: Nisuna
         silence: Silenzà
@@ -300,8 +307,13 @@ co:
       title: Invitazione
     relays:
       add_new: Aghjustà un ripetitore
+      delete: Sguassà
       description_html: Un <strong>ripetitore di federazione</strong> ghjè un servore intermediariu chì manda statuti pubblichi trà l'istanze abbunate. <strong>Pò aiutà l'istanze chjuche è mezane à scuprì u cuntinutu di u fediverse</strong> senza chì l'utilizatori appianu bisognu di seguità tutti i conti di l'altri servori.
+      disable: Disattivà
+      disabled: Disattivatu
+      enable: Attivà
       enable_hint: Quandu sarà attivatu, u vostru servore hà da seguità i statuti pubblichi di u ripetitore, è mandarà i so statuti pubblichi quallà.
+      enabled: Attivatu
       inbox_url: URL di u ripetitore
       pending: In attesa di l'apprubazione di u ripetitore
       save_and_enable: Salvà è attivà
@@ -322,7 +334,6 @@ co:
       comment:
         none: Nisunu
       created_at: Palisatu
-      id: ID
       mark_as_resolved: Indicà cum’è chjosu
       mark_as_unresolved: Indicà cum’è sempre apertu
       notes:
@@ -333,20 +344,15 @@ co:
         placeholder: Per parlà di l’azzione pigliate, o altre messe à ghjornu nant’à u signalamentu…
       reopen: Riapre u signalamentu
       report: 'Signalamente #%{id}'
-      report_contents: Cuntenuti
       reported_account: Contu palisatu
       reported_by: Palisatu da
       resolved: Scioltu è chjosu
       resolved_msg: Signalamentu scioltu!
-      silence_account: Silenzà u contu
       status: Statutu
-      suspend_account: Suspende u contu
-      target: Oggettu
       title: Signalamenti
       unassign: Disassignà
       unresolved: Micca sciolti
       updated_at: Messi à ghjornu
-      view: Vede
     settings:
       activity_api_enabled:
         desc_html: Numeri di statuti creati quì, utilizatori attivi, è arregistramenti novi tutte e settimane
@@ -363,6 +369,9 @@ co:
       hero:
         desc_html: Affissatu nant’a pagina d’accolta. Ricumandemu almenu 600x100px. S’ellu ùn hè micca definiti, a vignetta di l’istanza sarà usata
         title: Ritrattu di cuprendula
+      mascot:
+        desc_html: Affissata nant'à parechje pagine. Almenu 293x205px ricumandatu. S'ella hè lasciata viota, a mascotta predefinita sarà utilizata
+        title: Ritrattu di a mascotta
       peers_api_enabled:
         desc_html: Indirizzi st’istanza hà vistu indè u fediverse
         title: Pubblicà a lista d’istanza cunnisciute
@@ -456,7 +465,7 @@ co:
     warning: Abbadate à quessi dati. Ùn i date à nisunu!
     your_token: Rigenerà a fiscia d’accessu
   auth:
-    agreement_html: Arregistrassi vole dì chì site d’accunsentu per siguità <a href="%{rules_path}">e regule di l’istanza</a> è <a href="%{terms_path}">e cundizione d’usu</a>.
+    agreement_html: Cliccà "Arregistrassi" quì sottu vole dì chì site d’accunsentu per siguità <a href="%{rules_path}">e regule di l’istanza</a> è <a href="%{terms_path}">e cundizione d’usu</a>.
     change_password: Chjave d’accessu
     confirm_email: Cunfirmà l’e-mail
     delete_account: Sguassà u contu
@@ -523,7 +532,7 @@ co:
     '500':
       content: Scusate, mà c’hè statu un prublemu cù u nostru servore.
       title: Sta pagina ùn hè curretta
-    noscript_html: Mastodon nant’à u web hà bisognu di JavaScript per funziunà. Pudete ancu pruvà <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">l’applicazione native</a> per a vostra piattaforma.
+    noscript_html: Mastodon nant’à u web hà bisognu di JavaScript per funziunà. Pudete ancu pruvà <a href="%{apps_path}">l’applicazione native</a> per a vostra piattaforma.
   exports:
     archive_takeout:
       date: Data
@@ -571,6 +580,7 @@ co:
     resources: Risorze
   generic:
     changes_saved_msg: Cambiamenti salvati!
+    copy: Cupià
     save_changes: Salvà e mudificazione
     validation_errors:
       one: Qualcosa ùn và bè! Verificate u prublemu quì sottu
@@ -912,8 +922,12 @@ co:
       tips: Cunsiglii
       title: Benvenutu·a, %{name}!
   users:
+    follow_limit_reached: Ùn pidete seguità più di %{limit} conti
     invalid_email: L’indirizzu e-mail ùn hè currettu
     invalid_otp_token: U codice d’identificazione ùn hè currettu
     otp_lost_help_html: S’è voi avete persu i dui, pudete cuntattà %{email}
     seamless_external_login: Site cunnettatu·a dapoi un serviziu esternu, allora i parametri di chjave d’accessu è d’indirizzu e-mail ùn so micca dispunibili.
     signed_in_as: 'Cunnettatu·a cum’è:'
+  verification:
+    explanation_html: 'Pudete <strong>verificavi cum''è u pruprietariu di i ligami in i metadati di u vostru prufile</strong>. Per quessa, u vostru situ deve avè un ligame versu a vostra pagina Mastodon. U ligame <strong>deve</strong> avè un''attributu <code>rel="me"</code>. U cuntenutu di u testu di u ligame ùn hè micca impurtante. Eccu un''esempiu:'
+    verification: Verificazione

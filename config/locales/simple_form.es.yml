@@ -3,33 +3,52 @@ es:
   simple_form:
     hints:
       defaults:
+        autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
         avatar: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
+        bot: Esta cuenta ejecuta principalmente acciones automatizadas y podría no ser monitorizada
+        context: Uno o múltiples contextos en los que debe aplicarse el filtro
         digest: Solo enviado tras un largo periodo de inactividad y solo si has recibido mensajes personales durante tu ausencia
-        display_name:
-          one: <span class="name-counter">1</span> caracter restante
-          other: <span class="name-counter">%{count}</span> caracteres restantes
+        fields: Puedes tener hasta 4 elementos mostrándose como una tabla en tu perfil
         header: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
+        inbox_url: Copia la URL de la página principal del relés que quieres utilizar
+        irreversible: Los toots filtrados desaparecerán irreversiblemente, incluso si este filtro es eliminado más adelante
+        locale: El idioma de la interfaz de usuario, correos y notificaciones push
         locked: Requiere que manualmente apruebes seguidores y las publicaciones serán mostradas solamente a tus seguidores
-        note:
-          one: <span class="name-counter">1</span> carácter restante
-          other: <span class="name-counter">%{count}</span> caracteres restantes
+        phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de un toot
+        scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
+        setting_default_language: El idioma de tus toots podrá detectarse automáticamente, pero no siempre es preciso
+        setting_hide_network: A quién sigues y quién te sigue no será mostrado en tu perfil
         setting_noindex: Afecta a tu perfil público y páginas de estado
         setting_theme: Afecta al aspecto de Mastodon cuando te identificas desde cualquier dispositivo.
+        whole_word: Cuando la palabra clave o frase es solo alfanumérica, solo será aplicado si concuerda con toda la palabra
       imports:
         data: Archivo CSV exportado desde otra instancia de Mastodon
       sessions:
-        otp: Introduce el código de autenticación de dos factores de tu teléfono o usa uno de tus códigos de recuperación.
+        otp: 'Introduce el código de autenticación de dos factores geberado por tu aplicación de teléfono o usa uno de tus códigos de recuperación:'
+      user:
+        chosen_languages: Cuando se marca, solo se mostrarán los toots en los idiomas seleccionados en los timelines públicos
     labels:
+      account:
+        fields:
+          name: Etiqueta
+          value: Contenido
       defaults:
+        autofollow: Invitar a seguir tu cuenta
         avatar: Avatar
+        bot: Esta es una cuenta bot
+        chosen_languages: Filtrar idiomas
         confirm_new_password: Confirmar nueva contraseña
         confirm_password: Confirmar contraseña
+        context: Filtrar contextos
         current_password: Contraseña actual
         data: Información
         display_name: Nombre para mostrar
         email: Dirección de correo electrónico
         expires_in: Expirar tras
+        fields: Metadatos de perfil
         header: Img. cabecera
+        inbox_url: URL de la entrada de relés
+        irreversible: Dejar en lugar de ocultar
         locale: Idioma
         locked: Hacer privada esta cuenta
         max_uses: Máx. número de usos
@@ -37,12 +56,14 @@ es:
         note: Biografía
         otp_attempt: Código de dos factores
         password: Contraseña
+        phrase: Palabra clave o frase
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
         setting_boost_modal: Mostrar ventana de confirmación antes de un Retoot
+        setting_default_language: Idioma de publicación
         setting_default_privacy: Privacidad de publicaciones
         setting_default_sensitive: Marcar siempre imágenes como sensibles
         setting_delete_modal: Mostrar diálogo de confirmación antes de borrar un toot
-        setting_display_sensitive_media: Mostrar siempre material marcado como sensible
+        setting_hide_network: Ocultar tu red
         setting_noindex: Excluirse del indexado de motores de búsqueda
         setting_reduce_motion: Reducir el movimiento de las animaciones
         setting_system_font_ui: Utilizar la tipografía por defecto del sistema
@@ -52,6 +73,7 @@ es:
         type: Importar tipo
         username: Nombre de usuario
         username_or_email: Usuario o Email
+        whole_word: Toda la palabra
       interactions:
         must_be_follower: Bloquear notificaciones de personas que no te siguen
         must_be_following: Bloquear notificaciones de personas que no sigues
@@ -63,6 +85,7 @@ es:
         follow_request: Enviar correo electrónico cuando alguien solicita seguirte
         mention: Enviar correo electrónico cuando alguien te mencione
         reblog: Enviar correo electrónico cuando alguien comparta su publicación
+        report: Enviar un correo cuando se envía un nuevo informe
     'no': 'No'
     required:
       mark: "*"

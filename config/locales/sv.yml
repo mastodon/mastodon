@@ -271,7 +271,6 @@ sv:
       comment:
         none: Ingen
       created_at: Anmäld
-      id: ID
       mark_as_resolved: Markera som löst
       mark_as_unresolved: Markera som olöst
       notes:
@@ -282,20 +281,15 @@ sv:
         placeholder: Beskriv vilka åtgärder som vidtagits eller andra uppdateringar till den här anmälan.
       reopen: Återuppta anmälan
       report: 'Anmäl #%{id}'
-      report_contents: Innehåll
       reported_account: Anmält konto
       reported_by: Anmäld av
       resolved: Löst
       resolved_msg: Anmälan har lösts framgångsrikt!
-      silence_account: Tysta ner konto
       status: Status
-      suspend_account: Suspendera konto
-      target: Mål
       title: Anmälningar
       unassign: Otilldela
       unresolved: Olösta
       updated_at: Uppdaterad
-      view: Granska
     settings:
       activity_api_enabled:
         desc_html: Räkning av lokalt postade statusar, aktiva användare och nyregistreringar per vecka
@@ -456,7 +450,7 @@ sv:
     '500':
       content: Vi är ledsna, men något gick fel från vårat håll.
       title: Den här sidan är inte korrekt
-    noscript_html: För att använda Mastodon webbapplikationen, vänligen aktivera JavaScript. Alternativt kan du prova en av <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">inhemska appar</a> för Mastodon för din plattform.
+    noscript_html: För att använda Mastodon webbapplikationen, vänligen aktivera JavaScript. Alternativt kan du prova en av <a href="%{apps_path}">inhemska appar</a> för Mastodon för din plattform.
   exports:
     archive_takeout:
       date: Datum
@@ -814,7 +808,7 @@ sv:
       tip_bridge_html: Om du kommer från Twitter kan du hitta dina vänner på Mastodon genom att använda <a href="%{bridge_url}">bridge-appen</a>. Det fungerar dock bara om de också har använt bridge-appen!
       tip_federated_timeline: Den förenade tidslinjen är en störtflodsvy av Mastodon-nätverket. Men det inkluderar bara människor som dina grannar följer, så det är inte komplett.
       tip_following: Du följer din servers administratör(er) som standard. För att hitta fler intressanta personer, kolla de lokala och förenade tidslinjerna.
-      tip_local_timeline: Den lokala tidslinjen är en störtflodsvy av personer på% {instance}. Det här är dina närmaste grannar!
+      tip_local_timeline: Den lokala tidslinjen är en störtflodsvy av personer på %{instance}. Det här är dina närmaste grannar!
       tip_mobile_webapp: Om din mobila webbläsare erbjuder dig att lägga till Mastodon till ditt hemskärm kan du få push-meddelanden. Det fungerar som en inbyggd app på många sätt!
       tips: Tips
       title: Välkommen ombord, %{name}!

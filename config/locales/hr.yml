@@ -61,9 +61,7 @@ hr:
   generic:
     changes_saved_msg: Izmjene su uspješno sačuvane!
     save_changes: Sačuvaj izmjene
-    validation_errors:
-      one: Nešto ne štima! Vidi grešku ispod
-      other: Nešto još uvijek ne štima! Vidi %{count} greške ispod
+    validation_errors: Nešto još uvijek ne štima! Vidi %{count} greške ispod
   imports:
     preface: Možeš uvesti određene podatke kao što su svi ljudi koje slijediš ili blokiraš u svoj račun na ovoj instanci, sa fajlova kreiranih izvozom sa druge instance.
     success: Tvoji podaci su uspješno uploadani i bit će obrađeni u dogledno vrijeme
@@ -74,14 +72,10 @@ hr:
     upload: Upload
   notification_mailer:
     digest:
-      body: 'Ovo je kratak sažetak propuštenog %{instance} od tvog prošlog posjeta %{since}:'
+      body: 'Ovo je kratak sažetak propuštenog od tvog prošlog posjeta %{since}:'
       mention: "%{name} te je spomenuo:"
-      new_followers_summary:
-        one: Imaš novog sljedbenika! Yay!
-        other: Imaš %{count} novih sljedbenika! Prekrašno!
-      subject:
-        one: "1 nova notifikacija od tvog prošlog posjeta \U0001F418"
-        other: "%{count} novih notifikacija od tvog prošlog posjeta \U0001F418"
+      new_followers_summary: Imaš %{count} novih sljedbenika! Prekrašno!
+      subject: "%{count} novih notifikacija od tvog prošlog posjeta \U0001F418"
     favourite:
       body: 'Tvoj status je %{name} označio kao omiljen:'
       subject: "%{name} je označio kao omiljen tvoj status"

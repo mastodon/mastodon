@@ -1,5 +1,7 @@
+$no-columns-breakpoint: 600px;
+
 code {
-  font-family: 'mastodon-font-monospace', monospace;
+  font-family: $font-monospace, monospace;
   font-weight: 400;
 }
 
@@ -13,6 +15,60 @@ code {
   .input {
     margin-bottom: 15px;
     overflow: hidden;
+
+    &.hidden {
+      margin: 0;
+    }
+
+    &.radio_buttons {
+      .radio {
+        margin-bottom: 15px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      .radio > label {
+        position: relative;
+        padding-left: 28px;
+
+        input {
+          position: absolute;
+          top: -2px;
+          left: 0;
+        }
+      }
+    }
+
+    &.boolean {
+      position: relative;
+      margin-bottom: 0;
+
+      .label_input > label {
+        font-family: inherit;
+        font-size: 14px;
+        padding-top: 5px;
+        color: $primary-text-color;
+        display: block;
+        width: auto;
+      }
+
+      .label_input,
+      .hint {
+        padding-left: 28px;
+      }
+
+      .label_input__wrapper {
+        position: static;
+      }
+
+      label.checkbox {
+        position: absolute;
+        top: 2px;
+        left: 0;
+      }
+    }
   }
 
   .row {
@@ -27,9 +83,22 @@ code {
     }
   }
 
+  .hint {
+    color: $darker-text-color;
+
+    a {
+      color: $highlight-text-color;
+    }
+
+    code {
+      border-radius: 3px;
+      padding: 0.2em 0.4em;
+      background: darken($ui-base-color, 12%);
+    }
+  }
+
   span.hint {
     display: block;
-    color: $darker-text-color;
     font-size: 12px;
     margin-top: 4px;
   }
@@ -44,17 +113,6 @@ code {
       line-height: 18px;
       margin-top: 15px;
       margin-bottom: 0;
-      color: $darker-text-color;
-
-      a {
-        color: $highlight-text-color;
-      }
-    }
-
-    code {
-      border-radius: 3px;
-      padding: 0.2em 0.4em;
-      background: darken($ui-base-color, 12%);
     }
   }
 
@@ -72,87 +130,60 @@ code {
     }
   }
 
-  .label_input {
-    display: flex;
+  .input.with_floating_label {
+    .label_input {
+      display: flex;
 
-    label {
-      flex: 0 0 auto;
+      & > label {
+        font-family: inherit;
+        font-size: 14px;
+        color: $primary-text-color;
+        font-weight: 500;
+        min-width: 150px;
+        flex: 0 0 auto;
+      }
+
+      input,
+      select {
+        flex: 1 1 auto;
+      }
     }
 
-    input {
-      flex: 1 1 auto;
+    &.select .hint {
+      margin-top: 6px;
+      margin-left: 150px;
     }
   }
 
   .input.with_label {
-    padding: 15px 0;
-    margin-bottom: 0;
-
-    .label_input {
-      flex-wrap: wrap;
-      align-items: flex-start;
-    }
-
-    &.file .label_input {
-      flex-wrap: nowrap;
-    }
-
-    &.select .label_input {
-      align-items: initial;
-    }
-
     .label_input > label {
       font-family: inherit;
-      font-size: 16px;
+      font-size: 14px;
       color: $primary-text-color;
       display: block;
-      padding-top: 5px;
-      margin-bottom: 5px;
-      flex: 1;
-      min-width: 150px;
+      margin-bottom: 8px;
       word-wrap: break-word;
+      font-weight: 500;
+    }
 
-      &.select {
-        flex: 0;
-      }
-
-      & ~ * {
-        margin-left: 10px;
-      }
+    .hint {
+      margin-top: 6px;
     }
 
     ul {
       flex: 390px;
     }
-
-    &.boolean {
-      padding: initial;
-      margin-bottom: initial;
-
-      .label_input > label {
-        font-family: inherit;
-        font-size: 14px;
-        color: $primary-text-color;
-        display: block;
-        width: auto;
-      }
-
-      label.checkbox {
-        position: relative;
-        padding-left: 25px;
-        flex: 1 1 auto;
-      }
-    }
   }
 
   .input.with_block_label {
-    padding-top: 15px;
+    max-width: none;
 
     & > label {
       font-family: inherit;
       font-size: 16px;
       color: $primary-text-color;
       display: block;
+      font-weight: 500;
       padding-top: 5px;
     }
 
@@ -165,8 +196,59 @@ code {
     }
   }
 
+  .required abbr {
+    text-decoration: none;
+    color: lighten($error-value-color, 12%);
+  }
+
   .fields-group {
     margin-bottom: 25px;
+
+    .input:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .fields-row {
+    display: flex;
+    margin: 0 -10px;
+    padding-top: 5px;
+    margin-bottom: 25px;
+
+    .input {
+      max-width: none;
+    }
+
+    &__column {
+      box-sizing: border-box;
+      padding: 0 10px;
+      flex: 1 1 auto;
+      min-height: 1px;
+
+      &-6 {
+        max-width: 50%;
+      }
+    }
+
+    .fields-group:last-child,
+    .fields-row__column.fields-group {
+      margin-bottom: 0;
+    }
+
+    @media screen and (max-width: $no-columns-breakpoint) {
+      display: block;
+      margin-bottom: 0;
+
+      &__column {
+        max-width: none;
+      }
+
+      .fields-group:last-child,
+      .fields-row__column.fields-group,
+      .fields-row__column {
+        margin-bottom: 25px;
+      }
+    }
   }
 
   .input.radio_buttons .radio label {
@@ -176,36 +258,6 @@ code {
     color: $primary-text-color;
     display: block;
     width: auto;
-  }
-
-  .input.boolean {
-    margin-bottom: 5px;
-
-    label {
-      font-family: inherit;
-      font-size: 14px;
-      color: $primary-text-color;
-      display: block;
-      width: auto;
-    }
-
-    label.checkbox {
-      position: relative;
-      padding-left: 25px;
-      flex: 1 1 auto;
-    }
-
-    input[type=checkbox] {
-      position: absolute;
-      left: 0;
-      top: 5px;
-      margin: 0;
-    }
-
-    .hint {
-      padding-left: 25px;
-      margin-left: 0;
-    }
   }
 
   .check_boxes {
@@ -236,12 +288,7 @@ code {
   input[type=email],
   input[type=password],
   textarea {
-    background: transparent;
     box-sizing: border-box;
-    border: 0;
-    border-bottom: 2px solid $ui-primary-color;
-    border-radius: 2px 2px 0 0;
-    padding: 7px 4px;
     font-size: 16px;
     color: $primary-text-color;
     display: block;
@@ -249,23 +296,31 @@ code {
     outline: 0;
     font-family: inherit;
     resize: vertical;
+    background: darken($ui-base-color, 10%);
+    border: 1px solid darken($ui-base-color, 14%);
+    border-radius: 4px;
+    padding: 10px;
 
     &:invalid {
       box-shadow: none;
     }
 
     &:focus:invalid {
-      border-bottom-color: lighten($error-red, 12%);
+      border-color: lighten($error-red, 12%);
     }
 
     &:required:valid {
-      border-bottom-color: $valid-value-color;
+      border-color: $valid-value-color;
+    }
+
+    &:hover {
+      border-color: darken($ui-base-color, 20%);
     }
 
     &:active,
     &:focus {
-      border-bottom-color: $highlight-text-color;
-      background: rgba($base-overlay-background, 0.1);
+      border-color: $highlight-text-color;
+      background: darken($ui-base-color, 8%);
     }
   }
 
@@ -275,9 +330,12 @@ code {
     }
 
     input[type=text],
+    input[type=number],
     input[type=email],
-    input[type=password] {
-      border-bottom-color: $valid-value-color;
+    input[type=password],
+    textarea,
+    select {
+      border-color: lighten($error-red, 12%);
     }
 
     .error {
@@ -349,22 +407,32 @@ code {
   }
 
   select {
+    appearance: none;
+    box-sizing: border-box;
     font-size: 16px;
-    max-height: 29px;
+    color: $primary-text-color;
+    display: block;
+    width: 100%;
+    outline: 0;
+    font-family: inherit;
+    resize: vertical;
+    background: darken($ui-base-color, 10%) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 12%))}'/></svg>") no-repeat right 8px center / auto 16px;
+    border: 1px solid darken($ui-base-color, 14%);
+    border-radius: 4px;
+    padding: 10px;
+    height: 41px;
   }
 
-  .input-with-append {
-    position: relative;
-
-    .input input {
-      padding-right: 142px;
+  .label_input {
+    &__wrapper {
+      position: relative;
     }
 
-    .append {
+    &__append {
       position: absolute;
-      right: 0;
-      top: 0;
-      padding: 7px 4px;
+      right: 3px;
+      top: 1px;
+      padding: 10px;
       padding-bottom: 9px;
       font-size: 16px;
       color: $dark-text-color;
@@ -383,7 +451,7 @@ code {
         right: 0;
         bottom: 1px;
         width: 5px;
-        background-image: linear-gradient(to right, rgba($ui-base-color, 0), $ui-base-color);
+        background-image: linear-gradient(to right, rgba(darken($ui-base-color, 10%), 0), darken($ui-base-color, 10%));
       }
     }
   }
@@ -395,8 +463,19 @@ code {
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
-  box-shadow: 0 0 5px rgba($base-shadow-color, 0.2);
   text-align: center;
+
+  &.notice {
+    border: 1px solid rgba($valid-value-color, 0.5);
+    background: rgba($valid-value-color, 0.25);
+    color: $valid-value-color;
+  }
+
+  &.alert {
+    border: 1px solid rgba($error-value-color, 0.5);
+    background: rgba($error-value-color, 0.25);
+    color: $error-value-color;
+  }
 
   p {
     margin-bottom: 15px;
@@ -409,7 +488,7 @@ code {
     width: 100%;
     border: none;
     padding: 10px;
-    font-family: 'mastodon-font-monospace', monospace;
+    font-family: $font-monospace, monospace;
     background: $ui-base-color;
     color: $primary-text-color;
     font-size: 14px;
@@ -459,15 +538,39 @@ code {
   }
 }
 
+.quick-nav {
+  list-style: none;
+  margin-bottom: 25px;
+  font-size: 14px;
+
+  li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  a {
+    color: $highlight-text-color;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 700;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: lighten($highlight-text-color, 8%);
+    }
+  }
+}
+
 .oauth-prompt,
 .follow-prompt {
   margin-bottom: 30px;
-  text-align: center;
   color: $darker-text-color;
 
   h2 {
     font-size: 16px;
     margin-bottom: 30px;
+    text-align: center;
   }
 
   strong {
@@ -629,6 +732,52 @@ code {
 .form_admin_settings_custom_css,
 .form_admin_settings_closed_registrations_message {
   textarea {
-    font-family: 'mastodon-font-monospace', monospace;
+    font-family: $font-monospace, monospace;
+  }
+}
+
+.input-copy {
+  background: darken($ui-base-color, 10%);
+  border: 1px solid darken($ui-base-color, 14%);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding-right: 4px;
+  position: relative;
+  top: 1px;
+  transition: border-color 300ms linear;
+
+  &__wrapper {
+    flex: 1 1 auto;
+  }
+
+  input[type=text] {
+    background: transparent;
+    border: 0;
+    padding: 10px;
+    font-size: 14px;
+    font-family: $font-monospace, monospace;
+  }
+
+  button {
+    flex: 0 0 auto;
+    margin: 4px;
+    text-transform: none;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 7px 18px;
+    padding-bottom: 6px;
+    width: auto;
+    transition: background 300ms linear;
+  }
+
+  &.copied {
+    border-color: $valid-value-color;
+    transition: none;
+
+    button {
+      background: $valid-value-color;
+      transition: none;
+    }
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Permalink from '../../../components/permalink';
-import { displaySensitiveMedia } from '../../../initial_state';
+import { displayMedia } from '../../../initial_state';
 
 export default class MediaItem extends ImmutablePureComponent {
 
@@ -11,7 +11,7 @@ export default class MediaItem extends ImmutablePureComponent {
   };
 
   state = {
-    visible: !this.props.media.getIn(['status', 'sensitive']) || displaySensitiveMedia,
+    visible: displayMedia !== 'hide_all' && !this.props.media.getIn(['status', 'sensitive']) || displayMedia === 'show_all',
   };
 
   handleClick = () => {

@@ -19,7 +19,7 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
     stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
 
     Fabricate(:subscription, account: alice, callback_url: 'http://example.com/push', confirmed: true, expires_at: 30.days.from_now)
-    jeff.user.update(current_sign_in_at: Time.now)
+    jeff.user.update(current_sign_in_at: Time.zone.now)
     jeff.follow!(alice)
     hank.follow!(alice)
 

@@ -1,6 +1,8 @@
 .fields-group
-  = f.input :name, placeholder: t('activerecord.attributes.doorkeeper/application.name')
-  = f.input :website, placeholder: t('activerecord.attributes.doorkeeper/application.website')
+  = f.input :name, wrapper: :with_label, label: t('activerecord.attributes.doorkeeper/application.name')
+
+.fields-group
+  = f.input :website, wrapper: :with_label, label: t('activerecord.attributes.doorkeeper/application.website')
 
 .fields-group
   = f.input :redirect_uri, wrapper: :with_block_label, label: t('activerecord.attributes.doorkeeper/application.redirect_uri'), hint: t('doorkeeper.applications.help.redirect_uri')

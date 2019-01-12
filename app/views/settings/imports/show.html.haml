@@ -2,10 +2,8 @@
   = t('settings.import')
 
 = simple_form_for @import, url: settings_import_path do |f|
-  %p.hint= t('imports.preface')
-
   .field-group
-    = f.input :type, collection: Import.types.keys, wrapper: :with_label, include_blank: false, label_method: lambda { |type| I18n.t("imports.types.#{type}") }, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+    = f.input :type, collection: Import.types.keys, wrapper: :with_block_label, include_blank: false, label_method: lambda { |type| I18n.t("imports.types.#{type}") }, hint: t('imports.preface')
 
   .field-group
     = f.input :data, wrapper: :with_block_label, hint: t('simple_form.hints.imports.data')
