@@ -1,7 +1,7 @@
 sk:
   about:
-    about_hashtag_html: Toto sú verejné príspevky otagované <strong>#%{hashtag}</strong>.
-      Ak máš účet niekde vo fediverse, môžeš ich využívať.
+    about_hashtag_html: Toto sú verejné príspevky otagované pod <strong>#%{hashtag}</strong>.
+      Ak máš účet hocikde v rámci fediversa, môžeš ich využívať.
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových
       protokoloch a na slobodnom softvéri. Je decentralizovaná, podobne ako email.
     about_this: O tejto instancii
@@ -815,6 +815,9 @@ sk:
       tu</a>
     proceed: Začni následovať
     prompt: 'Budeš sledovať:'
+    reason_html: <strong>Načo je tento krok potrebný?</strong> <code>%{instance}</code>
+      nemusí byť práve tým serverom na ktorom si zaregistrovaný/á, takže je ťa najprv
+      potrebné presmerovať na tvoj domáci server.
   remote_unfollow:
     error: Chyba
     title: Názov
@@ -1071,3 +1074,5 @@ sk:
       prompt: 'Chceš odpovedať na tento príspevok:'
   scheduled_statuses:
     too_soon: Dátum musí byť stanovený do budúcnosti
+    over_daily_limit: Prekročil/a si denný limit %{limit} predplánovaných príspevkov
+    over_total_limit: Prekročil/a si limit %{limit} predplánovaných príspevkov
