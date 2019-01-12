@@ -8,7 +8,7 @@ import MediaGallery from '../../../components/media_gallery';
 import AttachmentList from '../../../components/attachment_list';
 import { Link } from 'react-router-dom';
 import { FormattedDate, FormattedNumber } from 'react-intl';
-import CardContainer from '../containers/card_container';
+import Card from './card';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Video from '../../video';
 
@@ -80,7 +80,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         );
       }
     } else if (status.get('spoiler_text').length === 0) {
-      media = <CardContainer onOpenMedia={this.props.onOpenMedia} statusId={status.get('id')} />;
+      media = <Card onOpenMedia={this.props.onOpenMedia} card={status.get('card', null)} />;
     }
 
     if (status.get('application')) {

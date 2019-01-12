@@ -1,10 +1,10 @@
 ---
 :concurrency: 5
 :queues:
-  - default
-  - push
-  - mailers
-  - pull
+  - [default, 6]
+  - [push, 4]
+  - [mailers, 2]
+  - [pull]
 :schedule:
   subscriptions_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(4..6) %> * * *'
@@ -33,3 +33,6 @@
   backup_cleanup_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
     class: Scheduler::BackupCleanupScheduler
+  pghero_scheduler:
+    cron: '0 0 * * *'
+    class: Scheduler::PgheroScheduler

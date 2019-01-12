@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UpdateRemoteProfileService, type: :service do
-  let(:xml) { File.read(File.join(Rails.root, 'spec', 'fixtures', 'push', 'feed.atom')) }
+  let(:xml) { File.read(Rails.root.join('spec', 'fixtures', 'push', 'feed.atom')) }
 
   subject { UpdateRemoteProfileService.new }
 

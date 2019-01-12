@@ -30,18 +30,25 @@ it:
     other_instances: Elenco istanze
     privacy_policy: Policy su la Privacy
     source_code: Codice sorgente
-    status_count_after: stati
+    status_count_after:
+      one: status
+      other: status
     status_count_before: Che hanno pubblicato
     terms: Termini di Servizio
-    user_count_after: utenti
+    user_count_after:
+      one: utente
+      other: utenti
     user_count_before: Home di
     what_is_mastodon: Che cos'è Mastodon?
   accounts:
     choices_html: 'Suggerimenti da %{name}:'
     follow: Segui
-    followers: Seguaci
+    followers:
+      one: Seguace
+      other: Seguaci
     following: Segui
     joined: Dal %{date}
+    link_verified_on: La proprietà di questo link è stata controllata il %{date}
     media: Media
     moved_html: "%{name} è stato spostato su %{new_profile_link}:"
     network_hidden: Questa informazione non e' disponibile
@@ -50,7 +57,10 @@ it:
     people_who_follow: Persone che seguono %{name}
     pin_errors:
       following: Devi gia seguire la persona che vuoi promuovere
-    posts: Posts
+    posts:
+      one: Toot
+      other: Toot
+    posts_tab_heading: Toot
     posts_with_replies: Toot e risposte
     reserved_username: Il nome utente è gia stato preso
     roles:
@@ -111,13 +121,14 @@ it:
       moderation_notes: Note di moderazione
       most_recent_activity: Attività più recenti
       most_recent_ip: IP più recenti
+      no_limits_imposed: Nessun limite imposto
       not_subscribed: Non sottoscritto
       order:
         alphabetic: Alfabetico
         most_recent: Più recente
         title: Ordine
       outbox_url: URL outbox
-      perform_full_suspension: Esegui sospensione completa
+      perform_full_suspension: Sospendi
       profile_url: URL profilo
       promote: Promuovi
       protocol: Protocollo
@@ -146,8 +157,10 @@ it:
         report: segnala
         targeted_reports: Rapporti che riguardano questo account
       silence: Silenzia
+      silenced: Silenziato
       statuses: Stati
       subscribe: Sottoscrivi
+      suspended: Sospeso
       title: Account
       unconfirmed_email: Email non confermata
       undo_silenced: Rimuovi silenzia
@@ -164,6 +177,7 @@ it:
         create_domain_block: "%{name} ha bloccato il dominio %{target}"
         create_email_domain_block: "%{name} ha messo il dominio email %{target} nella blacklist"
         demote_user: "%{name} ha degradato l'utente %{target}"
+        destroy_custom_emoji: "%{name} ha distrutto l'emoji %{target}"
         destroy_domain_block: "%{name} ha sbloccato il dominio %{target}"
         destroy_email_domain_block: "%{name}ha messo il dominio email %{target} nella whitelist"
         destroy_status: "%{name} ha eliminato lo status di %{target}"
@@ -215,8 +229,10 @@ it:
     dashboard:
       backlog: backlogged jobs
       config: Configurazione
+      feature_deletions: Cancellazioni di account
       feature_invites: Link di invito
       feature_registrations: Registrazioni
+      feature_relay: Ripetitore di federazione
       features: Funzionalità
       hidden_service: Federazione con servizi nascosti
       open_reports: apri report
@@ -227,7 +243,7 @@ it:
       space: Utilizzo dello spazio
       title: Dashboard
       total_users: utenti totali
-      trends: Trends
+      trends: Tendenze
       week_interactions: interazioni per questa settimana
       week_users_active: attivi questa settimana
       week_users_new: utenti questa settimana
@@ -240,12 +256,15 @@ it:
         create: Crea blocco
         hint: Il blocco dominio non previene la creazione di utenti nel database, ma applicherà automaticamente e retroattivamente metodi di moderazione specifici su quegli account.
         severity:
+          desc_html: "<strong>Silenzia</strong> rende i post di questo account invisibili a chiunque non lo stia seguendo. <strong>Sospendi</strong> elimina tutti i contenuti, media e dati del profilo dell'account. Usa <strong>Nessuno</strong> se vuoi solo bloccare i file media."
           noop: Nessuno
           silence: Silenzia
           suspend: Sospendi
         title: Nuovo blocco dominio
       reject_media: Rifiuta file media
       reject_media_hint: Rimuovi i file media salvati in locale e blocca i download futuri. Irrilevante per le sospensioni
+      reject_reports: Respingi rapporti
+      reject_reports_hint: Ignora tutti i rapporti provenienti da questo dominio. Irrilevante per sospensioni
       severities:
         noop: Nessuno
         silence: Silenzia
@@ -270,6 +289,7 @@ it:
       domain: Dominio
       new:
         create: Aggiungi dominio
+        title: Nuova voce della lista nera delle email
       title: Lista nera email
     instances:
       account_count: Accounts conosciuti
@@ -286,17 +306,34 @@ it:
         title: Filtro
       title: Inviti
     relays:
+      add_new: Aggiungi ripetitore
+      delete: Cancella
+      description_html: Un <strong>ripetitore di federazione</strong> è un server che fa da intermediario e scambia grandi quantità di toot pubblici tra server che si collegano e pubblicano su di esso. <strong>Può aiutare server piccoli e medi a ottenere contenuti dal fediverse</strong>, che altrimenti riceverebbero solo se i loro utenti locali seguissero altre persone su server remoti.
+      disable: Disabilita
+      disabled: Disabilitato
+      enable: Abilita
+      enable_hint: Dopo l'attivazione, il vostro server riceverà tutti i toot pubblici da questo ripetitore, e inizierà a inviargli i suoi toot pubblici.
+      enabled: Abilitato
       inbox_url: Url Relay
+      pending: In attesa dell'approvazione del ripetitore
+      save_and_enable: Salva e attiva
+      setup: Crea una connessione con un ripetitore
+      status: Status
+      title: Ripetitori
+    report_notes:
+      created_msg: Nota rapporto creata!
+      destroyed_msg: Nota rapporto cancellata!
     reports:
       account:
         note: note
+        report: rapporto
       action_taken_by: Azione intrapresa da
       are_you_sure: Sei sicuro?
       assign_to_self: Assegna a me
       assigned: Moderatore assegnato
       comment:
         none: Nessuno
-      id: ID
+      created_at: Segnalato
       mark_as_resolved: Segna come risolto
       mark_as_unresolved: Segna come non risolto
       notes:
@@ -304,30 +341,42 @@ it:
         create_and_resolve: Risolvi con nota
         create_and_unresolve: Riapri con nota
         delete: Elimina
+        placeholder: Descrivi quali azioni sono state intraprese, o ogni altro aggiornamento rilevante...
       reopen: Riapri rapporto
       report: 'Rapporto #%{id}'
-      report_contents: Contenuti
+      reported_account: Account segnalato
       reported_by: Inviato da
       resolved: Risolto
-      silence_account: Silenzia account
+      resolved_msg: Rapporto risolto!
       status: Stato
-      suspend_account: Sospendi account
-      target: Obbiettivo
+      title: Rapporti
       unassign: Non assegnare
       unresolved: Non risolto
       updated_at: Aggiornato
-      view: Mostra
     settings:
       activity_api_enabled:
         desc_html: Conteggi degli status pubblicati localmente, degli utenti attivi e delle nuove registrazioni in gruppi settimanali
         title: Pubblica statistiche aggregate circa l'attività dell'utente
       bootstrap_timeline_accounts:
+        desc_html: Separa i nomi utente con virgola. Funziona solo con account locali e non bloccati. Quando vuoto, valido per tutti gli amministratori locali.
         title: Seguiti predefiniti per i nuovi utenti
       contact_information:
         username: Nome utente del contatto
+      custom_css:
+        desc_html: Modifica l'aspetto con il CSS caricato in ogni pagina
+        title: CSS personalizzato
+      hero:
+        desc_html: Mostrata nella pagina iniziale. Almeno 600x100 px consigliati. Se non impostata, sarà usato il thumbnail dell'istanza
+        title: Immagine dell'eroe
+      mascot:
+        desc_html: Mostrata su più pagine. Almeno 293×205px consigliati. Se non impostata, sarò usata la mascotte predefinita
+        title: Immagine della mascotte
       peers_api_enabled:
         desc_html: Nomi di dominio che questa istanza ha incontrato nella fediverse
         title: Pubblica elenco di istanze scoperte
+      preview_sensitive_media:
+        desc_html: Le anteprime dei link su altri siti mostreranno un thumbnail anche se il media è segnato come sensibile
+        title: Mostra media sensibili nella anteprime OpenGraph
       registrations:
         closed_message:
           desc_html: Mostrato nella pagina iniziale quando le registrazioni sono chiuse. Puoi usare tag HTML
@@ -347,11 +396,23 @@ it:
       show_staff_badge:
         title: Mostra badge staff
       site_description:
+        desc_html: Paragrafo introduttivo nella pagina iniziale. Descrive ciò che rende speciale questo server Mastodon e qualunque altra cosa sia importante dire. Potete usare marcatori HTML, in particolare <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrizione istanza
+      site_description_extended:
+        desc_html: Un posto adatto per pubblicare regole di comportamento, linee guida e altre cose specifiche della vostra istanza. Potete usare marcatori HTML
+        title: Informazioni estese personalizzate
+      site_short_description:
+        desc_html: Mostrato nella barra laterale e nei tag meta. Descrive in un paragrafo che cos'è Mastodon e che cosa rende questo server speciale. Se vuoto, sarà usata la descrizione predefinita dell'istanza.
+        title: Breve descrizione dell'istanza
       site_terms:
+        desc_html: Potete scrivere la vostra politica sulla privacy, condizioni del servizio o altre informazioni legali. Potete usare tag HTML
         title: Termini di servizio personalizzati
       site_title: Nome istanza
+      thumbnail:
+        desc_html: Usato per anteprime tramite OpenGraph e API. 1200x630px consigliati
+        title: Thumbnail dell'istanza
       timeline_preview:
+        desc_html: Mostra la timeline pubblica sulla pagina iniziale
         title: Anteprima timeline
       title: Impostazioni sito
     statuses:
@@ -364,6 +425,7 @@ it:
       media:
         title: Media
       no_media: Nessun media
+      no_status_selected: Nessun status è stato modificato perché nessuno era stato selezionato
       title: Gli status dell'account
       with_media: con media
     subscriptions:
@@ -371,6 +433,12 @@ it:
       confirmed: Confermato
       expires_in: Scade in
       topic: Argomento
+    suspensions:
+      bad_acct_msg: Il valore di conferma non corrisponde. Stai sospendendo l'account giusto?
+      hint_html: 'Per confermare la sospensione dell''account, inserisci %{value} nel campo qui sotto:'
+      proceed: Continua
+      title: Sospendi %{acct}
+      warning_html: 'La sospensione dell''account comporta la cancellazione <strong>irreversibile</strong> dei suoi dati, che comprendono:'
     title: Amministrazione
   application_mailer:
     notification_preferences: Cambia preferenze email
@@ -395,7 +463,7 @@ it:
     didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
     forgot_password: Hai dimenticato la tua password?
     login: Entra
-    logout: Sloggati
+    logout: Esci da Mastodon
     migrate_account: Sposta ad un account differente
     migrate_account_html: Se vuoi che questo account sia reindirizzato a uno diverso, puoi <a href="%{path}">configurarlo qui</a>.
     or: o
@@ -415,6 +483,7 @@ it:
     post_follow:
       close: Oppure puoi chiudere questa finestra.
       return: Mostra il profilo dell'utente
+      web: Vai al web
     title: Segui %{acct}
   datetime:
     distance_in_words:
@@ -444,7 +513,10 @@ it:
     '422':
       content: Verifica di sicurezza non riuscita. Stai bloccando i cookies?
       title: Verifica di sicurezza non riuscita
-    noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">app native</a> per Mastodon per la tua piattaforma.
+    '500':
+      content: Siamo spiacenti, ma qualcosa non ha funzionato dal nostro lato.
+      title: Questa pagina non è corretta
+    noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="%{apps_path}">app native</a> per Mastodon per la tua piattaforma.
   exports:
     archive_takeout:
       date: Data
@@ -458,15 +530,36 @@ it:
     follows: Stai seguendo
     mutes: Stai silenziando
     storage: Archiviazione media
+  filters:
+    contexts:
+      home: Timeline home
+      notifications: Notifiche
+      public: Timeline pubbliche
+      thread: Conversazioni
+    edit:
+      title: Modifica filtro
+    errors:
+      invalid_context: Contesto mancante o non valido
+    index:
+      delete: Cancella
+      title: Filtri
+    new:
+      title: Aggiungi filtro
   followers:
     domain: Dominio
     explanation_html: Se vuoi garantire la privacy dei tuoi status, devi sapere chi ti sta seguendo. <strong>I tuoi status privati vengono inviati a tutte le istanze su cui hai dei seguaci</strong>. Puoi controllare chi sono i tuoi seguaci, ed eliminarli se non hai fiducia che la tua privacy venga rispettata dallo staff o dal software di quelle istanze.
     followers_count: Numero di seguaci
+    lock_link: Blocca il tuo account
     purge: Elimina dai seguaci
     true_privacy_html: Tieni presente che <strong>l'effettiva riservatezza si può ottenere solo con la crittografia end-to-end</strong>.
     unlocked_warning_html: Chiunque può seguirti per vedere immediatamente i tuoi status privati. %{lock_link} per poter esaminare e respingere gli utenti che vogliono seguirti.
+    unlocked_warning_title: Il tuo account non è bloccato
+  footer:
+    developers: Sviluppatori
+    more: Altro…
   generic:
     changes_saved_msg: Modifiche effettuate con successo!
+    copy: Copia
     save_changes: Salva modifiche
     validation_errors:
       one: Qualcosa ancora non va bene! Per favore, controlla l'errore qui sotto
@@ -492,7 +585,9 @@ it:
       '86400': 1 giorno
     expires_in_prompt: Mai
     generate: Genera
+    invited_by: 'Sei stato invitato da:'
     max_uses:
+      one: un uso
       other: "%{count} utilizzi"
     max_uses_prompt: Nessun limite
     prompt: Genera e condividi dei link ad altri per garantire l'accesso a questa istanza
@@ -573,8 +668,12 @@ it:
   remote_follow:
     acct: Inserisci il tuo username@dominio da cui vuoi seguire questo utente
     missing_resource: Impossibile trovare l'URL di reindirizzamento richiesto per il tuo account
+    no_account_html: Non hai un account? Puoi <a href='%{sign_up_path}' target='_blank'>iscriverti qui</a>
     proceed: Conferma
     prompt: 'Stai per seguire:'
+  remote_interaction:
+    proceed: Continua per interagire
+    prompt: 'Vuoi interagire con questo toot:'
   remote_unfollow:
     error: Errore
     title: Titolo
@@ -584,12 +683,29 @@ it:
     browsers:
       blackberry: Blackberry
       chrome: Chrome
+      edge: Microsoft Edge
+      firefox: Firefox
       generic: Browser sconosciuto
+      ie: Internet Explorer
+      opera: Opera
+      safari: Safari
     current_session: Sessione corrente
     description: "%{browser} su %{platform}"
     explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al tuo account Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
       other: piattaforma sconosciuta
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     title: Sessioni
   settings:
     authorized_apps: Applicazioni autorizzate
@@ -628,6 +744,7 @@ it:
       private: Un toot non pubblico non può essere fissato in cima
       reblog: Un toot condiviso non può essere fissato in cima
     show_more: Mostra di più
+    sign_in_to_participate: Accedi per partecipare alla conversazione
     visibilities:
       private: Mostra solo ai tuoi seguaci
       private_long: Mostra solo ai seguaci
@@ -644,6 +761,7 @@ it:
   themes:
     contrast: Contrasto elevato
     default: Mastodon
+    mastodon-light: Mastodon (chiaro)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -658,10 +776,11 @@ it:
     instructions_html: "<strong>Scannerizza questo QR code con Google Authenticator o un'app TOTP simile sul tuo telefono</strong>. Da ora in poi, quell'applicazione genererà codici da inserire necessariamente per eseguire l'accesso."
     lost_recovery_codes: I codici di recupero ti permettono di accedere al tuo account se perdi il telefono. Se hai perso i tuoi codici di recupero, puoi rigenerarli qui. Quelli vecchi saranno annullati.
     manual_instructions: 'Se non puoi scannerizzare il QR code e hai bisogno di inserirlo manualmente, questo è il codice segreto in chiaro:'
+    recovery_codes: Codici di recupero del backup
     recovery_codes_regenerated: I codici di recupero sono stati rigenerati
     recovery_instructions_html: Se perdi il telefono, puoi usare uno dei codici di recupero qui sotto per riottenere l'accesso al tuo account. <strong>Conserva i codici di recupero in un posto sicuro</strong>. Ad esempio puoi stamparli e conservarli insieme ad altri documenti importanti.
     setup: Configura
-    wrong_code: Il codice inserito non è corretto! Assicurati che l'orario del server e l'orario del dispotivo siano corretti.
+    wrong_code: Il codice inserito non è corretto! Assicurati che l'orario del server e l'orario del dispositivo siano corretti.
   user_mailer:
     backup_ready:
       explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!
@@ -685,6 +804,11 @@ it:
       tips: Suggerimenti
       title: Benvenuto a bordo, %{name}!
   users:
+    follow_limit_reached: Non puoi seguire più di %{limit} persone
     invalid_email: L'indirizzo email inserito non è valido
     invalid_otp_token: Codice d'accesso non valido
     seamless_external_login: Ti sei collegato per mezzo di un servizio esterno, quindi le impostazioni di email e password non sono disponibili.
+    signed_in_as: 'Hai effettuato l''accesso come:'
+  verification:
+    explanation_html: 'Puoi <strong>certificare te stesso come proprietario dei link nei metadati del tuo profilo</strong>. Per farlo, il sito a cui punta il link deve contenere un link che punta al tuo profilo Mastodon. Il link di ritorno <strong>deve</strong> avere l''attributo <code>rel="me"</code>. Il testo del link non ha importanza. Ecco un esempio:'
+    verification: Verifica

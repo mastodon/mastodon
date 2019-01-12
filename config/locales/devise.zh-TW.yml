@@ -20,7 +20,7 @@ zh-TW:
         action: 驗證 E-mail 地址
         explanation: 您已經在 %{host} 上以此 E-mail 地址建立了一個帳號。您距離啟用它只剩一次點擊之遙了。如果這不是你，請忽略此 E-mail 。
         extra_html: 同時也請看看<a href="%{terms_path}">該站點的規則</a>與<a href="%{policy_path}">我們的服務條款</a>。
-        subject: 'Mastodon: 信箱驗證'
+        subject: 'Mastodon: 信箱驗證 %{instance}'
         title: 驗證 E-mail 地址
       email_changed:
         explanation: 您帳號的 E-mail 地址被變更為：
@@ -77,6 +77,4 @@ zh-TW:
       expired: 已經過期，請重新申請
       not_found: 找不到
       not_locked: 並未被鎖定
-      not_saved:
-        one: 1 個錯誤使 %{resource} 無法被儲存︰
-        other: "%{count} 個錯誤使 %{resource} 無法被儲存︰"
+      not_saved: "%{count} 個錯誤使 %{resource} 無法被儲存︰"

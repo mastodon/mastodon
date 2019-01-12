@@ -1,24 +1,32 @@
 - content_for :page_title do
   = t('auth.security')
 
-%h4= t('auth.change_password')
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'auth_edit' }) do |f|
   = render 'shared/error_messages', object: resource
 
   - if !use_seamless_external_login? || resource.encrypted_password.present?
-    = f.input :email, placeholder: t('simple_form.labels.defaults.email'), input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }
-    = f.input :password, placeholder: t('simple_form.labels.defaults.new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.new_password'), :autocomplete => 'off' }
-    = f.input :password_confirmation, placeholder: t('simple_form.labels.defaults.confirm_new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_new_password'), :autocomplete => 'off' }
-    = f.input :current_password, placeholder: t('simple_form.labels.defaults.current_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.current_password'), :autocomplete => 'off' }
+    .fields-group
+      = f.input :email, wrapper: :with_label, input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }, required: true, hint: false
+
+    .fields-group
+      = f.input :password, wrapper: :with_label, input_html: { 'aria-label' => t('simple_form.labels.defaults.new_password'), :autocomplete => 'off' }, hint: false
+
+    .fields-group
+      = f.input :password_confirmation, wrapper: :with_label, label: t('simple_form.labels.defaults.confirm_new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_new_password'), :autocomplete => 'off' }
+
+    .fields-group
+      = f.input :current_password, wrapper: :with_label, input_html: { 'aria-label' => t('simple_form.labels.defaults.current_password'), :autocomplete => 'off' }, required: true
 
     .actions
       = f.button :button, t('generic.save_changes'), type: :submit
   - else
     %p.hint= t('users.seamless_external_login')
 
+%hr.spacer/
+
 = render 'sessions'
 
 - if open_deletion?
-
+  %hr.spacer/
   %h4= t('auth.delete_account')
   %p.muted-hint= t('auth.delete_account_html', path: settings_delete_path)

@@ -48,6 +48,7 @@ eu:
       other: jarraitzaile
     following: Jarraitzen
     joined: "%{date}(e)an elkartua"
+    link_verified_on: 'Esteka honen jabetzaren egiaztaketa data: %{date}'
     media: Multimedia
     moved_html: "%{name} hona lekualdatu da %{new_profile_link}:"
     network_hidden: Informazio hau ez dago eskuragarri
@@ -120,13 +121,14 @@ eu:
       moderation_notes: Moderazio oharrak
       most_recent_activity: Azken jarduera
       most_recent_ip: Azken IP-a
+      no_limits_imposed: Ez da mugarik ezarri
       not_subscribed: Harpidetu gabe
       order:
         alphabetic: Alfabetikoa
         most_recent: Azkena
         title: Ordena
       outbox_url: Irteera ontziaren URL-a
-      perform_full_suspension: Aplikatu kanporatze osoa
+      perform_full_suspension: Kanporatu
       profile_url: Profilaren URL-a
       promote: Sustatu
       protocol: Protokoloa
@@ -155,8 +157,10 @@ eu:
         report: salatu
         targeted_reports: Kontu honek egindako salaketak
       silence: Isilarazi
+      silenced: Isilarazita
       statuses: Mezuak
       subscribe: Harpidetu
+      suspended: Kanporatuta
       title: Kontuak
       unconfirmed_email: Baieztatu gabeko e-mail helbidea
       undo_silenced: Utzi isilarazteari
@@ -173,6 +177,7 @@ eu:
         create_domain_block: "%{name}(e)k %{target} domeinua blokeatu du"
         create_email_domain_block: "%{name}(e)k %{target} e-mail helbideen domeinua zerrenda beltzean sartu du"
         demote_user: "%{name}(e)k %{target} mailaz jaitsi du"
+        destroy_custom_emoji: "%{name} erabiltzaileak %{target} emojia suntsitu du"
         destroy_domain_block: "%{name}(e)k %{target} domeinua desblokeatu du"
         destroy_email_domain_block: "%{name}(e)k %{target} e-mail helbideen domeinua zerrenda zurian sartu du"
         destroy_status: "%{name}(e)k %{target}(e)n egoera kendu du"
@@ -258,6 +263,8 @@ eu:
         title: Domeinu blokeo berria
       reject_media: Ukatu multimedia fitxategiak
       reject_media_hint: Lokalki gordetako multimedia fitxategiak ezabatzen ditu eta etorkizunean fitxategi berriak deskargatzeari uko egingo dio. Ez du garrantzirik kanporaketetan
+      reject_reports: Errefusatu salaketak
+      reject_reports_hint: Ezikusi domeinu honetatik jasotako salaketak. Kanporatzeentzako garrantzirik gabekoa
       severities:
         noop: Bat ere ez
         silence: Isilarazi
@@ -300,7 +307,19 @@ eu:
       title: Gonbidapenak
     relays:
       add_new: Gehitu hari berria
+      delete: Ezabatu
+      description_html: "<strong>Federazio errele</strong> bat zerbitzari tartekari bat da, bertara harpidetutako eta bertan argitaratzen duten zerbitzarien artean toot publiko kopuru handiak banatzen ditu. <strong>Zerbitzari txiki eta ertainei Fedibertsoko edukia aurkitzen laguntzen die</strong>, bestela erabiltzaile lokalek eskuz jarraitu beharko lituzkete urruneko zerbitzarietako erabiltzaileak."
+      disable: Desgaitu
+      disabled: Desgaituta
+      enable: Gaitu
+      enable_hint: Behin gaituta, zure zerbitzaria errele honetako toot publiko guztietara harpidetuko da, eta zerbitzari honetako toot publikoak errelera bidaltzen hasiko da.
+      enabled: Gaituta
+      inbox_url: Errelearen URLa
+      pending: Erreleak onartzearen zain
+      save_and_enable: Gorde eta gaitu
+      setup: Ezarri errele konexio bat
       status: Mezuak
+      title: Erreleak
     report_notes:
       created_msg: Salaketa oharra ongi sortu da!
       destroyed_msg: Salaketa oharra ongi ezabatu da!
@@ -315,7 +334,6 @@ eu:
       comment:
         none: Bat ere ez
       created_at: Salatua
-      id: ID
       mark_as_resolved: Markatu konpondutako gisa
       mark_as_unresolved: Markatu konpondu gabeko gisa
       notes:
@@ -326,20 +344,15 @@ eu:
         placeholder: Azaldu hartutako neurriak, edo erlazioa duten bestelako berriak...
       reopen: Berrireki salaketa
       report: 'Salaketa #%{id}'
-      report_contents: Edukiak
       reported_account: Salatutako kontua
       reported_by: Salatzailea
       resolved: Konponduta
       resolved_msg: Salaketa ongi konpondu da!
-      silence_account: Isilarazi kontua
       status: Mezua
-      suspend_account: Kanporatu kontua
-      target: Helburua
       title: Salaketak
       unassign: Kendu esleipena
       unresolved: Konpondu gabea
       updated_at: Eguneratua
-      view: Ikusi
     settings:
       activity_api_enabled:
         desc_html: Lokalki bidalitako mezu kopurua, erabiltzaile aktiboak, eta izen emate berriak asteko
@@ -356,6 +369,9 @@ eu:
       hero:
         desc_html: Azaleko orrian bistaratua. Gutxienez 600x100px aholkatzen da. Ezartzen ez bada, instantziaren irudia hartuko du
         title: Azaleko irudia
+      mascot:
+        desc_html: Hainbat orritan bistaratua. Gutxienez 293x205px aholkatzen da. Ezarri ezean lehenetsitako maskota erakutsiko da
+        title: Maskotaren irudia
       peers_api_enabled:
         desc_html: Instantzia honek fedibertsuan aurkitutako domeinu-izenak
         title: Argitaratu aurkitutako instantzien zerrenda
@@ -424,6 +440,7 @@ eu:
     suspensions:
       bad_acct_msg: Berrespen balioa ez dator bat. Dagokion kontua kanporatzen ari zara?
       hint_html: 'Kontuaren kanporatzea berresteko, sartu %{value} beheko eremuan:'
+      proceed: Jarraitu
       title: Kanporatu %{acct}
       warning_html: 'Kontu hau kanporatzeak <strong>behin betiko</strong> ezabatuko ditu kontu honetako datuak, hauek barne:'
     title: Administrazioa
@@ -448,7 +465,7 @@ eu:
     warning: Kontuz datu hauekin, ez partekatu inoiz inorekin!
     your_token: Zure sarbide token-a
   auth:
-    agreement_html: Izena emanez<a href="%{rules_path}">instantziaren arauak</a> eta <a href="%{terms_path}">erabilera baldintzak</a> onartzen dituzu.
+    agreement_html: '"Izena eman" botoia sakatzean <a href="%{rules_path}">instantziaren arauak</a> eta <a href="%{terms_path}">erabilera baldintzak</a> onartzen dituzu.'
     change_password: Pasahitza
     confirm_email: Berretsi e-mail helbidea
     delete_account: Ezabatu kontua
@@ -515,7 +532,7 @@ eu:
     '500':
       content: Sentitzen dugu, zerbait okerra gertatu da gure aldean.
       title: Orri hau ez da zuzena
-    noscript_html: Mastodon web aplikazioa erabiltzeko, gaitu JavaScript. Bestela, probatu Mastodon plataformarako <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">aplikazio natibo</a>ren bat.
+    noscript_html: Mastodon web aplikazioa erabiltzeko, gaitu JavaScript. Bestela, probatu Mastodon plataformarako <a href="%{apps_path}">aplikazio natibo</a>ren bat.
   exports:
     archive_takeout:
       date: Data
@@ -563,6 +580,7 @@ eu:
     resources: Baliabideak
   generic:
     changes_saved_msg: Aldaketak ongi gorde dira!
+    copy: Kopiatu
     save_changes: Gorde aldaketak
     validation_errors:
       one: Zerbait ez dabil ongi! Egiaztatu beheko errorea mesedez
@@ -674,6 +692,9 @@ eu:
     no_account_html: Ez duzu konturik? <a href='%{sign_up_path}' target='_blank'>Izena eman</a> dezakezu
     proceed: Ekin jarraitzeari
     prompt: 'Hau jarraituko duzu:'
+  remote_interaction:
+    proceed: Jarraitu interakziora
+    prompt: 'Toot honekin interakzioa nahi duzu:'
   remote_unfollow:
     error: Errorea
     title: Izenburua
@@ -757,6 +778,7 @@ eu:
       private: Ezin dira publikoak ez diren toot-ak finkatu
       reblog: Bultzada bat ezin da finkatu
     show_more: Erakutsi gehiago
+    sign_in_to_participate: Eman izena elkarrizketan parte hartzeko
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Jarraitzaileak besterik ez
@@ -900,8 +922,12 @@ eu:
       tips: Aholkuak
       title: Ongi etorri, %{name}!
   users:
+    follow_limit_reached: Ezin dituzu %{limit} pertsona baino gehiago jarraitu
     invalid_email: E-mail helbidea baliogabea da
     invalid_otp_token: Bi faktoreetako kode baliogabea
     otp_lost_help_html: 'Bietara sarbidea galdu baduzu, jarri kontaktuan hemen: %{email}'
     seamless_external_login: Kanpo zerbitzu baten bidez hasi duzu saioa, beraz pasahitza eta e-mail ezarpenak ez daude eskuragarri.
     signed_in_as: 'Saioa honela hasita:'
+  verification:
+    explanation_html: 'Ezin duzu <strong>zure burua zure profileko metadatuen esteken jabe gisa egiaztatu</strong>. Horretarako, estekatutako webgunean zure Mastodon profilera daraman esteka bat egon behar du. Mastodonera daraman esteka horrek<strong>derrigorrez</strong> <code>rel="me"</code> artibutua izan behar du . Estekaren testuak ez du axola. Hona adibide bat:'
+    verification: Egiaztaketa

@@ -7,8 +7,8 @@ import Column from '../../../components/column';
 import ColumnHeader from '../../../components/column_header';
 import { connectHashtagStream } from '../../../actions/streaming';
 
-@connect()
-export default class HashtagTimeline extends React.PureComponent {
+export default @connect()
+class HashtagTimeline extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,

@@ -268,7 +268,6 @@ fi:
       comment:
         none: Ei mitään
       created_at: Raportoitu
-      id: Tunniste
       mark_as_resolved: Merkitse ratkaistuksi
       mark_as_unresolved: Merkitse ratkaisemattomaksi
       notes:
@@ -279,19 +278,14 @@ fi:
         placeholder: Kuvaile mitä toimia on tehty tai muita päivityksiä tähän raporttiin…
       reopen: Avaa raportti uudestaan
       report: Raportti nro %{id}
-      report_contents: Sisältö
       reported_account: Raportoitu tili
       reported_by: Raportoija
       resolved: Ratkaistut
       resolved_msg: Raportti onnistuneesti ratkaistu!
-      silence_account: Hiljennä tili
       status: Tila
-      suspend_account: Siirrä tili jäähylle
-      target: Kohde
       title: Raportit
       unresolved: Ratkaisemattomat
       updated_at: Päivitetty
-      view: Näytä
     settings:
       activity_api_enabled:
         desc_html: Paikallisesti julkaistujen tilojen, aktiivisten käyttäjien ja uusien rekisteröintien määrät viikoittain
@@ -452,7 +446,7 @@ fi:
     '500':
       content: Valitettavasti jokin meni pieleen meidän päässämme.
       title: Sivu ei ole oikein
-    noscript_html: Mastodon-selainsovelluksen käyttöön vaaditaan JavaScript. Voit vaihtoehtoisesti kokeilla jotakin omalle käyttöjärjestelmällesi tehtyä Mastodon<a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">sovellusta</a>.
+    noscript_html: Mastodon-selainsovelluksen käyttöön vaaditaan JavaScript. Voit vaihtoehtoisesti kokeilla jotakin omalle käyttöjärjestelmällesi tehtyä Mastodon<a href="%{apps_path}">sovellusta</a>.
   exports:
     archive_takeout:
       date: Päiväys
@@ -613,7 +607,7 @@ fi:
       uc_browser: UCBrowser
       weibo: Weibo
     current_session: Nykyinen istunto
-    description: "%{selain}, %{platform}"
+    description: "%{browser}, %{platform}"
     explanation: Nämä verkkoselaimet ovat tällä hetkellä kirjautuneet Mastodon-tilillesi.
     ip: IP
     platforms:
@@ -713,7 +707,7 @@ fi:
       edit_profile_step: Voit mukauttaa profiiliasi lataamalla profiilikuvan ja otsakekuvan, muuttamalla näyttönimeäsi ym. Jos haluat hyväksyä uudet seuraajat ennen kuin he voivat seurata sinua, voit lukita tilisi.
       explanation: Näillä vinkeillä pääset alkuun
       final_action: Ala julkaista
-      final_step: 'Ala julkaista! Vaikkei sinulla olisi seuraajia, monet voivat nähdä julkiset viestisi esimerkiksi paikallisella aikajanalla ja hashtagien avulla. Kannattaa esittäytyä! Käytä hashtagia #introductions. (Jos haluat esittäytyä myös suomeksi, se kannattaa tehdä erillisessä tuuttauksessa ja käyttää hashtagia #esittely.)'
+      final_step: 'Ala julkaista! Vaikkei sinulla olisi seuraajia, monet voivat nähdä julkiset viestisi esimerkiksi paikallisella aikajanalla ja hashtagien avulla. Kannattaa esittäytyä! Käytä hashtagia #introductions. (Jos haluat esittäytyä myös suomeksi, se kannattaa tehdä erillisessä tuuttauksessa ja käyttää hashtagia #esittely.).'
       full_handle: Koko käyttäjätunnuksesi
       full_handle_hint: Kerro tämä ystävillesi, niin he voivat lähettää sinulle viestejä tai löytää sinut toisen instanssin kautta.
       review_preferences_action: Muuta asetuksia

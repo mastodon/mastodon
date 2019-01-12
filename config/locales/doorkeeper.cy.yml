@@ -1,3 +1,142 @@
 ---
 cy:
-  doorkeeper: {}
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Enw rhaglen
+        redirect_uri: Ailgyfeirio URI
+        scopes: Rhinweddau
+        website: Gwefan cais
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: ni all gynnwys dernyn.
+              invalid_uri: rhaid iddo fod yn URI cyfredol.
+              relative_uri: rhaid iddo fod yn URI absoliwt.
+              secured_uri: rhaid iddo fod yn URI HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Awdurdodi
+        cancel: Diddymu
+        destroy: Dinistrio
+        edit: Golygu
+        submit: Cyflwyno
+      confirmations:
+        destroy: Ydych chi'n sicr?
+      edit:
+        title: Golygwch y rhaglen
+      form:
+        error: Wps! Gwiriwch eich ffurflen am gamgymeriadau posib
+      help:
+        native_redirect_uri: Defnyddiwch %{native_redirect_uri} ar gyfer profion lleol
+        redirect_uri: Defnyddiwch un llinell i bob URI
+        scopes: Gwahanwch rinweddau gyda gofodau. Gadewch yn wag i ddefnyddio y rhinweddau rhagosodiedig.
+      index:
+        application: Rhaglen
+        callback_url: URL galw-nôl
+        delete: Dileu
+        name: Enw
+        new: Rhaglen newydd
+        scopes: Rhinweddau
+        show: Dangoswch
+        title: Eich rhaglenni
+      new:
+        title: Rhaglen newydd
+      show:
+        actions: Gweithredoedd
+        application_id: Allwedd cleient
+        callback_urls: URLau galw-nôl
+        scopes: Rhinweddau
+        secret: Cyfrinach Cleient
+        title: 'Rhaglen: %{name}'
+    authorizations:
+      buttons:
+        authorize: Awdurdodi
+        deny: Gwrthod
+      error:
+        title: Mae rhywbeth wedi mynd o'i le
+      new:
+        able_to: Mi fydd a'r gallu i
+        prompt: Mae'r ap %{client_name} yn gofyn caniatad i gal mynediad i'ch cyfrif
+        title: Angen awdurdodi
+      show:
+        title: Copiwch y côd awdurdodi a gludiwch i'r rhaglen.
+    authorized_applications:
+      buttons:
+        revoke: Diddymu
+      confirmations:
+        revoke: Ydych chi'n sicr?
+      index:
+        application: Rhaglen
+        created_at: Awdurdodedig
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Rhinweddau
+        title: Eich rhaglenni awdurdodedig
+    errors:
+      messages:
+        access_denied: Mae perchennog yr adnodd neu'r gweinydd awdurdodi wedi atal y cais.
+        credential_flow_not_configured: Llif meini prawf cyfrinair perchennog yr adnodd wedi methu achos fod Doorkeeper.configure.resource_owner_from_credentials heb ei ffurfweddu.
+        invalid_client: Methwyd dilysu cleient oherwydd cleient anhysbys, methiant i gynnwys dilysu cleient, neu defnydd o ddull dilysu nid yw'n cael ei gefnodi.
+        invalid_grant: Mae'r grant dilysu a ddarparwyd yn annilys, wedi dod i ben, wedi'i wrthod, ddim yn cyfateb a'r URI ailgyferio a ddefnyddiwyd yn y cais dilysu, neu wedi ei ddarparu i gleient arall.
+        invalid_redirect_uri: Nid yw'r uri ailgyfeirio cynnwysiedig yn gyfredol.
+        invalid_request: Nid yw'r cais yn cynnwys paramedr angenrheidiol, yn cynnwys paramader paramedr nad yw'n cael ei gefnogi, neu wedi ei gamffurfio mewn rhyw fodd arall.
+        invalid_resource_owner: Nid yw meini prawf perchennog yr adnodd yn ddilys, neu ni ellir canfod perchennog yr adnodd
+        invalid_scope: Mae'r sgôp a geisiwyd amdano yn annilys, anhysbys, neu'n gamffurfiedig.
+        invalid_token:
+          expired: Daeth y tocyn mynediad i ben
+          revoked: Gwrthodwyd y tocyn mynediad
+          unknown: Mae'r tocyn mynediad yn annilys
+        resource_owner_authenticator_not_configured: Methwyd canfod Perchenog Adnodd achos fod Doorkeeper.configure.resource_owner_authenticator heb ei gydffurfio.
+        server_error: Daeth y gweinydd awdurdodi ar draws gyflwr annisgwyl wnaeth ei atal rhag cyflawni'r cais.
+        temporarily_unavailable: Nid yw'r gweinydd awdurdodi yn gallu gweithredu y cais hwn ar hyn o bryd oherwydd gorlwytho dros dro neu gwaith cynnal a chadw ar y gweinydd hwn.
+        unauthorized_client: Nid yw'r cleient wedi ei awdurdodi i berfformio'r cais hwn yn defnyddio'r dull hwn.
+        unsupported_grant_type: Nid yw'r math o ganiatad awdurdodi yma'n cael ei gefnogi gan y gweinydd awdurdodi.
+        unsupported_response_type: Nid yw'r gweinydd awdurdodi yn cefnogi y math yma o ymateb.
+    flash:
+      applications:
+        create:
+          notice: Crewyd y rhaglen.
+        destroy:
+          notice: Dilëwyd y rhaglen.
+        update:
+          notice: Diweddarwyd y rhaglen.
+      authorized_applications:
+        destroy:
+          notice: Diddymwyd y cais.
+    layouts:
+      admin:
+        nav:
+          applications: Rhaglenni
+          oauth2_provider: Darparwr OAuth2
+      application:
+        title: Mae awdurdodiad OAuth yn ofynnol
+    scopes:
+      follow: addasu perthnasau cyfrif
+      push: derbyn eich hysbysiadau PUSH
+      read: darllen holl ddata eich cyfrif
+      read:accounts: gweld gwybodaeth y cyfrif
+      read:blocks: gweld eich blociau
+      read:favourites: gweld eich ffefrynnau
+      read:filters: gweld eich hidlwyr
+      read:follows: gweld eich dilynwyr
+      read:lists: gweld eich rhestrau
+      read:mutes: gweld y rheini wedi'i tewi
+      read:notifications: gweld eich hysbysiadau
+      read:reports: gweld eich adroddiadau
+      read:search: edrych ar eich rhan
+      read:statuses: gweld pob statws
+      write: addasu holl ddata eich cyfri
+      write:accounts: addasu eich proffil
+      write:blocks: blocio cyfrifon a parthau
+      write:favourites: hoff dŵtiau
+      write:filters: creu hidlwyr
+      write:follows: dilyn pobl
+      write:lists: creu rhestrau
+      write:media: uwchlwytho ffeiliau cyfryngau
+      write:mutes: tawelu pobl a sgyrsiau
+      write:notifications: clirio eich hysbysiadau
+      write:reports: adrodd pobl eraill
+      write:statuses: cyhoeddi tŵt

@@ -20,7 +20,7 @@ ca:
         action: Verifica l'adreça de correu
         explanation: Has creat un compte a %{host} amb aquesta adreça de correu electrònic. Estàs a un sol clic de l'activació. Si no fos així, ignora aquest correu electrònic.
         extra_html: Si us plau consulta també <a href="%{terms_path}"> les regles de la instància</a> i <a href="%{policy_path}"> les nostres condicions de servei</a>.
-        subject: 'Mastodon: Instruccions de confirmació'
+        subject: 'Mastodon: Instruccions de confirmació %{instance}'
         title: Verifica l'adreça de correu
       email_changed:
         explanation: 'L''adreça de correu del teu compte s''està canviant a:'

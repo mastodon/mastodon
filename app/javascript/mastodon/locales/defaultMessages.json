@@ -309,6 +309,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Read more",
+        "id": "status.read_more"
+      },
+      {
         "defaultMessage": "Show more",
         "id": "status.show_more"
       },
@@ -396,6 +400,14 @@
       {
         "defaultMessage": "Block",
         "id": "confirmations.block.confirm"
+      },
+      {
+        "defaultMessage": "Reply",
+        "id": "confirmations.reply.confirm"
+      },
+      {
+        "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
+        "id": "confirmations.reply.message"
       },
       {
         "defaultMessage": "Are you sure you want to block {name}?",
@@ -609,6 +621,10 @@
       {
         "defaultMessage": "Edit profile",
         "id": "account.edit_profile"
+      },
+      {
+        "defaultMessage": "Ownership of this link was checked on {date}",
+        "id": "account.link_verified_on"
       },
       {
         "defaultMessage": "Follows you",
@@ -856,6 +872,14 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "Dismiss suggestion",
+        "id": "suggestions.dismiss"
+      },
+      {
+        "defaultMessage": "You might be interested in…",
+        "id": "suggestions.header"
+      },
       {
         "defaultMessage": "People",
         "id": "search_results.accounts"
@@ -1538,10 +1562,6 @@
         "id": "notifications.column_settings.push"
       },
       {
-        "defaultMessage": "This device",
-        "id": "notifications.column_settings.push_meta"
-      },
-      {
         "defaultMessage": "New followers:",
         "id": "notifications.column_settings.follow"
       },
@@ -1768,6 +1788,14 @@
         "id": "status.detailed_status"
       },
       {
+        "defaultMessage": "Reply",
+        "id": "confirmations.reply.confirm"
+      },
+      {
+        "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
+        "id": "confirmations.reply.message"
+      },
+      {
         "defaultMessage": "Are you sure you want to block {name}?",
         "id": "confirmations.block.message"
       }
@@ -1820,6 +1848,15 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/bundle_modal_error.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Toot",
+        "id": "compose_form.publish"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/columns_area.json"
   },
   {
     "descriptors": [
@@ -2107,6 +2144,10 @@
       {
         "defaultMessage": "Sensitive content",
         "id": "status.sensitive_warning"
+      },
+      {
+        "defaultMessage": "Media hidden",
+        "id": "status.media_hidden"
       },
       {
         "defaultMessage": "Click to view",

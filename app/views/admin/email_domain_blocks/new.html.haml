@@ -4,7 +4,8 @@
 = simple_form_for @email_domain_block, url: admin_email_domain_blocks_path do |f|
   = render 'shared/error_messages', object: @email_domain_block
 
-  = f.input :domain, placeholder: t('admin.email_domain_blocks.domain')
+  .fields-group
+    = f.input :domain, wrapper: :with_label, label: t('admin.email_domain_blocks.domain')
 
   .actions
     = f.button :button, t('.create'), type: :submit

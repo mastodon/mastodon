@@ -9,7 +9,7 @@ class ActivityPub::ReplyDistributionWorker
     @status  = Status.find(status_id)
     @account = @status.thread&.account
 
-    return if @account.nil? || skip_distribution?
+    return unless @account.present? && @status.distributable?
 
     ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
       [signed_payload, @status.account_id, inbox_url]
@@ -19,10 +19,6 @@ class ActivityPub::ReplyDistributionWorker
   end
 
   private
-
-  def skip_distribution?
-    @status.private_visibility? || @status.direct_visibility?
-  end
 
   def inboxes
     @inboxes ||= @account.followers.inboxes

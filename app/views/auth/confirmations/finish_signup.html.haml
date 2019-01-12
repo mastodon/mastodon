@@ -8,7 +8,8 @@
         = msg
         %br
 
-  = f.input :email
+  .fields-group
+    = f.input :email, wrapper: :with_label, required: true, hint: false
 
   .actions
     = f.submit t('auth.confirm_email'), class: 'button'

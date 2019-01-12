@@ -23,7 +23,6 @@ window.addEventListener('message', e => {
 });
 
 function main() {
-  const { length } = require('stringz');
   const IntlMessageFormat = require('intl-messageformat').default;
   const { timeAgoString } = require('../mastodon/components/relative_timestamp');
   const { delegate } = require('rails-ujs');
@@ -34,6 +33,39 @@ function main() {
   const ReactDOM = require('react-dom');
   const Rellax = require('rellax');
   const createHistory = require('history').createBrowserHistory;
+
+  loadScript('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe', function () {
+    const options = {
+      tex2jax: {
+	    inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+      },
+      TeX: {
+        extensions: ["AMScd.js"]
+      },
+      skipStartupTypeset: true,
+      showProcessingMessages: false,
+      messageStyle: "none",
+      showMathMenu: true,
+      showMathMenuMSIE: true,
+      "SVG": {
+	    font:
+	    "TeX"
+	    // "STIX-Web"
+	    // "Asana-Math"
+	    // "Neo-Euler"
+	    // "Gyre-Pagella"
+	    // "Gyre-Termes"
+	    // "Latin-Modern"
+      },
+      "HTML-CSS": {
+	    availableFonts: ["TeX"],
+	    preferredFont: "TeX",
+	    webFont: "TeX"
+      }
+    };
+    MathJax.Hub.Config(options);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, ""]);
+  });
 
   ready(() => {
     const locale = document.documentElement.lang;
@@ -70,6 +102,7 @@ function main() {
     });
 
     const reactComponents = document.querySelectorAll('[data-component]');
+
     if (reactComponents.length > 0) {
       import(/* webpackChunkName: "containers/media_container" */ '../mastodon/containers/media_container')
         .then(({ default: MediaContainer }) => {
@@ -82,6 +115,7 @@ function main() {
     }
 
     const parallaxComponents = document.querySelectorAll('.parallax');
+
     if (parallaxComponents.length > 0 ) {
       new Rellax('.parallax', { speed: -1 });
     }
@@ -89,6 +123,7 @@ function main() {
     const history = createHistory();
     const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
     const location = history.location;
+
     if (detailedStatuses.length === 1 && (!location.state || !location.state.scrolledToDetailedStatus)) {
       detailedStatuses[0].scrollIntoView();
       history.replace(location.pathname, { ...location.state, scrolledToDetailedStatus: true });
@@ -132,12 +167,7 @@ function main() {
   });
 
   delegate(document, '#account_display_name', 'input', ({ target }) => {
-    const nameCounter = document.querySelector('.name-counter');
-    const name        = document.querySelector('.card .display-name strong');
-
-    if (nameCounter) {
-      nameCounter.textContent = 30 - length(target.value);
-    }
+    const name = document.querySelector('.card .display-name strong');
 
     if (name) {
       name.innerHTML = emojify(target.value);
@@ -150,39 +180,6 @@ function main() {
     if (noteCounter) {
       noteCounter.textContent = 160 - length(target.value);
     }
-  });
-
-  loadScript('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe', function () {
-    const options = {
-      tex2jax: {
-	    inlineMath: [ ['$','$'], ['\\(','\\)'] ]
-      },
-      TeX: {
-        extensions: ["AMScd.js"]
-      },
-      skipStartupTypeset: true,
-      showProcessingMessages: false,
-      messageStyle: "none",
-      showMathMenu: true,
-      showMathMenuMSIE: true,
-      "SVG": {
-	    font:
-	    "TeX"
-	    // "STIX-Web"
-	    // "Asana-Math"
-	    // "Neo-Euler"
-	    // "Gyre-Pagella"
-	    // "Gyre-Termes"
-	    // "Latin-Modern"
-      },
-      "HTML-CSS": {
-	    availableFonts: ["TeX"],
-	    preferredFont: "TeX",
-	    webFont: "TeX"
-      }
-    };
-    MathJax.Hub.Config(options);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, ""]);
   });
 
   delegate(document, '#account_avatar', 'change', ({ target }) => {
@@ -208,6 +205,30 @@ function main() {
       lock.style.display = 'inline';
     } else {
       lock.style.display = 'none';
+    }
+  });
+
+  delegate(document, '.input-copy input', 'click', ({ target }) => {
+    target.select();
+  });
+
+  delegate(document, '.input-copy button', 'click', ({ target }) => {
+    const input = target.parentNode.querySelector('.input-copy__wrapper input');
+
+    input.focus();
+    input.select();
+
+    try {
+      if (document.execCommand('copy')) {
+        input.blur();
+        target.parentNode.classList.add('copied');
+
+        setTimeout(() => {
+          target.parentNode.classList.remove('copied');
+        }, 700);
+      }
+    } catch (err) {
+      console.error(err);
     }
   });
 }

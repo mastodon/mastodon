@@ -244,20 +244,14 @@
       are_you_sure: Er du sikker?
       comment:
         none: Ingen
-      id: ID
       mark_as_resolved: Merk som løst
       report: 'Rapportér #%{id}'
-      report_contents: Innhold
       reported_account: Rapportert konto
       reported_by: Rapportert av
       resolved: Løst
-      silence_account: Målbind konto
       status: Status
-      suspend_account: Utvis konto
-      target: Mål
       title: Rapporter
       unresolved: Uløst
-      view: Vis
     settings:
       activity_api_enabled:
         desc_html: Antall lokale statusposter, aktive brukere og nye registreringer i ukentlige oppdelinger
@@ -402,7 +396,7 @@
     '500':
       content: Beklager men noe gikk galt ved vår ende.
       title: Denne siden er ikke korrekt
-    noscript_html: For å bruke Mastodon webapplikasjon må du aktivere JavaScript. Alternativt kan du forsøke en av de mange <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">integrerte appene</a> for Mastodon til din plattform.
+    noscript_html: For å bruke Mastodon webapplikasjon må du aktivere JavaScript. Alternativt kan du forsøke en av de mange <a href="%{apps_path}">integrerte appene</a> for Mastodon til din plattform.
   exports:
     blocks: Du blokkerer
     csv: CSV

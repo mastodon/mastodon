@@ -168,7 +168,7 @@ const openUrl = url =>
 
       if (webClients.length !== 0) {
         const client       = findBestClient(webClients);
-        const { pathname } = new URL(url);
+        const { pathname } = new URL(url, self.location);
 
         if (pathname.startsWith('/web/')) {
           return client.focus().then(client => client.postMessage({

@@ -25,7 +25,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
         expect(h[:remote]).to eq '1'
         expect(h[:by_domain]).to eq 'domain'
         expect(h[:silenced]).to eq '1'
-        expect(h[:recent]).to eq '1'
+        expect(h[:alphabetic]).to eq '1'
         expect(h[:suspended]).to eq '1'
         expect(h[:username]).to eq 'username'
         expect(h[:display_name]).to eq 'display name'
@@ -40,7 +40,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
         remote: '1',
         by_domain: 'domain',
         silenced: '1',
-        recent: '1',
+        alphabetic: '1',
         suspended: '1',
         username: 'username',
         display_name: 'display name',
@@ -74,7 +74,6 @@ RSpec.describe Admin::AccountsController, type: :controller do
       expect(response).to have_http_status(200)
     end
   end
-
 
   describe 'POST #subscribe' do
     subject { post :subscribe, params: { id: account.id } }

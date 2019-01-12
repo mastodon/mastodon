@@ -5,6 +5,7 @@ class Settings::DeletesController < ApplicationController
 
   before_action :check_enabled_deletion
   before_action :authenticate_user!
+  before_action :set_body_classes
 
   def show
     @confirmation = Form::DeleteConfirmation.new
@@ -28,5 +29,9 @@ class Settings::DeletesController < ApplicationController
 
   def delete_params
     params.require(:form_delete_confirmation).permit(:password)
+  end
+
+  def set_body_classes
+    @body_classes = 'admin'
   end
 end

@@ -33,7 +33,7 @@ RSpec.describe Api::SubscriptionsController, type: :controller do
   end
 
   describe 'POST #update' do
-    let(:feed) { File.read(File.join(Rails.root, 'spec', 'fixtures', 'push', 'feed.atom')) }
+    let(:feed) { File.read(Rails.root.join('spec', 'fixtures', 'push', 'feed.atom')) }
 
     before do
       stub_request(:post, "https://quitter.no/main/push/hub").to_return(:status => 200, :body => "", :headers => {})

@@ -24,7 +24,7 @@ class Notification < ApplicationRecord
     favourite:      'Favourite',
   }.freeze
 
-  STATUS_INCLUDES = [:account, :application, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :application, :media_attachments, :tags, mentions: :account]].freeze
+  STATUS_INCLUDES = [:account, :application, :media_attachments, :tags, active_mentions: :account, reblog: [:account, :application, :media_attachments, :tags, active_mentions: :account]].freeze
 
   belongs_to :account, optional: true
   belongs_to :from_account, class_name: 'Account', optional: true
@@ -75,7 +75,7 @@ class Notification < ApplicationRecord
 
       return if account_ids.empty?
 
-      accounts = Account.where(id: account_ids).map { |a| [a.id, a] }.to_h
+      accounts = Account.where(id: account_ids).each_with_object({}) { |a, h| h[a.id] = a }
 
       cached_items.each do |item|
         item.from_account = accounts[item.from_account_id]

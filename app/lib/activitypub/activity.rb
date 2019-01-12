@@ -96,7 +96,7 @@ class ActivityPub::Activity
   end
 
   def notify_about_mentions(status)
-    status.mentions.includes(:account).each do |mention|
+    status.active_mentions.includes(:account).each do |mention|
       next unless mention.account.local? && audience_includes?(mention.account)
       NotifyService.new.call(mention.account, mention)
     end
@@ -128,5 +128,11 @@ class ActivityPub::Activity
     elsif @object['url'].present?
       ::FetchRemoteStatusService.new.call(@object['url'])
     end
+  end
+
+  def lock_or_return(key, expire_after = 7.days.seconds)
+    yield if redis.set(key, true, nx: true, ex: expire_after)
+  ensure
+    redis.del(key)
   end
 end

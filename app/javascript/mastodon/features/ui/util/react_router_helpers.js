@@ -26,7 +26,7 @@ WrappedSwitch.propTypes = {
   children: PropTypes.node,
 };
 
-// Small Wraper to extract the params from the route and pass
+// Small Wrapper to extract the params from the route and pass
 // them to the rendered component, together with the content to
 // be rendered inside (the children)
 export class WrappedRoute extends React.Component {

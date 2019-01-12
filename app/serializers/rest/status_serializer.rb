@@ -20,6 +20,8 @@ class REST::StatusSerializer < ActiveModel::Serializer
   has_many :tags
   has_many :emojis, serializer: REST::CustomEmojiSerializer
 
+  has_one :preview_card, key: :card, serializer: REST::PreviewCardSerializer
+
   def id
     object.id.to_s
   end
@@ -34,6 +36,17 @@ class REST::StatusSerializer < ActiveModel::Serializer
 
   def current_user?
     !current_user.nil?
+  end
+
+  def visibility
+    # This visibility is masked behind "private"
+    # to avoid API changes because there are no
+    # UX differences
+    if object.limited_visibility?
+      'private'
+    else
+      object.visibility
+    end
   end
 
   def uri
@@ -88,7 +101,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def ordered_mentions
-    object.mentions.to_a.sort_by(&:id)
+    object.active_mentions.to_a.sort_by(&:id)
   end
 
   class ApplicationSerializer < ActiveModel::Serializer

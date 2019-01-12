@@ -38,8 +38,8 @@
   .filter-subset
     %strong= t('admin.accounts.order.title')
     %ul
-      %li= filter_link_to t('admin.accounts.order.alphabetic'), recent: nil
-      %li= filter_link_to t('admin.accounts.order.most_recent'), recent: '1'
+      %li= filter_link_to t('admin.accounts.order.most_recent'), alphabetic: nil
+      %li= filter_link_to t('admin.accounts.order.alphabetic'), alphabetic: '1'
 
 = form_tag admin_accounts_url, method: 'GET', class: 'simple_form' do
   .fields-group

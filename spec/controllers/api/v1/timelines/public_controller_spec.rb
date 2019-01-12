@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Api::V1::Timelines::PublicController do
   render_views
 
-  let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
+  let(:user) { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }

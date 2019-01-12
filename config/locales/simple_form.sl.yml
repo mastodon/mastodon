@@ -3,13 +3,15 @@ sl:
   simple_form:
     hints:
       defaults:
+        autofollow: Osebe, ki se prijavijo prek povabila, vas bodo samodejno sledile
         avatar: PNG, GIF ali JPG. Največ %{size}. Zmanjšana bo na %{dimensions}px
-        bot: Opozarja ljudi, da račun ne predstavlja osebe
+        bot: Ta račun v glavnem opravlja samodejna dejanja in morda ni pod nadzorom
+        context: En ali več kontekstov, kjer naj se uporabi filter
         digest: Pošlje se le po dolgem obdobju nedejavnosti in samo, če ste prejeli osebna sporočila v vaši odsotnosti
-        display_name:
-          one: <span class="name-counter">1</span> znak ostane
-          other: <span class="name-counter">%{count}</span> znakov ostane
+        email: Poslali vam bomo potrditveno e-pošto
         fields: Na svojem profilu lahko imate do 4 predmete prikazane kot tabelo.
         header: PNG, GIF ali JPG. Največ %{size}. Zmanjšana bo na %{dimensions}px
+        inbox_url: Kopirajte URL naslov s prve strani releja, ki ga želite uporabiti
+        irreversible: Filtrirani trobi bodo nepovratno izginili, tudi če je filter kasneje odstranjen
       imports:
         data: Izvožena CSV datoteka iz drugega Mastodon vozlišča
