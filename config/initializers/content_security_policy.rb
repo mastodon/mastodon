@@ -27,7 +27,7 @@ Rails.application.config.content_security_policy do |p|
     p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host, cloudflarecdn, mathjax
   else
     p.connect_src :self, :blob, assets_host, Rails.configuration.x.streaming_api_base_url, cloudflarecdn, mathjax
-    p.script_src  :self, assets_host, cloudflarecdn, mathjax
+    p.script_src  :self, :unsafe_inline, assets_host, cloudflarecdn, mathjax
   end
 end
 
