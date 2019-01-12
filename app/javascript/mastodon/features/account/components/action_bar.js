@@ -3,9 +3,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 import { NavLink } from 'react-router-dom';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
 import { me, isStaff  } from '../../../initial_state';
-import { shortNumberFormat } from '../../../utils/numbers';
 
 const messages = defineMessages({
   mention: { id: 'account.mention', defaultMessage: 'Mention @{name}' },
@@ -165,17 +164,17 @@ class ActionBar extends React.PureComponent {
           <div className='account__action-bar-links'>
             <NavLink isActive={this.isStatusesPageActive} activeClassName='active' className='account__action-bar__tab' to={`/accounts/${account.get('id')}`} title={intl.formatNumber(account.get('statuses_count'))}>
               <FormattedMessage id='account.posts' defaultMessage='Toots' />
-              <strong>{shortNumberFormat(account.get('statuses_count'))}</strong>
+              <strong><FormattedNumber value={account.get('statuses_count')} /></strong>
             </NavLink>
 
             <NavLink exact activeClassName='active' className='account__action-bar__tab' to={`/accounts/${account.get('id')}/following`} title={intl.formatNumber(account.get('following_count'))}>
               <FormattedMessage id='account.follows' defaultMessage='Follows' />
-              <strong>{shortNumberFormat(account.get('following_count'))}</strong>
+              <strong><FormattedNumber value={account.get('following_count')} /></strong>
             </NavLink>
 
             <NavLink exact activeClassName='active' className='account__action-bar__tab' to={`/accounts/${account.get('id')}/followers`} title={intl.formatNumber(account.get('followers_count'))}>
               <FormattedMessage id='account.followers' defaultMessage='Followers' />
-              <strong>{shortNumberFormat(account.get('followers_count'))}</strong>
+              <strong><FormattedNumber value={account.get('followers_count')} /></strong>
             </NavLink>
           </div>
 
