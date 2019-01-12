@@ -427,7 +427,7 @@ GEM
     rack-attack (5.4.2)
       rack (>= 1.0, < 3)
     rack-cors (1.0.2)
-    rack-protection (2.0.4)
+    rack-protection (2.0.5)
       rack
     rack-proxy (0.6.4)
       rack
@@ -551,8 +551,9 @@ GEM
     scss_lint (0.57.1)
       rake (>= 0.9, < 13)
       sass (~> 3.5, >= 3.5.5)
-    sidekiq (5.2.3)
+    sidekiq (5.2.5)
       connection_pool (~> 2.2, >= 2.2.2)
+      rack (>= 1.5.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
     sidekiq-bulk (0.2.0)
@@ -637,7 +638,7 @@ GEM
       activesupport (>= 4.2)
       rack-proxy (>= 0.6.1)
       railties (>= 4.2)
-    webpush (0.3.5)
+    webpush (0.3.6)
       hkdf (~> 0.2)
       jwt (~> 2.0)
     websocket-driver (0.7.0)
