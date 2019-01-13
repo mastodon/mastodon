@@ -269,6 +269,11 @@ class UI extends React.PureComponent {
     e.preventDefault();
     e.stopPropagation();
 
+    if (e.relatedTarget === null) {
+      this.setState({ draggingOver: false });
+      return;
+    }
+
     this.dragTargets = this.dragTargets.filter(el => el !== e.target && this.node.contains(el));
 
     if (this.dragTargets.length > 0) {
