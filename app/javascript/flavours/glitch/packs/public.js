@@ -61,6 +61,12 @@ function main() {
     if (reactComponents.length > 0) {
       import(/* webpackChunkName: "containers/media_container" */ 'flavours/glitch/containers/media_container')
         .then(({ default: MediaContainer }) => {
+          [].forEach.call(reactComponents, (component) => {
+            [].forEach.call(component.children, (child) => {
+              component.removeChild(child);
+            });
+          });
+
           const content = document.createElement('div');
 
           ReactDOM.render(<MediaContainer locale={locale} components={reactComponents} />, content);
