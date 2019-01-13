@@ -455,15 +455,16 @@ sk:
           title: Verejná registrácia
       show_known_fediverse_at_about_page:
         desc_html: Pokiaľ je zapnuté, bude v ukážke osi možné nahliadnúť príspevky
-          z celého známeho fediversa. Inak budú ukázané iba hlášky z miestnej osi.
-        title: Ukázať celé známe fediversum na náhľade osi
+          z celého známeho fediversa. Inak budú ukázané iba príspevky z miestnej osi.
+        title: Ukáž celé známe fediverse na náhľade osi
       show_staff_badge:
-        desc_html: Zobraz moderátorsku značku na užívateľovej stránke
-        title: Zobraziť značku moderátora
+        desc_html: Zobraz moderátorsky odznak na užívateľovom profile
+        title: Zobraz značku moderátora
       site_description:
-        desc_html: Oboznamujúci paragraf na hlavnej stránke a pri meta tagoch. Môžete
-          použiť HTML kód, presnejšie  <code>&lt; a&gt;</code> a <code>&lt; em&gt;
-          </code>.
+        desc_html: Oboznamujúci paragraf na hlavnej stránke a pri meta tagoch. Opíš,
+          čo robí tento Mastodon server špecifickým, a ďalej hocičo iné, čo považuješ
+          za dôležité. Môžeš použiť HTML kód, hlavne <code>&lt; a &gt;</code>, ale
+          tiež <code>&lt;&gt;</code>.
         title: Popis instancie
       site_description_extended:
         desc_html: Toto je vhodné miesto pre vaše pravidlá, oboznámenia a iné veci,
@@ -1000,10 +1001,10 @@ sk:
       explanation:
         disable: Pokiaľ je tvoj účet zamrazený, tvoje dáta zostávajú nedoknuté, ale
           nemôžeš v rámci neho nič robiť, až kým nebude odomknutý.
-        silence: Kým je tvoj účet obmedzený, tvoje hlášky na tomto serveri uvidia
-          iba tí ľudia, ktorí ťa už následujú, a môžeš byť vylúčený/á z rôznych verejných
+        silence: Kým je účet obmedzený, tvoje príspevky na tomto serveri uvidia iba
+          tí ľudia, ktorí ťa už následujú, a môžeš byť vylúčený/á z rôznych verejných
           záznamov. Ostatní ťa však stále budú môcť následovať manuálne.
-        suspend: Tvoj účet bol vylúčený, a všetky tvoje hlášky a nahraté médiálné
+        suspend: Tvoj účet bol vylúčený, a všetky tvoje príspevky a nahraté médiálné
           súbory boli nenávratne zmazané z tohto serveru, a zo serverov na ktorých
           si mal následovateľov.
       review_server_policies: Prehodnoť pravidlá servera
