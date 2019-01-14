@@ -8,6 +8,7 @@ describe FetchOEmbedService, type: :service do
   before do
     stub_request(:get, "https://host.test/provider.json").to_return(status: 404)
     stub_request(:get, "https://host.test/provider.xml").to_return(status: 404)
+    stub_request(:get, "https://host.test/empty_provider.json").to_return(status: 200)
   end
 
   describe 'discover_provider' do
@@ -93,6 +94,23 @@ describe FetchOEmbedService, type: :service do
           expect(subject.call('https://host.test/oembed.html')).to be_nil
         end
       end
+
+      context 'Empty JSON provider is discoverable' do
+        before do
+          stub_request(:get, 'https://host.test/oembed.html').to_return(
+            status: 200,
+            headers: { 'Content-Type': 'text/html' },
+            body: request_fixture('oembed_json_empty.html')
+          )
+        end
+
+        it 'returns new OEmbed::Provider for JSON provider' do
+          subject.call('https://host.test/oembed.html')
+          expect(subject.endpoint_url).to eq 'https://host.test/empty_provider.json'
+          expect(subject.format).to eq :json
+        end
+      end
+
     end
 
     context 'when status code is not 200' do
