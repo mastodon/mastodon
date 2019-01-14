@@ -814,6 +814,9 @@ nl:
       een registreren</a>
     proceed: Ga verder om te volgen
     prompt: 'Jij gaat volgen:'
+    reason_html: <strong> Waarom is deze extra stap nodig? </strong> <code>%{instance}</code>
+      is wellicht niet de server waarop je je geregistreerd hebt. We verwijzen je
+      eerst door naar je thuis-server.
   remote_unfollow:
     error: Fout
     title: Titel
@@ -1062,6 +1065,14 @@ nl:
         none: Waarschuwing
         silence: Account beperkt
         suspend: Account opgeschort
+      explanation:
+        disable: Zolang je account bevroren is blijven je gebruiksdata intact maar
+          kun je geen handelingen uitvoeren tot je account is vrijgegeven.
+        silence: Zolang je account ingeperkt is zien alleen mensen die jouw al volgen
+          je toots op deze server. Het zou kunnen dat je niet zichtbaar bent op allerlei
+          openbare lijsten. Anderen kunnen je echter handmatig volgen.
+        suspend: Je account is opgeheven, all je toots en upgeloade media zijn onherroepelijk
+          verwijderd van deze server en ook van de servers waar jij volgers had.
     welcome:
       edit_profile_action: Profiel instellen
       edit_profile_step: Je kunt jouw profiel aanpassen door een avatar (profielfoto)
@@ -1110,3 +1121,19 @@ nl:
       het <code>rel="me"</code>-attribuut bevatten. De omschrijving van de link maakt
       niet uit. Hier is een voorbeeld:'
     verification: Verificatie
+  remote_interaction:
+    favourite:
+      proceed: Doorgaan met toevoegen aan favorieten
+      prompt: 'Je wilt de volgende toot toevoegen aan favorieten:'
+    reblog:
+      proceed: Doorgaan met delen
+      prompt: 'Je wilt de volgende toot delen:'
+    reply:
+      proceed: Doorgaan met antwoorden
+      prompt: 'Je wilt antwoorden op de volgende toot:'
+  scheduled_statuses:
+    over_daily_limit: Je hebt de limiet van %{limit} ingeplande toots voor die dag
+      overschreden
+    over_total_limit: Je hebt de limiet van %{limit} ingeplande toots voor vandaag
+      overschreden
+    too_soon: De datum voor de ingeplande toot moet in de toekomst liggen
