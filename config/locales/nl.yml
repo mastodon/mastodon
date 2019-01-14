@@ -764,8 +764,8 @@ nl:
         other: '%{count} nieuwe meldingen sinds jouw laatste bezoek 🐘'
       title: Tijdens jouw afwezigheid...
     favourite:
-      body: 'Jouw toot werd door %{name} als favoriet gemarkeerd:'
-      subject: '%{name} markeerde jouw toot als favoriet'
+      body: 'Jouw toot werd door %{name} aan hun favorieten toegevoegd:'
+      subject: '%{name} voegde jouw toot als favoriet toe'
       title: Nieuwe favoriet
     follow:
       body: '%{name} volgt jou nu!'
@@ -815,8 +815,8 @@ nl:
     proceed: Ga verder om te volgen
     prompt: 'Jij gaat volgen:'
     reason_html: <strong> Waarom is deze extra stap nodig? </strong> <code>%{instance}</code>
-      is wellicht niet de server waarop je je geregistreerd hebt. We verwijzen je
-      eerst door naar je thuis-server.
+      is wellicht niet de server waarop jij je geregistreerd hebt. We verwijzen je
+      eerst door naar jouw eigen server.
   remote_unfollow:
     error: Fout
     title: Titel
@@ -1066,13 +1066,15 @@ nl:
         silence: Account beperkt
         suspend: Account opgeschort
       explanation:
-        disable: Zolang je account bevroren is blijven je gebruiksdata intact maar
-          kun je geen handelingen uitvoeren tot je account is vrijgegeven.
-        silence: Zolang je account ingeperkt is zien alleen mensen die jouw al volgen
-          je toots op deze server. Het zou kunnen dat je niet zichtbaar bent op allerlei
-          openbare lijsten. Anderen kunnen je echter handmatig volgen.
-        suspend: Je account is opgeheven, all je toots en upgeloade media zijn onherroepelijk
-          verwijderd van deze server en ook van de servers waar jij volgers had.
+        disable: Zolang jouw account is bevroren blijven jouw accountgegevens intact,
+          maar kun je geen handelingen uitvoeren totdat het account is vrijgegeven.
+        silence: Zolang jouw account wordt beperkt, kunnen alleen mensen die jou al
+          volgen jouw toots op deze server zien. Tevens ben je niet zichtbaar in meldingen,
+          gesprekken en op openbare tijdlijnen. Anderen kunnen je echter wel handmatig
+          volgen.
+        suspend: Jouw account is opgeschort. Jouw toots en geüploade media zijn onomkeerbaar
+          van deze server verwijderd, en ook o.a. van de servers waar jij volgers
+          had.
     welcome:
       edit_profile_action: Profiel instellen
       edit_profile_step: Je kunt jouw profiel aanpassen door een avatar (profielfoto)
@@ -1123,17 +1125,16 @@ nl:
     verification: Verificatie
   remote_interaction:
     favourite:
-      proceed: Doorgaan met toevoegen aan favorieten
-      prompt: 'Je wilt de volgende toot toevoegen aan favorieten:'
+      proceed: Doorgaan met toevoegen aan jouw favorieten
+      prompt: 'Je wilt de volgende toot aan jouw favorieten toevoegen:'
     reblog:
-      proceed: Doorgaan met delen
-      prompt: 'Je wilt de volgende toot delen:'
+      proceed: Doorgaan met boosten
+      prompt: 'Je wilt de volgende toot boosten:'
     reply:
-      proceed: Doorgaan met antwoorden
-      prompt: 'Je wilt antwoorden op de volgende toot:'
+      proceed: Doorgaan met reageren
+      prompt: 'Je wilt op de volgende toot reageren:'
   scheduled_statuses:
-    over_daily_limit: Je hebt de limiet van %{limit} ingeplande toots voor die dag
-      overschreden
-    over_total_limit: Je hebt de limiet van %{limit} ingeplande toots voor vandaag
-      overschreden
+    over_daily_limit: Je hebt de limiet van %{limit} in te plannen toots voor die
+      dag overschreden
+    over_total_limit: Je hebt de limiet van %{limit} in te plannen toots overschreden
     too_soon: De datum voor de ingeplande toot moet in de toekomst liggen
