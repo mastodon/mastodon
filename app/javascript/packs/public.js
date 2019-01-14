@@ -33,6 +33,17 @@ function main() {
   const Rellax = require('rellax');
   const createHistory = require('history').createBrowserHistory;
 
+  const scrollToDetailedStatus = () => {
+    const history = createHistory();
+    const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
+    const location = history.location;
+
+    if (detailedStatuses.length === 1 && (!location.state || !location.state.scrolledToDetailedStatus)) {
+      detailedStatuses[0].scrollIntoView();
+      history.replace(location.pathname, { ...location.state, scrolledToDetailedStatus: true });
+    }
+  };
+
   ready(() => {
     const locale = document.documentElement.lang;
 
@@ -72,27 +83,30 @@ function main() {
     if (reactComponents.length > 0) {
       import(/* webpackChunkName: "containers/media_container" */ '../mastodon/containers/media_container')
         .then(({ default: MediaContainer }) => {
+          [].forEach.call(reactComponents, (component) => {
+            [].forEach.call(component.children, (child) => {
+              component.removeChild(child);
+            });
+          });
+
           const content = document.createElement('div');
 
           ReactDOM.render(<MediaContainer locale={locale} components={reactComponents} />, content);
           document.body.appendChild(content);
+          scrollToDetailedStatus();
         })
-        .catch(error => console.error(error));
+        .catch(error => {
+          console.error(error);
+          scrollToDetailedStatus();
+        });
+    } else {
+      scrollToDetailedStatus();
     }
 
     const parallaxComponents = document.querySelectorAll('.parallax');
 
     if (parallaxComponents.length > 0 ) {
       new Rellax('.parallax', { speed: -1 });
-    }
-
-    const history = createHistory();
-    const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
-    const location = history.location;
-
-    if (detailedStatuses.length === 1 && (!location.state || !location.state.scrolledToDetailedStatus)) {
-      detailedStatuses[0].scrollIntoView();
-      history.replace(location.pathname, { ...location.state, scrolledToDetailedStatus: true });
     }
   });
 

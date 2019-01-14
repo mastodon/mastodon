@@ -1041,6 +1041,10 @@ $small-breakpoint: 960px;
 
     .scrollable {
       height: 400px;
+
+      @media screen and (max-width: $column-breakpoint) {
+        height: 90vh;
+      }
     }
 
     p {
