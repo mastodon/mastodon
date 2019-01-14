@@ -78,4 +78,6 @@ pl:
       expired: wygasło, poproś o nowe
       not_found: nie znaleziono
       not_locked: było zablokowane
-      not_saved: 'Błędy (%{count}) uniemożliwiły zapisanie zasobu %{resource}:'
+      not_saved:
+        one: '1 błąd nie uniemożliwił zapisanie %(resource}:'
+        other: 'Błędy (%{count}) uniemożliwiły zapisanie tego %{resource}:'
