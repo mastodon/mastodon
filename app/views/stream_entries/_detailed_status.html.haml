@@ -46,7 +46,10 @@
         = link_to status.application.name, status.application.website, class: 'detailed-status__application', target: '_blank', rel: 'noopener'
       ·
     = link_to remote_interaction_path(status, type: :reply), class: 'modal-button detailed-status__link' do
-      = fa_icon('reply')
+      - if status.in_reply_to_id.nil?
+        = fa_icon('reply')
+      - else
+        = fa_icon('reply-all')
       %span.detailed-status__reblogs>= number_to_human status.replies_count, strip_insignificant_zeros: true
       = " "
     ·
