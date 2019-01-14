@@ -31,21 +31,33 @@ cy:
     privacy_policy: Polisi preifatrwydd
     source_code: Cod ffynhonnell
     status_count_after:
+      few: statwsau
+      many: statwsau
       one: statws
       other: statwsau
+      two: statwsau
+      zero: statwsau
     status_count_before: Ysgriffennwyd gan
     terms: Telerau gwasanaeth
     user_count_after:
+      few: defnyddwyr
+      many: defnyddwyr
       one: defnyddiwr
       other: defnyddwyr
+      two: defnyddwyr
+      zero: defnyddwyr
     user_count_before: Cartref i
     what_is_mastodon: Beth yw Mastodon?
   accounts:
     choices_html: 'Dewisiadau %{name}:'
     follow: Dilynwch
     followers:
+      few: Dilynwyr
+      many: Dilynwyr
       one: Dilynwr
       other: Dilynwyr
+      two: Dilynwyr
+      zero: Dilynwyr
     following: Yn dilyn
     joined: Ymunodd %{date}
     link_verified_on: Gwiriwyd perchnogaeth y ddolen yma ar %{date}
@@ -58,8 +70,12 @@ cy:
     pin_errors:
       following: Rhaid i ti fod yn dilyn y person yr ydych am ei gymeradwyo yn barod
     posts:
+      few: Tŵtiau
+      many: Tŵtiau
       one: Tŵt
       other: Tŵtiau
+      two: Tŵtiau
+      zero: Tŵtiau
     posts_tab_heading: Tŵtiau
     posts_with_replies: Tŵtiau ac atebion
     reserved_username: Mae'r enw defnyddiwr ar gadw
@@ -741,7 +757,12 @@ cy:
       description: 'Ynghlwm: %{attached}'
       image: "%{count} o luniau"
       video:
+        few: "%{count} fideo"
+        many: "%{count} fideo"
         one: "%{count} fideo"
+        other: "%{count} fideo"
+        two: "%{count} fideo"
+        zero: "%{count} fideo"
     boosted_from_html: Wedi ei fŵstio %{acct_link}
     content_warning: 'Rhybudd cynnwys: %{warning}'
     disallowed_hashtags: 'yn cynnwys yr hashnod gwaharddedig: %{tags}'

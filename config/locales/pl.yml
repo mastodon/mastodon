@@ -289,6 +289,8 @@ pl:
         suspend: zawieszono
       show:
         affected_accounts:
+          few: Dotknęło %{count} kont w bazie danych
+          many: Dotknęło %{count} kont w bazie danych
           one: Dotknęło jedno konto w bazie danych
           other: Dotknęło %{count} kont w bazie danych
         retroactive:
@@ -313,6 +315,8 @@ pl:
     instances:
       delivery_available: Doręczanie jest dostępne
       known_accounts:
+        few: "%{count} znane konta"
+        many: "%{count} znane konta"
         one: "%{count} znane konto"
         other: "%{count} znane konta"
       moderation:
