@@ -5,9 +5,9 @@ class Api::V1::KeybaseProofsController < Api::BaseController
 
   def index
     @account = Account.find_local!(params[:username])
+    kb_proofs = AccountIdentityProof.keybase.where(account_id: @account.id)
 
-    @proofs = AccountIdentityProof.keybase.where(account_id: @account.id)
-    render json: @proofs, each_serializer: REST::KeybaseProofSerializer, root: 'signatures', adapter: :json
+    render json: @account, serializer: REST::KeybaseUserSerializer, proofs: kb_proofs
   end
 
 end

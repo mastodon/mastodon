@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Keybase
   class Proof
     def initialize(account_identity_proof, username=nil)
