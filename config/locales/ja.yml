@@ -426,7 +426,7 @@ ja:
           と <code>&lt;em&gt;</code>が使えます。
         title: インスタンスの説明
       site_description_extended:
-        desc_html: あなたのインスタンスにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます。
+        desc_html: あなたのインスタンスにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます
         title: カスタム詳細説明
       site_short_description:
         desc_html: サイドバーと meta タグに表示されます。Mastodon とは何か、そしてこのサーバーの特別な何かを1段落で記述してください。空欄の場合、インスタンスの説明が使用されます。
@@ -938,3 +938,13 @@ ja:
   verification:
     explanation_html: <strong>プロフィール内のリンクの所有者であることを認証することができます</strong>。そのためにはリンクされたウェブサイトにMastodonプロフィールへのリンクが含まれている必要があります。リンクには<code>rel="me"</code>属性を<strong>必ず</strong>与えなければなりません。リンクのテキストについては重要ではありません。以下は例です：
     verification: 認証
+  remote_interaction:
+    favourite:
+      proceed: お気に入り登録する
+      prompt: 'お気に入り登録しようとしています:'
+    reblog:
+      proceed: ブーストする
+      prompt: 'ブーストしようとしています:'
+    reply:
+      proceed: 返信する
+      prompt: '返信しようとしています:'
