@@ -231,7 +231,7 @@ GEM
     fuubar (2.3.2)
       rspec-core (~> 3.0)
       ruby-progressbar (~> 1.4)
-    get_process_mem (0.2.2)
+    get_process_mem (0.2.3)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     goldfinger (2.1.0)
@@ -674,6 +674,7 @@ DEPENDENCIES
   chewy (~> 5.0)
   cld3 (~> 3.2.3)
   climate_control (~> 0.2)
+  concurrent-ruby
   derailed_benchmarks
   devise (~> 4.5)
   devise-two-factor (~> 3.0)
@@ -773,4 +774,4 @@ RUBY VERSION
    ruby 2.5.3p105
 
 BUNDLED WITH
-   1.16.6
+   1.17.3
