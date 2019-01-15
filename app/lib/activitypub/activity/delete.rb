@@ -21,10 +21,10 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
   def delete_note
     return if object_uri.nil?
 
+    delete_later!(object_uri)
+
     @status   = Status.find_by(uri: object_uri, account: @account)
     @status ||= Status.find_by(uri: @object['atomUri'], account: @account) if @object.is_a?(Hash) && @object['atomUri'].present?
-
-    delete_later!(object_uri)
 
     return if @status.nil?
 
