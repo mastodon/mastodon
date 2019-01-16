@@ -92,6 +92,7 @@ ko:
       confirm: 확인
       confirmed: 확인됨
       confirming: 확인 중
+      deleted: 삭제됨
       demote: 모더레이터 강등
       disable: 비활성화
       disable_two_factor_authentication: 2단계 인증을 비활성화
@@ -99,10 +100,10 @@ ko:
       display_name: 이름
       domain: 도메인
       edit: 편집
-      email: E-mail
+      email: 이메일
       email_status: 이메일 상태
       enable: 활성화
-      enabled: 활성화된
+      enabled: 활성
       feed_url: 피드 URL
       followers: 팔로워 수
       followers_local: "(%{local} 로컬)"
@@ -110,7 +111,9 @@ ko:
       follows: 팔로잉 수
       header: 헤더
       inbox_url: 수신함 URL
+      invited_by: 초대자
       ip: IP
+      joined: 가입
       location:
         all: 전체
         local: 로컬
@@ -137,7 +140,7 @@ ko:
       protocol: 프로토콜
       public: 전체 공개
       push_subscription_expires: PuSH 구독 기간 만료
-      redownload: 아바타 업데이트
+      redownload: 프로필 업데이트
       remove_avatar: 아바타 지우기
       remove_header: 헤더 삭제
       resend_confirmation:
@@ -170,6 +173,7 @@ ko:
       undo_suspension: 정지 해제
       unsubscribe: 구독 해제
       username: 아이디
+      warn: 경고
       web: 웹
     action_logs:
       actions:
@@ -253,7 +257,7 @@ ko:
       week_users_active: 이번 주의 활성 사용자
       week_users_new: 이번 주의 신규 유저
     domain_blocks:
-      add_new: 추가하기
+      add_new: 도메인 차단 추가하기
       created_msg: 도메인 차단 처리를 완료했습니다
       destroyed_msg: 도메인 차단이 해제되었습니다
       domain: 도메인
@@ -272,6 +276,11 @@ ko:
       reject_media_hint: 로컬에 저장된 미디어 파일을 삭제하고, 이후로도 다운로드를 거부합니다. 정지와는 관계 없습니다
       reject_reports: 신고 거부
       reject_reports_hint: 이 도메인으로부터의 모든 신고를 무시합니다. 정지와는 무관합니다
+      rejecting_media: 미디어 거부
+      rejecting_reports: 신고 거부
+      severity:
+        silence: 침묵
+        suspend: 정지
       show:
         affected_accounts:
           one: 데이터베이스 중 1개의 계정에 영향을 끼칩니다
@@ -281,7 +290,7 @@ ko:
           suspend: 이 도메인에 존재하는 모든 계정의 계정 정지를 해제
         title: "%{domain}의 도메인 차단을 해제"
         undo: 실행 취소
-      undo: 실행 취소
+      undo: 도메인 차단 취소
     email_domain_blocks:
       add_new: 새로 추가
       created_msg: 이메일 도메인 차단 규칙을 생성했습니다
@@ -296,7 +305,20 @@ ko:
       back_to_account: 계정으로 돌아가기
       title: "%{acct}의 팔로워"
     instances:
-      title: 알려진 인스턴스들
+      delivery_available: 전송 가능
+      known_accounts:
+        one: 알려진 계정 %{count}개
+        other: 알려진 계정 %{count}개
+      moderation:
+        all: 모두
+        limited: 제한됨
+        title: 모더레이션
+      title: 연합
+      total_blocked_by_us: 우리에게 차단 됨
+      total_followed_by_them: 우리를 팔로우
+      total_followed_by_us: 우리가 한 팔로우
+      total_reported: 이들에 대한 신고
+      total_storage: 미디어 첨부
     invites:
       deactivate_all: 전부 비활성화
       filter:
@@ -561,7 +583,9 @@ ko:
       size: 크기
     blocks: 차단
     csv: CSV
+    domain_blocks: 도메인 차단
     follows: 팔로우
+    lists: 리스트
     mutes: 뮤트
     storage: 미디어
   filters:
@@ -710,10 +734,25 @@ ko:
     no_account_html: 계정이 없나요? <a href='%{sign_up_path}' target='_blank'>여기에서 가입 할 수 있습니다</a>
     proceed: 팔로우 하기
     prompt: '팔로우 하려 하고 있습니다:'
+    reason_html: "<strong>왜 이 과정이 필요하죠?</strong><code>%{instance}</code>는 당신이 가입한 서버가 아닐 것입니다, 당신의 홈 서버로 먼저 가야 합니다."
+  remote_interaction:
+    favourite:
+      proceed: 즐겨찾기 진행
+      prompt: '이 툿을 즐겨찾기 하려고 합니다:'
+    reblog:
+      proceed: 부스트 진행
+      prompt: '이 툿을 부스트 하려 합니다:'
+    reply:
+      proceed: 답장 진행
+      prompt: '이 툿에 답장을 하려 합니다:'
   remote_unfollow:
     error: 에러
     title: 타이틀
     unfollowed: 언팔로우됨
+  scheduled_statuses:
+    over_daily_limit: 그 날짜에 대한 %{limit}개의 예약 툿 제한을 초과합니다
+    over_total_limit: 예약 툿 제한 %{limit}을 초과합니다
+    too_soon: 예약 날짜는 미래여야 합니다
   sessions:
     activity: 마지막 활동
     browser: 브라우저
