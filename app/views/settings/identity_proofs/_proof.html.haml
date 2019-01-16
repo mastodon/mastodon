@@ -6,8 +6,8 @@
       = image_tag provider_pic_url, size: 40, class: :account__avatar
       = proof.provider_username
   %td
-    - status = proof.is_valid ? 'Valid' : 'Invalid'
-    - icon = proof.is_valid ? 'fa-check-circle' : 'fa-times-circle'
+    - status = proof.is_live ? 'Active' : 'Inactive'
+    - icon = proof.is_live ? 'fa-check-circle' : 'fa-times-circle'
     %span{ class: status.downcase }
       %i{ class: "fa #{icon}" }
       = status

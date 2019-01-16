@@ -6,6 +6,7 @@ class Settings::IdentityProofsController < Settings::BaseController
 
   def index
     @proofs = AccountIdentityProof.where(account: current_account).order(provider: :asc, provider_username: :asc)
+    @proofs.each(&:update_liveness)
   end
 
   def new

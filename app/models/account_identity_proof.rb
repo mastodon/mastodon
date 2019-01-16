@@ -58,6 +58,13 @@ class AccountIdentityProof < ApplicationRecord
     Keybase::Proof.new(self).valid?
   end
 
+  def update_liveness
+    if keybase?
+      KeybaseProofWorker.new.perform(id)
+      reload
+    end
+  end
+
   def remote_url
     if keybase?
       Keybase::Proof.new(self).sigchain_url

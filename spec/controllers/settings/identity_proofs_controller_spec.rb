@@ -82,7 +82,7 @@ describe Settings::IdentityProofsController do
     context 'with no existing proofs' do
       it 'shows the helpful explanation' do
         get :index
-        expect(response.body).to match I18n.t('account_identity_proofs.new_explanation')
+        expect(response.body).to match I18n.t('account_identity_proofs.description')
       end
     end
 
@@ -91,6 +91,7 @@ describe Settings::IdentityProofsController do
         @proof1 = Fabricate(:account_identity_proof, account: user.account)
         @proof2 = Fabricate(:account_identity_proof, account: user.account)
         allow_any_instance_of(AccountIdentityProof).to receive(:remote_profile_pic_url) { }
+        allow_any_instance_of(AccountIdentityProof).to receive(:update_liveness) { }
       end
 
       it 'has the first proof username on the page' do
