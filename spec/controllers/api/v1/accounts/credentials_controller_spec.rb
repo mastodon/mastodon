@@ -35,6 +35,7 @@ describe Api::V1::Accounts::CredentialsController do
             source: {
               privacy: 'unlisted',
               sensitive: true,
+              expand_spoilers: true,
             }
           }
         end
@@ -52,6 +53,7 @@ describe Api::V1::Accounts::CredentialsController do
           expect(user.account.header).to exist
           expect(user.setting_default_privacy).to eq('unlisted')
           expect(user.setting_default_sensitive).to eq(true)
+          expect(user.setting_expand_spoilers).to eq(true)
         end
 
         it 'queues up an account update distribution' do
