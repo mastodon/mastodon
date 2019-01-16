@@ -1,4 +1,17 @@
 .public-account-bio
+  - if account.account_identity_proofs
+    .account__header__fields
+      - account.account_identity_proofs.each do |proof|
+        %dl
+          %dt= proof.provider
+          %dd
+            - class_name = proof.remote_url ? 'provider_username' : nil
+            - if proof.profile_url
+              = link_to proof.provider_username, proof.profile_url, class: class_name
+            - else
+              = proof.provider_username
+            - if proof.remote_url
+              = link_to t('account_identity_proofs.headings.proof'), proof.remote_url, class: :proof, title: t('account_identity_proofs.view', username: proof.provider_username, provider: proof.provider)
   - unless account.fields.empty?
     .account__header__fields
       - account.fields.each do |field|

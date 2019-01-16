@@ -723,6 +723,20 @@
 
       a {
         color: lighten($ui-highlight-color, 8%);
+
+        &.provider_username {
+          position: relative;
+          top: -7px;
+        }
+
+        &.proof {
+          color: $darker-text-color;
+          display: block;
+          font-size: 12px;
+          position: relative;
+          text-transform: lowercase;
+          top: -11px;
+        }
       }
 
       dl:first-child .verified {
