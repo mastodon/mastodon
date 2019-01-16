@@ -5,10 +5,12 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   CONVERTED_TYPES = %w(Image Video Article Page).freeze
 
   def perform
-    return if delete_arrived_first?(object_uri) || unsupported_object_type? || invalid_origin?(@object['id'])
+    return if unsupported_object_type? || invalid_origin?(@object['id'])
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
+        return if delete_arrived_first?(object_uri)
+
         @status = find_existing_status
 
         if @status.nil?
