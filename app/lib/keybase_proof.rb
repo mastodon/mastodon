@@ -82,7 +82,7 @@ module Keybase
 
     def build_url(endpoint, query_params)
       uri = URI.parse(@base_url + endpoint)
-      uri.query = URI.encode_www_form(query_params)
+      unless query_params.empty? then uri.query = URI.encode_www_form(query_params) end
       uri.to_s
     end
   end
