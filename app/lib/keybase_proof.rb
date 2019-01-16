@@ -55,8 +55,12 @@ module Keybase
       build_url("/#{@kb_username}/proof_badge/#{@token}", params)
     end
 
-    def url
+    def sigchain_url
       build_url("/#{@kb_username}/sigchain\##{@token}", {})
+    end
+
+    def profile_url
+      build_url("/#{@kb_username}", {})
     end
 
     private
