@@ -5,7 +5,7 @@ class Settings::IdentityProofsController < Settings::BaseController
   before_action :authenticate_user!
 
   def index
-    @proofs = AccountIdentityProof.where(account: current_account).order(id: :desc)
+    @proofs = AccountIdentityProof.where(account: current_account).order(provider: :asc, provider_username: :asc)
   end
 
   def new
