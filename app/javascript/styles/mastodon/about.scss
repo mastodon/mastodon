@@ -364,7 +364,7 @@ $small-breakpoint: 960px;
 
   @media screen and (max-width: $column-breakpoint) {
     .grid {
-      grid-template-columns: auto;
+      grid-template-columns: 100%;
 
       .column-0 {
         display: block;
