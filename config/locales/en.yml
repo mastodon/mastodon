@@ -78,15 +78,20 @@ en:
     keybase:
       proof_status: |
         This proof is available on Keybase and revocable <a href="%{path}">here</a>. Its current status is
-    save:
-      cancel: "No"
-      button: "Yes, authorize"
-      failed: "The cryptographic connection failed. Please try again from %{provider}."
-    new_explanation: |
-      Linking your identity here with a proof provider lets you use cryptographic features over there
-      using this Mastodon identity as an anchor.
+    headings:
+      provider: Provider
+      account: Account
+      status: Status
+      proof: Proof
+    buttons:
+      primary: 'Yes, authorize'
+      alternative: 'No'
+    notices:
+      failed: 'The cryptographic connection failed. Please try again from %{provider}.'
+    description: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages, and trust content you send them.
     index:
       status_header: Remote Proof Status
+    view: 'View %{username}’s proof on %{provider}'
   admin:
     account_actions:
       action: Perform action
