@@ -86,12 +86,13 @@ ca:
         changed_msg: El correu electrònic del compte s'ha canviat correctament!
         current_email: Correu electrònic actual
         label: Canviar l'adreça de correu
-        new_email: Nou correu
+        new_email: Nova adreça de correu
         submit: Canviar adreça de correu
         title: Canviar adreça de correu de %{username}
       confirm: Confirma
       confirmed: Confirmat
       confirming: Confirmant
+      deleted: Esborrats
       demote: Degrada
       disable: Inhabilita
       disable_two_factor_authentication: Desactiva 2FA
@@ -110,7 +111,9 @@ ca:
       follows: Segueix
       header: Capçalera
       inbox_url: URL de la safata d'entrada
+      invited_by: Convidat per
       ip: IP
+      joined: Unit
       location:
         all: Tot
         local: Local
@@ -137,7 +140,7 @@ ca:
       protocol: Protocol
       public: Públic
       push_subscription_expires: La subscripció PuSH expira
-      redownload: Actualitza l'avatar
+      redownload: Actualitza el perfil
       remove_avatar: Eliminar avatar
       remove_header: Treu la capçalera
       resend_confirmation:
@@ -157,8 +160,8 @@ ca:
       search: Cerca
       shared_inbox_url: URL de la safata d'entrada compartida
       show:
-        created_reports: Informes creats per aquest compte
-        targeted_reports: Informes realitzats sobre aquest compte
+        created_reports: Informes creats
+        targeted_reports: Informes realitzats per altres
       silence: Silenci
       silenced: Silenciat
       statuses: Estats
@@ -170,6 +173,7 @@ ca:
       undo_suspension: Desfés la suspensió
       unsubscribe: Cancel·la la subscripció
       username: Nom d'usuari
+      warn: Avís
       web: Web
     action_logs:
       actions:
@@ -253,7 +257,7 @@ ca:
       week_users_active: usuaris actius aquesta setmana
       week_users_new: nous usuaris aquest setmana
     domain_blocks:
-      add_new: Afegeix
+      add_new: Afegir nou bloqueig de domini
       created_msg: El bloqueig de domini ara s'està processant
       destroyed_msg: El bloqueig de domini s'ha desfet
       domain: Domini
@@ -270,6 +274,11 @@ ca:
       reject_media_hint: Elimina els fitxers multimèdia emmagatzemats localment i impedeix baixar-ne cap en el futur. Irrellevant en les suspensions
       reject_reports: Rebutja informes
       reject_reports_hint: Ignora tots els informes procedents d'aquest domini. No és rellevant per a les suspensions
+      rejecting_media: rebutjant els fitxers multimèdia
+      rejecting_reports: rebutjant els informes
+      severity:
+        silence: silenciat
+        suspend: suspès
       show:
         affected_accounts:
           one: Un compte afectat en la base de dades
@@ -279,7 +288,7 @@ ca:
           suspend: Desfés la suspensió de tots els comptes d'aquest domini
         title: Desfés el bloqueig de domini de %{domain}
         undo: Desfés
-      undo: Desfés
+      undo: Desfés el bloqueig del domini
     email_domain_blocks:
       add_new: Afegeix
       created_msg: S'ha creat el bloc de domini de correu electrònic
@@ -294,7 +303,20 @@ ca:
       back_to_account: Tornar al compte
       title: Seguidors de %{acct}
     instances:
-      title: Instàncies conegudes
+      delivery_available: El lliurament està disponible
+      known_accounts:
+        one: "%{count} compte conegut"
+        other: "%{count} comptes coneguts"
+      moderation:
+        all: Totes
+        limited: Limitades
+        title: Moderació
+      title: Federació
+      total_blocked_by_us: Bloquejades per nosaltres
+      total_followed_by_them: Seguides per ells
+      total_followed_by_us: Seguides per nosaltres
+      total_reported: Informes sobre elles
+      total_storage: Adjunts multimèdia
     invites:
       deactivate_all: Desactiva-ho tot
       filter:
@@ -559,7 +581,9 @@ ca:
       size: Tamany
     blocks: Persones que has blocat
     csv: CSV
+    domain_blocks: Bloquejos de dominis
     follows: Persones que segueixes
+    lists: Llistes
     mutes: Persones silenciades
     storage: Emmagatzematge
   filters:
@@ -708,10 +732,25 @@ ca:
     no_account_html: No tens cap compte? Pots <a href='%{sign_up_path}' target='_blank'>registrar-te aquí</a>
     proceed: Comença a seguir
     prompt: 'Seguiràs a:'
+    reason_html: "<strong>Per què és necessari aquest pas?</strong> <code>%{instance}</code> pot ser que no sigui el servidor on estàs registrat per tant primer hem de redirigir-te al teu servidor."
+  remote_interaction:
+    favourite:
+      proceed: Procedir a afavorir
+      prompt: 'Vols marcar com a favorit aquest toot:'
+    reblog:
+      proceed: Procedir a impulsar
+      prompt: 'Vols impulsar aquest toot:'
+    reply:
+      proceed: Procedir a respondre
+      prompt: 'Vols respondre a aquest toot:'
   remote_unfollow:
     error: Error
     title: Títol
     unfollowed: Sense seguir
+  scheduled_statuses:
+    over_daily_limit: Has superat el límit de %{limit} toots programats per a aquell dia
+    over_total_limit: Has superat el limit de %{limit} toots programats
+    too_soon: La data programada ha de ser futura
   sessions:
     activity: Última activitat
     browser: Navegador

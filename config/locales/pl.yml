@@ -117,6 +117,7 @@ pl:
       followers_local: "(%{local} lokalnych)"
       followers_url: Adres śledzących
       follows: Śledzeni
+      header: Nagłówek
       inbox_url: Adres skrzynki
       invited_by: Zaproszony(-a) przez
       ip: Adres IP
@@ -149,6 +150,7 @@ pl:
       push_subscription_expires: Subskrypcja PuSH wygasa
       redownload: Odśwież profil
       remove_avatar: Usun awatar
+      remove_header: Usuń nagłówek
       resend_confirmation:
         already_confirmed: To konto zostało już potwierdzone
         send: Wyślij ponownie e-mail z potwierdzeniem
@@ -280,8 +282,17 @@ pl:
       reject_media_hint: Usuwa przechowywane lokalnie pliki multimedialne i nie pozwala na ich pobieranie. Nieprzydatne przy zawieszeniu
       reject_reports: Odrzucaj zgłoszenia
       reject_reports_hint: Zgłoszenia z tej instancji będą ignorowane. Nieprzydatne przy zawieszeniu
+      rejecting_media: pliki multimedialne są odrzucane
+      rejecting_reports: zgłoszenia są odrzucane
+      severity:
+        silence: wyciszono
+        suspend: zawieszono
       show:
-        affected_accounts: Dotyczy %{count} kont w bazie danych
+        affected_accounts:
+          few: Dotknęło %{count} kont w bazie danych
+          many: Dotknęło %{count} kont w bazie danych
+          one: Dotknęło jedno konto w bazie danych
+          other: Dotknęło %{count} kont w bazie danych
         retroactive:
           silence: Odwołaj wyciszenie wszystkich kont w tej domenie
           suspend: Odwołaj zawieszenie wszystkich kont w tej domenie
@@ -302,7 +313,22 @@ pl:
       back_to_account: Wróć do konta
       title: Śledzący %{acct}
     instances:
+      delivery_available: Doręczanie jest dostępne
+      known_accounts:
+        few: "%{count} znane konta"
+        many: "%{count} znane konta"
+        one: "%{count} znane konto"
+        other: "%{count} znane konta"
+      moderation:
+        all: Wszystkie
+        limited: Ograniczone
+        title: Moderacja
       title: Znane instancje
+      total_blocked_by_us: Zablokowane przez nas
+      total_followed_by_them: Śledzeni przez nich
+      total_followed_by_us: Śledzeni przez nas
+      total_reported: Zgłoszenia dotyczące ich
+      total_storage: Załączniki multimedialne
     invites:
       deactivate_all: Unieważnij wszystkie
       filter:
@@ -569,7 +595,9 @@ pl:
       size: Rozmiar
     blocks: Zablokowani
     csv: CSV
+    domain_blocks: Blokady domen
     follows: Śledzeni
+    lists: Listy
     mutes: Wyciszeni
     storage: Urządzenie przechowujące dane
   filters:

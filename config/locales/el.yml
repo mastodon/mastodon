@@ -92,6 +92,7 @@ el:
       confirm: Επιβεβαίωση
       confirmed: Επιβεβαιώθηκε
       confirming: Προς επιβεβαίωση
+      deleted: Διαγραμμένοι
       demote: Υποβίβαση
       disable: Απενεργοποίηση
       disable_two_factor_authentication: Απενεργοποίηση 2FA
@@ -110,7 +111,9 @@ el:
       follows: Ακολουθεί
       header: Επικεφαλίδα
       inbox_url: URL εισερχομένων
+      invited_by: Προσκλήθηκε από
       ip: IP
+      joined: Γράφτηκε
       location:
         all: Όλες
         local: Τοπικά
@@ -170,6 +173,7 @@ el:
       undo_suspension: Αναίρεση παύσης
       unsubscribe: Κατάργηση εγγραφής
       username: Όνομα χρήστη
+      warn: Προειδοποίηση
       web: Διαδίκτυο
     action_logs:
       actions:
@@ -270,6 +274,11 @@ el:
       reject_media_hint: Αφαιρεί τα τοπικά αποθηκευμένα αρχεία πολυμέσων και αποτρέπει τη λήψη άλλων στο μέλλον. Δεν έχει σημασία για τις αναστολές
       reject_reports: Απόρριψη καταγγελιών
       reject_reports_hint: Αγνόηση όσων καταγγελιών προέρχονται από αυτό τον τομέα. Δεν σχετίζεται με τις παύσεις
+      rejecting_media: απορρίπτουν αρχεία πολυμέσων
+      rejecting_reports: απορρίπτουν καταγγελίες
+      severity:
+        silence: αποσιωπημένοι
+        suspend: ανεσταλμένοι
       show:
         affected_accounts:
           one: Επηρεάζεται ένας λογαριασμός στη βάση δεδομένων
@@ -294,7 +303,20 @@ el:
       back_to_account: Επιστροφή στον λογαριασμό
       title: Ακόλουθοι του/της %{acct}
     instances:
+      delivery_available: Διαθέσιμη παράδοση
+      known_accounts:
+        one: "%{count} γνωστός λογαριασμός"
+        other: "%{count} γνωστοί λογαριασμοί"
+      moderation:
+        all: Όλα
+        limited: Περιορισμένα
+        title: Διαμεσολάβηση
       title: Γνωστοί κόμβοι
+      total_blocked_by_us: Μπλοκάρονται από εμάς
+      total_followed_by_them: Ακολουθούνται από εκείνους
+      total_followed_by_us: Ακολουθούνται από εμάς
+      total_reported: Καταγγελίες προς εκείνους
+      total_storage: Συνημμένα πολυμέσα
     invites:
       deactivate_all: Απενεργοποίηση όλων
       filter:
@@ -377,7 +399,7 @@ el:
         desc_html: Οι προεπισκοπήσεις συνδέσμων σε τρίτους ιστότοπους θα είναι ορατές ακόμα κι όταν το πολυμέσο έχει σημειωθεί ως ευαίσθητο
         title: Εμφάνιση ευαίσθητων πολυμέσων στις προεπισκοπήσεις OpenGraph
       profile_directory:
-        desc_html: Να επιτρέπεται ο εντοπισμός των χρηστών
+        desc_html: Να επιτρέπεται η ανακάλυψη χρηστών
         title: Ενεργοποίηση του καταλόγου χρηστών
       registrations:
         closed_message:
@@ -559,7 +581,9 @@ el:
       size: Μέγεθος
     blocks: Μπλοκάρεις
     csv: CSV
+    domain_blocks: Μπλοκαρίσματα κόμβων
     follows: Ακολουθείς
+    lists: Λίστες
     mutes: Αποσιωπάς
     storage: Αποθήκευση πολυμέσων
   filters:
@@ -707,10 +731,25 @@ el:
     no_account_html: Δεν έχεις λογαριασμό; Μπορείς <a href='%{sign_up_path}' target='_blank'>να γραφτείς εδώ</a>
     proceed: Συνέχισε για να ακολουθήσεις
     prompt: 'Θα ακολουθήσεις:'
+    reason_html: "<strong>Γιατί χρειάζεται αυτό το βήμα;</strong> Το <code>%{instance}</code> πορεία να μην είναι ο κόμβος που είσαι γραμμένος, έτσι πρέπει να σε ανακατευθύνουμε στο δικό σου."
+  remote_interaction:
+    favourite:
+      proceed: Συνέχισε για σημείωση ως αγαπημένου
+      prompt: 'Θέλεις να σημειώσεις ως αγαπημένο αυτό το τουτ:'
+    reblog:
+      proceed: Συνέχισε για προώθηση
+      prompt: 'Θέλεις να προωθήσεις αυτό το τουτ:'
+    reply:
+      proceed: Συνέχισε για να απαντήσεις
+      prompt: 'Θέλεις να απαντήσεις σε αυτό το τουτ:'
   remote_unfollow:
     error: Σφάλμα
     title: Τίτλος
     unfollowed: Σταμάτησες να ακολουθείς
+  scheduled_statuses:
+    over_daily_limit: Έχεις υπερβεί το όριο των %{limit} προγραμματισμένων τουτ για εκείνη τη μέρα
+    over_total_limit: Έχεις υπερβεί το όριο των %{limit} προγραμματισμένων τουτ
+    too_soon: Η προγραμματισμένη ημερομηνία πρέπει να είναι στο μέλλον
   sessions:
     activity: Τελευταία δραστηριότητα
     browser: Φυλλομετρητής (Browser)

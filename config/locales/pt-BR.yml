@@ -92,6 +92,7 @@ pt-BR:
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
+      deleted: Excluído
       demote: Rebaixar
       disable: Desativar
       disable_two_factor_authentication: Desativar 2FA
@@ -110,7 +111,9 @@ pt-BR:
       follows: Segue
       header: Cabeçalho
       inbox_url: URL da caixa de entrada
+      invited_by: Convidado por
       ip: IP
+      joined: Se cadastrou
       location:
         all: Todos
         local: Local
@@ -137,7 +140,7 @@ pt-BR:
       protocol: Protocolo
       public: Público
       push_subscription_expires: Inscrição PuSH expira
-      redownload: Atualizar avatar
+      redownload: Atualizar perfil
       remove_avatar: Remover avatar
       remove_header: Remover cabeçalho
       resend_confirmation:
@@ -170,6 +173,7 @@ pt-BR:
       undo_suspension: Retirar suspensão
       unsubscribe: Desinscrever-se
       username: Nome de usuário
+      warn: Notificar
       web: Web
     action_logs:
       actions:
@@ -253,7 +257,7 @@ pt-BR:
       week_users_active: ativos essa semana
       week_users_new: usuários essa semana
     domain_blocks:
-      add_new: Adicionar novo
+      add_new: Adicionar novo bloqueio de domínio
       created_msg: Bloqueio de domínio está sendo processado
       destroyed_msg: Bloqueio de domínio desfeito
       domain: Domínio
@@ -270,6 +274,11 @@ pt-BR:
       reject_media_hint: Remove arquivos de mídia armazenados localmente e recusa quaisquer outros no futuro. Irrelevante para suspensões
       reject_reports: Rejeitar denúncias
       reject_reports_hint: Ignorar todas as denúncias vindas deste domíno. Irrelevante para suspensões
+      rejecting_media: rejeitando arquivos de mídia
+      rejecting_reports: rejeitando denúncias
+      severity:
+        silence: silenciado
+        suspend: suspenso
       show:
         affected_accounts:
           one: Uma conta no banco de dados foi afetada
@@ -279,7 +288,7 @@ pt-BR:
           suspend: Retirar suspensão de todas as contas neste domínio
         title: Retirar bloqueio de domínio de %{domain}
         undo: Retirar
-      undo: Retirar
+      undo: Retirar bloqueio de domínio
     email_domain_blocks:
       add_new: Adicionar novo
       created_msg: Bloqueio de domínio de e-mail criado com sucesso
@@ -294,7 +303,20 @@ pt-BR:
       back_to_account: Voltar para a conta
       title: Pessoas que seguem %{acct}
     instances:
-      title: Instâncias conhecidas
+      delivery_available: Entrega está disponível
+      known_accounts:
+        one: "%{count} conta conhecida"
+        other: "%{count} contas conhecidas"
+      moderation:
+        all: Todas
+        limited: Limitado
+        title: Moderação
+      title: Federação
+      total_blocked_by_us: Bloqueado por nós
+      total_followed_by_them: Seguidos por eles
+      total_followed_by_us: Seguidos por nós
+      total_reported: Denúncias sobre eles
+      total_storage: Mídias anexadas
     invites:
       deactivate_all: Desativar todos
       filter:
@@ -535,8 +557,8 @@ pt-BR:
     explanation: Descobrir usuários baseado em seus interesses
     explore_mastodon: Explorar %{title}
     people:
-      one: "%{count} pessoas"
-      other: "%{count} pessoa"
+      one: "%{count} pessoa"
+      other: "%{count} pessoas"
   errors:
     '403': Você não tem permissão para ver esta página.
     '404': A página pela qual você está procurando não existe.
@@ -559,7 +581,9 @@ pt-BR:
       size: Tamanho
     blocks: Você bloqueou
     csv: CSV
+    domain_blocks: Bloqueios de domínio
     follows: Você segue
+    lists: Listas
     mutes: Você silenciou
     storage: Armazenamento de mídia
   filters:
@@ -708,10 +732,25 @@ pt-BR:
     no_account_html: Não tem uma conta? Você pode <a href='%{sign_up_path}' target='_blank'>cadastrar-se aqui</a>
     proceed: Prosseguir para seguir
     prompt: 'Você irá seguir:'
+    reason_html: "<strong>Por que esse passo é necessário?</strong> <code>%{instance}</code> pode não ser o servidor onde você se registrou, então precisamos redirecionar você para o seu servidor primeiro."
+  remote_interaction:
+    favourite:
+      proceed: Proceder para favoritar
+      prompt: 'Você quer favoritar este toot:'
+    reblog:
+      proceed: Proceder para compartilhar
+      prompt: 'Você quer compartilhar esse toot:'
+    reply:
+      proceed: Proceder para responder
+      prompt: 'Você quer responder à esse toot:'
   remote_unfollow:
     error: Erro
     title: Título
     unfollowed: Deixou de seguir
+  scheduled_statuses:
+    over_daily_limit: Você excedeu o limite de %{limit} toots planejados para esse dia
+    over_total_limit: Você excedeu o limite de %{limit} toots planejados
+    too_soon: A data planejada precisa ser no futuro
   sessions:
     activity: Última atividade
     browser: Navegador
