@@ -84,13 +84,13 @@ class AccountIdentityProof < ApplicationRecord
   end
 
   def success_redirect(useragent)
-    if self.keybase?
+    if keybase?
       Keybase::Proof.new(self).success_redirect_url(useragent)
     end
   end
 
   def remote_profile_pic_url
-    if self.keybase?
+    if keybase?
       Keybase::Proof.new(self).profile_pic_url
     end
   end

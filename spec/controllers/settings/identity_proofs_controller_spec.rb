@@ -57,7 +57,7 @@ describe Settings::IdentityProofsController do
 
         it 'flashes a helpful message' do
           post :create, params: postable_params
-          expect(flash[:alert]).to eq I18n.t('account_identity_proofs.save.failed', provider: 'Keybase')
+          expect(flash[:alert]).to eq I18n.t('account_identity_proofs.notices.failed', provider: 'Keybase')
         end
       end
 
