@@ -140,15 +140,8 @@ module Mastodon
     end
 
     def stats_to_json(stats)
-      totals.each_key do |domain|
-        if totals[domain].is_a?(Hash)
-          totals[domain]['activity'] = stats[domain]
-        else
-          totals.delete(domain)
-        end
-      end
-
-      say(Oj.dump(totals))
+      stats.compact!
+      say(Oj.dump(stats))
     end
   end
 end
