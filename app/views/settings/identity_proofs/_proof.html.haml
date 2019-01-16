@@ -1,14 +1,16 @@
-
 %tr
-  %td{ style: 'font-size: 16px; text-align: center; vertical-align: middle' }
+  %td= proof.provider
+  %td.account
     - provider_pic_url = proof.remote_profile_pic_url || default_provider_pic_url(proof.provider)
-    .avatar= image_tag provider_pic_url, width: 50
-  %td{ style: 'font-size: 16px; text-align: center; vertical-align: middle' }
-    %strong="#{proof.provider_username} "
-    ="on #{proof.provider}"
-  %td{style: 'vertical-align: middle'}
-    %div
-      %center
-        -if proof.keybase?
-          =I18n.t('account_identity_proofs.keybase.proof_status', path: proof.remote_url).html_safe
-          =image_tag proof.status_img_url
+    %a{ href: proof.profile_url }
+      = image_tag provider_pic_url, size: 40, class: :account__avatar
+      = proof.provider_username
+  %td
+    - status = proof.is_valid ? 'Valid' : 'Invalid'
+    - icon = proof.is_valid ? 'fa-check-circle' : 'fa-times-circle'
+    %span{ class: status.downcase }
+      %i{ class: "fa #{icon}" }
+      = status
+  %td.proof
+    - if proof.remote_url
+      = link_to raw('<i class="fa fa-external-link"></i>'), proof.remote_url
