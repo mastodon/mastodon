@@ -1,7 +1,9 @@
+- proofs = account.account_identity_proofs.active
+
 .public-account-bio
-  - if account.account_identity_proofs
+  - if proofs
     .account__header__fields
-      - account.account_identity_proofs.each do |proof|
+      - proofs.each do |proof|
         %dl
           %dt= proof.provider
           %dd
