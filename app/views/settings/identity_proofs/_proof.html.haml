@@ -2,7 +2,7 @@
   %td= proof.provider
   %td.account
     - provider_pic_url = proof.remote_profile_pic_url || default_provider_pic_url(proof.provider)
-    %a{ href: proof.profile_url }
+    = link_to proof.profile_url do
       = image_tag provider_pic_url, size: 40, class: :account__avatar
       = proof.provider_username
   %td
