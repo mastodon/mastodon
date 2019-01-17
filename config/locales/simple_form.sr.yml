@@ -42,6 +42,9 @@ sr:
       admin_account_action:
         send_email_notification: Корисник ће добити објашњење тога шта му се десило
           са налога
+        text_html: Опционално. Можете користити синтаксу труба. Можете <a href="%{path}">
+          додати упозоравајућа преподешавање </a> да сачувате време
+        type_html: Изаберите шта да радите са <strong>%{acct}</strong>
     labels:
       account:
         fields:
