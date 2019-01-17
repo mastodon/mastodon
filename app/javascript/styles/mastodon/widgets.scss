@@ -480,3 +480,30 @@ $fluid-breakpoint: $maximum-width + 20px;
     }
   }
 }
+
+.notice-widget {
+  margin-bottom: 10px;
+  color: $darker-text-color;
+
+  p {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    color: $ui-highlight-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+}
