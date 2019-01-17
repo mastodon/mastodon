@@ -2,6 +2,13 @@
 nl:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Je kunt voor toots specifieke tekst gebruiken, zoals URL's, hashtags en vermeldingen
+      admin_account_action:
+        send_email_notification: De gebruiker ontvangt een uitleg over wat er met hun account is gebeurd
+        text_html: Optioneel. Je kunt voor toots specifieke tekst gebruiken. Om tijd te besparen kun je <a href="%{path}">voorinstellingen van waarschuwingen toevoegen</a>
+        type_html: Kies wat er met <strong>%{acct}</strong> moet gebeuren
+        warning_preset_id: Optioneel. Je kunt nog steeds handmatig tekst toevoegen aan het eind van de voorinstelling
       defaults:
         autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen jou automatisch
         avatar: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
@@ -50,6 +57,7 @@ nl:
           disable: Uitschakelen
           none: Niets doen
           silence: Negeren
+          suspend: Opschorten en onomkeerbaar accountgegevens verwijderen
         warning_preset_id: Gebruik een voorinstelling van een waarschuwing
       defaults:
         autofollow: Uitnodigen om jouw account te volgen
@@ -106,7 +114,7 @@ nl:
         must_be_following_dm: Directe berichten van mensen die jij niet volgt blokkeren
       notification_emails:
         digest: Periodiek e-mails met een samenvatting versturen
-        favourite: Een e-mail versturen wanneer iemand jouw toot als favoriet markeert
+        favourite: Een e-mail versturen wanneer iemand jouw toot aan hun favorieten heeft toegevoegd
         follow: Een e-mail versturen wanneer iemand jou volgt
         follow_request: Een e-mail versturen wanneer iemand jou wil volgen
         mention: Een e-mail versturen wanneer iemand jou vermeld

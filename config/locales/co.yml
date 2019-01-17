@@ -84,14 +84,15 @@ co:
       by_domain: Duminiu
       change_email:
         changed_msg: Email di u contu cambiatu!
-        current_email: Email attuale
-        label: Mudificà l’Email
-        new_email: Novu Email
-        submit: Cambià Email
-        title: Mudificà l’Email di %{username}
+        current_email: E-mail attuale
+        label: Mudificà l’e-mail
+        new_email: Novu e-mail
+        submit: Cambià l'e-mail
+        title: Mudificà l’e-mail di %{username}
       confirm: Cunfirmà
       confirmed: Cunfirmata
       confirming: Cunfirmazione
+      deleted: Sguassatu
       demote: Ritrugradà
       disable: Disattivà
       disable_two_factor_authentication: Disattivà l’identificazione à 2 fattori
@@ -100,7 +101,7 @@ co:
       domain: Duminiu
       edit: Mudificà
       email: E-mail
-      email_status: Statu di l’e-mail
+      email_status: Statutu di l’e-mail
       enable: Attivà
       enabled: Attivatu
       feed_url: URL di u flussu
@@ -110,7 +111,9 @@ co:
       follows: Abbunamenti
       header: Intistatura
       inbox_url: URL di l’inbox
+      invited_by: Invitatu da
       ip: IP
+      joined: Ghjuntu
       location:
         all: Tutti
         local: Lucale
@@ -137,7 +140,7 @@ co:
       protocol: Prutucollu
       public: Pubblicu
       push_subscription_expires: Spirata di l’abbunamentu PuSH
-      redownload: Mette à ghjornu i ritratti
+      redownload: Mette à ghjornu u prufile
       remove_avatar: Toglie l’avatar
       remove_header: Toglie l'intistatura
       resend_confirmation:
@@ -157,8 +160,8 @@ co:
       search: Cercà
       shared_inbox_url: URL di l’inbox spartuta
       show:
-        created_reports: Signalamenti creati da stu contu
-        targeted_reports: Signalamenti creati contr’à stu contu
+        created_reports: Signalamenti fatti
+        targeted_reports: Signalatu da l'altri
       silence: Silenzà
       silenced: Silenzatu
       statuses: Statuti
@@ -170,6 +173,7 @@ co:
       undo_suspension: Ùn suspende più
       unsubscribe: Disabbunassi
       username: Cugnome
+      warn: Averte
       web: Web
     action_logs:
       actions:
@@ -253,7 +257,7 @@ co:
       week_users_active: attivi sta settimana
       week_users_new: utilizatori sta settimana
     domain_blocks:
-      add_new: Aghjustà
+      add_new: Aghjustà novu blucchime di duminiu
       created_msg: U blucchime di u duminiu hè attivu
       destroyed_msg: U blucchime di u duminiu ùn hè più attivu
       domain: Duminiu
@@ -270,6 +274,11 @@ co:
       reject_media_hint: Sguassa tutti i media caricati è ricusa caricamenti futuri. Inutile per una suspensione
       reject_reports: Righjittà i rapporti
       reject_reports_hint: Ignurà tutti i signalamenti chì venenu d'issu duminiu. Senz'oghjettu pè e suspensione
+      rejecting_media: righjettu di i fugliali media
+      rejecting_reports: righjettu di i signalamenti
+      severity:
+        silence: silenzatu
+        suspend: suspesu
       show:
         affected_accounts:
           one: Un contu tuccatu indè a database
@@ -279,7 +288,7 @@ co:
           suspend: Ùn suspende più i conti nant’à stu duminiu
         title: Ùn bluccà più u duminiu %{domain}
         undo: Annullà
-      undo: Annullà
+      undo: Annullà u blucchime di duminiu
     email_domain_blocks:
       add_new: Aghjustà
       created_msg: U blucchime di u duminiu d’e-mail hè attivu
@@ -294,7 +303,20 @@ co:
       back_to_account: Rivene à u Contu
       title: Abbunati à %{acct}
     instances:
-      title: Istanze cunnisciute
+      delivery_available: Rimessa dispunibule
+      known_accounts:
+        one: "%{count} contu cunnisciutu"
+        other: "%{count} conti cunnisciuti"
+      moderation:
+        all: Tuttu
+        limited: Limitatu
+        title: Muderazione
+      title: Federazione
+      total_blocked_by_us: Bluccati da noi
+      total_followed_by_them: Siguitati da elli
+      total_followed_by_us: Siguitati da noi
+      total_reported: Rapporti nant'à elli
+      total_storage: Media aghjunti
     invites:
       deactivate_all: Disattivà tuttu
       filter:
@@ -559,7 +581,9 @@ co:
       size: Pesu
     blocks: Bluccate
     csv: CSV
+    domain_blocks: Blucchime di duminiu
     follows: Seguitate
+    lists: Liste
     mutes: Piattate
     storage: I vostri media
   filters:
@@ -708,10 +732,25 @@ co:
     no_account_html: Ùn avete micca un contu? Pudete <a href='%{sign_up_path}' target='_blank'>arregistravi quì</a>
     proceed: Cuntinuà per siguità
     prompt: 'Avete da siguità:'
+    reason_html: "<strong>Perchè hè necessaria sta tappa?</strong> <code>%{instance}</code> ùn hè forse micca u servore induve site arregistratu·a, allora primu duvemu riindirizzavi à u vostru servore."
+  remote_interaction:
+    favourite:
+      proceed: Cuntinuà per favurisce
+      prompt: 'Vulete aghjustà stu statutu à i vostri favuriti:'
+    reblog:
+      proceed: Cuntinuà per sparte
+      prompt: 'Vulete sparte stu statutu:'
+    reply:
+      proceed: Cuntinuà per risponde
+      prompt: 'Vulete risponde à stu statutu:'
   remote_unfollow:
     error: Errore
     title: Titulu
     unfollowed: Disabbunatu
+  scheduled_statuses:
+    over_daily_limit: Avete trapassatu a limita di %{limit} statuti planificati per stu ghjornu
+    over_total_limit: Avete trapassatu a limita di %{limit} statuti planificati
+    too_soon: A data deve esse indè u futuru
   sessions:
     activity: Ultima attività
     browser: Navigatore
