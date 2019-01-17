@@ -12,6 +12,7 @@ import Card from './card';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Video from '../../video';
 import scheduleIdleTask from '../../ui/util/schedule_idle_task';
+import classNames from 'classnames';
 
 export default class DetailedStatus extends ImmutablePureComponent {
 
@@ -27,6 +28,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     measureHeight: PropTypes.bool,
     onHeightChange: PropTypes.func,
     domain: PropTypes.string.isRequired,
+    compact: PropTypes.bool,
   };
 
   state = {
@@ -52,7 +54,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
   _measureHeight (heightJustChanged) {
     if (this.props.measureHeight && this.node) {
-      scheduleIdleTask(() => this.node && this.setState({ height: this.node.offsetHeight }));
+      scheduleIdleTask(() => this.node && this.setState({ height: this.node.scrollHeight }));
 
       if (this.props.onHeightChange && heightJustChanged) {
         this.props.onHeightChange();
@@ -86,6 +88,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
   render () {
     const status = this.props.status.get('reblog') ? this.props.status.get('reblog') : this.props.status;
     const outerStyle = { boxSizing: 'border-box' };
+    const { compact } = this.props;
 
     if (!status) {
       return null;
@@ -187,20 +190,22 @@ export default class DetailedStatus extends ImmutablePureComponent {
     }
 
     return (
-      <div ref={this.setRef} className='detailed-status' style={outerStyle}>
-        <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='detailed-status__display-name'>
-          <div className='detailed-status__display-avatar'><Avatar account={status.get('account')} size={48} /></div>
-          <DisplayName account={status.get('account')} localDomain={this.props.domain} />
-        </a>
+      <div style={outerStyle}>
+        <div ref={this.setRef} className={classNames('detailed-status', { compact })}>
+          <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='detailed-status__display-name'>
+            <div className='detailed-status__display-avatar'><Avatar account={status.get('account')} size={48} /></div>
+            <DisplayName account={status.get('account')} localDomain={this.props.domain} />
+          </a>
 
-        <StatusContent status={status} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} />
+          <StatusContent status={status} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} />
 
-        {media}
+          {media}
 
-        <div className='detailed-status__meta'>
-          <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener'>
-            <FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
-          </a>{applicationLink} · {reblogLink} · {favouriteLink}
+          <div className='detailed-status__meta'>
+            <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener'>
+              <FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
+            </a>{applicationLink} · {reblogLink} · {favouriteLink}
+          </div>
         </div>
       </div>
     );
