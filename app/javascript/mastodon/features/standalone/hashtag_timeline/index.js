@@ -80,7 +80,7 @@ class HashtagTimeline extends React.PureComponent {
           <div className='statuses-grid__item' key={statusId}>
             <DetailedStatusContainer
               id={statusId}
-              showThread
+              compact
               measureHeight
               onHeightChange={this.handleHeightChange}
             />
