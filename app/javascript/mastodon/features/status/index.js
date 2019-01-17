@@ -104,6 +104,7 @@ const makeMapStateToProps = () => {
       ancestorsIds,
       descendantsIds,
       askReplyConfirmation: state.getIn(['compose', 'text']).trim().length !== 0,
+      domain: state.getIn(['meta', 'domain']),
     };
   };
 
@@ -126,6 +127,7 @@ class Status extends ImmutablePureComponent {
     descendantsIds: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
     askReplyConfirmation: PropTypes.bool,
+    domain: PropTypes.string.isRequired,
   };
 
   state = {
@@ -402,7 +404,7 @@ class Status extends ImmutablePureComponent {
 
   render () {
     let ancestors, descendants;
-    const { shouldUpdateScroll, status, ancestorsIds, descendantsIds, intl } = this.props;
+    const { shouldUpdateScroll, status, ancestorsIds, descendantsIds, intl, domain } = this.props;
     const { fullscreen } = this.state;
 
     if (status === null) {
@@ -454,6 +456,7 @@ class Status extends ImmutablePureComponent {
                   onOpenMedia={this.handleOpenMedia}
                   onToggleHidden={this.handleToggleHidden}
                   onQuoteToggleHidden={this.handleQuoteToggleHidden}
+                  domain={domain}
                 />
 
                 <ActionBar
