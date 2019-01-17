@@ -92,6 +92,7 @@ nl:
       confirm: Bevestigen
       confirmed: Bevestigd
       confirming: Bevestiging
+      deleted: Verwijderd
       demote: Degraderen
       disable: Uitschakelen
       disable_two_factor_authentication: 2FA uitschakelen
@@ -100,7 +101,7 @@ nl:
       domain: Domein
       edit: Bewerken
       email: E-mail
-      email_status: E-mail Status
+      email_status: E-mailstatus
       enable: Inschakelen
       enabled: Ingeschakeld
       feed_url: Feed-URL
@@ -110,7 +111,9 @@ nl:
       follows: Volgt
       header: Omslagfoto
       inbox_url: Inbox-URL
+      invited_by: Uitgenodigd door
       ip: IP
+      joined: Geregistreerd in
       location:
         all: Alles
         local: Lokaal
@@ -137,7 +140,7 @@ nl:
       protocol: Protocol
       public: Openbaar
       push_subscription_expires: PuSH-abonnement verloopt op
-      redownload: Avatar vernieuwen
+      redownload: Profiel vernieuwen
       remove_avatar: Avatar verwijderen
       remove_header: Omslagfoto verwijderen
       resend_confirmation:
@@ -157,8 +160,8 @@ nl:
       search: Zoeken
       shared_inbox_url: Gedeelde inbox-URL
       show:
-        created_reports: Door dit account aangemaakte rapportages
-        targeted_reports: Over dit account aangemaakte rapportages
+        created_reports: Aangemaakte rapportages
+        targeted_reports: Door anderen gerapporteerd
       silence: Negeren
       silenced: Genegeerd
       statuses: Toots
@@ -170,6 +173,7 @@ nl:
       undo_suspension: Niet langer opschorten
       unsubscribe: Opzeggen
       username: Gebruikersnaam
+      warn: Waarschuwen
       web: Webapp
     action_logs:
       actions:
@@ -253,7 +257,7 @@ nl:
       week_users_active: actieve gebruikers deze week
       week_users_new: nieuwe gebruikers deze week
     domain_blocks:
-      add_new: Nieuwe toevoegen
+      add_new: Nieuwe domeinblokkade toevoegen
       created_msg: Domeinblokkade wordt nu verwerkt
       destroyed_msg: Domeinblokkade is ongedaan gemaakt
       domain: Domein
@@ -266,10 +270,15 @@ nl:
           silence: Negeren
           suspend: Opschorten
         title: Nieuwe domeinblokkade
-      reject_media: Mediabestanden verwerpen
+      reject_media: Mediabestanden weigeren
       reject_media_hint: Verwijderd lokaal opgeslagen mediabestanden en weigert deze in de toekomst te downloaden. Irrelevant voor opgeschorte domeinen
       reject_reports: Rapportages weigeren
       reject_reports_hint: Alle rapportages die vanaf dit domein komen negeren. Irrelevant voor opgeschorte domeinen
+      rejecting_media: mediabestanden worden geweigerd
+      rejecting_reports: rapportages worden geweigerd
+      severity:
+        silence: genegeerd
+        suspend: opgeschort
       show:
         affected_accounts:
           one: Eén account in de database aangepast
@@ -279,7 +288,7 @@ nl:
           suspend: Alle opgeschorte accounts van dit domein niet langer opschorten
         title: Domeinblokkade voor %{domain} ongedaan maken
         undo: Ongedaan maken
-      undo: Ongedaan maken
+      undo: domeinblokkade ongedaan maken
     email_domain_blocks:
       add_new: Nieuwe toevoegen
       created_msg: Blokkeren e-maildomein geslaagd
@@ -294,7 +303,20 @@ nl:
       back_to_account: Terug naar account
       title: Volgers van %{acct}
     instances:
-      title: Bekende servers
+      delivery_available: Bezorging is mogelijk
+      known_accounts:
+        one: "%{count} bekend account"
+        other: "%{count} bekende accounts"
+      moderation:
+        all: Alles
+        limited: Beperkt
+        title: Moderatie
+      title: Andere domeinen
+      total_blocked_by_us: Door ons geblokkeerd
+      total_followed_by_them: Door hun gevolgd
+      total_followed_by_us: Door ons gevolgd
+      total_reported: Rapportages over hun
+      total_storage: Mediabijlagen
     invites:
       deactivate_all: Alles deactiveren
       filter:
@@ -559,7 +581,9 @@ nl:
       size: Omvang
     blocks: Jij blokkeert
     csv: CSV
+    domain_blocks: Domeinblokkades
     follows: Jij volgt
+    lists: Lijsten
     mutes: Jij negeert
     storage: Mediaopslag
   filters:
@@ -659,8 +683,8 @@ nl:
         other: "%{count} nieuwe meldingen sinds jouw laatste bezoek \U0001F418"
       title: Tijdens jouw afwezigheid...
     favourite:
-      body: 'Jouw toot werd door %{name} als favoriet gemarkeerd:'
-      subject: "%{name} markeerde jouw toot als favoriet"
+      body: 'Jouw toot werd door %{name} aan hun favorieten toegevoegd:'
+      subject: "%{name} voegde jouw toot als favoriet toe"
       title: Nieuwe favoriet
     follow:
       body: "%{name} volgt jou nu!"
@@ -708,10 +732,25 @@ nl:
     no_account_html: Heb je geen account? Je kunt er <a href='%{sign_up_path}' target='_blank'>hier een registreren</a>
     proceed: Ga verder om te volgen
     prompt: 'Jij gaat volgen:'
+    reason_html: "<strong> Waarom is deze extra stap nodig? </strong> <code>%{instance}</code> is wellicht niet de server waarop jij je geregistreerd hebt. We verwijzen je eerst door naar jouw eigen server."
+  remote_interaction:
+    favourite:
+      proceed: Doorgaan met toevoegen aan jouw favorieten
+      prompt: 'Je wilt de volgende toot aan jouw favorieten toevoegen:'
+    reblog:
+      proceed: Doorgaan met boosten
+      prompt: 'Je wilt de volgende toot boosten:'
+    reply:
+      proceed: Doorgaan met reageren
+      prompt: 'Je wilt op de volgende toot reageren:'
   remote_unfollow:
     error: Fout
     title: Titel
     unfollowed: Ontvolgd
+  scheduled_statuses:
+    over_daily_limit: Je hebt de limiet van %{limit} in te plannen toots voor die dag overschreden
+    over_total_limit: Je hebt de limiet van %{limit} in te plannen toots overschreden
+    too_soon: De datum voor de ingeplande toot moet in de toekomst liggen
   sessions:
     activity: Laatst actief
     browser: Webbrowser
@@ -917,6 +956,10 @@ nl:
       subject: Jouw archief staat klaar om te worden gedownload
       title: Archief ophalen
     warning:
+      explanation:
+        disable: Zolang jouw account is bevroren blijven jouw accountgegevens intact, maar kun je geen handelingen uitvoeren totdat het account is vrijgegeven.
+        silence: Zolang jouw account wordt beperkt, kunnen alleen mensen die jou al volgen jouw toots op deze server zien. Tevens ben je niet zichtbaar in meldingen, gesprekken en op openbare tijdlijnen. Anderen kunnen je echter wel handmatig volgen.
+        suspend: Jouw account is opgeschort. Jouw toots en geüploade media zijn onomkeerbaar van deze server verwijderd, en ook o.a. van de servers waar jij volgers had.
       review_server_policies: Serverbeleid bekijken
       subject:
         disable: Jouw account %{acct} is bevroren
