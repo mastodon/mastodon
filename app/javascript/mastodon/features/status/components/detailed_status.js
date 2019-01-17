@@ -51,7 +51,6 @@ export default class DetailedStatus extends ImmutablePureComponent {
     this.props.onToggleHidden(this.props.status);
   }
 
-<<<<<<< HEAD
   handleExpandedQuoteToggle = () => {
     this.props.onQuoteToggleHidden(this.props.status);
   }
@@ -63,7 +62,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
     const { status } = this.props;
     this.context.router.history.push(`/statuses/${status.getIn(['quote', 'id'])}`);
-=======
+  }
+  
   _measureHeight (heightJustChanged) {
     if (this.props.measureHeight && this.node) {
       scheduleIdleTask(() => this.node && this.setState({ height: this.node.offsetHeight }));
@@ -95,7 +95,6 @@ export default class DetailedStatus extends ImmutablePureComponent {
     }
 
     window.open(href, 'mastodon-intent', 'width=445,height=600,resizable=no,menubar=no,status=no,scrollbars=yes');
->>>>>>> upstream/master
   }
 
   render () {
