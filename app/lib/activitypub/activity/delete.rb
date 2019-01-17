@@ -21,10 +21,12 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
   def delete_note
     return if object_uri.nil?
 
+    RedisLock.acquire(lock_options) do |_lock|
+      delete_later!(object_uri)
+    end
+
     @status   = Status.find_by(uri: object_uri, account: @account)
     @status ||= Status.find_by(uri: @object['atomUri'], account: @account) if @object.is_a?(Hash) && @object['atomUri'].present?
-
-    delete_later!(object_uri)
 
     return if @status.nil?
 
@@ -67,5 +69,9 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
 
   def payload
     @payload ||= Oj.dump(@json)
+  end
+
+  def lock_options
+    { redis: Redis.current, key: "create:#{object_uri}" }
   end
 end

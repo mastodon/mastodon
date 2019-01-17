@@ -78,6 +78,9 @@ pl:
       moderator: Moderator
     unfollow: Przestań śledzić
   admin:
+    account_actions:
+      action: Wykonaj działanie
+      title: Wykonaj działanie moderacyjne na %{acct}
     account_moderation_notes:
       create: Pozostaw notatkę
       created_msg: Pomyślnie dodano notatkę moderacyjną!
@@ -97,6 +100,7 @@ pl:
       confirm: Potwierdź
       confirmed: Potwierdzono
       confirming: Potwierdzanie
+      deleted: Usunięto
       demote: Degraduj
       disable: Dezaktywuj
       disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
@@ -110,10 +114,14 @@ pl:
       enabled: Aktywowano
       feed_url: Adres kanału
       followers: Śledzący
+      followers_local: "(%{local} lokalnych)"
       followers_url: Adres śledzących
       follows: Śledzeni
+      header: Nagłówek
       inbox_url: Adres skrzynki
+      invited_by: Zaproszony(-a) przez
       ip: Adres IP
+      joined: Dołączył(-a)
       location:
         all: Wszystkie
         local: Lokalne
@@ -140,8 +148,9 @@ pl:
       protocol: Protokół
       public: Publiczne
       push_subscription_expires: Subskrypcja PuSH wygasa
-      redownload: Odśwież awatar
+      redownload: Odśwież profil
       remove_avatar: Usun awatar
+      remove_header: Usuń nagłówek
       resend_confirmation:
         already_confirmed: To konto zostało już potwierdzone
         send: Wyślij ponownie e-mail z potwierdzeniem
@@ -172,12 +181,14 @@ pl:
       undo_suspension: Cofnij zawieszenie
       unsubscribe: Przestań subskrybować
       username: Nazwa użytkownika
+      warn: Ostrzeż
       web: Sieć
     action_logs:
       actions:
         assigned_to_self_report: "%{name} przypisał(a) sobie zgłoszenie %{target}"
         change_email_user: "%{name} zmienił(a) adres e-mail użytkownika %{target}"
         confirm_user: "%{name} potwierdził(a) adres e-mail użytkownika %{target}"
+        create_account_warning: "%{name} wysłał(a) ostrzeżenie do %{target}"
         create_custom_emoji: "%{name} dodał(a) nowe emoji %{target}"
         create_domain_block: "%{name} zablokował(a) domenę %{target}"
         create_email_domain_block: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
@@ -271,8 +282,17 @@ pl:
       reject_media_hint: Usuwa przechowywane lokalnie pliki multimedialne i nie pozwala na ich pobieranie. Nieprzydatne przy zawieszeniu
       reject_reports: Odrzucaj zgłoszenia
       reject_reports_hint: Zgłoszenia z tej instancji będą ignorowane. Nieprzydatne przy zawieszeniu
+      rejecting_media: pliki multimedialne są odrzucane
+      rejecting_reports: zgłoszenia są odrzucane
+      severity:
+        silence: wyciszono
+        suspend: zawieszono
       show:
-        affected_accounts: Dotyczy %{count} kont w bazie danych
+        affected_accounts:
+          few: Dotknęło %{count} kont w bazie danych
+          many: Dotknęło %{count} kont w bazie danych
+          one: Dotknęło jedno konto w bazie danych
+          other: Dotknęło %{count} kont w bazie danych
         retroactive:
           silence: Odwołaj wyciszenie wszystkich kont w tej domenie
           suspend: Odwołaj zawieszenie wszystkich kont w tej domenie
@@ -289,8 +309,26 @@ pl:
         create: Utwórz blokadę
         title: Nowa blokada domeny e-mail
       title: Blokowanie domen e-mail
+    followers:
+      back_to_account: Wróć do konta
+      title: Śledzący %{acct}
     instances:
+      delivery_available: Doręczanie jest dostępne
+      known_accounts:
+        few: "%{count} znane konta"
+        many: "%{count} znane konta"
+        one: "%{count} znane konto"
+        other: "%{count} znane konta"
+      moderation:
+        all: Wszystkie
+        limited: Ograniczone
+        title: Moderacja
       title: Znane instancje
+      total_blocked_by_us: Zablokowane przez nas
+      total_followed_by_them: Śledzeni przez nich
+      total_followed_by_us: Śledzeni przez nas
+      total_reported: Zgłoszenia dotyczące ich
+      total_storage: Załączniki multimedialne
     invites:
       deactivate_all: Unieważnij wszystkie
       filter:
@@ -443,6 +481,12 @@ pl:
       unhide: Pokazuj w katalogu
       visible: Widoczne
     title: Administracja
+    warning_presets:
+      add_new: Dodaj nowy
+      delete: Usuń
+      edit: Edytuj
+      edit_preset: Edytuj szablon ostrzeżenia
+      title: Zarządzaj szablonami ostrzeżeń
   admin_mailer:
     new_report:
       body: Użytkownik %{reporter} zgłosił(a) %{target}
@@ -551,7 +595,9 @@ pl:
       size: Rozmiar
     blocks: Zablokowani
     csv: CSV
+    domain_blocks: Blokady domen
     follows: Śledzeni
+    lists: Listy
     mutes: Wyciszeni
     storage: Urządzenie przechowujące dane
   filters:
@@ -915,6 +961,22 @@ pl:
       explanation: Zażądałeś pełnej kopii zapasowej konta na Mastodonie. Jest ona dostępna do pobrania!
       subject: Twoje archiwum jest gotowe do pobrania
       title: Odbiór archiwum
+    warning:
+      explanation:
+        disable: Kiedy Twoje konto jest wyłączone, Twoje dane pozostają na serwerze, ale nie możesz wykonywać żadnych działań, zanim zostanie odblokowane.
+        silence: Kiedy Twoje konto jest ograniczone, tylko osoby które je śledzą będą widzieć Twoje wpisy. Może ono też przestać być widoczne na publicznych listach. Inni wciąż mogą zacząć Cię śledzić.
+        suspend: Twoje konto zostało zawieszone i wszystkie Twoje wpisy wraz z zawartością multimedialną zostały nieodwracalnie usunięte z tego serwera i serwerów, których użytkownicy śledzili Cię.
+      review_server_policies: Przejrzyj zasady serwera
+      subject:
+        disable: Twoje konto %{acct} zostało wyłączone
+        none: Ostrzeżenie dla %{acct}
+        silence: Twoje konto %{acct} zostało ograniczone
+        suspend: Twoje konto %{acct} zostało zawieszone
+      title:
+        disable: Konto wyłączone
+        none: Ostrzeżenie
+        silence: Konto ograniczone
+        suspend: Konto zawieszone
     welcome:
       edit_profile_action: Skonfiguruj profil
       edit_profile_step: Możesz dostować profil wysyłając awatar, obraz nagłówka, zmieniając wyświetlaną nazwę i wiele więcej. Jeżeli chcesz, możesz zablokować konto, aby kontrolować, kto może Cię śledzić.
