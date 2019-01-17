@@ -76,8 +76,8 @@ GEM
     av (0.9.0)
       cocaine (~> 0.5.3)
     aws-eventstream (1.0.1)
-    aws-partitions (1.122.0)
-    aws-sdk-core (3.43.0)
+    aws-partitions (1.131.0)
+    aws-sdk-core (3.45.0)
       aws-eventstream (~> 1.0)
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.0)
@@ -85,7 +85,7 @@ GEM
     aws-sdk-kms (1.13.0)
       aws-sdk-core (~> 3, >= 3.39.0)
       aws-sigv4 (~> 1.0)
-    aws-sdk-s3 (1.30.0)
+    aws-sdk-s3 (1.30.1)
       aws-sdk-core (~> 3, >= 3.39.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.0)
@@ -231,7 +231,7 @@ GEM
     fuubar (2.3.2)
       rspec-core (~> 3.0)
       ruby-progressbar (~> 1.4)
-    get_process_mem (0.2.2)
+    get_process_mem (0.2.3)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     goldfinger (2.1.0)
@@ -284,7 +284,7 @@ GEM
     idn-ruby (0.1.0)
     ipaddress (0.8.3)
     iso-639 (0.2.8)
-    jaro_winkler (1.5.1)
+    jaro_winkler (1.5.2)
     jmespath (1.4.0)
     json (2.1.0)
     json-ld (2.2.1)
@@ -363,7 +363,7 @@ GEM
       concurrent-ruby (~> 1.0, >= 1.0.2)
       sidekiq (>= 3.5)
       statsd-ruby (~> 1.4, >= 1.4.0)
-    oj (3.7.6)
+    oj (3.7.7)
     omniauth (1.9.0)
       hashie (>= 3.4.6, < 3.7.0)
       rack (>= 1.6.2, < 3)
@@ -392,12 +392,12 @@ GEM
     parallel (1.12.1)
     parallel_tests (2.27.1)
       parallel
-    parser (2.5.3.0)
+    parser (2.6.0.0)
       ast (~> 2.4.0)
     pastel (0.7.2)
       equatable (~> 0.5.0)
       tty-color (~> 0.4.0)
-    pg (1.1.3)
+    pg (1.1.4)
     pghero (2.2.0)
       activerecord
     pkg-config (1.3.2)
@@ -525,7 +525,7 @@ GEM
       rspec-core (~> 3.0, >= 3.0.0)
       sidekiq (>= 2.4.0)
     rspec-support (3.8.0)
-    rubocop (0.62.0)
+    rubocop (0.63.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.5, != 2.5.1.1)
@@ -674,6 +674,7 @@ DEPENDENCIES
   chewy (~> 5.0)
   cld3 (~> 3.2.3)
   climate_control (~> 0.2)
+  concurrent-ruby
   derailed_benchmarks
   devise (~> 4.5)
   devise-two-factor (~> 3.0)
@@ -745,7 +746,7 @@ DEPENDENCIES
   rqrcode (~> 0.10)
   rspec-rails (~> 3.8)
   rspec-sidekiq (~> 3.0)
-  rubocop (~> 0.62)
+  rubocop (~> 0.63)
   sanitize (~> 5.0)
   scss_lint (~> 0.57)
   sidekiq (~> 5.2)
@@ -770,7 +771,7 @@ DEPENDENCIES
   webpush
 
 RUBY VERSION
-   ruby 2.5.3p105
+   ruby 2.6.0p0
 
 BUNDLED WITH
-   1.16.6
+   1.17.3

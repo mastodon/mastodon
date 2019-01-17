@@ -30,16 +30,34 @@ cy:
     other_instances: Rhestr achosion
     privacy_policy: Polisi preifatrwydd
     source_code: Cod ffynhonnell
-    status_count_after: statws
+    status_count_after:
+      few: statwsau
+      many: statwsau
+      one: statws
+      other: statwsau
+      two: statwsau
+      zero: statwsau
     status_count_before: Ysgriffennwyd gan
     terms: Telerau gwasanaeth
-    user_count_after: defnyddwyr
+    user_count_after:
+      few: defnyddwyr
+      many: defnyddwyr
+      one: defnyddiwr
+      other: defnyddwyr
+      two: defnyddwyr
+      zero: defnyddwyr
     user_count_before: Cartref i
     what_is_mastodon: Beth yw Mastodon?
   accounts:
     choices_html: 'Dewisiadau %{name}:'
     follow: Dilynwch
-    followers: Dilynwyr
+    followers:
+      few: Dilynwyr
+      many: Dilynwyr
+      one: Dilynwr
+      other: Dilynwyr
+      two: Dilynwyr
+      zero: Dilynwyr
     following: Yn dilyn
     joined: Ymunodd %{date}
     link_verified_on: Gwiriwyd perchnogaeth y ddolen yma ar %{date}
@@ -51,7 +69,13 @@ cy:
     people_who_follow: Pobl sy'n dilyn %{name}
     pin_errors:
       following: Rhaid i ti fod yn dilyn y person yr ydych am ei gymeradwyo yn barod
-    posts: Tŵtiau
+    posts:
+      few: Tŵtiau
+      many: Tŵtiau
+      one: Tŵt
+      other: Tŵtiau
+      two: Tŵtiau
+      zero: Tŵtiau
     posts_tab_heading: Tŵtiau
     posts_with_replies: Tŵtiau ac atebion
     reserved_username: Mae'r enw defnyddiwr ar gadw
@@ -61,6 +85,8 @@ cy:
       moderator: Safonwr
     unfollow: Dad-ddilyn
   admin:
+    account_actions:
+      action: Cyflawni gweithred
     account_moderation_notes:
       create: Gadael nodyn
       created_msg: Crewyd nodyn cymedroli yn llwyddiannus!
@@ -80,6 +106,7 @@ cy:
       confirm: Cadarnhau
       confirmed: Cadarnhawyd
       confirming: Cadarnhau
+      deleted: Wedi dileu
       demote: Diraddio
       disable: Diffodd
       disable_two_factor_authentication: Diffodd 2FA
@@ -95,8 +122,11 @@ cy:
       followers: Dilynwyr
       followers_url: URL Dilynwyr
       follows: Yn dilyn
+      header: Pennawd
       inbox_url: URL Mewnflwch
+      invited_by: Gwahoddwyd gan
       ip: IP
+      joined: Ymunodd
       location:
         all: Popeth
         local: Lleol
@@ -106,6 +136,7 @@ cy:
       media_attachments: Atodiadau
       memorialize: Troi yn gofeb
       moderation:
+        active: Yn weithredol
         all: Popeth
         silenced: Wedi ei dawelu
         suspended: Wedi ei atal
@@ -122,7 +153,7 @@ cy:
       protocol: Protocol
       public: Cyhoeddus
       push_subscription_expires: Tanysgrifiad PuSH yn dod i ben
-      redownload: Adnewyddu afatar
+      redownload: Adnewyddu proffil
       remove_avatar: Dileu afatar
       resend_confirmation:
         already_confirmed: Mae'r defnyddiwr hwn wedi ei gadarnhau yn barod
@@ -154,6 +185,7 @@ cy:
       undo_suspension: Dadwneud ataliad
       unsubscribe: Dad-danysgrifio
       username: Enw defnyddiwr
+      warn: Rhybuddio
       web: Gwe
     action_logs:
       actions:
@@ -271,7 +303,10 @@ cy:
         title: Cofnod newydd yng nghosbrestr e-byst
       title: Cosbrestr e-bost
     instances:
-      title: Achosion hysbys
+      moderation:
+        all: Pob
+        limited: Gyfyngedig
+      title: Ffederasiwn
     invites:
       deactivate_all: Diffodd pob un
       filter:
@@ -412,7 +447,14 @@ cy:
       last_delivery: Danfoniad diwethaf
       title: WebSub
       topic: Pwnc
+    tags:
+      accounts: Cyfrifon
+      hidden: Cudd
+      name: Hashnod
     title: Gweinyddiaeth
+    warning_presets:
+      delete: Dileu
+      edit: Golygu
   admin_mailer:
     new_report:
       body: Mae %{reporter} wedi cwyno am %{target}
@@ -497,7 +539,7 @@ cy:
     '422':
       content: Methwyd i ddilysu diogelwch. A ydych chi'n blocio cwcîs?
       title: Methwyd i ddilysu diogelwch
-    '429': Crogwyd
+    '429': Wedi'i arafu
     '500':
       content: Mae'n ddrwg gennym ni, ond fe aeth rhywbeth o'i le ar ein rhan ni.
       title: Nid yw'r dudalen hon yn gywir
@@ -714,7 +756,13 @@ cy:
     attached:
       description: 'Ynghlwm: %{attached}'
       image: "%{count} o luniau"
-      video: "%{count} fideo"
+      video:
+        few: "%{count} fideo"
+        many: "%{count} fideo"
+        one: "%{count} fideo"
+        other: "%{count} fideo"
+        two: "%{count} fideo"
+        zero: "%{count} fideo"
     boosted_from_html: Wedi ei fŵstio %{acct_link}
     content_warning: 'Rhybudd cynnwys: %{warning}'
     disallowed_hashtags: 'yn cynnwys yr hashnod gwaharddedig: %{tags}'
@@ -852,6 +900,12 @@ cy:
       explanation: Fe wnaethoch chi gais am gopi wrth gefn llawn o'ch cyfrif Mastodon. Mae nawr yn barod i'w lawrlwytho!
       subject: Mae eich archif yn barod i'w lawrlwytho
       title: Allfudo archif
+    warning:
+      title:
+        disable: Cyfrif wedi'i rewi
+        none: Rhybudd
+        silence: Cyfrif cyfyngedig
+        suspend: Cyfrif wedi'i rewi
     welcome:
       edit_profile_action: Sefydlu proffil
       edit_profile_step: Mae modd i chi addasu eich proffil drwy uwchlwytho afatar, pennawd, drwy newid eich enw arddangos a mwy. Os hoffech chi adolygu dilynwyr newydd cyn iddynt gael caniatad i'ch dilyn, mae modd i chi gloi eich cyfrif.

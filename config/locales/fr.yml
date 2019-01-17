@@ -92,6 +92,7 @@ fr:
       confirm: Confirmer
       confirmed: Confirmé
       confirming: Confirmation
+      deleted: Effacé
       demote: Rétrograder
       disable: Désactiver
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
@@ -110,6 +111,7 @@ fr:
       follows: Abonnements
       header: Entête
       inbox_url: URL d’entrée
+      invited_by: Invité par
       ip: Adresse IP
       location:
         all: Tous
@@ -137,7 +139,7 @@ fr:
       protocol: Protocole
       public: Publique
       push_subscription_expires: Expiration de l’abonnement PuSH
-      redownload: Rafraîchir les avatars
+      redownload: Rafraîchir le profil
       remove_avatar: Supprimer l’avatar
       remove_header: Supprimer l'entête
       resend_confirmation:
@@ -157,8 +159,8 @@ fr:
       search: Rechercher
       shared_inbox_url: URL de la boite de réception partagée
       show:
-        created_reports: Signalements créés par ce compte
-        targeted_reports: Signalements créés visant ce compte
+        created_reports: Signalements faits
+        targeted_reports: Signalés par d'autres
       silence: Masquer
       silenced: Silencié
       statuses: Statuts
@@ -253,7 +255,7 @@ fr:
       week_users_active: actif·ve·s cette semaine
       week_users_new: utilisateur·rice·s cette semaine
     domain_blocks:
-      add_new: Ajouter
+      add_new: Ajouter un nouveau bloqueur de domaine
       created_msg: Le blocage de domaine est désormais activé
       destroyed_msg: Le blocage de domaine a été désactivé
       domain: Domaine
@@ -270,6 +272,11 @@ fr:
       reject_media_hint: Supprime localement les fichiers média stockés et refuse d’en télécharger ultérieurement. Ne concerne pas les suspensions
       reject_reports: Rapports de rejet
       reject_reports_hint: Ignorez tous les rapports provenant de ce domaine. Sans objet pour les suspensions
+      rejecting_media: rejet des fichiers multimédia
+      rejecting_reports: rejet de rapports
+      severity:
+        silence: silencié
+        suspend: suspendu
       show:
         affected_accounts:
           one: Un compte affecté dans la base de données
@@ -279,7 +286,7 @@ fr:
           suspend: Annuler la suspension sur tous les comptes existants pour ce domaine
         title: Annuler le blocage de domaine pour %{domain}
         undo: Annuler
-      undo: Annuler
+      undo: Annuler le bloqueur de domaine
     email_domain_blocks:
       add_new: Ajouter
       created_msg: Le blocage de domaine de courriel est désormais activé
@@ -294,7 +301,19 @@ fr:
       back_to_account: Retour au compte
       title: Abonné⋅e⋅s de %{acct}
     instances:
-      title: Instances connues
+      known_accounts:
+        one: "%{count} compte connu"
+        other: "%{count} comptes connus"
+      moderation:
+        all: Tout
+        limited: Limité
+        title: Modération
+      title: Fédération
+      total_blocked_by_us: Bloqués par nous
+      total_followed_by_them: Suivi par eux
+      total_followed_by_us: Suivi par nous
+      total_reported: Signalements à leurs propos
+      total_storage: Attachements de média
     invites:
       deactivate_all: Tout désactiver
       filter:
@@ -559,7 +578,9 @@ fr:
       size: Taille
     blocks: Vous bloquez
     csv: CSV
+    domain_blocks: Bloqueurs de domaine
     follows: Vous suivez
+    lists: Listes
     mutes: Vous masquez
     storage: Médias stockés
   filters:
@@ -708,10 +729,20 @@ fr:
     no_account_html: Vous n’avez pas de compte ? Vous pouvez <a href='%{sign_up_path}' target='_blank'>vous inscrire ici</a>
     proceed: Confirmer l’abonnement
     prompt: 'Vous allez suivre :'
+    reason_html: "<strong>Pourquoi cette étape est-elle nécessaire?</strong> <code>%{instance}</code> pourrait ne pas être le serveur où vous vous êtes inscrit, et nous devons donc vous rediriger vers votre serveur de base en premier."
+  remote_interaction:
+    favourite:
+      prompt: 'Vous souhaitez mettre ce pouet en favori :'
+    reply:
+      prompt: 'Vous souhaitez répondre à ce pouet :'
   remote_unfollow:
     error: Erreur
     title: Titre
     unfollowed: Non-suivi
+  scheduled_statuses:
+    over_daily_limit: Vous avez dépassé la limite de %{limit} pouets planifiés pour ce jour
+    over_total_limit: Vous avez dépassé la limite de %{limit} pouets planifiés
+    too_soon: La date planifiée doit être dans le futur
   sessions:
     activity: Dernière activité
     browser: Navigateur
