@@ -34,6 +34,13 @@ All notable changes to this project will be documented in this file.
 - Add preview cards to non-detailed statuses on public pages (#9714)
 - Add `mod` and `moderator` to list of default reserved usernames (#9713)
 - Add quick links to the admin interface in the web UI (#8545)
+- Add `tootctl domains crawl` (#9809)
+- Add attachment list fallback to public pages (#9780)
+- Add `tootctl --version` (#9835)
+- Add information about how to opt-in to the directory on the directory (#9834)
+- Add timeouts for S3 (#9842)
+- Add support for non-public reblogs from ActivityPub (#9841)
+- Add sending of `Reject` activity when sending a `Block` activity (#9811)
 
 ### Changed
 
@@ -60,6 +67,11 @@ All notable changes to this project will be documented in this file.
 - Always re-fetch public key when signature verification fails to support blind key rotation (#9667)
 - Make replies to boosts impossible, connect reply to original status instead (#9129)
 - Change e-mail MX validation to check both A and MX records against blacklist (#9489)
+- Hide floating action button on search and getting started pages (#9826)
+- Redesign public hashtag page to use a masonry layout (#9822)
+- Use `summary` as summary instead of content warning for converted ActivityPub objects (#9823)
+- Display a double reply arrow on public pages for toots that are replies (#9808)
+- Change admin UI right panel size to be wider (#9768)
 
 ### Removed
 
@@ -103,10 +115,22 @@ All notable changes to this project will be documented in this file.
 - Ensure blocked user unfollows blocker if Block/Undo-Block activities are processed out of order (#9687)
 - Fix unreadable text color in report modal for some statuses (#9716)
 - Stop GIFV timeline preview explicitly when it's opened in modal (#9749)
+- Fix scrollbar width compensation (#9824)
+- Fix race conditions when processing deleted toots (#9815)
+- Fix SSO issues on WebKit browsers by disabling Same-Site cookie again (#9819)
+- Fix empty OEmbed error (#9807)
+- Fix drag & drop modal not disappearing sometimes (#9797)
+- Fix statuses with content warnings being displayed in web push notifications sometimes (#9778)
+- Fix scroll-to-detailed status not working on public pages (#9773)
+- Fix media modal loading indicator (#9771)
+- Fix hashtag search results not having a permalink fallback in web UI (#9810)
+- Fix slightly cropped font on settings page dropdowns when using system font (#9839)
+- Fix not being able to drag & drop text into forms (#9840)
 
 ### Security
 
 - Sanitize and sandbox toot embeds in web UI (#9552)
+- Add tombstones for remote statuses to prevent replay attacks (#9830)
 
 ## [2.6.5] - 2018-12-01
 ### Changed
