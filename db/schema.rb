@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_03_124754) do
+ActiveRecord::Schema.define(version: 2019_01_17_114553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -615,6 +615,15 @@ ActiveRecord::Schema.define(version: 2019_01_03_124754) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "tombstones", force: :cascade do |t|
+    t.bigint "account_id"
+    t.string "uri", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_tombstones_on_account_id"
+    t.index ["uri"], name: "index_tombstones_on_uri"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.datetime "created_at", null: false
@@ -743,6 +752,7 @@ ActiveRecord::Schema.define(version: 2019_01_03_124754) do
   add_foreign_key "statuses_tags", "tags", name: "fk_3081861e21", on_delete: :cascade
   add_foreign_key "stream_entries", "accounts", name: "fk_5659b17554", on_delete: :cascade
   add_foreign_key "subscriptions", "accounts", name: "fk_9847d1cbb5", on_delete: :cascade
+  add_foreign_key "tombstones", "accounts", on_delete: :cascade
   add_foreign_key "users", "accounts", name: "fk_50500f500d", on_delete: :cascade
   add_foreign_key "users", "invites", on_delete: :nullify
   add_foreign_key "users", "oauth_applications", column: "created_by_application_id", on_delete: :nullify
