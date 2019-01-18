@@ -54,7 +54,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
   _measureHeight (heightJustChanged) {
     if (this.props.measureHeight && this.node) {
-      scheduleIdleTask(() => this.node && this.setState({ height: this.node.scrollHeight }));
+      scheduleIdleTask(() => this.node && this.setState({ height: Math.ceil(this.node.scrollHeight) + 1 }));
 
       if (this.props.onHeightChange && heightJustChanged) {
         this.props.onHeightChange();
