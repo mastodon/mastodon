@@ -21,8 +21,9 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
   def delete_note
     return if object_uri.nil?
 
-    RedisLock.acquire(lock_options) do |_lock|
-      delete_later!(object_uri)
+    unless invalid_origin?(object_uri)
+      RedisLock.acquire(lock_options) { |_lock| delete_later!(object_uri) }
+      Tombstone.find_or_create_by(uri: object_uri, account: @account)
     end
 
     @status   = Status.find_by(uri: object_uri, account: @account)
@@ -73,5 +74,14 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
 
   def lock_options
     { redis: Redis.current, key: "create:#{object_uri}" }
+  end
+
+  def invalid_origin?(url)
+    return true if unsupported_uri_scheme?(url)
+
+    needle   = Addressable::URI.parse(url).host
+    haystack = Addressable::URI.parse(@account.uri).host
+
+    !haystack.casecmp(needle).zero?
   end
 end

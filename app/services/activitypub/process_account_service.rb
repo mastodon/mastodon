@@ -33,6 +33,8 @@ class ActivityPub::ProcessAccountService < BaseService
 
     after_protocol_change! if protocol_changed?
     after_key_change! if key_changed? && !@options[:signed_with_known_key]
+    clear_tombstones! if key_changed?
+
     unless @options[:only_key]
       check_featured_collection! if @account.featured_collection_url.present?
       check_links! unless @account.fields.empty?
@@ -207,6 +209,10 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def key_changed?
     !@old_public_key.nil? && @old_public_key != @account.public_key
+  end
+
+  def clear_tombstones!
+    Tombstone.delete_all(account_id: @account.id)
   end
 
   def protocol_changed?
