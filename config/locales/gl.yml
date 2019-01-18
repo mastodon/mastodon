@@ -84,14 +84,15 @@ gl:
       by_domain: Dominio
       change_email:
         changed_msg: Cambiouse correctamente o correo-e da conta!
-        current_email: Correo-e actual
-        label: Cambiar correo-e
-        new_email: Novo correo-e
-        submit: Cambiar correo-e
-        title: Cambiar o correo-e de %{username}
+        current_email: Correo actual
+        label: Cambiar correo
+        new_email: Novo correo
+        submit: Cambiar correo
+        title: Cambiar o correo de %{username}
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmar
+      deleted: Eliminado
       demote: Degradar
       disable: Deshabilitar
       disable_two_factor_authentication: Deshabilitar 2FA
@@ -99,8 +100,8 @@ gl:
       display_name: Mostrar nome
       domain: Dominio
       edit: Editar
-      email: E-mail
-      email_status: Estado del correo electrónico
+      email: Email
+      email_status: Estado do correo
       enable: Habilitar
       enabled: Habilitado
       feed_url: URL fonte
@@ -110,7 +111,9 @@ gl:
       follows: Segue
       header: Cabeceira
       inbox_url: URL da Caixa de entrada
+      invited_by: Convidada por
       ip: IP
+      joined: Uniuse
       location:
         all: Todo
         local: Local
@@ -137,7 +140,7 @@ gl:
       protocol: Protocolo
       public: Público
       push_subscription_expires: A suscrición PuSH caduca
-      redownload: Actualizar avatar
+      redownload: Actualizar perfil
       remove_avatar: Eliminar avatar
       remove_header: Eliminar cabeceira
       resend_confirmation:
@@ -157,19 +160,20 @@ gl:
       search: Busca
       shared_inbox_url: URL da caixa de entrada compartida
       show:
-        created_reports: Informes creados por esta conta
-        targeted_reports: Informes feitos sobre esta conta
+        created_reports: Informes creados
+        targeted_reports: Informes feitos por outros
       silence: Acalar
       silenced: Acalada
       statuses: Estados
       subscribe: Subscribir
       suspended: Suspendida
       title: Contas
-      unconfirmed_email: Correo-e non confirmado
+      unconfirmed_email: Correo non confirmado
       undo_silenced: Desfacer acalar
       undo_suspension: Desfacer suspensión
       unsubscribe: Non subscribir
       username: Nome de usuaria
+      warn: Aviso
       web: Web
     action_logs:
       actions:
@@ -253,7 +257,7 @@ gl:
       week_users_active: activas estas semana
       week_users_new: usuarias esta semana
     domain_blocks:
-      add_new: Engadir novo
+      add_new: Engadir novo bloqueo de dominio
       created_msg: Estase a procesar o bloqueo do dominio
       destroyed_msg: Desfixose a acción de bloqueo de dominio
       domain: Dominio
@@ -270,6 +274,11 @@ gl:
       reject_media_hint: Eliminar ficheiros de medios almacenados localmente e rexeita descargalos no futuro. Irrelevante para as suspensións
       reject_reports: Rexeitar informes
       reject_reports_hint: Ignorar todos os informes procedentes de este dominio. Irrelevante para as suspensións
+      rejecting_media: rexeitando ficheiros de medios
+      rejecting_reports: rexeitando informes
+      severity:
+        silence: acalado
+        suspend: suspendido
       show:
         affected_accounts:
           one: Afectoulle a unha conta na base de datos
@@ -279,7 +288,7 @@ gl:
           suspend: Non suspender todas as contas existentes de este dominio
         title: Desfacer o bloqueo de dominio para %{domain}
         undo: Desfacer
-      undo: Desfacer
+      undo: Desfacer bloqueo de dominio
     email_domain_blocks:
       add_new: Engadir novo
       created_msg: Engadeuse correctamente o dominio de email a lista negra
@@ -294,7 +303,20 @@ gl:
       back_to_account: Voltar a Conta
       title: Seguidoras de %{acct}
     instances:
-      title: Instancias coñecidas
+      delivery_available: A entrega está dispoñible
+      known_accounts:
+        one: "%{count} conta coñecida"
+        other: "%{count} contas coñecidas"
+      moderation:
+        all: Todo
+        limited: Limitado
+        title: Moderación
+      title: Federación
+      total_blocked_by_us: Bloqueado por nós
+      total_followed_by_them: Seguidas por eles
+      total_followed_by_us: Seguidas por nós
+      total_reported: Informes sobre elas
+      total_storage: Anexos de medios
     invites:
       deactivate_all: Desactivar todo
       filter:
@@ -559,7 +581,9 @@ gl:
       size: Tamaño
     blocks: A bloquear
     csv: CSV
+    domain_blocks: Bloqueos de dominio
     follows: A seguir
+    lists: Listas
     mutes: Acalou
     storage: Almacenamento de medios
   filters:
@@ -708,10 +732,25 @@ gl:
     no_account_html: Non ten unha conta? Pode <a href='%{sign_up_path}' target='_blank'>rexistrarse aquí</a>
     proceed: Proceda para seguir
     prompt: 'Vostede vai seguir:'
+    reason_html: "<strong>Por que é necesario este paso?</strong><code>%{instance}</code> podería non ser o servidor onde se rexistrou, así que precisamo redirixila primeiro ao seu servidor de orixe."
+  remote_interaction:
+    favourite:
+      proceed: Darlle a favorito
+      prompt: 'Vostede quere favorecer este toot:'
+    reblog:
+      proceed: Darlle a promocionar
+      prompt: 'Vostede quere promocionar este toot:'
+    reply:
+      proceed: Respostar
+      prompt: 'Vostede quere respostar a este toot:'
   remote_unfollow:
     error: Fallo
     title: Título
     unfollowed: Deixou de seguir
+  scheduled_statuses:
+    over_daily_limit: Excedeu o límite de %{limit} toots programados para ese día
+    over_total_limit: Excedeu o límite de %{limit} toots programados
+    too_soon: A data de programación debe estar no futuro
   sessions:
     activity: Última actividade
     browser: Navegador

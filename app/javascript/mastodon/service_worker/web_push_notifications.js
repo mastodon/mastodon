@@ -92,11 +92,14 @@ const handlePush = (event) => {
       options.image     = notification.status && notification.status.media_attachments.length > 0 && notification.status.media_attachments[0].preview_url || undefined;
       options.data      = { access_token, preferred_locale, id: notification.status ? notification.status.id : notification.account.id, url: notification.status ? `/web/statuses/${notification.status.id}` : `/web/accounts/${notification.account.id}` };
 
-      if (notification.status && notification.status.sensitive) {
+      if (notification.status && notification.status.spoiler_text || notification.status.sensitive) {
         options.data.hiddenBody  = htmlToPlainText(notification.status.content);
         options.data.hiddenImage = notification.status.media_attachments.length > 0 && notification.status.media_attachments[0].preview_url;
 
-        options.body    = notification.status.spoiler_text;
+        if (notification.status.spoiler_text) {
+          options.body    = notification.status.spoiler_text;
+        }
+
         options.image   = undefined;
         options.actions = [actionExpand(preferred_locale)];
       } else if (notification.type === 'mention') {

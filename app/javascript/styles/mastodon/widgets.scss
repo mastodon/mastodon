@@ -425,3 +425,93 @@
     border-radius: 0;
   }
 }
+
+$maximum-width: 1235px;
+$fluid-breakpoint: $maximum-width + 20px;
+
+.statuses-grid {
+  min-height: 600px;
+
+  @media screen and (max-width: 640px) {
+    width: 100% !important; // Masonry layout is unnecessary at this width
+  }
+
+  &__item {
+    width: (960px - 20px) / 3;
+
+    @media screen and (max-width: $fluid-breakpoint) {
+      width: (940px - 20px) / 3;
+    }
+
+    @media screen and (max-width: 640px) {
+      width: 100%;
+    }
+
+    @media screen and (max-width: $no-gap-breakpoint) {
+      width: 100vw;
+    }
+  }
+
+  .detailed-status {
+    border-radius: 4px;
+
+    @media screen and (max-width: $no-gap-breakpoint) {
+      border-top: 1px solid lighten($ui-base-color, 16%);
+    }
+
+    &.compact {
+      .detailed-status__meta {
+        margin-top: 15px;
+      }
+
+      .status__content {
+        font-size: 15px;
+        line-height: 20px;
+
+        .emojione {
+          width: 20px;
+          height: 20px;
+          margin: -3px 0 0;
+        }
+
+        .status__content__spoiler-link {
+          line-height: 20px;
+          margin: 0;
+        }
+      }
+
+      .media-gallery,
+      .status-card,
+      .video-player {
+        margin-top: 15px;
+      }
+    }
+  }
+}
+
+.notice-widget {
+  margin-bottom: 10px;
+  color: $darker-text-color;
+
+  p {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    color: $ui-highlight-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+}
