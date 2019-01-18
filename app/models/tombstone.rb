@@ -12,4 +12,5 @@
 #
 
 class Tombstone < ApplicationRecord
+  belongs_to :account
 end
