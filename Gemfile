@@ -89,7 +89,7 @@ gem 'tzinfo-data', '~> 1.2018'
 gem 'webpacker', '~> 3.5'
 gem 'webpush'
 
-gem 'json-ld', '~> 2.2'
+gem 'json-ld', '~> 3.0'
 gem 'json-ld-preloaded', '~> 3.0'
 gem 'rdf-normalize', '~> 0.3'
 
