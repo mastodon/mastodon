@@ -332,14 +332,16 @@ sr:
       title: Федерација
       delivery_available: Достава је доступна
       known_accounts:
-        one: '%{count} знаних налога'
+        one: '%{count} знан налог'
         other: '%{count} знаних налога'
       moderation:
         all: Све
-        limited: Ограничена
+        limited: Ограничено
         title: Модерација
       total_blocked_by_us: Блокирано од стране нас
-      total_followed_by_them: Прате их
+      total_followed_by_them: Праћени од стране њих
+      total_followed_by_us: Праћени од стране нас
+      total_reported: Пријаве везане за њих
     invites:
       deactivate_all: Деактивирај све
       filter:
@@ -477,6 +479,9 @@ sr:
         desc_html: Прикажи јавну лајну на почетној страни
         title: Преглед лајне
       title: Поставке сајта
+      profile_directory:
+        desc_html: Дозволи корисницима да буду откривени
+        title: Омогући профил фасцикле
     statuses:
       back_to_account: Назад на страну налога
       batch:
@@ -504,6 +509,20 @@ sr:
     followers:
       back_to_account: Назад на налог
       title: '%{acct} Пратиоци'
+    tags:
+      accounts: Налози
+      hidden: Скривено
+      hide: Сакриј од фасцикле
+      name: Тараба
+      title: Тараба
+      unhide: Прикажи у фасцикли
+      visible: Видљиво
+    warning_presets:
+      add_new: Додај нови
+      delete: Избриши
+      edit: Уреди
+      edit_preset: Уреди пресет упозорења
+      title: Управљај пресетима упозорења
   admin_mailer:
     new_report:
       body: '%{reporter} је пријавио %{target}'
@@ -619,6 +638,8 @@ sr:
     follows: Пратите
     mutes: Ућуткали сте
     storage: Мултимедијално складиште
+    domain_blocks: Блокови домена
+    lists: Листе
   filters:
     contexts:
       home: Временска линија почетне
@@ -784,6 +805,9 @@ sr:
       овде</a>
     proceed: Наставите да би сте запратили
     prompt: 'Запратићете:'
+    reason_html: <strong>Зашто је овај корак неопходан?</strong><code>%{instance}</code>
+      можда није сервер на којем сте регистровани, тако да прво морамо да вас преусмеримо
+      на ваш сервер.
   remote_unfollow:
     error: Грешка
     title: Наслов
@@ -981,6 +1005,7 @@ sr:
         none: Упозорење
         silence: Налог ограничен
         suspend: Налог суспендован
+      review_server_policies: Прегледај политику сервера
   users:
     follow_limit_reached: Не можете пратити више од %{limit} људи
     invalid_email: Адреса Е-поште није исправна
@@ -998,6 +1023,7 @@ sr:
   remote_interaction:
     reblog:
       prompt: 'Желите да делите ову трубу:'
+      proceed: Наставите да бисте поделили
     reply:
       proceed: Наставите да бисте одговорили
       prompt: 'Желите да одговорите на ову трубу:'
@@ -1006,3 +1032,11 @@ sr:
       дан
     over_total_limit: Прекорачили сте границу од %{limit} планираних труба
     too_soon: Планирани датум мора бити у будућности
+  directories:
+    directory: Профил фасцикле
+    enabled: Ви сте тренутно видљиви у фасцикли.
+    explanation: Откријте кориснике на основу њихових интереса
+    explore_mastodon: Истражи %{title}
+    people:
+      one: '%{count} особу'
+      other: '%{count} људе'
