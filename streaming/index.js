@@ -104,7 +104,7 @@ const startWorker = (workerId) => {
   const app    = express();
   app.set('trusted proxy', process.env.TRUSTED_PROXY_IP || 'loopback,uniquelocal');
 
-  const pgPool = new pg.Pool(Object.assign(pgConfigs[env], dbUrlToConfig(process.env.DATABASE_URL)));
+  const pgPool = new pg.Pool({ ...pgConfigs[env], ...dbUrlToConfig(process.env.DATABASE_URL) });
   const server = http.createServer(app);
   const redisNamespace = process.env.REDIS_NAMESPACE || null;
 
@@ -190,35 +190,20 @@ const startWorker = (workerId) => {
     next();
   };
 
-  const accountFromToken = (token, req, next) => {
-    pgPool.connect((err, client, done) => {
-      if (err) {
-        next(err);
-        return;
-      }
+  const accountFromToken = async (token, req) => {
+    const client = await pgPool.connect();
+    const result = await client.query('SELECT oauth_access_tokens.resource_owner_id, users.account_id, users.chosen_languages FROM oauth_access_tokens INNER JOIN users ON oauth_access_tokens.resource_owner_id = users.id WHERE oauth_access_tokens.token = $1 AND oauth_access_tokens.revoked_at IS NULL LIMIT 1', [token]);
+    client.release();
 
-      client.query('SELECT oauth_access_tokens.resource_owner_id, users.account_id, users.chosen_languages FROM oauth_access_tokens INNER JOIN users ON oauth_access_tokens.resource_owner_id = users.id WHERE oauth_access_tokens.token = $1 AND oauth_access_tokens.revoked_at IS NULL LIMIT 1', [token], (err, result) => {
-        done();
+    if (result.rows.length === 0) {
+      const err = new Error('Invalid access token');
+      err.statusCode = 401;
 
-        if (err) {
-          next(err);
-          return;
-        }
+      throw err;
+    }
 
-        if (result.rows.length === 0) {
-          err = new Error('Invalid access token');
-          err.statusCode = 401;
-
-          next(err);
-          return;
-        }
-
-        req.accountId = result.rows[0].account_id;
-        req.chosenLanguages = result.rows[0].chosen_languages;
-
-        next();
-      });
-    });
+    req.accountId = result.rows[0].account_id;
+    req.chosenLanguages = result.rows[0].chosen_languages;
   };
 
   const accountFromRequest = (req, next, required = true) => {
@@ -241,7 +226,9 @@ const startWorker = (workerId) => {
 
     const token = authorization ? authorization.replace(/^Bearer /, '') : accessToken;
 
-    accountFromToken(token, req, next);
+    accountFromToken(token, req)
+      .then(() => next())
+      .catch(err => next(err));
   };
 
   const PUBLIC_STREAMS = [
@@ -292,24 +279,12 @@ const startWorker = (workerId) => {
 
   const placeholders = (arr, shift = 0) => arr.map((_, i) => `$${i + 1 + shift}`).join(', ');
 
-  const authorizeListAccess = (id, req, next) => {
-    pgPool.connect((err, client, done) => {
-      if (err) {
-        next(false);
-        return;
-      }
+  const authorizeListAccess = async (id, req) => {
+    const client = await pgPool.connect();
+    const result = await client.query('SELECT id, account_id FROM lists WHERE id = $1 AND account_id = $2 LIMIT 1', [id, req.accountId]);
+    client.release();
 
-      client.query('SELECT id, account_id FROM lists WHERE id = $1 LIMIT 1', [id], (err, result) => {
-        done();
-
-        if (err || result.rows.length === 0 || result.rows[0].account_id !== req.accountId) {
-          next(false);
-          return;
-        }
-
-        next(true);
-      });
-    });
+    return result.rows.length > 0;
   };
 
   const streamFrom = (id, req, output, attachCloseHandler, needsFiltering = false, notificationOnly = false) => {
@@ -356,12 +331,7 @@ const startWorker = (workerId) => {
         return;
       }
 
-      pgPool.connect((err, client, done) => {
-        if (err) {
-          log.error(err);
-          return;
-        }
-
+      pgPool.connect().then(client => {
         const queries = [
           client.query(`SELECT 1 FROM blocks WHERE (account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})) OR (account_id = $2 AND target_account_id = $1) UNION SELECT 1 FROM mutes WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, unpackedPayload.account.id].concat(targetAccountIds)),
         ];
@@ -371,7 +341,7 @@ const startWorker = (workerId) => {
         }
 
         Promise.all(queries).then(values => {
-          done();
+          client.release();
 
           if (values[0].rows.length > 0 || (values.length > 1 && values[1].rows.length > 0)) {
             return;
@@ -379,10 +349,10 @@ const startWorker = (workerId) => {
 
           transmit();
         }).catch(err => {
-          done();
+          client.release();
           log.error(err);
         });
-      });
+      }).catch(err => log.error(err));
     };
 
     subscribe(`${redisPrefix}${id}`, listener);
@@ -520,7 +490,7 @@ const startWorker = (workerId) => {
   app.get('/api/v1/streaming/list', (req, res) => {
     const listId = req.query.list;
 
-    authorizeListAccess(listId, req, authorized => {
+    authorizeListAccess(listId, req).then(authorized => {
       if (!authorized) {
         httpNotFound(res);
         return;
@@ -528,7 +498,7 @@ const startWorker = (workerId) => {
 
       const channel = `timeline:list:${listId}`;
       streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req, subscriptionHeartbeat(channel)));
-    });
+    }).catch(() => httpNotFound(res));
   });
 
   const wss = new WebSocket.Server({ server, verifyClient: wsVerifyClient });
@@ -590,7 +560,7 @@ const startWorker = (workerId) => {
     case 'list':
       const listId = location.query.list;
 
-      authorizeListAccess(listId, req, authorized => {
+      authorizeListAccess(listId, req).then(authorized => {
         if (!authorized) {
           ws.close();
           return;
@@ -598,7 +568,7 @@ const startWorker = (workerId) => {
 
         channel = `timeline:list:${listId}`;
         streamFrom(channel, req, streamToWs(req, ws), streamWsEnd(req, ws, subscriptionHeartbeat(channel)));
-      });
+      }).catch(() => ws.close());
       break;
     default:
       ws.close();
