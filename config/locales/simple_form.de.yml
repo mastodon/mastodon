@@ -10,14 +10,14 @@ de:
         type_html: Wähle aus, was du mit <strong>%{acct}</strong> machen möchtest
         warning_preset_id: Optional. Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen
       defaults:
-        autofollow: Leute die sich über deine Einladung registrieren werden dir automatisch folgen
+        autofollow: Leute, die sich über deine Einladung registrieren, werden dir automatisch folgen
         avatar: PNG, GIF oder JPG. Maximal %{size}. Wird auf %{dimensions} px herunterskaliert
         bot: Dieses Konto führt lediglich automatisierte Aktionen durch und wird möglicherweise nicht überwacht
         context: Ein oder mehrere Aspekte, wo der Filter greifen soll
         digest: Wenn du lange Zeit inaktiv bist, wird dir eine Zusammenfassung von Erwähnungen in deiner Abwesenheit zugeschickt
-        discoverable_html: Das <a href="%{path}" target="_blank">Verzeichnis</a> lässt dich neue Benutzerkonten finden basierend auf Interessen und Aktivitäten. Dies benötigt mindestens %{min_followers} Follower
-        email: Du wirst ein Bestätigungs-E-Mail erhalten
-        fields: Du kannst bis zu 4 Elemente als Tabelle dargestellt auf deinem Profil anzeigen lassen
+        discoverable_html: Das <a href="%{path}" target="_blank">Verzeichnis</a> lässt dich basierend auf Interessen und Aktivitäten neue Benutzerkonten finden. Dies benötigt mindestens %{min_followers} Follower
+        email: Du wirst eine Bestätigungs-E-Mail erhalten
+        fields: Du kannst bis zu 4 Elemente auf deinem Profil anzeigen lassen, die als Tabelle dargestellt werden
         header: PNG, GIF oder JPG. Maximal %{size}. Wird auf %{dimensions} px herunterskaliert
         inbox_url: Kopiere die URL von der Startseite des gewünschten Relays
         irreversible: Gefilterte Beiträge werden unwiderruflich gefiltert, selbst wenn der Filter später entfernt wurde
@@ -26,16 +26,16 @@ de:
         password: Verwende mindestens 8 Zeichen
         phrase: Wird unabhängig vom umgebenen Text oder Inhaltswarnung eines Beitrags verglichen
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
-        setting_aggregate_reblogs: Zeige keine neuen Boosts für Beiträge, die nicht kürzlich geboostet wurden (dies betrifft nur neulich erhaltene Boosts)
+        setting_aggregate_reblogs: Zeige denselben Beitrag nicht nochmal an, wenn er erneut geteilt wurde (dies betrifft nur neulich erhaltene erneut geteilte Beiträge)
         setting_default_language: Die Sprache der Beiträge kann automatisch erkannt werden, aber dies ist nicht immer genau
         setting_display_media_default: Verstecke Medien, die als sensibel markiert sind
         setting_display_media_hide_all: Alle Medien immer verstecken
         setting_display_media_show_all: Medien, die als sensibel markiert sind, immer anzeigen
-        setting_hide_network: Wem du folgst und wer dir folgt wird in deinem Profil nicht angezeigt
+        setting_hide_network: Wem du folgst und wer dir folgt, wird in deinem Profil nicht angezeigt
         setting_noindex: Betrifft dein öffentliches Profil und deine Beiträge
         setting_theme: Wirkt sich darauf aus, wie Mastodon aussieht, egal auf welchem Gerät du eingeloggt bist.
         username: Dein Benutzer:innen-Name wird auf %{domain} nur einmal vorkommen
-        whole_word: Wenn das Schlüsselwort oder -phrase nur Buchstaben und Zahlen enthält, wird es nur angewendet werden, wenn es dem ganzen Wort entspricht
+        whole_word: Wenn das Schlagwort oder die Phrase nur Buchstaben und Zahlen enthält, wird es nur angewendet, wenn es dem ganzen Wort entspricht
       imports:
         data: CSV-Datei, die aus einer anderen Mastodon-Instanz exportiert wurde
       sessions:
@@ -60,7 +60,7 @@ de:
           suspend: Deaktivieren und unwiderruflich Benutzerdaten löschen
         warning_preset_id: Benutze eine Warnungsvorlage
       defaults:
-        autofollow: Einladen, um deinen Account zu folgen
+        autofollow: Einladen, um deinem Account zu folgen
         avatar: Profilbild
         bot: Dieser Benutzer ist ein Bot
         chosen_languages: Sprachen filtern
@@ -76,7 +76,7 @@ de:
         fields: Profil-Metadaten
         header: Kopfbild
         inbox_url: Inbox-URL des Relays
-        irreversible: Fallen lassen anstatt es zu verstecken
+        irreversible: Verwerfen statt verstecken
         locale: Sprache der Benutzeroberfläche
         locked: Gesperrtes Profil
         max_uses: Maximale Verwendungen
@@ -85,33 +85,33 @@ de:
         otp_attempt: Zwei-Faktor-Authentisierungs-Code
         password: Passwort
         phrase: Schlagwort oder Phrase
-        setting_aggregate_reblogs: Gruppenboosts in Zeitleisten
+        setting_aggregate_reblogs: Gruppiere erneut geteilte Beiträge in Zeitleisten
         setting_auto_play_gif: Animierte GIFs automatisch abspielen
         setting_boost_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag geteilt wird
         setting_default_language: Beitragssprache
         setting_default_privacy: Beitragssichtbarkeit
-        setting_default_sensitive: Medien immer als heikel markieren
+        setting_default_sensitive: Medien immer als sensibel markieren
         setting_delete_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag gelöscht wird
         setting_display_media: Medien-Anzeige
         setting_display_media_default: Standard
         setting_display_media_hide_all: Alle verstecken
         setting_display_media_show_all: Alle anzeigen
-        setting_expand_spoilers: Toots mit Inhaltswarnungen immer ausklappen
+        setting_expand_spoilers: Beiträge mit Inhaltswarnungen immer ausklappen
         setting_hide_network: Blende dein Netzwerk aus
         setting_noindex: Suchmaschinen-Indexierung verhindern
         setting_reduce_motion: Bewegung in Animationen verringern
         setting_system_font_ui: Standardschriftart des Systems verwenden
         setting_theme: Theme der Website
-        setting_unfollow_modal: Bestätigungsdialog anzeigen, bevor jemand entfolgt wird
+        setting_unfollow_modal: Bestätigungsdialog anzeigen, bevor jemandem entfolgt wird
         severity: Schweregrad
         type: Importtyp
         username: Profilname
-        username_or_email: Profilname oder Email
+        username_or_email: Profilname oder E-Mail
         whole_word: Ganzes Wort
       interactions:
         must_be_follower: Benachrichtigungen von Nicht-Folgenden blockieren
         must_be_following: Benachrichtigungen von Profilen blockieren, denen ich nicht folge
-        must_be_following_dm: Private Nachrichten von Profilen denen ich nicht folge blockieren
+        must_be_following_dm: Private Nachrichten von Profilen, denen ich nicht folge, blockieren
       notification_emails:
         digest: Schicke Übersichts-E-Mails
         favourite: E-Mail senden, wenn jemand meinen Beitrag favorisiert

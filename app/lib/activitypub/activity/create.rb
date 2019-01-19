@@ -5,10 +5,13 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   CONVERTED_TYPES = %w(Image Video Article Page).freeze
 
   def perform
-    return if delete_arrived_first?(object_uri) || unsupported_object_type? || invalid_origin?(@object['id'])
+    return if unsupported_object_type? || invalid_origin?(@object['id'])
+    return if Tombstone.exists?(uri: @object['id'])
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
+        return if delete_arrived_first?(object_uri)
+
         @status = find_existing_status
 
         if @status.nil?
@@ -59,7 +62,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         account: @account,
         text: text_from_content || '',
         language: detected_language,
-        spoiler_text: text_from_summary || '',
+        spoiler_text: converted_object_type? ? '' : (text_from_summary || ''),
         created_at: @object['published'],
         override_timestamps: @options[:override_timestamps],
         reply: @object['inReplyTo'].present?,
@@ -254,7 +257,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def text_from_content
-    return Formatter.instance.linkify([text_from_name, object_url || @object['id']].join(' ')) if converted_object_type?
+    return Formatter.instance.linkify([[text_from_name, text_from_summary.presence].compact.join("\n\n"), object_url || @object['id']].join(' ')) if converted_object_type?
 
     if @object['content'].present?
       @object['content']

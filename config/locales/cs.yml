@@ -2,7 +2,7 @@
 cs:
   about:
     about_hashtag_html: Tohle jsou veřejné tooty označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv na fediverse, můžete s nimi interagovat.
-    about_mastodon_html: Mastodon je sociální síť založená na otevřených webových protokolech a svobodném, otevřeném softwaru. Je decentrovalizovaná jako e-mail.
+    about_mastodon_html: Mastodon je sociální síť založená na otevřených webových protokolech a svobodném, otevřeném softwaru. Je decentralizovaná jako e-mail.
     about_this: O této instanci
     administered_by: 'Instanci spravuje:'
     api: API
@@ -92,10 +92,11 @@ cs:
         label: Změnit e-mail
         new_email: Nový e-mail
         submit: Změnit e-mail
-        title: Změnit e-mail pro uživatele %{username}
+        title: Změnit e-mail uživateli %{username}
       confirm: Potvrdit
       confirmed: Potvrzeno
-      confirming: Potvrzující
+      confirming: Potvrzuji
+      deleted: Smazáno
       demote: Degradovat
       disable: Zablokovat
       disable_two_factor_authentication: Zakázat 2FA
@@ -114,7 +115,9 @@ cs:
       follows: Sledovaní
       header: Hlavička
       inbox_url: URL přijatých zpráv
+      invited_by: Pozván/a uživatelem
       ip: IP
+      joined: Připojil/a se
       location:
         all: Vše
         local: Místní
@@ -141,7 +144,7 @@ cs:
       protocol: Protokol
       public: Veřejný
       push_subscription_expires: Odebírání PuSH expiruje
-      redownload: Obnovit avatar
+      redownload: Obnovit profil
       remove_avatar: Odstranit avatar
       remove_header: Odstranit hlavičku
       resend_confirmation:
@@ -159,10 +162,10 @@ cs:
         user: Uživatel
       salmon_url: URL Salmon
       search: Hledat
-      shared_inbox_url: URL sdílené schránky
+      shared_inbox_url: URL sdílených přijatých zpráv
       show:
-        created_reports: Nahlášení vytvořená z tohoto účtu
-        targeted_reports: Nahlášení vytvořená o tomto účtu
+        created_reports: Vytvořená nahlášení
+        targeted_reports: Nahlášeni ostatními
       silence: Utišit
       silenced: Utišen/a
       statuses: Příspěvky
@@ -174,6 +177,7 @@ cs:
       undo_suspension: Zrušit pozastavení
       unsubscribe: Přestat odebírat
       username: Uživatelské jméno
+      warn: Varovat
       web: Web
     action_logs:
       actions:
@@ -257,7 +261,7 @@ cs:
       week_users_active: aktivních tento týden
       week_users_new: uživatelů tento týden
     domain_blocks:
-      add_new: Přidat nové
+      add_new: Přidat novou blokaci domény
       created_msg: Blokace domény se právě vyřizuje
       destroyed_msg: Blokace domény byla zrušena
       domain: Doména
@@ -272,8 +276,13 @@ cs:
         title: Nová doménová blokace
       reject_media: Odmítat mediální soubory
       reject_media_hint: Odstraní lokálně uložené soubory a odmítne jejich stažení v budoucnosti. Nepodstatné pro pozastavení
-      reject_reports: Odmítnout nahlášení
-      reject_reports_hint: Ignorovat všechna nahlášení pocházející z této domény. Nepodstatné pro suspenzace
+      reject_reports: Odmítat nahlášení
+      reject_reports_hint: Ignorovat všechna nahlášení pocházející z této domény. Nepodstatné pro pozastavení
+      rejecting_media: odmítají se mediální soubory
+      rejecting_reports: odmítají se nahlášení
+      severity:
+        silence: utišené
+        suspend: pozastavené
       show:
         affected_accounts:
           few: "%{count} účty v databázi byly ovlivněny"
@@ -284,7 +293,7 @@ cs:
           suspend: Zrušit pozastavení všech existujících účtů z této domény
         title: Zrušit blokaci domény %{domain}
         undo: Odvolat
-      undo: Odvolat
+      undo: Odvolat blokaci domény
     email_domain_blocks:
       add_new: Přidat nový
       created_msg: E-mailová doména úspěšně přidána na černou listinu
@@ -299,7 +308,21 @@ cs:
       back_to_account: Zpět na účet
       title: Sledovatelé uživatele %{acct}
     instances:
-      title: Známé instance
+      delivery_available: Doručení je k dispozici
+      known_accounts:
+        few: "%{count} známé účty"
+        one: "%{count} známý účet"
+        other: "%{count} známých účtů"
+      moderation:
+        all: Vše
+        limited: Omezené
+        title: Moderace
+      title: Federace
+      total_blocked_by_us: Blokované námi
+      total_followed_by_them: Sledované jím
+      total_followed_by_us: Sledované námi
+      total_reported: Nahlášení o něm
+      total_storage: Mediální přílohy
     invites:
       deactivate_all: Deaktivovat vše
       filter:
@@ -565,7 +588,9 @@ cs:
       size: Velikost
     blocks: Blokujete
     csv: CSV
+    domain_blocks: Blokace domén
     follows: Sledujete
+    lists: Seznamy
     mutes: Ignorujete
     storage: Paměť médií
   filters:
@@ -661,7 +686,7 @@ cs:
       body: Zde najdete stručný souhrn zpráv, které jste zmeškal/a od vaší poslední návštěvy %{since}
       mention: "%{name} vás zmínil/a v:"
       new_followers_summary:
-        few: Navíc jste získal/a %{count} nové sledovatele, zatímco jste byl/a pryč! Hurá!
+        few: Navíc jste získal/a %{count} nové sledovatele, zatímco jste byl/a pryč! Skvělé!
         one: Navíc jste získal/a jednoho nového sledovatele, zatímco jste byl/a pryč! Hurá!
         other: Navíc jste získal/a %{count} nových sledovatelů, zatímco jste byl/a pryč! Úžasné!
       subject:
@@ -718,10 +743,25 @@ cs:
     no_account_html: Ještě nemáte účet? Můžete se <a href='%{sign_up_path}' target='_blank'>registrovat zde</a>
     proceed: Pokračovat ke sledování
     prompt: 'Budete sledovat:'
+    reason_html: "<strong>Proč je tento krok nutný?</strong> <code>%{instance}</code> nemusí být serverem, na kterém jste registrován/a, proto vás musíme nejdříve přesměrovat na váš domovský server."
+  remote_interaction:
+    favourite:
+      proceed: Pokračovat k oblíbení
+      prompt: 'Chcete si oblíbit tento toot:'
+    reblog:
+      proceed: Pokračovat k boostnutí
+      prompt: 'Chcete boostnout tento toot:'
+    reply:
+      proceed: Pokračovat k odpovězení
+      prompt: 'Chcete odpovědět na tento toot:'
   remote_unfollow:
     error: Chyba
     title: Nadpis
     unfollowed: Už nesledujete
+  scheduled_statuses:
+    over_daily_limit: Překročil/a jste limit %{limit} plánovaných tootů pro tento den
+    over_total_limit: Překročil/a jste limit %{limit} plánovaných tootů
+    too_soon: Plánované datum musí být v budoucnosti
   sessions:
     activity: Nejnovější aktivita
     browser: Prohlížeč

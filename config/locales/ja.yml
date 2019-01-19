@@ -92,6 +92,7 @@ ja:
       confirm: 確認
       confirmed: 確認済み
       confirming: 確認中
+      deleted: 削除済み
       demote: 降格
       disable: 無効化
       disable_two_factor_authentication: 二段階認証を無効にする
@@ -110,7 +111,9 @@ ja:
       follows: フォロー数
       header: ヘッダー
       inbox_url: Inbox URL
+      invited_by: 招待した人
       ip: IP
+      joined: 登録日
       location:
         all: すべて
         local: ローカル
@@ -155,7 +158,7 @@ ja:
         user: ユーザー
       salmon_url: Salmon URL
       search: 検索
-      shared_inbox_url: Shared Inbox URL
+      shared_inbox_url: Shared inbox URL
       show:
         created_reports: このアカウントで作られたレポート
         targeted_reports: このアカウントについてのレポート
@@ -170,6 +173,7 @@ ja:
       undo_suspension: 停止から戻す
       unsubscribe: 購読の解除
       username: ユーザー名
+      warn: 警告
       web: Web
     action_logs:
       actions:
@@ -253,7 +257,7 @@ ja:
       week_users_active: 今週活動した人数
       week_users_new: 今週登録した人数
     domain_blocks:
-      add_new: 新規追加
+      add_new: ドメインブロックを追加
       created_msg: ドメインブロック処理を完了しました
       destroyed_msg: ドメインブロックを外しました
       domain: ドメイン
@@ -270,6 +274,11 @@ ja:
       reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
       reject_reports: レポートを拒否
       reject_reports_hint: このドメインからのレポートをすべて無視します。停止とは無関係です
+      rejecting_media: メディアファイルを拒否中
+      rejecting_reports: レポートを拒否中
+      severity:
+        silence: サイレンス中
+        suspend: 停止中
       show:
         affected_accounts:
           one: データベース中の一つのアカウントに影響します
@@ -294,7 +303,20 @@ ja:
       back_to_account: 戻る
       title: "%{acct}さんのフォロワー"
     instances:
+      delivery_available: 配送可能
+      known_accounts:
+        one: 既知のアカウント数 %{count}
+        other: 既知のアカウント数 %{count}
+      moderation:
+        all: すべて
+        limited: 制限あり
+        title: モデレーション
       title: 既知のインスタンス
+      total_blocked_by_us: ブロック合計
+      total_followed_by_them: 被フォロー合計
+      total_followed_by_us: フォロー合計
+      total_reported: レポート合計
+      total_storage: 添付されたメディア
     invites:
       deactivate_all: すべて無効化
       filter:
@@ -365,7 +387,7 @@ ja:
         desc_html: 全ページに適用されるCSSの編集
         title: カスタムCSS
       hero:
-        desc_html: フロントページに表示されます。サイズは600x100px以上推奨です。未設定の場合、インスタンスのサムネイルが使用されます
+        desc_html: フロントページに表示されます。サイズは600x100px以上推奨です。未設定の場合、標準のサムネイルが使用されます
         title: ヒーローイメージ
       mascot:
         desc_html: 複数のページに表示されます。サイズは293x205px以上推奨です。未設定の場合、標準のマスコットが使用されます
@@ -559,7 +581,9 @@ ja:
       size: 容量
     blocks: ブロック
     csv: CSV
+    domain_blocks: 非表示にしたドメイン
     follows: フォロー
+    lists: リスト
     mutes: ミュート
     storage: メディア
   filters:
@@ -707,6 +731,16 @@ ja:
     no_account_html: アカウントをお持ちではないですか？<a href='%{sign_up_path}' target='_blank'>こちら</a>からサインアップできます
     proceed: フォローする
     prompt: 'フォローしようとしています:'
+  remote_interaction:
+    favourite:
+      proceed: お気に入り登録する
+      prompt: 'お気に入り登録しようとしています:'
+    reblog:
+      proceed: ブーストする
+      prompt: 'ブーストしようとしています:'
+    reply:
+      proceed: 返信する
+      prompt: '返信しようとしています:'
   remote_unfollow:
     error: エラー
     title: タイトル

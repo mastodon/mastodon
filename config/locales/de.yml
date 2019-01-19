@@ -1,7 +1,7 @@
 ---
 de:
   about:
-    about_hashtag_html: Dies sind öffentliche Beiträge, die mit <strong>#%{hashtag}</strong> getaggt wurden. Wenn du ein Konto irgendwo im Fediversum besitzt, kannst du mit ihnen interagieren.
+    about_hashtag_html: Dies sind öffentliche Beiträge, die mit <strong>#%{hashtag}</strong> getaggt wurden. Wenn du irgendwo im Fediversum ein Konto besitzt, kannst du mit ihnen interagieren.
     about_mastodon_html: Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral (so wie E-Mail!).
     about_this: Über diese Instanz
     administered_by: 'Administriert von:'
@@ -22,7 +22,7 @@ de:
       not_a_product_title: Du bist ein Mensch und keine Ware
       real_conversation_body: Mit 500 Zeichen pro Beitrag und Features wie Inhalts- und Bilderwarnungen kannst du dich so ausdrücken, wie du es möchtest.
       real_conversation_title: Geschaffen für echte Gespräche
-      within_reach_body: Verschiedene Apps für iOS, Android und andere Plattformen erlauben dir, dank unseres blühenden API-Ökosystems, dich von überall auf dem Laufenden zu halten.
+      within_reach_body: Verschiedene Apps für iOS, Android und andere Plattformen erlauben es dir, dank unseres blühenden API-Ökosystems, dich von überall auf dem Laufenden zu halten.
       within_reach_title: Immer für dich da
     generic_description: "%{domain} ist ein Server im Netzwerk"
     hosted_on: Mastodon, beherbergt auf %{domain}
@@ -44,8 +44,8 @@ de:
     choices_html: "%{name} empfiehlt:"
     follow: Folgen
     followers:
-      one: Folgende
-      other: Follower
+      one: Folgender
+      other: Folgende
     following: Folgt
     joined: Beigetreten am %{date}
     last_active: zuletzt aktiv
@@ -81,7 +81,7 @@ de:
     accounts:
       are_you_sure: Bist du sicher?
       avatar: Profilbild
-      by_domain: Domäne
+      by_domain: Domain
       change_email:
         changed_msg: E-Mail-Adresse des Kontos erfolgreich geändert!
         current_email: Aktuelle E-Mail-Adresse
@@ -92,6 +92,7 @@ de:
       confirm: Bestätigen
       confirmed: Bestätigt
       confirming: Bestätigung
+      deleted: Gelöscht
       demote: Degradieren
       disable: Ausschalten
       disable_two_factor_authentication: 2FA abschalten
@@ -104,13 +105,15 @@ de:
       enable: Freischalten
       enabled: Freigegeben
       feed_url: Feed-URL
-      followers: Folger
+      followers: Folgende
       followers_local: "(%{local} lokal)"
       followers_url: URL des Folgenden
       follows: Folgt
       header: Header
       inbox_url: Posteingangs-URL
+      invited_by: Eingeladen von
       ip: IP-Adresse
+      joined: Beigetreten
       location:
         all: Alle
         local: Lokal
@@ -137,7 +140,7 @@ de:
       protocol: Protokoll
       public: Öffentlich
       push_subscription_expires: PuSH-Abonnement läuft aus
-      redownload: Avatar neu laden
+      redownload: Profil neu laden
       remove_avatar: Profilbild entfernen
       remove_header: Header entfernen
       resend_confirmation:
@@ -155,10 +158,10 @@ de:
         user: Nutzer
       salmon_url: Salmon-URL
       search: Suche
-      shared_inbox_url: Geteilter Posteingang URL
+      shared_inbox_url: Geteilte Posteingang-URL
       show:
-        created_reports: Meldungen durch dieses Konto
-        targeted_reports: Meldungen über dieses Konto
+        created_reports: Erstellte Beschwerdemeldungen
+        targeted_reports: Beschwerdemeldungen von anderen
       silence: Stummschalten
       silenced: Stummgeschaltet
       statuses: Beiträge
@@ -170,6 +173,7 @@ de:
       undo_suspension: Sperre zurücknehmen
       unsubscribe: Abbestellen
       username: Profilname
+      warn: Warnen
       web: Web
     action_logs:
       actions:
@@ -190,17 +194,17 @@ de:
         disable_user: "%{name} hat den Login für Benutzer:in  %{target} deaktiviert"
         enable_custom_emoji: "%{name} hat das %{target} Emoji aktiviert"
         enable_user: "%{name} hat die Anmeldung für di:en Benutzer:in %{target} aktiviert"
-        memorialize_account: "%{name} hat %{target}s Profil in eine Gedenkseite umgewandelt"
+        memorialize_account: "%{name} hat %{target}s Konto in eine Gedenkseite umgewandelt"
         promote_user: "%{name} hat %{target} befördert"
         remove_avatar_user: "%{name} hat das Profilbild von %{target} entfernt"
         reopen_report: "%{name} hat die Meldung %{target} wieder geöffnet"
         reset_password_user: "%{name} hat das Passwort für di:en Benutzer:in %{target} zurückgesetzt"
         resolve_report: "%{name} hat die Meldung %{target} bearbeitet"
-        silence_account: "%{name} hat %{target}s Account stummgeschaltet"
-        suspend_account: "%{name} hat %{target}s Account gesperrt"
+        silence_account: "%{name} hat %{target}s Konto stummgeschaltet"
+        suspend_account: "%{name} hat %{target}s Konto gesperrt"
         unassigned_report: "%{name} hat die Zuweisung der Meldung %{target} entfernt"
-        unsilence_account: "%{name} hat die Stummschaltung von %{target}s Account aufgehoben"
-        unsuspend_account: "%{name} hat die Sperrung von %{target}s Account aufgehoben"
+        unsilence_account: "%{name} hat die Stummschaltung von %{target}s Konto aufgehoben"
+        unsuspend_account: "%{name} hat die Sperrung von %{target}s Konto aufgehoben"
         update_custom_emoji: "%{name} hat das %{target} Emoji aktualisiert"
         update_status: "%{name} hat den Status von %{target} aktualisiert"
       deleted_status: "(gelöschter Beitrag)"
@@ -253,7 +257,7 @@ de:
       week_users_active: Aktiv diese Woche
       week_users_new: Benutzer:innen diese Woche
     domain_blocks:
-      add_new: Neu hinzufügen
+      add_new: Neue Domainblockade hinzufügen
       created_msg: Die Domain-Blockade wird nun durchgeführt
       destroyed_msg: Die Domain-Blockade wurde rückgängig gemacht
       domain: Domain
@@ -270,6 +274,11 @@ de:
       reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
       reject_reports: Meldungen ablehnen
       reject_reports_hint: Ignoriere alle Meldungen von dieser Domain. Irrelevant für Sperrungen
+      rejecting_media: Mediendateien ablehnen
+      rejecting_reports: Beschwerdemeldungen ablehnen
+      severity:
+        silence: stummgeschaltet
+        suspend: gesperrt
       show:
         affected_accounts:
           one: Ein Konto in der Datenbank betroffen
@@ -279,7 +288,7 @@ de:
           suspend: Alle existierenden Konten dieser Domain entsperren
         title: Domain-Blockade für %{domain} zurücknehmen
         undo: Zurücknehmen
-      undo: Zurücknehmen
+      undo: Domainblockade zurücknehmen
     email_domain_blocks:
       add_new: Neue hinzufügen
       created_msg: E-Mail-Domain-Blockade erfolgreich erstellt
@@ -291,10 +300,23 @@ de:
         title: Neue E-Mail-Domain-Blockade
       title: E-Mail-Domain-Blockade
     followers:
-      back_to_account: Zurück zum Account
+      back_to_account: Zurück zum Konto
       title: "%{acct}'s Follower"
     instances:
-      title: Bekannte Instanzen
+      delivery_available: Zustellung ist verfügbar
+      known_accounts:
+        one: "%{count} bekanntes Konto"
+        other: "%{count} bekannte Accounts"
+      moderation:
+        all: Alle
+        limited: Limitiert
+        title: Moderation
+      title: Föderation
+      total_blocked_by_us: Von uns gesperrt
+      total_followed_by_them: Gefolgt von denen
+      total_followed_by_us: Gefolgt von uns
+      total_reported: Beschwerdemeldungen über sie
+      total_storage: Medienanhänge
     invites:
       deactivate_all: Alle deaktivieren
       filter:
@@ -484,8 +506,8 @@ de:
     invalid_reset_password_token: Das Token zum Zurücksetzen des Passworts ist ungültig oder abgelaufen. Bitte fordere ein neues an.
     login: Anmelden
     logout: Abmelden
-    migrate_account: Ziehe zu einem anderen Account um
-    migrate_account_html: Wenn du es wünschst diesen Account zu einem anderen umzuziehen, dann kannst du <a href="%{path}">es hier einstellen</a>.
+    migrate_account: Ziehe zu einem anderen Konto um
+    migrate_account_html: Wenn du wünschst, dieses Konto zu einem anderen umzuziehen, kannst du <a href="%{path}">dies hier einstellen</a>.
     or: oder
     or_log_in_with: Oder anmelden mit
     providers:
@@ -499,7 +521,7 @@ de:
     set_new_password: Neues Passwort setzen
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
-    error: Das Profil konnte nicht geladen werden
+    error: Das Remote-Konto konnte nicht geladen werden
     follow: Folgen
     follow_request: 'Du hast eine Folgeanfrage gesendet an:'
     following: 'Erfolg! Du folgst nun:'
@@ -559,7 +581,9 @@ de:
       size: Größe
     blocks: Du hast blockiert
     csv: CSV
+    domain_blocks: Domainblockaden
     follows: Du folgst
+    lists: Listen
     mutes: Du hast stummgeschaltet
     storage: Medienspeicher
   filters:
@@ -631,7 +655,7 @@ de:
     table:
       expires_at: Läuft ab
       uses: Verwendungen
-    title: Leute Einladen
+    title: Leute einladen
   lists:
     errors:
       limit: Du hast die maximale Anzahl an Listen erreicht
@@ -640,10 +664,10 @@ de:
       images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält, angehängt werden
       too_many: Es können nicht mehr als 4 Bilder angehängt werden
   migrations:
-    acct: benutzername@domain des neuen Accounts
+    acct: benutzername@domain des neuen Kontos
     currently_redirecting: 'Deine Profilweiterleitung wurde gesetzt auf:'
     proceed: Speichern
-    updated_msg: Deine Account-Migrationseinstellungen wurden erfolgreich aktualisiert!
+    updated_msg: Deine Konto-Migrationseinstellungen wurden erfolgreich aktualisiert!
   moderation:
     title: Moderation
   notification_mailer:
@@ -705,13 +729,28 @@ de:
   remote_follow:
     acct: Profilname@Domain, von wo aus du dieser Person folgen möchtest
     missing_resource: Die erforderliche Weiterleitungs-URL für dein Konto konnte nicht gefunden werden
-    no_account_html: Noch keinen Account? Du kannst dich <a href='%{sign_up_path}' target='_blank'>hier anmelden</a>
+    no_account_html: Noch kein Konto? Du kannst dich <a href='%{sign_up_path}' target='_blank'>hier anmelden</a>
     proceed: Weiter
     prompt: 'Du wirst dieser Person folgen:'
+    reason_html: "<strong>Warum ist dieser Schritt erforderlich?</strong><code>%{instance}</code> ist möglicherweise nicht der Server auf dem du registriert bist, also müssen wir dich erst auf deinen Heimserver weiterleiten."
+  remote_interaction:
+    favourite:
+      proceed: Fortfahren zum Favorisieren
+      prompt: 'Du möchtest diesen Beitrag favorisieren:'
+    reblog:
+      proceed: Fortfahren zum Teilen
+      prompt: 'Du möchtest diesen Beitrag teilen:'
+    reply:
+      proceed: Fortfahren zum Antworten
+      prompt: 'Du möchtest auf diesen Beitrag antworten:'
   remote_unfollow:
     error: Fehler
     title: Titel
     unfollowed: Entfolgt
+  scheduled_statuses:
+    over_daily_limit: Du hast das Limit für geplante Beiträge, dass %{limit} beträgt, für heute erreicht
+    over_total_limit: Du hast das Limit für geplante Beiträge, dass %{limit} beträgt, erreicht
+    too_soon: Das geplante Datum muss in der Zukunft liegen
   sessions:
     activity: Letzte Aktivität
     browser: Browser
@@ -735,7 +774,7 @@ de:
       weibo: Weibo
     current_session: Aktuelle Sitzung
     description: "%{browser} auf %{platform}"
-    explanation: Dies sind die Webbrowser, die derzeit in dein Mastodon-Konto eingeloggt sind.
+    explanation: Dies sind die Webbrowser, die derzeit in deinem Mastodon-Konto eingeloggt sind.
     ip: IP-Adresse
     platforms:
       adobe_air: Adobe Air
@@ -762,7 +801,7 @@ de:
     export: Datenexport
     followers: Autorisierte Folgende
     import: Datenimport
-    migrate: Account-Umzug
+    migrate: Konto-Umzug
     notifications: Benachrichtigungen
     preferences: Einstellungen
     settings: Einstellungen
@@ -803,7 +842,7 @@ de:
   stream_entries:
     pinned: Angehefteter Beitrag
     reblogged: teilte
-    sensitive_content: Heikle Inhalte
+    sensitive_content: Sensible Inhalte
   terms:
     body_html: |
       <h2>Datenschutzerklärung</h2>
@@ -910,33 +949,33 @@ de:
     manual_instructions: 'Wenn du den QR-Code nicht einlesen kannst und ihn manuell eingeben musst, ist hier das Klartext-Geheimnis:'
     recovery_codes: Wiederherstellungs-Codes sichern
     recovery_codes_regenerated: Wiederherstellungscodes erfolgreich neu generiert
-    recovery_instructions_html: Wenn du den Zugang zu deinem Telefon verlieren solltest, kannst du einen untenstehenden Wiederherstellungscodes benutzen, um wieder auf dein Konto zugreifen zu können. <strong>Bewahre die Wiederherstellungscodes gut auf.</strong> Du könntest sie beispielsweise ausdrucken und bei deinen restlichen wichtigen Dokumenten aufbewahren.
+    recovery_instructions_html: Wenn du den Zugang zu deinem Telefon verlieren solltest, kannst du einen untenstehenden Wiederherstellungscode benutzen, um wieder auf dein Konto zugreifen zu können. <strong>Bewahre die Wiederherstellungscodes gut auf.</strong> Du könntest sie beispielsweise ausdrucken und bei deinen restlichen wichtigen Dokumenten aufbewahren.
     setup: Einrichten
     wrong_code: Der eingegebene Code war ungültig! Stimmen Serverzeit und Gerätezeit?
   user_mailer:
     backup_ready:
-      explanation: Du hast ein vollständiges Backup von deinem Mastodon-Account angefragt. Es kann jetzt heruntergeladen werden!
+      explanation: Du hast ein vollständiges Backup von deinem Mastodon-Konto angefragt. Es kann jetzt heruntergeladen werden!
       subject: Dein Archiv ist bereit zum Download
       title: Archiv-Download
     warning:
       explanation:
-        disable: Solange dein Account eingefroren ist sind deine Benutzerdaten intakt, aber du kannst nichts tun bis dein Account entsperrt wurde.
-        silence: Solange dein Account limitiert ist können nur Leute, die dir bereits folgen deine Beiträge auf dem Server sehen und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
-        suspend: Dein Account wurde gesperrt und alle deine Beiträge und hochgeladenen Medien wurden unwiderruflich vom Server und anderen Servern wo du Follower hattest gelöscht.
+        disable: Solange dein Konto eingefroren ist, sind deine Benutzerdaten intakt; aber du kannst nichts tun, bis dein Konto entsperrt wurde.
+        silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
+        suspend: Dein Konto wurde gesperrt und alle deine Beiträge und hochgeladenen Medien wurden unwiderruflich vom Server und anderen Servern, bei denen du Folgende hattest, gelöscht.
       review_server_policies: Serverrichtlinien ansehen
       subject:
-        disable: Dein Account %{acct} wurde eingefroren
+        disable: Dein Konto %{acct} wurde eingefroren
         none: Warnung für %{acct}
-        silence: Dein Account %{acct} wurde limitiert
-        suspend: Dein Account %{acct} wurde gesperrt
+        silence: Dein Konto %{acct} wurde limitiert
+        suspend: Dein Konto %{acct} wurde gesperrt
       title:
-        disable: Account eingefroren
+        disable: Konto eingefroren
         none: Warnung
-        silence: Account limitiert
-        suspend: Account gesperrt
+        silence: Konto limitiert
+        suspend: Konto gesperrt
     welcome:
       edit_profile_action: Profil einstellen
-      edit_profile_step: Du kannst dein Profil anpassen, indem du einen Avatar oder ein Titelbild hochlädst oder deinen Anzeigenamen änderst und mehr. Wenn du deine Follower vorher überprüfen möchtest, bevor sie dir folgen können, dann kannst du dein Profil sperren.
+      edit_profile_step: Du kannst dein Profil anpassen, indem du einen Avatar oder ein Titelbild hochlädst oder deinen Anzeigenamen änderst und mehr. Wenn du deine Folgenden vorher überprüfen möchtest, bevor sie dir folgen können, dann kannst du dein Profil sperren.
       explanation: Hier sind ein paar Tipps, um loszulegen
       final_action: Fang an zu posten
       final_step: 'Fang an zu posten! Selbst ohne Follower werden deine öffentlichen Beitrage von anderen gesehen, zum Beispiel auf der lokalen Zeitleiste oder in Hashtags. Vielleicht möchtest du dich vorstellen mit dem #introductions-Hashtag.'
@@ -959,5 +998,5 @@ de:
     seamless_external_login: Du bist angemeldet über einen Drittanbieter-Dienst, weswegen Passwort- und E-Maileinstellungen nicht verfügbar sind.
     signed_in_as: 'Angemeldet als:'
   verification:
-    explanation_html: 'Du kannst <strong>bestätigen, dass die Links in deinen Profil-Metadaten dir gehören</strong>. Dafür muss die verlinkte Website einen Link zurück auf dein Mastodon-Profil enthalten. Dieser Link <strong>muss</strong> ein <code>rel="me"</code>-Attribut enthalten. Der Linktext is dabei egal. Hier ist ein Beispiel:'
+    explanation_html: 'Du kannst <strong>bestätigen, dass die Links in deinen Profil-Metadaten dir gehören</strong>. Dafür muss die verlinkte Website einen Link zurück auf dein Mastodon-Profil enthalten. Dieser Link <strong>muss</strong> ein <code>rel="me"</code>-Attribut enthalten. Der Linktext ist dabei egal. Hier ist ein Beispiel:'
     verification: Verifizierung
