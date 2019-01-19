@@ -12,6 +12,7 @@ import Card from './card';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Video from 'flavours/glitch/features/video';
 import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
+import scheduleIdleTask from 'flavours/glitch/util/schedule_idle_task';
 
 export default class DetailedStatus extends ImmutablePureComponent {
 
@@ -26,10 +27,17 @@ export default class DetailedStatus extends ImmutablePureComponent {
     onOpenVideo: PropTypes.func.isRequired,
     onToggleHidden: PropTypes.func.isRequired,
     expanded: PropTypes.bool,
+    measureHeight: PropTypes.bool,
+    onHeightChange: PropTypes.func,
+    domain: PropTypes.string.isRequired,
+  };
+
+  state = {
+    height: null,
   };
 
   handleAccountClick = (e) => {
-    if (e.button === 0 && !(e.ctrlKey || e.altKey || e.metaKey)) {
+    if (e.button === 0 && !(e.ctrlKey || e.altKey || e.metaKey) && this.context.router) {
       e.preventDefault();
       this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
     }
@@ -38,7 +46,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
   }
 
   parseClick = (e, destination) => {
-    if (e.button === 0 && !(e.ctrlKey || e.altKey || e.metaKey)) {
+    if (e.button === 0 && !(e.ctrlKey || e.altKey || e.metaKey) && this.context.router) {
       e.preventDefault();
       this.context.router.history.push(destination);
     }
@@ -50,15 +58,58 @@ export default class DetailedStatus extends ImmutablePureComponent {
     this.props.onOpenVideo(media, startTime);
   }
 
+  _measureHeight (heightJustChanged) {
+    if (this.props.measureHeight && this.node) {
+      scheduleIdleTask(() => this.node && this.setState({ height: this.node.offsetHeight }));
+
+      if (this.props.onHeightChange && heightJustChanged) {
+        this.props.onHeightChange();
+      }
+    }
+  }
+
+  setRef = c => {
+    this.node = c;
+    this._measureHeight();
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    this._measureHeight(prevState.height !== this.state.height);
+  }
+
+  handleModalLink = e => {
+    e.preventDefault();
+
+    let href;
+
+    if (e.target.nodeName !== 'A') {
+      href = e.target.parentNode.href;
+    } else {
+      href = e.target.href;
+    }
+
+    window.open(href, 'mastodon-intent', 'width=445,height=600,resizable=no,menubar=no,status=no,scrollbars=yes');
+  }
+
   render () {
     const status = this.props.status.get('reblog') ? this.props.status.get('reblog') : this.props.status;
     const { expanded, onToggleHidden, settings } = this.props;
+    const outerStyle = { boxSizing: 'border-box' };
+
+    if (!status) {
+      return null;
+    }
 
     let media           = '';
     let mediaIcon       = null;
     let applicationLink = '';
     let reblogLink = '';
     let reblogIcon = 'retweet';
+    let favouriteLink = '';
+
+    if (this.props.measureHeight) {
+      outerStyle.height = `${this.state.height}px`;
+    }
 
     if (status.get('media_attachments').size > 0) {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
@@ -108,20 +159,51 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
     if (status.get('visibility') === 'private') {
       reblogLink = <i className={`fa fa-${reblogIcon}`} />;
+    } else if (this.context.router) {
+      reblogLink = (
+        <Link to={`/statuses/${status.get('id')}/reblogs`} className='detailed-status__link'>
+          <i className={`fa fa-${reblogIcon}`} />
+          <span className='detailed-status__reblogs'>
+            <FormattedNumber value={status.get('reblogs_count')} />
+          </span>
+        </Link>
+      );
     } else {
-      reblogLink = (<Link to={`/statuses/${status.get('id')}/reblogs`} className='detailed-status__link'>
-        <i className={`fa fa-${reblogIcon}`} />
-        <span className='detailed-status__reblogs'>
-          <FormattedNumber value={status.get('reblogs_count')} />
-        </span>
-      </Link>);
+      reblogLink = (
+        <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
+          <i className={`fa fa-${reblogIcon}`} />
+          <span className='detailed-status__reblogs'>
+            <FormattedNumber value={status.get('reblogs_count')} />
+          </span>
+        </a>
+      );
+    }
+
+    if (this.context.router) {
+      favouriteLink = (
+        <Link to={`/statuses/${status.get('id')}/favourites`} className='detailed-status__link'>
+          <i className='fa fa-star' />
+          <span className='detailed-status__favorites'>
+            <FormattedNumber value={status.get('favourites_count')} />
+          </span>
+        </Link>
+      );
+    } else {
+      favouriteLink = (
+        <a href={`/interact/${status.get('id')}?type=favourite`} className='detailed-status__link' onClick={this.handleModalLink}>
+          <i className='fa fa-star' />
+          <span className='detailed-status__favorites'>
+            <FormattedNumber value={status.get('favourites_count')} />
+          </span>
+        </a>
+      );
     }
 
     return (
-      <div className='detailed-status' data-status-by={status.getIn(['account', 'acct'])}>
+      <div ref={this.setRef} className='detailed-status' data-status-by={status.getIn(['account', 'acct'])} style={outerStyle}>
         <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='detailed-status__display-name'>
           <div className='detailed-status__display-avatar'><Avatar account={status.get('account')} size={48} /></div>
-          <DisplayName account={status.get('account')} />
+          <DisplayName account={status.get('account')} localDomain={this.props.domain} />
         </a>
 
         <StatusContent
@@ -137,12 +219,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         <div className='detailed-status__meta'>
           <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener'>
             <FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
-          </a>{applicationLink} · {reblogLink} · <Link to={`/statuses/${status.get('id')}/favourites`} className='detailed-status__link'>
-            <i className='fa fa-star' />
-            <span className='detailed-status__favorites'>
-              <FormattedNumber value={status.get('favourites_count')} />
-            </span>
-          </Link> · <VisibilityIcon visibility={status.get('visibility')} />
+          </a>{applicationLink} · {reblogLink} · {favouriteLink} · <VisibilityIcon visibility={status.get('visibility')} />
         </div>
       </div>
     );
