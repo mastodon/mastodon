@@ -49,6 +49,8 @@ class PostStatusService < BaseService
     @visibility   = :unlisted if @visibility == :public && @account.silenced
     @scheduled_at = @options[:scheduled_at]&.to_datetime
     @scheduled_at = nil if scheduled_in_the_past?
+  rescue ArgumentError
+    raise ActiveRecord::RecordInvalid
   end
 
   def process_status!
