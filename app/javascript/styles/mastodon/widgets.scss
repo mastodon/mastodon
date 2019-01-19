@@ -432,11 +432,19 @@ $fluid-breakpoint: $maximum-width + 20px;
 .statuses-grid {
   min-height: 600px;
 
+  @media screen and (max-width: 640px) {
+    width: 100% !important; // Masonry layout is unnecessary at this width
+  }
+
   &__item {
     width: (960px - 20px) / 3;
 
     @media screen and (max-width: $fluid-breakpoint) {
       width: (940px - 20px) / 3;
+    }
+
+    @media screen and (max-width: 640px) {
+      width: 100%;
     }
 
     @media screen and (max-width: $no-gap-breakpoint) {
@@ -448,7 +456,7 @@ $fluid-breakpoint: $maximum-width + 20px;
     border-radius: 4px;
 
     @media screen and (max-width: $no-gap-breakpoint) {
-      border-bottom: 1px solid lighten($ui-base-color, 12%);
+      border-top: 1px solid lighten($ui-base-color, 16%);
     }
 
     &.compact {
@@ -477,6 +485,33 @@ $fluid-breakpoint: $maximum-width + 20px;
       .video-player {
         margin-top: 15px;
       }
+    }
+  }
+}
+
+.notice-widget {
+  margin-bottom: 10px;
+  color: $darker-text-color;
+
+  p {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    color: $ui-highlight-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
     }
   }
 }
