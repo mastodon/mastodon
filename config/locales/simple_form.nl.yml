@@ -1,66 +1,47 @@
+---
 nl:
   simple_form:
     hints:
       account_warning_preset:
-        text: Je kunt voor toots specifieke tekst gebruiken, zoals URL's, hashtags
-          en vermeldingen
+        text: Je kunt voor toots specifieke tekst gebruiken, zoals URL's, hashtags en vermeldingen
       admin_account_action:
-        send_email_notification: De gebruiker ontvangt een uitleg over wat er met
-          hun account is gebeurd
-        text_html: Optioneel. Je kunt voor toots specifieke tekst gebruiken. Om tijd
-          te besparen kun je <a href="%{path}">voorinstellingen van waarschuwingen
-          toevoegen</a>
+        send_email_notification: De gebruiker ontvangt een uitleg over wat er met hun account is gebeurd
+        text_html: Optioneel. Je kunt voor toots specifieke tekst gebruiken. Om tijd te besparen kun je <a href="%{path}">voorinstellingen van waarschuwingen toevoegen</a>
         type_html: Kies wat er met <strong>%{acct}</strong> moet gebeuren
-        warning_preset_id: Optioneel. Je kunt nog steeds handmatig tekst toevoegen
-          aan het eind van de voorinstelling
+        warning_preset_id: Optioneel. Je kunt nog steeds handmatig tekst toevoegen aan het eind van de voorinstelling
       defaults:
-        autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen
-          jou automatisch
+        autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen jou automatisch
         avatar: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
         bot: Dit is een geautomatiseerd account en wordt mogelijk niet gemonitord
         context: Een of meerdere locaties waar de filter actief moet zijn
-        digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen
-          wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
-        discoverable_html: In de <a href="%{path}" target="_blank">gebruikersgids</a>
-          kunnen mensen andere accounts vinden aan de hand van interesses en activiteit.
-          Dit vereist tenminste %{min_followers} volgers
+        digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
+        discoverable_html: In de <a href="%{path}" target="_blank">gebruikersgids</a> kunnen mensen andere accounts vinden aan de hand van interesses en activiteit. Dit vereist tenminste %{min_followers} volgers
         email: Je krijgt een bevestigingsmail
         fields: Je kan maximaal 4 items als een tabel op je profiel weergeven
         header: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
-        inbox_url: Kopieer de URL van de voorpagina van de relayserver die je wil
-          gebruiken
-        irreversible: Gefilterde toots verdwijnen onomkeerbaar, zelfs als de filter
-          later wordt verwijderd
+        inbox_url: Kopieer de URL van de voorpagina van de relayserver die je wil gebruiken
+        irreversible: Gefilterde toots verdwijnen onomkeerbaar, zelfs als de filter later wordt verwijderd
         locale: De taal van de gebruikersomgeving, e-mails en pushmeldingen
         locked: Vereist dat je handmatig volgers moet accepteren
         password: Gebruik tenminste 8 tekens
         phrase: Komt overeen ongeacht hoofd-/kleine letters of tekstwaarschuwingen
-        scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming
-          van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer
-          te kiezen.
-        setting_aggregate_reblogs: Geen nieuwe boosts tonen voor toots die recentelijk
-          nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
-        setting_default_language: De taal van jouw toots kan automatisch worden gedetecteerd,
-          maar het is niet altijd accuraat
+        scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
+        setting_aggregate_reblogs: Geen nieuwe boosts tonen voor toots die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
+        setting_default_language: De taal van jouw toots kan automatisch worden gedetecteerd, maar het is niet altijd accuraat
         setting_display_media_default: Als gevoelig gemarkeerde media verbergen
         setting_display_media_hide_all: Media altijd verbergen
         setting_display_media_show_all: Als gevoelig gemarkeerde media altijd verbergen
-        setting_hide_network: Wie jij volgt en wie jou volgen wordt niet op jouw profiel
-          getoond
+        setting_hide_network: Wie jij volgt en wie jou volgen wordt niet op jouw profiel getoond
         setting_noindex: Heeft invloed op jouw openbare profiel en toots
-        setting_theme: Heeft invloed op hoe de webapp van Mastodon eruitziet (op elk
-          apparaat waarmee je inlogt).
+        setting_theme: Heeft invloed op hoe de webapp van Mastodon eruitziet (op elk apparaat waarmee je inlogt).
         username: Jouw gebruikersnaam is uniek op %{domain}
-        whole_word: Wanneer het trefwoord of zinsdeel alfanumeriek is, wordt het alleen
-          gefilterd wanneer het hele woord overeenkomt
+        whole_word: Wanneer het trefwoord of zinsdeel alfanumeriek is, wordt het alleen gefilterd wanneer het hele woord overeenkomt
       imports:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       sessions:
-        otp: 'Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik
-          een van jouw herstelcodes:'
+        otp: 'Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes:'
       user:
-        chosen_languages: Alleen toots in de aangevinkte talen worden op de openbare
-          tijdlijnen getoond
+        chosen_languages: Alleen toots in de aangevinkte talen worden op de openbare tijdlijnen getoond
     labels:
       account:
         fields:
@@ -133,8 +114,7 @@ nl:
         must_be_following_dm: Directe berichten van mensen die jij niet volgt blokkeren
       notification_emails:
         digest: Periodiek e-mails met een samenvatting versturen
-        favourite: Een e-mail versturen wanneer iemand jouw toot aan hun favorieten
-          heeft toegevoegd
+        favourite: Een e-mail versturen wanneer iemand jouw toot aan hun favorieten heeft toegevoegd
         follow: Een e-mail versturen wanneer iemand jou volgt
         follow_request: Een e-mail versturen wanneer iemand jou wil volgen
         mention: Een e-mail versturen wanneer iemand jou vermeld
@@ -142,6 +122,6 @@ nl:
         report: Verstuur een e-mail wanneer een nieuw rapportage is ingediend
     'no': Nee
     required:
-      mark: '*'
+      mark: "*"
       text: vereist
     'yes': Ja
