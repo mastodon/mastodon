@@ -6,6 +6,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def perform
     return if unsupported_object_type? || invalid_origin?(@object['id'])
+    return if Tombstone.exists?(uri: @object['id'])
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?

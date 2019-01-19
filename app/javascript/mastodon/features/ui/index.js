@@ -245,6 +245,7 @@ class UI extends React.PureComponent {
   }
 
   handleDragOver = (e) => {
+    if (this.dataTransferIsText(e.dataTransfer)) return false;
     e.preventDefault();
     e.stopPropagation();
 
@@ -258,6 +259,7 @@ class UI extends React.PureComponent {
   }
 
   handleDrop = (e) => {
+    if (this.dataTransferIsText(e.dataTransfer)) return;
     e.preventDefault();
 
     this.setState({ draggingOver: false });
@@ -279,6 +281,10 @@ class UI extends React.PureComponent {
     }
 
     this.setState({ draggingOver: false });
+  }
+
+  dataTransferIsText = (dataTransfer) => {
+    return (dataTransfer && Array.from(dataTransfer.types).includes('text/plain') && dataTransfer.items.length === 1);
   }
 
   closeUploadModal = () => {
