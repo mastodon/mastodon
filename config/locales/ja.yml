@@ -18,7 +18,7 @@ ja:
     features:
       humane_approach_body: 他の SNS の失敗から学び、Mastodon はソーシャルメディアが誤った使い方をされることの無いように倫理的な設計を目指しています。
       humane_approach_title: より思いやりのある設計
-      not_a_product_body: Mastodon は営利的な SNS ではありません。広告や、データの収集・解析は無く、またユーザーの囲い込みもありません。ここには中央権力はありません。
+      not_a_product_body: Mastodon は営利的な SNS ではありません。広告や、データの収集・解析によるターゲティングは無く、またユーザーの囲い込みもありません。ここには中央権力はありません。
       not_a_product_title: あなたは人間であり、商品ではありません
       real_conversation_body: 好きなように書ける500文字までの投稿や、文章やメディアの内容に警告をつけられる機能で、思い通りに自分自身を表現することができます。
       real_conversation_title: 本当のコミュニケーションのために
@@ -106,7 +106,6 @@ ja:
       enabled: 有効
       feed_url: フィードURL
       followers: フォロワー数
-      followers_local: "(%{local} ローカル)"
       followers_url: Followers URL
       follows: フォロー数
       header: ヘッダー
@@ -554,8 +553,11 @@ ja:
     warning_title: 共有されたコンテンツについて
   directories:
     directory: ディレクトリ
-    explanation: 興味のある人を見つけよう
+    enabled: あなたはディレクトリに掲載されています。
+    enabled_but_waiting: あなたはディレクトリへの掲載を選択しましたが、掲載に必要な最小フォロワー数 (%{min_followers} 人) を満たしていません。
+    explanation: 関心を軸にユーザーを発見しよう
     explore_mastodon: "%{title}を探索"
+    how_to_enable: あなたはディレクトリへの掲載を選択していません。下記から選択できます。ハッシュタグカラムに掲載するにはプロフィール文にハッシュタグを使用してください。
     people:
       one: "%{count} 人"
       other: "%{count} 人"
@@ -731,6 +733,7 @@ ja:
     no_account_html: アカウントをお持ちではないですか？<a href='%{sign_up_path}' target='_blank'>こちら</a>からサインアップできます
     proceed: フォローする
     prompt: 'フォローしようとしています:'
+    reason_html: "<strong>なぜこの手順が必要でしょうか？</strong><code>%{instance}</code>はあなたが登録されているサーバーではないかもしれないので、まずあなたのサーバーに転送する必要があります。"
   remote_interaction:
     favourite:
       proceed: お気に入り登録する
@@ -745,6 +748,10 @@ ja:
     error: エラー
     title: タイトル
     unfollowed: フォロー解除しました
+  scheduled_statuses:
+    over_daily_limit: その日予約できる投稿数 %{limit} を超えています
+    over_total_limit: 予約できる投稿数 %{limit} を超えています
+    too_soon: より先の時間を指定してください
   sessions:
     activity: 最後のアクティビティ
     browser: ブラウザ
