@@ -100,6 +100,7 @@ const makeMapStateToProps = () => {
       descendantsIds,
       settings: state.get('local_settings'),
       askReplyConfirmation: state.getIn(['local_settings', 'confirm_before_clearing_draft']) && state.getIn(['compose', 'text']).trim().length !== 0,
+      domain: state.getIn(['meta', 'domain']),
     };
   };
 
@@ -123,6 +124,7 @@ export default class Status extends ImmutablePureComponent {
     descendantsIds: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
     askReplyConfirmation: PropTypes.bool,
+    domain: PropTypes.string.isRequired,
   };
 
   state = {
@@ -417,7 +419,7 @@ export default class Status extends ImmutablePureComponent {
   render () {
     let ancestors, descendants;
     const { setExpansion } = this;
-    const { status, settings, ancestorsIds, descendantsIds, intl } = this.props;
+    const { status, settings, ancestorsIds, descendantsIds, intl, domain } = this.props;
     const { fullscreen, isExpanded } = this.state;
 
     if (status === null) {
@@ -470,6 +472,7 @@ export default class Status extends ImmutablePureComponent {
                   onOpenMedia={this.handleOpenMedia}
                   expanded={isExpanded}
                   onToggleHidden={this.handleExpandedToggle}
+                  domain={domain}
                 />
 
                 <ActionBar
