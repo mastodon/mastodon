@@ -185,17 +185,23 @@ export function submitComposeFail(error) {
 export function uploadCompose(files) {
   return function (dispatch, getState) {
     const media  = getState().getIn(['compose', 'media_attachments']);
+    const total = Array.from(files).reduce((a, v) => a + v.size, 0);
+    const progress = new Array(files.length).fill(0);
+
+    dispatch(uploadComposeRequest());
 
     for (const [i, f] of Array.from(files).entries()) {
       if (media.size + i > 3) break;
-      dispatch(uploadComposeRequest());
 
       resizeImage(f).then(file => {
         const data = new FormData();
         data.append('file', file);
 
         return api(getState).post('/api/v1/media', data, {
-          onUploadProgress: ({ loaded, total }) => dispatch(uploadComposeProgress(loaded, total)),
+          onUploadProgress: function({ loaded }){
+            progress[i] = loaded;
+            dispatch(uploadComposeProgress(progress.reduce((a, v) => a + v, 0), total));
+          },
         }).then(({ data }) => dispatch(uploadComposeSuccess(data)));
       }).catch(error => dispatch(uploadComposeFail(error)));
     };
