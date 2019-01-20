@@ -106,7 +106,6 @@ nl:
       enabled: Ingeschakeld
       feed_url: Feed-URL
       followers: Volgers
-      followers_local: "(%{local} lokaal)"
       followers_url: Volgers-URL
       follows: Volgt
       header: Omslagfoto
@@ -554,8 +553,11 @@ nl:
     warning_title: Verwijdering gegevens op andere servers
   directories:
     directory: Gebruikersgids
+    enabled: Je staat momenteel in de gebruikersgids vermeldt.
+    enabled_but_waiting: Je hebt er voor gekozen om in de gebruikersgids te worden vermeldt, maar je hebt daarvoor nog niet het minimaal aantal volgers (%{min_followers}).
     explanation: Ontdek gebruikers aan de hand van hun interesses
     explore_mastodon: "%{title} verkennen"
+    how_to_enable: Je geeft momenteel geen toestemming om in de gebruikersgids te worden vermeldt. Je kunt hieronder toestemming geven. Gebruik hashtags in de tekst van jouw bio, om onder bepaalde hashtags te worden vermeldt!
     people:
       one: "%{count} gebruikers"
       other: "%{count} gebruikers"
