@@ -1973,6 +1973,43 @@
         "id": "confirmations.block.confirm"
       },
       {
+        "defaultMessage": "Reply",
+        "id": "confirmations.reply.confirm"
+      },
+      {
+        "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
+        "id": "confirmations.reply.message"
+      },
+      {
+        "defaultMessage": "Are you sure you want to block {name}?",
+        "id": "confirmations.block.message"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/status/containers/detailed_status_container.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Delete",
+        "id": "confirmations.delete.confirm"
+      },
+      {
+        "defaultMessage": "Are you sure you want to delete this status?",
+        "id": "confirmations.delete.message"
+      },
+      {
+        "defaultMessage": "Delete & redraft",
+        "id": "confirmations.redraft.confirm"
+      },
+      {
+        "defaultMessage": "Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.",
+        "id": "confirmations.redraft.message"
+      },
+      {
+        "defaultMessage": "Block",
+        "id": "confirmations.block.confirm"
+      },
+      {
         "defaultMessage": "Show more for all",
         "id": "status.show_more_all"
       },

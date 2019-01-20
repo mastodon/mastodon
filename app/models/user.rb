@@ -362,7 +362,8 @@ class User < ApplicationRecord
   end
 
   def regenerate_feed!
-    Redis.current.setnx("account:#{account_id}:regeneration", true) && Redis.current.expire("account:#{account_id}:regeneration", 1.day.seconds)
+    return unless Redis.current.setnx("account:#{account_id}:regeneration", true)
+    Redis.current.expire("account:#{account_id}:regeneration", 1.day.seconds)
     RegenerationWorker.perform_async(account_id)
   end
 
