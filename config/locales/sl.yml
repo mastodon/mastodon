@@ -1,30 +1,41 @@
----
 sl:
   about:
-    about_hashtag_html: To so javni tuti, označeni z <strong>#%{hashtag}</strong>. Z njimi se lahko povežete, če imate račun kjerkoli v fediversu.
-    about_mastodon_html: Mastodon je socialno omrežje, ki temelji na odprtih spletnih protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran, kot e-pošta.
+    about_hashtag_html: To so javni tuti, označeni z <strong>#%{hashtag}</strong>.
+      Z njimi se lahko povežete, če imate račun kjerkoli v fediversu.
+    about_mastodon_html: Mastodon je socialno omrežje, ki temelji na odprtih spletnih
+      protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran,
+      kot e-pošta.
     about_this: O Mastodonu
     administered_by: 'Upravlja:'
     api: API
     apps: Mobilne aplikacije
-    closed_registrations: Registracije so trenutno zaprte na tem vozlišču. Vendar! Tukaj lahko najdete druga vozlišča, na katerih se prijavite in dostopate do istega omrežja od tam.
+    closed_registrations: Registracije so trenutno zaprte na tem vozlišču. Vendar!
+      Tukaj lahko najdete druga vozlišča, na katerih se prijavite in dostopate do
+      istega omrežja od tam.
     contact: Kontakt
     contact_missing: Ni nastavljeno
     contact_unavailable: Ni na voljo
     documentation: Dokumentacija
-    extended_description_html: |
-      <h3>Dober prostor za pravila</h3>
+    extended_description_html: '<h3>Dober prostor za pravila</h3>
+
       <p>Razširjen opis še ni bil nastavljen.</p>
+
+      '
     features:
-      humane_approach_body: Na podlagi učenja od neuspehov drugih omrežij, želi Mastodon oblikovati etične načrte za boj proti zlorabi socialnih medijev.
+      humane_approach_body: Na podlagi učenja od neuspehov drugih omrežij, želi Mastodon
+        oblikovati etične načrte za boj proti zlorabi socialnih medijev.
       humane_approach_title: Bolj human pristop
-      not_a_product_body: Mastodon ni komercialno omrežje. Brez oglaševanja, brez podatkovnega rudarjenja, brez obzidanih vrtov. Ni osrednjega organa.
+      not_a_product_body: Mastodon ni komercialno omrežje. Brez oglaševanja, brez
+        podatkovnega rudarjenja, brez obzidanih vrtov. Ni osrednjega organa.
       not_a_product_title: Ti si oseba, ne izdelek
-      real_conversation_body: S 500 znaki, ki so vam na voljo, in podporo za zrnate vsebine ter opozorila pred mediji, se lahko izrazite tako, kot želite.
+      real_conversation_body: S 500 znaki, ki so vam na voljo, in podporo za zrnate
+        vsebine ter opozorila pred mediji, se lahko izrazite tako, kot želite.
       real_conversation_title: Zgrajen za pravi pogovor
-      within_reach_body: Zahvaljujoč razvijalcem prijaznemu API ekosistemu, obstaja več aplikacija za iOS, Arduino in druge platforme, ki vam omogočajo, da sledite svojim prijateljem kjerkoli.
+      within_reach_body: Zahvaljujoč razvijalcem prijaznemu API ekosistemu, obstaja
+        več aplikacija za iOS, Arduino in druge platforme, ki vam omogočajo, da sledite
+        svojim prijateljem kjerkoli.
       within_reach_title: Vedno na dosegu roke
-    generic_description: "%{domain} je en strežnik v omrežju"
+    generic_description: '%{domain} je en strežnik v omrežju'
     hosted_on: Mastodon gostuje na %{domain}
     learn_more: Spoznaj več
     other_instances: Seznam vozlišč
@@ -45,7 +56,7 @@ sl:
     user_count_before: Dom za
     what_is_mastodon: Kaj je Mastodon?
   accounts:
-    choices_html: "%{name} izbire:"
+    choices_html: '%{name} izbire:'
     follow: Sledi
     followers:
       few: Sledilci
@@ -56,7 +67,7 @@ sl:
     joined: Se je pridružil na %{date}
     link_verified_on: Lastništvo te povezave je bilo preverjeno na %{date}
     media: Medij
-    moved_html: "%{name} se je prestavil na %{new_profile_link}:"
+    moved_html: '%{name} se je prestavil na %{new_profile_link}:'
     network_hidden: Te informacije niso na voljo
     nothing_here: Nič ni tukaj!
     people_followed_by: Ljudje, ki jim sledi %{name}
@@ -76,6 +87,7 @@ sl:
       bot: Robot
       moderator: Mod
     unfollow: Prenehaj slediti
+    last_active: zadnji aktivni
   admin:
     account_moderation_notes:
       create: Pusti sporočilo
@@ -126,10 +138,90 @@ sl:
         silenced: Utišan
         suspended: Suspendiran
         title: Moderiranje
+        active: Dejaven
       moderation_notes: Opombe moderiranja
       most_recent_activity: Zadnja aktivnost
       most_recent_ip: Zadnji IP
       promote: Spodbujanje
+      deleted: Izbrisano
+      header: Glava
+      invited_by: Povabljen od
+      joined: Pridružil
+      no_limits_imposed: Brez omejitev
+      not_subscribed: Ni naročeno
+      outbox_url: URl za pošiljanje
+      perform_full_suspension: Začasno ustavi
+      profile_url: URL profila
+      protocol: Protokol
+      public: Javen
+      push_subscription_expires: Naročnina PuSH preteče
+      redownload: Osveži profil
+      remove_avatar: Odstrani podobo
+      remove_header: Odstrani glavo
+      resend_confirmation:
+        already_confirmed: Ta uporabnik je že potrjen
+        send: Ponovno pošlji potrditveno e-pošto
+        success: Potrditvena e-pošta je uspešno poslana!
+      reset: Ponastavi
+      reset_password: Ponastavi geslo
+      resubscribe: Ponovno se naroči
+      role: Dovoljenja
+      roles:
+        admin: Skrbnik
+        moderator: Moderator
+        staff: Osebje
+        user: Uporabnik
+      salmon_url: Salmon URL
+      search: Poišči
+      shared_inbox_url: URL mape "Prejeto v skupni rabi"
+      show:
+        created_reports: Narejene prijave
+        targeted_reports: Prijavili drugi
+      silence: Utišaj
+      silenced: Utišan
+      statuses: Stanja
+      subscribe: Naroči
+      suspended: Suspendiran
+      title: Računi
+      unconfirmed_email: Nepotrjena e-pošta
+      undo_silenced: Razveljavi utišanje
+      undo_suspension: Razveljavi suspendiranje
+      unsubscribe: Odjavi se od naročnine
+      username: Uporabniško ime
+      warn: Opozori
+      web: Splet
+    account_actions:
+      action: Izvedi dejanje
+      title: Izvedi moderirano dejanje
+    action_logs:
+      actions:
+        assigned_to_self_report: '%{name} je prijavil %{target} sebi'
+        change_email_user: '%{name} je spremenil naslov e-pošte uporabnika %{target}'
+        confirm_user: '%{name} je potrdil naslov e-pošte uporabnika %{target}'
+        create_account_warning: '%{name} je poslal opozorilo %{target}'
+        create_custom_emoji: '%{name} je poslal nove emotikone %{target}'
+        create_domain_block: '%{name} je blokiral domeno %{target}'
+        create_email_domain_block: '%{name} je dal na črni seznam e-pošto domene %{target}'
+        demote_user: '%{name} je degradiral uporabnika %{target}'
+        destroy_custom_emoji: '%{name} je uničil emotikon %{target}'
+        destroy_domain_block: '%{name} je odblokiral domeno %{target}'
+        destroy_email_domain_block: '%{name} je dal na beli seznam e-pošto domene
+          %{target}'
+        destroy_status: '%{name} je odstranil stanje od %{target}'
+        disable_2fa_user: '%{name} je onemogočil dvofaktorsko zahtevo za uporabnika
+          %{target}'
+        disable_custom_emoji: '%{name} je onemogočil emotikon %{target}'
+        disable_user: '%{name} je onemogočil prijavo za uporabnika %{target}'
+        enable_custom_emoji: '%{name} je omogočil emotikon %{target}'
+        enable_user: '%{name} je omogočil prijavo za uporabnika %{target}'
+        memorialize_account: '%{name} je spremenil račun od %{target} v stran spominov'
+        promote_user: '%{name} je spodbudil uporabnika %{target}'
+        remove_avatar_user: '%{name} je odstranil podobo od %{target}'
+        reopen_report: '%{name} je ponovno odprl prijavo %{target}'
+        reset_password_user: '%{name} je ponastavil geslo od uporabnika %{target}'
+        resolve_report: '%{name} je razrešil prijavo %{target}'
+        silence_account: '%{name} je utišal račun od %{target}'
+        suspend_account: '%{name} je začasno ustavil račun od %{target}'
   statuses:
     pin_errors:
       ownership: Trob nekoga drugega ne more biti pripet
