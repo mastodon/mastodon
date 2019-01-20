@@ -106,7 +106,6 @@ fr:
       enabled: Activé
       feed_url: URL du flux
       followers: Abonné⋅e⋅s
-      followers_local: "(%{local} local)"
       followers_url: URL des abonné·e·s
       follows: Abonnements
       header: Entête
@@ -551,8 +550,11 @@ fr:
     warning_title: Disponibilité du contenu disséminé
   directories:
     directory: Annuaire des profils
+    enabled: Vous êtes actuellement listé dans l'annuaire.
+    enabled_but_waiting: Vous avez choisi d'être listé dans l'annuaire, mais vous n'avez pas encore le nombre minimum de suiveurs (%{min_followers}) pour y être inscrit.
     explanation: Découvrir des utilisateurs en se basant sur leurs centres d'intérêt
     explore_mastodon: Explorer %{title}
+    how_to_enable: Vous n'êtes pas encore inscrit dans l'annuaire. Vous pouvez vous inscrire ci-dessous. Utilisez des hashtags dans votre texte biographique pour être listé sous des hashtags spécifiques !
     people:
       one: "%{count} personne"
       other: "%{count} personne"
@@ -733,6 +735,8 @@ fr:
   remote_interaction:
     favourite:
       prompt: 'Vous souhaitez mettre ce pouet en favori :'
+    reblog:
+      prompt: 'Vous souhaitez repartager ce pouet :'
     reply:
       prompt: 'Vous souhaitez répondre à ce pouet :'
   remote_unfollow:

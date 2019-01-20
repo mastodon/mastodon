@@ -106,7 +106,6 @@ de:
       enabled: Freigegeben
       feed_url: Feed-URL
       followers: Folgende
-      followers_local: "(%{local} lokal)"
       followers_url: URL des Folgenden
       follows: Folgt
       header: Header
@@ -554,8 +553,11 @@ de:
     warning_title: Verfügbarkeit verstreuter Inhalte
   directories:
     directory: Profilverzeichnis
+    enabled: Du bist gerade in dem Verzeichnis gelistet.
+    enabled_but_waiting: Du bist damit einverstanden im Verzeichnis gelistet zu werden, aber du hast nicht die minimale Anzahl an Folgenden (%{min_followers}), damit es passiert.
     explanation: Entdecke Benutzer basierend auf deren Interessen
     explore_mastodon: Entdecke %{title}
+    how_to_enable: Du hast dich gerade nicht dazu entschieden im Verzeichnis gelistet zu werden. Du kannst dich unten dafür eintragen. Benutze Hashtags in deiner Profilbeschreibung, um unter spezifischen Hashtags gelistet zu werden!
     people:
       one: "%{count} Person"
       other: "%{count} Leute"
