@@ -1,28 +1,75 @@
 ---
 id:
   about:
+    about_hashtag_html: Ini adalah toot public yang ditandai dengan <strong>#%{hashtag}</strong>. Anda bisa berinteraksi dengan mereka jika anda memiliki akun dimanapun di fediverse.
     about_mastodon_html: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
     about_this: Tentang server ini
-    closed_registrations: Pendaftaran untuk server ini sedang ditutup.
+    api: API
+    apps: Aplikasi hp
+    closed_registrations: Pendaftaran untuk server ini sedang ditutup. Tetapi, anda bisa mencari server lain untuk membuat akun dan mendapatkan akses dari jaringan yang sama di sana.
     contact: Kontak
-    other_instances: Server lain
+    contact_missing: Belum diset
+    contact_unavailable: Tidak Tersedia
+    documentation: Dokumentasi
+    extended_description_html: |
+      <h3>Tempat yang baik untuk peraturan</h3>
+      <p>Deskripsi lainnya belum diset.</p>
+    features:
+      humane_approach_body: Belajar dari kegagalan jaringan lain, Mastodon berupaya untuk membuat pilihan desain yang etis untuk melawan penyalahgunaan media sosial.
+      humane_approach_title: Pendekatan yang lebih manusiawi
+      not_a_product_body: Mastodon bukanlah jaringan komersil. Tidak ada iklan, tidak ada pengumpulan data, tidak ada batasan vendor. Tidak ada otoritas terpusat.
+      not_a_product_title: Anda adalah orang, bukanlah sebuah produk
+      real_conversation_body: Dengan 500 karakter dan dukungan konten granular dan peringatan media, anda dapat mengekspresikan diri anda sendiri sesuai yang anda mau.
+      real_conversation_title: Dibangun untuk percakapan yang sebenarnya
+      within_reach_body: Berbagai aplikasi untuk iOS, Android, dan platform lainnya berkat ekosistem API yang ramah pada pengembang untuk tetap terhubung dengan teman-teman anda dimanapun.
+      within_reach_title: Selalu dalam jangkauan
+    generic_description: "%{domain} adalah satu server dalam jaringan"
+    hosted_on: Mastodon dihosting di %{domain}
+    learn_more: Pelajari selengkapnya
+    other_instances: Daftar Server
+    privacy_policy: Kebijakan Privasi
     source_code: Kode sumber
-    status_count_after: status
+    status_count_after:
+      one: status
+      other: status
     status_count_before: Yang telah menulis
-    user_count_after: pengguna
+    terms: Kebijakan layanan
+    user_count_after:
+      one: pengguna
+      other: pengguna
     user_count_before: Tempat bernaung bagi
+    what_is_mastodon: Apa itu Mastodon?
   accounts:
     follow: Ikuti
-    followers: Pengikut
-    following: Mengikut
+    followers:
+      one: Pengikut
+      other: Pengikut
+    following: Mengikuti
+    joined: Bergabung pada %{date}
+    last_active: terakhir aktif
+    link_verified_on: Kepemilikan tautan ini telah dicek pada %{date}
+    media: Media
+    moved_html: "%{name} telah pindah ke %{new_profile_link}:"
+    network_hidden: Informasi ini tidak tersedia
     nothing_here: Tidak ada apapun disini!
     people_followed_by: Orang yang diikuti %{name}
     people_who_follow: Orang-orang yang mengikuti %{name}
+    pin_errors:
+      following: Anda harus mengikuti orang yang ingin anda endorse
     posts:
       one: Toot
-      other: Toots
+      other: Toot
+    posts_tab_heading: Toot
+    posts_with_replies: Toot dan balasan
+    reserved_username: Nama pengguna telah dipesan
+    roles:
+      admin: Admin
+      bot: Bot
+      moderator: Moderator
     unfollow: Berhenti mengikuti
   admin:
+    account_actions:
+      action: Lakukan aksi
     accounts:
       are_you_sure: Anda yakin?
       confirm: Konfirmasi
