@@ -6,6 +6,8 @@
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/tootsuite/mastodon.svg)][code_climate]
 [![Translation status](https://weblate.joinmastodon.org/widgets/mastodon/-/svg-badge.svg)][weblate]
 [![Docker Pulls](https://img.shields.io/docker/pulls/tootsuite/mastodon.svg)][docker]
+[![Backers on Open Collective](https://opencollective.com/mastodon/backers/badge.svg)](#backers) 
+[![Sponsors on Open Collective](https://opencollective.com/mastodon/sponsors/badge.svg)](#sponsors) 
 
 [releases]: https://github.com/tootsuite/mastodon/releases
 [circleci]: https://circleci.com/gh/tootsuite/mastodon
@@ -83,6 +85,36 @@ Mastodon is **free, open source software** licensed under **AGPLv3**.
 You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository, or submit translations using Weblate. To get started, take a look at [CONTRIBUTING.md](CONTRIBUTING.md)
 
 **IRC channel**: #mastodon on irc.freenode.net
+
+## Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/tootsuite/mastodon/graphs/contributors"><img src="https://opencollective.com/mastodon/contributors.svg?width=890&button=false" /></a>
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/mastodon#backer)]
+
+<a href="https://opencollective.com/mastodon#backers" target="_blank"><img src="https://opencollective.com/mastodon/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/mastodon#sponsor)]
+
+<a href="https://opencollective.com/mastodon/sponsor/0/website" target="_blank"><img src="https://opencollective.com/mastodon/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/mastodon/sponsor/1/website" target="_blank"><img src="https://opencollective.com/mastodon/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/mastodon/sponsor/2/website" target="_blank"><img src="https://opencollective.com/mastodon/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/mastodon/sponsor/3/website" target="_blank"><img src="https://opencollective.com/mastodon/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/mastodon/sponsor/4/website" target="_blank"><img src="https://opencollective.com/mastodon/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/mastodon/sponsor/5/website" target="_blank"><img src="https://opencollective.com/mastodon/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/mastodon/sponsor/6/website" target="_blank"><img src="https://opencollective.com/mastodon/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/mastodon/sponsor/7/website" target="_blank"><img src="https://opencollective.com/mastodon/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/mastodon/sponsor/8/website" target="_blank"><img src="https://opencollective.com/mastodon/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/mastodon/sponsor/9/website" target="_blank"><img src="https://opencollective.com/mastodon/sponsor/9/avatar.svg"></a>
+
+
 
 ## License
 
