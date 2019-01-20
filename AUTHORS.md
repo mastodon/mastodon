@@ -1,3 +1,6 @@
+Authors
+=======
+
 Mastodon is available on [GitHub](https://github.com/tootsuite/mastodon)
 and provided thanks to the work of the following contributors:
 
@@ -581,3 +584,248 @@ and provided thanks to the work of the following contributors:
 * [雨宮美羽](mailto:k737566@gmail.com)
 
 This document is provided for informational purposes only. Since it is only updated once per release, the version you are looking at may be currently out of date. To see the full list of contributors, consider looking at the [git history](https://github.com/tootsuite/mastodon/graphs/contributors) instead.
+
+## Translators
+
+Following people have contributed to translation of Mastodon:
+
+- **Arabic**
+  - ButterflyOfFire
+- **Asturian**
+  - ButterflyOfFire
+  - Enol P.
+- **Basque**
+  - Aitzol
+  - ButterflyOfFire
+  - Gorka Azkarate
+  - Osoitz
+  - Peru Iparragirre
+- **Bulgarian**
+  - ButterflyOfFire
+- **Catalan**
+  - ButterflyOfFire
+  - Joan Montané
+  - Jose Luis
+  - spla
+- **Chinese (Hong Kong)**
+  - ButterflyOfFire
+  - Luzi Leung
+- **Chinese (Simplified)**
+  - Allen Zhong
+  - ButterflyOfFire
+  - SerCom_KC
+- **Chinese (Traditional)**
+  - ButterflyOfFire
+  - James58899
+  - Jeff Huang
+  - S1ttidoe477
+  - SHA265
+- **Corsican**
+  - Alix D. R.
+  - ButterflyOfFire
+- **Croatian**
+  - ButterflyOfFire
+- **Czech**
+  - ButterflyOfFire
+  - Lorem Ipsum
+  - Marek Ľach
+- **Danish**
+  - ButterflyOfFire
+  - Rasmus Sæderup
+- **Dutch**
+  - ButterflyOfFire
+  - Jelv
+  - jeroenpraat
+  - rscmbbng
+- **English**
+  - ButterflyOfFire
+  - Renato "Lond" Cerqueira
+- **Esperanto**
+  - ButterflyOfFire
+  - Jeong Arm
+  - Martin Bodin
+  - Mélanie Chauvel
+  - Vanege
+  - tuxayo/Victor Grousset
+- **Finnish**
+  - ButterflyOfFire
+  - Jonne Arjoranta
+  - S Heija
+  - Taru Luojola
+- **French**
+  - Alda Marteau-Hardi
+  - Alix D. R.
+  - Baptiste Jonglez
+  - ButterflyOfFire
+  - Franck Paul
+  - Jean-Baptiste Holcroft
+  - Jonathan Chan
+  - Letiteuf55
+  - Martin Bodin
+  - Mélanie Chauvel
+  - Olivier Humbert
+  - Paul Marques Mota
+  - Sylvhem
+  - Technowix
+  - Thibaut Girka
+  - Théodore
+  - azenet
+  - codl
+- **Galician**
+  - ButterflyOfFire
+  - Xose M.
+  - manequim
+- **Georgian**
+  - ButterflyOfFire
+- **German**
+  - Benedikt Geißler
+  - ButterflyOfFire
+  - Daniel
+  - Eugen Rochko
+  - Koyu Berteon
+  - Patrick Figel
+  - Weblate Admin
+  - averageunicorn
+  - ePirat
+  - koyu
+  - larsreineke
+  - lilo
+- **Greek**
+  - Antonis
+  - ButterflyOfFire
+  - Dimitris Maroulidis
+  - Konstantinos Grevenitis
+- **Hebrew**
+  - ButterflyOfFire
+  - Ira
+  - Yaron Shahrabani
+- **Hungarian**
+  - Adam Paszternak
+  - ButterflyOfFire
+  - Tibike Miklós
+- **Ido**
+  - ButterflyOfFire
+- **Indonesian**
+  - Alfiana Sibuea
+  - ButterflyOfFire
+  - Dito Kurnia Pratama
+  - Eirworks
+  - afachri
+  - se7entime
+- **Italian**
+  - Alessandro Levati
+  - ButterflyOfFire
+  - Giuseppe Pignataro
+  - Stefano
+- **Japanese**
+  - ButterflyOfFire
+  - Kumasun Morino
+  - Yamagishi Kazutoshi
+  - mayaeh
+  - osapon
+  - unarist
+  - 小鳥遊まりあ
+  - 森の子リスのミーコの大冒険
+- **Korean**
+  - ButterflyOfFire
+  - Jeong Arm
+  - Minori Hiraoka
+  - Yamagishi Kazutoshi
+- **Malay**
+  - ButterflyOfFire
+  - Muhammad Nur Hidayat (MNH48)
+- **Norwegian (old code)**
+  - ButterflyOfFire
+  - Espen Rønnevik
+  - Tale
+- **Occitan**
+  - ButterflyOfFire
+  - Maxenç
+  - Quenti2
+  - Quentí
+- **Persian**
+  - ButterflyOfFire
+  - Masoud Abkenar
+- **Polish**
+  - ButterflyOfFire
+  - Jakub Mendyk
+  - Marcin Mikołajczak
+  - Marek Ľach
+  - Stasiek Michalski
+  - krkk
+- **Portuguese**
+  - ButterflyOfFire
+  - Hugo Gameiro
+  - manequim
+- **Portuguese (Brazil)**
+  - André Andrade
+  - Anna e só
+  - ButterflyOfFire
+  - Renato "Lond" Cerqueira
+- **Romanian**
+  - ButterflyOfFire
+  - adrianbblk
+- **Russian**
+  - Andrew Zyabin
+  - ButterflyOfFire
+  - Evgeny Petrov
+  - Yaron Shahrabani
+- **Serbian**
+  - Branko Kokanovic
+  - Burekz Finezt
+  - ButterflyOfFire
+- **Serbian (latin)**
+  - ButterflyOfFire
+- **Slovak**
+  - ButterflyOfFire
+  - Ivan Pleva
+  - Lorem Ipsum
+  - Marek Ľach
+  - Peter
+- **Slovenian**
+  - ButterflyOfFire
+  - Kristijan Tkalec
+- **Spanish**
+  - Angeles Broullón
+  - Antón López
+  - ButterflyOfFire
+  - Carlos Mondragon
+  - David Charte
+  - Emmanuel
+  - Lothar Wolf
+  - Pablo de la Concepción Sanz
+- **Swedish**
+  - ButterflyOfFire
+  - Elias Mårtenson
+  - Isak Holmström
+  - Shellkr
+  - Stefan Midjich
+  - Tim Stahel
+- **Telugu**
+  - ButterflyOfFire
+  - Joseph Nuthalapati
+  - Ranjith Tellakula
+  - avndp
+- **Thai**
+  - ButterflyOfFire
+- **Turkish**
+  - ButterflyOfFire
+- **Ukrainian**
+  - ButterflyOfFire
+  - Ivan Verchenko
+  - alexcleac
+- **Welsh**
+  - ButterflyOfFire
+  - Jaz-Michael King
+  - Kevin Beynon
+  - Owain Rhys Lewis
+  - Renato "Lond" Cerqueira
+  - Rhoslyn Prys
+  - carl morris
+- **Armenian**
+  - ButterflyOfFire
+- **Latvian**
+  - ButterflyOfFire
+- **Tamil**
+  - ButterflyOfFire
+  - Prasanna Venkadesh

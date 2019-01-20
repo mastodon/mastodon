@@ -88,6 +88,7 @@ ar:
   admin:
     account_actions:
       action: تنفيذ الاجراء
+      title: اتخاذ إجراء إشراف على %{acct}
     account_moderation_notes:
       create: إترك ملاحظة
       created_msg: تم إنشاء ملاحظة الإشراف بنجاح !
@@ -107,6 +108,7 @@ ar:
       confirm: تأكيد
       confirmed: مؤكَّد
       confirming: التأكد
+      deleted: تمت إزالته
       demote: إنزال الرُتبة الوظيفية
       disable: تعطيل
       disable_two_factor_authentication: تعطيل المصادقة بخطوتين
@@ -124,7 +126,9 @@ ar:
       follows: يتابع
       header: الرأسية
       inbox_url: رابط صندوق الوارد
+      invited_by: تمت دعوته مِن طرف
       ip: عنوان الإيبي
+      joined: انضم
       location:
         all: الكل
         local: المحلي
@@ -184,6 +188,7 @@ ar:
       undo_suspension: إلغاء تعليق الحساب
       unsubscribe: إلغاء الاشتراك
       username: إسم المستخدم
+      warn: تحذير
       web: الويب
     action_logs:
       actions:
@@ -282,6 +287,9 @@ ar:
       reject_media: رفض ملفات الوسائط
       reject_media_hint: يزيل ملفات الوسائط المخزنة محليًا ويرفض تنزيل أي ملفات في المستقبل. غير ذي صلة للتعليق
       reject_reports: رفض التقارير
+      severity:
+        silence: تم كتمه
+        suspend: تم تعليقه
       show:
         affected_accounts:
           few: "%{count} حسابات معنية في قاعدة البيانات"
@@ -308,8 +316,24 @@ ar:
       title: القائمة السوداء للبريد الإلكتروني
     followers:
       back_to_account: العودة إلى الحساب
+      title: "%{acct} مُتابِعون"
     instances:
+      known_accounts:
+        few: "%{count} حسابات معروفة"
+        many: "%{count} حسابات معروفة"
+        one: حساب معروف %{count}
+        other: "%{count} حسابات معروفة"
+        two: "%{count} حسابات معروفة"
+        zero: "%{count} حسابات معروفة"
+      moderation:
+        all: كافتها
+        title: الإشراف
       title: الفديرالية
+      total_blocked_by_us: المحجوبة مِن طرفنا
+      total_followed_by_them: يُتابِعونها
+      total_followed_by_us: التي نُتابِعها
+      total_reported: تقارير عنهم
+      total_storage: الوسائط المُرفَقة
     invites:
       deactivate_all: تعطيلها كافة
       filter:
@@ -541,6 +565,7 @@ ar:
     warning_title: توافر المحتوى المنشور و المبعثَر
   directories:
     directory: سِجلّ الحسابات
+    enabled: إنّ حسابك الآن ضمن فهرس المستخدِمين.
     explanation: استكشف مستخدِمين آخرين حسب المواضيع التي تهمهم
     explore_mastodon: استكشف %{title}
     people:
@@ -573,6 +598,7 @@ ar:
     blocks: قمت بحظر
     csv: CSV
     follows: أنت تتبع
+    lists: القوائم
     mutes: قُمتَ بكتم
     storage: ذاكرة التخزين
   filters:
@@ -669,11 +695,17 @@ ar:
       action: معاينة كافة الإشعارات
       body: هذا هو مُلَخَّص الرسائل التي فاتتك وذلك منذ آخر زيارة لك في  %{since}
       mention: "%{name} أشار إليك في :"
-      new_followers_summary: رائع، لقد قام بمتابعتك %{count} مُتابِعون جُدد أثناء فترة غيابك عن ماستدون !
+      new_followers_summary:
+        few: رائع، لقد قام بمتابَعتك %{count} مُتابِعون جُدد أثناء فترة غيابك عن ماستدون!
+        many: رائع، لقد قام بمتابَعتك %{count} مُتابِعون جُدد أثناء فترة غيابك عن ماستدون!
+        one: و لقد تحصّلتَ كذلك على مُتابِع آخَر بينما كنتَ غائبًا! هذا شيء رائع!
+        other: رائع، لقد قام بمتابَعتك %{count} مُتابِعون جُدد أثناء فترة غيابك عن ماستدون!
+        two: رائع، لقد قام بمتابَعتك %{count} مُتابِعون جُدد أثناء فترة غيابك عن ماستدون!
+        zero: رائع، لقد قام بمتابَعتك %{count} مُتابِعون جُدد أثناء فترة غيابك عن ماستدون!
       subject:
         few: "%{count} إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
         many: "%{count} إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
-        one: "إشعار واحد منذ آخر زيارة لك لـ \U0001F418"
+        one: "إشعار واحد 1 منذ آخر زيارة لك لـ \U0001F418"
         other: "%{count} إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
         two: "إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
         zero: "إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"

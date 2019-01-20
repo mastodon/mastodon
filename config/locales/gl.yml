@@ -106,7 +106,6 @@ gl:
       enabled: Habilitado
       feed_url: URL fonte
       followers: Seguidoras
-      followers_local: "(local %{local})"
       followers_url: URL das seguidoras
       follows: Segue
       header: Cabeceira
@@ -554,8 +553,11 @@ gl:
     warning_title: Dispoñibilidade do contido espallado
   directories:
     directory: Directorio de perfil
+    enabled: Vostede está actualmente na lista do directorio.
+    enabled_but_waiting: Vostede optou por ser incluída no directorio, mais por agora non ten o número mínimo de seguidoras (%{min_followers}) para aparecer.
     explanation: Descubra usuarias según o seu interese
     explore_mastodon: Explorar %{title}
+    how_to_enable: Actualmente non solicitou ser incluída no directorio, pode facelo abaixo. Utilice etiquetas no texto de biografía para ser incluída baixo etiquetas específicas!
     people:
       one: "%{count} persoa"
       other: "%{count} persoas"
