@@ -5,6 +5,9 @@ namespace :repo do
   task :authors do
     file = File.open(Rails.root.join('AUTHORS.md'), 'w')
     file << <<~HEADER
+      Authors
+      =======
+
       Mastodon is available on [GitHub](https://github.com/tootsuite/mastodon)
       and provided thanks to the work of the following contributors:
 

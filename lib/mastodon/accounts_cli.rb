@@ -176,7 +176,7 @@ module Mastodon
       end
 
       say("Deleting user with #{account.statuses_count} statuses, this might take a while...")
-      SuspendAccountService.new.call(account, remove_user: true)
+      SuspendAccountService.new.call(account, including_user: true)
       say('OK', :green)
     end
 

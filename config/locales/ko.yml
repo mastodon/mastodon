@@ -106,7 +106,6 @@ ko:
       enabled: 활성
       feed_url: 피드 URL
       followers: 팔로워 수
-      followers_local: "(%{local} 로컬)"
       followers_url: 팔로워 URL
       follows: 팔로잉 수
       header: 헤더
@@ -556,8 +555,11 @@ ko:
     warning_title: 공유된 컨텐츠에 대해서
   directories:
     directory: 프로필 디렉토리
+    enabled: 당신은 디렉터리에 표시 되고 있습니다.
+    enabled_but_waiting: 디렉터리에 표시 되기 위해서는 수동으로 참여해야 합니다, 하지만 디렉터리에 표시 되기 위한 최소 팔로워(%{min_followers})수에 미치지 못했습니다.
     explanation: 관심사에 대한 유저들을 발견합니다
     explore_mastodon: "%{title} 탐사하기"
+    how_to_enable: 아직 디렉터리에 참여하지 않았습니다. 아래에서 참여할 수 있습니다. 바이오 텍스트에 해시태그를 사용해 특정 해시태그 디렉터리에 표시 될 수 있습니다!
     people:
       one: "%{count}명"
       other: "%{count}명"

@@ -110,7 +110,6 @@ cs:
       enabled: Povoleno
       feed_url: URL proudu
       followers: Sledovatelé
-      followers_local: "(%{local} místních)"
       followers_url: URL sledovatelů
       follows: Sledovaní
       header: Hlavička
@@ -560,8 +559,11 @@ cs:
     warning_title: Dostupnost rozšířeného obsahu
   directories:
     directory: Adresář profilů
+    enabled: Aktuálně jste v adresáři uveden/a.
+    enabled_but_waiting: Přihlásil/a jste se k uvedení v adresáři, ale ještě nemáte minimální počet sledovatelů (%{min_followers}) pro uvedení.
     explanation: Objevujte uživatele podle jejich zájmů
     explore_mastodon: Prozkoumejte %{title}
+    how_to_enable: Aktuálně nejste přihlášen/a do adresáře. Přihlásit se můžete níže. Použijte ve svém popisu profilu hashtagy, abyste mohl/a být uveden/a pod konkrétními hashtagy!
     people:
       few: "%{count} lidé"
       one: "%{count} člověk"

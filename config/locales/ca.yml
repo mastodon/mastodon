@@ -106,7 +106,6 @@ ca:
       enabled: Habilitat
       feed_url: URL del canal
       followers: Seguidors
-      followers_local: "(%{local} locals)"
       followers_url: URL dels seguidors
       follows: Segueix
       header: Capçalera
@@ -554,8 +553,11 @@ ca:
     warning_title: Disponibilitat de contingut disseminat
   directories:
     directory: Directori de perfils
+    enabled: Actualment estàs inclòs al directori.
+    enabled_but_waiting: Has optat per aparèixer al directori però encara no tens el nombre mínim de seguidors (%{min_followers}) per ser-hi.
     explanation: Descobreix usuaris segons els seus interessos
     explore_mastodon: Explora %{title}
+    how_to_enable: Actualment no tens activat ser al directori. Pots optar-hi a continuació. Utilitza etiquetes en el teu text bio per incloure't sota etiquetes especifiques!
     people:
       one: "%{count} persona"
       other: "%{count} gent"
