@@ -22,6 +22,7 @@ class PostStatusService < BaseService
     @options     = options
     @text        = @options[:text] || ''
     @in_reply_to = @options[:thread]
+    @options.delete(:application) unless @account.user&.setting_show_application
 
     return idempotency_duplicate if idempotency_given? && idempotency_duplicate?
 
