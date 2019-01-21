@@ -190,6 +190,13 @@ class StatusActionBar extends ImmutablePureComponent {
       }
     }
 
+    let replyIcon;
+    if (status.get('in_reply_to_id', null) === null) {
+      replyIcon = 'reply';
+    } else {
+      replyIcon = 'reply-all';
+    }
+    
     if (status.get('visibility') === 'direct') {
       reblogIcon = 'envelope';
     } else if (status.get('visibility') === 'private') {
