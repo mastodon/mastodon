@@ -106,7 +106,6 @@ oc:
       enabled: Activat
       feed_url: Flux URL
       followers: Seguidors
-      followers_local: "(%{local} local)"
       followers_url: URL dels seguidors
       follows: Abonaments
       header: Bandièra
@@ -610,8 +609,11 @@ oc:
     warning_title: Disponibilitat del contengut difusat
   directories:
     directory: Annuari de perfils
+    enabled: Sètz actualament listat dins l'annuari.
+    enabled_but_waiting: Avètz causit d'èsser listat dins l'annuari mas avètz pas encara lo nombre minimum de seguidors (%{min_followers}) per i èsser listat.
     explanation: Trobar d’utilizaires segon lor interèsses
     explore_mastodon: Explorar %{title}
+    how_to_enable: Sètz pas actualament listat dins l’annuari. Podètz cambiar aquò çai-jos. Utilizatz d'etiquetas dins vòstre tèxt de bio per èsser listat amb d’etiquetas especificas !
     people:
       one: "%{count} persona"
       other: "%{count} personas"

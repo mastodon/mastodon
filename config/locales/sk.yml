@@ -110,7 +110,6 @@ sk:
       enabled: Povolený
       feed_url: URL časovej osi
       followers: Sledujúci
-      followers_local: "(%{local} local)"
       followers_url: URL sledujúcich
       follows: Sledovania
       header: Hlavička
@@ -560,8 +559,11 @@ sk:
     warning_title: Dostupnosť rozšírovaného obsahu
   directories:
     directory: Katalóg profilov
+    enabled: Momentálne si uvedený/á na zozname profilov.
+    enabled_but_waiting: Vyjadril/a si záujem o uvedenie na zozname profilov, lenže ešte nemáš minimálny vyžadovaný počet následovateľov (%{min_followers}), aby si tam bol/a uveden/á.
     explanation: Pátraj po užívateľoch podľa ich záujmov
     explore_mastodon: Prebádaj %{title}
+    how_to_enable: Momentálne niesi zaradený/á do verejnej profilovej databázy. Prihlásiť sa môžeš nižšie. Použi haštagy vo svojom biografickom popise na profile, ak chceš byť uvedený/á aj pod konkrétnými haštagmi!
     people:
       few: "%{count} ľudia"
       one: "%{count} človek"
