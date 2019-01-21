@@ -17,7 +17,7 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
       uri: @json['id'],
       created_at: @json['published'],
       override_timestamps: @options[:override_timestamps],
-      visibility: original_status.visibility
+      visibility: visibility_from_audience
     )
 
     distribute(status)
@@ -25,6 +25,18 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
   end
 
   private
+
+  def visibility_from_audience
+    if equals_or_includes?(@json['to'], ActivityPub::TagManager::COLLECTIONS[:public])
+      :public
+    elsif equals_or_includes?(@json['cc'], ActivityPub::TagManager::COLLECTIONS[:public])
+      :unlisted
+    elsif equals_or_includes?(@json['to'], @account.followers_url)
+      :private
+    else
+      :direct
+    end
+  end
 
   def announceable?(status)
     status.account_id == @account.id || status.public_visibility? || status.unlisted_visibility?

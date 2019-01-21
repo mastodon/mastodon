@@ -6,8 +6,6 @@ class Form::StatusBatch
 
   attr_accessor :status_ids, :action, :current_account
 
-  ACTION_TYPE = %w(nsfw_on nsfw_off delete).freeze
-
   def save
     case action
     when 'nsfw_on', 'nsfw_off'

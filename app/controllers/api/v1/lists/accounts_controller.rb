@@ -37,9 +37,9 @@ class Api::V1::Lists::AccountsController < Api::BaseController
 
   def load_accounts
     if unlimited?
-      @list.accounts.all
+      @list.accounts.includes(:account_stat).all
     else
-      @list.accounts.paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
+      @list.accounts.includes(:account_stat).paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
     end
   end
 

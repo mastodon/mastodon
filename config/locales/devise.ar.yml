@@ -18,6 +18,7 @@ ar:
     mailer:
       confirmation_instructions:
         action: للتحقق من عنوان البريد الإلكتروني
+        action_with_app: تأكيد ثم العودة إلى %{app}
         explanation: لقد قمت بإنشاء حساب على %{host} بواسطة عنوان البريد الإلكتروني الحالي. إنك على بعد خطوات قليلة من تفعليه. إن لم تكن من طلب ذلك، يرجى ألّا تولي إهتماما بهذه الرسالة.
         extra_html: ندعوك إلى الإطلاع على <a href="%{terms_path}">القواعد الخاصة بمثيل الخادوم هذا</a> and <a href="%{policy_path}">و شروط الخدمة الخاصة بنا</a>.
         subject: 'ماستدون : تعليمات التأكيد لمثيل الخادوم  %{instance}'
@@ -77,4 +78,10 @@ ar:
       expired: إنتهت مدة صلاحيته، الرجاء طلب واحد جديد
       not_found: لا يوجد
       not_locked: ليس مقفلاً
-      not_saved: "%{count} أخطاء منعت %{resource} مِن القيام بالإحتفاظ :"
+      not_saved:
+        few: "%{count} أخطاء منعت هذا %{resource} من الحفظ:"
+        many: "%{count} أخطاء منعت هذا %{resource} من الحفظ:"
+        one: 'خطأ واحد منع هذا %{resource} من الحفظ:'
+        other: "%{count} أخطاء منعت هذا %{resource} من الحفظ:"
+        two: 'أخطاء منعت هذا %{resource} من الحفظ:'
+        zero: 'أخطاء منعت هذا %{resource} من الحفظ:'

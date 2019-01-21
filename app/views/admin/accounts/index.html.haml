@@ -5,41 +5,19 @@
   .filter-subset
     %strong= t('admin.accounts.location.title')
     %ul
-      %li= filter_link_to t('admin.accounts.location.all'), local: nil, remote: nil
-      %li
-        - if selected? local: '1', remote: nil
-          = filter_link_to t('admin.accounts.location.local'), {local: nil, remote: nil}, {local: '1', remote: nil}
-        - else
-          = filter_link_to t('admin.accounts.location.local'), local: '1', remote: nil
-      %li
-        - if selected? remote: '1', local: nil
-          = filter_link_to t('admin.accounts.location.remote'), {remote: nil, local: nil}, {remote: '1', local: nil}
-        - else
-          = filter_link_to t('admin.accounts.location.remote'), remote: '1', local: nil
+      %li= filter_link_to t('admin.accounts.location.local'), remote: nil
+      %li= filter_link_to t('admin.accounts.location.remote'), remote: '1'
   .filter-subset
     %strong= t('admin.accounts.moderation.title')
     %ul
-      %li= filter_link_to t('admin.accounts.moderation.all'), silenced: nil, suspended: nil
-      %li
-        - if selected? silenced: '1'
-          = filter_link_to t('admin.accounts.moderation.silenced'), {silenced: nil}, {silenced: '1'}
-        - else
-          = filter_link_to t('admin.accounts.moderation.silenced'), silenced: '1'
-      %li
-        - if selected? suspended: '1'
-          = filter_link_to t('admin.accounts.moderation.suspended'), {suspended: nil}, {suspended: '1'}
-        - else
-          = filter_link_to t('admin.accounts.moderation.suspended'), suspended: '1'
+      %li= filter_link_to t('admin.accounts.moderation.active'), silenced: nil, suspended: nil
+      %li= filter_link_to t('admin.accounts.moderation.silenced'), silenced: '1', suspended: nil
+      %li= filter_link_to t('admin.accounts.moderation.suspended'), suspended: '1', silenced: nil
   .filter-subset
     %strong= t('admin.accounts.role')
     %ul
       %li= filter_link_to t('admin.accounts.moderation.all'), staff: nil
       %li= filter_link_to t('admin.accounts.roles.staff'), staff: '1'
-  .filter-subset
-    %strong= t('admin.accounts.order.title')
-    %ul
-      %li= filter_link_to t('admin.accounts.order.most_recent'), alphabetic: nil
-      %li= filter_link_to t('admin.accounts.order.alphabetic'), alphabetic: '1'
 
 = form_tag admin_accounts_url, method: 'GET', class: 'simple_form' do
   .fields-group
@@ -60,8 +38,9 @@
     %thead
       %tr
         %th= t('admin.accounts.username')
-        %th= t('admin.accounts.domain')
-        %th
+        %th= t('admin.accounts.role')
+        %th= t('admin.accounts.most_recent_ip')
+        %th= t('admin.accounts.most_recent_activity')
         %th
     %tbody
       = render @accounts

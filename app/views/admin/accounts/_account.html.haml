@@ -1,18 +1,18 @@
 %tr
-  %td.username
-    = account.username
   %td
-    - unless account.local?
-      = link_to account.domain, admin_accounts_path(by_domain: account.domain)
+    = admin_account_link_to(account)
   %td
-    - if account.local?
-      - if account.user.nil?
-        = t("admin.accounts.moderation.suspended")
-      - else
-        = t("admin.accounts.roles.#{account.user.role}")
+    %div{ style: 'margin: -2px 0' }= account_badge(account, all: true)
+  %td
+    - if account.user_current_sign_in_ip
+      %samp= account.user_current_sign_in_ip
     - else
-      = account.protocol.humanize
+      \-
+  %td
+    - if account.user_current_sign_in_at
+      %time.time-ago{ datetime: account.user_current_sign_in_at.iso8601, title: l(account.user_current_sign_in_at) }= l account.user_current_sign_in_at
+    - else
+      \-
   %td
     = table_link_to 'circle', t('admin.accounts.web'), web_path("accounts/#{account.id}")
     = table_link_to 'globe', t('admin.accounts.public'), TagManager.instance.url_for(account)
-    = table_link_to 'pencil', t('admin.accounts.edit'), admin_account_path(account.id)

@@ -38,7 +38,7 @@ export const expandConversations = ({ maxId } = {}) => (dispatch, getState) => {
   const params = { max_id: maxId };
 
   if (!maxId) {
-    params.since_id = getState().getIn(['conversations', 0, 'last_status']);
+    params.since_id = getState().getIn(['conversations', 'items', 0, 'last_status']);
   }
 
   api(getState).get('/api/v1/conversations', { params })

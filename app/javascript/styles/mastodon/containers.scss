@@ -311,6 +311,12 @@ $small-breakpoint: 960px;
         text-decoration: underline;
         color: $primary-text-color;
       }
+
+      @media screen and (max-width: 550px) {
+        &.optional {
+          display: none;
+        }
+      }
     }
 
     .nav-button {

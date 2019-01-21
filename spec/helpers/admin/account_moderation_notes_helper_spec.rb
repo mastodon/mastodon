@@ -1,15 +1,55 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the Admin::AccountModerationNotesHelper. For example:
-#
-# describe Admin::AccountModerationNotesHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe Admin::AccountModerationNotesHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  include StreamEntriesHelper
+
+  describe '#admin_account_link_to' do
+    context 'account is nil' do
+      let(:account) { nil }
+
+      it 'returns nil' do
+        expect(helper.admin_account_link_to(account)).to be_nil
+      end
+    end
+
+    context 'with account' do
+      let(:account) { Fabricate(:account) }
+
+      it 'calls #link_to' do
+        expect(helper).to receive(:link_to).with(
+          admin_account_path(account.id),
+          class: name_tag_classes(account),
+          title: account.acct
+        )
+
+        helper.admin_account_link_to(account)
+      end
+    end
+  end
+
+  describe '#admin_account_inline_link_to' do
+    context 'account is nil' do
+      let(:account) { nil }
+
+      it 'returns nil' do
+        expect(helper.admin_account_inline_link_to(account)).to be_nil
+      end
+    end
+
+    context 'with account' do
+      let(:account) { Fabricate(:account) }
+
+      it 'calls #link_to' do
+        expect(helper).to receive(:link_to).with(
+          admin_account_path(account.id),
+          class: name_tag_classes(account, true),
+          title: account.acct
+        )
+
+        helper.admin_account_inline_link_to(account)
+      end
+    end
+  end
 end

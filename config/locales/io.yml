@@ -44,10 +44,6 @@ io:
       most_recent_activity: Most recent activity
       most_recent_ip: Most recent IP
       not_subscribed: Not subscribed
-      order:
-        alphabetic: Alphabetic
-        most_recent: Most recent
-        title: Order
       perform_full_suspension: Perform full suspension
       profile_url: Profile URL
       public: Public
@@ -56,7 +52,6 @@ io:
       salmon_url: Salmon URL
       show:
         created_reports: Reports created by this account
-        report: report
         targeted_reports: Reports made about this account
       silence: Silence
       statuses: Statuses
@@ -80,10 +75,6 @@ io:
         title: New domain block
       reject_media: Reject media files
       reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
-      severities:
-        silence: Silence
-        suspend: Suspend
-      severity: Severity
       show:
         affected_accounts:
           one: One account in the database affected
@@ -93,11 +84,8 @@ io:
           suspend: Unsuspend all existing accounts from this domain
         title: Undo domain block for %{domain}
         undo: Undo
-      title: Domain Blocks
       undo: Undo
     instances:
-      account_count: Known accounts
-      domain_name: Domain
       title: Known Instances
     reports:
       comment:
@@ -201,7 +189,7 @@ io:
       too_many: Cannot attach more than 4 files
   notification_mailer:
     digest:
-      body: 'Yen mikra rezumo di to, depos ke tu laste vizitis en %{since}:'
+      body: Yen mikra rezumo di to, depos ke tu laste vizitis en %{since}
       mention: "%{name} mencionis tu en:"
       new_followers_summary:
         one: Tu obtenis nova sequanto! Yey!

@@ -66,6 +66,18 @@ class Request
     (@account ? @headers.merge('Signature' => signature) : @headers).without(REQUEST_TARGET)
   end
 
+  class << self
+    def valid_url?(url)
+      begin
+        parsed_url = Addressable::URI.parse(url)
+      rescue Addressable::URI::InvalidURIError
+        return false
+      end
+
+      %w(http https).include?(parsed_url.scheme) && parsed_url.host.present?
+    end
+  end
+
   private
 
   def set_common_headers!
