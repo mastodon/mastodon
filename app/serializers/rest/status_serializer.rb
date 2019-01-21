@@ -14,7 +14,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attribute :local_only if :local?
 
   belongs_to :reblog, serializer: REST::StatusSerializer
-  belongs_to :application
+  belongs_to :application, if: :user_shows_application?
   belongs_to :account, serializer: REST::AccountSerializer
 
   has_many :media_attachments, serializer: REST::MediaAttachmentSerializer
@@ -38,6 +38,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
 
   def current_user?
     !current_user.nil?
+  end
+
+  def user_shows_application?
+    object.account.user_shows_application?
   end
 
   def visibility
