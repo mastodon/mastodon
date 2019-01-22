@@ -2,12 +2,12 @@
 en:
   about:
     about_hashtag_html: These are public toots tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
-    about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
+    about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like email.
     about_this: About
     administered_by: 'Administered by:'
     api: API
     apps: Mobile apps
-    closed_registrations: Registrations are currently closed on this instance. However! You can find a different instance to make an account on and get access to the very same network from there.
+    closed_registrations: Registrations are currently closed on this instance. However! You can register on a different instance to and get access to the very same network from there.
     contact: Contact
     contact_missing: Not set
     contact_unavailable: N/A
@@ -25,14 +25,14 @@ en:
       within_reach_body: Multiple apps for iOS, Android, and other platforms thanks to a developer-friendly API ecosystem allow you to keep up with your friends anywhere.
       within_reach_title: Always within reach
     generic_description: "%{domain} is one server in the network"
-    hosted_on: Mastodon hosted on %{domain}
+    hosted_on: This Mastodon instance hosted by %{domain}
     learn_more: Learn more
     other_instances: Instance list
     privacy_policy: Privacy policy
     source_code: Source code
     status_count_after:
-      one: status
-      other: statuses
+      one: toot
+      other: toots
     status_count_before: Who authored
     terms: Terms of service
     user_count_after:
@@ -54,16 +54,16 @@ en:
     moved_html: "%{name} has moved to %{new_profile_link}:"
     network_hidden: This information is not available
     nothing_here: There is nothing here!
-    people_followed_by: People whom %{name} follows
+    people_followed_by: People who %{name} follows
     people_who_follow: People who follow %{name}
     pin_errors:
-      following: You must be already following the person you want to endorse
+      following: You must be following the person you want to endorse
     posts:
       one: Toot
       other: Toots
     posts_tab_heading: Toots
     posts_with_replies: Toots and replies
-    reserved_username: The username is reserved
+    reserved_username: That username is reserved
     roles:
       admin: Admin
       bot: Bot
@@ -74,10 +74,10 @@ en:
       action: Perform action
       title: Perform moderation action on %{acct}
     account_moderation_notes:
-      create: Leave note
-      created_msg: Moderation note successfully created!
-      delete: Delete
-      destroyed_msg: Moderation note successfully destroyed!
+      create: Add note
+      created_msg: Moderation note added!
+      delete: Delete note
+      destroyed_msg: Moderation note deleted!
     accounts:
       are_you_sure: Are you sure?
       avatar: Avatar
@@ -145,7 +145,7 @@ en:
       resend_confirmation:
         already_confirmed: This user is already confirmed
         send: Resend confirmation email
-        success: Confirmation email successfully sent!
+        success: Confirmation email sent!
       reset: Reset
       reset_password: Reset password
       resubscribe: Resubscribe
@@ -163,7 +163,7 @@ en:
         targeted_reports: Reported by others
       silence: Silence
       silenced: Silenced
-      statuses: Statuses
+      statuses: Toots
       subscribe: Subscribe
       suspended: Suspended
       title: Accounts
@@ -177,17 +177,17 @@ en:
     action_logs:
       actions:
         assigned_to_self_report: "%{name} assigned report %{target} to themselves"
-        change_email_user: "%{name} changed the e-mail address of user %{target}"
-        confirm_user: "%{name} confirmed e-mail address of user %{target}"
+        change_email_user: "%{name} changed the email address of user %{target}"
+        confirm_user: "%{name} confirmed email address of user %{target}"
         create_account_warning: "%{name} sent a warning to %{target}"
         create_custom_emoji: "%{name} uploaded new emoji %{target}"
         create_domain_block: "%{name} blocked domain %{target}"
-        create_email_domain_block: "%{name} blacklisted e-mail domain %{target}"
+        create_email_domain_block: "%{name} blacklisted email domain %{target}"
         demote_user: "%{name} demoted user %{target}"
         destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_block: "%{name} unblocked domain %{target}"
-        destroy_email_domain_block: "%{name} whitelisted e-mail domain %{target}"
-        destroy_status: "%{name} removed status by %{target}"
+        destroy_email_domain_block: "%{name} whitelisted email domain %{target}"
+        destroy_status: "%{name} removed toot by %{target}"
         disable_2fa_user: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji: "%{name} disabled emoji %{target}"
         disable_user: "%{name} disabled login for user %{target}"
@@ -205,22 +205,22 @@ en:
         unsilence_account: "%{name} unsilenced %{target}'s account"
         unsuspend_account: "%{name} unsuspended %{target}'s account"
         update_custom_emoji: "%{name} updated emoji %{target}"
-        update_status: "%{name} updated status by %{target}"
-      deleted_status: "(deleted status)"
+        update_status: "%{name} updated toot by %{target}"
+      deleted_status: "(deleted toot)"
       title: Audit log
     custom_emojis:
       by_domain: Domain
       copied_msg: Successfully created local copy of the emoji
       copy: Copy
-      copy_failed_msg: Could not make a local copy of that emoji
-      created_msg: Emoji successfully created!
+      copy_failed_msg: Could not make a local copy of the emoji
+      created_msg: Emoji added!
       delete: Delete
-      destroyed_msg: Emojo successfully destroyed!
+      destroyed_msg: Emoji deleted!
       disable: Disable
-      disabled_msg: Successfully disabled that emoji
+      disabled_msg: Successfully disabled the emoji
       emoji: Emoji
       enable: Enable
-      enabled_msg: Successfully enabled that emoji
+      enabled_msg: Successfully enabled the emoji
       image_hint: PNG up to 50KB
       listed: Listed
       new:
@@ -230,15 +230,15 @@ en:
       shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
       title: Custom emojis
       unlisted: Unlisted
-      update_failed_msg: Could not update that emoji
-      updated_msg: Emoji successfully updated!
+      update_failed_msg: Could not update the emoji
+      updated_msg: Emoji updated!
       upload: Upload
     dashboard:
       backlog: backlogged jobs
       config: Configuration
       feature_deletions: Account deletions
       feature_invites: Invite links
-      feature_profile_directory: Profile directory
+      feature_profile_directory: Profile Directory
       feature_registrations: Registrations
       feature_relay: Federation relay
       features: Features
@@ -290,14 +290,14 @@ en:
       undo: Undo domain block
     email_domain_blocks:
       add_new: Add new
-      created_msg: Successfully added e-mail domain to blacklist
+      created_msg: Successfully added email domain to blacklist
       delete: Delete
-      destroyed_msg: Successfully deleted e-mail domain from blacklist
+      destroyed_msg: Successfully removed email domain from blacklist
       domain: Domain
       new:
         create: Add domain
-        title: New e-mail blacklist entry
-      title: E-mail blacklist
+        title: New email blacklist entry
+      title: Email blacklist
     followers:
       back_to_account: Back To Account
       title: "%{acct}'s Followers"
@@ -336,12 +336,12 @@ en:
       inbox_url: Relay URL
       pending: Waiting for relay's approval
       save_and_enable: Save and enable
-      setup: Setup a relay connection
+      setup: Set up a relay connection
       status: Status
       title: Relays
     report_notes:
-      created_msg: Report note successfully created!
-      destroyed_msg: Report note successfully deleted!
+      created_msg: Report note added!
+      destroyed_msg: Report note deleted!
     reports:
       account:
         note: note
@@ -360,13 +360,13 @@ en:
         create_and_resolve: Resolve with note
         create_and_unresolve: Reopen with note
         delete: Delete
-        placeholder: Describe what actions have been taken, or any other related updates...
+        placeholder: Describe what actions have been taken, or any other related updates.
       reopen: Reopen report
       report: 'Report #%{id}'
       reported_account: Reported account
       reported_by: Reported by
       resolved: Resolved
-      resolved_msg: Report successfully resolved!
+      resolved_msg: Report resolved!
       status: Status
       title: Reports
       unassign: Unassign
@@ -374,16 +374,16 @@ en:
       updated_at: Updated
     settings:
       activity_api_enabled:
-        desc_html: Counts of locally posted statuses, active users, and new registrations in weekly buckets
+        desc_html: Counts of locally posted toots, active users, and new registrations in weekly buckets
         title: Publish aggregate statistics about user activity
       bootstrap_timeline_accounts:
-        desc_html: Separate multiple usernames by comma. Only local and unlocked accounts will work. Default when empty is all local admins.
+        desc_html: Separate multiple usernames by comma. Only local, unlocked accounts will work. Default if empty is all local admins.
         title: Default follows for new users
       contact_information:
-        email: Business e-mail
+        email: Business email
         username: Contact username
       custom_css:
-        desc_html: Modify the look with CSS loaded on every page
+        desc_html: Modify the CSS loaded on every page
         title: Custom CSS
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to instance thumbnail
@@ -402,7 +402,7 @@ en:
         title: Enable profile directory
       registrations:
         closed_message:
-          desc_html: Displayed on frontpage when registrations are closed. You can use HTML tags
+          desc_html: Displayed on frontpage when registrations are closed. HTML allowed
           title: Closed registration message
         deletion:
           desc_html: Allow anyone to delete their account
@@ -414,7 +414,7 @@ en:
           desc_html: Allow anyone to create an account
           title: Open registration
       show_known_fediverse_at_about_page:
-        desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show local toots.
+        desc_html: When toggled, preview will show toots from the known fediverse. Otherwise it will only show local toots.
         title: Show known fediverse on timeline preview
       show_staff_badge:
         desc_html: Show a staff badge on a user page
@@ -429,8 +429,8 @@ en:
         desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph. If empty, defaults to instance description.
         title: Short instance description
       site_terms:
-        desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML tags
-        title: Custom terms of service
+        desc_html: You can write your own privacy policy, terms of service or other legalese. HTML is allowed
+        title: Custom Terms of Service
       site_title: Instance name
       thumbnail:
         desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
@@ -480,9 +480,9 @@ en:
       body_remote: Someone from %{domain} has reported %{target}
       subject: New report for %{instance} (#%{id})
   application_mailer:
-    notification_preferences: Change e-mail preferences
+    notification_preferences: Change email preferences
     salutation: "%{name},"
-    settings: 'Change e-mail preferences: %{link}'
+    settings: 'Change email preferences: %{link}'
     view: 'View:'
     view_profile: View Profile
     view_status: View status
@@ -504,7 +504,7 @@ en:
     forgot_password: Forgot your password?
     invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
     login: Log in
-    logout: Logout
+    logout: Log out
     migrate_account: Move to a different account
     migrate_account_html: If you wish to redirect this account to a different one, you can <a href="%{path}">configure it here</a>.
     or: or
@@ -552,12 +552,12 @@ en:
     warning_html: Only deletion of content from this particular instance is guaranteed. Content that has been widely shared is likely to leave traces. Offline servers and servers that have unsubscribed from your updates will not update their databases.
     warning_title: Disseminated content availability
   directories:
-    directory: Profile directory
+    directory: Profile Directory
     enabled: You are currently listed in the directory.
-    enabled_but_waiting: You have opted-in to be listed in the directory, but you do not have the minimum number of followers (%{min_followers}) to be listed yet.
+    enabled_but_waiting: You have opted to be listed in the directory, but you do not have the minimum number of followers (%{min_followers}) to be listed yet.
     explanation: Discover users based on their interests
     explore_mastodon: Explore %{title}
-    how_to_enable: You are not currently opted-in to the directory. You can opt-in below. Use hashtags in your bio text to be listed under specific hashtags!
+    how_to_enable: You are not currently opted in to the directory. You can opt in below. Use hashtags in your bio text to be listed under specific hashtags!
     people:
       one: "%{count} person"
       other: "%{count} people"
@@ -606,22 +606,22 @@ en:
       title: Add new filter
   followers:
     domain: Domain
-    explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all instances where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those instances.
+    explanation_html: If you want to ensure the privacy of your toots, you must be aware of who is following you. <strong>Your private statuses are delivered to all instances where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those instances.
     followers_count: Number of followers
     lock_link: Lock your account
     purge: Remove from followers
     success:
       one: In the process of soft-blocking followers from one domain...
       other: In the process of soft-blocking followers from %{count} domains...
-    true_privacy_html: Please mind that <strong>true privacy can only be achieved with end-to-end encryption</strong>.
-    unlocked_warning_html: Anyone can follow you to immediately view your private statuses. %{lock_link} to be able to review and reject followers.
+    true_privacy_html: Please understand that <strong>true privacy can only be achieved with end-to-end encryption</strong>.
+    unlocked_warning_html: Anyone can follow you to immediately view your private toots. %{lock_link} to be able to review and reject followers.
     unlocked_warning_title: Your account is not locked
   footer:
     developers: Developers
     more: More…
     resources: Resources
   generic:
-    changes_saved_msg: Changes successfully saved!
+    changes_saved_msg: Changes saved!
     copy: Copy
     save_changes: Save changes
     validation_errors:
@@ -663,7 +663,7 @@ en:
       limit: You have reached the maximum amount of lists
   media_attachments:
     validations:
-      images_and_video: Cannot attach a video to a status that already contains images
+      images_and_video: Cannot attach a video to a toot that contains images
       too_many: Cannot attach more than 4 files
   migrations:
     acct: username@domain of the new account
@@ -685,8 +685,8 @@ en:
         other: "%{count} new notifications since your last visit \U0001F418"
       title: In your absence...
     favourite:
-      body: 'Your status was favourited by %{name}:'
-      subject: "%{name} favourited your status"
+      body: 'Your toot was favourited by %{name}:'
+      subject: "%{name} favourited your toot"
       title: New favourite
     follow:
       body: "%{name} is now following you!"
@@ -703,8 +703,8 @@ en:
       subject: You were mentioned by %{name}
       title: New mention
     reblog:
-      body: 'Your status was boosted by %{name}:'
-      subject: "%{name} boosted your status"
+      body: 'Your toot was boosted by %{name}:'
+      subject: "%{name} boosted your toot"
       title: New boost
   number:
     human:
@@ -729,7 +729,7 @@ en:
     publishing: Publishing
     web: Web
   remote_follow:
-    acct: Enter your username@domain you want to act from
+    acct: Enter the username@domain you want to use
     missing_resource: Could not find the required redirect URL for your account
     no_account_html: Don't have an account? You can <a href='%{sign_up_path}' target='_blank'>sign up here</a>
     proceed: Proceed to follow
@@ -796,7 +796,7 @@ en:
     title: Sessions
   settings:
     authorized_apps: Authorized apps
-    back: Back to Mastodon
+    back: Back to Timelines
     delete: Account deletion
     development: Development
     edit_profile: Edit profile
@@ -832,15 +832,15 @@ en:
       private: Non-public toot cannot be pinned
       reblog: A boost cannot be pinned
     show_more: Show more
-    sign_in_to_participate: Sign in to participate in the conversation
+    sign_in_to_participate: Sign in to participate
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Followers-only
       private_long: Only show to followers
       public: Public
-      public_long: Everyone can see
+      public_long: Anyone can see
       unlisted: Unlisted
-      unlisted_long: Everyone can see, but not listed on public timelines
+      unlisted_long: Anyone can see, but not listed on public timelines
   stream_entries:
     pinned: Pinned toot
     reblogged: boosted
@@ -851,8 +851,8 @@ en:
       <h3 id="collect">What information do we collect?</h3>
 
       <ul>
-        <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
-        <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+        <li><em>Basic account information</em>: If you register on this server you may be asked to enter a username, an email address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+        <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of boosting or favouriting another post is always public.</li>
         <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
         <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
       </ul>
@@ -906,7 +906,7 @@ en:
 
       <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
 
-      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
+      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your email address or password.</p>
 
       <hr class="spacer" />
 
@@ -942,26 +942,26 @@ en:
     disable: Disable
     enable: Enable
     enabled: Two-factor authentication is enabled
-    enabled_success: Two-factor authentication successfully enabled
+    enabled_success: Two-factor authentication enabled!
     generate_recovery_codes: Generate recovery codes
     instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
-    lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
-    manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
+    lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you lose your recovery codes you can regenerate them here. Your old recovery codes will be invalidated.
+    manual_instructions: 'If you cannot scan the QR code and need to enter it manually, here is the plain-text secret:'
     recovery_codes: Backup recovery codes
-    recovery_codes_regenerated: Recovery codes successfully regenerated
-    recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. <strong>Keep the recovery codes safe</strong>. For example, you may print them and store them with other important documents.
+    recovery_codes_regenerated: Recovery codes regenerated!
+    recovery_instructions_html: If you ever lose access to your phone you can use one of the recovery codes below to regain access to your account. <strong>Keep the recovery codes safe</strong>. For example, you may print them and store them with other important documents.
     setup: Set up
     wrong_code: The entered code was invalid! Are server time and device time correct?
   user_mailer:
     backup_ready:
-      explanation: You requested a full backup of your Mastodon account. It's now ready for download!
+      explanation: You requested a full backup of your %{domain} Mastodon account. It's now ready for download!
       subject: Your archive is ready for download
       title: Archive takeout
     warning:
       explanation:
-        disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
-        silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
-        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
+        disable: While your account is frozen your account data remains intact, but you cannot perform any actions until it is unlocked.
+        silence: While your account is limited only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
+        suspend: Your account has been suspended and all of your toots and uploaded media files have been irreversibly removed from this server, and servers where you had followers.
       review_server_policies: Review server policies
       subject:
         disable: Your account %{acct} has been frozen
@@ -974,28 +974,28 @@ en:
         silence: Account limited
         suspend: Account suspended
     welcome:
-      edit_profile_action: Setup profile
-      edit_profile_step: You can customize your profile by uploading an avatar, header, changing your display name and more. If you’d like to review new followers before they’re allowed to follow you, you can lock your account.
+      edit_profile_action: Set up profile
+      edit_profile_step: You can customize your profile by uploading an avatar, a header image, changing your display name and more. If you’d like to manually approve new followers you can lock your account.
       explanation: Here are some tips to get you started
       final_action: Start posting
-      final_step: 'Start posting! Even without followers your public messages may be seen by others, for example on the local timeline and in hashtags. You may want to introduce yourself on the #introductions hashtag.'
+      final_step: 'Start posting! Even without followers your public messages can be seen by others, for example on the local timeline and in hashtags. You may want to introduce yourself on the #introductions hashtag.'
       full_handle: Your full handle
       full_handle_hint: This is what you would tell your friends so they can message or follow you from another instance.
       review_preferences_action: Change preferences
-      review_preferences_step: Make sure to set your preferences, such as which emails you'd like to receive, or what privacy level you’d like your posts to default to. If you don’t have motion sickness, you could choose to enable GIF autoplay.
-      subject: Welcome to Mastodon
-      tip_federated_timeline: The federated timeline is a firehose view of the Mastodon network. But it only includes people your neighbours are subscribed to, so it's not complete.
-      tip_following: You follow your server's admin(s) by default. To find more interesting people, check the local and federated timelines.
+      review_preferences_step: Make sure to set your preferences, such as which emails you'd like to receive, or what privacy level you’d like your posts to default to. If you don’t have motion sickness, you can choose to enable GIF autoplay.
+      subject: Welcome to Mastodon on %{domain}
+      tip_federated_timeline: The federated timeline is a firehose view of the Mastodon network. It only includes people your neighbours are subscribed to, so it's not complete.
+      tip_following: Your account follows your server's admin(s) by default. To find other interesting people, check the local and federated timelines.
       tip_local_timeline: The local timeline is a firehose view of people on %{instance}. These are your immediate neighbours!
-      tip_mobile_webapp: If your mobile browser offers you to add Mastodon to your homescreen, you can receive push notifications. It acts like a native app in many ways!
+      tip_mobile_webapp: If your mobile browser offers to add %{instance} to your homescreen, you can receive push notifications. It acts like a native app in many ways!
       tips: Tips
       title: Welcome aboard, %{name}!
   users:
     follow_limit_reached: You cannot follow more than %{limit} people
-    invalid_email: The e-mail address is invalid
+    invalid_email: The email address is invalid
     invalid_otp_token: Invalid two-factor code
-    otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
-    seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
+    otp_lost_help_html: If you lost access to both, you should get in touch with %{email}
+    seamless_external_login: You are logged in via an external service, so password and email settings are not available.
     signed_in_as: 'Signed in as:'
   verification:
     explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
