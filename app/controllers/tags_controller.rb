@@ -3,6 +3,8 @@
 class TagsController < ApplicationController
   PAGE_SIZE = 20
 
+  layout 'public'
+
   before_action :set_body_classes
   before_action :set_instance_presenter
 
