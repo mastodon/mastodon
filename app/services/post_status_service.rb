@@ -66,7 +66,10 @@ class PostStatusService < BaseService
   end
 
   def schedule_status!
-    if @account.statuses.build(status_attributes).valid?
+    status_for_validation = @account.statuses.build(status_attributes)
+    if status_for_validation.valid?
+      status_for_validation.destroy
+
       # The following transaction block is needed to wrap the UPDATEs to
       # the media attachments when the scheduled status is created
 

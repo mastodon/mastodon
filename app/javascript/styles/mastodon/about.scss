@@ -845,6 +845,18 @@ $small-breakpoint: 960px;
       margin-bottom: 0;
     }
 
+    strong {
+      display: inline;
+      margin: 0;
+      padding: 0;
+      font-weight: 700;
+      background: transparent;
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      color: lighten($darker-text-color, 10%);
+    }
+
     .account {
       border-bottom: 0;
       padding: 0;
