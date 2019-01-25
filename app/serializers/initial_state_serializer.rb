@@ -17,6 +17,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       version: Mastodon::Version.to_s,
       invites_enabled: Setting.min_invite_role == 'user',
       mascot: instance_presenter.mascot&.file&.url,
+      profile_directory: Setting.profile_directory,
     }
 
     if object.current_account
@@ -28,6 +29,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:display_media]   = object.current_account.user.setting_display_media
       store[:expand_spoilers] = object.current_account.user.setting_expand_spoilers
       store[:reduce_motion]   = object.current_account.user.setting_reduce_motion
+      store[:is_staff]        = object.current_account.user.staff?
     end
 
     store

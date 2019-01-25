@@ -18,6 +18,7 @@ sk:
     mailer:
       confirmation_instructions:
         action: Potvŕď emailovú adresu
+        action_with_app: Potvrď a vráť sa na %{app}
         explanation: S touto emailovou adresou si si vytvoril/a účet na %{host}. Si iba jeden klik od jeho aktivácie. Pokiaľ si to ale nebol/a ty, prosím ignoruj tento email.
         extra_html: Prosím pozri sa aj na <a href="%{terms_path}"> pravidlá tohto servera,</a> a <a href="%{policy_path}"> naše užívaťeľské podiemky</a>.
         subject: 'Mastodon: Potvrdzovacie inštrukcie pre %{instance}'
@@ -29,7 +30,7 @@ sk:
         title: Nová emailová adresa
       password_change:
         explanation: Heslo k tvojmu účtu bolo zmenené.
-        extra: Pokiaľ si nezmenil/a svoje heslo, je pravdepodobné že niekto iný získal prístup k tvojmu účtu. Naliehavo preto prosím zmeň svoje heslo, alebo kontaktuj administrátora tohto serveru pokiaľ si vymknutý/á zo svojho účtu.
+        extra: Ak si heslo nezmenil/a, je pravdepodobné že niekto iný získal prístup k tvojmu účtu. Naliehavo preto prosím zmeň svoje heslo, alebo kontaktuj administrátora tohto serveru pokiaľ si vymknutý/á zo svojho účtu.
         subject: 'Mastodon: Heslo bolo zmenené'
         title: Heslo bolo zmenené
       reconfirmation_instructions:
@@ -59,22 +60,22 @@ sk:
       signed_up: Vitaj! Tvoja registrácia bola úspešná.
       signed_up_but_inactive: Registrácia bola úspešná. Avšak, účet ešte nebol aktivovaný, takže ťa nemôžeme prihlásiť.
       signed_up_but_locked: Prihlasovanie úspešné. Avšak tvoj účet je zamknutý, takže ťa nieje možné prihlásiť.
-      signed_up_but_unconfirmed: Správa s odkazom potvrdzujúcim registráciu bola poslaná na váš email. Pre aktváciu účtu, kliknite na daný odkaz.
-      update_needs_confirmation: Účet bol úspešne zmenený ale ešte potrebujeme overiť vašu novú emailovú adresu. Pre overenie prosím kliknite na link v správe ktorú sme vám poslali na email.
-      updated: Váš účet bol úspešne aktualizovaný.
+      signed_up_but_unconfirmed: Správa s odkazom na potvrdenie registrácie bola odoslaná na tvoj email. Pre aktváciu účtu, klikni prosím na daný odkaz. Takisto ale skontroluj aj svoju spam zložku, pokiaľ sa ti zdá, že si tento email nedostal/a.
+      update_needs_confirmation: Účet bol úspešne zmenený ale ešte potrebujeme overiť tvoju novú emailovú adresu. Pre overenie prosím klikni na link v správe ktorú si dostal/a na email. Takisto ale skontroluj aj svoju spam zložku, ak sa ti zdá, že si tento email nedostal/a.
+      updated: Tvoj účet bol úspešne aktualizovaný.
     sessions:
-      already_signed_out: Odhlásenie bolo úspešné.
-      signed_in: Prihlásenie úspešné.
-      signed_out: Odhlásenie úspešné.
+      already_signed_out: Odhlásil/a si sa úspešné.
+      signed_in: Prihlásil/a si sa úspešné.
+      signed_out: Odhlásil/a si sa úspešné.
     unlocks:
-      send_instructions: O niekoľko minút obdržíte email s inštrukciami ako nastaviť nové heslo.
-      send_paranoid_instructions: Ak váš účet existuje, o niekoľko minút obdržíte email s inštrukciami ako ho odomknúť.
-      unlocked: Váš účet bol úspešne odomknutý. Prosím prihláste sa.
+      send_instructions: O niekoľko minút obdržíš email s pokynmi, ako nastaviť nové heslo. Prosím, skontroluj ale aj svoju spam zložku, pokiaľ sa ti zdá, že si tento email nedostal/a.
+      send_paranoid_instructions: Ak tvoj účet existuje, o niekoľko minút obdržíš email s pokynmi ako si ho odomknúť. Prosím, skontroluj ale aj svoju spam zložku, pokiaľ sa ti zdá, že si tento email nedostal/a.
+      unlocked: Tvoj účet bol úspešne odomknutý. Pre pokračovanie sa prosím prihlás.
   errors:
     messages:
-      already_confirmed: bol už potvrdený, skúste sa prihlásiť
-      confirmation_period_expired: musí byť potvrdený do %{period}, prosím požiadajte o nový
-      expired: expiroval, prosím, vyžiadajte si nový
+      already_confirmed: bol už potvrdený, skús sa prihlásiť
+      confirmation_period_expired: musí byť potvrdený do %{period}, prosím požiadaj o nový
+      expired: vypŕšal, prosím, vyžiadaj si nový
       not_found: nenájdený
       not_locked: nebol uzamknutý
       not_saved:

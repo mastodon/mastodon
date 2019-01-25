@@ -116,6 +116,12 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     dispatch(unblockDomain(domain));
   },
 
+  onAddToList(account){
+    dispatch(openModal('LIST_ADDER', {
+      accountId: account.get('id'),
+    }));
+  },
+
 });
 
 export default injectIntl(connect(makeMapStateToProps, mapDispatchToProps)(Header));

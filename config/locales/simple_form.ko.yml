@@ -2,12 +2,20 @@
 ko:
   simple_form:
     hints:
+      account_warning_preset:
+        text: URL, 해시태그, 멘션과 같은 툿 문법을 사용할 수 있습니다
+      admin_account_action:
+        send_email_notification: 유저는 어떤 일이 일어났는 지에 대한 설명을 받게 됩니다
+        text_html: 선택사항. 툿 문법을 사용할 수 있습니다. <a href="%{path}">경고 틀을 추가</a>하여 시간을 절약할 수 있습니다
+        type_html: "<strong>%{acct}</strong>에 대해 취할 행동 선택"
+        warning_preset_id: 선택사항. 틀의 마지막에 임의의 텍스트를 추가 할 수 있습니다
       defaults:
         autofollow: 이 초대를 통해 가입하는 사람은 당신을 자동으로 팔로우 하게 됩니다
         avatar: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 다운스케일 될 것임
         bot: 사람들에게 계정이 사람이 아님을 알립니다
         context: 필터를 적용 할 한 개 이상의 컨텍스트
         digest: 오랫동안 활동하지 않았을 때 받은 멘션들에 대한 요약 받기
+        discoverable_html: <a href="%{path}" target="_blank">디렉토리</a> 는 사람들의 관심사와 활동에 관련 된 계정들을 찾을 수 있게 해 줍니다. 최소 %{min_followers}명의 팔로어가 필요합니다
         email: 당신은 확인 메일을 받게 됩니다
         fields: 당신의 프로파일에 최대 4개까지 표 형식으로 나타낼 수 있습니다
         header: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 다운스케일 됨
@@ -18,6 +26,7 @@ ko:
         password: 최소 8글자
         phrase: 툿 내용이나 CW 내용 안에서 대소문자 구분 없이 매칭 됩니다
         scopes: 애플리케이션에 허용할 API들입니다. 최상위 스코프를 선택하면 개별적인 것은 선택하지 않아도 됩니다.
+        setting_aggregate_reblogs: 내가 부스트 했던 툿은 새로 부스트 되어도 보여주지 않습니다
         setting_default_language: 작성한 툿의 언어는 자동으로 인식할 수 있지만, 언제나 정확한 건 아닙니다
         setting_display_media_default: 민감함으로 설정 된 미디어 가리기
         setting_display_media_hide_all: 항상 모든 미디어를 가리기
@@ -38,6 +47,18 @@ ko:
         fields:
           name: 라벨
           value: 내용
+      account_warning_preset:
+        text: 프리셋 텍스트
+      admin_account_action:
+        send_email_notification: 이메일로 유저에게 알리기
+        text: 커스텀 경고
+        type: 조치
+        types:
+          disable: 비활성화
+          none: 아무 것도 하지 않기
+          silence: 침묵
+          suspend: 정지하고 되돌릴 수 없는 데이터 삭제
+        warning_preset_id: 경고 틀 사용하기
       defaults:
         autofollow: 초대를 통한 팔로우
         avatar: 아바타
@@ -48,6 +69,7 @@ ko:
         context: 필터 컨텍스트
         current_password: 현재 비밀번호 입력
         data: 데이터
+        discoverable: 이 계정을 디렉토리에서 찾을 수 있도록 합니다
         display_name: 표시되는 이름
         email: 이메일 주소
         expires_in: 만료시각
@@ -63,6 +85,7 @@ ko:
         otp_attempt: 2단계 인증 코드
         password: 비밀번호
         phrase: 키워드 또는 문장
+        setting_aggregate_reblogs: 타임라인의 부스트를 그룹화
         setting_auto_play_gif: 애니메이션 GIF를 자동 재생
         setting_boost_modal: 부스트 전 확인 창을 표시
         setting_default_language: 게시물 언어

@@ -1,4 +1,6 @@
 $no-columns-breakpoint: 600px;
+$sidebar-width: 240px;
+$content-width: 840px;
 
 .admin-wrapper {
   display: flex;
@@ -6,7 +8,7 @@ $no-columns-breakpoint: 600px;
   height: 100%;
 
   .sidebar-wrapper {
-    flex: 1;
+    flex: 1 1 $sidebar-width;
     height: 100%;
     background: $ui-base-color;
     display: flex;
@@ -14,7 +16,7 @@ $no-columns-breakpoint: 600px;
   }
 
   .sidebar {
-    width: 240px;
+    width: $sidebar-width;
     height: 100%;
     padding: 0;
     overflow-y: auto;
@@ -95,12 +97,12 @@ $no-columns-breakpoint: 600px;
   }
 
   .content-wrapper {
-    flex: 2;
+    flex: 2 1 $content-width;
     overflow: auto;
   }
 
   .content {
-    max-width: 700px;
+    max-width: $content-width;
     padding: 20px 15px;
     padding-top: 60px;
     padding-left: 25px;
@@ -149,6 +151,20 @@ $no-columns-breakpoint: 600px;
     .fields-group h6 {
       color: $primary-text-color;
       font-weight: 500;
+    }
+
+    .directory__tag a {
+      box-shadow: none;
+    }
+
+    .directory__tag h4 {
+      font-size: 18px;
+      font-weight: 700;
+      color: $primary-text-color;
+      text-transform: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
     }
 
     & > p {
@@ -540,6 +556,10 @@ a.name-tag,
 
   &.negative {
     border-left-color: lighten($error-red, 12%);
+  }
+
+  &.warning {
+    border-left-color: $gold-star;
   }
 
   &__bubble {

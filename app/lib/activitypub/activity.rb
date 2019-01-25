@@ -50,6 +50,8 @@ class ActivityPub::Activity
         ActivityPub::Activity::Add
       when 'Remove'
         ActivityPub::Activity::Remove
+      when 'Move'
+        ActivityPub::Activity::Move
       end
     end
   end
@@ -128,5 +130,11 @@ class ActivityPub::Activity
     elsif @object['url'].present?
       ::FetchRemoteStatusService.new.call(@object['url'])
     end
+  end
+
+  def lock_or_return(key, expire_after = 7.days.seconds)
+    yield if redis.set(key, true, nx: true, ex: expire_after)
+  ensure
+    redis.del(key)
   end
 end

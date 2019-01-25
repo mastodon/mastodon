@@ -1,11 +1,6 @@
-# config/app.yml for rails-settings-cached
-#
-# This file contains default values, and does not need to be edited
-# when configuring an instance.  These settings may be changed by an
-# Administrator using the Web UI.
-#
-# For more information, see docs/Running-Mastodon/Administration-guide.md
-#
+# This file contains default values, and does not need to be edited. All
+# important settings can be changed from the admin interface.
+
 defaults: &defaults
   site_title: Mastodon
   site_short_description: ''
@@ -15,6 +10,7 @@ defaults: &defaults
   site_contact_username: ''
   site_contact_email: ''
   open_registrations: true
+  profile_directory: true
   closed_registrations_message: ''
   open_deletion: true
   min_invite_role: 'admin'
@@ -33,6 +29,7 @@ defaults: &defaults
   system_font_ui: false
   noindex: false
   theme: 'default'
+  aggregate_reblogs: true
   notification_emails:
     follow: false
     reblog: false
@@ -52,11 +49,14 @@ defaults: &defaults
     - root
     - webmaster
     - administrator
+    - mod
+    - moderator
   disallowed_hashtags: # space separated string or list of hashtags without the hash
   bootstrap_timeline_accounts: ''
   activity_api_enabled: true
   peers_api_enabled: true
   show_known_fediverse_at_about_page: true
+
 development:
   <<: *defaults
 

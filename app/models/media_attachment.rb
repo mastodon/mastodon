@@ -3,20 +3,21 @@
 #
 # Table name: media_attachments
 #
-#  id                :bigint(8)        not null, primary key
-#  status_id         :bigint(8)
-#  file_file_name    :string
-#  file_content_type :string
-#  file_file_size    :integer
-#  file_updated_at   :datetime
-#  remote_url        :string           default(""), not null
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  shortcode         :string
-#  type              :integer          default("image"), not null
-#  file_meta         :json
-#  account_id        :bigint(8)
-#  description       :text
+#  id                  :bigint(8)        not null, primary key
+#  status_id           :bigint(8)
+#  file_file_name      :string
+#  file_content_type   :string
+#  file_file_size      :integer
+#  file_updated_at     :datetime
+#  remote_url          :string           default(""), not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  shortcode           :string
+#  type                :integer          default("image"), not null
+#  file_meta           :json
+#  account_id          :bigint(8)
+#  description         :text
+#  scheduled_status_id :bigint(8)
 #
 
 class MediaAttachment < ApplicationRecord
@@ -59,6 +60,7 @@ class MediaAttachment < ApplicationRecord
     format: 'mp4',
     convert_options: {
       output: {
+        'loglevel' => 'fatal',
         'movflags' => 'faststart',
         'pix_fmt'  => 'yuv420p',
         'vf'       => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
@@ -75,8 +77,9 @@ class MediaAttachment < ApplicationRecord
   IMAGE_LIMIT = 16.megabytes
   VIDEO_LIMIT = 24.megabytes
 
-  belongs_to :account, inverse_of: :media_attachments, optional: true
-  belongs_to :status,  inverse_of: :media_attachments, optional: true
+  belongs_to :account,          inverse_of: :media_attachments, optional: true
+  belongs_to :status,           inverse_of: :media_attachments, optional: true
+  belongs_to :scheduled_status, inverse_of: :media_attachments, optional: true
 
   has_attached_file :file,
                     styles: ->(f) { file_styles f },
@@ -93,8 +96,8 @@ class MediaAttachment < ApplicationRecord
   validates :account, presence: true
   validates :description, length: { maximum: 420 }, if: :local?
 
-  scope :attached,   -> { where.not(status_id: nil) }
-  scope :unattached, -> { where(status_id: nil) }
+  scope :attached,   -> { where.not(status_id: nil).or(where.not(scheduled_status_id: nil)) }
+  scope :unattached, -> { where(status_id: nil, scheduled_status_id: nil) }
   scope :local,      -> { where(remote_url: '') }
   scope :remote,     -> { where.not(remote_url: '') }
 
