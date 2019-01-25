@@ -73,7 +73,7 @@ export default class Card extends React.PureComponent {
   };
 
   componentWillReceiveProps (nextProps) {
-    if (this.props.card !== nextProps.card) {
+    if (!Immutable.is(this.props.card, nextProps.card)) {
       this.setState({ embedded: false });
     }
   }
@@ -193,6 +193,12 @@ export default class Card extends React.PureComponent {
       embed = (
         <div className='status-card__image'>
           {thumbnail}
+        </div>
+      );
+    } else {
+      embed = (
+        <div className='status-card__image'>
+          <i className='fa fa-file-text' />
         </div>
       );
     }

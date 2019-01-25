@@ -14,6 +14,7 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   has_many :virtual_attachments, key: :attachment
 
   attribute :moved_to, if: :moved?
+  attribute :also_known_as, if: :also_known_as?
 
   class EndpointsSerializer < ActiveModel::Serializer
     include RoutingHelper
@@ -105,7 +106,7 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   end
 
   def virtual_tags
-    object.emojis
+    object.emojis + object.tags
   end
 
   def virtual_attachments
@@ -116,7 +117,29 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
     ActivityPub::TagManager.instance.uri_for(object.moved_to_account)
   end
 
+  def also_known_as?
+    !object.also_known_as.empty?
+  end
+
   class CustomEmojiSerializer < ActivityPub::EmojiSerializer
+  end
+
+  class TagSerializer < ActiveModel::Serializer
+    include RoutingHelper
+
+    attributes :type, :href, :name
+
+    def type
+      'Hashtag'
+    end
+
+    def href
+      explore_hashtag_url(object)
+    end
+
+    def name
+      "##{object.name}"
+    end
   end
 
   class Account::FieldSerializer < ActiveModel::Serializer

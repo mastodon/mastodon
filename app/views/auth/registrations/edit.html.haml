@@ -9,13 +9,14 @@
       = f.input :email, wrapper: :with_label, input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }, required: true, hint: false
 
     .fields-group
-      = f.input :password, wrapper: :with_label, input_html: { 'aria-label' => t('simple_form.labels.defaults.new_password'), :autocomplete => 'off' }, hint: false
+      = f.input :current_password, wrapper: :with_label, input_html: { 'aria-label' => t('simple_form.labels.defaults.current_password'), :autocomplete => 'off' }, required: true
+
+    .fields-group
+      = f.input :password, wrapper: :with_label, label: t('simple_form.labels.defaults.new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.new_password'), :autocomplete => 'off' }, hint: false
 
     .fields-group
       = f.input :password_confirmation, wrapper: :with_label, label: t('simple_form.labels.defaults.confirm_new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_new_password'), :autocomplete => 'off' }
 
-    .fields-group
-      = f.input :current_password, wrapper: :with_label, input_html: { 'aria-label' => t('simple_form.labels.defaults.current_password'), :autocomplete => 'off' }, required: true
 
     .actions
       = f.button :button, t('generic.save_changes'), type: :submit

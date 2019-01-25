@@ -250,6 +250,7 @@ body {
 
   & .header {
     background: none;
+    box-shadow: none;
     border-radius: $foresdon-primary-border-radius;
 
     & .webapp-btn {
@@ -262,6 +263,7 @@ body {
     border-radius: $foresdon-primary-border-radius;
 
     &__image {
+      margin-top: 8px;
       background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
     }
 
@@ -286,15 +288,55 @@ body {
     }
   }
 
+  & .contact-widget {
+    background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+    border-radius: $foresdon-primary-border-radius;
+  }
+
+  & .box-widget {
+    background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+    border-radius: $foresdon-primary-border-radius;
+  }
+
   & .card {
-    &__bar {
-      background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+    & a {
+      &:hover, 
+      &:active,
+      &:focus {
+        & .card__bar {
+          background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+        }
+      }
+      & .card__bar {
+        background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+      }
     }
   }
 
   & .grid,
   & .card-grid {
     padding: 0 5px;
+  }
+
+  // profile directory
+  & .page-header {
+    background: none;
+    box-shadow: none;
+  }
+
+  & .directory {
+    margin-bottom: 5px;
+    background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+    border-radius: $foresdon-primary-border-radius;
+
+    & .account {
+      background: none;
+    }
+  }
+  & .notice-widget {
+    margin-bottom: 5px;
+    background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+    border-radius: $foresdon-primary-border-radius;
   }
 }
 
@@ -422,11 +464,18 @@ body {
 .public-timeline__section-headline,
 .account__section-headline {
   margin: 0 3px 3px 0;
-  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
-  border-radius: $foresdon-primary-border-radius;
+  padding: 3px 0;
+  background: none;
+  border: none;
+//  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+//  border-radius: $foresdon-primary-border-radius;
 
-  & a::after {
-      opacity: 0.5;
+  & a {
+    padding: 3px 0;
+    &.active::before,
+    &.active::after {
+        content: none;
+    }
   }
 }
 
@@ -518,6 +567,18 @@ body {
     border-radius: $foresdon-primary-border-radius;
     margin-bottom: 3px;
   
+    & .account__header__fields {
+      background: none;
+      border-radius: 0 0 $foresdon-primary-border-radius $foresdon-primary-border-radius;
+      & dt {
+        background-color: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+      }
+
+      & dd {
+        background-color: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+      }
+    }
+
     & > div {
       background-color: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
       border-radius: $foresdon-primary-border-radius;
@@ -538,7 +599,7 @@ body {
   }
   
 
-  &__section-headline {
+/*  &__section-headline {
     margin-bottom: 3px;
     color: $foresdon-ui-primary-color;
     background-color: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
@@ -548,7 +609,7 @@ body {
     & a.active::before, & a.active::after {
       opacity: 0.3;
     }
-  }
+  } */
 }
 
 // Notifications
@@ -563,6 +624,26 @@ body {
 
   & .account {
     background: none;
+  }
+}
+
+.notification__filter-bar {
+  margin-bottom: 3px;
+  background: none;
+  border-bottom: none;
+
+  & button {
+    padding: 5px;
+    background: none;
+    border-radius: $foresdon-primary-border-radius;
+
+    &.active {
+      background-color: rgba($foresdon-ui-base-color, $foresdon-background-filter-alpha);
+
+      &::before, &::after {
+        content: none;
+      }
+    }
   }
 }
 

@@ -2,12 +2,20 @@
 oc:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Podètz utilizar la sintaxi dels tuts, coma las URL, las etiquetas e las mencions
+      admin_account_action:
+        send_email_notification: L’utilizaire recebrà una explicacion de çò qu’arribèt a son compte
+        text_html: Opcional. Podètz utilizar la sintaxi dels tuts. Podètz <a href="%{path}">ajustar un avertiment personalizat</a> per estalviar de temps
+        type_html: Causir de qué far amb <strong>%{acct}</strong>
+        warning_preset_id: Opcional. Podètz ajustar un tèxt personalizat a a fin de çò predefinit
       defaults:
         autofollow: Lo monde que se marcan gràcia a l’invitacion vos segràn automaticament
         avatar: PNG, GIF o JPG. Maximum %{size}. Serà retalhat en %{dimensions}px
         bot: Avisar lo monde qu’aqueste compte es pas d’una persona
         context: Un o mai de contèxtes ont lo filtre deuriá s’aplicar
         digest: Solament enviat aprèp un long moment d’inactivitat e solament s’avètz recebut de messatges personals pendent vòstra abséncia
+        discoverable_html: L’<a href="%{path}" target="_blank">annuari</a> permet al monde de trobar de comptes segon lor interèsses e activitats. Requerís almens %{min_followers} seguidors
         email: Vos mandarem un corrièl de confirmacion
         fields: Podètz far veire cap a 4 elements sus vòstre perfil
         header: PNG, GIF o JPG. Maximum %{size}. Serà retalhada en %{dimensions}px
@@ -18,6 +26,7 @@ oc:
         password: Utilizatz almens 8 caractèrs
         phrase: Serà pres en compte que siá en majuscula o minuscula o dins un avertiment de contengut sensible
         scopes: A quinas APIs poiràn accedir las aplicacions. Se seleccionatz un encastre de naut nivèl, fa pas mestièr de seleccionar los nivèls mai basses.
+        setting_aggregate_reblogs: Mostrar pas los nòus partatges que son estats partejats recentament (afecta pas que los nòus partatges recebuts)
         setting_default_language: La lenga de vòstres tuts pòt èsser detectada automaticament, mas de còps es pas corrèctament determinada
         setting_display_media_default: Rescondre los mèdias marcats coma sensibles
         setting_display_media_hide_all: Totjorn rescondre los mèdias
@@ -38,6 +47,18 @@ oc:
         fields:
           name: Nom
           value: Contengut
+      account_warning_preset:
+        text: Tèxt predefinit
+      admin_account_action:
+        send_email_notification: Avisar l’utilizaire per corrièl
+        text: Avertiment personalizat
+        type: Accions
+        types:
+          disable: Desactivar
+          none: Far pas res
+          silence: Metre en silence
+          suspend: Suspendre e escafar per de bon las donadas del compte
+        warning_preset_id: Utilizar un avertiment predefinit
       defaults:
         autofollow: Convidar a sègre vòstre compte
         avatar: Avatar
@@ -48,6 +69,7 @@ oc:
         context: Contèxte del filtre
         current_password: Senhal actual
         data: Donadas
+        discoverable: Far aparéisser aqueste compte a l’annuari
         display_name: Escais
         email: Corrièl
         expires_in: Expira aprèp
@@ -63,8 +85,9 @@ oc:
         otp_attempt: Còdi Two-factor
         password: Senhal
         phrase: Senhal o frasa
+        setting_aggregate_reblogs: Agropar los partatges dins lo flux d’actualitat
         setting_auto_play_gif: Lectura automatica dels GIFS animats
-        setting_boost_modal: Afichar una fenèstra de confirmacion abans de partejar un estatut
+        setting_boost_modal: Mostrar una fenèstra de confirmacion abans de partejar un estatut
         setting_default_language: Lenga de publicacion
         setting_default_privacy: Confidencialitat dels tuts
         setting_default_sensitive: Totjorn marcar los mèdias coma sensibles

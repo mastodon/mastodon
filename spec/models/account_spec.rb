@@ -618,8 +618,14 @@ RSpec.describe Account, type: :model do
         expect(account).not_to model_have_error_on_field(:username)
       end
 
-      it 'is invalid if the username doesn\'t only contains letters, numbers and underscores' do
+      it 'is valid even if the username contains hyphens' do
         account = Fabricate.build(:account, domain: 'domain', username: 'the-doctor')
+        account.valid?
+        expect(account).to_not model_have_error_on_field(:username)
+      end
+
+      it 'is invalid if the username doesn\'t only contains letters, numbers, underscores and hyphens' do
+        account = Fabricate.build(:account, domain: 'domain', username: 'the doctor')
         account.valid?
         expect(account).to model_have_error_on_field(:username)
       end
@@ -752,24 +758,6 @@ RSpec.describe Account, type: :model do
         account_1 = Fabricate(:account, suspended: true)
         account_2 = Fabricate(:account, suspended: false)
         expect(Account.suspended).to match_array([account_1])
-      end
-    end
-
-    describe 'without_followers' do
-      it 'returns a relation of accounts without followers' do
-        account_1 = Fabricate(:account)
-        account_2 = Fabricate(:account)
-        Fabricate(:follow, account: account_1, target_account: account_2)
-        expect(Account.without_followers).to match_array([account_1])
-      end
-    end
-
-    describe 'with_followers' do
-      it 'returns a relation of accounts with followers' do
-        account_1 = Fabricate(:account)
-        account_2 = Fabricate(:account)
-        Fabricate(:follow, account: account_1, target_account: account_2)
-        expect(Account.with_followers).to match_array([account_2])
       end
     end
   end

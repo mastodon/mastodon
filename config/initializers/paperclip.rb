@@ -25,7 +25,7 @@ if ENV['S3_ENABLED'] == 'true'
     s3_protocol: s3_protocol,
     s3_host_name: s3_hostname,
     s3_headers: {
-      'Cache-Control' => 'max-age=315576000',
+      'Cache-Control' => 'public, max-age=315576000, immutable',
     },
     s3_permissions: ENV.fetch('S3_PERMISSION') { 'public-read' },
     s3_region: s3_region,
@@ -36,6 +36,9 @@ if ENV['S3_ENABLED'] == 'true'
     },
     s3_options: {
       signature_version: ENV.fetch('S3_SIGNATURE_VERSION') { 'v4' },
+      http_open_timeout: 5,
+      http_read_timeout: 5,
+      http_idle_timeout: 5,
     }
   )
 
