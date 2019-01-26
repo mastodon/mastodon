@@ -322,6 +322,9 @@ cy:
       undo: Dadwneud bloc parth
       severity:
         suspend: ataliedig
+        silence: tawelu
+      rejecting_media: Yn gwrthod ffeiliau cyfryngau
+      rejecting_reports: Yn gwrthod adroddiadau
     email_domain_blocks:
       add_new: Ychwanegu
       created_msg: Llwyddwyd i ychwanegu parth e-bost i'r gosbrestr
@@ -340,7 +343,13 @@ cy:
       title: Ffederasiwn
       known_accounts:
         one: '%{count} cyfrif hysbys'
+        other: '%{count} cyfrifon hysbys'
       total_storage: Atodiadau cyfryngau
+      delivery_available: Mae'r cyflenwad ar gael
+      total_blocked_by_us: Wedi'i bloc gan ni
+      total_followed_by_them: Yn dilyn ganynt
+      total_followed_by_us: Yn dilyn ganom ni
+      total_reported: Adroddiadau amdanynt
     invites:
       deactivate_all: Diffodd pob un
       filter:
@@ -486,6 +495,7 @@ cy:
       title: Gosodiadau'r wefan
       profile_directory:
         title: Galluogi cyfeiriadur proffil
+        desc_html: Caniatáu i ddefnyddwyr gael eu gweld
     statuses:
       back_to_account: Yn ôl i dudalen y cyfrif
       batch:
@@ -668,7 +678,9 @@ cy:
     followers_count: Nifer y dilynwyr
     lock_link: Cloi eich cyfrif
     purge: Dileu o dilynwyr
-    success: Yn y broses o ysgafn-flocio dilynwyr o %{count} parth...
+    success:
+      one: Yn y broses o ysgafn-flocio dilynwyr o un parth...
+      other: Yn y broses o ysgafn-flocio defnyddwyr o %{count} parth...
     true_privacy_html: Cofiwch <strong>mai ond amgryptio pen-i-ben all sicrhau gwir
       breifatrwydd</strong>.
     unlocked_warning_html: Gall unrhywun eich dilyn yn syth i weld eich tŵtiau preifat.
@@ -682,8 +694,10 @@ cy:
     changes_saved_msg: Llwyddwyd i gadw y newidiadau!
     copy: Copïo
     save_changes: Cadw newidiadau
-    validation_errors: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod
-      os gwelwch yn dda
+    validation_errors:
+      one: Mae rhywbeth o'i le o hyd! Edrychwch ar y gwall isod os gwelwch yn dda
+      other: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch
+        yn dda
   imports:
     preface: Mae modd mewnforio data yr ydych wedi allforio o achos arall, megis rhestr
       o bobl yr ydych yn ei ddilyn neu yn blocio.
@@ -739,8 +753,10 @@ cy:
       body: Dyma grynodeb byr o'r holl negeseuon golloch chi ers eich ymweliad diwethaf
         ar %{since}
       mention: 'Soniodd %{name} amdanoch chi:'
-      new_followers_summary: Hefyd, rydych wedi ennill %{count} dilynwr newydd tra
-        eich bod i ffwrdd! Hwrê!
+      new_followers_summary:
+        one: Yr ydych wedi ennill dilynwr newydd tra eich bod i ffwrdd! Hwrê!
+        other: Hefyd, rydych wedi ennill %{count} dilynwr newydd tra eich bod i ffwrdd!
+          Hwrê!
       subject:
         one: 1 hysbysiad newydd ers eich ymweliad diwethaf
         other: '%{count} hysbysiad newydd ers eich ymweliad diwethaf'
@@ -1050,6 +1066,15 @@ cy:
         none: Rhybudd
         silence: Cyfrif cyfyngedig
         suspend: Cyfrif wedi'i rewi
+      explanation:
+        disable: Er bod eich cyfrif wedi'i rewi, mae eich data cyfrif yn parhau i
+          fod yn gyfan, ond ni allwch chi berfformio unrhyw gamau nes ei ddatgloi.
+      review_server_policies: Adolygu polisïau'r gweinydd
+      subject:
+        disable: Mae'ch cyfrif %{acct} wedi'i rewi
+        none: Rhybudd am %{acct}
+        silence: Mae'ch cyfrif %{acct} wedi bod yn gyfyngedig
+        suspend: Mae'ch cyfrif %{acct} wedi'i atal
     welcome:
       edit_profile_action: Sefydlu proffil
       edit_profile_step: Mae modd i chi addasu eich proffil drwy uwchlwytho afatar,
@@ -1103,3 +1128,11 @@ cy:
     people:
       one: '%{count} person'
       other: '%{count} personau'
+    enabled: Rydych chi wedi'ch rhestru yn y cyfeiriadur ar hyn o bryd.
+    enabled_but_waiting: Rydych wedi dewis i chi gael eich rhestru yn y cyfeiriadur,
+      ond nid oes gennych y nifer lleiaf o ddilynwyr (% {min_followers}) i'w rhestru
+      eto.
+    explanation: Darganfod defnyddwyr yn seiliedig ar eu diddordebau
+    how_to_enable: Ar hyn o bryd nid ydych chi wedi dewis y cyfeiriadur. Gallwch ddewis
+      i mewn isod. Defnyddiwch hashnodau yn eich bio-destun i'w restru dan hashnodau
+      penodol!
