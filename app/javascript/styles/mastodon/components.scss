@@ -669,15 +669,11 @@
   }
 
   a {
-    color: $secondary-text-color;
+    color: lighten($ui-highlight-color, 12%);
     text-decoration: none;
 
     &:hover {
       text-decoration: underline;
-
-      .fa {
-        color: lighten($dark-text-color, 7%);
-      }
     }
 
     &.mention {
@@ -689,13 +685,10 @@
         }
       }
     }
-
-    .fa {
-      color: $dark-text-color;
-    }
   }
 
   .status__content__spoiler-link {
+    color: $secondary-text-color;
     background: $action-button-color;
 
     &:hover {
@@ -731,7 +724,7 @@
   display: block;
   font-size: 15px;
   line-height: 20px;
-  color: lighten($ui-highlight-color, 8%);
+  color: lighten($ui-highlight-color, 12%);
   border: 0;
   background: transparent;
   padding: 0;
@@ -1065,6 +1058,10 @@
 
   a {
     color: $lighter-text-color;
+
+    &:not(.mention) {
+      color: $lighter-text-color;
+    }
   }
 }
 
