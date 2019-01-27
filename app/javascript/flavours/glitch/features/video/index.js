@@ -139,6 +139,9 @@ export default class Video extends React.PureComponent {
 
   setVideoRef = c => {
     this.video = c;
+    if (this.video) {
+      this.setState({ volume: this.video.volume, muted: this.video.muted });
+    }
   }
 
   setSeekRef = c => {
@@ -319,6 +322,10 @@ export default class Video extends React.PureComponent {
     }
   }
 
+  handleVolumeChange = () => {
+    this.setState({ volume: this.video.volume, muted: this.video.muted });
+  }
+
   handleOpenVideo = () => {
     const { src, preview, width, height, alt } = this.props;
     const media = fromJS({
@@ -407,6 +414,7 @@ export default class Video extends React.PureComponent {
           onTimeUpdate={this.handleTimeUpdate}
           onLoadedData={this.handleLoadedData}
           onProgress={this.handleProgress}
+          onVolumeChange={this.handleVolumeChange}
         />
 
         <button type='button' className={classNames('video-player__spoiler', { active: !revealed })} onClick={this.toggleReveal}>
@@ -429,7 +437,7 @@ export default class Video extends React.PureComponent {
           <div className='video-player__buttons-bar'>
             <div className='video-player__buttons left'>
               <button type='button' aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} onClick={this.togglePlay}><i className={classNames('fa fa-fw', { 'fa-play': paused, 'fa-pause': !paused })} /></button>
-              <button type='button' aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} onMouseEnter={this.volumeSlider} onMouseLeave={this.volumeSlider} onClick={this.toggleMute}><i className={classNames('fa fa-fw', { 'fa-volume-off': muted, 'fa-volume-up': !muted })} /></button>
+              <button type='button' aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} onClick={this.toggleMute}><i className={classNames('fa fa-fw', { 'fa-volume-off': muted, 'fa-volume-up': !muted })} /></button>
               <div className='video-player__volume' onMouseDown={this.handleVolumeMouseDown} ref={this.setVolumeRef}>
                 <div className='video-player__volume__current' style={{ width: `${volumeWidth}px` }} />
                 <span
