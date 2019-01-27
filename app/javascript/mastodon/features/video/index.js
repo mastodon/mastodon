@@ -136,6 +136,9 @@ class Video extends React.PureComponent {
 
   setVideoRef = c => {
     this.video = c;
+    if (this.video) {
+      this.setState({ volume: this.video.volume, muted: this.video.muted });
+    }
   }
 
   setSeekRef = c => {
@@ -302,6 +305,10 @@ class Video extends React.PureComponent {
     }
   }
 
+  handleVolumeChange = () => {
+    this.setState({ volume: this.video.volume, muted: this.video.muted });
+  }
+
   handleOpenVideo = () => {
     const { src, preview, width, height, alt } = this.props;
     const media = fromJS({
@@ -387,6 +394,7 @@ class Video extends React.PureComponent {
           onTimeUpdate={this.handleTimeUpdate}
           onLoadedData={this.handleLoadedData}
           onProgress={this.handleProgress}
+          onVolumeChange={this.handleVolumeChange}
         />
 
         <button type='button' className={classNames('video-player__spoiler', { active: !revealed })} onClick={this.toggleReveal}>
