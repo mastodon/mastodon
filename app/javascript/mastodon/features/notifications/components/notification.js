@@ -29,6 +29,10 @@ class Notification extends ImmutablePureComponent {
     onMoveUp: PropTypes.func.isRequired,
     onMoveDown: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
+    onFavourite: PropTypes.func.isRequired,
+    onReblog: PropTypes.func.isRequired,
+    onToggleHidden: PropTypes.func.isRequired,
+    status: PropTypes.option,
     intl: PropTypes.object.isRequired,
   };
 
@@ -64,14 +68,32 @@ class Notification extends ImmutablePureComponent {
     onMention(notification.get('account'), this.context.router.history);
   }
 
+  handleHotkeyFavourite = () => {
+    const { status } = this.props;
+    if (status) this.props.onFavourite(status);
+  }
+
+  handleHotkeyBoost = e => {
+    const { status } = this.props;
+    if (status) this.props.onReblog(status, e);
+  }
+
+  handleHotkeyToggleHidden = () => {
+    const { status } = this.props;
+    if (status) this.props.onToggleHidden(status);
+  }
+
   getHandlers () {
     return {
-      moveUp: this.handleMoveUp,
-      moveDown: this.handleMoveDown,
+      reply: this.handleMention,
+      favourite: this.handleHotkeyFavourite,
+      boost: this.handleHotkeyBoost,
+      mention: this.handleMention,
       open: this.handleOpen,
       openProfile: this.handleOpenProfile,
-      mention: this.handleMention,
-      reply: this.handleMention,
+      moveUp: this.handleMoveUp,
+      moveDown: this.handleMoveDown,
+      toggleHidden: this.handleHotkeyToggleHidden,
     };
   }
 
