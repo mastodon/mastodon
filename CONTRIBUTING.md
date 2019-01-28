@@ -1,7 +1,7 @@
 Contributing
 ============
 
-Thank you for considering contributing to Mastodon 🐘 
+Thank you for considering contributing to Mastodon 🐘
 
 You can contribute in the following ways:
 
@@ -9,6 +9,8 @@ You can contribute in the following ways:
 - Translating the Mastodon interface into various languages
 - Contributing code to Mastodon by fixing bugs or implementing features
 - Improving the documentation
+
+If your contributions are accepted into Mastodon, you can request to be paid through [our OpenCollective](https://opencollective.com/mastodon).
 
 ## Bug reports
 
