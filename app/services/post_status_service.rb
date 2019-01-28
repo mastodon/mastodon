@@ -66,7 +66,10 @@ class PostStatusService < BaseService
   end
 
   def schedule_status!
-    if @account.statuses.build(status_attributes).valid?
+    status_for_validation = @account.statuses.build(status_attributes)
+    if status_for_validation.valid?
+      status_for_validation.destroy
+
       # The following transaction block is needed to wrap the UPDATEs to
       # the media attachments when the scheduled status is created
 
@@ -90,7 +93,7 @@ class PostStatusService < BaseService
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if @options[:media_ids].size > 4
 
-    @media = MediaAttachment.where(status_id: nil).where(id: @options[:media_ids].take(4).map(&:to_i))
+    @media = @account.media_attachments.where(status_id: nil).where(id: @options[:media_ids].take(4).map(&:to_i))
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if @media.size > 1 && @media.find(&:video?)
   end
