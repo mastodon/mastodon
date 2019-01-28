@@ -222,6 +222,80 @@ sl:
         resolve_report: '%{name} je razrešil prijavo %{target}'
         silence_account: '%{name} je utišal račun od %{target}'
         suspend_account: '%{name} je začasno ustavil račun od %{target}'
+        unassigned_report: '%{name} je nedodeljeno prijavil %{target}'
+        unsilence_account: '%{name} je preklical utišanje računa od %{target}'
+        unsuspend_account: '%{name} je aktiviral račun od %{target}'
+        update_custom_emoji: '%{name} je posodobil emotikone %{target}'
+        update_status: '%{name} je posodobil stanje od %{target}'
+      deleted_status: (izbrisano stanje)
+      title: Dnevnik revizije
+    custom_emojis:
+      by_domain: Domena
+      copied_msg: Lokalna kopija emotikona je bila uspešno ustvarjena
+      copy: Kopiraj
+      copy_failed_msg: Lokalne kopije emotikona ni bilo mogoče ustvariti
+      created_msg: Emotikon je uspešno ustvarjen!
+      delete: Izbriši
+      destroyed_msg: Emotikon je uspešno uničen!
+      disable: Onemogoči
+      disabled_msg: Ta emotikon je uspešno onemogočen
+      emoji: Emotikon
+      enable: Omogoči
+      enabled_msg: Ta emotikon je uspešno omogočen
+      image_hint: PNG do 50KB
+      listed: Navedeno
+      new:
+        title: Dodaj nove emotikone
+      overwrite: Prepiši
+      shortcode: Kratka koda
+      shortcode_hint: Najmanj 2 znaka, samo alfanumerični znaki in podčrtaji
+      title: Emotikoni po meri
+      unlisted: Neuvrščeni
+      update_failed_msg: Tega emotikona ni bilo mogoče posodobiti
+      updated_msg: Emotikon je uspešno posodobljen!
+      upload: Pošlji
+    dashboard:
+      backlog: Zaostala opravila
+      config: Nastavitve
+      feature_deletions: Brisanje računov
+      feature_invites: Poveza povabil
+      feature_profile_directory: Mapa profila
+      feature_registrations: Registracije
+      feature_relay: Rele federacije
+      features: Zmožnosti
+      hidden_service: Federacija s skritimi storitvami
+      open_reports: odprte prijave
+      recent_users: Nedavni uporabniki
+      search: Iskanje po celotnem besedilu
+      single_user_mode: Način enega uporabnika
+      software: Programska oprema
+      space: Uporaba prostora
+      title: Nadzorna plošča
+      total_users: Skupaj uporabnikov
+      trends: Trendi
+      week_interactions: interakcije ta teden
+      week_users_active: aktivni ta teden
+      week_users_new: uporabniki ta teden
+    domain_blocks:
+      add_new: Dodaj nov domenski blok
+      created_msg: Domenski blok se sedaj obdeluje
+      destroyed_msg: Domenski blok je bil razveljavljen
+      domain: Domena
+      new:
+        create: Ustvari blok
+        hint: Domenski blok ne bo preprečil ustvarjanja vnosov računov v zbirko podatkov,
+          ampak bo retroaktivno in samodejno uporabil posebne metode moderiranja na
+          teh računih.
+        severity:
+          desc_html: <strong>Utišaj</strong> bo vse objave računa naredil nevidne
+            vsem, ki jih ne sledijo. <strong>Suspendiraj</strong> bo odstranil vso
+            vsebino, medije in podatke profila računa. Uporabi <strong>nič</strong>,
+            če želite le zavrniti predstavnostne datoteke.
+          noop: Nič
+          silence: Utišaj
+          suspend: Suspendiraj
+        title: Nov domenski blok
+      reject_media: Zavrni predstavnostne datoteke
   statuses:
     pin_errors:
       ownership: Trob nekoga drugega ne more biti pripet
