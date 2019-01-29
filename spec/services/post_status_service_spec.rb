@@ -167,7 +167,7 @@ RSpec.describe PostStatusService, type: :service do
 
   it 'attaches the given media to the created status' do
     account = Fabricate(:account)
-    media = Fabricate(:media_attachment)
+    media = Fabricate(:media_attachment, account: account)
 
     status = subject.call(
       account,
@@ -176,6 +176,19 @@ RSpec.describe PostStatusService, type: :service do
     )
 
     expect(media.reload.status).to eq status
+  end
+
+  it 'does not attach media from another account to the created status' do
+    account = Fabricate(:account)
+    media = Fabricate(:media_attachment, account: Fabricate(:account))
+
+    status = subject.call(
+      account,
+      text: "test status update",
+      media_ids: [media.id],
+    )
+
+    expect(media.reload.status).to eq nil
   end
 
   it 'does not allow attaching more than 4 files' do
