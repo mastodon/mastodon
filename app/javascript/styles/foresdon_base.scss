@@ -329,10 +329,25 @@ body {
     background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
     border-radius: $foresdon-primary-border-radius;
 
+    &__tag {
+      margin-bottom: 5px;
+
+      a {
+        background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+
+        &:hover,
+        &:active,
+        &:focus {
+          background: rgba($foresdon-ui-base-color, $foresdon-ui-tertiary-alpha);
+        }
+      }
+    }
+
     & .account {
       background: none;
     }
   }
+
   & .notice-widget {
     margin-bottom: 5px;
     background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
@@ -511,6 +526,10 @@ body {
   background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
   border: none;
   border-radius: $foresdon-primary-border-radius;
+
+  &.focusable:focus {
+    background: rgba($foresdon-ui-base-color, $foresdon-ui-tertiary-alpha);
+  }
 
   &--filtered {
     width: auto;
