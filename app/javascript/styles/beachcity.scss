@@ -1,0 +1,52 @@
+$ui-base-color: #661848;
+$ui-base-lighter-color: #FE86AA;
+$ui-primary-color: #FED6B8;
+$ui-secondary-color: #FFFFD9;
+$ui-highlight-color: #C4385F;
+
+@import 'application';
+
+.ui {
+    background: none !important;
+    background-image: url(https://beach.city/beach_city.jpg) !important;
+    background-size: cover !important;
+}
+
+.drawer__inner {
+    background-color: rgba(70, 0, 50, 0.9) !important;
+}
+
+.column > .scrollable, .empty-column-indicator {
+    background: rgba(70, 0, 50, 0.9) !important;
+}
+
+.drawer__inner__mastodon {
+    background: none !important;
+}
+
+.compose-form textarea, .compose-form__modifiers {
+    background-color: #FFFFD9 !important;
+}
+
+.compose-form__buttons-wrapper {
+    background-color: #FED6B8 !important;
+}
+
+.search-popout {
+    background-color: #FFFFD9 !important;
+    color: #C5827A !important;
+    h4 {
+        color: #C4385F !important;
+    }
+    em {
+	color: #C4385F !important;
+   }
+}
+
+.onboarding-modal__dot {
+    background: #FED6B8 !important;
+}
+
+.onboarding-modal__dot.active {
+    background: #FE86AA !important;
+}
