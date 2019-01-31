@@ -54,7 +54,7 @@ class List extends ImmutablePureComponent {
       <div className='list'>
         <div className='list__wrapper'>
           <div className='list__display-name'>
-            <Icon className='fa fa-fw fa-list-ul column-link__icon' />
+            <Icon id='list-ul' className='column-link__icon' fixedWidth />
             {list.get('title')}
           </div>
 

@@ -176,8 +176,8 @@ export default class Card extends React.PureComponent {
 
             <div className='status-card__actions'>
               <div>
-                <button onClick={this.handleEmbedClick}><Icon className={`fa fa-${iconVariant}`} /></button>
-                {horizontal && <a href={card.get('url')} target='_blank' rel='noopener'><Icon className='fa fa-external-link' /></a>}
+                <button onClick={this.handleEmbedClick}><Icon id={iconVariant} /></button>
+                {horizontal && <a href={card.get('url')} target='_blank' rel='noopener'><Icon id='external-link' /></a>}
               </div>
             </div>
           </div>
@@ -199,7 +199,7 @@ export default class Card extends React.PureComponent {
     } else {
       embed = (
         <div className='status-card__image'>
-          <Icon className='fa fa-file-text' />
+          <Icon id='file-text' />
         </div>
       );
     }

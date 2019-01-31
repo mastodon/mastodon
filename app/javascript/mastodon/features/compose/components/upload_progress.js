@@ -22,7 +22,7 @@ export default class UploadProgress extends React.PureComponent {
     return (
       <div className='upload-progress'>
         <div className='upload-progress__icon'>
-          <Icon className='fa fa-upload' />
+          <Icon id='upload' />
         </div>
 
         <div className='upload-progress__message'>

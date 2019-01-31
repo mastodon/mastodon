@@ -141,7 +141,7 @@ class GettingStarted extends ImmutablePureComponent {
         {multiColumn && <div className='column-header__wrapper'>
           <h1 className='column-header'>
             <button>
-              <Icon className='fa fa-bars fa-fw column-header__icon' />
+              <Icon id='bars' className='column-header__icon' fixedWidth />
               <FormattedMessage id='getting_started.heading' defaultMessage='Getting started' />
             </button>
           </h1>

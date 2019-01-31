@@ -46,7 +46,7 @@ export default class MediaItem extends ImmutablePureComponent {
     } else {
       icon = (
         <span className='account-gallery__item__icons'>
-          <Icon className='fa fa-eye-slash' />
+          <Icon id='eye-slash' />
         </span>
       );
     }

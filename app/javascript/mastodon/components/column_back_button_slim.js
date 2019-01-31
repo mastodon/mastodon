@@ -9,7 +9,7 @@ export default class ColumnBackButtonSlim extends ColumnBackButton {
     return (
       <div className='column-back-button--slim'>
         <div role='button' tabIndex='0' onClick={this.handleClick} className='column-back-button column-back-button--slim-button'>
-          <Icon className='fa fa-fw fa-chevron-left column-back-button__icon' />
+          <Icon id='chevron-left' className='column-back-button__icon' fixedWidth />
           <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
         </div>
       </div>

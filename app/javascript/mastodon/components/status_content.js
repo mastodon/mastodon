@@ -161,7 +161,7 @@ export default class StatusContent extends React.PureComponent {
 
     const readMoreButton = (
       <button className='status__content__read-more-button' onClick={this.props.onClick} key='read-more'>
-        <FormattedMessage id='status.read_more' defaultMessage='Read more' /><Icon className='fa fa-fw fa-angle-right' />
+        <FormattedMessage id='status.read_more' defaultMessage='Read more' /><Icon id='angle-right' fixedWidth />
       </button>
     );
 

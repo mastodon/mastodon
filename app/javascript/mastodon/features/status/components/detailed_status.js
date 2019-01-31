@@ -149,11 +149,11 @@ export default class DetailedStatus extends ImmutablePureComponent {
     }
 
     if (status.get('visibility') === 'private') {
-      reblogLink = <Icon className={`fa fa-${reblogIcon}`} />;
+      reblogLink = <Icon id={reblogIcon} />;
     } else if (this.context.router) {
       reblogLink = (
         <Link to={`/statuses/${status.get('id')}/reblogs`} className='detailed-status__link'>
-          <Icon className={`fa fa-${reblogIcon}`} />
+          <Icon id={reblogIcon} />
           <span className='detailed-status__reblogs'>
             <FormattedNumber value={status.get('reblogs_count')} />
           </span>
@@ -162,7 +162,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     } else {
       reblogLink = (
         <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
-          <Icon className={`fa fa-${reblogIcon}`} />
+          <Icon id={reblogIcon} />
           <span className='detailed-status__reblogs'>
             <FormattedNumber value={status.get('reblogs_count')} />
           </span>
@@ -173,7 +173,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     if (this.context.router) {
       favouriteLink = (
         <Link to={`/statuses/${status.get('id')}/favourites`} className='detailed-status__link'>
-          <Icon className='fa fa-star' />
+          <Icon id='star' />
           <span className='detailed-status__favorites'>
             <FormattedNumber value={status.get('favourites_count')} />
           </span>
@@ -182,7 +182,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     } else {
       favouriteLink = (
         <a href={`/interact/${status.get('id')}?type=favourite`} className='detailed-status__link' onClick={this.handleModalLink}>
-          <Icon className='fa fa-star' />
+          <Icon id='star' />
           <span className='detailed-status__favorites'>
             <FormattedNumber value={status.get('favourites_count')} />
           </span>

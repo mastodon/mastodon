@@ -150,7 +150,7 @@ class Header extends ImmutablePureComponent {
     }
 
     if (account.get('locked')) {
-      lockedIcon = <Icon className='fa fa-lock' title={intl.formatMessage(messages.account_locked)} />;
+      lockedIcon = <Icon id='lock' title={intl.formatMessage(messages.account_locked)} />;
     }
 
     const content         = { __html: account.get('note_emojified') };
@@ -177,7 +177,7 @@ class Header extends ImmutablePureComponent {
                   <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} />
 
                   <dd className={pair.get('verified_at') && 'verified'} title={pair.get('value_plain')}>
-                    {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon className='fa fa-check verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
+                    {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
                   </dd>
                 </dl>
               ))}

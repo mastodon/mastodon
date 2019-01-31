@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 export default class Icon extends React.PureComponent {
 
   static propTypes = {
-    className: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    fixedWidth: PropTypes.bool,
   };
 
   render () {
-    const { className } = this.props;
+    const { id, className, fixedWidth, ...other } = this.props;
 
     return (
-      <i className={className} />
+      <i role='img' className={classNames('fa', `fa-${id}`, className, { 'fa-fw': fixedWidth })} {...other} />
     );
   }
 

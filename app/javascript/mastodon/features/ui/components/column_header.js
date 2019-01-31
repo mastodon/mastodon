@@ -22,7 +22,7 @@ export default class ColumnHeader extends React.PureComponent {
     let iconElement = '';
 
     if (icon) {
-      iconElement = <Icon className={`fa fa-fw fa-${icon} column-header__icon`} />;
+      iconElement = <Icon id={icon} fixedWidth className='column-header__icon' />;
     }
 
     return (

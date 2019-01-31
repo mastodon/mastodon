@@ -63,28 +63,28 @@ class FilterBar extends React.PureComponent {
           onClick={this.onClick('mention')}
           title={intl.formatMessage(tooltips.mentions)}
         >
-          <Icon className='fa fa-fw fa-at' />
+          <Icon id='at' fixedWidth />
         </button>
         <button
           className={selectedFilter === 'favourite' ? 'active' : ''}
           onClick={this.onClick('favourite')}
           title={intl.formatMessage(tooltips.favourites)}
         >
-          <Icon className='fa fa-fw fa-star' />
+          <Icon id='star' fixedWidth />
         </button>
         <button
           className={selectedFilter === 'reblog' ? 'active' : ''}
           onClick={this.onClick('reblog')}
           title={intl.formatMessage(tooltips.boosts)}
         >
-          <Icon className='fa fa-fw fa-retweet' />
+          <Icon id='retweet' fixedWidth />
         </button>
         <button
           className={selectedFilter === 'follow' ? 'active' : ''}
           onClick={this.onClick('follow')}
           title={intl.formatMessage(tooltips.follows)}
         >
-          <Icon className='fa fa-fw fa-user-plus' />
+          <Icon id='user-plus' fixedWidth />
         </button>
       </div>
     );
