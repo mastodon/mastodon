@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { defineMessages, injectIntl } from 'react-intl';
 import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from '../../../actions/lists';
 import classNames from 'classnames';
+import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
   search: { id: 'lists.search', defaultMessage: 'Search among people you follow' },
@@ -65,7 +66,7 @@ class Search extends React.PureComponent {
         </label>
 
         <div role='button' tabIndex='0' className='search__icon' onClick={this.handleClear}>
-          <i className={classNames('fa fa-search', { active: !hasValue })} />
+          <Icon className={classNames('fa fa-search', { active: !hasValue })} />
           <i aria-label={intl.formatMessage(messages.search)} className={classNames('fa fa-times-circle', { active: hasValue })} />
         </div>
       </div>
