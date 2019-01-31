@@ -570,16 +570,16 @@ sk:
       other: "%{count} ľudia"
   errors:
     '403': Nemáš povolenie na zobrazenie tejto stránky.
-    '404': Stránka ktorú si hľadal/a sa tu nenachádza.
-    '410': Stránka ktorú si tu hľadal/a už viac neexistuje.
+    '404': Stránka ktorú hľadáš nieje tu.
+    '410': Stránka ktorú si tu hľadal/a sa tu už viac nenachádza.
     '422':
       content: Bezpečtnostné overenie zlyhalo. Blokuješ cookies?
       title: Bezpečtnostné overenie zlyhalo
     '429': Zamlčané
     '500':
-      content: Ospravedlňujeme sa. Niečo sa pokazilo na našom konci.
+      content: Ospravedlňujem sa. Niečo sa pokazilo na našom konci.
       title: Táto stránka nieje v poriadku
-    noscript_html: Aby bolo možné používať Mastodon web aplikáciu, prosím povoľte JavaScript. Alebo skúste jednu z <a href="%{apps_path}"> aplikácii </a> dostupných pre vašu platformu.
+    noscript_html: Aby bolo možné používať Mastodon web aplikáciu, povoľ prosím JavaScript. Alebo skús jednu z <a href="%{apps_path}"> aplikácii </a> dostupných pre vašu platformu.
   exports:
     archive_takeout:
       date: Dátum
@@ -607,7 +607,7 @@ sk:
       invalid_context: Nebola poskytnutá žiadna, alebo ide o neplatnú súvislosť
       invalid_irreversible: Nezvratné filtrovanie funguje iba so súvislostiami domovskej osi a oboznámení
     index:
-      delete: Vymazať
+      delete: Vymaž
       title: Triedenia
     new:
       title: Pridaj nové triedenie
@@ -615,7 +615,7 @@ sk:
     domain: Doména
     explanation_html: Pokiaľ chceš zaručiť súkromie svojích príspevkov, musíš mať na vedomí, kto ťa sleduje. <strong> Tvoje súkromné príspevky sú doručené na každý server z ktorého ťa niekto následuje. </strong> Takže možno by si ich chcel/a skontrolovať, a odstrániť tých následovníkov, čo sú na serveroch ktorím nedôveruješ, že ich moderátori, alebo úpravbuy kódu budú tiež rešpektovať tvoje súkromie.
     followers_count: Počet následovateľov
-    lock_link: Zamknite svoj účet
+    lock_link: Zamkni svoj účet
     purge: Odstrániť následovateľa
     success:
       few: Počas utišovania sledovateľov z %{count} domén...
