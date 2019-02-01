@@ -25,7 +25,7 @@ export default class VisibilityIcon extends ImmutablePureComponent {
 
     const visibilityClass = {
       public: 'globe',
-      unlisted: 'unlock-alt',
+      unlisted: 'unlock',
       private: 'lock',
       direct: 'envelope',
     }[visibility];
