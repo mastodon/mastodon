@@ -134,7 +134,7 @@ export function submitCompose(routerHistory) {
       status,
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
       media_ids: media.map(item => item.get('id')),
-      sensitive: getState().getIn(['compose', 'sensitive']) || spoilerText.length > 0,
+      sensitive: getState().getIn(['compose', 'sensitive']) || (spoilerText.length > 0 && media.size !== 0),
       spoiler_text: spoilerText,
       visibility: getState().getIn(['compose', 'privacy']),
     }, {
