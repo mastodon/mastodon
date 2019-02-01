@@ -17,6 +17,8 @@ class ImportService < BaseService
       import_blocks!
     when 'muting'
       import_mutes!
+    when 'domain_blocking'
+      import_domain_blocks!
     end
   end
 
@@ -34,8 +36,32 @@ class ImportService < BaseService
     import_relationships!('mute', 'unmute', @account.muting, ROWS_PROCESSING_LIMIT)
   end
 
+  def import_domain_blocks!
+    items = @data.take(ROWS_PROCESSING_LIMIT).map { |row| row.first.strip }
+
+    if @import.overwrite?
+      presence_hash = items.each_with_object({}) { |id, mapping| mapping[id] = true }
+
+      @account.domain_blocks.find_each do |domain_block|
+        if presence_hash[domain_block.domain]
+          items.delete(domain_block.domain)
+        else
+          @account.unblock_domain!(domain_block.domain)
+        end
+      end
+    end
+
+    items.each do |domain|
+      @account.block_domain!(domain)
+    end
+
+    AfterAccountDomainBlockWorker.push_bulk(items) do |domain|
+      [@account.id, domain]
+    end
+  end
+
   def import_relationships!(action, undo_action, overwrite_scope, limit)
-    items = @data.take(limit).map(&:first)
+    items = @data.take(limit).map { |row| row.first.strip }
 
     if @import.overwrite?
       presence_hash = items.each_with_object({}) { |id, mapping| mapping[id] = true }
