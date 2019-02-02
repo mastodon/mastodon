@@ -19,7 +19,7 @@ RSpec.describe FetchRemoteAccountService, type: :service do
   end
 
   let(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice' }] } }
-  let(:xml) { File.read(File.join(Rails.root, 'spec', 'fixtures', 'xml', 'mastodon.atom')) }
+  let(:xml) { File.read(Rails.root.join('spec', 'fixtures', 'xml', 'mastodon.atom')) }
 
   shared_examples 'return Account' do
     it { is_expected.to be_an Account }

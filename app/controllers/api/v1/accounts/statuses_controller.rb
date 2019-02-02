@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::Accounts::StatusesController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }
+  before_action -> { authorize_if_got_token! :read, :'read:statuses' }
   before_action :set_account
   after_action :insert_pagination_headers
 
@@ -28,14 +28,11 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
 
   def account_statuses
     statuses = truthy_param?(:pinned) ? pinned_scope : permitted_account_statuses
-    statuses = statuses.paginate_by_max_id(
-      limit_param(DEFAULT_STATUSES_LIMIT),
-      params[:max_id],
-      params[:since_id]
-    )
+    statuses = statuses.paginate_by_id(limit_param(DEFAULT_STATUSES_LIMIT), params_slice(:max_id, :since_id, :min_id))
 
     statuses.merge!(only_media_scope) if truthy_param?(:only_media)
     statuses.merge!(no_replies_scope) if truthy_param?(:exclude_replies)
+    statuses.merge!(no_reblogs_scope) if truthy_param?(:exclude_reblogs)
 
     statuses
   end
@@ -66,6 +63,10 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
     Status.without_replies
   end
 
+  def no_reblogs_scope
+    Status.without_reblogs
+  end
+
   def pagination_params(core_params)
     params.slice(:limit, :only_media, :exclude_replies).permit(:limit, :only_media, :exclude_replies).merge(core_params)
   end
@@ -82,7 +83,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
 
   def prev_path
     unless @statuses.empty?
-      api_v1_account_statuses_url pagination_params(since_id: pagination_since_id)
+      api_v1_account_statuses_url pagination_params(min_id: pagination_since_id)
     end
   end
 

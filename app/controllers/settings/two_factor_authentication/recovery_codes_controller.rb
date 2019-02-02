@@ -2,7 +2,7 @@
 
 module Settings
   module TwoFactorAuthentication
-    class RecoveryCodesController < ApplicationController
+    class RecoveryCodesController < BaseController
       layout 'admin'
 
       before_action :authenticate_user!

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Settings::FollowerDomainsController < ApplicationController
+class Settings::FollowerDomainsController < Settings::BaseController
   layout 'admin'
 
   before_action :authenticate_user!

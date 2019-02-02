@@ -1,5 +1,12 @@
+@function hex-color($color) {
+  @if type-of($color) == 'color' {
+    $color: str-slice(ie-hex-str($color), 4);
+  }
+  @return '%23' + unquote($color)
+}
+
 body {
-  font-family: 'mastodon-font-sans-serif', sans-serif;
+  font-family: $font-sans-serif, sans-serif;
   background: darken($ui-base-color, 8%);
   font-size: 13px;
   line-height: 18px;
@@ -22,8 +29,8 @@ body {
     // Fira Sans => Firefox OS
     // Droid Sans => Older Androids (<4.0)
     // Helvetica Neue => Older macOS <10.11
-    // mastodon-font-sans-serif => web-font (Roboto) fallback and newer Androids (>=4.0)
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", mastodon-font-sans-serif, sans-serif;
+    // $font-sans-serif => web-font (Roboto) fallback and newer Androids (>=4.0)
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", $font-sans-serif, sans-serif;
   }
 
   &.app-body {

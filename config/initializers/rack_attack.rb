@@ -42,7 +42,7 @@ class Rack::Attack
   # (blocklist & throttles are skipped)
   Rack::Attack.safelist('allow from localhost') do |req|
     # Requests are allowed if the return value is truthy
-    '127.0.0.1' == req.ip || '::1' == req.ip
+    req.ip == '127.0.0.1' || req.ip == '::1'
   end
 
   throttle('throttle_authenticated_api', limit: 300, period: 5.minutes) do |req|
@@ -55,6 +55,10 @@ class Rack::Attack
 
   throttle('throttle_media', limit: 30, period: 30.minutes) do |req|
     req.authenticated_user_id if req.post? && req.path.start_with?('/api/v1/media')
+  end
+
+  throttle('throttle_api_sign_up', limit: 5, period: 30.minutes) do |req|
+    req.ip if req.post? && req.path == '/api/v1/accounts'
   end
 
   throttle('protected_paths', limit: 25, period: 5.minutes) do |req|

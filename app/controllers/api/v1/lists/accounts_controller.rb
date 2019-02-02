@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::Lists::AccountsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:lists' },    only:  [:show]
+  before_action -> { doorkeeper_authorize! :read, :'read:lists' }, only: [:show]
   before_action -> { doorkeeper_authorize! :write, :'write:lists' }, except: [:show]
 
   before_action :require_user!
@@ -37,9 +37,9 @@ class Api::V1::Lists::AccountsController < Api::BaseController
 
   def load_accounts
     if unlimited?
-      @list.accounts.all
+      @list.accounts.includes(:account_stat).all
     else
-      @list.accounts.paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
+      @list.accounts.includes(:account_stat).paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
     end
   end
 

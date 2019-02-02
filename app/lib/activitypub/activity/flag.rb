@@ -2,12 +2,12 @@
 
 class ActivityPub::Activity::Flag < ActivityPub::Activity
   def perform
+    return if skip_reports?
+
     target_accounts            = object_uris.map { |uri| account_from_uri(uri) }.compact.select(&:local?)
     target_statuses_by_account = object_uris.map { |uri| status_from_uri(uri) }.compact.select(&:local?).group_by(&:account_id)
 
     target_accounts.each do |target_account|
-      next if Report.where(account: @account, target_account: target_account).exists?
-
       target_statuses = target_statuses_by_account[target_account.id]
 
       ReportService.new.call(
@@ -17,6 +17,12 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
         comment: @json['content'] || ''
       )
     end
+  end
+
+  private
+
+  def skip_reports?
+    DomainBlock.find_by(domain: @account.domain)&.reject_reports?
   end
 
   def object_uris

@@ -31,7 +31,7 @@ class FetchOEmbedService
 
     return if @endpoint_url.blank?
 
-    @endpoint_url = Addressable::URI.parse(@endpoint_url).to_s
+    @endpoint_url = (Addressable::URI.parse(@url) + @endpoint_url).to_s
   rescue Addressable::URI::InvalidURIError
     @endpoint_url = nil
   end
@@ -43,7 +43,7 @@ class FetchOEmbedService
       res.code != 200 ? nil : res.body_with_limit
     end
 
-    validate(parse_for_format(body)) unless body.nil?
+    validate(parse_for_format(body)) if body.present?
   rescue Oj::ParseError, Ox::ParseError
     nil
   end

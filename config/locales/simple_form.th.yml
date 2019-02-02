@@ -4,14 +4,8 @@ th:
     hints:
       defaults:
         avatar: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
-        display_name:
-          one: <span class="name-counter">1</span> character left
-          other: <span class="name-counter">%{count}</span> characters left
         header: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
         locked: Requires you to manually approve followers and defaults post privacy to followers-only
-        note:
-          one: <span class="name-counter">1</span> character left
-          other: <span class="note-counter">%{count}</span> characters left
       imports:
         data: CSV file exported from another Mastodon instance
       sessions:

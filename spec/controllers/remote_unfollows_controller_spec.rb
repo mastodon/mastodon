@@ -14,11 +14,11 @@ describe RemoteUnfollowsController do
     before do
       sign_in current_user
       current_account.follow!(remote_account)
-      stub_request(:post, 'http://example.com/inbox'){ { status: 200 } }
+      stub_request(:post, 'http://example.com/inbox') { { status: 200 } }
     end
 
     context 'when successfully unfollow remote account' do
-      let(:acct) {"acct:#{ remote_account.username }@#{ remote_account.domain }"}
+      let(:acct) { "acct:#{remote_account.username}@#{remote_account.domain}" }
 
       it do
         is_expected.to render_template :success
@@ -27,7 +27,7 @@ describe RemoteUnfollowsController do
     end
 
     context 'when fails to unfollow remote account' do
-      let(:acct) {"acct:#{ remote_account.username + '_test' }@#{ remote_account.domain }"}
+      let(:acct) { "acct:#{remote_account.username + '_test'}@#{remote_account.domain}" }
 
       it do
         is_expected.to render_template :error

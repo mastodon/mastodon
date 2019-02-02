@@ -115,14 +115,18 @@ describe StatusesController do
       end
 
       it 'assigns @descendant_threads for threads with :next_status key if they are hitting the depth limit' do
-        stub_const 'StatusesController::DESCENDANTS_DEPTH_LIMIT', 1
+        stub_const 'StatusesController::DESCENDANTS_DEPTH_LIMIT', 2
         status = Fabricate(:status)
-        child = Fabricate(:status, in_reply_to_id: status.id)
+        child0 = Fabricate(:status, in_reply_to_id: status.id)
+        child1 = Fabricate(:status, in_reply_to_id: child0.id)
+        child2 = Fabricate(:status, in_reply_to_id: child0.id)
 
         get :show, params: { account_username: status.account.username, id: status.id }
 
-        expect(assigns(:descendant_threads)[0][:statuses].pluck(:id)).not_to include child.id
-        expect(assigns(:descendant_threads)[0][:next_status].id).to eq child.id
+        expect(assigns(:descendant_threads)[0][:statuses].pluck(:id)).not_to include child1.id
+        expect(assigns(:descendant_threads)[1][:statuses].pluck(:id)).not_to include child2.id
+        expect(assigns(:descendant_threads)[0][:next_status].id).to eq child1.id
+        expect(assigns(:descendant_threads)[1][:next_status].id).to eq child2.id
       end
 
       it 'returns a success' do

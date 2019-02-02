@@ -1,3 +1,4 @@
+import escapeTextContentForBrowser from 'escape-html';
 import loadPolyfills from '../mastodon/load_polyfills';
 import ready from '../mastodon/ready';
 import { start } from '../mastodon/common';
@@ -21,7 +22,6 @@ window.addEventListener('message', e => {
 });
 
 function main() {
-  const { length } = require('stringz');
   const IntlMessageFormat = require('intl-messageformat').default;
   const { timeAgoString } = require('../mastodon/components/relative_timestamp');
   const { delegate } = require('rails-ujs');
@@ -32,6 +32,17 @@ function main() {
   const ReactDOM = require('react-dom');
   const Rellax = require('rellax');
   const createHistory = require('history').createBrowserHistory;
+
+  const scrollToDetailedStatus = () => {
+    const history = createHistory();
+    const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
+    const location = history.location;
+
+    if (detailedStatuses.length === 1 && (!location.state || !location.state.scrolledToDetailedStatus)) {
+      detailedStatuses[0].scrollIntoView();
+      history.replace(location.pathname, { ...location.state, scrolledToDetailedStatus: true });
+    }
+  };
 
   ready(() => {
     const locale = document.documentElement.lang;
@@ -64,29 +75,46 @@ function main() {
       content.textContent = timeAgoString({
         formatMessage: ({ id, defaultMessage }, values) => (new IntlMessageFormat(messages[id] || defaultMessage, locale)).format(values),
         formatDate: (date, options) => (new Intl.DateTimeFormat(locale, options)).format(date),
-      }, datetime, now, datetime.getFullYear());
+      }, datetime, now, now.getFullYear());
     });
 
     const reactComponents = document.querySelectorAll('[data-component]');
+
     if (reactComponents.length > 0) {
       import(/* webpackChunkName: "containers/media_container" */ '../mastodon/containers/media_container')
         .then(({ default: MediaContainer }) => {
+          [].forEach.call(reactComponents, (component) => {
+            [].forEach.call(component.children, (child) => {
+              component.removeChild(child);
+            });
+          });
+
           const content = document.createElement('div');
 
           ReactDOM.render(<MediaContainer locale={locale} components={reactComponents} />, content);
           document.body.appendChild(content);
+          scrollToDetailedStatus();
         })
-        .catch(error => console.error(error));
+        .catch(error => {
+          console.error(error);
+          scrollToDetailedStatus();
+        });
+    } else {
+      scrollToDetailedStatus();
     }
 
-    new Rellax('.parallax', { speed: -1 });
+    const parallaxComponents = document.querySelectorAll('.parallax');
 
-    const history = createHistory();
-    const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
-    const location = history.location;
-    if (detailedStatuses.length === 1 && (!location.state || !location.state.scrolledToDetailedStatus)) {
-      detailedStatuses[0].scrollIntoView();
-      history.replace(location.pathname, { ...location.state, scrolledToDetailedStatus: true });
+    if (parallaxComponents.length > 0 ) {
+      new Rellax('.parallax', { speed: -1 });
+    }
+
+    if (document.body.classList.contains('with-modals')) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      const scrollbarWidthStyle = document.createElement('style');
+      scrollbarWidthStyle.id = 'scrollbar-width';
+      document.head.appendChild(scrollbarWidthStyle);
+      scrollbarWidthStyle.sheet.insertRule(`body.with-modals--active { margin-right: ${scrollbarWidth}px; }`, 0);
     }
   });
 
@@ -127,23 +155,13 @@ function main() {
   });
 
   delegate(document, '#account_display_name', 'input', ({ target }) => {
-    const nameCounter = document.querySelector('.name-counter');
-    const name        = document.querySelector('.card .display-name strong');
-
-    if (nameCounter) {
-      nameCounter.textContent = 30 - length(target.value);
-    }
-
+    const name = document.querySelector('.card .display-name strong');
     if (name) {
-      name.innerHTML = emojify(target.value);
-    }
-  });
-
-  delegate(document, '#account_note', 'input', ({ target }) => {
-    const noteCounter = document.querySelector('.note-counter');
-
-    if (noteCounter) {
-      noteCounter.textContent = 160 - length(target.value);
+      if (target.value) {
+        name.innerHTML = emojify(escapeTextContentForBrowser(target.value));
+      } else {
+        name.textContent = document.querySelector('#default_account_display_name').textContent;
+      }
     }
   });
 
@@ -170,6 +188,30 @@ function main() {
       lock.style.display = 'inline';
     } else {
       lock.style.display = 'none';
+    }
+  });
+
+  delegate(document, '.input-copy input', 'click', ({ target }) => {
+    target.select();
+  });
+
+  delegate(document, '.input-copy button', 'click', ({ target }) => {
+    const input = target.parentNode.querySelector('.input-copy__wrapper input');
+
+    input.focus();
+    input.select();
+
+    try {
+      if (document.execCommand('copy')) {
+        input.blur();
+        target.parentNode.classList.add('copied');
+
+        setTimeout(() => {
+          target.parentNode.classList.remove('copied');
+        }, 700);
+      }
+    } catch (err) {
+      console.error(err);
     }
   });
 }

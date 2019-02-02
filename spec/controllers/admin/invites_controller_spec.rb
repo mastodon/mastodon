@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Admin::InvitesController do
@@ -24,7 +26,7 @@ describe Admin::InvitesController do
     subject { post :create, params: { invite: { max_uses: '10', expires_in: 1800 } } }
 
     it 'succeeds to create a invite' do
-      expect{ subject }.to change { Invite.count }.by(1)
+      expect { subject }.to change { Invite.count }.by(1)
       expect(subject).to redirect_to admin_invites_path
       expect(Invite.last).to have_attributes(user_id: user.id, max_uses: 10)
     end
@@ -38,6 +40,20 @@ describe Admin::InvitesController do
     it 'expires invite' do
       expect(subject).to redirect_to admin_invites_path
       expect(invite.reload).to be_expired
+    end
+  end
+
+  describe 'POST #deactivate_all' do
+    it 'expires all invites, then redirects to admin_invites_path' do
+      invites = Fabricate.times(2, :invite, expires_at: nil)
+
+      post :deactivate_all
+
+      invites.each do |invite|
+        expect(invite.reload).to be_expired
+      end
+
+      expect(response).to redirect_to admin_invites_path
     end
   end
 end

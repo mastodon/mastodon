@@ -50,6 +50,8 @@ class ActivityPub::Activity
         ActivityPub::Activity::Add
       when 'Remove'
         ActivityPub::Activity::Remove
+      when 'Move'
+        ActivityPub::Activity::Move
       end
     end
   end
@@ -96,7 +98,7 @@ class ActivityPub::Activity
   end
 
   def notify_about_mentions(status)
-    status.mentions.includes(:account).each do |mention|
+    status.active_mentions.includes(:account).each do |mention|
       next unless mention.account.local? && audience_includes?(mention.account)
       NotifyService.new.call(mention.account, mention)
     end
@@ -104,7 +106,9 @@ class ActivityPub::Activity
 
   def crawl_links(status)
     return if status.spoiler_text?
-    LinkCrawlWorker.perform_async(status.id)
+
+    # Spread out crawling randomly to avoid DDoSing the link
+    LinkCrawlWorker.perform_in(rand(1..59).seconds, status.id)
   end
 
   def distribute_to_followers(status)
@@ -126,5 +130,11 @@ class ActivityPub::Activity
     elsif @object['url'].present?
       ::FetchRemoteStatusService.new.call(@object['url'])
     end
+  end
+
+  def lock_or_return(key, expire_after = 7.days.seconds)
+    yield if redis.set(key, true, nx: true, ex: expire_after)
+  ensure
+    redis.del(key)
   end
 end

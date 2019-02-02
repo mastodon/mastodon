@@ -3,6 +3,7 @@ import {
   NOTIFICATIONS_EXPAND_SUCCESS,
   NOTIFICATIONS_EXPAND_REQUEST,
   NOTIFICATIONS_EXPAND_FAIL,
+  NOTIFICATIONS_FILTER_SET,
   NOTIFICATIONS_CLEAR,
   NOTIFICATIONS_SCROLL_TOP,
 } from '../actions/notifications';
@@ -26,6 +27,7 @@ const notificationToMap = notification => ImmutableMap({
   id: notification.id,
   type: notification.type,
   account: notification.account.id,
+  created_at: notification.created_at,
   status: notification.status ? notification.status.id : null,
 });
 
@@ -68,7 +70,7 @@ const expandNormalizedNotifications = (state, notifications, next) => {
     }
 
     if (!next) {
-      mutable.set('hasMore', true);
+      mutable.set('hasMore', false);
     }
 
     mutable.set('isLoading', false);
@@ -97,6 +99,8 @@ export default function notifications(state = initialState, action) {
     return state.set('isLoading', true);
   case NOTIFICATIONS_EXPAND_FAIL:
     return state.set('isLoading', false);
+  case NOTIFICATIONS_FILTER_SET:
+    return state.set('items', ImmutableList()).set('hasMore', true);
   case NOTIFICATIONS_SCROLL_TOP:
     return updateTop(state, action.top);
   case NOTIFICATIONS_UPDATE:

@@ -52,6 +52,14 @@ class ManifestSerializer < ActiveModel::Serializer
   end
 
   def share_target
-    { url_template: 'share?title={title}&text={text}&url={url}' }
+    {
+      url_template: 'share?title={title}&text={text}&url={url}',
+      action: 'share',
+      params: {
+        title: 'title',
+        text: 'text',
+        url: 'url',
+      },
+    }
   end
 end

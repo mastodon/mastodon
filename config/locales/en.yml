@@ -43,9 +43,13 @@ en:
   accounts:
     choices_html: "%{name}'s choices:"
     follow: Follow
-    followers: Followers
+    followers:
+      one: Follower
+      other: Followers
     following: Following
     joined: Joined %{date}
+    last_active: last active
+    link_verified_on: Ownership of this link was checked on %{date}
     media: Media
     moved_html: "%{name} has moved to %{new_profile_link}:"
     network_hidden: This information is not available
@@ -54,7 +58,10 @@ en:
     people_who_follow: People who follow %{name}
     pin_errors:
       following: You must be already following the person you want to endorse
-    posts: Toots
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Toots and replies
     reserved_username: The username is reserved
     roles:
@@ -63,6 +70,9 @@ en:
       moderator: Mod
     unfollow: Unfollow
   admin:
+    account_actions:
+      action: Perform action
+      title: Perform moderation action on %{acct}
     account_moderation_notes:
       create: Leave note
       created_msg: Moderation note successfully created!
@@ -74,14 +84,15 @@ en:
       by_domain: Domain
       change_email:
         changed_msg: Account email successfully changed!
-        current_email: Current Email
-        label: Change Email
-        new_email: New Email
-        submit: Change Email
-        title: Change Email for %{username}
+        current_email: Current email
+        label: Change email
+        new_email: New email
+        submit: Change email
+        title: Change email for %{username}
       confirm: Confirm
       confirmed: Confirmed
       confirming: Confirming
+      deleted: Deleted
       demote: Demote
       disable: Disable
       disable_two_factor_authentication: Disable 2FA
@@ -89,16 +100,19 @@ en:
       display_name: Display name
       domain: Domain
       edit: Edit
-      email: E-mail
-      email_status: E-mail Status
+      email: Email
+      email_status: Email status
       enable: Enable
       enabled: Enabled
       feed_url: Feed URL
       followers: Followers
       followers_url: Followers URL
       follows: Follows
+      header: Header
       inbox_url: Inbox URL
+      invited_by: Invited by
       ip: IP
+      joined: Joined
       location:
         all: All
         local: Local
@@ -108,6 +122,7 @@ en:
       media_attachments: Media attachments
       memorialize: Turn into memoriam
       moderation:
+        active: Active
         all: All
         silenced: Silenced
         suspended: Suspended
@@ -115,20 +130,18 @@ en:
       moderation_notes: Moderation notes
       most_recent_activity: Most recent activity
       most_recent_ip: Most recent IP
+      no_limits_imposed: No limits imposed
       not_subscribed: Not subscribed
-      order:
-        alphabetic: Alphabetic
-        most_recent: Most recent
-        title: Order
       outbox_url: Outbox URL
-      perform_full_suspension: Perform full suspension
+      perform_full_suspension: Suspend
       profile_url: Profile URL
       promote: Promote
       protocol: Protocol
       public: Public
       push_subscription_expires: PuSH subscription expires
-      redownload: Refresh avatar
+      redownload: Refresh profile
       remove_avatar: Remove avatar
+      remove_header: Remove header
       resend_confirmation:
         already_confirmed: This user is already confirmed
         send: Resend confirmation email
@@ -144,30 +157,34 @@ en:
         user: User
       salmon_url: Salmon URL
       search: Search
-      shared_inbox_url: Shared Inbox URL
+      shared_inbox_url: Shared inbox URL
       show:
-        created_reports: Reports created by this account
-        report: report
-        targeted_reports: Reports made about this account
+        created_reports: Made reports
+        targeted_reports: Reported by others
       silence: Silence
+      silenced: Silenced
       statuses: Statuses
       subscribe: Subscribe
+      suspended: Suspended
       title: Accounts
-      unconfirmed_email: Unconfirmed E-mail
+      unconfirmed_email: Unconfirmed email
       undo_silenced: Undo silence
       undo_suspension: Undo suspension
       unsubscribe: Unsubscribe
       username: Username
+      warn: Warn
       web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} assigned report %{target} to themselves"
         change_email_user: "%{name} changed the e-mail address of user %{target}"
         confirm_user: "%{name} confirmed e-mail address of user %{target}"
+        create_account_warning: "%{name} sent a warning to %{target}"
         create_custom_emoji: "%{name} uploaded new emoji %{target}"
         create_domain_block: "%{name} blocked domain %{target}"
         create_email_domain_block: "%{name} blacklisted e-mail domain %{target}"
         demote_user: "%{name} demoted user %{target}"
+        destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_block: "%{name} unblocked domain %{target}"
         destroy_email_domain_block: "%{name} whitelisted e-mail domain %{target}"
         destroy_status: "%{name} removed status by %{target}"
@@ -221,6 +238,7 @@ en:
       config: Configuration
       feature_deletions: Account deletions
       feature_invites: Invite links
+      feature_profile_directory: Profile directory
       feature_registrations: Registrations
       feature_relay: Federation relay
       features: Features
@@ -238,7 +256,7 @@ en:
       week_users_active: active this week
       week_users_new: users this week
     domain_blocks:
-      add_new: Add new
+      add_new: Add new domain block
       created_msg: Domain block is now being processed
       destroyed_msg: Domain block has been undone
       domain: Domain
@@ -253,11 +271,13 @@ en:
         title: New domain block
       reject_media: Reject media files
       reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
-      severities:
-        noop: None
-        silence: Silence
-        suspend: Suspend
-      severity: Severity
+      reject_reports: Reject reports
+      reject_reports_hint: Ignore all reports coming from this domain. Irrelevant for suspensions
+      rejecting_media: rejecting media files
+      rejecting_reports: rejecting reports
+      severity:
+        silence: silenced
+        suspend: suspended
       show:
         affected_accounts:
           one: One account in the database affected
@@ -267,8 +287,7 @@ en:
           suspend: Unsuspend all existing accounts from this domain
         title: Undo domain block for %{domain}
         undo: Undo
-      title: Domain blocks
-      undo: Undo
+      undo: Undo domain block
     email_domain_blocks:
       add_new: Add new
       created_msg: Successfully added e-mail domain to blacklist
@@ -279,12 +298,24 @@ en:
         create: Add domain
         title: New e-mail blacklist entry
       title: E-mail blacklist
+    followers:
+      back_to_account: Back To Account
+      title: "%{acct}'s Followers"
     instances:
-      account_count: Known accounts
-      domain_name: Domain
-      reset: Reset
-      search: Search
-      title: Known instances
+      delivery_available: Delivery is available
+      known_accounts:
+        one: "%{count} known account"
+        other: "%{count} known accounts"
+      moderation:
+        all: All
+        limited: Limited
+        title: Moderation
+      title: Federation
+      total_blocked_by_us: Blocked by us
+      total_followed_by_them: Followed by them
+      total_followed_by_us: Followed by us
+      total_reported: Reports about them
+      total_storage: Media attachments
     invites:
       deactivate_all: Deactivate all
       filter:
@@ -295,9 +326,16 @@ en:
       title: Invites
     relays:
       add_new: Add new relay
+      delete: Delete
       description_html: A <strong>federation relay</strong> is an intermediary server that exchanges large volumes of public toots between servers that subscribe and publish to it. <strong>It can help small and medium servers discover content from the fediverse</strong>, which would otherwise require local users manually following other people on remote servers.
+      disable: Disable
+      disabled: Disabled
+      enable: Enable
       enable_hint: Once enabled, your server will subscribe to all public toots from this relay, and will begin sending this server's public toots to it.
+      enabled: Enabled
       inbox_url: Relay URL
+      pending: Waiting for relay's approval
+      save_and_enable: Save and enable
       setup: Setup a relay connection
       status: Status
       title: Relays
@@ -315,7 +353,6 @@ en:
       comment:
         none: None
       created_at: Reported
-      id: ID
       mark_as_resolved: Mark as resolved
       mark_as_unresolved: Mark as unresolved
       notes:
@@ -326,20 +363,15 @@ en:
         placeholder: Describe what actions have been taken, or any other related updates...
       reopen: Reopen report
       report: 'Report #%{id}'
-      report_contents: Contents
       reported_account: Reported account
       reported_by: Reported by
       resolved: Resolved
       resolved_msg: Report successfully resolved!
-      silence_account: Silence account
       status: Status
-      suspend_account: Suspend account
-      target: Target
       title: Reports
       unassign: Unassign
       unresolved: Unresolved
       updated_at: Updated
-      view: View
     settings:
       activity_api_enabled:
         desc_html: Counts of locally posted statuses, active users, and new registrations in weekly buckets
@@ -356,12 +388,18 @@ en:
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to instance thumbnail
         title: Hero image
+      mascot:
+        desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
+        title: Mascot image
       peers_api_enabled:
         desc_html: Domain names this instance has encountered in the fediverse
         title: Publish list of discovered instances
       preview_sensitive_media:
         desc_html: Link previews on other websites will display a thumbnail even if the media is marked as sensitive
         title: Show sensitive media in OpenGraph previews
+      profile_directory:
+        desc_html: Allow users to be discoverable
+        title: Enable profile directory
       registrations:
         closed_message:
           desc_html: Displayed on frontpage when registrations are closed. You can use HTML tags
@@ -421,13 +459,21 @@ en:
       last_delivery: Last delivery
       title: WebSub
       topic: Topic
-    suspensions:
-      bad_acct_msg: The confirmation value didn't match up. Are you suspending the right account?
-      hint_html: 'To confirm the suspension of the account, please enter %{value} into the field below:'
-      proceed: Proceed
-      title: Suspend %{acct}
-      warning_html: 'Suspending this account will <strong>irreversibly</strong> delete data from this account, which includes:'
+    tags:
+      accounts: Accounts
+      hidden: Hidden
+      hide: Hide from directory
+      name: Hashtag
+      title: Hashtags
+      unhide: Show in directory
+      visible: Visible
     title: Administration
+    warning_presets:
+      add_new: Add new
+      delete: Delete
+      edit: Edit
+      edit_preset: Edit warning preset
+      title: Manage warning presets
   admin_mailer:
     new_report:
       body: "%{reporter} has reported %{target}"
@@ -449,7 +495,7 @@ en:
     warning: Be very careful with this data. Never share it with anyone!
     your_token: Your access token
   auth:
-    agreement_html: By signing up you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
+    agreement_html: By clicking "Sign up" below you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
     change_password: Password
     confirm_email: Confirm email
     delete_account: Delete account
@@ -505,10 +551,20 @@ en:
     success_msg: Your account was successfully deleted
     warning_html: Only deletion of content from this particular instance is guaranteed. Content that has been widely shared is likely to leave traces. Offline servers and servers that have unsubscribed from your updates will not update their databases.
     warning_title: Disseminated content availability
+  directories:
+    directory: Profile directory
+    enabled: You are currently listed in the directory.
+    enabled_but_waiting: You have opted-in to be listed in the directory, but you do not have the minimum number of followers (%{min_followers}) to be listed yet.
+    explanation: Discover users based on their interests
+    explore_mastodon: Explore %{title}
+    how_to_enable: You are not currently opted-in to the directory. You can opt-in below. Use hashtags in your bio text to be listed under specific hashtags!
+    people:
+      one: "%{count} person"
+      other: "%{count} people"
   errors:
     '403': You don't have permission to view this page.
-    '404': The page you were looking for doesn't exist.
-    '410': The page you were looking for doesn't exist anymore.
+    '404': The page you are looking for isn't here.
+    '410': The page you were looking for doesn't exist here anymore.
     '422':
       content: Security verification failed. Are you blocking cookies?
       title: Security verification failed
@@ -516,18 +572,20 @@ en:
     '500':
       content: We're sorry, but something went wrong on our end.
       title: This page is not correct
-    noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">native apps</a> for Mastodon for your platform.
+    noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Mastodon for your platform.
   exports:
     archive_takeout:
       date: Date
       download: Download your archive
-      hint_html: You can request an archive of your <strong>toots and uploaded media</strong>. The exported data will be in ActivityPub format, readable by any compliant software. You can request an archive every 7 days.
+      hint_html: You can request an archive of your <strong>toots and uploaded media</strong>. The exported data will be in the ActivityPub format, readable by any compliant software. You can request an archive every 7 days.
       in_progress: Compiling your archive...
       request: Request your archive
       size: Size
     blocks: You block
     csv: CSV
+    domain_blocks: Domain blocks
     follows: You follow
+    lists: Lists
     mutes: You mute
     storage: Media storage
   filters:
@@ -564,6 +622,7 @@ en:
     resources: Resources
   generic:
     changes_saved_msg: Changes successfully saved!
+    copy: Copy
     save_changes: Save changes
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
@@ -675,13 +734,25 @@ en:
     no_account_html: Don't have an account? You can <a href='%{sign_up_path}' target='_blank'>sign up here</a>
     proceed: Proceed to follow
     prompt: 'You are going to follow:'
+    reason_html: "<strong>Why is this step necessary?</strong> <code>%{instance}</code> might not be the server where you are registered, so we need to redirect you to your home server first."
   remote_interaction:
-    proceed: Proceed to interact
-    prompt: 'You want to interact with this toot:'
+    favourite:
+      proceed: Proceed to favourite
+      prompt: 'You want to favourite this toot:'
+    reblog:
+      proceed: Proceed to boost
+      prompt: 'You want to boost this toot:'
+    reply:
+      proceed: Proceed to reply
+      prompt: 'You want to reply to this toot:'
   remote_unfollow:
     error: Error
     title: Title
     unfollowed: Unfollowed
+  scheduled_statuses:
+    over_daily_limit: You have exceeded the limit of %{limit} scheduled toots for that day
+    over_total_limit: You have exceeded the limit of %{limit} scheduled toots
+    too_soon: The scheduled date must be in the future
   sessions:
     activity: Last activity
     browser: Browser
@@ -858,9 +929,9 @@ en:
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Terms of Service and Privacy Policy"
   themes:
-    contrast: High contrast
-    default: Mastodon
-    mastodon-light: Mastodon (light)
+    contrast: Mastodon (High contrast)
+    default: Mastodon (Dark)
+    mastodon-light: Mastodon (Light)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -886,6 +957,22 @@ en:
       explanation: You requested a full backup of your Mastodon account. It's now ready for download!
       subject: Your archive is ready for download
       title: Archive takeout
+    warning:
+      explanation:
+        disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
+        silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
+        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
+      review_server_policies: Review server policies
+      subject:
+        disable: Your account %{acct} has been frozen
+        none: Warning for %{acct}
+        silence: Your account %{acct} has been limited
+        suspend: Your account %{acct} has been suspended
+      title:
+        disable: Account frozen
+        none: Warning
+        silence: Account limited
+        suspend: Account suspended
     welcome:
       edit_profile_action: Setup profile
       edit_profile_step: You can customize your profile by uploading an avatar, header, changing your display name and more. If you’d like to review new followers before they’re allowed to follow you, you can lock your account.
@@ -897,7 +984,6 @@ en:
       review_preferences_action: Change preferences
       review_preferences_step: Make sure to set your preferences, such as which emails you'd like to receive, or what privacy level you’d like your posts to default to. If you don’t have motion sickness, you could choose to enable GIF autoplay.
       subject: Welcome to Mastodon
-      tip_bridge_html: If you are coming from Twitter, you can find your friends on Mastodon by using the <a href="%{bridge_url}">bridge app</a>. It only works if they also used the bridge app though!
       tip_federated_timeline: The federated timeline is a firehose view of the Mastodon network. But it only includes people your neighbours are subscribed to, so it's not complete.
       tip_following: You follow your server's admin(s) by default. To find more interesting people, check the local and federated timelines.
       tip_local_timeline: The local timeline is a firehose view of people on %{instance}. These are your immediate neighbours!
@@ -905,8 +991,12 @@ en:
       tips: Tips
       title: Welcome aboard, %{name}!
   users:
+    follow_limit_reached: You cannot follow more than %{limit} people
     invalid_email: The e-mail address is invalid
     invalid_otp_token: Invalid two-factor code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
+  verification:
+    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
+    verification: Verification

@@ -8,8 +8,8 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
   let!(:jeff)   { Fabricate(:user).account }
   let!(:hank)   { Fabricate(:account, username: 'hank', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 
-  let(:status1) { PostStatusService.new.call(alice, 'Hello @bob@example.com') }
-  let(:status2) { PostStatusService.new.call(alice, 'Another status') }
+  let(:status1) { PostStatusService.new.call(alice, text: 'Hello @bob@example.com') }
+  let(:status2) { PostStatusService.new.call(alice, text: 'Another status') }
 
   before do
     allow(Redis.current).to receive_messages(publish: nil)
@@ -19,7 +19,7 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
     stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
 
     Fabricate(:subscription, account: alice, callback_url: 'http://example.com/push', confirmed: true, expires_at: 30.days.from_now)
-    jeff.user.update(current_sign_in_at: Time.now)
+    jeff.user.update(current_sign_in_at: Time.zone.now)
     jeff.follow!(alice)
     hank.follow!(alice)
 

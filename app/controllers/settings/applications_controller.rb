@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Settings::ApplicationsController < ApplicationController
+class Settings::ApplicationsController < Settings::BaseController
   layout 'admin'
 
   before_action :authenticate_user!

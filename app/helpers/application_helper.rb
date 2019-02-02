@@ -7,8 +7,8 @@ module ApplicationHelper
     follow
   ).freeze
 
-  def active_nav_class(path)
-    current_page?(path) ? 'active' : ''
+  def active_nav_class(*paths)
+    paths.any? { |path| current_page?(path) } ? 'active' : ''
   end
 
   def active_link_to(label, path, **options)
@@ -69,16 +69,36 @@ module ApplicationHelper
     tag(:meta, content: content, property: property)
   end
 
-  def react_component(name, props = {})
-    content_tag(:div, nil, data: { component: name.to_s.camelcase, props: Oj.dump(props) })
+  def react_component(name, props = {}, &block)
+    if block.nil?
+      content_tag(:div, nil, data: { component: name.to_s.camelcase, props: Oj.dump(props) })
+    else
+      content_tag(:div, data: { component: name.to_s.camelcase, props: Oj.dump(props) }, &block)
+    end
   end
 
   def body_classes
     output = (@body_classes || '').split(' ')
     output << "theme-#{current_theme.parameterize}"
     output << 'system-font' if current_account&.user&.setting_system_font_ui
-    output << current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion'
+    output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
     output << 'rtl' if locale_direction == 'rtl'
     output.reject(&:blank?).join(' ')
+  end
+
+  def cdn_host
+    Rails.configuration.action_controller.asset_host
+  end
+
+  def cdn_host?
+    cdn_host.present?
+  end
+
+  def storage_host
+    "https://#{ENV['S3_ALIAS_HOST'].presence || ENV['S3_CLOUDFRONT_HOST']}"
+  end
+
+  def storage_host?
+    ENV['S3_ALIAS_HOST'].present? || ENV['S3_CLOUDFRONT_HOST'].present?
   end
 end

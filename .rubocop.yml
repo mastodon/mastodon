@@ -62,6 +62,9 @@ Metrics/ParameterLists:
 Metrics/PerceivedComplexity:
   Max: 20
 
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
 Rails:
   Enabled: true
 
@@ -70,6 +73,14 @@ Rails/HasAndBelongsToMany:
 
 Rails/SkipsModelValidations:
   Enabled: false
+
+Rails/HttpStatus:
+  Enabled: false
+
+Rails/Exit:
+  Exclude:
+    - 'lib/mastodon/*'
+    - 'lib/cli'
 
 Style/ClassAndModuleChildren:
   Enabled: false

@@ -19,7 +19,7 @@ describe Api::V1::Timelines::ListController do
       before do
         follow = Fabricate(:follow, account: user.account)
         list.accounts << follow.target_account
-        PostStatusService.new.call(follow.target_account, 'New status for user home timeline.')
+        PostStatusService.new.call(follow.target_account, text: 'New status for user home timeline.')
       end
 
       it 'returns http success' do

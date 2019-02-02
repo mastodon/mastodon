@@ -49,10 +49,6 @@ th:
       most_recent_activity: กิจกรรมล่าสุด
       most_recent_ip: IP ล่าสุด
       not_subscribed: Not subscribed
-      order:
-        alphabetic: ตามตัวอักษร
-        most_recent: ล่าสุด
-        title: จัดเรียง
       perform_full_suspension: Perform full suspension
       profile_url: Profile URL
       public: สาธารณะ
@@ -65,7 +61,6 @@ th:
       salmon_url: Salmon URL
       show:
         created_reports: รายงานที่ถูกสร้างโดย แอคเคาท์นี้
-        report: รายงาน
         targeted_reports: รายงานเกี่ยวกับแอคเคาท์นี้
       silence: ปิดเสียง
       statuses: สถานะ
@@ -89,10 +84,6 @@ th:
         title: การบล๊อกโดเมนใหม่
       reject_media: ไม่อนุมัติไฟล์สื่อ
       reject_media_hint: ลบไฟล์สื่อที่เก็บไว้ในเครื่อง และ ป้องกันการดาวน์โหลดในอนาคต. Irrelevant for suspensions
-      severities:
-        silence: ปิดเสียง
-        suspend: หยุดไว้
-      severity: Severity
       show:
         affected_accounts:
           one: มีผลต่อหนึ่งแอคเค๊าท์ในฐานข้อมูล
@@ -102,29 +93,20 @@ th:
           suspend: ยกเลิกการหยุดทุกแอคเค๊าท์จากโดเมน
         title: ยกเลิกการบล๊อกโดเมน %{domain}
         undo: ยกเลิก
-      title: บล๊อกโดเมน
       undo: ยกเลิก
     instances:
-      account_count: Known accounts
-      domain_name: ชื่อโดเมน
       title: Known Instances
     reports:
       comment:
         none: None
-      id: ไอดี
       mark_as_resolved: ทำเครื่องหมายว่าจัดการแล้ว
       report: 'Report #%{id}'
-      report_contents: เนื้อหา
       reported_account: รายงานแอคเคาท์
       reported_by: รายงานโดย
       resolved: จัดการแล้ว
-      silence_account: แอคเค๊าท์ที่ปิดเสียง
       status: สถานะ
-      suspend_account: แอคเค๊าท์ที่หยุดไว้
-      target: เป้าหมาย
       title: รายงาน
       unresolved: Unresolved
-      view: วิว
     settings:
       contact_information:
         email: กรอกที่อยู่อีเมล์สาธารณะ
@@ -230,7 +212,7 @@ th:
       too_many: แนบมากกว่า 4 ไฟล์ไม่ได้
   notification_mailer:
     digest:
-      body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
+      body: Here is a brief summary of the messages you missed since your last visit on %{since}
       mention: "%{name} ส่งข้อความถึงคุณ:"
       new_followers_summary:
         one: ยินดีด้วยคุณได้ผู้ติดตามคนใหม่! Yay!

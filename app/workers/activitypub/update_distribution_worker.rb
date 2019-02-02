@@ -5,7 +5,8 @@ class ActivityPub::UpdateDistributionWorker
 
   sidekiq_options queue: 'push'
 
-  def perform(account_id)
+  def perform(account_id, options = {})
+    @options = options.with_indifferent_access
     @account = Account.find(account_id)
 
     ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
@@ -26,7 +27,7 @@ class ActivityPub::UpdateDistributionWorker
   end
 
   def signed_payload
-    @signed_payload ||= Oj.dump(ActivityPub::LinkedDataSignature.new(payload).sign!(@account))
+    @signed_payload ||= Oj.dump(ActivityPub::LinkedDataSignature.new(payload).sign!(@account, sign_with: @options[:sign_with]))
   end
 
   def payload

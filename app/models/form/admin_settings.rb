@@ -44,6 +44,8 @@ class Form::AdminSettings
     :preview_sensitive_media=,
     :custom_css,
     :custom_css=,
+    :profile_directory,
+    :profile_directory=,
     to: Setting
   )
 end

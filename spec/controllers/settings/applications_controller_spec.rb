@@ -21,7 +21,6 @@ describe Settings::ApplicationsController do
     end
   end
 
-
   describe 'GET #show' do
     it 'returns http success' do
       get :show, params: { id: app.id }
@@ -48,13 +47,13 @@ describe Settings::ApplicationsController do
     context 'success (passed scopes as a String)' do
       def call_create
         post :create, params: {
-               doorkeeper_application: {
-                 name: 'My New App',
-                 redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
-                 website: 'http://google.com',
-                 scopes: 'read write follow'
-               }
-             }
+          doorkeeper_application: {
+            name: 'My New App',
+            redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
+            website: 'http://google.com',
+            scopes: 'read write follow'
+          }
+        }
         response
       end
 
@@ -70,13 +69,13 @@ describe Settings::ApplicationsController do
     context 'success (passed scopes as an Array)' do
       def call_create
         post :create, params: {
-               doorkeeper_application: {
-                 name: 'My New App',
-                 redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
-                 website: 'http://google.com',
-                 scopes: [ 'read', 'write', 'follow' ]
-               }
-             }
+          doorkeeper_application: {
+            name: 'My New App',
+            redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
+            website: 'http://google.com',
+            scopes: [ 'read', 'write', 'follow' ]
+          }
+        }
         response
       end
 
@@ -92,13 +91,13 @@ describe Settings::ApplicationsController do
     context 'failure' do
       before do
         post :create, params: {
-               doorkeeper_application: {
-                 name: '',
-                 redirect_uri: '',
-                 website: '',
-                 scopes: []
-               }
-             }
+          doorkeeper_application: {
+            name: '',
+            redirect_uri: '',
+            website: '',
+            scopes: []
+          }
+        }
       end
 
       it 'returns http success' do
@@ -121,9 +120,9 @@ describe Settings::ApplicationsController do
 
       def call_update
         patch :update, params: {
-                id: app.id,
-                doorkeeper_application: opts
-              }
+          id: app.id,
+          doorkeeper_application: opts
+        }
         response
       end
 
@@ -140,14 +139,14 @@ describe Settings::ApplicationsController do
     context 'failure' do
       before do
         patch :update, params: {
-                id: app.id,
-                doorkeeper_application: {
-                  name: '',
-                  redirect_uri: '',
-                  website: '',
-                  scopes: []
-                }
-              }
+          id: app.id,
+          doorkeeper_application: {
+            name: '',
+            redirect_uri: '',
+            website: '',
+            scopes: []
+          }
+        }
       end
 
       it 'returns http success' do

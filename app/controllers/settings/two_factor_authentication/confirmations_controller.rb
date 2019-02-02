@@ -2,7 +2,7 @@
 
 module Settings
   module TwoFactorAuthentication
-    class ConfirmationsController < ApplicationController
+    class ConfirmationsController < BaseController
       layout 'admin'
 
       before_action :authenticate_user!

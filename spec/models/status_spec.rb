@@ -154,7 +154,7 @@ RSpec.describe Status, type: :model do
 
   describe '#target' do
     it 'returns nil if the status is self-contained' do
-     expect(subject.target).to be_nil
+      expect(subject.target).to be_nil
     end
 
     it 'returns nil if the status is a reply' do

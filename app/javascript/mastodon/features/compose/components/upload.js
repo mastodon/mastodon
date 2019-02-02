@@ -6,13 +6,18 @@ import spring from 'react-motion/lib/spring';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
+import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
   description: { id: 'upload_form.description', defaultMessage: 'Describe for the visually impaired' },
 });
 
-@injectIntl
-export default class Upload extends ImmutablePureComponent {
+export default @injectIntl
+class Upload extends ImmutablePureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
@@ -37,14 +42,16 @@ export default class Upload extends ImmutablePureComponent {
 
   handleSubmit = () => {
     this.handleInputBlur();
-    this.props.onSubmit();
+    this.props.onSubmit(this.context.router.history);
   }
 
-  handleUndoClick = () => {
+  handleUndoClick = e => {
+    e.stopPropagation();
     this.props.onUndo(this.props.media.get('id'));
   }
 
-  handleFocalPointClick = () => {
+  handleFocalPointClick = e => {
+    e.stopPropagation();
     this.props.onOpenFocalPoint(this.props.media.get('id'));
   }
 
@@ -61,6 +68,10 @@ export default class Upload extends ImmutablePureComponent {
   }
 
   handleInputFocus = () => {
+    this.setState({ focused: true });
+  }
+
+  handleClick = () => {
     this.setState({ focused: true });
   }
 
@@ -84,13 +95,13 @@ export default class Upload extends ImmutablePureComponent {
     const y = ((focusY / -2) + .5) * 100;
 
     return (
-      <div className='compose-form__upload' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <div className='compose-form__upload' tabIndex='0' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} onClick={this.handleClick} role='button'>
         <Motion defaultStyle={{ scale: 0.8 }} style={{ scale: spring(1, { stiffness: 180, damping: 12 }) }}>
           {({ scale }) => (
             <div className='compose-form__upload-thumbnail' style={{ transform: `scale(${scale})`, backgroundImage: `url(${media.get('preview_url')})`, backgroundPosition: `${x}% ${y}%` }}>
               <div className={classNames('compose-form__upload__actions', { active })}>
-                <button className='icon-button' onClick={this.handleUndoClick}><i className='fa fa-times' /> <FormattedMessage id='upload_form.undo' defaultMessage='Delete' /></button>
-                {media.get('type') === 'image' && <button className='icon-button' onClick={this.handleFocalPointClick}><i className='fa fa-crosshairs' /> <FormattedMessage id='upload_form.focus' defaultMessage='Crop' /></button>}
+                <button className='icon-button' onClick={this.handleUndoClick}><Icon id='times' /> <FormattedMessage id='upload_form.undo' defaultMessage='Delete' /></button>
+                {media.get('type') === 'image' && <button className='icon-button' onClick={this.handleFocalPointClick}><Icon id='crosshairs' /> <FormattedMessage id='upload_form.focus' defaultMessage='Crop' /></button>}
               </div>
 
               <div className={classNames('compose-form__upload-description', { active })}>

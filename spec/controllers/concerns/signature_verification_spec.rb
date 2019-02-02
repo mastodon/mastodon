@@ -73,6 +73,30 @@ describe ApplicationController, type: :controller do
       end
     end
 
+    context 'with request older than a day' do
+      before do
+        get :success
+
+        fake_request = Request.new(:get, request.url)
+        fake_request.add_headers({ 'Date' => 2.days.ago.utc.httpdate })
+        fake_request.on_behalf_of(author)
+
+        request.headers.merge!(fake_request.headers)
+      end
+
+      describe '#signed_request?' do
+        it 'returns true' do
+          expect(controller.signed_request?).to be true
+        end
+      end
+
+      describe '#signed_request_account' do
+        it 'returns nil' do
+          expect(controller.signed_request_account).to be_nil
+        end
+      end
+    end
+
     context 'with body' do
       before do
         post :success, body: 'Hello world'

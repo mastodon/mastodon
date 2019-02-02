@@ -6,7 +6,7 @@ import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
 import classNames from 'classnames';
-import { autoPlayGif, displaySensitiveMedia } from '../initial_state';
+import { autoPlayGif, displayMedia } from '../initial_state';
 
 const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
@@ -51,6 +51,10 @@ class Item extends React.PureComponent {
     const { index, onClick } = this.props;
 
     if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+      if (this.hoverToPlay()) {
+        e.target.pause();
+        e.target.currentTime = 0;
+      }
       e.preventDefault();
       onClick(index);
     }
@@ -179,8 +183,8 @@ class Item extends React.PureComponent {
 
 }
 
-@injectIntl
-export default class MediaGallery extends React.PureComponent {
+export default @injectIntl
+class MediaGallery extends React.PureComponent {
 
   static propTypes = {
     sensitive: PropTypes.bool,
@@ -197,7 +201,7 @@ export default class MediaGallery extends React.PureComponent {
   };
 
   state = {
-    visible: !this.props.sensitive || displaySensitiveMedia,
+    visible: displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all',
   };
 
   componentWillReceiveProps (nextProps) {

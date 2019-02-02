@@ -18,6 +18,7 @@ da:
     mailer:
       confirmation_instructions:
         action: Bekræft email adresse
+        action_with_app: Bekræft og vend tilbage til %{app}
         explanation: Du har oprettet en konto på %{host} med denne email adresse. Du er et klik fra at aktivere din konto. Hvis du ikke har oprettet dig, ignorer venligst denne email.
         extra_html: Tjek også <a href="%{terms_path}">reglerne for instansen</a> og <a href="%{policy_path}">vores betingelser</a>.
         subject: 'Mastodon: Bekræftelses instrukser for %{instance}'

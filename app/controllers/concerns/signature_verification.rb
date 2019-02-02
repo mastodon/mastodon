@@ -22,6 +22,12 @@ module SignatureVerification
       return
     end
 
+    if request.headers['Date'].present? && !matches_time_window?
+      @signature_verification_failure_reason = 'Signed request date outside acceptable time window'
+      @signed_request_account = nil
+      return
+    end
+
     raw_signature    = request.headers['Signature']
     signature_params = {}
 
@@ -37,7 +43,13 @@ module SignatureVerification
       return
     end
 
-    account = account_from_key_id(signature_params['keyId'])
+    account_stoplight = Stoplight("source:#{request.ip}") { account_from_key_id(signature_params['keyId']) }
+      .with_fallback { nil }
+      .with_threshold(1)
+      .with_cool_off_time(5.minutes.seconds)
+      .with_error_handler { |error, handle| error.is_a?(HTTP::Error) ? handle.call(error) : raise(error) }
+
+    account = account_stoplight.run
 
     if account.nil?
       @signature_verification_failure_reason = "Public key not found for key #{signature_params['keyId']}"
@@ -48,23 +60,26 @@ module SignatureVerification
     signature             = Base64.decode64(signature_params['signature'])
     compare_signed_string = build_signed_string(signature_params['headers'])
 
-    if account.keypair.public_key.verify(OpenSSL::Digest::SHA256.new, signature, compare_signed_string)
-      @signed_request_account = account
-      @signed_request_account
-    elsif account.possibly_stale?
-      account = account.refresh!
+    return account unless verify_signature(account, signature, compare_signed_string).nil?
 
-      if account.keypair.public_key.verify(OpenSSL::Digest::SHA256.new, signature, compare_signed_string)
-        @signed_request_account = account
-        @signed_request_account
-      else
-        @signature_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri}"
-        @signed_request_account = nil
-      end
-    else
-      @signature_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri}"
+    account_stoplight = Stoplight("source:#{request.ip}") { account.possibly_stale? ? account.refresh! : account_refresh_key(account) }
+      .with_fallback { nil }
+      .with_threshold(1)
+      .with_cool_off_time(5.minutes.seconds)
+      .with_error_handler { |error, handle| error.is_a?(HTTP::Error) ? handle.call(error) : raise(error) }
+
+    account = account_stoplight.run
+
+    if account.nil?
+      @signature_verification_failure_reason = "Public key not found for key #{signature_params['keyId']}"
       @signed_request_account = nil
+      return
     end
+
+    return account unless verify_signature(account, signature, compare_signed_string).nil?
+
+    @signature_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri}"
+    @signed_request_account = nil
   end
 
   def request_body
@@ -73,10 +88,19 @@ module SignatureVerification
 
   private
 
+  def verify_signature(account, signature, compare_signed_string)
+    if account.keypair.public_key.verify(OpenSSL::Digest::SHA256.new, signature, compare_signed_string)
+      @signed_request_account = account
+      @signed_request_account
+    end
+  rescue OpenSSL::PKey::RSAError
+    nil
+  end
+
   def build_signed_string(signed_headers)
     signed_headers = 'date' if signed_headers.blank?
 
-    signed_headers.split(' ').map do |signed_header|
+    signed_headers.downcase.split(' ').map do |signed_header|
       if signed_header == Request::REQUEST_TARGET
         "#{Request::REQUEST_TARGET}: #{request.method.downcase} #{request.path}"
       elsif signed_header == 'digest'
@@ -89,12 +113,12 @@ module SignatureVerification
 
   def matches_time_window?
     begin
-      time_sent = DateTime.httpdate(request.headers['Date'])
+      time_sent = Time.httpdate(request.headers['Date'])
     rescue ArgumentError
       return false
     end
 
-    (Time.now.utc - time_sent).abs <= 30
+    (Time.now.utc - time_sent).abs <= 12.hours
   end
 
   def body_digest
@@ -118,5 +142,10 @@ module SignatureVerification
       account ||= ActivityPub::FetchRemoteKeyService.new.call(key_id, id: false)
       account
     end
+  end
+
+  def account_refresh_key(account)
+    return if account.local? || !account.activitypub?
+    ActivityPub::FetchRemoteAccountService.new.call(account.uri, only_key: true)
   end
 end

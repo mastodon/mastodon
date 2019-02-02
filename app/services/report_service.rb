@@ -26,7 +26,10 @@ class ReportService < BaseService
   end
 
   def notify_staff!
+    return if @report.unresolved_siblings?
+
     User.staff.includes(:account).each do |u|
+      next unless u.allows_report_emails?
       AdminMailer.new_report(u.account, @report).deliver_later
     end
   end
@@ -49,6 +52,6 @@ class ReportService < BaseService
   end
 
   def some_local_account
-    @some_local_account ||= Account.local.where(suspended: false).first
+    @some_local_account ||= Account.representative
   end
 end

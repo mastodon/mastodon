@@ -8,8 +8,8 @@ const messages = defineMessages({
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unhide {domain}' },
 });
 
-@injectIntl
-export default class Account extends ImmutablePureComponent {
+export default @injectIntl
+class Account extends ImmutablePureComponent {
 
   static propTypes = {
     domain: PropTypes.string,
@@ -32,7 +32,7 @@ export default class Account extends ImmutablePureComponent {
           </span>
 
           <div className='domain__buttons'>
-            <IconButton active icon='unlock-alt' title={intl.formatMessage(messages.unblockDomain, { domain })} onClick={this.handleDomainUnblock} />
+            <IconButton active icon='unlock' title={intl.formatMessage(messages.unblockDomain, { domain })} onClick={this.handleDomainUnblock} />
           </div>
         </div>
       </div>

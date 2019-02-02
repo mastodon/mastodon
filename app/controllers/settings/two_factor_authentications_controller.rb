@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Settings
-  class TwoFactorAuthenticationsController < ApplicationController
+  class TwoFactorAuthenticationsController < BaseController
     layout 'admin'
 
     before_action :authenticate_user!
