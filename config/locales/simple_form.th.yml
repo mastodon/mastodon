@@ -3,8 +3,8 @@ th:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF, WebP or JPG. At most %{size}. Will be downscaled to %{dimensions}px
-        header: PNG, GIF, WebP or JPG. At most %{size}. Will be downscaled to %{dimensions}px
+        avatar: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
+        header: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
         locked: Requires you to manually approve followers and defaults post privacy to followers-only
       imports:
         data: CSV file exported from another Mastodon instance
