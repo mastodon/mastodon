@@ -8,6 +8,8 @@ import resizeImage from '../utils/resize_image';
 import { importFetchedAccounts } from './importer';
 import { updateTimeline } from './timelines';
 import { showAlertForError } from './alerts';
+import { showAlert } from './alerts';
+import { defineMessages } from 'react-intl';
 
 let cancelFetchComposeSuggestionsAccounts;
 
@@ -48,6 +50,10 @@ export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
 export const COMPOSE_UPLOAD_CHANGE_REQUEST     = 'COMPOSE_UPLOAD_UPDATE_REQUEST';
 export const COMPOSE_UPLOAD_CHANGE_SUCCESS     = 'COMPOSE_UPLOAD_UPDATE_SUCCESS';
 export const COMPOSE_UPLOAD_CHANGE_FAIL        = 'COMPOSE_UPLOAD_UPDATE_FAIL';
+
+const messages = defineMessages({
+  uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
+});
 
 export function changeCompose(text) {
   return {
@@ -184,10 +190,15 @@ export function submitComposeFail(error) {
 
 export function uploadCompose(files) {
   return function (dispatch, getState) {
+    const uploadLimit = 4;
     const media  = getState().getIn(['compose', 'media_attachments']);
     const total = Array.from(files).reduce((a, v) => a + v.size, 0);
     const progress = new Array(files.length).fill(0);
 
+    if (files.length + media.size > uploadLimit) {
+      dispatch(showAlert(undefined, messages.uploadErrorLimit));
+      return;
+    }
     dispatch(uploadComposeRequest());
 
     for (const [i, f] of Array.from(files).entries()) {
