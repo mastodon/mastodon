@@ -28,7 +28,7 @@ class DirectoriesController < ApplicationController
   end
 
   def set_tags
-    @tags = Tag.discoverable.limit(30)
+    @tags = Tag.discoverable.limit(30).reject { |tag| tag.cached_sample_accounts.empty? }
   end
 
   def set_accounts

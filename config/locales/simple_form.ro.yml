@@ -2,24 +2,39 @@
 ro:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Poți utiliza sintaxe precum URL, hastag sau menționări
+      admin_account_action:
+        send_email_notification: Utilizatorul va primi o explicație cu privire la ceea ce sa întâmplat cu contul lui
+        text_html: Opțional. Poți utiliza sintaxe. Poți <a href="%{path}">adăuga avertismente predefinite</a> pentru a salva timp
+        type_html: Alege ce se întâmplă cu <strong>%{acct}</strong>
+        warning_preset_id: Opțional. Poți adăuga text personalizat la sfârșitul presetului
       defaults:
         autofollow: Persoanele care se înregistrează datorită invitației tale te vor urmări automat
         avatar: PNG, GIF sau JPG. Cel mult %{size}. Va fi redimensionată la %{dimensions}px
         bot: Acest cont performează în cea mai mare parte acțiuni automate și nu poate fi monitorizat
         context: Contextele în care filtrul trebuie aplicat
         digest: Este trimis doar după o lungă perioadă de inactivitate și numai dacă primești mesaje personale în perioada de absență
+        discoverable_html: <a href="%{path}" target="_blank">Directorul</a> permite utilizatorilor să găsească conturi după interese și activități. Necesită minim %{min_followers} urmăritori
+        email: Vei primi un e-mail de confirmare
         fields: Poti afișa pană la maxim 4 adrese sub formă de tabel pe pofilul tău
         header: PNG, GIF sau JPG. Cel mult %{size}. Vor fi redimensionate la %{dimensions}px
         inbox_url: Copiază adresa URL de pe prima pagină a reului pe care vrei să îl utilizezi
         irreversible: Postările sortate vor dispărea ireversibil, chiar dacă filtrul este ulterior șters
         locale: Limba interfaței de utilizator, e-mailurile si notificările push
         locked: Necesită aprobare manuală a urmăritorilor
+        password: Utilizează cel puțin 8 caractere
         phrase: Vor fi potrivite indiferent de textul din casetă sau advertismentul unei postări
         scopes: La care API-uri aplicația are nevoie de acces. Dacă selectezi un scop principal nu mai e nevoie să selectezi fiecare sub-scop al acestuia.
+        setting_aggregate_reblogs: Nu afișa redistribuirile noi pentru postările care au fost deja recent redistribuite (afectează doar noile redistribuiri primite)
         setting_default_language: Limba postărilor tale poate fi detectată automat, dar nu este întotdeauna precisă
+        setting_display_media_default: Ascunde conținutul media marcat ca sensibil (NSFW)
+        setting_display_media_hide_all: Întotdeauna ascunde tot conținutul media
+        setting_display_media_show_all: Întotdeauna afișează conținutul media marcat ca sensibil
         setting_hide_network: Pe cine urmărești și cine te urmărește nu vor fi afișați pe profilul tău
         setting_noindex: Afecteazâ profilul tău public și statusurile tale
         setting_theme: Afecteazâ modul în care arată interfața pe toate dispozitivele pe care ești conectat.
+        username: Numele tău de utilizator va fi unic pe %{domain}
         whole_word: Când fraza sau cuvântul este doar alfanumeric, acesta se aplică doar dacă există o potrivire completă
       imports:
         data: Fișierul CSV exportat de la o altă instanță
@@ -32,6 +47,18 @@ ro:
         fields:
           name: Etichetă
           value: Conținut
+      account_warning_preset:
+        text: Text presetat
+      admin_account_action:
+        send_email_notification: Notificați utilizatorul prin e-mail
+        text: Avertisment personalizat
+        type: Acțiune
+        types:
+          disable: Dezactivează
+          none: Nu fă nimic
+          silence: Liniște
+          suspend: Suspendă și șterge ireversibil datele contului
+        warning_preset_id: Utilizează un avertisment predefinit
       defaults:
         autofollow: Invită să te urmărească
         avatar: Fotografie de profil
@@ -42,6 +69,7 @@ ro:
         context: Contextele filtrului
         current_password: Parola actuală
         data: Data
+        discoverable: Listează acest cont in director
         display_name: Numele afișat
         email: Adresa de e-mail
         expires_in: Expiră după
@@ -63,6 +91,7 @@ ro:
         setting_default_privacy: Cine vede postările tale
         setting_default_sensitive: Întotdeauna marchează conținutul media ca sensibil
         setting_delete_modal: Arată dialogul de confirmare înainte de a șterge o postare
+        setting_display_media_default: Standard
         setting_hide_network: Ascunde rețeaua
         setting_noindex: Nu permite motoarelor de căutare să indexeze rețeaua ta
         setting_reduce_motion: Redu mișcarea în animații

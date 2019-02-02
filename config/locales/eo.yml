@@ -48,6 +48,7 @@ eo:
       other: Sekvantoj
     following: Sekvatoj
     joined: Aliĝis je %{date}
+    last_active: laste aktiva
     link_verified_on: Proprieto de ĉi tiu ligilo estis kontrolita je %{date}
     media: Aŭdovidaĵoj
     moved_html: "%{name} moviĝis al %{new_profile_link}:"
@@ -114,6 +115,7 @@ eo:
       media_attachments: Ligitaj aŭdovidaĵoj
       memorialize: Ŝanĝi al memoro
       moderation:
+        active: Aktiva
         all: Ĉio
         silenced: Silentigitaj
         suspended: Haltigitaj
@@ -150,7 +152,6 @@ eo:
       shared_inbox_url: URL de kunhavigita leterkesto
       show:
         created_reports: Signaloj kreitaj de ĉi tiu konto
-        report: signalo
         targeted_reports: Signaloj kreitaj de ĉi tiu konto
       silence: Kaŝi
       silenced: Silentigita
@@ -227,6 +228,7 @@ eo:
       config: Agordado
       feature_deletions: Forigo de kontoj
       feature_invites: Invitaj ligiloj
+      feature_profile_directory: Profilujo
       feature_registrations: Registriĝoj
       feature_relay: Federacia ripetilo
       features: Funkcioj
@@ -259,11 +261,6 @@ eo:
         title: Nova domajna blokado
       reject_media: Malakcepti aŭdovidajn dosierojn
       reject_media_hint: Forigas aŭdovidaĵojn loke konservitajn kaj rifuzas alŝuti ajnan estonte. Senzorge pri haltigoj
-      severities:
-        noop: Nenio
-        silence: Kaŝi
-        suspend: Haltigi
-      severity: Severeco
       show:
         affected_accounts:
           one: Unu konto en la datumbazo esta influita
@@ -273,7 +270,6 @@ eo:
           suspend: Malhaltigi ĉiujn kontojn, kiuj ekzistas en ĉi tiu domajno
         title: Malfari domajnan blokadon por %{domain}
         undo: Malfari
-      title: Domajnaj blokadoj
       undo: Malfari
     email_domain_blocks:
       add_new: Aldoni novan
@@ -286,10 +282,6 @@ eo:
         title: Nova blokado de retadresa domajno
       title: Nigra listo de retadresaj domajnoj
     instances:
-      account_count: Konataj kontoj
-      domain_name: Domajno
-      reset: Restarigi
-      search: Serĉi
       title: Konataj nodoj
     invites:
       deactivate_all: Malaktivigi ĉion
@@ -368,6 +360,9 @@ eo:
       preview_sensitive_media:
         desc_html: Antaŭvido de ligiloj en aliaj retejoj montros bildeton eĉ se la aŭdovidaĵo estas markita kiel tikla
         title: Montri tiklajn aŭdovidaĵojn en la antaŭvidoj de OpenGraph
+      profile_directory:
+        desc_html: Permesi al uzantoj esti troveblaj
+        title: Ebligi la profilujon
       registrations:
         closed_message:
           desc_html: Montrita sur la hejma paĝo kiam registriĝoj estas fermitaj. Vi povas uzi HTML-etikedojn
@@ -427,6 +422,12 @@ eo:
       last_delivery: Lasta livero
       title: WebSub
       topic: Temo
+    tags:
+      hide: Kaŝi de la profilujo
+      name: Kradvorto
+      title: Kradvortoj
+      unhide: Montri en la profilujo
+      visible: Videbla
     title: Administrado
   admin_mailer:
     new_report:
@@ -505,6 +506,13 @@ eo:
     success_msg: Via konto estis sukcese forigita
     warning_html: La forigo de la enhavo estas certa nur por ĉi tiu aparta nodo. Enhavo, kiu estis disvastigita verŝajne lasos spurojn. Eksterretaj serviloj kaj serviloj, kiuj ne abonas viajn ĝisdatigojn ne ĝisdatigos siajn datumbazojn.
     warning_title: Disponebleco de disvastigita enhavo
+  directories:
+    directory: Profilujo
+    explanation: Malkovru uzantojn per iliaj interesoj
+    explore_mastodon: Esplori %{title}
+    people:
+      one: "%{count} personoj"
+      other: "%{count} personoj"
   errors:
     '403': Vi ne havas la rajton por vidi ĉi tiun paĝon.
     '404': La paĝo, kiun vi serĉas, ne ekzistas.
@@ -678,9 +686,6 @@ eo:
     no_account_html: Ĉu vi ne havas konton? Vi povas <a href='%{sign_up_path}' target='_blank'>registriĝi tie</a>
     proceed: Daŭrigi por eksekvi
     prompt: 'Vi eksekvos:'
-  remote_interaction:
-    proceed: Efektivigi la interagon
-    prompt: 'Vi volas interagi kun ĉi tiu mesaĝo:'
   remote_unfollow:
     error: Eraro
     title: Titolo

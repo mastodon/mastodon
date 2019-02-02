@@ -57,7 +57,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
       save_emojis(status)
     end
 
-    if thread? && status.thread.nil?
+    if thread? && status.thread.nil? && Request.valid_url?(thread.second)
       Rails.logger.debug "Trying to attach #{status.id} (#{id}) to #{thread.first}"
       ThreadResolveWorker.perform_async(status.id, thread.second)
     end

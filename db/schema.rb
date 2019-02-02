@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_19_235220) do
+ActiveRecord::Schema.define(version: 2019_01_17_114553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 2018_12_19_235220) do
     t.jsonb "fields"
     t.string "actor_type"
     t.boolean "discoverable"
+    t.string "also_known_as", array: true
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["moved_to_account_id"], name: "index_accounts_on_moved_to_account_id"
@@ -335,7 +336,9 @@ ActiveRecord::Schema.define(version: 2018_12_19_235220) do
     t.json "file_meta"
     t.bigint "account_id"
     t.text "description"
+    t.bigint "scheduled_status_id"
     t.index ["account_id"], name: "index_media_attachments_on_account_id"
+    t.index ["scheduled_status_id"], name: "index_media_attachments_on_scheduled_status_id"
     t.index ["shortcode"], name: "index_media_attachments_on_shortcode", unique: true
     t.index ["status_id"], name: "index_media_attachments_on_status_id"
   end
@@ -486,6 +489,14 @@ ActiveRecord::Schema.define(version: 2018_12_19_235220) do
     t.index ["target_account_id"], name: "index_reports_on_target_account_id"
   end
 
+  create_table "scheduled_statuses", force: :cascade do |t|
+    t.bigint "account_id"
+    t.datetime "scheduled_at"
+    t.jsonb "params"
+    t.index ["account_id"], name: "index_scheduled_statuses_on_account_id"
+    t.index ["scheduled_at"], name: "index_scheduled_statuses_on_scheduled_at"
+  end
+
   create_table "session_activations", force: :cascade do |t|
     t.string "session_id", null: false
     t.datetime "created_at", null: false
@@ -604,6 +615,15 @@ ActiveRecord::Schema.define(version: 2018_12_19_235220) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "tombstones", force: :cascade do |t|
+    t.bigint "account_id"
+    t.string "uri", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_tombstones_on_account_id"
+    t.index ["uri"], name: "index_tombstones_on_uri"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.datetime "created_at", null: false
@@ -699,6 +719,7 @@ ActiveRecord::Schema.define(version: 2018_12_19_235220) do
   add_foreign_key "list_accounts", "lists", on_delete: :cascade
   add_foreign_key "lists", "accounts", on_delete: :cascade
   add_foreign_key "media_attachments", "accounts", name: "fk_96dd81e81b", on_delete: :nullify
+  add_foreign_key "media_attachments", "scheduled_statuses", on_delete: :nullify
   add_foreign_key "media_attachments", "statuses", on_delete: :nullify
   add_foreign_key "mentions", "accounts", name: "fk_970d43f9d1", on_delete: :cascade
   add_foreign_key "mentions", "statuses", on_delete: :cascade
@@ -717,6 +738,7 @@ ActiveRecord::Schema.define(version: 2018_12_19_235220) do
   add_foreign_key "reports", "accounts", column: "assigned_account_id", on_delete: :nullify
   add_foreign_key "reports", "accounts", column: "target_account_id", name: "fk_eb37af34f0", on_delete: :cascade
   add_foreign_key "reports", "accounts", name: "fk_4b81f7522c", on_delete: :cascade
+  add_foreign_key "scheduled_statuses", "accounts", on_delete: :cascade
   add_foreign_key "session_activations", "oauth_access_tokens", column: "access_token_id", name: "fk_957e5bda89", on_delete: :cascade
   add_foreign_key "session_activations", "users", name: "fk_e5fda67334", on_delete: :cascade
   add_foreign_key "status_pins", "accounts", name: "fk_d4cb435b62", on_delete: :cascade
@@ -730,6 +752,7 @@ ActiveRecord::Schema.define(version: 2018_12_19_235220) do
   add_foreign_key "statuses_tags", "tags", name: "fk_3081861e21", on_delete: :cascade
   add_foreign_key "stream_entries", "accounts", name: "fk_5659b17554", on_delete: :cascade
   add_foreign_key "subscriptions", "accounts", name: "fk_9847d1cbb5", on_delete: :cascade
+  add_foreign_key "tombstones", "accounts", on_delete: :cascade
   add_foreign_key "users", "accounts", name: "fk_50500f500d", on_delete: :cascade
   add_foreign_key "users", "invites", on_delete: :nullify
   add_foreign_key "users", "oauth_applications", column: "created_by_application_id", on_delete: :nullify

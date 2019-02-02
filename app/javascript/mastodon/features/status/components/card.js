@@ -4,6 +4,7 @@ import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import punycode from 'punycode';
 import classnames from 'classnames';
+import Icon from 'mastodon/components/icon';
 
 const IDNA_PREFIX = 'xn--';
 
@@ -175,8 +176,8 @@ export default class Card extends React.PureComponent {
 
             <div className='status-card__actions'>
               <div>
-                <button onClick={this.handleEmbedClick}><i className={`fa fa-${iconVariant}`} /></button>
-                {horizontal && <a href={card.get('url')} target='_blank' rel='noopener'><i className='fa fa-external-link' /></a>}
+                <button onClick={this.handleEmbedClick}><Icon id={iconVariant} /></button>
+                {horizontal && <a href={card.get('url')} target='_blank' rel='noopener'><Icon id='external-link' /></a>}
               </div>
             </div>
           </div>
@@ -193,6 +194,12 @@ export default class Card extends React.PureComponent {
       embed = (
         <div className='status-card__image'>
           {thumbnail}
+        </div>
+      );
+    } else {
+      embed = (
+        <div className='status-card__image'>
+          <Icon id='file-text' />
         </div>
       );
     }

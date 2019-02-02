@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.3.0', '< 2.6.0'
+ruby '>= 2.4.0', '< 2.7.0'
 
 gem 'pkg-config', '~> 1.3'
 
@@ -13,7 +13,7 @@ gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.1'
 gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
-gem 'dotenv-rails', '~> 2.5'
+gem 'dotenv-rails', '~> 2.6'
 
 gem 'aws-sdk-s3', '~> 1.30', require: false
 gem 'fog-core', '<= 2.1.0'
@@ -23,13 +23,13 @@ gem 'paperclip-av-transcoder', '~> 0.6'
 gem 'streamio-ffmpeg', '~> 3.0'
 
 gem 'active_model_serializers', '~> 0.10'
-gem 'addressable', '~> 2.5'
+gem 'addressable', '~> 2.6'
 gem 'bootsnap', '~> 1.3', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.6'
 gem 'iso-639'
 gem 'chewy', '~> 5.0'
-gem 'cld3', '~> 3.2.0'
+gem 'cld3', '~> 3.2.3'
 gem 'devise', '~> 4.5'
 gem 'devise-two-factor', '~> 3.0'
 
@@ -52,12 +52,12 @@ gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 3.3'
 gem 'http_accept_language', '~> 2.1'
 gem 'http_parser.rb', '~> 0.6', git: 'https://github.com/tmm1/http_parser.rb', ref: '54b17ba8c7d8d20a16dfc65d1775241833219cf2'
-gem 'httplog', '~> 1.1'
+gem 'httplog', '~> 1.2'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.1'
 gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.2', require: 'mime/types/columnar'
-gem 'nokogiri', '~> 1.9'
+gem 'nokogiri', '~> 1.10'
 gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.7'
 gem 'ostatus2', '~> 2.0'
@@ -75,7 +75,7 @@ gem 'rqrcode', '~> 0.10'
 gem 'sanitize', '~> 5.0'
 gem 'sidekiq', '~> 5.2'
 gem 'sidekiq-scheduler', '~> 3.0'
-gem 'sidekiq-unique-jobs', '~> 5.0'
+gem 'sidekiq-unique-jobs', '~> 6.0'
 gem 'sidekiq-bulk', '~>0.2.0'
 gem 'simple-navigation', '~> 4.0'
 gem 'simple_form', '~> 4.1'
@@ -89,7 +89,7 @@ gem 'tzinfo-data', '~> 1.2018'
 gem 'webpacker', '~> 3.5'
 gem 'webpush'
 
-gem 'json-ld', '~> 2.2'
+gem 'json-ld', '~> 3.0'
 gem 'json-ld-preloaded', '~> 3.0'
 gem 'rdf-normalize', '~> 0.3'
 
@@ -114,7 +114,7 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.16', require: false
-  gem 'webmock', '~> 3.4'
+  gem 'webmock', '~> 3.5'
   gem 'parallel_tests', '~> 2.27'
 end
 
@@ -127,8 +127,8 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.61', require: false
-  gem 'brakeman', '~> 4.3', require: false
+  gem 'rubocop', '~> 0.63', require: false
+  gem 'brakeman', '~> 4.4', require: false
   gem 'bundler-audit', '~> 0.6', require: false
   gem 'scss_lint', '~> 0.57', require: false
 
@@ -145,3 +145,5 @@ group :production do
   gem 'lograge', '~> 0.10'
   gem 'redis-rails', '~> 5.0'
 end
+
+gem 'concurrent-ruby', require: false

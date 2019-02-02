@@ -30,13 +30,20 @@
     }
   }
 
-  &__num {
+  &__num,
+  &__text {
     text-align: center;
     font-weight: 500;
     font-size: 24px;
+    line-height: 21px;
     color: $primary-text-color;
     font-family: $font-display, sans-serif;
     margin-bottom: 20px;
+    line-height: 30px;
+  }
+
+  &__text {
+    font-size: 18px;
   }
 
   &__label {

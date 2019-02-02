@@ -130,6 +130,12 @@ export function submitCompose(routerHistory) {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
+      if (response.data.visibility === 'direct' && getState().getIn(['conversations', 'mounted']) <= 0 && routerHistory) {
+        routerHistory.push('/timelines/direct');
+      } else if (routerHistory && routerHistory.location.pathname === '/statuses/new' && window.history.state) {
+        routerHistory.goBack();
+      }
+
       dispatch(insertIntoTagHistory(response.data.tags, status));
       dispatch(submitComposeSuccess({ ...response.data }));
 
@@ -141,12 +147,6 @@ export function submitCompose(routerHistory) {
           dispatch(updateTimeline(timelineId, { ...response.data }));
         }
       };
-
-      if (response.data.visibility === 'direct' && getState().getIn(['conversations', 'mounted']) <= 0 && routerHistory) {
-        routerHistory.push('/timelines/direct');
-      } else if (routerHistory && routerHistory.location.pathname === '/statuses/new' && window.history.state) {
-        routerHistory.goBack();
-      }
 
       if (response.data.visibility !== 'direct') {
         insertIfOnline('home');

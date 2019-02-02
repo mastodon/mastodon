@@ -18,6 +18,7 @@ co:
     mailer:
       confirmation_instructions:
         action: Verificà l’indirizzu email
+        action_with_app: Cunfirmà è rivene à %{app}
         explanation: Avete creatu un contu nant’à %{host} cù st’indirizzu email. Pudete attivallu cù un clic, o ignurà quessu missaghji s’ellu un era micca voi.
         extra_html: Pensate à leghje <a href="%{terms_path}">e regule di l’istanza</a> è <a href="%{policy_path}">i termini d’usu</a>.
         subject: 'Mastodon: Istruzzione di cunfirmazione per %{instance}'
@@ -55,7 +56,7 @@ co:
       updated: A vostra chjave d’accessu hè stata cambiata, è site cunnettatu·a.
       updated_not_active: A vostra chjave d’accessu hè stata cambiata.
     registrations:
-      destroyed: U vostru contu hè statu sguassatu. Avvedeci!
+      destroyed: Avvedeci! U vostru contu hè statu sguassatu. Speremu di vi rivede da prestu.
       signed_up: Benvinutu! Site cunnettatu·a.
       signed_up_but_inactive: Site arregistratu·a, mà ùn pudete micca cunnettavi perchè u vostru contu deve esse attivatu.
       signed_up_but_locked: Site arregistratu·a, mà ùn pudete micca cunnettavi perchè u vostru contu hè chjosu.

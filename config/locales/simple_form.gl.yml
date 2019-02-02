@@ -2,6 +2,13 @@
 gl:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Vostede pode utilizar dar formato ao toot, como URLs, etiquetas e mencións
+      admin_account_action:
+        send_email_notification: A usuaria recibirá unha explicación sobre o que lle aconteceu a súa conta
+        text_html: Optativo. Pode utilizar formato no toot. Pode <a href="%{path}">engadir avisos preestablecidos</a> para aforrar tempo
+        type_html: Escolla que facer con <strong>%{acct}</strong>
+        warning_preset_id: Optativo. Poderá engadir texto personalizado ao final do preestablecido
       defaults:
         autofollow: As persoas que se conectaron a través de un convite seguirana automáticamente a vostede
         avatar: PNG, GIF ou JPG.  Máximo %{size}. Será reducida a %{dimensions}px
@@ -40,6 +47,18 @@ gl:
         fields:
           name: Etiqueta
           value: Contido
+      account_warning_preset:
+        text: Texto preestablecido
+      admin_account_action:
+        send_email_notification: Notificar a usuaria por correo-e
+        text: Aviso personalizado
+        type: Acción
+        types:
+          disable: Desactivar
+          none: Non facer nada
+          silence: Acalar
+          suspend: Suspender e eliminar irreversiblemente datos da conta
+        warning_preset_id: Utilizar un aviso preestablecido
       defaults:
         autofollow: Convide a seguir a súa conta
         avatar: Avatar

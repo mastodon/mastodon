@@ -135,7 +135,6 @@ uk:
       shared_inbox_url: URL спільного вхідного кошика
       show:
         created_reports: Скарги створені цим аккаунтом
-        report: скарга
         targeted_reports: Скарги щодо цього аккаунту
       silence: Глушення
       statuses: Статуси
@@ -238,11 +237,6 @@ uk:
         title: Нове блокування домену
       reject_media: Заборонити медіаконтент
       reject_media_hint: Видаляє медіаконтент, збережений локально, і забороняє його завантаження у майбутньому. Не має значення у випадку блокування
-      severities:
-        noop: Нічого
-        silence: Глушення
-        suspend: Блокування
-      severity: Суворість
       show:
         affected_accounts:
           few: Впливає на %{count} акаунти у базі даних
@@ -254,7 +248,6 @@ uk:
           suspend: Зняти блокування з усіх існуючих акаунтів цього домену
         title: Зняти блокування з домена %{domain}
         undo: Відмінити
-      title: Доменні блокування
       undo: Відмінити
     email_domain_blocks:
       add_new: Додати
@@ -267,10 +260,6 @@ uk:
         title: Нове доменне блокування домену email
       title: Чорний список поштових доменів
     instances:
-      account_count: Відомі аккаунти
-      domain_name: Домен
-      reset: Скинути
-      search: Пошук
       title: Відомі інстанції
     invites:
       filter:

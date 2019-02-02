@@ -302,6 +302,14 @@
       {
         "defaultMessage": "Embed",
         "id": "status.embed"
+      },
+      {
+        "defaultMessage": "Open moderation interface for @{name}",
+        "id": "status.admin_account"
+      },
+      {
+        "defaultMessage": "Open this status in the moderation interface",
+        "id": "status.admin_status"
       }
     ],
     "path": "app/javascript/mastodon/components/status_action_bar.json"
@@ -593,6 +601,10 @@
       {
         "defaultMessage": "Add or Remove from lists",
         "id": "account.add_or_remove_from_list"
+      },
+      {
+        "defaultMessage": "Open moderation interface for @{name}",
+        "id": "status.admin_account"
       },
       {
         "defaultMessage": "Information below may reflect the user's profile incompletely.",
@@ -1926,9 +1938,54 @@
       {
         "defaultMessage": "Embed",
         "id": "status.embed"
+      },
+      {
+        "defaultMessage": "Open moderation interface for @{name}",
+        "id": "status.admin_account"
+      },
+      {
+        "defaultMessage": "Open this status in the moderation interface",
+        "id": "status.admin_status"
       }
     ],
     "path": "app/javascript/mastodon/features/status/components/action_bar.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Delete",
+        "id": "confirmations.delete.confirm"
+      },
+      {
+        "defaultMessage": "Are you sure you want to delete this status?",
+        "id": "confirmations.delete.message"
+      },
+      {
+        "defaultMessage": "Delete & redraft",
+        "id": "confirmations.redraft.confirm"
+      },
+      {
+        "defaultMessage": "Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.",
+        "id": "confirmations.redraft.message"
+      },
+      {
+        "defaultMessage": "Block",
+        "id": "confirmations.block.confirm"
+      },
+      {
+        "defaultMessage": "Reply",
+        "id": "confirmations.reply.confirm"
+      },
+      {
+        "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
+        "id": "confirmations.reply.message"
+      },
+      {
+        "defaultMessage": "Are you sure you want to block {name}?",
+        "id": "confirmations.block.message"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/status/containers/detailed_status_container.json"
   },
   {
     "descriptors": [

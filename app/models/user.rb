@@ -50,7 +50,7 @@ class User < ApplicationRecord
   # every day. Raising the duration reduces the amount of expensive
   # RegenerationWorker jobs that need to be run when those people come
   # to check their feed
-  ACTIVE_DURATION = ENV.fetch('USER_ACTIVE_DAYS', 7).to_i.days
+  ACTIVE_DURATION = ENV.fetch('USER_ACTIVE_DAYS', 7).to_i.days.freeze
 
   devise :two_factor_authenticatable,
          otp_secret_encryption_key: Rails.configuration.x.otp_secret
@@ -83,9 +83,11 @@ class User < ApplicationRecord
   scope :moderators, -> { where(moderator: true) }
   scope :staff, -> { admins.or(moderators) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
+  scope :enabled, -> { where(disabled: false) }
   scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
   scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended: false }) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
+  scope :emailable, -> { confirmed.enabled.joins(:account).merge(Account.searchable) }
 
   before_validation :sanitize_languages
 
@@ -137,6 +139,10 @@ class User < ApplicationRecord
 
   def confirmed?
     confirmed_at.present?
+  end
+
+  def invited?
+    invite_id.present?
   end
 
   def staff?
@@ -289,6 +295,7 @@ class User < ApplicationRecord
 
   def self.pam_get_user(attributes = {})
     return nil unless attributes[:email]
+
     resource =
       if Devise.check_at_sign && !attributes[:email].index('@')
         joins(:account).find_by(accounts: { username: attributes[:email] })
@@ -298,6 +305,7 @@ class User < ApplicationRecord
 
     if resource.blank?
       resource = new(email: attributes[:email], agreement: true)
+
       if Devise.check_at_sign && !resource[:email].index('@')
         resource[:email] = Rpam2.getenv(resource.find_pam_service, attributes[:email], attributes[:password], 'email', false)
         resource[:email] = "#{attributes[:email]}@#{resource.find_pam_suffix}" unless resource[:email]
@@ -356,7 +364,8 @@ class User < ApplicationRecord
   end
 
   def regenerate_feed!
-    Redis.current.setnx("account:#{account_id}:regeneration", true) && Redis.current.expire("account:#{account_id}:regeneration", 1.day.seconds)
+    return unless Redis.current.setnx("account:#{account_id}:regeneration", true)
+    Redis.current.expire("account:#{account_id}:regeneration", 1.day.seconds)
     RegenerationWorker.perform_async(account_id)
   end
 
