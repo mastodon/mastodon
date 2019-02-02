@@ -11,7 +11,7 @@ import { preferencesLink } from 'flavours/glitch/util/backend_links';
 
 const messages = defineMessages({
   general: {  id: 'settings.general', defaultMessage: 'General' },
-  compose: {  id: 'settings.compose_box_opts', defaultMessage: 'Compose box options' },
+  compose: {  id: 'settings.compose_box_opts', defaultMessage: 'Compose box' },
   content_warnings: { id: 'settings.content_warnings', defaultMessage: 'Content Warnings' },
   collapsed: { id: 'settings.collapsed_statuses', defaultMessage: 'Collapsed toots' },
   media: { id: 'settings.media', defaultMessage: 'Media' },

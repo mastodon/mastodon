@@ -108,7 +108,7 @@ export default class LocalSettingsPage extends React.PureComponent {
     ),
     ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page compose_box_opts'>
-        <h1><FormattedMessage id='settings.compose_box_opts' defaultMessage='Compose box options' /></h1>
+        <h1><FormattedMessage id='settings.compose_box_opts' defaultMessage='Compose box' /></h1>
         <LocalSettingsPageItem
           settings={settings}
           item={['always_show_spoilers_field']}
