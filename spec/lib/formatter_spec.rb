@@ -74,10 +74,36 @@ RSpec.describe Formatter do
     end
 
     context 'given a URL with a query string' do
-      let(:text) { 'https://www.ruby-toolbox.com/search?utf8=%E2%9C%93&q=autolink' }
+      context 'with escaped unicode character' do
+        let(:text) { 'https://www.ruby-toolbox.com/search?utf8=%E2%9C%93&q=autolink' }
 
-      it 'matches the full URL' do
-        is_expected.to include 'href="https://www.ruby-toolbox.com/search?utf8=%E2%9C%93&amp;q=autolink"'
+        it 'matches the full URL' do
+          is_expected.to include 'href="https://www.ruby-toolbox.com/search?utf8=%E2%9C%93&amp;q=autolink"'
+        end
+      end
+
+      context 'with unicode character' do
+        let(:text) { 'https://www.ruby-toolbox.com/search?utf8=✓&q=autolink' }
+
+        it 'matches the full URL' do
+          is_expected.to include 'href="https://www.ruby-toolbox.com/search?utf8=✓&amp;q=autolink"'
+        end
+      end
+
+      context 'with unicode character at the end' do
+        let(:text) { 'https://www.ruby-toolbox.com/search?utf8=✓' }
+
+        it 'matches the full URL' do
+          is_expected.to include 'href="https://www.ruby-toolbox.com/search?utf8=✓"'
+        end
+      end
+
+      context 'with escaped and not escaped unicode characters' do
+        let(:text) { 'https://www.ruby-toolbox.com/search?utf8=%E2%9C%93&utf81=✓&q=autolink' }
+
+        it 'preserves escaped unicode characters' do
+          is_expected.to include 'href="https://www.ruby-toolbox.com/search?utf8=%E2%9C%93&amp;utf81=✓&amp;q=autolink"'
+        end
       end
     end
 
