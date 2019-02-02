@@ -22,7 +22,7 @@ export function clearAlert() {
   };
 };
 
-export function showAlert(title, message) {
+export function showAlert(title = messages.unexpectedTitle, message = messages.unexpectedMessage) {
   return {
     type: ALERT_SHOW,
     title,
@@ -44,6 +44,6 @@ export function showAlertForError(error) {
     return showAlert(title, message);
   } else {
     console.error(error);
-    return showAlert(messages.unexpectedTitle, messages.unexpectedMessage);
+    return showAlert();
   }
 }
