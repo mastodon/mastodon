@@ -59,7 +59,7 @@ class ManifestSerializer < ActiveModel::Serializer
         title: 'title',
         text: 'text',
         url: 'url',
-      }
+      },
     }
   end
 end
