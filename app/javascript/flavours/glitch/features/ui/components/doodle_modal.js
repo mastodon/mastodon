@@ -110,7 +110,7 @@ function dataURLtoFile(dataurl, filename) {
   }
   return new File([u8arr], filename, { type: mime });
 }
-
+/** Doodle canvas size options */
 const DOODLE_SIZES = {
   normal: [500, 500, 'Square 500'],
   tootbanner: [702, 330, 'Tootbanner'],
@@ -520,7 +520,7 @@ export default class DoodleModal extends ImmutablePureComponent {
     let newSize = e.target.value;
     if (newSize === this.oldSize) return;
 
-    if (this.undos.length > 1 && !confirm('Change size? This will erase your drawing!')) {
+    if (this.undos.length > 1 && !confirm('Change canvas size? This will erase your current drawing!')) {
       return;
     }
 
@@ -528,7 +528,7 @@ export default class DoodleModal extends ImmutablePureComponent {
   };
 
   handleClearBtn = () => {
-    if (this.undos.length > 1 && !confirm('Clear screen? This will erase your drawing!')) {
+    if (this.undos.length > 1 && !confirm('Clear canvas? This will erase your current drawing!')) {
       return;
     }
 
