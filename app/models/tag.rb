@@ -41,6 +41,14 @@ class Tag < ApplicationRecord
     Rails.cache.fetch("#{cache_key}/sample_accounts", expires_in: 12.hours) { sample_accounts }
   end
 
+  def account_statuses_count(account)
+    Status.where(account: account).tagged_with(self).count
+  end
+
+  def account_last_activity_at(account)
+    Status.where(account: account).tagged_with(self).maximum(:created_at)
+  end
+
   def to_param
     name
   end
