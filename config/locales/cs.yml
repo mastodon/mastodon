@@ -4,7 +4,7 @@ cs:
       Pokud máte účet kdekoliv na fediverse, můžete s nimi interagovat.
     about_mastodon_html: Mastodon je sociální síť založená na otevřených webových
       protokolech a svobodném, otevřeném softwaru. Je decentralizovaná jako e-mail.
-    about_this: O této instanci
+    about_this: O tomto serveru
     administered_by: 'Instanci spravuje:'
     api: API
     apps: Mobilní aplikace
@@ -57,8 +57,8 @@ cs:
     follow: Sledovat
     followers:
       few: Sledovatelé
-      one: Sledovatel
-      other: Sledovatelů
+      one: Sledující
+      other: Sledujících
     following: Sledovaných
     joined: Připojil/a se v %{date}
     last_active: naposledy aktivní
@@ -119,8 +119,8 @@ cs:
       enable: Povolit
       enabled: Povoleno
       feed_url: URL proudu
-      followers: Sledovatelé
-      followers_url: URL sledovatelů
+      followers: Sledující
+      followers_url: URL sledujících
       follows: Sledovaní
       header: Hlavička
       inbox_url: URL přijatých zpráv
@@ -167,7 +167,7 @@ cs:
       roles:
         admin: Administrátor
         moderator: Moderátor
-        staff: Personál
+        staff: Člen personálu
         user: Uživatel
       salmon_url: URL Salmon
       search: Hledat
@@ -324,7 +324,7 @@ cs:
       title: Černá listina e-mailů
     followers:
       back_to_account: Zpět na účet
-      title: Sledovatelé uživatele %{acct}
+      title: Sledující uživatele %{acct}
     instances:
       delivery_available: Doručení je k dispozici
       known_accounts:
@@ -610,7 +610,7 @@ cs:
     directory: Adresář profilů
     enabled: Aktuálně jste v adresáři uveden/a.
     enabled_but_waiting: Přihlásil/a jste se k uvedení v adresáři, ale ještě nemáte
-      minimální počet sledovatelů (%{min_followers}) pro uvedení.
+      minimální počet sledujících (%{min_followers}) pro uvedení.
     explanation: Objevujte uživatele podle jejich zájmů
     explore_mastodon: Prozkoumejte %{title}
     how_to_enable: Aktuálně nejste přihlášen/a do adresáře. Přihlásit se můžete níže.
@@ -672,21 +672,21 @@ cs:
     domain: Doména
     explanation_html: Chcete-li zaručit soukromí vašich příspěvků, musíte mít na vědomí,
       kdo vás sleduje. <strong>Vaše soukromé příspěvky jsou doručeny na všechny instance,
-      kde máte sledovatele</strong>. Nejspíš si je budete chtít zkontrolovat a odstranit
-      sledovatele na instancích, jejichž personálu či softwaru nedůvěřujete s respektováním
+      kde máte sledující</strong>. Nejspíš si je budete chtít zkontrolovat a odstranit
+      sledující na instancích, jejichž provozovatelům či softwaru nedůvěřujete s respektováním
       vašeho soukromí.
-    followers_count: Počet sledovatelů
+    followers_count: Počet sledujících
     lock_link: Zamkněte svůj účet
-    purge: Odstranit ze sledovatelů
+    purge: Odstranit ze sledujících
     success:
       few: V průběhu blokování sledovatelů ze %{count} domén...
-      one: V průběhu blokování sledovatelů z jedné domény...
-      other: V průběhu blokování sledovatelů z %{count} domén...
+      one: V průběhu blokování sledujících z jedné domény...
+      other: V průběhu blokování sledujících z %{count} domén...
     true_privacy_html: Berte prosím na vědomí, že <strong>skutečného soukromí se dá
       dosáhnout pouze za pomoci end-to-end šifrování</strong>.
     unlocked_warning_html: Kdokoliv vás může sledovat a okamžitě vidět vaše soukromé
-      příspěvky. %{lock_link}, abyste mohl/a zkontrolovat a odmítnout sledovatele.
-    unlocked_warning_title: Váš účet není zamknutý
+      příspěvky. %{lock_link}, abyste mohl/a kontrolovat a odmítat sledující.
+    unlocked_warning_title: Váš účet není uzamčen
   footer:
     developers: Vývojáři
     more: Více…
@@ -756,9 +756,9 @@ cs:
       new_followers_summary:
         few: Navíc jste získal/a %{count} nové sledovatele, zatímco jste byl/a pryč!
           Skvělé!
-        one: Navíc jste získal/a jednoho nového sledovatele, zatímco jste byl/a pryč!
+        one: Navíc jste získal/a jednoho nového sledujícího, zatímco jste byl/a pryč!
           Hurá!
-        other: Navíc jste získal/a %{count} nových sledovatelů, zatímco jste byl/a
+        other: Navíc jste získal/a %{count} nových sledujících, zatímco jste byl/a
           pryč! Úžasné!
       subject:
         few: '%{count} nová oznámení od vaší poslední návštěvy 🐘'
@@ -772,11 +772,11 @@ cs:
     follow:
       body: '%{name} vás nyní sleduje!'
       subject: '%{name} vás nyní sleduje'
-      title: Nový sledovatel
+      title: Nový sledující
     follow_request:
       action: Spravovat požadavky o sledování
       body: '%{name} požádal/a o povolení vás sledovat'
-      subject: 'Čekající sledovatel: %{name}'
+      subject: 'Čekající sledující: %{name}'
       title: Nový požadavek o sledování
     mention:
       action: Odpovědět
@@ -885,7 +885,7 @@ cs:
     development: Vývoj
     edit_profile: Upravit profil
     export: Export dat
-    followers: Autorizovaní sledovatelé
+    followers: Autorizovaní sledující
     import: Import
     migrate: Přesunutí účtu
     notifications: Oznámení
@@ -922,8 +922,8 @@ cs:
     sign_in_to_participate: Chcete-li se účastnit této konverzace, přihlaste se
     title: '%{name}: „%{quote}“'
     visibilities:
-      private: Pouze pro sledovatele
-      private_long: Zobrazit pouze sledovatelům
+      private: Pouze pro sledující
+      private_long: Zobrazit pouze sledujícím
       public: Veřejné
       public_long: Všichni mohou vidět
       unlisted: Neuvedené
@@ -940,36 +940,36 @@ cs:
       \ zobrazované jméno a krátký životopis, a nahrát si profilovou fotografii a\
       \ hlavičkový obrázek. Uživatelské i zobrazované jméno, životopis, profilová\
       \ fotografie a hlavičkový obrázek jsou vždy uvedeny veřejně.</li>\n  <li><em>Příspěvky,\
-      \ sledovatelé a další veřejné informace</em>: Seznam lidí, které sledujete,\
-      \ je uveden veřejně, totéž platí i pro vaše sledovatele. Když sem nahrajete\
-      \ zprávu, bude uloženo datum a čas, společně s aplikací, ze které jste zprávu\
-      \ odeslali. Zprávy mohou obsahovat mediální přílohy, jako jsou obrázky a videa.\
-      \ Veřejné a neuvedené příspěvky jsou dostupné veřejně. Pokud na vašem profilu\
-      \ uvedete příspěvek, je to také veřejně dostupná informace. Vaše příspěvky jsou\
-      \ doručeny vašim sledovatelům, což v některých případech znamená, že budou doručeny\
-      \ na různé servery, na kterých budou ukládány kopie. Pokud příspěvky smažete,\
-      \ bude tohle taktéž doručeno vašim sledovatelům. Akce znovusdílení nebo oblíbení\
-      \ jiného příspěvku je vždy veřejná.</li>\n  <li><em>Příspěvky přímé a pouze\
-      \ pro sledovatele</em>: Všechny příspěvky jsou uloženy a zpracovány na serveru.\
-      \ Příspěvky pouze pro sledovatele jsou doručeny vašim sledovatelům a uživatelům\
-      \ v nich zmíněným a přímé příspěvky jsou doručeny pouze uživatelům v nich zmíněným.\
-      \ V některých případech tohle znamená, že budou doručeny na různé servery, na\
-      \ kterých budou ukládány kopie. Snažíme se omezit přístup k těmto příspěvkům\
-      \ pouze na autorizované uživatele, ovšem jiné servery tak nemusejí učinit. Proto\
-      \ je důležité posoudit servery, ke kterým vaši sledovatelé patří. V nastavení\
-      \ si můžete zapnout volbu pro manuální schvalování či odmítnutí nových sledovatelů.\
-      \ <em>Prosím mějte na paměti, že operátoři tohoto serveru a kteréhokoliv přijímacího\
-      \ serveru mohou tyto zprávy vidět</em> a příjemci mohou vytvořit jejich snímek,\
-      \ zkopírovat je, nebo je jinak sdílet. <em>Nesdílejte přes Mastodon jakékoliv\
-      \ nebezpečné informace.</em></li>\n  <li><em>IP adresy a další metadata</em>:\
-      \ Když se přihlásíte, zaznamenáváme IP adresu, ze které se přihlašujete, jakožto\
-      \ i název vašeho webového prohlížeče. Všechny vaše webové relace jsou v nastavení\
-      \ přístupné k vašemu posouzení a odvolání. Nejpozdější IP adresa použita je\
-      \ uložena maximálně do 12 měsíců. Můžeme také uchovávat serverové záznamy, které\
-      \ obsahují IP adresy každého požadavku odeslaného na náš server.</li>\n</ul>\n\
-      \n<hr class=\"spacer\" />\n\n<h3 id=\"use\">Na co používáme vaše informace?</h3>\n\
-      \n<p>Jakékoliv informace, které sbíráme, mohou být použity následujícími způsoby:</p>\n\
-      \n<ul>\n  <li>K poskytnutí základních funkcí Mastodonu. Interagovat s obsahem\
+      \ sledující a další veřejné informace</em>: Seznam lidí, které sledujete, je\
+      \ uveden veřejně, totéž platí i pro vaše sledující. Když sem nahrajete zprávu,\
+      \ bude uloženo datum a čas, společně s aplikací, ze které jste zprávu odeslali.\
+      \ Zprávy mohou obsahovat mediální přílohy, jako jsou obrázky a videa. Veřejné\
+      \ a neuvedené příspěvky jsou dostupné veřejně. Pokud na vašem profilu uvedete\
+      \ příspěvek, je to také veřejně dostupná informace. Vaše příspěvky jsou doručeny\
+      \ vašim sledujícím, což v některých případech znamená, že budou doručeny na\
+      \ různé servery, na kterých budou ukládány kopie. Pokud příspěvky smažete, bude\
+      \ tohle taktéž doručeno vašim sledujícím. Akce znovusdílení nebo oblíbení jiného\
+      \ příspěvku je vždy veřejná.</li>\n  <li><em>Příspěvky přímé a pouze pro sledující</em>:\
+      \ Všechny příspěvky jsou uloženy a zpracovány na serveru. Příspěvky pouze pro\
+      \ sledující jsou doručeny vašim sledujícím a uživatelům v nich zmíněným a přímé\
+      \ příspěvky jsou doručeny pouze uživatelům v nich zmíněným. V některých případech\
+      \ tohle znamená, že budou doručeny na různé servery, na kterých budou ukládány\
+      \ kopie. Snažíme se omezit přístup k těmto příspěvkům pouze na autorizované\
+      \ uživatele, ovšem jiné servery tak nemusejí učinit. Proto je důležité posoudit\
+      \ servery, ke kterým vaši sledující patří. V nastavení si můžete zapnout volbu\
+      \ pro manuální schvalování či odmítnutí nových sledujících. <em>Prosím mějte\
+      \ na paměti, že operátoři tohoto serveru a kteréhokoliv přijímacího serveru\
+      \ mohou tyto zprávy vidět</em> a příjemci mohou vytvořit jejich snímek, zkopírovat\
+      \ je, nebo je jinak sdílet. <em>Nesdílejte přes Mastodon jakékoliv nebezpečné\
+      \ informace.</em></li>\n  <li><em>IP adresy a další metadata</em>: Když se přihlásíte,\
+      \ zaznamenáváme IP adresu, ze které se přihlašujete, jakožto i název vašeho\
+      \ webového prohlížeče. Všechny vaše webové relace jsou v nastavení přístupné\
+      \ k vašemu posouzení a odvolání. Nejpozdější IP adresa použita je uložena maximálně\
+      \ do 12 měsíců. Můžeme také uchovávat serverové záznamy, které obsahují IP adresy\
+      \ každého požadavku odeslaného na náš server.</li>\n</ul>\n\n<hr class=\"spacer\"\
+      \ />\n\n<h3 id=\"use\">Na co používáme vaše informace?</h3>\n\n<p>Jakékoliv\
+      \ informace, které sbíráme, mohou být použity následujícími způsoby:</p>\n\n\
+      <ul>\n  <li>K poskytnutí základních funkcí Mastodonu. Interagovat s obsahem\
       \ od jiných lidí a přispívat svým vlastním obsahem můžete pouze, pokud jste\
       \ přihlášeni. Můžete například sledovat jiné lidi a zobrazit si jejich kombinované\
       \ příspěvky ve vaší vlastní personalizované časové ose.</li>\n  <li>Pro pomoc\
@@ -995,7 +995,7 @@ cs:
       \n<hr class=\"spacer\"/>\n\n<h3 id=\"cookies\">Používáme cookies?</h3>\n\n<p>Ano.\
       \ Cookies jsou malé soubory, které stránka nebo její poskytovatel uloží na pevný\
       \ disk vašeho počítače (pokud to dovolíte). Tyto cookies umožňují stránce rozpoznat\
-      \ váš prohlížeč a, pokud máte registrovaný účet, přidružit ho s vaším registrovaným\
+      \ váš prohlížeč, a pokud máte registrovaný účet, přidružit ho s vaším registrovaným\
       \ účtem.</p>\n\n<p>Používáme cookies pro pochopení a ukládání vašich předvoleb\
       \ pro budoucí návštěvy.</p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"disclose\"\
       >Zveřejňujeme jakékoliv informace třetím stranám?</h3>\n\n<p>Vaše osobně identifikovatelné\
@@ -1006,12 +1006,12 @@ cs:
       \ informace, pokud věříme, že je to nutné pro soulad se zákonem, prosazování\
       \ našich zásad, nebo ochranu práv, majetku, či bezpečnost nás či ostatních.</p>\n\
       \n<p>Váš veřejný obsah může být stažen jinými servery na síti. Vaše příspěvky\
-      \ veřejné a pouze pro sledovatele budou doručeny na servery vašich sledovatelů\
-      \ a přímé zprávy budou doručeny na servery příjemců, pokud jsou tito sledovatelé\
+      \ veřejné a pouze pro sledující budou doručeny na servery vašich sledujících\
+      \ a přímé zprávy budou doručeny na servery příjemců, pokud jsou tito sledující\
       \ nebo příjemci zaregistrováni na jiném serveru, než je tento.</p>\n\n<p>Když\
       \ autorizujete aplikaci, aby používala váš účet, může, v závislosti na rozsahu\
       \ oprávnění, které jí udělíte, přistupovat k vašim veřejným profilovým informacím,\
-      \ seznamu lidí, které sledujete, vašim sledovatelům, vašim seznamům, všem vašim\
+      \ seznamu lidí, které sledujete, vašim sledujícím, vašim seznamům, všem vašim\
       \ příspěvkům a příspěvkům, které jste si oblíbili. Aplikace nikdy nemohou získat\
       \ vaši e-mailovou adresu či heslo.</p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"\
       children\">Používání stránky dětmi</h3>\n\n<p>Pokud se tento server nachází\
@@ -1079,7 +1079,7 @@ cs:
           výpisů. Ostatní vás však pořád mohou manuálně sledovat.
         suspend: Váš účet byl pozastaven a všechny vaše tooty a vaše nahrané mediální
           soubory byly nenávratně odstraněny z tohoto serveru a serverů, na kterých
-          jste měl/a sledovatele.
+          jste měl/a sledující.
       review_server_policies: Posoudit politiku serveru
       subject:
         disable: Váš účet %{acct} byl zmražen
@@ -1095,12 +1095,12 @@ cs:
       edit_profile_action: Nastavit profil
       edit_profile_step: Můžete si přizpůsobit svůj profil nahráním avataru a obrázku
         na hlavičce, změnou zobrazovaného jména a dalších. Chcete-li posoudit nové
-        sledovatele předtím, než vás mohou sledovat, můžete svůj účet uzamknout.
+        sledující předtím, než vás mohou sledovat, můžete svůj účet uzamknout.
       explanation: Zde je pár tipů na začátek
       final_action: Začněte přispívat
-      final_step: 'Začněte přispívat! I když nemáte sledovatele, mohou vaše zprávy
-        vidět jiní lidé, například na místní časové ose a mezi hashtagy. Můžete se
-        ostatním představit pomocí hashtagu #introductions.'
+      final_step: 'Začněte přispívat! I když nemáte sledující, mohou vaše zprávy vidět
+        jiní lidé, například na místní časové ose a mezi hashtagy. Můžete se ostatním
+        představit pomocí hashtagu #introductions.'
       full_handle: Vaše celá adresa profilu
       full_handle_hint: Tohle je, co byste řekl/a svým přátelům, aby vám mohli posílat
         zprávy nebo vás sledovat z jiné instance.
