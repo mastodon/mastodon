@@ -13,11 +13,17 @@ class Import::RelationshipWorker
 
     case relationship
     when 'follow'
-      FollowService.new.call(from_account, target_account.acct)
+      FollowService.new.call(from_account, target_account)
+    when 'unfollow'
+      UnfollowService.new.call(from_account, target_account)
     when 'block'
       BlockService.new.call(from_account, target_account)
+    when 'unblock'
+      UnblockService.new.call(from_account, target_account)
     when 'mute'
       MuteService.new.call(from_account, target_account)
+    when 'unmute'
+      UnmuteService.new.call(from_account, target_account)
     end
   rescue ActiveRecord::RecordNotFound
     true
