@@ -12,6 +12,7 @@ import { fetchFollowRequests } from '../../actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import { Link } from 'react-router-dom';
 import NavigationBar from '../compose/components/navigation_bar';
+import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
   home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
@@ -140,7 +141,7 @@ class GettingStarted extends ImmutablePureComponent {
         {multiColumn && <div className='column-header__wrapper'>
           <h1 className='column-header'>
             <button>
-              <i className='fa fa-bars fa-fw column-header__icon' />
+              <Icon id='bars' className='column-header__icon' fixedWidth />
               <FormattedMessage id='getting_started.heading' defaultMessage='Getting started' />
             </button>
           </h1>

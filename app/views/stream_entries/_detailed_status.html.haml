@@ -39,7 +39,7 @@
     = link_to TagManager.instance.url_for(status), class: 'detailed-status__datetime u-url u-uid', target: stream_link_target, rel: 'noopener' do
       %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
     ·
-    - if status.application
+    - if status.application && @account.user&.setting_show_application
       - if status.application.website.blank?
         %strong.detailed-status__application= status.application.name
       - else
