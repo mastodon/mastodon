@@ -24,22 +24,22 @@ cs:
         explanation: S touto e-mailovou adresou jste si vytvořil/a účet na %{host}.
           K jeho aktivaci vám zbývá jedno kliknutí. Pokud jste to nebyl/a vy, ignorujte
           této e-mail.
-        extra_html: Prosím podívejte se také na <a href="%{terms_path}">pravidla této
-          instance</a> a <a href="%{policy_path}">naše podmínky používání</a>.
+        extra_html: Prosím podívejte se také na <a href="%{terms_path}">pravidla tohoto
+          serveru</a> a <a href="%{policy_path}">naše podmínky používání</a>.
         subject: 'Mastodon: Potvrzovací instrukce pro %{instance}'
         title: Potvrďte e-mailovou adresu
       email_changed:
         explanation: 'E-mailová adresa vašeho účtu byla změněna na:'
         extra: Pokud jste si e-mail nezměnil/a, je pravděpodobné, že někdo jiný získal
           přístup k vašemu účtu. Prosím změňte si okamžitě heslo, nebo, pokud se nemůžete
-          na účet přihlásit, kontaktujte administrátora instance.
+          na účet přihlásit, kontaktujte administrátora serveru.
         subject: 'Mastodon: E-mail byl změněn'
         title: Nová e-mailová adresa
       password_change:
         explanation: Heslo k vašemu účtu bylo změněno.
         extra: Pokud jste si heslo nezměnil/a, je pravděpodobné, že někdo jiný získal
           přístup k vašemu účtu. Prosím změňte si okamžitě heslo, nebo, pokud se nemůžete
-          na účet přihlásit, kontaktujte administrátora instance.
+          na účet přihlásit, kontaktujte administrátora serveru.
         subject: 'Mastodon: Heslo bylo změněno'
         title: Heslo bylo změněno
       reconfirmation_instructions:
