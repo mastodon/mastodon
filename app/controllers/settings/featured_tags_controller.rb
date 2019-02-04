@@ -38,7 +38,7 @@ class Settings::FeaturedTagsController < Settings::BaseController
   end
 
   def set_featured_tags
-    @featured_tags = current_account.featured_tags.reject(&:new_record?)
+    @featured_tags = current_account.featured_tags.order(statuses_count: :desc).reject(&:new_record?)
   end
 
   def set_most_used_tags

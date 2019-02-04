@@ -52,7 +52,7 @@ class AccountsController < ApplicationController
   private
 
   def show_pinned_statuses?
-    [replies_requested?, media_requested?, params[:max_id].present?, params[:min_id].present?].none?
+    [replies_requested?, media_requested?, tag_requested?, params[:max_id].present?, params[:min_id].present?].none?
   end
 
   def filtered_statuses
