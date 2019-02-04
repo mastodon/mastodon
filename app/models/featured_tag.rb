@@ -18,8 +18,11 @@ class FeaturedTag < ApplicationRecord
 
   delegate :name, to: :tag, allow_nil: true
 
+  validates :name, presence: true
+  validate :validate_featured_tags_limit, on: :create
+
   def name=(str)
-    self.tag = Tag.find_by(name: str.delete('#').mb_chars.downcase.to_s)
+    self.tag = Tag.find_or_initialize_by(name: str.delete('#').mb_chars.downcase.to_s)
   end
 
   def increment(timestamp)
@@ -33,5 +36,11 @@ class FeaturedTag < ApplicationRecord
   def reset_data
     self.statuses_count = account.statuses.where(visibility: %i(public unlisted)).tagged_with(tag).count
     self.last_status_at = account.statuses.where(visibility: %i(public unlisted)).tagged_with(tag).select(:created_at).first&.created_at
+  end
+
+  private
+
+  def validate_featured_tags_limit
+    errors.add(:base, I18n.t('featured_tags.errors.limit')) if account.featured_tags.count >= 10
   end
 end

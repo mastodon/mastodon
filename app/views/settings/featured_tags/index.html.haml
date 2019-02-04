@@ -2,6 +2,8 @@
   = t('settings.featured_tags')
 
 = simple_form_for @featured_tag, url: settings_featured_tags_path do |f|
+  = render 'shared/error_messages', object: @featured_tag
+
   .fields-group
     = f.input :name, wrapper: :with_block_label, hint: safe_join([t('simple_form.hints.featured_tag.name'), safe_join(@most_used_tags.map { |tag| link_to("##{tag.name}", settings_featured_tags_path(featured_tag: { name: tag.name }), method: :post) }, ', ')], ' ')
 
