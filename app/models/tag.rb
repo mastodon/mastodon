@@ -14,6 +14,7 @@ class Tag < ApplicationRecord
   has_and_belongs_to_many :accounts
   has_and_belongs_to_many :sample_accounts, -> { searchable.discoverable.popular.limit(3) }, class_name: 'Account'
 
+  has_many :featured_tags, dependent: :destroy, inverse_of: :tag
   has_one :account_tag_stat, dependent: :destroy
 
   HASHTAG_NAME_RE = '[[:word:]_]*[[:alpha:]_·][[:word:]_]*'
@@ -23,6 +24,7 @@ class Tag < ApplicationRecord
 
   scope :discoverable, -> { joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).where(account_tag_stats: { hidden: false }).order(Arel.sql('account_tag_stats.accounts_count desc')) }
   scope :hidden, -> { where(account_tag_stats: { hidden: true }) }
+  scope :most_used, ->(account) { joins(:statuses).where(statuses: { account: account }).group(:id).order(Arel.sql('count(*) desc')) }
 
   delegate :accounts_count,
            :accounts_count=,
@@ -39,14 +41,6 @@ class Tag < ApplicationRecord
 
   def cached_sample_accounts
     Rails.cache.fetch("#{cache_key}/sample_accounts", expires_in: 12.hours) { sample_accounts }
-  end
-
-  def account_statuses_count(account)
-    Status.where(account: account).tagged_with(self).count
-  end
-
-  def account_last_activity_at(account)
-    Status.where(account: account).tagged_with(self).maximum(:created_at)
   end
 
   def to_param

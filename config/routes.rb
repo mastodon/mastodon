@@ -117,6 +117,7 @@ Rails.application.routes.draw do
     resource :migration, only: [:show, :update]
 
     resources :sessions, only: [:destroy]
+    resources :featured_tags, only: [:index, :create, :destroy]
   end
 
   resources :media, only: [:show] do
