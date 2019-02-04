@@ -131,6 +131,10 @@ class RemoveStatusService < BaseService
   end
 
   def remove_from_hashtags
+    @account.featured_tags.where(tag_id: @status.tags.pluck(:id)).each do |featured_tag|
+      featured_tag.decrement(@status.id)
+    end
+
     return unless @status.public_visibility?
 
     @tags.each do |hashtag|

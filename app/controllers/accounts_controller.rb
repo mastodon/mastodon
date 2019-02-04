@@ -57,6 +57,7 @@ class AccountsController < ApplicationController
 
   def filtered_statuses
     default_statuses.tap do |statuses|
+      statuses.merge!(hashtag_scope)    if tag_requested?
       statuses.merge!(only_media_scope) if media_requested?
       statuses.merge!(no_replies_scope) unless replies_requested?
     end
@@ -78,12 +79,15 @@ class AccountsController < ApplicationController
     Status.without_replies
   end
 
+  def hashtag_scope
+    Status.tagged_with(Tag.find_by(name: params[:tag].downcase)&.id)
+  end
+
   def set_account
     @account = Account.find_local!(params[:username])
   end
 
   def older_url
-    ::Rails.logger.info("older: max_id #{@statuses.last.id}, url #{pagination_url(max_id: @statuses.last.id)}")
     pagination_url(max_id: @statuses.last.id)
   end
 
@@ -92,7 +96,9 @@ class AccountsController < ApplicationController
   end
 
   def pagination_url(max_id: nil, min_id: nil)
-    if media_requested?
+    if tag_requested?
+      short_account_tag_url(@account, params[:tag], max_id: max_id, min_id: min_id)
+    elsif media_requested?
       short_account_media_url(@account, max_id: max_id, min_id: min_id)
     elsif replies_requested?
       short_account_with_replies_url(@account, max_id: max_id, min_id: min_id)
@@ -107,6 +113,10 @@ class AccountsController < ApplicationController
 
   def replies_requested?
     request.path.ends_with?('/with_replies')
+  end
+
+  def tag_requested?
+    request.path.ends_with?("/tagged/#{params[:tag]}")
   end
 
   def filtered_status_page(params)
