@@ -63,6 +63,7 @@ class AccountsController < ApplicationController
     default_statuses.tap do |statuses|
       statuses.merge!(hashtag_scope)    if tag_requested?
       statuses.merge!(only_media_scope) if media_requested?
+      statuses.merge!(no_reblogs_scope) unless reblogs_requested?
       statuses.merge!(no_replies_scope) unless replies_requested?
     end
   end
@@ -77,6 +78,10 @@ class AccountsController < ApplicationController
 
   def account_media_status_ids
     @account.media_attachments.attached.reorder(nil).select(:status_id).distinct
+  end
+
+  def no_reblogs_scope
+    Status.without_reblogs
   end
 
   def no_replies_scope
@@ -110,6 +115,10 @@ class AccountsController < ApplicationController
       short_account_tag_url(@account, params[:tag], max_id: max_id, min_id: min_id)
     elsif media_requested?
       short_account_media_url(@account, max_id: max_id, min_id: min_id)
+    elsif reblogs_requested? and replies_requested?
+      short_account_with_reblogs_and_replies_url(@account, max_id: max_id, min_id: min_id)
+    elsif reblogs_requested?
+      short_account_with_reblogs_url(@account, max_id: max_id, min_id: min_id)
     elsif replies_requested?
       short_account_with_replies_url(@account, max_id: max_id, min_id: min_id)
     else
@@ -121,8 +130,12 @@ class AccountsController < ApplicationController
     request.path.ends_with?('/media')
   end
 
+  def reblogs_requested?
+    request.path.ends_with?('/with_reblogs') or request.path.ends_with?('/with_reblogs_and_replies')
+  end
+
   def replies_requested?
-    request.path.ends_with?('/with_replies')
+    request.path.ends_with?('/with_replies') or request.path.ends_with?('/with_reblogs_and_replies')
   end
 
   def tag_requested?

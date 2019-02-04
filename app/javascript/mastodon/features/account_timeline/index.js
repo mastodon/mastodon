@@ -17,13 +17,13 @@ import MissingIndicator from 'mastodon/components/missing_indicator';
 
 const emptyList = ImmutableList();
 
-const mapStateToProps = (state, { params: { accountId }, withReplies = false }) => {
-  const path = withReplies ? `${accountId}:with_replies` : accountId;
+const mapStateToProps = (state, { params: { accountId }, withReplies = false, withReblogs = false}) => {
+  const path = (withReblogs && withReplies) ? `${accountId}:with_reblogs_and_replies` : (withReblogs ? `${accountId}:with_reblogs` : (withReplies ? `${accountId}:with_replies` : accountId));
 
   return {
     isAccount: !!state.getIn(['accounts', accountId]),
     statusIds: state.getIn(['timelines', `account:${path}`, 'items'], emptyList),
-    featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned`, 'items'], emptyList),
+    featuredStatusIds: (withReblogs || withReplies) ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned`, 'items'], emptyList),
     isLoading: state.getIn(['timelines', `account:${path}`, 'isLoading']),
     hasMore: state.getIn(['timelines', `account:${path}`, 'hasMore']),
     blockedBy: state.getIn(['relationships', accountId, 'blocked_by'], false),
@@ -41,39 +41,40 @@ class AccountTimeline extends ImmutablePureComponent {
     featuredStatusIds: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
+    withReblogs: PropTypes.bool,
     withReplies: PropTypes.bool,
     blockedBy: PropTypes.bool,
     isAccount: PropTypes.bool,
   };
 
   componentWillMount () {
-    const { params: { accountId }, withReplies } = this.props;
+    const { params: { accountId }, withReblogs, withReplies } = this.props;
 
     this.props.dispatch(fetchAccount(accountId));
     this.props.dispatch(fetchAccountIdentityProofs(accountId));
 
-    if (!withReplies) {
+    if (!withReblogs && !withReplies) {
       this.props.dispatch(expandAccountFeaturedTimeline(accountId));
     }
 
-    this.props.dispatch(expandAccountTimeline(accountId, { withReplies }));
+    this.props.dispatch(expandAccountTimeline(accountId, { withReblogs, withReplies }));
   }
 
   componentWillReceiveProps (nextProps) {
-    if ((nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) || nextProps.withReplies !== this.props.withReplies) {
+    if ((nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) || nextProps.withReblogs !== this.props.withReblogs || nextProps.withReplies !== this.props.withReplies) {
       this.props.dispatch(fetchAccount(nextProps.params.accountId));
       this.props.dispatch(fetchAccountIdentityProofs(nextProps.params.accountId));
 
-      if (!nextProps.withReplies) {
+      if (!nextProps.withReplies && !nextProps.withReplies) {
         this.props.dispatch(expandAccountFeaturedTimeline(nextProps.params.accountId));
       }
 
-      this.props.dispatch(expandAccountTimeline(nextProps.params.accountId, { withReplies: nextProps.params.withReplies }));
+      this.props.dispatch(expandAccountTimeline(nextProps.params.accountId, { withReblogs: nextProps.params.withReblogs, withReplies: nextProps.params.withReplies }));
     }
   }
 
   handleLoadMore = maxId => {
-    this.props.dispatch(expandAccountTimeline(this.props.params.accountId, { maxId, withReplies: this.props.withReplies }));
+    this.props.dispatch(expandAccountTimeline(this.props.params.accountId, { maxId, withReblogs: this.props.withReblogs, withReplies: this.props.withReplies }));
   }
 
   render () {

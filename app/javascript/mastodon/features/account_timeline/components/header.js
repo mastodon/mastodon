@@ -114,6 +114,7 @@ export default class Header extends ImmutablePureComponent {
         {!hideTabs && (
           <div className='account__section-headline'>
             <NavLink exact to={`/accounts/${account.get('id')}`}><FormattedMessage id='account.posts' defaultMessage='Toots' /></NavLink>
+            <NavLink exact to={`/accounts/${account.get('id')}/with_reblogs`}><FormattedMessage id='account.posts_with_reblogs' defaultMessage='Toots and boosts' /></NavLink>
             <NavLink exact to={`/accounts/${account.get('id')}/with_replies`}><FormattedMessage id='account.posts_with_replies' defaultMessage='Toots and replies' /></NavLink>
             <NavLink exact to={`/accounts/${account.get('id')}/media`}><FormattedMessage id='account.media' defaultMessage='Media' /></NavLink>
           </div>
