@@ -63,7 +63,7 @@
         - @endorsed_accounts.each do |account|
           = account_link_to account
 
-    - @account.featured_tags.each do |featured_tag|
+    - @account.featured_tags.order(statuses_count: :desc).each do |featured_tag|
       .directory__tag{ class: params[:tag] == featured_tag.name ? 'active' : nil }
         = link_to short_account_tag_path(@account, featured_tag.tag) do
           %h4
