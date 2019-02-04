@@ -421,15 +421,15 @@ cs:
         title: Vlastní CSS
       hero:
         desc_html: Zobrazuje se na hlavní stránce. Doporučuje se rozlišení alespoň
-          600x100 px. Pokud toto není nastaveno, bude zobrazena miniatura instance
+          600x100 px. Pokud toto není nastaveno, bude zobrazena miniatura serveru
         title: Hlavní obrázek
       mascot:
         desc_html: Zobrazuje se na hlavní stránce. Doporučuje se rozlišení alespoň
           293x205 px. Pokud toto není nastaveno, bude zobrazen výchozí maskot
         title: Obrázek maskota
       peers_api_enabled:
-        desc_html: Domény, na které tato instance narazila ve fediverse
-        title: Zveřejnit seznam objevených instancí
+        desc_html: Domény, na které tento server narazil ve fediverse
+        title: Zveřejnit seznam objevených serverů
       preview_sensitive_media:
         desc_html: Náhledy odkazů na jiných stránkách budou zobrazeny i pokud jsou
           media označena jako citlivá
@@ -462,25 +462,25 @@ cs:
         desc_html: Úvodní odstavec na hlavní straně. Popište, díky čemu je tento server
           Mastodon zvláštní, a cokoliv jiného, co je důležité. Můžete zde používat
           HTML značky, hlavně <code>&lt;a&gt;</code> a <code>&lt;em&gt;</code>.
-        title: Popis instance
+        title: Popis serveru
       site_description_extended:
-        desc_html: Dobré místo pro vaše pravidla, pokyny a jiné věci, které vaši instanci
+        desc_html: Dobré místo pro vaše pravidla, pokyny a jiné věci, které váš server
           odlišují od ostatních. Lze použít HTML značky
         title: Vlastní doplňující informace
       site_short_description:
         desc_html: Zobrazen v postranním panelu a meta značkách. Popište, co je Mastodon
           a díky čemu je tento server zvláštní v jediném odstavci. Je-li tohle prázdné,
-          zobrazí se popis instance.
-        title: Krátký popis instance
+          zobrazí se popis serveru.
+        title: Krátký popis serveru
       site_terms:
         desc_html: Můžete si napsat vlastní zásady soukromí, podmínky používání či
           jiné legality. Můžete použít HTML značky
         title: Vlastní podmínky používání
-      site_title: Název instance
+      site_title: Název serveru
       thumbnail:
         desc_html: Používáno pro náhledy přes OpenGraph a API. Doporučuje se rozlišení
           1200x630px
-        title: Miniatura instance
+        title: Miniatura serveru
       timeline_preview:
         desc_html: Zobrazit na hlavní straně veřejnou časovou osu
         title: Náhled časové osy
@@ -542,7 +542,7 @@ cs:
     your_token: Váš přístupový token
   auth:
     agreement_html: Kliknutím na tlačítko „Registrovat“ souhlasíte s následováním
-      <a href="%{rules_path}">pravidel této instance</a> a <a href="%{terms_path}">našich
+      <a href="%{rules_path}">pravidel tohoto serveru</a> a <a href="%{terms_path}">našich
       podmínek používání</a>.
     change_password: Heslo
     confirm_email: Potvrdit e-mail
@@ -602,9 +602,10 @@ cs:
       pro zabránění budoucím napodobováním.
     proceed: Odstranit účet
     success_msg: Váš účet byl úspěšně odstraněn
-    warning_html: Pouze vymazání obsahu z této konkrétní instance je zaručeno. Obsah,
-      který byl široce sdílen, po sobě pravděpodobně zanechá stopy. U offline serverů
-      a serverů, které vaše aktualizace již neodebírají, nebudou databáze aktualizovány.
+    warning_html: Pouze vymazání obsahu z tohoto konkrétního serveru je zaručeno.
+      Obsah, který byl široce sdílen, po sobě pravděpodobně zanechá stopy. U offline
+      serverů a serverů, které vaše aktualizace již neodebírají, nebudou databáze
+      aktualizovány.
     warning_title: Dostupnost rozšířeného obsahu
   directories:
     directory: Adresář profilů
@@ -671,9 +672,9 @@ cs:
   followers:
     domain: Doména
     explanation_html: Chcete-li zaručit soukromí vašich příspěvků, musíte mít na vědomí,
-      kdo vás sleduje. <strong>Vaše soukromé příspěvky jsou doručeny na všechny instance,
+      kdo vás sleduje. <strong>Vaše soukromé příspěvky jsou doručeny na všechny servery,
       kde máte sledující</strong>. Nejspíš si je budete chtít zkontrolovat a odstranit
-      sledující na instancích, jejichž provozovatelům či softwaru nedůvěřujete s respektováním
+      sledující na serverech, jejichž provozovatelům či softwaru nedůvěřujete s respektováním
       vašeho soukromí.
     followers_count: Počet sledujících
     lock_link: Zamkněte svůj účet
@@ -700,7 +701,7 @@ cs:
       one: Něco ještě není úplně v pořádku! Prosím zkontrolujte chybu níže
       other: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
   imports:
-    preface: Můžete importovat data, která jste exportoval/a z jiné instance, jako
+    preface: Můžete importovat data, která jste exportoval/a z jiného serveru, jako
       například seznam lidí, které sledujete či blokujete.
     success: Vaše data byla úspěšně nahrána a nyní budou zpracována v daný čas
     types:
@@ -727,8 +728,8 @@ cs:
       one: 1 použití
       other: '%{count} použití'
     max_uses_prompt: Bez limitu
-    prompt: Vygenerujte a sdílejte s ostatními odkazy a umožněte jim přístup na tuto
-      instanci
+    prompt: Vygenerujte a sdílejte s ostatními odkazy a umožněte jim přístup na tento
+      server
     table:
       expires_at: Vyprší
       uses: Použití
@@ -1103,7 +1104,7 @@ cs:
         představit pomocí hashtagu #introductions.'
       full_handle: Vaše celá adresa profilu
       full_handle_hint: Tohle je, co byste řekl/a svým přátelům, aby vám mohli posílat
-        zprávy nebo vás sledovat z jiné instance.
+        zprávy nebo vás sledovat z jiného serveru.
       review_preferences_action: Změnit nastavení
       review_preferences_step: Nezapomeňte si nastavit své volby, například jaké e-maily
         chcete přijímat či jak soukromé mají být vaše příspěvky ve výchozím stavu.
