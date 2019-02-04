@@ -21,4 +21,17 @@ class FeaturedTag < ApplicationRecord
   def name=(str)
     self.tag = Tag.find_by(name: str.delete('#').mb_chars.downcase.to_s)
   end
+
+  def increment(timestamp)
+    update(statuses_count: statuses_count + 1, last_status_at: timestamp)
+  end
+
+  def decrement(deleted_status_id)
+    update(statuses_count: [0, statuses_count - 1].max, last_status_at: account.statuses.where(visibility: %i(public unlisted)).tagged_with(tag).where.not(id: deleted_status_id).select(:created_at).first&.created_at)
+  end
+
+  def reset_data
+    self.statuses_count = account.statuses.where(visibility: %i(public unlisted)).tagged_with(tag).count
+    self.last_status_at = account.statuses.where(visibility: %i(public unlisted)).tagged_with(tag).select(:created_at).first&.created_at
+  end
 end

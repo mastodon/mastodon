@@ -13,10 +13,8 @@ class Settings::FeaturedTagsController < Settings::BaseController
   end
 
   def create
-    @featured_tag = FeaturedTag.new(featured_tag_params)
-    @featured_tag.account = current_account
-    @featured_tag.statuses_count = current_account.statuses.tagged_with(@featured_tag.tag).count
-    @featured_tag.last_status_at = current_account.statuses.tagged_with(@featured_tag.tag).maximum(:created_at)
+    @featured_tag = current_account.featured_tags.new(featured_tag_params)
+    @featured_tag.reset_data
     @featured_tag.save
 
     redirect_to settings_featured_tags_path
