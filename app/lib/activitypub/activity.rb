@@ -2,6 +2,7 @@
 
 class ActivityPub::Activity
   include JsonLdHelper
+  include Redisable
 
   def initialize(json, account, **options)
     @json    = json
@@ -68,10 +69,6 @@ class ActivityPub::Activity
 
   def object_uri
     @object_uri ||= value_or_id(@object)
-  end
-
-  def redis
-    Redis.current
   end
 
   def distribute(status)

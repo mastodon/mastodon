@@ -565,8 +565,11 @@ pl:
     warning_title: Dostępność usuniętej zawartości
   directories:
     directory: Katalog profilów
+    enabled: Jesteś obecnie zapisany(-a) do katalogu
+    enabled_but_waiting: Jesteś zapisany(-a) do katalogu, ale jeszcze nie śledzi Cię wystarczająca liczba osób (%{min_followers}), aby się tam pojawić.
     explanation: Poznaj profile na podstawie zainteresowań
     explore_mastodon: Odkrywaj %{title}
+    how_to_enable: Nie jesteś obecnie zapisany(-a) do katalogu. Poniżej możesz zapisać się. Użyj hashtagów w swoim opisie, aby zostać wyświetlonym pod określonymi hashtagami!
     people:
       few: "%{count} osoby"
       many: "%{count} osób"
@@ -621,7 +624,11 @@ pl:
     followers_count: Liczba śledzących
     lock_link: Zablokuj swoje konto
     purge: Przestań śledzić
-    success: W trakcie usuwania śledzących z %{count} domen…
+    success:
+      few: W trakcie usuwania śledzących z %{count} domen…
+      many: W trakcie usuwania śledzących z %{count} domen…
+      one: W trakcie usuwania śledzących z jednej domeny…
+      other: W trakcie usuwania śledzących z %{count} domen…
     true_privacy_html: Pamiętaj, że <strong>rzeczywista prywatność może zostać uzyskana wyłącznie dzięki szyfrowaniu end-to-end</strong>.
     unlocked_warning_html: Każdy może Cię śledzić, dzięki czemu może zobaczyć Twoje niepubliczne wpisy. %{lock_link} aby móc kontrolować, kto Cię śledzi.
     unlocked_warning_title: Twoje konto nie jest zablokowane
@@ -631,6 +638,7 @@ pl:
     resources: Zasoby
   generic:
     changes_saved_msg: Ustawienia zapisane!
+    copy: Kopiuj
     save_changes: Zapisz zmiany
     validation_errors:
       few: Coś jest wciąż nie tak! Przejrzyj %{count} poniższe błędy
@@ -750,10 +758,25 @@ pl:
     no_account_html: Nie masz konta? Możesz <a href='%{sign_up_path}' target='_blank'>zarejestrować się tutaj</a>
     proceed: Śledź
     prompt: 'Zamierzasz śledzić:'
+    reason_html: "<strong>Dlaczego ten krok jest konieczny?</strong> <code>%{instance}</code> może nie być serwerem na którym jesteś zarejestrowany(-a), więc musisz zostać przekierowany(-a) na swój serwer."
+  remote_interaction:
+    favourite:
+      proceed: Przejdź do dodania do ulubionych
+      prompt: 'Chcesz dodać ten wpis do ulubionych:'
+    reblog:
+      proceed: Przejdź do podbicia
+      prompt: 'Chcesz podbić ten wpis:'
+    reply:
+      proceed: Przejdź do dodawania odpowiedzi
+      prompt: 'Chcesz odpowiedzieć na ten wpis:'
   remote_unfollow:
     error: Błąd
     title: Tytuł
-    unfollowed: Przestałeś śledzić
+    unfollowed: Przestałeś(-aś) śledzić
+  scheduled_statuses:
+    over_daily_limit: Przekroczyłeś(-aś) limit %{limit} zaplanowanych wpisów na ten dzień
+    over_total_limit: Przekroczyłeś(-aś) limit %{limit} zaplanowanych wpisów
+    too_soon: Zaplanowana data musi wypadać w przyszłości
   sessions:
     activity: Ostatnia aktywność
     browser: Przeglądarka
@@ -825,7 +848,11 @@ pl:
         other: "%{count} filmów"
     boosted_from_html: Podbito przez %{acct_link}
     content_warning: 'Ostrzeżenie o zawartości: %{warning}'
-    disallowed_hashtags: 'zawiera niedozwolone hashtagi: %{tags}'
+    disallowed_hashtags:
+      few: 'zawiera niedozwolone hashtagi: %{tags}'
+      many: 'zawiera niedozwolone hashtagi: %{tags}'
+      one: 'zawiera niedozwolony hashtag: %{tags}'
+      other: 'zawiera niedozwolone hashtagi: %{tags}'
     language_detection: Automatycznie wykrywaj język
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
