@@ -7,7 +7,7 @@ en:
     administered_by: 'Administered by:'
     api: API
     apps: Mobile apps
-    closed_registrations: Registrations are currently closed on this instance. However! You can find a different instance to make an account on and get access to the very same network from there.
+    closed_registrations: Registrations are currently closed on this server. However! You can find a different server to make an account on and get access to the very same network from there.
     contact: Contact
     contact_missing: Not set
     contact_unavailable: N/A
@@ -27,7 +27,7 @@ en:
     generic_description: "%{domain} is one server in the network"
     hosted_on: Mastodon hosted on %{domain}
     learn_more: Learn more
-    other_instances: Instance list
+    other_instances: Server list
     privacy_policy: Privacy policy
     source_code: Source code
     status_count_after:
@@ -386,14 +386,14 @@ en:
         desc_html: Modify the look with CSS loaded on every page
         title: Custom CSS
       hero:
-        desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to instance thumbnail
+        desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
         title: Hero image
       mascot:
         desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
         title: Mascot image
       peers_api_enabled:
-        desc_html: Domain names this instance has encountered in the fediverse
-        title: Publish list of discovered instances
+        desc_html: Domain names this server has encountered in the fediverse
+        title: Publish list of discovered servers
       preview_sensitive_media:
         desc_html: Link previews on other websites will display a thumbnail even if the media is marked as sensitive
         title: Show sensitive media in OpenGraph previews
@@ -421,20 +421,20 @@ en:
         title: Show staff badge
       site_description:
         desc_html: Introductory paragraph on the frontpage. Describe what makes this Mastodon server special and anything else important. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
-        title: Instance description
+        title: Server description
       site_description_extended:
-        desc_html: A good place for your code of conduct, rules, guidelines and other things that set your instance apart. You can use HTML tags
+        desc_html: A good place for your code of conduct, rules, guidelines and other things that set your server apart. You can use HTML tags
         title: Custom extended information
       site_short_description:
-        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph. If empty, defaults to instance description.
-        title: Short instance description
+        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph. If empty, defaults to server description.
+        title: Short server description
       site_terms:
         desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML tags
         title: Custom terms of service
-      site_title: Instance name
+      site_title: Server name
       thumbnail:
         desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
-        title: Instance thumbnail
+        title: Server thumbnail
       timeline_preview:
         desc_html: Display public timeline on landing page
         title: Timeline preview
@@ -495,7 +495,7 @@ en:
     warning: Be very careful with this data. Never share it with anyone!
     your_token: Your access token
   auth:
-    agreement_html: By clicking "Sign up" below you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
+    agreement_html: By clicking "Sign up" below you agree to follow <a href="%{rules_path}">the rules of the server</a> and <a href="%{terms_path}">our terms of service</a>.
     change_password: Password
     confirm_email: Confirm email
     delete_account: Delete account
@@ -549,7 +549,7 @@ en:
     description_html: This will <strong>permanently, irreversibly</strong> remove content from your account and deactivate it. Your username will remain reserved to prevent future impersonations.
     proceed: Delete account
     success_msg: Your account was successfully deleted
-    warning_html: Only deletion of content from this particular instance is guaranteed. Content that has been widely shared is likely to leave traces. Offline servers and servers that have unsubscribed from your updates will not update their databases.
+    warning_html: Only deletion of content from this particular server is guaranteed. Content that has been widely shared is likely to leave traces. Offline servers and servers that have unsubscribed from your updates will not update their databases.
     warning_title: Disseminated content availability
   directories:
     directory: Profile directory
@@ -610,7 +610,7 @@ en:
       title: Add new filter
   followers:
     domain: Domain
-    explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all instances where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those instances.
+    explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all servers where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those servers.
     followers_count: Number of followers
     lock_link: Lock your account
     purge: Remove from followers
@@ -637,7 +637,7 @@ en:
       merge_long: Keep existing records and add new ones
       overwrite: Overwrite
       overwrite_long: Replace current records with the new ones
-    preface: You can import data that you have exported from another instance, such as a list of the people you are following or blocking.
+    preface: You can import data that you have exported from another server, such as a list of the people you are following or blocking.
     success: Your data was successfully uploaded and will now be processed in due time
     types:
       blocking: Blocking list
@@ -663,7 +663,7 @@ en:
       one: 1 use
       other: "%{count} uses"
     max_uses_prompt: No limit
-    prompt: Generate and share links with others to grant access to this instance
+    prompt: Generate and share links with others to grant access to this server
     table:
       expires_at: Expires
       uses: Uses
@@ -991,7 +991,7 @@ en:
       final_action: Start posting
       final_step: 'Start posting! Even without followers your public messages may be seen by others, for example on the local timeline and in hashtags. You may want to introduce yourself on the #introductions hashtag.'
       full_handle: Your full handle
-      full_handle_hint: This is what you would tell your friends so they can message or follow you from another instance.
+      full_handle_hint: This is what you would tell your friends so they can message or follow you from another server.
       review_preferences_action: Change preferences
       review_preferences_step: Make sure to set your preferences, such as which emails you'd like to receive, or what privacy level you’d like your posts to default to. If you don’t have motion sickness, you could choose to enable GIF autoplay.
       subject: Welcome to Mastodon
