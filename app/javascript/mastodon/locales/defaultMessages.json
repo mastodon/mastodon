@@ -15,6 +15,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "File upload limit exceeded.",
+        "id": "upload_error.limit"
+      }
+    ],
+    "path": "app/javascript/mastodon/actions/compose.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "{name} mentioned you",
         "id": "notification.mention"
       },
@@ -1448,7 +1457,7 @@
         "id": "introduction.interactions.favourite.text"
       },
       {
-        "defaultMessage": "Finish tutorial!",
+        "defaultMessage": "Finish toot-orial!",
         "id": "introduction.interactions.action"
       }
     ],

@@ -5,6 +5,7 @@ import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 import classnames from 'classnames';
+import Icon from 'mastodon/components/icon';
 
 const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
 
@@ -160,7 +161,7 @@ export default class StatusContent extends React.PureComponent {
 
     const readMoreButton = (
       <button className='status__content__read-more-button' onClick={this.props.onClick} key='read-more'>
-        <FormattedMessage id='status.read_more' defaultMessage='Read more' /><i className='fa fa-fw fa-angle-right' />
+        <FormattedMessage id='status.read_more' defaultMessage='Read more' /><Icon id='angle-right' fixedWidth />
       </button>
     );
 
