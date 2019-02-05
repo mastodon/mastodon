@@ -29,7 +29,7 @@ RUN apk -U upgrade \
     build-base \
     icu-dev \
     libidn-dev \
-    libressl \
+    openssl \
     libtool \
     libxml2-dev \
     libxslt-dev \
