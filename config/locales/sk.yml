@@ -64,7 +64,7 @@ sk:
     posts:
       few: Príspevkov
       one: Príspevok
-      other: Príspevkov
+      other: Príspevky
     posts_tab_heading: Príspevky
     posts_with_replies: Príspevky s odpoveďami
     reserved_username: Prihlasovacie meno je rezervované
@@ -122,7 +122,7 @@ sk:
         local: Miestne
         remote: Federované
         title: Lokácia
-      login_status: Status prihlásenia
+      login_status: Stav prihlásenia
       media_attachments: Prílohy
       memorialize: Zmeniť na "Navždy budeme spomínať"
       moderation:
@@ -139,7 +139,7 @@ sk:
       outbox_url: URL poslaných
       perform_full_suspension: Zablokovať
       profile_url: URL profilu
-      promote: Povýšiť
+      promote: Povýš
       protocol: Protokol
       public: Verejná os
       push_subscription_expires: PuSH odoberanie expiruje
@@ -256,7 +256,7 @@ sk:
       title: Spravovacie rozhranie
       total_users: užívateľov celkovo
       trends: Trendy
-      week_interactions: Tohto týždňové interakcie
+      week_interactions: Tohto-týždňové interakcie
       week_users_active: aktívni tento týždeň
       week_users_new: užívateľov počas tohto týždňa
     domain_blocks:
@@ -271,7 +271,7 @@ sk:
           desc_html: "<strong>Stíšenie</strong> urobí všetky príspevky daného účtu neviditeľné pre všetkých ktorí nenásledujú tento účet. <strong>Suspendácia</strong> zmaže všetky príspevky, médiá a profilové informácie. Použi <strong>Žiadne</strong>, ak chceš iba neprijímať súbory médií."
           noop: Nič
           silence: Stíšiť
-          suspend: Suspendovať
+          suspend: Vylúčiť
         title: Nové blokovanie domény
       reject_media: Odmietať súbory s obrázkami alebo videami
       reject_media_hint: Zmaže lokálne uložené súbory médií a odmietne ich sťahovanie v budúcnosti. Irelevantné pre suspendáciu
@@ -488,10 +488,10 @@ sk:
   application_mailer:
     notification_preferences: Zmeniť e-mailové voľby
     salutation: "%{name},"
-    settings: 'Zmeniť e-mailové voľby: %{link}'
+    settings: 'Zmeň emailové voľby: %{link}'
     view: 'Zobraziť:'
-    view_profile: Zobraziť profil
-    view_status: Zobraziť status
+    view_profile: Zobraz profil
+    view_status: Zobraz status
   applications:
     created: Aplikácia bola vytvorená úspešne
     destroyed: Aplikáciu sa podarilo odstrániť
@@ -570,16 +570,16 @@ sk:
       other: "%{count} ľudia"
   errors:
     '403': Nemáš povolenie na zobrazenie tejto stránky.
-    '404': Stránka ktorú si hľadal/a sa tu nenachádza.
-    '410': Stránka ktorú si tu hľadal/a už viac neexistuje.
+    '404': Stránka ktorú hľadáš nieje tu.
+    '410': Stránka ktorú si tu hľadal/a sa tu už viac nenachádza.
     '422':
       content: Bezpečtnostné overenie zlyhalo. Blokuješ cookies?
       title: Bezpečtnostné overenie zlyhalo
     '429': Zamlčané
     '500':
-      content: Ospravedlňujeme sa. Niečo sa pokazilo na našom konci.
+      content: Ospravedlňujem sa. Niečo sa pokazilo na našom konci.
       title: Táto stránka nieje v poriadku
-    noscript_html: Aby bolo možné používať Mastodon web aplikáciu, prosím povoľte JavaScript. Alebo skúste jednu z <a href="%{apps_path}"> aplikácii </a> dostupných pre vašu platformu.
+    noscript_html: Aby bolo možné používať Mastodon web aplikáciu, povoľ prosím JavaScript. Alebo skús jednu z <a href="%{apps_path}"> aplikácii </a> dostupných pre vašu platformu.
   exports:
     archive_takeout:
       date: Dátum
@@ -607,7 +607,7 @@ sk:
       invalid_context: Nebola poskytnutá žiadna, alebo ide o neplatnú súvislosť
       invalid_irreversible: Nezvratné filtrovanie funguje iba so súvislostiami domovskej osi a oboznámení
     index:
-      delete: Vymazať
+      delete: Vymaž
       title: Triedenia
     new:
       title: Pridaj nové triedenie
@@ -615,8 +615,8 @@ sk:
     domain: Doména
     explanation_html: Pokiaľ chceš zaručiť súkromie svojích príspevkov, musíš mať na vedomí, kto ťa sleduje. <strong> Tvoje súkromné príspevky sú doručené na každý server z ktorého ťa niekto následuje. </strong> Takže možno by si ich chcel/a skontrolovať, a odstrániť tých následovníkov, čo sú na serveroch ktorím nedôveruješ, že ich moderátori, alebo úpravbuy kódu budú tiež rešpektovať tvoje súkromie.
     followers_count: Počet následovateľov
-    lock_link: Zamknite svoj účet
-    purge: Odstrániť následovateľa
+    lock_link: Zamkni svoj účet
+    purge: Odstráň sledovateľa
     success:
       few: Počas utišovania sledovateľov z %{count} domén...
       one: Počas utišovania sledovateľov z jednej domény...
@@ -630,7 +630,7 @@ sk:
     resources: Podklady
   generic:
     changes_saved_msg: Zmeny boli úspešne uložené!
-    copy: Kopírovať
+    copy: Kopíruj
     save_changes: Ulož zmeny
     validation_errors:
       few: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetky %{count} chyby
@@ -741,8 +741,8 @@ sk:
     web: Web
   remote_follow:
     acct: Napíš svoju prezývku@doménu z ktorej chceš následovať
-    missing_resource: Nemôžeme nájsť potrebnú presmerovaciu adresu k tvojmu účtu
-    no_account_html: Nemáš ešte účet? Môžeš sa <a href='%{sign_up_path}' target='_blank'>zaregistrovať tu</a>
+    missing_resource: Nemožno nájsť potrebnú presmerovaciu adresu k tvojmu účtu
+    no_account_html: Nemáš účet? Môžeš sa <a href='%{sign_up_path}' target='_blank'>zaregistrovať tu</a>
     proceed: Začni následovať
     prompt: 'Budeš sledovať:'
     reason_html: "<strong>Načo je tento krok potrebný?</strong> <code>%{instance}</code> nemusí byť práve tým serverom na ktorom si zaregistrovaný/á, takže je ťa najprv potrebné presmerovať na tvoj domáci server."

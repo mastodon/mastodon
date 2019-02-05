@@ -32,6 +32,6 @@ class Settings::ProfilesController < Settings::BaseController
   end
 
   def set_account
-    @account = current_user.account
+    @account = current_account
   end
 end
