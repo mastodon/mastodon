@@ -17,6 +17,7 @@ export default class StatusContent extends React.PureComponent {
     mediaIcon: PropTypes.string,
     parseClick: PropTypes.func,
     disabled: PropTypes.bool,
+    onUpdate: PropTypes.func,
   };
 
   state = {
@@ -62,6 +63,7 @@ export default class StatusContent extends React.PureComponent {
 
   componentDidUpdate () {
     this._updateStatusLinks();
+    if (this.props.onUpdate) this.props.onUpdate();
   }
 
   onLinkClick = (e) => {

@@ -79,6 +79,10 @@ export default class DetailedStatus extends ImmutablePureComponent {
     this._measureHeight(prevState.height !== this.state.height);
   }
 
+  handleChildUpdate = () => {
+    this._measureHeight();
+  }
+
   handleModalLink = e => {
     e.preventDefault();
 
@@ -218,6 +222,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             collapsed={false}
             onExpandedToggle={onToggleHidden}
             parseClick={this.parseClick}
+            onUpdate={this.handleChildUpdate}
           />
 
           <div className='detailed-status__meta'>
