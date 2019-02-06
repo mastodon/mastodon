@@ -160,14 +160,6 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
-  onToggleHidden (status) {
-    if (status.get('hidden')) {
-      dispatch(revealStatus(status.get('id')));
-    } else {
-      dispatch(hideStatus(status.get('id')));
-    }
-  },
-
 });
 
 export default injectIntl(connect(makeMapStateToProps, mapDispatchToProps)(DetailedStatus));
