@@ -384,15 +384,7 @@ export default class Status extends ImmutablePureComponent {
 
     if (hidden) {
       return (
-        <div
-          ref={this.handleRef}
-          data-id={status.get('id')}
-          style={{
-            height: `${this.height}px`,
-            opacity: 0,
-            overflow: 'hidden',
-          }}
-        >
+        <div ref={this.handleRef}>
           {status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}
           {' '}
           {status.get('content')}
