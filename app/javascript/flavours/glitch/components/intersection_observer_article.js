@@ -63,7 +63,7 @@ export default class IntersectionObserverArticle extends ImmutablePureComponent 
   }
 
   updateStateAfterIntersection = (prevState) => {
-    if (prevState.isIntersecting && !this.entry.isIntersecting) {
+    if (prevState.isIntersecting !== false && !this.entry.isIntersecting) {
       scheduleIdleTask(this.hideIfNotIntersecting);
     }
     return {
@@ -109,7 +109,7 @@ export default class IntersectionObserverArticle extends ImmutablePureComponent 
           ref={this.handleRef}
           aria-posinset={index + 1}
           aria-setsize={listLength}
-          style={{ height: `${this.height || cachedHeight}px`, opacity: 0, overflow: 'hidden' }}
+          style={{ height: `${this.height || cachedHeight || 150}px`, opacity: 0, overflow: 'hidden' }}
           data-id={id}
           tabIndex='0'
         >
