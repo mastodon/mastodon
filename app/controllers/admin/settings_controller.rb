@@ -11,6 +11,7 @@ module Admin
       site_extended_description
       site_terms
       open_registrations
+      max_toot_chars
       closed_registrations_message
       open_deletion
       timeline_preview
