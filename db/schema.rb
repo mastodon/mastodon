@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_17_114553) do
+ActiveRecord::Schema.define(version: 2019_02_03_180359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -250,6 +250,17 @@ ActiveRecord::Schema.define(version: 2019_01_17_114553) do
     t.index ["status_id"], name: "index_favourites_on_status_id"
   end
 
+  create_table "featured_tags", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "tag_id"
+    t.bigint "statuses_count", default: 0, null: false
+    t.datetime "last_status_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_featured_tags_on_account_id"
+    t.index ["tag_id"], name: "index_featured_tags_on_tag_id"
+  end
+
   create_table "follow_requests", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -290,6 +301,7 @@ ActiveRecord::Schema.define(version: 2019_01_17_114553) do
     t.integer "data_file_size"
     t.datetime "data_updated_at"
     t.bigint "account_id", null: false
+    t.boolean "overwrite", default: false, null: false
   end
 
   create_table "invites", force: :cascade do |t|
@@ -707,6 +719,8 @@ ActiveRecord::Schema.define(version: 2019_01_17_114553) do
   add_foreign_key "custom_filters", "accounts", on_delete: :cascade
   add_foreign_key "favourites", "accounts", name: "fk_5eb6c2b873", on_delete: :cascade
   add_foreign_key "favourites", "statuses", name: "fk_b0e856845e", on_delete: :cascade
+  add_foreign_key "featured_tags", "accounts", on_delete: :cascade
+  add_foreign_key "featured_tags", "tags", on_delete: :cascade
   add_foreign_key "follow_requests", "accounts", column: "target_account_id", name: "fk_9291ec025d", on_delete: :cascade
   add_foreign_key "follow_requests", "accounts", name: "fk_76d644b0e7", on_delete: :cascade
   add_foreign_key "follows", "accounts", column: "target_account_id", name: "fk_745ca29eac", on_delete: :cascade

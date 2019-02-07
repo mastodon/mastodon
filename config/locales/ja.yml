@@ -7,7 +7,7 @@ ja:
     administered_by: '管理者:'
     api: API
     apps: アプリ
-    closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。しかし、他のインスタンスにアカウントを作成しても全く同じネットワークに参加することができます。
+    closed_registrations: 現在このサーバーでの新規登録は受け付けていません。しかし、他のサーバーにアカウントを作成しても全く同じネットワークに参加することができます。
     contact: 連絡先
     contact_missing: 未設定
     contact_unavailable: N/A
@@ -24,10 +24,10 @@ ja:
       real_conversation_title: 本当のコミュニケーションのために
       within_reach_body: デベロッパーフレンドリーな API により実現された、iOS や Android、その他様々なプラットフォームのためのアプリでどこでも友人とやりとりできます。
       within_reach_title: いつでも身近に
-    generic_description: "%{domain} は、Mastodon インスタンスの一つです"
+    generic_description: "%{domain} は、Mastodon サーバーの一つです"
     hosted_on: Mastodon hosted on %{domain}
     learn_more: もっと詳しく
-    other_instances: 他のインスタンス
+    other_instances: 他のサーバー
     privacy_policy: プライバシーポリシー
     source_code: ソースコード
     status_count_after:
@@ -310,7 +310,7 @@ ja:
         all: すべて
         limited: 制限あり
         title: モデレーション
-      title: 既知のインスタンス
+      title: 既知のサーバー
       total_blocked_by_us: ブロック合計
       total_followed_by_them: 被フォロー合計
       total_followed_by_us: フォロー合計
@@ -392,8 +392,8 @@ ja:
         desc_html: 複数のページに表示されます。サイズは293x205px以上推奨です。未設定の場合、標準のマスコットが使用されます
         title: マスコットイメージ
       peers_api_enabled:
-        desc_html: 連合内でこのインスタンスが遭遇したドメインの名前
-        title: 接続しているインスタンスのリストを公開する
+        desc_html: 連合内でこのサーバーが遭遇したドメインの名前
+        title: 接続しているサーバーのリストを公開する
       preview_sensitive_media:
         desc_html: 他のウェブサイトにリンクを貼った際、メディアが閲覧注意としてマークされていてもサムネイルが表示されます
         title: OpenGraphによるプレビューで閲覧注意のメディアも表示する
@@ -420,21 +420,21 @@ ja:
         desc_html: ユーザーページにスタッフのバッジを表示します
         title: スタッフバッジを表示する
       site_description:
-        desc_html: フロントページへの表示に使用される紹介文です。このMastodonインスタンスを特徴付けることやその他重要なことを記述してください。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
-        title: インスタンスの説明
+        desc_html: フロントページへの表示に使用される紹介文です。このMastodonサーバーを特徴付けることやその他重要なことを記述してください。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
+        title: サーバーの説明
       site_description_extended:
-        desc_html: あなたのインスタンスにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます
+        desc_html: あなたのサーバーにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます
         title: カスタム詳細説明
       site_short_description:
-        desc_html: サイドバーと meta タグに表示されます。Mastodon とは何か、そしてこのサーバーの特別な何かを1段落で記述してください。空欄の場合、インスタンスの説明が使用されます。
-        title: 短いインスタンスの説明
+        desc_html: サイドバーと meta タグに表示されます。Mastodon とは何か、そしてこのサーバーの特別な何かを1段落で記述してください。空欄の場合、サーバーの説明が使用されます。
+        title: 短いサーバーの説明
       site_terms:
         desc_html: あなたは独自のプライバシーポリシーや利用規約、そのほかの法的根拠を書くことができます。HTMLタグが使えます
         title: カスタム利用規約
-      site_title: インスタンスの名前
+      site_title: サーバーの名前
       thumbnail:
         desc_html: OpenGraphとAPIによるプレビューに使用されます。サイズは1200×630px推奨です
-        title: インスタンスのサムネイル
+        title: サーバーのサムネイル
       timeline_preview:
         desc_html: ランディングページに公開タイムラインを表示します
         title: タイムラインプレビュー
@@ -495,7 +495,7 @@ ja:
     warning: このデータは気をつけて取り扱ってください。他の人と共有しないでください！
     your_token: アクセストークン
   auth:
-    agreement_html: 登録するをクリックすると <a href="%{rules_path}">インスタンスのルール</a> と <a href="%{terms_path}">プライバシーポリシー</a> に従うことに同意したことになります。
+    agreement_html: 登録するをクリックすると <a href="%{rules_path}">サーバーのルール</a> と <a href="%{terms_path}">プライバシーポリシー</a> に従うことに同意したことになります。
     change_password: パスワード
     confirm_email: メールアドレスの確認
     delete_account: アカウントの削除
@@ -513,7 +513,7 @@ ja:
       cas: CAS
       saml: SAML
     register: 登録する
-    register_elsewhere: 他のインスタンスで新規登録
+    register_elsewhere: 他のサーバーで新規登録
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
     security: セキュリティ
@@ -549,7 +549,7 @@ ja:
     description_html: あなたのアカウントに含まれるコンテンツは全て削除され、アカウントは無効化されます。これは恒久的なもので、<strong>取り消すことはできません</strong>。なりすましを防ぐために、同じユーザー名で再度登録することはできなくなります。
     proceed: アカウントを削除する
     success_msg: アカウントは正常に削除されました
-    warning_html: 削除が保証されるのはこのインスタンス上のコンテンツのみです。他のインスタンス等、外部に広く共有されたコンテンツについては痕跡が残ることがあります。また、現在接続できないサーバーや、あなたの更新を受け取らなくなったサーバーに対しては、削除は反映されません。
+    warning_html: 削除が保証されるのはこのサーバー上のコンテンツのみです。他のサーバー等、外部に広く共有されたコンテンツについては痕跡が残ることがあります。また、現在接続できないサーバーや、あなたの更新を受け取らなくなったサーバーに対しては、削除は反映されません。
     warning_title: 共有されたコンテンツについて
   directories:
     directory: ディレクトリ
@@ -606,7 +606,7 @@ ja:
       title: 新規フィルターを追加
   followers:
     domain: ドメイン
-    explanation_html: あなたの投稿のプライバシーを確保したい場合、誰があなたをフォローしているのかを把握している必要があります。 <strong>プライベート投稿は、あなたのフォロワーがいる全てのインスタンスに配信されます</strong>。 フォロワーのインスタンスの管理者やソフトウェアがあなたのプライバシーを尊重してくれるかどうか怪しい場合は、そのフォロワーを削除した方がよいかもしれません。
+    explanation_html: あなたの投稿のプライバシーを確保したい場合、誰があなたをフォローしているのかを把握している必要があります。 <strong>プライベート投稿は、あなたのフォロワーがいる全てのサーバーに配信されます</strong>。 フォロワーのサーバーの管理者やソフトウェアがあなたのプライバシーを尊重してくれるかどうか怪しい場合は、そのフォロワーを削除した方がよいかもしれません。
     followers_count: フォロワー数
     lock_link: 承認制アカウントにする
     purge: フォロワーから削除する
@@ -628,7 +628,7 @@ ja:
       one: エラーが発生しました！ 以下のエラーを確認してください
       other: エラーが発生しました！ 以下の%{count}個のエラーを確認してください
   imports:
-    preface: 他のインスタンスでエクスポートされたファイルから、フォロー/ブロックした情報をこのインスタンス上のアカウントにインポートできます。
+    preface: 他のサーバーでエクスポートされたファイルから、フォロー/ブロックした情報をこのサーバー上のアカウントにインポートできます。
     success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください
     types:
       blocking: ブロックしたアカウントリスト
@@ -653,7 +653,7 @@ ja:
       one: '1'
       other: "%{count}"
     max_uses_prompt: 無制限
-    prompt: リンクを生成・共有してこのインスタンスへの新規登録を受け付けることができます
+    prompt: リンクを生成・共有してこのサーバーへの新規登録を受け付けることができます
     table:
       expires_at: 有効期限
       uses: 使用
@@ -800,7 +800,7 @@ ja:
     development: 開発
     edit_profile: プロフィールを編集
     export: データのエクスポート
-    followers: 信頼済みのインスタンス
+    followers: 信頼済みのサーバー
     import: データのインポート
     migrate: アカウントの引っ越し
     notifications: 通知
@@ -979,13 +979,13 @@ ja:
       final_action: 始めましょう
       final_step: 'さあ始めましょう！ たとえフォロワーがいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどで誰かの目に止まるかもしれません。自己紹介をしたい時は #introductions ハッシュタグを使うといいかもしれません。'
       full_handle: あなたの正式なユーザー名
-      full_handle_hint: これは別のインスタンスからフォローしてもらったりメッセージのやり取りをする際に、友達に伝えるといいでしょう。
+      full_handle_hint: これは別のサーバーからフォローしてもらったりメッセージのやり取りをする際に、友達に伝えるといいでしょう。
       review_preferences_action: 設定の変更
       review_preferences_step: 受け取りたいメールや投稿の公開範囲などの設定を必ず行ってください。不快でないならアニメーション GIF の自動再生を有効にすることもできます。
       subject: Mastodon へようこそ
-      tip_federated_timeline: 連合タイムラインは Mastodon ネットワークの流れを見られるものです。ただしあなたと同じインスタンスの人がフォローしている人だけが含まれるので、それが全てではありません。
-      tip_following: 標準では自動でインスタンスの管理者をフォローしています。もっと興味のある人たちを見つけるには、ローカルタイムラインと連合タイムラインを確認してください。
-      tip_local_timeline: ローカルタイムラインは %{instance} にいる人々の流れを見られるものです。彼らはあなたと同じインスタンスにいる隣人のようなものです！
+      tip_federated_timeline: 連合タイムラインは Mastodon ネットワークの流れを見られるものです。ただしあなたと同じサーバーの人がフォローしている人だけが含まれるので、それが全てではありません。
+      tip_following: 標準では自動でサーバーの管理者をフォローしています。もっと興味のある人たちを見つけるには、ローカルタイムラインと連合タイムラインを確認してください。
+      tip_local_timeline: ローカルタイムラインは %{instance} にいる人々の流れを見られるものです。彼らはあなたと同じサーバーにいる隣人のようなものです！
       tip_mobile_webapp: もしモバイル端末のブラウザで Mastodon をホーム画面に追加できる場合、プッシュ通知を受け取ることができます。それはまるでネイティブアプリのように動作します！
       tips: 豆知識
       title: ようこそ、%{name} ！
