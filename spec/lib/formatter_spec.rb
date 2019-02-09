@@ -74,10 +74,36 @@ RSpec.describe Formatter do
     end
 
     context 'given a URL with a query string' do
-      let(:text) { 'https://www.ruby-toolbox.com/search?utf8=%E2%9C%93&q=autolink' }
+      context 'with escaped unicode character' do
+        let(:text) { 'https://www.ruby-toolbox.com/search?utf8=%E2%9C%93&q=autolink' }
 
-      it 'matches the full URL' do
-        is_expected.to include 'href="https://www.ruby-toolbox.com/search?utf8=%E2%9C%93&amp;q=autolink"'
+        it 'matches the full URL' do
+          is_expected.to include 'href="https://www.ruby-toolbox.com/search?utf8=%E2%9C%93&amp;q=autolink"'
+        end
+      end
+
+      context 'with unicode character' do
+        let(:text) { 'https://www.ruby-toolbox.com/search?utf8=✓&q=autolink' }
+
+        it 'matches the full URL' do
+          is_expected.to include 'href="https://www.ruby-toolbox.com/search?utf8=✓&amp;q=autolink"'
+        end
+      end
+
+      context 'with unicode character at the end' do
+        let(:text) { 'https://www.ruby-toolbox.com/search?utf8=✓' }
+
+        it 'matches the full URL' do
+          is_expected.to include 'href="https://www.ruby-toolbox.com/search?utf8=✓"'
+        end
+      end
+
+      context 'with escaped and not escaped unicode characters' do
+        let(:text) { 'https://www.ruby-toolbox.com/search?utf8=%E2%9C%93&utf81=✓&q=autolink' }
+
+        it 'preserves escaped unicode characters' do
+          is_expected.to include 'href="https://www.ruby-toolbox.com/search?utf8=%E2%9C%93&amp;utf81=✓&amp;q=autolink"'
+        end
       end
     end
 
@@ -166,6 +192,14 @@ RSpec.describe Formatter do
 
       it 'creates a hashtag link' do
         is_expected.to include '/tags/hashtag" class="mention hashtag" rel="tag">#<span>hashtag</span></a>'
+      end
+    end
+
+    context 'given text containing a hashtag with Unicode chars' do
+      let(:text)  { '#hashtagタグ' }
+
+      it 'creates a hashtag link' do
+        is_expected.to include '/tags/hashtag%E3%82%BF%E3%82%B0" class="mention hashtag" rel="tag">#<span>hashtagタグ</span></a>'
       end
     end
   end

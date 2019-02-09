@@ -14,6 +14,7 @@ class Tag < ApplicationRecord
   has_and_belongs_to_many :accounts
   has_and_belongs_to_many :sample_accounts, -> { searchable.discoverable.popular.limit(3) }, class_name: 'Account'
 
+  has_many :featured_tags, dependent: :destroy, inverse_of: :tag
   has_one :account_tag_stat, dependent: :destroy
 
   HASHTAG_NAME_RE = '[[:word:]_]*[[:alpha:]_·][[:word:]_]*'
@@ -23,6 +24,7 @@ class Tag < ApplicationRecord
 
   scope :discoverable, -> { joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).where(account_tag_stats: { hidden: false }).order(Arel.sql('account_tag_stats.accounts_count desc')) }
   scope :hidden, -> { where(account_tag_stats: { hidden: true }) }
+  scope :most_used, ->(account) { joins(:statuses).where(statuses: { account: account }).group(:id).order(Arel.sql('count(*) desc')) }
 
   delegate :accounts_count,
            :accounts_count=,

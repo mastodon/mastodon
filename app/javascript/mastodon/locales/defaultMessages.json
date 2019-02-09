@@ -15,6 +15,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "File upload limit exceeded.",
+        "id": "upload_error.limit"
+      }
+    ],
+    "path": "app/javascript/mastodon/actions/compose.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "{name} mentioned you",
         "id": "notification.mention"
       },
@@ -270,6 +279,14 @@
       {
         "defaultMessage": "This post cannot be boosted",
         "id": "status.cannot_reblog"
+      },
+      {
+        "defaultMessage": "Quote",
+        "id": "status.quote"
+      },
+      {
+        "defaultMessage": "Unlisted quote",
+        "id": "status.unlisted_quote"
       },
       {
         "defaultMessage": "Favourite",
@@ -898,6 +915,15 @@
     "descriptors": [
       {
         "defaultMessage": "Cancel",
+        "id": "quote_indicator.cancel"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/quote_indicator.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Cancel",
         "id": "reply_indicator.cancel"
       }
     ],
@@ -1275,7 +1301,7 @@
         "id": "getting_started.security"
       },
       {
-        "defaultMessage": "About this instance",
+        "defaultMessage": "About this server",
         "id": "navigation_bar.info"
       },
       {
@@ -1448,7 +1474,7 @@
         "id": "introduction.interactions.favourite.text"
       },
       {
-        "defaultMessage": "Finish tutorial!",
+        "defaultMessage": "Finish toot-orial!",
         "id": "introduction.interactions.action"
       }
     ],
@@ -1828,7 +1854,7 @@
         "id": "column.public"
       },
       {
-        "defaultMessage": "There is nothing here! Write something publicly, or manually follow users from other instances to fill it up",
+        "defaultMessage": "There is nothing here! Write something publicly, or manually follow users from other servers to fill it up",
         "id": "empty_column.public"
       }
     ],
@@ -2175,7 +2201,7 @@
         "id": "report.target"
       },
       {
-        "defaultMessage": "The report will be sent to your instance moderators. You can provide an explanation of why you are reporting this account below:",
+        "defaultMessage": "The report will be sent to your server moderators. You can provide an explanation of why you are reporting this account below:",
         "id": "report.hint"
       },
       {

@@ -2,6 +2,7 @@
 
 class RemoveStatusService < BaseService
   include StreamEntryRenderer
+  include Redisable
 
   def call(status, **options)
     @payload      = Oj.dump(event: :delete, payload: status.id.to_s)
@@ -19,6 +20,7 @@ class RemoveStatusService < BaseService
     remove_from_affected
     remove_reblogs
     remove_from_hashtags
+    remove_from_hashtags_media if status.media_attachments.any?
     remove_from_public
     remove_from_media if status.media_attachments.any?
 
@@ -55,7 +57,7 @@ class RemoveStatusService < BaseService
 
   def remove_from_affected
     @mentions.map(&:account).select(&:local?).each do |account|
-      Redis.current.publish("timeline:#{account.id}", @payload)
+      redis.publish("timeline:#{account.id}", @payload)
     end
   end
 
@@ -94,7 +96,7 @@ class RemoveStatusService < BaseService
   end
 
   def relayable?
-    @status.public_visibility?
+    @status.public_visibility? && !@account.bot?
   end
 
   def relay!
@@ -130,29 +132,38 @@ class RemoveStatusService < BaseService
   end
 
   def remove_from_hashtags
+    @account.featured_tags.where(tag_id: @status.tags.pluck(:id)).each do |featured_tag|
+      featured_tag.decrement(@status.id)
+    end
+
     return unless @status.public_visibility?
 
     @tags.each do |hashtag|
-      Redis.current.publish("timeline:hashtag:#{hashtag}", @payload)
-      Redis.current.publish("timeline:hashtag:#{hashtag}:local", @payload) if @status.local?
+      redis.publish("timeline:hashtag:#{hashtag}", @payload)
+      redis.publish("timeline:hashtag:#{hashtag}:local", @payload) if @status.local?
     end
+  end
+
+  def remove_from_hashtags_media
+    return unless @status.public_visibility?
+
+    @tags.each do |hashtag|
+      Redis.current.publish("timeline:hashtag:#{hashtag}:media", @payload)
+      Redis.current.publish("timeline:hashtag:#{hashtag}:local:media", @payload) if @status.local?
+      end
   end
 
   def remove_from_public
     return unless @status.public_visibility?
 
-    Redis.current.publish('timeline:public', @payload)
-    Redis.current.publish('timeline:public:local', @payload) if @status.local?
+    redis.publish('timeline:public', @payload)
+    redis.publish('timeline:public:local', @payload) if @status.local?
   end
 
   def remove_from_media
     return unless @status.public_visibility?
 
-    Redis.current.publish('timeline:public:media', @payload)
-    Redis.current.publish('timeline:public:local:media', @payload) if @status.local?
-  end
-
-  def redis
-    Redis.current
+    redis.publish('timeline:public:media', @payload)
+    redis.publish('timeline:public:local:media', @payload) if @status.local?
   end
 end
