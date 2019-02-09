@@ -8,6 +8,7 @@ import spring from 'react-motion/lib/spring';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { autoPlayGif, me } from '../../../initial_state';
 import classNames from 'classnames';
+import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -132,7 +133,7 @@ class Header extends ImmutablePureComponent {
       } else if (account.getIn(['relationship', 'blocking'])) {
         actionBtn = (
           <div className='account--action-button'>
-            <IconButton size={26} icon='unlock-alt' title={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />
+            <IconButton size={26} icon='unlock' title={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />
           </div>
         );
       }
@@ -149,7 +150,7 @@ class Header extends ImmutablePureComponent {
     }
 
     if (account.get('locked')) {
-      lockedIcon = <i className='fa fa-lock' title={intl.formatMessage(messages.account_locked)} />;
+      lockedIcon = <Icon id='lock' title={intl.formatMessage(messages.account_locked)} />;
     }
 
     const content         = { __html: account.get('note_emojified') };
@@ -176,7 +177,7 @@ class Header extends ImmutablePureComponent {
                   <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} />
 
                   <dd className={pair.get('verified_at') && 'verified'} title={pair.get('value_plain')}>
-                    {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><i className='fa fa-check verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
+                    {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
                   </dd>
                 </dl>
               ))}

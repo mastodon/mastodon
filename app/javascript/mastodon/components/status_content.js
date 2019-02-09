@@ -5,6 +5,7 @@ import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 import classnames from 'classnames';
+import Icon from 'mastodon/components/icon';
 
 const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
 
@@ -35,6 +36,8 @@ export default class StatusContent extends React.PureComponent {
     }
 
     const links = node.querySelectorAll('a');
+    const QuoteUrlFormat = /(?:https?|ftp):\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+\/users\/[\w-_]+(\/statuses\/\w+)/;
+    const quote = node.innerText.match(new RegExp(`\\[(\\w+)\\]\\[${QuoteUrlFormat.source}\\]`));
 
     for (var i = 0; i < links.length; ++i) {
       let link = links[i];
@@ -42,6 +45,12 @@ export default class StatusContent extends React.PureComponent {
         continue;
       }
       link.classList.add('status-link');
+
+      if (quote) {
+        if (link.href.match(QuoteUrlFormat)) {
+          link.addEventListener('click', this.onQuoteClick.bind(this, quote[1]), false);
+        }
+      }
 
       let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
 
@@ -90,6 +99,15 @@ export default class StatusContent extends React.PureComponent {
     if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       this.context.router.history.push(`/timelines/tag/${hashtag}`);
+    }
+  }
+
+  onQuoteClick = (statusId, e) => {
+    let statusUrl = `/statuses/${statusId}`;
+
+    if (this.context.router && e.button === 0) {
+      e.preventDefault();
+      this.context.router.history.push(statusUrl);
     }
   }
 
@@ -160,7 +178,7 @@ export default class StatusContent extends React.PureComponent {
 
     const readMoreButton = (
       <button className='status__content__read-more-button' onClick={this.props.onClick} key='read-more'>
-        <FormattedMessage id='status.read_more' defaultMessage='Read more' /><i className='fa fa-fw fa-angle-right' />
+        <FormattedMessage id='status.read_more' defaultMessage='Read more' /><Icon id='angle-right' fixedWidth />
       </button>
     );
 

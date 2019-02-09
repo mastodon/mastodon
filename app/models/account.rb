@@ -50,7 +50,7 @@
 class Account < ApplicationRecord
   USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
   MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
-  MIN_FOLLOWERS_DISCOVERY = 10
+  MIN_FOLLOWERS_DISCOVERY = 1
 
   include AccountAssociations
   include AccountAvatar
@@ -109,6 +109,7 @@ class Account < ApplicationRecord
            :staff?,
            :locale,
            :hides_network?,
+           :shows_application?,
            to: :user,
            prefix: true,
            allow_nil: true

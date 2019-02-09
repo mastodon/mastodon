@@ -3,7 +3,7 @@
 
 = simple_form_for @user, url: admin_account_change_email_path(@account.id) do |f|
   .fields-group
-    = f.input :email, wrapper: :with_label, disabled: true, label: t('admin.accounts.change_email.current_email')
+    = f.input :email, wrapper: :with_label, hint: false, disabled: true, label: t('admin.accounts.change_email.current_email')
 
   .fields-group
     = f.input :unconfirmed_email, wrapper: :with_label, label: t('admin.accounts.change_email.new_email')

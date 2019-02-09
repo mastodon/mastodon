@@ -8,8 +8,12 @@ import resizeImage from '../utils/resize_image';
 import { importFetchedAccounts } from './importer';
 import { updateTimeline } from './timelines';
 import { showAlertForError } from './alerts';
+import { showAlert } from './alerts';
+import { defineMessages } from 'react-intl';
 
 let cancelFetchComposeSuggestionsAccounts;
+
+import { extractHashtags } from 'twitter-text';
 
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
 export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
@@ -18,6 +22,8 @@ export const COMPOSE_SUBMIT_FAIL     = 'COMPOSE_SUBMIT_FAIL';
 export const COMPOSE_REPLY           = 'COMPOSE_REPLY';
 export const COMPOSE_REPLY_CANCEL    = 'COMPOSE_REPLY_CANCEL';
 export const COMPOSE_DIRECT          = 'COMPOSE_DIRECT';
+export const COMPOSE_QUOTE           = 'COMPOSE_QUOTE';
+export const COMPOSE_QUOTE_CANCEL    = 'COMPOSE_QUOTE_CANCEL';
 export const COMPOSE_MENTION         = 'COMPOSE_MENTION';
 export const COMPOSE_RESET           = 'COMPOSE_RESET';
 export const COMPOSE_UPLOAD_REQUEST  = 'COMPOSE_UPLOAD_REQUEST';
@@ -49,6 +55,10 @@ export const COMPOSE_UPLOAD_CHANGE_REQUEST     = 'COMPOSE_UPLOAD_UPDATE_REQUEST'
 export const COMPOSE_UPLOAD_CHANGE_SUCCESS     = 'COMPOSE_UPLOAD_UPDATE_SUCCESS';
 export const COMPOSE_UPLOAD_CHANGE_FAIL        = 'COMPOSE_UPLOAD_UPDATE_FAIL';
 
+const messages = defineMessages({
+  uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
+});
+
 export function changeCompose(text) {
   return {
     type: COMPOSE_CHANGE,
@@ -72,6 +82,25 @@ export function replyCompose(status, routerHistory) {
 export function cancelReplyCompose() {
   return {
     type: COMPOSE_REPLY_CANCEL,
+  };
+};
+
+export function quoteCompose(status, router) {
+  return (dispatch, getState) => {
+    dispatch({
+      type: COMPOSE_QUOTE,
+      status: status,
+    });
+
+    if (!getState().getIn(['compose', 'mounted'])) {
+      router.push('/statuses/new');
+    }
+  };
+};
+
+export function cancelQuoteCompose() {
+  return {
+    type: COMPOSE_QUOTE_CANCEL,
   };
 };
 
@@ -107,24 +136,31 @@ export function directCompose(account, routerHistory) {
   };
 };
 
-export function submitCompose(routerHistory) {
+export function submitCompose(routerHistory, withCommunity) {
   return function (dispatch, getState) {
-    const status = getState().getIn(['compose', 'text'], '');
+    let status = getState().getIn(['compose', 'text'], '');
     const media  = getState().getIn(['compose', 'media_attachments']);
 
     if ((!status || !status.length) && media.size === 0) {
       return;
     }
 
+    const { newStatus, visibility, hasDefaultHashtag } = handleDefaultTag(
+      withCommunity,
+      status,
+      getState().getIn(['compose', 'privacy'])
+    );
+
     dispatch(submitComposeRequest());
 
     api(getState).post('/api/v1/statuses', {
-      status,
+      status: newStatus,
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
       media_ids: media.map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive']),
       spoiler_text: getState().getIn(['compose', 'spoiler_text'], ''),
-      visibility: getState().getIn(['compose', 'privacy']),
+      visibility,
+      quote_id: getState().getIn(['compose', 'quote_from'], null),
     }, {
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
@@ -136,7 +172,7 @@ export function submitCompose(routerHistory) {
         routerHistory.goBack();
       }
 
-      dispatch(insertIntoTagHistory(response.data.tags, status));
+      dispatch(insertIntoTagHistory(response.data.tags, newStatus));
       dispatch(submitComposeSuccess({ ...response.data }));
 
       // To make the app more responsive, immediately push the status
@@ -151,15 +187,59 @@ export function submitCompose(routerHistory) {
       if (response.data.visibility !== 'direct') {
         insertIfOnline('home');
       }
-
-      if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
-        insertIfOnline('community');
+      
+      if (response.data.visibility === 'public') {
+        if (hasDefaultHashtag) {
+          // Refresh the community timeline only if there is default hashtag
+          insertIfOnline('community');
+        }
         insertIfOnline('public');
       }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
     });
   };
+};
+
+const handleDefaultTag = (withCommunity, status, visibility) => {
+  if (!status || !status.length) {
+    return {};
+  }
+
+  const tags = extractHashtags(status);
+  const hasHashtags = tags.length > 0;
+  const hasDefaultHashtag = tags.some(tag => tag === process.env.DEFAULT_HASHTAG);
+  const isPublic = visibility === 'public';
+
+  if (withCommunity) {
+    // toot with community:
+    // if has default hashtag: keep
+    // else if public: add default hashtag
+    return hasDefaultHashtag ? {
+      newStatus: status,
+      visibility,
+      hasDefaultHashtag: true,
+    } : {
+      newStatus: isPublic ? `${status} #${process.env.DEFAULT_HASHTAG}` : status,
+      visibility,
+      hasDefaultHashtag: true,
+    };
+
+  } else {
+    // toot without community:
+    // if has hashtag: keep
+    // else if public: change visibility to unlisted
+    return hasHashtags ? {
+      newStatus: status,
+      visibility,
+      hasDefaultHashtag: false,
+    } : {
+      newStatus: status,
+      visibility: isPublic ? 'unlisted' : visibility,
+      hasDefaultHashtag: false,
+    };
+
+  }
 };
 
 export function submitComposeRequest() {
@@ -184,20 +264,32 @@ export function submitComposeFail(error) {
 
 export function uploadCompose(files) {
   return function (dispatch, getState) {
-    if (getState().getIn(['compose', 'media_attachments']).size > 3) {
+    const uploadLimit = 4;
+    const media  = getState().getIn(['compose', 'media_attachments']);
+    const total = Array.from(files).reduce((a, v) => a + v.size, 0);
+    const progress = new Array(files.length).fill(0);
+
+    if (files.length + media.size > uploadLimit) {
+      dispatch(showAlert(undefined, messages.uploadErrorLimit));
       return;
     }
-
     dispatch(uploadComposeRequest());
 
-    resizeImage(files[0]).then(file => {
-      const data = new FormData();
-      data.append('file', file);
+    for (const [i, f] of Array.from(files).entries()) {
+      if (media.size + i > 3) break;
 
-      return api(getState).post('/api/v1/media', data, {
-        onUploadProgress: ({ loaded, total }) => dispatch(uploadComposeProgress(loaded, total)),
-      }).then(({ data }) => dispatch(uploadComposeSuccess(data)));
-    }).catch(error => dispatch(uploadComposeFail(error)));
+      resizeImage(f).then(file => {
+        const data = new FormData();
+        data.append('file', file);
+
+        return api(getState).post('/api/v1/media', data, {
+          onUploadProgress: function({ loaded }){
+            progress[i] = loaded;
+            dispatch(uploadComposeProgress(progress.reduce((a, v) => a + v, 0), total));
+          },
+        }).then(({ data }) => dispatch(uploadComposeSuccess(data)));
+      }).catch(error => dispatch(uploadComposeFail(error)));
+    };
   };
 };
 

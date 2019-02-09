@@ -13,6 +13,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import Video from '../../video';
 import scheduleIdleTask from '../../ui/util/schedule_idle_task';
 import classNames from 'classnames';
+import Icon from 'mastodon/components/icon';
 
 export default class DetailedStatus extends ImmutablePureComponent {
 
@@ -25,6 +26,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     onOpenMedia: PropTypes.func.isRequired,
     onOpenVideo: PropTypes.func.isRequired,
     onToggleHidden: PropTypes.func.isRequired,
+    onQuoteToggleHidden: PropTypes.func.isRequired,
     measureHeight: PropTypes.bool,
     onHeightChange: PropTypes.func,
     domain: PropTypes.string.isRequired,
@@ -52,6 +54,19 @@ export default class DetailedStatus extends ImmutablePureComponent {
     this.props.onToggleHidden(this.props.status);
   }
 
+  handleExpandedQuoteToggle = () => {
+    this.props.onQuoteToggleHidden(this.props.status);
+  }
+
+  handleQuoteClick = () => {
+    if (!this.context.router) {
+      return;
+    }
+
+    const { status } = this.props;
+    this.context.router.history.push(`/statuses/${status.getIn(['quote', 'id'])}`);
+  }
+  
   _measureHeight (heightJustChanged) {
     if (this.props.measureHeight && this.node) {
       scheduleIdleTask(() => this.node && this.setState({ height: Math.ceil(this.node.scrollHeight) + 1 }));
@@ -104,6 +119,36 @@ export default class DetailedStatus extends ImmutablePureComponent {
       outerStyle.height = `${this.state.height}px`;
     }
 
+    let quote = null;
+    if (status.get('quote', null) !== null) {
+      let quote_status = status.get('quote');
+
+      let quote_media = null;
+      if (quote_status.get('media_attachments').size > 0) {
+        quote_media = (
+          <MediaGallery
+            standalone
+            sensitive={quote_status.get('sensitive')}
+            media={quote_status.get('media_attachments')}
+            height={300}
+            onOpenMedia={this.props.onOpenMedia}
+            quote
+          />
+        );
+      }
+
+      quote = (
+        <div className='quote-status'>
+          <div className='status__info'>
+            <div className='status__avatar'><Avatar account={quote_status.get('account')} size={18} /></div>
+            <DisplayName account={quote_status.get('account')} />
+          </div>
+          <StatusContent status={quote_status} onClick={this.handleQuoteClick} expanded={!status.get('quote_hidden')} onExpandedToggle={this.handleExpandedQuoteToggle} />
+          {quote_media}
+        </div>
+      );
+    }
+
     if (status.get('media_attachments').size > 0) {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
         media = <AttachmentList media={status.get('media_attachments')} />;
@@ -148,11 +193,11 @@ export default class DetailedStatus extends ImmutablePureComponent {
     }
 
     if (status.get('visibility') === 'private') {
-      reblogLink = <i className={`fa fa-${reblogIcon}`} />;
+      reblogLink = <Icon id={reblogIcon} />;
     } else if (this.context.router) {
       reblogLink = (
         <Link to={`/statuses/${status.get('id')}/reblogs`} className='detailed-status__link'>
-          <i className={`fa fa-${reblogIcon}`} />
+          <Icon id={reblogIcon} />
           <span className='detailed-status__reblogs'>
             <FormattedNumber value={status.get('reblogs_count')} />
           </span>
@@ -161,7 +206,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     } else {
       reblogLink = (
         <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
-          <i className={`fa fa-${reblogIcon}`} />
+          <Icon id={reblogIcon} />
           <span className='detailed-status__reblogs'>
             <FormattedNumber value={status.get('reblogs_count')} />
           </span>
@@ -172,7 +217,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     if (this.context.router) {
       favouriteLink = (
         <Link to={`/statuses/${status.get('id')}/favourites`} className='detailed-status__link'>
-          <i className='fa fa-star' />
+          <Icon id='star' />
           <span className='detailed-status__favorites'>
             <FormattedNumber value={status.get('favourites_count')} />
           </span>
@@ -181,7 +226,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     } else {
       favouriteLink = (
         <a href={`/interact/${status.get('id')}?type=favourite`} className='detailed-status__link' onClick={this.handleModalLink}>
-          <i className='fa fa-star' />
+          <Icon id='star' />
           <span className='detailed-status__favorites'>
             <FormattedNumber value={status.get('favourites_count')} />
           </span>
@@ -199,6 +244,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
           <StatusContent status={status} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} />
 
+          {quote}
           {media}
 
           <div className='detailed-status__meta'>
