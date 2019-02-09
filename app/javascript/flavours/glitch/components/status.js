@@ -216,6 +216,8 @@ export default class Status extends ImmutablePureComponent {
       // Hack to fix timeline jumps on second rendering when auto-collapsing
       this.setState({ autoCollapsed: true });
     }
+
+    this.didShowCard  = !this.props.muted && !this.props.hidden && this.props.status.get('card') && this.props.settings.get('inline_preview_cards');
   }
 
   getSnapshotBeforeUpdate (prevProps, prevState) {
@@ -228,8 +230,10 @@ export default class Status extends ImmutablePureComponent {
 
   //  Hack to fix timeline jumps on second rendering when auto-collapsing
   componentDidUpdate (prevProps, prevState, snapshot) {
-    if (this.state.autoCollapsed) {
-      this.setState({ autoCollapsed: false });
+    const doShowCard  = !this.props.muted && !this.props.hidden && this.props.status.get('card') && this.props.settings.get('inline_preview_cards');
+    if (this.state.autoCollapsed || (doShowCard && !this.didShowCard)) {
+      if (doShowCard) this.didShowCard = true;
+      if (this.state.autoCollapsed) this.setState({ autoCollapsed: false });
       if (snapshot !== null && this.props.updateScrollBottom) {
         if (this.node.offsetTop < snapshot.top) {
           this.props.updateScrollBottom(snapshot.height - snapshot.top);
