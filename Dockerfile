@@ -24,19 +24,18 @@ COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
 COPY --from=node /usr/local/bin/npm /usr/local/bin/npm
 COPY --from=node /opt/yarn-* /opt/yarn
 
-RUN apk -U upgrade \
- && apk add -t build-dependencies \
+RUN apk add --no-cache -t build-dependencies \
     build-base \
     icu-dev \
     libidn-dev \
-    libressl \
+    openssl \
     libtool \
     libxml2-dev \
     libxslt-dev \
     postgresql-dev \
     protobuf-dev \
     python \
- && apk add \
+ && apk add --no-cache \
     ca-certificates \
     ffmpeg \
     file \
@@ -64,7 +63,7 @@ RUN apk -U upgrade \
  && make install \
  && libtool --finish /usr/local/lib \
  && cd /mastodon \
- && rm -rf /tmp/* /var/cache/apk/*
+ && rm -rf /tmp/*
 
 COPY Gemfile Gemfile.lock package.json yarn.lock .yarnclean /mastodon/
 
