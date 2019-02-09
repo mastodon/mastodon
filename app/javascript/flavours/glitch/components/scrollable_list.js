@@ -129,7 +129,7 @@ export default class ScrollableList extends PureComponent {
   }
 
   getScrollPosition = () => {
-    if (this.node && this.node.scrollTop > 0) {
+    if (this.node && (this.node.scrollTop > 0 || this.mouseMovedRecently)) {
       return {height: this.node.scrollHeight, top: this.node.scrollTop};
     } else {
       return null;
