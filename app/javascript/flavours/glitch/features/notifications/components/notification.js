@@ -18,6 +18,9 @@ export default class Notification extends ImmutablePureComponent {
     onMention: PropTypes.func.isRequired,
     getScrollPosition: PropTypes.func,
     updateScrollBottom: PropTypes.func,
+    cacheMediaWidth: PropTypes.func,
+    cachedMediaWidth: PropTypes.number,
+    onUnmount: PropTypes.func,
   };
 
   render () {
@@ -57,6 +60,9 @@ export default class Notification extends ImmutablePureComponent {
           contextType='notifications'
           getScrollPosition={getScrollPosition}
           updateScrollBottom={updateScrollBottom}
+          cachedMediaWidth={this.props.cachedMediaWidth}
+          cacheMediaWidth={this.props.cacheMediaWidth}
+          onUnmount={this.props.onUnmount}
           withDismiss
         />
       );
@@ -75,6 +81,9 @@ export default class Notification extends ImmutablePureComponent {
           onMention={onMention}
           getScrollPosition={getScrollPosition}
           updateScrollBottom={updateScrollBottom}
+          cachedMediaWidth={this.props.cachedMediaWidth}
+          cacheMediaWidth={this.props.cacheMediaWidth}
+          onUnmount={this.props.onUnmount}
           withDismiss
         />
       );
@@ -93,6 +102,9 @@ export default class Notification extends ImmutablePureComponent {
           onMention={onMention}
           getScrollPosition={getScrollPosition}
           updateScrollBottom={updateScrollBottom}
+          cachedMediaWidth={this.props.cachedMediaWidth}
+          cacheMediaWidth={this.props.cacheMediaWidth}
+          onUnmount={this.props.onUnmount}
           withDismiss
         />
       );

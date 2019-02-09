@@ -72,6 +72,8 @@ export default class Status extends ImmutablePureComponent {
     updateScrollBottom: PropTypes.func,
     expanded: PropTypes.bool,
     intl: PropTypes.object.isRequired,
+    cacheMediaWidth: PropTypes.func,
+    cachedMediaWidth: PropTypes.number,
   };
 
   state = {
@@ -445,6 +447,8 @@ export default class Status extends ImmutablePureComponent {
               fullwidth={settings.getIn(['media', 'fullwidth'])}
               preventPlayback={isCollapsed || !isExpanded}
               onOpenVideo={this.handleOpenVideo}
+              width={this.props.cachedMediaWidth}
+              cacheWidth={this.props.cacheMediaWidth}
             />)}
           </Bundle>
         );
@@ -460,6 +464,8 @@ export default class Status extends ImmutablePureComponent {
                 fullwidth={settings.getIn(['media', 'fullwidth'])}
                 hidden={isCollapsed || !isExpanded}
                 onOpenMedia={this.props.onOpenMedia}
+                cacheWidth={this.props.cacheMediaWidth}
+                defaultWidth={this.props.cachedMediaWidth}
               />
             )}
           </Bundle>
@@ -476,6 +482,8 @@ export default class Status extends ImmutablePureComponent {
           onOpenMedia={this.props.onOpenMedia}
           card={status.get('card')}
           compact
+          cacheWidth={this.props.cacheMediaWidth}
+          defaultWidth={this.props.cachedMediaWidth}
         />
       );
       mediaIcon = 'link';
