@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Create < ActivityPub::Activity
-  SUPPORTED_TYPES = %w(Note).freeze
-  CONVERTED_TYPES = %w(Image Video Article Page).freeze
-
   def perform
     return if unsupported_object_type? || invalid_origin?(@object['id'])
     return if Tombstone.exists?(uri: @object['id'])
@@ -318,20 +315,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     @object['nameMap'].is_a?(Hash) && !@object['nameMap'].empty?
   end
 
-  def unsupported_object_type?
-    @object.is_a?(String) || !(supported_object_type? || converted_object_type?)
-  end
-
   def unsupported_media_type?(mime_type)
     mime_type.present? && !(MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES).include?(mime_type)
-  end
-
-  def supported_object_type?
-    equals_or_includes_any?(@object['type'], SUPPORTED_TYPES)
-  end
-
-  def converted_object_type?
-    equals_or_includes_any?(@object['type'], CONVERTED_TYPES)
   end
 
   def skip_download?
