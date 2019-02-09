@@ -602,6 +602,10 @@ pl:
     lists: Listy
     mutes: Wyciszeni
     storage: Urządzenie przechowujące dane
+  featured_tags:
+    add_new: Dodaj nowy
+    errors:
+      limit: Już przekroczyłeś(-aś) maksymalną liczbę wyróżnionych hashtagów
   filters:
     contexts:
       home: Strona główna
@@ -646,10 +650,16 @@ pl:
       one: Coś jest wciąż nie tak! Przyjrzyj się poniższemu błędowi
       other: Coś jest wciąż nie tak! Przejrzyj poniższe błędy (%{count})
   imports:
+    modes:
+      merge: Połącz
+      merge_long: Zachowaj obecne wpisy i dodaj nowe
+      overwrite: Nadpisz
+      overwrite_long: Zastąp obecne wpisy nowymi
     preface: Możesz zaimportować pewne dane (np. lista kont, które śledzisz lub blokujesz) do swojego konta na tym serwerze, korzystając z danych wyeksportowanych z innego serwera.
     success: Twoje dane zostały załadowane i zostaną niebawem przetworzone
     types:
       blocking: Lista blokowanych
+      domain_blocking: Lista zablokowanych domen
       following: Lista śledzonych
       muting: Lista wyciszonych
     upload: Załaduj
@@ -825,6 +835,7 @@ pl:
     development: Tworzenie aplikacji
     edit_profile: Edytuj profil
     export: Eksportowanie danych
+    featured_tags: Wyróżnione hashtagi
     followers: Autoryzowani śledzący
     import: Importowanie danych
     migrate: Migracja konta
