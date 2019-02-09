@@ -194,6 +194,14 @@ RSpec.describe Formatter do
         is_expected.to include '/tags/hashtag" class="mention hashtag" rel="tag">#<span>hashtag</span></a>'
       end
     end
+
+    context 'given text containing a hashtag with Unicode chars' do
+      let(:text)  { '#hashtagタグ' }
+
+      it 'creates a hashtag link' do
+        is_expected.to include '/tags/hashtag%E3%82%BF%E3%82%B0" class="mention hashtag" rel="tag">#<span>hashtagタグ</span></a>'
+      end
+    end
   end
 
   describe '#format_spoiler' do

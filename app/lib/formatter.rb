@@ -210,7 +210,7 @@ class Formatter
 
     # Note: I couldn't obtain list_slug with @user/list-name format
     # for mention so this requires additional check
-    special = Extractor.extract_entities_with_indices(escaped, options).map do |extract|
+    special = Extractor.extract_urls_with_indices(escaped, options).map do |extract|
       # exactly one of :url, :hashtag, :screen_name, :cashtag keys is present
       key = (extract.keys & [:url, :hashtag, :screen_name, :cashtag]).first
 
