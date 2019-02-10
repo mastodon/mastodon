@@ -109,14 +109,11 @@ export function register () {
             pushNotificationsSetting.remove(me);
           }
 
-          try {
-            getRegistration()
-              .then(getPushSubscription)
-              .then(unsubscribe);
-          } catch (e) {
-
-          }
-        });
+          return getRegistration()
+            .then(getPushSubscription)
+            .then(unsubscribe);
+        })
+        .catch(console.warn);
     } else {
       console.warn('Your browser does not support Web Push Notifications.');
     }
@@ -137,6 +134,6 @@ export function saveSettings() {
       if (me) {
         pushNotificationsSetting.set(me, data);
       }
-    });
+    }).catch(console.warn);
   };
 }

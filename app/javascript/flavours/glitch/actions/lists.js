@@ -1,4 +1,5 @@
 import api from 'flavours/glitch/util/api';
+import { showAlertForError } from './alerts';
 
 export const LIST_FETCH_REQUEST = 'LIST_FETCH_REQUEST';
 export const LIST_FETCH_SUCCESS = 'LIST_FETCH_SUCCESS';
@@ -239,7 +240,8 @@ export const fetchListSuggestions = q => (dispatch, getState) => {
   };
 
   api(getState).get('/api/v1/accounts/search', { params })
-    .then(({ data }) => dispatch(fetchListSuggestionsReady(q, data)));
+    .then(({ data }) => dispatch(fetchListSuggestionsReady(q, data)))
+    .catch(error => dispatch(showAlertForError(error)));
 };
 
 export const fetchListSuggestionsReady = (query, accounts) => ({

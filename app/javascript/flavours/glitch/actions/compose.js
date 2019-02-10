@@ -1,5 +1,5 @@
 import api from 'flavours/glitch/util/api';
-import { CancelToken } from 'axios';
+import { CancelToken, isCancel } from 'axios';
 import { throttle } from 'lodash';
 import { search as emojiSearch } from 'flavours/glitch/util/emoji/emoji_mart_search_light';
 import { useEmoji } from './emojis';
@@ -8,6 +8,7 @@ import { recoverHashtags } from 'flavours/glitch/util/hashtag';
 import resizeImage from 'flavours/glitch/util/resize_image';
 
 import { updateTimeline } from './timelines';
+import { showAlertForError } from './alerts';
 
 let cancelFetchComposeSuggestionsAccounts;
 
@@ -320,6 +321,10 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => 
     },
   }).then(response => {
     dispatch(readyComposeSuggestionsAccounts(token, response.data));
+  }).catch(error => {
+    if (!isCancel(error)) {
+      dispatch(showAlertForError(error));
+    }
   });
 }, 200, { leading: true, trailing: true });
 

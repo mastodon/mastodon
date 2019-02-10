@@ -25,6 +25,7 @@ import { openModal } from 'flavours/glitch/actions/modal';
 import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/util/initial_state';
+import { showAlertForError } from '../actions/alerts';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -134,7 +135,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onEmbed (status) {
-    dispatch(openModal('EMBED', { url: status.get('url') }));
+    dispatch(openModal('EMBED', {
+      url: status.get('url'),
+      onError: error => dispatch(showAlertForError(error)),
+    }));
   },
 
   onDelete (status, history, withRedraft = false) {
