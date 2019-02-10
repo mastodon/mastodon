@@ -69,6 +69,8 @@ class Status extends ImmutablePureComponent {
     onMoveUp: PropTypes.func,
     onMoveDown: PropTypes.func,
     showThread: PropTypes.bool,
+    cacheMediaWidth: PropTypes.func,
+    cachedMediaWidth: PropTypes.number,
   };
 
   // Avoid checking props that are functions (and whose equality will always
@@ -243,11 +245,12 @@ class Status extends ImmutablePureComponent {
                 preview={video.get('preview_url')}
                 src={video.get('url')}
                 alt={video.get('description')}
-                width={239}
+                width={this.props.cachedMediaWidth}
                 height={110}
                 inline
                 sensitive={status.get('sensitive')}
                 onOpenVideo={this.handleOpenVideo}
+                cacheWidth={this.props.cacheMediaWidth}
               />
             )}
           </Bundle>
@@ -255,7 +258,16 @@ class Status extends ImmutablePureComponent {
       } else {
         media = (
           <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery}>
-            {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} />}
+            {Component => (
+              <Component
+                media={status.get('media_attachments')}
+                sensitive={status.get('sensitive')}
+                height={110}
+                onOpenMedia={this.props.onOpenMedia}
+                cacheWidth={this.props.cacheMediaWidth}
+                defaultWidth={this.props.cachedMediaWidth}
+              />
+            )}
           </Bundle>
         );
       }
@@ -265,6 +277,8 @@ class Status extends ImmutablePureComponent {
           onOpenMedia={this.props.onOpenMedia}
           card={status.get('card')}
           compact
+          cacheWidth={this.props.cacheMediaWidth}
+          defaultWidth={this.props.cachedMediaWidth}
         />
       );
     }

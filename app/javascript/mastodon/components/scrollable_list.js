@@ -40,6 +40,7 @@ export default class ScrollableList extends PureComponent {
 
   state = {
     fullscreen: null,
+    cachedMediaWidth: 250, // Default media/card width using default Mastodon theme
   };
 
   intersectionObserverWrapper = new IntersectionObserverWrapper();
@@ -150,6 +151,12 @@ export default class ScrollableList extends PureComponent {
     }
   }
 
+  cacheMediaWidth = (width) => {
+    if (width && this.state.cachedMediaWidth !== width) {
+      this.setState({ cachedMediaWidth: width });
+    }
+  }
+
   componentWillUnmount () {
     this.clearMouseIdleTimer();
     this.detachScrollListener();
@@ -239,7 +246,10 @@ export default class ScrollableList extends PureComponent {
                 intersectionObserverWrapper={this.intersectionObserverWrapper}
                 saveHeightKey={trackScroll ? `${this.context.router.route.location.key}:${scrollKey}` : null}
               >
-                {child}
+                {React.cloneElement(child, {
+                  cachedMediaWidth: this.state.cachedMediaWidth,
+                  cacheMediaWidth: this.cacheMediaWidth,
+                })}
               </IntersectionObserverArticleContainer>
             ))}
 
