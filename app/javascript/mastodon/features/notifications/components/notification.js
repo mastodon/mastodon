@@ -35,6 +35,8 @@ class Notification extends ImmutablePureComponent {
     onToggleHidden: PropTypes.func.isRequired,
     status: PropTypes.option,
     intl: PropTypes.object.isRequired,
+    getScrollPosition: PropTypes.func,
+    updateScrollBottom: PropTypes.func,
     cacheMediaWidth: PropTypes.func,
     cachedMediaWidth: PropTypes.number,
   };
@@ -131,6 +133,8 @@ class Notification extends ImmutablePureComponent {
         onMoveDown={this.handleMoveDown}
         onMoveUp={this.handleMoveUp}
         contextType='notifications'
+        getScrollPosition={this.props.getScrollPosition}
+        updateScrollBottom={this.props.updateScrollBottom}
         cachedMediaWidth={this.props.cachedMediaWidth}
         cacheMediaWidth={this.props.cacheMediaWidth}
       />
@@ -159,6 +163,8 @@ class Notification extends ImmutablePureComponent {
             muted
             withDismiss
             hidden={!!this.props.hidden}
+            getScrollPosition={this.props.getScrollPosition}
+            updateScrollBottom={this.props.updateScrollBottom}
             cachedMediaWidth={this.props.cachedMediaWidth}
             cacheMediaWidth={this.props.cacheMediaWidth}
           />
@@ -189,6 +195,8 @@ class Notification extends ImmutablePureComponent {
             muted
             withDismiss
             hidden={this.props.hidden}
+            getScrollPosition={this.props.getScrollPosition}
+            updateScrollBottom={this.props.updateScrollBottom}
             cachedMediaWidth={this.props.cachedMediaWidth}
             cacheMediaWidth={this.props.cacheMediaWidth}
           />

@@ -69,6 +69,8 @@ class Status extends ImmutablePureComponent {
     onMoveUp: PropTypes.func,
     onMoveDown: PropTypes.func,
     showThread: PropTypes.bool,
+    getScrollPosition: PropTypes.func,
+    updateScrollBottom: PropTypes.func,
     cacheMediaWidth: PropTypes.func,
     cachedMediaWidth: PropTypes.number,
   };
@@ -81,6 +83,32 @@ class Status extends ImmutablePureComponent {
     'muted',
     'hidden',
   ];
+
+  // Track height changes we know about to compensate scrolling
+  componentDidMount () {
+    this.didShowCard = !this.props.muted && !this.props.hidden && this.props.status.get('card');
+  }
+
+  getSnapshotBeforeUpdate () {
+    if (this.props.getScrollPosition) {
+      return this.props.getScrollPosition();
+    } else {
+      return null;
+    }
+  }
+
+  // Compensate height changes
+  componentDidUpdate (prevProps, prevState, snapshot) {
+    const doShowCard  = !this.props.muted && !this.props.hidden && this.props.status.get('card');
+    if (doShowCard && !this.didShowCard) {
+      this.didShowCard = true;
+      if (snapshot !== null && this.props.updateScrollBottom) {
+        if (this.node && this.node.offsetTop < snapshot.top) {
+          this.props.updateScrollBottom(snapshot.height - snapshot.top);
+        }
+      }
+    }
+  }
 
   handleClick = () => {
     if (this.props.onClick) {
@@ -168,6 +196,10 @@ class Status extends ImmutablePureComponent {
     }
   }
 
+  handleRef = c => {
+    this.node = c;
+  }
+
   render () {
     let media = null;
     let statusAvatar, prepend, rebloggedByText;
@@ -182,7 +214,7 @@ class Status extends ImmutablePureComponent {
 
     if (hidden) {
       return (
-        <div>
+        <div ref={this.handleRef}>
           {status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}
           {status.get('content')}
         </div>
@@ -197,7 +229,7 @@ class Status extends ImmutablePureComponent {
 
       return (
         <HotKeys handlers={minHandlers}>
-          <div className='status__wrapper status__wrapper--filtered focusable' tabIndex='0'>
+          <div className='status__wrapper status__wrapper--filtered focusable' tabIndex='0' ref={this.handleRef}>
             <FormattedMessage id='status.filtered' defaultMessage='Filtered' />
           </div>
         </HotKeys>
@@ -305,7 +337,7 @@ class Status extends ImmutablePureComponent {
 
     return (
       <HotKeys handlers={handlers}>
-        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), read: unread === false, focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText, !status.get('hidden'))}>
+        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), read: unread === false, focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText, !status.get('hidden'))} ref={this.handleRef}>
           {prepend}
 
           <div className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), muted: this.props.muted, read: unread === false })} data-id={status.get('id')}>
