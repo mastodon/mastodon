@@ -588,6 +588,10 @@ ja:
     lists: リスト
     mutes: ミュート
     storage: メディア
+  featured_tags:
+    add_new: 追加
+    errors:
+      limit: 注目のハッシュタグの上限に達しました
   filters:
     contexts:
       home: ホームタイムライン
@@ -628,10 +632,16 @@ ja:
       one: エラーが発生しました！ 以下のエラーを確認してください
       other: エラーが発生しました！ 以下の%{count}個のエラーを確認してください
   imports:
+    modes:
+      merge: 統合
+      merge_long: 現在のレコードを保持したまま新しいものを追加します
+      overwrite: 上書き
+      overwrite_long: 現在のレコードを新しいもので置き換えます
     preface: 他のサーバーでエクスポートされたファイルから、フォロー/ブロックした情報をこのサーバー上のアカウントにインポートできます。
     success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください
     types:
       blocking: ブロックしたアカウントリスト
+      domain_blocking: 非表示にしたドメインリスト
       following: フォロー中のアカウントリスト
       muting: ミュートしたアカウントリスト
     upload: アップロード
@@ -800,6 +810,7 @@ ja:
     development: 開発
     edit_profile: プロフィールを編集
     export: データのエクスポート
+    featured_tags: 注目のハッシュタグ
     followers: 信頼済みのサーバー
     import: データのインポート
     migrate: アカウントの引っ越し
