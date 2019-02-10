@@ -6,6 +6,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :settings, safe_join([fa_icon('cog fw'), t('settings.settings')]), settings_profile_url do |settings|
       settings.item :profile, safe_join([fa_icon('user fw'), t('settings.edit_profile')]), settings_profile_url, highlights_on: %r{/settings/profile|/settings/migration}
+      settings.item :featured_tags, safe_join([fa_icon('hashtag fw'), t('settings.featured_tags')]), settings_featured_tags_url
       settings.item :preferences, safe_join([fa_icon('sliders fw'), t('settings.preferences')]), settings_preferences_url
       settings.item :notifications, safe_join([fa_icon('bell fw'), t('settings.notifications')]), settings_notifications_url
       settings.item :password, safe_join([fa_icon('lock fw'), t('auth.security')]), edit_user_registration_url, highlights_on: %r{/auth/edit|/settings/delete}
