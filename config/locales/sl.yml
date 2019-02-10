@@ -90,7 +90,7 @@ sl:
     last_active: zadnji aktivni
   admin:
     account_moderation_notes:
-      create: Pusti sporočilo
+      create: Pusti opombo
       created_msg: Uspešno ustvarjena opomba moderiranja!
       delete: Izbriši
       destroyed_msg: Moderirana opomba je uspešno uničena!
@@ -355,6 +355,71 @@ sl:
     relays:
       add_new: Dodaj nov rele
       delete: Izbriši
+      description_html: <strong>Rele federacije</strong> je posredniški strežnik,
+        ki si izmenjuje velike količine javnih trobov med strežniki, ki so se naročili
+        in objavili na njem. <strong>Majhnim in srednjim strežnikom lahko pomaga pri
+        odkrivanju vsebine iz sistema fediverse</strong>, kar bi sicer zahtevalo,
+        da lokalni uporabniki ročno sledijo druge osebe na oddaljenih strežnikih.
+      disable: Onemogoči
+      disabled: Onemogočeno
+      enable: Omogoči
+      enable_hint: Ko je omogočen, se bo vaš strežnik naročil na vse javne trobe iz
+        tega releja in začel pošiljati javne trobe tega strežnika.
+      enabled: Omogočeno
+      inbox_url: URL releja
+      pending: Čakanje na odobritev releja
+      save_and_enable: Shrani in omogoči
+      setup: Nastavi povezavo releja
+      status: Stanje
+      title: Releji
+    report_notes:
+      created_msg: Opomba o prijavi je uspešno ustvarjena!
+      destroyed_msg: Opomba o prijavi je uspešno izbrisana!
+    reports:
+      account:
+        note: opomba
+        report: prijava
+      action_taken_by: Dejanje, ki ga je sprejel
+      are_you_sure: Ali ste prepričani?
+      assign_to_self: Dodeli meni
+      assigned: Dodeljen moderator
+      comment:
+        none: Nič
+      created_at: Prijavljeno
+      mark_as_resolved: Označi kot rešeno
+      mark_as_unresolved: Označi kot nerešeno
+      notes:
+        create: Dodaj opombo
+        create_and_resolve: Razreši z opombo
+        create_and_unresolve: Ponovo odpri z opombo
+        delete: Izbriši
+        placeholder: Opišite dejanja, ki ste jih izvedli, ali katere koli druge posodobitve...
+      reopen: Ponovno odpri prijavo
+      report: 'Prijavi #%{id}'
+      reported_account: Prijavljeni račun
+      reported_by: Prijavljen od
+      resolved: Razrešeno
+      resolved_msg: Prijava je uspešno razrešena!
+      status: Stanje
+      title: Prijave
+      unassign: Odstopi
+      unresolved: Nerešeno
+      updated_at: Posodobljen
+    settings:
+      activity_api_enabled:
+        desc_html: Številke lokalno objavljenih stanj, aktivnih uporabnikov in novih
+          registracij na tedenskih seznamih
+        title: Objavi združeno statistiko o dejavnosti uporabnikov
+      bootstrap_timeline_accounts:
+        desc_html: Več uporabniških imen ločite z vejico. Deluje samo na lokalnih
+          in odklenjenih računih. Privzeto, ko je prazno, pri vseh lokalnih skrbnikih.
+        title: Privzeta sledenja za nove uporabnike
+      contact_information:
+        email: Poslovna e-pošta
+        username: Uporabniško ime stika
+      custom_css:
+        desc_html: Spremeni videz z naloženim CSS na vsaki strani
+        title: CSS po meri
   statuses:
     pin_errors:
       ownership: Trob nekoga drugega ne more biti pripet
