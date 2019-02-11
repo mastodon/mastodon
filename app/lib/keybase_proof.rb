@@ -39,7 +39,7 @@ module Keybase
         endpoint: '/_/api/1.0/user/pic_url.json',
         query_params: { username: @kb_username }
       ).fetch(:pic_url)
-    rescue KeyError
+    rescue KeyError, HTTP::Error
       nil
     end
 
