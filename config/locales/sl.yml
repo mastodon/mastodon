@@ -288,8 +288,10 @@ sl:
         suspend: suspendirani
       show:
         affected_accounts:
+          few: "%{count} računov v bazi podatkov so prizadeti"
           one: En račun v bazi podatkov je prizadet
           other: "%{count} računov v bazi podatkov so prizadeti"
+          two: "%{count} računov v bazi podatkov so prizadeti"
         retroactive:
           silence: Prekliči utišanje za vse obstoječe račune iz te domene
           suspend: Odsuspendiraj vse obstoječe račune iz te domene
@@ -312,8 +314,10 @@ sl:
     instances:
       delivery_available: Na voljo je dostava
       known_accounts:
+        few: "%{count} znanih računov"
         one: "%{count} znan račun"
         other: "%{count} znanih računov"
+        two: "%{count} znanih računov"
       moderation:
         all: Vse
         limited: Omejeno
