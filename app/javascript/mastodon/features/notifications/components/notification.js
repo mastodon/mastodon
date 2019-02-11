@@ -34,6 +34,10 @@ class Notification extends ImmutablePureComponent {
     onToggleHidden: PropTypes.func.isRequired,
     status: PropTypes.option,
     intl: PropTypes.object.isRequired,
+    getScrollPosition: PropTypes.func,
+    updateScrollBottom: PropTypes.func,
+    cacheMediaWidth: PropTypes.func,
+    cachedMediaWidth: PropTypes.number,
   };
 
   handleMoveUp = () => {
@@ -128,6 +132,10 @@ class Notification extends ImmutablePureComponent {
         onMoveDown={this.handleMoveDown}
         onMoveUp={this.handleMoveUp}
         contextType='notifications'
+        getScrollPosition={this.props.getScrollPosition}
+        updateScrollBottom={this.props.updateScrollBottom}
+        cachedMediaWidth={this.props.cachedMediaWidth}
+        cacheMediaWidth={this.props.cacheMediaWidth}
       />
     );
   }
@@ -148,7 +156,17 @@ class Notification extends ImmutablePureComponent {
             </span>
           </div>
 
-          <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss hidden={!!this.props.hidden} />
+          <StatusContainer
+            id={notification.get('status')}
+            account={notification.get('account')}
+            muted
+            withDismiss
+            hidden={!!this.props.hidden}
+            getScrollPosition={this.props.getScrollPosition}
+            updateScrollBottom={this.props.updateScrollBottom}
+            cachedMediaWidth={this.props.cachedMediaWidth}
+            cacheMediaWidth={this.props.cacheMediaWidth}
+          />
         </div>
       </HotKeys>
     );
@@ -170,7 +188,17 @@ class Notification extends ImmutablePureComponent {
             </span>
           </div>
 
-          <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss hidden={this.props.hidden} />
+          <StatusContainer
+            id={notification.get('status')}
+            account={notification.get('account')}
+            muted
+            withDismiss
+            hidden={this.props.hidden}
+            getScrollPosition={this.props.getScrollPosition}
+            updateScrollBottom={this.props.updateScrollBottom}
+            cachedMediaWidth={this.props.cachedMediaWidth}
+            cacheMediaWidth={this.props.cacheMediaWidth}
+          />
         </div>
       </HotKeys>
     );
