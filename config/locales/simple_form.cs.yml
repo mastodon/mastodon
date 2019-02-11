@@ -15,14 +15,14 @@ cs:
         bot: Tento účet provádí hlavně automatizované akce a nemusí být spravován
         context: Jedno či více kontextů, ve kterých má být filtr uplatněn
         digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste při své nepřítomnosti obdržel/a osobní zprávy
-        discoverable_html: <a href="%{path}" target="_blank">Adresář</a> dovoluje lidem najít účty podle zájmů a aktivity. Vyžaduje alespoň %{min_followers} sledovatelů
+        discoverable_html: <a href="%{path}" target="_blank">Adresář</a> dovoluje lidem najít účty podle zájmů a aktivity. Vyžaduje alespoň %{min_followers} sledujících
         email: Bude vám poslán potvrzovací e-mail
         fields: Na profilu můžete mít až 4 položky zobrazené jako tabulka
         header: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         inbox_url: Zkopírujte URL z hlavní stránky mostu, který chcete použít
         irreversible: Filtrované tooty nenávratně zmizí, i pokud bude filtr později odstraněn
         locale: Jazyk uživatelského rozhraní, e-mailů a oznámení push
-        locked: Vyžaduje manuální schvalování sledovatelů
+        locked: Vyžaduje, abyste ručně schvaloval/a sledující
         password: Použijte alespoň 8 znaků
         phrase: Shoda bude nalezena bez ohledu na velikost písmen v těle tootu či varování o obsahu
         scopes: Které API bude aplikace povolena používat. Pokud vyberete rozsah nejvyššího stupně, nebudete je muset vybírat po jednom.
@@ -37,7 +37,7 @@ cs:
         username: Vaše uživatelské jméno bude na %{domain} unikátní
         whole_word: Je-li klíčové slovo či fráze pouze alfanumerická, bude aplikována pouze, pokud se shoduje s celým slovem
       imports:
-        data: Soubor CSV exportován z jiné instance Mastodon
+        data: Soubor CSV exportovaný z jiného serveru Mastodon
       sessions:
         otp: 'Napište dvoufaktorový kód vygenerovaný vaší mobilní aplikací, nebo použijte jeden z vašich záložních kódů:'
       user:
