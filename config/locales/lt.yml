@@ -1,41 +1,30 @@
+---
 lt:
   about:
-    about_hashtag_html: Čia visiems prieinamas įrankis <strong>#%{hashtag}</strong>.
-      Jūs galite juo naudotis bet kur, jeigu turite paskyra fedi-visatoje.
-    about_mastodon_html: Mastodon, tai socialinis tinklas pagrįstas atviro kodo programavimu,
-      ir atvirais web protokolais. Visiškai nemokamas. Ši sistema decantrilizuota
-      kaip jūsų elektroninis paštas.
+    about_hashtag_html: Čia visiems prieinamas įrankis <strong>#%{hashtag}</strong>. Jūs galite juo naudotis bet kur, jeigu turite paskyra fedi-visatoje.
+    about_mastodon_html: Mastodon, tai socialinis tinklas pagrįstas atviro kodo programavimu, ir atvirais web protokolais. Visiškai nemokamas. Ši sistema decantrilizuota kaip jūsų elektroninis paštas.
     about_this: Apie
     administered_by: 'Administruoja:'
     api: API
     apps: Mobilioji Aplikacija
-    closed_registrations: Registracija šiuo metu uždaryta prie šito tinklo.  Jūs galite
-      rasti kitą būdą susikurti paskyrą ir gauti prieeiga prie to paties tinklo.
+    closed_registrations: Registracija šiuo metu uždaryta prie šito tinklo.  Jūs galite rasti kitą būdą susikurti paskyrą ir gauti prieeiga prie to paties tinklo.
     contact: Kontaktai
     contact_missing: Nenustatyta
     contact_unavailable: N/A
     documentation: Dokumentacija
-    extended_description_html: '<h3>Taisyklės</h3>
-
+    extended_description_html: |
+      <h3>Taisyklės</h3>
       <p>Ilgas aprašymas dar nėra sudartyas</p>
-
-      '
     features:
-      humane_approach_body: Mokantis iš kitų socialinių tinklų, bei jų daromu klaidų,
-        Mastodon siekia sukurti etiška dizainą, kovojant su netinkamu socialinių tinklų
-        naudojimu.
+      humane_approach_body: Mokantis iš kitų socialinių tinklų, bei jų daromu klaidų, Mastodon siekia sukurti etiška dizainą, kovojant su netinkamu socialinių tinklų naudojimu.
       humane_approach_title: Humaniškesnis metodas
-      not_a_product_body: Mastodon nėra komercinis tinklas. Jokių reklamų, privačios
-        informacijos rinkimo. Čia nėra vieno žmogaus, kuris už viską atsako.
+      not_a_product_body: Mastodon nėra komercinis tinklas. Jokių reklamų, privačios informacijos rinkimo. Čia nėra vieno žmogaus, kuris už viską atsako.
       not_a_product_title: Tu esi žmogus, o ne produktas
-      real_conversation_body: Su 500 simbolių limitu, ir galimybe pažymėti savo įkeliama
-        informacija su įspėjamaisiais ženklais, galite išsireikšti kaip tik norite.
+      real_conversation_body: Su 500 simbolių limitu, ir galimybe pažymėti savo įkeliama informacija su įspėjamaisiais ženklais, galite išsireikšti kaip tik norite.
       real_conversation_title: Sukurtas tikram bendravimui
-      within_reach_body: Mobiliosios aplikacijos skirtos iOS, Android, ir kitoms platformoms.
-        Draugiškos API ekosistemos dėka, Jūs galite palaikyti pokalbi su draugais
-        bet kur.
+      within_reach_body: Mobiliosios aplikacijos skirtos iOS, Android, ir kitoms platformoms. Draugiškos API ekosistemos dėka, Jūs galite palaikyti pokalbi su draugais bet kur.
       within_reach_title: Visada pasiekama
-    generic_description: '%{domain} yra vienas serveris tinkle'
+    generic_description: "%{domain} yra vienas serveris tinkle"
     hosted_on: Mastodon palaikomas naudojantis %{domain} talpinimu
     learn_more: Daugiau
     privacy_policy: Privatumo Politika
@@ -51,7 +40,7 @@ lt:
     user_count_before: Namai
     what_is_mastodon: Kas tai, Mastodon?
   accounts:
-    choices_html: '%{name} pasirinkimai:'
+    choices_html: "%{name} pasirinkimai:"
     follow: Sekti
     followers:
       one: Sekėjas
@@ -61,7 +50,7 @@ lt:
     last_active: paskutinį kartą aktyvus
     link_verified_on: Nuorodos nuosavybė paskutinį kartą tikrinta %{date}
     media: Medija
-    moved_html: '%{name} persikėlė į %{new_profile_link}:'
+    moved_html: "%{name} persikėlė į %{new_profile_link}:"
     network_hidden: Ši informacija neprieinama
     nothing_here: Čia nieko nėra!
     people_followed_by: Žmonės, kuriuos %{name} seka
@@ -184,6 +173,6 @@ lt:
       web: Web
     action_logs:
       actions:
-        assigned_to_self_report: '%{name} paskyrė reportą %{target} saviems'
-        change_email_user: '%{name} pakeitė el pašto adresą vartotojui %{target}'
-        confirm_user: '%{name} patvirtino el pašto adresą vartotojui %{target}'
+        assigned_to_self_report: "%{name} paskyrė reportą %{target} saviems"
+        change_email_user: "%{name} pakeitė el pašto adresą vartotojui %{target}"
+        confirm_user: "%{name} patvirtino el pašto adresą vartotojui %{target}"

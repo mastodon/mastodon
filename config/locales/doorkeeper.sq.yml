@@ -1,3 +1,4 @@
+---
 sq:
   activerecord:
     attributes:
@@ -32,8 +33,7 @@ sq:
       help:
         native_redirect_uri: Përdor %{native_redirect_uri} për teste vendore
         redirect_uri: Përdorni një URI për rresht
-        scopes: Ndajini fushëveprimet me hapësira. Që të përdoren fushëveprimet parazgjedhje,
-          lëreni të zbrazët.
+        scopes: Ndajini fushëveprimet me hapësira. Që të përdoren fushëveprimet parazgjedhje, lëreni të zbrazët.
       index:
         application: Aplikacion
         callback_url: URL Callback-u
@@ -60,7 +60,7 @@ sq:
         title: Ndodhi një gabim
       new:
         able_to: Do të jetë në gjendje të
-        prompt: '%{client_name} kërkesa hyrjeje aplikacionesh te llogaria juaj'
+        prompt: "%{client_name} kërkesa hyrjeje aplikacionesh te llogaria juaj"
         title: Lypset autorizim
       show:
         title: Kopjojeni këtë kod autorizimi dhe ngjiteni te aplikacioni.
@@ -72,46 +72,29 @@ sq:
       index:
         application: Aplikacion
         created_at: I autorizuar
-        date_format: '%d.%m.%Y, %H:%M:%S'
+        date_format: "%d.%m.%Y, %H:%M:%S"
         scopes: Fushëveprime
         title: Aplikacionet tuaja të autorizuara
     errors:
       messages:
-        access_denied: I zoti i burimit ose shërbyesi i autorizimit e hodhi poshtë
-          kërkesën.
-        credential_flow_not_configured: Rrjedha e Kredencialeve të Fjalëkalimit të
-          të Zotit të Burimit dështoi për shkak se Doorkeeper.configure.resource_owner_from_credentials
-          është i paformësuar.
-        invalid_client: Mirëfilltësimi i klientit dështoi për shkak klienti të panjohur,
-          mospërfshirjeje mirëfilltësimi klienti, ose metode të pambuluar mirëfilltësimi.
-        invalid_grant: Autorizimi i dhënë është i pavlefshëm, ka skaduar, është shfuqizuar,
-          nuk përputhet me URI-n e ridrejtimit të përdorur te kërkesa e autorizimit,
-          ose është emetuar për klient tjetër.
+        access_denied: I zoti i burimit ose shërbyesi i autorizimit e hodhi poshtë kërkesën.
+        credential_flow_not_configured: Rrjedha e Kredencialeve të Fjalëkalimit të të Zotit të Burimit dështoi për shkak se Doorkeeper.configure.resource_owner_from_credentials është i paformësuar.
+        invalid_client: Mirëfilltësimi i klientit dështoi për shkak klienti të panjohur, mospërfshirjeje mirëfilltësimi klienti, ose metode të pambuluar mirëfilltësimi.
+        invalid_grant: Autorizimi i dhënë është i pavlefshëm, ka skaduar, është shfuqizuar, nuk përputhet me URI-n e ridrejtimit të përdorur te kërkesa e autorizimit, ose është emetuar për klient tjetër.
         invalid_redirect_uri: URI e ridrejtimit s’është e vlefshme.
-        invalid_request: Kërkesës i mungon një parametër i domosdoshëm, përfshin një
-          vlerë të pambuluar parametri, ose përndryshe është e keqformuar.
-        invalid_resource_owner: Kredencialet e dhëna për të zotin e burimit s’janë
-          të vlefshme, ose s’gjendet i zoti i burimit
-        invalid_scope: Fushëveprimi i kërkuar është i pavlefshëm, i panjohur ose i
-          keqformuar.
+        invalid_request: Kërkesës i mungon një parametër i domosdoshëm, përfshin një vlerë të pambuluar parametri, ose përndryshe është e keqformuar.
+        invalid_resource_owner: Kredencialet e dhëna për të zotin e burimit s’janë të vlefshme, ose s’gjendet i zoti i burimit
+        invalid_scope: Fushëveprimi i kërkuar është i pavlefshëm, i panjohur ose i keqformuar.
         invalid_token:
           expired: Token-i i hyrjeve skadoi
           revoked: Token-i i hyrjeve u shfuqizua
           unknown: Token-i i hyrjeve është i pavlefshëm
-        resource_owner_authenticator_not_configured: Gjetja e të Zotit të Burimit
-          dështoi, ngaqë Doorkeeper.configure.resource_owner_authenticator s’është
-          i formësuar.
-        server_error: Shërbyesi i autorizimit hasi një kusht të papritur, i cili e
-          pengoi të plotësonte kërkesën.
-        temporarily_unavailable: Shërbyesi i mirëfilltësimeve hëpërhë s’është në gjendje
-          të trajtojë kërkesën, për shkak të një mbingarkese të përkohshme ose ndonjë
-          mirëmbajtjeje të shërbyesit.
-        unauthorized_client: Klienti s’është i autorizuar të kryejë këtë kërkesë duke
-          përdorur këtë metodë.
-        unsupported_grant_type: Lloji i autorizimit të dhënë nuk mbulohet nga shërbyesi
-          i autorizimeve.
-        unsupported_response_type: Shërbyesi i autorizimeve nuk e mbulon këtë lloj
-          përgjigjeje.
+        resource_owner_authenticator_not_configured: Gjetja e të Zotit të Burimit dështoi, ngaqë Doorkeeper.configure.resource_owner_authenticator s’është i formësuar.
+        server_error: Shërbyesi i autorizimit hasi një kusht të papritur, i cili e pengoi të plotësonte kërkesën.
+        temporarily_unavailable: Shërbyesi i mirëfilltësimeve hëpërhë s’është në gjendje të trajtojë kërkesën, për shkak të një mbingarkese të përkohshme ose ndonjë mirëmbajtjeje të shërbyesit.
+        unauthorized_client: Klienti s’është i autorizuar të kryejë këtë kërkesë duke përdorur këtë metodë.
+        unsupported_grant_type: Lloji i autorizimit të dhënë nuk mbulohet nga shërbyesi i autorizimeve.
+        unsupported_response_type: Shërbyesi i autorizimeve nuk e mbulon këtë lloj përgjigjeje.
     flash:
       applications:
         create:

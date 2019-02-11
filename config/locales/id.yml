@@ -1,45 +1,30 @@
+---
 id:
   about:
-    about_hashtag_html: Ini adalah toot public yang ditandai dengan <strong>#%{hashtag}</strong>.
-      Anda bisa berinteraksi dengan mereka jika anda memiliki akun dimanapun di fediverse.
-    about_mastodon_html: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em.
-      Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan
-      anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server
-      yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi
-      dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan
-      berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
+    about_hashtag_html: Ini adalah toot public yang ditandai dengan <strong>#%{hashtag}</strong>. Anda bisa berinteraksi dengan mereka jika anda memiliki akun dimanapun di fediverse.
+    about_mastodon_html: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
     about_this: Tentang server ini
+    administered_by: 'Dikelola oleh:'
     api: API
     apps: Aplikasi hp
-    closed_registrations: Pendaftaran untuk server ini sedang ditutup. Tetapi, anda
-      bisa mencari server lain untuk membuat akun dan mendapatkan akses dari jaringan
-      yang sama di sana.
+    closed_registrations: Pendaftaran untuk server ini sedang ditutup. Tetapi, anda bisa mencari server lain untuk membuat akun dan mendapatkan akses dari jaringan yang sama di sana.
     contact: Kontak
     contact_missing: Belum diset
     contact_unavailable: Tidak Tersedia
     documentation: Dokumentasi
-    extended_description_html: '<h3>Tempat yang baik untuk peraturan</h3>
-
+    extended_description_html: |
+      <h3>Tempat yang baik untuk peraturan</h3>
       <p>Deskripsi lainnya belum diset.</p>
-
-      '
     features:
-      humane_approach_body: Belajar dari kegagalan jaringan lain, Mastodon berupaya
-        untuk membuat pilihan desain yang etis untuk melawan penyalahgunaan media
-        sosial.
+      humane_approach_body: Belajar dari kegagalan jaringan lain, Mastodon berupaya untuk membuat pilihan desain yang etis untuk melawan penyalahgunaan media sosial.
       humane_approach_title: Pendekatan yang lebih manusiawi
-      not_a_product_body: Mastodon bukanlah jaringan komersil. Tidak ada iklan, tidak
-        ada pengumpulan data, tidak ada batasan vendor. Tidak ada otoritas terpusat.
+      not_a_product_body: Mastodon bukanlah jaringan komersil. Tidak ada iklan, tidak ada pengumpulan data, tidak ada batasan vendor. Tidak ada otoritas terpusat.
       not_a_product_title: Anda adalah orang, bukanlah sebuah produk
-      real_conversation_body: Dengan 500 karakter dan dukungan konten granular dan
-        peringatan media, anda dapat mengekspresikan diri anda sendiri sesuai yang
-        anda mau.
+      real_conversation_body: Dengan 500 karakter dan dukungan konten granular dan peringatan media, anda dapat mengekspresikan diri anda sendiri sesuai yang anda mau.
       real_conversation_title: Dibangun untuk percakapan yang sebenarnya
-      within_reach_body: Berbagai aplikasi untuk iOS, Android, dan platform lainnya
-        berkat ekosistem API yang ramah pada pengembang untuk tetap terhubung dengan
-        teman-teman anda dimanapun.
+      within_reach_body: Berbagai aplikasi untuk iOS, Android, dan platform lainnya berkat ekosistem API yang ramah pada pengembang untuk tetap terhubung dengan teman-teman anda dimanapun.
       within_reach_title: Selalu dalam jangkauan
-    generic_description: '%{domain} adalah satu server dalam jaringan'
+    generic_description: "%{domain} adalah satu server dalam jaringan"
     hosted_on: Mastodon dihosting di %{domain}
     learn_more: Pelajari selengkapnya
     other_instances: Daftar Server
@@ -55,7 +40,6 @@ id:
       other: pengguna
     user_count_before: Tempat bernaung bagi
     what_is_mastodon: Apa itu Mastodon?
-    administered_by: 'Dikelola oleh:'
   accounts:
     follow: Ikuti
     followers:
@@ -66,7 +50,7 @@ id:
     last_active: terakhir aktif
     link_verified_on: Kepemilikan tautan ini telah dicek pada %{date}
     media: Media
-    moved_html: '%{name} telah pindah ke %{new_profile_link}:'
+    moved_html: "%{name} telah pindah ke %{new_profile_link}:"
     network_hidden: Informasi ini tidak tersedia
     nothing_here: Tidak ada apapun disini!
     people_followed_by: Orang yang diikuti %{name}
@@ -88,54 +72,13 @@ id:
     account_actions:
       action: Lakukan aksi
       title: Lakukan moderasi pada ${acct}
+    account_moderation_notes:
+      create: Beri catatan
+      created_msg: Catatan moderasi berhasil dibuat!
+      delete: Hapus
+      destroyed_msg: Catatan moderasi berhasil dihapus!
     accounts:
       are_you_sure: Anda yakin?
-      confirm: Konfirmasi
-      confirmed: Dikonfirmasi
-      confirming: Mengkonfirmasi
-      display_name: Nama
-      domain: Domain
-      edit: Ubah
-      email: E-mail
-      email_status: Status Email
-      feed_url: URL Feed
-      followers: Pengikut
-      follows: Mengikut
-      location:
-        all: Semua
-        local: Lokal
-        remote: Remote
-        title: Lokasi
-      media_attachments: Lampiran media
-      moderation:
-        all: Semua
-        silenced: Didiamkan
-        suspended: Disuspen
-        title: Moderasi
-        active: Aktif
-      most_recent_activity: Aktivitas terbaru
-      most_recent_ip: IP terbaru
-      not_subscribed: Tidak berlangganan
-      perform_full_suspension: Lakukan suspen penuh
-      profile_url: URL profil
-      public: Publik
-      push_subscription_expires: Langganan PuSH telah kadaluarsa
-      resend_confirmation:
-        already_confirmed: Pengguna ini sudah dikonfirmasi
-        send: Kirim ulang email konfirmasi
-        success: Email konfirmasi berhasil dikirim!
-      reset_password: Reset kata sandi
-      salmon_url: URL Salmon
-      show:
-        created_reports: Laporan yang dibuat oleh akun ini
-        targeted_reports: Laporan yang dibuat tentang akun ini
-      silence: Diam
-      statuses: Status
-      title: Akun
-      undo_silenced: Undo mendiamkan
-      undo_suspension: Undo suspen
-      username: Nama pengguna
-      web: Web
       avatar: Avatar
       by_domain: Domain
       change_email:
@@ -145,28 +88,63 @@ id:
         new_email: Email baru
         submit: Ganti email
         title: Ganti email untuk %{username}
+      confirm: Konfirmasi
+      confirmed: Dikonfirmasi
+      confirming: Mengkonfirmasi
       deleted: Terhapus
       disable: Nonaktifkan
       disable_two_factor_authentication: Nonaktifkan 2FA
       disabled: Dinonaktifkan
+      display_name: Nama
+      domain: Domain
+      edit: Ubah
+      email: E-mail
+      email_status: Status Email
       enable: Aktifkan
       enabled: Diaktifkan
+      feed_url: URL Feed
+      followers: Pengikut
       followers_url: URL pengikut
+      follows: Mengikut
       inbox_url: URL Kotak masuk
       invited_by: Diundang oleh
       ip: IP
       joined: Bergabung
+      location:
+        all: Semua
+        local: Lokal
+        remote: Remote
+        title: Lokasi
       login_status: Status login
+      media_attachments: Lampiran media
       memorialize: Ubah menjadi memoriam
+      moderation:
+        active: Aktif
+        all: Semua
+        silenced: Didiamkan
+        suspended: Disuspen
+        title: Moderasi
       moderation_notes: Catatan moderasi
+      most_recent_activity: Aktivitas terbaru
+      most_recent_ip: IP terbaru
       no_limits_imposed: Tidak ada batasan
+      not_subscribed: Tidak berlangganan
       outbox_url: URL Kotak keluar
+      perform_full_suspension: Lakukan suspen penuh
+      profile_url: URL profil
       promote: Promosikan
       protocol: Protokol
+      public: Publik
+      push_subscription_expires: Langganan PuSH telah kadaluarsa
       redownload: Muat ulang profil
       remove_avatar: Hapus avatar
       remove_header: Hapus header
+      resend_confirmation:
+        already_confirmed: Pengguna ini sudah dikonfirmasi
+        send: Kirim ulang email konfirmasi
+        success: Email konfirmasi berhasil dikirim!
       reset: Reset
+      reset_password: Reset kata sandi
       resubscribe: Langganan ulang
       role: Hak akses
       roles:
@@ -174,13 +152,24 @@ id:
         moderator: Moderator
         staff: Staf
         user: Pengguna
+      salmon_url: URL Salmon
       search: Cari
+      show:
+        created_reports: Laporan yang dibuat oleh akun ini
+        targeted_reports: Laporan yang dibuat tentang akun ini
+      silence: Diam
       silenced: Didiamkan
+      statuses: Status
       subscribe: Langganan
       suspended: Disuspen
+      title: Akun
       unconfirmed_email: Email belum dikonfirmasi
+      undo_silenced: Undo mendiamkan
+      undo_suspension: Undo suspen
       unsubscribe: Berhenti langganan
+      username: Nama pengguna
       warn: Beri Peringatan
+      web: Web
     domain_blocks:
       add_new: Tambah
       created_msg: Pemblokiran domain sedang diproses
@@ -188,22 +177,18 @@ id:
       domain: Domain
       new:
         create: Buat pemblokiran
-        hint: Pemblokiran domain tidak akan menghentikan pembuatan akun dalam database,
-          tapi kami akan memberikan moderasi otomatis pada akun-akun tersebut.
+        hint: Pemblokiran domain tidak akan menghentikan pembuatan akun dalam database, tapi kami akan memberikan moderasi otomatis pada akun-akun tersebut.
         severity:
-          desc_html: <strong>Pendiaman</strong> akan membuat semua postingan tidak
-            dapat dilihat oleh semua orang yang tidak mengikutinya. <strong>Suspen</strong>
-            akan menghapus semua konten, media, dan profil dari akun yang bersangkutan.
+          desc_html: "<strong>Pendiaman</strong> akan membuat semua postingan tidak dapat dilihat oleh semua orang yang tidak mengikutinya. <strong>Suspen</strong> akan menghapus semua konten, media, dan profil dari akun yang bersangkutan."
           silence: Pendiaman
           suspend: Suspen
         title: Pemblokiran domain baru
       reject_media: Tolak berkas media
-      reject_media_hint: Hapus file media yang tersimpan dan menolak semua unduhan
-        nantinya. Tidak terpengaruh dengan suspen
+      reject_media_hint: Hapus file media yang tersimpan dan menolak semua unduhan nantinya. Tidak terpengaruh dengan suspen
       show:
         affected_accounts:
           one: Satu akun di dalam database terpengaruh
-          other: '%{count} akun dalam database terpengaruh'
+          other: "%{count} akun dalam database terpengaruh"
         retroactive:
           silence: Hapus pendiaman terhadap akun pada domain ini
           suspend: Hapus suspen terhadap akun pada domain ini
@@ -228,19 +213,15 @@ id:
         username: Masukkan nama pengguna
       registrations:
         closed_message:
-          desc_html: Ditampilkan pada halaman depan saat pendaftaran ditutup<br>Anda
-            bisa menggunakan tag HTML
+          desc_html: Ditampilkan pada halaman depan saat pendaftaran ditutup<br>Anda bisa menggunakan tag HTML
           title: Pesan penutupan pendaftaran
         open:
           title: Pendaftaran terbuka
       site_description:
-        desc_html: Ditampilkan sebagai sebuah paragraf di halaman depan dan digunakan
-          sebagai tag meta.<br>Anda bisa menggunakan tag HTML, khususnya <code>&lt;a&gt;</code>
-          dan <code>&lt;em&gt;</code>.
+        desc_html: Ditampilkan sebagai sebuah paragraf di halaman depan dan digunakan sebagai tag meta.<br>Anda bisa menggunakan tag HTML, khususnya <code>&lt;a&gt;</code> dan <code>&lt;em&gt;</code>.
         title: Deskripsi situs
       site_description_extended:
-        desc_html: Ditampilkan pada halaman informasi tambahan<br>Anda bisa menggunakan
-          tag HTML
+        desc_html: Ditampilkan pada halaman informasi tambahan<br>Anda bisa menggunakan tag HTML
         title: Deskripsi situs tambahan
       site_title: Judul Situs
       title: Pengaturan situs
@@ -252,11 +233,6 @@ id:
       title: WebSub
       topic: Topik
     title: Administrasi
-    account_moderation_notes:
-      create: Beri catatan
-      created_msg: Catatan moderasi berhasil dibuat!
-      delete: Hapus
-      destroyed_msg: Catatan moderasi berhasil dihapus!
   application_mailer:
     settings: 'Ubah pilihan email: %{link}'
     view: 'Tampilan:'
@@ -278,18 +254,18 @@ id:
     title: Mengikuti %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: '%{count}j'
-      about_x_months: '%{count}bln'
-      about_x_years: '%{count}thn'
-      almost_x_years: '%{count}thn'
+      about_x_hours: "%{count}j"
+      about_x_months: "%{count}bln"
+      about_x_years: "%{count}thn"
+      almost_x_years: "%{count}thn"
       half_a_minute: Baru saja
-      less_than_x_minutes: '%{count}mnt'
+      less_than_x_minutes: "%{count}mnt"
       less_than_x_seconds: Baru saja
-      over_x_years: '%{count}thn'
-      x_days: '%{count}hari'
-      x_minutes: '%{count}mnt'
-      x_months: '%{count}bln'
-      x_seconds: '%{count}dtk'
+      over_x_years: "%{count}thn"
+      x_days: "%{count}hari"
+      x_minutes: "%{count}mnt"
+      x_months: "%{count}bln"
+      x_seconds: "%{count}dtk"
   errors:
     '403': Anda tidak mempunyai izin untuk melihat halaman ini.
     '404': Halaman yang anda cari tidak ditemukan
@@ -305,30 +281,22 @@ id:
     storage: Penyimpanan media
   followers:
     domain: Domain
-    explanation_html: Jika anda ingin memastikan privasi dari status anda, anda harus
-      tahu siapa yang mengikuti anda. <strong>Status pribadi anda dikirim ke semua
-      server dimana pengikut anda berada</strong>. Anda mungkin ingin untuk mengkaji
-      ulang dan menghapus pengikut jika anda tidak mempercayai bahwa privasi anda
-      di tangan staf atau software di server tersebut.
+    explanation_html: Jika anda ingin memastikan privasi dari status anda, anda harus tahu siapa yang mengikuti anda. <strong>Status pribadi anda dikirim ke semua server dimana pengikut anda berada</strong>. Anda mungkin ingin untuk mengkaji ulang dan menghapus pengikut jika anda tidak mempercayai bahwa privasi anda di tangan staf atau software di server tersebut.
     followers_count: Jumlah pengikut
     lock_link: Kunci akun anda
     purge: Hapus dari pengikut
     success:
       one: Dalam proses memblokir pengikut dari satu domain...
       other: Dalam proses memblokir pengikut dari %{count} domain...
-    true_privacy_html: Mohon diingat bahwa <strong>privasi yang sebenarnya hanya dapat
-      dicapai dengan enkripsi end-to-end</strong>.
-    unlocked_warning_html: Semua orang dapat mengikuti anda untuk langsung dapat melihat
-      status pribadi anda. %{lock_link} untuk dapat meninjau dan menolak calon pengikut.
+    true_privacy_html: Mohon diingat bahwa <strong>privasi yang sebenarnya hanya dapat dicapai dengan enkripsi end-to-end</strong>.
+    unlocked_warning_html: Semua orang dapat mengikuti anda untuk langsung dapat melihat status pribadi anda. %{lock_link} untuk dapat meninjau dan menolak calon pengikut.
     unlocked_warning_title: Akun anda tidak dikunci
   generic:
     changes_saved_msg: Perubahan berhasil disimpan!
     save_changes: Simpan perubahan
     validation_errors: Ada yang tidak beres! Mohon tinjau error dibawah ini
   imports:
-    preface: Anda bisa mengimpor data tertentu seperti orang-orang yang anda ikuti
-      atau anda blokir di server ini, dari file yang dibuat oleh fitur expor di server
-      lain.
+    preface: Anda bisa mengimpor data tertentu seperti orang-orang yang anda ikuti atau anda blokir di server ini, dari file yang dibuat oleh fitur expor di server lain.
     success: Data anda berhasil diupload dan akan diproses sesegera mungkin
     types:
       blocking: Daftar diblokir
@@ -337,39 +305,37 @@ id:
     upload: Unggah
   media_attachments:
     validations:
-      images_and_video: Tidak bisa melampirkan video pada status yang telah memiliki
-        gambar
+      images_and_video: Tidak bisa melampirkan video pada status yang telah memiliki gambar
       too_many: Tidak dapat melampirkan lebih dari 4 file
   notification_mailer:
     digest:
-      body: Ini adalah ringkasan singkat yang anda lewatkan pada sejak kunjungan terakhir
-        anda pada %{since}
-      mention: '%{name} menyebut anda di:'
+      body: Ini adalah ringkasan singkat yang anda lewatkan pada sejak kunjungan terakhir anda pada %{since}
+      mention: "%{name} menyebut anda di:"
       new_followers_summary:
         one: Anda mendapatkan satu pengikut baru! Hore!
         other: Anda mendapatkan %{count} pengikut baru! Luar biasa!
       subject:
-        one: 1 notifikasi baru sejak kunjungan terakhir anda pada 🐘
-        other: '%{count} notifikasi baru sejak kunjungan terakhir anda pada 🐘'
+        one: "1 notifikasi baru sejak kunjungan terakhir anda pada \U0001F418"
+        other: "%{count} notifikasi baru sejak kunjungan terakhir anda pada \U0001F418"
     favourite:
       body: 'Status anda disukai oleh %{name}:'
-      subject: '%{name} menyukai status anda'
+      subject: "%{name} menyukai status anda"
     follow:
-      body: '%{name} mengikuti anda!'
-      subject: '%{name} menjadi pengikut anda'
+      body: "%{name} mengikuti anda!"
+      subject: "%{name} menjadi pengikut anda"
     follow_request:
-      body: '%{name} meminta untuk mengikuti anda'
+      body: "%{name} meminta untuk mengikuti anda"
       subject: 'Pengikut menunggu: %{name}'
     mention:
       body: 'Anda disebut oleh %{name} pada:'
       subject: Anda disebut oleh %{name}
     reblog:
       body: 'Status anda di-boost oleh %{name}:'
-      subject: '%{name} mem-boost status anda'
+      subject: "%{name} mem-boost status anda"
   number:
     human:
       decimal_units:
-        format: '%n%u'
+        format: "%n%u"
         units:
           billion: B
           million: M
@@ -380,7 +346,7 @@ id:
   pagination:
     next: Selanjutnya
     prev: Sebelumnya
-    truncate: '&hellip;'
+    truncate: "&hellip;"
   remote_follow:
     acct: Masukkan namapengguna@domain yang akan anda ikuti
     missing_resource: Tidak dapat menemukan URL redirect dari akun anda
@@ -411,32 +377,21 @@ id:
     sensitive_content: Konten sensitif
   time:
     formats:
-      default: '%d %b %Y, %H:%M'
+      default: "%d %b %Y, %H:%M"
   two_factor_authentication:
     code_hint: Masukkan kode yang dibuat oleh app autentikator sebagai konfirmasi
-    description_html: Jika anda menaktifkan ototentikasi dua faktor, saat login anda
-      harus menggunakan telepon anda  untuk membuat token supaya anda bisa masuk.
+    description_html: Jika anda menaktifkan ototentikasi dua faktor, saat login anda harus menggunakan telepon anda  untuk membuat token supaya anda bisa masuk.
     disable: Matikan
     enable: Aktifkan
     enabled_success: Ototentikasi dua faktor telah diaktifkan
     generate_recovery_codes: Buat Kode Pemulihan
-    instructions_html: <strong>Pindai kode QR ini pada Otentikator Google anda atau
-      aplikasi TOTP lainnya di telepon anda</strong>. Mulai sekarang, aplikasi tersebut
-      akan membuat token yang bisa anda gunakan untuk login.
-    lost_recovery_codes: Kode pemulihan bisa anda gunakan untuk mendapatkan kembali
-      akses pada akun anda jika anda kehilangan handphone anda. Jika anda kehilangan
-      kode pemulihan, anda bisa membuatnya ulang disini. Kode pemulihan anda yang
-      lama tidak akan bisa digunakan lagi.
-    manual_instructions: 'Jika anda tidak bisa memindai kode QR dan harus memasukkannya
-      secara manual, ini dia kode yang harus dimasukkan:'
+    instructions_html: "<strong>Pindai kode QR ini pada Otentikator Google anda atau aplikasi TOTP lainnya di telepon anda</strong>. Mulai sekarang, aplikasi tersebut akan membuat token yang bisa anda gunakan untuk login."
+    lost_recovery_codes: Kode pemulihan bisa anda gunakan untuk mendapatkan kembali akses pada akun anda jika anda kehilangan handphone anda. Jika anda kehilangan kode pemulihan, anda bisa membuatnya ulang disini. Kode pemulihan anda yang lama tidak akan bisa digunakan lagi.
+    manual_instructions: 'Jika anda tidak bisa memindai kode QR dan harus memasukkannya secara manual, ini dia kode yang harus dimasukkan:'
     recovery_codes_regenerated: Kode Pemulihan berhasil dibuat ulang
-    recovery_instructions_html: Jika anda kehilangan akses pada handphone anda, anda
-      bisa menggunakan kode pemulihan dibawah ini untuk mendapatkan kembali akses
-      pada akun anda. Simpan kode pemulihan anda baik-baik, misalnya dengan mencetaknya
-      atau menyimpannya bersama dokumen penting lainnya.
+    recovery_instructions_html: Jika anda kehilangan akses pada handphone anda, anda bisa menggunakan kode pemulihan dibawah ini untuk mendapatkan kembali akses pada akun anda. Simpan kode pemulihan anda baik-baik, misalnya dengan mencetaknya atau menyimpannya bersama dokumen penting lainnya.
     setup: Persiapan
-    wrong_code: Kode yang dimasukkan tidak cocok! Apa waktu server dan waktu di handphone
-      sudah cocok?
+    wrong_code: Kode yang dimasukkan tidak cocok! Apa waktu server dan waktu di handphone sudah cocok?
   users:
     invalid_email: Alamat email tidak cocok
     invalid_otp_token: Kode dua faktor tidak cocok
