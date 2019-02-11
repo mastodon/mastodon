@@ -2,7 +2,7 @@
 
 module Keybase
   class Proof
-    def initialize(account_identity_proof, username=nil)
+    def initialize(account_identity_proof, username = nil)
       @kb_username = account_identity_proof.provider_username
       @token = account_identity_proof.token
       @account_identity_proof = account_identity_proof
@@ -44,7 +44,7 @@ module Keybase
     end
 
     def success_redirect_url(useragent)
-      useragent ||= "unknown"
+      useragent ||= 'unknown'
       params = to_keybase_params
       params[:kb_ua] = useragent
       build_url('/_/proof_creation_success', params)
@@ -70,7 +70,7 @@ module Keybase
         domain: @domain,
         kb_username: @kb_username,
         username: local_username,
-        sig_hash: @token
+        sig_hash: @token,
       }
     end
 
@@ -82,7 +82,7 @@ module Keybase
 
     def build_url(endpoint, query_params)
       uri = URI.parse(@base_url + endpoint)
-      unless query_params.empty? then uri.query = URI.encode_www_form(query_params) end
+      uri.query = URI.encode_www_form(query_params) unless query_params.empty?
       uri.to_s
     end
   end

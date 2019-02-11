@@ -9,5 +9,4 @@ class Api::V1::KeybaseProofsController < Api::BaseController
 
     render json: @account, serializer: REST::KeybaseUserSerializer, proofs: kb_proofs
   end
-
 end

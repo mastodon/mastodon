@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class REST::KeybaseUserSerializer < ActiveModel::Serializer
   include RoutingHelper
   attributes :avatar, :signatures

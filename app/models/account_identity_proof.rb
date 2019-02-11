@@ -17,15 +17,14 @@
 require 'keybase_proof'
 
 class AccountIdentityProof < ApplicationRecord
-
   PROVIDER_MAP = {
-    keybase: 'Keybase'
-  }
+    keybase: 'Keybase',
+  }.freeze
 
   belongs_to :account
   validates :provider, inclusion: { in: PROVIDER_MAP.values }
   validates :provider_username, format: { with: /\A[a-z0-9_]+\z/i }, length: { minimum: 2, maximum: 15 }
-  validates :provider_username, uniqueness: {scope: [:account_id, :provider]}
+  validates :provider_username, uniqueness: { scope: [:account_id, :provider] }
   validates :token, format: { with: /\A[a-f0-9]+\z/ }, length: { maximum: 66 }
   validate :matches_keybase_validations, if: -> { keybase? }
 
@@ -42,9 +41,8 @@ class AccountIdentityProof < ApplicationRecord
   end
 
   def save_if_valid_remotely
-    if !valid?
-      return false
-    end
+    return false unless valid?
+
     if keybase? && !valid_in_keybase?
       errors.add(:token, I18n.t('account_identity_proofs.keybase_errors.remote_invalid', kb_username: provider_username))
       return false
@@ -66,32 +64,22 @@ class AccountIdentityProof < ApplicationRecord
   end
 
   def remote_url
-    if keybase?
-      Keybase::Proof.new(self).sigchain_url
-    end
+    Keybase::Proof.new(self).sigchain_url if keybase?
   end
 
   def profile_url
-    if keybase?
-      Keybase::Proof.new(self).profile_url
-    end
+    Keybase::Proof.new(self).profile_url if keybase?
   end
 
   def status_img_url
-    if keybase?
-      Keybase::Proof.new(self).badge_pic_url
-    end
+    Keybase::Proof.new(self).badge_pic_url if keybase?
   end
 
   def success_redirect(useragent)
-    if keybase?
-      Keybase::Proof.new(self).success_redirect_url(useragent)
-    end
+    Keybase::Proof.new(self).success_redirect_url(useragent) if keybase?
   end
 
   def remote_profile_pic_url
-    if keybase?
-      Keybase::Proof.new(self).profile_pic_url
-    end
+    Keybase::Proof.new(self).profile_pic_url if keybase?
   end
 end
