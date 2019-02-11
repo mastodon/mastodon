@@ -13,4 +13,5 @@
       = status
   %td.proof
     - if proof.remote_url
-      = link_to raw('<i class="fa fa-external-link"></i>'), proof.remote_url
+      = link_to proof.remote_url do
+        %i.fa.fa-external-link
