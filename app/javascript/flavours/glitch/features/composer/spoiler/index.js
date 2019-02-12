@@ -87,6 +87,7 @@ export default class ComposerSpoiler extends React.PureComponent {
             type='text'
             value={text}
             ref={handleRefSpoilerText}
+            disabled={hidden}
           />
         </label>
       </div>
