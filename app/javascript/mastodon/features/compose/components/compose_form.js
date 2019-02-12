@@ -179,7 +179,7 @@ class ComposeForm extends ImmutablePureComponent {
         <div className={`spoiler-input ${this.props.spoiler ? 'spoiler-input--visible' : ''}`}>
           <label>
             <span style={{ display: 'none' }}>{intl.formatMessage(messages.spoiler_placeholder)}</span>
-            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} type='text' className='spoiler-input__input'  id='cw-spoiler-input' ref={this.setSpoilerText} />
+            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} tabIndex={this.props.spoiler ? 0 : -1} type='text' className='spoiler-input__input'  id='cw-spoiler-input' ref={this.setSpoilerText} />
           </label>
         </div>
 
