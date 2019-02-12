@@ -214,6 +214,7 @@ export default class ComposerOptions extends React.PureComponent {
           onChange={handleChangeFiles}
           ref={handleRefFileElement}
           type='file'
+          multiple
           {...hiddenComponent}
         />
         <Dropdown
