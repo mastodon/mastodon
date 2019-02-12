@@ -40,6 +40,7 @@ export default class ScrollableList extends PureComponent {
 
   state = {
     fullscreen: null,
+    cachedMediaWidth: 250, // Default media/card width using default Mastodon theme
   };
 
   intersectionObserverWrapper = new IntersectionObserverWrapper();
@@ -130,6 +131,20 @@ export default class ScrollableList extends PureComponent {
     this.handleScroll();
   }
 
+  getScrollPosition = () => {
+    if (this.node && (this.node.scrollTop > 0 || this.mouseMovedRecently)) {
+      return { height: this.node.scrollHeight, top: this.node.scrollTop };
+    } else {
+      return null;
+    }
+  }
+
+  updateScrollBottom = (snapshot) => {
+    const newScrollTop = this.node.scrollHeight - snapshot;
+
+    this.setScrollTop(newScrollTop);
+  }
+
   getSnapshotBeforeUpdate (prevProps) {
     const someItemInserted = React.Children.count(prevProps.children) > 0 &&
       React.Children.count(prevProps.children) < React.Children.count(this.props.children) &&
@@ -147,6 +162,12 @@ export default class ScrollableList extends PureComponent {
     // jerk the scrollbar around if you're already scrolled down the page.
     if (snapshot !== null) {
       this.setScrollTop(this.node.scrollHeight - snapshot);
+    }
+  }
+
+  cacheMediaWidth = (width) => {
+    if (width && this.state.cachedMediaWidth !== width) {
+      this.setState({ cachedMediaWidth: width });
     }
   }
 
@@ -239,7 +260,12 @@ export default class ScrollableList extends PureComponent {
                 intersectionObserverWrapper={this.intersectionObserverWrapper}
                 saveHeightKey={trackScroll ? `${this.context.router.route.location.key}:${scrollKey}` : null}
               >
-                {child}
+                {React.cloneElement(child, {
+                  getScrollPosition: this.getScrollPosition,
+                  updateScrollBottom: this.updateScrollBottom,
+                  cachedMediaWidth: this.state.cachedMediaWidth,
+                  cacheMediaWidth: this.cacheMediaWidth,
+                })}
               </IntersectionObserverArticleContainer>
             ))}
 
