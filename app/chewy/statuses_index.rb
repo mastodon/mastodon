@@ -50,7 +50,7 @@ class StatusesIndex < Chewy::Index
     root date_detection: false do
       field :account_id, type: 'long'
 
-      field :text, type: 'text', value: ->(status) { [status.spoiler_text, Formatter.instance.plaintext(status)].join("\n\n") } do
+      field :text, type: 'text', value: ->(status) { [status.spoiler_text, Formatter.instance.plaintext(status)].concat(status.media_attachments.map(&:description)).join("\n\n") } do
         field :stemmed, type: 'text', analyzer: 'content'
       end
 
