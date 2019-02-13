@@ -473,17 +473,17 @@ sk:
       site_short_description:
         desc_html: Zobrazené na bočnom paneli a pri meta tagoch. Popíš čo je Mastodon,
           a čo robí tento server iným, v jednom paragrafe. Pokiaľ toto necháš prázdne,
-          bude tu zobrazený základný popis instancie.
-        title: Krátky popis instancie
+          bude tu zobrazený základný popis servera.
+        title: Krátky popis serveru
       site_terms:
         desc_html: Môžeš si napísať svoje vlastné pravidla o súkromí, prevádzke, alebo
           aj iné legality. Môžeš tu používať HTML kód
         title: Vlastné pravidlá prevádzky
-      site_title: Názov instancie
+      site_title: Názov servera
       thumbnail:
         desc_html: Používané pre náhľady cez OpenGraph a API. Doporučuje sa rozlišenie
           1200x630px
-        title: Miniatúra instancie
+        title: Miniatúra servera
       timeline_preview:
         desc_html: Zobraziť verejnú nástenku na hlavnej stránke
         title: Náhľad nástenky
@@ -546,14 +546,14 @@ sk:
     your_token: Váš prístupový token
   auth:
     agreement_html: V rámci registrácie súhlasíš, že sa budeš riadiť <a href="%{rules_path}">
-      pravidlami tejto instancie</a>, a taktiež <a href="%{terms_path}"> našími prevoznými
+      pravidlami tohto servera</a>, a taktiež <a href="%{terms_path}"> našími prevoznými
       podmienkami</a>.
     change_password: Heslo
     confirm_email: Potvrdiť email
-    delete_account: Vymazať účet
-    delete_account_html: Pokiaľ chceš vymazať svoj účet, môžeš tak <a href="%{path}">urobiť
+    delete_account: Vymaž účet
+    delete_account_html: Pokiaľ chceš svoj účet odtiaľto vymazať, môžeš tak <a href="%{path}">urobiť
       tu</a>. Budeš požiadaný/á o potvrdenie tohto kroku.
-    didnt_get_confirmation: Neobdržal/a si kroky pre potvrdenie?
+    didnt_get_confirmation: Neobdržal/a si kroky na potvrdenie?
     forgot_password: Zabudnuté heslo?
     invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítaj si
       nový.
@@ -606,7 +606,7 @@ sk:
       pred budúcimi impersonáciami.
     proceed: Vymaž účet
     success_msg: Tvoj účet bol úspešne vymazaný
-    warning_html: Iba vymazanie obsahu z tejto konkrétnej instancie je zaručené. Obsah,
+    warning_html: Iba vymazanie obsahu z tohto konkrétneho serveru je zaručené. Obsah,
       ktorý bol zdieľaný široko-ďaleko pravdepodobne zanechá nejaké stopy. Servery
       ktoré sú offline a tie ktoré ignorujú tvoje zmeny teda nezaktualizujú svoje
       databázy.
@@ -680,8 +680,8 @@ sk:
       na vedomí, kto ťa sleduje. <strong> Tvoje súkromné príspevky sú doručené na
       každý server z ktorého ťa niekto následuje. </strong> Takže možno by si ich
       chcel/a skontrolovať, a odstrániť tých následovníkov, čo sú na serveroch ktorím
-      nedôveruješ, že ich moderátori, alebo úpravbuy kódu budú tiež rešpektovať tvoje
-      súkromie.
+      dostatočne nedôveruješ v zmysle, že ich moderátori, alebo ich softvérové úpravy,
+      budú tiež rešpektovať tvoje súkromie.
     followers_count: Počet následovateľov
     lock_link: Zamkni svoj účet
     purge: Odstráň sledovateľa
@@ -715,7 +715,13 @@ sk:
       blocking: Zoznam blokovaných
       following: Zoznam sledovaných
       muting: Zoznam ignorovaných
+      domain_blocking: Zoznam blokovaných domén
     upload: Nahrať
+    modes:
+      merge: Spojiť dohromady
+      merge_long: Ponechaj existujúce záznamy a pridaj k nim nové
+      overwrite: Prepíš
+      overwrite_long: Nahraď súčasné záznamy s novými
   in_memoriam_html: V pamäti.
   invites:
     delete: Deaktivovať
@@ -900,6 +906,7 @@ sk:
     settings: Nastavenia
     two_factor_authentication: Dvoj-faktorové overenie
     your_apps: Tvoje aplikácie
+    featured_tags: Popredne zvýraznené haštagy
   statuses:
     attached:
       description: 'Priložené: %{attached}'
@@ -989,8 +996,8 @@ sk:
       \ na otázky a iné požiadavky.</li>\n</ul>\n"
     title: Podmienky užívania, a pravidlá súkromia pre %{instance}
   themes:
-    contrast: Vysoký kontrast
-    default: Mastodon
+    contrast: Mastodon (vysoký kontrast)
+    default: Mastodon (tmavý)
     mastodon-light: Mastodon (svetlý)
   time:
     formats:
@@ -1062,7 +1069,7 @@ sk:
         sa ostatným predstaviť pod haštagom #introductions.'
       full_handle: Adresa tvojho profilu v celom formáte
       full_handle_hint: Toto je čo musíš dať vedieť svojím priateľom aby ti mohli
-        posielať správy, alebo ťa následovať z inej instancie.
+        posielať správy, alebo ťa následovať z iného serveru.
       review_preferences_action: Zmeniť nastavenia
       review_preferences_step: Daj si záležať na svojích nastaveniach, napríklad že
         aké emailové notifikácie chceš dostávať, alebo pod aký level súkromia sa tvoje
@@ -1095,3 +1102,7 @@ sk:
       tvoj Mastodon profil. Tento spätný odkaz <strong>musí</strong> mať prívlastok
       <code>rel="me"</code>. Na texte odkazu nezáleží. Tu je príklad:'
     verification: Overenie
+  featured_tags:
+    add_new: Pridaj nový
+    errors:
+      limit: Už si si predvolil/a najvyšší možný počet obľúbených haštagov
