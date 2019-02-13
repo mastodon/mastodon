@@ -536,3 +536,99 @@ lt:
     token_regenerated: Prieigos žetonas sėkmingai sugeneruotas
     warning: Būkite atsargūs su šia informacija. Niekada jos nesidalinkite!
     your_token: Jūsų prieigos žetonas
+  auth:
+    agreement_html: Paspaudus "Sign up" Jūs sutinkate sekti <a href="%{rules_path}">serverio
+      taisykles</a> bei <a href="%{terms_path}">naudojimo sąlygas</a>.
+    change_password: Slaptažodis
+    confirm_email: Patvirtinti el paštą
+    delete_account: Ištrinti paskyrą
+    delete_account_html: Jeigu norite ištrinti savo paskyrą, galite eiti <a href="%{path}">čia</a>.
+      Jūsų prašys patvirtinti pasirinkimą.
+    didnt_get_confirmation: Negavote patvirtinimo instrukcijų?
+    forgot_password: Pamiršote slaptažodį?
+    invalid_reset_password_token: Slaptažodžio atkūrimo žetonas netinkamas arba jo
+      galiojimo laikas pasibaigęs. Prašykite naujo žetono.
+    login: Prisijungti
+    logout: Atsijungti
+    migrate_account: Prisijungti prie kitos paskyros
+    migrate_account_html: Jeigu norite nukreipti šią paskyrą į kita, galite tai <a
+      href="%{path}">konfiguruoti čia</a>.
+    or: arba
+    or_log_in_with: Arba prisijungti su
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Užsiregistruoti
+    register_elsewhere: Užsiregistruoti kitame serveryje
+    resend_confirmation: Išsiųsti dar kartą patvirtinimo instrukcijas
+    reset_password: Atstatyti slaptažodį
+    security: Apsauga
+    set_new_password: Nustatyti naują slaptažodį
+  authorize_follow:
+    already_following: Jūs jau sekate šią paskyrą
+    error: Dėja, aptikta klaida ieškant tolimosios paskyros
+    follow: Sekti
+    follow_request: 'Jūs išsiuntėte sekimo prašymą:'
+    following: 'Puiku! Jūs pradėjote sekti:'
+    post_follow:
+      close: Arba, Jūs galite uždaryti šį langą.
+      return: Rodyti vartotojo paskyrą
+      web: Eiti į
+    title: Sekti %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: '%{count} val'
+      about_x_months: '%{count}mėn'
+      about_x_years: '%{count}met'
+      almost_x_years: '%{count}met'
+      half_a_minute: Ką tik
+      less_than_x_minutes: '%{count}min'
+      less_than_x_seconds: Ką tik
+      over_x_years: '%{count}met'
+      x_days: '%{count}dien'
+      x_minutes: '%{count}min'
+      x_months: '%{count}mėn'
+      x_seconds: '%{count}sek'
+  deletes:
+    bad_password_msg: Geras bandymas, programišiau! Neteisingas slaptažodis
+    confirm_password: Kad patvirtintumėte savo tapatybę, įveskite dabartini slaptažodį
+    description_html: Tai <strong>be sugrąžinimo, visam laikui</strong> panaikins
+      visa turini iš Jūsų paskyros ir deaktyvuos ją. Jūsų vartotojo vardas paliks
+      rezervuotas, kad išvengtumėme tapatybės pavagimo ateityje.
+    proceed: Ištrinti paskyrą
+    success_msg: Jūsų paskyra sėkmingai ištrinta
+    warning_html: Tiktai panaikinimas turinio iš šio serverio garantuotas. Turinys,
+      kuris buvo viešai prieinamas ir dalinamas kituose serveriuose paliks pėdsakus.
+      Serveriai, kurie neseka jūsų, kurie nėra tinkle, nepakeis savo duomenų sistemos.
+    warning_title: Platinamo turinio prieinamumas
+  directories:
+    directory: Profilio direktorija
+    enabled: Jūs esate rodomas šioje direktorijoje.
+    enabled_but_waiting: Jūs pasirinkote būti įtrauktas į direktorija, bet jūs neturite
+      minimalaus sekėjų skaičiaus (%{min_followers}), kad būtumėte rodomas.
+    explanation: Raskite vartotojus, remiantis tuo, kuo jie domisi
+    explore_mastodon: Naršyti %{title}
+    how_to_enable: Jūs nesate prisijungęs prie šios direktorijos. Galite prisijungti
+      žemiau. Naudokite saitažodžius savo biografiniame tekste, kad būtumėte rastas
+      naudojantis specifinius saitažodžius!
+    people:
+      one: '%{count} žmogus'
+      other: '%{count} žmonės'
+  errors:
+    '403': Jūs neturie prieigos matyti šiam puslapiui.
+    '404': Puslapis nerastas.
+    '410': Puslapis neegzistuoja.
+    '422':
+      content: Apsaugos patvirtinmas klaidingas. Ar jūs blokuojate sausainius?
+      title: Apsaugos patvirtinimas nepavyko
+    '429': Stabdomas
+    '500':
+      content: Atsiprašome, tačiau mūsų pusėje įvyko klaida.
+      title: Netinkamas puslapis
+    noscript_html: Kad naudotumėtės Mastodon web aplikacija, prašome įsijungti JavaScript.
+      Alternatyviai, pabandykite viena iš <a href="%{apps_path}">vietinių aplikacijų</a>
+      Mastodon savo platformai.
+  exports:
+    archive_takeout:
+      date: Data
+      download: Parsisiųsti archyvą
