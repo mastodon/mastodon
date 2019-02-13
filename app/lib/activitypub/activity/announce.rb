@@ -2,9 +2,7 @@
 
 class ActivityPub::Activity::Announce < ActivityPub::Activity
   def perform
-    original_status   = status_from_uri(object_uri)
-    original_status ||= fetch_remote_original_status
-
+    original_status = status_from_object
     return if original_status.nil? || delete_arrived_first?(@json['id']) || !announceable?(original_status)
 
     status = Status.find_by(account: @account, reblog: original_status)

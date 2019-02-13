@@ -3,8 +3,8 @@
 class ActivityPub::ActivitySerializer < ActiveModel::Serializer
   attributes :id, :type, :actor, :published, :to, :cc
 
-  has_one :proper, key: :object, serializer: ActivityPub::NoteSerializer, unless: :announce?
-  attribute :proper_uri, key: :object, if: :announce?
+  has_one :proper, key: :object, serializer: ActivityPub::NoteSerializer, unless: :owned_announce?
+  attribute :proper_uri, key: :object, if: :owned_announce?
   attribute :atom_uri, if: :announce?
 
   def id
@@ -41,5 +41,9 @@ class ActivityPub::ActivitySerializer < ActiveModel::Serializer
 
   def announce?
     object.reblog?
+  end
+
+  def owned_announce?
+    announce? && object.account == object.proper.account && object.proper.private_visibility?
   end
 end
