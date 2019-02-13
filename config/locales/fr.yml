@@ -421,7 +421,7 @@ fr:
         username: Entrez un nom d’utilisateur⋅ice
       custom_css:
         desc_html: Modifier l'apparence avec une CSS chargée sur chaque page
-        title: CSS personnalisée
+        title: CSS personnalisé
       hero:
         desc_html: Affichée sur la page d’accueil. Au moins 600x100px recommandé.
           Lorsqu’elle n’est pas définie, se rabat sur la vignette de l’instance
@@ -679,11 +679,11 @@ fr:
       title: Ajouter un nouveau filtre
   followers:
     domain: Domaine
-    explanation_html: Si vous voulez être sûr⋅e que vos statuts restent privés, vous
-      devez savoir qui vous suit. <strong>Vos statuts privés seront diffusés à toutes
-      les instances des utilisateur⋅ice⋅s qui vous suivent</strong>. Vous voudrez
-      peut-être les passer en revue et les supprimer si vous n’êtes pas sûr⋅e que
-      votre vie privée sera respectée par l’administration ou le logiciel de ces instances.
+    explanation_html: Si vous voulez vous assurer que vos statuts restent privés,
+      vous devez savoir qui vous suit. <strong>Vos statuts privés seront diffusés
+      sur toutes les instances où vous avez des abonné·e·s</strong>. Vous voudrez
+      peut-être les passer en revue et les supprimer si vous pensez que votre vie
+      privée ne sera pas respectée par l’administration ou le logiciel de ces instances.
     followers_count: Nombre d’abonné⋅e⋅s
     lock_link: Rendez votre compte privé
     purge: Retirer de la liste d’abonné⋅e⋅s
@@ -707,16 +707,22 @@ fr:
       one: Quelque chose ne va pas ! Vérifiez l’erreur ci-dessous
       other: Certaines choses ne vont pas ! Vérifiez les %{count} erreurs ci-dessous
   imports:
-    preface: Vous pouvez importer certaines données comme les personnes que vous suivez
-      ou bloquez sur votre compte sur cette instance à partir de fichiers créés sur
-      une autre instance.
+    preface: Vous pouvez importer certaines données que vous avez exporté d'une autre
+      instance, comme une liste des personnes que vous suivez ou bloquez sur votre
+      compte.
     success: Vos données ont été importées avec succès et seront traitées en temps
       et en heure
     types:
       blocking: Liste d’utilisateur⋅ice⋅s bloqué⋅e⋅s
       following: Liste d’utilisateur⋅ice⋅s suivi⋅e⋅s
       muting: Liste d’utilisateur⋅ice⋅s que vous masquez
+      domain_blocking: Liste des instances bloquées
     upload: Importer
+    modes:
+      merge: Fusionner
+      merge_long: Garder les enregistrements existants et ajouter les nouveaux
+      overwrite: Réécrire
+      overwrite_long: Remplacer les enregistrements actuels par les nouveaux
   in_memoriam_html: En mémoire de.
   invites:
     delete: Désactiver
@@ -827,10 +833,13 @@ fr:
   remote_interaction:
     favourite:
       prompt: 'Vous souhaitez mettre ce pouet en favori :'
+      proceed: Confirmer l'ajout aux favoris
     reblog:
       prompt: 'Vous souhaitez repartager ce pouet :'
+      proceed: Confirmer le repartage
     reply:
       prompt: 'Vous souhaitez répondre à ce pouet :'
+      proceed: Confirmer la réponse
   remote_unfollow:
     error: Erreur
     title: Titre
@@ -897,6 +906,7 @@ fr:
     settings: Réglages
     two_factor_authentication: Identification à deux facteurs
     your_apps: Vos applications
+    featured_tags: Hashtags mis en avant
   statuses:
     attached:
       description: 'Attaché : %{attached}'
@@ -1131,8 +1141,8 @@ fr:
         peuvent être vus par d’autres, par exemple sur le fil public local et dans
         les hashtags. Vous pouvez vous présenter sur le hashtag #introductions.'
       full_handle: Votre identifiant complet
-      full_handle_hint: C’est ce que vous diriez à vos ami·e·s pour qu’il·elle·s puissent
-        vous envoyer un message ou vous suivre à partir d’une autre instance.
+      full_handle_hint: C’est ce que vous diriez à vos ami·e·s pour leur permettre
+        de vous envoyer un message ou vous suivre à partir d’une autre instance.
       review_preferences_action: Modifier les préférences
       review_preferences_step: Assurez-vous de définir vos préférences, telles que
         les courriels que vous aimeriez recevoir ou le niveau de confidentialité auquel
@@ -1168,3 +1178,7 @@ fr:
       <strong>doit</strong>avoir un attribut <code>rel="me"</code>. Le contenu textuel
       du lien n''a pas d''importance. En voici un exemple :'
     verification: Vérification
+  featured_tags:
+    add_new: Ajouter un nouvel hashtag
+    errors:
+      limit: Vous avez déjà mis en avant le nombre maximum de hashtags
