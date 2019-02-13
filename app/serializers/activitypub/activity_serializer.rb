@@ -44,6 +44,6 @@ class ActivityPub::ActivitySerializer < ActiveModel::Serializer
   end
 
   def owned_announce?
-    announce? && object.account == object.proper.account
+    announce? && object.account == object.proper.account && object.proper.private_visibility?
   end
 end
