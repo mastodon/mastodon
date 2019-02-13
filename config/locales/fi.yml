@@ -41,6 +41,7 @@ fi:
     source_code: Lähdekoodi
     status_count_after:
       one: tila
+      other: tilanne
     status_count_before: He ovat luoneet
     user_count_after:
       one: käyttäjä
@@ -64,7 +65,9 @@ fi:
     nothing_here: Täällä ei ole mitään!
     people_followed_by: Henkilöt, joita %{name} seuraa
     people_who_follow: Käyttäjän %{name} seuraajat
-    posts: Tuuttaukset
+    posts:
+      one: Toot
+      other: Toots
     posts_with_replies: Tuuttaukset ja vastaukset
     reserved_username: Käyttäjänimi on varattu
     roles:
@@ -74,6 +77,10 @@ fi:
     choices_html: '%{name} valinnat:'
     joined: Liittynyt %{date}
     last_active: viimeksi aktiivinen
+    link_verified_on: Tämän linkin omistus on tarkastettu %{date}
+    pin_errors:
+      following: Sinun täytyy seurata henkilöä jota haluat tukea
+    posts_tab_heading: Toots
   admin:
     account_moderation_notes:
       create: Luo
