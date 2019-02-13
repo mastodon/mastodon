@@ -2,7 +2,7 @@
   - content_for :page_title do
     = t('settings.identity_proofs')
 
-  %h3 Authorize this cryptographic connection?
+  %h3=t('account_identity_proofs.new.heading')
 
   = simple_form_for @proof, url: settings_identity_proofs_url, html: { method: :post } do |f|
     = f.input :provider, as: :hidden
@@ -13,13 +13,13 @@
     .row.connection
       .column.column-1
         = image_tag current_account.avatar.url(:original), size: 96, class: :account__avatar
-        %p= "I am #{current_account.username} on #{identity_proof_my_domain}."
+        %p= t('account_identity_proofs.new.attestation', username: current_account.username, service: identity_proof_my_domain)
       .column.column-2
         %i.fa.fa-ws.fa-link
       .column.column-3
         - provider_pic_url = @proof.remote_profile_pic_url || default_provider_pic_url(@proof.provider)
         = image_tag provider_pic_url, size: 96, class: :account__avatar
-        %p= "I am #{@proof.provider_username} on #{@proof.provider}."
+        %p= t('account_identity_proofs.new.attestation', username: @proof.provider_username, service: @proof.provider)
 
     .actions
       = link_to t('account_identity_proofs.buttons.alternative'), settings_identity_proofs_url, class: 'button button-alternative'

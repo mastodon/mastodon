@@ -2,11 +2,11 @@
 
 module ExternalProofService
   def self.my_domain
-    'mastodon.social'
+    Rails.configuration.x.local_domain
   end
 
   def self.my_domain_displayed
-    my_domain.gsub('.', ' ').capitalize
+    Setting.site_title
   end
 
   module Keybase
