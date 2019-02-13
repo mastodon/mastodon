@@ -34,6 +34,7 @@ const messages = defineMessages({
   embed: { id: 'status.embed', defaultMessage: 'Embed' },
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
   admin_status: { id: 'status.admin_status', defaultMessage: 'Open this status in the moderation interface' },
+  copy: { id: 'status.copy', defaultMessage: 'Copy link to status' },
 });
 
 const obfuscatedCount = count => {
@@ -148,6 +149,25 @@ export default class StatusActionBar extends ImmutablePureComponent {
     this.props.onMuteConversation(this.props.status);
   }
 
+  handleCopy = () => {
+    const url      = this.props.status.get('url');
+    const textarea = document.createElement('textarea');
+
+    textarea.textContent    = url;
+    textarea.style.position = 'fixed';
+
+    document.body.appendChild(textarea);
+
+    try {
+      textarea.select();
+      document.execCommand('copy');
+    } catch (e) {
+
+    } finally {
+      document.body.removeChild(textarea);
+    }
+  }
+
   render () {
     const { status, intl, withDismiss, showReplyCount } = this.props;
 
@@ -165,6 +185,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
     menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
 
     if (publicStatus) {
+      menu.push({ text: intl.formatMessage(messages.copy), action: this.handleCopy });
       menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
     }
 
@@ -189,6 +210,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick });
       menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick });
       menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
+
       if (isStaff && (accountAdminLink || statusAdminLink)) {
         menu.push(null);
         if (accountAdminLink !== undefined) {
