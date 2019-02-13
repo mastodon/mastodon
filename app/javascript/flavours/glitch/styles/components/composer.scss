@@ -262,7 +262,7 @@
     background-repeat: no-repeat;
     overflow: hidden;
 
-    input {
+    textarea {
       display: block;
       position: absolute;
       box-sizing: border-box;
@@ -294,7 +294,7 @@
 
   &.active {
     & > div {
-      input { opacity: 1 }
+      textarea { opacity: 1 }
     }
   }
 }
