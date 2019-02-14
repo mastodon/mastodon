@@ -86,7 +86,7 @@ class Status extends ImmutablePureComponent {
 
   // Track height changes we know about to compensate scrolling
   componentDidMount () {
-    this.didShowCard = !this.props.muted && !this.props.hidden && this.props.status.get('card');
+    this.didShowCard = !this.props.muted && !this.props.hidden && this.props.status && this.props.status.get('card');
   }
 
   getSnapshotBeforeUpdate () {
@@ -99,7 +99,7 @@ class Status extends ImmutablePureComponent {
 
   // Compensate height changes
   componentDidUpdate (prevProps, prevState, snapshot) {
-    const doShowCard  = !this.props.muted && !this.props.hidden && this.props.status.get('card');
+    const doShowCard  = !this.props.muted && !this.props.hidden && this.props.status && this.props.status.get('card');
     if (doShowCard && !this.didShowCard) {
       this.didShowCard = true;
       if (snapshot !== null && this.props.updateScrollBottom) {
