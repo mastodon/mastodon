@@ -20,17 +20,17 @@ cs:
         action: Potvrdit e-mailovou adresu
         action_with_app: Potvrdit a navrátit se do %{app}
         explanation: S touto e-mailovou adresou jste si vytvořil/a účet na %{host}. K jeho aktivaci vám zbývá jedno kliknutí. Pokud jste to nebyl/a vy, ignorujte této e-mail.
-        extra_html: Prosím podívejte se také na <a href="%{terms_path}">pravidla této instance</a> a <a href="%{policy_path}">naše podmínky používání</a>.
+        extra_html: Prosím podívejte se také na <a href="%{terms_path}">pravidla tohoto serveru</a> a <a href="%{policy_path}">naše podmínky používání</a>.
         subject: 'Mastodon: Potvrzovací instrukce pro %{instance}'
         title: Potvrďte e-mailovou adresu
       email_changed:
         explanation: 'E-mailová adresa vašeho účtu byla změněna na:'
-        extra: Pokud jste si e-mail nezměnil/a, je pravděpodobné, že někdo jiný získal přístup k vašemu účtu. Prosím změňte si okamžitě heslo, nebo, pokud se nemůžete na účet přihlásit, kontaktujte administrátora instance.
+        extra: Pokud jste si e-mail nezměnil/a, je pravděpodobné, že někdo jiný získal přístup k vašemu účtu. Prosím změňte si okamžitě heslo, nebo, pokud se nemůžete na účet přihlásit, kontaktujte administrátora serveru.
         subject: 'Mastodon: E-mail byl změněn'
         title: Nová e-mailová adresa
       password_change:
         explanation: Heslo k vašemu účtu bylo změněno.
-        extra: Pokud jste si heslo nezměnil/a, je pravděpodobné, že někdo jiný získal přístup k vašemu účtu. Prosím změňte si okamžitě heslo, nebo, pokud se nemůžete na účet přihlásit, kontaktujte administrátora instance.
+        extra: Pokud jste si heslo nezměnil/a, je pravděpodobné, že někdo jiný získal přístup k vašemu účtu. Prosím změňte si okamžitě heslo, nebo, pokud se nemůžete na účet přihlásit, kontaktujte administrátora serveru.
         subject: 'Mastodon: Heslo bylo změněno'
         title: Heslo bylo změněno
       reconfirmation_instructions:
@@ -60,8 +60,8 @@ cs:
       signed_up: Vítejte! Registroval/a jste se úspěšně.
       signed_up_but_inactive: Registroval/a jste se úspěšně. Nemohli jsme vás však přihlásit, protože váš účet ještě není aktivován.
       signed_up_but_locked: Registroval/a jste se úspěšně. Nemohli jsme vás však přihlásit, protože váš účet je uzamčen.
-      signed_up_but_unconfirmed: Na vaši e-mailovou adresu byla poslána zpráva s potvrzovacím odkazem. Pro aktivaci účtu přejděte na danou adresu. Prosím zkontrolujte si složku spam, jestli jste tento e-mail neobdržel/a.
-      update_needs_confirmation: Váš účet byl úspěšně aktualizován, ale je potřeba ověřit vaši novou e-mailovou adresu. Prosím zkontrolujte si e-mail a klikněte na odkaz pro potvrzení vaši nové e-mailové adresy. Prosím zkontrolujte si složku spam, jestli jste tento e-mail neobdržel/a.
+      signed_up_but_unconfirmed: Na vaši e-mailovou adresu byla poslána zpráva s potvrzovacím odkazem. Pro aktivaci účtu přejděte na danou adresu. Pokud jste tento e-mail neobdržel/a, prosím zkontrolujte si složku spam.
+      update_needs_confirmation: Váš účet byl úspěšně aktualizován, ale je potřeba ověřit vaši novou e-mailovou adresu. Prosím zkontrolujte si e-mail a klikněte na odkaz pro potvrzení vaši nové e-mailové adresy. Pokud jste tento e-mail neobdržel/a, prosím zkontrolujte si složku spam.
       updated: Váš účet byl úspěšně aktualizován.
     sessions:
       already_signed_out: Odhlášení proběhlo úspěšně.

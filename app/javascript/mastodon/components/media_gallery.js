@@ -195,6 +195,8 @@ class MediaGallery extends React.PureComponent {
     onOpenMedia: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     quote: PropTypes.bool,
+    defaultWidth: PropTypes.number,
+    cacheWidth: PropTypes.func,
   };
 
   static defaultProps = {
@@ -204,6 +206,7 @@ class MediaGallery extends React.PureComponent {
 
   state = {
     visible: displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all',
+    width: this.props.defaultWidth,
   };
 
   componentWillReceiveProps (nextProps) {
@@ -223,6 +226,7 @@ class MediaGallery extends React.PureComponent {
   handleRef = (node) => {
     if (node /*&& this.isStandaloneEligible()*/) {
       // offsetWidth triggers a layout, so only calculate when we need to
+      if (this.props.cacheWidth) this.props.cacheWidth(node.offsetWidth);
       this.setState({
         width: node.offsetWidth,
       });
@@ -235,8 +239,10 @@ class MediaGallery extends React.PureComponent {
   }
 
   render () {
-    const { media, intl, sensitive, height, quote } = this.props;
-    const { width, visible } = this.state;
+    const { media, intl, sensitive, height, quote, defaultWidth } = this.props;
+    const { visible } = this.state;
+
+    const width = this.state.width || defaultWidth;
 
     let children;
 

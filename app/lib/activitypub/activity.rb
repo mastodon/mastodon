@@ -4,6 +4,9 @@ class ActivityPub::Activity
   include JsonLdHelper
   include Redisable
 
+  SUPPORTED_TYPES = %w(Note).freeze
+  CONVERTED_TYPES = %w(Image Video Article Page).freeze
+
   def initialize(json, account, **options)
     @json    = json
     @account = account
@@ -71,6 +74,18 @@ class ActivityPub::Activity
     @object_uri ||= value_or_id(@object)
   end
 
+  def unsupported_object_type?
+    @object.is_a?(String) || !(supported_object_type? || converted_object_type?)
+  end
+
+  def supported_object_type?
+    equals_or_includes_any?(@object['type'], SUPPORTED_TYPES)
+  end
+
+  def converted_object_type?
+    equals_or_includes_any?(@object['type'], CONVERTED_TYPES)
+  end
+
   def distribute(status)
     crawl_links(status)
 
@@ -118,6 +133,23 @@ class ActivityPub::Activity
 
   def delete_later!(uri)
     redis.setex("delete_upon_arrival:#{@account.id}:#{uri}", 6.hours.seconds, uri)
+  end
+
+  def status_from_object
+    # If the status is already known, return it
+    status = status_from_uri(object_uri)
+    return status unless status.nil?
+
+    # If the boosted toot is embedded and it is a self-boost, handle it like a Create
+    unless unsupported_object_type?
+      actor_id = value_or_id(first_of_value(@object['attributedTo'])) || @account.uri
+      if actor_id == @account.uri
+        return ActivityPub::Activity.factory({ 'type' => 'Create', 'actor' => actor_id, 'object' => @object }, @account).perform
+      end
+    end
+
+    # If the status is not from the actor, try to fetch it
+    return fetch_remote_original_status if value_or_id(first_of_value(@json['attributedTo'])) == @account.uri
   end
 
   def fetch_remote_original_status

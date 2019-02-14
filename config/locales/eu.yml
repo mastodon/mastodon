@@ -92,6 +92,7 @@ eu:
       confirm: Berretsi
       confirmed: Berretsita
       confirming: Berresten
+      deleted: Ezabatua
       demote: Jaitsi mailaz
       disable: Desgaitu
       disable_two_factor_authentication: Desgaitu 2FA
@@ -109,7 +110,9 @@ eu:
       follows: Jarraitzen du
       header: Goiburua
       inbox_url: Sarrera ontziaren URL-a
+      invited_by: 'Honek gonbidatua:'
       ip: IP
+      joined: Elkartuta
       location:
         all: Denak
         local: Lokala
@@ -136,7 +139,7 @@ eu:
       protocol: Protokoloa
       public: Publikoa
       push_subscription_expires: Push harpidetzaren iraugitzea
-      redownload: Freskatu abatarra
+      redownload: Freskatu profila
       remove_avatar: Kendu abatarra
       remove_header: Kendu goiburua
       resend_confirmation:
@@ -156,8 +159,8 @@ eu:
       search: Bilatu
       shared_inbox_url: Partekatutako sarrera ontziaren URL-a
       show:
-        created_reports: Kontu honek sortutako txostenak
-        targeted_reports: Kontu honek egindako salaketak
+        created_reports: Sortutako txostenak
+        targeted_reports: Besteen salaketak
       silence: Isilarazi
       silenced: Isilarazita
       statuses: Mezuak
@@ -169,6 +172,7 @@ eu:
       undo_suspension: Desegin kanporatzea
       unsubscribe: Kendu harpidetza
       username: Erabiltzaile-izena
+      warn: Abisatu
       web: Web
     action_logs:
       actions:
@@ -252,7 +256,7 @@ eu:
       week_users_active: aktibo aste honetan
       week_users_new: erabiltzaile aste honetan
     domain_blocks:
-      add_new: Gehitu berria
+      add_new: Gehitu domeinuaren blokeo berria
       created_msg: Domeinuaren blokeoa orain prozesatzen ari da
       destroyed_msg: Domeinuaren blokeoa desegin da
       domain: Domeinua
@@ -264,11 +268,16 @@ eu:
           noop: Bat ere ez
           silence: Isilarazi
           suspend: Kanporatu
-        title: Domeinu blokeo berria
+        title: Domeinuaren blokeo berria
       reject_media: Ukatu multimedia fitxategiak
       reject_media_hint: Lokalki gordetako multimedia fitxategiak ezabatzen ditu eta etorkizunean fitxategi berriak deskargatzeari uko egingo dio. Ez du garrantzirik kanporaketetan
       reject_reports: Errefusatu salaketak
       reject_reports_hint: Ezikusi domeinu honetatik jasotako salaketak. Kanporatzeentzako garrantzirik gabekoa
+      rejecting_media: errefusatu multimedia fitxategiak
+      rejecting_reports: txostenak errefusatzen
+      severity:
+        silence: isilarazia
+        suspend: kanporatua
       show:
         affected_accounts:
           one: Datu-baseko kontu bati eragiten dio
@@ -278,7 +287,7 @@ eu:
           suspend: Kendu kanporatzeko agindua domeinu honetako kontu guztiei
         title: Desegin %{domain} domeinuko blokeoa
         undo: Desegin
-      undo: Desegin
+      undo: Desegin domeinuaren blokeoa
     email_domain_blocks:
       add_new: Gehitu berria
       created_msg: Ongi gehitu da e-mail helbidea domeinuen zerrenda beltzera
@@ -293,7 +302,20 @@ eu:
       back_to_account: Itzuli kontura
       title: "%{acct} kontuaren jarraitzaileak"
     instances:
-      title: Instantzia ezagunak
+      delivery_available: Bidalketa eskuragarri dago
+      known_accounts:
+        one: Kontu ezagun %{count}
+        other: "%{count} kontu ezagun"
+      moderation:
+        all: Denak
+        limited: Mugatua
+        title: Moderazioa
+      title: Federazioa
+      total_blocked_by_us: Guk blokeatuta
+      total_followed_by_them: Haiek jarraitua
+      total_followed_by_us: Guk jarraitua
+      total_reported: Heiei buruzko txostenak
+      total_storage: Multimedia eranskinak
     invites:
       deactivate_all: Desgaitu guztiak
       filter:
@@ -531,8 +553,11 @@ eu:
     warning_title: Sakabanatutako edukiaren eskuragarritasuna
   directories:
     directory: Profilen direktorioa
+    enabled: Direktorioan zerrendatuta zaude orain.
+    enabled_but_waiting: Direktorioan zerrendatuta izatea aukeratu duzu, baina ez duzu oraindik gutxieneko jarraitzaile kopurua (%{min_followers}) zerrendan agertzeko.
     explanation: Deskubritu erabiltzaileak interesen arabera
     explore_mastodon: Esploratu %{title}
+    how_to_enable: Ez duzu aukeratu direktorioan zerrendatua izatea aukeratu. Behean aukeratu dezakezu. Erabili traolak zure biografiaren testuan traola zehatzetan agertzeko!
     people:
       one: pertsona %{count}
       other: "%{count} pertsona"
@@ -558,7 +583,9 @@ eu:
       size: Tamaina
     blocks: Zuk blokeatutakoak
     csv: CSV
+    domain_blocks: Domeinuen blokeoak
     follows: Zuk jarraitutakoak
+    lists: Zerrendak
     mutes: Zuk mututukoak
     storage: Multimedia biltegiratzea
   filters:
@@ -707,10 +734,25 @@ eu:
     no_account_html: Ez duzu konturik? <a href='%{sign_up_path}' target='_blank'>Izena eman</a> dezakezu
     proceed: Ekin jarraitzeari
     prompt: 'Hau jarraituko duzu:'
+    reason_html: "<strong>Zergaitik eman behar da urrats hau?</strong><code>%{instance}</code> agian ez da izena eman duzun zerbitzaria, eta zure hasiera-zerbitzarira eraman behar zaitugu aurretik."
+  remote_interaction:
+    favourite:
+      proceed: Bihurtu gogoko
+      prompt: 'Toot hau gogoko bihurtu nahi duzu:'
+    reblog:
+      proceed: Eman bultzada
+      prompt: 'Toot honi bultzada eman nahi diozu:'
+    reply:
+      proceed: Ekin erantzuteari
+      prompt: 'Toot honi erantzun nahi diozu:'
   remote_unfollow:
     error: Errorea
     title: Izenburua
     unfollowed: Jarraitzeari utzita
+  scheduled_statuses:
+    over_daily_limit: Egun horretarako programatutako toot kopuruaren muga gainditu duzu (%{limit})
+    over_total_limit: Programatutako toot kopuruaren muga gainditu duzu (%{limit})
+    too_soon: Programatutako data etorkizunean egon behar du
   sessions:
     activity: Azken jarduera
     browser: Nabigatzailea
@@ -919,15 +961,18 @@ eu:
       explanation:
         disable: Zure kontua izoztuta dagoen bitartean, zure kontua bere horretan dirau, baina ezin duzu ekintzarik burutu desblokeatzen den arte.
         silence: Zure kontua murriztua dagoen bitartean, jada zu jarraitzen zaituztenak besterik ez dituzte zure Toot-ak ikusiko zerbitzari honetan, eta agian zerrenda publikoetatik kenduko zaizu. Hala ere besteek oraindik zu jarraitu zaitzakete.
+        suspend: Zure kontua kanporatua izan da, zure toot guztiak eta multimedia fitxategiak behin betiko ezabatu dira zerbitzari honetatik, eta zure jarraitzaileen zerbitzarietatik.
       review_server_policies: Berrikusi zerbitzariko politikak
       subject:
         disable: Zure  %{acct} kontua izoztu da
         none: "%{acct} konturako abisua"
         silence: Zure  %{acct} kontua murriztu da
+        suspend: Zure %{acct} kontua kanporatua izan da
       title:
         disable: Kontu izoztua
         none: Abisua
         silence: Kontu murriztua
+        suspend: Kontu kanporatua
     welcome:
       edit_profile_action: Ezarri profila
       edit_profile_step: Pertsonalizatu profila abatar bat igoz, goiburu bat, zure pantaila-izena aldatuz eta gehiago. Jarraitzaile berriak onartu aurretik gainbegiratu nahi badituzu, kontua giltzaperatu dezakezu.
@@ -935,7 +980,7 @@ eu:
       final_action: Hasi mezuak bidaltzen
       final_step: 'Hasi argitaratzen! Jarraitzailerik ez baduzu ere zure mezu publikoak besteek ikusi ditzakete, esaterako denbora-lerro lokalean eta traoletan. Zure burua aurkeztu nahi baduzu #aurkezpenak traola erabili zenezake.'
       full_handle: Zure erabiltzaile-izen osoa
-      full_handle_hint: Hau da lagunei esango zeniena beste instantzia batetik zu jarraitzeko edo zuri mezuak bidaltzeko.
+      full_handle_hint: Hau da lagunei esango zeniekeena beste instantzia batetik zu jarraitzeko edo zuri mezuak bidaltzeko.
       review_preferences_action: Aldatu hobespenak
       review_preferences_step: Ziurtatu hobespenak ezartzen dituzula, jaso nahi dituzu e-mail mezuak, lehenetsitako pribatutasuna mezu berrietarako. Mareatzen ez bazaitu GIF-ak automatikoki abiatzea ezarri dezakezu ere.
       subject: Ongi etorri Mastodon-era
