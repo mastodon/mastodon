@@ -1,0 +1,612 @@
+---
+sq:
+  about:
+    about_this: Mbi
+    administered_by: 'Administruar nga:'
+    api: API
+    apps: Aplikacione për celular
+    contact: Kontakt
+    contact_missing: I parregulluar
+    contact_unavailable: N/A
+    documentation: Dokumentim
+    features:
+      humane_approach_title: Një trajtim më njerëzor
+      not_a_product_title: Jeni një person, jo një produkt
+      real_conversation_title: Ndërtuar për bashkëbisedim të njëmendtë
+      within_reach_title: Përherë i kapshëm
+    generic_description: "%{domain} është një shërbyes te rrjeti"
+    hosted_on: Mastodon i strehuar në %{domain}
+    learn_more: Mësoni më tepër
+    other_instances: Listë instancash
+    privacy_policy: Rregulla privatësie
+    source_code: Kod burim
+    status_count_after:
+      one: gjendje
+      other: gjendje
+    status_count_before: Cili krijoi
+    terms: Kushte shërbimi
+    user_count_after:
+      one: përdorues
+      other: përdorues
+    what_is_mastodon: Ç’është Mastodon-i?
+  accounts:
+    choices_html: 'Zgjedhje të %{name}:'
+    follow: Ndiqeni
+    followers:
+      one: Ndjekës
+      other: Ndjekës
+    following: Ndjekje
+    joined: U bë pjesë më %{date}
+    last_active: aktiv së fundi
+    media: Media
+    nothing_here: S’ka gjë këtu!
+    people_followed_by: Persona të ndjekur nga %{name}
+    people_who_follow: Persona që ndjekin %{name}
+    reserved_username: Emri i përdoruesit është i ruajtur për dikë
+    roles:
+      admin: Përgjegjës
+      bot: Bot
+      moderator: Mod
+    unfollow: Resht së ndjekuri
+  admin:
+    account_actions:
+      action: Kryeje veprimin
+    account_moderation_notes:
+      create: Lini një shënim
+      created_msg: Shënimi i moderimit u krijua me sukses!
+      delete: Fshije
+      destroyed_msg: Shënimi i moderimit u asgjësua me sukses!
+    accounts:
+      are_you_sure: A jeni i sigurt?
+      avatar: Avatar
+      by_domain: Përkatësi
+      change_email:
+        changed_msg: Email-i i llogarisë u ndryshua me sukses!
+        current_email: Email-i i tanishëm
+        label: Ndrysho email-in
+        new_email: Email i ri
+        submit: Ndrysho email-in
+        title: Ndrysho email-in për %{username}
+      confirm: Ripohojeni
+      confirmed: U ripohua
+      confirming: Po ripohohet
+      deleted: U fshi
+      demote: Zhgradoje
+      disable: Çaktivizoje
+      disable_two_factor_authentication: Çaktivizoni 2FA
+      disabled: E çaktivizuar
+      display_name: Emër në ekran
+      domain: Përkatësi
+      edit: Përpunojeni
+      email: Email
+      email_status: Gjendje email-i
+      enable: Aktivizoje
+      enabled: E aktivizuar
+      feed_url: URL prurjeje
+      followers: Ndjekës
+      followers_url: URL Ndjekësish
+      follows: Ndjekje
+      header: Krye
+      inbox_url: URL Mesazhesh të Marrë
+      invited_by: Ftuar nga
+      ip: IP
+      joined: U bë pjesë
+      location:
+        all: Krejt
+        local: Vendore
+        remote: E largët
+        title: Vendndodhje
+      login_status: Gjendje hyrjeje
+      media_attachments: Bashkëngjitje media
+      moderation:
+        active: Aktiv
+        all: Krejt
+        suspended: Të pezulluara
+        title: Moderim
+      moderation_notes: Shënime moderimesh
+      most_recent_activity: Veprimtaria më e freskët
+      most_recent_ip: IP-ja më e freskët
+      no_limits_imposed: Pa imponim kufijsh
+      not_subscribed: Jo i  pajtuar
+      outbox_url: URL Mesazhesh të Dërguar
+      perform_full_suspension: Pezulloje
+      profile_url: URL profili
+      protocol: Protokoll
+      public: Publike
+      push_subscription_expires: Pajtimi PuSH skadon më
+      redownload: Rifresko profilin
+      remove_avatar: Hiqe avatarin
+      remove_header: Hiqe kryen
+      resend_confirmation:
+        already_confirmed: Ky përdorues është i ripohuar tashmë
+        send: Ridërgo email ripohimi
+        success: Email-i i ripohimit u dërgua me sukses!
+      reset_password: Ricaktoni fjalëkalimin
+      resubscribe: Ripajtohuni
+      role: Leje
+      roles:
+        admin: Përgjegjës
+        moderator: Moderator
+        staff: Staf
+        user: Përdorues
+      search: Kërkoni
+      show:
+        created_reports: Ka bërë raporte
+        targeted_reports: Raportuar nga të tjerë
+      silence: Heshtje
+      statuses: Gjendje
+      subscribe: Pajtomë
+      suspended: Të pezulluara
+      title: Llogari
+      unconfirmed_email: Email i paripohuar
+      undo_silenced: Zhbëje heshtjen
+      undo_suspension: Zhbëje pezullimin
+      unsubscribe: Shpajtohuni
+      username: Emër përdoruesi
+      warn: Sinjalizoje
+      web: Web
+    action_logs:
+      actions:
+        change_email_user: "%{name} ndryshoi adresën email të përdoruesit %{target}"
+        confirm_user: "%{name} ripohoi adresën email të përdoruesit %{target}"
+        create_account_warning: "%{name} dërgoi një sinjalizim për %{target}"
+        create_custom_emoji: "%{name} ngarkoi emotikon të ri %{target}"
+        create_domain_block: "%{name} bllokoi përkatësinë %{target}"
+        create_email_domain_block: "%{name} e shtoi në listë bllokimesh përkatësinë %{target}"
+        demote_user: "%{name} zhgradoi përdoruesin %{target}"
+        destroy_custom_emoji: "%{name} asgjësoi emotikonin %{target}"
+        destroy_domain_block: "%{name} zhbllokoi përkatësinë %{target}"
+        disable_2fa_user: "%{name} çaktivizoi domosdoshmëritë për dyfaktorësh për përdoruesin %{target}"
+        disable_custom_emoji: "%{name} çaktivizoi emotikonin %{target}"
+        disable_user: "%{name} çaktivizoi hyrje për përdoruesin %{target}"
+        enable_custom_emoji: "%{name} aktivizoi emotikonin %{target}"
+        enable_user: "%{name} aktivizoi hyrje për përdoruesin %{target}"
+        promote_user: "%{name} gradoi përdoruesin %{target}"
+        remove_avatar_user: "%{name} hoqi avatarin e %{target}"
+        reopen_report: "%{name} rihapi raportin %{target}"
+        reset_password_user: "%{name} ricaktoi fjalëkalimi për përdoruesin %{target}"
+        silence_account: "%{name} heshtoi llogarinë e %{target}"
+        suspend_account: "%{name} pezulloi llogarinë e %{target}"
+        unsilence_account: "%{name} hoqi heshtimin për llogarinë %{target}"
+        unsuspend_account: "%{name} hoqi pezullimin për llogarinë e %{target}"
+        update_custom_emoji: "%{name} përditësoi emotikonin %{target}"
+    custom_emojis:
+      by_domain: Përkatësi
+      copy: Kopjoje
+      created_msg: Emotikoni u krijua me sukses!
+      delete: Fshije
+      destroyed_msg: Emotikoni u asgjësua me sukses!
+      disable: Çaktivizoje
+      disabled_msg: Ai emotikon u çaktivizua me sukses
+      emoji: Emotikon
+      enable: Aktivizoje
+      enabled_msg: Ai emotikon u aktivizua me sukses
+      image_hint: PNG deri 50KB
+      new:
+        title: Shtoni emotikon të ri vetjak
+      overwrite: Mbishkruaje
+      shortcode: Kod i shkurtër
+      title: Emotikone vetjake
+      update_failed_msg: S’u përditësua dot ai emotikon
+      updated_msg: Emotikoni u përditësua me sukses!
+      upload: Ngarkoje
+    dashboard:
+      config: Formësim
+      feature_invites: Lidhje ftesash
+      feature_profile_directory: Drejtori profilesh
+      feature_registrations: Regjistrime
+      feature_relay: Rele federimi
+      features: Veçori
+      search: Kërko tekstin e plotë
+      single_user_mode: Mënyrë me përdorues të vetëm
+      software: Software
+      space: Përdorim hapësire
+      title: Pult
+      total_users: përdorues gjithsej
+      trends: Tendenca
+      week_interactions: Ndërveprime këtë javë
+      week_users_active: aktivë këtë javë
+      week_users_new: përdorues këtë javë
+    domain_blocks:
+      add_new: Shtoni bllokim të ri përkatësie
+      created_msg: Bllokimi i përkatësisë tani po përpunohet
+      destroyed_msg: Bllokimi i përkatësisë u hoq
+      domain: Përkatësi
+      new:
+        create: Krijoni bllokim
+        severity:
+          noop: Asnjë
+          silence: Heshtje
+          suspend: Pezulloje
+        title: Shtoni Bllokim i ri përkatësie
+      show:
+        affected_accounts: Pat ndikim te një llogari në bazën e të dhënave
+        undo: Zhbëje
+      undo: Zhbëje bllokimin e përkatësisë
+    email_domain_blocks:
+      add_new: Shtoni të ri
+      delete: Fshije
+      domain: Përkatësi
+      new:
+        create: Shtoni përkatësi
+    followers:
+      back_to_account: Mbrapsht Te Llogaria
+      title: Ndjekës të %{acct}
+    instances:
+      moderation:
+        all: Krejt
+        limited: E kufizuar
+        title: Moderim
+      title: Federim
+      total_blocked_by_us: Bllokuar nga ne
+      total_followed_by_them: Ndjekur prej tyre
+      total_followed_by_us: Ndjekur nga ne
+      total_reported: Raportime rreth tyre
+      total_storage: Bashkëngjitje media
+    invites:
+      deactivate_all: Çaktivizoji krejt
+      filter:
+        all: Krejt
+        expired: Ka skaduar
+        title: Filtër
+      title: Ftesa
+    relays:
+      add_new: Shtoni rele të re
+      delete: Fshije
+      disable: Çaktivizoje
+      disabled: E çaktivizuar
+      enable: Aktivizoje
+      enabled: E aktivizuar
+      inbox_url: URL releje
+      pending: Në pritje të miratimit të relesë
+      save_and_enable: Ruaje dhe aktivizoje
+      setup: Ujdisni një lidhje rele
+      status: Gjendje
+      title: Rele
+    report_notes:
+      created_msg: Shënimi i raportimit u krijua me sukses!
+      destroyed_msg: Shënimi i raportimit u fshi me sukses!
+    reports:
+      account:
+        note: shënim
+        report: Raportoje
+      action_taken_by: 'Veprimi i ndërmarrë nga '
+      are_you_sure: A jeni i sigurt?
+      assign_to_self: Caktojani vetes
+      comment:
+        none: Asnjë
+      created_at: Raportuar më
+      mark_as_resolved: Vëri shenjë si i zgjidhur
+      mark_as_unresolved: Vëri shenjë si të pazgjidhur
+      notes:
+        create: Shtoni shënim
+        create_and_resolve: Zgjidhe me shënim
+        create_and_unresolve: Rihape me shënim
+        delete: Fshije
+      reopen: Rihape raportimin
+      report: 'Raportim #%{id}'
+      reported_account: Llogari e raportuar
+      reported_by: Raportuar nga
+      status: Gjendje
+      title: Raportime
+      unresolved: Të pazgjidhur
+      updated_at: U përditësua më
+    settings:
+      custom_css:
+        title: CSS Vetjake
+      mascot:
+        title: Figurë simboli
+      peers_api_enabled:
+        title: Boto listë instancash të zbuluara
+      profile_directory:
+        desc_html: Lejoju përdoruesve të jenë të zbulueshëm
+        title: Aktivizo drejtori profilesh
+      registrations:
+        open:
+          title: Hap regjistrim
+      show_staff_badge:
+        desc_html: Shfaq një stemë stafi në faqen e një përdoruesi
+        title: Shfaq stemë stafi
+      site_description:
+        title: Përshkrim instance
+      site_terms:
+        title: Kushte vetjake shërbimi
+      site_title: Emër instance
+      thumbnail:
+        title: Miniaturë instance
+      timeline_preview:
+        title: Paraparje rrjedhe kohore
+      title: Rregullime sajti
+    statuses:
+      back_to_account: Mbrapsht te faqja e llogarisë
+      batch:
+        delete: Fshije
+        nsfw_off: Vëri shenjë si jo rezervat
+        nsfw_on: Vëri shenjë si rezervat
+      failed_to_execute: S’u arrit të përmbushej
+      media:
+        title: Media
+      no_media: S’ka media
+      no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
+      title: Gjendje llogarish
+      with_media: Me media
+    subscriptions:
+      callback_url: URL Callback-u
+      expires_in: Skadon më
+      topic: Temë
+    tags:
+      accounts: Llogari
+      hidden: Fshehur
+      hide: Fshihe prej drejtorie
+      name: Hashtag
+      title: Hashtage
+      unhide: Shfaqe në drejtori
+      visible: E dukshme
+    title: Administrim
+    warning_presets:
+      add_new: Shtoni të ri
+      delete: Fshije
+      edit: Përpunoni
+  admin_mailer:
+    new_report:
+      body: "%{reporter} ka raportuar %{target}"
+      subject: Raport i ri për %{instance} (#%{id})
+  application_mailer:
+    notification_preferences: Ndryshoni parapëlqime email-i
+    salutation: "%{name},"
+    settings: 'Ndryshoni parapëlqime email-i: %{link}'
+    view: 'Parje:'
+    view_profile: Shihni Profilin
+    view_status: Shihini gjendjen
+  applications:
+    created: Aplikacioni u krijua me sukses
+    destroyed: Aplikacioni u fshi me sukses
+    invalid_url: URL-ja e dhënë është e pavlefshme
+    regenerate_token: Riprodho token hyrjesh
+    your_token: Token-i juaj për hyrje
+  auth:
+    change_password: Fjalëkalim
+    confirm_email: Ripohoni email-in
+    delete_account: Fshije llogarinë
+    didnt_get_confirmation: S’morët udhëzime ripohimi?
+    forgot_password: Harruat fjalëkalimin tuaj?
+    login: Hyni
+    logout: Dalje
+    migrate_account: Kaloni në një tjetër llogari
+    migrate_account_html: Nëse doni ta ridrejtoni këtë llogari te një tjetër, këtë mund <a href="%{path}">ta formësoni këtu</a>.
+    or: ose
+    or_log_in_with: Ose bëni hyrjen me
+    providers:
+      cas: CAS
+    register: Regjistrohuni
+    register_elsewhere: Regjistrohuni në një tjetër shërbyes
+    resend_confirmation: Ridërgo udhëzime ripohimi
+    reset_password: Ricaktoni fjalëkalimin
+    security: Siguri
+    set_new_password: Caktoni fjalëkalim të ri
+  authorize_follow:
+    already_following: E ndiqni tashmë këtë llogari
+    follow: Ndiqeni
+    follow_request: 'Keni dërguar një kërkesë ndjekjeje te:'
+    following: 'Sukses! Tani e ndiqni:'
+    post_follow:
+      return: Shfaq profilin e përdoruesit
+    title: Ndiq %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}o"
+      about_x_months: "%{count}mj"
+      about_x_years: "%{count}v"
+      almost_x_years: "%{count}v"
+      half_a_minute: Mu tani
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Mu tani
+      over_x_years: "%{count}v"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mj"
+      x_seconds: "%{count}s"
+  deletes:
+    proceed: Fshini llogarinë
+  directories:
+    directory: Drejtori profilesh
+    explore_mastodon: Eksploroni %{title}
+    people:
+      one: "%{count} person"
+      other: "%{count} persona"
+  errors:
+    '403': S’keni leje të shihni këtë faqe.
+    '404': Faqja që po kërkonit, nuk ekziston.
+    '410': Faqja që po kërkonit, nuk ekziston më.
+    '422':
+      title: Verifikimi i sigurisë dështoi
+    '500':
+      title: Kjo faqe s’është e saktë
+  exports:
+    archive_takeout:
+      date: Datë
+      size: Madhësi
+    csv: CSV
+    lists: Lista
+    storage: Depozitim për media
+  filters:
+    contexts:
+      notifications: Njoftime
+      thread: Biseda
+    edit:
+      title: Përpunoni filtër
+    index:
+      delete: Fshije
+      title: Filtra
+    new:
+      title: Shtoni filtër të ri
+  followers:
+    domain: Përkatësi
+    followers_count: Numër ndjekësish
+    purge: Hiqe nga ndjekësit
+    unlocked_warning_title: Llogaria juaj s’është kyçur
+  footer:
+    developers: Zhvillues
+    more: Më tepër…
+    resources: Burime
+  generic:
+    changes_saved_msg: Ndryshimet u ruajtën me sukses!
+    copy: Kopjoje
+    save_changes: Ruaji ndryshimet
+  imports:
+    types:
+      blocking: Listë bllokimesh
+  invites:
+    expires_in:
+      '1800': 30 minuta
+      '21600': 6 orë
+      '3600': 1 orë
+      '43200': 12 orë
+      '604800': 1 javë
+      '86400': 1 ditë
+    expires_in_prompt: Kurrë
+    generate: Prodhoje
+    invited_by: 'Qetë ftuar nga:'
+    max_uses:
+      one: 1 përdorim
+      other: "%{count} përdorime"
+    max_uses_prompt: Pa kufi
+    table:
+      expires_at: Skadon më
+      uses: Përdorime
+    title: Ftoni njerëz
+  migrations:
+    proceed: Ruaje
+  moderation:
+    title: Moderim
+  notification_mailer:
+    digest:
+      action: Shihini krejt njoftimet
+    favourite:
+      title: E parapëlqyer e re
+    follow:
+      title: Ndjekës i ri
+    mention:
+      body: 'U përmendët nga %{name} në:'
+      subject: U përmendët nga %{name}
+      title: Përmendje e re
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: K
+          thousand: K
+          trillion: T
+  pagination:
+    truncate: "&hellip;"
+  preferences:
+    languages: Gjuhë
+    other: Tjetër
+    publishing: Publikim
+    web: Web
+  remote_unfollow:
+    error: Gabim
+    title: Titull
+  sessions:
+    activity: Veprimtaria e fundit
+    browser: Shfletues
+    browsers:
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Shfletues i panjohur
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Shfletues Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Sesioni i tanishëm
+    description: "%{browser} në %{platform}"
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: platformë e panjohur
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Shfuqizoje
+    title: Sesione
+  settings:
+    authorized_apps: Aplikacione të autorizuara
+    back: Mbrapsht te Mastodon
+    delete: Fshirje llogarie
+    development: Zhvillim
+    edit_profile: Përpunoni profilin
+    export: Eksportim të dhënash
+    followers: Ndjekës të autorizuar
+    import: Importo
+    migrate: Migrim llogarie
+    notifications: Njoftime
+    preferences: Parapëlqime
+    settings: Rregullime
+    your_apps: Aplikacionet tuaja
+  statuses:
+    attached:
+      image:
+        one: "%{count} figurë"
+        other: "%{count} figura"
+      video:
+        one: "%{count} video"
+        other: "%{count} video"
+    content_warning: 'Sinjalizim lënde: %{warning}'
+    show_more: Shfaq më tepër
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      private: Vetëm ndjekësve
+      private_long: Shfaqua vetëm ndjekësve
+      public: Publike
+      public_long: Mund ta shohë kushdo
+  themes:
+    contrast: Me kontrast të lartë
+    default: Mastodon
+    mastodon-light: Mastodon (light)
+  time:
+    formats:
+      default: "%d %b, %Y, %H:%M"
+      month: "%b %Y"
+  two_factor_authentication:
+    disable: Çaktivizoje
+    enable: Aktivizoje
+    enabled_success: Mirëfilltësimi dyfaktorësh u aktivizua me sukses
+  user_mailer:
+    backup_ready:
+      subject: Arkivi juaj është gati për shkarkim
+    warning:
+      subject:
+        disable: Llogaria juaj %{acct} është ngrirë
+        none: Sinjalizim për %{acct}
+        silence: Llogaria juaj %{acct} është kufizuar
+    welcome:
+      explanation: Ja disa ndihmëza, sa për t’ia filluar
+      final_action: Filloni të postoni
+      subject: Mirë se vini te Mastodon-i
+      tips: Ndihmëza
+      title: Mirë se vini, %{name}!
+  users:
+    invalid_email: Adresa email është e pavlefshme
+    invalid_otp_token: Kod dyfaktorësh i pavlefshëm
+    signed_in_as: 'I futur si:'
+  verification:
+    verification: Verifikim
