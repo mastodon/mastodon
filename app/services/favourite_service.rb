@@ -14,10 +14,12 @@ class FavouriteService < BaseService
 
     return favourite unless favourite.nil?
 
-    favourite = Favourite.create!(account: account, status: status)
+    Favourite.transaction do
+      favourite = Favourite.create!(account: account, status: status)
 
-    create_notification(favourite)
-    bump_potential_friendship(account, status)
+      create_notification(favourite)
+      bump_potential_friendship(account, status)
+    end
 
     favourite
   end
