@@ -312,10 +312,10 @@ class Formatter
   end
 
   def hashtag_html(tag)
-    "<a href=\"#{encode(tag_url(tag.downcase))}\" class=\"mention hashtag\" rel=\"tag\">#<span>#{encode(tag)}</span></a>"
+    "<a href=\"#{encode(tag_url(tag.downcase))}\" target=\"_blank\" class=\"mention hashtag\" rel=\"tag\">#<span>#{encode(tag)}</span></a>"
   end
 
   def mention_html(account)
-    "<span class=\"h-card\"><a href=\"#{encode(TagManager.instance.url_for(account))}\" class=\"u-url mention\">@<span>#{encode(account.username)}</span></a></span>"
+    "<span class=\"h-card\"><a href=\"#{encode(TagManager.instance.url_for(account))}\" target=\"_blank\" class=\"u-url mention\">@<span>#{encode(account.username)}</span></a></span>"
   end
 end
