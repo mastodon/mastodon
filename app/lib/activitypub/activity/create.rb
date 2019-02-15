@@ -341,18 +341,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       responds_to_followed_account? || addresses_local_accounts?
   end
 
-  def fetch?
-    !@options[:delivery]
-  end
-
-  def followed_by_local_accounts?
-    @account.passive_relationships.exists?
-  end
-
-  def requested_through_relay?
-    @options[:relayed_through_account] && Relay.find_by(inbox_url: @options[:relayed_through_account].inbox_url)&.enabled?
-  end
-
   def responds_to_followed_account?
     !replied_to_status.nil? && (replied_to_status.account.local? || replied_to_status.account.passive_relationships.exists?)
   end
