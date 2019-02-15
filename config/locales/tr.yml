@@ -62,6 +62,14 @@ tr:
     unfollow: Takibi bırak
     choices_html: '%{name} seçimleri:'
     joined: '%{date} tarihinde katıldı'
+    media: Medya
+    network_hidden: Bu bilgi mevcut değil
+    pin_errors:
+      following: Onaylamak istediğiniz kişiyi zaten takip ediyor olmalısınız
+    reserved_username: Kullanıcı adı saklıdır
+    roles:
+      admin: Yönetici
+      moderator: Denetleyici
   admin:
     accounts:
       are_you_sure: Emin misiniz?
@@ -72,7 +80,7 @@ tr:
       domain: Sunucu
       edit: Düzenle
       email: E-posta
-      email_status: Email Durumu
+      email_status: E-posta durumu
       feed_url: Besleme linki
       followers: Takipçiler
       follows: Takip edilen
@@ -101,8 +109,8 @@ tr:
       reset_password: Parolayı değiştir
       salmon_url: Salmon Linki
       show:
-        created_reports: Bu hesap tarafından gelen şikayetler
-        targeted_reports: Bu hesaba gelen şikayetler
+        created_reports: Yapılan şikayetler
+        targeted_reports: Başkaları tarafından şikayet edildi
       silence: Sustur
       statuses: Durumlar
       title: Hesaplar
@@ -110,6 +118,42 @@ tr:
       undo_suspension: Uzaklaştırmayı geri al
       username: Kullanıcı adı
       web: Web
+      by_domain: Sunucu
+      change_email:
+        changed_msg: Hesap e-postası başarıyla değiştirildi!
+        current_email: Mevcut e-posta
+        label: E-postayı değiştir
+        new_email: Yeni e-posta
+        submit: E-postayı değiştir
+      deleted: Silinen
+      disable: Devre dışı
+      enable: Etkinleştir
+      enabled: Etkin
+      followers_url: Takipçi bağlantısı
+      header: Üstbilgi
+      inbox_url: Gelen kutusu bağlantısı
+      joined: Katıldı
+      login_status: Giriş durumu
+      moderation_notes: Denetleme notları
+      redownload: Profili yenile
+      remove_avatar: Avatarı kaldır
+      remove_header: Üstbilgiyi kaldır
+      reset: Sıfırla
+      resubscribe: Yeniden abone ol
+      role: İzinler
+      roles:
+        admin: Yönetici
+        moderator: Denetleyici
+        staff: Personel
+        user: Kullanıcı
+      search: Ara
+      shared_inbox_url: Paylaşılan gelen kutusu bağlantısı
+      silenced: Susturulmuş
+      subscribe: Abone ol
+      suspended: Askıya alındı
+      unconfirmed_email: Onaylanmamış e-posta
+      unsubscribe: Abonelikten çık
+      warn: Uyar
     domain_blocks:
       add_new: Yeni ekle
       created_msg: Domain bloğu şu an işleniyor
@@ -182,6 +226,11 @@ tr:
       title: WebSub
       topic: Konu
     title: Yönetim
+    account_moderation_notes:
+      create: Not bırakın
+      created_msg: Denetim notu başarıyla oluşturuldu!
+      delete: Sil
+      destroyed_msg: Denetim notu başarıyla yok edildi!
   application_mailer:
     settings: 'E-mail tercihlerini değiştir: %{link}'
     view: 'Görüntüle:'
