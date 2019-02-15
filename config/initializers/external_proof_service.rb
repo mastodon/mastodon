@@ -13,9 +13,5 @@ module ExternalProofService
     def self.base_url
       'https://keybase.io'
     end
-
-    def self.my_contacts
-      ["admin@#{ExternalProofService.my_domain}", "yournamehere@keybase"]
-    end
   end
 end

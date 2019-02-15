@@ -9,7 +9,7 @@ module WellKnown
       # specific to each mastodon instance
       @my_domain = ExternalProofService.my_domain
       @domain_display = ExternalProofService.my_domain_displayed
-      @contacts = ExternalProofService::Keybase.my_contacts
+      @contacts = Setting.keybase_contacts.split(',')
       @svg_black = 'https://glsk.net/wp-content/themes/glsk_minimal_en/images/mastodon.svg'
       @svg_full = 'https://upload.wikimedia.org/wikipedia/commons/4/48/Mastodon_Logotype_%28Simple%29.svg'
       @brand_color = '#282c37'

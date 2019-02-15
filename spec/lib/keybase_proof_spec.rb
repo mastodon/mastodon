@@ -4,6 +4,7 @@ require 'rails_helper'
 require 'keybase_proof'
 
 describe Keybase::Proof do
+  let(:my_domain) { ExternalProofService.my_domain }
   let(:keybase_proof) do
     local_proof = AccountIdentityProof.new(
       provider: 'Keybase',
@@ -13,7 +14,7 @@ describe Keybase::Proof do
     described_class.new(local_proof, 'alice')
   end
   let(:query_params) do
-    'domain=mastodon.social&kb_username=cryptoalice&sig_hash=11111111111111111111111111&username=alice'
+    "domain=#{my_domain}&kb_username=cryptoalice&sig_hash=11111111111111111111111111&username=alice"
   end
 
   describe 'valid?' do
@@ -81,7 +82,7 @@ describe Keybase::Proof do
 
   describe 'badge_pic_url' do
     let(:expected_url) do
-      'https://keybase.io/cryptoalice/proof_badge/11111111111111111111111111?domain=mastodon.social&username=alice'
+      "https://keybase.io/cryptoalice/proof_badge/11111111111111111111111111?domain=#{my_domain}&username=alice"
     end
 
     it 'builds the url correctly' do
