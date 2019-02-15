@@ -3,7 +3,7 @@ sk:
   about:
     about_hashtag_html: Toto sú verejné príspevky otagované pod <strong>#%{hashtag}</strong>. Ak máš účet hocikde v rámci fediversa, môžeš ich využívať.
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch a na slobodnom softvéri. Je decentralizovaná, podobne ako email.
-    about_this: O tejto instancii
+    about_this: O tomto serveri
     administered_by: 'Správcom je:'
     api: API
     apps: Aplikácie
@@ -126,7 +126,7 @@ sk:
       media_attachments: Prílohy
       memorialize: Zmeniť na "Navždy budeme spomínať"
       moderation:
-        active: Aktívny/a
+        active: Aktívny
         all: Všetko
         silenced: Umlčané
         suspended: Vylúčený/á
@@ -215,8 +215,8 @@ sk:
     custom_emojis:
       by_domain: Doména
       copied_msg: Lokálna kópia emoji úspešne vytvorená
-      copy: Kopírovať
-      copy_failed_msg: Nebolo možné vytvoriť lokálnu kópiu tohto emoji
+      copy: Kopíruj
+      copy_failed_msg: Nebolo možné vytvoriť miestnu kópiu tohto emoji
       created_msg: Emoji úspešne vytvorené!
       delete: Zmazať
       destroyed_msg: Emojo úspešne zničený!
@@ -398,10 +398,10 @@ sk:
         desc_html: Zobrazované na viacerých stránkach. Odporúčaná veľkosť aspoň 293×205px. Pokiaľ nieje nahraté, bude zobrazený základný maskot
         title: Obrázok maskota
       peers_api_enabled:
-        desc_html: Domény na ktoré táto instancia už vo fediverse natrafila
-        title: Zverejniť zoznam objavených instancií
+        desc_html: Domény, na ktoré tento server už vo fediverse natrafil
+        title: Zverejni zoznam objavených serverov
       preview_sensitive_media:
-        desc_html: Náhľad adresy z iných instancií, bude zobrazený aj vtedy, keď sú dané médiá označené ako senzitívne
+        desc_html: Náhľad odkazov z iných serverov, bude zobrazený aj vtedy, keď sú médiá označené ako senzitívne
         title: Ukazuj aj chúlostivé médiá v náhľadoch OpenGraph
       profile_directory:
         desc_html: Povoliť užívateľom aby boli nájdení
@@ -429,13 +429,13 @@ sk:
         desc_html: Oboznamujúci paragraf na hlavnej stránke a pri meta tagoch. Opíš, čo robí tento Mastodon server špecifickým, a ďalej hocičo iné, čo považuješ za dôležité. Môžeš použiť HTML kód, hlavne <code>&lt; a &gt;</code>, ale tiež <code>&lt;&gt;</code>.
         title: Popis instancie
       site_description_extended:
-        desc_html: Toto je vhodné miesto pre vaše pravidlá, oboznámenia a iné veci, ktorými je vaša instancia špecifická. Je možné tu používať HTML kód
+        desc_html: Toto je vhodné miesto pre tvoje pravidlá o prevádzke, pokyny a iné veci, ktorými je tvoja instancia špecifická. Je možné tu používať HTML kód
         title: Vlastné doplňujúce informácie
       site_short_description:
         desc_html: Zobrazené na bočnom paneli a pri meta tagoch. Popíš čo je Mastodon, a čo robí tento server iným, v jednom paragrafe. Pokiaľ toto necháš prázdne, bude tu zobrazený základný popis instancie.
         title: Krátky popis instancie
       site_terms:
-        desc_html: Môžete si napísať vaše vlastné pravidla o súkromí, prevádzke, alebo aj iné legality. Môžete tu používať HTML kód
+        desc_html: Môžeš si napísať svoje vlastné pravidla o súkromí, prevádzke, alebo aj iné legality. Môžeš tu používať HTML kód
         title: Vlastné pravidlá prevádzky
       site_title: Názov instancie
       thumbnail:
@@ -506,13 +506,13 @@ sk:
     confirm_email: Potvrdiť email
     delete_account: Vymazať účet
     delete_account_html: Pokiaľ chceš vymazať svoj účet, môžeš tak <a href="%{path}">urobiť tu</a>. Budeš požiadaný/á o potvrdenie tohto kroku.
-    didnt_get_confirmation: Neobdŕžal/a si kroky pre potvrdenie?
+    didnt_get_confirmation: Neobdržal/a si kroky pre potvrdenie?
     forgot_password: Zabudnuté heslo?
     invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítaj si nový.
     login: Prihlás sa
     logout: Odhlás sa
-    migrate_account: Presunúť sa na iný účet
-    migrate_account_html: Pokiaľ si želáš presmerovať tento účet na nejaký iný, môžeš to <a href="%{path}">urobiť tu</a>.
+    migrate_account: Presúvam sa na iný účet
+    migrate_account_html: Pokiaľ si želáš presmerovať tento účet na nejaký iný, môžeš si to <a href="%{path}">nastaviť tu</a>.
     or: alebo
     or_log_in_with: Alebo prihlásiť z
     providers:
@@ -598,7 +598,7 @@ sk:
   filters:
     contexts:
       home: Domáca os
-      notifications: Oboznámenia
+      notifications: Oznámenia
       public: Verejné osi
       thread: Konverzácie
     edit:
@@ -814,8 +814,8 @@ sk:
     export: Exportovať dáta
     followers: Povolení následovatelia
     import: Importovať
-    migrate: Presunúť účet
-    notifications: Oboznámenia
+    migrate: Presunutie účtu
+    notifications: Oznámenia
     preferences: Voľby
     settings: Nastavenia
     two_factor_authentication: Dvoj-faktorové overenie
@@ -878,7 +878,15 @@ sk:
 
       <hr class="spacer" />
 
-      <h3 id="use">
+      <h3 id="use">Načo sú tvoje údaje používané?</h3>
+
+      <p>Hociktorá z informácií, ktoré sú o tebe zozbierané, môže byť použité následujúcimi spôsobmi:</p>
+
+      <ul>
+        <li>Pre zabezpečenie základného fungovania Mastodonu. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+        <li>Pre lepšie moderovanie komunity sa napríklad môže tvoja IP adresa porovnať s ostatnými už známimi adresami, aby bolo možné zistiť, či nedochádza napríklad k obchádzaniu vylúčenia, aleb k iným porušeniam pravidiel.</li>
+        <li>Emailová adresa ktorú poskytneš môže byť použitá na zasielanie informácií, oboznámení keď ostatní užívatelia interaktujú s tvojím obsahom, alebo na posielanie správ, odpovedí na otázky a iné požiadavky.</li>
+      </ul>
     title: Podmienky užívania, a pravidlá súkromia pre %{instance}
   themes:
     contrast: Vysoký kontrast
@@ -930,7 +938,7 @@ sk:
       edit_profile_step: Profil si môžeš prispôsobiť nahratím portrétu a hlavičky, môžeš upraviť svoje meno a viac. Pokiaľ chceš preverovať nových následovateľov predtým než ťa budú môcť sledovať, môžeš uzamknúť svoj účet.
       explanation: Tu nájdeš nejaké tipy do začiatku
       final_action: Začni prispievať
-      final_step: 'Začnite písať! Aj bez následovníkov budú vaše verejné správy videné ostatnými, napríklad na lokálnej osi a pod haštagmi. Môžete sa ostatným predstaviť pod haštagom #introductions.'
+      final_step: 'Začni písať! Aj bez následovateľov budú tvoje verejné príspevky videné ostatnými, napríklad na miestnej osi a pod haštagmi. Ak chceš, môžeš sa ostatným predstaviť pod haštagom #introductions.'
       full_handle: Adresa tvojho profilu v celom formáte
       full_handle_hint: Toto je čo musíš dať vedieť svojím priateľom aby ti mohli posielať správy, alebo ťa následovať z inej instancie.
       review_preferences_action: Zmeniť nastavenia
