@@ -14,7 +14,7 @@ sk:
         avatar: PNG, GIF alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
         bot: Tento účet vykonáva hlavne automatizované akcie, a je pravdepodobne nespravovaný
         context: Jedno, alebo viac kritérií, v ktorých má byť filtrovanie uplatnené
-        digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak si obdŕžal/a nejaké osobné správy kým si bol/a preč
+        digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak si obdržal/a nejaké osobné správy kým si bol/a preč
         discoverable_html: Táto <a href="%{path}" target="_blank">databáza</a> umožňuje ľudom nájsť profily podľa záujmu a aktívnosti. Vyžaduje aby mali aspoň %{min_followers} sledovateľov
         email: Bude ti odoslaný potvrdzujúci email
         fields: Až štyri položky môžeš mať na svojom profile zobrazené vo forme tabuľky
@@ -22,7 +22,7 @@ sk:
         inbox_url: Skopíruj adresu z hlavnej stránky mostíka, ktorý chceš používať
         irreversible: Vytriedené príspevky zmiznú nenávratne, aj keď triedenie neskôr zrušíš
         locale: Jazyk užívateľského rozhrania, emailových, a nástenkových oboznámení
-        locked: Vyžaduje, aby si manuálne schvaľoval/a následovateľov
+        locked: Vyžaduje sa manuálne schvaľovanie sledujúcich
         password: Zadaj aspoň osem znakov
         phrase: Zhoda sa nájde nezávisle od toho, či je text napísaný, veľkými, alebo malými písmenami, či už v tele, alebo v hlavičke
         scopes: Ktoré API budú povolené aplikácii pre prístup. Ak vyberieš vrcholný stupeň, nemusíš už potom vyberať po jednom.
@@ -69,8 +69,8 @@ sk:
         context: Triedenie kontextov
         current_password: Súčasné heslo
         data: Dáta
-        discoverable: Zaraď tento účet do databázy
-        display_name: Meno
+        discoverable: Zaraď tento účet do databázy profilov
+        display_name: Zobrazované meno
         email: Emailová adresa
         expires_in: Expirovať po
         fields: Metadáta profilu
@@ -99,8 +99,8 @@ sk:
         setting_expand_spoilers: Stále rozbaľ príspevky označené varovaním o obsahu
         setting_hide_network: Ukri svoju sieť kontaktov
         setting_noindex: Nezaraďuj príspevky do indexu pre vyhľadávče
-        setting_reduce_motion: Redukovať pohyb v animáciách
-        setting_system_font_ui: Použiť základné systémové písmo
+        setting_reduce_motion: Mierni pohyb pri animáciách
+        setting_system_font_ui: Použi základné systémové písmo
         setting_theme: Vzhľad webu
         setting_unfollow_modal: Zobrazuj potvrdzovacie okno pred skončením sledovania iného užívateľa
         severity: Závažnosť
@@ -109,8 +109,8 @@ sk:
         username_or_email: Prezívka, alebo email
         whole_word: Celé slovo
       interactions:
-        must_be_follower: Blokuj oboznámenia ohľadom užívateľov, ktorí ťa nesledujú
-        must_be_following: Blokuj oboznámenia ohľadom ľudí ktorých nesleduješ
+        must_be_follower: Blokovať oznámenia od nesledujúcich
+        must_be_following: Blokovať oznámenia od ľudí, ktorých nesleduješ
         must_be_following_dm: Blokuj súkromné správy od ľudí ktorých nesleduješ
       notification_emails:
         digest: Posielaj súhrnné emaily

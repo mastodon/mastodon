@@ -28,6 +28,7 @@ const messages = defineMessages({
   embed: { id: 'status.embed', defaultMessage: 'Embed' },
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
   admin_status: { id: 'status.admin_status', defaultMessage: 'Open this status in the moderation interface' },
+  copy: { id: 'status.copy', defaultMessage: 'Copy link to status' },
 });
 
 export default @injectIntl
@@ -113,6 +114,25 @@ class ActionBar extends React.PureComponent {
     this.props.onEmbed(this.props.status);
   }
 
+  handleCopy = () => {
+    const url      = this.props.status.get('url');
+    const textarea = document.createElement('textarea');
+
+    textarea.textContent    = url;
+    textarea.style.position = 'fixed';
+
+    document.body.appendChild(textarea);
+
+    try {
+      textarea.select();
+      document.execCommand('copy');
+    } catch (e) {
+
+    } finally {
+      document.body.removeChild(textarea);
+    }
+  }
+
   render () {
     const { status, intl } = this.props;
 
@@ -122,6 +142,7 @@ class ActionBar extends React.PureComponent {
     let menu = [];
 
     if (publicStatus) {
+      menu.push({ text: intl.formatMessage(messages.copy), action: this.handleCopy });
       menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
       menu.push(null);
     }

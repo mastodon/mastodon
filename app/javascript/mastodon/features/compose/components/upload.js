@@ -6,6 +6,7 @@ import spring from 'react-motion/lib/spring';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
+import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
   description: { id: 'upload_form.description', defaultMessage: 'Describe for the visually impaired' },
@@ -99,17 +100,16 @@ class Upload extends ImmutablePureComponent {
           {({ scale }) => (
             <div className='compose-form__upload-thumbnail' style={{ transform: `scale(${scale})`, backgroundImage: `url(${media.get('preview_url')})`, backgroundPosition: `${x}% ${y}%` }}>
               <div className={classNames('compose-form__upload__actions', { active })}>
-                <button className='icon-button' onClick={this.handleUndoClick}><i className='fa fa-times' /> <FormattedMessage id='upload_form.undo' defaultMessage='Delete' /></button>
-                {media.get('type') === 'image' && <button className='icon-button' onClick={this.handleFocalPointClick}><i className='fa fa-crosshairs' /> <FormattedMessage id='upload_form.focus' defaultMessage='Crop' /></button>}
+                <button className='icon-button' onClick={this.handleUndoClick}><Icon id='times' /> <FormattedMessage id='upload_form.undo' defaultMessage='Delete' /></button>
+                {media.get('type') === 'image' && <button className='icon-button' onClick={this.handleFocalPointClick}><Icon id='crosshairs' /> <FormattedMessage id='upload_form.focus' defaultMessage='Crop' /></button>}
               </div>
 
               <div className={classNames('compose-form__upload-description', { active })}>
                 <label>
                   <span style={{ display: 'none' }}>{intl.formatMessage(messages.description)}</span>
 
-                  <input
+                  <textarea
                     placeholder={intl.formatMessage(messages.description)}
-                    type='text'
                     value={description}
                     maxLength={420}
                     onFocus={this.handleInputFocus}
