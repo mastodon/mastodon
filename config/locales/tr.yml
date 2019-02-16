@@ -43,12 +43,18 @@ tr:
       within_reach_body: Geliştirici dostu bir API ekosistemi sayesinde iOS, Android
         ve diğer platformlar için birden fazla uygulama, arkadaşlarınıza her yerden
         ulaşmanızı sağlar.
+      within_reach_title: Her zaman ulaşılabilir
     generic_description: '%{domain} ağdaki bir sunucudur'
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
     learn_more: Daha fazla bilgi edinin
     privacy_policy: Gizlilik politikası
     terms: Kullanım şartları
     what_is_mastodon: Mastodon nedir?
+    about_hashtag_html: Bunlar <strong>#%{hashtag}X</strong> ile etiketlenen genel
+      paylaşımlar. Açık alanda herhangi bir yerde bir hesabınız varsa, onlarla etkileşime
+      geçebilirsiniz.
+    administered_by: 'Tarafından yönetildi:'
+    contact_unavailable: Yok
   accounts:
     follow: Takip et
     followers:
@@ -58,7 +64,9 @@ tr:
     nothing_here: Burada henüz hiçbir gönderi yok!
     people_followed_by: Kullanıcı %{name}'in takip ettikleri
     people_who_follow: Kullanıcı %{name}'i takip edenler
-    posts: Gönderiler
+    posts:
+      one: Toot
+      other: Tootlar
     unfollow: Takibi bırak
     choices_html: '%{name} seçimleri:'
     joined: '%{date} tarihinde katıldı'
@@ -70,6 +78,11 @@ tr:
     roles:
       admin: Yönetici
       moderator: Denetleyici
+      bot: Bot
+    link_verified_on: Bu bağlantının mülkiyeti %{date} tarihinde kontrol edildi
+    moved_html: '%{name}, %{new_profile_link} adresine taşındı:'
+    posts_tab_heading: Tootlar
+    posts_with_replies: Tootlar ve yanıtlar
   admin:
     accounts:
       are_you_sure: Emin misiniz?
@@ -98,7 +111,7 @@ tr:
       most_recent_activity: Son aktivite
       most_recent_ip: Son IP
       not_subscribed: Abone edilmedi
-      perform_full_suspension: Tamamen uzaklaştır
+      perform_full_suspension: Askıya al
       profile_url: Profil linki
       public: Herkese açık
       push_subscription_expires: PuSH aboneliği dolumu
@@ -125,6 +138,7 @@ tr:
         label: E-postayı değiştir
         new_email: Yeni e-posta
         submit: E-postayı değiştir
+        title: '%{username} için e-postayı değiştir'
       deleted: Silinen
       disable: Devre dışı
       enable: Etkinleştir
@@ -154,6 +168,13 @@ tr:
       unconfirmed_email: Onaylanmamış e-posta
       unsubscribe: Abonelikten çık
       warn: Uyar
+      disable_two_factor_authentication: 2AD kapat
+      disabled: Kapalı
+      invited_by: Tarafından davet edildi
+      ip: IP
+      memorialize: Bir hatıraya dön
+      promote: Yükselt
+      protocol: Protokol
     domain_blocks:
       add_new: Yeni ekle
       created_msg: Domain bloğu şu an işleniyor
@@ -239,6 +260,14 @@ tr:
       add_new: Yeni ekle
       delete: Sil
       edit: Düzenle
+    account_actions:
+      action: Eylemi gerçekleştir
+    action_logs:
+      actions:
+        confirm_user: '%{name} %{target} kullanıcısının e-posta adresini onayladı'
+        create_custom_emoji: '%{name} yeni ifade yükledi %{target}'
+        disable_2fa_user: '%{name}, %{name} kullanıcısı için iki adım gereksinimini
+          kapattı'
   application_mailer:
     settings: 'E-mail tercihlerini değiştir: %{link}'
     view: 'Görüntüle:'
