@@ -157,29 +157,7 @@
 }
 
 .drawer--search--popout {
-  box-sizing: border-box;
-  margin-top: 10px;
-  border-radius: 4px;
-  padding: 10px 14px 14px 14px;
-  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
-  color: $light-text-color;
-  background: $simple-background-color;
-
-  h4 {
-    margin-bottom: 10px;
-    color: $light-text-color;
-    font-size: 13px;
-    font-weight: 500;
-    text-transform: uppercase;
-  }
-
-  ul { margin-bottom: 10px }
-  li { padding: 4px 0 }
-
-  em {
-    color: $inverted-text-color;
-    font-weight: 500;
-  }
+  @include search-popout();
 }
 
 .drawer--account {

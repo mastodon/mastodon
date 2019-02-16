@@ -339,14 +339,41 @@
   display: block;
   font-weight: 500;
   margin-bottom: 10px;
+}
 
-  .column-settings__hashtag-select {
+.column-settings__hashtags {
+  .column-settings__row {
+    margin-bottom: 15px;
+  }
+
+  .column-select {
     &__control {
       @include search-input();
     }
 
+    &__placeholder {
+      color: $dark-text-color;
+      padding-left: 2px;
+      font-size: 12px;
+    }
+
+    &__value-container {
+      padding-left: 6px;
+    }
+
     &__multi-value {
       background: lighten($ui-base-color, 8%);
+
+      &__remove {
+        cursor: pointer;
+
+        &:hover,
+        &:active,
+        &:focus {
+          background: lighten($ui-base-color, 12%);
+          color: lighten($darker-text-color, 4%);
+        }
+      }
     }
 
     &__multi-value__label,
@@ -354,9 +381,42 @@
       color: $darker-text-color;
     }
 
-    &__indicator-separator,
+    &__clear-indicator,
     &__dropdown-indicator {
-      display: none;
+      cursor: pointer;
+      transition: none;
+      color: $dark-text-color;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: lighten($dark-text-color, 4%);
+      }
+    }
+
+    &__indicator-separator {
+      background-color: lighten($ui-base-color, 8%);
+    }
+
+    &__menu {
+      @include search-popout();
+      padding: 0;
+      background: $ui-secondary-color;
+    }
+
+    &__menu-list {
+      padding: 6px;
+    }
+
+    &__option {
+      color: $inverted-text-color;
+      border-radius: 4px;
+      font-size: 14px;
+
+      &--is-focused,
+      &--is-selected {
+        background: darken($ui-secondary-color, 10%);
+      }
     }
   }
 }
