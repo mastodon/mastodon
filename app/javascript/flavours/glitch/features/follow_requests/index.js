@@ -18,6 +18,7 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   accountIds: state.getIn(['user_lists', 'follow_requests', 'items']),
+  hasMore: !!state.getIn(['user_lists', 'follow_requests', 'next']),
 });
 
 @connect(mapStateToProps)
@@ -27,6 +28,7 @@ export default class FollowRequests extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
+    hasMore: PropTypes.bool,
     accountIds: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
   };
@@ -45,7 +47,7 @@ export default class FollowRequests extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, accountIds } = this.props;
+    const { intl, accountIds, hasMore } = this.props;
 
     if (!accountIds) {
       return (
@@ -64,6 +66,7 @@ export default class FollowRequests extends ImmutablePureComponent {
         <ScrollableList
           scrollKey='follow_requests'
           onLoadMore={this.handleLoadMore}
+          hasMore={hasMore}
           shouldUpdateScroll={this.shouldUpdateScroll}
           emptyMessage={emptyMessage}
         >
