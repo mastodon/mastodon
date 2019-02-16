@@ -18,6 +18,7 @@ RSpec.describe ActivityPub::Activity::Announce do
   subject { described_class.new(json, sender) }
 
   before do
+    Fabricate(:account).follow!(sender)
     sender.update(uri: ActivityPub::TagManager.instance.uri_for(sender))
   end
 
