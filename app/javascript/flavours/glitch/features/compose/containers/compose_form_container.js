@@ -6,6 +6,7 @@ import {
   changeComposeSpoilerText,
   changeComposeSpoilerness,
   changeComposeVisibility,
+  changeComposeContentType,
   clearComposeSuggestions,
   fetchComposeSuggestions,
   insertEmojiCompose,
@@ -57,6 +58,7 @@ function mapStateToProps (state) {
     media: state.getIn(['compose', 'media_attachments']),
     preselectDate: state.getIn(['compose', 'preselectDate']),
     privacy: state.getIn(['compose', 'privacy']),
+    contentType: state.getIn(['compose', 'content_type']),
     sideArm: sideArmPrivacy,
     sensitive: state.getIn(['compose', 'sensitive']),
     showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
@@ -96,6 +98,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onChangeSpoilerText(text) {
     dispatch(changeComposeSpoilerText(text));
+  },
+
+  onChangeContentType(value) {
+    dispatch(changeComposeContentType(value));
   },
 
   onPaste(files) {

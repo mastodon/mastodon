@@ -29,6 +29,10 @@ const messages = defineMessages({
     defaultMessage: 'Adjust status privacy',
     id: 'privacy.change',
   },
+  content_type: {
+    defaultMessage: 'Content type',
+    id: 'content-type.change',
+  },
   direct_long: {
     defaultMessage: 'Post to mentioned users only',
     id: 'privacy.direct.long',
@@ -41,6 +45,10 @@ const messages = defineMessages({
     defaultMessage: 'Draw something',
     id: 'compose.attach.doodle',
   },
+  html: {
+    defaultMessage: 'HTML',
+    id: 'compose.content-type.html',
+  },
   local_only_long: {
     defaultMessage: 'Do not post to other instances',
     id: 'advanced_options.local-only.long',
@@ -48,6 +56,14 @@ const messages = defineMessages({
   local_only_short: {
     defaultMessage: 'Local-only',
     id: 'advanced_options.local-only.short',
+  },
+  markdown: {
+    defaultMessage: 'Markdown',
+    id: 'compose.content-type.markdown',
+  },
+  plain: {
+    defaultMessage: 'Plain text',
+    id: 'compose.content-type.plain',
   },
   private_long: {
     defaultMessage: 'Post to followers only',
@@ -113,6 +129,7 @@ class ComposerOptions extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
     onChangeAdvancedOption: PropTypes.func,
     onChangeVisibility: PropTypes.func,
+    onChangeContentType: PropTypes.func,
     onTogglePoll: PropTypes.func,
     onDoodleOpen: PropTypes.func,
     onModalClose: PropTypes.func,
@@ -120,6 +137,7 @@ class ComposerOptions extends ImmutablePureComponent {
     onToggleSpoiler: PropTypes.func,
     onUpload: PropTypes.func,
     privacy: PropTypes.string,
+    contentType: PropTypes.string,
     resetFileKey: PropTypes.number,
     spoiler: PropTypes.bool,
   };
@@ -162,6 +180,7 @@ class ComposerOptions extends ImmutablePureComponent {
     const {
       acceptContentTypes,
       advancedOptions,
+      contentType,
       disabled,
       allowMedia,
       hasMedia,
@@ -169,6 +188,7 @@ class ComposerOptions extends ImmutablePureComponent {
       hasPoll,
       intl,
       onChangeAdvancedOption,
+      onChangeContentType,
       onChangeVisibility,
       onTogglePoll,
       onModalClose,
@@ -205,6 +225,24 @@ class ComposerOptions extends ImmutablePureComponent {
         meta: <FormattedMessage {...messages.unlisted_long} />,
         name: 'unlisted',
         text: <FormattedMessage {...messages.unlisted_short} />,
+      },
+    };
+
+    const contentTypeItems = {
+      plain: {
+        icon: 'file',
+        name: 'text/plain',
+        text: <FormattedMessage {...messages.plain} />,
+      },
+      html: {
+        icon: 'file-text',
+        name: 'text/html',
+        text: <FormattedMessage {...messages.html} />,
+      },
+      markdown: {
+        icon: 'file-text',
+        name: 'text/markdown',
+        text: <FormattedMessage {...messages.markdown} />,
       },
     };
 
@@ -271,6 +309,19 @@ class ComposerOptions extends ImmutablePureComponent {
           onModalOpen={onModalOpen}
           title={intl.formatMessage(messages.change_privacy)}
           value={privacy}
+        />
+        <Dropdown
+          icon="code"
+          items={[
+            contentTypeItems.plain,
+            contentTypeItems.html,
+            contentTypeItems.markdown,
+          ]}
+          onChange={onChangeContentType}
+          onModalClose={onModalClose}
+          onModalOpen={onModalOpen}
+          title={intl.formatMessage(messages.content_type)}
+          value={contentType}
         />
         {onToggleSpoiler && (
           <TextIconButton
