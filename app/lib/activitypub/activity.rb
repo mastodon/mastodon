@@ -150,8 +150,7 @@ class ActivityPub::Activity
       end
     end
 
-    # If the status is not from the actor, try to fetch it
-    return fetch_remote_original_status if value_or_id(first_of_value(@json['attributedTo'])) == @account.uri
+    fetch_remote_original_status
   end
 
   def fetch_remote_original_status
@@ -179,5 +178,10 @@ class ActivityPub::Activity
 
   def requested_through_relay?
     @options[:relayed_through_account] && Relay.find_by(inbox_url: @options[:relayed_through_account].inbox_url)&.enabled?
+  end
+
+  def reject_payload!
+    Rails.logger.info("Rejected #{@json['type']} activity #{@json['id']} from #{@account.uri}#{@options[:relayed_through_account] && "via #{@options[:relayed_through_account].uri}"}")
+    nil
   end
 end

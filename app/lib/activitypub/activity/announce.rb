@@ -2,9 +2,11 @@
 
 class ActivityPub::Activity::Announce < ActivityPub::Activity
   def perform
+    return reject_payload! if delete_arrived_first?(@json['id']) || !related_to_local_activity?
+
     original_status = status_from_object
 
-    return if original_status.nil? || delete_arrived_first?(@json['id']) || !announceable?(original_status) || !related_to_local_activity?
+    return reject_payload! if original_status.nil? || !announceable?(original_status)
 
     status = Status.find_by(account: @account, reblog: original_status)
 
