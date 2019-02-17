@@ -37,7 +37,7 @@ module Mastodon
     end
 
     def repository
-      'BeachCity/mastodon'
+      'tootsuite/mastodon'
     end
 
     def source_base_url
@@ -51,7 +51,7 @@ module Mastodon
 
     def source_url
       if source_tag
-        "#{source_base_url}/tree/beach-main/#{source_tag}"
+        "#{source_base_url}/tree/#{source_tag}"
       else
         source_base_url
       end
