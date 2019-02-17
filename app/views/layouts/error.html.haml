@@ -7,7 +7,7 @@
     %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }/
     = javascript_pack_tag "locales", integrity: true, crossorigin: 'anonymous'
     = render partial: 'layouts/theme', object: (@core || { pack: 'common' })
-    = render partial: 'layouts/theme', object: (@theme || { pack: 'common', flavour: 'glitch', skin: 'default' })
+    = render partial: 'layouts/theme', object: (@theme || { pack: 'error', flavour: 'glitch', common: { pack: 'common', flavour: 'glitch', skin: 'default' } })
   %body.error
     .dialog
       .dialog__illustration
