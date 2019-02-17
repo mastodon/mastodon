@@ -346,7 +346,6 @@ class Video extends React.PureComponent {
       width  = containerWidth;
       height = containerWidth / (16/9);
 
-      playerStyle.width  = width;
       playerStyle.height = height;
     }
 
