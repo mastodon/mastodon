@@ -150,8 +150,7 @@ class ActivityPub::Activity
       end
     end
 
-    # If the status is not from the actor, try to fetch it
-    return fetch_remote_original_status if value_or_id(first_of_value(@json['attributedTo'])) == @account.uri
+    fetch_remote_original_status
   end
 
   def fetch_remote_original_status
