@@ -115,6 +115,22 @@ RSpec.describe Formatter do
       end
     end
 
+    context 'given a URL in quotation marks' do
+      let(:text) { '"https://example.com/"' }
+
+      it 'does not match the quotation marks' do
+        is_expected.to include 'href="https://example.com/"'
+      end
+    end
+
+    context 'given a URL in angle brackets' do
+      let(:text) { '<https://example.com/>' }
+
+      it 'does not match the angle brackets' do
+        is_expected.to include 'href="https://example.com/"'
+      end
+    end
+
     context 'given a URL with Japanese path string' do
       let(:text) { 'https://ja.wikipedia.org/wiki/日本' }
 
@@ -128,6 +144,22 @@ RSpec.describe Formatter do
 
       it 'matches the full URL' do
         is_expected.to include 'href="https://ko.wikipedia.org/wiki/대한민국"'
+      end
+    end
+
+    context 'given a URL with a full-width space' do
+      let(:text) { 'https://example.com/　abc123' }
+
+      it 'does not match the full-width space' do
+        is_expected.to include 'href="https://example.com/"'
+      end
+    end
+
+    context 'given a URL in Japanese quotation marks' do
+      let(:text) { '「[https://example.org/」' }
+
+      it 'does not match the quotation marks' do
+        is_expected.to include 'href="https://example.org/"'
       end
     end
 
@@ -150,7 +182,11 @@ RSpec.describe Formatter do
     context 'given a URL containing unsafe code (XSS attack, visible part)' do
       let(:text) { %q{http://example.com/b<del>b</del>} }
 
-      it 'escapes the HTML in the URL' do
+      it 'does not include the HTML in the URL' do
+        is_expected.to include '"http://example.com/b"'
+      end
+
+      it 'escapes the HTML' do
         is_expected.to include '&lt;del&gt;b&lt;/del&gt;'
       end
     end
@@ -158,7 +194,11 @@ RSpec.describe Formatter do
     context 'given a URL containing unsafe code (XSS attack, invisible part)' do
       let(:text) { %q{http://example.com/blahblahblahblah/a<script>alert("Hello")</script>} }
 
-      it 'escapes the HTML in the URL' do
+      it 'does not include the HTML in the URL' do
+        is_expected.to include '"http://example.com/blahblahblahblah/a"'
+      end
+
+      it 'escapes the HTML' do
         is_expected.to include '&lt;script&gt;alert(&quot;Hello&quot;)&lt;/script&gt;'
       end
     end
@@ -192,6 +232,14 @@ RSpec.describe Formatter do
 
       it 'creates a hashtag link' do
         is_expected.to include '/tags/hashtag" class="mention hashtag" rel="tag">#<span>hashtag</span></a>'
+      end
+    end
+
+    context 'given text containing a hashtag with Unicode chars' do
+      let(:text)  { '#hashtagタグ' }
+
+      it 'creates a hashtag link' do
+        is_expected.to include '/tags/hashtag%E3%82%BF%E3%82%B0" class="mention hashtag" rel="tag">#<span>hashtagタグ</span></a>'
       end
     end
   end

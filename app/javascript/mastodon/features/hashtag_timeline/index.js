@@ -41,15 +41,19 @@ class HashtagTimeline extends React.PureComponent {
 
   title = () => {
     let title = [this.props.params.id];
+
     if (this.additionalFor('any')) {
-      title.push(' ', <FormattedMessage id='hashtag.column_header.tag_mode.any'  values={{ additional: this.additionalFor('any') }} defaultMessage='or {additional}' />);
+      title.push(' ', <FormattedMessage key='any' id='hashtag.column_header.tag_mode.any'  values={{ additional: this.additionalFor('any') }} defaultMessage='or {additional}' />);
     }
+
     if (this.additionalFor('all')) {
-      title.push(' ', <FormattedMessage id='hashtag.column_header.tag_mode.all'  values={{ additional: this.additionalFor('all') }} defaultMessage='and {additional}' />);
+      title.push(' ', <FormattedMessage key='all' id='hashtag.column_header.tag_mode.all'  values={{ additional: this.additionalFor('all') }} defaultMessage='and {additional}' />);
     }
+
     if (this.additionalFor('none')) {
-      title.push(' ', <FormattedMessage id='hashtag.column_header.tag_mode.none' values={{ additional: this.additionalFor('none') }} defaultMessage='without {additional}' />);
+      title.push(' ', <FormattedMessage key='none' id='hashtag.column_header.tag_mode.none' values={{ additional: this.additionalFor('none') }} defaultMessage='without {additional}' />);
     }
+
     return title;
   }
 
@@ -77,9 +81,10 @@ class HashtagTimeline extends React.PureComponent {
     let all  = (tags.all || []).map(tag => tag.value);
     let none = (tags.none || []).map(tag => tag.value);
 
-    [id, ...any].map((tag) => {
-      this.disconnects.push(dispatch(connectHashtagStream(id, tag, (status) => {
+    [id, ...any].map(tag => {
+      this.disconnects.push(dispatch(connectHashtagStream(id, tag, status => {
         let tags = status.tags.map(tag => tag.name);
+
         return all.filter(tag => tags.includes(tag)).length === all.length &&
                none.filter(tag => tags.includes(tag)).length === 0;
       })));
@@ -95,12 +100,14 @@ class HashtagTimeline extends React.PureComponent {
     const { dispatch } = this.props;
     const { id, tags } = this.props.params;
 
+    this._subscribe(dispatch, id, tags);
     dispatch(expandHashtagTimeline(id, { tags }));
   }
 
   componentWillReceiveProps (nextProps) {
     const { dispatch, params } = this.props;
     const { id, tags } = nextProps.params;
+
     if (id !== params.id || !isEqual(tags, params.tags)) {
       this._unsubscribe();
       this._subscribe(dispatch, id, tags);

@@ -199,18 +199,28 @@ class Formatter
     result.flatten.join
   end
 
+  UNICODE_ESCAPE_BLACKLIST_RE = /\p{Z}|\p{P}/
+
   def utf8_friendly_extractor(text, options = {})
     old_to_new_index = [0]
 
     escaped = text.chars.map do |c|
-      output = c.ord.to_s(16).length > 2 ? CGI.escape(c) : c
+      output = begin
+        if c.ord.to_s(16).length > 2 && UNICODE_ESCAPE_BLACKLIST_RE.match(c).nil?
+          CGI.escape(c)
+        else
+          c
+        end
+      end
+
       old_to_new_index << old_to_new_index.last + output.length
+
       output
     end.join
 
     # Note: I couldn't obtain list_slug with @user/list-name format
     # for mention so this requires additional check
-    special = Extractor.extract_entities_with_indices(escaped, options).map do |extract|
+    special = Extractor.extract_urls_with_indices(escaped, options).map do |extract|
       # exactly one of :url, :hashtag, :screen_name, :cashtag keys is present
       key = (extract.keys & [:url, :hashtag, :screen_name, :cashtag]).first
 

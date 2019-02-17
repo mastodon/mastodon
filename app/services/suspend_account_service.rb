@@ -102,6 +102,10 @@ class SuspendAccountService < BaseService
     ActivityPub::DeliveryWorker.push_bulk(delivery_inboxes) do |inbox_url|
       [delete_actor_json, @account.id, inbox_url]
     end
+
+    ActivityPub::LowPriorityDeliveryWorker.push_bulk(low_priority_delivery_inboxes) do |inbox_url|
+      [delete_actor_json, @account.id, inbox_url]
+    end
   end
 
   def delete_actor_json
@@ -117,7 +121,11 @@ class SuspendAccountService < BaseService
   end
 
   def delivery_inboxes
-    Account.inboxes + Relay.enabled.pluck(:inbox_url)
+    @delivery_inboxes ||= @account.followers.inboxes + Relay.enabled.pluck(:inbox_url)
+  end
+
+  def low_priority_delivery_inboxes
+    Account.inboxes - delivery_inboxes
   end
 
   def associations_for_destruction
