@@ -2,7 +2,7 @@
 
 class ActivityPub::Activity::Create < ActivityPub::Activity
   def perform
-    return if unsupported_object_type? || invalid_origin?(@object['id']) || Tombstone.exists?(uri: @object['id']) || !related_to_local_activity?
+    return reject_payload! if unsupported_object_type? || invalid_origin?(@object['id']) || Tombstone.exists?(uri: @object['id']) || !related_to_local_activity?
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
@@ -339,18 +339,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def related_to_local_activity?
     fetch? || followed_by_local_accounts? || requested_through_relay? ||
       responds_to_followed_account? || addresses_local_accounts?
-  end
-
-  def fetch?
-    !@options[:delivery]
-  end
-
-  def followed_by_local_accounts?
-    @account.passive_relationships.exists?
-  end
-
-  def requested_through_relay?
-    @options[:relayed_through_account] && Relay.find_by(inbox_url: @options[:relayed_through_account].inbox_url)&.enabled?
   end
 
   def responds_to_followed_account?
