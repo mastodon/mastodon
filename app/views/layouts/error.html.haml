@@ -5,10 +5,12 @@
     %meta{ charset: 'utf-8' }/
     %title= safe_join([yield(:page_title), Setting.default_settings['site_title']], ' - ')
     %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }/
+    = javascript_pack_tag "locales", integrity: true, crossorigin: 'anonymous'
     = render partial: 'layouts/theme', object: (@core || { pack: 'common' })
-    = render partial: 'layouts/theme', object: (@theme || { pack: 'common', flavour: 'glitch', skin: 'default' })
+    = render partial: 'layouts/theme', object: (@theme || { pack: 'error', flavour: 'glitch', common: { pack: 'common', flavour: 'glitch', skin: 'default' } })
   %body.error
     .dialog
-      %img{ alt: Setting.default_settings['site_title'], src: current_user&.setting_auto_play_gif ? '/oops.gif' : '/oops.png' }/
-      %div
+      .dialog__illustration
+        %img{ alt: Setting.default_settings['site_title'], src: '/oops.png' }/
+      .dialog__message
         %h1= yield :content

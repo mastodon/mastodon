@@ -5,7 +5,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   attributes :uri, :title, :description, :email,
              :version, :urls, :stats, :thumbnail, :max_toot_chars,
-             :languages
+             :languages, :registrations
 
   has_one :contact_account, serializer: REST::AccountSerializer
 
@@ -53,6 +53,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def languages
     [I18n.default_locale]
+  end
+
+  def registrations
+    Setting.open_registrations && !Rails.configuration.x.single_user_mode
   end
 
   private
