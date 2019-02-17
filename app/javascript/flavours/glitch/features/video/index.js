@@ -366,7 +366,6 @@ export default class Video extends React.PureComponent {
       width  = containerWidth;
       height = containerWidth / (16/9);
 
-      playerStyle.width  = width;
       playerStyle.height = height;
     } else if (inline) {
       return (<div className={computedClass} ref={this.setPlayerRef} tabindex={0}></div>);
