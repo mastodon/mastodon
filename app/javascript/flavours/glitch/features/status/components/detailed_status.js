@@ -98,7 +98,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
   }
 
   render () {
-    const status = this.props.status.get('reblog') ? this.props.status.get('reblog') : this.props.status;
+    const status = (this.props.status && this.props.status.get('reblog')) ? this.props.status.get('reblog') : this.props.status;
     const { expanded, onToggleHidden, settings } = this.props;
     const outerStyle = { boxSizing: 'border-box' };
     const { compact } = this.props;
