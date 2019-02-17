@@ -180,4 +180,9 @@ class ActivityPub::Activity
   def requested_through_relay?
     @options[:relayed_through_account] && Relay.find_by(inbox_url: @options[:relayed_through_account].inbox_url)&.enabled?
   end
+
+  def reject_payload!
+    Rails.logger.info("Rejected #{@json['type']} activity #{@json['id']} from #{@account.uri}#{@options[:relayed_through_account] && "via #{@options[:relayed_through_account].uri}"}")
+    nil
+  end
 end
