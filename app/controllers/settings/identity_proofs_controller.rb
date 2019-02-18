@@ -30,7 +30,7 @@ class Settings::IdentityProofsController < Settings::BaseController
     if @proof.save_if_valid_remotely
       KeybaseProofWorker.perform_in(2.minutes, @proof.id) if @proof.keybase?
       success_url = @proof.success_redirect(params[:useragent])
-      redirect_to URI.parse(success_url).to_s
+      redirect_to Addressable::URI.parse(success_url).normalize.to_s
     else
       flash[:alert] = I18n.t('account_identity_proofs.notices.failed', provider: @proof.provider)
       redirect_to settings_identity_proofs_path

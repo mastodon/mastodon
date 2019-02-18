@@ -27,11 +27,5 @@ module WellKnown
     def set_default_response_format
       request.format = :json
     end
-
-    def build_url(base_url, query_params)
-      uri = URI.parse(base_url)
-      uri.query = URI.encode_www_form(query_params) unless query_params.empty?
-      uri.to_s
-    end
   end
 end
