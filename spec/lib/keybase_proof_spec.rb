@@ -63,8 +63,8 @@ describe Keybase::Proof do
         stub_request(:get, "#{base_url}?#{query_params}").to_return(status: 200, body: json_response_body)
       end
 
-      it 'calls out to keybase and returns the status fields as is_valid and is_live' do
-        expect(keybase_proof.remote_status).to eq( {is_valid: true, is_live: false} )
+      it 'calls out to keybase and returns the status fields as proof_valid and proof_live' do
+        expect(keybase_proof.remote_status).to eq( {proof_valid: true, proof_live: false} )
       end
     end
 

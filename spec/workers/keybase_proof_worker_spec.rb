@@ -7,7 +7,7 @@ describe KeybaseProofWorker do
   let(:proof) { Fabricate(:account_identity_proof) }
 
   describe 'perform' do
-    let(:remote_proof) { double(remote_status: {is_valid: true, is_live: false}) }
+    let(:remote_proof) { double(remote_status: {proof_valid: true, proof_live: false}) }
 
     before do
       allow(Keybase::Proof).to receive(:new).
@@ -27,8 +27,8 @@ describe KeybaseProofWorker do
       expect {
         described_class.new.perform(proof.id)
         proof.reload
-      }.to change { proof.is_valid }.from(nil).to(true)
-        .and change { proof.is_live }.from(nil).to(false)
+      }.to change { proof.proof_valid }.from(nil).to(true)
+        .and change { proof.proof_live }.from(nil).to(false)
     end
   end
 end

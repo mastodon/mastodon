@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2019_03_04_152020) do
     t.string "provider", null: false
     t.string "provider_username", null: false
     t.text "token", null: false
-    t.boolean "is_valid"
-    t.boolean "is_live"
+    t.boolean "proof_valid"
+    t.boolean "proof_live"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id", "provider", "provider_username"], name: "index_account_proofs_on_account_and_provider_and_username", unique: true

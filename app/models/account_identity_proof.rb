@@ -8,8 +8,8 @@
 #  provider          :string           not null
 #  provider_username :string           not null
 #  token             :text             not null
-#  is_valid          :boolean
-#  is_live           :boolean
+#  proof_valid       :boolean
+#  proof_live        :boolean
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
@@ -29,7 +29,7 @@ class AccountIdentityProof < ApplicationRecord
   validate :matches_keybase_validations, if: -> { keybase? }
 
   scope :keybase, -> { where(provider: PROVIDER_MAP[:keybase]) }
-  scope :active, -> { where(is_valid: true, is_live: true) }
+  scope :active, -> { where(proof_valid: true, proof_live: true) }
   scope :with_account_username, -> { joins(:account).select(:username, "#{AccountIdentityProof.table_name}.*") }
 
   def keybase?
@@ -47,8 +47,8 @@ class AccountIdentityProof < ApplicationRecord
       errors.add(:token, I18n.t('account_identity_proofs.keybase_errors.remote_invalid', kb_username: provider_username))
       return false
     end
-    self.is_live = nil
-    self.is_valid = true
+    self.proof_live = nil
+    self.proof_valid = true
     save
   end
 

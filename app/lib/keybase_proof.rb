@@ -31,7 +31,7 @@ module Keybase
         endpoint: '/_/api/1.0/sig/proof_live.json',
         query_params: to_keybase_params
       )
-      { is_valid: result.fetch(:proof_valid), is_live: result.fetch(:proof_live) }
+      { proof_valid: result.fetch(:proof_valid), proof_live: result.fetch(:proof_live) }
     end
 
     def profile_pic_url

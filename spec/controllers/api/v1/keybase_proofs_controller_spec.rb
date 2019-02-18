@@ -27,7 +27,7 @@ describe Api::V1::KeybaseProofsController do
       let(:kb_name1) { 'crypto_alice' }
 
       before do
-        Fabricate(:account_identity_proof, account: alice, is_valid: true, is_live: true,
+        Fabricate(:account_identity_proof, account: alice, proof_valid: true, proof_live: true,
           token: token1, provider_username: kb_name1)
       end
 
@@ -42,7 +42,7 @@ describe Api::V1::KeybaseProofsController do
         let(:kb_name2) { 'hidden_alice' }
 
         before do
-          Fabricate(:account_identity_proof, account: alice, is_valid: false, is_live: false,
+          Fabricate(:account_identity_proof, account: alice, proof_valid: false, proof_live: false,
             token: token2, provider_username: kb_name2)
         end
 
@@ -65,7 +65,7 @@ describe Api::V1::KeybaseProofsController do
         let(:kb_name1) { 'crypto_alice' }
 
         before do
-          Fabricate(:account_identity_proof, account: alice, is_valid: true, is_live: true,
+          Fabricate(:account_identity_proof, account: alice, proof_valid: true, proof_live: true,
             token: token1, provider_username: kb_name1)
           get :index, params: { username: alice.username }
         end
