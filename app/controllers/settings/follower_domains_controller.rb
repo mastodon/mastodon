@@ -7,7 +7,9 @@ class Settings::FollowerDomainsController < Settings::BaseController
 
   def show
     @account = current_account
-    @domains = current_account.followers.reorder(Arel.sql('MIN(follows.id) DESC')).group('accounts.domain').select('accounts.domain, count(accounts.id) as accounts_from_domain').page(params[:page]).per(10)
+    accounts = current_account.followers
+    accounts = accounts.matches_domain(params[:by_domain]) if params[:by_domain].present?
+    @domains = accounts.reorder(Arel.sql('MIN(follows.id) DESC')).group('accounts.domain').select('accounts.domain, count(accounts.id) as accounts_from_domain').page(params[:page]).per(10)
   end
 
   def update
