@@ -25,7 +25,7 @@ class KeybaseConfigSerializer < ActiveModel::Serializer
       # A full-black monochrome SVG. Should look good at 16px square. Expand all texts and strokes to shapes.
       svg_black: 'https://glsk.net/wp-content/themes/glsk_minimal_en/images/mastodon.svg',
       # A full color SVG. Should look good at 32px square. Expand all texts and strokes to shapes.
-      svg_full: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Mastodon_Logotype_%28Simple%29.svg',
+      svg_full: full_asset_url(asset_pack_path('logo.svg')),
     }
   end
 
@@ -34,11 +34,11 @@ class KeybaseConfigSerializer < ActiveModel::Serializer
   end
 
   def description
-    'Mastodon is a social network based on open web protocols and free, open-source software.'
+    I18n.t('about.about_mastodon_html')
   end
 
   def username
-    { min: 1, max: 30, re: "^[a-zA-Z0-9_]+([a-zA-Z0-9_\.-]+[a-zA-Z0-9_]+)?$" }
+    { min: 1, max: 30, re: Account::USERNAME_RE_STR }
   end
 
   def prefill_url
