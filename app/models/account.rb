@@ -48,8 +48,7 @@
 #
 
 class Account < ApplicationRecord
-  USERNAME_RE_STR = "[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i"
-  USERNAME_RE = Regexp.new(USERNAME_RE_STR)
+  USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
   MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
   MIN_FOLLOWERS_DISCOVERY = 10
 

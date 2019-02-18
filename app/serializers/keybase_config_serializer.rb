@@ -38,7 +38,8 @@ class KeybaseConfigSerializer < ActiveModel::Serializer
   end
 
   def username
-    { min: 1, max: 30, re: Account::USERNAME_RE_STR }
+    username_regex = Account::USERNAME_RE.inspect
+    { min: 1, max: 30, re: username_regex }
   end
 
   def prefill_url
@@ -48,25 +49,25 @@ class KeybaseConfigSerializer < ActiveModel::Serializer
       provider_username: '%{kb_username}',
       ua: '%{kb_ua}',
     }
-    CGI::unescape(new_settings_identity_proof_url(params))
+    CGI.unescape(new_settings_identity_proof_url(params))
   end
 
   def profile_url
-    CGI::unescape(short_account_url('%{username}'))
+    CGI.unescape(short_account_url('%{username}')) # rubocop:disable Style/FormatStringToken
   end
 
   def check_url
     check_uri = Addressable::URI.parse(api_v1_keybase_proofs_url)
-    check_uri.query_values = { username: '%{username}'}
-    CGI::unescape(check_uri.to_s)
+    check_uri.query_values = { username: '%{username}' }
+    CGI.unescape(check_uri.to_s)
   end
 
   def check_path
-    ["signatures"]
+    ['signatures']
   end
 
   def avatar_path
-    ["avatar"]
+    ['avatar']
   end
 
   def contact
