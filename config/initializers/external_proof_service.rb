@@ -2,7 +2,7 @@
 
 module ExternalProofService
   def self.my_domain
-    Rails.configuration.x.local_domain
+    Rails.env.development? ? 'mastodon.social' : Rails.configuration.x.local_domain
   end
 
   def self.my_domain_displayed
