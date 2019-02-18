@@ -1,4 +1,3 @@
----
 sq:
   about:
     about_this: Mbi
@@ -14,7 +13,7 @@ sq:
       not_a_product_title: Jeni një person, jo një produkt
       real_conversation_title: Ndërtuar për bashkëbisedim të njëmendtë
       within_reach_title: Përherë i kapshëm
-    generic_description: "%{domain} është një shërbyes te rrjeti"
+    generic_description: '%{domain} është një shërbyes te rrjeti'
     hosted_on: Mastodon i strehuar në %{domain}
     learn_more: Mësoni më tepër
     other_instances: Listë instancash
@@ -45,9 +44,12 @@ sq:
     reserved_username: Emri i përdoruesit është i ruajtur për dikë
     roles:
       admin: Përgjegjës
-      bot: Bot
+      bot: Robot
       moderator: Mod
     unfollow: Resht së ndjekuri
+    posts:
+      one: Mesazh
+    posts_with_replies: Mesazhe dhe përgjigje
   admin:
     account_actions:
       action: Kryeje veprimin
@@ -129,7 +131,7 @@ sq:
         moderator: Moderator
         staff: Staf
         user: Përdorues
-      search: Kërkoni
+      search: Kërkim
       show:
         created_reports: Ka bërë raporte
         targeted_reports: Raportuar nga të tjerë
@@ -147,29 +149,31 @@ sq:
       web: Web
     action_logs:
       actions:
-        change_email_user: "%{name} ndryshoi adresën email të përdoruesit %{target}"
-        confirm_user: "%{name} ripohoi adresën email të përdoruesit %{target}"
-        create_account_warning: "%{name} dërgoi një sinjalizim për %{target}"
-        create_custom_emoji: "%{name} ngarkoi emotikon të ri %{target}"
-        create_domain_block: "%{name} bllokoi përkatësinë %{target}"
-        create_email_domain_block: "%{name} e shtoi në listë bllokimesh përkatësinë %{target}"
-        demote_user: "%{name} zhgradoi përdoruesin %{target}"
-        destroy_custom_emoji: "%{name} asgjësoi emotikonin %{target}"
-        destroy_domain_block: "%{name} zhbllokoi përkatësinë %{target}"
-        disable_2fa_user: "%{name} çaktivizoi domosdoshmëritë për dyfaktorësh për përdoruesin %{target}"
-        disable_custom_emoji: "%{name} çaktivizoi emotikonin %{target}"
-        disable_user: "%{name} çaktivizoi hyrje për përdoruesin %{target}"
-        enable_custom_emoji: "%{name} aktivizoi emotikonin %{target}"
-        enable_user: "%{name} aktivizoi hyrje për përdoruesin %{target}"
-        promote_user: "%{name} gradoi përdoruesin %{target}"
-        remove_avatar_user: "%{name} hoqi avatarin e %{target}"
-        reopen_report: "%{name} rihapi raportin %{target}"
-        reset_password_user: "%{name} ricaktoi fjalëkalimi për përdoruesin %{target}"
-        silence_account: "%{name} heshtoi llogarinë e %{target}"
-        suspend_account: "%{name} pezulloi llogarinë e %{target}"
-        unsilence_account: "%{name} hoqi heshtimin për llogarinë %{target}"
-        unsuspend_account: "%{name} hoqi pezullimin për llogarinë e %{target}"
-        update_custom_emoji: "%{name} përditësoi emotikonin %{target}"
+        change_email_user: '%{name} ndryshoi adresën email të përdoruesit %{target}'
+        confirm_user: '%{name} ripohoi adresën email të përdoruesit %{target}'
+        create_account_warning: '%{name} dërgoi një sinjalizim për %{target}'
+        create_custom_emoji: '%{name} ngarkoi emotikon të ri %{target}'
+        create_domain_block: '%{name} bllokoi përkatësinë %{target}'
+        create_email_domain_block: '%{name} e shtoi në listë bllokimesh përkatësinë
+          %{target}'
+        demote_user: '%{name} zhgradoi përdoruesin %{target}'
+        destroy_custom_emoji: '%{name} asgjësoi emotikonin %{target}'
+        destroy_domain_block: '%{name} zhbllokoi përkatësinë %{target}'
+        disable_2fa_user: '%{name} çaktivizoi domosdoshmëritë për dyfaktorësh për
+          përdoruesin %{target}'
+        disable_custom_emoji: '%{name} çaktivizoi emotikonin %{target}'
+        disable_user: '%{name} çaktivizoi hyrje për përdoruesin %{target}'
+        enable_custom_emoji: '%{name} aktivizoi emotikonin %{target}'
+        enable_user: '%{name} aktivizoi hyrje për përdoruesin %{target}'
+        promote_user: '%{name} gradoi përdoruesin %{target}'
+        remove_avatar_user: '%{name} hoqi avatarin e %{target}'
+        reopen_report: '%{name} rihapi raportin %{target}'
+        reset_password_user: '%{name} ricaktoi fjalëkalimi për përdoruesin %{target}'
+        silence_account: '%{name} heshtoi llogarinë e %{target}'
+        suspend_account: '%{name} pezulloi llogarinë e %{target}'
+        unsilence_account: '%{name} hoqi heshtimin për llogarinë %{target}'
+        unsuspend_account: '%{name} hoqi pezullimin për llogarinë e %{target}'
+        update_custom_emoji: '%{name} përditësoi emotikonin %{target}'
     custom_emojis:
       by_domain: Përkatësi
       copy: Kopjoje
@@ -327,7 +331,8 @@ sq:
       media:
         title: Media
       no_media: S’ka media
-      no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
+      no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë
+        e tillë
       title: Gjendje llogarish
       with_media: Me media
     subscriptions:
@@ -339,7 +344,7 @@ sq:
       hidden: Fshehur
       hide: Fshihe prej drejtorie
       name: Hashtag
-      title: Hashtage
+      title: Hashtagë
       unhide: Shfaqe në drejtori
       visible: E dukshme
     title: Administrim
@@ -349,11 +354,11 @@ sq:
       edit: Përpunoni
   admin_mailer:
     new_report:
-      body: "%{reporter} ka raportuar %{target}"
+      body: '%{reporter} ka raportuar %{target}'
       subject: Raport i ri për %{instance} (#%{id})
   application_mailer:
     notification_preferences: Ndryshoni parapëlqime email-i
-    salutation: "%{name},"
+    salutation: '%{name},'
     settings: 'Ndryshoni parapëlqime email-i: %{link}'
     view: 'Parje:'
     view_profile: Shihni Profilin
@@ -373,7 +378,8 @@ sq:
     login: Hyni
     logout: Dalje
     migrate_account: Kaloni në një tjetër llogari
-    migrate_account_html: Nëse doni ta ridrejtoni këtë llogari te një tjetër, këtë mund <a href="%{path}">ta formësoni këtu</a>.
+    migrate_account_html: Nëse doni ta ridrejtoni këtë llogari te një tjetër, këtë
+      mund <a href="%{path}">ta formësoni këtu</a>.
     or: ose
     or_log_in_with: Ose bëni hyrjen me
     providers:
@@ -394,26 +400,26 @@ sq:
     title: Ndiq %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}o"
-      about_x_months: "%{count}mj"
-      about_x_years: "%{count}v"
-      almost_x_years: "%{count}v"
+      about_x_hours: '%{count}o'
+      about_x_months: '%{count}mj'
+      about_x_years: '%{count}v'
+      almost_x_years: '%{count}v'
       half_a_minute: Mu tani
-      less_than_x_minutes: "%{count}m"
+      less_than_x_minutes: '%{count}m'
       less_than_x_seconds: Mu tani
-      over_x_years: "%{count}v"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
-      x_months: "%{count}mj"
-      x_seconds: "%{count}s"
+      over_x_years: '%{count}v'
+      x_days: '%{count}d'
+      x_minutes: '%{count}m'
+      x_months: '%{count}mj'
+      x_seconds: '%{count}s'
   deletes:
     proceed: Fshini llogarinë
   directories:
     directory: Drejtori profilesh
     explore_mastodon: Eksploroni %{title}
     people:
-      one: "%{count} person"
-      other: "%{count} persona"
+      one: '%{count} person'
+      other: '%{count} persona'
   errors:
     '403': S’keni leje të shihni këtë faqe.
     '404': Faqja që po kërkonit, nuk ekziston.
@@ -469,7 +475,7 @@ sq:
     invited_by: 'Qetë ftuar nga:'
     max_uses:
       one: 1 përdorim
-      other: "%{count} përdorime"
+      other: '%{count} përdorime'
     max_uses_prompt: Pa kufi
     table:
       expires_at: Skadon më
@@ -490,10 +496,11 @@ sq:
       body: 'U përmendët nga %{name} në:'
       subject: U përmendët nga %{name}
       title: Përmendje e re
+      action: Përgjigjuni
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: '%n%u'
         units:
           billion: B
           million: M
@@ -501,7 +508,8 @@ sq:
           thousand: K
           trillion: T
   pagination:
-    truncate: "&hellip;"
+    truncate: '&hellip;'
+    next: Pasuesja
   preferences:
     languages: Gjuhë
     other: Tjetër
@@ -531,7 +539,7 @@ sq:
       uc_browser: UCBrowser
       weibo: Weibo
     current_session: Sesioni i tanishëm
-    description: "%{browser} në %{platform}"
+    description: '%{browser} në %{platform}'
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -565,11 +573,11 @@ sq:
   statuses:
     attached:
       image:
-        one: "%{count} figurë"
-        other: "%{count} figura"
+        one: '%{count} figurë'
+        other: '%{count} figura'
       video:
-        one: "%{count} video"
-        other: "%{count} video"
+        one: '%{count} video'
+        other: '%{count} video'
     content_warning: 'Sinjalizim lënde: %{warning}'
     show_more: Shfaq më tepër
     title: '%{name}: "%{quote}"'
@@ -584,8 +592,8 @@ sq:
     mastodon-light: Mastodon (light)
   time:
     formats:
-      default: "%d %b, %Y, %H:%M"
-      month: "%b %Y"
+      default: '%d %b, %Y, %H:%M'
+      month: '%b %Y'
   two_factor_authentication:
     disable: Çaktivizoje
     enable: Aktivizoje
@@ -610,3 +618,6 @@ sq:
     signed_in_as: 'I futur si:'
   verification:
     verification: Verifikim
+  stream_entries:
+    pinned: Mesazh i fiksuar
+    sensitive_content: Lëndë me spec
