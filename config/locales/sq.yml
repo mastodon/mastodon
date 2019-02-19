@@ -178,6 +178,7 @@ sq:
       promote: Promovojeni
       reset: Riktheje te parazgjedhjet
       silenced: E heshtuar
+      memorialize: Shndërroje në përkujtimore
     action_logs:
       actions:
         change_email_user: '%{name} ndryshoi adresën email të përdoruesit %{target}'
@@ -423,13 +424,21 @@ sq:
         title: Shfaq stemë stafi
       site_description:
         title: Përshkrim instance
+        desc_html: Paragraf hyrës te faqja ballore. Përshkruani ç’e bën special këtë
+          shërbyes Mastodon dhe çfarëdo gjëje tjetër të rëndësishme. Mund të përdorni
+          etiketa HTML, veçanërisht <code>&lt;a&gt;</code> dhe <code>&lt;em&gt;</code>.
       site_terms:
         title: Kushte vetjake shërbimi
+        desc_html: Mund të shkruani rregullat tuaja të privatësisë, kushtet e shërbimit
+          ose gjëra të tjera ligjore. Mund të përdorni etiketa HTML
       site_title: Emër instance
       thumbnail:
         title: Miniaturë instance
+        desc_html: I përdorur për paraparje përmes OpenGraph-it dhe API-t. Këshillohet
+          1200x630px
       timeline_preview:
         title: Paraparje rrjedhe kohore
+        desc_html: Shfaqni rrjedhë kohore publike te faqja ardhjesh
       title: Rregullime sajti
       activity_api_enabled:
         desc_html: Numër gjendjesh të postuara lokalisht, përdorues aktivë, dhe regjistrime
@@ -452,6 +461,9 @@ sq:
       show_known_fediverse_at_about_page:
         desc_html: Kur përdoret, do të shfaqë mesazhe prej krejt fediversit të njohur,
           si paraparje. Përndryshe do të shfaqë vetëm mesazhe vendore.
+        title: Shfaq te paraparja e rrjedhës kohore fedivers të njohur
+      site_description_extended:
+        title: Informacion i zgjeruar vetjak
     statuses:
       back_to_account: Mbrapsht te faqja e llogarisë
       batch:
@@ -470,6 +482,8 @@ sq:
       callback_url: URL Callback-u
       expires_in: Skadon më
       topic: Temë
+      confirmed: U ripohua
+      last_delivery: Dorëzimi e fundit
     tags:
       accounts: Llogari
       hidden: Fshehur
@@ -483,10 +497,13 @@ sq:
       add_new: Shtoni të ri
       delete: Fshije
       edit: Përpunoni
+      edit_preset: Përpunoni sinjalizim të paracaktuar
+      title: Administroni sinjalizime të paracaktuara
   admin_mailer:
     new_report:
       body: '%{reporter} ka raportuar %{target}'
       subject: Raport i ri për %{instance} (#%{id})
+      body_remote: Dikush nga %{domain} ka raportuar %{target}
   application_mailer:
     notification_preferences: Ndryshoni parapëlqime email-i
     salutation: '%{name},'
@@ -500,6 +517,8 @@ sq:
     invalid_url: URL-ja e dhënë është e pavlefshme
     regenerate_token: Riprodho token hyrjesh
     your_token: Token-i juaj për hyrje
+    token_regenerated: Token-i i hyrjeve u riprodhuan me sukses
+    warning: Hapni sytë me ato të dhëna. Mos ia jepni kurrë njeriu!
   auth:
     change_password: Fjalëkalim
     confirm_email: Ripohoni email-in
@@ -515,12 +534,17 @@ sq:
     or_log_in_with: Ose bëni hyrjen me
     providers:
       cas: CAS
+      saml: SAML
     register: Regjistrohuni
     register_elsewhere: Regjistrohuni në një tjetër shërbyes
     resend_confirmation: Ridërgo udhëzime ripohimi
     reset_password: Ricaktoni fjalëkalimin
     security: Siguri
     set_new_password: Caktoni fjalëkalim të ri
+    delete_account_html: Nëse dëshironi të fshihni llogarinë tuaj, mund <a href="%{path}">ta
+      bëni që këtu</a>. Do t’ju kërkohet ta ripohoni.
+    invalid_reset_password_token: Token-i i ricaktimit të fjalëkalimit është i pavlefshëm
+      ose ka skaduar. Ju lutemi, kërkoni një të ri.
   authorize_follow:
     already_following: E ndiqni tashmë këtë llogari
     follow: Ndiqeni
@@ -528,7 +552,10 @@ sq:
     following: 'Sukses! Tani e ndiqni:'
     post_follow:
       return: Shfaq profilin e përdoruesit
+      close: Ose, thjesht mund të mbyllni këtë dritare.
+      web: Kalo në web
     title: Ndiq %{acct}
+    error: Mjerisht, pati një gabim gjatë kërkimit të llogarisë së largët
   datetime:
     distance_in_words:
       about_x_hours: '%{count}o'
@@ -545,33 +572,52 @@ sq:
       x_seconds: '%{count}s'
   deletes:
     proceed: Fshini llogarinë
+    confirm_password: Jepni fjalëkalimin tuaj të tanishëm që të verifikohet identiteti
+      juaj
+    description_html: Kjo të heqë <strong>në mënyrë të përhershme, të pakthyeshme</strong>
+      lëndë nga llogaria juaj dhe do ta çaktivizojë atë. Emri juaj i përdoruesit do
+      të mbetet i rezervuar për të shmangur sozi të ardhme.
+    success_msg: Llogaria juaj u fshi me sukses
   directories:
     directory: Drejtori profilesh
     explore_mastodon: Eksploroni %{title}
     people:
       one: '%{count} person'
       other: '%{count} persona'
+    enabled: Gjendeni te lista e drejtorisë.
+    enabled_but_waiting: Keni zgjedhur të jeni pjesë e drejtorisë, por ende s’keni
+      numrin minimum të ndjekësve (%{min_followers}) për përfshirje në të.
+    explanation: Zbuloni përdorues bazuar në interesat e tyre
+    how_to_enable: S’keni zgjedhur të jeni i pranishëm te drejtoria. Mund ta bëni
+      më poshtë. Përdorni te teksti i jetëshkrimit tuaj hashtagë, për t’u përfshirë
+      nën hashtagë specifikë!
   errors:
     '403': S’keni leje të shihni këtë faqe.
     '404': Faqja që po kërkonit, nuk ekziston.
     '410': Faqja që po kërkonit, nuk ekziston më.
     '422':
       title: Verifikimi i sigurisë dështoi
+      content: Verifikimi i sigurisë dështoi. Mos i bllokoni gjë cookie-t?
     '500':
       title: Kjo faqe s’është e saktë
       content: Na ndjeni, diçka shkoi ters në anën tonë.
+    noscript_html: Që të përdorni aplikacionin web Mastodon, ju lutemi, aktivizoni
+      JavaScript-in. Ndryshe, provoni për Mastodon-in një nga <a href="%{apps_path}">aplikacionet
+      e brendshëm</a> të platformës tuaj.
   exports:
     archive_takeout:
       date: Datë
       size: Madhësi
       download: Shkarkoni arkivin tuaj
       request: Kërkoni arkivin tuaj
+      in_progress: Po përpilohet arkivi juaj…
     csv: CSV
     lists: Lista
     storage: Depozitim për media
     blocks: Bllokoni
     follows: Ndiqni
     mutes: Heshtoni
+    domain_blocks: Bllokime përkatësish
   filters:
     contexts:
       notifications: Njoftime
@@ -585,12 +631,25 @@ sq:
       title: Filtra
     new:
       title: Shtoni filtër të ri
+    errors:
+      invalid_context: Ose s’u dha fare, ose u dha kontekst i pavlefshëm
+      invalid_irreversible: Filtrim i pakthyeshëm funksionon vetëm me kontekste <em>home</em>
+        ose njoftimesh
   followers:
     domain: Përkatësi
     followers_count: Numër ndjekësish
     purge: Hiqe nga ndjekësit
     unlocked_warning_title: Llogaria juaj s’është kyçur
     lock_link: Kyçeni llogarinë tuaj
+    success:
+      one: Në përmbushje e sipër të bllokimit të butë të ndjekësve nga një përkatësi…
+      other: Në përmbushje e sipër të bllokimit të butë të ndjekësve nga %{count}
+        përkatësi…
+    true_privacy_html: Ju lutemi, kini parasysh se <strong>privatësi e vërtetë mund
+      të arrihet vetëm me fshehtëzim skaj-më-skaj</strong>.
+    unlocked_warning_html: Mund t’ju ndjekë cilido, që të shohë menjëherë gjendjet
+      tuaja private. %{lock_link} që të jeni në gjendje të shqyrtoni dhe hidhni poshtë
+      ndjekës.
   footer:
     developers: Zhvillues
     more: Më tepër…
@@ -599,11 +658,17 @@ sq:
     changes_saved_msg: Ndryshimet u ruajtën me sukses!
     copy: Kopjoje
     save_changes: Ruaji ndryshimet
+    validation_errors:
+      one: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni gabimin më poshtë
+      other: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni %{count} gabimet më
+        poshtë
   imports:
     types:
       blocking: Listë bllokimesh
       following: Listë ndjekjesh
+      muting: Listë heshtimesh
     upload: Ngarkoje
+    success: Të dhënat tuaja u ngarkuan me sukses dhe tani do të përpunohet në kohë
   invites:
     expires_in:
       '1800': 30 minuta
@@ -628,6 +693,8 @@ sq:
   migrations:
     proceed: Ruaje
     updated_msg: Rregullimi juaj për migrim llogarish u përditësua me sukses!
+    acct: emërpërdoruesi@përkatësi e llogarisë së re
+    currently_redirecting: 'Profili juaj është caktuar të ridrejtojë te:'
   moderation:
     title: Moderim
   notification_mailer:
@@ -635,6 +702,15 @@ sq:
       action: Shihini krejt njoftimet
       mention: '%{name} ju ka përmendur te:'
       title: Gjatë mungesës tuaj…
+      body: Ja një përmbledhje e shkurtër e mesazheve që keni humbur që nga vizita
+        juaj e fundit më %{since}
+      new_followers_summary:
+        one: Veç kësaj, u bëtë me një ndjekës të ri, teksa s’ishit këtu! Ëhë!
+        other: Veç kësaj, u bëtë me %{count} ndjekës të rinj, teksa s’ishit këtu!
+          Shkëlqyeshëm!
+      subject:
+        one: 1 njoftim i ri që nga vizita juaj e fundit 🐘
+        other: '%{count} 1 njoftime të reja që nga vizita juaj e fundit 🐘'
     favourite:
       title: E parapëlqyer e re
       body: 'Gjendja juaj u parapëlqye nga %{name}:'
@@ -695,6 +771,7 @@ sq:
       safari: Safari
       uc_browser: UCBrowser
       weibo: Weibo
+      alipay: Alipay
     current_session: Sesioni i tanishëm
     description: '%{browser} në %{platform}'
     ip: IP
@@ -713,6 +790,8 @@ sq:
       windows_phone: Windows Phone
     revoke: Shfuqizoje
     title: Sesione
+    explanation: Këta janë shfletuesit e futur në këtë çast te llogaria juaj Mastodon.
+    revoke_success: Sesioni u shfuqizua me sukses
   settings:
     authorized_apps: Aplikacione të autorizuara
     back: Mbrapsht te Mastodon
@@ -745,10 +824,19 @@ sq:
       private_long: Shfaqua vetëm ndjekësve
       public: Publike
       public_long: Mund ta shohë kushdo
+      unlisted: Jo në listë
+      unlisted_long: Mund ta shohë gjithkush, por s’gjendet në rrjedha publike kohore
     language_detection: Zbulo gjuhë vetvetiu
     open_in_web: Hape në internet
     over_character_limit: u tejkalua kufi shenjash prej %{max}
     sign_in_to_participate: Bëni hyrjen, që të merrni pjesë te biseda
+    disallowed_hashtags:
+      one: 'përmbante një hashtag të palejuar: %{tags}'
+      other: 'përmbante hashtagët e palejuar: %{tags}'
+    pin_errors:
+      limit: Keni fiksuar tashmë numrin maksimum të mesazheve
+      ownership: S’mund të fiksohen mesazhet e të tjerëve
+      private: S’mund të fiksohet mesazh jopublik
   themes:
     contrast: Me kontrast të lartë
     default: Mastodon
@@ -801,6 +889,14 @@ sq:
     sensitive_content: Lëndë me spec
   remote_follow:
     prompt: 'Do të ndiqni:'
+    acct: Jepni çiftin tuaj emërpërdoruesi@përkatësi prej të cilit doni që të veprohet
+    missing_resource: S’u gjet dot URL-ja e domosdoshme e ridrejtimit për llogarinë
+      tuaj
+    no_account_html: S’keni llogari? Mund të <a href='%{sign_up_path}' target='_blank'>regjistroheni
+      këtu</a>
+    reason_html: <strong>Pse është i domosdoshëm ky hap?</strong> <code>%{instance}</code>
+      mund të mos jetë shërbyesi ku jeni regjistruar, ndaj na duhet t’ju ridrejtojmë
+      së pari te shërbyesi juaj Home.
   remote_interaction:
     favourite:
       prompt: 'Doni të parapëlqeni këtë mesazh:'
@@ -808,3 +904,15 @@ sq:
       prompt: 'Doni t’i përgjigjeni këtij mesazhi:'
   scheduled_statuses:
     too_soon: Data e planifikimit duhet të bjerë në të ardhmen
+    over_daily_limit: Keni tejkaluar kufirin e %{limit} mesazheve të planifikuara
+      për atë ditë
+    over_total_limit: Keni tejkaluar kufirin prej %{limit} mesazhesh të planifikuara
+  in_memoriam_html: In Memoriam.
+  lists:
+    errors:
+      limit: Keni mbërritur në numrin maksimum të sasisë së listave
+  media_attachments:
+    validations:
+      images_and_video: S’mund të bashkëngjitet video te një gjendje që përmban figura
+        tashmë
+      too_many: S’mund të bashkëngjiten më shumë se 4 kartela
