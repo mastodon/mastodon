@@ -476,7 +476,7 @@
         opacity: 0;
         transition: opacity .1s ease;
 
-        input {
+        textarea {
           background: transparent;
           color: $secondary-text-color;
           border: 0;
@@ -638,7 +638,6 @@
   font-weight: 400;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: pre-wrap;
   padding-top: 2px;
   color: $primary-text-color;
 
@@ -662,6 +661,7 @@
 
   p {
     margin-bottom: 20px;
+    white-space: pre-wrap;
 
     &:last-child {
       margin-bottom: 0;
@@ -3056,14 +3056,41 @@ a.status-card.compact:hover {
   display: block;
   font-weight: 500;
   margin-bottom: 10px;
+}
 
-  .column-settings__hashtag-select {
+.column-settings__hashtags {
+  .column-settings__row {
+    margin-bottom: 15px;
+  }
+
+  .column-select {
     &__control {
       @include search-input();
     }
 
+    &__placeholder {
+      color: $dark-text-color;
+      padding-left: 2px;
+      font-size: 12px;
+    }
+
+    &__value-container {
+      padding-left: 6px;
+    }
+
     &__multi-value {
       background: lighten($ui-base-color, 8%);
+
+      &__remove {
+        cursor: pointer;
+
+        &:hover,
+        &:active,
+        &:focus {
+          background: lighten($ui-base-color, 12%);
+          color: lighten($darker-text-color, 4%);
+        }
+      }
     }
 
     &__multi-value__label,
@@ -3071,9 +3098,42 @@ a.status-card.compact:hover {
       color: $darker-text-color;
     }
 
-    &__indicator-separator,
+    &__clear-indicator,
     &__dropdown-indicator {
-      display: none;
+      cursor: pointer;
+      transition: none;
+      color: $dark-text-color;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: lighten($dark-text-color, 4%);
+      }
+    }
+
+    &__indicator-separator {
+      background-color: lighten($ui-base-color, 8%);
+    }
+
+    &__menu {
+      @include search-popout();
+      padding: 0;
+      background: $ui-secondary-color;
+    }
+
+    &__menu-list {
+      padding: 6px;
+    }
+
+    &__option {
+      color: $inverted-text-color;
+      border-radius: 4px;
+      font-size: 14px;
+
+      &--is-focused,
+      &--is-selected {
+        background: darken($ui-secondary-color, 10%);
+      }
     }
   }
 }
@@ -4867,34 +4927,7 @@ a.status-card.compact:hover {
 }
 
 .search-popout {
-  background: $simple-background-color;
-  border-radius: 4px;
-  padding: 10px 14px;
-  padding-bottom: 14px;
-  margin-top: 10px;
-  color: $light-text-color;
-  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
-
-  h4 {
-    text-transform: uppercase;
-    color: $light-text-color;
-    font-size: 13px;
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-
-  li {
-    padding: 4px 0;
-  }
-
-  ul {
-    margin-bottom: 10px;
-  }
-
-  em {
-    font-weight: 500;
-    color: $inverted-text-color;
-  }
+  @include search-popout();
 }
 
 noscript {
