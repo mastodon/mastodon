@@ -2,14 +2,9 @@
 
 class InitialStateSerializer < ActiveModel::Serializer
   attributes :meta, :compose, :accounts,
-             :media_attachments, :settings,
-             :max_toot_chars
+             :media_attachments, :settings
 
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
-
-  def max_toot_chars
-    StatusLengthValidator::MAX_CHARS
-  end
 
   def meta
     store = {
@@ -23,6 +18,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       invites_enabled: Setting.min_invite_role == 'user',
       mascot: instance_presenter.mascot&.file&.url,
       profile_directory: Setting.profile_directory,
+      max_toot_chars: instance_presenter.max_toot_chars
     }
 
     if object.current_account
