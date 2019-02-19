@@ -23,6 +23,10 @@ module ApplicationHelper
     Setting.open_registrations
   end
 
+  def max_toot_chars
+    Setting.max_toot_chars
+  end
+
   def open_deletion?
     Setting.open_deletion
   end
