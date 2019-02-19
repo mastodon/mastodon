@@ -27,7 +27,7 @@ sq:
     generic_description: '%{domain} është një shërbyes te rrjeti'
     hosted_on: Mastodon i strehuar në %{domain}
     learn_more: Mësoni më tepër
-    other_instances: Listë instancash
+    other_instances: Listë shërbyesish
     privacy_policy: Rregulla privatësie
     source_code: Kod burim
     status_count_after:
@@ -49,6 +49,9 @@ sq:
       <p>Përshkrimi i zgjeruar s’është sajuar ende.</p>
 
       '
+    closed_registrations: Hëpërhë regjistrimet në këtë shërbyes janë të mbyllura.
+      Por! Mund të gjeni një shërbyes tjetër për të krijuar një llogari dhe të mund
+      të përdorni andej pikërisht të njëjtin rrjet të këtushëm.
   accounts:
     choices_html: 'Zgjedhje të %{name}:'
     follow: Ndiqeni
@@ -401,7 +404,8 @@ sq:
         desc_html: E shfaqur në faqe të shumta. Këshillohet të paktën 293x205. Kur
           nuk caktohet gjë, përdoret simboli parazgjedhje
       peers_api_enabled:
-        title: Boto listë instancash të zbuluara
+        title: Boto listë shërbyesish të gjetur
+        desc_html: Emra përkatësish që ka hasur në fedivers ky shërbyes
       profile_directory:
         desc_html: Lejoju përdoruesve të jenë të zbulueshëm
         title: Aktivizo drejtori profilesh
@@ -423,7 +427,7 @@ sq:
         desc_html: Shfaq një stemë stafi në faqen e një përdoruesi
         title: Shfaq stemë stafi
       site_description:
-        title: Përshkrim instance
+        title: Përshkrim shërbyesi
         desc_html: Paragraf hyrës te faqja ballore. Përshkruani ç’e bën special këtë
           shërbyes Mastodon dhe çfarëdo gjëje tjetër të rëndësishme. Mund të përdorni
           etiketa HTML, veçanërisht <code>&lt;a&gt;</code> dhe <code>&lt;em&gt;</code>.
@@ -431,9 +435,9 @@ sq:
         title: Kushte vetjake shërbimi
         desc_html: Mund të shkruani rregullat tuaja të privatësisë, kushtet e shërbimit
           ose gjëra të tjera ligjore. Mund të përdorni etiketa HTML
-      site_title: Emër instance
+      site_title: Emër shërbyesi
       thumbnail:
-        title: Miniaturë instance
+        title: Miniaturë shërbyesi
         desc_html: I përdorur për paraparje përmes OpenGraph-it dhe API-t. Këshillohet
           1200x630px
       timeline_preview:
@@ -454,6 +458,8 @@ sq:
         username: Emër përdoruesi kontakti
       hero:
         title: Figurë heroi
+        desc_html: E shfaqur në faqen ballore. Këshillohet të paktën 600x100px. Kur
+          nuk caktohet gjë, përdoret miniaturë e shërbyesit
       preview_sensitive_media:
         desc_html: Në sajte të tjera, paraparjet e lidhjeve do të shfaqin një miniaturë,
           edhe pse medias i është vënë shenjë si rezervat
@@ -464,6 +470,14 @@ sq:
         title: Shfaq te paraparja e rrjedhës kohore fedivers të njohur
       site_description_extended:
         title: Informacion i zgjeruar vetjak
+        desc_html: Një vend i mirë për kodin e sjelljes në shërbyesin tuaj, rregulla,
+          udhëzime dhe gjëra të tjera që e bëjnë të veçantë këtë shërbyes. Mund të
+          përdorni etiketa HTML
+      site_short_description:
+        desc_html: E shfaqur në anështyllë dhe etiketa meta. Përshkruani në një paragraf
+          të vetëm ç’është Mastodon-i dhe ç’e bën special këtë shërbyes. Në u lëntë
+          i zbrazët, për shërbyesin do të përdoret përshkrimi parazgjedhje.
+        title: Përshkrim i shkurtër shërbyesi
     statuses:
       back_to_account: Mbrapsht te faqja e llogarisë
       batch:
@@ -545,6 +559,9 @@ sq:
       bëni që këtu</a>. Do t’ju kërkohet ta ripohoni.
     invalid_reset_password_token: Token-i i ricaktimit të fjalëkalimit është i pavlefshëm
       ose ka skaduar. Ju lutemi, kërkoni një të ri.
+    agreement_html: Duke klikuar mbi "Regjistrohuni" më poshtë, pajtoheni të ndiqni
+      <a href="%{rules_path}">rregullat e shërbyesit</a> dhe <a href="%{terms_path}">kushtet
+      tona të shërbimit</a>.
   authorize_follow:
     already_following: E ndiqni tashmë këtë llogari
     follow: Ndiqeni
@@ -578,6 +595,10 @@ sq:
       lëndë nga llogaria juaj dhe do ta çaktivizojë atë. Emri juaj i përdoruesit do
       të mbetet i rezervuar për të shmangur sozi të ardhme.
     success_msg: Llogaria juaj u fshi me sukses
+    warning_html: Garantohet vetëm fshirja e lëndës prej këtij shërbyesi të veçantë.
+      Lënda që është ndarë gjerësisht me të tjerët ka gjasa të lërë gjurmë. Shërbyesi
+      <em>offline</em> dhe shërbyesit që janë shpajtuar prej përditësimeve tuaja nuk
+      do të përditësojnë bazat e tyre të të dhënave.
   directories:
     directory: Drejtori profilesh
     explore_mastodon: Eksploroni %{title}
@@ -593,8 +614,8 @@ sq:
       nën hashtagë specifikë!
   errors:
     '403': S’keni leje të shihni këtë faqe.
-    '404': Faqja që po kërkonit, nuk ekziston.
-    '410': Faqja që po kërkonit, nuk ekziston më.
+    '404': Faqja që po kërkonit, s’gjendet këtu.
+    '410': Faqja që po kërkonit, s’gjendet më këtu.
     '422':
       title: Verifikimi i sigurisë dështoi
       content: Verifikimi i sigurisë dështoi. Mos i bllokoni gjë cookie-t?
@@ -611,6 +632,10 @@ sq:
       download: Shkarkoni arkivin tuaj
       request: Kërkoni arkivin tuaj
       in_progress: Po përpilohet arkivi juaj…
+      hint_html: Mund të kërkoni një arkiv të <strong>mesazheve tuaja dhe medias së
+        ngarkuar</strong> nga ju. Të dhënat e eksportuara do të jenë në formatin ActivityPub,
+        të lexueshme nga cilido software i përputhshëm me të. Mund të kërkoni arkiv
+        çdo 7 ditë.
     csv: CSV
     lists: Lista
     storage: Depozitim për media
@@ -650,6 +675,11 @@ sq:
     unlocked_warning_html: Mund t’ju ndjekë cilido, që të shohë menjëherë gjendjet
       tuaja private. %{lock_link} që të jeni në gjendje të shqyrtoni dhe hidhni poshtë
       ndjekës.
+    explanation_html: Nëse doni të garantoni privatësinë e gjendjeve tuaja, duhet
+      të jeni në dijeni se cilët ju ndjekin. <strong>Gjendjet tuaja private u dërgohen
+      krejt shërbyes ku keni ndjekës</strong>. Mund të donit t’i rishqyrtoni ato,
+      dhe të hiqni ndjekës, nëse nuk besoni se privatësia juaj respektohet nga stafi
+      apo software-i i këtyre shërbyesve.
   footer:
     developers: Zhvillues
     more: Më tepër…
@@ -667,8 +697,16 @@ sq:
       blocking: Listë bllokimesh
       following: Listë ndjekjesh
       muting: Listë heshtimesh
+      domain_blocking: Listë bllokimesh përkatësish
     upload: Ngarkoje
     success: Të dhënat tuaja u ngarkuan me sukses dhe tani do të përpunohet në kohë
+    modes:
+      merge: Përzieji
+      merge_long: Mbaji zërat ekzistues dhe shto të rinjtë
+      overwrite: Mbishkruaje
+      overwrite_long: Zëvendësoji zërat ekzistues me të rinjtë
+    preface: Mund të importoni të dhëna që keni eksportuar nga një shërbyes tjetër,
+      bie fjala, një listë të personave që ndiqni ose bllokoni.
   invites:
     expires_in:
       '1800': 30 minuta
@@ -690,6 +728,7 @@ sq:
     title: Ftoni njerëz
     delete: Çaktivizoje
     expired: Ka skaduar
+    prompt: Prodhoni dhe ndani me të tjerët lidhje për të akorduar hyrje në këtë shërbyes
   migrations:
     proceed: Ruaje
     updated_msg: Rregullimi juaj për migrim llogarish u përditësua me sukses!
@@ -807,6 +846,7 @@ sq:
     settings: Rregullime
     your_apps: Aplikacionet tuaja
     two_factor_authentication: Mirëfilltësim Dyfaktorësh
+    featured_tags: Hashtagë të zgjedhur
   statuses:
     attached:
       image:
@@ -838,9 +878,9 @@ sq:
       ownership: S’mund të fiksohen mesazhet e të tjerëve
       private: S’mund të fiksohet mesazh jopublik
   themes:
-    contrast: Me kontrast të lartë
-    default: Mastodon
-    mastodon-light: Mastodon (light)
+    contrast: Mastodon (Me shumë kontrast)
+    default: Mastodon (I errët)
+    mastodon-light: Mastodon (I çelët)
   time:
     formats:
       default: '%d %b, %Y, %H:%M'
@@ -1021,3 +1061,7 @@ sq:
       \n<p>Përshtatur fillimisht nga <a href=\"https://github.com/discourse/discourse\"\
       >rregullat e privatësisë në Discourse</a>.</p>\n"
     title: Kushte Shërbimi dhe Rregulla Privatësie te %{instance}
+  featured_tags:
+    add_new: Shtoni të re
+    errors:
+      limit: Keni përdorur tashmë si të zgjedhur sasinë maksimum të hashtagëve
