@@ -13,6 +13,17 @@ sq:
       not_a_product_title: Jeni një person, jo një produkt
       real_conversation_title: Ndërtuar për bashkëbisedim të njëmendtë
       within_reach_title: Përherë i kapshëm
+      humane_approach_body: Duke nxjerrë mësime nga dështimet e rrjeteve të tjera,
+        Mastodon-i synon të bëjë zgjedhje konceptuale etike, për të luftuar keqpërdorimin
+        e mediave shoqërore.
+      not_a_product_body: Mastodon-i s’është rrjet komercial. Pa reklama, pa monetarizim
+        të dhënash, pa gardhe. S’ka autoritet qendror.
+      real_conversation_body: Me 500 shenja në dorën tuaj për t’i përdorur dhe mbulim
+        për sinjalizime të imta lidhur me lëndën dhe median, mund të shpreheni ashtu
+        si dëshironi.
+      within_reach_body: Aplikacione të shumtë, për iOS, Android, dhe të tjera platforma,
+        falë një ekosistemi API miqësor ndaj zhvilluesve, ju lejojnë të mbani lidhje
+        me miqtë tuaj kudo.
     generic_description: '%{domain} është një shërbyes te rrjeti'
     hosted_on: Mastodon i strehuar në %{domain}
     learn_more: Mësoni më tepër
@@ -28,6 +39,16 @@ sq:
       one: përdorues
       other: përdorues
     what_is_mastodon: Ç’është Mastodon-i?
+    about_hashtag_html: Këto janë mesazhe publike të etiketuar me <strong>#%{hashtag}</strong>.
+      Mundeni të ndërveproni me ta, nëse keni një llogari kudo qoftë në fediverse.
+    about_mastodon_html: Mastodon-i është një rrjet shoqëror i bazuar në protokolle
+      web të hapur dhe në software të lirë, me burim të hapur. Është i decentralizuar,
+      si email-ii.
+    extended_description_html: '<h3>Një vend i mirë për rregulla</h3>
+
+      <p>Përshkrimi i zgjeruar s’është sajuar ende.</p>
+
+      '
   accounts:
     choices_html: 'Zgjedhje të %{name}:'
     follow: Ndiqeni
@@ -44,15 +65,21 @@ sq:
     reserved_username: Emri i përdoruesit është i ruajtur për dikë
     roles:
       admin: Përgjegjës
-      bot: Robot
+      bot: Bot
       moderator: Mod
     unfollow: Resht së ndjekuri
     posts:
       one: Mesazh
+      other: Mesazhe
     posts_with_replies: Mesazhe dhe përgjigje
+    link_verified_on: Pronësia e kësaj lidhjeje qe kontrolluar më {date}
+    moved_html: '%{name} ka kaluar te %{new_profile_link}:'
+    network_hidden: Këto të dhëna nuk mund të kihen
+    posts_tab_heading: Mesazhe
   admin:
     account_actions:
       action: Kryeje veprimin
+      title: Kryeni veprim moderimi te %{acct}
     account_moderation_notes:
       create: Lini një shënim
       created_msg: Shënimi i moderimit u krijua me sukses!
@@ -105,6 +132,7 @@ sq:
         all: Krejt
         suspended: Të pezulluara
         title: Moderim
+        silenced: U heshtua
       moderation_notes: Shënime moderimesh
       most_recent_activity: Veprimtaria më e freskët
       most_recent_ip: IP-ja më e freskët
@@ -131,11 +159,11 @@ sq:
         moderator: Moderator
         staff: Staf
         user: Përdorues
-      search: Kërkim
+      search: Kërkoni
       show:
-        created_reports: Ka bërë raporte
+        created_reports: Ka bërë raportime
         targeted_reports: Raportuar nga të tjerë
-      silence: Heshtje
+      silence: Heshtoje
       statuses: Gjendje
       subscribe: Pajtomë
       suspended: Të pezulluara
@@ -147,6 +175,9 @@ sq:
       username: Emër përdoruesi
       warn: Sinjalizoje
       web: Web
+      promote: Promovojeni
+      reset: Riktheje te parazgjedhjet
+      silenced: E heshtuar
     action_logs:
       actions:
         change_email_user: '%{name} ndryshoi adresën email të përdoruesit %{target}'
@@ -167,13 +198,25 @@ sq:
         enable_user: '%{name} aktivizoi hyrje për përdoruesin %{target}'
         promote_user: '%{name} gradoi përdoruesin %{target}'
         remove_avatar_user: '%{name} hoqi avatarin e %{target}'
-        reopen_report: '%{name} rihapi raportin %{target}'
+        reopen_report: '%{name} rihapi raportimin %{target}'
         reset_password_user: '%{name} ricaktoi fjalëkalimi për përdoruesin %{target}'
         silence_account: '%{name} heshtoi llogarinë e %{target}'
         suspend_account: '%{name} pezulloi llogarinë e %{target}'
         unsilence_account: '%{name} hoqi heshtimin për llogarinë %{target}'
         unsuspend_account: '%{name} hoqi pezullimin për llogarinë e %{target}'
         update_custom_emoji: '%{name} përditësoi emotikonin %{target}'
+        assigned_to_self_report: '%{name} ia kaloi raportimin %{target} në ngarkim
+          vetvetes'
+        destroy_email_domain_block: '%{name} e shtoi në listë të lejuarash përkatësinë
+          %{target}'
+        destroy_status: '%{name} hoqi gjendje nga %{target}'
+        memorialize_account: '%{name} e shndërroi llogarinë e %{target} në një faqe
+          përkujtimore'
+        resolve_report: '%{name} zgjidhi raportimin %{target}'
+        unassigned_report: '%{name} rihapi raportimin %{target}'
+        update_status: '%{name} përditësoi gjendjen me %{target}'
+      deleted_status: (fshiu gjendjen)
+      title: Auditim regjistri
     custom_emojis:
       by_domain: Përkatësi
       copy: Kopjoje
@@ -194,6 +237,9 @@ sq:
       update_failed_msg: S’u përditësua dot ai emotikon
       updated_msg: Emotikoni u përditësua me sukses!
       upload: Ngarkoje
+      copied_msg: Kopja vendore e emotikonëve u krijua me sukses
+      copy_failed_msg: S’u bë dot një kopje vendore e emotikoneve
+      shortcode_hint: Të paktën 2 shenja, vetëm shenja alfanumerike dhe nënvija
     dashboard:
       config: Formësim
       feature_invites: Lidhje ftesash
@@ -208,9 +254,13 @@ sq:
       title: Pult
       total_users: përdorues gjithsej
       trends: Tendenca
-      week_interactions: Ndërveprime këtë javë
+      week_interactions: ndërveprime këtë javë
       week_users_active: aktivë këtë javë
       week_users_new: përdorues këtë javë
+      feature_deletions: Fshirje llogarish
+      hidden_service: Federim me shërbime të fshehura
+      open_reports: raportime të hapur
+      recent_users: Përdorues së fundi
     domain_blocks:
       add_new: Shtoni bllokim të ri përkatësie
       created_msg: Bllokimi i përkatësisë tani po përpunohet
@@ -220,19 +270,47 @@ sq:
         create: Krijoni bllokim
         severity:
           noop: Asnjë
-          silence: Heshtje
+          silence: Heshtoji
           suspend: Pezulloje
-        title: Shtoni Bllokim i ri përkatësie
+          desc_html: <strong>Heshtja</strong> do t’i bëjë postimet e llogarisë të
+            padukshme për këdo që nuk i ndjek ato. <strong>Pezullimi</strong> do të
+            heqë krejt lëndën e llogarisë, media, dhe të dhëna profili. Përdorni <strong>Asnjë</strong>,
+            nëse thjesht doni të mos pranohen kartela media.
+        title: Bllokim i ri përkatësie
+        hint: Bllokimi i përkatësisë nuk do të pengojë krijim zërash llogarie te baza
+          e të dhënave, por do të aplikojë në mënyrë retroaktive dhe të vetvetishme
+          metoda specifike moderimi mbi këto llogari.
       show:
-        affected_accounts: Pat ndikim te një llogari në bazën e të dhënave
+        affected_accounts:
+          one: Pat ndikim te një llogari në bazën e të dhënave
+          other: Pat ndikim te %{count} llogari në bazën e të dhënave
         undo: Zhbëje
+        retroactive:
+          silence: Hiqu heshtimin krejt llogarive ekzistuese nga kjo përkatësi
+          suspend: Hiqu pezullimin krejt llogarive ekzistuese nga kjo përkatësi
+        title: Zhbëje bllokimin e përkatësisë për %{domain}
       undo: Zhbëje bllokimin e përkatësisë
+      reject_media: Mos prano kartela media
+      reject_media_hint: Heq kartela media të depozituara lokalisht dhe nuk pranon
+        të shkarkohen të tilla në të ardhmen. Pa peshë për pezullimet
+      reject_reports: Hidh tej raportimet
+      reject_reports_hint: Shpërfillini krejt raportimet e ardhura nga kjo përkatësi.
+        Pa peshë për pezullimet
+      rejecting_media: mospranim kartelash media
+      rejecting_reports: mospranim raportimesh
+      severity:
+        silence: e heshtuar
+        suspend: e pezulluar
     email_domain_blocks:
       add_new: Shtoni të ri
       delete: Fshije
       domain: Përkatësi
       new:
         create: Shtoni përkatësi
+        title: Zë i ri email në listë bllokimesh
+      created_msg: Përkatësia email u shtua me sukses te lista e bllokimeve
+      destroyed_msg: Përkatësia email u fshi me sukses nga lista e bllokimeve
+      title: Listë bllokimesh email-esh
     followers:
       back_to_account: Mbrapsht Te Llogaria
       title: Ndjekës të %{acct}
@@ -247,6 +325,9 @@ sq:
       total_followed_by_us: Ndjekur nga ne
       total_reported: Raportime rreth tyre
       total_storage: Bashkëngjitje media
+      known_accounts:
+        one: '%{count} llogari e njohur'
+        other: '%{count} llogari të njohura'
     invites:
       deactivate_all: Çaktivizoji krejt
       filter:
@@ -264,17 +345,26 @@ sq:
       inbox_url: URL releje
       pending: Në pritje të miratimit të relesë
       save_and_enable: Ruaje dhe aktivizoje
-      setup: Ujdisni një lidhje rele
+      setup: Ujdisni një lidhje releje
       status: Gjendje
       title: Rele
+      description_html: Një <strong>rele federimesh</strong> është një shërbyes ndërmjetës
+        që shkëmben vëllime të mëdha mesazhesh publike mes shërbyesve që janë pajtuar
+        në të dhe publikojnë në të. <strong>Mund t’u vijë në ndihmë shërbyesve të
+        vegjël dhe të mesëm të gjejnë lëndë nga fediversi</strong>, gjë që përndryshe
+        do të kërkonte që përdoruesit vendorë të ndiqnin dorazi persona të tjerë nëpër
+        shërbyes të largët.
+      enable_hint: Pasi të aktivizohet, shërbyesi juaj do të pajtohet te krejt mesazhet
+        publike prej kësaj releje, dhe do të fillojë të dërgojë në të mesazhet publike
+        të këtij shërbyesi.
     report_notes:
       created_msg: Shënimi i raportimit u krijua me sukses!
       destroyed_msg: Shënimi i raportimit u fshi me sukses!
     reports:
       account:
         note: shënim
-        report: Raportoje
-      action_taken_by: 'Veprimi i ndërmarrë nga '
+        report: raportojeni
+      action_taken_by: Veprimi i ndërmarrë nga
       are_you_sure: A jeni i sigurt?
       assign_to_self: Caktojani vetes
       comment:
@@ -287,6 +377,8 @@ sq:
         create_and_resolve: Zgjidhe me shënim
         create_and_unresolve: Rihape me shënim
         delete: Fshije
+        placeholder: Përshkruani ç’veprime janë ndërmarrë, ose çfarëdo përditësimi
+          tjetër që lidhet me të…
       reopen: Rihape raportimin
       report: 'Raportim #%{id}'
       reported_account: Llogari e raportuar
@@ -295,11 +387,18 @@ sq:
       title: Raportime
       unresolved: Të pazgjidhur
       updated_at: U përditësua më
+      assigned: Iu caktua moderator
+      resolved: I zgjidhur
+      resolved_msg: Raportimi u zgjidh me sukses!
+      unassign: Hiqja
     settings:
       custom_css:
         title: CSS Vetjake
+        desc_html: Modifikojeni pamjen me CSS të nagrkuar në çdo faqe
       mascot:
         title: Figurë simboli
+        desc_html: E shfaqur në faqe të shumta. Këshillohet të paktën 293x205. Kur
+          nuk caktohet gjë, përdoret simboli parazgjedhje
       peers_api_enabled:
         title: Boto listë instancash të zbuluara
       profile_directory:
@@ -307,7 +406,18 @@ sq:
         title: Aktivizo drejtori profilesh
       registrations:
         open:
-          title: Hap regjistrim
+          title: Hapni regjistrimin
+          desc_html: Lejo cilindo të krijojë llogari
+        closed_message:
+          desc_html: E shfaqur në faqen ballore, kur regjistrimet janë të mbyllura.
+            Mund të përdorni etiketa HTML
+          title: Mesazh mbylljeje regjistrimesh
+        deletion:
+          desc_html: Lejo këdo të fshijë llogarinë e vet
+          title: Hapni fshirje llogarie
+        min_invite_role:
+          disabled: Asnjë
+          title: Lejo vetëm me ftesa
       show_staff_badge:
         desc_html: Shfaq një stemë stafi në faqen e një përdoruesi
         title: Shfaq stemë stafi
@@ -321,6 +431,27 @@ sq:
       timeline_preview:
         title: Paraparje rrjedhe kohore
       title: Rregullime sajti
+      activity_api_enabled:
+        desc_html: Numër gjendjesh të postuara lokalisht, përdorues aktivë, dhe regjistrime
+          të reja në kosha javorë
+        title: Botoni statistika përmbledhëse mbi veprimtarinë e përdoruesve
+      bootstrap_timeline_accounts:
+        desc_html: Emrat e përdoruesve ndajini prej njëri-tjetrit me presje. Do të
+          funksionojë vetëm për llogari vendore dhe të pakyçura. Si parazgjedhje,
+          kur lihet e zbrazët, është krejt përgjegjësit vendorë.
+        title: Ndjekje parazgjedhje për përdorues të rinj
+      contact_information:
+        email: Email biznesi
+        username: Emër përdoruesi kontakti
+      hero:
+        title: Figurë heroi
+      preview_sensitive_media:
+        desc_html: Në sajte të tjera, paraparjet e lidhjeve do të shfaqin një miniaturë,
+          edhe pse medias i është vënë shenjë si rezervat
+        title: Shfaq në paraparje OpenGraph media me shenjën rezervat
+      show_known_fediverse_at_about_page:
+        desc_html: Kur përdoret, do të shfaqë mesazhe prej krejt fediversit të njohur,
+          si paraparje. Përndryshe do të shfaqë vetëm mesazhe vendore.
     statuses:
       back_to_account: Mbrapsht te faqja e llogarisë
       batch:
@@ -344,7 +475,7 @@ sq:
       hidden: Fshehur
       hide: Fshihe prej drejtorie
       name: Hashtag
-      title: Hashtagë
+      title: Hashtage
       unhide: Shfaqe në drejtori
       visible: E dukshme
     title: Administrim
@@ -428,17 +559,25 @@ sq:
       title: Verifikimi i sigurisë dështoi
     '500':
       title: Kjo faqe s’është e saktë
+      content: Na ndjeni, diçka shkoi ters në anën tonë.
   exports:
     archive_takeout:
       date: Datë
       size: Madhësi
+      download: Shkarkoni arkivin tuaj
+      request: Kërkoni arkivin tuaj
     csv: CSV
     lists: Lista
     storage: Depozitim për media
+    blocks: Bllokoni
+    follows: Ndiqni
+    mutes: Heshtoni
   filters:
     contexts:
       notifications: Njoftime
       thread: Biseda
+      home: Rrjedhë kohore vetjake
+      public: Rrjedha publike kohore
     edit:
       title: Përpunoni filtër
     index:
@@ -451,6 +590,7 @@ sq:
     followers_count: Numër ndjekësish
     purge: Hiqe nga ndjekësit
     unlocked_warning_title: Llogaria juaj s’është kyçur
+    lock_link: Kyçeni llogarinë tuaj
   footer:
     developers: Zhvillues
     more: Më tepër…
@@ -462,6 +602,8 @@ sq:
   imports:
     types:
       blocking: Listë bllokimesh
+      following: Listë ndjekjesh
+    upload: Ngarkoje
   invites:
     expires_in:
       '1800': 30 minuta
@@ -481,22 +623,36 @@ sq:
       expires_at: Skadon më
       uses: Përdorime
     title: Ftoni njerëz
+    delete: Çaktivizoje
+    expired: Ka skaduar
   migrations:
     proceed: Ruaje
+    updated_msg: Rregullimi juaj për migrim llogarish u përditësua me sukses!
   moderation:
     title: Moderim
   notification_mailer:
     digest:
       action: Shihini krejt njoftimet
+      mention: '%{name} ju ka përmendur te:'
+      title: Gjatë mungesës tuaj…
     favourite:
       title: E parapëlqyer e re
+      body: 'Gjendja juaj u parapëlqye nga %{name}:'
+      subject: '%{name} parapëlqeu gjendjen tuaj'
     follow:
       title: Ndjekës i ri
+      body: Tani ju ndjek %{name}!
+      subject: Tani ju ndjek %{name}
     mention:
       body: 'U përmendët nga %{name} në:'
       subject: U përmendët nga %{name}
       title: Përmendje e re
       action: Përgjigjuni
+    follow_request:
+      action: Administroni kërkesa ndjekjeje
+      body: '%{name} ka kërkuar t’ju ndjekë'
+      subject: 'Ndjekës pezull: %{name}'
+      title: Kërkesë e re ndjekjeje
   number:
     human:
       decimal_units:
@@ -518,6 +674,7 @@ sq:
   remote_unfollow:
     error: Gabim
     title: Titull
+    unfollowed: U hoq ndjekja
   sessions:
     activity: Veprimtaria e fundit
     browser: Shfletues
@@ -570,6 +727,7 @@ sq:
     preferences: Parapëlqime
     settings: Rregullime
     your_apps: Aplikacionet tuaja
+    two_factor_authentication: Mirëfilltësim Dyfaktorësh
   statuses:
     attached:
       image:
@@ -578,6 +736,7 @@ sq:
       video:
         one: '%{count} video'
         other: '%{count} video'
+      description: 'Bashkëngjitur: %{attached}'
     content_warning: 'Sinjalizim lënde: %{warning}'
     show_more: Shfaq më tepër
     title: '%{name}: "%{quote}"'
@@ -586,6 +745,10 @@ sq:
       private_long: Shfaqua vetëm ndjekësve
       public: Publike
       public_long: Mund ta shohë kushdo
+    language_detection: Zbulo gjuhë vetvetiu
+    open_in_web: Hape në internet
+    over_character_limit: u tejkalua kufi shenjash prej %{max}
+    sign_in_to_participate: Bëni hyrjen, që të merrni pjesë te biseda
   themes:
     contrast: Me kontrast të lartë
     default: Mastodon
@@ -598,6 +761,13 @@ sq:
     disable: Çaktivizoje
     enable: Aktivizoje
     enabled_success: Mirëfilltësimi dyfaktorësh u aktivizua me sukses
+    code_hint: Që të bëhet ripohimi, jepni kodin e prodhuar nga aplikacioni juaj i
+      mirëfilltësimeve
+    enabled: Mirëfilltësimi dyfaktorësh është i aktivizuar
+    generate_recovery_codes: Prodho kode rikthimesh
+    recovery_codes: Kopjeruani kode rikthimesh
+    recovery_codes_regenerated: Kodet e rikthimeve u riprodhuan me sukses
+    setup: Rregullojeni
   user_mailer:
     backup_ready:
       subject: Arkivi juaj është gati për shkarkim
@@ -606,12 +776,20 @@ sq:
         disable: Llogaria juaj %{acct} është ngrirë
         none: Sinjalizim për %{acct}
         silence: Llogaria juaj %{acct} është kufizuar
+        suspend: Llogaria juaj %{acct} është pezulluar
+      review_server_policies: Shqyrtoni rregullat e shërbyesit
+      title:
+        none: Sinjalizim
+        silence: Llogari e kufizuar
+        suspend: Llogari e pezulluar
     welcome:
       explanation: Ja disa ndihmëza, sa për t’ia filluar
       final_action: Filloni të postoni
       subject: Mirë se vini te Mastodon-i
       tips: Ndihmëza
       title: Mirë se vini, %{name}!
+      edit_profile_action: Rregullim profili
+      review_preferences_action: Ndryshoni parapëlqime
   users:
     invalid_email: Adresa email është e pavlefshme
     invalid_otp_token: Kod dyfaktorësh i pavlefshëm
@@ -621,3 +799,12 @@ sq:
   stream_entries:
     pinned: Mesazh i fiksuar
     sensitive_content: Lëndë me spec
+  remote_follow:
+    prompt: 'Do të ndiqni:'
+  remote_interaction:
+    favourite:
+      prompt: 'Doni të parapëlqeni këtë mesazh:'
+    reply:
+      prompt: 'Doni t’i përgjigjeni këtij mesazhi:'
+  scheduled_statuses:
+    too_soon: Data e planifikimit duhet të bjerë në të ardhmen
