@@ -11,7 +11,7 @@ module WellKnown
         links: [
           {
             rel: 'http://nodeinfo.diaspora.software/ns/schema/2.1',
-            href: node_info_20_url,
+            href: node_info_21_url,
           }
         ]
       }

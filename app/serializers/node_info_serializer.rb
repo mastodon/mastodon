@@ -61,7 +61,7 @@ class NodeInfoSerializer
       invitesEnabled: Setting.min_invite_role != 'admin',
     }
   end
-  
+
   def features
     ['mastodon_api', 'mastodon_api_streaming']
   end
