@@ -317,3 +317,58 @@
   }
 }
 
+.button.logo-button {
+  color: $white;
+
+  svg path:first-child {
+    fill: $white;
+  }
+}
+
+.public-layout {
+  .header,
+  .public-account-header,
+  .public-account-bio {
+    box-shadow: none;
+  }
+
+  .header {
+    background: lighten($ui-base-color, 12%);
+  }
+
+  .public-account-header {
+    &__image {
+      background: lighten($ui-base-color, 12%);
+
+      &::after {
+        box-shadow: none;
+      }
+    }
+
+    &__tabs {
+      &__name {
+        h1,
+        h1 small {
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+.account__section-headline a.active::after {
+  border-color: transparent transparent $white;
+}
+
+.hero-widget,
+.box-widget,
+.contact-widget,
+.landing-page__information.contact-widget,
+.moved-account-widget,
+.memoriam-widget,
+.activity-stream,
+.nothing-here,
+.directory__tag > a,
+.directory__tag > div {
+  box-shadow: none;
+}
