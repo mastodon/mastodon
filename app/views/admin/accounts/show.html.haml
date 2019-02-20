@@ -166,6 +166,12 @@
       - else
         = link_to t('admin.accounts.perform_full_suspension'), new_admin_account_action_path(@account.id, type: 'suspend'), class: 'button button--destructive' if can?(:suspend, @account)
 
+      - unless @account.local?
+        - if DomainBlock.where(domain: @account.domain).exists?
+          = link_to t('admin.domain_blocks.undo'), admin_instance_path(@account.domain), class: 'button'
+        - else
+          = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path(_domain: @account.domain), class: 'button button--destructive'
+
   %hr.spacer/
 
   - unless @warnings.empty?
