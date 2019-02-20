@@ -896,9 +896,29 @@ sq:
     recovery_codes: Kopjeruani kode rikthimesh
     recovery_codes_regenerated: Kodet e rikthimeve u riprodhuan me sukses
     setup: Rregullojeni
+    description_html: Nëse aktivizoni <strong>mirëfilltësimin dyfaktorësh</strong>,
+      hyrja do të kërkojë të jeni në zotërim të telefonit tuaj, i cili do të prodhojë
+      kod që duhet ta jepni.
+    instructions_html: <strong>Skanojeni këtë kod QR me Google Authenticator ose një
+      aplikacion TOTP të ngjashëm në telefonin tuaj</strong>. Tani e tutje, ai aplikacion
+      do të prodhojë kode të cilët duhet t’i jepni kur bëni hyrje.
+    lost_recovery_codes: Kodet e rikthimit ju lejojnë të rifitoni hyrje në llogarinë
+      tuaj, nëse humbni telefonin tuaj. Nëse keni humbur kodet tuaj të rikthimit,
+      mund t’i prodhoni sërish këtu. Kodet tuaj të vjetër të rikthimit do të bëhen
+      të pavlefshëm.
+    manual_instructions: 'Nëse s’skanoni dot kodin QR dhe ju duhet ta jepni dorazi,
+      ja e fshehta si tekst i thjeshtë:'
+    recovery_instructions_html: Në ndodhtë që të humbni hyrje te telefoni juaj, mund
+      të përdorni një nga kodet e rikthimit më poshtë, që të rifitoni hyrje te llogaria
+      juaj. <strong>Mbajini të parrezikuar kodet e rikthimeve</strong>. Për shembull,
+      mund t’i shtypni dhe t’i ruani tok me dokumente të tjerë të rëndësishëm.
+    wrong_code: Kodi i dhënë është i pavlefshëm! A janë të sakta koha e shërbyesit
+      dhe koha e pajisjes?
   user_mailer:
     backup_ready:
       subject: Arkivi juaj është gati për shkarkim
+      explanation: Kërkuat një kopjeruajtje të plotë të llogarisë tuaj Mastodon. E
+        keni gati për shkarkim!
     warning:
       subject:
         disable: Llogaria juaj %{acct} është ngrirë
@@ -910,6 +930,17 @@ sq:
         none: Sinjalizim
         silence: Llogari e kufizuar
         suspend: Llogari e pezulluar
+        disable: Llogari e ngrirë
+      explanation:
+        disable: Kur llogaria juaj është e ngrirë, të dhënat në llogarinë tuaj mbeten
+          të paprekura, por s’mund të kryeni ndonjë veprim, para se të shkyçet.
+        silence: Kur llogaria juaj është e kufizuar, mesazhet tuaj në këtë shërbyes
+          do t’i shohin vetëm personat që ju ndjekin tashmë. dhe mund të liheni jashtë
+          nga lista të ndryshme publike. Megjithatë, të tjerët prapë mund t’ju ndjekin
+          dorazi.
+        suspend: Llogaria juaj është pezulluar, dhe krejt mesazhet tuaja dhe kartelat
+          media të ngarkuara janë hequr në mënyrë të pakthyeshme nga ky shërbyes,
+          dhe nga shërbyesit te të cilët kishit ndjekës.
     welcome:
       explanation: Ja disa ndihmëza, sa për t’ia filluar
       final_action: Filloni të postoni
@@ -918,12 +949,45 @@ sq:
       title: Mirë se vini, %{name}!
       edit_profile_action: Rregullim profili
       review_preferences_action: Ndryshoni parapëlqime
+      edit_profile_step: Profilin mund ta personalizoni duke ngarkuar një avatar,
+        figurë kryesh, duke ndryshuar emrin tuaj në ekran, etj. Nëse dëshironi të
+        shqyrtoni ndjekës të rinj, përpara se të jenë lejuar t’ju ndjekin, mund të
+        kyçni llogarinë tuaj.
+      final_step: 'Filloni të postoni! Edhe pse pa ndjekës, mesazhet tuaj publike
+        mund të shihen nga të tjerët, për shembull te rrjedha kohore vendore dhe në
+        hashtagë. Mund të donit të prezantoni veten nën hashtagun #introductions.'
+      full_handle_hint: Kjo është ajo çka do të duhej t’u tregonit shokëve tuaj, që
+        të mund t’ju dërgojnë mesazhe ose t’ju ndjekin nga një shërbyes tjetër.
+      review_preferences_step: Mos harroni të caktoni parapëlqimet tuaja, fjala vjen,
+        ç’email-e dëshironi të merrni, ose çfarë shkalle privatësie do të donit të
+        kishin, si parazgjedhje, postimet tuaja. Nëse nuk ju merren mendtë nga rrotullimi,
+        mund të zgjidhni të aktivizoni vetëluajtje GIF-esh.
+      tip_federated_timeline: Rrjedha kohore e të federuarve është një pamje e fluksit
+        të rrjetit Mastodon. Por përfshin vetëm persona te të cilët janë pajtuar fqinjët
+        tuaj, pra s’është e plotë.
+      tip_following: Përgjegjësin e shërbyesit tuaj e ndiqni, si parazgjedhje. Për
+        të gjetur më shumë persona interesantë, shihni te rrjedha kohore vendore dhe
+        ajo e të federuarve.
+      tip_local_timeline: Rrjedha kohore vendore është një pamje e fluksit të njerëzve
+        në %{instance}. Këta janë fqinjët tuaj më të afërt!
+      tip_mobile_webapp: Nëse shfletuesi juaj celular ju ofron të shtohet Mastodon-i
+        te skena juaj e kreut, mund të merrni njoftime <em>push</em>. Nga shumë pikëpamje
+        vepron si një aplikacion i brendshëm i platformës së celularit!
   users:
     invalid_email: Adresa email është e pavlefshme
     invalid_otp_token: Kod dyfaktorësh i pavlefshëm
     signed_in_as: 'I futur si:'
+    follow_limit_reached: S’mund të ndiqni më tepër se %{limit} persona
+    otp_lost_help_html: Nëse humbi hyrjen te të dy, mund të lidheni me %{email}
+    seamless_external_login: Jeni futur përmes një shërbimi të jashtëm, ndaj s’ka
+      rregullime fjalëkalimi dhe email.
   verification:
     verification: Verifikim
+    explanation_html: 'Mundeni <strong>të verifikoni veten si i zoti i lidhjeve te
+      tejtëdhënat e profilit tuaj</strong>. Për këtë, sajti i lidhur duhet të përmbajë
+      një lidhje për te profili juaj Mastodon. Lidhje për te ajo <strong>duhet</strong>
+      të ketë një atribut <code>rel="me"</code>. Lënda tekst e lidhjes nuk ngre peshë.
+      Ja një shembull:'
   stream_entries:
     pinned: Mesazh i fiksuar
     sensitive_content: Lëndë me spec
