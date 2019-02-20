@@ -165,8 +165,8 @@ fa:
       search: جستجو
       shared_inbox_url: نشانی صندوق ورودی مشترک
       show:
-        created_reports: گزارش‌ها از طرف این حساب
-        targeted_reports: گزارش‌ها دربارهٔ این حساب
+        created_reports: گزارش‌های ثبت کرده
+        targeted_reports: گزارش‌های دیگران
       silence: بی‌صدا
       silenced: بی‌صداشده
       statuses: نوشته‌ها
@@ -184,6 +184,7 @@ fa:
       invited_by: دعوت‌شده از طرف
       joined: عضویت از
       remove_header: برداشتن تصویر زمینه
+      warn: هشدار
     action_logs:
       actions:
         assigned_to_self_report: '%{name} رسیدگی به گزارش %{target} را به عهده گرفت'
@@ -217,6 +218,7 @@ fa:
         unsuspend_account: '%{name} حساب کاربر %{target} را از تعلیق خارج کرد'
         update_custom_emoji: '%{name} شکلک %{target} را به‌روز کرد'
         update_status: '%{name} نوشتهٔ %{target} را به‌روز کرد'
+        create_account_warning: '%{name} هشداری برای %{target} فرستاد'
       deleted_status: (بوق پاک‌شده)
       title: سیاههٔ بازرسی
     custom_emojis:
@@ -265,8 +267,9 @@ fa:
       week_interactions: فعالیت‌ها در این هفته
       week_users_active: کاربران فعال هفتهٔ اخیر
       week_users_new: کاربران هفتهٔ اخیر
+      feature_profile_directory: فهرست گزیدهٔ کاربران
     domain_blocks:
-      add_new: افزودن تازه
+      add_new: افزودن مسدودسازی دامین تازه
       created_msg: مسدودکردن دامین در حال انجام است
       destroyed_msg: مسدودکردن دامین واگردانده شد
       domain: دامین
@@ -299,7 +302,12 @@ fa:
           suspend: معلق‌شدن همهٔ حساب‌های این دامین را لغو کن
         title: واگردانی مسدودسازی دامنه برای %{domain}
         undo: واگردانی
-      undo: واگردانی
+      undo: واگردانی مسدودسازی دامین
+      rejecting_media: رسانه‌ها نادیده گرفته می‌شوند
+      rejecting_reports: گزارش‌ها نادیده گرفته می‌شوند
+      severity:
+        silence: بی‌صداشده
+        suspend: معلق‌شده
     email_domain_blocks:
       add_new: افزودن تازه
       created_msg: مسدودسازی دامین ایمیل با موفقیت ساخته شد
@@ -312,6 +320,10 @@ fa:
       title: مسدودسازی دامین‌های ایمیل
     instances:
       title: سرورهای شناخته‌شده
+      moderation:
+        all: همه
+        limited: محدود
+        title: مدیریت
     invites:
       deactivate_all: غیرفعال‌کردن همه
       filter:
@@ -478,6 +490,9 @@ fa:
     account_actions:
       action: انجام تغییر
       title: انجام تغییر مدیریتی روی %{acct}
+    followers:
+      back_to_account: بازگشت به حساب
+      title: پیگیران %{acct}
   admin_mailer:
     new_report:
       body: کاربر %{reporter} کاربر %{target} را گزارش داد
