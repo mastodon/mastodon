@@ -23,7 +23,7 @@ class NodeInfoSerializer
     {
       users: {
         total: instance_presenter.user_count,
-        activeHalfyear: instance_presenter.active_count(timespan: (DateTime.now - 6.months)..DateTime.now),
+        activeHalfyear: instance_presenter.active_count(timespan: Time.zone.now - 6.months..Time.zone.now),
         activeMonth: instance_presenter.active_count,
       },
       localPosts: instance_presenter.status_count,
@@ -34,7 +34,7 @@ class NodeInfoSerializer
     {
       version: Mastodon::Version.to_s,
       name: 'mastodon',
-      repository: Mastodon::Version.source_base_url
+      repository: Mastodon::Version.source_base_url,
     }
   end
 
@@ -46,7 +46,7 @@ class NodeInfoSerializer
   end
 
   def protocols
-    ['ostatus', 'activitypub']
+    %w(ostatus activitypub)
   end
 
   def open_registrations
@@ -67,7 +67,7 @@ class NodeInfoSerializer
   end
 
   def features
-    ['mastodon_api', 'mastodon_api_streaming']
+    %w(mastodon_api mastodon_api_streaming)
   end
 
   def federation

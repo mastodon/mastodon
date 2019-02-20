@@ -13,7 +13,7 @@ class InstancePresenter
     to: Setting
   )
 
-  def active_count(timespan: ((DateTime.now - 1.month)..DateTime.now))
+  def active_count(timespan: Time.zone.now - 1.months..Time.zone.now)
     Status.select('distinct (account_id)').where(local: true, created_at: timespan).count
   end
 
