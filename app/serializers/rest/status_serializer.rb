@@ -39,7 +39,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def show_application?
-    object.account.user_shows_application? || (current_user? && current_user.account_id == object.account_id)
+    object.account.user&.setting_show_application || (current_user? && current_user.account_id == object.account_id)
   end
 
   def visibility
