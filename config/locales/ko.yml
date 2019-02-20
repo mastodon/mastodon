@@ -669,7 +669,13 @@ ko:
       blocking: 차단한 계정 목록
       following: 팔로우 중인 계정 목록
       muting: 뮤트 중인 계정 목록
+      domain_blocking: 도메인 차단 목록
     upload: 업로드
+    modes:
+      merge: 병합
+      merge_long: 기존 것을 그대로 둔 채 새로 추가
+      overwrite: 덮어쓰기
+      overwrite_long: 기존 것을 모두 지우고 새로 추가
   in_memoriam_html: 메모리엄에 있음.
   invites:
     delete: 비활성화
@@ -846,6 +852,7 @@ ko:
     settings: 설정
     two_factor_authentication: 2단계 인증
     your_apps: 애플리케이션
+    featured_tags: 추천 해시태그
   statuses:
     attached:
       description: '첨부: %{attached}'
@@ -1023,3 +1030,7 @@ ko:
       위해서는, 링크 된 웹사이트에서 당신의 마스토돈 프로필을 역으로 링크해야 합니다. 역링크는 <strong>반드시</strong> <code>rel="me"</code>
       속성을 가지고 있어야 합니다. 링크의 텍스트는 상관이 없습니다. 여기 예시가 있습니다:'
     verification: 검증
+  featured_tags:
+    add_new: 추가
+    errors:
+      limit: 이미 추천 해시태그의 개수가 최대입니다
