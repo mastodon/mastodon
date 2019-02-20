@@ -679,3 +679,247 @@ lt:
       other: Švelnaus sekėjų blokavimo procedūroje iš %{count} domenų...
     true_privacy_html: Prašau prisiminti, kad <strong> tikras privatumas gali būti
       pasiekamas tik su end-to-end užsifravimu</strong>.
+    unlocked_warning_html: Visi, kurie nori matyti Jūsų privatų statusą, gali jus
+      sekti. %{lock_link} kad galėtumėte peržiurėti ir pašalinti sekėjus.
+    unlocked_warning_title: Jūsų paskyra neužrakinta
+  footer:
+    developers: Programuotojai
+    more: Daugiau…
+    resources: Resursai
+  generic:
+    changes_saved_msg: Pakeitimai sėkmingai išsaugoti!
+    copy: Kopijuoti
+    save_changes: Išsaugoti pakeitimus
+    validation_errors:
+      one: Kažkas negerai! Peržiūrėk klaidas žemiau
+      other: Kažkas negerai! Prašau patikrinti %{count} klaidas žemiau
+  imports:
+    modes:
+      merge: Sulieti
+      merge_long: Išsaugoti esančius įrašus ir pridėti naujus
+      overwrite: Perrašyti
+      overwrite_long: Pakeisti senus įrašus naujais
+    preface: Jūs galite importuoti informaciją iš kito serverio, tokią kaip sąrašą
+      žmonių kuriuos sekate.
+    success: Jūsų informacija sėkmingai įkelta ir bus apdorota kaip įmanoma greičiau
+    types:
+      blocking: Blokuojamų sąrašas
+      domain_blocking: Domeno blokavimo sąrašas
+      following: Sekėju sąrašas
+      muting: Tildomų sąrašas
+    upload: Įkelti
+  in_memoriam_html: Atminimui.
+  invites:
+    delete: Deaktyvuoti
+    expired: Pasibaigęs
+    expires_in:
+      '1800': 30 minučių
+      '21600': 6 valandų
+      '3600': 1 valandos
+      '43200': 12 valandų
+      '604800': 1 savaitės
+      '86400': 1 dienos
+    expires_in_prompt: Niekada
+    generate: Generuoti
+    invited_by: 'Jus pakvietė:'
+    max_uses:
+      one: 1 naudojimas
+      other: '%{count} naudojimai'
+    max_uses_prompt: Be limito
+    prompt: Generuoti ir dalintis įrašais su kitais, kad sukurti prieigą prie serverio
+    table:
+      expires_at: Pasibaigia
+      uses: Naudojimai
+    title: Pakviesti žmones
+  lists:
+    errors:
+      limit: Jūs pasieketė maksimalų sąrašų skaičių
+  media_attachments:
+    validations:
+      images_and_video: Negalima pridėti video prie statuso, kuris jau turi nuotrauką
+      too_many: Negalima pridėti daugiau nei 4 failų
+  migrations:
+    acct: slapyvardis@domenas naujam vartotojui
+    currently_redirecting: 'Jūsų profilis nustatytas nukreipimui į:'
+    proceed: Išsaugoti
+    updated_msg: Jūsų paskyros migracijos nustatymai sėkmingai pakeisti!
+  moderation:
+    title: Moderacija
+  notification_mailer:
+    digest:
+      action: Peržiurėti visus pranešimus
+      body: Čia yra trumpa santrauka žinutės, kurią jūs praleidote nuo jūsų paskutinio
+        apsilankymo %{since}
+      mention: '%{name} paminėjo jus:'
+      new_followers_summary:
+        one: Beje, jūs gavote naują sekėją, kol buvote atsijungęs! Yay!
+        other: Beje, jūs gavote %{count} naujų sekėjų, nuo jūsų paskutinio apsilankymo!
+          Nuostabu!
+      subject:
+        one: 1 naujas pranešimas nuo paskutinio apsilankymo 🐘
+        other: '%{count} nauji pranešimai, nuo paskutinio apsilankymo🐘'
+      title: Kol jūsų nebuvo...
+    favourite:
+      body: 'Jūsų statusą pamėgo %{name}:'
+      subject: '%{name} pamėgo Jūsų statusą'
+      title: Naujas mėgstamas
+    follow:
+      body: '%{name} pradėjo jus sekti!'
+      subject: '%{name} pradėjo jus sekti'
+      title: Naujas sekėjas
+    follow_request:
+      action: Tvarkyti prašymus sekti
+      body: '%{name} nori tapti Jūsų sekėju'
+      subject: 'Laukiantis sprendimo sekėjas:  %{name}'
+      title: Naujas prašymas sekti
+    mention:
+      action: Atsakyti
+      body: 'Jus paminėjo %{name} pranešime:'
+      subject: Jus paminėjo %{name}
+      title: Naujas paminėjimas
+    reblog:
+      body: 'Jūsų statusą pakėlė %{name}:'
+      subject: '%{name} pakėlė Jūsų statusą'
+      title: Naujas pakėlimas
+  number:
+    human:
+      decimal_units:
+        format: '%n%u'
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+  pagination:
+    newer: Naujesnis
+    next: Kitas
+    older: Senesnis
+    prev: Ankstesnis
+    truncate: ''
+  preferences:
+    languages: Kalbos
+    other: Kita
+    publishing: Skelbiama
+    web: Tinklas
+  remote_follow:
+    acct: Įveskite Jūsų slapyvardį@domenas kurį norite naudoti
+    missing_resource: Jūsų paskyros nukreipimo URL nerasta
+    no_account_html: Neturite paskyros? Jūs galite<a href='%{sign_up_path}' target='_blank'>
+      užsiregistruoti čia </a>
+    proceed: Sekti
+    prompt: 'Jūs seksite:'
+    reason_html: <strong>Kodėl šis žingsnis svarbus?</strong><code>%{instance}</code>
+      gali būti serveris, kuriame jūs nesate užsiregistravęs, todėl mes turime jus
+      nukreipti į Jūsų namų serveri.
+  remote_interaction:
+    favourite:
+      proceed: Pamėgti
+      prompt: 'Jūs norite pamėgti šį toot''ą:'
+    reblog:
+      proceed: Pakelti
+      prompt: 'Jūs norite pakelti šį toot''ą:'
+    reply:
+      proceed: Atsakyti
+      prompt: 'Jūs norite atsakyti šiam toot''ui:'
+  remote_unfollow:
+    error: Klaida
+    title: Pavadinimas
+    unfollowed: Nebesekama
+  scheduled_statuses:
+    over_daily_limit: Jūs pasieketė limitą (%{limit}) galimų toot'ų per dieną
+    over_total_limit: Jūs pasieketė %{limit} limitą galimų toot'ų
+    too_soon: Planuota data privalo būti ateityje
+  sessions:
+    activity: Paskutinė veikla
+    browser: Naršyklė
+    browsers:
+      alipay: ''
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Nežinoma naršyklė
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Dabartinė sesija
+    description: '%{browser} ant %{platform}'
+    explanation: Čia rodomos web naršyklės prijungtos prie Jūsų Mastodon paskyros.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: nežinoma platforma
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Atšaukti
+    revoke_success: Sesija sėkmingai atšaukta
+    title: Sesijos
+  settings:
+    authorized_apps: Autorizuotos aplikacijos
+    back: Atgal į Mastodon
+    delete: Paskyros trynimas
+    development: Plėtojimas
+    edit_profile: Keisti profilį
+    export: Informacijos eksportas
+    featured_tags: Rodomi saitažodžiai(#)
+    followers: Autorizuoti sekėjai
+    import: Importuoti
+    migrate: Paskyros migracija
+    notifications: Pranešimai
+    preferences: Preferencijos
+    settings: Nustatymai
+    two_factor_authentication: Dviejų veiksnių autentikacija
+    your_apps: Jūsų aplikacijos
+  statuses:
+    attached:
+      description: 'Pridėta: %{attached}'
+      image:
+        one: '%{count} nuotrauka'
+        other: '%{count} nuotraukos'
+      video:
+        one: '%{count} video'
+        other: '%{count} vaizdo įrašai'
+    boosted_from_html: Pakelta iš %{acct_link}
+    content_warning: 'Turinio įspėjimas: %{warning}'
+    disallowed_hashtags:
+      one: 'rastas neleistinas saitažodis : %{tags}'
+      other: 'rasti neleistini saitąžodžiai: %{tags}'
+    language_detection: Automatiškai nustatyti kalbą
+    open_in_web: Atidaryti naudojan Web
+    over_character_limit: pasiektas %{max} simbolių limitas
+    pin_errors:
+      limit: Jūs jau prisegėte maksimalų toot'ų skaičų
+      ownership: Kitų vartotojų toot'ai negali būti prisegti
+      private: Ne vieši toot'ai negali būti prisegti
+      reblog: Pakeltos žinutės negali būti prisegtos
+    show_more: Daugiau
+    sign_in_to_participate: Prisijunkite jeigu norite dalyvauti pokalbyje
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      private: Tik sekėjams
+      private_long: Rodyti tik sekėjams
+      public: Viešas
+      public_long: Matyti gali visi
+      unlisted: Neįtrauktas į sąrašus
+      unlisted_long: Matyti gali visi, tačiau nėra įtraukta į viešas laiko juostas
+  stream_entries:
+    pinned: Prisegtas toot'as
+    reblogged: pakeltas
+    sensitive_content: Jautrus turinys
