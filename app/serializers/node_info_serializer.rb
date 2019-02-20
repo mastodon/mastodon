@@ -1,22 +1,13 @@
 # frozen_string_literal: true
 
-class NodeInfoSerializer
+class NodeInfoSerializer < ActiveModel::Serializer
   include RoutingHelper
 
-  def node_info
-    {
-      version: version,
-      usage: usage,
-      software: software,
-      services: services,
-      protocols: protocols,
-      openRegistrations: open_registrations,
-      metaData: meta_data,
-    }
-  end
+  attributes :version, :usage, :software, :services,
+             :protocols, :openRegistrations, :metaData
 
   def version
-    '2.1'
+    object.adapter.serializer.instance_options[:version]
   end
 
   def usage
@@ -31,11 +22,12 @@ class NodeInfoSerializer
   end
 
   def software
-    {
+    sw = {
       version: Mastodon::Version.to_s,
       name: 'mastodon',
-      repository: Mastodon::Version.source_base_url,
     }
+    sw[:repository] = Mastodon::Version.source_base_url if version == '2.1'
+    sw
   end
 
   def services
@@ -49,11 +41,11 @@ class NodeInfoSerializer
     %w(ostatus activitypub)
   end
 
-  def open_registrations
+  def openRegistrations
     Setting.open_registrations
   end
 
-  def meta_data
+  def metaData
     {
       nodeName: instance_presenter.site_title,
       nodeDescription: instance_presenter.site_description,
