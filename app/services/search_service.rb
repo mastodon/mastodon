@@ -6,7 +6,7 @@ class SearchService < BaseService
     @account = account
     @options = options
     @limit   = limit.to_i
-    @offset  = options[:offset].to_i
+    @offset  = options[:type].blank? ? 0 : options[:offset].to_i
     @resolve = options[:resolve] || false
 
     default_results.tap do |results|
