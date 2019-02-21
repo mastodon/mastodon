@@ -33,23 +33,18 @@ class SearchService < BaseService
   end
 
   def perform_statuses_search!
-    definition = StatusesIndex.query do |q|
-      q.filtered do |fq|
-        fq.filter do |f|
-          f.term searchable_by: @account.id
+    definition = StatusesIndex.filter(term: { searchable_by: @account.id })
+                              .query(multi_match: { type: 'most_fields', query: @query, operator: 'and', fields: %w(text text.stemmed) })
 
-          f.term account_id: @options[:account_id] if @options[:account_id].present?
+    if @options[:account_id].present?
+      definition = definition.filter(term: { account_id: @options[:account_id] })
+    end
 
-          f.range :_id do |r|
-            r.gt @options[:min_id] if @options[:min_id].present?
-            r.lt @options[:max_id] if @options[:max_id].present?
-          end
-        end
-
-        fq.query do |qq|
-          qq.multi_match type: 'most_fields', query: @query, operator: 'and', fields: %w(text text.stemmed)
-        end
-      end
+    if @options[:min_id].present? || @options[:max_id].present?
+      range      = {}
+      range[:gt] = @options[:min_id].to_i if @options[:min_id].present?
+      range[:lt] = @options[:max_id].to_i if @options[:max_id].present?
+      definition = definition.filter(range: { id: range })
     end
 
     results             = definition.limit(@limit).offset(@offset).objects.compact
