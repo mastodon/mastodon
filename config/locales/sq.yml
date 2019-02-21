@@ -184,6 +184,7 @@ sq:
       reset: Riktheje te parazgjedhjet
       silenced: E heshtuar
       memorialize: Shndërroje në përkujtimore
+      shared_inbox_url: URL kutie të përbashkët mesazesh
     action_logs:
       actions:
         change_email_user: '%{name} ndryshoi adresën email të përdoruesit %{target}'
@@ -246,6 +247,8 @@ sq:
       copied_msg: Kopja vendore e emotikonëve u krijua me sukses
       copy_failed_msg: S’u bë dot një kopje vendore e emotikoneve
       shortcode_hint: Të paktën 2 shenja, vetëm shenja alfanumerike dhe nënvija
+      listed: Në listë
+      unlisted: Hequr prej liste
     dashboard:
       config: Formësim
       feature_invites: Lidhje ftesash
@@ -267,7 +270,7 @@ sq:
       hidden_service: Federim me shërbime të fshehura
       open_reports: raportime të hapur
       recent_users: Përdorues së fundi
-      backlog: Punë të prapambetura
+      backlog: punë të prapambetura
     domain_blocks:
       add_new: Shtoni bllokim të ri përkatësie
       created_msg: Bllokimi i përkatësisë tani po përpunohet
@@ -335,12 +338,14 @@ sq:
       known_accounts:
         one: '%{count} llogari e njohur'
         other: '%{count} llogari të njohura'
+      delivery_available: Ka shpërndarje të mundshme
     invites:
       deactivate_all: Çaktivizoji krejt
       filter:
         all: Krejt
-        expired: Ka skaduar
+        expired: I skaduar
         title: Filtër
+        available: I përdorshëm
       title: Ftesa
     relays:
       add_new: Shtoni rele të re
@@ -501,6 +506,7 @@ sq:
       topic: Temë
       confirmed: U ripohua
       last_delivery: Dorëzimi e fundit
+      title: WebSub
     tags:
       accounts: Llogari
       hidden: Fshehur
@@ -599,10 +605,11 @@ sq:
       të mbetet i rezervuar për të shmangur sozi të ardhme.
     success_msg: Llogaria juaj u fshi me sukses
     warning_html: Garantohet vetëm fshirja e lëndës prej këtij shërbyesi të veçantë.
-      Lënda që është ndarë gjerësisht me të tjerët ka gjasa të lërë gjurmë. Shërbyesi
-      <em>offline</em> dhe shërbyesit që janë shpajtuar prej përditësimeve tuaja nuk
-      do të përditësojnë bazat e tyre të të dhënave.
+      Lënda që është ndarë gjerësisht me të tjerët ka gjasa të lërë gjurmë. Shërbyesit
+      <em>offline</em> dhe shërbyesit që janë shpajtuar prej përditësimeve tuaja,
+      s’do t’i përditësojnë bazat e tyre të të dhënave.
     bad_password_msg: Provë e bukur, trimosha! Fjalëkalim i pasaktë
+    warning_title: Mund të ketë lëndë të përhapur
   directories:
     directory: Drejtori profilesh
     explore_mastodon: Eksploroni %{title}
@@ -629,6 +636,7 @@ sq:
     noscript_html: Që të përdorni aplikacionin web Mastodon, ju lutemi, aktivizoni
       JavaScript-in. Ndryshe, provoni për Mastodon-in një nga <a href="%{apps_path}">aplikacionet
       e brendshëm</a> të platformës tuaj.
+    '429': Shumë kërkesa të bëra brenda një intervali të dhënë
   exports:
     archive_takeout:
       date: Datë
@@ -788,7 +796,10 @@ sq:
           trillion: T
   pagination:
     truncate: '&hellip;'
-    next: Pasuesja
+    next: Pasuesi
+    newer: Më të ri
+    older: Më të vjetër
+    prev: I mëparshmi
   preferences:
     languages: Gjuhë
     other: Tjetër
@@ -984,6 +995,7 @@ sq:
       tip_mobile_webapp: Nëse shfletuesi juaj celular ju ofron të shtohet Mastodon-i
         te skena juaj e kreut, mund të merrni njoftime <em>push</em>. Nga shumë pikëpamje
         vepron si një aplikacion i brendshëm i platformës së celularit!
+      full_handle: Identifikuesi juaj i plotë
   users:
     invalid_email: Adresa email është e pavlefshme
     invalid_otp_token: Kod dyfaktorësh i pavlefshëm
@@ -1013,13 +1025,17 @@ sq:
     reason_html: <strong>Pse është i domosdoshëm ky hap?</strong> <code>%{instance}</code>
       mund të mos jetë shërbyesi ku jeni regjistruar, ndaj na duhet t’ju ridrejtojmë
       së pari te shërbyesi juaj Home.
+    proceed: Ripohoni ndjekjen
   remote_interaction:
     favourite:
       prompt: 'Doni të parapëlqeni këtë mesazh:'
+      proceed: Ripohoni parapëlqimin
     reply:
       prompt: 'Doni t’i përgjigjeni këtij mesazhi:'
+      proceed: Ripohoni përgjigjen
     reblog:
       prompt: 'Doni të përforconi këtë mesazh:'
+      proceed: Ripohoni përforcimin
   scheduled_statuses:
     too_soon: Data e planifikimit duhet të bjerë në të ardhmen
     over_daily_limit: Keni tejkaluar kufirin e %{limit} mesazheve të planifikuara
