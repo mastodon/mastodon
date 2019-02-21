@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ColumnHeader from '../../../components/column_header';
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
+import { injectIntl, defineMessages } from 'react-intl';
 
 const messages = defineMessages({
   profile: { id: 'column_header.profile', defaultMessage: 'Profile' },
@@ -22,8 +22,8 @@ class ProfileColumnHeader extends React.PureComponent {
         icon='user-circle'
         title={intl.formatMessage(messages.profile)}
         showBackButton
-      >
-      </ColumnHeader>
-    )
+      />
+    );
   }
+
 }
