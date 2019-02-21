@@ -16,6 +16,9 @@
       = f.input :site_contact_email, wrapper: :with_label, label: t('admin.settings.contact_information.email')
 
   .fields-group
+    = f.input :max_toot_chars, as: :integer, wrapper: :with_label, label: t('admin.settings.max_toot_chars.title'), hint: t('admin.settings.max_toot_chars.desc_html')
+
+  .fields-group
     = f.input :site_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_description.title'), hint: t('admin.settings.site_description.desc_html'), input_html: { rows: 4 }
 
   .fields-group

@@ -1,19 +1,17 @@
 # frozen_string_literal: true
 
 class StatusLengthValidator < ActiveModel::Validator
-  MAX_CHARS = 500
-
   def validate(status)
     return unless status.local? && !status.reblog?
 
     @status = status
-    status.errors.add(:text, I18n.t('statuses.over_character_limit', max: MAX_CHARS)) if too_long?
+    status.errors.add(:text, I18n.t('statuses.over_character_limit', max: Setting.max_toot_chars)) if too_long?
   end
 
   private
 
   def too_long?
-    countable_length > MAX_CHARS
+    countable_length > Setting.max_toot_chars.to_i
   end
 
   def countable_length
