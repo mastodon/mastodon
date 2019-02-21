@@ -6,7 +6,7 @@ import { fetchAccount } from '../../actions/accounts';
 import { expandAccountMediaTimeline } from '../../actions/timelines';
 import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
-import ColumnBackButton from '../../components/column_back_button';
+import ProfileColumnHeader from '../account/components/profile_column_header';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { getAccountGallery } from '../../selectors';
 import MediaItem from './components/media_item';
@@ -109,7 +109,7 @@ class AccountGallery extends ImmutablePureComponent {
 
     return (
       <Column>
-        <ColumnBackButton />
+        <ProfileColumnHeader />
 
         <ScrollContainer scrollKey='account_gallery' shouldUpdateScroll={shouldUpdateScroll}>
           <div className='scrollable scrollable--flex' onScroll={this.handleScroll}>
