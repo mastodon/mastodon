@@ -79,6 +79,8 @@ sq:
     moved_html: '%{name} ka kaluar te %{new_profile_link}:'
     network_hidden: Këto të dhëna nuk mund të kihen
     posts_tab_heading: Mesazhe
+    pin_errors:
+      following: Duhet ta ndiqni tashmë personin që doni të pasqyroni
   admin:
     account_actions:
       action: Kryeje veprimin
@@ -265,6 +267,7 @@ sq:
       hidden_service: Federim me shërbime të fshehura
       open_reports: raportime të hapur
       recent_users: Përdorues së fundi
+      backlog: Punë të prapambetura
     domain_blocks:
       add_new: Shtoni bllokim të ri përkatësie
       created_msg: Bllokimi i përkatësisë tani po përpunohet
@@ -599,6 +602,7 @@ sq:
       Lënda që është ndarë gjerësisht me të tjerët ka gjasa të lërë gjurmë. Shërbyesi
       <em>offline</em> dhe shërbyesit që janë shpajtuar prej përditësimeve tuaja nuk
       do të përditësojnë bazat e tyre të të dhënave.
+    bad_password_msg: Provë e bukur, trimosha! Fjalëkalim i pasaktë
   directories:
     directory: Drejtori profilesh
     explore_mastodon: Eksploroni %{title}
@@ -768,6 +772,10 @@ sq:
       body: '%{name} ka kërkuar t’ju ndjekë'
       subject: 'Ndjekës pezull: %{name}'
       title: Kërkesë e re ndjekjeje
+    reblog:
+      body: 'Gjendja juaj u përforcua nga %{name}:'
+      subject: '%{name} përforcoi gjendjen tuaj'
+      title: Përforcim i ri
   number:
     human:
       decimal_units:
@@ -877,6 +885,8 @@ sq:
       limit: Keni fiksuar tashmë numrin maksimum të mesazheve
       ownership: S’mund të fiksohen mesazhet e të tjerëve
       private: S’mund të fiksohet mesazh jopublik
+      reblog: S’mund të fiksohet një përforcim
+    boosted_from_html: Përforcuar nga %{acct_link}
   themes:
     contrast: Mastodon (Me shumë kontrast)
     default: Mastodon (I errët)
@@ -919,6 +929,7 @@ sq:
       subject: Arkivi juaj është gati për shkarkim
       explanation: Kërkuat një kopjeruajtje të plotë të llogarisë tuaj Mastodon. E
         keni gati për shkarkim!
+      title: Marrje arkivi me vete
     warning:
       subject:
         disable: Llogaria juaj %{acct} është ngrirë
@@ -991,6 +1002,7 @@ sq:
   stream_entries:
     pinned: Mesazh i fiksuar
     sensitive_content: Lëndë me spec
+    reblogged: të përforcuara
   remote_follow:
     prompt: 'Do të ndiqni:'
     acct: Jepni çiftin tuaj emërpërdoruesi@përkatësi prej të cilit doni që të veprohet
@@ -1006,6 +1018,8 @@ sq:
       prompt: 'Doni të parapëlqeni këtë mesazh:'
     reply:
       prompt: 'Doni t’i përgjigjeni këtij mesazhi:'
+    reblog:
+      prompt: 'Doni të përforconi këtë mesazh:'
   scheduled_statuses:
     too_soon: Data e planifikimit duhet të bjerë në të ardhmen
     over_daily_limit: Keni tejkaluar kufirin e %{limit} mesazheve të planifikuara
