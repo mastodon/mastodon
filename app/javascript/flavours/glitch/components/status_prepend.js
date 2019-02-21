@@ -15,7 +15,7 @@ export default class StatusPrepend extends React.PureComponent {
 
   handleClick = (e) => {
     const { account, parseClick } = this.props;
-    parseClick(e, `/accounts/${+account.get('id')}`);
+    parseClick(e, `/accounts/${account.get('id')}`);
   }
 
   Message = () => {
