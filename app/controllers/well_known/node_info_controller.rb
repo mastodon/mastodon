@@ -11,7 +11,7 @@ module WellKnown
     end
 
     def show
-      render json: ActiveModelSerializers::SerializableResource.new({}, serializer: NodeInfoSerializer, version: "2.#{ params[:format] }")
+      render json: ActiveModelSerializers::SerializableResource.new({}, serializer: NodeInfoSerializer)
     end
   end
 end

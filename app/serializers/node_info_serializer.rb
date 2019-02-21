@@ -7,7 +7,7 @@ class NodeInfoSerializer < ActiveModel::Serializer
              :protocols, :openRegistrations, :metaData
 
   def version
-    object.adapter.serializer.instance_options[:version]
+    '2.0'
   end
 
   def usage
@@ -22,12 +22,11 @@ class NodeInfoSerializer < ActiveModel::Serializer
   end
 
   def software
-    sw = {
+    {
       version: Mastodon::Version.to_s,
       name: 'mastodon',
+      repository: Mastodon::Version.source_base_url,
     }
-    sw[:repository] = Mastodon::Version.source_base_url if version == '2.1'
-    sw
   end
 
   def services
