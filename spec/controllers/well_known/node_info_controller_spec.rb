@@ -14,8 +14,6 @@ describe WellKnown::NodeInfoController, type: :controller do
       expect(json_response.keys.include?('links')).to be true
       expect(json_response['links'][0]['rel']).to eq 'http://nodeinfo.diaspora.software/ns/schema/2.0'
       expect(json_response['links'][0]['href'].include?('nodeinfo/2.0')).to be true
-      expect(json_response['links'][1]['rel']).to eq 'http://nodeinfo.diaspora.software/ns/schema/2.1'
-      expect(json_response['links'][1]['href'].include?('nodeinfo/2.1')).to be true
     end
   end
 
