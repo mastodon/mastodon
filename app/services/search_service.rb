@@ -5,8 +5,8 @@ class SearchService < BaseService
     @query   = query.strip
     @account = account
     @options = options
-    @limit   = limit
-    @offset  = options[:offset]
+    @limit   = limit.to_i
+    @offset  = options[:offset].to_i
     @resolve = options[:resolve] || false
 
     default_results.tap do |results|
@@ -23,25 +23,31 @@ class SearchService < BaseService
   private
 
   def perform_accounts_search!
-    AccountSearchService.new.call(@query, @limit, @account, resolve: @resolve)
+    AccountSearchService.new.call(
+      @query,
+      @account,
+      limit: @limit,
+      resolve: @resolve,
+      offset: @offset
+    )
   end
 
   def perform_statuses_search!
     definition = StatusesIndex.query do |q|
-      q.filtered do |q|
-        q.filter do |q|
-          q.term searchable_by: @account.id
+      q.filtered do |fq|
+        fq.filter do |f|
+          f.term searchable_by: @account.id
 
-          q.term account_id: @options[:account_id] if @options[:account_id].present?
+          f.term account_id: @options[:account_id] if @options[:account_id].present?
 
-          q.range :_id do |q|
-            q.gt @options[:min_id] if @options[:min_id].present?
-            q.lt @options[:max_id] if @options[:max_id].present?
+          f.range :_id do |r|
+            r.gt @options[:min_id] if @options[:min_id].present?
+            r.lt @options[:max_id] if @options[:max_id].present?
           end
         end
 
-        q.query do |q|
-          q.multi_match type: 'most_fields', query: @query, operator: 'and', fields: %w(text text.stemmed)
+        fq.query do |qq|
+          qq.multi_match type: 'most_fields', query: @query, operator: 'and', fields: %w(text text.stemmed)
         end
       end
     end
@@ -57,7 +63,11 @@ class SearchService < BaseService
   end
 
   def perform_hashtags_search!
-    Tag.search_for(@query.gsub(/\A#/, ''), @limit)
+    Tag.search_for(
+      @query.gsub(/\A#/, ''),
+      @limit,
+      @offset
+    )
   end
 
   def default_results

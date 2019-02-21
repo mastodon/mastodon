@@ -68,7 +68,7 @@ describe SearchService, type: :service do
           allow(AccountSearchService).to receive(:new).and_return(service)
 
           results = subject.call(query, nil, 10)
-          expect(service).to have_received(:call).with(query, 10, nil, resolve: false)
+          expect(service).to have_received(:call).with(query, nil, limit: 10, offset: 0, resolve: false)
           expect(results).to eq empty_results.merge(accounts: [account])
         end
       end
@@ -77,10 +77,10 @@ describe SearchService, type: :service do
         it 'includes the tag in the results' do
           query = '#tag'
           tag = Tag.new
-          allow(Tag).to receive(:search_for).with('tag', 10).and_return([tag])
+          allow(Tag).to receive(:search_for).with('tag', 10, 0).and_return([tag])
 
           results = subject.call(query, nil, 10)
-          expect(Tag).to have_received(:search_for).with('tag', 10)
+          expect(Tag).to have_received(:search_for).with('tag', 10, 0)
           expect(results).to eq empty_results.merge(hashtags: [tag])
         end
         it 'does not include tag when starts with @ character' do
