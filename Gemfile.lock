@@ -109,7 +109,7 @@ GEM
     bundler-audit (0.6.1)
       bundler (>= 1.2.0, < 3)
       thor (~> 0.18)
-    byebug (10.0.2)
+    byebug (11.0.0)
     capistrano (3.11.0)
       airbrussh (>= 1.0.0)
       i18n
@@ -413,8 +413,8 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    pry-byebug (3.6.0)
-      byebug (~> 10.0)
+    pry-byebug (3.7.0)
+      byebug (~> 11.0)
       pry (~> 0.10)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
@@ -729,7 +729,7 @@ DEPENDENCIES
   posix-spawn!
   premailer-rails
   private_address_check (~> 0.5)
-  pry-byebug (~> 3.6)
+  pry-byebug (~> 3.7)
   pry-rails (~> 0.3)
   puma (~> 3.12)
   pundit (~> 2.0)
