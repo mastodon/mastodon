@@ -1,43 +1,33 @@
+---
 lt:
   about:
-    about_hashtag_html: Čia visiems prieinamas įrankis <strong>#%{hashtag}</strong>.
-      Jūs galite juo naudotis bet kur, jeigu turite paskyra fedi-visatoje.
-    about_mastodon_html: Mastodon, tai socialinis tinklas pagrįstas atviro kodo programavimu,
-      ir atvirais web protokolais. Visiškai nemokamas. Ši sistema decantrilizuota
-      kaip jūsų elektroninis paštas.
+    about_hashtag_html: Čia visiems prieinamas įrankis <strong>#%{hashtag}</strong>. Jūs galite juo naudotis bet kur, jeigu turite paskyra fedi-visatoje.
+    about_mastodon_html: Mastodon, tai socialinis tinklas pagrįstas atviro kodo programavimu, ir atvirais web protokolais. Visiškai nemokamas. Ši sistema decantrilizuota kaip jūsų elektroninis paštas.
     about_this: Apie
     administered_by: 'Administruoja:'
     api: API
     apps: Mobilioji Aplikacija
-    closed_registrations: Registracija šiuo metu uždaryta prie šito tinklo.  Jūs galite
-      rasti kitą būdą susikurti paskyrą ir gauti prieigą prie to paties tinklo.
+    closed_registrations: Registracija šiuo metu uždaryta prie šito tinklo.  Jūs galite rasti kitą būdą susikurti paskyrą ir gauti prieigą prie to paties tinklo.
     contact: Kontaktai
     contact_missing: Nenustatyta
     contact_unavailable: N/A
     documentation: Dokumentacija
-    extended_description_html: '<h3>Taisyklės</h3>
-
+    extended_description_html: |
+      <h3>Taisyklės</h3>
       <p>Ilgas aprašymas dar nėra sudartyas</p>
-
-      '
     features:
-      humane_approach_body: Mokantis iš kitų socialinių tinklų, bei jų daromu klaidų,
-        Mastodon siekia sukurti etiška dizainą, kuris kovotu su netinkamu socialinių
-        tinklų naudojimu.
+      humane_approach_body: Mokantis iš kitų socialinių tinklų, bei jų daromu klaidų, Mastodon siekia sukurti etiška dizainą, kuris kovotu su netinkamu socialinių tinklų naudojimu.
       humane_approach_title: Humaniškesnis metodas
-      not_a_product_body: Mastodon nėra komercinis tinklas. Jokių reklamų, privačios
-        informacijos rinkimo. Čia nėra vieno žmogaus, kuris už viską atsako.
+      not_a_product_body: Mastodon nėra komercinis tinklas. Jokių reklamų, privačios informacijos rinkimo. Čia nėra vieno žmogaus, kuris už viską atsako.
       not_a_product_title: Tu esi žmogus, o ne produktas
-      real_conversation_body: Su 500 simbolių limitu, ir galimybe pažymėti savo įkeliama
-        informacija su įspėjamaisiais ženklais, galite išsireikšti kaip tik norite.
+      real_conversation_body: Su 500 simbolių limitu, ir galimybe pažymėti savo įkeliama informacija su įspėjamaisiais ženklais, galite išsireikšti kaip tik norite.
       real_conversation_title: Sukurtas tikram bendravimui
-      within_reach_body: Mobiliosios aplikacijos skirtos iOS, Android, ir kitoms platformoms.
-        Draugiškos API ekosistemos dėka, Jūs galite palaikyti pokalbi su draugais
-        bet kur.
+      within_reach_body: Mobiliosios aplikacijos skirtos iOS, Android, ir kitoms platformoms. Draugiškos API ekosistemos dėka, Jūs galite palaikyti pokalbi su draugais bet kur.
       within_reach_title: Visada pasiekama
-    generic_description: '%{domain} yra vienas serveris tinkle'
+    generic_description: "%{domain} yra vienas serveris tinkle"
     hosted_on: Mastodon palaikomas naudojantis %{domain} talpinimu
     learn_more: Daugiau
+    other_instances: Serverių sąrašas
     privacy_policy: Privatumo Politika
     source_code: Šaltinio kodas
     status_count_after:
@@ -52,9 +42,8 @@ lt:
       other: vartotojai
     user_count_before: Namai
     what_is_mastodon: Kas tai, Mastodon?
-    other_instances: Serverių sąrašas
   accounts:
-    choices_html: '%{name} pasirinkimai:'
+    choices_html: "%{name} pasirinkimai:"
     follow: Sekti
     followers:
       few: Sekėjai
@@ -65,7 +54,7 @@ lt:
     last_active: paskutinį kartą aktyvus
     link_verified_on: Nuorodos nuosavybė paskutinį kartą tikrinta %{date}
     media: Medija
-    moved_html: '%{name} persikėlė į %{new_profile_link}:'
+    moved_html: "%{name} persikėlė į %{new_profile_link}:"
     network_hidden: Ši informacija neprieinama
     nothing_here: Čia nieko nėra!
     people_followed_by: Žmonės, kuriuos %{name} seka
@@ -119,6 +108,7 @@ lt:
       email_status: El pašto statusas
       enable: Įjungti
       enabled: Įjungta
+      feed_url: Srauto URL
       followers: Sekėjai
       followers_url: Sekėjų URL
       follows: Seka
@@ -130,8 +120,8 @@ lt:
       location:
         all: Visi
         local: Lokali
-        title: Lokacija
         remote: Nuotolinis
+        title: Lokacija
       login_status: Prisijungimo statusas
       media_attachments: Prisegti medijos failai
       memorialize: Paversti į memorija
@@ -188,44 +178,39 @@ lt:
       username: Slapyvardis
       warn: Įspėti
       web: Web
-      feed_url: Srauto URL
     action_logs:
       actions:
-        assigned_to_self_report: '%{name} paskyrė reportą %{target} saviems'
-        change_email_user: '%{name} pakeitė el pašto adresą vartotojui %{target}'
-        confirm_user: '%{name} patvirtino el pašto adresą vartotojui %{target}'
-        create_account_warning: '%{name} išsiuntė įspėjimą %{target}'
-        create_custom_emoji: '%{name} įkėlė naują jaustuką %{target}'
-        create_domain_block: '%{name} užblokavo domena %{target}'
-        create_email_domain_block: '%{name} įkėlė į juodajį sąrašą el pašto domena
-          %{target}'
-        demote_user: '%{name} pažemino %{target}'
-        destroy_custom_emoji: '%{name} sunaikino jaustuką %{target}'
-        destroy_domain_block: '%{name} atrakino domeną %{target}'
-        destroy_email_domain_block: '%{name} pašalino iš juodojo sąrašo el pašto domeną
-          %{target}'
-        destroy_status: '%{name} pašalino statusą %{target}'
-        disable_2fa_user: '%{name} išjungė 2 faktorių autentikavimo sistemos reikalavimus
-          vartotojui  %{target}'
-        disable_custom_emoji: '%{name} išjungė jaustuką %{target}'
-        disable_user: '%{name} išjungė prisijungimą vartotojui %{target}'
-        enable_custom_emoji: '%{name} įjungė jaustuką %{target}'
-        enable_user: '%{name} įjungė prisijungimą vartotojui %{target}'
-        memorialize_account: '%{name} pavertė vartotojo %{target} paskyrą į prisiminimų
-          puslapį'
-        promote_user: '%{name} paaukštino vartotoją %{target}'
-        remove_avatar_user: '%{name} panaikino vartotojo %{target} profilio nuotrauką'
-        reopen_report: '%{name} atidarė skundą %{target}'
-        reset_password_user: '%{name} atstatyti slaptažodį vartotojui %{target}'
-        resolve_report: '%{name} išsprendė skundą %{target}'
-        silence_account: '%{name} pritildė vartotojo %{target} paskyrą'
-        suspend_account: '%{name} laikinai užblokavo vartotojo %{target} paskyrą'
-        unassigned_report: '%{name} nepaskirtas skundas %{target}'
-        unsilence_account: '%{name} atitildė vartotojo %{target} paskyrą'
-        unsuspend_account: '%{name} atblokavo vartotojo %{target} paskyrą'
-        update_custom_emoji: '%{name} atnaujino jaustuką %{target}'
-        update_status: '%{name} pakeitė statusą %{target}'
-      deleted_status: (panaikintas statusas)
+        assigned_to_self_report: "%{name} paskyrė reportą %{target} saviems"
+        change_email_user: "%{name} pakeitė el pašto adresą vartotojui %{target}"
+        confirm_user: "%{name} patvirtino el pašto adresą vartotojui %{target}"
+        create_account_warning: "%{name} išsiuntė įspėjimą %{target}"
+        create_custom_emoji: "%{name} įkėlė naują jaustuką %{target}"
+        create_domain_block: "%{name} užblokavo domena %{target}"
+        create_email_domain_block: "%{name} įkėlė į juodajį sąrašą el pašto domena %{target}"
+        demote_user: "%{name} pažemino %{target}"
+        destroy_custom_emoji: "%{name} sunaikino jaustuką %{target}"
+        destroy_domain_block: "%{name} atrakino domeną %{target}"
+        destroy_email_domain_block: "%{name} pašalino iš juodojo sąrašo el pašto domeną %{target}"
+        destroy_status: "%{name} pašalino statusą %{target}"
+        disable_2fa_user: "%{name} išjungė 2 faktorių autentikavimo sistemos reikalavimus vartotojui  %{target}"
+        disable_custom_emoji: "%{name} išjungė jaustuką %{target}"
+        disable_user: "%{name} išjungė prisijungimą vartotojui %{target}"
+        enable_custom_emoji: "%{name} įjungė jaustuką %{target}"
+        enable_user: "%{name} įjungė prisijungimą vartotojui %{target}"
+        memorialize_account: "%{name} pavertė vartotojo %{target} paskyrą į prisiminimų puslapį"
+        promote_user: "%{name} paaukštino vartotoją %{target}"
+        remove_avatar_user: "%{name} panaikino vartotojo %{target} profilio nuotrauką"
+        reopen_report: "%{name} atidarė skundą %{target}"
+        reset_password_user: "%{name} atstatyti slaptažodį vartotojui %{target}"
+        resolve_report: "%{name} išsprendė skundą %{target}"
+        silence_account: "%{name} pritildė vartotojo %{target} paskyrą"
+        suspend_account: "%{name} laikinai užblokavo vartotojo %{target} paskyrą"
+        unassigned_report: "%{name} nepaskirtas skundas %{target}"
+        unsilence_account: "%{name} atitildė vartotojo %{target} paskyrą"
+        unsuspend_account: "%{name} atblokavo vartotojo %{target} paskyrą"
+        update_custom_emoji: "%{name} atnaujino jaustuką %{target}"
+        update_status: "%{name} pakeitė statusą %{target}"
+      deleted_status: "(panaikintas statusas)"
       title: Audito žurnalas
     custom_emojis:
       by_domain: Domenas
@@ -281,25 +266,19 @@ lt:
       domain: Domenas
       new:
         create: Sukurti bloką
-        hint: Domeno blokavimas nesustabdys vartotojų paskyrų sukūrimo duomenų sistemoje,
-          tačiau automatiškai pritaikys atitinkamus moderavimo metodus šioms paskyroms.
+        hint: Domeno blokavimas nesustabdys vartotojų paskyrų sukūrimo duomenų sistemoje, tačiau automatiškai pritaikys atitinkamus moderavimo metodus šioms paskyroms.
         severity:
-          desc_html: '<strong>1Tyla</strong>2 padarys paskyros įkelimus nematomus
-            visiems, kurie jų neseka.
-
-            <strong>3Draudimas</strong>4 panaikins visus paskyros įkėlimus ir profilio
-            informaciją.Naudok<strong>5Nieko</strong>6 jeigu tiesiog norite atmesti
-            medijos failus.'
+          desc_html: |-
+            <strong>1Tyla</strong>2 padarys paskyros įkelimus nematomus visiems, kurie jų neseka.
+            <strong>3Draudimas</strong>4 panaikins visus paskyros įkėlimus ir profilio informaciją.Naudok<strong>5Nieko</strong>6 jeigu tiesiog norite atmesti medijos failus.
           noop: Nieko
           silence: Tyla
           suspend: Draudimas
         title: Naujos domeno blokas
       reject_media: Atmesti medijos failai
-      reject_media_hint: Panaikina lokaliai saugomus medijos failus bei atsisako jų
-        parsisiuntimo ateityje. Neliečia užblokavimu
+      reject_media_hint: Panaikina lokaliai saugomus medijos failus bei atsisako jų parsisiuntimo ateityje. Neliečia užblokavimu
       reject_reports: Atmesti skundai
-      reject_reports_hint: Ignoruoti visus skundus, kurie siunčiami iš šio domeno.
-        Neliečia užblokavimu
+      reject_reports_hint: Ignoruoti visus skundus, kurie siunčiami iš šio domeno. Neliečia užblokavimu
       rejecting_media: atmetami medijos failai
       rejecting_reports: atmetami skundai
       severity:
@@ -308,7 +287,7 @@ lt:
       show:
         affected_accounts:
           one: Vienas vartotojas duomenų bazėje paveiktas
-          other: '%{count} vartotojai duomenų bazėje yra paveikti'
+          other: "%{count} vartotojai duomenų bazėje yra paveikti"
         retroactive:
           silence: Atitildyti visus egzistuojančius vartotojus šiame domene
           suspend: Atblokuotis visus egzistuojančius vartotojus šiame domene
@@ -327,12 +306,12 @@ lt:
       title: El pašto juodasis sąrašas
     followers:
       back_to_account: Atgal Į Paskyrą
-      title: '%{acct} Sekėjai'
+      title: "%{acct} Sekėjai"
     instances:
       delivery_available: Pristatymas galimas
       known_accounts:
-        one: '%{count} žinoma paskyra'
-        other: '%{count} žinomos paskyros'
+        one: "%{count} žinoma paskyra"
+        other: "%{count} žinomos paskyros"
       moderation:
         all: Visi
         limited: Limituotas
@@ -354,16 +333,11 @@ lt:
     relays:
       add_new: Pridėti naują pamainą
       delete: Ištrinti
-      description_html: <strong>Federacijos perjungėjas</strong> tai tarpinis serveris,
-        kuris apsikeičia didelios apimties informacija tarp kitų serverių. <strong>
-        Tai gali padėti mažesniems serveriams atrasti turinį iš fedi-visatos</strong>,
-        kuris kitaip reikalautų vartotojų lokaliai sekti kitus žmones naudojantis
-        kitus tolimus serverius.
+      description_html: "<strong>Federacijos perjungėjas</strong> tai tarpinis serveris, kuris apsikeičia didelios apimties informacija tarp kitų serverių. <strong> Tai gali padėti mažesniems serveriams atrasti turinį iš fedi-visatos</strong>, kuris kitaip reikalautų vartotojų lokaliai sekti kitus žmones naudojantis kitus tolimus serverius."
       disable: Išjungti
       disabled: Išjungtas
       enable: Įjungti
-      enable_hint: Kai įjungta, Jūsų serveris prenumeruos visas viešas žinutes iš
-        šio tinklo, ir pradės siųsti šio serverio viešas žinutes į tinklą.
+      enable_hint: Kai įjungta, Jūsų serveris prenumeruos visas viešas žinutes iš šio tinklo, ir pradės siųsti šio serverio viešas žinutes į tinklą.
       enabled: Įjungtas
       inbox_url: Perdavimo URL
       pending: Laukiama perdavimo patvirtinimo
@@ -406,12 +380,10 @@ lt:
       updated_at: Atnaujinti
     settings:
       activity_api_enabled:
-        desc_html: Skaičiai lokaliai įkeltų statusų, aktyvių vartotojų ir naujų registracijų,
-          kas savaitiniuose atnaujinimuose
+        desc_html: Skaičiai lokaliai įkeltų statusų, aktyvių vartotojų ir naujų registracijų, kas savaitiniuose atnaujinimuose
         title: Paskelbti agreguotą statistiką apie vartotojo veiklą
       bootstrap_timeline_accounts:
-        desc_html: Atskirti vartotojų vardus naudojant kablelį (,). Tik lokalios ir
-          neužblokuotos paskyros veiks. Pradinis kai tuščia, visi lokalūs administratoriai.
+        desc_html: Atskirti vartotojų vardus naudojant kablelį (,). Tik lokalios ir neužblokuotos paskyros veiks. Pradinis kai tuščia, visi lokalūs administratoriai.
         title: Numatyti sekimai naujiems vartotojams
       contact_information:
         email: Verslo el paštas
@@ -420,27 +392,23 @@ lt:
         desc_html: Pakeisk išvaizdą su CSS užkraunamu kiekviename puslapyje
         title: Asmeninis CSS
       hero:
-        desc_html: Rodomas pagrindiniame puslapyje. Bent 600x100px rekomenduojama.
-          Kai nenustatyta, renkamasi numatytą serverio nuotrauką
+        desc_html: Rodomas pagrindiniame puslapyje. Bent 600x100px rekomenduojama. Kai nenustatyta, renkamasi numatytą serverio nuotrauką
         title: Herojaus nuotrauka
       mascot:
-        desc_html: Rodoma keleta puslapių. Bent 293×205px rekomenduoja. Kai nenustatyą,
-          renkamasi numatytą varianta
+        desc_html: Rodoma keleta puslapių. Bent 293×205px rekomenduoja. Kai nenustatyą, renkamasi numatytą varianta
         title: Talismano nuotrauka
       peers_api_enabled:
         desc_html: Domeno vardai, kuriuos šis serveris sutiko fedi-visatoje
         title: Paskelbti sąrašą atrastų serveriu
       preview_sensitive_media:
-        desc_html: Nuorodų peržiūros kituose tinklalapiuose bus rodomos su maža nuotrauka,
-          net jeigu failas parinktas kaip "jautraus turinio"
+        desc_html: Nuorodų peržiūros kituose tinklalapiuose bus rodomos su maža nuotrauka, net jeigu failas parinktas kaip "jautraus turinio"
         title: Rodyti jautrią informaciją OpenGraph peržiūrose
       profile_directory:
         desc_html: Leisti vartotojams būti atrastiems
         title: Įjungti profilio direktorija
       registrations:
         closed_message:
-          desc_html: Rodoma pagrindiniame puslapyje, kuomet registracijos uždarytos.
-            Jūs galite naudoti HTML
+          desc_html: Rodoma pagrindiniame puslapyje, kuomet registracijos uždarytos. Jūs galite naudoti HTML
           title: Uždarytos registracijos žinutė
         deletion:
           desc_html: Leisti visiems ištrinti savo paskyrą
@@ -452,29 +420,22 @@ lt:
           desc_html: Leisti bet kam susikurti paskyrą
           title: Atidaryta registracija
       show_known_fediverse_at_about_page:
-        desc_html: Kai įjungta, rodys įrašus iš visos žinomos fedi-visatos. Kitokiu
-          atvėju, rodys tik lokalius įrašus.
+        desc_html: Kai įjungta, rodys įrašus iš visos žinomos fedi-visatos. Kitokiu atvėju, rodys tik lokalius įrašus.
         title: Rodyti žinoma fedi-visatos laiko juosta peržiūroje
       show_staff_badge:
         desc_html: Rodyti personalo ženklelį vartotojo puslapyje
         title: Rodyti personalo ženklelį
       site_description:
-        desc_html: Introdukcinis paragrafas pagrindiniame puslapyje. Apibūdink, kas
-          padaro šį Mastodon serverį išskirtiniu ir visa kita, kas svarbu. Nebijok
-          naudoti HTML žymes, pavyzdžiui <code> &lt; a &gt;</code> bei <code>&lt;em&gt;</code>.
+        desc_html: Introdukcinis paragrafas pagrindiniame puslapyje. Apibūdink, kas padaro šį Mastodon serverį išskirtiniu ir visa kita, kas svarbu. Nebijok naudoti HTML žymes, pavyzdžiui <code> &lt; a &gt;</code> bei <code>&lt;em&gt;</code>.
         title: Serverio apibūdinimas
       site_description_extended:
-        desc_html: Gera vieta Jūsų elgesio kodeksui, taisyklėms, nuorodms ir kitokiai
-          informacijai, kuri yra išskirtinė Jūsų serveriui. Galite naudoti HTML žymes
+        desc_html: Gera vieta Jūsų elgesio kodeksui, taisyklėms, nuorodms ir kitokiai informacijai, kuri yra išskirtinė Jūsų serveriui. Galite naudoti HTML žymes
         title: Išsamesnė išskirtine informacija
       site_short_description:
-        desc_html: Rodoma šoniniame meniu ir meta žymėse. Apibūdink kas yra Mastodon,
-          ir kas daro šį serverį išskirtiniu, vienu paragrafu. Jeigu tuščias, naudojamas
-          numatytasis tekstas.
+        desc_html: Rodoma šoniniame meniu ir meta žymėse. Apibūdink kas yra Mastodon, ir kas daro šį serverį išskirtiniu, vienu paragrafu. Jeigu tuščias, naudojamas numatytasis tekstas.
         title: Trumpas serverio apibūdinimas
       site_terms:
-        desc_html: Jūs galite parašyti savo pačio privatumo politika, naudojimo sąlygas
-          ar kita informacija. Galite naudoti HTML žymes
+        desc_html: Jūs galite parašyti savo pačio privatumo politika, naudojimo sąlygas ar kita informacija. Galite naudoti HTML žymes
         title: Išskirtinės naudojimosi taisyklės
       site_title: Serverio pavadinimas
       thumbnail:
@@ -521,12 +482,12 @@ lt:
       title: Valdyti įspėjimo nustatymus
   admin_mailer:
     new_report:
-      body: '%{reporter} parašė skundą apie %{target}'
+      body: "%{reporter} parašė skundą apie %{target}"
       body_remote: Kažkas iš %{domain} parašė skundą apie %{target}
       subject: Naujas skundas %{instance} (#%{id})
   application_mailer:
     notification_preferences: Keisti el pašto parinktis
-    salutation: '%{name},'
+    salutation: "%{name},"
     settings: 'Keisti el pašto parinktis: %{link}'
     view: 'Peržiūra:'
     view_profile: Peržiurėti profilį
@@ -540,22 +501,18 @@ lt:
     warning: Būkite atsargūs su šia informacija. Niekada jos nesidalinkite!
     your_token: Jūsų prieigos žetonas
   auth:
-    agreement_html: Paspaudus "Sign up" Jūs sutinkate sekti <a href="%{rules_path}">serverio
-      taisykles</a> bei <a href="%{terms_path}">naudojimo sąlygas</a>.
+    agreement_html: Paspaudus "Sign up" Jūs sutinkate sekti <a href="%{rules_path}">serverio taisykles</a> bei <a href="%{terms_path}">naudojimo sąlygas</a>.
     change_password: Slaptažodis
     confirm_email: Patvirtinti el paštą
     delete_account: Ištrinti paskyrą
-    delete_account_html: Jeigu norite ištrinti savo paskyrą, galite eiti <a href="%{path}">čia</a>.
-      Jūsų prašys patvirtinti pasirinkimą.
+    delete_account_html: Jeigu norite ištrinti savo paskyrą, galite eiti <a href="%{path}">čia</a>. Jūsų prašys patvirtinti pasirinkimą.
     didnt_get_confirmation: Negavote patvirtinimo instrukcijų?
     forgot_password: Pamiršote slaptažodį?
-    invalid_reset_password_token: Slaptažodžio atkūrimo žetonas netinkamas arba jo
-      galiojimo laikas pasibaigęs. Prašykite naujo žetono.
+    invalid_reset_password_token: Slaptažodžio atkūrimo žetonas netinkamas arba jo galiojimo laikas pasibaigęs. Prašykite naujo žetono.
     login: Prisijungti
     logout: Atsijungti
     migrate_account: Prisijungti prie kitos paskyros
-    migrate_account_html: Jeigu norite nukreipti šią paskyrą į kita, galite tai <a
-      href="%{path}">konfiguruoti čia</a>.
+    migrate_account_html: Jeigu norite nukreipti šią paskyrą į kita, galite tai <a href="%{path}">konfiguruoti čia</a>.
     or: arba
     or_log_in_with: Arba prisijungti su
     providers:
@@ -580,43 +537,36 @@ lt:
     title: Sekti %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: '%{count} val'
-      about_x_months: '%{count}mėn'
-      about_x_years: '%{count}met'
-      almost_x_years: '%{count}met'
+      about_x_hours: "%{count} val"
+      about_x_months: "%{count}mėn"
+      about_x_years: "%{count}met"
+      almost_x_years: "%{count}met"
       half_a_minute: Ką tik
-      less_than_x_minutes: '%{count}min'
+      less_than_x_minutes: "%{count}min"
       less_than_x_seconds: Ką tik
-      over_x_years: '%{count}met'
-      x_days: '%{count}dien'
-      x_minutes: '%{count}min'
-      x_months: '%{count}mėn'
-      x_seconds: '%{count}sek'
+      over_x_years: "%{count}met"
+      x_days: "%{count}dien"
+      x_minutes: "%{count}min"
+      x_months: "%{count}mėn"
+      x_seconds: "%{count}sek"
   deletes:
     bad_password_msg: Geras bandymas, programišiau! Neteisingas slaptažodis
     confirm_password: Kad patvirtintumėte savo tapatybę, įveskite dabartini slaptažodį
-    description_html: Tai <strong>be sugrąžinimo, visam laikui</strong> panaikins
-      visa turini iš Jūsų paskyros ir deaktyvuos ją. Jūsų vartotojo vardas paliks
-      rezervuotas, kad išvengtumėme tapatybės pavagimo ateityje.
+    description_html: Tai <strong>be sugrąžinimo, visam laikui</strong> panaikins visa turini iš Jūsų paskyros ir deaktyvuos ją. Jūsų vartotojo vardas paliks rezervuotas, kad išvengtumėme tapatybės pavagimo ateityje.
     proceed: Ištrinti paskyrą
     success_msg: Jūsų paskyra sėkmingai ištrinta
-    warning_html: Tiktai panaikinimas turinio iš šio serverio garantuotas. Turinys,
-      kuris buvo viešai prieinamas ir dalinamas kituose serveriuose paliks pėdsakus.
-      Serveriai, kurie neseka jūsų, kurie nėra tinkle, nepakeis savo duomenų sistemos.
+    warning_html: Tiktai panaikinimas turinio iš šio serverio garantuotas. Turinys, kuris buvo viešai prieinamas ir dalinamas kituose serveriuose paliks pėdsakus. Serveriai, kurie neseka jūsų, kurie nėra tinkle, nepakeis savo duomenų sistemos.
     warning_title: Platinamo turinio prieinamumas
   directories:
     directory: Profilio direktorija
     enabled: Jūs esate rodomas šioje direktorijoje.
-    enabled_but_waiting: Jūs pasirinkote būti įtrauktas į direktorija, bet jūs neturite
-      minimalaus sekėjų skaičiaus (%{min_followers}), kad būtumėte rodomas.
+    enabled_but_waiting: Jūs pasirinkote būti įtrauktas į direktorija, bet jūs neturite minimalaus sekėjų skaičiaus (%{min_followers}), kad būtumėte rodomas.
     explanation: Raskite vartotojus, remiantis tuo, kuo jie domisi
     explore_mastodon: Naršyti %{title}
-    how_to_enable: Jūs nesate prisijungęs prie šios direktorijos. Galite prisijungti
-      žemiau. Naudokite saitažodžius savo biografiniame tekste, kad būtumėte rastas
-      naudojantis specifinius saitažodžius!
+    how_to_enable: Jūs nesate prisijungęs prie šios direktorijos. Galite prisijungti žemiau. Naudokite saitažodžius savo biografiniame tekste, kad būtumėte rastas naudojantis specifinius saitažodžius!
     people:
-      one: '%{count} žmogus'
-      other: '%{count} žmonės'
+      one: "%{count} žmogus"
+      other: "%{count} žmonės"
   errors:
     '403': Jūs neturie prieigos matyti šiam puslapiui.
     '404': Puslapis nerastas.
@@ -628,16 +578,12 @@ lt:
     '500':
       content: Atsiprašome, tačiau mūsų pusėje įvyko klaida.
       title: Netinkamas puslapis
-    noscript_html: Kad naudotumėtės Mastodon web aplikacija, prašome įsijungti JavaScript.
-      Alternatyviai, pabandykite viena iš <a href="%{apps_path}">vietinių aplikacijų</a>
-      Mastodon savo platformai.
+    noscript_html: Kad naudotumėtės Mastodon web aplikacija, prašome įsijungti JavaScript. Alternatyviai, pabandykite viena iš <a href="%{apps_path}">vietinių aplikacijų</a> Mastodon savo platformai.
   exports:
     archive_takeout:
       date: Data
       download: Parsisiųsti archyvą
-      hint_html: Jūs galite prašyti savo <strong>įrašų bei medijos</strong> archyvo.
-        Eksportuota informacija bus ActivityPub formatu, skaitoma suderintų programų.
-        Galite prašyti archyvo, kas 7 dienas.
+      hint_html: Jūs galite prašyti savo <strong>įrašų bei medijos</strong> archyvo. Eksportuota informacija bus ActivityPub formatu, skaitoma suderintų programų. Galite prašyti archyvo, kas 7 dienas.
       in_progress: Sudaromas archyvas...
       request: Prašyti savo archyvo
       size: Dydis
@@ -670,20 +616,15 @@ lt:
       title: Pridėti naują filtrą
   followers:
     domain: Domenas
-    explanation_html: Jeigu norite garantuoti savo statusų privatumą, turite žinoti,
-      kas jus seka. <strong>Jūsų privatūs statusai yra pristatyti visiems serveriams,
-      kur jūs turite sekėju</strong>. Galbūt jūs norite juos peržiūrėti ir panaikinti
-      sekėjus, kuriais nepasitikite.
+    explanation_html: Jeigu norite garantuoti savo statusų privatumą, turite žinoti, kas jus seka. <strong>Jūsų privatūs statusai yra pristatyti visiems serveriams, kur jūs turite sekėju</strong>. Galbūt jūs norite juos peržiūrėti ir panaikinti sekėjus, kuriais nepasitikite.
     followers_count: Sekėjų skaičius
     lock_link: Užrakinti savo paskyrą
     purge: Panaikint iš sekėju
     success:
       one: Švelnaus sekėjų blokavimo procedūroje iš vieno domeno...
       other: Švelnaus sekėjų blokavimo procedūroje iš %{count} domenų...
-    true_privacy_html: Prašau prisiminti, kad <strong> tikras privatumas gali būti
-      pasiekamas tik su end-to-end užsifravimu</strong>.
-    unlocked_warning_html: Visi, kurie nori matyti Jūsų privatų statusą, gali jus
-      sekti. %{lock_link} kad galėtumėte peržiurėti ir pašalinti sekėjus.
+    true_privacy_html: Prašau prisiminti, kad <strong> tikras privatumas gali būti pasiekamas tik su end-to-end užsifravimu</strong>.
+    unlocked_warning_html: Visi, kurie nori matyti Jūsų privatų statusą, gali jus sekti. %{lock_link} kad galėtumėte peržiurėti ir pašalinti sekėjus.
     unlocked_warning_title: Jūsų paskyra neužrakinta
   footer:
     developers: Programuotojai
@@ -702,8 +643,7 @@ lt:
       merge_long: Išsaugoti esančius įrašus ir pridėti naujus
       overwrite: Perrašyti
       overwrite_long: Pakeisti senus įrašus naujais
-    preface: Jūs galite importuoti informaciją iš kito serverio, tokią kaip sąrašą
-      žmonių kuriuos sekate.
+    preface: Jūs galite importuoti informaciją iš kito serverio, tokią kaip sąrašą žmonių kuriuos sekate.
     success: Jūsų informacija sėkmingai įkelta ir bus apdorota kaip įmanoma greičiau
     types:
       blocking: Blokuojamų sąrašas
@@ -727,7 +667,7 @@ lt:
     invited_by: 'Jus pakvietė:'
     max_uses:
       one: 1 naudojimas
-      other: '%{count} naudojimai'
+      other: "%{count} naudojimai"
     max_uses_prompt: Be limito
     prompt: Generuoti ir dalintis įrašais su kitais, kad sukurti prieigą prie serverio
     table:
@@ -751,28 +691,26 @@ lt:
   notification_mailer:
     digest:
       action: Peržiurėti visus pranešimus
-      body: Čia yra trumpa santrauka žinutės, kurią jūs praleidote nuo jūsų paskutinio
-        apsilankymo %{since}
-      mention: '%{name} paminėjo jus:'
+      body: Čia yra trumpa santrauka žinutės, kurią jūs praleidote nuo jūsų paskutinio apsilankymo %{since}
+      mention: "%{name} paminėjo jus:"
       new_followers_summary:
         one: Beje, jūs gavote naują sekėją, kol buvote atsijungęs! Yay!
-        other: Beje, jūs gavote %{count} naujų sekėjų, nuo jūsų paskutinio apsilankymo!
-          Nuostabu!
+        other: Beje, jūs gavote %{count} naujų sekėjų, nuo jūsų paskutinio apsilankymo! Nuostabu!
       subject:
-        one: 1 naujas pranešimas nuo paskutinio apsilankymo 🐘
-        other: '%{count} nauji pranešimai, nuo paskutinio apsilankymo🐘'
+        one: "1 naujas pranešimas nuo paskutinio apsilankymo \U0001F418"
+        other: "%{count} nauji pranešimai, nuo paskutinio apsilankymo\U0001F418"
       title: Kol jūsų nebuvo...
     favourite:
       body: 'Jūsų statusą pamėgo %{name}:'
-      subject: '%{name} pamėgo Jūsų statusą'
+      subject: "%{name} pamėgo Jūsų statusą"
       title: Naujas mėgstamas
     follow:
-      body: '%{name} pradėjo jus sekti!'
-      subject: '%{name} pradėjo jus sekti'
+      body: "%{name} pradėjo jus sekti!"
+      subject: "%{name} pradėjo jus sekti"
       title: Naujas sekėjas
     follow_request:
       action: Tvarkyti prašymus sekti
-      body: '%{name} nori tapti Jūsų sekėju'
+      body: "%{name} nori tapti Jūsų sekėju"
       subject: 'Laukiantis sprendimo sekėjas:  %{name}'
       title: Naujas prašymas sekti
     mention:
@@ -782,12 +720,12 @@ lt:
       title: Naujas paminėjimas
     reblog:
       body: 'Jūsų statusą pakėlė %{name}:'
-      subject: '%{name} pakėlė Jūsų statusą'
+      subject: "%{name} pakėlė Jūsų statusą"
       title: Naujas pakėlimas
   number:
     human:
       decimal_units:
-        format: '%n%u'
+        format: "%n%u"
         units:
           billion: B
           million: M
@@ -799,7 +737,7 @@ lt:
     next: Kitas
     older: Senesnis
     prev: Ankstesnis
-    truncate: '&hellip;'
+    truncate: "&hellip;"
   preferences:
     languages: Kalbos
     other: Kita
@@ -808,13 +746,10 @@ lt:
   remote_follow:
     acct: Įveskite Jūsų slapyvardį@domenas kurį norite naudoti
     missing_resource: Jūsų paskyros nukreipimo URL nerasta
-    no_account_html: Neturite paskyros? Jūs galite<a href='%{sign_up_path}' target='_blank'>
-      užsiregistruoti čia </a>
+    no_account_html: Neturite paskyros? Jūs galite<a href='%{sign_up_path}' target='_blank'> užsiregistruoti čia </a>
     proceed: Sekti
     prompt: 'Jūs seksite:'
-    reason_html: <strong>Kodėl šis žingsnis svarbus?</strong><code>%{instance}</code>
-      gali būti serveris, kuriame jūs nesate užsiregistravęs, todėl mes turime jus
-      nukreipti į Jūsų namų serveri.
+    reason_html: "<strong>Kodėl šis žingsnis svarbus?</strong><code>%{instance}</code> gali būti serveris, kuriame jūs nesate užsiregistravęs, todėl mes turime jus nukreipti į Jūsų namų serveri."
   remote_interaction:
     favourite:
       proceed: Pamėgti
@@ -855,7 +790,7 @@ lt:
       uc_browser: UCBrowser
       weibo: Weibo
     current_session: Dabartinė sesija
-    description: '%{browser} ant %{platform}'
+    description: "%{browser} ant %{platform}"
     explanation: Čia rodomos web naršyklės prijungtos prie Jūsų Mastodon paskyros.
     ip: IP
     platforms:
@@ -894,11 +829,11 @@ lt:
     attached:
       description: 'Pridėta: %{attached}'
       image:
-        one: '%{count} nuotrauka'
-        other: '%{count} nuotraukos'
+        one: "%{count} nuotrauka"
+        other: "%{count} nuotraukos"
       video:
-        one: '%{count} video'
-        other: '%{count} vaizdo įrašai'
+        one: "%{count} video"
+        other: "%{count} vaizdo įrašai"
     boosted_from_html: Pakelta iš %{acct_link}
     content_warning: 'Turinio įspėjimas: %{warning}'
     disallowed_hashtags:
@@ -927,252 +862,120 @@ lt:
     reblogged: pakeltas
     sensitive_content: Jautrus turinys
   terms:
-    body_html: '<h2>Privatumo politika</h2>
-
+    body_html: |
+      <h2>Privatumo politika</h2>
       <h3 id="collect">Kokia informacija yra renkama?</h3>
-
       <ul>
-
-      <li><em>Paprasa paskyros informacija</em>: Jeigu Jūs užsiregistruojate šiame
-      serveryje, Jūsų gali paklausti, kad įrašytumėte slapyvardį, el pašto adresą
-      ir paskyros slaptąžodį. Jūs irgi galite įrašyti papildomą profilio informaciją,
-      tokią kaip rodomas vardas ir biografiją bei įkelti profilio nuotrauką ir antraštės
-      nuotrauką. Slapyvardis , rodomas vardas, biografija, profilio nuotrauka ir antraštės
-      nuotrauka visada viešai prieinama informacija.</li>
-
-      <li><em>Įrašai, sekami ir kita vieša informacija</em>: Sąrašas žmonių, kuriuos
-      Jūs sekate yra matomas viešai, taip pat kaip ir Jūsų sekėjams. Kai Jūs išsiunčiate
-      žinutę, data ir laikas yra išsaugomi bei aplikacija iš kurios jūs išsiuntėte
-      žinutę. Žinutėse gali būti prisegtų medijos failų kaip vaizdo įrašai bei nuotraukos.
-      Viešos ir neįtrauktos į sąrašus žinutės yra viešai prieinamos. Kai nusprendžiate
-      rodyti pranešimą ant savo profilio, tai irgi yra viešai prieinama informacija.
-      Jūsų pranešimai yra pristatomi Jūsų sekėjams, kai kuriais atvėjais tai gali
-      reikšti, kad šie pranešimai yra pristatomi į kitus serverius ir saugomi ten.
-      Kai Jūs ištrinate įrašus, šie įrašai ištrinami ir Jūsų sekėjams. Veiksmas pamėgti
-      kitus įrašus irgi yra viešas.
-
-      </li><li><em>Tiesioginiai ir tik sekėjams įrašai</em>: Visi įrašai yra saugomi
-      ir apdorojami serveryje. Tik sekėjams įrašai yra pristatomi Jūsų sekėjams ir
-      vartotojams, kurie yra paminėti įrašuose, ir tiesioginiai įrašai pristatomi
-      tik vartotojams, kurie yra paminėti įraše. Kai kuriais atvėjais tai gali reikšti,
-      kad šie įrašai yra pristatomi į kitą serverį ir įrašų kopijos saugomos ten.
-      Mes stengiames riboti prieigą prie šių pranešimų tiktai autorizuotiems gavėjams,
-      tačiau kiti serveriai to gali nedaryti. Todėl yra svarbu peržiurėti serverius,
-      kuriems Jūsų sekėjai priklauso. Jūs galite įjungti būseną nustatymuose, kad
-      galėtumetė priimti arba atmesti naujas sekimo užklausas.<em> Prašome nepamiršti,
-      kad serverio operatoriai ir kiti serveriai, kurie gauna šias žinutes, gali jas
-      peržiurėti </em> bei, kad gavėjai gali padaryti foto kopija, tektso kopija ar
-      kitaip pasidalinti Jūsų žinutėmis.<em> Nesidalinkite jokia jautria ar pavojinga
-      informacija naudojantis Mastodon.</em></li>
-
-      <li><em>IP adresai ir kiti metaduomenys</em>: Kai prisijungiate, mes įrašome
-      IP adresą iš kurio jūs prisijungėte, ir naudojamos naršyklės pavadinimą. Visos
-      prisijungimo sesijos yra prieinamos Jūsų apžvalgai ir atšaukimams nustatymuose.
-      Paskutiniai IP adresai yra saugomi iki 12-kos mėnesių. Mes taipogi galime pasilikti
-      serverio registrą, kuriuose yra saugoma IP adresai iš visų bandymu prisijungti
-      prie serverio prašant informacijos.
-
+      <li><em>Paprasa paskyros informacija</em>: Jeigu Jūs užsiregistruojate šiame serveryje, Jūsų gali paklausti, kad įrašytumėte slapyvardį, el pašto adresą ir paskyros slaptąžodį. Jūs irgi galite įrašyti papildomą profilio informaciją, tokią kaip rodomas vardas ir biografiją bei įkelti profilio nuotrauką ir antraštės nuotrauką. Slapyvardis , rodomas vardas, biografija, profilio nuotrauka ir antraštės nuotrauka visada viešai prieinama informacija.</li>
+      <li><em>Įrašai, sekami ir kita vieša informacija</em>: Sąrašas žmonių, kuriuos Jūs sekate yra matomas viešai, taip pat kaip ir Jūsų sekėjams. Kai Jūs išsiunčiate žinutę, data ir laikas yra išsaugomi bei aplikacija iš kurios jūs išsiuntėte žinutę. Žinutėse gali būti prisegtų medijos failų kaip vaizdo įrašai bei nuotraukos. Viešos ir neįtrauktos į sąrašus žinutės yra viešai prieinamos. Kai nusprendžiate rodyti pranešimą ant savo profilio, tai irgi yra viešai prieinama informacija. Jūsų pranešimai yra pristatomi Jūsų sekėjams, kai kuriais atvėjais tai gali reikšti, kad šie pranešimai yra pristatomi į kitus serverius ir saugomi ten. Kai Jūs ištrinate įrašus, šie įrašai ištrinami ir Jūsų sekėjams. Veiksmas pamėgti kitus įrašus irgi yra viešas.
+      </li><li><em>Tiesioginiai ir tik sekėjams įrašai</em>: Visi įrašai yra saugomi ir apdorojami serveryje. Tik sekėjams įrašai yra pristatomi Jūsų sekėjams ir vartotojams, kurie yra paminėti įrašuose, ir tiesioginiai įrašai pristatomi tik vartotojams, kurie yra paminėti įraše. Kai kuriais atvėjais tai gali reikšti, kad šie įrašai yra pristatomi į kitą serverį ir įrašų kopijos saugomos ten. Mes stengiames riboti prieigą prie šių pranešimų tiktai autorizuotiems gavėjams, tačiau kiti serveriai to gali nedaryti. Todėl yra svarbu peržiurėti serverius, kuriems Jūsų sekėjai priklauso. Jūs galite įjungti būseną nustatymuose, kad galėtumetė priimti arba atmesti naujas sekimo užklausas.<em> Prašome nepamiršti, kad serverio operatoriai ir kiti serveriai, kurie gauna šias žinutes, gali jas peržiurėti </em> bei, kad gavėjai gali padaryti foto kopija, tektso kopija ar kitaip pasidalinti Jūsų žinutėmis.<em> Nesidalinkite jokia jautria ar pavojinga informacija naudojantis Mastodon.</em></li>
+      <li><em>IP adresai ir kiti metaduomenys</em>: Kai prisijungiate, mes įrašome IP adresą iš kurio jūs prisijungėte, ir naudojamos naršyklės pavadinimą. Visos prisijungimo sesijos yra prieinamos Jūsų apžvalgai ir atšaukimams nustatymuose. Paskutiniai IP adresai yra saugomi iki 12-kos mėnesių. Mes taipogi galime pasilikti serverio registrą, kuriuose yra saugoma IP adresai iš visų bandymu prisijungti prie serverio prašant informacijos.
       </li></ul>
 
-
       <hr class="spacer" />
-
 
       <h3 id="use">Kam mes naudojame Jūsų informaciją?</h3>
-
       <p>Visa surinkta informacija apie jus, gali būti panaudota šiems tikslams: </p>
-
       <ul>
-
-      <li>Suteikti pagrindį Mastodon funkcialumą. Jūs galite sąveikauti su kitų vartotojų
-      turiniu ir kelti sąvajį, kuomet esate prisijungęs. Pavyzdžiui, galite sekti
-      kitus žmones, peržiūrėti jų sujungtus įrašus savo pačio personalizuotoje laiko
-      juostoje. </li>
-
-      <li>Padėti bendruomenės moderavimui, pavyzdžiui, lyginant Jūsų IP adresą, su
-      kitu žinomu IP adresu, kad nustatyti bandymus vengti užblokavimo.</li>
-
-      <li>Jūsų el pašto adresas gali būti naudojamas išsiųsti informacija jums, priminimus
-      apie kitų vartotojų interakciją su jūsų paskyra, pavyzdžiui, kai jie jums siunčia
-      žinutes, ir atsakyti į užklausas ir/arba kitais klausimais. </li>
-
+      <li>Suteikti pagrindį Mastodon funkcialumą. Jūs galite sąveikauti su kitų vartotojų turiniu ir kelti sąvajį, kuomet esate prisijungęs. Pavyzdžiui, galite sekti kitus žmones, peržiūrėti jų sujungtus įrašus savo pačio personalizuotoje laiko juostoje. </li>
+      <li>Padėti bendruomenės moderavimui, pavyzdžiui, lyginant Jūsų IP adresą, su kitu žinomu IP adresu, kad nustatyti bandymus vengti užblokavimo.</li>
+      <li>Jūsų el pašto adresas gali būti naudojamas išsiųsti informacija jums, priminimus apie kitų vartotojų interakciją su jūsų paskyra, pavyzdžiui, kai jie jums siunčia žinutes, ir atsakyti į užklausas ir/arba kitais klausimais. </li>
       </ul>
 
-
       <hr class="spacer" />
-
 
       <h3 id="protect">Kaip mes saugome Jūsų informacija? </h3>
 
-
-      <p>Mes implementavome saugumo priemones, tam, kad apsaugotume Jūsų privačią
-      informaciją. Tarp šių dalykų, Jūsų naršyklės sesija, taip pat ir eismas tarp
-      Jūsų aplikacijos ir API yra apsaugoti SSL, ir Jūsų slaptažodis yra užsifruotas
-      sudėtingu algoritmu. Jūs galite įjungti dviejų veiksnių autentikaciją savo paskyrai,
-      taip apsaugodami ją dar daugiau.
-
+      <p>Mes implementavome saugumo priemones, tam, kad apsaugotume Jūsų privačią informaciją. Tarp šių dalykų, Jūsų naršyklės sesija, taip pat ir eismas tarp Jūsų aplikacijos ir API yra apsaugoti SSL, ir Jūsų slaptažodis yra užsifruotas sudėtingu algoritmu. Jūs galite įjungti dviejų veiksnių autentikaciją savo paskyrai, taip apsaugodami ją dar daugiau.
       </p>
 
-
       <hr class="spacer" />
-
       <h3 id="data-retention"> Kokia yra mūsų duomenų laikymo politika? </h3>
-
 
       <p>Mes stengiamės:</p>
 
-
       <ul>
-
-      <li> Išsaugoti serverio registrą, kuriame yra visi IP adresai, kurie kreipėsi
-      į serverį, šie duomenys laikomi neilgiau nei 90 dienų.</li>
-
-      <li> Išsaugoti IP adresus asocijuotus su registruotais vartotojais, ne ilgiau
-      nei 12 mėnesių.</li>
-
+      <li> Išsaugoti serverio registrą, kuriame yra visi IP adresai, kurie kreipėsi į serverį, šie duomenys laikomi neilgiau nei 90 dienų.</li>
+      <li> Išsaugoti IP adresus asocijuotus su registruotais vartotojais, ne ilgiau nei 12 mėnesių.</li>
       </ul>
 
-
-      <p> Jūs galite pateikti prašymą ir parsisiųsti savo turinio archyvą, kuriame
-      bus Jūsų įrašai, medijos failai, profilio nuotrauka ir antraštės nuotrauka.</p>
-
+      <p> Jūs galite pateikti prašymą ir parsisiųsti savo turinio archyvą, kuriame bus Jūsų įrašai, medijos failai, profilio nuotrauka ir antraštės nuotrauka.</p>
 
       <p> Jūs galite VISIŠKAI ištrinti savo paskyrą bet kuriuo metu.</p>
 
-
       <hr class="spacer"/>
-
 
       <h3 id="cookies">Ar mes naudojame sausainiukus?</h3>
 
-
-      <p> Taip. Sausainiukai yra mažos apimties failai, kuriuos svetainė arba svetainės
-      tiekėjas perkelia į Jūsų kompiuterio kietąjį diską naudojantis interneto naršykle
-      (jeigu jūs leidžiate). Šie sausainiai leidžia svetainiai prisiminti Jūsų naršyklę
-      ir jeigu turite registruotą vartotoją, ji asocijuoti su Jūsu vartotoju.</p>
-
-      <p>Mes naudojame sausainius, kad suprastumėme ir išsaugotumėme Jūsų poreikius
-      kitam apsilankymui.</p>
-
+      <p> Taip. Sausainiukai yra mažos apimties failai, kuriuos svetainė arba svetainės tiekėjas perkelia į Jūsų kompiuterio kietąjį diską naudojantis interneto naršykle (jeigu jūs leidžiate). Šie sausainiai leidžia svetainiai prisiminti Jūsų naršyklę ir jeigu turite registruotą vartotoją, ji asocijuoti su Jūsu vartotoju.</p>
+      <p>Mes naudojame sausainius, kad suprastumėme ir išsaugotumėme Jūsų poreikius kitam apsilankymui.</p>
 
       <hr class="spacer" />
-
 
       <h3 id="disclose">Ar mes atskleidžiame Jūsų informacija kitoms šalims?</h3>
 
+      <p>Mes neparduodame, nesikeičiame, ar kitaip mainomės Jūsų privačiais duomenimis su trečiosiomis šalimis. Į šį sąrašą neįeina patikimos trečiosios šalys, kurios padeda mums naudotis tinklalapiu, daryti verslą, ar padėti jums, tol, kol šios šalys sutinka laikyti šią informaciją konfidencialiai. Mes taippat galime paviešinti Jūsų informaciją, jeigu manome, kad Jūs pažeidėte įstatymus, naudojimosi politiką, ar apsaugoti, ginti Jūsų, mūsų ar kitų teises. </p>
 
-      <p>Mes neparduodame, nesikeičiame, ar kitaip mainomės Jūsų privačiais duomenimis
-      su trečiosiomis šalimis. Į šį sąrašą neįeina patikimos trečiosios šalys, kurios
-      padeda mums naudotis tinklalapiu, daryti verslą, ar padėti jums, tol, kol šios
-      šalys sutinka laikyti šią informaciją konfidencialiai. Mes taippat galime paviešinti
-      Jūsų informaciją, jeigu manome, kad Jūs pažeidėte įstatymus, naudojimosi politiką,
-      ar apsaugoti, ginti Jūsų, mūsų ar kitų teises. </p>
+      <p>Jūsų vieši duomenys gali būti atsisiųsti kitų serverių esančių tinkle. Jūsų vieši bei tik sekėjams skirti įrašai pristatomi serveriams, kuriuose Jūsų sekėjai egzistuoja, o tiesioginės žinutės pristatomos tiesiai į gavėjo serverį, tol, kol šie sekėjai ar gavėjai yra naudotojai iš kitų serverių. </p>
 
-
-      <p>Jūsų vieši duomenys gali būti atsisiųsti kitų serverių esančių tinkle. Jūsų
-      vieši bei tik sekėjams skirti įrašai pristatomi serveriams, kuriuose Jūsų sekėjai
-      egzistuoja, o tiesioginės žinutės pristatomos tiesiai į gavėjo serverį, tol,
-      kol šie sekėjai ar gavėjai yra naudotojai iš kitų serverių. </p>
-
-
-      <p>Kai jūs patvirtinate Jūsų paskyros naudojimą aplikacijai, atitinkamai priklausant
-      nuo leidimų, kuriuos jūs suteikėte, aplikacija turi prieiga prie Jūsų viešojo
-      profilio informacijos, Jūsų sekėjų sąrašo, sekamų sąrašo, visų Jūsų įrašų, ir
-      pamėgtų įrašų.
-
+      <p>Kai jūs patvirtinate Jūsų paskyros naudojimą aplikacijai, atitinkamai priklausant nuo leidimų, kuriuos jūs suteikėte, aplikacija turi prieiga prie Jūsų viešojo profilio informacijos, Jūsų sekėjų sąrašo, sekamų sąrašo, visų Jūsų įrašų, ir pamėgtų įrašų.
       Aplikacijos niekada negali turėti prieigos prie Jūsų el pašto adreso arba slaptažodžio.</p>
 
-
       <hr class="spacer" />
-
 
 
       <h3 id="children">Tinklalapio naudojimas nepilnamečiams</h3>
 
+      <p> Jeigu serveris yra EU arba EEA: Mūsų tinklalapis, produktai ir visi teikiami aptarnavimai yra teikiami tik žmonėms, kuriems yra bent 16 metų. Jeigu jums yra mažiau nei 16 metų, sekant GDPR reikalavimais (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) prašome nenaudoti šios svetainės. </p>
 
-      <p> Jeigu serveris yra EU arba EEA: Mūsų tinklalapis, produktai ir visi teikiami
-      aptarnavimai yra teikiami tik žmonėms, kuriems yra bent 16 metų. Jeigu jums
-      yra mažiau nei 16 metų, sekant GDPR reikalavimais (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General
-      Data Protection Regulation</a>) prašome nenaudoti šios svetainės. </p>
-
-
-      <p> Jeigu šis serveris yra USA: Mūsų tinklalapis, produktai ir visi teikiami
-      aptarnavimai yra teikiami žmonėms, kuriems yra bent 13 metų. Jeigu jums mažiau
-      nei 13 metų, sekant COPPA reikalavimais (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children''s
-      Online Privacy Protection Act</a>) prašome nenaudotis šios svetainės.</p>
-
+      <p> Jeigu šis serveris yra USA: Mūsų tinklalapis, produktai ir visi teikiami aptarnavimai yra teikiami žmonėms, kuriems yra bent 13 metų. Jeigu jums mažiau nei 13 metų, sekant COPPA reikalavimais (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) prašome nenaudotis šios svetainės.</p>
 
       <p>Legalūs reikalavimai gali būti kitokie, jeigu serveris yra kitoje jurisdikcijoje.</p>
 
-
       <hr class="spacer" />
-
 
       <h3 id="changes">Pasikeitimai mūsų privatumo politikoje</h3>
 
-
-      <p>Jeigu mes nusprendžiame pakeisti savo privatumo politiką, mes įrašysime šiuos
-      pakeitimus šiame tinklalapyje.</p>
-
+      <p>Jeigu mes nusprendžiame pakeisti savo privatumo politiką, mes įrašysime šiuos pakeitimus šiame tinklalapyje.</p>
 
       <p>Šis dokumentas yra CC-BY-SA. Paskutinį kartą keistas Kovo 7, 2018.</p>
 
-
-      <p>Originaliai adaptuotas iš <a href="https://github.com/discourse/discourse">Discourse
-      privatumo politika</a>.</p>
-
-      '
-    title: '%{instance} Naudojimosi Sąlygos ir Privatumo Politika'
+      <p>Originaliai adaptuotas iš <a href="https://github.com/discourse/discourse">Discourse privatumo politika</a>.</p>
+    title: "%{instance} Naudojimosi Sąlygos ir Privatumo Politika"
   themes:
     contrast: Mastodon (Didelio Kontrasto)
     default: Mastodon (Tamsus)
     mastodon-light: Mastodon (Šviesus)
   time:
     formats:
-      default: '%b %d, %Y, %H:%M'
-      month: '%b %Y'
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
-    code_hint: Įveskite autentikacijos aplikacijos sugeneruotą kodą kad galėtumete
-      tęsti
-    description_html: Jeigu įjungiate <strong>dviejų veiksnių autentikaciją</strong>,
-      prisijungiant jums reikės turėti su savimi savo telefoną, kuris jums generuos
-      prisijungimo žetonus.
+    code_hint: Įveskite autentikacijos aplikacijos sugeneruotą kodą kad galėtumete tęsti
+    description_html: Jeigu įjungiate <strong>dviejų veiksnių autentikaciją</strong>, prisijungiant jums reikės turėti su savimi savo telefoną, kuris jums generuos prisijungimo žetonus.
     disable: Išjungti
     enable: Įjungti
     enabled: Dviejų veiksnių autentikacija įjungta
     enabled_success: Dviejų veiksnių autentikacija sėkmingai įjungta
     generate_recovery_codes: Sugeneruoti atkūrimo kodus
-    instructions_html: <strong>Nuskenuokite šį QR kodą į Google Autentikatorių arba
-      panašią TOTP aplikaciją jūsų telefone</strong>. Nuo šiol, ši aplikacija jums
-      generuos žetonus, kurių reikės norint prisijungti.
-    lost_recovery_codes: Atkūrimo kodai jums leidžia atgauti prisijungimą prie Jūsų
-      paskyros, jeigu prarandate telefoną. Jeigu praradote atkūrimo kodus, juos galite
-      sugeneruoti čia. Jūsų senieji atkūrimo kodai nebeveiks.
-    manual_instructions: 'Jeigu jūs negalite nuskenuoti QR kodo ir turite jį įvesti
-      savarankiškai, štai čia yra tekstas šiam kodui:'
+    instructions_html: "<strong>Nuskenuokite šį QR kodą į Google Autentikatorių arba panašią TOTP aplikaciją jūsų telefone</strong>. Nuo šiol, ši aplikacija jums generuos žetonus, kurių reikės norint prisijungti."
+    lost_recovery_codes: Atkūrimo kodai jums leidžia atgauti prisijungimą prie Jūsų paskyros, jeigu prarandate telefoną. Jeigu praradote atkūrimo kodus, juos galite sugeneruoti čia. Jūsų senieji atkūrimo kodai nebeveiks.
+    manual_instructions: 'Jeigu jūs negalite nuskenuoti QR kodo ir turite jį įvesti savarankiškai, štai čia yra tekstas šiam kodui:'
     recovery_codes: Atsarginio atkūrimo kodai
     recovery_codes_regenerated: Atkūrimo kodai sėkmingai sugeneruoti
-    recovery_instructions_html: Jeigu prarandate prieiga prie telefono, jūs galite
-      naudoti atkūrimo kodus esančius žemiau, kad atgautumėte priega prie savo paskyros.<strong>Laikykite
-      atkūrimo kodus saugiai</strong> Pavyzdžiui, galite norėti juos išspausdinti,
-      ir laikyti kartu su kitais svarbiais dokumentais.
+    recovery_instructions_html: Jeigu prarandate prieiga prie telefono, jūs galite naudoti atkūrimo kodus esančius žemiau, kad atgautumėte priega prie savo paskyros.<strong>Laikykite atkūrimo kodus saugiai</strong> Pavyzdžiui, galite norėti juos išspausdinti, ir laikyti kartu su kitais svarbiais dokumentais.
     setup: Nustatyti
     wrong_code: Koda netinkamas! Ar serverio laikas ir prietaiso laikas vienodi?
   user_mailer:
     backup_ready:
-      explanation: Jūs prašėte pilnos Mastodon paskyros atsarginės kopijos. Ji paruošta
-        parsisiuntimui!
+      explanation: Jūs prašėte pilnos Mastodon paskyros atsarginės kopijos. Ji paruošta parsisiuntimui!
       subject: Jūsų archyvas paruoštas parsisiuntimui
       title: Archyvas išimtas
     warning:
       explanation:
-        disable: Kol Jūsų paskyra užšaldyta, Jūsų duomenys tebėra matomi, tačiau jūs
-          negalite atlikti jokių veiksmu, tol, kol užšaldymas panaikintas.
-        silence: Kol Jūsų paskyra limituota, tik žmonės, kurie jus jau sekė matus
-          Jūsų toot'us serveryje, Jūs taip pat būsite išimtas iš viešųjų sąrašų. Tačiau,
-          kiti gali jus rasti, savo rankomis.
-        suspend: Jūsų paskyra buvo užrakinta, ir visi Jūsų toot'ai, medijos failai,
-          buvo panaikinti iš šio serverio, ir visų kitų serverių, kur turėjote sekėjų.
+        disable: Kol Jūsų paskyra užšaldyta, Jūsų duomenys tebėra matomi, tačiau jūs negalite atlikti jokių veiksmu, tol, kol užšaldymas panaikintas.
+        silence: Kol Jūsų paskyra limituota, tik žmonės, kurie jus jau sekė matus Jūsų toot'us serveryje, Jūs taip pat būsite išimtas iš viešųjų sąrašų. Tačiau, kiti gali jus rasti, savo rankomis.
+        suspend: Jūsų paskyra buvo užrakinta, ir visi Jūsų toot'ai, medijos failai, buvo panaikinti iš šio serverio, ir visų kitų serverių, kur turėjote sekėjų.
       review_server_policies: Apžvelgti serverio politiką
       subject:
         disable: Jūsų paskyra %{acct} buvo užšaldyta
@@ -1186,46 +989,28 @@ lt:
         suspend: Paskyra užrakinta
     welcome:
       edit_profile_action: Nustatyti profilį
-      edit_profile_step: Jūs galite keisti savo profilį įkeldami profilio nuotrauką,
-        antraštę, pakeičiant savo rodomą vardą ir dar daugiau. Jeigu norėtumete peržiurėti
-        naujus sekėjus prieš leidžiant jiems jus sekti, galite užrakinti savo paskyrą.
+      edit_profile_step: Jūs galite keisti savo profilį įkeldami profilio nuotrauką, antraštę, pakeičiant savo rodomą vardą ir dar daugiau. Jeigu norėtumete peržiurėti naujus sekėjus prieš leidžiant jiems jus sekti, galite užrakinti savo paskyrą.
       explanation: Štai keletas patarimų Jums
       final_action: Pradėti kelti įrašus
-      final_step: 'Pradėk kelti įrašus! Net jeigu neturi sekėjų, Jūsų viešos žinutės
-        gali būti matomos kitų, pavyzdžiui, lokalioje laiko juostoje ir saitažodžiuose.
-        Galite norėti prisistatyti naudojan saitąžodį #introductions.'
+      final_step: 'Pradėk kelti įrašus! Net jeigu neturi sekėjų, Jūsų viešos žinutės gali būti matomos kitų, pavyzdžiui, lokalioje laiko juostoje ir saitažodžiuose. Galite norėti prisistatyti naudojan saitąžodį #introductions.'
       full_handle: Jūsų pilnas slapyvardis
-      full_handle_hint: Štai ką jūs sakytumėte savo draugams, kad jie galėtų jums
-        siųsti žinutes arba just sekti iš kitų serverių.
+      full_handle_hint: Štai ką jūs sakytumėte savo draugams, kad jie galėtų jums siųsti žinutes arba just sekti iš kitų serverių.
       review_preferences_action: Pakeisti pasirinkimus
-      review_preferences_step: Nustatykite savo pasirinkimus, tokius kaip el pašto
-        laiškai, kuriuos norėtumėte gauti, arba kokiu privatumo lygiu norėtumėte,
-        kad jūsų įrašai būtų talpinami, taip pat galite įjungti automatinį GIF paleidimą.
+      review_preferences_step: Nustatykite savo pasirinkimus, tokius kaip el pašto laiškai, kuriuos norėtumėte gauti, arba kokiu privatumo lygiu norėtumėte, kad jūsų įrašai būtų talpinami, taip pat galite įjungti automatinį GIF paleidimą.
       subject: Sveiki atvykę į Mastodon
-      tip_federated_timeline: Federuota laiko juosta yra lyg gaisrininkų žarną rodanti
-        Mastodon tinklą. Tačiau, joje rodomi tik žmonės kurie yra sekami Jūsų kaimynų.
-      tip_following: Jūs sekate savo serverio administratorius numatyta tvarka. Norint
-        rasti įdomesnių žmonių, patikrinkite lokalią bei federuotą laiko juostas.
-      tip_local_timeline: Lokali laiko juosta, joje rodomi žmonės iš %{instance}.
-        Jie yra Jūsų artimiausi kaimynai!
-      tip_mobile_webapp: Jeigu Jūsų mobilioji naršyklė leidžia jums pridėti Mastodon
-        prie namų ekrano, jūs galite gauti priminimus. Tai gali veikti kaip vietinė
-        aplikacija!
+      tip_federated_timeline: Federuota laiko juosta yra lyg gaisrininkų žarną rodanti Mastodon tinklą. Tačiau, joje rodomi tik žmonės kurie yra sekami Jūsų kaimynų.
+      tip_following: Jūs sekate savo serverio administratorius numatyta tvarka. Norint rasti įdomesnių žmonių, patikrinkite lokalią bei federuotą laiko juostas.
+      tip_local_timeline: Lokali laiko juosta, joje rodomi žmonės iš %{instance}. Jie yra Jūsų artimiausi kaimynai!
+      tip_mobile_webapp: Jeigu Jūsų mobilioji naršyklė leidžia jums pridėti Mastodon prie namų ekrano, jūs galite gauti priminimus. Tai gali veikti kaip vietinė aplikacija!
       tips: Patarimai
       title: Sveiki atvykę, %{name}!
   users:
     follow_limit_reached: Negalite sekti daugiau nei %{limit} žmonių
     invalid_email: Netinkamas el pašto adresas
     invalid_otp_token: Netinkamas dviejų veiksnių kodas
-    otp_lost_help_html: Jeigu praradote prieiga prie abiejų, susisiekite su mumis
-      per %{email}
-    seamless_external_login: Jūs esate prisijungę per išorini įrenginį, todėl slaptąžodis
-      ir el pašto nustatymai neprieinami.
+    otp_lost_help_html: Jeigu praradote prieiga prie abiejų, susisiekite su mumis per %{email}
+    seamless_external_login: Jūs esate prisijungę per išorini įrenginį, todėl slaptąžodis ir el pašto nustatymai neprieinami.
     signed_in_as: 'Prisijungta kaip:'
   verification:
-    explanation_html: 'Jūs galite <strong>patvirtinti savę kaip savininką nuorodų
-      savo profilio meta duomenyse</strong>. Kad tai padarytumėte, susieta svetainė
-      privalo turėti nuorodą atgal į Jūsų Mastodon profilį. Nuoroda atgal <strong>
-      privalo </strong> turėti <code>rel="me"</code> savybę. Teksto turinys nuorodoje
-      nesvarbus. Štai pavyzdys:'
+    explanation_html: 'Jūs galite <strong>patvirtinti savę kaip savininką nuorodų savo profilio meta duomenyse</strong>. Kad tai padarytumėte, susieta svetainė privalo turėti nuorodą atgal į Jūsų Mastodon profilį. Nuoroda atgal <strong> privalo </strong> turėti <code>rel="me"</code> savybę. Teksto turinys nuorodoje nesvarbus. Štai pavyzdys:'
     verification: Patvirtinimas

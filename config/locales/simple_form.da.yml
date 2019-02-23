@@ -1,50 +1,39 @@
+---
 da:
   simple_form:
     hints:
       admin_account_action:
         type_html: Vælg hvad du vil gøre med <strong>%{acct}</strong>
       defaults:
-        autofollow: Folk der har oprettet sig gennem invitationen vil automatisk følge
-          dig
+        autofollow: Folk der har oprettet sig gennem invitationen vil automatisk følge dig
         avatar: PNG, GIF eller JPG. Højest %{size}. Vil blive skaleret ned til %{dimensions}px
-        bot: Denne konto udfører hovedsageligt automatiserede handlinger og bliver
-          muligvis ikke overvåget
+        bot: Denne konto udfører hovedsageligt automatiserede handlinger og bliver muligvis ikke overvåget
         context: En eller flere sammenhænge hvor filteret skal være gældende
-        digest: Sendes kun efter en lang periode med inaktivitet og kun hvis du har
-          modtaget nogle personlige beskeder mens du er væk
+        digest: Sendes kun efter en lang periode med inaktivitet og kun hvis du har modtaget nogle personlige beskeder mens du er væk
         email: Du vil få tilsendt en bekræftelsed mail
         fields: Du kan have op til 4 ting vist som en tabel på din profil
         header: PNG, GIF eller JPG. Højest %{size}. Vil blive skaleret ned til %{dimensions}px
         inbox_url: Kopiere linket fra forsiden af den relay som du ønsker at bruge
-        irreversible: Filtrerede trut vil forsvinde fulstændigt, selv hvis filteret
-          senere skulle blive fjernet
+        irreversible: Filtrerede trut vil forsvinde fulstændigt, selv hvis filteret senere skulle blive fjernet
         locale: Sproget på interfacet, emails og push beskeder
         locked: Kræver, at du godkender følgere manuelt
         password: Brug mindst 8 tegn
-        phrase: Vil blive parret uanset om der er store eller små bogstaver i teksten
-          eller om der er en advarsel om et trut
-        scopes: Hvilke APIs applikationen vil få adgang til. Hvis du vælger et højtlevel
-          omfang, behøver du ikke vælge enkeltstående.
-        setting_default_language: Sproget for dine trut kan blive fundet automatisk,
-          men det er ikke altid præcist
+        phrase: Vil blive parret uanset om der er store eller små bogstaver i teksten eller om der er en advarsel om et trut
+        scopes: Hvilke APIs applikationen vil få adgang til. Hvis du vælger et højtlevel omfang, behøver du ikke vælge enkeltstående.
+        setting_default_language: Sproget for dine trut kan blive fundet automatisk, men det er ikke altid præcist
         setting_display_media_default: Skjul medier markeret som følsomt
         setting_display_media_hide_all: Skjul altid alle medier
-        setting_hide_network: Hvem du følger og hvem der følger dig vil ikke blive
-          vist på din profil
+        setting_hide_network: Hvem du følger og hvem der følger dig vil ikke blive vist på din profil
         setting_noindex: Påvirker din offentlige profil og status sider
-        setting_theme: Påvirker hvordan Mastodon ser ud når du er logget ind via en
-          hvilken som helst enhed.
+        setting_theme: Påvirker hvordan Mastodon ser ud når du er logget ind via en hvilken som helst enhed.
         username: Dit brugernavn vil være unikt på %{domain}
-        whole_word: Når nøgle ordet eller udtrykket kun er alfanumerisk, vil det kun
-          blive brugt hvis det passer hele ordet
+        whole_word: Når nøgle ordet eller udtrykket kun er alfanumerisk, vil det kun blive brugt hvis det passer hele ordet
       imports:
         data: CSV fil eksporteret fra en anden Mastodon server
       sessions:
-        otp: 'Indtast to-faktor koden der generes af appen af appen på din telefon
-          eller brug en af din genoprettelses koder:'
+        otp: 'Indtast to-faktor koden der generes af appen af appen på din telefon eller brug en af din genoprettelses koder:'
       user:
-        chosen_languages: Når markeret, vil kun trut i de valgte sprog blive vist
-          på offentlige tidslinjer
+        chosen_languages: Når markeret, vil kun trut i de valgte sprog blive vist på offentlige tidslinjer
     labels:
       account:
         fields:
@@ -96,8 +85,7 @@ da:
         setting_reduce_motion: Reducer animationers bevægelse
         setting_system_font_ui: Brug systemets standard font
         setting_theme: Tema for side
-        setting_unfollow_modal: Vis bekræftelses dialog før du stopper med at følge
-          nogen
+        setting_unfollow_modal: Vis bekræftelses dialog før du stopper med at følge nogen
         severity: Omfang
         type: Importtype
         username: Brugernavn
@@ -117,6 +105,6 @@ da:
         report: Send email når en ny anmeldelse bliver indsendt
     'no': Nej
     required:
-      mark: '*'
+      mark: "*"
       text: påkrævet
     'yes': Ja
