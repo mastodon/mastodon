@@ -21,7 +21,7 @@ fr:
         action_with_app: Confirmer et retourner à %{app}
         explanation: Vous avez créé un compte sur %{host} avec cette adresse courriel. Vous êtes à un clic de l’activer. Si ce n’était pas vous, veuillez ignorer ce courriel.
         extra_html: Merci de consultez également <a href="%{terms_path}">les règles de l’instance</a> et <a href="%{policy_path}">nos conditions d’utilisation</a>.
-        subject: Merci de confirmer votre inscription sur %{instance}
+        subject: 'Mastodon : Merci de confirmer votre inscription sur %{instance}'
         title: Vérifier l’adresse courriel
       email_changed:
         explanation: 'L’adresse courriel de votre compte est en cours de modification pour devenir :'
@@ -31,7 +31,7 @@ fr:
       password_change:
         explanation: Le mot de passe de votre compte a été changé.
         extra: Si vous n’avez pas changé votre mot de passe, il est probable que quelqu’un ait eu accès à votre compte. Veuillez changer votre mot de passe immédiatement ou contacter l’administrateur·rice de l’instance si vous êtes bloqué·e hors de votre compte.
-        subject: Votre mot de passe a été modifié avec succès
+        subject: 'Mastodon : Votre mot de passe a été modifié avec succès'
         title: Mot de passe modifié
       reconfirmation_instructions:
         explanation: Confirmez la nouvelle adresse pour changer votre courriel.
@@ -42,10 +42,10 @@ fr:
         action: Modifier le mot de passe
         explanation: Vous avez demandé un nouveau mot de passe pour votre compte.
         extra: Si vous ne l’avez pas demandé, veuillez ignorer ce courriel. Votre mot de passe ne changera pas tant que vous n’aurez pas cliqué sur le lien ci-dessus et que vous n’en aurez pas créé un nouveau.
-        subject: Instructions pour changer votre mot de passe
+        subject: 'Mastodon : Instructions pour changer votre mot de passe'
         title: Réinitialisation du mot de passe
       unlock_instructions:
-        subject: Instructions pour déverrouiller votre compte
+        subject: 'Mastodon : Instructions pour déverrouiller votre compte'
     omniauth_callbacks:
       failure: 'Nous n’avons pas pu vous authentifier via %{kind} : ''%{reason}''.'
       success: Authentifié avec succès via %{kind}.
@@ -56,12 +56,12 @@ fr:
       updated: Votre mot de passe a été modifié avec succès, vous êtes maintenant connecté⋅e.
       updated_not_active: Votre mot de passe a été modifié avec succès.
     registrations:
-      destroyed: Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt.
-      signed_up: Bienvenue, vous êtes connecté⋅e.
+      destroyed: Au revoir ! Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt.
+      signed_up: Bienvenue ! Vous êtes connecté⋅e.
       signed_up_but_inactive: Vous êtes bien enregistré⋅e. Vous ne pouvez cependant pas vous connecter car votre compte n’est pas encore activé.
       signed_up_but_locked: Vous êtes bien enregistré⋅e. Vous ne pouvez cependant pas vous connecter car votre compte est verrouillé.
-      signed_up_but_unconfirmed: Un message contenant un lien de confirmation a été envoyé à votre adresse courriel. Ouvrez ce lien pour activer votre compte.
-      update_needs_confirmation: Votre compte a bien été mis à jour mais nous devons vérifier votre nouvelle adresse courriel. Merci de vérifier vos courriels et de cliquer sur le lien de confirmation pour finaliser la validation de votre nouvelle adresse.
+      signed_up_but_unconfirmed: Un message contenant un lien de confirmation a été envoyé à votre adresse courriel. Ouvrez ce lien pour activer votre compte. Veuillez vérifier votre dossier d'indésirables si vous ne recevez pas le courriel.
+      update_needs_confirmation: Votre compte a bien été mis à jour, mais nous devons vérifier votre nouvelle adresse courriel. Merci de vérifier vos courriels et de cliquer sur le lien de confirmation pour finaliser la validation de votre nouvelle adresse. Si vous n'avez pas reçu le courriel, vérifiez votre dossier d'indésirables.
       updated: Votre compte a été modifié avec succès.
     sessions:
       already_signed_out: Déconnecté·e.

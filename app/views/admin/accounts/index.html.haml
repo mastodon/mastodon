@@ -26,8 +26,9 @@
         = hidden_field_tag key, params[key]
 
     - %i(username by_domain display_name email ip).each do |key|
-      .input.string.optional
-        = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.accounts.#{key}")
+      - unless key == :by_domain && params[:remote].blank?
+        .input.string.optional
+          = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.accounts.#{key}")
 
     .actions
       %button= t('admin.accounts.search')
