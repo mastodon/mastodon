@@ -286,6 +286,7 @@ lt:
         suspend: uždraustas
       show:
         affected_accounts:
+          few: "%{count} vartotojai duomenų bazėje yra paveikti"
           one: Vienas vartotojas duomenų bazėje paveiktas
           other: "%{count} vartotojai duomenų bazėje yra paveikti"
         retroactive:
@@ -310,6 +311,7 @@ lt:
     instances:
       delivery_available: Pristatymas galimas
       known_accounts:
+        few: "%{count} žinomos paskyros"
         one: "%{count} žinoma paskyra"
         other: "%{count} žinomos paskyros"
       moderation:
@@ -565,6 +567,7 @@ lt:
     explore_mastodon: Naršyti %{title}
     how_to_enable: Jūs nesate prisijungęs prie šios direktorijos. Galite prisijungti žemiau. Naudokite saitažodžius savo biografiniame tekste, kad būtumėte rastas naudojantis specifinius saitažodžius!
     people:
+      few: "%{count} žmonės"
       one: "%{count} žmogus"
       other: "%{count} žmonės"
   errors:
@@ -621,6 +624,7 @@ lt:
     lock_link: Užrakinti savo paskyrą
     purge: Panaikint iš sekėju
     success:
+      few: Švelnaus sekėjų blokavimo procedūroje iš %{count} domenų...
       one: Švelnaus sekėjų blokavimo procedūroje iš vieno domeno...
       other: Švelnaus sekėjų blokavimo procedūroje iš %{count} domenų...
     true_privacy_html: Prašau prisiminti, kad <strong> tikras privatumas gali būti pasiekamas tik su end-to-end užsifravimu</strong>.
@@ -635,6 +639,7 @@ lt:
     copy: Kopijuoti
     save_changes: Išsaugoti pakeitimus
     validation_errors:
+      few: Kažkas negerai! Prašau patikrinti %{count} klaidas žemiau
       one: Kažkas negerai! Peržiūrėk klaidas žemiau
       other: Kažkas negerai! Prašau patikrinti %{count} klaidas žemiau
   imports:
@@ -666,6 +671,7 @@ lt:
     generate: Generuoti
     invited_by: 'Jus pakvietė:'
     max_uses:
+      few: "%{count} naudojimai"
       one: 1 naudojimas
       other: "%{count} naudojimai"
     max_uses_prompt: Be limito
@@ -694,9 +700,11 @@ lt:
       body: Čia yra trumpa santrauka žinutės, kurią jūs praleidote nuo jūsų paskutinio apsilankymo %{since}
       mention: "%{name} paminėjo jus:"
       new_followers_summary:
+        few: Beje, jūs gavote %{count} naujų sekėjų, nuo jūsų paskutinio apsilankymo! Nuostabu!
         one: Beje, jūs gavote naują sekėją, kol buvote atsijungęs! Yay!
         other: Beje, jūs gavote %{count} naujų sekėjų, nuo jūsų paskutinio apsilankymo! Nuostabu!
       subject:
+        few: "%{count} nauji pranešimai, nuo paskutinio apsilankymo\U0001F418"
         one: "1 naujas pranešimas nuo paskutinio apsilankymo \U0001F418"
         other: "%{count} nauji pranešimai, nuo paskutinio apsilankymo\U0001F418"
       title: Kol jūsų nebuvo...
@@ -829,14 +837,17 @@ lt:
     attached:
       description: 'Pridėta: %{attached}'
       image:
+        few: "%{count} nuotraukos"
         one: "%{count} nuotrauka"
         other: "%{count} nuotraukos"
       video:
+        few: "%{count} vaizdo įrašai"
         one: "%{count} video"
         other: "%{count} vaizdo įrašai"
     boosted_from_html: Pakelta iš %{acct_link}
     content_warning: 'Turinio įspėjimas: %{warning}'
     disallowed_hashtags:
+      few: 'rasti neleistini saitąžodžiai: %{tags}'
       one: 'rastas neleistinas saitažodis : %{tags}'
       other: 'rasti neleistini saitąžodžiai: %{tags}'
     language_detection: Automatiškai nustatyti kalbą
