@@ -1,6 +1,9 @@
 - content_for :page_title do
   = t('admin.settings.title')
 
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', integrity: true, crossorigin: 'anonymous'
+
 = simple_form_for @admin_settings, url: admin_settings_path, html: { method: :patch } do |f|
 
   .fields-group
@@ -16,10 +19,10 @@
       = f.input :site_contact_email, wrapper: :with_label, label: t('admin.settings.contact_information.email')
 
   .fields-group
-    = f.input :site_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_description.title'), hint: t('admin.settings.site_description.desc_html'), input_html: { rows: 4 }
+    = f.input :site_description, wrapper: :with_block_label, as: :trix_editor, label: t('admin.settings.site_description.title'), hint: t('admin.settings.site_description.desc_html')
 
   .fields-group
-    = f.input :site_short_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_short_description.title'), hint: t('admin.settings.site_short_description.desc_html'), input_html: { rows: 2 }
+    = f.input :site_short_description, wrapper: :with_block_label, as: :trix_editor, label: t('admin.settings.site_short_description.title'), hint: t('admin.settings.site_short_description.desc_html')
 
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
@@ -71,9 +74,9 @@
     = f.input :min_invite_role, wrapper: :with_label, collection: %i(disabled user moderator admin), label: t('admin.settings.registrations.min_invite_role.title'), label_method: lambda { |role| role == :disabled ? t('admin.settings.registrations.min_invite_role.disabled') : t("admin.accounts.roles.#{role}") }, include_blank: false, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
 
   .fields-group
-    = f.input :closed_registrations_message, as: :text, wrapper: :with_block_label, label: t('admin.settings.registrations.closed_message.title'), hint: t('admin.settings.registrations.closed_message.desc_html'), input_html: { rows: 8 }
-    = f.input :site_extended_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_description_extended.title'), hint: t('admin.settings.site_description_extended.desc_html'), input_html: { rows: 8 }
-    = f.input :site_terms, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_terms.title'), hint: t('admin.settings.site_terms.desc_html'), input_html: { rows: 8 }
+    = f.input :closed_registrations_message, as: :trix_editor, wrapper: :with_block_label, label: t('admin.settings.registrations.closed_message.title'), hint: t('admin.settings.registrations.closed_message.desc_html')
+    = f.input :site_extended_description, wrapper: :with_block_label, as: :trix_editor, label: t('admin.settings.site_description_extended.title'), hint: t('admin.settings.site_description_extended.desc_html')
+    = f.input :site_terms, wrapper: :with_block_label, as: :trix_editor, label: t('admin.settings.site_terms.title'), hint: t('admin.settings.site_terms.desc_html')
     = f.input :custom_css, wrapper: :with_block_label, as: :text, input_html: { rows: 8 }, label: t('admin.settings.custom_css.title'), hint: t('admin.settings.custom_css.desc_html')
 
   .actions

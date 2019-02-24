@@ -1,0 +1,38 @@
+.simple_form {
+  trix-editor {
+    border-radius: 0 0 4px 4px;
+    border-top: 0;
+
+    &:focus {
+      background: darken($ui-base-color, 10%);
+      border-color: darken($ui-base-color, 14%);
+    }
+  }
+
+  trix-toolbar {
+    background: darken($ui-base-color, 10%);
+    border: 1px solid darken($ui-base-color, 14%);
+    border-radius: 4px 4px 0 0;
+    border-bottom: 0;
+    padding: 10px;
+
+    .trix-button-group {
+      border: 0;
+      background: $ui-secondary-color;
+      margin-bottom: 0;
+    }
+
+    .trix-button {
+      background: transparent;
+      margin: 0;
+      font-size: 18px;
+      padding: 0 0.5em;
+      width: 2.6em;
+      height: 1.6em;
+    }
+
+    button[data-trix-attribute="italic"] {
+      display: none;
+    }
+  }
+}

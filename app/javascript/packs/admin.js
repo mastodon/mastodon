@@ -1,4 +1,5 @@
 import { delegate } from 'rails-ujs';
+import Trix from 'trix';
 
 const batchCheckboxClassName = '.batch-checkbox input[type="checkbox"]';
 
