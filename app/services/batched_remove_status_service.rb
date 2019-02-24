@@ -35,12 +35,12 @@ class BatchedRemoveStatusService < BaseService
     statuses.group_by(&:account_id).each_value do |account_statuses|
       account = account_statuses.first.account
 
-      if account
-        unpush_from_home_timelines(account, account_statuses)
-        unpush_from_list_timelines(account, account_statuses)
+      next unless account
 
-        batch_stream_entries(account, account_statuses) if account.local?
-      end
+      unpush_from_home_timelines(account, account_statuses)
+      unpush_from_list_timelines(account, account_statuses)
+
+      batch_stream_entries(account, account_statuses) if account.local?
     end
 
     # Cannot be batched
