@@ -225,15 +225,15 @@ cs:
       emoji: Emoji
       enable: Povolit
       enabled_msg: Emoji bylo úspěšně povoleno
-      image_hint: PNG až do 50KB
-      listed: Uvedené
+      image_hint: PNG až do 50 KB
+      listed: Uvedeno
       new:
         title: Přidat nové vlastní emoji
       overwrite: Přepsat
       shortcode: Zkratka
       shortcode_hint: Alespoň 2 znaky, pouze alfanumerické znaky a podtržítka
       title: Vlastní emoji
-      unlisted: Neuvedené
+      unlisted: Neuvedeno
       update_failed_msg: Nebylo možné aktualizovat toto emoji
       updated_msg: Emoji úspěšně aktualizováno!
       upload: Nahrát
@@ -570,10 +570,10 @@ cs:
       other: "%{count} lidí"
   errors:
     '403': Nemáte povolení zobrazit tuto stránku.
-    '404': Stránka, kterou hledáte, neexistuje.
-    '410': Stránka, kterou hledáte, již neexistuje.
+    '404': Stránka, kterou hledáte, tu není.
+    '410': Stránka, kterou hledáte, tu již neexistuje.
     '422':
-      content: Bezpečnostní ověření selhalo. Neblokujete cookoes?
+      content: Bezpečnostní ověření selhalo. Neblokujete cookies?
       title: Bezpečnostní ověření selhalo
     '429': Příliš mnoho požadavků
     '500':
@@ -584,7 +584,7 @@ cs:
     archive_takeout:
       date: Datum
       download: Stáhnout svůj archiv
-      hint_html: Můžete si vyžádat archiv vašich <strong>tootů a nahraných médií</strong>. Exportovaná data budou ve formátu ActivityPub a budou čitelné kterýmkoliv kompatibilním softwarem. Archiv si můžete vyžádat každých 7 dní.
+      hint_html: Můžete si vyžádat archiv vašich <strong>tootů a nahraných médií</strong>. Exportovaná data budou ve formátu ActivityPub a budou čitelná kterýmkoliv kompatibilním softwarem. Archiv si můžete vyžádat každých 7 dní.
       in_progress: Kompiluji váš archiv...
       request: Vyžádat svůj archiv
       size: Velikost
@@ -595,6 +595,10 @@ cs:
     lists: Seznamy
     mutes: Ignorujete
     storage: Paměť médií
+  featured_tags:
+    add_new: Přidat nový
+    errors:
+      limit: Již jste nastavil/a maximální počet oblíbených hashtagů
   filters:
     contexts:
       home: Domovská časová osa
@@ -637,10 +641,16 @@ cs:
       one: Něco ještě není úplně v pořádku! Prosím zkontrolujte chybu níže
       other: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
   imports:
+    modes:
+      merge: Sloučit
+      merge_long: Ponechat existující záznamy a přidat nové
+      overwrite: Přepsat
+      overwrite_long: Nahradit aktuální záznamy novými
     preface: Můžete importovat data, která jste exportoval/a z jiného serveru, jako například seznam lidí, které sledujete či blokujete.
     success: Vaše data byla úspěšně nahrána a nyní budou zpracována v daný čas
     types:
       blocking: Seznam blokovaných
+      domain_blocking: Seznam blokovaných domén
       following: Seznam sledovaných
       muting: Seznam ignorovaných
     upload: Nahrát
@@ -812,6 +822,7 @@ cs:
     development: Vývoj
     edit_profile: Upravit profil
     export: Export dat
+    featured_tags: Oblíbené hashtagy
     followers: Autorizovaní sledující
     import: Import
     migrate: Přesunutí účtu
@@ -854,7 +865,7 @@ cs:
       public: Veřejné
       public_long: Všichni mohou vidět
       unlisted: Neuvedené
-      unlisted_long: Všichni mohou vidět, ale není zahrnut ve veřejných časových osách
+      unlisted_long: Všichni mohou vidět, ale nebudou zahrnuty ve veřejných časových osách
   stream_entries:
     pinned: Připnutý toot
     reblogged: boostnul/a
@@ -943,8 +954,8 @@ cs:
       <p>Původně adaptováno ze <a href="https://github.com/discourse/discourse">zásad soukromí Discourse</a>.</p>
     title: Podmínky používání a zásady soukromí %{instance}
   themes:
-    contrast: Vysoký kontrast
-    default: Mastodon
+    contrast: Mastodon (vysoký kontrast)
+    default: Mastodon (tmavý)
     mastodon-light: Mastodon (světlý)
   time:
     formats:
