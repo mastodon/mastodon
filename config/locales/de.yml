@@ -7,7 +7,7 @@ de:
     administered_by: 'Administriert von:'
     api: API
     apps: Mobile Apps
-    closed_registrations: Die Registrierung auf dieser Instanz ist momentan geschlossen. Aber du kannst dein Konto auch auf einer anderen Instanz erstellen! Von dort hast du genauso Zugriff auf das Mastodon-Netzwerk.
+    closed_registrations: Die Registrierung auf diesem Server ist momentan geschlossen. Aber du kannst dein Konto auch auf einem anderen Server erstellen! Von dort hast du genauso Zugriff auf das Mastodon-Netzwerk.
     contact: Kontakt
     contact_missing: Nicht angegeben
     contact_unavailable: N/A
@@ -27,7 +27,7 @@ de:
     generic_description: "%{domain} ist ein Server im Netzwerk"
     hosted_on: Mastodon, beherbergt auf %{domain}
     learn_more: Mehr erfahren
-    other_instances: Andere Instanzen
+    other_instances: Andere Server
     privacy_policy: Datenschutzerklärung
     source_code: Quellcode
     status_count_after:
@@ -386,14 +386,14 @@ de:
         desc_html: Verändere das Aussehen mit CSS, dass auf jeder Seite geladen wird
         title: Benutzerdefiniertes CSS
       hero:
-        desc_html: Wird auf der Startseite angezeigt. Mindestens 600x100px sind empfohlen. Wenn es nicht gesetzt wurde, wird das Instanz-Thumbnail dafür verwendet
+        desc_html: Wird auf der Startseite angezeigt. Mindestens 600x100px sind empfohlen. Wenn es nicht gesetzt wurde, wird das Server-Thumbnail dafür verwendet
         title: Bild für Startseite
       mascot:
         desc_html: Angezeigt auf mehreren Seiten. Mehr als 293x205px empfohlen. Wenn es nicht gesetzt wurde wird es auf das Standard-Maskottchen zurückfallen
         title: Maskottchen-Bild
       peers_api_enabled:
-        desc_html: Domain-Namen dieser Instanz, die im Fediverse gefunden wurden
-        title: Veröffentliche Liste von gefundenen Instanzen
+        desc_html: Domain-Namen, die der Server im Fediverse gefunden hat
+        title: Veröffentliche Liste von gefundenen Servern
       preview_sensitive_media:
         desc_html: Linkvorschauen auf anderen Webseiten werden ein Vorschaubild anzeigen, obwohl die Medien als heikel gekennzeichnet sind
         title: Heikle Medien in OpenGraph-Vorschauen anzeigen
@@ -421,20 +421,20 @@ de:
         title: Zeige Mitarbeiter-Badge
       site_description:
         desc_html: Einleitungsabschnitt auf der Frontseite. Beschreibe, was diese Mastodon-Instanz ausmacht. Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
-        title: Beschreibung der Instanz
+        title: Beschreibung des Servers
       site_description_extended:
-        desc_html: Bietet sich für Verhaltenskodizes, Regeln, Richtlinien und weiteres an, was deine Instanz auszeichnet. Du kannst HTML-Tags benutzen
+        desc_html: Bietet sich für Verhaltenskodizes, Regeln, Richtlinien und weiteres an, was deinen Server auszeichnet. Du kannst HTML-Tags benutzen
         title: Erweiterte Beschreibung der Instanz
       site_short_description:
-        desc_html: Wird angezeigt in der Seitenleiste und in Meta-Tags. Beschreibe in einem einzigen Abschnitt, was Mastodon ist und was diesen Server ausmacht. Falls leer, wird die Instanz-Beschreibung verwendet.
-        title: Kurze Instanz-Beschreibung
+        desc_html: Wird angezeigt in der Seitenleiste und in Meta-Tags. Beschreibe in einem einzigen Abschnitt, was Mastodon ist und was diesen Server ausmacht. Falls leer, wird die Server-Beschreibung verwendet.
+        title: Kurze Server-Beschreibung
       site_terms:
         desc_html: Hier kannst du deine eigenen Geschäftsbedingungen, Datenschutzerklärung und anderes rechtlich Relevante eintragen. Du kannst HTML-Tags benutzen
         title: Eigene Geschäftsbedingungen
-      site_title: Name der Instanz
+      site_title: Name des Servers
       thumbnail:
         desc_html: Wird für die Vorschau via OpenGraph und API verwendet. 1200×630 px wird empfohlen
-        title: Instanz-Thumbnail
+        title: Server-Thumbnail
       timeline_preview:
         desc_html: Auf der Frontseite die öffentliche Zeitleiste anzeigen
         title: Zeitleisten-Vorschau
@@ -495,7 +495,7 @@ de:
     warning: Sei mit diesen Daten sehr vorsichtig. Teile sie mit niemandem!
     your_token: Dein Zugangs-Token
   auth:
-    agreement_html: Indem du dich registrierst, erklärst du dich mit den untenstehenden <a href="%{rules_path}">Regeln dieser Instanz</a> und der <a href="%{terms_path}">Datenschutzerklärung</a> einverstanden.
+    agreement_html: Indem du dich registrierst, erklärst du dich mit den untenstehenden <a href="%{rules_path}">Regeln des Servers</a> und der <a href="%{terms_path}">Datenschutzerklärung</a> einverstanden.
     change_password: Passwort
     confirm_email: E-Mail bestätigen
     delete_account: Konto löschen
@@ -549,7 +549,7 @@ de:
     description_html: Hiermit wird <strong>dauerhaft und unwiederbringlich</strong> der Inhalt deines Kontos gelöscht und dein Konto deaktiviert. Dein Profilname wird reserviert, um künftige Imitationen zu verhindern.
     proceed: Konto löschen
     success_msg: Dein Konto wurde erfolgreich gelöscht
-    warning_html: Wir können nur dafür garantieren, dass die Inhalte auf dieser einen Instanz gelöscht werden. Bei Inhalten, die weit verbreitet wurden, ist es wahrscheinlich, dass Spuren bleiben werden. Server, die offline sind oder keine Benachrichtigungen von deinem Konto mehr empfangen, werden ihre Datenbanken nicht bereinigen.
+    warning_html: Wir können nur dafür garantieren, dass die Inhalte auf diesem einen Server gelöscht werden. Bei Inhalten, die weit verbreitet wurden, ist es wahrscheinlich, dass Spuren bleiben werden. Server, die offline sind oder keine Benachrichtigungen von deinem Konto mehr empfangen, werden ihre Datenbanken nicht bereinigen.
     warning_title: Verfügbarkeit verstreuter Inhalte
   directories:
     directory: Profilverzeichnis
@@ -563,8 +563,8 @@ de:
       other: "%{count} Leute"
   errors:
     '403': Dir fehlt die Befugnis, diese Seite sehen zu können.
-    '404': Diese Seite existiert nicht.
-    '410': Diese Seite existiert nicht mehr.
+    '404': Die Seite nach der du gesucht hast wurde nicht gefunden.
+    '410': Die Seite nach der du gesucht hast existiert hier nicht mehr.
     '422':
       content: Sicherheitsüberprüfung fehlgeschlagen. Blockierst du Cookies?
       title: Sicherheitsüberprüfung fehlgeschlagen
@@ -577,7 +577,7 @@ de:
     archive_takeout:
       date: Datum
       download: Dein Archiv herunterladen
-      hint_html: Du kannst ein Archiv deiner <strong>Beiträge und hochgeladenen Medien</strong> anfragen. Die exportierten Daten werden im ActivityPub-Format gespeichert, welches mit jeder Software lesbar ist die das Format unterstützt. Du kannst alle 7 Tage ein Archiv anfordern.
+      hint_html: Du kannst ein Archiv deiner <strong>Beiträge und hochgeladenen Medien</strong> anfragen. Die exportierten Daten werden in dem ActivityPub-Format gespeichert, welches mit jeder Software lesbar ist die das Format unterstützt. Du kannst alle 7 Tage ein Archiv anfordern.
       in_progress: Stelle dein Archiv zusammen...
       request: Dein Archiv anfragen
       size: Größe
@@ -588,6 +588,10 @@ de:
     lists: Listen
     mutes: Du hast stummgeschaltet
     storage: Medienspeicher
+  featured_tags:
+    add_new: Neu hinzufügen
+    errors:
+      limit: Du hast bereits die maximale Anzahl an empfohlenen Hashtags erreicht
   filters:
     contexts:
       home: Startseite
@@ -606,7 +610,7 @@ de:
       title: Neuen Filter hinzufügen
   followers:
     domain: Instanz
-    explanation_html: Wenn du sicherstellen willst, dass deine Beiträge privat sind, musst du wissen, wer dir folgt. <strong>Deine privaten Beiträge werden an alle Instanzen weitergegeben, auf denen Menschen registriert sind, die dir folgen.</strong> Wenn du den Betreibenden einer Instanz misstraust und du befürchtest, dass sie deine Privatsphäre missachten könnten, kannst du sie hier entfernen.
+    explanation_html: Wenn du sicherstellen willst, dass deine Beiträge privat sind, musst du wissen, wer dir folgt. <strong>Deine privaten Beiträge werden an alle Server weitergegeben, auf denen Menschen registriert sind, die dir folgen.</strong> Wenn du den Betreibenden eines Servers misstraust und du befürchtest, dass sie deine Privatsphäre missachten könnten, kannst du sie hier entfernen.
     followers_count: Zahl der Folgenden
     lock_link: dein Konto sperrst
     purge: Von der Liste deiner Folgenden löschen
@@ -628,10 +632,16 @@ de:
       one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
       other: Etwas ist noch nicht ganz richtig! Bitte korrigiere %{count} Fehler
   imports:
-    preface: Daten, die du aus einer anderen Instanz exportiert hast, kannst du hier importieren. Beispielsweise die Liste derjenigen, denen du folgst oder die du blockiert hast.
+    modes:
+      merge: Zusammenführen
+      merge_long: Behalte existierende Datensätze und füge neue hinzu
+      overwrite: Überschreiben
+      overwrite_long: Ersetze aktuelle Datensätze mit neuen
+    preface: Daten, die du aus einem anderen Server exportiert hast, kannst du hier importieren. Beispielsweise die Liste derjenigen, denen du folgst oder die du blockiert hast.
     success: Deine Daten wurden erfolgreich hochgeladen und werden in Kürze verarbeitet
     types:
       blocking: Blockierliste
+      domain_blocking: Domain-Blockliste
       following: Folgeliste
       muting: Stummschaltungsliste
     upload: Hochladen
@@ -653,7 +663,7 @@ de:
       one: 1 mal verwendet
       other: "%{count} mal verwendet"
     max_uses_prompt: Kein Limit
-    prompt: Generiere und teile Links um Zugang zu dieser Instanz zu geben
+    prompt: Generiere und teile Links um Zugang zu diesem Server zu geben
     table:
       expires_at: Läuft ab
       uses: Verwendungen
@@ -801,6 +811,7 @@ de:
     development: Entwicklung
     edit_profile: Profil bearbeiten
     export: Datenexport
+    featured_tags: Empfohlene Hashtags
     followers: Autorisierte Folgende
     import: Datenimport
     migrate: Konto-Umzug
@@ -931,9 +942,9 @@ de:
       <p>Ursprünglich übernommen von der <a href="https://github.com/discourse/discourse">Discourse-Datenschutzerklärung</a>.</p>
     title: "%{instance} Nutzungsbedingungen und Datenschutzerklärung"
   themes:
-    contrast: Hoher Kontrast
-    default: Mastodon
-    mastodon-light: Mastodon (hell)
+    contrast: Mastodon (Hoher Kontrast)
+    default: Mastodon (Dunkel)
+    mastodon-light: Mastodon (Hell)
   time:
     formats:
       default: "%d.%m.%Y %H:%M"
@@ -982,7 +993,7 @@ de:
       final_action: Fang an zu posten
       final_step: 'Fang an zu posten! Selbst ohne Follower werden deine öffentlichen Beitrage von anderen gesehen, zum Beispiel auf der lokalen Zeitleiste oder in Hashtags. Vielleicht möchtest du dich vorstellen mit dem #introductions-Hashtag.'
       full_handle: Dein vollständiger Benutzername
-      full_handle_hint: Dies ist was du deinen Freunden sagen kannst, damit sie dich anschreiben oder von einer anderen Instanz folgen können.
+      full_handle_hint: Dies ist was du deinen Freunden sagen kannst, damit sie dich anschreiben oder von einem anderen Server folgen können.
       review_preferences_action: Einstellungen ändern
       review_preferences_step: Stelle sicher, dass du deine Einstellungen einstellst, wie zum Beispiel welche E-Mails du gerne erhalten möchtest oder was für Privatsphäreneinstellungen voreingestellt werden sollten. Wenn dir beim Ansehen von GIFs nicht schwindelig wird, dann kannst du auch das automatische Abspielen dieser aktivieren.
       subject: Willkommen bei Mastodon

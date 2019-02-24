@@ -33,11 +33,14 @@ ko:
         setting_display_media_show_all: 민감함으로 설정 된 미디어를 항상 보이기
         setting_hide_network: 나를 팔로우 하는 사람들과 내가 팔로우 하는 사람들이 내 프로필에 표시되지 않게 합니다
         setting_noindex: 공개 프로필 및 각 툿페이지에 영향을 미칩니다
+        setting_show_application: 당신이 툿을 작성하는데에 사용한 앱이 툿의 상세정보에 표시 됩니다
         setting_theme: 로그인중인 모든 디바이스에 적용되는 디자인입니다.
         username: 당신의 유저네임은 %{domain} 안에서 유일해야 합니다
         whole_word: 키워드가 영문과 숫자로만 이루어 진 경우, 단어 전체에 매칭 되었을 때에만 작동하게 합니다
+      featured_tag:
+        name: '이것들을 사용하면 좋을 것 같습니다:'
       imports:
-        data: 다른 마스토돈 인스턴스에서 추출된 CSV 파일
+        data: 다른 마스토돈 서버에서 추출된 CSV 파일
       sessions:
         otp: '휴대전화에서 생성 된 2단계 인증 코드를 입력하거나, 복구 코드 중 하나를 사용하세요:'
       user:
@@ -100,6 +103,7 @@ ko:
         setting_hide_network: 내 네트워크 숨기기
         setting_noindex: 검색엔진의 인덱싱을 거절
         setting_reduce_motion: 애니메이션 줄이기
+        setting_show_application: 툿 작성에 사용한 앱을 공개
         setting_system_font_ui: 시스템의 초기 설정 폰트를 사용
         setting_theme: 사이트 테마
         setting_unfollow_modal: 언팔로우 전 언팔로우 확인 표시
@@ -108,6 +112,8 @@ ko:
         username: 유저 이름
         username_or_email: 유저네임 또는 이메일
         whole_word: 단어 전체에 매칭
+      featured_tag:
+        name: 해시태그
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단

@@ -3,6 +3,23 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [2.7.3] - 2019-02-23
+### Added
+
+- Add domain filter to the admin federation page ([ThibG](https://github.com/tootsuite/mastodon/pull/10071))
+- Add quick link from admin account view to block/unblock instance ([ThibG](https://github.com/tootsuite/mastodon/pull/10073))
+
+### Fixed
+
+- Fix video player width not being updated to fit container width ([ThibG](https://github.com/tootsuite/mastodon/pull/10069))
+- Fix domain filter being shown in admin page when local filter is active ([ThibG](https://github.com/tootsuite/mastodon/pull/10074))
+- Fix crash when conversations have no valid participants ([ThibG](https://github.com/tootsuite/mastodon/pull/10078))
+- Fix error when performing admin actions on no statuses ([ThibG](https://github.com/tootsuite/mastodon/pull/10094))
+
+### Changed
+
+- Change custom emojis to randomize stored file name ([hinaloe](https://github.com/tootsuite/mastodon/pull/10090))
+
 ## [2.7.2] - 2019-02-17
 ### Added
 
