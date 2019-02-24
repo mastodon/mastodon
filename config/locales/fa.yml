@@ -48,6 +48,7 @@ fa:
       other: پیگیر
     following: پی می‌گیرد
     joined: کاربر از %{date}
+    last_active: آخرین فعالیت
     link_verified_on: مالکیت این نشانی در تاریخ %{date} بررسی شد
     media: عکس و ویدیو
     moved_html: "%{name} حساب خود را به %{new_profile_link} منتقل کرده است:"
@@ -69,6 +70,9 @@ fa:
       moderator: ناظم
     unfollow: پایان پیگیری
   admin:
+    account_actions:
+      action: انجام تغییر
+      title: انجام تغییر مدیریتی روی %{acct}
     account_moderation_notes:
       create: افزودن یادداشت
       created_msg: یادداشت مدیر با موفقیت ساخته شد!
@@ -88,6 +92,7 @@ fa:
       confirm: تأیید
       confirmed: تأیید شد
       confirming: تأیید
+      deleted: پاک‌شده
       demote: تنزل‌دادن
       disable: غیرفعال
       disable_two_factor_authentication: غیرفعال‌سازی ورود دومرحله‌ای
@@ -103,8 +108,11 @@ fa:
       followers: پیگیران
       followers_url: نشانی پیگیران
       follows: پی می‌گیرد
+      header: زمینه
       inbox_url: نشانی صندوق ورودی
+      invited_by: دعوت‌شده از طرف
       ip: IP
+      joined: عضویت از
       location:
         all: همه
         local: محلی
@@ -114,6 +122,7 @@ fa:
       media_attachments: ضمیمه‌های تصویری
       memorialize: تبدیل به یادمان
       moderation:
+        active: فعال
         all: همه
         silenced: بی‌صدا شده
         suspended: معلق شده
@@ -130,8 +139,9 @@ fa:
       protocol: پروتکل
       public: عمومی
       push_subscription_expires: عضویت از راه PuSH منقضی شد
-      redownload: به‌روزرسانی تصویر نمایه
+      redownload: به‌روزرسانی نمایه
       remove_avatar: حذف تصویر نمایه
+      remove_header: برداشتن تصویر زمینه
       resend_confirmation:
         already_confirmed: این کاربر قبلا تایید شده است
         send: ایمیل تایید را دوباره بفرستید
@@ -149,8 +159,8 @@ fa:
       search: جستجو
       shared_inbox_url: نشانی صندوق ورودی مشترک
       show:
-        created_reports: گزارش‌ها از طرف این حساب
-        targeted_reports: گزارش‌ها دربارهٔ این حساب
+        created_reports: گزارش‌های ثبت کرده
+        targeted_reports: گزارش‌های دیگران
       silence: بی‌صدا
       silenced: بی‌صداشده
       statuses: نوشته‌ها
@@ -162,12 +172,14 @@ fa:
       undo_suspension: واگردانی تعلیق
       unsubscribe: لغو اشتراک
       username: نام کاربری
+      warn: هشدار
       web: وب
     action_logs:
       actions:
         assigned_to_self_report: "%{name} رسیدگی به گزارش %{target} را به عهده گرفت"
         change_email_user: "%{name} نشانی ایمیل کاربر %{target} را تغییر داد"
         confirm_user: "%{name} نشانی ایمیل کاربر %{target} را تأیید کرد"
+        create_account_warning: "%{name} هشداری برای %{target} فرستاد"
         create_custom_emoji: "%{name} شکلک تازهٔ %{target} را بارگذاشت"
         create_domain_block: "%{name} دامین %{target} را مسدود کرد"
         create_email_domain_block: "%{name} دامین ایمیل %{target} را مسدود کرد"
@@ -226,6 +238,7 @@ fa:
       config: پیکربندی
       feature_deletions: حساب‌های حذف‌شده
       feature_invites: دعوت‌نامه‌ها
+      feature_profile_directory: فهرست گزیدهٔ کاربران
       feature_registrations: ثبت‌نام‌ها
       feature_relay: رله
       features: ویژگی‌ها
@@ -243,7 +256,7 @@ fa:
       week_users_active: کاربران فعال هفتهٔ اخیر
       week_users_new: کاربران هفتهٔ اخیر
     domain_blocks:
-      add_new: افزودن تازه
+      add_new: افزودن مسدودسازی دامین تازه
       created_msg: مسدودکردن دامین در حال انجام است
       destroyed_msg: مسدودکردن دامین واگردانده شد
       domain: دامین
@@ -260,6 +273,11 @@ fa:
       reject_media_hint: تصویرهای ذخیره‌شده در این‌جا را پاک می‌کند و جلوی دریافت تصویرها را در آینده می‌گیرد. بی‌تأثیر برای معلق‌شده‌ها
       reject_reports: نپذیرفتن گزارش‌ها
       reject_reports_hint: گزارش‌هایی را که از این دامین می‌آید نادیده می‌گیرد. بی‌تأثیر برای معلق‌شده‌ها
+      rejecting_media: رسانه‌ها نادیده گرفته می‌شوند
+      rejecting_reports: گزارش‌ها نادیده گرفته می‌شوند
+      severity:
+        silence: بی‌صداشده
+        suspend: معلق‌شده
       show:
         affected_accounts:
           one: روی یک حساب در پایگاه داده تأثیر گذاشت
@@ -269,7 +287,7 @@ fa:
           suspend: معلق‌شدن همهٔ حساب‌های این دامین را لغو کن
         title: واگردانی مسدودسازی دامنه برای %{domain}
         undo: واگردانی
-      undo: واگردانی
+      undo: واگردانی مسدودسازی دامین
     email_domain_blocks:
       add_new: افزودن تازه
       created_msg: مسدودسازی دامین ایمیل با موفقیت ساخته شد
@@ -280,8 +298,24 @@ fa:
         create: ساختن مسدودسازی
         title: مسدودسازی دامین ایمیل تازه
       title: مسدودسازی دامین‌های ایمیل
+    followers:
+      back_to_account: بازگشت به حساب
+      title: پیگیران %{acct}
     instances:
-      title: سرورهای شناخته‌شده
+      delivery_available: پیام آماده است
+      known_accounts:
+        one: "%{count} حساب شناخته‌شده"
+        other: "%{count} حساب شناخته‌شده"
+      moderation:
+        all: همه
+        limited: محدود
+        title: مدیریت
+      title: ارتباط میان‌سروری
+      total_blocked_by_us: مسدودشده از طرف ما
+      total_followed_by_them: ما را پی می‌گیرند
+      total_followed_by_us: ما پیگیرشان هستیم
+      total_reported: گزارش درباره‌شان
+      total_storage: عکس‌ها و ویدیوها
     invites:
       deactivate_all: غیرفعال‌کردن همه
       filter:
@@ -363,6 +397,9 @@ fa:
       preview_sensitive_media:
         desc_html: پیوند به سایت‌های دیگر پیش‌نمایشی خواهد داشت که یک تصویر کوچک را نشان می‌دهد، حتی اگر نوشته به عنوان حساس علامت‌گذاری شده باشد
         title: نمایش تصاویر حساسیت‌برانگیز در پیش‌نمایش‌های OpenGraph
+      profile_directory:
+        desc_html: به کاربران اجازه دهید تا بتوانند خود را روی فهرست گزیدهٔ کاربران این سرور نمایش دهند
+        title: فعال‌سازی فهرست گزیدهٔ کاربران
       registrations:
         closed_message:
           desc_html: وقتی امکان ثبت نام روی سرور فعال نباشد در صفحهٔ اصلی نمایش می‌یابد<br>می‌توانید HTML بنویسید
@@ -384,20 +421,20 @@ fa:
         title: نمایش علامت همکار
       site_description:
         desc_html: معرفی کوتاهی که روی صفحهٔ اصلی نمایش می‌یابد. دربارهٔ این که چه چیزی دربارهٔ این سرور ماستدون ویژه است یا هر چیز مهم دیگری بنویسید. می‌توانید HTML بنویسید، به‌ویژه <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
-        title: دربارهٔ سایت
+        title: دربارهٔ این سرور
       site_description_extended:
         desc_html: جای خوبی برای نوشتن سیاست‌های کاربری، قانون‌ها، راهنماها، و هر چیزی که ویژهٔ این سرور است. تگ‌های HTML هم مجاز است
         title: اطلاعات تکمیلی سفارشی
       site_short_description:
         desc_html: روی نوار کناری و همچنین به عنوان فرادادهٔ صفحه‌ها نمایش می‌یابد. در یک بند توضیح دهید که ماستدون چیست و چرا این سرور با بقیه فرق دارد. اگر خالی بگذارید، به جایش «دربارهٔ سایت» نمایش می‌یابد.
-        title: توضیح کوتاه دربارهٔ سایت
+        title: توضیح کوتاه دربارهٔ سرور
       site_terms:
         desc_html: می‌توانید سیاست رازداری، شرایط استفاده، یا سایر مسائل قانونی را به دلخواه خود بنویسید. تگ‌های HTML هم مجاز است
         title: شرایط استفادهٔ سفارشی
       site_title: نام سرور
       thumbnail:
         desc_html: برای دیدن با OpenGraph و رابط برنامه‌نویسی. وضوح پیشنهادی ۱۲۰۰×۶۳۰ پیکسل
-        title: تصویر کوچک فوری
+        title: تصویر کوچک سرور
       timeline_preview:
         desc_html: نوشته‌های عمومی این سرور را در صفحهٔ آغازین نشان دهید
         title: پیش‌نمایش نوشته‌ها
@@ -422,7 +459,21 @@ fa:
       last_delivery: آخرین ارسال
       title: WebSub
       topic: موضوع
+    tags:
+      accounts: حساب‌ها
+      hidden: پنهان‌شده
+      hide: در فهرست گزیدهٔ کاربران نشان نده
+      name: برچسب
+      title: برچسب‌ها
+      unhide: نمایش در فهرست گزیدهٔ کاربران
+      visible: نمایان
     title: مدیریت سرور
+    warning_presets:
+      add_new: افزودن تازه
+      delete: زدودن
+      edit: ویرایش
+      edit_preset: ویرایش هشدار پیش‌فرض
+      title: مدیریت هشدارهای پیش‌فرض
   admin_mailer:
     new_report:
       body: کاربر %{reporter} کاربر %{target} را گزارش داد
@@ -500,10 +551,20 @@ fa:
     success_msg: حساب شما با موفقیت پاک شد
     warning_html: تنها پاک‌شدن محتوای حساب در این سرور خاص تضمین می‌شود. محتوایی که به گستردگی هم‌رسانی شده باشد ممکن است ردش همچنان باقی بماند. سرورهای آفلاین یا سرورهایی که دیگر مشترک شما نیستند پایگاه‌های دادهٔ خود را به‌روز نخواهند کرد.
     warning_title: دسترس‌پذیری محتوای هم‌رسان‌شده
+  directories:
+    directory: فهرست گزیدهٔ کاربران
+    enabled: شما هم‌اینک در فهرست گزیدهٔ کاربران نمایش می‌یابید.
+    enabled_but_waiting: شما می‌خواهید در فهرست گزیدهٔ کاربران این سرور باشید، ولی تعداد پیگیران شما هنوز به مقدار لازم (%{min_followers}) نرسیده است.
+    explanation: کاربران این سرور را بر اساس علاقه‌مندی‌هایشان پیدا کنید
+    explore_mastodon: گشت و گذار در %{title}
+    how_to_enable: شما هنوز در فهرست گزیدهٔ کاربران این سرور نشان داده نمی‌شوید. این‌جا می‌توانید انتخابش کنید. اگر در بخش معرفی خود در نمایه‌تان برچسب (هشتگ) داشته باشد، نام شما هم برای آن هشتگ‌ها فهرست می‌شود!
+    people:
+      one: "%{count} نفر"
+      other: "%{count} نفر"
   errors:
     '403': شما اجازهٔ دیدن این صفحه را ندارید.
-    '404': صفحه‌ای که به دنبالش بودید وجود ندارد.
-    '410': صفحه‌ای که به دنبالش بودید دیگر وجود ندارد.
+    '404': صفحه‌ای که به دنبالش هستید این‌جا نیست.
+    '410': صفحه‌ای که به دنبالش بودید دیگر این‌جا وجود ندارد.
     '422':
       content: تأیید امنیتی انجام نشد. آیا مرورگر شما کوکی‌ها را مسدود می‌کند؟
       title: تأیید امنیتی کار نکرد
@@ -522,9 +583,15 @@ fa:
       size: اندازه
     blocks: حساب‌های مسدودشده
     csv: CSV
+    domain_blocks: دامین‌های مسدودشده
     follows: حساب‌های پی‌گرفته
+    lists: فهرست‌ها
     mutes: حساب‌های بی‌صداشده
     storage: تصویرهای ذخیره‌شده
+  featured_tags:
+    add_new: افزودن تازه
+    errors:
+      limit: شما بیشترین تعداد مجاز برچسب‌ها را دارید
   filters:
     contexts:
       home: خانه
@@ -565,10 +632,16 @@ fa:
       one: یک چیزی هنوز درست نیست! لطفاً خطاهای زیر را ببینید
       other: یک چیزی هنوز درست نیست! لطفاً %{count} خطای زیر را ببینید
   imports:
+    modes:
+      merge: ادغام
+      merge_long: داده‌های فعلی را داشته باشید و داده‌های تازه‌ای بیفزایید
+      overwrite: بازنویسی
+      overwrite_long: داده‌های فعلی را پاک کنید و داده‌های تازه‌ای بیفزایید
     preface: شما می‌توانید داده‌هایی از قبیل کاربرانی که پی می‌گرفتید یا مسدود می‌کردید را در حساب خود روی این سرور درون‌ریزی کنید. برای این کار پرونده‌هایی که از سرور دیگر برون‌سپاری کرده‌اید را به‌کار ببرید.
     success: داده‌های شما با موفقیت بارگذاری شد و به زودی پردازش می‌شود
     types:
       blocking: فهرست مسدودشده‌ها
+      domain_blocking: فهرست دامین‌های مسدودشده
       following: فهرست پی‌گیری‌ها
       muting: فهرست بی‌صداشده‌ها
     upload: بارگذاری
@@ -671,12 +744,27 @@ fa:
     no_account_html: هنوز عضو نیستید؟ <a href='%{sign_up_path}' target='_blank'>این‌جا می‌توانید حساب باز کنید</a>
     proceed: درخواست پیگیری
     prompt: 'شما قرار است این حساب را پیگیری کنید:'
+    reason_html: "<strong>چرا این مرحله لازم است؟</strong> ممکن است <code>%{instance}</code> سروری نباشد که شما روی آن حساب باز کرده‌اید، بنابراین ما باید پیش از هرچیز شما را به سرور خودتان منتقل کنیم."
+  remote_interaction:
+    favourite:
+      proceed: به سمت پسندیدن این بوق
+      prompt: 'شما می‌خواهید این بوق را بپسندید:'
+    reblog:
+      proceed: به سمت بازبوقیدن
+      prompt: 'شما می‌خواهید این بوق را بازببوقید:'
+    reply:
+      proceed: به سمت پاسخ‌دادن
+      prompt: 'شما می‌خواهید به این بوق پاسخ دهید:'
   remote_unfollow:
     error: خطا
     title: عنوان
     unfollowed: پایان پیگیری
+  scheduled_statuses:
+    over_daily_limit: شما از حد مجاز %{limit} بوق زمان‌بندی‌شده در آن روز فراتر رفته‌اید
+    over_total_limit: شما از حد مجاز %{limit} بوق زمان‌بندی‌شده فراتر رفته‌اید
+    too_soon: زمان تعیین‌شده باید در آینده باشد
   sessions:
-    activity: آخرین کنش
+    activity: آخرین فعالیت
     browser: مرورگر
     browsers:
       alipay: Alipay
@@ -723,6 +811,7 @@ fa:
     development: فرابری
     edit_profile: ویرایش نمایه
     export: برون‌سپاری داده‌ها
+    featured_tags: برچسب‌های منتخب
     followers: پیگیران مورد تأیید
     import: درون‌ریزی
     migrate: انتقال حساب
@@ -770,8 +859,8 @@ fa:
   terms:
     title: شرایط استفاده و سیاست رازداری %{instance}
   themes:
-    contrast: کنتراست بالا
-    default: ماستدون
+    contrast: ماستدون (کنتراست بالا)
+    default: ماستدون (تیره)
     mastodon-light: ماستدون (روشن)
   time:
     formats:
@@ -798,6 +887,22 @@ fa:
       explanation: شما یک نسخهٔ پشتیبان کامل از حساب خود را درخواست کردید. این پشتیبان الان آمادهٔ بارگیری است!
       subject: بایگانی شما آمادهٔ دریافت است
       title: گرفتن بایگانی
+    warning:
+      explanation:
+        disable: تا وقتی حساب شما متوقف باشد، داده‌های شما دست‌نخورده باقی می‌مانند، ولی تا وقتی که حسابتان باز نشده، نمی‌توانید هیچ کاری با آن بکنید.
+        silence: تا وقتی حساب شما محدود باشد، تنها کسانی که از قبل پیگیر شما بودند نوشته‌های شما در این سرور را می‌بینند و شما در فهرست‌های عمومی دیده نمی‌شوید. ولی دیگران همچنان می‌توانند به دلخواه خودشان پیگیر شما شوند.
+        suspend: حساب شما معلق شده است، و همهٔ نوشته‌ها و رسانه‌های تصویری شما به طور بازگشت‌ناپذیری پاک شده‌اند؛ چه از این سرور و چه از سرورهای دیگری که از آن‌ها پیگیر داشتید.
+      review_server_policies: مرور سیاست‌های این سرور
+      subject:
+        disable: حساب %{acct} شما متوقف شده است
+        none: هشدار برای %{acct}
+        silence: حساب %{acct} شما محدود شده است
+        suspend: حساب %{acct}  شما معلق شده است
+      title:
+        disable: حساب متوقف شده است
+        none: هشدار
+        silence: حساب محدود شده است
+        suspend: حساب معلق شده است
     welcome:
       edit_profile_action: تنظیم نمایه
       edit_profile_step: 'شما می‌توانید نمایهٔ خود را به دلخواه خود تغییر دهید: می‌توانید تصویر نمایه، تصویر پس‌زمینه، نام، و چیزهای دیگری را تعیین کنید. اگر بخواهید، می‌توانید حساب خود را خصوصی کنید تا فقط کسانی که شما اجازه می‌دهید بتوانند پیگیر حساب شما شوند.'

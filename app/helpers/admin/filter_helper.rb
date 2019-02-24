@@ -6,7 +6,7 @@ module Admin::FilterHelper
   INVITE_FILTER        = %i(available expired).freeze
   CUSTOM_EMOJI_FILTERS = %i(local remote by_domain shortcode).freeze
   TAGS_FILTERS         = %i(hidden).freeze
-  INSTANCES_FILTERS    = %i(limited).freeze
+  INSTANCES_FILTERS    = %i(limited by_domain).freeze
 
   FILTERS = ACCOUNT_FILTERS + REPORT_FILTERS + INVITE_FILTER + CUSTOM_EMOJI_FILTERS + TAGS_FILTERS + INSTANCES_FILTERS
 

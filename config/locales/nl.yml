@@ -423,7 +423,7 @@ nl:
         desc_html: Dit wordt als een alinea op de voorpagina getoond. Beschrijf wat er speciaal is aan deze server en andere zaken die van belang zijn. Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
         title: Omschrijving Mastodonserver
       site_description_extended:
-        desc_html: Wordt op de uitgebreide informatiepagina weergegeven<br>Je kan ook hier HTML gebruiken
+        desc_html: Een goede plek voor je gedragscode, regels, richtlijnen en andere zaken die jouw server uniek maken. Je kan ook hier HTML gebruiken
         title: Uitgebreide omschrijving Mastodonserver
       site_short_description:
         desc_html: Dit wordt in de zijbalk getoond als en als metatag in de paginabron.  Beschrijf in één alinea wat Mastodon is en wat deze server speciaal maakt. De (langere) omschrijving van de Mastodonserver wordt gebruikt wanneer dit veld wordt leeg gelaten.
@@ -577,7 +577,7 @@ nl:
     archive_takeout:
       date: Datum
       download: Jouw archief downloaden
-      hint_html: Je kunt een archief opvragen van jouw <strong>toots en geüploade media</strong>. De geëxporteerde gegevens zijn in ActivityPub-formaat, dat door hiervoor geschikte software valt uit te lezen. Je kunt elke 7 dagen een kopie van je archief aanvragen.
+      hint_html: Je kunt een archief opvragen van jouw <strong>toots en geüploade media</strong>. De geëxporteerde gegevens zijn in het ActivityPub-formaat, dat door hiervoor geschikte software valt uit te lezen. Je kunt elke 7 dagen een kopie van je archief aanvragen.
       in_progress: Jouw archief wordt samengesteld...
       request: Jouw archief opvragen
       size: Omvang
@@ -588,6 +588,10 @@ nl:
     lists: Lijsten
     mutes: Jij negeert
     storage: Mediaopslag
+  featured_tags:
+    add_new: Nieuwe toevoegen
+    errors:
+      limit: Je hebt al het maximaal aantal hashtags uitgelicht
   filters:
     contexts:
       home: Starttijdlijn
@@ -628,10 +632,16 @@ nl:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
       other: Er is iets niet helemaal goed! Bekijk onderstaande %{count} fouten
   imports:
+    modes:
+      merge: Samenvoegen
+      merge_long: Bestaande gegevens behouden en nieuwe toevoegen
+      overwrite: Overschrijven
+      overwrite_long: Huidige gegevens met de nieuwe gegevens vervangen
     preface: Je kunt bepaalde gegevens, zoals de mensen die jij volgt of hebt geblokkeerd, naar jouw account op deze server importeren. Je moet deze gegevens wel eerst op de oorspronkelijke server exporteren.
     success: Jouw gegevens zijn succesvol geüpload en worden binnenkort verwerkt
     types:
       blocking: Blokkeerlijst
+      domain_blocking: Lijst met genegeerde servers
       following: Volglijst
       muting: Negeerlijst
     upload: Uploaden
@@ -801,6 +811,7 @@ nl:
     development: Ontwikkelaars
     edit_profile: Profiel bewerken
     export: Exporteren
+    featured_tags: Uitgelichte hashtags
     followers: Geautoriseerde volgers
     import: Importeren
     migrate: Accountmigratie
@@ -929,8 +940,8 @@ nl:
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: Gebruiksvoorwaarden en privacybeleid van %{instance}
   themes:
-    contrast: Hoog contrast
-    default: Mastodon
+    contrast: Mastodon (hoog contrast)
+    default: Mastodon (donker)
     mastodon-light: Mastodon (licht)
   time:
     formats:
@@ -946,7 +957,7 @@ nl:
     generate_recovery_codes: Herstelcodes genereren
     instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het inloggen moet invoeren."
     lost_recovery_codes: Met herstelcodes kun je toegang tot jouw account krijgen wanneer je jouw telefoon bent kwijtgeraakt. Wanneer je jouw herstelcodes bent kwijtgeraakt, kan je ze hier opnieuw genereren. Jouw oude herstelcodes zijn daarna ongeldig.
-    manual_instructions: Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder geheime code in gewone tekst.
+    manual_instructions: Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder geheime code in platte tekst.
     recovery_codes: Herstelcodes back-uppen
     recovery_codes_regenerated: Opnieuw genereren herstelcodes geslaagd
     recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige plek bewaard</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.
