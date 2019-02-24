@@ -13,6 +13,8 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   has_many :media_attachments, key: :attachment
   has_many :virtual_tags, key: :tag
 
+  has_one :replies, serializer: ActivityPub::CollectionSerializer
+
   def id
     ActivityPub::TagManager.instance.uri_for(object)
   end
@@ -31,6 +33,13 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
 
   def content_map
     { object.language => Formatter.instance.format(object) }
+  end
+
+  def replies
+    ActivityPub::CollectionPresenter.new(
+      type: :unordered,
+      items: object.self_replies(5).map(&:uri)
+    )
   end
 
   def language?
