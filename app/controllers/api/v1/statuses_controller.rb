@@ -73,7 +73,6 @@ class Api::V1::StatusesController < Api::BaseController
     @status = Status.find(params[:id])
     authorize @status, :show?
   rescue Mastodon::NotPermittedError
-    # Reraise in order to get a 404 instead of a 403 error code
     raise ActiveRecord::RecordNotFound
   end
 
