@@ -207,8 +207,9 @@ export default function notifications(state = initialState, action) {
   case NOTIFICATIONS_EXPAND_SUCCESS:
     return expandNormalizedNotifications(state, action.notifications, action.next);
   case ACCOUNT_BLOCK_SUCCESS:
-  case ACCOUNT_MUTE_SUCCESS:
     return filterNotifications(state, action.relationship);
+  case ACCOUNT_MUTE_SUCCESS:
+    return action.relationship.muting_notifications ? filterNotifications(state, action.relationship) : state;
   case NOTIFICATIONS_CLEAR:
     return state.set('items', ImmutableList()).set('hasMore', false);
   case TIMELINE_DELETE:

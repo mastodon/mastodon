@@ -18,6 +18,7 @@ fi:
     mailer:
       confirmation_instructions:
         action: Vahvista sähköpostiosoite
+        action_with_app: Vahvista ja palaa %{app}
         explanation: Olet luonut tilin palvelimelle %{host} käyttäen tätä sähköpostiosoitetta. Aktivoi tili yhdellä klikkauksella. Jos et luonut tiliä itse, voit jättää tämän viestin huomiotta.
         extra_html: Katso myös <a href="%{terms_path}">instanssin säännöt</a> ja <a href="%{policy_path}">käyttöehdot</a>.
         subject: 'Mastodon: Vahvistusohjeet - %{instance}'

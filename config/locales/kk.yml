@@ -1,0 +1,445 @@
+---
+kk:
+  about:
+    about_hashtag_html: Бұл жерде <strong>#%{hashtag}</strong> хэштегімен жинақталған жазбалар. Желіге тіркеліп, сіз де қосыла аласыз бұл ортаға.
+    about_mastodon_html: Mastodon - әлеуметтік желіге негізделген, тегін және веб протоколды, ашық кодты құрылым. Ол email сияқты орталықтандырылған.
+    about_this: Туралы
+    administered_by: 'Админ:'
+    api: API
+    apps: Мобиль қосымшалар
+    closed_registrations: Бұл серверде тіркелу уақытша тоқтатылған. Дегенмен, сіз басқа сервер арқылы тіркеліп, сол аккаунтыңызбен қолдана берсеңіз болады.
+    contact: Байланыс
+    contact_missing: Бапталмаған
+    contact_unavailable: Белгісіз
+    documentation: Құжаттама
+    extended_description_html: |
+      <h3>Ережелерге арналған жақсы орын</h3>
+      <p>Әлі ештеңе жазылмапты</p>
+    features:
+      humane_approach_body: Басқа желілердің сәтсіздіктерінен сабақ алып, Mastodon әлеуметтік медианы дұрыс пайдаланбаумен күресу үшін этикалық дизайнды таңдауға бағытталған.
+      humane_approach_title: Гуманистік көзқарас басым
+      not_a_product_body: Mastodon коммерциялық желі емес. Жарнама жоқ, деректерді өңдеу, қоршаулы бақтар да жоқ. Орталықтан басқару да жоқ.
+      not_a_product_title: Сіз тұлғасыз, тауар емес
+      real_conversation_body: 500 таңба арқылы мазмұнды пікір және қызық медиа қолданып, өз ойыңызды жеткізе аласыз.
+      real_conversation_title: Нақты әңгімелерге арналған
+      within_reach_body: Ыңғайлы API экожүйесі арқасында iOS, Android және басқа платформаларға арналған бірнеше қосымшалар арқылы достарыңызбен кез-келген жерде әңгіме құруға мүмкіндік береді.
+      within_reach_title: Әрқашан қол жетімді
+    generic_description: "%{domain} желідегі серверлердің бірі"
+    hosted_on: Mastodon орнатылған %{domain} доменінде
+    learn_more: Көбірек білу
+    other_instances: Серверлер тізімі
+    privacy_policy: Құпиялылық саясаты
+    source_code: Ашық коды
+    status_count_after:
+      one: жазба
+      other: жазба
+    status_count_before: Жазылғандар
+    terms: Қолдану шарттары
+    user_count_after:
+      one: қолданушы
+      other: қолданушы
+    user_count_before: Желіде
+    what_is_mastodon: Mastodon деген не?
+  accounts:
+    choices_html: "%{name} таңдаулары:"
+    follow: Жазылу
+    followers:
+      one: Оқырман
+      other: Оқырман
+    following: Жазылғандары
+    joined: Тіркелген күні %{date}
+    last_active: соңғы әрекеті
+    link_verified_on: Сілтеме меншігі расталған күн %{date}
+    media: Медиа
+    moved_html: "%{name} мына жерге көшті %{new_profile_link}:"
+    network_hidden: Бұл ақпарат қолжетімді емес
+    nothing_here: Бұл жерде ештеңе жоқ!
+    people_followed_by: "%{name} жазылған адамдар"
+    people_who_follow: "%{name} атты қолданушының оқырмандары"
+    pin_errors:
+      following: Оқығыңыз келген адамға жазылуыңыз керек
+    posts:
+      one: Жазба
+      other: Жазба
+    posts_tab_heading: Жазба
+    posts_with_replies: Жазбалар және жауаптар
+    reserved_username: Мұндай логин тіркелген
+    roles:
+      admin: Админ
+      bot: Бот
+      moderator: Мод
+    unfollow: Оқымау
+  admin:
+    account_actions:
+      action: Әрекетті орындаңыз
+      title: Модерация жасаңыз %{acct}
+    account_moderation_notes:
+      create: Жазба қалдырыңыз
+      created_msg: Модерация жазбасы қалдырылды!
+      delete: Өшіру
+      destroyed_msg: Модерация жазбасы өшірілді!
+    accounts:
+      are_you_sure: Шынымен бе?
+      avatar: Аватар
+      by_domain: Домен
+      change_email:
+        changed_msg: Аккаунт email-і сәтті өзгертілді!
+        current_email: Қазіргі email
+        label: email өзгерту
+        new_email: Жаңа email
+        submit: email өзгерт
+        title: Қолданушы email-ін өзгерту %{username}
+      confirm: Құптау
+      confirmed: Құпталды
+      confirming: Құпталуды күтеді
+      deleted: Өшірілді
+      demote: Төмендету
+      disable: Ажырату
+      disable_two_factor_authentication: Ажырату 2FA
+      disabled: Ажыратылды
+      display_name: Атын көрсет
+      domain: Домен
+      edit: Түзету
+      email: Email
+      email_status: Email статусы
+      enable: Қосу
+      enabled: Қосылды
+      followers: Оқырмандар
+      followers_url: Оқырмандар URL
+      follows: Жазылғандары
+      header: Басы
+      inbox_url: Келген хаттар URL
+      invited_by: Шақырған
+      ip: IP
+      joined: Қосылды
+      location:
+        all: Барлығы
+        local: Жергілікті
+        remote: Алыс
+        title: Мекен
+      login_status: Логин статусы
+      media_attachments: Медиа файлдар
+      memorialize: Естелік қылу
+      moderation:
+        active: Актив
+        all: Барлығы
+        silenced: Үнсіз
+        suspended: Тоқтатылды
+        title: Модерация
+      moderation_notes: Модерация жазбалары
+      most_recent_activity: Соңғы белсенділіктер
+      most_recent_ip: Соңғы ІР
+      no_limits_imposed: Шектеу жоқ
+      not_subscribed: Жазылмаған
+      outbox_url: Кеткен хаттар URL
+      perform_full_suspension: Тоқтат
+      profile_url: Профиль URL
+      promote: Жарнамалау
+      protocol: Хаттама
+      public: Ашық
+      push_subscription_expires: PuSH жазылу мерзімі аяқталады
+      redownload: Профиль жаңарт
+      remove_avatar: Аватар өшіру
+      remove_header: Мұқаба суретін өшір
+      resend_confirmation:
+        already_confirmed: Қолданушы құпталған
+        send: Құптау хатын қайтадан жібер
+        success: Құптау хаты сәтті жіберілді!
+      reset: Қалпына келтіру
+      reset_password: Құпиясөзді қалпына келтіру
+      role: Қайта жазылу
+      roles:
+        admin: Админ
+        moderator: Модератор
+        staff: Қызметкерлер
+        user: Қолданушы
+      salmon_url: Ақсерке URL
+      search: Іздеу
+      shared_inbox_url: Бөлісілген инбокс URL
+      show:
+        created_reports: Шағымдар жинағы
+        targeted_reports: Жіберілген шағымдар
+      silence: Үнсіз
+      silenced: Үнсіз қылғандар
+      statuses: Статустар
+      subscribe: Жазылу
+      suspended: Тоқтатылды
+      title: Аккаунттар
+      unconfirmed_email: Құпталмаған email
+      undo_silenced: Үнсіздікті қайтып алу
+      undo_suspension: Тоқтатуды қайтып алу
+      unsubscribe: Жазылмау
+      username: Логин
+      warn: Ескерту
+      web: Веб
+    action_logs:
+      actions:
+        assigned_to_self_report: "%{name} шағым тастады %{target} өздері үшін"
+        change_email_user: "%{name} e-mail адресін өзгертті - %{target}"
+        confirm_user: "%{name} e-mail адресін құптады - %{target}"
+        create_account_warning: "%{name} ескерту жіберді - %{target}"
+        create_custom_emoji: "%{name} жаңа эмодзи қосты %{target}"
+        create_domain_block: "%{name} домен бұғаттады - %{target}"
+        create_email_domain_block: "%{name} e-mail доменін қара тізімге қосты - %{target}"
+        demote_user: "%{name} төмендетілген қолданушы - %{target}"
+        destroy_custom_emoji: "%{name} эмодзи жойды %{target}"
+        destroy_domain_block: "%{name} бұғатталмаған домен %{target}"
+        destroy_email_domain_block: "%{name} e-mail доменін ақ тізімге кіргізді %{target}"
+        destroy_status: "%{name} жазбасын өшірді %{target}"
+        disable_2fa_user: "%{name} қолданушы үшін екі фактор ажыратылған %{target}"
+        disable_custom_emoji: "%{name} эмодзи алып тастады %{target}"
+        disable_user: "%{name} қосылмаған логин %{target}"
+        enable_custom_emoji: "%{name} қосылған эмодзи %{target}"
+        enable_user: "%{name} қосылған логин %{target}"
+        memorialize_account: "%{name} %{target} аккаунтын естеліктеріне қосты"
+        promote_user: "%{name} жарнамалады %{target}"
+        remove_avatar_user: "%{name} %{target} аватарын өшірді"
+        reopen_report: "%{name} %{target} шағымын қайта қарады"
+        reset_password_user: "%{name} %{target} құпиясөзін қалпына келтірді"
+        resolve_report: "%{name} %{target} шағымын қарастырды"
+        silence_account: "%{name} %{target} аккаунтын үнсіз қылды"
+        suspend_account: "%{name} %{target} аккаунтын тоқтатты"
+        unassigned_report: "%{name} бекітілмеген есеп %{target}"
+        unsilence_account: "%{name} %{target} аккаунтын қайта қосты"
+        unsuspend_account: "%{name} %{target} аккаунтын қайта қосты"
+        update_custom_emoji: "%{name} эмодзи жаңартты %{target}"
+        update_status: "%{name} жазбасын жаңартты %{target}"
+      deleted_status: "(өшірілген жазба)"
+      title: Аудит логы
+    custom_emojis:
+      by_domain: Домен
+      copied_msg: Жергілікті эмодзидің көшірмесі сәтті жасалды
+      copy: Көшіру
+      copy_failed_msg: Жергілікті эмодзидің көшірмесі жасалмады
+      created_msg: Эмодзи сәтті жаңартылды!
+      delete: Өшіру
+      destroyed_msg: Эмодзи сәтті жойылды!
+      disable: Ажырату
+      disabled_msg: Бұл эмодзи сәтті жойылды
+      emoji: Эмодзи
+      enable: Қосу
+      enabled_msg: Эмодзи сәтті қосылды
+      image_hint: PNG 50KB
+      listed: Тізілді
+      new:
+        title: Жаңа эмодзи қос
+      overwrite: Үстіне жаз
+      shortcode: Шорткод
+      shortcode_hint: Кем дегенде 2 символ, тек латын әріптері мен асты сызылған таңбалар
+      title: Таңдаулы эмодзилар
+      unlisted: Тізімде жоқ
+      update_failed_msg: Бұл эмодзи жаңартылмады
+      updated_msg: Эмодзи сәтті жаңартылды!
+      upload: Жүктеу
+    dashboard:
+      backlog: босатылған тапсырмалар
+      config: Конфигурация
+      feature_deletions: Аккаунттарды жою
+      feature_invites: Шақыру сілтемелері
+      feature_profile_directory: Профиль каталогы
+      feature_registrations: Тіркелулер
+      feature_relay: Федерация релесі
+      features: Мүмкіндіктер
+      hidden_service: Жасырын қызметтер федерациясы
+      open_reports: ашық шағымдар
+      recent_users: Соңғы қолданушылар
+      search: Толық мәтінмен іздеу
+      single_user_mode: Жалғыз пайдаланушы режимі
+      software: Бағдарлама
+      space: Пайдаланылған кеңістік
+      title: Басқару тақтасы
+      total_users: барлық қолданушы
+      trends: Трендтер
+      week_interactions: осы аптадағы әрекеттер
+      week_users_active: осы аптадағы белсенділік
+      week_users_new: осы аптадағы қолданушылар
+    domain_blocks:
+      add_new: Жаңа домен блокын қосу
+      created_msg: Домендік блок енді өңделуде
+      destroyed_msg: Домендік блок қалпына келтірілді
+      domain: Домен
+      new:
+        create: Блок құру
+        hint: Домендік блок дерекқорда тіркелгі жазбаларын құруға кедергі жасамайды, бірақ сол есептік жазбаларда ретроактивті және автоматты түрде нақты модерация әдістерін қолданады.
+        severity:
+          noop: Ештеңе
+          silence: Үнсіз
+          suspend: Тоқтатылған
+        title: Жаңа домен блокы
+      reject_media: Медиа файлдарды қабылдамау
+      reject_media_hint: Жергілікті сақталған мультимедиалық файлдарды жояды және болашақта кез келген жүктеуден бас тартады. Суспензияға байланысты емес
+      reject_reports: Шағым қабылдамау
+      reject_reports_hint: Бұл доменнен келген барлық есептерді елемеңіз. Суспензияға байланысты емес
+      rejecting_media: медиа файлдарды қабылдамау
+      rejecting_reports: шағымдарды қабылдамау
+      severity:
+        silence: үнсіз
+        suspend: тоқтатылған
+      show:
+        affected_accounts:
+          one: Дерекқорда бір тіркелгі қозғалды
+          other: дерекқордағы %{count} аккаунт қозғалған
+        retroactive:
+          silence: Осы домендегі бар тіркелгілерді жою
+          suspend: Осы домендегі бар барлық тіркелгілерді тоқтатыңыз
+        title: "%{domain} доменіндегі блокты алып таста"
+        undo: Қайтару
+      undo: Домен блокын қайтып алу
+    email_domain_blocks:
+      add_new: Жаңасын қосу
+      created_msg: Қаратізімге email домені қосылды
+      delete: Өшіру
+      domain: Домен
+      title: E-mail қаратізімі
+    followers:
+      title: "%{acct} оқырмандары"
+    instances:
+      delivery_available: Жеткізу қол жетімді
+      known_accounts:
+        one: "%{count} таныс аккаунт"
+        other: "%{count} таныс аккаунт"
+      moderation:
+        all: Барлығы
+        limited: Лимит
+        title: Модерация
+      title: Федерация
+      total_blocked_by_us: Біз бұғаттағандар
+      total_followed_by_them: Олар жазылғандар
+      total_followed_by_us: Біз жазылғандар
+      total_reported: Келген шағымдар
+      total_storage: Медиа файлдар
+    invites:
+      deactivate_all: Барлығын сөндір
+      filter:
+        all: Барлығы
+        available: Қолжетімді
+        expired: Уақыты өткен
+        title: Фильтр
+      title: Шақырулар
+    relays:
+      add_new: Жаңа арна қосу
+      delete: Өшіру
+      disable: Сөндіру
+      disabled: Сөндірілді
+      enable: Қосу
+      enabled: Қосылды
+      inbox_url: Арна URL
+      pending: Жаңа арна құпталуын күту
+      save_and_enable: Сақта да қос
+      setup: Арна байланысын баптау
+      status: Статус
+      title: Арналар
+    report_notes:
+      created_msg: Шағым жазбасы сәтті құрылды!
+      destroyed_msg: Шағым жазбасы сәтті өшірілді!
+    reports:
+      account:
+        note: жазба
+        report: шағым
+      action_taken_by: Белсенділік жасаған
+      are_you_sure: Шынымен бе?
+      assign_to_self: Мені тағайындау
+      assigned: Модератор тағайындау
+      comment:
+        none: Ештеңе
+      created_at: Шағым тасталды
+      mark_as_resolved: Шешілді деп белгіле
+      mark_as_unresolved: Шешілмеді деп белгіле
+      notes:
+        create: Жазба қос
+        create_and_resolve: Жазба қосып шеш
+        create_and_unresolve: Жазба қосып қайта аш
+        delete: Өшіру
+        placeholder: Қандай әрекеттер жасалғанын немесе қандай да бір қатысты әрекеттерді сипаттаңыз ...
+      reopen: Шағымды қайта аш
+      report: 'Шағым #%{id}'
+      reported_account: Шағымдалған аккаунт
+      reported_by: Шағым тастаушы
+      resolved: Қайта шешілді
+      resolved_msg: Шағым қайтадан шешілді!
+      status: Статус
+      title: Шағымдар
+      unassign: Қайтып алу
+      unresolved: Шешілмеген
+      updated_at: Жаңартылды
+    settings:
+      activity_api_enabled:
+        desc_html: Соңғы аптада жазылған жазбалар, белсенді қолданушылар, жаңа тіркелімдер
+        title: Пайдаланушы әрекеті туралы жиынтық статистиканы жариялау
+      bootstrap_timeline_accounts:
+        desc_html: Бірнеше пайдаланушы атын үтірмен бөліңіз. Тек жергілікті және бұғатталмаған аккаунттар. Барлық жергілікті админдер бос болғанда.
+        title: Жаңа қолданушыларға жазылғандар
+      contact_information:
+        email: Бизнес e-mail
+        username: Қолданушымен байланыс
+      custom_css:
+        desc_html: Әр беттегі өзгерістерді CSS жаңаруымен қарау
+        title: Жеке CSS
+      hero:
+        desc_html: Бастапқы бетінде көрсетіледі. Кем дегенде 600x100px ұсынылады. Орнатылмаған кезде, сервердің нобайына оралады
+        title: Қаһарман суреті
+      mascot:
+        desc_html: Displayed on multiple pages. Кем дегенде 293×205px рекоменделеді. When not set, falls back to default mascot
+        title: Маскот суреті
+      peers_api_enabled:
+        desc_html: Домен names this server has encountered in the fediverse
+        title: Publish list of discovered серверлер
+      preview_sensitive_media:
+        desc_html: Link previews on other websites will display a thumbnail even if the media is marked as сезімтал
+        title: Show sensitive media in OpenGraph превью
+      profile_directory:
+        desc_html: Рұқсат users to be discoverable
+        title: Enable профиль directory
+      registrations:
+        closed_message:
+          desc_html: Displayed on frontpage when registrations are closed. You can use HTML тег
+          title: Closed registration мессадж
+        deletion:
+          desc_html: Allow anyone to delete their аккаунт
+          title: Open аккаунт deletion
+        min_invite_role:
+          disabled: Ешкім
+          title: Allow шақырулар by
+        open:
+          desc_html: Allow anyone to create an аккаунт
+          title: Ашық тіркелу
+      show_known_fediverse_at_about_page:
+        desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show жергілікті toots.
+        title: Show known fediverse on timeline превью
+      show_staff_badge:
+        desc_html: Show a staff badge on a user бет
+        title: Көрсет staff badge
+      site_description:
+        desc_html: Introductory paragraph on the басты бет. Describe what makes this Mastodon server special and anything else important. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
+        title: Сервер туралы
+      site_description_extended:
+        desc_html: A good place for your code of conduct, rules, guidelines and other things that set your server apart. You can use HTML тег
+        title: Custom extended ақпарат
+      site_short_description:
+        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph. If empty, defaults to сервер description.
+        title: Short сервер description
+      site_terms:
+        desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML тег
+        title: Қолдану шарттары мен ережелер
+      site_title: Сервер аты
+      thumbnail:
+        desc_html: Used for previews via OpenGraph and API. 1200x630px рекоменделеді
+        title: Сервер суреті
+      timeline_preview:
+        desc_html: Display public timeline on лендинг пейдж
+        title: Таймлайн превьюі
+      title: Сайт баптаулары
+    statuses:
+      back_to_account: Аккаунт бетіне оралы
+      batch:
+        nsfw_off: Сезімтал емес ретінде белгіле
+        nsfw_on: Сезімтал ретінде белгіле
+      failed_to_execute: Орындалмады
+      media:
+        title: Медиa
+      no_media: Медиасыз
+      no_status_selected: Бірде-бір статус өзгерген жоқ, себебі ештеңе таңдалмады
+      title: Аккаунт статустары
+      with_media: Медиамен
+    subscriptions:
+      callback_url: Callbаck URL
