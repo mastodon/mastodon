@@ -7,7 +7,7 @@ ko:
     administered_by: '관리자:'
     api: API
     apps: 모바일 앱
-    closed_registrations: 현재 이 인스턴스에서는 신규 등록을 받고 있지 않습니다.
+    closed_registrations: 현재 이 서버에서는 신규 등록을 받고 있지 않습니다. 하지만! 다른 서버에 계정을 만들어 똑같은 네트워크에 접속 할 수 있습니다.
     contact: 연락처
     contact_missing: 미설정
     contact_unavailable: N/A
@@ -27,7 +27,7 @@ ko:
     generic_description: "%{domain} 은 네트워크에 있는 한 서버입니다"
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
     learn_more: 자세히
-    other_instances: 다른 인스턴스
+    other_instances: 서버 목록
     privacy_policy: 개인정보 정책
     source_code: 소스 코드
     status_count_after:
@@ -388,14 +388,14 @@ ko:
         desc_html: 모든 페이지에 적용할 CSS
         title: 커스텀 CSS
       hero:
-        desc_html: 프론트페이지에 표시 됩니다. 최소 600x100픽셀을 권장합니다. 만약 설정되지 않았다면, 인스턴스의 썸네일이 사용 됩니다
+        desc_html: 프론트페이지에 표시 됩니다. 최소 600x100픽셀을 권장합니다. 만약 설정되지 않았다면, 서버의 썸네일이 사용 됩니다
         title: 히어로 이미지
       mascot:
         desc_html: 여러 페이지에서 보여집니다. 최소 293x205px을 추천합니다. 설정 되지 않은 경우, 기본 마스코트가 사용 됩니다
         title: 마스코트 이미지
       peers_api_enabled:
-        desc_html: 이 인스턴스가 페디버스에서 만났던 도메인 네임들
-        title: 발견 된 인스턴스들의 리스트 발행
+        desc_html: 이 서버가 페디버스에서 만났던 도메인 네임들
+        title: 발견 된 서버들의 리스트 발행
       preview_sensitive_media:
         desc_html: 민감한 미디어로 설정되었더라도 다른 웹사이트에서 링크 미리보기에 썸네일을 보여줍니다
         title: 민감한 미디어를 오픈그래프 미리보기에 보여주기
@@ -423,20 +423,20 @@ ko:
         title: 스태프 배지 표시
       site_description:
         desc_html: 프론트 페이지의 소개문에 사용 됩니다.이 마스토돈 서버의 특별한 점 등을 설명하세요. HTML 태그, 주로 <code>&lt;a&gt;</code>, <code>&lt;em&gt;</code> 같은 것을 사용 가능합니다.
-        title: 사이트 설명
+        title: 서버 설명
       site_description_extended:
         desc_html: 규칙, 가이드라인 등을 작성하기 좋은 곳입니다. HTML 태그를 사용할 수 있습니다
         title: 사이트 상세 설명
       site_short_description:
-        desc_html: 사이드바와 메타 태그에 나타납니다. 마스토돈이 무엇이고 이 서버의 특징은 무엇인지 한 문장으로 설명하세요. 비워두면 인스턴스 설명이 대신 사용됩니다.
-        title: 짧은 인스턴스 설명
+        desc_html: 사이드바와 메타 태그에 나타납니다. 마스토돈이 무엇이고 이 서버의 특징은 무엇인지 한 문장으로 설명하세요. 비워두면 서버 설명이 대신 사용됩니다.
+        title: 짧은 서버 설명
       site_terms:
         desc_html: 당신은 독자적인 개인정보 취급 방침이나 이용약관, 그 외의 법적 근거를 작성할 수 있습니다. HTML태그를 사용할 수 있습니다
         title: 커스텀 서비스 이용 약관
-      site_title: 사이트 이름
+      site_title: 서버 이름
       thumbnail:
         desc_html: OpenGraph와 API의 미리보기로 사용 됩니다. 1200x630px을 권장합니다
-        title: 인스턴스 썸네일
+        title: 서버 썸네일
       timeline_preview:
         desc_html: 랜딩 페이지에 공개 타임라인을 표시합니다
         title: 타임라인 프리뷰
@@ -497,7 +497,7 @@ ko:
     warning: 이 데이터를 조심히 다뤄 주세요. 다른 사람들과 절대로 공유하지 마세요!
     your_token: 액세스 토큰
   auth:
-    agreement_html: 이 등록으로 <a href="%{rules_path}">이용규약</a> 과 <a href="%{terms_path}">약관</a>에 동의하는 것으로 간주됩니다.
+    agreement_html: 이 등록으로 이 서버의 <a href="%{rules_path}">이용규약</a> 과 <a href="%{terms_path}">약관</a>에 동의하는 것으로 간주됩니다.
     change_password: 패스워드
     confirm_email: 확인 메일 승인
     delete_account: 계정 삭제
@@ -551,7 +551,7 @@ ko:
     description_html: 계정에 업로드된 모든 컨텐츠가 삭제되며, 계정은 비활성화 됩니다. 이것은 영구적으로 이루어지는 것이므로 <strong>되돌릴 수 없습니다</strong>. 사칭 행위를 방지하기 위해 같은 아이디로 다시 등록하는 것은 불가능합니다.
     proceed: 계정 삭제
     success_msg: 계정이 성공적으로 삭제되었습니다
-    warning_html: 삭제가 보장되는 것은 이 인스턴스 상에서의 컨텐츠에 한합니다. 타 인스턴스 등, 외부에 멀리 공유된 컨텐츠는 흔적이 남아 삭제되지 않는 경우도 있습니다. 그리고 현재 접속이 불가능한 서버나, 업데이트를 받지 않게 된 서버에 대해서는 삭제가 반영되지 않을 수도 있습니다.
+    warning_html: 삭제가 보장되는 것은 이 서버 상에서의 컨텐츠에 한합니다. 타 서버 등, 외부에 멀리 공유된 컨텐츠는 흔적이 남아 삭제되지 않는 경우도 있습니다. 그리고 현재 접속이 불가능한 서버나, 업데이트를 받지 않게 된 서버에 대해서는 삭제가 반영되지 않을 수도 있습니다.
     warning_title: 공유된 컨텐츠에 대해서
   directories:
     directory: 프로필 디렉토리
@@ -566,7 +566,7 @@ ko:
   errors:
     '403': 이 페이지를 표시할 권한이 없습니다.
     '404': 당신이 찾으려는 페이지는 존재하지 않습니다.
-    '410': 당신이 보려는 페이지는 더이상 존재하지 않습니다.
+    '410': 당신이 보려는 페이지는 더이상 여기에 존재하지 않습니다.
     '422':
       content: 보안 인증에 실패했습니다. 쿠키를 차단하고 있진 않습니까?
       title: 보안 인증 실패
@@ -590,6 +590,10 @@ ko:
     lists: 리스트
     mutes: 뮤트
     storage: 미디어
+  featured_tags:
+    add_new: 추가
+    errors:
+      limit: 이미 추천 해시태그의 개수가 최대입니다
   filters:
     contexts:
       home: 홈 타임라인
@@ -608,7 +612,7 @@ ko:
       title: 필터 추가
   followers:
     domain: 도메인
-    explanation_html: 프라이버시를 확보하고 싶은 경우, 누가 여러분을 팔로우 하고 있는지 파악해둘 필요가 있습니다. <strong>프라이빗 포스팅은 여러분의 팔로워가 소속하는 모든 인스턴스로 배달됩니다</strong>. 팔로워가 소속된 인스턴스 관리자나 소프트웨어가 여러분의 프라이버시를 존중하고 있는지 잘 모를 경우, 그 팔로워를 삭제하는 것이 좋을 수도 있습니다.
+    explanation_html: 프라이버시를 확보하고 싶은 경우, 누가 여러분을 팔로우 하고 있는지 파악해둘 필요가 있습니다. <strong>프라이빗 포스팅은 여러분의 팔로워가 소속하는 모든 서버로 배달됩니다</strong>. 팔로워가 소속된 서버 관리자나 소프트웨어가 여러분의 프라이버시를 존중하고 있는지 잘 모를 경우, 그 팔로워를 삭제하는 것이 좋을 수도 있습니다.
     followers_count: 팔로워 수
     lock_link: 비공개 계정
     purge: 팔로워에서 삭제
@@ -630,10 +634,16 @@ ko:
       one: 오류가 발생했습니다. 아래 오류를 확인해 주십시오
       other: 오류가 발생했습니다. 아래 %{count}개 오류를 확인해 주십시오
   imports:
-    preface: 다른 인스턴스에서 내보내기 한 파일에서 팔로우 / 차단 정보를 이 인스턴스 계정으로 불러올 수 있습니다.
+    modes:
+      merge: 병합
+      merge_long: 기존 것을 그대로 둔 채 새로 추가
+      overwrite: 덮어쓰기
+      overwrite_long: 기존 것을 모두 지우고 새로 추가
+    preface: 다른 서버에서 내보내기 한 파일에서 팔로우 / 차단 정보를 이 계정으로 불러올 수 있습니다.
     success: 파일이 정상적으로 업로드 되었으며, 현재 처리 중입니다
     types:
       blocking: 차단한 계정 목록
+      domain_blocking: 도메인 차단 목록
       following: 팔로우 중인 계정 목록
       muting: 뮤트 중인 계정 목록
     upload: 업로드
@@ -655,7 +665,7 @@ ko:
       one: 일회용
       other: "%{count} 회"
     max_uses_prompt: 제한 없음
-    prompt: 이 인스턴스에 대한 초대 링크를 만들고 공유합니다
+    prompt: 이 서버에 대한 초대 링크를 만들고 공유합니다
     table:
       expires_at: 만료
       uses: 사용됨
@@ -803,6 +813,7 @@ ko:
     development: 개발
     edit_profile: 프로필 편집
     export: 데이터 내보내기
+    featured_tags: 추천 해시태그
     followers: 신뢰 중인 인스턴스
     import: 데이터 가져오기
     migrate: 계정 이동
@@ -931,8 +942,8 @@ ko:
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} 이용약관과 개인정보 취급 방침"
   themes:
-    contrast: 고대비
-    default: 마스토돈
+    contrast: 마스토돈 (고대비)
+    default: 마스토돈 (어두움)
     mastodon-light: 마스토돈 (밝음)
   time:
     formats:
@@ -982,7 +993,7 @@ ko:
       final_action: 포스팅 시작하기
       final_step: '포스팅을 시작하세요! 팔로워가 없더라도 퍼블릭 메시지는 다른 사람들이 볼 수 있습니다, 예를 들면 로컬 타임라인이나 해시태그에서요. 사람들에게 자신을 소개하고 싶다면 #introductions 해시태그를 이용해보세요.'
       full_handle: 당신의 풀 핸들
-      full_handle_hint: 이것을 당신의 친구들에게 알려주면 다른 인스턴스에서 팔로우 하거나 메시지를 보낼 수 있습니다.
+      full_handle_hint: 이것을 당신의 친구들에게 알려주면 다른 서버에서 팔로우 하거나 메시지를 보낼 수 있습니다.
       review_preferences_action: 설정 바꾸기
       review_preferences_step: 당신의 설정을 확인하세요. 어떤 이메일로 알림을 받을 것인지, 기본적으로 어떤 프라이버시 설정을 사용할 것인지, 멀미가 없다면 GIF를 자동 재생하도록 설정할 수도 있습니다.
       subject: 마스토돈에 오신 것을 환영합니다

@@ -7,7 +7,7 @@ gl:
     administered_by: 'Administrada por:'
     api: API
     apps: Apps móbiles
-    closed_registrations: O rexistro en esta instancia está pechado en este intre. Porén! Pode atopar unha instancia diferente para obter unha conta e ter acceso exactamente a misma rede desde alí.
+    closed_registrations: O rexistro en este servidor está pechado neste momento. Porén! Pode atopar un servidor diferente para obter unha conta e ter acceso exactamente a misma rede desde alí.
     contact: Contacto
     contact_missing: Non establecido
     contact_unavailable: N/A
@@ -27,7 +27,7 @@ gl:
     generic_description: "%{domain} é un servidor na rede"
     hosted_on: Mastodon aloxado en %{domain}
     learn_more: Coñeza máis
-    other_instances: Listado de instancias
+    other_instances: Lista de servidores
     privacy_policy: Política de intimidade
     source_code: Código fonte
     status_count_after:
@@ -386,14 +386,14 @@ gl:
         desc_html: Modificar o aspecto con CSS cargado en cada páxina
         title: CSS persoalizado
       hero:
-        desc_html: Mostrado na portada. Recoméndase 600x100px como mínimo. Si non se establece, mostrará a imaxe por omisión da instancia
+        desc_html: Mostrado na portada. Recoméndase 600x100px como mínimo. Se non se establece, mostrará a imaxe por omisión do servidor
         title: Imáxe Heróe
       mascot:
         desc_html: Mostrado en varias páxinas. Recoméndase 293x205 como mínimo. Se non se establece publícase a mascota por omisión
         title: Imaxe da mascota
       peers_api_enabled:
-        desc_html: Nome de dominio que esta instancia atopou no fediverso
-        title: Publicar lista de instancias descubertas
+        desc_html: Nomes de dominio que este servidor atopou no fediverso
+        title: Publicar lista de servidores descubertos
       preview_sensitive_media:
         desc_html: A vista previa de ligazóns de outros sitios web mostrará unha imaxe incluso si os medios están marcados como sensibles
         title: Mostrar medios sensibles con vista previa OpenGraph
@@ -421,20 +421,20 @@ gl:
         title: Mostrar insigna de membresía
       site_description:
         desc_html: Parágrafo de presentación na páxina principal. Describe o que fai especial a este servidor Mastodon e calquera outra ouca importante. Pode utilizar etiquetas HTML, en particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
-        title: Descrición da instancia
+        title: Descrición do servidor
       site_description_extended:
-        desc_html: Un bo lugar para o seu código de conducta, regras, guías e outras cousas que distingan a súa instancia. Pode utilizar etiquetas HTML
+        desc_html: Un bo lugar para o seu código de conducta, regras, guías e outras cousas que distingan ao seu servidor. Pode utilizar etiquetas HTML
         title: Información extendida da persoalización
       site_short_description:
-        desc_html: Mostrado na barra lateral e nas etiquetas meta. Describe o que é Mastodon e que fai especial a este servidor nun só parágrafo. Si está baldeiro, mostrará a descrición da instancia.
-        title: Descrición curta da instancia
+        desc_html: Mostrado na barra lateral e nas etiquetas meta. Describe o que é Mastodon e que fai especial a este servidor nun só parágrafo. Si está baldeiro, mostrará a descrición do servidor.
+        title: Descrición curta do servidor
       site_terms:
         desc_html: Pode escribir a súa propia política de intimidade, termos de servizo ou aclaracións legais. Pode utilizar etiquetas HTML
         title: Termos de servizo persoalizados
-      site_title: Nome da instancia
+      site_title: Nome do servidor
       thumbnail:
         desc_html: Utilizado para vistas previsas vía OpenGraph e API. Recoméndase 1200x630px
-        title: Icona da instancia
+        title: Icona do servidor
       timeline_preview:
         desc_html: Mostrar liña de tempo pública na páxina de inicio
         title: vista previa da liña temporal
@@ -495,7 +495,7 @@ gl:
     warning: Teña moito tino con estos datos. Nunca os comparta con ninguén!
     your_token: O seu testemuño de acceso
   auth:
-    agreement_html: Ao pulsar "Rexistrar" vostede acorda seguir <a href="%{rules_path}">as normas da instancia</a> e <a href="%{terms_path}">os termos do servizo</a>.
+    agreement_html: Ao pulsar "Rexistrar" vostede acorda seguir <a href="%{rules_path}">as normas do servidor</a> e <a href="%{terms_path}">os termos do servizo</a>.
     change_password: Contrasinal
     confirm_email: Confirmar correo-e
     delete_account: Eliminar conta
@@ -549,7 +549,7 @@ gl:
     description_html: Esto eliminará de xeito <strong>permanente e irreversible</strong> o contido da súa conta e será desactivada. O seu nome de usuaria permanecerá reservado para evitar futuras confusións de identidades.
     proceed: Eliminar conta
     success_msg: A súa conta eliminouse correctamente
-    warning_html: Só se garantiza a eliminación de contido de esta instancia. O contido que foi compartido con outras instancias é probable que deixe rastros. O servidores fora de liña e servidores que se desuscribiron das súas actualizacións non actualizarán as súas bases de datos.
+    warning_html: Só se garantiza a eliminación de contido de este servidor. O contido que foi compartido con outras instancias é probable que deixe rastros. O servidores fora de liña e servidores que se desuscribiron das súas actualizacións non actualizarán as súas bases de datos.
     warning_title: Dispoñibilidade do contido espallado
   directories:
     directory: Directorio de perfil
@@ -563,8 +563,8 @@ gl:
       other: "%{count} persoas"
   errors:
     '403': Non ten permiso para ver esta páxina.
-    '404': A páxina que está a buscar non existe.
-    '410': A páxina que busca xa non existe.
+    '404': A páxina que está a buscar non está aquí.
+    '410': A páxina que estaba a buscar xa non existe.
     '422':
       content: Fallou a verificación de seguridade. Está bloqueando as cookies?
       title: Fallou a verficación de seguridade
@@ -577,7 +577,7 @@ gl:
     archive_takeout:
       date: Data
       download: Descargue o seu ficheiro
-      hint_html: Pode solicitar un ficheiro cos <strong>seus toots ficheiros de medios</strong>. Os datos estarán en formato ActivityPub e son compatibles con calquer software que o cumpla. Pode solicitar un ficheiro cada 7 días.
+      hint_html: Pode solicitar un ficheiro cos <strong>seus toots e ficheiros de medios</strong>. Os datos estarán en formato ActivityPub e son compatibles con calquer software que o siga. Pode solicitar un ficheiro cada 7 días.
       in_progress: Xerando o seu ficheiro...
       request: Solicite o ficheiro
       size: Tamaño
@@ -588,6 +588,10 @@ gl:
     lists: Listas
     mutes: Acalou
     storage: Almacenamento de medios
+  featured_tags:
+    add_new: Engadir novo
+    errors:
+      limit: Xa acadou o número máximo de etiquetas
   filters:
     contexts:
       home: Liña temporal inicial
@@ -606,7 +610,7 @@ gl:
       title: Engadir novo filtro
   followers:
     domain: Dominio
-    explanation_html: Se quere asegurar a intimidade dos seus estados, debe ser consciente de quen a está a seguir. <strong>Os seus estados privados son enviados a todas as instancias onde ten seguidoras</strong>. Podería querer revisalas, e elminar seguidoras si non confía que a súa intimidade sexa respetada polos administradores ou o software de esa instancia.
+    explanation_html: Se quere asegurar a intimidade dos seus estados, debe ser consciente de quen a está a seguir. <strong>Os seus estados privados son enviados a todas os servidores onde ten seguidoras</strong>. Podería querer revisalas, e elminar seguidoras si non confía que a súa intimidade sexa respetada polos administradores ou o software de ese servidor.
     followers_count: Número de seguidoras
     lock_link: Bloquear a súa conta
     purge: Eliminar das seguidoras
@@ -628,10 +632,16 @@ gl:
       one: Algo non está ben de todo! Por favor revise abaixo o erro
       other: Algo aínda non está ben! Por favor revise os %{count} erros abaixo
   imports:
-    preface: Pode importar os datos que exportou de outra instancia, tales como a lista de usuarias que está a seguir ou bloquear.
+    modes:
+      merge: Fusionar
+      merge_long: Manter os rexistros actuais e engadir novos
+      overwrite: Sobreescribir
+      overwrite_long: Sustituír rexistros actuais cos novos
+    preface: Pode importar os datos que exportou de outro servidor, tales como a lista de usuarias que está a seguir ou bloquear.
     success: Os seus datos foron correctamente subidos e serán procesados ao momento
     types:
       blocking: Lista de bloqueo
+      domain_blocking: Lista de bloqueo de dominios
       following: Lista de seguimento
       muting: Lista de usuarias acaladas
     upload: Subir
@@ -653,7 +663,7 @@ gl:
       one: 1 uso
       other: "%{count} usos"
     max_uses_prompt: Sen límite
-    prompt: Xerar e compartir ligazóns con outras para permitir acceso a esta instancia
+    prompt: Xerar e compartir ligazóns con outras para permitir acceso a este servidor
     table:
       expires_at: Caduca
       uses: Usos
@@ -801,6 +811,7 @@ gl:
     development: Desenvolvemento
     edit_profile: Editar perfil
     export: Exportar datos
+    featured_tags: Etiquetas destacadas
     followers: Seguidoras autorizadas
     import: Importar
     migrate: Migrar conta
@@ -929,8 +940,9 @@ gl:
       <p>Adaptado do orixinal <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Termos do Servizo e Política de Intimidade"
   themes:
-    default: Mastodon
-    mastodon-light: Mastodon (claro)
+    contrast: Mastodon (Alto contraste)
+    default: Mastodon (Escuro)
+    mastodon-light: Mastodon (Claro)
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
@@ -979,7 +991,7 @@ gl:
       final_action: Comece a publicar
       final_step: 'Publique! Incluso sin seguidoras as súas mensaxes serán vistas por outras, por exemplo na liña temporal local e nas etiquetas. Podería presentarse no #fediverso utilizando a etiqueta #introductions.'
       full_handle: O seu alcume completo
-      full_handle_hint: Esto é o que lle dirá aos seus amigos para que poidan seguila ou enviarlle mensaxes desde outra instancia.
+      full_handle_hint: Esto é o que lle dirá aos seus amigos para que poidan seguila ou enviarlle mensaxes desde outro servidor.
       review_preferences_action: Cambiar preferencias
       review_preferences_step: Lembre establecer as preferencias, tales como qué correos-e lle querería recibir, ou o nivel de intimidade por omisión para as súas mensaxes. Se non lle molestan as imaxes con movemento, pode escoller que os GIF se reproduzan automáticamente.
       subject: Benvida a Mastodon

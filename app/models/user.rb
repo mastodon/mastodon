@@ -245,7 +245,7 @@ class User < ApplicationRecord
   end
 
   def shows_application?
-    @shows_application ||= settings.shows_application
+    @shows_application ||= settings.show_application
   end
 
   def token_for_app(a)
