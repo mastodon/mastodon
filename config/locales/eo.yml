@@ -8,8 +8,8 @@ eo:
     administered_by: 'Administrata de:'
     api: API
     apps: Poŝtelefonaj aplikaĵoj
-    closed_registrations: Registriĝoj estas nuntempe fermitaj en ĉi tiu nodo. Tamen,
-      vi povas trovi alian nodon por fari konton kaj aliri al la sama reto de tie.
+    closed_registrations: Registriĝoj estas nuntempe fermitaj en ĉi tiu servilo. Tamen,
+      vi povas trovi alian servilon por fari konton kaj aliri al la sama reto de tie.
     contact: Kontakti
     contact_missing: Ne elektita
     contact_unavailable: Ne disponebla
@@ -36,7 +36,7 @@ eo:
     generic_description: '%{domain} estas unu servilo en la reto'
     hosted_on: '%{domain} estas nodo de Mastodon'
     learn_more: Lerni pli
-    other_instances: Listo de nodoj
+    other_instances: Listo de serviloj
     privacy_policy: Privateca politiko
     source_code: Fontkodo
     status_count_after:
@@ -105,8 +105,8 @@ eo:
       display_name: Montrata nomo
       domain: Domajno
       edit: Redakti
-      email: Retpoŝto
-      email_status: Retpoŝto Stato
+      email: Retadreso
+      email_status: Retadreso Stato
       enable: Ebligi
       enabled: Ebligita
       feed_url: URL de la fluo
@@ -141,7 +141,7 @@ eo:
       protocol: Protokolo
       public: Publika
       push_subscription_expires: Eksvalidiĝo de la abono al PuSH
-      redownload: Aktualigi profilbildon
+      redownload: Aktualigi profilon
       remove_avatar: Forigi profilbildon
       resend_confirmation:
         already_confirmed: Ĉi tiu uzanto jam estas konfirmita
@@ -311,7 +311,7 @@ eo:
         title: Nova blokado de retadresa domajno
       title: Nigra listo de retadresaj domajnoj
     instances:
-      title: Konataj nodoj
+      title: Federacio
       by_domain: Domajno
       delivery_available: Liverado disponeblas
       known_accounts:
@@ -403,11 +403,11 @@ eo:
         title: Propra CSS
       hero:
         desc_html: Montrata en la ĉefpaĝo. Almenaŭ 600x100px rekomendita. Kiam ne
-          agordita, la bildeto de la nodo estos uzata
+          agordita, la bildeto de la servilo estos uzata
         title: Kapbildo
       peers_api_enabled:
-        desc_html: Nomoj de domajnoj, kiujn ĉi tiu nodo renkontis en la fediverse
-        title: Publikigi liston de malkovritaj nodoj
+        desc_html: Nomoj de domajnoj, kiujn ĉi tiu servilo renkontis en la federauniverso
+        title: Publikigi liston de malkovritaj serviloj
       preview_sensitive_media:
         desc_html: Antaŭvido de ligiloj en aliaj retejoj montros bildeton eĉ se la
           aŭdovidaĵo estas markita kiel tikla
@@ -440,24 +440,24 @@ eo:
         desc_html: Enkonduka alineo en la ĉefpaĝo. Priskribu la unikaĵojn de ĉi tiu
           nodo de Mastodon, kaj ĉiujn aliajn gravaĵojn. Vi povas uzi HTML-etikedojn,
           kiel <code>&lt;a&gt;</code> kaj <code>&lt;em&gt;</code>.
-        title: Priskribo de la nodo
+        title: Priskribo de la servilo
       site_description_extended:
         desc_html: Bona loko por viaj sintenaj reguloj, aliaj reguloj, gvidlinioj
-          kaj aliaj aferoj, kiuj apartigas vian nodon. Vi povas uzi HTML-etikedojn
+          kaj aliaj aferoj, kiuj apartigas vian serilon. Vi povas uzi HTML-etikedojn
         title: Propraj detalaj informoj
       site_short_description:
         desc_html: Afiŝita en la flankpanelo kaj metadatumaj etikedoj. Priskribu kio
           estas Mastodon, kaj kio specialas en ĉi tiu nodo, per unu alineo. Se malplena,
-          la priskribo de la nodo estos uzata.
-        title: Mallonga priskribo de la nodo
+          la priskribo de la servilo estos uzata.
+        title: Mallonga priskribo de la servilo
       site_terms:
         desc_html: Vi povas skribi vian propran privatecan politikon, viajn uzkondiĉojn
           aŭ aliajn leĝaĵojn. Vi povas uzi HTML-etikedojn
         title: Propraj uzkondiĉoj
-      site_title: Nomo de la nodo
+      site_title: Nomo de la servilo
       thumbnail:
         desc_html: Uzata por antaŭvidoj per OpenGraph kaj per API. 1200x630px rekomendita
-        title: Bildeto de la nodo
+        title: Bildeto de la servilo
       timeline_preview:
         desc_html: Montri publikan tempolinion en komenca paĝo
         title: Tempolinia antaŭvido
@@ -529,7 +529,7 @@ eo:
     your_token: Via alira ĵetono
   auth:
     agreement_html: Klakante “Registriĝi” sube, vi konsentas kun <a href="%{rules_path}">la
-      reguloj de la nodo</a> kaj <a href="%{terms_path}">niaj uzkondiĉoj</a>.
+      reguloj de la servilo</a> kaj <a href="%{terms_path}">niaj uzkondiĉoj</a>.
     change_password: Pasvorto
     confirm_email: Konfirmi retadreson
     delete_account: Forigi konton
@@ -588,9 +588,9 @@ eo:
       postajn trompojn pri identeco.
     proceed: Forigi konton
     success_msg: Via konto estis sukcese forigita
-    warning_html: La forigo de la enhavo estas certa nur por ĉi tiu aparta nodo. Enhavo,
-      kiu estis disvastigita verŝajne lasos spurojn. Eksterretaj serviloj kaj serviloj,
-      kiuj ne abonas viajn ĝisdatigojn ne ĝisdatigos siajn datumbazojn.
+    warning_html: La forigo de la enhavo estas certa nur por ĉi tiu aparta servilo.
+      Enhavo, kiu estis disvastigita verŝajne lasos spurojn. Eksterretaj serviloj
+      kaj serviloj, kiuj ne abonas viajn ĝisdatigojn ne ĝisdatigos siajn datumbazojn.
     warning_title: Disponebleco de disvastigita enhavo
   directories:
     directory: Profilujo
@@ -607,8 +607,8 @@ eo:
       sub specifaj kradvortoj!
   errors:
     '403': Vi ne havas la rajton por vidi ĉi tiun paĝon.
-    '404': La paĝo, kiun vi serĉas, ne ekzistas.
-    '410': La paĝo, kiun vi serĉas, ne plu ekzistas.
+    '404': La paĝo ke kiun vi serĉas ne ekzistas ĉi tie.
+    '410': La paĝo, kiun vi serĉas, ne plu ekzistas ĉi tie.
     '422':
       content: Sekureca konfirmo malsukcesa. Ĉu vi blokas kuketojn?
       title: Sekureca konfirmo malsukcesa
@@ -658,9 +658,9 @@ eo:
     domain: Domajno
     explanation_html: Se vi volas esti certa pri la privateco de viaj mesaĝoj, vi
       bezonas esti atenta pri tiuj, kiuj sekvas vin. <strong>Viaj privataj mesaĝoj
-      estas liveritaj al ĉiuj nodoj, kie vi havas sekvantojn</strong>. Eble vi ŝatus
-      kontroli ilin, kaj forigi la sekvantojn de la nodoj, kie vi ne certas ĉu via
-      privateco estos respektita de la tiea teamo aŭ programo.
+      estas liveritaj al ĉiuj serviloj, kie vi havas sekvantojn</strong>. Eble vi
+      ŝatus kontroli ilin, kaj forigi la sekvantojn de la serviloj, kie vi ne certas
+      ĉu via privateco estos respektita de la tiea teamo aŭ programo.
     followers_count: Nombro de sekvantoj
     lock_link: Ŝlosu vian konton
     purge: Forigi el la sekvantoj
@@ -684,7 +684,7 @@ eo:
       one: Io mise okazis! Bonvolu konsulti la suban erar-raporton
       other: Io mise okazis! Bonvolu konsulti la subajn %{count} erar-raportojn
   imports:
-    preface: Vi povas importi datumojn, kiujn vi eksportis el alia nodo, kiel liston
+    preface: Vi povas importi datumojn, kiujn vi eksportis el alia servilo, kiel liston
       de homoj, kiujn vi sekvas aŭ blokas.
     success: Viaj datumoj estis sukcese alŝutitaj kaj estos traktitaj kiel planite
     types:
@@ -716,7 +716,7 @@ eo:
       one: 1 uzo
       other: '%{count} uzoj'
     max_uses_prompt: Neniu limo
-    prompt: Krei kaj diskonigi ligilojn al aliaj por doni aliron al ĉi tiu nodo
+    prompt: Krei kaj diskonigi ligilojn al aliaj por doni aliron al ĉi tiu servilo
     table:
       expires_at: Eksvalidiĝas je
       uses: Uzoj
@@ -902,9 +902,9 @@ eo:
   terms:
     title: Uzkondiĉoj kaj privateca politiko de %{instance}
   themes:
-    contrast: Forta kontrasto
-    default: Mastodon
-    mastodon-light: Mastodon (hela)
+    contrast: Mastodon (Forta kontrasto)
+    default: Mastodon (Malluma)
+    mastodon-light: Mastodon (Luma)
   time:
     formats:
       default: '%Y-%m-%d %H:%M'
@@ -953,7 +953,7 @@ eo:
         prezenti vin per la kradvorto #introductions.'
       full_handle: Via kompleta uzantnomo
       full_handle_hint: Jen kion vi dirus al viaj amikoj, por ke ili mesaĝu aŭ sekvu
-        vin de alia nodo.
+        vin de alia servilo.
       review_preferences_action: Ŝanĝi preferojn
       review_preferences_step: Estu certa ke vi agordis viajn preferojn, kiel kiujn
         retmesaĝojn vi ŝatus ricevi, aŭ kiun dekomencan privatecan nivelon vi ŝatus
