@@ -2,10 +2,11 @@
 
 class ActivityPub::Activity::Announce < ActivityPub::Activity
   def perform
-    original_status   = status_from_uri(object_uri)
-    original_status ||= fetch_remote_original_status
+    return reject_payload! if delete_arrived_first?(@json['id']) || !related_to_local_activity?
 
-    return if original_status.nil? || delete_arrived_first?(@json['id']) || !announceable?(original_status)
+    original_status = status_from_object
+
+    return reject_payload! if original_status.nil? || !announceable?(original_status)
 
     status = Status.find_by(account: @account, reblog: original_status)
 
@@ -40,5 +41,13 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
 
   def announceable?(status)
     status.account_id == @account.id || status.public_visibility? || status.unlisted_visibility?
+  end
+
+  def related_to_local_activity?
+    followed_by_local_accounts? || requested_through_relay? || reblog_of_local_status?
+  end
+
+  def reblog_of_local_status?
+    status_from_uri(object_uri)&.account&.local?
   end
 end

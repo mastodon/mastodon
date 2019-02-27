@@ -32,6 +32,7 @@ const messages = defineMessages({
   embed: { id: 'status.embed', defaultMessage: 'Embed' },
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
   admin_status: { id: 'status.admin_status', defaultMessage: 'Open this status in the moderation interface' },
+  copy: { id: 'status.copy', defaultMessage: 'Copy link to status' },
 });
 
 const obfuscatedCount = count => {
@@ -77,7 +78,11 @@ class StatusActionBar extends ImmutablePureComponent {
   ]
 
   handleReplyClick = () => {
-    this.props.onReply(this.props.status, this.context.router.history);
+    if (me) {
+      this.props.onReply(this.props.status, this.context.router.history);
+    } else {
+      this._openInteractionDialog('reply');
+    }
   }
 
   handleShareClick = () => {
@@ -90,11 +95,23 @@ class StatusActionBar extends ImmutablePureComponent {
   }
 
   handleFavouriteClick = () => {
-    this.props.onFavourite(this.props.status);
+    if (me) {
+      this.props.onFavourite(this.props.status);
+    } else {
+      this._openInteractionDialog('favourite');
+    }
   }
 
-  handleReblogClick = (e) => {
-    this.props.onReblog(this.props.status, e);
+  handleReblogClick = e => {
+    if (me) {
+      this.props.onReblog(this.props.status, e);
+    } else {
+      this._openInteractionDialog('reblog');
+    }
+  }
+
+  _openInteractionDialog = type => {
+    window.open(`/interact/${this.props.status.get('id')}?type=${type}`, 'mastodon-intent', 'width=445,height=600,resizable=no,menubar=no,status=no,scrollbars=yes');
   }
 
   handleDeleteClick = () => {
@@ -141,6 +158,25 @@ class StatusActionBar extends ImmutablePureComponent {
     this.props.onMuteConversation(this.props.status);
   }
 
+  handleCopy = () => {
+    const url      = this.props.status.get('url');
+    const textarea = document.createElement('textarea');
+
+    textarea.textContent    = url;
+    textarea.style.position = 'fixed';
+
+    document.body.appendChild(textarea);
+
+    try {
+      textarea.select();
+      document.execCommand('copy');
+    } catch (e) {
+
+    } finally {
+      document.body.removeChild(textarea);
+    }
+  }
+
   render () {
     const { status, intl, withDismiss } = this.props;
 
@@ -156,6 +192,7 @@ class StatusActionBar extends ImmutablePureComponent {
     menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
 
     if (publicStatus) {
+      menu.push({ text: intl.formatMessage(messages.copy), action: this.handleCopy });
       menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
     }
 
@@ -184,6 +221,7 @@ class StatusActionBar extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick });
       menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick });
       menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
+
       if (isStaff) {
         menu.push(null);
         menu.push({ text: intl.formatMessage(messages.admin_account, { name: status.getIn(['account', 'username']) }), href: `/admin/accounts/${status.getIn(['account', 'id'])}` });
@@ -211,9 +249,9 @@ class StatusActionBar extends ImmutablePureComponent {
 
     return (
       <div className='status__action-bar'>
-        <div className='status__action-bar__counter'><IconButton className='status__action-bar-button' disabled={anonymousAccess} title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} /><span className='status__action-bar__counter__label' >{obfuscatedCount(status.get('replies_count'))}</span></div>
-        <IconButton className='status__action-bar-button' disabled={anonymousAccess || !publicStatus} active={status.get('reblogged')} pressed={status.get('reblogged')} title={!publicStatus ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} />
-        <IconButton className='status__action-bar-button star-icon' disabled={anonymousAccess} animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
+        <div className='status__action-bar__counter'><IconButton className='status__action-bar-button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} /><span className='status__action-bar__counter__label' >{obfuscatedCount(status.get('replies_count'))}</span></div>
+        <IconButton className='status__action-bar-button' disabled={!publicStatus} active={status.get('reblogged')} pressed={status.get('reblogged')} title={!publicStatus ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} />
+        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
         {shareButton}
 
         <div className='status__action-bar-dropdown'>
