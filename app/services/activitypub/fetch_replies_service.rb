@@ -7,29 +7,34 @@ class ActivityPub::FetchRepliesService < BaseService
     @account = parent_status.account
 
     @items = collection_items(collection_or_uri)
-
-    if @items.nil?
-      uri = value_or_id(collection_or_uri)
-      return if invalid_origin?(uri)
-      collection = fetch_resource_without_id_validation(uri)
-      raise Mastodon::UnexpectedResponseError if collection.nil?
-      @items = collection_items(collection)
-      return if @items.nil?
-    end
+    return if @items.nil?
 
     FetchReplyWorker.push_bulk(filtered_replies)
   end
 
   private
 
-  def collection_items(collection)
+  def collection_items(collection_or_uri)
+    collection = fetch_collection(collection_or_uri)
     return unless collection.is_a?(Hash)
+
+    collection = fetch_collection(collection['first']) if collection['first'].present?
+    return unless collection.is_a?(Hash)
+
     case collection['type']
     when 'Collection', 'CollectionPage'
       collection['items']
     when 'OrderedCollection', 'OrderedCollectionPage'
       collection['orderedItems']
     end
+  end
+
+  def fetch_collection(collection_or_uri)
+    return collection_or_uri if collection_or_uri.is_a?(Hash)
+    return if invalid_origin?(collection_or_uri)
+    collection = fetch_resource_without_id_validation(collection_or_uri)
+    raise Mastodon::UnexpectedResponseError if collection.nil?
+    collection
   end
 
   def filtered_replies

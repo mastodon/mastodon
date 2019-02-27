@@ -217,8 +217,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def fetch_replies(status)
     collection = @object['replies']
     return if collection.nil?
-    if collection.is_a?(Hash)
-      return unless (collection['type'] == 'Collection' && collection['items'].is_a?(Array)) || (collection['type'] == 'OrderedCollection' && collection['orderedItems'].is_a?(Array))
+    if collection.is_a?(Hash) && (collection['items'].is_a?(Array) || collection['orderedItems'].is_a?(Array))
       ActivityPub::FetchRepliesService.new.call(status, collection)
     else
       ActivityPub::FetchRepliesWorker.perform_async(status.id, value_or_id(collection))
