@@ -159,7 +159,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if tag['href'].blank?
 
     account = account_from_uri(tag['href'])
-    account = ::FetchRemoteAccountService.new.call(tag['href'], id: false) if account.nil?
+    account = ::FetchRemoteAccountService.new.call(tag['href']) if account.nil?
 
     return if account.nil?
 
