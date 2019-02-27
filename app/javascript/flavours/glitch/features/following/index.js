@@ -94,4 +94,5 @@ export default class Following extends ImmutablePureComponent {
       </Column>
     );
   }
+
 }
