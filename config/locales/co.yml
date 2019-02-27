@@ -7,7 +7,7 @@ co:
     administered_by: 'Amministratu da:'
     api: API
     apps: Applicazione per u telefuninu
-    closed_registrations: Pè avà, l’arregistramenti sò chjosi nant’à st’istanza. Mà pudete truvà un’altr’istanza per fà un contu è avè accessu à listessa reta da quallà.
+    closed_registrations: Pè avà, l’arregistramenti sò chjosi nant’à stu servore. Mà pudete truvà un’altru per fà un contu è avè accessu à listessa reta da quallà.
     contact: Cuntattu
     contact_missing: Mancante
     contact_unavailable: Micca dispunibule
@@ -27,7 +27,7 @@ co:
     generic_description: "%{domain} hè un servore di a rete"
     hosted_on: Mastodon allughjatu nant’à %{domain}
     learn_more: Amparà di più
-    other_instances: Lista di l’istanze
+    other_instances: Lista di i servori
     privacy_policy: Pulitica di vita privata
     source_code: Codice di fonte
     status_count_after:
@@ -386,14 +386,14 @@ co:
         desc_html: Mudificà l'apparenza cù CSS caricatu nant'à ogni pagina
         title: CSS persunalizatu
       hero:
-        desc_html: Affissatu nant’a pagina d’accolta. Ricumandemu almenu 600x100px. S’ellu ùn hè micca definiti, a vignetta di l’istanza sarà usata
+        desc_html: Affissatu nant’a pagina d’accolta. Ricumandemu almenu 600x100px. S’ellu ùn hè micca definiti, a vignetta di u servore sarà usata
         title: Ritrattu di cuprendula
       mascot:
         desc_html: Affissata nant'à parechje pagine. Almenu 293x205px ricumandatu. S'ella hè lasciata viota, a mascotta predefinita sarà utilizata
         title: Ritrattu di a mascotta
       peers_api_enabled:
-        desc_html: Indirizzi st’istanza hà vistu indè u fediverse
-        title: Pubblicà a lista d’istanza cunnisciute
+        desc_html: Indirizzi web stu servore hà vistu indè u fediverse
+        title: Pubblicà a lista di servori cunnisciuti
       preview_sensitive_media:
         desc_html: E priviste di i ligami nant'à l'altri siti mustreranu una vignetta ancu s'ellu hè marcatu cum'è sensibile u media
         title: Vede media sensibili in e viste OpenGraph
@@ -421,20 +421,20 @@ co:
         title: Mustrà un badge staff
       site_description:
         desc_html: Paragrafu di prisentazione nant’a pagina d’accolta. Parlate di cio chì rende stu servore speziale, o d'altre cose impurtante. Pudete fà usu di marchi HTML, in particulare <code>&lt;a&gt;</code> è <code>&lt;em&gt;</code>.
-        title: Discrizzione di l’istanza
+        title: Discrizzione di u servore
       site_description_extended:
         desc_html: Una bona piazza per e regule, infurmazione è altre cose chì l’utilizatori duverìanu sapè. Pudete fà usu di marchi HTML
         title: Discrizzione stesa di u situ
       site_short_description:
-        desc_html: Mustratu indè a barra laterala è i tag meta. Spiegate quale hè Mastodon è ciò chì rende u vostru servore speciale in un paragrafu. S'ella hè lasciata viota, a discrizzione di l'istanza sarà utilizata.
-        title: Descrizzione corta di l'istanza
+        desc_html: Mustratu indè a barra laterala è i tag meta. Spiegate quale hè Mastodon è ciò chì rende u vostru servore speciale in un paragrafu. S'ella hè lasciata viota, a discrizzione di u servore sarà utilizata.
+        title: Descrizzione corta di u servore
       site_terms:
         desc_html: Quì pudete scrive e vostre regule di cunfidenzialità, cundizione d’usu o altre menzione legale. Pudete fà usu di marchi HTML
         title: Termini persunalizati
-      site_title: Nome di l’istanza
+      site_title: Nome di u servore
       thumbnail:
         desc_html: Utilizatu per viste cù OpenGraph è l’API. Ricumandemu 1200x630px
-        title: Vignetta di l’istanza
+        title: Vignetta di u servore
       timeline_preview:
         desc_html: Vede a linea pubblica nant’a pagina d’accolta
         title: Vista di e linee
@@ -495,7 +495,7 @@ co:
     warning: Abbadate à quessi dati. Ùn i date à nisunu!
     your_token: Rigenerà a fiscia d’accessu
   auth:
-    agreement_html: Cliccà "Arregistrassi" quì sottu vole dì chì site d’accunsentu per siguità <a href="%{rules_path}">e regule di l’istanza</a> è <a href="%{terms_path}">e cundizione d’usu</a>.
+    agreement_html: Cliccà "Arregistrassi" quì sottu vole dì chì site d’accunsentu per siguità <a href="%{rules_path}">e regule di u servore</a> è <a href="%{terms_path}">e cundizione d’usu</a>.
     change_password: Chjave d’accessu
     confirm_email: Cunfirmà l’e-mail
     delete_account: Sguassà u contu
@@ -549,7 +549,7 @@ co:
     description_html: U contu sarà deattivatu è u cuntenutu sarà sguassatu di manera <strong>permanente è irreversibile</strong>. Ùn sarà micca pussibule piglià stu cugnome torna per evità l’impusture.
     proceed: Sguassà u contu
     success_msg: U vostru contu hè statu sguassatu
-    warning_html: Pudete esse sicuru·a solu chì u cuntenutu sarà sguassatu di st’istanza. S’ellu hè statu spartutu in altrò, sarà forse sempre quallà.
+    warning_html: Pudete esse sicuru·a solu chì u cuntenutu sarà sguassatu di stu servore. S’ellu hè statu spartutu in altrò, sarà forse sempre quallà. I servori scunettati è quelli ch'ùn sò più abbunati à e vostre pubblicazione ùn anu micca da mette à ghjornu e so database.
     warning_title: Dispunibilità di i cuntenuti sparsi
   directories:
     directory: Annuariu di i prufili
@@ -563,8 +563,8 @@ co:
       other: "%{count} persone"
   errors:
     '403': Ùn site micca auturizatu·a à vede sta pagina.
-    '404': Sta pagina ùn esiste micca.
-    '410': Sta pagina ùn esiste più.
+    '404': Sta pagina ùn esiste micca quì.
+    '410': Sta pagina ùn esiste più quì.
     '422':
       content: C’hè statu un prublemu cù a verificazione di sicurità. Forse bluccate cookies?
       title: Fiascu di verificazione
@@ -577,7 +577,7 @@ co:
     archive_takeout:
       date: Data
       download: Scaricà l’archiviu
-      hint_html: Pudete dumandà un’archiviu di i vostri <strong>statuti è media caricati</strong>. I dati saranu in u furmattu ActivityPub è pudarenu esse letti da tutti i lugiziali chì u supportanu.
+      hint_html: Pudete dumandà un’archiviu di i vostri <strong>statuti è media caricati</strong>. I dati saranu in u furmattu ActivityPub è pudarenu esse letti da tutti i lugiziali chì u supportanu. Pudete richiede un'archiviu ogni 7 ghjorni.
       in_progress: Cumpilazione di l’archiviu...
       request: Dumandà u vostr’archiviu
       size: Pesu
@@ -588,6 +588,10 @@ co:
     lists: Liste
     mutes: Piattate
     storage: I vostri media
+  featured_tags:
+    add_new: Aghjustà novu
+    errors:
+      limit: Avete digià messu in mostra u numeru massimale di hashtag
   filters:
     contexts:
       home: Accolta
@@ -606,7 +610,7 @@ co:
       title: Aghjustà un novu filtru
   followers:
     domain: Duminiu
-    explanation_html: Per assicuravi di a cunfidenzialità di i vostri statuti, duvete avè primura di quale vi seguita. <strong>I vostri statuti privati sò mandati à tutte l’istanze induve avete abbunati</strong>. Pensate à u vostru livellu di cunfidenza in i so amministratori.
+    explanation_html: Per assicuravi di a cunfidenzialità di i vostri statuti, duvete avè primura di quale vi seguita. <strong>I vostri statuti privati sò mandati à tutti i servori induve avete abbunati</strong>. Pensate à u vostru livellu di cunfidenza in i so amministratori.
     followers_count: Numeru d’abbunati
     lock_link: Rendete u contu privatu
     purge: Toglie di a lista d’abbunati
@@ -628,10 +632,16 @@ co:
       one: Qualcosa ùn và bè! Verificate u prublemu quì sottu
       other: Qualcosa ùn và bè! Verificate %{count} prublemi quì sottu
   imports:
-    preface: Pudete impurtà certi dati cumu e persone chì seguitate o bluccate nant’à u vostru contu nant’à st’istanza à partesi di fugliali creati nant’à un’altr’istanza.
+    modes:
+      merge: Unisce
+      merge_long: Cunservà i dati esistenti è aghjustà i novi
+      overwrite: Soprascrive
+      overwrite_long: Rimpiazzà i dati esistenti cù i novi
+    preface: Pudete impurtà certi dati, cumu e persone chì seguitate o bluccate nant’à u vostru contu, nant’à stu servore à partesi di fugliali creati nant’à un’altru.
     success: I vostri dati sò stati impurtati è saranu trattati da quì à pocu
     types:
       blocking: Persone chì bluccate
+      domain_blocking: Lista di blucchimi di duminiu
       following: Persone chì seguitate
       muting: Persone chì piattate
     upload: Impurtà
@@ -653,7 +663,7 @@ co:
       one: 1 usu
       other: "%{count} usi"
     max_uses_prompt: Micca limita
-    prompt: Create è spartete ligami cù altre parsone per dà accessu à l’istanza
+    prompt: Create è spartete ligami cù altre parsone per dà accessu à u servore
     table:
       expires_at: Spira
       uses: Utiliza
@@ -801,6 +811,7 @@ co:
     development: Sviluppu
     edit_profile: Mudificà u prufile
     export: Spurtazione d’infurmazione
+    featured_tags: Hashtag in vista
     followers: Abbunati auturizati
     import: Impurtazione
     migrate: Migrazione di u contu
@@ -929,9 +940,9 @@ co:
       <p>Originellement adapté de la <a href="https://github.com/discourse/discourse">politique de confidentialité de Discourse</a>.</p>
     title: Termini d’usu è di cunfidenzialità per %{instance}
   themes:
-    contrast: Cuntrastu altu
-    default: Mastodon
-    mastodon-light: Mastodon (chjaru)
+    contrast: Mastodon (Cuntrastu altu)
+    default: Mastodon (Scuru)
+    mastodon-light: Mastodon (Chjaru)
   time:
     formats:
       default: "%d %b %Y, %H:%M"

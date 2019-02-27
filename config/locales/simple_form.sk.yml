@@ -33,11 +33,14 @@ sk:
         setting_display_media_show_all: Stále ukazuj médiá označené ako citlivé
         setting_hide_network: Koho následuješ, a kto následuje teba nebude zobrazené na tvojom profile
         setting_noindex: Ovplyvňuje verejný profil a stránky s príspevkami
+        setting_show_application: Aplikácia, ktorú používaš na písanie príspevkov, bude zobrazená v detailnom náhľade jednotlivých tvojích príspevkov
         setting_theme: Ovplyvňuje ako Mastodon vyzerá pri prihlásení z hociakého zariadenia.
         username: Tvoja prezývka bude unikátna pre server %{domain}
         whole_word: Ak je kľúčové slovo, alebo fráza poskladaná iba s písmen a čísel, bude použité iba ak sa zhoduje s celým výrazom
+      featured_tag:
+        name: 'Možno by si chcel/a použiť niektoré z týchto:'
       imports:
-        data: CSV súbor vyexportovaný z inej Mastodon inštancie
+        data: CSV súbor vyexportovaný z iného Mastodon serveru
       sessions:
         otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích obnovovacích kódov:'
       user:
@@ -100,6 +103,7 @@ sk:
         setting_hide_network: Ukri svoju sieť kontaktov
         setting_noindex: Nezaraďuj príspevky do indexu pre vyhľadávče
         setting_reduce_motion: Mierni pohyb pri animáciách
+        setting_show_application: Zverejni akú aplikáciu používaš na posielanie príspevkov
         setting_system_font_ui: Použi základné systémové písmo
         setting_theme: Vzhľad webu
         setting_unfollow_modal: Zobrazuj potvrdzovacie okno pred skončením sledovania iného užívateľa
@@ -108,6 +112,8 @@ sk:
         username: Prezývka
         username_or_email: Prezívka, alebo email
         whole_word: Celé slovo
+      featured_tag:
+        name: Haštag
       interactions:
         must_be_follower: Blokovať oznámenia od nesledujúcich
         must_be_following: Blokovať oznámenia od ľudí, ktorých nesleduješ
