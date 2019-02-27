@@ -11,9 +11,9 @@ import {
 import { ScrollContainer } from 'react-router-scroll-4';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import Column from 'flavours/glitch/features/ui/components/column';
+import ProfileColumnHeader from 'flavours/glitch/features/account/components/profile_column_header';
 import HeaderContainer from 'flavours/glitch/features/account_timeline/containers/header_container';
 import LoadMore from 'flavours/glitch/components/load_more';
-import ColumnBackButton from 'flavours/glitch/components/column_back_button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
@@ -80,7 +80,7 @@ export default class Followers extends ImmutablePureComponent {
 
     return (
       <Column>
-        <ColumnBackButton />
+        <ProfileColumnHeader />
 
         <ScrollContainer scrollKey='followers' shouldUpdateScroll={this.shouldUpdateScroll}>
           <div className='scrollable' onScroll={this.handleScroll}>
