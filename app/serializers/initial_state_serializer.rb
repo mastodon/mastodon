@@ -20,7 +20,8 @@ class InitialStateSerializer < ActiveModel::Serializer
       invites_enabled: Setting.min_invite_role == 'user',
       mascot: instance_presenter.mascot&.file&.url,
       profile_directory: Setting.profile_directory,
-      max_toot_chars: instance_presenter.max_toot_chars
+      max_toot_chars: instance_presenter.max_toot_chars,
+      max_bio_chars: instance_presenter.max_bio_chars
     }
 
     if object.current_account
