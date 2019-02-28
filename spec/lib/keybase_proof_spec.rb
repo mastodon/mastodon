@@ -75,7 +75,7 @@ describe Keybase::Proof do
       end
 
       it 'raises a KeyError' do
-        expect { keybase_proof.remote_status }.to raise_error KeyError
+        expect { keybase_proof.remote_status }.to raise_error Keybase::ResponseDataError
       end
     end
   end

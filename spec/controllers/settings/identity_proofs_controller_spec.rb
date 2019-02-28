@@ -28,13 +28,13 @@ describe Settings::IdentityProofsController do
     context 'POST #create' do
       context 'when saving works' do
         before do
-          allow(KeybaseProofWorker).to receive(:perform_in)
+          allow(KeybaseProofWorker).to receive(:perform_async)
           allow_any_instance_of(AccountIdentityProof).to receive(:save_if_valid_remotely) { true }
           allow_any_instance_of(AccountIdentityProof).to receive(:success_redirect) { root_url }
         end
 
         it 'serializes a KeybaseProofWorker' do
-          expect(KeybaseProofWorker).to receive(:perform_in)
+          expect(KeybaseProofWorker).to receive(:perform_async)
           post :create, params: postable_params
         end
 
@@ -63,7 +63,7 @@ describe Settings::IdentityProofsController do
 
       context 'it can also do an update if the provider and username match an existing proof' do
         before do
-          allow(KeybaseProofWorker).to receive(:perform_in)
+          allow(KeybaseProofWorker).to receive(:perform_async)
           Fabricate(:account_identity_proof, account: user.account, provider: provider, provider_username: kbname)
           allow_any_instance_of(AccountIdentityProof).to receive(:success_redirect) { root_url }
         end

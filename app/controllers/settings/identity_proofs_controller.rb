@@ -28,7 +28,7 @@ class Settings::IdentityProofsController < Settings::BaseController
     ).first_or_initialize
     @proof.token = create_params[:token]
     if @proof.save_if_valid_remotely
-      KeybaseProofWorker.perform_in(2.minutes, @proof.id) if @proof.keybase?
+      KeybaseProofWorker.perform_async(@proof.id) if @proof.keybase?
       success_url = @proof.success_redirect(params[:useragent])
       redirect_to Addressable::URI.parse(success_url).normalize.to_s
     else

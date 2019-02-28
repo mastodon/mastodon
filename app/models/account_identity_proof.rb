@@ -58,7 +58,7 @@ class AccountIdentityProof < ApplicationRecord
 
   def update_liveness
     if keybase?
-      KeybaseProofWorker.perform_async(id)
+      KeybaseProofWorker.new.perform_safe(id)
       reload
     end
   end

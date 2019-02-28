@@ -11,7 +11,7 @@ module ExternalProofService
 
   module Keybase
     def self.base_url
-      'https://keybase.io'
+      ENV["KEYBASE_BASE_URL"] || 'https://keybase.io'
     end
   end
 end

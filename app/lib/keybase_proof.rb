@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Keybase
+  class ResponseDataError < StandardError; end
+  class ExpectedProofLiveError < ResponseDataError; end
+
   class Proof
     def initialize(account_identity_proof, username = nil)
       @kb_username = account_identity_proof.provider_username
@@ -22,7 +25,7 @@ module Keybase
         endpoint: '/_/api/1.0/sig/proof_valid.json',
         query_params: to_keybase_params
       ).fetch(:proof_valid)
-    rescue KeyError
+    rescue KeyError, NoMethodError, HTTP::Error
       false
     end
 
@@ -32,6 +35,8 @@ module Keybase
         query_params: to_keybase_params
       )
       { proof_valid: result.fetch(:proof_valid), proof_live: result.fetch(:proof_live) }
+    rescue KeyError, NoMethodError, HTTP::Error => e
+      raise Keybase::ResponseDataError, e.message
     end
 
     def profile_pic_url
@@ -39,7 +44,7 @@ module Keybase
         endpoint: '/_/api/1.0/user/pic_url.json',
         query_params: { username: @kb_username }
       ).fetch(:pic_url)
-    rescue KeyError, HTTP::Error
+    rescue KeyError, NoMethodError, HTTP::Error
       nil
     end
 
