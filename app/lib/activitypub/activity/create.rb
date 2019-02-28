@@ -217,11 +217,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def fetch_replies(status)
     collection = @object['replies']
     return if collection.nil?
-    if collection.is_a?(Hash) && (collection['items'].is_a?(Array) || collection['orderedItems'].is_a?(Array))
-      ActivityPub::FetchRepliesService.new.call(status, collection)
-    else
-      ActivityPub::FetchRepliesWorker.perform_async(status.id, value_or_id(collection))
-    end
+    replies = ActivityPub::FetchRepliesService.new.call(status, collection, false)
+    return if replies.present?
+    uri = value_or_id(collection)
+    ActivityPub::FetchRepliesWorker.perform_async(status.id, uri) unless uri.nil?
   end
 
   def conversation_from_uri(uri)
