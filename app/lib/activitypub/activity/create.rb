@@ -40,6 +40,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     end
 
     resolve_thread(@status)
+    fetch_replies(@status)
     distribute(@status)
     forward_for_reply if @status.public_visibility? || @status.unlisted_visibility?
   end
@@ -211,6 +212,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def resolve_thread(status)
     return unless status.reply? && status.thread.nil? && Request.valid_url?(in_reply_to_uri)
     ThreadResolveWorker.perform_async(status.id, in_reply_to_uri)
+  end
+
+  def fetch_replies(status)
+    collection = @object['replies']
+    return if collection.nil?
+    replies = ActivityPub::FetchRepliesService.new.call(status, collection, false)
+    return if replies.present?
+    uri = value_or_id(collection)
+    ActivityPub::FetchRepliesWorker.perform_async(status.id, uri) unless uri.nil?
   end
 
   def conversation_from_uri(uri)
