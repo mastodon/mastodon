@@ -33,11 +33,14 @@ de:
         setting_display_media_show_all: Medien, die als sensibel markiert sind, immer anzeigen
         setting_hide_network: Wem du folgst und wer dir folgt, wird in deinem Profil nicht angezeigt
         setting_noindex: Betrifft dein öffentliches Profil und deine Beiträge
+        setting_show_application: Die Anwendung, die du zum Schreiben von Beiträgen benutzt wird in der detaillierten Ansicht deiner Beiträge angezeigt
         setting_theme: Wirkt sich darauf aus, wie Mastodon aussieht, egal auf welchem Gerät du eingeloggt bist.
         username: Dein Benutzer:innen-Name wird auf %{domain} nur einmal vorkommen
         whole_word: Wenn das Schlagwort oder die Phrase nur Buchstaben und Zahlen enthält, wird es nur angewendet, wenn es dem ganzen Wort entspricht
+      featured_tag:
+        name: 'Du möchtest vielleicht einen von diesen benutzen:'
       imports:
-        data: CSV-Datei, die aus einer anderen Mastodon-Instanz exportiert wurde
+        data: CSV-Datei, die aus einem anderen Mastodon-Server exportiert wurde
       sessions:
         otp: 'Gib den Zwei-Faktor-Authentisierungscode von deinem Telefon ein oder benutze einen deiner Wiederherstellungscodes:'
       user:
@@ -74,7 +77,7 @@ de:
         email: E-Mail-Adresse
         expires_in: Läuft ab
         fields: Profil-Metadaten
-        header: Kopfbild
+        header: Titelbild
         inbox_url: Inbox-URL des Relays
         irreversible: Verwerfen statt verstecken
         locale: Sprache der Benutzeroberfläche
@@ -100,6 +103,7 @@ de:
         setting_hide_network: Blende dein Netzwerk aus
         setting_noindex: Suchmaschinen-Indexierung verhindern
         setting_reduce_motion: Bewegung in Animationen verringern
+        setting_show_application: Anwendung preisgeben, die benutzt wurde um Beiträge zu versenden
         setting_system_font_ui: Standardschriftart des Systems verwenden
         setting_theme: Theme der Website
         setting_unfollow_modal: Bestätigungsdialog anzeigen, bevor jemandem entfolgt wird
@@ -108,6 +112,8 @@ de:
         username: Profilname
         username_or_email: Profilname oder E-Mail
         whole_word: Ganzes Wort
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Benachrichtigungen von Nicht-Folgenden blockieren
         must_be_following: Benachrichtigungen von Profilen blockieren, denen ich nicht folge
