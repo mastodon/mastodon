@@ -13,7 +13,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   has_many :media_attachments, key: :attachment
   has_many :virtual_tags, key: :tag
 
-  has_one :replies, serializer: ActivityPub::CollectionSerializer
+  has_one :replies, serializer: ActivityPub::CollectionSerializer, if: :local?
 
   def id
     ActivityPub::TagManager.instance.uri_for(object)
@@ -36,12 +36,16 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def replies
+    replies = object.self_replies(5).pluck(:id, :uri)
+    last_id = replies.last&.first
     ActivityPub::CollectionPresenter.new(
       type: :unordered,
+      id: ActivityPub::TagManager.instance.replies_uri_for(object),
       first: ActivityPub::CollectionPresenter.new(
         type: :unordered,
-        page: true,
-        items: object.self_replies(5).pluck(:uri)
+        part_of: ActivityPub::TagManager.instance.replies_uri_for(object),
+        items: replies.map(&:second),
+        next: last_id ? ActivityPub::TagManager.instance.replies_uri_for(object, page: true, min_id: last_id) : nil
       )
     )
   end
