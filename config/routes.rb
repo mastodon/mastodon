@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       member do
         get :activity
         get :embed
+        get :replies
       end
     end
 
