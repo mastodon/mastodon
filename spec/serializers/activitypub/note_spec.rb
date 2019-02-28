@@ -26,15 +26,19 @@ describe ActivityPub::NoteSerializer do
     expect(subject['replies']['type']).to eql('Collection')
   end
 
+  it 'has a replies collection with a first Page' do
+    expect(subject['replies']['first']['type']).to eql('CollectionPage')
+  end
+
   it 'includes public self-replies in its replies collection' do
-    expect(subject['replies']['items']).to include(reply1.uri, reply2.uri, reply4.uri)
+    expect(subject['replies']['first']['items']).to include(reply1.uri, reply2.uri, reply4.uri)
   end
 
   it 'does not include replies from others in its replies collection' do
-    expect(subject['replies']['items']).to_not include(reply3.uri)
+    expect(subject['replies']['first']['items']).to_not include(reply3.uri)
   end
 
   it 'does not include replies with direct visibility in its replies collection' do
-    expect(subject['replies']['items']).to_not include(reply5.uri)
+    expect(subject['replies']['first']['items']).to_not include(reply5.uri)
   end
 end

@@ -38,6 +38,6 @@ class ActivityPub::CollectionSerializer < ActiveModel::Serializer
   end
 
   def page?
-    object.part_of.present?
+    object.part_of.present? || object.page.present?
   end
 end

@@ -38,7 +38,11 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   def replies
     ActivityPub::CollectionPresenter.new(
       type: :unordered,
-      items: object.self_replies(5).map(&:uri)
+      first: ActivityPub::CollectionPresenter.new(
+        type: :unordered,
+        page: true,
+        items: object.self_replies(5).map(&:uri)
+      )
     )
   end
 
