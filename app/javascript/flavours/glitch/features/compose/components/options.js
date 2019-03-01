@@ -230,17 +230,17 @@ class ComposerOptions extends ImmutablePureComponent {
 
     const contentTypeItems = {
       plain: {
-        icon: 'file',
+        icon: 'align-left',
         name: 'text/plain',
         text: <FormattedMessage {...messages.plain} />,
       },
       html: {
-        icon: 'file-text',
+        icon: 'code',
         name: 'text/html',
         text: <FormattedMessage {...messages.html} />,
       },
       markdown: {
-        icon: 'file-text',
+        icon: 'arrow-circle-down',
         name: 'text/markdown',
         text: <FormattedMessage {...messages.markdown} />,
       },
@@ -311,7 +311,8 @@ class ComposerOptions extends ImmutablePureComponent {
           value={privacy}
         />
         <Dropdown
-          icon="code"
+          disabled={disabled}
+          icon={(contentTypeItems[contentType.split('/')[1]] || {}).icon}
           items={[
             contentTypeItems.plain,
             contentTypeItems.html,
