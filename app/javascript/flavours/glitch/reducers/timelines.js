@@ -29,6 +29,8 @@ const initialTimeline = ImmutableMap({
 const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, isLoadingRecent) => {
   return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
     mMap.set('isLoading', false);
+    mMap.set('isPartial', isPartial);
+
     if (!next && !isLoadingRecent) mMap.set('hasMore', false);
 
     if (!statuses.isEmpty()) {
