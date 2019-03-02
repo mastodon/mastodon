@@ -334,6 +334,7 @@ oc:
       total_followed_by_us: Seguèm
       total_reported: Senhalament a prepaus d’eles
       total_storage: Fichièrs junts
+      by_domain: Domeni
     invites:
       deactivate_all: O desactivar tot
       filter:
@@ -751,7 +752,13 @@ oc:
       blocking: Lista de blocatge
       following: Lista de monde que seguètz
       muting: Lista de monde que volètz pas legir
+      domain_blocking: Lista dels domenis blocats
     upload: Importar
+    modes:
+      merge: Fondre
+      merge_long: Gardar los enregistraments existents e ajustar los nòus
+      overwrite: Remplaçar
+      overwrite_long: Remplaçar los enregistraments actuals pels nòus
   in_memoriam_html: En Memòria.
   invites:
     delete: Desactivar
@@ -923,15 +930,16 @@ oc:
     delete: Supression de compte
     development: Desvolopament
     edit_profile: Modificar lo perfil
-    export: Export donadas
+    export: Exportar de donadas
     followers: Seguidors autorizats
-    import: Importar
+    import: Importar de donadas
     migrate: Migracion de compte
     notifications: Notificacions
     preferences: Preferéncias
     settings: Paramètres
     two_factor_authentication: Autentificacion en dos temps
     your_apps: Vòstras aplicacions
+    featured_tags: Etiquetas en avant
   statuses:
     attached:
       description: 'Ajustat : %{attached}'
@@ -1181,3 +1189,7 @@ oc:
       <strong>deu</strong> aver un atribut <code>rel="me"</code>. Lo contengut tèxte
       del ligam impòrta pas. Vaquí un exemple :'
     verification: Verificacion
+  featured_tags:
+    add_new: Ajustar una etiqueta nòva
+    errors:
+      limit: Avètz ja utilizat lo maximum d’etiquetas
