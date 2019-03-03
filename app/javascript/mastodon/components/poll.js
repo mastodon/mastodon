@@ -45,7 +45,7 @@ export default @injectIntl
 class Poll extends ImmutablePureComponent {
 
   static propTypes = {
-    poll: ImmutablePropTypes.map.isRequired,
+    poll: ImmutablePropTypes.map,
     intl: PropTypes.object.isRequired,
     dispatch: PropTypes.func,
     disabled: PropTypes.bool,
@@ -122,9 +122,14 @@ class Poll extends ImmutablePureComponent {
 
   render () {
     const { poll, intl } = this.props;
-    const timeRemaining  = timeRemainingString(intl, new Date(poll.get('expires_at')), intl.now());
-    const showResults    = poll.get('voted') || poll.get('expired');
-    const disabled       = this.props.disabled || Object.entries(this.state.selected).every(item => !item);
+
+    if (!poll) {
+      return null;
+    }
+
+    const timeRemaining = timeRemainingString(intl, new Date(poll.get('expires_at')), intl.now());
+    const showResults   = poll.get('voted') || poll.get('expired');
+    const disabled      = this.props.disabled || Object.entries(this.state.selected).every(item => !item);
 
     return (
       <div className='poll'>
