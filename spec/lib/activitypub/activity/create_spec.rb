@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Create do
-  let(:sender) { Fabricate(:account, followers_url: 'http://example.com/followers') }
+  let(:sender) { Fabricate(:account, followers_url: 'http://example.com/followers', domain: 'example.com', uri: 'https://example.com/actor') }
 
   let(:json) do
     {
@@ -405,6 +405,46 @@ RSpec.describe ActivityPub::Activity::Create do
         it 'creates status' do
           status = sender.statuses.first
           expect(status).to_not be_nil
+        end
+      end
+
+      context 'with poll' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Question',
+            content: 'Which color was the submarine?',
+            oneOf: [
+              {
+                name: 'Yellow',
+                replies: {
+                  type: 'Collection',
+                  totalItems: 10,
+                },
+              },
+              {
+                name: 'Blue',
+                replies: {
+                  type: 'Collection',
+                  totalItems: 3,
+                }
+              },
+            ],
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+          expect(status).to_not be_nil
+          expect(status.poll).to_not be_nil
+        end
+
+        it 'creates a poll' do
+          poll = sender.polls.first
+          expect(poll).to_not be_nil
+          expect(poll.status).to_not be_nil
+          expect(poll.options).to eq %w(Yellow Blue)
+          expect(poll.cached_tallies).to eq [10, 3]
         end
       end
     end
