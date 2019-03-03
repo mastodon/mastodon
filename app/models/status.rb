@@ -255,7 +255,7 @@ class Status < ApplicationRecord
   before_validation :set_conversation
   before_validation :set_local
 
-  before_save :set_poll_id
+  after_create :set_poll_id
 
   class << self
     def selectable_visibilities
@@ -446,7 +446,7 @@ class Status < ApplicationRecord
   end
 
   def set_poll_id
-    self.poll_id = owned_poll.id unless owned_poll.nil?
+    update_column(:poll_id, owned_poll.id) unless owned_poll.nil?
   end
 
   def set_visibility
