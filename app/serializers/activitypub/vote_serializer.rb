@@ -2,7 +2,7 @@
 
 class ActivityPub::VoteSerializer < ActiveModel::Serializer
   class NoteSerializer < ActiveModel::Serializer
-    attributes :id, :type, :content, :attributed_to,
+    attributes :id, :type, :name, :attributed_to,
                :in_reply_to, :to
 
     def id
@@ -13,7 +13,7 @@ class ActivityPub::VoteSerializer < ActiveModel::Serializer
       'Note'
     end
 
-    def content
+    def name
       object.poll.options[object.choice.to_i]
     end
 
