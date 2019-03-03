@@ -77,8 +77,8 @@ export function importFetchedStatuses(statuses) {
 
     statuses.forEach(processStatus);
 
+    dispatch(importPolls(polls));
     dispatch(importFetchedAccounts(accounts));
     dispatch(importStatuses(normalStatuses));
-    dispatch(importPolls(polls));
   };
 }
