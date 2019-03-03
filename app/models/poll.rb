@@ -21,12 +21,13 @@ class Poll < ApplicationRecord
   include Expireable
 
   belongs_to :account
-  belongs_to :status, optional: true
+  belongs_to :status
 
   has_many :votes, class_name: 'PollVote', inverse_of: :poll, dependent: :destroy
 
-  validates :options, :expires_at, presence: true
-  validates_with PollValidator
+  validates :options, presence: true
+  validates :expires_at, presence: true, if: :local?
+  validates_with PollValidator, if: :local?
 
   scope :attached, -> { where.not(status_id: nil) }
   scope :unattached, -> { where(status_id: nil) }
@@ -47,8 +48,10 @@ class Poll < ApplicationRecord
     remote? && last_fetched_before_expiration? && time_passed_since_last_fetch?
   end
 
+  delegate :local?, to: :account
+
   def remote?
-    !account.local?
+    !local?
   end
 
   class Option < ActiveModelSerializers::Model
