@@ -4,7 +4,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
-import { connect } from 'react-redux';
 import { vote, fetchPoll } from 'mastodon/actions/polls';
 import Motion from 'mastodon/features/ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
@@ -42,18 +41,14 @@ const timeRemainingString = (intl, date, now) => {
   return relativeTime;
 };
 
-const mapStateToProps = (state, { pollId }) => ({
-  poll: state.getIn(['polls', pollId]),
-});
-
 export default @injectIntl
-@connect(mapStateToProps)
 class Poll extends ImmutablePureComponent {
 
   static propTypes = {
     poll: ImmutablePropTypes.map.isRequired,
     intl: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired,
+    dispatch: PropTypes.func,
+    disabled: PropTypes.bool,
   };
 
   state = {
@@ -75,10 +70,18 @@ class Poll extends ImmutablePureComponent {
   };
 
   handleVote = () => {
+    if (this.props.disabled) {
+      return;
+    }
+
     this.props.dispatch(vote(this.props.poll.get('id'), Object.keys(this.state.selected)));
   };
 
   handleRefresh = () => {
+    if (this.props.disabled) {
+      return;
+    }
+
     this.props.dispatch(fetchPoll(this.props.poll.get('id')));
   };
 
@@ -99,7 +102,7 @@ class Poll extends ImmutablePureComponent {
           </Motion>
         )}
 
-        <label className={classNames('poll__text', { selectable: showResults })}>
+        <label className={classNames('poll__text', { selectable: !showResults })}>
           <input
             name='vote-options'
             type={poll.get('multiple') ? 'checkbox' : 'radio'}
@@ -121,7 +124,7 @@ class Poll extends ImmutablePureComponent {
     const { poll, intl } = this.props;
     const timeRemaining  = timeRemainingString(intl, new Date(poll.get('expires_at')), intl.now());
     const showResults    = poll.get('voted') || poll.get('expired');
-    const disabled       = Object.entries(this.state.selected).every(item => !item);
+    const disabled       = this.props.disabled || Object.entries(this.state.selected).every(item => !item);
 
     return (
       <div className='poll'>
@@ -131,7 +134,7 @@ class Poll extends ImmutablePureComponent {
 
         <div className='poll__footer'>
           {!showResults && <button className='button button-secondary' disabled={disabled} onClick={this.handleVote}><FormattedMessage id='poll.vote' defaultMessage='Vote' /></button>}
-          {showResults && <span><button className='poll__link' onClick={this.handleRefresh}><FormattedMessage id='poll.refresh' defaultMessage='Refresh' /></button> · </span>}
+          {showResults && !this.props.disabled && <span><button className='poll__link' onClick={this.handleRefresh}><FormattedMessage id='poll.refresh' defaultMessage='Refresh' /></button> · </span>}
           <FormattedMessage id='poll.total_votes' defaultMessage='{count, plural, one {# vote} other {# votes}}' values={{ count: poll.get('votes_count') }} />  · {timeRemaining}
         </div>
       </div>

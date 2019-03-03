@@ -14,7 +14,7 @@ import Video from '../../video';
 import scheduleIdleTask from '../../ui/util/schedule_idle_task';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
-import Poll from 'mastodon/components/poll';
+import PollContainer from 'mastodon/containers/poll_container';
 
 export default class DetailedStatus extends ImmutablePureComponent {
 
@@ -107,7 +107,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     }
 
     if (status.get('poll')) {
-      media = <Poll pollId={status.get('poll')} />;
+      media = <PollContainer pollId={status.get('poll')} />;
     } else if (status.get('media_attachments').size > 0) {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
         media = <AttachmentList media={status.get('media_attachments')} />;
