@@ -46,6 +46,6 @@ class ActivityPub::FetchRemotePollService < BaseService
   end
 
   def expected_type?
-    equals_or_includes_any?(@json['type'], 'Question')
+    equals_or_includes_any?(@json['type'], %w(Question))
   end
 end
