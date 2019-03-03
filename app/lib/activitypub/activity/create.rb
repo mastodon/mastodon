@@ -216,7 +216,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     expires_at = begin
       if @object['closed'].is_a?(String)
         @object['closed']
-      elsif !@object['closed'].is_a?(FalseClass)
+      elsif !@object['closed'].nil? && !@object['closed'].is_a?(FalseClass)
         Time.now.utc
       else
         @object['endTime']
