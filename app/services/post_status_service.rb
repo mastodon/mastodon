@@ -15,7 +15,7 @@ class PostStatusService < BaseService
   # @option [String] :spoiler_text
   # @option [String] :language
   # @option [String] :scheduled_at
-  # @option [Integer] :poll_id Optional poll to attach
+  # @option [Hash] :poll Optional poll to attach
   # @option [Enumerable] :media_ids Optional array of media IDs to attach
   # @option [Doorkeeper::Application] :application
   # @option [String] :idempotency Optional idempotency key
@@ -103,9 +103,9 @@ class PostStatusService < BaseService
   end
 
   def validate_poll!
-    return if @options[:poll_id].blank?
+    return if @options[:poll].blank?
 
-    @poll = @account.polls.unattached.find(@options[:poll_id])
+    @poll = @account.polls.new(@options[:poll])
   end
 
   def language_from_option(str)

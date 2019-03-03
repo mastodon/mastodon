@@ -18,6 +18,8 @@
 #
 
 class Poll < ApplicationRecord
+  include Expireable
+
   belongs_to :account
   belongs_to :status, optional: true
 
@@ -39,10 +41,6 @@ class Poll < ApplicationRecord
 
   def unloaded_options
     options.map.with_index { |title, key| Option.new(self, key.to_s, title, nil) }
-  end
-
-  def expired?
-    !expires_at.nil? && expires_at < Time.now.utc
   end
 
   def possibly_stale?
