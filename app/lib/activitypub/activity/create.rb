@@ -6,7 +6,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
-        return if delete_arrived_first?(object_uri)
+        return if delete_arrived_first?(object_uri) || poll_vote?
 
         @status = find_existing_status
 
@@ -40,6 +40,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     end
 
     resolve_thread(@status)
+    fetch_replies(@status)
     distribute(@status)
     forward_for_reply if @status.public_visibility? || @status.unlisted_visibility?
   end
@@ -68,6 +69,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         conversation: conversation_from_uri(@object['conversation']),
         media_attachment_ids: process_attachments.take(4).map(&:id),
         quote: quote_from_url(@object['quoteUrl']),
+        owned_poll: process_poll,
       }
     end
   end
@@ -160,7 +162,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if tag['href'].blank?
 
     account = account_from_uri(tag['href'])
-    account = ::FetchRemoteAccountService.new.call(tag['href'], id: false) if account.nil?
+    account = ::FetchRemoteAccountService.new.call(tag['href']) if account.nil?
 
     return if account.nil?
 
@@ -209,9 +211,53 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     media_attachments
   end
 
+  def process_poll
+    return unless @object['type'] == 'Question' && (@object['anyOf'].is_a?(Array) || @object['oneOf'].is_a?(Array))
+
+    expires_at = begin
+      if @object['closed'].is_a?(String)
+        @object['closed']
+      elsif !@object['closed'].is_a?(FalseClass)
+        Time.now.utc
+      else
+        @object['endTime']
+      end
+    end
+
+    if @object['anyOf'].is_a?(Array)
+      multiple = true
+      items    = @object['anyOf']
+    else
+      multiple = false
+      items    = @object['oneOf']
+    end
+
+    Poll.new(
+      account: @account,
+      multiple: multiple,
+      expires_at: expires_at,
+      options: items.map { |item| item['name'].presence || item['content'] },
+      cached_tallies: items.map { |item| item.dig('replies', 'totalItems') || 0 }
+    )
+  end
+
+  def poll_vote?
+    return false if replied_to_status.nil? || replied_to_status.poll.nil? || !replied_to_status.local? || !replied_to_status.poll.options.include?(@object['name'])
+    replied_to_status.poll.votes.create!(account: @account, choice: replied_to_status.poll.options.index(@object['name']))
+  end
+
   def resolve_thread(status)
     return unless status.reply? && status.thread.nil? && Request.valid_url?(in_reply_to_uri)
     ThreadResolveWorker.perform_async(status.id, in_reply_to_uri)
+  end
+
+  def fetch_replies(status)
+    collection = @object['replies']
+    return if collection.nil?
+    replies = ActivityPub::FetchRepliesService.new.call(status, collection, false)
+    return if replies.present?
+    uri = value_or_id(collection)
+    ActivityPub::FetchRepliesWorker.perform_async(status.id, uri) unless uri.nil?
   end
 
   def conversation_from_uri(uri)

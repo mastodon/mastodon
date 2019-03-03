@@ -734,6 +734,16 @@ en:
     older: Older
     prev: Prev
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: You have already voted on this poll
+      duplicate_options: contain duplicate items
+      duration_too_long: is too far into the future
+      duration_too_short: is too soon
+      expired: The poll has already ended
+      over_character_limit: cannot be longer than %{MAX} characters each
+      too_few_options: must have more than one item
+      too_many_options: can't contain more than %{MAX} items
   preferences:
     languages: Languages
     other: Other
