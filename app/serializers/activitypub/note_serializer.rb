@@ -44,6 +44,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   def replies
     replies = object.self_replies(5).pluck(:id, :uri)
     last_id = replies.last&.first
+
     ActivityPub::CollectionPresenter.new(
       type: :unordered,
       id: ActivityPub::TagManager.instance.replies_uri_for(object),
@@ -223,7 +224,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
       end
 
       def total_items
-        object.votes
+        object.votes_count
       end
     end
 
