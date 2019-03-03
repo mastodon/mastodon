@@ -362,6 +362,10 @@ Rails.application.routes.draw do
         resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'
       end
 
+      resources :polls, only: [:create, :show] do
+        resources :votes, only: :create, controller: 'polls/votes'
+      end
+
       namespace :push do
         resource :subscription, only: [:create, :show, :update, :destroy]
       end
