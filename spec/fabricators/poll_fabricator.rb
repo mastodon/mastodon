@@ -1,9 +1,8 @@
 Fabricator(:poll) do
-  uri         "MyString"
-  account     nil
-  status      nil
-  expires_at  "2019-02-25 04:15:41"
-  options     ""
-  multiple    ""
-  hide_totals ""
+  account
+  status
+  expires_at  { 7.days.from_now }
+  options     %w(Foo Bar)
+  multiple    false
+  hide_totals false
 end

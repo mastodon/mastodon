@@ -21,6 +21,6 @@ class Api::V1::PollsController < Api::BaseController
   private
 
   def poll_params
-    params.permit(:options, :multiple, :hide_totals, :expires_at)
+    params.permit(:multiple, :hide_totals, :expires_at, options: [])
   end
 end
