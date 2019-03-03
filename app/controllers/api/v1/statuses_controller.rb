@@ -79,15 +79,13 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def status_params
-<<<<<<< HEAD
-    params.permit(:status, :in_reply_to_id, :sensitive, :spoiler_text, :visibility, :quote_id, :scheduled_at, media_ids: [])
-=======
     params.permit(
       :status,
       :in_reply_to_id,
       :sensitive,
       :spoiler_text,
       :visibility,
+      :quote_id,
       :scheduled_at,
       media_ids: [],
       poll: [
@@ -97,7 +95,6 @@ class Api::V1::StatusesController < Api::BaseController
         options: [],
       ]
     )
->>>>>>> upstream/master
   end
 
   def pagination_params(core_params)
