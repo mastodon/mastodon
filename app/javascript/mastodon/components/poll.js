@@ -60,7 +60,11 @@ class Poll extends ImmutablePureComponent {
 
     if (this.props.poll.get('multiple')) {
       const tmp = { ...this.state.selected };
-      tmp[value] = true;
+      if (tmp[value]) {
+        delete tmp[value];
+      } else {
+        tmp[value] = true;
+      }
       this.setState({ selected: tmp });
     } else {
       const tmp = {};
