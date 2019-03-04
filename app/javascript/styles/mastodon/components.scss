@@ -105,6 +105,10 @@
       border-color: lighten($ui-primary-color, 4%);
       color: lighten($darker-text-color, 4%);
     }
+
+    &:disabled {
+      opacity: 0.5;
+    }
   }
 
   &.button--block {
@@ -2336,6 +2340,7 @@ a.account__display-name {
 
 .getting-started {
   color: $dark-text-color;
+  overflow: auto;
 
   &__footer {
     flex: 0 0 auto;
