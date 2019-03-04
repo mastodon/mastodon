@@ -21,6 +21,10 @@ class ActivityPub::VoteSerializer < ActiveModel::Serializer
       ActivityPub::TagManager.instance.uri_for(object.account)
     end
 
+    def in_reply_to
+      ActivityPub::TagManager.instance.uri_for(object.poll.status)
+    end
+
     def to
       ActivityPub::TagManager.instance.uri_for(object.poll.account)
     end
