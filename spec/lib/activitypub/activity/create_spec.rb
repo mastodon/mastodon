@@ -447,6 +447,27 @@ RSpec.describe ActivityPub::Activity::Create do
           expect(poll.cached_tallies).to eq [10, 3]
         end
       end
+
+      context 'when a vote to a local poll' do
+        let(:poll) { Fabricate(:poll, options: %w(Yellow Blue)) }
+        let!(:local_status) { Fabricate(:status, owned_poll: poll) }
+
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            name: 'Yellow',
+            inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status)
+          }
+        end
+
+        it 'adds a vote to the poll with correct uri' do
+          vote = poll.votes.first
+          expect(vote).to_not be_nil
+          expect(vote.uri).to eq object_json[:id]
+          expect(poll.reload.cached_tallies).to eq [1, 0]
+        end
+      end
     end
 
     context 'when sender is followed by local users' do

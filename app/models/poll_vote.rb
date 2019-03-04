@@ -9,6 +9,7 @@
 #  choice     :integer          default(0), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  uri        :string
 #
 
 class PollVote < ApplicationRecord
@@ -19,6 +20,8 @@ class PollVote < ApplicationRecord
   validates_with VoteValidator
 
   after_create_commit :increment_counter_cache
+
+  delegate :local?, to: :account
 
   private
 
