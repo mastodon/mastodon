@@ -35,6 +35,8 @@ class ActivityPub::TagManager
       account_status_url(target.account, target)
     when :emoji
       emoji_url(target)
+    when :vote
+      [uri_for(target.account), '#votes/', target.id].join
     end
   end
 
