@@ -47,8 +47,12 @@
     height: 18px;
     margin-right: 10px;
     top: -1px;
-    border-radius: 4px;
+    border-radius: 50%;
     vertical-align: middle;
+
+    &.checkbox {
+      border-radius: 4px;
+    }
 
     &.active {
       border-color: $valid-value-color;
