@@ -6,7 +6,7 @@ class ActivityPub::VoteSerializer < ActiveModel::Serializer
                :in_reply_to, :to
 
     def id
-      nil
+      [ActivityPub::TagManager.instance.uri_for(object.account), '#votes/', object.id].join
     end
 
     def type
@@ -21,6 +21,10 @@ class ActivityPub::VoteSerializer < ActiveModel::Serializer
       ActivityPub::TagManager.instance.uri_for(object.account)
     end
 
+    def in_reply_to
+      ActivityPub::TagManager.instance.uri_for(object.poll.status)
+    end
+
     def to
       ActivityPub::TagManager.instance.uri_for(object.poll.account)
     end
@@ -31,7 +35,7 @@ class ActivityPub::VoteSerializer < ActiveModel::Serializer
   has_one :object, serializer: ActivityPub::VoteSerializer::NoteSerializer
 
   def id
-    nil
+    [ActivityPub::TagManager.instance.uri_for(object.account), '#votes/', object.id, '/activity'].join
   end
 
   def type
