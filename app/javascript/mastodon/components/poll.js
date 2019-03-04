@@ -60,7 +60,11 @@ class Poll extends ImmutablePureComponent {
 
     if (this.props.poll.get('multiple')) {
       const tmp = { ...this.state.selected };
-      tmp[value] = true;
+      if (tmp[value]) {
+        delete tmp[value];
+      } else {
+        tmp[value] = true;
+      }
       this.setState({ selected: tmp });
     } else {
       const tmp = {};
@@ -86,11 +90,11 @@ class Poll extends ImmutablePureComponent {
   };
 
   renderOption (option, optionIndex) {
-    const { poll }    = this.props;
-    const percent     = (option.get('votes_count') / poll.get('votes_count')) * 100;
-    const leading     = poll.get('options').filterNot(other => other.get('title') === option.get('title')).every(other => option.get('votes_count') > other.get('votes_count'));
-    const active      = !!this.state.selected[`${optionIndex}`];
-    const showResults = poll.get('voted') || poll.get('expired');
+    const { poll, disabled } = this.props;
+    const percent            = (option.get('votes_count') / poll.get('votes_count')) * 100;
+    const leading            = poll.get('options').filterNot(other => other.get('title') === option.get('title')).every(other => option.get('votes_count') > other.get('votes_count'));
+    const active             = !!this.state.selected[`${optionIndex}`];
+    const showResults        = poll.get('voted') || poll.get('expired');
 
     return (
       <li key={option.get('title')}>
@@ -109,9 +113,10 @@ class Poll extends ImmutablePureComponent {
             value={optionIndex}
             checked={active}
             onChange={this.handleOptionChange}
+            disabled={disabled}
           />
 
-          {!showResults && <span className={classNames('poll__input', { active })} />}
+          {!showResults && <span className={classNames('poll__input', { checkbox: poll.get('multiple'), active })} />}
           {showResults && <span className='poll__number'>{Math.floor(percent)}%</span>}
 
           {option.get('title')}
