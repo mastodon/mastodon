@@ -19,7 +19,7 @@ class Formatter
 
     raw_content = status.text
 
-    if status.poll && options[:inline_poll_options]
+    if options[:inline_poll_options] && status.poll
       raw_content = raw_content + '\n\n' + status.poll.options.map { |title| "- #{title}" }.join('\n')
     end
 
