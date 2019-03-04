@@ -23,10 +23,6 @@ class PollVote < ApplicationRecord
 
   delegate :local?, to: :account
 
-  def object_type
-    :vote
-  end
-
   private
 
   def increment_counter_cache
