@@ -11,7 +11,7 @@ class ActivityPub::FetchRemotePollService < BaseService
     expires_at = begin
       if @json['closed'].is_a?(String)
         @json['closed']
-      elsif !@json['closed'].is_a?(FalseClass)
+      elsif !@json['closed'].nil? && !@json['closed'].is_a?(FalseClass)
         Time.now.utc
       else
         @json['endTime']
@@ -46,6 +46,6 @@ class ActivityPub::FetchRemotePollService < BaseService
   end
 
   def expected_type?
-    equals_or_includes_any?(@json['type'], 'Question')
+    equals_or_includes_any?(@json['type'], %w(Question))
   end
 end

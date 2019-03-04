@@ -6,7 +6,7 @@ class VoteValidator < ActiveModel::Validator
 
     if vote.poll.multiple? && vote.poll.votes.where(account: vote.account, choice: vote.choice).exists?
       vote.errors.add(:base, I18n.t('polls.errors.already_voted'))
-    elsif vote.poll.votes.where(account: vote.account).exists?
+    elsif !vote.poll.multiple? && vote.poll.votes.where(account: vote.account).exists?
       vote.errors.add(:base, I18n.t('polls.errors.already_voted'))
     end
   end
