@@ -14,7 +14,7 @@ class ActivityPub::FetchRemotePollService < BaseService
       elsif !@json['closed'].nil? && !@json['closed'].is_a?(FalseClass)
         Time.now.utc
       else
-        @json['endTime']
+        @json['endTime'] || 1.year.from_now
       end
     end
 

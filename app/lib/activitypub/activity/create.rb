@@ -219,7 +219,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       elsif !@object['closed'].nil? && !@object['closed'].is_a?(FalseClass)
         Time.now.utc
       else
-        @object['endTime']
+        @object['endTime'] || 1.year.from_now
       end
     end
 
