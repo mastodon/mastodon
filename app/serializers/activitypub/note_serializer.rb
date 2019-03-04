@@ -15,8 +15,8 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
 
   has_one :replies, serializer: ActivityPub::CollectionSerializer, if: :local?
 
-  has_many :poll_loaded_options, key: :one_of, if: :poll_and_not_multiple?
-  has_many :poll_loaded_options, key: :any_of, if: :poll_and_multiple?
+  has_many :poll_options, key: :one_of, if: :poll_and_not_multiple?
+  has_many :poll_options, key: :any_of, if: :poll_and_multiple?
 
   attribute :end_time, if: :poll_and_expires?
   attribute :closed, if: :poll_and_expired?
@@ -121,8 +121,12 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
     object.account.local?
   end
 
-  def poll_loaded_options
-    object.poll.loaded_options
+  def poll_options
+    if !object.expired? && object.hide_totals?
+      object.poll.unloaded_options
+    else
+      object.poll.loaded_options
+    end
   end
 
   def poll_and_multiple?
