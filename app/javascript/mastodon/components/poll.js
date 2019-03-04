@@ -14,6 +14,7 @@ const messages = defineMessages({
   minutes: { id: 'time_remaining.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}} left' },
   hours: { id: 'time_remaining.hours', defaultMessage: '{number, plural, one {# hour} other {# hours}} left' },
   days: { id: 'time_remaining.days', defaultMessage: '{number, plural, one {# day} other {# days}} left' },
+  closed: { id: 'poll.closed', defaultMessage: 'Closed' },
 });
 
 const SECOND = 1000;
@@ -132,7 +133,7 @@ class Poll extends ImmutablePureComponent {
       return null;
     }
 
-    const timeRemaining = timeRemainingString(intl, new Date(poll.get('expires_at')), intl.now());
+    const timeRemaining = poll.get('expired') ? intl.formatMessage(messages.closed) : timeRemainingString(intl, new Date(poll.get('expires_at')), intl.now());
     const showResults   = poll.get('voted') || poll.get('expired');
     const disabled      = this.props.disabled || Object.entries(this.state.selected).every(item => !item);
 
