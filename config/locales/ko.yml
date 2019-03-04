@@ -1035,3 +1035,13 @@ ko:
       위해서는, 링크 된 웹사이트에서 당신의 마스토돈 프로필을 역으로 링크해야 합니다. 역링크는 <strong>반드시</strong> <code>rel="me"</code>
       속성을 가지고 있어야 합니다. 링크의 텍스트는 상관이 없습니다. 여기 예시가 있습니다:'
     verification: 검증
+  polls:
+    errors:
+      already_voted: 이미 투표에 참여하셨습니다
+      duplicate_options: 중복된 항목이 있습니다
+      duration_too_long: 너무 먼 미래입니다
+      duration_too_short: 너무 가깝습니다
+      expired: 투표가 이미 끝났습니다
+      over_character_limit: 각각 %{MAX} 글자를 넘을 수 없습니다
+      too_few_options: 한가지 이상의 항목을 포함해야 합니다
+      too_many_options: 항목은 %{MAX}개를 넘을 수 없습니다
