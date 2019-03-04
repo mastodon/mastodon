@@ -160,7 +160,7 @@ cs:
         already_confirmed: Tento uživatel je již potvrzen
         send: Znovu odeslat potvrzovací e-mail
         success: Potvrzovací e-mail byl úspěšně odeslán!
-      reset: Resetovat
+      reset: Obnovit
       reset_password: Obnovit heslo
       resubscribe: Znovu odebírat
       role: Oprávnění
@@ -214,7 +214,7 @@ cs:
         promote_user: '%{name} povýšil/a uživatele %{target}'
         remove_avatar_user: '%{name} odstranil/a avatar uživatele %{target}'
         reopen_report: '%{name} znovuotevřel/a nahlášení %{target}'
-        reset_password_user: '%{name} resetoval/a heslo uživatele %{target}'
+        reset_password_user: '%{name} obnovil/a heslo uživatele %{target}'
         resolve_report: '%{name} vyřešil/a nahlášení %{target}'
         silence_account: '%{name} utišil/a účet uživatele %{target}'
         suspend_account: '%{name} pozastavil/a účet uživatele %{target}'
@@ -552,7 +552,7 @@ cs:
       zde</a>. Budete požádán/a o potvrzení.
     didnt_get_confirmation: Neobdržel/a jste pokyny pro potvrzení?
     forgot_password: Zapomněl/a jste heslo?
-    invalid_reset_password_token: Token na obnovu hesla je buď neplatný, nebo vypršel.
+    invalid_reset_password_token: Token pro obnovení hesla je buď neplatný, nebo vypršel.
       Prosím vyžádejte si nový.
     login: Přihlásit
     logout: Odhlásit
@@ -942,6 +942,11 @@ cs:
       unlisted: Neuvedené
       unlisted_long: Všichni mohou vidět, ale nebudou zahrnuty ve veřejných časových
         osách
+    poll:
+      total_votes:
+        one: '%{count} hlas'
+        other: '%{count} hlasů'
+      vote: Hlasovat
   stream_entries:
     pinned: Připnutý toot
     reblogged: boostnul/a
@@ -1150,5 +1155,11 @@ cs:
     verification: Ověření
   polls:
     errors:
-      already_voted: V tejto ankete si už hlasoval/a
+      already_voted: V této anketě jste již hlasoval/a
       duplicate_options: obsahuje duplicitní položky
+      duration_too_long: je příliš daleko v budoucnosti
+      duration_too_short: je příliš brzy
+      expired: Anketa již skončila
+      over_character_limit: nesmí být každá delší než %{MAX} znaků
+      too_few_options: musí mít více než jednu položku
+      too_many_options: nesmí obsahovat více než %{MAX} položky
