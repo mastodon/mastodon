@@ -32,8 +32,11 @@ class Poll < ApplicationRecord
   scope :attached, -> { where.not(status_id: nil) }
   scope :unattached, -> { where(status_id: nil) }
 
+  before_validation :prepare_options
   before_validation :prepare_votes_count
+
   after_initialize :prepare_cached_tallies
+
   after_commit :reset_parent_cache, on: :update
 
   def loaded_options
@@ -73,6 +76,10 @@ class Poll < ApplicationRecord
 
   def prepare_votes_count
     self.votes_count = cached_tallies.sum unless cached_tallies.empty?
+  end
+
+  def prepare_options
+    self.options = options.map(&:strip).reject(&:blank?)
   end
 
   def reset_parent_cache
