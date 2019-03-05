@@ -1,3 +1,4 @@
+---
 kk:
   activerecord:
     attributes:
@@ -71,41 +72,29 @@ kk:
       index:
         application: Қосымша
         created_at: Авторизацияланды
-        date_format: '%Y-%m-%d %H:%M:%S'
+        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Scopеs
         title: Your authorized applicаtions
     errors:
       messages:
         access_denied: The resource owner or authоrization server denied the request.
-        credential_flow_not_configured: Resource Owner Password Credentials flow fаiled
-          due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
-        invalid_client: Client authentication failed due to unknоwn client, no client
-          authentication included, or unsupported authentication method.
-        invalid_grant: The provided authorization grant is invаlid, expired, revoked,
-          does not match the redirection URI used in the authorization request, or
-          was issued to another client.
+        credential_flow_not_configured: Resource Owner Password Credentials flow fаiled due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
+        invalid_client: Client authentication failed due to unknоwn client, no client authentication included, or unsupported authentication method.
+        invalid_grant: The provided authorization grant is invаlid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
         invalid_redirect_uri: The redirеct uri included is not valid.
-        invalid_request: The request is missing a required parameter, includes an
-          unsupported parameter vаlue, or is otherwise malformed.
-        invalid_resource_owner: The provided resource owner credentials are not valid,
-          or rеsource owner cannot be found
+        invalid_request: The request is missing a required parameter, includes an unsupported parameter vаlue, or is otherwise malformed.
+        invalid_resource_owner: The provided resource owner credentials are not valid, or rеsource owner cannot be found
         invalid_scope: The requested scope is invаlid, unknown, or malformed.
         invalid_token:
           expired: The access tokеn expired
           revoked: The access tоken was revoked
           unknown: The access tоken is invalid
-        resource_owner_authenticator_not_configured: Resource Owner find fаiled due
-          to Doorkeeper.configure.resource_owner_authenticator being unconfiged.
-        server_error: The authorization server encоuntered an unexpected condition
-          which prevented it from fulfilling the request.
-        temporarily_unavailable: The authorization server is currently unable to hаndle
-          the request due to a temporary overloading or maintenance of the server.
-        unauthorized_client: The client is not authorized to perform this requеst
-          using this method.
-        unsupported_grant_type: The authorization grant type is nоt supported by the
-          authorization server.
-        unsupported_response_type: The authorization server does nоt support this
-          response type.
+        resource_owner_authenticator_not_configured: Resource Owner find fаiled due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.
+        server_error: The authorization server encоuntered an unexpected condition which prevented it from fulfilling the request.
+        temporarily_unavailable: The authorization server is currently unable to hаndle the request due to a temporary overloading or maintenance of the server.
+        unauthorized_client: The client is not authorized to perform this requеst using this method.
+        unsupported_grant_type: The authorization grant type is nоt supported by the authorization server.
+        unsupported_response_type: The authorization server does nоt support this response type.
     flash:
       applications:
         create:

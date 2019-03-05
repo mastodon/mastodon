@@ -1,43 +1,34 @@
+---
 sv:
   simple_form:
     hints:
-      defaults:
-        autofollow: Användarkonton som skapas genom din inbjudan kommer automatiskt
-          följa dig
-        avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
-        bot: Detta konto utför huvudsakligen automatiserade åtgärder och kanske inte
-          övervakas
-        digest: Skickas endast efter en lång period av inaktivitet och endast om du
-          har fått några personliga meddelanden i din frånvaro
-        fields: Du kan ha upp till 4 objekt visade som en tabell på din profil
-        header: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
-        locale: Användargränssnittets språk, e-post och push-aviseringar
-        locked: Kräver att du manuellt godkänner följare
-        setting_default_language: Språket av dina inlägg kan upptäckas automatiskt,
-          men det är inte alltid rätt
-        setting_hide_network: Vem du följer och vilka som följer dig kommer inte att
-          visas på din profilsida
-        setting_noindex: Påverkar din offentliga profil och statussidor
-        setting_theme: Påverkar hur Mastodon ser ut oavsett från vilken enhet du är
-          inloggad.
-        email: Ett konfirmationsmeddelande kommer att skickas till dig via epost
-        irreversible: Filtrerade inlägg kommer att försvinna oåterkalleligt, även
-          om filter tas bort senare
-        password: Använd minst 8 tecken
-      imports:
-        data: CSV-fil som exporteras från en annan Mastodon-instans
-      sessions:
-        otp: 'Ange tvåfaktorkoden genererad från din telefonapp eller använd någon
-          av dina återställningskoder:'
-      user:
-        chosen_languages: När aktiverat så visas bara inlägg i dina valda språk i
-          den offentliga tidslinjen
       account_warning_preset:
         text: Du kan använda inläggssyntax som webbadresser, hashtaggar och omnämnanden
       admin_account_action:
-        send_email_notification: Användaren kommer att få en förklaring av vad som
-          hände med sitt konto
+        send_email_notification: Användaren kommer att få en förklaring av vad som hände med sitt konto
         type_html: Välj vad du vill göra med <strong>%{acct}</strong>
+      defaults:
+        autofollow: Användarkonton som skapas genom din inbjudan kommer automatiskt följa dig
+        avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
+        bot: Detta konto utför huvudsakligen automatiserade åtgärder och kanske inte övervakas
+        digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
+        email: Ett konfirmationsmeddelande kommer att skickas till dig via epost
+        fields: Du kan ha upp till 4 objekt visade som en tabell på din profil
+        header: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
+        irreversible: Filtrerade inlägg kommer att försvinna oåterkalleligt, även om filter tas bort senare
+        locale: Användargränssnittets språk, e-post och push-aviseringar
+        locked: Kräver att du manuellt godkänner följare
+        password: Använd minst 8 tecken
+        setting_default_language: Språket av dina inlägg kan upptäckas automatiskt, men det är inte alltid rätt
+        setting_hide_network: Vem du följer och vilka som följer dig kommer inte att visas på din profilsida
+        setting_noindex: Påverkar din offentliga profil och statussidor
+        setting_theme: Påverkar hur Mastodon ser ut oavsett från vilken enhet du är inloggad.
+      imports:
+        data: CSV-fil som exporteras från en annan Mastodon-instans
+      sessions:
+        otp: 'Ange tvåfaktorkoden genererad från din telefonapp eller använd någon av dina återställningskoder:'
+      user:
+        chosen_languages: När aktiverat så visas bara inlägg i dina valda språk i den offentliga tidslinjen
     labels:
       account:
         fields:
@@ -93,6 +84,6 @@ sv:
         reblog: Skicka e-post när någon knuffar din status
     'no': Nej
     required:
-      mark: '*'
+      mark: "*"
       text: obligatorisk
     'yes': Ja
