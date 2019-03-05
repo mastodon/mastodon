@@ -926,6 +926,11 @@ gl:
       public_long: Visible para calquera
       unlisted: Non listado
       unlisted_long: Visible para calquera, pero non listado en liñas de tempo públicas
+    poll:
+      total_votes:
+        one: '%{count} voto'
+        other: '%{count} votos'
+      vote: Votar
   stream_entries:
     pinned: Mensaxe fixada
     reblogged: promovida
@@ -1145,3 +1150,13 @@ gl:
       que</strong> ter un atributo <code>rel="me"</code>. O texto da ligazón non importa.
       Aquí ten un exemplo:'
     verification: Validación
+  polls:
+    errors:
+      already_voted: Xa votou en esta sondaxe
+      duplicate_options: contén elementos duplicados
+      duration_too_long: está moi lonxe no futuro
+      duration_too_short: é demasiado cedo
+      expired: A sondaxe rematou
+      over_character_limit: non poden ter máis de %{MAX} caracteres cada unha
+      too_few_options: debe ter máis de unha opción
+      too_many_options: non pode haber máis de %{MAX} opcións
