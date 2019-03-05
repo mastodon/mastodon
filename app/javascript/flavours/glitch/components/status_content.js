@@ -100,8 +100,12 @@ export default class StatusContent extends React.PureComponent {
     const [ startX, startY ] = this.startXY;
     const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
 
-    if (e.target.localName === 'button' || e.target.localName == 'video' || e.target.localName === 'a' || (e.target.parentNode && (e.target.parentNode.localName === 'button' || e.target.parentNode.localName === 'a'))) {
-      return;
+    let element = e.target;
+    while (element) {
+      if (element.localName === 'button' || element.localName === 'video' || element.localName === 'a' || element.localName === 'label') {
+        return;
+      }
+      element = element.parentNode;
     }
 
     if (deltaX + deltaY < 5 && e.button === 0 && parseClick) {
