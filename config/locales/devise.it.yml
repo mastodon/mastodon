@@ -20,17 +20,17 @@ it:
         action: Verifica indirizzo email
         action_with_app: Conferma e torna a %{app}
         explanation: Hai creato un account su %{host} con questo indirizzo email. Sei lonatno solo un clic dall'attivarlo. Se non sei stato tu, per favore ignora questa email.
-        extra_html: Per favore controlla<a href="%{terms_path}">le regole dell'istanza</a> e <a href="%{policy_path}">i nostri termini di servizio</a>.
+        extra_html: Per favore controlla<a href="%{terms_path}">le regole del server</a> e <a href="%{policy_path}">i nostri termini di servizio</a>.
         subject: 'Mastodon: Istruzioni di conferma per %{instance}'
         title: Verifica indirizzo email
       email_changed:
         explanation: 'L''indirizzo email del tuo account sta per essere cambiato in:'
-        extra: Se non hai cambiato la tua email, è probabile che qualcuno abbia accesso al tuo account. Cambia immediatamente la tua password e contatta l'amministratore dell'istanza se sei bloccato fuori dal tuo account.
+        extra: Se non hai cambiato la tua email, è probabile che qualcuno abbia ottenuto l'accesso al tuo account. Cambia immediatamente la tua password e contatta l'amministratore del server se non puoi più accedere al tuo account.
         subject: 'Mastodon: Email cambiata'
         title: Nuovo indirizzo email
       password_change:
         explanation: La password del tuo account è stata cambiata.
-        extra: Se non hai cambiato la password, è probabile che qualcuno abbia accesso al tuo account. Cambia immediatamente la tua password e contatta l'amministratore dell'istanza se sei bloccato fuori dal tuo account.
+        extra: Se non hai cambiato la password, è probabile che qualcuno abbia ottenuto l'accesso al tuo account. Cambia immediatamente la tua password e contatta l'amministratore del server non puoi più accedere al tuo account.
         subject: 'Mastodon: Password modificata'
         title: Password cambiata
       reconfirmation_instructions:

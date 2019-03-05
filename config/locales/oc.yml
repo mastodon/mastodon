@@ -302,6 +302,7 @@ oc:
       back_to_account: Tornar al compte
       title: Seguidors de %{acct}
     instances:
+      by_domain: Domeni
       delivery_available: Liurason disponibla
       known_accounts:
         one: "%{count} compte conegut"
@@ -644,6 +645,10 @@ oc:
     lists: Listas
     mutes: Personas rescondudas
     storage: Mèdias gardats
+  featured_tags:
+    add_new: Ajustar una etiqueta nòva
+    errors:
+      limit: Avètz ja utilizat lo maximum d’etiquetas
   filters:
     contexts:
       home: Flux d’acuèlh
@@ -684,10 +689,16 @@ oc:
       one: I a quicòm que truca ! Mercés de corregir l’error çai-jos
       other: I a quicòm que truca ! Mercés de corregir las %{count} errors çai-jos
   imports:
+    modes:
+      merge: Fondre
+      merge_long: Gardar los enregistraments existents e ajustar los nòus
+      overwrite: Remplaçar
+      overwrite_long: Remplaçar los enregistraments actuals pels nòus
     preface: Podètz importar qualques donadas coma lo monde que seguètz o blocatz a-n aquesta instància d’un fichièr creat d’una autra instància.
     success: Vòstras donadas son ben estadas mandadas e seràn tractadas tre que possible
     types:
       blocking: Lista de blocatge
+      domain_blocking: Lista dels domenis blocats
       following: Lista de monde que seguètz
       muting: Lista de monde que volètz pas legir
     upload: Importar
@@ -713,7 +724,7 @@ oc:
     table:
       expires_at: Expirats
       uses: Usatges
-    title: Convidar de mond
+    title: Convidar de monde
   lists:
     errors:
       limit: Avètz atengut lo maximum de listas
@@ -856,9 +867,10 @@ oc:
     delete: Supression de compte
     development: Desvolopament
     edit_profile: Modificar lo perfil
-    export: Export donadas
+    export: Exportar de donadas
+    featured_tags: Etiquetas en avant
     followers: Seguidors autorizats
-    import: Importar
+    import: Importar de donadas
     migrate: Migracion de compte
     notifications: Notificacions
     preferences: Preferéncias

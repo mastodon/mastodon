@@ -319,6 +319,8 @@ ar:
       back_to_account: العودة إلى الحساب
       title: "%{acct} مُتابِعون"
     instances:
+      by_domain: النطاق
+      delivery_available: التسليم متوفر
       known_accounts:
         few: "%{count} حسابات معروفة"
         many: "%{count} حسابات معروفة"
@@ -598,10 +600,13 @@ ar:
       size: الحجم
     blocks: قمت بحظر
     csv: CSV
+    domain_blocks: النطاقات المحظورة
     follows: أنت تتبع
     lists: القوائم
     mutes: قُمتَ بكتم
     storage: ذاكرة التخزين
+  featured_tags:
+    add_new: إضافة واحد
   filters:
     contexts:
       home: الخيط الزمني الرئيسي
@@ -643,10 +648,16 @@ ar:
       two: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
       zero: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
   imports:
+    modes:
+      merge: دمج
+      merge_long: الإبقاء علي التسجيلات الحالية وإضافة الجديدة
+      overwrite: إعادة الكتابة
+      overwrite_long: استبدال التسجيلات الحالية بالجديدة
     preface: بإمكانك استيراد بيانات قد قُمتَ بتصديرها مِن مثيل خادوم آخَر، كقوائم المستخدِمين الذين كنتَ تتابِعهم أو قُمتَ بحظرهم.
     success: تم تحميل بياناتك بنجاح وسيتم معالجتها في الوقت المناسب
     types:
       blocking: قائمة المحظورين
+      domain_blocking: قائمة النطاقات المحظورة
       following: قائمة المستخدمين المتبوعين
       muting: قائمة الكتم
     upload: تحميل
@@ -761,6 +772,16 @@ ar:
     no_account_html: أليس عندك حساب بعدُ ؟ يُمْكنك <a href='%{sign_up_path}' target='_blank'>التسجيل مِن هنا</a>
     proceed: أكمل المتابعة
     prompt: 'إنك  بصدد متابعة :'
+  remote_interaction:
+    favourite:
+      proceed: المواصلة إلى المفضلة
+      prompt: 'ترغب في إضافة هذا التبويق إلى مفضلتك:'
+    reblog:
+      proceed: المواصلة إلى الترقية
+      prompt: 'ترغب في ترقية هذا التبويق:'
+    reply:
+      proceed: المواصلة إلى الرد
+      prompt: 'ترغب في الرد على هذا التبويق:'
   remote_unfollow:
     error: خطأ
     title: العنوان
@@ -903,6 +924,8 @@ ar:
       review_server_policies: مراجعة شروط السيرفر
       subject:
         disable: تم تجميد حسابك %{acct}
+        none: تحذير إلى %{acct}
+        suspend: لقد تم تعليق حسابك %{acct}
       title:
         disable: الحساب مُجمَّد
         none: تحذير
