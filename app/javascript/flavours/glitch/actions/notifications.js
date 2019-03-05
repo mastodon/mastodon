@@ -1,6 +1,12 @@
 import api, { getLinks } from 'flavours/glitch/util/api';
 import IntlMessageFormat from 'intl-messageformat';
 import { fetchRelationships } from './accounts';
+import {
+  importFetchedAccount,
+  importFetchedAccounts,
+  importFetchedStatus,
+  importFetchedStatuses,
+} from './importer';
 import { defineMessages } from 'react-intl';
 import { List as ImmutableList } from 'immutable';
 import { unescapeHTML } from 'flavours/glitch/util/html';
@@ -47,9 +53,10 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
 
 export function updateNotifications(notification, intlMessages, intlLocale) {
   return (dispatch, getState) => {
-    const showAlert = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
-    const playSound = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
-    const filters   = getFilters(getState(), { contextType: 'notifications' });
+    const showInColumn = getState().getIn(['settings', 'notifications', 'shows', notification.type], true);
+    const showAlert    = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
+    const playSound    = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
+    const filters      = getFilters(getState(), { contextType: 'notifications' });
 
     let filtered = false;
 
@@ -60,15 +67,26 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
       filtered = regex && regex.test(searchIndex);
     }
 
-    dispatch({
-      type: NOTIFICATIONS_UPDATE,
-      notification,
-      account: notification.account,
-      status: notification.status,
-      meta: (playSound && !filtered) ? { sound: 'boop' } : undefined,
-    });
+    if (showInColumn) {
+      dispatch(importFetchedAccount(notification.account));
 
-    fetchRelatedRelationships(dispatch, [notification]);
+      if (notification.status) {
+        dispatch(importFetchedStatus(notification.status));
+      }
+
+      dispatch({
+        type: NOTIFICATIONS_UPDATE,
+        notification,
+        meta: (playSound && !filtered) ? { sound: 'boop' } : undefined,
+      });
+
+      fetchRelatedRelationships(dispatch, [notification]);
+    } else if (playSound && !filtered) {
+      dispatch({
+        type: NOTIFICATIONS_UPDATE_NOOP,
+        meta: { sound: 'boop' },
+      });
+    }
 
     // Desktop notifications
     if (typeof window.Notification !== 'undefined' && showAlert && !filtered) {
@@ -120,6 +138,10 @@ export function expandNotifications({ maxId } = {}, done = noOp) {
 
     api(getState).get('/api/v1/notifications', { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data.map(item => item.account)));
+      dispatch(importFetchedStatuses(response.data.map(item => item.status).filter(status => !!status)));
+
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null, isLoadingMore));
       fetchRelatedRelationships(dispatch, response.data);
       done();

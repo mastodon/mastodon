@@ -1,4 +1,5 @@
 import api, { getLinks } from 'flavours/glitch/util/api';
+import { importAccount, importFetchedAccount, importFetchedAccounts } from './importer';
 
 export const ACCOUNT_FETCH_REQUEST = 'ACCOUNT_FETCH_REQUEST';
 export const ACCOUNT_FETCH_SUCCESS = 'ACCOUNT_FETCH_SUCCESS';
@@ -94,7 +95,9 @@ export function fetchAccount(id) {
     dispatch(fetchAccountRequest(id));
 
     api(getState).get(`/api/v1/accounts/${id}`).then(response => {
-      dispatch(fetchAccountSuccess(response.data));
+      dispatch(importFetchedAccount(response.data));
+    }).then(() => {
+      dispatch(fetchAccountSuccess());
     }).catch(error => {
       dispatch(fetchAccountFail(id, error));
     });
@@ -108,10 +111,9 @@ export function fetchAccountRequest(id) {
   };
 };
 
-export function fetchAccountSuccess(account) {
+export function fetchAccountSuccess() {
   return {
     type: ACCOUNT_FETCH_SUCCESS,
-    account,
   };
 };
 
@@ -338,6 +340,7 @@ export function fetchFollowers(id) {
     api(getState).get(`/api/v1/accounts/${id}/followers`).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
+      dispatch(importFetchedAccounts(response.data));
       dispatch(fetchFollowersSuccess(id, response.data, next ? next.uri : null));
       dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => {
@@ -383,6 +386,7 @@ export function expandFollowers(id) {
     api(getState).get(url).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
+      dispatch(importFetchedAccounts(response.data));
       dispatch(expandFollowersSuccess(id, response.data, next ? next.uri : null));
       dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => {
@@ -422,6 +426,7 @@ export function fetchFollowing(id) {
     api(getState).get(`/api/v1/accounts/${id}/following`).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
+      dispatch(importFetchedAccounts(response.data));
       dispatch(fetchFollowingSuccess(id, response.data, next ? next.uri : null));
       dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => {
@@ -467,6 +472,7 @@ export function expandFollowing(id) {
     api(getState).get(url).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
+      dispatch(importFetchedAccounts(response.data));
       dispatch(expandFollowingSuccess(id, response.data, next ? next.uri : null));
       dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => {
@@ -548,6 +554,7 @@ export function fetchFollowRequests() {
 
     api(getState).get('/api/v1/follow_requests').then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(importFetchedAccounts(response.data));
       dispatch(fetchFollowRequestsSuccess(response.data, next ? next.uri : null));
     }).catch(error => dispatch(fetchFollowRequestsFail(error)));
   };
@@ -586,6 +593,7 @@ export function expandFollowRequests() {
 
     api(getState).get(url).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(importFetchedAccounts(response.data));
       dispatch(expandFollowRequestsSuccess(response.data, next ? next.uri : null));
     }).catch(error => dispatch(expandFollowRequestsFail(error)));
   };
@@ -749,9 +757,10 @@ export function fetchPinnedAccounts() {
   return (dispatch, getState) => {
     dispatch(fetchPinnedAccountsRequest());
 
-    api(getState).get(`/api/v1/endorsements`, { params: { limit: 0 } })
-      .then(({ data }) => dispatch(fetchPinnedAccountsSuccess(data)))
-      .catch(err => dispatch(fetchPinnedAccountsFail(err)));
+    api(getState).get(`/api/v1/endorsements`, { params: { limit: 0 } }).then(response => {
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(fetchPinnedAccountsSuccess(response.data));
+    }).catch(err => dispatch(fetchPinnedAccountsFail(err)));
   };
 };
 
@@ -785,8 +794,10 @@ export function fetchPinnedAccountsSuggestions(q) {
       following: true,
     };
 
-    api(getState).get('/api/v1/accounts/search', { params })
-      .then(({ data }) => dispatch(fetchPinnedAccountsSuggestionsReady(q, data)));
+    api(getState).get('/api/v1/accounts/search', { params }).then(response => {
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(fetchPinnedAccountsSuggestionsReady(q, response.data));
+    });
   };
 };
 
