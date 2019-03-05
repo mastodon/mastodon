@@ -8,5 +8,7 @@ class ActivityPub::FetchRepliesWorker
 
   def perform(parent_status_id, replies_uri)
     ActivityPub::FetchRepliesService.new.call(Status.find(parent_status_id), replies_uri)
+  rescue ActiveRecord::RecordNotFound
+    true
   end
 end
