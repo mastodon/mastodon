@@ -118,7 +118,7 @@ class Poll extends ImmutablePureComponent {
           />
 
           {!showResults && <span className={classNames('poll__input', { checkbox: poll.get('multiple'), active })} />}
-          {showResults && <span className='poll__number'>{Math.floor(percent)}%</span>}
+          {showResults && <span className='poll__number'>{Math.round(percent)}%</span>}
 
           {option.get('title')}
         </label>
