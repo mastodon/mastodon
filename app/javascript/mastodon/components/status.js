@@ -16,6 +16,7 @@ import { MediaGallery, Video } from '../features/ui/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
+import PollContainer from 'mastodon/containers/poll_container';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -270,7 +271,9 @@ class Status extends ImmutablePureComponent {
       status  = status.get('reblog');
     }
 
-    if (status.get('media_attachments').size > 0) {
+    if (status.get('poll')) {
+      media = <PollContainer pollId={status.get('poll')} />;
+    } else if (status.get('media_attachments').size > 0) {
       if (this.props.muted || status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
         media = (
           <AttachmentList

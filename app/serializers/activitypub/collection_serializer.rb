@@ -7,7 +7,8 @@ class ActivityPub::CollectionSerializer < ActiveModel::Serializer
     super
   end
 
-  attributes :id, :type
+  attribute :id, if: -> { object.id.present? }
+  attribute :type
   attribute :total_items, if: -> { object.size.present? }
   attribute :next, if: -> { object.next.present? }
   attribute :prev, if: -> { object.prev.present? }
@@ -37,6 +38,6 @@ class ActivityPub::CollectionSerializer < ActiveModel::Serializer
   end
 
   def page?
-    object.part_of.present?
+    object.part_of.present? || object.page.present?
   end
 end
