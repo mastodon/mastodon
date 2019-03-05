@@ -28,6 +28,20 @@ RSpec.describe ActivityPub::Activity::Create do
         subject.perform
       end
 
+      context 'unknown object type' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Banana',
+            content: 'Lorem ipsum',
+          }
+        end
+
+        it 'does not create a status' do
+          expect(sender.statuses.count).to be_zero
+        end
+      end
+
       context 'standalone' do
         let(:object_json) do
           {
