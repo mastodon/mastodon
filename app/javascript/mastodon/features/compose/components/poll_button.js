@@ -2,13 +2,10 @@ import React from 'react';
 import IconButton from '../../../components/icon_button';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
-import { connect } from 'react-redux';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const messages = defineMessages({
-  add_poll: { id: 'poll_button.add_poll', defaultMessage: 'Turn this toot into a poll' },
-  remove_poll: { id: 'poll_button.remove_poll', defaultMessage: 'Remove the poll from this toot' },
+  add_poll: { id: 'poll_button.add_poll', defaultMessage: 'Add a poll' },
+  remove_poll: { id: 'poll_button.remove_poll', defaultMessage: 'Remove poll' },
 });
 
 const iconStyle = {
@@ -18,10 +15,11 @@ const iconStyle = {
 
 export default
 @injectIntl
-class PollButton extends ImmutablePureComponent {
+class PollButton extends React.PureComponent {
 
   static propTypes = {
     disabled: PropTypes.bool,
+    unavailable: PropTypes.bool,
     active: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -32,7 +30,11 @@ class PollButton extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, active, disabled } = this.props;
+    const { intl, active, unavailable, disabled } = this.props;
+
+    if (unavailable) {
+      return null;
+    }
 
     return (
       <div className='compose-form__poll-button'>
@@ -44,7 +46,8 @@ class PollButton extends ImmutablePureComponent {
           className={`compose-form__poll-button-icon ${active ? 'active' : ''}`}
           size={18}
           inverted
-          style={iconStyle} />
+          style={iconStyle}
+        />
       </div>
     );
   }

@@ -12,6 +12,7 @@ import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import SensitiveButtonContainer from '../containers/sensitive_button_container';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
+import PollFormContainer from '../containers/poll_form_container';
 import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
 import { isMobile } from '../../../is_mobile';
@@ -206,6 +207,7 @@ class ComposeForm extends ImmutablePureComponent {
 
         <div className='compose-form__modifiers'>
           <UploadFormContainer />
+          <PollFormContainer />
         </div>
 
         <div className='compose-form__buttons-wrapper'>

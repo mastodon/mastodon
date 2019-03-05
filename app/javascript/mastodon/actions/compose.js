@@ -510,7 +510,7 @@ export function addPollOption(title) {
   return {
     type: COMPOSE_POLL_OPTION_ADD,
     title,
-  }
+  };
 };
 
 export function changePollOption(index, title) {
@@ -518,14 +518,14 @@ export function changePollOption(index, title) {
     type: COMPOSE_POLL_OPTION_CHANGE,
     index,
     title,
-  }
+  };
 };
 
 export function removePollOption(index) {
   return {
     type: COMPOSE_POLL_OPTION_REMOVE,
     index,
-  }
+  };
 };
 
 export function changePollSettings(expiresIn, isMultiple) {
@@ -533,5 +533,5 @@ export function changePollSettings(expiresIn, isMultiple) {
     type: COMPOSE_POLL_SETTINGS_CHANGE,
     expiresIn,
     isMultiple,
-  }
+  };
 };
