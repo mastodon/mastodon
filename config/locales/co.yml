@@ -302,6 +302,7 @@ co:
       back_to_account: Rivene à u Contu
       title: Abbunati à %{acct}
     instances:
+      by_domain: Duminiu
       delivery_available: Rimessa dispunibule
       known_accounts:
         one: "%{count} contu cunnisciutu"
@@ -733,6 +734,16 @@ co:
     older: Più vechju
     prev: Nanzu
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Avete digià vutatu nant'à stu scandagliu
+      duplicate_options: cuntene uzzione doppie
+      duration_too_long: hè troppu luntanu indè u futuru
+      duration_too_short: hè troppu prossimu
+      expired: U scandagliu hè digià finitu
+      over_character_limit: ùn ponu micca esse più longhi chè %{MAX} caratteri
+      too_few_options: deve avè più d'un'uzzione
+      too_many_options: ùn pò micca avè più di %{MAX} uzzione
   preferences:
     languages: Lingue
     other: Altre
@@ -842,6 +853,11 @@ co:
       ownership: Pudete puntarulà solu unu di i vostri propii statuti
       private: Ùn pudete micca puntarulà un statutu ch’ùn hè micca pubblicu
       reblog: Ùn pudete micca puntarulà una spartera
+    poll:
+      total_votes:
+        one: "%{count} votu"
+        other: "%{count} voti"
+      vote: Vutà
     show_more: Vede di più
     sign_in_to_participate: Cunnettatevi per participà à a cunversazione
     title: '%{name}: "%{quote}"'

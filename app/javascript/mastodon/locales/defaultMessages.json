@@ -200,6 +200,47 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Moments remaining",
+        "id": "time_remaining.moments"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# second} other {# seconds}} left",
+        "id": "time_remaining.seconds"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# minute} other {# minutes}} left",
+        "id": "time_remaining.minutes"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# hour} other {# hours}} left",
+        "id": "time_remaining.hours"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# day} other {# days}} left",
+        "id": "time_remaining.days"
+      },
+      {
+        "defaultMessage": "Closed",
+        "id": "poll.closed"
+      },
+      {
+        "defaultMessage": "Vote",
+        "id": "poll.vote"
+      },
+      {
+        "defaultMessage": "Refresh",
+        "id": "poll.refresh"
+      },
+      {
+        "defaultMessage": "{count, plural, one {# vote} other {# votes}}",
+        "id": "poll.total_votes"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/poll.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "now",
         "id": "relative_time.just_now"
       },

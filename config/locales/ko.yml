@@ -304,6 +304,7 @@ ko:
       back_to_account: 계정으로 돌아가기
       title: "%{acct}의 팔로워"
     instances:
+      by_domain: 도메인
       delivery_available: 전송 가능
       known_accounts:
         one: 알려진 계정 %{count}개
@@ -735,6 +736,16 @@ ko:
     older: 오래된 툿
     prev: 이전
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: 이미 투표에 참여하셨습니다
+      duplicate_options: 중복된 항목이 있습니다
+      duration_too_long: 너무 먼 미래입니다
+      duration_too_short: 너무 가깝습니다
+      expired: 투표가 이미 끝났습니다
+      over_character_limit: 각각 %{MAX} 글자를 넘을 수 없습니다
+      too_few_options: 한가지 이상의 항목을 포함해야 합니다
+      too_many_options: 항목은 %{MAX}개를 넘을 수 없습니다
   preferences:
     languages: 언어
     other: 기타

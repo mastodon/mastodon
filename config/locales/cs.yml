@@ -32,8 +32,8 @@ cs:
     source_code: Zdrojový kód
     status_count_after:
       few: příspěvky
-      one: příspěvek
-      other: příspěvků
+      one: toot
+      other: tootů
     status_count_before: Kteří napsali
     terms: Podmínky používání
     user_count_after:
@@ -150,7 +150,7 @@ cs:
         already_confirmed: Tento uživatel je již potvrzen
         send: Znovu odeslat potvrzovací e-mail
         success: Potvrzovací e-mail byl úspěšně odeslán!
-      reset: Resetovat
+      reset: Obnovit
       reset_password: Obnovit heslo
       resubscribe: Znovu odebírat
       role: Oprávnění
@@ -167,7 +167,7 @@ cs:
         targeted_reports: Nahlášeni ostatními
       silence: Utišit
       silenced: Utišen/a
-      statuses: Příspěvky
+      statuses: Tooty
       subscribe: Odebírat
       suspended: Pozastaven/a
       title: Účty
@@ -191,7 +191,7 @@ cs:
         destroy_custom_emoji: "%{name} zničil/a emoji %{target}"
         destroy_domain_block: "%{name} odblokoval/a doménu %{target}"
         destroy_email_domain_block: "%{name} odebral/a e-mailovou doménu %{target} z černé listiny"
-        destroy_status: "%{name} odstranil/a příspěvek uživatele %{target}"
+        destroy_status: "%{name} odstranil/a toot uživatele %{target}"
         disable_2fa_user: "%{name} vypnul/a požadavek pro dvoufaktorovou autentikaci pro uživatele %{target}"
         disable_custom_emoji: "%{name} zakázal/a emoji %{target}"
         disable_user: "%{name} zakázal/a přihlašování pro uživatele %{target}"
@@ -201,7 +201,7 @@ cs:
         promote_user: "%{name} povýšil/a uživatele %{target}"
         remove_avatar_user: "%{name} odstranil/a avatar uživatele %{target}"
         reopen_report: "%{name} znovuotevřel/a nahlášení %{target}"
-        reset_password_user: "%{name} resetoval/a heslo uživatele %{target}"
+        reset_password_user: "%{name} obnovil/a heslo uživatele %{target}"
         resolve_report: "%{name} vyřešil/a nahlášení %{target}"
         silence_account: "%{name} utišil/a účet uživatele %{target}"
         suspend_account: "%{name} pozastavil/a účet uživatele %{target}"
@@ -209,8 +209,8 @@ cs:
         unsilence_account: "%{name} odtišil/a účet uživatele %{target}"
         unsuspend_account: "%{name} zrušil/a pozastavení účtu uživatele %{target}"
         update_custom_emoji: "%{name} aktualizoval/a emoji %{target}"
-        update_status: "%{name} aktualizoval/a příspěvek uživatele %{target}"
-      deleted_status: "(smazaný příspěvek)"
+        update_status: "%{name} aktualizoval/a toot uživatele %{target}"
+      deleted_status: "(smazaný toot)"
       title: Záznam auditu
     custom_emojis:
       by_domain: Doména
@@ -307,6 +307,7 @@ cs:
       back_to_account: Zpět na účet
       title: Sledující uživatele %{acct}
     instances:
+      by_domain: Doména
       delivery_available: Doručení je k dispozici
       known_accounts:
         few: "%{count} známé účty"
@@ -380,7 +381,7 @@ cs:
       updated_at: Aktualizováno
     settings:
       activity_api_enabled:
-        desc_html: Počty lokálně publikovaných příspěvků, aktivních uživatelů a nových registrací, v týdenních intervalech
+        desc_html: Počty lokálně publikovaných tootů, aktivních uživatelů a nových registrací, v týdenních intervalech
         title: Publikovat hromadné statistiky o uživatelské aktivitě
       bootstrap_timeline_accounts:
         desc_html: Je-li uživatelskch jmen více, oddělujte je čárkami. Lze zadat pouze místní a odemknuté účty. Je-li tohle prázdné, jsou výchozí hodnotou všichni místní administrátoři.
@@ -455,8 +456,8 @@ cs:
       media:
         title: Média
       no_media: Žádná média
-      no_status_selected: Nebyly změněny žádné příspěvky, neboť žádné nebyly vybrány
-      title: Příspěvky účtu
+      no_status_selected: Nebyly změněny žádné tooty, neboť žádné nebyly vybrány
+      title: Tooty účtu
       with_media: S médii
     subscriptions:
       callback_url: Zpáteční URL
@@ -491,7 +492,7 @@ cs:
     settings: 'Změnit volby e-mailu: %{link}'
     view: 'Zobrazit:'
     view_profile: Zobrazit profil
-    view_status: Zobrazit příspěvek
+    view_status: Zobrazit toot
   applications:
     created: Aplikace úspěšně vytvořena
     destroyed: Aplikace úspěšně smazána
@@ -508,7 +509,7 @@ cs:
     delete_account_html: Chcete-li odstranit svůj účet, <a href="%{path}">pokračujte zde</a>. Budete požádán/a o potvrzení.
     didnt_get_confirmation: Neobdržel/a jste pokyny pro potvrzení?
     forgot_password: Zapomněl/a jste heslo?
-    invalid_reset_password_token: Token na obnovu hesla je buď neplatný, nebo vypršel. Prosím vyžádejte si nový.
+    invalid_reset_password_token: Token pro obnovení hesla je buď neplatný, nebo vypršel. Prosím vyžádejte si nový.
     login: Přihlásit
     logout: Odhlásit
     migrate_account: Přesunout se na jiný účet
@@ -598,7 +599,7 @@ cs:
   featured_tags:
     add_new: Přidat nový
     errors:
-      limit: Již jste nastavil/a maximální počet oblíbených hashtagů
+      limit: Již jste zvýraznil/a maximální počet hashtagů
   filters:
     contexts:
       home: Domovská časová osa
@@ -617,16 +618,16 @@ cs:
       title: Přidat nový filtr
   followers:
     domain: Doména
-    explanation_html: Chcete-li zaručit soukromí vašich příspěvků, musíte mít na vědomí, kdo vás sleduje. <strong>Vaše soukromé příspěvky jsou doručeny na všechny servery, kde máte sledující</strong>. Nejspíš si je budete chtít zkontrolovat a odstranit sledující na serverech, jejichž provozovatelům či softwaru nedůvěřujete s respektováním vašeho soukromí.
+    explanation_html: Chcete-li zaručit soukromí vašich tootů, musíte mít na vědomí, kdo vás sleduje. <strong>Vaše soukromé tooty jsou doručeny na všechny servery, kde máte sledující</strong>. Nejspíš si je budete chtít zkontrolovat a odstranit sledující na serverech, jejichž provozovatelům či softwaru nedůvěřujete s respektováním vašeho soukromí.
     followers_count: Počet sledujících
-    lock_link: Zamkněte svůj účet
+    lock_link: Uzamkněte svůj účet
     purge: Odstranit ze sledujících
     success:
       few: V průběhu blokování sledujících ze %{count} domén...
       one: V průběhu blokování sledujících z jedné domény...
       other: V průběhu blokování sledujících z %{count} domén...
     true_privacy_html: Berte prosím na vědomí, že <strong>skutečného soukromí se dá dosáhnout pouze za pomoci end-to-end šifrování</strong>.
-    unlocked_warning_html: Kdokoliv vás může sledovat a okamžitě vidět vaše soukromé příspěvky. %{lock_link}, abyste mohl/a kontrolovat a odmítat sledující.
+    unlocked_warning_html: Kdokoliv vás může sledovat a okamžitě vidět vaše soukromé tooty. %{lock_link}, abyste mohl/a kontrolovat a odmítat sledující.
     unlocked_warning_title: Váš účet není uzamčen
   footer:
     developers: Vývojáři
@@ -683,7 +684,7 @@ cs:
       limit: Dosáhl/a jste maximálního počtu seznamů
   media_attachments:
     validations:
-      images_and_video: K příspěvku, který již obsahuje obrázky, nelze připojit video
+      images_and_video: K tootu, který již obsahuje obrázky, nelze připojit video
       too_many: Nelze připojit více než 4 soubory
   migrations:
     acct: přezdívka@doména nového účtu
@@ -707,8 +708,8 @@ cs:
         other: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
       title: Ve vaší nepřítomnosti...
     favourite:
-      body: 'Váš příspěvek si oblíbil/a %{name}:'
-      subject: "%{name} si oblíbil/a váš příspěvek"
+      body: 'Váš toot si oblíbil/a %{name}:'
+      subject: "%{name} si oblíbil/a váš toot"
       title: Nové oblíbení
     follow:
       body: "%{name} vás nyní sleduje!"
@@ -725,9 +726,9 @@ cs:
       subject: Byl/a jste zmíněn/a uživatelem %{name}
       title: Nová zmínka
     reblog:
-      body: 'Váš příspěvek byl boostnutý uživatelem %{name}:'
-      subject: "%{name} boostnul/a váš příspěvek"
-      title: Nové boostnutí
+      body: 'Váš toot byl boostnutý uživatelem %{name}:'
+      subject: "%{name} boostnul/a váš toot"
+      title: Nový boost
   number:
     human:
       decimal_units:
@@ -744,6 +745,16 @@ cs:
     older: Starší
     prev: Před
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: V této anketě jste již hlasoval/a
+      duplicate_options: obsahuje duplicitní položky
+      duration_too_long: je příliš daleko v budoucnosti
+      duration_too_short: je příliš brzy
+      expired: Anketa již skončila
+      over_character_limit: nesmí být každá delší než %{MAX} znaků
+      too_few_options: musí mít více než jednu položku
+      too_many_options: nesmí obsahovat více než %{MAX} položky
   preferences:
     languages: Jazyky
     other: Ostatní
@@ -822,7 +833,7 @@ cs:
     development: Vývoj
     edit_profile: Upravit profil
     export: Export dat
-    featured_tags: Oblíbené hashtagy
+    featured_tags: Zvýrazněné hashtagy
     followers: Autorizovaní sledující
     import: Import
     migrate: Přesunutí účtu
@@ -856,6 +867,12 @@ cs:
       ownership: Nelze připnout toot někoho jiného
       private: Nelze připnout neveřejné tooty
       reblog: Nelze připnout boostnutí
+    poll:
+      total_votes:
+        few: "%{count} hlasů"
+        one: "%{count} hlas"
+        other: "%{count} hlasů"
+      vote: Hlasovat
     show_more: Zobrazit více
     sign_in_to_participate: Chcete-li se účastnit této konverzace, přihlaste se
     title: "%{name}: „%{quote}“"
