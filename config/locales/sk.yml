@@ -14,7 +14,7 @@ sk:
     documentation: Dokumentácia
     extended_description_html: |
       <h3>Pravidlá</h3>
-      <p>Žiadne zatiaľ nie sú</p>
+      <p>Žiadne zatiaľ uvedené nie sú</p>
     features:
       humane_approach_body: Poučený z chýb iných sociálnych sietí, Mastodon sa snaží bojovať so zneužívaním siete voľbou etických návrhov.
       humane_approach_title: Ľudskejší prístup
@@ -80,10 +80,10 @@ sk:
     account_moderation_notes:
       create: Zanechaj poznámku
       created_msg: Poznámka moderátora bola úspešne vytvorená!
-      delete: Zmazať
-      destroyed_msg: Poznámka moderátora bola úspešne zmazaná!
+      delete: Vymaž
+      destroyed_msg: Moderátorska poznámka bola úspešne zmazaná!
     accounts:
-      are_you_sure: Si si istý?
+      are_you_sure: Si si istý/á?
       avatar: Maskot
       by_domain: Doména
       change_email:
@@ -93,13 +93,13 @@ sk:
         new_email: Nový email
         submit: Zmeň email
         title: Zmeň email pre %{username}
-      confirm: Potvrdiť
+      confirm: Potvrď
       confirmed: Potvrdený
       confirming: Potvrdzujúci
       deleted: Zmazané
       demote: Degradovať
-      disable: Zablokovať
-      disable_two_factor_authentication: Zakázať 2FA
+      disable: Zablokuj
+      disable_two_factor_authentication: Zakáž 2FA
       disabled: Blokovaný
       display_name: Zobraziť meno
       domain: Doména
@@ -134,10 +134,10 @@ sk:
       moderation_notes: Moderátorské poznámky
       most_recent_activity: Posledná aktivita
       most_recent_ip: Posledná IP
-      no_limits_imposed: Niesú stanovené žiadné obmedzenia
-      not_subscribed: Nezaregistrované
+      no_limits_imposed: Nie sú stanovené žiadné obmedzenia
+      not_subscribed: Neodoberá
       outbox_url: URL poslaných
-      perform_full_suspension: Zablokovať
+      perform_full_suspension: Vylúč
       profile_url: URL profilu
       promote: Povýš
       protocol: Protokol
@@ -147,12 +147,12 @@ sk:
       remove_avatar: Odstrániť avatár
       remove_header: Odstráň hlavičku
       resend_confirmation:
-        already_confirmed: Tento užívateľ už je potvrdený
-        send: Znovu odoslať potvrdzovací email
+        already_confirmed: Tento užívateľ je už potvrdený
+        send: Odošli potvrdzovací email znovu
         success: Potvrdzujúci email bol úspešne odoslaný!
       reset: Resetuj
       reset_password: Obnov heslo
-      resubscribe: Znovu odoberať
+      resubscribe: Znovu odoberaj
       role: Oprávnenia
       roles:
         admin: Administrátor
@@ -165,15 +165,15 @@ sk:
       show:
         created_reports: Vytvorené hlásenia
         targeted_reports: Nahlásenia od ostatných
-      silence: Stíšiť
-      silenced: Utíšení
+      silence: Stíš
+      silenced: Utíšený/é
       statuses: Príspevky
       subscribe: Odoberať
       suspended: Zablokovaní
       title: Účty
       unconfirmed_email: Nepotvrdený email
       undo_silenced: Zrušiť stíšenie
-      undo_suspension: Zrušiť suspendáciu
+      undo_suspension: Zruš blokovanie
       unsubscribe: Prestaň odoberať
       username: Prezývka
       warn: Varovať
@@ -214,7 +214,7 @@ sk:
       title: Kontrólny záznam
     custom_emojis:
       by_domain: Doména
-      copied_msg: Lokálna kópia emoji úspešne vytvorená
+      copied_msg: Miestna kópia emoji bola úspešne vytvorená
       copy: Kopíruj
       copy_failed_msg: Nebolo možné vytvoriť miestnu kópiu tohto emoji
       created_msg: Emoji úspešne vytvorené!
@@ -228,10 +228,10 @@ sk:
       image_hint: PNG do 50KB
       listed: V zozname
       new:
-        title: Pridať nový vlastný emoji
-      overwrite: Prepísať
+        title: Pridaj nové, vlastné emoji
+      overwrite: Prepíš
       shortcode: Skratka
-      shortcode_hint: Aspoň 2 znaky, povolené sú alfanumerické alebo podčiarkovník
+      shortcode_hint: Aspoň 2 znaky, povolené sú alfanumerické, alebo podčiarkovník
       title: Vlastné emoji
       unlisted: Nie je na zozname
       update_failed_msg: Nebolo možné aktualizovať toto emoji
@@ -265,16 +265,16 @@ sk:
       destroyed_msg: Blokovanie domény bolo zrušené
       domain: Doména
       new:
-        create: Blokovať doménu
-        hint: Blokovanie domény stále dovolí vytvárať nové účty v databáze, ale tieto budú automaticky moderované.
+        create: Vytvor blokovanie domény
+        hint: Blokovanie domény stále dovolí vytvárať nové účty v databázi, ale tieto budú spätne automaticky moderované.
         severity:
           desc_html: "<strong>Stíšenie</strong> urobí všetky príspevky daného účtu neviditeľné pre všetkých ktorí nenásledujú tento účet. <strong>Suspendácia</strong> zmaže všetky príspevky, médiá a profilové informácie. Použi <strong>Žiadne</strong>, ak chceš iba neprijímať súbory médií."
           noop: Nič
-          silence: Stíšiť
-          suspend: Vylúčiť
+          silence: Stíš
+          suspend: Vylúč
         title: Nové blokovanie domény
-      reject_media: Odmietať súbory s obrázkami alebo videami
-      reject_media_hint: Zmaže lokálne uložené súbory médií a odmietne ich sťahovanie v budúcnosti. Irelevantné pre suspendáciu
+      reject_media: Odmietaj súbory s obrázkami, alebo videami
+      reject_media_hint: Vymaže miestne uložené súbory médií a odmietne ich sťahovanie v budúcnosti. Nepodstatné pri vylúčení
       reject_reports: Zamietni hlásenia
       reject_reports_hint: Ignoruj všetky hlásenia prichádzajúce z tejto domény. Nevplýva na blokovania
       rejecting_media: odmietanie médiálnych súborov
@@ -307,6 +307,7 @@ sk:
       back_to_account: Späť na účet
       title: Následovatielia užívateľa %{acct}
     instances:
+      by_domain: Doména
       delivery_available: Je v dosahu doručovania
       known_accounts:
         few: "%{count} známe účty"
@@ -404,7 +405,7 @@ sk:
         desc_html: Náhľad odkazov z iných serverov, bude zobrazený aj vtedy, keď sú médiá označené ako senzitívne
         title: Ukazuj aj chúlostivé médiá v náhľadoch OpenGraph
       profile_directory:
-        desc_html: Povoliť užívateľom aby boli nájdení
+        desc_html: Povoľ užívateľom, aby mohli byť nájdení
         title: Zapni profilový katalóg
       registrations:
         closed_message:
@@ -742,8 +743,18 @@ sk:
     newer: Novšie
     next: Ďalšie
     older: Staršie
-    prev: Predošlé
+    prev: Predchádzajúce
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: V tejto ankete si už hlasoval/a
+      duplicate_options: obsahuje opakujúce sa položky
+      duration_too_long: je príliš ďaleko do budúcnosti
+      duration_too_short: je príliš skoro
+      expired: Anketa už skončila
+      over_character_limit: každá nemôže byť dlhšia ako %{MAX} znakov
+      too_few_options: musí mať viac ako jednu položku
+      too_many_options: nemôže zahŕňať viac ako %{MAX} položiek
   preferences:
     languages: Jazyky
     other: Ostatné

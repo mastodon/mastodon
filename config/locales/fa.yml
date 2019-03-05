@@ -61,7 +61,7 @@ fa:
     posts:
       one: بوق
       other: بوق
-    posts_tab_heading: بوق‌ها
+    posts_tab_heading: نوشته‌ها
     posts_with_replies: نوشته‌ها و پاسخ‌ها
     reserved_username: این نام کاربری در دسترس نیست
     roles:
@@ -302,6 +302,7 @@ fa:
       back_to_account: بازگشت به حساب
       title: پیگیران %{acct}
     instances:
+      by_domain: دامین
       delivery_available: پیام آماده است
       known_accounts:
         one: "%{count} حساب شناخته‌شده"
@@ -733,6 +734,16 @@ fa:
     older: قدیمی‌تر
     prev: قبلی
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: شما قبلاً در این نظرسنجی رأی داده‌اید
+      duplicate_options: دارای موارد تکراری است
+      duration_too_long: در آیندهٔ خیلی دور است
+      duration_too_short: در آیندهٔ خیلی نزدیک است
+      expired: این نظرسنجی به پایان رسیده است
+      over_character_limit: هر کدام نمی‌تواند از %{MAX} نویسه طولانی‌تر باشد
+      too_few_options: حتماً باید بیش از یک گزینه داشته باشد
+      too_many_options: نمی‌تواند بیشتر از %{MAX} گزینه داشته باشد
   preferences:
     languages: تنظیمات زبان
     other: سایر تنظیمات

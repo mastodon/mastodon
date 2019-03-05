@@ -3,6 +3,20 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [2.7.4] - 2019-03-05
+### Fixed
+
+- Fix web UI not cleaning up notifications after block ([Gargron](https://github.com/tootsuite/mastodon/pull/10108))
+- Fix redundant HTTP requests when resolving private statuses ([ThibG](https://github.com/tootsuite/mastodon/pull/10115))
+- Fix performance of account media query ([abcang](https://github.com/tootsuite/mastodon/pull/10121))
+- Fix mention processing for unknown accounts ([ThibG](https://github.com/tootsuite/mastodon/pull/10125))
+- Fix getting started column not scrolling on short screens ([trwnh](https://github.com/tootsuite/mastodon/pull/10075))
+- Fix direct messages pagination in the web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/10126))
+- Fix serialization of Announce activities ([ThibG](https://github.com/tootsuite/mastodon/pull/10129))
+- Fix home timeline perpetually reloading when empty in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/10130))
+- Fix lists export ([ThibG](https://github.com/tootsuite/mastodon/pull/10136))
+- Fix edit profile page crash for suspended-then-unsuspended users ([ThibG](https://github.com/tootsuite/mastodon/pull/10178))
+
 ## [2.7.3] - 2019-02-23
 ### Added
 
