@@ -122,7 +122,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def poll_options
-    if !object.expired? && object.hide_totals?
+    if !object.poll.expired? && object.poll.hide_totals?
       object.poll.unloaded_options
     else
       object.poll.loaded_options
