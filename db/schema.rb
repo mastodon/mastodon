@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_03_180359) do
+ActiveRecord::Schema.define(version: 2019_03_04_152020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -452,6 +452,33 @@ ActiveRecord::Schema.define(version: 2019_02_03_180359) do
     t.index ["database", "captured_at"], name: "index_pghero_space_stats_on_database_and_captured_at"
   end
 
+  create_table "poll_votes", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "poll_id"
+    t.integer "choice", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "uri"
+    t.index ["account_id"], name: "index_poll_votes_on_account_id"
+    t.index ["poll_id"], name: "index_poll_votes_on_poll_id"
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "status_id"
+    t.datetime "expires_at"
+    t.string "options", default: [], null: false, array: true
+    t.bigint "cached_tallies", default: [], null: false, array: true
+    t.boolean "multiple", default: false, null: false
+    t.boolean "hide_totals", default: false, null: false
+    t.bigint "votes_count", default: 0, null: false
+    t.datetime "last_fetched_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_polls_on_account_id"
+    t.index ["status_id"], name: "index_polls_on_status_id"
+  end
+
   create_table "preview_cards", force: :cascade do |t|
     t.string "url", default: "", null: false
     t.string "title", default: "", null: false
@@ -593,6 +620,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_180359) do
     t.bigint "application_id"
     t.bigint "in_reply_to_account_id"
     t.boolean "local_only"
+    t.bigint "poll_id"
     t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20180106", order: { id: :desc }
     t.index ["in_reply_to_account_id"], name: "index_statuses_on_in_reply_to_account_id"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
@@ -760,6 +788,10 @@ ActiveRecord::Schema.define(version: 2019_02_03_180359) do
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id", name: "fk_f5fc4c1ee3", on_delete: :cascade
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id", name: "fk_e84df68546", on_delete: :cascade
   add_foreign_key "oauth_applications", "users", column: "owner_id", name: "fk_b0988c7c0a", on_delete: :cascade
+  add_foreign_key "poll_votes", "accounts", on_delete: :cascade
+  add_foreign_key "poll_votes", "polls", on_delete: :cascade
+  add_foreign_key "polls", "accounts", on_delete: :cascade
+  add_foreign_key "polls", "statuses", on_delete: :cascade
   add_foreign_key "report_notes", "accounts", on_delete: :cascade
   add_foreign_key "report_notes", "reports", on_delete: :cascade
   add_foreign_key "reports", "accounts", column: "action_taken_by_account_id", name: "fk_bca45b75fd", on_delete: :nullify
