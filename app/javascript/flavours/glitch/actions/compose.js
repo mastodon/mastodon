@@ -6,7 +6,7 @@ import { useEmoji } from './emojis';
 import { tagHistory } from 'flavours/glitch/util/settings';
 import { recoverHashtags } from 'flavours/glitch/util/hashtag';
 import resizeImage from 'flavours/glitch/util/resize_image';
-
+import { importFetchedAccounts } from './importer';
 import { updateTimeline } from './timelines';
 import { showAlertForError } from './alerts';
 import { showAlert } from './alerts';
@@ -338,6 +338,7 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => 
       limit: 4,
     },
   }).then(response => {
+    dispatch(importFetchedAccounts(response.data));
     dispatch(readyComposeSuggestionsAccounts(token, response.data));
   }).catch(error => {
     if (!isCancel(error)) {

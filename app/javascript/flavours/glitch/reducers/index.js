@@ -29,6 +29,7 @@ import listEditor from './list_editor';
 import listAdder from './list_adder';
 import filters from './filters';
 import pinnedAccountsEditor from './pinned_accounts_editor';
+import polls from './polls';
 
 const reducers = {
   dropdown_menu,
@@ -61,6 +62,7 @@ const reducers = {
   listAdder,
   filters,
   pinnedAccountsEditor,
+  polls,
 };
 
 export default combineReducers(reducers);

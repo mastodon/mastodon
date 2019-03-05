@@ -29,6 +29,7 @@ import listAdder from './list_adder';
 import filters from './filters';
 import conversations from './conversations';
 import suggestions from './suggestions';
+import polls from './polls';
 
 const reducers = {
   dropdown_menu,
@@ -61,6 +62,7 @@ const reducers = {
   filters,
   conversations,
   suggestions,
+  polls,
 };
 
 export default combineReducers(reducers);

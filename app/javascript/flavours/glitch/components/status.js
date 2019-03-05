@@ -15,6 +15,7 @@ import { HotKeys } from 'react-hotkeys';
 import NotificationOverlayContainer from 'flavours/glitch/features/notifications/containers/overlay_container';
 import classNames from 'classnames';
 import { autoUnfoldCW } from 'flavours/glitch/util/content_warning';
+import PollContainer from 'flavours/glitch/containers/poll_container';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -437,7 +438,9 @@ export default class Status extends ImmutablePureComponent {
     //  `media`, we snatch the thumbnail to use as our `background` if media
     //  backgrounds for collapsed statuses are enabled.
     attachments = status.get('media_attachments');
-    if (attachments.size > 0) {
+    if (status.get('poll')) {
+      media = <PollContainer pollId={status.get('poll')} />;
+    } else if (attachments.size > 0) {
       if (muted || attachments.some(item => item.get('type') === 'unknown')) {
         media = (
           <AttachmentList

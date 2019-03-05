@@ -738,6 +738,16 @@ en:
     older: Older
     prev: Prev
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: You have already voted on this poll
+      duplicate_options: contain duplicate items
+      duration_too_long: is too far into the future
+      duration_too_short: is too soon
+      expired: The poll has already ended
+      over_character_limit: cannot be longer than %{MAX} characters each
+      too_few_options: must have more than one item
+      too_many_options: can't contain more than %{MAX} items
   preferences:
     languages: Languages
     other: Other
@@ -848,6 +858,11 @@ en:
       ownership: Someone else's toot cannot be pinned
       private: Non-public toot cannot be pinned
       reblog: A boost cannot be pinned
+    poll:
+      total_votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
+      vote: Vote
     show_more: Show more
     sign_in_to_participate: Sign in to participate in the conversation
     title: '%{name}: "%{quote}"'

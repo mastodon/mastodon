@@ -6,7 +6,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
-        return if delete_arrived_first?(object_uri)
+        return if delete_arrived_first?(object_uri) || poll_vote?
 
         @status = find_existing_status
 
@@ -68,6 +68,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         thread: replied_to_status,
         conversation: conversation_from_uri(@object['conversation']),
         media_attachment_ids: process_attachments.take(4).map(&:id),
+        owned_poll: process_poll,
       }
     end
   end
@@ -207,6 +208,40 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     Rails.logger.debug e
 
     media_attachments
+  end
+
+  def process_poll
+    return unless @object['type'] == 'Question' && (@object['anyOf'].is_a?(Array) || @object['oneOf'].is_a?(Array))
+
+    expires_at = begin
+      if @object['closed'].is_a?(String)
+        @object['closed']
+      elsif !@object['closed'].nil? && !@object['closed'].is_a?(FalseClass)
+        Time.now.utc
+      else
+        @object['endTime']
+      end
+    end
+
+    if @object['anyOf'].is_a?(Array)
+      multiple = true
+      items    = @object['anyOf']
+    else
+      multiple = false
+      items    = @object['oneOf']
+    end
+
+    @account.polls.new(
+      multiple: multiple,
+      expires_at: expires_at,
+      options: items.map { |item| item['name'].presence || item['content'] },
+      cached_tallies: items.map { |item| item.dig('replies', 'totalItems') || 0 }
+    )
+  end
+
+  def poll_vote?
+    return false if replied_to_status.nil? || replied_to_status.poll.nil? || !replied_to_status.local? || !replied_to_status.poll.options.include?(@object['name'])
+    replied_to_status.poll.votes.create!(account: @account, choice: replied_to_status.poll.options.index(@object['name']), uri: @object['id'])
   end
 
   def resolve_thread(status)

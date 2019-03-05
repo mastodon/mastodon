@@ -89,6 +89,10 @@
       border-color: lighten($ui-primary-color, 4%);
       color: lighten($darker-text-color, 4%);
     }
+
+    &:disabled {
+      opacity: 0.5;
+    }
   }
 
   &.button--block {

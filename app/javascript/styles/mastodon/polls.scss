@@ -1,0 +1,100 @@
+.poll {
+  margin-top: 16px;
+  font-size: 14px;
+
+  li {
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  &__chart {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: inline-block;
+    border-radius: 4px;
+    background: darken($ui-primary-color, 14%);
+
+    &.leading {
+      background: $ui-highlight-color;
+    }
+  }
+
+  &__text {
+    position: relative;
+    display: inline-block;
+    padding: 6px 0;
+    line-height: 18px;
+    cursor: default;
+
+    input[type=radio],
+    input[type=checkbox] {
+      display: none;
+    }
+
+    &.selectable {
+      cursor: pointer;
+    }
+  }
+
+  &__input {
+    display: inline-block;
+    position: relative;
+    border: 1px solid $ui-primary-color;
+    box-sizing: border-box;
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    top: -1px;
+    border-radius: 50%;
+    vertical-align: middle;
+
+    &.checkbox {
+      border-radius: 4px;
+    }
+
+    &.active {
+      border-color: $valid-value-color;
+      background: $valid-value-color;
+    }
+  }
+
+  &__number {
+    display: inline-block;
+    width: 36px;
+    font-weight: 700;
+    padding: 0 10px;
+    text-align: right;
+  }
+
+  &__footer {
+    padding-top: 6px;
+    padding-bottom: 5px;
+    color: $dark-text-color;
+  }
+
+  &__link {
+    display: inline;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    color: $dark-text-color;
+    text-decoration: underline;
+    font-size: inherit;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+  }
+
+  .button {
+    height: 36px;
+    padding: 0 16px;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+}
