@@ -302,6 +302,7 @@ gl:
       back_to_account: Voltar a Conta
       title: Seguidoras de %{acct}
     instances:
+      by_domain: Dominio
       delivery_available: A entrega está dispoñible
       known_accounts:
         one: "%{count} conta coñecida"
@@ -733,6 +734,16 @@ gl:
     older: Máis antigo
     prev: Previo
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Xa votou en esta sondaxe
+      duplicate_options: contén elementos duplicados
+      duration_too_long: está moi lonxe no futuro
+      duration_too_short: é demasiado cedo
+      expired: A sondaxe rematou
+      over_character_limit: non poden ter máis de %{MAX} caracteres cada unha
+      too_few_options: debe ter máis de unha opción
+      too_many_options: non pode haber máis de %{MAX} opcións
   preferences:
     languages: Idiomas
     other: Outro
@@ -842,6 +853,11 @@ gl:
       ownership: Non pode fixar a mensaxe de outra usuaria
       private: As mensaxes non-públicas non poden ser fixadas
       reblog: Non se poden fixar as mensaxes promovidas
+    poll:
+      total_votes:
+        one: "%{count} voto"
+        other: "%{count} votos"
+      vote: Votar
     show_more: Mostrar máis
     sign_in_to_participate: Conéctese para participar na conversa
     title: '%{name}: "%{quote}"'
