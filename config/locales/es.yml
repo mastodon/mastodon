@@ -7,7 +7,7 @@ es:
     administered_by: 'Administrado por:'
     api: API
     apps: Aplicaciones móviles
-    closed_registrations: Los registros están actualmente cerrados en esta instancia.
+    closed_registrations: Los registros están actualmente cerrados en este servidor. Aun así, puedes encontrar un servidor diferente para registrarte y tener acceso a la misma comunidad
     contact: Contacto
     contact_missing: No especificado
     contact_unavailable: N/A
@@ -48,6 +48,7 @@ es:
       other: Seguidores
     following: Siguiendo
     joined: Se unió el %{date}
+    last_active: última conexión
     link_verified_on: La propiedad de este vínculo fue verificada el %{date}
     media: Media
     moved_html: "%{name} se ha trasladado a %{new_profile_link}:"
@@ -69,6 +70,8 @@ es:
       moderator: Moderador
     unfollow: Dejar de seguir
   admin:
+    account_actions:
+      title: Moderar %{acct}
     account_moderation_notes:
       create: Crear
       created_msg: "¡Nota de moderación creada con éxito!"
@@ -88,6 +91,7 @@ es:
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
+      deleted: Borrado
       demote: Degradar
       disable: Deshabilitar
       disable_two_factor_authentication: Desactivar autenticación de dos factores
