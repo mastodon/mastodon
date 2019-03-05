@@ -104,9 +104,19 @@ module StreamEntriesHelper
     I18n.t('statuses.content_warning', warning: status.spoiler_text)
   end
 
+  def poll_summary(status)
+    return unless status.poll
+    status.poll.options.map { |o| "[ ] #{o}" }.join("\n")
+  end
+
   def status_description(status)
     components = [[media_summary(status), status_text_summary(status)].reject(&:blank?).join(' · ')]
-    components << status.text if status.spoiler_text.blank?
+
+    if status.spoiler_text.blank?
+      components << status.text
+      components << poll_summary(status)
+    end
+
     components.reject(&:blank?).join("\n\n")
   end
 
