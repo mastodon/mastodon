@@ -107,6 +107,7 @@ export default class IconButton extends React.PureComponent {
           onClick={this.handleClick}
           style={style}
           tabIndex={tabIndex}
+          disabled={disabled}
         >
           <i className={`fa fa-fw fa-${icon}`} aria-hidden='true' />
         </button>
@@ -125,6 +126,7 @@ export default class IconButton extends React.PureComponent {
             onClick={this.handleClick}
             style={style}
             tabIndex={tabIndex}
+            disabled={disabled}
           >
             <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${icon}`} aria-hidden='true' />
             {this.props.label}

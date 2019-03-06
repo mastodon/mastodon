@@ -15,6 +15,7 @@
 #  last_fetched_at :datetime
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  lock_version    :integer          default(0), not null
 #
 
 class Poll < ApplicationRecord
