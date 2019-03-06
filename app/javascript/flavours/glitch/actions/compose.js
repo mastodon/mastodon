@@ -64,6 +64,7 @@ export const COMPOSE_POLL_SETTINGS_CHANGE = 'COMPOSE_POLL_SETTINGS_CHANGE';
 
 const messages = defineMessages({
   uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
+  uploadErrorPoll:  { id: 'upload_error.poll', defaultMessage: 'File upload not allowed with polls.' },
 });
 
 export function changeCompose(text) {
@@ -231,6 +232,12 @@ export function uploadCompose(files) {
       dispatch(showAlert(undefined, messages.uploadErrorLimit));
       return;
     }
+
+    if (getState().getIn(['compose', 'poll'])) {
+      dispatch(showAlert(undefined, messages.uploadErrorPoll));
+      return;
+    }
+
     dispatch(uploadComposeRequest());
 
     for (const [i, f] of Array.from(files).entries()) {
