@@ -65,3 +65,14 @@ export function normalizeStatus(status, normalOldStatus) {
 
   return normalStatus;
 }
+
+export function normalizePoll(poll) {
+  const normalPoll = { ...poll };
+
+  normalPoll.options = poll.options.map(option => ({
+    ...option,
+    title_emojified: emojify(escapeTextContentForBrowser(option.title)),
+  }));
+
+  return normalPoll;
+}
