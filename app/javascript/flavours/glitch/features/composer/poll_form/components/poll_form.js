@@ -6,6 +6,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import IconButton from 'flavours/glitch/components/icon_button';
 import Icon from 'flavours/glitch/components/icon';
 import classNames from 'classnames';
+import { pollLimits } from 'flavours/glitch/util/initial_state';
 
 const messages = defineMessages({
   option_placeholder: { id: 'compose_form.poll.option_placeholder', defaultMessage: 'Choice {number}' },
@@ -48,7 +49,7 @@ class Option extends React.PureComponent {
           <input
             type='text'
             placeholder={intl.formatMessage(messages.option_placeholder, { number: index + 1 })}
-            maxlength={25}
+            maxlength={pollLimits.max_option_chars}
             value={title}
             onChange={this.handleOptionTitleChange}
           />
@@ -100,7 +101,7 @@ class PollForm extends ImmutablePureComponent {
         </ul>
 
         <div className='poll__footer'>
-          {options.size < 4 && (
+          {options.size < pollLimits.max_options && (
             <button className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' /> <FormattedMessage {...messages.add_option} /></button>
           )}
 

@@ -19,6 +19,7 @@ import {
   assignHandlers,
   hiddenComponent,
 } from 'flavours/glitch/util/react_helpers';
+import { pollLimits } from 'flavours/glitch/util/initial_state';
 
 //  Messages.
 const messages = defineMessages({
@@ -248,19 +249,21 @@ export default class ComposerOptions extends React.PureComponent {
           onModalOpen={onModalOpen}
           title={intl.formatMessage(messages.attach)}
         />
-        <IconButton
-          active={hasPoll}
-          disabled={disabled || !allowPoll}
-          icon='tasks'
-          inverted
-          onClick={onTogglePoll}
-          size={18}
-          style={{
-            height: null,
-            lineHeight: null,
-          }}
-          title={intl.formatMessage(hasPoll ? messages.remove_poll : messages.add_poll)}
-        />
+        {!!pollLimits && (
+          <IconButton
+            active={hasPoll}
+            disabled={disabled || !allowPoll}
+            icon='tasks'
+            inverted
+            onClick={onTogglePoll}
+            size={18}
+            style={{
+              height: null,
+              lineHeight: null,
+            }}
+            title={intl.formatMessage(hasPoll ? messages.remove_poll : messages.add_poll)}
+          />
+        )}
         <Motion
           defaultStyle={{ scale: 0.87 }}
           style={{

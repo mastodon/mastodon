@@ -22,6 +22,7 @@ export const deleteModal = getMeta('delete_modal');
 export const me = getMeta('me');
 export const searchEnabled = getMeta('search_enabled');
 export const maxChars = (initialState && initialState.max_toot_chars) || 500;
+export const pollLimits = (initialState && initialState.poll_limits);
 export const invitesEnabled = getMeta('invites_enabled');
 export const version = getMeta('version');
 export const mascot = getMeta('mascot');
