@@ -70,6 +70,7 @@ class Status < ApplicationRecord
   validates_with StatusLengthValidator
   validates_with DisallowedHashtagsValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
+  validates_associated :owned_poll
 
   default_scope { recent }
 

@@ -84,7 +84,7 @@ class SuspendAccountService < BaseService
     @account.locked           = false
     @account.display_name     = ''
     @account.note             = ''
-    @account.fields           = {}
+    @account.fields           = []
     @account.statuses_count   = 0
     @account.followers_count  = 0
     @account.following_count  = 0
