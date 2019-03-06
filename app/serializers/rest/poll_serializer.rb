@@ -25,7 +25,7 @@ class REST::PollSerializer < ActiveModel::Serializer
   end
 
   def voted
-    object.votes.where(account: current_user.account).exists?
+    current_user.account_id == object.account_id || object.votes.where(account: current_user.account).exists?
   end
 
   def current_user?
