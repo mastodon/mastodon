@@ -31,6 +31,7 @@ import {
   openModal,
 } from 'flavours/glitch/actions/modal';
 import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
+import { addPoll, removePoll } from 'flavours/glitch/actions/compose';
 
 //  Components.
 import ComposerOptions from './options';
@@ -39,6 +40,7 @@ import ComposerReply from './reply';
 import ComposerSpoiler from './spoiler';
 import ComposerTextarea from './textarea';
 import ComposerUploadForm from './upload_form';
+import ComposerPollForm from './poll_form';
 import ComposerWarning from './warning';
 import ComposerHashtagWarning from './hashtag_warning';
 import ComposerDirectWarning from './direct_warning';
@@ -102,6 +104,7 @@ function mapStateToProps (state) {
     suggestions: state.getIn(['compose', 'suggestions']),
     text: state.getIn(['compose', 'text']),
     anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
+    poll: state.getIn(['compose', 'poll']),
     spoilersAlwaysOn: spoilersAlwaysOn,
     mediaDescriptionConfirmation: state.getIn(['local_settings', 'confirm_missing_media_description']),
     preselectOnReply: state.getIn(['local_settings', 'preselect_on_reply']),
@@ -133,6 +136,15 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
   onChangeVisibility(value) {
     dispatch(changeComposeVisibility(value));
+  },
+  onTogglePoll() {
+    dispatch((_, getState) => {
+      if (getState().getIn(['compose', 'poll'])) {
+        dispatch(removePoll());
+      } else {
+        dispatch(addPoll());
+      }
+    });
   },
   onClearSuggestions() {
     dispatch(clearComposeSuggestions());
@@ -394,6 +406,7 @@ class Composer extends React.Component {
       isUploading,
       layout,
       media,
+      poll,
       onCancelReply,
       onChangeAdvancedOption,
       onChangeDescription,
@@ -401,6 +414,7 @@ class Composer extends React.Component {
       onChangeSpoilerness,
       onChangeText,
       onChangeVisibility,
+      onTogglePoll,
       onClearSuggestions,
       onCloseModal,
       onFetchSuggestions,
@@ -463,30 +477,38 @@ class Composer extends React.Component {
           suggestions={suggestions}
           value={text}
         />
-        {isUploading || media && media.size ? (
-          <ComposerUploadForm
-            intl={intl}
-            media={media}
-            onChangeDescription={onChangeDescription}
-            onOpenFocalPointModal={onOpenFocalPointModal}
-            onRemove={onUndoUpload}
-            progress={progress}
-            uploading={isUploading}
-            handleRef={handleRefUploadForm}
-          />
-        ) : null}
+        <div className='compose-form__modifiers'>
+          {isUploading || media && media.size ? (
+            <ComposerUploadForm
+              intl={intl}
+              media={media}
+              onChangeDescription={onChangeDescription}
+              onOpenFocalPointModal={onOpenFocalPointModal}
+              onRemove={onUndoUpload}
+              progress={progress}
+              uploading={isUploading}
+              handleRef={handleRefUploadForm}
+            />
+          ) : null}
+          {!!poll && (
+            <ComposerPollForm />
+          )}
+        </div>
         <ComposerOptions
           acceptContentTypes={acceptContentTypes}
           advancedOptions={advancedOptions}
           disabled={isSubmitting}
-          full={media ? media.size >= 4 || media.some(
-            item => item.get('type') === 'video'
-          ) : false}
+          allowMedia={!poll && (media ? media.size < 4 && !media.some(
+              item => item.get('type') === 'video'
+            ) : true)}
           hasMedia={media && !!media.size}
+          allowPoll={!(media && !!media.size)}
+          hasPoll={!!poll}
           intl={intl}
           onChangeAdvancedOption={onChangeAdvancedOption}
           onChangeSensitivity={onChangeSensitivity}
           onChangeVisibility={onChangeVisibility}
+          onTogglePoll={onTogglePoll}
           onDoodleOpen={onOpenDoodleModal}
           onModalClose={onCloseModal}
           onModalOpen={onOpenActionsModal}

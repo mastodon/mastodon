@@ -55,6 +55,13 @@ export const COMPOSE_UPLOAD_CHANGE_FAIL        = 'COMPOSE_UPLOAD_UPDATE_FAIL';
 
 export const COMPOSE_DOODLE_SET        = 'COMPOSE_DOODLE_SET';
 
+export const COMPOSE_POLL_ADD             = 'COMPOSE_POLL_ADD';
+export const COMPOSE_POLL_REMOVE          = 'COMPOSE_POLL_REMOVE';
+export const COMPOSE_POLL_OPTION_ADD      = 'COMPOSE_POLL_OPTION_ADD';
+export const COMPOSE_POLL_OPTION_CHANGE   = 'COMPOSE_POLL_OPTION_CHANGE';
+export const COMPOSE_POLL_OPTION_REMOVE   = 'COMPOSE_POLL_OPTION_REMOVE';
+export const COMPOSE_POLL_SETTINGS_CHANGE = 'COMPOSE_POLL_SETTINGS_CHANGE';
+
 const messages = defineMessages({
   uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
 });
@@ -144,6 +151,7 @@ export function submitCompose(routerHistory) {
       sensitive: getState().getIn(['compose', 'sensitive']) || (spoilerText.length > 0 && media.size !== 0),
       spoiler_text: spoilerText,
       visibility: getState().getIn(['compose', 'privacy']),
+      poll: getState().getIn(['compose', 'poll'], null),
     }, {
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
@@ -502,5 +510,47 @@ export function insertEmojiCompose(position, emoji) {
     type: COMPOSE_EMOJI_INSERT,
     position,
     emoji,
+  };
+};
+
+export function addPoll() {
+  return {
+    type: COMPOSE_POLL_ADD,
+  };
+};
+
+export function removePoll() {
+  return {
+    type: COMPOSE_POLL_REMOVE,
+  };
+};
+
+export function addPollOption(title) {
+  return {
+    type: COMPOSE_POLL_OPTION_ADD,
+    title,
+  };
+};
+
+export function changePollOption(index, title) {
+  return {
+    type: COMPOSE_POLL_OPTION_CHANGE,
+    index,
+    title,
+  };
+};
+
+export function removePollOption(index) {
+  return {
+    type: COMPOSE_POLL_OPTION_REMOVE,
+    index,
+  };
+};
+
+export function changePollSettings(expiresIn, isMultiple) {
+  return {
+    type: COMPOSE_POLL_SETTINGS_CHANGE,
+    expiresIn,
+    isMultiple,
   };
 };
