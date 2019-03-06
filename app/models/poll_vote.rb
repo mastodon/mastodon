@@ -33,6 +33,7 @@ class PollVote < ApplicationRecord
     poll.cached_tallies[choice] = (poll.cached_tallies[choice] || 0) + 1
     poll.save
   rescue ActiveRecord::StaleObjectError
+    poll.reload
     retry
   end
 end
