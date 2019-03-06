@@ -440,6 +440,7 @@ export default class Status extends ImmutablePureComponent {
     attachments = status.get('media_attachments');
     if (status.get('poll')) {
       media = <PollContainer pollId={status.get('poll')} />;
+      mediaIcon = 'tasks';
     } else if (attachments.size > 0) {
       if (muted || attachments.some(item => item.get('type') === 'unknown')) {
         media = (
