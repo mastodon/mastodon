@@ -63,12 +63,19 @@ module JsonLdHelper
     json.present? && json['id'] == uri ? json : nil
   end
 
-  def fetch_resource_without_id_validation(uri, on_behalf_of = nil)
+  def fetch_resource_without_id_validation(uri, on_behalf_of = nil, raise_on_temporary_error = false)
     build_request(uri, on_behalf_of).perform do |response|
+      unless response_successful?(response) || response_error_unsalvageable?(response) || !raise_on_temporary_error
+        raise Mastodon::UnexpectedResponseError, response
+      end
       return body_to_json(response.body_with_limit) if response.code == 200
     end
     # If request failed, retry without doing it on behalf of a user
+    return if on_behalf_of.nil?
     build_request(uri).perform do |response|
+      unless response_successful?(response) || response_error_unsalvageable?(response) || !raise_on_temporary_error
+        raise Mastodon::UnexpectedResponseError, response
+      end
       response.code == 200 ? body_to_json(response.body_with_limit) : nil
     end
   end
@@ -90,6 +97,14 @@ module JsonLdHelper
   end
 
   private
+
+  def response_successful?(response)
+    (200...300).cover?(response.code)
+  end
+
+  def response_error_unsalvageable?(response)
+    (400...500).cover?(response.code) && response.code != 429
+  end
 
   def build_request(uri, on_behalf_of = nil)
     request = Request.new(:get, uri)

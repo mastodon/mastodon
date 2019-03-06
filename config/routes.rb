@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       member do
         get :activity
         get :embed
+        get :replies
       end
     end
 
@@ -359,6 +360,10 @@ Rails.application.routes.draw do
 
       resources :lists, only: [:index, :create, :show, :update, :destroy] do
         resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'
+      end
+
+      resources :polls, only: [:create, :show] do
+        resources :votes, only: :create, controller: 'polls/votes'
       end
 
       namespace :push do
