@@ -264,7 +264,7 @@ fr:
         create: Créer le blocage
         hint: Le blocage de domaine n’empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
         severity:
-          desc_html: "<strong>Silence</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspendre</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil. Utilisez <strong>Aucun</strong> si vous voulez simplement rejeter les fichiers multimédia."
+          desc_html: "<strong>Masqué</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspendre</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil. Utilisez <strong>Aucune</strong> si vous voulez simplement rejeter les fichiers multimédia."
           noop: Aucune
           silence: Masqué
           suspend: Suspendre
@@ -302,6 +302,7 @@ fr:
       back_to_account: Retour au compte
       title: Abonné⋅e⋅s de %{acct}
     instances:
+      by_domain: Domaine
       delivery_available: Livraison disponible
       known_accounts:
         one: "%{count} compte connu"
@@ -733,6 +734,16 @@ fr:
     older: Plus ancien
     prev: Précédent
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Vous avez déjà voté sur ce sondage
+      duplicate_options: contient des doublons
+      duration_too_long: est trop loin dans le futur
+      duration_too_short: est trop tôt
+      expired: Ce sondage est déjà terminé
+      over_character_limit: ne peuvent être plus long que %{MAX} caractères chacun
+      too_few_options: doit avoir plus qu'une proposition
+      too_many_options: ne peut contenir plus que %{MAX} propositions
   preferences:
     languages: Langues
     other: Autre

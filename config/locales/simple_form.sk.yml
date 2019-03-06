@@ -26,7 +26,7 @@ sk:
         password: Zadaj aspoň osem znakov
         phrase: Zhoda sa nájde nezávisle od toho, či je text napísaný, veľkými, alebo malými písmenami, či už v tele, alebo v hlavičke
         scopes: Ktoré API budú povolené aplikácii pre prístup. Ak vyberieš vrcholný stupeň, nemusíš už potom vyberať po jednom.
-        setting_aggregate_reblogs: Neukazuj nové vyzdvihnutia pre príspevky, ktoré už boli len nedávno povýšené (týka sa iba nanovo získaných vyzdvihnutí)
+        setting_aggregate_reblogs: Nezobrazuj nové vyzdvihnutia pre príspevky, ktoré už boli len nedávno povýšené (týka sa iba nanovo získaných povýšení)
         setting_default_language: Jazyk tvojích príspevkov môže byť zistený automaticky, ale nieje to vždy presné
         setting_display_media_default: Skryť médiá označené ako citlivé
         setting_display_media_hide_all: Vždy ukryť všetky médiá
@@ -106,7 +106,7 @@ sk:
         setting_show_application: Zverejni akú aplikáciu používaš na posielanie príspevkov
         setting_system_font_ui: Použi základné systémové písmo
         setting_theme: Vzhľad webu
-        setting_unfollow_modal: Zobrazuj potvrdzovacie okno pred skončením sledovania iného užívateľa
+        setting_unfollow_modal: Vyžaduj potvrdenie pred skončením sledovania iného užívateľa
         severity: Závažnosť
         type: Typ importu
         username: Prezývka
@@ -115,9 +115,9 @@ sk:
       featured_tag:
         name: Haštag
       interactions:
-        must_be_follower: Blokovať oznámenia od nesledujúcich
-        must_be_following: Blokovať oznámenia od ľudí, ktorých nesleduješ
-        must_be_following_dm: Blokuj súkromné správy od ľudí ktorých nesleduješ
+        must_be_follower: Blokuj oboznámenia od užívateľov, ktorí ma nenásledujú
+        must_be_following: Blokuj oboznámenia od ľudí, ktorých nesledujem
+        must_be_following_dm: Blokuj súkromné správy od ľudí ktorých nesledujem
       notification_emails:
         digest: Posielaj súhrnné emaily
         favourite: Poslať email ak si niekto obľúbi tvoj príspevok
