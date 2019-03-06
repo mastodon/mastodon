@@ -14,6 +14,7 @@ const messages = defineMessages({
   minutes: { id: 'time_remaining.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}} left' },
   hours: { id: 'time_remaining.hours', defaultMessage: '{number, plural, one {# hour} other {# hours}} left' },
   days: { id: 'time_remaining.days', defaultMessage: '{number, plural, one {# day} other {# days}} left' },
+  closed: { id: 'poll.closed', defaultMessage: 'Closed' },
 });
 
 const SECOND = 1000;
@@ -117,7 +118,7 @@ class Poll extends ImmutablePureComponent {
           />
 
           {!showResults && <span className={classNames('poll__input', { checkbox: poll.get('multiple'), active })} />}
-          {showResults && <span className='poll__number'>{Math.floor(percent)}%</span>}
+          {showResults && <span className='poll__number'>{Math.round(percent)}%</span>}
 
           {option.get('title')}
         </label>
@@ -132,7 +133,7 @@ class Poll extends ImmutablePureComponent {
       return null;
     }
 
-    const timeRemaining = timeRemainingString(intl, new Date(poll.get('expires_at')), intl.now());
+    const timeRemaining = poll.get('expired') ? intl.formatMessage(messages.closed) : timeRemainingString(intl, new Date(poll.get('expires_at')), intl.now());
     const showResults   = poll.get('voted') || poll.get('expired');
     const disabled      = this.props.disabled || Object.entries(this.state.selected).every(item => !item);
 
@@ -145,7 +146,8 @@ class Poll extends ImmutablePureComponent {
         <div className='poll__footer'>
           {!showResults && <button className='button button-secondary' disabled={disabled} onClick={this.handleVote}><FormattedMessage id='poll.vote' defaultMessage='Vote' /></button>}
           {showResults && !this.props.disabled && <span><button className='poll__link' onClick={this.handleRefresh}><FormattedMessage id='poll.refresh' defaultMessage='Refresh' /></button> · </span>}
-          <FormattedMessage id='poll.total_votes' defaultMessage='{count, plural, one {# vote} other {# votes}}' values={{ count: poll.get('votes_count') }} />  · {timeRemaining}
+          <FormattedMessage id='poll.total_votes' defaultMessage='{count, plural, one {# vote} other {# votes}}' values={{ count: poll.get('votes_count') }} />
+          {poll.get('expires_at') && <span> · {timeRemaining}</span>}
         </div>
       </div>
     );

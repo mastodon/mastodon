@@ -3,8 +3,8 @@
 class PollValidator < ActiveModel::Validator
   MAX_OPTIONS      = 4
   MAX_OPTION_CHARS = 25
-  MAX_EXPIRATION   = 7.days.freeze
-  MIN_EXPIRATION   = 1.day.freeze
+  MAX_EXPIRATION   = 1.month.freeze
+  MIN_EXPIRATION   = 5.minutes.freeze
 
   def validate(poll)
     current_time = Time.now.utc
