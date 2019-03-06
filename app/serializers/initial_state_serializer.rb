@@ -3,12 +3,21 @@
 class InitialStateSerializer < ActiveModel::Serializer
   attributes :meta, :compose, :accounts,
              :media_attachments, :settings,
-             :max_toot_chars
+             :max_toot_chars, :poll_limits
 
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
 
   def max_toot_chars
     StatusLengthValidator::MAX_CHARS
+  end
+
+  def poll_limits
+    {
+      max_options: PollValidator::MAX_OPTIONS,
+      max_option_chars: PollValidator::MAX_OPTION_CHARS,
+      min_expiration: PollValidator::MAX_EXPIRATION,
+      max_expiration: PollValidator::MIN_EXPIRATION,
+    }
   end
 
   def meta
