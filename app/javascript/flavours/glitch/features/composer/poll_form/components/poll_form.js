@@ -13,6 +13,8 @@ const messages = defineMessages({
   add_option: { id: 'compose_form.poll.add_option', defaultMessage: 'Add a choice' },
   remove_option: { id: 'compose_form.poll.remove_option', defaultMessage: 'Remove this choice' },
   poll_duration: { id: 'compose_form.poll.duration', defaultMessage: 'Poll duration' },
+  single_choice: { id: 'compose_form.poll.single_choice', defaultMessage: 'Allow one choice' },
+  multiple_choices: { id: 'compose_form.poll.multiple_choices', defaultMessage: 'Allow multiple choices' },
   minutes: { id: 'intervals.full.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}}' },
   hours: { id: 'intervals.full.hours', defaultMessage: '{number, plural, one {# hour} other {# hours}}' },
   days: { id: 'intervals.full.days', defaultMessage: '{number, plural, one {# day} other {# days}}' },
@@ -87,6 +89,10 @@ class PollForm extends ImmutablePureComponent {
     this.props.onChangeSettings(e.target.value, this.props.isMultiple);
   };
 
+  handleSelectMultiple = e => {
+    this.props.onChangeSettings(this.props.expiresIn, e.target.value === 'true');
+  };
+
   render () {
     const { options, expiresIn, isMultiple, onChangeOption, onRemoveOption, intl } = this.props;
 
@@ -98,12 +104,19 @@ class PollForm extends ImmutablePureComponent {
       <div className='compose-form__poll-wrapper'>
         <ul>
           {options.map((title, i) => <Option title={title} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} />)}
+          {options.size < pollLimits.max_options && (
+            <label className='poll__text editable'>
+              <span className={classNames('poll__input')} style={{ opacity: 0 }} />
+              <button className='button button-secondary' onClick={this.handleAddOption}><Icon icon='plus' /> <FormattedMessage {...messages.add_option} /></button>
+            </label>
+          )}
         </ul>
 
         <div className='poll__footer'>
-          {options.size < pollLimits.max_options && (
-            <button className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' /> <FormattedMessage {...messages.add_option} /></button>
-          )}
+          <select value={isMultiple ? 'true' : 'false'} onChange={this.handleSelectMultiple}>
+            <option value='false'>{intl.formatMessage(messages.single_choice)}</option>
+            <option value='true'>{intl.formatMessage(messages.multiple_choices)}</option>
+          </select>
 
           <select value={expiresIn} onChange={this.handleSelectDuration}>
             <option value={300}>{intl.formatMessage(messages.minutes, { number: 5 })}</option>
