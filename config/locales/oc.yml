@@ -8,7 +8,7 @@ oc:
     administered_by: 'Gerida per :'
     api: API
     apps: Aplicacions per mobil
-    closed_registrations: Las inscripcions son clavadas pel moment sus aquesta instància.
+    closed_registrations: Las inscripcions son clavadas pel moment sus aqueste servidor.
     contact: Contacte
     contact_missing: Pas parametrat
     contact_unavailable: Pas disponible
@@ -36,7 +36,7 @@ oc:
     generic_description: '%{domain} es un dels servidors del malhum'
     hosted_on: Mastodon albergat sus %{domain}
     learn_more: Ne saber mai
-    other_instances: Lista d’instàncias
+    other_instances: Lista dels servidors
     privacy_policy: Politica de confidencialitat
     source_code: Còdi font
     status_count_after:
@@ -414,15 +414,15 @@ oc:
         title: CSS personalizada
       hero:
         desc_html: Mostrat en primièra pagina. Almens 600x100px recomandat. S’es pas
-          configurat l’imatge de l’instància serà mostrat
+          configurat l’imatge del servidor serà mostrat
         title: Imatge de l’eròi
       mascot:
         desc_html: Mostrat sus mantun paginas. Almens 293×205px recomandat. S’es pas
           configurat, mostrarem la mascòta per defaut
         title: Imatge de la mascòta
       peers_api_enabled:
-        desc_html: Noms de domeni qu’aquesta instància a trobats pel fediverse
-        title: Publicar la lista de las instàncias conegudas
+        desc_html: Noms de domeni qu’aqueste servidor a trobats pel fediverse
+        title: Publicar la lista dels servidors coneguts
       preview_sensitive_media:
         desc_html: Los apercebuts dels ligams sus los autres sites mostraràn una vinheta
           encara que lo mèdia siá marcat coma sensible
@@ -1202,3 +1202,9 @@ oc:
     errors:
       already_voted: Avètz ja votat per aqueste sondatge
       duration_too_long: es tròp alonhat dins lo futur
+      duplicate_options: conten d’opcions en doble
+      duration_too_short: es tròp d’ora
+      expired: Lo sondatge es ja acabat
+      over_character_limit: pòt pas èsser superior a %{max}  caractèrs cadun
+      too_few_options: deu contenir mai d’una opcion
+      too_many_options: pòt pas contenir mai de %{max} opcions
