@@ -312,6 +312,7 @@ pl:
       back_to_account: Wróć do konta
       title: Śledzący %{acct}
     instances:
+      by_domain: Domena
       delivery_available: Doręczanie jest dostępne
       known_accounts:
         few: "%{count} znane konta"
@@ -757,6 +758,16 @@ pl:
     older: Starsze
     prev: Poprzednia
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Już zagłosowałeś(-aś) w tym głosowanie
+      duplicate_options: zawiera powtarzające się opcje
+      duration_too_long: jest zbyt odległa
+      duration_too_short: jest zbyt bliska
+      expired: To głosowanie już zakończyło się
+      over_character_limit: nie mogą składać się z więcej niż %{MAX} znaków
+      too_few_options: musi zawierać przynajmniej dwie opcji
+      too_many_options: nie może zawierać więcej niż %{MAX} opcji
   preferences:
     languages: Języki
     other: Pozostałe
@@ -872,6 +883,13 @@ pl:
       ownership: Nie możesz przypiąć cudzego wpisu
       private: Nie możesz przypiąć niepublicznego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
+    poll:
+      total_votes:
+        one: "%{count} głos"
+        few: "%{count} głosy"
+        many: "%{count} głosów"
+        other: "%{count} głosów"
+      vote: Głosuj
     show_more: Pokaż więcej
     sign_in_to_participate: Zaloguj się, aby udzielić się w tej konwersacji
     title: '%{name}: "%{quote}"'
