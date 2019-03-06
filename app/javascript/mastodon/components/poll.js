@@ -7,6 +7,8 @@ import classNames from 'classnames';
 import { vote, fetchPoll } from 'mastodon/actions/polls';
 import Motion from 'mastodon/features/ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
+import escapeTextContentForBrowser from 'escape-html';
+import emojify from 'mastodon/features/emoji/emoji';
 
 const messages = defineMessages({
   moments: { id: 'time_remaining.moments', defaultMessage: 'Moments remaining' },
@@ -120,7 +122,7 @@ class Poll extends ImmutablePureComponent {
           {!showResults && <span className={classNames('poll__input', { checkbox: poll.get('multiple'), active })} />}
           {showResults && <span className='poll__number'>{Math.round(percent)}%</span>}
 
-          {option.get('title')}
+          <span dangerouslySetInnerHTML={{ __html: option.get('title_emojified', emojify(escapeTextContentForBrowser(option.get('title')))) }} />
         </label>
       </li>
     );
