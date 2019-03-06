@@ -1,4 +1,4 @@
-import { normalizeAccount, normalizeStatus } from './normalizer';
+import { normalizeAccount, normalizeStatus, normalizePoll } from './normalizer';
 
 export const ACCOUNT_IMPORT  = 'ACCOUNT_IMPORT';
 export const ACCOUNTS_IMPORT = 'ACCOUNTS_IMPORT';
@@ -71,7 +71,7 @@ export function importFetchedStatuses(statuses) {
       }
 
       if (status.poll && status.poll.id) {
-        pushUnique(polls, status.poll);
+        pushUnique(polls, normalizePoll(status.poll));
       }
     }
 
