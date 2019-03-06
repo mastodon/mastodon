@@ -84,7 +84,7 @@ export function importFetchedStatuses(statuses) {
 }
 
 export function importFetchedPoll(poll) {
-  return (dispatch, getState) => {
+  return dispatch => {
     dispatch(importPolls([normalizePoll(poll)]));
   };
 }
