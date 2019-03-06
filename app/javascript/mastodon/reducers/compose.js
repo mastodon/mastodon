@@ -344,6 +344,14 @@ export default function compose(state = initialState, action) {
         map.set('spoiler', false);
         map.set('spoiler_text', '');
       }
+
+      if (action.status.get('poll')) {
+        map.set('poll', ImmutableMap({
+          options: action.status.getIn(['poll', 'options']).map(x => x.get('title')),
+          multiple: action.status.getIn(['poll', 'multiple']),
+          expires_in: 24 * 3600,
+        }));
+      }
     });
   case COMPOSE_POLL_ADD:
     return state.set('poll', initialPoll);
