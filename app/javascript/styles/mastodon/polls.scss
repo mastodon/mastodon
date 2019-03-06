@@ -5,6 +5,7 @@
   li {
     margin-bottom: 10px;
     position: relative;
+    height: 18px + 12px;
   }
 
   &__chart {
@@ -27,6 +28,9 @@
     padding: 6px 0;
     line-height: 18px;
     cursor: default;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     input[type=radio],
     input[type=checkbox] {
