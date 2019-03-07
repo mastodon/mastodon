@@ -6,6 +6,7 @@ import {
   TIMELINE_EXPAND_REQUEST,
   TIMELINE_EXPAND_FAIL,
   TIMELINE_SCROLL_TOP,
+  TIMELINE_CONNECT,
   TIMELINE_DISCONNECT,
 } from 'flavours/glitch/actions/timelines';
 import {
@@ -20,6 +21,7 @@ const initialState = ImmutableMap();
 
 const initialTimeline = ImmutableMap({
   unread: 0,
+  online: false,
   top: true,
   isLoading: false,
   hasMore: true,
@@ -137,14 +139,13 @@ export default function timelines(state = initialState, action) {
     return filterTimeline('home', state, action.relationship, action.statuses);
   case TIMELINE_SCROLL_TOP:
     return updateTop(state, action.timeline, action.top);
+  case TIMELINE_CONNECT:
+    return state.update(action.timeline, initialTimeline, map => map.set('online', true));
   case TIMELINE_DISCONNECT:
     return state.update(
       action.timeline,
       initialTimeline,
-      map => map.update(
-        'items',
-        items => items.first() ? items.unshift(null) : items
-      )
+      map => map.set('online', false).update('items', items => items.first() ? items.unshift(null) : items)
     );
   default:
     return state;
