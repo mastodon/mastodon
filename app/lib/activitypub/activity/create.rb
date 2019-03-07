@@ -253,7 +253,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     collection = @object['replies']
     return if collection.nil?
     replies = ActivityPub::FetchRepliesService.new.call(status, collection, false)
-    return if replies.present?
+    return unless replies.nil?
     uri = value_or_id(collection)
     ActivityPub::FetchRepliesWorker.perform_async(status.id, uri) unless uri.nil?
   end
