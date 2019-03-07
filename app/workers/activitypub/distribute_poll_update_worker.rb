@@ -3,7 +3,7 @@
 class ActivityPub::DistributePollUpdateWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'push'
+  sidekiq_options queue: 'push', unique: :until_executed, retry: 0
 
   def perform(status_id)
     @status  = Status.find(status_id)

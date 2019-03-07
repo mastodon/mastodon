@@ -22,7 +22,7 @@ class VoteService < BaseService
     return if @poll.account.local?
 
     if @poll.account.local?
-      ActivityPub::DistributePollUpdateWorker.perform_async(@poll.status.id) unless @poll.hide_totals
+      ActivityPub::DistributePollUpdateWorker.perform_in(3.minutes, @poll.status.id) unless @poll.hide_totals
     else
       @votes.each do |vote|
         ActivityPub::DeliveryWorker.perform_async(
