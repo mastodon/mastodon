@@ -26,10 +26,13 @@ class ActivityPub::DistributePollUpdateWorker
 
   def inboxes
     return @inboxes if defined?(@inboxes)
-    target_accounts = (@status.mentions.map(&:account).reject(&:local?) + @status.reblogs.map(&:account).reject(&:local?))
+    target_accounts = @status.mentions.map(&:account).reject(&:local?)
+    target_accounts += @status.reblogs.map(&:account).reject(&:local?)
+    target_accounts += @status.poll.votes.map(&:account).reject(&:local?)
     target_accounts.uniq!(&:id)
     @inboxes = target_accounts.select(&:activitypub?).uniq(&:inbox_url)
     @inboxes += @account.followers.inboxes unless @status.direct_visibility?
+    @inboxes.uniq!
     @inboxes
   end
 
