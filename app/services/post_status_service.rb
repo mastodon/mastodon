@@ -67,6 +67,8 @@ class PostStatusService < BaseService
 
     process_hashtags_service.call(@status)
     process_mentions_service.call(@status)
+
+    PollExpirationNotifyWorker.perform_at(@status.poll.expires_at, @status.poll.id) if @status.poll
   end
 
   def schedule_status!
