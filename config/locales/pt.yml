@@ -332,6 +332,24 @@ pt:
       status: Estado
       title: Denúncias
       unresolved: Por resolver
+      account:
+        note: nota
+        report: relatório
+      assign_to_self: Atribuí-me a mim
+      assigned: Atribuído ao moderador
+      created_at: Relatado
+      mark_as_unresolved: Marcar como não resolvido
+      notes:
+        create: Adicionar nota
+        create_and_resolve: Resolver com nota
+        create_and_unresolve: Reabrir com nota
+        delete: Apagar
+        placeholder: Descreve as ações que foram tomadas ou quaisquer outras atualizações
+          relacionadas...
+      reopen: Reabrir relatório
+      resolved_msg: Relatório resolvido com sucesso!
+      unassign: Não atribuir
+      updated_at: Atualizado
     settings:
       activity_api_enabled:
         desc_html: Contagem semanais de publicações locais, utilizadores activos e
@@ -384,6 +402,24 @@ pt:
         desc_html: Exibir a linha temporal pública na página inicial
         title: Visualização da linha temporal
       title: Preferências do site
+      custom_css:
+        desc_html: Modificar a aparência com CSS carregado em cada página
+        title: CSS personalizado
+      hero:
+        desc_html: Apresentado na primeira página. Pelo menos 600x100px recomendados.
+          Quando não é definido, é apresentado o thumbnail do servidor
+        title: Imagem Hero
+      mascot:
+        desc_html: Apresentada em múltiplas páginas. Pelo menos 293x205px recomendados.
+          Quando não é definida, é apresentada a mascote predefinida
+        title: Imagem da mascote
+      preview_sensitive_media:
+        desc_html: Previsualização de links noutros websites irá apresentar uma miniatura,
+          mesmo que a media seja marcada como sensível
+        title: Mostrar media sensível em previsualizações OpenGraph
+      profile_directory:
+        desc_html: Permite aos utilizadores serem descobertos
+        title: Ativar directório do perfil
     statuses:
       back_to_account: Voltar para página da conta
       batch:
@@ -447,6 +483,13 @@ pt:
       enable_hint: Uma vez activado, o teu servidor irá subscrever a todas as publicações
         deste retransmissor e irá começar a enviar as suas publicações públicas para
         ele.
+      enabled: Ativado
+      inbox_url: URL do retransmissor
+      pending: À espera da aprovação do retransmissor
+      save_and_enable: Guardar e ativar
+      setup: Configurar uma ligação ao retransmissor
+      status: Estado
+      title: Retransmissores
     tags:
       accounts: Contas
       hidden: Escondidas
@@ -457,6 +500,9 @@ pt:
       add_new: Adicionar nova
       delete: Apagar
       edit: Editar
+    report_notes:
+      created_msg: Relatório criado com sucesso!
+      destroyed_msg: Relatório apagado com sucesso!
   admin_mailer:
     new_report:
       body: '%{reporter} relatou %{target}'
