@@ -7,7 +7,7 @@
     - options.each do |option|
       %li
         - if show_results
-          - percent = 100 * option.votes_count / poll.votes_count
+          - percent = poll.votes_count > 0 ? 100 * option.votes_count / poll.votes_count : 0
           %span.poll__chart{ style: "width: #{percent}%" }
 
           %label.poll__text><
