@@ -32,7 +32,7 @@ class ActivityPub::DistributePollUpdateWorker
     target_accounts += @status.reblogs.map(&:account).reject(&:local?)
     target_accounts += @status.poll.votes.map(&:account).reject(&:local?)
     target_accounts.uniq!(&:id)
-    @inboxes = target_accounts.select(&:activitypub?).uniq(&:inbox_url)
+    @inboxes = target_accounts.select(&:activitypub?).pluck(&:inbox_url)
     @inboxes += @account.followers.inboxes unless @status.direct_visibility?
     @inboxes.uniq!
     @inboxes
