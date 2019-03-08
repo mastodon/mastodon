@@ -11,16 +11,18 @@ export default @injectIntl
 class ProfileColumnHeader extends React.PureComponent {
 
   static propTypes = {
+    onClick: PropTypes.func,
     intl: PropTypes.object.isRequired,
   };
 
   render() {
-    const { intl } = this.props;
+    const { onClick, intl } = this.props;
 
     return (
       <ColumnHeader
         icon='user-circle'
         title={intl.formatMessage(messages.profile)}
+        onClick={onClick}
         showBackButton
       />
     );

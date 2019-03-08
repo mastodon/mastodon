@@ -65,6 +65,10 @@ export default class AccountGallery extends ImmutablePureComponent {
     }
   }
 
+  handleHeaderClick = () => {
+    this.column.scrollTop();
+  }
+
   handleScrollToBottom = () => {
     if (this.props.hasMore) {
       this.handleLoadMore(this.props.medias.size > 0 ? this.props.medias.last().getIn(['status', 'id']) : undefined);
@@ -94,6 +98,10 @@ export default class AccountGallery extends ImmutablePureComponent {
     return !(location.state && location.state.mastodonModalOpen);
   }
 
+  setRef = c => {
+    this.column = c;
+  }
+
   render () {
     const { medias, isLoading, hasMore } = this.props;
 
@@ -112,8 +120,8 @@ export default class AccountGallery extends ImmutablePureComponent {
     }
 
     return (
-      <Column>
-        <ProfileColumnHeader />
+      <Column ref={this.setRef}>
+        <ProfileColumnHeader onClick={this.handleHeaderClick} />
 
         <ScrollContainer scrollKey='account_gallery' shouldUpdateScroll={this.shouldUpdateScroll}>
           <div className='scrollable scrollable--flex' onScroll={this.handleScroll}>

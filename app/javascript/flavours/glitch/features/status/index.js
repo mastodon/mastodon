@@ -369,6 +369,10 @@ export default class Status extends ImmutablePureComponent {
     }
   }
 
+  handleHeaderClick = () => {
+    this.column.scrollTop();
+  }
+
   renderChildren (list) {
     return list.map(id => (
       <StatusContainer
@@ -388,6 +392,10 @@ export default class Status extends ImmutablePureComponent {
 
   setRef = c => {
     this.node = c;
+  }
+
+  setColumnRef = c => {
+    this.column = c;
   }
 
   componentDidUpdate (prevProps) {
@@ -452,10 +460,11 @@ export default class Status extends ImmutablePureComponent {
     };
 
     return (
-      <Column label={intl.formatMessage(messages.detailedStatus)}>
+      <Column ref={this.setColumnRef} label={intl.formatMessage(messages.detailedStatus)}>
         <ColumnHeader
           icon='comment'
           title={intl.formatMessage(messages.tootHeading)}
+          onClick={this.handleHeaderClick}
           showBackButton
           extraButton={(
             <button className='column-header__button' title={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll} aria-pressed={!isExpanded ? 'false' : 'true'}><i className={`fa fa-${!isExpanded ? 'eye-slash' : 'eye'}`} /></button>

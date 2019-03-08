@@ -57,8 +57,16 @@ export default class AccountTimeline extends ImmutablePureComponent {
     }
   }
 
+  handleHeaderClick = () => {
+    this.column.scrollTop();
+  }
+
   handleLoadMore = maxId => {
     this.props.dispatch(expandAccountTimeline(this.props.params.accountId, { maxId, withReplies: this.props.withReplies }));
+  }
+
+  setRef = c => {
+    this.column = c;
   }
 
   render () {
@@ -73,8 +81,8 @@ export default class AccountTimeline extends ImmutablePureComponent {
     }
 
     return (
-      <Column name='account'>
-        <ProfileColumnHeader />
+      <Column ref={this.setRef} name='account'>
+        <ProfileColumnHeader onClick={this.handleHeaderClick} />
 
         <StatusList
           prepend={<HeaderContainer accountId={this.props.params.accountId} />}

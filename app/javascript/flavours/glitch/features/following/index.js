@@ -43,6 +43,10 @@ export default class Following extends ImmutablePureComponent {
     }
   }
 
+  handleHeaderClick = () => {
+    this.column.scrollTop();
+  }
+
   handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
 
@@ -59,6 +63,10 @@ export default class Following extends ImmutablePureComponent {
   shouldUpdateScroll = (prevRouterProps, { location }) => {
     if ((((prevRouterProps || {}).location || {}).state || {}).mastodonModalOpen) return false;
     return !(location.state && location.state.mastodonModalOpen);
+  }
+
+  setRef = c => {
+    this.column = c;
   }
 
   render () {
@@ -79,8 +87,8 @@ export default class Following extends ImmutablePureComponent {
     }
 
     return (
-      <Column>
-        <ProfileColumnHeader />
+      <Column ref={this.setRef}>
+        <ProfileColumnHeader onClick={this.handleHeaderClick} />
 
         <ScrollContainer scrollKey='following' shouldUpdateScroll={this.shouldUpdateScroll}>
           <div className='scrollable' onScroll={this.handleScroll}>
