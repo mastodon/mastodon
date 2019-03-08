@@ -268,6 +268,7 @@ class Account < ApplicationRecord
     return if fields.size >= MAX_FIELDS
 
     tmp = self[:fields] || []
+    tmp = [] if tmp.is_a?(Hash)
 
     (MAX_FIELDS - tmp.size).times do
       tmp << { name: '', value: '' }

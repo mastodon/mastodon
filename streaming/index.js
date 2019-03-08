@@ -89,6 +89,9 @@ const startWorker = (workerId) => {
       host:     process.env.DB_HOST || pg.defaults.host,
       port:     process.env.DB_PORT || pg.defaults.port,
       max:      10,
+      ssl: {
+        sslmode: process.env.DB_SSLMODE || 'prefer',
+      },
     },
 
     production: {
@@ -98,6 +101,9 @@ const startWorker = (workerId) => {
       host:     process.env.DB_HOST || 'localhost',
       port:     process.env.DB_PORT || 5432,
       max:      10,
+      ssl: {
+        sslmode: process.env.DB_SSLMODE || 'prefer',
+      },
     },
   };
 
