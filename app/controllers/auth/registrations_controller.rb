@@ -65,7 +65,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def allowed_registrations?
-    Setting.open_registrations || @invite&.valid_for_use?
+    Setting.registrations_mode != 'none' || @invite&.valid_for_use?
   end
 
   def invite_code
