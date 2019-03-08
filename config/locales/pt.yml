@@ -624,6 +624,18 @@ pt:
     follows: Segues
     mutes: Tens em silêncio
     storage: Armazenamento de média
+    archive_takeout:
+      date: Data
+      download: Descarregar o teu arquivo
+      hint_html: Podes pedir um arquivo das tuas <strong> publicações e ficheiros
+        de media carregados</strong>. Os dados do ficheiro exportado estarão no formato
+        ActivityPub, que pode ser lido com qualquer software compatível. Tu podes
+        pedir um arquivo destes a cada 7 dias.
+      in_progress: A compilar o seu arquivo...
+      request: Pede o teu arquivo
+      size: Tamanho
+    domain_blocks: Bloqueios de domínio
+    lists: Listas
   followers:
     domain: Domínio
     explanation_html: Se  queres garantir a privacidade das tuas publicações, deves
@@ -648,6 +660,7 @@ pt:
     validation_errors:
       one: Algo não está correcto. Por favor vê o erro abaixo
       other: Algo não está correto. Por favor vê os %{count} erros abaixo
+    copy: Copiar
   imports:
     preface: Podes importar dados que tenhas exportado de outra instância, como a
       lista de pessoas que segues ou bloqueadas.
@@ -656,7 +669,13 @@ pt:
       blocking: Lista de bloqueio
       following: Lista de pessoas que estás a seguir
       muting: Lista de utilizadores silenciados
+      domain_blocking: Lista de domínios bloqueados
     upload: Enviar
+    modes:
+      merge: Juntar
+      merge_long: Manter os registos existentes e adicionar novos registos
+      overwrite: Escrever por cima
+      overwrite_long: Substituir os registos atuais pelos novos
   in_memoriam_html: Em memória.
   invites:
     delete: Desativar
@@ -667,6 +686,7 @@ pt:
       '3600': 1 hora
       '43200': 12 horas
       '86400': 1 dia
+      '604800': 1 semana
     expires_in_prompt: Nunca
     generate: Gerar
     max_uses:
@@ -679,6 +699,7 @@ pt:
       expires_at: Expira
       uses: Usos
     title: Convidar pessoas
+    invited_by: 'Tu foste convidado por:'
   lists:
     errors:
       limit: Número máximo de listas alcançado
@@ -743,6 +764,8 @@ pt:
     next: Seguinte
     prev: Anterior
     truncate: '&hellip;'
+    newer: Mais nova
+    older: Mais velha
   preferences:
     languages: Idiomas
     other: Outro
@@ -753,6 +776,11 @@ pt:
     missing_resource: Não foi possível achar a URL de redirecionamento para sua conta
     proceed: Prossiga para seguir
     prompt: 'Você vai seguir:'
+    no_account_html: Não tens uma conta? Tu podes <a href='%{sign_up_path}' target='_blank'>
+      aderir aqui</a>
+    reason_html: <strong> Porque é que este passo é necessário?</strong> <code>%{instance}</code>
+      pode não ser o servidor onde tu estás registado. Por isso, nós precisamos de
+      te redirecionar para o teu servidor inicial em primeiro lugar.
   sessions:
     activity: Última atividade
     browser: Navegador
@@ -867,3 +895,63 @@ pt:
     directory: Dirétorio de perfil
     enabled: Neste momento tu estás listado no dirétorio.
     explanation: Descobre utilizadores com base nos seus interesses
+    enabled_but_waiting: Tu escolheste ser listado no diretório, mas ainda não tens
+      o número mínimo de seguidores (%{min_followers}) para integrares esta lista.
+    explore_mastodon: Explorar %{title}
+    how_to_enable: Tu ainda não integras este directório. Podes fazer isso abaixo.
+      Usa hashtags na tua biografia para seres listado em hashtags específicas!
+    people:
+      one: '%{count} pessoa'
+      other: '%{count} pessoas'
+  featured_tags:
+    add_new: Adicionar nova
+    errors:
+      limit: Já atingiste o limite máximo de hashtags
+  filters:
+    contexts:
+      home: Cronologia inicial
+      notifications: Notificações
+      public: Cronologias públicas
+      thread: Conversações
+    edit:
+      title: Editar filtros
+    errors:
+      invalid_context: Inválido ou nenhum contexto fornecido
+      invalid_irreversible: Filtragem irreversível só funciona no contexto das notificações
+        ou do início
+    index:
+      delete: Apagar
+      title: Filtros
+    new:
+      title: Adicionar novo filtro
+  footer:
+    developers: Responsáveis pelo desenvolvimento
+    more: Mais…
+    resources: Recursos
+  polls:
+    errors:
+      already_voted: Tu já votaste nesta sondagem
+      duplicate_options: contém itens duplicados
+      duration_too_long: está demasiado à frente no futuro
+      duration_too_short: é demasiado cedo
+      expired: A sondagem já terminou
+      over_character_limit: não pode ter mais do que %{max} caracteres cada um
+      too_few_options: tem de ter mais do que um item
+      too_many_options: não pode conter mais do que %{max} itens
+  remote_interaction:
+    favourite:
+      proceed: Prosseguir para os favoritos
+      prompt: 'Queres favoritar esta publicação:'
+    reblog:
+      proceed: Prosseguir com partilha
+      prompt: 'Queres partilhar esta publicação:'
+    reply:
+      proceed: Prosseguir com resposta
+      prompt: 'Queres responder a esta publicação:'
+  remote_unfollow:
+    error: Erro
+    title: Título
+    unfollowed: Não seguido
+  scheduled_statuses:
+    over_daily_limit: Excedeste o limite de %{limit} publicações agendadas para esse
+      dia
