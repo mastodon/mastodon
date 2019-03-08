@@ -29,6 +29,7 @@ class VoteService < BaseService
           @poll.account.inbox_url
         )
       end
+      PollExpirationNotifyWorker.perform_at(@poll.expires_at + 5.minutes, @poll.id) unless @poll.expires_at.nil?
     end
   end
 
