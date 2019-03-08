@@ -9,6 +9,8 @@ class ActivityPub::DistributePollUpdateWorker
     @status  = Status.find(status_id)
     @account = @status.account
 
+    return unless @status.poll
+
     ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
       [payload, @account.id, inbox_url]
     end
