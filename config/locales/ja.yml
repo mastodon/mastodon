@@ -968,3 +968,8 @@ ja:
   verification:
     explanation_html: <strong>プロフィール内のリンクの所有者であることを認証することができます</strong>。そのためにはリンクされたウェブサイトにMastodonプロフィールへのリンクが含まれている必要があります。リンクには<code>rel="me"</code>属性を<strong>必ず</strong>与えなければなりません。リンクのテキストについては重要ではありません。以下は例です：
     verification: 認証
+  polls:
+    errors:
+      duplicate_options: 項目が重複しています
+      duration_too_short: 期限が短すぎます
+      expired: 既に終了している投票です
