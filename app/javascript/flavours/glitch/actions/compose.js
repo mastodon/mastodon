@@ -175,7 +175,9 @@ export function submitCompose(routerHistory) {
       // To make the app more responsive, immediately get the status into the columns
 
       const insertIfOnline = (timelineId) => {
-        if (getState().getIn(['timelines', timelineId, 'items', 0]) !== null) {
+        const timeline = getState().getIn(['timelines', timelineId]);
+
+        if (timeline && timeline.get('items').size > 0 && timeline.getIn(['items', 0]) !== null && timeline.get('online')) {
           dispatch(updateTimeline(timelineId, { ...response.data }));
         }
       };

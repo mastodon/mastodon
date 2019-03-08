@@ -3,6 +3,7 @@ import {
   updateTimeline,
   deleteFromTimelines,
   expandHomeTimeline,
+  connectTimeline,
   disconnectTimeline,
 } from './timelines';
 import { updateNotifications, expandNotifications } from './notifications';
@@ -15,7 +16,12 @@ export function connectTimelineStream (timelineId, path, pollingRefresh = null, 
 
   return connectStream (path, pollingRefresh, (dispatch, getState) => {
     const locale = getState().getIn(['meta', 'locale']);
+
     return {
+      onConnect() {
+        dispatch(connectTimeline(timelineId));
+      },
+
       onDisconnect() {
         dispatch(disconnectTimeline(timelineId));
       },

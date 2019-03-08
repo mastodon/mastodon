@@ -11,6 +11,8 @@ class VoteService < BaseService
     @choices = choices
     @votes   = []
 
+    return if @poll.expired?
+
     ApplicationRecord.transaction do
       @choices.each do |choice|
         @votes << @poll.votes.create!(account: @account, choice: choice)

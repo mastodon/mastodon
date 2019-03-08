@@ -1,10 +1,8 @@
-- options      = (!poll.expired? && poll.hide_totals?) ? poll.unloaded_options : poll.loaded_options
-- voted        = user_signed_in? && poll.votes.where(account: current_account).exists?
-- show_results = voted || poll.expired?
+- show_results = (user_signed_in? && poll.voted?(current_account)) || poll.expired?
 
 .poll
   %ul
-    - options.each do |option|
+    - poll.loaded_options.each do |option|
       %li
         - if show_results
           - percent = poll.votes_count > 0 ? 100 * option.votes_count / poll.votes_count : 0
