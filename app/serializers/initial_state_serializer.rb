@@ -15,8 +15,8 @@ class InitialStateSerializer < ActiveModel::Serializer
     {
       max_options: PollValidator::MAX_OPTIONS,
       max_option_chars: PollValidator::MAX_OPTION_CHARS,
-      min_expiration: PollValidator::MAX_EXPIRATION,
-      max_expiration: PollValidator::MIN_EXPIRATION,
+      min_expiration: PollValidator::MIN_EXPIRATION,
+      max_expiration: PollValidator::MAX_EXPIRATION,
     }
   end
 
