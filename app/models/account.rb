@@ -266,6 +266,7 @@ class Account < ApplicationRecord
     return if fields.size >= DEFAULT_FIELDS_SIZE
 
     tmp = self[:fields] || []
+    tmp = [] if tmp.is_a?(Hash)
 
     (DEFAULT_FIELDS_SIZE - tmp.size).times do
       tmp << { name: '', value: '' }
