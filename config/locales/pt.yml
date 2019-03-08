@@ -420,6 +420,15 @@ pt:
       profile_directory:
         desc_html: Permite aos utilizadores serem descobertos
         title: Ativar directório do perfil
+      show_known_fediverse_at_about_page:
+        desc_html: Quando comutado, irá mostrar a previsualização de publicações de
+          todo o fediverse conhecido. De outro modo só mostrará publicações locais.
+        title: Mostrar o fediverse conhecido na previsualização da cronologia
+      site_short_description:
+        desc_html: Mostrada na barra lateral e em etiquetas de metadados. Descreve
+          o que o Mastodon é e o que torna este servidor especial num único parágrafo.
+          Se deixada em branco, remete para a descrição do servidor.
+        title: Breve descrição do servidor
     statuses:
       back_to_account: Voltar para página da conta
       batch:
@@ -432,6 +441,7 @@ pt:
       no_media: Não há média
       title: Estado das contas
       with_media: Com media
+      no_status_selected: Nenhum estado foi alterado porque nenhum foi selecionado
     subscriptions:
       callback_url: URL de Callback
       confirmed: Confirmado
@@ -496,10 +506,14 @@ pt:
       hide: Esconder no diretório
       unhide: Mostrar no diretório
       visible: Visível
+      name: Hashtag
+      title: Hashtags
     warning_presets:
       add_new: Adicionar novo
       delete: Apagar
       edit: Editar
+      edit_preset: Editar o aviso predefinido
+      title: Gerir os avisos predefinidos
     report_notes:
       created_msg: Relatório criado com sucesso!
       destroyed_msg: Relatório apagado com sucesso!
@@ -544,6 +558,13 @@ pt:
     reset_password: Criar nova palavra-passe
     security: Alterar palavra-passe
     set_new_password: Editar palavra-passe
+    change_password: Palavra-passe
+    or: ou
+    or_log_in_with: Ou iniciar sessão com
+    providers:
+      cas: CAS
+      saml: SAML
+    register_elsewhere: Regista-te noutro servidor
   authorize_follow:
     error: Infelizmente, ocorreu um erro ao buscar a conta remota
     follow: Seguir
@@ -554,6 +575,7 @@ pt:
       return: Voltar ao perfil do utilizador
       web: Voltar à página inicial
     title: Seguir %{acct}
+    already_following: Tu já estás a seguir esta conta
   datetime:
     distance_in_words:
       about_x_hours: '%{count}h'
@@ -841,3 +863,7 @@ pt:
     invalid_email: O endereço de e-mail é inválido
     invalid_otp_token: Código de autenticação inválido
     signed_in_as: 'Registado como:'
+  directories:
+    directory: Dirétorio de perfil
+    enabled: Neste momento tu estás listado no dirétorio.
+    explanation: Descobre utilizadores com base nos seus interesses
