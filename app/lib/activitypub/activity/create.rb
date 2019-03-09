@@ -241,6 +241,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def poll_vote?
     return false if replied_to_status.nil? || replied_to_status.poll.nil? || !replied_to_status.local? || !replied_to_status.poll.options.include?(@object['name'])
+    return true if replied_to_status.poll.expired?
     replied_to_status.poll.votes.create!(account: @account, choice: replied_to_status.poll.options.index(@object['name']), uri: @object['id'])
   end
 
@@ -253,7 +254,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     collection = @object['replies']
     return if collection.nil?
     replies = ActivityPub::FetchRepliesService.new.call(status, collection, false)
-    return if replies.present?
+    return unless replies.nil?
     uri = value_or_id(collection)
     ActivityPub::FetchRepliesWorker.perform_async(status.id, uri) unless uri.nil?
   end
