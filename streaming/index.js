@@ -24,7 +24,7 @@ const dbUrlToConfig = (dbUrl) => {
     return {};
   }
 
-  const params = url.parse(dbUrl);
+  const params = url.parse(dbUrl, true);
   const config = {};
 
   if (params.auth) {
@@ -89,7 +89,7 @@ const startWorker = (workerId) => {
       host:     process.env.DB_HOST || pg.defaults.host,
       port:     process.env.DB_PORT || pg.defaults.port,
       max:      10,
-      ssl:      !!process.env.DB_SSLMODE && process.env.DB_SSLMODE != 'disable',
+      ssl:      !!process.env.DB_SSLMODE && process.env.DB_SSLMODE !== 'disable',
     },
 
     production: {
@@ -99,7 +99,7 @@ const startWorker = (workerId) => {
       host:     process.env.DB_HOST || 'localhost',
       port:     process.env.DB_PORT || 5432,
       max:      10,
-      ssl:      !!process.env.DB_SSLMODE && process.env.DB_SSLMODE != 'disable',
+      ssl:      !!process.env.DB_SSLMODE && process.env.DB_SSLMODE !== 'disable',
     },
   };
 
