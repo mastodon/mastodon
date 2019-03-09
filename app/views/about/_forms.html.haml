@@ -1,7 +1,7 @@
 - if @instance_presenter.open_registrations
   = render 'registration'
 - else
-  = link_to t('auth.register_elsewhere'), 'https://joinmastodon.org', class: 'button button-primary'
+  = link_to t('auth.register_elsewhere'), 'https://joinmastodon.org/#getting-started', class: 'button button-primary'
 
   .closed-registrations-message
     - if @instance_presenter.closed_registrations_message.blank?
