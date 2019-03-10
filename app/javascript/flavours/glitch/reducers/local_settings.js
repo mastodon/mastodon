@@ -39,8 +39,9 @@ const initialState = ImmutableMap({
     show_action_bar : true,
   }),
   media     : ImmutableMap({
-    letterbox   : true,
-    fullwidth   : true,
+    letterbox        : true,
+    fullwidth        : true,
+    reveal_behind_cw : false,
   }),
   notifications : ImmutableMap({
     favicon_badge : false,

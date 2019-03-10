@@ -466,6 +466,7 @@ export default class Status extends ImmutablePureComponent {
               onOpenVideo={this.handleOpenVideo}
               width={this.props.cachedMediaWidth}
               cacheWidth={this.props.cacheMediaWidth}
+              revealed={settings.getIn(['media', 'reveal_behind_cw']) && !!status.get('spoiler_text') ? true : undefined}
             />)}
           </Bundle>
         );
@@ -483,6 +484,7 @@ export default class Status extends ImmutablePureComponent {
                 onOpenMedia={this.props.onOpenMedia}
                 cacheWidth={this.props.cacheMediaWidth}
                 defaultWidth={this.props.cachedMediaWidth}
+                revealed={settings.getIn(['media', 'reveal_behind_cw']) && !!status.get('spoiler_text') ? true : undefined}
               />
             )}
           </Bundle>

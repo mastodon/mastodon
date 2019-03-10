@@ -138,6 +138,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             preventPlayback={!expanded}
             onOpenVideo={this.handleOpenVideo}
             autoplay
+            revealed={settings.getIn(['media', 'reveal_behind_cw']) && !!status.get('spoiler_text') ? true : undefined}
           />
         );
         mediaIcon = 'video-camera';
@@ -151,6 +152,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             fullwidth={settings.getIn(['media', 'fullwidth'])}
             hidden={!expanded}
             onOpenMedia={this.props.onOpenMedia}
+            revealed={settings.getIn(['media', 'reveal_behind_cw']) && !!status.get('spoiler_text') ? true : undefined}
           />
         );
         mediaIcon = 'picture-o';

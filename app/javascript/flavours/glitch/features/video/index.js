@@ -119,6 +119,12 @@ export default class Video extends React.PureComponent {
     revealed: this.props.revealed === undefined ? (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all') : this.props.revealed,
   };
 
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.revealed === true) {
+      this.setState({ revealed: true });
+    }
+  }
+
   // hard coded in components.scss
   // any way to get ::before values programatically?
   volWidth = 50;

@@ -328,6 +328,14 @@ export default class LocalSettingsPage extends React.PureComponent {
         >
           <FormattedMessage id='settings.inline_preview_cards' defaultMessage='Inline preview cards for external links' />
         </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['media', 'reveal_behind_cw']}
+          id='mastodon-settings--reveal-behind-cw'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.media_reveal_behind_cw' defaultMessage='Reveal sensitive media behind a CW by default' />
+        </LocalSettingsPageItem>
       </div>
     ),
   ];
