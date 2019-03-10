@@ -801,6 +801,7 @@ pt:
       safari: Safari
       uc_browser: UCBrowser
       weibo: Weibo
+      otter: Lontra
     current_session: Sessão atual
     description: '%{browser} em %{platform}'
     explanation: Estes são os navegadores que estão conectados com a tua conta do
@@ -837,6 +838,7 @@ pt:
     settings: Configurações
     two_factor_authentication: Autenticação em dois passos
     your_apps: As tuas aplicações
+    featured_tags: Hashtags destacadas
   statuses:
     open_in_web: Abrir no browser
     over_character_limit: limite de caracter excedeu %{max}
@@ -854,6 +856,26 @@ pt:
       public_long: Todos podem ver
       unlisted: Público, mas não mostre no timeline público
       unlisted_long: Todos podem ver, porém não será postado nas timelines públicas
+    attached:
+      description: 'Anexadas: %{attached}'
+      image:
+        one: '%{count} imagem'
+        other: '%{count} imagens'
+      video:
+        one: '%{count} vídeo'
+        other: '%{count} vídeos'
+    boosted_from_html: Partilhadas de %{acct_link}
+    content_warning: 'Aviso de conteúdo: %{warning}'
+    disallowed_hashtags:
+      one: 'continha uma hashtag proibida: %{tags}'
+      other: 'continha as hashtags proibidas: %{tags}'
+    language_detection: Detectar automaticamente a língua
+    poll:
+      total_votes:
+        one: '%{count} voto'
+        other: '%{count} votos'
+      vote: Votar
+    sign_in_to_participate: Inicie a sessão para participar na conversa
   stream_entries:
     pinned: Toot fixado
     reblogged: partilhado
@@ -862,9 +884,12 @@ pt:
     title: '%{instance} Termos de Serviço e Política de Privacidade'
   themes:
     default: Mastodon
+    contrast: Mastodon (Elevado contraste)
+    mastodon-light: Mastodon (Leve)
   time:
     formats:
       default: '%b %d, %Y, %H:%M'
+      month: '%b %Y'
   two_factor_authentication:
     code_hint: Entre o código gerado pelo seu aplicativo para confirmar
     description_html: Se ativar a <strong>autenticação em dois passos</strong>, quando
@@ -955,3 +980,8 @@ pt:
   scheduled_statuses:
     over_daily_limit: Excedeste o limite de %{limit} publicações agendadas para esse
       dia
+    over_total_limit: Tu excedeste o limite de %{limit} publicações agendadas
+    too_soon: A data de agendamento tem de ser futura
+  user_mailer:
+    backup_ready:
+      subject: O teu arquivo está pronto para descarregar
