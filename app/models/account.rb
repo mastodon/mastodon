@@ -78,10 +78,6 @@ class Account < ApplicationRecord
   validates :note, note_length: { maximum: 160 }, if: -> { local? && will_save_change_to_note? }
   validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
 
-  before_validation(on: :create) do
-    self.username = username&.squish
-  end
-
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :expiring, ->(time) { remote.where.not(subscription_expires_at: nil).where('subscription_expires_at < ?', time) }
@@ -476,6 +472,7 @@ class Account < ApplicationRecord
 
   before_create :generate_keys
   before_validation :prepare_contents, if: :local?
+  before_validation :prepare_username, on: :create
   before_destroy :clean_feed_manager
 
   private
@@ -483,6 +480,10 @@ class Account < ApplicationRecord
   def prepare_contents
     display_name&.strip!
     note&.strip!
+  end
+
+  def prepare_username
+    username&.squish!
   end
 
   def generate_keys

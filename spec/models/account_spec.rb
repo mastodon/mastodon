@@ -558,8 +558,8 @@ RSpec.describe Account, type: :model do
       expect(account).to model_have_error_on_field(:username)
     end
 
-    it 'squish the username before validation' do
-      account = Fabricate(:account, domain: nil, username: "  bob \t \n ")
+    it 'squishes the username before validation' do
+      account = Fabricate(:account, domain: nil, username: " \u3000bob \t \u00a0 \n ")
       expect(account.username).to eq 'bob'
     end
 
