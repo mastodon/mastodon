@@ -205,6 +205,38 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
+  renderPoll (notification) {
+    const { intl } = this.props;
+
+    return (
+      <HotKeys handlers={this.getHandlers()}>
+        <div className='notification notification-poll focusable' tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage({ id: 'notification.poll', defaultMessage: 'Your poll has ended' }), notification.get('created_at'))}>
+          <div className='notification__message'>
+            <div className='notification__favourite-icon-wrapper'>
+              <Icon id='tasks' fixedWidth />
+            </div>
+
+            <span title={notification.get('created_at')}>
+              <FormattedMessage id='notification.poll' defaultMessage='Your poll has ended' />
+            </span>
+          </div>
+
+          <StatusContainer
+            id={notification.get('status')}
+            account={notification.get('account')}
+            muted
+            withDismiss
+            hidden={this.props.hidden}
+            getScrollPosition={this.props.getScrollPosition}
+            updateScrollBottom={this.props.updateScrollBottom}
+            cachedMediaWidth={this.props.cachedMediaWidth}
+            cacheMediaWidth={this.props.cacheMediaWidth}
+          />
+        </div>
+      </HotKeys>
+    );
+  }
+
   render () {
     const { notification } = this.props;
     const account          = notification.get('account');
@@ -220,6 +252,8 @@ class Notification extends ImmutablePureComponent {
       return this.renderFavourite(notification, link);
     case 'reblog':
       return this.renderReblog(notification, link);
+    case 'poll':
+      return this.renderPoll(notification);
     }
 
     return null;
