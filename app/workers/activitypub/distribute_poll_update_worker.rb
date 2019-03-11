@@ -9,7 +9,7 @@ class ActivityPub::DistributePollUpdateWorker
     @status  = Status.find(status_id)
     @account = @status.account
 
-    return unless @status.poll
+    return if @status.poll.nil? || @status.local_only?
 
     ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
       [payload, @account.id, inbox_url]
