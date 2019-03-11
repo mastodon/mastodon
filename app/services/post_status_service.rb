@@ -91,10 +91,13 @@ class PostStatusService < BaseService
   def postprocess_status!
     LinkCrawlWorker.perform_async(@status.id) unless @status.spoiler_text?
     DistributionWorker.perform_async(@status.id)
+
     unless @status.local_only?
       Pubsubhubbub::DistributionWorker.perform_async(@status.stream_entry.id)
       ActivityPub::DistributionWorker.perform_async(@status.id)
     end
+
+    PollExpirationNotifyWorker.perform_at(@status.poll.expires_at, @status.poll.id) if @status.poll
   end
 
   def validate_media!

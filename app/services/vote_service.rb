@@ -19,14 +19,17 @@ class VoteService < BaseService
       end
     end
 
-    return if @poll.account.local?
-
-    @votes.each do |vote|
-      ActivityPub::DeliveryWorker.perform_async(
-        build_json(vote),
-        @account.id,
-        @poll.account.inbox_url
-      )
+    if @poll.account.local?
+      ActivityPub::DistributePollUpdateWorker.perform_in(3.minutes, @poll.status.id) unless @poll.hide_totals
+    else
+      @votes.each do |vote|
+        ActivityPub::DeliveryWorker.perform_async(
+          build_json(vote),
+          @account.id,
+          @poll.account.inbox_url
+        )
+      end
+      PollExpirationNotifyWorker.perform_at(@poll.expires_at + 5.minutes, @poll.id) unless @poll.expires_at.nil?
     end
   end
 
