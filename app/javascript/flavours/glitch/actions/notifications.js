@@ -106,7 +106,7 @@ const excludeTypesFromSettings = state => state.getIn(['settings', 'notification
 
 
 const excludeTypesFromFilter = filter => {
-  const allTypes = ImmutableList(['follow', 'favourite', 'reblog', 'mention']);
+  const allTypes = ImmutableList(['follow', 'favourite', 'reblog', 'mention', 'poll']);
   return allTypes.filterNot(item => item === filter).toJS();
 };
 

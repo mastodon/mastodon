@@ -62,6 +62,13 @@ export default class StatusPrepend extends React.PureComponent {
           values={{ name : link }}
         />
       );
+    case 'poll':
+      return (
+        <FormattedMessage
+          id='notification.poll'
+          defaultMessage='Your poll has ended'
+        />
+      );
     }
     return null;
   }
@@ -75,7 +82,7 @@ export default class StatusPrepend extends React.PureComponent {
         <div className={type === 'reblogged_by' || type === 'featured' ? 'status__prepend-icon-wrapper' : 'notification__favourite-icon-wrapper'}>
           <i
             className={`fa fa-fw fa-${
-              type === 'favourite' ? 'star star-icon' : (type === 'featured' ? 'thumb-tack' : 'retweet')
+              type === 'favourite' ? 'star star-icon' : (type === 'featured' ? 'thumb-tack' : (type === 'poll' ? 'tasks' : 'retweet'))
             } status__prepend-icon`}
           />
         </div>

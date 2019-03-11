@@ -108,6 +108,27 @@ export default class Notification extends ImmutablePureComponent {
           withDismiss
         />
       );
+    case 'poll':
+      return (
+        <StatusContainer
+          containerId={notification.get('id')}
+          hidden={hidden}
+          id={notification.get('status')}
+          account={notification.get('account')}
+          prepend='poll'
+          muted
+          notification={notification}
+          onMoveDown={onMoveDown}
+          onMoveUp={onMoveUp}
+          onMention={onMention}
+          getScrollPosition={getScrollPosition}
+          updateScrollBottom={updateScrollBottom}
+          cachedMediaWidth={this.props.cachedMediaWidth}
+          cacheMediaWidth={this.props.cacheMediaWidth}
+          onUnmount={this.props.onUnmount}
+          withDismiss
+        />
+      );
     default:
       return null;
     }
