@@ -20,7 +20,7 @@ class VoteService < BaseService
     end
 
     if @poll.account.local?
-      notify_about_new_votes!
+      distribute_poll!
     else
       deliver_votes!
       queue_final_poll_check!
