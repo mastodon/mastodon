@@ -60,9 +60,13 @@ class PublicTimeline extends React.PureComponent {
     }
   }
 
-  handleLoadMore = maxId => {
-    const { dispatch, local } = this.props;
-    dispatch(local ? expandCommunityTimeline({ maxId }) : expandPublicTimeline({ maxId }));
+  handleLoadMore = () => {
+    const { dispatch, statusIds, local } = this.props;
+    const maxId = statusIds.last();
+
+    if (maxId) {
+      dispatch(local ? expandCommunityTimeline({ maxId }) : expandPublicTimeline({ maxId }));
+    }
   }
 
   setRef = c => {
