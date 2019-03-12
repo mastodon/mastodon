@@ -371,15 +371,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     @skip_download ||= DomainBlock.find_by(domain: @account.domain)&.reject_media?
   end
 
-  def invalid_origin?(url)
-    return true if unsupported_uri_scheme?(url)
-
-    needle   = Addressable::URI.parse(url).host
-    haystack = Addressable::URI.parse(@account.uri).host
-
-    !haystack.casecmp(needle).zero?
-  end
-
   def reply_to_local?
     !replied_to_status.nil? && replied_to_status.account.local?
   end
