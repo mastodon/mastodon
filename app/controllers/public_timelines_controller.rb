@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PublicTimelinesController < ApplicationController
+  before_action :set_pack
   layout 'public'
 
   before_action :check_enabled
@@ -30,5 +31,9 @@ class PublicTimelinesController < ApplicationController
 
   def set_instance_presenter
     @instance_presenter = InstancePresenter.new
+  end
+
+  def set_pack
+    use_pack 'about'
   end
 end

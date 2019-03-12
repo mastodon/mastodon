@@ -295,6 +295,11 @@
       cursor: default;
     }
 
+    &.disabled > div {
+      opacity: 0.5;
+      cursor: default;
+    }
+
     h4 {
       flex: 1 1 auto;
       font-size: 18px;
