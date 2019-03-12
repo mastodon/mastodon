@@ -25,6 +25,6 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
     status = Status.find_by(uri: object_uri, account_id: @account.id)
     return if status.nil? || status.poll.nil?
 
-    ActivityPub::ProcessPollService.new.call(poll, @object)
+    ActivityPub::ProcessPollService.new.call(status.poll, @object)
   end
 end
