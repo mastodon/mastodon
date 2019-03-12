@@ -92,7 +92,7 @@ class NotifyService < BaseService
 
   def blocked?
     blocked   = @recipient.suspended?                            # Skip if the recipient account is suspended anyway
-    blocked ||= from_self? unless @notification.type == :poll    # Skip for interactions with self
+    blocked ||= from_self? && @notification.type != :poll        # Skip for interactions with self
 
     return blocked if message? && from_staff?
 
