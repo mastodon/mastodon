@@ -10,7 +10,7 @@ class RemoveStatusService < BaseService
     @account      = status.account
     @tags         = status.tags.pluck(:name).to_a
     @mentions     = status.active_mentions.includes(:account).to_a
-    @reblogs      = status.reblogs.to_a
+    @reblogs      = status.reblogs.includes(:account).to_a
     @stream_entry = status.stream_entry
     @options      = options
 
@@ -77,8 +77,8 @@ class RemoveStatusService < BaseService
     end
 
     # ActivityPub
-    ActivityPub::DeliveryWorker.push_bulk(target_accounts.select(&:activitypub?).uniq(&:inbox_url)) do |target_account|
-      [signed_activity_json, @account.id, target_account.inbox_url]
+    ActivityPub::DeliveryWorker.push_bulk(target_accounts.select(&:activitypub?).uniq(&:preferred_inbox_url)) do |target_account|
+      [signed_activity_json, @account.id, target_account.preferred_inbox_url]
     end
   end
 
