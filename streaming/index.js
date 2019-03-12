@@ -89,7 +89,6 @@ const startWorker = (workerId) => {
       host:     process.env.DB_HOST || pg.defaults.host,
       port:     process.env.DB_PORT || pg.defaults.port,
       max:      10,
-      ssl:      !!process.env.DB_SSLMODE && process.env.DB_SSLMODE !== 'disable' ? true : undefined,
     },
 
     production: {
@@ -99,11 +98,15 @@ const startWorker = (workerId) => {
       host:     process.env.DB_HOST || 'localhost',
       port:     process.env.DB_PORT || 5432,
       max:      10,
-      ssl:      !!process.env.DB_SSLMODE && process.env.DB_SSLMODE !== 'disable' ? true : undefined,
     },
   };
 
-  const app    = express();
+  if (!!process.env.DB_SSLMODE && process.env.DB_SSLMODE !== 'disable') {
+    pgConfigs.development.ssl = true;
+    pgConfigs.production.ssl  = true;
+  }
+
+  const app = express();
   app.set('trusted proxy', process.env.TRUSTED_PROXY_IP || 'loopback,uniquelocal');
 
   const pgPool = new pg.Pool(Object.assign(pgConfigs[env], dbUrlToConfig(process.env.DATABASE_URL)));

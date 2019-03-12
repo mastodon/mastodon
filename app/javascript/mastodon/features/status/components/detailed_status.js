@@ -23,7 +23,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
   };
 
   static propTypes = {
-    status: ImmutablePropTypes.map.isRequired,
+    status: ImmutablePropTypes.map,
     onOpenMedia: PropTypes.func.isRequired,
     onOpenVideo: PropTypes.func.isRequired,
     onToggleHidden: PropTypes.func.isRequired,
