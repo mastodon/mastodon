@@ -241,9 +241,12 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def poll_vote?
     return false if replied_to_status.nil? || replied_to_status.poll.nil? || !replied_to_status.local? || !replied_to_status.poll.options.include?(@object['name'])
-    return true if replied_to_status.poll.expired?
-    replied_to_status.poll.votes.create!(account: @account, choice: replied_to_status.poll.options.index(@object['name']), uri: @object['id'])
-    ActivityPub::DistributePollUpdateWorker.perform_in(3.minutes, replied_to_status.id) unless replied_to_status.poll.hide_totals
+
+    unless replied_to_status.poll.expired?
+      replied_to_status.poll.votes.create!(account: @account, choice: replied_to_status.poll.options.index(@object['name']), uri: @object['id'])
+      ActivityPub::DistributePollUpdateWorker.perform_in(3.minutes, replied_to_status.id) unless replied_to_status.poll.hide_totals?
+    end
+
     true
   end
 
@@ -369,15 +372,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def skip_download?
     return @skip_download if defined?(@skip_download)
     @skip_download ||= DomainBlock.find_by(domain: @account.domain)&.reject_media?
-  end
-
-  def invalid_origin?(url)
-    return true if unsupported_uri_scheme?(url)
-
-    needle   = Addressable::URI.parse(url).host
-    haystack = Addressable::URI.parse(@account.uri).host
-
-    !haystack.casecmp(needle).zero?
   end
 
   def reply_to_local?

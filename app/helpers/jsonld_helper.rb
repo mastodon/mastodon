@@ -47,6 +47,15 @@ module JsonLdHelper
     !uri.start_with?('http://', 'https://')
   end
 
+  def invalid_origin?(url)
+    return true if unsupported_uri_scheme?(url)
+
+    needle   = Addressable::URI.parse(url).host
+    haystack = Addressable::URI.parse(@account.uri).host
+
+    !haystack.casecmp(needle).zero?
+  end
+
   def canonicalize(json)
     graph = RDF::Graph.new << JSON::LD::API.toRdf(json, documentLoader: method(:load_jsonld_context))
     graph.dump(:normalize)

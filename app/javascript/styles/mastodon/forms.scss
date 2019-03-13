@@ -68,6 +68,17 @@ code {
         top: 2px;
         left: 0;
       }
+
+      label a {
+        color: $highlight-text-color;
+        text-decoration: underline;
+
+        &:hover,
+        &:active,
+        &:focus {
+          text-decoration: none;
+        }
+      }
     }
   }
 
@@ -305,7 +316,7 @@ code {
       box-shadow: none;
     }
 
-    &:focus:invalid {
+    &:focus:invalid:not(:placeholder-shown) {
       border-color: lighten($error-red, 12%);
     }
 
@@ -344,6 +355,10 @@ code {
       color: lighten($error-red, 12%);
       margin-top: 4px;
     }
+  }
+
+  .input.disabled {
+    opacity: 0.5;
   }
 
   .actions {
@@ -390,6 +405,10 @@ code {
     &:active,
     &:focus {
       background-color: darken($ui-highlight-color, 5%);
+    }
+
+    &:disabled:hover {
+      background-color: $ui-primary-color;
     }
 
     &.negative {

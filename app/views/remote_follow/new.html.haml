@@ -1,6 +1,5 @@
 - content_for :header_tags do
-  - if @account.user&.setting_noindex
-    %meta{ name: 'robots', content: 'noindex' }/
+  %meta{ name: 'robots', content: 'noindex' }/
 
 .form-container
   .follow-prompt

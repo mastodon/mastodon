@@ -56,4 +56,12 @@ module HomeHelper
       'emojify'
     end
   end
+
+  def optional_link_to(condition, path, options = {}, &block)
+    if condition
+      link_to(path, options, &block)
+    else
+      content_tag(:div, &block)
+    end
+  end
 end
