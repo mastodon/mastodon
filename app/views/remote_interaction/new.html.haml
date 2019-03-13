@@ -1,3 +1,6 @@
+- content_for :header_tags do
+  %meta{ name: 'robots', content: 'noindex' }/
+
 .form-container
   .follow-prompt
     %h2= t("remote_interaction.#{@interaction_type}.prompt")

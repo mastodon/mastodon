@@ -130,6 +130,7 @@ Rails.application.routes.draw do
   resources :invites, only: [:index, :create, :destroy]
   resources :filters, except: [:show]
 
+  get '/public', to: 'public_timelines#show', as: :public_timeline
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 
   # Remote follow
