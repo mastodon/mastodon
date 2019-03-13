@@ -69,7 +69,13 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def hashtag_scope
-    Status.tagged_with(Tag.find_by(name: params[:tagged])&.id)
+    tag = Tag.find_normalized(params[:tagged])
+
+    if tag
+      Status.tagged_with(tag.id)
+    else
+      Status.none
+    end
   end
 
   def pagination_params(core_params)

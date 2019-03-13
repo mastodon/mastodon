@@ -14,7 +14,7 @@ class Api::V1::Timelines::TagController < Api::BaseController
   private
 
   def load_tag
-    @tag = Tag.find_by(name: params[:id].downcase)
+    @tag = Tag.find_normalized(params[:id])
   end
 
   def load_statuses
