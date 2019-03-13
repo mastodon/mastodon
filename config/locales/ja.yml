@@ -4,25 +4,36 @@ ja:
     about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開トゥートです。どこでもいいので、連合に参加しているSNS上にアカウントを作れば会話に参加することができます。
     about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
     about_this: 詳細情報
+    active_count_after: 人アクティブ
+    active_footnote: 月間アクティブユーザー数 (MAU)
     administered_by: '管理者:'
     api: API
     apps: アプリ
+    apps_platforms: iOSやAndroid、その他プラットフォームから使用する
+    browse_directory: ディレクトリで関心を軸に見つける
+    browse_public_posts: Mastodonの公開ライブストリームを見てみる
     contact: 連絡先
     contact_missing: 未設定
     contact_unavailable: N/A
+    discover_users: ユーザーを見つける
     documentation: ドキュメント
     extended_description_html: |
       <h3>ルールを書くのに適した場所</h3>
       <p>詳細説明が設定されていません。</p>
+    federation_hint_html: "%{instance} にアカウントを作ればどこのMastodonや互換性のあるサーバーのユーザーでもフォローできます。"
     generic_description: "%{domain} は、Mastodon サーバーの一つです"
+    get_apps: モバイルアプリを試す
     hosted_on: Mastodon hosted on %{domain}
     learn_more: もっと詳しく
     privacy_policy: プライバシーポリシー
+    see_whats_happening: 何が起きているのか見てみる
+    server_stats: 'サーバー統計:'
     source_code: ソースコード
     status_count_after:
       one: トゥート
       other: トゥート
     status_count_before: トゥート数
+    tagline: Follow friends and discover new ones
     terms: 利用規約
     user_count_after:
       one: 人
@@ -487,6 +498,7 @@ ja:
   auth:
     agreement_html: 登録するをクリックすると <a href="%{rules_path}">サーバーのルール</a> と <a href="%{terms_path}">プライバシーポリシー</a> に従うことに同意したことになります。
     change_password: パスワード
+    checkbox_agreement_html: <a href="%{rules_path}" target="_blank">サーバーのルール</a> と <a href="%{terms_path}" target="_blank">プライバシーポリシー</a> に同意します
     confirm_email: メールアドレスの確認
     delete_account: アカウントの削除
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a> から手続きが行えます。削除する前に、確認画面があります。
@@ -502,10 +514,12 @@ ja:
       cas: CAS
       saml: SAML
     register: 登録する
+    registration_closed: "%{instance} は現在新しいメンバーを受け入れていません"
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
     security: セキュリティ
     set_new_password: 新しいパスワード
+    trouble_logging_in: ログインできませんか？
   authorize_follow:
     already_following: あなたは既にこのアカウントをフォローしています
     error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました
@@ -720,6 +734,16 @@ ja:
     older: 以前のトゥート
     prev: 前
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: You have already voted on this poll
+      duplicate_options: contain duplicate items
+      duration_too_long: is too far into the future
+      duration_too_short: is too soon
+      expired: The poll has already ended
+      over_character_limit: cannot be longer than %{max} characters each
+      too_few_options: must have more than one item
+      too_many_options: can't contain more than %{max} items
   preferences:
     languages: 言語
     other: その他
@@ -829,6 +853,11 @@ ja:
       ownership: 他人のトゥートを固定することはできません
       private: 非公開のトゥートを固定することはできません
       reblog: ブーストされたトゥートを固定することはできません
+    poll:
+      total_votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
+      vote: Vote
     show_more: もっと見る
     sign_in_to_participate: ログインして会話に参加
     title: '%{name}: "%{quote}"'
