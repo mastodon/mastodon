@@ -210,14 +210,14 @@ class Notification extends ImmutablePureComponent {
 
     return (
       <HotKeys handlers={this.getHandlers()}>
-        <div className='notification notification-poll focusable' tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage({ id: 'notification.poll', defaultMessage: 'Your poll has ended' }), notification.get('created_at'))}>
+        <div className='notification notification-poll focusable' tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage({ id: 'notification.poll', defaultMessage: 'A poll you have voted in has ended' }), notification.get('created_at'))}>
           <div className='notification__message'>
             <div className='notification__favourite-icon-wrapper'>
               <Icon id='tasks' fixedWidth />
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.poll' defaultMessage='Your poll has ended' />
+              <FormattedMessage id='notification.poll' defaultMessage='A poll you have voted in has ended' />
             </span>
           </div>
 
