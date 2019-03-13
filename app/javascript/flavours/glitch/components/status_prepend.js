@@ -66,7 +66,7 @@ export default class StatusPrepend extends React.PureComponent {
       return (
         <FormattedMessage
           id='notification.poll'
-          defaultMessage='Your poll has ended'
+          defaultMessage='A poll you have voted in has ended'
         />
       );
     }
