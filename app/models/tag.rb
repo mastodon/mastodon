@@ -72,6 +72,14 @@ class Tag < ApplicationRecord
          .limit(limit)
          .offset(offset)
     end
+
+    def find_normalized(name)
+      find_by(name: name.mb_chars.downcase.to_s)
+    end
+
+    def find_normalized!(name)
+      find_normalized(name) || raise(ActiveRecord::RecordNotFound)
+    end
   end
 
   private
