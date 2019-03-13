@@ -810,7 +810,7 @@ pt:
       android: Android
       blackberry: Blackberry
       chrome_os: ChromeOS
-      firefox_os: Firefox OS
+      firefox_os: SO Firefox
       ios: iOS
       linux: Linux
       mac: Mac
@@ -884,8 +884,8 @@ pt:
       \ nós recolhemos?</h3>\n\n<ul>\n  <li><em>Informação básica da conta</em>: Se\
       \ te registares neste servidor, pode-te ser pedido que indiques um nome de utilizador,\
       \ um endereço de e-mail e uma palavra-passe. Também podes introduzir informação\
-      \ adicional de perfil, tal como uim nome a mostrar e dados biográficos, que\
-      \ carregues uma fotografia para o teu perfil e para o cabeçalho. O nome de utilizador,\
+      \ adicional de perfil, tal como um nome a mostrar e dados biográficos, que carregues\
+      \ uma fotografia para o teu perfil e para o cabeçalho. O nome de utilizador,\
       \ o nome a mostrar, a biografia, a imagem de perfil e a imagem de cabeçalho\
       \ são sempre listados publicamente.</li>\n  <li><em>Publicações, seguimento\
       \ e outra informação pública</em>: A lista de pessoas que tu segues é pública,\
@@ -918,67 +918,75 @@ pt:
       \ O último endereço de IP usado é guardado até 12 meses. Nós também podemos\
       \ guardar registos de servidor, os quais incluem o endereço de IP de cada pedido\
       \ dirigido ao nosso servidor.</li>\n</ul>\n\n<hr class=\"spacer\" />\n\n<h3\
-      \ id=\"use\">What do we use your information for?</h3>\n\n<p>Any of the information\
-      \ we collect from you may be used in the following ways:</p>\n\n<ul>\n  <li>To\
-      \ provide the core functionality of Mastodon. You can only interact with other\
-      \ people's content and post your own content when you are logged in. For example,\
-      \ you may follow other people to view their combined posts in your own personalized\
-      \ home timeline.</li>\n  <li>To aid moderation of the community, for example\
-      \ comparing your IP address with other known ones to determine ban evasion or\
-      \ other violations.</li>\n  <li>The email address you provide may be used to\
-      \ send you information, notifications about other people interacting with your\
-      \ content or sending you messages, and to respond to inquiries, and/or other\
-      \ requests or questions.</li>\n</ul>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"\
-      protect\">How do we protect your information?</h3>\n\n<p>We implement a variety\
-      \ of security measures to maintain the safety of your personal information when\
-      \ you enter, submit, or access your personal information. Among other things,\
-      \ your browser session, as well as the traffic between your applications and\
-      \ the API, are secured with SSL, and your password is hashed using a strong\
-      \ one-way algorithm. You may enable two-factor authentication to further secure\
-      \ access to your account.</p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"data-retention\"\
-      >What is our data retention policy?</h3>\n\n<p>We will make a good faith effort\
-      \ to:</p>\n\n<ul>\n  <li>Retain server logs containing the IP address of all\
-      \ requests to this server, in so far as such logs are kept, no more than 90\
-      \ days.</li>\n  <li>Retain the IP addresses associated with registered users\
-      \ no more than 12 months.</li>\n</ul>\n\n<p>You can request and download an\
-      \ archive of your content, including your posts, media attachments, profile\
-      \ picture, and header image.</p>\n\n<p>You may irreversibly delete your account\
-      \ at any time.</p>\n\n<hr class=\"spacer\"/>\n\n<h3 id=\"cookies\">Do we use\
-      \ cookies?</h3>\n\n<p>Yes. Cookies are small files that a site or its service\
-      \ provider transfers to your computer's hard drive through your Web browser\
-      \ (if you allow). These cookies enable the site to recognize your browser and,\
-      \ if you have a registered account, associate it with your registered account.</p>\n\
-      \n<p>We use cookies to understand and save your preferences for future visits.</p>\n\
-      \n<hr class=\"spacer\" />\n\n<h3 id=\"disclose\">Do we disclose any information\
-      \ to outside parties?</h3>\n\n<p>We do not sell, trade, or otherwise transfer\
-      \ to outside parties your personally identifiable information. This does not\
-      \ include trusted third parties who assist us in operating our site, conducting\
-      \ our business, or servicing you, so long as those parties agree to keep this\
-      \ information confidential. We may also release your information when we believe\
-      \ release is appropriate to comply with the law, enforce our site policies,\
-      \ or protect ours or others rights, property, or safety.</p>\n\n<p>Your public\
-      \ content may be downloaded by other servers in the network. Your public and\
-      \ followers-only posts are delivered to the servers where your followers reside,\
-      \ and direct messages are delivered to the servers of the recipients, in so\
-      \ far as those followers or recipients reside on a different server than this.</p>\n\
-      \n<p>When you authorize an application to use your account, depending on the\
-      \ scope of permissions you approve, it may access your public profile information,\
-      \ your following list, your followers, your lists, all your posts, and your\
-      \ favourites. Applications can never access your e-mail address or password.</p>\n\
-      \n<hr class=\"spacer\" />\n\n<h3 id=\"children\">Site usage by children</h3>\n\
-      \n<p>If this server is in the EU or the EEA: Our site, products and services\
-      \ are all directed to people who are at least 16 years old. If you are under\
-      \ the age of 16, per the requirements of the GDPR (<a href=\"https://en.wikipedia.org/wiki/General_Data_Protection_Regulation\"\
-      >General Data Protection Regulation</a>) do not use this site.</p>\n\n<p>If\
-      \ this server is in the USA: Our site, products and services are all directed\
-      \ to people who are at least 13 years old. If you are under the age of 13, per\
-      \ the requirements of COPPA (<a href=\"https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\"\
-      >Children's Online Privacy Protection Act</a>) do not use this site.</p>\n\n\
-      <p>Law requirements can be different if this server is in another jurisdiction.</p>\n\
-      \n<hr class=\"spacer\" />\n\n<h3 id=\"changes\">Changes to our Privacy Policy</h3>\n\
-      \n<p>If we decide to change our privacy policy, we will post those changes on\
-      \ this page.</p>\n\n<p>This document is CC-BY-SA. It was last updated March\
-      \ 7, 2018.</p>\n\n<p>Originally adapted from the <a href=\"https://github.com/discourse/discourse\"\
+      \ id=\"use\">Para que usamos a tua informação?</h3>\n\n<p>Qualquer informação\
+      \ que recolhemos sobre ti pode ser usada dos seguintes modos:</p>\n\n<ul>\n\
+      \  <li>Para providenciar a funcionalidade central do Mastodon. Tu só podes interagir\
+      \ com o conteúdo de outras pessoas e publicar o teu próprio conteúdo depois\
+      \ de teres iniciado sessão. Por exemplo, tu podes seguir outras pessoas para\
+      \ veres as suas publicações na tua cronologia inicial personalizada. </li>\n\
+      \  <li>Para ajudar na moderação da comunidade para, por exemplo, comparar o\
+      \ teu endereço IP com outros conhecidos, para determinar a fuga ao banimento\
+      \ ou outras violações.</li>\n  <li>O endereço de e-mail que tu forneces pode\
+      \ ser usado para te enviar informações e/ou notificações sobre outras pessoas\
+      \ que estão a interagir com o teu conteúdo ou a enviar-te mensagens, para responderes\
+      \ a inquéritos e/ou outros pedidos ou questões.</li>\n</ul>\n\n<hr class=\"\
+      spacer\" />\n\n<h3 id=\"protect\">Como é que nós protegemos a tua informação?</h3>\n\
+      \n<p>Nós implementamos uma variedade de medidas de segurança para garantir a\
+      \ segurança da tua informação pessoal quando tu introduzes, submetes ou acedes\
+      \ à mesma. Entre outras coisas, a tua sessão de navegação, tal como o tráfego\
+      \ entre as tuas aplicações e a API, estão seguras por SSL e a tua palavra-passe\
+      \ é codificada usando um forte algoritmo de sentido único. Tu podes activar\
+      \ a autenticação em dois passos para aumentares ainda mais a segurança do acesso\
+      \ à tua conta.</p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"data-retention\">Qual\
+      \ é a nossa política de retenção de dados?</h3>\n\n<p>Nós envidaremos todos\
+      \ os esforços no sentido de:</p>\n\n<ul>\n  <li>Guardar registos do servidor\
+      \ contendo o endereço de IP de todos os pedidos feitos a este  servidor, considerando\
+      \ que estes registos não serão guardados por mais de 90 dias.</li>\n  <li>Guardar\
+      \ os endereços de IP associados aos utilizadores registados durante um período\
+      \ que não ultrapassará os 12 meses.</li>\n</ul>\n\n<p>Tu podes pedir e descarregar\
+      \ um ficheiro com o teu conteúdo, incluindo as tuas publicações, os ficheiros\
+      \ multimédia, a imagem de perfil e a imagem de cabeçalho.</p>\n\n<p>Tu podes\
+      \ apagar a tua conta de modo definitivo e a qualquer momento.</p>\n\n<hr class=\"\
+      spacer\"/>\n\n<h3 id=\"cookies\">Usamos cookies?</h3>\n\n<p>Sim. Cookies são\
+      \ pequenos ficheiros que um site ou o seu fornecedor de serviço transfere para\
+      \ o disco rígido do teu computador através do teu navegador (se tu permitires).\
+      \ Estes cookies permitem ao site reconhecer o teu navegador e, se tu tiveres\
+      \ uma conta registada, associá-lo a ela.</p>\n\n<p>Nós usamos os cookies para\
+      \ compreender e guardar as tuas preferências para as visitas futuras.</p>\n\n\
+      <hr class=\"spacer\" />\n\n<h3 id=\"disclose\">Nós divulgamos alguma informação\
+      \ para entidades externas?</h3>\n\n<p>Nós não vendemos, trocamos ou transferimos\
+      \ de qualquer modo a tua informação pessoal que seja identificável para qualquer\
+      \ entidade externa. Isto não inclui terceiros de confiança que nos ajudam a\
+      \ manter o nosso site, conduzir o nosso negócio ou prestar-te este serviço,\
+      \ desde que esses terceiros concordem em manter essa informação confidencial.\
+      \ Poderemos também revelar a tua informação quando nós acreditamos que isso\
+      \ é apropriado para cumprir a lei, forçar a aplicação dos nossos termos de serviço\
+      \ ou proteger os direitos, propriedade e segurança, nossos e de outrem.</p>\n\
+      \n<p>O teu conteúdo público pode ser descarregado por outros servidores na rede.\
+      \ As tuas publicações públicas e exclusivas para os teus seguidores são enviadas\
+      \ para os servidores onde os teus seguidores residem e as mensagens directas\
+      \ são entregues aos servidores dos seus destinatários, no caso desses seguidores\
+      \ ou destinatários residirem num servidor diferente deste.</p>\n\n<p>Quando\
+      \ tu autorizas uma aplicação a usar a tua conta, dependendo da abrangência das\
+      \ permissões que tu aprovas, ela pode ter acesso à informação pública do teu\
+      \ perfil, à lista de quem segues, aos teus seguidores, às tuas listas, a todas\
+      \ as tuas publicações e aos teus favoritos. As aplicações nunca terão acesso\
+      \ ao teu endereço de e-mail ou à tua palavra-passe.</p>\n\n<hr class=\"spacer\"\
+      \ />\n\n<h3 id=\"children\">Utilização do site por crianças</h3>\n\n<p>Se este\
+      \ servidor estiver na EU ou na EEA: O nosso site, produtos e serviços são todos\
+      \ dirigidos a pessoas que têm, pelo menos, 16 de idade. Se tu tens menos de\
+      \ 16 anos, devido aos requisitos da GDPR (<a href=\"https://en.wikipedia.org/wiki/General_Data_Protection_Regulation\"\
+      >General Data Protection Regulation</a>) não uses este site.</p>\n\n<p>Se este\
+      \ servidor estiver nos EUA: O nosso site, produtos e serviços são todos dirigidos\
+      \ a pessoas que têm, pelo menos, 13 anos de idade. Se tu tens menos de 13 anos\
+      \ de idade, devido aos requisitos da COPPA (<a href=\"https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\"\
+      >Children's Online Privacy Protection Act</a>) não uses este site.</p>\n\n<p>Os\
+      \ requisitos legais poderão ser diferentes se este servidor estiver noutra jurisdição.</p>\n\
+      \n<hr class=\"spacer\" />\n\n<h3 id=\"changes\">Alterações à nossa Política\
+      \ de Privacidade</h3>\n\n<p>Se nós decidirmos alterar a nossa política de privacidade,\
+      \ nós iremos publicar essas alterações nesta página.</p>\n\n<p>Este documento\
+      \ é CC-BY-SA. Ele foi actualizado pela última vez em 7 de Março 2018.</p>\n\n\
+      <p>Originalmente adaptado de <a href=\"https://github.com/discourse/discourse\"\
       >Discourse privacy policy</a>.</p>\n"
   themes:
     default: Mastodon
