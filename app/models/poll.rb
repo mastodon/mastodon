@@ -26,6 +26,8 @@ class Poll < ApplicationRecord
 
   has_many :votes, class_name: 'PollVote', inverse_of: :poll, dependent: :destroy
 
+  has_many :notifications, as: :activity, dependent: :destroy
+
   validates :options, presence: true
   validates :expires_at, presence: true, if: :local?
   validates_with PollValidator, on: :create, if: :local?
