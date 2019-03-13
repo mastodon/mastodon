@@ -888,62 +888,66 @@ pt:
       \ carregues uma fotografia para o teu perfil e para o cabeçalho. O nome de utilizador,\
       \ o nome a mostrar, a biografia, a imagem de perfil e a imagem de cabeçalho\
       \ são sempre listados publicamente.</li>\n  <li><em>Publicações, seguimento\
-      \ e outra informação pública</em>: The list of people you follow is listed publicly,\
-      \ the same is true for your followers. When you submit a message, the date and\
-      \ time is stored as well as the application you submitted the message from.\
-      \ Messages may contain media attachments, such as pictures and videos. Public\
-      \ and unlisted posts are available publicly. When you feature a post on your\
-      \ profile, that is also publicly available information. Your posts are delivered\
-      \ to your followers, in some cases it means they are delivered to different\
-      \ servers and copies are stored there. When you delete posts, this is likewise\
-      \ delivered to your followers. The action of reblogging or favouriting another\
-      \ post is always public.</li>\n  <li><em>Direct and followers-only posts</em>:\
-      \ All posts are stored and processed on the server. Followers-only posts are\
-      \ delivered to your followers and users who are mentioned in them, and direct\
-      \ posts are delivered only to users mentioned in them. In some cases it means\
-      \ they are delivered to different servers and copies are stored there. We make\
-      \ a good faith effort to limit the access to those posts only to authorized\
-      \ persons, but other servers may fail to do so. Therefore it's important to\
-      \ review servers your followers belong to. You may toggle an option to approve\
-      \ and reject new followers manually in the settings. <em>Please keep in mind\
-      \ that the operators of the server and any receiving server may view such messages</em>,\
-      \ and that recipients may screenshot, copy or otherwise re-share them. <em>Do\
-      \ not share any dangerous information over Mastodon.</em></li>\n  <li><em>IPs\
-      \ and other metadata</em>: When you log in, we record the IP address you log\
-      \ in from, as well as the name of your browser application. All the logged in\
-      \ sessions are available for your review and revocation in the settings. The\
-      \ latest IP address used is stored for up to 12 months. We also may retain server\
-      \ logs which include the IP address of every request to our server.</li>\n</ul>\n\
-      \n<hr class=\"spacer\" />\n\n<h3 id=\"use\">What do we use your information\
-      \ for?</h3>\n\n<p>Any of the information we collect from you may be used in\
-      \ the following ways:</p>\n\n<ul>\n  <li>To provide the core functionality of\
-      \ Mastodon. You can only interact with other people's content and post your\
-      \ own content when you are logged in. For example, you may follow other people\
-      \ to view their combined posts in your own personalized home timeline.</li>\n\
-      \  <li>To aid moderation of the community, for example comparing your IP address\
-      \ with other known ones to determine ban evasion or other violations.</li>\n\
-      \  <li>The email address you provide may be used to send you information, notifications\
-      \ about other people interacting with your content or sending you messages,\
-      \ and to respond to inquiries, and/or other requests or questions.</li>\n</ul>\n\
-      \n<hr class=\"spacer\" />\n\n<h3 id=\"protect\">How do we protect your information?</h3>\n\
-      \n<p>We implement a variety of security measures to maintain the safety of your\
-      \ personal information when you enter, submit, or access your personal information.\
-      \ Among other things, your browser session, as well as the traffic between your\
-      \ applications and the API, are secured with SSL, and your password is hashed\
-      \ using a strong one-way algorithm. You may enable two-factor authentication\
-      \ to further secure access to your account.</p>\n\n<hr class=\"spacer\" />\n\
-      \n<h3 id=\"data-retention\">What is our data retention policy?</h3>\n\n<p>We\
-      \ will make a good faith effort to:</p>\n\n<ul>\n  <li>Retain server logs containing\
-      \ the IP address of all requests to this server, in so far as such logs are\
-      \ kept, no more than 90 days.</li>\n  <li>Retain the IP addresses associated\
-      \ with registered users no more than 12 months.</li>\n</ul>\n\n<p>You can request\
-      \ and download an archive of your content, including your posts, media attachments,\
-      \ profile picture, and header image.</p>\n\n<p>You may irreversibly delete your\
-      \ account at any time.</p>\n\n<hr class=\"spacer\"/>\n\n<h3 id=\"cookies\">Do\
-      \ we use cookies?</h3>\n\n<p>Yes. Cookies are small files that a site or its\
-      \ service provider transfers to your computer's hard drive through your Web\
-      \ browser (if you allow). These cookies enable the site to recognize your browser\
-      \ and, if you have a registered account, associate it with your registered account.</p>\n\
+      \ e outra informação pública</em>: A lista de pessoas que tu segues é pública,\
+      \ o mesmo é verdade para os teus seguidores. Quando tu publicas uma mensagem,\
+      \ a data e a hora são guardados, tal como a aplicação a partir da qual a mensagem\
+      \ foi enviada. As mensagens podem conter anexos multimédia, tais como fotografias\
+      \ ou vídeos. Publicações públicas e não listadas são acessíveis publicamente.\
+      \ Quando expões uma publicação no teu perfil, isso é também informação disponível\
+      \ publicamente. As tuas publicações são enviadas aos teus seguidores. Em alguns\
+      \ casos isso significa que elas são enviadas para servidores diferentes onde\
+      \ são guardadas cópias. Quando tu apagas publicações, isso também é enviado\
+      \ para os teus seguidores. A acção de republicar ou favoritar outra publicação\
+      \ é sempre pública.</li>\n  <li><em>Publicações directas e exclusivas para seguidores</em>:\
+      \ Todas as publicações são guardadas e processadas no servidor. Publicações\
+      \ exclusivas para seguidores são enviadas para os teus seguidores e para utilizadores\
+      \ que são nelas mencionados. As publicações directas são enviadas apenas para\
+      \ os utilizadores nelas mencionados. Em alguns casos isso significa que elas\
+      \ são enviadas para diferentes servidores onde são guardadas cópias das mesmas.\
+      \ Nós fazemos um grande esforço para limitar o acesso a estas publicações aos\
+      \ utilizadores autorizados, mas outros servidores podem falhar neste objectivo.\
+      \  Por isso, tu deves rever os servidores a que os teus seguidores pertencem.\
+      \ Tu podes activar uma opção para aprovar e rejeitar manualmente novos seguidores\
+      \ nas configurações. <em>Por favor, tem em mente que os gestores do servidor\
+      \ e qualquer servidor que receba a publicação pode lê-la</em>e que os destinatários\
+      \ podem fazer uma captura de tela, copiar ou partilhar a publicação. <em>Não\
+      \ partilhes qualquer informação perigosa no Mastodon.</em></li>\n  <li><em>IPs\
+      \ e outros metadados</em>: Quando inicias sessão, nós guardamos o endereço de\
+      \ IP a partir do qual iniciaste a sessão, tal como o nome do teu navegador.\
+      \ Todas as sessões estão disponíveis para verificação e revogação nas configurações.\
+      \ O último endereço de IP usado é guardado até 12 meses. Nós também podemos\
+      \ guardar registos de servidor, os quais incluem o endereço de IP de cada pedido\
+      \ dirigido ao nosso servidor.</li>\n</ul>\n\n<hr class=\"spacer\" />\n\n<h3\
+      \ id=\"use\">What do we use your information for?</h3>\n\n<p>Any of the information\
+      \ we collect from you may be used in the following ways:</p>\n\n<ul>\n  <li>To\
+      \ provide the core functionality of Mastodon. You can only interact with other\
+      \ people's content and post your own content when you are logged in. For example,\
+      \ you may follow other people to view their combined posts in your own personalized\
+      \ home timeline.</li>\n  <li>To aid moderation of the community, for example\
+      \ comparing your IP address with other known ones to determine ban evasion or\
+      \ other violations.</li>\n  <li>The email address you provide may be used to\
+      \ send you information, notifications about other people interacting with your\
+      \ content or sending you messages, and to respond to inquiries, and/or other\
+      \ requests or questions.</li>\n</ul>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"\
+      protect\">How do we protect your information?</h3>\n\n<p>We implement a variety\
+      \ of security measures to maintain the safety of your personal information when\
+      \ you enter, submit, or access your personal information. Among other things,\
+      \ your browser session, as well as the traffic between your applications and\
+      \ the API, are secured with SSL, and your password is hashed using a strong\
+      \ one-way algorithm. You may enable two-factor authentication to further secure\
+      \ access to your account.</p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"data-retention\"\
+      >What is our data retention policy?</h3>\n\n<p>We will make a good faith effort\
+      \ to:</p>\n\n<ul>\n  <li>Retain server logs containing the IP address of all\
+      \ requests to this server, in so far as such logs are kept, no more than 90\
+      \ days.</li>\n  <li>Retain the IP addresses associated with registered users\
+      \ no more than 12 months.</li>\n</ul>\n\n<p>You can request and download an\
+      \ archive of your content, including your posts, media attachments, profile\
+      \ picture, and header image.</p>\n\n<p>You may irreversibly delete your account\
+      \ at any time.</p>\n\n<hr class=\"spacer\"/>\n\n<h3 id=\"cookies\">Do we use\
+      \ cookies?</h3>\n\n<p>Yes. Cookies are small files that a site or its service\
+      \ provider transfers to your computer's hard drive through your Web browser\
+      \ (if you allow). These cookies enable the site to recognize your browser and,\
+      \ if you have a registered account, associate it with your registered account.</p>\n\
       \n<p>We use cookies to understand and save your preferences for future visits.</p>\n\
       \n<hr class=\"spacer\" />\n\n<h3 id=\"disclose\">Do we disclose any information\
       \ to outside parties?</h3>\n\n<p>We do not sell, trade, or otherwise transfer\
