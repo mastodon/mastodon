@@ -171,4 +171,5 @@
 |mstdn-stg-zilean.delta-t.work||
 |mstdn-stg-zoe.delta-t.work||
 |mstdn-stg-zyra.delta-t.work||
-|
+
+もしかして: https://jp.leagueoflegends.com/ja/
