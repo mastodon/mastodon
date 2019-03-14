@@ -79,6 +79,7 @@ en:
       delete: Delete
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
+      approve: Approve
       are_you_sure: Are you sure?
       avatar: Avatar
       by_domain: Domain
@@ -124,6 +125,7 @@ en:
       moderation:
         active: Active
         all: All
+        pending: Pending
         silenced: Silenced
         suspended: Suspended
         title: Moderation
@@ -133,6 +135,7 @@ en:
       no_limits_imposed: No limits imposed
       not_subscribed: Not subscribed
       outbox_url: Outbox URL
+      pending: Pending review
       perform_full_suspension: Suspend
       profile_url: Profile URL
       promote: Promote
@@ -140,6 +143,7 @@ en:
       public: Public
       push_subscription_expires: PuSH subscription expires
       redownload: Refresh profile
+      reject: Reject
       remove_avatar: Remove avatar
       remove_header: Remove header
       resend_confirmation:
@@ -414,9 +418,12 @@ en:
         min_invite_role:
           disabled: No one
           title: Allow invitations by
-        open:
-          desc_html: Allow anyone to create an account
-          title: Open registration
+      registrations_mode:
+        modes:
+          approved: Approval required for sign up
+          none: Nobody can sign up
+          open: Anyone can sign up
+        title: Registrations mode
       show_known_fediverse_at_about_page:
         desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show local toots.
         title: Show known fediverse on timeline preview
@@ -479,6 +486,9 @@ en:
       edit_preset: Edit warning preset
       title: Manage warning presets
   admin_mailer:
+    new_pending_account:
+      body: The details of the new account are below. You can approve or reject this application.
+      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
@@ -500,6 +510,7 @@ en:
     your_token: Your access token
   auth:
     agreement_html: By clicking "Sign up" below you agree to follow <a href="%{rules_path}">the rules of the server</a> and <a href="%{terms_path}">our terms of service</a>.
+    apply_for_account: Request an invite
     change_password: Password
     checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: Confirm email

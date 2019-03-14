@@ -5,14 +5,14 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
 
   shared_examples 'checks for enabled registrations' do |path|
     around do |example|
-      open_registrations = Setting.open_registrations
+      registrations_mode = Setting.registrations_mode
       example.run
-      Setting.open_registrations = open_registrations
+      Setting.registrations_mode = registrations_mode
     end
 
     it 'redirects if it is in single user mode while it is open for registration' do
       Fabricate(:account)
-      Setting.open_registrations = true
+      Setting.registrations_mode = 'open'
       expect(Rails.configuration.x).to receive(:single_user_mode).and_return(true)
 
       get path
@@ -21,7 +21,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
     end
 
     it 'redirects if it is not open for registration while it is not in single user mode' do
-      Setting.open_registrations = false
+      Setting.registrations_mode = 'none'
       expect(Rails.configuration.x).to receive(:single_user_mode).and_return(false)
 
       get path
@@ -55,13 +55,13 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
 
     context do
       around do |example|
-        open_registrations = Setting.open_registrations
+        registrations_mode = Setting.registrations_mode
         example.run
-        Setting.open_registrations = open_registrations
+        Setting.registrations_mode = registrations_mode
       end
 
       it 'returns http success' do
-        Setting.open_registrations = true
+        Setting.registrations_mode = 'open'
         get :new
         expect(response).to have_http_status(200)
       end
@@ -83,13 +83,13 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
 
     context do
       around do |example|
-        open_registrations = Setting.open_registrations
+        registrations_mode = Setting.registrations_mode
         example.run
-        Setting.open_registrations = open_registrations
+        Setting.registrations_mode = registrations_mode
       end
 
       subject do
-        Setting.open_registrations = true
+        Setting.registrations_mode = 'open'
         request.headers["Accept-Language"] = accept_language
         post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678' } }
       end
