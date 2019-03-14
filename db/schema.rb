@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_07_234537) do
+ActiveRecord::Schema.define(version: 2019_03_14_181829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,19 +34,6 @@ ActiveRecord::Schema.define(version: 2019_03_07_234537) do
     t.datetime "updated_at", null: false
     t.bigint "account_id"
     t.index ["account_id", "domain"], name: "index_account_domain_blocks_on_account_id_and_domain", unique: true
-  end
-
-  create_table "account_identity_proofs", force: :cascade do |t|
-    t.bigint "account_id"
-    t.string "provider", null: false
-    t.string "provider_username", null: false
-    t.text "token", null: false
-    t.boolean "proof_valid"
-    t.boolean "proof_live"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id", "provider", "provider_username"], name: "index_account_proofs_on_account_and_provider_and_username", unique: true
-    t.index ["account_id"], name: "index_account_identity_proofs_on_account_id"
   end
 
   create_table "account_moderation_notes", force: :cascade do |t|
