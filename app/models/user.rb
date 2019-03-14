@@ -37,6 +37,7 @@
 #  remember_token            :string
 #  chosen_languages          :string           is an Array
 #  created_by_application_id :bigint(8)
+#  approved                  :boolean          default(TRUE), not null
 #
 
 class User < ApplicationRecord
@@ -79,6 +80,8 @@ class User < ApplicationRecord
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
 
   scope :recent, -> { order(id: :desc) }
+  scope :pending, -> { where(approved: false) }
+  scope :approved, -> { where(approved: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
   scope :enabled, -> { where(disabled: false) }
   scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
@@ -87,6 +90,7 @@ class User < ApplicationRecord
   scope :emailable, -> { confirmed.enabled.joins(:account).merge(Account.searchable) }
 
   before_validation :sanitize_languages
+  before_create :set_approved
 
   # This avoids a deprecation warning from Rails 5.1
   # It seems possible that a future release of devise-two-factor will
@@ -124,7 +128,11 @@ class User < ApplicationRecord
 
     super
 
-    prepare_new_user! if new_user
+    if new_user && approved?
+      prepare_new_user!
+    elsif new_user
+      notify_staff_about_pending_account!
+    end
   end
 
   def confirm!
@@ -133,7 +141,26 @@ class User < ApplicationRecord
     skip_confirmation!
     save!
 
-    prepare_new_user! if new_user
+    prepare_new_user! if new_user && approved?
+  end
+
+  def pending?
+    !approved?
+  end
+
+  def active_for_authentication?
+    super && approved?
+  end
+
+  def inactive_message
+    !approved? ? :pending : super
+  end
+
+  def approve!
+    return if approved?
+
+    update!(approved: true)
+    prepare_new_user!
   end
 
   def update_tracked_fields!(request)
@@ -236,6 +263,10 @@ class User < ApplicationRecord
 
   private
 
+  def set_approved
+    self.approved = Setting.registrations_mode == 'open' || invited?
+  end
+
   def sanitize_languages
     return if chosen_languages.nil?
     chosen_languages.reject!(&:blank?)
@@ -251,6 +282,13 @@ class User < ApplicationRecord
   def prepare_returning_user!
     ActivityTracker.record('activity:logins', id)
     regenerate_feed! if needs_feed_update?
+  end
+
+  def notify_staff_about_pending_account!
+    User.staff.includes(:account).each do |u|
+      next unless u.allows_report_emails?
+      AdminMailer.new_pending_account(u.account, self).deliver_later
+    end
   end
 
   def regenerate_feed!

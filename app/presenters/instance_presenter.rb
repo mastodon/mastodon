@@ -2,9 +2,7 @@
 
 class InstancePresenter
   delegate(
-    :closed_registrations_message,
     :site_contact_email,
-    :open_registrations,
     :site_title,
     :site_short_description,
     :site_description,

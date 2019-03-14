@@ -187,6 +187,8 @@ Rails.application.routes.draw do
         post :remove_avatar
         post :remove_header
         post :memorialize
+        post :approve
+        post :reject
       end
 
       resource :change_email, only: [:show, :update]
