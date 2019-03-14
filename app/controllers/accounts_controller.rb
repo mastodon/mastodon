@@ -80,11 +80,17 @@ class AccountsController < ApplicationController
   end
 
   def hashtag_scope
-    Status.tagged_with(Tag.find_by(name: params[:tag].downcase)&.id)
+    tag = Tag.find_normalized(params[:tag])
+
+    if tag
+      Status.tagged_with(tag.id)
+    else
+      Status.none
+    end
   end
 
-  def set_account
-    @account = Account.find_local!(params[:username])
+  def username_param
+    params[:username]
   end
 
   def older_url

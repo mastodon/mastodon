@@ -7,7 +7,6 @@ pl:
     administered_by: 'Administrowana przez:'
     api: API
     apps: Aplikacje
-    closed_registrations: Rejestracja na tej instancji jest obecnie zamknięta. Możesz jednak zarejestrować się na innej instancji, uzyskując dostęp do tej samej sieci.
     contact: Kontakt
     contact_missing: Nie ustawiono
     contact_unavailable: Nie dotyczy
@@ -15,19 +14,9 @@ pl:
     extended_description_html: |
       <h3>Dobre miejsce na zasady użytkowania</h3>
       <p>Nie ustawiono jeszcze szczegółowego opisu</p>
-    features:
-      humane_approach_body: Nauczeni na błędach innych sieci społecznościowych, zaprojektowaliśmy Mastodona tak, aby uniknąć częstych nadużyć.
-      humane_approach_title: Bardziej ludzkie podejście
-      not_a_product_body: Mastodon nie jest komercyjną siecią. Nie doświadczysz tu reklam, zbierania danych, ani centralnego ośrodka, tak jak w przypadku wielu rozwiązań.
-      not_a_product_title: Jesteś człowiekiem, nie produktem
-      real_conversation_body: Mając do dyspozycji 500 znaków na wpis, rozdrobnienie zawartości i ostrzeżenia o multimediach, możesz wyrażać siebie na wszystkie możliwe sposoby.
-      real_conversation_title: Zaprojektowany do prawdziwych rozmów
-      within_reach_body: Wiele aplikacji dla Androida, iOS i innych platform dzięki przyjaznemu programistom API sprawia, że możesz utrzymywać kontakt ze znajomymi praktycznie wszędzie.
-      within_reach_title: Zawsze w Twoim zasięgu
     generic_description: "%{domain} jest jednym z serwerów sieci"
     hosted_on: Mastodon uruchomiony na %{domain}
     learn_more: Dowiedz się więcej
-    other_instances: Lista instancji
     privacy_policy: Polityka prywatności
     source_code: Kod źródłowy
     status_count_after:
@@ -422,9 +411,6 @@ pl:
         min_invite_role:
           disabled: Nikt
           title: Kto może zapraszać użytkowników
-        open:
-          desc_html: Pozwól każdemu na założenie konta
-          title: Otwarta rejestracja
       show_known_fediverse_at_about_page:
         desc_html: Jeśli włączone, podgląd instancji będzie wyświetlał wpisy z całego Fediwersum. W innym przypadku, będą wyświetlane tylko lokalne wpisy.
         title: Pokazuj wszystkie znane wpisy na podglądzie instancji
@@ -519,13 +505,11 @@ pl:
     logout: Wyloguj się
     migrate_account: Przenieś konto
     migrate_account_html: Jeżeli chcesz skonfigurować przekierowanie z obecnego konta na inne, możesz <a href="%{path}">zrobić to tutaj</a>.
-    or: lub
     or_log_in_with: Lub zaloguj się z użyciem
     providers:
       cas: CAS
       saml: SAML
     register: Rejestracja
-    register_elsewhere: Zarejestruj się na innym serwerze
     resend_confirmation: Ponownie prześlij instrukcje weryfikacji
     reset_password: Zresetuj hasło
     security: Bezpieczeństwo

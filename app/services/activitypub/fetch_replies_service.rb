@@ -46,13 +46,4 @@ class ActivityPub::FetchRepliesService < BaseService
     # Also limit to 5 fetched replies to limit potential for DoS.
     @items.map { |item| value_or_id(item) }.reject { |uri| invalid_origin?(uri) }.take(5)
   end
-
-  def invalid_origin?(url)
-    return true if unsupported_uri_scheme?(url)
-
-    needle   = Addressable::URI.parse(url).host
-    haystack = Addressable::URI.parse(@account.uri).host
-
-    !haystack.casecmp(needle).zero?
-  end
 end

@@ -7,7 +7,6 @@ zh-TW:
     administered_by: 管理者：
     api: API
     apps: Mobile apps
-    closed_registrations: 本站暫時停止接受註冊。
     contact: 聯絡我們
     contact_missing: 未設定
     contact_unavailable: 未公開
@@ -15,19 +14,9 @@ zh-TW:
     extended_description_html: |
       <h3>這裡可以寫一些網站規則</h3>
       <p>本站點未有詳細介紹</p>
-    features:
-      humane_approach_body: Mastodon 從其他網路的失敗經驗中汲取教訓，以合乎道德的設計對抗社交媒體的濫用問題。
-      humane_approach_title: 以人為本
-      not_a_product_body: Mastodon 不是商業網站。沒有廣告，沒有數據挖掘，也沒有中央機構操控。平台完全開放。
-      not_a_product_title: 你是用戶，不是商品
-      real_conversation_body: Mastodon 的字數限制高達 500 字，並支援仔細的媒體警告選項，令你暢所欲言。
-      real_conversation_title: 為真正的交流而生
-      within_reach_body: 簡易的 API 系統，令用戶可以透過不同的 iOS、Android 及其他平台的應用軟體，與朋友保持聯繫。
-      within_reach_title: 始終觸手可及
     generic_description: "%{domain} 是 Mastodon 網路中其中一個站點"
     hosted_on: 在 %{domain} 運作的 Mastodon 站點
     learn_more: 了解詳細
-    other_instances: 其他站點
     source_code: 原始碼
     status_count_after: 狀態
     status_count_before: 他們共嘟出了
@@ -304,9 +293,6 @@ zh-TW:
         min_invite_role:
           disabled: 沒有人
           title: 允許發送邀請的身份
-        open:
-          desc_html: 允許所有人建立帳戶
-          title: 開放註冊
       show_known_fediverse_at_about_page:
         desc_html: 如果開啟，就會在時間軸預覽顯示其他站點嘟文，否則就只會顯示本站點嘟文。
         title: 在時間軸預覽顯示其他站點嘟文
@@ -383,13 +369,11 @@ zh-TW:
     logout: 登出
     migrate_account: 轉移到另一個帳號
     migrate_account_html: 如果你希望引導他人關注另一個帳戶，請<a href="%{path}">到這裡設定</a>。
-    or: 或
     or_log_in_with: 或透過其他方式登入
     providers:
       cas: CAS
       saml: SAML
     register: 註冊
-    register_elsewhere: 在其他站點註冊
     resend_confirmation: 重新寄送E-mail
     reset_password: 重設密碼
     security: 登入資訊

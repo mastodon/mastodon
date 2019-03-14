@@ -7,7 +7,6 @@ ca:
     administered_by: 'Administrat per:'
     api: API
     apps: Apps mòbil
-    closed_registrations: Actualment, el registre està tancat en aquesta instància. Malgrat això! Pots trobar una altra instància per fer-te un compte i obtenir accés a la mateixa xarxa des d'allà.
     contact: Contacte
     contact_missing: No configurat
     contact_unavailable: N/D
@@ -15,19 +14,9 @@ ca:
     extended_description_html: |
       <h3>Un bon lloc per les regles</h3>
       <p>Encara no s'ha configurat la descripció ampliada.</p>
-    features:
-      humane_approach_body: Aprenent dels errors d'altres xarxes, Mastodon té com a objectiu fer eleccions ètiques de disseny per a combatre el mal ús de les xarxes socials.
-      humane_approach_title: Un enfocament més humà
-      not_a_product_body: Mastodon no és una xarxa comercial. Sense publicitat, sense mineria de dades, sense jardins emmurallats. No hi ha cap autoritat central.
-      not_a_product_title: Ets una persona, no un producte
-      real_conversation_body: Amb 500 caràcters a la teva disposició i suport per a continguts granulars i avisos multimèdia, pots expressar-te de la manera que vulguis.
-      real_conversation_title: Construït per a converses reals
-      within_reach_body: Diverses aplicacions per a iOS, Android i altres plataformes gràcies a un ecosistema API amable amb el desenvolupador, et permet mantenir-te al dia amb els amics en qualsevol lloc..
-      within_reach_title: Sempre a l'abast
     generic_description: "%{domain} és un servidor a la xarxa"
     hosted_on: Mastodon allotjat a %{domain}
     learn_more: Més informació
-    other_instances: Altres instàncies
     privacy_policy: Política de privacitat
     source_code: Codi font
     status_count_after:
@@ -410,9 +399,6 @@ ca:
         min_invite_role:
           disabled: Ningú
           title: Permet les invitacions de
-        open:
-          desc_html: Permet que qualsevol pugui crear un compte
-          title: Registre obert
       show_known_fediverse_at_about_page:
         desc_html: Quan s'activa, mostrarà tots els toots de tot el fedivers conegut en vista prèvia. En cas contrari, només es mostraran toots locals.
         title: Mostra el fedivers conegut en vista prèvia de la línia de temps
@@ -507,13 +493,11 @@ ca:
     logout: Tanca sessió
     migrate_account: Mou a un compte diferent
     migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots  <a href="%{path}">configurar aquí</a>.
-    or: o
     or_log_in_with: O inicia sessió amb
     providers:
       cas: CAS
       saml: SAML
     register: Registre
-    register_elsewhere: Registra't en un altre servidor
     resend_confirmation: Torna a enviar el correu de confirmació
     reset_password: Restableix la contrasenya
     security: Seguretat
