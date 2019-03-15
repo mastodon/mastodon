@@ -5,27 +5,36 @@ class FanOutOnWriteService < BaseService
   # @param [Status] status
   def call(status)
     raise Mastodon::RaceConditionError if status.visibility.nil?
+    @status_id = status.id
 
-    render_anonymous_payload(status)
+    RedisLock.acquire(lock_options) do |lock|
+      if lock.acquired?
+        return if Redis.current.exists("delete_upon_arrival:#{@status_id}")
 
-    if status.direct_visibility?
-      deliver_to_own_conversation(status)
-    elsif status.limited_visibility?
-      deliver_to_mentioned_followers(status)
-    else
-      deliver_to_self(status) if status.account.local?
-      deliver_to_followers(status)
-      deliver_to_lists(status)
+        render_anonymous_payload(status)
+
+        if status.direct_visibility?
+          deliver_to_own_conversation(status)
+        elsif status.limited_visibility?
+          deliver_to_mentioned_followers(status)
+        else
+          deliver_to_self(status) if status.account.local?
+          deliver_to_followers(status)
+          deliver_to_lists(status)
+        end
+
+        return if status.account.silenced? || !status.public_visibility? || status.reblog?
+
+        deliver_to_hashtags(status)
+
+        return if status.reply? && status.in_reply_to_account_id != status.account_id
+
+        deliver_to_public(status)
+        deliver_to_media(status) if status.media_attachments.any?
+      else
+        raise Mastodon::RaceConditionError
+      end
     end
-
-    return if status.account.silenced? || !status.public_visibility? || status.reblog?
-
-    deliver_to_hashtags(status)
-
-    return if status.reply? && status.in_reply_to_account_id != status.account_id
-
-    deliver_to_public(status)
-    deliver_to_media(status) if status.media_attachments.any?
   end
 
   private
@@ -93,5 +102,9 @@ class FanOutOnWriteService < BaseService
 
   def deliver_to_own_conversation(status)
     AccountConversation.add_status(status.account, status)
+  end
+
+  def lock_options
+    { redis: Redis.current, key: "distribute:#{@status_id}" }
   end
 end
