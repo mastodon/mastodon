@@ -12,12 +12,6 @@ ast:
     extended_description_html: |
       <h3>Un llugar bonu pa les regles</h3>
       <p>Entá nun se configuró la descripción estendida.</p>
-    features:
-      humane_approach_title: Una visión más humana
-      not_a_product_body: Mastodon nun ye una rede comercial, nun hai anuncios, nun recueye datos o nun pon muries a xardinos. Nin siquier tien una autoridá central.
-      not_a_product_title: Yes una persona, non un productu
-      real_conversation_title: Fechu pa conversaciones de verdá
-      within_reach_title: Siempres al algame
     hosted_on: Mastodon ta agospiáu en %{domain}
     learn_more: Deprendi más
     source_code: Códigu fonte
@@ -96,8 +90,6 @@ ast:
     email_domain_blocks:
       domain: Dominiu
     instances:
-      account_count: Cuentes conocíes
-      domain_name: Dominiu
       title: Instancies conocíes
     invites:
       filter:
@@ -121,8 +113,6 @@ ast:
       failed_to_execute: Fallu al executar
     subscriptions:
       title: WebSub
-    suspensions:
-      warning_html: 'El suspender esta cuenta va desaniciar <strong>de mou irreversible</strong> los sos datos qu''inclúin:'
     title: Alministración
   admin_mailer:
     new_report:
@@ -145,7 +135,6 @@ ast:
       cas: CAS
       saml: SAML
     register: Rexistrase
-    register_elsewhere: Rexistrase n'otru sirvidor
     security: Seguranza
   authorize_follow:
     already_following: Yá tas siguiendo a esta cuenta
@@ -270,9 +259,6 @@ ast:
     no_account_html: "¿Nun tienes una cuenta? Pues <a href='%{sign_up_path}' target='_blank'>rexistrate equí</a>"
     proceed: Siguir
     prompt: 'Vas siguir a:'
-  remote_interaction:
-    proceed: Interactuar
-    prompt: 'Quies interactuar con esti toot:'
   remote_unfollow:
     error: Fallu
   sessions:

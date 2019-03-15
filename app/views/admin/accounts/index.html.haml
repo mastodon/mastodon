@@ -10,9 +10,10 @@
   .filter-subset
     %strong= t('admin.accounts.moderation.title')
     %ul
-      %li= filter_link_to t('admin.accounts.moderation.active'), silenced: nil, suspended: nil
-      %li= filter_link_to t('admin.accounts.moderation.silenced'), silenced: '1', suspended: nil
-      %li= filter_link_to t('admin.accounts.moderation.suspended'), suspended: '1', silenced: nil
+      %li= filter_link_to t('admin.accounts.moderation.pending'), pending: '1', silenced: nil, suspended: nil
+      %li= filter_link_to t('admin.accounts.moderation.active'), silenced: nil, suspended: nil, pending: nil
+      %li= filter_link_to t('admin.accounts.moderation.silenced'), silenced: '1', suspended: nil, pending: nil
+      %li= filter_link_to t('admin.accounts.moderation.suspended'), suspended: '1', silenced: nil, pending: nil
   .filter-subset
     %strong= t('admin.accounts.role')
     %ul
@@ -26,8 +27,9 @@
         = hidden_field_tag key, params[key]
 
     - %i(username by_domain display_name email ip).each do |key|
-      .input.string.optional
-        = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.accounts.#{key}")
+      - unless key == :by_domain && params[:remote].blank?
+        .input.string.optional
+          = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.accounts.#{key}")
 
     .actions
       %button= t('admin.accounts.search')

@@ -21,6 +21,7 @@
 #  account_id             :bigint(8)        not null
 #  application_id         :bigint(8)
 #  in_reply_to_account_id :bigint(8)
+#  poll_id                :bigint(8)
 #
 
 class Status < ApplicationRecord
@@ -44,6 +45,7 @@ class Status < ApplicationRecord
   belongs_to :account, inverse_of: :statuses
   belongs_to :in_reply_to_account, foreign_key: 'in_reply_to_account_id', class_name: 'Account', optional: true
   belongs_to :conversation, optional: true
+  belongs_to :poll, optional: true
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies, optional: true
   belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, optional: true
@@ -61,12 +63,16 @@ class Status < ApplicationRecord
   has_one :notification, as: :activity, dependent: :destroy
   has_one :stream_entry, as: :activity, inverse_of: :status
   has_one :status_stat, inverse_of: :status
+  has_one :owned_poll, class_name: 'Poll', inverse_of: :status, dependent: :destroy
 
   validates :uri, uniqueness: true, presence: true, unless: :local?
   validates :text, presence: true, unless: -> { with_media? || reblog? }
   validates_with StatusLengthValidator
   validates_with DisallowedHashtagsValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
+  validates :visibility, exclusion: { in: %w(direct limited) }, if: :reblog?
+
+  accepts_nested_attributes_for :owned_poll
 
   default_scope { recent }
 
@@ -101,6 +107,7 @@ class Status < ApplicationRecord
                    :tags,
                    :preview_cards,
                    :stream_entry,
+                   :poll,
                    account: :account_stat,
                    active_mentions: { account: :account_stat },
                    reblog: [
@@ -111,6 +118,7 @@ class Status < ApplicationRecord
                      :media_attachments,
                      :conversation,
                      :status_stat,
+                     :poll,
                      account: :account_stat,
                      active_mentions: { account: :account_stat },
                    ],
@@ -249,6 +257,8 @@ class Status < ApplicationRecord
   before_validation :set_visibility
   before_validation :set_conversation
   before_validation :set_local
+
+  after_create :set_poll_id
 
   class << self
     def selectable_visibilities
@@ -438,6 +448,10 @@ class Status < ApplicationRecord
     self.reblog = reblog.reblog if reblog? && reblog.reblog?
   end
 
+  def set_poll_id
+    update_column(:poll_id, owned_poll.id) unless owned_poll.nil?
+  end
+
   def set_visibility
     self.visibility = (account.locked? ? :private : :public) if visibility.nil?
     self.visibility = reblog.visibility if reblog?
@@ -478,7 +492,7 @@ class Status < ApplicationRecord
     return if direct_visibility?
 
     account&.increment_count!(:statuses_count)
-    reblog&.increment_count!(:reblogs_count) if reblog?
+    reblog&.increment_count!(:reblogs_count) if reblog? && (public_visibility? || unlisted_visibility?)
     thread&.increment_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end
 
@@ -486,7 +500,7 @@ class Status < ApplicationRecord
     return if direct_visibility? || marked_for_mass_destruction?
 
     account&.decrement_count!(:statuses_count)
-    reblog&.decrement_count!(:reblogs_count) if reblog?
+    reblog&.decrement_count!(:reblogs_count) if reblog? && (public_visibility? || unlisted_visibility?)
     thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end
 

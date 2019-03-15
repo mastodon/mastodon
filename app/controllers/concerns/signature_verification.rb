@@ -47,6 +47,7 @@ module SignatureVerification
       .with_fallback { nil }
       .with_threshold(1)
       .with_cool_off_time(5.minutes.seconds)
+      .with_error_handler { |error, handle| error.is_a?(HTTP::Error) ? handle.call(error) : raise(error) }
 
     account = account_stoplight.run
 
@@ -59,23 +60,26 @@ module SignatureVerification
     signature             = Base64.decode64(signature_params['signature'])
     compare_signed_string = build_signed_string(signature_params['headers'])
 
-    if account.keypair.public_key.verify(OpenSSL::Digest::SHA256.new, signature, compare_signed_string)
-      @signed_request_account = account
-      @signed_request_account
-    elsif account.possibly_stale?
-      account = account.refresh!
+    return account unless verify_signature(account, signature, compare_signed_string).nil?
 
-      if account.keypair.public_key.verify(OpenSSL::Digest::SHA256.new, signature, compare_signed_string)
-        @signed_request_account = account
-        @signed_request_account
-      else
-        @signature_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri}"
-        @signed_request_account = nil
-      end
-    else
-      @signature_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri}"
+    account_stoplight = Stoplight("source:#{request.ip}") { account.possibly_stale? ? account.refresh! : account_refresh_key(account) }
+      .with_fallback { nil }
+      .with_threshold(1)
+      .with_cool_off_time(5.minutes.seconds)
+      .with_error_handler { |error, handle| error.is_a?(HTTP::Error) ? handle.call(error) : raise(error) }
+
+    account = account_stoplight.run
+
+    if account.nil?
+      @signature_verification_failure_reason = "Public key not found for key #{signature_params['keyId']}"
       @signed_request_account = nil
+      return
     end
+
+    return account unless verify_signature(account, signature, compare_signed_string).nil?
+
+    @signature_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri}"
+    @signed_request_account = nil
   end
 
   def request_body
@@ -83,6 +87,15 @@ module SignatureVerification
   end
 
   private
+
+  def verify_signature(account, signature, compare_signed_string)
+    if account.keypair.public_key.verify(OpenSSL::Digest::SHA256.new, signature, compare_signed_string)
+      @signed_request_account = account
+      @signed_request_account
+    end
+  rescue OpenSSL::PKey::RSAError
+    nil
+  end
 
   def build_signed_string(signed_headers)
     signed_headers = 'date' if signed_headers.blank?
@@ -129,5 +142,10 @@ module SignatureVerification
       account ||= ActivityPub::FetchRemoteKeyService.new.call(key_id, id: false)
       account
     end
+  end
+
+  def account_refresh_key(account)
+    return if account.local? || !account.activitypub?
+    ActivityPub::FetchRemoteAccountService.new.call(account.uri, only_key: true)
   end
 end

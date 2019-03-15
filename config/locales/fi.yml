@@ -5,43 +5,52 @@ fi:
     about_mastodon_html: Mastodon on sosiaalinen verkosto. Se on toteutettu avoimilla verkkoprotokollilla ja vapailla, avoimen lähdekoodin ohjelmistoilla, ja se toimii hajautetusti samaan tapaan kuin sähköposti.
     about_this: Tietoja tästä palvelimesta
     administered_by: 'Ylläpitäjä:'
-    closed_registrations: Tähän instanssiin ei voi tällä hetkellä rekisteröityä. Voit kuitenkin luoda tilin johonkin toiseen instanssiin ja käyttää samaa verkostoa sitä kautta.
+    api: API
+    apps: Mobiili sovellukset
     contact: Ota yhteyttä
     contact_missing: Ei asetettu
     contact_unavailable: Ei saatavilla
+    documentation: Dokumentaatio
     extended_description_html: |
       <h3>Hyvä paikka säännöille</h3>
       <p>Pidempää kuvausta ei ole vielä laadittu.</p>
-    features:
-      humane_approach_body: Mastodonissa otetaan oppia muiden verkostojen virheistä, ja sen suunnittelussa pyritään toimimaan eettisesti ja ehkäisemään sosiaalisen median väärinkäyttöä.
-      humane_approach_title: Ihmisläheisempi ote
-      not_a_product_body: Mastodon ei ole kaupallinen verkosto. Ei mainoksia, ei tiedonlouhintaa, ei suljettuja protokollia. Mastodonissa ei ole keskusjohtoa.
-      not_a_product_title: Olet henkilö, et tuote
-      real_conversation_body: 'Voit ilmaista itseäsi niin kuin itse haluat: tilaa on 500 merkkiä, ja sisältövaroituksia voi tehdä monin tavoin.'
-      real_conversation_title: Tehty oikeaa keskustelua varten
-      within_reach_body: Rajapintoja on tarjolla moniin eri kehitysympäristöihin, minkä ansiosta iOS:lle, Androidille ja muille alustoille on saatavana useita eri sovelluksia. Näin voit pitää yhteyttä ystäviisi missä vain.
-      within_reach_title: Aina lähellä
     generic_description: "%{domain} on yksi verkostoon kuuluvista palvelimista"
     hosted_on: Mastodon palvelimella %{domain}
     learn_more: Lisätietoja
-    other_instances: Muut palvelimet
+    privacy_policy: Tietosuojaseloste
     source_code: Lähdekoodi
-    status_count_after: statusta
+    status_count_after:
+      one: tila
+      other: tilanne
     status_count_before: He ovat luoneet
-    user_count_after: käyttäjälle
+    terms: Käyttöehdot
+    user_count_after:
+      one: käyttäjä
+      other: käyttäjät
     user_count_before: Koti
     what_is_mastodon: Mikä on Mastodon?
   accounts:
+    choices_html: "%{name} valinnat:"
     follow: Seuraa
-    followers: Seuraajat
+    followers:
+      one: Seuraaja
+      other: Seuraajat
     following: Seuratut
+    joined: Liittynyt %{date}
+    last_active: viimeksi aktiivinen
+    link_verified_on: Tämän linkin omistus on tarkastettu %{date}
     media: Media
     moved_html: "%{name} on muuttanut osoitteeseen %{new_profile_link}:"
     network_hidden: Nämä tiedot eivät ole käytettävissä
     nothing_here: Täällä ei ole mitään!
     people_followed_by: Henkilöt, joita %{name} seuraa
     people_who_follow: Käyttäjän %{name} seuraajat
-    posts: Tuuttaukset
+    pin_errors:
+      following: Sinun täytyy seurata henkilöä jota haluat tukea
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Tuuttaukset ja vastaukset
     reserved_username: Käyttäjänimi on varattu
     roles:
@@ -129,7 +138,6 @@ fi:
       shared_inbox_url: Jaetun saapuvan postilaatikon osoite
       show:
         created_reports: Tämän tilin luomat raportit
-        report: raportti
         targeted_reports: Tästä tilistä tehdyt raportit
       silence: Hiljennä
       statuses: Tilat
@@ -212,11 +220,6 @@ fi:
         title: Uusi verkkotunnuksen esto
       reject_media: Hylkää mediatiedostot
       reject_media_hint: Poistaa paikallisesti tallennetut mediatiedostot eikä lataa niitä enää jatkossa. Ei merkitystä jäähyn kohdalla
-      severities:
-        noop: Ei mitään
-        silence: Hiljennys
-        suspend: Jäähy
-      severity: Vakavuus
       show:
         affected_accounts:
           one: Vaikuttaa yhteen tiliin tietokannassa
@@ -226,7 +229,6 @@ fi:
           suspend: Peru kaikkien tässä verkkotunnuksessa jo olemassa olevien tilien jäähy
         title: Peru verkkotunnuksen %{domain} esto
         undo: Peru
-      title: Verkkotunnusten estot
       undo: Peru
     email_domain_blocks:
       add_new: Lisää uusi
@@ -239,10 +241,6 @@ fi:
         title: Uusi sähköpostiestolistan merkintä
       title: Sähköpostiestolista
     instances:
-      account_count: Tiedossa olevat tilit
-      domain_name: Verkkotunnus
-      reset: Palauta
-      search: Hae
       title: Tiedossa olevat instanssit
     invites:
       filter:
@@ -308,9 +306,6 @@ fi:
         min_invite_role:
           disabled: Ei kukaan
           title: Salli kutsut käyttäjältä
-        open:
-          desc_html: Salli kenen tahansa luoda tili
-          title: Avoin rekisteröinti
       show_known_fediverse_at_about_page:
         desc_html: Kun tämä on valittu, esikatselussa näytetään tuuttaukset kaikkialta tunnetusta fediversumista. Muutoin näytetään vain paikalliset tuuttaukset.
         title: Näytä aikajanan esikatselussa koko tunnettu fediversumi
@@ -387,13 +382,11 @@ fi:
     logout: Kirjaudu ulos
     migrate_account: Muuta toiseen tiliin
     migrate_account_html: Jos haluat ohjata tämän tilin toiseen tiliin, voit <a href="%{path}">asettaa toisen tilin tästä</a>.
-    or: tai
     or_log_in_with: Tai käytä kirjautumiseen
     providers:
       cas: CAS
       saml: SAML
     register: Rekisteröidy
-    register_elsewhere: Rekisteröidy toiselle palvelimelle
     resend_confirmation: Lähetä vahvistusohjeet uudestaan
     reset_password: Palauta salasana
     security: Tunnukset
@@ -709,7 +702,6 @@ fi:
       review_preferences_action: Muuta asetuksia
       review_preferences_step: Käy tarkistamassa, että asetukset ovat haluamallasi tavalla. Voit valita, missä tilanteissa haluat saada sähköpostia, mikä on julkaisujesi oletusnäkyvyys jne. Jos et saa helposti pahoinvointia, voit valita, että GIF-animaatiot toistetaan automaattisesti.
       subject: Tervetuloa Mastodoniin
-      tip_bridge_html: Jos tulet Twitteristä, voit etsiä ystäviäsi Mastodonista <a href="%{bridge_url}">siltasovelluksen</a> avulla. Se kuitenkin löytää heidät vain, jos hekin käyttävät sitä!
       tip_federated_timeline: Yleinen aikajana näyttää sisältöä koko Mastodon-verkostosta. Siinä näkyvät kuitenkin vain ne henkilöt, joita oman instanssisi käyttäjät seuraavat. Siinä ei siis näytetä aivan kaikkea.
       tip_following: Oletusarvoisesti seuraat oman palvelimesi ylläpitäjiä. Etsi lisää kiinnostavia ihmisiä paikalliselta ja yleiseltä aikajanalta.
       tip_local_timeline: Paikallinen aikajana näyttää instanssin %{instance} käyttäjien julkaisut. He ovat naapureitasi!

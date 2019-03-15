@@ -8,21 +8,14 @@ class InstanceFilter
   end
 
   def results
-    scope = Account.remote.by_domain_accounts
-    params.each do |key, value|
-      scope.merge!(scope_for(key, value)) if value.present?
-    end
-    scope
-  end
-
-  private
-
-  def scope_for(key, value)
-    case key.to_s
-    when 'domain_name'
-      Account.matches_domain(value)
+    if params[:limited].present?
+      scope = DomainBlock
+      scope = scope.matches_domain(params[:by_domain]) if params[:by_domain].present?
+      scope.order(id: :desc)
     else
-      raise "Unknown filter: #{key}"
+      scope = Account.remote
+      scope = scope.matches_domain(params[:by_domain]) if params[:by_domain].present?
+      scope.by_domain_accounts
     end
   end
 end

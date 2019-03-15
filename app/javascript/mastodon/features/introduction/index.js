@@ -89,7 +89,7 @@ const FrameInteractions = ({ onNext }) => (
     </div>
 
     <div className='introduction__action'>
-      <button className='button' onClick={onNext}><FormattedMessage id='introduction.interactions.action' defaultMessage='Finish tutorial!' /></button>
+      <button className='button' onClick={onNext}><FormattedMessage id='introduction.interactions.action' defaultMessage='Finish toot-orial!' /></button>
     </div>
   </div>
 );
@@ -98,8 +98,8 @@ FrameInteractions.propTypes = {
   onNext: PropTypes.func.isRequired,
 };
 
-@connect(state => ({ domain: state.getIn(['meta', 'domain']) }))
-export default class Introduction extends React.PureComponent {
+export default @connect(state => ({ domain: state.getIn(['meta', 'domain']) }))
+class Introduction extends React.PureComponent {
 
   static propTypes = {
     domain: PropTypes.string.isRequired,

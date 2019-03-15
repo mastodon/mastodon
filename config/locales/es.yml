@@ -7,7 +7,6 @@ es:
     administered_by: 'Administrado por:'
     api: API
     apps: Aplicaciones móviles
-    closed_registrations: Los registros están actualmente cerrados en esta instancia.
     contact: Contacto
     contact_missing: No especificado
     contact_unavailable: N/A
@@ -15,19 +14,9 @@ es:
     extended_description_html: |
       <h3>Un buen lugar para las reglas</h3>
       <p>La descripción extendida no se ha colocado aún.</p>
-    features:
-      humane_approach_body: Aprendiendo de los errores de otras redes, Mastodon apunta a las decisiones de diseño ético para combatir el desuso de las redes sociales.
-      humane_approach_title: Una misión más humana
-      not_a_product_body: Mastodon no es una red comercial. Nada de publicidad, nada de minado de datos, nada de jardines murados. No hay ninguna autoridad central.
-      not_a_product_title: Eres una persona, no un producto
-      real_conversation_body: Con 500 caracteres a tu disposición y soporte para contenido granular y advertencias de contenido, puedes expresarte como quieras.
-      real_conversation_title: Hecho para verdaderas conversaciones
-      within_reach_body: Aplicaciones múltiples para iOS, Android, y otras plataformas gracias a un ecosistema de APIs amigable al desarrollador para permitirte estar con tus amigos donde sea.
-      within_reach_title: Siempre al alcance
     generic_description: "%{domain} es un servidor en la red"
     hosted_on: Mastodon hosteado en %{domain}
     learn_more: Aprende más
-    other_instances: Otras instancias
     privacy_policy: Política de privacidad
     source_code: Código fuente
     status_count_after:
@@ -48,6 +37,7 @@ es:
       other: Seguidores
     following: Siguiendo
     joined: Se unió el %{date}
+    last_active: última conexión
     link_verified_on: La propiedad de este vínculo fue verificada el %{date}
     media: Media
     moved_html: "%{name} se ha trasladado a %{new_profile_link}:"
@@ -69,6 +59,8 @@ es:
       moderator: Moderador
     unfollow: Dejar de seguir
   admin:
+    account_actions:
+      title: Moderar %{acct}
     account_moderation_notes:
       create: Crear
       created_msg: "¡Nota de moderación creada con éxito!"
@@ -88,6 +80,7 @@ es:
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
+      deleted: Borrado
       demote: Degradar
       disable: Deshabilitar
       disable_two_factor_authentication: Desactivar autenticación de dos factores
@@ -150,7 +143,6 @@ es:
       shared_inbox_url: URL de bandeja compartida
       show:
         created_reports: Reportes hechos por esta cuenta
-        report: reportar
         targeted_reports: Reportes hechos sobre esta cuenta
       silence: Silenciar
       silenced: Silenciado
@@ -261,11 +253,6 @@ es:
       reject_media_hint: Remueve localmente archivos multimedia almacenados para descargar cualquiera en el futuro. Irrelevante para suspensiones
       reject_reports: Rechazar informes
       reject_reports_hint: Ignore todos los reportes de este dominio. Irrelevante para suspensiones
-      severities:
-        noop: Ninguno
-        silence: Silenciar
-        suspend: Suspender
-      severity: Severidad
       show:
         affected_accounts:
           one: Una cuenta en la base de datos afectada
@@ -275,7 +262,6 @@ es:
           suspend: Des-suspender todas las cuentas existentes de este dominio
         title: Deshacer bloque de dominio para %{domain}
         undo: Deshacer
-      title: Bloques de Dominio
       undo: Deshacer
     email_domain_blocks:
       add_new: Añadir nuevo
@@ -288,10 +274,6 @@ es:
         title: Nueva entrada en la lista negra de correo
       title: Lista negra de correo
     instances:
-      account_count: Cuentas conocidas
-      domain_name: Dominio
-      reset: Reiniciar
-      search: Buscar
       title: Instancias conocidas
     invites:
       deactivate_all: Desactivar todos
@@ -384,9 +366,6 @@ es:
         min_invite_role:
           disabled: Nadie
           title: Permitir invitaciones de
-        open:
-          desc_html: Permite a cualquiera a registrar una cuenta
-          title: Registro abierto
       show_known_fediverse_at_about_page:
         desc_html: Cuando esté activado, se mostrarán toots de todo el fediverso conocido en la vista previa. En otro caso, se mostrarán solamente toots locales.
         title: Mostrar fediverso conocido en la vista previa de la historia
@@ -433,12 +412,6 @@ es:
       last_delivery: Última entrega
       title: WebSub
       topic: Tópico
-    suspensions:
-      bad_acct_msg: El valor de confirmación no cuadra. ¿Estás suspendiendo la cuenta correcta?
-      hint_html: 'Para confirmar las suspensión de la cuenta, por favor introduce %{value} en el campo de abajo:'
-      proceed: Proceder
-      title: Suspender %{acct}
-      warning_html: 'Suspender esta cuenta borrará <strong>irreversiblemente</strong> los datos de stra cuenta que incluyen:'
     title: Administración
   admin_mailer:
     new_report:
@@ -473,13 +446,11 @@ es:
     logout: Cerrar sesión
     migrate_account: Mudarse a otra cuenta
     migrate_account_html: Si deseas redireccionar esta cuenta a otra distinta, puedes <a href="%{path}">configurarlo aquí</a>.
-    or: o
     or_log_in_with: O inicia sesión con
     providers:
       cas: CAS
       saml: SAML
     register: Registrarse
-    register_elsewhere: Registrarse en otro servidor
     resend_confirmation: Volver a enviar el correo de confirmación
     reset_password: Restablecer contraseña
     security: Cambiar contraseña
@@ -688,9 +659,6 @@ es:
     no_account_html: "¿No tienes una cuenta? Puedes <a href='%{sign_up_path}' target='_blank'>registrarte aqui</a>"
     proceed: Proceder a seguir
     prompt: 'Vas a seguir a:'
-  remote_interaction:
-    proceed: Proceder para interactuar
-    prompt: 'Quieres interactuar con este toot:'
   remote_unfollow:
     error: Error
     title: Título
@@ -829,7 +797,6 @@ es:
       review_preferences_action: Cambiar preferencias
       review_preferences_step: Asegúrate de poner tus preferencias, como que correos te gustaría recibir, o que nivel de privacidad te gustaría que tus publicaciones tengan por defecto. Si no tienes mareos, podrías elegir habilitar la reproducción automática de "GIFs".
       subject: Bienvenido a Mastodon
-      tip_bridge_html: Si esta viniendo desde Twitter, puedes encontrar a tus amigos en Mastodon usando la <a href="%{bridge_url}">aplicación puente</a>. Aunque solo funciona si ellos también usaron la aplicación puente!
       tip_federated_timeline: La línea de tiempo federada es una vista de la red de Mastodon. Pero solo incluye gente que tus vecinos están siguiendo, así que no está completa.
       tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar más gente interesante, revisa las lineas de tiempo local y federada.
       tip_local_timeline: La linea de tiempo local is una vista de la gente en %{instance}. Estos son tus vecinos inmediatos!

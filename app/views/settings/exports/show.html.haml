@@ -17,6 +17,10 @@
         %td= number_with_delimiter @export.total_follows
         %td= table_link_to 'download', t('exports.csv'), settings_exports_follows_path(format: :csv)
       %tr
+        %th= t('exports.lists')
+        %td= number_with_delimiter @export.total_lists
+        %td= table_link_to 'download', t('exports.csv'), settings_exports_lists_path(format: :csv)
+      %tr
         %th= t('accounts.followers', count: @export.total_followers)
         %td= number_with_delimiter @export.total_followers
         %td
@@ -28,6 +32,10 @@
         %th= t('exports.mutes')
         %td= number_with_delimiter @export.total_mutes
         %td= table_link_to 'download', t('exports.csv'), settings_exports_mutes_path(format: :csv)
+      %tr
+        %th= t('exports.domain_blocks')
+        %td= number_with_delimiter @export.total_domain_blocks
+        %td= table_link_to 'download', t('exports.csv'), settings_exports_domain_blocks_path(format: :csv)
 
 %p.muted-hint= t('exports.archive_takeout.hint_html')
 

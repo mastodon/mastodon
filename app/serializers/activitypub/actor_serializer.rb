@@ -14,6 +14,7 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   has_many :virtual_attachments, key: :attachment
 
   attribute :moved_to, if: :moved?
+  attribute :also_known_as, if: :also_known_as?
 
   class EndpointsSerializer < ActiveModel::Serializer
     include RoutingHelper
@@ -114,6 +115,10 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
 
   def moved_to
     ActivityPub::TagManager.instance.uri_for(object.moved_to_account)
+  end
+
+  def also_known_as?
+    !object.also_known_as.empty?
   end
 
   class CustomEmojiSerializer < ActivityPub::EmojiSerializer

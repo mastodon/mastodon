@@ -4,26 +4,15 @@
     about_hashtag_html: Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.
     about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
     about_this: Om denne instansen
-    closed_registrations: Registreringer er for øyeblikket lukket på denne instansen.
     contact: Kontakt
     contact_missing: Ikke innstilt
     contact_unavailable: Ikke tilgjengelig
     extended_description_html: |
       <h3>En god plassering for regler</h3>
       <p>En utvidet beskrivelse er ikke satt opp ennå.</p>
-    features:
-      humane_approach_body: Mastodon har tatt lærdom fra andre nettverk og har til mål å gjøre etiske designvalg for å bekjempe misbruk av sosiale medier.
-      humane_approach_title: En mer menneskelig tilnærming
-      not_a_product_body: Mastodon er ikke et kommerst nettverk. Ingen reklame, ingen datainnsamling, ingen innhegnede hager. Det finnes ingen sentral myndighet.
-      not_a_product_title: Du er en person, ikke et produkt
-      real_conversation_body: Med 500 tegn til din disposisjon og støtte for granulært innhold og media-advarsler kan du uttrykke deg på den måten du selv vil.
-      real_conversation_title: Laget for ekte samtaler
-      within_reach_body: Takket være et utviklingsvennlig API-økosystem vil flere apper for iOS, Android og andre plattformer la deg holde kontakten med dine venner hvor som helst.
-      within_reach_title: Alltid innen rekkevidde
     generic_description: "%{domain} er en tjener i nettverket"
     hosted_on: Mastodon driftet på %{domain}
     learn_more: Lær mer
-    other_instances: Andre instanser
     source_code: Kildekode
     status_count_after: statuser
     status_count_before: Som skrev
@@ -118,7 +107,6 @@
       shared_inbox_url: Delt Innboks URL
       show:
         created_reports: Rapporter laget av denne kontoen
-        report: rapport
         targeted_reports: Rapporter laget om denne kontoen
       silence: Målbind
       statuses: Statuser
@@ -196,11 +184,6 @@
         title: Ny domeneblokkering
       reject_media: Avvis mediefiler
       reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
-      severities:
-        noop: Ingen
-        silence: Målbind
-        suspend: Utvis
-      severity: Alvorlighet
       show:
         affected_accounts:
           one: En konto i databasen påvirket
@@ -210,7 +193,6 @@
           suspend: Avutvis alle eksisterende kontoer fra dette domenet
         title: Angre domeneblokkering for %{domain}
         undo: Angre
-      title: Domeneblokkeringer
       undo: Angre
     email_domain_blocks:
       add_new: Lag ny
@@ -223,10 +205,6 @@
         title: Ny blokkeringsoppføring av e-postdomene
       title: Blokkering av e-postdomene
     instances:
-      account_count: Kjente kontoer
-      domain_name: Domene
-      reset: Tilbakestill
-      search: Søk
       title: Kjente instanser
     invites:
       filter:
@@ -271,9 +249,6 @@
         min_invite_role:
           disabled: Ingen
           title: Tillat invitasjoner fra
-        open:
-          desc_html: Tillatt alle å lage seg en konto
-          title: Åpen registrering
       show_staff_badge:
         desc_html: Vis personalemerke på brukersiden
         title: Vis personalemerke
@@ -631,7 +606,6 @@
       review_preferences_action: Endre innstillinger
       review_preferences_step: Husk å justere dine innstillinger, som hvilke e-poster du ønsker å motta, eller hvor private du ønsker at dine poster skal være som standard. Hvis du ikke har bevegelsessyke kan du skru på automatisk avspilling av GIF-animasjoner.
       subject: Velkommen til Mastodon
-      tip_bridge_html: Hvis du kommer fra Twitter kan du finne dine venner på Mastodon ved å bruke en <a href="%{bridge_url}">bro app</a>. Men det fungerer kun dersom de også bruker bro-appen!
       tip_federated_timeline: Den forente tidslinjen blir konstant matet med meldinger fra Mastodon-nettverket. Men den inkluderer bare personer dine naboer abbonerer på, så den er ikke komplett.
       tip_following: Du følger din tjeners administrator(er) som standard. For å finne mer interessante personer, sjekk den lokale og forente tidslinjen.
       tip_local_timeline: Den lokale tidslinjen blir kontant matet med meldinger fra personer på %{instance}. Dette er dine nærmeste naboer!

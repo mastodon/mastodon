@@ -28,11 +28,11 @@ class DirectoriesController < ApplicationController
   end
 
   def set_tags
-    @tags = Tag.discoverable.limit(30)
+    @tags = Tag.discoverable.limit(30).reject { |tag| tag.cached_sample_accounts.empty? }
   end
 
   def set_accounts
-    @accounts = Account.discoverable.page(params[:page]).per(30).tap do |query|
+    @accounts = Account.discoverable.page(params[:page]).per(40).tap do |query|
       query.merge!(Account.tagged_with(@tag.id)) if @tag
     end
   end

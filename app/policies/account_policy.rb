@@ -9,6 +9,10 @@ class AccountPolicy < ApplicationPolicy
     staff?
   end
 
+  def warn?
+    staff? && !record.user&.staff?
+  end
+
   def suspend?
     staff? && !record.user&.staff?
   end

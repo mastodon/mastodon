@@ -6,7 +6,9 @@ require_relative 'mastodon/emoji_cli'
 require_relative 'mastodon/accounts_cli'
 require_relative 'mastodon/feeds_cli'
 require_relative 'mastodon/settings_cli'
+require_relative 'mastodon/statuses_cli'
 require_relative 'mastodon/domains_cli'
+require_relative 'mastodon/version'
 
 module Mastodon
   class CLI < Thor
@@ -29,7 +31,17 @@ module Mastodon
     desc 'settings SUBCOMMAND ...ARGS', 'Manage dynamic settings'
     subcommand 'settings', Mastodon::SettingsCLI
 
+    desc 'statuses SUBCOMMAND ...ARGS', 'Manage statuses'
+    subcommand 'statuses', Mastodon::StatusesCLI
+
     desc 'domains SUBCOMMAND ...ARGS', 'Manage account domains'
     subcommand 'domains', Mastodon::DomainsCLI
+
+    map %w(--version -v) => :version
+
+    desc 'version', 'Show version'
+    def version
+      say(Mastodon::Version.to_s)
+    end
   end
 end

@@ -1,0 +1,8 @@
+<%= raw t('application_mailer.salutation', name: display_name(@me)) %>
+
+<%= raw t('admin_mailer.new_pending_account.body') %>
+
+<%= raw t('admin.accounts.email') %>: <%= @account.user_email %>
+<%= raw t('admin.accounts.most_recent_ip') %>: <%= @account.user_current_sign_in_ip %>
+
+<%= raw t('application_mailer.view')%> <%= admin_account_url(@account.id) %>

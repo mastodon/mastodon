@@ -4,9 +4,10 @@ const webpack = require('webpack');
 const { basename, dirname, join, relative, resolve } = require('path');
 const { sync } = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const AssetsManifestPlugin = require('webpack-assets-manifest');
 const extname = require('path-complete-extname');
-const { env, settings, themes, output, loadersDir } = require('./configuration.js');
+const { env, settings, themes, output } = require('./configuration');
+const rules = require('./rules');
 const localePackPaths = require('./generateLocalePacks');
 
 const extensionGlob = `**/*{${settings.extensions.join(',')}}*`;
@@ -33,8 +34,9 @@ module.exports = {
   ),
 
   output: {
-    filename: '[name].js',
-    chunkFilename: '[name].js',
+    filename: 'js/[name]-[chunkhash].js',
+    chunkFilename: 'js/[name]-[chunkhash].chunk.js',
+    hotUpdateChunkFilename: 'js/[id]-[hash].hot-update.js',
     path: output.path,
     publicPath: output.publicPath,
   },
@@ -60,7 +62,7 @@ module.exports = {
   },
 
   module: {
-    rules: sync(join(loadersDir, '*.js')).map(loader => require(loader)),
+    rules: Object.keys(rules).map(key => rules[key]),
   },
 
   plugins: [
@@ -73,12 +75,14 @@ module.exports = {
       }
     ),
     new MiniCssExtractPlugin({
-      filename: env.NODE_ENV === 'production' ? '[name]-[contenthash].css' : '[name].css',
+      filename: 'css/[name]-[contenthash:8].css',
+      chunkFilename: 'css/[name]-[contenthash:8].chunk.css',
     }),
-    new ManifestPlugin({
-      publicPath: output.publicPath,
-      writeToFileEmit: true,
-      filter: file => !file.isAsset || file.isModuleAsset,
+    new AssetsManifestPlugin({
+      integrity: false,
+      entrypoints: true,
+      writeToDisk: true,
+      publicPath: true,
     }),
   ],
 

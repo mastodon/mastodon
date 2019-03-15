@@ -1,75 +1,163 @@
 ---
 id:
   about:
+    about_hashtag_html: Ini adalah toot public yang ditandai dengan <strong>#%{hashtag}</strong>. Anda bisa berinteraksi dengan mereka jika anda memiliki akun dimanapun di fediverse.
     about_mastodon_html: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
     about_this: Tentang server ini
-    closed_registrations: Pendaftaran untuk server ini sedang ditutup.
+    administered_by: 'Dikelola oleh:'
+    api: API
+    apps: Aplikasi hp
     contact: Kontak
-    other_instances: Server lain
+    contact_missing: Belum diset
+    contact_unavailable: Tidak Tersedia
+    documentation: Dokumentasi
+    extended_description_html: |
+      <h3>Tempat yang baik untuk peraturan</h3>
+      <p>Deskripsi lainnya belum diset.</p>
+    generic_description: "%{domain} adalah satu server dalam jaringan"
+    hosted_on: Mastodon dihosting di %{domain}
+    learn_more: Pelajari selengkapnya
+    privacy_policy: Kebijakan Privasi
     source_code: Kode sumber
-    status_count_after: status
+    status_count_after:
+      one: status
+      other: status
     status_count_before: Yang telah menulis
-    user_count_after: pengguna
+    terms: Kebijakan layanan
+    user_count_after:
+      one: pengguna
+      other: pengguna
     user_count_before: Tempat bernaung bagi
+    what_is_mastodon: Apa itu Mastodon?
   accounts:
     follow: Ikuti
-    followers: Pengikut
-    following: Mengikut
+    followers:
+      one: Pengikut
+      other: Pengikut
+    following: Mengikuti
+    joined: Bergabung pada %{date}
+    last_active: terakhir aktif
+    link_verified_on: Kepemilikan tautan ini telah dicek pada %{date}
+    media: Media
+    moved_html: "%{name} telah pindah ke %{new_profile_link}:"
+    network_hidden: Informasi ini tidak tersedia
     nothing_here: Tidak ada apapun disini!
     people_followed_by: Orang yang diikuti %{name}
     people_who_follow: Orang-orang yang mengikuti %{name}
+    pin_errors:
+      following: Anda harus mengikuti orang yang ingin anda endorse
     posts:
       one: Toot
-      other: Toots
+      other: Toot
+    posts_tab_heading: Toot
+    posts_with_replies: Toot dan balasan
+    reserved_username: Nama pengguna telah dipesan
+    roles:
+      admin: Admin
+      bot: Bot
+      moderator: Moderator
     unfollow: Berhenti mengikuti
   admin:
+    account_actions:
+      action: Lakukan aksi
+      title: Lakukan moderasi pada %{acct}
+    account_moderation_notes:
+      create: Beri catatan
+      created_msg: Catatan moderasi berhasil dibuat!
+      delete: Hapus
+      destroyed_msg: Catatan moderasi berhasil dihapus!
     accounts:
       are_you_sure: Anda yakin?
+      avatar: Avatar
+      by_domain: Domain
+      change_email:
+        changed_msg: Email akun ini berhasil diubah!
+        current_email: Email saat ini
+        label: Ganti email
+        new_email: Email baru
+        submit: Ganti email
+        title: Ganti email untuk %{username}
       confirm: Konfirmasi
       confirmed: Dikonfirmasi
       confirming: Mengkonfirmasi
+      deleted: Terhapus
+      disable: Nonaktifkan
+      disable_two_factor_authentication: Nonaktifkan 2FA
+      disabled: Dinonaktifkan
       display_name: Nama
       domain: Domain
       edit: Ubah
       email: E-mail
       email_status: Status Email
+      enable: Aktifkan
+      enabled: Diaktifkan
       feed_url: URL Feed
       followers: Pengikut
+      followers_url: URL pengikut
       follows: Mengikut
+      inbox_url: URL Kotak masuk
+      invited_by: Diundang oleh
+      ip: IP
+      joined: Bergabung
       location:
         all: Semua
         local: Lokal
         remote: Remote
         title: Lokasi
+      login_status: Status login
       media_attachments: Lampiran media
+      memorialize: Ubah menjadi memoriam
       moderation:
+        active: Aktif
         all: Semua
         silenced: Didiamkan
         suspended: Disuspen
         title: Moderasi
+      moderation_notes: Catatan moderasi
       most_recent_activity: Aktivitas terbaru
       most_recent_ip: IP terbaru
+      no_limits_imposed: Tidak ada batasan
       not_subscribed: Tidak berlangganan
+      outbox_url: URL Kotak keluar
       perform_full_suspension: Lakukan suspen penuh
       profile_url: URL profil
+      promote: Promosikan
+      protocol: Protokol
       public: Publik
       push_subscription_expires: Langganan PuSH telah kadaluarsa
+      redownload: Muat ulang profil
+      remove_avatar: Hapus avatar
+      remove_header: Hapus header
       resend_confirmation:
         already_confirmed: Pengguna ini sudah dikonfirmasi
         send: Kirim ulang email konfirmasi
         success: Email konfirmasi berhasil dikirim!
+      reset: Reset
       reset_password: Reset kata sandi
+      resubscribe: Langganan ulang
+      role: Hak akses
+      roles:
+        admin: Administrator
+        moderator: Moderator
+        staff: Staf
+        user: Pengguna
       salmon_url: URL Salmon
+      search: Cari
       show:
         created_reports: Laporan yang dibuat oleh akun ini
-        report: laporan
         targeted_reports: Laporan yang dibuat tentang akun ini
       silence: Diam
+      silenced: Didiamkan
       statuses: Status
+      subscribe: Langganan
+      suspended: Disuspen
       title: Akun
+      unconfirmed_email: Email belum dikonfirmasi
       undo_silenced: Undo mendiamkan
       undo_suspension: Undo suspen
+      unsubscribe: Berhenti langganan
       username: Nama pengguna
+      warn: Beri Peringatan
       web: Web
     domain_blocks:
       add_new: Tambah
@@ -86,10 +174,6 @@ id:
         title: Pemblokiran domain baru
       reject_media: Tolak berkas media
       reject_media_hint: Hapus file media yang tersimpan dan menolak semua unduhan nantinya. Tidak terpengaruh dengan suspen
-      severities:
-        silence: Diamkan
-        suspend: Suspen
-      severity: Keparahan
       show:
         affected_accounts:
           one: Satu akun di dalam database terpengaruh
@@ -99,10 +183,7 @@ id:
           suspend: Hapus suspen terhadap akun pada domain ini
         title: Hapus pemblokiran domain %{domain}
         undo: Undo
-      title: Pemblokiran Domain
     instances:
-      account_count: Akun yang diketahui
-      domain_name: Domain
       title: Server yang diketahui
     reports:
       comment:
@@ -123,8 +204,6 @@ id:
         closed_message:
           desc_html: Ditampilkan pada halaman depan saat pendaftaran ditutup<br>Anda bisa menggunakan tag HTML
           title: Pesan penutupan pendaftaran
-        open:
-          title: Pendaftaran terbuka
       site_description:
         desc_html: Ditampilkan sebagai sebuah paragraf di halaman depan dan digunakan sebagai tag meta.<br>Anda bisa menggunakan tag HTML, khususnya <code>&lt;a&gt;</code> dan <code>&lt;em&gt;</code>.
         title: Deskripsi situs

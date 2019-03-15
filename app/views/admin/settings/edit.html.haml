@@ -6,8 +6,11 @@
   .fields-group
     = f.input :site_title, wrapper: :with_label, label: t('admin.settings.site_title')
 
-  .fields-group
-    = f.input :theme, collection: Themes.instance.names, label_method: lambda { |theme| I18n.t("themes.#{theme}", default: theme) }, wrapper: :with_label, include_blank: false
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :theme, collection: Themes.instance.names, label_method: lambda { |theme| I18n.t("themes.#{theme}", default: theme) }, wrapper: :with_label, include_blank: false
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :registrations_mode, collection: %w(open approved none), wrapper: :with_label, label: t('admin.settings.registrations_mode.title'), include_blank: false, label_method: lambda { |mode| I18n.t("admin.settings.registrations_mode.modes.#{mode}") }
 
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
@@ -46,9 +49,6 @@
 
   .fields-group
     = f.input :show_staff_badge, as: :boolean, wrapper: :with_label, label: t('admin.settings.show_staff_badge.title'), hint: t('admin.settings.show_staff_badge.desc_html')
-
-  .fields-group
-    = f.input :open_registrations, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.open.title'), hint: t('admin.settings.registrations.open.desc_html')
 
   .fields-group
     = f.input :open_deletion, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.deletion.title'), hint: t('admin.settings.registrations.deletion.desc_html')

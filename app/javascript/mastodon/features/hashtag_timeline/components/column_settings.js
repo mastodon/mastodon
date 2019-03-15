@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
 import AsyncSelect from 'react-select/lib/Async';
+
+const messages = defineMessages({
+  placeholder: { id: 'hashtag.column_settings.select.placeholder', defaultMessage: 'Enter hashtags…' },
+  noOptions: { id: 'hashtag.column_settings.select.no_options_message', defaultMessage: 'No suggestions found' },
+});
 
 export default @injectIntl
 class ColumnSettings extends React.PureComponent {
@@ -25,6 +30,7 @@ class ColumnSettings extends React.PureComponent {
 
   tags (mode) {
     let tags = this.props.settings.getIn(['tags', mode]) || [];
+
     if (tags.toJSON) {
       return tags.toJSON();
     } else {
@@ -32,33 +38,36 @@ class ColumnSettings extends React.PureComponent {
     }
   };
 
-  onSelect = (mode) => {
-    return (value) => {
-      this.props.onChange(['tags', mode], value);
-    };
-  };
+  onSelect = mode => value => this.props.onChange(['tags', mode], value);
 
   onToggle = () => {
     if (this.state.open && this.hasTags()) {
       this.props.onChange('tags', {});
     }
+
     this.setState({ open: !this.state.open });
   };
 
+  noOptionsMessage = () => this.props.intl.formatMessage(messages.noOptions);
+
   modeSelect (mode) {
     return (
-      <div className='column-settings__section'>
-        {this.modeLabel(mode)}
+      <div className='column-settings__row'>
+        <span className='column-settings__section'>
+          {this.modeLabel(mode)}
+        </span>
+
         <AsyncSelect
           isMulti
           autoFocus
           value={this.tags(mode)}
-          settings={this.props.settings}
-          settingPath={['tags', mode]}
           onChange={this.onSelect(mode)}
           loadOptions={this.props.onLoad}
-          classNamePrefix='column-settings__hashtag-select'
+          className='column-select__container'
+          classNamePrefix='column-select'
           name='tags'
+          placeholder={this.props.intl.formatMessage(messages.placeholder)}
+          noOptionsMessage={this.noOptionsMessage}
         />
       </div>
     );
@@ -66,11 +75,15 @@ class ColumnSettings extends React.PureComponent {
 
   modeLabel (mode) {
     switch(mode) {
-    case 'any':  return <FormattedMessage id='hashtag.column_settings.tag_mode.any' defaultMessage='Any of these' />;
-    case 'all':  return <FormattedMessage id='hashtag.column_settings.tag_mode.all' defaultMessage='All of these' />;
-    case 'none': return <FormattedMessage id='hashtag.column_settings.tag_mode.none' defaultMessage='None of these' />;
+    case 'any':
+      return <FormattedMessage id='hashtag.column_settings.tag_mode.any' defaultMessage='Any of these' />;
+    case 'all':
+      return <FormattedMessage id='hashtag.column_settings.tag_mode.all' defaultMessage='All of these' />;
+    case 'none':
+      return <FormattedMessage id='hashtag.column_settings.tag_mode.none' defaultMessage='None of these' />;
+    default:
+      return '';
     }
-    return '';
   };
 
   render () {
@@ -78,23 +91,21 @@ class ColumnSettings extends React.PureComponent {
       <div>
         <div className='column-settings__row'>
           <div className='setting-toggle'>
-            <Toggle
-              id='hashtag.column_settings.tag_toggle'
-              onChange={this.onToggle}
-              checked={this.state.open}
-            />
+            <Toggle id='hashtag.column_settings.tag_toggle' onChange={this.onToggle} checked={this.state.open} />
+
             <span className='setting-toggle__label'>
               <FormattedMessage id='hashtag.column_settings.tag_toggle' defaultMessage='Include additional tags in this column' />
             </span>
           </div>
         </div>
-        {this.state.open &&
+
+        {this.state.open && (
           <div className='column-settings__hashtags'>
             {this.modeSelect('any')}
             {this.modeSelect('all')}
             {this.modeSelect('none')}
           </div>
-        }
+        )}
       </div>
     );
   }

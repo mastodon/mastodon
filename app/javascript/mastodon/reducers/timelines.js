@@ -6,6 +6,7 @@ import {
   TIMELINE_EXPAND_REQUEST,
   TIMELINE_EXPAND_FAIL,
   TIMELINE_SCROLL_TOP,
+  TIMELINE_CONNECT,
   TIMELINE_DISCONNECT,
 } from '../actions/timelines';
 import {
@@ -20,6 +21,7 @@ const initialState = ImmutableMap();
 
 const initialTimeline = ImmutableMap({
   unread: 0,
+  online: false,
   top: true,
   isLoading: false,
   hasMore: true,
@@ -29,6 +31,8 @@ const initialTimeline = ImmutableMap({
 const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, isLoadingRecent) => {
   return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
     mMap.set('isLoading', false);
+    mMap.set('isPartial', isPartial);
+
     if (!next && !isLoadingRecent) mMap.set('hasMore', false);
 
     if (!statuses.isEmpty()) {
@@ -88,7 +92,7 @@ const deleteStatus = (state, id, accountId, references) => {
 };
 
 const clearTimeline = (state, timeline) => {
-  return state.updateIn([timeline, 'items'], list => list.clear());
+  return state.set(timeline, initialTimeline);
 };
 
 const filterTimelines = (state, relationship, statuses) => {
@@ -140,14 +144,13 @@ export default function timelines(state = initialState, action) {
     return filterTimeline('home', state, action.relationship, action.statuses);
   case TIMELINE_SCROLL_TOP:
     return updateTop(state, action.timeline, action.top);
+  case TIMELINE_CONNECT:
+    return state.update(action.timeline, initialTimeline, map => map.set('online', true));
   case TIMELINE_DISCONNECT:
     return state.update(
       action.timeline,
       initialTimeline,
-      map => map.update(
-        'items',
-        items => items.first() ? items.unshift(null) : items
-      )
+      map => map.set('online', false).update('items', items => items.first() ? items.unshift(null) : items)
     );
   default:
     return state;

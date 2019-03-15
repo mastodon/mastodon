@@ -7,7 +7,6 @@ da:
     administered_by: 'Administreret af:'
     api: API
     apps: Apps til mobilen
-    closed_registrations: Registreringer er på nuværrende tidspunkt lukkede for denne instans. Du kan dog finde andre instanser du kan oprette dig på og få adgang til det samme netværk derfra.
     contact: Kontakt
     contact_missing: Ikke sat
     contact_unavailable: Ikke tilgængeligt
@@ -15,19 +14,9 @@ da:
     extended_description_html: |
       <h3>Et godt sted for regler</h3>
       <p>Den udvidede beskrivelse er endnu ikke blevet opsat.</p>
-    features:
-      humane_approach_body: Ved at lære fra fejl fra andre netværk, sigter Mastodon for at tage etisk designmæssig valg for at bekæmpe misbrug af sociale medier.
-      humane_approach_title: En mere human tilgang
-      not_a_product_body: Mastodon er ikke et kommercielt netværk. Ingen reklamer, ingen datamining, ingen indhegnet haver. Der er ingen central regering.
-      not_a_product_title: Du er en person, ikke et produkt
-      real_conversation_body: Med 500 tegn til din rådighed og understøttelse af granulært indhold og medie advarsler, kan du udtrykke dig på en hvilken som helst måde du ønsker.
-      real_conversation_title: Bygget til rigtige samtaler
-      within_reach_body: Adskillige apps for iOS, Android og andre platforme takket være et udviklervenligt API økosystem tillader dig at holde kontakten med dine venner hvor som helst.
-      within_reach_title: Altid indenfor rækkevidde
     generic_description: "%{domain} er en server i netværket"
     hosted_on: Mostodon hostet på %{domain}
     learn_more: Lær mere
-    other_instances: Liste over instanser
     privacy_policy: Privatlivspolitik
     source_code: Kildekode
     status_count_after:
@@ -69,6 +58,8 @@ da:
       moderator: Moderator
     unfollow: Følg ikke længere
   admin:
+    account_actions:
+      action: Udfør handling
     account_moderation_notes:
       create: Læg en note
       created_msg: Moderator notat succesfuldt oprettet!
@@ -149,7 +140,6 @@ da:
       shared_inbox_url: Link til delt indbakke
       show:
         created_reports: Anmeldelser oprettet af denne konto
-        report: anmeld
         targeted_reports: Anmeldelser fra denne konto
       silence: Dæmp
       silenced: Dæmpet
@@ -258,11 +248,6 @@ da:
       reject_media: Afvis medie filer
       reject_media_hint: Fjerner lokalt lagrede multimedie filer og nægter at hente nogen i fremtiden. Irrelevant for udelukkelser
       reject_reports: Afvis anmeldelser
-      severities:
-        noop: Ingen
-        silence: Dæmp
-        suspend: Udeluk
-      severity: Alvorlighed
       show:
         affected_accounts:
           one: En konto i databasen påvirket
@@ -272,7 +257,6 @@ da:
           suspend: Fjern udelukkelsen af alle eksisterende konti fra dette domæne
         title: Annuller domæne blokeringen for domænet %{domain}
         undo: Fortryd
-      title: Domæne blokeringer
       undo: Fortryd
     email_domain_blocks:
       add_new: Tilføj ny
@@ -284,11 +268,9 @@ da:
         create: Tilføj domæne
         title: Ny email blokade opslag
       title: Email sortliste
+    followers:
+      back_to_account: Tilbage til konto
     instances:
-      account_count: Kendte konti
-      domain_name: Domæne
-      reset: Nulstil
-      search: Søg
       title: Kendte instanser
     invites:
       deactivate_all: Deaktiver alle
@@ -378,9 +360,6 @@ da:
         min_invite_role:
           disabled: Ingen
           title: Tillad invitationer af
-        open:
-          desc_html: Tillad alle at oprette en konto
-          title: Åben registrering
       show_known_fediverse_at_about_page:
         desc_html: Når slået til, vil det vise trut fra hele det kendte fedivers på forhåndsvisning. Ellers vil det kun vise lokale trut.
         title: Vis kendte fedivers på tidslinje forhåndsvisning
@@ -427,12 +406,9 @@ da:
       last_delivery: Sidste levering
       title: Websub
       topic: Emne
-    suspensions:
-      bad_acct_msg: Bekræftelsværdien stemte ikke overens. Er du ved at udelukke den rigtige konto?
-      hint_html: 'For at bekræfte udelukkelsen af kontoen, indtast venligst %{value} i nedenstående felt:'
-      proceed: Fortsæt
-      title: Udeluk %{acct}
-      warning_html: 'Udelukkelse af denne konto vil <strong>uigenkaldeligt</strong> slette al data fra denne konto, hvilket indebærer:'
+    tags:
+      accounts: Kontoer
+      hidden: Skjult
     title: Administration
   admin_mailer:
     new_report:
@@ -467,13 +443,11 @@ da:
     logout: Log ud
     migrate_account: Flyt til en anden konto
     migrate_account_html: Hvis du ønsker at omdirigere denne konto til en anden, kan du <a href="%{path}">gøre det her</a>.
-    or: eller
     or_log_in_with: Eller log in med
     providers:
       cas: CAS
       saml: SAML
     register: Opret dig
-    register_elsewhere: Opret dig på en anden server
     resend_confirmation: Gensend bekræftelses instrukser
     reset_password: Nulstil kodeord
     security: Sikkerhed
@@ -682,9 +656,6 @@ da:
     no_account_html: Har du ikke en konto? Du kan <a href='%{sign_up_path}' target='_blank'>oprette dig her</a>
     proceed: Fortsæt for at følge
     prompt: 'Du er ved at følge:'
-  remote_interaction:
-    proceed: Fortsæt for at interagere
-    prompt: 'Du ønsker at interagere med dette trut:'
   remote_unfollow:
     error: Fejl
     title: Titel
@@ -824,7 +795,6 @@ da:
       review_preferences_action: Ændre præferencer
       review_preferences_step: Vær sikker på at sætte dine præferencer, så som hvilke emails du kunne tænke dig at modtage, eller hvilket niveau af privatliv der skal være standard for dine opslag. Hvis du kunne tænke dig ikke at blive køresyg, kan du vælge at aktivere automatisk afspilning af GIFfer.
       subject: Velkommen til Mastodon
-      tip_bridge_html: Hvis du kommer fra Twitter, kan du finde dine venner på Mastodon ved at bruge <a href="%{bridge_url}">bridge appen</a>. Den virker dog kun hvis de også bruger bridge appen!
       tip_federated_timeline: Den delte tidslinje er et brandslange agtigt indblik over Mastodon netværket. Men det inkluderer kun folk dine naboer abonnerer på, så den er ikke fuldendt.
       tip_following: Du følger som standard administratoren(e) for den server du er på. For at finde flere folk, tjek både den lokale og fælles tidslinje.
       tip_local_timeline: Den lokale tidslinje er et have af folk i %{instance}. Disse er dine umiddelbare naboer!

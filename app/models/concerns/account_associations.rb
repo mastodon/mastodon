@@ -14,6 +14,7 @@ module AccountAssociations
     has_many :mentions, inverse_of: :account, dependent: :destroy
     has_many :notifications, inverse_of: :account, dependent: :destroy
     has_many :conversations, class_name: 'AccountConversation', dependent: :destroy, inverse_of: :account
+    has_many :scheduled_statuses, inverse_of: :account, dependent: :destroy
 
     # Pinned statuses
     has_many :status_pins, inverse_of: :account, dependent: :destroy
@@ -25,6 +26,7 @@ module AccountAssociations
 
     # Media
     has_many :media_attachments, dependent: :destroy
+    has_many :polls, dependent: :destroy
 
     # PuSH subscriptions
     has_many :subscriptions, dependent: :destroy
@@ -39,6 +41,8 @@ module AccountAssociations
     # Moderation notes
     has_many :account_moderation_notes, dependent: :destroy, inverse_of: :account
     has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, dependent: :destroy, inverse_of: :target_account
+    has_many :account_warnings, dependent: :destroy, inverse_of: :account
+    has_many :targeted_account_warnings, class_name: 'AccountWarning', foreign_key: :target_account_id, dependent: :destroy, inverse_of: :target_account
 
     # Lists (that the account is on, not owned by the account)
     has_many :list_accounts, inverse_of: :account, dependent: :destroy
@@ -52,5 +56,6 @@ module AccountAssociations
 
     # Hashtags
     has_and_belongs_to_many :tags
+    has_many :featured_tags, -> { includes(:tag) }, dependent: :destroy, inverse_of: :account
   end
 end
