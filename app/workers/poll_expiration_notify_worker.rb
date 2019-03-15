@@ -15,7 +15,7 @@ class PollExpirationNotifyWorker
     end
 
     # Notify local voters
-    poll.votes.includes(:account).map(&:account).filter(&:local?).each do |account|
+    poll.votes.includes(:account).map(&:account).select(&:local?).each do |account|
       NotifyService.new.call(account, poll)
     end
   rescue ActiveRecord::RecordNotFound

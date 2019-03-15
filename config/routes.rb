@@ -187,6 +187,8 @@ Rails.application.routes.draw do
         post :remove_avatar
         post :remove_header
         post :memorialize
+        post :approve
+        post :reject
       end
 
       resource :change_email, only: [:show, :update]
@@ -284,6 +286,7 @@ Rails.application.routes.draw do
       resources :custom_emojis, only: [:index]
       resources :suggestions, only: [:index, :destroy]
       resources :scheduled_statuses, only: [:index, :show, :update, :destroy]
+      resources :preferences, only: [:index]
 
       resources :conversations, only: [:index, :destroy] do
         member do

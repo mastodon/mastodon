@@ -89,8 +89,8 @@ class AccountsController < ApplicationController
     end
   end
 
-  def set_account
-    @account = Account.find_local!(params[:username])
+  def username_param
+    params[:username]
   end
 
   def older_url
