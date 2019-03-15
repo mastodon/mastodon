@@ -34,7 +34,6 @@ module.exports = (api) => {
           removeImport: true,
           additionalLibraries: [
             'react-immutable-proptypes',
-            '../../utils/shared-props', // emoji-mart
           ],
         },
       ],
