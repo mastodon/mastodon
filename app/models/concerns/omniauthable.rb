@@ -7,6 +7,8 @@ module Omniauthable
   TEMP_EMAIL_REGEX = /\Achange@me/
 
   included do
+    devise :omniauthable
+
     def omniauth_providers
       Devise.omniauth_configs.keys
     end

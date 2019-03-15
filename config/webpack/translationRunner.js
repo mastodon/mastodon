@@ -48,8 +48,7 @@ Use yarn "manage:translations -- --help" for usage information
   }
 };
 
-const { argv } = require('yargs')
-  .usage(`Usage: yarn manage:translations -- [OPTIONS] [LANGUAGES]
+const usage = `Usage: yarn manage:translations [OPTIONS] [LANGUAGES]
 
 Manage JavaScript translation files in Mastodon. Generates and update translations in translationsDirectory: ${translationsDirectory}
 
@@ -58,16 +57,15 @@ The RFC5646 language tag for the language you want to test or fix. If you want t
 
 Available languages:
 ${availableLanguages.join(', ')}
-`)
-  .help('h', 'show this message')
-  .alias('h', 'help')
-  .options({
-    f: {
-      alias: 'force',
-      default: false,
-      describe: 'force using the provided languages. create files if not exists.',
-      type: 'boolean',
-    },
+`;
+
+const { argv } = require('yargs')
+  .usage(usage)
+  .option('f', {
+    alias: 'force',
+    default: false,
+    describe: 'force using the provided languages. create files if not exists.',
+    type: 'boolean',
   });
 
 // check if message directory exists
