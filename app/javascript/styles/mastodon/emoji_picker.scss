@@ -1,3 +1,5 @@
+@import '../../../node_modules/emoji-mart/css/emoji-mart.css';
+
 .emoji-mart {
   &,
   * {
@@ -103,8 +105,8 @@
 }
 
 .emoji-mart-search {
-  padding: 10px;
-  padding-right: 45px;
+  margin: 10px;
+  margin-right: 45px;
   background: $simple-background-color;
 
   input {
