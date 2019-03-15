@@ -1,15 +1,15 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
+const path = require('path');
+const { URL } = require('url');
 const merge = require('webpack-merge');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const OfflinePlugin = require('offline-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const zopfli = require('@gfx/zopfli');
-const sharedConfig = require('./shared.js');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const OfflinePlugin = require('offline-plugin');
-const { publicPath } = require('./configuration.js');
-const path = require('path');
-const { URL } = require('url');
+const { output } = require('./configuration');
+const sharedConfig = require('./shared');
 
 let attachmentHost;
 
@@ -28,15 +28,9 @@ if (process.env.S3_ENABLED === 'true') {
 
 module.exports = merge(sharedConfig, {
   mode: 'production',
-
-  output: {
-    filename: '[name]-[chunkhash].js',
-    chunkFilename: '[name]-[chunkhash].js',
-  },
-
-  devtool: 'source-map', // separate sourcemap file, suitable for production
+  devtool: 'source-map',
   stats: 'normal',
-
+  bail: true,
   optimization: {
     minimize: true,
     minimizer: [
@@ -60,10 +54,12 @@ module.exports = merge(sharedConfig, {
 
   plugins: [
     new CompressionPlugin({
+      filename: '[path].gz[query]',
       algorithm(input, compressionOptions, callback) {
         return zopfli.gzip(input, compressionOptions, callback);
       },
-      test: /\.(js|css|html|json|ico|svg|eot|otf|ttf)$/,
+      cache: true,
+      test: /\.(js|css|html|json|ico|svg|eot|otf|ttf|map)$/,
     }),
     new BundleAnalyzerPlugin({ // generates report.html and stats.json
       analyzerMode: 'static',
@@ -76,7 +72,7 @@ module.exports = merge(sharedConfig, {
       logLevel: 'silent', // do not bother Webpacker, who runs with --json and parses stdout
     }),
     new OfflinePlugin({
-      publicPath: publicPath, // sw.js must be served from the root to avoid scope issues
+      publicPath: output.publicPath, // sw.js must be served from the root to avoid scope issues
       caches: {
         main: [':rest:'],
         additional: [':externals:'],
