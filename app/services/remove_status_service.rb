@@ -16,8 +16,6 @@ class RemoveStatusService < BaseService
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
-        redis.setex("delete_status:#{status.id}", 10.minutes.seconds, status.id.to_s)
-
         remove_from_self if status.account.local?
         remove_from_followers
         remove_from_lists
