@@ -28,7 +28,7 @@
 
 | ドメイン名 | 状態 | 更新日 | 備考 |
 ----|:--:|:--:|----
-|mstdn-stg-aatrox.delta-t.work|soon|2018/03/13|DNS設定済み|
+|mstdn-stg-aatrox.delta-t.work|[**running**](https://mstdn-stg-aatrox.delta-t.work/)|2018/03/15| 稼働中 |
 |mstdn-stg-ahri.delta-t.work||||
 |mstdn-stg-akali.delta-t.work||||
 |mstdn-stg-alistar.delta-t.work||||
