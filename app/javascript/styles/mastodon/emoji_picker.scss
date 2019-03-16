@@ -53,7 +53,7 @@
 
   &:hover {
     color: darken($lighter-text-color, 4%);
-    
+
     svg {
       fill: darken($lighter-text-color, 4%);
     }
@@ -127,7 +127,7 @@
     font-size: 14px;
     font-weight: 400;
     padding: 7px 9px;
-    font-family: inherit;
+    font-family: $font-sans-serif;
     display: block;
     width: 100%;
     background: rgba($ui-secondary-color, 0.3);
@@ -182,6 +182,7 @@
     font-weight: 500;
     padding: 5px 6px;
     background: $simple-background-color;
+    font-family: $font-sans-serif;
   }
 }
 
