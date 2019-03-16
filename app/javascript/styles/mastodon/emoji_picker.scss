@@ -53,6 +53,13 @@
 
   &:hover {
     color: darken($lighter-text-color, 4%);
+    svg {
+      fill: darken($lighter-text-color, 4%);
+    }
+  }
+
+  svg {
+    fill: $lighter-text-color;
   }
 }
 
@@ -61,10 +68,18 @@
 
   &:hover {
     color: darken($highlight-text-color, 4%);
+
+    svg {
+      fill: darken($highlight-text-color, 4%);
+    }
   }
 
   .emoji-mart-anchor-bar {
     bottom: -1px;
+  }
+
+  svg {
+    fill: $highlight-text-color;
   }
 }
 
@@ -85,7 +100,6 @@
   }
 
   svg {
-    fill: currentColor;
     max-height: 18px;
   }
 }
@@ -105,8 +119,7 @@
 }
 
 .emoji-mart-search {
-  margin: 10px;
-  margin-right: 45px;
+  margin: 10px 40px 10px 5px;
   background: $simple-background-color;
 
   input {
