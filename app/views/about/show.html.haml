@@ -8,7 +8,7 @@
 .landing
   .landing__brand
     = link_to root_url, class: 'brand' do
-      = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+      = image_pack_tag 'logo_full.svg', alt: 'Mastodon'
       %span.brand__tagline=t 'about.tagline'
 
   .landing__grid
@@ -48,7 +48,7 @@
 
       .hero-widget
         .hero-widget__img
-          = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('preview.jpg'), alt: @instance_presenter.site_title
+          = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('media/images/preview.jpg'), alt: @instance_presenter.site_title
 
         - if @instance_presenter.site_short_description.present?
           .hero-widget__text

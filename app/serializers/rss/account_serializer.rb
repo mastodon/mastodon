@@ -11,7 +11,7 @@ class RSS::AccountSerializer
     builder.title("#{display_name(account)} (@#{account.local_username_and_domain})")
            .description(account_description(account))
            .link(TagManager.instance.url_for(account))
-           .logo(full_asset_url(asset_pack_path('logo.svg')))
+           .logo(full_pack_url('media/images/logo.svg'))
            .accent_color('2b90d9')
 
     builder.image(full_asset_url(account.avatar.url(:original))) if account.avatar?
