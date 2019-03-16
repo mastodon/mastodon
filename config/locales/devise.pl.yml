@@ -20,17 +20,17 @@ pl:
         action: Zweryfikuj adres e-mail
         action_with_app: Potwierdź i wróć do %{app}
         explanation: Utworzyłeś(-aś) konto na %{host} podając ten adres e-mail. Jedno kliknięcie dzieli Cię od aktywacji tego konta. Jeżeli to nie Ty, zignoruj ten e-mail.
-        extra_html: Przeczytaj też <a href="%{terms_path}">regulamin instancji</a> i <a href="%{policy_path}">nasze zasady użytkowania</a>.
+        extra_html: Przeczytaj też <a href="%{terms_path}">regulamin serwera</a> i <a href="%{policy_path}">nasze zasady użytkowania</a>.
         subject: 'Mastodon: Instrukcje weryfikacji adresu e-mail na %{instance}'
         title: Zweryfikuj adres e-mail
       email_changed:
         explanation: 'Adres e-mail dla Twojego konta zostanie zmieniony na:'
-        extra: Jeżeli nie próbowałeś(-aś) zmienić adresu e-mail, prawdopodobnie ktoś uzyskał dostęp do Twojego konta. Zmień natychmiastowo hasło lub skontaktuj się z administratorem isntancji, jeżeli nie masz dostępu do konta.
+        extra: Jeżeli nie próbowałeś(-aś) zmienić adresu e-mail, prawdopodobnie ktoś uzyskał dostęp do Twojego konta. Zmień natychmiastowo hasło lub skontaktuj się z administratorem serwera, jeżeli nie masz dostępu do konta.
         subject: 'Mastodon: Zmieniono adres e-mail'
         title: Nowy adres e-mail
       password_change:
         explanation: Hasło do Twojego konta zostało zmienione.
-        extra: Jeżeli nie zmieniałeś(-aś) hasła, prawdopodobnie ktoś uzyskał dostęp do Twojego konta. Zmień hasło natychmiastowo lub skontaktuj się z administratorem instancji, jeżeli nie masz dostępu do konta.
+        extra: Jeżeli nie zmieniałeś(-aś) hasła, prawdopodobnie ktoś uzyskał dostęp do Twojego konta. Zmień hasło natychmiastowo lub skontaktuj się z administratorem serwera, jeżeli nie masz dostępu do konta.
         subject: 'Mastodon: Zmieniono hasło'
         title: Zmieniono hasło
       reconfirmation_instructions:
@@ -56,8 +56,8 @@ pl:
       updated: Twoje hasło zostało zmienione. Jesteś zalogowany(-a).
       updated_not_active: Twoje hasło zostało zmienione.
     registrations:
-      destroyed: Twoje konto zostało zawieszone. Mamy jednak nadzieję, że do nas wrócisz. Do zobaczenia!
-      signed_up: Twoje konto zostało utworzone. Witamy!
+      destroyed: Do zobaczenia! Twoje konto zostało zawieszone. Mamy jednak nadzieję, że do nas wrócisz.
+      signed_up: Witamy! Twoje konto zostało utworzone.
       signed_up_but_inactive: Twoje konto zostało utworzone. Nie mogliśmy Cię jednak zalogować, ponieważ konto nie zostało jeszcze aktywowane.
       signed_up_but_locked: Twoje konto zostało utworzone. Nie mogliśmy Cię jednak zalogować, ponieważ konto jest zablokowane.
       signed_up_but_unconfirmed: Na Twój adres e-mail została wysłana wiadomosć z odnośnikiem potwierdzającym. Kliknij w odnośnik, aby aktywować konto. Jeżeli nie otrzymano wiadomości, sprawdź folder ze spamem.

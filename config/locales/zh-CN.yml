@@ -19,10 +19,14 @@ zh-CN:
     learn_more: 了解详情
     privacy_policy: 隐私政策
     source_code: 源代码
-    status_count_after: 条嘟文
+    status_count_after:
+      one: 条嘟文
+      other: 条嘟文
     status_count_before: 他们共嘟出了
     terms: 使用条款
-    user_count_after: 位用户
+    user_count_after:
+      one: 位用户
+      other: 位用户
     user_count_before: 这里共注册有
     what_is_mastodon: Mastodon 是什么？
   accounts:
@@ -104,13 +108,13 @@ zh-CN:
       most_recent_ip: 最后一次活跃的 IP 地址
       not_subscribed: 未订阅
       outbox_url: 发件箱（Outbox）URL
-      perform_full_suspension: 永久封禁
+      perform_full_suspension: 封禁
       profile_url: 个人资料页面 URL
       promote: 升任
       protocol: 协议
       public: 公开页面
       push_subscription_expires: PuSH 订阅过期时间
-      redownload: 刷新头像
+      redownload: 刷新个人资料
       remove_avatar: 删除头像
       resend_confirmation:
         already_confirmed: 该用户已被确认
@@ -125,7 +129,7 @@ zh-CN:
         moderator: 监察员
         staff: 管理人员
         user: 普通用户
-      salmon_url: Salmon URL
+      salmon_url: 三文鱼协议网址（Salmon URL）
       search: 搜索
       shared_inbox_url: 公用收件箱（Shared Inbox）URL
       show:
@@ -195,7 +199,7 @@ zh-CN:
       shortcode_hint: 至少 2 个字符，只能使用字母、数字和下划线
       title: 自定义表情
       unlisted: 已隐藏
-      update_failed_msg: 表情更新失败！
+      update_failed_msg: 表情更新失败
       updated_msg: 表情更新成功！
       upload: 上传新表情
     dashboard:
@@ -220,7 +224,7 @@ zh-CN:
       week_users_active: 本周活跃用户数
       week_users_new: 本周新用户数
     domain_blocks:
-      add_new: 添加新条目
+      add_new: 添加新屏蔽域名
       created_msg: 正在进行域名屏蔽
       destroyed_msg: 域名屏蔽已撤销
       domain: 域名
@@ -244,7 +248,7 @@ zh-CN:
           suspend: 对此域名的所有帐户解除封禁
         title: 撤销对 %{domain} 的域名屏蔽
         undo: 撤销
-      undo: 撤销
+      undo: 撤销屏蔽域名
     email_domain_blocks:
       add_new: 添加新条目
       created_msg: 电子邮件域名屏蔽添加成功
@@ -347,7 +351,7 @@ zh-CN:
         desc_html: 在个人资料页上显示管理人员标志
         title: 显示管理人员标志
       site_description:
-        desc_html: 用于首页展示以及 meta 标签中的网站简介。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>
+        desc_html: 首页上的介绍文字。 描述一下本 Mastodon 实例的特殊之处以及其他重要信息。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 。
         title: 本站简介
       site_description_extended:
         desc_html: 可以填写行为守则、规定、指南或其他本站特有的内容。可以使用 HTML 标签
@@ -390,7 +394,7 @@ zh-CN:
       subject: 来自 %{instance} 的用户举报（#%{id}）
   application_mailer:
     notification_preferences: 更改电子邮件首选项
-    salutation: "%{name}："
+    salutation: "%{name},"
     settings: 使用此链接更改你的电子邮件首选项：%{link}
     view: 点此链接查看详情：
     view_profile: 查看个人资料页
@@ -404,7 +408,7 @@ zh-CN:
     warning: 一定小心，千万不要把它分享给任何人！
     your_token: 你的访问令牌
   auth:
-    agreement_html: 注册即表示你同意遵守<a href="%{rules_path}">本实例的相关规定</a>和<a href="%{terms_path}">我们的使用条款</a>。
+    agreement_html: 点击注册即表示你同意遵守<a href="%{rules_path}">本站的相关规定</a>和<a href="%{terms_path}">我们的使用条款</a>。
     change_password: 密码
     confirm_email: 确认电子邮件地址
     delete_account: 删除帐户
@@ -461,7 +465,7 @@ zh-CN:
   errors:
     '403': 你没有访问这个页面的权限。
     '404': 无法找到你所要访问的页面。
-    '410': 你所要访问的页面已被删除。
+    '410': 你所要访问的页面此处已不存在。
     '422':
       content: 无法确认登录信息。你是不是屏蔽了 Cookie？
       title: 无法确认登录信息
@@ -569,7 +573,7 @@ zh-CN:
       title: 新的关注者
     follow_request:
       action: 处理关注请求
-      body: "%{name} 向你发送了关注请求！"
+      body: "%{name} 向你发送了关注请求"
       subject: 来自 %{name} 的关注请求
       title: 新的关注请求
     mention:
@@ -597,7 +601,7 @@ zh-CN:
     next: 下一页
     older: 更早
     prev: 上一页
-    truncate: "…"
+    truncate: "&hellip;"
   preferences:
     languages: 语言
     other: 其他
@@ -706,8 +710,8 @@ zh-CN:
   terms:
     title: "%{instance} 使用条款和隐私权政策"
   themes:
-    contrast: 高对比度
-    default: Mastodon
+    contrast: Mastodon（高对比度）
+    default: Mastodon（暗色主题）
     mastodon-light: Mastodon（亮色主题）
   time:
     formats:
@@ -727,7 +731,7 @@ zh-CN:
     recovery_codes_regenerated: 恢复代码重新生成成功
     recovery_instructions_html: 如果你的手机无法使用，你可以使用下列任意一个恢复代码来重新获得对帐户的访问权。<strong>请妥善保管好你的恢复代码</strong>（例如，你可以将它们打印出来，然后和其他重要的文件放在一起）。
     setup: 设置
-    wrong_code: 输入的认证码无效！请核对一下你的设备显示的时间，如果正确，你可能需要联系一下实例的管理员，让他们校准服务器的时间。
+    wrong_code: 输入的认证码无效！请确认服务器时间与设备时间是否正确？
   user_mailer:
     backup_ready:
       explanation: 你请求了一份 Mastodon 帐户的完整备份。现在你可以下载了！

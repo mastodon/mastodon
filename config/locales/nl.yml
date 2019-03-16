@@ -706,6 +706,16 @@ nl:
     older: Ouder
     prev: Vorige
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Je hebt al op deze poll gestemd
+      duplicate_options: bevat dubbele items
+      duration_too_long: ligt te ver in de toekomst
+      duration_too_short: is te kort van duur
+      expired: De poll is al beëindigd
+      over_character_limit: kan stuk voor stuk niet langer zijn dan %{max} tekens
+      too_few_options: moet meer dan één item bevatten
+      too_many_options: kan niet meer dan %{max} items bevatten
   preferences:
     languages: Talen
     other: Overig
@@ -814,6 +824,11 @@ nl:
       ownership: Een toot van iemand anders kan niet worden vastgezet
       private: Alleen openbare toots kunnen worden vastgezet
       reblog: Een boost kan niet worden vastgezet
+    poll:
+      total_votes:
+        one: "%{count} stem"
+        other: "%{count} stemmen"
+      vote: Stemmen
     show_more: Meer tonen
     sign_in_to_participate: Meld je aan om aan dit gesprek mee te doen
     title: '%{name}: "%{quote}"'
