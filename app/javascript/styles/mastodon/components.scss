@@ -357,6 +357,11 @@
     padding-bottom: 0;
     padding-right: 10px + 22px;
     resize: none;
+    scrollbar-color: initial;
+
+    &::-webkit-scrollbar {
+      all: unset;
+    }
 
     @media screen and (max-width: 600px) {
       height: 100px !important; // prevent auto-resize textarea

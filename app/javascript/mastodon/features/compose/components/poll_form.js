@@ -48,7 +48,7 @@ class Option extends React.PureComponent {
           <input
             type='text'
             placeholder={intl.formatMessage(messages.option_placeholder, { number: index + 1 })}
-            maxlength={25}
+            maxLength={25}
             value={title}
             onChange={this.handleOptionTitleChange}
           />

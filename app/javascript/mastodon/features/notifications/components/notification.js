@@ -33,7 +33,7 @@ class Notification extends ImmutablePureComponent {
     onFavourite: PropTypes.func.isRequired,
     onReblog: PropTypes.func.isRequired,
     onToggleHidden: PropTypes.func.isRequired,
-    status: PropTypes.option,
+    status: ImmutablePropTypes.map,
     intl: PropTypes.object.isRequired,
     getScrollPosition: PropTypes.func,
     updateScrollBottom: PropTypes.func,
