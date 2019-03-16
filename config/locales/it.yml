@@ -37,6 +37,7 @@ it:
       other: Seguaci
     following: Segui
     joined: Dal %{date}
+    last_active: ultima attività
     link_verified_on: La proprietà di questo link è stata controllata il %{date}
     media: Media
     moved_html: "%{name} è stato spostato su %{new_profile_link}:"
@@ -60,6 +61,7 @@ it:
   admin:
     account_actions:
       action: Esegui azione
+      title: Esegui azione di moderazione su %{acct}
     account_moderation_notes:
       create: Lascia nota
       created_msg: Nota di moderazione creata con successo!
@@ -99,6 +101,7 @@ it:
       inbox_url: URL inbox
       invited_by: Invitato da
       ip: IP
+      joined: Unito
       location:
         all: Tutto
         local: Locale
@@ -224,6 +227,7 @@ it:
       config: Configurazione
       feature_deletions: Cancellazioni di account
       feature_invites: Link di invito
+      feature_profile_directory: Directory dei profili
       feature_registrations: Registrazioni
       feature_relay: Ripetitore di federazione
       features: Funzionalità
@@ -378,6 +382,7 @@ it:
         desc_html: Le anteprime dei link su altri siti mostreranno un thumbnail anche se il media è segnato come sensibile
         title: Mostra media sensibili nella anteprime OpenGraph
       profile_directory:
+        desc_html: Permetti agli utenti di essere trovati
         title: Attiva directory del profilo
       registrations:
         closed_message:
@@ -435,6 +440,7 @@ it:
     tags:
       accounts: Account
       hidden: Nascosto
+      hide: Nascondi nella directory
       name: Hashtag
       title: Hashtag
       unhide: Mostra nella directory
@@ -444,6 +450,8 @@ it:
       add_new: Aggiungi nuovo
       delete: Cancella
       edit: Modifica
+      edit_preset: Modifica avviso predefinito
+      title: Gestisci avvisi predefiniti
   application_mailer:
     notification_preferences: Cambia preferenze email
     salutation: "%{name},"
@@ -509,8 +517,15 @@ it:
     success_msg: Il tuo account è stato cancellato
     warning_html: È garantita la cancellazione del contenuto solo da questo server. I contenuti che sono stati ampiamente condivisi probabilmente lasceranno delle tracce. I server offline e quelli che non ricevono più i tuoi aggiornamenti non aggiorneranno i loro database.
   directories:
+    directory: Directory dei profili
+    enabled: Attualmente sei elencato nella directory.
+    enabled_but_waiting: Hai scelto di essere elencato nella directory, ma non hai ancora il numero minimo di seguaci (%{min_followers}) per comparire.
     explanation: Scopri utenti in base ai loro interessi
     explore_mastodon: Esplora %{title}
+    how_to_enable: Attualmente non hai scelto di comparire nella directory. Puoi farlo qui sotto. Se vuoi comparire sotto determinati hashtag, usali nel testo della tua biografia.
+    people:
+      one: "%{count} persona"
+      other: "%{count} persone"
   errors:
     '403': Non sei autorizzato a visualizzare questa pagina.
     '404': La pagina che stavi cercando non esiste.
@@ -539,6 +554,8 @@ it:
     storage: Archiviazione media
   featured_tags:
     add_new: Aggiungi nuovo
+    errors:
+      limit: Hai già messo in evidenza il numero massimo di hashtag
   filters:
     contexts:
       home: Timeline home
@@ -566,11 +583,15 @@ it:
       other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori qui sotto
   imports:
     modes:
+      merge: Fondi
+      merge_long: Mantieni record esistenti e aggiungine di nuovi
       overwrite: Sovrascrivi
+      overwrite_long: Sostituisci record attuali con quelli nuovi
     preface: Puoi importare alcune informazioni, come le persone che segui o hai bloccato su questo server, da file creati da un'esportazione su un altro server.
     success: Le tue impostazioni sono state importate correttamente e verranno applicate in breve tempo
     types:
       blocking: Lista dei bloccati
+      domain_blocking: Lista dei domini bloccati
       following: Lista dei seguaci
       muting: Lista dei silenziati
     upload: Carica
@@ -662,6 +683,15 @@ it:
     older: Più vecchio
     prev: Indietro
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Hai già votato in questo sondaggio
+      duration_too_long: è troppo lontano nel futuro
+      duration_too_short: è troppo presto
+      expired: Il sondaggio si è già concluso
+      over_character_limit: non possono essere più lunghi di %{max} caratteri ciascuno
+      too_few_options: deve avere più di un elemento
+      too_many_options: non può contenere più di %{max} elementi
   preferences:
     languages: Lingue
     other: Altro
@@ -673,9 +703,24 @@ it:
     no_account_html: Non hai un account? Puoi <a href='%{sign_up_path}' target='_blank'>iscriverti qui</a>
     proceed: Conferma
     prompt: 'Stai per seguire:'
+  remote_interaction:
+    favourite:
+      proceed: Continua per segnare come apprezzato
+      prompt: 'Vuoi segnare questo toot come apprezzato:'
+    reblog:
+      proceed: Continua per condividere
+      prompt: 'Vuoi condividere questo toot:'
+    reply:
+      proceed: Continua per rispondere
+      prompt: 'Vuoi rispondere a questo toot:'
   remote_unfollow:
     error: Errore
     title: Titolo
+    unfollowed: Non più seguito
+  scheduled_statuses:
+    over_daily_limit: Hai superato il limite di %{limit} toot programmati per questo giorno
+    over_total_limit: Hai superato il limite di %{limit} toot programmati
+    too_soon: La data di pubblicazione deve essere nel futuro
   sessions:
     activity: Ultima attività
     browser: Browser
@@ -713,6 +758,7 @@ it:
     development: Sviluppo
     edit_profile: Modifica profilo
     export: Esporta impostazioni
+    featured_tags: Hashtag in evidenza
     import: Importa
     migrate: Migrazione dell'account
     notifications: Notifiche
@@ -741,6 +787,11 @@ it:
       ownership: Non puoi fissare in cima un toot di qualcun altro
       private: Un toot non pubblico non può essere fissato in cima
       reblog: Un toot condiviso non può essere fissato in cima
+    poll:
+      total_votes:
+        one: "%{count} voto"
+        other: "%{count} voti"
+      vote: Vota
     show_more: Mostra di più
     sign_in_to_participate: Accedi per partecipare alla conversazione
     visibilities:
