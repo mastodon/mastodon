@@ -106,8 +106,6 @@ Rails.application.routes.draw do
       resource :confirmation, only: [:new, :create]
     end
 
-    resource :follower_domains, only: [:show, :update]
-
     resources :applications, except: [:edit] do
       member do
         post :regenerate
@@ -129,6 +127,7 @@ Rails.application.routes.draw do
   resources :emojis, only: [:show]
   resources :invites, only: [:index, :create, :destroy]
   resources :filters, except: [:show]
+  resource :relationships, only: [:show, :update]
 
   get '/public', to: 'public_timelines#show', as: :public_timeline
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
