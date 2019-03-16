@@ -5,7 +5,7 @@
   = render 'shared/error_messages', object: current_user
 
   - Themes.instance.flavour(@selected)['screenshot'].each do |screen|
-    %img.flavour-screen{ src: asset_pack_path(screen) }
+    %img.flavour-screen{ src: full_pack_url("media/#{screen}") }
 
   .flavour-description
     = t "flavours.#{@selected}.description", default: ''
