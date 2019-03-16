@@ -76,5 +76,10 @@
     = f.input :site_terms, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_terms.title'), hint: t('admin.settings.site_terms.desc_html'), input_html: { rows: 8 }
     = f.input :custom_css, wrapper: :with_block_label, as: :text, input_html: { rows: 8 }, label: t('admin.settings.custom_css.title'), hint: t('admin.settings.custom_css.desc_html')
 
+  %hr.spacer/
+
+  .fields-group
+    = f.input :keybase_contacts, wrapper: :with_block_label, label: t('admin.settings.keybase_contacts.title'), hint: t('admin.settings.keybase_contacts.desc_html')
+
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

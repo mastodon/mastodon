@@ -46,6 +46,8 @@ class Form::AdminSettings
     :custom_css=,
     :profile_directory,
     :profile_directory=,
+    :keybase_contacts,
+    :keybase_contacts=,
     to: Setting
   )
 end

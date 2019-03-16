@@ -6,6 +6,7 @@ module AccountAssociations
   included do
     # Local users
     has_one :user, inverse_of: :account, dependent: :destroy
+    has_many :account_identity_proofs, dependent: :destroy
 
     # Timelines
     has_many :stream_entries, inverse_of: :account, dependent: :destroy

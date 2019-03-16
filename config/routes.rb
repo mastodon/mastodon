@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
   get '.well-known/change-password', to: redirect('/auth/edit')
+  get '.well-known/keybase-proof-config', to: 'well_known/keybase_proof_config#show', defaults: { format: 'json' }
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
   get 'custom.css', to: 'custom_css#show', as: :custom_css
@@ -105,6 +106,8 @@ Rails.application.routes.draw do
       resources :recovery_codes, only: [:create]
       resource :confirmation, only: [:new, :create]
     end
+
+    resources :identity_proofs, only: [:index, :show, :new, :create, :update]
 
     resources :applications, except: [:edit] do
       member do
@@ -372,6 +375,8 @@ Rails.application.routes.draw do
       namespace :push do
         resource :subscription, only: [:create, :show, :update, :destroy]
       end
+
+      get :keybase_proofs, to: 'keybase_proofs#index', defaults: { format: 'json' }
     end
 
     namespace :v2 do

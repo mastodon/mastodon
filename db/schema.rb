@@ -36,6 +36,19 @@ ActiveRecord::Schema.define(version: 2019_03_14_181829) do
     t.index ["account_id", "domain"], name: "index_account_domain_blocks_on_account_id_and_domain", unique: true
   end
 
+  create_table "account_identity_proofs", force: :cascade do |t|
+    t.bigint "account_id"
+    t.string "provider", null: false
+    t.string "provider_username", null: false
+    t.text "token", null: false
+    t.boolean "proof_valid"
+    t.boolean "proof_live"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "provider", "provider_username"], name: "index_account_proofs_on_account_and_provider_and_username", unique: true
+    t.index ["account_id"], name: "index_account_identity_proofs_on_account_id"
+  end
+
   create_table "account_moderation_notes", force: :cascade do |t|
     t.text "content", null: false
     t.bigint "account_id", null: false
@@ -731,6 +744,7 @@ ActiveRecord::Schema.define(version: 2019_03_14_181829) do
   add_foreign_key "account_conversations", "accounts", on_delete: :cascade
   add_foreign_key "account_conversations", "conversations", on_delete: :cascade
   add_foreign_key "account_domain_blocks", "accounts", name: "fk_206c6029bd", on_delete: :cascade
+  add_foreign_key "account_identity_proofs", "accounts", on_delete: :cascade
   add_foreign_key "account_moderation_notes", "accounts"
   add_foreign_key "account_moderation_notes", "accounts", column: "target_account_id"
   add_foreign_key "account_pins", "accounts", column: "target_account_id", on_delete: :cascade

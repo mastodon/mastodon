@@ -1,0 +1,17 @@
+%tr
+  %td= proof.provider
+  %td.account
+    - provider_pic_url = proof.remote_profile_pic_url || default_provider_pic_url(proof.provider)
+    = link_to proof.profile_url do
+      = image_tag provider_pic_url, size: 40, class: :account__avatar
+      = proof.provider_username
+  %td
+    - status = proof.proof_live? ? t('account_identity_proofs.active') : t('account_identity_proofs.inactive')
+    - icon = proof.proof_live? ? fa_icon('check-circle') : fa_icon('times-circle')
+    %span{ class: status.downcase }
+      %i= icon
+      = status
+  %td.proof
+    - if proof.remote_url
+      = link_to proof.remote_url do
+        %i.fa.fa-external-link
