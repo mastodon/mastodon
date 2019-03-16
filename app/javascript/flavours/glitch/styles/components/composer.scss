@@ -147,6 +147,11 @@
       font-size: 14px;
       font-family: inherit;
       resize: none;
+      scrollbar-color: initial;
+
+      &::-webkit-scrollbar {
+        all: unset;
+      }
 
       &:disabled { background: $ui-secondary-color }
       &:focus { outline: 0 }

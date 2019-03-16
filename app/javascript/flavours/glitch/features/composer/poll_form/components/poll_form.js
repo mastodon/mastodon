@@ -51,7 +51,7 @@ class Option extends React.PureComponent {
           <input
             type='text'
             placeholder={intl.formatMessage(messages.option_placeholder, { number: index + 1 })}
-            maxlength={pollLimits.max_option_chars}
+            maxLength={pollLimits.max_option_chars}
             value={title}
             onChange={this.handleOptionTitleChange}
           />

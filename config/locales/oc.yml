@@ -4,7 +4,7 @@ oc:
     about_hashtag_html: Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.
     about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
     about_this: A prepaus d’aquesta instància
-    administered_by: 'Gerida per :'
+    administered_by: 'Administrat per :'
     api: API
     apps: Aplicacions per mobil
     contact: Contacte
@@ -376,14 +376,14 @@ oc:
         desc_html: Modificar l’estil amb una fuèlha CSS cargada sus cada pagina
         title: CSS personalizada
       hero:
-        desc_html: Mostrat en primièra pagina. Almens 600x100px recomandat. S’es pas configurat l’imatge de l’instància serà mostrat
+        desc_html: Mostrat en primièra pagina. Almens 600x100px recomandat. S’es pas configurat l’imatge del servidor serà mostrat
         title: Imatge de l’eròi
       mascot:
         desc_html: Mostrat sus mantun paginas. Almens 293×205px recomandat. S’es pas configurat, mostrarem la mascòta per defaut
         title: Imatge de la mascòta
       peers_api_enabled:
-        desc_html: Noms de domeni qu’aquesta instància a trobats pel fediverse
-        title: Publicar la lista de las instàncias conegudas
+        desc_html: Noms de domeni qu’aqueste servidor a trobats pel fediverse
+        title: Publicar la lista dels servidors coneguts
       preview_sensitive_media:
         desc_html: Los apercebuts dels ligams sus los autres sites mostraràn una vinheta encara que lo mèdia siá marcat coma sensible
         title: Mostrar los mèdias sensibles dins los apercebuts OpenGraph
@@ -408,20 +408,20 @@ oc:
         title: Mostrar lo badge personal
       site_description:
         desc_html: Paragraf d’introduccion sus la pagina d’acuèlh. Explicatz çò que fa diferent aqueste servidor Mastodon e tot çò qu’es important de dire. Podètz utilizare de balises HTML, en particular <code>&lt;a&gt;</code> e<code>&lt;em&gt;</code>.
-        title: Descripcion de l’instància
+        title: Descripcion del servidor
       site_description_extended:
-        desc_html: Afichada sus la pagina d’informacion complementària del site<br>Podètz utilizar de balisas HTML
+        desc_html: Un bon lòc per las règles de compòrtament e d’autras causas que fan venir vòstre servidor diferent. Podètz utilizar de balisas HTML
         title: Descripcion espandida del site
       site_short_description:
-        desc_html: Mostrat dins la barra laterala e dins las meta balisas. Explica çò qu’es Mastodon e perque aqueste servidor es especial en un solet paragraf. S’es void, serà garnit amb la descripcion de l’instància.
-        title: Descripcion corta de l’instància
+        desc_html: Mostrat dins la barra laterala e dins las meta balisas. Explica çò qu’es Mastodon e perque aqueste servidor es especial en un solet paragraf. S’es void, serà garnit amb la descripcion del servidor.
+        title: Descripcion corta del servidor
       site_terms:
         desc_html: Afichada sus la pagina de las condicions d’utilizacion<br>Podètz utilizar de balisas HTML
         title: Politica de confidencialitat del site
-      site_title: Títol del site
+      site_title: Títol del servidor
       thumbnail:
         desc_html: Servís pels apercebuts via OpenGraph e las API. Talha de 1200x630px recomandada
-        title: Miniatura de l’instància
+        title: Miniatura del servidor
       timeline_preview:
         desc_html: Mostrar lo flux public sus la pagina d’acuèlh
         title: Apercebut flux public
@@ -482,7 +482,7 @@ oc:
     warning: Mèfi ! Agachatz de partejar aquela donada amb degun !
     your_token: Vòstre geton d’accès
   auth:
-    agreement_html: En vos marcar acceptatz <a href="%{rules_path}">las règlas de l’instància</a> e <a href="%{terms_path}">politica de confidencialitat</a>.
+    agreement_html: En vos marcar acceptatz <a href="%{rules_path}">las règlas del servidor</a> e <a href="%{terms_path}">politica de confidencialitat</a>.
     change_password: Senhal
     confirm_email: Confirmar lo corrièl
     delete_account: Suprimir lo compte
@@ -590,7 +590,7 @@ oc:
     description_html: Aquò suprimirà <strong>definitivament e sens possibilitat de retorn</strong> lo contengut de vòstre compte e lo desactivarà. Lo nom d’utilizaire serà gardat per evitar una futura impostura.
     proceed: Suprimir lo compte
     success_msg: Compte ben suprimit
-    warning_html: La supression del contengut d’aquesta instància es sola assegurada. Lo contengut fòrça partejat daissarà probablament de traças. Los servidors fòra-linha e los que vos sègon pas mai auràn pas la mesa a jorn de lor basa de donada.
+    warning_html: La supression del contengut d’aqueste servidor es sola assegurada. Lo contengut fòrça partejat daissarà probablament de traças. Los servidors fòra-linha e los que vos sègon pas mai auràn pas la mesa a jorn de lor basa de donada.
     warning_title: Disponibilitat del contengut difusat
   directories:
     directory: Annuari de perfils
@@ -604,8 +604,8 @@ oc:
       other: "%{count} personas"
   errors:
     '403': Avètz pas l’autorizacion de veire aquesta pagina.
-    '404': La pagina que recercatz existís pas.
-    '410': La pagina que cercatz existís pas mai.
+    '404': La pagina que cercatz existís pas aquí.
+    '410': La pagina que cercatz existís pas mai aquí.
     '422':
       content: Verificacion de seguretat fracassada. Blocatz los cookies ?
       title: Verificacion de seguretat fracassada
@@ -666,7 +666,7 @@ oc:
       merge_long: Gardar los enregistraments existents e ajustar los nòus
       overwrite: Remplaçar
       overwrite_long: Remplaçar los enregistraments actuals pels nòus
-    preface: Podètz importar qualques donadas coma lo monde que seguètz o blocatz a-n aquesta instància d’un fichièr creat d’una autra instància.
+    preface: Podètz importar qualques donadas d’un autre servidor, coma lo monde que seguètz o blocatz.
     success: Vòstras donadas son ben estadas mandadas e seràn tractadas tre que possible
     types:
       blocking: Lista de blocatge
@@ -692,7 +692,7 @@ oc:
       one: 1 persona
       other: "%{count} personas"
     max_uses_prompt: Cap de limit
-    prompt: Generar e partejar los ligams per donar accès a aquesta instància
+    prompt: Generar e partejar los ligams per donar accès a aqueste servidor
     table:
       expires_at: Expirats
       uses: Usatges
@@ -762,13 +762,23 @@ oc:
     older: Mai ancians
     prev: Precedent
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Avètz ja votat per aqueste sondatge
+      duplicate_options: conten d’opcions en doble
+      duration_too_long: es tròp alonhat dins lo futur
+      duration_too_short: es tròp d’ora
+      expired: Lo sondatge es ja acabat
+      over_character_limit: pòt pas èsser superior a %{max}  caractèrs cadun
+      too_few_options: deu contenir mai d’una opcion
+      too_many_options: pòt pas contenir mai de %{max} opcions
   preferences:
     languages: Lengas
     other: Autre
     publishing: Publicar
     web: Interfàcia Web
   remote_follow:
-    acct: Picatz vòstre utilizaire@instància que cal utilizar per sègre aqueste utilizaire
+    acct: Picatz vòstre utilizaire@domeni que que volètz utilizar per sègre aqueste utilizaire
     missing_resource: URL de redireccion pas trobada
     no_account_html: Avètz pas cap de compte ? Podètz <a href='%{sign_up_path}' target='_blank'>vos marcar aquí</a>
     proceed: Clicatz per sègre
@@ -870,6 +880,11 @@ oc:
       ownership: Se pòt pas penjar lo tut de qualqu’un mai
       private: Se pòt pas penjar los tuts pas publics
       reblog: Se pòt pas penjar un tut partejat
+    poll:
+      total_votes:
+        one: "%{count} vòte"
+        other: "%{count} vòtes"
+      vote: Votar
     show_more: Ne veire mai
     sign_in_to_participate: Inscrivètz-vos per participar a la conversacion
     title: '%{name} : "%{quote}"'
@@ -969,6 +984,10 @@ oc:
 
       <p>Prima adaptacion de la <a href="https://github.com/discourse/discourse">politica de confidencialitat de Discourse</a>.</p>
     title: Condicions d’utilizacion e politica de confidencialitat de %{instance}
+  themes:
+    contrast: Mastodon (Fòrt contrast)
+    default: Mastodon (Escur)
+    mastodon-light: Mastodon (Clar)
   time:
     formats:
       default: Lo %d %b de %Y a %Ho%M
@@ -1017,7 +1036,7 @@ oc:
       final_action: Començar de publicar
       final_step: 'Començatz de publicar ! Quitament s’avètz pas de seguidors los autres pòdon veire vòstres messatges publics, per exemple pel flux d’actualitat local e per las etiquetas. Benlèu que volètz vos presentar amb l’etiquetas #introductions.'
       full_handle: Vòstre escais-nom complèt
-      full_handle_hint: Es aquò que vos cal donar a vòstres amics per que pòscan vos escriure o sègre a partir d’una autra instància.
+      full_handle_hint: Es aquò que vos cal donar a vòstres amics per que pòscan vos escriure o sègre a partir d’un autre servidor.
       review_preferences_action: Cambiar las preferéncias
       review_preferences_step: Pensatz de configurar vòstras preferéncias, tal coma los corrièls que volètz recebrer o lo nivèl de confidencialitat de vòstres tuts per defaut. O se l’animacion vos dòna pas enveja de rendre, podètz activar la lectura automatica dels GIF.
       subject: Benvengut a Mastodon
