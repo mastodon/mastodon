@@ -1,26 +1,31 @@
-.identity_proofs
-  - content_for :page_title do
-    = t('settings.identity_proofs')
+- content_for :page_title do
+  = t('identity_proofs.authorize_connection_prompt')
 
-  %h3=t('account_identity_proofs.new.heading')
+.form-container
+  .oauth-prompt
+    %h2= t('identity_proofs.authorize_connection_prompt')
 
   = simple_form_for @proof, url: settings_identity_proofs_url, html: { method: :post } do |f|
     = f.input :provider, as: :hidden
     = f.input :provider_username, as: :hidden
     = f.input :token, as: :hidden
-    = text_field_tag :useragent, params[:ua], type: :hidden
 
-    .row.connection
-      .column.column-1
-        = image_tag current_account.avatar.url(:original), size: 96, class: :account__avatar
-        %p= t('account_identity_proofs.new.attestation', username: current_account.username, service: identity_proof_my_domain)
-      .column.column-2
-        %i.fa.fa-ws.fa-link
-      .column.column-3
-        - provider_pic_url = @proof.remote_profile_pic_url || default_provider_pic_url(@proof.provider)
-        = image_tag provider_pic_url, size: 96, class: :account__avatar
-        %p= t('account_identity_proofs.new.attestation', username: @proof.provider_username, service: @proof.provider)
+    = hidden_field_tag :user_agent, params[:user_agent]
 
-    .actions
-      = link_to t('account_identity_proofs.buttons.alternative'), settings_identity_proofs_url, class: 'button button-alternative'
-      = f.button :button, t('account_identity_proofs.buttons.primary'), type: :submit
+    .connection-prompt
+      .connection-prompt__row.connection-prompt__connection
+        .connection-prompt__column
+          = image_tag current_account.avatar.url(:original), size: 96, class: 'account__avatar'
+
+          %p= t('identity_proofs.i_am_html', username: content_tag(:strong,current_account.username), service: site_hostname)
+
+        .connection-prompt__column.connection-prompt__column-sep
+          = fa_icon 'link'
+
+        .connection-prompt__column
+          = image_tag @proof.badge.avatar_url, size: 96, class: 'account__avatar'
+
+          %p= t('identity_proofs.i_am_html', username: content_tag(:strong, @proof.provider_username), service: @proof.provider.capitalize)
+
+    = f.button :button, t('identity_proofs.authorize'), type: :submit
+    = link_to t('simple_form.no'), settings_identity_proofs_url, class: 'button negative'

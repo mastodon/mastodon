@@ -1,17 +1,17 @@
-.identity_proofs
-  - content_for :page_title do
-    = t('settings.identity_proofs')
+- content_for :page_title do
+  = t('settings.identity_proofs')
 
-  %p= t('account_identity_proofs.description')
+%p= t('identity_proofs.explanation_html')
 
-  - unless @proofs.empty?
-    .table-wrapper
-      %table.table
-        %thead
-          %tr
-            %th= t('account_identity_proofs.headings.provider')
-            %th= t('account_identity_proofs.headings.account')
-            %th= t('account_identity_proofs.headings.status')
-            %th.proof= t('account_identity_proofs.headings.proof')
-        %tbody
-          = render partial: 'settings/identity_proofs/proof', collection: @proofs, as: :proof
+- unless @proofs.empty?
+  %hr.spacer/
+
+  .table-wrapper
+    %table.table
+      %thead
+        %tr
+          %th= t('identity_proofs.identity')
+          %th= t('identity_proofs.status')
+          %th
+      %tbody
+        = render partial: 'settings/identity_proofs/proof', collection: @proofs, as: :proof

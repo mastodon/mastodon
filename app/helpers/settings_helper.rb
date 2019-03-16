@@ -64,23 +64,6 @@ module SettingsHelper
     HUMAN_LOCALES[locale]
   end
 
-  def identity_proof_providers
-    AccountIdentityProof::PROVIDER_MAP.values
-  end
-
-  def identity_proof_my_domain
-    ExternalProofService.my_domain
-  end
-
-  def default_provider_pic_url(provider)
-    case provider
-    when AccountIdentityProof::PROVIDER_MAP[:keybase]
-      '/keybase-logo-100@2x.png'
-    else
-      full_asset_url('/avatars/original/missing.png')
-    end
-  end
-
   def filterable_languages
     LanguageDetector.instance.language_names.select(&HUMAN_LOCALES.method(:key?))
   end

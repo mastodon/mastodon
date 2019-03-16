@@ -1,23 +1,23 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
-require 'keybase_proof'
 
-describe Keybase::Proof do
-  let(:my_domain) { ExternalProofService.my_domain }
+describe ProofProvider::Keybase::Verifier do
+  let(:my_domain) { Rails.configuration.x.local_domain }
+
   let(:keybase_proof) do
     local_proof = AccountIdentityProof.new(
       provider: 'Keybase',
       provider_username: 'cryptoalice',
       token: '11111111111111111111111111'
     )
-    described_class.new(local_proof, 'alice')
+
+    described_class.new('alice', 'cryptoalice', '11111111111111111111111111')
   end
+
   let(:query_params) do
     "domain=#{my_domain}&kb_username=cryptoalice&sig_hash=11111111111111111111111111&username=alice"
   end
 
-  describe 'valid?' do
+  describe '#valid?' do
     let(:base_url) { 'https://keybase.io/_/api/1.0/sig/proof_valid.json' }
 
     context 'when valid' do
@@ -54,7 +54,7 @@ describe Keybase::Proof do
     end
   end
 
-  describe 'remote_status' do
+  describe '#status' do
     let(:base_url) { 'https://keybase.io/_/api/1.0/sig/proof_live.json' }
 
     context 'with a normal response' do
@@ -64,7 +64,7 @@ describe Keybase::Proof do
       end
 
       it 'calls out to keybase and returns the status fields as proof_valid and proof_live' do
-        expect(keybase_proof.remote_status).to eq( {proof_valid: true, proof_live: false} )
+        expect(keybase_proof.status).to include({ 'proof_valid' => true, 'proof_live' => false })
       end
     end
 
@@ -74,19 +74,9 @@ describe Keybase::Proof do
         stub_request(:get, "#{base_url}?#{query_params}").to_return(status: 200, body: json_response_body)
       end
 
-      it 'raises a KeyError' do
-        expect { keybase_proof.remote_status }.to raise_error Keybase::ResponseDataError
+      it 'raises a ProofProvider::Keybase::UnexpectedResponseError' do
+        expect { keybase_proof.status }.to raise_error ProofProvider::Keybase::UnexpectedResponseError
       end
-    end
-  end
-
-  describe 'badge_pic_url' do
-    let(:expected_url) do
-      "https://keybase.io/cryptoalice/proof_badge/11111111111111111111111111?domain=#{my_domain}&username=alice"
-    end
-
-    it 'builds the url correctly' do
-      expect(keybase_proof.badge_pic_url).to eq expected_url
     end
   end
 end

@@ -1,22 +1,16 @@
-- proofs = account.account_identity_proofs.active
+- proofs = account.identity_proofs.active
+- fields = account.fields
 
 .public-account-bio
-  - if proofs
+  - if !fields.empty? || !proofs.empty?
     .account__header__fields
       - proofs.each do |proof|
         %dl
-          %dt= proof.provider
+          %dt= proof.provider.capitalize
           %dd
-            - class_name = proof.remote_url ? 'provider_username' : nil
-            - if proof.profile_url
-              = link_to proof.provider_username, proof.profile_url, class: class_name
-            - else
-              = proof.provider_username
-            - if proof.remote_url
-              = link_to t('account_identity_proofs.headings.proof'), proof.remote_url, class: :proof, title: t('account_identity_proofs.view', username: proof.provider_username, provider: proof.provider)
-  - unless account.fields.empty?
-    .account__header__fields
-      - account.fields.each do |field|
+            = link_to_if proof.badge.profile_url, proof.provider_username, proof.badge.profile_url
+
+      - fields.each do |field|
         %dl
           %dt.emojify{ title: field.name }= Formatter.instance.format_field(account, field.name, custom_emojify: true)
           %dd{ title: field.value, class: custom_field_classes(field) }
@@ -24,6 +18,7 @@
               %span.verified__mark{ title: t('accounts.link_verified_on', date: l(field.verified_at)) }
                 = fa_icon 'check'
             = Formatter.instance.format_field(account, field.value, custom_emojify: true)
+
   = account_badge(account)
 
   - if account.note.present?

@@ -3,7 +3,7 @@
 module WellKnown
   class KeybaseProofConfigController < ActionController::Base
     def show
-      render json: {}, serializer: KeybaseConfigSerializer
+      render json: {}, serializer: ProofProvider::Keybase::ConfigSerializer
     end
   end
 end

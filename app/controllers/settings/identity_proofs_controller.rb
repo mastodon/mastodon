@@ -2,48 +2,44 @@
 
 class Settings::IdentityProofsController < Settings::BaseController
   layout 'admin'
+
   before_action :authenticate_user!
+  before_action :check_required_params, only: :new
 
   def index
     @proofs = AccountIdentityProof.where(account: current_account).order(provider: :asc, provider_username: :asc)
-    @proofs.each(&:update_liveness)
+    @proofs.each(&:refresh!)
   end
 
   def new
-    return redirect_to settings_identity_proofs_path unless all_new_params_present?
-
-    @proof = AccountIdentityProof.new(
-      account: current_account,
+    @proof = current_account.identity_proofs.new(
       token: params[:token],
       provider: params[:provider],
       provider_username: params[:provider_username]
     )
+
+    render layout: 'auth'
   end
 
   def create
-    @proof = AccountIdentityProof.where(
-      account: current_account,
-      provider: create_params[:provider],
-      provider_username: create_params[:provider_username]
-    ).first_or_initialize
-    @proof.token = create_params[:token]
-    if @proof.save_if_valid_remotely
-      KeybaseProofWorker.perform_async(@proof.id) if @proof.keybase?
-      success_url = @proof.success_redirect(params[:useragent])
-      redirect_to Addressable::URI.parse(success_url).normalize.to_s
+    @proof = current_account.identity_proofs.where(provider: resource_params[:provider], provider_username: resource_params[:provider_username]).first_or_initialize(resource_params)
+    @proof.token = resource_params[:token]
+
+    if @proof.save
+      redirect_to @proof.on_success_path(params[:user_agent])
     else
-      flash[:alert] = I18n.t('account_identity_proofs.notices.failed', provider: @proof.provider)
+      flash[:alert] = I18n.t('identity_proofs.errors.failed', provider: @proof.provider.capitalize)
       redirect_to settings_identity_proofs_path
     end
   end
 
   private
 
-  def all_new_params_present?
-    [:provider, :provider_username, :token].all? { |k| params[k].present? }
+  def check_required_params
+    redirect_to settings_identity_proofs_path unless [:provider, :provider_username, :token].all? { |k| params[k].present? }
   end
 
-  def create_params
+  def resource_params
     params.require(:account_identity_proof).permit(:provider, :provider_username, :token)
   end
 end

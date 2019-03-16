@@ -5,81 +5,42 @@
 #
 #  id                :bigint(8)        not null, primary key
 #  account_id        :bigint(8)
-#  provider          :string           not null
-#  provider_username :string           not null
-#  token             :text             not null
-#  proof_valid       :boolean
-#  proof_live        :boolean
+#  provider          :string           default(""), not null
+#  provider_username :string           default(""), not null
+#  token             :text             default(""), not null
+#  verified          :boolean          default(FALSE), not null
+#  live              :boolean          default(FALSE), not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
 
-require 'keybase_proof'
-
 class AccountIdentityProof < ApplicationRecord
-  PROVIDER_MAP = {
-    keybase: 'Keybase',
-  }.freeze
-
   belongs_to :account
-  validates :provider, inclusion: { in: PROVIDER_MAP.values }
+
+  validates :provider, inclusion: { in: ProofProvider::SUPPORTED_PROVIDERS }
   validates :provider_username, format: { with: /\A[a-z0-9_]+\z/i }, length: { minimum: 2, maximum: 15 }
   validates :provider_username, uniqueness: { scope: [:account_id, :provider] }
   validates :token, format: { with: /\A[a-f0-9]+\z/ }, length: { maximum: 66 }
-  validate :matches_keybase_validations, if: -> { keybase? }
 
-  scope :keybase, -> { where(provider: PROVIDER_MAP[:keybase]) }
-  scope :active, -> { where(proof_valid: true, proof_live: true) }
-  scope :with_account_username, -> { joins(:account).select(:username, "#{AccountIdentityProof.table_name}.*") }
+  validate :validate_with_provider, if: :token_changed?
 
-  def keybase?
-    provider == PROVIDER_MAP[:keybase]
+  scope :active, -> { where(verified: true, live: true) }
+
+  after_create_commit :queue_worker
+
+  delegate :refresh!, :on_success_path, :badge, to: :provider_instance
+
+  private
+
+  def provider_instance
+    @provider_instance ||= ProofProvider.find(provider, self)
   end
 
-  def matches_keybase_validations
-    errors.add(:base, I18n.t('account_identity_proofs.keybase_errors.token')) unless token.try(:length) == 66
+  def queue_worker
+    provider_instance.worker_class.perform_async(id)
   end
 
-  def save_if_valid_remotely
-    return false unless valid?
-
-    if keybase? && !valid_in_keybase?
-      errors.add(:token, I18n.t('account_identity_proofs.keybase_errors.remote_invalid', kb_username: provider_username))
-      return false
-    end
-    self.proof_live = nil
-    self.proof_valid = true
-    save
-  end
-
-  def valid_in_keybase?
-    Keybase::Proof.new(self).valid?
-  end
-
-  def update_liveness
-    if keybase?
-      KeybaseProofWorker.new.perform_safe(id)
-      reload
-    end
-  end
-
-  def remote_url
-    Keybase::Proof.new(self).sigchain_url if keybase?
-  end
-
-  def profile_url
-    Keybase::Proof.new(self).profile_url if keybase?
-  end
-
-  def status_img_url
-    Keybase::Proof.new(self).badge_pic_url if keybase?
-  end
-
-  def success_redirect(useragent)
-    Keybase::Proof.new(self).success_redirect_url(useragent) if keybase?
-  end
-
-  def remote_profile_pic_url
-    Keybase::Proof.new(self).profile_pic_url if keybase?
+  def validate_with_provider
+    provider_instance.validate!
   end
 end
