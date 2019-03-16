@@ -5,6 +5,7 @@ class RelationshipsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_accounts, only: :show
+  before_action :set_pack
   before_action :set_body_classes
 
   helper_method :following_relationship?, :followed_by_relationship?, :mutual_relationship?
@@ -94,5 +95,9 @@ class RelationshipsController < ApplicationController
 
   def set_body_classes
     @body_classes = 'admin'
+  end
+
+  def set_pack
+    use_pack 'admin'
   end
 end
