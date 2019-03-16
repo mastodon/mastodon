@@ -15,7 +15,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.31', require: false
+gem 'aws-sdk-s3', '~> 1.32', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -87,7 +87,7 @@ gem 'tty-command', '~> 0.8', require: false
 gem 'tty-prompt', '~> 0.18', require: false
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2018'
-gem 'webpacker', '~> 3.5'
+gem 'webpacker', '~> 4.0'
 gem 'webpush'
 
 gem 'json-ld', '~> 3.0'

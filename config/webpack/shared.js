@@ -5,7 +5,8 @@ const { basename, dirname, join, relative, resolve } = require('path');
 const { sync } = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const AssetsManifestPlugin = require('webpack-assets-manifest');
-const { env, settings, core, flavours, output, loadersDir } = require('./configuration.js');
+const { env, settings, core, flavours, output } = require('./configuration.js');
+const rules = require('./rules');
 const localePacks = require('./generateLocalePacks');
 
 function reducePacks (data, into = {}) {
@@ -56,8 +57,9 @@ module.exports = {
   entry: entries,
 
   output: {
-    filename: '[name].js',
-    chunkFilename: '[name].js',
+    filename: 'js/[name]-[chunkhash].js',
+    chunkFilename: 'js/[name]-[chunkhash].chunk.js',
+    hotUpdateChunkFilename: 'js/[id]-[hash].hot-update.js',
     path: output.path,
     publicPath: output.publicPath,
   },
@@ -85,7 +87,7 @@ module.exports = {
   },
 
   module: {
-    rules: sync(join(loadersDir, '*.js')).map(loader => require(loader)),
+    rules: Object.keys(rules).map(key => rules[key]),
   },
 
   plugins: [
@@ -98,11 +100,14 @@ module.exports = {
       }
     ),
     new MiniCssExtractPlugin({
-      filename: env.NODE_ENV === 'production' ? '[name]-[contenthash].css' : '[name].css',
+      filename: 'css/[name]-[contenthash:8].css',
+      chunkFilename: 'css/[name]-[contenthash:8].chunk.css',
     }),
     new AssetsManifestPlugin({
-      publicPath: true,
+      integrity: false,
+      entrypoints: true,
       writeToDisk: true,
+      publicPath: true,
     }),
   ],
 
