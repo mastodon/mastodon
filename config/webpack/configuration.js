@@ -7,7 +7,6 @@ const { lstatSync, readFileSync } = require('fs');
 const glob = require('glob');
 
 const configPath = resolve('config', 'webpacker.yml');
-const loadersDir = join(__dirname, 'loaders');
 const settings = safeLoad(readFileSync(configPath), 'utf8')[env.RAILS_ENV || env.NODE_ENV];
 const flavourFiles = glob.sync('app/javascript/flavours/*/theme.yml');
 const skinFiles = glob.sync('app/javascript/skins/*/*');
@@ -84,6 +83,5 @@ module.exports = {
     CDN_HOST: env.CDN_HOST,
     NODE_ENV: env.NODE_ENV,
   },
-  loadersDir,
   output,
 };

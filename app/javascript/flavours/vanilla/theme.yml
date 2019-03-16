@@ -26,10 +26,8 @@ pack:
 locales: ../../mastodon/locales
 
 #  (OPTIONAL) A file to use as the preview screenshot for the flavour,
-#  or an array thereof. These filenames must be unique across all
-#  images (regardless of path), so it's a good idea to namespace them
-#  to your theme. It's up to you to let webpack know to compile them.
-screenshot: screenshot.jpg
+#  or an array thereof. These are the full path from `app/javascript/`.
+screenshot: images/screenshot.jpg
 
 #  (OPTIONAL) The directory which contains the pack files.
 #  Defaults to this directory (`app/javascript/flavour/[flavour]`),

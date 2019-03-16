@@ -10,10 +10,7 @@
       = image_tag invite.user.account.avatar.url(:original), alt: '', width: 16, height: 16, class: 'avatar'
       %span.username= invite.user.account.username
 
-  - if invite.expired?
-    %td{ colspan: 2 }
-      = t('invites.expired')
-  - else
+  - if invite.valid_for_use?
     %td
       = fa_icon 'user fw'
       = invite.uses
@@ -24,6 +21,10 @@
       - else
         %time.formatted{ datetime: invite.expires_at.iso8601, title: l(invite.expires_at) }
           = l invite.expires_at
+  - else
+    %td{ colspan: 2 }
+      = t('invites.expired')
+
   %td
-    - if !invite.expired? && policy(invite).destroy?
+    - if invite.valid_for_use? && policy(invite).destroy?
       = table_link_to 'times', t('invites.delete'), admin_invite_path(invite), method: :delete

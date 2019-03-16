@@ -140,6 +140,15 @@ a.table-action-link {
       input {
         margin-top: 8px;
       }
+
+      &--aligned {
+        display: flex;
+        align-items: center;
+
+        input {
+          margin-top: 0;
+        }
+      }
     }
 
     &__actions,
@@ -183,6 +192,10 @@ a.table-action-link {
     &__content {
       padding-top: 12px;
       padding-bottom: 16px;
+
+      &--unpadded {
+        padding: 0;
+      }
     }
   }
 
@@ -192,5 +205,11 @@ a.table-action-link {
     strong {
       font-weight: 700;
     }
+  }
+
+  .nothing-here {
+    border: 1px solid darken($ui-base-color, 8%);
+    border-top: 0;
+    box-shadow: none;
   }
 }
