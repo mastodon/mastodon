@@ -1912,10 +1912,6 @@
       {
         "defaultMessage": "{name} boosted your status",
         "id": "notification.reblog"
-      },
-      {
-        "defaultMessage": "Your poll has ended",
-        "id": "notification.poll"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/notification.json"
@@ -1976,6 +1972,24 @@
       }
     ],
     "path": "app/javascript/mastodon/features/reblogs/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "A look inside...",
+        "id": "standalone.public_title"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/standalone/community_timeline/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "A look inside...",
+        "id": "standalone.public_title"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/standalone/public_timeline/index.json"
   },
   {
     "descriptors": [
