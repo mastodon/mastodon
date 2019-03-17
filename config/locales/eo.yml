@@ -544,7 +544,7 @@ eo:
     explore_mastodon: Esplori %{title}
     how_to_enable: Vi ankoraŭ ne donis permeson listigi vin en la profilujo. Vi povas doni permeson ĉi-sube. Uzu kradvortojn en via biografia teksto por esti listigata sub specifaj kradvortoj!
     people:
-      one: "%{count} personoj"
+      one: "%{count} persono"
       other: "%{count} personoj"
   errors:
     '403': Vi ne havas la rajton por vidi ĉi tiun paĝon.
@@ -708,6 +708,16 @@ eo:
     older: Malpli nova
     prev: Antaŭa
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Vi jam voĉdonis al ĉi tiu enketa
+      duplicate_options: enhavas duoblaĵojn
+      duration_too_long: estas tro for en la estonteco
+      duration_too_short: estas tro frue
+      expired: La enketo jam finiĝis
+      over_character_limit: ne povas esti po pli longa ol %{max} signoj
+      too_few_options: devas enhavi pli da unu propono
+      too_many_options: ne povas enhavi pli da %{max} proponoj
   preferences:
     languages: Lingvoj
     other: Aliaj aferoj
@@ -816,6 +826,11 @@ eo:
       ownership: Mesaĝo de iu alia ne povas esti alpinglita
       private: Mesaĝo nepublika ne povas esti alpinglita
       reblog: Diskonigo ne povas esti alpinglita
+    poll:
+      total_votes:
+        one: "%{count} voĉdono"
+        other: "%{count} voĉdonoj"
+      vote: Voĉdoni
     show_more: Montri pli
     sign_in_to_participate: Ensaluti por partopreni en la konversacio
     title: '%{name}: "%{quote}"'

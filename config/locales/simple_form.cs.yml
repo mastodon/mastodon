@@ -6,14 +6,14 @@ cs:
         text: Můžete používat syntaxi tootů, jako například URL, hashtagy a zmínky
       admin_account_action:
         send_email_notification: Uživatel obdrží vysvětlení toho, co se stalo s jeho účtem
-        text_html: Volitelné. Můžete používat syntaxi tootů. Pro ušetření času si můžete <a href="%{path}">přidat přednastavení pro varování</a>
+        text_html: Volitelné. Můžete používat syntaxi tootů. Pro ušetření času si můžete <a href="%{path}">přidat předlohy pro varování</a>
         type_html: Vyberte, co chcete udělat s účtem <strong>%{acct}</strong>
-        warning_preset_id: Volitelné. Můžete stále vložit na konec přednastavení vlastní text
+        warning_preset_id: Volitelné. Můžete stále vložit na konec předlohy vlastní text
       defaults:
         autofollow: Lidé, kteří se zaregistrují přes pozvání, vás budou automaticky sledovat
         avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         bot: Tento účet provádí hlavně automatizované akce a nemusí být spravován
-        context: Jedno či více kontextů, ve kterých má být filtr uplatněn
+        context: Jeden či více kontextů, ve kterých má být filtr uplatněn
         digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste při své nepřítomnosti obdržel/a osobní zprávy
         discoverable_html: <a href="%{path}" target="_blank">Adresář</a> dovoluje lidem najít účty podle zájmů a aktivity. Vyžaduje alespoň %{min_followers} sledujících
         email: Bude vám poslán potvrzovací e-mail
@@ -51,7 +51,7 @@ cs:
           name: Označení
           value: Obsah
       account_warning_preset:
-        text: Text přednastavení
+        text: Text předlohy
       admin_account_action:
         send_email_notification: Informovat uživatele e-mailem
         text: Vlastní varování
@@ -61,7 +61,7 @@ cs:
           none: Nic nedělat
           silence: Utišit
           suspend: Pozastavit a nenávratně smazat data účtu
-        warning_preset_id: Použít přednastavení pro varování
+        warning_preset_id: Použít předlohu pro varování
       defaults:
         autofollow: Pozvat ke sledování vašeho účtu
         avatar: Avatar
@@ -75,13 +75,13 @@ cs:
         discoverable: Zveřejnit tento účet v adresáři
         display_name: Zobrazované jméno
         email: E-mailová adresa
-        expires_in: Expirovat po
+        expires_in: Vypršet za
         fields: Metadata profilu
-        header: Hlavičkový obrázek
+        header: Záhlaví
         inbox_url: URL schránky mostu
         irreversible: Zahodit místo skrytí
         locale: Jazyk rozhraní
-        locked: Zamknout účet
+        locked: Uzamknout účet
         max_uses: Maximální počet použití
         new_password: Nové heslo
         note: O vás
