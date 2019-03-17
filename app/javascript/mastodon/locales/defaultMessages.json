@@ -134,15 +134,6 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "It crashed!",
-        "id": "error_boundary.it_crashed"
-      }
-    ],
-    "path": "app/javascript/mastodon/components/error_boundary.json"
-  },
-  {
-    "descriptors": [
-      {
         "defaultMessage": "{count} {rawCount, plural, one {person} other {people}} talking",
         "id": "trends.count_by_accounts"
       }
@@ -1870,6 +1861,10 @@
       {
         "defaultMessage": "Boosts:",
         "id": "notifications.column_settings.reblog"
+      },
+      {
+        "defaultMessage": "Poll results:",
+        "id": "notifications.column_settings.poll"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/column_settings.json"
@@ -1887,6 +1882,10 @@
       {
         "defaultMessage": "Boosts",
         "id": "notifications.filter.boosts"
+      },
+      {
+        "defaultMessage": "Poll results",
+        "id": "notifications.filter.polls"
       },
       {
         "defaultMessage": "Follows",
@@ -1912,6 +1911,10 @@
       {
         "defaultMessage": "{name} boosted your status",
         "id": "notification.reblog"
+      },
+      {
+        "defaultMessage": "A poll you have voted in has ended",
+        "id": "notification.poll"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/notification.json"
@@ -1972,24 +1975,6 @@
       }
     ],
     "path": "app/javascript/mastodon/features/reblogs/index.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "A look inside...",
-        "id": "standalone.public_title"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/standalone/community_timeline/index.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "A look inside...",
-        "id": "standalone.public_title"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/standalone/public_timeline/index.json"
   },
   {
     "descriptors": [
