@@ -22,19 +22,21 @@ class ProofProvider::Keybase::Badge
   end
 
   def avatar_url
-    request = Request.new(:get, "#{ProofProvider::Keybase::BASE_URL}/_/api/1.0/user/pic_url.json", params: { username: @provider_username })
-
-    url = request.perform do |res|
-      json = Oj.load(res.body_with_limit, mode: :strict)
-      json['pic_url'] if json.is_a?(Hash)
-    end
-
-    url || default_avatar_url
-  rescue Oj::ParseError, HTTP::Error, OpenSSL::SSL::SSLError
-    default_avatar_url
+    Rails.cache.fetch("proof_providers/keybase/#{@provider_username}/avatar_url", expires_in: 5.minutes) { remote_avatar_url } || default_avatar_url
   end
 
   private
+
+  def remote_avatar_url
+    request = Request.new(:get, "#{ProofProvider::Keybase::BASE_URL}/_/api/1.0/user/pic_url.json", params: { username: @provider_username })
+
+    request.perform do |res|
+      json = Oj.load(res.body_with_limit, mode: :strict)
+      json['pic_url'] if json.is_a?(Hash)
+    end
+  rescue Oj::ParseError, HTTP::Error, OpenSSL::SSL::SSLError
+    nil
+  end
 
   def default_avatar_url
     asset_pack_path('media/images/proof_providers/keybase.png')
