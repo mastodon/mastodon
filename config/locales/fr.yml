@@ -34,6 +34,16 @@ fr:
     what_is_mastodon: Qu’est-ce que Mastodon ?
     active_footnote: Utilisateur·ice·s Actif·ve·s par Mois (UAM)
     apps_platforms: Utilisez Mastodon depuis iOS, Android et d'autres plateformes
+    active_count_after: actif·ve·s
+    browse_directory: Parcourez les profils selon vos hobbies
+    browse_public_posts: Parcourez la timeline publique sur Mastodon
+    discover_users: Découvrez de nouvelles personnes
+    federation_hint_html: Avec un compte sur %{instance}, vous pourrez suivre des
+      gens sur n'importe quelle instance Mastodon et au-delà.
+    get_apps: Essayez une application mobile
+    see_whats_happening: Voyez ce qu'il se passe
+    server_stats: 'Statistiques de l''instance :'
+    tagline: Suivez vos ami·e·s et découvrez-en d'autres
   accounts:
     choices_html: '%{name} recommande :'
     follow: Suivre
@@ -121,6 +131,7 @@ fr:
         silenced: Masqués
         suspended: Suspendus
         title: Modération
+        pending: En attente
       moderation_notes: Notes de modération
       most_recent_activity: Dernière activité
       most_recent_ip: Adresse IP la plus récente
@@ -168,6 +179,9 @@ fr:
       username: Nom d’utilisateur⋅ice
       warn: Avertissement
       web: Web
+      approve: Approuver
+      pending: En attente de modération
+      reject: Rejeter
     action_logs:
       actions:
         assigned_to_self_report: '%{name} s’est assigné·e le signalement de %{target}'
@@ -470,6 +484,12 @@ fr:
         desc_html: Afficher le fil public sur la page d’accueil
         title: Prévisualisation du fil global
       title: Paramètres du site
+      registrations_mode:
+        modes:
+          approved: Approbation requise pour l'inscription
+          none: Personne ne peut s'inscrire
+          open: N'importe qui peut s'inscrire
+        title: Modes d'inscription
     statuses:
       back_to_account: Retour à la page du compte
       batch:
@@ -510,6 +530,10 @@ fr:
       body: '%{reporter} a signalé %{target}'
       body_remote: Quelqu’un de %{domain} a signalé %{target}
       subject: Nouveau signalement sur %{instance} (#%{id})
+    new_pending_account:
+      body: Les détails du nouveau compte sont ci-dessous. Vous pouvez approuver ou
+        rejeter cette candidature.
+      subject: Demande de création de compte sur %{instance} (%{username})
   application_mailer:
     notification_preferences: Modifier les préférences de courriel
     salutation: '%{name},'
@@ -551,6 +575,12 @@ fr:
     reset_password: Réinitialiser le mot de passe
     security: Sécurité
     set_new_password: Définir le nouveau mot de passe
+    apply_for_account: Demander une invitation
+    checkbox_agreement_html: J'accepte les <a href="%{rules_path}" target="_blank">règles
+      de l'instance</a> et les <a href="%{terms_path}" target="_blank">conditions
+      d'utilisation</a>
+    registration_closed: '%{instance} n''accepte pas de nouveaux membres'
+    trouble_logging_in: Problèmes de connexion ?
   authorize_follow:
     already_following: Vous suivez déjà ce compte
     error: Malheureusement, il y a eu une erreur en cherchant les détails du compte
@@ -669,6 +699,7 @@ fr:
     validation_errors:
       one: Quelque chose ne va pas ! Vérifiez l’erreur ci-dessous
       other: Certaines choses ne vont pas ! Vérifiez les %{count} erreurs ci-dessous
+    all: Tous
   imports:
     modes:
       merge: Fusionner
@@ -879,6 +910,7 @@ fr:
     settings: Réglages
     two_factor_authentication: Identification à deux facteurs
     your_apps: Vos applications
+    relationships: Abonnements et abonné·e·s
   statuses:
     attached:
       description: 'Attaché : %{attached}'
@@ -1155,3 +1187,12 @@ fr:
       <strong>doit</strong>avoir un attribut <code>rel="me"</code>. Le contenu textuel
       du lien n''a pas d''importance. En voici un exemple :'
     verification: Vérification
+  relationships:
+    abandoned: Abandonné
+    active: Actif
+    mutual: Mutuel
+    relationship: Relation
+    remove_selected_domains: Retirer tous les abonné·e·s des instances sélectionnées
+    remove_selected_followers: Retirer les abonné·e·s sélectionné·e·s
+    remove_selected_follows: Ne plus suivre les utilisateur·ice·s sélectionné·e·s
+    status: Statut du compte
