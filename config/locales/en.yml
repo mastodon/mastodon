@@ -4,36 +4,36 @@ en:
     about_hashtag_html: These are public toots tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
     about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
     about_this: About
+    active_count_after: active
+    active_footnote: Monthly Active Users (MAU)
     administered_by: 'Administered by:'
     api: API
     apps: Mobile apps
-    closed_registrations: Registrations are currently closed on this server. However! You can find a different server to make an account on and get access to the very same network from there.
+    apps_platforms: Use Mastodon from iOS, Android and other platforms
+    browse_directory: Browse a profile directory and filter by interests
+    browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Contact
     contact_missing: Not set
     contact_unavailable: N/A
+    discover_users: Discover users
     documentation: Documentation
     extended_description_html: |
       <h3>A good place for rules</h3>
       <p>The extended description has not been set up yet.</p>
-    features:
-      humane_approach_body: Learning from failures of other networks, Mastodon aims to make ethical design choices to combat the misuse of social media.
-      humane_approach_title: A more humane approach
-      not_a_product_body: Mastodon is not a commercial network. No advertising, no data mining, no walled gardens. There is no central authority.
-      not_a_product_title: You’re a person, not a product
-      real_conversation_body: With 500 characters at your disposal and support for granular content and media warnings, you can express yourself the way you want to.
-      real_conversation_title: Built for real conversation
-      within_reach_body: Multiple apps for iOS, Android, and other platforms thanks to a developer-friendly API ecosystem allow you to keep up with your friends anywhere.
-      within_reach_title: Always within reach
+    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} is one server in the network"
+    get_apps: Try a mobile app
     hosted_on: Mastodon hosted on %{domain}
     learn_more: Learn more
-    other_instances: Server list
     privacy_policy: Privacy policy
+    see_whats_happening: See what's happening
+    server_stats: 'Server stats:'
     source_code: Source code
     status_count_after:
       one: status
       other: statuses
     status_count_before: Who authored
+    tagline: Follow friends and discover new ones
     terms: Terms of service
     user_count_after:
       one: user
@@ -79,6 +79,7 @@ en:
       delete: Delete
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
+      approve: Approve
       are_you_sure: Are you sure?
       avatar: Avatar
       by_domain: Domain
@@ -124,6 +125,7 @@ en:
       moderation:
         active: Active
         all: All
+        pending: Pending
         silenced: Silenced
         suspended: Suspended
         title: Moderation
@@ -133,6 +135,7 @@ en:
       no_limits_imposed: No limits imposed
       not_subscribed: Not subscribed
       outbox_url: Outbox URL
+      pending: Pending review
       perform_full_suspension: Suspend
       profile_url: Profile URL
       promote: Promote
@@ -140,6 +143,7 @@ en:
       public: Public
       push_subscription_expires: PuSH subscription expires
       redownload: Refresh profile
+      reject: Reject
       remove_avatar: Remove avatar
       remove_header: Remove header
       resend_confirmation:
@@ -411,9 +415,12 @@ en:
         min_invite_role:
           disabled: No one
           title: Allow invitations by
-        open:
-          desc_html: Allow anyone to create an account
-          title: Open registration
+      registrations_mode:
+        modes:
+          approved: Approval required for sign up
+          none: Nobody can sign up
+          open: Anyone can sign up
+        title: Registrations mode
       show_known_fediverse_at_about_page:
         desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show local toots.
         title: Show known fediverse on timeline preview
@@ -476,6 +483,9 @@ en:
       edit_preset: Edit warning preset
       title: Manage warning presets
   admin_mailer:
+    new_pending_account:
+      body: The details of the new account are below. You can approve or reject this application.
+      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
@@ -497,7 +507,9 @@ en:
     your_token: Your access token
   auth:
     agreement_html: By clicking "Sign up" below you agree to follow <a href="%{rules_path}">the rules of the server</a> and <a href="%{terms_path}">our terms of service</a>.
+    apply_for_account: Request an invite
     change_password: Password
+    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: Confirm email
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
@@ -508,17 +520,17 @@ en:
     logout: Logout
     migrate_account: Move to a different account
     migrate_account_html: If you wish to redirect this account to a different one, you can <a href="%{path}">configure it here</a>.
-    or: or
     or_log_in_with: Or log in with
     providers:
       cas: CAS
       saml: SAML
     register: Sign up
-    register_elsewhere: Sign up on another server
+    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
     security: Security
     set_new_password: Set new password
+    trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: You are already following this account
     error: Unfortunately, there was an error looking up the remote account
@@ -609,23 +621,12 @@ en:
       title: Filters
     new:
       title: Add new filter
-  followers:
-    domain: Domain
-    explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all servers where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those servers.
-    followers_count: Number of followers
-    lock_link: Lock your account
-    purge: Remove from followers
-    success:
-      one: In the process of soft-blocking followers from one domain...
-      other: In the process of soft-blocking followers from %{count} domains...
-    true_privacy_html: Please mind that <strong>true privacy can only be achieved with end-to-end encryption</strong>.
-    unlocked_warning_html: Anyone can follow you to immediately view your private statuses. %{lock_link} to be able to review and reject followers.
-    unlocked_warning_title: Your account is not locked
   footer:
     developers: Developers
     more: More…
     resources: Resources
   generic:
+    all: All
     changes_saved_msg: Changes successfully saved!
     copy: Copy
     save_changes: Save changes
@@ -749,6 +750,15 @@ en:
     other: Other
     publishing: Publishing
     web: Web
+  relationships:
+    abandoned: Abandoned
+    active: Active
+    mutual: Mutual
+    relationship: Relationship
+    remove_selected_domains: Remove all followers from the selected domains
+    remove_selected_followers: Remove selected followers
+    remove_selected_follows: Unfollow selected users
+    status: Account status
   remote_follow:
     acct: Enter your username@domain you want to act from
     missing_resource: Could not find the required redirect URL for your account
@@ -823,11 +833,11 @@ en:
     edit_profile: Edit profile
     export: Data export
     featured_tags: Featured hashtags
-    followers: Authorized followers
     import: Import
     migrate: Account migration
     notifications: Notifications
     preferences: Preferences
+    relationships: Follows and followers
     settings: Settings
     two_factor_authentication: Two-factor Auth
     your_apps: Your applications

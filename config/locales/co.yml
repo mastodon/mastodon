@@ -7,7 +7,6 @@ co:
     administered_by: 'Amministratu da:'
     api: API
     apps: Applicazione per u telefuninu
-    closed_registrations: Pè avà, l’arregistramenti sò chjosi nant’à stu servore. Mà pudete truvà un’altru per fà un contu è avè accessu à listessa reta da quallà.
     contact: Cuntattu
     contact_missing: Mancante
     contact_unavailable: Micca dispunibule
@@ -15,19 +14,9 @@ co:
     extended_description_html: |
       <h3>Una bona piazza per e regule</h3>
       <p>A descrizzione stesa ùn hè micca stata riempiuta.</p>
-    features:
-      humane_approach_body: Mastodon hà amparatu da i sbagli di l’altre rete suciale, è prova à fà scelte di cuncezzione più etiche per luttà contr’à l’abusu di i media suciali.
-      humane_approach_title: Una mentalità più umana
-      not_a_product_body: Mastodon ùn hè micca una rete cummerciale. Micca pubblicità, micca pruspizzione di dati, micca ambienti chjosi, è micca auturità centrale.
-      not_a_product_title: Site una parsona, micca un pruduttu
-      real_conversation_body: Cù 500 caratteri dispunibuli, diffusione persunalizata di u cuntinutu è avertimenti per media sensibili, pudete cumunicà cum’è voi vulete.
-      real_conversation_title: Fattu per una vera cunversazione
-      within_reach_body: Parechje app per iOS, Android è altre piattaforme, create cù un sistemu d’API accessibile à i prugrammatori, vi permettenu d’avè accessu à i vostri amichi senza prublemi.
-      within_reach_title: Sempre accessibile
     generic_description: "%{domain} hè un servore di a rete"
     hosted_on: Mastodon allughjatu nant’à %{domain}
     learn_more: Amparà di più
-    other_instances: Lista di i servori
     privacy_policy: Pulitica di vita privata
     source_code: Codice di fonte
     status_count_after:
@@ -411,9 +400,6 @@ co:
         min_invite_role:
           disabled: Nisunu
           title: Auturizà l’invitazione da
-        open:
-          desc_html: Auturizà tuttu u mondu à creà un contu quì
-          title: Apre l’arregistramenti
       show_known_fediverse_at_about_page:
         desc_html: Quandu ghjè selezziunatu, statuti di tuttu l’istanze cunnisciute saranu affissati indè a vista di e linee. Altrimente soli i statuti lucali saranu mustrati.
         title: Vedde tuttu u fediverse cunnisciutu nant’a vista di e linee
@@ -508,13 +494,11 @@ co:
     logout: Scunnettassi
     migrate_account: Cambià di contu
     migrate_account_html: S’è voi vulete riindirizà stu contu versu un’altru, <a href="%{path}">ghjè pussibule quì</a>.
-    or: o
     or_log_in_with: O cunnettatevi cù
     providers:
       cas: CAS
       saml: SAML
     register: Arregistrassi
-    register_elsewhere: Arregistrassi altrò
     resend_confirmation: Rimandà l’istruzzioni di cunfirmazione
     reset_password: Cambià a chjave d’accessu
     security: Sicurità
@@ -609,18 +593,6 @@ co:
       title: Filtri
     new:
       title: Aghjustà un novu filtru
-  followers:
-    domain: Duminiu
-    explanation_html: Per assicuravi di a cunfidenzialità di i vostri statuti, duvete avè primura di quale vi seguita. <strong>I vostri statuti privati sò mandati à tutti i servori induve avete abbunati</strong>. Pensate à u vostru livellu di cunfidenza in i so amministratori.
-    followers_count: Numeru d’abbunati
-    lock_link: Rendete u contu privatu
-    purge: Toglie di a lista d’abbunati
-    success:
-      one: Suppressione di l’abbunati d’un duminiu...
-      other: Suppressione di l’abbunati da %{count} duminii...
-    true_privacy_html: Ùn vi scurdate chì <strong>una vera cunfidenzialità pò solu esse ottenuta cù crittografia da un capu à l’altru</strong>.
-    unlocked_warning_html: Tuttu u mondu pò seguitavi è vede i vostri statuti privati. %{lock_link}  per pudè cunfirmà o righjittà abbunamenti.
-    unlocked_warning_title: U vostru contu hè pubblicu
   footer:
     developers: Sviluppatori
     more: Di più…
@@ -823,7 +795,6 @@ co:
     edit_profile: Mudificà u prufile
     export: Spurtazione d’infurmazione
     featured_tags: Hashtag in vista
-    followers: Abbunati auturizati
     import: Impurtazione
     migrate: Migrazione di u contu
     notifications: Nutificazione

@@ -7,7 +7,6 @@ fr:
     administered_by: 'Administrée par :'
     api: API
     apps: Applications mobiles
-    closed_registrations: Les inscriptions sont actuellement fermées sur cette instance. Cependant, vous pouvez trouver une autre instance sur laquelle vous créer un compte et à partir de laquelle vous pourrez accéder au même réseau.
     contact: Contact
     contact_missing: Manquant
     contact_unavailable: Non disponible
@@ -15,19 +14,9 @@ fr:
     extended_description_html: |
       <h3>Un bon endroit pour les règles</h3>
       <p>La description étendue n’a pas été remplie.</p>
-    features:
-      humane_approach_body: Ayant appris des échecs d’autres réseaux, Mastodon à l’ambition de combattre l’abus des médias sociaux en effectuant des choix de conception éthiques.
-      humane_approach_title: Une approche plus humaine
-      not_a_product_body: Mastodon n’est pas un réseau commercial. Ici, pas de publicités, pas de prospection de données et pas d’environnements fermés. Il n’y existe aucune autorité centrale.
-      not_a_product_title: Vous êtes une personne, pas un produit
-      real_conversation_body: Avec 500 caractères à votre disposition, une grande granularité en termes de diffusion et la possibilité de masquer vos messages derrière des avertissements, vous êtes libre de vous exprimer de la manière qui vous plaît.
-      real_conversation_title: Construit pour de vraies conversations
-      within_reach_body: Grâce à l’existence d’un environnement API accueillant pour les développeur·se·s, de multiples applications pour iOS, Android et d’autres plateformes vous permettent de rester en contact avec vos ami·e·s où que vous soyez.
-      within_reach_title: Toujours à portée de main
     generic_description: "%{domain} est seulement un serveur du réseau"
     hosted_on: Instance Mastodon hébergée par %{domain}
     learn_more: En savoir plus
-    other_instances: Liste des instances
     privacy_policy: Politique de vie privée
     source_code: Code source
     status_count_after:
@@ -411,9 +400,6 @@ fr:
         min_invite_role:
           disabled: Personne
           title: Autoriser les invitations par
-        open:
-          desc_html: Autoriser tout le monde à créer un compte
-          title: Ouvrir les inscriptions
       show_known_fediverse_at_about_page:
         desc_html: Lorsque l’option est activée, les pouets provenant de toutes les instances connues sont affichés dans la prévisualisation. Sinon, seuls les pouets locaux sont affichés.
         title: Afficher le fediverse connu dans la prévisualisation du fil
@@ -508,13 +494,11 @@ fr:
     logout: Se déconnecter
     migrate_account: Déplacer vers un compte différent
     migrate_account_html: Si vous voulez rediriger ce compte vers un autre, vous pouvez le <a href="%{path}">configurer ici</a>.
-    or: ou
     or_log_in_with: Ou authentifiez-vous avec
     providers:
       cas: CAS
       saml: SAML
     register: S’inscrire
-    register_elsewhere: S’inscrire sur un autre serveur
     resend_confirmation: Envoyer à nouveau les consignes de confirmation
     reset_password: Réinitialiser le mot de passe
     security: Sécurité
@@ -609,18 +593,6 @@ fr:
       title: Filtres
     new:
       title: Ajouter un nouveau filtre
-  followers:
-    domain: Domaine
-    explanation_html: Si vous voulez vous assurer que vos statuts restent privés, vous devez savoir qui vous suit. <strong>Vos statuts privés seront diffusés sur toutes les instances où vous avez des abonné·e·s</strong>. Vous voudrez peut-être les passer en revue et les supprimer si vous pensez que votre vie privée ne sera pas respectée par l’administration ou le logiciel de ces instances.
-    followers_count: Nombre d’abonné⋅e⋅s
-    lock_link: Rendez votre compte privé
-    purge: Retirer de la liste d’abonné⋅e⋅s
-    success:
-      one: Suppression des abonné⋅e⋅s venant d’un domaine en cours…
-      other: Suppression des abonné⋅e⋅s venant de %{count} domaines en cours…
-    true_privacy_html: Soyez conscient⋅e⋅s <strong>qu’une vraie confidentialité ne peut être atteinte que par un chiffrement de bout-en-bout</strong>.
-    unlocked_warning_html: N’importe qui peut vous suivre et voir vos statuts privés. %{lock_link} afin de pouvoir vérifier et rejeter des abonné⋅e⋅s.
-    unlocked_warning_title: Votre compte n’est pas privé
   footer:
     developers: Développeurs
     more: Davantage…
@@ -823,7 +795,6 @@ fr:
     edit_profile: Modifier le profil
     export: Export de données
     featured_tags: Hashtags mis en avant
-    followers: Abonné⋅es autorisé⋅es
     import: Import de données
     migrate: Migration de compte
     notifications: Notifications
@@ -853,6 +824,11 @@ fr:
       ownership: Vous ne pouvez pas épingler un statut ne vous appartenant pas
       private: Les statuts non-publics ne peuvent pas être épinglés
       reblog: Un partage ne peut pas être épinglé
+    poll:
+      total_votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
+      vote: Voter
     show_more: Afficher plus
     sign_in_to_participate: Inscrivez-vous pour prendre part à la conversation
     title: '%{name} : "%{quote}"'

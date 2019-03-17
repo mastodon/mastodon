@@ -7,7 +7,6 @@ nl:
     administered_by: 'Beheerd door:'
     api: API
     apps: Mobiele apps
-    closed_registrations: Registreren op deze server is momenteel niet mogelijk. Je kunt echter een andere server vinden om zo toegang te krijgen tot het netwerk.
     contact: Contact
     contact_missing: Niet ingesteld
     contact_unavailable: n.v.t
@@ -15,19 +14,9 @@ nl:
     extended_description_html: |
       <h3>Een goede plek voor richtlijnen</h3>
       <p>De uitgebreide omschrijving is nog niet ingevuld.</p>
-    features:
-      humane_approach_body: Mastodon heeft van de fouten van andere sociale netwerken geleerd en probeert aan de hand van ethische ontwerpkeuzes misbruik van sociale media te voorkomen.
-      humane_approach_title: Een meer menselijke aanpak
-      not_a_product_body: Mastodon is geen commercieel netwerk. Dus geen advertenties, geen datamining en geen besloten systemen. Er is geen centrale organisatie die alles bepaalt.
-      not_a_product_title: Jij bent een persoon, geen product
-      real_conversation_body: Met 500 tekens tot jouw beschikking en ondersteuning voor tekst- en media-waarschuwingen, kan je jezelf uiten zoals jij dat wil.
-      real_conversation_title: Voor echte gesprekken gemaakt
-      within_reach_body: Meerdere apps voor iOS, Android en andere platformen, met dank aan het ontwikkelaarsvriendelijke API-systeem, zorgen ervoor dat je overal op de hoogte blijft.
-      within_reach_title: Altijd binnen bereik
     generic_description: "%{domain} is een server in het Mastodonnetwerk"
     hosted_on: Mastodon op %{domain}
     learn_more: Meer leren
-    other_instances: Andere servers
     privacy_policy: Privacybeleid
     source_code: Broncode
     status_count_after:
@@ -411,9 +400,6 @@ nl:
         min_invite_role:
           disabled: Niemand
           title: Uitnodigingen toestaan door
-        open:
-          desc_html: Toestaan dat iedereen een account kan registereren
-          title: Open registratie
       show_known_fediverse_at_about_page:
         desc_html: Wanneer ingeschakeld wordt de globale tijdlijn op de voorpagina getoond en wanneer uitgeschakeld de lokale tijdljn.
         title: De globale tijdlijn op de voorpagina tonen
@@ -508,13 +494,11 @@ nl:
     logout: Uitloggen
     migrate_account: Naar een ander account verhuizen
     migrate_account_html: Wanneer je dit account naar een ander account wilt doorverwijzen, kun je <a href="%{path}">dit hier instellen</a>.
-    or: of
     or_log_in_with: Of inloggen met
     providers:
       cas: CAS
       saml: SAML
     register: Registreren
-    register_elsewhere: Op een andere server registreren
     resend_confirmation: Verstuur de bevestigingsinstructies nogmaals
     reset_password: Wachtwoord opnieuw instellen
     security: Beveiliging
@@ -609,18 +593,6 @@ nl:
       title: Filters
     new:
       title: Nieuw filter toevoegen
-  followers:
-    domain: Domein
-    explanation_html: Wanneer je de privacy van jouw toots wilt garanderen, moet je goed weten wie jouw volgers zijn. <strong>Toots die alleen aan jouw volgers zijn gericht, worden aan de Mastodonservers van jouw volgers afgeleverd.</strong> Daarom wil je ze misschien controleren en desnoods volgers verwijderen die zich op een Mastodonserver bevinden die jij niet vertrouwd. Bijvoorbeeld omdat de beheerder(s) of de software van zo'n server jouw privacy niet respecteert.
-    followers_count: Aantal volgers
-    lock_link: Maak jouw account besloten
-    purge: Volgers verwijderen
-    success:
-      one: Bezig om volgers van één domein te verwijderen...
-      other: Bezig om volgers van %{count} domeinen te verwijderen...
-    true_privacy_html: Hou er wel rekening mee dat <strong>echte privacy alleen gegarandeerd kan worden met behulp van end-to-end-encryptie</strong>.
-    unlocked_warning_html: Iedereen kan jou volgen en daarmee meteen toots zien die je alleen aan jouw volgers hebt gericht. %{lock_link} om volgers te kunnen beoordelen en desnoods te weigeren.
-    unlocked_warning_title: Jouw account is niet besloten
   footer:
     developers: Ontwikkelaars
     more: Meer…
@@ -734,6 +706,16 @@ nl:
     older: Ouder
     prev: Vorige
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Je hebt al op deze poll gestemd
+      duplicate_options: bevat dubbele items
+      duration_too_long: ligt te ver in de toekomst
+      duration_too_short: is te kort van duur
+      expired: De poll is al beëindigd
+      over_character_limit: kan stuk voor stuk niet langer zijn dan %{max} tekens
+      too_few_options: moet meer dan één item bevatten
+      too_many_options: kan niet meer dan %{max} items bevatten
   preferences:
     languages: Talen
     other: Overig
@@ -813,7 +795,6 @@ nl:
     edit_profile: Profiel bewerken
     export: Exporteren
     featured_tags: Uitgelichte hashtags
-    followers: Geautoriseerde volgers
     import: Importeren
     migrate: Accountmigratie
     notifications: Meldingen
@@ -843,6 +824,11 @@ nl:
       ownership: Een toot van iemand anders kan niet worden vastgezet
       private: Alleen openbare toots kunnen worden vastgezet
       reblog: Een boost kan niet worden vastgezet
+    poll:
+      total_votes:
+        one: "%{count} stem"
+        other: "%{count} stemmen"
+      vote: Stemmen
     show_more: Meer tonen
     sign_in_to_participate: Meld je aan om aan dit gesprek mee te doen
     title: '%{name}: "%{quote}"'

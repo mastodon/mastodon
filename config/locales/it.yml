@@ -7,7 +7,6 @@ it:
     administered_by: 'Amministrato da:'
     api: API
     apps: Applicazioni Mobile
-    closed_registrations: Al momento le iscrizioni a questo server sono chiuse. Tuttavia! Puoi provare a cercare un server diverso su cui creare un account ed avere accesso alla stessa identica rete.
     contact: Contatti
     contact_missing: Non impostato
     contact_unavailable: N/D
@@ -15,19 +14,9 @@ it:
     extended_description_html: |
       <h3>Un buon posto per le regole</h3>
       <p>La descrizione estesa non è ancora stata preparata.</p>
-    features:
-      humane_approach_body: Imparando dai fallimenti degli altri networks, Mastodon mira a fare scelte etiche di design per combattere l'abuso dei social media.
-      humane_approach_title: Un approccio più umano
-      not_a_product_body: Mastodon non è una rete commerciale. Niente pubblicità, niente data mining, nessun recinto dorato. Non c'è nessuna autorità centrale.
-      not_a_product_title: Tu sei una persona, non un prodotto
-      real_conversation_body: Con 500 caratteri a disposizione, un supporto per i contenuti granulari ed avvisi sui media potrai esprimerti nel modo desiderato.
-      real_conversation_title: Creato per conversazioni reali
-      within_reach_body: Apps per iOS, Android ed altre piattaforme, realizzate grazie ad un ecosistema di API adatto agli sviluppatori, ti consentono di poter stare in contatto con i tuoi amici ovunque ti trovi.
-      within_reach_title: Sempre a portata di mano
     generic_description: "%{domain} è un server nella rete"
     hosted_on: Mastodon ospitato su %{domain}
     learn_more: Scopri altro
-    other_instances: Elenco server
     privacy_policy: Politica della privacy
     source_code: Codice sorgente
     status_count_after:
@@ -48,6 +37,7 @@ it:
       other: Seguaci
     following: Segui
     joined: Dal %{date}
+    last_active: ultima attività
     link_verified_on: La proprietà di questo link è stata controllata il %{date}
     media: Media
     moved_html: "%{name} è stato spostato su %{new_profile_link}:"
@@ -71,6 +61,7 @@ it:
   admin:
     account_actions:
       action: Esegui azione
+      title: Esegui azione di moderazione su %{acct}
     account_moderation_notes:
       create: Lascia nota
       created_msg: Nota di moderazione creata con successo!
@@ -110,6 +101,7 @@ it:
       inbox_url: URL inbox
       invited_by: Invitato da
       ip: IP
+      joined: Unito
       location:
         all: Tutto
         local: Locale
@@ -235,6 +227,7 @@ it:
       config: Configurazione
       feature_deletions: Cancellazioni di account
       feature_invites: Link di invito
+      feature_profile_directory: Directory dei profili
       feature_registrations: Registrazioni
       feature_relay: Ripetitore di federazione
       features: Funzionalità
@@ -389,6 +382,7 @@ it:
         desc_html: Le anteprime dei link su altri siti mostreranno un thumbnail anche se il media è segnato come sensibile
         title: Mostra media sensibili nella anteprime OpenGraph
       profile_directory:
+        desc_html: Permetti agli utenti di essere trovati
         title: Attiva directory del profilo
       registrations:
         closed_message:
@@ -400,9 +394,6 @@ it:
         min_invite_role:
           disabled: Nessuno
           title: Permetti inviti da
-        open:
-          desc_html: Consenti a chiunque di creare un account
-          title: Apri registrazioni
       show_known_fediverse_at_about_page:
         desc_html: Quando attivato, mostra nell'anteprima i toot da tutte le istanze conosciute. Altrimenti mostra solo i toot locali.
         title: Mostra la fediverse conosciuta nell'anteprima della timeline
@@ -449,6 +440,7 @@ it:
     tags:
       accounts: Account
       hidden: Nascosto
+      hide: Nascondi nella directory
       name: Hashtag
       title: Hashtag
       unhide: Mostra nella directory
@@ -458,6 +450,8 @@ it:
       add_new: Aggiungi nuovo
       delete: Cancella
       edit: Modifica
+      edit_preset: Modifica avviso predefinito
+      title: Gestisci avvisi predefiniti
   application_mailer:
     notification_preferences: Cambia preferenze email
     salutation: "%{name},"
@@ -484,10 +478,8 @@ it:
     logout: Esci da Mastodon
     migrate_account: Sposta ad un account differente
     migrate_account_html: Se vuoi che questo account sia reindirizzato a uno diverso, puoi <a href="%{path}">configurarlo qui</a>.
-    or: o
     or_log_in_with: Oppure accedi con
     register: Iscriviti
-    register_elsewhere: Iscriviti su un altro server
     resend_confirmation: Invia di nuovo le istruzioni di conferma
     reset_password: Resetta la password
     security: Credenziali
@@ -525,8 +517,15 @@ it:
     success_msg: Il tuo account è stato cancellato
     warning_html: È garantita la cancellazione del contenuto solo da questo server. I contenuti che sono stati ampiamente condivisi probabilmente lasceranno delle tracce. I server offline e quelli che non ricevono più i tuoi aggiornamenti non aggiorneranno i loro database.
   directories:
+    directory: Directory dei profili
+    enabled: Attualmente sei elencato nella directory.
+    enabled_but_waiting: Hai scelto di essere elencato nella directory, ma non hai ancora il numero minimo di seguaci (%{min_followers}) per comparire.
     explanation: Scopri utenti in base ai loro interessi
     explore_mastodon: Esplora %{title}
+    how_to_enable: Attualmente non hai scelto di comparire nella directory. Puoi farlo qui sotto. Se vuoi comparire sotto determinati hashtag, usali nel testo della tua biografia.
+    people:
+      one: "%{count} persona"
+      other: "%{count} persone"
   errors:
     '403': Non sei autorizzato a visualizzare questa pagina.
     '404': La pagina che stavi cercando non esiste.
@@ -555,6 +554,8 @@ it:
     storage: Archiviazione media
   featured_tags:
     add_new: Aggiungi nuovo
+    errors:
+      limit: Hai già messo in evidenza il numero massimo di hashtag
   filters:
     contexts:
       home: Timeline home
@@ -570,15 +571,6 @@ it:
       title: Filtri
     new:
       title: Aggiungi filtro
-  followers:
-    domain: Dominio
-    explanation_html: Se vuoi garantire la privacy dei tuoi status, devi sapere chi ti sta seguendo. <strong>I tuoi status privati vengono inviati a tutti i server su cui hai dei seguaci</strong>. Puoi controllare chi sono i tuoi seguaci, ed eliminarli se non hai fiducia che la tua privacy venga rispettata dallo staff o dal software di quei server.
-    followers_count: Numero di seguaci
-    lock_link: Blocca il tuo account
-    purge: Elimina dai seguaci
-    true_privacy_html: Tieni presente che <strong>l'effettiva riservatezza si può ottenere solo con la crittografia end-to-end</strong>.
-    unlocked_warning_html: Chiunque può seguirti per vedere immediatamente i tuoi status privati. %{lock_link} per poter esaminare e respingere gli utenti che vogliono seguirti.
-    unlocked_warning_title: Il tuo account non è bloccato
   footer:
     developers: Sviluppatori
     more: Altro…
@@ -591,11 +583,15 @@ it:
       other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori qui sotto
   imports:
     modes:
+      merge: Fondi
+      merge_long: Mantieni record esistenti e aggiungine di nuovi
       overwrite: Sovrascrivi
+      overwrite_long: Sostituisci record attuali con quelli nuovi
     preface: Puoi importare alcune informazioni, come le persone che segui o hai bloccato su questo server, da file creati da un'esportazione su un altro server.
     success: Le tue impostazioni sono state importate correttamente e verranno applicate in breve tempo
     types:
       blocking: Lista dei bloccati
+      domain_blocking: Lista dei domini bloccati
       following: Lista dei seguaci
       muting: Lista dei silenziati
     upload: Carica
@@ -687,6 +683,15 @@ it:
     older: Più vecchio
     prev: Indietro
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Hai già votato in questo sondaggio
+      duration_too_long: è troppo lontano nel futuro
+      duration_too_short: è troppo presto
+      expired: Il sondaggio si è già concluso
+      over_character_limit: non possono essere più lunghi di %{max} caratteri ciascuno
+      too_few_options: deve avere più di un elemento
+      too_many_options: non può contenere più di %{max} elementi
   preferences:
     languages: Lingue
     other: Altro
@@ -698,9 +703,24 @@ it:
     no_account_html: Non hai un account? Puoi <a href='%{sign_up_path}' target='_blank'>iscriverti qui</a>
     proceed: Conferma
     prompt: 'Stai per seguire:'
+  remote_interaction:
+    favourite:
+      proceed: Continua per segnare come apprezzato
+      prompt: 'Vuoi segnare questo toot come apprezzato:'
+    reblog:
+      proceed: Continua per condividere
+      prompt: 'Vuoi condividere questo toot:'
+    reply:
+      proceed: Continua per rispondere
+      prompt: 'Vuoi rispondere a questo toot:'
   remote_unfollow:
     error: Errore
     title: Titolo
+    unfollowed: Non più seguito
+  scheduled_statuses:
+    over_daily_limit: Hai superato il limite di %{limit} toot programmati per questo giorno
+    over_total_limit: Hai superato il limite di %{limit} toot programmati
+    too_soon: La data di pubblicazione deve essere nel futuro
   sessions:
     activity: Ultima attività
     browser: Browser
@@ -738,7 +758,7 @@ it:
     development: Sviluppo
     edit_profile: Modifica profilo
     export: Esporta impostazioni
-    followers: Seguaci autorizzati
+    featured_tags: Hashtag in evidenza
     import: Importa
     migrate: Migrazione dell'account
     notifications: Notifiche
@@ -767,6 +787,11 @@ it:
       ownership: Non puoi fissare in cima un toot di qualcun altro
       private: Un toot non pubblico non può essere fissato in cima
       reblog: Un toot condiviso non può essere fissato in cima
+    poll:
+      total_votes:
+        one: "%{count} voto"
+        other: "%{count} voti"
+      vote: Vota
     show_more: Mostra di più
     sign_in_to_participate: Accedi per partecipare alla conversazione
     visibilities:

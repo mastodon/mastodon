@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe AccountsController, type: :controller do
   render_views
 
-  let(:alice) { Fabricate(:account, username: 'alice') }
+  let(:alice) { Fabricate(:account, username: 'alice', user: Fabricate(:user)) }
   let(:eve) { Fabricate(:user) }
 
   describe 'GET #show' do

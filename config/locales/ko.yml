@@ -7,7 +7,6 @@ ko:
     administered_by: '관리자:'
     api: API
     apps: 모바일 앱
-    closed_registrations: 현재 이 서버에서는 신규 등록을 받고 있지 않습니다. 하지만! 다른 서버에 계정을 만들어 똑같은 네트워크에 접속 할 수 있습니다.
     contact: 연락처
     contact_missing: 미설정
     contact_unavailable: N/A
@@ -15,19 +14,9 @@ ko:
     extended_description_html: |
       <h3>룰을 작성하는 장소</h3>
       <p>아직 설명이 작성되지 않았습니다.</p>
-    features:
-      humane_approach_body: 다른 SNS의 실패를 교훈삼아, 마스토돈은 소셜미디어가 잘못 사용되는 것을 막기 위하여 윤리적인 설계를 추구합니다.
-      humane_approach_title: 보다 배려를 의식한 설계를 추구
-      not_a_product_body: 마스토돈은 이익을 추구하는 SNS가 아닙니다. 그러므로 광고와 데이터의 수집 및 분석이 존재하지 않고, 유저를 구속하지도 않습니다.
-      not_a_product_title: 여러분은 사람이며, 상품이 아닙니다
-      real_conversation_body: 자유롭게 사용할 수 있는 500문자의 메세지와 미디어 경고 내용을 바탕으로, 자기자신을 자유롭게 표현할 수 있습니다.
-      real_conversation_title: 진정한 커뮤니케이션을 위하여
-      within_reach_body: 개발자 친화적인 API에 의해서 실현된 iOS나 Android, 그 외의 여러 Platform들 덕분에 어디서든 친구들과 자유롭게 메세지를 주고 받을 수 있습니다.
-      within_reach_title: 언제나 유저의 곁에서
     generic_description: "%{domain} 은 네트워크에 있는 한 서버입니다"
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
     learn_more: 자세히
-    other_instances: 서버 목록
     privacy_policy: 개인정보 정책
     source_code: 소스 코드
     status_count_after:
@@ -413,9 +402,6 @@ ko:
         min_invite_role:
           disabled: 아무도 못 하게
           title: 초대링크를 만들 수 있는 권한
-        open:
-          desc_html: 계정을 생성할 수 있도록 허용합니다
-          title: 신규 계정 등록을 받음
       show_known_fediverse_at_about_page:
         desc_html: 활성화 되면 프리뷰 페이지에서 페디버스의 모든 툿을 표시합니다. 비활성화시 로컬에 있는 툿만 표시 됩니다.
         title: 타임라인 프리뷰에 알려진 페디버스 표시하기
@@ -510,13 +496,11 @@ ko:
     logout: 로그아웃
     migrate_account: 계정 옮기기
     migrate_account_html: 이 계정을 다른 계정으로 리디렉션 하길 원하는 경우 <a href="%{path}">여기</a>에서 설정할 수 있습니다.
-    or: 또는
     or_log_in_with: 다른 방법으로 로그인 하려면
     providers:
       cas: CAS
       saml: SAML
     register: 등록하기
-    register_elsewhere: 다른 인스턴스에서 가입
     resend_confirmation: 확인 메일을 다시 보내기
     reset_password: 비밀번호 재설정
     security: 보안
@@ -611,18 +595,6 @@ ko:
       title: 필터
     new:
       title: 필터 추가
-  followers:
-    domain: 도메인
-    explanation_html: 프라이버시를 확보하고 싶은 경우, 누가 여러분을 팔로우 하고 있는지 파악해둘 필요가 있습니다. <strong>프라이빗 포스팅은 여러분의 팔로워가 소속하는 모든 서버로 배달됩니다</strong>. 팔로워가 소속된 서버 관리자나 소프트웨어가 여러분의 프라이버시를 존중하고 있는지 잘 모를 경우, 그 팔로워를 삭제하는 것이 좋을 수도 있습니다.
-    followers_count: 팔로워 수
-    lock_link: 비공개 계정
-    purge: 팔로워에서 삭제
-    success:
-      one: 1개 도메인에서 팔로워를 soft-block 처리 중...
-      other: "%{count}개 도메인에서 팔로워를 soft-block 처리 중..."
-    true_privacy_html: "<strong>프라이버시 보호는 End-to-End 암호화로만 이루어 질 수 있다는 것에 유의</strong>해 주십시오."
-    unlocked_warning_html: 누구든 여러분을 팔로우 할 수 있으며, 여러분의 프라이빗 투고를 볼 수 있습니다. 팔로우 할 수 있는 사람을 제한하고 싶은 경우 %{lock_link}에서 설정해 주십시오.
-    unlocked_warning_title: 이 계정은 비공개로 설정되어 있지 않습니다
   footer:
     developers: 개발자
     more: 더 보기…
@@ -825,7 +797,6 @@ ko:
     edit_profile: 프로필 편집
     export: 데이터 내보내기
     featured_tags: 추천 해시태그
-    followers: 신뢰 중인 인스턴스
     import: 데이터 가져오기
     migrate: 계정 이동
     notifications: 알림
@@ -855,6 +826,11 @@ ko:
       ownership: 다른 사람의 툿은 고정될 수 없습니다
       private: 비공개 툿은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
+    poll:
+      total_votes:
+        one: "%{count}명 투표함"
+        other: "%{count}명 투표함"
+      vote: 투표
     show_more: 더 보기
     sign_in_to_participate: 로그인 하여 이 대화에 참여하기
     title: '%{name}: "%{quote}"'

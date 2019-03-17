@@ -7,7 +7,6 @@ gl:
     administered_by: 'Administrada por:'
     api: API
     apps: Apps móbiles
-    closed_registrations: O rexistro en este servidor está pechado neste momento. Porén! Pode atopar un servidor diferente para obter unha conta e ter acceso exactamente a misma rede desde alí.
     contact: Contacto
     contact_missing: Non establecido
     contact_unavailable: N/A
@@ -15,19 +14,9 @@ gl:
     extended_description_html: |
       <h3>Un bo lugar para regras</h3>
       <p>A descrición extendida aínda non se proporcionou.</p>
-    features:
-      humane_approach_body: Aprendendo dos erros de outras redes, Mastodon intenta tomar decisións éticas de deseño para loitar contra os usos incorrectos da rede.
-      humane_approach_title: Unha aproximación máis humana
-      not_a_product_body: Mastodon non é unha rede comercial. Sen anuncios, sen minería de datos, sen xardíns privados. Non hai autoridade centralizada.
-      not_a_product_title: Vostede é unha persoa, non un producto
-      real_conversation_body: Con 500 caracteres a súa disposición, soporte para contido polo miúdo e avisos sobre o contido, pode expresarse vostede con libertade.
-      real_conversation_title: Construído para conversacións reais
-      within_reach_body: Existen múltiples aplicacións para iOS, Android e outras plataformas grazas a un entorno API amigable para o desenvolvedor que lle permite estar ao tanto cos seus amigos en calquer lugar.
-      within_reach_title: Sempre en contacto
     generic_description: "%{domain} é un servidor na rede"
     hosted_on: Mastodon aloxado en %{domain}
     learn_more: Coñeza máis
-    other_instances: Lista de servidores
     privacy_policy: Política de intimidade
     source_code: Código fonte
     status_count_after:
@@ -411,9 +400,6 @@ gl:
         min_invite_role:
           disabled: Ninguén
           title: Permitir convites por
-        open:
-          desc_html: Permitir que calquera poida crear unha conta
-          title: Abrir rexistro
       show_known_fediverse_at_about_page:
         desc_html: Si activado, mostraralle os toots de todo o fediverso coñecido nunha vista previa. Si non só mostrará os toots locais.
         title: Mostrar vista previa do fediverso na liña temporal
@@ -508,13 +494,11 @@ gl:
     logout: Desconectar
     migrate_account: Mover a unha conta diferente
     migrate_account_html: Se desexa redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
-    or: ou
     or_log_in_with: ou conectar con
     providers:
       cas: CAS
       saml: SAML
     register: Rexistro
-    register_elsewhere: Rexístrese en outro servidor
     resend_confirmation: Voltar a enviar intruccións de confirmación
     reset_password: Restablecer contrasinal
     security: Seguridade
@@ -609,18 +593,6 @@ gl:
       title: Filtros
     new:
       title: Engadir novo filtro
-  followers:
-    domain: Dominio
-    explanation_html: Se quere asegurar a intimidade dos seus estados, debe ser consciente de quen a está a seguir. <strong>Os seus estados privados son enviados a todas os servidores onde ten seguidoras</strong>. Podería querer revisalas, e elminar seguidoras si non confía que a súa intimidade sexa respetada polos administradores ou o software de ese servidor.
-    followers_count: Número de seguidoras
-    lock_link: Bloquear a súa conta
-    purge: Eliminar das seguidoras
-    success:
-      one: En proceso de bloquear seguidoras de un dominio...
-      other: No proceso de bloquear seguidoras de %{count} dominios...
-    true_privacy_html: Por favor teña en conta que <strong>a verdadeira intimidade só pode ser conseguida con cifrado de extremo-a-extremo</strong>.
-    unlocked_warning_html: Calquera pode seguila para inmediatamente ver os seus estados privados. %{lock_link} para poder revisar e rexeitar seguidoras.
-    unlocked_warning_title: A súa conta non está pechada
   footer:
     developers: Desenvolvedoras
     more: Máis…
@@ -823,7 +795,6 @@ gl:
     edit_profile: Editar perfil
     export: Exportar datos
     featured_tags: Etiquetas destacadas
-    followers: Seguidoras autorizadas
     import: Importar
     migrate: Migrar conta
     notifications: Notificacións

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_06_145741) do
+ActiveRecord::Schema.define(version: 2019_03_17_135723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -525,6 +525,7 @@ ActiveRecord::Schema.define(version: 2019_03_06_145741) do
     t.bigint "action_taken_by_account_id"
     t.bigint "target_account_id", null: false
     t.bigint "assigned_account_id"
+    t.string "uri"
     t.index ["account_id"], name: "index_reports_on_account_id"
     t.index ["target_account_id"], name: "index_reports_on_target_account_id"
   end
@@ -699,6 +700,7 @@ ActiveRecord::Schema.define(version: 2019_03_06_145741) do
     t.string "remember_token"
     t.string "chosen_languages", array: true
     t.bigint "created_by_application_id"
+    t.boolean "approved", default: true, null: false
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["created_by_application_id"], name: "index_users_on_created_by_application_id"

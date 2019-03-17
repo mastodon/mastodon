@@ -7,7 +7,6 @@ ca:
     administered_by: 'Administrat per:'
     api: API
     apps: Apps mòbil
-    closed_registrations: Actualment, el registre està tancat en aquesta instància. Malgrat això! Pots trobar una altra instància per fer-te un compte i obtenir accés a la mateixa xarxa des d'allà.
     contact: Contacte
     contact_missing: No configurat
     contact_unavailable: N/D
@@ -15,19 +14,9 @@ ca:
     extended_description_html: |
       <h3>Un bon lloc per les regles</h3>
       <p>Encara no s'ha configurat la descripció ampliada.</p>
-    features:
-      humane_approach_body: Aprenent dels errors d'altres xarxes, Mastodon té com a objectiu fer eleccions ètiques de disseny per a combatre el mal ús de les xarxes socials.
-      humane_approach_title: Un enfocament més humà
-      not_a_product_body: Mastodon no és una xarxa comercial. Sense publicitat, sense mineria de dades, sense jardins emmurallats. No hi ha cap autoritat central.
-      not_a_product_title: Ets una persona, no un producte
-      real_conversation_body: Amb 500 caràcters a la teva disposició i suport per a continguts granulars i avisos multimèdia, pots expressar-te de la manera que vulguis.
-      real_conversation_title: Construït per a converses reals
-      within_reach_body: Diverses aplicacions per a iOS, Android i altres plataformes gràcies a un ecosistema API amable amb el desenvolupador, et permet mantenir-te al dia amb els amics en qualsevol lloc..
-      within_reach_title: Sempre a l'abast
     generic_description: "%{domain} és un servidor a la xarxa"
     hosted_on: Mastodon allotjat a %{domain}
     learn_more: Més informació
-    other_instances: Altres instàncies
     privacy_policy: Política de privacitat
     source_code: Codi font
     status_count_after:
@@ -302,6 +291,7 @@ ca:
       back_to_account: Tornar al compte
       title: Seguidors de %{acct}
     instances:
+      by_domain: Domini
       delivery_available: El lliurament està disponible
       known_accounts:
         one: "%{count} compte conegut"
@@ -386,14 +376,14 @@ ca:
         desc_html: Modifica l'aspecte amb CSS carregat a cada pàgina
         title: CSS personalitzat
       hero:
-        desc_html: Es mostra en pàgina frontal. Recomanat 600x100px al menys. Si no es configura es mostrarà el de la instància
+        desc_html: Es mostra en pàgina frontal. Recomanat al menys 600x100px. Si no es configura es mostrarà el del servidor
         title: Imatge d’heroi
       mascot:
         desc_html: Es mostra a diverses pàgines. Es recomana com a mínim 293 × 205px. Si no està configurat, torna a la mascota predeterminada
         title: Imatge de la mascota
       peers_api_enabled:
-        desc_html: Els noms de domini que ha trobat aquesta instància al fediverse
-        title: Publica la llista d'instàncies descobertes
+        desc_html: Els noms de domini que aquest servidor ha trobat al fedivers
+        title: Publica la llista de servidors descoberts
       preview_sensitive_media:
         desc_html: Les visualitzacions prèvies d'enllaços d'altres llocs web mostraran una miniatura encara que els mitjans de comunicació estiguin marcats com a sensibles
         title: Mostra els mitjans sensibles a les previsualitzacions d'OpenGraph
@@ -410,9 +400,6 @@ ca:
         min_invite_role:
           disabled: Ningú
           title: Permet les invitacions de
-        open:
-          desc_html: Permet que qualsevol pugui crear un compte
-          title: Registre obert
       show_known_fediverse_at_about_page:
         desc_html: Quan s'activa, mostrarà tots els toots de tot el fedivers conegut en vista prèvia. En cas contrari, només es mostraran toots locals.
         title: Mostra el fedivers conegut en vista prèvia de la línia de temps
@@ -421,20 +408,20 @@ ca:
         title: Mostra insígnia de personal
       site_description:
         desc_html: Paràgraf introductori a la pàgina principal i en etiquetes meta. Pots utilitzar etiquetes HTML, en particular <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
-        title: Descripció de la instància
+        title: Descripció del servidor
       site_description_extended:
-        desc_html: Un bon lloc per al codi de conducta, regles, directrius i altres coses que distingeixen la vostra instància. Pots utilitzar etiquetes HTML
+        desc_html: Un bon lloc per al codi de conducta, regles, directrius i altres coses que distingeixen el teu servidor. Pots utilitzar etiquetes HTML
         title: Descripció ampliada del lloc
       site_short_description:
-        desc_html: Es mostra a la barra lateral i a metaetiquetes. Descriu en un únic paràgraf què és Mastodon i què fa que aquest servidor sigui especial. Si està buit, s'estableix per defecte la descripció de la instància.
-        title: Descripció curta de l’instància
+        desc_html: Es mostra a la barra lateral i a metaetiquetes. Descriu en un únic paràgraf què és Mastodon i què fa que aquest servidor sigui especial. Si està buit, s'estableix per defecte la descripció del servidor.
+        title: Descripció curta del servidor
       site_terms:
         desc_html: Pots escriure la teva pròpia política de privadesa, els termes del servei o d'altres normes legals. Pots utilitzar etiquetes HTML
         title: Termes del servei personalitzats
-      site_title: Nom de la instància
+      site_title: Nom del servidor
       thumbnail:
         desc_html: S'utilitza per obtenir visualitzacions prèvies a través d'OpenGraph i API. Es recomana 1200x630px
-        title: Miniatura de la Instància
+        title: Miniatura del servidor
       timeline_preview:
         desc_html: Mostra la línia de temps pública a la pàgina inicial
         title: Vista prèvia de la línia de temps
@@ -495,7 +482,7 @@ ca:
     warning: Aneu amb compte amb aquestes dades. No les compartiu mai amb ningú!
     your_token: El teu identificador d'accés
   auth:
-    agreement_html: Al fer clic en "Registre" acceptes respectar <a href="%{rules_path}">els nostres termes del servei</a> i <a href="%{terms_path}">la nostra política de privadesa</a>.
+    agreement_html: Al fer clic en "Registre" acceptes respectar <a href="%{rules_path}">les normes del servidor</a> i <a href="%{terms_path}">els nostres termes del servei</a>.
     change_password: Contrasenya
     confirm_email: Confirmar correu electrònic
     delete_account: Suprimeix el compte
@@ -507,13 +494,11 @@ ca:
     logout: Tanca sessió
     migrate_account: Mou a un compte diferent
     migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots  <a href="%{path}">configurar aquí</a>.
-    or: o
     or_log_in_with: O inicia sessió amb
     providers:
       cas: CAS
       saml: SAML
     register: Registre
-    register_elsewhere: Registra't en un altre servidor
     resend_confirmation: Torna a enviar el correu de confirmació
     reset_password: Restableix la contrasenya
     security: Seguretat
@@ -549,7 +534,7 @@ ca:
     description_html: Això eliminarà de forma <strong>irreversible i permanent</strong> el contingut del teu compte i el desactivarà. El teu nom d'usuari romandrà reservat per evitar que algú volgués fer-se passar per tu.
     proceed: Suprimeix el compte
     success_msg: El compte s'ha eliminat correctament
-    warning_html: Només és garantida l'eliminació d'aquesta particular instància. El contingut que s'ha compartit àmpliament deixa petjades. Els servidors fora de línia i els que ja no estan subscrits no actualitzaran les seves bases de dades.
+    warning_html: Només és garantida l'eliminació del contingut d'aquest servidor en particular. El contingut que s'ha compartit àmpliament deixa petjades. Els servidors fora de línia i els que ja no estan subscrits no actualitzaran les seves bases de dades.
     warning_title: Disponibilitat de contingut disseminat
   directories:
     directory: Directori de perfils
@@ -563,7 +548,7 @@ ca:
       other: "%{count} gent"
   errors:
     '403': No tens permís per a veure aquesta pàgina.
-    '404': La pàgina que estàs cercant no existeix.
+    '404': La pàgina que estàs cercant no és aquí.
     '410': La pàgina que estàs cercant ja no existeix.
     '422':
       content: La verificació de seguretat ha fallat. Tens les galetes blocades?
@@ -577,7 +562,7 @@ ca:
     archive_takeout:
       date: Data
       download: Descarrega l’arxiu
-      hint_html: Pots sol·licitar un arxiu dels teus <strong>toots i els fitxers multimèdia pujats</strong>. Les dades exportades tindran el format ActivityPub, llegible per qualsevol programari compatible. Pots sol·licitar un arxiu cada 7 dies.
+      hint_html: Pots sol·licitar un arxiu dels teus <strong>toots i dels fitxers multimèdia pujats</strong>. Les dades exportades tindran el format ActivityPub, llegible per qualsevol programari compatible. Pots sol·licitar un arxiu cada 7 dies.
       in_progress: Compilant el teu arxiu...
       request: Sol·licita el teu arxiu
       size: Tamany
@@ -588,6 +573,10 @@ ca:
     lists: Llistes
     mutes: Persones silenciades
     storage: Emmagatzematge
+  featured_tags:
+    add_new: Afegir nova
+    errors:
+      limit: Ja has mostrat la quantitat màxima d'etiquetes
   filters:
     contexts:
       home: Línia de temps Inici
@@ -604,18 +593,6 @@ ca:
       title: Filtres
     new:
       title: Afegir nou filtre
-  followers:
-    domain: Domini
-    explanation_html: Si desitges garantir la privacitat de les teves publicacions, has de ser conscient de qui t'està seguint. <strong> Les publicacions privades es lliuren a totes les instàncies on tens seguidors </strong>. És possible que vulguis revisar-los i eliminar seguidors si no confies en que la teva privacitat sigui respectada pel personal o el programari d'aquestes instàncies.
-    followers_count: Nombre de seguidors
-    lock_link: Bloca el teu compte
-    purge: Elimina dels seguidors
-    success:
-      one: En el procés de bloqueig suau de seguidors d'un domini...
-      other: En el procés de bloqueig suau de seguidors de %{count} dominis...
-    true_privacy_html: Considera que <strong>la autèntica privacitat només es pot aconseguir amb xifratge d'extrem a extrem</strong>.
-    unlocked_warning_html: Tothom pot seguir-te per a veure inmediatament les teves publicacions privades. %{lock_link} per poder revisar i rebutjar seguidors.
-    unlocked_warning_title: El teu compte no està blocat
   footer:
     developers: Desenvolupadors
     more: Més…
@@ -628,10 +605,16 @@ ca:
       one: Alguna cosa no va bé! Si us plau, revisa l'error
       other: Alguna cosa no va bé! Si us plau, revisa %{count} errors més a baix
   imports:
-    preface: Pots importar algunes dades, com ara totes les persones que estàs seguint o blocant, en el teu compte en aquesta instància, des de fitxers exportats en una altra instància.
+    modes:
+      merge: Fusionar
+      merge_long: Mantenir els registres existents i afegir-ne de nous
+      overwrite: Sobreescriu
+      overwrite_long: Reemplaça els registres actuals amb els nous
+    preface: Pots importar algunes les dades que has exportat des d'un altre servidor, com ara el llistat de les persones que estàs seguint o bloquejant.
     success: Les dades s'han rebut correctament i es processaran en breu
     types:
       blocking: Llista de blocats
+      domain_blocking: Llistat de dominis bloquejats
       following: Llista de seguits
       muting: Llista d'apagats
     upload: Carregar
@@ -653,7 +636,7 @@ ca:
       one: 1 ús
       other: "%{count} usos"
     max_uses_prompt: Sense limit
-    prompt: Genera i comparteix enllaços amb altres persones per donar accés a aquesta instància
+    prompt: Genera i comparteix enllaços amb altres persones per donar accés a aquest servidor
     table:
       expires_at: Caduca
       uses: Usos
@@ -723,6 +706,16 @@ ca:
     older: Més vell
     prev: Enrere
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Ja has votat en aquesta enquesta
+      duplicate_options: Conté opcions duplicades
+      duration_too_long: està massa lluny en el futur
+      duration_too_short: és massa aviat
+      expired: L'enquesta ja ha finalitzat
+      over_character_limit: no pot ser superior a %{max} caràcters cadascun
+      too_few_options: ha de tenir més d'una opció
+      too_many_options: no pot contenir més de %{max} opcions
   preferences:
     languages: Llengues
     other: Altre
@@ -801,7 +794,7 @@ ca:
     development: Desenvolupament
     edit_profile: Editar perfil
     export: Exportar informació
-    followers: Seguidors autoritzats
+    featured_tags: Etiquetes destacades
     import: Importar
     migrate: Migració del compte
     notifications: Notificacions
@@ -831,6 +824,11 @@ ca:
       ownership: El toot d'algú altre no es pot fixar
       private: No es pot fixar el toot no públic
       reblog: No es pot fixar un impuls
+    poll:
+      total_votes:
+        one: "%{count} vot"
+        other: "%{count} vots"
+      vote: Vota
     show_more: Mostrar més
     sign_in_to_participate: Inicia la sessió per participar a la conversa
     title: '%{name}: "%{quote}"'
@@ -929,9 +927,9 @@ ca:
       <p>Originalment adaptat des del <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Condicions del servei i política de privadesa"
   themes:
-    contrast: Alt contrast
-    default: Mastodon
-    mastodon-light: Mastodon (clar)
+    contrast: Mastodon (Alt contrast)
+    default: Mastodon (Fosc)
+    mastodon-light: Mastodon (Clar)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -980,7 +978,7 @@ ca:
       final_action: Comença a publicar
       final_step: 'Comença a publicar! Fins i tot sense seguidors, els altres poden veure els teus missatges públics, per exemple, a la línia de temps local i a les etiquetes ("hashtags"). És possible que vulguis presentar-te amb l''etiqueta #introductions.'
       full_handle: El teu nom d'usuari sencer
-      full_handle_hint: Això és el que has de dir als teus amics perquè puguin enviar-te missatges o seguir-te des d'una altra instància.
+      full_handle_hint: Això és el que has de dir als teus amics perquè puguin enviar-te missatges o seguir-te des d'un altre servidor.
       review_preferences_action: Canviar preferències
       review_preferences_step: Assegura't d'establir les teves preferències, com ara els correus electrònics que vols rebre o el nivell de privadesa per defecte que t'agradaria que tinguin les teves entrades. Si no tens malaltia de moviment, pots optar per habilitar la reproducció automàtica de GIF.
       subject: Benvingut/da a Mastodon

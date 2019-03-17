@@ -7,7 +7,6 @@ eo:
     administered_by: 'Administrata de:'
     api: API
     apps: Poŝtelefonaj aplikaĵoj
-    closed_registrations: Registriĝoj estas nuntempe fermitaj en ĉi tiu servilo. Tamen, vi povas trovi alian servilon por fari konton kaj aliri al la sama reto de tie.
     contact: Kontakti
     contact_missing: Ne elektita
     contact_unavailable: Ne disponebla
@@ -15,19 +14,9 @@ eo:
     extended_description_html: |
       <h3>Bona loko por reguloj</h3>
       <p>La detala priskribo ne estis elektita.</p>
-    features:
-      humane_approach_body: Lernante de eraroj de aliaj retoj, Mastodon celas fari etikajn fasonajn elektojn por batali kontraŭ misuzado de sociaj retoj.
-      humane_approach_title: Aliro pli humana
-      not_a_product_body: Mastodon ne estas komerca reto. Neniu reklamo, neniu kolektado de datumoj, neniu privilegio. Ne estas centra aŭtoritato.
-      not_a_product_title: Vi estas homo, ne produkto
-      real_conversation_body: Per 500 disponeblaj signoj, per elektebloj pri videbleco, kaj per avertoj pri enhavo, vi povas esprimi vin tiel, kiel vi volas.
-      real_conversation_title: Konstruita por veraj konversacioj
-      within_reach_body: Pluraj aplikaĵoj por iOS, Android, kaj aliaj platformoj danke al API-medio bonveniga por programistoj permesas resti en kontakto kun viaj amikoj ĉie.
-      within_reach_title: Ĉiam kontaktebla
     generic_description: "%{domain} estas unu servilo en la reto"
     hosted_on: "%{domain} estas nodo de Mastodon"
     learn_more: Lerni pli
-    other_instances: Listo de serviloj
     privacy_policy: Privateca politiko
     source_code: Fontkodo
     status_count_after:
@@ -411,9 +400,6 @@ eo:
         min_invite_role:
           disabled: Neniu
           title: Permesi invitojn de
-        open:
-          desc_html: Permesi iun ajn krei konton
-          title: Malfermi registriĝojn
       show_known_fediverse_at_about_page:
         desc_html: Kiam ŝaltita, ĝi montros mesaĝojn de la tuta konata fediverse antaŭvide. Aliokaze, ĝi montros nur lokajn mesaĝojn.
         title: Montri konatan fediverse en tempolinia antaŭvido
@@ -508,13 +494,11 @@ eo:
     logout: Elsaluti
     migrate_account: Movi al alia konto
     migrate_account_html: Se vi deziras alidirekti ĉi tiun konton al alia, vi povas <a href="%{path}">agordi ĝin ĉi tie</a>.
-    or: aŭ
     or_log_in_with: Aŭ ensaluti per
     providers:
       cas: CAS
       saml: SAML
     register: Registriĝi
-    register_elsewhere: Registriĝi en alia servilo
     resend_confirmation: Resendi la instrukciojn por konfirmi
     reset_password: Ŝanĝi pasvorton
     security: Sekureco
@@ -560,7 +544,7 @@ eo:
     explore_mastodon: Esplori %{title}
     how_to_enable: Vi ankoraŭ ne donis permeson listigi vin en la profilujo. Vi povas doni permeson ĉi-sube. Uzu kradvortojn en via biografia teksto por esti listigata sub specifaj kradvortoj!
     people:
-      one: "%{count} personoj"
+      one: "%{count} persono"
       other: "%{count} personoj"
   errors:
     '403': Vi ne havas la rajton por vidi ĉi tiun paĝon.
@@ -611,18 +595,6 @@ eo:
       title: Filtriloj
     new:
       title: Aldoni novan filtrilon
-  followers:
-    domain: Domajno
-    explanation_html: Se vi volas esti certa pri la privateco de viaj mesaĝoj, vi bezonas esti atenta pri tiuj, kiuj sekvas vin. <strong>Viaj privataj mesaĝoj estas liveritaj al ĉiuj serviloj, kie vi havas sekvantojn</strong>. Eble vi ŝatus kontroli ilin, kaj forigi la sekvantojn de la serviloj, kie vi ne certas ĉu via privateco estos respektita de la tiea teamo aŭ programo.
-    followers_count: Nombro de sekvantoj
-    lock_link: Ŝlosu vian konton
-    purge: Forigi el la sekvantoj
-    success:
-      one: Forigado de sekvantoj el iu domajno...
-      other: Forigado de sekvantoj el %{count} domajnoj...
-    true_privacy_html: Bonvolu atenti, ke <strong>vera privateco povas esti atingita nur per ĉifrado de komenco al fino</strong>.
-    unlocked_warning_html: Iu ajn povas eksekvi vin por tuj vidi viajn privatajn mesaĝojn. %{lock_link} por povi akcepti kaj rifuzi petojn de sekvado.
-    unlocked_warning_title: Via konto ne estas ŝlosita
   footer:
     developers: Programistoj
     more: Pli…
@@ -736,6 +708,16 @@ eo:
     older: Malpli nova
     prev: Antaŭa
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Vi jam voĉdonis al ĉi tiu enketa
+      duplicate_options: enhavas duoblaĵojn
+      duration_too_long: estas tro for en la estonteco
+      duration_too_short: estas tro frue
+      expired: La enketo jam finiĝis
+      over_character_limit: ne povas esti po pli longa ol %{max} signoj
+      too_few_options: devas enhavi pli da unu propono
+      too_many_options: ne povas enhavi pli da %{max} proponoj
   preferences:
     languages: Lingvoj
     other: Aliaj aferoj
@@ -815,7 +797,6 @@ eo:
     edit_profile: Redakti profilon
     export: Eksporti datumojn
     featured_tags: Elstarigitaj kradvortoj
-    followers: Rajtigitaj sekvantoj
     import: Importi
     migrate: Konta migrado
     notifications: Sciigoj
@@ -845,6 +826,11 @@ eo:
       ownership: Mesaĝo de iu alia ne povas esti alpinglita
       private: Mesaĝo nepublika ne povas esti alpinglita
       reblog: Diskonigo ne povas esti alpinglita
+    poll:
+      total_votes:
+        one: "%{count} voĉdono"
+        other: "%{count} voĉdonoj"
+      vote: Voĉdoni
     show_more: Montri pli
     sign_in_to_participate: Ensaluti por partopreni en la konversacio
     title: '%{name}: "%{quote}"'

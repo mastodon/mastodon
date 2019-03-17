@@ -26,9 +26,11 @@ class Poll < ApplicationRecord
 
   has_many :votes, class_name: 'PollVote', inverse_of: :poll, dependent: :destroy
 
+  has_many :notifications, as: :activity, dependent: :destroy
+
   validates :options, presence: true
   validates :expires_at, presence: true, if: :local?
-  validates_with PollValidator, if: :local?
+  validates_with PollValidator, on: :create, if: :local?
 
   scope :attached, -> { where.not(status_id: nil) }
   scope :unattached, -> { where(status_id: nil) }
@@ -41,15 +43,15 @@ class Poll < ApplicationRecord
   after_commit :reset_parent_cache, on: :update
 
   def loaded_options
-    options.map.with_index { |title, key| Option.new(self, key.to_s, title, cached_tallies[key]) }
-  end
-
-  def unloaded_options
-    options.map.with_index { |title, key| Option.new(self, key.to_s, title, nil) }
+    options.map.with_index { |title, key| Option.new(self, key.to_s, title, show_totals_now? ? cached_tallies[key] : nil) }
   end
 
   def possibly_stale?
     remote? && last_fetched_before_expiration? && time_passed_since_last_fetch?
+  end
+
+  def voted?(account)
+    account.id == account_id || votes.where(account: account).exists?
   end
 
   delegate :local?, to: :account
@@ -94,5 +96,9 @@ class Poll < ApplicationRecord
 
   def time_passed_since_last_fetch?
     last_fetched_at.nil? || last_fetched_at < 1.minute.ago
+  end
+
+  def show_totals_now?
+    expired? || !hide_totals?
   end
 end

@@ -70,7 +70,9 @@ class Status < ApplicationRecord
   validates_with StatusLengthValidator
   validates_with DisallowedHashtagsValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
-  validates_associated :owned_poll
+  validates :visibility, exclusion: { in: %w(direct limited) }, if: :reblog?
+
+  accepts_nested_attributes_for :owned_poll
 
   default_scope { recent }
 
@@ -451,8 +453,8 @@ class Status < ApplicationRecord
   end
 
   def set_visibility
+    self.visibility = reblog.visibility if reblog? && visibility.nil?
     self.visibility = (account.locked? ? :private : :public) if visibility.nil?
-    self.visibility = reblog.visibility if reblog?
     self.sensitive  = false if sensitive.nil?
   end
 

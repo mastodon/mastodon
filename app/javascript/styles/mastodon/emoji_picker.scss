@@ -1,3 +1,5 @@
+@import '../../../node_modules/emoji-mart/css/emoji-mart.css';
+
 .emoji-mart {
   &,
   * {
@@ -51,6 +53,14 @@
 
   &:hover {
     color: darken($lighter-text-color, 4%);
+
+    svg {
+      fill: darken($lighter-text-color, 4%);
+    }
+  }
+
+  svg {
+    fill: $lighter-text-color;
   }
 }
 
@@ -59,10 +69,18 @@
 
   &:hover {
     color: darken($highlight-text-color, 4%);
+
+    svg {
+      fill: darken($highlight-text-color, 4%);
+    }
   }
 
   .emoji-mart-anchor-bar {
     bottom: -1px;
+  }
+
+  svg {
+    fill: $highlight-text-color;
   }
 }
 
@@ -83,7 +101,6 @@
   }
 
   svg {
-    fill: currentColor;
     max-height: 18px;
   }
 }
@@ -103,15 +120,14 @@
 }
 
 .emoji-mart-search {
-  padding: 10px;
-  padding-right: 45px;
+  margin: 10px 40px 10px 5px;
   background: $simple-background-color;
 
   input {
     font-size: 14px;
     font-weight: 400;
     padding: 7px 9px;
-    font-family: inherit;
+    font-family: $font-sans-serif;
     display: block;
     width: 100%;
     background: rgba($ui-secondary-color, 0.3);
@@ -166,6 +182,7 @@
     font-weight: 500;
     padding: 5px 6px;
     background: $simple-background-color;
+    font-family: $font-sans-serif;
   }
 }
 

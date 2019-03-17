@@ -7,7 +7,6 @@ eu:
     administered_by: 'Administratzailea(k):'
     api: APIa
     apps: Aplikazio mugikorrak
-    closed_registrations: Harpidetza itxita dago orain zerbitzari honetan. Hala ere, beste zerbitzari bat aurkitu dezakezu kontua egiteko eta hona ere sarbidea izan.
     contact: Kontaktua
     contact_missing: Ezarri gabe
     contact_unavailable: E/E
@@ -15,19 +14,9 @@ eu:
     extended_description_html: |
       <h3>Arauentzako toki egoki bat</h3>
       <p>Azalpen luzea ez da ezarri oraindik.</p>
-    features:
-      humane_approach_body: Beste sareen akatsetatik ikasiz, Mastodon diseinu erabaki etikoak hartzen saiatzen da gizarte sareen erabilera okerrak borrokatzeko.
-      humane_approach_title: Ikuspuntu humanoago bat
-      not_a_product_body: Mastodon ez da sare komertzial bat. Ez du iragarkirik, eta ditu datuak mehatzen, ez da hormaz babestutako lorategi bat. Ez dago autoritate zentralik.
-      not_a_product_title: Pertsona bat zara, ez produktu bat
-      real_conversation_body: 500 karaktere dituzu eskura, edukia xehetasunez kudeatu daiteke eta multimediari abisuak jarri, adierazi zure burua zure erara.
-      real_conversation_title: Egiazko elkarrizketarako eraikia
-      within_reach_body: iOS, Android eta beste plataformetarako aplikazio ugari, eta garatzaileentzako erabilterraza den API ekosistema bati esker beste plataforma batzuetako lagunekin aritzeko aukera.
-      within_reach_title: Beti eskura
     generic_description: "%{domain} sareko zerbitzari bat da"
     hosted_on: Mastodon %{domain} domeinuan ostatatua
     learn_more: Ikasi gehiago
-    other_instances: Zerbitzarien zerrenda
     privacy_policy: Pribatutasun politika
     source_code: Iturburu kodea
     status_count_after:
@@ -410,9 +399,6 @@ eu:
         min_invite_role:
           disabled: Inor ez
           title: Baimendu hauen gobidapenak
-        open:
-          desc_html: Baimendu edonori kontu bat sortzea
-          title: Ireki izen ematea
       show_known_fediverse_at_about_page:
         desc_html: Txandakatzean, fedibertsu ezagun osoko toot-ak bistaratuko ditu aurrebistan. Bestela, toot lokalak besterik ez ditu erakutsiko.
         title: Erakutsi fedibertsu ezagun osoko denbora-lerroa aurrebistan
@@ -507,13 +493,11 @@ eu:
     logout: Amaitu saioa
     migrate_account: Lekualdatu beste kontu batera
     migrate_account_html: Kontu hau beste batera birbideratu nahi baduzu, <a href="%{path}">hemen konfiguratu</a> dezakezu.
-    or: edo
     or_log_in_with: Edo hasi saioa honekin
     providers:
       cas: CAS
       saml: SAML
     register: Eman izena
-    register_elsewhere: Eman izena beste zerbitzari batean
     resend_confirmation: Birbidali berresteko argibideak
     reset_password: Berrezarri pasahitza
     security: Segurtasuna
@@ -608,18 +592,6 @@ eu:
       title: Iragazkiak
     new:
       title: Gehitu iragazki berria
-  followers:
-    domain: Domeinua
-    explanation_html: Zure mezuen pribatutasuna bermatu nahi baduzu, nork jarraitzen zaituen jakin behar duzu. <strong>Zure mezu pribatuak zure jarraitzaileak dituzten zerbitzari guztietara bidaltzen dira</strong>.  Zerbitzari bateko langileek edo softwareak zure pribatutasunari dagokion begirunea ez dutela izango uste baduzu, berrikusi eta kendu jarraitzaileak.
-    followers_count: Jarraitzaile kopurua
-    lock_link: Giltzapetu zure kontua
-    purge: Kendu jarraitzaileetatik
-    success:
-      one: Domeinu bateko jarraitzaileei blokeo leuna ezartzen...
-      other: "%{count} domeinuetako jarraitzaileei blokeo leuna ezartzen..."
-    true_privacy_html: Kontuan izan <strong>egiazko pribatutasuna lortzeko muturretik muturrerako zifratzea ezinbestekoa dela</strong>.
-    unlocked_warning_html: Edonork jarraitu zaitzake eta berehala zure mezu pribatuak ikusi. %{lock_link} jarraitzaileak berrikusi eta ukatu ahal izateko.
-    unlocked_warning_title: Zure kontua ez dago giltzapetuta
   footer:
     developers: Garatzaileak
     more: Gehiago…
@@ -812,7 +784,6 @@ eu:
     edit_profile: Aldatu profila
     export: Datuen esportazioa
     featured_tags: Nabarmendutako traolak
-    followers: Baimendutako jarraitzaileak
     import: Inportazioa
     migrate: Kontuaren migrazioa
     notifications: Jakinarazpenak

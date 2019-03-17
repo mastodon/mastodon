@@ -4,36 +4,36 @@ ja:
     about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開トゥートです。どこでもいいので、連合に参加しているSNS上にアカウントを作れば会話に参加することができます。
     about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
     about_this: 詳細情報
+    active_count_after: 人アクティブ
+    active_footnote: 月間アクティブユーザー数 (MAU)
     administered_by: '管理者:'
     api: API
     apps: アプリ
-    closed_registrations: 現在このサーバーでの新規登録は受け付けていません。しかし、他のサーバーにアカウントを作成しても全く同じネットワークに参加することができます。
+    apps_platforms: iOSやAndroid、その他プラットフォームから使用する
+    browse_directory: ディレクトリで関心を軸に見つける
+    browse_public_posts: Mastodonの公開ライブストリームを見てみる
     contact: 連絡先
     contact_missing: 未設定
     contact_unavailable: N/A
+    discover_users: ユーザーを見つける
     documentation: ドキュメント
     extended_description_html: |
       <h3>ルールを書くのに適した場所</h3>
       <p>詳細説明が設定されていません。</p>
-    features:
-      humane_approach_body: 他の SNS の失敗から学び、Mastodon はソーシャルメディアが誤った使い方をされることの無いように倫理的な設計を目指しています。
-      humane_approach_title: より思いやりのある設計
-      not_a_product_body: Mastodon は営利的な SNS ではありません。広告や、データの収集・解析によるターゲティングは無く、またユーザーの囲い込みもありません。ここには中央権力はありません。
-      not_a_product_title: あなたは人間であり、商品ではありません
-      real_conversation_body: 好きなように書ける500文字までの投稿や、文章やメディアの内容に警告をつけられる機能で、思い通りに自分自身を表現することができます。
-      real_conversation_title: 本当のコミュニケーションのために
-      within_reach_body: デベロッパーフレンドリーな API により実現された、iOS や Android、その他様々なプラットフォームのためのアプリでどこでも友人とやりとりできます。
-      within_reach_title: いつでも身近に
+    federation_hint_html: "%{instance} にアカウントを作ればどこのMastodonや互換性のあるサーバーのユーザーでもフォローできます。"
     generic_description: "%{domain} は、Mastodon サーバーの一つです"
+    get_apps: モバイルアプリを試す
     hosted_on: Mastodon hosted on %{domain}
     learn_more: もっと詳しく
-    other_instances: 他のサーバー
     privacy_policy: プライバシーポリシー
+    see_whats_happening: 何が起きているのか見てみる
+    server_stats: 'サーバー統計:'
     source_code: ソースコード
     status_count_after:
       one: トゥート
       other: トゥート
     status_count_before: トゥート数
+    tagline: Follow friends and discover new ones
     terms: 利用規約
     user_count_after:
       one: 人
@@ -79,6 +79,7 @@ ja:
       delete: 削除
       destroyed_msg: モデレーションメモを削除しました！
     accounts:
+      approve: 承認
       are_you_sure: 本当に実行しますか？
       avatar: アイコン
       by_domain: ドメイン
@@ -124,6 +125,7 @@ ja:
       moderation:
         active: アクティブ
         all: すべて
+        pending: 保留中
         silenced: サイレンス済み
         suspended: 停止済み
         title: モデレーション
@@ -133,13 +135,15 @@ ja:
       no_limits_imposed: 制限なし
       not_subscribed: 購読していない
       outbox_url: Outbox URL
+      pending: 審査待ち
       perform_full_suspension: 活動を完全に停止させる
       profile_url: プロフィールURL
       promote: 昇格
       protocol: プロトコル
       public: パブリック
       push_subscription_expires: PuSH購読期限
-      redownload: アバターの更新
+      redownload: プロフィールを更新
+      reject: 却下
       remove_avatar: アイコンを削除
       remove_header: ヘッダーを削除
       resend_confirmation:
@@ -411,9 +415,12 @@ ja:
         min_invite_role:
           disabled: 誰も許可しない
           title: 招待の作成を許可
-        open:
-          desc_html: 誰でも自由にアカウントを作成できるようにします
-          title: 新規登録を受け付ける
+      registrations_mode:
+        modes:
+          approved: 登録には承認が必要
+          none: 誰も許可しない
+          open: 誰でも登録可
+        title: 新規登録
       show_known_fediverse_at_about_page:
         desc_html: チェックを入れるとプレビュー欄に既知の連合先全てのトゥートを表示します。外すとローカルのトゥートだけ表示します。
         title: タイムラインプレビューに連合タイムラインを表示する
@@ -476,6 +483,9 @@ ja:
       edit_preset: プリセット警告文を編集
       title: プリセット警告文を管理
   admin_mailer:
+    new_pending_account:
+      body: 新しいアカウントの詳細は以下の通りです。この申請を承認または却下することができます。
+      subject: "%{instance} で新しいアカウント (%{username}) が審査待ちです"
     new_report:
       body: "%{reporter} が %{target} を通報しました"
       body_remote: "%{domain} の誰かが %{target} を通報しました"
@@ -497,7 +507,9 @@ ja:
     your_token: アクセストークン
   auth:
     agreement_html: 登録するをクリックすると <a href="%{rules_path}">サーバーのルール</a> と <a href="%{terms_path}">プライバシーポリシー</a> に従うことに同意したことになります。
+    apply_for_account: 登録を申請する
     change_password: パスワード
+    checkbox_agreement_html: <a href="%{rules_path}" target="_blank">サーバーのルール</a> と <a href="%{terms_path}" target="_blank">プライバシーポリシー</a> に同意します
     confirm_email: メールアドレスの確認
     delete_account: アカウントの削除
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a> から手続きが行えます。削除する前に、確認画面があります。
@@ -508,17 +520,17 @@ ja:
     logout: ログアウト
     migrate_account: 別のアカウントに引っ越す
     migrate_account_html: 引っ越し先を明記したい場合は<a href="%{path}">こちら</a>で設定できます。
-    or: または
     or_log_in_with: または次のサービスでログイン
     providers:
       cas: CAS
       saml: SAML
     register: 登録する
-    register_elsewhere: 他のサーバーで新規登録
+    registration_closed: "%{instance} は現在新しいメンバーを受け入れていません"
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
     security: セキュリティ
     set_new_password: 新しいパスワード
+    trouble_logging_in: ログインできませんか？
   authorize_follow:
     already_following: あなたは既にこのアカウントをフォローしています
     error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました
@@ -609,23 +621,12 @@ ja:
       title: フィルター
     new:
       title: 新規フィルターを追加
-  followers:
-    domain: ドメイン
-    explanation_html: あなたの投稿のプライバシーを確保したい場合、誰があなたをフォローしているのかを把握している必要があります。 <strong>プライベート投稿は、あなたのフォロワーがいる全てのサーバーに配信されます</strong>。 フォロワーのサーバーの管理者やソフトウェアがあなたのプライバシーを尊重してくれるかどうか怪しい場合は、そのフォロワーを削除した方がよいかもしれません。
-    followers_count: フォロワー数
-    lock_link: 承認制アカウントにする
-    purge: フォロワーから削除する
-    success:
-      one: 1個のドメインからソフトブロックするフォロワーを処理中...
-      other: "%{count} 個のドメインからソフトブロックするフォロワーを処理中..."
-    true_privacy_html: "<strong>プライバシーの保護はエンドツーエンドの暗号化でのみ実現可能</strong>であることに留意ください。"
-    unlocked_warning_html: 誰でもあなたをフォローすることができ、フォロワー限定の投稿をすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
-    unlocked_warning_title: このアカウントは承認制アカウントに設定されていません
   footer:
     developers: 開発者向け
     more: さらに…
     resources: リソース
   generic:
+    all: すべて
     changes_saved_msg: 正常に変更されました！
     copy: コピー
     save_changes: 変更を保存
@@ -733,6 +734,11 @@ ja:
     older: 以前のトゥート
     prev: 前
     truncate: "&hellip;"
+  polls:
+    errors:
+      duplicate_options: 項目が重複しています
+      duration_too_short: 期限が短すぎます
+      expired: 既に終了している投票です
   preferences:
     languages: 言語
     other: その他
@@ -812,7 +818,6 @@ ja:
     edit_profile: プロフィールを編集
     export: データのエクスポート
     featured_tags: 注目のハッシュタグ
-    followers: 信頼済みのサーバー
     import: データのインポート
     migrate: アカウントの引っ越し
     notifications: 通知
@@ -838,10 +843,15 @@ ja:
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     pin_errors:
-      limit: 固定されているトゥートの上限に達しました
+      limit: 固定できるトゥート数の上限に達しました
       ownership: 他人のトゥートを固定することはできません
       private: 非公開のトゥートを固定することはできません
       reblog: ブーストされたトゥートを固定することはできません
+    poll:
+      total_votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
+      vote: Vote
     show_more: もっと見る
     sign_in_to_participate: ログインして会話に参加
     title: '%{name}: "%{quote}"'

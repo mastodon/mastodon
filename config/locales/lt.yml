@@ -7,7 +7,6 @@ lt:
     administered_by: 'Administruoja:'
     api: API
     apps: Mobilioji Aplikacija
-    closed_registrations: Registracija šiuo metu uždaryta prie šito tinklo.  Jūs galite rasti kitą būdą susikurti paskyrą ir gauti prieigą prie to paties tinklo.
     contact: Kontaktai
     contact_missing: Nenustatyta
     contact_unavailable: N/A
@@ -15,19 +14,9 @@ lt:
     extended_description_html: |
       <h3>Taisyklės</h3>
       <p>Ilgas aprašymas dar nėra sudartyas</p>
-    features:
-      humane_approach_body: Mokantis iš kitų socialinių tinklų, bei jų daromu klaidų, Mastodon siekia sukurti etiška dizainą, kuris kovotu su netinkamu socialinių tinklų naudojimu.
-      humane_approach_title: Humaniškesnis metodas
-      not_a_product_body: Mastodon nėra komercinis tinklas. Jokių reklamų, privačios informacijos rinkimo. Čia nėra vieno žmogaus, kuris už viską atsako.
-      not_a_product_title: Tu esi žmogus, o ne produktas
-      real_conversation_body: Su 500 simbolių limitu, ir galimybe pažymėti savo įkeliama informacija su įspėjamaisiais ženklais, galite išsireikšti kaip tik norite.
-      real_conversation_title: Sukurtas tikram bendravimui
-      within_reach_body: Mobiliosios aplikacijos skirtos iOS, Android, ir kitoms platformoms. Draugiškos API ekosistemos dėka, Jūs galite palaikyti pokalbi su draugais bet kur.
-      within_reach_title: Visada pasiekama
     generic_description: "%{domain} yra vienas serveris tinkle"
     hosted_on: Mastodon palaikomas naudojantis %{domain} talpinimu
     learn_more: Daugiau
-    other_instances: Serverių sąrašas
     privacy_policy: Privatumo Politika
     source_code: Šaltinio kodas
     status_count_after:
@@ -419,9 +408,6 @@ lt:
         min_invite_role:
           disabled: Nei vienas
           title: Leisti pakvietimus
-        open:
-          desc_html: Leisti bet kam susikurti paskyrą
-          title: Atidaryta registracija
       show_known_fediverse_at_about_page:
         desc_html: Kai įjungta, rodys įrašus iš visos žinomos fedi-visatos. Kitokiu atvėju, rodys tik lokalius įrašus.
         title: Rodyti žinoma fedi-visatos laiko juosta peržiūroje
@@ -516,13 +502,11 @@ lt:
     logout: Atsijungti
     migrate_account: Prisijungti prie kitos paskyros
     migrate_account_html: Jeigu norite nukreipti šią paskyrą į kita, galite tai <a href="%{path}">konfiguruoti čia</a>.
-    or: arba
     or_log_in_with: Arba prisijungti su
     providers:
       cas: CAS
       saml: SAML
     register: Užsiregistruoti
-    register_elsewhere: Užsiregistruoti kitame serveryje
     resend_confirmation: Išsiųsti dar kartą patvirtinimo instrukcijas
     reset_password: Atstatyti slaptažodį
     security: Apsauga
@@ -618,19 +602,6 @@ lt:
       title: Filtrai
     new:
       title: Pridėti naują filtrą
-  followers:
-    domain: Domenas
-    explanation_html: Jeigu norite garantuoti savo statusų privatumą, turite žinoti, kas jus seka. <strong>Jūsų privatūs statusai yra pristatyti visiems serveriams, kur jūs turite sekėju</strong>. Galbūt jūs norite juos peržiūrėti ir panaikinti sekėjus, kuriais nepasitikite.
-    followers_count: Sekėjų skaičius
-    lock_link: Užrakinti savo paskyrą
-    purge: Panaikint iš sekėju
-    success:
-      few: Švelnaus sekėjų blokavimo procedūroje iš %{count} domenų...
-      one: Švelnaus sekėjų blokavimo procedūroje iš vieno domeno...
-      other: Švelnaus sekėjų blokavimo procedūroje iš %{count} domenų...
-    true_privacy_html: Prašau prisiminti, kad <strong> tikras privatumas gali būti pasiekamas tik su end-to-end užsifravimu</strong>.
-    unlocked_warning_html: Visi, kurie nori matyti Jūsų privatų statusą, gali jus sekti. %{lock_link} kad galėtumėte peržiurėti ir pašalinti sekėjus.
-    unlocked_warning_title: Jūsų paskyra neužrakinta
   footer:
     developers: Programuotojai
     more: Daugiau…
@@ -826,7 +797,6 @@ lt:
     edit_profile: Keisti profilį
     export: Informacijos eksportas
     featured_tags: Rodomi saitažodžiai(#)
-    followers: Autorizuoti sekėjai
     import: Importuoti
     migrate: Paskyros migracija
     notifications: Pranešimai
