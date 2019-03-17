@@ -15,7 +15,7 @@ describe Api::ProofsController do
       it '404s' do
         get :index, params: { username: 'nonexistent', provider: 'keybase' }
 
-        expect(response.status).to eq 404
+        expect(response).to have_http_status(:not_found)
       end
     end
 

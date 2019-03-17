@@ -41,6 +41,7 @@ class ProofProvider::Keybase::ConfigSerializer < ActiveModel::Serializer
       provider: 'keybase',
       token: '%{sig_hash}',
       provider_username: '%{kb_username}',
+      username: '%{username}',
       user_agent: '%{kb_ua}',
     }
 
@@ -64,6 +65,6 @@ class ProofProvider::Keybase::ConfigSerializer < ActiveModel::Serializer
   end
 
   def contact
-    Setting.keybase_contacts.split(',').map(&:strip)
+    Setting.keybase_contacts.split(/\s+,\s+/)
   end
 end
