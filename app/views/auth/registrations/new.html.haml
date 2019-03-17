@@ -29,11 +29,6 @@
   %p.hint= t('auth.agreement_html', rules_path: about_more_path, terms_path: terms_path)
 
   .actions
-    - if ENV['RECAPTCHA_ENABLED'] == 'true'
-      %script(src='https://www.google.com/recaptcha/api.js' async defer)
-      .g-recaptcha{data: {:sitekey => "#{ENV['RECAPTCHA_SITE_KEY']}"}}
-      = f.button :button, t('auth.register'), type: :submit
-    - else
-      = f.button :button, t('auth.register'), type: :submit
+    = f.button :button, t('auth.register'), type: :submit
 
 .form-footer= render 'auth/shared/links'
