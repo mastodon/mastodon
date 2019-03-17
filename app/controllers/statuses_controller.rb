@@ -27,6 +27,8 @@ class StatusesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
+        mark_cacheable! unless user_signed_in?
+
         @body_classes = 'with-modals'
 
         set_ancestors
@@ -36,7 +38,7 @@ class StatusesController < ApplicationController
       end
 
       format.json do
-        skip_session! unless @stream_entry.hidden?
+        mark_cacheable! unless @stream_entry.hidden?
 
         render_cached_json(['activitypub', 'note', @status], content_type: 'application/activity+json', public: !@stream_entry.hidden?) do
           ActiveModelSerializers::SerializableResource.new(@status, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter)
