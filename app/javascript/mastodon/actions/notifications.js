@@ -7,6 +7,7 @@ import {
   importFetchedStatus,
   importFetchedStatuses,
 } from './importer';
+import { saveSettings } from './settings';
 import { defineMessages } from 'react-intl';
 import { List as ImmutableList } from 'immutable';
 import { unescapeHTML } from '../utils/html';
@@ -187,5 +188,6 @@ export function setFilter (filterType) {
       value: filterType,
     });
     dispatch(expandNotifications());
+    dispatch(saveSettings());
   };
 };
