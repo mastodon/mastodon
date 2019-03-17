@@ -7,8 +7,9 @@
       - proofs.each do |proof|
         %dl
           %dt= proof.provider.capitalize
-          %dd
-            = link_to_if proof.badge.profile_url, proof.provider_username, proof.badge.profile_url
+          %dd.verified
+            = link_to fa_icon('check'), proof.badge.proof_url, class: 'verified__mark', title: t('accounts.link_verified_on', date: l(proof.updated_at))
+            = link_to proof.provider_username, proof.badge.profile_url
 
       - fields.each do |field|
         %dl
