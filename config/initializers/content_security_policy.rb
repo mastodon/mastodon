@@ -24,7 +24,7 @@ Rails.application.config.content_security_policy do |p|
     p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host, "https://www.google.com/recaptcha/", "https://www.gstatic.com/recaptcha/"
   else
     p.connect_src :self, :blob, assets_host, Rails.configuration.x.streaming_api_base_url
-    p.script_src  :self, assets_host, "https://www.google.com/recaptcha/", "https://www.gstatic.com/recaptcha/"
+    p.script_src  :self, :unsafe_inline, assets_host, "https://www.google.com/recaptcha/", "https://www.gstatic.com/recaptcha/"
   end
 end
 
