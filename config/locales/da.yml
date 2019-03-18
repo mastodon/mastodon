@@ -282,7 +282,7 @@ da:
     followers:
       back_to_account: Tilbage til konto
     instances:
-      title: Kendte instanser
+      title: Førderation
     invites:
       deactivate_all: Deaktiver alle
       filter:
@@ -363,11 +363,11 @@ da:
         title: Brugerdefineret CSS
       hero:
         desc_html: Vist på forsiden. Mindst 600x100px anbefales. Hvis ikke sat, vil
-          dette falde tilbage til billedet for instansen
+          dette falde tilbage til billedet fra serveren
         title: Billede af helt
       peers_api_enabled:
-        desc_html: Domæne navne denne instans er stødt på i fediverset
-        title: Udgiv liste over opdagede instanser
+        desc_html: Domæne navne denne server er stødt på i fediverset
+        title: Udgiv liste over opdagede server
       preview_sensitive_media:
         desc_html: Forhåndsvisninger af links på andre websider vil vise et miniaturebillede
           selv hvis mediet er markeret som følsomt
@@ -394,24 +394,24 @@ da:
         desc_html: Introduktions afsnit på forsiden. Beskriv hvad der gør denne Mastodon
           server speciel og alt andet vigtigt. Du kan bruge HTML tags, især <code>&lt;a&gt;</code>
           og <code>&lt;em&gt;</code>.
-        title: Beskrivelse af instans
+        title: Beskrivelse af serveren
       site_description_extended:
         desc_html: Et godt sted for placering af adfærdskodes, regler, retningslinjer
-          og andre ting der gør din instans unik. Du kan bruge HTML tags
+          og andre ting der gør din server unik. Du kan bruge HTML tags
         title: Brugerdefineret udvidet information
       site_short_description:
         desc_html: Vist på sidelinjen og meta tags. Beskriv hvad Mastodon er og hvad
           der gør denne server speciel i et enkelt afsnit. Hvis tomt, vil standard
-          være beskrivelsen af instansen.
-        title: Kort beskrivelse af instans
+          være beskrivelsen af serveren.
+        title: Kort beskrivelse af serveren
       site_terms:
         desc_html: Du kan skrive din egen privatlivpolitik, servicevilkår, eller lignende.
           Du kan bruge HTML tags
         title: Brugerdefineret servicevilkår
-      site_title: Navn på instans
+      site_title: Navn af serveren
       thumbnail:
         desc_html: Brugt til forhåndsvisninger via OpenGraph og API. 1200x630px anbefales
-        title: Miniaturebillede for instans
+        title: Miniaturebillede for serveren
       timeline_preview:
         desc_html: Vis offentlig tidslinje på landingssiden
         title: Tidslinje forhåndsvisning
@@ -461,7 +461,7 @@ da:
     warning: Vær meget forsigtig med disse data. Del dem aldrig med nogen!
     your_token: Din adgangs token
   auth:
-    agreement_html: Ved at oprette dig erklærer du dig enig i at følge <a href="%{rules_path}">instanses
+    agreement_html: Ved at oprette dig erklærer du dig enig i at følge <a href="%{rules_path}">serverens
       regler</a> og <a href="%{terms_path}">vores servicevilkår</a>.
     change_password: Kodeord
     confirm_email: Bekræft email
@@ -519,7 +519,7 @@ da:
       for at forhindre fremtidige efterligninger.
     proceed: Slet konto
     success_msg: Din konto er nu blevet slettet
-    warning_html: Kun sletning af indhold fra denne specifikke instans er garanteret.
+    warning_html: Kun sletning af indhold fra denne specifikke server er garanteret.
       Indhold der er blevet delt rundt omkring vil sandsynligvis efterlade spor. Offline
       servere og servere der ikke længere abonnerer på dine opdateringer vil ikke
       opdatere deres databaser.
@@ -584,7 +584,7 @@ da:
       other: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende
         %{count} fejl forneden
   imports:
-    preface: Du kan importere data du har eksporteret fra en anden instans, så som
+    preface: Du kan importere data du har eksporteret fra en anden server, så som
       en liste over folk du følger eller blokerer.
     success: Dine data blev succesfuldt uploaded og vil nu blive behandlet hurtigst
       muligt
@@ -611,7 +611,7 @@ da:
       one: 1 benyttelse
       other: '%{count} benyttelser'
     max_uses_prompt: Ubegrænset
-    prompt: Generer og del links med andre for at give dem adgang til denne instans
+    prompt: Generer og del links med andre for at give dem adgang til denne server
     table:
       expires_at: Udløber
       uses: Benyttelser
@@ -896,9 +896,9 @@ da:
       \ privacy policy </a>.</p>\n"
     title: Vilkår og privatlivpolitik for %{instance}
   themes:
-    contrast: Høj kontrast
-    default: Mastodont
-    mastodon-light: Mastodon (lys)
+    contrast: Mastodon (Høj kontrast)
+    default: Mastodont (Mørk)
+    mastodon-light: Mastodon (Lys)
   time:
     formats:
       default: '%b %d, %Y, %H:%M'
@@ -948,7 +948,7 @@ da:
         Måske kunne du tænke dig at introducere dig selv på #introductions hashtagget.'
       full_handle: Dit fulde brugernavn
       full_handle_hint: Dette er hvad du vil fortælle dine venner så de kan sende
-        dig beskeder eller følge dig fra andre instanser.
+        dig beskeder eller følge dig fra andre server.
       review_preferences_action: Ændre præferencer
       review_preferences_step: Vær sikker på at sætte dine præferencer, så som hvilke
         emails du kunne tænke dig at modtage, eller hvilket niveau af privatliv der
