@@ -530,6 +530,10 @@ nl:
       body: '%{reporter} heeft %{target} gerapporteerd'
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
       subject: Nieuwe rapportage op %{instance} (#%{id})
+    new_pending_account:
+      body: Zie hieronder de details van het nieuwe account. Je kunt de aanvraag goedkeuren
+        of afwijzen.
+      subject: Er dient een nieuw account op %{instance} te worden beoordeeld (%{username})
   application_mailer:
     notification_preferences: E-mailvoorkeuren wijzigen
     salutation: '%{name},'
@@ -572,6 +576,11 @@ nl:
     reset_password: Wachtwoord opnieuw instellen
     security: Beveiliging
     set_new_password: Nieuw wachtwoord instellen
+    apply_for_account: Een uitnodiging aanvragen
+    checkbox_agreement_html: Ik ga akkoord met de <a href="%{rules_path}" target="_blank">regels
+      van deze server</a> en de <a href="%{terms_path}" target="_blank">gebruiksvoorwaarden</a>
+    registration_closed: '%{instance} laat geen nieuwe gebruikers toe'
+    trouble_logging_in: Problemen met inloggen?
   authorize_follow:
     already_following: Je volgt dit account al
     error: Helaas, er is een fout opgetreden bij het opzoeken van de externe account
@@ -688,6 +697,7 @@ nl:
     validation_errors:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
       other: Er is iets niet helemaal goed! Bekijk onderstaande %{count} fouten
+    all: Alles
   imports:
     modes:
       merge: Samenvoegen
@@ -1147,3 +1157,6 @@ nl:
       het <code>rel="me"</code>-attribuut bevatten. De omschrijving van de link maakt
       niet uit. Hier is een voorbeeld:'
     verification: Verificatie
+  relationships:
+    activity: Accountactiviteit
+    dormant: Sluimerend
