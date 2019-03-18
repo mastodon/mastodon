@@ -1,2 +1,549 @@
----
-{}
+en_GB:
+  about:
+    about_hashtag_html: These are public toots tagged with <strong>#%{hashtag}</strong>.
+      You can interact with them if you have an account anywhere in the fediverse.
+    about_mastodon_html: Mastodon is a social network based on open web protocols
+      and free, open-source software. It is decentralized like e-mail.
+    about_this: About
+    active_count_after: active
+    active_footnote: Monthly Active Users (MAU)
+    administered_by: 'Administered by:'
+    api: API
+    apps: Mobile apps
+    apps_platforms: Use Mastodon from iOS, Android and other platforms
+    browse_directory: Browse a profile directory and filter by interests
+    browse_public_posts: Browse a live stream of public posts on Mastodon
+    contact: Contact
+    contact_missing: Not set
+    contact_unavailable: N/A
+    discover_users: Discover users
+    documentation: Documentation
+    extended_description_html: '<h3>1A good place for rules</h3>2
+
+      <p>3The extended description has not been set up yet.</p>4
+
+      '
+    federation_hint_html: With an account on %{instance} you'll be able to follow
+      people on any Mastodon server and beyond.
+    generic_description: '%{domain} is one server in the network'
+    get_apps: Try a mobile app
+    hosted_on: Mastodon hosted on %{domain}
+    learn_more: Learn more
+    privacy_policy: Privacy policy
+    see_whats_happening: See what's happening
+    server_stats: 'Server stats:'
+    source_code: Source code
+    status_count_after:
+      one: status
+      other: statuses
+    status_count_before: Who authored
+    tagline: Follow friends and discover new ones
+    terms: Terms of service
+    user_count_after:
+      one: user
+      other: users
+    user_count_before: Home to
+    what_is_mastodon: What is Mastodon?
+  accounts:
+    choices_html: '%{name}''s choices:'
+    follow: Follow
+    followers:
+      one: Follower
+      other: Follower
+    following: Following
+    joined: Joined %{date}
+    last_active: last active
+    link_verified_on: Ownership of this link was checked on %{date}
+    media: Media
+    moved_html: '%{name} has moved to %{new_profile_link}:'
+    network_hidden: This information is not available
+    nothing_here: There is nothing here!
+    people_followed_by: People whom %{name} follows
+    people_who_follow: People who follow %{name}
+    pin_errors:
+      following: You must be already following the person you want to endorse
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
+    posts_with_replies: Toots and replies
+    reserved_username: The username is reserved
+    roles:
+      admin: Admin
+      bot: Bot
+      moderator: Mod
+    unfollow: Unfollow
+  admin:
+    account_actions:
+      action: Perform action
+      title: Perform moderation action on %{acct}
+    account_moderation_notes:
+      create: Leave note
+      created_msg: Moderation note successfully created!
+      delete: Delete
+      destroyed_msg: Moderation note successfully destroyed!
+    accounts:
+      approve: Approve
+      are_you_sure: Are you sure?
+      avatar: Avatar
+      by_domain: Domain
+      change_email:
+        changed_msg: Account email successfully changed!
+        current_email: Current email
+        label: Change email
+        new_email: New email
+        submit: Change email
+        title: Change email for %{username}
+      confirm: Confirm
+      confirmed: Confirmed
+      confirming: Confirming
+      deleted: Deleted
+      demote: Demote
+      disable: Disable
+      disable_two_factor_authentication: Disable 2FA
+      disabled: Disabled
+      display_name: Display name
+      domain: Domain
+      edit: Edit
+      email: Email
+      email_status: Email status
+      enable: Enable
+      enabled: Enabled
+      feed_url: Feed URL
+      followers: Followers
+      followers_url: Followers URL
+      follows: Follows
+      header: Header
+      inbox_url: Inbox URL
+      invited_by: Invited by
+      ip: IP
+      joined: Joined
+      location:
+        all: All
+        local: Local
+        remote: Remote
+        title: Location
+      login_status: Login status
+      media_attachments: Media attachments
+      memorialize: Turn into memoriam
+      moderation:
+        active: Active
+        all: All
+        pending: Pending
+        silenced: Silenced
+        suspended: Suspended
+        title: Moderation
+      moderation_notes: Moderation notes
+      most_recent_activity: Most recent activity
+      most_recent_ip: Most recent IP
+      no_limits_imposed: No limits imposed
+      not_subscribed: Not subscribed
+      outbox_url: Outbox URL
+      pending: Pending review
+      perform_full_suspension: Suspend
+      profile_url: Profile URL
+      promote: Promote
+      protocol: Protocol
+      public: Public
+      push_subscription_expires: PuSH subscription expires
+      redownload: Refresh profile
+      reject: Reject
+      remove_avatar: Remove avatar
+      remove_header: Remove header
+      resend_confirmation:
+        already_confirmed: This user is already confirmed
+        send: Resend confirmation email
+        success: Confirmation email successfully sent!
+      reset: Reset
+      reset_password: Reset password
+      resubscribe: Resubscribe
+      role: Permissions
+      roles:
+        admin: Administrator
+        moderator: Moderator
+        staff: Staff
+        user: User
+      salmon_url: Salmon URL
+      search: Search
+      shared_inbox_url: Shared inbox URL
+      show:
+        created_reports: Made reports
+        targeted_reports: Reported by others
+      silence: Silence
+      silenced: Silenced
+      statuses: Statuses
+      subscribe: Subscribe
+      suspended: Suspended
+      title: Accounts
+      unconfirmed_email: Unconfirmed email
+      undo_silenced: Undo silence
+      undo_suspension: Undo suspension
+      unsubscribe: Unsubscribe
+      username: Username
+      warn: Warn
+      web: Web
+    action_logs:
+      actions:
+        assigned_to_self_report: '%{name} assigned report %{target} to themselves'
+        change_email_user: '%{name} changed the e-mail address of user %{target}'
+        confirm_user: '%{name} confirmed e-mail address of user %{target}'
+        create_account_warning: '%{name} sent a warning to %{target}'
+        create_custom_emoji: '%{name} uploaded new emoji %{target}'
+        create_domain_block: '%{name} blocked domain %{target}'
+        create_email_domain_block: '%{name} blacklisted e-mail domain %{target}'
+        demote_user: '%{name} demoted user %{target}'
+        destroy_custom_emoji: '%{name} destroyed emoji %{target}'
+        destroy_domain_block: '%{name} unblocked domain %{target}'
+        destroy_email_domain_block: '%{name} whitelisted e-mail domain %{target}'
+        destroy_status: '%{name} removed status by %{target}'
+        disable_2fa_user: '%{name} disabled two factor requirement for user %{target}'
+        disable_custom_emoji: '%{name} disabled emoji %{target}'
+        disable_user: '%{name} disabled login for user %{target}'
+        enable_custom_emoji: '%{name} enabled emoji %{target}'
+        enable_user: '%{name} enabled login for user %{target}'
+        memorialize_account: '%{name} turned %{target}''s account into a memoriam
+          page'
+        promote_user: '%{name} promoted user %{target}'
+        remove_avatar_user: '%{name} removed %{target}''s avatar'
+        reopen_report: '%{name} reopened report %{target}'
+        reset_password_user: '%{name} reset password of user %{target}'
+        resolve_report: '%{name} resolved report %{target}'
+        silence_account: '%{name} silenced %{target}''s account'
+        suspend_account: '%{name} suspended %{target}''s account'
+        unassigned_report: '%{name} unassigned report %{target}'
+        unsilence_account: '%{name} unsilenced %{target}''s account'
+        unsuspend_account: '%{name} unsuspended %{target}''s account'
+        update_custom_emoji: '%{name} updated emoji %{target}'
+        update_status: '%{name} updated status by %{target}'
+      deleted_status: (deleted status)
+      title: Audit log
+    custom_emojis:
+      by_domain: Domain
+      copied_msg: Successfully created local copy of the emoji
+      copy: Copy
+      copy_failed_msg: Could not make a local copy of that emoji
+      created_msg: Emoji successfully created!
+      delete: Delete
+      destroyed_msg: Emojo successfully destroyed!
+      disable: Disable
+      disabled_msg: Successfully disabled that emoji
+      emoji: Emoji
+      enable: Enable
+      enabled_msg: Successfully enabled that emoji
+      image_hint: PNG up to 50KB
+      listed: Listed
+      new:
+        title: Add new custom emoji
+      overwrite: Overwrite
+      shortcode: Shortcode
+      shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
+      title: Custom emojis
+      unlisted: Unlisted
+      update_failed_msg: Could not update that emoji
+      updated_msg: Emoji successfully updated!
+      upload: Upload
+    dashboard:
+      backlog: backlogged jobs
+      config: Configuration
+      feature_deletions: Account deletions
+      feature_invites: Invite links
+      feature_profile_directory: Profile directory
+      feature_registrations: Registrations
+      feature_relay: Federation relay
+      features: Features
+      hidden_service: Federation with hidden services
+      open_reports: open reports
+      recent_users: Recent users
+      search: Full-text search
+      single_user_mode: Single user mode
+      software: Software
+      space: Space usage
+      title: Dashboard
+      total_users: users in total
+      trends: Trends
+      week_interactions: interactions this week
+      week_users_active: active this week
+      week_users_new: users this week
+    domain_blocks:
+      add_new: Add new domain block
+      created_msg: Domain block is now being processed
+      destroyed_msg: Domain block has been undone
+      domain: Domain
+      new:
+        create: Create block
+        hint: The domain block will not prevent creation of account entries in the
+          database, but will retroactively and automatically apply specific moderation
+          methods on those accounts.
+        severity:
+          desc_html: <strong>Silence</strong> will make the account's posts invisible
+            to anyone who isn't following them. <strong>Suspend</strong> will remove
+            all of the account's content, media, and profile data. Use <strong>None</strong>
+            if you just want to reject media files.
+          noop: None
+          silence: Silence
+          suspend: Suspend
+        title: New domain block
+      reject_media: Reject media files
+      reject_media_hint: Removes locally stored media files and refuses to download
+        any in the future. Irrelevant for suspensions
+      reject_reports: Reject reports
+      reject_reports_hint: Ignore all reports coming from this domain. Irrelevant
+        for suspensions
+      rejecting_media: rejecting media files
+      rejecting_reports: rejecting reports
+      severity:
+        silence: silenced
+        suspend: suspended
+      show:
+        affected_accounts:
+          one: One account in the database affected
+          other: '%{count} accounts in the database affected'
+        retroactive:
+          silence: Unsilence all existing accounts from this domain
+          suspend: Unsuspend all existing accounts from this domain
+        title: Undo domain block for %{domain}
+        undo: Undo
+      undo: Undo domain block
+    email_domain_blocks:
+      add_new: Add new
+      created_msg: Successfully added e-mail domain to blacklist
+      delete: Delete
+      destroyed_msg: Successfully deleted e-mail domain from blacklist
+      domain: Domain
+      new:
+        create: Add domain
+        title: New e-mail blacklist entry
+      title: E-mail blacklist
+    followers:
+      back_to_account: Back To Account
+      title: '%{acct}''s Followers'
+    instances:
+      by_domain: Domain
+      delivery_available: Delivery is available
+      known_accounts:
+        one: '%{count} known account'
+        other: '%{count} known accounts'
+      moderation:
+        all: All
+        limited: Limited
+        title: Moderation
+      title: Federation
+      total_blocked_by_us: Blocked by us
+      total_followed_by_them: Followed by them
+      total_followed_by_us: Followed by us
+      total_reported: Reports about them
+      total_storage: Media attachments
+    invites:
+      deactivate_all: Deactivate all
+      filter:
+        all: All
+        available: Available
+        expired: Expired
+        title: Filter
+      title: Invites
+    relays:
+      add_new: Add new relay
+      delete: Delete
+      description_html: A <strong>federation relay</strong> is an intermediary server
+        that exchanges large volumes of public toots between servers that subscribe
+        and publish to it. <strong>It can help small and medium servers discover content
+        from the fediverse</strong>, which would otherwise require local users manually
+        following other people on remote servers.
+      disable: Disable
+      disabled: Disabled
+      enable: Enable
+      enable_hint: Once enabled, your server will subscribe to all public toots from
+        this relay, and will begin sending this server's public toots to it.
+      enabled: Enabled
+      inbox_url: Relay URL
+      pending: Waiting for relay's approval
+      save_and_enable: Save and enable
+      setup: Setup a relay connection
+      status: Status
+      title: Relays
+    report_notes:
+      created_msg: Report note successfully created!
+      destroyed_msg: Report note successfully deleted!
+    reports:
+      account:
+        note: note
+        report: report
+      action_taken_by: Action taken by
+      are_you_sure: Are you sure?
+      assign_to_self: Assign to me
+      assigned: Assigned moderator
+      comment:
+        none: None
+      created_at: Reported
+      mark_as_resolved: Mark as resolved
+      mark_as_unresolved: Mark as unresolved
+      notes:
+        create: Add note
+        create_and_resolve: Resolve with note
+        create_and_unresolve: Reopen with note
+        delete: Delete
+        placeholder: Describe what actions have been taken, or any other related updates...
+      reopen: Reopen report
+      report: 'Report #%{id}'
+      reported_account: Reported account
+      reported_by: Reported by
+      resolved: Resolved
+      resolved_msg: Report successfully resolved!
+      status: Status
+      title: Reports
+      unassign: Unassign
+      unresolved: Unresolved
+      updated_at: Updated
+    settings:
+      activity_api_enabled:
+        desc_html: Counts of locally posted statuses, active users, and new registrations
+          in weekly buckets
+        title: Publish aggregate statistics about user activity
+      bootstrap_timeline_accounts:
+        desc_html: Separate multiple usernames by comma. Only local and unlocked accounts
+          will work. Default when empty is all local admins.
+        title: Default follows for new users
+      contact_information:
+        email: Business e-mail
+        username: Contact username
+      custom_css:
+        desc_html: Modify the look with CSS loaded on every page
+        title: Custom CSS
+      hero:
+        desc_html: Displayed on the frontpage. At least 600x100px recommended. When
+          not set, falls back to server thumbnail
+        title: Hero image
+      mascot:
+        desc_html: Displayed on multiple pages. At least 293×205px recommended. When
+          not set, falls back to default mascot
+        title: Mascot image
+      peers_api_enabled:
+        desc_html: Domain names this server has encountered in the fediverse
+        title: Publish list of discovered servers
+      preview_sensitive_media:
+        desc_html: Link previews on other websites will display a thumbnail even if
+          the media is marked as sensitive
+        title: Show sensitive media in OpenGraph previews
+      profile_directory:
+        desc_html: Allow users to be discoverable
+        title: Enable profile directory
+      registrations:
+        closed_message:
+          desc_html: Displayed on frontpage when registrations are closed. You can
+            use HTML tags
+          title: Closed registration message
+        deletion:
+          desc_html: Allow anyone to delete their account
+          title: Open account deletion
+        min_invite_role:
+          disabled: No one
+          title: Allow invitations by
+      registrations_mode:
+        modes:
+          approved: Approval required for sign up
+          none: Nobody can sign up
+          open: Anyone can sign up
+        title: Registrations mode
+      show_known_fediverse_at_about_page:
+        desc_html: When toggled, it will show toots from all the known fediverse on
+          preview. Otherwise it will only show local toots.
+        title: Show known fediverse on timeline preview
+      show_staff_badge:
+        desc_html: Show a staff badge on a user page
+        title: Show staff badge
+      site_description:
+        desc_html: Introductory paragraph on the frontpage. Describe what makes this
+          Mastodon server special and anything else important. You can use HTML tags,
+          in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
+        title: Server description
+      site_description_extended:
+        desc_html: A good place for your code of conduct, rules, guidelines and other
+          things that set your server apart. You can use HTML tags
+        title: Custom extended information
+      site_short_description:
+        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and
+          what makes this server special in a single paragraph. If empty, defaults
+          to server description.
+        title: Short server description
+      site_terms:
+        desc_html: You can write your own privacy policy, terms of service or other
+          legalese. You can use HTML tags
+        title: Custom terms of service
+      site_title: Server name
+      thumbnail:
+        desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
+        title: Server thumbnail
+      timeline_preview:
+        desc_html: Display public timeline on landing page
+        title: Timeline preview
+      title: Site settings
+    statuses:
+      back_to_account: Back to account page
+      batch:
+        delete: Delete
+        nsfw_off: Mark as not sensitive
+        nsfw_on: Mark as sensitive
+      failed_to_execute: Failed to execute
+      media:
+        title: Media
+      no_media: No media
+      no_status_selected: No statuses were changed as none were selected
+      title: Account statuses
+      with_media: With media
+    subscriptions:
+      callback_url: Callback URL
+      confirmed: Confirmed
+      expires_in: Expires in
+      last_delivery: Last delivery
+      title: WebSub
+      topic: Topic
+    tags:
+      accounts: Accounts
+      hidden: Hidden
+      hide: Hide from directory
+      name: Hashtag
+      title: Hashtags
+      unhide: Show in directory
+      visible: Visible
+    title: Administration
+    warning_presets:
+      add_new: Add new
+      delete: Delete
+      edit: Edit
+      edit_preset: Edit warning preset
+      title: Manage warning presets
+  admin_mailer:
+    new_pending_account:
+      body: The details of the new account are below. You can approve or reject this
+        application.
+      subject: New account up for review on %{instance} (%{username})
+    new_report:
+      body: '%{reporter} has reported %{target}'
+      body_remote: Someone from %{domain} has reported %{target}
+      subject: New report for %{instance} (#%{id})
+  application_mailer:
+    notification_preferences: Change e-mail preferences
+    salutation: '%{name},'
+    settings: 'Change e-mail preferences: %{link}'
+    view: 'View:'
+    view_profile: View Profile
+    view_status: View status
+  applications:
+    created: Application successfully created
+    destroyed: Application successfully deleted
+    invalid_url: The provided URL is invalid
+    regenerate_token: Regenerate access token
+    token_regenerated: Access token successfully regenerated
+    warning: Be very careful with this data. Never share it with anyone!
+    your_token: Your access token
+  auth:
+    agreement_html: By clicking "Sign up" below you agree to follow <a href="%{rules_path}">the
+      rules of the server</a> and <a href="%{terms_path}">our terms of service</a>.
+    apply_for_account: Request an invite
+    change_password: Password
+    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server
+      rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
+    confirm_email: Confirm email
+    delete_account: Delete account
+    delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed
+      here</a>. You will be asked for confirmation.
