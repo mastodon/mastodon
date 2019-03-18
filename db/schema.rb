@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_14_181829) do
+ActiveRecord::Schema.define(version: 2019_03_17_135723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -525,6 +525,7 @@ ActiveRecord::Schema.define(version: 2019_03_14_181829) do
     t.bigint "action_taken_by_account_id"
     t.bigint "target_account_id", null: false
     t.bigint "assigned_account_id"
+    t.string "uri"
     t.index ["account_id"], name: "index_reports_on_account_id"
     t.index ["target_account_id"], name: "index_reports_on_target_account_id"
   end

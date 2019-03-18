@@ -14,16 +14,22 @@ class RemoveStatusService < BaseService
     @stream_entry = status.stream_entry
     @options      = options
 
-    remove_from_self if status.account.local?
-    remove_from_followers
-    remove_from_lists
-    remove_from_affected
-    remove_reblogs
-    remove_from_hashtags
-    remove_from_public
-    remove_from_media if status.media_attachments.any?
+    RedisLock.acquire(lock_options) do |lock|
+      if lock.acquired?
+        remove_from_self if status.account.local?
+        remove_from_followers
+        remove_from_lists
+        remove_from_affected
+        remove_reblogs
+        remove_from_hashtags
+        remove_from_public
+        remove_from_media if status.media_attachments.any?
 
-    @status.destroy!
+        @status.destroy!
+      else
+        raise Mastodon::RaceConditionError
+      end
+    end
 
     # There is no reason to send out Undo activities when the
     # cause is that the original object has been removed, since
@@ -155,5 +161,9 @@ class RemoveStatusService < BaseService
 
     redis.publish('timeline:public:media', @payload)
     redis.publish('timeline:public:local:media', @payload) if @status.local?
+  end
+
+  def lock_options
+    { redis: Redis.current, key: "distribute:#{@status.id}" }
   end
 end
