@@ -298,7 +298,7 @@ fr:
       rejecting_media: rejet des fichiers multimédia
       rejecting_reports: rejet de rapports
       severity:
-        silence: silencié
+        silence: réduit au silence
         suspend: suspendu
       show:
         affected_accounts:
@@ -662,7 +662,7 @@ fr:
       size: Taille
     blocks: Vous bloquez
     csv: CSV
-    domain_blocks: Bloqueurs de domaine
+    domain_blocks: Blocage de domaine
     follows: Vous suivez
     lists: Listes
     mutes: Vous masquez
@@ -699,7 +699,7 @@ fr:
     validation_errors:
       one: Quelque chose ne va pas ! Vérifiez l’erreur ci-dessous
       other: Certaines choses ne vont pas ! Vérifiez les %{count} erreurs ci-dessous
-    all: Tous
+    all: Tout
   imports:
     modes:
       merge: Fusionner
@@ -818,7 +818,7 @@ fr:
       expired: Ce sondage est déjà terminé
       over_character_limit: ne peuvent être plus long que %{max} caractères chacun
       too_few_options: doit avoir plus qu'une proposition
-      too_many_options: ne peut contenir plus que %{max} propositions
+      too_many_options: ne peut contenir plus de %{max} propositions
   preferences:
     languages: Langues
     other: Autre
@@ -832,8 +832,8 @@ fr:
     proceed: Confirmer l’abonnement
     prompt: 'Vous allez suivre :'
     reason_html: <strong>Pourquoi cette étape est-elle nécessaire?</strong> <code>%{instance}</code>
-      pourrait ne pas être le serveur où vous vous êtes inscrit, et nous devons donc
-      vous rediriger vers votre serveur de base en premier.
+      pourrait ne pas être l'instance où vous vous êtes inscrit, et nous devons donc
+      vous rediriger vers votre instance de base en premier.
   remote_interaction:
     favourite:
       proceed: Confirmer l'ajout aux favoris
@@ -1127,7 +1127,7 @@ fr:
         suspend: Votre compte a été suspendu, et tous vos pouets et vos fichiers multimédia
           téléversés ont été supprimés irréversiblement de ce serveur, et des serveurs
           où vous aviez des abonné⋅e⋅s.
-      review_server_policies: Passer en revue les politiques du serveur
+      review_server_policies: Passer en revue les politiques de l'instance
       subject:
         disable: Votre compte %{acct} a été gelé
         none: Avertissement pour %{acct}
