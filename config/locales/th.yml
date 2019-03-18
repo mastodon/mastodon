@@ -22,6 +22,8 @@ th:
     learn_more: เรียนรู้เพิ่มเติม
     privacy_policy: นโยบายความเป็นส่วนตัว
     what_is_mastodon: Mastodon คืออะไร?
+    apps: แอปในมือถือ
+    generic_description: '%{domain} เป็นเซิร์ฟเวอร์หนึ่งในเครือข่าย'
   accounts:
     follow: ติดตาม
     followers:
@@ -41,13 +43,15 @@ th:
     posts_with_replies: โพสต์และการตอบกลับ
     roles:
       bot: บอต
+      admin: ผู้ดูแล
+      moderator: ผู้ควบคุม
   admin:
     accounts:
       are_you_sure: คุณแน่ใจหรือไม่?
       confirm: ยืนยัน
       confirmed: ยืนยันแล้ว
       confirming: กำลังยืนยัน
-      disable_two_factor_authentication: Disable 2FA
+      disable_two_factor_authentication: ปิดใช้งาน 2FA
       display_name: ชื่อที่แสดงผล
       domain: โดเมน
       edit: แก้ไข
@@ -64,32 +68,49 @@ th:
       media_attachments: สื่อที่แนบมา
       moderation:
         all: ทั้งหมด
-        silenced: ปิดเสียง
-        suspended: หยุดไว้
-        title: Moderation
+        silenced: ถูกเงียบ
+        suspended: ถูกระงับ
+        title: การควบคุม
       most_recent_activity: กิจกรรมล่าสุด
       most_recent_ip: IP ล่าสุด
       not_subscribed: Not subscribed
-      perform_full_suspension: Perform full suspension
+      perform_full_suspension: ระงับ
       profile_url: Profile URL
       public: สาธารณะ
       push_subscription_expires: PuSH subscription expires
       resend_confirmation:
-        already_confirmed: ผู้ใช้รายนี้ได้รับการยืนยันแล้ว
+        already_confirmed: ผู้ใช้นี้ได้รับการยืนยันอยู่แล้ว
         send: ส่งอีเมลยืนยันอีกครั้ง
-        success: ยืนยันอีเมลเรียบร้อยแล้ว!
-      reset_password: รีเซ็ตรหัสผ่าน
+        success: ส่งอีเมลยืนยันสำเร็จ!
+      reset_password: ตั้งรหัสผ่านใหม่
       salmon_url: Salmon URL
       show:
-        created_reports: รายงานที่ถูกสร้างโดย แอคเคาท์นี้
-        targeted_reports: รายงานเกี่ยวกับแอคเคาท์นี้
-      silence: ปิดเสียง
+        created_reports: รายงานที่ถูกสร้าง
+        targeted_reports: รายงานโดยผู้อื่น
+      silence: เงียบ
       statuses: สถานะ
       title: บัญชี
-      undo_silenced: ยกเลิกการปิดเสียง
-      undo_suspension: ยกเลิกการหยุด
+      undo_silenced: เลิกทำการเงียบ
+      undo_suspension: เลิกทำการระงับ
       username: ชื่อผู้ใช้
       web: เว็บ
+      approve: อนุมัติ
+      avatar: ภาพประจำตัว
+      by_domain: โดเมน
+      change_email:
+        current_email: อีเมลปัจจุบัน
+        label: เปลี่ยนอีเมล
+        new_email: อีเมลใหม่
+      disable: ปิดใช้งาน
+      enable: เปิดใช้งาน
+      header: ส่วนหัว
+      ip: IP
+      login_status: สถานะการเข้าสู่ระบบ
+      protocol: โปรโตคอล
+      reject: ปฏิเสธ
+      remove_avatar: เอาภาพประจำตัวออก
+      remove_header: เอาส่วนหัวออก
+      unsubscribe: เลิกบอกรับ
     domain_blocks:
       add_new: เพิ่มการปิดกั้นโดเมนใหม่
       created_msg: กำลังประมวลผลการปิดกั้นโดเมน
@@ -97,18 +118,18 @@ th:
       domain: โดเมน
       new:
         create: สร้างการปิดกั้น
-        hint: การบล๊อคโดเมนไม่สามารถป้องกันการสร้างแอคเค๊าท์ในฐานข้อมูล, but will
-          retroactively and automatically apply specific moderation methods on those
-          accounts.
+        hint: การปิดกั้นโดเมนจะไม่ป้องกันการสร้างรายการบัญชีในฐานข้อมูล แต่จะใช้วิธีการควบคุมเฉพาะกับบัญชีเหล่านั้นย้อนหลังและโดยอัตโนมัติ
         severity:
-          desc_html: <strong>การปิดเสียง</strong> จะทำให้ผู้ที่ไมไ่ด้ติดตามไม่เห็นโพสต์ของเขา.
-            <strong>การหยุด</strong> จะนำเนื้อหา สื่อ และ โปรไฟล์ ออก.
+          desc_html: <strong>เงียบ</strong> จะทำให้โพสต์ของบัญชีมองไม่เห็นกับใครก็ตามที่ไม่ได้กำลังติดตามบัญชี
+            <strong>ระงับ</strong> จะเอาเนื้อหา, สื่อ และข้อมูลโปรไฟล์ทั้งหมดของบัญชีออก
+            ใช้ <strong>ไม่มี</strong> หากคุณเพียงแค่ต้องการปฏิเสธไฟล์สื่อ
           silence: เงียบ
           suspend: ระงับ
+          noop: ไม่มี
         title: การปิดกั้นโดเมนใหม่
       reject_media: ปฏิเสธไฟล์สื่อ
-      reject_media_hint: ลบไฟล์สื่อที่เก็บไว้ในเครื่อง และ ป้องกันการดาวน์โหลดในอนาคต.
-        Irrelevant for suspensions
+      reject_media_hint: เอาไฟล์สื่อที่จัดเก็บไว้ในเว็บออกและปฏิเสธที่จะดาวน์โหลดไฟล์ใด
+        ๆ ในอนาคต ไม่เกี่ยวข้องกับการระงับ
       show:
         affected_accounts:
           one: มีผลต่อหนึ่งบัญชีในฐานข้อมูล
@@ -158,6 +179,8 @@ th:
       title: WebSub
       topic: หัวข้อ
     title: การดูแล
+    account_moderation_notes:
+      delete: ลบ
   application_mailer:
     settings: 'เปลี่ยนการตั้งค่าอีเมล: %{link}'
     view: 'มุมมอง:'
