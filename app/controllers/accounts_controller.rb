@@ -11,6 +11,8 @@ class AccountsController < ApplicationController
     respond_to do |format|
       format.html do
         use_pack 'public'
+        mark_cacheable! unless user_signed_in?
+
         @body_classes      = 'with-modals'
         @pinned_statuses   = []
         @endorsed_accounts = @account.endorsed_accounts.to_a.sample(4)
@@ -31,17 +33,21 @@ class AccountsController < ApplicationController
       end
 
       format.atom do
+        mark_cacheable!
+
         @entries = @account.stream_entries.where(hidden: false).with_includes.paginate_by_max_id(PAGE_SIZE, params[:max_id], params[:since_id])
         render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.feed(@account, @entries.reject { |entry| entry.status.nil? || entry.status.local_only? }))
       end
 
       format.rss do
+        mark_cacheable!
+
         @statuses = cache_collection(default_statuses.without_reblogs.without_replies.limit(PAGE_SIZE), Status)
         render xml: RSS::AccountSerializer.render(@account, @statuses)
       end
 
       format.json do
-        skip_session!
+        mark_cacheable!
 
         render_cached_json(['activitypub', 'actor', @account], content_type: 'application/activity+json') do
           ActiveModelSerializers::SerializableResource.new(@account, serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter)

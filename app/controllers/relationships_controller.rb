@@ -32,17 +32,18 @@ class RelationshipsController < ApplicationController
   def relationships_scope
     scope = begin
       if following_relationship?
-        current_account.following.includes(:account_stat)
+        current_account.following.joins(:account_stat)
       else
-        current_account.followers.includes(:account_stat)
+        current_account.followers.joins(:account_stat)
       end
     end
 
     scope.merge!(Follow.recent)
     scope.merge!(mutual_relationship_scope) if mutual_relationship?
-    scope.merge!(abandoned_account_scope)   if params[:status] == 'abandoned'
-    scope.merge!(active_account_scope)      if params[:status] == 'active'
+    scope.merge!(moved_account_scope)       if params[:status] == 'moved'
+    scope.merge!(primary_account_scope)     if params[:status] == 'primary'
     scope.merge!(by_domain_scope)           if params[:by_domain].present?
+    scope.merge!(dormant_account_scope)     if params[:activity] == 'dormant'
 
     scope
   end
@@ -51,12 +52,16 @@ class RelationshipsController < ApplicationController
     Account.where(id: current_account.following)
   end
 
-  def abandoned_account_scope
+  def moved_account_scope
     Account.where.not(moved_to_account_id: nil)
   end
 
-  def active_account_scope
+  def primary_account_scope
     Account.where(moved_to_account_id: nil)
+  end
+
+  def dormant_account_scope
+    AccountStat.where(last_status_at: nil).or(AccountStat.where(AccountStat.arel_table[:last_status_at].lt(1.month.ago)))
   end
 
   def by_domain_scope
@@ -80,7 +85,7 @@ class RelationshipsController < ApplicationController
   end
 
   def current_params
-    params.slice(:page, :status, :relationship, :by_domain).permit(:page, :status, :relationship, :by_domain)
+    params.slice(:page, :status, :relationship, :by_domain, :activity).permit(:page, :status, :relationship, :by_domain, :activity)
   end
 
   def action_from_button
