@@ -911,6 +911,7 @@ fr:
     two_factor_authentication: Identification à deux facteurs
     your_apps: Vos applications
     relationships: Abonnements et abonné·e·s
+    identity_proofs: Preuves d’identité
   statuses:
     attached:
       description: 'Attaché : %{attached}'
@@ -1200,3 +1201,25 @@ fr:
     dormant: Inactif
     moved: Déplacé
     primary: Primaire
+  identity_proofs:
+    active: Active
+    authorize: Oui, autoriser
+    authorize_connection_prompt: Autoriser cette connexion cryptographique ?
+    errors:
+      failed: La connexion cryptographique a échoué. Merci d’essayer de nouveau depuis
+        %{provider}.
+      keybase:
+        invalid_token: Les jetons Keybase sont des hashs de signatures et doivent
+          être 66 caractères hexa
+        verification_failed: Keybase ne reconnait pas ce jeton comme une signature
+          de l’utilisateur·rice Keybase %{kb_username}. Merci de réessayer depuis
+          Keybase.
+    explanation_html: Ici vous pouvez connecter cryptographiquement vos autres identités,
+      telles qu’un profil Keybase. Ceci permet à d’autres personnes de vous envoyer
+      des messages chiffrés et qu’elles aient confiance dans le contenu que vous leur
+      envoyez.
+    i_am_html: Je suis %{username} sur %{service}.
+    identity: Identité
+    inactive: Inactive
+    status: Statut de la vérification
+    view_proof: Voir la preuve
