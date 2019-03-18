@@ -547,3 +547,376 @@ en_GB:
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed
       here</a>. You will be asked for confirmation.
+    didnt_get_confirmation: Didn't receive confirmation instructions?
+    forgot_password: Forgot your password?
+    invalid_reset_password_token: Password reset token is invalid or expired. Please
+      request a new one.
+    login: Log in
+    logout: Logout
+    migrate_account: Move to a different account
+    migrate_account_html: If you wish to redirect this account to a different one,
+      you can <a href="%{path}">configure it here</a>.
+    or_log_in_with: Or log in with
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Sign up
+    registration_closed: '%{instance} is not accepting new members'
+    resend_confirmation: Resend confirmation instructions
+    reset_password: Reset password
+    security: Security
+    set_new_password: Set new password
+    trouble_logging_in: Trouble logging in?
+  authorize_follow:
+    already_following: You are already following this account
+    error: Unfortunately, there was an error looking up the remote account
+    follow: Follow
+    follow_request: 'You have sent a follow request to:'
+    following: 'Success! You are now following:'
+    post_follow:
+      close: Or, you can just close this window.
+      return: Show the user's profile
+      web: Go to web
+    title: Follow %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: '%{count}h'
+      about_x_months: '%{count}mo'
+      about_x_years: '%{count}y'
+      almost_x_years: '%{count}y'
+      half_a_minute: Just now
+      less_than_x_minutes: '%{count}m'
+      less_than_x_seconds: Just now
+      over_x_years: '%{count}y'
+      x_days: '%{count}d'
+      x_minutes: '%{count}m'
+      x_months: '%{count}mo'
+      x_seconds: '%{count}s'
+  deletes:
+    bad_password_msg: Nice try, hackers! Incorrect password
+    confirm_password: Enter your current password to verify your identity
+    description_html: This will <strong>permanently, irreversibly</strong> remove
+      content from your account and deactivate it. Your username will remain reserved
+      to prevent future impersonations.
+    proceed: Delete account
+    success_msg: Your account was successfully deleted
+    warning_html: Only deletion of content from this particular server is guaranteed.
+      Content that has been widely shared is likely to leave traces. Offline servers
+      and servers that have unsubscribed from your updates will not update their databases.
+    warning_title: Disseminated content availability
+  directories:
+    directory: Profile directory
+    enabled: You are currently listed in the directory.
+    enabled_but_waiting: You have opted-in to be listed in the directory, but you
+      do not have the minimum number of followers (%{min_followers}) to be listed
+      yet.
+    explanation: Discover users based on their interests
+    explore_mastodon: Explore %{title}
+    how_to_enable: You are not currently opted-in to the directory. You can opt-in
+      below. Use hashtags in your bio text to be listed under specific hashtags!
+    people:
+      one: '%{count} person'
+      other: '%{count} people'
+  errors:
+    '403': You don't have permission to view this page.
+    '404': The page you are looking for isn't here.
+    '410': The page you were looking for doesn't exist here anymore.
+    '422':
+      content: Security verification failed. Are you blocking cookies?
+      title: Security verification failed
+    '429': Throttled
+    '500':
+      content: We're sorry, but something went wrong on our end.
+      title: This page is not correct
+    noscript_html: To use the Mastodon web application, please enable JavaScript.
+      Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Mastodon
+      for your platform.
+  exports:
+    archive_takeout:
+      date: Date
+      download: Download your archive
+      hint_html: You can request an archive of your <strong>toots and uploaded media</strong>.
+        The exported data will be in the ActivityPub format, readable by any compliant
+        software. You can request an archive every 7 days.
+      in_progress: Compiling your archive...
+      request: Request your archive
+      size: Size
+    blocks: You block
+    csv: CSV
+    domain_blocks: Domain blocks
+    follows: You follow
+    lists: Lists
+    mutes: You mute
+    storage: Media storage
+  featured_tags:
+    add_new: Add new
+    errors:
+      limit: You have already featured the maximum amount of hashtags
+  filters:
+    contexts:
+      home: Home timeline
+      notifications: Notifications
+      public: Public timelines
+      thread: Conversations
+    edit:
+      title: Edit filter
+    errors:
+      invalid_context: None or invalid context supplied
+      invalid_irreversible: Irreversible filtering only works with home or notifications
+        context
+    index:
+      delete: Delete
+      title: Filters
+    new:
+      title: Add new filter
+  footer:
+    developers: Developers
+    more: More…
+    resources: Resources
+  generic:
+    all: All
+    changes_saved_msg: Changes successfully saved!
+    copy: Copy
+    save_changes: Save changes
+    validation_errors:
+      one: Something isn't quite right yet! Please review the error below
+      other: Something isn't quite right yet! Please review %{count} errors below
+  identity_proofs:
+    active: Active
+    authorize: Yes, authorize
+    authorize_connection_prompt: Authorize this cryptographic connection?
+    errors:
+      failed: The cryptographic connection failed. Please try again from %{provider}.
+      keybase:
+        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex
+          characters
+        verification_failed: Keybase does not recognize this token as a signature
+          of Keybase user %{kb_username}. Please retry from Keybase.
+    explanation_html: Here you can cryptographically connect your other identities,
+      such as a Keybase profile. This lets other people send you encrypted messages
+      and trust content you send them.
+    i_am_html: I am %{username} on %{service}.
+    identity: Identity
+    inactive: Inactive
+    status: Verification status
+    view_proof: View proof
+  imports:
+    modes:
+      merge: Merge
+      merge_long: Keep existing records and add new ones
+      overwrite: Overwrite
+      overwrite_long: Replace current records with the new ones
+    preface: You can import data that you have exported from another server, such
+      as a list of the people you are following or blocking.
+    success: Your data was successfully uploaded and will now be processed in due
+      time
+    types:
+      blocking: Blocking list
+      domain_blocking: Domain blocking list
+      following: Following list
+      muting: Muting list
+    upload: Upload
+  in_memoriam_html: In Memoriam.
+  invites:
+    delete: Deactivate
+    expired: Expired
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day
+    expires_in_prompt: Never
+    generate: Generate
+    invited_by: 'You were invited by:'
+    max_uses:
+      one: 1 use
+      other: '%{count} uses'
+    max_uses_prompt: No limit
+    prompt: Generate and share links with others to grant access to this server
+    table:
+      expires_at: Expires
+      uses: Uses
+    title: Invite people
+  lists:
+    errors:
+      limit: You have reached the maximum amount of lists
+  media_attachments:
+    validations:
+      images_and_video: Cannot attach a video to a status that already contains images
+      too_many: Cannot attach more than 4 files
+  migrations:
+    acct: username@domain of the new account
+    currently_redirecting: 'Your profile is set to redirect to:'
+    proceed: Save
+    updated_msg: Your account migration setting successfully updated!
+  moderation:
+    title: Moderation
+  notification_mailer:
+    digest:
+      action: View all notifications
+      body: Here is a brief summary of the messages you missed since your last visit
+        on %{since}
+      mention: '%{name} mentioned you in:'
+      new_followers_summary:
+        one: Also, you have acquired one new follower while being away! Yay!
+        other: Also, you have acquired %{count} new followers while being away! Amazing!
+      subject:
+        one: 1 new notification since your last visit 🐘
+        other: '%{count} new notifications since your last visit 🐘'
+      title: In your absence...
+    favourite:
+      body: 'Your status was favourited by %{name}:'
+      subject: '%{name} favourited your status'
+      title: New favourite
+    follow:
+      body: '%{name} is now following you!'
+      subject: '%{name} is now following you'
+      title: New follower
+    follow_request:
+      action: Manage follow requests
+      body: '%{name} has requested to follow you'
+      subject: 'Pending follower: %{name}'
+      title: New follow request
+    mention:
+      action: Reply
+      body: 'You were mentioned by %{name} in:'
+      subject: You were mentioned by %{name}
+      title: New mention
+    reblog:
+      body: 'Your status was boosted by %{name}:'
+      subject: '%{name} boosted your status'
+      title: New boost
+  number:
+    human:
+      decimal_units:
+        format: '%n%u'
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+  pagination:
+    newer: Newer
+    next: Next
+    older: Older
+    prev: Prev
+    truncate: '&hellip;'
+  polls:
+    errors:
+      already_voted: You have already voted on this poll
+      duplicate_options: contain duplicate items
+      duration_too_long: is too far into the future
+      duration_too_short: is too soon
+      expired: The poll has already ended
+      over_character_limit: cannot be longer than %{max} characters each
+      too_few_options: must have more than one item
+      too_many_options: can't contain more than %{max} items
+  preferences:
+    languages: Languages
+    other: Other
+    publishing: Publishing
+    web: Web
+  relationships:
+    activity: Account activity
+    dormant: Dormant
+    moved: Moved
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Remove all followers from the selected domains
+    remove_selected_followers: Remove selected followers
+    remove_selected_follows: Unfollow selected users
+    status: Account status
+  remote_follow:
+    acct: Enter your username@domain you want to act from
+    missing_resource: Could not find the required redirect URL for your account
+    no_account_html: Don't have an account? You can <a href='%{sign_up_path}' target='_blank'>sign
+      up here</a>
+    proceed: Proceed to follow
+    prompt: 'You are going to follow:'
+    reason_html: <strong>Why is this step necessary?</strong> <code>%{instance}</code>
+      might not be the server where you are registered, so we need to redirect you
+      to your home server first.
+  remote_interaction:
+    favourite:
+      proceed: Proceed to favourite
+      prompt: 'You want to favourite this toot:'
+    reblog:
+      proceed: Proceed to boost
+      prompt: 'You want to boost this toot:'
+    reply:
+      proceed: Proceed to reply
+      prompt: 'You want to reply to this toot:'
+  remote_unfollow:
+    error: Error
+    title: Title
+    unfollowed: Unfollowed
+  scheduled_statuses:
+    over_daily_limit: You have exceeded the limit of %{limit} scheduled toots for
+      that day
+    over_total_limit: You have exceeded the limit of %{limit} scheduled toots
+    too_soon: The scheduled date must be in the future
+  sessions:
+    activity: Last activity
+    browser: Browser
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Unknown browser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Current session
+    description: '%{browser} on %{platform}'
+    explanation: These are the web browsers currently logged in to your Mastodon account.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: unknown platform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Revoke
+    revoke_success: Session successfully revoked
+    title: Sessions
+  settings:
+    authorized_apps: Authorized apps
+    back: Back to Mastodon
+    delete: Account deletion
+    development: Development
+    edit_profile: Edit profile
+    export: Data export
+    featured_tags: Featured hashtags
+    identity_proofs: Identity proofs
+    import: Import
+    migrate: Account migration
+    notifications: Notifications
+    preferences: Preferences
+    relationships: Follows and followers
+    settings: Settings
+    two_factor_authentication: Two-factor Auth
+    your_apps: Your applications
+  statuses:
+    attached:
+      description: 'Attached: %{attached}'
