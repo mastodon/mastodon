@@ -50,6 +50,7 @@ class ModifierPickerMenu extends React.PureComponent {
     active: PropTypes.bool,
     onSelect: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
+    modifier: PropTypes.number,
   };
 
   handleClick = e => {
@@ -86,20 +87,36 @@ class ModifierPickerMenu extends React.PureComponent {
 
   setRef = c => {
     this.node = c;
+    if (this.node) {
+      this.node.querySelector('li:first-child button').focus(); // focus the first element when opened
+    }
   }
 
   render () {
-    const { active } = this.props;
+    const { active, modifier } = this.props;
 
     return (
-      <div className='emoji-picker-dropdown__modifiers__menu' style={{ display: active ? 'block' : 'none' }} ref={this.setRef}>
-        <button onClick={this.handleClick} data-index={1}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={1} backgroundImageFn={backgroundImageFn} /></button>
-        <button onClick={this.handleClick} data-index={2}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={2} backgroundImageFn={backgroundImageFn} /></button>
-        <button onClick={this.handleClick} data-index={3}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={3} backgroundImageFn={backgroundImageFn} /></button>
-        <button onClick={this.handleClick} data-index={4}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={4} backgroundImageFn={backgroundImageFn} /></button>
-        <button onClick={this.handleClick} data-index={5}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={5} backgroundImageFn={backgroundImageFn} /></button>
-        <button onClick={this.handleClick} data-index={6}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={6} backgroundImageFn={backgroundImageFn} /></button>
-      </div>
+      <ul
+        className='emoji-picker-dropdown__modifiers__menu'
+        style={{ display: active ? 'block' : 'none' }}
+        role='menuitem'
+        ref={this.setRef}
+      >
+        {[1, 2, 3, 4, 5, 6].map(i => (
+          <li
+            onClick={this.handleClick}
+            role='menuitemradio'
+            aria-checked={i === (modifier || 1)}
+            data-index={i}
+            key={i}
+          >
+            <Emoji
+              emoji='fist' set='twitter' size={22} sheetSize={32} skin={i}
+              backgroundImageFn={backgroundImageFn}
+            />
+          </li>
+        ))}
+      </ul>
     );
   }
 
@@ -131,10 +148,22 @@ class ModifierPicker extends React.PureComponent {
   render () {
     const { active, modifier } = this.props;
 
+    function setRef(ref) {
+      if (!ref) {
+        return;
+      }
+      // TODO: It would be nice if we could pass props directly to emoji-mart's buttons.
+      const button = ref.querySelector('button');
+      button.setAttribute('aria-haspopup', 'true');
+      button.setAttribute('aria-expanded', active);
+    }
+
     return (
       <div className='emoji-picker-dropdown__modifiers'>
-        <Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={modifier} onClick={this.handleClick} backgroundImageFn={backgroundImageFn} />
-        <ModifierPickerMenu active={active} onSelect={this.handleSelect} onClose={this.props.onClose} />
+        <div ref={setRef}>
+          <Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={modifier} onClick={this.handleClick} backgroundImageFn={backgroundImageFn} />
+        </div>
+        <ModifierPickerMenu active={active} modifier={modifier} onSelect={this.handleSelect} onClose={this.props.onClose} />
       </div>
     );
   }

@@ -2,7 +2,7 @@
 kk:
   about:
     about_hashtag_html: Бұл жерде <strong>#%{hashtag}</strong> хэштегімен жинақталған жазбалар. Желіге тіркеліп, сіз де қосыла аласыз бұл ортаға.
-    about_mastodon_html: Mastodon - әлеуметтік желіге негізделген, тегін және веб протоколды, ашық кодты құрылым. Ол email сияқты орталықтандырылған.
+    about_mastodon_html: Mastodon - әлеуметтік желіге негізделген, тегін және веб протоколды, ашық кодты бағдарлама. Ол email сияқты орталығы жоқ құрылым.
     about_this: Туралы
     administered_by: 'Админ:'
     api: API
@@ -705,6 +705,16 @@ kk:
     older: Ерте
     prev: Алдыңғы
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Бұл сауалнамаға қатысқансыз
+      duplicate_options: қайталанатын нәрселер бар
+      duration_too_long: тым ұзақ екен
+      duration_too_short: тым аз екен
+      expired: Сауалнама уақыты аяқталған
+      over_character_limit: "%{max} таңбадан артық болмайды"
+      too_few_options: бір жауаптан көп болуы керек
+      too_many_options: "%{max} жауаптан көп болмайды"
   preferences:
     languages: Тілдер
     other: Басқа
@@ -813,6 +823,11 @@ kk:
       ownership: Біреудің жазбасы жабыстырылмайды
       private: Жабық жазба жабыстырылмайды
       reblog: Бөлісілген жазба жабыстырылмайды
+    poll:
+      total_votes:
+        one: "%{count} дауыс"
+        other: "%{count} дауыс"
+      vote: Дауыс беру
     show_more: Тағы әкел
     sign_in_to_participate: Сұхбатқа қатысу үшін кіріңіз
     title: '%{name}: "%{quote}"'
