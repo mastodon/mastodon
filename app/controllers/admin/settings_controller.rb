@@ -27,7 +27,6 @@ module Admin
       preview_sensitive_media
       custom_css
       profile_directory
-      keybase_contacts
     ).freeze
 
     BOOLEAN_SETTINGS = %w(

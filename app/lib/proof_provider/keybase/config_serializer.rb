@@ -65,6 +65,6 @@ class ProofProvider::Keybase::ConfigSerializer < ActiveModel::Serializer
   end
 
   def contact
-    Setting.keybase_contacts.split(/\s+,\s+/)
+    [Setting.site_contact_email.presence].compact
   end
 end

@@ -2,7 +2,7 @@
 - fields = account.fields
 
 .public-account-bio
-  - if !fields.empty? || !proofs.empty?
+  - unless fields.empty? && proofs.empty?
     .account__header__fields
       - proofs.each do |proof|
         %dl
