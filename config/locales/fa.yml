@@ -43,6 +43,10 @@ fa:
     discover_users: یافتن کاربران
     federation_hint_html: با داشتن حساب روی %{instance} می‌توانید کاربران همهٔ سرورهای
       دیگر ماستدون (و سایر شبکه‌های سازگار با آن) را پی بگیرید.
+    get_apps: یک اپ موبایل را امتحان کنید
+    see_whats_happening: ببینید چه خبر است
+    server_stats: 'آمار سرور:'
+    tagline: با دوستان خود در ارتباط باشید و دوستان تازه پیدا کنید
   accounts:
     choices_html: 'انتخاب‌های %{name}:'
     follow: پی بگیرید
@@ -130,6 +134,7 @@ fa:
         silenced: بی‌صدا شده
         suspended: معلق شده
         title: وضعیت
+        pending: در انتظار
       moderation_notes: یادداشت مدیر
       most_recent_activity: آخرین فعالیت‌ها
       most_recent_ip: آخرین IP ها
@@ -177,6 +182,9 @@ fa:
       username: نام کاربری
       warn: هشدار
       web: وب
+      approve: پذیرفتن
+      pending: در انتظار بررسی
+      reject: نپذیرفتن
     action_logs:
       actions:
         assigned_to_self_report: '%{name} رسیدگی به گزارش %{target} را به عهده گرفت'
@@ -471,6 +479,12 @@ fa:
         desc_html: نوشته‌های عمومی این سرور را در صفحهٔ آغازین نشان دهید
         title: پیش‌نمایش نوشته‌ها
       title: تنظیمات سایت
+      registrations_mode:
+        modes:
+          approved: ثبت نام نیازمند تأیید مدیران است
+          none: کسی نمی‌تواند ثبت نام کند
+          open: همه می‌توانند ثبت نام کنند
+        title: شرایط ثبت نام
     statuses:
       back_to_account: بازگشت به صفحهٔ حساب
       batch:
@@ -512,6 +526,9 @@ fa:
       body: کاربر %{reporter} کاربر %{target} را گزارش داد
       body_remote: کسی از %{domain} گزارش %{target} را فرستاده
       subject: گزارش تازه‌ای برای %{instance} (#%{id})
+    new_pending_account:
+      body: جزئیات حساب تازه این‌جاست. شما می‌توانید آن را تأیید یا رد کنید.
+      subject: حساب تازه‌ای در %{instance} نیازمند بررسی است (%{username})
   application_mailer:
     notification_preferences: تغییر ترجیحات ایمیل
     salutation: '%{name}،'
@@ -553,6 +570,11 @@ fa:
     reset_password: بازنشانی رمز
     security: امنیت
     set_new_password: تعیین رمز تازه
+    apply_for_account: درخواست دعوت‌نامه
+    checkbox_agreement_html: من <a href="%{rules_path}" target="_blank">قانون‌های
+      این سرور</a> و <a href="%{terms_path}" target="_blank">شرایط کاربری</a> را می‌پذیرم
+    registration_closed: سرور %{instance} عضو تازه‌ای نمی‌پذیرد
+    trouble_logging_in: برای ورود مشکلی دارید؟
   authorize_follow:
     already_following: شما همین الان هم این حساب را پی‌می‌گیرید
     error: متأسفانه حین یافتن آن حساب خطایی رخ داد
@@ -668,6 +690,7 @@ fa:
     validation_errors:
       one: یک چیزی هنوز درست نیست! لطفاً خطاهای زیر را ببینید
       other: یک چیزی هنوز درست نیست! لطفاً %{count} خطای زیر را ببینید
+    all: همه
   imports:
     modes:
       merge: ادغام
@@ -873,6 +896,7 @@ fa:
     settings: تنظیمات
     two_factor_authentication: ورود دومرحله‌ای
     your_apps: برنامهٔ شما
+    relationships: پیگیری‌ها و پیگیران
   statuses:
     attached:
       description: 'پیوست‌شده: %{attached}'
@@ -1024,3 +1048,14 @@ fa:
       <strong>باید</strong> عبارت <code>rel="me"‎</code> را به عنوان attribute در
       خود داشته باشد. محتوای متن پیوند اهمتی ندارد. یک نمونه از چنین پیوندی:'
     verification: تأیید
+  relationships:
+    activity: فعالیت حساب
+    dormant: غیرفعال
+    moved: منتقل‌شده
+    mutual: دوطرفه
+    primary: اصلی
+    relationship: رابطه
+    remove_selected_domains: همهٔ پیگیران از طرف این سرور را بردار
+    remove_selected_followers: پیگیران انتخاب‌شده را بردار
+    remove_selected_follows: به پیگیری از کاربران انتخاب‌شده پایان بده
+    status: وضعیت حساب
