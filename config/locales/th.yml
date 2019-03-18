@@ -30,7 +30,7 @@ th:
       one: ผู้ติดตาม
       other: ผู้ติดตาม
     following: กำลังติดตาม
-    nothing_here: ไม่พบสิ่งใดที่นี่!
+    nothing_here: ไม่มีสิ่งใดที่นี่!
     people_followed_by: ผู้คนที่ %{name} ติดตาม
     people_who_follow: ผู้คนที่ติดตาม %{name}
     posts:
@@ -45,6 +45,7 @@ th:
       bot: บอต
       admin: ผู้ดูแล
       moderator: ผู้ควบคุม
+    moved_html: '%{name} ได้ย้ายไปยัง %{new_profile_link}:'
   admin:
     accounts:
       are_you_sure: คุณแน่ใจหรือไม่?
@@ -57,7 +58,7 @@ th:
       edit: แก้ไข
       email: อีเมล
       email_status: สถานะอีเมล
-      feed_url: Feed URL
+      feed_url: URL ฟีด
       followers: ผู้ติดตาม
       follows: ติดตาม
       location:
@@ -65,7 +66,7 @@ th:
         local: ในเว็บ
         remote: ระยะไกล
         title: ตำแหน่งที่ตั้ง
-      media_attachments: สื่อที่แนบมา
+      media_attachments: ไฟล์แนบสื่อ
       moderation:
         all: ทั้งหมด
         silenced: ถูกเงียบ
@@ -73,11 +74,11 @@ th:
         title: การควบคุม
       most_recent_activity: กิจกรรมล่าสุด
       most_recent_ip: IP ล่าสุด
-      not_subscribed: Not subscribed
+      not_subscribed: ไม่ได้บอกรับ
       perform_full_suspension: ระงับ
-      profile_url: Profile URL
+      profile_url: URL โปรไฟล์
       public: สาธารณะ
-      push_subscription_expires: PuSH subscription expires
+      push_subscription_expires: การบอกรับ PuSH หมดอายุเมื่อ
       resend_confirmation:
         already_confirmed: ผู้ใช้นี้ได้รับการยืนยันอยู่แล้ว
         send: ส่งอีเมลยืนยันอีกครั้ง
@@ -101,6 +102,7 @@ th:
         current_email: อีเมลปัจจุบัน
         label: เปลี่ยนอีเมล
         new_email: อีเมลใหม่
+        submit: เปลี่ยนอีเมล
       disable: ปิดใช้งาน
       enable: เปิดใช้งาน
       header: ส่วนหัว
@@ -111,6 +113,20 @@ th:
       remove_avatar: เอาภาพประจำตัวออก
       remove_header: เอาส่วนหัวออก
       unsubscribe: เลิกบอกรับ
+      demote: ลดระดับ
+      followers_url: URL ผู้ติดตาม
+      inbox_url: URL กล่องขาเข้า
+      invited_by: เชิญโดย
+      joined: เข้าร่วมเมื่อ
+      outbox_url: URL กล่องขาออก
+      roles:
+        admin: ผู้ดูแล
+        moderator: ผู้ควบคุม
+        staff: พนักงาน
+        user: ผู้ใช้
+      search: ค้นหา
+      subscribe: บอกรับ
+      warn: เตือน
     domain_blocks:
       add_new: เพิ่มการปิดกั้นโดเมนใหม่
       created_msg: กำลังประมวลผลการปิดกั้นโดเมน
@@ -141,7 +157,7 @@ th:
         undo: เลิกทำ
       undo: เลิกทำการปิดกั้นโดเมน
     instances:
-      title: Known Instances
+      title: สหพันธ์
     reports:
       comment:
         none: None
@@ -165,10 +181,10 @@ th:
       site_description:
         desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>
           ใช้ HTML tags ได้, in particular <code>&lt;a&gt;</code> และ <code>&lt;em&gt;</code>.
-        title: คำอธิบายไซต์
+        title: คำอธิบายเซิร์ฟเวอร์
       site_description_extended:
         desc_html: Displayed on extended information page<br>You can use HTML tags
-        title: คำอธิบายไซต์เพิ่มเติม
+        title: ข้อมูลแบบขยายที่กำหนดเอง
       site_title: ชื่อเซิร์ฟเวอร์
       title: การตั้งค่าไซต์
     subscriptions:
@@ -181,6 +197,12 @@ th:
     title: การดูแล
     account_moderation_notes:
       delete: ลบ
+    custom_emojis:
+      by_domain: โดเมน
+      copy: คัดลอก
+      delete: ลบ
+      disable: ปิดใช้งาน
+      enable: เปิดใช้งาน
   application_mailer:
     settings: 'เปลี่ยนการตั้งค่าอีเมล: %{link}'
     view: 'มุมมอง:'
