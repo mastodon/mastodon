@@ -311,6 +311,7 @@ cy:
       back_to_account: Nôl i'r gyfrif
       title: Dilynwyr %{acct}
     instances:
+      by_domain: Parth
       delivery_available: Mae'r cyflenwad ar gael
       known_accounts:
         few: "%{count} cyfrifon hysbys"
@@ -482,6 +483,8 @@ cy:
       add_new: Ychwanegu newydd
       delete: Dileu
       edit: Golygu
+      edit_preset: Golygu rhagosodiad rhybudd
+      title: Rheoli rhagosodiadau rhybudd
   admin_mailer:
     new_report:
       body: Mae %{reporter} wedi cwyno am %{target}
@@ -598,6 +601,10 @@ cy:
     lists: Rhestrau
     mutes: Yr ydych yn tawelu
     storage: Storio cyfryngau
+  featured_tags:
+    add_new: Ychwanegu
+    errors:
+      limit: Yr ydych yn barod wedi cynnwys yr uchafswm o hashnodau
   filters:
     contexts:
       home: Ffrwd gartref
@@ -630,6 +637,9 @@ cy:
       two: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
       zero: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
   imports:
+    modes:
+      merge: Cyfuno
+      merge_long: Cadw'r cofnodau presennol ac ychwanegu rhai newydd
     preface: Mae modd mewnforio data yr ydych wedi allforio o achos arall, megis rhestr o bobl yr ydych yn ei ddilyn neu yn blocio.
     success: Uwchlwythwyd eich data yn llwyddiannus ac fe fydd yn cael ei brosesu mewn da bryd
     types:

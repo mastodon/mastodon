@@ -6,6 +6,8 @@ class FollowerAccountsController < ApplicationController
   def index
     respond_to do |format|
       format.html do
+        mark_cacheable! unless user_signed_in?
+
         next if @account.user_hides_network?
 
         follows

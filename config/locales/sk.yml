@@ -413,7 +413,7 @@ sk:
         desc_html: Zobraz moderátorsky odznak na užívateľovom profile
         title: Zobraz značku moderátora
       site_description:
-        desc_html: Oboznamujúci paragraf na hlavnej stránke a pri meta tagoch. Opíš, čo robí tento Mastodon server špecifickým, a ďalej hocičo iné, čo považuješ za dôležité. Môžeš použiť HTML kód, hlavne <code>&lt; a &gt;</code>, ale tiež <code>&lt;&gt;</code>.
+        desc_html: Oboznamujúci paragraf na hlavnej stránke a pri meta tagoch. Opíš, čo robí tento Mastodon server špecifickým, a ďalej hocičo iné, čo považuješ za dôležité. Môžeš použiť HTML kód, hlavne <code>&lt;a&gt;</code> a <code>&lt;em&gt;</code>.
         title: Popis servera
       site_description_extended:
         desc_html: Toto je vhodné miesto pre tvoje pravidlá o prevádzke, pokyny, podmienky a iné veci, ktorými je tvoj server špecifický. Je možné tu používať HTML tagy
@@ -837,6 +837,12 @@ sk:
       ownership: Nieje možné pripnúť hlášku od niekoho iného
       private: Neverejné príspevky nemôžu byť pripnuté
       reblog: Pozdvihnutie sa nedá pripnúť
+    poll:
+      total_votes:
+        few: "%{count} hlas(y)ov"
+        one: "%{count} hlas"
+        other: "%{count} hlas(y)ov"
+      vote: Hlasuj
     show_more: Ukáž viac
     sign_in_to_participate: Prihlás sa pre zapojenie do diskusie
     title: '%{name}: „%{quote}"'
