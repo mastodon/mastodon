@@ -34,6 +34,18 @@ es:
       other: usuarios
     user_count_before: Tenemos
     what_is_mastodon: ¿Qué es Mastodon?
+    active_count_after: activo
+    active_footnote: Usuarios Activos Mensuales (UAM)
+    apps_platforms: Utiliza Mastodon desde iOS, Android y otras plataformas
+    browse_directory: Busca perfiles de acuerdo a tus aficiones
+    browse_public_posts: Navega por la cronología pública en Mastodon
+    discover_users: Descubra a nuevas personas
+    federation_hint_html: Con una cuenta en %{instance}, podrás rastrear personas
+      en cualquier instancia de Mastodon y más allá.
+    get_apps: Pruebe una aplicación móvil
+    see_whats_happening: Vea lo que sucede
+    server_stats: 'Estadísticas de la instancia:'
+    tagline: Sigue a tus amigos y descubre a otros
   accounts:
     choices_html: 'Elecciones de %{name}:'
     follow: Seguir
@@ -66,6 +78,7 @@ es:
   admin:
     account_actions:
       title: Moderar %{acct}
+      action: Realizar una acción
     account_moderation_notes:
       create: Crear
       created_msg: ¡Nota de moderación creada con éxito!
@@ -119,6 +132,7 @@ es:
         silenced: Silenciados
         suspended: Suspendidos
         title: Moderación
+        pending: Pendiente
       moderation_notes: Notas de moderación
       most_recent_activity: Actividad más reciente
       most_recent_ip: IP más reciente
@@ -164,6 +178,12 @@ es:
       unsubscribe: Desuscribir
       username: Nombre de usuario
       web: Web
+      approve: Aprobar
+      joined: Registrado desde
+      pending: A la espera de la moderación
+      reject: Rechazar
+      remove_header: Eliminar la cabecera
+      warn: Aviso de advertencia
     action_logs:
       actions:
         assigned_to_self_report: '%{name} se ha asignado la denuncia %{target} a sí
@@ -201,6 +221,7 @@ es:
         unsuspend_account: '%{name} desactivó la suspensión de la cuenta de %{target}'
         update_custom_emoji: '%{name} actualizó el emoji %{target}'
         update_status: '%{name} actualizó el estado de %{target}'
+        create_account_warning: '%{name} envió una atención a %{target}'
       deleted_status: (estado borrado)
       title: Log de auditoría
     custom_emojis:
@@ -250,6 +271,7 @@ es:
       week_interactions: interacciones esta semana
       week_users_active: activo esta semana
       week_users_new: usuarios esta semana
+      feature_profile_directory: Directorio de perfiles
     domain_blocks:
       add_new: Añadir un nuevo bloque de dominio
       created_msg: El bloque de dominio está siendo procesado
@@ -285,6 +307,11 @@ es:
         title: Deshacer bloque de dominio para %{domain}
         undo: Deshacer
       undo: Deshacer el bloque de dominio
+      rejecting_media: rechazo de archivos multimedia
+      rejecting_reports: rechazar un informe
+      severity:
+        silence: silenciada
+        suspend: suspendido
     email_domain_blocks:
       add_new: Añadir nuevo
       created_msg: Dominio de correo añadido a la lista negra con éxito
@@ -297,6 +324,20 @@ es:
       title: Lista negra de correo
     instances:
       title: Federación
+      by_domain: Dominio
+      delivery_available: Entrega disponible
+      known_accounts:
+        one: '%{count} cuenta conocida'
+        other: '%{count} cuentas conocidas'
+      moderation:
+        all: Todo
+        limited: Limitado
+        title: Moderación
+      total_blocked_by_us: Bloqueado por nosotros
+      total_followed_by_them: Seguido por ellos
+      total_followed_by_us: Seguido por nosotros
+      total_reported: Alertas sobre ellos
+      total_storage: Archivos adjuntos
     invites:
       deactivate_all: Desactivar todos
       filter:
@@ -436,6 +477,15 @@ es:
         desc_html: Mostrar línea de tiempo pública en la portada
         title: Previsualización
       title: Ajustes del sitio
+      profile_directory:
+        desc_html: Permitir que los usuarios sean descubiertos
+        title: Activar el directorio de los perfiles
+      registrations_mode:
+        modes:
+          approved: Se requiere aprobación para el registro
+          none: Nadie puede registrarse
+          open: Cualquiera puede registrarse
+        title: Métodos de registro
     statuses:
       back_to_account: Volver a la cuenta
       batch:
@@ -457,11 +507,32 @@ es:
       title: WebSub
       topic: Tópico
     title: Administración
+    followers:
+      back_to_account: Volver a la cuenta
+      title: Suscriptores de %{acct}
+    tags:
+      accounts: Comptes
+      hidden: Oculto
+      hide: Ocultar en el directorio
+      name: Etiqueta
+      title: Etiquetas
+      unhide: Mostrar en el directorio
+      visible: Visible
+    warning_presets:
+      add_new: Añadir uno nuevo
+      delete: Borrar
+      edit: Editar
+      edit_preset: Editar la preselección de atención
+      title: Gestionar los presets de atención
   admin_mailer:
     new_report:
       body: '%{reporter} ha reportado a %{target}'
       body_remote: Alguien de %{domain} a reportado a %{target}
       subject: Nuevo reporte para la %{instance} (#%{id})
+    new_pending_account:
+      body: Los detalles de la nueva cuenta se detallan a continuación. Puede autorizar
+        o rechazar esta solicitud.
+      subject: Nueva cuenta para revisión en %{instance} (%{username})
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
     salutation: '%{name},'
@@ -503,6 +574,12 @@ es:
     reset_password: Restablecer contraseña
     security: Cambiar contraseña
     set_new_password: Establecer nueva contraseña
+    apply_for_account: Solicitar una invitación
+    checkbox_agreement_html: Acepto las <a href="%{rules_path}" target="_blank">reglas
+      de la instancia</a> y <a href="%{terms_path}" target="_blank">las condiciones
+      de uso</a>
+    registration_closed: '%{instance} no admite nuevos miembros'
+    trouble_logging_in: ¿Problemas de conexión?
   authorize_follow:
     already_following: Ya estás siguiendo a esta cuenta
     error: Desafortunadamente, ha ocurrido un error buscando la cuenta remota
@@ -570,6 +647,8 @@ es:
     follows: Personas que sigues
     mutes: Tienes en silencio
     storage: Almacenamiento
+    domain_blocks: Bloqueo de dominios
+    lists: Listas
   filters:
     contexts:
       home: Timeline propio
@@ -598,6 +677,7 @@ es:
     validation_errors:
       one: ¡Algo no está bien! Por favor, revisa el error
       other: ¡Algo no está bien! Por favor, revise %{count} errores más abajo
+    all: Todo
   imports:
     preface: Puede importar algunos datos que haya exportado desde otra instancia,
       como una lista de personas a las que está siguiendo o bloqueando en su cuenta.
@@ -606,7 +686,13 @@ es:
       blocking: Lista de bloqueados
       following: Lista de seguidos
       muting: Lista de silenciados
+      domain_blocking: Lista de instancias bloqueadas
     upload: Cargar
+    modes:
+      merge: Fusionar
+      merge_long: Mantenga los registros existentes y añada otros nuevos
+      overwrite: Reescribir
+      overwrite_long: Sustituir los registros actuales por otros nuevos
   in_memoriam_html: En memoria.
   invites:
     delete: Desactivar
@@ -713,6 +799,9 @@ es:
       aqui</a>
     proceed: Proceder a seguir
     prompt: 'Vas a seguir a:'
+    reason_html: <strong>¿Por qué es necesario este paso?</strong> Es possible que
+      <code>%{instance}</code> no sea la instancia donde te registraste, así que necesitamos
+      redirigirte primero a tu instancia base.
   remote_unfollow:
     error: Error
     title: Título
@@ -773,6 +862,8 @@ es:
     settings: Ajustes
     two_factor_authentication: Autenticación de dos factores
     your_apps: Tus aplicaciones
+    featured_tags: Etiquetos presentados
+    relationships: Suscripciones y suscriptores
   statuses:
     attached:
       description: 'Adjunto: %{attached}'
@@ -806,6 +897,11 @@ es:
       unlisted: Público, pero no mostrar en la historia federada
       unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo
         públicas
+    poll:
+      total_votes:
+        one: '%{count} voto'
+        other: '%{count} votos'
+      vote: Votar
   stream_entries:
     pinned: Toot fijado
     reblogged: retooteado
@@ -885,6 +981,27 @@ es:
         nativa en muchas formas!
       tips: Trucos
       title: Te damos la bienvenida a bordo, %{name}!
+    warning:
+      explanation:
+        disable: Mientras su cuenta esté congelada, los datos de su cuenta permanecerán
+          intactos, pero no podrá realizar ninguna acción hasta que se desbloquee.
+        silence: Cuando tu cuenta es limitada, sólo los usuarios que ya te están siguiendo
+          verán tus pouets en este servidor, y puedes ser excluido de varias listas
+          públicas. Sin embargo, otros usuarios pueden seguirte manualmente.
+        suspend: Su cuenta ha sido suspendida, y todos sus pouets y archivos multimedia
+          descargados han sido borrados irreversiblemente de este servidor, y de los
+          servidores donde usted tenía suscriptores.
+      review_server_policies: Revisar las políticas de la instancia
+      subject:
+        disable: Su cuenta %{acct} ha sido congelada
+        none: Advertencia para %{acct}
+        silence: Su cuenta %{acct} ha sido limitada
+        suspend: Su cuenta %{acct} ha sido suspendida
+      title:
+        disable: Cuenta congelada
+        none: Aviso de advertencia
+        silence: Cuenta limitada
+        suspend: Cuenta suspendida
   users:
     follow_limit_reached: No puedes seguir a más de %{limit} personas
     invalid_email: La dirección de correo es incorrecta
@@ -901,3 +1018,56 @@ es:
       debe </strong> tener un atributo <code> rel="me"</code>. El texto del vínculo
       no importa. Aquí un ejemplo:'
     verification: Verificación
+  directories:
+    directory: Directorio de perfiles
+    enabled: Actualmente se encuentra en el directorio.
+    enabled_but_waiting: Usted ha elegido ser incluido en el directorio, pero aún
+      no tiene el número mínimo de seguidores (%{min_followers}} para ser incluido.
+    explanation: Descubrir a los usuarios en función de sus intereses
+    explore_mastodon: Explorar %{title}
+    how_to_enable: Aún no se encuentra en el directorio. Puede registrarse a continuación.
+      ¡Utilice etiquetas en su texto biográfico para que aparezca en la lista de hashtags
+      específicos!
+    people:
+      one: '%{count} persona'
+      other: '%{count} personas'
+  featured_tags:
+    add_new: Añadir una nueva etiqueta
+    errors:
+      limit: Ya ha resaltado el número máximo de etiquetas
+  polls:
+    errors:
+      already_voted: Usted ya ha votado sobre esta encuesta
+      duplicate_options: contiene duplicados
+      duration_too_long: está demasiado lejos en el futuro
+      duration_too_short: es demasiado pronto
+      expired: Esta encuesta ya ha sido completada
+      over_character_limit: no puede ser mayor que %{max} caracteres cada uno
+      too_few_options: debe tener más de una propuesta
+      too_many_options: no podrá contener más de %{max} propuestas
+  relationships:
+    activity: Actividad de la cuenta
+    dormant: Dormido
+    moved: Mudado
+    mutual: Mutuo
+    primary: Primaria
+    relationship: Relación
+    remove_selected_domains: Eliminar todos los suscriptores de las instancias seleccionadas
+    remove_selected_followers: Eliminar suscriptores seleccionados
+    remove_selected_follows: Dejar de seguir a los usuarios seleccionados
+    status: Estado de cuenta
+  remote_interaction:
+    favourite:
+      proceed: Confirmar la adición a favoritos
+      prompt: 'Quieres hacer de este piojo un favorito:'
+    reblog:
+      proceed: Confirmar la repartición
+      prompt: 'Quieres compartir este piojo de nuevo:'
+    reply:
+      proceed: Confirme la respuesta
+      prompt: 'Quieres responder a este toot:'
+  scheduled_statuses:
+    over_daily_limit: Ha excedido el límite de %{limit} toots planificadas para este
+      día
+    over_total_limit: Ha excedido el límite de %{limit} toots planificadas
+    too_soon: La fecha prevista debe ser en el futuro
