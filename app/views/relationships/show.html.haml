@@ -16,13 +16,20 @@
     %strong= t 'relationships.status'
     %ul
       %li= filter_link_to t('generic.all'), status: nil
-      %li= filter_link_to t('relationships.active'), status: 'active'
-      %li= filter_link_to t('relationships.abandoned'), status: 'abandoned'
+      %li= filter_link_to t('relationships.primary'), status: 'primary'
+      %li= filter_link_to t('relationships.moved'), status: 'moved'
+
+  .filter-subset
+    %strong= t 'relationships.activity'
+    %ul
+      %li= filter_link_to t('generic.all'), activity: nil
+      %li= filter_link_to t('relationships.dormant'), activity: 'dormant'
 
 = form_for(@form, url: relationships_path, method: :patch) do |f|
   = hidden_field_tag :page, params[:page] || 1
   = hidden_field_tag :relationship, params[:relationship]
   = hidden_field_tag :status, params[:status]
+  = hidden_field_tag :activity, params[:activity]
 
   .batch-table
     .batch-table__toolbar
