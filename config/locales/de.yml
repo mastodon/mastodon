@@ -1186,3 +1186,18 @@ de:
     remove_selected_followers: Entferne ausgewählte Follower
     remove_selected_follows: Entfolge ausgewählte Benutzer
     status: Kontostatus
+  identity_proofs:
+    active: Aktiv
+    authorize: Ja, autorisieren
+    authorize_connection_prompt: Diese kryptographische Verbindung autorisieren?
+    errors:
+      failed: Die kryptographische Verbindung ist fehlgeschlagen. Bitte versuche es
+        nochmal von %{provider}.
+      keybase:
+        invalid_token: Keybase-Tokens sind Hashsignaturen und müssen 66 Hexadezimalzeichen
+          lang sein
+        verification_failed: Keybase nimmt dieses Token nicht als Signatur für Keybase-Benutzer
+          %{kb_username} an. Bitte versuche es nochmal über Keybase.
+    explanation_html: Hier kannst du kryptographisch deine anderen Identitäten wie
+      dein Keybase-Profil verbinden. Dadurch können andere Leute dir verschlüsselte
+      Nachrichten senden und dem Inhalt, den sie dir senden, vertrauen.
