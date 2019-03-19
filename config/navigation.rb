@@ -14,6 +14,7 @@ SimpleNavigation::Configuration.run do |navigation|
       settings.item :import, safe_join([fa_icon('cloud-upload fw'), t('settings.import')]), settings_import_url
       settings.item :export, safe_join([fa_icon('cloud-download fw'), t('settings.export')]), settings_export_url
       settings.item :authorized_apps, safe_join([fa_icon('list fw'), t('settings.authorized_apps')]), oauth_authorized_applications_url
+      settings.item :identity_proofs, safe_join([fa_icon('key fw'), t('settings.identity_proofs')]), settings_identity_proofs_path, highlights_on: %r{/settings/identity_proofs*}
     end
 
     primary.item :relationships, safe_join([fa_icon('users fw'), t('settings.relationships')]), relationships_url
