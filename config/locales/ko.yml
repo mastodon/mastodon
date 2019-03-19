@@ -862,6 +862,7 @@ ko:
     two_factor_authentication: 2단계 인증
     your_apps: 애플리케이션
     relationships: 팔로잉과 팔로워
+    identity_proofs: 명의 증명
   statuses:
     attached:
       description: '첨부: %{attached}'
@@ -1053,3 +1054,24 @@ ko:
     remove_selected_followers: 선택한 팔로워 삭제
     remove_selected_follows: 선택한 유저들을 팔로우 해제
     status: 계정 상태
+    activity: 계정 활동
+    dormant: 휴면
+    moved: 이동함
+    primary: 주 계정
+  identity_proofs:
+    active: 활성
+    authorize: 네, 인증합니다
+    authorize_connection_prompt: 이 암호화 연결을 인증합니까?
+    errors:
+      failed: 암호화 연결에 실패했습니다. %{provider}에서 다시 시도해 주세요.
+      keybase:
+        invalid_token: 키베이스 토큰은 서명의 해시이며 66자의 16진수 문자여야 합니다
+        verification_failed: 키베이스가 이 토큰을 키베이스 유저 ${kb_username}의 서명으로 인식하지 못했습니다.
+          키베이스에서 다시 시도하세요.
+    explanation_html: 키베이스와 같은 다른 명의에 대한 암호화 연결을 할 수 있습니다. 이것으로 다른 사람들이 당신에게 암호화 된
+      메시지를 보낼 수 있고 당신의 메시지를 믿을 수 있습니다.
+    i_am_html: 나는 %{service}의 %{username} 입니다.
+    identity: 명의
+    inactive: 비활성
+    status: 인증 상태
+    view_proof: 증명 보기
