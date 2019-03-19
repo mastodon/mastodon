@@ -906,6 +906,7 @@ cs:
     two_factor_authentication: Dvoufaktorové ověřování
     your_apps: Vaše aplikace
     relationships: Sledovaní a sledující
+    identity_proofs: Důkazy identity
   statuses:
     attached:
       description: 'Přiloženo: %{attached}'
@@ -1167,3 +1168,21 @@ cs:
     dormant: Nečinné
     moved: Přesunuté
     primary: Primární
+  identity_proofs:
+    active: Aktivní
+    authorize: Ano, autorizovat
+    authorize_connection_prompt: Autorizovat tohle kryptografické spojení?
+    errors:
+      failed: Kryptografické spojení selhalo. Prosím zkuste to znovu z %{provider}.
+      keybase:
+        invalid_token: Tokeny Keybase jsou hashe podpisů a musí být 66 znaků dlouhé
+        verification_failed: Keybase nerozpoznává tento token jako podpis uživatele
+          %{kb_username} na Keybase. Prosím zkuste to znovu z Keybase.
+    explanation_html: Zde můžete kryptograficky připojit vaše ostatní identity, například
+      profil Keybase. To dovolí jiným lidem vám posílat šifrované zprávy a důvěřovat
+      obsahu, který jim pošlete.
+    i_am_html: Na %{service} jsem %{username}.
+    identity: Identita
+    inactive: Neaktivní
+    status: Stav ověření
+    view_proof: Zobrazit důkaz
