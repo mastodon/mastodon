@@ -42,6 +42,8 @@ pt-BR:
       servidor Mastodon e para além dele.
     get_apps: Experimente uma aplicação móvel
     see_whats_happening: Veja o que está acontecendo
+    server_stats: 'Estatísticas do servidor:'
+    tagline: Siga amigos e descubra novos
   accounts:
     choices_html: 'Escolhas de %{name}:'
     follow: Seguir
@@ -129,6 +131,7 @@ pt-BR:
         silenced: Silenciados
         suspended: Suspensos
         title: Moderação
+        pending: Pendente
       moderation_notes: Notas de moderação
       most_recent_activity: Atividade mais recente
       most_recent_ip: IP mais recente
@@ -176,6 +179,9 @@ pt-BR:
       username: Nome de usuário
       warn: Notificar
       web: Web
+      approve: Aprovar
+      pending: Esperando revisão
+      reject: Rejeitar
     action_logs:
       actions:
         assigned_to_self_report: '%{name} designou a denúncia %{target} para si'
@@ -328,6 +334,7 @@ pt-BR:
       total_followed_by_us: Seguidos por nós
       total_reported: Denúncias sobre eles
       total_storage: Mídias anexadas
+      by_domain: Domínio
     invites:
       deactivate_all: Desativar todos
       filter:
@@ -470,6 +477,12 @@ pt-BR:
         desc_html: Exibir a timeline pública na página inicial
         title: Prévia da timeline
       title: Configurações do site
+      registrations_mode:
+        modes:
+          approved: Aprovação necessária para cadastro
+          none: Ninguém pode se cadastrar
+          open: Qualquer um pode se cadastrar
+        title: Modo de inscrição
     statuses:
       back_to_account: Voltar para página da conta
       batch:
@@ -510,6 +523,10 @@ pt-BR:
       body: '%{reporter} denunciou %{target}'
       body_remote: Alguém da instância %{domain} reportou %{target}
       subject: Nova denúncia sobre %{instance} (#%{id})
+    new_pending_account:
+      body: Os detalhes da nova conta estão abaixo. Você pode aprovar ou rejeitar
+        essa aplicação.
+      subject: Nova conta para revisão em %{instance} (%{username})
   application_mailer:
     notification_preferences: Mudar preferências de e-mail
     salutation: '%{name},'
@@ -551,6 +568,12 @@ pt-BR:
     reset_password: Redefinir senha
     security: Segurança
     set_new_password: Definir uma nova senha
+    apply_for_account: Pedir um convite
+    checkbox_agreement_html: Eu concordo com <a href="%{rules_path}" target="_blank">as
+      regras do servidor</a> e com <a href="%{terms_path}" target="_blank">os termos
+      de serviço</a>
+    registration_closed: '%{instance} não está aceitando novos membros'
+    trouble_logging_in: Problemas para se conectar?
   authorize_follow:
     already_following: Você já está seguindo esta conta
     error: Infelizmente, ocorreu um erro ao buscar a conta remota
@@ -596,6 +619,11 @@ pt-BR:
     people:
       one: '%{count} pessoa'
       other: '%{count} pessoas'
+    enabled: Você está na lista do diretório.
+    enabled_but_waiting: Você escolheu ser listado no diretório, mas você ainda não
+      tem o mínimo de seguidores (%{min_followers}) para ser listado.
+    how_to_enable: Você não se inscreveu no diretório. Você pode se inscrever abaixo.
+      Use hashtags no texto da sua bio para ser listado em hashtags específicas!
   errors:
     '403': Você não tem permissão para ver esta página.
     '404': A página pela qual você está procurando não existe.
@@ -655,6 +683,7 @@ pt-BR:
     validation_errors:
       one: Algo não está certo! Por favor, reveja o erro abaixo
       other: Algo não está certo! Por favor, reveja os %{count} erros abaixo
+    all: Tudo
   imports:
     preface: Você pode importar dados que você exportou de outra instância, como a
       lista de pessoas que você segue ou bloqueou.
@@ -663,7 +692,13 @@ pt-BR:
       blocking: Lista de bloqueio
       following: Pessoas que você segue
       muting: Lista de silêncio
+      domain_blocking: Lista de domínios bloqueados
     upload: Enviar
+    modes:
+      merge: Juntar
+      merge_long: Manter os registros existentes e adicionar os novos
+      overwrite: Sobreescrever
+      overwrite_long: Substituir os registros atuais com os novos
   in_memoriam_html: Em memória.
   invites:
     delete: Desativar
@@ -846,6 +881,9 @@ pt-BR:
     settings: Configurações
     two_factor_authentication: Autenticação em dois passos
     your_apps: Seus aplicativos
+    featured_tags: Hashtags em destaque
+    identity_proofs: Provas de identidade
+    relationships: Seguindo e seguidores
   statuses:
     attached:
       description: 'Anexado: %{attached}'
@@ -878,6 +916,11 @@ pt-BR:
       public_long: Todos podem ver
       unlisted: Não listado
       unlisted_long: Todos podem ver, porém não será postado nas timelines públicas
+    poll:
+      total_votes:
+        one: '%{count} voto'
+        other: '%{count} votos'
+      vote: Votar
   stream_entries:
     pinned: Toot fixado
     reblogged: compartilhou
@@ -1101,3 +1144,49 @@ pt-BR:
       conter um atributo <code>rel="me"</code>. O conteúdo ou texto do link não importa.
       Aqui está um exemplo:'
     verification: Verificação
+  featured_tags:
+    add_new: Adicionar uma nova hashtag
+    errors:
+      limit: Você atingiu o limite de hashtags em destaque
+  identity_proofs:
+    active: Ativo
+    authorize: Sim, autorizar
+    authorize_connection_prompt: Autorizar essa conexão criptográfica?
+    errors:
+      failed: A conexão criptográfica falhou. Por favor tente novamente a partir de
+        %{provider}.
+      keybase:
+        invalid_token: Tokens keybase são hashs de assinatura e devem conter 66 caracteres
+          hexa
+        verification_failed: Keybase não reconhece esse token como uma assinatura
+          do usuário keybase %{kb_username}. Por favor tente novamente a partir de
+          Keybase.
+    explanation_html: Você pode conectar criptograficamente suas outras identidades,
+      tais quais seu perfil Keybase. Isso permite outras pessoas de lhe enviarem mensagens
+      encriptadas e confiar no conteúdo que você as envia.
+    i_am_html: Eu sou %{username} em %{service}.
+    identity: Identidade
+    inactive: Inativo
+    status: Status da verificação
+    view_proof: Ver prova
+  polls:
+    errors:
+      already_voted: Você já votou nessa pesquisa
+      duplicate_options: contém itens duplicados
+      duration_too_long: está muito longe no futuro
+      duration_too_short: é curto demais
+      expired: A enquete já terminou
+      over_character_limit: não pode ter mais que %{max} caracteres em cada
+      too_few_options: deve ter mais que um item
+      too_many_options: não pode ter mais que %{max} itens
+  relationships:
+    activity: Atividade da conta
+    dormant: Inativo
+    moved: Mudou-se
+    mutual: Mútuo
+    primary: Primário
+    relationship: Relação
+    remove_selected_domains: Remover todos os seguidores dos domínios selecionados
+    remove_selected_followers: Remover os seguidores selecionados
+    remove_selected_follows: Deixar de seguir usuários selecionados
+    status: Status da conta
