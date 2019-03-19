@@ -893,6 +893,7 @@ gl:
     two_factor_authentication: Validar Doble Factor
     your_apps: As súas aplicacións
     relationships: Seguindo e seguidoras
+    identity_proofs: Probas de identidade
   statuses:
     attached:
       description: 'Axenado: %{attached}'
@@ -1160,3 +1161,22 @@ gl:
     remove_selected_followers: Eliminar as seguidoras escollidas
     remove_selected_follows: Deixar de seguir as usuarias escollidas
     status: Estado da conta
+  identity_proofs:
+    active: Activo
+    authorize: Si, autorizar
+    authorize_connection_prompt: Autorizar esta conexión criptográfica?
+    errors:
+      failed: Fallou a conexión criptográfica. Por favor inténteo de novo desde %{provider}.
+      keybase:
+        invalid_token: Os testemuños Keybase son hashes de firma e deben ter 66 caracteres
+          hexadecimais
+        verification_failed: Keybase non recoñece este testemuño como firma da usuaria
+          de Keybase %{kb_username}. Por favor inténteo desde Keybase.
+    explanation_html: Aquí pódese conectar criptográficamente as suas outras identidades,
+      como a un perfil Keybase. Esto permitelle a outras persoas enviarlle mensaxes
+      cifradas e confiar no contido que vostede lle envía.
+    i_am_html: Eu son %{username} en %{service}.
+    identity: Identidade
+    inactive: Inactiva
+    status: Estado da validación
+    view_proof: Ver proba
