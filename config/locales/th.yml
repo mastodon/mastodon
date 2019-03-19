@@ -24,6 +24,7 @@ th:
     what_is_mastodon: Mastodon คืออะไร?
     apps: แอปในมือถือ
     generic_description: '%{domain} เป็นเซิร์ฟเวอร์หนึ่งในเครือข่าย'
+    get_apps: ลองแอปในมือถือ
   accounts:
     follow: ติดตาม
     followers:
@@ -157,10 +158,14 @@ th:
         undo: เลิกทำ
       undo: เลิกทำการปิดกั้นโดเมน
     instances:
-      title: สหพันธ์
+      title: การติดต่อกับภายนอก
+      by_domain: โดเมน
+      moderation:
+        all: ทั้งหมด
+        title: การควบคุม
     reports:
       comment:
-        none: None
+        none: ไม่มี
       mark_as_resolved: ทำเครื่องหมายว่าแก้ปัญหาแล้ว
       report: 'รายงาน #%{id}'
       reported_account: บัญชีที่ได้รับการรายงาน
@@ -169,24 +174,35 @@ th:
       status: สถานะ
       title: รายงาน
       unresolved: Unresolved
+      are_you_sure: คุณแน่ใจหรือไม่?
+      notes:
+        delete: ลบ
     settings:
       contact_information:
         email: อีเมลธุรกิจ
         username: ชื่อผู้ใช้ในการติดต่อ
       registrations:
         closed_message:
-          desc_html: Displayed on frontpage when registrations are closed<br> ใช้
-            HTML tags ได้
+          desc_html: แสดงผลในหน้าแรกเมื่อปิดการลงทะเบียน คุณสามารถใช้แท็ก HTML
           title: ข้อความการปิดการลงทะเบียน
+        deletion:
+          title: เปิดการลบบัญชี
       site_description:
-        desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>
-          ใช้ HTML tags ได้, in particular <code>&lt;a&gt;</code> และ <code>&lt;em&gt;</code>.
+        desc_html: ย่อหน้าเกริ่นนำในหน้าแรก อธิบายถึงสิ่งที่ทำให้เซิร์ฟเวอร์ Mastodon
+          นี้พิเศษและสิ่งอื่นใดที่สำคัญ คุณสามารถใช้แท็ก HTML โดยเฉพาะอย่างยิ่ง <code>&lt;a&gt;</code>
+          และ <code>&lt;em&gt;</code>
         title: คำอธิบายเซิร์ฟเวอร์
       site_description_extended:
         desc_html: Displayed on extended information page<br>You can use HTML tags
         title: ข้อมูลแบบขยายที่กำหนดเอง
       site_title: ชื่อเซิร์ฟเวอร์
       title: การตั้งค่าไซต์
+      custom_css:
+        title: CSS ที่กำหนดเอง
+      registrations_mode:
+        title: โหมดการลงทะเบียน
+      site_short_description:
+        title: คำอธิบายเซิร์ฟเวอร์แบบสั้น
     subscriptions:
       callback_url: Callback URL
       confirmed: ยืนยันแล้ว
@@ -203,9 +219,45 @@ th:
       delete: ลบ
       disable: ปิดใช้งาน
       enable: เปิดใช้งาน
+      overwrite: เขียนทับ
+      upload: อัปโหลด
+    dashboard:
+      feature_deletions: การลบบัญชี
+      feature_profile_directory: ไดเรกทอรีโปรไฟล์
+      feature_registrations: การลงทะเบียน
+      software: ซอฟต์แวร์
+    email_domain_blocks:
+      delete: ลบ
+      domain: โดเมน
+      new:
+        create: เพิ่มโดเมน
+    relays:
+      delete: ลบ
+      disable: ปิดใช้งาน
+      enable: เปิดใช้งาน
+    statuses:
+      batch:
+        delete: ลบ
+      media:
+        title: สื่อ
+      no_media: ไม่มีสื่อ
+      title: สถานะบัญชี
+    tags:
+      accounts: บัญชี
+      hide: ซ่อนจากไดเรกทอรี
+      name: แฮชแท็ก
+      title: แฮชแท็ก
+      unhide: แสดงในไดเรกทอรี
+    warning_presets:
+      add_new: เพิ่มใหม่
+      delete: ลบ
+      edit: แก้ไข
   application_mailer:
-    settings: 'เปลี่ยนการตั้งค่าอีเมล: %{link}'
+    settings: 'เปลี่ยนการกำหนดลักษณะอีเมล: %{link}'
     view: 'มุมมอง:'
+    notification_preferences: เปลี่ยนการกำหนดลักษณะอีเมล
+    view_profile: ดูโปรไฟล์
+    view_status: ดูสถานะ
   applications:
     invalid_url: URL ที่ระบุไม่ถูกต้อง
   auth:
@@ -218,6 +270,9 @@ th:
     reset_password: ตั้งรหัสผ่านใหม่
     security: ความปลอดภัย
     set_new_password: ตั้งรหัสผ่านใหม่
+    change_password: รหัสผ่าน
+    confirm_email: ยืนยันอีเมล
+    delete_account: ลบบัญชี
   authorize_follow:
     error: Unfortunately, there was an error looking up the remote account
     follow: ติดตาม
