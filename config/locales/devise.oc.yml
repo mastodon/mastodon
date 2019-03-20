@@ -31,6 +31,12 @@ oc:
           servidor</a> e <a href="%{policy_path}">nòstres tèrmes e condicions d’utilizacion</a>.
         subject: 'Mastodon : consignas de confirmacion per %{instance}'
         title: Verificatz l’adreça de corrièl
+        explanation_when_pending: Avètz demandat una invitacion a %{host} amb aquesta
+          adreça electronica. Un còp que confirmetz vòstra adreça electronica revisarem
+          vòstra demanda. Se pòt iniciar la session fins alara. Se vòstra demanda
+          es pas acceptada vòstras donadas seràn suprimidas, de manièra que caldrà
+          pas cap d’autra accion. S’èra pas vos qu’avètz fach la demanda, se vos plai
+          ignoratz aqueste corrièl.
       email_changed:
         explanation: 'L’adreça per aqueste compte es ara :'
         extra: S’avètz pas demandat aqueste cambiament d’adreça, poiriá arribar que
@@ -93,6 +99,9 @@ oc:
         sul ligam de confirmacion per confirmar vòstra nòva adreça de corrièl. Mercés
         de verificar tanben vòstre dorsièr de corrièls indesirables.
       updated: Vòstre compte es estat mes a jorn amb succès.
+      signed_up_but_pending: Un messatge amb un ligam de confirmacion es estat enviat
+        a vòstra adreça electronica. Aprèp aver clicat lo ligam, revisarem vòstra
+        demanda. Seretz avisat se’s aprovada.
     sessions:
       already_signed_out: Desconnectat amb succès.
       signed_in: Connectat amb succès.
