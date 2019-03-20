@@ -2,11 +2,14 @@
 
 class ActivityPub::InboxesController < Api::BaseController
   include SignatureVerification
+  include JsonLdHelper
 
   before_action :set_account
 
   def create
-    if signed_request_account
+    if unknown_deleted_account?
+      head 202
+    elsif signed_request_account
       upgrade_account
       process_payload
       head 202
@@ -17,12 +20,19 @@ class ActivityPub::InboxesController < Api::BaseController
 
   private
 
+  def unknown_deleted_account?
+    json = Oj.load(body, mode: :strict)
+    json['type'] == 'Delete' && json['actor'].present? && json['actor'] == value_or_id(json['object']) && !Account.where(uri: json['actor']).exists?
+  rescue Oj::ParseError
+    false
+  end
+
   def set_account
     @account = Account.find_local!(params[:account_username]) if params[:account_username]
   end
 
   def body
-    @body ||= request.body.read
+    @body ||= request.body.read.force_encoding('UTF-8')
   end
 
   def upgrade_account
@@ -36,6 +46,6 @@ class ActivityPub::InboxesController < Api::BaseController
   end
 
   def process_payload
-    ActivityPub::ProcessingWorker.perform_async(signed_request_account.id, body.force_encoding('UTF-8'), @account&.id)
+    ActivityPub::ProcessingWorker.perform_async(signed_request_account.id, body, @account&.id)
   end
 end
