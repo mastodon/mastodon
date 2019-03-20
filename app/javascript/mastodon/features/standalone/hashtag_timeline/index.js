@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { expandHashtagTimeline } from 'mastodon/actions/timelines';
-import { connectHashtagStream } from 'mastodon/actions/streaming';
 import Masonry from 'react-masonry-infinite';
 import { List as ImmutableList } from 'immutable';
 import DetailedStatusContainer from 'mastodon/features/status/containers/detailed_status_container';
@@ -31,14 +30,6 @@ class HashtagTimeline extends React.PureComponent {
     const { dispatch, hashtag } = this.props;
 
     dispatch(expandHashtagTimeline(hashtag));
-    this.disconnect = dispatch(connectHashtagStream(hashtag, hashtag));
-  }
-
-  componentWillUnmount () {
-    if (this.disconnect) {
-      this.disconnect();
-      this.disconnect = null;
-    }
   }
 
   handleLoadMore = () => {
