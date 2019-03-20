@@ -60,6 +60,10 @@ class Poll < ApplicationRecord
     !local?
   end
 
+  def emojis
+    @emojis ||= CustomEmoji.from_text(options.join(' '), account.domain)
+  end
+
   class Option < ActiveModelSerializers::Model
     attributes :id, :title, :votes_count, :poll
 
