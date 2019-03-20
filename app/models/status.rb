@@ -218,7 +218,11 @@ class Status < ApplicationRecord
   end
 
   def emojis
-    @emojis ||= CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain)
+    return @emojis if defined?(@emojis)
+    fields = [spoiler_text, text]
+    fields += owned_poll.options unless owned_poll.nil?
+    @emojis = CustomEmoji.from_text(fields.join(' '), account.domain)
+    @emojis
   end
 
   def mark_for_mass_destruction!

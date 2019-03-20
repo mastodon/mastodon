@@ -7,6 +7,9 @@ module AccountAssociations
     # Local users
     has_one :user, inverse_of: :account, dependent: :destroy
 
+    # Identity proofs
+    has_many :identity_proofs, class_name: 'AccountIdentityProof', dependent: :destroy, inverse_of: :account
+
     # Timelines
     has_many :stream_entries, inverse_of: :account, dependent: :destroy
     has_many :statuses, inverse_of: :account, dependent: :destroy

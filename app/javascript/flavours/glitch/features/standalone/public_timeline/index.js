@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { expandPublicTimeline, expandCommunityTimeline } from 'flavours/glitch/actions/timelines';
-import { connectPublicStream, connectCommunityStream } from 'flavours/glitch/actions/streaming';
 import Masonry from 'react-masonry-infinite';
 import { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 import DetailedStatusContainer from 'flavours/glitch/features/status/containers/detailed_status_container';
@@ -42,24 +41,12 @@ class PublicTimeline extends React.PureComponent {
     }
   }
 
-  componentWillUnmount () {
-    this._disconnect();
-  }
-
   _connect () {
     const { dispatch, local } = this.props;
 
     dispatch(local ? expandCommunityTimeline() : expandPublicTimeline());
-    this.disconnect = dispatch(local ? connectCommunityStream() : connectPublicStream());
   }
  
-  _disconnect () {
-    if (this.disconnect) {
-      this.disconnect();
-      this.disconnect = null;
-    }
-  }
-
   handleLoadMore = () => {
     const { dispatch, statusIds, local } = this.props;
     const maxId = statusIds.last();
