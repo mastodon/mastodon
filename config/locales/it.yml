@@ -24,7 +24,7 @@ it:
     generic_description: '%{domain} è un server nella rete'
     hosted_on: Mastodon ospitato su %{domain}
     learn_more: Scopri altro
-    privacy_policy: Politica della privacy
+    privacy_policy: Policy sulla Privacy
     source_code: Codice sorgente
     status_count_after:
       one: status
@@ -47,6 +47,7 @@ it:
     see_whats_happening: Scopri cosa sta succedendo
     server_stats: 'Statistiche del server:'
     tagline: Segui i tuoi amici e scoprine di nuovi
+    active_count_after: attivo
   accounts:
     choices_html: 'Suggerimenti da %{name}:'
     follow: Segui
@@ -55,7 +56,7 @@ it:
       other: Seguaci
     following: Segui
     joined: Dal %{date}
-    last_active: ultima attività
+    last_active: ultima volta on-line
     link_verified_on: La proprietà di questo link è stata controllata il %{date}
     media: Media
     moved_html: '%{name} è stato spostato su %{new_profile_link}:'
@@ -223,7 +224,7 @@ it:
         update_custom_emoji: '%{name} ha aggiornato l''emoji %{target}'
         update_status: '%{name} stato aggiornato da %{target}'
       deleted_status: (stato cancellato)
-      title: Audit log
+      title: Registro di controllo
     custom_emojis:
       by_domain: Dominio
       copied_msg: Creata con successo una copia locale dell'emoji
@@ -251,7 +252,7 @@ it:
       updated_msg: Emoji aggiornata con successo!
       upload: Carica
     dashboard:
-      backlog: backlogged jobs
+      backlog: lavori arretrati
       config: Configurazione
       feature_deletions: Cancellazioni di account
       feature_invites: Link di invito
@@ -311,6 +312,8 @@ it:
         title: Annulla il blocco del dominio per %{domain}
         undo: Annulla
       undo: Annulla
+      rejecting_media: rifiuto di file multimediali
+      rejecting_reports: respingendo i rapporti
     email_domain_blocks:
       add_new: Aggiungi nuovo
       created_msg: Dominio email aggiunto con successo alla lista nera
@@ -332,11 +335,14 @@ it:
       moderation:
         limited: Limitato
         title: Moderazione
+        all: Tutti
       title: Istanze conosciute
       total_blocked_by_us: Bloccato da noi
       total_followed_by_them: Seguito da loro
       total_followed_by_us: Seguito da noi
       total_storage: Media allegati
+      delivery_available: La consegna è disponibile
+      total_reported: Rapporti su di loro
     invites:
       deactivate_all: Disattiva tutto
       filter:
@@ -449,6 +455,7 @@ it:
         title: Mostra la fediverse conosciuta nell'anteprima della timeline
       show_staff_badge:
         title: Mostra badge staff
+        desc_html: Mostra il badge personale su una pagina utente
       site_description:
         desc_html: Paragrafo introduttivo nella pagina iniziale. Descrive ciò che
           rende speciale questo server Mastodon e qualunque altra cosa sia importante
@@ -501,6 +508,8 @@ it:
       confirmed: Confermato
       expires_in: Scade in
       topic: Argomento
+      last_delivery: Ultima consegna
+      title: WebSub
     tags:
       accounts: Account
       hidden: Nascosto
@@ -530,6 +539,7 @@ it:
     regenerate_token: Rigenera il token di accesso
     token_regenerated: Token di accesso rigenerato
     warning: Fa' molta attenzione con questi dati. Non fornirli mai a nessun altro!
+    your_token: Il tuo token di accesso
   auth:
     agreement_html: Iscrivendoti, accetti di seguire <a href="%{rules_path}">le regole
       del server</a> e <a href="%{terms_path}"> le nostre condizioni di servizio</a>.
@@ -559,6 +569,8 @@ it:
       saml: SAML
     registration_closed: '%{instance} non accetta nuovi iscritti'
     trouble_logging_in: Hai problemi ad accedere?
+    invalid_reset_password_token: Il token per la reimpostazione della password non
+      è valido o è scaduto. Si prega di richiederne uno nuovo.
   authorize_follow:
     already_following: Stai già seguendo questo account
     error: Sfortunatamente c'è stato un errore nel consultare l'account remoto
@@ -596,6 +608,7 @@ it:
       I contenuti che sono stati ampiamente condivisi probabilmente lasceranno delle
       tracce. I server offline e quelli che non ricevono più i tuoi aggiornamenti
       non aggiorneranno i loro database.
+    warning_title: Disponibilità di contenuti divulgati
   directories:
     directory: Directory dei profili
     enabled: Attualmente sei elencato nella directory.
@@ -622,6 +635,7 @@ it:
     noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript.
       In alternativa puoi provare una delle <a href="%{apps_path}">app native</a>
       per Mastodon per la tua piattaforma.
+    '429': Valvola a farfalla
   exports:
     archive_takeout:
       date: Data
@@ -653,6 +667,8 @@ it:
       title: Modifica filtro
     errors:
       invalid_context: Contesto mancante o non valido
+      invalid_irreversible: Il filtraggio irreversibile funziona solo nel contesto
+        domestico o nel contesto delle notifiche
     index:
       delete: Cancella
       title: Filtri
@@ -661,6 +677,7 @@ it:
   footer:
     developers: Sviluppatori
     more: Altro…
+    resources: Risorse
   generic:
     changes_saved_msg: Modifiche effettuate con successo!
     copy: Copia
@@ -669,6 +686,7 @@ it:
       one: Qualcosa ancora non va bene! Per favore, controlla l'errore qui sotto
       other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori
         qui sotto
+    all: Tutti
   imports:
     modes:
       merge: Fondi
@@ -833,6 +851,14 @@ it:
       opera: Opera
       safari: Safari
       alipay: Alipay
+      electron: Elettrone
+      micro_messenger: MicroMessenger
+      nokia: Browser Nokia S40 Ovi Browser Ovi
+      otter: Lontra
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sessione corrente
     description: '%{browser} su %{platform}'
     explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al
@@ -852,6 +878,8 @@ it:
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
     title: Sessioni
+    revoke: Revoca
+    revoke_success: Sessione revocata con successo
   settings:
     authorized_apps: Applicazioni autorizzate
     back: Torna a Mastodon
@@ -868,6 +896,7 @@ it:
     two_factor_authentication: Autenticazione a due fattori
     your_apps: Le tue applicazioni
     relationships: Seguiti e seguaci
+    identity_proofs: Prove d'identità
   statuses:
     attached:
       description: 'Allegato: %{attached}'
@@ -904,6 +933,7 @@ it:
       unlisted: Pubblico, ma non visibile sulla timeline pubblica
       unlisted_long: Tutti lo possono vedere, ma non compare nelle timeline pubbliche
     title: '%{name}: "%{quote}"'
+    content_warning: 'Avviso sul contenuto: %{warning}'
   stream_entries:
     pinned: Toot fissato in cima
     reblogged: condiviso
@@ -917,6 +947,7 @@ it:
   time:
     formats:
       default: '%b %d, %Y, %H:%M'
+      month: '%b %Y'
   two_factor_authentication:
     code_hint: Inserisci il codice generato dalla tua app di autenticazione
     description_html: Se abiliti <strong>l'autorizzazione a due fattori</strong>,
@@ -1010,6 +1041,8 @@ it:
     seamless_external_login: Ti sei collegato per mezzo di un servizio esterno, quindi
       le impostazioni di email e password non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
+    otp_lost_help_html: Se si è perso l'accesso a entrambi, è possibile contattare
+      %{email}
   verification:
     explanation_html: 'Puoi <strong>certificare te stesso come proprietario dei link
       nei metadati del tuo profilo</strong>. Per farlo, il sito a cui punta il link
@@ -1026,3 +1059,33 @@ it:
       body: '%{reporter} ha fatto rapporto su %{target}'
       body_remote: Qualcuno da %{domain} ha fatto rapporto su %{target}
       subject: Nuovo rapporto per %{instance} (#%{id})
+  identity_proofs:
+    active: Attivo
+    authorize: Sì, autorizzo
+    authorize_connection_prompt: Autorizzare questa connessione crittografica?
+    errors:
+      failed: La connessione crittografica è fallita. Riprovare da %{provider}.
+      keybase:
+        invalid_token: I token Keybase sono hash di firme e devono essere 66 caratteri
+          esadecimali
+        verification_failed: Keybase non riconosce questo token come firma dell'utente
+          Keybase %{kb_username}. Riprovare da Keybase.
+    explanation_html: Qui puoi criptograficamente collegare le tue altre identità,
+      come ad esempio un profilo Keybase. Questo permette ad altre persone di inviare
+      messaggi criptati e di fidarsi del contenuto inviato.
+    i_am_html: Sono %{username} su %{service}.
+    identity: Identità
+    inactive: Inattivo
+    status: Stato della verifica
+    view_proof: Visualizza prova
+  relationships:
+    activity: Attività del conto
+    dormant: Dormire
+    moved: Spostato
+    mutual: Mutuo
+    primary: Primario
+    relationship: Relazione
+    remove_selected_domains: Rimuovi tutti i seguaci dai domini selezionati
+    remove_selected_followers: Rimuovi i seguaci selezionati
+    remove_selected_follows: Seguire gli utenti selezionati
+    status: Stato del conto
