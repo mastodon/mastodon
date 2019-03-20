@@ -862,6 +862,9 @@ cy:
       yma</a>
     proceed: Ymlaen i ddilyn
     prompt: 'Yr ydych am ddilyn:'
+    reason_html: <strong>Pam fod angen y cam hwn?</strong> Gall <code>%{instance}</code>
+      fod yn weinydd gwahanol i'r un yr ydych wedi cofrestru iddo, ac fell mae angen
+      i ni eich allgyfeirio i'ch gweinydd cartref gyntaf.
   remote_unfollow:
     error: Gwall
     title: Teitl
@@ -1188,3 +1191,15 @@ cy:
       duration_too_short: yn rhy fuan
       expired: Mae'r bleidlais wedi gorffen yn barod
       over_character_limit: ni all fod yn fwy na %{max} o gymeriadau
+      too_few_options: mae mwy nag un eitem yn angenrheidiol
+      too_many_options: ni all gynnwys mwy na %{max} eitem
+  relationships:
+    activity: Gweithgaredd cyfrif
+    dormant: Segur
+    moved: Symudwyd
+    primary: Cynradd
+    relationship: Perthynas
+    remove_selected_domains: Gwaredu pob dilynwr o'r parthau a ddewiswyd
+    remove_selected_followers: Gwaredu'r dilynwyr a ddewiswyd
+    remove_selected_follows: Dad-ddilyn defnyddwyr a ddewiswyd
+    status: Statws cyfrif
