@@ -28,7 +28,7 @@
 
   - if status.poll
     = react_component :poll, disabled: true, poll: ActiveModelSerializers::SerializableResource.new(status.poll, serializer: REST::PollSerializer, scope: current_user, scope_name: :current_user).as_json do
-      = render partial: 'stream_entries/poll', locals: { poll: status.poll }
+      = render partial: 'stream_entries/poll', locals: { status: status, poll: status.poll, autoplay: autoplay }
   - elsif !status.media_attachments.empty?
     - if status.media_attachments.first.video?
       - video = status.media_attachments.first
