@@ -36,6 +36,18 @@ pl:
       other: użytkowników
     user_count_before: Z serwera korzysta
     what_is_mastodon: Czym jest Mastodon?
+    active_count_after: aktywny
+    active_footnote: Aktywni użytkownicy miesięcznie (AUM)
+    apps_platforms: Używaj Mastodon z iOS, Androida i innych platform
+    browse_directory: Przeglądaj katalog profilu i filtruj według zainteresowań
+    browse_public_posts: Przeglądaj na żywo strumień publicznych posterunków na Mastodon
+    discover_users: Odkryj użytkowników
+    federation_hint_html: Z kontem na %{instance} będziesz mógł śledzić ludzi na dowolnym
+      serwerze Mastodon i nie tylko.
+    get_apps: Wypróbuj aplikację mobilną
+    see_whats_happening: Zobacz, co się dzieje
+    server_stats: 'Statystyki serwera:'
+    tagline: Śledź przyjaciół i odkrywaj nowych
   accounts:
     choices_html: 'Polecani przez %{name}:'
     follow: Śledź
@@ -66,7 +78,7 @@ pl:
     reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
       admin: Administrator
-      bot: Bot
+      bot: Botka
       moderator: Moderator
     unfollow: Przestań śledzić
   admin:
@@ -127,6 +139,7 @@ pl:
         silenced: Wyciszone
         suspended: Zawieszone
         title: Moderacja
+        pending: W trakcie oczekiwania
       moderation_notes: Notatki moderacyjne
       most_recent_activity: Najnowsza aktywność
       most_recent_ip: Ostatnie IP
@@ -152,7 +165,7 @@ pl:
       role: Uprawnienia
       roles:
         admin: Administrator
-        moderator: Moderator
+        moderator: Prowadzący
         staff: Ekipa
         user: Użytkownik
       salmon_url: Adres Salmon
@@ -174,6 +187,9 @@ pl:
       username: Nazwa użytkownika
       warn: Ostrzeż
       web: Sieć
+      approve: Zatwierdzenie
+      pending: Oczekiwany przegląd
+      reject: Odrzuć
     action_logs:
       actions:
         assigned_to_self_report: '%{name} przypisał(a) sobie zgłoszenie %{target}'
@@ -229,7 +245,7 @@ pl:
       new:
         title: Dodaj nowe niestandardowe emoji
       overwrite: Zastąp
-      shortcode: Shortcode
+      shortcode: Kod skrótu
       shortcode_hint: Co najmniej 2 znaki, tylko znaki alfanumeryczne i podkreślniki
       title: Niestandardowe emoji
       unlisted: Niewidoczne
@@ -470,6 +486,12 @@ pl:
         desc_html: Wyświetlaj publiczną oś czasu na stronie widocznej dla niezalogowanych
         title: Podgląd osi czasu
       title: Ustawienia strony
+      registrations_mode:
+        modes:
+          approved: Zatwierdzenie wymagane do rejestracji
+          none: Nikt nie może się zarejestrować
+          open: Każdy może zarejestrować się
+        title: Tryb rejestracji
     statuses:
       back_to_account: Wróć na konto
       batch:
@@ -494,7 +516,7 @@ pl:
       accounts: Konta
       hidden: Ukryte
       hide: Ukryj w katalogu
-      name: Hashtag
+      name: Hasztag
       title: Hashtagi
       unhide: Pokazuj w katalogu
       visible: Widoczne
@@ -510,6 +532,10 @@ pl:
       body: Użytkownik %{reporter} zgłosił(a) %{target}
       body_remote: Użytkownik instancji %{domain} zgłosił(a) %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
+    new_pending_account:
+      body: Szczegóły dotyczące nowego konta znajdują się poniżej. Możesz zatwierdzić
+        lub odrzucić ten wniosek.
+      subject: Nowe konto do przeglądu w %{instance} (%{username})
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
     salutation: '%{name},'
@@ -551,6 +577,11 @@ pl:
     reset_password: Zresetuj hasło
     security: Bezpieczeństwo
     set_new_password: Ustaw nowe hasło
+    apply_for_account: Prośba o zaproszenie
+    checkbox_agreement_html: Zgadzam się na <a href="%{rules_path}" target="_blank">server
+      rules</a> i <a href="%{terms_path}" target="_blank">terms of service</a>
+    registration_closed: '%{instance} nie przyjmuje nowych członków'
+    trouble_logging_in: Problemy z logowaniem?
   authorize_follow:
     already_following: Już śledzisz to konto
     error: Niestety, podczas sprawdzania zdalnego konta wystąpił błąd
@@ -669,6 +700,7 @@ pl:
       many: Coś jest wciąż nie tak! Przejrzyj %{count} poniższych błędów
       one: Coś jest wciąż nie tak! Przyjrzyj się poniższemu błędowi
       other: Coś jest wciąż nie tak! Przejrzyj poniższe błędy (%{count})
+    all: Wszystkie
   imports:
     modes:
       merge: Połącz
@@ -882,6 +914,8 @@ pl:
     settings: Ustawienia
     two_factor_authentication: Uwierzytelnianie dwuetapowe
     your_apps: Twoje aplikacje
+    identity_proofs: Dowody tożsamości
+    relationships: Śledzi i naśladowcy
   statuses:
     attached:
       description: 'Załączono: %{attached}'
@@ -1134,3 +1168,34 @@ pl:
       musi zawierać odnośnik do Twojego profilu na Mastodonie. Odnośnik <strong>musi</strong>
       zawierać atrybut <code>rel="me"</code>. Jego zawartość nie ma znaczenia. Przykład:'
     verification: Weryfikacja
+  identity_proofs:
+    active: Aktywny
+    authorize: Tak, upoważnić
+    authorize_connection_prompt: Autoryzować to połączenie kryptograficzne?
+    errors:
+      failed: Połączenie kryptograficzne nie powiodło się. Proszę spróbować ponownie
+        od %{provider}.
+      keybase:
+        invalid_token: Tokeny klawiaturowe są skrótami podpisów i muszą składać się
+          z 66 znaków heksadecymalnych
+        verification_failed: Keybase nie rozpoznaje tego tokena jako podpis użytkownika
+          Keybase user %{kb_username}. Proszę spróbować ponownie z Keybase.
+    explanation_html: Tutaj możesz kryptograficznie połączyć swoje inne tożsamości,
+      takie jak profil w bazie danych. Pozwala to innym osobom wysyłać zaszyfrowane
+      wiadomości i ufać treści, które im wysyłasz.
+    i_am_html: Jestem %{username} na %{service}.
+    identity: Tożsamość
+    inactive: Nieaktywny
+    status: Status weryfikacji
+    view_proof: Proporcjonalny widok
+  relationships:
+    activity: Działalność rachunkowa
+    dormant: Uśpiony
+    moved: Przemieszczone
+    mutual: Wzajemne korzystanie
+    primary: Podstawowy
+    relationship: Relacje z innymi osobami
+    remove_selected_domains: Usuń wszystkich zwolenników z wybranych domen
+    remove_selected_followers: Usuwanie wybranych naśladowców
+    remove_selected_follows: Rozwiń wybranych użytkowników
+    status: Status konta
