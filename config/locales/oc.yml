@@ -35,6 +35,11 @@ oc:
     active_count_after: actius
     browse_directory: Navigatz per l’annuari de perfil e filtratz segon çò qu’aimatz
     server_stats: 'Estatisticas del servidor :'
+    active_footnote: Utilizaire actius per mes (UAM)
+    apps_platforms: Utilizatz Mastodon d‘iOS, Android o d’autras plataforma estant
+    browse_public_posts: Navigatz pel flux public a Mastodon
+    get_apps: Ensajatz una aplicacion mobil
+    see_whats_happening: Agachatz çò qu’arriba
   accounts:
     choices_html: 'Recomandacions de %{name} :'
     follow: Sègre
@@ -122,6 +127,7 @@ oc:
         silenced: Resconduts
         suspended: Suspenduts
         title: Moderacion
+        pending: En espèra
       moderation_notes: Nòtas de moderacion
       most_recent_activity: Activitat mai recenta
       most_recent_ip: IP mai recenta
@@ -169,6 +175,8 @@ oc:
       username: Nom d’utilizaire
       warn: Avisar
       web: Web
+      approve: Aprovar
+      pending: Revision en espèra
     action_logs:
       actions:
         assigned_to_self_report: '%{name} s’assignèt lo rapòrt %{target}'
@@ -461,6 +469,10 @@ oc:
         desc_html: Mostrar lo flux public sus la pagina d’acuèlh
         title: Apercebut flux public
       title: Paramètres del site
+      registrations_mode:
+        modes:
+          none: Degun pòt pas se marcar
+        title: Mòdes d’inscripcion
     statuses:
       back_to_account: Tornar a la pagina Compte
       batch:
@@ -542,6 +554,11 @@ oc:
     reset_password: Reïnicializar lo senhal
     security: Seguretat
     set_new_password: Picar un nòu senhal
+    apply_for_account: Demandar una invitacion
+    checkbox_agreement_html: Accepti las <a href="%{rules_path}" target="_blank">règlas
+      del servidor</a> e <a href="%{terms_path}" target="_blank">los tèrmes del servici</a>
+    registration_closed: '%{instance} accepta pas de nòus membres'
+    trouble_logging_in: Problèmas de connexion ?
   authorize_follow:
     already_following: Seguètz ja aqueste compte
     error: O planhèm, i a agut una error al moment de cercar lo compte
@@ -711,6 +728,7 @@ oc:
     validation_errors:
       one: I a quicòm que truca ! Mercés de corregir l’error çai-jos
       other: I a quicòm que truca ! Mercés de corregir las %{count} errors çai-jos
+    all: Tot
   imports:
     modes:
       merge: Fondre
@@ -917,6 +935,7 @@ oc:
     settings: Paramètres
     two_factor_authentication: Autentificacion en dos temps
     your_apps: Vòstras aplicacions
+    relationships: Abonaments e seguidors
   statuses:
     attached:
       description: 'Ajustat : %{attached}'
@@ -1171,3 +1190,17 @@ oc:
       <strong>deu</strong> aver un atribut <code>rel="me"</code>. Lo contengut tèxte
       del ligam impòrta pas. Vaquí un exemple :'
     verification: Verificacion
+  identity_proofs:
+    authorize: Òc, autorizar
+    authorize_connection_prompt: Autorizar aquesta connexion criptografica ?
+    i_am_html: Soi %{username} a %{service}.
+    identity: Identitat
+    status: Estatut de verificacion
+  relationships:
+    activity: Activitat del compte
+    dormant: Inactiu
+    moved: Mudat
+    mutual: Mutuala
+    primary: Pirmària
+    relationship: Relacion
+    status: Estat del compte
