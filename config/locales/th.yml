@@ -25,6 +25,7 @@ th:
     apps: แอปในมือถือ
     generic_description: '%{domain} เป็นเซิร์ฟเวอร์หนึ่งในเครือข่าย'
     get_apps: ลองแอปในมือถือ
+    server_stats: 'สถิติเซิร์ฟเวอร์:'
   accounts:
     follow: ติดตาม
     followers:
@@ -173,10 +174,11 @@ th:
       resolved: แก้ปัญหาแล้ว
       status: สถานะ
       title: รายงาน
-      unresolved: Unresolved
+      unresolved: ยังไม่ได้แก้ปัญหา
       are_you_sure: คุณแน่ใจหรือไม่?
       notes:
         delete: ลบ
+      mark_as_unresolved: ทำเครื่องหมายว่ายังไม่ได้แก้ปัญหา
     settings:
       contact_information:
         email: อีเมลธุรกิจ
@@ -187,13 +189,16 @@ th:
           title: ข้อความการปิดการลงทะเบียน
         deletion:
           title: เปิดการลบบัญชี
+        min_invite_role:
+          disabled: ไม่มีใคร
       site_description:
         desc_html: ย่อหน้าเกริ่นนำในหน้าแรก อธิบายถึงสิ่งที่ทำให้เซิร์ฟเวอร์ Mastodon
           นี้พิเศษและสิ่งอื่นใดที่สำคัญ คุณสามารถใช้แท็ก HTML โดยเฉพาะอย่างยิ่ง <code>&lt;a&gt;</code>
           และ <code>&lt;em&gt;</code>
         title: คำอธิบายเซิร์ฟเวอร์
       site_description_extended:
-        desc_html: Displayed on extended information page<br>You can use HTML tags
+        desc_html: สถานที่ที่ดีสำหรับแนวทางปฏิบัติ, กฎ, หลักเกณฑ์ และสิ่งอื่น ๆ ของคุณที่ทำให้เซิร์ฟเวอร์ของคุณแตกต่าง
+          คุณสามารถใช้แท็ก HTML
         title: ข้อมูลแบบขยายที่กำหนดเอง
       site_title: ชื่อเซิร์ฟเวอร์
       title: การตั้งค่าไซต์
@@ -201,13 +206,18 @@ th:
         title: CSS ที่กำหนดเอง
       registrations_mode:
         title: โหมดการลงทะเบียน
+        modes:
+          none: ไม่มีใครสามารถลงทะเบียน
+          open: ใครก็ตามสามารถลงทะเบียน
       site_short_description:
         title: คำอธิบายเซิร์ฟเวอร์แบบสั้น
+      profile_directory:
+        title: เปิดใช้งานไดเรกทอรีโปรไฟล์
     subscriptions:
       callback_url: Callback URL
       confirmed: ยืนยันแล้ว
       expires_in: หมดอายุภายใน
-      last_delivery: จัดส่งครั้งล่าสุด
+      last_delivery: ส่งล่าสุด
       title: WebSub
       topic: หัวข้อ
     title: การดูแล
@@ -235,13 +245,19 @@ th:
       delete: ลบ
       disable: ปิดใช้งาน
       enable: เปิดใช้งาน
+      inbox_url: URL รีเลย์
+      status: สถานะ
+      title: รีเลย์
     statuses:
       batch:
         delete: ลบ
+        nsfw_off: ทำเครื่องหมายว่าไม่ละเอียดอ่อน
+        nsfw_on: ทำเครื่องหมายว่าละเอียดอ่อน
       media:
         title: สื่อ
       no_media: ไม่มีสื่อ
       title: สถานะบัญชี
+      back_to_account: กลับไปที่หน้าบัญชี
     tags:
       accounts: บัญชี
       hide: ซ่อนจากไดเรกทอรี
