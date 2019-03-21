@@ -61,22 +61,24 @@ class ImportService < BaseService
   end
 
   def import_relationships!(action, undo_action, overwrite_scope, limit)
-    items = @data.take(limit).map { |row| row.first.strip }
+    items = @data.take(limit).map { |row| [row.first.strip, row.second&.strip] }
 
     if @import.overwrite?
-      presence_hash = items.each_with_object({}) { |id, mapping| mapping[id] = true }
+      presence_hash = items.each_with_object({}) { |(id, extra), mapping| mapping[id] = [true, extra] }
 
       overwrite_scope.find_each do |target_account|
         if presence_hash[target_account.acct]
           items.delete(target_account.acct)
+          extra = presence_hash[target_account.acct][1]
+          Import::RelationshipWorker.perform_async(@account.id, target_account.acct, action, extra)
         else
           Import::RelationshipWorker.perform_async(@account.id, target_account.acct, undo_action)
         end
       end
     end
 
-    Import::RelationshipWorker.push_bulk(items) do |acct|
-      [@account.id, acct, action]
+    Import::RelationshipWorker.push_bulk(items) do |acct, extra|
+      [@account.id, acct, action, extra]
     end
   end
 
