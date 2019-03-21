@@ -24,7 +24,7 @@ describe Export do
       results = export.strip.split
 
       expect(results.size).to eq 2
-      expect(results.first).to eq 'one@local.host'
+      expect(results.first).to eq 'one@local.host,true'
     end
 
     it 'returns a csv of the following accounts' do
