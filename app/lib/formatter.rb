@@ -71,6 +71,12 @@ class Formatter
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
+  def format_poll_option(status, option, **options)
+    html = encode(option.title)
+    html = encode_custom_emojis(html, status.emojis, options[:autoplay])
+    html.html_safe # rubocop:disable Rails/OutputSafety
+  end
+
   def format_display_name(account, **options)
     html = encode(account.display_name.presence || account.username)
     html = encode_custom_emojis(html, account.emojis, options[:autoplay]) if options[:custom_emojify]

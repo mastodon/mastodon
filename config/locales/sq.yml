@@ -7,7 +7,6 @@ sq:
     administered_by: 'Administruar nga:'
     api: API
     apps: Aplikacione për celular
-    closed_registrations: Hëpërhë regjistrimet në këtë shërbyes janë të mbyllura. Por! Mund të gjeni një shërbyes tjetër për të krijuar një llogari dhe të mund të përdorni andej pikërisht të njëjtin rrjet të këtushëm.
     contact: Kontakt
     contact_missing: I parregulluar
     contact_unavailable: N/A
@@ -15,19 +14,9 @@ sq:
     extended_description_html: |
       <h3>Një vend i mirë për rregulla</h3>
       <p>Përshkrimi i zgjeruar s’është sajuar ende.</p>
-    features:
-      humane_approach_body: Duke nxjerrë mësime nga dështimet e rrjeteve të tjera, Mastodon-i synon të bëjë zgjedhje konceptuale etike, për të luftuar keqpërdorimin e mediave shoqërore.
-      humane_approach_title: Një trajtim më njerëzor
-      not_a_product_body: Mastodon-i s’është rrjet komercial. Pa reklama, pa monetarizim të dhënash, pa gardhe. S’ka autoritet qendror.
-      not_a_product_title: Jeni një person, jo një produkt
-      real_conversation_body: Me 500 shenja në dorën tuaj për t’i përdorur dhe mbulim për sinjalizime të imta lidhur me lëndën dhe median, mund të shpreheni ashtu si dëshironi.
-      real_conversation_title: Ndërtuar për bashkëbisedim të njëmendtë
-      within_reach_body: Aplikacione të shumtë, për iOS, Android, dhe të tjera platforma, falë një ekosistemi API miqësor ndaj zhvilluesve, ju lejojnë të mbani lidhje me miqtë tuaj kudo.
-      within_reach_title: Përherë i kapshëm
     generic_description: "%{domain} është një shërbyes te rrjeti"
     hosted_on: Mastodon i strehuar në %{domain}
     learn_more: Mësoni më tepër
-    other_instances: Listë shërbyesish
     privacy_policy: Rregulla privatësie
     source_code: Kod burim
     status_count_after:
@@ -408,9 +397,6 @@ sq:
         min_invite_role:
           disabled: Asnjë
           title: Lejo vetëm me ftesa
-        open:
-          desc_html: Lejo cilindo të krijojë llogari
-          title: Hapni regjistrimin
       show_known_fediverse_at_about_page:
         desc_html: Kur përdoret, do të shfaqë mesazhe prej krejt fediversit të njohur, si paraparje. Përndryshe do të shfaqë vetëm mesazhe vendore.
         title: Shfaq te paraparja e rrjedhës kohore fedivers të njohur
@@ -505,13 +491,11 @@ sq:
     logout: Dalje
     migrate_account: Kaloni në një tjetër llogari
     migrate_account_html: Nëse doni ta ridrejtoni këtë llogari te një tjetër, këtë mund <a href="%{path}">ta formësoni këtu</a>.
-    or: ose
     or_log_in_with: Ose bëni hyrjen me
     providers:
       cas: CAS
       saml: SAML
     register: Regjistrohuni
-    register_elsewhere: Regjistrohuni në një tjetër shërbyes
     resend_confirmation: Ridërgo udhëzime ripohimi
     reset_password: Ricaktoni fjalëkalimin
     security: Siguri
@@ -606,18 +590,6 @@ sq:
       title: Filtra
     new:
       title: Shtoni filtër të ri
-  followers:
-    domain: Përkatësi
-    explanation_html: Nëse doni të garantoni privatësinë e gjendjeve tuaja, duhet të jeni në dijeni se cilët ju ndjekin. <strong>Gjendjet tuaja private u dërgohen krejt shërbyes ku keni ndjekës</strong>. Mund të donit t’i rishqyrtoni ato, dhe të hiqni ndjekës, nëse nuk besoni se privatësia juaj respektohet nga stafi apo software-i i këtyre shërbyesve.
-    followers_count: Numër ndjekësish
-    lock_link: Kyçeni llogarinë tuaj
-    purge: Hiqe nga ndjekësit
-    success:
-      one: Në përmbushje e sipër të bllokimit të butë të ndjekësve nga një përkatësi…
-      other: Në përmbushje e sipër të bllokimit të butë të ndjekësve nga %{count} përkatësi…
-    true_privacy_html: Ju lutemi, kini parasysh se <strong>privatësi e vërtetë mund të arrihet vetëm me fshehtëzim skaj-më-skaj</strong>.
-    unlocked_warning_html: Mund t’ju ndjekë cilido, që të shohë menjëherë gjendjet tuaja private. %{lock_link} që të jeni në gjendje të shqyrtoni dhe hidhni poshtë ndjekës.
-    unlocked_warning_title: Llogaria juaj s’është kyçur
   footer:
     developers: Zhvillues
     more: Më tepër…
@@ -809,7 +781,6 @@ sq:
     edit_profile: Përpunoni profilin
     export: Eksportim të dhënash
     featured_tags: Hashtagë të zgjedhur
-    followers: Ndjekës të autorizuar
     import: Importo
     migrate: Migrim llogarie
     notifications: Njoftime

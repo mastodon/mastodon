@@ -7,7 +7,6 @@ pt-BR:
     administered_by: 'Administrado por:'
     api: API
     apps: Apps
-    closed_registrations: Os cadastros estão atualmente fechados nesta instância. No entanto, você pode procurar uma instância diferente na qual possa criar uma conta e acessar a mesma rede por lá.
     contact: Contato
     contact_missing: Não definido
     contact_unavailable: Não disponível
@@ -15,19 +14,9 @@ pt-BR:
     extended_description_html: |
       <h3>Um bom lugar para regras</h3>
       <p>A descrição da instância ainda não foi feita.</p>
-    features:
-      humane_approach_body: Aprendendo com erros de outras redes, Mastodon tem como objetivo fazer decisões éticas de design para combater o desuso de redes sociais.
-      humane_approach_title: Uma abordagem mais humana
-      not_a_product_body: Mastodon não é uma rede comercial. Sem propagandas, coleta de dados, jardins fechados. Não há uma autoridade central.
-      not_a_product_title: Você é uma pessoa e não um produto
-      real_conversation_body: Com 500 caracteres à sua disposição e suporte para conteúdo granular e avisos de conteúdo, você pode se expressar da maneira que desejar.
-      real_conversation_title: Feito para conversas reais
-      within_reach_body: Vários apps para iOS, Android e outras plataformas graças a um ecossistema de API amigável para desenvolvedores permitem que você possa se manter atualizado sobre seus amigos de qualquer lugar.
-      within_reach_title: Sempre ao seu alcance
     generic_description: "%{domain} é um servidor na rede"
     hosted_on: Mastodon hospedado em %{domain}
     learn_more: Saiba mais
-    other_instances: Lista de instâncias
     privacy_policy: Política de Privacidade
     source_code: Código-fonte
     status_count_after:
@@ -410,9 +399,6 @@ pt-BR:
         min_invite_role:
           disabled: Ninguém
           title: Permitir convites de
-        open:
-          desc_html: Permitir que qualquer um crie uma conta
-          title: Cadastro aberto
       show_known_fediverse_at_about_page:
         desc_html: Quando ligado, vai mostrar toots de todo o fediverso conhecido na prévia da timeline. Senão, mostra somente toots locais.
         title: Mostrar fediverso conhecido na prévia da timeline
@@ -507,13 +493,11 @@ pt-BR:
     logout: Sair
     migrate_account: Mudar para uma conta diferente
     migrate_account_html: Se você quer redirecionar essa conta para uma outra você pode <a href="%{path}">configurar isso aqui</a>.
-    or: ou
     or_log_in_with: Ou faça login com
     providers:
       cas: CAS
       saml: SAML
     register: Cadastrar-se
-    register_elsewhere: Cadastrar-se em um outro servidor
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Redefinir senha
     security: Segurança
@@ -601,18 +585,6 @@ pt-BR:
       title: Filtros
     new:
       title: Adicionar novo filtro
-  followers:
-    domain: Domínio
-    explanation_html: Se você quer garantir a privacidade de suas postagens, você deve ficar atento a quem está te seguindo.<strong>Suas postagens privadas são enviadas para todas as instâncias em que você tem seguidores</strong>. Convém revisá-las e remover seguidores se você acredita que a sua privacidade não será respeitada pela equipe ou software destas instâncias.
-    followers_count: Número de seguidores
-    lock_link: Tranque a sua conta
-    purge: Remover de seus seguidores
-    success:
-      one: No processo de bloqueio suave de seguidores de outro domínio...
-      other: No processo de bloqueio suave de seguidores de outros %{count} domínios...
-    true_privacy_html: Lembre-se de que <strong>a verdadeira privacidade só pode ser alcançada através de encriptação ponto-a-ponto</strong>.
-    unlocked_warning_html: Qualquer pessoa pode te seguir e ver as suas postagens privadas. %{lock_link} para ser capaz de revisar e rejeitar seguidores.
-    unlocked_warning_title: A sua conta não está trancada
   footer:
     developers: Desenvolvedores
     more: Mais…
@@ -798,7 +770,6 @@ pt-BR:
     development: Desenvolvimento
     edit_profile: Editar perfil
     export: Exportar dados
-    followers: Seguidores autorizados
     import: Importar
     migrate: Migração de conta
     notifications: Notificações

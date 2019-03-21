@@ -68,6 +68,17 @@ code {
         top: 2px;
         left: 0;
       }
+
+      label a {
+        color: $highlight-text-color;
+        text-decoration: underline;
+
+        &:hover,
+        &:active,
+        &:focus {
+          text-decoration: none;
+        }
+      }
     }
   }
 
@@ -305,7 +316,7 @@ code {
       box-shadow: none;
     }
 
-    &:focus:invalid {
+    &:focus:invalid:not(:placeholder-shown) {
       border-color: lighten($error-red, 12%);
     }
 
@@ -344,6 +355,10 @@ code {
       color: lighten($error-red, 12%);
       margin-top: 4px;
     }
+  }
+
+  .input.disabled {
+    opacity: 0.5;
   }
 
   .actions {
@@ -390,6 +405,10 @@ code {
     &:active,
     &:focus {
       background-color: darken($ui-highlight-color, 5%);
+    }
+
+    &:disabled:hover {
+      background-color: $ui-primary-color;
     }
 
     &.negative {
@@ -780,5 +799,60 @@ code {
       background: $valid-value-color;
       transition: none;
     }
+  }
+}
+
+.connection-prompt {
+  margin-bottom: 25px;
+
+  .fa-link {
+    background-color: darken($ui-base-color, 4%);
+    border-radius: 100%;
+    font-size: 24px;
+    padding: 10px;
+  }
+
+  &__column {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    flex-shrink: 1;
+
+    &-sep {
+      flex-grow: 0;
+      overflow: visible;
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  .account__avatar {
+    margin-bottom: 20px;
+  }
+
+  &__connection {
+    background-color: lighten($ui-base-color, 8%);
+    box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+    border-radius: 4px;
+    padding: 25px 10px;
+    position: relative;
+    text-align: center;
+
+    &::after {
+      background-color: darken($ui-base-color, 4%);
+      content: '';
+      display: block;
+      height: 100%;
+      left: 50%;
+      position: absolute;
+      width: 1px;
+    }
+  }
+
+  &__row {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
   }
 }

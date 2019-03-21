@@ -15,7 +15,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.30', require: false
+gem 'aws-sdk-s3', '~> 1.33', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -86,7 +86,7 @@ gem 'tty-command', '~> 0.8', require: false
 gem 'tty-prompt', '~> 0.18', require: false
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2018'
-gem 'webpacker', '~> 3.5'
+gem 'webpacker', '~> 4.0'
 gem 'webpush'
 
 gem 'json-ld', '~> 3.0'
@@ -107,7 +107,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.14'
+  gem 'capybara', '~> 3.15'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 1.9'
   gem 'microformats', '~> 4.1'
@@ -119,7 +119,7 @@ group :test do
 end
 
 group :development do
-  gem 'active_record_query_trace', '~> 1.5'
+  gem 'active_record_query_trace', '~> 1.6'
   gem 'annotate', '~> 2.7'
   gem 'better_errors', '~> 2.5'
   gem 'binding_of_caller', '~> 0.7'
@@ -127,8 +127,8 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.65', require: false
-  gem 'brakeman', '~> 4.4', require: false
+  gem 'rubocop', '~> 0.66', require: false
+  gem 'brakeman', '~> 4.5', require: false
   gem 'bundler-audit', '~> 0.6', require: false
   gem 'scss_lint', '~> 0.57', require: false
 

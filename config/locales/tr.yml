@@ -7,7 +7,6 @@ tr:
     administered_by: 'Tarafından yönetildi:'
     api: API
     apps: Mobil uygulamalar
-    closed_registrations: Bu sunucudaki kayıtlar şu anda kapalı. Ancak! Bir hesap oluşturmak ve oradan aynı ağa erişmek için farklı bir sunucu bulabilirsiniz.
     contact: İletişim
     contact_missing: Ayarlanmadı
     contact_unavailable: Yok
@@ -15,19 +14,9 @@ tr:
     extended_description_html: |
       <h3>Kural için iyi bir yer</h3>
       <p>Genişletilmiş açıklama henüz ayarlanmamış.</p>
-    features:
-      humane_approach_body: Diğer ağların başarısızlıklarından öğrenen Mastodon, sosyal medyanın kötüye kullanımı ile mücadele etmek için etik tasarım seçimleri yapmayı amaçlamaktadır.
-      humane_approach_title: Daha insancıl bir yaklaşım
-      not_a_product_body: Mastodon ticari bir ağ değildir. Reklam yok, Veri madenciliği yok, duvarlı bahçeler yok. Merkezi bir otorite yok.
-      not_a_product_title: Sen bir insansın, bir ürün değil
-      real_conversation_body: Emrindeki 500 karakter ve granüler içerik ve medya uyarıları için destek ile kendinizi istediğiniz şekilde ifade edebilirsiniz.
-      real_conversation_title: Gerçek sohbet için üretildi
-      within_reach_body: Geliştirici dostu bir API ekosistemi sayesinde iOS, Android ve diğer platformlar için birden fazla uygulama, arkadaşlarınıza her yerden ulaşmanızı sağlar.
-      within_reach_title: Her zaman ulaşılabilir
     generic_description: "%{domain} ağdaki bir sunucudur"
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
     learn_more: Daha fazla bilgi edinin
-    other_instances: Sunucu listesi
     privacy_policy: Gizlilik politikası
     source_code: Kaynak kodu
     status_count_after:
@@ -218,8 +207,6 @@ tr:
         closed_message:
           desc_html: Kayıt alımları kapatıldığında ana sayfada görüntülenecek mesajdır. <br> HTML etiketleri kullanabilirsiniz
           title: Kayıt alımları kapatılma mesajı
-        open:
-          title: Kayıt alımları
       site_description:
         desc_html: Ana sayfada paragraf olarak görüntülenecek bilgidir.<br>Özellikle <code>&lt;a&gt;</code> ve <code>&lt;em&gt;</code> olmak suretiyle HTML etiketlerini kullanabilirsiniz.
         title: Site açıklaması
@@ -290,18 +277,6 @@ tr:
     follows: Takip ettikleriniz
     mutes: Susturduklarınız
     storage: Ortam deposu
-  followers:
-    domain: Domain
-    explanation_html: Eğer gönderilerinizin gizliliğini garanti altına almak istiyorsanız, sizi kimin takip ettiğinden emin olmak zorundasınız. <strong> Gizli gönderileriniz, takipçilerinizin olduğu bütün sunuculara iletilir</strong>. Gönderilerinizi gözden geçirmek isteyebilir, ve o sunuculardaki yazılımın veya ilgili çalışanın, gizliliğinizi suistimal edeceğinizi düşünüyorsanız, o sunucudaki takipçilerinizi silebilirsiniz.
-    followers_count: Takipçi sayısı
-    lock_link: Hesabımı kilitle
-    purge: Takipçilerimden çıkar
-    success:
-      one: Domaindeki takipçilerin engellenmesi sürüyor...
-      other: "%{count} domaindeki takipçilerin engellenmesi sürüyor..."
-    true_privacy_html: 'Lütfen aklınızda bulundurun: <strong>gerçek gizlilik yalnızca uçtan-uca şifreleme ile sağlanır</strong>.'
-    unlocked_warning_html: Herhangi bir kişi sizi takip edebilir ve paylaştığınız gizli gönderilerinizi görebilir. %{lock_link}'e tıklayarak takipçilerinizi gözden geçirebilir ve reddedebilirsiniz.
-    unlocked_warning_title: Hesabınız kilitlendi
   generic:
     changes_saved_msg: Değişiklikler başarıyla kaydedildi!
     save_changes: Değişiklikleri kaydet
@@ -370,7 +345,6 @@ tr:
     back: Mastodon'a geri dön
     edit_profile: Profili düzenle
     export: Dışa aktar
-    followers: İzin verilmiş takipçiler
     import: İçe aktar
     preferences: Tercihler
     settings: Ayarlar

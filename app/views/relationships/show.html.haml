@@ -1,0 +1,50 @@
+- content_for :page_title do
+  = t('settings.relationships')
+
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', integrity: true, async: true, crossorigin: 'anonymous'
+
+.filters
+  .filter-subset
+    %strong= t 'relationships.relationship'
+    %ul
+      %li= filter_link_to t('accounts.following', count: current_account.following_count), relationship: nil
+      %li= filter_link_to t('accounts.followers', count: current_account.followers_count), relationship: 'followed_by'
+      %li= filter_link_to t('relationships.mutual'), relationship: 'mutual'
+
+  .filter-subset
+    %strong= t 'relationships.status'
+    %ul
+      %li= filter_link_to t('generic.all'), status: nil
+      %li= filter_link_to t('relationships.primary'), status: 'primary'
+      %li= filter_link_to t('relationships.moved'), status: 'moved'
+
+  .filter-subset
+    %strong= t 'relationships.activity'
+    %ul
+      %li= filter_link_to t('generic.all'), activity: nil
+      %li= filter_link_to t('relationships.dormant'), activity: 'dormant'
+
+= form_for(@form, url: relationships_path, method: :patch) do |f|
+  = hidden_field_tag :page, params[:page] || 1
+  = hidden_field_tag :relationship, params[:relationship]
+  = hidden_field_tag :status, params[:status]
+  = hidden_field_tag :activity, params[:activity]
+
+  .batch-table
+    .batch-table__toolbar
+      %label.batch-table__toolbar__select.batch-checkbox-all
+        = check_box_tag :batch_checkbox_all, nil, false
+      .batch-table__toolbar__actions
+        = f.button safe_join([fa_icon('user-times'), t('relationships.remove_selected_follows')]), name: :unfollow, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') } unless followed_by_relationship?
+
+        = f.button safe_join([fa_icon('trash'), t('relationships.remove_selected_followers')]), name: :remove_from_followers, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') } unless following_relationship?
+
+        = f.button safe_join([fa_icon('trash'), t('relationships.remove_selected_domains')]), name: :block_domains, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') } if followed_by_relationship?
+    .batch-table__body
+      - if @accounts.empty?
+        = nothing_here 'nothing-here--under-tabs'
+      - else
+        = render partial: 'account', collection: @accounts, locals: { f: f }
+
+= paginate @accounts

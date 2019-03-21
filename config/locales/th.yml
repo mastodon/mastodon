@@ -3,9 +3,7 @@ th:
   about:
     about_mastodon_html: แมสโทดอน เป็น  <em>ดีเซ็นทรัลไลซ์</em><em>ฟรีโอเพ่นซอร์ส</em> โซเชี่ยวเน็ตเวริ์ค.  เป็นทางเลือกทดแทนโซเชี่ยวเน็ตเวิร์คที่ทำเป็นธุรกิจการค้า, ป้องกันการผูกขาดช่องทางการสื่อสารของคุณ. เลือกเซร์ฟเวอร์ที่คุณไว้ใจ &mdash; ที่คุณเลือกได้เอง, สื่อสารกับคนที่คุณต้องการได้เสมอ. ใครๆก็รันแมสโทดอนอินซะแตนซ์ได้ และ เชื่อมต่อกับ<em>โซเชี่ยวเน็ตเวิร์ค</em> โดยไม่มีอะไรมาขวางกั้น.
     about_this: เกี่ยวกับอินซะแตนซ์นี้
-    closed_registrations: อินซะแตนซ์นี้ปิดรับลงทะเบียนแล้ว.
     contact: ติดต่อ
-    other_instances: อินซะแตนซ์อื่นๆ
     source_code: ซอร์สโค๊ด
     status_count_after: สถานะ
     status_count_before: Who authored
@@ -28,7 +26,7 @@ th:
       confirming: ยืนยัน
       disable_two_factor_authentication: Disable 2FA
       display_name: ชื่อสำหรับดีสเพล
-      domain: โดแมน
+      domain: โดเมน
       edit: แก้ไข
       email: อีเมล์
       email_status: สถานะอีเมล
@@ -37,8 +35,8 @@ th:
       follows: ติดตาม
       location:
         all: ทั้งหมด
-        local: โลคอล
-        remote: รีโมทย์
+        local: บนอินแสตนซ์นี้
+        remote: บนอินแสตนซ์อื่น
         title: สถานที่
       media_attachments: สื่อที่แนบมา
       moderation:
@@ -115,8 +113,6 @@ th:
         closed_message:
           desc_html: Displayed on frontpage when registrations are closed<br> ใช้ HTML tags ได้
           title: ปิดข้อความลงทะเบียน
-        open:
-          title: เปิดรับลงทะเบียน
       site_description:
         desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br> ใช้ HTML tags ได้, in particular <code>&lt;a&gt;</code> และ <code>&lt;em&gt;</code>.
         title: คำอธิบายไซต์
@@ -180,18 +176,6 @@ th:
     follows: คุณติดตาม
     mutes: คุณปิดเสียง
     storage: ที่เก็บสื่อ
-  followers:
-    domain: โดเมน
-    explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all instances where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those instances.
-    followers_count: จำนวนผู้ติดตาม
-    lock_link: ล๊อคแอคเค๊าท์ของคุณ
-    purge: นำผู้ติดตามออก
-    success:
-      one: In the process of soft-blocking followers from one domain...
-      other: In the process of soft-blocking followers from %{count} domains...
-    true_privacy_html: Please mind that <strong>true privacy can only be achieved with end-to-end encryption</strong>.
-    unlocked_warning_html: Anyone can follow you to immediately view your private statuses. %{lock_link} to be able to review and reject followers.
-    unlocked_warning_title: แอคเค๊าท์ของคุณไม่ได้ล๊อค
   generic:
     changes_saved_msg: บันทึกการแก้ไขแล้ว!
     save_changes: บันทึกการเปลี่ยนแปลง
@@ -260,7 +244,6 @@ th:
     back: กลับไปที่แมสโทดอน
     edit_profile: แก้ไขโปรไฟล์
     export: นำข้อมูลออก
-    followers: Authorized followers
     import: นำเข้า
     preferences: Preferences
     settings: ตั้งค่า

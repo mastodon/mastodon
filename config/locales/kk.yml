@@ -2,12 +2,11 @@
 kk:
   about:
     about_hashtag_html: Бұл жерде <strong>#%{hashtag}</strong> хэштегімен жинақталған жазбалар. Желіге тіркеліп, сіз де қосыла аласыз бұл ортаға.
-    about_mastodon_html: Mastodon - әлеуметтік желіге негізделген, тегін және веб протоколды, ашық кодты құрылым. Ол email сияқты орталықтандырылған.
+    about_mastodon_html: Mastodon - әлеуметтік желіге негізделген, тегін және веб протоколды, ашық кодты бағдарлама. Ол email сияқты орталығы жоқ құрылым.
     about_this: Туралы
     administered_by: 'Админ:'
     api: API
     apps: Мобиль қосымшалар
-    closed_registrations: Бұл серверде тіркелу уақытша тоқтатылған. Дегенмен, сіз басқа сервер арқылы тіркеліп, сол аккаунтыңызбен қолдана берсеңіз болады.
     contact: Байланыс
     contact_missing: Бапталмаған
     contact_unavailable: Белгісіз
@@ -15,19 +14,9 @@ kk:
     extended_description_html: |
       <h3>Ережелерге арналған жақсы орын</h3>
       <p>Әлі ештеңе жазылмапты</p>
-    features:
-      humane_approach_body: Басқа желілердің сәтсіздіктерінен сабақ алып, Mastodon әлеуметтік медианы дұрыс пайдаланбаумен күресу үшін этикалық дизайнды таңдауға бағытталған.
-      humane_approach_title: Гуманистік көзқарас басым
-      not_a_product_body: Mastodon коммерциялық желі емес. Жарнама жоқ, деректерді өңдеу, қоршаулы бақтар да жоқ. Орталықтан басқару да жоқ.
-      not_a_product_title: Сіз тұлғасыз, тауар емес
-      real_conversation_body: 500 таңба арқылы мазмұнды пікір және қызық медиа қолданып, өз ойыңызды жеткізе аласыз.
-      real_conversation_title: Нақты әңгімелерге арналған
-      within_reach_body: Ыңғайлы API экожүйесі арқасында iOS, Android және басқа платформаларға арналған бірнеше қосымшалар арқылы достарыңызбен кез-келген жерде әңгіме құруға мүмкіндік береді.
-      within_reach_title: Әрқашан қол жетімді
     generic_description: "%{domain} желідегі серверлердің бірі"
     hosted_on: Mastodon орнатылған %{domain} доменінде
     learn_more: Көбірек білу
-    other_instances: Серверлер тізімі
     privacy_policy: Құпиялылық саясаты
     source_code: Ашық коды
     status_count_after:
@@ -411,9 +400,6 @@ kk:
         min_invite_role:
           disabled: Ешкім
           title: Allow шақырулар by
-        open:
-          desc_html: Allow anyone to create an аккаунт
-          title: Ашық тіркелу
       show_known_fediverse_at_about_page:
         desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show жергілікті toots.
         title: Show known fediverse on timeline превью
@@ -508,13 +494,11 @@ kk:
     logout: Шығу
     migrate_account: Басқа аккаунтқа көшіру
     migrate_account_html: Егер аккаунтыңызды басқасына байлағыңыз келсе, <a href="%{path}">мына жерге келіңіз</a>.
-    or: немесе
     or_log_in_with: Немесе былай кіріңіз
     providers:
       cas: САS
       saml: SАML
     register: Тіркелу
-    register_elsewhere: Басқа серверге тіркелу
     resend_confirmation: Растау нұсқаулықтарын жіберу
     reset_password: Құпиясөзді қалпына келтіру
     security: Қауіпсіздік
@@ -609,18 +593,6 @@ kk:
       title: Фильтрлер
     new:
       title: Жаңа фильтр қосу
-  followers:
-    domain: Домен
-    explanation_html: Егер сіз жазбаларыңыздың құпиялылығын қамтамасыз еткіңіз келсе, сізді кім іздейтінін білуіңіз керек. <strong> Сіздің жазбаларыңыз оқырмандарыңыз бар барлық серверлерге жеткізіледі </strong>. Оларды оқырмандарыңызға және админдерге немесе осы серверлердің бағдарламалық жасақтамасына жауапты қызметкерлерге  сенбесеңіз, оқырмандарыңызды алып тастауыңызға болады.
-    followers_count: Оқырман саны
-    lock_link: Аккаунтыңызды құлыптау
-    purge: Оқырмандар тізімінен шығару
-    success:
-      one: Бір доменнен оқырмандарды бұғаттау барысында...
-      other: "%{count} доменнен оқырмандарды бұғаттау барысында..."
-    true_privacy_html: Ұмытпаңыз, <strong>нақты құпиялылықты шифрлаудан соң ғана қол жеткізуге болатындығын ескеріңіз.</strong>.
-    unlocked_warning_html: Кез келген адам жазбаларыңызды оқу үшін сізге жазыла алады. Жазылушыларды қарап, қабылдамау үшін %{lock_link}.
-    unlocked_warning_title: Аккаунтыңыз қазір құлыпталды
   footer:
     developers: Жасаушылар
     more: Тағы…
@@ -733,6 +705,16 @@ kk:
     older: Ерте
     prev: Алдыңғы
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Бұл сауалнамаға қатысқансыз
+      duplicate_options: қайталанатын нәрселер бар
+      duration_too_long: тым ұзақ екен
+      duration_too_short: тым аз екен
+      expired: Сауалнама уақыты аяқталған
+      over_character_limit: "%{max} таңбадан артық болмайды"
+      too_few_options: бір жауаптан көп болуы керек
+      too_many_options: "%{max} жауаптан көп болмайды"
   preferences:
     languages: Тілдер
     other: Басқа
@@ -812,7 +794,6 @@ kk:
     edit_profile: Профиль өңдеу
     export: Экспорт уақыты
     featured_tags: Таңдаулы хэштегтер
-    followers: Авторизацияланған оқырмандар
     import: Импорт
     migrate: Аккаунт көшіру
     notifications: Ескертпелер
@@ -842,6 +823,11 @@ kk:
       ownership: Біреудің жазбасы жабыстырылмайды
       private: Жабық жазба жабыстырылмайды
       reblog: Бөлісілген жазба жабыстырылмайды
+    poll:
+      total_votes:
+        one: "%{count} дауыс"
+        other: "%{count} дауыс"
+      vote: Дауыс беру
     show_more: Тағы әкел
     sign_in_to_participate: Сұхбатқа қатысу үшін кіріңіз
     title: '%{name}: "%{quote}"'

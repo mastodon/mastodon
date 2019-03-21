@@ -7,7 +7,6 @@ zh-CN:
     administered_by: 本实例的管理员：
     api: API
     apps: 移动应用
-    closed_registrations: 这个实例目前没有开放注册。不过，你可以前往其他实例注册一个帐户，同样可以加入到这个网络中哦！
     contact: 联系方式
     contact_missing: 未设定
     contact_unavailable: 未公开
@@ -15,25 +14,19 @@ zh-CN:
     extended_description_html: |
       <h3>这里可以写一些规定</h3>
       <p>本站尚未设置详细介绍。</p>
-    features:
-      humane_approach_body: Mastodon 从其他网络的失败经验中汲取了教训，致力于在与错误的社交媒体使用方式的斗争中做出符合伦理化设计的选择。
-      humane_approach_title: 更加以人为本
-      not_a_product_body: Mastodon 绝非一个商业网络。这里既没有广告，也没有数据挖掘，更没有围墙花园。中心机构在这里不复存在。
-      not_a_product_title: 作为用户，你并非一件商品
-      real_conversation_body: Mastodon 有着高达 500 字的字数限制，以及对内容的细化控制和媒体警告提示的支持，只为让你能够畅所欲言。
-      real_conversation_title: 为真正的交流而生
-      within_reach_body: 通过一个面向开发者友好的 API 生态系统，Mastodon 让你可以随时随地通过众多 iOS、Android 以及其他平台的应用与朋友们保持联系。
-      within_reach_title: 始终触手可及
     generic_description: "%{domain} 是这个庞大网络中的一台服务器"
     hosted_on: 一个在 %{domain} 上运行的 Mastodon 实例
     learn_more: 了解详情
-    other_instances: 其他实例
     privacy_policy: 隐私政策
     source_code: 源代码
-    status_count_after: 条嘟文
+    status_count_after:
+      one: 条嘟文
+      other: 条嘟文
     status_count_before: 他们共嘟出了
     terms: 使用条款
-    user_count_after: 位用户
+    user_count_after:
+      one: 位用户
+      other: 位用户
     user_count_before: 这里共注册有
     what_is_mastodon: Mastodon 是什么？
   accounts:
@@ -115,13 +108,13 @@ zh-CN:
       most_recent_ip: 最后一次活跃的 IP 地址
       not_subscribed: 未订阅
       outbox_url: 发件箱（Outbox）URL
-      perform_full_suspension: 永久封禁
+      perform_full_suspension: 封禁
       profile_url: 个人资料页面 URL
       promote: 升任
       protocol: 协议
       public: 公开页面
       push_subscription_expires: PuSH 订阅过期时间
-      redownload: 刷新头像
+      redownload: 刷新个人资料
       remove_avatar: 删除头像
       resend_confirmation:
         already_confirmed: 该用户已被确认
@@ -136,7 +129,7 @@ zh-CN:
         moderator: 监察员
         staff: 管理人员
         user: 普通用户
-      salmon_url: Salmon URL
+      salmon_url: 三文鱼协议网址（Salmon URL）
       search: 搜索
       shared_inbox_url: 公用收件箱（Shared Inbox）URL
       show:
@@ -206,7 +199,7 @@ zh-CN:
       shortcode_hint: 至少 2 个字符，只能使用字母、数字和下划线
       title: 自定义表情
       unlisted: 已隐藏
-      update_failed_msg: 表情更新失败！
+      update_failed_msg: 表情更新失败
       updated_msg: 表情更新成功！
       upload: 上传新表情
     dashboard:
@@ -231,7 +224,7 @@ zh-CN:
       week_users_active: 本周活跃用户数
       week_users_new: 本周新用户数
     domain_blocks:
-      add_new: 添加新条目
+      add_new: 添加新屏蔽域名
       created_msg: 正在进行域名屏蔽
       destroyed_msg: 域名屏蔽已撤销
       domain: 域名
@@ -255,7 +248,7 @@ zh-CN:
           suspend: 对此域名的所有帐户解除封禁
         title: 撤销对 %{domain} 的域名屏蔽
         undo: 撤销
-      undo: 撤销
+      undo: 撤销屏蔽域名
     email_domain_blocks:
       add_new: 添加新条目
       created_msg: 电子邮件域名屏蔽添加成功
@@ -351,9 +344,6 @@ zh-CN:
         min_invite_role:
           disabled: 没有人
           title: 允许发送邀请的用户组
-        open:
-          desc_html: 允许所有人建立帐户
-          title: 开放注册
       show_known_fediverse_at_about_page:
         desc_html: 启用此选项将会在预览中显示来自已知实例的嘟文，否则只会显示本站时间轴的内容.
         title: 在时间轴预览中显示已知实例
@@ -361,7 +351,7 @@ zh-CN:
         desc_html: 在个人资料页上显示管理人员标志
         title: 显示管理人员标志
       site_description:
-        desc_html: 用于首页展示以及 meta 标签中的网站简介。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>
+        desc_html: 首页上的介绍文字。 描述一下本 Mastodon 实例的特殊之处以及其他重要信息。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 。
         title: 本站简介
       site_description_extended:
         desc_html: 可以填写行为守则、规定、指南或其他本站特有的内容。可以使用 HTML 标签
@@ -404,7 +394,7 @@ zh-CN:
       subject: 来自 %{instance} 的用户举报（#%{id}）
   application_mailer:
     notification_preferences: 更改电子邮件首选项
-    salutation: "%{name}："
+    salutation: "%{name},"
     settings: 使用此链接更改你的电子邮件首选项：%{link}
     view: 点此链接查看详情：
     view_profile: 查看个人资料页
@@ -418,7 +408,7 @@ zh-CN:
     warning: 一定小心，千万不要把它分享给任何人！
     your_token: 你的访问令牌
   auth:
-    agreement_html: 注册即表示你同意遵守<a href="%{rules_path}">本实例的相关规定</a>和<a href="%{terms_path}">我们的使用条款</a>。
+    agreement_html: 点击注册即表示你同意遵守<a href="%{rules_path}">本站的相关规定</a>和<a href="%{terms_path}">我们的使用条款</a>。
     change_password: 密码
     confirm_email: 确认电子邮件地址
     delete_account: 删除帐户
@@ -430,13 +420,11 @@ zh-CN:
     logout: 登出
     migrate_account: 迁移到另一个帐户
     migrate_account_html: 如果你希望引导他人关注另一个帐户，请<a href="%{path}">点击这里进行设置</a>。
-    or: 或者
     or_log_in_with: 或通过其他方式登录
     providers:
       cas: CAS
       saml: SAML
     register: 注册
-    register_elsewhere: 前往其他实例注册
     resend_confirmation: 重新发送确认邮件
     reset_password: 重置密码
     security: 帐户安全
@@ -477,7 +465,7 @@ zh-CN:
   errors:
     '403': 你没有访问这个页面的权限。
     '404': 无法找到你所要访问的页面。
-    '410': 你所要访问的页面已被删除。
+    '410': 你所要访问的页面此处已不存在。
     '422':
       content: 无法确认登录信息。你是不是屏蔽了 Cookie？
       title: 无法确认登录信息
@@ -514,16 +502,6 @@ zh-CN:
       title: 过滤器
     new:
       title: 添加新的过滤器
-  followers:
-    domain: 域名
-    explanation_html: 为保证你的嘟文的隐私安全，你应当经常检查你的关注者列表。<strong>受保护的嘟文将会发送到所有关注者所在的实例上</strong>。有些实例使用的软件代码或其管理员可能不会尊重你的隐私设置，因此你应当复查一下关注者列表，并移除那些你无法信任的关注者。
-    followers_count: 关注者数量
-    lock_link: 为你的帐户开启保护
-    purge: 从关注者中移除
-    success: 正在从 %{count} 个域名中移除关注者……
-    true_privacy_html: 请始终铭记：<strong>真正的隐私只能靠端到端加密来实现</strong>！
-    unlocked_warning_html: 任何人都可以在关注你后立即查看非公开的嘟文。只要%{lock_link}，你就可以审核并拒绝关注请求。
-    unlocked_warning_title: 你的帐户未受到保护
   generic:
     changes_saved_msg: 更改保存成功！
     save_changes: 保存更改
@@ -595,7 +573,7 @@ zh-CN:
       title: 新的关注者
     follow_request:
       action: 处理关注请求
-      body: "%{name} 向你发送了关注请求！"
+      body: "%{name} 向你发送了关注请求"
       subject: 来自 %{name} 的关注请求
       title: 新的关注请求
     mention:
@@ -623,7 +601,7 @@ zh-CN:
     next: 下一页
     older: 更早
     prev: 上一页
-    truncate: "…"
+    truncate: "&hellip;"
   preferences:
     languages: 语言
     other: 其他
@@ -687,7 +665,6 @@ zh-CN:
     development: 开发
     edit_profile: 更改个人资料
     export: 导出
-    followers: 已授权的关注者
     import: 导入
     migrate: 帐户迁移
     notifications: 通知
@@ -733,8 +710,8 @@ zh-CN:
   terms:
     title: "%{instance} 使用条款和隐私权政策"
   themes:
-    contrast: 高对比度
-    default: Mastodon
+    contrast: Mastodon（高对比度）
+    default: Mastodon（暗色主题）
     mastodon-light: Mastodon（亮色主题）
   time:
     formats:
@@ -754,7 +731,7 @@ zh-CN:
     recovery_codes_regenerated: 恢复代码重新生成成功
     recovery_instructions_html: 如果你的手机无法使用，你可以使用下列任意一个恢复代码来重新获得对帐户的访问权。<strong>请妥善保管好你的恢复代码</strong>（例如，你可以将它们打印出来，然后和其他重要的文件放在一起）。
     setup: 设置
-    wrong_code: 输入的认证码无效！请核对一下你的设备显示的时间，如果正确，你可能需要联系一下实例的管理员，让他们校准服务器的时间。
+    wrong_code: 输入的认证码无效！请确认服务器时间与设备时间是否正确？
   user_mailer:
     backup_ready:
       explanation: 你请求了一份 Mastodon 帐户的完整备份。现在你可以下载了！

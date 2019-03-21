@@ -10,7 +10,7 @@ module Admin
       site_description
       site_extended_description
       site_terms
-      open_registrations
+      registrations_mode
       closed_registrations_message
       open_deletion
       timeline_preview
@@ -30,7 +30,6 @@ module Admin
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
-      open_registrations
       open_deletion
       timeline_preview
       show_staff_badge

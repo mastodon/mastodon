@@ -7,7 +7,6 @@ da:
     administered_by: 'Administreret af:'
     api: API
     apps: Apps til mobilen
-    closed_registrations: Registreringer er på nuværrende tidspunkt lukkede for denne instans. Du kan dog finde andre instanser du kan oprette dig på og få adgang til det samme netværk derfra.
     contact: Kontakt
     contact_missing: Ikke sat
     contact_unavailable: Ikke tilgængeligt
@@ -15,19 +14,9 @@ da:
     extended_description_html: |
       <h3>Et godt sted for regler</h3>
       <p>Den udvidede beskrivelse er endnu ikke blevet opsat.</p>
-    features:
-      humane_approach_body: Ved at lære fra fejl fra andre netværk, sigter Mastodon for at tage etisk designmæssig valg for at bekæmpe misbrug af sociale medier.
-      humane_approach_title: En mere human tilgang
-      not_a_product_body: Mastodon er ikke et kommercielt netværk. Ingen reklamer, ingen datamining, ingen indhegnet haver. Der er ingen central regering.
-      not_a_product_title: Du er en person, ikke et produkt
-      real_conversation_body: Med 500 tegn til din rådighed og understøttelse af granulært indhold og medie advarsler, kan du udtrykke dig på en hvilken som helst måde du ønsker.
-      real_conversation_title: Bygget til rigtige samtaler
-      within_reach_body: Adskillige apps for iOS, Android og andre platforme takket være et udviklervenligt API økosystem tillader dig at holde kontakten med dine venner hvor som helst.
-      within_reach_title: Altid indenfor rækkevidde
     generic_description: "%{domain} er en server i netværket"
     hosted_on: Mostodon hostet på %{domain}
     learn_more: Lær mere
-    other_instances: Liste over instanser
     privacy_policy: Privatlivspolitik
     source_code: Kildekode
     status_count_after:
@@ -131,7 +120,7 @@ da:
       protocol: Protokol
       public: Offentligt
       push_subscription_expires: PuSH abonnement udløber
-      redownload: Opdater profilbillede
+      redownload: Opdater profil
       remove_avatar: Fjern profilbillede
       resend_confirmation:
         already_confirmed: Denne bruger er allerede blevet bekræftet
@@ -371,9 +360,6 @@ da:
         min_invite_role:
           disabled: Ingen
           title: Tillad invitationer af
-        open:
-          desc_html: Tillad alle at oprette en konto
-          title: Åben registrering
       show_known_fediverse_at_about_page:
         desc_html: Når slået til, vil det vise trut fra hele det kendte fedivers på forhåndsvisning. Ellers vil det kun vise lokale trut.
         title: Vis kendte fedivers på tidslinje forhåndsvisning
@@ -457,13 +443,11 @@ da:
     logout: Log ud
     migrate_account: Flyt til en anden konto
     migrate_account_html: Hvis du ønsker at omdirigere denne konto til en anden, kan du <a href="%{path}">gøre det her</a>.
-    or: eller
     or_log_in_with: Eller log in med
     providers:
       cas: CAS
       saml: SAML
     register: Opret dig
-    register_elsewhere: Opret dig på en anden server
     resend_confirmation: Gensend bekræftelses instrukser
     reset_password: Nulstil kodeord
     security: Sikkerhed
@@ -542,18 +526,6 @@ da:
       title: Filtrer
     new:
       title: Tilføj nyt filter
-  followers:
-    domain: Domæne
-    explanation_html: Hvis du vil sikre dig privatliv over dine statusser, skal du være klar over hvem der følger dig. <strong>Dine private statusser leveres til alle instanser som du har følger fra</strong>. Det kan være en ide at gennemgå dem, og fjerne følgere hvis du ikke føler dit privatliv respekteres af personalet eller software fra disse instanser.
-    followers_count: Antal følgere
-    lock_link: Lås din konto
-    purge: Fjern fra følgere
-    success:
-      one: I gang med at soft-blokere følgere fra et domæne...
-      other: I gang med at soft-blokere følgere fra %{count} domæner...
-    true_privacy_html: Husk på, at <strong>sand privatliv kan kun opnås via end-to-end kryptering</strong>.
-    unlocked_warning_html: Alle kan følge dig med det samme for at se dine private statusser. %{lock_link} for at være i stand til at gennemse og afvise følgere.
-    unlocked_warning_title: Din konto er ikke låst
   footer:
     developers: Udviklere
     more: Mere…
@@ -724,7 +696,6 @@ da:
     development: Udvikling
     edit_profile: Rediger profil
     export: Data eksportering
-    followers: Godkendte følgere
     import: Importer
     migrate: Konto migrering
     notifications: Notifikationer

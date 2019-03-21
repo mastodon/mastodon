@@ -20,17 +20,17 @@ ca:
         action: Verifica l'adreça de correu
         action_with_app: Confirma i torna a %{app}
         explanation: Has creat un compte a %{host} amb aquesta adreça de correu electrònic. Estàs a un sol clic de l'activació. Si no fos així, ignora aquest correu electrònic.
-        extra_html: Si us plau consulta també <a href="%{terms_path}"> les regles de la instància</a> i <a href="%{policy_path}"> les nostres condicions de servei</a>.
+        extra_html: Si us plau consulta també <a href="%{terms_path}"> les regles del servidor</a> i <a href="%{policy_path}"> les nostres condicions de servei</a>.
         subject: 'Mastodon: Instruccions de confirmació %{instance}'
         title: Verifica l'adreça de correu
       email_changed:
         explanation: 'L''adreça de correu del teu compte s''està canviant a:'
-        extra: Si no has canviat el teu correu electrònic, és probable que algú hagi accedit al teu compte. Si us plau, canvia la contrasenya immediatament o posa't en contacte amb l'administrador de la instància si no pots accedir al teu compte.
+        extra: Si no has canviat el teu correu electrònic és probable que algú hagi accedit al teu compte. Si us plau, canvia la contrasenya immediatament o posa't en contacte amb l'administrador del servidor si no pots accedir al teu compte.
         subject: 'Mastodon: s''ha canviat l''adreça electrònica'
         title: Adreça de correu electrònic nova
       password_change:
         explanation: S'ha canviat la contrasenya del teu compte.
-        extra: Si no has canviat el teu correu electrònic, és probable que algú hagi accedit al teu compte. Si us plau, canvia la contrasenya immediatament o posa't en contacte amb l'administrador de la instància si no pots accedir al teu compte.
+        extra: Si no has canviat el teu correu electrònic, és probable que algú hagi accedit al teu compte. Si us plau, canvia la contrasenya immediatament o posa't en contacte amb l'administrador del servidor si no pots accedir al teu compte.
         subject: 'Mastodon: Contrasenya canviada'
         title: Contrasenya canviada
       reconfirmation_instructions:

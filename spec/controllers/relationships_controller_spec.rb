@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Settings::FollowerDomainsController do
+describe RelationshipsController do
   render_views
 
   let(:user) { Fabricate(:user) }
@@ -12,24 +12,17 @@ describe Settings::FollowerDomainsController do
   end
 
   describe 'GET #show' do
-    subject { get :show, params: { page: 2 } }
+    subject { get :show, params: { page: 2, relationship: 'followed_by' } }
 
-    it 'assigns @account' do
-      sign_in user, scope: :user
-      subject
-      expect(assigns(:account)).to eq user.account
-    end
-
-    it 'assigns @domains' do
+    it 'assigns @accounts' do
       Fabricate(:account, domain: 'old').follow!(user.account)
       Fabricate(:account, domain: 'recent').follow!(user.account)
 
       sign_in user, scope: :user
       subject
 
-      assigned = assigns(:domains).per(1).to_a
+      assigned = assigns(:accounts).per(1).to_a
       expect(assigned.size).to eq 1
-      expect(assigned[0].accounts_from_domain).to eq 1
       expect(assigned[0].domain).to eq 'old'
     end
 
@@ -49,25 +42,24 @@ describe Settings::FollowerDomainsController do
       stub_request(:post, 'http://example.com/salmon').to_return(status: 200)
     end
 
-    shared_examples 'redirects back to followers page' do |notice|
+    shared_examples 'redirects back to followers page' do
       it 'redirects back to followers page' do
         poopfeast.follow!(user.account)
 
         sign_in user, scope: :user
         subject
 
-        expect(flash[:notice]).to eq notice
-        expect(response).to redirect_to(settings_follower_domains_path)
+        expect(response).to redirect_to(relationships_path)
       end
     end
 
     context 'when select parameter is not provided' do
       subject { patch :update }
-      include_examples 'redirects back to followers page', 'In the process of soft-blocking followers from 0 domains...'
+      include_examples 'redirects back to followers page'
     end
 
     context 'when select parameter is provided' do
-      subject { patch :update, params: { select: ['example.com'] } }
+      subject { patch :update, params: { form_account_batch: { account_ids: [poopfeast.id] }, block_domains: '' } }
 
       it 'soft-blocks followers from selected domains' do
         poopfeast.follow!(user.account)
@@ -79,7 +71,7 @@ describe Settings::FollowerDomainsController do
       end
 
       include_examples 'authenticate user'
-      include_examples 'redirects back to followers page', 'In the process of soft-blocking followers from one domain...'
+      include_examples 'redirects back to followers page'
     end
   end
 end
