@@ -22,9 +22,9 @@ th:
     learn_more: เรียนรู้เพิ่มเติม
     privacy_policy: นโยบายความเป็นส่วนตัว
     what_is_mastodon: Mastodon คืออะไร?
-    apps: แอปในมือถือ
+    apps: แอปสำหรับมือถือ
     generic_description: '%{domain} เป็นเซิร์ฟเวอร์หนึ่งในเครือข่าย'
-    get_apps: ลองแอปในมือถือ
+    get_apps: ลองแอปสำหรับมือถือ
     server_stats: 'สถิติเซิร์ฟเวอร์:'
   accounts:
     follow: ติดตาม
@@ -48,6 +48,8 @@ th:
       admin: ผู้ดูแล
       moderator: ผู้ควบคุม
     moved_html: '%{name} ได้ย้ายไปยัง %{new_profile_link}:'
+    last_active: ใช้งานล่าสุด
+    network_hidden: ไม่มีข้อมูลนี้
   admin:
     accounts:
       are_you_sure: คุณแน่ใจหรือไม่?
@@ -105,6 +107,7 @@ th:
         label: เปลี่ยนอีเมล
         new_email: อีเมลใหม่
         submit: เปลี่ยนอีเมล
+        title: เปลี่ยนอีเมลสำหรับ %{username}
       disable: ปิดใช้งาน
       enable: เปิดใช้งาน
       header: ส่วนหัว
@@ -129,6 +132,7 @@ th:
       search: ค้นหา
       subscribe: บอกรับ
       warn: เตือน
+      resubscribe: บอกรับใหม่
     domain_blocks:
       add_new: เพิ่มการปิดกั้นโดเมนใหม่
       created_msg: กำลังประมวลผลการปิดกั้นโดเมน
@@ -158,12 +162,14 @@ th:
         title: เลิกทำการปิดกั้นโดเมนสำหรับ %{domain}
         undo: เลิกทำ
       undo: เลิกทำการปิดกั้นโดเมน
+      reject_reports: ปฏิเสธรายงาน
     instances:
       title: การติดต่อกับภายนอก
       by_domain: โดเมน
       moderation:
         all: ทั้งหมด
         title: การควบคุม
+      total_storage: ไฟล์แนบสื่อ
     reports:
       comment:
         none: ไม่มี
@@ -231,16 +237,20 @@ th:
       enable: เปิดใช้งาน
       overwrite: เขียนทับ
       upload: อัปโหลด
+      unlisted: ไม่อยู่ในรายการ
     dashboard:
       feature_deletions: การลบบัญชี
       feature_profile_directory: ไดเรกทอรีโปรไฟล์
       feature_registrations: การลงทะเบียน
       software: ซอฟต์แวร์
+      features: คุณลักษณะ
+      recent_users: ผู้ใช้ล่าสุด
     email_domain_blocks:
       delete: ลบ
       domain: โดเมน
       new:
         create: เพิ่มโดเมน
+      add_new: เพิ่มใหม่
     relays:
       delete: ลบ
       disable: ปิดใช้งาน
@@ -268,6 +278,8 @@ th:
       add_new: เพิ่มใหม่
       delete: ลบ
       edit: แก้ไข
+    action_logs:
+      title: รายการบันทึกการตรวจสอบ
   application_mailer:
     settings: 'เปลี่ยนการกำหนดลักษณะอีเมล: %{link}'
     view: 'มุมมอง:'
@@ -396,9 +408,14 @@ th:
     edit_profile: แก้ไขโปรไฟล์
     export: การส่งออกข้อมูล
     import: นำเข้า
-    preferences: Preferences
+    preferences: การกำหนดลักษณะ
     settings: การตั้งค่า
     two_factor_authentication: Two-factor Authentication
+    delete: การลบบัญชี
+    development: การพัฒนา
+    notifications: การแจ้งเตือน
+    relationships: การติดตามและผู้ติดตาม
+    your_apps: แอปพลิเคชันของคุณ
   statuses:
     open_in_web: เปิดในเว็บ
     over_character_limit: character limit of %{max} exceeded
@@ -408,11 +425,11 @@ th:
       private_long: แสดงต่อผู้ติดตามเท่านั้น
       public: สาธารณะ
       public_long: ทุกคนสามารถเห็น
-      unlisted: Unlisted
+      unlisted: ไม่อยู่ในรายการ
       unlisted_long: Everyone can see, but not listed on public timelines
   stream_entries:
     reblogged: boosted
-    sensitive_content: Sensitive content
+    sensitive_content: เนื้อหาที่ละเอียดอ่อน
   time:
     formats:
       default: '%b %d, %Y, %H:%M'
@@ -443,3 +460,5 @@ th:
   users:
     invalid_email: ที่อยู่อีเมลไม่ถูกต้อง
     invalid_otp_token: รหัสสองปัจจัยไม่ถูกต้อง
+  remote_unfollow:
+    error: ข้อผิดพลาด
