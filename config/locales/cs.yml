@@ -118,7 +118,7 @@ cs:
       followers_url: URL sledujících
       follows: Sledovaní
       header: Záhlaví
-      inbox_url: URL přijatých zpráv
+      inbox_url: URL příchozí schránky
       invited_by: Pozván/a uživatelem
       ip: IP
       joined: Připojil/a se
@@ -142,7 +142,7 @@ cs:
       most_recent_ip: Nejnovější IP
       no_limits_imposed: Nejsou nastavena žádná omezení
       not_subscribed: Neodebírá
-      outbox_url: URL odchozích zpráv
+      outbox_url: URL odchozí schránky
       pending: Čeká na posouzení
       perform_full_suspension: Pozastavit
       profile_url: URL profilu
@@ -169,7 +169,7 @@ cs:
         user: Uživatel
       salmon_url: URL Salmon
       search: Hledat
-      shared_inbox_url: URL sdílených přijatých zpráv
+      shared_inbox_url: URL sdílené příchozí schránky
       show:
         created_reports: Vytvořená nahlášení
         targeted_reports: Nahlášeni ostatními
@@ -297,8 +297,8 @@ cs:
       rejecting_media: odmítají se mediální soubory
       rejecting_reports: odmítají se nahlášení
       severity:
-        silence: utišené
-        suspend: pozastavené
+        silence: utišeno
+        suspend: pozastaveno
       show:
         affected_accounts:
           few: '%{count} účty v databázi byly ovlivněny'
@@ -461,9 +461,9 @@ cs:
         desc_html: Zobrazit na stránce uživatele odznak člena personálu
         title: Zobrazit odznak personálu
       site_description:
-        desc_html: Úvodní odstavec na hlavní straně. Popište, díky čemu je tento server
-          Mastodon zvláštní, a cokoliv jiného, co je důležité. Můžete zde používat
-          HTML značky, hlavně <code>&lt;a&gt;</code> a <code>&lt;em&gt;</code>.
+        desc_html: Úvodní odstavec v API. Popište, díky čemu je tento server Mastodon
+          zvláštní, a cokoliv jiného, co je důležité. Můžete zde používat HTML značky,
+          hlavně <code>&lt;a&gt;</code> a <code>&lt;em&gt;</code>.
         title: Popis serveru
       site_description_extended:
         desc_html: Dobré místo pro vaše pravidla, pokyny a jiné věci, které váš server
@@ -471,8 +471,7 @@ cs:
         title: Vlastní rozšířené informace
       site_short_description:
         desc_html: Zobrazen v postranním panelu a meta značkách. Popište, co je Mastodon
-          a díky čemu je tento server zvláštní v jediném odstavci. Je-li tohle prázdné,
-          zobrazí se popis serveru.
+          a díky čemu je tento server zvláštní v jediném odstavci.
         title: Krátký popis serveru
       site_terms:
         desc_html: Můžete si napsat vlastní zásady soukromí, podmínky používání či
