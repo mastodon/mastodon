@@ -40,6 +40,12 @@ sk:
     browse_directory: Prehľadávaj databázu profilov a filtruj ju podľa záujmov
     browse_public_posts: Prebádaj naživo prúd verejných príspevkov na Mastodone
     discover_users: Objavuj užívateľov
+    federation_hint_html: S účtom na %{instance} budeš môcť následovať ľúdí na hociakom
+      inom Mastodon serveri, ale aj inde.
+    get_apps: Vyskúšaj mobilnú aplikáciu
+    see_whats_happening: Pozoruj, čo sa deje
+    server_stats: 'Serverové štatistiky:'
+    tagline: Následuj kamarátov, a objavuj nových
   accounts:
     choices_html: '%{name}vé voľby:'
     follow: Sleduj
@@ -129,6 +135,7 @@ sk:
         silenced: Umlčané
         suspended: Vylúčený/á
         title: Moderácia
+        pending: Čakajúci
       moderation_notes: Moderátorské poznámky
       most_recent_activity: Posledná aktivita
       most_recent_ip: Posledná IP
@@ -176,6 +183,9 @@ sk:
       username: Prezývka
       warn: Varovať
       web: Web
+      approve: Schváľ
+      pending: Vyžaduje posúdenie
+      reject: Odmietni
     action_logs:
       actions:
         assigned_to_self_report: '%{name}pridelil/a hlásenie užívateľa %{target}sebe'
@@ -473,6 +483,12 @@ sk:
         desc_html: Zobraziť verejnú nástenku na hlavnej stránke
         title: Náhľad nástenky
       title: Nastavenia stránky
+      registrations_mode:
+        modes:
+          approved: Pre registráciu je nutné povolenie
+          none: Nikto sa nemôže registrovať
+          open: Ktokoľvek sa môže zaregistrovať
+        title: Režím registrácií
     statuses:
       back_to_account: Späť na účet
       batch:
@@ -514,6 +530,9 @@ sk:
       body: '%{reporter} nahlásil/a %{target}'
       body_remote: Niekto z %{domain} nahlásil/a %{target}
       subject: Nové hlásenie pre %{instance} (#%{id})
+    new_pending_account:
+      body: Podrobnosti o novom účte sú uvedené nižšie. Môžeš túto registračnú požiadavku
+        buď prijať, alebo zamietnúť.
   application_mailer:
     notification_preferences: Zmeniť e-mailové voľby
     salutation: '%{name},'
