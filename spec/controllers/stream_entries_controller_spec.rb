@@ -4,7 +4,7 @@ RSpec.describe StreamEntriesController, type: :controller do
   render_views
 
   shared_examples 'before_action' do |route|
-    context 'when account is not suspended anbd stream_entry is available' do
+    context 'when account is not suspended and stream_entry is available' do
       it 'assigns instance variables' do
         status = Fabricate(:status)
 

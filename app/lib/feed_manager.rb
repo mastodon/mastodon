@@ -4,6 +4,7 @@ require 'singleton'
 
 class FeedManager
   include Singleton
+  include Redisable
 
   MAX_ITEMS = 400
 
@@ -27,7 +28,7 @@ class FeedManager
   end
 
   def push_to_home(account, status)
-    return false unless add_to_feed(:home, account.id, status)
+    return false unless add_to_feed(:home, account.id, status, account.user&.aggregates_reblogs?)
     trim(:home, account.id)
     PushUpdateWorker.perform_async(account.id, status.id, "timeline:#{account.id}") if push_update_required?("timeline:#{account.id}")
     true
@@ -35,12 +36,17 @@ class FeedManager
 
   def unpush_from_home(account, status)
     return false unless remove_from_feed(:home, account.id, status)
-    Redis.current.publish("timeline:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s))
+    redis.publish("timeline:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s))
     true
   end
 
   def push_to_list(list, status)
-    return false unless add_to_feed(:list, list.id, status)
+    if status.reply? && status.in_reply_to_account_id != status.account_id
+      should_filter = status.in_reply_to_account_id != list.account_id
+      should_filter &&= !ListAccount.where(list_id: list.id, account_id: status.in_reply_to_account_id).exists?
+      return false if should_filter
+    end
+    return false unless add_to_feed(:list, list.id, status, list.account.user&.aggregates_reblogs?)
     trim(:list, list.id)
     PushUpdateWorker.perform_async(list.account_id, status.id, "timeline:list:#{list.id}") if push_update_required?("timeline:list:#{list.id}")
     true
@@ -48,7 +54,7 @@ class FeedManager
 
   def unpush_from_list(list, status)
     return false unless remove_from_feed(:list, list.id, status)
-    Redis.current.publish("timeline:list:#{list.id}", Oj.dump(event: :delete, payload: status.id.to_s))
+    redis.publish("timeline:list:#{list.id}", Oj.dump(event: :delete, payload: status.id.to_s))
     true
   end
 
@@ -87,8 +93,8 @@ class FeedManager
     end
 
     query.each do |status|
-      next if status.direct_visibility? || filter?(:home, status, into_account)
-      add_to_feed(:home, into_account.id, status)
+      next if status.direct_visibility? || status.limited_visibility? || filter?(:home, status, into_account)
+      add_to_feed(:home, into_account.id, status, into_account.user&.aggregates_reblogs?)
     end
 
     trim(:home, into_account.id)
@@ -126,7 +132,7 @@ class FeedManager
 
       statuses.each do |status|
         next if filter_from_home?(status, account)
-        added += 1 if add_to_feed(:home, account.id, status)
+        added += 1 if add_to_feed(:home, account.id, status, account.user&.aggregates_reblogs?)
       end
 
       break unless added.zero?
@@ -136,10 +142,6 @@ class FeedManager
   end
 
   private
-
-  def redis
-    Redis.current
-  end
 
   def push_update_required?(timeline_id)
     redis.exists("subscribed:#{timeline_id}")
@@ -155,12 +157,12 @@ class FeedManager
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
     return true  if phrase_filtered?(status, receiver_id, :home)
 
-    check_for_blocks = status.mentions.pluck(:account_id)
+    check_for_blocks = status.active_mentions.pluck(:account_id)
     check_for_blocks.concat([status.account_id])
 
     if status.reblog?
       check_for_blocks.concat([status.reblog.account_id])
-      check_for_blocks.concat(status.reblog.mentions.pluck(:account_id))
+      check_for_blocks.concat(status.reblog.active_mentions.pluck(:account_id))
     end
 
     return true if blocks_or_mutes?(receiver_id, check_for_blocks, :home)
@@ -187,7 +189,7 @@ class FeedManager
     # This filter is called from NotifyService, but already after the sender of
     # the notification has been checked for mute/block. Therefore, it's not
     # necessary to check the author of the toot for mute/block again
-    check_for_blocks = status.mentions.pluck(:account_id)
+    check_for_blocks = status.active_mentions.pluck(:account_id)
     check_for_blocks.concat([status.in_reply_to_account]) if status.reply? && !status.in_reply_to_account_id.nil?
 
     should_filter   = blocks_or_mutes?(receiver_id, check_for_blocks, :mentions)                                                         # Filter if it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked (or muted)
@@ -225,11 +227,11 @@ class FeedManager
   # added, and false if it was not added to the feed. Note that this is
   # an internal helper: callers must call trim or push updates if
   # either action is appropriate.
-  def add_to_feed(timeline_type, account_id, status)
+  def add_to_feed(timeline_type, account_id, status, aggregate_reblogs = true)
     timeline_key = key(timeline_type, account_id)
     reblog_key   = key(timeline_type, account_id, 'reblogs')
 
-    if status.reblog?
+    if status.reblog? && (aggregate_reblogs.nil? || aggregate_reblogs)
       # If the original status or a reblog of it is within
       # REBLOG_FALLOFF statuses from the top, do not re-insert it into
       # the feed

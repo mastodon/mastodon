@@ -2,35 +2,44 @@
 nl:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Je kunt voor toots specifieke tekst gebruiken, zoals URL's, hashtags en vermeldingen
+      admin_account_action:
+        send_email_notification: De gebruiker ontvangt een uitleg over wat er met hun account is gebeurd
+        text_html: Optioneel. Je kunt voor toots specifieke tekst gebruiken. Om tijd te besparen kun je <a href="%{path}">voorinstellingen van waarschuwingen toevoegen</a>
+        type_html: Kies wat er met <strong>%{acct}</strong> moet gebeuren
+        warning_preset_id: Optioneel. Je kunt nog steeds handmatig tekst toevoegen aan het eind van de voorinstelling
       defaults:
         autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen jou automatisch
         avatar: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
         bot: Dit is een geautomatiseerd account en wordt mogelijk niet gemonitord
         context: Een of meerdere locaties waar de filter actief moet zijn
         digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
-        display_name:
-          one: <span class="name-counter">1</span> teken over
-          other: <span class="name-counter">%{count}</span> tekens over
+        discoverable_html: In de <a href="%{path}" target="_blank">gebruikersgids</a> kunnen mensen andere accounts vinden aan de hand van interesses en activiteit. Dit vereist tenminste %{min_followers} volgers
+        email: Je krijgt een bevestigingsmail
         fields: Je kan maximaal 4 items als een tabel op je profiel weergeven
         header: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
         inbox_url: Kopieer de URL van de voorpagina van de relayserver die je wil gebruiken
         irreversible: Gefilterde toots verdwijnen onomkeerbaar, zelfs als de filter later wordt verwijderd
         locale: De taal van de gebruikersomgeving, e-mails en pushmeldingen
         locked: Vereist dat je handmatig volgers moet accepteren
-        note:
-          one: <span class="note-counter">1</span> teken over
-          other: <span class="note-counter">%{count}</span> tekens over
+        password: Gebruik tenminste 8 tekens
         phrase: Komt overeen ongeacht hoofd-/kleine letters of tekstwaarschuwingen
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
+        setting_aggregate_reblogs: Geen nieuwe boosts tonen voor toots die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
         setting_default_language: De taal van jouw toots kan automatisch worden gedetecteerd, maar het is niet altijd accuraat
+        setting_display_media_default: Als gevoelig gemarkeerde media verbergen
+        setting_display_media_hide_all: Media altijd verbergen
+        setting_display_media_show_all: Als gevoelig gemarkeerde media altijd verbergen
         setting_hide_network: Wie jij volgt en wie jou volgen wordt niet op jouw profiel getoond
         setting_noindex: Heeft invloed op jouw openbare profiel en toots
         setting_theme: Heeft invloed op hoe de webapp van Mastodon eruitziet (op elk apparaat waarmee je inlogt).
+        username: Jouw gebruikersnaam is uniek op %{domain}
         whole_word: Wanneer het trefwoord of zinsdeel alfanumeriek is, wordt het alleen gefilterd wanneer het hele woord overeenkomt
       imports:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       sessions:
-        otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes.
+        otp: 'Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes:'
       user:
         chosen_languages: Alleen toots in de aangevinkte talen worden op de openbare tijdlijnen getoond
     labels:
@@ -38,6 +47,18 @@ nl:
         fields:
           name: Label
           value: Inhoud
+      account_warning_preset:
+        text: Tekst van voorinstelling
+      admin_account_action:
+        send_email_notification: Meld dit per e-mail aan de gebruiker
+        text: Aangepaste waarschuwing
+        type: Actie
+        types:
+          disable: Uitschakelen
+          none: Niets doen
+          silence: Negeren
+          suspend: Opschorten en onomkeerbaar accountgegevens verwijderen
+        warning_preset_id: Gebruik een voorinstelling van een waarschuwing
       defaults:
         autofollow: Uitnodigen om jouw account te volgen
         avatar: Avatar
@@ -48,6 +69,7 @@ nl:
         context: Filterlocaties
         current_password: Huidig wachtwoord
         data: Gegevens
+        discoverable: Dit account in de gebruikersgids tonen
         display_name: Weergavenaam
         email: E-mailadres
         expires_in: Vervalt na
@@ -63,13 +85,18 @@ nl:
         otp_attempt: Tweestaps-aanmeldcode
         password: Wachtwoord
         phrase: Trefwoord of zinsdeel
+        setting_aggregate_reblogs: Boosts in tijdlijnen groeperen
         setting_auto_play_gif: Speel geanimeerde GIF's automatisch af
         setting_boost_modal: Vraag voor het boosten van een toot een bevestiging
         setting_default_language: Taal van jouw toots
         setting_default_privacy: Standaardzichtbaarheid van jouw toots
         setting_default_sensitive: Media altijd als gevoelig markeren
         setting_delete_modal: Vraag voor het verwijderen van een toot een bevestiging
-        setting_display_sensitive_media: Als gevoelig gemarkeerde media altijd tonen
+        setting_display_media: Mediaweergave
+        setting_display_media_default: Standaard
+        setting_display_media_hide_all: Alles verbergen
+        setting_display_media_show_all: Alles tonen
+        setting_expand_spoilers: Altijd toots met tekstwaarschuwingen uitklappen
         setting_hide_network: Jouw volgers en wie je volgt verbergen
         setting_noindex: Jouw toots niet door zoekmachines laten indexeren
         setting_reduce_motion: Langzamere animaties
@@ -87,11 +114,12 @@ nl:
         must_be_following_dm: Directe berichten van mensen die jij niet volgt blokkeren
       notification_emails:
         digest: Periodiek e-mails met een samenvatting versturen
-        favourite: Een e-mail versturen wanneer iemand jouw toot als favoriet markeert
+        favourite: Een e-mail versturen wanneer iemand jouw toot aan hun favorieten heeft toegevoegd
         follow: Een e-mail versturen wanneer iemand jou volgt
         follow_request: Een e-mail versturen wanneer iemand jou wil volgen
         mention: Een e-mail versturen wanneer iemand jou vermeld
         reblog: Een e-mail versturen wanneer iemand jouw toot heeft geboost
+        report: Verstuur een e-mail wanneer een nieuw rapportage is ingediend
     'no': Nee
     required:
       mark: "*"

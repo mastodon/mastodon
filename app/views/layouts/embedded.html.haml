@@ -4,6 +4,12 @@
     %meta{ charset: 'utf-8' }/
     %meta{ name: 'robots', content: 'noindex' }/
 
+    - if cdn_host?
+      %link{ rel: 'dns-prefetch', href: cdn_host }/
+
+    - if storage_host?
+      %link{ rel: 'dns-prefetch', href: storage_host }/
+
     = stylesheet_pack_tag 'common', media: 'all'
     = stylesheet_pack_tag Setting.default_settings['theme'], media: 'all'
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'

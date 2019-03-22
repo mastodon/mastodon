@@ -18,16 +18,18 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   accountIds: state.getIn(['user_lists', 'mutes', 'items']),
+  hasMore: !!state.getIn(['user_lists', 'mutes', 'next']),
 });
 
-@connect(mapStateToProps)
+export default @connect(mapStateToProps)
 @injectIntl
-export default class Mutes extends ImmutablePureComponent {
+class Mutes extends ImmutablePureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     shouldUpdateScroll: PropTypes.func,
+    hasMore: PropTypes.bool,
     accountIds: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
   };
@@ -41,7 +43,7 @@ export default class Mutes extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { intl, shouldUpdateScroll, accountIds } = this.props;
+    const { intl, shouldUpdateScroll, hasMore, accountIds } = this.props;
 
     if (!accountIds) {
       return (
@@ -59,6 +61,7 @@ export default class Mutes extends ImmutablePureComponent {
         <ScrollableList
           scrollKey='mutes'
           onLoadMore={this.handleLoadMore}
+          hasMore={hasMore}
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
         >

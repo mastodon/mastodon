@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Settings::DeletesController < ApplicationController
+class Settings::DeletesController < Settings::BaseController
   layout 'admin'
 
   before_action :check_enabled_deletion

@@ -4,7 +4,7 @@ RSpec.describe CustomEmoji, type: :model do
   describe '#search' do
     let(:custom_emoji) { Fabricate(:custom_emoji, shortcode: shortcode) }
 
-    subject  { described_class.search(search_term) }
+    subject { described_class.search(search_term) }
 
     context 'shortcode is exact' do
       let(:shortcode) { 'blobpats' }
@@ -73,6 +73,15 @@ RSpec.describe CustomEmoji, type: :model do
       it 'returns records used via shortcodes in text' do
         is_expected.to include(emojo)
       end
+    end
+  end
+
+  describe 'pre_validation' do
+    let(:custom_emoji) { Fabricate(:custom_emoji, domain: 'wWw.MaStOdOn.CoM') }
+
+    it 'should downcase' do
+      custom_emoji.valid?
+      expect(custom_emoji.domain).to eq('www.mastodon.com')
     end
   end
 end

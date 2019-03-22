@@ -53,8 +53,8 @@ class Api::BaseController < ApplicationController
     [params[:limit].to_i.abs, default_limit * 2].min
   end
 
-  def truthy_param?(key)
-    ActiveModel::Type::Boolean.new.cast(params[key])
+  def params_slice(*keys)
+    params.slice(*keys).permit(*keys)
   end
 
   def current_resource_owner
@@ -68,12 +68,14 @@ class Api::BaseController < ApplicationController
   end
 
   def require_user!
-    if current_user && !current_user.disabled?
-      set_user_activity
-    elsif current_user
-      render json: { error: 'Your login is currently disabled' }, status: 403
-    else
+    if !current_user
       render json: { error: 'This method requires an authenticated user' }, status: 422
+    elsif current_user.disabled?
+      render json: { error: 'Your login is currently disabled' }, status: 403
+    elsif !current_user.confirmed?
+      render json: { error: 'Email confirmation is not completed' }, status: 403
+    else
+      set_user_activity
     end
   end
 

@@ -25,9 +25,9 @@ const mapStateToProps = (state, { onlyMedia, columnId }) => {
   };
 };
 
-@connect(mapStateToProps)
+export default @connect(mapStateToProps)
 @injectIntl
-export default class PublicTimeline extends React.PureComponent {
+class PublicTimeline extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -100,13 +100,6 @@ export default class PublicTimeline extends React.PureComponent {
     dispatch(expandPublicTimeline({ maxId, onlyMedia }));
   }
 
-  handleSettingChanged = (key, checked) => {
-    const { columnId } = this.props;
-    if (!columnId && key[0] === 'other' && key[1] === 'onlyMedia') {
-      this.context.router.history.replace(`/timelines/public${checked ? '/media' : ''}`);
-    }
-  }
-
   render () {
     const { intl, shouldUpdateScroll, columnId, hasUnread, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
@@ -123,7 +116,7 @@ export default class PublicTimeline extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
         >
-          <ColumnSettingsContainer onChange={this.handleSettingChanged} columnId={columnId} />
+          <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
 
         <StatusListContainer

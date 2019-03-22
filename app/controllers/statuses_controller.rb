@@ -19,6 +19,10 @@ class StatusesController < ApplicationController
   before_action :set_referrer_policy_header, only: [:show]
   before_action :set_cache_headers
 
+  content_security_policy only: :embed do |p|
+    p.frame_ancestors(false)
+  end
+
   def show
     respond_to do |format|
       format.html do
@@ -54,18 +58,20 @@ class StatusesController < ApplicationController
     skip_session!
     expires_in 180, public: true
     response.headers['X-Frame-Options'] = 'ALLOWALL'
+    @autoplay = ActiveModel::Type::Boolean.new.cast(params[:autoplay])
 
     render 'stream_entries/embed', layout: 'embedded'
   end
 
   private
 
-  def create_descendant_thread(depth, statuses)
+  def create_descendant_thread(starting_depth, statuses)
+    depth = starting_depth + statuses.size
     if depth < DESCENDANTS_DEPTH_LIMIT
-      { statuses: statuses }
+      { statuses: statuses, starting_depth: starting_depth }
     else
       next_status = statuses.pop
-      { statuses: statuses, next_status: next_status }
+      { statuses: statuses, starting_depth: starting_depth, next_status: next_status }
     end
   end
 
@@ -96,16 +102,19 @@ class StatusesController < ApplicationController
     @descendant_threads = []
 
     if descendants.present?
-      statuses = [descendants.first]
-      depth    = 1
+      statuses       = [descendants.first]
+      starting_depth = 0
 
       descendants.drop(1).each_with_index do |descendant, index|
         if descendants[index].id == descendant.in_reply_to_id
-          depth += 1
           statuses << descendant
         else
-          @descendant_threads << create_descendant_thread(depth, statuses)
+          @descendant_threads << create_descendant_thread(starting_depth, statuses)
 
+          # The thread is broken, assume it's a reply to the root status
+          starting_depth = 0
+
+          # ... unless we can find its ancestor in one of the already-processed threads
           @descendant_threads.reverse_each do |descendant_thread|
             statuses = descendant_thread[:statuses]
 
@@ -114,18 +123,16 @@ class StatusesController < ApplicationController
             end
 
             if index.present?
-              depth += index - statuses.size
+              starting_depth = descendant_thread[:starting_depth] + index + 1
               break
             end
-
-            depth -= statuses.size
           end
 
           statuses = [descendant]
         end
       end
 
-      @descendant_threads << create_descendant_thread(depth, statuses)
+      @descendant_threads << create_descendant_thread(starting_depth, statuses)
     end
 
     @max_descendant_thread_id = @descendant_threads.pop[:statuses].first.id if descendants.size >= DESCENDANTS_LIMIT

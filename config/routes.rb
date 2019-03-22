@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
+  get '.well-known/change-password', to: redirect('/auth/edit')
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
   get 'custom.css', to: 'custom_css#show', as: :custom_css
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
   }
 
   get '/users/:username', to: redirect('/@%{username}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
   resources :accounts, path: 'users', only: [:show], param: :username do
     resources :stream_entries, path: 'updates', only: [:show] do
@@ -78,6 +80,9 @@ Rails.application.routes.draw do
   get  '/interact/:id', to: 'remote_interaction#new', as: :remote_interaction
   post '/interact/:id', to: 'remote_interaction#create'
 
+  get '/explore', to: 'directories#index', as: :explore
+  get '/explore/:id', to: 'directories#show', as: :explore_hashtag
+
   namespace :settings do
     resource :profile, only: [:show, :update]
     resource :preferences, only: [:show, :update]
@@ -89,6 +94,8 @@ Rails.application.routes.draw do
       resources :follows, only: :index, controller: :following_accounts
       resources :blocks, only: :index, controller: :blocked_accounts
       resources :mutes, only: :index, controller: :muted_accounts
+      resources :lists, only: :index, controller: :lists
+      resources :domain_blocks, only: :index, controller: :blocked_domains
     end
 
     resource :two_factor_authentication, only: [:show, :create, :destroy]
@@ -131,9 +138,10 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'dashboard#index'
 
     resources :subscriptions, only: [:index]
-    resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
+    resources :domain_blocks, only: [:new, :create, :show, :destroy]
     resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resources :action_logs, only: [:index]
+    resources :warning_presets, except: [:new]
     resource :settings, only: [:edit, :update]
 
     resources :invites, only: [:index, :create, :destroy] do
@@ -149,13 +157,16 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :instances, only: [:index] do
-      collection do
-        post :resubscribe
-      end
-    end
+    resources :instances, only: [:index, :show], constraints: { id: /[^\/]+/ }
 
-    resources :reports, only: [:index, :show, :update] do
+    resources :reports, only: [:index, :show] do
+      member do
+        post :assign_to_self
+        post :unassign
+        post :reopen
+        post :resolve
+      end
+
       resources :reported_statuses, only: [:create]
     end
 
@@ -166,17 +177,19 @@ Rails.application.routes.draw do
         post :subscribe
         post :unsubscribe
         post :enable
-        post :disable
+        post :unsilence
+        post :unsuspend
         post :redownload
         post :remove_avatar
+        post :remove_header
         post :memorialize
       end
 
       resource :change_email, only: [:show, :update]
       resource :reset, only: [:create]
-      resource :silence, only: [:create, :destroy]
-      resource :suspension, only: [:new, :create, :destroy]
-      resources :statuses, only: [:index, :create, :update, :destroy]
+      resource :action, only: [:new, :create], controller: 'account_actions'
+      resources :statuses, only: [:index, :show, :create, :update, :destroy]
+      resources :followers, only: [:index]
 
       resource :confirmation, only: [:create] do
         collection do
@@ -205,6 +218,13 @@ Rails.application.routes.draw do
     end
 
     resources :account_moderation_notes, only: [:create, :destroy]
+
+    resources :tags, only: [:index] do
+      member do
+        post :hide
+        post :unhide
+      end
+    end
   end
 
   get '/admin', to: redirect('/admin/dashboard', status: 302)
@@ -259,6 +279,13 @@ Rails.application.routes.draw do
       resources :streaming, only: [:index]
       resources :custom_emojis, only: [:index]
       resources :suggestions, only: [:index, :destroy]
+      resources :scheduled_statuses, only: [:index, :show, :update, :destroy]
+
+      resources :conversations, only: [:index, :destroy] do
+        member do
+          post :read
+        end
+      end
 
       get '/search', to: 'search#index', as: :search
 
@@ -267,7 +294,7 @@ Rails.application.routes.draw do
       resources :blocks,       only: [:index]
       resources :mutes,        only: [:index]
       resources :favourites,   only: [:index]
-      resources :reports,      only: [:index, :create]
+      resources :reports,      only: [:create]
       resources :filters,      only: [:index, :create, :show, :update, :destroy]
       resources :endorsements, only: [:index]
 
@@ -294,6 +321,10 @@ Rails.application.routes.draw do
       resources :notifications, only: [:index, :show] do
         collection do
           post :clear
+          post :dismiss # Deprecated
+        end
+
+        member do
           post :dismiss
         end
       end
@@ -305,7 +336,7 @@ Rails.application.routes.draw do
         resources :relationships, only: :index
       end
 
-      resources :accounts, only: [:show] do
+      resources :accounts, only: [:create, :show] do
         resources :statuses, only: :index, controller: 'accounts/statuses'
         resources :followers, only: :index, controller: 'accounts/follower_accounts'
         resources :following, only: :index, controller: 'accounts/following_accounts'

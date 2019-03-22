@@ -15,7 +15,18 @@ const messages = defineMessages({
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
+  linkVerifiedOn: { id: 'account.link_verified_on', defaultMessage: 'Ownership of this link was checked on {date}' },
+  account_locked: { id: 'account.locked_info', defaultMessage: 'This account privacy status is set to locked. The owner manually reviews who can follow them.' },
 });
+
+const dateFormatOptions = {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+  hour12: false,
+  hour: '2-digit',
+  minute: '2-digit',
+};
 
 class Avatar extends ImmutablePureComponent {
 
@@ -65,8 +76,8 @@ class Avatar extends ImmutablePureComponent {
 
 }
 
-@injectIntl
-export default class Header extends ImmutablePureComponent {
+export default @injectIntl
+class Header extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map,
@@ -121,7 +132,7 @@ export default class Header extends ImmutablePureComponent {
       } else if (account.getIn(['relationship', 'blocking'])) {
         actionBtn = (
           <div className='account--action-button'>
-            <IconButton size={26} icon='unlock-alt' title={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />
+            <IconButton size={26} icon='unlock' title={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />
           </div>
         );
       }
@@ -138,7 +149,7 @@ export default class Header extends ImmutablePureComponent {
     }
 
     if (account.get('locked')) {
-      lockedIcon = <i className='fa fa-lock' />;
+      lockedIcon = <i className='fa fa-lock' title={intl.formatMessage(messages.account_locked)} />;
     }
 
     const content         = { __html: account.get('note_emojified') };
@@ -147,7 +158,7 @@ export default class Header extends ImmutablePureComponent {
     const badge           = account.get('bot') ? (<div className='roles'><div className='account-role bot'><FormattedMessage id='account.badges.bot' defaultMessage='Bot' /></div></div>) : null;
 
     return (
-      <div className={classNames('account__header', { inactive: !!account.get('moved') })} style={{ backgroundImage: `url(${account.get('header')})` }}>
+      <div className={classNames('account__header', { inactive: !!account.get('moved') })} style={{ backgroundImage: `url(${autoPlayGif ? account.get('header') : account.get('header_static')})` }}>
         <div>
           <Avatar account={account} />
 
@@ -163,7 +174,10 @@ export default class Header extends ImmutablePureComponent {
               {fields.map((pair, i) => (
                 <dl key={i}>
                   <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} />
-                  <dd dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} title={pair.get('value_plain')} />
+
+                  <dd className={pair.get('verified_at') && 'verified'} title={pair.get('value_plain')}>
+                    {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><i className='fa fa-check verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
+                  </dd>
                 </dl>
               ))}
             </div>

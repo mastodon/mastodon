@@ -169,7 +169,7 @@ p {
   font-family: Helvetica, Arial, sans-serif;
 
   @media only screen {
-    font-family: 'mastodon-font-sans-serif', sans-serif !important;
+    font-family: $font-sans-serif, sans-serif !important;
   }
 }
 
@@ -424,6 +424,10 @@ h5 {
     padding: 16px;
     border-radius: 80px;
     background: $success-green;
+  }
+
+  &.alert-icon td {
+    background: $error-red;
   }
 
   img {

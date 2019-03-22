@@ -27,8 +27,10 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def destroy
+    tmp_stored_location = stored_location_for(:user)
     super
     flash.delete(:notice)
+    store_location_for(:user, tmp_stored_location) if continue_after?
   end
 
   protected
@@ -120,5 +122,9 @@ class Auth::SessionsController < Devise::SessionsController
       paths << short_account_path(username: resource.account)
     end
     paths
+  end
+
+  def continue_after?
+    truthy_param?(:continue)
   end
 end

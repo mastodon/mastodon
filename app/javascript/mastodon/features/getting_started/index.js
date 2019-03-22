@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me, invitesEnabled, version } from '../../initial_state';
+import { me, invitesEnabled, version, profile_directory } from '../../initial_state';
 import { fetchFollowRequests } from '../../actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import { Link } from 'react-router-dom';
@@ -32,6 +32,7 @@ const messages = defineMessages({
   personal: { id: 'navigation_bar.personal', defaultMessage: 'Personal' },
   security: { id: 'navigation_bar.security', defaultMessage: 'Security' },
   menu: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
+  profile_directory: { id: 'getting_started.directory', defaultMessage: 'Profile directory' },
 });
 
 const mapStateToProps = state => ({
@@ -53,9 +54,9 @@ const badgeDisplay = (number, limit) => {
   }
 };
 
-@connect(mapStateToProps, mapDispatchToProps)
+export default @connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
-export default class GettingStarted extends ImmutablePureComponent {
+class GettingStarted extends ImmutablePureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
@@ -87,10 +88,29 @@ export default class GettingStarted extends ImmutablePureComponent {
         <ColumnSubheading key={i++} text={intl.formatMessage(messages.discover)} />,
         <ColumnLink key={i++} icon='users' text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />,
         <ColumnLink key={i++} icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />,
+      );
+
+      height += 34 + 48*2;
+
+      if (profile_directory) {
+        navItems.push(
+          <ColumnLink key={i++} icon='address-book' text={intl.formatMessage(messages.profile_directory)} href='/explore' />
+        );
+
+        height += 48;
+      }
+
+      navItems.push(
         <ColumnSubheading key={i++} text={intl.formatMessage(messages.personal)} />
       );
 
-      height += 34*2 + 48*2;
+      height += 34;
+    } else if (profile_directory) {
+      navItems.push(
+        <ColumnLink key={i++} icon='address-book' text={intl.formatMessage(messages.profile_directory)} href='/explore' />
+      );
+
+      height += 48;
     }
 
     navItems.push(
@@ -126,34 +146,35 @@ export default class GettingStarted extends ImmutablePureComponent {
           </h1>
         </div>}
 
-        <div className='getting-started__wrapper' style={{ height }}>
-          {!multiColumn && <NavigationBar account={myAccount} />}
-          {navItems}
-        </div>
+        <div className='getting-started'>
+          <div className='getting-started__wrapper' style={{ height }}>
+            {!multiColumn && <NavigationBar account={myAccount} />}
+            {navItems}
+          </div>
 
-        {!multiColumn && <div className='flex-spacer' />}
+          {!multiColumn && <div className='flex-spacer' />}
 
-        <div className='getting-started getting-started__footer'>
-          <ul>
-            <li><a href='https://bridge.joinmastodon.org/' target='_blank'><FormattedMessage id='getting_started.find_friends' defaultMessage='Find friends from Twitter' /></a> · </li>
-            {invitesEnabled && <li><a href='/invites' target='_blank'><FormattedMessage id='getting_started.invite' defaultMessage='Invite people' /></a> · </li>}
-            {multiColumn && <li><Link to='/keyboard-shortcuts'><FormattedMessage id='navigation_bar.keyboard_shortcuts' defaultMessage='Hotkeys' /></Link> · </li>}
-            <li><a href='/auth/edit'><FormattedMessage id='getting_started.security' defaultMessage='Security' /></a> · </li>
-            <li><a href='/about/more' target='_blank'><FormattedMessage id='navigation_bar.info' defaultMessage='About this instance' /></a> · </li>
-            <li><a href='https://joinmastodon.org/apps' target='_blank'><FormattedMessage id='navigation_bar.apps' defaultMessage='Mobile apps' /></a> · </li>
-            <li><a href='/terms' target='_blank'><FormattedMessage id='getting_started.terms' defaultMessage='Terms of service' /></a> · </li>
-            <li><a href='/settings/applications' target='_blank'><FormattedMessage id='getting_started.developers' defaultMessage='Developers' /></a> · </li>
-            <li><a href='https://github.com/tootsuite/documentation#documentation' target='_blank'><FormattedMessage id='getting_started.documentation' defaultMessage='Documentation' /></a> · </li>
-            <li><a href='/auth/sign_out' data-method='delete'><FormattedMessage id='navigation_bar.logout' defaultMessage='Logout' /></a></li>
-          </ul>
+          <div className='getting-started__footer'>
+            <ul>
+              {invitesEnabled && <li><a href='/invites' target='_blank'><FormattedMessage id='getting_started.invite' defaultMessage='Invite people' /></a> · </li>}
+              {multiColumn && <li><Link to='/keyboard-shortcuts'><FormattedMessage id='navigation_bar.keyboard_shortcuts' defaultMessage='Hotkeys' /></Link> · </li>}
+              <li><a href='/auth/edit'><FormattedMessage id='getting_started.security' defaultMessage='Security' /></a> · </li>
+              <li><a href='/about/more' target='_blank'><FormattedMessage id='navigation_bar.info' defaultMessage='About this instance' /></a> · </li>
+              <li><a href='https://joinmastodon.org/apps' target='_blank'><FormattedMessage id='navigation_bar.apps' defaultMessage='Mobile apps' /></a> · </li>
+              <li><a href='/terms' target='_blank'><FormattedMessage id='getting_started.terms' defaultMessage='Terms of service' /></a> · </li>
+              <li><a href='/settings/applications' target='_blank'><FormattedMessage id='getting_started.developers' defaultMessage='Developers' /></a> · </li>
+              <li><a href='https://docs.joinmastodon.org' target='_blank'><FormattedMessage id='getting_started.documentation' defaultMessage='Documentation' /></a> · </li>
+              <li><a href='/auth/sign_out' data-method='delete'><FormattedMessage id='navigation_bar.logout' defaultMessage='Logout' /></a></li>
+            </ul>
 
-          <p>
-            <FormattedMessage
-              id='getting_started.open_source_notice'
-              defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
-              values={{ github: <span><a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>tootsuite/mastodon</a> (v{version})</span> }}
-            />
-          </p>
+            <p>
+              <FormattedMessage
+                id='getting_started.open_source_notice'
+                defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
+                values={{ github: <span><a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>tootsuite/mastodon</a> (v{version})</span> }}
+              />
+            </p>
+          </div>
         </div>
       </Column>
     );

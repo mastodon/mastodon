@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Settings::ExportsController < ApplicationController
+class Settings::ExportsController < Settings::BaseController
   include Authorization
 
   layout 'admin'

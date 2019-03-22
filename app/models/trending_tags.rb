@@ -7,6 +7,8 @@ class TrendingTags
   THRESHOLD            = 5
 
   class << self
+    include Redisable
+
     def record_use!(tag, account, at_time = Time.now.utc)
       return if disallowed_hashtags.include?(tag.name) || account.silenced? || account.bot?
 
@@ -18,7 +20,7 @@ class TrendingTags
     def get(limit)
       key     = "#{KEY}:#{Time.now.utc.beginning_of_day.to_i}"
       tag_ids = redis.zrevrange(key, 0, limit - 1).map(&:to_i)
-      tags    = Tag.where(id: tag_ids).to_a.map { |tag| [tag.id, tag] }.to_h
+      tags    = Tag.where(id: tag_ids).to_a.each_with_object({}) { |tag, h| h[tag.id] = tag }
       tag_ids.map { |tag_id| tags[tag_id] }.compact
     end
 
@@ -58,10 +60,6 @@ class TrendingTags
       @disallowed_hashtags = Setting.disallowed_hashtags.nil? ? [] : Setting.disallowed_hashtags
       @disallowed_hashtags = @disallowed_hashtags.split(' ') if @disallowed_hashtags.is_a? String
       @disallowed_hashtags = @disallowed_hashtags.map(&:downcase)
-    end
-
-    def redis
-      Redis.current
     end
   end
 end

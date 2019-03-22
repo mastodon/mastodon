@@ -19,4 +19,4 @@ Sidekiq.configure_client do |config|
   config.redis = redis_params
 end
 
-Sidekiq::Logging.logger.level = ::Logger::const_get(ENV.fetch('RAILS_LOG_LEVEL', 'info').upcase.to_s)
+Sidekiq::Logging.logger.level = ::Logger.const_get(ENV.fetch('RAILS_LOG_LEVEL', 'info').upcase.to_s)

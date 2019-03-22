@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Settings::ProfilesController < ApplicationController
+class Settings::ProfilesController < Settings::BaseController
   include ObfuscateFilename
 
   layout 'admin'
@@ -28,7 +28,7 @@ class Settings::ProfilesController < ApplicationController
   private
 
   def account_params
-    params.require(:account).permit(:display_name, :note, :avatar, :header, :locked, :bot, fields_attributes: [:name, :value])
+    params.require(:account).permit(:display_name, :note, :avatar, :header, :locked, :bot, :discoverable, fields_attributes: [:name, :value])
   end
 
   def set_account

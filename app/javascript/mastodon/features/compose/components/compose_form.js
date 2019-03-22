@@ -27,8 +27,12 @@ const messages = defineMessages({
   publishLoud: { id: 'compose_form.publish_loud', defaultMessage: '{publish}!' },
 });
 
-@injectIntl
-export default class ComposeForm extends ImmutablePureComponent {
+export default @injectIntl
+class ComposeForm extends ImmutablePureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
@@ -42,6 +46,7 @@ export default class ComposeForm extends ImmutablePureComponent {
     caretPosition: PropTypes.number,
     preselectDate: PropTypes.instanceOf(Date),
     is_submitting: PropTypes.bool,
+    is_changing_upload: PropTypes.bool,
     is_uploading: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
@@ -77,14 +82,14 @@ export default class ComposeForm extends ImmutablePureComponent {
     }
 
     // Submit disabled:
-    const { is_submitting, is_uploading, anyMedia } = this.props;
+    const { is_submitting, is_changing_upload, is_uploading, anyMedia } = this.props;
     const fulltext = [this.props.spoiler_text, countableText(this.props.text)].join('');
 
-    if (is_submitting || is_uploading || length(fulltext) > 500 || (fulltext.length !== 0 && fulltext.trim().length === 0 && !anyMedia)) {
+    if (is_submitting || is_uploading || is_changing_upload || length(fulltext) > 500 || (fulltext.length !== 0 && fulltext.trim().length === 0 && !anyMedia)) {
       return;
     }
 
-    this.props.onSubmit();
+    this.props.onSubmit(this.context.router ? this.context.router.history : null);
   }
 
   onSuggestionsClearRequested = () => {
@@ -156,7 +161,7 @@ export default class ComposeForm extends ImmutablePureComponent {
     const { intl, onPaste, showSearch, anyMedia } = this.props;
     const disabled = this.props.is_submitting;
     const text     = [this.props.spoiler_text, countableText(this.props.text)].join('');
-    const disabledButton = disabled || this.props.is_uploading || length(text) > 500 || (text.length !== 0 && text.trim().length === 0 && !anyMedia);
+    const disabledButton = disabled || this.props.is_uploading || this.props.is_changing_upload || length(text) > 500 || (text.length !== 0 && text.trim().length === 0 && !anyMedia);
     let publishText = '';
 
     if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
@@ -174,7 +179,7 @@ export default class ComposeForm extends ImmutablePureComponent {
         <div className={`spoiler-input ${this.props.spoiler ? 'spoiler-input--visible' : ''}`}>
           <label>
             <span style={{ display: 'none' }}>{intl.formatMessage(messages.spoiler_placeholder)}</span>
-            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} type='text' className='spoiler-input__input'  id='cw-spoiler-input' ref={this.setSpoilerText} />
+            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} tabIndex={this.props.spoiler ? 0 : -1} type='text' className='spoiler-input__input'  id='cw-spoiler-input' ref={this.setSpoilerText} />
           </label>
         </div>
 

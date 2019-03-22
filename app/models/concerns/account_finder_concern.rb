@@ -12,6 +12,10 @@ module AccountFinderConcern
       find_remote(username, domain) || raise(ActiveRecord::RecordNotFound)
     end
 
+    def representative
+      find_local(Setting.site_contact_username.gsub(/\A@/, '')) || Account.local.find_by(suspended: false)
+    end
+
     def find_local(username)
       find_remote(username, nil)
     end

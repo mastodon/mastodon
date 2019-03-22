@@ -4,7 +4,8 @@
 = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
   = render 'shared/error_messages', object: resource
 
-  = f.input :email, autofocus: true, required: true, placeholder: t('simple_form.labels.defaults.email'), input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }
+  .fields-group
+    = f.input :email, autofocus: true, wrapper: :with_label, label: t('simple_form.labels.defaults.email'), input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }, hint: false
 
   .actions
     = f.button :button, t('auth.resend_confirmation'), type: :submit

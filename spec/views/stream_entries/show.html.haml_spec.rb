@@ -12,6 +12,7 @@ describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true d
     allow(view).to receive(:full_asset_url).and_return('//asset.host/image.svg')
     allow(view).to receive(:local_time)
     allow(view).to receive(:local_time_ago)
+    allow(view).to receive(:current_account).and_return(nil)
     assign(:instance_presenter, InstancePresenter.new)
   end
 
@@ -48,8 +49,8 @@ describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true d
     assign(:stream_entry, reply.stream_entry)
     assign(:account, alice)
     assign(:type, reply.stream_entry.activity_type.downcase)
-    assign(:ancestors, reply.stream_entry.activity.ancestors(1, bob) )
-    assign(:descendant_threads, [{ statuses: reply.stream_entry.activity.descendants(1)}])
+    assign(:ancestors, reply.stream_entry.activity.ancestors(1, bob))
+    assign(:descendant_threads, [{ statuses: reply.stream_entry.activity.descendants(1) }])
 
     render
 

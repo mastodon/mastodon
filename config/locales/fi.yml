@@ -102,10 +102,6 @@ fi:
       most_recent_activity: Viimeisin toiminta
       most_recent_ip: Viimeisin IP
       not_subscribed: Ei tilaaja
-      order:
-        alphabetic: Aakkosjärjestys
-        most_recent: Uusin
-        title: Järjestys
       outbox_url: Lähtevän postilaatikon osoite
       perform_full_suspension: Siirrä kokonaan jäähylle
       profile_url: Profiilin osoite
@@ -133,7 +129,6 @@ fi:
       shared_inbox_url: Jaetun saapuvan postilaatikon osoite
       show:
         created_reports: Tämän tilin luomat raportit
-        report: raportti
         targeted_reports: Tästä tilistä tehdyt raportit
       silence: Hiljennä
       statuses: Tilat
@@ -216,11 +211,6 @@ fi:
         title: Uusi verkkotunnuksen esto
       reject_media: Hylkää mediatiedostot
       reject_media_hint: Poistaa paikallisesti tallennetut mediatiedostot eikä lataa niitä enää jatkossa. Ei merkitystä jäähyn kohdalla
-      severities:
-        noop: Ei mitään
-        silence: Hiljennys
-        suspend: Jäähy
-      severity: Vakavuus
       show:
         affected_accounts:
           one: Vaikuttaa yhteen tiliin tietokannassa
@@ -230,7 +220,6 @@ fi:
           suspend: Peru kaikkien tässä verkkotunnuksessa jo olemassa olevien tilien jäähy
         title: Peru verkkotunnuksen %{domain} esto
         undo: Peru
-      title: Verkkotunnusten estot
       undo: Peru
     email_domain_blocks:
       add_new: Lisää uusi
@@ -243,10 +232,6 @@ fi:
         title: Uusi sähköpostiestolistan merkintä
       title: Sähköpostiestolista
     instances:
-      account_count: Tiedossa olevat tilit
-      domain_name: Verkkotunnus
-      reset: Palauta
-      search: Hae
       title: Tiedossa olevat instanssit
     invites:
       filter:
@@ -268,7 +253,6 @@ fi:
       comment:
         none: Ei mitään
       created_at: Raportoitu
-      id: Tunniste
       mark_as_resolved: Merkitse ratkaistuksi
       mark_as_unresolved: Merkitse ratkaisemattomaksi
       notes:
@@ -279,19 +263,14 @@ fi:
         placeholder: Kuvaile mitä toimia on tehty tai muita päivityksiä tähän raporttiin…
       reopen: Avaa raportti uudestaan
       report: Raportti nro %{id}
-      report_contents: Sisältö
       reported_account: Raportoitu tili
       reported_by: Raportoija
       resolved: Ratkaistut
       resolved_msg: Raportti onnistuneesti ratkaistu!
-      silence_account: Hiljennä tili
       status: Tila
-      suspend_account: Siirrä tili jäähylle
-      target: Kohde
       title: Raportit
       unresolved: Ratkaisemattomat
       updated_at: Päivitetty
-      view: Näytä
     settings:
       activity_api_enabled:
         desc_html: Paikallisesti julkaistujen tilojen, aktiivisten käyttäjien ja uusien rekisteröintien määrät viikoittain
@@ -452,7 +431,7 @@ fi:
     '500':
       content: Valitettavasti jokin meni pieleen meidän päässämme.
       title: Sivu ei ole oikein
-    noscript_html: Mastodon-selainsovelluksen käyttöön vaaditaan JavaScript. Voit vaihtoehtoisesti kokeilla jotakin omalle käyttöjärjestelmällesi tehtyä Mastodon<a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">sovellusta</a>.
+    noscript_html: Mastodon-selainsovelluksen käyttöön vaaditaan JavaScript. Voit vaihtoehtoisesti kokeilla jotakin omalle käyttöjärjestelmällesi tehtyä Mastodon<a href="%{apps_path}">sovellusta</a>.
   exports:
     archive_takeout:
       date: Päiväys
@@ -613,7 +592,7 @@ fi:
       uc_browser: UCBrowser
       weibo: Weibo
     current_session: Nykyinen istunto
-    description: "%{selain}, %{platform}"
+    description: "%{browser}, %{platform}"
     explanation: Nämä verkkoselaimet ovat tällä hetkellä kirjautuneet Mastodon-tilillesi.
     ip: IP
     platforms:
@@ -713,13 +692,12 @@ fi:
       edit_profile_step: Voit mukauttaa profiiliasi lataamalla profiilikuvan ja otsakekuvan, muuttamalla näyttönimeäsi ym. Jos haluat hyväksyä uudet seuraajat ennen kuin he voivat seurata sinua, voit lukita tilisi.
       explanation: Näillä vinkeillä pääset alkuun
       final_action: Ala julkaista
-      final_step: 'Ala julkaista! Vaikkei sinulla olisi seuraajia, monet voivat nähdä julkiset viestisi esimerkiksi paikallisella aikajanalla ja hashtagien avulla. Kannattaa esittäytyä! Käytä hashtagia #introductions. (Jos haluat esittäytyä myös suomeksi, se kannattaa tehdä erillisessä tuuttauksessa ja käyttää hashtagia #esittely.)'
+      final_step: 'Ala julkaista! Vaikkei sinulla olisi seuraajia, monet voivat nähdä julkiset viestisi esimerkiksi paikallisella aikajanalla ja hashtagien avulla. Kannattaa esittäytyä! Käytä hashtagia #introductions. (Jos haluat esittäytyä myös suomeksi, se kannattaa tehdä erillisessä tuuttauksessa ja käyttää hashtagia #esittely.).'
       full_handle: Koko käyttäjätunnuksesi
       full_handle_hint: Kerro tämä ystävillesi, niin he voivat lähettää sinulle viestejä tai löytää sinut toisen instanssin kautta.
       review_preferences_action: Muuta asetuksia
       review_preferences_step: Käy tarkistamassa, että asetukset ovat haluamallasi tavalla. Voit valita, missä tilanteissa haluat saada sähköpostia, mikä on julkaisujesi oletusnäkyvyys jne. Jos et saa helposti pahoinvointia, voit valita, että GIF-animaatiot toistetaan automaattisesti.
       subject: Tervetuloa Mastodoniin
-      tip_bridge_html: Jos tulet Twitteristä, voit etsiä ystäviäsi Mastodonista <a href="%{bridge_url}">siltasovelluksen</a> avulla. Se kuitenkin löytää heidät vain, jos hekin käyttävät sitä!
       tip_federated_timeline: Yleinen aikajana näyttää sisältöä koko Mastodon-verkostosta. Siinä näkyvät kuitenkin vain ne henkilöt, joita oman instanssisi käyttäjät seuraavat. Siinä ei siis näytetä aivan kaikkea.
       tip_following: Oletusarvoisesti seuraat oman palvelimesi ylläpitäjiä. Etsi lisää kiinnostavia ihmisiä paikalliselta ja yleiseltä aikajanalta.
       tip_local_timeline: Paikallinen aikajana näyttää instanssin %{instance} käyttäjien julkaisut. He ovat naapureitasi!

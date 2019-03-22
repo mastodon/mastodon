@@ -1,6 +1,7 @@
 import escapeTextContentForBrowser from 'escape-html';
 import emojify from '../../features/emoji/emoji';
 import { unescapeHTML } from '../../utils/html';
+import { expandSpoilers } from '../../initial_state';
 
 const domParser = new DOMParser();
 
@@ -13,7 +14,7 @@ export function normalizeAccount(account) {
   account = { ...account };
 
   const emojiMap = makeEmojiMap(account);
-  const displayName = account.display_name.length === 0 ? account.username : account.display_name;
+  const displayName = account.display_name.trim().length === 0 ? account.username : account.display_name;
 
   account.display_name_html = emojify(escapeTextContentForBrowser(displayName), emojiMap);
   account.note_emojified = emojify(account.note, emojiMap);
@@ -57,7 +58,7 @@ export function normalizeStatus(status, normalOldStatus) {
     normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
     normalStatus.contentHtml  = emojify(normalStatus.content, emojiMap);
     normalStatus.spoilerHtml  = emojify(escapeTextContentForBrowser(spoilerText), emojiMap);
-    normalStatus.hidden       = spoilerText.length > 0 || normalStatus.sensitive;
+    normalStatus.hidden       = expandSpoilers ? false : spoilerText.length > 0 || normalStatus.sensitive;
   }
 
   return normalStatus;

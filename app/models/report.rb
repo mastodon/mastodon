@@ -60,6 +60,10 @@ class Report < ApplicationRecord
     !action_taken?
   end
 
+  def unresolved_siblings?
+    Report.where.not(id: id).where(target_account_id: target_account_id).unresolved.exists?
+  end
+
   def history
     time_range = created_at..updated_at
 

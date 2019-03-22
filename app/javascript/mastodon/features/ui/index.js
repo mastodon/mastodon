@@ -59,7 +59,8 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   isComposing: state.getIn(['compose', 'is_composing']),
-  hasComposingText: state.getIn(['compose', 'text']) !== '',
+  hasComposingText: state.getIn(['compose', 'text']).trim().length !== 0,
+  hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
   dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
 });
 
@@ -133,7 +134,7 @@ class SwitchingColumnsArea extends React.PureComponent {
   });
 
   setRef = c => {
-    this.node = c.getWrappedInstance().getWrappedInstance();
+    this.node = c.getWrappedInstance();
   }
 
   render () {
@@ -149,9 +150,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
           <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
           <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
-          <WrappedRoute path='/timelines/public/media' component={PublicTimeline} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll, onlyMedia: true }} />
           <WrappedRoute path='/timelines/public/local' exact component={CommunityTimeline} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
-          <WrappedRoute path='/timelines/public/local/media' component={CommunityTimeline} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll, onlyMedia: true }} />
           <WrappedRoute path='/timelines/direct' component={DirectTimeline} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
           <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
           <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
@@ -187,10 +186,10 @@ class SwitchingColumnsArea extends React.PureComponent {
 
 }
 
-@connect(mapStateToProps)
+export default @connect(mapStateToProps)
 @injectIntl
 @withRouter
-export default class UI extends React.PureComponent {
+class UI extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,
@@ -201,6 +200,7 @@ export default class UI extends React.PureComponent {
     children: PropTypes.node,
     isComposing: PropTypes.bool,
     hasComposingText: PropTypes.bool,
+    hasMediaAttachments: PropTypes.bool,
     location: PropTypes.object,
     intl: PropTypes.object.isRequired,
     dropdownMenuIsOpen: PropTypes.bool,
@@ -211,9 +211,9 @@ export default class UI extends React.PureComponent {
   };
 
   handleBeforeUnload = (e) => {
-    const { intl, isComposing, hasComposingText } = this.props;
+    const { intl, isComposing, hasComposingText, hasMediaAttachments } = this.props;
 
-    if (isComposing && hasComposingText) {
+    if (isComposing && (hasComposingText || hasMediaAttachments)) {
       // Setting returnValue to any string causes confirmation dialog.
       // Many browsers no longer display this text to users,
       // but we set user-friendly message for other browsers, e.g. Edge.
@@ -243,6 +243,7 @@ export default class UI extends React.PureComponent {
   }
 
   handleDragOver = (e) => {
+    if (this.dataTransferIsText(e.dataTransfer)) return false;
     e.preventDefault();
     e.stopPropagation();
 
@@ -256,9 +257,11 @@ export default class UI extends React.PureComponent {
   }
 
   handleDrop = (e) => {
+    if (this.dataTransferIsText(e.dataTransfer)) return;
     e.preventDefault();
 
     this.setState({ draggingOver: false });
+    this.dragTargets = [];
 
     if (e.dataTransfer && e.dataTransfer.files.length === 1) {
       this.props.dispatch(uploadCompose(e.dataTransfer.files));
@@ -278,6 +281,10 @@ export default class UI extends React.PureComponent {
     this.setState({ draggingOver: false });
   }
 
+  dataTransferIsText = (dataTransfer) => {
+    return (dataTransfer && Array.from(dataTransfer.types).includes('text/plain') && dataTransfer.items.length === 1);
+  }
+
   closeUploadModal = () => {
     this.setState({ draggingOver: false });
   }
@@ -292,6 +299,7 @@ export default class UI extends React.PureComponent {
 
   componentWillMount () {
     window.addEventListener('beforeunload', this.handleBeforeUnload, false);
+
     document.addEventListener('dragenter', this.handleDragEnter, false);
     document.addEventListener('dragover', this.handleDragOver, false);
     document.addEventListener('drop', this.handleDrop, false);
@@ -302,8 +310,13 @@ export default class UI extends React.PureComponent {
       navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
     }
 
+    if (typeof window.Notification !== 'undefined' && Notification.permission === 'default') {
+      window.setTimeout(() => Notification.requestPermission(), 120 * 1000);
+    }
+
     this.props.dispatch(expandHomeTimeline());
     this.props.dispatch(expandNotifications());
+
     setTimeout(() => this.props.dispatch(fetchFilters()), 500);
   }
 
@@ -458,7 +471,7 @@ export default class UI extends React.PureComponent {
     };
 
     return (
-      <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef}>
+      <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
           <TabsBar />
 

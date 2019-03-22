@@ -5,6 +5,9 @@ module Admin
     before_action :set_custom_emoji, except: [:index, :new, :create]
     before_action :set_filter_params
 
+    include ObfuscateFilename
+    obfuscate_filename [:custom_emoji, :image]
+
     def index
       authorize :custom_emoji, :index?
       @custom_emojis = filtered_custom_emojis.eager_load(:local_counterpart).page(params[:page])
