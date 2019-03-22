@@ -69,6 +69,10 @@ module AccountControllerConcern
   end
 
   def check_account_suspension
-    gone if @account.suspended?
+    if @account.suspended?
+      skip_session!
+      expires_in(3.minutes, public: true)
+      gone
+    end
   end
 end
