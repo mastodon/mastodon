@@ -44,7 +44,7 @@ class Form::AdminSettings
     mascot
   ).freeze
 
-  attr_accessor *KEYS
+  attr_accessor(*KEYS)
 
   validates :site_short_description, :site_description, :site_extended_description, :site_terms, :closed_registrations_message, html: true
   validates :registrations_mode, inclusion: { in: %w(open approved none) }
