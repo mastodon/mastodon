@@ -9,6 +9,7 @@ require_relative 'mastodon/settings_cli'
 require_relative 'mastodon/statuses_cli'
 require_relative 'mastodon/domains_cli'
 require_relative 'mastodon/version'
+require_relative 'mastodon/debug_accounts_cli'
 
 module Mastodon
   class CLI < Thor
@@ -36,6 +37,9 @@ module Mastodon
 
     desc 'domains SUBCOMMAND ...ARGS', 'Manage account domains'
     subcommand 'domains', Mastodon::DomainsCLI
+
+    desc "debug_accounts SUBCOMMAND ...ARGS", "Manage accounts for debug"
+    subcommand "debug_accounts", Mastodon::DebugAccountCLI
 
     map %w(--version -v) => :version
 
