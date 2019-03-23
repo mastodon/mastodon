@@ -1,4 +1,3 @@
----
 zh-TW:
   devise:
     confirmations:
@@ -15,21 +14,25 @@ zh-TW:
       timeout: 您的登入階段已經逾期，請重新登入以繼續使用。
       unauthenticated: 您必須先登入或註冊，以繼續使用。
       unconfirmed: 您必須先完成 E-mail 驗證，以繼續使用。
+      pending: 您的帳號仍在審核中。
     mailer:
       confirmation_instructions:
         action: 驗證 E-mail 地址
-        explanation: 您已經在 %{host} 上以此 E-mail 地址建立了一個帳號。您距離啟用它只剩一次點擊之遙了。如果這不是你，請忽略此 E-mail 。
-        extra_html: 同時也請看看<a href="%{terms_path}">該站點的規則</a>與<a href="%{policy_path}">我們的服務條款</a>。
+        explanation: 您已經在 %{host} 上以此 E-mail 地址建立了一個帳號。您距離啟用它只剩一次點擊之遙了。如果這不是你，請忽略此
+          E-mail 。
+        extra_html: 同時也請看看<a href="%{terms_path}">該伺服器的規則</a>與<a href="%{policy_path}">我們的服務條款</a>。
         subject: 'Mastodon: 信箱驗證 %{instance}'
         title: 驗證 E-mail 地址
+        action_with_app: 確認並回到 %{app}
+        explanation_when_pending: 您使用此電子信箱位址對 %{host} 申請了此主機的邀請。當您確認電子信箱後我們將審核您的申請，直到核准前您都無法登入。當您的申請遭拒絕，您的資料將被移除而不必做後續動作。如果這不是您申請的，請忽略此信件。
       email_changed:
         explanation: 您帳號的 E-mail 地址被變更為：
-        extra: 如果您並未變更您的 E-mail ，那麼很有可能是某人取得了你帳號的存取權限。請立刻變更您的密碼，或是若您的帳號已被鎖定，請聯絡站點的管理員。
+        extra: 如果您並未變更您的 E-mail ，那麼很有可能是某人取得了你帳號的存取權限。請立刻變更您的密碼，或是若您的帳號已被鎖定，請聯絡伺服器的管理員。
         subject: Mastodon  E-mail 變更
         title: 新 E-mail 地址
       password_change:
         explanation: 您帳號的密碼已變更。
-        extra: 如果您並未變更您的密碼，那麼很有可能是某人取得了您帳號的存取權限。請立刻變更您的密碼，或是若您的帳號已被鎖定，請聯絡站點的管理員。
+        extra: 如果您並未變更您的密碼，那麼很有可能是某人取得了您帳號的存取權限。請立刻變更您的密碼，或是若您的帳號已被鎖定，請聯絡伺服器的管理員。
         subject: 'Mastodon: 更改密碼'
         title: 密碼已變更
       reconfirmation_instructions:
@@ -62,6 +65,7 @@ zh-TW:
       signed_up_but_unconfirmed: 驗證信已寄出。請使用該連結啟用您的帳號。
       update_needs_confirmation: 已更新您的帳號，但我們需要進行信箱驗證。請開啟您的信箱，使用確認信中的連結進行驗證。
       updated: 您的帳號已成功更新。
+      signed_up_but_pending: 包含確認連結的訊息已傳送至您的電子信箱。按下此連結後我們將審核您的申請。核准後將通知您。
     sessions:
       already_signed_out: 成功登出。
       signed_in: 成功登入。
