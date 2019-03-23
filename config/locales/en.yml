@@ -586,6 +586,9 @@ en:
       content: We're sorry, but something went wrong on our end.
       title: This page is not correct
     noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Mastodon for your platform.
+  existing_username_validator:
+    not_found: could not find a local user with that username
+    not_found_multiple: could not find %{usernames}
   exports:
     archive_takeout:
       date: Date
@@ -633,6 +636,8 @@ en:
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
+  html_validator:
+    invalid_markup: contains invalid HTML markup
   identity_proofs:
     active: Active
     authorize: Yes, authorize
