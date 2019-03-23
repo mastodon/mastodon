@@ -1,65 +1,50 @@
+---
 en_GB:
   simple_form:
     hints:
       account_warning_preset:
         text: You can use toot syntax, such as URLs, hashtags and mentions
       admin_account_action:
-        send_email_notification: The user will receive an explanation of what happened
-          with their account
-        text_html: Optional. You can use toot syntax. You can <a href="%{path}">add
-          warning presets</a> to save time
+        send_email_notification: The user will receive an explanation of what happened with their account
+        text_html: Optional. You can use toot syntax. You can <a href="%{path}">add warning presets</a> to save time
         type_html: Choose what to do with <strong>%{acct}</strong>
         warning_preset_id: Optional. You can still add custom text to end of the preset
       defaults:
-        autofollow: People who sign up through the invite will automatically follow
-          you
+        autofollow: People who sign up through the invite will automatically follow you
         avatar: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
         bot: This account mainly performs automated actions and might not be monitored
         context: One or multiple contexts where the filter should apply
-        digest: Only sent after a long period of inactivity and only if you have received
-          any personal messages in your absence
-        discoverable_html: The <a href="%{path}" target="_blank">directory</a> lets
-          people find accounts based on interests and activity. Requires at least
-          %{min_followers} followers
+        digest: Only sent after a long period of inactivity and only if you have received any personal messages in your absence
+        discoverable_html: The <a href="%{path}" target="_blank">directory</a> lets people find accounts based on interests and activity. Requires at least %{min_followers} followers
         email: You will be sent a confirmation e-mail
         fields: You can have up to 4 items displayed as a table on your profile
         header: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
         inbox_url: Copy the URL from the frontpage of the relay you want to use
-        irreversible: Filtered toots will disappear irreversibly, even if filter is
-          later removed
+        irreversible: Filtered toots will disappear irreversibly, even if filter is later removed
         locale: The language of the user interface, e-mails and push notifications
         locked: Requires you to manually approve followers
         password: Use at least 8 characters
-        phrase: Will be matched regardless of casing in text or content warning of
-          a toot
-        scopes: Which APIs the application will be allowed to access. If you select
-          a top-level scope, you don't need to select individual ones.
-        setting_aggregate_reblogs: Do not show new boosts for toots that have been
-          recently boosted (only affects newly-received boosts)
-        setting_default_language: The language of your toots can be detected automatically,
-          but it's not always accurate
+        phrase: Will be matched regardless of casing in text or content warning of a toot
+        scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
+        setting_aggregate_reblogs: Do not show new boosts for toots that have been recently boosted (only affects newly-received boosts)
+        setting_default_language: The language of your toots can be detected automatically, but it's not always accurate
         setting_display_media_default: Hide media marked as sensitive
         setting_display_media_hide_all: Always hide all media
         setting_display_media_show_all: Always show media marked as sensitive
-        setting_hide_network: Who you follow and who follows you will not be shown
-          on your profile
+        setting_hide_network: Who you follow and who follows you will not be shown on your profile
         setting_noindex: Affects your public profile and status pages
-        setting_show_application: The application you use to toot will be displayed
-          in the detailed view of your toots
+        setting_show_application: The application you use to toot will be displayed in the detailed view of your toots
         setting_theme: Affects how Mastodon looks when you're logged in from any device.
         username: Your username will be unique on %{domain}
-        whole_word: When the keyword or phrase is alphanumeric only, it will only
-          be applied if it matches the whole word
+        whole_word: When the keyword or phrase is alphanumeric only, it will only be applied if it matches the whole word
       featured_tag:
         name: 'You might want to use one of these:'
       imports:
         data: CSV file exported from another Mastodon server
       sessions:
-        otp: 'Enter the two-factor code generated by your phone app or use one of
-          your recovery codes:'
+        otp: 'Enter the two-factor code generated by your phone app or use one of your recovery codes:'
       user:
-        chosen_languages: When checked, only toots in selected languages will be displayed
-          in public timelines
+        chosen_languages: When checked, only toots in selected languages will be displayed in public timelines
     labels:
       account:
         fields:
@@ -143,6 +128,6 @@ en_GB:
         report: Send e-mail when a new report is submitted
     'no': 'No'
     required:
-      mark: '*'
+      mark: "*"
       text: required
     'yes': 'Yes'

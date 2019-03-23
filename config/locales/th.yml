@@ -1,9 +1,21 @@
+---
 th:
   about:
-    about_mastodon_html: Mastodon เป็นเครือข่ายสังคมที่ทำงานบนโปรโตคอลเว็บแบบเปิดและซอฟต์แวร์เสรีที่เปิดต้นฉบับ
-      กระจายศูนย์เหมือนอีเมล
+    about_mastodon_html: Mastodon เป็นเครือข่ายสังคมที่ทำงานบนโปรโตคอลเว็บแบบเปิดและซอฟต์แวร์เสรีที่เปิดต้นฉบับ กระจายศูนย์เหมือนอีเมล
     about_this: เกี่ยวกับ
+    administered_by: 'ดูแลโดย:'
+    api: API
+    apps: แอปสำหรับมือถือ
+    apps_platforms: ใช้ Mastodon จาก iOS, Android และแพลตฟอร์มอื่น ๆ
+    browse_directory: เรียกดูไดเรกทอรีโปรไฟล์และกรองตามความสนใจ
     contact: ติดต่อ
+    discover_users: ค้นพบผู้ใช้
+    documentation: เอกสารประกอบ
+    generic_description: "%{domain} เป็นเซิร์ฟเวอร์หนึ่งในเครือข่าย"
+    get_apps: ลองแอปสำหรับมือถือ
+    learn_more: เรียนรู้เพิ่มเติม
+    privacy_policy: นโยบายความเป็นส่วนตัว
+    server_stats: 'สถิติเซิร์ฟเวอร์:'
     source_code: โค้ดต้นฉบับ
     status_count_after:
       one: สถานะ
@@ -13,63 +25,72 @@ th:
       one: ผู้ใช้
       other: ผู้ใช้
     user_count_before: บ้านของ
-    administered_by: 'ดูแลโดย:'
-    api: API
-    apps_platforms: ใช้ Mastodon จาก iOS, Android และแพลตฟอร์มอื่น ๆ
-    browse_directory: เรียกดูไดเรกทอรีโปรไฟล์และกรองตามความสนใจ
-    discover_users: ค้นพบผู้ใช้
-    documentation: เอกสารประกอบ
-    learn_more: เรียนรู้เพิ่มเติม
-    privacy_policy: นโยบายความเป็นส่วนตัว
     what_is_mastodon: Mastodon คืออะไร?
-    apps: แอปสำหรับมือถือ
-    generic_description: '%{domain} เป็นเซิร์ฟเวอร์หนึ่งในเครือข่าย'
-    get_apps: ลองแอปสำหรับมือถือ
-    server_stats: 'สถิติเซิร์ฟเวอร์:'
   accounts:
     follow: ติดตาม
     followers:
       one: ผู้ติดตาม
       other: ผู้ติดตาม
     following: กำลังติดตาม
+    joined: เข้าร่วมเมื่อ %{date}
+    last_active: ใช้งานล่าสุด
+    media: สื่อ
+    moved_html: "%{name} ได้ย้ายไปยัง %{new_profile_link}:"
+    network_hidden: ไม่มีข้อมูลนี้
     nothing_here: ไม่มีสิ่งใดที่นี่!
     people_followed_by: ผู้คนที่ %{name} ติดตาม
     people_who_follow: ผู้คนที่ติดตาม %{name}
     posts:
       one: โพสต์
       other: โพสต์
-    unfollow: เลิกติดตาม
-    joined: เข้าร่วมเมื่อ %{date}
-    media: สื่อ
     posts_tab_heading: โพสต์
     posts_with_replies: โพสต์และการตอบกลับ
     roles:
-      bot: บอต
       admin: ผู้ดูแล
+      bot: บอต
       moderator: ผู้ควบคุม
-    moved_html: '%{name} ได้ย้ายไปยัง %{new_profile_link}:'
-    last_active: ใช้งานล่าสุด
-    network_hidden: ไม่มีข้อมูลนี้
+    unfollow: เลิกติดตาม
   admin:
+    account_moderation_notes:
+      delete: ลบ
     accounts:
+      approve: อนุมัติ
       are_you_sure: คุณแน่ใจหรือไม่?
+      avatar: ภาพประจำตัว
+      by_domain: โดเมน
+      change_email:
+        current_email: อีเมลปัจจุบัน
+        label: เปลี่ยนอีเมล
+        new_email: อีเมลใหม่
+        submit: เปลี่ยนอีเมล
+        title: เปลี่ยนอีเมลสำหรับ %{username}
       confirm: ยืนยัน
       confirmed: ยืนยันแล้ว
       confirming: กำลังยืนยัน
+      demote: ลดระดับ
+      disable: ปิดใช้งาน
       disable_two_factor_authentication: ปิดใช้งาน 2FA
       display_name: ชื่อที่แสดงผล
       domain: โดเมน
       edit: แก้ไข
       email: อีเมล
       email_status: สถานะอีเมล
+      enable: เปิดใช้งาน
       feed_url: URL ฟีด
       followers: ผู้ติดตาม
+      followers_url: URL ผู้ติดตาม
       follows: ติดตาม
+      header: ส่วนหัว
+      inbox_url: URL กล่องขาเข้า
+      invited_by: เชิญโดย
+      ip: IP
+      joined: เข้าร่วมเมื่อ
       location:
         all: ทั้งหมด
         local: ในเว็บ
         remote: ระยะไกล
         title: ตำแหน่งที่ตั้ง
+      login_status: สถานะการเข้าสู่ระบบ
       media_attachments: ไฟล์แนบสื่อ
       moderation:
         all: ทั้งหมด
@@ -79,60 +100,59 @@ th:
       most_recent_activity: กิจกรรมล่าสุด
       most_recent_ip: IP ล่าสุด
       not_subscribed: ไม่ได้บอกรับ
+      outbox_url: URL กล่องขาออก
       perform_full_suspension: ระงับ
       profile_url: URL โปรไฟล์
+      protocol: โปรโตคอล
       public: สาธารณะ
       push_subscription_expires: การบอกรับ PuSH หมดอายุเมื่อ
+      reject: ปฏิเสธ
+      remove_avatar: เอาภาพประจำตัวออก
+      remove_header: เอาส่วนหัวออก
       resend_confirmation:
         already_confirmed: ผู้ใช้นี้ได้รับการยืนยันอยู่แล้ว
         send: ส่งอีเมลยืนยันอีกครั้ง
         success: ส่งอีเมลยืนยันสำเร็จ!
       reset_password: ตั้งรหัสผ่านใหม่
-      salmon_url: Salmon URL
-      show:
-        created_reports: รายงานที่ถูกสร้าง
-        targeted_reports: รายงานโดยผู้อื่น
-      silence: เงียบ
-      statuses: สถานะ
-      title: บัญชี
-      undo_silenced: เลิกทำการเงียบ
-      undo_suspension: เลิกทำการระงับ
-      username: ชื่อผู้ใช้
-      web: เว็บ
-      approve: อนุมัติ
-      avatar: ภาพประจำตัว
-      by_domain: โดเมน
-      change_email:
-        current_email: อีเมลปัจจุบัน
-        label: เปลี่ยนอีเมล
-        new_email: อีเมลใหม่
-        submit: เปลี่ยนอีเมล
-        title: เปลี่ยนอีเมลสำหรับ %{username}
-      disable: ปิดใช้งาน
-      enable: เปิดใช้งาน
-      header: ส่วนหัว
-      ip: IP
-      login_status: สถานะการเข้าสู่ระบบ
-      protocol: โปรโตคอล
-      reject: ปฏิเสธ
-      remove_avatar: เอาภาพประจำตัวออก
-      remove_header: เอาส่วนหัวออก
-      unsubscribe: เลิกบอกรับ
-      demote: ลดระดับ
-      followers_url: URL ผู้ติดตาม
-      inbox_url: URL กล่องขาเข้า
-      invited_by: เชิญโดย
-      joined: เข้าร่วมเมื่อ
-      outbox_url: URL กล่องขาออก
+      resubscribe: บอกรับใหม่
       roles:
         admin: ผู้ดูแล
         moderator: ผู้ควบคุม
         staff: พนักงาน
         user: ผู้ใช้
+      salmon_url: Salmon URL
       search: ค้นหา
+      show:
+        created_reports: รายงานที่ถูกสร้าง
+        targeted_reports: รายงานโดยผู้อื่น
+      silence: เงียบ
+      statuses: สถานะ
       subscribe: บอกรับ
+      title: บัญชี
+      undo_silenced: เลิกทำการเงียบ
+      undo_suspension: เลิกทำการระงับ
+      unsubscribe: เลิกบอกรับ
+      username: ชื่อผู้ใช้
       warn: เตือน
-      resubscribe: บอกรับใหม่
+      web: เว็บ
+    action_logs:
+      title: รายการบันทึกการตรวจสอบ
+    custom_emojis:
+      by_domain: โดเมน
+      copy: คัดลอก
+      delete: ลบ
+      disable: ปิดใช้งาน
+      enable: เปิดใช้งาน
+      overwrite: เขียนทับ
+      unlisted: ไม่อยู่ในรายการ
+      upload: อัปโหลด
+    dashboard:
+      feature_deletions: การลบบัญชี
+      feature_profile_directory: ไดเรกทอรีโปรไฟล์
+      feature_registrations: การลงทะเบียน
+      features: คุณลักษณะ
+      recent_users: ผู้ใช้ล่าสุด
+      software: ซอฟต์แวร์
     domain_blocks:
       add_new: เพิ่มการปิดกั้นโดเมนใหม่
       created_msg: กำลังประมวลผลการปิดกั้นโดเมน
@@ -142,16 +162,14 @@ th:
         create: สร้างการปิดกั้น
         hint: การปิดกั้นโดเมนจะไม่ป้องกันการสร้างรายการบัญชีในฐานข้อมูล แต่จะใช้วิธีการควบคุมเฉพาะกับบัญชีเหล่านั้นย้อนหลังและโดยอัตโนมัติ
         severity:
-          desc_html: <strong>เงียบ</strong> จะทำให้โพสต์ของบัญชีมองไม่เห็นกับใครก็ตามที่ไม่ได้กำลังติดตามบัญชี
-            <strong>ระงับ</strong> จะเอาเนื้อหา, สื่อ และข้อมูลโปรไฟล์ทั้งหมดของบัญชีออก
-            ใช้ <strong>ไม่มี</strong> หากคุณเพียงแค่ต้องการปฏิเสธไฟล์สื่อ
+          desc_html: "<strong>เงียบ</strong> จะทำให้โพสต์ของบัญชีมองไม่เห็นกับใครก็ตามที่ไม่ได้กำลังติดตามบัญชี <strong>ระงับ</strong> จะเอาเนื้อหา, สื่อ และข้อมูลโปรไฟล์ทั้งหมดของบัญชีออก ใช้ <strong>ไม่มี</strong> หากคุณเพียงแค่ต้องการปฏิเสธไฟล์สื่อ"
+          noop: ไม่มี
           silence: เงียบ
           suspend: ระงับ
-          noop: ไม่มี
         title: การปิดกั้นโดเมนใหม่
       reject_media: ปฏิเสธไฟล์สื่อ
-      reject_media_hint: เอาไฟล์สื่อที่จัดเก็บไว้ในเว็บออกและปฏิเสธที่จะดาวน์โหลดไฟล์ใด
-        ๆ ในอนาคต ไม่เกี่ยวข้องกับการระงับ
+      reject_media_hint: เอาไฟล์สื่อที่จัดเก็บไว้ในเว็บออกและปฏิเสธที่จะดาวน์โหลดไฟล์ใด ๆ ในอนาคต ไม่เกี่ยวข้องกับการระงับ
+      reject_reports: ปฏิเสธรายงาน
       show:
         affected_accounts:
           one: มีผลต่อหนึ่งบัญชีในฐานข้อมูล
@@ -162,18 +180,34 @@ th:
         title: เลิกทำการปิดกั้นโดเมนสำหรับ %{domain}
         undo: เลิกทำ
       undo: เลิกทำการปิดกั้นโดเมน
-      reject_reports: ปฏิเสธรายงาน
+    email_domain_blocks:
+      add_new: เพิ่มใหม่
+      delete: ลบ
+      domain: โดเมน
+      new:
+        create: เพิ่มโดเมน
     instances:
-      title: การติดต่อกับภายนอก
       by_domain: โดเมน
       moderation:
         all: ทั้งหมด
         title: การควบคุม
+      title: การติดต่อกับภายนอก
       total_storage: ไฟล์แนบสื่อ
+    relays:
+      delete: ลบ
+      disable: ปิดใช้งาน
+      enable: เปิดใช้งาน
+      inbox_url: URL รีเลย์
+      status: สถานะ
+      title: รีเลย์
     reports:
+      are_you_sure: คุณแน่ใจหรือไม่?
       comment:
         none: ไม่มี
       mark_as_resolved: ทำเครื่องหมายว่าแก้ปัญหาแล้ว
+      mark_as_unresolved: ทำเครื่องหมายว่ายังไม่ได้แก้ปัญหา
+      notes:
+        delete: ลบ
       report: 'รายงาน #%{id}'
       reported_account: บัญชีที่ได้รับการรายงาน
       reported_by: รายงานโดย
@@ -181,14 +215,14 @@ th:
       status: สถานะ
       title: รายงาน
       unresolved: ยังไม่ได้แก้ปัญหา
-      are_you_sure: คุณแน่ใจหรือไม่?
-      notes:
-        delete: ลบ
-      mark_as_unresolved: ทำเครื่องหมายว่ายังไม่ได้แก้ปัญหา
     settings:
       contact_information:
         email: อีเมลธุรกิจ
         username: ชื่อผู้ใช้ในการติดต่อ
+      custom_css:
+        title: CSS ที่กำหนดเอง
+      profile_directory:
+        title: เปิดใช้งานไดเรกทอรีโปรไฟล์
       registrations:
         closed_message:
           desc_html: แสดงผลในหน้าแรกเมื่อปิดการลงทะเบียน คุณสามารถใช้แท็ก HTML
@@ -197,68 +231,23 @@ th:
           title: เปิดการลบบัญชี
         min_invite_role:
           disabled: ไม่มีใคร
-      site_description:
-        desc_html: ย่อหน้าเกริ่นนำในหน้าแรก อธิบายถึงสิ่งที่ทำให้เซิร์ฟเวอร์ Mastodon
-          นี้พิเศษและสิ่งอื่นใดที่สำคัญ คุณสามารถใช้แท็ก HTML โดยเฉพาะอย่างยิ่ง <code>&lt;a&gt;</code>
-          และ <code>&lt;em&gt;</code>
-        title: คำอธิบายเซิร์ฟเวอร์
-      site_description_extended:
-        desc_html: สถานที่ที่ดีสำหรับแนวทางปฏิบัติ, กฎ, หลักเกณฑ์ และสิ่งอื่น ๆ ของคุณที่ทำให้เซิร์ฟเวอร์ของคุณแตกต่าง
-          คุณสามารถใช้แท็ก HTML
-        title: ข้อมูลแบบขยายที่กำหนดเอง
-      site_title: ชื่อเซิร์ฟเวอร์
-      title: การตั้งค่าไซต์
-      custom_css:
-        title: CSS ที่กำหนดเอง
       registrations_mode:
-        title: โหมดการลงทะเบียน
         modes:
           none: ไม่มีใครสามารถลงทะเบียน
           open: ใครก็ตามสามารถลงทะเบียน
+        title: โหมดการลงทะเบียน
+      site_description:
+        desc_html: ย่อหน้าเกริ่นนำในหน้าแรก อธิบายถึงสิ่งที่ทำให้เซิร์ฟเวอร์ Mastodon นี้พิเศษและสิ่งอื่นใดที่สำคัญ คุณสามารถใช้แท็ก HTML โดยเฉพาะอย่างยิ่ง <code>&lt;a&gt;</code> และ <code>&lt;em&gt;</code>
+        title: คำอธิบายเซิร์ฟเวอร์
+      site_description_extended:
+        desc_html: สถานที่ที่ดีสำหรับแนวทางปฏิบัติ, กฎ, หลักเกณฑ์ และสิ่งอื่น ๆ ของคุณที่ทำให้เซิร์ฟเวอร์ของคุณแตกต่าง คุณสามารถใช้แท็ก HTML
+        title: ข้อมูลแบบขยายที่กำหนดเอง
       site_short_description:
         title: คำอธิบายเซิร์ฟเวอร์แบบสั้น
-      profile_directory:
-        title: เปิดใช้งานไดเรกทอรีโปรไฟล์
-    subscriptions:
-      callback_url: Callback URL
-      confirmed: ยืนยันแล้ว
-      expires_in: หมดอายุภายใน
-      last_delivery: ส่งล่าสุด
-      title: WebSub
-      topic: หัวข้อ
-    title: การดูแล
-    account_moderation_notes:
-      delete: ลบ
-    custom_emojis:
-      by_domain: โดเมน
-      copy: คัดลอก
-      delete: ลบ
-      disable: ปิดใช้งาน
-      enable: เปิดใช้งาน
-      overwrite: เขียนทับ
-      upload: อัปโหลด
-      unlisted: ไม่อยู่ในรายการ
-    dashboard:
-      feature_deletions: การลบบัญชี
-      feature_profile_directory: ไดเรกทอรีโปรไฟล์
-      feature_registrations: การลงทะเบียน
-      software: ซอฟต์แวร์
-      features: คุณลักษณะ
-      recent_users: ผู้ใช้ล่าสุด
-    email_domain_blocks:
-      delete: ลบ
-      domain: โดเมน
-      new:
-        create: เพิ่มโดเมน
-      add_new: เพิ่มใหม่
-    relays:
-      delete: ลบ
-      disable: ปิดใช้งาน
-      enable: เปิดใช้งาน
-      inbox_url: URL รีเลย์
-      status: สถานะ
-      title: รีเลย์
+      site_title: ชื่อเซิร์ฟเวอร์
+      title: การตั้งค่าไซต์
     statuses:
+      back_to_account: กลับไปที่หน้าบัญชี
       batch:
         delete: ลบ
         nsfw_off: ทำเครื่องหมายว่าไม่ละเอียดอ่อน
@@ -267,28 +256,36 @@ th:
         title: สื่อ
       no_media: ไม่มีสื่อ
       title: สถานะบัญชี
-      back_to_account: กลับไปที่หน้าบัญชี
+    subscriptions:
+      callback_url: Callback URL
+      confirmed: ยืนยันแล้ว
+      expires_in: หมดอายุภายใน
+      last_delivery: ส่งล่าสุด
+      title: WebSub
+      topic: หัวข้อ
     tags:
       accounts: บัญชี
       hide: ซ่อนจากไดเรกทอรี
       name: แฮชแท็ก
       title: แฮชแท็ก
       unhide: แสดงในไดเรกทอรี
+    title: การดูแล
     warning_presets:
       add_new: เพิ่มใหม่
       delete: ลบ
       edit: แก้ไข
-    action_logs:
-      title: รายการบันทึกการตรวจสอบ
   application_mailer:
+    notification_preferences: เปลี่ยนการกำหนดลักษณะอีเมล
     settings: 'เปลี่ยนการกำหนดลักษณะอีเมล: %{link}'
     view: 'มุมมอง:'
-    notification_preferences: เปลี่ยนการกำหนดลักษณะอีเมล
     view_profile: ดูโปรไฟล์
     view_status: ดูสถานะ
   applications:
     invalid_url: URL ที่ระบุไม่ถูกต้อง
   auth:
+    change_password: รหัสผ่าน
+    confirm_email: ยืนยันอีเมล
+    delete_account: ลบบัญชี
     didnt_get_confirmation: Didn't receive confirmation instructions?
     forgot_password: ลืมรหัสผ่านของคุณ?
     login: เข้าสู่ระบบ
@@ -298,27 +295,24 @@ th:
     reset_password: ตั้งรหัสผ่านใหม่
     security: ความปลอดภัย
     set_new_password: ตั้งรหัสผ่านใหม่
-    change_password: รหัสผ่าน
-    confirm_email: ยืนยันอีเมล
-    delete_account: ลบบัญชี
   authorize_follow:
     error: Unfortunately, there was an error looking up the remote account
     follow: ติดตาม
     title: ติดตาม %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: '%{count}ช'
-      about_x_months: '%{count}ด'
-      about_x_years: '%{count}ป'
-      almost_x_years: '%{count}ป'
+      about_x_hours: "%{count}ช"
+      about_x_months: "%{count}ด"
+      about_x_years: "%{count}ป"
+      almost_x_years: "%{count}ป"
       half_a_minute: เมื่อกี้นี้
-      less_than_x_minutes: '%{count}ม'
+      less_than_x_minutes: "%{count}ม"
       less_than_x_seconds: เมื่อกี้นี้
-      over_x_years: '%{count}ป'
-      x_days: '%{count}ด'
-      x_minutes: '%{count}น'
-      x_months: '%{count}ด'
-      x_seconds: '%{count}ว'
+      over_x_years: "%{count}ป"
+      x_days: "%{count}ด"
+      x_minutes: "%{count}น"
+      x_months: "%{count}ด"
+      x_seconds: "%{count}ว"
   errors:
     '403': คุณไม่มีสิทธิดูหน้านี้
     '404': หน้าที่คุณกำลังมองหาไม่ได้อยู่ที่นี่
@@ -340,11 +334,8 @@ th:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
   imports:
-    preface: You can import certain data like all the people you are following or
-      blocking into your account on this instance, from files created by an export
-      on another instance.
-    success: Your data was successfully uploaded and will now be processed in due
-      time
+    preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
+    success: Your data was successfully uploaded and will now be processed in due time
     types:
       blocking: Blocking list
       following: Following list
@@ -356,34 +347,33 @@ th:
       too_many: ไม่สามารถแนบไฟล์ได้มากกว่า 4 ไฟล์
   notification_mailer:
     digest:
-      body: Here is a brief summary of the messages you missed since your last visit
-        on %{since}
-      mention: '%{name} ได้กล่าวถึงคุณใน:'
+      body: Here is a brief summary of the messages you missed since your last visit on %{since}
+      mention: "%{name} ได้กล่าวถึงคุณใน:"
       new_followers_summary:
         one: นอกจากนี้คุณยังมีหนึ่งผู้ติดตามใหม่ขณะที่ไม่อยู่! เย่!
         other: You have gotten %{count} new followers! Amazing!
       subject:
-        one: 1 new notification since your last visit 🐘
-        other: '%{count} new notifications since your last visit 🐘'
+        one: "1 new notification since your last visit \U0001F418"
+        other: "%{count} new notifications since your last visit \U0001F418"
     favourite:
       body: 'สถานะของคุณได้รับการชื่นชอบโดย %{name}:'
-      subject: '%{name} ได้ชื่นชอบสถานะของคุณ'
+      subject: "%{name} ได้ชื่นชอบสถานะของคุณ"
     follow:
-      body: '%{name} กำลังติดตามคุณ!'
-      subject: '%{name} กำลังติดตามคุณ'
+      body: "%{name} กำลังติดตามคุณ!"
+      subject: "%{name} กำลังติดตามคุณ"
     follow_request:
-      body: '%{name} ได้ขอติดตามคุณ'
+      body: "%{name} ได้ขอติดตามคุณ"
       subject: 'Pending follower: %{name}'
     mention:
       body: 'You were mentioned by %{name} in:'
       subject: You were mentioned by %{name}
     reblog:
       body: 'Your status was boosted by %{name}:'
-      subject: '%{name} boosted your status'
+      subject: "%{name} boosted your status"
   number:
     human:
       decimal_units:
-        format: '%n%u'
+        format: "%n%u"
         units:
           billion: B
           million: M
@@ -392,29 +382,31 @@ th:
           trillion: T
           unit: ''
   pagination:
-    next: ถัดไป
-    prev: ก่อนหน้า
-    truncate: '&hellip;'
     newer: ใหม่กว่า
+    next: ถัดไป
     older: เก่ากว่า
+    prev: ก่อนหน้า
+    truncate: "&hellip;"
   remote_follow:
     acct: Enter your username@domain you want to follow from
     missing_resource: Could not find the required redirect URL for your account
     proceed: Proceed to follow
     prompt: 'You are going to follow:'
+  remote_unfollow:
+    error: ข้อผิดพลาด
   settings:
     authorized_apps: Authorized apps
     back: กลับไปที่ Mastodon
+    delete: การลบบัญชี
+    development: การพัฒนา
     edit_profile: แก้ไขโปรไฟล์
     export: การส่งออกข้อมูล
     import: นำเข้า
+    notifications: การแจ้งเตือน
     preferences: การกำหนดลักษณะ
+    relationships: การติดตามและผู้ติดตาม
     settings: การตั้งค่า
     two_factor_authentication: Two-factor Authentication
-    delete: การลบบัญชี
-    development: การพัฒนา
-    notifications: การแจ้งเตือน
-    relationships: การติดตามและผู้ติดตาม
     your_apps: แอปพลิเคชันของคุณ
   statuses:
     open_in_web: เปิดในเว็บ
@@ -432,33 +424,21 @@ th:
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
   time:
     formats:
-      default: '%b %d, %Y, %H:%M'
+      default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
     code_hint: Enter the code generated by your authenticator app to confirm
-    description_html: If you enable <strong>two-factor authentication</strong>, logging
-      in will require you to be in possession of your phone, which will generate tokens
-      for you to enter.
+    description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
     disable: ปิดใช้งาน
     enable: เปิดใช้งาน
     enabled_success: Two-factor authentication successfully enabled
     generate_recovery_codes: สร้างรหัสกู้คืน
-    instructions_html: <strong>Scan this QR code into Google Authenticator or a similiar
-      TOTP app on your phone</strong>. From now on, that app will generate tokens
-      that you will have to enter when logging in.
-    lost_recovery_codes: Recovery codes allow you to regain access to your account
-      if you lose your phone. If you've lost your recovery codes, you can regenerate
-      them here. Your old recovery codes will be invalidated.
-    manual_instructions: 'If you can''t scan the QR code and need to enter it manually,
-      here is the plain-text secret:'
+    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
+    lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
+    manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
     recovery_codes_regenerated: Recovery codes successfully regenerated
-    recovery_instructions_html: If you ever lose access to your phone, you can use
-      one of the recovery codes below to regain access to your account. Keep the recovery
-      codes safe, for example by printing them and storing them with other important
-      documents.
+    recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
     setup: ตั้งค่า
     wrong_code: รหัสที่ป้อนไม่ถูกต้อง! เวลาเซิร์ฟเวอร์และเวลาอุปกรณ์ถูกต้องหรือไม่?
   users:
     invalid_email: ที่อยู่อีเมลไม่ถูกต้อง
     invalid_otp_token: รหัสสองปัจจัยไม่ถูกต้อง
-  remote_unfollow:
-    error: ข้อผิดพลาด

@@ -1,5 +1,9 @@
+---
 nl:
   activerecord:
+    attributes:
+      status:
+        owned_poll: Poll
     errors:
       models:
         account:
@@ -10,6 +14,3 @@ nl:
           attributes:
             reblog:
               taken: van toot bestaat al
-    attributes:
-      status:
-        owned_poll: Poll

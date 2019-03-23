@@ -1,5 +1,9 @@
+---
 cs:
   activerecord:
+    attributes:
+      status:
+        owned_poll: Anketa
     errors:
       models:
         account:
@@ -10,6 +14,3 @@ cs:
           attributes:
             reblog:
               taken: příspěvku již existuje
-    attributes:
-      status:
-        owned_poll: Anketa

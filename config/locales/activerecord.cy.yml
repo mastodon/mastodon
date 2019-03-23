@@ -1,5 +1,9 @@
+---
 cy:
   activerecord:
+    attributes:
+      status:
+        owned_poll: Poll
     errors:
       models:
         account:
@@ -10,6 +14,3 @@ cy:
           attributes:
             reblog:
               taken: o'r statws yn bodoli'n barod
-    attributes:
-      status:
-        owned_poll: Poll
