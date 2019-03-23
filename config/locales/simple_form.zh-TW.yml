@@ -15,27 +15,27 @@ zh-TW:
         locked: 需要您手動核准關注請求
         phrase: 無論是嘟文的本文或是內容警告都會被過濾
         scopes: 允許讓應用程式存取的 API。 若您選擇最高階範圍，則無須選擇個別項目。
-        setting_default_language: 你嘟文的語言會被自動偵測，但不一定完全準確
+        setting_default_language: 您嘟文的語言可被自動偵測，但不一定每次都準確
         setting_hide_network: 你關注的人與關注你的人將不會在你的個人資料頁上顯示
-        setting_noindex: 此設定會影響到你的公開個人資料與嘟文頁面
-        setting_theme: 此設定會影響到你從任意設備登入 Mastodon 時的顯示樣式。
-        whole_word: 如果關鍵字或詞組僅有字母與數字，它將只會在符合整個單字的時候才會套用
+        setting_noindex: 會影響您的公開個人資料與嘟文頁面
+        setting_theme: 會影響從任何裝置登入所看到的 Mastodon 樣式。
+        whole_word: 如果關鍵字或詞組僅有字母與數字，則其將只在符合整個單字的時候才會套用
         discoverable_html: <a href="%{path}" target="_blank">目錄</a> 讓使用者們能基於興趣與活動尋找帳戶。需要至少
           %{min_followers} 位關注者
         email: 您將收到一封確認電子郵件
         password: 使用至少 8 個字元
-        setting_aggregate_reblogs: 請勿顯示最近已被轉嘟之噗文的最新轉嘟（只影響最新收到的噗文）
-        setting_display_media_default: 隱藏標記為敏感的媒體
+        setting_aggregate_reblogs: 請勿顯示最近已被轉嘟之嘟文的最新轉嘟（只影響最新收到的嘟文）
+        setting_display_media_default: 隱藏標為敏感的媒體
         setting_display_media_hide_all: 總是隱藏所有媒體
         setting_display_media_show_all: 總是顯示標為敏感的媒體
-        setting_show_application: 您用於嘟文的應用程式將會在您嘟文的「詳細檢視」顯示
+        setting_show_application: 您用來發嘟文的應用程式將會在您嘟文的詳細檢視顯示
         username: 您的使用者名稱將在 %{domain} 是獨一無二的
       imports:
-        data: 自其他 Mastodon 伺服器匯出的 CSV 檔案
+        data: 從其他 Mastodon 伺服器匯出的 CSV 檔案
       sessions:
-        otp: 輸入你手機上產生的兩階段認證碼，或著任意一個備用驗證碼：
+        otp: 請輸入產生自您手機 App 的兩步驟驗證碼，或輸入您其中一個復原代碼：
       user:
-        chosen_languages: 只有被選擇的語言會在公開時間軸內顯示
+        chosen_languages: 當核取時，只有選取語言的嘟文會在公開時間線中顯示
       account_warning_preset:
         text: 您可使用嘟文語法，例如網址、「#」標籤和提及功能
       admin_account_action:
@@ -44,7 +44,7 @@ zh-TW:
         type_html: 設定要使用 <strong>%{acct}</strong> 做的事
         warning_preset_id: 選用。您仍可在預設的結尾新增自訂文字
       featured_tag:
-        name: 您可能想使用這些使用者名稱的其中一個：
+        name: 您可能想使用其中一個：
     labels:
       account:
         fields:
