@@ -35,6 +35,7 @@ th:
       <p>ยังไม่ได้ตั้งคำอธิบายแบบขยาย</p>
 
       '
+    browse_public_posts: เรียกดูสตรีมสดของโพสต์สาธารณะใน Mastodon
   accounts:
     follow: ติดตาม
     followers:
@@ -99,7 +100,7 @@ th:
       reset_password: ตั้งรหัสผ่านใหม่
       salmon_url: Salmon URL
       show:
-        created_reports: รายงานที่ถูกสร้าง
+        created_reports: รายงานที่สร้าง
         targeted_reports: รายงานโดยผู้อื่น
       silence: เงียบ
       statuses: สถานะ
@@ -551,6 +552,10 @@ th:
       reblog: ไม่สามารถปักหมุดการดัน
     sign_in_to_participate: ลงชื่อเข้าเพื่อเข้าร่วมการสนทนา
     title: '%{name}: "%{quote}"'
+    poll:
+      total_votes:
+        one: '%{count} การลงคะแนน'
+        other: '%{count} การลงคะแนน'
   stream_entries:
     reblogged: boosted
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
@@ -673,6 +678,8 @@ th:
     warning:
       title:
         none: คำเตือน
+        silence: จำกัดบัญชีอยู่
+        suspend: ระงับบัญชีอยู่
     welcome:
       review_preferences_action: เปลี่ยนการกำหนดลักษณะ
       subject: ยินดีต้อนรับสู่ Mastodon
