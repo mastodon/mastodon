@@ -9,6 +9,7 @@ class HtmlValidator < ActiveModel::EachValidator
   private
 
   def valid_html?(str)
-    Nokogiri::HTML.fragment(str).to_s == str
+    fragment = Nokogiri::HTML.fragment(str)
+    fragment.errors.empty?
   end
 end
