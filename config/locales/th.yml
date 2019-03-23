@@ -27,6 +27,14 @@ th:
     get_apps: ลองแอปสำหรับมือถือ
     server_stats: 'สถิติเซิร์ฟเวอร์:'
     active_footnote: ผู้ใช้งานรายเดือน (MAU)
+    active_count_after: ที่ใช้งาน
+    contact_missing: ไม่ได้ตั้ง
+    contact_unavailable: ไม่มี
+    extended_description_html: '<h3>สถานที่ที่ดีสำหรับกฎ</h3>
+
+      <p>ยังไม่ได้ตั้งคำอธิบายแบบขยาย</p>
+
+      '
   accounts:
     follow: ติดตาม
     followers:
@@ -74,8 +82,8 @@ th:
       media_attachments: ไฟล์แนบสื่อ
       moderation:
         all: ทั้งหมด
-        silenced: ถูกเงียบ
-        suspended: ถูกระงับ
+        silenced: เงียบอยู่
+        suspended: ระงับอยู่
         title: การควบคุม
       most_recent_activity: กิจกรรมล่าสุด
       most_recent_ip: IP ล่าสุด
@@ -136,6 +144,11 @@ th:
       warn: เตือน
       resubscribe: บอกรับใหม่
       moderation_notes: หมายเหตุการควบคุม
+      deleted: ลบแล้ว
+      disabled: ปิดใช้งานอยู่
+      enabled: เปิดใช้งานอยู่
+      silenced: เงียบอยู่
+      suspended: ระงับอยู่
     domain_blocks:
       add_new: เพิ่มการปิดกั้นโดเมนใหม่
       created_msg: กำลังประมวลผลการปิดกั้นโดเมน
@@ -166,12 +179,16 @@ th:
         undo: เลิกทำ
       undo: เลิกทำการปิดกั้นโดเมน
       reject_reports: ปฏิเสธรายงาน
+      severity:
+        silence: เงียบอยู่
+        suspend: ระงับอยู่
     instances:
       title: การติดต่อกับภายนอก
       by_domain: โดเมน
       moderation:
         all: ทั้งหมด
         title: การควบคุม
+        limited: จำกัดอยู่
       total_storage: ไฟล์แนบสื่อ
     reports:
       comment:
@@ -194,6 +211,9 @@ th:
         report: รายงาน
       assign_to_self: มอบหมายให้ฉัน
       unassign: เลิกมอบหมาย
+      created_at: รายงานเมื่อ
+      resolved_msg: แก้ปัญหารายงานสำเร็จ!
+      updated_at: อัปเดตเมื่อ
     settings:
       contact_information:
         email: อีเมลธุรกิจ
@@ -207,6 +227,7 @@ th:
           desc_html: อนุญาตให้ใครก็ตามลบบัญชีของเขา
         min_invite_role:
           disabled: ไม่มีใคร
+          title: อนุญาตคำเชิญโดย
       site_description:
         desc_html: ย่อหน้าเกริ่นนำในหน้าแรก อธิบายถึงสิ่งที่ทำให้เซิร์ฟเวอร์ Mastodon
           นี้พิเศษและสิ่งอื่นใดที่สำคัญ คุณสามารถใช้แท็ก HTML โดยเฉพาะอย่างยิ่ง <code>&lt;a&gt;</code>
@@ -232,6 +253,9 @@ th:
       timeline_preview:
         desc_html: แสดงเส้นเวลาสาธารณะในหน้าเริ่มต้น
         title: ตัวอย่างเส้นเวลา
+      show_staff_badge:
+        desc_html: แสดงป้ายพนักงานในหน้าผู้ใช้
+        title: แสดงป้ายพนักงาน
     subscriptions:
       callback_url: URL เรียกกลับ
       confirmed: ยืนยันแล้ว
@@ -242,6 +266,8 @@ th:
     title: การดูแล
     account_moderation_notes:
       delete: ลบ
+      created_msg: สร้างหมายเหตุการควบคุมสำเร็จ!
+      destroyed_msg: ทำลายหมายเหตุการควบคุมสำเร็จ!
     custom_emojis:
       by_domain: โดเมน
       copy: คัดลอก
@@ -256,6 +282,9 @@ th:
         title: เพิ่มอีโมจิที่กำหนดเองใหม่
       shortcode: รหัสย่อ
       title: อีโมจิที่กำหนดเอง
+      created_msg: สร้างอีโมจิสำเร็จ!
+      update_failed_msg: ไม่สามารถอัปเดตอีโมจินั้น
+      updated_msg: อัปเดตอีโมจิสำเร็จ!
     dashboard:
       feature_deletions: การลบบัญชี
       feature_profile_directory: ไดเรกทอรีโปรไฟล์
@@ -270,8 +299,11 @@ th:
       title: แดชบอร์ด
       trends: แนวโน้ม
       week_interactions: การโต้ตอบในสัปดาห์นี้
-      week_users_active: การใช้งานในสัปดาห์นี้
+      week_users_active: ที่ใช้งานในสัปดาห์นี้
       week_users_new: ผู้ใช้ในสัปดาห์นี้
+      search: การค้นหาข้อความแบบเต็ม
+      single_user_mode: โหมดผู้ใช้เดี่ยว
+      total_users: ผู้ใช้ทั้งหมด
     email_domain_blocks:
       delete: ลบ
       domain: โดเมน
@@ -286,6 +318,8 @@ th:
       status: สถานะ
       title: รีเลย์
       add_new: เพิ่มรีเลย์ใหม่
+      disabled: ปิดใช้งานอยู่
+      enabled: เปิดใช้งานอยู่
     statuses:
       batch:
         delete: ลบ
@@ -302,6 +336,8 @@ th:
       name: แฮชแท็ก
       title: แฮชแท็ก
       unhide: แสดงในไดเรกทอรี
+      hidden: ซ่อนอยู่
+      visible: มองเห็น
     warning_presets:
       add_new: เพิ่มใหม่
       delete: ลบ
@@ -310,11 +346,16 @@ th:
       title: จัดการคำเตือนที่ตั้งไว้ล่วงหน้า
     action_logs:
       title: รายการบันทึกการตรวจสอบ
+      deleted_status: (สถานะที่ลบแล้ว)
     followers:
       back_to_account: กลับไปที่บัญชี
       title: ผู้ติดตามของ %{acct}
     invites:
       deactivate_all: ปิดใช้งานทั้งหมด
+      title: คำเชิญ
+    report_notes:
+      created_msg: สร้างหมายเหตุรายงานสำเร็จ!
+      destroyed_msg: ลบหมายเหตุรายงานสำเร็จ!
   application_mailer:
     settings: 'เปลี่ยนการกำหนดลักษณะอีเมล: %{link}'
     view: 'มุมมอง:'
@@ -430,6 +471,7 @@ th:
     favourite:
       body: 'สถานะของคุณได้รับการชื่นชอบโดย %{name}:'
       subject: '%{name} ได้ชื่นชอบสถานะของคุณ'
+      title: รายการโปรดใหม่
     follow:
       body: '%{name} กำลังติดตามคุณ!'
       subject: '%{name} กำลังติดตามคุณ'
@@ -550,6 +592,7 @@ th:
     title: ชื่อเรื่อง
   deletes:
     proceed: ลบบัญชี
+    success_msg: ลบบัญชีของคุณสำเร็จ
   directories:
     directory: ไดเรกทอรีโปรไฟล์
     explanation: ค้นพบผู้ใช้ตามความสนใจของเขา
@@ -586,6 +629,8 @@ th:
     generate: สร้าง
     max_uses_prompt: ไม่มีขีดจำกัด
     title: เชิญผู้คน
+    table:
+      expires_at: หมดอายุเมื่อ
   migrations:
     acct: username@domain ของบัญชีใหม่
     proceed: บันทึก
