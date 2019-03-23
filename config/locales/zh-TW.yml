@@ -35,7 +35,7 @@ zh-TW:
     active_footnote: 每月活躍使用者 (MAU)
     apps_platforms: 在 iOS、Android 和其他平台使用 Mastodon
     browse_directory: 依興趣瀏覽個人資料目錄和過濾器
-    browse_public_posts: 在 Mastodon 瀏覽公開貼文的即時串流
+    browse_public_posts: 在 Mastodon 瀏覽公開嘟文的即時串流
     discover_users: 探索使用者
     get_apps: 嘗試行動應用程式
     privacy_policy: 隱私權政策
@@ -383,6 +383,18 @@ zh-TW:
     account_actions:
       action: 執行動作
       title: 在 %{acct} 執行管理員動作
+    dashboard:
+      backlog: 未處理工作數
+      config: 設定
+      feature_deletions: 帳號刪除
+      feature_invites: 邀請連結
+      feature_profile_directory: 個人資料目錄
+      feature_registrations: 註冊
+      feature_relay: 聯邦中繼站
+      features: 功能
+      hidden_service: 與隱密服務互連
+    relays:
+      description_html: <strong>聯邦中繼站</strong> 是種中繼伺服器，會在訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦中探索內容</strong>，而無須本地使用者手動關注遠端伺服器的其他使用者。
   admin_mailer:
     new_report:
       body: '%{reporter} 檢舉了使用者 %{target}'
