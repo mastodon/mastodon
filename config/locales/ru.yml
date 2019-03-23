@@ -319,6 +319,8 @@ ru:
       by_domain: Домен
       delivery_available: Возможна доставка
       known_accounts:
+        few: "%{count} известные счета"
+        many: "%{count} известные счета"
         one: "%{count} известная учётная запись"
         other: "%{count} известные счета"
       moderation:
@@ -582,6 +584,8 @@ ru:
     explore_mastodon: Исследуйте %{title}
     how_to_enable: В настоящее время вы не зарегистрированы в каталоге. Вы можете зарегистрироваться ниже. Используйте хэштэги в своем биографическом тексте, чтобы попасть в список определенных хэштэгов!
     people:
+      few: "%{count} народ"
+      many: "%{count} народ"
       one: "%{count} особа"
       other: "%{count} народ"
   errors:
@@ -891,6 +895,8 @@ ru:
       reblog: Нельзя закрепить продвинутый статус
     poll:
       total_votes:
+        few: "%{count} голоса"
+        many: "%{count} голоса"
         one: "%{count} голосование"
         other: "%{count} голоса"
       vote: голос
