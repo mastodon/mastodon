@@ -8,7 +8,7 @@
 .landing
   .landing__brand
     = link_to root_url, class: 'brand' do
-      = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+      = image_pack_tag 'logo_full.svg', alt: 'Mastodon'
       %span.brand__tagline=t 'about.tagline'
 
   .landing__grid
@@ -17,23 +17,25 @@
         = render 'registration'
 
       .directory
-        .directory__tag{ class: Setting.profile_directory ? nil : 'disabled' }
-          = optional_link_to Setting.profile_directory, explore_path do
-            %h4
-              = fa_icon 'address-book fw'
-              = t('about.discover_users')
-              %small= t('about.browse_directory')
+        - if Setting.profile_directory
+          .directory__tag
+            = optional_link_to Setting.profile_directory, explore_path do
+              %h4
+                = fa_icon 'address-book fw'
+                = t('about.discover_users')
+                %small= t('about.browse_directory')
 
-            .avatar-stack
-              - @instance_presenter.sample_accounts.each do |account|
-                = image_tag current_account&.user&.setting_auto_play_gif ? account.avatar_original_url : account.avatar_static_url, width: 48, height: 48, alt: '', class: 'account__avatar'
+              .avatar-stack
+                - @instance_presenter.sample_accounts.each do |account|
+                  = image_tag current_account&.user&.setting_auto_play_gif ? account.avatar_original_url : account.avatar_static_url, width: 48, height: 48, alt: '', class: 'account__avatar'
 
-        .directory__tag{ class: Setting.timeline_preview ? nil : 'disabled' }
-          = optional_link_to Setting.timeline_preview, public_timeline_path do
-            %h4
-              = fa_icon 'globe fw'
-              = t('about.see_whats_happening')
-              %small= t('about.browse_public_posts')
+        - if Setting.timeline_preview
+          .directory__tag
+            = optional_link_to Setting.timeline_preview, public_timeline_path do
+              %h4
+                = fa_icon 'globe fw'
+                = t('about.see_whats_happening')
+                %small= t('about.browse_public_posts')
 
         .directory__tag
           = link_to 'https://joinmastodon.org/apps', target: '_blank', rel: 'noopener' do
@@ -48,7 +50,7 @@
 
       .hero-widget
         .hero-widget__img
-          = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('preview.jpg'), alt: @instance_presenter.site_title
+          = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('media/images/preview.jpg'), alt: @instance_presenter.site_title
 
         - if @instance_presenter.site_short_description.present?
           .hero-widget__text

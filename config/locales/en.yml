@@ -79,6 +79,7 @@ en:
       delete: Delete
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
+      approve: Approve
       are_you_sure: Are you sure?
       avatar: Avatar
       by_domain: Domain
@@ -124,6 +125,7 @@ en:
       moderation:
         active: Active
         all: All
+        pending: Pending
         silenced: Silenced
         suspended: Suspended
         title: Moderation
@@ -133,6 +135,7 @@ en:
       no_limits_imposed: No limits imposed
       not_subscribed: Not subscribed
       outbox_url: Outbox URL
+      pending: Pending review
       perform_full_suspension: Suspend
       profile_url: Profile URL
       promote: Promote
@@ -140,6 +143,7 @@ en:
       public: Public
       push_subscription_expires: PuSH subscription expires
       redownload: Refresh profile
+      reject: Reject
       remove_avatar: Remove avatar
       remove_header: Remove header
       resend_confirmation:
@@ -411,9 +415,12 @@ en:
         min_invite_role:
           disabled: No one
           title: Allow invitations by
-        open:
-          desc_html: Allow anyone to create an account
-          title: Open registration
+      registrations_mode:
+        modes:
+          approved: Approval required for sign up
+          none: Nobody can sign up
+          open: Anyone can sign up
+        title: Registrations mode
       show_known_fediverse_at_about_page:
         desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show local toots.
         title: Show known fediverse on timeline preview
@@ -476,6 +483,9 @@ en:
       edit_preset: Edit warning preset
       title: Manage warning presets
   admin_mailer:
+    new_pending_account:
+      body: The details of the new account are below. You can approve or reject this application.
+      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
@@ -497,6 +507,7 @@ en:
     your_token: Your access token
   auth:
     agreement_html: By clicking "Sign up" below you agree to follow <a href="%{rules_path}">the rules of the server</a> and <a href="%{terms_path}">our terms of service</a>.
+    apply_for_account: Request an invite
     change_password: Password
     checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: Confirm email
@@ -610,29 +621,33 @@ en:
       title: Filters
     new:
       title: Add new filter
-  followers:
-    domain: Domain
-    explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all servers where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those servers.
-    followers_count: Number of followers
-    lock_link: Lock your account
-    purge: Remove from followers
-    success:
-      one: In the process of soft-blocking followers from one domain...
-      other: In the process of soft-blocking followers from %{count} domains...
-    true_privacy_html: Please mind that <strong>true privacy can only be achieved with end-to-end encryption</strong>.
-    unlocked_warning_html: Anyone can follow you to immediately view your private statuses. %{lock_link} to be able to review and reject followers.
-    unlocked_warning_title: Your account is not locked
   footer:
     developers: Developers
     more: More…
     resources: Resources
   generic:
+    all: All
     changes_saved_msg: Changes successfully saved!
     copy: Copy
     save_changes: Save changes
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
+  identity_proofs:
+    active: Active
+    authorize: Yes, authorize
+    authorize_connection_prompt: Authorize this cryptographic connection?
+    errors:
+      failed: The cryptographic connection failed. Please try again from %{provider}.
+      keybase:
+        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
+        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
+    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
+    i_am_html: I am %{username} on %{service}.
+    identity: Identity
+    inactive: Inactive
+    status: Verification status
+    view_proof: View proof
   imports:
     modes:
       merge: Merge
@@ -750,6 +765,17 @@ en:
     other: Other
     publishing: Publishing
     web: Web
+  relationships:
+    activity: Account activity
+    dormant: Dormant
+    moved: Moved
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Remove all followers from the selected domains
+    remove_selected_followers: Remove selected followers
+    remove_selected_follows: Unfollow selected users
+    status: Account status
   remote_follow:
     acct: Enter your username@domain you want to act from
     missing_resource: Could not find the required redirect URL for your account
@@ -824,11 +850,12 @@ en:
     edit_profile: Edit profile
     export: Data export
     featured_tags: Featured hashtags
-    followers: Authorized followers
+    identity_proofs: Identity proofs
     import: Import
     migrate: Account migration
     notifications: Notifications
     preferences: Preferences
+    relationships: Follows and followers
     settings: Settings
     two_factor_authentication: Two-factor Auth
     your_apps: Your applications

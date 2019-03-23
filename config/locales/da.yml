@@ -120,7 +120,7 @@ da:
       protocol: Protokol
       public: Offentligt
       push_subscription_expires: PuSH abonnement udløber
-      redownload: Opdater profilbillede
+      redownload: Opdater profil
       remove_avatar: Fjern profilbillede
       resend_confirmation:
         already_confirmed: Denne bruger er allerede blevet bekræftet
@@ -360,9 +360,6 @@ da:
         min_invite_role:
           disabled: Ingen
           title: Tillad invitationer af
-        open:
-          desc_html: Tillad alle at oprette en konto
-          title: Åben registrering
       show_known_fediverse_at_about_page:
         desc_html: Når slået til, vil det vise trut fra hele det kendte fedivers på forhåndsvisning. Ellers vil det kun vise lokale trut.
         title: Vis kendte fedivers på tidslinje forhåndsvisning
@@ -529,18 +526,6 @@ da:
       title: Filtrer
     new:
       title: Tilføj nyt filter
-  followers:
-    domain: Domæne
-    explanation_html: Hvis du vil sikre dig privatliv over dine statusser, skal du være klar over hvem der følger dig. <strong>Dine private statusser leveres til alle instanser som du har følger fra</strong>. Det kan være en ide at gennemgå dem, og fjerne følgere hvis du ikke føler dit privatliv respekteres af personalet eller software fra disse instanser.
-    followers_count: Antal følgere
-    lock_link: Lås din konto
-    purge: Fjern fra følgere
-    success:
-      one: I gang med at soft-blokere følgere fra et domæne...
-      other: I gang med at soft-blokere følgere fra %{count} domæner...
-    true_privacy_html: Husk på, at <strong>sand privatliv kan kun opnås via end-to-end kryptering</strong>.
-    unlocked_warning_html: Alle kan følge dig med det samme for at se dine private statusser. %{lock_link} for at være i stand til at gennemse og afvise følgere.
-    unlocked_warning_title: Din konto er ikke låst
   footer:
     developers: Udviklere
     more: Mere…
@@ -711,7 +696,6 @@ da:
     development: Udvikling
     edit_profile: Rediger profil
     export: Data eksportering
-    followers: Godkendte følgere
     import: Importer
     migrate: Konto migrering
     notifications: Notifikationer

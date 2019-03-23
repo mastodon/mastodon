@@ -70,7 +70,9 @@ class Status < ApplicationRecord
   validates_with StatusLengthValidator
   validates_with DisallowedHashtagsValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
-  validates_associated :owned_poll
+  validates :visibility, exclusion: { in: %w(direct limited) }, if: :reblog?
+
+  accepts_nested_attributes_for :owned_poll
 
   default_scope { recent }
 
@@ -211,7 +213,11 @@ class Status < ApplicationRecord
   end
 
   def emojis
-    @emojis ||= CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain)
+    return @emojis if defined?(@emojis)
+    fields = [spoiler_text, text]
+    fields += owned_poll.options unless owned_poll.nil?
+    @emojis = CustomEmoji.from_text(fields.join(' '), account.domain)
+    @emojis
   end
 
   def mark_for_mass_destruction!
@@ -451,8 +457,8 @@ class Status < ApplicationRecord
   end
 
   def set_visibility
+    self.visibility = reblog.visibility if reblog? && visibility.nil?
     self.visibility = (account.locked? ? :private : :public) if visibility.nil?
-    self.visibility = reblog.visibility if reblog?
     self.sensitive  = false if sensitive.nil?
   end
 

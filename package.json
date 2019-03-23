@@ -24,39 +24,68 @@
     "iOS >= 9",
     "not dead"
   ],
+  "jest": {
+    "projects": [
+      "<rootDir>/app/javascript/mastodon"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/vendor/",
+      "<rootDir>/config/",
+      "<rootDir>/log/",
+      "<rootDir>/public/",
+      "<rootDir>/tmp/"
+    ],
+    "setupFiles": [
+      "raf/polyfill"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/app/javascript/mastodon/test_setup.js"
+    ],
+    "collectCoverageFrom": [
+      "app/javascript/mastodon/**/*.js",
+      "!app/javascript/mastodon/features/emoji/emoji_compressed.js",
+      "!app/javascript/mastodon/locales/locale-data/*.js",
+      "!app/javascript/mastodon/service_worker/entry.js",
+      "!app/javascript/mastodon/test_setup.js"
+    ],
+    "coverageDirectory": "<rootDir>/coverage",
+    "moduleDirectories": [
+      "<rootDir>/node_modules",
+      "<rootDir>/app/javascript"
+    ]
+  },
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/plugin-proposal-class-properties": "^7.2.3",
-    "@babel/plugin-proposal-decorators": "^7.2.3",
-    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-decorators": "^7.3.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-react-inline-elements": "^7.2.0",
     "@babel/plugin-transform-react-jsx-self": "^7.2.0",
     "@babel/plugin-transform-react-jsx-source": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.2.0",
-    "@babel/preset-env": "^7.2.3",
+    "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
-    "@babel/runtime": "^7.2.0",
-    "@gfx/zopfli": "^1.0.10",
+    "@babel/runtime": "^7.3.4",
     "array-includes": "^3.0.3",
-    "autoprefixer": "^9.4.3",
+    "autoprefixer": "^9.4.10",
     "axios": "^0.18.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-loader": "^8.0.4",
+    "babel-loader": "^8.0.5",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-preval": "^3.0.1",
     "babel-plugin-react-intl": "^3.0.1",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.21",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "babel-runtime": "^6.26.0",
     "classnames": "^2.2.5",
     "compression-webpack-plugin": "^2.0.0",
     "cross-env": "^5.1.4",
-    "css-loader": "^2.1.0",
-    "cssnano": "^4.1.8",
+    "css-loader": "^2.1.1",
+    "cssnano": "^4.1.10",
     "detect-passive-events": "^1.0.2",
     "dotenv": "^6.2.0",
-    "emoji-mart": "Gargron/emoji-mart#build",
+    "emoji-mart": "^2.10.0",
     "es6-symbol": "^3.1.1",
     "escape-html": "^1.0.3",
     "exif-js": "^2.3.0",
@@ -119,26 +148,25 @@
     "requestidlecallback": "^0.3.0",
     "reselect": "^4.0.0",
     "rimraf": "^2.6.1",
-    "sass": "^1.15.2",
+    "sass": "^1.17.2",
     "sass-loader": "^7.0.3",
     "stringz": "^1.0.0",
-    "style-loader": "0.23.1",
     "substring-trie": "^1.0.2",
     "throng": "^4.0.0",
     "tiny-queue": "^0.2.1",
-    "uglifyjs-webpack-plugin": "^2.1.1",
+    "uglifyjs-webpack-plugin": "^2.1.2",
     "uuid": "^3.1.0",
     "uws": "10.148.0",
-    "webpack": "^4.28.3",
+    "webpack": "^4.29.6",
     "webpack-assets-manifest": "^3.1.1",
-    "webpack-bundle-analyzer": "^3.0.3",
-    "webpack-cli": "^3.1.2",
-    "webpack-merge": "^4.1.5",
+    "webpack-bundle-analyzer": "^3.1.0",
+    "webpack-cli": "^3.2.3",
+    "webpack-merge": "^4.2.1",
     "websocket.js": "^0.1.12"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^23.6.0",
+    "babel-jest": "^24.5.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
     "eslint": "^5.11.1",
@@ -146,14 +174,11 @@
     "eslint-plugin-jsx-a11y": "~6.1.2",
     "eslint-plugin-promise": "~4.0.1",
     "eslint-plugin-react": "~7.12.1",
-    "jest": "^23.6.0",
+    "jest": "^24.5.0",
     "raf": "^3.4.1",
     "react-intl-translations-manager": "^5.0.3",
     "react-test-renderer": "^16.7.0",
-    "webpack-dev-server": "^3.1.14",
-    "yargs": "^8.0.2"
-  },
-  "optionalDependencies": {
-    "fsevents": "*"
+    "webpack-dev-server": "^3.2.1",
+    "yargs": "^12.0.5"
   }
 }

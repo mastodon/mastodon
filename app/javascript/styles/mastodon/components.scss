@@ -357,6 +357,11 @@
     padding-bottom: 0;
     padding-right: 10px + 22px;
     resize: none;
+    scrollbar-color: initial;
+
+    &::-webkit-scrollbar {
+      all: unset;
+    }
 
     @media screen and (max-width: 600px) {
       height: 100px !important; // prevent auto-resize textarea
@@ -3334,11 +3339,11 @@ a.status-card.compact:hover {
   box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
   overflow: hidden;
 
-  button {
+  li {
     display: block;
     cursor: pointer;
     border: 0;
-    padding: 4px 8px;
+    padding: 3px 8px;
     background: transparent;
 
     &:hover,

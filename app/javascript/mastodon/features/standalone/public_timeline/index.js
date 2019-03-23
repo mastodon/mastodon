@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
-import { connectPublicStream, connectCommunityStream } from 'mastodon/actions/streaming';
 import Masonry from 'react-masonry-infinite';
 import { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 import DetailedStatusContainer from 'mastodon/features/status/containers/detailed_status_container';
@@ -37,27 +36,14 @@ class PublicTimeline extends React.PureComponent {
 
   componentDidUpdate (prevProps) {
     if (prevProps.local !== this.props.local) {
-      this._disconnect();
       this._connect();
     }
-  }
-
-  componentWillUnmount () {
-    this._disconnect();
   }
 
   _connect () {
     const { dispatch, local } = this.props;
 
     dispatch(local ? expandCommunityTimeline() : expandPublicTimeline());
-    this.disconnect = dispatch(local ? connectCommunityStream() : connectPublicStream());
-  }
-
-  _disconnect () {
-    if (this.disconnect) {
-      this.disconnect();
-      this.disconnect = null;
-    }
   }
 
   handleLoadMore = () => {

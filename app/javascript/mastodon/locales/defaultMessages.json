@@ -17,6 +17,10 @@
       {
         "defaultMessage": "File upload limit exceeded.",
         "id": "upload_error.limit"
+      },
+      {
+        "defaultMessage": "File upload not allowed with polls.",
+        "id": "upload_error.poll"
       }
     ],
     "path": "app/javascript/mastodon/actions/compose.json"
@@ -906,6 +910,52 @@
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/navigation_bar.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Add a poll",
+        "id": "poll_button.add_poll"
+      },
+      {
+        "defaultMessage": "Remove poll",
+        "id": "poll_button.remove_poll"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/poll_button.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Choice {number}",
+        "id": "compose_form.poll.option_placeholder"
+      },
+      {
+        "defaultMessage": "Add a choice",
+        "id": "compose_form.poll.add_option"
+      },
+      {
+        "defaultMessage": "Remove this choice",
+        "id": "compose_form.poll.remove_option"
+      },
+      {
+        "defaultMessage": "Poll duration",
+        "id": "compose_form.poll.duration"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# minute} other {# minutes}}",
+        "id": "intervals.full.minutes"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# hour} other {# hours}}",
+        "id": "intervals.full.hours"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# day} other {# days}}",
+        "id": "intervals.full.days"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/poll_form.json"
   },
   {
     "descriptors": [
@@ -1811,6 +1861,10 @@
       {
         "defaultMessage": "Boosts:",
         "id": "notifications.column_settings.reblog"
+      },
+      {
+        "defaultMessage": "Poll results:",
+        "id": "notifications.column_settings.poll"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/column_settings.json"
@@ -1828,6 +1882,10 @@
       {
         "defaultMessage": "Boosts",
         "id": "notifications.filter.boosts"
+      },
+      {
+        "defaultMessage": "Poll results",
+        "id": "notifications.filter.polls"
       },
       {
         "defaultMessage": "Follows",
@@ -1853,6 +1911,10 @@
       {
         "defaultMessage": "{name} boosted your status",
         "id": "notification.reblog"
+      },
+      {
+        "defaultMessage": "A poll you have voted in has ended",
+        "id": "notification.poll"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/notification.json"
@@ -1913,24 +1975,6 @@
       }
     ],
     "path": "app/javascript/mastodon/features/reblogs/index.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "A look inside...",
-        "id": "standalone.public_title"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/standalone/community_timeline/index.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "A look inside...",
-        "id": "standalone.public_title"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/standalone/public_timeline/index.json"
   },
   {
     "descriptors": [

@@ -9,7 +9,7 @@ class TagsController < ApplicationController
   before_action :set_instance_presenter
 
   def show
-    @tag = Tag.find_by!(name: params[:id].downcase)
+    @tag = Tag.find_normalized!(params[:id])
 
     respond_to do |format|
       format.html do
