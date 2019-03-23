@@ -4,20 +4,30 @@ pl:
     about_hashtag_html: Znajdują się tu publiczne wpisy oznaczone hashtagiem <strong>#%{hashtag}</strong>. Możesz dołączyć do dyskusji, jeżeli posiadasz konto gdziekolwiek w Fediwersum.
     about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
     about_this: O tej instancji
+    active_count_after: aktywny
+    active_footnote: Aktywni użytkownicy miesięcznie (AUM)
     administered_by: 'Administrowana przez:'
     api: API
     apps: Aplikacje
+    apps_platforms: Używaj Mastodon z iOS, Androida i innych platform
+    browse_directory: Przeglądaj katalog profilu i filtruj według zainteresowań
+    browse_public_posts: Przeglądaj na żywo strumień publicznych posterunków na Mastodon
     contact: Kontakt
     contact_missing: Nie ustawiono
     contact_unavailable: Nie dotyczy
+    discover_users: Odkryj użytkowników
     documentation: Dokumentacja
     extended_description_html: |
       <h3>Dobre miejsce na zasady użytkowania</h3>
       <p>Nie ustawiono jeszcze szczegółowego opisu</p>
+    federation_hint_html: Z kontem na %{instance} będziesz mógł śledzić ludzi na dowolnym serwerze Mastodon i nie tylko.
     generic_description: "%{domain} jest jednym z serwerów sieci"
+    get_apps: Wypróbuj aplikację mobilną
     hosted_on: Mastodon uruchomiony na %{domain}
     learn_more: Dowiedz się więcej
     privacy_policy: Polityka prywatności
+    see_whats_happening: Zobacz, co się dzieje
+    server_stats: 'Statystyki serwera:'
     source_code: Kod źródłowy
     status_count_after:
       few: wpisów
@@ -25,6 +35,7 @@ pl:
       one: wpisu
       other: wpisów
     status_count_before: Są autorami
+    tagline: Śledź przyjaciół i odkrywaj nowych
     terms: Zasady użytkowania
     user_count_after:
       few: użytkowników
@@ -63,7 +74,7 @@ pl:
     reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
       admin: Administrator
-      bot: Bot
+      bot: Botka
       moderator: Moderator
     unfollow: Przestań śledzić
   admin:
@@ -76,6 +87,7 @@ pl:
       delete: Usuń
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
     accounts:
+      approve: Zatwierdzenie
       are_you_sure: Jesteś tego pewien?
       avatar: Awatar
       by_domain: Domena
@@ -121,6 +133,7 @@ pl:
       moderation:
         active: Aktywne
         all: Wszystkie
+        pending: W trakcie oczekiwania
         silenced: Wyciszone
         suspended: Zawieszone
         title: Moderacja
@@ -130,6 +143,7 @@ pl:
       no_limits_imposed: Nie nałożono ograniczeń
       not_subscribed: Nie zasubskrybowano
       outbox_url: Adres skrzynki nadawczej
+      pending: Oczekiwany przegląd
       perform_full_suspension: Zawieś
       profile_url: Adres profilu
       promote: Podnieś uprawnienia
@@ -137,6 +151,7 @@ pl:
       public: Publiczne
       push_subscription_expires: Subskrypcja PuSH wygasa
       redownload: Odśwież profil
+      reject: Odrzuć
       remove_avatar: Usun awatar
       remove_header: Usuń nagłówek
       resend_confirmation:
@@ -149,7 +164,7 @@ pl:
       role: Uprawnienia
       roles:
         admin: Administrator
-        moderator: Moderator
+        moderator: Prowadzący
         staff: Ekipa
         user: Użytkownik
       salmon_url: Adres Salmon
@@ -223,7 +238,7 @@ pl:
       new:
         title: Dodaj nowe niestandardowe emoji
       overwrite: Zastąp
-      shortcode: Shortcode
+      shortcode: Kod skrótu
       shortcode_hint: Co najmniej 2 znaki, tylko znaki alfanumeryczne i podkreślniki
       title: Niestandardowe emoji
       unlisted: Niewidoczne
@@ -412,6 +427,12 @@ pl:
         min_invite_role:
           disabled: Nikt
           title: Kto może zapraszać użytkowników
+      registrations_mode:
+        modes:
+          approved: Zatwierdzenie wymagane do rejestracji
+          none: Nikt nie może się zarejestrować
+          open: Każdy może zarejestrować się
+        title: Tryb rejestracji
       show_known_fediverse_at_about_page:
         desc_html: Jeśli włączone, podgląd instancji będzie wyświetlał wpisy z całego Fediwersum. W innym przypadku, będą wyświetlane tylko lokalne wpisy.
         title: Pokazuj wszystkie znane wpisy na podglądzie instancji
@@ -462,7 +483,7 @@ pl:
       accounts: Konta
       hidden: Ukryte
       hide: Ukryj w katalogu
-      name: Hashtag
+      name: Hasztag
       title: Hashtagi
       unhide: Pokazuj w katalogu
       visible: Widoczne
@@ -474,6 +495,9 @@ pl:
       edit_preset: Edytuj szablon ostrzeżenia
       title: Zarządzaj szablonami ostrzeżeń
   admin_mailer:
+    new_pending_account:
+      body: Szczegóły dotyczące nowego konta znajdują się poniżej. Możesz zatwierdzić lub odrzucić ten wniosek.
+      subject: Nowe konto do przeglądu w %{instance} (%{username})
     new_report:
       body: Użytkownik %{reporter} zgłosił(a) %{target}
       body_remote: Użytkownik instancji %{domain} zgłosił(a) %{target}
@@ -495,7 +519,9 @@ pl:
     your_token: Twój token dostępu
   auth:
     agreement_html: Rejestrując się, oświadczasz, że zapoznałeś(-aś) się z <a href="%{rules_path}">informacjami o serwerze</a> i <a href="%{terms_path}">zasadami korzystania z usługi</a>.
+    apply_for_account: Prośba o zaproszenie
     change_password: Hasło
+    checkbox_agreement_html: Zgadzam się na <a href="%{rules_path}" target="_blank">server rules</a> i <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: Potwierdź adres e-mail
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
@@ -511,10 +537,12 @@ pl:
       cas: CAS
       saml: SAML
     register: Rejestracja
+    registration_closed: "%{instance} nie przyjmuje nowych członków"
     resend_confirmation: Ponownie prześlij instrukcje weryfikacji
     reset_password: Zresetuj hasło
     security: Bezpieczeństwo
     set_new_password: Ustaw nowe hasło
+    trouble_logging_in: Problemy z logowaniem?
   authorize_follow:
     already_following: Już śledzisz to konto
     error: Niestety, podczas sprawdzania zdalnego konta wystąpił błąd
@@ -550,7 +578,7 @@ pl:
     warning_title: Dostępność usuniętej zawartości
   directories:
     directory: Katalog profilów
-    enabled: Jesteś obecnie zapisany(-a) do katalogu
+    enabled: Jesteś obecnie zapisany(-a) do katalogu.
     enabled_but_waiting: Jesteś zapisany(-a) do katalogu, ale jeszcze nie śledzi Cię wystarczająca liczba osób (%{min_followers}), aby się tam pojawić.
     explanation: Poznaj profile na podstawie zainteresowań
     explore_mastodon: Odkrywaj %{title}
@@ -612,6 +640,7 @@ pl:
     more: Więcej…
     resources: Zasoby
   generic:
+    all: Wszystkie
     changes_saved_msg: Ustawienia zapisane!
     copy: Kopiuj
     save_changes: Zapisz zmiany
@@ -620,6 +649,21 @@ pl:
       many: Coś jest wciąż nie tak! Przejrzyj %{count} poniższych błędów
       one: Coś jest wciąż nie tak! Przyjrzyj się poniższemu błędowi
       other: Coś jest wciąż nie tak! Przejrzyj poniższe błędy (%{count})
+  identity_proofs:
+    active: Aktywny
+    authorize: Tak, upoważnić
+    authorize_connection_prompt: Autoryzować to połączenie kryptograficzne?
+    errors:
+      failed: Połączenie kryptograficzne nie powiodło się. Proszę spróbować ponownie od %{provider}.
+      keybase:
+        invalid_token: Tokeny klawiaturowe są skrótami podpisów i muszą składać się z 66 znaków heksadecymalnych
+        verification_failed: Keybase nie rozpoznaje tego tokena jako podpis użytkownika Keybase user %{kb_username}. Proszę spróbować ponownie z Keybase.
+    explanation_html: Tutaj możesz kryptograficznie połączyć swoje inne tożsamości, takie jak profil w bazie danych. Pozwala to innym osobom wysyłać zaszyfrowane wiadomości i ufać treści, które im wysyłasz.
+    i_am_html: Jestem %{username} na %{service}.
+    identity: Tożsamość
+    inactive: Nieaktywny
+    status: Status weryfikacji
+    view_proof: Proporcjonalny widok
   imports:
     modes:
       merge: Połącz
@@ -743,6 +787,17 @@ pl:
     other: Pozostałe
     publishing: Publikowanie
     web: Sieć
+  relationships:
+    activity: Działalność rachunkowa
+    dormant: Uśpiony
+    moved: Przemieszczone
+    mutual: Wzajemne korzystanie
+    primary: Podstawowy
+    relationship: Relacje z innymi osobami
+    remove_selected_domains: Usuń wszystkich zwolenników z wybranych domen
+    remove_selected_followers: Usuwanie wybranych naśladowców
+    remove_selected_follows: Rozwiń wybranych użytkowników
+    status: Status konta
   remote_follow:
     acct: Podaj swój adres (nazwa@domena), z którego chcesz wykonać działanie
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
@@ -817,10 +872,12 @@ pl:
     edit_profile: Edytuj profil
     export: Eksportowanie danych
     featured_tags: Wyróżnione hashtagi
+    identity_proofs: Dowody tożsamości
     import: Importowanie danych
     migrate: Migracja konta
     notifications: Powiadomienia
     preferences: Preferencje
+    relationships: Śledzi i naśladowcy
     settings: Ustawienia
     two_factor_authentication: Uwierzytelnianie dwuetapowe
     your_apps: Twoje aplikacje

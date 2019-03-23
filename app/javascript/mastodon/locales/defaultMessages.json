@@ -134,6 +134,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "It crashed!",
+        "id": "error_boundary.it_crashed"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/error_boundary.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "{count} {rawCount, plural, one {person} other {people}} talking",
         "id": "trends.count_by_accounts"
       }
@@ -718,6 +727,102 @@
         "id": "account.locked_info"
       },
       {
+        "defaultMessage": "Mention @{name}",
+        "id": "account.mention"
+      },
+      {
+        "defaultMessage": "Direct message @{name}",
+        "id": "account.direct"
+      },
+      {
+        "defaultMessage": "Unmute @{name}",
+        "id": "account.unmute"
+      },
+      {
+        "defaultMessage": "Block @{name}",
+        "id": "account.block"
+      },
+      {
+        "defaultMessage": "Mute @{name}",
+        "id": "account.mute"
+      },
+      {
+        "defaultMessage": "Report @{name}",
+        "id": "account.report"
+      },
+      {
+        "defaultMessage": "Share @{name}'s profile",
+        "id": "account.share"
+      },
+      {
+        "defaultMessage": "Media",
+        "id": "account.media"
+      },
+      {
+        "defaultMessage": "Hide everything from {domain}",
+        "id": "account.block_domain"
+      },
+      {
+        "defaultMessage": "Unhide {domain}",
+        "id": "account.unblock_domain"
+      },
+      {
+        "defaultMessage": "Hide boosts from @{name}",
+        "id": "account.hide_reblogs"
+      },
+      {
+        "defaultMessage": "Show boosts from @{name}",
+        "id": "account.show_reblogs"
+      },
+      {
+        "defaultMessage": "Pinned toots",
+        "id": "navigation_bar.pins"
+      },
+      {
+        "defaultMessage": "Preferences",
+        "id": "navigation_bar.preferences"
+      },
+      {
+        "defaultMessage": "Follow requests",
+        "id": "navigation_bar.follow_requests"
+      },
+      {
+        "defaultMessage": "Favourites",
+        "id": "navigation_bar.favourites"
+      },
+      {
+        "defaultMessage": "Lists",
+        "id": "navigation_bar.lists"
+      },
+      {
+        "defaultMessage": "Blocked users",
+        "id": "navigation_bar.blocks"
+      },
+      {
+        "defaultMessage": "Hidden domains",
+        "id": "navigation_bar.domain_blocks"
+      },
+      {
+        "defaultMessage": "Muted users",
+        "id": "navigation_bar.mutes"
+      },
+      {
+        "defaultMessage": "Feature on profile",
+        "id": "account.endorse"
+      },
+      {
+        "defaultMessage": "Don't feature on profile",
+        "id": "account.unendorse"
+      },
+      {
+        "defaultMessage": "Add or Remove from lists",
+        "id": "account.add_or_remove_from_list"
+      },
+      {
+        "defaultMessage": "Open moderation interface for @{name}",
+        "id": "status.admin_account"
+      },
+      {
         "defaultMessage": "Follows you",
         "id": "account.follows_you"
       },
@@ -736,6 +841,18 @@
       {
         "defaultMessage": "Bot",
         "id": "account.badges.bot"
+      },
+      {
+        "defaultMessage": "Toots",
+        "id": "account.posts"
+      },
+      {
+        "defaultMessage": "Follows",
+        "id": "account.follows"
+      },
+      {
+        "defaultMessage": "Followers",
+        "id": "account.followers"
       }
     ],
     "path": "app/javascript/mastodon/features/account/components/header.json"
@@ -1861,10 +1978,6 @@
       {
         "defaultMessage": "Boosts:",
         "id": "notifications.column_settings.reblog"
-      },
-      {
-        "defaultMessage": "Poll results:",
-        "id": "notifications.column_settings.poll"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/column_settings.json"
@@ -1882,10 +1995,6 @@
       {
         "defaultMessage": "Boosts",
         "id": "notifications.filter.boosts"
-      },
-      {
-        "defaultMessage": "Poll results",
-        "id": "notifications.filter.polls"
       },
       {
         "defaultMessage": "Follows",
@@ -1911,10 +2020,6 @@
       {
         "defaultMessage": "{name} boosted your status",
         "id": "notification.reblog"
-      },
-      {
-        "defaultMessage": "A poll you have voted in has ended",
-        "id": "notification.poll"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/notification.json"
@@ -1975,6 +2080,24 @@
       }
     ],
     "path": "app/javascript/mastodon/features/reblogs/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "A look inside...",
+        "id": "standalone.public_title"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/standalone/community_timeline/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "A look inside...",
+        "id": "standalone.public_title"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/standalone/public_timeline/index.json"
   },
   {
     "descriptors": [
