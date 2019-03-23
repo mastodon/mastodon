@@ -78,7 +78,7 @@ zh-TW:
     accounts:
       are_you_sure: 您確定嗎?
       avatar: 頭像
-      by_domain: 網域
+      by_domain: 站點
       change_email:
         changed_msg: 已成功變更帳戶電子信箱位址！
         current_email: 目前的電子信箱位址
@@ -94,7 +94,7 @@ zh-TW:
       disable_two_factor_authentication: 停用兩階段認證
       disabled: 已停用
       display_name: 暱稱
-      domain: 網域
+      domain: 站點
       edit: 編輯
       email: 電子信箱位址
       email_status: 電子信箱狀態
@@ -179,13 +179,13 @@ zh-TW:
       actions:
         assigned_to_self_report: '%{name} 接受了檢舉 %{target}'
         change_email_user: '%{name} 變更了使用者 %{target} 的電子信箱位址'
-        confirm_user: '%{name} 確認了使用者 %{target} 的E-mail'
+        confirm_user: '%{name} 確認了使用者 %{target} 的電子信箱位址'
         create_custom_emoji: '%{name} 加入自訂表情符號 %{target}'
-        create_domain_block: '%{name} 封鎖了網域 %{target}'
-        create_email_domain_block: '%{name} 封鎖了E-mail %{target}'
+        create_domain_block: '%{name} 封鎖了站點 %{target}'
+        create_email_domain_block: '%{name} 封鎖了電子信箱網域 %{target}'
         demote_user: '%{name} 把使用者 %{target} 降級'
-        destroy_domain_block: '%{name} 取消了對網域 %{target} 的封鎖'
-        destroy_email_domain_block: '%{name} 取消了對E-mail %{target} 的封鎖'
+        destroy_domain_block: '%{name} 取消了對站點 %{target} 的封鎖'
+        destroy_email_domain_block: '%{name} 取消了對電子信箱網域 %{target} 的封鎖'
         destroy_status: '%{name} 刪除了 %{target} 的嘟文'
         disable_2fa_user: '%{name} 停用了使用者 %{target} 的兩階段認證'
         disable_custom_emoji: '%{name} 停用了自訂表情符號 %{target}'
@@ -210,7 +210,7 @@ zh-TW:
       title: 營運日誌
       deleted_status: （已刪除狀態）
     custom_emojis:
-      by_domain: 網域
+      by_domain: 站點
       copied_msg: 成功將表情複製到本地
       copy: 複製
       copy_failed_msg: 無法將表情複製到本地
@@ -236,32 +236,32 @@ zh-TW:
       upload: 上傳新的表情符號
     domain_blocks:
       add_new: 新增欲封鎖域名
-      created_msg: 正在進行網域封鎖
-      destroyed_msg: 已撤銷網域封鎖
-      domain: 網域
+      created_msg: 正在進行站點封鎖
+      destroyed_msg: 已撤銷站點封鎖
+      domain: 站點
       new:
         create: 新增封鎖
-        hint: 網域封鎖動作並不會阻止帳戶紀錄被新增至資料庫，但會自動回溯性地對那些帳戶套用特定管理設定。
+        hint: 站點封鎖動作並不會阻止帳戶紀錄被新增至資料庫，但會自動回溯性地對那些帳戶套用特定管理設定。
         severity:
-          desc_html: 「<strong>靜音</strong>」令該網域下使用者的嘟文，設定為只對關注者顯示，沒有關注的人會看不到。「<strong>停權</strong>」會刪除將該網域下使用者的嘟文、媒體檔案和個人資料。「<strong>無</strong>」則會拒絕接收來自該網域的媒體檔案。
+          desc_html: 「<strong>靜音</strong>」令該站點下使用者的嘟文，設定為只對關注者顯示，沒有關注的人會看不到。「<strong>停權</strong>」會刪除將該站點下使用者的嘟文、媒體檔案和個人資料。「<strong>無</strong>」則會拒絕接收來自該站點的媒體檔案。
           noop: 無
           silence: 靜音
           suspend: 停權
-        title: 新增封鎖網域
+        title: 新增封鎖站點
       reject_media: 拒絕媒體檔案
-      reject_media_hint: 刪除本地快取的媒體檔案，並且不再接收來自該網域的任何媒體檔案。與停權無關
+      reject_media_hint: 刪除本地快取的媒體檔案，並且不再接收來自該站點的任何媒體檔案。與停權無關
       show:
         affected_accounts:
           one: 將影響到資料庫中的 1 個帳戶
           other: 將影響到資料庫中的 %{count} 個帳戶
         retroactive:
-          silence: 對此網域的所有使用者取消靜音
-          suspend: 對此網域的所有使用者取消停權
-        title: 撤銷 %{domain} 的網域封鎖
+          silence: 對此站點的所有使用者取消靜音
+          suspend: 對此站點的所有使用者取消停權
+        title: 撤銷 %{domain} 的站點封鎖
         undo: 撤銷
       undo: 復原欲封鎖域名
       reject_reports: 拒絕檢舉
-      reject_reports_hint: 忽略所有來自此網域的檢舉。與停權無關
+      reject_reports_hint: 忽略所有來自此站點的檢舉。與停權無關
       rejecting_media: 拒絕媒體檔案
       rejecting_reports: 拒絕檢舉中
       severity:
@@ -269,14 +269,14 @@ zh-TW:
         suspend: 已停權
     email_domain_blocks:
       add_new: 加入新項目
-      created_msg: 已新增E-mail封鎖
+      created_msg: 已成功將電子信箱網域加入黑名單
       delete: 刪除
-      destroyed_msg: 已刪除E-mail封鎖
-      domain: 網域
+      destroyed_msg: 已成功從黑名單刪除電子信箱網域
+      domain: 站點
       new:
-        create: 新增網域
-        title: 新增E-mail封鎖
-      title: E-mail封鎖
+        create: 新增站點
+        title: 新增電子信箱黑名單項目
+      title: 電子信箱黑名單
     instances:
       title: 聯邦
     invites:
@@ -327,13 +327,13 @@ zh-TW:
         desc_html: 以半形逗號分隔多個使用者名。只能加入來自本站且未開啟保護的帳戶。如果留空，則預設關注本站所有管理員。
         title: 新使用者預設關注
       contact_information:
-        email: 請輸入一個公開E-mail
+        email: 用於聯絡的公開電子信箱位址
         username: 請輸入使用者名稱
       hero:
         desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會重設回伺服器預覽圖
         title: 主題圖片
       peers_api_enabled:
-        desc_html: 本伺服器在聯邦中發現的網域
+        desc_html: 本伺服器在聯邦中發現的站點
         title: 發布已知伺服器的列表
       registrations:
         closed_message:
@@ -442,7 +442,7 @@ zh-TW:
   auth:
     agreement_html: 按下下方的「註冊」即代表同意遵守 <a href="%{rules_path}">此伺服器的規則</a> 以及 <a href="%{terms_path}">使用條款</a>。
     change_password: 密碼
-    confirm_email: 確認E-mail
+    confirm_email: 確認電子信箱位址
     delete_account: 刪除帳戶
     delete_account_html: 如果你想刪除你的帳戶，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
     didnt_get_confirmation: 沒有收到驗證信?
@@ -457,7 +457,7 @@ zh-TW:
       cas: CAS
       saml: SAML
     register: 註冊
-    resend_confirmation: 重新寄送E-mail
+    resend_confirmation: 重新寄送確認指引
     reset_password: 重設密碼
     security: 登入資訊
     set_new_password: 設定新密碼
@@ -620,7 +620,7 @@ zh-TW:
     publishing: 發佈
     web: 站內
   remote_follow:
-    acct: 請輸入您的︰使用者名稱@站點網域
+    acct: 請輸入您的使用者名稱@站點網域
     missing_resource: 無法找到資源
     proceed: 下一步
     prompt: '您希望關注:'
@@ -754,7 +754,7 @@ zh-TW:
       tips: 小幫手
       title: '%{name} 歡迎你的加入！'
   users:
-    invalid_email: E-mail格式不正確
+    invalid_email: 電子信箱位址不正確
     invalid_otp_token: 兩階段認證碼不正確
     otp_lost_help_html: 如果你無法訪問這兩者，可以通過 %{email} 與我們聯繫
     seamless_external_login: 由於你是從外部系統登入，所以不能設定密碼與電子郵件。
