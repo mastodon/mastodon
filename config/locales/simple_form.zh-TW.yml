@@ -1,4 +1,3 @@
----
 zh-TW:
   simple_form:
     hints:
@@ -21,12 +20,25 @@ zh-TW:
         setting_noindex: 此設定會影響到你的公開個人資料與嘟文頁面
         setting_theme: 此設定會影響到你從任意設備登入 Mastodon 時的顯示樣式。
         whole_word: 如果關鍵字或詞組僅有字母與數字，它將只會在符合整個單字的時候才會套用
+        discoverable_html: <a href="%{path}" target="_blank">目錄</a> 讓使用者們能基於興趣與活動尋找帳號。需要至少
+          %{min_followers} 位關注者
+        email: 您將收到一封確認電子郵件
+        password: 使用至少 8 個字元
+        setting_aggregate_reblogs: 請勿顯示最近已被轉噗之噗文的最新轉噗（只影響最新收到的噗文）
+        setting_display_media_default: 隱藏標記為敏感的媒體
       imports:
         data: 自其他站點匯出的 CSV 檔案
       sessions:
         otp: 輸入你手機上產生的兩階段認證碼，或著任意一個備用驗證碼：
       user:
         chosen_languages: 只有被選擇的語言會在公開時間軸內顯示
+      account_warning_preset:
+        text: 您可使用嘟文語法，例如網址、「#」標籤和提及功能
+      admin_account_action:
+        send_email_notification: 使用者將收到帳號發生之事情的解釋
+        text_html: 選用。您能使用嘟文語法。您可 <a href="%{path}">新增警告預設</a> 來節省時間
+        type_html: 設定要使用 <strong>%{acct}</strong> 做的事
+        warning_preset_id: 選用。您仍可在預設的結尾新增自訂文字
     labels:
       account:
         fields:
@@ -88,6 +100,6 @@ zh-TW:
         report: 當遞交新報告時傳送電子郵件
     'no': 否
     required:
-      mark: "*"
+      mark: '*'
       text: 必須填寫
     'yes': 是
