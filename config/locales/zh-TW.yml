@@ -59,7 +59,7 @@ zh-TW:
       other: 嘟文
     posts_tab_heading: 嘟文
     posts_with_replies: 嘟文與回覆
-    reserved_username: 此用戶名已被保留
+    reserved_username: 此使用者名稱已被保留
     roles:
       admin: 管理員
       bot: 機器人
@@ -151,8 +151,8 @@ zh-TW:
       search: 搜尋
       shared_inbox_url: 共享收件箱網址
       show:
-        created_reports: 建立回報
-        targeted_reports: 由其他人回報
+        created_reports: 建立檢舉
+        targeted_reports: 由其他人檢舉
       silence: 靜音
       statuses: 嘟文
       subscribe: 訂閱
@@ -258,6 +258,10 @@ zh-TW:
         title: 撤銷 %{domain} 的網域封鎖
         undo: 撤銷
       undo: 復原欲封鎖域名
+      reject_reports: 拒絕檢舉
+      reject_reports_hint: 忽略所有來自此網域的檢舉。
+      rejecting_media: 拒絕媒體檔案
+      rejecting_reports: 拒絕檢舉中
     email_domain_blocks:
       add_new: 加入新項目
       created_msg: 已新增E-mail封鎖
@@ -393,6 +397,18 @@ zh-TW:
       feature_relay: 聯邦中繼站
       features: 功能
       hidden_service: 與隱密服務互連
+      open_reports: 待處理檢舉數
+      recent_users: 最近加入的使用者
+      search: 全文搜尋
+      single_user_mode: 單一使用者模式
+      software: 軟體
+      space: 儲存空間用量
+      title: 儀表板
+      total_users: 總使用者數
+      trends: 趨勢
+      week_interactions: 本週互動次數
+      week_users_active: 本週活躍使用者數
+      week_users_new: 本週新使用者數
     relays:
       description_html: <strong>聯邦中繼站</strong> 是種中繼伺服器，會在訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦中探索內容</strong>，而無須本地使用者手動關注遠端伺服器的其他使用者。
   admin_mailer:
