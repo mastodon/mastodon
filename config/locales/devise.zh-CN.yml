@@ -1,4 +1,3 @@
----
 zh-CN:
   devise:
     confirmations:
@@ -8,10 +7,10 @@ zh-CN:
     failure:
       already_authenticated: 你已经登录。
       inactive: 你还没有激活帐户。
-      invalid: "%{authentication_keys}或密码错误。"
+      invalid: '%{authentication_keys}或密码错误。'
       last_attempt: 你还有最后一次尝试机会，再次失败你的帐户将被锁定。
       locked: 你的帐户已被锁定。
-      not_found_in_database: "%{authentication_keys}或密码错误。"
+      not_found_in_database: '%{authentication_keys}或密码错误。'
       timeout: 你已登录超时，请重新登录。
       unauthenticated: 继续操作前请注册或者登录。
       unconfirmed: 继续操作前请先确认你的帐户。
@@ -59,7 +58,7 @@ zh-CN:
       signed_up: 欢迎！你已注册成功。
       signed_up_but_inactive: 你已注册，但尚未激活帐户。
       signed_up_but_locked: 你已注册，但帐户被锁定了。
-      signed_up_but_unconfirmed: 一封带有确认链接的邮件已经发送至你的邮箱，请点击邮件中的链接以激活你的帐户。如果没有，请检查你的垃圾邮箱。
+      signed_up_but_unconfirmed: 一封带有确认链接的邮件已经发送至你的邮箱，请点击邮件中的链接以激活你的帐户。如果没有，请检查你的垃圾邮件。
       update_needs_confirmation: 信息更新成功，但我们需要验证你的新电子邮件地址，请点击邮件中的链接以确认。如果没有，请检查你的垃圾邮箱。
       updated: 帐户资料更新成功。
     sessions:
