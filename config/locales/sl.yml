@@ -1,8 +1,10 @@
----
 sl:
   about:
-    about_hashtag_html: To so javni tuti, označeni z <strong>#%{hashtag}</strong>. Z njimi se lahko povežete, če imate račun kjerkoli v fediversu.
-    about_mastodon_html: Mastodon je socialno omrežje, ki temelji na odprtih spletnih protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran, kot e-pošta.
+    about_hashtag_html: To so javni tuti, označeni z <strong>#%{hashtag}</strong>.
+      Z njimi se lahko povežete, če imate račun kjerkoli v fediversu.
+    about_mastodon_html: Mastodon je socialno omrežje, ki temelji na odprtih spletnih
+      protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran,
+      kot e-pošta.
     about_this: O Mastodonu
     administered_by: 'Upravlja:'
     api: API
@@ -11,10 +13,12 @@ sl:
     contact_missing: Ni nastavljeno
     contact_unavailable: Ni na voljo
     documentation: Dokumentacija
-    extended_description_html: |
-      <h3>Dober prostor za pravila</h3>
+    extended_description_html: '<h3>Dober prostor za pravila</h3>
+
       <p>Razširjen opis še ni bil nastavljen.</p>
-    generic_description: "%{domain} je en strežnik v omrežju"
+
+      '
+    generic_description: '%{domain} je en strežnik v omrežju'
     hosted_on: Mastodon gostuje na %{domain}
     learn_more: Spoznaj več
     privacy_policy: Politika zasebnosti
@@ -22,19 +26,19 @@ sl:
     status_count_after:
       few: stanja
       one: stanje
-      other: stanja
+      other: stanj
       two: stanja
-    status_count_before: Kdo je avtor
+    status_count_before: Ki so avtorji
     terms: Pogoji storitve
     user_count_after:
       few: uporabniki
       one: uporabnik
-      other: uporabniki
+      other: uporabnikov
       two: uporabniki
     user_count_before: Dom za
     what_is_mastodon: Kaj je Mastodon?
   accounts:
-    choices_html: "%{name} izbire:"
+    choices_html: '%{name} izbire:'
     follow: Sledi
     followers:
       few: Sledilci
@@ -46,7 +50,7 @@ sl:
     last_active: zadnji aktivni
     link_verified_on: Lastništvo te povezave je bilo preverjeno na %{date}
     media: Medij
-    moved_html: "%{name} se je prestavil na %{new_profile_link}:"
+    moved_html: '%{name} se je prestavil na %{new_profile_link}:'
     network_hidden: Te informacije niso na voljo
     nothing_here: Nič ni tukaj!
     people_followed_by: Ljudje, ki jim sledi %{name}
@@ -173,37 +177,39 @@ sl:
       web: Splet
     action_logs:
       actions:
-        assigned_to_self_report: "%{name} je prijavil %{target} sebi"
-        change_email_user: "%{name} je spremenil naslov e-pošte uporabnika %{target}"
-        confirm_user: "%{name} je potrdil naslov e-pošte uporabnika %{target}"
-        create_account_warning: "%{name} je poslal opozorilo %{target}"
-        create_custom_emoji: "%{name} je poslal nove emotikone %{target}"
-        create_domain_block: "%{name} je blokiral domeno %{target}"
-        create_email_domain_block: "%{name} je dal na črni seznam e-pošto domene %{target}"
-        demote_user: "%{name} je degradiral uporabnika %{target}"
-        destroy_custom_emoji: "%{name} je uničil emotikon %{target}"
-        destroy_domain_block: "%{name} je odblokiral domeno %{target}"
-        destroy_email_domain_block: "%{name} je dal na beli seznam e-pošto domene %{target}"
-        destroy_status: "%{name} je odstranil stanje od %{target}"
-        disable_2fa_user: "%{name} je onemogočil dvofaktorsko zahtevo za uporabnika %{target}"
-        disable_custom_emoji: "%{name} je onemogočil emotikon %{target}"
-        disable_user: "%{name} je onemogočil prijavo za uporabnika %{target}"
-        enable_custom_emoji: "%{name} je omogočil emotikon %{target}"
-        enable_user: "%{name} je omogočil prijavo za uporabnika %{target}"
-        memorialize_account: "%{name} je spremenil račun od %{target} v stran spominov"
-        promote_user: "%{name} je spodbudil uporabnika %{target}"
-        remove_avatar_user: "%{name} je odstranil podobo od %{target}"
-        reopen_report: "%{name} je ponovno odprl prijavo %{target}"
-        reset_password_user: "%{name} je ponastavil geslo od uporabnika %{target}"
-        resolve_report: "%{name} je razrešil prijavo %{target}"
-        silence_account: "%{name} je utišal račun od %{target}"
-        suspend_account: "%{name} je začasno ustavil račun od %{target}"
-        unassigned_report: "%{name} je nedodeljeno prijavil %{target}"
-        unsilence_account: "%{name} je preklical utišanje računa od %{target}"
-        unsuspend_account: "%{name} je aktiviral račun od %{target}"
-        update_custom_emoji: "%{name} je posodobil emotikone %{target}"
-        update_status: "%{name} je posodobil stanje od %{target}"
-      deleted_status: "(izbrisano stanje)"
+        assigned_to_self_report: '%{name} je prijavil %{target} sebi'
+        change_email_user: '%{name} je spremenil naslov e-pošte uporabnika %{target}'
+        confirm_user: '%{name} je potrdil naslov e-pošte uporabnika %{target}'
+        create_account_warning: '%{name} je poslal opozorilo %{target}'
+        create_custom_emoji: '%{name} je poslal nove emotikone %{target}'
+        create_domain_block: '%{name} je blokiral domeno %{target}'
+        create_email_domain_block: '%{name} je dal na črni seznam e-pošto domene %{target}'
+        demote_user: '%{name} je degradiral uporabnika %{target}'
+        destroy_custom_emoji: '%{name} je uničil emotikon %{target}'
+        destroy_domain_block: '%{name} je odblokiral domeno %{target}'
+        destroy_email_domain_block: '%{name} je dal na beli seznam e-pošto domene
+          %{target}'
+        destroy_status: '%{name} je odstranil stanje od %{target}'
+        disable_2fa_user: '%{name} je onemogočil dvofaktorsko zahtevo za uporabnika
+          %{target}'
+        disable_custom_emoji: '%{name} je onemogočil emotikon %{target}'
+        disable_user: '%{name} je onemogočil prijavo za uporabnika %{target}'
+        enable_custom_emoji: '%{name} je omogočil emotikon %{target}'
+        enable_user: '%{name} je omogočil prijavo za uporabnika %{target}'
+        memorialize_account: '%{name} je spremenil račun od %{target} v stran spominov'
+        promote_user: '%{name} je spodbudil uporabnika %{target}'
+        remove_avatar_user: '%{name} je odstranil podobo od %{target}'
+        reopen_report: '%{name} je ponovno odprl prijavo %{target}'
+        reset_password_user: '%{name} je ponastavil geslo od uporabnika %{target}'
+        resolve_report: '%{name} je razrešil prijavo %{target}'
+        silence_account: '%{name} je utišal račun od %{target}'
+        suspend_account: '%{name} je začasno ustavil račun od %{target}'
+        unassigned_report: '%{name} je nedodeljeno prijavil %{target}'
+        unsilence_account: '%{name} je preklical utišanje računa od %{target}'
+        unsuspend_account: '%{name} je aktiviral račun od %{target}'
+        update_custom_emoji: '%{name} je posodobil emotikone %{target}'
+        update_status: '%{name} je posodobil stanje od %{target}'
+      deleted_status: (izbrisano stanje)
       title: Dnevnik revizije
     custom_emojis:
       by_domain: Domena
@@ -259,17 +265,24 @@ sl:
       domain: Domena
       new:
         create: Ustvari blok
-        hint: Domenski blok ne bo preprečil ustvarjanja vnosov računov v zbirko podatkov, ampak bo retroaktivno in samodejno uporabil posebne metode moderiranja na teh računih.
+        hint: Domenski blok ne bo preprečil ustvarjanja vnosov računov v zbirko podatkov,
+          ampak bo retroaktivno in samodejno uporabil posebne metode moderiranja na
+          teh računih.
         severity:
-          desc_html: "<strong>Utišaj</strong> bo vse objave računa naredil nevidne vsem, ki jih ne sledijo. <strong>Suspendiraj</strong> bo odstranil vso vsebino, medije in podatke profila računa. Uporabi <strong>nič</strong>, če želite le zavrniti predstavnostne datoteke."
+          desc_html: <strong>Utišaj</strong> bo vse objave računa naredil nevidne
+            vsem, ki jih ne sledijo. <strong>Suspendiraj</strong> bo odstranil vso
+            vsebino, medije in podatke profila računa. Uporabi <strong>nič</strong>,
+            če želite le zavrniti predstavnostne datoteke.
           noop: Nič
           silence: Utišaj
           suspend: Suspendiraj
         title: Nov domenski blok
       reject_media: Zavrni predstavnostne datoteke
-      reject_media_hint: Odstrani lokalno shranjene predstavnostne datoteke in zavrača prenašanje le-teh v prihodnosti. Za suspenzije ni pomembno
+      reject_media_hint: Odstrani lokalno shranjene predstavnostne datoteke in zavrača
+        prenašanje le-teh v prihodnosti. Za suspenzije ni pomembno
       reject_reports: Zavrnjene prijave
-      reject_reports_hint: Prezri vse prijave, ki pridejo iz te domene. Za suspenzije ni pomembno
+      reject_reports_hint: Prezri vse prijave, ki pridejo iz te domene. Za suspenzije
+        ni pomembno
       rejecting_media: zavrnitev predstavnostnih datotek
       rejecting_reports: zavrnitev prijav
       severity:
@@ -277,10 +290,10 @@ sl:
         suspend: suspendirani
       show:
         affected_accounts:
-          few: "%{count} računov v bazi podatkov so prizadeti"
+          few: '%{count} računov v bazi podatkov so prizadeti'
           one: En račun v bazi podatkov je prizadet
-          other: "%{count} računov v bazi podatkov so prizadeti"
-          two: "%{count} računov v bazi podatkov so prizadeti"
+          other: '%{count} računov v bazi podatkov so prizadeti'
+          two: '%{count} računov v bazi podatkov so prizadeti'
         retroactive:
           silence: Prekliči utišanje za vse obstoječe račune iz te domene
           suspend: Odsuspendiraj vse obstoječe račune iz te domene
@@ -303,10 +316,10 @@ sl:
     instances:
       delivery_available: Na voljo je dostava
       known_accounts:
-        few: "%{count} znanih računov"
-        one: "%{count} znan račun"
-        other: "%{count} znanih računov"
-        two: "%{count} znanih računov"
+        few: '%{count} znanih računov'
+        one: '%{count} znan račun'
+        other: '%{count} znanih računov'
+        two: '%{count} znanih računov'
       moderation:
         all: Vse
         limited: Omejeno
@@ -328,11 +341,16 @@ sl:
     relays:
       add_new: Dodaj nov rele
       delete: Izbriši
-      description_html: "<strong>Rele federacije</strong> je posredniški strežnik, ki si izmenjuje velike količine javnih trobov med strežniki, ki so se naročili in objavili na njem. <strong>Majhnim in srednjim strežnikom lahko pomaga pri odkrivanju vsebine iz sistema fediverse</strong>, kar bi sicer zahtevalo, da lokalni uporabniki ročno sledijo druge osebe na oddaljenih strežnikih."
+      description_html: <strong>Rele federacije</strong> je posredniški strežnik,
+        ki si izmenjuje velike količine javnih trobov med strežniki, ki so se naročili
+        in objavili na njem. <strong>Majhnim in srednjim strežnikom lahko pomaga pri
+        odkrivanju vsebine iz sistema fediverse</strong>, kar bi sicer zahtevalo,
+        da lokalni uporabniki ročno sledijo druge osebe na oddaljenih strežnikih.
       disable: Onemogoči
       disabled: Onemogočeno
       enable: Omogoči
-      enable_hint: Ko je omogočen, se bo vaš strežnik naročil na vse javne trobe iz tega releja in začel pošiljati javne trobe tega strežnika.
+      enable_hint: Ko je omogočen, se bo vaš strežnik naročil na vse javne trobe iz
+        tega releja in začel pošiljati javne trobe tega strežnika.
       enabled: Omogočeno
       inbox_url: URL releja
       pending: Čakanje na odobritev releja
@@ -375,10 +393,12 @@ sl:
       updated_at: Posodobljen
     settings:
       activity_api_enabled:
-        desc_html: Številke lokalno objavljenih stanj, aktivnih uporabnikov in novih registracij na tedenskih seznamih
+        desc_html: Številke lokalno objavljenih stanj, aktivnih uporabnikov in novih
+          registracij na tedenskih seznamih
         title: Objavi združeno statistiko o dejavnosti uporabnikov
       bootstrap_timeline_accounts:
-        desc_html: Več uporabniških imen ločite z vejico. Deluje samo na lokalnih in odklenjenih računih. Privzeto, ko je prazno, pri vseh lokalnih skrbnikih.
+        desc_html: Več uporabniških imen ločite z vejico. Deluje samo na lokalnih
+          in odklenjenih računih. Privzeto, ko je prazno, pri vseh lokalnih skrbnikih.
         title: Privzeta sledenja za nove uporabnike
       contact_information:
         email: Poslovna e-pošta
