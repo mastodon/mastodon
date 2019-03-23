@@ -643,7 +643,7 @@ ko:
       failed: 암호화 연결에 실패했습니다. %{provider}에서 다시 시도해 주세요.
       keybase:
         invalid_token: 키베이스 토큰은 서명의 해시이며 66자의 16진수 문자여야 합니다
-        verification_failed: 키베이스가 이 토큰을 키베이스 유저 ${kb_username}의 서명으로 인식하지 못했습니다. 키베이스에서 다시 시도하세요.
+        verification_failed: 키베이스가 이 토큰을 키베이스 유저 %{kb_username}의 서명으로 인식하지 못했습니다. 키베이스에서 다시 시도하세요.
     explanation_html: 키베이스와 같은 다른 명의에 대한 암호화 연결을 할 수 있습니다. 이것으로 다른 사람들이 당신에게 암호화 된 메시지를 보낼 수 있고 당신의 메시지를 믿을 수 있습니다.
     i_am_html: 나는 %{service}의 %{username} 입니다.
     identity: 신원
