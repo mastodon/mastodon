@@ -1,5 +1,9 @@
+---
 gl:
   activerecord:
+    attributes:
+      status:
+        owned_poll: Sondaxe
     errors:
       models:
         account:
@@ -10,6 +14,3 @@ gl:
           attributes:
             reblog:
               taken: do estado xa existe
-    attributes:
-      status:
-        owned_poll: Sondaxe

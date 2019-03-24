@@ -1,5 +1,9 @@
+---
 da:
   activerecord:
+    attributes:
+      status:
+        owned_poll: Afstemning
     errors:
       models:
         account:
@@ -10,6 +14,3 @@ da:
           attributes:
             reblog:
               taken: af allerede eksisterende status
-    attributes:
-      status:
-        owned_poll: Afstemning

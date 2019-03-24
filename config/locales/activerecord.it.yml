@@ -1,5 +1,9 @@
+---
 it:
   activerecord:
+    attributes:
+      status:
+        owned_poll: Sondaggio
     errors:
       models:
         account:
@@ -10,6 +14,3 @@ it:
           attributes:
             reblog:
               taken: dello stato esiste già
-    attributes:
-      status:
-        owned_poll: Sondaggio

@@ -1,5 +1,9 @@
+---
 el:
   activerecord:
+    attributes:
+      status:
+        owned_poll: Ψηφοφορία
     errors:
       models:
         account:
@@ -10,6 +14,3 @@ el:
           attributes:
             reblog:
               taken: της κατάστασης ήδη υπάρχει
-    attributes:
-      status:
-        owned_poll: Ψηφοφορία

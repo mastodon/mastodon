@@ -1,3 +1,4 @@
+---
 zh-TW:
   devise:
     confirmations:
@@ -11,19 +12,19 @@ zh-TW:
       last_attempt: 在帳號遭封鎖前您還有最後一次嘗試機會。
       locked: 您的帳戶已被鎖定。
       not_found_in_database: 無效的 %{authentication_keys} 或密碼。
+      pending: 您的帳戶仍在審核中。
       timeout: 登入階段逾時。請重新登入以繼續。
       unauthenticated: 您必須先登入或註冊以繼續使用。
       unconfirmed: 您必須先確認電子信箱才能繼續使用。
-      pending: 您的帳戶仍在審核中。
     mailer:
       confirmation_instructions:
         action: 驗證電子信箱位址
+        action_with_app: 確認並返回 %{app}
         explanation: 您已經在 %{host} 上以此電子信箱位址建立了一支帳戶。您距離啟用它只剩一點之遙了。若這不是您，請忽略此信件。
+        explanation_when_pending: 您使用此電子信箱位址申請了 %{host} 的邀請。當您確認電子信箱後我們將審核您的申請，而直到核准前您都無法登入。當您的申請遭拒絕，您的資料將被移除而不必做後續動作。如果這不是您，請忽略此信件。
         extra_html: 同時也請看看<a href="%{terms_path}">該伺服器的規則</a>與<a href="%{policy_path}">服務條款</a>。
         subject: Mastodon：%{instance} 確認說明
         title: 驗證電子信箱位址
-        action_with_app: 確認並返回 %{app}
-        explanation_when_pending: 您使用此電子信箱位址申請了 %{host} 的邀請。當您確認電子信箱後我們將審核您的申請，而直到核准前您都無法登入。當您的申請遭拒絕，您的資料將被移除而不必做後續動作。如果這不是您，請忽略此信件。
       email_changed:
         explanation: 您帳戶的電子信箱位址將變更為：
         extra: 若您未變更電子信箱，那麼很有可能是某人取得了你帳戶的存取權限。請立刻變更密碼，或當帳戶被鎖定時，請聯絡伺服器的管理員。
@@ -61,10 +62,10 @@ zh-TW:
       signed_up: 歡迎！您已成功註冊。
       signed_up_but_inactive: 您已註冊成功，但由於您的帳戶尚未啟用，我們暫時無法讓您登入。
       signed_up_but_locked: 您已註冊成功，但由於您的帳戶已被鎖定，我們無法讓您登入。
+      signed_up_but_pending: 包含確認連結的訊息已寄到您的電子信箱。按下此連結後我們將審核您的申請。核准後將通知您。
       signed_up_but_unconfirmed: 包含確認連結的訊息已寄到您的電子信箱。請前往連結以啟用帳號。若未收到請檢查垃圾郵件資料夾。
       update_needs_confirmation: 已更新您的帳號，但仍需驗證您的新信箱。請檢查電子信箱並前往確認連結來確認新信箱位址。若未收到請檢查垃圾郵件資料夾。
       updated: 您的帳戶已成功更新。
-      signed_up_but_pending: 包含確認連結的訊息已寄到您的電子信箱。按下此連結後我們將審核您的申請。核准後將通知您。
     sessions:
       already_signed_out: 已成功登出。
       signed_in: 已成功登入。

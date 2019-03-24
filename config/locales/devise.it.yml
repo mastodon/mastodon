@@ -1,68 +1,49 @@
+---
 it:
   devise:
     confirmations:
       confirmed: Il tuo indirizzo email è stato confermato con successo.
-      send_instructions: Riceverai in pochi minuti una email con istruzioni per confermare
-        il tuo account al tuo indirizzo email.
-      send_paranoid_instructions: Se il tuo indirizzo email è presente nel nostro
-        database, riceverai in pochi minuti una email con istruzioni per confermare
-        il tuo account al tuo indirizzo email.
+      send_instructions: Riceverai in pochi minuti una email con istruzioni per confermare il tuo account al tuo indirizzo email.
+      send_paranoid_instructions: Se il tuo indirizzo email è presente nel nostro database, riceverai in pochi minuti una email con istruzioni per confermare il tuo account al tuo indirizzo email.
     failure:
       already_authenticated: Hai già effettuato l'accesso.
       inactive: Non hai ancora attivato il tuo account.
-      invalid: '%{authentication_keys} o password invalida.'
+      invalid: "%{authentication_keys} o password invalida."
       last_attempt: Hai un altro tentativo prima che il tuo account venga bloccato.
       locked: Il tuo account è stato bloccato.
-      not_found_in_database: '%{authentication_keys} o password non valida.'
-      timeout: La tua sessione è terminata. Per favore, effettua l'accesso o registrati
-        per continuare.
+      not_found_in_database: "%{authentication_keys} o password non valida."
+      pending: Il tuo account è ancora sotto esame.
+      timeout: La tua sessione è terminata. Per favore, effettua l'accesso o registrati per continuare.
       unauthenticated: Devi effettuare l'accesso o registrarti per continuare.
       unconfirmed: Devi confermare il tuo indirizzo email per continuare.
-      pending: Il tuo account è ancora sotto esame.
     mailer:
       confirmation_instructions:
         action: Verifica indirizzo email
         action_with_app: Conferma e torna a %{app}
-        explanation: Hai creato un account su %{host} con questo indirizzo email.
-          Sei lonatno solo un clic dall'attivarlo. Se non sei stato tu, per favore
-          ignora questa email.
-        extra_html: Per favore controlla<a href="%{terms_path}">le regole del server</a>
-          e <a href="%{policy_path}">i nostri termini di servizio</a>.
+        explanation: Hai creato un account su %{host} con questo indirizzo email. Sei lonatno solo un clic dall'attivarlo. Se non sei stato tu, per favore ignora questa email.
+        explanation_when_pending: Hai richiesto di essere invitato su %{host} con questo indirizzo email. Quando avrai confermato il tuo indirizzo email, esamineremo la tua richiesta. Fino a quel momento non puoi accedere. Se la tua richiesta sarà respinta, i tuoi dati saranno eliminati, quindi non dovrai fare nient'altro. Se non hai presentato tu questa richiesta, puoi ignorare questa email.
+        extra_html: Per favore controlla<a href="%{terms_path}">le regole del server</a> e <a href="%{policy_path}">i nostri termini di servizio</a>.
         subject: 'Mastodon: Istruzioni di conferma per %{instance}'
         title: Verifica indirizzo email
-        explanation_when_pending: Hai richiesto di essere invitato su %{host} con
-          questo indirizzo email. Quando avrai confermato il tuo indirizzo email,
-          esamineremo la tua richiesta. Fino a quel momento non puoi accedere. Se
-          la tua richiesta sarà respinta, i tuoi dati saranno eliminati, quindi non
-          dovrai fare nient'altro. Se non hai presentato tu questa richiesta, puoi
-          ignorare questa email.
       email_changed:
         explanation: 'L''indirizzo email del tuo account sta per essere cambiato in:'
-        extra: Se non hai cambiato la tua email, è probabile che qualcuno abbia ottenuto
-          l'accesso al tuo account. Cambia immediatamente la tua password e contatta
-          l'amministratore del server se non puoi più accedere al tuo account.
+        extra: Se non hai cambiato la tua email, è probabile che qualcuno abbia ottenuto l'accesso al tuo account. Cambia immediatamente la tua password e contatta l'amministratore del server se non puoi più accedere al tuo account.
         subject: 'Mastodon: Email cambiata'
         title: Nuovo indirizzo email
       password_change:
         explanation: La password del tuo account è stata cambiata.
-        extra: Se non hai cambiato la password, è probabile che qualcuno abbia ottenuto
-          l'accesso al tuo account. Cambia immediatamente la tua password e contatta
-          l'amministratore del server non puoi più accedere al tuo account.
+        extra: Se non hai cambiato la password, è probabile che qualcuno abbia ottenuto l'accesso al tuo account. Cambia immediatamente la tua password e contatta l'amministratore del server non puoi più accedere al tuo account.
         subject: 'Mastodon: Password modificata'
         title: Password cambiata
       reconfirmation_instructions:
         explanation: Conferma il nuovo indirizzo per cambiare la tua email.
-        extra: Se questo cambiamento non è stato chiesto da te, ignora questa email.
-          L'indirizzo email per l'account Mastodon non verrà cambiato finché non accedi
-          dal link qui sopra.
+        extra: Se questo cambiamento non è stato chiesto da te, ignora questa email. L'indirizzo email per l'account Mastodon non verrà cambiato finché non accedi dal link qui sopra.
         subject: 'Mastodon: Email di conferma per %{instance}'
         title: Verifica indirizzo email
       reset_password_instructions:
         action: Cambia password
         explanation: Hai richiesto una nuova password per il tuo account.
-        extra: Se questo cambiamento non è stato chiesto da te, ignora questa email.
-          La tua password non verrà cambiata finché non accedi tramite il link qui
-          sopra e ne crei una nuova.
+        extra: Se questo cambiamento non è stato chiesto da te, ignora questa email. La tua password non verrà cambiata finché non accedi tramite il link qui sopra e ne crei una nuova.
         subject: 'Mastodon: Istruzioni per il reset della password'
         title: Ripristino password
       unlock_instructions:
@@ -71,52 +52,35 @@ it:
       failure: Impossibile autenticarti da %{kind} perché "%{reason}".
       success: Autenticato con successo con account %{kind}.
     passwords:
-      no_token: Non puoi accedere a questa pagina senza essere stato reindirizzato
-        da una mail di reset password. Se arrivi da una mail di reset password, per
-        favore controlla di aver copiato per intero l'URL fornito.
-      send_instructions: Se la tua mail è presente nel nostro database, riceverai
-        in pochi minuti un link per recuperare la tua password al tuo indirizzo mail.
-      send_paranoid_instructions: Se la tua mail è presente nel nostro database, riceverai
-        in pochi minuti un link per recuperare la tua password al tuo indirizzo mail.
-      updated: La tua password è stata modificata con successo. Abbiamo già effettuato
-        l'accesso per te.
+      no_token: Non puoi accedere a questa pagina senza essere stato reindirizzato da una mail di reset password. Se arrivi da una mail di reset password, per favore controlla di aver copiato per intero l'URL fornito.
+      send_instructions: Se la tua mail è presente nel nostro database, riceverai in pochi minuti un link per recuperare la tua password al tuo indirizzo mail.
+      send_paranoid_instructions: Se la tua mail è presente nel nostro database, riceverai in pochi minuti un link per recuperare la tua password al tuo indirizzo mail.
+      updated: La tua password è stata modificata con successo. Abbiamo già effettuato l'accesso per te.
       updated_not_active: La tua password è stata modificata con successo.
     registrations:
       destroyed: Addio! Il tuo account è stato cancellato. Speriamo di rivederti presto.
       signed_up: Benvenuto! Ti sei registrato con successo.
-      signed_up_but_inactive: Ti sei registrato con successo. Purtroppo però non possiamo
-        farti accedere perché non hai ancora attivato il tuo account.
-      signed_up_but_locked: Ti sei registrato con successo. Purtroppo però non possiamo
-        farti accedere perché il tuo account è bloccato.
-      signed_up_but_unconfirmed: Un messaggio con un link di conferma è stato inviato
-        al tuo indirizzo email. Per favore, visita il link per attivare il tuo account.
-      update_needs_confirmation: Hai aggiornato correttamente il tuo account, ma abbiamo
-        bisogno di verificare il tuo nuovo indirizzo email. Per favore, controlla
-        la posta in arrivo e visita il link di conferma per verificare il tuo indirizzo
-        email.
+      signed_up_but_inactive: Ti sei registrato con successo. Purtroppo però non possiamo farti accedere perché non hai ancora attivato il tuo account.
+      signed_up_but_locked: Ti sei registrato con successo. Purtroppo però non possiamo farti accedere perché il tuo account è bloccato.
+      signed_up_but_pending: Un messaggio contenente un link di conferma è stato inviato al tuo indirizzo email. Dopo che avrai fatto clic sul link, esamineremo la tua richiesta. Se sarà approvata ti informeremo.
+      signed_up_but_unconfirmed: Un messaggio con un link di conferma è stato inviato al tuo indirizzo email. Per favore, visita il link per attivare il tuo account.
+      update_needs_confirmation: Hai aggiornato correttamente il tuo account, ma abbiamo bisogno di verificare il tuo nuovo indirizzo email. Per favore, controlla la posta in arrivo e visita il link di conferma per verificare il tuo indirizzo email.
       updated: Il tuo account è stato aggiornato con successo.
-      signed_up_but_pending: Un messaggio contenente un link di conferma è stato inviato
-        al tuo indirizzo email. Dopo che avrai fatto clic sul link, esamineremo la
-        tua richiesta. Se sarà approvata ti informeremo.
     sessions:
       already_signed_out: Sei uscito correttamente dal tuo account.
       signed_in: Accesso eseguito correttamente.
       signed_out: Sei uscito correttamente dal tuo account.
     unlocks:
-      send_instructions: Riceverai in pochi minuti una email con istruzioni su come
-        sbloccare il tuo account.
-      send_paranoid_instructions: Se il tuo account esiste, riceverai in pochi minuti
-        una email con istruzioni su come sbloccarlo.
-      unlocked: Il tuo account è stato sbloccato con successo. Per favore, esegui
-        l'accesso per continuare.
+      send_instructions: Riceverai in pochi minuti una email con istruzioni su come sbloccare il tuo account.
+      send_paranoid_instructions: Se il tuo account esiste, riceverai in pochi minuti una email con istruzioni su come sbloccarlo.
+      unlocked: Il tuo account è stato sbloccato con successo. Per favore, esegui l'accesso per continuare.
   errors:
     messages:
       already_confirmed: era già stata confermata; per favore, prova ad eseguire l'accesso
-      confirmation_period_expired: deve essere confermata entro %{period}; per favore,
-        richiedine una nuova
+      confirmation_period_expired: deve essere confermata entro %{period}; per favore, richiedine una nuova
       expired: è terminata; per favore, richiedine una nuova
       not_found: non trovato
       not_locked: non era stato bloccato
       not_saved:
         one: '1 errore ha impedito che %{resource} venisse salvato:'
-        other: '%{count} errori hanno impedito che %{resource} venisse salvato:'
+        other: "%{count} errori hanno impedito che %{resource} venisse salvato:"
