@@ -593,18 +593,6 @@ nl:
       title: Filters
     new:
       title: Nieuw filter toevoegen
-  followers:
-    domain: Domein
-    explanation_html: Wanneer je de privacy van jouw toots wilt garanderen, moet je goed weten wie jouw volgers zijn. <strong>Toots die alleen aan jouw volgers zijn gericht, worden aan de Mastodonservers van jouw volgers afgeleverd.</strong> Daarom wil je ze misschien controleren en desnoods volgers verwijderen die zich op een Mastodonserver bevinden die jij niet vertrouwd. Bijvoorbeeld omdat de beheerder(s) of de software van zo'n server jouw privacy niet respecteert.
-    followers_count: Aantal volgers
-    lock_link: Maak jouw account besloten
-    purge: Volgers verwijderen
-    success:
-      one: Bezig om volgers van één domein te verwijderen...
-      other: Bezig om volgers van %{count} domeinen te verwijderen...
-    true_privacy_html: Hou er wel rekening mee dat <strong>echte privacy alleen gegarandeerd kan worden met behulp van end-to-end-encryptie</strong>.
-    unlocked_warning_html: Iedereen kan jou volgen en daarmee meteen toots zien die je alleen aan jouw volgers hebt gericht. %{lock_link} om volgers te kunnen beoordelen en desnoods te weigeren.
-    unlocked_warning_title: Jouw account is niet besloten
   footer:
     developers: Ontwikkelaars
     more: Meer…
@@ -718,6 +706,16 @@ nl:
     older: Ouder
     prev: Vorige
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Je hebt al op deze poll gestemd
+      duplicate_options: bevat dubbele items
+      duration_too_long: ligt te ver in de toekomst
+      duration_too_short: is te kort van duur
+      expired: De poll is al beëindigd
+      over_character_limit: kan stuk voor stuk niet langer zijn dan %{max} tekens
+      too_few_options: moet meer dan één item bevatten
+      too_many_options: kan niet meer dan %{max} items bevatten
   preferences:
     languages: Talen
     other: Overig
@@ -797,7 +795,6 @@ nl:
     edit_profile: Profiel bewerken
     export: Exporteren
     featured_tags: Uitgelichte hashtags
-    followers: Geautoriseerde volgers
     import: Importeren
     migrate: Accountmigratie
     notifications: Meldingen
@@ -827,6 +824,11 @@ nl:
       ownership: Een toot van iemand anders kan niet worden vastgezet
       private: Alleen openbare toots kunnen worden vastgezet
       reblog: Een boost kan niet worden vastgezet
+    poll:
+      total_votes:
+        one: "%{count} stem"
+        other: "%{count} stemmen"
+      vote: Stemmen
     show_more: Meer tonen
     sign_in_to_participate: Meld je aan om aan dit gesprek mee te doen
     title: '%{name}: "%{quote}"'

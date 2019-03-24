@@ -15,8 +15,8 @@ class AdminMailer < ApplicationMailer
     end
   end
 
-  def new_pending_account(recipient, account)
-    @account  = account
+  def new_pending_account(recipient, user)
+    @account  = user.account
     @me       = recipient
     @instance = Rails.configuration.x.local_domain
 

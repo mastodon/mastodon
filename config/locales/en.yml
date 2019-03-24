@@ -621,29 +621,33 @@ en:
       title: Filters
     new:
       title: Add new filter
-  followers:
-    domain: Domain
-    explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all servers where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those servers.
-    followers_count: Number of followers
-    lock_link: Lock your account
-    purge: Remove from followers
-    success:
-      one: In the process of soft-blocking followers from one domain...
-      other: In the process of soft-blocking followers from %{count} domains...
-    true_privacy_html: Please mind that <strong>true privacy can only be achieved with end-to-end encryption</strong>.
-    unlocked_warning_html: Anyone can follow you to immediately view your private statuses. %{lock_link} to be able to review and reject followers.
-    unlocked_warning_title: Your account is not locked
   footer:
     developers: Developers
     more: More…
     resources: Resources
   generic:
+    all: All
     changes_saved_msg: Changes successfully saved!
     copy: Copy
     save_changes: Save changes
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
+  identity_proofs:
+    active: Active
+    authorize: Yes, authorize
+    authorize_connection_prompt: Authorize this cryptographic connection?
+    errors:
+      failed: The cryptographic connection failed. Please try again from %{provider}.
+      keybase:
+        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
+        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
+    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
+    i_am_html: I am %{username} on %{service}.
+    identity: Identity
+    inactive: Inactive
+    status: Verification status
+    view_proof: View proof
   imports:
     modes:
       merge: Merge
@@ -761,6 +765,17 @@ en:
     other: Other
     publishing: Publishing
     web: Web
+  relationships:
+    activity: Account activity
+    dormant: Dormant
+    moved: Moved
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Remove all followers from the selected domains
+    remove_selected_followers: Remove selected followers
+    remove_selected_follows: Unfollow selected users
+    status: Account status
   remote_follow:
     acct: Enter your username@domain you want to act from
     missing_resource: Could not find the required redirect URL for your account
@@ -835,11 +850,12 @@ en:
     edit_profile: Edit profile
     export: Data export
     featured_tags: Featured hashtags
-    followers: Authorized followers
+    identity_proofs: Identity proofs
     import: Import
     migrate: Account migration
     notifications: Notifications
     preferences: Preferences
+    relationships: Follows and followers
     settings: Settings
     two_factor_authentication: Two-factor Auth
     your_apps: Your applications

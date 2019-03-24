@@ -79,6 +79,7 @@ ja:
       delete: 削除
       destroyed_msg: モデレーションメモを削除しました！
     accounts:
+      approve: 承認
       are_you_sure: 本当に実行しますか？
       avatar: アイコン
       by_domain: ドメイン
@@ -124,6 +125,7 @@ ja:
       moderation:
         active: アクティブ
         all: すべて
+        pending: 保留中
         silenced: サイレンス済み
         suspended: 停止済み
         title: モデレーション
@@ -133,13 +135,15 @@ ja:
       no_limits_imposed: 制限なし
       not_subscribed: 購読していない
       outbox_url: Outbox URL
+      pending: 審査待ち
       perform_full_suspension: 活動を完全に停止させる
       profile_url: プロフィールURL
       promote: 昇格
       protocol: プロトコル
       public: パブリック
       push_subscription_expires: PuSH購読期限
-      redownload: アバターの更新
+      redownload: プロフィールを更新
+      reject: 却下
       remove_avatar: アイコンを削除
       remove_header: ヘッダーを削除
       resend_confirmation:
@@ -411,6 +415,12 @@ ja:
         min_invite_role:
           disabled: 誰も許可しない
           title: 招待の作成を許可
+      registrations_mode:
+        modes:
+          approved: 登録には承認が必要
+          none: 誰も許可しない
+          open: 誰でも登録可
+        title: 新規登録
       show_known_fediverse_at_about_page:
         desc_html: チェックを入れるとプレビュー欄に既知の連合先全てのトゥートを表示します。外すとローカルのトゥートだけ表示します。
         title: タイムラインプレビューに連合タイムラインを表示する
@@ -473,6 +483,9 @@ ja:
       edit_preset: プリセット警告文を編集
       title: プリセット警告文を管理
   admin_mailer:
+    new_pending_account:
+      body: 新しいアカウントの詳細は以下の通りです。この申請を承認または却下することができます。
+      subject: "%{instance} で新しいアカウント (%{username}) が審査待ちです"
     new_report:
       body: "%{reporter} が %{target} を通報しました"
       body_remote: "%{domain} の誰かが %{target} を通報しました"
@@ -494,6 +507,7 @@ ja:
     your_token: アクセストークン
   auth:
     agreement_html: 登録するをクリックすると <a href="%{rules_path}">サーバーのルール</a> と <a href="%{terms_path}">プライバシーポリシー</a> に従うことに同意したことになります。
+    apply_for_account: 登録を申請する
     change_password: パスワード
     checkbox_agreement_html: <a href="%{rules_path}" target="_blank">サーバーのルール</a> と <a href="%{terms_path}" target="_blank">プライバシーポリシー</a> に同意します
     confirm_email: メールアドレスの確認
@@ -607,23 +621,12 @@ ja:
       title: フィルター
     new:
       title: 新規フィルターを追加
-  followers:
-    domain: ドメイン
-    explanation_html: あなたの投稿のプライバシーを確保したい場合、誰があなたをフォローしているのかを把握している必要があります。 <strong>プライベート投稿は、あなたのフォロワーがいる全てのサーバーに配信されます</strong>。 フォロワーのサーバーの管理者やソフトウェアがあなたのプライバシーを尊重してくれるかどうか怪しい場合は、そのフォロワーを削除した方がよいかもしれません。
-    followers_count: フォロワー数
-    lock_link: 承認制アカウントにする
-    purge: フォロワーから削除する
-    success:
-      one: 1個のドメインからソフトブロックするフォロワーを処理中...
-      other: "%{count} 個のドメインからソフトブロックするフォロワーを処理中..."
-    true_privacy_html: "<strong>プライバシーの保護はエンドツーエンドの暗号化でのみ実現可能</strong>であることに留意ください。"
-    unlocked_warning_html: 誰でもあなたをフォローすることができ、フォロワー限定の投稿をすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
-    unlocked_warning_title: このアカウントは承認制アカウントに設定されていません
   footer:
     developers: 開発者向け
     more: さらに…
     resources: リソース
   generic:
+    all: すべて
     changes_saved_msg: 正常に変更されました！
     copy: コピー
     save_changes: 変更を保存
@@ -733,14 +736,9 @@ ja:
     truncate: "&hellip;"
   polls:
     errors:
-      already_voted: You have already voted on this poll
-      duplicate_options: contain duplicate items
-      duration_too_long: is too far into the future
-      duration_too_short: is too soon
-      expired: The poll has already ended
-      over_character_limit: cannot be longer than %{max} characters each
-      too_few_options: must have more than one item
-      too_many_options: can't contain more than %{max} items
+      duplicate_options: 項目が重複しています
+      duration_too_short: 期限が短すぎます
+      expired: 既に終了している投票です
   preferences:
     languages: 言語
     other: その他
@@ -820,7 +818,6 @@ ja:
     edit_profile: プロフィールを編集
     export: データのエクスポート
     featured_tags: 注目のハッシュタグ
-    followers: 信頼済みのサーバー
     import: データのインポート
     migrate: アカウントの引っ越し
     notifications: 通知
@@ -846,7 +843,7 @@ ja:
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     pin_errors:
-      limit: 固定されているトゥートの上限に達しました
+      limit: 固定できるトゥート数の上限に達しました
       ownership: 他人のトゥートを固定することはできません
       private: 非公開のトゥートを固定することはできません
       reblog: ブーストされたトゥートを固定することはできません
