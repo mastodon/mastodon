@@ -4,25 +4,36 @@ co:
     about_hashtag_html: Quessi sò statuti pubblichi taggati cù <strong>#%{hashtag}</strong>. Pudete interagisce cù elli sì voi avete un contu in qualche parte di u fediverse.
     about_mastodon_html: Mastodon ghjè una rete suciale custruita incù prutucolli web aperti è lugiziali liberi. Hè decentralizatu cumu l’e-mail.
     about_this: À prupositu
+    active_count_after: attivi
+    active_footnote: Utilizatori Attivi Mensili (UAM)
     administered_by: 'Amministratu da:'
     api: API
     apps: Applicazione per u telefuninu
+    apps_platforms: Utilizà Mastodon dapoi à iOS, Android è altre piattaforme
+    browse_directory: Navigà un'annuariu di i prufili è filtra per interessi
+    browse_public_posts: Navigà un flussu di i statuti publichi nant'à Mastodon
     contact: Cuntattu
     contact_missing: Mancante
     contact_unavailable: Micca dispunibule
+    discover_users: Scopre utilizatori
     documentation: Ducumentazione
     extended_description_html: |
       <h3>Una bona piazza per e regule</h3>
       <p>A descrizzione stesa ùn hè micca stata riempiuta.</p>
+    federation_hint_html: Cù un contu nant'à %{instance} puderete siguità ghjente da tutti i servori Mastodon è ancu più d'altri.
     generic_description: "%{domain} hè un servore di a rete"
+    get_apps: Pruvà un'applicazione di telefuninu
     hosted_on: Mastodon allughjatu nant’à %{domain}
     learn_more: Amparà di più
     privacy_policy: Pulitica di vita privata
+    see_whats_happening: Vede cio chì si passa
+    server_stats: 'Statistiche di u servore:'
     source_code: Codice di fonte
     status_count_after:
       one: statutu
       other: statuti
     status_count_before: chì anu pubblicatu
+    tagline: Siguità amichi è scopre ancu di più altri
     terms: Cundizione di u serviziu
     user_count_after:
       one: utilizatore
@@ -68,6 +79,7 @@ co:
       delete: Toglie
       destroyed_msg: Nota di muderazione sguassata!
     accounts:
+      approve: Appruvà
       are_you_sure: Site sicuru·a?
       avatar: Ritrattu di prufile
       by_domain: Duminiu
@@ -113,6 +125,7 @@ co:
       moderation:
         active: Attivu
         all: Tutti
+        pending: In attesa
         silenced: Silenzati
         suspended: Suspesi
         title: Muderazione
@@ -122,6 +135,7 @@ co:
       no_limits_imposed: Nisuna limita imposta
       not_subscribed: Micca abbunatu
       outbox_url: URL di l’outbox
+      pending: In attesa di rivista
       perform_full_suspension: Suspende
       profile_url: URL di u prufile
       promote: Prumove
@@ -129,6 +143,7 @@ co:
       public: Pubblicu
       push_subscription_expires: Spirata di l’abbunamentu PuSH
       redownload: Mette à ghjornu u prufile
+      reject: Righjittà
       remove_avatar: Toglie l’avatar
       remove_header: Toglie l'intistatura
       resend_confirmation:
@@ -400,6 +415,12 @@ co:
         min_invite_role:
           disabled: Nisunu
           title: Auturizà l’invitazione da
+      registrations_mode:
+        modes:
+          approved: Apprubazione necessaria per arregistrassi
+          none: Nimu ùn pò arregistrassi
+          open: Tutt'ognunu pò arregistrassi
+        title: Modu d'arregistramenti
       show_known_fediverse_at_about_page:
         desc_html: Quandu ghjè selezziunatu, statuti di tuttu l’istanze cunnisciute saranu affissati indè a vista di e linee. Altrimente soli i statuti lucali saranu mustrati.
         title: Vedde tuttu u fediverse cunnisciutu nant’a vista di e linee
@@ -462,6 +483,9 @@ co:
       edit_preset: Cambià a preselezzione d'avertimentu
       title: Amministrà e preselezzione d'avertimentu
   admin_mailer:
+    new_pending_account:
+      body: I ditagli di u novu contu sò quì sottu. Pudete appruvà o righjittà a dumanda.
+      subject: Novu contu in attesa di rivista nant'à %{instance} (%{username})
     new_report:
       body: "%{reporter} hà palisatu %{target}"
       body_remote: Qualch’unu da %{domain} hà palisatu %{target}
@@ -483,7 +507,9 @@ co:
     your_token: Rigenerà a fiscia d’accessu
   auth:
     agreement_html: Cliccà "Arregistrassi" quì sottu vole dì chì site d’accunsentu per siguità <a href="%{rules_path}">e regule di u servore</a> è <a href="%{terms_path}">e cundizione d’usu</a>.
+    apply_for_account: Dumandà un'invitazione
     change_password: Chjave d’accessu
+    checkbox_agreement_html: Sò d'accunsentu cù e <a href="%{rules_path}" target="_blank">regule di u servore</a> è i <a href="%{terms_path}" target="_blank">termini di u serviziu</a>
     confirm_email: Cunfirmà l’e-mail
     delete_account: Sguassà u contu
     delete_account_html: S’è voi vulete toglie u vostru contu <a href="%{path}">ghjè quì</a>. Duverete cunfirmà a vostra scelta.
@@ -499,10 +525,12 @@ co:
       cas: CAS
       saml: SAML
     register: Arregistrassi
+    registration_closed: "%{instance} ùn accetta micca novi socii"
     resend_confirmation: Rimandà l’istruzzioni di cunfirmazione
     reset_password: Cambià a chjave d’accessu
     security: Sicurità
     set_new_password: Creà una nova chjave d’accessu
+    trouble_logging_in: Difficultà per cunnettavi?
   authorize_follow:
     already_following: Site digià abbunatu·a à stu contu
     error: Peccatu, c’hè statu un prublemu ricercandu u contu
@@ -598,6 +626,7 @@ co:
     more: Di più…
     resources: Risorze
   generic:
+    all: Tuttu
     changes_saved_msg: Cambiamenti salvati!
     copy: Cupià
     save_changes: Salvà e mudificazione
@@ -721,6 +750,17 @@ co:
     other: Altre
     publishing: Pubblicazione
     web: Web
+  relationships:
+    activity: Attività di u contu
+    dormant: Inattivu
+    moved: Spiazzatu
+    mutual: Mutuale
+    primary: Primariu
+    relationship: Rilazione
+    remove_selected_domains: Toglie tutti l'abbunati da i dumini selezziunati
+    remove_selected_followers: Toglie l'abbunati selezziunati
+    remove_selected_follows: Ùn siguità più l'utilizatori selezziunati
+    status: Statutu di u contu
   remote_follow:
     acct: Entrate u vostru cugnome@istanza da induve vulete siguità stu contu
     missing_resource: Ùn avemu pussutu à truvà l’indirizzu di ridirezzione
@@ -799,6 +839,7 @@ co:
     migrate: Migrazione di u contu
     notifications: Nutificazione
     preferences: Priferenze
+    relationships: Abbunamenti è abbunati
     settings: Parametri
     two_factor_authentication: Identificazione à dui fattori
     your_apps: E vostre applicazione
