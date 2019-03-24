@@ -33,7 +33,7 @@ zh-TW:
       imports:
         data: 從其他 Mastodon 伺服器匯出的 CSV 檔案
       sessions:
-        otp: 請輸入產生自您手機 App 的兩步驟驗證碼，或輸入您其中一個復原代碼：
+        otp: 請輸入產生自您手機 App 的兩步驟驗證碼，或輸入其中一個復原代碼：
       user:
         chosen_languages: 當核取時，只有選取語言的嘟文會在公開時間線中顯示
       account_warning_preset:
@@ -52,46 +52,46 @@ zh-TW:
           value: 內容
       defaults:
         autofollow: 邀請別人關注你的帳戶
-        avatar: 頭像
-        bot: 這個帳戶是機器人
-        chosen_languages: 語言篩選
+        avatar: 大頭貼
+        bot: 此帳號是台機器人
+        chosen_languages: 過濾語言
         confirm_new_password: 確認新密碼
         confirm_password: 確認密碼
-        context: 過濾範圍
+        context: 過濾情境
         current_password: 目前密碼
         data: 資料
         display_name: 顯示名稱
         email: 電子信箱位址
         expires_in: 失效時間
-        fields: 資料
-        header: 個人頁面圖片
+        fields: 個人資料中繼資料
+        header: 頁面頂端
         inbox_url: 中繼收件匣的 URL
         irreversible: 放棄而非隱藏
         locale: 介面語言
-        locked: 將帳戶轉為「私密」
+        locked: 鎖定帳號
         max_uses: 最大使用次數
         new_password: 新密碼
         note: 簡介
-        otp_attempt: 兩階段認證碼
+        otp_attempt: 兩步驟驗證碼
         password: 密碼
         phrase: 關鍵字或片語
-        setting_auto_play_gif: 自動播放 GIF
+        setting_auto_play_gif: 自動播放 GIF 動畫
         setting_boost_modal: 在轉嘟前先詢問我
         setting_default_language: 嘟文語言
-        setting_default_privacy: 嘟文預設為
+        setting_default_privacy: 嘟文可見範圍
         setting_default_sensitive: 總是將媒體標記為敏感內容
         setting_delete_modal: 刪除嘟文前先詢問我
-        setting_hide_network: 隱藏你的社交網路
-        setting_noindex: 阻止搜尋引擎收錄
-        setting_reduce_motion: 減低動畫效果
+        setting_hide_network: 隱藏您的社交網路
+        setting_noindex: 阻止搜尋引擎建立索引
+        setting_reduce_motion: 減少過渡動畫效果
         setting_system_font_ui: 使用系統預設字型
-        setting_theme: 主題外觀
-        setting_unfollow_modal: 取消關注前先詢問我
-        severity: 等級
-        type: 匯入資料類型
+        setting_theme: 站點主題
+        setting_unfollow_modal: 取消關注某人前先詢問我
+        severity: 優先級
+        type: 匯入類型
         username: 使用者名稱
         username_or_email: 使用者名稱或電子信箱位址
-        whole_word: 整個詞
+        whole_word: 整個詞彙
         discoverable: 在目錄列出此帳戶
         setting_aggregate_reblogs: 時間線中的群組轉嘟
         setting_display_media: 媒體顯示
@@ -101,27 +101,27 @@ zh-TW:
         setting_expand_spoilers: 永遠展開標有內容警告的嘟文
         setting_show_application: 顯示用來傳送嘟文的應用程式
       interactions:
-        must_be_follower: 隱藏沒有關注你的使用者通知
-        must_be_following: 隱藏你沒關注的使用者通知
-        must_be_following_dm: 隱藏你沒關注的使用者私訊
+        must_be_follower: 封鎖非關注者的通知
+        must_be_following: 封鎖您未關注之使用者的通知
+        must_be_following_dm: 封鎖您未關注之使用者的私訊
       notification_emails:
-        digest: 定期發送摘要郵件
-        favourite: 當有使用者喜歡你的嘟文時，發送電子信件通知
-        follow: 當有使用者關注你時，發送電子信件通知
-        follow_request: 當有使用者要求關注你時，發送電子信件通知
-        mention: 當有使用者在嘟文提及你時，發送電子信件通知
-        reblog: 當有使用者轉嘟你的嘟文時，發送電子信件通知
-        report: 當遞交新報告時傳送電子郵件
+        digest: 傳送摘要信件
+        favourite: 當有使用者喜歡你的狀態時，傳送電子信件通知
+        follow: 當有使用者關注你時，傳送電子信件通知
+        follow_request: 當有使用者請求關注你時，傳送電子信件通知
+        mention: 當有使用者在嘟文提及你時，傳送電子信件通知
+        reblog: 當有使用者轉嘟你的嘟文時，傳送電子信件通知
+        report: 當提交新檢舉時傳送電子郵件
       account_warning_preset:
         text: 預設文字
       admin_account_action:
-        send_email_notification: 藉由電子信件通知使用者
+        send_email_notification: 透過電子信件通知使用者
         text: 自訂警告
         type: 動作
         types:
           disable: 停用
-          none: 什麼也不作
-          silence: 安靜模式
+          none: 什麼也不做
+          silence: 安靜
           suspend: 停權並不可逆的刪除帳戶資料
         warning_preset_id: 使用警告預設
       featured_tag:
