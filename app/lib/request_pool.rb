@@ -99,22 +99,25 @@ class RequestPool
 
       begin
         yield @http_client
-      rescue HTTP::ConnectionError => e
+      rescue HTTP::ConnectionError
         # It's possible the connection was closed, so let's
         # try re-opening it once
 
+        close
+
         if retries.positive?
-          raise e
+          raise
         else
           @http_client = http_client
           retry
         end
-      rescue StandardError => e
+      rescue StandardError
         # If this connection raises errors of any kind, it's
         # better if it gets reaped as soon as possible
 
+        close
         @dead = true
-        raise e
+        raise
       end
     ensure
       @in_use = false
