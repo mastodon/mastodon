@@ -26,6 +26,18 @@
       .dashboard__counters__label= t '.targeted_reports'
   %div
     %div
+      .dashboard__counters__num= number_with_delimiter @account.muted_by.count
+      .dashboard__counters__label= t '.muted_by'
+  %div
+    %div
+      .dashboard__counters__num= number_with_delimiter @account.blocked_by.count
+      .dashboard__counters__label= t '.blocked_by'
+  %div
+    %div
+      .dashboard__counters__num= number_with_delimiter @account.blocked_by.local.count
+      .dashboard__counters__label= t '.blocked_by_local'
+  %div
+    %div
       .dashboard__counters__text
         - if @account.local? && @account.user.nil?
           %span.neutral= t('admin.accounts.deleted')
