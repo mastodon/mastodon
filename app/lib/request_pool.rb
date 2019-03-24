@@ -81,7 +81,7 @@ class RequestPool
   MAX_IDLE_TIME = 300
 
   class Connection
-    attr_reader :last_used_at, :created_at, :in_use, :dead
+    attr_reader :last_used_at, :created_at, :in_use, :dead, :fresh
 
     def initialize(site)
       @site         = site
@@ -89,6 +89,7 @@ class RequestPool
       @last_used_at = nil
       @created_at   = Time.now.utc
       @dead         = false
+      @fresh        = true
     end
 
     def use
@@ -105,10 +106,11 @@ class RequestPool
 
         close
 
-        if retries.positive?
+        if @fresh || retries.positive?
           raise
         else
           @http_client = http_client
+          retries     += 1
           retry
         end
       rescue StandardError
@@ -120,6 +122,7 @@ class RequestPool
         raise
       end
     ensure
+      @fresh  = false
       @in_use = false
     end
 
