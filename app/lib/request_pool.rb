@@ -2,7 +2,7 @@
 
 require 'connection_pool'
 
-class ConnectionPool::UnlimitedTimedStack < ConnectionPool::TimedStack
+class ConnectionPool::ManagedTimedStack < ConnectionPool::TimedStack
   def each_connection(&block)
     @mutex.synchronize do
       @que.each(&block)
@@ -21,19 +21,13 @@ class ConnectionPool::UnlimitedTimedStack < ConnectionPool::TimedStack
       @que.size
     end
   end
-
-  def try_create(*)
-    object = @create_block.call
-    @created += 1
-    object
-  end
 end
 
 class ManagedConnectionPool < ConnectionPool
-  def initialize(&block)
+  def initialize(options = {}, &block)
     super
 
-    @available = ConnectionPool::UnlimitedTimedStack.new(&block)
+    @available = ConnectionPool::ManagedTimedStack.new(@size, &block)
   end
 
   def each_connection(&block)
@@ -79,6 +73,8 @@ class RequestPool
   end
 
   MAX_IDLE_TIME = 90
+  WAIT_TIMEOUT  = 5
+  MAX_POOL_SIZE = ENV.fetch('MAX_REQUEST_POOL_SIZE', -1).to_i
 
   class Connection
     attr_reader :last_used_at, :created_at, :in_use, :dead, :fresh
@@ -87,13 +83,13 @@ class RequestPool
       @site         = site
       @http_client  = http_client
       @last_used_at = nil
-      @created_at   = Time.now.utc
+      @created_at   = current_time
       @dead         = false
       @fresh        = true
     end
 
     def use
-      @last_used_at = Time.now.utc
+      @last_used_at = current_time
       @in_use       = true
 
       retries = 0
@@ -127,7 +123,7 @@ class RequestPool
     end
 
     def seconds_idle
-      (Time.now.utc - (@last_used_at || @created_at)).seconds
+      current_time - (@last_used_at || @created_at)
     end
 
     def close
@@ -138,6 +134,10 @@ class RequestPool
 
     def http_client
       Request.http_client.persistent(@site, timeout: MAX_IDLE_TIME)
+    end
+
+    def current_time
+      Process.clock_gettime(Process::CLOCK_MONOTONIC)
     end
   end
 
@@ -186,7 +186,7 @@ class RequestPool
 
   def connection_pool_for(site)
     @pools.fetch_or_store(site) do
-      ManagedConnectionPool.new { Connection.new(site) }
+      ManagedConnectionPool.new(size: MAX_POOL_SIZE, timeout: WAIT_TIMEOUT) { Connection.new(site) }
     end
   end
 end
