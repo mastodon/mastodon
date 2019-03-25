@@ -5,8 +5,11 @@
   .field-group
     = f.input :type, collection: Import.types.keys, wrapper: :with_block_label, include_blank: false, label_method: lambda { |type| I18n.t("imports.types.#{type}") }, hint: t('imports.preface')
 
-  .field-group
-    = f.input :data, wrapper: :with_block_label, hint: t('simple_form.hints.imports.data')
+  .fields-row
+    .fields-group.fields-row__column.fields-row__column-6
+      = f.input :data, wrapper: :with_block_label, hint: t('simple_form.hints.imports.data')
+    .fields-group.fields-row__column.fields-row__column-6
+      = f.input :mode, as: :radio_buttons, collection: Import::MODES, label_method: lambda { |mode| safe_join([I18n.t("imports.modes.#{mode}"), content_tag(:span, I18n.t("imports.modes.#{mode}_long"), class: 'hint')]) }, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
 
   .actions
     = f.button :button, t('imports.upload'), type: :submit

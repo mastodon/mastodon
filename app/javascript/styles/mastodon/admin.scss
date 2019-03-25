@@ -153,8 +153,13 @@ $content-width: 840px;
       font-weight: 500;
     }
 
-    .directory__tag a {
+    .directory__tag > a,
+    .directory__tag > div {
       box-shadow: none;
+    }
+
+    .directory__tag .table-action-link .fa {
+      color: inherit;
     }
 
     .directory__tag h4 {
@@ -683,4 +688,12 @@ a.name-tag,
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.ellipsized-ip {
+  display: inline-block;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
 }

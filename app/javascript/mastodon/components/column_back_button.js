@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
+import Icon from 'mastodon/components/icon';
 
 export default class ColumnBackButton extends React.PureComponent {
 
@@ -19,7 +20,7 @@ export default class ColumnBackButton extends React.PureComponent {
   render () {
     return (
       <button onClick={this.handleClick} className='column-back-button'>
-        <i className='fa fa-fw fa-chevron-left column-back-button__icon' />
+        <Icon id='chevron-left' className='column-back-button__icon' fixedWidth />
         <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
       </button>
     );

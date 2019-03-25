@@ -5,26 +5,15 @@ zh-HK:
     about_mastodon_html: Mastodon（萬象）是<em>自由、開源</em>的社交網絡。服務站<em>各自獨立而互連</em>，避免單一商業機構壟斷。找你所信任的服務站，建立帳號，你即可與任何服務站上的用戶溝通，享受無縫的<em>網絡交流</em>。
     about_this: 關於本服務站
     administered_by: 管理者：
-    closed_registrations: 本服務站暫時停止接受登記。
     contact: 聯絡
     contact_missing: 未設定
     contact_unavailable: 未公開
     extended_description_html: |
       <h3>這裡可以寫一些網站規則</h3>
       <p>本站未有詳細介紹</p>
-    features:
-      humane_approach_body: Mastodon 從其他網絡的失敗經驗中汲取教訓，以合乎道德的設計對抗社交媒體的濫用問題。
-      humane_approach_title: 以人為本
-      not_a_product_body: Mastodon 不是商業網絡。沒有廣告，沒有數據挖掘，也沒有中央機構操控。平台完全開放。
-      not_a_product_title: 你是用戶，不是商品
-      real_conversation_body: Mastodon 的字數限制高達 500 字，並支援仔細的媒體警告選項，令你暢所欲言。
-      real_conversation_title: 為真正的交流而生
-      within_reach_body: 簡易的 API 系統，令用戶可以透過不同的 iOS、Android 及其他平台的應用軟件，與朋友保持聯繫。
-      within_reach_title: 無處不在
     generic_description: "%{domain} 是 Mastodon 網絡中其中一個服務站"
     hosted_on: 在 %{domain} 運作的 Mastodon 服務站
     learn_more: 了解更多
-    other_instances: 其他服務站
     source_code: 源代碼
     status_count_after: 篇文章
     status_count_before: 他們共發佈了
@@ -299,9 +288,6 @@ zh-HK:
         min_invite_role:
           disabled: 沒有人
           title: 允許發送邀請的身份
-        open:
-          desc_html: 允許所有人建立帳戶
-          title: 開放註冊
       show_known_fediverse_at_about_page:
         desc_html: 如果開啟，就會在時間軸預覽顯示跨站文章，否則就只會顯示本站文章。
         title: 在時間軸預覽顯示跨站文章
@@ -378,13 +364,11 @@ zh-HK:
     logout: 登出
     migrate_account: 轉移到另一個帳號
     migrate_account_html: 想要將這個帳號指向另一個帳號可<a href="%{path}">到這裡設定</a>。
-    or: 或
     or_log_in_with: 或登入於
     providers:
       cas: CAS
       saml: SAML
     register: 登記
-    register_elsewhere: 在其他服務站登記
     resend_confirmation: 重發確認指示電郵
     reset_password: 重設密碼
     security: 登入資訊
@@ -447,18 +431,6 @@ zh-HK:
     follows: 你所關注的用戶
     mutes: 你所靜音的用戶
     storage: 媒體容量大小
-  followers:
-    domain: 網域
-    explanation_html: 如果你想確保你的私隱，請留意是甚麼用戶在關注你。<strong>即使你的將文章設定「私人文章」，它仍為會被遞送至你所有關注者的服務站</strong>。如果你不信任某些用戶、或其服務站的管理者會尊重你私隱，請將他們自關注者名單私除。
-    followers_count: 關注者數目
-    lock_link: 將用戶轉為「私人」
-    purge: 私除關注者
-    success:
-      one: 正準備軟性阻擋 1 個網域的關注者……
-      other: 正準備軟性阻擋 %{count} 個網域的關注者……
-    true_privacy_html: 請謹記，唯有<strong>點對點加密方可以真正確保你的私隱</strong>。
-    unlocked_warning_html: 目前任何人都可以看到你的私人文章，若%{lock_link}的話，你將可以審批關注者。
-    unlocked_warning_title: 你的用戶目前為「公共」
   generic:
     changes_saved_msg: 已成功儲存修改。
     save_changes: 儲存修改
@@ -622,7 +594,6 @@ zh-HK:
     development: 開發
     edit_profile: 修改個人資料
     export: 匯出
-    followers: 授權關注
     import: 匯入
     migrate: 帳戶遷移
     notifications: 通知

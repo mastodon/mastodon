@@ -18,7 +18,11 @@ module Expireable
     end
 
     def expired?
-      !expires_at.nil? && expires_at < Time.now.utc
+      expires? && expires_at < Time.now.utc
+    end
+
+    def expires?
+      !expires_at.nil?
     end
   end
 end

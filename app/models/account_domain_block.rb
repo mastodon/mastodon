@@ -12,6 +12,7 @@
 
 class AccountDomainBlock < ApplicationRecord
   include Paginable
+  include DomainNormalizable
 
   belongs_to :account
   validates :domain, presence: true, uniqueness: { scope: :account_id }

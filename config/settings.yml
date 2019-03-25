@@ -9,7 +9,7 @@ defaults: &defaults
   site_terms: ''
   site_contact_username: ''
   site_contact_email: ''
-  open_registrations: true
+  registrations_mode: 'open'
   profile_directory: true
   closed_registrations_message: ''
   open_deletion: true
@@ -26,6 +26,7 @@ defaults: &defaults
   expand_spoilers: false
   preview_sensitive_media: false
   reduce_motion: false
+  show_application: true
   system_font_ui: false
   noindex: false
   theme: 'default'

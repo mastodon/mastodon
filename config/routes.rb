@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
   get '.well-known/change-password', to: redirect('/auth/edit')
+  get '.well-known/keybase-proof-config', to: 'well_known/keybase_proof_config#show'
+
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
   get 'custom.css', to: 'custom_css#show', as: :custom_css
@@ -56,6 +58,7 @@ Rails.application.routes.draw do
       member do
         get :activity
         get :embed
+        get :replies
       end
     end
 
@@ -74,6 +77,7 @@ Rails.application.routes.draw do
   get '/@:username', to: 'accounts#show', as: :short_account
   get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
   get '/@:username/media', to: 'accounts#show', as: :short_account_media
+  get '/@:username/tagged/:tag', to: 'accounts#show', as: :short_account_tag
   get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
   get '/@:account_username/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
 
@@ -104,7 +108,7 @@ Rails.application.routes.draw do
       resource :confirmation, only: [:new, :create]
     end
 
-    resource :follower_domains, only: [:show, :update]
+    resources :identity_proofs, only: [:index, :show, :new, :create, :update]
 
     resources :applications, except: [:edit] do
       member do
@@ -116,6 +120,7 @@ Rails.application.routes.draw do
     resource :migration, only: [:show, :update]
 
     resources :sessions, only: [:destroy]
+    resources :featured_tags, only: [:index, :create, :destroy]
   end
 
   resources :media, only: [:show] do
@@ -126,7 +131,9 @@ Rails.application.routes.draw do
   resources :emojis, only: [:show]
   resources :invites, only: [:index, :create, :destroy]
   resources :filters, except: [:show]
+  resource :relationships, only: [:show, :update]
 
+  get '/public', to: 'public_timelines#show', as: :public_timeline
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 
   # Remote follow
@@ -183,6 +190,8 @@ Rails.application.routes.draw do
         post :remove_avatar
         post :remove_header
         post :memorialize
+        post :approve
+        post :reject
       end
 
       resource :change_email, only: [:show, :update]
@@ -243,6 +252,9 @@ Rails.application.routes.draw do
     # OEmbed
     get '/oembed', to: 'oembed#show', as: :oembed
 
+    # Identity proofs
+    get :proofs, to: 'proofs#index'
+
     # JSON / REST API
     namespace :v1 do
       resources :statuses, only: [:create, :show, :destroy] do
@@ -280,6 +292,7 @@ Rails.application.routes.draw do
       resources :custom_emojis, only: [:index]
       resources :suggestions, only: [:index, :destroy]
       resources :scheduled_statuses, only: [:index, :show, :update, :destroy]
+      resources :preferences, only: [:index]
 
       resources :conversations, only: [:index, :destroy] do
         member do
@@ -357,6 +370,10 @@ Rails.application.routes.draw do
 
       resources :lists, only: [:index, :create, :show, :update, :destroy] do
         resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'
+      end
+
+      resources :polls, only: [:create, :show] do
+        resources :votes, only: :create, controller: 'polls/votes'
       end
 
       namespace :push do

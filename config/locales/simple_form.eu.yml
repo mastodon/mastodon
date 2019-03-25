@@ -33,11 +33,14 @@ eu:
         setting_display_media_show_all: Erakutsi beti hunkigarri gisa markatutako multimedia
         setting_hide_network: Nor jarraitzen duzun eta nork jarraitzen zaituen ez da bistaratuko zure profilean
         setting_noindex: Zure profil publiko eta Toot-en orrietan eragina du
+        setting_show_application: Tootak bidaltzeko erabiltzen duzun aplikazioa zure tooten ikuspegi xehetsuan bistaratuko da
         setting_theme: Edozein gailutik konektatzean Mastodon-en itxuran eragiten du.
         username: Zure erabiltzaile-izena bakana izango da %{domain} domeinuan
         whole_word: Hitz eta esaldi gakoa alfanumerikoa denean, hitz osoarekin bat datorrenean besterik ez da aplikatuko
+      featured_tag:
+        name: 'Hauetakoren bat erabili zenezake:'
       imports:
-        data: Beste Mastodon instantzia batetik esportatutako CSV fitxategia
+        data: Beste Mastodon zerbitzari batetik esportatutako CSV fitxategia
       sessions:
         otp: 'Sartu zure telefonoko aplikazioak sortutako bi faktoreetako kodea, edo erabili zure berreskuratze kodeetako bat:'
       user:
@@ -57,6 +60,7 @@ eu:
           disable: Desaktibatu
           none: Ez egin ezer
           silence: Isiltarazi
+          suspend: Kanporatu eta behin betiko ezabatu kontuko datuak
         warning_preset_id: Erabili aurre-ezarritako abisu bat
       defaults:
         autofollow: Gonbidatu zure kontua jarraitzera
@@ -99,6 +103,7 @@ eu:
         setting_hide_network: Ezkutatu zure sarea
         setting_noindex: Atera bilaketa motorraren indexaziotik
         setting_reduce_motion: Murriztu animazioen mugimenduak
+        setting_show_application: Utzi agerian tootak bidaltzeko erabilitako aplikazioa
         setting_system_font_ui: Erabili sistemako tipografia lehenetsia
         setting_theme: Gunearen gaia
         setting_unfollow_modal: Erakutsi baieztapen elkarrizketa-koadroa inor jarraitzeari utzi aurretik
@@ -107,6 +112,8 @@ eu:
         username: Erabiltzaile-izena
         username_or_email: Erabiltzaile-izena edo e-mail helbidea
         whole_word: Hitz osoa
+      featured_tag:
+        name: Traola
       interactions:
         must_be_follower: Blokeatu jarraitzaile ez direnen jakinarazpenak
         must_be_following: Blokeatu zuk jarraitzen ez dituzunen jakinarazpenak

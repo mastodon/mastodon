@@ -1,73 +1,166 @@
 ---
 tr:
   about:
+    about_hashtag_html: Bunlar <strong>#%{hashtag}X</strong> ile etiketlenen genel paylaşımlar. Açık alanda herhangi bir yerde bir hesabınız varsa, onlarla etkileşime geçebilirsiniz.
     about_mastodon_html: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezileştirilmemiş</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir.
     about_this: Bu sunucu hakkında
-    closed_registrations: Bu sunucu şu anda yeni kayıt almamaktadır.
+    administered_by: 'Tarafından yönetildi:'
+    api: API
+    apps: Mobil uygulamalar
     contact: İletişim
-    other_instances: Diğer sunucular
+    contact_missing: Ayarlanmadı
+    contact_unavailable: Yok
+    documentation: Belgeler
+    extended_description_html: |
+      <h3>Kural için iyi bir yer</h3>
+      <p>Genişletilmiş açıklama henüz ayarlanmamış.</p>
+    generic_description: "%{domain} ağdaki bir sunucudur"
+    hosted_on: Mastodon %{domain} üzerinde barındırılıyor
+    learn_more: Daha fazla bilgi edinin
+    privacy_policy: Gizlilik politikası
     source_code: Kaynak kodu
-    status_count_after: adet gönderi yazıldı.
+    status_count_after:
+      one: durum
+      other: durum
     status_count_before: Şu ana kadar
-    user_count_after: kullanıcı var.
+    terms: Kullanım şartları
+    user_count_after:
+      one: kullanıcı
+      other: kullanıcı
     user_count_before: Kayıtlı
+    what_is_mastodon: Mastodon nedir?
   accounts:
+    choices_html: "%{name} seçimleri:"
     follow: Takip et
-    followers: Takipçiler
+    followers:
+      one: Takipçi
+      other: Takipçi
     following: Takip ediliyor
+    joined: "%{date} tarihinde katıldı"
+    link_verified_on: Bu bağlantının mülkiyeti %{date} tarihinde kontrol edildi
+    media: Medya
+    moved_html: "%{name}, %{new_profile_link} adresine taşındı:"
+    network_hidden: Bu bilgi mevcut değil
     nothing_here: Burada henüz hiçbir gönderi yok!
     people_followed_by: Kullanıcı %{name}'in takip ettikleri
     people_who_follow: Kullanıcı %{name}'i takip edenler
-    posts: Gönderiler
+    pin_errors:
+      following: Onaylamak istediğiniz kişiyi zaten takip ediyor olmalısınız
+    posts:
+      one: Toot
+      other: Tootlar
+    posts_tab_heading: Tootlar
+    posts_with_replies: Tootlar ve yanıtlar
+    reserved_username: Kullanıcı adı saklıdır
+    roles:
+      admin: Yönetici
+      bot: Bot
+      moderator: Denetleyici
     unfollow: Takibi bırak
   admin:
+    account_actions:
+      action: Eylemi gerçekleştir
+    account_moderation_notes:
+      create: Not bırakın
+      created_msg: Denetim notu başarıyla oluşturuldu!
+      delete: Sil
+      destroyed_msg: Denetim notu başarıyla yok edildi!
     accounts:
       are_you_sure: Emin misiniz?
+      by_domain: Sunucu
+      change_email:
+        changed_msg: Hesap e-postası başarıyla değiştirildi!
+        current_email: Mevcut e-posta
+        label: E-postayı değiştir
+        new_email: Yeni e-posta
+        submit: E-postayı değiştir
+        title: "%{username} için e-postayı değiştir"
       confirm: Onayla
       confirmed: Onaylandı
       confirming: Onaylama
+      deleted: Silinen
+      disable: Devre dışı
+      disable_two_factor_authentication: 2AD kapat
+      disabled: Kapalı
       display_name: Görünen adınız
       domain: Sunucu
       edit: Düzenle
       email: E-posta
-      email_status: Email Durumu
+      email_status: E-posta durumu
+      enable: Etkinleştir
+      enabled: Etkin
       feed_url: Besleme linki
       followers: Takipçiler
+      followers_url: Takipçi bağlantısı
       follows: Takip edilen
+      header: Üstbilgi
+      inbox_url: Gelen kutusu bağlantısı
+      invited_by: Tarafından davet edildi
+      ip: IP
+      joined: Katıldı
       location:
         all: Hepsi
         local: Yerel
         remote: Uzaktan
         title: Konum
+      login_status: Giriş durumu
       media_attachments: Medya ekleri
+      memorialize: Bir hatıraya dön
       moderation:
         all: Hepsi
         silenced: Susturulanlar
         suspended: Uzaklaştırılanlar
         title: Yönetim
+      moderation_notes: Denetleme notları
       most_recent_activity: Son aktivite
       most_recent_ip: Son IP
       not_subscribed: Abone edilmedi
-      perform_full_suspension: Tamamen uzaklaştır
+      perform_full_suspension: Askıya al
       profile_url: Profil linki
+      promote: Yükselt
+      protocol: Protokol
       public: Herkese açık
       push_subscription_expires: PuSH aboneliği dolumu
+      redownload: Profili yenile
+      remove_avatar: Avatarı kaldır
+      remove_header: Üstbilgiyi kaldır
       resend_confirmation:
         already_confirmed: Bu kullanıcı zaten onaylandı
         send: Doğrulama epostasını yeniden gönder
         success: Onay e-postası başarıyla gönderildi!
+      reset: Sıfırla
       reset_password: Parolayı değiştir
+      resubscribe: Yeniden abone ol
+      role: İzinler
+      roles:
+        admin: Yönetici
+        moderator: Denetleyici
+        staff: Personel
+        user: Kullanıcı
       salmon_url: Salmon Linki
+      search: Ara
+      shared_inbox_url: Paylaşılan gelen kutusu bağlantısı
       show:
-        created_reports: Bu hesap tarafından gelen şikayetler
-        targeted_reports: Bu hesaba gelen şikayetler
+        created_reports: Yapılan şikayetler
+        targeted_reports: Başkaları tarafından şikayet edildi
       silence: Sustur
+      silenced: Susturulmuş
       statuses: Durumlar
+      subscribe: Abone ol
+      suspended: Askıya alındı
       title: Hesaplar
+      unconfirmed_email: Onaylanmamış e-posta
       undo_silenced: Susturmayı geri al
       undo_suspension: Uzaklaştırmayı geri al
+      unsubscribe: Abonelikten çık
       username: Kullanıcı adı
+      warn: Uyar
       web: Web
+    action_logs:
+      actions:
+        confirm_user: "%{name} %{target} kullanıcısının e-posta adresini onayladı"
+        create_custom_emoji: "%{name} yeni ifade yükledi %{target}"
+        disable_2fa_user: "%{name}, %{target} kullanıcısı için iki adım gereksinimini kapattı"
     domain_blocks:
       add_new: Yeni ekle
       created_msg: Domain bloğu şu an işleniyor
@@ -114,8 +207,6 @@ tr:
         closed_message:
           desc_html: Kayıt alımları kapatıldığında ana sayfada görüntülenecek mesajdır. <br> HTML etiketleri kullanabilirsiniz
           title: Kayıt alımları kapatılma mesajı
-        open:
-          title: Kayıt alımları
       site_description:
         desc_html: Ana sayfada paragraf olarak görüntülenecek bilgidir.<br>Özellikle <code>&lt;a&gt;</code> ve <code>&lt;em&gt;</code> olmak suretiyle HTML etiketlerini kullanabilirsiniz.
         title: Site açıklaması
@@ -131,7 +222,15 @@ tr:
       last_delivery: Son gönderim
       title: WebSub
       topic: Konu
+    tags:
+      accounts: Hesaplar
+      name: Etiketler
+      title: Etiketler
     title: Yönetim
+    warning_presets:
+      add_new: Yeni ekle
+      delete: Sil
+      edit: Düzenle
   application_mailer:
     settings: 'E-mail tercihlerini değiştir: %{link}'
     view: 'Görüntüle:'
@@ -178,18 +277,6 @@ tr:
     follows: Takip ettikleriniz
     mutes: Susturduklarınız
     storage: Ortam deposu
-  followers:
-    domain: Domain
-    explanation_html: Eğer gönderilerinizin gizliliğini garanti altına almak istiyorsanız, sizi kimin takip ettiğinden emin olmak zorundasınız. <strong> Gizli gönderileriniz, takipçilerinizin olduğu bütün sunuculara iletilir</strong>. Gönderilerinizi gözden geçirmek isteyebilir, ve o sunuculardaki yazılımın veya ilgili çalışanın, gizliliğinizi suistimal edeceğinizi düşünüyorsanız, o sunucudaki takipçilerinizi silebilirsiniz.
-    followers_count: Takipçi sayısı
-    lock_link: Hesabımı kilitle
-    purge: Takipçilerimden çıkar
-    success:
-      one: Domaindeki takipçilerin engellenmesi sürüyor...
-      other: "%{count} domaindeki takipçilerin engellenmesi sürüyor..."
-    true_privacy_html: 'Lütfen aklınızda bulundurun: <strong>gerçek gizlilik yalnızca uçtan-uca şifreleme ile sağlanır</strong>.'
-    unlocked_warning_html: Herhangi bir kişi sizi takip edebilir ve paylaştığınız gizli gönderilerinizi görebilir. %{lock_link}'e tıklayarak takipçilerinizi gözden geçirebilir ve reddedebilirsiniz.
-    unlocked_warning_title: Hesabınız kilitlendi
   generic:
     changes_saved_msg: Değişiklikler başarıyla kaydedildi!
     save_changes: Değişiklikleri kaydet
@@ -258,7 +345,6 @@ tr:
     back: Mastodon'a geri dön
     edit_profile: Profili düzenle
     export: Dışa aktar
-    followers: İzin verilmiş takipçiler
     import: İçe aktar
     preferences: Tercihler
     settings: Ayarlar

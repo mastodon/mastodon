@@ -33,11 +33,14 @@ ja:
         setting_display_media_show_all: 閲覧注意としてマークされたメディアも常に表示する
         setting_hide_network: フォローとフォロワーの情報がプロフィールページで見られないようにします
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
+        setting_show_application: トゥートするのに使用したアプリがトゥートの詳細ビューに表示されるようになります
         setting_theme: ログインしている全てのデバイスで適用されるデザインです。
         username: あなたのユーザー名は %{domain} の中で重複していない必要があります
         whole_word: キーワードまたはフレーズが英数字のみの場合、単語全体と一致する場合のみ適用されるようになります
+      featured_tag:
+        name: 'これらを使うといいかもしれません:'
       imports:
-        data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
+        data: 他の Mastodon サーバーからエクスポートしたCSVファイルを選択して下さい
       sessions:
         otp: '携帯電話のアプリで生成された二段階認証コードを入力するか、リカバリーコードを使用してください:'
       user:
@@ -100,6 +103,7 @@ ja:
         setting_hide_network: 繋がりを隠す
         setting_noindex: 検索エンジンによるインデックスを拒否する
         setting_reduce_motion: アニメーションの動きを減らす
+        setting_show_application: トゥートの送信に使用したアプリを開示する
         setting_system_font_ui: システムのデフォルトフォントを使う
         setting_theme: サイトテーマ
         setting_unfollow_modal: フォローを解除する前に確認ダイアログを表示する
@@ -108,6 +112,8 @@ ja:
         username: ユーザー名
         username_or_email: ユーザー名またはメールアドレス
         whole_word: 単語全体にマッチ
+      featured_tag:
+        name: ハッシュタグ
       interactions:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック

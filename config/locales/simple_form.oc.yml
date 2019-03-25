@@ -33,11 +33,14 @@ oc:
         setting_display_media_show_all: Totjorn mostrar los mèdias marcats coma sensibles
         setting_hide_network: Vòstre perfil mostrarà pas los que vos sègon e lo monde que seguètz
         setting_noindex: Aquò es destinat a vòstre perfil public e vòstra pagina d’estatuts
+        setting_show_application: Lo nom de l’aplicacion qu’utilizatz per publicar serà mostrat dins la vista detalhada de vòstres tuts
         setting_theme: Aquò càmbia lo tèma grafic de Mastodon quand sètz connectat qual que siasque lo periferic.
         username: Vòstre nom d’utilizaire serà unic sus %{domain}
         whole_word: Quand lo mot-clau o frasa es solament alfranumeric, serà pas qu’aplicat se correspond al mot complèt
+      featured_tag:
+        name: 'Benlèu que volètz utilizar una d’aquestas causas :'
       imports:
-        data: Fichièr CSV exportat d’una autra instància Mastodon
+        data: Fichièr CSV exportat d’un autre servidor Mastodon
       sessions:
         otp: 'Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstra aplicacion mobil o utilizatz un de vòstres còdis de recuperacion :'
       user:
@@ -100,6 +103,7 @@ oc:
         setting_hide_network: Amagar vòstre malhum
         setting_noindex: Èsser pas indexat pels motors de recèrca
         setting_reduce_motion: Reduire la velocitat de las animacions
+        setting_show_application: Revelar lo nom de l’aplicacion utilizada per enviar de tuts
         setting_system_font_ui: Utilizar la polissa del sistèma
         setting_theme: Tèma del site
         setting_unfollow_modal: Mostrar una confirmacion abans de quitar de sègre qualqu’un
@@ -108,6 +112,8 @@ oc:
         username: Nom d’utilizaire
         username_or_email: Nom d’utilizaire o corrièl
         whole_word: Mot complèt
+      featured_tag:
+        name: Etiqueta
       interactions:
         must_be_follower: Blocar las notificacions del mond que vos sègon pas
         must_be_following: Blocar las notificacions del mond que seguètz pas

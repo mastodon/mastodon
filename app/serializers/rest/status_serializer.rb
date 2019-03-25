@@ -12,7 +12,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attribute :pinned, if: :pinnable?
 
   belongs_to :reblog, serializer: REST::StatusSerializer
-  belongs_to :application
+  belongs_to :application, if: :show_application?
   belongs_to :account, serializer: REST::AccountSerializer
 
   has_many :media_attachments, serializer: REST::MediaAttachmentSerializer
@@ -21,6 +21,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   has_many :emojis, serializer: REST::CustomEmojiSerializer
 
   has_one :preview_card, key: :card, serializer: REST::PreviewCardSerializer
+  has_one :poll, serializer: REST::PollSerializer
 
   def id
     object.id.to_s
@@ -36,6 +37,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
 
   def current_user?
     !current_user.nil?
+  end
+
+  def show_application?
+    object.account.user_shows_application? || (current_user? && current_user.account_id == object.account_id)
   end
 
   def visibility

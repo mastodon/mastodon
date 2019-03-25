@@ -63,4 +63,17 @@
         - @endorsed_accounts.each do |account|
           = account_link_to account
 
+    - @account.featured_tags.order(statuses_count: :desc).each do |featured_tag|
+      .directory__tag{ class: params[:tag] == featured_tag.name ? 'active' : nil }
+        = link_to short_account_tag_path(@account, featured_tag.tag) do
+          %h4
+            = fa_icon 'hashtag'
+            = featured_tag.name
+            %small
+              - if featured_tag.last_status_at.nil?
+                = t('accounts.nothing_here')
+              - else
+                %time{ datetime: featured_tag.last_status_at.iso8601, title: l(featured_tag.last_status_at) }= l featured_tag.last_status_at
+          .trends__item__current= number_to_human featured_tag.statuses_count, strip_insignificant_zeros: true
+
     = render 'application/sidebar'

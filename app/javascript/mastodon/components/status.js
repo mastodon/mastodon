@@ -15,6 +15,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { MediaGallery, Video } from '../features/ui/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import classNames from 'classnames';
+import Icon from 'mastodon/components/icon';
+import PollContainer from 'mastodon/containers/poll_container';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -249,7 +251,7 @@ class Status extends ImmutablePureComponent {
     if (featured) {
       prepend = (
         <div className='status__prepend'>
-          <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-thumb-tack status__prepend-icon' /></div>
+          <div className='status__prepend-icon-wrapper'><Icon id='thumb-tack' className='status__prepend-icon' fixedWidth /></div>
           <FormattedMessage id='status.pinned' defaultMessage='Pinned toot' />
         </div>
       );
@@ -258,7 +260,7 @@ class Status extends ImmutablePureComponent {
 
       prepend = (
         <div className='status__prepend'>
-          <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
+          <div className='status__prepend-icon-wrapper'><Icon id='retweet' className='status__prepend-icon' fixedWidth /></div>
           <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><bdi><strong dangerouslySetInnerHTML={display_name_html} /></bdi></a> }} />
         </div>
       );
@@ -269,7 +271,9 @@ class Status extends ImmutablePureComponent {
       status  = status.get('reblog');
     }
 
-    if (status.get('media_attachments').size > 0) {
+    if (status.get('poll')) {
+      media = <PollContainer pollId={status.get('poll')} />;
+    } else if (status.get('media_attachments').size > 0) {
       if (this.props.muted || status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
         media = (
           <AttachmentList
