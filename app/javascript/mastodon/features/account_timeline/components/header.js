@@ -2,7 +2,6 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import InnerHeader from '../../account/components/header';
-import ActionBar from '../../account/components/action_bar';
 import MissingIndicator from '../../../components/missing_indicator';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import MovedNote from './moved_note';
@@ -25,6 +24,7 @@ export default class Header extends ImmutablePureComponent {
     onEndorseToggle: PropTypes.func.isRequired,
     onAddToList: PropTypes.func.isRequired,
     hideTabs: PropTypes.bool,
+    domain: PropTypes.string.isRequired,
   };
 
   static contextTypes = {
@@ -98,20 +98,7 @@ export default class Header extends ImmutablePureComponent {
           account={account}
           onFollow={this.handleFollow}
           onBlock={this.handleBlock}
-        />
-
-        <ActionBar
-          account={account}
-          onBlock={this.handleBlock}
-          onMention={this.handleMention}
-          onDirect={this.handleDirect}
-          onReblogToggle={this.handleReblogToggle}
-          onReport={this.handleReport}
-          onMute={this.handleMute}
-          onBlockDomain={this.handleBlockDomain}
-          onUnblockDomain={this.handleUnblockDomain}
-          onEndorseToggle={this.handleEndorseToggle}
-          onAddToList={this.handleAddToList}
+          domain={this.props.domain}
         />
 
         {!hideTabs && (
