@@ -25,6 +25,7 @@ export default class Header extends ImmutablePureComponent {
     onEndorseToggle: PropTypes.func.isRequired,
     onAddToList: PropTypes.func.isRequired,
     hideTabs: PropTypes.bool,
+    domain: PropTypes.string.isRequired,
   };
 
   static contextTypes = {
@@ -98,20 +99,11 @@ export default class Header extends ImmutablePureComponent {
           account={account}
           onFollow={this.handleFollow}
           onBlock={this.handleBlock}
+          domain={this.props.domain}
         />
 
         <ActionBar
           account={account}
-          onBlock={this.handleBlock}
-          onMention={this.handleMention}
-          onDirect={this.handleDirect}
-          onReblogToggle={this.handleReblogToggle}
-          onReport={this.handleReport}
-          onMute={this.handleMute}
-          onBlockDomain={this.handleBlockDomain}
-          onUnblockDomain={this.handleUnblockDomain}
-          onEndorseToggle={this.handleEndorseToggle}
-          onAddToList={this.handleAddToList}
         />
 
         {!hideTabs && (
