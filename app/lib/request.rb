@@ -194,17 +194,23 @@ class Request
               sock     = ::Socket.new(::Socket::AF_INET, ::Socket::SOCK_STREAM, 0)
               sockaddr = ::Socket.pack_sockaddr_in(port, address.to_s)
 
+              sock.setsockopt(::Socket::IPPROTO_TCP, ::Socket::TCP_NODELAY, 1)
+
               begin
                 sock.connect_nonblock(sockaddr)
               rescue IO::WaitWritable
-                IO.select(nil, [sock], nil, Request::TIMEOUT[:connect])
-
-                begin
-                  sock.connect_nonblock(sockaddr)
-                rescue Errno::EALREADY
+                if IO.select(nil, [sock], nil, Request::TIMEOUT[:connect])
+                  begin
+                    sock.connect_nonblock(sockaddr)
+                  rescue Errno::EISCONN
+                    # Yippee!
+                  rescue
+                    sock.close
+                    raise
+                  end
+                else
+                  sock.close
                   raise HTTP::TimeoutError, "Connect timed out after #{Request::TIMEOUT[:connect]} seconds"
-                rescue Errno::EISCONN
-                  # Yippee!
                 end
               end
 

@@ -78,7 +78,7 @@ class RequestPool
     end
   end
 
-  MAX_IDLE_TIME = 300
+  MAX_IDLE_TIME = 90
 
   class Connection
     attr_reader :last_used_at, :created_at, :in_use, :dead, :fresh
