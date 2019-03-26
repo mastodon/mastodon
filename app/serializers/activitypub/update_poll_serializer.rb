@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::UpdatePollSerializer < ActiveModel::Serializer
+class ActivityPub::UpdatePollSerializer < ActivityPub::Serializer
   attributes :id, :type, :actor, :to
 
   has_one :object, serializer: ActivityPub::NoteSerializer
