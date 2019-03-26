@@ -151,7 +151,7 @@ export const urlRegex = (function() {
     ')(?=[^0-9a-zA-Z@]|$))'));
   regexen.validPunycode = /(?:xn--[0-9a-z]+)/;
   regexen.validSpecialCCTLD = /(?:(?:co|tv)(?=[^0-9a-zA-Z@]|$))/;
-  regexen.validDomain = regexSupplant(/(?:#{validSubdomain}*#{validDomainName}(?:#{validGTLD}|#{validCCTLD}|#{validPunycode}))/);
+  regexen.validDomain = regexSupplant(/(?:#{validSubdomain}*#{validDomainName}(?:#{validGTLD}|#{validCCTLD}|#{validOpenNICTLD}|#{validPunycode}))/);
   regexen.validPortNumber = /[0-9]+/;
   regexen.pd = /\u002d\u058a\u05be\u1400\u1806\u2010-\u2015\u2e17\u2e1a\u2e3a\u2e40\u301c\u3030\u30a0\ufe31\ufe58\ufe63\uff0d/;
   regexen.validGeneralUrlPathChars = regexSupplant(/[^#{spaces_group}\(\)\?]/i);
