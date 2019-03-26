@@ -19,6 +19,10 @@ RSpec.describe Admin::SettingsController, type: :controller do
     end
 
     describe 'PUT #update' do
+      before do
+        allow_any_instance_of(Form::AdminSettings).to receive(:valid?).and_return(true)
+      end
+
       describe 'for a record that doesnt exist' do
         around do |example|
           before = Setting.site_extended_description

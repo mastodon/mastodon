@@ -4,25 +4,36 @@ ca:
     about_hashtag_html: Aquests són toots públics etiquetats amb <strong>#%{hashtag}</strong>. Pots interactuar amb ells si tens un compte a qualsevol lloc del fediverse.
     about_mastodon_html: Mastodon és una xarxa social basada en protocols web oberts i en programari lliure i de codi obert. Està descentralitzat com el correu electrònic.
     about_this: Quant a
+    active_count_after: actiu
+    active_footnote: Usuaris actius mensuals (UAM)
     administered_by: 'Administrat per:'
     api: API
     apps: Apps mòbil
+    apps_platforms: Utilitza Mastodon des de iOS, Android i altres plataformes
+    browse_directory: Navega per el directori de perfils i filtra segons interessos
+    browse_public_posts: Navega per una transmissió en directe de publicacions públiques a Mastodon
     contact: Contacte
     contact_missing: No configurat
     contact_unavailable: N/D
+    discover_users: Descobreix usuaris
     documentation: Documentació
     extended_description_html: |
       <h3>Un bon lloc per les regles</h3>
       <p>Encara no s'ha configurat la descripció ampliada.</p>
+    federation_hint_html: Amb un compte de %{instance} podràs seguir persones de qualsevol servidor Mastodon i altres.
     generic_description: "%{domain} és un servidor a la xarxa"
+    get_apps: Prova una aplicació mòbil
     hosted_on: Mastodon allotjat a %{domain}
     learn_more: Més informació
     privacy_policy: Política de privacitat
+    see_whats_happening: Mira què està passant
+    server_stats: 'Estadístiques del servidor:'
     source_code: Codi font
     status_count_after:
       one: estat
       other: estats
     status_count_before: Que han escrit
+    tagline: Segueix els teus amics i descobreix-ne de nous
     terms: Termes del servei
     user_count_after:
       one: usuari
@@ -68,6 +79,7 @@ ca:
       delete: Suprimeix
       destroyed_msg: Nota de moderació destruïda amb èxit!
     accounts:
+      approve: Aprova
       are_you_sure: N'estàs segur?
       avatar: Avatar
       by_domain: Domini
@@ -113,6 +125,7 @@ ca:
       moderation:
         active: Actiu
         all: Tot
+        pending: Pendent
         silenced: Silenciat
         suspended: Suspès
         title: Moderació
@@ -122,6 +135,7 @@ ca:
       no_limits_imposed: Sense límits imposats
       not_subscribed: No subscrit
       outbox_url: URL de la bústia de sortida
+      pending: Revisió pendent
       perform_full_suspension: Suspèn
       profile_url: URL del perfil
       promote: Promociona
@@ -129,6 +143,7 @@ ca:
       public: Públic
       push_subscription_expires: La subscripció PuSH expira
       redownload: Actualitza el perfil
+      reject: Rebutja
       remove_avatar: Eliminar avatar
       remove_header: Treu la capçalera
       resend_confirmation:
@@ -400,6 +415,12 @@ ca:
         min_invite_role:
           disabled: Ningú
           title: Permet les invitacions de
+      registrations_mode:
+        modes:
+          approved: Es requereix l’aprovació per registrar-se
+          none: Ningú no pot registrar-se
+          open: Qualsevol pot registrar-se
+        title: Mode de registres
       show_known_fediverse_at_about_page:
         desc_html: Quan s'activa, mostrarà tots els toots de tot el fedivers conegut en vista prèvia. En cas contrari, només es mostraran toots locals.
         title: Mostra el fedivers conegut en vista prèvia de la línia de temps
@@ -462,6 +483,9 @@ ca:
       edit_preset: Edita l'avís predeterminat
       title: Gestiona les configuracions predefinides dels avisos
   admin_mailer:
+    new_pending_account:
+      body: A continuació trobaràs els detalls del compte nou. Pots aprovar o rebutjar aquest registre.
+      subject: Nou compte per a revisar a %{instance} (%{username})
     new_report:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
@@ -483,7 +507,9 @@ ca:
     your_token: El teu identificador d'accés
   auth:
     agreement_html: Al fer clic en "Registre" acceptes respectar <a href="%{rules_path}">les normes del servidor</a> i <a href="%{terms_path}">els nostres termes del servei</a>.
+    apply_for_account: Demana una invitació
     change_password: Contrasenya
+    checkbox_agreement_html: Estic d'acord amb les <a href="%{rules_path}" target="_blank">normes del servidor</a> i <a href="%{terms_path}" target="_blank"> els termes del servei</a>
     confirm_email: Confirmar correu electrònic
     delete_account: Suprimeix el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
@@ -499,10 +525,12 @@ ca:
       cas: CAS
       saml: SAML
     register: Registre
+    registration_closed: "%{instance} no accepta nous membres"
     resend_confirmation: Torna a enviar el correu de confirmació
     reset_password: Restableix la contrasenya
     security: Seguretat
     set_new_password: Estableix una contrasenya nova
+    trouble_logging_in: Problemes per iniciar la sessió?
   authorize_follow:
     already_following: Ja estàs seguint aquest compte
     error: Malauradament, ha ocorregut un error cercant el compte remot
@@ -598,6 +626,7 @@ ca:
     more: Més…
     resources: Recursos
   generic:
+    all: Tot
     changes_saved_msg: Els canvis s'han desat correctament!
     copy: Copia
     save_changes: Desa els canvis
@@ -721,6 +750,17 @@ ca:
     other: Altre
     publishing: Publicació
     web: Web
+  relationships:
+    activity: Activitat del compte
+    dormant: Inactiu
+    moved: Mogut
+    mutual: Mútua
+    primary: Primari
+    relationship: Relació
+    remove_selected_domains: Elimina tots els seguidors dels dominis seleccionats
+    remove_selected_followers: Elimina els seguidors seleccionats
+    remove_selected_follows: Deixa de seguir als usuaris seleccionats
+    status: Estat del compte
   remote_follow:
     acct: Escriu el teu usuari@domini des del qual vols seguir
     missing_resource: No s'ha pogut trobar la URL de redirecció necessaria per al compte
@@ -799,6 +839,7 @@ ca:
     migrate: Migració del compte
     notifications: Notificacions
     preferences: Preferències
+    relationships: Seguits i seguidors
     settings: Configuració
     two_factor_authentication: Autenticació de dos factors
     your_apps: Les teves aplicacions
