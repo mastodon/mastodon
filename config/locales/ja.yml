@@ -437,7 +437,7 @@ ja:
         desc_html: サイドバーと meta タグに表示されます。Mastodon とは何か、そしてこのサーバーの特別な何かを1段落で記述してください。空欄の場合、サーバーの説明が使用されます。
         title: 短いサーバーの説明
       site_terms:
-        desc_html: あなたは独自のプライバシーポリシーや利用規約、そのほかの法的根拠を書くことができます。HTMLタグが使えます
+        desc_html: 独自のプライバシーポリシーや利用規約、その他の法的根拠を記述できます。HTMLタグが使えます
         title: カスタム利用規約
       site_title: サーバーの名前
       thumbnail:
@@ -736,9 +736,13 @@ ja:
     truncate: "&hellip;"
   polls:
     errors:
-      duplicate_options: 項目が重複しています
-      duration_too_short: 期限が短すぎます
+      duplicate_options: に同じものがあります
+      duration_too_long: が長過ぎます
+      duration_too_short: が短過ぎます
       expired: 既に終了している投票です
+      over_character_limit: は%{max}文字より長くすることはできません
+      too_few_options: は複数必要です
+      too_many_options: は%{max}個までです
   preferences:
     languages: 言語
     other: その他

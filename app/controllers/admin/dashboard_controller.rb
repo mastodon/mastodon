@@ -29,6 +29,7 @@ module Admin
       @hidden_service        = ENV['ALLOW_ACCESS_TO_HIDDEN_SERVICE'] == 'true'
       @trending_hashtags     = TrendingTags.get(7)
       @profile_directory     = Setting.profile_directory
+      @timeline_preview      = Setting.timeline_preview
     end
 
     private

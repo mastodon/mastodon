@@ -4,20 +4,30 @@ cy:
     about_hashtag_html: Dyma dŵtiau cyhoeddus wedi eu tagio gyda <strong>#%{hashtag}</strong>. Gallwch ryngweithio gyda nhw os oes gennych gyfrif yn unrhyw le yn y ffeddysawd.
     about_mastodon_html: Mae Mastodon yn rwydwaith cymdeithasol sy'n seiliedig ar brotocolau gwe a meddalwedd cod agored rhad ac am ddim. Yn debyg i e-bost mae'n ddatganoledig.
     about_this: Ynghylch
+    active_count_after: yn weithgar
+    active_footnote: Nifer Defnyddwyr Gweithgar Misol
     administered_by: 'Gweinyddir gan:'
     api: API
     apps: Apiau symudol
+    apps_platforms: Defnyddio Mastodon o iOS, Android a platfformau eraill
+    browse_directory: Pori cyfeiriadur proffil a hidlo yn ôl diddordebau
+    browse_public_posts: Pori ffrwd fyw o dŵtiau gyhoeddus ar Mastodon
     contact: Cyswllt
     contact_missing: Heb ei osod
     contact_unavailable: Ddim yn berthnasol
+    discover_users: Darganfod defnyddwyr
     documentation: Dogfennaeth
     extended_description_html: |
       <h3>Lle da ar gyfer rheolau</h3>
       <p>Nid yw'r disgrifiad estynedig wedi ei osod eto.</p>
+    federation_hint_html: Mae cyfrif ar %{instance} yn caniatau i chi ddilyn pobl ar unrhyw weinydd Mastodon a mwy.
     generic_description: Mae %{domain} yn un gweinydd yn y rhwydwaith
+    get_apps: Trio ap symudol
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
     learn_more: Dysu mwy
     privacy_policy: Polisi preifatrwydd
+    see_whats_happening: Gweld beth sy'n digwydd
+    server_stats: 'Ystadegau gweinydd:'
     source_code: Cod ffynhonnell
     status_count_after:
       few: statwsau
@@ -27,6 +37,7 @@ cy:
       two: statwsau
       zero: statwsau
     status_count_before: Ysgriffennwyd gan
+    tagline: Dilyn ffrindiau a canfod rhai newydd
     terms: Telerau gwasanaeth
     user_count_after:
       few: defnyddwyr
@@ -84,6 +95,7 @@ cy:
       delete: Dileu
       destroyed_msg: Dinistrwyd nodyn cymedroli yn llwyddiannus!
     accounts:
+      approve: Caniatau
       are_you_sure: Ydych chi'n siŵr?
       avatar: Afatar
       by_domain: Parth
@@ -129,6 +141,7 @@ cy:
       moderation:
         active: Yn weithredol
         all: Popeth
+        pending: Yn yr arfaeth
         silenced: Wedi ei dawelu
         suspended: Wedi ei atal
         title: Cymedroli
@@ -138,6 +151,7 @@ cy:
       no_limits_imposed: Dim terfynau wedi'i gosod
       not_subscribed: Heb danysgrifio
       outbox_url: Allflwch URL
+      pending: Yn disgwyl adolygiad
       perform_full_suspension: Atal
       profile_url: URL proffil
       promote: Hyrwyddo
@@ -145,6 +159,7 @@ cy:
       public: Cyhoeddus
       push_subscription_expires: Tanysgrifiad PuSH yn dod i ben
       redownload: Adnewyddu proffil
+      reject: Gwrthod
       remove_avatar: Dileu afatar
       remove_header: Dileu pennawd
       resend_confirmation:
@@ -424,6 +439,12 @@ cy:
         min_invite_role:
           disabled: Neb
           title: Caniatau gwahoddiadau gan
+      registrations_mode:
+        modes:
+          approved: Mae angen caniatad ar gyfer cofrestru
+          none: Does neb yn cael cofrestru
+          open: Mae pawb yn cael cofrestru
+        title: Modd cofrestru
       show_known_fediverse_at_about_page:
         desc_html: Wedi'i ddewis, bydd yn dangos rhagolwg o dŵtiau o'r holl ffedysawd. Fel arall bydd ond yn dangos tŵtiau lleol.
         title: Dangos ffedysawd hysbys ar ragolwg y ffrwd
@@ -486,6 +507,9 @@ cy:
       edit_preset: Golygu rhagosodiad rhybudd
       title: Rheoli rhagosodiadau rhybudd
   admin_mailer:
+    new_pending_account:
+      body: Mae manylion y cyfrif newydd isod. Mae modd caniatau neu gwrthod y cais hwn.
+      subject: Mae cyfrif newydd i'w adolygu i'w weld ar %{instance} (%{username})
     new_report:
       body: Mae %{reporter} wedi cwyno am %{target}
       body_remote: Mae rhywun o %{domain} wedi cwyno am %{target}
@@ -507,7 +531,9 @@ cy:
     your_token: Eich tocyn mynediad
   auth:
     agreement_html: Wrth glicio "Cofrestru" isod yr ydych yn cytuno i ddilyn <a href="%{rules_path}">y rheolau ar gyfer yr achos hwn</a> a <a href="%{terms_path}">ein termau gwasanaeth</a>.
+    apply_for_account: Gwneud cais am wahoddiad
     change_password: Cyfrinair
+    checkbox_agreement_html: Yr wyf yn cytuno i ddilyn <a href="%{rules_path}" target="_blank">rheolau'r gweinydd</a> a <a href="%{terms_path}" target="_blank">termau'r gwasanaeth</a>
     confirm_email: Cadarnhau e-bost
     delete_account: Dileu cyfrif
     delete_account_html: Os hoffech chi ddileu eich cyfrif, mae modd <a href="%{path}">parhau yma</a>. Bydd gofyn i chi gadarnhau.
@@ -523,10 +549,12 @@ cy:
       cas: CAS
       saml: SAML
     register: Cofrestru
+    registration_closed: Nid yw'r %{instance} yn derbyn aelodau newydd
     resend_confirmation: Ailanfon cyfarwyddiadau cadarnhau
     reset_password: Ailosod cyfrinair
     security: Diogelwch
     set_new_password: Gosod cyfrinair newydd
+    trouble_logging_in: Trafferth yn mewngofnodi?
   authorize_follow:
     already_following: Yr ydych yn dilyn y cyfrif hwn yn barod
     error: Yn anffodus, roedd gwall tra'n edrych am y cyfrif anghysbell
@@ -640,10 +668,13 @@ cy:
     modes:
       merge: Cyfuno
       merge_long: Cadw'r cofnodau presennol ac ychwanegu rhai newydd
+      overwrite: Trosysgrifio
+      overwrite_long: Disodli cofnodau presennol a rhai newydd
     preface: Mae modd mewnforio data yr ydych wedi allforio o achos arall, megis rhestr o bobl yr ydych yn ei ddilyn neu yn blocio.
     success: Uwchlwythwyd eich data yn llwyddiannus ac fe fydd yn cael ei brosesu mewn da bryd
     types:
       blocking: Rhestr blocio
+      domain_blocking: Rhestr blocio parth
       following: Rhestr dilyn
       muting: Rhestr tawelu
     upload: Uwchlwytho
@@ -746,17 +777,38 @@ cy:
     older: Hŷn
     prev: Blaenorol
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Yr ydych wedi pleidleisio'n barod yn y bleidlais hon
+      duplicate_options: cynnwys eitemau dyblyg
+      duration_too_long: yn rhy bell yn y dyfodol
+      duration_too_short: yn rhy fuan
+      expired: Mae'r bleidlais wedi gorffen yn barod
+      over_character_limit: ni all fod yn fwy na %{max} o gymeriadau
+      too_few_options: mae mwy nag un eitem yn angenrheidiol
+      too_many_options: ni all gynnwys mwy na %{max} eitem
   preferences:
     languages: Ieithoedd
     other: Arall
     publishing: Cyhoeddi
     web: Gwe
+  relationships:
+    activity: Gweithgaredd cyfrif
+    dormant: Segur
+    moved: Symudwyd
+    primary: Cynradd
+    relationship: Perthynas
+    remove_selected_domains: Gwaredu pob dilynwr o'r parthau a ddewiswyd
+    remove_selected_followers: Gwaredu'r dilynwyr a ddewiswyd
+    remove_selected_follows: Dad-ddilyn defnyddwyr a ddewiswyd
+    status: Statws cyfrif
   remote_follow:
     acct: Mewnbynnwch eich enwdefnyddiwr@parth yr ydych eisiau gweithredu ohonno
     missing_resource: Ni ellir canfod yr URL ailgyferio angenrheidiol i'ch cyfrif
     no_account_html: Heb gyfrif? Mae modd i chi <a href='%{sign_up_path}' target='_blank'>gofrestru yma</a>
     proceed: Ymlaen i ddilyn
     prompt: 'Yr ydych am ddilyn:'
+    reason_html: "<strong>Pam fod angen y cam hwn?</strong> Gall <code>%{instance}</code> fod yn weinydd gwahanol i'r un yr ydych wedi cofrestru iddo, ac fell mae angen i ni eich allgyfeirio i'ch gweinydd cartref gyntaf."
   remote_unfollow:
     error: Gwall
     title: Teitl

@@ -12,6 +12,7 @@ pt:
       last_attempt: Tens mais uma tentativa antes de a tua conta ficar bloqueada.
       locked: A tua conta está bloqueada.
       not_found_in_database: "%{authentication_keys} ou palavra-passe inválida."
+      pending: A sua conta ainda está a ser analisada.
       timeout: A tua sessão expirou. Por favor, entra de novo para continuares.
       unauthenticated: Precisas de entrar na tua conta ou de te registares antes de continuar.
       unconfirmed: Tens de confirmar o teu endereço de email antes de continuar.
@@ -20,6 +21,7 @@ pt:
         action: Verificar o endereço de e-mail
         action_with_app: Confirmar e regressar a %{app}
         explanation: Criaste uma conta em %{host} com este endereço de e-mail. Estás a um clique de activá-la. Se não foste tu que fizeste este registo, por favor ignora esta mensagem.
+        explanation_when_pending: Você se candidatou a um convite para %{host} com este endereço de e-mail. Depois de confirmar o seu endereço de e-mail, iremos rever a sua candidatura. Você não poderá fazer login até lá. Se a sua candidatura for rejeitada, os seus dados serão removidos, pelo que não será necessária qualquer acção adicional da sua parte. Se não foi você, ignore este e-mail.
         extra_html: Por favor lê <a href="%{terms_path}">as regras da instância</a> e os <a href="%{policy_path}"> nossos termos de serviço</a>.
         subject: 'Mastodon: Instruções de confirmação %{instance}'
         title: Verificar o endereço de e-mail
@@ -60,6 +62,7 @@ pt:
       signed_up: Bem-vindo! A tua conta foi registada com sucesso.
       signed_up_but_inactive: A tua conta foi registada. No entanto ainda não está activa.
       signed_up_but_locked: A tua conta foi registada. No entanto está bloqueada.
+      signed_up_but_pending: Uma mensagem com um link de confirmação foi enviada para o seu endereço de e-mail. Depois de clicar no link, iremos rever a sua candidatura. Você será notificado se for aprovado.
       signed_up_but_unconfirmed: Uma mensagem com um link de confirmação foi enviada para o teu email. Por favor segue esse link para activar a tua conta.
       update_needs_confirmation: Alteraste o teu endereço de email ou palavra-passe, mas é necessário confirmar essa alteração. Por favor vai ao teu email e segue link que te enviámos.
       updated: A tua conta foi actualizada com sucesso.

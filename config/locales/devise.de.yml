@@ -12,6 +12,7 @@ de:
       last_attempt: Du hast noch einen Versuch, bevor dein Konto gesperrt wird.
       locked: Dein Konto ist gesperrt.
       not_found_in_database: "%{authentication_keys} oder Passwort ungültig."
+      pending: Dein Konto wird immer noch überprüft.
       timeout: Deine Sitzung ist abgelaufen. Bitte melde dich erneut an, um fortzufahren.
       unauthenticated: Du musst dich anmelden oder registrieren, bevor du fortfahren kannst.
       unconfirmed: Du musst deine E-Mail-Adresse bestätigen, bevor du fortfahren kannst.
@@ -20,6 +21,7 @@ de:
         action: E-Mail-Adresse verifizieren
         action_with_app: Bestätigen und zu %{app} zurückkehren
         explanation: Du hast einen Account auf %{host} mit dieser E-Mail-Adresse erstellt. Du bist nun einen Klick entfernt vor der Aktivierung. Wenn du das nicht warst, kannst du diese E-Mail ignorieren.
+        explanation_when_pending: Du hast dich für eine Einladung bei %{host} mit dieser E-Mailadresse beworben. Sobald du deine E-Mailadresse bestätigst werden wir deine Anfrage überprüfen. Du kannst dich in dieser Zeit nicht anmelden. Wenn deine Anfrage abgelehnt wird, werden deine Daten entfernt, also wird keine weitere Handlung benötigt. Wenn du das nicht warst kannst du diese E-Mail ignorieren.
         extra_html: Bitte lies auch die <a href="%{terms_path}">Regeln des Servers</a> und <a href="%{policy_path}">unsere Nutzungsbedingungen</a>.
         subject: 'Mastodon: Bestätigung deines Kontos bei %{instance}'
         title: Verifiziere E-Mail-Adresse
@@ -60,6 +62,7 @@ de:
       signed_up: Willkommen! Du hast dich erfolgreich registriert.
       signed_up_but_inactive: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Konto inaktiv ist.
       signed_up_but_locked: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Konto gesperrt ist.
+      signed_up_but_pending: Eine Nachricht mit einem Bestätigungslink wurde an dich per E-Mail geschickt. Nachdem du diesen Link angeklickt hast werden wir deine Anfrage überprüfen. Du wirst benachrichtigt falls die Anfrage angenommen wurde.
       signed_up_but_unconfirmed: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Konto noch nicht bestätigt ist. Du erhältst in Kürze eine E-Mail. Darin ist erklärt, wie du dein Konto freischalten kannst.
       update_needs_confirmation: Deine Daten wurden aktualisiert, aber du musst deine neue E-Mail-Adresse bestätigen. Du erhältst in wenigen Minuten eine E-Mail. Darin ist erklärt, wie du die Änderung deiner E-Mail-Adresse abschließen kannst.
       updated: Deine Daten wurden aktualisiert.
