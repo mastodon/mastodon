@@ -6,7 +6,7 @@ class ActivityPub::UpdatePollSerializer < ActivityPub::Serializer
   has_one :object, serializer: ActivityPub::NoteSerializer
 
   def id
-    [ActivityPub::TagManager.instance.uri_for(object), '#updates/', object.poll.updated_at.to_i].join
+    [ActivityPub::TagManager.instance.uri_for(object), '#updates/', object.preloadable_poll.updated_at.to_i].join
   end
 
   def type
