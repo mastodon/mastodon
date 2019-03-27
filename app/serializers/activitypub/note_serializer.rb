@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-class ActivityPub::NoteSerializer < ActiveModel::Serializer
+class ActivityPub::NoteSerializer < ActivityPub::Serializer
+  context_extensions :atom_uri, :conversation, :sensitive,
+                     :hashtag, :emoji, :focal_point
+
   attributes :id, :type, :summary,
              :in_reply_to, :published, :url,
              :attributed_to, :to, :cc, :sensitive,
@@ -147,7 +150,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
     object.poll&.expired?
   end
 
-  class MediaAttachmentSerializer < ActiveModel::Serializer
+  class MediaAttachmentSerializer < ActivityPub::Serializer
     include RoutingHelper
 
     attributes :type, :media_type, :url, :name
@@ -178,7 +181,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
     end
   end
 
-  class MentionSerializer < ActiveModel::Serializer
+  class MentionSerializer < ActivityPub::Serializer
     attributes :type, :href, :name
 
     def type
@@ -194,7 +197,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
     end
   end
 
-  class TagSerializer < ActiveModel::Serializer
+  class TagSerializer < ActivityPub::Serializer
     include RoutingHelper
 
     attributes :type, :href, :name
@@ -215,8 +218,8 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   class CustomEmojiSerializer < ActivityPub::EmojiSerializer
   end
 
-  class OptionSerializer < ActiveModel::Serializer
-    class RepliesSerializer < ActiveModel::Serializer
+  class OptionSerializer < ActivityPub::Serializer
+    class RepliesSerializer < ActivityPub::Serializer
       attributes :type, :total_items
 
       def type
