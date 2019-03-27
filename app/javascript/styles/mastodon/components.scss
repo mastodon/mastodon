@@ -4128,6 +4128,7 @@ a.status-card.compact:hover {
 
 .confirmation-modal__action-bar,
 .mute-modal__action-bar {
+  .confirmation-modal__secondary-button,
   .confirmation-modal__cancel-button,
   .mute-modal__cancel-button {
     background-color: transparent;
@@ -5299,7 +5300,7 @@ noscript {
     .avatar {
       display: block;
       flex: 0 0 auto;
-      width: 90px;
+      width: 94px;
       margin-left: -2px;
 
       .account__avatar {
@@ -5318,12 +5319,16 @@ noscript {
       display: flex;
       align-items: center;
       padding-top: 55px;
+      overflow: hidden;
 
       .icon-button {
         border: 1px solid lighten($ui-base-color, 12%);
         border-radius: 4px;
         box-sizing: content-box;
         padding: 2px;
+      }
+
+      .button {
         margin: 0 8px;
       }
     }
