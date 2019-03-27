@@ -4,30 +4,19 @@ ru:
     about_hashtag_html: Это публичные статусы, отмеченные хэштегом <strong>#%{hashtag}</strong>. Вы можете взаимодействовать с ними при наличии у Вас аккаунта в глобальной сети Mastodon.
     about_mastodon_html: Mastodon - это <em>свободная</em> социальная сеть с <em>открытым исходным кодом</em>. Как <em>децентрализованная</em> альтернатива коммерческим платформам, Mastodon предотвращает риск монополизации Вашего общения одной компанией. Выберите сервер, которому Вы доверяете &mdash; что бы Вы ни выбрали, Вы сможете общаться со всеми остальными. Любой может запустить свой собственный узел Mastodon и участвовать в <em>социальной сети</em> совершенно бесшовно.
     about_this: Об этом узле
-    active_count_after: деятельный
-    active_footnote: Ежемесячные активные пользователи (ЕAП)
     administered_by: 'Администратор узла:'
     api: API
     apps: Приложения
-    apps_platforms: Используйте Mastodon с iOS, Android и других платформ
-    browse_directory: Просмотр каталога профилей и фильтрация по интересам
-    browse_public_posts: Просмотрите прямую трансляцию публичных сообщений на Мастодоне
     contact: Связаться
     contact_missing: Не установлено
     contact_unavailable: Недоступен
-    discover_users: Обнаружить пользователей
-    documentation: Документация
     extended_description_html: |
       <h3>Хорошее место для правил</h3>
       <p>Расширенное описание еще не настроено.</p>
-    federation_hint_html: Имея учетную запись на %{instance}, вы сможете следить за людьми на любом сервере Mastodon и за его пределами.
     generic_description: "%{domain} - один из серверов сети"
-    get_apps: Попробуйте мобильное приложение
     hosted_on: Mastodon размещен на %{domain}
     learn_more: Узнать больше
     privacy_policy: Политика конфиденциальности
-    see_whats_happening: Посмотрим, что происходит
-    server_stats: 'Статистика сервера:'
     source_code: Исходный код
     status_count_after:
       few: статуса
@@ -35,7 +24,6 @@ ru:
       one: статус
       other: статусов
     status_count_before: Опубликовано
-    tagline: Следите за друзьями и открывайте для себя новых
     terms: Условия использования
     user_count_after:
       few: пользователя
@@ -54,8 +42,6 @@ ru:
       other: подписчиков
     following: подписки
     joined: 'Дата регистрации: %{date}'
-    last_active: последний активный
-    link_verified_on: Владение этой ссылкой было проверено в %{date}
     media: Медиа
     moved_html: "%{name} переехал(а) на %{new_profile_link}:"
     network_hidden: Эта информация недоступна
@@ -78,30 +64,25 @@ ru:
       moderator: Модератор
     unfollow: Отписаться
   admin:
-    account_actions:
-      action: Выполнить действие
-      title: Выполните умеренное действие на %{acct}
     account_moderation_notes:
       create: Создать
       created_msg: Заметка модератора успешно создана!
       delete: Удалить
       destroyed_msg: Заметка модератора успешно удалена!
     accounts:
-      approve: Одобрить
       are_you_sure: Вы уверены?
       avatar: Аватар
       by_domain: Домен
       change_email:
         changed_msg: E-mail аккаунта успешно изменён!
-        current_email: Текущая электронная почта
-        label: Изменить адрес электронной почты
-        new_email: Новое сообщение электронной почты
-        submit: Изменить адрес электронной почты
-        title: Изменить адрес электронной почты для %{username}
+        current_email: Текущий e-mail
+        label: Сменить e-mail
+        new_email: Новый e-mail
+        submit: Сменить e-mail
+        title: Сменить e-mail для %{username}
       confirm: Подтвердить
       confirmed: Подтверждено
       confirming: Подтверждение
-      deleted: Удаленный
       demote: Разжаловать
       disable: Отключить
       disable_two_factor_authentication: Отключить 2FA
@@ -109,19 +90,16 @@ ru:
       display_name: Отображаемое имя
       domain: Домен
       edit: Изменить
-      email: электронная почта
-      email_status: Состояние электронной почты
+      email: E-mail
+      email_status: Статус e-mail
       enable: Включить
       enabled: Включен
       feed_url: URL фида
       followers: Подписчики
       followers_url: URL подписчиков
       follows: Подписки
-      header: Заголовок
       inbox_url: URL входящих
-      invited_by: По приглашению
       ip: IP
-      joined: Присоединился
       location:
         all: Все
         local: Локальные
@@ -131,29 +109,23 @@ ru:
       media_attachments: Мультимедийные вложения
       memorialize: Превратить в Памятник
       moderation:
-        active: Активный
         all: Все
-        pending: В ожидании
         silenced: Заглушенные
         suspended: Заблокированные
         title: Модерация
       moderation_notes: Заметки модератора
       most_recent_activity: Последняя активность
       most_recent_ip: Последний IP
-      no_limits_imposed: Никаких ограничений
       not_subscribed: Не подписаны
       outbox_url: URL исходящих
-      pending: Ожидаемый обзор
-      perform_full_suspension: приостанавливать
+      perform_full_suspension: Полная блокировка
       profile_url: URL профиля
       promote: Повысить
       protocol: Протокол
       public: Публичный
       push_subscription_expires: Подписка PuSH истекает
-      redownload: Обновить профиль
-      reject: Отклонить
+      redownload: Обновить аватар
       remove_avatar: Удалить аватар
-      remove_header: Удалить заголовок
       resend_confirmation:
         already_confirmed: Этот пользователь уже подтвержден
         send: Повторно отправить подтверждение по электронной почте
@@ -167,36 +139,31 @@ ru:
         moderator: Модератор
         staff: Персонал
         user: Пользователь
-      salmon_url: URL-адрес лосося
+      salmon_url: Salmon URL
       search: Поиск
-      shared_inbox_url: URL-адрес общей папки входящих сообщений
+      shared_inbox_url: URL общих входящих
       show:
-        created_reports: Составленные отчеты
-        targeted_reports: Сообщенные другими
+        created_reports: Жалобы, отправленные этим аккаунтом
+        targeted_reports: Жалобы на этот аккаунт
       silence: Глушение
-      silenced: Замалченный
       statuses: Статусы
       subscribe: Подписаться
-      suspended: Приостановлено
       title: Аккаунты
-      unconfirmed_email: Неподтверждённая электронная почта
+      unconfirmed_email: Неподтверждённый e-mail
       undo_silenced: Снять глушение
       undo_suspension: Снять блокировку
       unsubscribe: Отписаться
       username: Имя пользователя
-      warn: Предупреждение
       web: Веб
     action_logs:
       actions:
         assigned_to_self_report: "%{name} назначил(а) жалобу %{target} на себя"
         change_email_user: "%{name} сменил(а) e-mail пользователя %{target}"
         confirm_user: "%{name} подтвердил(а) e-mail адрес пользователя %{target}"
-        create_account_warning: "%{name}  послал предупреждение %{target}"
         create_custom_emoji: "%{name} загрузил(а) новый эмодзи %{target}"
         create_domain_block: "%{name} заблокировал(а) домен %{target}"
         create_email_domain_block: "%{name} добавил(а) e-mail домен %{target} в чёрный список"
         demote_user: "%{name} разжаловал(а) пользователя %{target}"
-        destroy_custom_emoji: "%{name} уничтоженный эмодзи %{target}"
         destroy_domain_block: "%{name} разблокировал(а) домен %{target}"
         destroy_email_domain_block: "%{name} добавил(а) e-mail домен %{target} в белый список"
         destroy_status: "%{name} удалил(а) статус пользователя %{target}"
@@ -250,7 +217,6 @@ ru:
       config: Конфигурация
       feature_deletions: Удаление аккаунтов
       feature_invites: Пригласительные ссылки
-      feature_profile_directory: Каталог профиля
       feature_registrations: Регистрация
       feature_relay: Ретрансляторы
       features: Возможности
@@ -268,7 +234,7 @@ ru:
       week_users_active: активно на этой неделе
       week_users_new: пользователей на этой неделе
     domain_blocks:
-      add_new: Добавить новый доменный блок
+      add_new: Добавить новую
       created_msg: Блокировка домена обрабатывается
       destroyed_msg: Блокировка домена снята
       domain: Домен
@@ -283,13 +249,6 @@ ru:
         title: Новая доменная блокировка
       reject_media: Запретить медиаконтент
       reject_media_hint: Удаляет локально хранимый медиаконтент и запрещает его загрузку в будущем. Не имеет значения в случае блокировки
-      reject_reports: Отказывать в отчетах
-      reject_reports_hint: Игнорировать все отчеты, поступающие из этого домена. Не имеет отношения к отстранению от должности
-      rejecting_media: отбраковка медиафайлов
-      rejecting_reports: отрицательные отчёты
-      severity:
-        silence: глухой
-        suspend: приостановленный
       show:
         affected_accounts:
           few: Влияет на %{count} аккаунта в базе данных
@@ -301,7 +260,7 @@ ru:
           suspend: Снять блокировку со всех существующих аккаунтов этого домена
         title: Снять блокировку с домена %{domain}
         undo: Отменить
-      undo: Отменить блокировку домена
+      undo: Отменить
     email_domain_blocks:
       add_new: Добавить новую
       created_msg: Доменная блокировка еmail успешно создана
@@ -312,27 +271,8 @@ ru:
         create: Создать блокировку
         title: Новая доменная блокировка еmail
       title: Доменная блокировка email
-    followers:
-      back_to_account: Назад в учет
-      title: "%{acct}'s Подписчики"
     instances:
-      by_domain: Домен
-      delivery_available: Возможна доставка
-      known_accounts:
-        few: "%{count} известные счета"
-        many: "%{count} известные счета"
-        one: "%{count} известная учётная запись"
-        other: "%{count} известные счета"
-      moderation:
-        all: Все
-        limited: Ограничено
-        title: Умеренность
-      title: Федерация
-      total_blocked_by_us: Заблокированы нами
-      total_followed_by_them: За ними следуют они
-      total_followed_by_us: За нами
-      total_reported: Отчеты о них
-      total_storage: Медиа-вложения
+      title: Известные узлы
     invites:
       deactivate_all: Отключить все
       filter:
@@ -343,13 +283,8 @@ ru:
       title: Приглашения
     relays:
       add_new: Добавить ретранслятор
-      delete: Удалить
       description_html: "<strong>Федеративный ретранслятор</strong> – это промежуточный сервер, который передаёт большие объёмы публичных статусов между серверами, которые подписываются и публикуют туда. <strong>Это может помочь небольшим и средним серверам находить записи со всей федерации</strong>, ведь в противном случае пользователям нужно будет вручную подписываться на людей с удалённых узлов."
-      disable: Отключить
-      disabled: Инвалид
-      enable: Включить
       enable_hint: Если включено, ваш сервер будет подписан на все публичные статусы с этого ретранслятора и начнёт туда отправлять публичные статусы со своего узла.
-      enabled: Включено
       inbox_url: URL ретранслятора
       pending: Ожидание подтверждения ретранслятора
       save_and_enable: Сохранить и включить
@@ -363,7 +298,7 @@ ru:
       account:
         note: заметка
         report: жалоба
-      action_taken_by: Меры, принятые
+      action_taken_by: 'Действие предпринято:'
       are_you_sure: Вы уверены?
       assign_to_self: Назначить себе
       assigned: Назначенный модератор
@@ -403,20 +338,14 @@ ru:
         desc_html: Измените внешний вид с CSS, загружаемым на каждой странице
         title: Особый CSS
       hero:
-        desc_html: Отображается на первой странице. Рекомендуется как минимум 600x100px. Если флажок не установлен, возвращается к миниатюре сервера
+        desc_html: Отображается на главной странице. Рекомендуется разрешение не менее 600х100px. Если не установлено, используется изображение узла
         title: Баннер узла
-      mascot:
-        desc_html: Отображается на нескольких страницах. Рекомендуется не менее 293×205px пикселей. Если не установлено, возвращается к талисману по умолчанию
-        title: Талисман
       peers_api_enabled:
         desc_html: Домены, которые были замечены этим узлом среди всей федерации
         title: Публикация списка обнаруженных узлов
       preview_sensitive_media:
         desc_html: Предпросмотр ссылок с остальных веб-сайтов будет показан даже если медиаконтент отмечен как чувствительный
         title: Показывать чувствительный медиаконтент в предпросмотре OpenGraph
-      profile_directory:
-        desc_html: Позволяет пользователям быть доступными для обнаружения
-        title: Включить каталог профиля
       registrations:
         closed_message:
           desc_html: Отображается на титульной странице, когда закрыта регистрация<br>Можно использовать HTML-теги
@@ -427,12 +356,6 @@ ru:
         min_invite_role:
           disabled: Никого
           title: Разрешать приглашения от
-      registrations_mode:
-        modes:
-          approved: Разрешение, необходимое для регистрации
-          none: Никто не может зарегистрироваться
-          open: Любой желающий может зарегистрироваться
-        title: Режим регистрации
       show_known_fediverse_at_about_page:
         desc_html: Если включено, показывает посты со всех известных узлов в предпросмотре ленты. В противном случае отображаются только локальные посты.
         title: Показывать известные узлы в предпросмотре ленты
@@ -440,21 +363,21 @@ ru:
         desc_html: Показывать метку персонала на странице пользователя
         title: Показывать метку персонала
       site_description:
-        desc_html: Вступительный абзац на первой странице. Опишите, что делает этот сервер Mastodon особенным и что еще важно. Вы можете использовать HTML-теги, в частности <code>&lt;a&lt;</code> и <code>gt;a&lt;</code>.
-        title: Описание сервера
+        desc_html: Отображается в качестве параграфа на титульной странице и используется в качестве мета-тега.<br>Можно использовать HTML-теги, в особенности <code>&lt;a&gt;</code> и <code>&lt;em&gt;</code>.
+        title: Описание сайта
       site_description_extended:
         desc_html: Отображается на странице дополнительной информации<br>Можно использовать HTML-теги
         title: Расширенное описание узла
       site_short_description:
-        desc_html: Отображается в виде боковой панели и мета-тегов. Опишите, что такое Mastodon и что делает этот сервер особенным, в одном абзаце. Если пусто, по умолчанию используется описание сервера.
-        title: Краткое описание сервера
+        desc_html: Отображается в боковой панели и в тегах. Опишите, что такое Mastodon и что делает именно этот узел особенным. Если пусто, используется описание узла по умолчанию.
+        title: Краткое описание узла
       site_terms:
         desc_html: Вы можете добавить сюда собственную политику конфиденциальности, пользовательское соглашение и другие документы. Можно использовать теги HTML
         title: Условия использования
-      site_title: Имя сервера
+      site_title: Название сайта
       thumbnail:
         desc_html: Используется для предпросмотра с помощью OpenGraph и API. Рекомендуется разрешение 1200x630px
-        title: Эскиз сервера
+        title: Картинка узла
       timeline_preview:
         desc_html: Показывать публичную ленту на приветственной странице
         title: Предпросмотр ленты
@@ -473,31 +396,14 @@ ru:
       title: Статусы аккаунта
       with_media: С медиаконтентом
     subscriptions:
-      callback_url: Обратный вызов URL
+      callback_url: Callback URL
       confirmed: Подтверждено
       expires_in: Истекает через
       last_delivery: Последняя доставка
-      title: Веб-суб
+      title: WebSub
       topic: Тема
-    tags:
-      accounts: Счета
-      hidden: Скрытый
-      hide: Скрыть из директории
-      name: Хэштег
-      title: Хэштеги
-      unhide: Показать в каталоге
-      visible: Видимый
     title: Администрирование
-    warning_presets:
-      add_new: Добавить новый
-      delete: Удалить
-      edit: Редактировать
-      edit_preset: Редактирование предустановленных предупреждений
-      title: Управление предварительными настройками предупреждений
   admin_mailer:
-    new_pending_account:
-      body: Детали нового счета приведены ниже. Вы можете одобрить или отклонить это заявление.
-      subject: Новая учетная запись для просмотра на %{instance} (%{username})
     new_report:
       body: "%{reporter} подал(а) жалобу на %{target}"
       body_remote: Кто-то с узла %{domain} пожаловался на %{target}
@@ -518,10 +424,8 @@ ru:
     warning: Будьте очень внимательны с этими данными. Не делитесь ими ни с кем!
     your_token: Ваш токен доступа
   auth:
-    agreement_html: Нажимая кнопку "Зарегистрироваться" ниже, Вы соглашаетесь следовать правилам <a href="%{rules_path}">сервера</a> и <a href="%{terms_path}">нашим условиям предоставления услуг</a>.
-    apply_for_account: Запросить приглашение
+    agreement_html: Создавая аккаунт, вы соглашаетесь с <a href="%{rules_path}">правилами узла</a> и <a href="%{terms_path}">нашими условиями обслуживания</a>.
     change_password: Пароль
-    checkbox_agreement_html: Я согласен с мишенью <a href="%{rules_path}" target="_blank">server rules</a>2 и <a href="%{terms_path}" target="_blank">терминала обслуживания</a>
     confirm_email: Подтвердите email
     delete_account: Удалить аккаунт
     delete_account_html: Если Вы хотите удалить свой аккаунт, вы можете <a href="%{path}">перейти сюда</a>. У Вас будет запрошено подтверждение.
@@ -537,12 +441,10 @@ ru:
       cas: CAS
       saml: SAML
     register: Зарегистрироваться
-    registration_closed: "%{instance} не принимает новых членов"
     resend_confirmation: Повторить отправку инструкции для подтверждения
     reset_password: Сбросить пароль
     security: Безопасность
     set_new_password: Задать новый пароль
-    trouble_logging_in: Проблемы с входом в систему?
   authorize_follow:
     already_following: Вы уже подписаны на этот аккаунт
     error: К сожалению, при поиске удаленного аккаунта возникла ошибка
@@ -574,24 +476,12 @@ ru:
     description_html: Это действие <strong>перманентно и необратимо</strong> удалит контент Вашего аккаунта и деактивирует его. Ваше имя пользователя будет зарезервировано для предотвращения имперсонации в будущем.
     proceed: Удалить аккаунт
     success_msg: Ваш аккаунт был успешно удален
-    warning_html: Гарантируется только удаление содержимого с данного сервера. Широко распространенный контент, вероятно, оставит следы. Автономные серверы и серверы, которые отказались от подписки на ваши обновления, не будут обновлять свои базы данных.
+    warning_html: Гарантируется удаление контента только на этом узле. Широко распространившийся контент, скорее всего, оставит следы. Сервера, отключенные от сети или отписавшиеся от Ваших обновлений, не обновят свои базы данных.
     warning_title: О доступности распространившегося контента
-  directories:
-    directory: Каталог профиля
-    enabled: В настоящее время вы находитесь в этом каталоге.
-    enabled_but_waiting: Вы согласились на включение в каталог, но у вас еще нет минимального количества последователей (%{min_followers}), которые должны быть включены в каталог.
-    explanation: Обнаружение пользователей на основе их интересов
-    explore_mastodon: Исследуйте %{title}
-    how_to_enable: В настоящее время вы не зарегистрированы в каталоге. Вы можете зарегистрироваться ниже. Используйте хэштэги в своем биографическом тексте, чтобы попасть в список определенных хэштэгов!
-    people:
-      few: "%{count} народ"
-      many: "%{count} народ"
-      one: "%{count} особа"
-      other: "%{count} народ"
   errors:
     '403': У Вас нет доступа к просмотру этой страницы.
-    '404': Страницы, которую вы ищете, здесь нет.
-    '410': Страницы, которую вы искали, здесь больше не существует.
+    '404': Страница, которую Вы искали, не существует.
+    '410': Страница, которую Вы искали, больше не существует.
     '422':
       content: Проверка безопасности не удалась. Возможно, Вы блокируете cookies?
       title: Проверка безопасности не удалась
@@ -604,21 +494,15 @@ ru:
     archive_takeout:
       date: Дата
       download: Скачать ваш архив
-      hint_html: Вы можете запросить архив ваших <strong>toots и загруженных мультимедийных файлов</strong>. Экспортируемые данные будут в формате ActivityPub, доступном для чтения любым совместимым программным обеспечением. Вы можете запрашивать архив каждые 7 дней.
+      hint_html: Вы можете запросить архив своих <strong>статусов и загруженных медиа-файлов</strong>. Экспортированные данные будут в формате ActivityPub, который можно прочесть любой соответствующей программой. Запрашивать архив можно каждые 7 дней.
       in_progress: Собирается ваш архив...
       request: Запросить ваш архив
       size: Размер
     blocks: Список блокировки
     csv: CSV
-    domain_blocks: Блоки домена
     follows: Подписки
-    lists: Списки
     mutes: Список глушения
     storage: Ваш медиаконтент
-  featured_tags:
-    add_new: Добавить новый
-    errors:
-      limit: У вас уже есть максимальное количество хэштэгов
   filters:
     contexts:
       home: Домашняя лента
@@ -640,9 +524,7 @@ ru:
     more: Ещё…
     resources: Ссылки
   generic:
-    all: Все
     changes_saved_msg: Изменения успешно сохранены!
-    copy: Копировать
     save_changes: Сохранить изменения
     validation_errors:
       few: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
@@ -650,16 +532,10 @@ ru:
       one: Что-то здесь не так! Пожалуйста, прочитайте об ошибке ниже
       other: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
   imports:
-    modes:
-      merge: Слияние
-      merge_long: Хранение существующих и добавление новых записей
-      overwrite: Перезаписать
-      overwrite_long: Замените текущие записи на новые
-    preface: Можно импортировать данные, экспортированные с другого сервера, например, список людей, которых вы отслеживаете или блокируете.
+    preface: Вы можете загрузить некоторые данные, например, списки людей, на которых Вы подписаны или которых блокируете, в Ваш аккаунт на этом узле из файлов, экспортированных с другого узла.
     success: Ваши данные были успешно загружены и будут обработаны с должной скоростью
     types:
       blocking: Список блокировки
-      domain_blocking: Блокирующий список доменов
       following: Подписки
       muting: Список глушения
     upload: Загрузить
@@ -676,14 +552,13 @@ ru:
       '86400': 1 день
     expires_in_prompt: Никогда
     generate: Сгенерировать
-    invited_by: 'Вы были приглашены:'
     max_uses:
       few: "%{count} исп."
       many: "%{count} исп."
       one: 1 исп
       other: "%{count} исп"
     max_uses_prompt: Без лимита
-    prompt: Генерировать ссылки и обмениваться ими с другими пользователями для предоставления доступа к этому серверу
+    prompt: Генерируйте и делитесь ссылками с другими, чтобы предоставить им доступ к этому узлу
     table:
       expires_at: Истекает
       uses: Исп.
@@ -757,57 +632,21 @@ ru:
     older: Старше
     prev: Пред
     truncate: "&hellip;"
-  polls:
-    errors:
-      already_voted: Вы уже проголосовали по этому опросу
-      duplicate_options: содержат дубликаты
-      duration_too_long: слишком далеко в будущее
-      duration_too_short: слишком рано
-      expired: Опрос уже закончился
-      over_character_limit: не может быть больше %{max} символов каждый
-      too_few_options: должны иметь более одного предмета
-      too_many_options: не может содержать больше %{max} элементов
   preferences:
     languages: Языки
     other: Другое
     publishing: Публикация
     web: WWW
-  relationships:
-    activity: Активность счета
-    dormant: Дремлющий
-    moved: Перемещенный
-    mutual: Взаимный
-    primary: Первичный
-    relationship: Отношения
-    remove_selected_domains: Удалить всех последователей с выбранных доменов
-    remove_selected_followers: Удалить выбранных последователей
-    remove_selected_follows: Развернуть выбранных пользователей
-    status: Состояние счета
   remote_follow:
     acct: Введите свой username@domain для продолжения
     missing_resource: Поиск требуемого перенаправления URL для Вашего аккаунта завершился неудачей
     no_account_html: Нет учётной записи? Вы можете <a href='%{sign_up_path}' target='_blank'>зарегистрироваться здесь</a>
     proceed: Продолжить подписку
     prompt: 'Вы хотите подписаться на:'
-    reason_html: "<strong> Почему этот шаг необходим?</strong> <code>%{instance}</code> может не быть сервером, на котором вы зарегистрированы, поэтому сначала нам нужно перенаправить вас на ваш домашний сервер."
-  remote_interaction:
-    favourite:
-      proceed: Перейти к избранному
-      prompt: 'Ты хочешь любить этот зуб:'
-    reblog:
-      proceed: Приступите к ускорению
-      prompt: 'Ты хочешь поднять этот зуб:'
-    reply:
-      proceed: Перейти к ответу
-      prompt: 'Ты хочешь ответить на этот вопрос:'
   remote_unfollow:
     error: Ошибка
     title: Заголовок
     unfollowed: Отписаны
-  scheduled_statuses:
-    over_daily_limit: Вы превысили лимит в %{limit} запланированных на этот день лимитов
-    over_total_limit: Вы превысили лимит %{limit} запланированных перерасходов
-    too_soon: Запланированная дата должна быть в будущем
   sessions:
     activity: Последняя активность
     browser: Браузер
@@ -816,7 +655,7 @@ ru:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
-      electron: Электрон
+      electron: Electron
       firefox: Firefox
       generic: Неизвестный браузер
       ie: Internet Explorer
@@ -856,12 +695,10 @@ ru:
     development: Разработка
     edit_profile: Изменить профиль
     export: Экспорт данных
-    featured_tags: Особенные хэштэги
     import: Импорт
     migrate: Перенос аккаунта
     notifications: Уведомления
     preferences: Настройки
-    relationships: Следы и последователи
     settings: Опции
     two_factor_authentication: Двухфакторная аутентификация
     your_apps: Ваши приложения
@@ -893,13 +730,6 @@ ru:
       ownership: Нельзя закрепить чужой статус
       private: Нельзя закрепить непубличный статус
       reblog: Нельзя закрепить продвинутый статус
-    poll:
-      total_votes:
-        few: "%{count} голоса"
-        many: "%{count} голоса"
-        one: "%{count} голосование"
-        other: "%{count} голоса"
-      vote: голос
     show_more: Ещё
     sign_in_to_participate: Войдите, чтобы принять участие в дискуссии
     title: '%{name}: "%{quote}"'
@@ -916,93 +746,90 @@ ru:
     sensitive_content: Чувствительный контент
   terms:
     body_html: |
-      <h2>Политика конфиденциальности</h2>
-      <h3 id="collect">3Какую информацию мы собираем?</h3>
+      <h2>Privacy Policy</h2>
+      <h3 id="collect">What information do we collect?</h3>
 
       <ul>
-        <li><em>Базовая информация учетной записи</em>: Если вы зарегистрируетесь на этом сервере, вам может быть предложено ввести имя пользователя, адрес электронной почты и пароль. Можно также ввести дополнительную информацию о профиле, например, отображаемое имя и биографию, а также загрузить фотографию профиля и изображение заголовка. Имя пользователя, отображаемое имя, биография, фотография профиля и изображение заголовка всегда указаны публично.</li>
-        <li><em>Посты, следующая и другая публичная информация</em>: Список людей, за которыми вы следите, находится в открытом доступе, то же самое справедливо и для ваших последователей. При отправке сообщения сохраняются дата и время, а также заявление, из которого было отправлено сообщение. Сообщения могут содержать мультимедийные вложения, такие как фотографии и видео. Публичный доступ к публичным должностям и должностям, не включенным в списки. Когда вы размещаете сообщение в своем профиле, оно также является общедоступной информацией. Ваши сообщения доставляются вашим последователям, в некоторых случаях это означает, что они доставляются на различные серверы, а копии хранятся там. Когда вы удаляете сообщения, они также доставляются вашим подписчикам. Действия по перерегистрации или предпочтению другого сообщения всегда являются общедоступными.</li>
-        <li><em>Прямые и только для последователей сообщения</em>: Все сообщения хранятся и обрабатываются на сервере. Последователи - только сообщения доставляются вашим последователям и пользователям, которые упомянуты в них, а прямые сообщения доставляются только тем пользователям, которые упомянуты в них. В некоторых случаях это означает, что они доставляются на различные серверы, а копии хранятся на них. Мы прилагаем добросовестные усилия, чтобы ограничить доступ к этим должностям только уполномоченными лицами, но другие серверы могут этого не сделать. Поэтому важно просматривать серверы, к которым принадлежат ваши последователи. Вы можете переключать опцию одобрения и отклонения новых последователей вручную в настройках. <em>Пожалуйста, имейте в виду, что операторы сервера и любого принимающего сервера могут просматривать такие сообщения</em>, и что получатели могут делать скриншоты, копировать или иным образом передавать их повторно. <em>Не делитесь опасной информацией о Мастодоне.</em></li>
-        <li><em>IPs и другие метаданные</em>: При входе в систему мы записываем IP-адрес, с которого вы входите, а также имя вашего браузера. Все зарегистрированные сеансы доступны для просмотра и отзыва в настройках. Последний использованный IP-адрес хранится до 12 месяцев. Мы также можем сохранять журналы регистрации сервера, которые включают IP-адрес каждого запроса к нашему серверу.</li>.
+        <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+        <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+        <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
       </ul>
 
       <hr class="spacer" />
 
-      <h3 id="use">Что мы используем вашу информацию для?</h3>
+      <h3 id="use">What do we use your information for?</h3>
 
-      <p>Любая информация, которую мы собираем у вас, может быть использована следующим образом:</p>.
+      <p>Any of the information we collect from you may be used in the following ways:</p>
 
       <ul>
-        <li>Для обеспечения основной функциональности Mastodon. Вы можете взаимодействовать с контентом других людей и размещать свои собственные материалы только после входа в систему. Например, вы можете следить за другими пользователями для просмотра их сводных сообщений в вашей персонализированной домашней хронологии.</li>
-        <li>Для содействия модерации сообщества, например, сравнения вашего IP-адреса с другими известными для определения случаев уклонения от запрета или других нарушений.</li>
-        <li> Адрес электронной почты, который вы предоставляете, может быть использован для отправки вам информации, уведомлений о других лицах, взаимодействующих с вашим контентом или отправляющих вам сообщения, а также для ответа на запросы и/или другие запросы или вопросы.</li>
+        <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+        <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+        <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
       </ul>
 
       <hr class="spacer" />
 
-      <h3 id="protect">Как мы защищаем вашу информацию?</h3>
+      <h3 id="protect">How do we protect your information?</h3>
 
-      <p>Мы принимаем различные меры безопасности для обеспечения безопасности вашей личной информации при вводе, передаче или доступе к ней. Помимо всего прочего, сеанс браузера, а также трафик между вашими приложениями и API, защищены SSL, и ваш пароль хэшируется с помощью надежного однонаправленного алгоритма. Вы можете включить двухфакторную аутентификацию для дальнейшего безопасного доступа к вашей учетной записи.</p>
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
 
       <hr class="spacer" />
 
-      <h3 id="data-retention">Какова наша политика хранения данных?</h3>
+      <h3 id="data-retention">What is our data retention policy?</h3>
 
-      <p>Мы приложим добросовестные усилия:</p>
+      <p>We will make a good faith effort to:</p>
 
       <ul>
-        <li>Сохранять журналы сервера, содержащие IP-адрес всех запросов к этому серверу, до тех пор, пока такие журналы хранятся, не более 90 дней.</li>
-        <li>Сохраняйте IP-адреса зарегистрированных пользователей не более 12 месяцев.</li>
+        <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+        <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
       </ul>
 
-      <p>Вы можете запросить и загрузить архив своего контента, включая ваши сообщения, медиафайлы, фотографии профилей и изображения заголовков.</p>
+      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
+
+      <p>You may irreversibly delete your account at any time.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Do we use cookies?</h3>
+
+      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+
+      <p>We use cookies to understand and save your preferences for future visits.</p>
 
       <hr class="spacer" />
 
-      <h3 id="cookies">Вы используете cookies?</h3>
+      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
 
-      <p>Да. Cookies - это небольшие файлы, которые сайт или его поставщик услуг передает на жесткий диск вашего компьютера через ваш веб-браузер (если вы разрешаете). Эти файлы cookie позволяют сайту распознать ваш браузер и, если у вас есть зарегистрированная учетная запись, связать ее с вашей зарегистрированной учетной записью.</p>.
+      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
 
-      <p> Мы используем файлы cookie, чтобы понять и сохранить ваши предпочтения для будущих посещений сайта.
+      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
 
-      <hr class="spacer" />
-
-      <h3 id="disclose">раскрываем ли мы какую-либо информацию внешним сторонам?</h3>
-
-      <p>Мы не продаем, не обмениваемся и не передаем другим лицам Вашу личную информацию. Сюда не входят доверенные третьи лица, которые помогают нам управлять нашим сайтом, вести наш бизнес или обслуживать вас при условии, что эти лица согласны сохранять конфиденциальность этой информации. Мы также можем раскрывать вашу информацию, если мы считаем, что это необходимо для соблюдения закона, обеспечения соблюдения политики нашего сайта или защиты наших или других прав, собственности или безопасности.</p>
-
-      <p>Ваш публичный контент может быть загружен другими серверами в сети. Ваши публичные сообщения и сообщения только для подписчиков доставляются на серверы, где они находятся, а прямые сообщения доставляются на серверы получателей, если эти подписчики или получатели находятся на сервере, отличном от этого.</p>.
-
-      <p>Когда вы разрешаете заявку на использование вашей учетной записи, в зависимости от объема одобренных вами разрешений, она может получить доступ к вашей личной информации, вашему следующему списку, вашим подписчикам, вашим спискам, всем вашим сообщениям и вашим избранным. Приложения никогда не смогут получить доступ к вашему электронному адресу или паролю.</p>
+      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
 
       <hr class="spacer" />
 
-      <h3 id="children">Пользование сайтом детьми</h3>.
+      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
 
-      <p>Если этот сервер находится в ЕС или ЕЭЗ: Наш сайт, все продукты и услуги предназначены для людей не моложе 16 лет. Если вам меньше 16 лет, в соответствии с требованиями GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) не используйте этот сайт.</p>.
-
-      <p>Если этот сервер находится в США: Наш сайт, все продукты и услуги направлены на людей не моложе 13 лет. Если вам меньше 13 лет, в соответствии с требованиями COPPA (<a href="https://ru.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Закон о защите личной информации детей в Интернете</a>) не используйте этот сайт.</p>.
-
-      <p>Правовые требования могут отличаться, если этот сервер находится в другой юрисдикции.</p>
+      <p>Our site, products and services are all directed to people who are at least 13 years old. If this server is in the USA, and you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
 
       <hr class="spacer" />
 
-      <h3 id="changes">Наши изменения в Политике конфиденциальности</h3>.
+      <h3 id="changes">Changes to our Privacy Policy</h3>
 
-      <p>Если мы решим изменить нашу политику конфиденциальности, мы опубликуем эти изменения на этой странице.</p>.
+      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
 
-      <p>Это документ CC-BY-SA. Последнее обновление 7 марта 2018.</p>
+      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
 
-      <p> Первоначально адаптировано из документа <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: Условия обслуживания и политика конфиденциальности %{instance}
   themes:
-    contrast: Мастодон (Высокий контраст)
-    default: Мастодон (Темный)
+    contrast: Высококонтрастная
+    default: Mastodon
     mastodon-light: Mastodon (светлая)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Для подтверждения введите код, сгенерированный приложением аутентификатора
     description_html: При включении <strong>двухфакторной аутентификации</strong>, вход потребует от Вас использования Вашего телефона, который сгенерирует входные токены.
@@ -1016,7 +843,7 @@ ru:
     manual_instructions: 'Если Вы не можете отсканировать QR-код и хотите ввести его вручную, секрет представлен здесь открытым текстом:'
     recovery_codes: Коды восстановления
     recovery_codes_regenerated: Коды восстановления успешно сгенерированы
-    recovery_instructions_html: Если вы когда-либо потеряете доступ к телефону, вы можете использовать один из приведенных ниже кодов восстановления для восстановления доступа к своей учетной записи. <strong> Храните коды восстановления в безопасности</strong>. Например, вы можете распечатать их и сохранить вместе с другими важными документами.
+    recovery_instructions_html: В случае утери доступа к Вашему телефону Вы можете использовать один из кодов восстановления, указанных ниже, чтобы вернуть доступ к аккаунту. Держите коды восстановления в безопасности, например, распечатав их и храня с другими важными документами.
     setup: Настроить
     wrong_code: Введенный код неверен! Правильно ли установлены серверное время и время устройства?
   user_mailer:
@@ -1024,22 +851,6 @@ ru:
       explanation: Вы запросили полный архив вашего аккаунта Mastodon. Он готов к загрузке!
       subject: Ваш архив готов к загрузке
       title: Вынос архива
-    warning:
-      explanation:
-        disable: Пока ваша учетная запись заморожена, данные вашей учетной записи остаются неизменными, но вы не можете совершать никаких действий, пока она не будет разблокирована.
-        silence: Хотя ваша учетная запись ограничена, только те, кто уже следит за вами, будут видеть ваши тотализаторы на этом сервере, и вы можете быть исключены из различных публичных объявлений. Тем не менее, другие могут следовать за вами вручную.
-        suspend: Ваша учетная запись была приостановлена, и все ваши хитрости и загруженные медиафайлы были безвозвратно удалены с этого сервера, а также с серверов, на которых у вас были последователи.
-      review_server_policies: Просмотр политик сервера
-      subject:
-        disable: Ваш счет %{acct} был заморожен
-        none: Предупреждение для %{acct}
-        silence: Ваш аккаунт %{acct}  был ограничен
-        suspend: Ваш аккаунт %{acct} был приостановлен
-      title:
-        disable: Замороженный счет
-        none: Предупреждение
-        silence: Учетная запись ограничена
-        suspend: Учетная запись приостановлена
     welcome:
       edit_profile_action: Настроить профиль
       edit_profile_step: Вы можете настроить свой профиль, загрузив аватар, обложку, сменив имя и много чего ещё. Если Вы хотите фильтровать подписчиков до того, как они смогут на Вас подписаться, Вы можете закрыть свой аккаунт.
@@ -1047,7 +858,7 @@ ru:
       final_action: Начать постить
       final_step: 'Начните постить! Ваши публичные посты могут видеть другие, например, в локальной ленте или по хэштегам, даже если у Вас нет подписчиков. Вы также можете поздороваться с остальными и представиться, используя хэштек #приветствие.'
       full_handle: Ваше обращение
-      full_handle_hint: Это то, что вы можете сказать своим друзьям, чтобы они могли отправлять сообщения или следовать за вами с другого сервера.
+      full_handle_hint: То, что Вы хотите сообщить своим друзьям, чтобы они могли написать Вам или подписаться с другого узла.
       review_preferences_action: Изменить настройки
       review_preferences_step: Проверьте все настройки, например, какие письма Вы хотите получать или уровень приватности статусов по умолчанию. Если Вы не страдаете морской болезнь, можете включить автовоспроизведение GIF.
       subject: Добро пожаловать в Mastodon
@@ -1058,12 +869,8 @@ ru:
       tips: Советы
       title: Добро пожаловать на борт, %{name}!
   users:
-    follow_limit_reached: Вы не можете следовать за более чем %{limit} людьми
     invalid_email: Введенный e-mail неверен
     invalid_otp_token: Введен неверный код двухфакторной аутентификации
     otp_lost_help_html: Если Вы потеряли доступ к обоим, свяжитесь с %{email}
     seamless_external_login: Вы залогинены через сторонний сервис, поэтому настройки e-mail и пароля недоступны.
     signed_in_as: 'Выполнен вход под именем:'
-  verification:
-    explanation_html: 'Вы можете <strong> подтвердить себя в качестве владельца ссылок в метаданных вашего профиля</strong>, для этого сайт, на который сделана ссылка, должен содержать ссылку на ваш профиль Mastodon. Ссылка обратно <strong> должна</strong> иметь атрибут <code>rel="me"</code>. Текстовое содержание ссылки не имеет значения. Вот пример:'
-    verification: Проверка

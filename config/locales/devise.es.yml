@@ -12,27 +12,24 @@ es:
       last_attempt: Tiene un intento más antes de que su cuenta sea bloqueada.
       locked: Su cuenta está bloqueada.
       not_found_in_database: Inválido %{authentication_keys} o contraseña.
-      pending: Su cuenta aún está bajo revisión.
       timeout: Su sesión ha expirado. Por favor inicie sesión de nuevo para continuar.
       unauthenticated: Necesita iniciar sesión o registrarse antes de continuar.
       unconfirmed: Tiene que confirmar su dirección de correo electrónico antes de continuar.
     mailer:
       confirmation_instructions:
         action: Verificar dirección de correo electrónico
-        action_with_app: Confirmar y volver a %{app}
         explanation: Has creado una cuenta en %{host} con esta dirección de correo electrónico. Estas a un clic de activarla. Si no fue usted, por favor ignore este correo electrónico.
-        explanation_when_pending: Ha solicitado una invitación a %{host} con esta dirección de correo electrónico. Una vez que confirme su dirección de correo electrónico, revisaremos su solicitud. No puede iniciar sesión hasta entonces. Si su solicitud es rechazada, sus datos serán eliminados, por lo que no será necesaria ninguna otra acción por su parte. Si no fuiste tú, por favor ignora este correo electrónico.
-        extra_html: Por favor, consulte también <a href="%{terms_path}">las reglas de la instancia</a> y <a href="%{policy_path}">nuestras condiciones de uso</a>.
+        extra_html: Por favor revise <a href="%{terms_path}">las reglas de la instancia</a> y <a href="%{policy_path}">nuestros términos de servicio</a>.
         subject: 'Mastodon: Instrucciones de confirmación para %{instance}'
         title: Verificar dirección de correo electrónico
       email_changed:
         explanation: 'El correo electrónico para su cuenta esta siendo cambiada a:'
-        extra: Si no ha cambiado su correo electrónico, es probable que alguien haya accedido a su cuenta. Por favor, cambie su contraseña inmediatamente o póngase en contacto con el administrador del servidor si está bloqueado fuera de su cuenta.
+        extra: Si usted no a cambiado su correo electrónico. es probable que alguien a conseguido acceso a su cuenta. Por favor cambie su contraseña inmediatamente o contacte a el administrador de la instancia si usted esta bloqueado de su cuenta.
         subject: 'Mastodon: Correo electrónico cambiado'
         title: Nueva dirección de correo electrónico
       password_change:
         explanation: La contraseña de su cuenta a sido cambiada.
-        extra: Si no ha cambiado su contraseña, es probable que alguien haya tenido acceso a su cuenta. Por favor, cambie su contraseña inmediatamente o póngase en contacto con el administrador de la instancia si está bloqueado de su cuenta.
+        extra: Si usted no a cambiado su contraseña. es probable que alguien a conseguido acceso a su cuenta. Por favor cambie su contraseña inmediatamente o contacte a el administrador de la instancia si usted esta bloqueado de su cuenta.
         subject: 'Mastodon: Contraseña cambiada'
         title: Contraseña cambiada
       reconfirmation_instructions:
@@ -62,7 +59,6 @@ es:
       signed_up: "¡Bienvenido! Se ha registrado con éxito."
       signed_up_but_inactive: Se ha registrado con éxito. Sin embargo, no podemos identificarle porque su cuenta no ha sido activada todavía.
       signed_up_but_locked: Se ha registrado con éxito. Sin embargo, no podemos identificarle porque su cuenta está bloqueada.
-      signed_up_but_pending: Un mensaje con un enlace de confirmación acaba de ser enviado a su dirección de correo electrónico. Después de hacer clic en el enlace, revisaremos su solicitud. Se le notificará si se aprueba.
       signed_up_but_unconfirmed: Un mensaje con un enlace de confirmación ha sido enviado a su correo electrónico. Por favor siga el enlace para activar su cuenta.
       update_needs_confirmation: Ha actualizado su cuenta con éxito, pero necesitamos verificar su nueva dirección de correo. Por favor compruebe su correo y siga el enlace para confirmar su nueva dirección de correo.
       updated: su cuenta ha sido actualizada con éxito.

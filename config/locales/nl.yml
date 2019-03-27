@@ -4,36 +4,25 @@ nl:
     about_hashtag_html: Dit zijn openbare toots die getagged zijn met <strong>#%{hashtag}</strong>. Je kunt er op reageren of iets anders mee doen als je op Mastodon (of ergens anders in de fediverse) een account hebt.
     about_mastodon_html: Mastodon is een sociaal netwerk dat gebruikt maakt van open webprotocollen en vrije software. Het is net zoals e-mail gedecentraliseerd.
     about_this: Over deze server
-    active_count_after: actief
-    active_footnote: Actieve gebruikers per maand (MAU)
     administered_by: 'Beheerd door:'
     api: API
     apps: Mobiele apps
-    apps_platforms: Gebruik Mastodon op iOS, Android en op andere platformen
-    browse_directory: Gebruikersgids doorbladeren en op interesses filteren
-    browse_public_posts: Livestream van openbare Mastodonberichten bekijken
     contact: Contact
     contact_missing: Niet ingesteld
     contact_unavailable: n.v.t
-    discover_users: Gebruikers ontdekken
     documentation: Documentatie
     extended_description_html: |
       <h3>Een goede plek voor richtlijnen</h3>
       <p>De uitgebreide omschrijving is nog niet ingevuld.</p>
-    federation_hint_html: Met een account op %{instance} ben je in staat om op elke Mastodonserver (en op meer plekken) mensen te volgen.
     generic_description: "%{domain} is een server in het Mastodonnetwerk"
-    get_apps: Mobiele apps
     hosted_on: Mastodon op %{domain}
     learn_more: Meer leren
     privacy_policy: Privacybeleid
-    see_whats_happening: Kijk wat er aan de hand is
-    server_stats: 'Serverstatistieken:'
     source_code: Broncode
     status_count_after:
       one: toot
       other: toots
     status_count_before: Zij schreven
-    tagline: Vrienden volgen en nieuwe ontdekken
     terms: Gebruiksvoorwaarden
     user_count_after:
       one: gebruiker
@@ -79,7 +68,6 @@ nl:
       delete: Verwijderen
       destroyed_msg: Verwijderen van opmerking voor moderatoren geslaagd!
     accounts:
-      approve: Goedkeuren
       are_you_sure: Weet je het zeker?
       avatar: Avatar
       by_domain: Domein
@@ -125,7 +113,6 @@ nl:
       moderation:
         active: Actief
         all: Alles
-        pending: In afwachting
         silenced: Genegeerd
         suspended: Opgeschort
         title: Moderatie
@@ -135,7 +122,6 @@ nl:
       no_limits_imposed: Geen limieten ingesteld
       not_subscribed: Niet geabonneerd
       outbox_url: Outbox-URL
-      pending: Moet nog beoordeeld worden
       perform_full_suspension: Opschorten
       profile_url: Profiel-URL
       promote: Promoveren
@@ -143,7 +129,6 @@ nl:
       public: Openbaar
       push_subscription_expires: PuSH-abonnement verloopt op
       redownload: Profiel vernieuwen
-      reject: Afwijzen
       remove_avatar: Avatar verwijderen
       remove_header: Omslagfoto verwijderen
       resend_confirmation:
@@ -415,12 +400,6 @@ nl:
         min_invite_role:
           disabled: Niemand
           title: Uitnodigingen toestaan door
-      registrations_mode:
-        modes:
-          approved: Goedkeuring vereist om te kunnen registreren
-          none: Niemand kan zich registreren
-          open: Iedereen kan zich registreren
-        title: Registratiemodus
       show_known_fediverse_at_about_page:
         desc_html: Wanneer ingeschakeld wordt de globale tijdlijn op de voorpagina getoond en wanneer uitgeschakeld de lokale tijdljn.
         title: De globale tijdlijn op de voorpagina tonen
@@ -483,9 +462,6 @@ nl:
       edit_preset: Voorinstelling van waarschuwing bewerken
       title: Voorinstellingen van waarschuwingen beheren
   admin_mailer:
-    new_pending_account:
-      body: Zie hieronder de details van het nieuwe account. Je kunt de aanvraag goedkeuren of afwijzen.
-      subject: Er dient een nieuw account op %{instance} te worden beoordeeld (%{username})
     new_report:
       body: "%{reporter} heeft %{target} gerapporteerd"
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
@@ -507,9 +483,7 @@ nl:
     your_token: Jouw toegangscode
   auth:
     agreement_html: Wanneer je op registreren klikt ga je akkoord met het opvolgen van <a href="%{rules_path}">de regels van deze server</a> en <a href="%{terms_path}">onze gebruiksvoorwaarden</a>.
-    apply_for_account: Een uitnodiging aanvragen
     change_password: Wachtwoord
-    checkbox_agreement_html: Ik ga akkoord met de <a href="%{rules_path}" target="_blank">regels van deze server</a> en de <a href="%{terms_path}" target="_blank">gebruiksvoorwaarden</a>
     confirm_email: E-mail bevestigen
     delete_account: Account verwijderen
     delete_account_html: Wanneer je jouw account graag wilt verwijderen, kan je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
@@ -525,12 +499,10 @@ nl:
       cas: CAS
       saml: SAML
     register: Registreren
-    registration_closed: "%{instance} laat geen nieuwe gebruikers toe"
     resend_confirmation: Verstuur de bevestigingsinstructies nogmaals
     reset_password: Wachtwoord opnieuw instellen
     security: Beveiliging
     set_new_password: Nieuw wachtwoord instellen
-    trouble_logging_in: Problemen met inloggen?
   authorize_follow:
     already_following: Je volgt dit account al
     error: Helaas, er is een fout opgetreden bij het opzoeken van de externe account
@@ -626,28 +598,12 @@ nl:
     more: Meer…
     resources: Hulpmiddelen
   generic:
-    all: Alles
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
     copy: Kopiëren
     save_changes: Wijzigingen opslaan
     validation_errors:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
       other: Er is iets niet helemaal goed! Bekijk onderstaande %{count} fouten
-  identity_proofs:
-    active: Actief
-    authorize: Ja, autoriseren
-    authorize_connection_prompt: Deze cryptografische verbinding autoriseren?
-    errors:
-      failed: De cryptografische verbinding is mislukt. Probeer het opnieuw vanaf %{provider}.
-      keybase:
-        invalid_token: Keybase tokens zijn hashes van handtekeningen en moeten 66 hex tekens zijn
-        verification_failed: Keybase herkent dit token niet als een handtekening van Keybase gebruiker %{kb_username}. Probeer het opnieuw vanuit Keybase.
-    explanation_html: Hier kunt u cryptografisch uw andere identiteiten, zoals een Keybase profiel, met elkaar verbinden. Hierdoor kunnen andere mensen u versleutelde berichten sturen en vertrouwen op de inhoud die u hen stuurt.
-    i_am_html: Ik ben %{username} op %{service}.
-    identity: Identiteit
-    inactive: Inactief
-    status: Verificatiestatus
-    view_proof: Bekijk bewijs
   imports:
     modes:
       merge: Samenvoegen
@@ -765,17 +721,6 @@ nl:
     other: Overig
     publishing: Publiceren
     web: Webapp
-  relationships:
-    activity: Accountactiviteit
-    dormant: Sluimerend
-    moved: Verhuisd
-    mutual: Wederzijds
-    primary: Primair
-    relationship: Relatie
-    remove_selected_domains: Alle volgers van de geselecteerde domeinen verwijderen
-    remove_selected_followers: Geselecteerde volgers verwijderen
-    remove_selected_follows: Geselecteerde gebruikers ontvolgen
-    status: Accountstatus
   remote_follow:
     acct: Geef jouw account@domein op die je wilt gebruiken
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
@@ -850,12 +795,10 @@ nl:
     edit_profile: Profiel bewerken
     export: Exporteren
     featured_tags: Uitgelichte hashtags
-    identity_proofs: Identiteitsbewijzen
     import: Importeren
     migrate: Accountmigratie
     notifications: Meldingen
     preferences: Voorkeuren
-    relationships: Volgers en gevolgden
     settings: Instellingen
     two_factor_authentication: Tweestapsverificatie
     your_apps: Jouw toepassingen

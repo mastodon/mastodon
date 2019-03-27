@@ -480,6 +480,10 @@
         "id": "confirmations.reply.message"
       },
       {
+        "defaultMessage": "Block & Report",
+        "id": "confirmations.block.block_and_report"
+      },
+      {
         "defaultMessage": "Are you sure you want to block {name}?",
         "id": "confirmations.block.message"
       }
@@ -527,6 +531,10 @@
         "id": "confirmations.domain_block.confirm"
       },
       {
+        "defaultMessage": "Block & Report",
+        "id": "confirmations.block.block_and_report"
+      },
+      {
         "defaultMessage": "Are you sure you want to unfollow {name}?",
         "id": "confirmations.unfollow.message"
       },
@@ -553,24 +561,40 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Mention @{name}",
-        "id": "account.mention"
+        "defaultMessage": "Unfollow",
+        "id": "account.unfollow"
       },
       {
-        "defaultMessage": "Direct message @{name}",
-        "id": "account.direct"
+        "defaultMessage": "Follow",
+        "id": "account.follow"
       },
       {
-        "defaultMessage": "Edit profile",
-        "id": "account.edit_profile"
+        "defaultMessage": "Awaiting approval. Click to cancel follow request",
+        "id": "account.requested"
       },
       {
         "defaultMessage": "Unblock @{name}",
         "id": "account.unblock"
       },
       {
-        "defaultMessage": "Unfollow",
-        "id": "account.unfollow"
+        "defaultMessage": "Edit profile",
+        "id": "account.edit_profile"
+      },
+      {
+        "defaultMessage": "Ownership of this link was checked on {date}",
+        "id": "account.link_verified_on"
+      },
+      {
+        "defaultMessage": "This account privacy status is set to locked. The owner manually reviews who can follow them.",
+        "id": "account.locked_info"
+      },
+      {
+        "defaultMessage": "Mention @{name}",
+        "id": "account.mention"
+      },
+      {
+        "defaultMessage": "Direct message @{name}",
+        "id": "account.direct"
       },
       {
         "defaultMessage": "Unmute @{name}",
@@ -583,10 +607,6 @@
       {
         "defaultMessage": "Mute @{name}",
         "id": "account.mute"
-      },
-      {
-        "defaultMessage": "Follow",
-        "id": "account.follow"
       },
       {
         "defaultMessage": "Report @{name}",
@@ -665,59 +685,6 @@
         "id": "status.admin_account"
       },
       {
-        "defaultMessage": "Information below may reflect the user's profile incompletely.",
-        "id": "account.disclaimer_full"
-      },
-      {
-        "defaultMessage": "View full profile",
-        "id": "account.view_full_profile"
-      },
-      {
-        "defaultMessage": "Toots",
-        "id": "account.posts"
-      },
-      {
-        "defaultMessage": "Follows",
-        "id": "account.follows"
-      },
-      {
-        "defaultMessage": "Followers",
-        "id": "account.followers"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/account/components/action_bar.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Unfollow",
-        "id": "account.unfollow"
-      },
-      {
-        "defaultMessage": "Follow",
-        "id": "account.follow"
-      },
-      {
-        "defaultMessage": "Awaiting approval. Click to cancel follow request",
-        "id": "account.requested"
-      },
-      {
-        "defaultMessage": "Unblock @{name}",
-        "id": "account.unblock"
-      },
-      {
-        "defaultMessage": "Edit profile",
-        "id": "account.edit_profile"
-      },
-      {
-        "defaultMessage": "Ownership of this link was checked on {date}",
-        "id": "account.link_verified_on"
-      },
-      {
-        "defaultMessage": "This account privacy status is set to locked. The owner manually reviews who can follow them.",
-        "id": "account.locked_info"
-      },
-      {
         "defaultMessage": "Follows you",
         "id": "account.follows_you"
       },
@@ -736,6 +703,18 @@
       {
         "defaultMessage": "Bot",
         "id": "account.badges.bot"
+      },
+      {
+        "defaultMessage": "Toots",
+        "id": "account.posts"
+      },
+      {
+        "defaultMessage": "Follows",
+        "id": "account.follows"
+      },
+      {
+        "defaultMessage": "Followers",
+        "id": "account.followers"
       }
     ],
     "path": "app/javascript/mastodon/features/account/components/header.json"
@@ -2100,6 +2079,10 @@
         "id": "confirmations.reply.message"
       },
       {
+        "defaultMessage": "Block & Report",
+        "id": "confirmations.block.block_and_report"
+      },
+      {
         "defaultMessage": "Are you sure you want to block {name}?",
         "id": "confirmations.block.message"
       }
@@ -2147,6 +2130,10 @@
       {
         "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
         "id": "confirmations.reply.message"
+      },
+      {
+        "defaultMessage": "Block & Report",
+        "id": "confirmations.block.block_and_report"
       },
       {
         "defaultMessage": "Are you sure you want to block {name}?",
