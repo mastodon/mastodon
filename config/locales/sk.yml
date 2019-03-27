@@ -4,26 +4,37 @@ sk:
     about_hashtag_html: Toto sú verejné príspevky, otagované pod <strong>#%{hashtag}</strong>. Ak máš účet hocikde v rámci fediversa, môžeš s nimi narábať.
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch a na slobodnom softvéri. Je decentralizovaná, podobne ako email.
     about_this: O tomto serveri
+    active_count_after: aktívni
+    active_footnote: Mesačne aktívnych užívateľov (MAU)
     administered_by: 'Správcom je:'
     api: API
     apps: Aplikácie
+    apps_platforms: Uživaj Mastodon z iOSu, Androidu a iných platforiem
+    browse_directory: Prehľadávaj databázu profilov a filtruj ju podľa záujmov
+    browse_public_posts: Prebádaj naživo prúd verejných príspevkov na Mastodone
     contact: Kontakt
     contact_missing: Nezadaný
     contact_unavailable: Neuvedený
+    discover_users: Objavuj užívateľov
     documentation: Dokumentácia
     extended_description_html: |
       <h3>Pravidlá</h3>
       <p>Žiadne zatiaľ uvedené nie sú</p>
+    federation_hint_html: S účtom na %{instance} budeš môcť následovať ľúdí na hociakom inom Mastodon serveri, ale aj inde.
     generic_description: "%{domain} je jeden server v sieti"
+    get_apps: Vyskúšaj mobilnú aplikáciu
     hosted_on: Mastodon hostovaný na %{domain}
     learn_more: Zisti viac
     privacy_policy: Ustanovenia o súkromí
+    see_whats_happening: Pozoruj, čo sa deje
+    server_stats: 'Serverové štatistiky:'
     source_code: Zdrojový kód
     status_count_after:
       few: príspevkov
       one: príspevok
       other: príspevkov
     status_count_before: Ktorí napísali
+    tagline: Následuj kamarátov, a objavuj nových
     terms: Podmienky užívania
     user_count_after:
       few: užívatelia
@@ -72,6 +83,7 @@ sk:
       delete: Vymaž
       destroyed_msg: Moderátorska poznámka bola úspešne zmazaná!
     accounts:
+      approve: Schváľ
       are_you_sure: Si si istý/á?
       avatar: Maskot
       by_domain: Doména
@@ -117,6 +129,7 @@ sk:
       moderation:
         active: Aktívny
         all: Všetko
+        pending: Čakajúci
         silenced: Umlčané
         suspended: Vylúčený/á
         title: Moderácia
@@ -126,6 +139,7 @@ sk:
       no_limits_imposed: Nie sú stanovené žiadné obmedzenia
       not_subscribed: Neodoberá
       outbox_url: URL poslaných
+      pending: Vyžaduje posúdenie
       perform_full_suspension: Vylúč
       profile_url: URL profilu
       promote: Povýš
@@ -133,6 +147,7 @@ sk:
       public: Verejná os
       push_subscription_expires: PuSH odoberanie expiruje
       redownload: Obnov profil
+      reject: Odmietni
       remove_avatar: Odstrániť avatár
       remove_header: Odstráň hlavičku
       resend_confirmation:
@@ -406,6 +421,12 @@ sk:
         min_invite_role:
           disabled: Nikto
           title: Povoliť pozvánky od
+      registrations_mode:
+        modes:
+          approved: Pre registráciu je nutné povolenie
+          none: Nikto sa nemôže registrovať
+          open: Ktokoľvek sa môže zaregistrovať
+        title: Režím registrácií
       show_known_fediverse_at_about_page:
         desc_html: Pokiaľ je zapnuté, bude v ukážke osi možné nahliadnúť príspevky z celého známeho fediversa. Inak budú ukázané iba príspevky z miestnej osi.
         title: Ukáž celé známe fediverse na náhľade osi
@@ -468,6 +489,8 @@ sk:
       edit_preset: Uprav varovnú predlohu
       title: Spravuj varovné predlohy
   admin_mailer:
+    new_pending_account:
+      body: Podrobnosti o novom účte sú uvedené nižšie. Môžeš túto registračnú požiadavku buď prijať, alebo zamietnúť.
     new_report:
       body: "%{reporter} nahlásil/a %{target}"
       body_remote: Niekto z %{domain} nahlásil/a %{target}

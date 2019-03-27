@@ -4,20 +4,29 @@ oc:
     about_hashtag_html: Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.
     about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
     about_this: A prepaus d’aquesta instància
+    active_count_after: actius
+    active_footnote: Utilizaire actius per mes (UAM)
     administered_by: 'Administrat per :'
     api: API
     apps: Aplicacions per mobil
+    apps_platforms: Utilizatz Mastodon d‘iOS, Android o d’autras plataforma estant
+    browse_directory: Navigatz per l’annuari de perfil e filtratz segon çò qu’aimatz
+    browse_public_posts: Navigatz pel flux public a Mastodon
     contact: Contacte
     contact_missing: Pas parametrat
     contact_unavailable: Pas disponible
+    discover_users: Descobrissètz de nòvas personas
     documentation: Documentacion
     extended_description_html: |
       <h3>Una bona plaça per las règlas</h3>
       <p>La descripcion longa es pas estada causida pel moment.</p>
     generic_description: "%{domain} es un dels servidors del malhum"
+    get_apps: Ensajatz una aplicacion mobil
     hosted_on: Mastodon albergat sus %{domain}
     learn_more: Ne saber mai
     privacy_policy: Politica de confidencialitat
+    see_whats_happening: Agachatz çò qu’arriba
+    server_stats: 'Estatisticas del servidor :'
     source_code: Còdi font
     status_count_after:
       one: estatut
@@ -68,6 +77,7 @@ oc:
       delete: Suprimir
       destroyed_msg: Nòta de moderacion ben suprimida !
     accounts:
+      approve: Aprovar
       are_you_sure: Sètz segur ?
       avatar: Avatar
       by_domain: Domeni
@@ -113,6 +123,7 @@ oc:
       moderation:
         active: Actius
         all: Totes
+        pending: En espèra
         silenced: Resconduts
         suspended: Suspenduts
         title: Moderacion
@@ -122,6 +133,7 @@ oc:
       no_limits_imposed: Cap de limit impausat
       not_subscribed: Pas seguidor
       outbox_url: URL Outbox
+      pending: Revision en espèra
       perform_full_suspension: Suspendre
       profile_url: URL del perfil
       promote: Promòure
@@ -400,6 +412,10 @@ oc:
         min_invite_role:
           disabled: Degun
           title: Autorizat amb invitacions
+      registrations_mode:
+        modes:
+          none: Degun pòt pas se marcar
+        title: Mòdes d’inscripcion
       show_known_fediverse_at_about_page:
         desc_html: Un còp activat mostrarà los tuts de totes los fediverse dins l’apercebut. Autrament mostrarà pas que los tuts locals.
         title: Mostrar los fediverse coneguts dins l’apercebut del flux
@@ -483,7 +499,9 @@ oc:
     your_token: Vòstre geton d’accès
   auth:
     agreement_html: En vos marcar acceptatz <a href="%{rules_path}">las règlas del servidor</a> e <a href="%{terms_path}">politica de confidencialitat</a>.
+    apply_for_account: Demandar una invitacion
     change_password: Senhal
+    checkbox_agreement_html: Accepti las <a href="%{rules_path}" target="_blank">règlas del servidor</a> e <a href="%{terms_path}" target="_blank">los tèrmes del servici</a>
     confirm_email: Confirmar lo corrièl
     delete_account: Suprimir lo compte
     delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
@@ -499,10 +517,12 @@ oc:
       cas: CAS
       saml: SAML
     register: Se marcar
+    registration_closed: "%{instance} accepta pas de nòus membres"
     resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
     security: Seguretat
     set_new_password: Picar un nòu senhal
+    trouble_logging_in: Problèmas de connexion ?
   authorize_follow:
     already_following: Seguètz ja aqueste compte
     error: O planhèm, i a agut una error al moment de cercar lo compte
@@ -654,12 +674,19 @@ oc:
     more: Mai…
     resources: Ressorsas
   generic:
+    all: Tot
     changes_saved_msg: Cambiaments ben realizats !
     copy: Copiar
     save_changes: Salvar los cambiaments
     validation_errors:
       one: I a quicòm que truca ! Mercés de corregir l’error çai-jos
       other: I a quicòm que truca ! Mercés de corregir las %{count} errors çai-jos
+  identity_proofs:
+    authorize: Òc, autorizar
+    authorize_connection_prompt: Autorizar aquesta connexion criptografica ?
+    i_am_html: Soi %{username} a %{service}.
+    identity: Identitat
+    status: Estatut de verificacion
   imports:
     modes:
       merge: Fondre
@@ -769,7 +796,7 @@ oc:
       duration_too_long: es tròp alonhat dins lo futur
       duration_too_short: es tròp d’ora
       expired: Lo sondatge es ja acabat
-      over_character_limit: pòt pas èsser superior a %{max}  caractèrs cadun
+      over_character_limit: pòt pas èsser superior a %{max} caractèrs cadun
       too_few_options: deu contenir mai d’una opcion
       too_many_options: pòt pas contenir mai de %{max} opcions
   preferences:
@@ -777,6 +804,14 @@ oc:
     other: Autre
     publishing: Publicar
     web: Interfàcia Web
+  relationships:
+    activity: Activitat del compte
+    dormant: Inactiu
+    moved: Mudat
+    mutual: Mutuala
+    primary: Pirmària
+    relationship: Relacion
+    status: Estat del compte
   remote_follow:
     acct: Picatz vòstre utilizaire@domeni que que volètz utilizar per sègre aqueste utilizaire
     missing_resource: URL de redireccion pas trobada
@@ -855,6 +890,7 @@ oc:
     migrate: Migracion de compte
     notifications: Notificacions
     preferences: Preferéncias
+    relationships: Abonaments e seguidors
     settings: Paramètres
     two_factor_authentication: Autentificacion en dos temps
     your_apps: Vòstras aplicacions

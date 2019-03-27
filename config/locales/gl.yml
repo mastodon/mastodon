@@ -4,25 +4,36 @@ gl:
     about_hashtag_html: Estas son mensaxes públicas etiquetadas con <strong>#%{hashtag}</strong>. Pode interactuar con elas si ten unha conta nalgures do fediverso.
     about_mastodon_html: Mastodon é unha rede social que se basea en protocolos web abertos e libres, software de código aberto. É descentralizada como o correo electrónico.
     about_this: Sobre
+    active_count_after: activo
+    active_footnote: Usuarias Activas no Mes (UAM)
     administered_by: 'Administrada por:'
     api: API
     apps: Apps móbiles
+    apps_platforms: Utilice Mastodon desde iOS, Android e outras plataformas
+    browse_directory: Navegue no directorio de perfís e filtre por intereses
+    browse_public_posts: Vexa o fluxo de comentarios públicos en Mastodon
     contact: Contacto
     contact_missing: Non establecido
     contact_unavailable: N/A
+    discover_users: Descubra usuarias
     documentation: Documentación
     extended_description_html: |
       <h3>Un bo lugar para regras</h3>
       <p>A descrición extendida aínda non se proporcionou.</p>
+    federation_hint_html: Con unha conta en %{instance} poderá seguir a outras persoas en calquera dos servidores Mastodon e incluso máis.
     generic_description: "%{domain} é un servidor na rede"
+    get_apps: Probe cunha app móbil
     hosted_on: Mastodon aloxado en %{domain}
     learn_more: Coñeza máis
     privacy_policy: Política de intimidade
+    see_whats_happening: Mire o que acontece
+    server_stats: 'Estatísticas:'
     source_code: Código fonte
     status_count_after:
       one: estado
       other: estados
     status_count_before: Que publicaron
+    tagline: Siga as amizades e faga outras novas
     terms: Termos do servizo
     user_count_after:
       one: usuaria
@@ -68,6 +79,7 @@ gl:
       delete: Eliminar
       destroyed_msg: Nota a moderación destruída con éxito!
     accounts:
+      approve: Aprobar
       are_you_sure: Está segura?
       avatar: Avatar
       by_domain: Dominio
@@ -113,6 +125,7 @@ gl:
       moderation:
         active: Activa
         all: Todo
+        pending: Pendente
         silenced: Acalado
         suspended: Suspendido
         title: Moderación
@@ -122,6 +135,7 @@ gl:
       no_limits_imposed: Sen límites impostos
       not_subscribed: Non suscrita
       outbox_url: URL caixa de saída
+      pending: Pendente revisión
       perform_full_suspension: Suspender
       profile_url: URL do perfil
       promote: Promocionar
@@ -129,6 +143,7 @@ gl:
       public: Público
       push_subscription_expires: A suscrición PuSH caduca
       redownload: Actualizar perfil
+      reject: Rexeitar
       remove_avatar: Eliminar avatar
       remove_header: Eliminar cabeceira
       resend_confirmation:
@@ -400,6 +415,12 @@ gl:
         min_invite_role:
           disabled: Ninguén
           title: Permitir convites por
+      registrations_mode:
+        modes:
+          approved: Precisa aprobación para rexistrarse
+          none: Rexistro pechado
+          open: Rexistro aberto
+        title: Estado do rexistro
       show_known_fediverse_at_about_page:
         desc_html: Si activado, mostraralle os toots de todo o fediverso coñecido nunha vista previa. Si non só mostrará os toots locais.
         title: Mostrar vista previa do fediverso na liña temporal
@@ -462,6 +483,9 @@ gl:
       edit_preset: Editar aviso preestablecido
       title: Xestionar avisos preestablecidos
   admin_mailer:
+    new_pending_account:
+      body: Abaixo están os detalles da conta. Pode aprobar ou rexeitar esta solicitude.
+      subject: Hai unha conta nova para revisar en %{instance} (%{username})
     new_report:
       body: "%{reporter} informou sobre %{target}"
       body_remote: Alguén desde %{domain} informou sobre %{target}
@@ -483,7 +507,9 @@ gl:
     your_token: O seu testemuño de acceso
   auth:
     agreement_html: Ao pulsar "Rexistrar" vostede acorda seguir <a href="%{rules_path}">as normas do servidor</a> e <a href="%{terms_path}">os termos do servizo</a>.
+    apply_for_account: Solicite un convite
     change_password: Contrasinal
+    checkbox_agreement_html: Acepto as <a href="%{rules_path}" target="_blank">regras do servidor</a> e os <a href="%{terms_path}" target="_blank">termos do servizo</a>
     confirm_email: Confirmar correo-e
     delete_account: Eliminar conta
     delete_account_html: Se desexa eliminar a súa conta, pode <a href="%{path}">facelo aquí</a>. Pediráselle confirmación.
@@ -499,10 +525,12 @@ gl:
       cas: CAS
       saml: SAML
     register: Rexistro
+    registration_closed: "%{instance} non está a aceptar novas usuarias"
     resend_confirmation: Voltar a enviar intruccións de confirmación
     reset_password: Restablecer contrasinal
     security: Seguridade
     set_new_password: Establecer novo contrasinal
+    trouble_logging_in: Problemas para conectar?
   authorize_follow:
     already_following: Xa está a seguir esta conta
     error: Desgraciadamente, algo fallou ao buscar a conta remota
@@ -598,12 +626,28 @@ gl:
     more: Máis…
     resources: Recursos
   generic:
+    all: Todo
     changes_saved_msg: Cambios gardados correctamente!!
     copy: Copiar
     save_changes: Gardar cambios
     validation_errors:
       one: Algo non está ben de todo! Por favor revise abaixo o erro
       other: Algo aínda non está ben! Por favor revise os %{count} erros abaixo
+  identity_proofs:
+    active: Activo
+    authorize: Si, autorizar
+    authorize_connection_prompt: Autorizar esta conexión criptográfica?
+    errors:
+      failed: Fallou a conexión criptográfica. Por favor inténteo de novo desde %{provider}.
+      keybase:
+        invalid_token: Os testemuños Keybase son hashes de firma e deben ter 66 caracteres hexadecimais
+        verification_failed: Keybase non recoñece este testemuño como firma da usuaria de Keybase %{kb_username}. Por favor inténteo desde Keybase.
+    explanation_html: Aquí pódese conectar criptográficamente as suas outras identidades, como a un perfil Keybase. Esto permitelle a outras persoas enviarlle mensaxes cifradas e confiar no contido que vostede lle envía.
+    i_am_html: Eu son %{username} en %{service}.
+    identity: Identidade
+    inactive: Inactiva
+    status: Estado da validación
+    view_proof: Ver proba
   imports:
     modes:
       merge: Fusionar
@@ -721,6 +765,17 @@ gl:
     other: Outro
     publishing: Publicando
     web: Web
+  relationships:
+    activity: Actividade da conta
+    dormant: En repouso
+    moved: Movida
+    mutual: Mutuo
+    primary: Principal
+    relationship: Relación
+    remove_selected_domains: Eliminar todas as seguidoras dos dominios escollidos
+    remove_selected_followers: Eliminar as seguidoras escollidas
+    remove_selected_follows: Deixar de seguir as usuarias escollidas
+    status: Estado da conta
   remote_follow:
     acct: Introduza o seu usuaria@servidor desde onde quere interactuar
     missing_resource: Non se puido atopar o URL de redirecionamento requerido para a súa conta
@@ -795,10 +850,12 @@ gl:
     edit_profile: Editar perfil
     export: Exportar datos
     featured_tags: Etiquetas destacadas
+    identity_proofs: Probas de identidade
     import: Importar
     migrate: Migrar conta
     notifications: Notificacións
     preferences: Preferencias
+    relationships: Seguindo e seguidoras
     settings: Axustes
     two_factor_authentication: Validar Doble Factor
     your_apps: As súas aplicacións

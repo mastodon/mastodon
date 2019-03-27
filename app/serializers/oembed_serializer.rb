@@ -43,6 +43,7 @@ class OEmbedSerializer < ActiveModel::Serializer
       style: 'max-width: 100%; border: 0',
       width: width,
       height: height,
+      allowfullscreen: true,
     }
 
     content_tag(:iframe, nil, attributes) + content_tag(:script, nil, src: full_asset_url('embed.js', skip_pipeline: true), async: true)
