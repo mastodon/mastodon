@@ -11,8 +11,7 @@ it:
       invalid: "%{authentication_keys} o password invalida."
       last_attempt: Hai un altro tentativo prima che il tuo account venga bloccato.
       locked: Il tuo account è stato bloccato.
-      not_found_in_database: "%{authentication_keys} o password non valida."
-      pending: Il tuo account è ancora sotto esame.
+      not_found_in_database: "%{authentication_keys} o password invalida."
       timeout: La tua sessione è terminata. Per favore, effettua l'accesso o registrati per continuare.
       unauthenticated: Devi effettuare l'accesso o registrarti per continuare.
       unconfirmed: Devi confermare il tuo indirizzo email per continuare.
@@ -21,7 +20,6 @@ it:
         action: Verifica indirizzo email
         action_with_app: Conferma e torna a %{app}
         explanation: Hai creato un account su %{host} con questo indirizzo email. Sei lonatno solo un clic dall'attivarlo. Se non sei stato tu, per favore ignora questa email.
-        explanation_when_pending: Hai richiesto di essere invitato su %{host} con questo indirizzo email. Quando avrai confermato il tuo indirizzo email, esamineremo la tua richiesta. Fino a quel momento non puoi accedere. Se la tua richiesta sarà respinta, i tuoi dati saranno eliminati, quindi non dovrai fare nient'altro. Se non hai presentato tu questa richiesta, puoi ignorare questa email.
         extra_html: Per favore controlla<a href="%{terms_path}">le regole del server</a> e <a href="%{policy_path}">i nostri termini di servizio</a>.
         subject: 'Mastodon: Istruzioni di conferma per %{instance}'
         title: Verifica indirizzo email
@@ -62,7 +60,6 @@ it:
       signed_up: Benvenuto! Ti sei registrato con successo.
       signed_up_but_inactive: Ti sei registrato con successo. Purtroppo però non possiamo farti accedere perché non hai ancora attivato il tuo account.
       signed_up_but_locked: Ti sei registrato con successo. Purtroppo però non possiamo farti accedere perché il tuo account è bloccato.
-      signed_up_but_pending: Un messaggio contenente un link di conferma è stato inviato al tuo indirizzo email. Dopo che avrai fatto clic sul link, esamineremo la tua richiesta. Se sarà approvata ti informeremo.
       signed_up_but_unconfirmed: Un messaggio con un link di conferma è stato inviato al tuo indirizzo email. Per favore, visita il link per attivare il tuo account.
       update_needs_confirmation: Hai aggiornato correttamente il tuo account, ma abbiamo bisogno di verificare il tuo nuovo indirizzo email. Per favore, controlla la posta in arrivo e visita il link di conferma per verificare il tuo indirizzo email.
       updated: Il tuo account è stato aggiornato con successo.
