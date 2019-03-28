@@ -12,6 +12,7 @@ import ColumnBackButton from '../../components/column_back_button';
 import { List as ImmutableList } from 'immutable';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
+import { fetchAccountIdentityProofs } from '../../actions/identity_proofs';
 
 const mapStateToProps = (state, { params: { accountId }, withReplies = false }) => {
   const path = withReplies ? `${accountId}:with_replies` : accountId;
@@ -42,6 +43,7 @@ class AccountTimeline extends ImmutablePureComponent {
     const { params: { accountId }, withReplies } = this.props;
 
     this.props.dispatch(fetchAccount(accountId));
+    this.props.dispatch(fetchAccountIdentityProofs(accountId));
     if (!withReplies) {
       this.props.dispatch(expandAccountFeaturedTimeline(accountId));
     }
@@ -51,6 +53,7 @@ class AccountTimeline extends ImmutablePureComponent {
   componentWillReceiveProps (nextProps) {
     if ((nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) || nextProps.withReplies !== this.props.withReplies) {
       this.props.dispatch(fetchAccount(nextProps.params.accountId));
+      this.props.dispatch(fetchAccountIdentityProofs(nextProps.params.accountId));
       if (!nextProps.withReplies) {
         this.props.dispatch(expandAccountFeaturedTimeline(nextProps.params.accountId));
       }
