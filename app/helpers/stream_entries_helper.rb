@@ -105,8 +105,8 @@ module StreamEntriesHelper
   end
 
   def poll_summary(status)
-    return unless status.poll
-    status.poll.options.map { |o| "[ ] #{o}" }.join("\n")
+    return unless status.preloadable_poll
+    status.preloadable_poll.options.map { |o| "[ ] #{o}" }.join("\n")
   end
 
   def status_description(status)

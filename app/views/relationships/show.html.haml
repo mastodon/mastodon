@@ -25,11 +25,18 @@
       %li= filter_link_to t('generic.all'), activity: nil
       %li= filter_link_to t('relationships.dormant'), activity: 'dormant'
 
+  .filter-subset
+    %strong= t 'generic.order_by'
+    %ul
+      %li= filter_link_to t('relationships.most_recent'), order: nil
+      %li= filter_link_to t('relationships.last_active'), order: 'active'
+
 = form_for(@form, url: relationships_path, method: :patch) do |f|
   = hidden_field_tag :page, params[:page] || 1
   = hidden_field_tag :relationship, params[:relationship]
   = hidden_field_tag :status, params[:status]
   = hidden_field_tag :activity, params[:activity]
+  = hidden_field_tag :order, params[:order]
 
   .batch-table
     .batch-table__toolbar

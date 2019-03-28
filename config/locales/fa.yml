@@ -4,25 +4,36 @@ fa:
     about_hashtag_html: این‌ها نوشته‌های عمومی هستند که برچسب (هشتگ) <strong>#%{hashtag}</strong> را دارند. اگر شما روی هر سروری حساب داشته باشید می‌توانید به این نوشته‌ها واکنش نشان دهید.
     about_mastodon_html: ماستدون (Mastodon) یک شبکهٔ اجتماعی است که بر اساس پروتکل‌های آزاد وب و نرم‌افزارهای آزاد و کدباز ساخته شده است. این شبکه مانند ایمیل غیرمتمرکز است.
     about_this: درباره
+    active_count_after: فعال
+    active_footnote: کاربران فعال در ماه گذشته
     administered_by: 'با مدیریت:'
     api: رابط برنامه‌نویسی کاربردی
     apps: اپ‌های موبایل
+    apps_platforms: ماستدون را در iOS، اندروید، و سایر سیستم‌ها داشته باشید
+    browse_directory: در فهرست گزیدهٔ کاربران این سرور چرخی بزنید و کاربران را بر اساس علاقه‌مندی‌هایشان پیدا کنید
+    browse_public_posts: فهرست لحظه‌ای نوشته‌های عمومی در ماستدون را ببینید
     contact: تماس
     contact_missing: تعیین نشده
     contact_unavailable: موجود نیست
+    discover_users: یافتن کاربران
     documentation: مستندات
     extended_description_html: |
       <h3>جای خوبی برای قانون‌ها</h3>
       <p>توضیحات تکمیلی نوشته نشده است.</p>
+    federation_hint_html: با داشتن حساب روی %{instance} می‌توانید کاربران همهٔ سرورهای دیگر ماستدون (و سایر شبکه‌های سازگار با آن) را پی بگیرید.
     generic_description: "%{domain} یک سرور روی شبکه است"
+    get_apps: یک اپ موبایل را امتحان کنید
     hosted_on: ماستدون، میزبانی‌شده روی %{domain}
     learn_more: بیشتر بدانید
     privacy_policy: سیاست رازداری
+    see_whats_happening: ببینید چه خبر است
+    server_stats: 'آمار سرور:'
     source_code: کدهای منبع
     status_count_after:
       one: چیز نوشته‌اند
       other: چیز نوشته‌اند
     status_count_before: که در کنار هم
+    tagline: با دوستان خود در ارتباط باشید و دوستان تازه پیدا کنید
     terms: شرایط کاربری
     user_count_after:
       one: کاربر
@@ -68,6 +79,7 @@ fa:
       delete: پاک کردن
       destroyed_msg: یادداشت مدیر با موفقیت پاک شد!
     accounts:
+      approve: پذیرفتن
       are_you_sure: آیا مطمئن هستید؟
       avatar: تصویر نمایه
       by_domain: دامین
@@ -113,6 +125,7 @@ fa:
       moderation:
         active: فعال
         all: همه
+        pending: در انتظار
         silenced: بی‌صدا شده
         suspended: معلق شده
         title: وضعیت
@@ -122,6 +135,7 @@ fa:
       no_limits_imposed: بدون محدودیت
       not_subscribed: عضو نیست
       outbox_url: نشانی صندوق خروجی
+      pending: در انتظار بررسی
       perform_full_suspension: تعلیق
       profile_url: نشانی نمایه
       promote: ترفیع‌دادن
@@ -129,6 +143,7 @@ fa:
       public: عمومی
       push_subscription_expires: عضویت از راه PuSH منقضی شد
       redownload: به‌روزرسانی نمایه
+      reject: نپذیرفتن
       remove_avatar: حذف تصویر نمایه
       remove_header: برداشتن تصویر زمینه
       resend_confirmation:
@@ -400,6 +415,12 @@ fa:
         min_invite_role:
           disabled: هیچ کس
           title: اجازهٔ دعوت به
+      registrations_mode:
+        modes:
+          approved: ثبت نام نیازمند تأیید مدیران است
+          none: کسی نمی‌تواند ثبت نام کند
+          open: همه می‌توانند ثبت نام کنند
+        title: شرایط ثبت نام
       show_known_fediverse_at_about_page:
         desc_html: اگر انتخاب شود، بوق‌های همهٔ سرورهای دیگر نیز در پیش‌نمایش این سرور نمایش می‌یابد. وگرنه فقط بوق‌های محلی نشان داده می‌شوند.
         title: نمایش سرورهای دیگر در پیش‌نمایش این سرور
@@ -407,13 +428,13 @@ fa:
         desc_html: نمایش علامت همکار روی صفحهٔ کاربر
         title: نمایش علامت همکار
       site_description:
-        desc_html: معرفی کوتاهی که روی صفحهٔ اصلی نمایش می‌یابد. دربارهٔ این که چه چیزی دربارهٔ این سرور ماستدون ویژه است یا هر چیز مهم دیگری بنویسید. می‌توانید HTML بنویسید، به‌ویژه <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
+        desc_html: معرفی کوتاهی دربارهٔ رابط برنامه‌نویسی کاربردی. دربارهٔ این که چه چیزی دربارهٔ این سرور ماستدون ویژه است یا هر چیز مهم دیگری بنویسید. می‌توانید HTML بنویسید، به‌ویژه <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
         title: دربارهٔ این سرور
       site_description_extended:
         desc_html: جای خوبی برای نوشتن سیاست‌های کاربری، قانون‌ها، راهنماها، و هر چیزی که ویژهٔ این سرور است. تگ‌های HTML هم مجاز است
         title: اطلاعات تکمیلی سفارشی
       site_short_description:
-        desc_html: روی نوار کناری و همچنین به عنوان فرادادهٔ صفحه‌ها نمایش می‌یابد. در یک بند توضیح دهید که ماستدون چیست و چرا این سرور با بقیه فرق دارد. اگر خالی بگذارید، به جایش «دربارهٔ سایت» نمایش می‌یابد.
+        desc_html: روی نوار کناری و همچنین به عنوان فرادادهٔ صفحه‌ها نمایش می‌یابد. در یک بند توضیح دهید که ماستدون چیست و چرا این سرور با بقیه فرق دارد.
         title: توضیح کوتاه دربارهٔ سرور
       site_terms:
         desc_html: می‌توانید سیاست رازداری، شرایط استفاده، یا سایر مسائل قانونی را به دلخواه خود بنویسید. تگ‌های HTML هم مجاز است
@@ -462,6 +483,9 @@ fa:
       edit_preset: ویرایش هشدار پیش‌فرض
       title: مدیریت هشدارهای پیش‌فرض
   admin_mailer:
+    new_pending_account:
+      body: جزئیات حساب تازه این‌جاست. شما می‌توانید آن را تأیید یا رد کنید.
+      subject: حساب تازه‌ای در %{instance} نیازمند بررسی است (%{username})
     new_report:
       body: کاربر %{reporter} کاربر %{target} را گزارش داد
       body_remote: کسی از %{domain} گزارش %{target} را فرستاده
@@ -483,7 +507,9 @@ fa:
     your_token: کد دسترسی شما
   auth:
     agreement_html: با کلیک روی دکمهٔ عضو شدن، شما <a href="%{rules_path}">قوانین این سرور</a> و <a href="%{terms_path}">شرایط استفادهٔ</a> ما را می‌پذیرید.
+    apply_for_account: درخواست دعوت‌نامه
     change_password: رمز
+    checkbox_agreement_html: من <a href="%{rules_path}" target="_blank">قانون‌های این سرور</a> و <a href="%{terms_path}" target="_blank">شرایط کاربری</a> را می‌پذیرم
     confirm_email: تأیید ایمیل
     delete_account: پاک‌کردن حساب
     delete_account_html: اگر می‌خواهید حساب خود را پاک کنید، از <a href="%{path}">این‌جا</a> پیش بروید. از شما درخواست تأیید خواهد شد.
@@ -499,10 +525,12 @@ fa:
       cas: CAS
       saml: SAML
     register: عضو شوید
+    registration_closed: سرور %{instance} عضو تازه‌ای نمی‌پذیرد
     resend_confirmation: راهنمایی برای تأیید را دوباره بفرست
     reset_password: بازنشانی رمز
     security: امنیت
     set_new_password: تعیین رمز تازه
+    trouble_logging_in: برای ورود مشکلی دارید؟
   authorize_follow:
     already_following: شما همین الان هم این حساب را پی‌می‌گیرید
     error: متأسفانه حین یافتن آن حساب خطایی رخ داد
@@ -558,6 +586,9 @@ fa:
       content: شرمنده، یک چیزی از سمت ما اشتباه شده.
       title: این صفحه درست نیست
     noscript_html: برای استفاده از نسخهٔ تحت وب ماستدون، لطفاً جاوااسکریپت را فعال کنید. یا به جایش می‌توانید <a href="%{apps_path}">یک اپ ماستدون</a> را به‌کار ببرید.
+  existing_username_validator:
+    not_found: کاربری در این سرور با این نام کاربری پیدا نشد
+    not_found_multiple: "%{usernames} پیدا نشد"
   exports:
     archive_takeout:
       date: تاریخ
@@ -598,12 +629,30 @@ fa:
     more: بیشتر…
     resources: منابع
   generic:
+    all: همه
     changes_saved_msg: تغییرات با موفقیت ذخیره شدند!
     copy: رونوشت
     save_changes: ذخیرهٔ تغییرات
     validation_errors:
       one: یک چیزی هنوز درست نیست! لطفاً خطاهای زیر را ببینید
       other: یک چیزی هنوز درست نیست! لطفاً %{count} خطای زیر را ببینید
+  html_validator:
+    invalid_markup: 'دارای نشانه‌گذاری نامعتبر HTML است: %{error}'
+  identity_proofs:
+    active: فعال
+    authorize: بله، اجازه بده
+    authorize_connection_prompt: آیا اجازهٔ این ارتباط رمزگذاری را می‌دهید؟
+    errors:
+      failed: برقراری ارتباط  رمزگذاری شکست خورد. لطفاً دوباره از %{provider} تلاش کنید.
+      keybase:
+        invalid_token: کدهای Keybase چکیده (هش) امضاهای دیجیتال هستند و دست‌کم ۶۶ نویسه در مبنای ۱۶ دارند
+        verification_failed: این کد را Keybase به عنوان امضای دیجیتال کاربر %{kb_username} تأیید نمی‌کند. لطفاً دوباره از Keybase تلاش کنید.
+    explanation_html: این‌جا می‌توانید به شناسه‌های دیگر خود مانند نمایهٔ Keybase خودتان به طور رمزنگارانه متصل شوید. با این کار دیگران می‌توانند به شما پیغام‌های رمزشده بفرستند و به چیزی که شما به آن‌ها می‌فرستید اعتماد کنند.
+    i_am_html: من %{username} روی %{service} هستم.
+    identity: شناسه
+    inactive: غیرفعال
+    status: وضعیت تأیید
+    view_proof: دیدن مدرک
   imports:
     modes:
       merge: ادغام
@@ -721,6 +770,17 @@ fa:
     other: سایر تنظیمات
     publishing: تنظیمات انتشار مطالب
     web: وب
+  relationships:
+    activity: فعالیت حساب
+    dormant: غیرفعال
+    moved: منتقل‌شده
+    mutual: دوطرفه
+    primary: اصلی
+    relationship: رابطه
+    remove_selected_domains: همهٔ پیگیران از طرف این سرور را بردار
+    remove_selected_followers: پیگیران انتخاب‌شده را بردار
+    remove_selected_follows: به پیگیری از کاربران انتخاب‌شده پایان بده
+    status: وضعیت حساب
   remote_follow:
     acct: نشانی حساب username@domain خود را این‌جا بنویسید
     missing_resource: نشانی اینترنتی برای رسیدن به حساب شما پیدا نشد
@@ -795,10 +855,12 @@ fa:
     edit_profile: ویرایش نمایه
     export: برون‌سپاری داده‌ها
     featured_tags: برچسب‌های منتخب
+    identity_proofs: مدرک شناسه‌ها
     import: درون‌ریزی
     migrate: انتقال حساب
     notifications: اعلان‌ها
     preferences: ترجیحات
+    relationships: پیگیری‌ها و پیگیران
     settings: تنظیمات
     two_factor_authentication: ورود دومرحله‌ای
     your_apps: برنامهٔ شما
