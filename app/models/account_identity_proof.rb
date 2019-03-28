@@ -26,7 +26,7 @@ class AccountIdentityProof < ApplicationRecord
 
   scope :active, -> { where(verified: true, live: true) }
 
-  after_create_commit :queue_worker
+  after_commit :queue_worker, if: :saved_change_to_token?
 
   delegate :refresh!, :on_success_path, :badge, to: :provider_instance
 

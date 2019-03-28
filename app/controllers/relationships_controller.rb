@@ -31,13 +31,14 @@ class RelationshipsController < ApplicationController
   def relationships_scope
     scope = begin
       if following_relationship?
-        current_account.following.joins(:account_stat)
+        current_account.following.eager_load(:account_stat).reorder(nil)
       else
-        current_account.followers.joins(:account_stat)
+        current_account.followers.eager_load(:account_stat).reorder(nil)
       end
     end
 
-    scope.merge!(Follow.recent)
+    scope.merge!(Follow.recent)             if params[:order].blank? || params[:order] == 'recent'
+    scope.merge!(Account.by_recent_status)  if params[:order] == 'active'
     scope.merge!(mutual_relationship_scope) if mutual_relationship?
     scope.merge!(moved_account_scope)       if params[:status] == 'moved'
     scope.merge!(primary_account_scope)     if params[:status] == 'primary'
@@ -84,7 +85,7 @@ class RelationshipsController < ApplicationController
   end
 
   def current_params
-    params.slice(:page, :status, :relationship, :by_domain, :activity).permit(:page, :status, :relationship, :by_domain, :activity)
+    params.slice(:page, :status, :relationship, :by_domain, :activity, :order).permit(:page, :status, :relationship, :by_domain, :activity, :order)
   end
 
   def action_from_button

@@ -49,14 +49,10 @@ class ProofProvider::Keybase::Verifier
 
   def query_params
     {
-      domain: domain,
+      domain: ProofProvider::Keybase::DOMAIN,
       kb_username: @provider_username,
       username: @local_username,
       sig_hash: @token,
     }
-  end
-
-  def domain
-    Rails.configuration.x.local_domain
   end
 end
