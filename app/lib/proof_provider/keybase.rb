@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class ProofProvider::Keybase
-  BASE_URL = 'https://keybase.io'
+  BASE_URL = ENV.fetch('KEYBASE_BASE_URL', 'https://keybase.io')
+  DOMAIN = ENV.fetch('KEYBASE_DOMAIN', Rails.configuration.x.local_domain)
 
   class Error < StandardError; end
 
