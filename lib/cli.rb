@@ -5,6 +5,7 @@ require_relative 'mastodon/media_cli'
 require_relative 'mastodon/emoji_cli'
 require_relative 'mastodon/accounts_cli'
 require_relative 'mastodon/feeds_cli'
+require_relative 'mastodon/search_cli'
 require_relative 'mastodon/settings_cli'
 require_relative 'mastodon/statuses_cli'
 require_relative 'mastodon/domains_cli'
@@ -27,6 +28,9 @@ module Mastodon
 
     desc 'feeds SUBCOMMAND ...ARGS', 'Manage feeds'
     subcommand 'feeds', Mastodon::FeedsCLI
+
+    desc 'search SUBCOMMAND ...ARGS', 'Manage the search engine'
+    subcommand 'search', Mastodon::SearchCLI
 
     desc 'settings SUBCOMMAND ...ARGS', 'Manage dynamic settings'
     subcommand 'settings', Mastodon::SettingsCLI
