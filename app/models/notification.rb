@@ -25,7 +25,7 @@ class Notification < ApplicationRecord
     poll:           'Poll',
   }.freeze
 
-  STATUS_INCLUDES = [:account, :application, :media_attachments, :tags, active_mentions: :account, reblog: [:account, :application, :media_attachments, :tags, active_mentions: :account]].freeze
+  STATUS_INCLUDES = [:account, :application, :preloadable_poll, :media_attachments, :tags, active_mentions: :account, reblog: [:account, :application, :preloadable_poll, :media_attachments, :tags, active_mentions: :account]].freeze
 
   belongs_to :account, optional: true
   belongs_to :from_account, class_name: 'Account', optional: true

@@ -464,7 +464,7 @@ RSpec.describe ActivityPub::Activity::Create do
 
       context 'when a vote to a local poll' do
         let(:poll) { Fabricate(:poll, options: %w(Yellow Blue)) }
-        let!(:local_status) { Fabricate(:status, owned_poll: poll) }
+        let!(:local_status) { Fabricate(:status, poll: poll) }
 
         let(:object_json) do
           {
@@ -489,7 +489,7 @@ RSpec.describe ActivityPub::Activity::Create do
           poll.save(validate: false)
           poll
         end
-        let!(:local_status) { Fabricate(:status, owned_poll: poll) }
+        let!(:local_status) { Fabricate(:status, poll: poll) }
 
         let(:object_json) do
           {

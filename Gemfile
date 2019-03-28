@@ -6,7 +6,7 @@ ruby '>= 2.4.0', '< 2.7.0'
 gem 'pkg-config', '~> 1.3'
 
 gem 'puma', '~> 3.12'
-gem 'rails', '~> 5.2.2'
+gem 'rails', '~> 5.2.3'
 gem 'thor', '~> 0.20'
 
 gem 'hamlit-rails', '~> 0.2'
@@ -15,7 +15,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.35', require: false
+gem 'aws-sdk-s3', '~> 1.36', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -30,7 +30,7 @@ gem 'charlock_holmes', '~> 0.7.6'
 gem 'iso-639'
 gem 'chewy', '~> 5.0'
 gem 'cld3', '~> 3.2.3'
-gem 'devise', '~> 4.5'
+gem 'devise', '~> 4.6'
 gem 'devise-two-factor', '~> 3.0'
 
 group :pam_authentication, optional: true do
@@ -86,7 +86,7 @@ gem 'strong_migrations', '~> 0.3'
 gem 'tty-command', '~> 0.8', require: false
 gem 'tty-prompt', '~> 0.18', require: false
 gem 'twitter-text', '~> 1.14'
-gem 'tzinfo-data', '~> 1.2018'
+gem 'tzinfo-data', '~> 1.2019'
 gem 'webpacker', '~> 4.0'
 gem 'webpush'
 

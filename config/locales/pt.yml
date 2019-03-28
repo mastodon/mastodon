@@ -4,36 +4,25 @@ pt:
     about_hashtag_html: Estes são toots públicos marcados com <strong>#%{hashtag}</strong>. Podes interagir com eles se tiveres uma conta Mastodon.
     about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.
     about_this: Sobre esta instância
-    active_count_after: ativo
-    active_footnote: Usuários ativos mensais (UAM)
     administered_by: 'Administrado por:'
     api: API
     apps: Aplicações móveis
-    apps_platforms: Use o Mastodon a partir de iOS, Android e outras plataformas
-    browse_directory: Procurar um diretório de perfil e filtrar por interesses
-    browse_public_posts: Navegue por um fluxo ao vivo de posts públicos no Mastodon
     contact: Contacto
     contact_missing: Não configurado
     contact_unavailable: n.d.
-    discover_users: Descubra os usuários
     documentation: Documentação
     extended_description_html: |
       <h3>Um bom lugar para regras</h3>
       <p>A descrição estendida ainda não foi configurada.</p>
-    federation_hint_html: Com uma conta em %{instance} poderá seguir pessoas em qualquer servidor Mastodon e para além dele.
     generic_description: "%{domain} é um servidor na rede"
-    get_apps: Experimente uma aplicação móvel
     hosted_on: Mastodon em %{domain}
     learn_more: Saber mais
     privacy_policy: Política de privacidade
-    see_whats_happening: Veja o que está acontecendo
-    server_stats: 'Estatisticas do servidor:'
     source_code: Código fonte
     status_count_after:
       one: publicação
       other: publicações
     status_count_before: Que fizeram
-    tagline: Siga os amigos e descubra novos amigos
     terms: termos de serviço
     user_count_after:
       one: utilizador
@@ -79,7 +68,6 @@ pt:
       delete: Eliminar
       destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
-      approve: Aprovar
       are_you_sure: Tens a certeza?
       avatar: Avatar
       by_domain: Domínio
@@ -125,7 +113,6 @@ pt:
       moderation:
         active: Activo
         all: Todos
-        pending: Pendente
         silenced: Silenciados
         suspended: Supensos
         title: Moderação
@@ -135,7 +122,6 @@ pt:
       no_limits_imposed: Sem limites impostos
       not_subscribed: Não inscrito
       outbox_url: URL da caixa de saída
-      pending: Revisão pendente
       perform_full_suspension: Fazer suspensão completa
       profile_url: URL do perfil
       promote: Promover
@@ -143,7 +129,6 @@ pt:
       public: Público
       push_subscription_expires: A Inscrição PuSH expira
       redownload: Atualizar avatar
-      reject: Rejeitar
       remove_avatar: Remover o avatar
       remove_header: Remover o cabeçalho
       resend_confirmation:
@@ -415,12 +400,6 @@ pt:
         min_invite_role:
           disabled: Ninguém
           title: Permitir convites de
-      registrations_mode:
-        modes:
-          approved: Aprovação necessária para inscrição
-          none: Ninguém pode se inscrever
-          open: Qualquer um pode se inscrever
-        title: Modo de registo
       show_known_fediverse_at_about_page:
         desc_html: Quando comutado, irá mostrar a previsualização de publicações de todo o fediverse conhecido. De outro modo só mostrará publicações locais.
         title: Mostrar o fediverse conhecido na previsualização da cronologia
@@ -483,9 +462,6 @@ pt:
       edit_preset: Editar o aviso predefinido
       title: Gerir os avisos predefinidos
   admin_mailer:
-    new_pending_account:
-      body: Os detalhes da nova conta estão abaixo. Você pode aprovar ou rejeitar este pedido.
-      subject: Nova conta para revisão em %{instance} (%{username})
     new_report:
       body: "%{reporter} relatou %{target}"
       body_remote: Alguém de %{domain} relatou %{target}
@@ -507,9 +483,7 @@ pt:
     your_token: O teu token de acesso
   auth:
     agreement_html: Registando-te concordas em seguir <a href="%{rules_path}">as regras da instância</a> e <a href="%{terms_path}">os nossos termos de serviço</a>.
-    apply_for_account: Solicite um convite
     change_password: Palavra-passe
-    checkbox_agreement_html: Eu concordo com a <a href="%{rules_path}" target="_blank">regras do servidor</a> e <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: Confirmar e-mail
     delete_account: Eliminar conta
     delete_account_html: Se desejas eliminar a conta, podes <a href="%{path}">continua aqui</a>. Uma confirmação será pedida.
@@ -525,12 +499,10 @@ pt:
       cas: CAS
       saml: SAML
     register: Registar
-    registration_closed: "%{instance} não aceita novos membros"
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Criar nova palavra-passe
     security: Alterar palavra-passe
     set_new_password: Editar palavra-passe
-    trouble_logging_in: Problemas para entrar?
   authorize_follow:
     already_following: Tu já estás a seguir esta conta
     error: Infelizmente, ocorreu um erro ao buscar a conta remota
@@ -628,28 +600,12 @@ pt:
     more: Mais…
     resources: Recursos
   generic:
-    all: Todos
     changes_saved_msg: Alterações guardadas!
     copy: Copiar
     save_changes: Guardar alterações
     validation_errors:
       one: Algo não está correcto. Por favor vê o erro abaixo
       other: Algo não está correto. Por favor vê os %{count} erros abaixo
-  identity_proofs:
-    active: Ativo
-    authorize: Sim, autorizar
-    authorize_connection_prompt: Autorizar esta ligação criptográfica?
-    errors:
-      failed: A ligação criptográfica falhou. Por favor tente novamente a partir de %{provider}.
-      keybase:
-        invalid_token: Os tokens do Keybase são hashes de assinaturas e devem ter 66 caracteres hexadecimais
-        verification_failed: O Keybase não reconhece este token como uma assinatura do usuário do Keybase %{kb_username}. Por favor, tente novamente a partir do Keybase.
-    explanation_html: Aqui você pode conectar criptograficamente suas outras identidades, como um perfil Keybase. Isto permite que outras pessoas lhe enviem mensagens encriptadas e conteúdos de confiança que você lhes envia.
-    i_am_html: Eu sou %{username} em %{service}.
-    identity: Identidade
-    inactive: Inativo
-    status: Status de verificação
-    view_proof: Ver prova
   imports:
     modes:
       merge: Juntar
@@ -767,17 +723,6 @@ pt:
     other: Outro
     publishing: Publicação
     web: Web
-  relationships:
-    activity: Atividade da conta
-    dormant: Dorminhoco
-    moved: Movido
-    mutual: Mútuo
-    primary: Primário
-    relationship: Relacionamento
-    remove_selected_domains: Remover todos os seguidores dos domínios selecionados
-    remove_selected_followers: Remover seguidores selecionados
-    remove_selected_follows: Usuários selecionados não acompanhados
-    status: Status da conta
   remote_follow:
     acct: Entre seu usuário@domínio do qual quer seguir
     missing_resource: Não foi possível achar a URL de redirecionamento para sua conta
@@ -852,12 +797,10 @@ pt:
     edit_profile: Editar perfil
     export: Exportar dados
     featured_tags: Hashtags destacadas
-    identity_proofs: Provas de identidade
     import: Importar
     migrate: Migração de conta
     notifications: Notificações
     preferences: Preferências
-    relationships: Seguidores e seguidores
     settings: Configurações
     two_factor_authentication: Autenticação em dois passos
     your_apps: As tuas aplicações
