@@ -3,7 +3,7 @@
 class LanguageDetector
   include Singleton
 
-  CHARACTER_THRESHOLD    = 140
+  WORDS_THRESHOLD        = 4
   RELIABLE_CHARACTERS_RE = /[\p{Hebrew}\p{Arabic}\p{Syriac}\p{Thaana}\p{Nko}\p{Han}\p{Katakana}\p{Hiragana}\p{Hangul}]+/m
 
   def initialize
@@ -37,7 +37,7 @@ class LanguageDetector
   end
 
   def sufficient_text_length?(text)
-    text.size >= CHARACTER_THRESHOLD
+    text.split(/\s+/).size >= WORDS_THRESHOLD
   end
 
   def language_specific_character_set?(text)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::CollectionSerializer < ActiveModel::Serializer
+class ActivityPub::CollectionSerializer < ActivityPub::Serializer
   def self.serializer_for(model, options)
     return ActivityPub::NoteSerializer if model.class.name == 'Status'
     return ActivityPub::CollectionSerializer if model.class.name == 'ActivityPub::CollectionPresenter'

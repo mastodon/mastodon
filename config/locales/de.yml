@@ -4,25 +4,36 @@ de:
     about_hashtag_html: Dies sind öffentliche Beiträge, die mit <strong>#%{hashtag}</strong> getaggt wurden. Wenn du irgendwo im Fediversum ein Konto besitzt, kannst du mit ihnen interagieren.
     about_mastodon_html: Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral (so wie E-Mail!).
     about_this: Über diese Instanz
+    active_count_after: aktiv
+    active_footnote: Monatlich Aktive User (MAU)
     administered_by: 'Administriert von:'
     api: API
     apps: Mobile Apps
+    apps_platforms: Benutze Mastodon auf iOS, Android und anderen Plattformen
+    browse_directory: Durchsuche ein Profilverzeichnis und filtere nach Interessen
+    browse_public_posts: Durchsuche einen Zeitleiste an öffentlichen Beiträgen auf Mastodon
     contact: Kontakt
     contact_missing: Nicht angegeben
     contact_unavailable: N/A
+    discover_users: Benutzer entdecken
     documentation: Dokumentation
     extended_description_html: |
       <h3>Ein guter Platz für Regeln</h3>
       <p>Die erweiterte Beschreibung wurde noch nicht aufgesetzt.</p>
+    federation_hint_html: Mit einem Account auf %{instance} wirst du in der Lage sein Nutzern auf irgendeinem Mastodon-Server und darüber hinaus zu folgen.
     generic_description: "%{domain} ist ein Server im Netzwerk"
+    get_apps: Versuche eine mobile App
     hosted_on: Mastodon, beherbergt auf %{domain}
     learn_more: Mehr erfahren
     privacy_policy: Datenschutzerklärung
+    see_whats_happening: Finde heraus, was gerade in der Welt los ist
+    server_stats: 'Serverstatistiken:'
     source_code: Quellcode
     status_count_after:
       one: Statusmeldung
       other: Statusmeldungen
     status_count_before: mit
+    tagline: Finde Freunde und entdecke neue
     terms: Nutzungsbedingungen
     user_count_after:
       one: Benutzer:in
@@ -68,6 +79,7 @@ de:
       delete: Löschen
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
     accounts:
+      approve: Aktzeptieren
       are_you_sure: Bist du sicher?
       avatar: Profilbild
       by_domain: Domain
@@ -113,6 +125,7 @@ de:
       moderation:
         active: Aktiv
         all: Alle
+        pending: Ausstehend
         silenced: Stummgeschaltet
         suspended: Gesperrt
         title: Moderation
@@ -122,6 +135,7 @@ de:
       no_limits_imposed: Keine Limits eingesetzt
       not_subscribed: Nicht abonniert
       outbox_url: Postausgangs-URL
+      pending: Ausstehender Review
       perform_full_suspension: Sperren
       profile_url: Profil-URL
       promote: Befördern
@@ -129,6 +143,7 @@ de:
       public: Öffentlich
       push_subscription_expires: PuSH-Abonnement läuft aus
       redownload: Profil neu laden
+      reject: Ablehnen
       remove_avatar: Profilbild entfernen
       remove_header: Header entfernen
       resend_confirmation:
@@ -291,6 +306,7 @@ de:
       back_to_account: Zurück zum Konto
       title: "%{acct}'s Follower"
     instances:
+      by_domain: Domain
       delivery_available: Zustellung ist verfügbar
       known_accounts:
         one: "%{count} bekanntes Konto"
@@ -399,6 +415,12 @@ de:
         min_invite_role:
           disabled: Niemand
           title: Einladungen erlauben von
+      registrations_mode:
+        modes:
+          approved: Zustimmung benötigt zur Registrierung
+          none: Niemand kann sich registrieren
+          open: Jeder kann sich registrieren
+        title: Registrierungsmodus
       show_known_fediverse_at_about_page:
         desc_html: Wenn aktiviert, wird es alle Beiträge aus dem bereits bekannten Teil des Fediversums auf der Startseite anzeigen. Andernfalls werden lokale Beitrage der Instanz angezeigt.
         title: Verwende öffentliche Zeitleiste für die Vorschau
@@ -461,6 +483,9 @@ de:
       edit_preset: Warnungsvorlage bearbeiten
       title: Warnungsvorlagen verwalten
   admin_mailer:
+    new_pending_account:
+      body: Die Details von diesem neuem Konto sind unten. Du kannst die Anfrage akzeptieren oder ablehnen.
+      subject: Neues Konto zur Überprüfung auf %{instance} verfügbar (%{username})
     new_report:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
@@ -482,7 +507,9 @@ de:
     your_token: Dein Zugangs-Token
   auth:
     agreement_html: Indem du dich registrierst, erklärst du dich mit den untenstehenden <a href="%{rules_path}">Regeln des Servers</a> und der <a href="%{terms_path}">Datenschutzerklärung</a> einverstanden.
+    apply_for_account: Eine Einladung anfragen
     change_password: Passwort
+    checkbox_agreement_html: Ich akzeptiere die <a href="%{rules_path}" target="_blank">Server-Regeln</a> und die <a href="%{terms_path}" target="_blank">Nutzungsbedingungen</a>
     confirm_email: E-Mail bestätigen
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto löschen willst, kannst du <a href="%{path}">hier damit fortfahren</a>. Du wirst um Bestätigung gebeten werden.
@@ -498,10 +525,12 @@ de:
       cas: CAS
       saml: SAML
     register: Registrieren
+    registration_closed: "%{instance} akzeptiert keine neuen Mitglieder"
     resend_confirmation: Bestätigungs-Mail erneut versenden
     reset_password: Passwort zurücksetzen
     security: Sicherheit
     set_new_password: Neues Passwort setzen
+    trouble_logging_in: Schwierigkeiten beim anmelden?
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
     error: Das Remote-Konto konnte nicht geladen werden
@@ -557,6 +586,9 @@ de:
       content: Bitte verzeih, etwas ist bei uns schief gegangen.
       title: Diese Seite ist kaputt
     noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
+  existing_username_validator:
+    not_found: kann lokalen Benutzer nicht mit diesem Nuternamen finden
+    not_found_multiple: kann %{usernames} nicht finden
   exports:
     archive_takeout:
       date: Datum
@@ -597,12 +629,30 @@ de:
     more: Mehr…
     resources: Ressourcen
   generic:
+    all: Alle
     changes_saved_msg: Änderungen gespeichert!
     copy: Kopieren
     save_changes: Änderungen speichern
     validation_errors:
       one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
       other: Etwas ist noch nicht ganz richtig! Bitte korrigiere %{count} Fehler
+  html_validator:
+    invalid_markup: 'enthält ungültiges HTML-Markup: %{error}'
+  identity_proofs:
+    active: Aktiv
+    authorize: Ja, autorisieren
+    authorize_connection_prompt: Diese kryptographische Verbindung autorisieren?
+    errors:
+      failed: Die kryptographische Verbindung ist fehlgeschlagen. Bitte versuche es nochmal von %{provider}.
+      keybase:
+        invalid_token: Keybase-Tokens sind Hashsignaturen und müssen 66 Hexadezimalzeichen lang sein
+        verification_failed: Keybase nimmt dieses Token nicht als Signatur für Keybase-Benutzer %{kb_username} an. Bitte versuche es nochmal über Keybase.
+    explanation_html: Hier kannst du kryptographisch deine anderen Identitäten wie dein Keybase-Profil verbinden. Dadurch können andere Leute dir verschlüsselte Nachrichten senden und dem Inhalt, den sie dir senden, vertrauen.
+    i_am_html: Ich bin %{username} auf %{service}.
+    identity: Identität
+    inactive: Inaktiv
+    status: Verifizierungsstatus
+    view_proof: Zeige Nachweis
   imports:
     modes:
       merge: Zusammenführen
@@ -705,11 +755,32 @@ de:
     older: Älter
     prev: Zurück
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Du hast bereits für diese Umfrage abgestimmt
+      duplicate_options: enthält doppelte Einträge
+      duration_too_long: ist zu weit in der Zukunft
+      duration_too_short: ist zu früh
+      expired: Die Umfrage ist bereits vorbei
+      over_character_limit: kann nicht länger als jeweils %{max} Zeichen sein
+      too_few_options: muss mindestens einen Eintrag haben
+      too_many_options: kann nicht mehr als %{max} Einträge beinhalten
   preferences:
     languages: Sprachen
     other: Weiteres
     publishing: Beiträge
     web: Web
+  relationships:
+    activity: Kontoaktivität
+    dormant: Inaktiv
+    moved: Umgezogen
+    mutual: Bekannt
+    primary: Primär
+    relationship: Beziehung
+    remove_selected_domains: Entferne alle Follower von den ausgewählten Domains
+    remove_selected_followers: Entferne ausgewählte Follower
+    remove_selected_follows: Entfolge ausgewählte Benutzer
+    status: Kontostatus
   remote_follow:
     acct: Profilname@Domain, von wo aus du dieser Person folgen möchtest
     missing_resource: Die erforderliche Weiterleitungs-URL für dein Konto konnte nicht gefunden werden
@@ -784,10 +855,12 @@ de:
     edit_profile: Profil bearbeiten
     export: Datenexport
     featured_tags: Empfohlene Hashtags
+    identity_proofs: Identitätsnachweise
     import: Datenimport
     migrate: Konto-Umzug
     notifications: Benachrichtigungen
     preferences: Einstellungen
+    relationships: Folgende und Follower
     settings: Einstellungen
     two_factor_authentication: Zwei-Faktor-Auth
     your_apps: Deine Anwendungen
@@ -813,6 +886,11 @@ de:
       ownership: Du kannst nur eigene Beiträge anheften
       private: Du kannst nur öffentliche Beiträge anheften
       reblog: Du kannst keine geteilten Beiträge anheften
+    poll:
+      total_votes:
+        one: "%{count} Stimme"
+        other: "%{count} Stimmen"
+      vote: Abstimmen
     show_more: Mehr anzeigen
     sign_in_to_participate: Melde dich an, um an der Konversation teilzuhaben
     title: '%{name}: "%{quote}"'
@@ -834,7 +912,7 @@ de:
 
       <ul>
         <li><em>Grundlegende Kontoinformationen</em>: Wenn du dich auf diesem Server registrierst, wirst du darum gebeten, einen Benutzer:innen-Namen, eine E-Mail-Adresse und ein Passwort einzugeben. Du kannst auch zusätzliche Profilinformationen wie etwa einen Anzeigenamen oder eine Biografie eingeben und ein Profilbild oder ein Headerbild hochladen. Der Benutzer:innen-Name, der Anzeigename, die Biografie, das Profilbild und das Headerbild werden immer öffentlich angezeigt.</li>
-        <li><em>Beiträge, Folge- und andere öffentliche Informationen</em>: Die Liste der Leute, denen du folgst, wird öffentlich gezeigt, das gleiche gilt für deine Folgenden (Follower). Sobald du eine Nachricht übermittelst, wird das Datum und die Uhrzeit gemeinsam mit der Information, welche Anwendung du dafür verwendet hast, gespeichert. Nachricht können Medienanhänge enthalten, etwa Bilder und Videos. Öffentliche und ungelistete Beiträge sind öffentlich verfügbar. Sobald du einen Beitrag auf deinem Profil featurest, sind dies auch öffentlich verfügbare Informationen. Deine Beiträge werden an deine Folgenden ausgeliefert, was in manchen Fällen bedeutet, dass sie an andere Server ausgeliefert werden und dort Kopien gespeichert werden. Sobald du Beiträge löschst, wird dies ebenso an deine Follower ausgeliefert. Die Handlungen des Teilens und Favorisieren eines anderen Beitrages ist immer öffentlich.</li>
+        <li><em>Beiträge, Folge- und andere öffentliche Informationen</em>: Die Liste der Leute, denen du folgst, wird öffentlich gezeigt, das gleiche gilt für deine Folgenden (Follower). Sobald du eine Nachricht übermittelst, wird das Datum und die Uhrzeit gemeinsam mit der Information, welche Anwendung du dafür verwendet hast, gespeichert. Nachricht können Medienanhänge enthalten, etwa Bilder und Videos. Öffentliche und ungelistete Beiträge sind öffentlich verfügbar. Sobald du einen Beitrag auf deinem Profil anpinnst, sind dies auch öffentlich verfügbare Informationen. Deine Beiträge werden an deine Folgenden ausgeliefert, was in manchen Fällen bedeutet, dass sie an andere Server ausgeliefert werden und dort Kopien gespeichert werden. Sobald du Beiträge löschst, wird dies ebenso an deine Follower ausgeliefert. Die Handlungen des Teilens und Favorisieren eines anderen Beitrages ist immer öffentlich.</li>
         <li><em>Direkte und "Nur Folgende"-Beiträge</em>: Alle Beiträge werden auf dem Server gespeichert und verarbeitet. "Nur Folgende"-Beiträge werden an deine Folgenden und an Benutzer:innen, die du in ihnen erwähnst, ausgeliefert, direkte Beiträge nur an in ihnen erwähnte Benutzer:innen. In manchen Fällen bedeutet dass, dass sie an andere Server ausgeliefert werden und dort Kopien gespeichert werden. Wir bemühen uns nach bestem Wissen und Gewissen, den Zugriff auf diese Beiträge auf nur autorisierte Personen einzuschränken, jedoch könnten andere Server dabei scheitern. Deswegen ist es wichtig, die Server, zu denen deine Folgenden gehören, zu überprüfen. Du kannst eine Option in den Einstellungen umschalten, um neue Folgenden manuell anzunehmen oder abzuweisen. <em>Bitte beachte, dass die Betreiber des Server und jedes empfangenden Servers solche Nachrichten anschauen könnten</em> und dass Empfänger von diesen eine Bildschirmkopie erstellen könnten, sie kopieren oder anderweitig weiterverteilen könnten. <em>Teile nicht irgendwelche gefährlichen Informationen über Mastodon.</em></li>
         <li><em>Internet Protocol-Adressen (IP-Adressen) und andere Metadaten</em>: Sobald du dich anmeldest, erfassen wir sowohl die IP-Adresse, von der aus du dich anmeldest, als auch den Namen deine Browseranwendung. Alle angemeldeten Sitzungen (Sessions) sind für deine Überprüfung und Widerruf in den Einstellungen verfügbar. Die letzte verwendete IP-Adresse wird bis zu 12 Monate lang gespeichert. Wir könnten auch Serverprotokoll behalten, welche die IP-Adresse von jeder Anfrage an unseren Server enthalten.</li>
       </ul>
@@ -870,7 +948,7 @@ de:
 
       <p>Du kannst ein Archiv deines Inhalts anfordern und herunterladen, inkludierend deiner Beiträge, Medienanhänge, Profilbilder und Headerbilder.</p>
 
-      <p>Du kannst dein Konto jederzeit unwiderruflich  löschen.</p>
+      <p>Es ist in den meisten Fällen möglich dein Konto jederzeit eigenmächtig unwiderruflich zu löschen.</p>
 
       <hr class="spacer"/>
 
@@ -894,7 +972,7 @@ de:
 
       <h3 id="children">Webseitenbenutzung durch Kinder</h3>
 
-      <p>Wenn sich dieser Server in der EU oder im Europäischen Wirtschaftsraum befinden: Unsere Website, Produkte und Dienstleistungen sind alle an Leute gerichtet, die mindestens 16 Jahre als sind. Wenn du unter 16 bist, darfst du nach den Bestimmungen der DSGVO (<a href="https://de.wikipedia.org/wiki/Datenschutz-Grundverordnung">Datenschutz-Grundverordnung</a>) diese Webseite nicht benutzen.</p>
+      <p>Wenn sich dieser Server in der EU oder im Europäischen Wirtschaftsraum befindet: Unsere Website, Produkte und Dienstleistungen sind alle an Leute gerichtet, die mindestens 16 Jahre als sind. Wenn du unter 16 bist, darfst du nach den Bestimmungen der DSGVO (<a href="https://de.wikipedia.org/wiki/Datenschutz-Grundverordnung">Datenschutz-Grundverordnung</a>) diese Webseite nicht benutzen.</p>
 
       <p>Wenn sich dieser Server in den USA befindet: Unsere Webseite, Produkte und Dienstleistungen sind alle an Leute gerichtet, die mindestens 13 Jahre alt sind. Wenn du unter 13 bist, darfst du nach den Bestimmungen des COPPA (<a href="https://de.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act, dt. "Gesetz zum Schutz der Privatsphäre von Kindern im Internet"</a>) diese Webseite nicht benutzen.</p>
 

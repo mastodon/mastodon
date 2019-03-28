@@ -69,7 +69,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         conversation: conversation_from_uri(@object['conversation']),
         media_attachment_ids: process_attachments.take(4).map(&:id),
         quote: quote_from_url(@object['quoteUrl']),
-        owned_poll: process_poll,
+        poll: process_poll,
       }
     end
   end
@@ -241,11 +241,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def poll_vote?
-    return false if replied_to_status.nil? || replied_to_status.poll.nil? || !replied_to_status.local? || !replied_to_status.poll.options.include?(@object['name'])
+    return false if replied_to_status.nil? || replied_to_status.preloadable_poll.nil? || !replied_to_status.local? || !replied_to_status.preloadable_poll.options.include?(@object['name'])
 
-    unless replied_to_status.poll.expired?
-      replied_to_status.poll.votes.create!(account: @account, choice: replied_to_status.poll.options.index(@object['name']), uri: @object['id'])
-      ActivityPub::DistributePollUpdateWorker.perform_in(3.minutes, replied_to_status.id) unless replied_to_status.poll.hide_totals?
+    unless replied_to_status.preloadable_poll.expired?
+      replied_to_status.preloadable_poll.votes.create!(account: @account, choice: replied_to_status.preloadable_poll.options.index(@object['name']), uri: @object['id'])
+      ActivityPub::DistributePollUpdateWorker.perform_in(3.minutes, replied_to_status.id) unless replied_to_status.preloadable_poll.hide_totals?
     end
 
     true

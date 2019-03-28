@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class ActivityPub::VoteSerializer < ActiveModel::Serializer
-  class NoteSerializer < ActiveModel::Serializer
+class ActivityPub::VoteSerializer < ActivityPub::Serializer
+  class NoteSerializer < ActivityPub::Serializer
     attributes :id, :type, :name, :attributed_to,
                :in_reply_to, :to
 
