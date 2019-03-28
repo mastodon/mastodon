@@ -7,7 +7,7 @@ module Admin::FilterHelper
   CUSTOM_EMOJI_FILTERS = %i(local remote by_domain shortcode).freeze
   TAGS_FILTERS         = %i(hidden).freeze
   INSTANCES_FILTERS    = %i(limited by_domain).freeze
-  FOLLOWERS_FILTERS    = %i(relationship status by_domain activity).freeze
+  FOLLOWERS_FILTERS    = %i(relationship status by_domain activity order).freeze
 
   FILTERS = ACCOUNT_FILTERS + REPORT_FILTERS + INVITE_FILTER + CUSTOM_EMOJI_FILTERS + TAGS_FILTERS + INSTANCES_FILTERS + FOLLOWERS_FILTERS
 
