@@ -115,24 +115,6 @@
   display: flex;
 }
 
-.account__action-bar-dropdown {
-  padding: 10px;
-
-  .dropdown--active {
-    .dropdown__content.dropdown__right {
-      left: 6px;
-      right: initial;
-    }
-
-    &::after {
-      bottom: initial;
-      margin-left: 11px;
-      margin-top: -7px;
-      right: initial;
-    }
-  }
-}
-
 .account__action-bar-links {
   display: flex;
   flex: 1 1 auto;
@@ -147,6 +129,10 @@
   border-left: 1px solid lighten($ui-base-color, 8%);
   padding: 10px 0;
   border-bottom: 4px solid transparent;
+
+  &:first-child {
+    border-left: 0;
+  }
 
   &.active {
     border-bottom: 4px solid $ui-highlight-color;
