@@ -10,6 +10,7 @@ import spring from 'react-motion/lib/spring';
 import { Link } from 'react-router-dom';
 
 //  Components.
+import Icon from 'flavours/glitch/components/icon';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import StatusContainer from 'flavours/glitch/containers/status_container';
 import Hashtag from 'flavours/glitch/components/hashtag';
@@ -62,6 +63,7 @@ export default function DrawerResults ({
           }}
         >
           <header>
+            <Icon icon='search' fixedWidth />
             <FormattedMessage
               {...messages.total}
               values={{ count }}
@@ -69,7 +71,7 @@ export default function DrawerResults ({
           </header>
           {accounts && accounts.size ? (
             <section>
-              <h5><FormattedMessage id='search_results.accounts' defaultMessage='People' /></h5>
+              <h5><Icon icon='users' fixedWidth /><FormattedMessage id='search_results.accounts' defaultMessage='People' /></h5>
 
               {accounts.map(
                 accountId => (
@@ -83,7 +85,7 @@ export default function DrawerResults ({
           ) : null}
           {statuses && statuses.size ? (
             <section>
-              <h5><FormattedMessage id='search_results.statuses' defaultMessage='Toots' /></h5>
+              <h5><Icon icon='quote-right' fixedWidth /><FormattedMessage id='search_results.statuses' defaultMessage='Toots' /></h5>
 
               {statuses.map(
                 statusId => (
@@ -97,7 +99,7 @@ export default function DrawerResults ({
           ) : null}
           {hashtags && hashtags.size ? (
             <section>
-              <h5><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></h5>
+              <h5><Icon icon='hashtag' fixedWidth /><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></h5>
 
               {hashtags.map(hashtag => <Hashtag key={hashtag.get('name')} hashtag={hashtag} />)}
             </section>
