@@ -155,7 +155,7 @@ class PostStatusService < BaseService
       text: @text,
       media_attachments: @media || [],
       thread: @in_reply_to,
-      owned_poll_attributes: poll_attributes,
+      poll_attributes: poll_attributes,
       sensitive: (@options[:sensitive].nil? ? @account.user&.setting_default_sensitive : @options[:sensitive]) || @options[:spoiler_text].present?,
       spoiler_text: @options[:spoiler_text] || '',
       visibility: @visibility,

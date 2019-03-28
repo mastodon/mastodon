@@ -23,8 +23,8 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
     return reject_payload! if invalid_origin?(@object['id'])
 
     status = Status.find_by(uri: object_uri, account_id: @account.id)
-    return if status.nil? || status.poll.nil?
+    return if status.nil? || status.preloadable_poll.nil?
 
-    ActivityPub::ProcessPollService.new.call(status.poll, @object)
+    ActivityPub::ProcessPollService.new.call(status.preloadable_poll, @object)
   end
 end

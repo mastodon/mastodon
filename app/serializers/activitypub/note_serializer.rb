@@ -29,7 +29,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   def type
-    object.poll ? 'Question' : 'Note'
+    object.preloadable_poll ? 'Question' : 'Note'
   end
 
   def summary
@@ -125,29 +125,29 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   def poll_options
-    object.poll.loaded_options
+    object.preloadable_poll.loaded_options
   end
 
   def poll_and_multiple?
-    object.poll&.multiple?
+    object.preloadable_poll&.multiple?
   end
 
   def poll_and_not_multiple?
-    object.poll && !object.poll.multiple?
+    object.preloadable_poll && !object.preloadable_poll.multiple?
   end
 
   def closed
-    object.poll.expires_at.iso8601
+    object.preloadable_poll.expires_at.iso8601
   end
 
   alias end_time closed
 
   def poll_and_expires?
-    object.poll&.expires_at&.present?
+    object.preloadable_poll&.expires_at&.present?
   end
 
   def poll_and_expired?
-    object.poll&.expired?
+    object.preloadable_poll&.expired?
   end
 
   class MediaAttachmentSerializer < ActivityPub::Serializer

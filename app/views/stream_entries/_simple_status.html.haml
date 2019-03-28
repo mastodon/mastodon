@@ -26,9 +26,9 @@
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
     .e-content{ lang: status.language, style: "display: #{!current_account&.user&.setting_expand_spoilers && status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status, custom_emojify: true, autoplay: autoplay)
 
-  - if status.poll
-    = react_component :poll, disabled: true, poll: ActiveModelSerializers::SerializableResource.new(status.poll, serializer: REST::PollSerializer, scope: current_user, scope_name: :current_user).as_json do
-      = render partial: 'stream_entries/poll', locals: { status: status, poll: status.poll, autoplay: autoplay }
+  - if status.preloadable_poll
+    = react_component :poll, disabled: true, poll: ActiveModelSerializers::SerializableResource.new(status.preloadable_poll, serializer: REST::PollSerializer, scope: current_user, scope_name: :current_user).as_json do
+      = render partial: 'stream_entries/poll', locals: { status: status, poll: status.preloadable_poll, autoplay: autoplay }
   - elsif !status.media_attachments.empty?
     - if status.media_attachments.first.video?
       - video = status.media_attachments.first
