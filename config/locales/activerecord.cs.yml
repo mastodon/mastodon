@@ -2,8 +2,9 @@
 cs:
   activerecord:
     attributes:
-      status:
-        owned_poll: Anketa
+      poll:
+        expires_at: Uzávěrka
+        options: Volby
     errors:
       models:
         account:
