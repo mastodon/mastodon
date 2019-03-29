@@ -650,16 +650,19 @@ cs:
   identity_proofs:
     active: Aktivní
     authorize: Ano, autorizovat
-    authorize_connection_prompt: Autorizovat tohle kryptografické spojení?
+    authorize_connection_prompt: Autorizovat toto kryptografické spojení?
     errors:
       failed: Kryptografické spojení selhalo. Prosím zkuste to znovu z %{provider}.
       keybase:
         invalid_token: Tokeny Keybase jsou hashe podpisů a musí být 66 znaků dlouhé
         verification_failed: Keybase nerozpoznává tento token jako podpis uživatele %{kb_username} na Keybase. Prosím zkuste to znovu z Keybase.
+      wrong_user: Nelze vytvořit důkaz pro uživatele %{proving}, zatímco jste přihlášen/a jako %{current}. Přihlaste se jako %{proving} a zkuste to znovu.
     explanation_html: Zde můžete kryptograficky připojit vaše ostatní identity, například profil Keybase. To dovolí jiným lidem vám posílat šifrované zprávy a důvěřovat obsahu, který jim pošlete.
     i_am_html: Na %{service} jsem %{username}.
     identity: Identita
     inactive: Neaktivní
+    publicize_checkbox: 'A tootnout tohle:'
+    publicize_toot: 'Je to dokázáno! Na %{service} jsem %{username}: %{url}'
     status: Stav ověření
     view_proof: Zobrazit důkaz
   imports:
@@ -784,6 +787,8 @@ cs:
   relationships:
     activity: Aktivita účtu
     dormant: Nečinné
+    last_active: Naposledy aktivní
+    most_recent: Nedávno přidaní
     moved: Přesunuté
     mutual: Vzájemné
     primary: Primární
@@ -1026,7 +1031,7 @@ cs:
     recovery_codes_regenerated: Záložní kódy byly úspěšně znovu vygenerované
     recovery_instructions_html: Ztratíte-li někdy přístup k vašemu telefonu, můžete k získání přístupu k účtu použít jeden ze záložních kódů. <strong>Uchovávejte tyto kódy v bezpečí</strong>. Můžete si je například vytisknout a uložit je mezi jiné důležité dokumenty.
     setup: Nastavit
-    wrong_code: Zadaný kód byl neplatný! Je serverový čas a čas na zařízení správný?
+    wrong_code: Zadaný kód byl neplatný! Je čas na serveru a na zařízení správný?
   user_mailer:
     backup_ready:
       explanation: Vyžádal/a jste si úplnou zálohu svého účtu Mastodon. Nyní je připravena ke stažení!
