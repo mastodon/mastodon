@@ -14,7 +14,7 @@ class Export
   end
 
   def to_muted_accounts_csv
-    CSV.generate do |csv|
+    CSV.generate(headers: ['Account address', 'Hide notifications'], write_headers: true) do |csv|
       account.mute_relationships.includes(:target_account).reorder(id: :desc).each do |mute|
         csv << [acct(mute.target_account), mute.hide_notifications]
       end
