@@ -245,6 +245,7 @@ ko:
       feature_profile_directory: 프로필 디렉토리
       feature_registrations: 가입
       feature_relay: 연합 릴레이
+      feature_timeline_preview: 타임라인 미리보기
       features: 기능
       hidden_service: 히든 서비스와의 연합
       open_reports: 미해결 신고
@@ -634,6 +635,7 @@ ko:
     all: 모두
     changes_saved_msg: 정상적으로 변경되었습니다!
     copy: 복사
+    order_by: 순서
     save_changes: 변경 사항을 저장
     validation_errors:
       one: 오류가 발생했습니다. 아래 오류를 확인해 주십시오
@@ -649,10 +651,13 @@ ko:
       keybase:
         invalid_token: 키베이스 토큰은 서명의 해시이며 66자의 16진수 문자여야 합니다
         verification_failed: 키베이스가 이 토큰을 키베이스 유저 %{kb_username}의 서명으로 인식하지 못했습니다. 키베이스에서 다시 시도하세요.
+      wrong_user: "%{current}로 로그인 한 상태에서는 %{proving}에 대한 증명을 할 수 없습니다. %{proving}으로 로그인 한 후 다시 시도하세요."
     explanation_html: 키베이스와 같은 다른 명의에 대한 암호화 연결을 할 수 있습니다. 이것으로 다른 사람들이 당신에게 암호화 된 메시지를 보낼 수 있고 당신의 메시지를 믿을 수 있습니다.
     i_am_html: 나는 %{service}의 %{username} 입니다.
     identity: 신원
     inactive: 비활성
+    publicize_checkbox: '그리고 이것을 툿 하세요:'
+    publicize_toot: '증명되었습니다! 저는 %{service}에 있는 %{username}입니다: %{url}'
     status: 인증 상태
     view_proof: 증명 보기
   imports:
@@ -775,6 +780,8 @@ ko:
   relationships:
     activity: 계정 활동
     dormant: 휴면
+    last_active: 마지막 활동
+    most_recent: 가장 최근
     moved: 이동함
     mutual: 상호 팔로우
     primary: 주 계정
