@@ -19,6 +19,7 @@ class ActivityPub::Adapter < ActiveModelSerializers::Adapter::Base
     conversation: { 'ostatus' => 'http://ostatus.org#', 'inReplyToAtomUri' => 'ostatus:inReplyToAtomUri', 'conversation' => 'ostatus:conversation' },
     focal_point: { 'toot' => 'http://joinmastodon.org/ns#', 'focalPoint' => { '@container' => '@list', '@id' => 'toot:focalPoint' } },
     quoteUrl: { 'quoteUrl' => 'as:quoteUrl' },
+    identity_proof: { 'toot' => 'http://joinmastodon.org/ns#', 'IdentityProof' => 'toot:IdentityProof' },
   }.freeze
 
   def self.default_key_transform

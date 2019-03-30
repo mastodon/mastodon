@@ -18,7 +18,12 @@ class Settings::IdentityProofsController < Settings::BaseController
       provider_username: params[:provider_username]
     )
 
-    render layout: 'auth'
+    if current_account.username == params[:username]
+      render layout: 'auth'
+    else
+      flash[:alert] = I18n.t('identity_proofs.errors.wrong_user', proving: params[:username], current: current_account.username)
+      redirect_to settings_identity_proofs_path
+    end
   end
 
   def create
@@ -26,6 +31,7 @@ class Settings::IdentityProofsController < Settings::BaseController
     @proof.token = resource_params[:token]
 
     if @proof.save
+      PostStatusService.new.call(current_user.account, text: post_params[:status_text]) if publish_proof?
       redirect_to @proof.on_success_path(params[:user_agent])
     else
       flash[:alert] = I18n.t('identity_proofs.errors.failed', provider: @proof.provider.capitalize)
@@ -36,10 +42,22 @@ class Settings::IdentityProofsController < Settings::BaseController
   private
 
   def check_required_params
-    redirect_to settings_identity_proofs_path unless [:provider, :provider_username, :token].all? { |k| params[k].present? }
+    redirect_to settings_identity_proofs_path unless [:provider, :provider_username, :username, :token].all? { |k| params[k].present? }
   end
 
   def resource_params
     params.require(:account_identity_proof).permit(:provider, :provider_username, :token)
+  end
+
+  def publish_proof?
+    ActiveModel::Type::Boolean.new.cast(post_params[:post_status])
+  end
+
+  def post_params
+    params.require(:account_identity_proof).permit(:post_status, :status_text)
+  end
+
+  def set_body_classes
+    @body_classes = ''
   end
 end

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class ProofProvider::Keybase
-  BASE_URL = 'https://keybase.io'
+  BASE_URL = ENV.fetch('KEYBASE_BASE_URL', 'https://keybase.io')
+  DOMAIN = ENV.fetch('KEYBASE_DOMAIN', Rails.configuration.x.local_domain)
 
   class Error < StandardError; end
 
@@ -27,7 +28,8 @@ class ProofProvider::Keybase
       return
     end
 
-    return if @proof.provider_username.blank?
+    # Do not perform synchronous validation for remote accounts
+    return if @proof.provider_username.blank? || !@proof.account.local?
 
     if verifier.valid?
       @proof.verified = true
