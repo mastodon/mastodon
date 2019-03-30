@@ -4,7 +4,8 @@ class REST::PollSerializer < ActiveModel::Serializer
   attributes :id, :expires_at, :expired,
              :multiple, :votes_count
 
-  has_many :dynamic_options, key: :options
+  has_many :loaded_options, key: :options
+  has_many :emojis, serializer: REST::CustomEmojiSerializer
 
   attribute :voted, if: :current_user?
 
@@ -12,20 +13,12 @@ class REST::PollSerializer < ActiveModel::Serializer
     object.id.to_s
   end
 
-  def dynamic_options
-    if !object.expired? && object.hide_totals?
-      object.unloaded_options
-    else
-      object.loaded_options
-    end
-  end
-
   def expired
     object.expired?
   end
 
   def voted
-    object.votes.where(account: current_user.account).exists?
+    object.voted?(current_user.account)
   end
 
   def current_user?

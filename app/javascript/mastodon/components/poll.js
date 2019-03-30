@@ -44,6 +44,11 @@ const timeRemainingString = (intl, date, now) => {
   return relativeTime;
 };
 
+const makeEmojiMap = record => record.get('emojis').reduce((obj, emoji) => {
+  obj[`:${emoji.get('shortcode')}:`] = emoji.toJS();
+  return obj;
+}, {});
+
 export default @injectIntl
 class Poll extends ImmutablePureComponent {
 
@@ -94,10 +99,16 @@ class Poll extends ImmutablePureComponent {
 
   renderOption (option, optionIndex) {
     const { poll, disabled } = this.props;
-    const percent            = (option.get('votes_count') / poll.get('votes_count')) * 100;
+    const percent            = poll.get('votes_count') === 0 ? 0 : (option.get('votes_count') / poll.get('votes_count')) * 100;
     const leading            = poll.get('options').filterNot(other => other.get('title') === option.get('title')).every(other => option.get('votes_count') > other.get('votes_count'));
     const active             = !!this.state.selected[`${optionIndex}`];
     const showResults        = poll.get('voted') || poll.get('expired');
+
+    let titleEmojified = option.get('title_emojified');
+    if (!titleEmojified) {
+      const emojiMap = makeEmojiMap(poll);
+      titleEmojified = emojify(escapeTextContentForBrowser(option.get('title')), emojiMap);
+    }
 
     return (
       <li key={option.get('title')}>
@@ -122,7 +133,7 @@ class Poll extends ImmutablePureComponent {
           {!showResults && <span className={classNames('poll__input', { checkbox: poll.get('multiple'), active })} />}
           {showResults && <span className='poll__number'>{Math.round(percent)}%</span>}
 
-          <span dangerouslySetInnerHTML={{ __html: option.get('title_emojified', emojify(escapeTextContentForBrowser(option.get('title')))) }} />
+          <span dangerouslySetInnerHTML={{ __html: titleEmojified }} />
         </label>
       </li>
     );

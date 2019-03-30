@@ -29,7 +29,6 @@ class PostStatusService < BaseService
     return idempotency_duplicate if idempotency_given? && idempotency_duplicate?
 
     validate_media!
-    validate_poll!
     preprocess_attributes!
 
     if scheduled?
@@ -71,6 +70,7 @@ class PostStatusService < BaseService
 
   def schedule_status!
     status_for_validation = @account.statuses.build(status_attributes)
+
     if status_for_validation.valid?
       status_for_validation.destroy
 
@@ -90,6 +90,7 @@ class PostStatusService < BaseService
     DistributionWorker.perform_async(@status.id)
     Pubsubhubbub::DistributionWorker.perform_async(@status.stream_entry.id)
     ActivityPub::DistributionWorker.perform_async(@status.id)
+    PollExpirationNotifyWorker.perform_at(@status.poll.expires_at, @status.poll.id) if @status.poll
   end
 
   def validate_media!
@@ -100,12 +101,6 @@ class PostStatusService < BaseService
     @media = @account.media_attachments.where(status_id: nil).where(id: @options[:media_ids].take(4).map(&:to_i))
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if @media.size > 1 && @media.find(&:video?)
-  end
-
-  def validate_poll!
-    return if @options[:poll].blank?
-
-    @poll = @account.polls.new(@options[:poll])
   end
 
   def language_from_option(str)
@@ -160,13 +155,13 @@ class PostStatusService < BaseService
       text: @text,
       media_attachments: @media || [],
       thread: @in_reply_to,
-      owned_poll: @poll,
+      poll_attributes: poll_attributes,
       sensitive: (@options[:sensitive].nil? ? @account.user&.setting_default_sensitive : @options[:sensitive]) || @options[:spoiler_text].present?,
       spoiler_text: @options[:spoiler_text] || '',
       visibility: @visibility,
       language: language_from_option(@options[:language]) || @account.user&.setting_default_language&.presence || LanguageDetector.instance.detect(@text, @account),
       application: @options[:application],
-    }
+    }.compact
   end
 
   def scheduled_status_attributes
@@ -175,6 +170,12 @@ class PostStatusService < BaseService
       media_attachments: @media || [],
       params: scheduled_options,
     }
+  end
+
+  def poll_attributes
+    return if @options[:poll].blank?
+
+    @options[:poll].merge(account: @account)
   end
 
   def scheduled_options

@@ -18,6 +18,7 @@ eo:
     mailer:
       confirmation_instructions:
         action: Konfirmi retadreson
+        action_with_app: Konfirmi kaj reveni al %{app}
         explanation: Vi kreis konton en %{host} per ĉi tiu retadreso. Nur klako restas por aktivigi ĝin. Se tio ne estis vi, bonvolu ignori ĉi tiun retmesaĝon.
         extra_html: Bonvolu rigardi <a href="%{terms_path}">la regulojn de la servilo</a> kaj <a href="%{policy_path}">niajn uzkondiĉojn</a>.
         subject: 'Mastodon: Konfirmaj instrukcioj por %{instance}'

@@ -4,26 +4,15 @@
     about_hashtag_html: Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.
     about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
     about_this: Om denne instansen
-    closed_registrations: Registreringer er for øyeblikket lukket på denne instansen.
     contact: Kontakt
     contact_missing: Ikke innstilt
     contact_unavailable: Ikke tilgjengelig
     extended_description_html: |
       <h3>En god plassering for regler</h3>
       <p>En utvidet beskrivelse er ikke satt opp ennå.</p>
-    features:
-      humane_approach_body: Mastodon har tatt lærdom fra andre nettverk og har til mål å gjøre etiske designvalg for å bekjempe misbruk av sosiale medier.
-      humane_approach_title: En mer menneskelig tilnærming
-      not_a_product_body: Mastodon er ikke et kommerst nettverk. Ingen reklame, ingen datainnsamling, ingen innhegnede hager. Det finnes ingen sentral myndighet.
-      not_a_product_title: Du er en person, ikke et produkt
-      real_conversation_body: Med 500 tegn til din disposisjon og støtte for granulært innhold og media-advarsler kan du uttrykke deg på den måten du selv vil.
-      real_conversation_title: Laget for ekte samtaler
-      within_reach_body: Takket være et utviklingsvennlig API-økosystem vil flere apper for iOS, Android og andre plattformer la deg holde kontakten med dine venner hvor som helst.
-      within_reach_title: Alltid innen rekkevidde
     generic_description: "%{domain} er en tjener i nettverket"
     hosted_on: Mastodon driftet på %{domain}
     learn_more: Lær mer
-    other_instances: Andre instanser
     source_code: Kildekode
     status_count_after: statuser
     status_count_before: Som skrev
@@ -260,9 +249,6 @@
         min_invite_role:
           disabled: Ingen
           title: Tillat invitasjoner fra
-        open:
-          desc_html: Tillatt alle å lage seg en konto
-          title: Åpen registrering
       show_staff_badge:
         desc_html: Vis personalemerke på brukersiden
         title: Vis personalemerke
@@ -388,18 +374,6 @@
     follows: Du følger
     mutes: Du demper
     storage: Medialagring
-  followers:
-    domain: Domene
-    explanation_html: Hvis du vil styre hvem som ser statusene dine, må du være klar over hvem som følger deg. <strong>Dine private statuser leveres til alle instanser der du har følgere</strong>. Du bør kanskje se over dem, og fjerne følgere hvis du ikke stoler på at ditt privatliv vil bli respektert av staben eller programvaren på de instansene.
-    followers_count: Antall følgere
-    lock_link: Lås kontoen din
-    purge: Fjern fra følgere
-    success:
-      one: I ferd med å mykblokkere følgere fra ett domene...
-      other: I ferd med å mykblokkere følgere fra %{count} domener...
-    true_privacy_html: Merk deg at <strong>virkelig privatliv kun kan oppnås med ende-til-ende-kryptering</strong>.
-    unlocked_warning_html: Alle kan følge deg for å umiddelbart se dine private statuser. %{lock_link} for å kunne se over og avvise følgere.
-    unlocked_warning_title: Din konto er ikke låst
   generic:
     changes_saved_msg: Vellykket lagring av endringer!
     save_changes: Lagre endringer
@@ -556,7 +530,6 @@
     development: Utvikling
     edit_profile: Endre profil
     export: Dataeksport
-    followers: Godkjente følgere
     import: Importér
     migrate: Kontomigrering
     notifications: Varslinger

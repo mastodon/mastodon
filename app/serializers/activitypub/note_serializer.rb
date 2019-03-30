@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-class ActivityPub::NoteSerializer < ActiveModel::Serializer
+class ActivityPub::NoteSerializer < ActivityPub::Serializer
+  context_extensions :atom_uri, :conversation, :sensitive,
+                     :hashtag, :emoji, :focal_point
+
   attributes :id, :type, :summary,
              :in_reply_to, :published, :url,
              :attributed_to, :to, :cc, :sensitive,
@@ -26,7 +29,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def type
-    object.poll ? 'Question' : 'Note'
+    object.preloadable_poll ? 'Question' : 'Note'
   end
 
   def summary
@@ -122,36 +125,32 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def poll_options
-    if !object.poll.expired? && object.poll.hide_totals?
-      object.poll.unloaded_options
-    else
-      object.poll.loaded_options
-    end
+    object.preloadable_poll.loaded_options
   end
 
   def poll_and_multiple?
-    object.poll&.multiple?
+    object.preloadable_poll&.multiple?
   end
 
   def poll_and_not_multiple?
-    object.poll && !object.poll.multiple?
+    object.preloadable_poll && !object.preloadable_poll.multiple?
   end
 
   def closed
-    object.poll.expires_at.iso8601
+    object.preloadable_poll.expires_at.iso8601
   end
 
   alias end_time closed
 
   def poll_and_expires?
-    object.poll&.expires_at&.present?
+    object.preloadable_poll&.expires_at&.present?
   end
 
   def poll_and_expired?
-    object.poll&.expired?
+    object.preloadable_poll&.expired?
   end
 
-  class MediaAttachmentSerializer < ActiveModel::Serializer
+  class MediaAttachmentSerializer < ActivityPub::Serializer
     include RoutingHelper
 
     attributes :type, :media_type, :url, :name
@@ -182,7 +181,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
     end
   end
 
-  class MentionSerializer < ActiveModel::Serializer
+  class MentionSerializer < ActivityPub::Serializer
     attributes :type, :href, :name
 
     def type
@@ -198,7 +197,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
     end
   end
 
-  class TagSerializer < ActiveModel::Serializer
+  class TagSerializer < ActivityPub::Serializer
     include RoutingHelper
 
     attributes :type, :href, :name
@@ -219,8 +218,8 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   class CustomEmojiSerializer < ActivityPub::EmojiSerializer
   end
 
-  class OptionSerializer < ActiveModel::Serializer
-    class RepliesSerializer < ActiveModel::Serializer
+  class OptionSerializer < ActivityPub::Serializer
+    class RepliesSerializer < ActivityPub::Serializer
       attributes :type, :total_items
 
       def type

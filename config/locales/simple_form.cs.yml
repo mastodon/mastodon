@@ -6,14 +6,14 @@ cs:
         text: Můžete používat syntaxi tootů, jako například URL, hashtagy a zmínky
       admin_account_action:
         send_email_notification: Uživatel obdrží vysvětlení toho, co se stalo s jeho účtem
-        text_html: Volitelné. Můžete používat syntaxi tootů. Pro ušetření času si můžete <a href="%{path}">přidat přednastavení pro varování</a>
+        text_html: Volitelné. Můžete používat syntaxi tootů. Pro ušetření času si můžete <a href="%{path}">přidat předlohy pro varování</a>
         type_html: Vyberte, co chcete udělat s účtem <strong>%{acct}</strong>
-        warning_preset_id: Volitelné. Můžete stále vložit na konec přednastavení vlastní text
+        warning_preset_id: Volitelné. Můžete stále vložit na konec předlohy vlastní text
       defaults:
         autofollow: Lidé, kteří se zaregistrují přes pozvání, vás budou automaticky sledovat
         avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         bot: Tento účet provádí hlavně automatizované akce a nemusí být spravován
-        context: Jedno či více kontextů, ve kterých má být filtr uplatněn
+        context: Jeden či více kontextů, ve kterých má být filtr uplatněn
         digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste při své nepřítomnosti obdržel/a osobní zprávy
         discoverable_html: <a href="%{path}" target="_blank">Adresář</a> dovoluje lidem najít účty podle zájmů a aktivity. Vyžaduje alespoň %{min_followers} sledujících
         email: Bude vám poslán potvrzovací e-mail
@@ -33,7 +33,7 @@ cs:
         setting_display_media_show_all: Vždy zobrazovat média označená jako citlivá
         setting_hide_network: Koho sledujete a kdo sleduje vás nebude zobrazeno na vašem profilu
         setting_noindex: Ovlivňuje váš veřejný profil a stránky tootů
-        setting_show_application: Aplikace, kterou používáte psaní tootů, bude zobrazena v detailním zobrazení vašich tootů
+        setting_show_application: Aplikace, kterou používáte k psaní tootů, bude zobrazena v detailním zobrazení vašich tootů
         setting_theme: Ovlivňuje jak Mastodon vypadá, jste-li přihlášen na libovolném zařízení.
         username: Vaše uživatelské jméno bude na %{domain} unikátní
         whole_word: Je-li klíčové slovo či fráze pouze alfanumerická, bude aplikována pouze, pokud se shoduje s celým slovem
@@ -51,7 +51,7 @@ cs:
           name: Označení
           value: Obsah
       account_warning_preset:
-        text: Text přednastavení
+        text: Text předlohy
       admin_account_action:
         send_email_notification: Informovat uživatele e-mailem
         text: Vlastní varování
@@ -61,7 +61,7 @@ cs:
           none: Nic nedělat
           silence: Utišit
           suspend: Pozastavit a nenávratně smazat data účtu
-        warning_preset_id: Použít přednastavení pro varování
+        warning_preset_id: Použít předlohu pro varování
       defaults:
         autofollow: Pozvat ke sledování vašeho účtu
         avatar: Avatar
@@ -75,13 +75,13 @@ cs:
         discoverable: Zveřejnit tento účet v adresáři
         display_name: Zobrazované jméno
         email: E-mailová adresa
-        expires_in: Expirovat po
+        expires_in: Vypršet za
         fields: Metadata profilu
-        header: Hlavičkový obrázek
-        inbox_url: URL schránky mostu
+        header: Záhlaví
+        inbox_url: URL příchozí schránky mostu
         irreversible: Zahodit místo skrytí
         locale: Jazyk rozhraní
-        locked: Zamknout účet
+        locked: Uzamknout účet
         max_uses: Maximální počet použití
         new_password: Nové heslo
         note: O vás

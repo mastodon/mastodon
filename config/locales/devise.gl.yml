@@ -12,6 +12,7 @@ gl:
       last_attempt: Quédalle un intento antes de que a conta sexa bloqueada.
       locked: A súa conta foi bloqueada.
       not_found_in_database: Contrasinal ou %{authentication_keys} non válidos.
+      pending: A súa conta está en proceso de revisión.
       timeout: Caducou a sesión. Por favor conéctese de novo para seguir.
       unauthenticated: Precisa rexistrarse ou conectarse para continuar.
       unconfirmed: Debe confirmar o seu enderezo de correo antes de continuar.
@@ -20,6 +21,7 @@ gl:
         action: Validar enderezo de correo-e
         action_with_app: Confirmar e voltar a %{app}
         explanation: Creou unha conta en %{host} con este enderezo de correo. Está a punto de activalo, si non foi vostede quen fixo a petición, por favor ignore este correo.
+        explanation_when_pending: Vostede solicitou un convite para %{host} con este enderezo de correo. Unha vez confirme o enderezo de correo revisaremos a solicitude. Non pode conectarse ata entón. Si a solicitude fose rexeitada, os seus datos eliminaranse, así que non precisaría facer nada máis. Se non fixo vostede unha solicitude por favor ignore este correo.
         extra_html: Por favor, lea tamén <a href="%{terms_path}">as normas do sevidor</a> e <a href="%{policy_path}">os termos do servizo</a>.
         subject: 'Mastodon: Instruccións de confirmación para %{instance}'
         title: Verificar enderezo de correo-e
@@ -60,6 +62,7 @@ gl:
       signed_up: Ben vida! Rexistrouse con éxito.
       signed_up_but_inactive: Rexistrouse correctamente. Porén, aínda non podemos conectala porque a súa conta aínda non foi activada.
       signed_up_but_locked: Rexistrouse correctamente. Porén, non podemos conectala porque a conta está bloqueada.
+      signed_up_but_pending: Enviouselle unha mensaxe de correo que contén unha ligazón de confirmación. Tras pulsar na ligazón, revisaremos a súa solicitude. Notificarémoslle se está aprobada.
       signed_up_but_unconfirmed: Foi enviada unha mensaxe con unha ligazón de confirmación ao seu enderezo electrónico. Por favor siga a ligazón para activar a súa conta. Por favor comprobe o cartafol de spam si non recibe este correo.
       update_needs_confirmation: Actualizou a súa conta correctamente, pero precisamos verificar o seu enderezo. Por favor comprobe o seu email e siga a ligazón de confirmación para confirmar o seu novo enderezo. Por favor comprobe o cartafol de spam si non recibe este correo.
       updated: A súa conta foi actualizada correctamente.
