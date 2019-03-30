@@ -4,25 +4,36 @@ ko:
     about_hashtag_html: "<strong>#%{hashtag}</strong> 라는 해시태그가 붙은 공개 툿 입니다. 같은 연합에 속한 임의의 인스턴스에 계정을 생성하면 당신도 대화에 참여할 수 있습니다."
     about_mastodon_html: 마스토돈은 <em>오픈 소스 기반의</em> 소셜 네트워크 서비스 입니다. 상용 플랫폼의 대체로서 <em>분산형 구조</em>를 채택해, 여러분의 대화가 한 회사에 독점되는 것을 방지합니다. 신뢰할 수 있는 인스턴스를 선택하세요 &mdash; 어떤 인스턴스를 고르더라도, 누구와도 대화할 수 있습니다. 누구나 자신만의 마스토돈 인스턴스를 만들 수 있으며, 아주 매끄럽게 <em>소셜 네트워크</em>에 참가할 수 있습니다.
     about_this: 이 인스턴스에 대해서
+    active_count_after: 활성 사용자
+    active_footnote: 월간 활성 사용자
     administered_by: '관리자:'
     api: API
     apps: 모바일 앱
+    apps_platforms: 마스토돈을 iOS, 안드로이드, 다른 플랫폼들에서도 사용하세요
+    browse_directory: 프로필 디렉터리를 둘러보고 관심사 찾기
+    browse_public_posts: 마스토돈의 공개 라이브 스트림을 둘러보기
     contact: 연락처
     contact_missing: 미설정
     contact_unavailable: N/A
+    discover_users: 유저 발견하기
     documentation: 문서
     extended_description_html: |
       <h3>룰을 작성하는 장소</h3>
       <p>아직 설명이 작성되지 않았습니다.</p>
+    federation_hint_html: "%{instance}에 계정을 만드는 것으로 모든 마스토돈 서버, 그리고 호환 되는 모든 서버의 사용자를 팔로우 할 수 있습니다."
     generic_description: "%{domain} 은 네트워크에 있는 한 서버입니다"
+    get_apps: 모바일 앱 사용해 보기
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
     learn_more: 자세히
     privacy_policy: 개인정보 정책
+    see_whats_happening: 무슨 일이 일어나는 지 보기
+    server_stats: '서버 통계:'
     source_code: 소스 코드
     status_count_after:
       one: 툿
       other: 툿
     status_count_before: 툿 수
+    tagline: 친구들을 팔로우 하고 새로운 사람들도 만나기
     terms: 이용약관
     user_count_after:
       one: 명
@@ -68,6 +79,7 @@ ko:
       delete: 삭제
       destroyed_msg: 모더레이션 기록이 성공적으로 삭제되었습니다!
     accounts:
+      approve: 승인
       are_you_sure: 정말로 실행하시겠습니까?
       avatar: 아바타
       by_domain: 도메인
@@ -113,6 +125,7 @@ ko:
       moderation:
         active: 활동
         all: 전체
+        pending: 대기중
         silenced: 침묵 중
         suspended: 정지 중
         title: 모더레이션
@@ -122,6 +135,7 @@ ko:
       no_limits_imposed: 제한 없음
       not_subscribed: 구독하지 않음
       outbox_url: 발신함 URL
+      pending: 심사 대기
       perform_full_suspension: 정지시키기
       profile_url: 프로필 URL
       promote: 승급
@@ -129,6 +143,7 @@ ko:
       public: 전체 공개
       push_subscription_expires: PuSH 구독 기간 만료
       redownload: 프로필 업데이트
+      reject: 거부
       remove_avatar: 아바타 지우기
       remove_header: 헤더 삭제
       resend_confirmation:
@@ -136,7 +151,7 @@ ko:
         send: 다시 확인 이메일
         success: 확인 이메일이 전송되었습니다!
       reset: 초기화
-      reset_password: 비밀번호 초기화
+      reset_password: 암호 초기화
       resubscribe: 다시 구독
       role: 권한
       roles:
@@ -230,6 +245,7 @@ ko:
       feature_profile_directory: 프로필 디렉토리
       feature_registrations: 가입
       feature_relay: 연합 릴레이
+      feature_timeline_preview: 타임라인 미리보기
       features: 기능
       hidden_service: 히든 서비스와의 연합
       open_reports: 미해결 신고
@@ -402,6 +418,12 @@ ko:
         min_invite_role:
           disabled: 아무도 못 하게
           title: 초대링크를 만들 수 있는 권한
+      registrations_mode:
+        modes:
+          approved: 가입하려면 승인이 필요함
+          none: 아무도 가입 할 수 없음
+          open: 누구나 가입 할 수 있음
+        title: 가입 모드
       show_known_fediverse_at_about_page:
         desc_html: 활성화 되면 프리뷰 페이지에서 페디버스의 모든 툿을 표시합니다. 비활성화시 로컬에 있는 툿만 표시 됩니다.
         title: 타임라인 프리뷰에 알려진 페디버스 표시하기
@@ -409,13 +431,13 @@ ko:
         desc_html: 유저 페이지에 스태프 배지를 표시합니다
         title: 스태프 배지 표시
       site_description:
-        desc_html: 프론트 페이지의 소개문에 사용 됩니다.이 마스토돈 서버의 특별한 점 등을 설명하세요. HTML 태그, 주로 <code>&lt;a&gt;</code>, <code>&lt;em&gt;</code> 같은 것을 사용 가능합니다.
+        desc_html: API의 소개문에 사용 됩니다.이 마스토돈 서버의 특별한 점 등을 설명하세요. HTML 태그, 주로 <code>&lt;a&gt;</code>, <code>&lt;em&gt;</code> 같은 것을 사용 가능합니다.
         title: 서버 설명
       site_description_extended:
         desc_html: 규칙, 가이드라인 등을 작성하기 좋은 곳입니다. HTML 태그를 사용할 수 있습니다
         title: 사이트 상세 설명
       site_short_description:
-        desc_html: 사이드바와 메타 태그에 나타납니다. 마스토돈이 무엇이고 이 서버의 특징은 무엇인지 한 문장으로 설명하세요. 비워두면 서버 설명이 대신 사용됩니다.
+        desc_html: 사이드바와 메타 태그에 나타납니다. 마스토돈이 무엇이고 이 서버의 특징은 무엇인지 한 문장으로 설명하세요.
         title: 짧은 서버 설명
       site_terms:
         desc_html: 당신은 독자적인 개인정보 취급 방침이나 이용약관, 그 외의 법적 근거를 작성할 수 있습니다. HTML태그를 사용할 수 있습니다
@@ -464,6 +486,9 @@ ko:
       edit_preset: 경고 틀 수정
       title: 경고 틀 관리
   admin_mailer:
+    new_pending_account:
+      body: 아래에 새 계정에 대한 상세정보가 있습니다. 이 가입을 승인하거나 거부할 수 있습니다.
+      subject: "%{instance}의 새 계정(%{username})에 대한 심사가 대기중입니다"
     new_report:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
       body_remote: "%{domain}의 누군가가 %{target}을 신고했습니다"
@@ -485,13 +510,15 @@ ko:
     your_token: 액세스 토큰
   auth:
     agreement_html: 이 등록으로 이 서버의 <a href="%{rules_path}">이용규약</a> 과 <a href="%{terms_path}">약관</a>에 동의하는 것으로 간주됩니다.
+    apply_for_account: 가입 요청하기
     change_password: 패스워드
+    checkbox_agreement_html: <a href="%{rules_path}" target="_blank">서버 규칙</a>과 <a href="%{terms_path}" target="_blank">이용약관</a>에 동의합니다
     confirm_email: 확인 메일 승인
     delete_account: 계정 삭제
     delete_account_html: 계정을 삭제하고 싶은 경우, <a href="%{path}">여기서</a> 삭제할 수 있습니다. 삭제 전 확인 화면이 표시됩니다.
     didnt_get_confirmation: 확인 메일을 받지 못하셨습니까?
     forgot_password: 비밀번호를 잊어버리셨습니까?
-    invalid_reset_password_token: 비밀번호 리셋 토큰이 올바르지 못하거나 기간이 만료되었습니다. 다시 요청해주세요.
+    invalid_reset_password_token: 암호 리셋 토큰이 올바르지 못하거나 기간이 만료되었습니다. 다시 요청해주세요.
     login: 로그인
     logout: 로그아웃
     migrate_account: 계정 옮기기
@@ -501,10 +528,12 @@ ko:
       cas: CAS
       saml: SAML
     register: 등록하기
+    registration_closed: "%{instance}는 새로운 가입을 받지 않고 있습니다"
     resend_confirmation: 확인 메일을 다시 보내기
-    reset_password: 비밀번호 재설정
+    reset_password: 암호 재설정
     security: 보안
-    set_new_password: 새 비밀번호
+    set_new_password: 새 암호
+    trouble_logging_in: 로그인 하는데 문제가 있나요?
   authorize_follow:
     already_following: 이미 이 계정을 팔로우 하고 있습니다
     error: 리모트 계정을 확인하는 도중 오류가 발생했습니다
@@ -560,6 +589,9 @@ ko:
       content: 죄송합니다, 뭔가 잘못 되었습니다.
       title: 이 페이지는 잘못되었습니다
     noscript_html: 마스토돈을 사용하기 위해서는 자바스크립트를 켜 주십시오. 아니면 <a href="%{apps_path}">네이티브 앱</a> 중 하나를 사용할 수 있습니다.
+  existing_username_validator:
+    not_found: 해당 유저네임에 대한 로컬 유저를 찾을 수 없습니다
+    not_found_multiple: "%{usernames}를 찾을 수 없습니다"
   exports:
     archive_takeout:
       date: 날짜
@@ -600,12 +632,34 @@ ko:
     more: 더 보기…
     resources: 리소스
   generic:
+    all: 모두
     changes_saved_msg: 정상적으로 변경되었습니다!
     copy: 복사
+    order_by: 순서
     save_changes: 변경 사항을 저장
     validation_errors:
       one: 오류가 발생했습니다. 아래 오류를 확인해 주십시오
       other: 오류가 발생했습니다. 아래 %{count}개 오류를 확인해 주십시오
+  html_validator:
+    invalid_markup: '올바르지 않은 HTML 마크업을 포함하고 있습니다: %{error}'
+  identity_proofs:
+    active: 활성
+    authorize: 네, 인증합니다
+    authorize_connection_prompt: 이 암호화 연결을 인증합니까?
+    errors:
+      failed: 암호화 연결에 실패했습니다. %{provider}에서 다시 시도해 주세요.
+      keybase:
+        invalid_token: 키베이스 토큰은 서명의 해시이며 66자의 16진수 문자여야 합니다
+        verification_failed: 키베이스가 이 토큰을 키베이스 유저 %{kb_username}의 서명으로 인식하지 못했습니다. 키베이스에서 다시 시도하세요.
+      wrong_user: "%{current}로 로그인 한 상태에서는 %{proving}에 대한 증명을 할 수 없습니다. %{proving}으로 로그인 한 후 다시 시도하세요."
+    explanation_html: 키베이스와 같은 다른 명의에 대한 암호화 연결을 할 수 있습니다. 이것으로 다른 사람들이 당신에게 암호화 된 메시지를 보낼 수 있고 당신의 메시지를 믿을 수 있습니다.
+    i_am_html: 나는 %{service}의 %{username} 입니다.
+    identity: 신원
+    inactive: 비활성
+    publicize_checkbox: '그리고 이것을 툿 하세요:'
+    publicize_toot: '증명되었습니다! 저는 %{service}에 있는 %{username}입니다: %{url}'
+    status: 인증 상태
+    view_proof: 증명 보기
   imports:
     modes:
       merge: 병합
@@ -723,6 +777,19 @@ ko:
     other: 기타
     publishing: 퍼블리싱
     web: 웹
+  relationships:
+    activity: 계정 활동
+    dormant: 휴면
+    last_active: 마지막 활동
+    most_recent: 가장 최근
+    moved: 이동함
+    mutual: 상호 팔로우
+    primary: 주 계정
+    relationship: 관계
+    remove_selected_domains: 선택한 도메인의 모든 팔로워 삭제
+    remove_selected_followers: 선택한 팔로워 삭제
+    remove_selected_follows: 선택한 유저들을 팔로우 해제
+    status: 계정 상태
   remote_follow:
     acct: 당신이 사용하는 아이디@도메인을 입력해 주십시오
     missing_resource: 리디렉션 대상을 찾을 수 없습니다
@@ -797,10 +864,12 @@ ko:
     edit_profile: 프로필 편집
     export: 데이터 내보내기
     featured_tags: 추천 해시태그
+    identity_proofs: 신원 증명
     import: 데이터 가져오기
     migrate: 계정 이동
     notifications: 알림
     preferences: 사용자 설정
+    relationships: 팔로잉과 팔로워
     settings: 설정
     two_factor_authentication: 2단계 인증
     your_apps: 애플리케이션

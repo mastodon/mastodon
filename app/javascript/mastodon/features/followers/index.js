@@ -20,6 +20,7 @@ import ScrollableList from '../../components/scrollable_list';
 const mapStateToProps = (state, props) => ({
   accountIds: state.getIn(['user_lists', 'followers', props.params.accountId, 'items']),
   hasMore: !!state.getIn(['user_lists', 'followers', props.params.accountId, 'next']),
+  blockedBy: state.getIn(['relationships', props.params.accountId, 'blocked_by'], false),
 });
 
 export default @connect(mapStateToProps)
@@ -31,6 +32,7 @@ class Followers extends ImmutablePureComponent {
     shouldUpdateScroll: PropTypes.func,
     accountIds: ImmutablePropTypes.list,
     hasMore: PropTypes.bool,
+    blockedBy: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -50,7 +52,7 @@ class Followers extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { shouldUpdateScroll, accountIds, hasMore } = this.props;
+    const { shouldUpdateScroll, accountIds, hasMore, blockedBy } = this.props;
 
     if (!accountIds) {
       return (
@@ -60,7 +62,7 @@ class Followers extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = <FormattedMessage id='account.followers.empty' defaultMessage='No one follows this user yet.' />;
+    const emptyMessage = blockedBy ? <FormattedMessage id='empty_column.account_timeline_blocked' defaultMessage='You are blocked' /> : <FormattedMessage id='account.followers.empty' defaultMessage='No one follows this user yet.' />;
 
     return (
       <Column>
@@ -75,7 +77,7 @@ class Followers extends ImmutablePureComponent {
           alwaysPrepend
           emptyMessage={emptyMessage}
         >
-          {accountIds.map(id =>
+          {blockedBy ? [] : accountIds.map(id =>
             <AccountContainer key={id} id={id} withNote={false} />
           )}
         </ScrollableList>

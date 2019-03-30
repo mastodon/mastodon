@@ -21,7 +21,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   has_many :emojis, serializer: REST::CustomEmojiSerializer
 
   has_one :preview_card, key: :card, serializer: REST::PreviewCardSerializer
-  has_one :poll, serializer: REST::PollSerializer
+  has_one :preloadable_poll, key: :poll, serializer: REST::PollSerializer
 
   def id
     object.id.to_s

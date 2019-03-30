@@ -78,14 +78,15 @@ const updateTimeline = (state, timeline, status) => {
   }));
 };
 
-const deleteStatus = (state, id, accountId, references) => {
+const deleteStatus = (state, id, accountId, references, exclude_account = null) => {
   state.keySeq().forEach(timeline => {
-    state = state.updateIn([timeline, 'items'], list => list.filterNot(item => item === id));
+    if (exclude_account === null || (timeline !== `account:${exclude_account}` && !timeline.startsWith(`account:${exclude_account}:`)))
+      state = state.updateIn([timeline, 'items'], list => list.filterNot(item => item === id));
   });
 
   // Remove reblogs of deleted status
   references.forEach(ref => {
-    state = deleteStatus(state, ref[0], ref[1], []);
+    state = deleteStatus(state, ref[0], ref[1], [], exclude_account);
   });
 
   return state;
@@ -104,7 +105,7 @@ const filterTimelines = (state, relationship, statuses) => {
     }
 
     references = statuses.filter(item => item.get('reblog') === status.get('id')).map(item => [item.get('id'), item.get('account')]);
-    state      = deleteStatus(state, status.get('id'), status.get('account'), references);
+    state      = deleteStatus(state, status.get('id'), status.get('account'), references, relationship.id);
   });
 
   return state;

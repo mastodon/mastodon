@@ -5,6 +5,7 @@ class REST::PollSerializer < ActiveModel::Serializer
              :multiple, :votes_count
 
   has_many :loaded_options, key: :options
+  has_many :emojis, serializer: REST::CustomEmojiSerializer
 
   attribute :voted, if: :current_user?
 

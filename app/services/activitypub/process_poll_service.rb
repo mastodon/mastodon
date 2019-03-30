@@ -5,7 +5,7 @@ class ActivityPub::ProcessPollService < BaseService
 
   def call(poll, json)
     @json = json
-    return unless supported_context? && expected_type?
+    return unless expected_type?
 
     previous_expires_at = poll.expires_at
 
@@ -53,10 +53,6 @@ class ActivityPub::ProcessPollService < BaseService
   end
 
   private
-
-  def supported_context?
-    super(@json)
-  end
 
   def expected_type?
     equals_or_includes_any?(@json['type'], %w(Question))

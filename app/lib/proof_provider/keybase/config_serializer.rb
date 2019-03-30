@@ -2,6 +2,7 @@
 
 class ProofProvider::Keybase::ConfigSerializer < ActiveModel::Serializer
   include RoutingHelper
+  include ActionView::Helpers::TextHelper
 
   attributes :version, :domain, :display_name, :username,
              :brand_color, :logo, :description, :prefill_url,
@@ -13,7 +14,7 @@ class ProofProvider::Keybase::ConfigSerializer < ActiveModel::Serializer
   end
 
   def domain
-    Rails.configuration.x.local_domain
+    ProofProvider::Keybase::DOMAIN
   end
 
   def display_name
@@ -29,11 +30,11 @@ class ProofProvider::Keybase::ConfigSerializer < ActiveModel::Serializer
   end
 
   def description
-    Setting.site_short_description.presence || Setting.site_description.presence || I18n.t('about.about_mastodon_html')
+    strip_tags(Setting.site_short_description.presence || I18n.t('about.about_mastodon_html'))
   end
 
   def username
-    { min: 1, max: 30, re: Account::USERNAME_RE.inspect }
+    { min: 1, max: 30, re: '[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?' }
   end
 
   def prefill_url
@@ -65,6 +66,6 @@ class ProofProvider::Keybase::ConfigSerializer < ActiveModel::Serializer
   end
 
   def contact
-    [Setting.site_contact_email.presence].compact
+    [Setting.site_contact_email.presence || 'unknown'].compact
   end
 end
