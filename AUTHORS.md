@@ -6,8 +6,8 @@ and provided thanks to the work of the following contributors:
 
 * [Gargron](https://github.com/Gargron)
 * [ykzts](https://github.com/ykzts)
-* [akihikodaki](https://github.com/akihikodaki)
 * [ThibG](https://github.com/ThibG)
+* [akihikodaki](https://github.com/akihikodaki)
 * [mjankowski](https://github.com/mjankowski)
 * [dependabot[bot]](https://github.com/apps/dependabot)
 * [unarist](https://github.com/unarist)
@@ -27,14 +27,14 @@ and provided thanks to the work of the following contributors:
 * [blackle](https://github.com/blackle)
 * [Quent-in](https://github.com/Quent-in)
 * [JantsoP](https://github.com/JantsoP)
-* [mabkenar](https://github.com/mabkenar)
 * [Kjwon15](https://github.com/Kjwon15)
+* [mabkenar](https://github.com/mabkenar)
 * [nullkal](https://github.com/nullkal)
 * [yookoala](https://github.com/yookoala)
 * [shuheiktgw](https://github.com/shuheiktgw)
 * [ashfurrow](https://github.com/ashfurrow)
-* [Quenty31](https://github.com/Quenty31)
 * [zunda](https://github.com/zunda)
+* [Quenty31](https://github.com/Quenty31)
 * [eramdam](https://github.com/eramdam)
 * [takayamaki](https://github.com/takayamaki)
 * [masarakki](https://github.com/masarakki)
@@ -45,8 +45,8 @@ and provided thanks to the work of the following contributors:
 * [stephenburgess8](https://github.com/stephenburgess8)
 * [Wonderfall](https://github.com/Wonderfall)
 * [matteoaquila](https://github.com/matteoaquila)
-* [rkarabut](https://github.com/rkarabut)
 * [yukimochi](https://github.com/yukimochi)
+* [rkarabut](https://github.com/rkarabut)
 * [Artoria2e5](https://github.com/Artoria2e5)
 * [nightpool](https://github.com/nightpool)
 * [marrus-sh](https://github.com/marrus-sh)
@@ -64,11 +64,14 @@ and provided thanks to the work of the following contributors:
 * [MaciekBaron](https://github.com/MaciekBaron)
 * [MitarashiDango](mailto:mitarashidango@users.noreply.github.com)
 * [beatrix-bitrot](https://github.com/beatrix-bitrot)
+* [Aditoo17](https://github.com/Aditoo17)
 * [adbelle](https://github.com/adbelle)
 * [evanminto](https://github.com/evanminto)
 * [MightyPork](https://github.com/MightyPork)
 * [yhirano55](https://github.com/yhirano55)
+* [rinsuki](https://github.com/rinsuki)
 * [camponez](https://github.com/camponez)
+* [hinaloe](https://github.com/hinaloe)
 * [SerCom-KC](https://github.com/SerCom-KC)
 * [aschmitz](https://github.com/aschmitz)
 * [devkral](https://github.com/devkral)
@@ -81,10 +84,8 @@ and provided thanks to the work of the following contributors:
 * [lindwurm](https://github.com/lindwurm)
 * [victorhck](mailto:victorhck@geeko.site)
 * [voidsatisfaction](https://github.com/voidsatisfaction)
-* [rinsuki](https://github.com/rinsuki)
 * [hikari-no-yume](https://github.com/hikari-no-yume)
 * [angristan](https://github.com/angristan)
-* [hinaloe](https://github.com/hinaloe)
 * [seefood](https://github.com/seefood)
 * [jackjennings](https://github.com/jackjennings)
 * [spla](mailto:spla@mastodont.cat)
@@ -102,9 +103,10 @@ and provided thanks to the work of the following contributors:
 * [victorhck](https://github.com/victorhck)
 * [kedamaDQ](https://github.com/kedamaDQ)
 * [puckipedia](https://github.com/puckipedia)
+* [trwnh](https://github.com/trwnh)
 * [fvh-P](https://github.com/fvh-P)
-* [contraexemplo](https://github.com/contraexemplo)
-* [Aditoo17](https://github.com/Aditoo17)
+* [Anna e só](mailto:contraexemplos@gmail.com)
+* [BenLubar](https://github.com/BenLubar)
 * [kazu9su](https://github.com/kazu9su)
 * [Komic](https://github.com/Komic)
 * [lmorchard](https://github.com/lmorchard)
@@ -117,7 +119,6 @@ and provided thanks to the work of the following contributors:
 * [goofy-bz](mailto:goofy@babelzilla.org)
 * [kadiix](https://github.com/kadiix)
 * [kodacs](https://github.com/kodacs)
-* [trwnh](https://github.com/trwnh)
 * [JMendyk](https://github.com/JMendyk)
 * [KScl](https://github.com/KScl)
 * [sterdev](https://github.com/sterdev)
@@ -133,6 +134,7 @@ and provided thanks to the work of the following contributors:
 * [Reverite](https://github.com/Reverite)
 * [JohnD28](https://github.com/JohnD28)
 * [znz](https://github.com/znz)
+* [marek-lach](https://github.com/marek-lach)
 * [Naouak](https://github.com/Naouak)
 * [pawelngei](https://github.com/pawelngei)
 * [rtucker](https://github.com/rtucker)
@@ -150,7 +152,6 @@ and provided thanks to the work of the following contributors:
 * [178inaba](https://github.com/178inaba)
 * [alyssais](https://github.com/alyssais)
 * [hiphref](https://github.com/hiphref)
-* [BenLubar](https://github.com/BenLubar)
 * [stalker314314](https://github.com/stalker314314)
 * [huertanix](https://github.com/huertanix)
 * [genesixx](https://github.com/genesixx)
@@ -161,16 +162,16 @@ and provided thanks to the work of the following contributors:
 * [kmichl](https://github.com/kmichl)
 * [Kurtis Rainbolt-Greene](mailto:me@kurtisrainboltgreene.name)
 * [saper](https://github.com/saper)
-* [marek-lach](https://github.com/marek-lach)
 * [nevillepark](https://github.com/nevillepark)
 * [ornithocoder](https://github.com/ornithocoder)
 * [pierreozoux](https://github.com/pierreozoux)
 * [qguv](https://github.com/qguv)
 * [Ram Lmn](mailto:ramlmn@users.noreply.github.com)
+* [sascha-sl](https://github.com/sascha-sl)
 * [harukasan](https://github.com/harukasan)
 * [stamak](https://github.com/stamak)
 * [Technowix](mailto:technowix@users.noreply.github.com)
-* [Eychics](https://github.com/Eychics)
+* [Zoeille](https://github.com/Zoeille)
 * [Thor Harald Johansen](mailto:thj@thj.no)
 * [0x70b1a5](https://github.com/0x70b1a5)
 * [gled-rs](https://github.com/gled-rs)
@@ -244,9 +245,9 @@ and provided thanks to the work of the following contributors:
 * [raymestalez](https://github.com/raymestalez)
 * [remram44](https://github.com/remram44)
 * [sts10](https://github.com/sts10)
-* [sascha-sl](https://github.com/sascha-sl)
 * [u1-liquid](https://github.com/u1-liquid)
 * [sim6](https://github.com/sim6)
+* [Sir-Boops](https://github.com/Sir-Boops)
 * [stemid](https://github.com/stemid)
 * [sumdog](https://github.com/sumdog)
 * [ThomasLeister](https://github.com/ThomasLeister)
@@ -316,8 +317,11 @@ and provided thanks to the work of the following contributors:
 * [Andreas Drop](mailto:andy@remline.de)
 * [andi1984](https://github.com/andi1984)
 * [schas002](https://github.com/schas002)
+* [contraexemplo](https://github.com/contraexemplo)
 * [abackstrom](https://github.com/abackstrom)
+* [armandfardeau](https://github.com/armandfardeau)
 * [jumbosushi](https://github.com/jumbosushi)
+* [aurelien-reeves](https://github.com/aurelien-reeves)
 * [ayumin](https://github.com/ayumin)
 * [BaptisteGelez](https://github.com/BaptisteGelez)
 * [bzg](https://github.com/bzg)
@@ -335,7 +339,7 @@ and provided thanks to the work of the following contributors:
 * [Motoma](https://github.com/Motoma)
 * [chriswk](https://github.com/chriswk)
 * [csu](https://github.com/csu)
-* [clarcharr](https://github.com/clarcharr)
+* [clarfon](https://github.com/clarfon)
 * [kklleemm](https://github.com/kklleemm)
 * [colindean](https://github.com/colindean)
 * [dachinat](https://github.com/dachinat)
@@ -358,6 +362,7 @@ and provided thanks to the work of the following contributors:
 * [eai04191](https://github.com/eai04191)
 * [d3vgru](https://github.com/d3vgru)
 * [Elizafox](https://github.com/Elizafox)
+* [enewhuis](https://github.com/enewhuis)
 * [ericblade](https://github.com/ericblade)
 * [mikoim](https://github.com/mikoim)
 * [espenronnevik](https://github.com/espenronnevik)
@@ -446,6 +451,7 @@ and provided thanks to the work of the following contributors:
 * [mouse-reeve](https://github.com/mouse-reeve)
 * [Mozinet-fr](https://github.com/Mozinet-fr)
 * [lae](https://github.com/lae)
+* [nosada](https://github.com/nosada)
 * [Nanamachi](https://github.com/Nanamachi)
 * [orinthe](https://github.com/orinthe)
 * [NecroTechno](https://github.com/NecroTechno)
@@ -462,10 +468,11 @@ and provided thanks to the work of the following contributors:
 * [noppa](https://github.com/noppa)
 * [Otakan951](https://github.com/Otakan951)
 * [fahy](https://github.com/fahy)
-* [PatrickRWells](https://github.com/PatrickRWells)
-* [Pangoraw](https://github.com/Pangoraw)
-* [peterkeen](https://github.com/peterkeen)
-* [pgate](https://github.com/pgate)
+* [PatrickRWells](mailto:32802366+patrickrwells@users.noreply.github.com)
+* [Paul](mailto:naydex.mc+github@gmail.com)
+* [Pete Keen](mailto:pete@petekeen.net)
+* [Pierre-Morgan Gate](mailto:pgate@users.noreply.github.com)
+* [Ratmir Karabut](mailto:rkarabut@sfmodern.ru)
 * [Reto Kromer](mailto:retokromer@users.noreply.github.com)
 * [Rey Tucker](mailto:git@reytucker.us)
 * [Rob Watson](mailto:rfwatson@users.noreply.github.com)
@@ -488,7 +495,6 @@ and provided thanks to the work of the following contributors:
 * [Sho Kusano](mailto:rosylilly@aduca.org)
 * [Shouko Yu](mailto:imshouko@gmail.com)
 * [Sina Mashek](mailto:sina@mashek.xyz)
-* [Sir-Boops](mailto:admin@boops.me)
 * [Soshi Kato](mailto:mail@sossii.com)
 * [Spanky](mailto:2788886+spankyworks@users.noreply.github.com)
 * [Stanislas](mailto:angristan@pm.me)
@@ -555,12 +561,14 @@ and provided thanks to the work of the following contributors:
 * [karlyeurl](mailto:karl.yeurl@gmail.com)
 * [kedama](mailto:32974885+kedamadq@users.noreply.github.com)
 * [kodai](mailto:shirafuta.kodai@gmail.com)
+* [koyu](mailto:me@koyu.space)
 * [kuro5hin](mailto:rusty@kuro5hin.org)
 * [luzpaz](mailto:luzpaz@users.noreply.github.com)
 * [maxypy](mailto:maxime@mpigou.fr)
 * [mhe](mailto:mail@marcus-herrmann.com)
 * [mike castleman](mailto:m@mlcastle.net)
 * [mimikun](mailto:dzdzble_effort_311@outlook.jp)
+* [mohemohe](mailto:mohemohe@users.noreply.github.com)
 * [mshrtkch](mailto:mshrtkch@users.noreply.github.com)
 * [muan](mailto:muan@github.com)
 * [namelessGonbai](mailto:43787036+namelessgonbai@users.noreply.github.com)
@@ -599,243 +607,338 @@ This document is provided for informational purposes only. Since it is only upda
 
 Following people have contributed to translation of Mastodon:
 
+- **Albanian**
+  - Besnik Bleta
+  - Aditoo
 - **Arabic**
   - ButterflyOfFire
+  - Aditoo
+  - Amrz0
 - **Asturian**
   - ButterflyOfFire
   - Enol P.
+  - Aditoo
 - **Basque**
+  - Osoitz
+  - Aditoo
   - Aitzol
   - ButterflyOfFire
-  - Gorka Azkarate
-  - Osoitz
   - Peru Iparragirre
+  - Gorka Azkarate
+- **Bengali**
+  - dxwc
 - **Bulgarian**
   - ButterflyOfFire
+  - Aditoo
 - **Catalan**
+  - spla
+  - Aditoo
   - ButterflyOfFire
   - Joan Montané
   - Jose Luis
-  - spla
 - **Chinese (Hong Kong)**
   - ButterflyOfFire
   - Luzi Leung
+  - Aditoo
 - **Chinese (Simplified)**
   - Allen Zhong
   - ButterflyOfFire
   - SerCom_KC
+  - martialarts
+  - Kaitian Xie
+  - Aditoo
+  - pan93412
 - **Chinese (Traditional)**
+  - Aditoo
   - ButterflyOfFire
   - James58899
-  - Jeff Huang
+  - pan93412
   - S1ttidoe477
   - SHA265
+  - Jeff Huang
 - **Corsican**
   - Alix D. R.
+  - Aditoo
   - ButterflyOfFire
 - **Croatian**
   - ButterflyOfFire
+  - Aditoo
 - **Czech**
-  - ButterflyOfFire
-  - Lorem Ipsum
+  - Aditoo
   - Marek Ľach
+  - ButterflyOfFire
 - **Danish**
-  - ButterflyOfFire
+  - Einhjeriar
   - Rasmus Sæderup
-- **Dutch**
+  - Aditoo
   - ButterflyOfFire
-  - Jelv
+- **Dutch**
+  - Albakham
+  - ButterflyOfFire
   - jeroenpraat
   - rscmbbng
+  - Aditoo
+  - Jelv
 - **English**
   - ButterflyOfFire
   - Renato "Lond" Cerqueira
+- **English (United Kingdom)**
+  - Albakham
 - **Esperanto**
+  - Aditoo
   - ButterflyOfFire
+  - Becci Cat
   - Jeong Arm
-  - Martin Bodin
   - Mélanie Chauvel
   - Vanege
+  - Martin Bodin
   - tuxayo/Victor Grousset
 - **Finnish**
   - ButterflyOfFire
-  - Jonne Arjoranta
-  - S Heija
+  - Mikko Poussu
   - Taru Luojola
+  - S Heija
+  - Aditoo
+  - Jonne Arjoranta
 - **French**
-  - Alda Marteau-Hardi
+  - Albakham
   - Alix D. R.
-  - Baptiste Jonglez
   - ButterflyOfFire
-  - Franck Paul
-  - Jean-Baptiste Holcroft
+  - codl
+  - Leia
+  - Alda Marteau-Hardi
+  - Mélanie Chauvel
+  - Paul Marques Mota
+  - azenet
+  - Olivier Humbert
+  - Aditoo
   - Jonathan Chan
   - Letiteuf55
-  - Martin Bodin
-  - Mélanie Chauvel
-  - Olivier Humbert
-  - Paul Marques Mota
-  - Sylvhem
+  - Baptiste Jonglez
+  - goofy-mdn
+  - Jean-Baptiste Holcroft
   - Technowix
-  - Thibaut Girka
+  - Martin Bodin
   - Théodore
-  - azenet
-  - codl
+  - Thibaut Girka
+  - Franck Paul
+  - Sylvhem
 - **Galician**
   - ButterflyOfFire
   - Xose M.
+  - Aditoo
   - manequim
 - **Georgian**
   - ButterflyOfFire
+  - Aditoo
 - **German**
-  - Benedikt Geißler
+  - Aditoo
   - ButterflyOfFire
   - Daniel
-  - Eugen Rochko
-  - Koyu Berteon
-  - Patrick Figel
-  - Weblate Admin
   - averageunicorn
-  - ePirat
-  - koyu
+  - Koyu Berteon
   - larsreineke
+  - koyu
+  - Austin Jones
   - lilo
+  - Benedikt Geißler
+  - ePirat
+  - Eugen Rochko
+  - Weblate Admin
+  - Patrick Figel
 - **Greek**
-  - Antonis
-  - ButterflyOfFire
   - Dimitris Maroulidis
+  - Antonis
+  - Aditoo
+  - ButterflyOfFire
   - Konstantinos Grevenitis
 - **Hebrew**
   - ButterflyOfFire
+  - Aditoo
   - Ira
   - Yaron Shahrabani
 - **Hungarian**
-  - Adam Paszternak
   - ButterflyOfFire
+  - Adam Paszternak
+  - Aditoo
   - Tibike Miklós
 - **Ido**
   - ButterflyOfFire
+  - Aditoo
 - **Indonesian**
-  - Alfiana Sibuea
+  - afachri
   - ButterflyOfFire
   - Dito Kurnia Pratama
   - Eirworks
-  - afachri
+  - Aditoo
+  - Alfiana Sibuea
   - se7entime
+- **Irish**
+  - Albakham
+  - Kevin Houlihan
 - **Italian**
   - Alessandro Levati
+  - Albakham
   - ButterflyOfFire
+  - Marcin Mikołajczak
+  - Aditoo
   - Giuseppe Pignataro
   - Stefano
 - **Japanese**
-  - ButterflyOfFire
-  - Kumasun Morino
-  - Yamagishi Kazutoshi
+  - Hinaloe
+  - 小鳥遊まりあ
   - mayaeh
   - osapon
-  - unarist
-  - 小鳥遊まりあ
   - 森の子リスのミーコの大冒険
-- **Korean**
+  - Kumasun Morino
+  - Yamagishi Kazutoshi
+  - Aditoo
   - ButterflyOfFire
   - Jeong Arm
+  - unarist
+- **Kazakh**
+  - arshat
+  - Aditoo
+- **Korean**
+  - Aditoo
+  - Jeong Arm
+  - ButterflyOfFire
   - Minori Hiraoka
   - Yamagishi Kazutoshi
+- **Lithuanian**
+  - Sarunas Medeikis
 - **Malay**
-  - ButterflyOfFire
   - Muhammad Nur Hidayat (MNH48)
+  - Aditoo
+  - ButterflyOfFire
 - **Norwegian (old code)**
   - ButterflyOfFire
   - Espen Rønnevik
+  - Aditoo
   - Tale
 - **Occitan**
+  - Aditoo
   - ButterflyOfFire
-  - Maxenç
   - Quenti2
   - Quentí
+  - Maxenç
 - **Persian**
-  - ButterflyOfFire
   - Masoud Abkenar
-- **Polish**
+  - Aditoo
   - ButterflyOfFire
-  - Jakub Mendyk
-  - Marcin Mikołajczak
-  - Marek Ľach
+- **Polish**
+  - Aditoo
+  - Albakham
+  - ButterflyOfFire
   - Stasiek Michalski
+  - Marcin Mikołajczak
+  - Jakub Mendyk
+  - Marek Ľach
   - krkk
 - **Portuguese**
+  - Albakham
+  - João Pinheiro
+  - manequim
+  - Aditoo
   - ButterflyOfFire
   - Hugo Gameiro
-  - manequim
 - **Portuguese (Brazil)**
-  - André Andrade
+  - Aditoo
+  - Albakham
   - Anna e só
-  - ButterflyOfFire
   - Renato "Lond" Cerqueira
-- **Romanian**
+  - André Andrade
   - ButterflyOfFire
+- **Romanian**
   - adrianbblk
+  - ButterflyOfFire
+  - Aditoo
 - **Russian**
-  - Andrew Zyabin
+  - Albakham
   - ButterflyOfFire
   - Evgeny Petrov
+  - Aditoo
+  - Павел Гастелло
+  - Andrew Zyabin
   - Yaron Shahrabani
 - **Serbian**
   - Branko Kokanovic
   - Burekz Finezt
+  - Aditoo
   - ButterflyOfFire
 - **Serbian (latin)**
   - ButterflyOfFire
+  - Aditoo
 - **Slovak**
+  - Aditoo
   - ButterflyOfFire
   - Ivan Pleva
-  - Lorem Ipsum
   - Marek Ľach
   - Peter
 - **Slovenian**
-  - ButterflyOfFire
   - Kristijan Tkalec
+  - Aditoo
+  - ButterflyOfFire
 - **Spanish**
-  - Angeles Broullón
-  - Antón López
+  - Albakham
   - ButterflyOfFire
   - Carlos Mondragon
+  - Antón López
+  - Max Winkler
+  - Pablo de la Concepción Sanz
+  - Sergio Soriano
+  - Angeles Broullón
+  - Lothar Wolf
+  - Aditoo
   - David Charte
   - Emmanuel
-  - Lothar Wolf
-  - Pablo de la Concepción Sanz
 - **Swedish**
   - ButterflyOfFire
-  - Elias Mårtenson
   - Isak Holmström
   - Shellkr
+  - Aditoo
+  - Elias Mårtenson
   - Stefan Midjich
   - Tim Stahel
+  - Jonas Hultén
 - **Telugu**
+  - avndp
+  - Ranjith Tellakula
+  - Aditoo
   - ButterflyOfFire
   - Joseph Nuthalapati
-  - Ranjith Tellakula
-  - avndp
 - **Thai**
   - ButterflyOfFire
+  - parnikkapore
+  - Thai Localization
+  - Aditoo
 - **Turkish**
+  - Ali Demirtas
   - ButterflyOfFire
+  - Aditoo
 - **Ukrainian**
-  - ButterflyOfFire
-  - Ivan Verchenko
   - alexcleac
-- **Welsh**
   - ButterflyOfFire
-  - Jaz-Michael King
-  - Kevin Beynon
-  - Owain Rhys Lewis
-  - Renato "Lond" Cerqueira
-  - Rhoslyn Prys
+  - Aditoo
+  - Ivan Verchenko
+- **Welsh**
   - carl morris
+  - Jaz-Michael King
+  - Owain Rhys Lewis
+  - Rhoslyn Prys
+  - Aditoo
+  - ButterflyOfFire
+  - Renato "Lond" Cerqueira
+  - Albakham
+  - Kevin Beynon
 - **Armenian**
+  - Aditoo
   - ButterflyOfFire
 - **Latvian**
+  - Aditoo
   - ButterflyOfFire
+  - Maigonis
 - **Tamil**
+  - Aditoo
   - ButterflyOfFire
   - Prasanna Venkadesh
