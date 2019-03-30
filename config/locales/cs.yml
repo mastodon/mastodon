@@ -1,7 +1,7 @@
 ---
 cs:
   about:
-    about_hashtag_html: Tohle jsou veřejné tooty označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv na fediverse, můžete s nimi interagovat.
+    about_hashtag_html: Tohle jsou veřejné tooty označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv ve fedivesmíru, můžete s nimi interagovat.
     about_mastodon_html: Mastodon je sociální síť založená na otevřených webových protokolech a svobodném, otevřeném softwaru. Je decentralizovaná jako e-mail.
     about_this: O tomto serveru
     active_count_after: aktivních
@@ -76,12 +76,12 @@ cs:
   admin:
     account_actions:
       action: Vykonat akci
-      title: Vykonat moderační akci pro účet %{acct}
+      title: Vykonat moderátorskou akci pro účet %{acct}
     account_moderation_notes:
       create: Zanechat poznámku
-      created_msg: Poznámka moderátora byla úspěšně vytvořena!
+      created_msg: Moderátorská poznámka byla úspěšně vytvořena!
       delete: Smazat
-      destroyed_msg: Poznámka moderátora byla úspěšně zničena!
+      destroyed_msg: Moderátorská poznámka byla úspěšně zničena!
     accounts:
       approve: Schválit
       are_you_sure: Jste si jistý/á?
@@ -114,7 +114,7 @@ cs:
       followers_url: URL sledujících
       follows: Sledovaní
       header: Záhlaví
-      inbox_url: URL přijatých zpráv
+      inbox_url: URL příchozí schránky
       invited_by: Pozván/a uživatelem
       ip: IP
       joined: Připojil/a se
@@ -132,13 +132,13 @@ cs:
         pending: Čekající
         silenced: Utišen/a
         suspended: Pozastaven/a
-        title: Moderace
-      moderation_notes: Moderační poznámky
+        title: Moderování
+      moderation_notes: Moderátorské poznámky
       most_recent_activity: Nejnovější aktivita
       most_recent_ip: Nejnovější IP
       no_limits_imposed: Nejsou nastavena žádná omezení
       not_subscribed: Neodebírá
-      outbox_url: URL odchozích zpráv
+      outbox_url: URL odchozí schránky
       pending: Čeká na posouzení
       perform_full_suspension: Pozastavit
       profile_url: URL profilu
@@ -165,7 +165,7 @@ cs:
         user: Uživatel
       salmon_url: URL Salmon
       search: Hledat
-      shared_inbox_url: URL sdílených přijatých zpráv
+      shared_inbox_url: URL sdílené příchozí schránky
       show:
         created_reports: Vytvořená nahlášení
         targeted_reports: Nahlášeni ostatními
@@ -249,6 +249,7 @@ cs:
       feature_profile_directory: Adresář profilů
       feature_registrations: Registrace
       feature_relay: Federovací most
+      feature_timeline_preview: Náhled časové osy
       features: Vlastnosti
       hidden_service: Federace se skrytými službami
       open_reports: otevřená hlášení
@@ -270,7 +271,7 @@ cs:
       domain: Doména
       new:
         create: Vytvořit blokaci
-        hint: Blokace domény nezakáže vytváření účtových záznamů v databázi, ale bude na tyto účty zpětně a automaticky aplikovat specifické metody moderace.
+        hint: Blokace domény nezakáže vytváření záznamů účtů v databázi, ale bude na tyto účty zpětně a automaticky aplikovat specifické metody moderování.
         severity:
           desc_html: Funkce <strong>Utišit</strong> zneviditelní příspěvky z účtu komukoliv, kdo jej nesleduje. Funkce <strong>Pozastavit</strong> odstraní všechen obsah, média a profilová data účtu. Pro pouhé odmítnutí mediálních souborů použijte funkci <strong>Žádné</strong>.
           noop: Žádné
@@ -284,8 +285,8 @@ cs:
       rejecting_media: odmítají se mediální soubory
       rejecting_reports: odmítají se nahlášení
       severity:
-        silence: utišené
-        suspend: pozastavené
+        silence: utišeno
+        suspend: pozastaveno
       show:
         affected_accounts:
           few: "%{count} účty v databázi byly ovlivněny"
@@ -305,7 +306,7 @@ cs:
       domain: Doména
       new:
         create: Přidat doménu
-        title: Nový e-mail pro zablokování
+        title: Nová položka pro černou listinu e-mailů
       title: Černá listina e-mailů
     followers:
       back_to_account: Zpět na účet
@@ -320,7 +321,7 @@ cs:
       moderation:
         all: Všechny
         limited: Omezené
-        title: Moderace
+        title: Moderování
       title: Federace
       total_blocked_by_us: Blokované námi
       total_followed_by_them: Sledované jimi
@@ -338,7 +339,7 @@ cs:
     relays:
       add_new: Přidat nový most
       delete: Smazat
-      description_html: "<strong>Federovací most</strong> je přechodný server, který vyměňuje velká množství veřejných tootů mezi servery, které z něj odebírají a poblikují na něj. <strong>Může pomoci malým a středně velkým serverům objevovat obsah z fediverse</strong>, což by jinak vyžadovalo, aby místní uživatelé manuálně sledovali jiné lidi na vzdálených serverech."
+      description_html: "<strong>Federovací most</strong> je přechodný server, který vyměňuje velká množství veřejných tootů mezi servery, které z něj odebírají a publikují na něj. <strong>Může pomoci malým a středně velkým serverům objevovat obsah z fedivesmíru</strong>, což by jinak vyžadovalo, aby místní uživatelé manuálně sledovali jiné lidi na vzdálených serverech."
       disable: Zakázat
       disabled: Zakázáno
       enable: Povolit
@@ -403,7 +404,7 @@ cs:
         desc_html: Zobrazuje se na hlavní stránce. Doporučuje se rozlišení alespoň 293x205 px. Pokud toto není nastaveno, bude zobrazen výchozí maskot
         title: Obrázek maskota
       peers_api_enabled:
-        desc_html: Domény, na které tento server narazil ve fediverse
+        desc_html: Domény, na které tento server narazil ve fedivesmíru
         title: Zveřejnit seznam objevených serverů
       preview_sensitive_media:
         desc_html: Náhledy odkazů na jiných stránkách budou zobrazeny i pokud jsou media označena jako citlivá
@@ -425,22 +426,22 @@ cs:
         modes:
           approved: Pro registraci je vyžadováno schválení
           none: Nikdo se nemůže registrovat
-          open: Všichni se mohou registrovat
+          open: Kdokoliv se může registrovat
         title: Režim registrací
       show_known_fediverse_at_about_page:
-        desc_html: Je-li toto zapnuto, zobrazí se v náhledu tooty ze všech známých serverů na fediverse. Jinak budou zobrazeny pouze místní tooty.
-        title: Zobrazit na náhledu časové osy celé známé fediverse
+        desc_html: Je-li tohle zapnuto, zobrazí se v náhledu tooty z celého známého fedivesmíru. Jinak budou zobrazeny pouze místní tooty.
+        title: Zobrazit na náhledu časové osy celý známý fedivesmír
       show_staff_badge:
         desc_html: Zobrazit na stránce uživatele odznak člena personálu
         title: Zobrazit odznak personálu
       site_description:
-        desc_html: Úvodní odstavec na hlavní straně. Popište, díky čemu je tento server Mastodon zvláštní, a cokoliv jiného, co je důležité. Můžete zde používat HTML značky, hlavně <code>&lt;a&gt;</code> a <code>&lt;em&gt;</code>.
+        desc_html: Úvodní odstavec v API. Popište, díky čemu je tento server Mastodon zvláštní, a cokoliv jiného, co je důležité. Můžete zde používat HTML značky, hlavně <code>&lt;a&gt;</code> a <code>&lt;em&gt;</code>.
         title: Popis serveru
       site_description_extended:
         desc_html: Dobré místo pro vaše pravidla, pokyny a jiné věci, které váš server odlišují od ostatních. Lze použít HTML značky
-        title: Vlastní doplňující informace
+        title: Vlastní rozšířené informace
       site_short_description:
-        desc_html: Zobrazen v postranním panelu a meta značkách. Popište, co je Mastodon a díky čemu je tento server zvláštní v jediném odstavci. Je-li tohle prázdné, zobrazí se popis serveru.
+        desc_html: Zobrazen v postranním panelu a meta značkách. Popište, co je Mastodon a díky čemu je tento server zvláštní v jediném odstavci.
         title: Krátký popis serveru
       site_terms:
         desc_html: Můžete si napsat vlastní zásady soukromí, podmínky používání či jiné legality. Můžete použít HTML značky
@@ -593,6 +594,9 @@ cs:
       content: Omlouváme se, ale něco se u nás pokazilo.
       title: Tato stránka není správná
     noscript_html: Pro použití webové aplikace Mastodon prosím povolte JavaScript. Nebo zkuste jednu z <a href="%{apps_path}">nativních aplikací</a> pro Mastodon pro vaši platformu.
+  existing_username_validator:
+    not_found: nelze najít místního uživatele s tímto uživatelským jménem
+    not_found_multiple: nelze najít %{usernames}
   exports:
     archive_takeout:
       date: Datum
@@ -633,6 +637,7 @@ cs:
     more: Více…
     resources: Zdroje
   generic:
+    all: Všechny
     changes_saved_msg: Změny byly úspěšně uloženy!
     copy: Kopírovat
     save_changes: Uložit změny
@@ -640,6 +645,26 @@ cs:
       few: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyby níže
       one: Něco ještě není úplně v pořádku! Prosím zkontrolujte chybu níže
       other: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
+  html_validator:
+    invalid_markup: 'obsahuje neplatný HTML kód: %{error}'
+  identity_proofs:
+    active: Aktivní
+    authorize: Ano, autorizovat
+    authorize_connection_prompt: Autorizovat toto kryptografické spojení?
+    errors:
+      failed: Kryptografické spojení selhalo. Prosím zkuste to znovu z %{provider}.
+      keybase:
+        invalid_token: Tokeny Keybase jsou hashe podpisů a musí být 66 znaků dlouhé
+        verification_failed: Keybase nerozpoznává tento token jako podpis uživatele %{kb_username} na Keybase. Prosím zkuste to znovu z Keybase.
+      wrong_user: Nelze vytvořit důkaz pro uživatele %{proving}, zatímco jste přihlášen/a jako %{current}. Přihlaste se jako %{proving} a zkuste to znovu.
+    explanation_html: Zde můžete kryptograficky připojit vaše ostatní identity, například profil Keybase. To dovolí jiným lidem vám posílat šifrované zprávy a důvěřovat obsahu, který jim pošlete.
+    i_am_html: Na %{service} jsem %{username}.
+    identity: Identita
+    inactive: Neaktivní
+    publicize_checkbox: 'A tootnout tohle:'
+    publicize_toot: 'Je to dokázáno! Na %{service} jsem %{username}: %{url}'
+    status: Stav ověření
+    view_proof: Zobrazit důkaz
   imports:
     modes:
       merge: Sloučit
@@ -689,9 +714,9 @@ cs:
     acct: přezdívka@doména nového účtu
     currently_redirecting: 'Váš profil má nastaveno přesměrování na:'
     proceed: Uložit
-    updated_msg: Vaše nastavení migrace účtu bylo úspěšně aktualizováno!
+    updated_msg: Vaše nastavení přesunutí účtu bylo úspěšně aktualizováno!
   moderation:
-    title: Moderace
+    title: Moderování
   notification_mailer:
     digest:
       action: Zobrazit všechna oznámení
@@ -759,6 +784,19 @@ cs:
     other: Ostatní
     publishing: Publikování
     web: Web
+  relationships:
+    activity: Aktivita účtu
+    dormant: Nečinné
+    last_active: Naposledy aktivní
+    most_recent: Nedávno přidaní
+    moved: Přesunuté
+    mutual: Vzájemné
+    primary: Primární
+    relationship: Vztah
+    remove_selected_domains: Odstranit všechny sledující ze zvolených domén
+    remove_selected_followers: Odstranit zvolené sledující
+    remove_selected_follows: Přestat sledovat zvolené uživatele
+    status: Stav účtu
   remote_follow:
     acct: Napište svou přezdívku@doménu, ze které chcete jednat
     missing_resource: Nemůžeme najít požadované přesměrovací URL pro váš účet
@@ -833,10 +871,12 @@ cs:
     edit_profile: Upravit profil
     export: Export dat
     featured_tags: Zvýrazněné hashtagy
+    identity_proofs: Důkazy identity
     import: Import
     migrate: Přesunutí účtu
     notifications: Oznámení
     preferences: Předvolby
+    relationships: Sledovaní a sledující
     settings: Nastavení
     two_factor_authentication: Dvoufaktorové ověřování
     your_apps: Vaše aplikace
@@ -905,7 +945,7 @@ cs:
 
       <ul>
         <li>K poskytnutí základních funkcí Mastodonu. Interagovat s obsahem od jiných lidí a přispívat svým vlastním obsahem můžete pouze, pokud jste přihlášeni. Můžete například sledovat jiné lidi a zobrazit si jejich kombinované příspěvky ve vaší vlastní personalizované časové ose.</li>
-        <li>Pro pomoc moderaci komunity, například porovnáním vaší IP adresy s dalšími známými adresami pro určení vyhýbání se zákazům či jiných přestupků.</li>
+        <li>Pro pomoc moderování komunity, například porovnáním vaší IP adresy s dalšími známými adresami pro určení vyhýbání se zákazům či jiných přestupků.</li>
         <li>E-mailová adresa, kterou nám poskytnete, může být použita pro zasílání informací, oznámení o interakcích jiných uživatelů s vaším obsahem nebo přijatých zprávách a k odpovědím na dotazy a/nebo další požadavky či otázky.</li>
       </ul>
 
@@ -991,7 +1031,7 @@ cs:
     recovery_codes_regenerated: Záložní kódy byly úspěšně znovu vygenerované
     recovery_instructions_html: Ztratíte-li někdy přístup k vašemu telefonu, můžete k získání přístupu k účtu použít jeden ze záložních kódů. <strong>Uchovávejte tyto kódy v bezpečí</strong>. Můžete si je například vytisknout a uložit je mezi jiné důležité dokumenty.
     setup: Nastavit
-    wrong_code: Zadaný kód byl neplatný! Je serverový čas a čas na zařízení správný?
+    wrong_code: Zadaný kód byl neplatný! Je čas na serveru a na zařízení správný?
   user_mailer:
     backup_ready:
       explanation: Vyžádal/a jste si úplnou zálohu svého účtu Mastodon. Nyní je připravena ke stažení!

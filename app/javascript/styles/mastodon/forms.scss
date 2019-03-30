@@ -475,6 +475,42 @@ code {
       }
     }
   }
+
+  &__overlay-area {
+    position: relative;
+
+    &__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba($ui-base-color, 0.65);
+      backdrop-filter: blur(2px);
+      border-radius: 4px;
+
+      &__content {
+        text-align: center;
+
+        &.rich-formatting {
+          &,
+          p {
+            color: $primary-text-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.block-icon {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  font-size: 24px;
 }
 
 .flash-message {
@@ -818,12 +854,18 @@ code {
     flex: 1;
     flex-direction: column;
     flex-shrink: 1;
+    max-width: 50%;
 
     &-sep {
+      align-self: center;
       flex-grow: 0;
       overflow: visible;
       position: relative;
       z-index: 1;
+    }
+
+    p {
+      word-break: break-word;
     }
   }
 
@@ -846,12 +888,13 @@ code {
       height: 100%;
       left: 50%;
       position: absolute;
+      top: 0;
       width: 1px;
     }
   }
 
   &__row {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
     flex-direction: row;
   }

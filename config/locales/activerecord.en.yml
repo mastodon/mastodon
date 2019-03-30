@@ -2,8 +2,9 @@
 en:
   activerecord:
     attributes:
-      status:
-        owned_poll: Poll
+      poll:
+        expires_at: Deadline
+        options: Choices
     errors:
       models:
         account:

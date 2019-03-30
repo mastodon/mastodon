@@ -98,7 +98,7 @@ class ActionBar extends React.PureComponent {
   }
 
   handleBlockClick = () => {
-    this.props.onBlock(this.props.status.get('account'));
+    this.props.onBlock(this.props.status);
   }
 
   handleReport = () => {

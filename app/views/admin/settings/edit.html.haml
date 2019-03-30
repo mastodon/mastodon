@@ -2,6 +2,7 @@
   = t('admin.settings.title')
 
 = simple_form_for @admin_settings, url: admin_settings_path, html: { method: :patch } do |f|
+  = render 'shared/error_messages', object: @admin_settings
 
   .fields-group
     = f.input :site_title, wrapper: :with_label, label: t('admin.settings.site_title')

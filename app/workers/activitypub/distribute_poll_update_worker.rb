@@ -9,7 +9,7 @@ class ActivityPub::DistributePollUpdateWorker
     @status  = Status.find(status_id)
     @account = @status.account
 
-    return unless @status.poll
+    return unless @status.preloadable_poll
 
     ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
       [payload, @account.id, inbox_url]
@@ -29,7 +29,7 @@ class ActivityPub::DistributePollUpdateWorker
   def inboxes
     return @inboxes if defined?(@inboxes)
 
-    @inboxes = [@status.mentions, @status.reblogs, @status.poll.votes].flat_map do |relation|
+    @inboxes = [@status.mentions, @status.reblogs, @status.preloadable_poll.votes].flat_map do |relation|
       relation.includes(:account).map do |record|
         record.account.preferred_inbox_url if !record.account.local? && record.account.activitypub?
       end
