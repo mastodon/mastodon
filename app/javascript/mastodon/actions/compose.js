@@ -2,7 +2,7 @@ import api from '../api';
 import { CancelToken, isCancel } from 'axios';
 import { throttle } from 'lodash';
 import { search as emojiSearch } from '../features/emoji/emoji_mart_search_light';
-import { tagHistory } from '../settings';
+import { tagHistory, tagTemplate } from '../settings';
 import { useEmoji } from './emojis';
 import resizeImage from '../utils/resize_image';
 import { importFetchedAccounts } from './importer';
@@ -38,6 +38,8 @@ export const COMPOSE_SUGGESTION_SELECT = 'COMPOSE_SUGGESTION_SELECT';
 export const COMPOSE_SUGGESTION_TAGS_UPDATE = 'COMPOSE_SUGGESTION_TAGS_UPDATE';
 
 export const COMPOSE_TAG_HISTORY_UPDATE = 'COMPOSE_TAG_HISTORY_UPDATE';
+
+export const COMPOSE_TAG_TEMPLATE_UPDATE = 'COMPOSE_TAG_TEMPLATE_UPDATE';
 
 export const COMPOSE_MOUNT   = 'COMPOSE_MOUNT';
 export const COMPOSE_UNMOUNT = 'COMPOSE_UNMOUNT';
@@ -151,6 +153,12 @@ export function submitCompose(routerHistory, withCommunity) {
 
     if ((!status || !status.length) && media.size === 0) {
       return;
+    }
+
+    const hashtag = getState().getIn(['compose', 'tagTemplate'], '');
+
+    if (hashtag && hashtag.length) {
+      status = [status, ` #${hashtag}`].join('');
     }
 
     const { newStatus, visibility, hasDefaultHashtag } = handleDefaultTag(
@@ -493,6 +501,30 @@ export function updateTagHistory(tags) {
     type: COMPOSE_TAG_HISTORY_UPDATE,
     tags,
   };
+}
+
+export function updateTagTemplate(tag) {
+  return (dispatch, getState) => {
+    dispatch({
+      type: COMPOSE_TAG_TEMPLATE_UPDATE,
+      tag,
+    });
+
+    const me = getState().getIn(['meta', 'me']);
+    tagTemplate.set(me, tag);
+  };
+}
+
+export function addTagTemplateInput() {
+}
+
+export function delTagTemplateInput() {
+}
+
+export function enableTagTemplage(key) {
+}
+
+export function disableTagTemplage(key) {
 }
 
 export function hydrateCompose() {

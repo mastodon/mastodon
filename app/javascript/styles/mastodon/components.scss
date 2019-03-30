@@ -309,6 +309,7 @@
   }
 
   .autosuggest-textarea,
+  .hashtag-temp,
   .spoiler-input {
     position: relative;
   }
@@ -325,6 +326,7 @@
   }
 
   .autosuggest-textarea__textarea,
+  .hastag-temp__input,
   .spoiler-input__input {
     display: block;
     box-sizing: border-box;
@@ -5598,5 +5600,23 @@ noscript {
         stroke: lighten($highlight-text-color, 6%) !important;
       }
     }
+  }
+}
+
+.hashtag-temp {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid rgba($ui-base-color, 0.1);
+  font-size: 12px;
+
+  .hastag-temp__input {
+    padding-left: 0;
+    font-size: 12px;
+    border-radius: 0 0 4px;
+  }
+
+  .fa-hashtag {
+    color: rgba($ui-base-color, 0.7);
+    padding-left: 5px;
   }
 }
