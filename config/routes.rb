@@ -354,6 +354,7 @@ Rails.application.routes.draw do
         resources :followers, only: :index, controller: 'accounts/follower_accounts'
         resources :following, only: :index, controller: 'accounts/following_accounts'
         resources :lists, only: :index, controller: 'accounts/lists'
+        resources :identity_proofs, only: :index, controller: 'accounts/identity_proofs'
 
         member do
           post :follow

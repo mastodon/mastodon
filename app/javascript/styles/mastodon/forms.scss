@@ -854,12 +854,18 @@ code {
     flex: 1;
     flex-direction: column;
     flex-shrink: 1;
+    max-width: 50%;
 
     &-sep {
+      align-self: center;
       flex-grow: 0;
       overflow: visible;
       position: relative;
       z-index: 1;
+    }
+
+    p {
+      word-break: break-word;
     }
   }
 
@@ -882,12 +888,13 @@ code {
       height: 100%;
       left: 50%;
       position: absolute;
+      top: 0;
       width: 1px;
     }
   }
 
   &__row {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
     flex-direction: row;
   }

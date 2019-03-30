@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe Settings::IdentityProofsController do
+  include RoutingHelper
   render_views
 
   let(:user) { Fabricate(:user) }
@@ -9,8 +10,15 @@ describe Settings::IdentityProofsController do
   let(:provider) { 'keybase' }
   let(:findable_id) { Faker::Number.number(5) }
   let(:unfindable_id) { Faker::Number.number(5) }
+  let(:new_proof_params) do
+    { provider: provider, provider_username: kbname, token: valid_token, username: user.account.username }
+  end
+  let(:status_text) { "i just proved that i am also #{kbname} on #{provider}." }
+  let(:status_posting_params) do
+    { post_status: '0', status_text: status_text }
+  end
   let(:postable_params) do
-    { account_identity_proof: { provider: provider, provider_username: kbname, token: valid_token } }
+    { account_identity_proof: new_proof_params.merge(status_posting_params) }
   end
 
   before do
@@ -19,10 +27,32 @@ describe Settings::IdentityProofsController do
   end
 
   describe 'new proof creation' do
-    context 'GET #new with no existing proofs' do
-      it 'redirects to :index' do
-        get :new
-        expect(response).to redirect_to settings_identity_proofs_path
+    context 'GET #new' do
+      context 'with all of the correct params' do
+        before do
+          allow_any_instance_of(ProofProvider::Keybase::Badge).to receive(:avatar_url) { full_pack_url('media/images/void.png') }
+        end
+
+        it 'renders the template' do
+          get :new, params: new_proof_params
+          expect(response).to render_template(:new)
+        end
+      end
+
+      context 'without any params' do
+        it 'redirects to :index' do
+          get :new, params: {}
+          expect(response).to redirect_to settings_identity_proofs_path
+        end
+      end
+
+      context 'with params to prove a different, not logged-in user' do
+        let(:wrong_user_params) { new_proof_params.merge(username: 'someone_else') }
+
+        it 'shows a helpful alert' do
+          get :new, params: wrong_user_params
+          expect(flash[:alert]).to eq I18n.t('identity_proofs.errors.wrong_user', proving: 'someone_else', current: user.account.username)
+        end
       end
     end
 
@@ -43,6 +73,23 @@ describe Settings::IdentityProofsController do
           expect_any_instance_of(AccountIdentityProof).to receive(:on_success_path)
           post :create, params: postable_params
           expect(response).to redirect_to root_url
+        end
+
+        it 'does not post a status' do
+          expect(PostStatusService).not_to receive(:new)
+          post :create, params: postable_params
+        end
+
+        context 'and the user has requested to post a status' do
+          let(:postable_params_with_status) do
+            postable_params.tap { |p| p[:account_identity_proof][:post_status] = '1' }
+          end
+
+          it 'posts a status' do
+            expect_any_instance_of(PostStatusService).to receive(:call).with(user.account, text: status_text)
+
+            post :create, params: postable_params_with_status
+          end
         end
       end
 

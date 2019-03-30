@@ -62,6 +62,7 @@ class Header extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map,
+    identity_props: ImmutablePropTypes.list,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -81,7 +82,7 @@ class Header extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, intl, domain } = this.props;
+    const { account, intl, domain, identity_proofs } = this.props;
 
     if (!account) {
       return null;
@@ -93,15 +94,15 @@ class Header extends ImmutablePureComponent {
     let menu        = [];
 
     if (me !== account.get('id') && account.getIn(['relationship', 'followed_by'])) {
-      info.push(<span className='relationship-tag'><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>);
+      info.push(<span key='followed_by' className='relationship-tag'><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>);
     } else if (me !== account.get('id') && account.getIn(['relationship', 'blocking'])) {
-      info.push(<span className='relationship-tag'><FormattedMessage id='account.blocked' defaultMessage='Blocked' /></span>);
+      info.push(<span key='blocked' className='relationship-tag'><FormattedMessage id='account.blocked' defaultMessage='Blocked' /></span>);
     }
 
     if (me !== account.get('id') && account.getIn(['relationship', 'muting'])) {
-      info.push(<span className='relationship-tag'><FormattedMessage id='account.muted' defaultMessage='Muted' /></span>);
+      info.push(<span key='muted' className='relationship-tag'><FormattedMessage id='account.muted' defaultMessage='Muted' /></span>);
     } else if (me !== account.get('id') && account.getIn(['relationship', 'domain_blocking'])) {
-      info.push(<span className='relationship-tag'><FormattedMessage id='account.domain_blocked' defaultMessage='Domain hidden' /></span>);
+      info.push(<span key='domain_blocked' className='relationship-tag'><FormattedMessage id='account.domain_blocked' defaultMessage='Domain hidden' /></span>);
     }
 
     if (me !== account.get('id')) {
@@ -110,7 +111,7 @@ class Header extends ImmutablePureComponent {
       } else if (account.getIn(['relationship', 'requested'])) {
         actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.requested)} onClick={this.props.onFollow} />;
       } else if (!account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']) })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.props.onFollow} />;
+        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']) })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.props.onFollow} />;
       } else if (account.getIn(['relationship', 'blocking'])) {
         actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />;
       }
@@ -234,8 +235,20 @@ class Header extends ImmutablePureComponent {
 
           <div className='account__header__extra'>
             <div className='account__header__bio'>
-              {fields.size > 0 && (
+              { (fields.size > 0 || identity_proofs.size > 0) && (
                 <div className='account__header__fields'>
+                  {identity_proofs.map((proof, i) => (
+                    <dl key={i}>
+                      <dt dangerouslySetInnerHTML={{ __html: proof.get('provider') }} />
+
+                      <dd className='verified'>
+                        <a href={proof.get('proof_url')} target='_blank' rel='noopener'><span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(proof.get('updated_at'), dateFormatOptions) })}>
+                          <Icon id='check' className='verified__mark' />
+                        </span></a>
+                        <a href={proof.get('profile_url')} target='_blank' rel='noopener'><span dangerouslySetInnerHTML={{ __html: ' '+proof.get('provider_username') }} /></a>
+                      </dd>
+                    </dl>
+                  ))}
                   {fields.map((pair, i) => (
                     <dl key={i}>
                       <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} />

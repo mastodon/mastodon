@@ -245,6 +245,7 @@ co:
       feature_profile_directory: Annuariu di i prufili
       feature_registrations: Arregistramenti
       feature_relay: Ripetitore di federazione
+      feature_timeline_preview: Vista di a linea pubblica
       features: Funziunalità
       hidden_service: Federazione cù servizii piattati
       open_reports: signalamenti aperti
@@ -586,6 +587,9 @@ co:
       content: Scusate, mà c’hè statu un prublemu cù u nostru servore.
       title: Sta pagina ùn hè curretta
     noscript_html: Mastodon nant’à u web hà bisognu di JavaScript per funziunà. Pudete ancu pruvà <a href="%{apps_path}">l’applicazione native</a> per a vostra piattaforma.
+  existing_username_validator:
+    not_found: ùn si pudeva micca truvà un'utilizatore lucale cù stu cugnome
+    not_found_multiple: ùn si pudeva micca truvà %{usernames}
   exports:
     archive_takeout:
       date: Data
@@ -629,10 +633,31 @@ co:
     all: Tuttu
     changes_saved_msg: Cambiamenti salvati!
     copy: Cupià
+    order_by: Urdinà per
     save_changes: Salvà e mudificazione
     validation_errors:
       one: Qualcosa ùn và bè! Verificate u prublemu quì sottu
       other: Qualcosa ùn và bè! Verificate %{count} prublemi quì sottu
+  html_validator:
+    invalid_markup: 'cuntene codice HTML invalidu: %{error}'
+  identity_proofs:
+    active: Attiva
+    authorize: Ié, auturizà
+    authorize_connection_prompt: Auturizà sta cunnessione crittograffica?
+    errors:
+      failed: A cunnessione crittograffica s'hè fiascata. Ripruvate da %{provider}.
+      keybase:
+        invalid_token: E fiscie Keybase sò hash di firme è duvenu fà 66 caratteri esadecimali (0-9 A-F)
+        verification_failed: Keybase ùn ricunosce micca sta fiscia cum'una firma di l'utilizatore Keybase %{kb_username}. Ripruvate da Keybase.
+      wrong_user: Ùn si pò micca creà una prova per %{proving} mentre chì site cunnettatu·a cum'è %{current}. Cunnettatevi cum'è %{proving} è ripruvate.
+    explanation_html: Quì pudete cunnettà crittografficamente e vostre altre identità, cum'è per esempiu un prufile Keybase. Quessu permette à d'altre persone di mandà vi missaghji crittati, è d'affiducià i cuntinuti chì mandate.
+    i_am_html: Sò %{username} nant'à %{service}.
+    identity: Identità
+    inactive: Inattiva
+    publicize_checkbox: 'È mandà stu statutu:'
+    publicize_toot: 'Hè pruvata! Sò %{username} nant’à %{service}: %{url}'
+    status: Statutu di a verificazione
+    view_proof: Vede a prova
   imports:
     modes:
       merge: Unisce
@@ -753,6 +778,8 @@ co:
   relationships:
     activity: Attività di u contu
     dormant: Inattivu
+    last_active: Ultima attività
+    most_recent: Più ricente
     moved: Spiazzatu
     mutual: Mutuale
     primary: Primariu
@@ -835,6 +862,7 @@ co:
     edit_profile: Mudificà u prufile
     export: Spurtazione d’infurmazione
     featured_tags: Hashtag in vista
+    identity_proofs: Prove d'identità
     import: Impurtazione
     migrate: Migrazione di u contu
     notifications: Nutificazione
