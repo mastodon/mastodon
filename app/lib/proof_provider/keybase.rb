@@ -28,7 +28,8 @@ class ProofProvider::Keybase
       return
     end
 
-    return if @proof.provider_username.blank?
+    # Do not perform synchronous validation for remote accounts
+    return if @proof.provider_username.blank? || !@proof.account.local?
 
     if verifier.valid?
       @proof.verified = true
