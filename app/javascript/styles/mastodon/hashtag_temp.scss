@@ -1,0 +1,25 @@
+.compose-form .hashtag-temp {
+  position: relative;
+}
+
+.hashtag-temp {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid rgba($ui-base-color, 0.1);
+  font-size: 12px;
+
+  .hastag-temp__input {
+    padding-left: 3px;
+    font-size: 12px;
+    border-radius: 0 0 4px;
+    width: calc(100% - (23px + 30px));
+  }
+
+  .hashtag-temp__button-icon {
+    margin-left: 3px;
+  }
+
+  .icon-button.disabled {
+    color: darken($simple-background-color, 14%);
+  }
+}

@@ -75,7 +75,7 @@ const initialState = ImmutableMap({
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
   tagHistory: ImmutableList(),
-  tagTemplate: '',
+  tagTemplate: ImmutableList(),
 });
 
 const initialPoll = ImmutableMap({
@@ -84,8 +84,15 @@ const initialPoll = ImmutableMap({
   multiple: false,
 });
 
+const initialTagTemp = ImmutableList([
+  ImmutableMap({
+    text: '',
+    active: false
+  })
+]);
+
 function getTagTemplate() {
-  return tagTemplate.get(me) || '';
+  return fromJS(tagTemplate.get(me)) || initialTagTemp;
 }
 
 function statusToTextMentions(state, status) {
@@ -359,7 +366,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_TAG_HISTORY_UPDATE:
     return state.set('tagHistory', fromJS(action.tags));
   case COMPOSE_TAG_TEMPLATE_UPDATE:
-    return state.set('tagTemplate', action.tag);
+    return state.set('tagTemplate', action.tags);
   case TIMELINE_DELETE:
     if (action.id === state.get('in_reply_to')) {
       return state.set('in_reply_to', null);
