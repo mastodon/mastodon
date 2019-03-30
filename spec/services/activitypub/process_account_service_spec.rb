@@ -42,6 +42,8 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
     end
 
     it 'parses out of attachment' do
+      allow(ProofProvider::Keybase::Worker).to receive(:perform_async)
+
       account = subject.call('alice', 'example.com', payload)
 
       expect(account.identity_proofs.count).to eq 1
