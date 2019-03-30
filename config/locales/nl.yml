@@ -7,7 +7,6 @@ nl:
     administered_by: 'Beheerd door:'
     api: API
     apps: Mobiele apps
-    closed_registrations: Registreren op deze server is momenteel niet mogelijk. Je kunt echter een andere server vinden om zo toegang te krijgen tot het netwerk.
     contact: Contact
     contact_missing: Niet ingesteld
     contact_unavailable: n.v.t
@@ -15,19 +14,9 @@ nl:
     extended_description_html: |
       <h3>Een goede plek voor richtlijnen</h3>
       <p>De uitgebreide omschrijving is nog niet ingevuld.</p>
-    features:
-      humane_approach_body: Mastodon heeft van de fouten van andere sociale netwerken geleerd en probeert aan de hand van ethische ontwerpkeuzes misbruik van sociale media te voorkomen.
-      humane_approach_title: Een meer menselijke aanpak
-      not_a_product_body: Mastodon is geen commercieel netwerk. Dus geen advertenties, geen datamining en geen besloten systemen. Er is geen centrale organisatie die alles bepaalt.
-      not_a_product_title: Jij bent een persoon, geen product
-      real_conversation_body: Met 500 tekens tot jouw beschikking en ondersteuning voor tekst- en media-waarschuwingen, kan je jezelf uiten zoals jij dat wil.
-      real_conversation_title: Voor echte gesprekken gemaakt
-      within_reach_body: Meerdere apps voor iOS, Android en andere platformen, met dank aan het ontwikkelaarsvriendelijke API-systeem, zorgen ervoor dat je overal op de hoogte blijft.
-      within_reach_title: Altijd binnen bereik
     generic_description: "%{domain} is een server in het Mastodonnetwerk"
     hosted_on: Mastodon op %{domain}
     learn_more: Meer leren
-    other_instances: Andere servers
     privacy_policy: Privacybeleid
     source_code: Broncode
     status_count_after:
@@ -302,6 +291,7 @@ nl:
       back_to_account: Terug naar account
       title: Volgers van %{acct}
     instances:
+      by_domain: Domein
       delivery_available: Bezorging is mogelijk
       known_accounts:
         one: "%{count} bekend account"
@@ -410,9 +400,6 @@ nl:
         min_invite_role:
           disabled: Niemand
           title: Uitnodigingen toestaan door
-        open:
-          desc_html: Toestaan dat iedereen een account kan registereren
-          title: Open registratie
       show_known_fediverse_at_about_page:
         desc_html: Wanneer ingeschakeld wordt de globale tijdlijn op de voorpagina getoond en wanneer uitgeschakeld de lokale tijdljn.
         title: De globale tijdlijn op de voorpagina tonen
@@ -423,7 +410,7 @@ nl:
         desc_html: Dit wordt als een alinea op de voorpagina getoond. Beschrijf wat er speciaal is aan deze server en andere zaken die van belang zijn. Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
         title: Omschrijving Mastodonserver
       site_description_extended:
-        desc_html: Wordt op de uitgebreide informatiepagina weergegeven<br>Je kan ook hier HTML gebruiken
+        desc_html: Een goede plek voor je gedragscode, regels, richtlijnen en andere zaken die jouw server uniek maken. Je kan ook hier HTML gebruiken
         title: Uitgebreide omschrijving Mastodonserver
       site_short_description:
         desc_html: Dit wordt in de zijbalk getoond als en als metatag in de paginabron.  Beschrijf in één alinea wat Mastodon is en wat deze server speciaal maakt. De (langere) omschrijving van de Mastodonserver wordt gebruikt wanneer dit veld wordt leeg gelaten.
@@ -507,13 +494,11 @@ nl:
     logout: Uitloggen
     migrate_account: Naar een ander account verhuizen
     migrate_account_html: Wanneer je dit account naar een ander account wilt doorverwijzen, kun je <a href="%{path}">dit hier instellen</a>.
-    or: of
     or_log_in_with: Of inloggen met
     providers:
       cas: CAS
       saml: SAML
     register: Registreren
-    register_elsewhere: Op een andere server registreren
     resend_confirmation: Verstuur de bevestigingsinstructies nogmaals
     reset_password: Wachtwoord opnieuw instellen
     security: Beveiliging
@@ -577,7 +562,7 @@ nl:
     archive_takeout:
       date: Datum
       download: Jouw archief downloaden
-      hint_html: Je kunt een archief opvragen van jouw <strong>toots en geüploade media</strong>. De geëxporteerde gegevens zijn in ActivityPub-formaat, dat door hiervoor geschikte software valt uit te lezen. Je kunt elke 7 dagen een kopie van je archief aanvragen.
+      hint_html: Je kunt een archief opvragen van jouw <strong>toots en geüploade media</strong>. De geëxporteerde gegevens zijn in het ActivityPub-formaat, dat door hiervoor geschikte software valt uit te lezen. Je kunt elke 7 dagen een kopie van je archief aanvragen.
       in_progress: Jouw archief wordt samengesteld...
       request: Jouw archief opvragen
       size: Omvang
@@ -588,6 +573,10 @@ nl:
     lists: Lijsten
     mutes: Jij negeert
     storage: Mediaopslag
+  featured_tags:
+    add_new: Nieuwe toevoegen
+    errors:
+      limit: Je hebt al het maximaal aantal hashtags uitgelicht
   filters:
     contexts:
       home: Starttijdlijn
@@ -604,18 +593,6 @@ nl:
       title: Filters
     new:
       title: Nieuw filter toevoegen
-  followers:
-    domain: Domein
-    explanation_html: Wanneer je de privacy van jouw toots wilt garanderen, moet je goed weten wie jouw volgers zijn. <strong>Toots die alleen aan jouw volgers zijn gericht, worden aan de Mastodonservers van jouw volgers afgeleverd.</strong> Daarom wil je ze misschien controleren en desnoods volgers verwijderen die zich op een Mastodonserver bevinden die jij niet vertrouwd. Bijvoorbeeld omdat de beheerder(s) of de software van zo'n server jouw privacy niet respecteert.
-    followers_count: Aantal volgers
-    lock_link: Maak jouw account besloten
-    purge: Volgers verwijderen
-    success:
-      one: Bezig om volgers van één domein te verwijderen...
-      other: Bezig om volgers van %{count} domeinen te verwijderen...
-    true_privacy_html: Hou er wel rekening mee dat <strong>echte privacy alleen gegarandeerd kan worden met behulp van end-to-end-encryptie</strong>.
-    unlocked_warning_html: Iedereen kan jou volgen en daarmee meteen toots zien die je alleen aan jouw volgers hebt gericht. %{lock_link} om volgers te kunnen beoordelen en desnoods te weigeren.
-    unlocked_warning_title: Jouw account is niet besloten
   footer:
     developers: Ontwikkelaars
     more: Meer…
@@ -628,10 +605,16 @@ nl:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
       other: Er is iets niet helemaal goed! Bekijk onderstaande %{count} fouten
   imports:
+    modes:
+      merge: Samenvoegen
+      merge_long: Bestaande gegevens behouden en nieuwe toevoegen
+      overwrite: Overschrijven
+      overwrite_long: Huidige gegevens met de nieuwe gegevens vervangen
     preface: Je kunt bepaalde gegevens, zoals de mensen die jij volgt of hebt geblokkeerd, naar jouw account op deze server importeren. Je moet deze gegevens wel eerst op de oorspronkelijke server exporteren.
     success: Jouw gegevens zijn succesvol geüpload en worden binnenkort verwerkt
     types:
       blocking: Blokkeerlijst
+      domain_blocking: Lijst met genegeerde servers
       following: Volglijst
       muting: Negeerlijst
     upload: Uploaden
@@ -723,6 +706,16 @@ nl:
     older: Ouder
     prev: Vorige
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Je hebt al op deze poll gestemd
+      duplicate_options: bevat dubbele items
+      duration_too_long: ligt te ver in de toekomst
+      duration_too_short: is te kort van duur
+      expired: De poll is al beëindigd
+      over_character_limit: kan stuk voor stuk niet langer zijn dan %{max} tekens
+      too_few_options: moet meer dan één item bevatten
+      too_many_options: kan niet meer dan %{max} items bevatten
   preferences:
     languages: Talen
     other: Overig
@@ -801,7 +794,7 @@ nl:
     development: Ontwikkelaars
     edit_profile: Profiel bewerken
     export: Exporteren
-    followers: Geautoriseerde volgers
+    featured_tags: Uitgelichte hashtags
     import: Importeren
     migrate: Accountmigratie
     notifications: Meldingen
@@ -831,6 +824,11 @@ nl:
       ownership: Een toot van iemand anders kan niet worden vastgezet
       private: Alleen openbare toots kunnen worden vastgezet
       reblog: Een boost kan niet worden vastgezet
+    poll:
+      total_votes:
+        one: "%{count} stem"
+        other: "%{count} stemmen"
+      vote: Stemmen
     show_more: Meer tonen
     sign_in_to_participate: Meld je aan om aan dit gesprek mee te doen
     title: '%{name}: "%{quote}"'
@@ -929,8 +927,8 @@ nl:
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: Gebruiksvoorwaarden en privacybeleid van %{instance}
   themes:
-    contrast: Hoog contrast
-    default: Mastodon
+    contrast: Mastodon (hoog contrast)
+    default: Mastodon (donker)
     mastodon-light: Mastodon (licht)
   time:
     formats:
@@ -946,7 +944,7 @@ nl:
     generate_recovery_codes: Herstelcodes genereren
     instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het inloggen moet invoeren."
     lost_recovery_codes: Met herstelcodes kun je toegang tot jouw account krijgen wanneer je jouw telefoon bent kwijtgeraakt. Wanneer je jouw herstelcodes bent kwijtgeraakt, kan je ze hier opnieuw genereren. Jouw oude herstelcodes zijn daarna ongeldig.
-    manual_instructions: Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder geheime code in gewone tekst.
+    manual_instructions: Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder geheime code in platte tekst.
     recovery_codes: Herstelcodes back-uppen
     recovery_codes_regenerated: Opnieuw genereren herstelcodes geslaagd
     recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige plek bewaard</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.

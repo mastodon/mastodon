@@ -7,7 +7,6 @@ ar:
     administered_by: 'يُديره :'
     api: واجهة برمجة التطبيقات
     apps: تطبيقات الأجهزة المحمولة
-    closed_registrations: التسجيلات في مثيل الخادوم هذا مُغلقة حاليًا. غير أنه بامكانك العثور على خادم آخر لإنشاء حسابك و مِن ثم النفاذ إلى نفس الشبكة مِن هناك.
     contact: للتواصل معنا
     contact_missing: لم يتم تعيينه
     contact_unavailable: غير متوفر
@@ -15,19 +14,9 @@ ar:
     extended_description_html: |
       <h3>مكان جيد للقواعد</h3>
       <p>لم يتم بعد إدخال الوصف الطويل.</p>
-    features:
-      humane_approach_body: تعلُّمًا مِن فشل الشبكات الأخرى، غاية ماستدون هي بلوغ الخيارات الأخلاقية في التصميم لمُحارَبة إسائة إستعمال شبكات التواصل الإجتماعية.
-      humane_approach_title: أسلوب يُعيد الإعتبار للفَرد
-      not_a_product_body: ماستدون ليس شبكة تجارية. لا يحتوي على إعلانات و لا يقوم باستغلال البيانات و لا هو بِبُستان مُسيَّج. لا تحكم فيه وليس له أية هيئةٍ مركزيةٍ.
-      not_a_product_title: إنك فرد و لست سلعة
-      real_conversation_body: يُمكنكم التعبير عن آرائكم بكل حرية بفضل 500 حرف و انتقاء دقيق للمحتوى و الوسائط بفضل أدوات التحذير التي هي بين أيديكم.
-      real_conversation_title: مبني لتحقيق تواصل حقيقي
-      within_reach_body: إبقوا على اتصال دائم بأصدقائكم حيثما كانوا عبر عدة تطبيقات لنظام آي أواس و أندرويد و عدة منصات أخرى بفضل واجهة برمجية للتطبيقات و بيئة صديقة للتطوير.
-      within_reach_title: في مُتناوَل يدك دائمًا
     generic_description: "%{domain} هو سيرفر من بين سيرفرات الشبكة"
     hosted_on: ماستدون مُستضاف على %{domain}
     learn_more: تعلم المزيد
-    other_instances: خوادم أخرى
     privacy_policy: سياسة الخصوصية
     source_code: الشفرة المصدرية
     status_count_after:
@@ -195,6 +184,7 @@ ar:
         assigned_to_self_report: قام %{name} بتعيين التقرير %{target} لأنفسهم
         change_email_user: غيّر %{name} عنوان البريد الإلكتروني للمستخدم %{target}
         confirm_user: "%{name} قد قام بتأكيد عنوان البريد الإلكتروني لـ %{target}"
+        create_account_warning: قام %{name} بإرسال تحذير إلى %{target}
         create_custom_emoji: "%{name} قام برفع إيموجي جديد %{target}"
         create_domain_block: "%{name} قام بحجب نطاق %{target}"
         create_email_domain_block: "%{name} قد قام بحظر نطاق البريد الإلكتروني %{target}"
@@ -318,6 +308,8 @@ ar:
       back_to_account: العودة إلى الحساب
       title: "%{acct} مُتابِعون"
     instances:
+      by_domain: النطاق
+      delivery_available: التسليم متوفر
       known_accounts:
         few: "%{count} حسابات معروفة"
         many: "%{count} حسابات معروفة"
@@ -424,9 +416,6 @@ ar:
         min_invite_role:
           disabled: لا أحد
           title: المستخدِمون المصرح لهم لإرسال الدعوات
-        open:
-          desc_html: السماح للجميع بإنشاء حساب
-          title: فتح التسجيل
       show_known_fediverse_at_about_page:
         desc_html: عند التثبت ، سوف تظهر toots من جميع fediverse المعروفة على عرض مسبق. وإلا فإنه سيعرض فقط toots المحلية.
         title: إظهار الفيديفرس الموحَّد في خيط المُعايَنة
@@ -521,13 +510,11 @@ ar:
     logout: خروج
     migrate_account: الإنتقال إلى حساب آخر
     migrate_account_html: إن كنت ترغب في تحويل هذا الحساب نحو حساب آخَر، يُمكِنُك <a href="%{path}">إعداده هنا</a>.
-    or: أو
     or_log_in_with: أو قم بتسجيل الدخول بواسطة
     providers:
       cas: CAS
       saml: SAML
     register: إنشاء حساب
-    register_elsewhere: التسجيل على خادوم آخَر
     resend_confirmation: إعادة إرسال تعليمات التأكيد
     reset_password: إعادة تعيين كلمة المرور
     security: الأمان
@@ -597,10 +584,13 @@ ar:
       size: الحجم
     blocks: قمت بحظر
     csv: CSV
+    domain_blocks: النطاقات المحظورة
     follows: أنت تتبع
     lists: القوائم
     mutes: قُمتَ بكتم
     storage: ذاكرة التخزين
+  featured_tags:
+    add_new: إضافة واحد
   filters:
     contexts:
       home: الخيط الزمني الرئيسي
@@ -617,15 +607,6 @@ ar:
       title: عوامل التصفية
     new:
       title: إضافة عامل تصفية جديد
-  followers:
-    domain: النطاق
-    followers_count: عدد المتابِعين
-    lock_link: قم بتجميد حسابك
-    purge: تنحية من بين متابعيك
-    success: جارية عملية حظر المتابِعين بسلاسة من %{count} نطاقات أخرى ...
-    true_privacy_html: تذكر دائمًا أنّ <strong>الخصوصية التامة لا يمكن بلوغها إلّا بالتعمية و التشفير من طرف إلى آخَر</strong>.
-    unlocked_warning_html: يمكن لأي كان متابعة حسابك و الإطلاع مباشرة على تبويقاتك. إستخدِم %{lock_link} لمُعاينة أو رفض طلبات المتابِعين الجُدُد.
-    unlocked_warning_title: إنّ حسابك غير مقفل
   footer:
     developers: المطورون
     more: المزيد …
@@ -642,10 +623,16 @@ ar:
       two: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
       zero: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
   imports:
+    modes:
+      merge: دمج
+      merge_long: الإبقاء علي التسجيلات الحالية وإضافة الجديدة
+      overwrite: إعادة الكتابة
+      overwrite_long: استبدال التسجيلات الحالية بالجديدة
     preface: بإمكانك استيراد بيانات قد قُمتَ بتصديرها مِن مثيل خادوم آخَر، كقوائم المستخدِمين الذين كنتَ تتابِعهم أو قُمتَ بحظرهم.
     success: تم تحميل بياناتك بنجاح وسيتم معالجتها في الوقت المناسب
     types:
       blocking: قائمة المحظورين
+      domain_blocking: قائمة النطاقات المحظورة
       following: قائمة المستخدمين المتبوعين
       muting: قائمة الكتم
     upload: تحميل
@@ -760,6 +747,16 @@ ar:
     no_account_html: أليس عندك حساب بعدُ ؟ يُمْكنك <a href='%{sign_up_path}' target='_blank'>التسجيل مِن هنا</a>
     proceed: أكمل المتابعة
     prompt: 'إنك  بصدد متابعة :'
+  remote_interaction:
+    favourite:
+      proceed: المواصلة إلى المفضلة
+      prompt: 'ترغب في إضافة هذا التبويق إلى مفضلتك:'
+    reblog:
+      proceed: المواصلة إلى الترقية
+      prompt: 'ترغب في ترقية هذا التبويق:'
+    reply:
+      proceed: المواصلة إلى الرد
+      prompt: 'ترغب في الرد على هذا التبويق:'
   remote_unfollow:
     error: خطأ
     title: العنوان
@@ -812,7 +809,6 @@ ar:
     development: التطوير
     edit_profile: تعديل الملف الشخصي
     export: تصدير البيانات
-    followers: المتابِعون المُرَخّصون
     import: إستيراد
     migrate: تهجير الحساب
     notifications: الإخطارات
@@ -902,6 +898,8 @@ ar:
       review_server_policies: مراجعة شروط السيرفر
       subject:
         disable: تم تجميد حسابك %{acct}
+        none: تحذير إلى %{acct}
+        suspend: لقد تم تعليق حسابك %{acct}
       title:
         disable: الحساب مُجمَّد
         none: تحذير

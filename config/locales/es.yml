@@ -7,7 +7,6 @@ es:
     administered_by: 'Administrado por:'
     api: API
     apps: Aplicaciones móviles
-    closed_registrations: Los registros están actualmente cerrados en esta instancia.
     contact: Contacto
     contact_missing: No especificado
     contact_unavailable: N/A
@@ -15,19 +14,9 @@ es:
     extended_description_html: |
       <h3>Un buen lugar para las reglas</h3>
       <p>La descripción extendida no se ha colocado aún.</p>
-    features:
-      humane_approach_body: Aprendiendo de los errores de otras redes, Mastodon apunta a las decisiones de diseño ético para combatir el desuso de las redes sociales.
-      humane_approach_title: Una misión más humana
-      not_a_product_body: Mastodon no es una red comercial. Nada de publicidad, nada de minado de datos, nada de jardines murados. No hay ninguna autoridad central.
-      not_a_product_title: Eres una persona, no un producto
-      real_conversation_body: Con 500 caracteres a tu disposición y soporte para contenido granular y advertencias de contenido, puedes expresarte como quieras.
-      real_conversation_title: Hecho para verdaderas conversaciones
-      within_reach_body: Aplicaciones múltiples para iOS, Android, y otras plataformas gracias a un ecosistema de APIs amigable al desarrollador para permitirte estar con tus amigos donde sea.
-      within_reach_title: Siempre al alcance
     generic_description: "%{domain} es un servidor en la red"
     hosted_on: Mastodon hosteado en %{domain}
     learn_more: Aprende más
-    other_instances: Otras instancias
     privacy_policy: Política de privacidad
     source_code: Código fuente
     status_count_after:
@@ -48,6 +37,7 @@ es:
       other: Seguidores
     following: Siguiendo
     joined: Se unió el %{date}
+    last_active: última conexión
     link_verified_on: La propiedad de este vínculo fue verificada el %{date}
     media: Media
     moved_html: "%{name} se ha trasladado a %{new_profile_link}:"
@@ -69,6 +59,8 @@ es:
       moderator: Moderador
     unfollow: Dejar de seguir
   admin:
+    account_actions:
+      title: Moderar %{acct}
     account_moderation_notes:
       create: Crear
       created_msg: "¡Nota de moderación creada con éxito!"
@@ -88,6 +80,7 @@ es:
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
+      deleted: Borrado
       demote: Degradar
       disable: Deshabilitar
       disable_two_factor_authentication: Desactivar autenticación de dos factores
@@ -103,7 +96,9 @@ es:
       followers: Seguidores
       followers_url: URL de los seguidores
       follows: Sigue
+      header: Cabecera
       inbox_url: URL de la bandeja de entrada
+      invited_by: Invitado por
       ip: IP
       location:
         all: Todos
@@ -114,6 +109,7 @@ es:
       media_attachments: Multimedia
       memorialize: Convertir en memorial
       moderation:
+        active: Activo
         all: Todos
         silenced: Silenciados
         suspended: Suspendidos
@@ -373,9 +369,6 @@ es:
         min_invite_role:
           disabled: Nadie
           title: Permitir invitaciones de
-        open:
-          desc_html: Permite a cualquiera a registrar una cuenta
-          title: Registro abierto
       show_known_fediverse_at_about_page:
         desc_html: Cuando esté activado, se mostrarán toots de todo el fediverso conocido en la vista previa. En otro caso, se mostrarán solamente toots locales.
         title: Mostrar fediverso conocido en la vista previa de la historia
@@ -456,13 +449,11 @@ es:
     logout: Cerrar sesión
     migrate_account: Mudarse a otra cuenta
     migrate_account_html: Si deseas redireccionar esta cuenta a otra distinta, puedes <a href="%{path}">configurarlo aquí</a>.
-    or: o
     or_log_in_with: O inicia sesión con
     providers:
       cas: CAS
       saml: SAML
     register: Registrarse
-    register_elsewhere: Registrarse en otro servidor
     resend_confirmation: Volver a enviar el correo de confirmación
     reset_password: Restablecer contraseña
     security: Cambiar contraseña
@@ -541,18 +532,6 @@ es:
       title: Filtros
     new:
       title: Añadir un nuevo filtro
-  followers:
-    domain: Dominio
-    explanation_html: Si deseas asegurar la privacidad de tus estados, tienes que cuidarte de quién te sigue. <strong>Tus estados privados son enviados a todas las instancias de tus seguidores</strong>. Puede que desees revisarlas, y remover seguidores si no confías en tu privacidad para ser respetado por el staff o software de esas instancias.
-    followers_count: Número de seguidores
-    lock_link: Bloquear tu cuenta
-    purge: Remover de los seguidores
-    success:
-      one: En el proceso de bloquear suavemente usuarios de un solo dominio...
-      other: En el proceso de bloquear suavemente usuarios de %{count} dominios...
-    true_privacy_html: Por favor ten en cuenta que <strong>la verdadera privacidad se consigue con encriptación de punto a punto</strong>.
-    unlocked_warning_html: Todos pueden seguirte  para ver tus estados privados inmediatamente. %{lock_link} para poder chequear y rechazar seguidores.
-    unlocked_warning_title: Tu cuenta no está bloqueada
   footer:
     developers: Desarrolladores
     more: Mas…
@@ -723,7 +702,6 @@ es:
     development: Desarrollo
     edit_profile: Editar perfil
     export: Exportar información
-    followers: Seguidores autorizados
     import: Importar
     migrate: Migración de cuenta
     notifications: Notificaciones

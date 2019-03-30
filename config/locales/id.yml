@@ -4,9 +4,9 @@ id:
     about_hashtag_html: Ini adalah toot public yang ditandai dengan <strong>#%{hashtag}</strong>. Anda bisa berinteraksi dengan mereka jika anda memiliki akun dimanapun di fediverse.
     about_mastodon_html: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
     about_this: Tentang server ini
+    administered_by: 'Dikelola oleh:'
     api: API
     apps: Aplikasi hp
-    closed_registrations: Pendaftaran untuk server ini sedang ditutup. Tetapi, anda bisa mencari server lain untuk membuat akun dan mendapatkan akses dari jaringan yang sama di sana.
     contact: Kontak
     contact_missing: Belum diset
     contact_unavailable: Tidak Tersedia
@@ -14,19 +14,9 @@ id:
     extended_description_html: |
       <h3>Tempat yang baik untuk peraturan</h3>
       <p>Deskripsi lainnya belum diset.</p>
-    features:
-      humane_approach_body: Belajar dari kegagalan jaringan lain, Mastodon berupaya untuk membuat pilihan desain yang etis untuk melawan penyalahgunaan media sosial.
-      humane_approach_title: Pendekatan yang lebih manusiawi
-      not_a_product_body: Mastodon bukanlah jaringan komersil. Tidak ada iklan, tidak ada pengumpulan data, tidak ada batasan vendor. Tidak ada otoritas terpusat.
-      not_a_product_title: Anda adalah orang, bukanlah sebuah produk
-      real_conversation_body: Dengan 500 karakter dan dukungan konten granular dan peringatan media, anda dapat mengekspresikan diri anda sendiri sesuai yang anda mau.
-      real_conversation_title: Dibangun untuk percakapan yang sebenarnya
-      within_reach_body: Berbagai aplikasi untuk iOS, Android, dan platform lainnya berkat ekosistem API yang ramah pada pengembang untuk tetap terhubung dengan teman-teman anda dimanapun.
-      within_reach_title: Selalu dalam jangkauan
     generic_description: "%{domain} adalah satu server dalam jaringan"
     hosted_on: Mastodon dihosting di %{domain}
     learn_more: Pelajari selengkapnya
-    other_instances: Daftar Server
     privacy_policy: Kebijakan Privasi
     source_code: Kode sumber
     status_count_after:
@@ -70,52 +60,104 @@ id:
   admin:
     account_actions:
       action: Lakukan aksi
+      title: Lakukan moderasi pada %{acct}
+    account_moderation_notes:
+      create: Beri catatan
+      created_msg: Catatan moderasi berhasil dibuat!
+      delete: Hapus
+      destroyed_msg: Catatan moderasi berhasil dihapus!
     accounts:
       are_you_sure: Anda yakin?
+      avatar: Avatar
+      by_domain: Domain
+      change_email:
+        changed_msg: Email akun ini berhasil diubah!
+        current_email: Email saat ini
+        label: Ganti email
+        new_email: Email baru
+        submit: Ganti email
+        title: Ganti email untuk %{username}
       confirm: Konfirmasi
       confirmed: Dikonfirmasi
       confirming: Mengkonfirmasi
+      deleted: Terhapus
+      disable: Nonaktifkan
+      disable_two_factor_authentication: Nonaktifkan 2FA
+      disabled: Dinonaktifkan
       display_name: Nama
       domain: Domain
       edit: Ubah
       email: E-mail
       email_status: Status Email
+      enable: Aktifkan
+      enabled: Diaktifkan
       feed_url: URL Feed
       followers: Pengikut
+      followers_url: URL pengikut
       follows: Mengikut
+      inbox_url: URL Kotak masuk
+      invited_by: Diundang oleh
+      ip: IP
+      joined: Bergabung
       location:
         all: Semua
         local: Lokal
         remote: Remote
         title: Lokasi
+      login_status: Status login
       media_attachments: Lampiran media
+      memorialize: Ubah menjadi memoriam
       moderation:
+        active: Aktif
         all: Semua
         silenced: Didiamkan
         suspended: Disuspen
         title: Moderasi
+      moderation_notes: Catatan moderasi
       most_recent_activity: Aktivitas terbaru
       most_recent_ip: IP terbaru
+      no_limits_imposed: Tidak ada batasan
       not_subscribed: Tidak berlangganan
+      outbox_url: URL Kotak keluar
       perform_full_suspension: Lakukan suspen penuh
       profile_url: URL profil
+      promote: Promosikan
+      protocol: Protokol
       public: Publik
       push_subscription_expires: Langganan PuSH telah kadaluarsa
+      redownload: Muat ulang profil
+      remove_avatar: Hapus avatar
+      remove_header: Hapus header
       resend_confirmation:
         already_confirmed: Pengguna ini sudah dikonfirmasi
         send: Kirim ulang email konfirmasi
         success: Email konfirmasi berhasil dikirim!
+      reset: Reset
       reset_password: Reset kata sandi
+      resubscribe: Langganan ulang
+      role: Hak akses
+      roles:
+        admin: Administrator
+        moderator: Moderator
+        staff: Staf
+        user: Pengguna
       salmon_url: URL Salmon
+      search: Cari
       show:
         created_reports: Laporan yang dibuat oleh akun ini
         targeted_reports: Laporan yang dibuat tentang akun ini
       silence: Diam
+      silenced: Didiamkan
       statuses: Status
+      subscribe: Langganan
+      suspended: Disuspen
       title: Akun
+      unconfirmed_email: Email belum dikonfirmasi
       undo_silenced: Undo mendiamkan
       undo_suspension: Undo suspen
+      unsubscribe: Berhenti langganan
       username: Nama pengguna
+      warn: Beri Peringatan
       web: Web
     domain_blocks:
       add_new: Tambah
@@ -162,8 +204,6 @@ id:
         closed_message:
           desc_html: Ditampilkan pada halaman depan saat pendaftaran ditutup<br>Anda bisa menggunakan tag HTML
           title: Pesan penutupan pendaftaran
-        open:
-          title: Pendaftaran terbuka
       site_description:
         desc_html: Ditampilkan sebagai sebuah paragraf di halaman depan dan digunakan sebagai tag meta.<br>Anda bisa menggunakan tag HTML, khususnya <code>&lt;a&gt;</code> dan <code>&lt;em&gt;</code>.
         title: Deskripsi situs
@@ -226,18 +266,6 @@ id:
     follows: Anda ikuti
     mutes: Anda bisukan
     storage: Penyimpanan media
-  followers:
-    domain: Domain
-    explanation_html: Jika anda ingin memastikan privasi dari status anda, anda harus tahu siapa yang mengikuti anda. <strong>Status pribadi anda dikirim ke semua server dimana pengikut anda berada</strong>. Anda mungkin ingin untuk mengkaji ulang dan menghapus pengikut jika anda tidak mempercayai bahwa privasi anda di tangan staf atau software di server tersebut.
-    followers_count: Jumlah pengikut
-    lock_link: Kunci akun anda
-    purge: Hapus dari pengikut
-    success:
-      one: Dalam proses memblokir pengikut dari satu domain...
-      other: Dalam proses memblokir pengikut dari %{count} domain...
-    true_privacy_html: Mohon diingat bahwa <strong>privasi yang sebenarnya hanya dapat dicapai dengan enkripsi end-to-end</strong>.
-    unlocked_warning_html: Semua orang dapat mengikuti anda untuk langsung dapat melihat status pribadi anda. %{lock_link} untuk dapat meninjau dan menolak calon pengikut.
-    unlocked_warning_title: Akun anda tidak dikunci
   generic:
     changes_saved_msg: Perubahan berhasil disimpan!
     save_changes: Simpan perubahan
@@ -304,7 +332,6 @@ id:
     back: Kembali ke Mastodon
     edit_profile: Ubah profil
     export: Expor data
-    followers: Pengikut yang diizinkan
     import: Impor
     preferences: Pilihan
     settings: Pengaturan

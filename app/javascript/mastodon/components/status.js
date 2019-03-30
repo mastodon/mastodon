@@ -15,6 +15,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { MediaGallery, Video } from '../features/ui/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import classNames from 'classnames';
+import Icon from 'mastodon/components/icon';
+import PollContainer from 'mastodon/containers/poll_container';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -68,6 +70,10 @@ class Status extends ImmutablePureComponent {
     onMoveUp: PropTypes.func,
     onMoveDown: PropTypes.func,
     showThread: PropTypes.bool,
+    getScrollPosition: PropTypes.func,
+    updateScrollBottom: PropTypes.func,
+    cacheMediaWidth: PropTypes.func,
+    cachedMediaWidth: PropTypes.number,
   };
 
   // Avoid checking props that are functions (and whose equality will always
@@ -78,6 +84,43 @@ class Status extends ImmutablePureComponent {
     'muted',
     'hidden',
   ];
+
+  // Track height changes we know about to compensate scrolling
+  componentDidMount () {
+    this.didShowCard = !this.props.muted && !this.props.hidden && this.props.status && this.props.status.get('card');
+  }
+
+  getSnapshotBeforeUpdate () {
+    if (this.props.getScrollPosition) {
+      return this.props.getScrollPosition();
+    } else {
+      return null;
+    }
+  }
+
+  // Compensate height changes
+  componentDidUpdate (prevProps, prevState, snapshot) {
+    const doShowCard  = !this.props.muted && !this.props.hidden && this.props.status && this.props.status.get('card');
+    if (doShowCard && !this.didShowCard) {
+      this.didShowCard = true;
+      if (snapshot !== null && this.props.updateScrollBottom) {
+        if (this.node && this.node.offsetTop < snapshot.top) {
+          this.props.updateScrollBottom(snapshot.height - snapshot.top);
+        }
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.node && this.props.getScrollPosition) {
+      const position = this.props.getScrollPosition();
+      if (position !== null && this.node.offsetTop < position.top) {
+        requestAnimationFrame(() => {
+          this.props.updateScrollBottom(position.height - position.top);
+        });
+      }
+    }
+  }
 
   handleClick = () => {
     if (this.props.onClick) {
@@ -165,6 +208,10 @@ class Status extends ImmutablePureComponent {
     }
   }
 
+  handleRef = c => {
+    this.node = c;
+  }
+
   render () {
     let media = null;
     let statusAvatar, prepend, rebloggedByText;
@@ -179,7 +226,7 @@ class Status extends ImmutablePureComponent {
 
     if (hidden) {
       return (
-        <div>
+        <div ref={this.handleRef}>
           {status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}
           {status.get('content')}
         </div>
@@ -194,7 +241,7 @@ class Status extends ImmutablePureComponent {
 
       return (
         <HotKeys handlers={minHandlers}>
-          <div className='status__wrapper status__wrapper--filtered focusable' tabIndex='0'>
+          <div className='status__wrapper status__wrapper--filtered focusable' tabIndex='0' ref={this.handleRef}>
             <FormattedMessage id='status.filtered' defaultMessage='Filtered' />
           </div>
         </HotKeys>
@@ -204,7 +251,7 @@ class Status extends ImmutablePureComponent {
     if (featured) {
       prepend = (
         <div className='status__prepend'>
-          <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-thumb-tack status__prepend-icon' /></div>
+          <div className='status__prepend-icon-wrapper'><Icon id='thumb-tack' className='status__prepend-icon' fixedWidth /></div>
           <FormattedMessage id='status.pinned' defaultMessage='Pinned toot' />
         </div>
       );
@@ -213,7 +260,7 @@ class Status extends ImmutablePureComponent {
 
       prepend = (
         <div className='status__prepend'>
-          <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
+          <div className='status__prepend-icon-wrapper'><Icon id='retweet' className='status__prepend-icon' fixedWidth /></div>
           <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><bdi><strong dangerouslySetInnerHTML={display_name_html} /></bdi></a> }} />
         </div>
       );
@@ -224,7 +271,9 @@ class Status extends ImmutablePureComponent {
       status  = status.get('reblog');
     }
 
-    if (status.get('media_attachments').size > 0) {
+    if (status.get('poll')) {
+      media = <PollContainer pollId={status.get('poll')} />;
+    } else if (status.get('media_attachments').size > 0) {
       if (this.props.muted || status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
         media = (
           <AttachmentList
@@ -242,11 +291,12 @@ class Status extends ImmutablePureComponent {
                 preview={video.get('preview_url')}
                 src={video.get('url')}
                 alt={video.get('description')}
-                width={239}
+                width={this.props.cachedMediaWidth}
                 height={110}
                 inline
                 sensitive={status.get('sensitive')}
                 onOpenVideo={this.handleOpenVideo}
+                cacheWidth={this.props.cacheMediaWidth}
               />
             )}
           </Bundle>
@@ -254,7 +304,16 @@ class Status extends ImmutablePureComponent {
       } else {
         media = (
           <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery}>
-            {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} />}
+            {Component => (
+              <Component
+                media={status.get('media_attachments')}
+                sensitive={status.get('sensitive')}
+                height={110}
+                onOpenMedia={this.props.onOpenMedia}
+                cacheWidth={this.props.cacheMediaWidth}
+                defaultWidth={this.props.cachedMediaWidth}
+              />
+            )}
           </Bundle>
         );
       }
@@ -264,11 +323,13 @@ class Status extends ImmutablePureComponent {
           onOpenMedia={this.props.onOpenMedia}
           card={status.get('card')}
           compact
+          cacheWidth={this.props.cacheMediaWidth}
+          defaultWidth={this.props.cachedMediaWidth}
         />
       );
     }
 
-    if (otherAccounts) {
+    if (otherAccounts && otherAccounts.size > 0) {
       statusAvatar = <AvatarComposite accounts={otherAccounts} size={48} />;
     } else if (account === undefined || account === null) {
       statusAvatar = <Avatar account={status.get('account')} size={48} />;
@@ -290,7 +351,7 @@ class Status extends ImmutablePureComponent {
 
     return (
       <HotKeys handlers={handlers}>
-        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), read: unread === false, focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText, !status.get('hidden'))}>
+        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), read: unread === false, focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText, !status.get('hidden'))} ref={this.handleRef}>
           {prepend}
 
           <div className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), muted: this.props.muted, read: unread === false })} data-id={status.get('id')}>

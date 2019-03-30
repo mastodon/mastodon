@@ -5,26 +5,15 @@ sv:
     about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
     about_this: Om
     administered_by: 'Administreras av:'
-    closed_registrations: Registreringar är för närvarande stängda i denna instans. Dock så kan du hitta en annan instans för att skapa ett konto och få tillgång till samma nätverk från det.
     contact: Kontakt
     contact_missing: Inte inställd
     contact_unavailable: N/A
     extended_description_html: |
       <h3>En bra plats för regler</h3>
       <p>Den utökade beskrivningen har inte konfigurerats ännu.</p>
-    features:
-      humane_approach_body: Mastodon, har lärt sig från tidigare misslyckanden i andra nätverk och syftar till att göra etiska designval i Mastodon för att bekämpa missbruk av sociala medier.
-      humane_approach_title: En mer human inställning
-      not_a_product_body: Mastodon är inte ett kommersiellt nätverk. Ingen reklam, ingen datautvinning, inga muromgärdade trädgårdar. Det finns ingen central myndighet.
-      not_a_product_title: Du är en person, inte en produkt
-      real_conversation_body: Med 500 tecken till ditt förfogande och stöd för granulärt innehåll och mediavarningar så kan du uttrycka dig själv, som du vill.
-      real_conversation_title: Byggd för riktiga konversationer
-      within_reach_body: Flera appar för iOS, Android och andra plattformar tack vare ett utvecklingsvänligt API-ekosystem gör att du kan hålla kontakten med dina vänner var som helst.
-      within_reach_title: Alltid inom räckhåll
     generic_description: "%{domain} är en server i nätverket"
     hosted_on: Mastodon värd på %{domain}
     learn_more: Lär dig mer
-    other_instances: Instanslista
     source_code: Källkod
     status_count_after: statusar
     status_count_before: Som skapat
@@ -301,9 +290,6 @@ sv:
         min_invite_role:
           disabled: Ingen
           title: Tillåt inbjudningar av
-        open:
-          desc_html: Tillåt alla att skapa ett konto
-          title: Öppen registrering
       show_known_fediverse_at_about_page:
         desc_html: När den växlas, kommer toots från hela fediverse visas på förhandsvisning. Annars visas bara lokala toots.
         title: Visa det kända fediverse på tidslinjens förhandsgranskning
@@ -380,13 +366,11 @@ sv:
     logout: Logga ut
     migrate_account: Flytta till ett annat konto
     migrate_account_html: Om du vill omdirigera detta konto till ett annat, kan du <a href="%{path}">konfigurera det här</a>.
-    or: eller
     or_log_in_with: Eller logga in med
     providers:
       cas: CAS
       saml: SAML
     register: Registrera
-    register_elsewhere: Registrera dig på en annan server
     resend_confirmation: Skicka instruktionerna om bekräftelse igen
     reset_password: Återställ lösenord
     security: Säkerhet
@@ -449,18 +433,6 @@ sv:
     follows: Du följer
     mutes: Du tystar
     storage: Medialagring
-  followers:
-    domain: Domän
-    explanation_html: Om du vill försäkra integriteten av dina statusar måste du vara medveten om vem som följer dig. <strong>Dina privata statusar levereras till alla instanser där du har följare</strong>. Du kanske vill granska och eventuellt ta bort följare om du inte litar på att din integritet respekteras hos medarbetarna eller programvara i dessa instanser.
-    followers_count: Antal följare
-    lock_link: Lås ditt konto
-    purge: Ta bort från följare
-    success:
-      one: I processen med soft-blocking följare från en domän ...
-      other: I processen med soft-blocking följare från %{count} domäner...
-    true_privacy_html: Kom ihåg att <strong>sann integritet kan bara uppnås med end-to-end kryptering</strong>.
-    unlocked_warning_html: Vem som helst kan följa dig för att omedelbart se dina privata statusar. %{lock_link} för att kunna granska och avvisa följare.
-    unlocked_warning_title: Ditt konto är inte låst
   generic:
     changes_saved_msg: Ändringar sparades framgångsrikt!
     save_changes: Spara ändringar
@@ -625,7 +597,6 @@ sv:
     development: Utveckling
     edit_profile: Redigera profil
     export: Exportera data
-    followers: Auktoriserade följare
     import: Import
     migrate: Kontoflytt
     notifications: Meddelanden

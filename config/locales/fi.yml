@@ -5,43 +5,52 @@ fi:
     about_mastodon_html: Mastodon on sosiaalinen verkosto. Se on toteutettu avoimilla verkkoprotokollilla ja vapailla, avoimen lähdekoodin ohjelmistoilla, ja se toimii hajautetusti samaan tapaan kuin sähköposti.
     about_this: Tietoja tästä palvelimesta
     administered_by: 'Ylläpitäjä:'
-    closed_registrations: Tähän instanssiin ei voi tällä hetkellä rekisteröityä. Voit kuitenkin luoda tilin johonkin toiseen instanssiin ja käyttää samaa verkostoa sitä kautta.
+    api: API
+    apps: Mobiili sovellukset
     contact: Ota yhteyttä
     contact_missing: Ei asetettu
     contact_unavailable: Ei saatavilla
+    documentation: Dokumentaatio
     extended_description_html: |
       <h3>Hyvä paikka säännöille</h3>
       <p>Pidempää kuvausta ei ole vielä laadittu.</p>
-    features:
-      humane_approach_body: Mastodonissa otetaan oppia muiden verkostojen virheistä, ja sen suunnittelussa pyritään toimimaan eettisesti ja ehkäisemään sosiaalisen median väärinkäyttöä.
-      humane_approach_title: Ihmisläheisempi ote
-      not_a_product_body: Mastodon ei ole kaupallinen verkosto. Ei mainoksia, ei tiedonlouhintaa, ei suljettuja protokollia. Mastodonissa ei ole keskusjohtoa.
-      not_a_product_title: Olet henkilö, et tuote
-      real_conversation_body: 'Voit ilmaista itseäsi niin kuin itse haluat: tilaa on 500 merkkiä, ja sisältövaroituksia voi tehdä monin tavoin.'
-      real_conversation_title: Tehty oikeaa keskustelua varten
-      within_reach_body: Rajapintoja on tarjolla moniin eri kehitysympäristöihin, minkä ansiosta iOS:lle, Androidille ja muille alustoille on saatavana useita eri sovelluksia. Näin voit pitää yhteyttä ystäviisi missä vain.
-      within_reach_title: Aina lähellä
     generic_description: "%{domain} on yksi verkostoon kuuluvista palvelimista"
     hosted_on: Mastodon palvelimella %{domain}
     learn_more: Lisätietoja
-    other_instances: Muut palvelimet
+    privacy_policy: Tietosuojaseloste
     source_code: Lähdekoodi
-    status_count_after: statusta
+    status_count_after:
+      one: tila
+      other: tilanne
     status_count_before: He ovat luoneet
-    user_count_after: käyttäjälle
+    terms: Käyttöehdot
+    user_count_after:
+      one: käyttäjä
+      other: käyttäjät
     user_count_before: Koti
     what_is_mastodon: Mikä on Mastodon?
   accounts:
+    choices_html: "%{name} valinnat:"
     follow: Seuraa
-    followers: Seuraajat
+    followers:
+      one: Seuraaja
+      other: Seuraajat
     following: Seuratut
+    joined: Liittynyt %{date}
+    last_active: viimeksi aktiivinen
+    link_verified_on: Tämän linkin omistus on tarkastettu %{date}
     media: Media
     moved_html: "%{name} on muuttanut osoitteeseen %{new_profile_link}:"
     network_hidden: Nämä tiedot eivät ole käytettävissä
     nothing_here: Täällä ei ole mitään!
     people_followed_by: Henkilöt, joita %{name} seuraa
     people_who_follow: Käyttäjän %{name} seuraajat
-    posts: Tuuttaukset
+    pin_errors:
+      following: Sinun täytyy seurata henkilöä jota haluat tukea
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Tuuttaukset ja vastaukset
     reserved_username: Käyttäjänimi on varattu
     roles:
@@ -297,9 +306,6 @@ fi:
         min_invite_role:
           disabled: Ei kukaan
           title: Salli kutsut käyttäjältä
-        open:
-          desc_html: Salli kenen tahansa luoda tili
-          title: Avoin rekisteröinti
       show_known_fediverse_at_about_page:
         desc_html: Kun tämä on valittu, esikatselussa näytetään tuuttaukset kaikkialta tunnetusta fediversumista. Muutoin näytetään vain paikalliset tuuttaukset.
         title: Näytä aikajanan esikatselussa koko tunnettu fediversumi
@@ -376,13 +382,11 @@ fi:
     logout: Kirjaudu ulos
     migrate_account: Muuta toiseen tiliin
     migrate_account_html: Jos haluat ohjata tämän tilin toiseen tiliin, voit <a href="%{path}">asettaa toisen tilin tästä</a>.
-    or: tai
     or_log_in_with: Tai käytä kirjautumiseen
     providers:
       cas: CAS
       saml: SAML
     register: Rekisteröidy
-    register_elsewhere: Rekisteröidy toiselle palvelimelle
     resend_confirmation: Lähetä vahvistusohjeet uudestaan
     reset_password: Palauta salasana
     security: Tunnukset
@@ -445,18 +449,6 @@ fi:
     follows: Seurattavat
     mutes: Mykistetyt
     storage: Media-arkisto
-  followers:
-    domain: Verkkotunnus
-    explanation_html: Jos haluat olla varma tilapäivitystesi yksityisyydestä, sinun täytyy tietää, ketkä seuraavat sinua. <strong>Yksityiset tilapäivityksesi lähetetään kaikkiin niihin instansseihin, joissa sinulla on seuraajia</strong>. Jos et luota siihen, että näiden instanssien ylläpitäjät tai ohjelmisto kunnioittavat yksityisyyttäsi, käy läpi seuraajaluettelosi ja poista tarvittaessa käyttäjiä.
-    followers_count: Seuraajien määrä
-    lock_link: Lukitse tili
-    purge: Poista seuraajista
-    success:
-      one: Estetään kevyesti seuraajia yhdestä verkkotunnuksesta...
-      other: Estetään kevyesti seuraajia %{count} verkkotunnuksesta...
-    true_privacy_html: Muista, että <strong>kunnollinen yksityisyys voidaan varmistaa vain päästä päähän -salauksella</strong>.
-    unlocked_warning_html: Kuka tahansa voi seurata sinua ja nähdä saman tien yksityiset tilapäivityksesi. %{lock_link}, niin voit tarkastaa ja torjua seuraajia.
-    unlocked_warning_title: Tiliäsi ei ole lukittu
   generic:
     changes_saved_msg: Muutosten tallennus onnistui!
     save_changes: Tallenna muutokset
@@ -618,7 +610,6 @@ fi:
     development: Kehittäminen
     edit_profile: Muokkaa profiilia
     export: Vie tietoja
-    followers: Valtuutetut seuraajat
     import: Tuo
     migrate: Tilin muutto muualle
     notifications: Ilmoitukset

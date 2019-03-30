@@ -7,7 +7,6 @@ fr:
     administered_by: 'Administrée par :'
     api: API
     apps: Applications mobiles
-    closed_registrations: Les inscriptions sont actuellement fermées sur cette instance. Cependant, vous pouvez trouver une autre instance sur laquelle vous créer un compte et à partir de laquelle vous pourrez accéder au même réseau.
     contact: Contact
     contact_missing: Manquant
     contact_unavailable: Non disponible
@@ -15,19 +14,9 @@ fr:
     extended_description_html: |
       <h3>Un bon endroit pour les règles</h3>
       <p>La description étendue n’a pas été remplie.</p>
-    features:
-      humane_approach_body: Ayant appris des échecs d’autres réseaux, Mastodon à l’ambition de combattre l’abus des médias sociaux en effectuant des choix de conception éthiques.
-      humane_approach_title: Une approche plus humaine
-      not_a_product_body: Mastodon n’est pas un réseau commercial. Ici, pas de publicités, pas de prospection de données et pas d’environnements fermés. Il n’y existe aucune autorité centrale.
-      not_a_product_title: Vous êtes une personne, pas un produit
-      real_conversation_body: Avec 500 caractères à votre disposition, une grande granularité en termes de diffusion et la possibilité de masquer vos messages derrière des avertissements, vous êtes libre de vous exprimer de la manière qui vous plaît.
-      real_conversation_title: Construit pour de vraies conversations
-      within_reach_body: Grâce à l’existence d’un environnement API accueillant pour les développeur·se·s, de multiples applications pour iOS, Android et d’autres plateformes vous permettent de rester en contact avec vos ami·e·s où que vous soyez.
-      within_reach_title: Toujours à portée de main
     generic_description: "%{domain} est seulement un serveur du réseau"
     hosted_on: Instance Mastodon hébergée par %{domain}
     learn_more: En savoir plus
-    other_instances: Liste des instances
     privacy_policy: Politique de vie privée
     source_code: Code source
     status_count_after:
@@ -92,7 +81,7 @@ fr:
       confirm: Confirmer
       confirmed: Confirmé
       confirming: Confirmation
-      deleted: Effacé
+      deleted: Supprimé
       demote: Rétrograder
       disable: Désactiver
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
@@ -112,6 +101,7 @@ fr:
       inbox_url: URL d’entrée
       invited_by: Invité par
       ip: Adresse IP
+      joined: Inscrit·e depuis
       location:
         all: Tous
         local: Local
@@ -171,6 +161,7 @@ fr:
       undo_suspension: Annuler la suspension
       unsubscribe: Se désabonner
       username: Nom d’utilisateur⋅ice
+      warn: Avertissement
       web: Web
     action_logs:
       actions:
@@ -262,7 +253,7 @@ fr:
         create: Créer le blocage
         hint: Le blocage de domaine n’empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
         severity:
-          desc_html: "<strong>Silence</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspendre</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil. Utilisez <strong>Aucun</strong> si vous voulez simplement rejeter les fichiers multimédia."
+          desc_html: "<strong>Masqué</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspendre</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil. Utilisez <strong>Aucune</strong> si vous voulez simplement rejeter les fichiers multimédia."
           noop: Aucune
           silence: Masqué
           suspend: Suspendre
@@ -300,6 +291,8 @@ fr:
       back_to_account: Retour au compte
       title: Abonné⋅e⋅s de %{acct}
     instances:
+      by_domain: Domaine
+      delivery_available: Livraison disponible
       known_accounts:
         one: "%{count} compte connu"
         other: "%{count} comptes connus"
@@ -381,7 +374,7 @@ fr:
         username: Entrez un nom d’utilisateur⋅ice
       custom_css:
         desc_html: Modifier l'apparence avec une CSS chargée sur chaque page
-        title: CSS personnalisée
+        title: CSS personnalisé
       hero:
         desc_html: Affichée sur la page d’accueil. Au moins 600x100px recommandé. Lorsqu’elle n’est pas définie, se rabat sur la vignette de l’instance
         title: Image d’en-tête
@@ -407,9 +400,6 @@ fr:
         min_invite_role:
           disabled: Personne
           title: Autoriser les invitations par
-        open:
-          desc_html: Autoriser tout le monde à créer un compte
-          title: Ouvrir les inscriptions
       show_known_fediverse_at_about_page:
         desc_html: Lorsque l’option est activée, les pouets provenant de toutes les instances connues sont affichés dans la prévisualisation. Sinon, seuls les pouets locaux sont affichés.
         title: Afficher le fediverse connu dans la prévisualisation du fil
@@ -418,17 +408,17 @@ fr:
         title: Montrer un badge de responsable
       site_description:
         desc_html: Paragraphe introductif sur la page d’accueil. Décrivez ce qui rend spécifique ce serveur Mastodon et toute autre chose importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
-        title: Description du site
+        title: Description de l'instance
       site_description_extended:
-        desc_html: Affichée sur la page d’informations complémentaires du site<br>Vous pouvez utiliser des balises HTML
+        desc_html: L'endroit idéal pour afficher votre code de conduite, les règles, les guides et autres choses qui rendent votre instance différente. Vous pouvez utiliser des balises HTML
         title: Description étendue du site
       site_short_description:
-        desc_html: Affichée dans la barre latérale et dans les méta-tags. Décrivez ce qui rend spécifique ce serveur Mastodon en un seul paragraphe. Si laissée vide, la description de l’instance sera affiché par défaut.
+        desc_html: Affichée dans la barre latérale et dans les méta-tags. Décrivez ce qui rend spécifique cette instance Mastodon en un seul paragraphe. Si laissée vide, la description de l’instance sera affiché par défaut.
         title: Description courte de l’instance
       site_terms:
         desc_html: Affichée sur la page des conditions d’utilisation du site<br>Vous pouvez utiliser des balises HTML
         title: Politique de confidentialité
-      site_title: Titre du site
+      site_title: Nom de l'instance
       thumbnail:
         desc_html: Utilisée pour les prévisualisations via OpenGraph et l’API. 1200x630px recommandé
         title: Vignette de l’instance
@@ -504,13 +494,11 @@ fr:
     logout: Se déconnecter
     migrate_account: Déplacer vers un compte différent
     migrate_account_html: Si vous voulez rediriger ce compte vers un autre, vous pouvez le <a href="%{path}">configurer ici</a>.
-    or: ou
     or_log_in_with: Ou authentifiez-vous avec
     providers:
       cas: CAS
       saml: SAML
     register: S’inscrire
-    register_elsewhere: S’inscrire sur un autre serveur
     resend_confirmation: Envoyer à nouveau les consignes de confirmation
     reset_password: Réinitialiser le mot de passe
     security: Sécurité
@@ -546,7 +534,7 @@ fr:
     description_html: Cela va supprimer votre compte et le désactiver de manière <strong>permanente et irréversible</strong>. Votre nom d’utilisateur⋅ice restera réservé afin d’éviter la confusion.
     proceed: Supprimer compte
     success_msg: Votre compte a été supprimé avec succès
-    warning_html: Seule la suppression du contenu depuis cette instance est garantie. Le contenu qui a été partagé est susceptible de laisser des traces. Les serveurs hors-ligne ainsi que ceux n’étant plus abonnés à vos publications ne mettront pas leur base de données à jour.
+    warning_html: Seule la suppression du contenu depuis cette instance est garantie. Le contenu qui a été partagé est susceptible de laisser des traces. Les instances hors-ligne ainsi que ceux n’étant plus abonnées à vos publications ne mettront pas leur base de données à jour.
     warning_title: Disponibilité du contenu disséminé
   directories:
     directory: Annuaire des profils
@@ -574,7 +562,7 @@ fr:
     archive_takeout:
       date: Date
       download: Télécharger votre archive
-      hint_html: Vous pouvez demander une archive de vos  <strong>pouets et médias téléversés</strong>. Les données exportées seront au format ActivityPub, lisible par tout logiciel compatible. Vous pouvez demander une archive tous les 7 jours.
+      hint_html: Vous pouvez demander une archive de vos <strong>pouets et médias téléversés</strong>. Les données exportées seront au format ActivityPub, lisible par tout logiciel compatible. Vous pouvez demander une archive tous les 7 jours.
       in_progress: Création de votre archive…
       request: Demandez vos archives
       size: Taille
@@ -585,6 +573,10 @@ fr:
     lists: Listes
     mutes: Vous masquez
     storage: Médias stockés
+  featured_tags:
+    add_new: Ajouter un nouvel hashtag
+    errors:
+      limit: Vous avez déjà mis en avant le nombre maximum de hashtags
   filters:
     contexts:
       home: Accueil
@@ -601,18 +593,6 @@ fr:
       title: Filtres
     new:
       title: Ajouter un nouveau filtre
-  followers:
-    domain: Domaine
-    explanation_html: Si vous voulez être sûr⋅e que vos statuts restent privés, vous devez savoir qui vous suit. <strong>Vos statuts privés seront diffusés à toutes les instances des utilisateur⋅ice⋅s qui vous suivent</strong>. Vous voudrez peut-être les passer en revue et les supprimer si vous n’êtes pas sûr⋅e que votre vie privée sera respectée par l’administration ou le logiciel de ces instances.
-    followers_count: Nombre d’abonné⋅e⋅s
-    lock_link: Rendez votre compte privé
-    purge: Retirer de la liste d’abonné⋅e⋅s
-    success:
-      one: Suppression des abonné⋅e⋅s venant d’un domaine en cours…
-      other: Suppression des abonné⋅e⋅s venant de %{count} domaines en cours…
-    true_privacy_html: Soyez conscient⋅e⋅s <strong>qu’une vraie confidentialité ne peut être atteinte que par un chiffrement de bout-en-bout</strong>.
-    unlocked_warning_html: N’importe qui peut vous suivre et voir vos statuts privés. %{lock_link} afin de pouvoir vérifier et rejeter des abonné⋅e⋅s.
-    unlocked_warning_title: Votre compte n’est pas privé
   footer:
     developers: Développeurs
     more: Davantage…
@@ -625,10 +605,16 @@ fr:
       one: Quelque chose ne va pas ! Vérifiez l’erreur ci-dessous
       other: Certaines choses ne vont pas ! Vérifiez les %{count} erreurs ci-dessous
   imports:
-    preface: Vous pouvez importer certaines données comme les personnes que vous suivez ou bloquez sur votre compte sur cette instance à partir de fichiers créés sur une autre instance.
+    modes:
+      merge: Fusionner
+      merge_long: Garder les enregistrements existants et ajouter les nouveaux
+      overwrite: Réécrire
+      overwrite_long: Remplacer les enregistrements actuels par les nouveaux
+    preface: Vous pouvez importer certaines données que vous avez exporté d'une autre instance, comme une liste des personnes que vous suivez ou bloquez sur votre compte.
     success: Vos données ont été importées avec succès et seront traitées en temps et en heure
     types:
       blocking: Liste d’utilisateur⋅ice⋅s bloqué⋅e⋅s
+      domain_blocking: Liste des instances bloquées
       following: Liste d’utilisateur⋅ice⋅s suivi⋅e⋅s
       muting: Liste d’utilisateur⋅ice⋅s que vous masquez
     upload: Importer
@@ -720,6 +706,16 @@ fr:
     older: Plus ancien
     prev: Précédent
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Vous avez déjà voté sur ce sondage
+      duplicate_options: contient des doublons
+      duration_too_long: est trop loin dans le futur
+      duration_too_short: est trop tôt
+      expired: Ce sondage est déjà terminé
+      over_character_limit: ne peuvent être plus long que %{max} caractères chacun
+      too_few_options: doit avoir plus qu'une proposition
+      too_many_options: ne peut contenir plus que %{max} propositions
   preferences:
     languages: Langues
     other: Autre
@@ -734,10 +730,13 @@ fr:
     reason_html: "<strong>Pourquoi cette étape est-elle nécessaire?</strong> <code>%{instance}</code> pourrait ne pas être le serveur où vous vous êtes inscrit, et nous devons donc vous rediriger vers votre serveur de base en premier."
   remote_interaction:
     favourite:
+      proceed: Confirmer l'ajout aux favoris
       prompt: 'Vous souhaitez mettre ce pouet en favori :'
     reblog:
+      proceed: Confirmer le repartage
       prompt: 'Vous souhaitez repartager ce pouet :'
     reply:
+      proceed: Confirmer la réponse
       prompt: 'Vous souhaitez répondre à ce pouet :'
   remote_unfollow:
     error: Erreur
@@ -795,7 +794,7 @@ fr:
     development: Développement
     edit_profile: Modifier le profil
     export: Export de données
-    followers: Abonné⋅es autorisé⋅es
+    featured_tags: Hashtags mis en avant
     import: Import de données
     migrate: Migration de compte
     notifications: Notifications
@@ -825,6 +824,11 @@ fr:
       ownership: Vous ne pouvez pas épingler un statut ne vous appartenant pas
       private: Les statuts non-publics ne peuvent pas être épinglés
       reblog: Un partage ne peut pas être épinglé
+    poll:
+      total_votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
+      vote: Voter
     show_more: Afficher plus
     sign_in_to_participate: Inscrivez-vous pour prendre part à la conversation
     title: '%{name} : "%{quote}"'
@@ -923,9 +927,9 @@ fr:
       <p>Originellement adapté de la <a href="https://github.com/discourse/discourse">politique de confidentialité de Discourse</a>.</p>
     title: "%{instance} Conditions d’utilisation et politique de confidentialité"
   themes:
-    contrast: Contraste élevé
-    default: Mastodon
-    mastodon-light: Mastodon (clair)
+    contrast: Mastodon (Contraste élevé)
+    default: Mastodon (Sombre)
+    mastodon-light: Mastodon (Clair)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -974,7 +978,7 @@ fr:
       final_action: Commencer à publier
       final_step: 'Commencez à poster ! Même sans abonné·e·s, vos messages publics peuvent être vus par d’autres, par exemple sur le fil public local et dans les hashtags. Vous pouvez vous présenter sur le hashtag #introductions.'
       full_handle: Votre identifiant complet
-      full_handle_hint: C’est ce que vous diriez à vos ami·e·s pour qu’il·elle·s puissent vous envoyer un message ou vous suivre à partir d’une autre instance.
+      full_handle_hint: C’est ce que vous diriez à vos ami·e·s pour leur permettre de vous envoyer un message ou vous suivre à partir d’une autre instance.
       review_preferences_action: Modifier les préférences
       review_preferences_step: Assurez-vous de définir vos préférences, telles que les courriels que vous aimeriez recevoir ou le niveau de confidentialité auquel vous aimeriez que vos messages soient soumis par défaut. Si vous n’avez pas le mal des transports, vous pouvez choisir d’activer la lecture automatique des GIF.
       subject: Bienvenue sur Mastodon

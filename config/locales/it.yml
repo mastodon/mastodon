@@ -7,7 +7,6 @@ it:
     administered_by: 'Amministrato da:'
     api: API
     apps: Applicazioni Mobile
-    closed_registrations: Al momento le iscrizioni a questo server sono chiuse. Tuttavia! Puoi provare a cercare un istanza diversa su cui creare un account ed avere accesso alla stessa identica rete.
     contact: Contatti
     contact_missing: Non impostato
     contact_unavailable: N/D
@@ -15,20 +14,10 @@ it:
     extended_description_html: |
       <h3>Un buon posto per le regole</h3>
       <p>La descrizione estesa non è ancora stata preparata.</p>
-    features:
-      humane_approach_body: Imparando dai fallimenti degli altri networks, Mastodon mira a fare scelte etiche di design per combattere l'abuso dei social media.
-      humane_approach_title: Un approccio più umano
-      not_a_product_body: Mastodon non è una rete commerciale. Niente pubblicità, niente data mining, nessun recinto dorato. Non c'è nessuna autorità centrale.
-      not_a_product_title: Tu sei una persona, non un prodotto
-      real_conversation_body: Con 500 caratteri a disposizione, un supporto per i contenuti granulari ed avvisi sui media potrai esprimerti nel modo desiderato.
-      real_conversation_title: Creato per conversazioni reali
-      within_reach_body: Apps per iOS, Android ed altre piattaforme, realizzate grazie ad un ecosistema di API adatto agli sviluppatori, ti consentono di poter stare in contatto con i tuoi amici ovunque ti trovi.
-      within_reach_title: Sempre a portata di mano
     generic_description: "%{domain} è un server nella rete"
     hosted_on: Mastodon ospitato su %{domain}
     learn_more: Scopri altro
-    other_instances: Elenco istanze
-    privacy_policy: Policy su la Privacy
+    privacy_policy: Politica della privacy
     source_code: Codice sorgente
     status_count_after:
       one: status
@@ -48,6 +37,7 @@ it:
       other: Seguaci
     following: Segui
     joined: Dal %{date}
+    last_active: ultima attività
     link_verified_on: La proprietà di questo link è stata controllata il %{date}
     media: Media
     moved_html: "%{name} è stato spostato su %{new_profile_link}:"
@@ -69,6 +59,9 @@ it:
       moderator: Moderatore
     unfollow: Non seguire più
   admin:
+    account_actions:
+      action: Esegui azione
+      title: Esegui azione di moderazione su %{acct}
     account_moderation_notes:
       create: Lascia nota
       created_msg: Nota di moderazione creata con successo!
@@ -88,6 +81,7 @@ it:
       confirm: Conferma
       confirmed: Confermato
       confirming: Confermando
+      deleted: Cancellato
       demote: Declassa
       disable: Disabilita
       disable_two_factor_authentication: Disabilita 2FA
@@ -103,8 +97,11 @@ it:
       followers: Follower
       followers_url: URL follower
       follows: Segue
+      header: Intestazione
       inbox_url: URL inbox
+      invited_by: Invitato da
       ip: IP
+      joined: Unito
       location:
         all: Tutto
         local: Locale
@@ -114,6 +111,7 @@ it:
       media_attachments: Media allegati
       memorialize: Trasforma in memoriam
       moderation:
+        active: Attivo
         all: Tutto
         silenced: Silenziati
         suspended: Sospesi
@@ -132,6 +130,7 @@ it:
       push_subscription_expires: Sottoscrizione PuSH scaduta
       redownload: Aggiorna avatar
       remove_avatar: Rimuovi avatar
+      remove_header: Rimuovi intestazione
       resend_confirmation:
         already_confirmed: Questo utente è già confermato
         send: Reinvia email di conferma
@@ -162,12 +161,14 @@ it:
       undo_suspension: Rimuovi sospensione
       unsubscribe: Annulla l'iscrizione
       username: Nome utente
+      warn: Avverti
       web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} ha assegnato il rapporto %{target} a se stesso"
         change_email_user: "%{name} ha cambiato l'indirizzo email per l'utente %{target}"
         confirm_user: "%{name} ha confermato l'indirizzo email per l'utente %{target}"
+        create_account_warning: "%{name} ha mandato un avvertimento a %{target}"
         create_custom_emoji: "%{name} ha caricato un nuovo emoji %{target}"
         create_domain_block: "%{name} ha bloccato il dominio %{target}"
         create_email_domain_block: "%{name} ha messo il dominio email %{target} nella blacklist"
@@ -226,6 +227,7 @@ it:
       config: Configurazione
       feature_deletions: Cancellazioni di account
       feature_invites: Link di invito
+      feature_profile_directory: Directory dei profili
       feature_registrations: Registrazioni
       feature_relay: Ripetitore di federazione
       features: Funzionalità
@@ -260,6 +262,9 @@ it:
       reject_media_hint: Rimuovi i file media salvati in locale e blocca i download futuri. Irrilevante per le sospensioni
       reject_reports: Respingi rapporti
       reject_reports_hint: Ignora tutti i rapporti provenienti da questo dominio. Irrilevante per sospensioni
+      severity:
+        silence: silenziato
+        suspend: sospeso
       show:
         affected_accounts:
           one: Interessato un solo account nel database
@@ -280,8 +285,22 @@ it:
         create: Aggiungi dominio
         title: Nuova voce della lista nera delle email
       title: Lista nera email
+    followers:
+      back_to_account: Torna all'account
+      title: Seguaci di %{acct}
     instances:
+      by_domain: Dominio
+      known_accounts:
+        one: "%{count} account noto"
+        other: "%{count} account noti"
+      moderation:
+        limited: Limitato
+        title: Moderazione
       title: Istanze conosciute
+      total_blocked_by_us: Bloccato da noi
+      total_followed_by_them: Seguito da loro
+      total_followed_by_us: Seguito da noi
+      total_storage: Media allegati
     invites:
       deactivate_all: Disattiva tutto
       filter:
@@ -351,17 +370,20 @@ it:
         desc_html: Modifica l'aspetto con il CSS caricato in ogni pagina
         title: CSS personalizzato
       hero:
-        desc_html: Mostrata nella pagina iniziale. Almeno 600x100 px consigliati. Se non impostata, sarà usato il thumbnail dell'istanza
+        desc_html: Mostrata nella pagina iniziale. Almeno 600x100 px consigliati. Se non impostata, sarà usato il thumbnail del server
         title: Immagine dell'eroe
       mascot:
         desc_html: Mostrata su più pagine. Almeno 293×205px consigliati. Se non impostata, sarò usata la mascotte predefinita
         title: Immagine della mascotte
       peers_api_enabled:
-        desc_html: Nomi di dominio che questa istanza ha incontrato nella fediverse
-        title: Pubblica elenco di istanze scoperte
+        desc_html: Nomi di dominio che questo server ha incontrato nel fediverse
+        title: Pubblica elenco dei server scoperti
       preview_sensitive_media:
         desc_html: Le anteprime dei link su altri siti mostreranno un thumbnail anche se il media è segnato come sensibile
         title: Mostra media sensibili nella anteprime OpenGraph
+      profile_directory:
+        desc_html: Permetti agli utenti di essere trovati
+        title: Attiva directory del profilo
       registrations:
         closed_message:
           desc_html: Mostrato nella pagina iniziale quando le registrazioni sono chiuse. Puoi usare tag HTML
@@ -372,9 +394,6 @@ it:
         min_invite_role:
           disabled: Nessuno
           title: Permetti inviti da
-        open:
-          desc_html: Consenti a chiunque di creare un account
-          title: Apri registrazioni
       show_known_fediverse_at_about_page:
         desc_html: Quando attivato, mostra nell'anteprima i toot da tutte le istanze conosciute. Altrimenti mostra solo i toot locali.
         title: Mostra la fediverse conosciuta nell'anteprima della timeline
@@ -382,20 +401,20 @@ it:
         title: Mostra badge staff
       site_description:
         desc_html: Paragrafo introduttivo nella pagina iniziale. Descrive ciò che rende speciale questo server Mastodon e qualunque altra cosa sia importante dire. Potete usare marcatori HTML, in particolare <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
-        title: Descrizione istanza
+        title: Descrizione del server
       site_description_extended:
-        desc_html: Un posto adatto per pubblicare regole di comportamento, linee guida e altre cose specifiche della vostra istanza. Potete usare marcatori HTML
+        desc_html: Un posto adatto per pubblicare regole di comportamento, linee guida e altre cose specifiche del vostro server. Potete usare marcatori HTML
         title: Informazioni estese personalizzate
       site_short_description:
-        desc_html: Mostrato nella barra laterale e nei tag meta. Descrive in un paragrafo che cos'è Mastodon e che cosa rende questo server speciale. Se vuoto, sarà usata la descrizione predefinita dell'istanza.
-        title: Breve descrizione dell'istanza
+        desc_html: Mostrato nella barra laterale e nei tag meta. Descrive in un paragrafo che cos'è Mastodon e che cosa rende questo server speciale. Se vuoto, sarà usata la descrizione predefinita del server.
+        title: Breve descrizione del server
       site_terms:
         desc_html: Potete scrivere la vostra politica sulla privacy, condizioni del servizio o altre informazioni legali. Potete usare tag HTML
         title: Termini di servizio personalizzati
-      site_title: Nome istanza
+      site_title: Nome del server
       thumbnail:
         desc_html: Usato per anteprime tramite OpenGraph e API. 1200x630px consigliati
-        title: Thumbnail dell'istanza
+        title: Thumbnail del server
       timeline_preview:
         desc_html: Mostra la timeline pubblica sulla pagina iniziale
         title: Anteprima timeline
@@ -418,7 +437,21 @@ it:
       confirmed: Confermato
       expires_in: Scade in
       topic: Argomento
+    tags:
+      accounts: Account
+      hidden: Nascosto
+      hide: Nascondi nella directory
+      name: Hashtag
+      title: Hashtag
+      unhide: Mostra nella directory
+      visible: Visibile
     title: Amministrazione
+    warning_presets:
+      add_new: Aggiungi nuovo
+      delete: Cancella
+      edit: Modifica
+      edit_preset: Modifica avviso predefinito
+      title: Gestisci avvisi predefiniti
   application_mailer:
     notification_preferences: Cambia preferenze email
     salutation: "%{name},"
@@ -434,7 +467,7 @@ it:
     token_regenerated: Token di accesso rigenerato
     warning: Fa' molta attenzione con questi dati. Non fornirli mai a nessun altro!
   auth:
-    agreement_html: Iscrivendoti, accetti di seguire <a href="%{rules_path}">le regole dell'istanza</a> e <a href="%{terms_path}"> le nostre condizioni di servizio</a>.
+    agreement_html: Iscrivendoti, accetti di seguire <a href="%{rules_path}">le regole del server</a> e <a href="%{terms_path}"> le nostre condizioni di servizio</a>.
     change_password: Password
     confirm_email: Conferma email
     delete_account: Elimina account
@@ -445,10 +478,8 @@ it:
     logout: Esci da Mastodon
     migrate_account: Sposta ad un account differente
     migrate_account_html: Se vuoi che questo account sia reindirizzato a uno diverso, puoi <a href="%{path}">configurarlo qui</a>.
-    or: o
     or_log_in_with: Oppure accedi con
     register: Iscriviti
-    register_elsewhere: Iscriviti su un altro server
     resend_confirmation: Invia di nuovo le istruzioni di conferma
     reset_password: Resetta la password
     security: Credenziali
@@ -484,11 +515,21 @@ it:
     description_html: Questa azione eliminerà <strong>in modo permanente e irreversibile</strong> tutto il contenuto del tuo account e lo disattiverà. Il tuo nome utente resterà riservato per prevenire che qualcuno in futuro assuma la tua identità.
     proceed: Cancella l'account
     success_msg: Il tuo account è stato cancellato
-    warning_html: È garantita solo la cancellazione del contenuto solo da questa istanza. I contenuti che sono stati ampiamente condivisi probabilmente lasceranno delle tracce. I server offline e quelli che non ricevono più i tuoi aggiornamenti non aggiorneranno i loro database.
+    warning_html: È garantita la cancellazione del contenuto solo da questo server. I contenuti che sono stati ampiamente condivisi probabilmente lasceranno delle tracce. I server offline e quelli che non ricevono più i tuoi aggiornamenti non aggiorneranno i loro database.
+  directories:
+    directory: Directory dei profili
+    enabled: Attualmente sei elencato nella directory.
+    enabled_but_waiting: Hai scelto di essere elencato nella directory, ma non hai ancora il numero minimo di seguaci (%{min_followers}) per comparire.
+    explanation: Scopri utenti in base ai loro interessi
+    explore_mastodon: Esplora %{title}
+    how_to_enable: Attualmente non hai scelto di comparire nella directory. Puoi farlo qui sotto. Se vuoi comparire sotto determinati hashtag, usali nel testo della tua biografia.
+    people:
+      one: "%{count} persona"
+      other: "%{count} persone"
   errors:
     '403': Non sei autorizzato a visualizzare questa pagina.
     '404': La pagina che stavi cercando non esiste.
-    '410': La pagina che stavi cercando non esiste più.
+    '410': La pagina che stavi cercando qui non esiste più.
     '422':
       content: Verifica di sicurezza non riuscita. Stai bloccando i cookies?
       title: Verifica di sicurezza non riuscita
@@ -506,9 +547,15 @@ it:
       size: Dimensioni
     blocks: Stai bloccando
     csv: CSV
+    domain_blocks: Blocchi di dominio
     follows: Stai seguendo
+    lists: Liste
     mutes: Stai silenziando
     storage: Archiviazione media
+  featured_tags:
+    add_new: Aggiungi nuovo
+    errors:
+      limit: Hai già messo in evidenza il numero massimo di hashtag
   filters:
     contexts:
       home: Timeline home
@@ -524,15 +571,6 @@ it:
       title: Filtri
     new:
       title: Aggiungi filtro
-  followers:
-    domain: Dominio
-    explanation_html: Se vuoi garantire la privacy dei tuoi status, devi sapere chi ti sta seguendo. <strong>I tuoi status privati vengono inviati a tutte le istanze su cui hai dei seguaci</strong>. Puoi controllare chi sono i tuoi seguaci, ed eliminarli se non hai fiducia che la tua privacy venga rispettata dallo staff o dal software di quelle istanze.
-    followers_count: Numero di seguaci
-    lock_link: Blocca il tuo account
-    purge: Elimina dai seguaci
-    true_privacy_html: Tieni presente che <strong>l'effettiva riservatezza si può ottenere solo con la crittografia end-to-end</strong>.
-    unlocked_warning_html: Chiunque può seguirti per vedere immediatamente i tuoi status privati. %{lock_link} per poter esaminare e respingere gli utenti che vogliono seguirti.
-    unlocked_warning_title: Il tuo account non è bloccato
   footer:
     developers: Sviluppatori
     more: Altro…
@@ -544,10 +582,16 @@ it:
       one: Qualcosa ancora non va bene! Per favore, controlla l'errore qui sotto
       other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori qui sotto
   imports:
-    preface: Puoi importare alcune informazioni, come le persone che segui o hai bloccato su questo server, da file creati da un esportazione su un altro server.
+    modes:
+      merge: Fondi
+      merge_long: Mantieni record esistenti e aggiungine di nuovi
+      overwrite: Sovrascrivi
+      overwrite_long: Sostituisci record attuali con quelli nuovi
+    preface: Puoi importare alcune informazioni, come le persone che segui o hai bloccato su questo server, da file creati da un'esportazione su un altro server.
     success: Le tue impostazioni sono state importate correttamente e verranno applicate in breve tempo
     types:
       blocking: Lista dei bloccati
+      domain_blocking: Lista dei domini bloccati
       following: Lista dei seguaci
       muting: Lista dei silenziati
     upload: Carica
@@ -569,7 +613,7 @@ it:
       one: un uso
       other: "%{count} utilizzi"
     max_uses_prompt: Nessun limite
-    prompt: Genera e condividi dei link ad altri per garantire l'accesso a questa istanza
+    prompt: Genera e condividi dei link con altri per concedere l'accesso a questo server
     table:
       expires_at: Scade
       uses: Utilizzi
@@ -639,6 +683,15 @@ it:
     older: Più vecchio
     prev: Indietro
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Hai già votato in questo sondaggio
+      duration_too_long: è troppo lontano nel futuro
+      duration_too_short: è troppo presto
+      expired: Il sondaggio si è già concluso
+      over_character_limit: non possono essere più lunghi di %{max} caratteri ciascuno
+      too_few_options: deve avere più di un elemento
+      too_many_options: non può contenere più di %{max} elementi
   preferences:
     languages: Lingue
     other: Altro
@@ -650,9 +703,24 @@ it:
     no_account_html: Non hai un account? Puoi <a href='%{sign_up_path}' target='_blank'>iscriverti qui</a>
     proceed: Conferma
     prompt: 'Stai per seguire:'
+  remote_interaction:
+    favourite:
+      proceed: Continua per segnare come apprezzato
+      prompt: 'Vuoi segnare questo toot come apprezzato:'
+    reblog:
+      proceed: Continua per condividere
+      prompt: 'Vuoi condividere questo toot:'
+    reply:
+      proceed: Continua per rispondere
+      prompt: 'Vuoi rispondere a questo toot:'
   remote_unfollow:
     error: Errore
     title: Titolo
+    unfollowed: Non più seguito
+  scheduled_statuses:
+    over_daily_limit: Hai superato il limite di %{limit} toot programmati per questo giorno
+    over_total_limit: Hai superato il limite di %{limit} toot programmati
+    too_soon: La data di pubblicazione deve essere nel futuro
   sessions:
     activity: Ultima attività
     browser: Browser
@@ -690,7 +758,7 @@ it:
     development: Sviluppo
     edit_profile: Modifica profilo
     export: Esporta impostazioni
-    followers: Seguaci autorizzati
+    featured_tags: Hashtag in evidenza
     import: Importa
     migrate: Migrazione dell'account
     notifications: Notifiche
@@ -719,6 +787,11 @@ it:
       ownership: Non puoi fissare in cima un toot di qualcun altro
       private: Un toot non pubblico non può essere fissato in cima
       reblog: Un toot condiviso non può essere fissato in cima
+    poll:
+      total_votes:
+        one: "%{count} voto"
+        other: "%{count} voti"
+      vote: Vota
     show_more: Mostra di più
     sign_in_to_participate: Accedi per partecipare alla conversazione
     visibilities:
@@ -735,8 +808,8 @@ it:
   terms:
     title: "%{instance} Termini di servizio e politica della privacy"
   themes:
-    contrast: Contrasto elevato
-    default: Mastodon
+    contrast: Mastodon (contrasto elevato)
+    default: Mastodon (scuro)
     mastodon-light: Mastodon (chiaro)
   time:
     formats:
@@ -768,7 +841,7 @@ it:
       final_action: Inizia a postare
       final_step: 'Inizia a postare! Anche se non hai seguaci, i tuoi messaggi pubblici possono essere visti da altri, ad esempio nelle timeline locali e negli hashtag. Se vuoi puoi presentarti con l''hashtag #introductions.'
       full_handle: Il tuo nome utente completo
-      full_handle_hint: Questo è ciò che diresti ai tuoi amici in modo che possano seguirti o contattarti da un'altra istanza.
+      full_handle_hint: Questo è ciò che diresti ai tuoi amici in modo che possano seguirti o contattarti da un altro server.
       review_preferences_action: Cambia preferenze
       review_preferences_step: Dovresti impostare le tue preferenze, ad esempio quali email vuoi ricevere oppure il livello predefinito di privacy per i tuoi post. Se le immagini in movimento non ti danno fastidio, puoi abilitare l'animazione automatica delle GIF.
       subject: Benvenuto/a su Mastodon

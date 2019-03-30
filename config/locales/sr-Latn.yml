@@ -4,26 +4,15 @@ sr-Latn:
     about_hashtag_html: Ovo su javni statusi tagovani sa <strong>#%{hashtag}</strong>. Možete odgovarati na njih ako imate nalog bilo gde u fediversu.
     about_mastodon_html: Mastodont je društvena mreža bazirana na otvorenim protokolima i slobodnom softveru otvorenog koda. Decentralizovana je kao što je decentralizovana e-pošta.
     about_this: O instanci
-    closed_registrations: Registracije su trenutno zatvorene na ovoj instanci. Ipak! Možete naći drugu instancu na kojoj ćete napraviti nalog i odatle dobiti pristup istoj ovoj mreži.
     contact: Kontakt
     contact_missing: Nije postavljeno
     contact_unavailable: N/A
     extended_description_html: |
       <h3>Dobro mesto za pravila</h3>
       <p>Prošireni opis koji još nije postavljen.</p>
-    features:
-      humane_approach_body: Učeći od grešaka sa ostalih mreža, a da bi se borio protiv zloupotreba na društvenim mrežama, Mastodont pokušava da pravi što etičkije odluke prilikom razvoja.
-      humane_approach_title: Humaniji pristup
-      not_a_product_body: Mastodont nije komercijalna mreža. Nema reklama, nema skupljanja privatnih podataka, nema zaštićenih delova. Nema centralnog autoriteta.
-      not_a_product_title: Vi ste osoba, ne proizvod
-      real_conversation_body: Sa 500 karaktera na raspolaganju i podrškom za granularniji sadržaj i upozorenja na osetljiviji sadržaj, možete se izraziti kako god želite.
-      real_conversation_title: Pravljen za pravi razgovor
-      within_reach_body: Više aplikacija za iOS, Android, kao i druge platforme zahvaljujući ekosistemu dobrih API-ja će Vam omogućiti da ostanete u kontaktu sa prijateljima svuda.
-      within_reach_title: Uvek u kontaktu
     generic_description: "%{domain} je server na mreži"
     hosted_on: Mastodont hostovan na %{domain}
     learn_more: Saznajte više
-    other_instances: Lista instanci
     source_code: Izvorni kod
     status_count_after: statusa
     status_count_before: Koji su napisali
@@ -256,9 +245,6 @@ sr-Latn:
         min_invite_role:
           disabled: Niko
           title: Samo preko pozivnice
-        open:
-          desc_html: Dozvoli svakome da kreira nalog
-          title: Otvorena registracija
       show_staff_badge:
         desc_html: Prikaži bedž osoblja na korisničkoj strani
         title: Prikaži bedž osoblja
@@ -381,20 +367,6 @@ sr-Latn:
     follows: Pratite
     mutes: Ućutkali ste
     storage: Multimedijalno skladište
-  followers:
-    domain: Domen
-    explanation_html: Ako želite da osigurate privatnost Vaših statusa, morate biti svesni ko Vas prati. <strong>Vaši privatni statusi se šalju na sve instance na kojima imate pratioce</strong>. Možda želite da ih pregledate i da uklonite one pratioce na onim instancama za koje nemate poverenja da će poštovati Vašu privatnost.
-    followers_count: Broj pratilaca
-    lock_link: Zaključajte nalog
-    purge: Ukloni iz pratioca
-    success:
-      few: U procesu blokiranja pratioca sa %{count} domena...
-      many: U procesu blokiranja pratioca sa %{count} domena...
-      one: U procesu blokiranja pratioca sa jednog domena...
-      other: U procesu blokiranja pratioca sa %{count} domena...
-    true_privacy_html: Zapamtite da se <strong>prava privatnost može postići samo šifrovanjem sa kraja na kraj</strong>.
-    unlocked_warning_html: Svako može da Vas zaprati da odmah vidi Vaše privatne statuse. %{lock_link} da biste pregledali i odbacili pratioce.
-    unlocked_warning_title: Vaš nalog nije zaključan
   generic:
     changes_saved_msg: Izmene uspešno sačuvane!
     save_changes: Snimi izmene
@@ -548,7 +520,6 @@ sr-Latn:
     development: Razvoj
     edit_profile: Izmena profila
     export: Izvoz podataka
-    followers: Autorizovani pratioci
     import: Uvoz
     migrate: Prebacivanje naloga
     notifications: Obaveštenja

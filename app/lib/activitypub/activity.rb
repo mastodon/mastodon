@@ -2,6 +2,10 @@
 
 class ActivityPub::Activity
   include JsonLdHelper
+  include Redisable
+
+  SUPPORTED_TYPES = %w(Note Question).freeze
+  CONVERTED_TYPES = %w(Image Video Article Page).freeze
 
   def initialize(json, account, **options)
     @json    = json
@@ -70,8 +74,16 @@ class ActivityPub::Activity
     @object_uri ||= value_or_id(@object)
   end
 
-  def redis
-    Redis.current
+  def unsupported_object_type?
+    @object.is_a?(String) || !(supported_object_type? || converted_object_type?)
+  end
+
+  def supported_object_type?
+    equals_or_includes_any?(@object['type'], SUPPORTED_TYPES)
+  end
+
+  def converted_object_type?
+    equals_or_includes_any?(@object['type'], CONVERTED_TYPES)
   end
 
   def distribute(status)
@@ -123,6 +135,24 @@ class ActivityPub::Activity
     redis.setex("delete_upon_arrival:#{@account.id}:#{uri}", 6.hours.seconds, uri)
   end
 
+  def status_from_object
+    # If the status is already known, return it
+    status = status_from_uri(object_uri)
+
+    return status unless status.nil?
+
+    # If the boosted toot is embedded and it is a self-boost, handle it like a Create
+    unless unsupported_object_type?
+      actor_id = value_or_id(first_of_value(@object['attributedTo'])) || @account.uri
+
+      if actor_id == @account.uri
+        return ActivityPub::Activity.factory({ 'type' => 'Create', 'actor' => actor_id, 'object' => @object }, @account).perform
+      end
+    end
+
+    fetch_remote_original_status
+  end
+
   def fetch_remote_original_status
     if object_uri.start_with?('http')
       return if ActivityPub::TagManager.instance.local_uri?(object_uri)
@@ -136,5 +166,22 @@ class ActivityPub::Activity
     yield if redis.set(key, true, nx: true, ex: expire_after)
   ensure
     redis.del(key)
+  end
+
+  def fetch?
+    !@options[:delivery]
+  end
+
+  def followed_by_local_accounts?
+    @account.passive_relationships.exists?
+  end
+
+  def requested_through_relay?
+    @options[:relayed_through_account] && Relay.find_by(inbox_url: @options[:relayed_through_account].inbox_url)&.enabled?
+  end
+
+  def reject_payload!
+    Rails.logger.info("Rejected #{@json['type']} activity #{@json['id']} from #{@account.uri}#{@options[:relayed_through_account] && "via #{@options[:relayed_through_account].uri}"}")
+    nil
   end
 end

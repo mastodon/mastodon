@@ -1,0 +1,83 @@
+---
+sq:
+  devise:
+    confirmations:
+      confirmed: Adresa juaj email u ripohua me sukses.
+      send_instructions: Brenda pak minutash, do të merrni një email me udhëzime se si të ripohoni adresën tuaj email. Ju lutemi, kontrolloni dosjen e mesazheve të padëshiruar, nëse nuk e morët këtë email.
+      send_paranoid_instructions: Nëse adresa juaj email gjendet në bazën tonë të të dhënave, brenda pak minutash, do të merrni një email me udhëzime se si të ripohoni adresën tuaj email. Ju lutemi, kontrolloni dosjen e mesazheve të padëshiruar, nëse nuk e morët këtë email.
+    failure:
+      already_authenticated: Jeni tashmë i futur.
+      inactive: Llogaria juaj s’është aktivizuar ende.
+      invalid: "%{authentication_keys} ose fjalëkalim i pavlefshëm."
+      last_attempt: Mund të provoni edhe një herë, përpara se llogaria juaj të kyçet.
+      locked: Llogaria juaj është e kyçur.
+      not_found_in_database: "%{authentication_keys} ose fjalëkalim i pavlefshëm."
+      timeout: Sesioni juaj ka skaduar. Ju lutemi, që të vazhdohet, ribëni hyrjen.
+      unauthenticated: Përpara se të vazhdohet më tej, lypset të bëni hyrjen ose të regjistroheni.
+      unconfirmed: Përpara se të vazhdohet, lypset të ripohoni adresën tuaj email.
+    mailer:
+      confirmation_instructions:
+        action: Verifikoni adresë email
+        action_with_app: Ripohojeni dhe kthehuni te %{app}
+        explanation: Keni krijuar një llogari te %{host}, me këtë adresë email. Jeni një klikim larg aktivizimit të saj. Nëse s’jeni ju, shpërfilleni këtë email.
+        extra_html: Ju lutemi, shihni edhe <a href="%{terms_path}">rregullat e shërbyesit</a> dhe <a href="%{policy_path}">kushtet tona të shërbimit</a>.
+        subject: 'Mastodon: Udhëzime ripohimi për %{instance}'
+        title: Verifikoni adresë email
+      email_changed:
+        explanation: 'Adresa email për llogarinë tuaj po ndryshohet në:'
+        extra: Nëse email-in tuaj nuk e ndryshuat ju, gjasat janë që dikush tjetër ka arritur të hyjë në llogarinë tuaj. Ju lutemi, ndryshoni menjëherë fjalëkalimin tuaj ose lidhuni me përgjegjësin e shërbyesit, nëse jeni kyçur jashtë llogarisë tuaj.
+        subject: 'Mastodon: Email-i u ndryshua'
+        title: Adresë email e re
+      password_change:
+        explanation: Fjalëkalimi për llogarinë tuaj u ndryshua.
+        extra: Nëse fjalëkalimin tuaj nuk e ndryshuat ju, gjasat janë që dikush tjetër ka arritur të hyjë në llogarinë tuaj. Ju lutemi, ndryshoni menjëherë fjalëkalimin tuaj ose lidhuni me përgjegjësin e shërbyesit, nëse jeni kyçur jashtë llogarisë tuaj.
+        subject: 'Mastodon: Fjalëkalimi u ndryshua'
+        title: Fjalëkalimi u ndryshua
+      reconfirmation_instructions:
+        explanation: Që të ndryshohet email-i juaj, ripohoni adresën e re.
+        extra: Nëse ky ndryshim s’qe filluar prej jush, ju lutemi, shpërfilleni këtë email. Adresa email për llogarinë Mastodon s’do të ndryshojë, para se të hyni në lidhjen më sipër.
+        subject: 'Mastodon: Ripohoni email-in për %{instance}'
+        title: Verifikoni adresë email
+      reset_password_instructions:
+        action: Ndryshoni fjalëkalimin
+        explanation: Kërkuat një fjalëkalim të ri për këtë llogari.
+        extra: Nëse këtë s’e kërkuat ju, ju lutemi, shpërfilleni këtë email. Fjalëkalimi juaj s’do të ndryshohet pa hyrë në lidhjen më sipër dhe krijimin e një të riu.
+        subject: 'Mastodon: Udhëzime ricaktimi fjalëkalimi'
+        title: Ricaktim fjalëkalimi
+      unlock_instructions:
+        subject: 'Mastodon: Udhëzime shkyçjeje'
+    omniauth_callbacks:
+      failure: S’u bë dot mirëfilltësimi juaj nga %{kind}, sepse "%{reason}".
+      success: Mirëfilltësimi nga llogaria %{kind} u bë me sukses.
+    passwords:
+      no_token: S’mund të hyni në këtë faqe paardhur nga një email ricaktimi fjalëkalimi. Nëse vini nga një email ricaktimi fjalëkalimi, ju lutemi, sigurohuni se përdorët URL-në e plotë dhënë për ju.
+      send_instructions: Nëse adresa juaj email gjendet në bazën tonë të të dhënave, brenda pak minutash, te adresa juaj email do të merrni një lidhje rimarrjeje fjalëkalimi. Ju lutemi, kontrolloni dosjen e mesazheve të padëshiruar, nëse nuk e morët këtë email.
+      send_paranoid_instructions: Nëse adresa juaj email gjendet në bazën tonë të të dhënave, brenda pak minutash, te adresa juaj email do të merrni një lidhje rimarrjeje fjalëkalimi. Ju lutemi, kontrolloni dosjen e mesazheve të padëshiruar, nëse nuk e morët këtë email.
+      updated: Fjalëkalimi juaj u ndryshua me sukses. Tani jeni i futur.
+      updated_not_active: Fjalëkalimi juaj u ndryshua me sukses.
+    registrations:
+      destroyed: Shëndet! Llogaria juaj u fshi me sukses. Shpresojmë t’ju rishohim së shpejti.
+      signed_up: Mirë se vini! U regjistruat me sukses.
+      signed_up_but_inactive: U regjistruat me sukses. Megjithatë, s’u bë dot hyrja juaj, ngaqë llogaria juaj s’është aktivizuar ende.
+      signed_up_but_locked: U regjistruat me sukses. Megjithatë, s’u bë dot hyrja juaj, ngaqë llogaria juaj është kyçur.
+      signed_up_but_unconfirmed: Te adresa juaj email u dërgua një mesazh me një lidhje ripohimi. Ju lutemi, që të aktivizoni llogarinë tuaj, ndiqni lidhjen. Ju lutemi, kontrolloni dosjen e mesazheve të padëshiruar, nëse nuk e morët këtë email.
+      update_needs_confirmation: E përditësuat me sukses llogarinë tuaj, por na duhet të verifikojmë adresën tuaj të re email. Ju lutemi, që të ripohoni adresën tuaj të re email, kontrolloni email-in tuaj dhe ndiqni lidhjen. Ju lutemi, kontrolloni dosjen e mesazheve të padëshiruar, nëse nuk e morët këtë email.
+      updated: Llogaria juaj u përditësua me sukses.
+    sessions:
+      already_signed_out: Dolët me sukses.
+      signed_in: Hytë me sukses.
+      signed_out: Dolët me sukses.
+    unlocks:
+      send_instructions: Brenda pak minutash, do të merrni një email me udhëzime se si të shkyçni llogarinë tuaj. Ju lutemi, kontrolloni dosjen e mesazheve të padëshiruar, nëse nuk e morët këtë email.
+      send_paranoid_instructions: Nëse llogaria juaj ekziston, brenda pak minutash, do të merrni një email me udhëzime se si të shkyçni llogarinë tuaj. Ju lutemi, kontrolloni dosjen e mesazheve të padëshiruar, nëse nuk e morët këtë email.
+      unlocked: Llogaria juaj u shkyç me sukses. Ju lutemi, që të vazhdohet, bëni hyrjen.
+  errors:
+    messages:
+      already_confirmed: qe e ripohuar tashmë, ju lutemi, provoni të bëni hyrjen
+      confirmation_period_expired: lyp të ripohohet brenda %{period}, ju lutemi, kërkoni një të ri
+      expired: ka skaduar, ju lutemi, kërkoni një të ri
+      not_found: s’u gjet
+      not_locked: s’qe kyçur
+      not_saved:
+        one: 'Ruajtjen e këtij %{resource} e pengoi 1 gabim:'
+        other: 'Ruajtjen e këtij %{resource} e penguan %{count} gabime:'

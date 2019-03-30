@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-class ActivityPub::EmojiSerializer < ActiveModel::Serializer
+class ActivityPub::EmojiSerializer < ActivityPub::Serializer
   include RoutingHelper
+
+  context_extensions :emoji
 
   attributes :id, :type, :name, :updated
 
