@@ -14,7 +14,7 @@ class ProofProvider::Keybase::ConfigSerializer < ActiveModel::Serializer
   end
 
   def domain
-    Rails.configuration.x.local_domain
+    ProofProvider::Keybase::DOMAIN
   end
 
   def display_name
@@ -66,6 +66,6 @@ class ProofProvider::Keybase::ConfigSerializer < ActiveModel::Serializer
   end
 
   def contact
-    [Setting.site_contact_email.presence].compact
+    [Setting.site_contact_email.presence || 'unknown'].compact
   end
 end

@@ -27,5 +27,10 @@
 
           %p= t('identity_proofs.i_am_html', username: content_tag(:strong, @proof.provider_username), service: @proof.provider.capitalize)
 
+    .connection-prompt__post
+      = f.input :post_status, label: t('identity_proofs.publicize_checkbox'), as: :boolean, wrapper: :with_label, :input_html => { checked: true }
+
+      = f.input :status_text, as: :text, input_html: { value: t('identity_proofs.publicize_toot', username: @proof.provider_username, service: @proof.provider.capitalize, url: @proof.badge.proof_url), rows: 4 }
+
     = f.button :button, t('identity_proofs.authorize'), type: :submit
     = link_to t('simple_form.no'), settings_identity_proofs_url, class: 'button negative'

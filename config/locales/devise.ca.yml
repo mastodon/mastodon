@@ -12,6 +12,7 @@ ca:
       last_attempt: Tens un intent més, abans que es bloqui el compte.
       locked: El compte s'ha blocat.
       not_found_in_database: "%{authentication_keys} o contrasenya no vàlids."
+      pending: El teu compte encara està en revisió.
       timeout: La sessió ha expirat. Inicia sessió una altra vegada per a continuar.
       unauthenticated: Cal iniciar sessió o registrar-se abans de continuar.
       unconfirmed: Has de confirmar l'adreça de correu electrònic abans de continuar.
@@ -20,6 +21,7 @@ ca:
         action: Verifica l'adreça de correu
         action_with_app: Confirma i torna a %{app}
         explanation: Has creat un compte a %{host} amb aquesta adreça de correu electrònic. Estàs a un sol clic de l'activació. Si no fos així, ignora aquest correu electrònic.
+        explanation_when_pending: Has sol·licitat una invitació a %{host} amb aquesta adreça de correu electrònic. Un cop confirmis la teva adreça de correu electrònic revisarem la teva sol·licitud. No es pot iniciar la sessió fins llavors. Si la teva sol·licitud és rebutjada les teves dades s’eliminaran, de manera que no s’exigirà cap altra acció. Si no has estat tu qui ha fet aquest sol·licitud si us plau ignora aquest correu electrònic.
         extra_html: Si us plau consulta també <a href="%{terms_path}"> les regles del servidor</a> i <a href="%{policy_path}"> les nostres condicions de servei</a>.
         subject: 'Mastodon: Instruccions de confirmació %{instance}'
         title: Verifica l'adreça de correu
@@ -60,6 +62,7 @@ ca:
       signed_up: Benvingut! T'has registrat amb èxit.
       signed_up_but_inactive: T´has registrat amb èxit. No obstant, no podem identificar-te perquè el compte encara no s'ha activat.
       signed_up_but_locked: T´has registrat amb èxit. No obstant, no podem identificar-te perquè el compte està blocat.
+      signed_up_but_pending: S'ha enviat un missatge amb un enllaç de confirmació a la teva adreça de correu electrònic. Després de que hagis fet clic a l'enllaç, revisarem la teva sol·licitud. Se't notificarà si s'aprova.
       signed_up_but_unconfirmed: Un missatge amb un enllaç de confirmació ha estat enviat per correu electrònic. Si us plau segueixi l'enllaç per activar el seu compte.
       update_needs_confirmation: Ha actualitzat el seu compte amb èxit, però necessitem verificar la nova adreça de correu. Si us plau comprovi el correu i segueixi l'enllaç per confirmar la nova adreça de correu.
       updated: el seu compte ha estat actualitzat amb èxit.

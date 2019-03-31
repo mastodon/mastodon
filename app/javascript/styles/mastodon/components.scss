@@ -1186,57 +1186,6 @@ a .account__avatar {
   white-space: nowrap;
 }
 
-.account__header {
-  flex: 0 0 auto;
-  background: lighten($ui-base-color, 4%);
-  text-align: center;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-
-  &.inactive {
-    opacity: 0.5;
-
-    .account__header__avatar {
-      filter: grayscale(100%);
-    }
-
-    .account__header__username {
-      color: $secondary-text-color;
-    }
-  }
-
-  & > div {
-    background: rgba(lighten($ui-base-color, 4%), 0.9);
-    padding: 20px 10px;
-  }
-
-  .account__header__content {
-    color: $secondary-text-color;
-  }
-
-  .account__header__display-name {
-    color: $primary-text-color;
-    display: inline-block;
-    width: 100%;
-    font-size: 20px;
-    line-height: 27px;
-    font-weight: 500;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .account__header__username {
-    color: $highlight-text-color;
-    font-size: 14px;
-    font-weight: 400;
-    display: block;
-    margin-bottom: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-
 .account__disclaimer {
   padding: 10px;
   border-top: 1px solid lighten($ui-base-color, 8%);
@@ -1262,39 +1211,6 @@ a .account__avatar {
     &:active {
       text-decoration: none;
     }
-  }
-}
-
-.account__header__content {
-  color: $darker-text-color;
-  font-size: 14px;
-  font-weight: 400;
-  overflow: hidden;
-  word-break: normal;
-  word-wrap: break-word;
-
-  p {
-    margin-bottom: 20px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  a {
-    color: inherit;
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-}
-
-.account__header__display-name {
-  .emojione {
-    width: 25px;
-    height: 25px;
   }
 }
 
@@ -1367,15 +1283,6 @@ a .account__avatar {
       }
     }
   }
-}
-
-.account__header__avatar {
-  background-size: 90px 90px;
-  display: block;
-  height: 90px;
-  margin: 0 auto 10px;
-  overflow: hidden;
-  width: 90px;
 }
 
 .account-authorize {
@@ -3154,42 +3061,22 @@ a.status-card.compact:hover {
   }
 }
 
-.account--follows-info {
+.relationship-tag {
   color: $primary-text-color;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  opacity: 0.7;
-  display: inline-block;
+  margin-bottom: 4px;
+  display: block;
   vertical-align: top;
-  background-color: rgba($base-overlay-background, 0.4);
+  background-color: $base-overlay-background;
   text-transform: uppercase;
   font-size: 11px;
   font-weight: 500;
   padding: 4px;
   border-radius: 4px;
-}
-
-.account--muting-info {
-  color: $primary-text-color;
-  position: absolute;
-  top: 40px;
-  left: 10px;
   opacity: 0.7;
-  display: inline-block;
-  vertical-align: top;
-  background-color: rgba($base-overlay-background, 0.4);
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 500;
-  padding: 4px;
-  border-radius: 4px;
-}
 
-.account--action-button {
-  position: absolute;
-  top: 10px;
-  right: 20px;
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .setting-toggle {
@@ -3339,11 +3226,11 @@ a.status-card.compact:hover {
   box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
   overflow: hidden;
 
-  li {
+  button {
     display: block;
     cursor: pointer;
     border: 0;
-    padding: 3px 8px;
+    padding: 4px 8px;
     background: transparent;
 
     &:hover,
@@ -4245,6 +4132,7 @@ a.status-card.compact:hover {
 
 .confirmation-modal__action-bar,
 .mute-modal__action-bar {
+  .confirmation-modal__secondary-button,
   .confirmation-modal__cancel-button,
   .mute-modal__cancel-button {
     background-color: transparent;
@@ -5348,53 +5236,193 @@ noscript {
   }
 }
 
-.account__header .roles {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 0 15px;
+.account__header__content {
+  color: $darker-text-color;
+  font-size: 14px;
+  font-weight: 400;
+  overflow: hidden;
+  word-break: normal;
+  word-wrap: break-word;
+
+  p {
+    margin-bottom: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
-.account__header .account__header__fields {
-  font-size: 14px;
-  line-height: 20px;
+.account__header {
   overflow: hidden;
-  margin: 20px -10px -20px;
-  border-bottom: 0;
-  border-top: 0;
 
-  dl {
-    border-top: 1px solid lighten($ui-base-color, 4%);
-    border-bottom: 0;
-    display: flex;
+  &.inactive {
+    opacity: 0.5;
+
+    .account__header__image,
+    .account__avatar {
+      filter: grayscale(100%);
+    }
   }
 
-  dt,
-  dd {
-    box-sizing: border-box;
-    padding: 14px 5px;
-    text-align: center;
-    max-height: 48px;
+  &__info {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+
+  &__image {
     overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  dt {
-    color: $darker-text-color;
+    height: 145px;
+    position: relative;
     background: darken($ui-base-color, 4%);
-    width: 120px;
-    flex: 0 0 auto;
-    font-weight: 500;
+
+    img {
+      object-fit: cover;
+      display: block;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
   }
 
-  dd {
-    flex: 1 1 auto;
-    color: $primary-text-color;
-    background: $ui-base-color;
+  &__bar {
+    position: relative;
+    background: lighten($ui-base-color, 4%);
+    padding: 5px;
+    border-bottom: 1px solid lighten($ui-base-color, 12%);
 
-    &.verified {
-      border: 1px solid rgba($valid-value-color, 0.5);
-      background: rgba($valid-value-color, 0.25);
+    .avatar {
+      display: block;
+      flex: 0 0 auto;
+      width: 94px;
+      margin-left: -2px;
+
+      .account__avatar {
+        background: darken($ui-base-color, 8%);
+        border: 2px solid lighten($ui-base-color, 4%);
+      }
+    }
+  }
+
+  &__tabs {
+    display: flex;
+    align-items: flex-start;
+    padding: 7px 5px;
+    margin-top: -55px;
+
+    &__buttons {
+      display: flex;
+      align-items: center;
+      padding-top: 55px;
+      overflow: hidden;
+
+      .icon-button {
+        border: 1px solid lighten($ui-base-color, 12%);
+        border-radius: 4px;
+        box-sizing: content-box;
+        padding: 2px;
+      }
+
+      .button {
+        margin: 0 8px;
+      }
+    }
+
+    &__name {
+      padding: 5px;
+
+      .account-role {
+        vertical-align: top;
+      }
+
+      .emojione {
+        width: 22px;
+        height: 22px;
+      }
+
+      h1 {
+        font-size: 16px;
+        line-height: 24px;
+        color: $primary-text-color;
+        font-weight: 500;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        small {
+          display: block;
+          font-size: 14px;
+          color: $darker-text-color;
+          font-weight: 400;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+
+    .spacer {
+      flex: 1 1 auto;
+    }
+  }
+
+  &__bio {
+    overflow: hidden;
+    margin: 0 -5px;
+
+    .account__header__content {
+      padding: 20px 15px;
+      padding-bottom: 5px;
+      color: $primary-text-color;
+    }
+
+    .account__header__fields {
+      margin: 0;
+      border-top: 1px solid lighten($ui-base-color, 12%);
+
+      a {
+        color: lighten($ui-highlight-color, 8%);
+      }
+
+      dl:first-child .verified {
+        border-radius: 0 4px 0 0;
+      }
+
+      .verified a {
+        color: $valid-value-color;
+      }
+    }
+  }
+
+  &__extra {
+    margin-top: 4px;
+
+    &__links {
+      font-size: 14px;
+      color: $darker-text-color;
+
+      a {
+        display: inline-block;
+        color: $darker-text-color;
+        text-decoration: none;
+        padding: 10px;
+        padding-top: 20px;
+        font-weight: 500;
+
+        strong {
+          font-weight: 700;
+          color: $primary-text-color;
+        }
+      }
     }
   }
 }

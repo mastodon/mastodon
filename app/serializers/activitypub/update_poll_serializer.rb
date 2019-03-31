@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-class ActivityPub::UpdatePollSerializer < ActiveModel::Serializer
+class ActivityPub::UpdatePollSerializer < ActivityPub::Serializer
   attributes :id, :type, :actor, :to
 
   has_one :object, serializer: ActivityPub::NoteSerializer
 
   def id
-    [ActivityPub::TagManager.instance.uri_for(object), '#updates/', object.poll.updated_at.to_i].join
+    [ActivityPub::TagManager.instance.uri_for(object), '#updates/', object.preloadable_poll.updated_at.to_i].join
   end
 
   def type
