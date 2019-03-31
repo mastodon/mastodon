@@ -25,6 +25,9 @@ class Form::AdminSettings
     preview_sensitive_media
     custom_css
     profile_directory
+    thumbnail
+    hero
+    mascot
   ).freeze
 
   BOOLEAN_KEYS = %i(
