@@ -32,7 +32,10 @@ class ActivityPub::InboxesController < Api::BaseController
   end
 
   def body
-    @body ||= request.body.read.force_encoding('UTF-8')
+    return @body if defined?(@body)
+    @body = request.body.read.force_encoding('UTF-8')
+    request.body.rewind if request.body.respond_to?(:rewind)
+    @body
   end
 
   def upgrade_account
