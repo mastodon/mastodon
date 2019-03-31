@@ -220,7 +220,8 @@ body {
   }
 }
 
-.search__input {
+.search__input,
+.search__input:focus {
   background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
   border-radius: $foresdon-primary-border-radius;
 }
@@ -228,6 +229,11 @@ body {
 .search-results {
   &__header {
     background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+
+  &__section h5 {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border: none;
   }
 }
 
@@ -240,7 +246,7 @@ body {
   }
 
   &.darker {
-    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    background: rgba($ui-base-color, 0.97);
   }
 }
 
