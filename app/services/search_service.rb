@@ -12,6 +12,8 @@ class SearchService < BaseService
     default_results.tap do |results|
       if url_query?
         results.merge!(url_resource_results) unless url_resource.nil?
+        results[:accounts].reject! { |item| item.blocking?(@account) }
+        results[:statuses].reject! { |status| StatusFilter.new(status, @account).filtered? }
       elsif @query.present?
         results[:accounts] = perform_accounts_search! if account_searchable?
         results[:statuses] = perform_statuses_search! if full_text_searchable?
