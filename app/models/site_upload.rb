@@ -17,7 +17,7 @@
 class SiteUpload < ApplicationRecord
   has_attached_file :file
 
-  validates_attachment_content_type :file, content_type: /\Aimage\/.*\z/
+  validates_attachment_content_type :file, content_type: /\Aimage\/.*\z/, presence: true
   validates :var, presence: true, uniqueness: true
 
   before_save :set_meta
