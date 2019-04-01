@@ -25,7 +25,8 @@ class Api::V1::Accounts::FollowerAccountsController < Api::BaseController
   end
 
   def default_accounts
-    Account.includes(:active_relationships, :account_stat).references(:active_relationships)
+    blocked_by_ids = Block.where(target_account_id: current_account.id).pluck(&:account_id)
+    Account.where.not(id: blocked_by_ids).includes(:active_relationships, :account_stat).references(:active_relationships)
   end
 
   def paginated_follows
