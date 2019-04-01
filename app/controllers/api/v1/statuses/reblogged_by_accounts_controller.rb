@@ -21,7 +21,8 @@ class Api::V1::Statuses::RebloggedByAccountsController < Api::BaseController
   end
 
   def default_accounts
-    Account.includes(:statuses, :account_stat).references(:statuses)
+    blocked_by_ids = current_account.nil? ? [] : Block.where(target_account_id: current_account.id).pluck(&:account_id)
+    Account.where.not(id: blocked_by_ids).includes(:statuses, :account_stat).references(:statuses)
   end
 
   def paginated_statuses

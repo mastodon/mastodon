@@ -21,7 +21,9 @@ class Api::V1::Statuses::FavouritedByAccountsController < Api::BaseController
   end
 
   def default_accounts
+    blocked_by_ids = current_account.nil? ? [] : Block.where(target_account_id: current_account.id).pluck(&:account_id)
     Account
+      .where.not(id: blocked_by_ids)
       .includes(:favourites, :account_stat)
       .references(:favourites)
       .where(favourites: { status_id: @status.id })
