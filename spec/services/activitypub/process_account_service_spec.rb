@@ -56,6 +56,8 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
     end
 
     it 'removes no longer present proofs' do
+      allow(ProofProvider::Keybase::Worker).to receive(:perform_async)
+
       account   = Fabricate(:account, username: 'alice', domain: 'example.com')
       old_proof = Fabricate(:account_identity_proof, account: account, provider: 'keybase', provider_username: 'Bob', token: 'b' * 66)
 

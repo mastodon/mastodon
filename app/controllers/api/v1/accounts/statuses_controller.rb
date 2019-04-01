@@ -3,6 +3,8 @@
 class Api::V1::Accounts::StatusesController < Api::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }
   before_action :set_account
+  before_action :check_account_suspension
+  before_action :check_account_block
   after_action :insert_pagination_headers
 
   respond_to :json
@@ -16,6 +18,14 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
 
   def set_account
     @account = Account.find(params[:account_id])
+  end
+
+  def check_account_suspension
+    gone if @account.suspended?
+  end
+
+  def check_account_block
+    gone if current_account.present? && @account.blocking?(current_account)
   end
 
   def load_statuses
