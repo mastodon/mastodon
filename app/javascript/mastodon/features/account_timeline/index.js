@@ -14,17 +14,14 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
 import { fetchAccountIdentityProofs } from '../../actions/identity_proofs';
 
-const emptyList = ImmutableList();
-
 const mapStateToProps = (state, { params: { accountId }, withReplies = false }) => {
   const path = withReplies ? `${accountId}:with_replies` : accountId;
 
   return {
-    statusIds: state.getIn(['timelines', `account:${path}`, 'items'], emptyList),
-    featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned`, 'items'], emptyList),
+    statusIds: state.getIn(['timelines', `account:${path}`, 'items'], ImmutableList()),
+    featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned`, 'items'], ImmutableList()),
     isLoading: state.getIn(['timelines', `account:${path}`, 'isLoading']),
-    hasMore: state.getIn(['timelines', `account:${path}`, 'hasMore']),
-    blockedBy: state.getIn(['relationships', accountId, 'blocked_by'], false),
+    hasMore:   state.getIn(['timelines', `account:${path}`, 'hasMore']),
   };
 };
 
@@ -40,7 +37,6 @@ class AccountTimeline extends ImmutablePureComponent {
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
     withReplies: PropTypes.bool,
-    blockedBy: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -48,11 +44,9 @@ class AccountTimeline extends ImmutablePureComponent {
 
     this.props.dispatch(fetchAccount(accountId));
     this.props.dispatch(fetchAccountIdentityProofs(accountId));
-
     if (!withReplies) {
       this.props.dispatch(expandAccountFeaturedTimeline(accountId));
     }
-
     this.props.dispatch(expandAccountTimeline(accountId, { withReplies }));
   }
 
@@ -60,11 +54,9 @@ class AccountTimeline extends ImmutablePureComponent {
     if ((nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) || nextProps.withReplies !== this.props.withReplies) {
       this.props.dispatch(fetchAccount(nextProps.params.accountId));
       this.props.dispatch(fetchAccountIdentityProofs(nextProps.params.accountId));
-
       if (!nextProps.withReplies) {
         this.props.dispatch(expandAccountFeaturedTimeline(nextProps.params.accountId));
       }
-
       this.props.dispatch(expandAccountTimeline(nextProps.params.accountId, { withReplies: nextProps.params.withReplies }));
     }
   }
@@ -74,7 +66,7 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
   render () {
-    const { shouldUpdateScroll, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy } = this.props;
+    const { shouldUpdateScroll, statusIds, featuredStatusIds, isLoading, hasMore } = this.props;
 
     if (!statusIds && isLoading) {
       return (
@@ -84,8 +76,6 @@ class AccountTimeline extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = blockedBy ? <FormattedMessage id='empty_column.account_timeline_blocked' defaultMessage='You are blocked' /> : <FormattedMessage id='empty_column.account_timeline' defaultMessage='No toots here!' />;
-
     return (
       <Column>
         <ColumnBackButton />
@@ -94,13 +84,13 @@ class AccountTimeline extends ImmutablePureComponent {
           prepend={<HeaderContainer accountId={this.props.params.accountId} />}
           alwaysPrepend
           scrollKey='account_timeline'
-          statusIds={blockedBy ? emptyList : statusIds}
+          statusIds={statusIds}
           featuredStatusIds={featuredStatusIds}
           isLoading={isLoading}
           hasMore={hasMore}
           onLoadMore={this.handleLoadMore}
           shouldUpdateScroll={shouldUpdateScroll}
-          emptyMessage={emptyMessage}
+          emptyMessage={<FormattedMessage id='empty_column.account_timeline' defaultMessage='No toots here!' />}
         />
       </Column>
     );
