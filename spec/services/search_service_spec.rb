@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 describe SearchService, type: :service do
+  let(:current_account) { Fabricate(:user).account }
+
   subject { described_class.new }
 
   describe '#call' do
@@ -10,7 +12,7 @@ describe SearchService, type: :service do
       it 'returns empty results without searching' do
         allow(AccountSearchService).to receive(:new)
         allow(Tag).to receive(:search_for)
-        results = subject.call('', nil, 10)
+        results = subject.call('', current_account, 10)
 
         expect(results).to eq(empty_results)
         expect(AccountSearchService).not_to have_received(:new)
@@ -27,33 +29,33 @@ describe SearchService, type: :service do
         it 'returns the empty results' do
           service = double(call: nil)
           allow(ResolveURLService).to receive(:new).and_return(service)
-          results = subject.call(@query, nil, 10)
+          results = subject.call(@query, current_account, 10)
 
-          expect(service).to have_received(:call).with(@query, on_behalf_of: nil)
+          expect(service).to have_received(:call).with(@query, on_behalf_of: current_account)
           expect(results).to eq empty_results
         end
       end
 
       context 'that finds an account' do
         it 'includes the account in the results' do
-          account = Account.new
+          account = Fabricate(:account)
           service = double(call: account)
           allow(ResolveURLService).to receive(:new).and_return(service)
 
-          results = subject.call(@query, nil, 10)
-          expect(service).to have_received(:call).with(@query, on_behalf_of: nil)
+          results = subject.call(@query, current_account, 10)
+          expect(service).to have_received(:call).with(@query, on_behalf_of: current_account)
           expect(results).to eq empty_results.merge(accounts: [account])
         end
       end
 
       context 'that finds a status' do
         it 'includes the status in the results' do
-          status = Status.new
+          status = Fabricate(:status)
           service = double(call: status)
           allow(ResolveURLService).to receive(:new).and_return(service)
 
-          results = subject.call(@query, nil, 10)
-          expect(service).to have_received(:call).with(@query, on_behalf_of: nil)
+          results = subject.call(@query, current_account, 10)
+          expect(service).to have_received(:call).with(@query, on_behalf_of: current_account)
           expect(results).to eq empty_results.merge(statuses: [status])
         end
       end
@@ -63,12 +65,12 @@ describe SearchService, type: :service do
       context 'that matches an account' do
         it 'includes the account in the results' do
           query = 'username'
-          account = Account.new
+          account = Fabricate(:account)
           service = double(call: [account])
           allow(AccountSearchService).to receive(:new).and_return(service)
 
-          results = subject.call(query, nil, 10)
-          expect(service).to have_received(:call).with(query, nil, limit: 10, offset: 0, resolve: false)
+          results = subject.call(query, current_account, 10)
+          expect(service).to have_received(:call).with(query, current_account, limit: 10, offset: 0, resolve: false)
           expect(results).to eq empty_results.merge(accounts: [account])
         end
       end
@@ -79,7 +81,7 @@ describe SearchService, type: :service do
           tag = Tag.new
           allow(Tag).to receive(:search_for).with('tag', 10, 0).and_return([tag])
 
-          results = subject.call(query, nil, 10)
+          results = subject.call(query, current_account, 10)
           expect(Tag).to have_received(:search_for).with('tag', 10, 0)
           expect(results).to eq empty_results.merge(hashtags: [tag])
         end
@@ -87,7 +89,7 @@ describe SearchService, type: :service do
           query = '@username'
           allow(Tag).to receive(:search_for)
 
-          results = subject.call(query, nil, 10)
+          results = subject.call(query, current_account, 10)
           expect(Tag).not_to have_received(:search_for)
           expect(results).to eq empty_results
         end
