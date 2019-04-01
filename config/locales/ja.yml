@@ -163,8 +163,8 @@ ja:
       search: 検索
       shared_inbox_url: Shared inbox URL
       show:
-        created_reports: このアカウントで作られたレポート
-        targeted_reports: このアカウントについてのレポート
+        created_reports: このアカウントで作られた通報
+        targeted_reports: このアカウントについての通報
       silence: サイレンス
       silenced: サイレンス済み
       statuses: トゥート数
@@ -180,7 +180,7 @@ ja:
       web: Web
     action_logs:
       actions:
-        assigned_to_self_report: "%{name} さんがレポート %{target} を自身の担当に割り当てました"
+        assigned_to_self_report: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
         change_email_user: "%{name} さんが %{target} さんのメールアドレスを変更しました"
         confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
         create_account_warning: "%{name} さんが %{target} さんに警告メールを送信しました"
@@ -200,12 +200,12 @@ ja:
         memorialize_account: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
         promote_user: "%{name} さんが %{target} さんを昇格しました"
         remove_avatar_user: "%{name} さんが %{target} さんのアイコンを削除しました"
-        reopen_report: "%{name} さんがレポート %{target} を再び開きました"
+        reopen_report: "%{name} さんが通報 %{target} を再び開きました"
         reset_password_user: "%{name} さんが %{target} さんのパスワードをリセットしました"
-        resolve_report: "%{name} さんがレポート %{target} を解決済みにしました"
+        resolve_report: "%{name} さんが通報 %{target} を解決済みにしました"
         silence_account: "%{name} さんが %{target} さんをサイレンスにしました"
         suspend_account: "%{name} さんが %{target} さんを停止しました"
-        unassigned_report: "%{name} さんがレポート %{target} の担当を外しました"
+        unassigned_report: "%{name} さんが通報 %{target} の担当を外しました"
         unsilence_account: "%{name} さんが %{target} さんのサイレンスを解除しました"
         unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
         update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
@@ -245,9 +245,10 @@ ja:
       feature_profile_directory: ディレクトリ
       feature_registrations: 新規登録
       feature_relay: 連合リレー
+      feature_timeline_preview: タイムラインプレビュー
       features: 機能
       hidden_service: 秘匿サービスとの連合
-      open_reports: 未解決のレポート
+      open_reports: 未解決の通報
       recent_users: 最近登録したユーザー
       search: 全文検索
       single_user_mode: シングルユーザーモード
@@ -275,10 +276,10 @@ ja:
         title: 新規ドメインブロック
       reject_media: メディアファイルを拒否
       reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
-      reject_reports: レポートを拒否
-      reject_reports_hint: このドメインからのレポートをすべて無視します。停止とは無関係です
+      reject_reports: 通報を拒否
+      reject_reports_hint: このドメインからの通報をすべて無視します。停止とは無関係です
       rejecting_media: メディアファイルを拒否中
-      rejecting_reports: レポートを拒否中
+      rejecting_reports: 通報を拒否中
       severity:
         silence: サイレンス中
         suspend: 停止中
@@ -319,7 +320,7 @@ ja:
       total_blocked_by_us: ブロック合計
       total_followed_by_them: 被フォロー合計
       total_followed_by_us: フォロー合計
-      total_reported: レポート合計
+      total_reported: 通報合計
       total_storage: 添付されたメディア
     invites:
       deactivate_all: すべて無効化
@@ -345,19 +346,19 @@ ja:
       status: ステータス
       title: リレー
     report_notes:
-      created_msg: レポートメモを書き込みました！
-      destroyed_msg: レポートメモを削除しました！
+      created_msg: 通報メモを書き込みました！
+      destroyed_msg: 通報メモを削除しました！
     reports:
       account:
         note: メモ
-        report: レポート
-      action_taken_by: レポート処理者
+        report: 通報
+      action_taken_by: 通報処理者
       are_you_sure: 本当に実行しますか？
       assign_to_self: 担当になる
       assigned: 担当者
       comment:
         none: なし
-      created_at: レポート日時
+      created_at: 通報日時
       mark_as_resolved: 解決済みとしてマーク
       mark_as_unresolved: 未解決として再び開く
       notes:
@@ -367,13 +368,13 @@ ja:
         delete: 削除
         placeholder: どのような措置が取られたか、または関連する更新を記述してください…
       reopen: 再び開く
-      report: レポート#%{id}
+      report: 通報#%{id}
       reported_account: 報告対象アカウント
       reported_by: 報告者
       resolved: 解決済み
-      resolved_msg: レポートを解決済みにしました！
+      resolved_msg: 通報を解決済みにしました！
       status: ステータス
-      title: レポート
+      title: 通報
       unassign: 担当を外す
       unresolved: 未解決
       updated_at: 更新日時
@@ -386,7 +387,7 @@ ja:
         title: 新規ユーザーが自動フォローするアカウント
       contact_information:
         email: ビジネスメールアドレス
-        username: 連絡先のユーザー名
+        username: 連絡先ユーザー名
       custom_css:
         desc_html: 全ページに適用されるCSSの編集
         title: カスタムCSS
@@ -586,6 +587,9 @@ ja:
       content: もうしわけありませんが、なにかが間違っています。
       title: このページは正しくありません
     noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="%{apps_path}">Mastodonネイティブアプリ</a>を探すことができます。
+  existing_username_validator:
+    not_found: そのようなユーザー名はローカルに見つかりませんでした
+    not_found_multiple: "%{usernames} は見つかりませんでした"
   exports:
     archive_takeout:
       date: 日時
@@ -629,10 +633,31 @@ ja:
     all: すべて
     changes_saved_msg: 正常に変更されました！
     copy: コピー
+    order_by: 並び順
     save_changes: 変更を保存
     validation_errors:
       one: エラーが発生しました！ 以下のエラーを確認してください
       other: エラーが発生しました！ 以下の%{count}個のエラーを確認してください
+  html_validator:
+    invalid_markup: '無効なHTMLマークアップが含まれています: %{error}'
+  identity_proofs:
+    active: アクティブ
+    authorize: 許可する
+    authorize_connection_prompt: この暗号化接続を許可しますか？
+    errors:
+      failed: 暗号化接続に失敗しました。%{provider}からもう一度やり直してください。
+      keybase:
+        invalid_token: Keybaseトークンは16進数で66文字のハッシュである必要があります
+        verification_failed: KeybaseはこのトークンをKeybaseユーザー%{kb_username}の署名として認識しませんでした。Keybaseから再試行してください。
+      wrong_user: "%{current}としてログインしている間%{proving}の証明を作成することはできません。%{proving}としてログインし、もう一度やり直してください。"
+    explanation_html: ここではKeybaseのような他のサービスのアカウントと暗号化し関連づけることができます。これにより他の人が暗号化されたメッセージを送信したり、その内容を信用できるようになります。
+    i_am_html: I am %{username} on %{service}.
+    identity: Identity
+    inactive: 非アクティブ
+    publicize_checkbox: 'そしてこれをトゥートしてください:'
+    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    status: 認証状態
+    view_proof: 証明を表示
   imports:
     modes:
       merge: 統合
@@ -736,10 +761,11 @@ ja:
     truncate: "&hellip;"
   polls:
     errors:
+      already_voted: このアンケートには投票済みです
       duplicate_options: に同じものがあります
       duration_too_long: が長過ぎます
       duration_too_short: が短過ぎます
-      expired: 既に終了している投票です
+      expired: アンケートは既に終了しました
       over_character_limit: は%{max}文字より長くすることはできません
       too_few_options: は複数必要です
       too_many_options: は%{max}個までです
@@ -748,6 +774,19 @@ ja:
     other: その他
     publishing: 投稿
     web: ウェブ
+  relationships:
+    activity: 活動
+    dormant: 非アクティブ
+    last_active: 最後の活動
+    most_recent: 新着
+    moved: 引っ越し済み
+    mutual: 相互
+    primary: 標準
+    relationship: 関係性
+    remove_selected_domains: 選択したドメインのフォロワーを全て解除
+    remove_selected_followers: 選択したフォロワーを解除
+    remove_selected_follows: 選択したユーザーをフォロー解除
+    status: 状態
   remote_follow:
     acct: あなたの ユーザー名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした
@@ -822,10 +861,12 @@ ja:
     edit_profile: プロフィールを編集
     export: データのエクスポート
     featured_tags: 注目のハッシュタグ
+    identity_proofs: Identity proofs
     import: データのインポート
     migrate: アカウントの引っ越し
     notifications: 通知
     preferences: ユーザー設定
+    relationships: フォロー・フォロワー
     settings: 設定
     two_factor_authentication: 二段階認証
     your_apps: アプリ
@@ -850,12 +891,12 @@ ja:
       limit: 固定できるトゥート数の上限に達しました
       ownership: 他人のトゥートを固定することはできません
       private: 非公開のトゥートを固定することはできません
-      reblog: ブーストされたトゥートを固定することはできません
+      reblog: ブーストを固定することはできません
     poll:
       total_votes:
-        one: "%{count} vote"
-        other: "%{count} votes"
-      vote: Vote
+        one: "%{count}票"
+        other: "%{count}票"
+      vote: 投票
     show_more: もっと見る
     sign_in_to_participate: ログインして会話に参加
     title: '%{name}: "%{quote}"'
