@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ProcessFeedService, type: :service do
+  let!(:local_account) { Fabricate(:account) }
+
   subject { ProcessFeedService.new }
 
   describe 'processing a feed' do

@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe FetchAtomService, type: :service do
   describe '#call' do
     let(:url) { 'http://example.com' }
+    let!(:local_account) { Fabricate(:account) }
+
     subject { FetchAtomService.new.call(url) }
 
     context 'url is blank' do

@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Api::SubscriptionsController, type: :controller do
   render_views
 
+  let!(:local_account) { Fabricate(:account) }
+
   let(:account) { Fabricate(:account, username: 'gargron', domain: 'quitter.no', remote_url: 'topic_url', secret: 'abc') }
 
   describe 'GET #show' do

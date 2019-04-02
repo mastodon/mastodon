@@ -33,7 +33,11 @@ class InstanceActorPresenter < ActiveModelSerializers::Model
   end
 
   def public_key
-    nil # TODO
+    Account.local.first.public_key
+  end
+
+  def keypair
+    Account.local.first.keypair
   end
 
   def locked
