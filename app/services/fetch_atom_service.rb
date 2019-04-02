@@ -31,7 +31,7 @@ class FetchAtomService < BaseService
     accept = 'text/html'
     accept = 'application/activity+json, application/ld+json; profile="https://www.w3.org/ns/activitystreams", application/atom+xml, ' + accept unless @unsupported_activity
 
-    Request.new(:get, @url).add_headers('Accept' => accept).perform(&block)
+    Request.new(:get, @url).add_headers('Accept' => accept).on_behalf_of(InstanceActorPresenter.new).perform(&block)
   end
 
   def process_response(response, terminal = false)

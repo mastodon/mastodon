@@ -9,6 +9,14 @@ class InstanceActorPresenter < ActiveModelSerializers::Model
     :application
   end
 
+  def local?
+    true
+  end
+
+  def to_webfinger_s
+    "acct:#{Rails.configuration.x.local_domain}@#{Rails.configuration.x.local_domain}"
+  end
+
   def display_name
     Rails.configuration.x.local_domain
   end

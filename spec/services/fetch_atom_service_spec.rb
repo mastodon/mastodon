@@ -22,7 +22,7 @@ RSpec.describe FetchAtomService, type: :service do
 
     context 'raise OpenSSL::SSL::SSLError' do
       before do
-        allow(Request).to receive_message_chain(:new, :add_headers, :perform).and_raise(OpenSSL::SSL::SSLError)
+        allow(Request).to receive_message_chain(:new, :add_headers, :on_behalf_of, :perform).and_raise(OpenSSL::SSL::SSLError)
       end
 
       it 'output log and return nil' do
@@ -33,7 +33,7 @@ RSpec.describe FetchAtomService, type: :service do
 
     context 'raise HTTP::ConnectionError' do
       before do
-        allow(Request).to receive_message_chain(:new, :add_headers, :perform).and_raise(HTTP::ConnectionError)
+        allow(Request).to receive_message_chain(:new, :add_headers, :on_behalf_of, :perform).and_raise(HTTP::ConnectionError)
       end
 
       it 'output log and return nil' do
