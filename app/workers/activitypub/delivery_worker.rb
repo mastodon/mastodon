@@ -15,7 +15,7 @@ class ActivityPub::DeliveryWorker
 
     @options        = options.with_indifferent_access
     @json           = json
-    @source_account = Account.find(source_account_id)
+    @source_account = source_account_id == 'instance-actor' ? InstanceActorPresenter.new : Account.find(source_account_id)
     @inbox_url      = inbox_url
 
     perform_request

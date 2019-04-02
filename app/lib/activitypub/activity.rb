@@ -70,6 +70,10 @@ class ActivityPub::Activity
     ActivityPub::TagManager.instance.uri_to_resource(uri, Account)
   end
 
+  def instance_actor_uri?(uri)
+    ActivityPub::TagManager.instance.instance_actor_uri?(uri)
+  end
+
   def object_uri
     @object_uri ||= value_or_id(@object)
   end

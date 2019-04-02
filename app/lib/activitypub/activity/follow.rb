@@ -2,6 +2,11 @@
 
 class ActivityPub::Activity::Follow < ActivityPub::Activity
   def perform
+    if instance_actor_uri?(object_uri)
+      reject_follow_request!(InstanceActorPresenter.new)
+      return
+    end
+
     target_account = account_from_uri(object_uri)
 
     return if target_account.nil? || !target_account.local? || delete_arrived_first?(@json['id']) || @account.requested?(target_account)
@@ -28,7 +33,7 @@ class ActivityPub::Activity::Follow < ActivityPub::Activity
   end
 
   def reject_follow_request!(target_account)
-    json = ActiveModelSerializers::SerializableResource.new(FollowRequest.new(account: @account, target_account: target_account, uri: @json['id']), serializer: ActivityPub::RejectFollowSerializer, adapter: ActivityPub::Adapter).to_json
+    json = ActiveModelSerializers::SerializableResource.new(FollowRequestPresenter.new(account: @account, target_account: target_account, uri: @json['id']), serializer: ActivityPub::RejectFollowSerializer, adapter: ActivityPub::Adapter).to_json
     ActivityPub::DeliveryWorker.perform_async(json, target_account.id, @account.inbox_url)
   end
 end

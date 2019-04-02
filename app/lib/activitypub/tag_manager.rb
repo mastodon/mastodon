@@ -103,6 +103,12 @@ class ActivityPub::TagManager
     !host.nil? && (::TagManager.instance.local_domain?(host) || ::TagManager.instance.web_domain?(host))
   end
 
+  def instance_actor_uri?(uri)
+    return false if uri.nil?
+
+    uri == instance_actor_url
+  end
+
   def uri_to_local_id(uri, param = :id)
     path_params = Rails.application.routes.recognize_path(uri)
     path_params[param]

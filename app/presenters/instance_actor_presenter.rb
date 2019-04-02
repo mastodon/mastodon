@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class InstanceActorPresenter < ActiveModelSerializers::Model
-  attributes :display_name, :username, :summary, :avatar, :header, :locked, :public_key
+  def id
+    'instance-actor'
+  end
 
   def object_type
     :application
