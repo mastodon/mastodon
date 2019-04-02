@@ -28,6 +28,11 @@ Rails.application.routes.draw do
   get 'intent', to: 'intents#show'
   get 'custom.css', to: 'custom_css#show', as: :custom_css
 
+  resource :instance_actor, path: 'instance-actor', only: [:show] do
+    resource :inbox, only: [:create], module: :activitypub
+    resources :followers, only: [:index], controller: :instance_followers
+  end
+
   devise_scope :user do
     get '/invite/:invite_code', to: 'auth/registrations#new', as: :public_invite
     match '/auth/finish_signup' => 'auth/confirmations#finish_signup', via: [:get, :patch], as: :finish_signup
@@ -40,6 +45,8 @@ Rails.application.routes.draw do
     passwords:          'auth/passwords',
     confirmations:      'auth/confirmations',
   }
+
+  resource :instance_actor
 
   get '/users/:username', to: redirect('/@%{username}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
