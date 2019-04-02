@@ -7,15 +7,25 @@ module WellKnown
     before_action { response.headers['Vary'] = 'Accept' }
 
     def show
-      @account = Account.find_local!(username_from_resource)
+      username = username_from_resource
 
-      respond_to do |format|
-        format.any(:json, :html) do
-          render json: @account, serializer: WebfingerSerializer, content_type: 'application/jrd+json'
+      if username == Rails.configuration.x.local_domain.to_s
+        respond_to do |format|
+          format.any(:json, :html) do
+            render json: {}, serializer: InstanceWebfingerSerializer, content_type: 'application/jrd+json'
+          end
         end
+      else
+        @account = Account.find_local!(username_from_resource)
 
-        format.xml do
-          render content_type: 'application/xrd+xml'
+        respond_to do |format|
+          format.any(:json, :html) do
+            render json: @account, serializer: WebfingerSerializer, content_type: 'application/jrd+json'
+          end
+
+          format.xml do
+            render content_type: 'application/xrd+xml'
+          end
         end
       end
 
