@@ -156,5 +156,22 @@ describe AccountSearchService, type: :service do
         expect(results).to eq []
       end
     end
+
+    describe 'should not include accounts blocking the requester' do
+      let!(:blocked) { Fabricate(:account) }
+      let!(:blocker) { Fabricate(:account, username: 'exact') }
+
+      before do
+        blocker.block!(blocked)
+      end
+
+      it 'returns the fuzzy match first, and does not return suspended exacts' do
+        partial = Fabricate(:account, username: 'exactness')
+
+        results = subject.call('exact', blocked, limit: 10)
+        expect(results.size).to eq 1
+        expect(results).to eq [partial]
+      end
+    end
   end
 end

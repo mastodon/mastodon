@@ -236,11 +236,7 @@ module Mastodon
         end
 
         if [404, 410].include?(code)
-          unless options[:dry_run]
-            SuspendAccountService.new.call(account)
-            account.destroy
-          end
-
+          SuspendAccountService.new.call(account, destroy: true) unless options[:dry_run]
           culled += 1
           say('+', :green, false)
         else
