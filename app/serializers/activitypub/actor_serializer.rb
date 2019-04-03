@@ -8,7 +8,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   context_extensions :manually_approves_followers, :featured, :also_known_as,
                      :moved_to, :property_value, :hashtag, :emoji, :identity_proof
 
-  attributes :id, :type, :following, :followers,
+  attributes :id, :type, :following, :followers, :endorsed,
              :inbox, :outbox, :featured,
              :preferred_username, :name, :summary,
              :url, :manually_approves_followers
@@ -53,6 +53,10 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
   def followers
     account_followers_url(object)
+  end
+
+  def endorsed
+    account_endorsed_index_url(object)
   end
 
   def inbox
