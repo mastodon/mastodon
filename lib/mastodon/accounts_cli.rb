@@ -219,6 +219,7 @@ module Mastodon
     def cull
       skip_threshold = 7.days.ago
       culled         = 0
+      dry_run_culled = []
       skip_domains   = Set.new
       dry_run        = options[:dry_run] ? ' (DRY RUN)' : ''
 
@@ -236,7 +237,11 @@ module Mastodon
         end
 
         if [404, 410].include?(code)
-          SuspendAccountService.new.call(account, destroy: true) unless options[:dry_run]
+          if options[:dry_run]
+            dry_run_culled << account.acct
+          else
+            SuspendAccountService.new.call(account, destroy: true)
+          end
           culled += 1
           say('+', :green, false)
         else
@@ -251,6 +256,11 @@ module Mastodon
       unless skip_domains.empty?
         say('The following servers were not available during the check:', :yellow)
         skip_domains.each { |domain| say('    ' + domain) }
+      end
+
+      unless dry_run_culled.empty?
+        say('The following accounts would have been deleted:', :green)
+        dry_run_culled.each { |account| say('    ' + account) }
       end
     end
 
