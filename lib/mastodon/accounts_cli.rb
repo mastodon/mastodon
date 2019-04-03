@@ -226,6 +226,7 @@ module Mastodon
       Account.remote.where(protocol: :activitypub).partitioned.find_each do |account|
         next if account.updated_at >= skip_threshold || (account.last_webfingered_at.present? && account.last_webfingered_at >= skip_threshold)
 
+        code = 0
         unless skip_domains.include?(account.domain)
           begin
             code = Request.new(:head, account.uri).perform(&:code)
