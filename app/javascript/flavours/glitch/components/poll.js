@@ -9,40 +9,11 @@ import Motion from 'mastodon/features/ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import escapeTextContentForBrowser from 'escape-html';
 import emojify from 'mastodon/features/emoji/emoji';
+import RelativeTimestamp from './relative_timestamp';
 
 const messages = defineMessages({
-  moments: { id: 'time_remaining.moments', defaultMessage: 'Moments remaining' },
-  seconds: { id: 'time_remaining.seconds', defaultMessage: '{number, plural, one {# second} other {# seconds}} left' },
-  minutes: { id: 'time_remaining.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}} left' },
-  hours: { id: 'time_remaining.hours', defaultMessage: '{number, plural, one {# hour} other {# hours}} left' },
-  days: { id: 'time_remaining.days', defaultMessage: '{number, plural, one {# day} other {# days}} left' },
   closed: { id: 'poll.closed', defaultMessage: 'Closed' },
 });
-
-const SECOND = 1000;
-const MINUTE = 1000 * 60;
-const HOUR   = 1000 * 60 * 60;
-const DAY    = 1000 * 60 * 60 * 24;
-
-const timeRemainingString = (intl, date, now) => {
-  const delta = date.getTime() - now;
-
-  let relativeTime;
-
-  if (delta < 10 * SECOND) {
-    relativeTime = intl.formatMessage(messages.moments);
-  } else if (delta < MINUTE) {
-    relativeTime = intl.formatMessage(messages.seconds, { number: Math.floor(delta / SECOND) });
-  } else if (delta < HOUR) {
-    relativeTime = intl.formatMessage(messages.minutes, { number: Math.floor(delta / MINUTE) });
-  } else if (delta < DAY) {
-    relativeTime = intl.formatMessage(messages.hours, { number: Math.floor(delta / HOUR) });
-  } else {
-    relativeTime = intl.formatMessage(messages.days, { number: Math.floor(delta / DAY) });
-  }
-
-  return relativeTime;
-};
 
 const makeEmojiMap = record => record.get('emojis').reduce((obj, emoji) => {
   obj[`:${emoji.get('shortcode')}:`] = emoji.toJS();
@@ -146,7 +117,7 @@ class Poll extends ImmutablePureComponent {
       return null;
     }
 
-    const timeRemaining = poll.get('expired') ? intl.formatMessage(messages.closed) : timeRemainingString(intl, new Date(poll.get('expires_at')), intl.now());
+    const timeRemaining = poll.get('expired') ? intl.formatMessage(messages.closed) : <RelativeTimestamp timestamp={poll.get('expires_at')} futureDate />;
     const showResults   = poll.get('voted') || poll.get('expired');
     const disabled      = this.props.disabled || Object.entries(this.state.selected).every(item => !item);
 
