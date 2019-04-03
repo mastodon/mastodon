@@ -91,9 +91,9 @@ export default class StatusContent extends React.PureComponent {
   }
 
   handleMouseUp = (e) => {
-    const { parseClick } = this.props;
+    const { parseClick, disabled } = this.props;
 
-    if (!this.startXY) {
+    if (disabled || !this.startXY) {
       return;
     }
 

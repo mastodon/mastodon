@@ -228,6 +228,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             onExpandedToggle={onToggleHidden}
             parseClick={this.parseClick}
             onUpdate={this.handleChildUpdate}
+            disabled
           />
 
           <div className='detailed-status__meta'>
