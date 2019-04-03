@@ -16,6 +16,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
   has_many :virtual_tags, key: :tag
+  has_many :virtual_featured_tags, key: :featured_tag
   has_many :virtual_attachments, key: :attachment
 
   attribute :moved_to, if: :moved?
@@ -114,6 +115,10 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
     object.emojis + object.tags
   end
 
+  def virtual_featured_tags
+    object.featured_tags
+  end
+
   def virtual_attachments
     object.fields + object.identity_proofs.active
   end
@@ -144,6 +149,32 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
     def name
       "##{object.name}"
+    end
+  end
+
+  class FeaturedTagSerializer < ActivityPub::Serializer
+    include RoutingHelper
+
+    attributes :type, :href, :name, :statuses_count, :last_status_at
+
+    def type
+      'Hashtag'
+    end
+
+    def href
+      short_account_tag_url(Account.find(object.account_id), object.name)
+    end
+
+    def name
+      "##{object.name}"
+    end
+
+    def statuses_count
+      "#{object.statuses_count}"
+    end
+
+    def last_status_at
+      object.last_status_at.iso8601
     end
   end
 
