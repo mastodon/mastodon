@@ -3,6 +3,8 @@
 class FollowerAccountsController < ApplicationController
   include AccountControllerConcern
 
+  before_action :set_cache_headers
+
   def index
     respond_to do |format|
       format.html do
@@ -16,6 +18,11 @@ class FollowerAccountsController < ApplicationController
 
       format.json do
         raise Mastodon::NotPermittedError if params[:page].present? && @account.user_hides_network?
+
+        if params[:page].blank?
+          skip_session!
+          expires_in 3.minutes, public: true
+        end
 
         render json: collection_presenter,
                serializer: ActivityPub::CollectionSerializer,

@@ -10,6 +10,7 @@ class Api::V1::AccountsController < Api::BaseController
   before_action :require_user!, except: [:show, :create]
   before_action :set_account, except: [:create]
   before_action :check_account_suspension, only: [:show]
+  before_action :check_account_block, only: [:show]
   before_action :check_enabled_registrations, only: [:create]
 
   respond_to :json
@@ -73,6 +74,10 @@ class Api::V1::AccountsController < Api::BaseController
 
   def check_account_suspension
     gone if @account.suspended?
+  end
+
+  def check_account_block
+    gone if current_account.present? && @account.blocking?(current_account)
   end
 
   def account_params
