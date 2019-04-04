@@ -196,7 +196,7 @@ cs:
         destroy_domain_block: "%{name} odblokoval/a doménu %{target}"
         destroy_email_domain_block: "%{name} odebral/a e-mailovou doménu %{target} z černé listiny"
         destroy_status: "%{name} odstranil/a toot uživatele %{target}"
-        disable_2fa_user: "%{name} vypnul/a požadavek pro dvoufaktorovou autentikaci pro uživatele %{target}"
+        disable_2fa_user: "%{name} vypnul/a dvoufázové ověřování pro uživatele %{target}"
         disable_custom_emoji: "%{name} zakázal/a emoji %{target}"
         disable_user: "%{name} zakázal/a přihlašování pro uživatele %{target}"
         enable_custom_emoji: "%{name} povolil/a emoji %{target}"
@@ -640,6 +640,7 @@ cs:
     all: Všechny
     changes_saved_msg: Změny byly úspěšně uloženy!
     copy: Kopírovat
+    order_by: Seřadit od
     save_changes: Uložit změny
     validation_errors:
       few: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyby níže
@@ -787,8 +788,8 @@ cs:
   relationships:
     activity: Aktivita účtu
     dormant: Nečinné
-    last_active: Naposledy aktivní
-    most_recent: Nedávno přidaní
+    last_active: Naposledy aktivních
+    most_recent: Naposledy přidaných
     moved: Přesunuté
     mutual: Vzájemné
     primary: Primární
@@ -878,7 +879,7 @@ cs:
     preferences: Předvolby
     relationships: Sledovaní a sledující
     settings: Nastavení
-    two_factor_authentication: Dvoufaktorové ověřování
+    two_factor_authentication: Dvoufázové ověřování
     your_apps: Vaše aplikace
   statuses:
     attached:
@@ -953,7 +954,7 @@ cs:
 
       <h3 id="protect">Jak vaše informace chráníme?</h3>
 
-      <p>Implenentujeme různá bezpečnostní opatření pro udržování bezpečnosti vašich osobních dat, když zadáváte, odesíláte, či přistupujete k vašim osobním datům. Mimo jiné je vaše relace v prohlížeči, jakož i provoz mezi vašimi aplikacemi a API, zabezpečena pomocí SSL, a vaše heslo je hashováno pomocí silného jednosměrného algoritmu. Pro větší zabezpečení vašeho účtu můžete povolit dvoufaktorovou autentikaci.</p>
+      <p>Implenentujeme různá bezpečnostní opatření pro udržování bezpečnosti vašich osobních dat, když zadáváte, odesíláte, či přistupujete k vašim osobním datům. Mimo jiné je vaše relace v prohlížeči, jakož i provoz mezi vašimi aplikacemi a API, zabezpečena pomocí SSL, a vaše heslo je hashováno pomocí silného jednosměrného algoritmu. Pro větší zabezpečení vašeho účtu můžete povolit dvoufázové ověřování.</p>
 
       <hr class="spacer" />
 
@@ -1017,18 +1018,18 @@ cs:
       default: "%d. %b %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Pro potvrzení zadejte kód vygenerovaný vaší autentikační aplikací
-    description_html: Povolíte-li <strong>dvoufaktorové ověřování</strong>, budete při přihlášení potřebovat telefon, který vám vygeneruje přístupové tokeny, které musíte zadat.
+    code_hint: Pro potvrzení zadejte kód vygenerovaný vaší ověřovací aplikací
+    description_html: Povolíte-li <strong>dvoufázové ověřování</strong>, budete při přihlášení potřebovat telefon, který vám vygeneruje přístupové tokeny, které musíte zadat.
     disable: Zakázat
     enable: Povolit
-    enabled: Dvoufaktorové ověřování je povoleno
-    enabled_success: Dvoufaktorové ověřování bylo úspěšně povoleno
+    enabled: Dvoufázové ověřování je povoleno
+    enabled_success: Dvoufázové ověřování bylo úspěšně povoleno
     generate_recovery_codes: Vygenerovat záložní kódy
     instructions_html: "<strong>Naskenujte tento QR kód Google Authenticatorem nebo jinou TOTP aplikací na vašem telefonu</strong>. Od teď bude tato aplikace generovat tokeny, které budete muset zadat při přihlášení."
     lost_recovery_codes: Záložní kódy vám dovolí dostat se k vašemu účtu, pokud ztratíte telefon. Ztratíte-li záložní kódy, můžete je zde znovu vygenerovat. Vaše staré záložní kódy budou zneplatněny.
     manual_instructions: 'Nemůžete-li oskenovat QR kód a je potřeba ho zadat ručně, zde je tajemství v prostém textu:'
     recovery_codes: Záložní kódy pro obnovu
-    recovery_codes_regenerated: Záložní kódy byly úspěšně znovu vygenerované
+    recovery_codes_regenerated: Záložní kódy byly úspěšně znovu vygenerovány
     recovery_instructions_html: Ztratíte-li někdy přístup k vašemu telefonu, můžete k získání přístupu k účtu použít jeden ze záložních kódů. <strong>Uchovávejte tyto kódy v bezpečí</strong>. Můžete si je například vytisknout a uložit je mezi jiné důležité dokumenty.
     setup: Nastavit
     wrong_code: Zadaný kód byl neplatný! Je čas na serveru a na zařízení správný?
@@ -1073,7 +1074,7 @@ cs:
   users:
     follow_limit_reached: Nemůžete sledovat více než %{limit} lidí
     invalid_email: E-mailová adresa je neplatná
-    invalid_otp_token: Neplatný kód pro dvoufaktorovou autentikaci
+    invalid_otp_token: Neplatný kód pro dvoufázové ověřování
     otp_lost_help_html: Pokud jste ztratil/a přístup k oběma, můžete se spojit %{email}
     seamless_external_login: Jste přihlášen/a přes externí službu, nastavení hesla a e-mailu proto nejsou dostupná.
     signed_in_as: 'Přihlášen/a jako:'
