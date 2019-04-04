@@ -78,6 +78,10 @@ const initialState = ImmutableMap({
   tagTemplate: '',
 });
 
+function getTagTemplate() {
+  return tagTemplate.get(me) || '';
+}
+
 const initialPoll = ImmutableMap({
   options: ImmutableList(['', '']),
   expires_in: 24 * 3600,
@@ -108,7 +112,7 @@ function clearAll(state) {
     map.update('media_attachments', list => list.clear());
     map.set('poll', null);
     map.set('idempotencyKey', uuid());
-    map.set('tagTemplate', tagTemplate.get(me));
+    map.set('tagTemplate', getTagTemplate());
   });
 };
 
@@ -299,7 +303,7 @@ export default function compose(state = initialState, action) {
       map.set('privacy', state.get('default_privacy'));
       map.set('poll', null);
       map.set('idempotencyKey', uuid());
-      map.set('tagTemplate', tagTemplate.get(me));
+      map.set('tagTemplate', getTagTemplate());
     });
   case COMPOSE_SUBMIT_REQUEST:
     return state.set('is_submitting', true);
@@ -377,7 +381,7 @@ export default function compose(state = initialState, action) {
       map.set('focusDate', new Date());
       map.set('caretPosition', null);
       map.set('idempotencyKey', uuid());
-      map.set('tagTemplate', tagTemplate.get(me));
+      map.set('tagTemplate', getTagTemplate());
 
       if (action.status.get('spoiler_text').length > 0) {
         map.set('spoiler', true);
