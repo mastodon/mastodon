@@ -14,6 +14,13 @@ describe UserSettingsDecorator do
       expect(user.settings['notification_emails']['follow']).to eq true
     end
 
+    it 'updates the user settings value for notification sounds' do
+      values = { 'notification_sounds' => { 'settings_notif_sound' => '0' } }
+
+      settings.update(values)
+      expect(user.settings['notification_sounds']['settings_notif_sound']).to eq false
+    end
+
     it 'updates the user settings value for interactions' do
       values = { 'interactions' => { 'must_be_follower' => '0' } }
 

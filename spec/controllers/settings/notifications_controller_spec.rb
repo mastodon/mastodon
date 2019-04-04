@@ -20,10 +20,12 @@ describe Settings::NotificationsController do
     it 'updates notifications settings' do
       user.settings['notification_emails'] = user.settings['notification_emails'].merge('follow' => false)
       user.settings['interactions'] = user.settings['interactions'].merge('must_be_follower' => true)
+      user.settings['notification_sounds'] = user.settings['notification_sounds'].merge('setting_notif_sound' => false)
 
       put :update, params: {
         user: {
           notification_emails: { follow: '1' },
+          notification_sounds: { setting_notif_sound: '1' },
           interactions: { must_be_follower: '0' },
         }
       }
@@ -31,6 +33,7 @@ describe Settings::NotificationsController do
       expect(response).to redirect_to(settings_notifications_path)
       user.reload
       expect(user.settings['notification_emails']['follow']).to be true
+      expect(user.settings['notification_sounds']['setting_notif_sound']).to be true
       expect(user.settings['interactions']['must_be_follower']).to be false
     end
   end

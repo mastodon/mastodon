@@ -25,5 +25,10 @@
       = ff.input :must_be_following, as: :boolean, wrapper: :with_label
       = ff.input :must_be_following_dm, as: :boolean, wrapper: :with_label
 
+  .fields-group
+    = f.simple_fields_for :notification_sounds, hash_to_object(current_user.settings.notification_sounds) do |ff|
+      = ff.input :setting_notif_volume, as: :boolean, wrapper: :with_label
+      = ff.input :setting_notif_sound, as: :boolean, wrapper: :with_label
+
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

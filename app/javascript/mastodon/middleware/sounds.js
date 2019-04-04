@@ -1,3 +1,5 @@
+import { notificationSoundEnabled, lowerNotificationSoundVolume } from '../initial_state';
+
 const createAudio = sources => {
   const audio = new Audio();
   sources.forEach(({ type, src }) => {
@@ -18,7 +20,11 @@ const play = audio => {
       audio.currentTime = 0;
     }
   }
-
+  if(lowerNotificationSoundVolume) {
+    audio.volume = 0.2;
+  } else {
+    audio.volume = 1.0;
+  }
   audio.play();
 };
 
@@ -37,7 +43,7 @@ export default function soundsMiddleware() {
   };
 
   return () => next => action => {
-    if (action.meta && action.meta.sound && soundCache[action.meta.sound]) {
+    if (action.meta && action.meta.sound && soundCache[action.meta.sound] && notificationSoundEnabled) {
       play(soundCache[action.meta.sound]);
     }
 

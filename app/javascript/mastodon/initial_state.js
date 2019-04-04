@@ -17,5 +17,7 @@ export const version = getMeta('version');
 export const mascot = getMeta('mascot');
 export const profile_directory = getMeta('profile_directory');
 export const isStaff = getMeta('is_staff');
+export const lowerNotificationSoundVolume = getMeta('notif_volume');
+export const notificationSoundEnabled = getMeta('notif_sound');
 
 export default initialState;

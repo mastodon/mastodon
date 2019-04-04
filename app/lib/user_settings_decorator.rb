@@ -29,6 +29,7 @@ class UserSettingsDecorator
     user.settings['reduce_motion']       = reduce_motion_preference if change?('setting_reduce_motion')
     user.settings['system_font_ui']      = system_font_ui_preference if change?('setting_system_font_ui')
     user.settings['noindex']             = noindex_preference if change?('setting_noindex')
+    user.settings['notification_sounds'] = merged_notification_sounds if change?('notification_sounds')
     user.settings['theme']               = theme_preference if change?('setting_theme')
     user.settings['hide_network']        = hide_network_preference if change?('setting_hide_network')
     user.settings['aggregate_reblogs']   = aggregate_reblogs_preference if change?('setting_aggregate_reblogs')
@@ -41,6 +42,10 @@ class UserSettingsDecorator
 
   def merged_interactions
     user.settings['interactions'].merge coerced_settings('interactions').to_h
+  end
+
+  def merged_notification_sounds
+    user.settings['notification_sounds'].merge coerced_settings('notification_sounds').to_h
   end
 
   def default_privacy_preference

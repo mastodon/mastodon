@@ -50,6 +50,7 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_aggregate_reblogs,
       :setting_show_application,
       notification_emails: %i(follow follow_request reblog favourite mention digest report),
+      notification_sounds: %i(setting_notif_volume setting_notif_sound),
       interactions: %i(must_be_follower must_be_following)
     )
   end
