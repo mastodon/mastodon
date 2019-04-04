@@ -20,7 +20,7 @@ nl:
     extended_description_html: |
       <h3>Een goede plek voor richtlijnen</h3>
       <p>De uitgebreide omschrijving is nog niet ingevuld.</p>
-    federation_hint_html: Met een account op %{instance} ben je in staat om op elke Mastodonserver (en op meer plekken) mensen te volgen.
+    federation_hint_html: Met een account op %{instance} ben je in staat om mensen die zich op andere Mastodonservers (en op andere plekken) bevinden te volgen.
     generic_description: "%{domain} is een server in het Mastodonnetwerk"
     get_apps: Mobiele apps
     hosted_on: Mastodon op %{domain}
@@ -143,7 +143,7 @@ nl:
       public: Openbaar
       push_subscription_expires: PuSH-abonnement verloopt op
       redownload: Profiel vernieuwen
-      reject: Afwijzen
+      reject: Afkeuren
       remove_avatar: Avatar verwijderen
       remove_header: Omslagfoto verwijderen
       resend_confirmation:
@@ -484,7 +484,7 @@ nl:
       title: Voorinstellingen van waarschuwingen beheren
   admin_mailer:
     new_pending_account:
-      body: Zie hieronder de details van het nieuwe account. Je kunt de aanvraag goedkeuren of afwijzen.
+      body: Zie hieronder de details van het nieuwe account. Je kunt de aanvraag goedkeuren of afkeuren.
       subject: Er dient een nieuw account op %{instance} te worden beoordeeld (%{username})
     new_report:
       body: "%{reporter} heeft %{target} gerapporteerd"
@@ -512,7 +512,7 @@ nl:
     checkbox_agreement_html: Ik ga akkoord met de <a href="%{rules_path}" target="_blank">regels van deze server</a> en de <a href="%{terms_path}" target="_blank">gebruiksvoorwaarden</a>
     confirm_email: E-mail bevestigen
     delete_account: Account verwijderen
-    delete_account_html: Wanneer je jouw account graag wilt verwijderen, kan je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
+    delete_account_html: Wanneer je jouw account graag wilt verwijderen, kun je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
     didnt_get_confirmation: Geen bevestigingsinstructies ontvangen?
     forgot_password: Wachtwoord vergeten?
     invalid_reset_password_token: De code om jouw wachtwoord opnieuw in te stellen is verlopen. Vraag een nieuwe aan.
@@ -640,9 +640,10 @@ nl:
     errors:
       failed: De cryptografische verbinding is mislukt. Probeer het opnieuw vanaf %{provider}.
       keybase:
-        invalid_token: Keybasetokens zijn hashes van handtekeningen en moeten 66 hex tekens zijn
-        verification_failed: Keybase herkent dit token niet als een handtekening van Keybasegebruiker %{kb_username}. Probeer het opnieuw vanuit Keybase.
-    explanation_html: Hier kunt u cryptografisch uw andere identiteiten, zoals een Keybase profiel, met elkaar verbinden. Hierdoor kunnen andere mensen u versleutelde berichten sturen en vertrouwen op de inhoud die u hen stuurt.
+        invalid_token: Keybasetokens zijn hashes van handtekeningen en moeten een lengte hebben van 66 hexadecimale tekens
+        verification_failed: Keybase herkent deze token niet als een handtekening van Keybasegebruiker %{kb_username}. Probeer het opnieuw vanuit Keybase.
+      wrong_user: Er kan geen bewijs worden aangemaakt voor %{proving}   terwijl je bent ingelogd als %{current}. Log in als %{proving} en probeer het opnieuw.
+    explanation_html: Hier kun je met behulp van cryptografie jouw andere identiteiten verbinden, zoals een Keybaseprofiel. Hiermee kunnen andere mensen jou versleutelde berichten sturen en inhoud die jij verstuurt vertrouwen.
     i_am_html: Ik ben %{username} op %{service}.
     identity: Identiteit
     inactive: Inactief
@@ -1001,7 +1002,7 @@ nl:
     generate_recovery_codes: Herstelcodes genereren
     instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het inloggen moet invoeren."
     lost_recovery_codes: Met herstelcodes kun je toegang tot jouw account krijgen wanneer je jouw telefoon bent kwijtgeraakt. Wanneer je jouw herstelcodes bent kwijtgeraakt, kan je ze hier opnieuw genereren. Jouw oude herstelcodes zijn daarna ongeldig.
-    manual_instructions: Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder geheime code in platte tekst.
+    manual_instructions: Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder de geheime code in platte tekst.
     recovery_codes: Herstelcodes back-uppen
     recovery_codes_regenerated: Opnieuw genereren herstelcodes geslaagd
     recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige plek bewaard</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.
