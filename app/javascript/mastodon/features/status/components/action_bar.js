@@ -16,6 +16,7 @@ const messages = defineMessages({
   reblog_private: { id: 'status.reblog_private', defaultMessage: 'Boost to original audience' },
   cancel_reblog_private: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
+  quote: { id: 'status.quote', defaultMessage: 'Quote' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   mute: { id: 'status.mute', defaultMessage: 'Mute @{name}' },
   muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
@@ -42,6 +43,7 @@ class ActionBar extends React.PureComponent {
     status: ImmutablePropTypes.map.isRequired,
     onReply: PropTypes.func.isRequired,
     onReblog: PropTypes.func.isRequired,
+    onQuote: PropTypes.func.isRequired,
     onFavourite: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onDirect: PropTypes.func.isRequired,
@@ -61,6 +63,10 @@ class ActionBar extends React.PureComponent {
 
   handleReblogClick = (e) => {
     this.props.onReblog(this.props.status, e);
+  }
+
+  handleQuoteClick = () => {
+    this.props.onQuote(this.props.status, this.context.router.history);
   }
 
   handleFavouriteClick = () => {
@@ -197,6 +203,7 @@ class ActionBar extends React.PureComponent {
         <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} /></div>
         <div className='detailed-status__button'><IconButton disabled={reblog_disabled} active={status.get('reblogged')} title={reblog_disabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
         <div className='detailed-status__button'><IconButton className='star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} /></div>
+        <div className='detailed-status__button'><IconButton disabled={reblog_disabled} title={reblog_disabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.quote)} icon='quote-right' onClick={this.handleQuoteClick} /></div>
         {shareButton}
 
         <div className='detailed-status__action-bar-dropdown'>

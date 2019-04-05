@@ -3,9 +3,12 @@ import CharacterCounter from './character_counter';
 import Button from '../../../components/button';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+import Immutable from 'immutable';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
+import QuoteIndicatorContainer from '../containers/quote_indicator_container';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import PollButtonContainer from '../containers/poll_button_container';
+import HashtagTemp from '../../../components/hashtag_temp';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl } from 'react-intl';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
@@ -26,8 +29,10 @@ const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u20
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
+  hashtag_temp_placeholder: { id: 'compose_form.hashtag_temp_placeholder', defaultMessage: 'Append tag' },
   publish: { id: 'compose_form.publish', defaultMessage: 'Toot' },
   publishLoud: { id: 'compose_form.publish_loud', defaultMessage: '{publish}!' },
+  publish_without_community: { id: 'compose_form.publish_without_community', defaultMessage: 'Toot without Local' },
 });
 
 export default @injectIntl
@@ -61,6 +66,8 @@ class ComposeForm extends ImmutablePureComponent {
     onPickEmoji: PropTypes.func.isRequired,
     showSearch: PropTypes.bool,
     anyMedia: PropTypes.bool,
+    tagTemplate: PropTypes.string,
+    onChangeTagTemplate: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -71,13 +78,17 @@ class ComposeForm extends ImmutablePureComponent {
     this.props.onChange(e.target.value);
   }
 
+  state = { tagSuggestionFrom: null }
+
   handleKeyDown = (e) => {
-    if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
+    if (e.keyCode === 13 && (e.ctrlKey || e.metaKey) && e.shiftKey) {
+      this.handleSubmit(false);
+    } else if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       this.handleSubmit();
     }
   }
 
-  handleSubmit = () => {
+  handleSubmit = (withCommunity = true) => {
     if (this.props.text !== this.autosuggestTextarea.textarea.value) {
       // Something changed the text inside the textarea (e.g. browser extensions like Grammarly)
       // Update the state to match the current text
@@ -92,19 +103,31 @@ class ComposeForm extends ImmutablePureComponent {
       return;
     }
 
-    this.props.onSubmit(this.context.router ? this.context.router.history : null);
+    this.props.onSubmit(this.context.router ? this.context.router.history : null, withCommunity);
+  }
+
+  handleSubmitWithoutCommunity = () => {
+    this.handleSubmit(false);
   }
 
   onSuggestionsClearRequested = () => {
     this.props.onClearSuggestions();
+    this.setState({ tagSuggestionFrom: null });
   }
 
   onSuggestionsFetchRequested = (token) => {
+    this.setState({ tagSuggestionFrom: 'autosuggested-textarea' });
     this.props.onFetchSuggestions(token);
   }
 
   onSuggestionSelected = (tokenStart, token, value) => {
     this.props.onSuggestionSelected(tokenStart, token, value);
+    this.setState({ tagSuggestionFrom: null });
+  }
+
+  onHashTagSuggestionsFetchRequested = (token) => {
+    this.setState({ tagSuggestionFrom: 'hashtag-temp' });
+    this.props.onFetchSuggestions(`#${token}`);
   }
 
   handleChangeSpoilerText = (e) => {
@@ -161,9 +184,11 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, onPaste, showSearch, anyMedia } = this.props;
+    const { intl, onPaste, showSearch, anyMedia, tagTemplate } = this.props;
+    const { tagSuggestionFrom } = this.state;
     const disabled = this.props.is_submitting;
-    const text     = [this.props.spoiler_text, countableText(this.props.text)].join('');
+    const preTagTemplate = tagTemplate && tagTemplate.length > 0 ? ' #' : '';
+    const text     = [this.props.spoiler_text, countableText(this.props.text), preTagTemplate+tagTemplate].join('');
     const disabledButton = disabled || this.props.is_uploading || this.props.is_changing_upload || length(text) > 500 || (text.length !== 0 && text.trim().length === 0 && !anyMedia);
     let publishText = '';
 
@@ -178,6 +203,7 @@ class ComposeForm extends ImmutablePureComponent {
         <WarningContainer />
 
         <ReplyIndicatorContainer />
+        <QuoteIndicatorContainer />
 
         <div className={`spoiler-input ${this.props.spoiler ? 'spoiler-input--visible' : ''}`}>
           <label>
@@ -193,7 +219,7 @@ class ComposeForm extends ImmutablePureComponent {
             disabled={disabled}
             value={this.props.text}
             onChange={this.handleChange}
-            suggestions={this.props.suggestions}
+            suggestions={tagSuggestionFrom === 'autosuggested-textarea' ? this.props.suggestions : Immutable.List()}
             onKeyDown={this.handleKeyDown}
             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
@@ -208,7 +234,16 @@ class ComposeForm extends ImmutablePureComponent {
         <div className='compose-form__modifiers'>
           <UploadFormContainer />
           <PollFormContainer />
-        </div>
+          <HashtagTemp
+            placeholder={intl.formatMessage(messages.hashtag_temp_placeholder)}
+            disabled={disabled}
+            value={tagTemplate ? tagTemplate : ''}
+            suggestions={tagSuggestionFrom === 'hashtag-temp' ? this.props.suggestions : Immutable.List()}
+            onSuggestionsFetchRequested={this.onHashTagSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            onChangeTagTemplate={this.props.onChangeTagTemplate}
+          />
+	      </div>
 
         <div className='compose-form__buttons-wrapper'>
           <div className='compose-form__buttons'>
@@ -223,6 +258,10 @@ class ComposeForm extends ImmutablePureComponent {
 
         <div className='compose-form__publish'>
           <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabledButton} block /></div>
+        </div>
+
+        <div className='compose-form__publish'>
+          <div className='compose-form__publish-button-wrapper'><Button text={intl.formatMessage(messages.publish_without_community)} onClick={this.handleSubmitWithoutCommunity} disabled={disabledButton} block secondary /></div>
         </div>
       </div>
     );
