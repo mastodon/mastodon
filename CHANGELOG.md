@@ -50,6 +50,7 @@ All notable changes to this project will be documented in this file.
 - Change Webpack to not use @babel/preset-env to compile node_modules ([ykzts](https://github.com/tootsuite/mastodon/pull/10289))
 - Change web UI to use new Web Share Target API ([gol-cha](https://github.com/tootsuite/mastodon/pull/9963))
 - Change ActivityPub reports to have persistent URIs ([ThibG](https://github.com/tootsuite/mastodon/pull/10303))
+- Change `tootctl accounts cull --dry-run` to list accounts that would be deleted ([BenLubar](https://github.com/tootsuite/mastodon/pull/10460))
 
 ### Removed
 
@@ -75,6 +76,7 @@ All notable changes to this project will be documented in this file.
 - Fix race condition when streaming out deleted statuses ([ThibG](https://github.com/tootsuite/mastodon/pull/10280))
 - Fix performance of admin federation UI by caching account counts ([Gargron](https://github.com/tootsuite/mastodon/pull/10374))
 - Fix JS error on pages that don't define a CSRF token ([hinaloe](https://github.com/tootsuite/mastodon/pull/10383))
+- Fix `tootctl accounts cull` sometimes removing accounts that are temporarily unreachable ([BenLubar](https://github.com/tootsuite/mastodon/pull/10460))
 
 ## [2.7.4] - 2019-03-05
 ### Fixed
