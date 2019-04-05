@@ -100,6 +100,7 @@ class Video extends React.PureComponent {
     onCloseVideo: PropTypes.func,
     detailed: PropTypes.bool,
     inline: PropTypes.bool,
+    cacheWidth: PropTypes.func,
     intl: PropTypes.object.isRequired,
   };
 
@@ -109,7 +110,7 @@ class Video extends React.PureComponent {
     volume: 0.5,
     paused: true,
     dragging: false,
-    containerWidth: false,
+    containerWidth: this.props.width,
     fullscreen: false,
     hovered: false,
     muted: false,
@@ -129,6 +130,7 @@ class Video extends React.PureComponent {
     this.player = c;
 
     if (c) {
+      if (this.props.cacheWidth) this.props.cacheWidth(this.player.offsetWidth);
       this.setState({
         containerWidth: c.offsetWidth,
       });
@@ -345,7 +347,6 @@ class Video extends React.PureComponent {
       width  = containerWidth;
       height = containerWidth / (16/9);
 
-      playerStyle.width  = width;
       playerStyle.height = height;
     }
 

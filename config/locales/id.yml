@@ -4,6 +4,7 @@ id:
     about_hashtag_html: Ini adalah toot public yang ditandai dengan <strong>#%{hashtag}</strong>. Anda bisa berinteraksi dengan mereka jika anda memiliki akun dimanapun di fediverse.
     about_mastodon_html: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
     about_this: Tentang server ini
+    administered_by: 'Dikelola oleh:'
     api: API
     apps: Aplikasi hp
     closed_registrations: Pendaftaran untuk server ini sedang ditutup. Tetapi, anda bisa mencari server lain untuk membuat akun dan mendapatkan akses dari jaringan yang sama di sana.
@@ -70,52 +71,104 @@ id:
   admin:
     account_actions:
       action: Lakukan aksi
+      title: Lakukan moderasi pada %{acct}
+    account_moderation_notes:
+      create: Beri catatan
+      created_msg: Catatan moderasi berhasil dibuat!
+      delete: Hapus
+      destroyed_msg: Catatan moderasi berhasil dihapus!
     accounts:
       are_you_sure: Anda yakin?
+      avatar: Avatar
+      by_domain: Domain
+      change_email:
+        changed_msg: Email akun ini berhasil diubah!
+        current_email: Email saat ini
+        label: Ganti email
+        new_email: Email baru
+        submit: Ganti email
+        title: Ganti email untuk %{username}
       confirm: Konfirmasi
       confirmed: Dikonfirmasi
       confirming: Mengkonfirmasi
+      deleted: Terhapus
+      disable: Nonaktifkan
+      disable_two_factor_authentication: Nonaktifkan 2FA
+      disabled: Dinonaktifkan
       display_name: Nama
       domain: Domain
       edit: Ubah
       email: E-mail
       email_status: Status Email
+      enable: Aktifkan
+      enabled: Diaktifkan
       feed_url: URL Feed
       followers: Pengikut
+      followers_url: URL pengikut
       follows: Mengikut
+      inbox_url: URL Kotak masuk
+      invited_by: Diundang oleh
+      ip: IP
+      joined: Bergabung
       location:
         all: Semua
         local: Lokal
         remote: Remote
         title: Lokasi
+      login_status: Status login
       media_attachments: Lampiran media
+      memorialize: Ubah menjadi memoriam
       moderation:
+        active: Aktif
         all: Semua
         silenced: Didiamkan
         suspended: Disuspen
         title: Moderasi
+      moderation_notes: Catatan moderasi
       most_recent_activity: Aktivitas terbaru
       most_recent_ip: IP terbaru
+      no_limits_imposed: Tidak ada batasan
       not_subscribed: Tidak berlangganan
+      outbox_url: URL Kotak keluar
       perform_full_suspension: Lakukan suspen penuh
       profile_url: URL profil
+      promote: Promosikan
+      protocol: Protokol
       public: Publik
       push_subscription_expires: Langganan PuSH telah kadaluarsa
+      redownload: Muat ulang profil
+      remove_avatar: Hapus avatar
+      remove_header: Hapus header
       resend_confirmation:
         already_confirmed: Pengguna ini sudah dikonfirmasi
         send: Kirim ulang email konfirmasi
         success: Email konfirmasi berhasil dikirim!
+      reset: Reset
       reset_password: Reset kata sandi
+      resubscribe: Langganan ulang
+      role: Hak akses
+      roles:
+        admin: Administrator
+        moderator: Moderator
+        staff: Staf
+        user: Pengguna
       salmon_url: URL Salmon
+      search: Cari
       show:
         created_reports: Laporan yang dibuat oleh akun ini
         targeted_reports: Laporan yang dibuat tentang akun ini
       silence: Diam
+      silenced: Didiamkan
       statuses: Status
+      subscribe: Langganan
+      suspended: Disuspen
       title: Akun
+      unconfirmed_email: Email belum dikonfirmasi
       undo_silenced: Undo mendiamkan
       undo_suspension: Undo suspen
+      unsubscribe: Berhenti langganan
       username: Nama pengguna
+      warn: Beri Peringatan
       web: Web
     domain_blocks:
       add_new: Tambah
