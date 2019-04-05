@@ -10,7 +10,7 @@ class RSS::AccountSerializer
 
     builder.title("#{display_name(account)} (@#{account.local_username_and_domain})")
            .description(account_description(account))
-           .link("#{ActivityPub::TagManager.instance.uri_for(account)}#{Addressable::URI.parse("/tagged/#{tag}").normalize if tag.present?}")
+           .link("#{TagManager.instance.url_for(account)}#{Addressable::URI.parse("/tagged/#{tag}").normalize if tag.present?}")
            .logo(full_pack_url('media/images/logo.svg'))
            .accent_color('2b90d9')
 
