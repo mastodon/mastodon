@@ -231,7 +231,7 @@ RSpec.describe Formatter do
       let(:text)  { '#hashtag' }
 
       it 'creates a hashtag link' do
-        is_expected.to include '/tags/hashtag" class="mention hashtag" rel="tag">#<span>hashtag</span></a>'
+        is_expected.to include '/tags/hashtag" target="_blank" class="mention hashtag" rel="tag">#<span>hashtag</span></a>'
       end
     end
 
@@ -239,7 +239,7 @@ RSpec.describe Formatter do
       let(:text)  { '#hashtagタグ' }
 
       it 'creates a hashtag link' do
-        is_expected.to include '/tags/hashtag%E3%82%BF%E3%82%B0" class="mention hashtag" rel="tag">#<span>hashtagタグ</span></a>'
+        is_expected.to include '/tags/hashtag%E3%82%BF%E3%82%B0" target="_blank" class="mention hashtag" rel="tag">#<span>hashtagタグ</span></a>'
       end
     end
   end
@@ -275,7 +275,7 @@ RSpec.describe Formatter do
         let(:status) { Fabricate(:status, reblog: reblog) }
 
         it 'returns original status with credit to its author' do
-          is_expected.to include 'RT <span class="h-card"><a href="https://cb6e6126.ngrok.io/@alice" class="u-url mention">@<span>alice</span></a></span> Hello world'
+          is_expected.to include 'RT <span class="h-card"><a href="https://cb6e6126.ngrok.io/@alice" target="_blank" class="u-url mention">@<span>alice</span></a></span> Hello world'
         end
       end
 
@@ -299,7 +299,7 @@ RSpec.describe Formatter do
         let(:status) { Fabricate(:status, mentions: [ Fabricate(:mention, account: local_account) ], text: '@alice') }
 
         it 'creates a mention link' do
-          is_expected.to include '<a href="https://cb6e6126.ngrok.io/@alice" class="u-url mention">@<span>alice</span></a></span>'
+          is_expected.to include '<a href="https://cb6e6126.ngrok.io/@alice" target="_blank" class="u-url mention">@<span>alice</span></a></span>'
         end
       end
 
@@ -468,7 +468,7 @@ RSpec.describe Formatter do
         before { local_account }
 
         it 'creates a mention link' do
-          is_expected.to eq '<p><span class="h-card"><a href="https://cb6e6126.ngrok.io/@alice" class="u-url mention">@<span>alice</span></a></span></p>'
+          is_expected.to eq '<p><span class="h-card"><a href="https://cb6e6126.ngrok.io/@alice" target="_blank" class="u-url mention">@<span>alice</span></a></span></p>'
         end
       end
 
@@ -478,7 +478,7 @@ RSpec.describe Formatter do
         before { remote_account }
 
         it 'creates a mention link' do
-          is_expected.to eq '<p><span class="h-card"><a href="https://remote.test/" class="u-url mention">@<span>bob</span></a></span></p>'
+          is_expected.to eq '<p><span class="h-card"><a href="https://remote.test/" target="_blank" class="u-url mention">@<span>bob</span></a></span></p>'
         end
       end
 
