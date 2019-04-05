@@ -6,15 +6,11 @@ class EndorsementAccountsController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        next if @account.user_hides_network?
-
         endorsed
         @relationships = AccountRelationshipsPresenter.new(endorsed.map(&:target_account_id), current_user.account_id) if user_signed_in?
       end
 
       format.json do
-        raise Mastodon::NotPermittedError if params[:page].present? && @account.user_hides_network?
-
         render json: collection_presenter,
                serializer: ActivityPub::CollectionSerializer,
                adapter: ActivityPub::Adapter,

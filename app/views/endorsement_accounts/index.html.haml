@@ -7,9 +7,7 @@
 
 = render 'accounts/header', account: @account
 
-- if @account.user_hides_network?
-  .nothing-here= t('accounts.network_hidden')
-- elsif @endorsed.empty?
+- if @endorsed.empty?
   = nothing_here
 - else
   .card-grid
