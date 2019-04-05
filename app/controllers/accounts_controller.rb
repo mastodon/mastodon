@@ -102,7 +102,7 @@ class AccountsController < ApplicationController
   end
 
   def rss_url
-    "#{account_url(@account)}#{Addressable::URI.parse("/tagged/#{params[:tag]}").normalize if params[:tag].present?}.rss"
+    "#{TagManager.instance.url_for(@account)}#{Addressable::URI.parse("/tagged/#{params[:tag]}").normalize if params[:tag].present?}.rss"
   end
 
   def older_url
