@@ -25,6 +25,7 @@ class AccountsController < ApplicationController
         @statuses        = filtered_status_page(params)
         @statuses        = cache_collection(@statuses, Status)
 
+        @rss_url = rss_url
         unless @statuses.empty?
           @older_url = older_url if @statuses.last.id > filtered_statuses.last.id
           @newer_url = newer_url if @statuses.first.id < filtered_statuses.first.id
@@ -41,8 +42,9 @@ class AccountsController < ApplicationController
       format.rss do
         mark_cacheable!
 
-        @statuses = cache_collection(default_statuses.without_reblogs.without_replies.limit(PAGE_SIZE), Status)
-        render xml: RSS::AccountSerializer.render(@account, @statuses)
+        @statuses = filtered_statuses.without_reblogs.without_replies.limit(PAGE_SIZE)
+        @statuses = cache_collection(@statuses, Status)
+        render xml: RSS::AccountSerializer.render(@account, @statuses, params[:tag])
       end
 
       format.json do
@@ -99,6 +101,10 @@ class AccountsController < ApplicationController
     params[:username]
   end
 
+  def rss_url
+    "#{TagManager.instance.url_for(@account)}#{Addressable::URI.parse("/tagged/#{params[:tag]}").normalize if params[:tag].present?}.rss"
+  end
+
   def older_url
     pagination_url(max_id: @statuses.last.id)
   end
@@ -128,7 +134,7 @@ class AccountsController < ApplicationController
   end
 
   def tag_requested?
-    request.path.ends_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
+    request.path.split('.')[0].ends_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
   end
 
   def filtered_status_page(params)
