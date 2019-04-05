@@ -53,6 +53,7 @@ class Api::V1::StatusesController < Api::BaseController
                                          visibility: status_params[:visibility],
                                          scheduled_at: status_params[:scheduled_at],
                                          application: doorkeeper_token.application,
+                                         quote_id: status_params[:quote_id].blank? ? nil : status_params[:quote_id],
                                          poll: status_params[:poll],
                                          idempotency: request.headers['Idempotency-Key'])
 
@@ -84,6 +85,7 @@ class Api::V1::StatusesController < Api::BaseController
       :sensitive,
       :spoiler_text,
       :visibility,
+      :quote_id,
       :scheduled_at,
       media_ids: [],
       poll: [

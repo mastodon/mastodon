@@ -88,7 +88,7 @@ const resizeImage = (img, type = 'image/png') => new Promise((resolve, reject) =
 });
 
 export default inputFile => new Promise((resolve, reject) => {
-  if (!inputFile.type.match(/image.*/) || inputFile.type === 'image/gif') {
+  if (true || !inputFile.type.match(/image.*/) || inputFile.type === 'image/gif') {
     resolve(inputFile);
     return;
   }
