@@ -174,7 +174,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
     end
 
     def statuses_count
-      object.statuses_count.to_s
+      "#{object.statuses_count.to_s}"
     end
 
     def last_status_at
