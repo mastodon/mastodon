@@ -367,6 +367,37 @@ module Mastodon
       say("OK, unfollowed target from #{processed} accounts, skipped #{failed}", :green)
     end
 
+    option :number, type: :numeric, aliases: [:n]
+    option :all, type: :boolean
+    desc 'approve [USERNAME]', 'Approve pending accounts'
+    long_desc <<~LONG_DESC
+      When registrations require review from staff, approve pending accounts,
+      either all of them with the --all option, or a specific number of them
+      specified with the --number (-n) option, or only a single specific
+      account identified by its username.
+    LONG_DESC
+    def approve(username = nil)
+      if options[:all]
+        User.pending.find_each(&:approve!)
+        say('OK', :green)
+      elsif options[:number]
+        User.pending.limit(options[:number]).each(&:approve!)
+        say('OK', :green)
+      elsif username.present?
+        account = Account.find_local(username)
+
+        if account.nil?
+          say('No such account', :red)
+          exit(1)
+        end
+
+        account.user&.approve!
+        say('OK', :green)
+      else
+        exit(1)
+      end
+    end
+
     private
 
     def rotate_keys_for_account(account, delay = 0)
