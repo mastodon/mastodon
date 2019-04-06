@@ -2,6 +2,7 @@
 
 class Form::AccountBatch
   include ActiveModel::Model
+  include Authorization
 
   attr_accessor :account_ids, :action, :current_account
 
@@ -13,6 +14,10 @@ class Form::AccountBatch
       remove_from_followers!
     when 'block_domains'
       block_domains!
+    when 'approve'
+      approve!
+    when 'reject'
+      reject!
     end
   end
 
@@ -56,5 +61,19 @@ class Form::AccountBatch
     ).to_json
 
     ActivityPub::DeliveryWorker.perform_async(json, current_account.id, follow.account.inbox_url)
+  end
+
+  def approve!
+    users = accounts.includes(:user).map(&:user)
+
+    users.each { |user| authorize(user, :approve?) }
+         .each(&:approve!)
+  end
+
+  def reject!
+    records = accounts.includes(:user)
+
+    records.each { |account| authorize(account.user, :reject?) }
+           .each { |account| SuspendAccountService.new.call(account, including_user: true, destroy: true, skip_distribution: true) }
   end
 end
