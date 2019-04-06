@@ -22,8 +22,6 @@ const messages = defineMessages({
   account_locked: { id: 'account.locked_info', defaultMessage: 'This account privacy status is set to locked. The owner manually reviews who can follow them.' },
   mention: { id: 'account.mention', defaultMessage: 'Mention @{name}' },
   direct: { id: 'account.direct', defaultMessage: 'Direct message @{name}' },
-  edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
-  unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },

@@ -21,10 +21,11 @@ describe Export do
       target_accounts.each(&account.method(:mute!))
 
       export = Export.new(account).to_muted_accounts_csv
-      results = export.strip.split
+      results = export.strip.split("\n")
 
-      expect(results.size).to eq 2
-      expect(results.first).to eq 'one@local.host'
+      expect(results.size).to eq 3
+      expect(results.first).to eq 'Account address,Hide notifications'
+      expect(results.second).to eq 'one@local.host,true'
     end
 
     it 'returns a csv of the following accounts' do

@@ -12,6 +12,7 @@ pl:
       last_attempt: Masz jeszcze jedną próbę; Twoje konto zostanie zablokowane jeśli się nie powiedzie.
       locked: Twoje konto zostało zablokowane.
       not_found_in_database: Nieprawidłowy %{authentication_keys} lub hasło.
+      pending: Twoje konto oczekuje na przegląd.
       timeout: Twoja sesja wygasła. Zaloguj się ponownie, aby kontynuować..
       unauthenticated: Zapisz się lub zaloguj, aby kontynuować.
       unconfirmed: Zweryfikuj adres e-mail, aby kontynuować.
@@ -20,6 +21,7 @@ pl:
         action: Zweryfikuj adres e-mail
         action_with_app: Potwierdź i wróć do %{app}
         explanation: Utworzyłeś(-aś) konto na %{host} podając ten adres e-mail. Jedno kliknięcie dzieli Cię od aktywacji tego konta. Jeżeli to nie Ty, zignoruj ten e-mail.
+        explanation_when_pending: Poprosiłeś(-aś) o zaproszenie na %{host} używajac tego adresu e-mail. Kiedy potwierdzisz swój adres e-mail, przejrzymy Twoje podanie. Do tego czasu nie możesz się zalogować. Jeżeli Twoje podanie zostanie odrzucone, Twoje dane zostaną usunięte i nie będziesz musiał(-a) podejmować żadnych dodatkowych działań. Jeżeli to nie Ty, zignoruj ten e-mail.
         extra_html: Przeczytaj też <a href="%{terms_path}">regulamin serwera</a> i <a href="%{policy_path}">nasze zasady użytkowania</a>.
         subject: 'Mastodon: Instrukcje weryfikacji adresu e-mail na %{instance}'
         title: Zweryfikuj adres e-mail
@@ -60,6 +62,7 @@ pl:
       signed_up: Witamy! Twoje konto zostało utworzone.
       signed_up_but_inactive: Twoje konto zostało utworzone. Nie mogliśmy Cię jednak zalogować, ponieważ konto nie zostało jeszcze aktywowane.
       signed_up_but_locked: Twoje konto zostało utworzone. Nie mogliśmy Cię jednak zalogować, ponieważ konto jest zablokowane.
+      signed_up_but_pending: Na Twój adres e-mail została wysłana wiadomosć z odnośnikiem potwierdzającym. Po kliknięciu w odnośnik, przejrzymy Twoje podanie. Zostaniesz poinformowany(-a), gdy zostanie ono przyjęte.
       signed_up_but_unconfirmed: Na Twój adres e-mail została wysłana wiadomosć z odnośnikiem potwierdzającym. Kliknij w odnośnik, aby aktywować konto. Jeżeli nie otrzymano wiadomości, sprawdź folder ze spamem.
       update_needs_confirmation: Konto zostało zaktualizowane, musimy jednak zweryfikować Twój nowy adres e-mail. Została na niego wysłana wiadomość z odnośnikiem potwierdzającym. Jeżeli nie otrzymano wiadomości, sprawdź folder ze spamem.
       updated: Konto zostało zaktualizowane.
