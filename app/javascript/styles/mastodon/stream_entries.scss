@@ -99,9 +99,9 @@
     }
   }
 
-  &:active,
-  &:focus,
-  &:hover {
+  &:active:not(:disabled),
+  &:focus:not(:disabled),
+  &:hover:not(:disabled) {
     background: lighten($ui-highlight-color, 10%);
 
     svg path:last-child {

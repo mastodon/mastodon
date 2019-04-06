@@ -10,15 +10,7 @@ class AccountSearchService < BaseService
     @options = options
     @account = account
 
-    results = search_service_results
-
-    unless account.nil?
-      account_ids    = results.map(&:id)
-      blocked_by_map = Account.blocked_by_map(account_ids, account.id)
-      results.reject! { |item| blocked_by_map[item.id] }
-    end
-
-    results
+    search_service_results
   end
 
   private
