@@ -6,7 +6,7 @@ pt-BR:
         text: Você pode usar a sintaxe de um toot, como URLs, hashtags e menções
       admin_account_action:
         send_email_notification: O usuário vai receber uma explicação do que aconteceu com a sua conta
-        text_html: Opcional. Você pode usar a sintaxe de toots. Você pode <a href="%{path}">adicionar avisos pré-definidos</a> para ganhar tempo.
+        text_html: Opcional. Você pode usar a sintaxe de toots. Você pode <a href="%{path}">adicionar avisos pré-definidos</a> para ganhar tempo
         type_html: Escolha o que fazer com <strong>%{acct}</strong>
         warning_preset_id: Opcional. Você ainda pode adicionar texto customizado no fim do texto pré-definido
       defaults:
@@ -33,9 +33,12 @@ pt-BR:
         setting_display_media_show_all: Sempre mostrar mídia marcada como sensível
         setting_hide_network: Quem você segue e quem segue você não serão exibidos no seu perfil
         setting_noindex: Afeta seu perfil público e as páginas de suas postagens
+        setting_show_application: A aplicação que você usar para enviar seus toots vai aparecer na visão detalhada dos seus toots
         setting_theme: Afeta a aparência do Mastodon quando em sua conta em qualquer aparelho.
         username: Seu nome de usuário será único em %{domain}
         whole_word: Quando a palavra ou frase é inteiramente alfanumérica, ela será aplicada somente se corresponder a palavra inteira
+      featured_tag:
+        name: 'Você pode querer usar um destes:'
       imports:
         data: Arquivo CSV exportado de outra instância do Mastodon
       sessions:
@@ -100,6 +103,7 @@ pt-BR:
         setting_hide_network: Esconder as suas redes
         setting_noindex: Não quero ser indexado por mecanismos de busca
         setting_reduce_motion: Reduz movimento em animações
+        setting_show_application: Mostrar o nome da aplicação utilizada para enviar os toots
         setting_system_font_ui: Usar a fonte padrão de seu sistema
         setting_theme: Tema do site
         setting_unfollow_modal: Mostrar diálogo de confirmação antes de deixar de seguir alguém
@@ -108,6 +112,8 @@ pt-BR:
         username: Nome de usuário
         username_or_email: Nome de usuário ou e-mail
         whole_word: Palavra inteira
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de pessoas que você não segue
