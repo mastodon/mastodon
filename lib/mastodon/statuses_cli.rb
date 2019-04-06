@@ -13,7 +13,15 @@ module Mastodon
     end
 
     option :days, type: :numeric, default: 90
-    desc 'remove', 'Remove statuses'
+    desc 'remove', 'Remove unreferenced statuses'
+    long_desc <<~LONG_DESC
+      Remove statuses that are not referenced by local user activity, such as
+      ones that came from relays, or belonging to users that were once followed
+      by someone locally but no longer are.
+
+      This is a computationally heavy procedure that creates extra database
+      indicides before commencing, and removes them afterward.
+    LONG_DESC
     def remove
       say('Creating temporary database indices...')
 
