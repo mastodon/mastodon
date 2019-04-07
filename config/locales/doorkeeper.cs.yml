@@ -79,7 +79,7 @@ cs:
       messages:
         access_denied: Vlastník zdroje či autorizační server zamítl požadavek.
         credential_flow_not_configured: Proud Resource Owner Password Credentials selhal, protože Doorkeeper.configure.resource_owner_from_credentials nebylo nakonfigurováno.
-        invalid_client: Ověření klienta selhalo kvůli neznámému klientovi, chybějící klientské autentikaci či nepodporované autentikační metodě.
+        invalid_client: Ověření klienta selhalo kvůli neznámému klientovi, chybějící klientské autentizaci či nepodporované autentizační metodě.
         invalid_grant: Poskytnuté oprávnění je neplatné, vypršelé, zamítnuté, neshoduje se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno jinému klientu.
         invalid_redirect_uri: Přesměrovací URI není platné.
         invalid_request: Požadavku chybí pžadovaný parametr, obsahuje nepodporovanou hodnotu parametru, či je jinak malformovaný.
