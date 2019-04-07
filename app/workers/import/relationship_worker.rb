@@ -5,9 +5,10 @@ class Import::RelationshipWorker
 
   sidekiq_options queue: 'pull', retry: 8, dead: false
 
-  def perform(account_id, target_account_uri, relationship, extra = nil)
+  def perform(account_id, target_account_uri, relationship, options = {})
     from_account   = Account.find(account_id)
     target_account = ResolveAccountService.new.call(target_account_uri)
+    options.symbolize_keys!
 
     return if target_account.nil?
 
@@ -21,7 +22,7 @@ class Import::RelationshipWorker
     when 'unblock'
       UnblockService.new.call(from_account, target_account)
     when 'mute'
-      MuteService.new.call(from_account, target_account, notifications: extra)
+      MuteService.new.call(from_account, target_account, options)
     when 'unmute'
       UnmuteService.new.call(from_account, target_account)
     end
