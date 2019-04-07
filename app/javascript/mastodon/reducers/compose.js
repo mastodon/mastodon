@@ -5,6 +5,8 @@ import {
   COMPOSE_REPLY,
   COMPOSE_REPLY_CANCEL,
   COMPOSE_DIRECT,
+  COMPOSE_QUOTE,
+  COMPOSE_QUOTE_CANCEL,
   COMPOSE_MENTION,
   COMPOSE_SUBMIT_REQUEST,
   COMPOSE_SUBMIT_SUCCESS,
@@ -19,6 +21,7 @@ import {
   COMPOSE_SUGGESTION_SELECT,
   COMPOSE_SUGGESTION_TAGS_UPDATE,
   COMPOSE_TAG_HISTORY_UPDATE,
+  COMPOSE_TAG_TEMPLATE_UPDATE,
   COMPOSE_SENSITIVITY_CHANGE,
   COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
@@ -43,6 +46,7 @@ import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrde
 import uuid from '../uuid';
 import { me } from '../initial_state';
 import { unescapeHTML } from '../utils/html';
+import { tagTemplate } from '../settings';
 
 const initialState = ImmutableMap({
   mounted: 0,
@@ -55,6 +59,8 @@ const initialState = ImmutableMap({
   caretPosition: null,
   preselectDate: null,
   in_reply_to: null,
+  quote_from: null,
+  quote_from_uri: null,
   is_composing: false,
   is_submitting: false,
   is_changing_upload: false,
@@ -69,7 +75,12 @@ const initialState = ImmutableMap({
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
   tagHistory: ImmutableList(),
+  tagTemplate: '',
 });
+
+function getTagTemplate() {
+  return tagTemplate.get(me) || '';
+}
 
 const initialPoll = ImmutableMap({
   options: ImmutableList(['', '']),
@@ -95,11 +106,13 @@ function clearAll(state) {
     map.set('is_submitting', false);
     map.set('is_changing_upload', false);
     map.set('in_reply_to', null);
+    map.set('quote_from', null);
     map.set('privacy', state.get('default_privacy'));
     map.set('sensitive', false);
     map.update('media_attachments', list => list.clear());
     map.set('poll', null);
     map.set('idempotencyKey', uuid());
+    map.set('tagTemplate', getTagTemplate());
   });
 };
 
@@ -193,6 +206,17 @@ const expandMentions = status => {
   return fragment.innerHTML;
 };
 
+const rejectQuoteAltText = html => {
+  const fragment = domParser.parseFromString(html, 'text/html').documentElement;
+
+  const quote_inline = fragment.querySelector('span.quote-inline');
+  if (quote_inline) {
+    quote_inline.remove();
+  }
+
+  return fragment.innerHTML;
+};
+
 export default function compose(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
@@ -238,6 +262,8 @@ export default function compose(state = initialState, action) {
   case COMPOSE_REPLY:
     return state.withMutations(map => {
       map.set('in_reply_to', action.status.get('id'));
+      map.set('quote_from', null);
+      map.set('quote_from_uri', null);
       map.set('text', statusToTextMentions(state, action.status));
       map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
       map.set('focusDate', new Date());
@@ -253,16 +279,31 @@ export default function compose(state = initialState, action) {
         map.set('spoiler_text', '');
       }
     });
+  case COMPOSE_QUOTE:
+    return state.withMutations(map => {
+      map.set('in_reply_to', null);
+      map.set('quote_from', action.status.get('id'));
+      map.set('quote_from_uri', action.status.get('uri'));
+      map.set('text', '');
+      map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
+      map.set('focusDate', new Date());
+      map.set('preselectDate', new Date());
+      map.set('idempotencyKey', uuid());
+    });
   case COMPOSE_REPLY_CANCEL:
+  case COMPOSE_QUOTE_CANCEL:
   case COMPOSE_RESET:
     return state.withMutations(map => {
       map.set('in_reply_to', null);
+      map.set('quote_from', null);
+      map.set('quote_from_uri', null);
       map.set('text', '');
       map.set('spoiler', false);
       map.set('spoiler_text', '');
       map.set('privacy', state.get('default_privacy'));
       map.set('poll', null);
       map.set('idempotencyKey', uuid());
+      map.set('tagTemplate', getTagTemplate());
     });
   case COMPOSE_SUBMIT_REQUEST:
     return state.set('is_submitting', true);
@@ -309,6 +350,8 @@ export default function compose(state = initialState, action) {
     return updateSuggestionTags(state, action.token);
   case COMPOSE_TAG_HISTORY_UPDATE:
     return state.set('tagHistory', fromJS(action.tags));
+  case COMPOSE_TAG_TEMPLATE_UPDATE:
+    return state.set('tagTemplate', action.tag);
   case TIMELINE_DELETE:
     if (action.id === state.get('in_reply_to')) {
       return state.set('in_reply_to', null);
@@ -329,13 +372,16 @@ export default function compose(state = initialState, action) {
       }));
   case REDRAFT:
     return state.withMutations(map => {
-      map.set('text', unescapeHTML(expandMentions(action.status)));
+      map.set('text', unescapeHTML(rejectQuoteAltText(expandMentions(action.status))));
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
+      map.set('quote_from', action.status.getIn(['quote', 'id']));
+      map.set('quote_from_url', action.status.getIn(['quote', 'url']));
       map.set('privacy', action.status.get('visibility'));
       map.set('media_attachments', action.status.get('media_attachments'));
       map.set('focusDate', new Date());
       map.set('caretPosition', null);
       map.set('idempotencyKey', uuid());
+      map.set('tagTemplate', getTagTemplate());
 
       if (action.status.get('spoiler_text').length > 0) {
         map.set('spoiler', true);

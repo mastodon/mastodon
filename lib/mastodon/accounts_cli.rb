@@ -367,6 +367,74 @@ module Mastodon
       say("OK, unfollowed target from #{processed} accounts, skipped #{failed}", :green)
     end
 
+    option :follow, type: :boolean, default: false
+    option :follower, type: :boolean, default: false
+    desc 'reset USERNAME', 'Reset all followee and / or followers for a user'
+    long_desc <<-LONG_DESC
+      Reset all follow and / or followers for a user.
+
+      With the --follow option, Unfollow all followees for the specified
+      USERNAME, and refollow the user specified in "Default follows" and
+      the user who has invited USERNAME.
+
+      With the --follower option, Cancels the follow from all followers
+      of the specified USERNAME.
+    LONG_DESC
+    def reset(username)
+      unless options[:follow] || options[:follower]
+        say('Please specify either --follow or --follower, or both', :red)
+        exit(1)
+      end
+
+      account = Account.find_local(username)
+
+      if account.nil?
+        say('No user with such username', :red)
+        exit(1)
+      end
+
+      if options[:follow]
+        processed = 0
+        failed    = 0
+
+        say("Unfollow #{account.username}'s followees, this might take a while...")
+
+        Account.where(id: ::Follow.where(account: account).select(:target_account_id)).find_each do |target_account|
+          begin
+            UnfollowService.new.call(account, target_account)
+            processed += 1
+            say('.', :green, false)
+          rescue StandardError
+            failed += 1
+            say('.', :red, false)
+          end
+        end
+        BootstrapTimelineWorker.perform_async(account.id)
+
+        say("OK, unfollowed #{processed} followees, skipped #{failed}", :green)
+      end
+
+      if options[:follower]
+        processed = 0
+        failed    = 0
+
+        say("Unfollow #{account.username}'s follower, this might take a while...")
+
+        Account.where(id: ::Follow.where(target_account: account).select(:account_id)).find_each do |target_account|
+          begin
+            UnfollowService.new.call(target_account, account)
+            processed += 1
+            say('.', :green, false)
+          rescue StandardError
+            failed += 1
+            say('.', :red, false)
+          end
+        end
+
+        say("OK, unfollowed #{processed} followers, skipped #{failed}", :green)
+      end
+    end
+
     option :number, type: :numeric, aliases: [:n]
     option :all, type: :boolean
     desc 'approve [USERNAME]', 'Approve pending accounts'
