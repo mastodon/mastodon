@@ -369,7 +369,7 @@ module Mastodon
 
     option :follow, type: :boolean, default: false
     option :follower, type: :boolean, default: false
-    desc 'reset USERNAME', 'Reset all followee and / or followers for a user'
+    desc 'reset-relationships USERNAME', 'Reset all followee and / or followers for a user'
     long_desc <<-LONG_DESC
       Reset all follow and / or followers for a user.
 
@@ -380,7 +380,7 @@ module Mastodon
       With the --follower option, Cancels the follow from all followers
       of the specified USERNAME.
     LONG_DESC
-    def reset(username)
+    def reset_relationships(username)
       unless options[:follow] || options[:follower]
         say('Please specify either --follow or --follower, or both', :red)
         exit(1)
