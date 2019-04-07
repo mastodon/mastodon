@@ -179,7 +179,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
     end
 
     def id
-      object.uri
+      ActivityPub::TagManager.instance.uri_for(object)
     end
 
     def name
