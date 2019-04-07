@@ -16,7 +16,6 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
   has_many :virtual_tags, key: :tag
-  has_many :virtual_featured_tags, key: :featured_tag
   has_many :virtual_attachments, key: :attachment
 
   attribute :moved_to, if: :moved?
@@ -113,10 +112,6 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
   def virtual_tags
     object.emojis + object.tags + object.featured_tags + object.endorsed_accounts
-  end
-
-  def virtual_featured_tags
-    object.featured_tags
   end
 
   def virtual_attachments
