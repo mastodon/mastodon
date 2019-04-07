@@ -19,16 +19,17 @@
 
   = opengraph 'og:type', 'profile'
   = render 'og', account: @account, url: short_account_url(@account, only_path: false)
+  - @doAutoplay = current_account&.user&.setting_auto_play_gif
   :javascript
     //this is a stopgap fix for animating gif avatars on this page
     function animateOnEnter(element) {
-      if(!#{current_account&.user&.setting_auto_play_gif}) {
+      if(!#{@doAutoplay}) {
         element.src = "#{@account.avatar_original_url}";
       }
     }
   
     function stopAnimateOnExit(element) {
-      if(!#{current_account&.user&.setting_auto_play_gif}) {
+      if(!#{@doAutoplay}) {
         element.src = "#{@account.avatar_static_url}";
       }
     }
