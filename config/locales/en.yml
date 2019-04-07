@@ -68,6 +68,7 @@ en:
       admin: Admin
       bot: Bot
       moderator: Mod
+    unavailable: Profile unavailable
     unfollow: Unfollow
   admin:
     account_actions:
@@ -348,6 +349,8 @@ en:
         expired: Expired
         title: Filter
       title: Invites
+    pending_accounts:
+      title: Pending accounts (%{count})
     relays:
       add_new: Add new relay
       delete: Delete
@@ -514,7 +517,7 @@ en:
     salutation: "%{name},"
     settings: 'Change e-mail preferences: %{link}'
     view: 'View:'
-    view_profile: View Profile
+    view_profile: View profile
     view_status: View status
   applications:
     created: Application successfully created
@@ -651,6 +654,7 @@ en:
     all: All
     changes_saved_msg: Changes successfully saved!
     copy: Copy
+    order_by: Order by
     save_changes: Save changes
     validation_errors:
       one: Something isn't quite right yet! Please review the error below

@@ -62,7 +62,7 @@ class Following extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = blockedBy ? <FormattedMessage id='empty_column.account_timeline_blocked' defaultMessage='You are blocked' /> : <FormattedMessage id='account.follows.empty' defaultMessage="This user doesn't follow anyone yet." />;
+    const emptyMessage = blockedBy ? <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' /> : <FormattedMessage id='account.follows.empty' defaultMessage="This user doesn't follow anyone yet." />;
 
     return (
       <Column>

@@ -62,7 +62,7 @@ class Followers extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = blockedBy ? <FormattedMessage id='empty_column.account_timeline_blocked' defaultMessage='You are blocked' /> : <FormattedMessage id='account.followers.empty' defaultMessage='No one follows this user yet.' />;
+    const emptyMessage = blockedBy ? <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' /> : <FormattedMessage id='account.followers.empty' defaultMessage='No one follows this user yet.' />;
 
     return (
       <Column>
