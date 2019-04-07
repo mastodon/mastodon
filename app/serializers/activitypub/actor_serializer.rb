@@ -175,7 +175,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
     attributes :type, :id, :name, :featured
 
     def type
-      'Accoount'
+      object.actor_type || (object.bot? ? "Service" : "Person")
     end
 
     def id
