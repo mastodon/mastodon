@@ -14,7 +14,7 @@ class Import::RelationshipWorker
 
     case relationship
     when 'follow'
-      FollowService.new.call(from_account, target_account)
+      FollowService.new.call(from_account, target_account, options)
     when 'unfollow'
       UnfollowService.new.call(from_account, target_account)
     when 'block'

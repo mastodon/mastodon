@@ -25,7 +25,7 @@ class ImportService < BaseService
 
   def import_follows!
     parse_import_data!(['Account address'])
-    import_relationships!('follow', 'unfollow', @account.following, follow_limit)
+    import_relationships!('follow', 'unfollow', @account.following, follow_limit, reblogs: 'Show boosts')
   end
 
   def import_blocks!
