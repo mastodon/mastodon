@@ -1,17 +1,3 @@
-:javascript
-  //this is a stopgap fix for animating gif avatars on this page
-  function animateOnEnter(element) {
-    if(!#{current_account&.user&.setting_auto_play_gif}) {
-      element.src = "#{@account.avatar_original_url}";
-    }
-  }
-  
-  function stopAnimateOnExit(element) {
-    if(!#{current_account&.user&.setting_auto_play_gif}) {
-      element.src = "#{@account.avatar_static_url}";
-    }
-  }
-
 - content_for :page_title do
   = "#{display_name(@account)} (@#{@account.local_username_and_domain})"
 
@@ -33,6 +19,19 @@
 
   = opengraph 'og:type', 'profile'
   = render 'og', account: @account, url: short_account_url(@account, only_path: false)
+  :javascript
+    //this is a stopgap fix for animating gif avatars on this page
+    function animateOnEnter(element) {
+      if(!#{current_account&.user&.setting_auto_play_gif}) {
+        element.src = "#{@account.avatar_original_url}";
+      }
+    }
+  
+    function stopAnimateOnExit(element) {
+      if(!#{current_account&.user&.setting_auto_play_gif}) {
+        element.src = "#{@account.avatar_static_url}";
+      }
+    }
 
 
 = render 'header', account: @account, with_bio: true
