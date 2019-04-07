@@ -116,7 +116,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def virtual_tags
-    object.emojis + object.tags
+    object.emojis + object.tags + object.featured_tags + object.endorsed_accounts
   end
 
   def virtual_featured_tags
@@ -159,7 +159,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   class FeaturedTagSerializer < ActivityPub::Serializer
     include RoutingHelper
 
-    attributes :type, :href, :name, :statuses_count, :last_status_at
+    attributes :type, :href, :name, :featured
 
     def type
       'Hashtag'
@@ -173,12 +173,30 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
       "##{object.name}"
     end
 
-    def statuses_count
-      "#{object.statuses_count}"
+    def featured
+      true
+    end
+  end
+
+  class AccountSerializer < ActivityPub::Serializer
+    include RoutingHelper
+
+    attributes :type, :id, :name, :featured
+
+    def type
+      'Accoount'
     end
 
-    def last_status_at
-      object.last_status_at.iso8601
+    def id
+      object.uri
+    end
+
+    def name
+      "@#{object.acct}"
+    end
+
+    def featured
+      true
     end
   end
 
