@@ -8,7 +8,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   context_extensions :manually_approves_followers, :featured, :also_known_as,
                      :moved_to, :property_value, :hashtag, :emoji, :identity_proof
 
-  attributes :id, :type, :following, :followers,
+  attributes :id, :type, :following, :followers, :endorsed,
              :inbox, :outbox, :featured,
              :preferred_username, :name, :summary,
              :url, :manually_approves_followers
@@ -16,6 +16,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
   has_many :virtual_tags, key: :tag
+  has_many :virtual_featured_tags, key: :featured_tag
   has_many :virtual_attachments, key: :attachment
 
   attribute :moved_to, if: :moved?
@@ -52,6 +53,10 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
   def followers
     account_followers_url(object)
+  end
+
+  def endorsed
+    account_endorsed_index_url(object)
   end
 
   def inbox
@@ -112,6 +117,10 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
   def virtual_tags
     object.emojis + object.tags + object.featured_tags + object.endorsed_accounts
+  end
+
+  def virtual_featured_tags
+    object.featured_tags
   end
 
   def virtual_attachments
