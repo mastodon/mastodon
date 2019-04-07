@@ -1,3 +1,17 @@
+:javascript
+  //this is a stopgap fix for animating gif avatars on this page
+  function animateOnEnter(element) {
+    if(!#{current_account&.user&.setting_auto_play_gif}) {
+      element.src = "#{@account.avatar_original_url}";
+    }
+  }
+  
+  function stopAnimateOnExit(element) {
+    if(!#{current_account&.user&.setting_auto_play_gif}) {
+      element.src = "#{@account.avatar_static_url}";
+    }
+  }
+
 - content_for :page_title do
   = "#{display_name(@account)} (@#{@account.local_username_and_domain})"
 
