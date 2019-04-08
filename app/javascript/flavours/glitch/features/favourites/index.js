@@ -7,20 +7,27 @@ import { fetchFavourites } from 'flavours/glitch/actions/interactions';
 import { ScrollContainer } from 'react-router-scroll-4';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import Column from 'flavours/glitch/features/ui/components/column';
-import ColumnBackButton from 'flavours/glitch/components/column_back_button';
+import ColumnHeader from 'flavours/glitch/components/column_header';
+import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
+const messages = defineMessages({
+  heading: { id: 'column.favourited_by', defaultMessage: 'Favourited by' },
+});
 
 const mapStateToProps = (state, props) => ({
   accountIds: state.getIn(['user_lists', 'favourited_by', props.params.statusId]),
 });
 
 @connect(mapStateToProps)
+@injectIntl
 export default class Favourites extends ImmutablePureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     accountIds: ImmutablePropTypes.list,
+    intl: PropTypes.object.isRequired,
   };
 
   componentWillMount () {
@@ -38,8 +45,16 @@ export default class Favourites extends ImmutablePureComponent {
     return !(location.state && location.state.mastodonModalOpen);
   }
 
+  handleHeaderClick = () => {
+    this.column.scrollTop();
+  }
+
+  setRef = c => {
+    this.column = c;
+  }
+
   render () {
-    const { accountIds } = this.props;
+    const { intl, accountIds } = this.props;
 
     if (!accountIds) {
       return (
@@ -50,8 +65,13 @@ export default class Favourites extends ImmutablePureComponent {
     }
 
     return (
-      <Column>
-        <ColumnBackButton />
+      <Column ref={this.setRef}>
+        <ColumnHeader
+          icon='star'
+          title={intl.formatMessage(messages.heading)}
+          onClick={this.handleHeaderClick}
+          showBackButton
+        />
 
         <ScrollContainer scrollKey='favourites' shouldUpdateScroll={this.shouldUpdateScroll}>
           <div className='scrollable'>
