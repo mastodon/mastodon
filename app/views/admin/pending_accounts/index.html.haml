@@ -1,9 +1,6 @@
 - content_for :page_title do
   = t('admin.pending_accounts.title', count: User.pending.count)
 
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', integrity: true, async: true, crossorigin: 'anonymous'
-
 = form_for(@form, url: admin_pending_accounts_path, method: :patch) do |f|
   = hidden_field_tag :page, params[:page] || 1
 
