@@ -88,6 +88,10 @@ const initialPoll = ImmutableMap({
   multiple: false,
 });
 
+function getTagTemplate() {
+  return tagTemplate.get(me) || '';
+}
+
 function statusToTextMentions(state, status) {
   let set = ImmutableOrderedSet([]);
 

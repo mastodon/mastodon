@@ -32,10 +32,11 @@ describe Export do
       target_accounts.each(&account.method(:follow!))
 
       export = Export.new(account).to_following_accounts_csv
-      results = export.strip.split
+      results = export.strip.split("\n")
 
-      expect(results.size).to eq 2
-      expect(results.first).to eq 'one@local.host'
+      expect(results.size).to eq 3
+      expect(results.first).to eq 'Account address,Show boosts'
+      expect(results.second).to eq 'one@local.host,true'
     end
   end
 

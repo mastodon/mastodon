@@ -367,22 +367,20 @@ module Mastodon
       say("OK, unfollowed target from #{processed} accounts, skipped #{failed}", :green)
     end
 
-    option :follow, type: :boolean, default: false
-    option :follower, type: :boolean, default: false
-    desc 'reset USERNAME', 'Reset all followee and / or followers for a user'
+    option :follows, type: :boolean, default: false
+    option :followers, type: :boolean, default: false
+    desc 'reset-relationships USERNAME', 'Reset all follows and/or followers for a user'
     long_desc <<-LONG_DESC
-      Reset all follow and / or followers for a user.
+      Reset all follows and/or followers for a user specified by USERNAME.
 
-      With the --follow option, Unfollow all followees for the specified
-      USERNAME, and refollow the user specified in "Default follows" and
-      the user who has invited USERNAME.
+      With the --follows option, the command unfollows everyone that the account follows,
+      and then re-follows the users that would be followed by a brand new account.
 
-      With the --follower option, Cancels the follow from all followers
-      of the specified USERNAME.
+      With the --followers option, the command removes all followers of the account.
     LONG_DESC
-    def reset(username)
-      unless options[:follow] || options[:follower]
-        say('Please specify either --follow or --follower, or both', :red)
+    def reset_relationships(username)
+      unless options[:follows] || options[:followers]
+        say('Please specify either --follows or --followers, or both', :red)
         exit(1)
       end
 
@@ -393,11 +391,11 @@ module Mastodon
         exit(1)
       end
 
-      if options[:follow]
+      if options[:follows]
         processed = 0
         failed    = 0
 
-        say("Unfollow #{account.username}'s followees, this might take a while...")
+        say("Unfollowing #{account.username}'s followees, this might take a while...")
 
         Account.where(id: ::Follow.where(account: account).select(:target_account_id)).find_each do |target_account|
           begin
@@ -409,16 +407,17 @@ module Mastodon
             say('.', :red, false)
           end
         end
+
         BootstrapTimelineWorker.perform_async(account.id)
 
         say("OK, unfollowed #{processed} followees, skipped #{failed}", :green)
       end
 
-      if options[:follower]
+      if options[:followers]
         processed = 0
         failed    = 0
 
-        say("Unfollow #{account.username}'s follower, this might take a while...")
+        say("Removing #{account.username}'s followers, this might take a while...")
 
         Account.where(id: ::Follow.where(target_account: account).select(:account_id)).find_each do |target_account|
           begin
@@ -431,7 +430,7 @@ module Mastodon
           end
         end
 
-        say("OK, unfollowed #{processed} followers, skipped #{failed}", :green)
+        say("OK, removed #{processed} followers, skipped #{failed}", :green)
       end
     end
 

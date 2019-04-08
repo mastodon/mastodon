@@ -326,6 +326,6 @@ class Formatter
   end
 
   def mention_html(account)
-    "<span class=\"h-card\"><a href=\"#{encode(TagManager.instance.url_for(account))}\" class=\"u-url mention\">@<span>#{format_display_name(account, custom_emojify: true)}</span></a></span>"
+    "<span class=\"h-card\"><a href=\"#{encode(TagManager.instance.url_for(account))}\" target=\"_blank\" class=\"u-url mention\">@<span>#{encode(account.username)}</span></a></span>"
   end
 end
