@@ -115,7 +115,7 @@ class FeedManager
     target_statuses     = Status.where(id: timeline_status_ids, account: target_account)
 
     target_statuses.each do |status|
-      unpush_from_home(account, status)
+      remove_from_feed(:home, account.id, status)
     end
   end
 
