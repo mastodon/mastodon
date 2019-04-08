@@ -109,13 +109,19 @@ class FeedManager
     end
   end
 
-  def clear_from_timeline(account, target_account)
-    timeline_key        = key(:home, account.id)
+  def clear_from_timeline(timeline_key, account, target_account)
     timeline_status_ids = redis.zrange(timeline_key, 0, -1)
     target_statuses     = Status.where(id: timeline_status_ids, account: target_account)
 
     target_statuses.each do |status|
       remove_from_feed(:home, account.id, status)
+    end
+  end
+
+  def clear_from_timelines(account, target_account)
+    clear_from_timeline(key(:home, account.id), account, target_account)
+    List.where(account_id: account.id).pluck(:id).each do |list_id|
+      clear_from_timeline(key(:list, list_id), account, target_account)
     end
   end
 

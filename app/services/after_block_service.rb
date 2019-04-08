@@ -10,7 +10,7 @@ class AfterBlockService < BaseService
   private
 
   def clear_home_feed(account, target_account)
-    FeedManager.instance.clear_from_timeline(account, target_account)
+    FeedManager.instance.clear_from_timelines(account, target_account)
   end
 
   def clear_conversations(account, target_account)
