@@ -25,7 +25,7 @@ class ImportService < BaseService
 
   def import_follows!
     parse_import_data!(['Account address'])
-    import_relationships!('follow', 'unfollow', @account.following, follow_limit)
+    import_relationships!('follow', 'unfollow', @account.following, follow_limit, reblogs: 'Show boosts')
   end
 
   def import_blocks!
@@ -35,7 +35,7 @@ class ImportService < BaseService
 
   def import_mutes!
     parse_import_data!(['Account address'])
-    import_relationships!('mute', 'unmute', @account.muting, ROWS_PROCESSING_LIMIT)
+    import_relationships!('mute', 'unmute', @account.muting, ROWS_PROCESSING_LIMIT, notifications: 'Hide notifications')
   end
 
   def import_domain_blocks!
@@ -63,8 +63,8 @@ class ImportService < BaseService
     end
   end
 
-  def import_relationships!(action, undo_action, overwrite_scope, limit)
-    items = @data.take(limit).map { |row| [row['Account address']&.strip, row['Hide notifications']&.strip] }.reject { |(id, _)| id.blank? }
+  def import_relationships!(action, undo_action, overwrite_scope, limit, extra_fields = {})
+    items = @data.take(limit).map { |row| [row['Account address']&.strip, Hash[extra_fields.map { |key, header| [key, row[header]&.strip] }]] }.reject { |(id, _)| id.blank? }
 
     if @import.overwrite?
       presence_hash = items.each_with_object({}) { |(id, extra), mapping| mapping[id] = [true, extra] }
@@ -73,7 +73,7 @@ class ImportService < BaseService
         if presence_hash[target_account.acct]
           items.delete(target_account.acct)
           extra = presence_hash[target_account.acct][1]
-          Import::RelationshipWorker.perform_async(@account.id, target_account.acct, action, ActiveModel::Type::Boolean.new.cast(extra))
+          Import::RelationshipWorker.perform_async(@account.id, target_account.acct, action, extra)
         else
           Import::RelationshipWorker.perform_async(@account.id, target_account.acct, undo_action)
         end
@@ -81,7 +81,7 @@ class ImportService < BaseService
     end
 
     Import::RelationshipWorker.push_bulk(items) do |acct, extra|
-      [@account.id, acct, action, ActiveModel::Type::Boolean.new.cast(extra)]
+      [@account.id, acct, action, extra]
     end
   end
 
