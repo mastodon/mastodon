@@ -33,7 +33,9 @@
         = active_link_to t('accounts.posts_with_replies'), short_account_with_replies_url(@account)
         = active_link_to t('accounts.media'), short_account_media_url(@account)
 
-      - if @statuses.empty?
+      - if user_signed_in? && @account.blocking?(current_account)
+        .nothing-here.nothing-here--under-tabs= t('accounts.unavailable')
+      - elsif @statuses.empty?
         = nothing_here 'nothing-here--under-tabs'
       - else
         .activity-stream

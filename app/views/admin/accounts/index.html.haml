@@ -10,7 +10,7 @@
   .filter-subset
     %strong= t('admin.accounts.moderation.title')
     %ul
-      %li= filter_link_to t('admin.accounts.moderation.pending'), pending: '1', silenced: nil, suspended: nil
+      %li= link_to safe_join([t('admin.accounts.moderation.pending'), "(#{number_with_delimiter(User.pending.count)})"], ' '), admin_pending_accounts_path
       %li= filter_link_to t('admin.accounts.moderation.active'), silenced: nil, suspended: nil, pending: nil
       %li= filter_link_to t('admin.accounts.moderation.silenced'), silenced: '1', suspended: nil, pending: nil
       %li= filter_link_to t('admin.accounts.moderation.suspended'), suspended: '1', silenced: nil, pending: nil
