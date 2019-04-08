@@ -78,10 +78,6 @@ const initialState = ImmutableMap({
   tagTemplate: '',
 });
 
-function getTagTemplate() {
-  return tagTemplate.get(me) || '';
-}
-
 const initialPoll = ImmutableMap({
   options: ImmutableList(['', '']),
   expires_in: 24 * 3600,
