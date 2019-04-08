@@ -111,7 +111,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def virtual_tags
-    object.emojis + object.tags
+    object.emojis + object.tags + object.featured_tags + object.endorsed_accounts
   end
 
   def virtual_attachments
@@ -144,6 +144,50 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
     def name
       "##{object.name}"
+    end
+  end
+
+  class FeaturedTagSerializer < ActivityPub::Serializer
+    include RoutingHelper
+
+    attributes :type, :href, :name, :featured
+
+    def type
+      'Hashtag'
+    end
+
+    def href
+      short_account_tag_url(Account.find(object.account_id), object.name)
+    end
+
+    def name
+      "##{object.name}"
+    end
+
+    def featured
+      true
+    end
+  end
+
+  class AccountSerializer < ActivityPub::Serializer
+    include RoutingHelper
+
+    attributes :type, :id, :name, :featured
+
+    def type
+      'Accoount'
+    end
+
+    def id
+      object.uri
+    end
+
+    def name
+      "@#{object.acct}"
+    end
+
+    def featured
+      true
     end
   end
 
