@@ -23,7 +23,7 @@ module StreamEntriesHelper
           safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('accounts.unfollow')])
         end
       elsif !(account.memorial? || account.moved?)
-        link_to account_follow_path(account), class: 'button logo-button', data: { method: :post } do
+        link_to account_follow_path(account), class: "button logo-button#{account.blocking?(current_account) ? ' disabled' : ''}", data: { method: :post } do
           safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('accounts.follow')])
         end
       end
