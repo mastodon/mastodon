@@ -204,26 +204,6 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Moments remaining",
-        "id": "time_remaining.moments"
-      },
-      {
-        "defaultMessage": "{number, plural, one {# second} other {# seconds}} left",
-        "id": "time_remaining.seconds"
-      },
-      {
-        "defaultMessage": "{number, plural, one {# minute} other {# minutes}} left",
-        "id": "time_remaining.minutes"
-      },
-      {
-        "defaultMessage": "{number, plural, one {# hour} other {# hours}} left",
-        "id": "time_remaining.hours"
-      },
-      {
-        "defaultMessage": "{number, plural, one {# day} other {# days}} left",
-        "id": "time_remaining.days"
-      },
-      {
         "defaultMessage": "Closed",
         "id": "poll.closed"
       },
@@ -263,6 +243,26 @@
       {
         "defaultMessage": "{number}d",
         "id": "relative_time.days"
+      },
+      {
+        "defaultMessage": "Moments remaining",
+        "id": "time_remaining.moments"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# second} other {# seconds}} left",
+        "id": "time_remaining.seconds"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# minute} other {# minutes}} left",
+        "id": "time_remaining.minutes"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# hour} other {# hours}} left",
+        "id": "time_remaining.hours"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# day} other {# days}} left",
+        "id": "time_remaining.days"
       }
     ],
     "path": "app/javascript/mastodon/components/relative_timestamp.json"
@@ -552,8 +552,8 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "You are blocked",
-        "id": "empty_column.account_timeline_blocked"
+        "defaultMessage": "Profile unavailable",
+        "id": "empty_column.account_unavailable"
       },
       {
         "defaultMessage": "No toots here!",
@@ -1256,8 +1256,8 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "You are blocked",
-        "id": "empty_column.account_timeline_blocked"
+        "defaultMessage": "Profile unavailable",
+        "id": "empty_column.account_unavailable"
       },
       {
         "defaultMessage": "No one follows this user yet.",
@@ -1269,8 +1269,8 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "You are blocked",
-        "id": "empty_column.account_timeline_blocked"
+        "defaultMessage": "Profile unavailable",
+        "id": "empty_column.account_unavailable"
       },
       {
         "defaultMessage": "This user doesn't follow anyone yet.",

@@ -68,6 +68,7 @@ en:
       admin: Admin
       bot: Bot
       moderator: Mod
+    unavailable: Profile unavailable
     unfollow: Unfollow
   admin:
     account_actions:
@@ -80,6 +81,7 @@ en:
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
       approve: Approve
+      approve_all: Approve all
       are_you_sure: Are you sure?
       avatar: Avatar
       by_domain: Domain
@@ -144,6 +146,7 @@ en:
       push_subscription_expires: PuSH subscription expires
       redownload: Refresh profile
       reject: Reject
+      reject_all: Reject all
       remove_avatar: Remove avatar
       remove_header: Remove header
       resend_confirmation:
@@ -330,6 +333,8 @@ en:
         expired: Expired
         title: Filter
       title: Invites
+    pending_accounts:
+      title: Pending accounts (%{count})
     relays:
       add_new: Add new relay
       delete: Delete
@@ -499,7 +504,7 @@ en:
     salutation: "%{name},"
     settings: 'Change e-mail preferences: %{link}'
     view: 'View:'
-    view_profile: View Profile
+    view_profile: View profile
     view_status: View status
   applications:
     created: Application successfully created

@@ -68,6 +68,7 @@ ko:
       admin: 관리자
       bot: 봇
       moderator: 모더레이터
+    unavailable: 프로필 사용 불가
     unfollow: 팔로우 해제
   admin:
     account_actions:
@@ -80,6 +81,7 @@ ko:
       destroyed_msg: 모더레이션 기록이 성공적으로 삭제되었습니다!
     accounts:
       approve: 승인
+      approve_all: 모두 승인
       are_you_sure: 정말로 실행하시겠습니까?
       avatar: 아바타
       by_domain: 도메인
@@ -144,6 +146,7 @@ ko:
       push_subscription_expires: PuSH 구독 기간 만료
       redownload: 프로필 업데이트
       reject: 거부
+      reject_all: 모두 거부
       remove_avatar: 아바타 지우기
       remove_header: 헤더 삭제
       resend_confirmation:
@@ -332,6 +335,8 @@ ko:
         expired: 만료됨
         title: 필터
       title: 초대
+    pending_accounts:
+      title: 대기중인 계정 (%{count})
     relays:
       add_new: 릴레이 추가
       delete: 삭제

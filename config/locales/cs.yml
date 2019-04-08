@@ -23,7 +23,7 @@ cs:
     federation_hint_html: S účtem na %{instance} můžete sledovat lidi na jakémkoliv serveru Mastodon a jiných službách.
     generic_description: "%{domain} je jedním ze serverů v síti"
     get_apps: Vyzkoušejte mobilní aplikaci
-    hosted_on: Server Mastodon na adrese %{domain}
+    hosted_on: Mastodon na adrese %{domain}
     learn_more: Zjistit více
     privacy_policy: Zásady soukromí
     see_whats_happening: Podívejte se, co se děje
@@ -72,6 +72,7 @@ cs:
       admin: Administrátor
       bot: Robot
       moderator: Moderátor
+    unavailable: Profil nedostupný
     unfollow: Přestat sledovat
   admin:
     account_actions:
@@ -84,6 +85,7 @@ cs:
       destroyed_msg: Moderátorská poznámka byla úspěšně zničena!
     accounts:
       approve: Schválit
+      approve_all: Schválit vše
       are_you_sure: Jste si jistý/á?
       avatar: Avatar
       by_domain: Doména
@@ -148,6 +150,7 @@ cs:
       push_subscription_expires: Odebírání PuSH expiruje
       redownload: Obnovit profil
       reject: Zamítnout
+      reject_all: Zamítnout vše
       remove_avatar: Odstranit avatar
       remove_header: Odstranit záhlaví
       resend_confirmation:
@@ -336,6 +339,8 @@ cs:
         expired: Vypršelé
         title: Filtrovat
       title: Pozvánky
+    pending_accounts:
+      title: Čekající účty (%{count})
     relays:
       add_new: Přidat nový most
       delete: Smazat
@@ -764,6 +769,7 @@ cs:
           quadrillion: bld
           thousand: tis
           trillion: bil
+          unit: ''
   pagination:
     newer: Novější
     next: Další
@@ -1058,8 +1064,8 @@ cs:
       edit_profile_action: Nastavit profil
       edit_profile_step: Můžete si přizpůsobit svůj profil nahráním avataru a obrázku záhlaví, změnou zobrazovaného jména a dalších. Chcete-li posoudit nové sledující předtím, než vás mohou sledovat, můžete svůj účet uzamknout.
       explanation: Zde je pár tipů na začátek
-      final_action: Začněte přispívat
-      final_step: 'Začněte psát! I když nemáte sledující, mohou vaše zprávy vidět jiní lidé, například na místní časové ose a mezi hashtagy. Můžete se ostatním představit pomocí hashtagu #introductions.'
+      final_action: Začít psát
+      final_step: 'Začněte psát! I když nemáte sledující, mohou vaše zprávy vidět jiní lidé, například na místní časové ose a v hashtazích. Můžete se ostatním představit pomocí hashtagu #introductions.'
       full_handle: Vaše celá adresa profilu
       full_handle_hint: Tohle je, co byste řekl/a svým přátelům, aby vám mohli posílat zprávy nebo vás sledovat z jiného serveru.
       review_preferences_action: Změnit nastavení
