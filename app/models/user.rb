@@ -191,6 +191,10 @@ class User < ApplicationRecord
     settings.notification_emails['report']
   end
 
+  def allows_pending_account_emails?
+    settings.notification_emails['pending_account']
+  end
+
   def hides_network?
     @hides_network ||= settings.hide_network
   end
@@ -295,7 +299,7 @@ class User < ApplicationRecord
 
   def notify_staff_about_pending_account!
     User.staff.includes(:account).each do |u|
-      next unless u.allows_report_emails?
+      next unless u.allows_pending_account_emails?
       AdminMailer.new_pending_account(u.account, self).deliver_later
     end
   end
