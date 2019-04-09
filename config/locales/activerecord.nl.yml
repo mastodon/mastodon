@@ -1,9 +1,11 @@
----
 nl:
   activerecord:
     attributes:
       status:
         owned_poll: Poll
+      poll:
+        expires_at: Deadline
+        options: Keuzes
     errors:
       models:
         account:
