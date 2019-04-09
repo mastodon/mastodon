@@ -175,7 +175,7 @@ function main() {
 
   //animate avatar gifs on the profile page when moused over
   const profileAvatarAnimationHandler = ({ target }) => {
-    const originalImageMeta = document.querySelector('meta[property="og:image"]');
+    const originalImageMeta = document.querySelector('meta[property="og:toggle"]');
 
     //only change the image source if the static and original images are different
     if(target.src !== originalImageMeta.content) {
