@@ -3,7 +3,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import InnerHeader from 'flavours/glitch/features/account/components/header';
 import ActionBar from 'flavours/glitch/features/account/components/action_bar';
-import MissingIndicator from 'flavours/glitch/components/missing_indicator';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
@@ -89,7 +88,7 @@ export default class Header extends ImmutablePureComponent {
     const { account, hideTabs, identity_proofs } = this.props;
 
     if (account === null) {
-      return <MissingIndicator />;
+      return null;
     }
 
     return (
