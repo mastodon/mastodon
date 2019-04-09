@@ -1,9 +1,11 @@
----
 el:
   activerecord:
     attributes:
       status:
         owned_poll: Ψηφοφορία
+      poll:
+        expires_at: Προθεσμία
+        options: Επιλογές
     errors:
       models:
         account:
