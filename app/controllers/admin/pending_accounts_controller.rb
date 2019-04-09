@@ -30,7 +30,7 @@ module Admin
     private
 
     def set_accounts
-      @accounts = Account.joins(:user).merge(User.pending).page(params[:page])
+      @accounts = Account.joins(:user).merge(User.pending).includes(user: :invite_request).page(params[:page])
     end
 
     def form_account_batch_params
