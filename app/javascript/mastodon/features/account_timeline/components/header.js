@@ -2,7 +2,6 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import InnerHeader from '../../account/components/header';
-import MissingIndicator from '../../../components/missing_indicator';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import MovedNote from './moved_note';
 import { FormattedMessage } from 'react-intl';
@@ -88,7 +87,7 @@ export default class Header extends ImmutablePureComponent {
     const { account, hideTabs, identity_proofs } = this.props;
 
     if (account === null) {
-      return <MissingIndicator />;
+      return null;
     }
 
     return (
