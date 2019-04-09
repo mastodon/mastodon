@@ -1,9 +1,11 @@
----
 gl:
   activerecord:
     attributes:
       status:
         owned_poll: Sondaxe
+      poll:
+        expires_at: Caducidade
+        options: Opcións
     errors:
       models:
         account:
