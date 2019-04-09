@@ -214,10 +214,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :pending_accounts, only: [:index, :update] do
+    resources :pending_accounts, only: [:index] do
       collection do
         post :approve_all
         post :reject_all
+        post :batch
       end
     end
 

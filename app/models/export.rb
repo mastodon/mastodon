@@ -22,7 +22,11 @@ class Export
   end
 
   def to_following_accounts_csv
-    to_csv account.following.select(:username, :domain)
+    CSV.generate(headers: ['Account address', 'Show boosts'], write_headers: true) do |csv|
+      account.active_relationships.includes(:target_account).reorder(id: :desc).each do |follow|
+        csv << [acct(follow.target_account), follow.show_reblogs]
+      end
+    end
   end
 
   def to_lists_csv

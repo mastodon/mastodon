@@ -8,11 +8,11 @@ module Admin
       @form = Form::AccountBatch.new
     end
 
-    def update
+    def batch
       @form = Form::AccountBatch.new(form_account_batch_params.merge(current_account: current_account, action: action_from_button))
       @form.save
     rescue ActionController::ParameterMissing
-      # Do nothing
+      flash[:alert] = I18n.t('admin.accounts.no_account_selected')
     ensure
       redirect_to admin_pending_accounts_path(current_params)
     end
