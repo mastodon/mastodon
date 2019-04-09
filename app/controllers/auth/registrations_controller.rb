@@ -10,6 +10,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :set_instance_presenter, only: [:new, :create, :update]
   before_action :set_body_classes, only: [:new, :create, :edit, :update]
 
+  def new
+    super(&:build_invite_request)
+  end
+
   def destroy
     not_found
   end
@@ -24,13 +28,12 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   def build_resource(hash = nil)
     super(hash)
 
-    resource.locale      = I18n.locale
-    resource.invite_code = params[:invite_code] if resource.invite_code.blank?
-    resource.agreement   = true
+    resource.locale             = I18n.locale
+    resource.invite_code        = params[:invite_code] if resource.invite_code.blank?
+    resource.agreement          = true
+    resource.current_sign_in_ip = request.remote_ip
 
-    resource.current_sign_in_ip = request.remote_ip if resource.current_sign_in_ip.nil?
     resource.build_account if resource.account.nil?
-    resource.build_invite_request if resource.invite_request.nil?
   end
 
   def configure_sign_up_params
