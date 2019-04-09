@@ -74,6 +74,9 @@ class User < ApplicationRecord
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
   has_many :backups, inverse_of: :user
 
+  has_one :invite_request, class_name: 'UserInviteRequest', inverse_of: :user, dependent: :destroy
+  accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? }
+
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?
   validates_with EmailMxValidator, if: :validate_email_dns?

@@ -30,11 +30,12 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
     resource.current_sign_in_ip = request.remote_ip if resource.current_sign_in_ip.nil?
     resource.build_account if resource.account.nil?
+    resource.build_invite_request if resource.invite_request.nil?
   end
 
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up) do |u|
-      u.permit({ account_attributes: [:username] }, :email, :password, :password_confirmation, :invite_code)
+      u.permit({ account_attributes: [:username], invite_request_attributes: [:text] }, :email, :password, :password_confirmation, :invite_code)
     end
   end
 
