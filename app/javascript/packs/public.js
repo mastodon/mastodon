@@ -173,6 +173,22 @@ function main() {
     avatar.src = url;
   });
 
+  //animate avatar gifs on the profile page when moused over
+  const profileAvatarAnimationHandler = ({ target }) => {
+    const originalImageMeta = document.querySelector('meta[property="og:image"]');
+
+    //only change the image source if the static and original images are different
+    if(target.src !== originalImageMeta.content) {
+      const targetSrc = target.src;
+      target.src = originalImageMeta.content;
+      originalImageMeta.content = targetSrc;
+    }
+  };
+
+  delegate(document, 'img#profile_page_avatar', 'mouseover', profileAvatarAnimationHandler);
+
+  delegate(document, 'img#profile_page_avatar', 'mouseout', profileAvatarAnimationHandler);
+
   delegate(document, '#account_header', 'change', ({ target }) => {
     const header = document.querySelector('.card .card__img img');
     const [file] = target.files || [];
