@@ -68,6 +68,7 @@ de:
       admin: Admin
       bot: Bot
       moderator: Moderator
+    unavailable: Profil nicht verfügbar
     unfollow: Entfolgen
   admin:
     account_actions:
@@ -80,6 +81,7 @@ de:
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
     accounts:
       approve: Aktzeptieren
+      approve_all: Alle aktzeptieren
       are_you_sure: Bist du sicher?
       avatar: Profilbild
       by_domain: Domain
@@ -144,6 +146,7 @@ de:
       push_subscription_expires: PuSH-Abonnement läuft aus
       redownload: Profil neu laden
       reject: Ablehnen
+      reject_all: Alle ablehnen
       remove_avatar: Profilbild entfernen
       remove_header: Header entfernen
       resend_confirmation:
@@ -329,6 +332,8 @@ de:
         expired: Ausgelaufen
         title: Filter
       title: Einladungen
+    pending_accounts:
+      title: Ausstehende Konten (%{count})
     relays:
       add_new: Neues Relay hinzufügen
       delete: Löschen
@@ -632,6 +637,7 @@ de:
     all: Alle
     changes_saved_msg: Änderungen gespeichert!
     copy: Kopieren
+    order_by: Sortieren nach
     save_changes: Änderungen speichern
     validation_errors:
       one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
@@ -773,6 +779,8 @@ de:
   relationships:
     activity: Kontoaktivität
     dormant: Inaktiv
+    last_active: Zuletzt aktiv
+    most_recent: Neuste
     moved: Umgezogen
     mutual: Bekannt
     primary: Primär
