@@ -214,6 +214,14 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :pending_accounts, only: [:index] do
+      collection do
+        post :approve_all
+        post :reject_all
+        post :batch
+      end
+    end
+
     resources :users, only: [] do
       resource :two_factor_authentication, only: [:destroy]
     end

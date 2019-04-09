@@ -11,14 +11,14 @@ All notable changes to this project will be documented in this file.
 - Add identity proof integration with Keybase ([Gargron](https://github.com/tootsuite/mastodon/pull/10297), [xgess](https://github.com/tootsuite/mastodon/pull/10375), [Gargron](https://github.com/tootsuite/mastodon/pull/10338), [Gargron](https://github.com/tootsuite/mastodon/pull/10350), [Gargron](https://github.com/tootsuite/mastodon/pull/10414))
 - Add option to overwrite imported data instead of merging ([Gargron](https://github.com/tootsuite/mastodon/pull/9962))
 - Add featured hashtags to profiles ([Gargron](https://github.com/tootsuite/mastodon/pull/9755), [Gargron](https://github.com/tootsuite/mastodon/pull/10167), [Gargron](https://github.com/tootsuite/mastodon/pull/10249), [ThibG](https://github.com/tootsuite/mastodon/pull/10034))
-- Add admission-based registrations mode ([Gargron](https://github.com/tootsuite/mastodon/pull/10250), [ThibG](https://github.com/tootsuite/mastodon/pull/10269), [Gargron](https://github.com/tootsuite/mastodon/pull/10264), [ThibG](https://github.com/tootsuite/mastodon/pull/10321), [Gargron](https://github.com/tootsuite/mastodon/pull/10349))
+- Add admission-based registrations mode ([Gargron](https://github.com/tootsuite/mastodon/pull/10250), [ThibG](https://github.com/tootsuite/mastodon/pull/10269), [Gargron](https://github.com/tootsuite/mastodon/pull/10264), [ThibG](https://github.com/tootsuite/mastodon/pull/10321), [Gargron](https://github.com/tootsuite/mastodon/pull/10349), [Gargron](https://github.com/tootsuite/mastodon/pull/10469))
 - Add support for WebP uploads ([acid-chicken](https://github.com/tootsuite/mastodon/pull/9879))
 - Add "copy link" item to status action bars in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/9983))
 - Add list title editing in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/9748))
 - Add a "Block & Report" button to the block confirmation dialog in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/10360))
 - Add disappointed elephant when the page crashes in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/10275))
 - Add ability to upload multiple files at once in web UI ([tmm576](https://github.com/tootsuite/mastodon/pull/9856))
-- Add indication that you have been blocked when viewing profiles in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/10420))
+- Add indication when you are not allowed to follow an account in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/10420), [Gargron](https://github.com/tootsuite/mastodon/pull/10491))
 - Add validations to admin settings to catch common mistakes ([Gargron](https://github.com/tootsuite/mastodon/pull/10348), [ThibG](https://github.com/tootsuite/mastodon/pull/10354))
 - Add `type`, `limit`, `offset`, `min_id`, `max_id`, `account_id` to search API ([Gargron](https://github.com/tootsuite/mastodon/pull/10091))
 - Add a preferences API so apps can share basic behaviours ([Gargron](https://github.com/tootsuite/mastodon/pull/10109))
@@ -32,6 +32,10 @@ All notable changes to this project will be documented in this file.
 - Add `DB_SSLMODE` configuration variable ([sascha-sl](https://github.com/tootsuite/mastodon/pull/10210))
 - Add click-to-copy UI to invites page ([Gargron](https://github.com/tootsuite/mastodon/pull/10259))
 - Add self-replies fetching ([ThibG](https://github.com/tootsuite/mastodon/pull/10106), [ThibG](https://github.com/tootsuite/mastodon/pull/10128), [ThibG](https://github.com/tootsuite/mastodon/pull/10175), [ThibG](https://github.com/tootsuite/mastodon/pull/10201))
+- Add rate limit for media proxy requests ([Gargron](https://github.com/tootsuite/mastodon/pull/10490))
+- Add `tootctl emoji purge` ([Gargron](https://github.com/tootsuite/mastodon/pull/10481))
+- Add `tootctl accounts approve` ([Gargron](https://github.com/tootsuite/mastodon/pull/10480))
+- Add `tootctl accounts reset-relationships` ([noellabo](https://github.com/tootsuite/mastodon/pull/10483))
 
 ### Changed
 
@@ -50,6 +54,10 @@ All notable changes to this project will be documented in this file.
 - Change Webpack to not use @babel/preset-env to compile node_modules ([ykzts](https://github.com/tootsuite/mastodon/pull/10289))
 - Change web UI to use new Web Share Target API ([gol-cha](https://github.com/tootsuite/mastodon/pull/9963))
 - Change ActivityPub reports to have persistent URIs ([ThibG](https://github.com/tootsuite/mastodon/pull/10303))
+- Change `tootctl accounts cull --dry-run` to list accounts that would be deleted ([BenLubar](https://github.com/tootsuite/mastodon/pull/10460))
+- Change format of CSV exports of follows and mutes to include extra settings ([ThibG](https://github.com/tootsuite/mastodon/pull/10495), [ThibG](https://github.com/tootsuite/mastodon/pull/10335))
+- Change ActivityPub collections to be cacheable by proxies ([ThibG](https://github.com/tootsuite/mastodon/pull/10467))
+- Change REST API and public profiles to not return follows/followers for users that have blocked you ([Gargron](https://github.com/tootsuite/mastodon/pull/10491))
 
 ### Removed
 
@@ -75,6 +83,7 @@ All notable changes to this project will be documented in this file.
 - Fix race condition when streaming out deleted statuses ([ThibG](https://github.com/tootsuite/mastodon/pull/10280))
 - Fix performance of admin federation UI by caching account counts ([Gargron](https://github.com/tootsuite/mastodon/pull/10374))
 - Fix JS error on pages that don't define a CSRF token ([hinaloe](https://github.com/tootsuite/mastodon/pull/10383))
+- Fix `tootctl accounts cull` sometimes removing accounts that are temporarily unreachable ([BenLubar](https://github.com/tootsuite/mastodon/pull/10460))
 
 ## [2.7.4] - 2019-03-05
 ### Fixed
