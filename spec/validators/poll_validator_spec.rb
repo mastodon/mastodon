@@ -12,14 +12,14 @@ RSpec.describe PollValidator, type: :validator do
     let(:poll) { double(options: options, expires_at: expires_at, errors: errors) }
     let(:errors) { double(add: nil) }
     let(:options) { %w(foo bar) }
-    let(:expires_at) { Time.now.since(1.day).utc }
+    let(:expires_at) { 1.day.from_now }
 
     it 'have no errors' do
       expect(errors).not_to have_received(:add)
     end
 
     context 'expires just 5 min ago' do
-      let(:expires_at) { Time.now.since(5.minute).utc }
+      let(:expires_at) { 5.minutes.from_now }
       it 'not calls errors add' do
         expect(errors).not_to have_received(:add)
       end
