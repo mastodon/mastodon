@@ -81,6 +81,7 @@ co:
       destroyed_msg: Nota di muderazione sguassata!
     accounts:
       approve: Appruvà
+      approve_all: Appruvà tutti
       are_you_sure: Site sicuru·a?
       avatar: Ritrattu di prufile
       by_domain: Duminiu
@@ -133,6 +134,7 @@ co:
       moderation_notes: Note di muderazione
       most_recent_activity: Attività più ricente
       most_recent_ip: IP più ricente
+      no_account_selected: Nisun contu hè statu cambiatu postu ch'ùn c'eranu micca selezziunati
       no_limits_imposed: Nisuna limita imposta
       not_subscribed: Micca abbunatu
       outbox_url: URL di l’outbox
@@ -145,6 +147,7 @@ co:
       push_subscription_expires: Spirata di l’abbunamentu PuSH
       redownload: Mette à ghjornu u prufile
       reject: Righjittà
+      reject_all: Righjittà tutti
       remove_avatar: Toglie l’avatar
       remove_header: Toglie l'intistatura
       resend_confirmation:
@@ -510,7 +513,6 @@ co:
     warning: Abbadate à quessi dati. Ùn i date à nisunu!
     your_token: Rigenerà a fiscia d’accessu
   auth:
-    agreement_html: Cliccà "Arregistrassi" quì sottu vole dì chì site d’accunsentu per siguità <a href="%{rules_path}">e regule di u servore</a> è <a href="%{terms_path}">e cundizione d’usu</a>.
     apply_for_account: Dumandà un'invitazione
     change_password: Chjave d’accessu
     checkbox_agreement_html: Sò d'accunsentu cù e <a href="%{rules_path}" target="_blank">regule di u servore</a> è i <a href="%{terms_path}" target="_blank">termini di u serviziu</a>
@@ -871,9 +873,7 @@ co:
     notifications: Nutificazione
     preferences: Priferenze
     relationships: Abbunamenti è abbunati
-    settings: Parametri
     two_factor_authentication: Identificazione à dui fattori
-    your_apps: E vostre applicazione
   statuses:
     attached:
       description: 'Aghjuntu: %{attached}'

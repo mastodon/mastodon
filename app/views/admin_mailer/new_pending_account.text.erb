@@ -2,7 +2,11 @@
 
 <%= raw t('admin_mailer.new_pending_account.body') %>
 
-<%= raw t('admin.accounts.email') %>: <%= @account.user_email %>
-<%= raw t('admin.accounts.most_recent_ip') %>: <%= @account.user_current_sign_in_ip %>
+<%= @account.user_email %> (@<%= @account.username %>)
+<%= @account.user_current_sign_in_ip %>
+<% if @account.user&.invite_request&.text.present? %>
 
-<%= raw t('application_mailer.view')%> <%= admin_account_url(@account.id) %>
+<%= quote_wrap(@account.user&.invite_request&.text) %>
+<% end %>
+
+<%= raw t('application_mailer.view')%> <%= admin_pending_accounts_url %>
