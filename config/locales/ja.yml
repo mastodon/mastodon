@@ -9,9 +9,9 @@ ja:
     administered_by: '管理者:'
     api: API
     apps: アプリ
-    apps_platforms: iOSやAndroid、その他プラットフォームから使用する
-    browse_directory: ディレクトリで関心を軸に見つける
-    browse_public_posts: Mastodonの公開ライブストリームを見てみる
+    apps_platforms: iOSやAndroidなど、各種環境から利用できます
+    browse_directory: ディレクトリから気になる人を探しましょう
+    browse_public_posts: Mastodonの公開ライブストリームをご覧ください
     contact: 連絡先
     contact_missing: 未設定
     contact_unavailable: N/A
@@ -20,13 +20,13 @@ ja:
     extended_description_html: |
       <h3>ルールを書くのに適した場所</h3>
       <p>詳細説明が設定されていません。</p>
-    federation_hint_html: "%{instance} にアカウントを作ればどこのMastodonや互換性のあるサーバーのユーザーでもフォローできます。"
+    federation_hint_html: "%{instance} にアカウントがあればどの互換性のあるサーバーのユーザーでもフォローできるでしょう。"
     generic_description: "%{domain} は、Mastodon サーバーの一つです"
     get_apps: モバイルアプリを試す
     hosted_on: Mastodon hosted on %{domain}
     learn_more: もっと詳しく
     privacy_policy: プライバシーポリシー
-    see_whats_happening: 何が起きているのか見てみる
+    see_whats_happening: やりとりを見てみる
     server_stats: 'サーバー統計:'
     source_code: ソースコード
     status_count_after:
@@ -134,6 +134,7 @@ ja:
       moderation_notes: モデレーションメモ
       most_recent_activity: 直近の活動
       most_recent_ip: 直近のIP
+      no_account_selected: 何も選択されていないため、変更されていません
       no_limits_imposed: 制限なし
       not_subscribed: 購読していない
       outbox_url: Outbox URL
@@ -530,7 +531,7 @@ ja:
       cas: CAS
       saml: SAML
     register: 登録する
-    registration_closed: "%{instance} は現在新しいメンバーを受け入れていません"
+    registration_closed: "%{instance} は現在、新規登録停止中です"
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
     security: セキュリティ
@@ -858,6 +859,9 @@ ja:
     revoke_success: セッションを削除しました
     title: セッション
   settings:
+    account: アカウント
+    account_settings: セキュリティ
+    appearance: プロフィールを編集
     authorized_apps: 認証済みアプリ
     back: Mastodon に戻る
     delete: アカウントの削除
@@ -867,9 +871,11 @@ ja:
     featured_tags: 注目のハッシュタグ
     identity_proofs: Identity proofs
     import: データのインポート
+    import_and_export: インポート・エクスポート
     migrate: アカウントの引っ越し
     notifications: 通知
     preferences: ユーザー設定
+    profile: プロフィール
     relationships: フォロー・フォロワー
     two_factor_authentication: 二段階認証
   statuses:
