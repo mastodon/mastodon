@@ -21,12 +21,19 @@
 
   .fields-group
     = f.input :password, wrapper: :with_label, label: t('simple_form.labels.defaults.password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.password'), :autocomplete => 'off' }
+
   .fields-group
     = f.input :password_confirmation, wrapper: :with_label, label: t('simple_form.labels.defaults.confirm_password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_password'), :autocomplete => 'off' }
 
+  - if approved_registrations? && !@invite.present?
+    .fields-group
+      = f.simple_fields_for :invite_request do |invite_request_fields|
+        = invite_request_fields.input :text, as: :text, wrapper: :with_block_label, required: false
+
   = f.input :invite_code, as: :hidden
 
-  %p.hint= t('auth.agreement_html', rules_path: about_more_path, terms_path: terms_path)
+  .fields-group
+    = f.input :agreement, as: :boolean, wrapper: :with_label, label: t('auth.checkbox_agreement_html', rules_path: about_more_path, terms_path: terms_path)
 
   .actions
     = f.button :button, sign_up_message, type: :submit
