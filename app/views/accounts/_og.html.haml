@@ -7,7 +7,6 @@
 = opengraph 'og:title', yield(:page_title).strip
 = opengraph 'og:description', description
 = opengraph 'og:image', full_asset_url(account.avatar.url(:original))
-= opengraph 'og:toggle', full_asset_url(account.avatar.url(:original))
 = opengraph 'og:image:width', '120'
 = opengraph 'og:image:height', '120'
 = opengraph 'twitter:card', 'summary'
