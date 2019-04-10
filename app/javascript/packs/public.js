@@ -173,7 +173,6 @@ function main() {
     avatar.src = url;
   });
 
-
   const getProfileAvatarAnimationHandler = (swapTo) => {
     //animate avatar gifs on the profile page when moused over
     return ({ target }) => {
