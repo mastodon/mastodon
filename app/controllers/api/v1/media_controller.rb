@@ -14,7 +14,8 @@ class Api::V1::MediaController < Api::BaseController
     render json: @media, serializer: REST::MediaAttachmentSerializer
   rescue Paperclip::Errors::NotIdentifiedByImageMagickError
     render json: file_type_error, status: 422
-  rescue Paperclip::Error
+  rescue Paperclip::Error => exception
+    Bugsnag.notify(exception)
     render json: processing_error, status: 500
   end
 

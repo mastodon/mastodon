@@ -103,6 +103,8 @@ GEM
       msgpack (~> 1.0)
     brakeman (4.5.0)
     browser (2.5.3)
+    bugsnag (6.11.1)
+      concurrent-ruby (~> 1.0)
     builder (3.2.3)
     bullet (5.9.0)
       activesupport (>= 3.0.0)
@@ -664,6 +666,7 @@ DEPENDENCIES
   bootsnap (~> 1.4)
   brakeman (~> 4.5)
   browser
+  bugsnag
   bullet (~> 5.9)
   bundler-audit (~> 0.6)
   capistrano (~> 3.11)

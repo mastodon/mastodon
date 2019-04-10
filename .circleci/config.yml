@@ -178,6 +178,42 @@ jobs:
       - run: bundle exec i18n-tasks missing -t plural
       - run: bundle exec i18n-tasks check-consistent-interpolations
 
+  docker-build:
+    docker:
+      - image: circleci/python:3.6.4
+    working_directory: ~/projects/mastodon/
+    steps:
+      - run:
+          name: Install AWS CLI
+          command: sudo pip install awscli --upgrade
+      - run:
+          name: Configure AWS CLI
+          command: |
+            aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile default
+            aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile default
+            aws configure set region ${AWS_DEFAULT_REGION} --profile default
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Login to Amazon ECR
+          command: |
+            $(aws ecr get-login --no-include-email --region ${AWS_DEFAULT_REGION} )
+      - run:
+          name: Pull latest image from ECR
+          command: docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:latest
+      - run:
+          name: Build docker image
+          command: docker build -t mastodon:latest --cache-from ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:latest .
+      - run:
+          name: Push docker image to ECR
+          command: |
+            docker tag mastodon:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:latest
+            docker tag mastodon:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:${CIRCLE_BRANCH}
+            docker tag mastodon:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:${CIRCLE_SHA1}
+            docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:latest
+            docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:${CIRCLE_BRANCH}
+            docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:${CIRCLE_SHA1}
+
 workflows:
   version: 2
   build-and-test:
@@ -215,3 +251,4 @@ workflows:
       - check-i18n:
           requires:
             - install-ruby2.6
+      - docker-build
