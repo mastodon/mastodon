@@ -377,6 +377,10 @@
     border: 0;
   }
 
+  strong {
+    font-weight: 700;
+  }
+
   thead th {
     text-align: center;
     text-transform: uppercase;
@@ -412,6 +416,11 @@
       font-weight: 400;
       font-size: 14px;
     }
+  }
+
+  &__comment {
+    width: 50%;
+    vertical-align: initial !important;
   }
 
   @media screen and (max-width: $no-gap-breakpoint) {
