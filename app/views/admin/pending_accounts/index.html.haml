@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('admin.pending_accounts.title', count: User.pending.count)
 
-= form_for(@form, url: admin_pending_accounts_path, method: :patch) do |f|
+= form_for(@form, url: batch_admin_pending_accounts_path) do |f|
   = hidden_field_tag :page, params[:page] || 1
 
   .batch-table
