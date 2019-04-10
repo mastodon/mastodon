@@ -41,6 +41,8 @@ ko:
         name: '이것들을 사용하면 좋을 것 같습니다:'
       imports:
         data: 다른 마스토돈 서버에서 추출된 CSV 파일
+      invite_request:
+        text: 이 정보는 우리가 심사를 하는 데에 참고할 수 있습니다
       sessions:
         otp: '휴대전화에서 생성 된 2단계 인증 코드를 입력하거나, 복구 코드 중 하나를 사용하세요:'
       user:
@@ -118,12 +120,15 @@ ko:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following_dm: 내가 팔로우 하지 않은 사람에게서 오는 다이렉트메시지를 차단
+      invite_request:
+        text: 가입하려는 이유가 무엇인가요?
       notification_emails:
         digest: 요약 이메일 보내기
         favourite: 누군가 내 상태를 즐겨찾기로 등록했을 때 이메일 보내기
         follow: 누군가 나를 팔로우 했을 때 이메일 보내기
         follow_request: 누군가 나를 팔로우 하길 원할 때 이메일 보내기
         mention: 누군가 나에게 답장했을 때 이메일 보내기
+        pending_account: 새 계정이 심사가 필요할 때 이메일 보내기
         reblog: 누군가 내 툿을 부스트 했을 때 이메일 보내기
         report: 새 신고 등록시 이메일로 알리기
     'no': 아니오
