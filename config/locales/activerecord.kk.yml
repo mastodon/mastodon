@@ -1,5 +1,10 @@
+---
 kk:
   activerecord:
+    attributes:
+      poll:
+        expires_at: Дедлайн
+        options: Таңдаулар
     errors:
       models:
         account:
@@ -10,7 +15,3 @@ kk:
           attributes:
             reblog:
               taken: жазбасы бұрыннан бар
-    attributes:
-      poll:
-        expires_at: Дедлайн
-        options: Таңдаулар

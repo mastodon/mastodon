@@ -1,5 +1,10 @@
+---
 fr:
   activerecord:
+    attributes:
+      poll:
+        expires_at: Date butoir
+        options: Choix
     errors:
       models:
         account:
@@ -10,7 +15,3 @@ fr:
           attributes:
             reblog:
               taken: du statut existe déjà
-    attributes:
-      poll:
-        expires_at: Date butoir
-        options: Choix
