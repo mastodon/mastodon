@@ -2,6 +2,9 @@
 sk:
   activerecord:
     attributes:
+      poll:
+        expires_at: Uzávierka
+        options: Voľby
       status:
         owned_poll: Anketa
     errors:
@@ -13,4 +16,4 @@ sk:
         status:
           attributes:
             reblog:
-              taken: status už existuje
+              taken: príspevku už existuje
