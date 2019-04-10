@@ -30,11 +30,11 @@ class AccountIdentityProof < ApplicationRecord
 
   delegate :refresh!, :on_success_path, :badge, to: :provider_instance
 
-  private
-
   def provider_instance
     @provider_instance ||= ProofProvider.find(provider, self)
   end
+
+  private
 
   def queue_worker
     provider_instance.worker_class.perform_async(id)
