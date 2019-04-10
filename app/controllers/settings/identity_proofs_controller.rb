@@ -18,7 +18,7 @@ class Settings::IdentityProofsController < Settings::BaseController
       provider_username: params[:provider_username]
     )
 
-    if current_account.username == params[:username]
+    if current_account.username.downcase == params[:username].downcase
       render layout: 'auth'
     else
       flash[:alert] = I18n.t('identity_proofs.errors.wrong_user', proving: params[:username], current: current_account.username)
