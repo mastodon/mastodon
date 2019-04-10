@@ -513,7 +513,6 @@ en:
     warning: Be very careful with this data. Never share it with anyone!
     your_token: Your access token
   auth:
-    agreement_html: By clicking "Sign up" below you agree to follow <a href="%{rules_path}">the rules of the server</a> and <a href="%{terms_path}">our terms of service</a>.
     apply_for_account: Request an invite
     change_password: Password
     checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
@@ -861,6 +860,8 @@ en:
     revoke_success: Session successfully revoked
     title: Sessions
   settings:
+    account: Account
+    account_settings: Account settings
     authorized_apps: Authorized apps
     back: Back to Mastodon
     delete: Account deletion
@@ -870,13 +871,13 @@ en:
     featured_tags: Featured hashtags
     identity_proofs: Identity proofs
     import: Import
+    import_and_export: Import and export
     migrate: Account migration
     notifications: Notifications
     preferences: Preferences
+    profile: Profile
     relationships: Follows and followers
-    settings: Settings
     two_factor_authentication: Two-factor Auth
-    your_apps: Your applications
   statuses:
     attached:
       description: 'Attached: %{attached}'
