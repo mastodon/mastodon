@@ -13,8 +13,10 @@ import MediaItem from './components/media_item';
 import HeaderContainer from 'flavours/glitch/features/account_timeline/containers/header_container';
 import { ScrollContainer } from 'react-router-scroll-4';
 import LoadMore from 'flavours/glitch/components/load_more';
+import MissingIndicator from 'flavours/glitch/components/missing_indicator';
 
 const mapStateToProps = (state, props) => ({
+  isAccount: !!state.getIn(['accounts', props.params.accountId]),
   medias: getAccountGallery(state, props.params.accountId),
   isLoading: state.getIn(['timelines', `account:${props.params.accountId}:media`, 'isLoading']),
   hasMore:   state.getIn(['timelines', `account:${props.params.accountId}:media`, 'hasMore']),
@@ -51,6 +53,7 @@ export default class AccountGallery extends ImmutablePureComponent {
     medias: ImmutablePropTypes.list.isRequired,
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
+    isAccount: PropTypes.bool,
   };
 
   componentDidMount () {
@@ -103,7 +106,15 @@ export default class AccountGallery extends ImmutablePureComponent {
   }
 
   render () {
-    const { medias, isLoading, hasMore } = this.props;
+    const { medias, isLoading, hasMore, isAccount } = this.props;
+
+    if (!isAccount) {
+      return (
+        <Column>
+          <MissingIndicator />
+        </Column>
+      );
+    }
 
     let loadOlder = null;
 

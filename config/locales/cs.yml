@@ -138,6 +138,7 @@ cs:
       moderation_notes: Moderátorské poznámky
       most_recent_activity: Nejnovější aktivita
       most_recent_ip: Nejnovější IP
+      no_account_selected: Nebyl změněn žádný účet, neboť žádný nebyl zvolen
       no_limits_imposed: Nejsou nastavena žádná omezení
       not_subscribed: Neodebírá
       outbox_url: URL odchozí schránky
@@ -518,7 +519,6 @@ cs:
     warning: Buďte s těmito daty velmi opatrní. Nikdy je s nikým nesdílejte!
     your_token: Váš přístupový token
   auth:
-    agreement_html: Kliknutím na tlačítko „Registrovat“ souhlasíte s následováním <a href="%{rules_path}">pravidel tohoto serveru</a> a <a href="%{terms_path}">našich podmínek používání</a>.
     apply_for_account: Vyžádat si pozvánku
     change_password: Heslo
     checkbox_agreement_html: Souhlasím s <a href="%{rules_path}" target="_blank">pravidly serveru</a> a <a href="%{terms_path}" target="_blank">podmínkami používání</a>
@@ -871,6 +871,9 @@ cs:
     revoke_success: Relace úspěšně zamítnuta
     title: Relace
   settings:
+    account: Účet
+    account_settings: Nastavení účtu
+    appearance: Vzhled
     authorized_apps: Autorizované aplikace
     back: Zpět na Mastodon
     delete: Smazání účtu
@@ -880,13 +883,13 @@ cs:
     featured_tags: Zvýrazněné hashtagy
     identity_proofs: Důkazy identity
     import: Import
+    import_and_export: Import a export
     migrate: Přesunutí účtu
     notifications: Oznámení
     preferences: Předvolby
+    profile: Profil
     relationships: Sledovaní a sledující
-    settings: Nastavení
     two_factor_authentication: Dvoufázové ověřování
-    your_apps: Vaše aplikace
   statuses:
     attached:
       description: 'Přiloženo: %{attached}'

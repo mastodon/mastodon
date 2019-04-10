@@ -15,8 +15,10 @@ import ProfileColumnHeader from 'flavours/glitch/features/account/components/pro
 import HeaderContainer from 'flavours/glitch/features/account_timeline/containers/header_container';
 import LoadMore from 'flavours/glitch/components/load_more';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import MissingIndicator from 'flavours/glitch/components/missing_indicator';
 
 const mapStateToProps = (state, props) => ({
+  isAccount: !!state.getIn(['accounts', props.params.accountId]),
   accountIds: state.getIn(['user_lists', 'following', props.params.accountId, 'items']),
   hasMore: !!state.getIn(['user_lists', 'following', props.params.accountId, 'next']),
 });
@@ -29,6 +31,7 @@ export default class Following extends ImmutablePureComponent {
     dispatch: PropTypes.func.isRequired,
     accountIds: ImmutablePropTypes.list,
     hasMore: PropTypes.bool,
+    isAccount: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -70,7 +73,15 @@ export default class Following extends ImmutablePureComponent {
   }
 
   render () {
-    const { accountIds, hasMore } = this.props;
+    const { accountIds, hasMore, isAccount } = this.props;
+
+    if (!isAccount) {
+      return (
+        <Column>
+          <MissingIndicator />
+        </Column>
+      );
+    }
 
     let loadMore = null;
 
