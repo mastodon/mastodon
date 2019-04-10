@@ -134,6 +134,7 @@ de:
       moderation_notes: Moderationsnotizen
       most_recent_activity: Letzte Aktivität
       most_recent_ip: Letzte IP-Adresse
+      no_account_selected: Keine Konten wurden verändert, da keine ausgewählt wurden
       no_limits_imposed: Keine Limits eingesetzt
       not_subscribed: Nicht abonniert
       outbox_url: Postausgangs-URL
@@ -248,6 +249,7 @@ de:
       feature_profile_directory: Profilverzeichnis
       feature_registrations: Registrierung
       feature_relay: Föderations-Relay
+      feature_timeline_preview: Zeitleistenvorschau
       features: Eigenschaften
       hidden_service: Föderation mit versteckten Diensten
       open_reports: Offene Meldungen
@@ -652,10 +654,13 @@ de:
       keybase:
         invalid_token: Keybase-Tokens sind Hashsignaturen und müssen 66 Hexadezimalzeichen lang sein
         verification_failed: Keybase nimmt dieses Token nicht als Signatur für Keybase-Benutzer %{kb_username} an. Bitte versuche es nochmal über Keybase.
+      wrong_user: Kann keinen Beweis für %{proving} erstellen während du als %{current} angemeldet bist. Melde dich als %{proving} an und versuche es noch einmal.
     explanation_html: Hier kannst du kryptographisch deine anderen Identitäten wie dein Keybase-Profil verbinden. Dadurch können andere Leute dir verschlüsselte Nachrichten senden und dem Inhalt, den sie dir senden, vertrauen.
     i_am_html: Ich bin %{username} auf %{service}.
     identity: Identität
     inactive: Inaktiv
+    publicize_checkbox: 'Und poste das:'
+    publicize_toot: 'Es ist offiziell! Ich bin %{username} auf %{service}: %{url}'
     status: Verifizierungsstatus
     view_proof: Zeige Nachweis
   imports:
@@ -855,6 +860,9 @@ de:
     revoke_success: Sitzung erfolgreich geschlossen
     title: Sitzungen
   settings:
+    account: Konto
+    account_settings: Konto & Sicherheit
+    appearance: Bearbeiten
     authorized_apps: Autorisierte Anwendungen
     back: Zurück zu Mastodon
     delete: Konto löschen
@@ -864,9 +872,11 @@ de:
     featured_tags: Empfohlene Hashtags
     identity_proofs: Identitätsnachweise
     import: Datenimport
+    import_and_export: Importieren und Exportieren
     migrate: Konto-Umzug
     notifications: Benachrichtigungen
     preferences: Einstellungen
+    profile: Profil
     relationships: Folgende und Follower
     two_factor_authentication: Zwei-Faktor-Auth
   statuses:
