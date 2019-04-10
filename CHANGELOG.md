@@ -58,6 +58,7 @@ All notable changes to this project will be documented in this file.
 - Change format of CSV exports of follows and mutes to include extra settings ([ThibG](https://github.com/tootsuite/mastodon/pull/10495), [ThibG](https://github.com/tootsuite/mastodon/pull/10335))
 - Change ActivityPub collections to be cacheable by proxies ([ThibG](https://github.com/tootsuite/mastodon/pull/10467))
 - Change REST API and public profiles to not return follows/followers for users that have blocked you ([Gargron](https://github.com/tootsuite/mastodon/pull/10491))
+- Change the groupings of menu items in settings navigation ([Gargron](https://github.com/tootsuite/mastodon/pull/10533))
 
 ### Removed
 
