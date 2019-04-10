@@ -41,6 +41,8 @@ de:
         name: 'Du möchtest vielleicht einen von diesen benutzen:'
       imports:
         data: CSV-Datei, die aus einem anderen Mastodon-Server exportiert wurde
+      inivte_request:
+        text: Dies wird uns helfen deine Anfrage besser zu verstehen
       sessions:
         otp: 'Gib den Zwei-Faktor-Authentisierungscode von deinem Telefon ein oder benutze einen deiner Wiederherstellungscodes:'
       user:
@@ -118,12 +120,15 @@ de:
         must_be_follower: Benachrichtigungen von Nicht-Folgenden blockieren
         must_be_following: Benachrichtigungen von Profilen blockieren, denen ich nicht folge
         must_be_following_dm: Private Nachrichten von Profilen, denen ich nicht folge, blockieren
+      invite_request:
+        text: Warum möchtest du beitreten?
       notification_emails:
         digest: Schicke Übersichts-E-Mails
         favourite: E-Mail senden, wenn jemand meinen Beitrag favorisiert
         follow: E-Mail senden, wenn mir jemand folgt
         follow_request: E-Mail senden, wenn mir jemand folgen möchte
         mention: E-Mail senden, wenn mich jemand erwähnt
+        pending_account: E-Mail senden, wenn ein Benutzerkonto zur Überprüfung aussteht
         reblog: E-Mail senden, wenn jemand meinen Beitrag teilt
         report: E-Mail senden, wenn ein neuer Bericht vorliegt
     'no': Nein
