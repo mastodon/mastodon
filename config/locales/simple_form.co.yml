@@ -41,6 +41,8 @@ co:
         name: 'Pudete vulè utilizà unu di quelli:'
       imports:
         data: Un fugliale CSV da un’altru servore di Mastodon
+      invite_request:
+        text: Quessu ci aiutarà à valutà a vostra dumanda
       sessions:
         otp: 'Entrate u codice d’identificazione à dui fattori nant’à u vostru telefuninu, o unu di i vostri codici di ricuperazione:'
       user:
@@ -118,12 +120,15 @@ co:
         must_be_follower: Piattà e nutificazione di quelli·e ch’ùn vi seguitanu
         must_be_following: Piattà e nutificazione di quelli·e ch’ùn seguitate
         must_be_following_dm: Bluccà e missaghji diretti di quelli·e ch’ùn seguitate
+      invite_request:
+        text: Perchè vulete ghjunghje?
       notification_emails:
         digest: Mandà e-mail di ricapitulazione
         favourite: Mandà un’e-mail quandu qualch’unu aghjunghje i mo statuti à i so favuriti
         follow: Mandà un’e-mail quandu qualch’unu mi seguita
         follow_request: Mandà un’e-mail quandu qualch’unu vole seguitami
         mention: Mandà un’e-mail quandu qualch’unu mi mintuva
+        pending_account: Mandà un'e-mail quandu un novu contu hà bisognu d'esse valutatu
         reblog: Mandà un’e-mail quandu qualch’unu sparte i mo statuti
         report: Mandà un'e-mail quandu c'hè un novu signalamentu
     'no': Nò
