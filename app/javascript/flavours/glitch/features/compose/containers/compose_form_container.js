@@ -90,8 +90,8 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     dispatch(fetchComposeSuggestions(token));
   },
 
-  onSuggestionSelected(position, token, suggestion) {
-    dispatch(selectComposeSuggestion(position, token, suggestion, ['text']));
+  onSuggestionSelected(position, token, suggestion, path) {
+    dispatch(selectComposeSuggestion(position, token, suggestion, path));
   },
 
   onChangeSpoilerText(text) {

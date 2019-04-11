@@ -5,10 +5,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { isRtl } from 'flavours/glitch/util/rtl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import Textarea from 'react-textarea-autosize';
 import classNames from 'classnames';
+import { List as ImmutableList } from 'immutable';
 
-const textAtCursorMatchesToken = (str, caretPosition) => {
+const textAtCursorMatchesToken = (str, caretPosition, searchTokens) => {
   let word;
 
   let left  = str.slice(0, caretPosition).search(/[^\s\u200B]+$/);
@@ -20,7 +20,7 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
     word = str.slice(left, right + caretPosition);
   }
 
-  if (!word || word.trim().length < 3 || ['@', ':', '#'].indexOf(word[0]) === -1) {
+  if (!word || word.trim().length < 3 || searchTokens.indexOf(word[0]) === -1) {
     return [null, null];
   }
 
@@ -33,7 +33,7 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
   }
 };
 
-export default class AutosuggestTextarea extends ImmutablePureComponent {
+export default class AutosuggestInput extends ImmutablePureComponent {
 
   static propTypes = {
     value: PropTypes.string,
@@ -46,12 +46,15 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     onChange: PropTypes.func.isRequired,
     onKeyUp: PropTypes.func,
     onKeyDown: PropTypes.func,
-    onPaste: PropTypes.func.isRequired,
     autoFocus: PropTypes.bool,
+    className: PropTypes.string,
+    id: PropTypes.string,
+    searchTokens: PropTypes.list,
   };
 
   static defaultProps = {
     autoFocus: true,
+    searchTokens: ImmutableList(['@', ':', '#']),
   };
 
   state = {
@@ -63,7 +66,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
   };
 
   onChange = (e) => {
-    const [ tokenStart, token ] = textAtCursorMatchesToken(e.target.value, e.target.selectionStart);
+    const [ tokenStart, token ] = textAtCursorMatchesToken(e.target.value, e.target.selectionStart, this.props.searchTokens);
 
     if (token !== null && this.state.lastToken !== token) {
       this.setState({ lastToken: token, selectedSuggestion: 0, tokenStart });
@@ -146,7 +149,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     const suggestion = this.props.suggestions.get(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
-    this.textarea.focus();
+    this.input.focus();
   }
 
   componentWillReceiveProps (nextProps) {
@@ -155,15 +158,8 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     }
   }
 
-  setTextarea = (c) => {
-    this.textarea = c;
-  }
-
-  onPaste = (e) => {
-    if (e.clipboardData && e.clipboardData.files.length === 1) {
-      this.props.onPaste(e.clipboardData.files);
-      e.preventDefault();
-    }
+  setInput = (c) => {
+    this.input = c;
   }
 
   renderSuggestion = (suggestion, i) => {
@@ -189,7 +185,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
   }
 
   render () {
-    const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus } = this.props;
+    const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus, className, id } = this.props;
     const { suggestionsHidden } = this.state;
     const style = { direction: 'ltr' };
 
@@ -198,13 +194,13 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     }
 
     return (
-      <div className='autosuggest-textarea'>
+      <div className='autosuggest-input'>
         <label>
           <span style={{ display: 'none' }}>{placeholder}</span>
 
-          <Textarea
-            inputRef={this.setTextarea}
-            className='autosuggest-textarea__textarea'
+          <input
+            type='text'
+            ref={this.setInput}
             disabled={disabled}
             placeholder={placeholder}
             autoFocus={autoFocus}
@@ -214,9 +210,10 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
             onKeyUp={onKeyUp}
             onFocus={this.onFocus}
             onBlur={this.onBlur}
-            onPaste={this.onPaste}
             style={style}
             aria-autocomplete='list'
+            id={id}
+            className={className}
           />
         </label>
 

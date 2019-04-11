@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
+import AutosuggestInput from '../../../components/autosuggest_input';
 import { defineMessages, injectIntl } from 'react-intl';
 import EmojiPicker from 'flavours/glitch/features/emoji_picker';
 import PollFormContainer from '../containers/poll_form_container';
@@ -163,7 +164,11 @@ class ComposeForm extends ImmutablePureComponent {
 
   //  Selects a suggestion from the autofill.
   onSuggestionSelected = (tokenStart, token, value) => {
-    this.props.onSuggestionSelected(tokenStart, token, value);
+    this.props.onSuggestionSelected(tokenStart, token, value, ['text']);
+  }
+
+  onSpoilerSuggestionSelected = (tokenStart, token, value) => {
+    this.props.onSuggestionSelected(tokenStart, token, value, ['spoiler_text']);
   }
 
   //  When the escape key is released, we focus the UI.
@@ -183,7 +188,7 @@ class ComposeForm extends ImmutablePureComponent {
   //  Sets a reference to the CW field.
   handleRefSpoilerText = (spoilerComponent) => {
     if (spoilerComponent) {
-      this.spoilerText = spoilerComponent;
+      this.spoilerText = spoilerComponent.input;
     }
   }
 
@@ -303,21 +308,22 @@ class ComposeForm extends ImmutablePureComponent {
         <ReplyIndicatorContainer />
 
         <div className={`composer--spoiler ${spoiler ? 'composer--spoiler--visible' : ''}`}>
-          <label>
-            <span style={{ display: 'none' }}>{intl.formatMessage(messages.spoiler_placeholder)}</span>
-            <input
-              id='glitch.composer.spoiler.input'
-              placeholder={intl.formatMessage(messages.spoiler_placeholder)}
-              value={spoilerText}
-              onChange={this.handleChangeSpoiler}
-              onKeyDown={this.handleKeyDown}
-              onKeyUp={this.handleKeyUp}
-              disabled={!spoiler}
-              type='text'
-              className='spoiler-input__input'
-              ref={this.handleRefSpoilerText}
-            />
-          </label>
+          <AutosuggestInput
+            placeholder={intl.formatMessage(messages.spoiler_placeholder)}
+            value={spoilerText}
+            onChange={this.handleChangeSpoiler}
+            onKeyDown={this.handleKeyDown}
+            onKeyUp={this.handleKeyUp}
+            disabled={!spoiler}
+            ref={this.handleRefSpoilerText}
+            suggestions={this.props.suggestions}
+            onSuggestionsFetchRequested={onFetchSuggestions}
+            onSuggestionsClearRequested={onClearSuggestions}
+            onSuggestionSelected={this.onSpoilerSuggestionSelected}
+            searchTokens={[':']}
+             id='glitch.composer.spoiler.input'
+             className='spoiler-input__input'
+          />
         </div>
 
         <div className='composer--textarea'>
