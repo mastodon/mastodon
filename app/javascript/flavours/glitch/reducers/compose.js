@@ -41,7 +41,7 @@ import {
 import { TIMELINE_DELETE } from 'flavours/glitch/actions/timelines';
 import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
 import { REDRAFT } from 'flavours/glitch/actions/statuses';
-import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS, is } from 'immutable';
 import uuid from 'flavours/glitch/util/uuid';
 import { privacyPreference } from 'flavours/glitch/util/privacy_preference';
 import { me } from 'flavours/glitch/util/initial_state';
@@ -214,12 +214,14 @@ function removeMedia(state, mediaId) {
   });
 };
 
-const insertSuggestion = (state, position, token, completion) => {
+const insertSuggestion = (state, position, token, completion, path) => {
   return state.withMutations(map => {
-    map.update('text', oldText => `${oldText.slice(0, position)}${completion}${completion[0] === ':' ? '\u200B' : ' '}${oldText.slice(position + token.length)}`);
+    map.updateIn(path, oldText => `${oldText.slice(0, position)}${completion}${completion[0] === ':' ? '\u200B' : ' '}${oldText.slice(position + token.length)}`);
     map.set('suggestion_token', null);
-    map.update('suggestions', ImmutableList(), list => list.clear());
-    map.set('focusDate', new Date());
+    map.set('suggestions', ImmutableList());
+    if (is(path, ImmutableList(['text']))) {
+      map.set('focusDate', new Date());
+    }
     map.set('caretPosition', position + completion.length + 1);
     map.set('idempotencyKey', uuid());
   });
@@ -397,7 +399,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_SUGGESTIONS_READY:
     return state.set('suggestions', ImmutableList(action.accounts ? action.accounts.map(item => item.id) : action.emojis)).set('suggestion_token', action.token);
   case COMPOSE_SUGGESTION_SELECT:
-    return insertSuggestion(state, action.position, action.token, action.completion);
+    return insertSuggestion(state, action.position, action.token, action.completion, action.path);
   case COMPOSE_SUGGESTION_TAGS_UPDATE:
     return updateSuggestionTags(state, action.token);
   case COMPOSE_TAG_HISTORY_UPDATE:

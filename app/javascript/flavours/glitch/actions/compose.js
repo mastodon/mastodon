@@ -407,7 +407,7 @@ export function readyComposeSuggestionsAccounts(token, accounts) {
   };
 };
 
-export function selectComposeSuggestion(position, token, suggestion) {
+export function selectComposeSuggestion(position, token, suggestion, path) {
   return (dispatch, getState) => {
     let completion;
     if (typeof suggestion === 'object' && suggestion.id) {
@@ -424,6 +424,7 @@ export function selectComposeSuggestion(position, token, suggestion) {
       position,
       token,
       completion,
+      path,
     });
   };
 };
