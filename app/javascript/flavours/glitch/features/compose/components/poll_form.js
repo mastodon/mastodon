@@ -5,6 +5,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import IconButton from 'flavours/glitch/components/icon_button';
 import Icon from 'flavours/glitch/components/icon';
+import AutosuggestInput from 'flavours/glitch/components/autosuggest_input';
 import classNames from 'classnames';
 import { pollLimits } from 'flavours/glitch/util/initial_state';
 
@@ -29,6 +30,10 @@ class Option extends React.PureComponent {
     isPollMultiple: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onRemove: PropTypes.func.isRequired,
+    suggestions: ImmutablePropTypes.list,
+    onClearSuggestions: PropTypes.func.isRequired,
+    onFetchSuggestions: PropTypes.func.isRequired,
+    onSuggestionSelected: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -40,6 +45,18 @@ class Option extends React.PureComponent {
     this.props.onRemove(this.props.index);
   };
 
+  onSuggestionsClearRequested = () => {
+    this.props.onClearSuggestions();
+  }
+
+  onSuggestionsFetchRequested = (token) => {
+    this.props.onFetchSuggestions(token);
+  }
+
+  onSuggestionSelected = (tokenStart, token, value) => {
+    this.props.onSuggestionSelected(tokenStart, token, value, ['poll', 'options', this.props.index]);
+  }
+
   render () {
     const { isPollMultiple, title, index, intl } = this.props;
 
@@ -48,12 +65,16 @@ class Option extends React.PureComponent {
         <label className='poll__text editable'>
           <span className={classNames('poll__input', { checkbox: isPollMultiple })} />
 
-          <input
-            type='text'
+          <AutosuggestInput
             placeholder={intl.formatMessage(messages.option_placeholder, { number: index + 1 })}
             maxLength={pollLimits.max_option_chars}
             value={title}
             onChange={this.handleOptionTitleChange}
+            suggestions={this.props.suggestions}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            onSuggestionSelected={this.onSuggestionSelected}
+            searchTokens={[':']}
           />
         </label>
 
@@ -78,6 +99,10 @@ class PollForm extends ImmutablePureComponent {
     onAddOption: PropTypes.func.isRequired,
     onRemoveOption: PropTypes.func.isRequired,
     onChangeSettings: PropTypes.func.isRequired,
+    suggestions: ImmutablePropTypes.list,
+    onClearSuggestions: PropTypes.func.isRequired,
+    onFetchSuggestions: PropTypes.func.isRequired,
+    onSuggestionSelected: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -94,7 +119,7 @@ class PollForm extends ImmutablePureComponent {
   };
 
   render () {
-    const { options, expiresIn, isMultiple, onChangeOption, onRemoveOption, intl } = this.props;
+    const { options, expiresIn, isMultiple, onChangeOption, onRemoveOption, intl, ...other } = this.props;
 
     if (!options) {
       return null;
@@ -103,7 +128,7 @@ class PollForm extends ImmutablePureComponent {
     return (
       <div className='compose-form__poll-wrapper'>
         <ul>
-          {options.map((title, i) => <Option title={title} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} />)}
+          {options.map((title, i) => <Option title={title} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} {...other} />)}
           {options.size < pollLimits.max_options && (
             <label className='poll__text editable'>
               <span className={classNames('poll__input')} style={{ opacity: 0 }} />

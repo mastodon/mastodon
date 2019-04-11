@@ -50,6 +50,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
     className: PropTypes.string,
     id: PropTypes.string,
     searchTokens: PropTypes.list,
+    maxLength: PropTypes.number,
   };
 
   static defaultProps = {
@@ -185,7 +186,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
   }
 
   render () {
-    const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus, className, id } = this.props;
+    const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus, className, id, maxLength } = this.props;
     const { suggestionsHidden } = this.state;
     const style = { direction: 'ltr' };
 
@@ -214,6 +215,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
             aria-autocomplete='list'
             id={id}
             className={className}
+            maxLength={maxLength}
           />
         </label>
 
