@@ -41,6 +41,8 @@ ja:
         name: 'これらを使うといいかもしれません:'
       imports:
         data: 他の Mastodon サーバーからエクスポートしたCSVファイルを選択して下さい
+      invite_request:
+        text: このサーバーは現在承認制です。申請を承認する際に役立つメッセージを添えてください
       sessions:
         otp: '携帯電話のアプリで生成された二段階認証コードを入力するか、リカバリーコードを使用してください:'
       user:
@@ -118,12 +120,15 @@ ja:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック
         must_be_following_dm: フォローしていないユーザーからのダイレクトメッセージをブロック
+      invite_request:
+        text: 意気込みをお聞かせください
       notification_emails:
         digest: タイムラインからピックアップしてメールで通知する
         favourite: お気に入りに登録された時にメールで通知する
         follow: フォローされた時にメールで通知する
         follow_request: フォローリクエストを受けた時にメールで通知する
         mention: 返信が来た時にメールで通知する
+        pending_account: 新しいアカウントの承認が必要な時にメールで通知する
         reblog: トゥートがブーストされた時にメールで通知する
         report: 通報を受けた時にメールで通知する
     'no': いいえ
