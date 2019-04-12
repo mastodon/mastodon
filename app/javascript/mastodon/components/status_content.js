@@ -21,6 +21,8 @@ export default class StatusContent extends React.PureComponent {
     onExpandedToggle: PropTypes.func,
     onClick: PropTypes.func,
     collapsable: PropTypes.bool,
+    media: PropTypes.element,
+    mediaIcon: PropTypes.string,
   };
 
   state = {
@@ -138,7 +140,7 @@ export default class StatusContent extends React.PureComponent {
   }
 
   render () {
-    const { status } = this.props;
+    const { status, media, mediaIcon } = this.props;
 
     if (status.get('content').length === 0) {
       return null;
@@ -174,7 +176,14 @@ export default class StatusContent extends React.PureComponent {
         </Permalink>
       )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
 
-      const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;
+      const toggleText = hidden ? [
+        <FormattedMessage id='status.show_more' defaultMessage='Show more' key='0' />,
+        mediaIcon ? (
+          <i className={`fa fa-fw fa-${mediaIcon} status__content__spoiler-icon`} aria-hidden='true' key='1' />
+        ) : null,
+      ] : [
+        <FormattedMessage id='status.show_less' defaultMessage='Show less' key='0' />,
+      ];
 
       if (hidden) {
         mentionsPlaceholder = <div>{mentionLinks}</div>;
@@ -190,7 +199,11 @@ export default class StatusContent extends React.PureComponent {
 
           {mentionsPlaceholder}
 
-          <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} lang={status.get('language')} />
+          <div className={`status__content__wrapper ${!hidden ? 'status__content__wrapper--visible' : ''}`}>
+            <div tabIndex={!hidden ? 0 : null} className='status__content__text' style={directionStyle} dangerouslySetInnerHTML={content} lang={status.get('language')} />
+
+            {media}
+          </div>
         </div>
       );
     } else if (this.props.onClick) {

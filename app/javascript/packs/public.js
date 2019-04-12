@@ -127,13 +127,13 @@ function main() {
   });
 
   delegate(document, '.status__content__spoiler-link', 'click', ({ target }) => {
-    const contentEl = target.parentNode.parentNode.querySelector('.e-content');
+    const wrapperEl = target.parentNode.parentNode.querySelector('.e-wrapper');
 
-    if (contentEl.style.display === 'block') {
-      contentEl.style.display = 'none';
+    if (wrapperEl.style.display === 'block') {
+      wrapperEl.style.display = 'none';
       target.parentNode.style.marginBottom = 0;
     } else {
-      contentEl.style.display = 'block';
+      wrapperEl.style.display = 'block';
       target.parentNode.style.marginBottom = null;
     }
 

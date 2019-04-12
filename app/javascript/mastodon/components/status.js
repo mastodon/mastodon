@@ -214,6 +214,7 @@ class Status extends ImmutablePureComponent {
 
   render () {
     let media = null;
+    let mediaIcon = null;
     let statusAvatar, prepend, rebloggedByText;
 
     const { intl, hidden, featured, otherAccounts, unread, showThread } = this.props;
@@ -273,6 +274,7 @@ class Status extends ImmutablePureComponent {
 
     if (status.get('poll')) {
       media = <PollContainer pollId={status.get('poll')} />;
+      mediaIcon = 'tasks';
     } else if (status.get('media_attachments').size > 0) {
       if (this.props.muted || status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
         media = (
@@ -301,6 +303,7 @@ class Status extends ImmutablePureComponent {
             )}
           </Bundle>
         );
+        mediaIcon = 'video-camera';
       } else {
         media = (
           <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery}>
@@ -316,6 +319,7 @@ class Status extends ImmutablePureComponent {
             )}
           </Bundle>
         );
+        mediaIcon = 'picture-o';
       }
     } else if (status.get('spoiler_text').length === 0 && status.get('card')) {
       media = (
@@ -327,6 +331,7 @@ class Status extends ImmutablePureComponent {
           defaultWidth={this.props.cachedMediaWidth}
         />
       );
+      mediaIcon = 'link';
     }
 
     if (otherAccounts && otherAccounts.size > 0) {
@@ -367,9 +372,7 @@ class Status extends ImmutablePureComponent {
               </a>
             </div>
 
-            <StatusContent status={status} onClick={this.handleClick} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} collapsable />
-
-            {media}
+            <StatusContent status={status} media={media} mediaIcon={mediaIcon} onClick={this.handleClick} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} collapsable />
 
             {showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) && (
               <button className='status__content__read-more-button' onClick={this.handleClick}>
