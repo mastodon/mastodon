@@ -98,6 +98,7 @@ class Account < ApplicationRecord
   scope :tagged_with, ->(tag) { joins(:accounts_tags).where(accounts_tags: { tag_id: tag }) }
   scope :by_recent_status, -> { order(Arel.sql('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc')) }
   scope :popular, -> { order('account_stats.followers_count desc') }
+  scope :without_blocking, ->(account) { account.nil? ? all : where.not(id: Block.where(target_account_id: account.id).pluck(:account_id)) }
 
   delegate :email,
            :unconfirmed_email,
