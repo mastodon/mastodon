@@ -72,6 +72,7 @@ sk:
       admin: Administrátor
       bot: Automat
       moderator: Moderátor
+    unavailable: Profil je nedostupný
     unfollow: Prestaň sledovať
   admin:
     account_actions:
@@ -820,17 +821,23 @@ sk:
     revoke_success: Sezóna úspešne zamietnutá
     title: Sezóny
   settings:
+    account: Účet
+    account_settings: Nastavenia účtu
+    appearance: Vzhľad
     authorized_apps: Povolené aplikácie
     back: Späť na Mastodon
     delete: Vymazanie účtu
     development: Vývoj
     edit_profile: Uprav profil
-    export: Exportovať dáta
-    featured_tags: Popredne zvýraznené haštagy
-    import: Importovať
-    migrate: Presunutie účtu
-    notifications: Oznámenia
+    export: Exportuj dáta
+    featured_tags: Zvýraznené haštagy
+    import: Importuj
+    import_and_export: Import a export
+    migrate: Presuň účet
+    notifications: Oboznámenia
     preferences: Voľby
+    profile: Profil
+    relationships: Následovaní a následovatelia
     two_factor_authentication: Dvoj-faktorové overenie
   statuses:
     attached:
@@ -874,14 +881,14 @@ sk:
       unlisted: Nezaradené
       unlisted_long: Všetci môžu vidieť, ale nieje zaradené do verejnej osi
   stream_entries:
-    pinned: Pripnutý toot
+    pinned: Pripnutý príspevok
     reblogged: vyzdvihnutý
     sensitive_content: Senzitívny obsah
   terms:
     body_html: |
       <h2>Podmienky súkromia</h2>
 
-      <h3 id="collect">Aké informácie zbierame?</h3>
+      <h3 id="collect">Aké informácie sú zbierané?</h3>
 
       <ul>
       <li><em>Základné informácie o účte</em>: Ak sa na tomto serveri zaregistruješ, budeš môcť byť požiadaný/á zadať prezývku, emailovú adresu a heslo. Budeš tiež môcť zadať aj ďalšie profilové údaje, ako napríklad meno a životopis, a nahrať profilovú fotku aj obrázok v záhlaví. Tvoja prezývka, meno, životopis, profilová fotka a obrázok v záhlaví sú vždy zobrazené verejne.</li><li><em>Príspevky, sledovania a iné verejné informácie</em>:
