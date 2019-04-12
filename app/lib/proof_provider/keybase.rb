@@ -2,7 +2,7 @@
 
 class ProofProvider::Keybase
   BASE_URL = ENV.fetch('KEYBASE_BASE_URL', 'https://keybase.io')
-  DOMAIN = ENV.fetch('KEYBASE_DOMAIN', Rails.configuration.x.local_domain)
+  DOMAIN   = ENV.fetch('KEYBASE_DOMAIN', Rails.configuration.x.local_domain)
 
   class Error < StandardError; end
 
@@ -50,12 +50,20 @@ class ProofProvider::Keybase
   end
 
   def badge
-    @badge ||= ProofProvider::Keybase::Badge.new(@proof.account.username, @proof.provider_username, @proof.token)
+    @badge ||= ProofProvider::Keybase::Badge.new(@proof.account.username, @proof.provider_username, @proof.token, domain)
+  end
+
+  def verifier
+    @verifier ||= ProofProvider::Keybase::Verifier.new(@proof.account.username, @proof.provider_username, @proof.token, domain)
   end
 
   private
 
-  def verifier
-    @verifier ||= ProofProvider::Keybase::Verifier.new(@proof.account.username, @proof.provider_username, @proof.token)
+  def domain
+    if @proof.account.local?
+      DOMAIN
+    else
+      @proof.account.domain
+    end
   end
 end

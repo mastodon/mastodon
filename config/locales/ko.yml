@@ -68,6 +68,7 @@ ko:
       admin: 관리자
       bot: 봇
       moderator: 모더레이터
+    unavailable: 프로필 사용 불가
     unfollow: 팔로우 해제
   admin:
     account_actions:
@@ -80,6 +81,7 @@ ko:
       destroyed_msg: 모더레이션 기록이 성공적으로 삭제되었습니다!
     accounts:
       approve: 승인
+      approve_all: 모두 승인
       are_you_sure: 정말로 실행하시겠습니까?
       avatar: 아바타
       by_domain: 도메인
@@ -132,6 +134,7 @@ ko:
       moderation_notes: 모더레이션 기록
       most_recent_activity: 최근 활동
       most_recent_ip: 최근 IP
+      no_account_selected: 아무 계정도 선택 되지 않아 아무 것도 변경 되지 않았습니다
       no_limits_imposed: 제한 없음
       not_subscribed: 구독하지 않음
       outbox_url: 발신함 URL
@@ -144,6 +147,7 @@ ko:
       push_subscription_expires: PuSH 구독 기간 만료
       redownload: 프로필 업데이트
       reject: 거부
+      reject_all: 모두 거부
       remove_avatar: 아바타 지우기
       remove_header: 헤더 삭제
       resend_confirmation:
@@ -332,6 +336,8 @@ ko:
         expired: 만료됨
         title: 필터
       title: 초대
+    pending_accounts:
+      title: 대기중인 계정 (%{count})
     relays:
       add_new: 릴레이 추가
       delete: 삭제
@@ -509,7 +515,6 @@ ko:
     warning: 이 데이터를 조심히 다뤄 주세요. 다른 사람들과 절대로 공유하지 마세요!
     your_token: 액세스 토큰
   auth:
-    agreement_html: 이 등록으로 이 서버의 <a href="%{rules_path}">이용규약</a> 과 <a href="%{terms_path}">약관</a>에 동의하는 것으로 간주됩니다.
     apply_for_account: 가입 요청하기
     change_password: 패스워드
     checkbox_agreement_html: <a href="%{rules_path}" target="_blank">서버 규칙</a>과 <a href="%{terms_path}" target="_blank">이용약관</a>에 동의합니다
@@ -857,6 +862,9 @@ ko:
     revoke_success: 세션이 성공적으로 삭제되었습니다
     title: 세션
   settings:
+    account: 계정
+    account_settings: 계정 설정
+    appearance: 외관
     authorized_apps: 인증된 애플리케이션
     back: 돌아가기
     delete: 계정 삭제
@@ -866,13 +874,13 @@ ko:
     featured_tags: 추천 해시태그
     identity_proofs: 신원 증명
     import: 데이터 가져오기
+    import_and_export: 가져오기 / 내보내기
     migrate: 계정 이동
     notifications: 알림
     preferences: 사용자 설정
+    profile: 프로필
     relationships: 팔로잉과 팔로워
-    settings: 설정
     two_factor_authentication: 2단계 인증
-    your_apps: 애플리케이션
   statuses:
     attached:
       description: '첨부: %{attached}'

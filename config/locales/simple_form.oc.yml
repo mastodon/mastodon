@@ -41,6 +41,8 @@ oc:
         name: 'Benlèu que volètz utilizar una d’aquestas causas :'
       imports:
         data: Fichièr CSV exportat d’un autre servidor Mastodon
+      invite_request:
+        text: Aquò nos ajudarà per validar vòstra demanda
       sessions:
         otp: 'Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstra aplicacion mobil o utilizatz un de vòstres còdis de recuperacion :'
       user:
@@ -118,12 +120,15 @@ oc:
         must_be_follower: Blocar las notificacions del mond que vos sègon pas
         must_be_following: Blocar las notificacions del mond que seguètz pas
         must_be_following_dm: Blocar los messatges del monde que seguètz pas
+      invite_request:
+        text: Perqué volètz vos marcar ?
       notification_emails:
         digest: Enviar un corrièl recapitulatiu
         favourite: Enviar un corrièl quand qualqu’un plaça vòstre estatut en favorit
         follow: Enviar un corrièl quand qualqu’un vos sèc
         follow_request: Enviar un corrièl quand qualqu’un demanda de vos sègre
         mention: Enviar un corrièl quand qualqu’un vos menciona
+        pending_account: Enviar un corrièl quand cal validar un compte novèl
         reblog: Enviar un corrièl quand qualqu’un tòrna partejar vòstre estatut
         report: Enviar un corrièl pels nòus senhalaments
     'no': Non
