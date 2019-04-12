@@ -4,6 +4,7 @@ import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import punycode from 'punycode';
 import classnames from 'classnames';
+import Icon from 'mastodon/components/icon';
 
 const IDNA_PREFIX = 'xn--';
 
@@ -60,6 +61,8 @@ export default class Card extends React.PureComponent {
     maxDescription: PropTypes.number,
     onOpenMedia: PropTypes.func.isRequired,
     compact: PropTypes.bool,
+    defaultWidth: PropTypes.number,
+    cacheWidth: PropTypes.func,
   };
 
   static defaultProps = {
@@ -68,7 +71,7 @@ export default class Card extends React.PureComponent {
   };
 
   state = {
-    width: 280,
+    width: this.props.defaultWidth || 280,
     embedded: false,
   };
 
@@ -111,6 +114,7 @@ export default class Card extends React.PureComponent {
 
   setRef = c => {
     if (c) {
+      if (this.props.cacheWidth) this.props.cacheWidth(c.offsetWidth);
       this.setState({ width: c.offsetWidth });
     }
   }
@@ -175,8 +179,8 @@ export default class Card extends React.PureComponent {
 
             <div className='status-card__actions'>
               <div>
-                <button onClick={this.handleEmbedClick}><i className={`fa fa-${iconVariant}`} /></button>
-                {horizontal && <a href={card.get('url')} target='_blank' rel='noopener'><i className='fa fa-external-link' /></a>}
+                <button onClick={this.handleEmbedClick}><Icon id={iconVariant} /></button>
+                {horizontal && <a href={card.get('url')} target='_blank' rel='noopener'><Icon id='external-link' /></a>}
               </div>
             </div>
           </div>
@@ -198,7 +202,7 @@ export default class Card extends React.PureComponent {
     } else {
       embed = (
         <div className='status-card__image'>
-          <i className='fa fa-file-text' />
+          <Icon id='file-text' />
         </div>
       );
     }

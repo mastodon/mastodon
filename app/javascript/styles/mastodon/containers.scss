@@ -30,9 +30,8 @@ $small-breakpoint: 960px;
   margin: 100px auto;
   margin-bottom: 20px;
 
-  @media screen and (max-width: 400px) {
-    margin: 30px auto;
-    margin-bottom: 20px;
+  @media screen and (max-width: 500px) {
+    margin: 40px auto 0;
   }
 
   h1 {
@@ -694,6 +693,7 @@ $small-breakpoint: 960px;
           color: $darker-text-color;
           text-decoration: none;
           padding: 15px;
+          font-weight: 500;
 
           strong {
             font-weight: 700;

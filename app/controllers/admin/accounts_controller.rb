@@ -2,9 +2,9 @@
 
 module Admin
   class AccountsController < BaseController
-    before_action :set_account, only: [:show, :subscribe, :unsubscribe, :redownload, :remove_avatar, :remove_header, :enable, :unsilence, :unsuspend, :memorialize]
+    before_action :set_account, only: [:show, :subscribe, :unsubscribe, :redownload, :remove_avatar, :remove_header, :enable, :unsilence, :unsuspend, :memorialize, :approve, :reject]
     before_action :require_remote_account!, only: [:subscribe, :unsubscribe, :redownload]
-    before_action :require_local_account!, only: [:enable, :memorialize]
+    before_action :require_local_account!, only: [:enable, :memorialize, :approve, :reject]
 
     def index
       authorize :account, :index?
@@ -43,6 +43,18 @@ module Admin
       @account.user.enable!
       log_action :enable, @account.user
       redirect_to admin_account_path(@account.id)
+    end
+
+    def approve
+      authorize @account.user, :approve?
+      @account.user.approve!
+      redirect_to admin_accounts_path(pending: '1')
+    end
+
+    def reject
+      authorize @account.user, :reject?
+      SuspendAccountService.new.call(@account, including_user: true, destroy: true, skip_distribution: true)
+      redirect_to admin_accounts_path(pending: '1')
     end
 
     def unsilence
@@ -114,6 +126,7 @@ module Admin
         :remote,
         :by_domain,
         :active,
+        :pending,
         :silenced,
         :suspended,
         :username,
