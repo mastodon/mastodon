@@ -173,7 +173,7 @@ sk:
       silence: Stíš
       silenced: Utíšený/é
       statuses: Príspevky
-      subscribe: Odoberať
+      subscribe: Odoberaj
       suspended: Zablokovaní
       title: Účty
       unconfirmed_email: Nepotvrdený email
@@ -301,7 +301,7 @@ sk:
     email_domain_blocks:
       add_new: Pridaj nový
       created_msg: Emailová doména bola úspešne pridaná do zoznamu zakázaných
-      delete: Zmazať
+      delete: Vymaž
       destroyed_msg: Emailová doména bola úspešne vymazaná zo zoznamu zakázaných
       domain: Doména
       new:
@@ -662,13 +662,13 @@ sk:
       '86400': 1 deň
     expires_in_prompt: Nikdy
     generate: Vygeneruj
-    invited_by: 'Bol/a si pozvan/á užívateľom:'
+    invited_by: 'Bol/a si pozvaný/á užívateľom:'
     max_uses:
       few: "%{count} použitia"
       one: jedno použitie
       other: "%{count} použití"
-    max_uses_prompt: Bez limitov
-    prompt: Vygeneruj a zdieľaj linky s ostatnými aby mali umožnený prístup k tomuto serveru
+    max_uses_prompt: Bez obmedzení
+    prompt: Vygeneruj a zdieľaj linky s ostatnými, aby mali umožnený prístup k tomuto serveru
     table:
       expires_at: Vyprší
       uses: Používa
@@ -693,9 +693,9 @@ sk:
       body: Tu nájdete krátky súhrn správ ktoré ste zmeškali od svojej poslednj návštevi od %{since}
       mention: "%{name} ťa spomenul/a v:"
       new_followers_summary:
-        few: Taktiež, získal/a si %{count} nových následovníkov za tú dobu čo si bol/a preč. Yay!
-        one: Taktiež, získal/a si jedného nového následovníka zatiaľ čo si bol/a preč. Yay!
-        other: Taktiež, získal/a si %{count} nových následovníkov za tú dobu čo si bol/a preč. Yay!
+        few: Taktiež si získal/a si %{count} nových následovníkov za tú dobu čo si bol/a preč. Yay!
+        one: Taktiež si získal/a jedného nového následovníka zatiaľ čo si bol/a preč. Yay!
+        other: Taktiež si získal/a %{count} nových následovníkov za tú dobu čo si bol/a preč. Yay!
       subject:
         few: "%{count} nové notifikácie od tvojej poslednej návštevy \U0001F418"
         one: "1 nová notifikácia od tvojej poslednej návštevy \U0001F418"
@@ -713,7 +713,7 @@ sk:
       action: Spravuj žiadosti o sledovanie
       body: "%{name} žiada povolenie ťa následovať"
       subject: "%{name} ťa žiadá o možnosť sledovania"
-      title: Nová žiadosť o sledovanie
+      title: Nová žiadosť o následovanie
     mention:
       action: Odpovedať
       body: "%{name} ťa spomenul/a v:"
@@ -722,7 +722,7 @@ sk:
     reblog:
       body: 'Tvoj príspevok bol pozdvihnutý užívateľom %{name}:'
       subject: "%{name} pozdvihli tvoj príspevok"
-      title: Novo pozdvyhnuté
+      title: Novo vyzdvyhnuté
   number:
     human:
       decimal_units:
@@ -863,7 +863,7 @@ sk:
       limit: Už si si pripol ten najvyšší možný počet hlášok
       ownership: Nieje možné pripnúť hlášku od niekoho iného
       private: Neverejné príspevky nemôžu byť pripnuté
-      reblog: Pozdvihnutie sa nedá pripnúť
+      reblog: Vyzdvihnutie sa nedá pripnúť
     poll:
       total_votes:
         few: "%{count} hlas(y)ov"
@@ -980,7 +980,7 @@ sk:
     invalid_otp_token: Neplatný kód pre dvojfaktorovú autentikáciu
     otp_lost_help_html: Pokiaľ si stratil/a prístup k obom, môžeš dať vedieť %{email}
     seamless_external_login: Si prihlásená/ý cez externú službu, takže nastavenia hesla a emailu ti niesú prístupné.
-    signed_in_as: 'Prihlásený ako:'
+    signed_in_as: 'Prihlásená/ý ako:'
   verification:
     explanation_html: 'Môžeš sa <strong>overiť ako majiteľ odkazov v metadátach tvojho profilu</strong>. Na to musí ale odkazovaná stránka obsahovať odkaz späť na tvoj Mastodon profil. Tento spätný odkaz <strong>musí</strong> mať prívlastok <code>rel="me"</code>. Na texte odkazu nezáleží. Tu je príklad:'
     verification: Overenie
