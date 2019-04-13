@@ -57,7 +57,6 @@ module Mastodon
       :ga,
       :gl,
       :he,
-      :hi,
       :hr,
       :hu,
       :hy,
