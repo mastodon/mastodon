@@ -1,0 +1,571 @@
+html {
+  scrollbar-color: rgba($ui-base-color, 0.7) rgba(0, 0, 0, 0.1);
+}
+
+body {
+  background: url($foresdon-background-image) no-repeat fixed center bottom;
+
+  &.app-body {
+    background: url($foresdon-background-image) no-repeat fixed center bottom;
+  }
+
+  &.admin {
+    background: url($foresdon-background-image) no-repeat fixed center bottom;
+
+    & .sidebar-wrapper {
+      background: none;
+    }
+  }
+}
+
+.ui {
+  background: none;
+}
+
+.tabs-bar {
+  background: none;
+
+  &__link {
+    border: none;
+  }
+}
+
+.dropdown-menu {
+  color: $ui-primary-color;
+  background: rgba($ui-base-color, 0.95);
+
+  &__item a {
+    color: $ui-primary-color;
+    background: none;
+
+    &:hover {
+      color: $ui-base-color;
+      background: rgba($ui-primary-color, $foresdon-primary-ui-alpha);
+    }
+  }
+  &__arrow.bottom {
+    border-bottom-color: rgba($ui-base-color, 0.95);
+  }
+
+  &__arrow.top {
+    border-top-color: rgba($ui-base-color, 0.95);
+  }
+}
+
+// modal
+.boost-modal,
+.confirmation-modal,
+.report-modal,
+.actions-modal,
+.mute-modal {
+  color: $ui-primary-color;
+  background: rgba($ui-base-color, 0.95);
+}
+
+.boost-modal__action-bar,
+.confirmation-modal__action-bar,
+.mute-modal__action-bar {
+  background: rgba(lighten($ui-base-color, 8%), 0.95);
+}
+
+.report-modal {
+  &__container,
+  &__comment,
+  &__statuses .status-check-box {
+    border-color: darken($ui-base-color, 10%);
+  }
+
+  &__statuses .status__content,
+  &__statuses .status__content p {
+    color: $ui-primary-color;
+    border-color: darken($ui-base-color, 10%);
+  }
+}
+
+.boost-modal {
+  & .status.light {
+    & .status__content,
+    & .display-name strong {
+      color: $ui-primary-color;
+    }
+  }
+}
+
+.list-editor {
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+
+  & .column-inline-form {
+    background: none;
+  }
+
+  & .search__input {
+    background: none;
+  }
+
+  & .drawer__inner {
+    background: none;
+  }
+}
+
+// public layout
+.public-layout {
+  & .header {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border-radius: $foresdon-primary-border-radius;
+
+    & .brand:hover {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    }
+  }
+
+  & .page-header {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border-radius: $foresdon-primary-border-radius;
+  }
+
+  & .box-widget {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border-radius: $foresdon-primary-border-radius;
+  }
+
+  & .directory {
+    margin-bottom: $foresdon-margin-bottom;
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border-radius: $foresdon-primary-border-radius;
+
+    &__tag a {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      border-radius: $foresdon-primary-border-radius;
+    }
+  }
+
+  & .public-account-header {
+    margin-bottom: $foresdon-margin-bottom;
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border-radius: $foresdon-primary-border-radius;
+
+    &__image {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    }
+  
+    &__bar {
+      &::before {
+        background: none;
+      }
+    }
+  }
+
+  & .public-account-bio {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border-radius: $foresdon-primary-border-radius;
+  }
+
+  & .hero-widget {
+    border-radius: $foresdon-primary-border-radius;
+
+    &__text {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    }
+  }
+
+  & .footer {
+    margin-bottom: $foresdon-margin-bottom;
+    padding: 10px;
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border-radius: $foresdon-primary-border-radius;
+  }
+}
+
+.activity-stream .entry {
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
+// card
+.card {
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  &__img {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+
+  &__bar {
+    background: none;
+  }
+}
+
+// landing-page
+.landing-page {
+  &__call-to-action {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+
+  &__information.contact-widget {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+}
+
+// drawer
+.drawer__header {
+  background: none;
+
+  & a {
+    transition: color 100ms ease-in;
+
+    &:hover {
+      color: lighten($ui-primary-color, 15%);
+      background: none;
+    }
+  }
+}
+
+.search__input,
+.search__input:focus {
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.search-results {
+  &__header {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+
+  &__section h5 {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border: none;
+  }
+}
+
+.drawer__inner {
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  &__mastodon {
+    background: none;
+  }
+
+  &.darker {
+    background: rgba($ui-base-color, 0.97);
+  }
+}
+
+// columns
+.column-header {
+  background: none;
+
+  &__button {
+    background: none;
+
+    &.active {
+      background: none;
+
+      &:hover {
+        background: none;
+      }
+    }
+  }
+
+  &__collapsible {
+    margin-bottom: $foresdon-margin-bottom;
+    padding-right: $foresdon-margin-right;
+
+    &-inner {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      border-radius: $foresdon-primary-border-radius;
+    }
+  }
+
+  &__back-button {
+    color: $ui-primary-color;
+    background: none;
+    transition: color 100ms ease-in;
+
+    &:hover {
+      color: lighten($ui-primary-color, 15%);
+      text-decoration: none;
+    }
+  }
+}
+
+.column-back-button {
+  color: $ui-primary-color;
+  background: none;
+  transition: color 100ms ease-in;
+
+  &:hover {
+    color: lighten($ui-primary-color, 15%);
+    text-decoration: none;
+  }
+}
+
+.column-inline-form {
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.column > .scrollable {
+  background: none;
+}
+
+.empty-column-indicator,
+.error-column {
+  margin-right: $foresdon-margin-right;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.load-more {
+  color: $ui-base-color;
+  transition: color 100ms ease-in;
+
+  &:hover {
+    color: lighten($ui-base-color, 10%);
+    background: none;
+  }
+}
+
+// getting-started
+.getting-started {
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  &__wrapper {
+    background: none;
+  }
+}
+
+.column-subheading {
+  margin: 2px 0;
+  color: $ui-primary-color;
+  background: none;
+}
+
+.column-link {
+  background: none;
+  border-radius: $foresdon-primary-border-radius;
+  transition: background-color 100ms ease-in;
+
+  &:hover {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+}
+
+// account timeline
+.account__header {
+  margin: 0 $foresdon-margin-right $foresdon-margin-bottom 0;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  &__image {
+    background: rgba($ui-base-color, 0.6);
+  }
+
+  &__bar {
+    background: none;
+  }
+
+  &__fields dt {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+}
+
+.account__section-headline {
+  margin: 0 $foresdon-margin-right $foresdon-margin-bottom 0;
+  border: none;
+  background: none;
+
+  & a {
+    padding: 3px 0;
+    transition: color 100ms ease-in;
+
+    &:hover {
+      color: lighten($ui-primary-color, 15%);
+    }
+
+    &.active {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      border-radius: $foresdon-primary-border-radius;
+  
+      &::before,
+      &::after {
+        content: none;
+      }
+    }
+  }
+}
+
+// status & notifications
+.status__wrapper {
+  margin: 0 $foresdon-margin-right $foresdon-margin-bottom 0;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.status__wrapper-direct {
+  margin: 0 $foresdon-margin-right $foresdon-margin-bottom 0;
+  background: rgba(darken($ui-base-color, 8%), $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.status {
+  border: none;
+
+  &.status-direct:not(.read) {
+    background: none;
+    border: none;
+  }
+}
+
+.notification {
+  margin: 0 $foresdon-margin-right $foresdon-margin-bottom 0;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border: none;
+  border-radius: $foresdon-primary-border-radius;
+
+  & .status__wrapper {
+    margin: 0;
+    background: none;
+  }
+
+  & .account {
+    border: none;
+  }
+
+  &__filter-bar {
+    background: none;
+    border: none;
+    padding-bottom: $foresdon-margin-bottom;
+
+    & button {
+      padding: 3px 0;
+      background: none;
+      transition: color 100ms ease-in;
+
+      &:hover {
+        color: lighten($ui-primary-color, 15%);
+      }
+
+      &.active {
+        background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+        border-radius: $foresdon-primary-border-radius;
+
+        &::before,
+        &::after {
+          content: none;
+        }
+      }
+    }
+  }
+
+  & .status,
+  & .status-direct {
+    background: none;
+  }
+
+  & .status-direct:not(.read) {
+    background: none;
+  }
+}
+
+.detailed-status__wrapper {
+  margin: 0 $foresdon-margin-right $foresdon-margin-bottom 0;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border: none;
+  border-radius: $foresdon-primary-border-radius;
+
+  & .detailed-status {
+    background: none;
+  
+    &__action-bar {
+      background: none;
+    }
+  }
+}
+
+.focusable:focus {
+  background: rgba($ui-base-color, 0.9);
+
+  & .detailed-status,
+  & .detailed-status__action-bar,
+  & .status.status-direct {
+    background: none;
+    border-radius: $foresdon-primary-border-radius;
+  }
+}
+
+// config
+body.admin .sidebar-wrapper {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+}
+
+.admin-wrapper .sidebar ul {
+  & a {
+    &:hover {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      border-radius: $foresdon-primary-border-radius 0 0 $foresdon-primary-border-radius;
+    }
+
+    &.selected {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      border-radius: $foresdon-primary-border-radius 0 0 $foresdon-primary-border-radius;
+    }
+  }
+
+  & ul {
+    background: none;
+  }
+
+  & .simple-navigation-active-leaf a {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+
+    &:hover {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    }
+  }
+}
+
+.directory__tag > div {
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+}
+
+.batch-table {
+  &__toolbar {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border: 0;
+    border-radius: $foresdon-primary-border-radius $foresdon-primary-border-radius 0 0;
+  }
+
+  &__row {
+    background: rgba(darken($ui-base-color, 8%), $foresdon-primary-ui-alpha);
+    border: 0;
+
+    &:nth-child(2n) {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    }
+
+    &:last-child {
+      border-radius: 0 0 $foresdon-primary-border-radius $foresdon-primary-border-radius;
+    }
+  }
+}
+
+.table-wrapper {
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.table {
+  & > thead > tr > th {
+    background: rgba(darken($ui-base-color, 8%), $foresdon-primary-ui-alpha);
+  }
+
+  & > tbody > tr > td,
+  & > tbody > tr > th {
+    background: rgba(darken($ui-base-color, 8%), $foresdon-primary-ui-alpha);
+  }
+
+  & > tbody > tr:nth-child(2n+1) > td,
+  & > tbody > tr:nth-child(2n+1) > th {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+}
