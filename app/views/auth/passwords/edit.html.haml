@@ -13,8 +13,7 @@
       = f.input :password_confirmation, wrapper: :with_label, label: t('simple_form.labels.defaults.confirm_new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_new_password'), :autocomplete => 'off' }, required: true
 
     .actions
-      = render partial: 'auth/shared/recaptcha'
-      = f.button :button, t('auth.set_new_password'), type: :submit, class: 'recaptcha', disabled: true
+      = f.button :button, t('auth.set_new_password'), type: :submit
   - else
     %p.hint= t('users.seamless_external_login')
 

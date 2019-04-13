@@ -8,8 +8,7 @@
     = f.input :otp_attempt, type: :number, wrapper: :with_label, label: t('simple_form.labels.defaults.otp_attempt'), input_html: { 'aria-label' => t('simple_form.labels.defaults.otp_attempt'), :autocomplete => 'off' }, autofocus: true
 
   .actions
-    = render partial: 'auth/shared/recaptcha'
-    = f.button :button, t('auth.login'), type: :submit, class: 'recaptcha', disabled: true
+    = f.button :button, t('auth.login'), type: :submit
 
   - if Setting.site_contact_email.present?
     %p.hint.subtle-hint= t('users.otp_lost_help_html', email: mail_to(Setting.site_contact_email, nil))

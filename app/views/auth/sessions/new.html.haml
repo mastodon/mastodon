@@ -14,8 +14,7 @@
     = f.input :password, wrapper: :with_label, label: t('simple_form.labels.defaults.password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.password'), :autocomplete => 'off' }, hint: false
 
   .actions
-    = render partial: 'auth/shared/recaptcha'
-    = f.button :button, t('auth.login'), type: :submit, class: 'recaptcha', disabled: true
+    = f.button :button, t('auth.login'), type: :submit
 
 - if devise_mapping.omniauthable? and resource_class.omniauth_providers.any?
   .simple_form.alternative-login

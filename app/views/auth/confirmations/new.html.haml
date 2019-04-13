@@ -8,7 +8,6 @@
     = f.input :email, autofocus: true, wrapper: :with_label, label: t('simple_form.labels.defaults.email'), input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }, hint: false
 
   .actions
-    = render partial: 'auth/shared/recaptcha'
-    = f.button :button, t('auth.resend_confirmation'), type: :submit, class: 'recaptcha', disabled: true
+    = f.button :button, t('auth.resend_confirmation'), type: :submit
 
 .form-footer= render 'auth/shared/links'
