@@ -46,73 +46,37 @@ describe Admin::ReportsController do
     end
   end
 
-  describe 'PUT #update' do
-    describe 'with an unknown outcome' do
-      it 'rejects the change' do
-        report = Fabricate(:report)
-        put :update, params: { id: report, outcome: 'unknown' }
+  describe 'POST #reopen' do
+    it 'reopens the report' do
+      report = Fabricate(:report)
 
-        expect(response).to have_http_status(404)
-      end
+      put :reopen, params: { id: report }
+      expect(response).to redirect_to(admin_report_path(report))
+      report.reload
+      expect(report.action_taken_by_account).to eq nil
+      expect(report.action_taken).to eq false
     end
+  end
 
-    describe 'with an outcome of `resolve`' do
-      it 'resolves the report' do
-        report = Fabricate(:report)
+  describe 'POST #assign_to_self' do
+    it 'reopens the report' do
+      report = Fabricate(:report)
 
-        put :update, params: { id: report, outcome: 'resolve' }
-        expect(response).to redirect_to(admin_reports_path)
-        report.reload
-        expect(report.action_taken_by_account).to eq user.account
-        expect(report.action_taken).to eq true
-      end
+      put :assign_to_self, params: { id: report }
+      expect(response).to redirect_to(admin_report_path(report))
+      report.reload
+      expect(report.assigned_account).to eq user.account
     end
+  end
 
-    describe 'with an outsome of `silence`' do
-      it 'silences the reported account' do
-        report = Fabricate(:report)
+  describe 'POST #unassign' do
+    it 'reopens the report' do
+      report = Fabricate(:report)
 
-        put :update, params: { id: report, outcome: 'silence' }
-        expect(response).to redirect_to(admin_reports_path)
-        report.reload
-        expect(report.action_taken_by_account).to eq user.account
-        expect(report.action_taken).to eq true
-        expect(report.target_account).to be_silenced
-      end
-    end
-
-    describe 'with an outsome of `reopen`' do
-      it 'reopens the report' do
-        report = Fabricate(:report)
-
-        put :update, params: { id: report, outcome: 'reopen' }
-        expect(response).to redirect_to(admin_report_path(report))
-        report.reload
-        expect(report.action_taken_by_account).to eq nil
-        expect(report.action_taken).to eq false
-      end
-    end
-
-    describe 'with an outsome of `assign_to_self`' do
-      it 'reopens the report' do
-        report = Fabricate(:report)
-
-        put :update, params: { id: report, outcome: 'assign_to_self' }
-        expect(response).to redirect_to(admin_report_path(report))
-        report.reload
-        expect(report.assigned_account).to eq user.account
-      end
-    end
-
-    describe 'with an outsome of `unassign`' do
-      it 'reopens the report' do
-        report = Fabricate(:report)
-
-        put :update, params: { id: report, outcome: 'unassign' }
-        expect(response).to redirect_to(admin_report_path(report))
-        report.reload
-        expect(report.assigned_account).to eq nil
-      end
+      put :unassign, params: { id: report }
+      expect(response).to redirect_to(admin_report_path(report))
+      report.reload
+      expect(report.assigned_account).to eq nil
     end
   end
 end

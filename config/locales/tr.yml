@@ -48,10 +48,6 @@ tr:
       most_recent_activity: Son aktivite
       most_recent_ip: Son IP
       not_subscribed: Abone edilmedi
-      order:
-        alphabetic: Alfabetik
-        most_recent: En son
-        title: Sıralama
       perform_full_suspension: Tamamen uzaklaştır
       profile_url: Profil linki
       public: Herkese açık
@@ -64,7 +60,6 @@ tr:
       salmon_url: Salmon Linki
       show:
         created_reports: Bu hesap tarafından gelen şikayetler
-        report: şikayet
         targeted_reports: Bu hesaba gelen şikayetler
       silence: Sustur
       statuses: Durumlar
@@ -88,10 +83,6 @@ tr:
         title: Yeni domain bloğu
       reject_media: Ortam dosyalarını reddetme
       reject_media_hint: Yerel olarak depolanmış ortam dosyalarını ve gelecekte indirilecek olanları reddeder. Uzaklaştırma için uygun değildir
-      severities:
-        silence: Sustur
-        suspend: Uzaklaştır
-      severity: İşlem
       show:
         affected_accounts:
           one: Veritabanındaki bir hesap etkilendi
@@ -101,11 +92,8 @@ tr:
           suspend: Bu domaindeki tüm hesapların üzerindeki uzaklaştırma işlemini kaldır
         title: "%{domain} domain'i için yapılan işlemi geri al"
         undo: Geri al
-      title: Domain Blokları
       undo: Geri al
     instances:
-      account_count: Bilinen hesaplar
-      domain_name: Domain
       title: Bilinen Sunucular
     reports:
       comment:
@@ -222,7 +210,7 @@ tr:
       too_many: 4'ten fazla dosya ekleyemezsiniz
   notification_mailer:
     digest:
-      body: 'Son ziyaretiniz olan %{since}''den beri''da kaçırdığınız şeylerin özeti:'
+      body: Son ziyaretiniz olan %{since}'den beri'da kaçırdığınız şeylerin özeti
       mention: "%{name} senden bahsetti:"
       new_followers_summary:
         one: Yeni bir takipçiniz var!
