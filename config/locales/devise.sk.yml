@@ -11,9 +11,9 @@ sk:
       invalid: Nesprávny %{authentication_keys}, alebo heslo.
       last_attempt: Máš posledný pokus pred zamknutím tvojho účtu.
       locked: Tvoj účet je zamknutý.
-      not_found_in_database: Nesprávny %{authentication_keys} alebo heslo.
+      not_found_in_database: Nesprávny %{authentication_keys}, alebo heslo.
       pending: Tvoj účet je stále prehodnocovaný.
-      timeout: Vaša aktívna sezóna vypršala. Pre pokračovanie sa prosím znovu prihláste.
+      timeout: Tvoja aktívna sezóna vypršala. Pre pokračovanie sa prosím prihlás znovu.
       unauthenticated: K pokračovaniu sa musíš zaregistrovať alebo prihlásiť.
       unconfirmed: Pred pokračovaním musíš potvrdiť svoj email.
     mailer:
@@ -48,7 +48,7 @@ sk:
       unlock_instructions:
         subject: 'Mastodon: Inštrukcie pre odomknutie účtu'
     omniauth_callbacks:
-      failure: Nebolo možné ťa overiť z dôvodu,%{kind} že "%{reason}".
+      failure: Nebolo možné ťa overiť %{kind}, z dôvodu, že "%{reason}".
       success: Úspešné overenie z účtu %{kind}.
     passwords:
       no_token: Túto stránku nemôžete navštíviť pokiaľ neprichádzate z emailu s inštrukciami na obnovu hesla. Pokiaľ prichádzate z tohto emailu, prosím uistite sa že ste použili celú URL z emailu.
