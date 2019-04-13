@@ -10,6 +10,6 @@ module DomainNormalizable
   private
 
   def normalize_domain
-    self.domain = TagManager.instance.normalize_domain(domain)
+    self.domain = TagManager.instance.normalize_domain(domain&.strip)
   end
 end

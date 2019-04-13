@@ -12,6 +12,7 @@ en:
       last_attempt: You have one more attempt before your account is locked.
       locked: Your account is locked.
       not_found_in_database: Invalid %{authentication_keys} or password.
+      pending: Your account is still under review.
       timeout: Your session expired. Please sign in again to continue.
       unauthenticated: You need to sign in or sign up before continuing.
       unconfirmed: You have to confirm your email address before continuing.
@@ -20,17 +21,18 @@ en:
         action: Verify email address
         action_with_app: Confirm and return to %{app}
         explanation: You have created an account on %{host} with this email address. You are one click away from activating it. If this wasn't you, please ignore this email.
-        extra_html: Please also check out <a href="%{terms_path}">the rules of the instance</a> and <a href="%{policy_path}">our terms of service</a>.
+        explanation_when_pending: You applied for an invite to %{host} with this email address. Once you confirm your e-mail address, we will review your application. You can't login until then. If your application is rejected, your data will be removed, so no further action will be required from you. If this wasn't you, please ignore this email.
+        extra_html: Please also check out <a href="%{terms_path}">the rules of the server</a> and <a href="%{policy_path}">our terms of service</a>.
         subject: 'Mastodon: Confirmation instructions for %{instance}'
         title: Verify email address
       email_changed:
         explanation: 'The email address for your account is being changed to:'
-        extra: If you did not change your email, it is likely that someone has gained access to your account. Please change your password immediately or contact the instance admin if you're locked out of your account.
+        extra: If you did not change your email, it is likely that someone has gained access to your account. Please change your password immediately or contact the server admin if you're locked out of your account.
         subject: 'Mastodon: Email changed'
         title: New email address
       password_change:
         explanation: The password for your account has been changed.
-        extra: If you did not change your password, it is likely that someone has gained access to your account. Please change your password immediately or contact the instance admin if you're locked out of your account.
+        extra: If you did not change your password, it is likely that someone has gained access to your account. Please change your password immediately or contact the server admin if you're locked out of your account.
         subject: 'Mastodon: Password changed'
         title: Password changed
       reconfirmation_instructions:
@@ -60,6 +62,7 @@ en:
       signed_up: Welcome! You have signed up successfully.
       signed_up_but_inactive: You have signed up successfully. However, we could not sign you in because your account is not yet activated.
       signed_up_but_locked: You have signed up successfully. However, we could not sign you in because your account is locked.
+      signed_up_but_pending: A message with a confirmation link has been sent to your email address. After you click the link, we will review your application. You will be notified if it is approved.
       signed_up_but_unconfirmed: A message with a confirmation link has been sent to your email address. Please follow the link to activate your account. Please check your spam folder if you didn't receive this email.
       update_needs_confirmation: You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address. Please check your spam folder if you didn't receive this email.
       updated: Your account has been updated successfully.

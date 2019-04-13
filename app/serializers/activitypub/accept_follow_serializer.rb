@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::AcceptFollowSerializer < ActiveModel::Serializer
+class ActivityPub::AcceptFollowSerializer < ActivityPub::Serializer
   attributes :id, :type, :actor
 
   has_one :object, serializer: ActivityPub::FollowSerializer

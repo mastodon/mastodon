@@ -1,11 +1,10 @@
-// import { autoPlayGif } from '../../initial_state';
-// import { putAccounts, putStatuses } from '../../storage/modifier';
-import { normalizeAccount, normalizeStatus } from './normalizer';
+import { normalizeAccount, normalizeStatus, normalizePoll } from './normalizer';
 
-export const ACCOUNT_IMPORT = 'ACCOUNT_IMPORT';
+export const ACCOUNT_IMPORT  = 'ACCOUNT_IMPORT';
 export const ACCOUNTS_IMPORT = 'ACCOUNTS_IMPORT';
-export const STATUS_IMPORT = 'STATUS_IMPORT';
+export const STATUS_IMPORT   = 'STATUS_IMPORT';
 export const STATUSES_IMPORT = 'STATUSES_IMPORT';
+export const POLLS_IMPORT    = 'POLLS_IMPORT';
 
 function pushUnique(array, object) {
   if (array.every(element => element.id !== object.id)) {
@@ -29,6 +28,10 @@ export function importStatuses(statuses) {
   return { type: STATUSES_IMPORT, statuses };
 }
 
+export function importPolls(polls) {
+  return { type: POLLS_IMPORT, polls };
+}
+
 export function importFetchedAccount(account) {
   return importFetchedAccounts([account]);
 }
@@ -45,7 +48,6 @@ export function importFetchedAccounts(accounts) {
   }
 
   accounts.forEach(processAccount);
-  //putAccounts(normalAccounts, !autoPlayGif);
 
   return importAccounts(normalAccounts);
 }
@@ -58,6 +60,7 @@ export function importFetchedStatuses(statuses) {
   return (dispatch, getState) => {
     const accounts = [];
     const normalStatuses = [];
+    const polls = [];
 
     function processStatus(status) {
       pushUnique(normalStatuses, normalizeStatus(status, getState().getIn(['statuses', status.id])));
@@ -66,12 +69,22 @@ export function importFetchedStatuses(statuses) {
       if (status.reblog && status.reblog.id) {
         processStatus(status.reblog);
       }
+
+      if (status.poll && status.poll.id) {
+        pushUnique(polls, normalizePoll(status.poll));
+      }
     }
 
     statuses.forEach(processStatus);
-    //putStatuses(normalStatuses);
 
+    dispatch(importPolls(polls));
     dispatch(importFetchedAccounts(accounts));
     dispatch(importStatuses(normalStatuses));
+  };
+}
+
+export function importFetchedPoll(poll) {
+  return dispatch => {
+    dispatch(importPolls([normalizePoll(poll)]));
   };
 }

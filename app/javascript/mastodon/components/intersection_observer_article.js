@@ -65,7 +65,7 @@ export default class IntersectionObserverArticle extends React.Component {
   }
 
   updateStateAfterIntersection = (prevState) => {
-    if (prevState.isIntersecting && !this.entry.isIntersecting) {
+    if (prevState.isIntersecting !== false && !this.entry.isIntersecting) {
       scheduleIdleTask(this.hideIfNotIntersecting);
     }
     return {
