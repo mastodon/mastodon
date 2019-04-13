@@ -15,7 +15,7 @@ fr:
       <h3>Un bon endroit pour les règles</h3>
       <p>La description étendue n’a pas été remplie.</p>
     generic_description: "%{domain} est seulement un serveur du réseau"
-    hosted_on: Instance Mastodon hébergée par %{domain}
+    hosted_on: Serveur Mastodon hébergée par %{domain}
     learn_more: En savoir plus
     privacy_policy: Politique de vie privée
     source_code: Code source
@@ -317,7 +317,7 @@ fr:
     relays:
       add_new: Ajouter un nouveau relais
       delete: Effacer
-      description_html: Un <strong>relai de fédération</strong> est un serveur intermédiaire qui échange de grandes quantités de pouets entre les serveurs qui publient dessus et ceux qui y sont abonnés. <strong>Il peut aider les petites et moyennes instances à découvrir du contenu sur le fediverse</strong>, ce qui normalement nécessiterait que les membres locaux suivent des gens inscrits sur des serveurs distants.
+      description_html: Un <strong>relai de fédération</strong> est un serveur intermédiaire qui échange de grandes quantités de pouets entre les serveurs qui publient dessus et ceux qui y sont abonnés. <strong>Il peut aider les petits et moyen serveurs à découvrir du contenu sur le fediverse</strong>, ce qui normalement nécessiterait que les membres locaux suivent des gens inscrits sur des serveurs distants.
       disable: Désactiver
       disabled: Désactivé
       enable: Activé
@@ -376,14 +376,14 @@ fr:
         desc_html: Modifier l'apparence avec une CSS chargée sur chaque page
         title: CSS personnalisé
       hero:
-        desc_html: Affichée sur la page d’accueil. Au moins 600x100px recommandé. Lorsqu’elle n’est pas définie, se rabat sur la vignette de l’instance
+        desc_html: Affichée sur la page d’accueil. Au moins 600x100px recommandé. Lorsqu’elle n’est pas définie, se rabat sur la vignette du serveur
         title: Image d’en-tête
       mascot:
         desc_html: Affiché sur plusieurs pages. Au moins 293×205px recommandé. Lorsqu'il n'est pas défini, retombe à la mascotte par défaut
         title: Image de la mascotte
       peers_api_enabled:
-        desc_html: Noms des domaines que cette instance a découvert dans le fediverse
-        title: Publier la liste des instances découvertes
+        desc_html: Noms des domaines que ce serveur a découvert dans le fediverse
+        title: Publier la liste des serveurs découverts
       preview_sensitive_media:
         desc_html: Les liens de prévisualisation sur les autres sites web afficheront une vignette même si le média est sensible
         title: Afficher les médias sensibles dans les prévisualisations OpenGraph
@@ -401,31 +401,31 @@ fr:
           disabled: Personne
           title: Autoriser les invitations par
       show_known_fediverse_at_about_page:
-        desc_html: Lorsque l’option est activée, les pouets provenant de toutes les instances connues sont affichés dans la prévisualisation. Sinon, seuls les pouets locaux sont affichés.
+        desc_html: Lorsque l’option est activée, les pouets provenant de toutes les serveurs connues sont affichés dans la prévisualisation. Sinon, seuls les pouets locaux sont affichés.
         title: Afficher le fediverse connu dans la prévisualisation du fil
       show_staff_badge:
         desc_html: Montrer un badge de responsable sur une page utilisateur·ice
         title: Montrer un badge de responsable
       site_description:
         desc_html: Paragraphe introductif sur la page d’accueil. Décrivez ce qui rend spécifique ce serveur Mastodon et toute autre chose importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
-        title: Description de l'instance
+        title: Description du serveur
       site_description_extended:
-        desc_html: L'endroit idéal pour afficher votre code de conduite, les règles, les guides et autres choses qui rendent votre instance différente. Vous pouvez utiliser des balises HTML
-        title: Description étendue du site
+        desc_html: L'endroit idéal pour afficher votre code de conduite, les règles, les guides et autres choses qui rendent votre serveur différent. Vous pouvez utiliser des balises HTML
+        title: Description étendue du serveur
       site_short_description:
-        desc_html: Affichée dans la barre latérale et dans les méta-tags. Décrivez ce qui rend spécifique cette instance Mastodon en un seul paragraphe. Si laissée vide, la description de l’instance sera affiché par défaut.
-        title: Description courte de l’instance
+        desc_html: Affichée dans la barre latérale et dans les méta-tags. Décrivez ce qui rend spécifique ce serveur Mastodon en un seul paragraphe. Si laissée vide, la description du serveur sera affiché par défaut.
+        title: Description courte du serveur
       site_terms:
         desc_html: Affichée sur la page des conditions d’utilisation du site<br>Vous pouvez utiliser des balises HTML
         title: Politique de confidentialité
-      site_title: Nom de l'instance
+      site_title: Nom du serveur
       thumbnail:
         desc_html: Utilisée pour les prévisualisations via OpenGraph et l’API. 1200x630px recommandé
-        title: Vignette de l’instance
+        title: Vignette du serveur
       timeline_preview:
         desc_html: Afficher le fil public sur la page d’accueil
         title: Prévisualisation du fil global
-      title: Paramètres du site
+      title: Paramètres du serveur
     statuses:
       back_to_account: Retour à la page du compte
       batch:
@@ -482,7 +482,6 @@ fr:
     warning: Soyez prudent⋅e avec ces données. Ne les partagez pas !
     your_token: Votre jeton d’accès
   auth:
-    agreement_html: En cliquant sur "S'inscrire" ci-dessous, vous souscrivez <a href="%{rules_path}">aux règles de l’instance</a> et à <a href="%{terms_path}">nos conditions d’utilisation</a>.
     change_password: Mot de passe
     confirm_email: Confirmer mon adresse mail
     delete_account: Supprimer le compte
@@ -534,7 +533,7 @@ fr:
     description_html: Cela va supprimer votre compte et le désactiver de manière <strong>permanente et irréversible</strong>. Votre nom d’utilisateur⋅ice restera réservé afin d’éviter la confusion.
     proceed: Supprimer compte
     success_msg: Votre compte a été supprimé avec succès
-    warning_html: Seule la suppression du contenu depuis cette instance est garantie. Le contenu qui a été partagé est susceptible de laisser des traces. Les instances hors-ligne ainsi que ceux n’étant plus abonnées à vos publications ne mettront pas leur base de données à jour.
+    warning_html: Seule la suppression du contenu depuis ce serveur est garantie. Le contenu qui a été partagé est susceptible de laisser des traces. Les serveurs hors-ligne ainsi que ceux n’étant plus abonnées à vos publications ne mettront pas leur base de données à jour.
     warning_title: Disponibilité du contenu disséminé
   directories:
     directory: Annuaire des profils
@@ -610,11 +609,11 @@ fr:
       merge_long: Garder les enregistrements existants et ajouter les nouveaux
       overwrite: Réécrire
       overwrite_long: Remplacer les enregistrements actuels par les nouveaux
-    preface: Vous pouvez importer certaines données que vous avez exporté d'une autre instance, comme une liste des personnes que vous suivez ou bloquez sur votre compte.
+    preface: Vous pouvez importer certaines données que vous avez exporté d'un autre serveur, comme une liste des personnes que vous suivez ou bloquez sur votre compte.
     success: Vos données ont été importées avec succès et seront traitées en temps et en heure
     types:
       blocking: Liste d’utilisateur⋅ice⋅s bloqué⋅e⋅s
-      domain_blocking: Liste des instances bloquées
+      domain_blocking: Liste des serveurs bloquées
       following: Liste d’utilisateur⋅ice⋅s suivi⋅e⋅s
       muting: Liste d’utilisateur⋅ice⋅s que vous masquez
     upload: Importer
@@ -636,7 +635,7 @@ fr:
       one: 1 usage
       other: "%{count} usages"
     max_uses_prompt: Pas de limite
-    prompt: Générer et partager des liens avec les autres pour donner accès à cette instance
+    prompt: Générer et partager des liens avec les autres pour donner accès à ce serveur
     table:
       expires_at: Expire
       uses: Utilise
@@ -722,7 +721,7 @@ fr:
     publishing: Publication
     web: Web
   remote_follow:
-    acct: Entrez l’adresse profil@instance depuis laquelle vous voulez vous abonner
+    acct: Entrez l’adresse profil@serveur depuis laquelle vous voulez vous abonner
     missing_resource: L’URL de redirection n’a pas pu être trouvée
     no_account_html: Vous n’avez pas de compte ? Vous pouvez <a href='%{sign_up_path}' target='_blank'>vous inscrire ici</a>
     proceed: Confirmer l’abonnement
@@ -799,9 +798,7 @@ fr:
     migrate: Migration de compte
     notifications: Notifications
     preferences: Préférences
-    settings: Réglages
     two_factor_authentication: Identification à deux facteurs
-    your_apps: Vos applications
   statuses:
     attached:
       description: 'Attaché : %{attached}'
@@ -978,7 +975,7 @@ fr:
       final_action: Commencer à publier
       final_step: 'Commencez à poster ! Même sans abonné·e·s, vos messages publics peuvent être vus par d’autres, par exemple sur le fil public local et dans les hashtags. Vous pouvez vous présenter sur le hashtag #introductions.'
       full_handle: Votre identifiant complet
-      full_handle_hint: C’est ce que vous diriez à vos ami·e·s pour leur permettre de vous envoyer un message ou vous suivre à partir d’une autre instance.
+      full_handle_hint: C’est ce que vous diriez à vos ami·e·s pour leur permettre de vous envoyer un message ou vous suivre à partir d’un autre serveur.
       review_preferences_action: Modifier les préférences
       review_preferences_step: Assurez-vous de définir vos préférences, telles que les courriels que vous aimeriez recevoir ou le niveau de confidentialité auquel vous aimeriez que vos messages soient soumis par défaut. Si vous n’avez pas le mal des transports, vous pouvez choisir d’activer la lecture automatique des GIF.
       subject: Bienvenue sur Mastodon

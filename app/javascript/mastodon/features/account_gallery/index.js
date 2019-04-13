@@ -13,8 +13,10 @@ import MediaItem from './components/media_item';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import { ScrollContainer } from 'react-router-scroll-4';
 import LoadMore from '../../components/load_more';
+import MissingIndicator from 'mastodon/components/missing_indicator';
 
 const mapStateToProps = (state, props) => ({
+  isAccount: !!state.getIn(['accounts', props.params.accountId]),
   medias: getAccountGallery(state, props.params.accountId),
   isLoading: state.getIn(['timelines', `account:${props.params.accountId}:media`, 'isLoading']),
   hasMore:   state.getIn(['timelines', `account:${props.params.accountId}:media`, 'hasMore']),
@@ -52,6 +54,7 @@ class AccountGallery extends ImmutablePureComponent {
     medias: ImmutablePropTypes.list.isRequired,
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
+    isAccount: PropTypes.bool,
   };
 
   componentDidMount () {
@@ -91,7 +94,15 @@ class AccountGallery extends ImmutablePureComponent {
   }
 
   render () {
-    const { medias, shouldUpdateScroll, isLoading, hasMore } = this.props;
+    const { medias, shouldUpdateScroll, isLoading, hasMore, isAccount } = this.props;
+
+    if (!isAccount) {
+      return (
+        <Column>
+          <MissingIndicator />
+        </Column>
+      );
+    }
 
     let loadOlder = null;
 

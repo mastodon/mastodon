@@ -16,8 +16,10 @@ import Column from '../ui/components/column';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import ColumnBackButton from '../../components/column_back_button';
 import ScrollableList from '../../components/scrollable_list';
+import MissingIndicator from 'mastodon/components/missing_indicator';
 
 const mapStateToProps = (state, props) => ({
+  isAccount: !!state.getIn(['accounts', props.params.accountId]),
   accountIds: state.getIn(['user_lists', 'following', props.params.accountId, 'items']),
   hasMore: !!state.getIn(['user_lists', 'following', props.params.accountId, 'next']),
   blockedBy: state.getIn(['relationships', props.params.accountId, 'blocked_by'], false),
@@ -33,6 +35,7 @@ class Following extends ImmutablePureComponent {
     accountIds: ImmutablePropTypes.list,
     hasMore: PropTypes.bool,
     blockedBy: PropTypes.bool,
+    isAccount: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -52,7 +55,15 @@ class Following extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { shouldUpdateScroll, accountIds, hasMore, blockedBy } = this.props;
+    const { shouldUpdateScroll, accountIds, hasMore, blockedBy, isAccount } = this.props;
+
+    if (!isAccount) {
+      return (
+        <Column>
+          <MissingIndicator />
+        </Column>
+      );
+    }
 
     if (!accountIds) {
       return (
@@ -62,7 +73,7 @@ class Following extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = blockedBy ? <FormattedMessage id='empty_column.account_timeline_blocked' defaultMessage='You are blocked' /> : <FormattedMessage id='account.follows.empty' defaultMessage="This user doesn't follow anyone yet." />;
+    const emptyMessage = blockedBy ? <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' /> : <FormattedMessage id='account.follows.empty' defaultMessage="This user doesn't follow anyone yet." />;
 
     return (
       <Column>

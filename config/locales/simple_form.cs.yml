@@ -41,8 +41,10 @@ cs:
         name: 'Nejspíš budete chtít použít jeden z těchto:'
       imports:
         data: Soubor CSV exportovaný z jiného serveru Mastodon
+      invite_request:
+        text: To nám pomůže posoudit váš požadavek
       sessions:
-        otp: 'Napište dvoufaktorový kód vygenerovaný vaší mobilní aplikací, nebo použijte jeden z vašich záložních kódů:'
+        otp: 'Napište dvoufázový kód vygenerovaný vaší mobilní aplikací, nebo použijte jeden z vašich záložních kódů:'
       user:
         chosen_languages: Je-li tohle zaškrtnuto, budou ve veřejných časových osách zobrazeny pouze tooty ve zvolených jazycích
     labels:
@@ -85,7 +87,7 @@ cs:
         max_uses: Maximální počet použití
         new_password: Nové heslo
         note: O vás
-        otp_attempt: Dvoufaktorový kód
+        otp_attempt: Dvoufázový kód
         password: Heslo
         phrase: Klíčové slovo či fráze
         setting_aggregate_reblogs: Seskupovat boosty v časových osách
@@ -118,12 +120,15 @@ cs:
         must_be_follower: Blokovat oznámení od lidí, kteří vás nesledují
         must_be_following: Blokovat oznámení od lidí, které nesledujete
         must_be_following_dm: Blokovat přímé zprávy od lidí, které nesledujete
+      invite_request:
+        text: Proč se chcete připojit?
       notification_emails:
         digest: Posílat e-maily s přehledem
         favourite: Posílat e-maily, když si někdo oblíbí váš toot
         follow: Posílat e-maily, když vás někdo začne sledovat
         follow_request: Posílat e-maily, když vás někdo požádá o sledování
         mention: Posílat e-maily, když vás někdo zmíní
+        pending_account: Posílat e-maily, když je třeba posoudit nový účet
         reblog: Posílat e-maily, když někdo boostne váš toot
         report: Posílat e-maily, je-li odesláno nové nahlášení
     'no': Ne

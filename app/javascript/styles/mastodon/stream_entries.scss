@@ -99,13 +99,30 @@
     }
   }
 
-  &:active:not(:disabled),
-  &:focus:not(:disabled),
-  &:hover:not(:disabled) {
+  &:active,
+  &:focus,
+  &:hover {
     background: lighten($ui-highlight-color, 10%);
 
     svg path:last-child {
       fill: lighten($ui-highlight-color, 10%);
+    }
+  }
+
+  &:disabled,
+  &.disabled {
+    svg path:last-child {
+      fill: $ui-primary-color;
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+      background: $ui-primary-color;
+
+      svg path:last-child {
+        fill: $ui-primary-color;
+      }
     }
   }
 
