@@ -34,11 +34,11 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile-catgram
+      dockerfile: Dockerfile
     image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
     restart: always
     env_file: .env.production
-    command: /mastodon/web_boot.sh
+    command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000 -b '0.0.0.0'"
     networks:
       - external_network
       - internal_network
@@ -56,7 +56,7 @@ services:
   streaming:
     build:
       context: .
-      dockerfile: Dockerfile-catgram
+      dockerfile: Dockerfile
     image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
     restart: always
     env_file: .env.production
@@ -75,7 +75,7 @@ services:
   sidekiq:
     build:
       context: .
-      dockerfile: Dockerfile-catgram
+      dockerfile: Dockerfile
     image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
     restart: always
     env_file: .env.production

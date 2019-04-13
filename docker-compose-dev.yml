@@ -18,12 +18,23 @@ services:
     volumes:
     - /var/data/docker-data/catgram-redis:/data
 
+
   web:
-    image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        UID: 1000
+        GID: 1000
+        RAILS_ENV: "development"
+        NODE_ENV: "development"
+        BUNDLE_WITHOUT: "''"
+
+    image: catgram-dev
     env_file: .env.development
-    command: /mastodon/boot_dev.sh web
+    command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-    - ".:/mastodon"
+    - ".:/opt/mastodon"
     networks:
       - external_network
       - internal_network
@@ -36,11 +47,11 @@ services:
       - prometheus_exporter
 
   streaming:
-    image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
+    image: catgram-dev
     env_file: .env.development
-    command: /mastodon/boot_dev.sh streaming
+    command: yarn start
     volumes:
-    - ".:/mastodon"
+    - ".:/opt/mastodon"
     ports:
       - "4000:4000"
     networks:
@@ -51,14 +62,14 @@ services:
       - redis
 
   sidekiq:
-    image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
+    image: catgram-dev
     env_file: .env.development
-    command: /mastodon/boot_dev.sh sidekiq
+    command: bundle exec sidekiq
     networks:
       - external_network
       - internal_network
     volumes:
-    - ".:/mastodon"
+    - ".:/opt/mastodon"
     depends_on:
       - db
       - redis

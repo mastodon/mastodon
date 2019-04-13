@@ -1,5 +1,5 @@
 .landing-strip
-  = image_tag asset_pack_path('logo.png'), class: 'logo'
+  = image_tag asset_pack_path('media/images/logo.png'), class: 'logo'
 
   %div
     = t('landing_strip_html', name: content_tag(:span, display_name(account, custom_emojify: true), class: :emojify), link_to_root_path: link_to(content_tag(:strong, site_hostname), root_path))

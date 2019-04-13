@@ -60,8 +60,9 @@ RUN npm install -g yarn && \
 
 COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
+ARG BUNDLE_WITHOUT="development test"
 RUN cd /opt/mastodon && \
-	bundle install -j$(nproc) --deployment --without development test && \
+	bundle install -j$(nproc) --deployment --without ${BUNDLE_WITHOUT} && \
 	yarn install --pure-lockfile
 
 FROM ubuntu:18.04
@@ -91,7 +92,6 @@ RUN apt -y --no-install-recommends install \
 	  libssl1.1 libpq5 imagemagick ffmpeg \
 	  libicu60 libprotobuf10 libidn11 libyaml-0-2 \
 	  file ca-certificates tzdata libreadline7 && \
-	apt -y install gcc && \
 	ln -s /opt/mastodon /mastodon && \
 	gem install bundler && \
 	rm -rf /var/cache && \
@@ -109,8 +109,8 @@ COPY --chown=mastodon:mastodon . /opt/mastodon
 COPY --from=build-dep --chown=mastodon:mastodon /opt/mastodon /opt/mastodon
 
 # Run masto services in prod mode
-ENV RAILS_ENV="production"
-ENV NODE_ENV="production"
+ARG RAILS_ENV="production"
+ARG NODE_ENV="production"
 
 # Tell rails to serve static files
 ENV RAILS_SERVE_STATIC_FILES="true"
