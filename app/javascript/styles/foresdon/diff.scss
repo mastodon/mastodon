@@ -176,12 +176,15 @@ body {
   }
 }
 
-.activity-stream .entry {
-  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
-  border-radius: $foresdon-primary-border-radius;
+.activity-stream {
+  & .entry {
+    margin-bottom: $foresdon-margin-bottom;
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border-radius: $foresdon-primary-border-radius;
 
-  & .detailed-status {
-    background: none;
+    & .detailed-status {
+      background: none;
+    }
   }
 }
 
