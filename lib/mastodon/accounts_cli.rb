@@ -219,12 +219,14 @@ module Mastodon
     def cull
       skip_threshold = 7.days.ago
       culled         = 0
+      dry_run_culled = []
       skip_domains   = Set.new
       dry_run        = options[:dry_run] ? ' (DRY RUN)' : ''
 
       Account.remote.where(protocol: :activitypub).partitioned.find_each do |account|
         next if account.updated_at >= skip_threshold || (account.last_webfingered_at.present? && account.last_webfingered_at >= skip_threshold)
 
+        code = 0
         unless skip_domains.include?(account.domain)
           begin
             code = Request.new(:head, account.uri).perform(&:code)
@@ -236,11 +238,11 @@ module Mastodon
         end
 
         if [404, 410].include?(code)
-          unless options[:dry_run]
-            SuspendAccountService.new.call(account)
-            account.destroy
+          if options[:dry_run]
+            dry_run_culled << account.acct
+          else
+            SuspendAccountService.new.call(account, destroy: true)
           end
-
           culled += 1
           say('+', :green, false)
         else
@@ -255,6 +257,11 @@ module Mastodon
       unless skip_domains.empty?
         say('The following servers were not available during the check:', :yellow)
         skip_domains.each { |domain| say('    ' + domain) }
+      end
+
+      unless dry_run_culled.empty?
+        say('The following accounts would have been deleted:', :green)
+        dry_run_culled.each { |account| say('    ' + account) }
       end
     end
 
@@ -358,6 +365,104 @@ module Mastodon
       end
 
       say("OK, unfollowed target from #{processed} accounts, skipped #{failed}", :green)
+    end
+
+    option :follows, type: :boolean, default: false
+    option :followers, type: :boolean, default: false
+    desc 'reset-relationships USERNAME', 'Reset all follows and/or followers for a user'
+    long_desc <<-LONG_DESC
+      Reset all follows and/or followers for a user specified by USERNAME.
+
+      With the --follows option, the command unfollows everyone that the account follows,
+      and then re-follows the users that would be followed by a brand new account.
+
+      With the --followers option, the command removes all followers of the account.
+    LONG_DESC
+    def reset_relationships(username)
+      unless options[:follows] || options[:followers]
+        say('Please specify either --follows or --followers, or both', :red)
+        exit(1)
+      end
+
+      account = Account.find_local(username)
+
+      if account.nil?
+        say('No user with such username', :red)
+        exit(1)
+      end
+
+      if options[:follows]
+        processed = 0
+        failed    = 0
+
+        say("Unfollowing #{account.username}'s followees, this might take a while...")
+
+        Account.where(id: ::Follow.where(account: account).select(:target_account_id)).find_each do |target_account|
+          begin
+            UnfollowService.new.call(account, target_account)
+            processed += 1
+            say('.', :green, false)
+          rescue StandardError
+            failed += 1
+            say('.', :red, false)
+          end
+        end
+
+        BootstrapTimelineWorker.perform_async(account.id)
+
+        say("OK, unfollowed #{processed} followees, skipped #{failed}", :green)
+      end
+
+      if options[:followers]
+        processed = 0
+        failed    = 0
+
+        say("Removing #{account.username}'s followers, this might take a while...")
+
+        Account.where(id: ::Follow.where(target_account: account).select(:account_id)).find_each do |target_account|
+          begin
+            UnfollowService.new.call(target_account, account)
+            processed += 1
+            say('.', :green, false)
+          rescue StandardError
+            failed += 1
+            say('.', :red, false)
+          end
+        end
+
+        say("OK, removed #{processed} followers, skipped #{failed}", :green)
+      end
+    end
+
+    option :number, type: :numeric, aliases: [:n]
+    option :all, type: :boolean
+    desc 'approve [USERNAME]', 'Approve pending accounts'
+    long_desc <<~LONG_DESC
+      When registrations require review from staff, approve pending accounts,
+      either all of them with the --all option, or a specific number of them
+      specified with the --number (-n) option, or only a single specific
+      account identified by its username.
+    LONG_DESC
+    def approve(username = nil)
+      if options[:all]
+        User.pending.find_each(&:approve!)
+        say('OK', :green)
+      elsif options[:number]
+        User.pending.limit(options[:number]).each(&:approve!)
+        say('OK', :green)
+      elsif username.present?
+        account = Account.find_local(username)
+
+        if account.nil?
+          say('No such account', :red)
+          exit(1)
+        end
+
+        account.user&.approve!
+        say('OK', :green)
+      else
+        exit(1)
+      end
     end
 
     private
