@@ -179,6 +179,10 @@ body {
 .activity-stream .entry {
   background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
   border-radius: $foresdon-primary-border-radius;
+
+  & .detailed-status {
+    background: none;
+  }
 }
 
 // card
