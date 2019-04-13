@@ -72,6 +72,7 @@ sk:
       admin: Administrátor
       bot: Automat
       moderator: Moderátor
+    unavailable: Profil je nedostupný
     unfollow: Prestaň sledovať
   admin:
     account_actions:
@@ -172,7 +173,7 @@ sk:
       silence: Stíš
       silenced: Utíšený/é
       statuses: Príspevky
-      subscribe: Odoberať
+      subscribe: Odoberaj
       suspended: Zablokovaní
       title: Účty
       unconfirmed_email: Nepotvrdený email
@@ -300,7 +301,7 @@ sk:
     email_domain_blocks:
       add_new: Pridaj nový
       created_msg: Emailová doména bola úspešne pridaná do zoznamu zakázaných
-      delete: Zmazať
+      delete: Vymaž
       destroyed_msg: Emailová doména bola úspešne vymazaná zo zoznamu zakázaných
       domain: Doména
       new:
@@ -636,10 +637,10 @@ sk:
       other: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetky %{count} nižšie uvedené pochybenia
   imports:
     modes:
-      merge: Spojiť dohromady
+      merge: Spoj dohromady
       merge_long: Ponechaj existujúce záznamy a pridaj k nim nové
       overwrite: Prepíš
-      overwrite_long: Nahraď súčasné záznamy s novými
+      overwrite_long: Nahraď súčasné záznamy novými
     preface: Môžeš nahrať dáta ktoré si exportoval/a z iného Mastodon serveru, ako sú napríklad zoznamy ľudí ktorých sleduješ, alebo blokuješ.
     success: Tvoje dáta boli nahraté úspešne, a teraz budú spracované v danom čase
     types:
@@ -647,10 +648,10 @@ sk:
       domain_blocking: Zoznam blokovaných domén
       following: Zoznam sledovaných
       muting: Zoznam ignorovaných
-    upload: Nahrať
+    upload: Nahraj
   in_memoriam_html: V pamäti.
   invites:
-    delete: Deaktivovať
+    delete: Deaktivuj
     expired: Neplatné
     expires_in:
       '1800': 30 minút
@@ -661,13 +662,13 @@ sk:
       '86400': 1 deň
     expires_in_prompt: Nikdy
     generate: Vygeneruj
-    invited_by: 'Bol/a si pozvan/á užívateľom:'
+    invited_by: 'Bol/a si pozvaný/á užívateľom:'
     max_uses:
       few: "%{count} použitia"
       one: jedno použitie
       other: "%{count} použití"
-    max_uses_prompt: Bez limitov
-    prompt: Vygeneruj a zdieľaj linky s ostatnými aby mali umožnený prístup k tomuto serveru
+    max_uses_prompt: Bez obmedzení
+    prompt: Vygeneruj a zdieľaj linky s ostatnými, aby mali umožnený prístup k tomuto serveru
     table:
       expires_at: Vyprší
       uses: Používa
@@ -692,16 +693,16 @@ sk:
       body: Tu nájdete krátky súhrn správ ktoré ste zmeškali od svojej poslednj návštevi od %{since}
       mention: "%{name} ťa spomenul/a v:"
       new_followers_summary:
-        few: Taktiež, získal/a si %{count} nových následovníkov za tú dobu čo si bol/a preč. Yay!
-        one: Taktiež, získal/a si jedného nového následovníka zatiaľ čo si bol/a preč. Yay!
-        other: Taktiež, získal/a si %{count} nových následovníkov za tú dobu čo si bol/a preč. Yay!
+        few: Tiež si získal/a %{count} nových následovateľov za tú dobu čo si bol/a preč. Yay!
+        one: Tiež si získal/a jedného nového následovateľa zatiaľ čo si bol/a preč. Yay!
+        other: Tiež si získal/a %{count} nových následovateľov za tú dobu čo si bol/a preč. Yay!
       subject:
         few: "%{count} nové notifikácie od tvojej poslednej návštevy \U0001F418"
-        one: "1 nová notifikácia od tvojej poslednej návštevy \U0001F418"
-        other: "%{count} nových notifikácií od tvojej poslednej návštevy \U0001F418"
+        one: "1 nové oboznámenie od tvojej poslednej návštevy \U0001F418"
+        other: "%{count} nových oboznámení od tvojej poslednej návštevy \U0001F418"
       title: Zatiaľ čo si bol/a preč…
     favourite:
-      body: 'Tvoj príspevok bol uložený medi obľúbené užívateľa %{name}:'
+      body: 'Tvoj príspevok bol uložený medzi obľúbené užívateľa %{name}:'
       subject: "%{name} si obľúbil/a tvoj príspevok"
       title: Nové obľúbené
     follow:
@@ -712,16 +713,16 @@ sk:
       action: Spravuj žiadosti o sledovanie
       body: "%{name} žiada povolenie ťa následovať"
       subject: "%{name} ťa žiadá o možnosť sledovania"
-      title: Nová žiadosť o sledovanie
+      title: Nová žiadosť o následovanie
     mention:
       action: Odpovedať
       body: "%{name} ťa spomenul/a v:"
       subject: Bol/a si spomenutý/á užívateľom %{name}
       title: Novo spomenutý/á
     reblog:
-      body: 'Tvoj príspevok bol pozdvihnutý užívateľom %{name}:'
-      subject: "%{name} pozdvihli tvoj príspevok"
-      title: Novo pozdvyhnuté
+      body: 'Tvoj príspevok bol vyzdvihnutý užívateľom %{name}:'
+      subject: "%{name} vyzdvihli tvoj príspevok"
+      title: Novo vyzdvyhnuté
   number:
     human:
       decimal_units:
@@ -820,17 +821,23 @@ sk:
     revoke_success: Sezóna úspešne zamietnutá
     title: Sezóny
   settings:
+    account: Účet
+    account_settings: Nastavenia účtu
+    appearance: Vzhľad
     authorized_apps: Povolené aplikácie
     back: Späť na Mastodon
     delete: Vymazanie účtu
     development: Vývoj
     edit_profile: Uprav profil
-    export: Exportovať dáta
-    featured_tags: Popredne zvýraznené haštagy
-    import: Importovať
-    migrate: Presunutie účtu
-    notifications: Oznámenia
+    export: Exportuj dáta
+    featured_tags: Zvýraznené haštagy
+    import: Importuj
+    import_and_export: Import a export
+    migrate: Presuň účet
+    notifications: Oboznámenia
     preferences: Voľby
+    profile: Profil
+    relationships: Následovaní a následovatelia
     two_factor_authentication: Dvoj-faktorové overenie
   statuses:
     attached:
@@ -846,9 +853,9 @@ sk:
     boosted_from_html: Povýšené od %{acct_link}
     content_warning: 'Varovanie o obsahu: %{warning}'
     disallowed_hashtags:
-      few: 'obsahoval nepovolené hashtagy: %{tags}'
-      one: 'obsahoval nepovolený hashtag: %{tags}'
-      other: 'obsahoval nepovolené hashtagy: %{tags}'
+      few: 'obsahoval nepovolené haštagy: %{tags}'
+      one: 'obsahoval nepovolený haštag: %{tags}'
+      other: 'obsahoval nepovolené haštagy: %{tags}'
     language_detection: Zisti automaticky
     open_in_web: Otvor v okne na webe
     over_character_limit: limit %{max} znakov bol presiahnutý
@@ -856,7 +863,7 @@ sk:
       limit: Už si si pripol ten najvyšší možný počet hlášok
       ownership: Nieje možné pripnúť hlášku od niekoho iného
       private: Neverejné príspevky nemôžu byť pripnuté
-      reblog: Pozdvihnutie sa nedá pripnúť
+      reblog: Vyzdvihnutie sa nedá pripnúť
     poll:
       total_votes:
         few: "%{count} hlas(y)ov"
@@ -874,14 +881,14 @@ sk:
       unlisted: Nezaradené
       unlisted_long: Všetci môžu vidieť, ale nieje zaradené do verejnej osi
   stream_entries:
-    pinned: Pripnutý toot
+    pinned: Pripnutý príspevok
     reblogged: vyzdvihnutý
     sensitive_content: Senzitívny obsah
   terms:
     body_html: |
       <h2>Podmienky súkromia</h2>
 
-      <h3 id="collect">Aké informácie zbierame?</h3>
+      <h3 id="collect">Aké informácie sú zbierané?</h3>
 
       <ul>
       <li><em>Základné informácie o účte</em>: Ak sa na tomto serveri zaregistruješ, budeš môcť byť požiadaný/á zadať prezývku, emailovú adresu a heslo. Budeš tiež môcť zadať aj ďalšie profilové údaje, ako napríklad meno a životopis, a nahrať profilovú fotku aj obrázok v záhlaví. Tvoja prezývka, meno, životopis, profilová fotka a obrázok v záhlaví sú vždy zobrazené verejne.</li><li><em>Príspevky, sledovania a iné verejné informácie</em>:
@@ -973,7 +980,7 @@ sk:
     invalid_otp_token: Neplatný kód pre dvojfaktorovú autentikáciu
     otp_lost_help_html: Pokiaľ si stratil/a prístup k obom, môžeš dať vedieť %{email}
     seamless_external_login: Si prihlásená/ý cez externú službu, takže nastavenia hesla a emailu ti niesú prístupné.
-    signed_in_as: 'Prihlásený ako:'
+    signed_in_as: 'Prihlásená/ý ako:'
   verification:
     explanation_html: 'Môžeš sa <strong>overiť ako majiteľ odkazov v metadátach tvojho profilu</strong>. Na to musí ale odkazovaná stránka obsahovať odkaz späť na tvoj Mastodon profil. Tento spätný odkaz <strong>musí</strong> mať prívlastok <code>rel="me"</code>. Na texte odkazu nezáleží. Tu je príklad:'
     verification: Overenie
