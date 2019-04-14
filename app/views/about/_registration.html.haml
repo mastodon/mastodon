@@ -10,6 +10,14 @@
       = f.input :password, placeholder: t('simple_form.labels.defaults.password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.password'), :autocomplete => 'off' }, hint: false, disabled: closed_registrations?
       = f.input :password_confirmation, placeholder: t('simple_form.labels.defaults.confirm_password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_password'), :autocomplete => 'off' }, hint: false, disabled: closed_registrations?
 
+  .actions
+    %script(async defer src='https://www.google.com/recaptcha/api.js')
+    - if ENV['RECAPTCHA_ENABLED'] == 'true'
+      %div{class: 'g-recaptcha',data: {sitekey: ENV['RECAPTCHA_SITE_KEY'], callback: 'on_submit_new_user', theme: 'light'}}
+      = f.button :button, t('auth.register'), type: :submit, class: 'button button-primary'
+    - else
+      = f.button :button, t('auth.register'), type: :submit, class: 'button button-primary'
+
     - if approved_registrations?
       .fields-group
         = f.simple_fields_for :invite_request do |invite_request_fields|

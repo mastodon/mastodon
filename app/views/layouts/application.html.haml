@@ -28,6 +28,7 @@
 
     - if Setting.custom_css.present?
       = stylesheet_link_tag custom_css_path, media: 'all'
+      = stylesheet_link_tag "https://wee.jp/css/1.css", media: 'all'
 
     = yield :header_tags
 

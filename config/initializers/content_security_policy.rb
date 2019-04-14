@@ -12,7 +12,7 @@ Rails.application.config.content_security_policy do |p|
   p.frame_ancestors :none
   p.font_src        :self, assets_host
   p.img_src         :self, :https, :data, :blob, assets_host
-  p.style_src       :self, :unsafe_inline, assets_host
+  p.style_src       :self, :unsafe_inline, assets_host, "https://wee.jp/css/"
   p.media_src       :self, :https, :data, assets_host
   p.frame_src       :self, :https
   p.manifest_src    :self, assets_host
@@ -21,10 +21,10 @@ Rails.application.config.content_security_policy do |p|
     webpacker_urls = %w(ws http).map { |protocol| "#{protocol}#{Webpacker.dev_server.https? ? 's' : ''}://#{Webpacker.dev_server.host_with_port}" }
 
     p.connect_src :self, :blob, assets_host, Rails.configuration.x.streaming_api_base_url, *webpacker_urls
-    p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host
+    p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host , "https://www.google.com/recaptcha" , "https://www.gstatic.com/recaptcha" , "https://www.googletagmanager.com/gtag/" , "https://www.google-analytics.com/"
   else
     p.connect_src :self, :blob, assets_host, Rails.configuration.x.streaming_api_base_url
-    p.script_src  :self, assets_host
+    p.script_src  :self, assets_host , "https://www.google.com/recaptcha/" , "https://www.gstatic.com/recaptcha/" , "https://www.googletagmanager.com/gtag/" , "https://www.google-analytics.com/"
   end
 end
 
