@@ -43,16 +43,16 @@ sk:
         action: Zmeň svoje heslo
         explanation: Vyžiadal/a si si nové heslo pre svoj účet.
         extra: Pokiaľ si túto akciu nevyžiadal/a, prosím ignoruj tento email. Tvoje heslo nebude zmenené pokiaľ nepostúpiš na adresu uvedenú vyššie a vytvoríš si nové.
-        subject: 'Mastodon: Inštrukcie pre obnovu hesla'
+        subject: 'Mastodon: Pokyny pre obnovu hesla'
         title: Nastav nové heslo
       unlock_instructions:
-        subject: 'Mastodon: Inštrukcie pre odomknutie účtu'
+        subject: 'Mastodon: Pokyny na odomknutie účtu'
     omniauth_callbacks:
-      failure: Nebolo možné ťa overiť %{kind}, z dôvodu, že "%{reason}".
+      failure: Nebolo možné ťa overiť z %{kind}, lebo "%{reason}".
       success: Úspešné overenie z účtu %{kind}.
     passwords:
-      no_token: Túto stránku nemôžete navštíviť pokiaľ neprichádzate z emailu s inštrukciami na obnovu hesla. Pokiaľ prichádzate z tohto emailu, prosím uistite sa že ste použili celú URL z emailu.
-      send_instructions: Pokiaľ sa tvoja emailová adresa nachádza v databázi, tak o niekoľko minút obdržíš email s inštrukciami ako nastaviť nové heslo. Ak máš pocit, že si email neobdržal/a, prosím skontroluj aj svoju spam zložku.
+      no_token: Túto stránku nemôžeš navštíviť, ak neprichádzaš z emailu s pokynmi na obnovu hesla. Pokiaľ prichádzaš z tohto emailu, prosím uistite sa že ste použili celú URL z emailu.
+      send_instructions: Ak sa tvoja emailová adresa nachádza v databázi, tak o niekoľko minút obdržíš email s inštrukciami ako nastaviť nové heslo. Ak máš pocit, že si email neobdržal/a, prosím skontroluj aj svoju spam zložku.
       send_paranoid_instructions: Ak sa tvoja emailová adresa nachádza v databázi, za chvíľu obdržíš odkaz pre obnovu hesla na svoj email. Skontroluj ale prosím aj svoj spam, ak tento email nevidíš.
       updated: Tvoje heslo bolo úspešne zmenené. Teraz si prihlásený/á.
       updated_not_active: Tvoje heslo bolo úspešne zmenené.
@@ -66,9 +66,9 @@ sk:
       update_needs_confirmation: Účet bol úspešne pozmenený, ale ešte potrebujeme overiť tvoju novú emailovú adresu. Pre overenie prosím klikni na link v správe ktorú si dostal/a na email. Takisto ale skontroluj aj svoju spam zložku, ak sa ti zdá, že si tento email nedostal/a.
       updated: Tvoj účet bol úspešne aktualizovaný.
     sessions:
-      already_signed_out: Odhlásil/a si sa úspešné.
-      signed_in: Prihlásil/a si sa úspešné.
-      signed_out: Odhlásil/a si sa úspešné.
+      already_signed_out: Už si sa úspešne odhlásil/a
+      signed_in: Prihlásil/a si sa úspešne.
+      signed_out: Odhlásil/a si sa úspešne.
     unlocks:
       send_instructions: O niekoľko minút obdržíš email s pokynmi, ako nastaviť nové heslo. Prosím, skontroluj ale aj svoju spam zložku, pokiaľ sa ti zdá, že si tento email nedostal/a.
       send_paranoid_instructions: Ak tvoj účet existuje, o niekoľko minút obdržíš email s pokynmi ako si ho odomknúť. Prosím, skontroluj ale aj svoju spam zložku, pokiaľ sa ti zdá, že si tento email nedostal/a.
@@ -79,8 +79,8 @@ sk:
       confirmation_period_expired: musí byť potvrdený do %{period}, prosím požiadaj o nový
       expired: vypŕšal, prosím, vyžiadaj si nový
       not_found: nenájdený
-      not_locked: nebol uzamknutý
+      not_locked: nebol zamknutý
       not_saved:
-        few: "%{resource} nebol uložený kôli %{count} chybám:"
-        one: "%{resource} nebol uložený kôli chybe:"
-        other: "%{resource} nebol uložený kôli %{count} chybám:"
+        few: "%{resource} nebol uložený kvôli %{count} chybám:"
+        one: "%{resource} nebol uložený kvôli chybe:"
+        other: "%{resource} nebol uložený kvôli %{count} chybám:"
