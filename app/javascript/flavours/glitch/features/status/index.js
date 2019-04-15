@@ -331,7 +331,9 @@ export default class Status extends ImmutablePureComponent {
   }
 
   handleHotkeyOpenProfile = () => {
-    this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
+    let state = {...this.context.router.history.location.state};
+    state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
+    this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`, state);
   }
 
   handleMoveUp = id => {

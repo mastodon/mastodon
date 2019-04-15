@@ -47,10 +47,15 @@ export default class ColumnHeader extends React.PureComponent {
     animatingNCD: false,
   };
 
-  historyBack = () => {
+  historyBack = (skip) => {
     // if history is exhausted, or we would leave mastodon, just go to root.
     if (window.history.state) {
-      this.context.router.history.goBack();
+      const state = this.context.router.history.location.state;
+      if (skip && state && state.mastodonBackSteps) {
+        this.context.router.history.go(-state.mastodonBackSteps);
+      } else {
+        this.context.router.history.goBack();
+      }
     } else {
       this.context.router.history.push('/');
     }
@@ -73,8 +78,8 @@ export default class ColumnHeader extends React.PureComponent {
     this.props.onMove(1);
   }
 
-  handleBackClick = () => {
-    this.historyBack();
+  handleBackClick = (event) => {
+    this.historyBack(event.shiftKey);
   }
 
   handleTransitionEnd = () => {

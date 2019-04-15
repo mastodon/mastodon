@@ -295,7 +295,11 @@ export default class Status extends ImmutablePureComponent {
       else if (e.shiftKey) {
         this.setCollapsed(true);
         document.getSelection().removeAllRanges();
-      } else router.history.push(destination);
+      } else {
+        let state = {...router.history.location.state};
+        state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
+        router.history.push(destination, state);
+      }
       e.preventDefault();
     }
   }
@@ -304,7 +308,9 @@ export default class Status extends ImmutablePureComponent {
     if (this.context.router && e.button === 0) {
       const id = e.currentTarget.getAttribute('data-id');
       e.preventDefault();
-      this.context.router.history.push(`/accounts/${id}`);
+      let state = {...this.context.router.history.location.state};
+      state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
+      this.context.router.history.push(`/accounts/${id}`, state);
     }
   }
 
@@ -337,11 +343,15 @@ export default class Status extends ImmutablePureComponent {
   }
 
   handleHotkeyOpen = () => {
-    this.context.router.history.push(`/statuses/${this.props.status.get('id')}`);
+    let state = {...this.context.router.history.location.state};
+    state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
+    this.context.router.history.push(`/statuses/${this.props.status.get('id')}`, state);
   }
 
   handleHotkeyOpenProfile = () => {
-    this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
+    let state = {...this.context.router.history.location.state};
+    state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
+    this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`, state);
   }
 
   handleHotkeyMoveUp = e => {
