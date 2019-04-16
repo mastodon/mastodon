@@ -3,7 +3,7 @@ de:
   about:
     about_hashtag_html: Dies sind öffentliche Beiträge, die mit <strong>#%{hashtag}</strong> getaggt wurden. Wenn du irgendwo im Fediversum ein Konto besitzt, kannst du mit ihnen interagieren.
     about_mastodon_html: Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral (so wie E-Mail!).
-    about_this: Über diese Instanz
+    about_this: Über diesen Server
     active_count_after: aktiv
     active_footnote: Monatlich Aktive User (MAU)
     administered_by: 'Administriert von:'
@@ -11,7 +11,7 @@ de:
     apps: Mobile Apps
     apps_platforms: Benutze Mastodon auf iOS, Android und anderen Plattformen
     browse_directory: Durchsuche ein Profilverzeichnis und filtere nach Interessen
-    browse_public_posts: Durchsuche einen Zeitleiste an öffentlichen Beiträgen auf Mastodon
+    browse_public_posts: Durchsuche eine Zeitleiste an öffentlichen Beiträgen auf Mastodon
     contact: Kontakt
     contact_missing: Nicht angegeben
     contact_unavailable: N/A
@@ -68,6 +68,7 @@ de:
       admin: Admin
       bot: Bot
       moderator: Moderator
+    unavailable: Profil nicht verfügbar
     unfollow: Entfolgen
   admin:
     account_actions:
@@ -80,6 +81,7 @@ de:
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
     accounts:
       approve: Aktzeptieren
+      approve_all: Alle aktzeptieren
       are_you_sure: Bist du sicher?
       avatar: Profilbild
       by_domain: Domain
@@ -132,6 +134,7 @@ de:
       moderation_notes: Moderationsnotizen
       most_recent_activity: Letzte Aktivität
       most_recent_ip: Letzte IP-Adresse
+      no_account_selected: Keine Konten wurden verändert, da keine ausgewählt wurden
       no_limits_imposed: Keine Limits eingesetzt
       not_subscribed: Nicht abonniert
       outbox_url: Postausgangs-URL
@@ -144,6 +147,7 @@ de:
       push_subscription_expires: PuSH-Abonnement läuft aus
       redownload: Profil neu laden
       reject: Ablehnen
+      reject_all: Alle ablehnen
       remove_avatar: Profilbild entfernen
       remove_header: Header entfernen
       resend_confirmation:
@@ -245,6 +249,7 @@ de:
       feature_profile_directory: Profilverzeichnis
       feature_registrations: Registrierung
       feature_relay: Föderations-Relay
+      feature_timeline_preview: Zeitleistenvorschau
       features: Eigenschaften
       hidden_service: Föderation mit versteckten Diensten
       open_reports: Offene Meldungen
@@ -329,6 +334,8 @@ de:
         expired: Ausgelaufen
         title: Filter
       title: Einladungen
+    pending_accounts:
+      title: Ausstehende Konten (%{count})
     relays:
       add_new: Neues Relay hinzufügen
       delete: Löschen
@@ -422,17 +429,17 @@ de:
           open: Jeder kann sich registrieren
         title: Registrierungsmodus
       show_known_fediverse_at_about_page:
-        desc_html: Wenn aktiviert, wird es alle Beiträge aus dem bereits bekannten Teil des Fediversums auf der Startseite anzeigen. Andernfalls werden lokale Beitrage der Instanz angezeigt.
+        desc_html: Wenn aktiviert, wird es alle Beiträge aus dem bereits bekannten Teil des Fediversums auf der Startseite anzeigen. Andernfalls werden lokale Beitrage des Servers angezeigt.
         title: Verwende öffentliche Zeitleiste für die Vorschau
       show_staff_badge:
         desc_html: Zeige Mitarbeiter-Badge auf Benutzerseite
         title: Zeige Mitarbeiter-Badge
       site_description:
-        desc_html: Einleitungsabschnitt auf der Frontseite. Beschreibe, was diese Mastodon-Instanz ausmacht. Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
+        desc_html: Einleitungsabschnitt auf der Frontseite. Beschreibe, was diesen Mastodon-Server ausmacht. Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
         title: Beschreibung des Servers
       site_description_extended:
         desc_html: Bietet sich für Verhaltenskodizes, Regeln, Richtlinien und weiteres an, was deinen Server auszeichnet. Du kannst HTML-Tags benutzen
-        title: Erweiterte Beschreibung der Instanz
+        title: Erweiterte Beschreibung des Servers
       site_short_description:
         desc_html: Wird angezeigt in der Seitenleiste und in Meta-Tags. Beschreibe in einem einzigen Abschnitt, was Mastodon ist und was diesen Server ausmacht. Falls leer, wird die Server-Beschreibung verwendet.
         title: Kurze Server-Beschreibung
@@ -446,7 +453,7 @@ de:
       timeline_preview:
         desc_html: Auf der Frontseite die öffentliche Zeitleiste anzeigen
         title: Zeitleisten-Vorschau
-      title: Instanz-Einstellungen
+      title: Server-Einstellungen
     statuses:
       back_to_account: Zurück zum Konto
       batch:
@@ -506,7 +513,6 @@ de:
     warning: Sei mit diesen Daten sehr vorsichtig. Teile sie mit niemandem!
     your_token: Dein Zugangs-Token
   auth:
-    agreement_html: Indem du dich registrierst, erklärst du dich mit den untenstehenden <a href="%{rules_path}">Regeln des Servers</a> und der <a href="%{terms_path}">Datenschutzerklärung</a> einverstanden.
     apply_for_account: Eine Einladung anfragen
     change_password: Passwort
     checkbox_agreement_html: Ich akzeptiere die <a href="%{rules_path}" target="_blank">Server-Regeln</a> und die <a href="%{terms_path}" target="_blank">Nutzungsbedingungen</a>
@@ -530,7 +536,7 @@ de:
     reset_password: Passwort zurücksetzen
     security: Sicherheit
     set_new_password: Neues Passwort setzen
-    trouble_logging_in: Schwierigkeiten beim anmelden?
+    trouble_logging_in: Schwierigkeiten beim Anmelden?
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
     error: Das Remote-Konto konnte nicht geladen werden
@@ -632,6 +638,7 @@ de:
     all: Alle
     changes_saved_msg: Änderungen gespeichert!
     copy: Kopieren
+    order_by: Sortieren nach
     save_changes: Änderungen speichern
     validation_errors:
       one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
@@ -647,10 +654,13 @@ de:
       keybase:
         invalid_token: Keybase-Tokens sind Hashsignaturen und müssen 66 Hexadezimalzeichen lang sein
         verification_failed: Keybase nimmt dieses Token nicht als Signatur für Keybase-Benutzer %{kb_username} an. Bitte versuche es nochmal über Keybase.
+      wrong_user: Kann keinen Beweis für %{proving} erstellen während du als %{current} angemeldet bist. Melde dich als %{proving} an und versuche es noch einmal.
     explanation_html: Hier kannst du kryptographisch deine anderen Identitäten wie dein Keybase-Profil verbinden. Dadurch können andere Leute dir verschlüsselte Nachrichten senden und dem Inhalt, den sie dir senden, vertrauen.
     i_am_html: Ich bin %{username} auf %{service}.
     identity: Identität
     inactive: Inaktiv
+    publicize_checkbox: 'Und poste das:'
+    publicize_toot: 'Es ist offiziell! Ich bin %{username} auf %{service}: %{url}'
     status: Verifizierungsstatus
     view_proof: Zeige Nachweis
   imports:
@@ -773,6 +783,8 @@ de:
   relationships:
     activity: Kontoaktivität
     dormant: Inaktiv
+    last_active: Zuletzt aktiv
+    most_recent: Neuste
     moved: Umgezogen
     mutual: Bekannt
     primary: Primär
@@ -848,6 +860,9 @@ de:
     revoke_success: Sitzung erfolgreich geschlossen
     title: Sitzungen
   settings:
+    account: Konto
+    account_settings: Konto & Sicherheit
+    appearance: Bearbeiten
     authorized_apps: Autorisierte Anwendungen
     back: Zurück zu Mastodon
     delete: Konto löschen
@@ -857,13 +872,13 @@ de:
     featured_tags: Empfohlene Hashtags
     identity_proofs: Identitätsnachweise
     import: Datenimport
+    import_and_export: Importieren und Exportieren
     migrate: Konto-Umzug
     notifications: Benachrichtigungen
     preferences: Einstellungen
+    profile: Profil
     relationships: Folgende und Follower
-    settings: Einstellungen
     two_factor_authentication: Zwei-Faktor-Auth
-    your_apps: Deine Anwendungen
   statuses:
     attached:
       description: 'Angehängt: %{attached}'
@@ -982,7 +997,7 @@ de:
 
       <h3 id="changes">Änderung an unserer Datenschutzerklärung</h3>
 
-      <p>Wenn wir uns entscheiden, Änderungen an unserer Datenschutzerklärung vorzunehmen, werden wird diese Änderungen auf dieser Seite bekannt gegeben.</p>
+      <p>Wenn wir uns entscheiden, Änderungen an unserer Datenschutzerklärung vorzunehmen, werden wir diese Änderungen auf dieser Seite bekannt gegeben.</p>
 
       <p>Dies ist eine Übersetzung, Irrtümer und Übersetzungsfehler vorbehalten. Im Zweifelsfall gilt die englische Originalversion.</p>
 

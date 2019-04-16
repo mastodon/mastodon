@@ -28,11 +28,11 @@ describe Settings::IdentityProofsController do
 
   describe 'new proof creation' do
     context 'GET #new' do
-      context 'with all of the correct params' do
-        before do
-          allow_any_instance_of(ProofProvider::Keybase::Badge).to receive(:avatar_url) { full_pack_url('media/images/void.png') }
-        end
+      before do
+        allow_any_instance_of(ProofProvider::Keybase::Badge).to receive(:avatar_url) { full_pack_url('media/images/void.png') }
+      end
 
+      context 'with all of the correct params' do
         it 'renders the template' do
           get :new, params: new_proof_params
           expect(response).to render_template(:new)
@@ -52,6 +52,15 @@ describe Settings::IdentityProofsController do
         it 'shows a helpful alert' do
           get :new, params: wrong_user_params
           expect(flash[:alert]).to eq I18n.t('identity_proofs.errors.wrong_user', proving: 'someone_else', current: user.account.username)
+        end
+      end
+
+      context 'with params to prove the same username cased differently' do
+        let(:capitalized_username) { new_proof_params.merge(username: user.account.username.upcase) }
+
+        it 'renders the new template' do
+          get :new, params: capitalized_username
+          expect(response).to render_template(:new)
         end
       end
     end

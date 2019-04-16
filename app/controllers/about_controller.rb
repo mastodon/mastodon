@@ -16,7 +16,10 @@ class AboutController < ApplicationController
   private
 
   def new_user
-    User.new.tap(&:build_account)
+    User.new.tap do |user|
+      user.build_account
+      user.build_invite_request
+    end
   end
 
   helper_method :new_user
