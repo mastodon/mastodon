@@ -181,6 +181,8 @@ jobs:
   docker-build:
     docker:
       - image: circleci/python:3.6.4
+        environment:
+          DOCKER_BUILDKIT: "1"
     working_directory: ~/projects/mastodon/
     steps:
       - run:
@@ -193,7 +195,8 @@ jobs:
             aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile default
             aws configure set region ${AWS_DEFAULT_REGION} --profile default
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 18.09.3
       - run:
           name: Login to Amazon ECR
           command: |
@@ -203,16 +206,14 @@ jobs:
           command: docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:latest
       - run:
           name: Build docker image
-          command: docker build -t mastodon:latest --cache-from ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:latest .
+          command: docker build -f Dockerfile.best-friends -t mastodon:latest --cache-from ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:latest .
       - run:
           name: Push docker image to ECR
           command: |
             docker tag mastodon:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:latest
             docker tag mastodon:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:${CIRCLE_BRANCH}
-            docker tag mastodon:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:${CIRCLE_SHA1}
             docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:latest
             docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:${CIRCLE_BRANCH}
-            docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:${CIRCLE_SHA1}
 
 workflows:
   version: 2
