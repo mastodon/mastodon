@@ -10,7 +10,7 @@ sk:
     api: API
     apps: Aplikácie
     apps_platforms: Uživaj Mastodon z iOSu, Androidu a iných platforiem
-    browse_directory: Prehľadávaj databázu profilov a filtruj ju podľa záujmov
+    browse_directory: Prehľadávaj databázu profilov, filtruj podľa záujmov
     browse_public_posts: Prebádaj naživo prúd verejných príspevkov na Mastodone
     contact: Kontakt
     contact_missing: Nezadaný
@@ -143,7 +143,7 @@ sk:
       pending: Vyžaduje posúdenie
       perform_full_suspension: Vylúč
       profile_url: URL adresa profilu
-      promote: Povýš
+      promote: Vyzdvihni
       protocol: Protokol
       public: Verejná časová os
       push_subscription_expires: PuSH odoberanie expiruje
@@ -509,11 +509,13 @@ sk:
     invalid_url: Zadaná URL adresa je nesprávna
     regenerate_token: Znovu vygenerovať prístupový token
     token_regenerated: Prístupový token bol úspešne vygenerovaný znova
-    warning: Na tieto údaje dávajte ohromný pozor. Nikdy ich s nikým nezďieľajte!
-    your_token: Váš prístupový token
+    warning: Na tieto údaje dávaj ohromný pozor. Nikdy ich s nikým nezďieľaj!
+    your_token: Tvoj prístupový token
   auth:
+    apply_for_account: Vyžiadaj si pozvánku
     change_password: Heslo
-    confirm_email: Potvrdiť email
+    checkbox_agreement_html: Súhlasím s <a href="%{rules_path}" target="_blank">pravidlami servera</a>, aj s <a href="%{terms_path}" target="_blank">prevoznými podmienkami</a>
+    confirm_email: Potvrď email
     delete_account: Vymaž účet
     delete_account_html: Pokiaľ chceš svoj účet odtiaľto vymazať, môžeš tak <a href="%{path}">urobiť tu</a>. Budeš požiadaný/á o potvrdenie tohto kroku.
     didnt_get_confirmation: Neobdržal/a si kroky na potvrdenie?
@@ -529,9 +531,9 @@ sk:
       saml: SAML
     register: Zaregistruj sa
     resend_confirmation: Poslať potvrdzujúce pokyny znovu
-    reset_password: Resetovať heslo
+    reset_password: Obnov heslo
     security: Zabezpečenie
-    set_new_password: Nastaviť nové heslo
+    set_new_password: Nastav nové heslo
   authorize_follow:
     already_following: Tento účet už následuješ
     error: Naneštastie nastala chyba pri hľadaní vzdialeného účtu
