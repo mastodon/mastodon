@@ -40,7 +40,7 @@ export default class ModalRoot extends React.PureComponent {
       this.setState({ revealed: false });
     }
     if (!nextProps.children && !!this.props.children) {
-      this.activeElement.focus();
+      this.activeElement.focus({ preventScroll: true });
       this.activeElement = null;
     }
   }
