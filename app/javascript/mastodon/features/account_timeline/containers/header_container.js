@@ -21,11 +21,13 @@ import { openModal } from '../../../actions/modal';
 import { blockDomain, unblockDomain } from '../../../actions/domain_blocks';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { unfollowModal } from '../../../initial_state';
+import { List as ImmutableList } from 'immutable';
 
 const messages = defineMessages({
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
   blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
   blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Hide entire domain' },
+  blockAndReport: { id: 'confirmations.block.block_and_report', defaultMessage: 'Block & Report' },
 });
 
 const makeMapStateToProps = () => {
@@ -33,6 +35,8 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, { accountId }) => ({
     account: getAccount(state, accountId),
+    domain: state.getIn(['meta', 'domain']),
+    identity_proofs: state.getIn(['identity_proofs', accountId], ImmutableList()),
   });
 
   return mapStateToProps;
@@ -64,6 +68,11 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
         message: <FormattedMessage id='confirmations.block.message' defaultMessage='Are you sure you want to block {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
         confirm: intl.formatMessage(messages.blockConfirm),
         onConfirm: () => dispatch(blockAccount(account.get('id'))),
+        secondary: intl.formatMessage(messages.blockAndReport),
+        onSecondary: () => {
+          dispatch(blockAccount(account.get('id')));
+          dispatch(initReport(account));
+        },
       }));
     }
   },

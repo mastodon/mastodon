@@ -7,6 +7,8 @@ module Omniauthable
   TEMP_EMAIL_REGEX = /\Achange@me/
 
   included do
+    devise :omniauthable
+
     def omniauth_providers
       Devise.omniauth_configs.keys
     end
@@ -63,6 +65,7 @@ module Omniauthable
       {
         email: email || "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
         password: Devise.friendly_token[0, 20],
+        agreement: true,
         account_attributes: {
           username: ensure_unique_username(auth.uid),
           display_name: display_name,

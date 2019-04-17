@@ -9,7 +9,7 @@
   .column-0
     .public-account-header.public-account-header--no-bar
       .public-account-header__image
-        = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('preview.jpg'), alt: @instance_presenter.site_title, class: 'parallax'
+        = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('media/images/preview.jpg'), alt: @instance_presenter.site_title, class: 'parallax'
 
   .column-1
     .landing-page__call-to-action{ dir: 'ltr' }
@@ -25,7 +25,7 @@
             %span= t 'about.status_count_after', count: @instance_presenter.status_count
         .row__mascot
           .landing-page__mascot
-            = image_tag @instance_presenter.mascot&.file&.url || asset_pack_path('elephant_ui_plane.svg'), alt: ''
+            = image_tag @instance_presenter.mascot&.file&.url || asset_pack_path('media/images/elephant_ui_plane.svg'), alt: ''
 
   .column-2
     .landing-page__information.contact-widget
