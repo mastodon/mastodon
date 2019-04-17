@@ -69,6 +69,9 @@
   .fields-group
     = f.input :hide_followers_count, as: :boolean, wrapper: :with_label, label: t('admin.settings.hide_followers_count.title'), hint: t('admin.settings.hide_followers_count.desc_html')
 
+  .fields-group
+    = f.input :enable_keybase, as: :boolean, wrapper: :with_label, label: t('admin.settings.enable_keybase.title'), hint: t('admin.settings.enable_keybase.desc_html')
+
   %hr.spacer/
 
   .fields-group

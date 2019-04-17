@@ -27,6 +27,7 @@ class Form::AdminSettings
     custom_css
     profile_directory
     hide_followers_count
+    enable_keybase
     flavour_and_skin
     thumbnail
     hero
@@ -43,6 +44,7 @@ class Form::AdminSettings
     preview_sensitive_media
     profile_directory
     hide_followers_count
+    enable_keybase
   ).freeze
 
   UPLOAD_KEYS = %i(

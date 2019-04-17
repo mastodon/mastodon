@@ -50,6 +50,8 @@
         %li
           = feature_hint(link_to(t('admin.dashboard.feature_timeline_preview'), edit_admin_settings_path), @timeline_preview)
         %li
+          = feature_hint(link_to(t('admin.dashboard.keybase'), edit_admin_settings_path), @timeline_preview)
+        %li
           = feature_hint(link_to(t('admin.dashboard.feature_relay'), admin_relays_path), @relay_enabled)
 
   .dashboard__widgets__versions
