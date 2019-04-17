@@ -35,6 +35,7 @@ class Form::AdminSettings
     show_domain_blocks
     show_domain_blocks_rationale
     noindex
+    enable_keybase
   ).freeze
 
   BOOLEAN_KEYS = %i(
@@ -51,6 +52,7 @@ class Form::AdminSettings
     trends
     trendable_by_default
     noindex
+    enable_keybase
   ).freeze
 
   UPLOAD_KEYS = %i(

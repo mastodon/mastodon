@@ -68,6 +68,8 @@
         %li
           = feature_hint(link_to(t('admin.dashboard.trends'), edit_admin_settings_path), @trends_enabled)
         %li
+          = feature_hint(link_to(t('admin.dashboard.keybase'), edit_admin_settings_path), @keybase_integration)
+        %li
           = feature_hint(link_to(t('admin.dashboard.feature_relay'), admin_relays_path), @relay_enabled)
         %li
           = feature_hint(link_to(t('admin.dashboard.feature_spam_check'), edit_admin_settings_path), @spam_check_enabled)
