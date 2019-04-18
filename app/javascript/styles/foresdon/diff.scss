@@ -60,6 +60,12 @@ body {
 .mute-modal {
   color: $ui-primary-color;
   background: rgba($ui-base-color, 0.95);
+
+  ul {
+    li:not(:empty) a {
+      color: $ui-primary-color;
+    }
+  }
 }
 
 .boost-modal__action-bar,
