@@ -3,26 +3,58 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+import spring from 'react-motion/lib/spring';
 import {
   injectIntl,
+  FormattedMessage,
   defineMessages,
 } from 'react-intl';
 import Overlay from 'react-overlays/lib/Overlay';
 
 //  Components.
 import Icon from 'flavours/glitch/components/icon';
-import DrawerSearchPopout from './popout';
 
 //  Utils.
 import { focusRoot } from 'flavours/glitch/util/dom_helpers';
+import { searchEnabled } from 'flavours/glitch/util/initial_state';
+import Motion from 'flavours/glitch/util/optional_motion';
 
-//  Messages.
 const messages = defineMessages({
-  placeholder: {
-    defaultMessage: 'Search',
-    id: 'search.placeholder',
-  },
+  placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
 });
+
+class SearchPopout extends React.PureComponent {
+
+  static propTypes = {
+    style: PropTypes.object,
+  };
+
+  render () {
+    const { style } = this.props;
+    const extraInformation = searchEnabled ? <FormattedMessage id='search_popout.tips.full_text' defaultMessage='Simple text returns statuses you have written, favourited, boosted, or have been mentioned in, as well as matching usernames, display names, and hashtags.' /> : <FormattedMessage id='search_popout.tips.text' defaultMessage='Simple text returns matching display names, usernames and hashtags' />;
+    return (
+      <div style={{ ...style, position: 'absolute', width: 285 }}>
+        <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>
+          {({ opacity, scaleX, scaleY }) => (
+            <div className='drawer--search--popout' style={{ opacity: opacity, transform: `scale(${scaleX}, ${scaleY})` }}>
+              <h4><FormattedMessage id='search_popout.search_format' defaultMessage='Advanced search format' /></h4>
+
+              <ul>
+                <li><em>#example</em> <FormattedMessage id='search_popout.tips.hashtag' defaultMessage='hashtag' /></li>
+                <li><em>@username@domain</em> <FormattedMessage id='search_popout.tips.user' defaultMessage='user' /></li>
+                <li><em>URL</em> <FormattedMessage id='search_popout.tips.user' defaultMessage='user' /></li>
+                <li><em>URL</em> <FormattedMessage id='search_popout.tips.status' defaultMessage='status' /></li>
+              </ul>
+
+              {extraInformation}
+            </div>
+          )}
+        </Motion>
+      </div>
+    );
+  }
+
+}
 
 //  The component.
 export default @injectIntl
@@ -61,7 +93,7 @@ class DrawerSearch extends React.PureComponent {
     }
   }
 
-  handleBlur () {
+  handleBlur = () => {
     this.setState({ expanded: false });
   }
 
@@ -117,7 +149,7 @@ class DrawerSearch extends React.PureComponent {
           <Icon icon='times-circle' />
         </div>
         <Overlay show={expanded && !active} placement='bottom' target={this}>
-          <DrawerSearchPopout />
+          <SearchPopout />
         </Overlay>
       </div>
     );
