@@ -19,7 +19,7 @@ import ColumnsAreaContainer from './containers/columns_area_container';
 import classNames from 'classnames';
 import Favico from 'favico.js';
 import {
-  Drawer,
+  Compose,
   Status,
   GettingStarted,
   KeyboardShortcuts,
@@ -488,9 +488,9 @@ export default class UI extends React.Component {
               <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
               <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
-              <WrappedRoute path='/search' component={Drawer} content={children} componentParams={{ isSearchPage: true }} />
+              <WrappedRoute path='/search' component={Compose} content={children} componentParams={{ isSearchPage: true }} />
 
-              <WrappedRoute path='/statuses/new' component={Drawer} content={children} />
+              <WrappedRoute path='/statuses/new' component={Compose} content={children} />
               <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
               <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} />
               <WrappedRoute path='/statuses/:statusId/favourites' component={Favourites} content={children} />

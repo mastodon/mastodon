@@ -1,8 +1,9 @@
 //  Package imports.
-import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { defineMessages } from 'react-intl';
+import { injectIntl, defineMessages } from 'react-intl';
 import classNames from 'classnames';
 
 //  Actions.
@@ -69,12 +70,33 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 });
 
 //  The component.
-class Drawer extends React.Component {
+export default @connect(mapStateToProps, mapDispatchToProps)
+@injectIntl
+class Compose extends React.PureComponent {
+  static propTypes = {
+    intl: PropTypes.object.isRequired,
+    isSearchPage: PropTypes.bool,
+    multiColumn: PropTypes.bool,
 
-  //  Constructor.
-  constructor (props) {
-    super(props);
-  }
+    //  State props.
+    account: ImmutablePropTypes.map,
+    columns: ImmutablePropTypes.list,
+    results: ImmutablePropTypes.map,
+    elefriend: PropTypes.number,
+    searchHidden: PropTypes.bool,
+    searchValue: PropTypes.string,
+    submitted: PropTypes.bool,
+    unreadNotifications: PropTypes.number,
+    showNotificationsBadge: PropTypes.bool,
+
+    //  Dispatch props.
+    onChange: PropTypes.func,
+    onClear: PropTypes.func,
+    onClickElefriend: PropTypes.func,
+    onShow: PropTypes.func,
+    onSubmit: PropTypes.func,
+    onOpenSettings: PropTypes.func,
+  };
 
   //  Rendering.
   render () {
@@ -103,7 +125,7 @@ class Drawer extends React.Component {
     //  The result.
     return (
       <div className={computedClass} role='region' aria-label={intl.formatMessage(messages.compose)}>
-        {multiColumn ? (
+        {multiColumn && (
           <DrawerHeader
             columns={columns}
             unreadNotifications={unreadNotifications}
@@ -111,7 +133,7 @@ class Drawer extends React.Component {
             intl={intl}
             onSettingsClick={onOpenSettings}
           />
-        ) : null}
+        )}
         {(multiColumn || isSearchPage) && <DrawerSearch
             intl={intl}
             onChange={onChange}
@@ -141,35 +163,4 @@ class Drawer extends React.Component {
       </div>
     );
   }
-
 }
-
-//  Props.
-Drawer.propTypes = {
-  intl: PropTypes.object.isRequired,
-  isSearchPage: PropTypes.bool,
-  multiColumn: PropTypes.bool,
-
-  //  State props.
-  account: ImmutablePropTypes.map,
-  columns: ImmutablePropTypes.list,
-  results: ImmutablePropTypes.map,
-  elefriend: PropTypes.number,
-  searchHidden: PropTypes.bool,
-  searchValue: PropTypes.string,
-  submitted: PropTypes.bool,
-  unreadNotifications: PropTypes.number,
-  showNotificationsBadge: PropTypes.bool,
-
-  //  Dispatch props.
-  onChange: PropTypes.func,
-  onClear: PropTypes.func,
-  onClickElefriend: PropTypes.func,
-  onShow: PropTypes.func,
-  onSubmit: PropTypes.func,
-  onOpenSettings: PropTypes.func,
-};
-
-//  Connecting and export.
-export { Drawer as WrappedComponent };
-export default wrap(Drawer, mapStateToProps, mapDispatchToProps, true);
