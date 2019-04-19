@@ -2,8 +2,9 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
 import {
-  FormattedMessage,
+  injectIntl,
   defineMessages,
 } from 'react-intl';
 import Overlay from 'react-overlays/lib/Overlay';
@@ -14,10 +15,6 @@ import DrawerSearchPopout from './popout';
 
 //  Utils.
 import { focusRoot } from 'flavours/glitch/util/dom_helpers';
-import {
-  assignHandlers,
-  hiddenComponent,
-} from 'flavours/glitch/util/react_helpers';
 
 //  Messages.
 const messages = defineMessages({
@@ -27,21 +24,32 @@ const messages = defineMessages({
   },
 });
 
-//  Handlers.
-const handlers = {
+//  The component.
+export default @injectIntl
+class DrawerSearch extends React.PureComponent {
 
-  handleBlur () {
-    this.setState({ expanded: false });
-  },
+  static propTypes = {
+    value: PropTypes.string.isRequired,
+    submitted: PropTypes.bool,
+    onChange: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    onClear: PropTypes.func.isRequired,
+    onShow: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
+  };
 
-  handleChange ({ target: { value } }) {
+  state = {
+    expanded: false,
+  };
+
+  handleChange = (e) => {
     const { onChange } = this.props;
     if (onChange) {
-      onChange(value);
+      onChange(e.target.value);
     }
-  },
+  }
 
-  handleClear (e) {
+  handleClear = (e) => {
     const {
       onClear,
       submitted,
@@ -51,17 +59,21 @@ const handlers = {
     if (onClear && (submitted || value && value.length)) {
       onClear();
     }
-  },
+  }
 
-  handleFocus () {
+  handleBlur () {
+    this.setState({ expanded: false });
+  }
+
+  handleFocus = () => {
     const { onShow } = this.props;
     this.setState({ expanded: true });
     if (onShow) {
       onShow();
     }
-  },
+  }
 
-  handleKeyUp (e) {
+  handleKeyUp = (e) => {
     const { onSubmit } = this.props;
     switch (e.key) {
     case 'Enter':
@@ -72,81 +84,43 @@ const handlers = {
     case 'Escape':
       focusRoot();
     }
-  },
-};
-
-//  The component.
-export default class DrawerSearch extends React.PureComponent {
-
-  //  Constructor.
-  constructor (props) {
-    super(props);
-    assignHandlers(this, handlers);
-    this.state = { expanded: false };
   }
 
-  //  Rendering.
   render () {
-    const {
-      handleBlur,
-      handleChange,
-      handleClear,
-      handleFocus,
-      handleKeyUp,
-    } = this.handlers;
-    const {
-      intl,
-      submitted,
-      value,
-    } = this.props;
+    const { intl, value, submitted } = this.props;
     const { expanded } = this.state;
-    const active = value && value.length || submitted;
+    const active = value.length > 0 || submitted;
     const computedClass = classNames('drawer--search', { active });
 
     return (
       <div className={computedClass}>
         <label>
-          <span {...hiddenComponent}>
-            <FormattedMessage {...messages.placeholder} />
-          </span>
+          <span style={{ display: 'none' }}>{intl.formatMessage(messages.placeholder)}</span>
           <input
             type='text'
             placeholder={intl.formatMessage(messages.placeholder)}
             value={value || ''}
-            onChange={handleChange}
-            onKeyUp={handleKeyUp}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
+            onChange={this.handleChange}
+            onKeyUp={this.handleKeyUp}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
           />
         </label>
         <div
           aria-label={intl.formatMessage(messages.placeholder)}
           className='icon'
-          onClick={handleClear}
+          onClick={this.handleClear}
           role='button'
           tabIndex='0'
         >
           <Icon icon='search' />
           <Icon icon='times-circle' />
         </div>
-        <Overlay
-          placement='bottom'
-          show={expanded && !active}
-          target={this}
-        ><DrawerSearchPopout /></Overlay>
+        <Overlay show={expanded && !active} placement='bottom' target={this}>
+          <DrawerSearchPopout />
+        </Overlay>
       </div>
     );
   }
 
 }
-
-//  Props.
-DrawerSearch.propTypes = {
-  value: PropTypes.string,
-  submitted: PropTypes.bool,
-  onChange: PropTypes.func,
-  onSubmit: PropTypes.func,
-  onClear: PropTypes.func,
-  onShow: PropTypes.func,
-  intl: PropTypes.object,
-};
