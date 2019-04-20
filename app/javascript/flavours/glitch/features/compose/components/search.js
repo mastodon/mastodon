@@ -58,7 +58,7 @@ class SearchPopout extends React.PureComponent {
 
 //  The component.
 export default @injectIntl
-class DrawerSearch extends React.PureComponent {
+class Search extends React.PureComponent {
 
   static propTypes = {
     value: PropTypes.string.isRequired,

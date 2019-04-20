@@ -8,12 +8,6 @@ import classNames from 'classnames';
 
 //  Actions.
 import { openModal } from 'flavours/glitch/actions/modal';
-import {
-  changeSearch,
-  clearSearch,
-  showSearch,
-  submitSearch,
-} from 'flavours/glitch/actions/search';
 import { cycleElefriendCompose } from 'flavours/glitch/actions/compose';
 
 //  Components.
@@ -21,7 +15,7 @@ import Composer from 'flavours/glitch/features/composer';
 import DrawerAccount from './account';
 import DrawerHeader from './header';
 import DrawerResults from './results';
-import DrawerSearch from './search';
+import SearchContainer from './containers/search_container';
 
 //  Utils.
 import { me, mascot } from 'flavours/glitch/util/initial_state';
@@ -39,7 +33,6 @@ const mapStateToProps = state => ({
   elefriend: state.getIn(['compose', 'elefriend']),
   results: state.getIn(['search', 'results']),
   searchHidden: state.getIn(['search', 'hidden']),
-  searchValue: state.getIn(['search', 'value']),
   submitted: state.getIn(['search', 'submitted']),
   unreadNotifications: state.getIn(['notifications', 'unread']),
   showNotificationsBadge: state.getIn(['local_settings', 'notifications', 'tab_badge']),
@@ -47,20 +40,8 @@ const mapStateToProps = state => ({
 
 //  Dispatch mapping.
 const mapDispatchToProps = (dispatch, { intl }) => ({
-  onChange (value) {
-    dispatch(changeSearch(value));
-  },
-  onClear () {
-    dispatch(clearSearch());
-  },
   onClickElefriend () {
     dispatch(cycleElefriendCompose());
-  },
-  onShow () {
-    dispatch(showSearch());
-  },
-  onSubmit () {
-    dispatch(submitSearch());
   },
   onOpenSettings (e) {
     e.preventDefault();
@@ -84,17 +65,12 @@ class Compose extends React.PureComponent {
     results: ImmutablePropTypes.map,
     elefriend: PropTypes.number,
     searchHidden: PropTypes.bool,
-    searchValue: PropTypes.string,
     submitted: PropTypes.bool,
     unreadNotifications: PropTypes.number,
     showNotificationsBadge: PropTypes.bool,
 
     //  Dispatch props.
-    onChange: PropTypes.func,
-    onClear: PropTypes.func,
     onClickElefriend: PropTypes.func,
-    onShow: PropTypes.func,
-    onSubmit: PropTypes.func,
     onOpenSettings: PropTypes.func,
   };
 
@@ -106,15 +82,10 @@ class Compose extends React.PureComponent {
       elefriend,
       intl,
       multiColumn,
-      onChange,
-      onClear,
       onClickElefriend,
       onOpenSettings,
-      onShow,
-      onSubmit,
       results,
       searchHidden,
-      searchValue,
       submitted,
       isSearchPage,
       unreadNotifications,
@@ -134,15 +105,7 @@ class Compose extends React.PureComponent {
             onSettingsClick={onOpenSettings}
           />
         )}
-        {(multiColumn || isSearchPage) && <DrawerSearch
-            intl={intl}
-            onChange={onChange}
-            onClear={onClear}
-            onShow={onShow}
-            onSubmit={onSubmit}
-            submitted={submitted}
-            value={searchValue}
-          /> }
+        {(multiColumn || isSearchPage) && <SearchContainer /> }
         <div className='drawer__pager'>
           {!isSearchPage && <div className='drawer__inner'>
             <DrawerAccount account={account} />
