@@ -4,8 +4,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-const APPROX_HASHTAG_RE = /(?:^|[^\/\)\w])#(\S+)/i;
-
 //  Components.
 import ComposerOptions from '../../composer/options';
 import ComposerPublisher from '../../composer/publisher';
@@ -14,9 +12,7 @@ import ComposerSpoiler from '../../composer/spoiler';
 import ComposerTextarea from '../../composer/textarea';
 import ComposerUploadForm from '../../composer/upload_form';
 import ComposerPollForm from '../../composer/poll_form';
-import ComposerWarning from '../../composer/warning';
-import ComposerHashtagWarning from '../../composer/hashtag_warning';
-import ComposerDirectWarning from '../../composer/direct_warning';
+import WarningContainer from '../containers/warning_container';
 
 //  Utils.
 import { countableText } from 'flavours/glitch/util/counter';
@@ -321,9 +317,8 @@ class ComposeForm extends ImmutablePureComponent {
 
     return (
       <div className='composer'>
-        {privacy === 'direct' ? <ComposerDirectWarning /> : null}
-        {privacy === 'private' && amUnlocked ? <ComposerWarning /> : null}
-        {privacy !== 'public' && APPROX_HASHTAG_RE.test(text) ? <ComposerHashtagWarning /> : null}
+        <WarningContainer />
+
         {inReplyTo && (
           <ComposerReply
             status={inReplyTo}
@@ -331,6 +326,7 @@ class ComposeForm extends ImmutablePureComponent {
             onCancel={onCancelReply}
           />
         )}
+
         <ComposerSpoiler
           hidden={!spoiler}
           intl={intl}
@@ -340,6 +336,7 @@ class ComposeForm extends ImmutablePureComponent {
           text={spoilerText}
           ref={handleRefSpoilerText}
         />
+
         <ComposerTextarea
           advancedOptions={advancedOptions}
           autoFocus={!showSearch && !isMobile(window.innerWidth, layout)}
