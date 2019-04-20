@@ -7,12 +7,11 @@ import { injectIntl, defineMessages } from 'react-intl';
 import classNames from 'classnames';
 
 //  Actions.
-import { openModal } from 'flavours/glitch/actions/modal';
 import { cycleElefriendCompose } from 'flavours/glitch/actions/compose';
 
 //  Components.
 import Composer from 'flavours/glitch/features/composer';
-import DrawerHeader from './header';
+import HeaderContainer from './containers/header_container';
 import SearchContainer from './containers/search_container';
 import SearchResultsContainer from './containers/search_results_container';
 import NavigationContainer from './containers/navigation_container';
@@ -29,22 +28,14 @@ const messages = defineMessages({
 
 //  State mapping.
 const mapStateToProps = (state, ownProps) => ({
-  columns: state.getIn(['settings', 'columns']),
   elefriend: state.getIn(['compose', 'elefriend']),
   showSearch: ownProps.multiColumn ? state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']) : ownProps.isSearchPage,
-  unreadNotifications: state.getIn(['notifications', 'unread']),
-  showNotificationsBadge: state.getIn(['local_settings', 'notifications', 'tab_badge']),
 });
 
 //  Dispatch mapping.
 const mapDispatchToProps = (dispatch, { intl }) => ({
   onClickElefriend () {
     dispatch(cycleElefriendCompose());
-  },
-  onOpenSettings (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    dispatch(openModal('SETTINGS', {}));
   },
 });
 
@@ -59,28 +50,21 @@ class Compose extends React.PureComponent {
     showSearch: PropTypes.bool,
 
     //  State props.
-    columns: ImmutablePropTypes.list,
     elefriend: PropTypes.number,
     unreadNotifications: PropTypes.number,
-    showNotificationsBadge: PropTypes.bool,
 
     //  Dispatch props.
     onClickElefriend: PropTypes.func,
-    onOpenSettings: PropTypes.func,
   };
 
   //  Rendering.
   render () {
     const {
-      columns,
       elefriend,
       intl,
       multiColumn,
       onClickElefriend,
-      onOpenSettings,
       isSearchPage,
-      unreadNotifications,
-      showNotificationsBadge,
       showSearch,
     } = this.props;
     const computedClass = classNames('drawer', `mbstobon-${elefriend}`);
@@ -88,16 +72,8 @@ class Compose extends React.PureComponent {
     //  The result.
     return (
       <div className={computedClass} role='region' aria-label={intl.formatMessage(messages.compose)}>
-        {multiColumn && (
-          <DrawerHeader
-            columns={columns}
-            unreadNotifications={unreadNotifications}
-            showNotificationsBadge={showNotificationsBadge}
-            intl={intl}
-            onSettingsClick={onOpenSettings}
-          />
-        )}
-        {(multiColumn || isSearchPage) && <SearchContainer /> }
+        {multiColumn && <HeaderContainer />}
+        {(multiColumn || isSearchPage) && <SearchContainer />}
         <div className='drawer__pager'>
           {!isSearchPage && <div className='drawer__inner'>
             <NavigationContainer />
