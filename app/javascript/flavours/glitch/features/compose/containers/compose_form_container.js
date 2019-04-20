@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import ComposeForm from '../components/compose_form';
 import {
-  cancelReplyCompose,
   changeCompose,
   changeComposeAdvancedOption,
   changeComposeSensitivity,
@@ -68,9 +67,6 @@ function mapStateToProps (state) {
     preselectDate: state.getIn(['compose', 'preselectDate']),
     privacy: state.getIn(['compose', 'privacy']),
     progress: state.getIn(['compose', 'progress']),
-    inReplyTo: inReplyTo ? state.getIn(['statuses', inReplyTo]) : null,
-    replyAccount: inReplyTo ? state.getIn(['statuses', inReplyTo, 'account']) : null,
-    replyContent: inReplyTo ? state.getIn(['statuses', inReplyTo, 'contentHtml']) : null,
     resetFileKey: state.getIn(['compose', 'resetFileKey']),
     sideArm: sideArmPrivacy,
     sensitive: state.getIn(['compose', 'sensitive']),
@@ -90,9 +86,6 @@ function mapStateToProps (state) {
 
 //  Dispatch mapping.
 const mapDispatchToProps = (dispatch, { intl }) => ({
-  onCancelReply() {
-    dispatch(cancelReplyCompose());
-  },
   onChangeAdvancedOption(option, value) {
     dispatch(changeComposeAdvancedOption(option, value));
   },

@@ -7,12 +7,12 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 //  Components.
 import ComposerOptions from '../../composer/options';
 import ComposerPublisher from '../../composer/publisher';
-import ComposerReply from '../../composer/reply';
 import ComposerSpoiler from '../../composer/spoiler';
 import ComposerTextarea from '../../composer/textarea';
 import ComposerUploadForm from '../../composer/upload_form';
 import ComposerPollForm from '../../composer/poll_form';
 import WarningContainer from '../containers/warning_container';
+import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 
 //  Utils.
 import { countableText } from 'flavours/glitch/util/counter';
@@ -49,7 +49,6 @@ class ComposeForm extends ImmutablePureComponent {
     preselectDate: PropTypes.instanceOf(Date),
     privacy: PropTypes.string,
     progress: PropTypes.number,
-    inReplyTo: ImmutablePropTypes.map,
     resetFileKey: PropTypes.number,
     sideArm: PropTypes.string,
     sensitive: PropTypes.bool,
@@ -65,7 +64,6 @@ class ComposeForm extends ImmutablePureComponent {
     preselectOnReply: PropTypes.bool,
 
     //  Dispatch props.
-    onCancelReply: PropTypes.func,
     onChangeAdvancedOption: PropTypes.func,
     onChangeDescription: PropTypes.func,
     onChangeSensitivity: PropTypes.func,
@@ -283,7 +281,6 @@ class ComposeForm extends ImmutablePureComponent {
       layout,
       media,
       poll,
-      onCancelReply,
       onChangeAdvancedOption,
       onChangeDescription,
       onChangeSensitivity,
@@ -301,7 +298,6 @@ class ComposeForm extends ImmutablePureComponent {
       onUpload,
       privacy,
       progress,
-      inReplyTo,
       resetFileKey,
       sensitive,
       showSearch,
@@ -319,13 +315,7 @@ class ComposeForm extends ImmutablePureComponent {
       <div className='composer'>
         <WarningContainer />
 
-        {inReplyTo && (
-          <ComposerReply
-            status={inReplyTo}
-            intl={intl}
-            onCancel={onCancelReply}
-          />
-        )}
+        <ReplyIndicatorContainer />
 
         <ComposerSpoiler
           hidden={!spoiler}

@@ -2,7 +2,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { defineMessages } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 //  Components.
 import AccountContainer from 'flavours/glitch/containers/account_container';
@@ -10,7 +11,6 @@ import IconButton from 'flavours/glitch/components/icon_button';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 
 //  Utils.
-import { assignHandlers } from 'flavours/glitch/util/react_helpers';
 import { isRtl } from 'flavours/glitch/util/rtl';
 
 //  Messages.
@@ -21,34 +21,30 @@ const messages = defineMessages({
   },
 });
 
-//  Handlers.
-const handlers = {
 
-  //  Handles a click on the "close" button.
-  handleClick () {
+export default @injectIntl
+class ReplyIndicator extends ImmutablePureComponent {
+
+  static propTypes = {
+    status: ImmutablePropTypes.map.isRequired,
+    intl: PropTypes.object.isRequired,
+    onCancel: PropTypes.func,
+  };
+
+  handleClick = () => {
     const { onCancel } = this.props;
     if (onCancel) {
       onCancel();
     }
-  },
-};
-
-//  The component.
-export default class ComposerReply extends React.PureComponent {
-
-  //  Constructor.
-  constructor (props) {
-    super(props);
-    assignHandlers(this, handlers);
   }
 
   //  Rendering.
   render () {
-    const { handleClick } = this.handlers;
-    const {
-      status,
-      intl,
-    } = this.props;
+    const { status, intl } = this.props;
+
+    if (!status) {
+      return null;
+    }
 
     const account     = status.get('account');
     const content     = status.get('content');
@@ -61,7 +57,7 @@ export default class ComposerReply extends React.PureComponent {
           <IconButton
             className='cancel'
             icon='times'
-            onClick={handleClick}
+            onClick={this.handleClick}
             title={intl.formatMessage(messages.cancel)}
             inverted
           />
@@ -88,9 +84,3 @@ export default class ComposerReply extends React.PureComponent {
   }
 
 }
-
-ComposerReply.propTypes = {
-  status: ImmutablePropTypes.map.isRequired,
-  intl: PropTypes.object.isRequired,
-  onCancel: PropTypes.func,
-};
