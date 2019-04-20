@@ -16,10 +16,11 @@ import DrawerAccount from './account';
 import DrawerHeader from './header';
 import DrawerResults from './results';
 import SearchContainer from './containers/search_container';
+import spring from 'react-motion/lib/spring';
 
 //  Utils.
 import { me, mascot } from 'flavours/glitch/util/initial_state';
-import { wrap } from 'flavours/glitch/util/redux_helpers';
+import Motion from 'flavours/glitch/util/optional_motion';
 
 //  Messages.
 const messages = defineMessages({
@@ -27,13 +28,14 @@ const messages = defineMessages({
 });
 
 //  State mapping.
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   account: state.getIn(['accounts', me]),
   columns: state.getIn(['settings', 'columns']),
   elefriend: state.getIn(['compose', 'elefriend']),
   results: state.getIn(['search', 'results']),
   searchHidden: state.getIn(['search', 'hidden']),
   submitted: state.getIn(['search', 'submitted']),
+  showSearch: ownProps.multiColumn ? state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']) : ownProps.isSearchPage,
   unreadNotifications: state.getIn(['notifications', 'unread']),
   showNotificationsBadge: state.getIn(['local_settings', 'notifications', 'tab_badge']),
 });
@@ -58,6 +60,7 @@ class Compose extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     isSearchPage: PropTypes.bool,
     multiColumn: PropTypes.bool,
+    showSearch: PropTypes.bool,
 
     //  State props.
     account: ImmutablePropTypes.map,
@@ -90,6 +93,7 @@ class Compose extends React.PureComponent {
       isSearchPage,
       unreadNotifications,
       showNotificationsBadge,
+      showSearch,
     } = this.props;
     const computedClass = classNames('drawer', `mbstobon-${elefriend}`);
 
@@ -117,11 +121,13 @@ class Compose extends React.PureComponent {
             )}
           </div>}
 
-          {(multiColumn || isSearchPage) &&
-            <DrawerResults
-              results={results}
-              visible={submitted && !searchHidden}
-            />}
+          <Motion defaultStyle={{ x: isSearchPage ? 0 : -100 }} style={{ x: spring(showSearch || isSearchPage ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
+            {({ x }) => (
+              <div className='drawer__inner darker' style={{ transform: `translateX(${x}%)`, visibility: x === -100 ? 'hidden' : 'visible' }}>
+                <DrawerResults results={results} visible={submitted && !searchHidden} />
+              </div>
+            )}
+          </Motion>
         </div>
       </div>
     );
