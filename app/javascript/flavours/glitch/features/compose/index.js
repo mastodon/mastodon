@@ -14,8 +14,8 @@ import { cycleElefriendCompose } from 'flavours/glitch/actions/compose';
 import Composer from 'flavours/glitch/features/composer';
 import DrawerAccount from './account';
 import DrawerHeader from './header';
-import DrawerResults from './results';
 import SearchContainer from './containers/search_container';
+import SearchResultsContainer from './containers/search_results_container';
 import spring from 'react-motion/lib/spring';
 
 //  Utils.
@@ -32,9 +32,6 @@ const mapStateToProps = (state, ownProps) => ({
   account: state.getIn(['accounts', me]),
   columns: state.getIn(['settings', 'columns']),
   elefriend: state.getIn(['compose', 'elefriend']),
-  results: state.getIn(['search', 'results']),
-  searchHidden: state.getIn(['search', 'hidden']),
-  submitted: state.getIn(['search', 'submitted']),
   showSearch: ownProps.multiColumn ? state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']) : ownProps.isSearchPage,
   unreadNotifications: state.getIn(['notifications', 'unread']),
   showNotificationsBadge: state.getIn(['local_settings', 'notifications', 'tab_badge']),
@@ -65,10 +62,7 @@ class Compose extends React.PureComponent {
     //  State props.
     account: ImmutablePropTypes.map,
     columns: ImmutablePropTypes.list,
-    results: ImmutablePropTypes.map,
     elefriend: PropTypes.number,
-    searchHidden: PropTypes.bool,
-    submitted: PropTypes.bool,
     unreadNotifications: PropTypes.number,
     showNotificationsBadge: PropTypes.bool,
 
@@ -87,9 +81,6 @@ class Compose extends React.PureComponent {
       multiColumn,
       onClickElefriend,
       onOpenSettings,
-      results,
-      searchHidden,
-      submitted,
       isSearchPage,
       unreadNotifications,
       showNotificationsBadge,
@@ -124,7 +115,7 @@ class Compose extends React.PureComponent {
           <Motion defaultStyle={{ x: isSearchPage ? 0 : -100 }} style={{ x: spring(showSearch || isSearchPage ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
             {({ x }) => (
               <div className='drawer__inner darker' style={{ transform: `translateX(${x}%)`, visibility: x === -100 ? 'hidden' : 'visible' }}>
-                <DrawerResults results={results} visible={submitted && !searchHidden} />
+                <SearchResultsContainer />
               </div>
             )}
           </Motion>

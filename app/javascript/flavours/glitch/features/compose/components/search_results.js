@@ -1,21 +1,15 @@
-//  Package imports.
-import PropTypes from 'prop-types';
 import React from 'react';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
-import { Link } from 'react-router-dom';
-
-//  Components.
-import Icon from 'flavours/glitch/components/icon';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import StatusContainer from 'flavours/glitch/containers/status_container';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 import Hashtag from 'flavours/glitch/components/hashtag';
+import Icon from 'flavours/glitch/components/icon';
 
-//  Messages.
-//  The component.
 export default @injectIntl
-class DrawerResults extends ImmutablePureComponent {
+class SearchResults extends ImmutablePureComponent {
 
   static propTypes = {
     results: ImmutablePropTypes.map.isRequired,
