@@ -12,10 +12,10 @@ import { cycleElefriendCompose } from 'flavours/glitch/actions/compose';
 
 //  Components.
 import Composer from 'flavours/glitch/features/composer';
-import DrawerAccount from './account';
 import DrawerHeader from './header';
 import SearchContainer from './containers/search_container';
 import SearchResultsContainer from './containers/search_results_container';
+import NavigationContainer from './containers/navigation_container';
 import spring from 'react-motion/lib/spring';
 
 //  Utils.
@@ -29,7 +29,6 @@ const messages = defineMessages({
 
 //  State mapping.
 const mapStateToProps = (state, ownProps) => ({
-  account: state.getIn(['accounts', me]),
   columns: state.getIn(['settings', 'columns']),
   elefriend: state.getIn(['compose', 'elefriend']),
   showSearch: ownProps.multiColumn ? state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']) : ownProps.isSearchPage,
@@ -60,7 +59,6 @@ class Compose extends React.PureComponent {
     showSearch: PropTypes.bool,
 
     //  State props.
-    account: ImmutablePropTypes.map,
     columns: ImmutablePropTypes.list,
     elefriend: PropTypes.number,
     unreadNotifications: PropTypes.number,
@@ -74,7 +72,6 @@ class Compose extends React.PureComponent {
   //  Rendering.
   render () {
     const {
-      account,
       columns,
       elefriend,
       intl,
@@ -103,7 +100,7 @@ class Compose extends React.PureComponent {
         {(multiColumn || isSearchPage) && <SearchContainer /> }
         <div className='drawer__pager'>
           {!isSearchPage && <div className='drawer__inner'>
-            <DrawerAccount account={account} />
+            <NavigationContainer />
             <Composer />
             {multiColumn && (
               <div className='drawer__inner__mastodon'>

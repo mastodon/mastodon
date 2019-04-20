@@ -7,7 +7,7 @@ import ReactSwipeableViews from 'react-swipeable-views';
 import classNames from 'classnames';
 import Permalink from 'flavours/glitch/components/permalink';
 import { WrappedComponent as RawComposer } from 'flavours/glitch/features/composer';
-import DrawerAccount from 'flavours/glitch/features/compose/account';
+import DrawerAccount from 'flavours/glitch/features/compose/components/navigation_bar';
 import Search from 'flavours/glitch/features/compose/components/search';
 import ColumnHeader from './column_header';
 import { me } from 'flavours/glitch/util/initial_state';
