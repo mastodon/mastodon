@@ -7,7 +7,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 //  Components.
 import ComposerOptions from '../../composer/options';
 import ComposerPublisher from '../../composer/publisher';
-import ComposerSpoiler from '../../composer/spoiler';
 import ComposerTextarea from '../../composer/textarea';
 import ComposerUploadForm from '../../composer/upload_form';
 import ComposerPollForm from '../../composer/poll_form';
@@ -23,6 +22,7 @@ const messages = defineMessages({
                                 defaultMessage: 'At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.' },
   missingDescriptionConfirm: {  id: 'confirmations.missing_media_description.confirm',
                                 defaultMessage: 'Send anyway' },
+  spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
 });
 
 export default @injectIntl
@@ -124,6 +124,25 @@ class ComposeForm extends ImmutablePureComponent {
     }
   }
 
+  handleKeyDown = ({ ctrlKey, keyCode, metaKey, altKey }) => {
+    //  We submit the status on control/meta + enter.
+    if (keyCode === 13 && (ctrlKey || metaKey)) {
+      handleSubmit();
+    }
+
+    // Submit the status with secondary visibility on alt + enter.
+    if (keyCode === 13 && altKey) {
+      handleSecondarySubmit();
+    }
+  }
+
+  //  When the escape key is released, we focus the UI.
+  handleKeyUp = ({ key }) => {
+    if (key === 'Escape') {
+      document.querySelector('.ui').parentElement.focus();
+    }
+  }
+
   //  Submits the status.
   handleSubmit = () => {
     const { textarea: { value }, uploadForm } = this;
@@ -181,7 +200,7 @@ class ComposeForm extends ImmutablePureComponent {
   //  Sets a reference to the CW field.
   handleRefSpoilerText = (spoilerComponent) => {
     if (spoilerComponent) {
-      this.spoilerText = spoilerComponent.spoilerText;
+      this.spoilerText = spoilerComponent;
     }
   }
 
@@ -260,14 +279,12 @@ class ComposeForm extends ImmutablePureComponent {
 
   render () {
     const {
-      handleChangeSpoiler,
       handleEmoji,
       handleSecondarySubmit,
       handleSelect,
       handleSubmit,
       handleRefUploadForm,
       handleRefTextarea,
-      handleRefSpoilerText,
     } = this;
     const {
       acceptContentTypes,
@@ -317,15 +334,23 @@ class ComposeForm extends ImmutablePureComponent {
 
         <ReplyIndicatorContainer />
 
-        <ComposerSpoiler
-          hidden={!spoiler}
-          intl={intl}
-          onChange={handleChangeSpoiler}
-          onSubmit={handleSubmit}
-          onSecondarySubmit={handleSecondarySubmit}
-          text={spoilerText}
-          ref={handleRefSpoilerText}
-        />
+        <div className={`composer--spoiler ${spoiler ? 'composer--spoiler--visible' : ''}`}>
+          <label>
+            <span style={{ display: 'none' }}>{intl.formatMessage(messages.spoiler_placeholder)}</span>
+            <input
+              id='glitch.composer.spoiler.input'
+              placeholder={intl.formatMessage(messages.spoiler_placeholder)}
+              value={spoilerText}
+              onChange={this.handleChangeSpoiler}
+              onKeyDown={this.handleKeyDown}
+              onKeyUp={this.handleKeyUp}
+              disabled={!spoiler}
+              type='text'
+              className='spoiler-input__input'
+              ref={this.handleRefSpoilerText}
+            />
+          </label>
+        </div>
 
         <ComposerTextarea
           advancedOptions={advancedOptions}
