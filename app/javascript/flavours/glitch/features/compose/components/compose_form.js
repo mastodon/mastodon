@@ -9,7 +9,7 @@ import ComposerOptions from '../../composer/options';
 import ComposerPublisher from '../../composer/publisher';
 import ComposerTextarea from '../../composer/textarea';
 import ComposerUploadForm from '../../composer/upload_form';
-import ComposerPollForm from '../../composer/poll_form';
+import PollFormContainer from '../containers/poll_form_container';
 import WarningContainer from '../containers/warning_container';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 
@@ -382,9 +382,7 @@ class ComposeForm extends ImmutablePureComponent {
               handleRef={handleRefUploadForm}
             />
           ) : null}
-          {!!poll && (
-            <ComposerPollForm />
-          )}
+          <PollFormContainer />
         </div>
         <ComposerOptions
           acceptContentTypes={acceptContentTypes}
