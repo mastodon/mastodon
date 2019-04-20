@@ -1,57 +1,26 @@
-//  Package imports.
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { defineMessages } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const APPROX_HASHTAG_RE = /(?:^|[^\/\)\w])#(\S+)/i;
 
-//  Actions.
-import {
-  cancelReplyCompose,
-  changeCompose,
-  changeComposeAdvancedOption,
-  changeComposeSensitivity,
-  changeComposeSpoilerText,
-  changeComposeSpoilerness,
-  changeComposeVisibility,
-  changeUploadCompose,
-  clearComposeSuggestions,
-  fetchComposeSuggestions,
-  insertEmojiCompose,
-  mountCompose,
-  selectComposeSuggestion,
-  submitCompose,
-  undoUploadCompose,
-  unmountCompose,
-  uploadCompose,
-} from 'flavours/glitch/actions/compose';
-import {
-  closeModal,
-  openModal,
-} from 'flavours/glitch/actions/modal';
-import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
-import { addPoll, removePoll } from 'flavours/glitch/actions/compose';
-
 //  Components.
-import ComposerOptions from './options';
-import ComposerPublisher from './publisher';
-import ComposerReply from './reply';
-import ComposerSpoiler from './spoiler';
-import ComposerTextarea from './textarea';
-import ComposerUploadForm from './upload_form';
-import ComposerPollForm from './poll_form';
-import ComposerWarning from './warning';
-import ComposerHashtagWarning from './hashtag_warning';
-import ComposerDirectWarning from './direct_warning';
+import ComposerOptions from '../../composer/options';
+import ComposerPublisher from '../../composer/publisher';
+import ComposerReply from '../../composer/reply';
+import ComposerSpoiler from '../../composer/spoiler';
+import ComposerTextarea from '../../composer/textarea';
+import ComposerUploadForm from '../../composer/upload_form';
+import ComposerPollForm from '../../composer/poll_form';
+import ComposerWarning from '../../composer/warning';
+import ComposerHashtagWarning from '../../composer/hashtag_warning';
+import ComposerDirectWarning from '../../composer/direct_warning';
 
 //  Utils.
 import { countableText } from 'flavours/glitch/util/counter';
-import { me } from 'flavours/glitch/util/initial_state';
 import { isMobile } from 'flavours/glitch/util/is_mobile';
-import { assignHandlers } from 'flavours/glitch/util/react_helpers';
-import { wrap } from 'flavours/glitch/util/redux_helpers';
-import { privacyPreference } from 'flavours/glitch/util/privacy_preference';
 
 const messages = defineMessages({
   missingDescriptionMessage: {  id: 'confirmations.missing_media_description.message',
@@ -60,163 +29,88 @@ const messages = defineMessages({
                                 defaultMessage: 'Send anyway' },
 });
 
-//  State mapping.
-function mapStateToProps (state) {
-  const spoilersAlwaysOn = state.getIn(['local_settings', 'always_show_spoilers_field']);
-  const inReplyTo = state.getIn(['compose', 'in_reply_to']);
-  const replyPrivacy = inReplyTo ? state.getIn(['statuses', inReplyTo, 'visibility']) : null;
-  const sideArmBasePrivacy = state.getIn(['local_settings', 'side_arm']);
-  const sideArmRestrictedPrivacy = replyPrivacy ? privacyPreference(replyPrivacy, sideArmBasePrivacy) : null;
-  let sideArmPrivacy = null;
-  switch (state.getIn(['local_settings', 'side_arm_reply_mode'])) {
-    case 'copy':
-      sideArmPrivacy = replyPrivacy;
-      break;
-    case 'restrict':
-      sideArmPrivacy = sideArmRestrictedPrivacy;
-      break;
-  }
-  sideArmPrivacy = sideArmPrivacy || sideArmBasePrivacy;
-  return {
-    acceptContentTypes: state.getIn(['media_attachments', 'accept_content_types']).toArray().join(','),
-    advancedOptions: state.getIn(['compose', 'advanced_options']),
-    amUnlocked: !state.getIn(['accounts', me, 'locked']),
-    focusDate: state.getIn(['compose', 'focusDate']),
-    caretPosition: state.getIn(['compose', 'caretPosition']),
-    isSubmitting: state.getIn(['compose', 'is_submitting']),
-    isChangingUpload: state.getIn(['compose', 'is_changing_upload']),
-    isUploading: state.getIn(['compose', 'is_uploading']),
-    layout: state.getIn(['local_settings', 'layout']),
-    media: state.getIn(['compose', 'media_attachments']),
-    preselectDate: state.getIn(['compose', 'preselectDate']),
-    privacy: state.getIn(['compose', 'privacy']),
-    progress: state.getIn(['compose', 'progress']),
-    inReplyTo: inReplyTo ? state.getIn(['statuses', inReplyTo]) : null,
-    replyAccount: inReplyTo ? state.getIn(['statuses', inReplyTo, 'account']) : null,
-    replyContent: inReplyTo ? state.getIn(['statuses', inReplyTo, 'contentHtml']) : null,
-    resetFileKey: state.getIn(['compose', 'resetFileKey']),
-    sideArm: sideArmPrivacy,
-    sensitive: state.getIn(['compose', 'sensitive']),
-    showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
-    spoiler: spoilersAlwaysOn || state.getIn(['compose', 'spoiler']),
-    spoilerText: state.getIn(['compose', 'spoiler_text']),
-    suggestionToken: state.getIn(['compose', 'suggestion_token']),
-    suggestions: state.getIn(['compose', 'suggestions']),
-    text: state.getIn(['compose', 'text']),
-    anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
-    poll: state.getIn(['compose', 'poll']),
-    spoilersAlwaysOn: spoilersAlwaysOn,
-    mediaDescriptionConfirmation: state.getIn(['local_settings', 'confirm_missing_media_description']),
-    preselectOnReply: state.getIn(['local_settings', 'preselect_on_reply']),
+export default @injectIntl
+class ComposeForm extends ImmutablePureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object,
   };
-};
 
-//  Dispatch mapping.
-const mapDispatchToProps = (dispatch, { intl }) => ({
-  onCancelReply() {
-    dispatch(cancelReplyCompose());
-  },
-  onChangeAdvancedOption(option, value) {
-    dispatch(changeComposeAdvancedOption(option, value));
-  },
-  onChangeDescription(id, description) {
-    dispatch(changeUploadCompose(id, { description }));
-  },
-  onChangeSensitivity() {
-    dispatch(changeComposeSensitivity());
-  },
-  onChangeSpoilerText(text) {
-    dispatch(changeComposeSpoilerText(text));
-  },
-  onChangeSpoilerness() {
-    dispatch(changeComposeSpoilerness());
-  },
-  onChangeText(text) {
-    dispatch(changeCompose(text));
-  },
-  onChangeVisibility(value) {
-    dispatch(changeComposeVisibility(value));
-  },
-  onTogglePoll() {
-    dispatch((_, getState) => {
-      if (getState().getIn(['compose', 'poll'])) {
-        dispatch(removePoll());
-      } else {
-        dispatch(addPoll());
-      }
-    });
-  },
-  onClearSuggestions() {
-    dispatch(clearComposeSuggestions());
-  },
-  onCloseModal() {
-    dispatch(closeModal());
-  },
-  onFetchSuggestions(token) {
-    dispatch(fetchComposeSuggestions(token));
-  },
-  onInsertEmoji(position, emoji) {
-    dispatch(insertEmojiCompose(position, emoji));
-  },
-  onMount() {
-    dispatch(mountCompose());
-  },
-  onOpenActionsModal(props) {
-    dispatch(openModal('ACTIONS', props));
-  },
-  onOpenDoodleModal() {
-    dispatch(openModal('DOODLE', { noEsc: true }));
-  },
-  onOpenFocalPointModal(id) {
-    dispatch(openModal('FOCAL_POINT', { id }));
-  },
-  onSelectSuggestion(position, token, suggestion) {
-    dispatch(selectComposeSuggestion(position, token, suggestion));
-  },
-  onMediaDescriptionConfirm(routerHistory) {
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.missingDescriptionMessage),
-      confirm: intl.formatMessage(messages.missingDescriptionConfirm),
-      onConfirm: () => dispatch(submitCompose(routerHistory)),
-      onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_missing_media_description'], false)),
-    }));
-  },
-  onSubmit(routerHistory) {
-    dispatch(submitCompose(routerHistory));
-  },
-  onUndoUpload(id) {
-    dispatch(undoUploadCompose(id));
-  },
-  onUnmount() {
-    dispatch(unmountCompose());
-  },
-  onUpload(files) {
-    dispatch(uploadCompose(files));
-  },
-});
+  static propTypes = {
+    intl: PropTypes.object.isRequired,
 
-//  Handlers.
-const handlers = {
+    //  State props.
+    acceptContentTypes: PropTypes.string,
+    advancedOptions: ImmutablePropTypes.map,
+    amUnlocked: PropTypes.bool,
+    focusDate: PropTypes.instanceOf(Date),
+    caretPosition: PropTypes.number,
+    isSubmitting: PropTypes.bool,
+    isChangingUpload: PropTypes.bool,
+    isUploading: PropTypes.bool,
+    layout: PropTypes.string,
+    media: ImmutablePropTypes.list,
+    preselectDate: PropTypes.instanceOf(Date),
+    privacy: PropTypes.string,
+    progress: PropTypes.number,
+    inReplyTo: ImmutablePropTypes.map,
+    resetFileKey: PropTypes.number,
+    sideArm: PropTypes.string,
+    sensitive: PropTypes.bool,
+    showSearch: PropTypes.bool,
+    spoiler: PropTypes.bool,
+    spoilerText: PropTypes.string,
+    suggestionToken: PropTypes.string,
+    suggestions: ImmutablePropTypes.list,
+    text: PropTypes.string,
+    anyMedia: PropTypes.bool,
+    spoilersAlwaysOn: PropTypes.bool,
+    mediaDescriptionConfirmation: PropTypes.bool,
+    preselectOnReply: PropTypes.bool,
+
+    //  Dispatch props.
+    onCancelReply: PropTypes.func,
+    onChangeAdvancedOption: PropTypes.func,
+    onChangeDescription: PropTypes.func,
+    onChangeSensitivity: PropTypes.func,
+    onChangeSpoilerText: PropTypes.func,
+    onChangeSpoilerness: PropTypes.func,
+    onChangeText: PropTypes.func,
+    onChangeVisibility: PropTypes.func,
+    onClearSuggestions: PropTypes.func,
+    onCloseModal: PropTypes.func,
+    onFetchSuggestions: PropTypes.func,
+    onInsertEmoji: PropTypes.func,
+    onMount: PropTypes.func,
+    onOpenActionsModal: PropTypes.func,
+    onOpenDoodleModal: PropTypes.func,
+    onSelectSuggestion: PropTypes.func,
+    onSubmit: PropTypes.func,
+    onUndoUpload: PropTypes.func,
+    onUnmount: PropTypes.func,
+    onUpload: PropTypes.func,
+    onMediaDescriptionConfirm: PropTypes.func,
+  };
 
   //  Changes the text value of the spoiler.
-  handleChangeSpoiler ({ target: { value } }) {
+  handleChangeSpoiler = ({ target: { value } }) => {
     const { onChangeSpoilerText } = this.props;
     if (onChangeSpoilerText) {
       onChangeSpoilerText(value);
     }
-  },
+  }
 
   //  Inserts an emoji at the caret.
-  handleEmoji (data) {
+  handleEmoji = (data) => {
     const { textarea: { selectionStart } } = this;
     const { onInsertEmoji } = this.props;
     if (onInsertEmoji) {
       onInsertEmoji(selectionStart, data);
     }
-  },
+  }
 
   //  Handles the secondary submit button.
-  handleSecondarySubmit () {
+  handleSecondarySubmit = () => {
     const { handleSubmit } = this.handlers;
     const {
       onChangeVisibility,
@@ -226,18 +120,18 @@ const handlers = {
       onChangeVisibility(sideArm);
     }
     handleSubmit();
-  },
+  }
 
   //  Selects a suggestion from the autofill.
-  handleSelect (tokenStart, token, value) {
+  handleSelect = (tokenStart, token, value) => {
     const { onSelectSuggestion } = this.props;
     if (onSelectSuggestion) {
       onSelectSuggestion(tokenStart, token, value);
     }
-  },
+  }
 
   //  Submits the status.
-  handleSubmit () {
+  handleSubmit = () => {
     const { textarea: { value }, uploadForm } = this;
     const {
       onChangeText,
@@ -276,39 +170,25 @@ const handlers = {
     } else if (onSubmit) {
       onSubmit(this.context.router ? this.context.router.history : null);
     }
-  },
+  }
 
   //  Sets a reference to the upload form.
-  handleRefUploadForm (uploadFormComponent) {
+  handleRefUploadForm = (uploadFormComponent) => {
     this.uploadForm = uploadFormComponent;
-  },
+  }
 
   //  Sets a reference to the textarea.
-  handleRefTextarea (textareaComponent) {
+  handleRefTextarea = (textareaComponent) => {
     if (textareaComponent) {
       this.textarea = textareaComponent.textarea;
     }
-  },
+  }
 
   //  Sets a reference to the CW field.
-  handleRefSpoilerText (spoilerComponent) {
+  handleRefSpoilerText = (spoilerComponent) => {
     if (spoilerComponent) {
       this.spoilerText = spoilerComponent.spoilerText;
     }
-  }
-};
-
-//  The component.
-class Composer extends React.Component {
-
-  //  Constructor.
-  constructor (props) {
-    super(props);
-    assignHandlers(this, handlers);
-
-    //  Instance variables.
-    this.textarea = null;
-    this.spoilerText = null;
   }
 
   //  Tells our state the composer has been mounted.
@@ -394,7 +274,7 @@ class Composer extends React.Component {
       handleRefUploadForm,
       handleRefTextarea,
       handleRefSpoilerText,
-    } = this.handlers;
+    } = this;
     const {
       acceptContentTypes,
       advancedOptions,
@@ -533,68 +413,3 @@ class Composer extends React.Component {
   }
 
 }
-
-//  Props.
-Composer.propTypes = {
-  intl: PropTypes.object.isRequired,
-
-  //  State props.
-  acceptContentTypes: PropTypes.string,
-  advancedOptions: ImmutablePropTypes.map,
-  amUnlocked: PropTypes.bool,
-  focusDate: PropTypes.instanceOf(Date),
-  caretPosition: PropTypes.number,
-  isSubmitting: PropTypes.bool,
-  isChangingUpload: PropTypes.bool,
-  isUploading: PropTypes.bool,
-  layout: PropTypes.string,
-  media: ImmutablePropTypes.list,
-  preselectDate: PropTypes.instanceOf(Date),
-  privacy: PropTypes.string,
-  progress: PropTypes.number,
-  inReplyTo: ImmutablePropTypes.map,
-  resetFileKey: PropTypes.number,
-  sideArm: PropTypes.string,
-  sensitive: PropTypes.bool,
-  showSearch: PropTypes.bool,
-  spoiler: PropTypes.bool,
-  spoilerText: PropTypes.string,
-  suggestionToken: PropTypes.string,
-  suggestions: ImmutablePropTypes.list,
-  text: PropTypes.string,
-  anyMedia: PropTypes.bool,
-  spoilersAlwaysOn: PropTypes.bool,
-  mediaDescriptionConfirmation: PropTypes.bool,
-  preselectOnReply: PropTypes.bool,
-
-  //  Dispatch props.
-  onCancelReply: PropTypes.func,
-  onChangeAdvancedOption: PropTypes.func,
-  onChangeDescription: PropTypes.func,
-  onChangeSensitivity: PropTypes.func,
-  onChangeSpoilerText: PropTypes.func,
-  onChangeSpoilerness: PropTypes.func,
-  onChangeText: PropTypes.func,
-  onChangeVisibility: PropTypes.func,
-  onClearSuggestions: PropTypes.func,
-  onCloseModal: PropTypes.func,
-  onFetchSuggestions: PropTypes.func,
-  onInsertEmoji: PropTypes.func,
-  onMount: PropTypes.func,
-  onOpenActionsModal: PropTypes.func,
-  onOpenDoodleModal: PropTypes.func,
-  onSelectSuggestion: PropTypes.func,
-  onSubmit: PropTypes.func,
-  onUndoUpload: PropTypes.func,
-  onUnmount: PropTypes.func,
-  onUpload: PropTypes.func,
-  onMediaDescriptionConfirm: PropTypes.func,
-};
-
-Composer.contextTypes = {
-  router: PropTypes.object,
-};
-
-//  Connecting and export.
-export { Composer as WrappedComponent };
-export default wrap(Composer, mapStateToProps, mapDispatchToProps, true);

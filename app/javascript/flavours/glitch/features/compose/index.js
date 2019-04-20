@@ -10,7 +10,7 @@ import classNames from 'classnames';
 import { cycleElefriendCompose } from 'flavours/glitch/actions/compose';
 
 //  Components.
-import Composer from 'flavours/glitch/features/composer';
+import ComposeFormContainer from './containers/compose_form_container';
 import HeaderContainer from './containers/header_container';
 import SearchContainer from './containers/search_container';
 import SearchResultsContainer from './containers/search_results_container';
@@ -73,11 +73,13 @@ class Compose extends React.PureComponent {
     return (
       <div className={computedClass} role='region' aria-label={intl.formatMessage(messages.compose)}>
         {multiColumn && <HeaderContainer />}
+
         {(multiColumn || isSearchPage) && <SearchContainer />}
+
         <div className='drawer__pager'>
           {!isSearchPage && <div className='drawer__inner'>
             <NavigationContainer />
-            <Composer />
+            <ComposeFormContainer />
             {multiColumn && (
               <div className='drawer__inner__mastodon'>
                 {mascot ? <img alt='' draggable='false' src={mascot} /> : <button className='mastodon' onClick={onClickElefriend} />}
@@ -96,4 +98,5 @@ class Compose extends React.PureComponent {
       </div>
     );
   }
+
 }
