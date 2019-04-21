@@ -131,8 +131,8 @@
 .composer--textarea {
   position: relative;
 
-  & > label {
-    .textarea {
+  label {
+    .autosuggest-textarea__textarea {
       display: block;
       box-sizing: border-box;
       margin: 0;
@@ -186,7 +186,7 @@
   }
 }
 
-.composer--textarea--suggestions {
+.autosuggest-textarea__suggestions {
   display: block;
   position: absolute;
   box-sizing: border-box;
@@ -199,11 +199,14 @@
   box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
   font-size: 14px;
   z-index: 99;
-
-  &[hidden] { display: none }
+  display: none;
 }
 
-.composer--textarea--suggestions--item {
+.autosuggest-textarea__suggestions--visible {
+  display: block;
+}
+
+.autosuggest-textarea__suggestions__item {
   display: flex;
   flex-direction: row;
   align-items: center;

@@ -7,17 +7,20 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 //  Components.
 import ComposerOptions from '../../composer/options';
 import ComposerPublisher from '../../composer/publisher';
-import ComposerTextarea from '../../composer/textarea';
+import ComposerTextareaIcons from '../../composer/textarea/icons';
 import UploadFormContainer from '../containers/upload_form_container';
 import PollFormContainer from '../containers/poll_form_container';
 import WarningContainer from '../containers/warning_container';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
+import EmojiPicker from 'flavours/glitch/features/emoji_picker';
+import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 
 //  Utils.
 import { countableText } from 'flavours/glitch/util/counter';
 import { isMobile } from 'flavours/glitch/util/is_mobile';
 
 const messages = defineMessages({
+  placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
   missingDescriptionMessage: {  id: 'confirmations.missing_media_description.message',
                                 defaultMessage: 'At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.' },
   missingDescriptionConfirm: {  id: 'confirmations.missing_media_description.confirm',
@@ -183,7 +186,7 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   //  Sets a reference to the textarea.
-  handleRefTextarea = (textareaComponent) => {
+  setAutosuggestTextarea = (textareaComponent) => {
     if (textareaComponent) {
       this.textarea = textareaComponent.textarea;
     }
@@ -269,6 +272,10 @@ class ComposeForm extends ImmutablePureComponent {
     }
   }
 
+  handleChange = (e) => {
+    this.props.onChangeText(e.target.value);
+  }
+
   render () {
     const {
       handleEmoji,
@@ -339,27 +346,35 @@ class ComposeForm extends ImmutablePureComponent {
           </label>
         </div>
 
-        <ComposerTextarea
-          advancedOptions={advancedOptions}
-          autoFocus={!showSearch && !isMobile(window.innerWidth, layout)}
-          disabled={isSubmitting}
-          intl={intl}
-          onChange={onChangeText}
-          onPaste={onUpload}
-          onPickEmoji={handleEmoji}
-          onSubmit={handleSubmit}
-          onSecondarySubmit={handleSecondarySubmit}
-          onSuggestionsClearRequested={onClearSuggestions}
-          onSuggestionsFetchRequested={onFetchSuggestions}
-          onSuggestionSelected={handleSelect}
-          ref={handleRefTextarea}
-          suggestions={suggestions}
-          value={text}
-        />
+        <div className='composer--textarea'>
+          <ComposerTextareaIcons
+            advancedOptions={advancedOptions}
+            intl={intl}
+          />
+
+          <AutosuggestTextarea
+            ref={this.setAutosuggestTextarea}
+            placeholder={intl.formatMessage(messages.placeholder)}
+            disabled={isSubmitting}
+            value={this.props.text}
+            onChange={this.handleChange}
+            suggestions={this.props.suggestions}
+            onKeyDown={this.handleKeyDown}
+            onSuggestionsFetchRequested={onFetchSuggestions}
+            onSuggestionsClearRequested={onClearSuggestions}
+            onSuggestionSelected={this.handleSelect}
+            onPaste={onUpload}
+            autoFocus={!showSearch && !isMobile(window.innerWidth, layout)}
+          />
+
+          <EmojiPicker onPickEmoji={handleEmoji} />
+        </div>
+
         <div className='compose-form__modifiers'>
           <UploadFormContainer />
           <PollFormContainer />
         </div>
+
         <ComposerOptions
           acceptContentTypes={acceptContentTypes}
           advancedOptions={advancedOptions}
@@ -385,6 +400,7 @@ class ComposeForm extends ImmutablePureComponent {
           sensitive={sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0)}
           spoiler={spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler}
         />
+
         <ComposerPublisher
           countText={`${spoilerText}${countableText(text)}${advancedOptions && advancedOptions.get('do_not_federate') ? ' 👁️' : ''}`}
           disabled={disabledButton}
