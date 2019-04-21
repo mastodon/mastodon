@@ -7,7 +7,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 //  Components.
 import ComposerOptions from '../../composer/options';
 import ComposerPublisher from '../../composer/publisher';
-import ComposerTextareaIcons from '../../composer/textarea/icons';
+import TextareaIcons from './textarea_icons';
 import UploadFormContainer from '../containers/upload_form_container';
 import PollFormContainer from '../containers/poll_form_container';
 import WarningContainer from '../containers/warning_container';
@@ -347,10 +347,7 @@ class ComposeForm extends ImmutablePureComponent {
         </div>
 
         <div className='composer--textarea'>
-          <ComposerTextareaIcons
-            advancedOptions={advancedOptions}
-            intl={intl}
-          />
+          <TextareaIcons advancedOptions={advancedOptions} />
 
           <AutosuggestTextarea
             ref={this.setAutosuggestTextarea}
