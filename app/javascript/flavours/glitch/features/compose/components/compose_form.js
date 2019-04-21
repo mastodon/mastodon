@@ -8,7 +8,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import ComposerOptions from '../../composer/options';
 import ComposerPublisher from '../../composer/publisher';
 import ComposerTextarea from '../../composer/textarea';
-import ComposerUploadForm from '../../composer/upload_form';
+import UploadFormContainer from '../containers/upload_form_container';
 import PollFormContainer from '../containers/poll_form_container';
 import WarningContainer from '../containers/warning_container';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
@@ -48,7 +48,6 @@ class ComposeForm extends ImmutablePureComponent {
     media: ImmutablePropTypes.list,
     preselectDate: PropTypes.instanceOf(Date),
     privacy: PropTypes.string,
-    progress: PropTypes.number,
     resetFileKey: PropTypes.number,
     sideArm: PropTypes.string,
     sensitive: PropTypes.bool,
@@ -65,7 +64,6 @@ class ComposeForm extends ImmutablePureComponent {
 
     //  Dispatch props.
     onChangeAdvancedOption: PropTypes.func,
-    onChangeDescription: PropTypes.func,
     onChangeSensitivity: PropTypes.func,
     onChangeSpoilerText: PropTypes.func,
     onChangeSpoilerness: PropTypes.func,
@@ -80,7 +78,6 @@ class ComposeForm extends ImmutablePureComponent {
     onOpenDoodleModal: PropTypes.func,
     onSelectSuggestion: PropTypes.func,
     onSubmit: PropTypes.func,
-    onUndoUpload: PropTypes.func,
     onUnmount: PropTypes.func,
     onUpload: PropTypes.func,
     onMediaDescriptionConfirm: PropTypes.func,
@@ -185,11 +182,6 @@ class ComposeForm extends ImmutablePureComponent {
     }
   }
 
-  //  Sets a reference to the upload form.
-  handleRefUploadForm = (uploadFormComponent) => {
-    this.uploadForm = uploadFormComponent;
-  }
-
   //  Sets a reference to the textarea.
   handleRefTextarea = (textareaComponent) => {
     if (textareaComponent) {
@@ -283,7 +275,6 @@ class ComposeForm extends ImmutablePureComponent {
       handleSecondarySubmit,
       handleSelect,
       handleSubmit,
-      handleRefUploadForm,
       handleRefTextarea,
     } = this;
     const {
@@ -299,7 +290,6 @@ class ComposeForm extends ImmutablePureComponent {
       media,
       poll,
       onChangeAdvancedOption,
-      onChangeDescription,
       onChangeSensitivity,
       onChangeSpoilerness,
       onChangeText,
@@ -310,11 +300,8 @@ class ComposeForm extends ImmutablePureComponent {
       onFetchSuggestions,
       onOpenActionsModal,
       onOpenDoodleModal,
-      onOpenFocalPointModal,
-      onUndoUpload,
       onUpload,
       privacy,
-      progress,
       resetFileKey,
       sensitive,
       showSearch,
@@ -370,18 +357,7 @@ class ComposeForm extends ImmutablePureComponent {
           value={text}
         />
         <div className='compose-form__modifiers'>
-          {isUploading || media && media.size ? (
-            <ComposerUploadForm
-              intl={intl}
-              media={media}
-              onChangeDescription={onChangeDescription}
-              onOpenFocalPointModal={onOpenFocalPointModal}
-              onRemove={onUndoUpload}
-              progress={progress}
-              uploading={isUploading}
-              handleRef={handleRefUploadForm}
-            />
-          ) : null}
+          <UploadFormContainer />
           <PollFormContainer />
         </div>
         <ComposerOptions

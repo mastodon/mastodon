@@ -7,14 +7,12 @@ import {
   changeComposeSpoilerText,
   changeComposeSpoilerness,
   changeComposeVisibility,
-  changeUploadCompose,
   clearComposeSuggestions,
   fetchComposeSuggestions,
   insertEmojiCompose,
   mountCompose,
   selectComposeSuggestion,
   submitCompose,
-  undoUploadCompose,
   unmountCompose,
   uploadCompose,
 } from 'flavours/glitch/actions/compose';
@@ -66,7 +64,6 @@ function mapStateToProps (state) {
     media: state.getIn(['compose', 'media_attachments']),
     preselectDate: state.getIn(['compose', 'preselectDate']),
     privacy: state.getIn(['compose', 'privacy']),
-    progress: state.getIn(['compose', 'progress']),
     resetFileKey: state.getIn(['compose', 'resetFileKey']),
     sideArm: sideArmPrivacy,
     sensitive: state.getIn(['compose', 'sensitive']),
@@ -88,9 +85,6 @@ function mapStateToProps (state) {
 const mapDispatchToProps = (dispatch, { intl }) => ({
   onChangeAdvancedOption(option, value) {
     dispatch(changeComposeAdvancedOption(option, value));
-  },
-  onChangeDescription(id, description) {
-    dispatch(changeUploadCompose(id, { description }));
   },
   onChangeSensitivity() {
     dispatch(changeComposeSensitivity());
@@ -137,9 +131,6 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onOpenDoodleModal() {
     dispatch(openModal('DOODLE', { noEsc: true }));
   },
-  onOpenFocalPointModal(id) {
-    dispatch(openModal('FOCAL_POINT', { id }));
-  },
   onSelectSuggestion(position, token, suggestion) {
     dispatch(selectComposeSuggestion(position, token, suggestion));
   },
@@ -153,9 +144,6 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
   onSubmit(routerHistory) {
     dispatch(submitCompose(routerHistory));
-  },
-  onUndoUpload(id) {
-    dispatch(undoUploadCompose(id));
   },
   onUnmount() {
     dispatch(unmountCompose());
