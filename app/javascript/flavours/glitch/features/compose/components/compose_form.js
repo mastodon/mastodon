@@ -6,7 +6,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 //  Components.
 import OptionsContainer from '../containers/options_container';
-import ComposerPublisher from '../../composer/publisher';
+import Publisher from './publisher';
 import TextareaIcons from './textarea_icons';
 import UploadFormContainer from '../containers/upload_form_container';
 import PollFormContainer from '../containers/poll_form_container';
@@ -367,10 +367,9 @@ class ComposeForm extends ImmutablePureComponent {
           spoiler={spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler}
         />
 
-        <ComposerPublisher
+        <Publisher
           countText={`${spoilerText}${countableText(text)}${advancedOptions && advancedOptions.get('do_not_federate') ? ' 👁️' : ''}`}
           disabled={disabledButton}
-          intl={intl}
           onSecondarySubmit={handleSecondarySubmit}
           onSubmit={handleSubmit}
           privacy={privacy}
