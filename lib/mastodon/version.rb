@@ -37,7 +37,7 @@ module Mastodon
     end
 
     def source_base_url
-      "https://github.com/#{repository}"
+      ENV.fetch('SOURCE_BASE_URL') { "https://github.com/#{repository}" }
     end
 
     # specify git tag or commit hash here
