@@ -41,6 +41,8 @@ nl:
         name: 'Je wilt misschien een van deze gebruiken:'
       imports:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
+      invite_request:
+        text: Dit helpt ons om jouw aanvraag te beoordelen
       sessions:
         otp: 'Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes:'
       user:
@@ -118,12 +120,15 @@ nl:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren
         must_be_following_dm: Directe berichten van mensen die jij niet volgt blokkeren
+      invite_request:
+        text: Waarom wil jij je aanmelden?
       notification_emails:
         digest: Periodiek e-mails met een samenvatting versturen
         favourite: Een e-mail versturen wanneer iemand jouw toot aan hun favorieten heeft toegevoegd
         follow: Een e-mail versturen wanneer iemand jou volgt
         follow_request: Een e-mail versturen wanneer iemand jou wil volgen
         mention: Een e-mail versturen wanneer iemand jou vermeld
+        pending_account: Een e-mail verzenden wanneer een nieuw account moet worden beoordeeld
         reblog: Een e-mail versturen wanneer iemand jouw toot heeft geboost
         report: Verstuur een e-mail wanneer een nieuw rapportage is ingediend
     'no': Nee
