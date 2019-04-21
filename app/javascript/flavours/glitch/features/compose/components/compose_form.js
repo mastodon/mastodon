@@ -5,7 +5,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 //  Components.
-import Options from './options';
+import OptionsContainer from '../containers/options_container';
 import ComposerPublisher from '../../composer/publisher';
 import TextareaIcons from './textarea_icons';
 import UploadFormContainer from '../containers/upload_form_container';
@@ -39,7 +39,6 @@ class ComposeForm extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
 
     //  State props.
-    acceptContentTypes: PropTypes.string,
     advancedOptions: ImmutablePropTypes.map,
     amUnlocked: PropTypes.bool,
     focusDate: PropTypes.instanceOf(Date),
@@ -51,7 +50,6 @@ class ComposeForm extends ImmutablePureComponent {
     media: ImmutablePropTypes.list,
     preselectDate: PropTypes.instanceOf(Date),
     privacy: PropTypes.string,
-    resetFileKey: PropTypes.number,
     sideArm: PropTypes.string,
     sensitive: PropTypes.bool,
     showSearch: PropTypes.bool,
@@ -66,19 +64,14 @@ class ComposeForm extends ImmutablePureComponent {
     preselectOnReply: PropTypes.bool,
 
     //  Dispatch props.
-    onChangeAdvancedOption: PropTypes.func,
-    onChangeSensitivity: PropTypes.func,
     onChangeSpoilerText: PropTypes.func,
     onChangeSpoilerness: PropTypes.func,
     onChangeText: PropTypes.func,
     onChangeVisibility: PropTypes.func,
     onClearSuggestions: PropTypes.func,
-    onCloseModal: PropTypes.func,
     onFetchSuggestions: PropTypes.func,
     onInsertEmoji: PropTypes.func,
     onMount: PropTypes.func,
-    onOpenActionsModal: PropTypes.func,
-    onOpenDoodleModal: PropTypes.func,
     onSelectSuggestion: PropTypes.func,
     onSubmit: PropTypes.func,
     onUnmount: PropTypes.func,
@@ -285,7 +278,6 @@ class ComposeForm extends ImmutablePureComponent {
       handleRefTextarea,
     } = this;
     const {
-      acceptContentTypes,
       advancedOptions,
       amUnlocked,
       anyMedia,
@@ -295,21 +287,13 @@ class ComposeForm extends ImmutablePureComponent {
       isUploading,
       layout,
       media,
-      poll,
-      onChangeAdvancedOption,
-      onChangeSensitivity,
       onChangeSpoilerness,
       onChangeText,
       onChangeVisibility,
-      onTogglePoll,
       onClearSuggestions,
-      onCloseModal,
       onFetchSuggestions,
-      onOpenActionsModal,
-      onOpenDoodleModal,
       onUpload,
       privacy,
-      resetFileKey,
       sensitive,
       showSearch,
       sideArm,
@@ -372,27 +356,13 @@ class ComposeForm extends ImmutablePureComponent {
           <PollFormContainer />
         </div>
 
-        <Options
-          acceptContentTypes={acceptContentTypes}
+        <OptionsContainer
           advancedOptions={advancedOptions}
           disabled={isSubmitting}
-          allowMedia={!poll && (media ? media.size < 4 && !media.some(
-              item => item.get('type') === 'video'
-            ) : true)}
-          hasMedia={media && !!media.size}
-          allowPoll={!(media && !!media.size)}
-          hasPoll={!!poll}
-          onChangeAdvancedOption={onChangeAdvancedOption}
-          onChangeSensitivity={onChangeSensitivity}
           onChangeVisibility={onChangeVisibility}
-          onTogglePoll={onTogglePoll}
-          onDoodleOpen={onOpenDoodleModal}
-          onModalClose={onCloseModal}
-          onModalOpen={onOpenActionsModal}
           onToggleSpoiler={spoilersAlwaysOn ? null : onChangeSpoilerness}
           onUpload={onUpload}
           privacy={privacy}
-          resetFileKey={resetFileKey}
           sensitive={sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0)}
           spoiler={spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler}
         />

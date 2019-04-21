@@ -2,8 +2,6 @@ import { connect } from 'react-redux';
 import ComposeForm from '../components/compose_form';
 import {
   changeCompose,
-  changeComposeAdvancedOption,
-  changeComposeSensitivity,
   changeComposeSpoilerText,
   changeComposeSpoilerness,
   changeComposeVisibility,
@@ -17,11 +15,9 @@ import {
   uploadCompose,
 } from 'flavours/glitch/actions/compose';
 import {
-  closeModal,
   openModal,
 } from 'flavours/glitch/actions/modal';
 import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
-import { addPoll, removePoll } from 'flavours/glitch/actions/compose';
 
 import { privacyPreference } from 'flavours/glitch/util/privacy_preference';
 import { me } from 'flavours/glitch/util/initial_state';
@@ -52,7 +48,6 @@ function mapStateToProps (state) {
   }
   sideArmPrivacy = sideArmPrivacy || sideArmBasePrivacy;
   return {
-    acceptContentTypes: state.getIn(['media_attachments', 'accept_content_types']).toArray().join(','),
     advancedOptions: state.getIn(['compose', 'advanced_options']),
     amUnlocked: !state.getIn(['accounts', me, 'locked']),
     focusDate: state.getIn(['compose', 'focusDate']),
@@ -64,7 +59,6 @@ function mapStateToProps (state) {
     media: state.getIn(['compose', 'media_attachments']),
     preselectDate: state.getIn(['compose', 'preselectDate']),
     privacy: state.getIn(['compose', 'privacy']),
-    resetFileKey: state.getIn(['compose', 'resetFileKey']),
     sideArm: sideArmPrivacy,
     sensitive: state.getIn(['compose', 'sensitive']),
     showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
@@ -74,7 +68,6 @@ function mapStateToProps (state) {
     suggestions: state.getIn(['compose', 'suggestions']),
     text: state.getIn(['compose', 'text']),
     anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
-    poll: state.getIn(['compose', 'poll']),
     spoilersAlwaysOn: spoilersAlwaysOn,
     mediaDescriptionConfirmation: state.getIn(['local_settings', 'confirm_missing_media_description']),
     preselectOnReply: state.getIn(['local_settings', 'preselect_on_reply']),
@@ -83,12 +76,6 @@ function mapStateToProps (state) {
 
 //  Dispatch mapping.
 const mapDispatchToProps = (dispatch, { intl }) => ({
-  onChangeAdvancedOption(option, value) {
-    dispatch(changeComposeAdvancedOption(option, value));
-  },
-  onChangeSensitivity() {
-    dispatch(changeComposeSensitivity());
-  },
   onChangeSpoilerText(text) {
     dispatch(changeComposeSpoilerText(text));
   },
@@ -101,20 +88,8 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onChangeVisibility(value) {
     dispatch(changeComposeVisibility(value));
   },
-  onTogglePoll() {
-    dispatch((_, getState) => {
-      if (getState().getIn(['compose', 'poll'])) {
-        dispatch(removePoll());
-      } else {
-        dispatch(addPoll());
-      }
-    });
-  },
   onClearSuggestions() {
     dispatch(clearComposeSuggestions());
-  },
-  onCloseModal() {
-    dispatch(closeModal());
   },
   onFetchSuggestions(token) {
     dispatch(fetchComposeSuggestions(token));
@@ -124,12 +99,6 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
   onMount() {
     dispatch(mountCompose());
-  },
-  onOpenActionsModal(props) {
-    dispatch(openModal('ACTIONS', props));
-  },
-  onOpenDoodleModal() {
-    dispatch(openModal('DOODLE', { noEsc: true }));
   },
   onSelectSuggestion(position, token, suggestion) {
     dispatch(selectComposeSuggestion(position, token, suggestion));
