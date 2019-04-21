@@ -91,4 +91,6 @@ ENV RAILS_ENV=production
 ENV NODE_ENV=production
 ENV PATH=/opt/mastodon/bin:$PATH
 
-RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile
+RUN cd ~ && \
+	OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
+	yarn cache clean
