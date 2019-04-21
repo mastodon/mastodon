@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { defineMessages } from 'react-intl';
 import ComposeForm from '../components/compose_form';
 import {
   changeCompose,
@@ -20,7 +21,6 @@ import {
 import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
 
 import { privacyPreference } from 'flavours/glitch/util/privacy_preference';
-import { me } from 'flavours/glitch/util/initial_state';
 
 const messages = defineMessages({
   missingDescriptionMessage: {  id: 'confirmations.missing_media_description.message',
@@ -28,7 +28,6 @@ const messages = defineMessages({
   missingDescriptionConfirm: {  id: 'confirmations.missing_media_description.confirm',
                                 defaultMessage: 'Send anyway' },
 });
-import { defineMessages } from 'react-intl';
 
 //  State mapping.
 function mapStateToProps (state) {
@@ -49,7 +48,6 @@ function mapStateToProps (state) {
   sideArmPrivacy = sideArmPrivacy || sideArmBasePrivacy;
   return {
     advancedOptions: state.getIn(['compose', 'advanced_options']),
-    amUnlocked: !state.getIn(['accounts', me, 'locked']),
     focusDate: state.getIn(['compose', 'focusDate']),
     caretPosition: state.getIn(['compose', 'caretPosition']),
     isSubmitting: state.getIn(['compose', 'is_submitting']),
@@ -64,7 +62,6 @@ function mapStateToProps (state) {
     showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
     spoiler: spoilersAlwaysOn || state.getIn(['compose', 'spoiler']),
     spoilerText: state.getIn(['compose', 'spoiler_text']),
-    suggestionToken: state.getIn(['compose', 'suggestion_token']),
     suggestions: state.getIn(['compose', 'suggestions']),
     text: state.getIn(['compose', 'text']),
     anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
@@ -76,33 +73,55 @@ function mapStateToProps (state) {
 
 //  Dispatch mapping.
 const mapDispatchToProps = (dispatch, { intl }) => ({
-  onChangeSpoilerText(text) {
-    dispatch(changeComposeSpoilerText(text));
-  },
-  onChangeSpoilerness() {
-    dispatch(changeComposeSpoilerness());
-  },
-  onChangeText(text) {
+
+  onChange(text) {
     dispatch(changeCompose(text));
   },
-  onChangeVisibility(value) {
-    dispatch(changeComposeVisibility(value));
+
+  onSubmit(routerHistory) {
+    dispatch(submitCompose(routerHistory));
   },
+
   onClearSuggestions() {
     dispatch(clearComposeSuggestions());
   },
+
   onFetchSuggestions(token) {
     dispatch(fetchComposeSuggestions(token));
   },
-  onInsertEmoji(position, emoji) {
+
+  onSuggestionSelected(position, token, suggestion) {
+    dispatch(selectComposeSuggestion(position, token, suggestion));
+  },
+
+  onChangeSpoilerText(text) {
+    dispatch(changeComposeSpoilerText(text));
+  },
+
+  onPaste(files) {
+    dispatch(uploadCompose(files));
+  },
+
+  onPickEmoji(position, emoji) {
     dispatch(insertEmojiCompose(position, emoji));
   },
+
+  onChangeSpoilerness() {
+    dispatch(changeComposeSpoilerness());
+  },
+
+  onChangeVisibility(value) {
+    dispatch(changeComposeVisibility(value));
+  },
+
   onMount() {
     dispatch(mountCompose());
   },
-  onSelectSuggestion(position, token, suggestion) {
-    dispatch(selectComposeSuggestion(position, token, suggestion));
+
+  onUnmount() {
+    dispatch(unmountCompose());
   },
+
   onMediaDescriptionConfirm(routerHistory) {
     dispatch(openModal('CONFIRM', {
       message: intl.formatMessage(messages.missingDescriptionMessage),
@@ -111,15 +130,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_missing_media_description'], false)),
     }));
   },
-  onSubmit(routerHistory) {
-    dispatch(submitCompose(routerHistory));
-  },
-  onUnmount() {
-    dispatch(unmountCompose());
-  },
-  onUpload(files) {
-    dispatch(uploadCompose(files));
-  },
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ComposeForm);

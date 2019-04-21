@@ -1,23 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import PropTypes from 'prop-types';
+import ReplyIndicatorContainer from '../containers/reply_indicator_container';
+import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import { defineMessages, injectIntl } from 'react-intl';
+import EmojiPicker from 'flavours/glitch/features/emoji_picker';
+import PollFormContainer from '../containers/poll_form_container';
+import UploadFormContainer from '../containers/upload_form_container';
+import WarningContainer from '../containers/warning_container';
+import { isMobile } from 'flavours/glitch/util/is_mobile';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-
-//  Components.
+import { countableText } from 'flavours/glitch/util/counter';
 import OptionsContainer from '../containers/options_container';
 import Publisher from './publisher';
 import TextareaIcons from './textarea_icons';
-import UploadFormContainer from '../containers/upload_form_container';
-import PollFormContainer from '../containers/poll_form_container';
-import WarningContainer from '../containers/warning_container';
-import ReplyIndicatorContainer from '../containers/reply_indicator_container';
-import EmojiPicker from 'flavours/glitch/features/emoji_picker';
-import AutosuggestTextarea from '../../../components/autosuggest_textarea';
-
-//  Utils.
-import { countableText } from 'flavours/glitch/util/counter';
-import { isMobile } from 'flavours/glitch/util/is_mobile';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -37,84 +33,50 @@ class ComposeForm extends ImmutablePureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
-
-    //  State props.
-    advancedOptions: ImmutablePropTypes.map,
-    amUnlocked: PropTypes.bool,
+    text: PropTypes.string,
+    suggestions: ImmutablePropTypes.list,
+    spoiler: PropTypes.bool,
+    privacy: PropTypes.string,
+    spoilerText: PropTypes.string,
     focusDate: PropTypes.instanceOf(Date),
     caretPosition: PropTypes.number,
+    preselectDate: PropTypes.instanceOf(Date),
     isSubmitting: PropTypes.bool,
     isChangingUpload: PropTypes.bool,
     isUploading: PropTypes.bool,
+    onChange: PropTypes.func,
+    onSubmit: PropTypes.func,
+    onClearSuggestions: PropTypes.func,
+    onFetchSuggestions: PropTypes.func,
+    onSuggestionSelected: PropTypes.func,
+    onChangeSpoilerText: PropTypes.func,
+    onPaste: PropTypes.func,
+    onPickEmoji: PropTypes.func,
+    showSearch: PropTypes.bool,
+    anyMedia: PropTypes.bool,
+
+    advancedOptions: ImmutablePropTypes.map,
     layout: PropTypes.string,
     media: ImmutablePropTypes.list,
-    preselectDate: PropTypes.instanceOf(Date),
-    privacy: PropTypes.string,
     sideArm: PropTypes.string,
     sensitive: PropTypes.bool,
-    showSearch: PropTypes.bool,
-    spoiler: PropTypes.bool,
-    spoilerText: PropTypes.string,
-    suggestionToken: PropTypes.string,
-    suggestions: ImmutablePropTypes.list,
-    text: PropTypes.string,
-    anyMedia: PropTypes.bool,
     spoilersAlwaysOn: PropTypes.bool,
     mediaDescriptionConfirmation: PropTypes.bool,
     preselectOnReply: PropTypes.bool,
-
-    //  Dispatch props.
-    onChangeSpoilerText: PropTypes.func,
     onChangeSpoilerness: PropTypes.func,
-    onChangeText: PropTypes.func,
     onChangeVisibility: PropTypes.func,
-    onClearSuggestions: PropTypes.func,
-    onFetchSuggestions: PropTypes.func,
-    onInsertEmoji: PropTypes.func,
     onMount: PropTypes.func,
-    onSelectSuggestion: PropTypes.func,
-    onSubmit: PropTypes.func,
     onUnmount: PropTypes.func,
-    onUpload: PropTypes.func,
+    onPaste: PropTypes.func,
     onMediaDescriptionConfirm: PropTypes.func,
   };
 
-  //  Changes the text value of the spoiler.
-  handleChangeSpoiler = ({ target: { value } }) => {
-    const { onChangeSpoilerText } = this.props;
-    if (onChangeSpoilerText) {
-      onChangeSpoilerText(value);
-    }
-  }
+  static defaultProps = {
+    showSearch: false,
+  };
 
-  //  Inserts an emoji at the caret.
-  handleEmoji = (data) => {
-    const { textarea: { selectionStart } } = this;
-    const { onInsertEmoji } = this.props;
-    if (onInsertEmoji) {
-      onInsertEmoji(selectionStart, data);
-    }
-  }
-
-  //  Handles the secondary submit button.
-  handleSecondarySubmit = () => {
-    const { handleSubmit } = this.handlers;
-    const {
-      onChangeVisibility,
-      sideArm,
-    } = this.props;
-    if (sideArm !== 'none' && onChangeVisibility) {
-      onChangeVisibility(sideArm);
-    }
-    handleSubmit();
-  }
-
-  //  Selects a suggestion from the autofill.
-  handleSelect = (tokenStart, token, value) => {
-    const { onSelectSuggestion } = this.props;
-    if (onSelectSuggestion) {
-      onSelectSuggestion(tokenStart, token, value);
-    }
+  handleChange = (e) => {
+    this.props.onChange(e.target.value);
   }
 
   handleKeyDown = ({ ctrlKey, keyCode, metaKey, altKey }) => {
@@ -129,18 +91,10 @@ class ComposeForm extends ImmutablePureComponent {
     }
   }
 
-  //  When the escape key is released, we focus the UI.
-  handleKeyUp = ({ key }) => {
-    if (key === 'Escape') {
-      document.querySelector('.ui').parentElement.focus();
-    }
-  }
-
-  //  Submits the status.
   handleSubmit = () => {
     const { textarea: { value }, uploadForm } = this;
     const {
-      onChangeText,
+      onChange,
       onSubmit,
       isSubmitting,
       isChangingUpload,
@@ -154,8 +108,8 @@ class ComposeForm extends ImmutablePureComponent {
 
     //  If something changes inside the textarea, then we update the
     //  state before submitting.
-    if (onChangeText && text !== value) {
-      onChangeText(value);
+    if (onChange && text !== value) {
+      onChange(value);
     }
 
     // Submit disabled:
@@ -175,6 +129,48 @@ class ComposeForm extends ImmutablePureComponent {
       onMediaDescriptionConfirm(this.context.router ? this.context.router.history : null);
     } else if (onSubmit) {
       onSubmit(this.context.router ? this.context.router.history : null);
+    }
+  }
+
+  //  Changes the text value of the spoiler.
+  handleChangeSpoiler = ({ target: { value } }) => {
+    const { onChangeSpoilerText } = this.props;
+    if (onChangeSpoilerText) {
+      onChangeSpoilerText(value);
+    }
+  }
+
+  //  Inserts an emoji at the caret.
+  handleEmoji = (data) => {
+    const { textarea: { selectionStart } } = this;
+    const { onPickEmoji } = this.props;
+    if (onPickEmoji) {
+      onPickEmoji(selectionStart, data);
+    }
+  }
+
+  //  Handles the secondary submit button.
+  handleSecondarySubmit = () => {
+    const { handleSubmit } = this.handlers;
+    const {
+      onChangeVisibility,
+      sideArm,
+    } = this.props;
+    if (sideArm !== 'none' && onChangeVisibility) {
+      onChangeVisibility(sideArm);
+    }
+    handleSubmit();
+  }
+
+  //  Selects a suggestion from the autofill.
+  onSuggestionSelected = (tokenStart, token, value) => {
+    this.props.onSuggestionSelected(tokenStart, token, value);
+  }
+
+  //  When the escape key is released, we focus the UI.
+  handleKeyUp = ({ key }) => {
+    if (key === 'Escape') {
+      document.querySelector('.ui').parentElement.focus();
     }
   }
 
@@ -265,9 +261,6 @@ class ComposeForm extends ImmutablePureComponent {
     }
   }
 
-  handleChange = (e) => {
-    this.props.onChangeText(e.target.value);
-  }
 
   render () {
     const {
@@ -279,7 +272,6 @@ class ComposeForm extends ImmutablePureComponent {
     } = this;
     const {
       advancedOptions,
-      amUnlocked,
       anyMedia,
       intl,
       isSubmitting,
@@ -288,11 +280,10 @@ class ComposeForm extends ImmutablePureComponent {
       layout,
       media,
       onChangeSpoilerness,
-      onChangeText,
       onChangeVisibility,
       onClearSuggestions,
       onFetchSuggestions,
-      onUpload,
+      onPaste,
       privacy,
       sensitive,
       showSearch,
@@ -343,8 +334,8 @@ class ComposeForm extends ImmutablePureComponent {
             onKeyDown={this.handleKeyDown}
             onSuggestionsFetchRequested={onFetchSuggestions}
             onSuggestionsClearRequested={onClearSuggestions}
-            onSuggestionSelected={this.handleSelect}
-            onPaste={onUpload}
+            onSuggestionSelected={this.onSuggestionSelected}
+            onPaste={onPaste}
             autoFocus={!showSearch && !isMobile(window.innerWidth, layout)}
           />
 
@@ -361,7 +352,7 @@ class ComposeForm extends ImmutablePureComponent {
           disabled={isSubmitting}
           onChangeVisibility={onChangeVisibility}
           onToggleSpoiler={spoilersAlwaysOn ? null : onChangeSpoilerness}
-          onUpload={onUpload}
+          onPaste={onPaste}
           privacy={privacy}
           sensitive={sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0)}
           spoiler={spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler}

@@ -1,63 +1,46 @@
-//  Package imports.
 import React from 'react';
-import { connect } from 'react-redux';
+import ComposeFormContainer from './containers/compose_form_container';
+import NavigationContainer from './containers/navigation_container';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
 import { injectIntl, defineMessages } from 'react-intl';
 import classNames from 'classnames';
-
-//  Actions.
-import { cycleElefriendCompose } from 'flavours/glitch/actions/compose';
-
-//  Components.
-import ComposeFormContainer from './containers/compose_form_container';
-import HeaderContainer from './containers/header_container';
 import SearchContainer from './containers/search_container';
-import SearchResultsContainer from './containers/search_results_container';
-import NavigationContainer from './containers/navigation_container';
-import spring from 'react-motion/lib/spring';
-
-//  Utils.
-import { me, mascot } from 'flavours/glitch/util/initial_state';
 import Motion from 'flavours/glitch/util/optional_motion';
+import spring from 'react-motion/lib/spring';
+import SearchResultsContainer from './containers/search_results_container';
+import { me, mascot } from 'flavours/glitch/util/initial_state';
+import { cycleElefriendCompose } from 'flavours/glitch/actions/compose';
+import HeaderContainer from './containers/header_container';
 
-//  Messages.
 const messages = defineMessages({
   compose: { id: 'navigation_bar.compose', defaultMessage: 'Compose new toot' },
 });
 
-//  State mapping.
 const mapStateToProps = (state, ownProps) => ({
   elefriend: state.getIn(['compose', 'elefriend']),
   showSearch: ownProps.multiColumn ? state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']) : ownProps.isSearchPage,
 });
 
-//  Dispatch mapping.
 const mapDispatchToProps = (dispatch, { intl }) => ({
   onClickElefriend () {
     dispatch(cycleElefriendCompose());
   },
 });
 
-//  The component.
 export default @connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
 class Compose extends React.PureComponent {
   static propTypes = {
-    intl: PropTypes.object.isRequired,
-    isSearchPage: PropTypes.bool,
     multiColumn: PropTypes.bool,
     showSearch: PropTypes.bool,
-
-    //  State props.
+    isSearchPage: PropTypes.bool,
     elefriend: PropTypes.number,
-    unreadNotifications: PropTypes.number,
-
-    //  Dispatch props.
     onClickElefriend: PropTypes.func,
+    intl: PropTypes.object.isRequired,
   };
 
-  //  Rendering.
   render () {
     const {
       elefriend,
@@ -69,7 +52,6 @@ class Compose extends React.PureComponent {
     } = this.props;
     const computedClass = classNames('drawer', `mbstobon-${elefriend}`);
 
-    //  The result.
     return (
       <div className={computedClass} role='region' aria-label={intl.formatMessage(messages.compose)}>
         {multiColumn && <HeaderContainer />}
