@@ -82,12 +82,12 @@ class ComposeForm extends ImmutablePureComponent {
   handleKeyDown = ({ ctrlKey, keyCode, metaKey, altKey }) => {
     //  We submit the status on control/meta + enter.
     if (keyCode === 13 && (ctrlKey || metaKey)) {
-      handleSubmit();
+      this.handleSubmit();
     }
 
     // Submit the status with secondary visibility on alt + enter.
     if (keyCode === 13 && altKey) {
-      handleSecondarySubmit();
+      this.handleSecondarySubmit();
     }
   }
 
@@ -151,7 +151,6 @@ class ComposeForm extends ImmutablePureComponent {
 
   //  Handles the secondary submit button.
   handleSecondarySubmit = () => {
-    const { handleSubmit } = this.handlers;
     const {
       onChangeVisibility,
       sideArm,
@@ -159,7 +158,7 @@ class ComposeForm extends ImmutablePureComponent {
     if (sideArm !== 'none' && onChangeVisibility) {
       onChangeVisibility(sideArm);
     }
-    handleSubmit();
+    this.handleSubmit();
   }
 
   //  Selects a suggestion from the autofill.
