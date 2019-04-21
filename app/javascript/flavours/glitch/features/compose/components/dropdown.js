@@ -6,7 +6,7 @@ import Overlay from 'react-overlays/lib/Overlay';
 
 //  Components.
 import IconButton from 'flavours/glitch/components/icon_button';
-import ComposerOptionsDropdownContent from './content';
+import DropdownMenu from './dropdown_menu';
 
 //  Utils.
 import { isUserTouching } from 'flavours/glitch/util/is_mobile';
@@ -196,7 +196,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
           show={open}
           target={this}
         >
-          <ComposerOptionsDropdownContent
+          <DropdownMenu
             items={items}
             onChange={onChange}
             onClose={handleClose}

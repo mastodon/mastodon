@@ -2,23 +2,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import {
-  FormattedMessage,
-  defineMessages,
-} from 'react-intl';
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import spring from 'react-motion/lib/spring';
 
 //  Components.
 import IconButton from 'flavours/glitch/components/icon_button';
 import TextIconButton from 'flavours/glitch/components/text_icon_button';
 import Dropdown from './dropdown';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 //  Utils.
 import Motion from 'flavours/glitch/util/optional_motion';
-import {
-  assignHandlers,
-  hiddenComponent,
-} from 'flavours/glitch/util/react_helpers';
 import { pollLimits } from 'flavours/glitch/util/initial_state';
 
 //  Messages.
@@ -109,19 +103,43 @@ const messages = defineMessages({
   },
 });
 
-//  Handlers.
-const handlers = {
+export default @injectIntl
+class ComposerOptions extends ImmutablePureComponent {
+
+  static propTypes = {
+    acceptContentTypes: PropTypes.string,
+    advancedOptions: ImmutablePropTypes.map,
+    disabled: PropTypes.bool,
+    allowMedia: PropTypes.bool,
+    hasMedia: PropTypes.bool,
+    allowPoll: PropTypes.bool,
+    hasPoll: PropTypes.bool,
+    intl: PropTypes.object.isRequired,
+    onChangeAdvancedOption: PropTypes.func,
+    onChangeSensitivity: PropTypes.func,
+    onChangeVisibility: PropTypes.func,
+    onTogglePoll: PropTypes.func,
+    onDoodleOpen: PropTypes.func,
+    onModalClose: PropTypes.func,
+    onModalOpen: PropTypes.func,
+    onToggleSpoiler: PropTypes.func,
+    onUpload: PropTypes.func,
+    privacy: PropTypes.string,
+    resetFileKey: PropTypes.number,
+    sensitive: PropTypes.bool,
+    spoiler: PropTypes.bool,
+  };
 
   //  Handles file selection.
-  handleChangeFiles ({ target: { files } }) {
+  handleChangeFiles = ({ target: { files } }) => {
     const { onUpload } = this.props;
     if (files.length && onUpload) {
       onUpload(files);
     }
-  },
+  }
 
   //  Handles attachment clicks.
-  handleClickAttach (name) {
+  handleClickAttach = (name) => {
     const { fileElement } = this;
     const { onDoodleOpen } = this.props;
 
@@ -138,33 +156,15 @@ const handlers = {
       }
       return;
     }
-  },
+  }
 
   //  Handles a ref to the file input.
-  handleRefFileElement (fileElement) {
+  handleRefFileElement = (fileElement) => {
     this.fileElement = fileElement;
-  },
-};
-
-//  The component.
-export default class ComposerOptions extends React.PureComponent {
-
-  //  Constructor.
-  constructor (props) {
-    super(props);
-    assignHandlers(this, handlers);
-
-    //  Instance variables.
-    this.fileElement = null;
   }
 
   //  Rendering.
   render () {
-    const {
-      handleChangeFiles,
-      handleClickAttach,
-      handleRefFileElement,
-    } = this.handlers;
     const {
       acceptContentTypes,
       advancedOptions,
@@ -223,11 +223,11 @@ export default class ComposerOptions extends React.PureComponent {
           accept={acceptContentTypes}
           disabled={disabled || !allowMedia}
           key={resetFileKey}
-          onChange={handleChangeFiles}
-          ref={handleRefFileElement}
+          onChange={this.handleChangeFiles}
+          ref={this.handleRefFileElement}
           type='file'
           multiple
-          {...hiddenComponent}
+          style={{ display: 'none' }}
         />
         <Dropdown
           disabled={disabled || !allowMedia}
@@ -244,7 +244,7 @@ export default class ComposerOptions extends React.PureComponent {
               text: <FormattedMessage {...messages.doodle} />,
             },
           ]}
-          onChange={handleClickAttach}
+          onChange={this.handleClickAttach}
           onModalClose={onModalClose}
           onModalOpen={onModalOpen}
           title={intl.formatMessage(messages.attach)}
@@ -350,28 +350,3 @@ export default class ComposerOptions extends React.PureComponent {
   }
 
 }
-
-//  Props.
-ComposerOptions.propTypes = {
-  acceptContentTypes: PropTypes.string,
-  advancedOptions: ImmutablePropTypes.map,
-  disabled: PropTypes.bool,
-  allowMedia: PropTypes.bool,
-  hasMedia: PropTypes.bool,
-  allowPoll: PropTypes.bool,
-  hasPoll: PropTypes.bool,
-  intl: PropTypes.object.isRequired,
-  onChangeAdvancedOption: PropTypes.func,
-  onChangeSensitivity: PropTypes.func,
-  onChangeVisibility: PropTypes.func,
-  onTogglePoll: PropTypes.func,
-  onDoodleOpen: PropTypes.func,
-  onModalClose: PropTypes.func,
-  onModalOpen: PropTypes.func,
-  onToggleSpoiler: PropTypes.func,
-  onUpload: PropTypes.func,
-  privacy: PropTypes.string,
-  resetFileKey: PropTypes.number,
-  sensitive: PropTypes.bool,
-  spoiler: PropTypes.bool,
-};

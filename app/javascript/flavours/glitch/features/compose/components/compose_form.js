@@ -5,7 +5,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 //  Components.
-import ComposerOptions from '../../composer/options';
+import Options from './options';
 import ComposerPublisher from '../../composer/publisher';
 import TextareaIcons from './textarea_icons';
 import UploadFormContainer from '../containers/upload_form_container';
@@ -372,7 +372,7 @@ class ComposeForm extends ImmutablePureComponent {
           <PollFormContainer />
         </div>
 
-        <ComposerOptions
+        <Options
           acceptContentTypes={acceptContentTypes}
           advancedOptions={advancedOptions}
           disabled={isSubmitting}
@@ -382,7 +382,6 @@ class ComposeForm extends ImmutablePureComponent {
           hasMedia={media && !!media.size}
           allowPoll={!(media && !!media.size)}
           hasPoll={!!poll}
-          intl={intl}
           onChangeAdvancedOption={onChangeAdvancedOption}
           onChangeSensitivity={onChangeSensitivity}
           onChangeVisibility={onChangeVisibility}
