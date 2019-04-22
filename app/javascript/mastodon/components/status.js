@@ -289,6 +289,7 @@ class Status extends ImmutablePureComponent {
             {Component => (
               <Component
                 preview={video.get('preview_url')}
+                blurhash={video.get('blurhash')}
                 src={video.get('url')}
                 alt={video.get('description')}
                 width={this.props.cachedMediaWidth}

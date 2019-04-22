@@ -18,6 +18,7 @@
 #  account_id          :bigint(8)
 #  description         :text
 #  scheduled_status_id :bigint(8)
+#  blurhash            :string
 #
 
 class MediaAttachment < ApplicationRecord
@@ -53,6 +54,7 @@ class MediaAttachment < ApplicationRecord
       },
       format: 'png',
       time: 0,
+      file_geometry_parser: FastGeometryParser,
     },
   }.freeze
 
@@ -166,11 +168,11 @@ class MediaAttachment < ApplicationRecord
 
     def file_processors(f)
       if f.file_content_type == 'image/gif'
-        [:gif_transcoder]
+        [:gif_transcoder, :blurhash_transcoder]
       elsif VIDEO_MIME_TYPES.include? f.file_content_type
-        [:video_transcoder]
+        [:video_transcoder, :blurhash_transcoder]
       else
-        [:lazy_thumbnail]
+        [:lazy_thumbnail, :blurhash_transcoder]
       end
     end
   end
