@@ -91,7 +91,7 @@ class ComposerOptionsDropdownContentItem extends ImmutablePureComponent {
 
         <div className='content'>
           <strong>{text}</strong>
-          {meta ? meta : nil}
+          {meta}
         </div>
       </div>
     );
