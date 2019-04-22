@@ -2,14 +2,14 @@
 en:
   about:
     about_hashtag_html: These are public toots tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
-    about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
+    about_mastodon_html: Mastodon is a social network based on open Web protocols and free, open-source software. It is decentralized like e-mail.
     about_this: About
     active_count_after: active
     active_footnote: Monthly Active Users (MAU)
     administered_by: 'Administered by:'
     api: API
     apps: Mobile apps
-    apps_platforms: Use Mastodon from iOS, Android and other platforms
+    apps_platforms: Use Mastodon on iOS, Android and other platforms
     browse_directory: Browse a profile directory and filter by interests
     browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Contact
@@ -30,10 +30,10 @@ en:
     server_stats: 'Server stats:'
     source_code: Source code
     status_count_after:
-      one: status
-      other: statuses
+      one: toot
+      other: toots
     status_count_before: Who authored
-    tagline: Follow friends and discover new ones
+    tagline: Follow your friends and discover new ones
     terms: Terms of service
     user_count_after:
       one: user
@@ -49,21 +49,21 @@ en:
     following: Following
     joined: Joined %{date}
     last_active: last active
-    link_verified_on: Ownership of this link was checked on %{date}
+    link_verified_on: Ownership of this link was verified on %{date}
     media: Media
     moved_html: "%{name} has moved to %{new_profile_link}:"
     network_hidden: This information is not available
     nothing_here: There is nothing here!
-    people_followed_by: People whom %{name} follows
+    people_followed_by: People who %{name} follows
     people_who_follow: People who follow %{name}
     pin_errors:
-      following: You must be already following the person you want to endorse
+      following: You must be following the person you want to endorse
     posts:
       one: Toot
       other: Toots
     posts_tab_heading: Toots
     posts_with_replies: Toots and replies
-    reserved_username: The username is reserved
+    reserved_username: Username is reserved
     roles:
       admin: Admin
       bot: Bot
@@ -76,9 +76,9 @@ en:
       title: Perform moderation action on %{acct}
     account_moderation_notes:
       create: Leave note
-      created_msg: Moderation note successfully created!
+      created_msg: Moderation note successfully added!
       delete: Delete
-      destroyed_msg: Moderation note successfully destroyed!
+      destroyed_msg: Moderation note successfully deleted!
     accounts:
       approve: Approve
       approve_all: Approve all
@@ -86,12 +86,12 @@ en:
       avatar: Avatar
       by_domain: Domain
       change_email:
-        changed_msg: Account email successfully changed!
-        current_email: Current email
-        label: Change email
-        new_email: New email
-        submit: Change email
-        title: Change email for %{username}
+        changed_msg: Account e-mail successfully changed!
+        current_email: Current e-mail
+        label: Change e-mail
+        new_email: New e-mail
+        submit: Change e-mail
+        title: Change e-mail for %{username}
       confirm: Confirm
       confirmed: Confirmed
       confirming: Confirming
@@ -103,8 +103,8 @@ en:
       display_name: Display name
       domain: Domain
       edit: Edit
-      email: Email
-      email_status: Email status
+      email: E-mail
+      email_status: E-mail status
       enable: Enable
       enabled: Enabled
       feed_url: Feed URL
@@ -152,8 +152,8 @@ en:
       remove_header: Remove header
       resend_confirmation:
         already_confirmed: This user is already confirmed
-        send: Resend confirmation email
-        success: Confirmation email successfully sent!
+        send: Resend confirmation e-mail
+        success: Confirmation e-mail successfully sent!
       reset: Reset
       reset_password: Reset password
       resubscribe: Resubscribe
@@ -171,11 +171,11 @@ en:
         targeted_reports: Reported by others
       silence: Silence
       silenced: Silenced
-      statuses: Statuses
+      statuses: Toots
       subscribe: Subscribe
       suspended: Suspended
       title: Accounts
-      unconfirmed_email: Unconfirmed email
+      unconfirmed_email: Unconfirmed e-mail
       undo_silenced: Undo silence
       undo_suspension: Undo suspension
       unsubscribe: Unsubscribe
@@ -192,10 +192,10 @@ en:
         create_domain_block: "%{name} blocked domain %{target}"
         create_email_domain_block: "%{name} blacklisted e-mail domain %{target}"
         demote_user: "%{name} demoted user %{target}"
-        destroy_custom_emoji: "%{name} destroyed emoji %{target}"
+        destroy_custom_emoji: "%{name} deleted emoji %{target}"
         destroy_domain_block: "%{name} unblocked domain %{target}"
         destroy_email_domain_block: "%{name} whitelisted e-mail domain %{target}"
-        destroy_status: "%{name} removed status by %{target}"
+        destroy_status: "%{name} removed toot by %{target}"
         disable_2fa_user: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji: "%{name} disabled emoji %{target}"
         disable_user: "%{name} disabled login for user %{target}"
@@ -213,17 +213,17 @@ en:
         unsilence_account: "%{name} unsilenced %{target}'s account"
         unsuspend_account: "%{name} unsuspended %{target}'s account"
         update_custom_emoji: "%{name} updated emoji %{target}"
-        update_status: "%{name} updated status by %{target}"
-      deleted_status: "(deleted status)"
+        update_status: "%{name} updated toot by %{target}"
+      deleted_status: "(deleted toot)"
       title: Audit log
     custom_emojis:
       by_domain: Domain
-      copied_msg: Successfully created local copy of the emoji
+      copied_msg: Successfully added local copy of the emoji
       copy: Copy
       copy_failed_msg: Could not make a local copy of that emoji
-      created_msg: Emoji successfully created!
+      created_msg: Emoji successfully added!
       delete: Delete
-      destroyed_msg: Emojo successfully destroyed!
+      destroyed_msg: Emojo successfully deleted!
       disable: Disable
       disabled_msg: Successfully disabled that emoji
       emoji: Emoji
@@ -267,13 +267,13 @@ en:
     domain_blocks:
       add_new: Add new domain block
       created_msg: Domain block is now being processed
-      destroyed_msg: Domain block has been undone
+      destroyed_msg: Domain block has been removed
       domain: Domain
       new:
-        create: Create block
+        create: Add domain block
         hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
         severity:
-          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data. Use <strong>None</strong> if you just want to reject media files."
+          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data. Use <strong>None</strong> if you only want to reject media files."
           noop: None
           silence: Silence
           suspend: Suspend
@@ -348,11 +348,11 @@ en:
       inbox_url: Relay URL
       pending: Waiting for relay's approval
       save_and_enable: Save and enable
-      setup: Setup a relay connection
+      setup: Set up a relay connection
       status: Status
       title: Relays
     report_notes:
-      created_msg: Report note successfully created!
+      created_msg: Report note successfully added!
       destroyed_msg: Report note successfully deleted!
     reports:
       account:
@@ -386,7 +386,7 @@ en:
       updated_at: Updated
     settings:
       activity_api_enabled:
-        desc_html: Counts of locally posted statuses, active users, and new registrations in weekly buckets
+        desc_html: Counts of locally posted toots, active users, and new registrations in weekly buckets
         title: Publish aggregate statistics about user activity
       bootstrap_timeline_accounts:
         desc_html: Separate multiple usernames by comma. Only local and unlocked accounts will work. Default when empty is all local admins.
@@ -464,8 +464,8 @@ en:
       media:
         title: Media
       no_media: No media
-      no_status_selected: No statuses were changed as none were selected
-      title: Account statuses
+      no_status_selected: No toots were changed as none were selected
+      title: Account toots
       with_media: With media
     subscriptions:
       callback_url: Callback URL
@@ -503,9 +503,9 @@ en:
     settings: 'Change e-mail preferences: %{link}'
     view: 'View:'
     view_profile: View profile
-    view_status: View status
+    view_status: View toot
   applications:
-    created: Application successfully created
+    created: Application successfully added
     destroyed: Application successfully deleted
     invalid_url: The provided URL is invalid
     regenerate_token: Regenerate access token
@@ -516,16 +516,16 @@ en:
     apply_for_account: Request an invite
     change_password: Password
     checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
-    confirm_email: Confirm email
+    confirm_email: Confirm e-mail
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
     didnt_get_confirmation: Didn't receive confirmation instructions?
     forgot_password: Forgot your password?
     invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
     login: Log in
-    logout: Logout
+    logout: Log out
     migrate_account: Move to a different account
-    migrate_account_html: If you wish to redirect this account to a different one, you can <a href="%{path}">configure it here</a>.
+    migrate_account_html: If you wish to move this account to a different one, you can <a href="%{path}">configure it here</a>.
     or_log_in_with: Or log in with
     providers:
       cas: CAS
@@ -546,7 +546,7 @@ en:
     post_follow:
       close: Or, you can just close this window.
       return: Show the user's profile
-      web: Go to web
+      web: Go to Web
     title: Follow %{acct}
   datetime:
     distance_in_words:
@@ -591,7 +591,7 @@ en:
     '500':
       content: We're sorry, but something went wrong on our end.
       title: This page is not correct
-    noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Mastodon for your platform.
+    noscript_html: To use the Mastodon Web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Mastodon for your platform.
   existing_username_validator:
     not_found: could not find a local user with that username
     not_found_multiple: could not find %{usernames}
@@ -705,7 +705,7 @@ en:
       limit: You have reached the maximum amount of lists
   media_attachments:
     validations:
-      images_and_video: Cannot attach a video to a status that already contains images
+      images_and_video: Cannot attach a video to a toot that already contains images
       too_many: Cannot attach more than 4 files
   migrations:
     acct: username@domain of the new account
@@ -727,8 +727,8 @@ en:
         other: "%{count} new notifications since your last visit \U0001F418"
       title: In your absence...
     favourite:
-      body: 'Your status was favourited by %{name}:'
-      subject: "%{name} favourited your status"
+      body: 'Your toot was favourited by %{name}:'
+      subject: "%{name} favourited your toot"
       title: New favourite
     follow:
       body: "%{name} is now following you!"
@@ -745,8 +745,8 @@ en:
       subject: You were mentioned by %{name}
       title: New mention
     reblog:
-      body: 'Your status was boosted by %{name}:'
-      subject: "%{name} boosted your status"
+      body: 'Your toot was boosted by %{name}:'
+      subject: "%{name} boosted your toot"
       title: New boost
   number:
     human:
@@ -841,7 +841,7 @@ en:
       weibo: Weibo
     current_session: Current session
     description: "%{browser} on %{platform}"
-    explanation: These are the web browsers currently logged in to your Mastodon account.
+    explanation: These are the Web browsers currently logged in to your Mastodon account.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -894,7 +894,7 @@ en:
       one: 'contained a disallowed hashtag: %{tags}'
       other: 'contained the disallowed hashtags: %{tags}'
     language_detection: Automatically detect language
-    open_in_web: Open in web
+    open_in_web: Open in Web
     over_character_limit: character limit of %{max} exceeded
     pin_errors:
       limit: You have already pinned the maximum number of toots
@@ -941,14 +941,14 @@ en:
       <ul>
         <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
         <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-        <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+        <li>The e-mail address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
       </ul>
 
       <hr class="spacer" />
 
       <h3 id="protect">How do we protect your information?</h3>
 
-      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure your account.</p>
 
       <hr class="spacer" />
 
@@ -991,7 +991,7 @@ en:
 
       <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
 
-      <p>Law requirements can be different if this server is in another jurisdiction.</p>
+      <p>Legal requirements may be different if this server is in another jurisdiction.</p>
 
       <hr class="spacer" />
 
@@ -1049,20 +1049,20 @@ en:
         silence: Account limited
         suspend: Account suspended
     welcome:
-      edit_profile_action: Setup profile
+      edit_profile_action: Set up profile
       edit_profile_step: You can customize your profile by uploading an avatar, header, changing your display name and more. If you’d like to review new followers before they’re allowed to follow you, you can lock your account.
       explanation: Here are some tips to get you started
-      final_action: Start posting
-      final_step: 'Start posting! Even without followers your public messages may be seen by others, for example on the local timeline and in hashtags. You may want to introduce yourself on the #introductions hashtag.'
+      final_action: Start tooting
+      final_step: 'Start tooting! Even without followers your public toots may be seen by others, for example on the local timeline and in hashtags. You may want to introduce yourself using the #introductions hashtag.'
       full_handle: Your full handle
       full_handle_hint: This is what you would tell your friends so they can message or follow you from another server.
       review_preferences_action: Change preferences
-      review_preferences_step: Make sure to set your preferences, such as which emails you'd like to receive, or what privacy level you’d like your posts to default to. If you don’t have motion sickness, you could choose to enable GIF autoplay.
+      review_preferences_step: Make sure to set your preferences, such as which e-mails you'd like to receive, or what privacy level you’d like your posts to default to. If you don’t have motion sickness, you could choose to enable GIF autoplay.
       subject: Welcome to Mastodon
-      tip_federated_timeline: The federated timeline is a firehose view of the Mastodon network. But it only includes people your neighbours are subscribed to, so it's not complete.
-      tip_following: You follow your server's admin(s) by default. To find more interesting people, check the local and federated timelines.
+      tip_federated_timeline: The federated timeline is a firehose view of the Mastodon network. It only includes people your neighbours are subscribed to, so it's not complete.
+      tip_following: You follow your server's admin(s) by default. To find other interesting people, check the local and federated timelines.
       tip_local_timeline: The local timeline is a firehose view of people on %{instance}. These are your immediate neighbours!
-      tip_mobile_webapp: If your mobile browser offers you to add Mastodon to your homescreen, you can receive push notifications. It acts like a native app in many ways!
+      tip_mobile_webapp: If your mobile browser allows you to add Mastodon to your home screen, you can receive push notifications. It acts like a native app in many ways!
       tips: Tips
       title: Welcome aboard, %{name}!
   users:
