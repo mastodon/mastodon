@@ -28,7 +28,7 @@ gem 'bootsnap', '~> 1.4', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.6'
 gem 'iso-639'
-gem 'chewy', '~> 5.0'
+gem 'chewy', git: 'https://github.com/noellabo/chewy.git', branch: 'es6-client-compatibility-workaround-for-es7'  
 gem 'cld3', '~> 3.2.4'
 gem 'devise', '~> 4.6'
 gem 'devise-two-factor', '~> 3.0'
