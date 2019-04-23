@@ -507,30 +507,6 @@ export function updateTagHistory(tags) {
   };
 }
 
-<<<<<<< HEAD
-export function updateTagTemplate(tag) {
-  return (dispatch, getState) => {
-    dispatch({
-      type: COMPOSE_TAG_TEMPLATE_UPDATE,
-      tag,
-    });
-
-    const me = getState().getIn(['meta', 'me']);
-    tagTemplate.set(me, tag);
-  };
-}
-
-export function addTagTemplateInput() {
-}
-
-export function delTagTemplateInput() {
-}
-
-export function enableTagTemplage(key) {
-}
-
-export function disableTagTemplage(key) {
-=======
 export function updateTextTagTemplate(text, index) {
   return (dispatch, getState) => {
     let active = getState().getIn(['compose', 'tagTemplate', index, 'active']) || true;
@@ -609,7 +585,6 @@ function updateTagTemplate(text, active, index, dispatch, getState) {
     });
 
     tagTemplate.set(me, tags);
->>>>>>> adbfcebc6... add hashtag-temp feature
 }
 
 export function hydrateCompose() {
