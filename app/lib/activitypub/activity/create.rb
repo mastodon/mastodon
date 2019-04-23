@@ -68,7 +68,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         thread: replied_to_status,
         conversation: conversation_from_uri(@object['conversation']),
         media_attachment_ids: process_attachments.take(4).map(&:id),
-        quote: quote_from_url(@object['quoteUrl']),
         poll: process_poll,
         quote: quote_from_url(@object['quoteUrl']),
       }
