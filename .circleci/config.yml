@@ -206,7 +206,7 @@ jobs:
           command: docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:latest
       - run:
           name: Build docker image
-          command: docker build -f Dockerfile.best-friends -t mastodon:latest --cache-from ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:latest .
+          command: docker build -f Dockerfile.best-friends -t mastodon:latest --build-arg BASE_IMAGE=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/debian:latest --cache-from ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/mastodon:latest .
       - run:
           name: Push docker image to ECR
           command: |
