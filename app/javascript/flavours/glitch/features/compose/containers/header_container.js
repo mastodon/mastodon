@@ -11,7 +11,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
-  onOpenSettings (e) {
+  onSettingsClick (e) {
     e.preventDefault();
     e.stopPropagation();
     dispatch(openModal('SETTINGS', {}));
