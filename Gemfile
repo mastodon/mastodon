@@ -29,7 +29,7 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.6'
 gem 'iso-639'
 gem 'chewy', '~> 5.0'
-gem 'cld3', '~> 3.2.3'
+gem 'cld3', '~> 3.2.4'
 gem 'devise', '~> 4.6'
 gem 'devise-two-factor', '~> 3.0'
 
@@ -42,7 +42,7 @@ gem 'omniauth-cas', '~> 1.1'
 gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth', '~> 1.9'
 
-gem 'doorkeeper', '~> 5.0'
+gem 'doorkeeper', '~> 5.1'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
 gem 'goldfinger', '~> 2.1'
@@ -107,7 +107,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.16'
+  gem 'capybara', '~> 3.17'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 1.9'
   gem 'microformats', '~> 4.1'
@@ -142,7 +142,7 @@ group :development do
 end
 
 group :production do
-  gem 'lograge', '~> 0.10'
+  gem 'lograge', '~> 0.11'
   gem 'redis-rails', '~> 5.0'
 end
 

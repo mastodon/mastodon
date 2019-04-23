@@ -16,6 +16,7 @@ import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import SensitiveButtonContainer from '../containers/sensitive_button_container';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import PollFormContainer from '../containers/poll_form_container';
+import HashtagTempContainer from '../containers/hashtag_temp_container';
 import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
 import { isMobile } from '../../../is_mobile';
@@ -45,17 +46,16 @@ class ComposeForm extends ImmutablePureComponent {
   static propTypes = {
     intl: PropTypes.object.isRequired,
     text: PropTypes.string.isRequired,
-    suggestion_token: PropTypes.string,
     suggestions: ImmutablePropTypes.list,
     spoiler: PropTypes.bool,
     privacy: PropTypes.string,
-    spoiler_text: PropTypes.string,
+    spoilerText: PropTypes.string,
     focusDate: PropTypes.instanceOf(Date),
     caretPosition: PropTypes.number,
     preselectDate: PropTypes.instanceOf(Date),
-    is_submitting: PropTypes.bool,
-    is_changing_upload: PropTypes.bool,
-    is_uploading: PropTypes.bool,
+    isSubmitting: PropTypes.bool,
+    isChangingUpload: PropTypes.bool,
+    isUploading: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
     onClearSuggestions: PropTypes.func.isRequired,
@@ -66,8 +66,7 @@ class ComposeForm extends ImmutablePureComponent {
     onPickEmoji: PropTypes.func.isRequired,
     showSearch: PropTypes.bool,
     anyMedia: PropTypes.bool,
-    tagTemplate: PropTypes.string,
-    onChangeTagTemplate: PropTypes.func.isRequired,
+    tagTemplate: ImmutablePropTypes.list,
   };
 
   static defaultProps = {
@@ -96,10 +95,10 @@ class ComposeForm extends ImmutablePureComponent {
     }
 
     // Submit disabled:
-    const { is_submitting, is_changing_upload, is_uploading, anyMedia } = this.props;
-    const fulltext = [this.props.spoiler_text, countableText(this.props.text)].join('');
+    const { isSubmitting, isChangingUpload, isUploading, anyMedia } = this.props;
+    const fulltext = [this.props.spoilerText, countableText(this.props.text)].join('');
 
-    if (is_submitting || is_uploading || is_changing_upload || length(fulltext) > 500 || (fulltext.length !== 0 && fulltext.trim().length === 0 && !anyMedia)) {
+    if (isSubmitting || isUploading || isChangingUpload || length(fulltext) > 500 || (fulltext.length !== 0 && fulltext.trim().length === 0 && !anyMedia)) {
       return;
     }
 
@@ -125,8 +124,8 @@ class ComposeForm extends ImmutablePureComponent {
     this.setState({ tagSuggestionFrom: null });
   }
 
-  onHashTagSuggestionsFetchRequested = (token) => {
-    this.setState({ tagSuggestionFrom: 'hashtag-temp' });
+  onHashTagSuggestionsFetchRequested = (token, index) => {
+    this.setState({ tagSuggestionFrom: 'hashtag-temp-'+index.toString() });
     this.props.onFetchSuggestions(`#${token}`);
   }
 
@@ -156,7 +155,7 @@ class ComposeForm extends ImmutablePureComponent {
 
       this.autosuggestTextarea.textarea.setSelectionRange(selectionStart, selectionEnd);
       this.autosuggestTextarea.textarea.focus();
-    } else if(prevProps.is_submitting && !this.props.is_submitting) {
+    } else if(prevProps.isSubmitting && !this.props.isSubmitting) {
       this.autosuggestTextarea.textarea.focus();
     } else if (this.props.spoiler !== prevProps.spoiler) {
       if (this.props.spoiler) {
@@ -187,8 +186,9 @@ class ComposeForm extends ImmutablePureComponent {
     const { intl, onPaste, showSearch, anyMedia, tagTemplate } = this.props;
     const { tagSuggestionFrom } = this.state;
     const disabled = this.props.is_submitting;
-    const preTagTemplate = tagTemplate && tagTemplate.length > 0 ? ' #' : '';
-    const text     = [this.props.spoiler_text, countableText(this.props.text), preTagTemplate+tagTemplate].join('');
+    const activeTag = tagTemplate.map(tag => tag && tag.get('active') ? tag.get('text') || '' : '');
+    const preTag = activeTag.map(tag => tag.length > 0 ? ' #' : '');
+    const text     = [this.props.spoiler_text, countableText(this.props.text), preTag.join(''), activeTag.join('')].join('');
     const disabledButton = disabled || this.props.is_uploading || this.props.is_changing_upload || length(text) > 500 || (text.length !== 0 && text.trim().length === 0 && !anyMedia);
     let publishText = '';
 
@@ -208,7 +208,7 @@ class ComposeForm extends ImmutablePureComponent {
         <div className={`spoiler-input ${this.props.spoiler ? 'spoiler-input--visible' : ''}`}>
           <label>
             <span style={{ display: 'none' }}>{intl.formatMessage(messages.spoiler_placeholder)}</span>
-            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} tabIndex={this.props.spoiler ? 0 : -1} type='text' className='spoiler-input__input'  id='cw-spoiler-input' ref={this.setSpoilerText} />
+            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoilerText} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} tabIndex={this.props.spoiler ? 0 : -1} type='text' className='spoiler-input__input'  id='cw-spoiler-input' ref={this.setSpoilerText} />
           </label>
         </div>
 
@@ -234,14 +234,11 @@ class ComposeForm extends ImmutablePureComponent {
         <div className='compose-form__modifiers'>
           <UploadFormContainer />
           <PollFormContainer />
-          <HashtagTemp
-            placeholder={intl.formatMessage(messages.hashtag_temp_placeholder)}
-            disabled={disabled}
-            value={tagTemplate ? tagTemplate : ''}
-            suggestions={tagSuggestionFrom === 'hashtag-temp' ? this.props.suggestions : Immutable.List()}
+          <HashtagTempContainer
             onSuggestionsFetchRequested={this.onHashTagSuggestionsFetchRequested}
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-            onChangeTagTemplate={this.props.onChangeTagTemplate}
+            suggestions={this.props.suggestions}
+            tagSuggestionFrom={tagSuggestionFrom}
           />
 	      </div>
 

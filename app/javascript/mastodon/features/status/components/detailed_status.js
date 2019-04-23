@@ -32,6 +32,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     onHeightChange: PropTypes.func,
     domain: PropTypes.string.isRequired,
     compact: PropTypes.bool,
+    onQuoteToggleHidden: PropTypes.func.isRequired,
   };
 
   state = {
@@ -101,6 +102,19 @@ export default class DetailedStatus extends ImmutablePureComponent {
     window.open(href, 'mastodon-intent', 'width=445,height=600,resizable=no,menubar=no,status=no,scrollbars=yes');
   }
 
+  handleExpandedQuoteToggle = () => {
+    this.props.onQuoteToggleHidden(this.props.status);
+  }
+
+  handleQuoteClick = () => {
+    if (!this.context.router) {
+      return;
+    }
+
+    const { status } = this.props;
+    this.context.router.history.push(`/statuses/${status.getIn(['quote', 'id'])}`);
+  }
+
   render () {
     const status = (this.props.status && this.props.status.get('reblog')) ? this.props.status.get('reblog') : this.props.status;
     const outerStyle = { boxSizing: 'border-box' };
@@ -133,7 +147,11 @@ export default class DetailedStatus extends ImmutablePureComponent {
             media={quote_status.get('media_attachments')}
             height={300}
             onOpenMedia={this.props.onOpenMedia}
+<<<<<<< HEAD
             quote
+=======
+            quote={true}
+>>>>>>> 9f9059691... remake quote feature
           />
         );
       }
@@ -249,6 +267,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
           {quote}
           {media}
+          {quote}
 
           <div className='detailed-status__meta'>
             <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener'>

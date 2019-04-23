@@ -79,7 +79,7 @@ class FetchLinkCardService < BaseService
 
   def bad_url?(uri)
     # Avoid local instance URLs and invalid URLs
-    uri.host.blank? || (TagManager.instance.local_url?(uri.to_s) && uri.to_s !~ %r(/users/[\w_-]+/statuses/\w+)) || !%w(http https).include?(uri.scheme)
+    uri.host.blank? || TagManager.instance.local_url?(uri.to_s) || !%w(http https).include?(uri.scheme)
   end
 
   def mention_link?(a)
@@ -128,7 +128,7 @@ class FetchLinkCardService < BaseService
       # Most providers rely on <script> tags, which is a no-no
       return false
     end
-    
+
     @card.save_with_optional_image!
   end
 
@@ -165,7 +165,7 @@ class FetchLinkCardService < BaseService
   end
 
   def meta_property(page, property)
-    page.at_xpath("//meta[@property=\"#{property}\"]")&.attribute('content')&.value || page.at_xpath("//meta[@name=\"#{property}\"]")&.attribute('content')&.value
+    page.at_xpath("//meta[contains(concat(' ', normalize-space(@property), ' '), ' #{property} ')]")&.attribute('content')&.value || page.at_xpath("//meta[@name=\"#{property}\"]")&.attribute('content')&.value
   end
 
   def lock_options
