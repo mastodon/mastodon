@@ -16,11 +16,13 @@ export default class UploadForm extends ImmutablePureComponent {
       <div className='composer--upload_form'>
         <UploadProgressContainer />
 
-        <div className='content'>
-          {mediaIds.map(id => (
-            <UploadContainer id={id} key={id} />
-          ))}
-        </div>
+        {mediaIds.size > 0 && (
+          <div className='content'>
+            {mediaIds.map(id => (
+              <UploadContainer id={id} key={id} />
+            ))}
+          </div>
+        )}
       </div>
     );
   }

@@ -241,16 +241,14 @@
 }
 
 .composer--upload_form {
-  padding: 5px;
-  color: $inverted-text-color;
-  background: $simple-background-color;
-  font-size: 14px;
+  overflow: hidden;
 
   & > .content {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     font-family: inherit;
+    padding: 5px;
     overflow: hidden;
   }
 }
