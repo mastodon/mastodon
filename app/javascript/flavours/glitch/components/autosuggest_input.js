@@ -59,7 +59,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
   };
 
   state = {
-    suggestionsHidden: false,
+    suggestionsHidden: true,
     focused: false,
     selectedSuggestion: 0,
     lastToken: null,
