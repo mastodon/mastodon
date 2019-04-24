@@ -51,8 +51,10 @@
     }
 
     blockquote {
-      margin-left: 20px;
-      color: $dark-text-color;
+      padding-left: 10px;
+      border-left: 3px solid $darker-text-color;
+      color: $darker-text-color;
+      white-space: normal;
 
       p:last-child {
         margin-bottom: 0;
