@@ -49,6 +49,10 @@
     blockquote {
       margin-left: 20px;
       color: $dark-text-color;
+
+      p:last-child {
+        margin-bottom: 0;
+      }
     }
 
     b, strong {
