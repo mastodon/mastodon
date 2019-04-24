@@ -415,14 +415,21 @@
   position: relative;
   flex-direction: column;
 
+  .status__relative-time {
+    color: $dark-text-color;
+    float: right;
+    font-size: 14px;
+    width: auto;
+    margin: initial;
+    padding: initial;
+  }
+
   .status__display-name {
     display: flex;
   }
 
   .status__avatar {
-    height: 28px;
-    left: 10px;
-    top: 10px;
+    height: 48px;
     width: 48px;
   }
 
