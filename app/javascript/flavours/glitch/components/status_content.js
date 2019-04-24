@@ -213,7 +213,7 @@ export default class StatusContent extends React.PureComponent {
               style={directionStyle}
               tabIndex={!hidden ? 0 : null}
               dangerouslySetInnerHTML={content}
-              className='status__text'
+              className='status__content__text'
               lang={status.get('language')}
             />
             {media}
@@ -234,7 +234,7 @@ export default class StatusContent extends React.PureComponent {
             ref={this.setRef}
             dangerouslySetInnerHTML={content}
             lang={status.get('language')}
-            className='status__text'
+            className='status__content__text'
             tabIndex='0'
           />
           {media}
@@ -247,7 +247,7 @@ export default class StatusContent extends React.PureComponent {
           style={directionStyle}
           tabIndex='0'
         >
-          <div ref={this.setRef} className='status__text' dangerouslySetInnerHTML={content} lang={status.get('language')} tabIndex='0' />
+          <div ref={this.setRef} className='status__content__text' dangerouslySetInnerHTML={content} lang={status.get('language')} tabIndex='0' />
           {media}
         </div>
       );
