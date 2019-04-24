@@ -687,7 +687,7 @@
 
   h1,
   h2 {
-    font-weight: 500;
+    font-weight: 700;
     font-size: 18px;
   }
 
@@ -695,14 +695,26 @@
     font-size: 16px;
   }
 
+  h3,
+  h4,
+  h5 {
+    font-weight: 500;
+  }
+
   blockquote {
-    margin-left: 20px;
-    color: $dark-text-color;
+    padding-left: 10px;
+    border-left: 3px solid $darker-text-color;
+    color: $darker-text-color;
+    white-space: normal;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
   }
 
   b,
   strong {
-    font-weight: 500;
+    font-weight: 700;
   }
 
   em,
@@ -713,6 +725,10 @@
   ul,
   ol {
     margin-left: 1em;
+
+    p {
+      margin: 0;
+    }
   }
 
   ul {
