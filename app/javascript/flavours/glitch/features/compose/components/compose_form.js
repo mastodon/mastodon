@@ -351,7 +351,7 @@ class ComposeForm extends ImmutablePureComponent {
           disabled={isSubmitting}
           onChangeVisibility={onChangeVisibility}
           onToggleSpoiler={spoilersAlwaysOn ? null : onChangeSpoilerness}
-          onPaste={onPaste}
+          onUpload={onPaste}
           privacy={privacy}
           sensitive={sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0)}
           spoiler={spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler}
