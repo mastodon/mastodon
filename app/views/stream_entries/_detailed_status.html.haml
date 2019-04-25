@@ -15,7 +15,7 @@
 
   = account_action_button(status.account)
 
-  .status__content.emojify<
+  .status__content.emojify{ class: text_formatting_classes }<
     - if status.spoiler_text?
       %p{ :style => ('margin-bottom: 0' unless current_account&.user&.setting_expand_spoilers) }<
         %span.p-summary> #{Formatter.instance.format_spoiler(status, autoplay: autoplay)}&nbsp;

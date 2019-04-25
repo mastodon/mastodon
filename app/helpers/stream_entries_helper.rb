@@ -132,6 +132,17 @@ module StreamEntriesHelper
     end
   end
 
+  def text_formatting_classes
+    case current_user&.setting_strip_formatting
+    when 'none', nil
+      'rich-text rich-blocks'
+    when 'blocks'
+      'rich-text'
+    when 'all'
+      nil
+    end
+  end
+
   def style_classes(status, is_predecessor, is_successor, include_threads)
     classes = ['entry']
     classes << 'entry-predecessor' if is_predecessor
