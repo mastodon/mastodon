@@ -154,7 +154,16 @@ class Item extends React.PureComponent {
 
     let thumbnail = '';
 
-    if (attachment.get('type') === 'image') {
+    if (attachment.get('type') === 'unknown') {
+      thumbnail = (
+        <a
+          className='media-gallery__item-thumbnail'
+          href={attachment.get('remote_url')}
+          target='_blank'
+          style={{ cursor: 'pointer' }}
+        />
+      );
+    } else if (attachment.get('type') === 'image') {
       const previewUrl   = attachment.get('preview_url');
       const previewWidth = attachment.getIn(['meta', 'small', 'width']);
 

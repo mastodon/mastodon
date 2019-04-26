@@ -109,9 +109,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     if (status.get('poll')) {
       media = <PollContainer pollId={status.get('poll')} />;
     } else if (status.get('media_attachments').size > 0) {
-      if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
-        media = <AttachmentList media={status.get('media_attachments')} />;
-      } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
+      if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         const video = status.getIn(['media_attachments', 0]);
 
         media = (
