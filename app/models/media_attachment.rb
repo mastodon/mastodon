@@ -33,6 +33,11 @@ class MediaAttachment < ApplicationRecord
   VIDEO_MIME_TYPES             = ['video/webm', 'video/mp4', 'video/quicktime'].freeze
   VIDEO_CONVERTIBLE_MIME_TYPES = ['video/webm', 'video/quicktime'].freeze
 
+  BLURHASH_OPTIONS = {
+    x_comp: 4,
+    y_comp: 4,
+  }.freeze
+
   IMAGE_STYLES = {
     original: {
       pixels: 1_638_400, # 1280x1280px
@@ -42,6 +47,7 @@ class MediaAttachment < ApplicationRecord
     small: {
       pixels: 160_000, # 400x400px
       file_geometry_parser: FastGeometryParser,
+      blurhash: BLURHASH_OPTIONS,
     },
   }.freeze
 
@@ -55,6 +61,7 @@ class MediaAttachment < ApplicationRecord
       format: 'png',
       time: 0,
       file_geometry_parser: FastGeometryParser,
+      blurhash: BLURHASH_OPTIONS,
     },
   }.freeze
 
