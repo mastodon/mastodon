@@ -133,6 +133,10 @@ RSpec.describe MediaAttachment, type: :model do
       expect(media.file.meta["small"]["height"]).to eq 327
       expect(media.file.meta["small"]["aspect"]).to eq 490.0 / 327
     end
+
+    it 'does not leave temporary files behind' do
+      expect { media }.to_not change { Dir['/tmp/*.jpg'] }
+    end
   end
 
   describe 'descriptions for remote attachments' do
