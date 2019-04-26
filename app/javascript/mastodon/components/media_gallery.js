@@ -155,13 +155,12 @@ class Item extends React.PureComponent {
     let thumbnail = '';
 
     if (attachment.get('type') === 'unknown') {
-      thumbnail = (
-        <a
-          className='media-gallery__item-thumbnail'
-          href={attachment.get('remote_url')}
-          target='_blank'
-          style={{ cursor: 'pointer' }}
-        />
+      return (
+        <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
+          <a className='media-gallery__item-thumbnail' href={attachment.get('remote_url')} target='_blank' style={{ cursor: 'pointer' }} >
+            <canvas width={32} height={32} ref={this.setCanvasRef} className='media-gallery__preview' />
+          </a>
+        </div>
       );
     } else if (attachment.get('type') === 'image') {
       const previewUrl   = attachment.get('preview_url');

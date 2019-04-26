@@ -5,7 +5,6 @@ import Avatar from '../../../components/avatar';
 import DisplayName from '../../../components/display_name';
 import StatusContent from '../../../components/status_content';
 import MediaGallery from '../../../components/media_gallery';
-import AttachmentList from '../../../components/attachment_list';
 import { Link } from 'react-router-dom';
 import { FormattedDate, FormattedNumber } from 'react-intl';
 import Card from './card';
