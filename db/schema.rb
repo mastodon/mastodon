@@ -378,6 +378,7 @@ ActiveRecord::Schema.define(version: 2019_05_01_184213) do
     t.bigint "account_id"
     t.text "description"
     t.bigint "scheduled_status_id"
+    t.string "blurhash"
     t.index ["account_id"], name: "index_media_attachments_on_account_id"
     t.index ["scheduled_status_id"], name: "index_media_attachments_on_scheduled_status_id"
     t.index ["shortcode"], name: "index_media_attachments_on_shortcode", unique: true
