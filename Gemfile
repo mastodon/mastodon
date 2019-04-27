@@ -21,6 +21,7 @@ gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
 gem 'paperclip-av-transcoder', '~> 0.6'
 gem 'streamio-ffmpeg', '~> 3.0'
+gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.6'
@@ -42,7 +43,7 @@ gem 'omniauth-cas', '~> 1.1'
 gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth', '~> 1.9'
 
-gem 'doorkeeper', '~> 5.0'
+gem 'doorkeeper', '~> 5.1'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
 gem 'goldfinger', '~> 2.1'
@@ -107,7 +108,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.16'
+  gem 'capybara', '~> 3.18'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 1.9'
   gem 'microformats', '~> 4.1'
@@ -142,7 +143,7 @@ group :development do
 end
 
 group :production do
-  gem 'lograge', '~> 0.10'
+  gem 'lograge', '~> 0.11'
   gem 'redis-rails', '~> 5.0'
 end
 

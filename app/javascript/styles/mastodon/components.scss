@@ -2412,7 +2412,7 @@ a.account__display-name {
 
     & > div {
       background: rgba($base-shadow-color, 0.6);
-      border-radius: 4px;
+      border-radius: 8px;
       padding: 12px 9px;
       flex: 0 0 auto;
       display: flex;
@@ -2423,19 +2423,18 @@ a.account__display-name {
     button,
     a {
       display: inline;
-      color: $primary-text-color;
+      color: $secondary-text-color;
       background: transparent;
       border: 0;
-      padding: 0 5px;
+      padding: 0 8px;
       text-decoration: none;
-      opacity: 0.6;
       font-size: 18px;
       line-height: 18px;
 
       &:hover,
       &:active,
       &:focus {
-        opacity: 1;
+        color: $primary-text-color;
       }
     }
 
@@ -2932,15 +2931,49 @@ a.status-card.compact:hover {
 }
 
 .spoiler-button {
-  display: none;
-  left: 4px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   position: absolute;
-  text-shadow: 0 1px 1px $base-shadow-color, 1px 0 1px $base-shadow-color;
-  top: 4px;
   z-index: 100;
 
-  &.spoiler-button--visible {
+  &--minified {
     display: block;
+    left: 4px;
+    top: 4px;
+    width: auto;
+    height: auto;
+  }
+
+  &--hidden {
+    display: none;
+  }
+
+  &__overlay {
+    display: block;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    border: 0;
+
+    &__label {
+      display: inline-block;
+      background: rgba($base-overlay-background, 0.5);
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: $primary-text-color;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      .spoiler-button__overlay__label {
+        background: rgba($base-overlay-background, 0.8);
+      }
+    }
   }
 }
 
@@ -3961,14 +3994,6 @@ a.status-card.compact:hover {
   font-size: 14px;
 }
 
-.confirmation-modal {
-  max-width: 85vw;
-
-  @media screen and (min-width: 480px) {
-    max-width: 380px;
-  }
-}
-
 .mute-modal {
   line-height: 24px;
 }
@@ -4093,6 +4118,11 @@ a.status-card.compact:hover {
   ul {
     overflow-y: auto;
     flex-shrink: 0;
+    max-height: 80vh;
+
+    &.with-status {
+      max-height: calc(80vh - 75px);
+    }
 
     li:empty {
       margin: 0;
@@ -4146,6 +4176,10 @@ a.status-card.compact:hover {
     &:active {
       color: darken($lighter-text-color, 4%);
     }
+  }
+
+  .confirmation-modal__secondary-button {
+    flex-shrink: 1;
   }
 }
 
@@ -4312,6 +4346,8 @@ a.status-card.compact:hover {
   text-decoration: none;
   color: $secondary-text-color;
   line-height: 0;
+  position: relative;
+  z-index: 1;
 
   &,
   img {
@@ -4321,6 +4357,21 @@ a.status-card.compact:hover {
 
   img {
     object-fit: cover;
+  }
+}
+
+.media-gallery__preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background: $base-overlay-background;
+
+  &--hidden {
+    display: none;
   }
 }
 
