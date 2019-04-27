@@ -123,6 +123,7 @@ export default class MediaModal extends ImmutablePureComponent {
         return (
           <Video
             preview={image.get('preview_url')}
+            blurhash={image.get('blurhash')}
             src={image.get('url')}
             width={image.get('width')}
             height={image.get('height')}

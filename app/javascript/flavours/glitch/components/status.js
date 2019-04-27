@@ -479,6 +479,7 @@ export default class Status extends ImmutablePureComponent {
           <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
             {Component => (<Component
               preview={video.get('preview_url')}
+              blurhash={video.get('blurhash')}
               src={video.get('url')}
               alt={video.get('description')}
               inline

@@ -20,6 +20,7 @@ export default class VideoModal extends ImmutablePureComponent {
         <div>
           <Video
             preview={media.get('preview_url')}
+            blurhash={media.get('blurhash')}
             src={media.get('url')}
             startTime={time}
             onCloseVideo={onClose}

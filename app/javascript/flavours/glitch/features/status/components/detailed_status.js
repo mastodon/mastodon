@@ -134,6 +134,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         media = (
           <Video
             preview={video.get('preview_url')}
+            blurhash={video.get('blurhash')}
             src={video.get('url')}
             alt={video.get('description')}
             inline

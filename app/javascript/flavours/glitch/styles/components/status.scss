@@ -705,7 +705,7 @@
 
     & > div {
       background: rgba($base-shadow-color, 0.6);
-      border-radius: 4px;
+      border-radius: 8px;
       padding: 12px 9px;
       flex: 0 0 auto;
       display: flex;
@@ -716,19 +716,18 @@
     button,
     a {
       display: inline;
-      color: $primary-text-color;
+      color: $secondary-text-color;
       background: transparent;
       border: 0;
-      padding: 0 5px;
+      padding: 0 8px;
       text-decoration: none;
-      opacity: 0.6;
       font-size: 18px;
       line-height: 18px;
 
       &:hover,
       &:active,
       &:focus {
-        opacity: 1;
+        color: $primary-text-color;
       }
     }
 

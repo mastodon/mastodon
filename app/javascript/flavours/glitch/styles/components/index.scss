@@ -1066,15 +1066,49 @@
 }
 
 .spoiler-button {
-  display: none;
-  left: 4px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   position: absolute;
-  text-shadow: 0 1px 1px $base-shadow-color, 1px 0 1px $base-shadow-color;
-  top: 4px;
   z-index: 100;
 
-  &.spoiler-button--visible {
+  &--minified {
     display: block;
+    left: 4px;
+    top: 4px;
+    width: auto;
+    height: auto;
+  }
+
+  &--hidden {
+    display: none;
+  }
+
+  &__overlay {
+    display: block;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    border: 0;
+
+    &__label {
+      display: inline-block;
+      background: rgba($base-overlay-background, 0.5);
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: $primary-text-color;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      .spoiler-button__overlay__label {
+        background: rgba($base-overlay-background, 0.8);
+      }
+    }
   }
 }
 
