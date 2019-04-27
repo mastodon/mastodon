@@ -41,7 +41,7 @@ import {
 import { TIMELINE_DELETE } from 'flavours/glitch/actions/timelines';
 import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
 import { REDRAFT } from 'flavours/glitch/actions/statuses';
-import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS, is } from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 import uuid from 'flavours/glitch/util/uuid';
 import { privacyPreference } from 'flavours/glitch/util/privacy_preference';
 import { me } from 'flavours/glitch/util/initial_state';
@@ -219,10 +219,10 @@ const insertSuggestion = (state, position, token, completion, path) => {
     map.updateIn(path, oldText => `${oldText.slice(0, position)}${completion}${completion[0] === ':' ? '\u200B' : ' '}${oldText.slice(position + token.length)}`);
     map.set('suggestion_token', null);
     map.set('suggestions', ImmutableList());
-    if (is(path, ImmutableList(['text']))) {
+    if (path.length === 1 && path[0] === 'text') {
       map.set('focusDate', new Date());
+      map.set('caretPosition', position + completion.length + 1);
     }
-    map.set('caretPosition', position + completion.length + 1);
     map.set('idempotencyKey', uuid());
   });
 };
