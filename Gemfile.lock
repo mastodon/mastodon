@@ -99,6 +99,8 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
+    blurhash (0.1.2)
+      ffi (~> 1.10.0)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
     brakeman (4.5.0)
@@ -661,6 +663,7 @@ DEPENDENCIES
   aws-sdk-s3 (~> 1.36)
   better_errors (~> 2.5)
   binding_of_caller (~> 0.7)
+  blurhash (~> 0.1)
   bootsnap (~> 1.4)
   brakeman (~> 4.5)
   browser
