@@ -282,7 +282,7 @@ class User < ApplicationRecord
   end
 
   def external?
-    @external
+    !!@external
   end
 
   def sanitize_languages
