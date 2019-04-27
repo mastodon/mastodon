@@ -325,6 +325,10 @@ export default class Status extends ImmutablePureComponent {
     this.handleReblogClick(this.props.status);
   }
 
+  handleHotkeyBookmark = () => {
+    this.handleBookmarkClick(this.props.status);
+  }
+
   handleHotkeyMention = e => {
     e.preventDefault();
     this.handleMentionClick(this.props.status);
@@ -463,6 +467,7 @@ export default class Status extends ImmutablePureComponent {
       reply: this.handleHotkeyReply,
       favourite: this.handleHotkeyFavourite,
       boost: this.handleHotkeyBoost,
+      bookmark: this.handleHotkeyBookmark,
       mention: this.handleHotkeyMention,
       openProfile: this.handleHotkeyOpenProfile,
       toggleSpoiler: this.handleExpandedToggle,
