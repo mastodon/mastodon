@@ -68,6 +68,7 @@ const mapStateToProps = state => ({
   dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
   unreadNotifications: state.getIn(['notifications', 'unread']),
   showFaviconBadge: state.getIn(['local_settings', 'notifications', 'favicon_badge']),
+  hicolorPrivacyIcons: state.getIn(['local_settings', 'hicolor_privacy_icons']),
 });
 
 const keyMap = {
@@ -446,6 +447,7 @@ export default class UI extends React.Component {
       'wide': isWide,
       'system-font': this.props.systemFontUi,
       'navbar-under': navbarUnder,
+      'hicolor-privacy-icons': this.props.hicolorPrivacyIcons,
     });
 
     const handlers = {

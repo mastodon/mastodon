@@ -42,6 +42,15 @@ export default class LocalSettingsPage extends React.PureComponent {
         >
           <FormattedMessage id='settings.show_reply_counter' defaultMessage='Display an estimate of the reply count' />
         </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['hicolor_privacy_icons']}
+          id='mastodon-settings--hicolor_privacy_icons'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.hicolor_privacy_icons' defaultMessage='High color privacy icons' />
+          <span className='hint'><FormattedMessage id='settings.hicolor_privacy_icons.hint' defaultMessage="Display privacy icons in bright and easily distinguishable colors" /></span>
+        </LocalSettingsPageItem>
         <section>
           <h2><FormattedMessage id='settings.notifications_opts' defaultMessage='Notifications options' /></h2>
           <LocalSettingsPageItem

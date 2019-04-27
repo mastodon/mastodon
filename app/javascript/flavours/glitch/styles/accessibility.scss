@@ -11,3 +11,25 @@ $emojis-requiring-outlines: '8ball' 'ant' 'back' 'black_circle' 'black_heart' 'b
     }
   }
 }
+
+.hicolor-privacy-icons {
+  .status__visibility-icon.fa-globe,
+  .composer--options--dropdown--content--item .fa-globe {
+    color: #1976D2;
+  }
+
+  .status__visibility-icon.fa-unlock,
+  .composer--options--dropdown--content--item .fa-unlock {
+    color: #388E3C;
+  }
+
+  .status__visibility-icon.fa-lock,
+  .composer--options--dropdown--content--item .fa-lock {
+    color: #FFA000;
+  }
+
+  .status__visibility-icon.fa-envelope,
+  .composer--options--dropdown--content--item .fa-envelope {
+    color: #D32F2F;
+  }
+}
