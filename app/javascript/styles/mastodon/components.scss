@@ -708,6 +708,10 @@
       font-family: inherit;
     }
 
+    u {
+      text-decoration: none;
+    }
+
     h1::before {
       content: '# ';
     }
@@ -777,6 +781,11 @@
     em,
     i {
       font-style: italic;
+    }
+
+    sub {
+      font-size: smaller;
+      text-align: sub;
     }
   }
 
