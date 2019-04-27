@@ -1,6 +1,7 @@
 import React from 'react';
 import Column from 'flavours/glitch/features/ui/components/column';
 import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
+import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -9,16 +10,22 @@ const messages = defineMessages({
   heading: { id: 'keyboard_shortcuts.heading', defaultMessage: 'Keyboard Shortcuts' },
 });
 
+const mapStateToProps = state => ({
+  collapseEnabled: state.getIn(['local_settings', 'collapsed', 'enabled']),
+});
+
+@connect(mapStateToProps)
 @injectIntl
 export default class KeyboardShortcuts extends ImmutablePureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
     multiColumn: PropTypes.bool,
+    collapseEnabled: PropTypes.bool,
   };
 
   render () {
-    const { intl } = this.props;
+    const { intl, collapseEnabled } = this.props;
 
     return (
       <Column icon='question' heading={intl.formatMessage(messages.heading)}>
@@ -64,6 +71,12 @@ export default class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><kbd>x</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.toggle_hidden' defaultMessage='to show/hide text behind CW' /></td>
               </tr>
+              {collapseEnabled && (
+                <tr>
+                  <td><kbd>shift</kbd>+<kbd>x</kbd></td>
+                  <td><FormattedMessage id='keyboard_shortcuts.toggle_collapse' defaultMessage='to collapse/uncollapse toots' /></td>
+                </tr>
+              )}
               <tr>
                 <td><kbd>up</kbd>, <kbd>k</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.up' defaultMessage='to move up in the list' /></td>

@@ -99,6 +99,7 @@ const keyMap = {
   goToRequests: 'g r',
   toggleSpoiler: 'x',
   bookmark: 'd',
+  toggleCollapse: 'shift+x',
 };
 
 @connect(mapStateToProps)

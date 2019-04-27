@@ -367,6 +367,14 @@ export default class Status extends ImmutablePureComponent {
     this.props.onMoveDown(this.props.containerId || this.props.id, e.target.getAttribute('data-featured'));
   }
 
+  handleHotkeyCollapse = e => {
+    if (!this.props.settings.getIn(['collapsed', 'enabled']))
+      return;
+
+    this.setCollapsed(!this.state.isCollapsed);
+  }
+
+
   handleRef = c => {
     this.node = c;
   }
@@ -556,6 +564,7 @@ export default class Status extends ImmutablePureComponent {
       moveDown: this.handleHotkeyMoveDown,
       toggleSpoiler: this.handleExpandedToggle,
       bookmark: this.handleHotkeyBookmark,
+      toggleCollapse: this.handleHotkeyCollapse,
     };
 
     const computedClass = classNames('status', `status-${status.get('visibility')}`, {
