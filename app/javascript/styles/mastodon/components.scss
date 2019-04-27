@@ -707,6 +707,54 @@
     code {
       font-family: inherit;
     }
+
+    h1::before {
+      content: '# ';
+    }
+
+    h2::before {
+      content: '## ';
+    }
+
+    h3::before {
+      content: '### ';
+    }
+
+    h4::before {
+      content: '#### ';
+    }
+
+    h5::before {
+      content: '##### ';
+    }
+  }
+
+  &:not(.rich-blocks) {
+    blockquote {
+      position: relative;
+      padding-left: 1em;
+      overflow: hidden;
+    }
+
+    blockquote::before {
+      position: absolute;
+      content: '>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a';
+      white-space: pre-wrap;
+      left: 0;
+      top: 0;
+    }
+
+    li::before {
+      position: absolute;
+      content: '*';
+      left: 0;
+      top: 0;
+    }
+
+    li {
+      position: relative;
+      padding-left: 1em;
+    }
   }
 
   &.rich-text {
