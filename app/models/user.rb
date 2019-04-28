@@ -107,6 +107,7 @@ class User < ApplicationRecord
            :expand_spoilers, :default_language, :aggregate_reblogs, :show_application, to: :settings, prefix: :setting, allow_nil: false
 
   attr_reader :invite_code
+  attr_writer :external
 
   def confirmed?
     confirmed_at.present?
@@ -273,11 +274,15 @@ class User < ApplicationRecord
   private
 
   def set_approved
-    self.approved = open_registrations? || invited?
+    self.approved = open_registrations? || invited? || external?
   end
 
   def open_registrations?
     Setting.registrations_mode == 'open'
+  end
+
+  def external?
+    !!@external
   end
 
   def sanitize_languages
