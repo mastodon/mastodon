@@ -207,6 +207,10 @@ class Status extends ImmutablePureComponent {
     this.props.onToggleHidden(this._properStatus());
   }
 
+  handleHotkeyToggleSensitive = () => {
+    this.handleToggleMediaVisibility();
+  }
+
   _properStatus () {
     const { status } = this.props;
 
@@ -361,6 +365,7 @@ class Status extends ImmutablePureComponent {
       moveUp: this.handleHotkeyMoveUp,
       moveDown: this.handleHotkeyMoveDown,
       toggleHidden: this.handleHotkeyToggleHidden,
+      toggleSensitive: this.handleHotkeyToggleSensitive,
     };
 
     return (
