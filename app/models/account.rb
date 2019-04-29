@@ -51,6 +51,7 @@ class Account < ApplicationRecord
   USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
   MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
   MIN_FOLLOWERS_DISCOVERY = 10
+  NOTE_MAXIMUM_LENGTH = 512
 
   include AccountAssociations
   include AccountAvatar
@@ -75,7 +76,7 @@ class Account < ApplicationRecord
   validates_with UniqueUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
-  validates :note, note_length: { maximum: 160 }, if: -> { local? && will_save_change_to_note? }
+  validates :note, note_length: { maximum: NOTE_MAXIMUM_LENGTH }, if: -> { local? && will_save_change_to_note? }
   validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
 
   scope :remote, -> { where.not(domain: nil) }
