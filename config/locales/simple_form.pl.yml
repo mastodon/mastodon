@@ -33,11 +33,14 @@ pl:
         setting_display_media_show_all: Zawsze pokazuj zawartość multimedialną jako wrażliwą
         setting_hide_network: Informacje o tym, kto Cię śledzi i kogo śledzisz nie będą widoczne
         setting_noindex: Wpływa na widoczność strony profilu i Twoich wpisów
+        setting_show_application: W informacjach o wpisie będzie widoczna informacja o aplikacji, z której został wysłany
         setting_theme: Zmienia wygląd Mastodona po zalogowaniu z dowolnego urządzenia.
         username: Twoja nazwa użytkownika będzie niepowtarzalna na %{domain}
         whole_word: Jeśli słowo lub fraza składa się jedynie z liter lub cyfr, filtr będzie zastosowany tylko do pełnych wystąpień
+      featured_tag:
+        name: 'Sugerujemy użycie jednego z następujących:'
       imports:
-        data: Plik CSV wyeksportowany z innej instancji Mastodona
+        data: Plik CSV wyeksportowany z innego serwera Mastodona
       sessions:
         otp: 'Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych:'
       user:
@@ -101,6 +104,7 @@ pl:
         setting_hide_network: Ukryj swoją sieć
         setting_noindex: Nie indeksuj mojego profilu w wyszukiwarkach internetowych
         setting_reduce_motion: Ogranicz ruch w animacjach
+        setting_show_application: Informuj o aplikacji z której wysłano wpisy
         setting_system_font_ui: Używaj domyślnej czcionki systemu
         setting_theme: Motyw strony
         setting_unfollow_modal: Pytaj o potwierdzenie przed cofnięciem śledzenia
@@ -109,6 +113,8 @@ pl:
         username: Nazwa użytkownika
         username_or_email: Nazwa użytkownika lub adres e-mail
         whole_word: Całe słowo
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie śledzą
         must_be_following: Nie wyświetlaj powiadomień od osób, których nie śledzisz

@@ -15,6 +15,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "File upload limit exceeded.",
+        "id": "upload_error.limit"
+      },
+      {
+        "defaultMessage": "File upload not allowed with polls.",
+        "id": "upload_error.poll"
+      }
+    ],
+    "path": "app/javascript/mastodon/actions/compose.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "{name} mentioned you",
         "id": "notification.mention"
       },
@@ -191,6 +204,27 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Closed",
+        "id": "poll.closed"
+      },
+      {
+        "defaultMessage": "Vote",
+        "id": "poll.vote"
+      },
+      {
+        "defaultMessage": "Refresh",
+        "id": "poll.refresh"
+      },
+      {
+        "defaultMessage": "{count, plural, one {# vote} other {# votes}}",
+        "id": "poll.total_votes"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/poll.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "now",
         "id": "relative_time.just_now"
       },
@@ -209,6 +243,26 @@
       {
         "defaultMessage": "{number}d",
         "id": "relative_time.days"
+      },
+      {
+        "defaultMessage": "Moments remaining",
+        "id": "time_remaining.moments"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# second} other {# seconds}} left",
+        "id": "time_remaining.seconds"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# minute} other {# minutes}} left",
+        "id": "time_remaining.minutes"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# hour} other {# hours}} left",
+        "id": "time_remaining.hours"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# day} other {# days}} left",
+        "id": "time_remaining.days"
       }
     ],
     "path": "app/javascript/mastodon/components/relative_timestamp.json"
@@ -310,6 +364,10 @@
       {
         "defaultMessage": "Open this status in the moderation interface",
         "id": "status.admin_status"
+      },
+      {
+        "defaultMessage": "Copy link to status",
+        "id": "status.copy"
       }
     ],
     "path": "app/javascript/mastodon/components/status_action_bar.json"
@@ -422,6 +480,10 @@
         "id": "confirmations.reply.message"
       },
       {
+        "defaultMessage": "Block & Report",
+        "id": "confirmations.block.block_and_report"
+      },
+      {
         "defaultMessage": "Are you sure you want to block {name}?",
         "id": "confirmations.block.message"
       }
@@ -469,6 +531,10 @@
         "id": "confirmations.domain_block.confirm"
       },
       {
+        "defaultMessage": "Block & Report",
+        "id": "confirmations.block.block_and_report"
+      },
+      {
         "defaultMessage": "Are you sure you want to unfollow {name}?",
         "id": "confirmations.unfollow.message"
       },
@@ -486,6 +552,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Profile unavailable",
+        "id": "empty_column.account_unavailable"
+      },
+      {
         "defaultMessage": "No toots here!",
         "id": "empty_column.account_timeline"
       }
@@ -495,24 +565,40 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Mention @{name}",
-        "id": "account.mention"
+        "defaultMessage": "Unfollow",
+        "id": "account.unfollow"
       },
       {
-        "defaultMessage": "Direct message @{name}",
-        "id": "account.direct"
+        "defaultMessage": "Follow",
+        "id": "account.follow"
       },
       {
-        "defaultMessage": "Edit profile",
-        "id": "account.edit_profile"
+        "defaultMessage": "Awaiting approval. Click to cancel follow request",
+        "id": "account.requested"
       },
       {
         "defaultMessage": "Unblock @{name}",
         "id": "account.unblock"
       },
       {
-        "defaultMessage": "Unfollow",
-        "id": "account.unfollow"
+        "defaultMessage": "Edit profile",
+        "id": "account.edit_profile"
+      },
+      {
+        "defaultMessage": "Ownership of this link was checked on {date}",
+        "id": "account.link_verified_on"
+      },
+      {
+        "defaultMessage": "This account privacy status is set to locked. The owner manually reviews who can follow them.",
+        "id": "account.locked_info"
+      },
+      {
+        "defaultMessage": "Mention @{name}",
+        "id": "account.mention"
+      },
+      {
+        "defaultMessage": "Direct message @{name}",
+        "id": "account.direct"
       },
       {
         "defaultMessage": "Unmute @{name}",
@@ -525,10 +611,6 @@
       {
         "defaultMessage": "Mute @{name}",
         "id": "account.mute"
-      },
-      {
-        "defaultMessage": "Follow",
-        "id": "account.follow"
       },
       {
         "defaultMessage": "Report @{name}",
@@ -607,59 +689,6 @@
         "id": "status.admin_account"
       },
       {
-        "defaultMessage": "Information below may reflect the user's profile incompletely.",
-        "id": "account.disclaimer_full"
-      },
-      {
-        "defaultMessage": "View full profile",
-        "id": "account.view_full_profile"
-      },
-      {
-        "defaultMessage": "Toots",
-        "id": "account.posts"
-      },
-      {
-        "defaultMessage": "Follows",
-        "id": "account.follows"
-      },
-      {
-        "defaultMessage": "Followers",
-        "id": "account.followers"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/account/components/action_bar.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Unfollow",
-        "id": "account.unfollow"
-      },
-      {
-        "defaultMessage": "Follow",
-        "id": "account.follow"
-      },
-      {
-        "defaultMessage": "Awaiting approval. Click to cancel follow request",
-        "id": "account.requested"
-      },
-      {
-        "defaultMessage": "Unblock @{name}",
-        "id": "account.unblock"
-      },
-      {
-        "defaultMessage": "Edit profile",
-        "id": "account.edit_profile"
-      },
-      {
-        "defaultMessage": "Ownership of this link was checked on {date}",
-        "id": "account.link_verified_on"
-      },
-      {
-        "defaultMessage": "This account privacy status is set to locked. The owner manually reviews who can follow them.",
-        "id": "account.locked_info"
-      },
-      {
         "defaultMessage": "Follows you",
         "id": "account.follows_you"
       },
@@ -678,6 +707,18 @@
       {
         "defaultMessage": "Bot",
         "id": "account.badges.bot"
+      },
+      {
+        "defaultMessage": "Toots",
+        "id": "account.posts"
+      },
+      {
+        "defaultMessage": "Follows",
+        "id": "account.follows"
+      },
+      {
+        "defaultMessage": "Followers",
+        "id": "account.followers"
       }
     ],
     "path": "app/javascript/mastodon/features/account/components/header.json"
@@ -852,6 +893,52 @@
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/navigation_bar.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Add a poll",
+        "id": "poll_button.add_poll"
+      },
+      {
+        "defaultMessage": "Remove poll",
+        "id": "poll_button.remove_poll"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/poll_button.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Choice {number}",
+        "id": "compose_form.poll.option_placeholder"
+      },
+      {
+        "defaultMessage": "Add a choice",
+        "id": "compose_form.poll.add_option"
+      },
+      {
+        "defaultMessage": "Remove this choice",
+        "id": "compose_form.poll.remove_option"
+      },
+      {
+        "defaultMessage": "Poll duration",
+        "id": "compose_form.poll.duration"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# minute} other {# minutes}}",
+        "id": "intervals.full.minutes"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# hour} other {# hours}}",
+        "id": "intervals.full.hours"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# day} other {# days}}",
+        "id": "intervals.full.days"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/poll_form.json"
   },
   {
     "descriptors": [
@@ -1169,6 +1256,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Profile unavailable",
+        "id": "empty_column.account_unavailable"
+      },
+      {
         "defaultMessage": "No one follows this user yet.",
         "id": "account.followers.empty"
       }
@@ -1177,6 +1268,10 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "Profile unavailable",
+        "id": "empty_column.account_unavailable"
+      },
       {
         "defaultMessage": "This user doesn't follow anyone yet.",
         "id": "account.follows.empty"
@@ -1275,7 +1370,7 @@
         "id": "getting_started.security"
       },
       {
-        "defaultMessage": "About this instance",
+        "defaultMessage": "About this server",
         "id": "navigation_bar.info"
       },
       {
@@ -1307,6 +1402,14 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "Enter hashtags…",
+        "id": "hashtag.column_settings.select.placeholder"
+      },
+      {
+        "defaultMessage": "No suggestions found",
+        "id": "hashtag.column_settings.select.no_options_message"
+      },
       {
         "defaultMessage": "Any of these",
         "id": "hashtag.column_settings.tag_mode.any"
@@ -1448,7 +1551,7 @@
         "id": "introduction.interactions.favourite.text"
       },
       {
-        "defaultMessage": "Finish tutorial!",
+        "defaultMessage": "Finish toot-orial!",
         "id": "introduction.interactions.action"
       }
     ],
@@ -1612,6 +1715,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Change title",
+        "id": "lists.edit.submit"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/list_editor/components/edit_list_form.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Search among people you follow",
         "id": "lists.search"
       }
@@ -1740,6 +1852,10 @@
       {
         "defaultMessage": "Boosts:",
         "id": "notifications.column_settings.reblog"
+      },
+      {
+        "defaultMessage": "Poll results:",
+        "id": "notifications.column_settings.poll"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/column_settings.json"
@@ -1757,6 +1873,10 @@
       {
         "defaultMessage": "Boosts",
         "id": "notifications.filter.boosts"
+      },
+      {
+        "defaultMessage": "Poll results",
+        "id": "notifications.filter.polls"
       },
       {
         "defaultMessage": "Follows",
@@ -1782,6 +1902,10 @@
       {
         "defaultMessage": "{name} boosted your status",
         "id": "notification.reblog"
+      },
+      {
+        "defaultMessage": "A poll you have voted in has ended",
+        "id": "notification.poll"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/notification.json"
@@ -1828,7 +1952,7 @@
         "id": "column.public"
       },
       {
-        "defaultMessage": "There is nothing here! Write something publicly, or manually follow users from other instances to fill it up",
+        "defaultMessage": "There is nothing here! Write something publicly, or manually follow users from other servers to fill it up",
         "id": "empty_column.public"
       }
     ],
@@ -1842,24 +1966,6 @@
       }
     ],
     "path": "app/javascript/mastodon/features/reblogs/index.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "A look inside...",
-        "id": "standalone.public_title"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/standalone/community_timeline/index.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "A look inside...",
-        "id": "standalone.public_title"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/standalone/public_timeline/index.json"
   },
   {
     "descriptors": [
@@ -1946,6 +2052,10 @@
       {
         "defaultMessage": "Open this status in the moderation interface",
         "id": "status.admin_status"
+      },
+      {
+        "defaultMessage": "Copy link to status",
+        "id": "status.copy"
       }
     ],
     "path": "app/javascript/mastodon/features/status/components/action_bar.json"
@@ -1979,6 +2089,10 @@
       {
         "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
         "id": "confirmations.reply.message"
+      },
+      {
+        "defaultMessage": "Block & Report",
+        "id": "confirmations.block.block_and_report"
       },
       {
         "defaultMessage": "Are you sure you want to block {name}?",
@@ -2028,6 +2142,10 @@
       {
         "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
         "id": "confirmations.reply.message"
+      },
+      {
+        "defaultMessage": "Block & Report",
+        "id": "confirmations.block.block_and_report"
       },
       {
         "defaultMessage": "Are you sure you want to block {name}?",
@@ -2175,7 +2293,7 @@
         "id": "report.target"
       },
       {
-        "defaultMessage": "The report will be sent to your instance moderators. You can provide an explanation of why you are reporting this account below:",
+        "defaultMessage": "The report will be sent to your server moderators. You can provide an explanation of why you are reporting this account below:",
         "id": "report.hint"
       },
       {

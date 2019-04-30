@@ -11,7 +11,7 @@ describe Settings::Exports::MutedAccountsController do
       sign_in user, scope: :user
       get :index, format: :csv
 
-      expect(response.body).to eq "username@domain\n"
+      expect(response.body).to eq "Account address,Hide notifications\nusername@domain,true\n"
     end
   end
 end

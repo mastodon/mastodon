@@ -19,6 +19,10 @@ class Formatter
 
     raw_content = status.text
 
+    if options[:inline_poll_options] && status.preloadable_poll
+      raw_content = raw_content + "\n\n" + status.preloadable_poll.options.map { |title| "[ ] #{title}" }.join("\n")
+    end
+
     return '' if raw_content.blank?
 
     unless status.local?
@@ -63,6 +67,12 @@ class Formatter
 
   def format_spoiler(status, **options)
     html = encode(status.spoiler_text)
+    html = encode_custom_emojis(html, status.emojis, options[:autoplay])
+    html.html_safe # rubocop:disable Rails/OutputSafety
+  end
+
+  def format_poll_option(status, option, **options)
+    html = encode(option.title)
     html = encode_custom_emojis(html, status.emojis, options[:autoplay])
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
