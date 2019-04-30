@@ -124,7 +124,7 @@ group :development do
   gem 'annotate', '~> 2.7'
   gem 'better_errors', '~> 2.5'
   gem 'binding_of_caller', '~> 0.7'
-  gem 'bullet', '~> 5.9'
+  gem 'bullet', '~> 6.0'
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
