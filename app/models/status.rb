@@ -327,7 +327,8 @@ class Status < ApplicationRecord
     end
 
     def as_public_timeline(account = nil, local_only = false)
-      query = timeline_scope(local_only).without_replies
+      query = timeline_scope(local_only)
+      query = query.without_replies unless Setting.show_replies_in_public_timelines
 
       apply_timeline_filters(query, account, local_only)
     end
@@ -408,9 +409,12 @@ class Status < ApplicationRecord
 
     def timeline_scope(local_only = false)
       starting_scope = local_only ? Status.local : Status
-      starting_scope
-        .with_public_visibility
-        .without_reblogs
+      starting_scope = starting_scope.with_public_visibility
+      if Setting.show_reblogs_in_public_timelines
+        starting_scope
+      else
+        starting_scope.without_reblogs
+      end
     end
 
     def apply_timeline_filters(query, account, local_only)

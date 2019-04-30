@@ -32,6 +32,8 @@ class Form::AdminSettings
     thumbnail
     hero
     mascot
+    show_reblogs_in_public_timelines
+    show_replies_in_public_timelines
   ).freeze
 
   BOOLEAN_KEYS = %i(
@@ -45,6 +47,8 @@ class Form::AdminSettings
     profile_directory
     hide_followers_count
     enable_keybase
+    show_reblogs_in_public_timelines
+    show_replies_in_public_timelines
   ).freeze
 
   UPLOAD_KEYS = %i(
