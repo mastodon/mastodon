@@ -3,6 +3,92 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [2.7.4] - 2019-03-05
+### Fixed
+
+- Fix web UI not cleaning up notifications after block ([Gargron](https://github.com/tootsuite/mastodon/pull/10108))
+- Fix redundant HTTP requests when resolving private statuses ([ThibG](https://github.com/tootsuite/mastodon/pull/10115))
+- Fix performance of account media query ([abcang](https://github.com/tootsuite/mastodon/pull/10121))
+- Fix mention processing for unknown accounts ([ThibG](https://github.com/tootsuite/mastodon/pull/10125))
+- Fix getting started column not scrolling on short screens ([trwnh](https://github.com/tootsuite/mastodon/pull/10075))
+- Fix direct messages pagination in the web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/10126))
+- Fix serialization of Announce activities ([ThibG](https://github.com/tootsuite/mastodon/pull/10129))
+- Fix home timeline perpetually reloading when empty in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/10130))
+- Fix lists export ([ThibG](https://github.com/tootsuite/mastodon/pull/10136))
+- Fix edit profile page crash for suspended-then-unsuspended users ([ThibG](https://github.com/tootsuite/mastodon/pull/10178))
+
+## [2.7.3] - 2019-02-23
+### Added
+
+- Add domain filter to the admin federation page ([ThibG](https://github.com/tootsuite/mastodon/pull/10071))
+- Add quick link from admin account view to block/unblock instance ([ThibG](https://github.com/tootsuite/mastodon/pull/10073))
+
+### Fixed
+
+- Fix video player width not being updated to fit container width ([ThibG](https://github.com/tootsuite/mastodon/pull/10069))
+- Fix domain filter being shown in admin page when local filter is active ([ThibG](https://github.com/tootsuite/mastodon/pull/10074))
+- Fix crash when conversations have no valid participants ([ThibG](https://github.com/tootsuite/mastodon/pull/10078))
+- Fix error when performing admin actions on no statuses ([ThibG](https://github.com/tootsuite/mastodon/pull/10094))
+
+### Changed
+
+- Change custom emojis to randomize stored file name ([hinaloe](https://github.com/tootsuite/mastodon/pull/10090))
+
+## [2.7.2] - 2019-02-17
+### Added
+
+- Add support for IPv6 in e-mail validation ([zoc](https://github.com/tootsuite/mastodon/pull/10009))
+- Add record of IP address used for signing up ([ThibG](https://github.com/tootsuite/mastodon/pull/10026))
+- Add tight rate-limit for API deletions (30 per 30 minutes) ([Gargron](https://github.com/tootsuite/mastodon/pull/10042))
+- Add support for embedded `Announce` objects attributed to the same actor ([ThibG](https://github.com/tootsuite/mastodon/pull/9998), [Gargron](https://github.com/tootsuite/mastodon/pull/10065))
+- Add spam filter for `Create` and `Announce` activities ([Gargron](https://github.com/tootsuite/mastodon/pull/10005), [Gargron](https://github.com/tootsuite/mastodon/pull/10041), [Gargron](https://github.com/tootsuite/mastodon/pull/10062))
+- Add `registrations` attribute to `GET /api/v1/instance` ([Gargron](https://github.com/tootsuite/mastodon/pull/10060))
+- Add `vapid_key` to `POST /api/v1/apps` and `GET /api/v1/apps/verify_credentials` ([Gargron](https://github.com/tootsuite/mastodon/pull/10058))
+
+### Fixed
+
+- Fix link color and add link underlines in high-contrast theme ([Gargron](https://github.com/tootsuite/mastodon/pull/9949), [Gargron](https://github.com/tootsuite/mastodon/pull/10028))
+- Fix unicode characters in URLs not being linkified ([JMendyk](https://github.com/tootsuite/mastodon/pull/8447), [hinaloe](https://github.com/tootsuite/mastodon/pull/9991))
+- Fix URLs linkifier grabbing ending quotation as part of the link ([Gargron](https://github.com/tootsuite/mastodon/pull/9997))
+- Fix authorized applications page design ([rinsuki](https://github.com/tootsuite/mastodon/pull/9969))
+- Fix custom emojis not showing up in share page emoji picker ([rinsuki](https://github.com/tootsuite/mastodon/pull/9970))
+- Fix too liberal application of whitespace in toots ([trwnh](https://github.com/tootsuite/mastodon/pull/9968))
+- Fix misleading e-mail hint being displayed in admin view ([ThibG](https://github.com/tootsuite/mastodon/pull/9973))
+- Fix tombstones not being cleared out ([abcang](https://github.com/tootsuite/mastodon/pull/9978))
+- Fix some timeline jumps ([ThibG](https://github.com/tootsuite/mastodon/pull/9982), [ThibG](https://github.com/tootsuite/mastodon/pull/10001), [rinsuki](https://github.com/tootsuite/mastodon/pull/10046))
+- Fix content warning input taking keyboard focus even when hidden ([hinaloe](https://github.com/tootsuite/mastodon/pull/10017))
+- Fix hashtags select styling in default and high-contrast themes ([Gargron](https://github.com/tootsuite/mastodon/pull/10029))
+- Fix style regressions on landing page ([Gargron](https://github.com/tootsuite/mastodon/pull/10030))
+- Fix hashtag column not subscribing to stream on mount ([Gargron](https://github.com/tootsuite/mastodon/pull/10040))
+- Fix relay enabling/disabling not resetting inbox availability status ([Gargron](https://github.com/tootsuite/mastodon/pull/10048))
+- Fix mutes, blocks, domain blocks and follow requests not paginating ([Gargron](https://github.com/tootsuite/mastodon/pull/10057))
+- Fix crash on public hashtag pages when streaming fails ([ThibG](https://github.com/tootsuite/mastodon/pull/10061))
+
+### Changed
+
+- Change icon for unlisted visibility level ([clarcharr](https://github.com/tootsuite/mastodon/pull/9952))
+- Change queue of actor deletes from push to pull for non-follower recipients ([ThibG](https://github.com/tootsuite/mastodon/pull/10016))
+- Change robots.txt to exclude media proxy URLs ([nightpool](https://github.com/tootsuite/mastodon/pull/10038))
+- Change upload description input to allow line breaks ([BenLubar](https://github.com/tootsuite/mastodon/pull/10036))
+- Change `dist/mastodon-streaming.service` to recommend running node without intermediary npm command ([nolanlawson](https://github.com/tootsuite/mastodon/pull/10032))
+- Change conversations to always show names of other participants ([Gargron](https://github.com/tootsuite/mastodon/pull/10047))
+- Change buttons on timeline preview to open the interaction dialog ([Gargron](https://github.com/tootsuite/mastodon/pull/10054))
+- Change error graphic to hover-to-play ([Gargron](https://github.com/tootsuite/mastodon/pull/10055))
+
+## [2.7.1] - 2019-01-28
+### Fixed
+
+- Fix SSO authentication not working due to missing agreement boolean ([Gargron](https://github.com/tootsuite/mastodon/pull/9915))
+- Fix slow fallback of CopyAccountStats migration setting stats to 0 ([Gargron](https://github.com/tootsuite/mastodon/pull/9930))
+- Fix wrong command in migration error message ([angristan](https://github.com/tootsuite/mastodon/pull/9877))
+- Fix initial value of volume slider in video player and handle volume changes ([ThibG](https://github.com/tootsuite/mastodon/pull/9929))
+- Fix missing hotkeys for notifications ([ThibG](https://github.com/tootsuite/mastodon/pull/9927))
+- Fix being able to attach unattached media created by other users ([ThibG](https://github.com/tootsuite/mastodon/pull/9921))
+- Fix unrescued SSL error during link verification ([renatolond](https://github.com/tootsuite/mastodon/pull/9914))
+- Fix Firefox scrollbar color regression ([trwnh](https://github.com/tootsuite/mastodon/pull/9908))
+- Fix scheduled status with media immediately creating a status ([ThibG](https://github.com/tootsuite/mastodon/pull/9894))
+- Fix missing strong style for landing page description ([Kjwon15](https://github.com/tootsuite/mastodon/pull/9892))
+
 ## [2.7.0] - 2019-01-20
 ### Added
 

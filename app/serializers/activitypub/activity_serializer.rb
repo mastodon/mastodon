@@ -3,8 +3,8 @@
 class ActivityPub::ActivitySerializer < ActiveModel::Serializer
   attributes :id, :type, :actor, :published, :to, :cc
 
-  has_one :proper, key: :object, serializer: ActivityPub::NoteSerializer, unless: :announce?
-  attribute :proper_uri, key: :object, if: :announce?
+  has_one :proper, key: :object, serializer: ActivityPub::NoteSerializer, if: :serialize_object?
+  attribute :proper_uri, key: :object, unless: :serialize_object?
   attribute :atom_uri, if: :announce?
 
   def id
@@ -41,5 +41,11 @@ class ActivityPub::ActivitySerializer < ActiveModel::Serializer
 
   def announce?
     object.reblog?
+  end
+
+  def serialize_object?
+    return true unless announce?
+    # Serialize private self-boosts of local toots
+    object.account == object.proper.account && object.proper.private_visibility? && object.local?
   end
 end

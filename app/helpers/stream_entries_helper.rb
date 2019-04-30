@@ -170,7 +170,7 @@ module StreamEntriesHelper
     when 'public'
       fa_icon 'globe fw'
     when 'unlisted'
-      fa_icon 'unlock-alt fw'
+      fa_icon 'unlock fw'
     when 'private'
       fa_icon 'lock fw'
     when 'direct'

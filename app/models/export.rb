@@ -22,7 +22,7 @@ class Export
 
   def to_lists_csv
     CSV.generate do |csv|
-      account.owned_lists.select(:title).each do |list|
+      account.owned_lists.select(:title, :id).each do |list|
         list.accounts.select(:username, :domain).each do |account|
           csv << [list.title, acct(account)]
         end
