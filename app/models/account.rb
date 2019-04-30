@@ -240,6 +240,7 @@ class Account < ApplicationRecord
   def fields_attributes=(attributes)
     fields     = []
     old_fields = self[:fields] || []
+    old_fields = [] if old_fields.is_a?(Hash)
 
     if attributes.is_a?(Hash)
       attributes.each_value do |attr|
