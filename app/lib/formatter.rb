@@ -90,6 +90,11 @@ class Formatter
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
+  def format_article(text)
+    text = text.gsub(/>\n+</, "><")
+    text.html_safe # rubocop:disable Rails/OutputSafety
+  end
+
   def linkify(text)
     html = encode_and_link_urls(text)
     html = simple_format(html, {}, sanitize: false)
