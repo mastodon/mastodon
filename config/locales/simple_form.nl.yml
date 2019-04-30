@@ -2,12 +2,20 @@
 nl:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Je kunt voor toots specifieke tekst gebruiken, zoals URL's, hashtags en vermeldingen
+      admin_account_action:
+        send_email_notification: De gebruiker ontvangt een uitleg over wat er met hun account is gebeurd
+        text_html: Optioneel. Je kunt voor toots specifieke tekst gebruiken. Om tijd te besparen kun je <a href="%{path}">voorinstellingen van waarschuwingen toevoegen</a>
+        type_html: Kies wat er met <strong>%{acct}</strong> moet gebeuren
+        warning_preset_id: Optioneel. Je kunt nog steeds handmatig tekst toevoegen aan het eind van de voorinstelling
       defaults:
         autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen jou automatisch
         avatar: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
         bot: Dit is een geautomatiseerd account en wordt mogelijk niet gemonitord
         context: Een of meerdere locaties waar de filter actief moet zijn
         digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
+        discoverable_html: In de <a href="%{path}" target="_blank">gebruikersgids</a> kunnen mensen andere accounts vinden aan de hand van interesses en activiteit. Dit vereist tenminste %{min_followers} volgers
         email: Je krijgt een bevestigingsmail
         fields: Je kan maximaal 4 items als een tabel op je profiel weergeven
         header: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
@@ -18,6 +26,7 @@ nl:
         password: Gebruik tenminste 8 tekens
         phrase: Komt overeen ongeacht hoofd-/kleine letters of tekstwaarschuwingen
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
+        setting_aggregate_reblogs: Geen nieuwe boosts tonen voor toots die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
         setting_default_language: De taal van jouw toots kan automatisch worden gedetecteerd, maar het is niet altijd accuraat
         setting_display_media_default: Als gevoelig gemarkeerde media verbergen
         setting_display_media_hide_all: Media altijd verbergen
@@ -30,7 +39,7 @@ nl:
       imports:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       sessions:
-        otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes.
+        otp: 'Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes:'
       user:
         chosen_languages: Alleen toots in de aangevinkte talen worden op de openbare tijdlijnen getoond
     labels:
@@ -38,6 +47,18 @@ nl:
         fields:
           name: Label
           value: Inhoud
+      account_warning_preset:
+        text: Tekst van voorinstelling
+      admin_account_action:
+        send_email_notification: Meld dit per e-mail aan de gebruiker
+        text: Aangepaste waarschuwing
+        type: Actie
+        types:
+          disable: Uitschakelen
+          none: Niets doen
+          silence: Negeren
+          suspend: Opschorten en onomkeerbaar accountgegevens verwijderen
+        warning_preset_id: Gebruik een voorinstelling van een waarschuwing
       defaults:
         autofollow: Uitnodigen om jouw account te volgen
         avatar: Avatar
@@ -48,6 +69,7 @@ nl:
         context: Filterlocaties
         current_password: Huidig wachtwoord
         data: Gegevens
+        discoverable: Dit account in de gebruikersgids tonen
         display_name: Weergavenaam
         email: E-mailadres
         expires_in: Vervalt na
@@ -63,6 +85,7 @@ nl:
         otp_attempt: Tweestaps-aanmeldcode
         password: Wachtwoord
         phrase: Trefwoord of zinsdeel
+        setting_aggregate_reblogs: Boosts in tijdlijnen groeperen
         setting_auto_play_gif: Speel geanimeerde GIF's automatisch af
         setting_boost_modal: Vraag voor het boosten van een toot een bevestiging
         setting_default_language: Taal van jouw toots
@@ -91,7 +114,7 @@ nl:
         must_be_following_dm: Directe berichten van mensen die jij niet volgt blokkeren
       notification_emails:
         digest: Periodiek e-mails met een samenvatting versturen
-        favourite: Een e-mail versturen wanneer iemand jouw toot als favoriet markeert
+        favourite: Een e-mail versturen wanneer iemand jouw toot aan hun favorieten heeft toegevoegd
         follow: Een e-mail versturen wanneer iemand jou volgt
         follow_request: Een e-mail versturen wanneer iemand jou wil volgen
         mention: Een e-mail versturen wanneer iemand jou vermeld

@@ -2,15 +2,23 @@
 cs:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Můžete používat syntaxi tootů, jako například URL, hashtagy a zmínky
+      admin_account_action:
+        send_email_notification: Uživatel obdrží vysvětlení toho, co se stalo s jeho účtem
+        text_html: Volitelné. Můžete používat syntaxi tootů. Pro ušetření času si můžete <a href="%{path}">přidat přednastavení pro varování</a>
+        type_html: Vyberte, co chcete udělat s účtem <strong>%{acct}</strong>
+        warning_preset_id: Volitelné. Můžete stále vložit na konec přednastavení vlastní text
       defaults:
         autofollow: Lidé, kteří se zaregistrují přes pozvání, vás budou automaticky sledovat
-        avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšena na %{dimensions} px
+        avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         bot: Tento účet provádí hlavně automatizované akce a nemusí být spravován
         context: Jedno či více kontextů, ve kterých má být filtr uplatněn
         digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste při své nepřítomnosti obdržel/a osobní zprávy
+        discoverable_html: <a href="%{path}" target="_blank">Adresář</a> dovoluje lidem najít účty podle zájmů a aktivity. Vyžaduje alespoň %{min_followers} sledovatelů
         email: Bude vám poslán potvrzovací e-mail
         fields: Na profilu můžete mít až 4 položky zobrazené jako tabulka
-        header: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšena na %{dimensions} px
+        header: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         inbox_url: Zkopírujte URL z hlavní stránky mostu, který chcete použít
         irreversible: Filtrované tooty nenávratně zmizí, i pokud bude filtr později odstraněn
         locale: Jazyk uživatelského rozhraní, e-mailů a oznámení push
@@ -18,6 +26,7 @@ cs:
         password: Použijte alespoň 8 znaků
         phrase: Shoda bude nalezena bez ohledu na velikost písmen v těle tootu či varování o obsahu
         scopes: Které API bude aplikace povolena používat. Pokud vyberete rozsah nejvyššího stupně, nebudete je muset vybírat po jednom.
+        setting_aggregate_reblogs: Nezobrazovat nové boosty pro tooty, které byly nedávno boostnuty (ovlivňuje pouze nově přijaté boosty)
         setting_default_language: Jazyk vašich tootů může být detekován automaticky, není to však vždy přesné
         setting_display_media_default: Skrývat média označená jako citlivá
         setting_display_media_hide_all: Vždy skrývat všechna média
@@ -38,8 +47,20 @@ cs:
         fields:
           name: Označení
           value: Obsah
+      account_warning_preset:
+        text: Text přednastavení
+      admin_account_action:
+        send_email_notification: Informovat uživatele e-mailem
+        text: Vlastní varování
+        type: Akce
+        types:
+          disable: Deaktivovat
+          none: Nic nedělat
+          silence: Utišit
+          suspend: Pozastavit a nenávratně smazat data účtu
+        warning_preset_id: Použít přednastavení pro varování
       defaults:
-        autofollow: Pozvěte ke sledování vašeho účtu
+        autofollow: Pozvat ke sledování vašeho účtu
         avatar: Avatar
         bot: Tohle je účet robota
         chosen_languages: Filtrovat jazyky
@@ -48,6 +69,7 @@ cs:
         context: Kontexty filtrů
         current_password: Současné heslo
         data: Data
+        discoverable: Zveřejnit tento účet v adresáři
         display_name: Zobrazované jméno
         email: E-mailová adresa
         expires_in: Expirovat po
@@ -63,6 +85,7 @@ cs:
         otp_attempt: Dvoufaktorový kód
         password: Heslo
         phrase: Klíčové slovo či fráze
+        setting_aggregate_reblogs: Seskupovat boosty v časových osách
         setting_auto_play_gif: Automaticky přehrávat animace GIF
         setting_boost_modal: Zobrazovat před boostnutím potvrzovací okno
         setting_default_language: Jazyk příspěvků

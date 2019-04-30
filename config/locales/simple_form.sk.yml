@@ -2,24 +2,39 @@
 sk:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Môžeš používať rovnakú syntaxiu ako v rámci príspevkov, čiže URL, haštagy, a spomenutia
+      admin_account_action:
+        send_email_notification: Užívateľ dostane vysvetlenie ohľadom toho, čo sa stalo s ich účtom
+        text_html: Voliteľné. Môžeš používať rovnakú syntaxiu ako v príspevkoch. Môžeš pridať <a href="%{path}">varovné predlohy</a> a ušetriť tak čas
+        type_html: Vyber si, čo urobiť s účtom <strong>%{acct}</strong>
+        warning_preset_id: Voliteľné. Stále môžeš vložiť vlastný text na samý koniec predlohy
       defaults:
         autofollow: Ľudia ktorí sa zaregistrujú prostredníctvom pozvánky, ťa budú inheď následovať
         avatar: PNG, GIF alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
         bot: Tento účet vykonáva hlavne automatizované akcie, a je pravdepodobne nespravovaný
         context: Jedno, alebo viac kritérií, v ktorých má byť filtrovanie uplatnené
         digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak si obdŕžal/a nejaké osobné správy kým si bol/a preč
-        fields: Môžeš mať 4 položky na svojom profile zobrazené vo forme tabuľky
-        header: PNG, GIF alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
+        discoverable_html: Táto <a href="%{path}" target="_blank">databáza</a> umožňuje ľudom nájsť profily podľa záujmu a aktívnosti. Vyžaduje aby mali aspoň %{min_followers} sledovateľov
+        email: Bude ti odoslaný potvrdzujúci email
+        fields: Až štyri položky môžeš mať na svojom profile zobrazené vo forme tabuľky
+        header: PNG, GIF, alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
         inbox_url: Skopíruj adresu z hlavnej stránky mostíka, ktorý chceš používať
         irreversible: Vytriedené príspevky zmiznú nenávratne, aj keď triedenie neskôr zrušíš
-        locale: Jazyk užívateľského rozhrania, emailových a nástenkových oboznámení
-        locked: Vyžaduje manuálne schvalovať sledujúcich
+        locale: Jazyk užívateľského rozhrania, emailových, a nástenkových oboznámení
+        locked: Vyžaduje, aby si manuálne schvaľoval/a následovateľov
+        password: Zadaj aspoň osem znakov
         phrase: Zhoda sa nájde nezávisle od toho, či je text napísaný, veľkými, alebo malými písmenami, či už v tele, alebo v hlavičke
         scopes: Ktoré API budú povolené aplikácii pre prístup. Ak vyberieš vrcholný stupeň, nemusíš už potom vyberať po jednom.
+        setting_aggregate_reblogs: Neukazuj nové vyzdvihnutia pre príspevky, ktoré už boli len nedávno povýšené (týka sa iba nanovo získaných vyzdvihnutí)
         setting_default_language: Jazyk tvojích príspevkov môže byť zistený automaticky, ale nieje to vždy presné
+        setting_display_media_default: Skryť médiá označené ako citlivé
+        setting_display_media_hide_all: Vždy ukryť všetky médiá
+        setting_display_media_show_all: Stále ukazuj médiá označené ako citlivé
         setting_hide_network: Koho následuješ, a kto následuje teba nebude zobrazené na tvojom profile
         setting_noindex: Ovplyvňuje verejný profil a stránky s príspevkami
         setting_theme: Ovplyvňuje ako Mastodon vyzerá pri prihlásení z hociakého zariadenia.
+        username: Tvoja prezývka bude unikátna pre server %{domain}
         whole_word: Ak je kľúčové slovo, alebo fráza poskladaná iba s písmen a čísel, bude použité iba ak sa zhoduje s celým výrazom
       imports:
         data: CSV súbor vyexportovaný z inej Mastodon inštancie
@@ -32,6 +47,18 @@ sk:
         fields:
           name: Označenie
           value: Obsah
+      account_warning_preset:
+        text: Text predlohy
+      admin_account_action:
+        send_email_notification: Oznám užívateľovi cez email
+        text: Špecifické varovanie
+        type: Úkon
+        types:
+          disable: Deaktivuj
+          none: Neurob nič
+          silence: Utíšenie
+          suspend: Vylúč a nenávratne vymaž dáta na účte
+        warning_preset_id: Použi varovnú predlohu
       defaults:
         autofollow: Pozvi k následovaniu tvojho profilu
         avatar: Avatar
@@ -42,6 +69,7 @@ sk:
         context: Triedenie kontextov
         current_password: Súčasné heslo
         data: Dáta
+        discoverable: Zaraď tento účet do databázy
         display_name: Meno
         email: Emailová adresa
         expires_in: Expirovať po
@@ -57,12 +85,18 @@ sk:
         otp_attempt: Dvoj-faktorový overovací (2FA) kód
         password: Heslo
         phrase: Kľúčové slovo, alebo fráza
-        setting_auto_play_gif: Automaticky prehrávať animované GIFy
-        setting_boost_modal: Zobrazovať potvrdzovacie okno pred re-toot
+        setting_aggregate_reblogs: Zoskupuj vyzdvihnutia v časovej osi
+        setting_auto_play_gif: Automaticky prehrávaj animované GIFy
+        setting_boost_modal: Zobrazuj potvrdzovacie okno pred povýšením
         setting_default_language: Píšeš v jazyku
         setting_default_privacy: Súkromie príspevkov
         setting_default_sensitive: Označ všetky mediálne súbory ako chúlostivé
         setting_delete_modal: Zobrazuj potvrdzovacie okno pred vymazaním toot-u
+        setting_display_media: Zobrazovanie médií
+        setting_display_media_default: Štandard
+        setting_display_media_hide_all: Skryť všetky
+        setting_display_media_show_all: Ukáž všetky
+        setting_expand_spoilers: Stále rozbaľ príspevky označené varovaním o obsahu
         setting_hide_network: Ukri svoju sieť kontaktov
         setting_noindex: Nezaraďuj príspevky do indexu pre vyhľadávče
         setting_reduce_motion: Redukovať pohyb v animáciách
@@ -75,12 +109,12 @@ sk:
         username_or_email: Prezívka, alebo email
         whole_word: Celé slovo
       interactions:
-        must_be_follower: Blokovať oznámenia od užívateľov, ktorí ťa nesledujú
-        must_be_following: Blokovať oboznámenia ohľadom ľudí ktorých nesleduješ
-        must_be_following_dm: Blokovať súkromné správy od ľudí ktorých nesleduješ
+        must_be_follower: Blokuj oboznámenia ohľadom užívateľov, ktorí ťa nesledujú
+        must_be_following: Blokuj oboznámenia ohľadom ľudí ktorých nesleduješ
+        must_be_following_dm: Blokuj súkromné správy od ľudí ktorých nesleduješ
       notification_emails:
-        digest: Posielať súhrnné emaily
-        favourite: Poslať email ak niekto označí váš príspevok ako obľúbený
+        digest: Posielaj súhrnné emaily
+        favourite: Poslať email ak si niekto obľúbi tvoj príspevok
         follow: Poslať email, ak ťa niekto začne následovať
         follow_request: Zaslať email ak ti niekto pošle žiadosť o sledovanie
         mention: Poslať email ak ťa niekto spomenie v svojom príspevku

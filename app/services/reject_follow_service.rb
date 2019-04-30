@@ -19,11 +19,11 @@ class RejectFollowService < BaseService
   end
 
   def build_json(follow_request)
-    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
+    ActiveModelSerializers::SerializableResource.new(
       follow_request,
       serializer: ActivityPub::RejectFollowSerializer,
       adapter: ActivityPub::Adapter
-    ).as_json).sign!(follow_request.target_account))
+    ).to_json
   end
 
   def build_xml(follow_request)

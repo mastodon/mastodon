@@ -2,12 +2,20 @@
 ca:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Pots utilitzar totes les sintaxi com ara URL, etiquetes i mencions
+      admin_account_action:
+        send_email_notification: L'usuari rebrà una explicació del que ha passat amb el seu compte
+        text_html: Opcional. Pots utilitzar tota la sintaxi. Pots <a href="%{path}">afegir configuracions predefinides d'avís</a> per a estalviar temps
+        type_html: Tria què fer amb <strong>%{acct}</strong>
+        warning_preset_id: Opcional. Encara pots afegir text personalitzat al final de la configuració predefinida
       defaults:
         autofollow: Les persones que es registrin a través de la invitació et seguiran automàticament
         avatar: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
         bot: Aquest compte realitza principalment accions automatitzades i pot no estar controlat per cap persona
         context: Un o diversos contextos on s'ha d'aplicar el filtre
         digest: Només s'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
+        discoverable_html: El <a href="%{path}" target="_blank">directori</a> permet trobar usuaris en funció dels interessos i activitat. Requereix almenys %{min_followers} seguidors
         email: Se t'enviarà un correu electrònic de confirmació
         fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
         header: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
@@ -18,6 +26,7 @@ ca:
         password: Utilitza com a mínim 8 caràcters
         phrase: Es combinarà independentment del format en el text o l'avís de contingut d'un toot
         scopes: A quines API es permetrà l'accés a l'aplicació. Si selecciones un àmbit d'alt nivell, no cal que seleccionis un d'individual.
+        setting_aggregate_reblogs: No mostra els nous impulsos dels toots que ja s'han impulsat recentment (només afecta als impulsos nous rebuts)
         setting_default_language: La llengua dels teus toots pot ser detectada automàticament però no sempre acuradament
         setting_display_media_default: Amaga els multimèdia marcats com a sensibles
         setting_display_media_hide_all: Sempre oculta tots els multimèdia
@@ -38,6 +47,18 @@ ca:
         fields:
           name: Etiqueta
           value: Contingut
+      account_warning_preset:
+        text: Text predefinit
+      admin_account_action:
+        send_email_notification: Notifica l'usuari per correu electrònic
+        text: Avís personalitzat
+        type: Acció
+        types:
+          disable: Inhabilita
+          none: No fer res
+          silence: Silenci
+          suspend: Suspèn i elimina irreversiblement les dades del compte
+        warning_preset_id: Utilitza una configuració predefinida d'avís
       defaults:
         autofollow: Convida a seguir el teu compte
         avatar: Avatar
@@ -48,6 +69,7 @@ ca:
         context: Filtre els contextos
         current_password: Contrasenya actual
         data: Informació
+        discoverable: Mostra aquest compte en el directori
         display_name: Nom visible
         email: Adreça de correu electrònic
         expires_in: Expira després
@@ -63,8 +85,9 @@ ca:
         otp_attempt: Codi de dos factors
         password: Contrasenya
         phrase: Paraula clau o frase
+        setting_aggregate_reblogs: Agrupa impulsos en les línies de temps
         setting_auto_play_gif: Reproducció automàtica de GIFs animats
-        setting_boost_modal: Mostra la finestra de confirmació abans d'un retoot
+        setting_boost_modal: Mostra la finestra de confirmació abans d'impulsar
         setting_default_language: Llengua de les publicacions
         setting_default_privacy: Privacitat de les publicacions
         setting_default_sensitive: Marca sempre els elements multimèdia com a sensibles

@@ -5,6 +5,7 @@ class RemoteInteractionController < ApplicationController
 
   layout 'modal'
 
+  before_action :set_interaction_type
   before_action :set_status
   before_action :set_body_classes
 
@@ -44,5 +45,9 @@ class RemoteInteractionController < ApplicationController
   def set_body_classes
     @body_classes = 'modal-layout'
     @hide_header  = true
+  end
+
+  def set_interaction_type
+    @interaction_type = %w(reply reblog favourite).include?(params[:type]) ? params[:type] : 'reply'
   end
 end

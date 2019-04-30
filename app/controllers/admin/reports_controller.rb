@@ -13,75 +13,42 @@ module Admin
       authorize @report, :show?
 
       @report_note  = @report.notes.new
-      @report_notes = (@report.notes.latest + @report.history).sort_by(&:created_at)
+      @report_notes = (@report.notes.latest + @report.history + @report.target_account.targeted_account_warnings.latest.custom).sort_by(&:created_at)
       @form         = Form::StatusBatch.new
     end
 
-    def update
+    def assign_to_self
       authorize @report, :update?
-      process_report
+      @report.update!(assigned_account_id: current_account.id)
+      log_action :assigned_to_self, @report
+      redirect_to admin_report_path(@report)
+    end
 
-      if @report.action_taken?
-        redirect_to admin_reports_path, notice: I18n.t('admin.reports.resolved_msg')
-      else
-        redirect_to admin_report_path(@report)
-      end
+    def unassign
+      authorize @report, :update?
+      @report.update!(assigned_account_id: nil)
+      log_action :unassigned, @report
+      redirect_to admin_report_path(@report)
+    end
+
+    def reopen
+      authorize @report, :update?
+      @report.unresolve!
+      log_action :reopen, @report
+      redirect_to admin_report_path(@report)
+    end
+
+    def resolve
+      authorize @report, :update?
+      @report.resolve!(current_account)
+      log_action :resolve, @report
+      redirect_to admin_reports_path, notice: I18n.t('admin.reports.resolved_msg')
     end
 
     private
 
-    def process_report
-      case params[:outcome].to_s
-      when 'assign_to_self'
-        @report.update!(assigned_account_id: current_account.id)
-        log_action :assigned_to_self, @report
-      when 'unassign'
-        @report.update!(assigned_account_id: nil)
-        log_action :unassigned, @report
-      when 'reopen'
-        @report.unresolve!
-        log_action :reopen, @report
-      when 'resolve'
-        @report.resolve!(current_account)
-        log_action :resolve, @report
-      when 'disable'
-        @report.resolve!(current_account)
-        @report.target_account.user.disable!
-
-        log_action :resolve, @report
-        log_action :disable, @report.target_account.user
-
-        resolve_all_target_account_reports
-      when 'silence'
-        @report.resolve!(current_account)
-        @report.target_account.update!(silenced: true)
-
-        log_action :resolve, @report
-        log_action :silence, @report.target_account
-
-        resolve_all_target_account_reports
-      else
-        raise ActiveRecord::RecordNotFound
-      end
-
-      @report.reload
-    end
-
-    def resolve_all_target_account_reports
-      unresolved_reports_for_target_account.update_all(action_taken: true, action_taken_by_account_id: current_account.id)
-    end
-
-    def unresolved_reports_for_target_account
-      Report.where(
-        target_account: @report.target_account
-      ).unresolved
-    end
-
     def filtered_reports
-      ReportFilter.new(filter_params).results.order(id: :desc).includes(
-        :account,
-        :target_account
-      )
+      ReportFilter.new(filter_params).results.order(id: :desc).includes(:account, :target_account)
     end
 
     def filter_params

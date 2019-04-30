@@ -31,7 +31,7 @@ class ActivityPub::CollectionsController < Api::BaseController
     when 'featured'
       @account.pinned_statuses.count
     else
-      raise ActiveRecord::NotFound
+      raise ActiveRecord::RecordNotFound
     end
   end
 
@@ -42,7 +42,7 @@ class ActivityPub::CollectionsController < Api::BaseController
         scope.merge!(@account.pinned_statuses)
       end
     else
-      raise ActiveRecord::NotFound
+      raise ActiveRecord::RecordNotFound
     end
   end
 
