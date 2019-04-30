@@ -145,7 +145,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
         Setting.registrations_mode = 'approved'
         request.headers["Accept-Language"] = accept_language
         invite = Fabricate(:invite, max_uses: nil, expires_at: 1.hour.ago)
-        post :create, params: { user: { account_attributes: { username: 'test', 'invite_code': invite.code }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678' } }
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', 'invite_code': invite.code } }
       end
 
       it 'redirects to login page' do
@@ -173,7 +173,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
         Setting.registrations_mode = 'approved'
         request.headers["Accept-Language"] = accept_language
         invite = Fabricate(:invite, max_uses: nil, expires_at: 1.hour.from_now)
-        post :create, params: { user: { account_attributes: { username: 'test', 'invite_code': invite.code }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678' } }
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', 'invite_code': invite.code } }
       end
 
       it 'redirects to login page' do
