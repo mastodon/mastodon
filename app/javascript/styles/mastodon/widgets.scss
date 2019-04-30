@@ -269,7 +269,8 @@
     box-sizing: border-box;
     margin-bottom: 10px;
 
-    a {
+    & > a,
+    & > div {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -279,7 +280,9 @@
       text-decoration: none;
       color: inherit;
       box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+    }
 
+    & > a {
       &:hover,
       &:active,
       &:focus {
@@ -287,8 +290,13 @@
       }
     }
 
-    &.active a {
+    &.active > a {
       background: $ui-highlight-color;
+      cursor: default;
+    }
+
+    &.disabled > div {
+      opacity: 0.5;
       cursor: default;
     }
 
@@ -344,6 +352,7 @@
     border-radius: 50%;
     position: relative;
     margin-left: -10px;
+    background: darken($ui-base-color, 8%);
     border: 2px solid $ui-base-color;
 
     &:nth-child(1) {
@@ -366,6 +375,10 @@
   .account {
     padding: 0;
     border: 0;
+  }
+
+  strong {
+    font-weight: 700;
   }
 
   thead th {
@@ -403,6 +416,11 @@
       font-weight: 400;
       font-size: 14px;
     }
+  }
+
+  &__comment {
+    width: 50%;
+    vertical-align: initial !important;
   }
 
   @media screen and (max-width: $no-gap-breakpoint) {

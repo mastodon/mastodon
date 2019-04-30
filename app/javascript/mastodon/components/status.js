@@ -15,6 +15,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { MediaGallery, Video } from '../features/ui/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import classNames from 'classnames';
+import Icon from 'mastodon/components/icon';
+import PollContainer from 'mastodon/containers/poll_container';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress

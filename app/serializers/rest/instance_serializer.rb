@@ -32,7 +32,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   end
 
   def thumbnail
-    instance_presenter.thumbnail ? full_asset_url(instance_presenter.thumbnail.file.url) : full_pack_url('preview.jpg')
+    instance_presenter.thumbnail ? full_asset_url(instance_presenter.thumbnail.file.url) : full_pack_url('media/images/preview.jpg')
   end
 
   def stats
@@ -52,7 +52,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   end
 
   def registrations
-    Setting.open_registrations && !Rails.configuration.x.single_user_mode
+    Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode
   end
 
   private

@@ -13,6 +13,7 @@
 #  action_taken_by_account_id :bigint(8)
 #  target_account_id          :bigint(8)        not null
 #  assigned_account_id        :bigint(8)
+#  uri                        :string
 #
 
 class Report < ApplicationRecord
@@ -27,6 +28,12 @@ class Report < ApplicationRecord
   scope :resolved,   -> { where(action_taken: true) }
 
   validates :comment, length: { maximum: 1000 }
+
+  def local?
+    false # Force uri_for to use uri attribute
+  end
+
+  before_validation :set_uri, only: :create
 
   def object_type
     :flag
@@ -88,5 +95,9 @@ class Report < ApplicationRecord
     ].map { |query| "(#{query.to_sql})" }.join(' UNION ALL ')
 
     Admin::ActionLog.from("(#{sql}) AS admin_action_logs")
+  end
+
+  def set_uri
+    self.uri = ActivityPub::TagManager.instance.generate_uri_for(self) if uri.nil? && account.local?
   end
 end
