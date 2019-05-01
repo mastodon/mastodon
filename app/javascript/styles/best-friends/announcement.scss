@@ -1,0 +1,54 @@
+/**
+  * features/compose/components/annoucements
+  */
+.announcements {
+  margin: 10px 0;
+
+  ul {
+    padding: 0 10px;
+  }
+
+  li {
+    display: flex;
+    padding: 10px;
+    color: $ui-base-color;
+    background: darken($white, 10%);
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+
+  .announcements__icon {
+    flex: 0 0 auto;
+    display: inline-block;
+    overflow: hidden;
+    width: 22px;
+    height: 22px;
+  }
+
+  .announcements__body {
+    width: 100%;
+
+    p {
+      padding-left: 5px;
+      font-size: 14px;
+    }
+
+    .links {
+      text-align: right;
+
+      a {
+        display: inline-block;
+        color: $ui-base-color;
+        background: darken($white, 5%);
+        text-decoration: none;
+        padding: 1px 10px 0;
+        border: solid 1px $ui-base-color;
+        font-size: 10px;
+        font-weight: 600;
+        border-radius: 4px;
+        margin-top: 5px;
+        margin-left: 5px;
+      }
+    }
+  }
+}
