@@ -533,6 +533,17 @@ code {
     color: $error-value-color;
   }
 
+  a {
+    display: inline-block;
+    color: $darker-text-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary-text-color;
+      text-decoration: underline;
+    }
+  }
+
   p {
     margin-bottom: 15px;
   }
