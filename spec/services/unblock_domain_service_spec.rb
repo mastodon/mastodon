@@ -7,9 +7,13 @@ describe UnblockDomainService, type: :service do
 
   describe 'call' do
     before do
-      @silenced = Fabricate(:account, domain: 'example.com', silenced: true)
-      @suspended = Fabricate(:account, domain: 'example.com', suspended: true)
+      @silenced_with_nil_date = Fabricate(:account, domain: 'example.com', silenced: true)
+      @suspended_with_nil_date = Fabricate(:account, domain: 'example.com', suspended: true)
+      @independently_suspended = Fabricate(:account, domain: 'example.com', suspended: true, suspended_at: 1.hour.ago)
+      @independently_silenced = Fabricate(:account, domain: 'example.com', silenced: true, silenced_at: 1.hour.ago)
       @domain_block = Fabricate(:domain_block, domain: 'example.com')
+      @silenced = Fabricate(:account, domain: 'example.com', silenced: true, suspended_at: @domain_block.created_at)
+      @suspended = Fabricate(:account, domain: 'example.com', suspended: true, suspended_at: @domain_block.created_at)
     end
 
     context 'without retroactive' do
@@ -27,6 +31,10 @@ describe UnblockDomainService, type: :service do
         expect_deleted_domain_block
         expect(@silenced.reload.silenced).to be false
         expect(@suspended.reload.suspended).to be true
+        expect(@silenced_with_nil_date.reload.silenced).to be false
+        expect(@suspended_with_nil_date.reload.suspended).to be true
+        expect(@independently_suspended.reload.suspended).to be true
+        expect(@independently_silenced.reload.silenced).to be true
       end
 
       it 'unsuspends accounts and removes block' do
@@ -36,6 +44,10 @@ describe UnblockDomainService, type: :service do
         expect_deleted_domain_block
         expect(@suspended.reload.suspended).to be false
         expect(@silenced.reload.silenced).to be true
+        expect(@suspended_with_nil_date.reload.suspended).to be false
+        expect(@silenced_with_nil_date.reload.silenced).to be true
+        expect(@independently_suspended.reload.suspended).to be true
+        expect(@independently_silenced.reload.silenced).to be true
       end
     end
   end
