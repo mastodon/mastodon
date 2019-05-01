@@ -19,6 +19,13 @@ module Admin
         log_action :create, @domain_block
         redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
       else
+        if resource_params[:domain].present?
+          domain_block = DomainBlock.find_by(domain: resource_params[:domain])
+          unless domain_block.nil?
+            flash[:alert] = I18n.t('admin.domain_blocks.existing_domain_block_html', name: domain_block.domain, unblock_url: admin_domain_block_path(domain_block)).html_safe
+            @domain_block.errors[:domain].clear
+          end
+        end
         render :new
       end
     end
