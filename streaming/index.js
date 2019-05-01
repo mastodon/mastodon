@@ -605,6 +605,9 @@ const startWorker = (workerId) => {
         streamFrom(channel, req, streamToWs(req, ws), streamWsEnd(req, ws, subscriptionHeartbeat(channel)));
       });
       break;
+    case 'commands':
+      streamFrom('commands', req, streamToWs(req, ws), streamWsEnd(req, ws), false);
+      break;
     default:
       ws.close();
     }

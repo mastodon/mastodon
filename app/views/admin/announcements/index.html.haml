@@ -1,0 +1,22 @@
+- content_for :page_title do
+  = t('admin.announcements.title')
+
+= link_to t('admin.announcements.add_new'), new_admin_announcement_path, class: 'button'
+
+%table.table
+  %thead
+    %tr
+      %th= t('admin.announcements.order')
+      %th= t('admin.announcements.body')
+      %th= t('admin.announcements.links')
+  %tbody
+    - @announcements.each do |announcement|
+      %tr
+        %td= announcement.order
+        %td= announcement.body
+        %td
+          - announcement.links.each do |link|
+            = link_to link.text, link.url, class: 'text'
+        %td
+          = table_link_to 'edit', t('admin.announcements.edit_it'), edit_admin_announcement_path(announcement)
+          = table_link_to 'trash', t('admin.announcements.delete_it'), admin_announcement_path(announcement), method: :delete
