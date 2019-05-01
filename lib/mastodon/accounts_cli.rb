@@ -87,8 +87,9 @@ module Mastodon
         end
       end
 
-      account.suspended = false
-      user.account      = account
+      account.suspended    = false
+      account.suspended_at = nil
+      user.account         = account
 
       if user.save
         if options[:confirmed]
