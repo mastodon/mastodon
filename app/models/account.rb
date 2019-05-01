@@ -45,6 +45,8 @@
 #  actor_type              :string
 #  discoverable            :boolean
 #  also_known_as           :string           is an Array
+#  silenced_at             :datetime
+#  suspended_at            :datetime
 #
 
 class Account < ApplicationRecord
@@ -165,25 +167,27 @@ class Account < ApplicationRecord
     ResolveAccountService.new.call(acct)
   end
 
-  def silence!
-    update!(silenced: true)
+  def silence!(date = nil)
+    date = Time.now.utc if date.nil?
+    update!(silenced: true, silenced_at: date)
   end
 
   def unsilence!
-    update!(silenced: false)
+    update!(silenced: false, silenced_at: nil)
   end
 
-  def suspend!
+  def suspend!(date = nil)
+    date = Time.now.utc if date.nil?
     transaction do
       user&.disable! if local?
-      update!(suspended: true)
+      update!(suspended: true, suspended_at: date)
     end
   end
 
   def unsuspend!
     transaction do
       user&.enable! if local?
-      update!(suspended: false)
+      update!(suspended: false, suspended_at: nil)
     end
   end
 

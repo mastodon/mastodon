@@ -119,9 +119,15 @@ class ResolveAccountService < BaseService
     Rails.logger.debug "Creating new remote account for #{@username}@#{@domain}"
 
     @account = Account.new(username: @username, domain: @domain)
-    @account.suspended   = true if auto_suspend?
-    @account.silenced    = true if auto_silence?
     @account.private_key = nil
+    if auto_suspend?
+      @account.suspended    = true
+      @account.suspended_at = domain_block.created_at
+    end
+    if auto_silence?
+      @account.silenced    = true
+      @account.silenced_at = domain_block.created_at
+    end
   end
 
   def update_account
