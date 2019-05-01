@@ -36,4 +36,9 @@ class DomainBlock < ApplicationRecord
     return false if other_block.silence? && noop?
     (reject_media || !other_block.reject_media) && (reject_reports || !other_block.reject_reports)
   end
+
+  def affected_accounts_count
+    scope = suspend? ? accounts.where(suspended: true, suspended_at: [created_at, nil]) : accounts.where(silenced: true, silenced_at: [created_at, nil])
+    scope.count
+  end
 end
