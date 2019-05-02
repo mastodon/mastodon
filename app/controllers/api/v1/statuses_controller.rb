@@ -65,7 +65,7 @@ class Api::V1::StatusesController < Api::BaseController
 
     RemovalWorker.perform_async(@status.id)
 
-    render_empty
+    render json: @status, serializer: REST::StatusSerializer, source_requested: true
   end
 
   private

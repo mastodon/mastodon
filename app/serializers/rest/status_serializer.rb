@@ -11,6 +11,8 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attribute :muted, if: :current_user?
   attribute :pinned, if: :pinnable?
 
+  attribute :raw_content, if: :source_requested?
+
   belongs_to :reblog, serializer: REST::StatusSerializer
   belongs_to :application, if: :show_application?
   belongs_to :account, serializer: REST::AccountSerializer
@@ -62,6 +64,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
     Formatter.instance.format(object)
   end
 
+  def raw_content
+    object.text
+  end
+
   def url
     TagManager.instance.url_for(object)
   end
@@ -103,6 +109,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
       current_user.account_id == object.account_id &&
       !object.reblog? &&
       %w(public unlisted).include?(object.visibility)
+  end
+
+  def source_requested?
+    instance_options[:source_requested]
   end
 
   def ordered_mentions
