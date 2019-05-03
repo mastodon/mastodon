@@ -125,6 +125,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
     if (status.get('poll')) {
       media = <PollContainer pollId={status.get('poll')} />;
+      mediaIcon = 'tasks';
     } else if (status.get('media_attachments').size > 0) {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
         media = <AttachmentList media={status.get('media_attachments')} />;
@@ -161,7 +162,10 @@ export default class DetailedStatus extends ImmutablePureComponent {
         );
         mediaIcon = 'picture-o';
       }
-    } else media = <Card onOpenMedia={this.props.onOpenMedia} card={status.get('card', null)} />;
+    } else {
+      media = <Card onOpenMedia={this.props.onOpenMedia} card={status.get('card', null)} />;
+      mediaIcon = 'link';
+    }
 
     if (status.get('application')) {
       applicationLink = <span> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener'>{status.getIn(['application', 'name'])}</a></span>;
