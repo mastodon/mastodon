@@ -65,10 +65,6 @@ const messages = defineMessages({
     defaultMessage: 'Public',
     id: 'privacy.public.short',
   },
-  sensitive: {
-    defaultMessage: 'Mark media as sensitive',
-    id: 'compose_form.sensitive',
-  },
   spoiler: {
     defaultMessage: 'Hide text behind warning',
     id: 'compose_form.spoiler',
@@ -116,7 +112,6 @@ class ComposerOptions extends ImmutablePureComponent {
     hasPoll: PropTypes.bool,
     intl: PropTypes.object.isRequired,
     onChangeAdvancedOption: PropTypes.func,
-    onChangeSensitivity: PropTypes.func,
     onChangeVisibility: PropTypes.func,
     onTogglePoll: PropTypes.func,
     onDoodleOpen: PropTypes.func,
@@ -126,7 +121,6 @@ class ComposerOptions extends ImmutablePureComponent {
     onUpload: PropTypes.func,
     privacy: PropTypes.string,
     resetFileKey: PropTypes.number,
-    sensitive: PropTypes.bool,
     spoiler: PropTypes.bool,
   };
 
@@ -175,7 +169,6 @@ class ComposerOptions extends ImmutablePureComponent {
       hasPoll,
       intl,
       onChangeAdvancedOption,
-      onChangeSensitivity,
       onChangeVisibility,
       onTogglePoll,
       onModalClose,
@@ -183,7 +176,6 @@ class ComposerOptions extends ImmutablePureComponent {
       onToggleSpoiler,
       privacy,
       resetFileKey,
-      sensitive,
       spoiler,
     } = this.props;
 
@@ -264,39 +256,6 @@ class ComposerOptions extends ImmutablePureComponent {
             title={intl.formatMessage(hasPoll ? messages.remove_poll : messages.add_poll)}
           />
         )}
-        <Motion
-          defaultStyle={{ scale: 0.87 }}
-          style={{
-            scale: spring(hasMedia ? 1 : 0.87, {
-              stiffness: 200,
-              damping: 3,
-            }),
-          }}
-        >
-          {({ scale }) => (
-            <div
-              style={{
-                display: hasMedia ? null : 'none',
-                transform: `scale(${scale})`,
-              }}
-            >
-              <IconButton
-                active={sensitive}
-                className='sensitive'
-                disabled={spoiler}
-                icon={sensitive ? 'eye-slash' : 'eye'}
-                inverted
-                onClick={onChangeSensitivity}
-                size={18}
-                style={{
-                  height: null,
-                  lineHeight: null,
-                }}
-                title={intl.formatMessage(messages.sensitive)}
-              />
-            </div>
-          )}
-        </Motion>
         <hr />
         <Dropdown
           disabled={disabled}
