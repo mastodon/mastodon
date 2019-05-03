@@ -106,6 +106,7 @@ export default class Video extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     cacheWidth: PropTypes.func,
     blurhash: PropTypes.string,
+    link: PropTypes.node,
   };
 
   state = {
@@ -384,7 +385,7 @@ export default class Video extends React.PureComponent {
   }
 
   render () {
-    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, letterbox, fullwidth, detailed, sensitive } = this.props;
+    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, letterbox, fullwidth, detailed, sensitive, link } = this.props;
     const { containerWidth, currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
     const progress = (currentTime / duration) * 100;
     const playerStyle = {};
@@ -487,13 +488,15 @@ export default class Video extends React.PureComponent {
                 />
               </div>
 
-              {(detailed || fullscreen) &&
+              {(detailed || fullscreen) && (
                 <span>
                   <span className='video-player__time-current'>{formatTime(currentTime)}</span>
                   <span className='video-player__time-sep'>/</span>
                   <span className='video-player__time-total'>{formatTime(duration)}</span>
                 </span>
-              }
+              )}
+
+              {link && <span className='video-player__link'>{link}</span>}
             </div>
 
             <div className='video-player__buttons right'>
