@@ -7,9 +7,11 @@ if Rails.env.production?
   data_hosts = [assets_host]
 
   if ENV['S3_ENABLED'] == 'true'
-    attachments_host = ENV['S3_ALIAS_HOST'] || ENV['S3_CLOUDFRONT_HOST'] || ENV['S3_HOSTNAME'] || "s3-#{ENV['S3_REGION'] || 'us-east-1'}.amazonaws.com"
+    attachments_host = "https://#{ENV['S3_ALIAS_HOST'] || ENV['S3_CLOUDFRONT_HOST'] || ENV['S3_HOSTNAME'] || "s3-#{ENV['S3_REGION'] || 'us-east-1'}.amazonaws.com"}"
+    attachments_host = "https://#{Addressable::URI.parse(attachments_host).host}"
   elsif ENV['SWIFT_ENABLED'] == 'true'
     attachments_host = ENV['SWIFT_OBJECT_URL']
+    attachments_host = "https://#{Addressable::URI.parse(attachments_host).host}"
   else
     attachments_host = nil
   end
