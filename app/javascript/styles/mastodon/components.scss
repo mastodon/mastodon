@@ -264,6 +264,11 @@
 .compose-form {
   padding: 10px;
 
+  &__sensitive-button {
+    padding: 10px;
+    padding-top: 0;
+  }
+
   .compose-form__warning {
     color: $inverted-text-color;
     margin-bottom: 10px;
