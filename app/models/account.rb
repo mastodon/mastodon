@@ -49,7 +49,7 @@
 
 class Account < ApplicationRecord
   USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
-  MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
+  MENTION_RE  = /(?<=^|[^\/[:word:]:])@((#{USERNAME_RE})(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
   MIN_FOLLOWERS_DISCOVERY = 10
   NOTE_MAXIMUM_LENGTH = 512
 
@@ -521,4 +521,6 @@ class Account < ApplicationRecord
       end
     end
   end
+
+  include Friends::ProfileEmoji::AccountExtension
 end

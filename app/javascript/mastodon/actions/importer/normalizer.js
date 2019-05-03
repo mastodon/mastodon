@@ -5,7 +5,7 @@ import { expandSpoilers } from '../../initial_state';
 
 const domParser = new DOMParser();
 
-const makeEmojiMap = record => record.emojis.reduce((obj, emoji) => {
+const makeEmojiMap = record => record.all_emojis.reduce((obj, emoji) => {
   obj[`:${emoji.shortcode}:`] = emoji;
   return obj;
 }, {});

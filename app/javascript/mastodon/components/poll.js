@@ -15,7 +15,7 @@ const messages = defineMessages({
   closed: { id: 'poll.closed', defaultMessage: 'Closed' },
 });
 
-const makeEmojiMap = record => record.get('emojis').reduce((obj, emoji) => {
+const makeEmojiMap = record => record.get('all_emojis').reduce((obj, emoji) => {
   obj[`:${emoji.get('shortcode')}:`] = emoji.toJS();
   return obj;
 }, {});
