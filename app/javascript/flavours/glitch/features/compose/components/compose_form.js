@@ -321,8 +321,8 @@ class ComposeForm extends ImmutablePureComponent {
             onSuggestionsClearRequested={onClearSuggestions}
             onSuggestionSelected={this.onSpoilerSuggestionSelected}
             searchTokens={[':']}
-             id='glitch.composer.spoiler.input'
-             className='spoiler-input__input'
+            id='glitch.composer.spoiler.input'
+            className='spoiler-input__input'
           />
         </div>
 
