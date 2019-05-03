@@ -314,7 +314,7 @@ class MediaGallery extends React.PureComponent {
     }
 
     if (visible) {
-      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={visible ? 'eye' : 'eye-slash'} overlay onClick={this.handleOpen} />;
+      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible)} icon='eye-slash' overlay onClick={this.handleOpen} />;
     } else {
       spoilerButton = (
         <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'>
