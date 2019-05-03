@@ -4701,6 +4701,23 @@ a.status-card.compact:hover {
     }
   }
 
+  &__link {
+    padding: 2px 10px;
+
+    a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: $white;
+
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+  }
+
   &__seek {
     cursor: pointer;
     height: 24px;

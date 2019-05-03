@@ -104,6 +104,7 @@ class Video extends React.PureComponent {
     cacheWidth: PropTypes.func,
     intl: PropTypes.object.isRequired,
     blurhash: PropTypes.string,
+    link: PropTypes.node,
   };
 
   state = {
@@ -361,7 +362,7 @@ class Video extends React.PureComponent {
   }
 
   render () {
-    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, detailed, sensitive } = this.props;
+    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, detailed, sensitive, link } = this.props;
     const { containerWidth, currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
     const progress = (currentTime / duration) * 100;
 
@@ -453,6 +454,7 @@ class Video extends React.PureComponent {
             <div className='video-player__buttons left'>
               <button type='button' aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} onClick={this.togglePlay}><Icon id={paused ? 'play' : 'pause'} fixedWidth /></button>
               <button type='button' aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} fixedWidth /></button>
+
               <div className='video-player__volume' onMouseDown={this.handleVolumeMouseDown} ref={this.setVolumeRef}>
                 <div className='video-player__volume__current' style={{ width: `${volumeWidth}px` }} />
                 <span
@@ -462,13 +464,15 @@ class Video extends React.PureComponent {
                 />
               </div>
 
-              {(detailed || fullscreen) &&
+              {(detailed || fullscreen) && (
                 <span>
                   <span className='video-player__time-current'>{formatTime(currentTime)}</span>
                   <span className='video-player__time-sep'>/</span>
                   <span className='video-player__time-total'>{formatTime(duration)}</span>
                 </span>
-              }
+              )}
+
+              {link && <span className='video-player__link'>{link}</span>}
             </div>
 
             <div className='video-player__buttons right'>
