@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import IconButton from '../../../components/icon_button';
-import { changeComposeSensitivity } from '../../../actions/compose';
+import { changeComposeSensitivity } from 'mastodon/actions/compose';
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 import Icon from 'mastodon/components/icon';
 
