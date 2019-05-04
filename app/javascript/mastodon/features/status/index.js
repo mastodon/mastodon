@@ -316,15 +316,15 @@ class Status extends ImmutablePureComponent {
     const { status, ancestorsIds, descendantsIds } = this.props;
 
     if (id === status.get('id')) {
-      this._selectChild(ancestorsIds.size - 1);
+      this._selectChild(ancestorsIds.size - 1, true);
     } else {
       let index = ancestorsIds.indexOf(id);
 
       if (index === -1) {
         index = descendantsIds.indexOf(id);
-        this._selectChild(ancestorsIds.size + index);
+        this._selectChild(ancestorsIds.size + index, true);
       } else {
-        this._selectChild(index - 1);
+        this._selectChild(index - 1, true);
       }
     }
   }
@@ -333,23 +333,29 @@ class Status extends ImmutablePureComponent {
     const { status, ancestorsIds, descendantsIds } = this.props;
 
     if (id === status.get('id')) {
-      this._selectChild(ancestorsIds.size + 1);
+      this._selectChild(ancestorsIds.size + 1, false);
     } else {
       let index = ancestorsIds.indexOf(id);
 
       if (index === -1) {
         index = descendantsIds.indexOf(id);
-        this._selectChild(ancestorsIds.size + index + 2);
+        this._selectChild(ancestorsIds.size + index + 2, false);
       } else {
-        this._selectChild(index + 1);
+        this._selectChild(index + 1, false);
       }
     }
   }
 
-  _selectChild (index) {
-    const element = this.node.querySelectorAll('.focusable')[index];
+  _selectChild (index, align_top) {
+    const container = this.node;
+    const element = container.querySelectorAll('.focusable')[index];
 
     if (element) {
+      if (align_top && container.scrollTop > element.offsetTop) {
+        element.scrollIntoView(true);
+      } else if (!align_top && container.scrollTop + container.clientHeight < element.offsetTop + element.offsetHeight) {
+        element.scrollIntoView(false);
+      }
       element.focus();
     }
   }

@@ -6,6 +6,7 @@ module LdapAuthenticable
   def ldap_setup(_attributes)
     self.confirmed_at = Time.now.utc
     self.admin        = false
+    self.external     = true
 
     save!
   end
