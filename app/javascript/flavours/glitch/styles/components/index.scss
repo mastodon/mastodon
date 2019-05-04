@@ -25,6 +25,7 @@
   text-decoration: none;
   text-overflow: ellipsis;
   transition: all 100ms ease-in;
+  transition-property: background-color;
   white-space: nowrap;
   width: auto;
 
@@ -33,6 +34,7 @@
   &:hover {
     background-color: lighten($ui-highlight-color, 7%);
     transition: all 200ms ease-out;
+    transition-property: background-color;
   }
 
   &--destructive {
@@ -564,6 +566,7 @@
   font-weight: 500;
   border-bottom: 2px solid lighten($ui-base-color, 8%);
   transition: all 200ms linear;
+  transition-property: background;
 
   .fa {
     font-weight: 400;
@@ -581,6 +584,7 @@
     @include multi-columns('screen and (min-width: 631px)') {
       background: lighten($ui-base-color, 14%);
       transition: all 100ms linear;
+      transition-property: background;
     }
   }
 
@@ -664,7 +668,7 @@
   padding: 0;
   border-radius: 30px;
   background-color: $ui-base-color;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
@@ -717,7 +721,6 @@
 }
 
 .react-toggle-thumb {
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   position: absolute;
   top: 1px;
   left: 1px;
@@ -728,6 +731,7 @@
   background-color: darken($simple-background-color, 2%);
   box-sizing: border-box;
   transition: all 0.25s ease;
+  transition-property: border-color, left;
 }
 
 .react-toggle--checked .react-toggle-thumb {
