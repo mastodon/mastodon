@@ -194,7 +194,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       next if attachment['url'].blank?
 
       href             = Addressable::URI.parse(attachment['url']).normalize.to_s
-      media_attachment = MediaAttachment.create(account: @account, remote_url: href, description: attachment['name'].presence, focus: attachment['focalPoint'])
+      media_attachment = MediaAttachment.create(account: @account, remote_url: href, description: attachment['name'].presence, focus: attachment['focalPoint'], blurhash: supported_blurhash?(attachment['blurhash']) ? attachment['blurhash'] : nil)
       media_attachments << media_attachment
 
       next if unsupported_media_type?(attachment['mediaType']) || skip_download?
@@ -367,6 +367,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def unsupported_media_type?(mime_type)
     mime_type.present? && !(MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES).include?(mime_type)
+  end
+
+  def supported_blurhash?(blurhash)
+    components = blurhash.blank? ? nil : Blurhash.components(blurhash)
+    components.present? && components.none? { |comp| comp > 5 }
   end
 
   def skip_download?

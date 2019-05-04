@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_09_054914) do
+ActiveRecord::Schema.define(version: 2019_04_20_025523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -362,6 +362,7 @@ ActiveRecord::Schema.define(version: 2019_04_09_054914) do
     t.bigint "account_id"
     t.text "description"
     t.bigint "scheduled_status_id"
+    t.string "blurhash"
     t.index ["account_id"], name: "index_media_attachments_on_account_id"
     t.index ["scheduled_status_id"], name: "index_media_attachments_on_scheduled_status_id"
     t.index ["shortcode"], name: "index_media_attachments_on_shortcode", unique: true
