@@ -28,4 +28,6 @@ class REST::PollSerializer < ActiveModel::Serializer
   class OptionSerializer < ActiveModel::Serializer
     attributes :title, :votes_count
   end
+
+  include Friends::ProfileEmoji::SerializerExtension
 end

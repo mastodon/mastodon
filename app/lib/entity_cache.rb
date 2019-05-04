@@ -31,4 +31,6 @@ class EntityCache
   def to_key(type, *ids)
     "#{type}:#{ids.compact.map(&:downcase).join(':')}"
   end
+
+  include Friends::ProfileEmoji::EntityCacheExtension
 end
