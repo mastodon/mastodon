@@ -1972,6 +1972,7 @@ a.account__display-name {
   font-weight: 500;
   border-bottom: 2px solid lighten($ui-base-color, 8%);
   transition: all 50ms linear;
+  transition-property: border-bottom, background, color;
 
   .fa {
     font-weight: 400;
@@ -2137,7 +2138,7 @@ a.account__display-name {
   padding: 0;
   border-radius: 30px;
   background-color: $ui-base-color;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
@@ -2190,7 +2191,6 @@ a.account__display-name {
 }
 
 .react-toggle-thumb {
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   position: absolute;
   top: 1px;
   left: 1px;
@@ -2201,6 +2201,7 @@ a.account__display-name {
   background-color: darken($simple-background-color, 2%);
   box-sizing: border-box;
   transition: all 0.25s ease;
+  transition-property: border-color, left;
 }
 
 .react-toggle--checked .react-toggle-thumb {
@@ -3552,6 +3553,7 @@ a.status-card.compact:hover {
     display: inline-block;
     opacity: 0;
     transition: all 100ms linear;
+    transition-property: transform, opacity;
     font-size: 18px;
     width: 18px;
     height: 18px;

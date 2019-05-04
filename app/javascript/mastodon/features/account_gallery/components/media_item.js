@@ -133,7 +133,7 @@ export default class MediaItem extends ImmutablePureComponent {
 
     return (
       <div className='account-gallery__item' style={{ width, height }}>
-        <a className='media-gallery__item-thumbnail' href={status.get('url')} target='_blank' style={{ cursor: 'pointer' }} onClick={this.handleClick}>
+        <a className='media-gallery__item-thumbnail' href={status.get('url')} target='_blank' onClick={this.handleClick}>
           <canvas width={32} height={32} ref={this.setCanvasRef} className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': visible && loaded })} />
           {visible && thumbnail}
         </a>
