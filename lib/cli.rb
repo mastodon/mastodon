@@ -9,6 +9,7 @@ require_relative 'mastodon/search_cli'
 require_relative 'mastodon/settings_cli'
 require_relative 'mastodon/statuses_cli'
 require_relative 'mastodon/domains_cli'
+require_relative 'mastodon/cache_cli'
 require_relative 'mastodon/version'
 
 module Mastodon
@@ -40,6 +41,9 @@ module Mastodon
 
     desc 'domains SUBCOMMAND ...ARGS', 'Manage account domains'
     subcommand 'domains', Mastodon::DomainsCLI
+
+    desc 'cache SUBCOMMAND ...ARGS', 'Manage cache'
+    subcommand 'cache', Mastodon::CacheCLI
 
     option :dry_run, type: :boolean
     desc 'self-destruct', 'Erase the server from the federation'
