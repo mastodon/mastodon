@@ -15,7 +15,15 @@ if Rails.env.production?
   else
     attachments_host = nil
   end
+
   data_hosts << attachments_host unless attachments_host.nil?
+
+  if ENV['PAPERCLIP_ROOT_URL']
+    url = Addressable::URI.parse(assets_host) + ENV['PAPERCLIP_ROOT_URL']
+    data_hosts << "https://#{url.host}"
+  end
+
+  data_hosts.uniq!
 
   Rails.application.config.content_security_policy do |p|
     p.base_uri        :none
