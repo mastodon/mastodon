@@ -131,11 +131,17 @@ export default class MediaItem extends ImmutablePureComponent {
       );
     }
 
+    const icon = (
+      <span className='account-gallery__item__icons'>
+        <i className='fa fa-eye-slash' />
+      </span>
+    );
+
     return (
       <div className='account-gallery__item' style={{ width, height }}>
         <a className='media-gallery__item-thumbnail' href={status.get('url')} target='_blank' onClick={this.handleClick} title={title}>
           <canvas width={32} height={32} ref={this.setCanvasRef} className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': visible && loaded })} />
-          {visible && thumbnail}
+          {visible ? thumbnail : icon}
         </a>
       </div>
     );
