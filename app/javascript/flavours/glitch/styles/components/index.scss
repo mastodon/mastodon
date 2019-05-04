@@ -1074,11 +1074,12 @@
   z-index: 100;
 
   &--minified {
-    display: block;
+    display: flex;
     left: 4px;
     top: 4px;
     width: auto;
     height: auto;
+    align-items: center;
   }
 
   &--hidden {
