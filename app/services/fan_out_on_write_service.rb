@@ -60,7 +60,7 @@ class FanOutOnWriteService < BaseService
   def deliver_to_self_lists(status)
     Rails.logger.debug "Delivering status #{status.id} to own lists"
 
-    List.where(account_id: status.account.id).select(:id).reorder(nil).find_in_batches do |lists|
+    List.where("account_id = ? AND title LIKE ?", status.account.id, "%+").select(:id).reorder(nil).find_in_batches do |lists|
       FeedInsertWorker.push_bulk(lists) do |list|
         [status.id, list.id, :list]
       end
