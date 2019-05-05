@@ -92,6 +92,7 @@ class Formatter
 
   def format_article(text)
     text = text.gsub(/>\n+</, "><")
+    text = "<span class='article-type'>#{text}</span>"
     text.html_safe # rubocop:disable Rails/OutputSafety
   end
 

@@ -773,6 +773,7 @@
   ul,
   ol {
     margin-left: 1em;
+    margin-bottom: 1em;
 
     p {
       margin: 0;
@@ -839,6 +840,10 @@
     &.status__content__text--visible {
       display: block;
     }
+  }
+
+  .article-type img {
+    max-width: 95%;
   }
 }
 

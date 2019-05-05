@@ -213,7 +213,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             <DisplayName account={status.get('account')} localDomain={this.props.domain} />
           </a>
 
-          <StatusContent status={status} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} />
+          <StatusContent status={status} expanded={status.get('activity_pub_type') === 'Article' || !status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} />
 
           {media}
 

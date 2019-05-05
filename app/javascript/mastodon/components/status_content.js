@@ -170,6 +170,12 @@ export default class StatusContent extends React.PureComponent {
       </button>
     );
 
+    const readArticleButton = (
+      <button className='status__content__read-more-button' onClick={this.props.onClick} key='read-more'>
+        <FormattedMessage id='status.read_article' defaultMessage='Read article' /><Icon id='angle-right' fixedWidth />
+      </button>
+    );
+
     if (status.get('spoiler_text').length > 0) {
       let mentionsPlaceholder = '';
 
@@ -185,21 +191,26 @@ export default class StatusContent extends React.PureComponent {
         mentionsPlaceholder = <div>{mentionLinks}</div>;
       }
 
-      return (
+      const output = [
         <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
             <span dangerouslySetInnerHTML={spoilerContent} lang={status.get('language')} />
             {' '}
-            <button tabIndex='0' className={`status__content__spoiler-link ${hidden ? 'status__content__spoiler-link--show-more' : 'status__content__spoiler-link--show-less'}`} onClick={this.handleSpoilerClick}>{toggleText}</button>
+            {status.get('activity_pub_type') === 'Article' ? '' : <div><button tabIndex='0' className={`status__content__spoiler-link ${hidden ? 'status__content__spoiler-link--show-more' : 'status__content__spoiler-link--show-less'}`} onClick={this.handleSpoilerClick}>{toggleText}</button></div>}
           </p>
 
           {mentionsPlaceholder}
 
           <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} lang={status.get('language')} />
-
           {!hidden && !!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
-        </div>
-      );
+        </div>,
+      ];
+
+      if (status.get('activity_pub_type') === 'Article' && !this.props.expanded) {
+        output.push(readArticleButton);
+      }
+
+      return output;
     } else if (this.props.onClick) {
       const output = [
         <div

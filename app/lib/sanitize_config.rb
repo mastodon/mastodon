@@ -49,6 +49,9 @@ class Sanitize
           'rel' => 'nofollow noopener',
           'target' => '_blank',
         },
+        'span' => {
+          'class' => 'article-type',
+        },
       },
 
       protocols: {

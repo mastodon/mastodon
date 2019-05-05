@@ -60,7 +60,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         account: @account,
         text: text_from_content || '',
         language: detected_language,
-        spoiler_text: converted_object_type? ? '' : (text_from_summary || ''),
+        spoiler_text: converted_object_type? ? '' : (text_from_summary || (@object['type'] == 'Article' && text_from_name) || ''),
         created_at: @object['published'],
         override_timestamps: @options[:override_timestamps],
         reply: @object['inReplyTo'].present?,
@@ -70,6 +70,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         conversation: conversation_from_uri(@object['conversation']),
         media_attachment_ids: process_attachments.take(4).map(&:id),
         poll: process_poll,
+        activity_pub_type: @object['type']
       }
     end
   end
