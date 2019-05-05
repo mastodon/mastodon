@@ -112,7 +112,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
       return null;
     }
 
-    let media           = '';
+    let media           = null;
     let mediaIcon       = null;
     let applicationLink = '';
     let reblogLink = '';
@@ -163,8 +163,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
         );
         mediaIcon = 'picture-o';
       }
-    } else {
-      media = <Card onOpenMedia={this.props.onOpenMedia} card={status.get('card', null)} />;
+    } else if (status.get('card')) {
+      media = <Card onOpenMedia={this.props.onOpenMedia} card={status.get('card')} />;
       mediaIcon = 'link';
     }
 
