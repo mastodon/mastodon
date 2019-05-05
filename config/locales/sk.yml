@@ -268,10 +268,11 @@ sk:
       week_users_active: aktívni tento týždeň
       week_users_new: užívateľov počas tohto týždňa
     domain_blocks:
-      add_new: Pridaj nové doménové blokovanie
+      add_new: Blokuj novú doménu
       created_msg: Doména je v štádiu blokovania
       destroyed_msg: Blokovanie domény bolo zrušené
       domain: Doména
+      existing_domain_block_html: Pre účet %{name} si už nahodil/a přísnejšie obmedzenie, najskôr ho teda musíš <a href="%{unblock_url}">odblokovať</a>.
       new:
         create: Vytvor blokovanie domény
         hint: Blokovanie domény stále dovolí vytvárať nové účty v databázi, ale tieto budú spätne automaticky moderované.
@@ -299,7 +300,7 @@ sk:
           silence: Zruš stíšenie všetkých existujúcich účtov z tejto domény
           suspend: Zruš suspendáciu všetkých existujúcich účtov z tejto domény
         title: Zruš blokovanie domény %{domain}
-        undo: Vrátiť späť
+        undo: Vráť späť
       undo: Odvolaj blokovanie domény
     email_domain_blocks:
       add_new: Pridaj nový
