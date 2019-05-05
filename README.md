@@ -1,92 +1,52 @@
-![Mastodon](https://i.imgur.com/NhZc40l.png)
-========
+Florence Mastodon
+=================
 
-[![GitHub release](https://img.shields.io/github/release/tootsuite/mastodon.svg)][releases]
-[![Build Status](https://img.shields.io/circleci/project/github/tootsuite/mastodon.svg)][circleci]
-[![Code Climate](https://img.shields.io/codeclimate/maintainability/tootsuite/mastodon.svg)][code_climate]
-[![Translation status](https://weblate.joinmastodon.org/widgets/mastodon/-/svg-badge.svg)][weblate]
-[![Docker Pulls](https://img.shields.io/docker/pulls/tootsuite/mastodon.svg)][docker]
+Mastodon is a **free, open-source social network server** based on ActivityPub. This is *not* the
+official version of Mastodon; this is a separate version (i.e. a fork) maintained by Florence. For
+more information on Mastodon, you can see the [official website] and the [upstream repo].
 
-[releases]: https://github.com/tootsuite/mastodon/releases
-[circleci]: https://circleci.com/gh/tootsuite/mastodon
-[code_climate]: https://codeclimate.com/github/tootsuite/mastodon
-[weblate]: https://weblate.joinmastodon.org/engage/mastodon/
-[docker]: https://hub.docker.com/r/tootsuite/mastodon/
+[official website]: https://joinmastodon.org
+[upstream repo]: https://github.com/tootsuite/mastodon
 
-Mastodon is a **free, open-source social network server** based on ActivityPub. Follow friends and discover new ones. Publish anything you want: links, pictures, text, video. All servers of Mastodon are interoperable as a federated network, i.e. users on one server can seamlessly communicate with users from another one. This includes non-Mastodon software that also implements ActivityPub!
+This version of Mastodon will include much-wanted changes by the community that are not included
+in the upstream version of Mastodon. Migrating from the lastest stable release of Mastodon to
+Florence's Mastodon will always be possible, to ensure that everyone can benefit from these
+changes.
 
-Click below to **learn more** in a video:
+## Versioning
 
-[![Screenshot](https://blog.joinmastodon.org/2018/06/why-activitypub-is-the-future/ezgif-2-60f1b00403.gif)][youtube_demo]
+Florence Mastodon will follow [semantic versioning]. Essentially, this means that versions will be
+MAJOR.MINOR.PATCH, where:
 
-[youtube_demo]: https://www.youtube.com/watch?v=IPSbNdBmWKE
+* MAJOR version bumps indicate fundamentally incompatible changes. This includes major UI changes,
+  changes to how servers federate, changes that may break existing apps, etc.
+* MINOR version bumps indicate new features that don't break backwards compatibility. While it
+  won't explicitly break anything, users may have to go out of their way to use the new feature,
+  and apps may have to explicitly add support for the feature.
+* PATCH version bumps are for fixes that don't add any new features.
 
-## Navigation
+[semantic versioning]: https://semver.org
 
-- [Project homepage 🐘](https://joinmastodon.org)
-- [Support the development via Patreon][patreon]
-- [View sponsors](https://joinmastodon.org/sponsors)
-- [Blog](https://blog.joinmastodon.org)
-- [Documentation](https://docs.joinmastodon.org)
-- [Browse Mastodon servers](https://joinmastodon.org/#getting-started)
-- [Browse Mastodon apps](https://joinmastodon.org/apps)
+Because Florence Mastodon is currently less than version 1.0.0, there won't be any PATCH versions,
+and versions will be of the form 0.MAJOR.MINOR. This basically means that breaking changes can
+happen often.
 
-[patreon]: https://www.patreon.com/mastodon
+## Release timeline
 
-## Features
+Florence Mastodon 0.0.0 is mostly equivalent to Mastodon 2.7.1, with some extra changes added in.
+Right now, the goal pre-1.0 is to incorporate existing, already-developed changes into the fork so
+that people have a central version to upgrade to.
 
-<img src="https://docs.joinmastodon.org/elephant.svg" align="right" width="30%" />
+1.0.0 will be equivalent to some future, stable release of Mastodon, plus these changes. This could
+be 2.8 or 2.9 or even 2.10; it depends on how fast development happens. Once this is done, work on
+new features, plus refinement of existing, larger features (such as Glitch.Social's theme changes)
+can start.
 
-**No vendor lock-in: Fully interoperable with any conforming platform**
-
-It doesn't have to be Mastodon, whatever implements ActivityPub is part of the social network! [Learn more](https://blog.joinmastodon.org/2018/06/why-activitypub-is-the-future/)
-
-**Real-time, chronological timeline updates**
-
-See the updates of people you're following appear in real-time in the UI via WebSockets. There's a firehose view as well!
-
-**Media attachments like images and short videos**
-
-Upload and view images and WebM/MP4 videos attached to the updates. Videos with no audio track are treated like GIFs; normal videos are looped - like vines!
-
-**Safety and moderation tools**
-
-Private posts, locked accounts, phrase filtering, muting, blocking and all sorts of other features, along with a reporting and moderation system. [Learn more](https://blog.joinmastodon.org/2018/07/cage-the-mastodon/)
-
-**OAuth2 and a straightforward REST API**
-
-Mastodon acts as an OAuth2 provider so 3rd party apps can use the REST and Streaming APIs, resulting in a rich app ecosystem with a lot of choice!
-
-## Deployment
-
-**Tech stack:**
-
-- **Ruby on Rails** powers the REST API and other web pages
-- **React.js** and Redux are used for the dynamic parts of the interface
-- **Node.js** powers the streaming API
-
-**Requirements:**
-
-- **PostgreSQL** 9.5+
-- **Redis**
-- **Ruby** 2.4+
-- **Node.js** 8+
-
-The repository includes deployment configurations for **Docker and docker-compose**, but also a few specific platforms like **Heroku**, **Scalingo**, and **Nanobox**. The [**stand-alone** installation guide](https://docs.joinmastodon.org/administration/installation/) is available in the documentation.
-
-A **Vagrant** configuration is included for development purposes.
-
-## Contributing
-
-Mastodon is **free, open source software** licensed under **AGPLv3**.
-
-You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository, or submit translations using Weblate. To get started, take a look at [CONTRIBUTING.md](CONTRIBUTING.md). If your contributions are accepted into Mastodon, you can request to be paid through [our OpenCollective](https://opencollective.com/mastodon).
-
-**IRC channel**: #mastodon on irc.freenode.net
+Be sure to check out the issues on the repository for details!
 
 ## License
 
-Copyright (C) 2016-2019 Eugen Rochko & other Mastodon contributors (see [AUTHORS.md](AUTHORS.md))
+Copyright (C) 2016-2019 Florence, Eugen Rochko, and many other Mastodon contributors; see [AUTHORS.md](AUTHORS.md).
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
