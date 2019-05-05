@@ -274,7 +274,7 @@ class Status extends ImmutablePureComponent {
     if (status.get('poll')) {
       media = <PollContainer pollId={status.get('poll')} />;
     } else if (status.get('media_attachments').size > 0) {
-      if (this.props.muted || status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
+      if (this.props.muted) {
         media = (
           <AttachmentList
             compact
@@ -289,6 +289,7 @@ class Status extends ImmutablePureComponent {
             {Component => (
               <Component
                 preview={video.get('preview_url')}
+                blurhash={video.get('blurhash')}
                 src={video.get('url')}
                 alt={video.get('description')}
                 width={this.props.cachedMediaWidth}
