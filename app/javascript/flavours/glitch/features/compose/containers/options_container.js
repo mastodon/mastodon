@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import Options from '../components/options';
 import {
   changeComposeAdvancedOption,
-  changeComposeSensitivity,
 } from 'flavours/glitch/actions/compose';
 import { addPoll, removePoll } from 'flavours/glitch/actions/compose';
 import { closeModal, openModal } from 'flavours/glitch/actions/modal';
@@ -25,10 +24,6 @@ const mapDispatchToProps = (dispatch) => ({
 
   onChangeAdvancedOption(option, value) {
     dispatch(changeComposeAdvancedOption(option, value));
-  },
-
-  onChangeSensitivity() {
-    dispatch(changeComposeSensitivity());
   },
 
   onTogglePoll() {

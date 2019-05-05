@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Video from 'flavours/glitch/features/video';
 import ExtendedVideoPlayer from 'flavours/glitch/components/extended_video_player';
 import classNames from 'classnames';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import IconButton from 'flavours/glitch/components/icon_button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ImageLoader from './image_loader';
@@ -19,8 +19,13 @@ const messages = defineMessages({
 @injectIntl
 export default class MediaModal extends ImmutablePureComponent {
 
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
   static propTypes = {
     media: ImmutablePropTypes.list.isRequired,
+    status: ImmutablePropTypes.map,
     index: PropTypes.number.isRequired,
     onClose: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -81,8 +86,15 @@ export default class MediaModal extends ImmutablePureComponent {
     }));
   };
 
+  handleStatusClick = e => {
+    if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      this.context.router.history.push(`/statuses/${this.props.status.get('id')}`);
+    }
+  }
+
   render () {
-    const { media, intl, onClose } = this.props;
+    const { media, status, intl, onClose } = this.props;
     const { navigationHidden } = this.state;
 
     const index = this.getIndex();
@@ -123,6 +135,7 @@ export default class MediaModal extends ImmutablePureComponent {
         return (
           <Video
             preview={image.get('preview_url')}
+            blurhash={image.get('blurhash')}
             src={image.get('url')}
             width={image.get('width')}
             height={image.get('height')}
@@ -185,10 +198,19 @@ export default class MediaModal extends ImmutablePureComponent {
             {content}
           </ReactSwipeableViews>
         </div>
+
         <div className={navigationClassName}>
           <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={40} />
+
           {leftNav}
           {rightNav}
+
+          {status && (
+            <div className={classNames('media-modal__meta', { 'media-modal__meta--shifted': media.size > 1 })}>
+              <a href={status.get('url')} onClick={this.handleStatusClick}><FormattedMessage id='lightbox.view_context' defaultMessage='View context' /></a>
+            </div>
+          )}
+
           <ul className='media-modal__pagination'>
             {pagination}
           </ul>

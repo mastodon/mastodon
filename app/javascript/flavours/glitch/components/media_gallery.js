@@ -7,6 +7,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from 'flavours/glitch/util/is_mobile';
 import classNames from 'classnames';
 import { autoPlayGif, displayMedia } from 'flavours/glitch/util/initial_state';
+import { decode } from 'blurhash';
 
 const messages = defineMessages({
   hidden: {
@@ -41,12 +42,17 @@ class Item extends React.PureComponent {
     letterbox: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     displayWidth: PropTypes.number,
+    visible: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
     standalone: false,
     index: 0,
     size: 1,
+  };
+
+  state = {
+    loaded: false,
   };
 
   handleMouseEnter = (e) => {
@@ -82,8 +88,40 @@ class Item extends React.PureComponent {
     e.stopPropagation();
   }
 
+  componentDidMount () {
+    if (this.props.attachment.get('blurhash')) {
+      this._decode();
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    if (prevProps.attachment.get('blurhash') !== this.props.attachment.get('blurhash') && this.props.attachment.get('blurhash')) {
+      this._decode();
+    }
+  }
+
+  _decode () {
+    const hash   = this.props.attachment.get('blurhash');
+    const pixels = decode(hash, 32, 32);
+
+    if (pixels) {
+      const ctx       = this.canvas.getContext('2d');
+      const imageData = new ImageData(pixels, 32, 32);
+
+      ctx.putImageData(imageData, 0, 0);
+    }
+  }
+
+  setCanvasRef = c => {
+    this.canvas = c;
+  }
+
+  handleImageLoad = () => {
+    this.setState({ loaded: true });
+  }
+
   render () {
-    const { attachment, index, size, standalone, letterbox, displayWidth } = this.props;
+    const { attachment, index, size, standalone, letterbox, displayWidth, visible } = this.props;
 
     let width  = 50;
     let height = 100;
@@ -136,12 +174,20 @@ class Item extends React.PureComponent {
 
     let thumbnail = '';
 
-    if (attachment.get('type') === 'image') {
+    if (attachment.get('type') === 'unknown') {
+      return (
+        <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
+          <a className='media-gallery__item-thumbnail' href={attachment.get('remote_url')} target='_blank' style={{ cursor: 'pointer' }}>
+            <canvas width={32} height={32} ref={this.setCanvasRef} className='media-gallery__preview' />
+          </a>
+        </div>
+      );
+    } else if (attachment.get('type') === 'image') {
       const previewUrl   = attachment.get('preview_url');
       const previewWidth = attachment.getIn(['meta', 'small', 'width']);
 
-      const originalUrl    = attachment.get('url');
-      const originalWidth  = attachment.getIn(['meta', 'original', 'width']);
+      const originalUrl   = attachment.get('url');
+      const originalWidth = attachment.getIn(['meta', 'original', 'width']);
 
       const hasSize = typeof originalWidth === 'number' && typeof previewWidth === 'number';
 
@@ -168,6 +214,7 @@ class Item extends React.PureComponent {
             alt={attachment.get('description')}
             title={attachment.get('description')}
             style={{ objectPosition: letterbox ? null : `${x}% ${y}%` }}
+            onLoad={this.handleImageLoad}
           />
         </a>
       );
@@ -197,7 +244,8 @@ class Item extends React.PureComponent {
 
     return (
       <div className={classNames('media-gallery__item', { standalone, letterbox })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
-        {thumbnail}
+        <canvas width={32} height={32} ref={this.setCanvasRef} className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': visible && this.state.loaded })} />
+        {visible && thumbnail}
       </div>
     );
   }
@@ -257,6 +305,7 @@ export default class MediaGallery extends React.PureComponent {
     this.node = node;
     if (node && node.offsetWidth && node.offsetWidth != this.state.width) {
       if (this.props.cacheWidth) this.props.cacheWidth(node.offsetWidth);
+
       this.setState({
         width: node.offsetWidth,
       });
@@ -275,7 +324,7 @@ export default class MediaGallery extends React.PureComponent {
 
     const width = this.state.width || defaultWidth;
 
-    let children;
+    let children, spoilerButton;
 
     const style = {};
 
@@ -289,40 +338,32 @@ export default class MediaGallery extends React.PureComponent {
       return (<div className={computedClass} ref={this.handleRef}></div>);
     }
 
-    if (!visible) {
-      let warning = <FormattedMessage {...(sensitive ? messages.warning : messages.hidden)} />;
+    if (this.isStandaloneEligible()) {
+      children = <Item standalone onClick={this.handleClick} attachment={media.get(0)} displayWidth={width} visible={visible} />;
+    } else {
+      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} letterbox={letterbox} displayWidth={width} visible={visible} />);
+    }
 
-      children = (
-        <button className='media-spoiler' type='button' onClick={this.handleOpen}>
-          <span className='media-spoiler__warning'>{warning}</span>
-          <span className='media-spoiler__trigger'><FormattedMessage {...messages.toggle} /></span>
+    if (visible) {
+      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible)} icon='eye-slash' overlay onClick={this.handleOpen} />;
+    } else {
+      spoilerButton = (
+        <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'>
+          <span className='spoiler-button__overlay__label'>{sensitive ? <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /> : <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />}</span>
         </button>
       );
-    } else {
-      if (this.isStandaloneEligible()) {
-        children = <Item standalone attachment={media.get(0)} onClick={this.handleClick} displayWidth={width} />;
-      } else {
-        children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} letterbox={letterbox} displayWidth={width} />);
-      }
     }
 
     return (
       <div className={computedClass} style={style} ref={this.handleRef}>
-        {visible ? (
-          <div className='sensitive-info'>
-            <IconButton
-              icon='eye'
-              onClick={this.handleOpen}
-              overlay
-              title={intl.formatMessage(messages.toggle_visible)}
-            />
-            {sensitive ? (
-              <span className='sensitive-marker'>
-                <FormattedMessage {...messages.sensitive} />
-              </span>
-            ) : null}
-          </div>
-        ) : null}
+        <div className={classNames('spoiler-button', { 'spoiler-button--minified': visible })}>
+          {spoilerButton}
+          {visible && sensitive && (
+            <span className='sensitive-marker'>
+              <FormattedMessage {...messages.sensitive} />
+            </span>
+          )}
+        </div>
 
         {children}
       </div>

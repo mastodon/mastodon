@@ -73,7 +73,7 @@ module Mastodon
     def create(username)
       account  = Account.new(username: username)
       password = SecureRandom.hex
-      user     = User.new(email: options[:email], password: password, agreement: true, admin: options[:role] == 'admin', moderator: options[:role] == 'moderator', confirmed_at: options[:confirmed] ? Time.now.utc : nil)
+      user     = User.new(email: options[:email], password: password, agreement: true, approved: true, admin: options[:role] == 'admin', moderator: options[:role] == 'moderator', confirmed_at: options[:confirmed] ? Time.now.utc : nil)
 
       if options[:reattach]
         account = Account.find_local(username) || Account.new(username: username)
@@ -115,6 +115,7 @@ module Mastodon
     option :enable, type: :boolean
     option :disable, type: :boolean
     option :disable_2fa, type: :boolean
+    option :approve, type: :boolean
     desc 'modify USERNAME', 'Modify a user'
     long_desc <<-LONG_DESC
       Modify a user account.
@@ -127,6 +128,9 @@ module Mastodon
 
       With the --disable option, lock the user out of their account. The
       --enable option is the opposite.
+
+      With the --approve option, the account will be approved, if it was
+      previously not due to not having open registrations.
 
       With the --disable-2fa option, the two-factor authentication
       requirement for the user can be removed.
@@ -147,6 +151,7 @@ module Mastodon
       user.email = options[:email] if options[:email]
       user.disabled = false if options[:enable]
       user.disabled = true if options[:disable]
+      user.approved = true if options[:approve]
       user.otp_required_for_login = false if options[:disable_2fa]
       user.confirm if options[:confirm]
 
