@@ -20,7 +20,7 @@ ja:
     extended_description_html: |
       <h3>ルールを書くのに適した場所</h3>
       <p>詳細説明が設定されていません。</p>
-    federation_hint_html: "%{instance} にアカウントがあればどの互換性のあるサーバーのユーザーでもフォローできるでしょう。"
+    federation_hint_html: "%{instance} のアカウントひとつでどんなMastodon互換サーバーのユーザーでもフォローできるでしょう。"
     generic_description: "%{domain} は、Mastodon サーバーの一つです"
     get_apps: モバイルアプリを試す
     hosted_on: Mastodon hosted on %{domain}
@@ -269,6 +269,7 @@ ja:
       created_msg: ドメインブロック処理を完了しました
       destroyed_msg: ドメインブロックを外しました
       domain: ドメイン
+      existing_domain_block_html: 既に%{name}に対しより厳しい制限を課しています 。まずは<a href="%{unblock_url}">それを解除する</a>必要があります。
       new:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
@@ -659,7 +660,7 @@ ja:
     i_am_html: I am %{username} on %{service}.
     identity: Identity
     inactive: 非アクティブ
-    publicize_checkbox: 'そしてこれをトゥートしてください:'
+    publicize_checkbox: 'そしてこれをトゥートします:'
     publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
     status: 認証状態
     view_proof: 証明を表示
@@ -1049,21 +1050,21 @@ ja:
         suspend: アカウントが停止されました
     welcome:
       edit_profile_action: プロフィールを設定
-      edit_profile_step: アバター画像やヘッダー画像をアップロードしたり、表示名やその他プロフィールを変更しカスタマイズすることができます。新しいフォロワーからのフォローを許可する前に検討したい場合、アカウントを承認制にすることができます。
+      edit_profile_step: アイコンやヘッダーの画像をアップロードしたり、表示名を変更したりして、自分のプロフィールをカスタマイズすることができます。また、誰かからの新規フォローを許可する前にその人の様子を見ておきたい場合、アカウントを承認制にすることもできます。
       explanation: 始めるにあたってのアドバイスです
       final_action: 始めましょう
-      final_step: 'さあ始めましょう！ たとえフォロワーがいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどで誰かの目に止まるかもしれません。自己紹介をしたい時は #introductions ハッシュタグを使うといいかもしれません。'
-      full_handle: あなたの正式なユーザー名
-      full_handle_hint: これは別のサーバーからフォローしてもらったりメッセージのやり取りをする際に、友達に伝えるといいでしょう。
+      final_step: 'さあ、始めましょう！ たとえフォロワーがまだいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどを通じて誰かの目にとまるはずです。自己紹介をしたいときには #introductions ハッシュタグが便利かもしれません。'
+      full_handle: あなたの正式なユーザーID
+      full_handle_hint: 別のサーバーの友達とフォローやメッセージをやり取りする際には、これを伝えることになります。
       review_preferences_action: 設定の変更
-      review_preferences_step: 受け取りたいメールや投稿の公開範囲などの設定を必ず行ってください。不快でないならアニメーション GIF の自動再生を有効にすることもできます。
+      review_preferences_step: 受け取りたいメールの種類や投稿のデフォルト公開範囲など、ユーザー設定を必ず済ませておきましょう。目が回らない自信があるなら、アニメーション GIF を自動再生する設定もご検討ください。
       subject: Mastodon へようこそ
-      tip_federated_timeline: 連合タイムラインは Mastodon ネットワークの流れを見られるものです。ただしあなたと同じサーバーの人がフォローしている人だけが含まれるので、それが全てではありません。
-      tip_following: 標準では自動でサーバーの管理者をフォローしています。もっと興味のある人たちを見つけるには、ローカルタイムラインと連合タイムラインを確認してください。
-      tip_local_timeline: ローカルタイムラインは %{instance} にいる人々の流れを見られるものです。彼らはあなたと同じサーバーにいる隣人のようなものです！
-      tip_mobile_webapp: もしモバイル端末のブラウザで Mastodon をホーム画面に追加できる場合、プッシュ通知を受け取ることができます。それはまるでネイティブアプリのように動作します！
+      tip_federated_timeline: 連合タイムラインは、Mastodon ネットワークによる巨大流しそうめんです。ただし、あなたの「隣人」達がフォローしている人々だけが流れてくる場所なので、決してそこに全てがあるわけではありません。
+      tip_following: 最初は、サーバーの管理者をフォローした状態になっています。もっと興味のある人たちを見つけるには、ローカルタイムラインと連合タイムラインを確認してみましょう。
+      tip_local_timeline: ローカルタイムラインには、%{instance} にいる人々が流しそうめんのごとく流れてきます。彼らはあなたと同じサーバーに暮らす、愛すべき隣人です！
+      tip_mobile_webapp: お使いのモバイル端末で、ブラウザから Mastodon をホーム画面に追加できますか？ もし追加できる場合、プッシュ通知の受け取りなど、まるで「普通の」アプリのような機能が楽しめます！
       tips: 豆知識
-      title: ようこそ、%{name} ！
+      title: ようこそ、%{name}！
   users:
     follow_limit_reached: あなたは現在 %{limit} 人以上フォローできません
     invalid_email: メールアドレスが無効です
