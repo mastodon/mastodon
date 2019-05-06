@@ -269,6 +269,7 @@ ca:
       created_msg: El bloqueig de domini ara s'està processant
       destroyed_msg: El bloqueig de domini s'ha desfet
       domain: Domini
+      existing_domain_block_html: Ja has imposat uns limits més estrictes a %{name}, l'hauries de <a href="%{unblock_url}">desbloquejar-lo</a> primer.
       new:
         create: Crea un bloqueig
         hint: El bloqueig de domini no impedirà la creació de nous comptes en la base de dades, però s'aplicaran de manera retroactiva mètodes de moderació específics sobre aquests comptes.
@@ -675,7 +676,7 @@ ca:
       blocking: Llista de blocats
       domain_blocking: Llistat de dominis bloquejats
       following: Llista de seguits
-      muting: Llista d'apagats
+      muting: Llista de silenciats
     upload: Carregar
   in_memoriam_html: En Memòria.
   invites:
@@ -778,7 +779,7 @@ ca:
   preferences:
     languages: Llengues
     other: Altre
-    publishing: Publicació
+    publishing: Publicant
     web: Web
   relationships:
     activity: Activitat del compte
