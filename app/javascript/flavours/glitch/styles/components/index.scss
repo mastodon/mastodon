@@ -565,8 +565,8 @@
   font-size: 14px;
   font-weight: 500;
   border-bottom: 2px solid lighten($ui-base-color, 8%);
-  transition: all 200ms linear;
-  transition-property: background;
+  transition: all 50ms linear;
+  transition-property: border-bottom, background, color;
 
   .fa {
     font-weight: 400;
@@ -583,8 +583,6 @@
   &:active {
     @include multi-columns('screen and (min-width: 631px)') {
       background: lighten($ui-base-color, 14%);
-      transition: all 100ms linear;
-      transition-property: background;
     }
   }
 
