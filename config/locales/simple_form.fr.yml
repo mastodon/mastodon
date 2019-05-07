@@ -38,10 +38,12 @@ fr:
         username: Votre nom d’utilisateur sera unique sur %{domain}
         whole_word: Lorsque le mot-clef ou la phrase-clef est uniquement alphanumérique, ça sera uniquement appliqué s’il correspond au mot entier
       featured_tag:
-        name: 'Vous pourriez utiliser l''un d''entre eux :'
+        name: 'Vous pourriez vouloir utiliser l’un d’entre eux :'
       imports:
         data: Un fichier CSV généré par un autre serveur de Mastodon
-      sessions:
+      invite_request:
+        text: Cela nous aidera à considérer votre demande
+    sessions:
         otp: 'Entrez le code d’authentification à deux facteurs généré par l’application de votre téléphone ou utilisez un de vos codes de récupération :'
       user:
         chosen_languages: Lorsque coché, seuls les pouets dans les langues sélectionnées seront affichés sur les fils publics
@@ -118,6 +120,8 @@ fr:
         must_be_follower: Masquer les notifications des personnes qui ne vous suivent pas
         must_be_following: Masquer les notifications des personnes que vous ne suivez pas
         must_be_following_dm: Bloquer les messages directs des personnes que vous ne suivez pas
+      invite_request:
+        text: Pourquoi voulez-vous vous joindre ?
       notification_emails:
         digest: Envoyer des courriels récapitulatifs
         favourite: Envoyer un courriel lorsque quelqu’un ajoute mes statuts à ses favoris
@@ -126,6 +130,7 @@ fr:
         mention: Envoyer un courriel lorsque quelqu’un me mentionne
         reblog: Envoyer un courriel lorsque quelqu’un partage mes statuts
         report: Envoyer un courriel lorsqu’un nouveau rapport est soumis
+														  
     'no': Non
     required:
       mark: "*"
