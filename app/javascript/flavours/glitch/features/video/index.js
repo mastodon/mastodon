@@ -166,6 +166,10 @@ export default class Video extends React.PureComponent {
 
   setCanvasRef = c => {
     this.canvas = c;
+
+    if (c && this.props.blurhash) {
+      this._decode();
+    }
   }
 
   handleMouseDownRoot = e => {
@@ -310,6 +314,8 @@ export default class Video extends React.PureComponent {
   }
 
   _decode () {
+    if (!this.canvas) return;
+
     const hash   = this.props.blurhash;
     const pixels = decode(hash, 32, 32);
 
