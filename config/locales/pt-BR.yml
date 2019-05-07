@@ -68,6 +68,7 @@ pt-BR:
       admin: Administrador
       bot: Robô
       moderator: Moderador
+    unavailable: Perfil indisponível
     unfollow: Deixar de seguir
   admin:
     account_actions:
@@ -80,6 +81,7 @@ pt-BR:
       destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
       approve: Aprovar
+      approve_all: Aprovar tudo
       are_you_sure: Você tem certeza?
       avatar: Avatar
       by_domain: Domínio
@@ -132,6 +134,7 @@ pt-BR:
       moderation_notes: Notas de moderação
       most_recent_activity: Atividade mais recente
       most_recent_ip: IP mais recente
+      no_account_selected: Nenhuma conta foi modificada, pois nenhuma conta foi selecionada
       no_limits_imposed: Nenhum limite imposto
       not_subscribed: Não está inscrito
       outbox_url: URL da caixa de saída
@@ -144,6 +147,7 @@ pt-BR:
       push_subscription_expires: Inscrição PuSH expira
       redownload: Atualizar perfil
       reject: Rejeitar
+      reject_all: Rejeitar tudo
       remove_avatar: Remover avatar
       remove_header: Remover cabeçalho
       resend_confirmation:
@@ -330,6 +334,8 @@ pt-BR:
         expired: Expirados
         title: Filtro
       title: Convites
+    pending_accounts:
+      title: Contas pendentes (%{count})
     relays:
       add_new: Adicionar novo repetidor
       delete: Excluir
@@ -854,6 +860,9 @@ pt-BR:
     revoke_success: Sessão revogada com sucesso
     title: Sessões
   settings:
+    account: Conta
+    account_settings: Configurações da conta
+    appearance: Aparência
     authorized_apps: Apps autorizados
     back: Voltar para o Mastodon
     delete: Exclusão de conta
@@ -863,9 +872,11 @@ pt-BR:
     featured_tags: Hashtags em destaque
     identity_proofs: Provas de identidade
     import: Importar
+    import_and_export: Importar e exportar
     migrate: Migração de conta
     notifications: Notificações
     preferences: Preferências
+    profile: Perfil
     relationships: Seguindo e seguidores
     two_factor_authentication: Autenticação em dois passos
   statuses:
