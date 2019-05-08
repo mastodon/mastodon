@@ -78,7 +78,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? }
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
-  validates_with BlacklistedEmailValidator, if: :email_changed?
+  validates_with BlacklistedEmailValidator, on: :create
   validates_with EmailMxValidator, if: :validate_email_dns?
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
 
@@ -107,13 +107,14 @@ class User < ApplicationRecord
            :expand_spoilers, :default_language, :aggregate_reblogs, :show_application, to: :settings, prefix: :setting, allow_nil: false
 
   attr_reader :invite_code
+  attr_writer :external
 
   def confirmed?
     confirmed_at.present?
   end
 
   def invited?
-    invite_id.present?
+    invite_id.present? && invite.valid_for_use?
   end
 
   def disable!
@@ -273,11 +274,15 @@ class User < ApplicationRecord
   private
 
   def set_approved
-    self.approved = open_registrations? || invited?
+    self.approved = open_registrations? || invited? || external?
   end
 
   def open_registrations?
     Setting.registrations_mode == 'open'
+  end
+
+  def external?
+    !!@external
   end
 
   def sanitize_languages

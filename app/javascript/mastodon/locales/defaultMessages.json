@@ -180,10 +180,6 @@
       {
         "defaultMessage": "Media hidden",
         "id": "status.media_hidden"
-      },
-      {
-        "defaultMessage": "Click to view",
-        "id": "status.sensitive_toggle"
       }
     ],
     "path": "app/javascript/mastodon/components/media_gallery.json"
@@ -1096,6 +1092,10 @@
       {
         "defaultMessage": "Media is not marked as sensitive",
         "id": "compose_form.sensitive.unmarked"
+      },
+      {
+        "defaultMessage": "Mark media as sensitive",
+        "id": "compose_form.sensitive.hide"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/containers/sensitive_button_container.json"
@@ -2249,6 +2249,10 @@
       {
         "defaultMessage": "Next",
         "id": "lightbox.next"
+      },
+      {
+        "defaultMessage": "View context",
+        "id": "lightbox.view_context"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/media_modal.json"
@@ -2344,6 +2348,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "View context",
+        "id": "lightbox.view_context"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/video_modal.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Your draft will be lost if you leave Mastodon.",
         "id": "ui.beforeunload"
       }
@@ -2395,10 +2408,6 @@
       {
         "defaultMessage": "Media hidden",
         "id": "status.media_hidden"
-      },
-      {
-        "defaultMessage": "Click to view",
-        "id": "status.sensitive_toggle"
       }
     ],
     "path": "app/javascript/mastodon/features/video/index.json"

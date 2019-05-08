@@ -68,6 +68,7 @@ ca:
       admin: Administrador
       bot: Bot
       moderator: Moderador
+    unavailable: Perfil inaccessible
     unfollow: Deixa de seguir
   admin:
     account_actions:
@@ -80,6 +81,7 @@ ca:
       destroyed_msg: Nota de moderació destruïda amb èxit!
     accounts:
       approve: Aprova
+      approve_all: Aprova'ls tots
       are_you_sure: N'estàs segur?
       avatar: Avatar
       by_domain: Domini
@@ -132,6 +134,7 @@ ca:
       moderation_notes: Notes de moderació
       most_recent_activity: Activitat més recent
       most_recent_ip: IP més recent
+      no_account_selected: No s'han canviat els comptes perque no s'han seleccionat
       no_limits_imposed: Sense límits imposats
       not_subscribed: No subscrit
       outbox_url: URL de la bústia de sortida
@@ -144,6 +147,7 @@ ca:
       push_subscription_expires: La subscripció PuSH expira
       redownload: Actualitza el perfil
       reject: Rebutja
+      reject_all: Rebutja'ls tots
       remove_avatar: Eliminar avatar
       remove_header: Treu la capçalera
       resend_confirmation:
@@ -265,6 +269,7 @@ ca:
       created_msg: El bloqueig de domini ara s'està processant
       destroyed_msg: El bloqueig de domini s'ha desfet
       domain: Domini
+      existing_domain_block_html: Ja has imposat uns limits més estrictes a %{name}, l'hauries de <a href="%{unblock_url}">desbloquejar-lo</a> primer.
       new:
         create: Crea un bloqueig
         hint: El bloqueig de domini no impedirà la creació de nous comptes en la base de dades, però s'aplicaran de manera retroactiva mètodes de moderació específics sobre aquests comptes.
@@ -330,6 +335,8 @@ ca:
         expired: Caducat
         title: Filtre
       title: Convida
+    pending_accounts:
+      title: Comptes pendents (%{count})
     relays:
       add_new: Afegiu un nou relay
       delete: Esborra
@@ -649,7 +656,7 @@ ca:
         invalid_token: Els tokens de Keybase són hashs de signatures i han de tenir 66 caràcters hexadecimals
         verification_failed: Keybase no reconeix aquest token com a signatura del usuari de Keybase %{kb_username}. Si us plau prova des de Keybase.
       wrong_user: No es pot crear una prova per a %{proving} mentre es connectava com a %{current}. Inicia sessió com a %{proving} i prova de nou.
-    explanation_html: Aquí pots connectar criptogràficament les teves altres identitats com ara el teu perfil de Keybase. Això permet que altres persones t'envïin missatges xifrats i continguts de confiança que els hi enviess.
+    explanation_html: Aquí pots connectar criptogràficament les teves altres identitats com ara el teu perfil de Keybase. Això permet que altres persones t'envïin missatges xifrats i confiar en el contingut que els hi envies.
     i_am_html: Sóc %{username} a %{service}.
     identity: Identitat
     inactive: Inactiu
@@ -669,7 +676,7 @@ ca:
       blocking: Llista de blocats
       domain_blocking: Llistat de dominis bloquejats
       following: Llista de seguits
-      muting: Llista d'apagats
+      muting: Llista de silenciats
     upload: Carregar
   in_memoriam_html: En Memòria.
   invites:
@@ -772,7 +779,7 @@ ca:
   preferences:
     languages: Llengues
     other: Altre
-    publishing: Publicació
+    publishing: Publicant
     web: Web
   relationships:
     activity: Activitat del compte
@@ -854,18 +861,23 @@ ca:
     revoke_success: S'ha revocat la sessió amb èxit
     title: Sessions
   settings:
+    account: Compte
+    account_settings: Ajustos del compte
+    appearance: Aparènça
     authorized_apps: Aplicacions autoritzades
-    back: Torna a l'inici
+    back: Torna a Mastodon
     delete: Eliminació del compte
     development: Desenvolupament
     edit_profile: Editar perfil
-    export: Exportar informació
+    export: Exportar dades
     featured_tags: Etiquetes destacades
     identity_proofs: Proves d'identitat
     import: Importar
+    import_and_export: Importar i exportar
     migrate: Migració del compte
     notifications: Notificacions
     preferences: Preferències
+    profile: Perfil
     relationships: Seguits i seguidors
     two_factor_authentication: Autenticació de dos factors
   statuses:
@@ -911,7 +923,7 @@ ca:
     sensitive_content: Contingut sensible
   terms:
     body_html: |
-      <h2>Privacy Policy</h2>
+      <h2>Política de Privacitat</h2>
       <h3 id="collect">Quina informació recollim?</h3>
 
       <ul>
@@ -1040,7 +1052,7 @@ ca:
     welcome:
       edit_profile_action: Configurar perfil
       edit_profile_step: Pots personalitzar el teu perfil penjant un avatar, un encapçalament, canviant el teu nom de visualització i molt més. Si prefereixes revisar els seguidors nous abans de que et puguin seguir, pots blocar el teu compte.
-      explanation: Aquests són alguns consells per començar
+      explanation: Aquests són alguns consells per a començar
       final_action: Comença a publicar
       final_step: 'Comença a publicar! Fins i tot sense seguidors, els altres poden veure els teus missatges públics, per exemple, a la línia de temps local i a les etiquetes ("hashtags"). És possible que vulguis presentar-te amb l''etiqueta #introductions.'
       full_handle: El teu nom d'usuari sencer
