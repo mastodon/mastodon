@@ -33,15 +33,17 @@ module Friends
       end
 
       class << self
-        def from_text(text)
+        def from_text(text, domain)
           return [] if text.blank?
 
           shortcodes = text.scan(SCAN_RE).uniq
 
           return [] if shortcodes.empty?
 
-          shortcodes.map { |_, username, _, domain|
-            EntityCache.instance.avatar(username, domain)
+          shortcodes.map { |_, username, _, server|
+            server ||= domain
+            server = nil if server == Rails.configuration.x.local_domain
+            EntityCache.instance.avatar(username, server)
           }.compact.map { |account| new(account: account) }
         end
       end

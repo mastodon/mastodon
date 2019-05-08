@@ -10,13 +10,23 @@ RSpec.describe Friends::ProfileEmoji::Emoji do
   end
 
   describe '.from_text' do
-    subject { described_class.from_text(text) }
+    subject { described_class.from_text(text, domain) }
 
     let(:account1) { Fabricate(:account) }
     let(:account2) { Fabricate(:account, domain: 'example.com') }
-    let(:text) { "hello :@#{account1.acct}: :@#{account2.acct}: :@not_found: world" }
 
-    it { expect(subject.size).to eq 2 }
-    it { is_expected.to all be_a described_class }
+    context 'when domain not given' do
+      let(:domain) { nil }
+      let(:text) { "hello :@#{account1.acct}: :@#{account2.acct}: :@not_found: world" }
+
+      it { expect(subject.map(&:shortcode)).to eq ["@#{account1.acct}", "@#{account2.acct}"] }
+    end
+
+    context 'when domain given' do
+      let(:domain) { 'example.com' }
+      let(:text) { "hello :@#{account1.local_username_and_domain}: :@#{account2.username}: :@not_found:" }
+
+      it { expect(subject.map(&:shortcode)).to eq ["@#{account1.acct}", "@#{account2.acct}"] }
+    end
   end
 end

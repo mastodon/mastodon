@@ -4,7 +4,7 @@ module Friends
       extend ActiveSupport::Concern
 
       def profile_emojis
-        @profile_emojis ||= Friends::ProfileEmoji::Emoji.from_text(options.join(' '))
+        @profile_emojis ||= Friends::ProfileEmoji::Emoji.from_text(options.join(' '), account.domain)
       end
 
       def all_emojis
