@@ -35,6 +35,7 @@ class ActivityPub::ProcessAccountService < BaseService
     after_protocol_change! if protocol_changed?
     after_key_change! if key_changed? && !@options[:signed_with_known_key]
     clear_tombstones! if key_changed?
+    clear_redacted_statuses! if key_changed?
 
     unless @options[:only_key]
       check_featured_collection! if @account.featured_collection_url.present?
@@ -214,6 +215,10 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def clear_tombstones!
     Tombstone.where(account_id: @account.id).delete_all
+  end
+
+  def clear_redacted_statuses!
+    RedactedStatus.where(account_id: @account.id).delete_all
   end
 
   def protocol_changed?
