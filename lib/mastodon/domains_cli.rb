@@ -34,8 +34,9 @@ module Mastodon
       say("Removed #{removed} accounts#{dry_run}", :green)
 
       custom_emojis = CustomEmoji.where(domain: domain)
-      say("Removing #{custom_emojis.count} custom emojis", :green)
+      custom_emojis_count = custom_emojis.count
       custom_emojis.destroy_all unless options[:dry_run]
+      say("Removed #{custom_emojis_count} custom emojis", :green)
     end
 
     option :concurrency, type: :numeric, default: 50, aliases: [:c]
