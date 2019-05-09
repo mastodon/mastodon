@@ -114,10 +114,13 @@
     text-decoration: underline;
     font-size: inherit;
 
-    &:hover,
-    &:focus,
-    &:active {
+    &:hover {
       text-decoration: none;
+    }
+
+    &:active,
+    &:focus {
+      background-color: rgba($dark-text-color, .1);
     }
   }
 
