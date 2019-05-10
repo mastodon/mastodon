@@ -61,9 +61,35 @@
   padding: 10px;
   padding-top: 0;
 
-  .icon-button {
-    font-size: 14px;
-    font-weight: 500;
+  font-size: 14px;
+  font-weight: 500;
+
+  &.active {
+    color: $highlight-text-color;
+  }
+
+  input[type=checkbox] {
+    display: none;
+  }
+
+  .checkbox {
+    display: inline-block;
+    position: relative;
+    border: 1px solid $ui-primary-color;
+    box-sizing: border-box;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    margin-left: 5px;
+    margin-right: 10px;
+    top: -1px;
+    border-radius: 4px;
+    vertical-align: middle;
+
+    &.active {
+      border-color: $highlight-text-color;
+      background: $highlight-text-color;
+    }
   }
 }
 
