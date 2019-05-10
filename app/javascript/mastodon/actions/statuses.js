@@ -155,7 +155,7 @@ export function deleteStatus(id, router, withRedraft = false) {
       dispatch(deleteFromTimelines(id));
 
       if (withRedraft) {
-        dispatch(redraft(status, response.data.raw_content));
+        dispatch(redraft(status, response.data.text));
 
         if (!getState().getIn(['compose', 'mounted'])) {
           router.push('/statuses/new');
