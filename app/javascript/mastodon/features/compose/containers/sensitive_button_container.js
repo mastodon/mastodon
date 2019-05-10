@@ -39,7 +39,7 @@ class SensitiveButton extends React.PureComponent {
     return (
       <div className='compose-form__sensitive-button'>
         <button className={classNames('icon-button', { active })} onClick={onClick} disabled={disabled} title={intl.formatMessage(active ? messages.marked : messages.unmarked)}>
-          <Icon id='eye-slash' /> <FormattedMessage id='compose_form.sensitive.hide' defaultMessage='Mark media as sensitive' />
+          <Icon id={active ? 'eye' : 'eye-slash'} /> {active ? <FormattedMessage id='compose_form.sensitive.show' defaultMessage='Unmark media as sensitive' /> : <FormattedMessage id='compose_form.sensitive.hide' defaultMessage='Mark media as sensitive' />}
         </button>
       </div>
     );
