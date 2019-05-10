@@ -3,6 +3,18 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [2.8.2] - 2019-05-05
+### Added
+
+- Add `SOURCE_TAG` environment variable ([ushitora-anqou](https://github.com/tootsuite/mastodon/pull/10698))
+
+### Fixed
+
+- Fix cropped hero image on frontpage ([BaptisteGelez](https://github.com/tootsuite/mastodon/pull/10702))
+- Fix blurhash gem not compiling on some operating systems ([Gargron](https://github.com/tootsuite/mastodon/pull/10700))
+- Fix unexpected CSS animations in some browsers ([ThibG](https://github.com/tootsuite/mastodon/pull/10699))
+- Fix closing video modal scrolling timelines to top ([ThibG](https://github.com/tootsuite/mastodon/pull/10695))
+
 ## [2.8.1] - 2019-05-04
 ### Added
 

@@ -16,6 +16,12 @@ class StreamEntriesController < ApplicationController
     respond_to do |format|
       format.html do
         use_pack 'public'
+
+        unless user_signed_in?
+          skip_session!
+          expires_in 5.minutes, public: true
+        end
+
         redirect_to short_account_status_url(params[:account_username], @stream_entry.activity) if @type == 'status'
       end
 

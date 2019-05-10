@@ -5,6 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
+import AutosuggestInput from '../../../components/autosuggest_input';
 import PollButtonContainer from '../containers/poll_button_container';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -103,7 +104,11 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   onSuggestionSelected = (tokenStart, token, value) => {
-    this.props.onSuggestionSelected(tokenStart, token, value);
+    this.props.onSuggestionSelected(tokenStart, token, value, ['text']);
+  }
+
+  onSpoilerSuggestionSelected = (tokenStart, token, value) => {
+    this.props.onSuggestionSelected(tokenStart, token, value, ['spoiler_text']);
   }
 
   handleChangeSpoilerText = (e) => {
@@ -136,7 +141,7 @@ class ComposeForm extends ImmutablePureComponent {
       this.autosuggestTextarea.textarea.focus();
     } else if (this.props.spoiler !== prevProps.spoiler) {
       if (this.props.spoiler) {
-        this.spoilerText.focus();
+        this.spoilerText.input.focus();
       } else {
         this.autosuggestTextarea.textarea.focus();
       }
@@ -179,10 +184,21 @@ class ComposeForm extends ImmutablePureComponent {
         <ReplyIndicatorContainer />
 
         <div className={`spoiler-input ${this.props.spoiler ? 'spoiler-input--visible' : ''}`}>
-          <label>
-            <span style={{ display: 'none' }}>{intl.formatMessage(messages.spoiler_placeholder)}</span>
-            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoilerText} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} tabIndex={this.props.spoiler ? 0 : -1} type='text' className='spoiler-input__input'  id='cw-spoiler-input' ref={this.setSpoilerText} />
-          </label>
+          <AutosuggestInput
+            placeholder={intl.formatMessage(messages.spoiler_placeholder)}
+            value={this.props.spoilerText}
+            onChange={this.handleChangeSpoilerText}
+            onKeyDown={this.handleKeyDown}
+            disabled={!this.props.spoiler}
+            ref={this.setSpoilerText}
+            suggestions={this.props.suggestions}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            onSuggestionSelected={this.onSpoilerSuggestionSelected}
+            searchTokens={[':']}
+            id='cw-spoiler-input'
+            className='spoiler-input__input'
+          />
         </div>
 
         <div className='compose-form__autosuggest-wrapper'>

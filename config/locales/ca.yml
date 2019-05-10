@@ -269,6 +269,7 @@ ca:
       created_msg: El bloqueig de domini ara s'està processant
       destroyed_msg: El bloqueig de domini s'ha desfet
       domain: Domini
+      existing_domain_block_html: Ja has imposat uns limits més estrictes a %{name}, l'hauries de <a href="%{unblock_url}">desbloquejar-lo</a> primer.
       new:
         create: Crea un bloqueig
         hint: El bloqueig de domini no impedirà la creació de nous comptes en la base de dades, però s'aplicaran de manera retroactiva mètodes de moderació específics sobre aquests comptes.
@@ -655,7 +656,7 @@ ca:
         invalid_token: Els tokens de Keybase són hashs de signatures i han de tenir 66 caràcters hexadecimals
         verification_failed: Keybase no reconeix aquest token com a signatura del usuari de Keybase %{kb_username}. Si us plau prova des de Keybase.
       wrong_user: No es pot crear una prova per a %{proving} mentre es connectava com a %{current}. Inicia sessió com a %{proving} i prova de nou.
-    explanation_html: Aquí pots connectar criptogràficament les teves altres identitats com ara el teu perfil de Keybase. Això permet que altres persones t'envïin missatges xifrats i continguts de confiança que els hi enviess.
+    explanation_html: Aquí pots connectar criptogràficament les teves altres identitats com ara el teu perfil de Keybase. Això permet que altres persones t'envïin missatges xifrats i confiar en el contingut que els hi envies.
     i_am_html: Sóc %{username} a %{service}.
     identity: Identitat
     inactive: Inactiu
@@ -675,7 +676,7 @@ ca:
       blocking: Llista de blocats
       domain_blocking: Llistat de dominis bloquejats
       following: Llista de seguits
-      muting: Llista d'apagats
+      muting: Llista de silenciats
     upload: Carregar
   in_memoriam_html: En Memòria.
   invites:
@@ -778,7 +779,7 @@ ca:
   preferences:
     languages: Llengues
     other: Altre
-    publishing: Publicació
+    publishing: Publicant
     web: Web
   relationships:
     activity: Activitat del compte
@@ -922,7 +923,7 @@ ca:
     sensitive_content: Contingut sensible
   terms:
     body_html: |
-      <h2>Privacy Policy</h2>
+      <h2>Política de Privacitat</h2>
       <h3 id="collect">Quina informació recollim?</h3>
 
       <ul>
