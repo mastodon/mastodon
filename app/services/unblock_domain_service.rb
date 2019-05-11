@@ -16,9 +16,9 @@ class UnblockDomainService < BaseService
   def blocked_accounts
     scope = Account.where(domain: domain_block.domain)
     if domain_block.silence?
-      scope.where(silenced_at: [@domain_block.created_at, nil])
+      scope.where(silenced_at: @domain_block.created_at)
     else
-      scope.where(suspended_at: [@domain_block.created_at, nil])
+      scope.where(suspended_at: @domain_block.created_at)
     end
   end
 
