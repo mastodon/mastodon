@@ -166,11 +166,11 @@ class Account < ApplicationRecord
   end
 
   def silenced?
-    !silenced_at.nil?
+    silenced_at.present?
   end
 
   def silence!(date = nil)
-    date = Time.now.utc if date.nil?
+    date ||= Time.now.utc
     update!(silenced_at: date)
   end
 
@@ -179,11 +179,11 @@ class Account < ApplicationRecord
   end
 
   def suspended?
-    !suspended_at.nil?
+    suspended_at.present?
   end
 
   def suspend!(date = nil)
-    date = Time.now.utc if date.nil?
+    date ||= Time.now.utc
     transaction do
       user&.disable! if local?
       update!(suspended_at: date)
