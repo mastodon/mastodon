@@ -28,10 +28,15 @@ module Mastodon
         say('.', :green, false)
       end
 
-      DomainBlock.where(domain: domain).destroy_all
+      DomainBlock.where(domain: domain).destroy_all unless options[:dry_run]
 
       say
       say("Removed #{removed} accounts#{dry_run}", :green)
+
+      custom_emojis = CustomEmoji.where(domain: domain)
+      custom_emojis_count = custom_emojis.count
+      custom_emojis.destroy_all unless options[:dry_run]
+      say("Removed #{custom_emojis_count} custom emojis", :green)
     end
 
     option :concurrency, type: :numeric, default: 50, aliases: [:c]

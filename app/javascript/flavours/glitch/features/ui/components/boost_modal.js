@@ -10,6 +10,7 @@ import DisplayName from 'flavours/glitch/components/display_name';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
+  cancel_reblog: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
 });
 
@@ -52,6 +53,7 @@ export default class BoostModal extends ImmutablePureComponent {
 
   render () {
     const { status, intl } = this.props;
+    const buttonText = status.get('reblogged') ? messages.cancel_reblog : messages.reblog;
 
     return (
       <div className='modal-root__modal boost-modal'>
@@ -77,7 +79,7 @@ export default class BoostModal extends ImmutablePureComponent {
 
         <div className='boost-modal__action-bar'>
           <div><FormattedMessage id='boost_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <i className='fa fa-retweet' /></span> }} /></div>
-          <Button text={intl.formatMessage(messages.reblog)} onClick={this.handleReblog} ref={this.setRef} />
+          <Button text={intl.formatMessage(buttonText)} onClick={this.handleReblog} ref={this.setRef} />
         </div>
       </div>
     );

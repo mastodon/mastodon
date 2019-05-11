@@ -28,7 +28,11 @@ class StatusesController < ApplicationController
     respond_to do |format|
       format.html do
         use_pack 'public'
-        mark_cacheable! unless user_signed_in?
+
+        unless user_signed_in?
+          skip_session!
+          expires_in 10.seconds, public: true
+        end
 
         @body_classes = 'with-modals'
 
