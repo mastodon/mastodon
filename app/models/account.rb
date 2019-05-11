@@ -28,8 +28,6 @@
 #  header_updated_at       :datetime
 #  avatar_remote_url       :string
 #  subscription_expires_at :datetime
-#  silenced                :boolean          default(FALSE), not null
-#  suspended               :boolean          default(FALSE), not null
 #  locked                  :boolean          default(FALSE), not null
 #  header_remote_url       :string           default(""), not null
 #  last_webfingered_at     :datetime
