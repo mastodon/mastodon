@@ -38,7 +38,7 @@ class DomainBlock < ApplicationRecord
   end
 
   def affected_accounts_count
-    scope = suspend? ? accounts.where(suspended: true, suspended_at: [created_at, nil]) : accounts.where(silenced: true, silenced_at: [created_at, nil])
+    scope = suspend? ? accounts.where(suspended_at: created_at) : accounts.where(silenced_at: created_at)
     scope.count
   end
 end

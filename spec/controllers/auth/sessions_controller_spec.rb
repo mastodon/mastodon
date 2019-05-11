@@ -41,7 +41,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
     context 'with a suspended user' do
       it 'redirects to home after sign out' do
-        Fabricate(:account, user: user, suspended: true)
+        Fabricate(:account, user: user, suspended_at: Time.now.utc)
         sign_in(user, scope: :user)
         delete :destroy
 

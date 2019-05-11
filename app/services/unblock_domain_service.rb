@@ -23,10 +23,10 @@ class UnblockDomainService < BaseService
   end
 
   def update_options
-    { domain_block_impact => false }
+    { domain_block_impact => nil }
   end
 
   def domain_block_impact
-    domain_block.silence? ? :silenced : :suspended
+    domain_block.silence? ? :silenced_at : :suspended_at
   end
 end

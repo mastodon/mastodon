@@ -752,16 +752,16 @@ RSpec.describe Account, type: :model do
 
     describe 'silenced' do
       it 'returns an array of accounts who are silenced' do
-        account_1 = Fabricate(:account, silenced: true)
-        account_2 = Fabricate(:account, silenced: false)
+        account_1 = Fabricate(:account, silenced_at: Time.now.utc)
+        account_2 = Fabricate(:account, silenced_at: nil)
         expect(Account.silenced).to match_array([account_1])
       end
     end
 
     describe 'suspended' do
       it 'returns an array of accounts who are suspended' do
-        account_1 = Fabricate(:account, suspended: true)
-        account_2 = Fabricate(:account, suspended: false)
+        account_1 = Fabricate(:account, suspended_at: Time.now.utc)
+        account_2 = Fabricate(:account, suspended_at: nil)
         expect(Account.suspended).to match_array([account_1])
       end
     end

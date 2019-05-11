@@ -50,18 +50,12 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def create_account
     @account = Account.new
-    @account.protocol    = :activitypub
-    @account.username    = @username
-    @account.domain      = @domain
-    @account.private_key = nil
-    if auto_suspend?
-      @account.suspended    = true
-      @account.suspended_at = domain_block.created_at
-    end
-    if auto_silence?
-      @account.silenced    = true
-      @account.silenced_at = domain_block.created_at
-    end
+    @account.protocol     = :activitypub
+    @account.username     = @username
+    @account.domain       = @domain
+    @account.private_key  = nil
+    @account.suspended_at = domain_block.created_at if auto_suspend?
+    @account.silenced_at = domain_block.created_at if auto_silence?
   end
 
   def update_account

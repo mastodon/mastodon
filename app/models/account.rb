@@ -84,10 +84,10 @@ class Account < ApplicationRecord
   scope :local, -> { where(domain: nil) }
   scope :expiring, ->(time) { remote.where.not(subscription_expires_at: nil).where('subscription_expires_at < ?', time) }
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
-  scope :silenced, -> { where(silenced: true) }
-  scope :suspended, -> { where(suspended: true) }
-  scope :without_suspended, -> { where(suspended: false) }
-  scope :without_silenced, -> { where(silenced: false) }
+  scope :silenced, -> { where.not(silenced_at: nil) }
+  scope :suspended, -> { where.not(suspended_at: nil) }
+  scope :without_suspended, -> { where(suspended_at: nil) }
+  scope :without_silenced, -> { where(silenced_at: nil) }
   scope :recent, -> { reorder(id: :desc) }
   scope :bots, -> { where(actor_type: %w(Application Service)) }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
@@ -167,27 +167,35 @@ class Account < ApplicationRecord
     ResolveAccountService.new.call(acct)
   end
 
+  def silenced?
+    !silenced_at.nil?
+  end
+
   def silence!(date = nil)
     date = Time.now.utc if date.nil?
-    update!(silenced: true, silenced_at: date)
+    update!(silenced_at: date)
   end
 
   def unsilence!
-    update!(silenced: false, silenced_at: nil)
+    update!(silenced_at: nil)
+  end
+
+  def suspended?
+    !suspended_at.nil?
   end
 
   def suspend!(date = nil)
     date = Time.now.utc if date.nil?
     transaction do
       user&.disable! if local?
-      update!(suspended: true, suspended_at: date)
+      update!(suspended_at: date)
     end
   end
 
   def unsuspend!
     transaction do
       user&.enable! if local?
-      update!(suspended: false, suspended_at: nil)
+      update!(suspended_at: nil)
     end
   end
 
@@ -403,7 +411,7 @@ class Account < ApplicationRecord
           ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
         FROM accounts
         WHERE #{query} @@ #{textsearch}
-          AND accounts.suspended = false
+          AND accounts.suspended_at IS NULL
           AND accounts.moved_to_account_id IS NULL
         ORDER BY rank DESC
         LIMIT ? OFFSET ?
@@ -431,7 +439,7 @@ class Account < ApplicationRecord
           LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
           WHERE accounts.id IN (SELECT * FROM first_degree)
             AND #{query} @@ #{textsearch}
-            AND accounts.suspended = false
+            AND accounts.suspended_at IS NULL
             AND accounts.moved_to_account_id IS NULL
           GROUP BY accounts.id
           ORDER BY rank DESC
@@ -447,7 +455,7 @@ class Account < ApplicationRecord
           FROM accounts
           LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
           WHERE #{query} @@ #{textsearch}
-            AND accounts.suspended = false
+            AND accounts.suspended_at IS NULL
             AND accounts.moved_to_account_id IS NULL
           GROUP BY accounts.id
           ORDER BY rank DESC

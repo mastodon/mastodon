@@ -100,7 +100,7 @@ describe RemoteFollowController do
 
   describe 'with a suspended account' do
     before do
-      @account = Fabricate(:account, suspended: true)
+      @account = Fabricate(:account, suspended_at: Time.now.utc)
     end
 
     it 'returns 410 gone on GET to #new' do

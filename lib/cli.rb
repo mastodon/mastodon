@@ -106,7 +106,6 @@ module Mastodon
             [json, account.id, inbox_url]
           end
 
-          account.update_column(:suspended, true)
           account.update_column(:suspended_at, Time.now.utc)
         end
 

@@ -87,7 +87,6 @@ module Mastodon
         end
       end
 
-      account.suspended    = false
       account.suspended_at = nil
       user.account         = account
 

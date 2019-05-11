@@ -419,7 +419,7 @@ RSpec.describe Status, type: :model do
 
     it 'filters out silenced accounts' do
       account = Fabricate(:account)
-      silenced_account = Fabricate(:account, silenced: true)
+      silenced_account = Fabricate(:account, silenced_at: Time.now.utc)
       status = Fabricate(:status, account: account)
       silenced_status = Fabricate(:status, account: silenced_account)
 

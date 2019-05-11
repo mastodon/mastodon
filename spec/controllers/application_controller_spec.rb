@@ -182,13 +182,13 @@ describe ApplicationController, type: :controller do
     end
 
     it 'does nothing if user who signed in is not suspended' do
-      sign_in(Fabricate(:user, account: Fabricate(:account, suspended: false)))
+      sign_in(Fabricate(:user, account: Fabricate(:account, suspended_at: nil)))
       get 'success'
       expect(response).to have_http_status(200)
     end
 
     it 'returns http 403 if user who signed in is suspended' do
-      sign_in(Fabricate(:user, account: Fabricate(:account, suspended: true)))
+      sign_in(Fabricate(:user, account: Fabricate(:account, suspended_at: Time.now.utc)))
       get 'success'
       expect(response).to have_http_status(403)
     end
