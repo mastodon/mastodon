@@ -17,7 +17,7 @@ describe ApplicationController, type: :controller do
 
   context 'when account is suspended' do
     it 'returns http gone' do
-      account = Fabricate(:account, suspended_at: Time.now.utc, user: Fabricate(:user))
+      account = Fabricate(:account, suspended: true, user: Fabricate(:user))
       get 'success', params: { account_username: account.username }
       expect(response).to have_http_status(410)
     end
@@ -25,7 +25,7 @@ describe ApplicationController, type: :controller do
 
   context 'when account is deleted by owner' do
     it 'returns http gone' do
-      account = Fabricate(:account, suspended_at: Time.now.utc, user: nil)
+      account = Fabricate(:account, suspended: true, user: nil)
       get 'success', params: { account_username: account.username }
       expect(response).to have_http_status(410)
     end

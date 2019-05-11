@@ -8,7 +8,7 @@ describe StatusesController do
   describe '#show' do
     context 'account is suspended' do
       it 'returns gone' do
-        account = Fabricate(:account, suspended_at: Time.now.utc)
+        account = Fabricate(:account, suspended: true)
         status = Fabricate(:status, account: account)
 
         get :show, params: { account_username: account.username, id: status.id }

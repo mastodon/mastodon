@@ -141,7 +141,7 @@ describe AccountSearchService, type: :service do
     describe 'should not include suspended accounts' do
       it 'returns the fuzzy match first, and does not return suspended exacts' do
         partial = Fabricate(:account, username: 'exactness')
-        exact = Fabricate(:account, username: 'exact', suspended_at: Time.now.utc)
+        exact = Fabricate(:account, username: 'exact', suspended: true)
 
         results = subject.call('exact', nil, limit: 10)
         expect(results.size).to eq 1
@@ -149,7 +149,7 @@ describe AccountSearchService, type: :service do
       end
 
       it "does not return suspended remote accounts" do
-        remote = Fabricate(:account, username: 'a', domain: 'remote', display_name: 'e', suspended_at: Time.now.utc)
+        remote = Fabricate(:account, username: 'a', domain: 'remote', display_name: 'e', suspended: true)
 
         results = subject.call('a@example.com', nil, limit: 2)
         expect(results.size).to eq 0

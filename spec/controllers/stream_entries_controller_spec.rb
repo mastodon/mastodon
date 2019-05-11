@@ -27,7 +27,7 @@ RSpec.describe StreamEntriesController, type: :controller do
 
     context 'when account is suspended' do
       it 'returns http status 410' do
-        account = Fabricate(:account, suspended_at: Time.now.utc)
+        account = Fabricate(:account, suspended: true)
         status = Fabricate(:status, account: account)
 
         get route, params: { account_username: account.username, id: status.stream_entry.id }
