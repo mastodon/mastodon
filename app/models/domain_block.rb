@@ -17,8 +17,6 @@ class DomainBlock < ApplicationRecord
 
   enum severity: [:silence, :suspend, :noop]
 
-  attr_accessor :retroactive
-
   validates :domain, presence: true, uniqueness: true
 
   has_many :accounts, foreign_key: :domain, primary_key: :domain
