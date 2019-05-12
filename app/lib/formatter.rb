@@ -36,12 +36,50 @@ class Formatter
 
     html = raw_content
     html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
-    html = encode_and_link_urls(html, linkable_accounts)
+    html = format_markdown(html) if status.content_type == 'text/markdown'
+    html = encode_and_link_urls(html, linkable_accounts, keep_html: status.content_type == 'text/markdown')
     html = encode_custom_emojis(html, status.emojis, options[:autoplay]) if options[:custom_emojify]
-    html = simple_format(html, {}, sanitize: false)
+    html = simple_format(html, {}, sanitize: false) unless status.content_type == 'text/markdown'
     html = html.delete("\n")
 
     html.html_safe # rubocop:disable Rails/OutputSafety
+  end
+
+  def format_markdown(html)
+    extensions = {
+      autolink: false,
+      no_intra_emphasis: true,
+      fenced_code_blocks: true,
+      disable_indented_code_blocks: true,
+      strikethrough: true,
+      lax_spacing: true,
+      space_after_headers: true,
+      superscript: true,
+      underline: true,
+      highlight: true,
+      footnotes: true
+    }
+
+    renderer = Redcarpet::Render::HTML.new({
+      filter_html: false,
+      no_images: true,
+      no_styles: true,
+      safe_links_only: true,
+      hard_wrap: true,
+      link_attributes: { target: '_blank', rel: 'nofollow noopener' },
+    })
+
+    markdown = Redcarpet::Markdown.new(renderer, extensions)
+
+    html = reformat(markdown.render(html))
+    html = html.gsub("\r\n", "\n").gsub("\r", "\n")
+    code_safe_strip(html)
+  end
+
+  def code_safe_strip(html, char="\n")
+    html = html.split(/(<code[ >].*?\/code>)/m)
+    html.each_slice(2) { |part| part[0].delete!(char) }
+    html.join
   end
 
   def reformat(html)
@@ -116,7 +154,7 @@ class Formatter
       accounts = nil
     end
 
-    rewrite(html.dup, entities) do |entity|
+    rewrite(html.dup, entities, options[:keep_html]) do |entity|
       if entity[:url]
         link_to_url(entity, options)
       elsif entity[:hashtag]
@@ -186,7 +224,7 @@ class Formatter
     html
   end
 
-  def rewrite(text, entities)
+  def rewrite(text, entities, keep_html = false)
     text = text.to_s
 
     # Sort by start index
@@ -199,12 +237,12 @@ class Formatter
 
     last_index = entities.reduce(0) do |index, entity|
       indices = entity.respond_to?(:indices) ? entity.indices : entity[:indices]
-      result << encode(text[index...indices.first])
+      result << (keep_html ? text[index...indices.first] : encode(text[index...indices.first]))
       result << yield(entity)
       indices.last
     end
 
-    result << encode(text[last_index..-1])
+    result << (keep_html ? text[last_index..-1] : encode(text[last_index..-1]))
 
     result.flatten.join
   end
