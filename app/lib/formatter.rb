@@ -37,9 +37,9 @@ class Formatter
     html = raw_content
     html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
     html = format_markdown(html) if status.content_type == 'text/markdown'
-    html = encode_and_link_urls(html, linkable_accounts, keep_html: status.content_type == 'text/markdown')
+    html = encode_and_link_urls(html, linkable_accounts, keep_html: %w(text/markdown text/html).include?(status.content_type))
     html = encode_custom_emojis(html, status.emojis, options[:autoplay]) if options[:custom_emojify]
-    html = simple_format(html, {}, sanitize: false) unless status.content_type == 'text/markdown'
+    html = simple_format(html, {}, sanitize: false) unless %w(text/markdown text/html).include?(status.content_type)
     html = html.delete("\n")
 
     html.html_safe # rubocop:disable Rails/OutputSafety
