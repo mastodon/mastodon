@@ -140,6 +140,7 @@ class ComposerOptions extends ImmutablePureComponent {
     contentType: PropTypes.string,
     resetFileKey: PropTypes.number,
     spoiler: PropTypes.bool,
+    showContentTypeChoice: PropTypes.bool,
   };
 
   //  Handles file selection.
@@ -197,6 +198,7 @@ class ComposerOptions extends ImmutablePureComponent {
       privacy,
       resetFileKey,
       spoiler,
+      showContentTypeChoice,
     } = this.props;
 
     //  We predefine our privacy items so that we can easily pick the
@@ -310,20 +312,22 @@ class ComposerOptions extends ImmutablePureComponent {
           title={intl.formatMessage(messages.change_privacy)}
           value={privacy}
         />
-        <Dropdown
-          disabled={disabled}
-          icon={(contentTypeItems[contentType.split('/')[1]] || {}).icon}
-          items={[
-            contentTypeItems.plain,
-            contentTypeItems.html,
-            contentTypeItems.markdown,
-          ]}
-          onChange={onChangeContentType}
-          onModalClose={onModalClose}
-          onModalOpen={onModalOpen}
-          title={intl.formatMessage(messages.content_type)}
-          value={contentType}
-        />
+        {showContentTypeChoice && (
+          <Dropdown
+            disabled={disabled}
+            icon={(contentTypeItems[contentType.split('/')[1]] || {}).icon}
+            items={[
+              contentTypeItems.plain,
+              contentTypeItems.html,
+              contentTypeItems.markdown,
+            ]}
+            onChange={onChangeContentType}
+            onModalClose={onModalClose}
+            onModalOpen={onModalOpen}
+            title={intl.formatMessage(messages.content_type)}
+            value={contentType}
+          />
+        )}
         {onToggleSpoiler && (
           <TextIconButton
             active={spoiler}

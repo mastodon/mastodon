@@ -17,6 +17,7 @@ function mapStateToProps (state) {
     allowMedia: !poll && (media ? media.size < 4 && !media.some(item => item.get('type') === 'video') : true),
     hasMedia: media && !!media.size,
     allowPoll: !(media && !!media.size),
+    showContentTypeChoice: state.getIn(['local_settings', 'show_content_type_choice']),
   };
 };
 

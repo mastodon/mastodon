@@ -153,6 +153,14 @@ export default class LocalSettingsPage extends React.PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
+          item={['show_content_type_choice']}
+          id='mastodon-settings--show_content_type_choice'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.show_content_type_choice' defaultMessage='Show content-type choice when authoring toots' />
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
           item={['side_arm']}
           id='mastodon-settings--side_arm'
           options={[
