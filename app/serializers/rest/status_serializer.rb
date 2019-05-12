@@ -15,6 +15,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
 
   attribute :content, unless: :source_requested?
   attribute :text, if: :source_requested?
+  attribute :content_type, if: :source_requested?
 
   belongs_to :reblog, serializer: REST::StatusSerializer
   belongs_to :application, if: :show_application?
