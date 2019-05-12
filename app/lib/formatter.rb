@@ -3,6 +3,17 @@
 require 'singleton'
 require_relative './sanitize_config'
 
+class HTMLRenderer < Redcarpet::Render::HTML
+  def block_code(code, language)
+    "<pre><code>#{code.gsub("\n", "<br/>")}</code></pre>"
+  end
+
+  def autolink(link, link_type)
+    return link if link_type == :email
+    Formatter.instance.link_url(link)
+  end
+end
+
 class Formatter
   include Singleton
   include RoutingHelper
@@ -39,15 +50,18 @@ class Formatter
     html = format_markdown(html) if status.content_type == 'text/markdown'
     html = encode_and_link_urls(html, linkable_accounts, keep_html: %w(text/markdown text/html).include?(status.content_type))
     html = encode_custom_emojis(html, status.emojis, options[:autoplay]) if options[:custom_emojify]
-    html = simple_format(html, {}, sanitize: false) unless %w(text/markdown text/html).include?(status.content_type)
-    html = html.delete("\n")
+
+    unless %w(text/markdown text/html).include?(status.content_type)
+      html = simple_format(html, {}, sanitize: false)
+      html = html.delete("\n")
+    end
 
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def format_markdown(html)
     extensions = {
-      autolink: false,
+      autolink: true,
       no_intra_emphasis: true,
       fenced_code_blocks: true,
       disable_indented_code_blocks: true,
@@ -57,11 +71,12 @@ class Formatter
       superscript: true,
       underline: true,
       highlight: true,
-      footnotes: true
+      footnotes: false,
     }
 
-    renderer = Redcarpet::Render::HTML.new({
+    renderer = HTMLRenderer.new({
       filter_html: false,
+      escape_html: false,
       no_images: true,
       no_styles: true,
       safe_links_only: true,
@@ -72,14 +87,7 @@ class Formatter
     markdown = Redcarpet::Markdown.new(renderer, extensions)
 
     html = reformat(markdown.render(html))
-    html = html.gsub("\r\n", "\n").gsub("\r", "\n")
-    code_safe_strip(html)
-  end
-
-  def code_safe_strip(html, char="\n")
-    html = html.split(/(<code[ >].*?\/code>)/m)
-    html.each_slice(2) { |part| part[0].delete!(char) }
-    html.join
+    html.delete("\r").delete("\n")
   end
 
   def reformat(html)
@@ -136,6 +144,10 @@ class Formatter
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
+  def link_url(url)
+    "<a href=\"#{encode(url)}\" target=\"blank\" rel=\"nofollow noopener\">#{link_html(url)}</a>"
+  end
+
   private
 
   def html_entities
@@ -147,12 +159,12 @@ class Formatter
   end
 
   def encode_and_link_urls(html, accounts = nil, options = {})
-    entities = utf8_friendly_extractor(html, extract_url_without_protocol: false)
-
     if accounts.is_a?(Hash)
       options  = accounts
       accounts = nil
     end
+
+    entities = options[:keep_html] ? html_friendly_extractor(html) : utf8_friendly_extractor(html, extract_url_without_protocol: false)
 
     rewrite(html.dup, entities, options[:keep_html]) do |entity|
       if entity[:url]
@@ -283,6 +295,29 @@ class Formatter
     standard = Extractor.extract_entities_with_indices(text, options)
 
     Extractor.remove_overlapping_entities(special + standard)
+  end
+
+  def html_friendly_extractor(html, options = {})
+    gaps = []
+    total_offset = 0
+
+    escaped = html.gsub(/<[^>]*>/) do |match|
+      total_offset += match.length - 1
+      end_offset = Regexp.last_match.end(0)
+      gaps << [end_offset - total_offset, total_offset]
+      "\u200b"
+    end
+
+    entities = Extractor.extract_hashtags_with_indices(escaped, :check_url_overlap => false) +
+               Extractor.extract_mentions_or_lists_with_indices(escaped)
+    Extractor.remove_overlapping_entities(entities).map do |extract|
+      pos = extract[:indices].first
+      offset_idx = gaps.rindex { |gap| gap.first <= pos }
+      offset = offset_idx.nil? ? 0 : gaps[offset_idx].last
+      next extract.merge(
+        :indices => [extract[:indices].first + offset, extract[:indices].last + offset]
+      )
+    end
   end
 
   def link_to_url(entity, options = {})
