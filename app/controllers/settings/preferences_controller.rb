@@ -46,6 +46,7 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_hide_followers_count,
       :setting_aggregate_reblogs,
       :setting_show_application,
+      :setting_default_content_type,
       notification_emails: %i(follow follow_request reblog favourite mention digest report pending_account),
       interactions: %i(must_be_follower must_be_following)
     )
