@@ -108,7 +108,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.18'
+  gem 'capybara', '~> 3.19'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 1.9'
   gem 'microformats', '~> 4.1'
@@ -116,7 +116,7 @@ group :test do
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.16', require: false
   gem 'webmock', '~> 3.5'
-  gem 'parallel_tests', '~> 2.28'
+  gem 'parallel_tests', '~> 2.29'
 end
 
 group :development do
@@ -128,7 +128,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.68', require: false
+  gem 'rubocop', '~> 0.69', require: false
   gem 'brakeman', '~> 4.5', require: false
   gem 'bundler-audit', '~> 0.6', require: false
   gem 'scss_lint', '~> 0.58', require: false
