@@ -13,7 +13,7 @@ module AccountFinderConcern
     end
 
     def representative
-      find_local(Setting.site_contact_username.strip.gsub(/\A@/, '')) || Account.local.find_by(suspended: false)
+      find_local(Setting.site_contact_username.strip.gsub(/\A@/, '')) || Account.local.without_suspended.first
     end
 
     def find_local(username)
