@@ -115,7 +115,7 @@ sk:
       followers: Sledujúci
       followers_url: URL adresa sledujúcich
       follows: Sledovania
-      header: Hlavička
+      header: Záhlavie
       inbox_url: URL adresa prijatých správ
       invited_by: Pozvaný/á užívateľom
       ip: IP adresa
@@ -138,6 +138,7 @@ sk:
       moderation_notes: Moderátorské poznámky
       most_recent_activity: Posledná aktivita
       most_recent_ip: Posledná IP adresa
+      no_account_selected: Nedošlo k žiadnému pozmeneniu účtov, keďže žiadne neboli vybrané
       no_limits_imposed: Nie sú stanovené žiadné obmedzenia
       not_subscribed: Neodoberá
       outbox_url: URL poslaných
@@ -152,7 +153,7 @@ sk:
       reject: Zamietni
       reject_all: Zamietni všetky
       remove_avatar: Vymaž avatar
-      remove_header: Vymaž hlavičku
+      remove_header: Vymaž záhlavie
       resend_confirmation:
         already_confirmed: Tento užívateľ je už potvrdený
         send: Odošli potvrdzovací email znovu
@@ -319,7 +320,7 @@ sk:
       by_domain: Doména
       delivery_available: Je v dosahu doručovania
       known_accounts:
-        few: "%{count} známe účty"
+        few: "%{count} známych účtov"
         one: "%{count} známy účet"
         other: "%{count} známe účty"
       moderation:
@@ -340,18 +341,20 @@ sk:
         expired: Vypršalo
         title: Filtruj
       title: Pozvánky
+    pending_accounts:
+      title: Čakajúcich účtov (%{count})
     relays:
       add_new: Pridaj nový federovací mostík
       delete: Vymaž
-      description_html: "<strong>Federovací mostík</strong> je prechodný server ktorý obmieňa veľké množstvá verejných príspevkov medzi tými servermi ktoré na od neho odoberajú, aj doňho prispievajú. <strong>Môže to pomôcť malým a stredným instanciám objavovať federovaný obsah</strong>, čo inak vyžaduje aby miestni užívatelia ručne následovali iných ľudí zo vzdialených instancií."
-      disable: Pozastav
-      disabled: Zastavené
+      description_html: "<strong>Federovací mostík</strong> je prechodný server, ktorý obmieňa veľké množstvá verejných príspevkov medzi tými servermi ktoré na od neho odoberajú, aj doňho prispievajú. <strong>Môže to pomôcť malým a stredným instanciám objavovať federovaný obsah</strong>, čo inak vyžaduje aby miestni užívatelia ručne následovali iných ľudí zo vzdialených instancií."
+      disable: Vypni
+      disabled: Vypnutý
       enable: Povoľ
       enable_hint: Ak povolíš, tvoj server bude odoberať všetky verejné príspevky z tohto mostu, a začne posielať verejné príspevky tvojho servera na tento most.
       enabled: Povolené
       inbox_url: URL adresa mostu
-      pending: Čakám na povolenie od prechodného mostu
-      save_and_enable: Uložiť a povoliť
+      pending: Čaká sa na povolenie od prechodného mostu
+      save_and_enable: Ulož a povoľ
       setup: Nastav prepojenie s mostom
       status: Stav
       title: Mosty
@@ -390,7 +393,7 @@ sk:
       updated_at: Aktualizované
     settings:
       activity_api_enabled:
-        desc_html: Sčítanie lokálne publikovaných príspevkov, aktívnych užívateľov, a nových registrácii, v týždenných intervaloch
+        desc_html: Sčítanie miestne uverejnených príspevkov, aktívnych užívateľov, a nových registrácii, v týždenných intervaloch
         title: Vydať hromadné štatistiky o užívateľskej aktivite
       bootstrap_timeline_accounts:
         desc_html: Ak je prezývok viacero, každú oddeľte čiarkou. Možno zadať iba miestne, odomknuté účty. Pokiaľ necháte prázdne, je to pre všetkých miestnych administrátorov.

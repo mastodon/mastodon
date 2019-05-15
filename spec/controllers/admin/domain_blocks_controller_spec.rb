@@ -63,9 +63,9 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
       service = double(call: true)
       allow(UnblockDomainService).to receive(:new).and_return(service)
       domain_block = Fabricate(:domain_block)
-      delete :destroy, params: { id: domain_block.id, domain_block: { retroactive: '1' } }
+      delete :destroy, params: { id: domain_block.id }
 
-      expect(service).to have_received(:call).with(domain_block, true)
+      expect(service).to have_received(:call).with(domain_block)
       expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.destroyed_msg')
       expect(response).to redirect_to(admin_instances_path(limited: '1'))
     end

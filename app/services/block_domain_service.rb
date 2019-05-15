@@ -29,7 +29,7 @@ class BlockDomainService < BaseService
   end
 
   def silence_accounts!
-    blocked_domain_accounts.in_batches.update_all(silenced: true)
+    blocked_domain_accounts.without_silenced.in_batches.update_all(silenced_at: @domain_block.created_at)
   end
 
   def clear_media!
@@ -43,9 +43,9 @@ class BlockDomainService < BaseService
   end
 
   def suspend_accounts!
-    blocked_domain_accounts.where(suspended: false).reorder(nil).find_each do |account|
+    blocked_domain_accounts.without_suspended.reorder(nil).find_each do |account|
       UnsubscribeService.new.call(account) if account.subscribed?
-      SuspendAccountService.new.call(account)
+      SuspendAccountService.new.call(account, suspended_at: @domain_block.created_at)
     end
   end
 
