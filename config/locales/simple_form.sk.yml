@@ -28,12 +28,12 @@ sk:
         scopes: Ktoré API budú povolené aplikácii pre prístup. Ak vyberieš vrcholný stupeň, nemusíš už potom vyberať po jednom.
         setting_aggregate_reblogs: Nezobrazuj nové vyzdvihnutia pre príspevky, ktoré už boli len nedávno povýšené (týka sa iba nanovo získaných povýšení)
         setting_default_language: Jazyk tvojích príspevkov môže byť zistený automaticky, ale nieje to vždy presné
-        setting_display_media_default: Skryť médiá označené ako citlivé
-        setting_display_media_hide_all: Vždy ukryť všetky médiá
-        setting_display_media_show_all: Stále ukazuj médiá označené ako citlivé
-        setting_hide_network: Koho následuješ, a kto následuje teba nebude zobrazené na tvojom profile
+        setting_display_media_default: Skry médiá označené ako citlivé
+        setting_display_media_hide_all: Vždy ukry všetky médiá
+        setting_display_media_show_all: Stále zobrazuj médiá označené ako citlivé
+        setting_hide_network: Koho následuješ, a kto následuje teba, nebude zobrazené na tvojom profile
         setting_noindex: Ovplyvňuje verejný profil a stránky s príspevkami
-        setting_show_application: Aplikácia, ktorú používaš na písanie príspevkov, bude zobrazená v detailnom náhľade jednotlivých tvojích príspevkov
+        setting_show_application: Aplikácia, ktorú používaš na písanie príspevkov, bude zobrazená v podrobnom náhľade jednotlivých tvojích príspevkov
         setting_theme: Ovplyvňuje ako Mastodon vyzerá pri prihlásení z hociakého zariadenia.
         username: Tvoja prezývka bude unikátna pre server %{domain}
         whole_word: Ak je kľúčové slovo, alebo fráza poskladaná iba s písmen a čísel, bude použité iba ak sa zhoduje s celým výrazom
@@ -41,6 +41,8 @@ sk:
         name: 'Možno by si chcel/a použiť niektoré z týchto:'
       imports:
         data: CSV súbor vyexportovaný z iného Mastodon serveru
+      invite_request:
+        text: Toto pomôže s vyhodnocovaním tvojej žiadosti
       sessions:
         otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích obnovovacích kódov:'
       user:
@@ -59,7 +61,7 @@ sk:
         types:
           disable: Deaktivuj
           none: Neurob nič
-          silence: Utíšenie
+          silence: Utíš
           suspend: Vylúč a nenávratne vymaž dáta na účte
         warning_preset_id: Použi varovnú predlohu
       defaults:
@@ -119,13 +121,14 @@ sk:
         must_be_following: Blokuj oboznámenia od ľudí, ktorých nesledujem
         must_be_following_dm: Blokuj súkromné správy od ľudí ktorých nesledujem
       notification_emails:
-        digest: Posielaj súhrnné emaily
-        favourite: Poslať email ak si niekto obľúbi tvoj príspevok
-        follow: Poslať email, ak ťa niekto začne následovať
-        follow_request: Zaslať email ak ti niekto pošle žiadosť o sledovanie
-        mention: Poslať email ak ťa niekto spomenie v svojom príspevku
-        reblog: Poslať email ak niekto re-tootne tvoj príspevok
-        report: Poslať e-mail ak niekto dodá nové hlásenie
+        digest: Zasielať súhrnné emaily
+        favourite: Zaslať email, ak si niekto obľúbi tvoj príspevok
+        follow: Zaslať email, ak ťa niekto začne následovať
+        follow_request: Zaslať email, ak ti niekto pošle žiadosť o sledovanie
+        mention: Zaslať email, ak ťa niekto spomenie vo svojom príspevku
+        pending_account: Zaslať email, ak treba prehodnotiť nový účet
+        reblog: Zaslať email, ak niekto re-tootne tvoj príspevok
+        report: Zaslať email, ak niekto podá nové nahlásenie
     'no': Nie
     required:
       mark: "*"

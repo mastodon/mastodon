@@ -162,7 +162,7 @@
 .actions-modal ul li:not(:empty) a:focus button,
 .actions-modal ul li:not(:empty) a:hover,
 .actions-modal ul li:not(:empty) a:hover button,
-.admin-wrapper .sidebar ul ul a.selected,
+.admin-wrapper .sidebar ul li a.selected,
 .simple_form .block-button,
 .simple_form .button,
 .simple_form button {
@@ -230,6 +230,7 @@
 .empty-column-indicator,
 .error-column {
   color: $primary-text-color;
+  background: $white;
 }
 
 // Change the default colors used on some parts of the profile pages

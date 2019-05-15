@@ -402,7 +402,7 @@ export function readyComposeSuggestionsAccounts(token, accounts) {
   };
 };
 
-export function selectComposeSuggestion(position, token, suggestion) {
+export function selectComposeSuggestion(position, token, suggestion, path) {
   return (dispatch, getState) => {
     let completion, startPosition;
 
@@ -427,6 +427,7 @@ export function selectComposeSuggestion(position, token, suggestion) {
       position: startPosition,
       token,
       completion,
+      path,
     });
   };
 };
