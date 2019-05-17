@@ -70,33 +70,7 @@ class Formatter
   end
 
   def format_markdown(html)
-    extensions = {
-      autolink: true,
-      no_intra_emphasis: true,
-      fenced_code_blocks: true,
-      disable_indented_code_blocks: true,
-      strikethrough: true,
-      lax_spacing: true,
-      space_after_headers: true,
-      superscript: true,
-      underline: true,
-      highlight: true,
-      footnotes: false,
-    }
-
-    renderer = HTMLRenderer.new({
-      filter_html: false,
-      escape_html: false,
-      no_images: true,
-      no_styles: true,
-      safe_links_only: true,
-      hard_wrap: true,
-      link_attributes: { target: '_blank', rel: 'nofollow noopener' },
-    })
-
-    markdown = Redcarpet::Markdown.new(renderer, extensions)
-
-    html = reformat(markdown.render(html))
+    html = reformat(markdown_formatter.render(html))
     html.delete("\r").delete("\n")
   end
 
@@ -159,6 +133,36 @@ class Formatter
   end
 
   private
+
+  def markdown_formatter
+    return @markdown_formatter if defined?(@markdown_formatter)
+
+    extensions = {
+      autolink: true,
+      no_intra_emphasis: true,
+      fenced_code_blocks: true,
+      disable_indented_code_blocks: true,
+      strikethrough: true,
+      lax_spacing: true,
+      space_after_headers: true,
+      superscript: true,
+      underline: true,
+      highlight: true,
+      footnotes: false,
+    }
+
+    renderer = HTMLRenderer.new({
+      filter_html: false,
+      escape_html: false,
+      no_images: true,
+      no_styles: true,
+      safe_links_only: true,
+      hard_wrap: true,
+      link_attributes: { target: '_blank', rel: 'nofollow noopener' },
+    })
+
+    @markdown_formatter = Redcarpet::Markdown.new(renderer, extensions)
+  end
 
   def html_entities
     @html_entities ||= HTMLEntities.new
