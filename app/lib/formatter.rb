@@ -5,12 +5,22 @@ require_relative './sanitize_config'
 
 class HTMLRenderer < Redcarpet::Render::HTML
   def block_code(code, language)
-    "<pre><code>#{code.gsub("\n", "<br/>")}</code></pre>"
+    "<pre><code>#{encode(code).gsub("\n", "<br/>")}</code></pre>"
   end
 
   def autolink(link, link_type)
     return link if link_type == :email
     Formatter.instance.link_url(link)
+  end
+
+  private
+
+  def html_entities
+    @html_entities ||= HTMLEntities.new
+  end
+
+  def encode(html)
+    html_entities.encode(html)
   end
 end
 
