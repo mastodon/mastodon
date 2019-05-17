@@ -4,10 +4,9 @@ RSpec.describe ReblogService, type: :service do
   let(:alice)  { Fabricate(:account, username: 'alice') }
 
   context 'creates a reblog with appropriate visibility' do
-    let(:bob)               { Fabricate(:account, username: 'bob') }
     let(:visibility)        { :public }
     let(:reblog_visibility) { :public }
-    let(:status)            { Fabricate(:status, account: bob, visibility: visibility) }
+    let(:status)            { Fabricate(:status, account: alice, visibility: visibility) }
 
     subject { ReblogService.new }
 
@@ -17,6 +16,15 @@ RSpec.describe ReblogService, type: :service do
 
     describe 'boosting privately' do
       let(:reblog_visibility) { :private }
+
+      it 'reblogs privately' do
+        expect(status.reblogs.first.visibility).to eq 'private'
+      end
+    end
+
+    describe 'public reblogs of private toots should remain private' do
+      let(:visibility)        { :private }
+      let(:reblog_visibility) { :public }
 
       it 'reblogs privately' do
         expect(status.reblogs.first.visibility).to eq 'private'
