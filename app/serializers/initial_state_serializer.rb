@@ -47,6 +47,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:expand_spoilers] = object.current_account.user.setting_expand_spoilers
       store[:reduce_motion]   = object.current_account.user.setting_reduce_motion
       store[:is_staff]        = object.current_account.user.staff?
+      store[:default_content_type] = object.current_account.user.setting_default_content_type
     end
 
     store

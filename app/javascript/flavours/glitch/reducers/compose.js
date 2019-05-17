@@ -45,7 +45,7 @@ import { REDRAFT } from 'flavours/glitch/actions/statuses';
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 import uuid from 'flavours/glitch/util/uuid';
 import { privacyPreference } from 'flavours/glitch/util/privacy_preference';
-import { me } from 'flavours/glitch/util/initial_state';
+import { me, defaultContentType } from 'flavours/glitch/util/initial_state';
 import { overwrite } from 'flavours/glitch/util/js_helpers';
 import { unescapeHTML } from 'flavours/glitch/util/html';
 import { recoverHashtags } from 'flavours/glitch/util/hashtag';
@@ -67,7 +67,7 @@ const initialState = ImmutableMap({
   spoiler: false,
   spoiler_text: '',
   privacy: null,
-  content_type: 'text/plain',
+  content_type: defaultContentType || 'text/plain',
   text: '',
   focusDate: null,
   caretPosition: null,
@@ -143,6 +143,7 @@ function apiStatusToTextHashtags (state, status) {
 function clearAll(state) {
   return state.withMutations(map => {
     map.set('text', '');
+    if (defaultContentType) map.set('content_type', defaultContentType);
     map.set('spoiler', false);
     map.set('spoiler_text', '');
     map.set('is_submitting', false);
@@ -354,6 +355,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_RESET:
     return state.withMutations(map => {
       map.set('in_reply_to', null);
+      if (defaultContentType) map.set('content_type', defaultContentType);
       map.set('text', '');
       map.set('spoiler', false);
       map.set('spoiler_text', '');

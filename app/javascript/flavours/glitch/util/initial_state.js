@@ -27,5 +27,6 @@ export const invitesEnabled = getMeta('invites_enabled');
 export const version = getMeta('version');
 export const mascot = getMeta('mascot');
 export const isStaff = getMeta('is_staff');
+export const defaultContentType = getMeta('default_content_type');
 
 export default initialState;
