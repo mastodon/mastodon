@@ -240,7 +240,7 @@ const startWorker = (workerId) => {
   const accountFromRequest = (req, next, required = true, allowedScopes = ['read']) => {
     const authorization = req.headers.authorization;
     const location = url.parse(req.url, true);
-    const accessToken = location.query.access_token;
+    const accessToken = location.query.access_token || req.headers['sec-websocket-protocol'];
 
     if (!authorization && !accessToken) {
       if (required) {
