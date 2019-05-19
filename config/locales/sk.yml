@@ -294,12 +294,12 @@ sk:
         suspend: vylúčený
       show:
         affected_accounts:
-          few: "%{count} účty v databáze ovplyvnených"
-          one: Jeden účet v databáze bol ovplyvnený
-          other: "%{count} účtov v databáze bolo ovplyvnených"
+          few: Je ovplyvnených %{count} účtov v databázi
+          one: Jeden účet v databázi bol ovplyvnený
+          other: "%{count} účty v databáze boli ovplyvnené"
         retroactive:
           silence: Zruš stíšenie všetkých momentálne utíšených účtov z tejto domény
-          suspend: Zruš suspendáciu všetkých momentálne odročených účtov z tejto domény
+          suspend: Zruš suspendáciu všetkých momentálne ovplyvnených účtov z tejto domény
         title: Zruš blokovanie domény %{domain}
         undo: Vráť späť
       undo: Odvolaj blokovanie domény
