@@ -9,7 +9,7 @@ module Friends
         fields = [spoiler_text, text]
         fields += preloadable_poll.options unless preloadable_poll.nil?
 
-        @profile_emojis = Friends::ProfileEmoji::Emoji.from_text(fields.join(' '))
+        @profile_emojis = Friends::ProfileEmoji::Emoji.from_text(fields.join(' '), account.domain)
       end
 
       def all_emojis
