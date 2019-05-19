@@ -20,7 +20,7 @@ const mapStateToProps = state => ({
   focusDate: state.getIn(['compose', 'focusDate']),
   caretPosition: state.getIn(['compose', 'caretPosition']),
   preselectDate: state.getIn(['compose', 'preselectDate']),
-  is_submitting: state.getIn(['compose', 'is_submitting']),
+  isSubmitting: state.getIn(['compose', 'is_submitting']),
   isChangingUpload: state.getIn(['compose', 'is_changing_upload']),
   isUploading: state.getIn(['compose', 'is_uploading']),
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
