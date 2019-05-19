@@ -28,6 +28,7 @@ class Poll extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
     dispatch: PropTypes.func,
     disabled: PropTypes.bool,
+    visible: PropTypes.bool,
   };
 
   state = {
@@ -69,13 +70,14 @@ class Poll extends ImmutablePureComponent {
   };
 
   renderOption (option, optionIndex) {
-    const { poll, disabled } = this.props;
-    const percent            = poll.get('votes_count') === 0 ? 0 : (option.get('votes_count') / poll.get('votes_count')) * 100;
-    const leading            = poll.get('options').filterNot(other => other.get('title') === option.get('title')).every(other => option.get('votes_count') > other.get('votes_count'));
-    const active             = !!this.state.selected[`${optionIndex}`];
-    const showResults        = poll.get('voted') || poll.get('expired');
+    const { poll, disabled, visible } = this.props;
+    const percent     = poll.get('votes_count') === 0 ? 0 : (option.get('votes_count') / poll.get('votes_count')) * 100;
+    const leading     = poll.get('options').filterNot(other => other.get('title') === option.get('title')).every(other => option.get('votes_count') > other.get('votes_count'));
+    const active      = !!this.state.selected[`${optionIndex}`];
+    const showResults = poll.get('voted') || poll.get('expired');
 
     let titleEmojified = option.get('title_emojified');
+
     if (!titleEmojified) {
       const emojiMap = makeEmojiMap(poll);
       titleEmojified = emojify(escapeTextContentForBrowser(option.get('title')), emojiMap);
@@ -104,7 +106,7 @@ class Poll extends ImmutablePureComponent {
           {!showResults && <span className={classNames('poll__input', { checkbox: poll.get('multiple'), active })} />}
           {showResults && <span className='poll__number'>{Math.round(percent)}%</span>}
 
-          <span dangerouslySetInnerHTML={{ __html: titleEmojified }} />
+          {visible ? <span dangerouslySetInnerHTML={{ __html: titleEmojified }} /> : <span>{String.fromCharCode(64 + optionIndex + 1)}</span>}
         </label>
       </li>
     );
