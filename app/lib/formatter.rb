@@ -18,10 +18,8 @@ class Formatter
     end
 
     raw_content = status.text
-
-    if options[:inline_poll_options] && status.preloadable_poll
-      raw_content = raw_content + "\n\n" + status.preloadable_poll.options.map { |title| "[ ] #{title}" }.join("\n")
-    end
+    raw_content = raw_content + "\n\n" + status.preloadable_poll.options.map { |title| "[ ] #{title}" }.join("\n") if options[:inline_poll_options] && status.preloadable_poll
+    raw_content = "RT @#{prepend_reblog} #{raw_content}" if prepend_reblog
 
     return '' if raw_content.blank?
 
@@ -31,17 +29,15 @@ class Formatter
       return html.html_safe # rubocop:disable Rails/OutputSafety
     end
 
-    linkable_accounts = status.active_mentions.map(&:account)
-    linkable_accounts << status.account
+    formatter_options = {
+      input: :mastodon,
+      entity_output: :as_input,
+      linkable_accounts: status.active_mentions.map(&:account) + [status.account],
+      custom_emojis: options[:custom_emojify] ? status.emojis : nil,
+      autoplay: options[:autoplay],
+    }
 
-    html = raw_content
-    html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
-    html = encode_and_link_urls(html, linkable_accounts)
-    html = encode_custom_emojis(html, status.emojis, options[:autoplay]) if options[:custom_emojify]
-    html = simple_format(html, {}, sanitize: false)
-    html = html.delete("\n")
-
-    html.html_safe # rubocop:disable Rails/OutputSafety
+    Kramdown::Document.new(raw_content, formatter_options).to_mastodon.delete("\n").html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def reformat(html)

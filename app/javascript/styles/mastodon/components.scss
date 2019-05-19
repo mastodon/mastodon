@@ -714,6 +714,29 @@
     }
   }
 
+  strong,
+  b {
+    font-weight: 700;
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+
+  code {
+    font-family: $font-monospace, monospace;
+    background-color: darken($ui-base-color, 8%);
+    border-radius: 3px;
+    font-size: 0.85em;
+    padding: 0.075em 0.4em;
+  }
+
+  del,
+  s {
+    text-decoration: line-through;
+  }
+
   a {
     color: $secondary-text-color;
     text-decoration: none;

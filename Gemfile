@@ -56,6 +56,7 @@ gem 'http_parser.rb', '~> 0.6', git: 'https://github.com/tmm1/http_parser.rb', r
 gem 'httplog', '~> 1.2'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.1'
+gem 'kramdown', '~> 2.1'
 gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.2', require: 'mime/types/columnar'
 gem 'nokogiri', '~> 1.10'
