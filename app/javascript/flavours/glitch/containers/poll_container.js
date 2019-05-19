@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Poll from 'mastodon/components/poll';
+import Poll from 'flavours/glitch/components/poll';
 
 const mapStateToProps = (state, { pollId }) => ({
   poll: state.getIn(['polls', pollId]),
