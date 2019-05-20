@@ -44,12 +44,13 @@ class Notification < ApplicationRecord
   scope :browserable, ->(exclude_types = [], from_account = nil) {
     types = TYPE_CLASS_MAP.values - activity_types_from_types(exclude_types + [:follow_request])
     return where(activity_type: types) if from_account.nil?
+
     username, domain = from_account.split('@')
     account = if TagManager.instance.local_domain?(domain)
-      Account.find_local(username)
-    else
-      Account.find_remote(username, domain)
-    end
+                Account.find_local(username)
+              else
+                Account.find_remote(username, domain)
+              end
     where(activity_type: types, from_account_id: account&.id)
   }
 
