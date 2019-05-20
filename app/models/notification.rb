@@ -45,10 +45,10 @@ class Notification < ApplicationRecord
     types = TYPE_CLASS_MAP.values - activity_types_from_types(exclude_types + [:follow_request])
     return where(activity_type: types) if from_account.nil?
     username, domain = from_account.split('@')
-    if TagManager.instance.local_domain?(domain) then
-      account = Account.find_local(username)
+    account = if TagManager.instance.local_domain?(domain)
+      Account.find_local(username)
     else
-      account = Account.find_remote(username, domain)
+      Account.find_remote(username, domain)
     end
     where(activity_type: types, from_account_id: account&.id)
   }
