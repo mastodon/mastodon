@@ -272,7 +272,7 @@ class Status extends ImmutablePureComponent {
     }
 
     if (status.get('poll')) {
-      media = <PollContainer pollId={status.get('poll')} />;
+      media = <PollContainer pollId={status.get('poll')} visible={!status.get('hidden')} />;
     } else if (status.get('media_attachments').size > 0) {
       if (this.props.muted) {
         media = (
