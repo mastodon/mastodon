@@ -110,6 +110,40 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       it 'excludes reblog' do
         expect(assigns(:notifications).map(&:activity)).to_not include(@reblog_of_first_status)
       end
+
+      it 'excludes follow' do
+        expect(assigns(:notifications).map(&:activity)).to_not include(@follow)
+      end
+    end
+
+    describe 'from nonexistent user' do
+      before do
+        get :index, params: { from_account: 'david' }
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'excludes favourite' do
+        expect(assigns(:notifications).map(&:activity)).to_not include(@favourite)
+      end
+
+      it 'excludes second favourite' do
+        expect(assigns(:notifications).map(&:activity)).to_not include(@second_favourite)
+      end
+
+      it 'excludes mention' do
+        expect(assigns(:notifications).map(&:activity)).to_not include(@mention_from_status)
+      end
+
+      it 'excludes reblog' do
+        expect(assigns(:notifications).map(&:activity)).to_not include(@reblog_of_first_status)
+      end
+
+      it 'excludes follow' do
+        expect(assigns(:notifications).map(&:activity)).to_not include(@follow)
+      end
     end
 
     describe 'with excluded mentions' do

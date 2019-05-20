@@ -50,8 +50,7 @@ class Notification < ApplicationRecord
     else
       account = Account.find_remote(username, domain)
     end
-    return where(activity_type: types) if account.nil?
-    where(activity_type: types, from_account_id: account.id)
+    where(activity_type: types, from_account_id: account&.id)
   }
 
   cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account, poll: [status: STATUS_INCLUDES]
