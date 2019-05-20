@@ -38,7 +38,6 @@ class ComposeForm extends ImmutablePureComponent {
     suggestions: ImmutablePropTypes.list,
     spoiler: PropTypes.bool,
     privacy: PropTypes.string,
-    contentType: PropTypes.string,
     spoilerText: PropTypes.string,
     focusDate: PropTypes.instanceOf(Date),
     caretPosition: PropTypes.number,
@@ -67,7 +66,6 @@ class ComposeForm extends ImmutablePureComponent {
     preselectOnReply: PropTypes.bool,
     onChangeSpoilerness: PropTypes.func,
     onChangeVisibility: PropTypes.func,
-    onChangeContentType: PropTypes.func,
     onMount: PropTypes.func,
     onUnmount: PropTypes.func,
     onPaste: PropTypes.func,
@@ -287,12 +285,10 @@ class ComposeForm extends ImmutablePureComponent {
       media,
       onChangeSpoilerness,
       onChangeVisibility,
-      onChangeContentType,
       onClearSuggestions,
       onFetchSuggestions,
       onPaste,
       privacy,
-      contentType,
       sensitive,
       showSearch,
       sideArm,
@@ -360,11 +356,9 @@ class ComposeForm extends ImmutablePureComponent {
           advancedOptions={advancedOptions}
           disabled={isSubmitting}
           onChangeVisibility={onChangeVisibility}
-          onChangeContentType={onChangeContentType}
           onToggleSpoiler={spoilersAlwaysOn ? null : onChangeSpoilerness}
           onUpload={onPaste}
           privacy={privacy}
-          contentType={contentType}
           sensitive={sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0)}
           spoiler={spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler}
         />
@@ -375,7 +369,6 @@ class ComposeForm extends ImmutablePureComponent {
           onSecondarySubmit={handleSecondarySubmit}
           onSubmit={handleSubmit}
           privacy={privacy}
-          contentType={contentType}
           sideArm={sideArm}
         />
       </div>

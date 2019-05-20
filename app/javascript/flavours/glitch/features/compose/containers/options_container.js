@@ -2,8 +2,10 @@ import { connect } from 'react-redux';
 import Options from '../components/options';
 import {
   changeComposeAdvancedOption,
+  changeComposeContentType,
+  addPoll,
+  removePoll,
 } from 'flavours/glitch/actions/compose';
-import { addPoll, removePoll } from 'flavours/glitch/actions/compose';
 import { closeModal, openModal } from 'flavours/glitch/actions/modal';
 
 function mapStateToProps (state) {
@@ -18,6 +20,7 @@ function mapStateToProps (state) {
     hasMedia: media && !!media.size,
     allowPoll: !(media && !!media.size),
     showContentTypeChoice: state.getIn(['local_settings', 'show_content_type_choice']),
+    contentType: state.getIn(['compose', 'content_type']),
   };
 };
 
@@ -25,6 +28,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   onChangeAdvancedOption(option, value) {
     dispatch(changeComposeAdvancedOption(option, value));
+  },
+
+  onChangeContentType(value) {
+    dispatch(changeComposeContentType(value));
   },
 
   onTogglePoll() {
