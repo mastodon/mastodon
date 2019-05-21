@@ -41,17 +41,11 @@ class Notification < ApplicationRecord
   validates :account_id, uniqueness: { scope: [:activity_type, :activity_id] }
   validates :activity_type, inclusion: { in: TYPE_CLASS_MAP.values }
 
-  scope :browserable, ->(exclude_types = [], from_account = nil) {
+  scope :browserable, ->(exclude_types = [], account_id = nil) {
     types = TYPE_CLASS_MAP.values - activity_types_from_types(exclude_types + [:follow_request])
-    return where(activity_type: types) if from_account.nil?
+    return where(activity_type: types) if account_id.nil?
 
-    username, domain = from_account.split('@')
-    account = if TagManager.instance.local_domain?(domain)
-                Account.find_local(username)
-              else
-                Account.find_remote(username, domain)
-              end
-    where(activity_type: types, from_account_id: account&.id)
+    where(activity_type: types, from_account_id: account_id)
   }
 
   cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account, poll: [status: STATUS_INCLUDES]

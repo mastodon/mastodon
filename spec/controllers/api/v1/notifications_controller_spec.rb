@@ -88,7 +88,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
 
     describe 'from specified user' do
       before do
-        get :index, params: { from_account: 'carol' }
+        get :index, params: { account_id: third.account.id }
       end
 
       it 'returns http success' do
@@ -118,7 +118,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
 
     describe 'from nonexistent user' do
       before do
-        get :index, params: { from_account: 'david' }
+        get :index, params: { account_id: 'foo' }
       end
 
       it 'returns http success' do

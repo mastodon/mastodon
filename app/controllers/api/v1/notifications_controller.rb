@@ -82,7 +82,7 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def from_account
-    params[:from_account]
+    params[:account_id]
   end
 
   def pagination_params(core_params)
