@@ -1788,16 +1788,6 @@ a.account__display-name {
   }
 }
 
-@media screen and (min-width: 360px) {
-  .columns-area {
-    padding: 10px;
-  }
-
-  .react-swipeable-view-container .columns-area {
-    height: calc(100% - 20px) !important;
-  }
-}
-
 .react-swipeable-view-container {
   &,
   .columns-area,
@@ -1860,36 +1850,6 @@ a.account__display-name {
   overflow: hidden;
 }
 
-@media screen and (min-width: 360px) {
-  .tabs-bar {
-    margin: 10px;
-    margin-bottom: 0;
-  }
-
-  .getting-started__wrapper,
-  .getting-started__trends,
-  .search {
-    margin-bottom: 10px;
-  }
-}
-
-@media screen and (max-width: 630px) {
-  .column,
-  .drawer {
-    width: 100%;
-    padding: 0;
-  }
-
-  .columns-area {
-    flex-direction: column;
-  }
-
-  .search__input,
-  .autosuggest-textarea__textarea {
-    font-size: 16px;
-  }
-}
-
 @media screen and (min-width: 631px) {
   .columns-area {
     padding: 0;
@@ -1917,6 +1877,98 @@ a.account__display-name {
       padding-left: 5px;
       padding-right: 5px;
     }
+  }
+}
+
+.tabs-bar {
+  box-sizing: border-box;
+  display: flex;
+  background: lighten($ui-base-color, 8%);
+  flex: 0 0 auto;
+  overflow-y: auto;
+}
+
+.tabs-bar__link {
+  display: block;
+  flex: 1 1 auto;
+  padding: 15px 10px;
+  color: $primary-text-color;
+  text-decoration: none;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  border-bottom: 2px solid lighten($ui-base-color, 8%);
+  transition: all 50ms linear;
+  transition-property: border-bottom, background, color;
+
+  .fa {
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  &.active {
+    border-bottom: 2px solid $highlight-text-color;
+    color: $highlight-text-color;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    @media screen and (min-width: 631px) {
+      background: lighten($ui-base-color, 14%);
+    }
+  }
+
+  span {
+    margin-left: 5px;
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .tabs-bar__link {
+    span {
+      display: inline;
+    }
+  }
+}
+
+.columns-area--mobile {
+  flex-direction: column;
+  max-width: 600px;
+
+  .column,
+  .drawer {
+    width: 100%;
+    padding: 0;
+  }
+
+  .search__input,
+  .autosuggest-textarea__textarea {
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: 360px) {
+    padding: 10px;
+  }
+}
+
+@media screen and (min-width: 360px) {
+  .tabs-bar {
+    margin: 10px auto;
+    margin-bottom: 0;
+    width: calc(100% - 20px);
+    max-width: 600px;
+  }
+
+  .react-swipeable-view-container .columns-area--mobile {
+    height: calc(100% - 20px) !important;
+  }
+
+  .getting-started__wrapper,
+  .getting-started__trends,
+  .search {
+    margin-bottom: 10px;
   }
 }
 
@@ -1985,58 +2037,6 @@ a.account__display-name {
     &:hover {
       background: lighten($ui-base-color, 3%);
       transition: background 200ms ease-out;
-    }
-  }
-}
-
-.tabs-bar {
-  display: flex;
-  background: lighten($ui-base-color, 8%);
-  flex: 0 0 auto;
-  overflow-y: auto;
-}
-
-.tabs-bar__link {
-  display: block;
-  flex: 1 1 auto;
-  padding: 15px 10px;
-  color: $primary-text-color;
-  text-decoration: none;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 500;
-  border-bottom: 2px solid lighten($ui-base-color, 8%);
-  transition: all 50ms linear;
-  transition-property: border-bottom, background, color;
-
-  .fa {
-    font-weight: 400;
-    font-size: 16px;
-  }
-
-  &.active {
-    border-bottom: 2px solid $highlight-text-color;
-    color: $highlight-text-color;
-  }
-
-  &:hover,
-  &:focus,
-  &:active {
-    @media screen and (min-width: 631px) {
-      background: lighten($ui-base-color, 14%);
-    }
-  }
-
-  span {
-    margin-left: 5px;
-    display: none;
-  }
-}
-
-@media screen and (min-width: 600px) {
-  .tabs-bar__link {
-    span {
-      display: inline;
     }
   }
 }

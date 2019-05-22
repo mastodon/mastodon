@@ -62,6 +62,7 @@ const mapStateToProps = state => ({
   hasComposingText: state.getIn(['compose', 'text']).trim().length !== 0,
   hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
   dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
+  forceSingleColumn: state.getIn(['settings', 'forceSingleColumn'], false),
 });
 
 const keyMap = {
@@ -100,6 +101,7 @@ class SwitchingColumnsArea extends React.PureComponent {
     children: PropTypes.node,
     location: PropTypes.object,
     onLayoutChange: PropTypes.func.isRequired,
+    forceSingleColumn: PropTypes.bool,
   };
 
   state = {
@@ -138,12 +140,13 @@ class SwitchingColumnsArea extends React.PureComponent {
   }
 
   render () {
-    const { children } = this.props;
+    const { children, forceSingleColumn } = this.props;
     const { mobile } = this.state;
-    const redirect = mobile ? <Redirect from='/' to='/timelines/home' exact /> : <Redirect from='/' to='/getting-started' exact />;
+    const singleColumn = forceSingleColumn || mobile;
+    const redirect = singleColumn ? <Redirect from='/' to='/timelines/home' exact /> : <Redirect from='/' to='/getting-started' exact />;
 
     return (
-      <ColumnsAreaContainer ref={this.setRef} singleColumn={mobile}>
+      <ColumnsAreaContainer ref={this.setRef} singleColumn={singleColumn}>
         <WrappedSwitch>
           {redirect}
           <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
@@ -204,6 +207,7 @@ class UI extends React.PureComponent {
     location: PropTypes.object,
     intl: PropTypes.object.isRequired,
     dropdownMenuIsOpen: PropTypes.bool,
+    forceSingleColumn: PropTypes.bool,
   };
 
   state = {
@@ -452,7 +456,7 @@ class UI extends React.PureComponent {
 
   render () {
     const { draggingOver } = this.state;
-    const { children, isComposing, location, dropdownMenuIsOpen } = this.props;
+    const { children, isComposing, location, dropdownMenuIsOpen, forceSingleColumn } = this.props;
 
     const handlers = {
       help: this.handleHotkeyToggleHelp,
@@ -478,7 +482,7 @@ class UI extends React.PureComponent {
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
-          <SwitchingColumnsArea location={location} onLayoutChange={this.handleLayoutChange}>
+          <SwitchingColumnsArea location={location} onLayoutChange={this.handleLayoutChange} forceSingleColumn={forceSingleColumn}>
             {children}
           </SwitchingColumnsArea>
 

@@ -139,7 +139,7 @@ class ColumnsArea extends ImmutablePureComponent {
       <ColumnLoading title={title} icon={icon} />;
 
     return (
-      <div className='columns-area' key={index}>
+      <div className='columns-area columns-area--mobile' key={index}>
         {view}
       </div>
     );
@@ -174,7 +174,7 @@ class ColumnsArea extends ImmutablePureComponent {
       ] : [
         <TabsBar key='tabs' />,
 
-        <div key='content' className='columns-area'>{children}</div>,
+        <div key='content' className='columns-area columns-area--mobile'>{children}</div>,
 
         floatingActionButton,
       ];
