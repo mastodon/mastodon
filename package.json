@@ -2,7 +2,7 @@
   "name": "mastodon",
   "license": "AGPL-3.0-or-later",
   "engines": {
-    "node": ">=8 <11"
+    "node": ">=8.12 <12"
   },
   "scripts": {
     "postversion": "git push --tags",
@@ -69,6 +69,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.4.5",
+    "@clusterws/cws": "^0.14.0",
     "array-includes": "^3.0.3",
     "autoprefixer": "^9.5.1",
     "axios": "^0.18.0",
@@ -156,7 +157,6 @@
     "throng": "^4.0.0",
     "tiny-queue": "^0.2.1",
     "uuid": "^3.1.0",
-    "uws": "10.148.0",
     "webpack": "^4.32.1",
     "webpack-assets-manifest": "^3.1.1",
     "webpack-bundle-analyzer": "^3.3.2",
