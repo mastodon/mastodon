@@ -13,16 +13,6 @@
   position: relative;
 }
 
-@include limited-single-column('screen and (min-width: 360px)', $parent: null) {
-  .columns-area {
-    padding: 10px;
-  }
-
-  .react-swipeable-view-container .columns-area {
-    height: calc(100% - 20px) !important;
-  }
-}
-
 .react-swipeable-view-container {
   &,
   .columns-area,
@@ -61,34 +51,6 @@
 
 .column {
   overflow: hidden;
-}
-
-@include limited-single-column('screen and (min-width: 360px)', $parent: null) {
-  .tabs-bar {
-    margin: 10px;
-    margin-bottom: 0;
-  }
-}
-
-:root {  //  Overrides .wide stylings for mobile view
-  @include single-column('screen and (max-width: 630px)', $parent: null) {
-    .column {
-      flex: auto;
-      width: 100%;
-      min-width: 0;
-      max-width: none;
-      padding: 0;
-    }
-
-    .columns-area {
-      flex-direction: column;
-    }
-
-    .search__input,
-    .autosuggest-textarea__textarea {
-      font-size: 16px;
-    }
-  }
 }
 
 @include multi-columns('screen and (min-width: 631px)', $parent: null) {
@@ -440,6 +402,10 @@
   justify-content: center;
   @supports(display: grid) { // hack to fix Chrome <57
     contain: strict;
+  }
+
+  & > span {
+    max-width: 400px;
   }
 
   a {

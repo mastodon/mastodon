@@ -61,12 +61,12 @@ class Compose extends React.PureComponent {
         <div className='drawer__pager'>
           {!isSearchPage && <div className='drawer__inner'>
             <NavigationContainer />
+
             <ComposeFormContainer />
-            {multiColumn && (
-              <div className='drawer__inner__mastodon'>
-                {mascot ? <img alt='' draggable='false' src={mascot} /> : <button className='mastodon' onClick={onClickElefriend} />}
-              </div>
-            )}
+
+            <div className='drawer__inner__mastodon'>
+              {mascot ? <img alt='' draggable='false' src={mascot} /> : <button className='mastodon' onClick={onClickElefriend} />}
+            </div>
           </div>}
 
           <Motion defaultStyle={{ x: isSearchPage ? 0 : -100 }} style={{ x: spring(showSearch || isSearchPage ? 0 : -100, { stiffness: 210, damping: 20 }) }}>

@@ -2,7 +2,6 @@ import React from 'react';
 import NotificationsContainer from './containers/notifications_container';
 import PropTypes from 'prop-types';
 import LoadingBarContainer from './containers/loading_bar_container';
-import TabsBar from './components/tabs_bar';
 import ModalContainer from './containers/modal_container';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
@@ -69,6 +68,7 @@ const mapStateToProps = state => ({
   unreadNotifications: state.getIn(['notifications', 'unread']),
   showFaviconBadge: state.getIn(['local_settings', 'notifications', 'favicon_badge']),
   hicolorPrivacyIcons: state.getIn(['local_settings', 'hicolor_privacy_icons']),
+  forceSingleColumn: state.getIn(['settings', 'forceSingleColumn'], false),
 });
 
 const keyMap = {
@@ -126,6 +126,7 @@ export default class UI extends React.Component {
     dropdownMenuIsOpen: PropTypes.bool,
     unreadNotifications: PropTypes.number,
     showFaviconBadge: PropTypes.bool,
+    forceSingleColumn: PropTypes.bool,
   };
 
   state = {
@@ -431,7 +432,9 @@ export default class UI extends React.Component {
 
   render () {
     const { width, draggingOver } = this.state;
-    const { children, layout, isWide, navbarUnder, dropdownMenuIsOpen } = this.props;
+    const { children, layout, isWide, navbarUnder, dropdownMenuIsOpen, forceSingleColumn } = this.props;
+    const singleColumn = forceSingleColumn || isMobile(width, layout);
+    const redirect = singleColumn ? <Redirect from='/' to='/timelines/home' exact /> : <Redirect from='/' to='/getting-started' exact />;
 
     const columnsClass = layout => {
       switch (layout) {
@@ -475,11 +478,9 @@ export default class UI extends React.Component {
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
         <div className={className} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
-          {navbarUnder ? null : (<TabsBar />)}
-
-          <ColumnsAreaContainer ref={this.setColumnsAreaRef} singleColumn={isMobile(width, layout)}>
+          <ColumnsAreaContainer ref={this.setColumnsAreaRef} singleColumn={singleColumn}>
             <WrappedSwitch>
-              <Redirect from='/' to='/getting-started' exact />
+              {redirect}
               <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
               <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
               <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
@@ -518,7 +519,6 @@ export default class UI extends React.Component {
           </ColumnsAreaContainer>
 
           <NotificationsContainer />
-          {navbarUnder ? (<TabsBar />) : null}
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />

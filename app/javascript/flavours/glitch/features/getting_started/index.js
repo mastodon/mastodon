@@ -10,10 +10,12 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { me, invitesEnabled, version } from 'flavours/glitch/util/initial_state';
 import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
+import { changeSetting } from 'flavours/glitch/actions/settings';
 import { List as ImmutableList } from 'immutable';
 import { createSelector } from 'reselect';
 import { fetchLists } from 'flavours/glitch/actions/lists';
 import { preferencesLink, profileLink, signOutLink } from 'flavours/glitch/util/backend_links';
+import Toggle from 'react-toggle';
 
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -52,6 +54,7 @@ const makeMapStateToProps = () => {
     columns: state.getIn(['settings', 'columns']),
     unreadFollowRequests: state.getIn(['user_lists', 'follow_requests', 'items'], ImmutableList()).size,
     unreadNotifications: state.getIn(['notifications', 'unread']),
+    forceSingleColumn: state.getIn(['settings', 'forceSingleColumn'], false),
   });
 
   return mapStateToProps;
@@ -61,6 +64,7 @@ const mapDispatchToProps = dispatch => ({
   fetchFollowRequests: () => dispatch(fetchFollowRequests()),
   fetchLists: () => dispatch(fetchLists()),
   openSettings: () => dispatch(openModal('SETTINGS', {})),
+  changeForceSingleColumn: checked => dispatch(changeSetting(['forceSingleColumn'], checked)),
 });
 
 const badgeDisplay = (number, limit) => {
@@ -88,6 +92,8 @@ export default class GettingStarted extends ImmutablePureComponent {
     lists: ImmutablePropTypes.list,
     fetchLists: PropTypes.func.isRequired,
     openSettings: PropTypes.func.isRequired,
+    forceSingleColumn: PropTypes.bool,
+    changeForceSingleColumn: PropTypes.func.isRequired,
   };
 
   componentWillMount () {
@@ -102,8 +108,12 @@ export default class GettingStarted extends ImmutablePureComponent {
     }
   }
 
+  handleForceSingleColumnChange = ({ target }) => {
+    this.props.changeForceSingleColumn(target.checked);
+  }
+
   render () {
-    const { intl, myAccount, columns, multiColumn, unreadFollowRequests, unreadNotifications, lists, openSettings } = this.props;
+    const { intl, myAccount, columns, multiColumn, unreadFollowRequests, unreadNotifications, lists, openSettings, forceSingleColumn } = this.props;
 
     const navItems = [];
     let listItems = [];
@@ -183,6 +193,11 @@ export default class GettingStarted extends ImmutablePureComponent {
             </p>
           </div>
         </div>
+
+        <label className='navigational-toggle'>
+          <FormattedMessage id='getting_started.use_simple_layout' defaultMessage='Use simple layout' />
+          <Toggle checked={forceSingleColumn} onChange={this.handleForceSingleColumnChange} />
+        </label>
       </Column>
     );
   }
