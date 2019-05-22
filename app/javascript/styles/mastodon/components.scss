@@ -1972,6 +1972,24 @@ a.account__display-name {
   }
 }
 
+.icon-with-badge {
+  position: relative;
+
+  &__badge {
+    position: absolute;
+    right: -13px;
+    top: -13px;
+    background: $ui-highlight-color;
+    border: 2px solid lighten($ui-base-color, 8%);
+    padding: 1px 6px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 14px;
+    color: $primary-text-color;
+  }
+}
+
 .drawer__pager {
   box-sizing: border-box;
   padding: 0;
