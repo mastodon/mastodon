@@ -26,6 +26,7 @@ class Option extends React.PureComponent {
     isPollMultiple: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onRemove: PropTypes.func.isRequired,
+    onToggleMultiple: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -37,13 +38,24 @@ class Option extends React.PureComponent {
     this.props.onRemove(this.props.index);
   };
 
+  handleToggleMultiple = e => {
+    this.props.onToggleMultiple();
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   render () {
     const { isPollMultiple, title, index, intl } = this.props;
 
     return (
       <li>
         <label className='poll__text editable'>
-          <span className={classNames('poll__input', { checkbox: isPollMultiple })} />
+          <span
+            className={classNames('poll__input', { checkbox: isPollMultiple })}
+            onClick={this.handleToggleMultiple}
+            role='button'
+            tabIndex='0'
+          />
 
           <input
             type='text'
@@ -86,6 +98,10 @@ class PollForm extends ImmutablePureComponent {
     this.props.onChangeSettings(e.target.value, this.props.isMultiple);
   };
 
+  handleToggleMultiple = () => {
+    this.props.onChangeSettings(this.props.expiresIn, !this.props.isMultiple);
+  };
+
   render () {
     const { options, expiresIn, isMultiple, onChangeOption, onRemoveOption, intl } = this.props;
 
@@ -96,7 +112,7 @@ class PollForm extends ImmutablePureComponent {
     return (
       <div className='compose-form__poll-wrapper'>
         <ul>
-          {options.map((title, i) => <Option title={title} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} />)}
+          {options.map((title, i) => <Option title={title} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} onToggleMultiple={this.handleToggleMultiple} />)}
         </ul>
 
         <div className='poll__footer'>

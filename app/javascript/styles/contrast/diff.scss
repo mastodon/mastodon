@@ -67,3 +67,11 @@
     text-decoration: none;
   }
 }
+
+.nothing-here {
+  color: $darker-text-color;
+}
+
+.public-layout .public-account-header__tabs__tabs .counter.active::after {
+  border-bottom: 4px solid $ui-highlight-color;
+}

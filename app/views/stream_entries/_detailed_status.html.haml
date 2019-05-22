@@ -28,7 +28,7 @@
   - elsif !status.media_attachments.empty?
     - if status.media_attachments.first.video?
       - video = status.media_attachments.first
-      = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, width: 670, height: 380, detailed: true, inline: true, alt: video.description do
+      = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), blurhash: video.blurhash, sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, width: 670, height: 380, detailed: true, inline: true, alt: video.description do
         = render partial: 'stream_entries/attachment_list', locals: { attachments: status.media_attachments }
     - else
       = react_component :media_gallery, height: 380, sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, standalone: true, 'autoPlayGif': current_account&.user&.setting_auto_play_gif || autoplay, 'reduceMotion': current_account&.user&.setting_reduce_motion, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json } do

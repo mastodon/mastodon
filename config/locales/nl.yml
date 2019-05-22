@@ -68,6 +68,7 @@ nl:
       admin: Beheerder
       bot: Bot
       moderator: Moderator
+    unavailable: Profiel niet beschikbaar
     unfollow: Ontvolgen
   admin:
     account_actions:
@@ -80,6 +81,7 @@ nl:
       destroyed_msg: Verwijderen van opmerking voor moderatoren geslaagd!
     accounts:
       approve: Goedkeuren
+      approve_all: Alles goedkeuren
       are_you_sure: Weet je het zeker?
       avatar: Avatar
       by_domain: Domein
@@ -132,6 +134,7 @@ nl:
       moderation_notes: Opmerkingen voor moderatoren
       most_recent_activity: Laatst actief
       most_recent_ip: Laatst gebruikt IP-adres
+      no_account_selected: Er zijn geen accounts veranderd, omdat er geen een was geselecteerd
       no_limits_imposed: Geen limieten ingesteld
       not_subscribed: Niet geabonneerd
       outbox_url: Outbox-URL
@@ -144,6 +147,7 @@ nl:
       push_subscription_expires: PuSH-abonnement verloopt op
       redownload: Profiel vernieuwen
       reject: Afkeuren
+      reject_all: Alles afkeuren
       remove_avatar: Avatar verwijderen
       remove_header: Omslagfoto verwijderen
       resend_confirmation:
@@ -245,6 +249,7 @@ nl:
       feature_profile_directory: Gebruikersgids
       feature_registrations: Registraties
       feature_relay: Federatierelay
+      feature_timeline_preview: Voorvertoning van tijdlijn
       features: Functies
       hidden_service: Federatie met verborgen diensten
       open_reports: onopgeloste rapportages
@@ -329,6 +334,8 @@ nl:
         expired: Verlopen
         title: Filter
       title: Uitnodigingen
+    pending_accounts:
+      title: Accounts in afwachting (%{count})
     relays:
       add_new: Nieuwe relayserver toevoegen
       delete: Verwijderen
@@ -428,14 +435,14 @@ nl:
         desc_html: Medewerkersbadge op profielpagina tonen
         title: Medewerkersbadge tonen
       site_description:
-        desc_html: Dit wordt als een alinea op de voorpagina getoond. Beschrijf wat er speciaal is aan deze server en andere zaken die van belang zijn. Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
-        title: Omschrijving Mastodonserver
+        desc_html: Introductie-alinea voor de API. Beschrijf wat er speciaal is aan deze server en andere zaken die van belang zijn. Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
+        title: Omschrijving Mastodonserver (API)
       site_description_extended:
         desc_html: Een goede plek voor je gedragscode, regels, richtlijnen en andere zaken die jouw server uniek maken. Je kan ook hier HTML gebruiken
         title: Uitgebreide omschrijving Mastodonserver
       site_short_description:
-        desc_html: Dit wordt in de zijbalk getoond als en als metatag in de paginabron.  Beschrijf in één alinea wat Mastodon is en wat deze server speciaal maakt. De (langere) omschrijving van de Mastodonserver wordt gebruikt wanneer dit veld wordt leeg gelaten.
-        title: Korte omschrijving Mastodonserver
+        desc_html: Dit wordt gebruikt op de voorpagina, in de zijbalk op profielpagina's en als metatag in de paginabron. Beschrijf in één alinea wat Mastodon is en wat deze server speciaal maakt.
+        title: Omschrijving Mastodonserver (website)
       site_terms:
         desc_html: Je kan hier jouw eigen privacybeleid, gebruiksvoorwaarden en ander juridisch jargon kwijt. Je kan HTML gebruiken
         title: Aangepaste gebruiksvoorwaarden
@@ -585,6 +592,9 @@ nl:
       content: Het spijt ons, er is aan onze kant iets fout gegaan.
       title: Er is iets mis
     noscript_html: Schakel JavaScript in om de webapp van Mastodon te kunnen gebruiken. Als alternatief kan je een <a href="%{apps_path}">Mastodon-app</a> zoeken voor jouw platform.
+  existing_username_validator:
+    not_found: Kon geen lokale gebruiker met die gebruikersnaam vinden
+    not_found_multiple: Kon %{usernames} niet vinden
   exports:
     archive_takeout:
       date: Datum
@@ -628,10 +638,13 @@ nl:
     all: Alles
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
     copy: Kopiëren
+    order_by: Sorteer op
     save_changes: Wijzigingen opslaan
     validation_errors:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
       other: Er is iets niet helemaal goed! Bekijk onderstaande %{count} fouten
+  html_validator:
+    invalid_markup: 'bevat ongeldige HTML-opmaak: %{error}'
   identity_proofs:
     active: Actief
     authorize: Ja, autoriseren
@@ -646,6 +659,8 @@ nl:
     i_am_html: Ik ben %{username} op %{service}.
     identity: Identiteit
     inactive: Inactief
+    publicize_checkbox: 'En toot dit:'
+    publicize_toot: 'Het is bewezen! Ik ben %{username} op %{service}: %{url}'
     status: Verificatiestatus
     view_proof: Bekijk bewijs
   imports:
@@ -768,6 +783,8 @@ nl:
   relationships:
     activity: Accountactiviteit
     dormant: Sluimerend
+    last_active: Laatst actief
+    most_recent: Recentelijk gevolgd
     moved: Verhuisd
     mutual: Wederzijds
     primary: Primair
@@ -843,6 +860,9 @@ nl:
     revoke_success: Sessie succesvol ingetrokken
     title: Sessies
   settings:
+    account: Account
+    account_settings: Accountinstellingen
+    appearance: Uiterlijk
     authorized_apps: Geautoriseerde apps
     back: Terug naar Mastodon
     delete: Account verwijderen
@@ -852,9 +872,11 @@ nl:
     featured_tags: Uitgelichte hashtags
     identity_proofs: Identiteitsbewijzen
     import: Importeren
+    import_and_export: Importeren en exporteren
     migrate: Accountmigratie
     notifications: Meldingen
     preferences: Voorkeuren
+    profile: Profiel
     relationships: Volgers en gevolgden
     two_factor_authentication: Tweestapsverificatie
   statuses:
