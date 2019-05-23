@@ -137,8 +137,6 @@ class Formatter
   private
 
   def markdown_formatter
-    return @markdown_formatter if defined?(@markdown_formatter)
-
     extensions = {
       autolink: true,
       no_intra_emphasis: true,
@@ -163,7 +161,7 @@ class Formatter
       link_attributes: { target: '_blank', rel: 'nofollow noopener' },
     })
 
-    @markdown_formatter = Redcarpet::Markdown.new(renderer, extensions)
+    Redcarpet::Markdown.new(renderer, extensions)
   end
 
   def html_entities
