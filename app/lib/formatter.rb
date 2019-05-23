@@ -37,7 +37,11 @@ class Formatter
       autoplay: options[:autoplay],
     }
 
-    Kramdown::Document.new(raw_content, formatter_options).to_mastodon.delete("\n").html_safe # rubocop:disable Rails/OutputSafety
+    html = Kramdown::Document.new(raw_content, formatter_options).to_mastodon
+    html = quotify(html, status, options) if status.quote? && !options[:escape_quotify]
+    html = html.delete("\n")
+
+    html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def format_in_quote(status, **options)
