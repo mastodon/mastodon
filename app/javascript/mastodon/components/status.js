@@ -257,7 +257,7 @@ class Status extends ImmutablePureComponent {
     if (featured) {
       prepend = (
         <div className='status__prepend'>
-          <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-thumb-tack status__prepend-icon' /></div>
+          <div className='status__prepend-icon-wrapper'><Icon id='thumb-tack' className='status__prepend-icon' fixedWidth /></div>
           <FormattedMessage id='status.pinned' defaultMessage='Pinned toot' />
         </div>
       );
@@ -266,7 +266,7 @@ class Status extends ImmutablePureComponent {
 
       prepend = (
         <div className='status__prepend'>
-          <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
+          <div className='status__prepend-icon-wrapper'><Icon id='retweet' className='status__prepend-icon' fixedWidth /></div>
           <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><bdi><strong dangerouslySetInnerHTML={display_name_html} /></bdi></a> }} />
         </div>
       );
@@ -358,7 +358,7 @@ class Status extends ImmutablePureComponent {
 
     return (
       <HotKeys handlers={handlers}>
-        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), read: unread === false, focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText, !status.get('hidden'))} ref={this.handleRef}>
+        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), read: unread === false, focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText)} ref={this.handleRef}>
           {prepend}
 
           <div className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), muted: this.props.muted, read: unread === false, mathjaxified__content: isMathjaxifyable(status.get('content')) })} data-id={status.get('id')}>

@@ -402,25 +402,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     Account.local.where(username: local_usernames).exists?
   end
 
-  def related_to_local_activity?
-    fetch? || followed_by_local_accounts? || requested_through_relay? ||
-      responds_to_followed_account? || addresses_local_accounts?
-  end
-
-  def responds_to_followed_account?
-    !replied_to_status.nil? && (replied_to_status.account.local? || replied_to_status.account.passive_relationships.exists?)
-  end
-
-  def addresses_local_accounts?
-    return true if @options[:delivered_to_account_id]
-
-    local_usernames = (as_array(@object['to']) + as_array(@object['cc'])).uniq.select { |uri| ActivityPub::TagManager.instance.local_uri?(uri) }.map { |uri| ActivityPub::TagManager.instance.uri_to_local_id(uri, :username) }
-
-    return false if local_usernames.empty?
-
-    Account.local.where(username: local_usernames).exists?
-  end
-
   def forward_for_reply
     return unless @json['signature'].present? && reply_to_local?
     ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id, [@account.preferred_inbox_url])
