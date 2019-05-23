@@ -14,6 +14,8 @@ const initialState = ImmutableMap({
 
   skinTone: 1,
 
+  forceSingleColumn: false,
+
   home: ImmutableMap({
     shows: ImmutableMap({
       reblog: true,
