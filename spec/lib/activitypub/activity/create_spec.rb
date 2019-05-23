@@ -504,6 +504,7 @@ RSpec.describe ActivityPub::Activity::Create do
           expect(poll.votes.first).to be_nil
         end
       end
+    end
 
     context 'when sender is followed by local users' do
       subject { described_class.new(json, sender, delivery: true) }
@@ -605,6 +606,7 @@ RSpec.describe ActivityPub::Activity::Create do
         expect(status).to_not be_nil
         expect(status.text).to eq 'Lorem ipsum'
       end
+    end
 
     context 'when the sender has no relevance to local activity' do
       subject { described_class.new(json, sender, delivery: true) }

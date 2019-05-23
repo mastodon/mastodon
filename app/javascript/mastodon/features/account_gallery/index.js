@@ -2,24 +2,25 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { fetchAccount } from '../../actions/accounts';
+import { fetchAccount } from 'mastodon/actions/accounts';
 import { expandAccountMediaTimeline } from '../../actions/timelines';
-import LoadingIndicator from '../../components/loading_indicator';
+import LoadingIndicator from 'mastodon/components/loading_indicator';
 import Column from '../ui/components/column';
-import ColumnBackButton from '../../components/column_back_button';
+import ColumnBackButton from 'mastodon/components/column_back_button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { getAccountGallery } from '../../selectors';
+import { getAccountGallery } from 'mastodon/selectors';
 import MediaItem from './components/media_item';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import { ScrollContainer } from 'react-router-scroll-4';
-import LoadMore from '../../components/load_more';
+import LoadMore from 'mastodon/components/load_more';
 import MissingIndicator from 'mastodon/components/missing_indicator';
+import { openModal } from 'mastodon/actions/modal';
 
 const mapStateToProps = (state, props) => ({
   isAccount: !!state.getIn(['accounts', props.params.accountId]),
-  medias: getAccountGallery(state, props.params.accountId),
+  attachments: getAccountGallery(state, props.params.accountId),
   isLoading: state.getIn(['timelines', `account:${props.params.accountId}:media`, 'isLoading']),
-  hasMore:   state.getIn(['timelines', `account:${props.params.accountId}:media`, 'hasMore']),
+  hasMore: state.getIn(['timelines', `account:${props.params.accountId}:media`, 'hasMore']),
 });
 
 class LoadMoreMedia extends ImmutablePureComponent {
@@ -51,10 +52,14 @@ class AccountGallery extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    medias: ImmutablePropTypes.list.isRequired,
+    attachments: ImmutablePropTypes.list.isRequired,
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
     isAccount: PropTypes.bool,
+  };
+
+  state = {
+    width: 323,
   };
 
   componentDidMount () {
@@ -71,11 +76,11 @@ class AccountGallery extends ImmutablePureComponent {
 
   handleScrollToBottom = () => {
     if (this.props.hasMore) {
-      this.handleLoadMore(this.props.medias.size > 0 ? this.props.medias.last().getIn(['status', 'id']) : undefined);
+      this.handleLoadMore(this.props.attachments.size > 0 ? this.props.attachments.last().getIn(['status', 'id']) : undefined);
     }
   }
 
-  handleScroll = (e) => {
+  handleScroll = e => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const offset = scrollHeight - scrollTop - clientHeight;
 
@@ -88,13 +93,31 @@ class AccountGallery extends ImmutablePureComponent {
     this.props.dispatch(expandAccountMediaTimeline(this.props.params.accountId, { maxId }));
   };
 
-  handleLoadOlder = (e) => {
+  handleLoadOlder = e => {
     e.preventDefault();
     this.handleScrollToBottom();
   }
 
+  handleOpenMedia = attachment => {
+    if (attachment.get('type') === 'video') {
+      this.props.dispatch(openModal('VIDEO', { media: attachment, status: attachment.get('status') }));
+    } else {
+      const media = attachment.getIn(['status', 'media_attachments']);
+      const index = media.findIndex(x => x.get('id') === attachment.get('id'));
+
+      this.props.dispatch(openModal('MEDIA', { media, index, status: attachment.get('status') }));
+    }
+  }
+
+  handleRef = c => {
+    if (c) {
+      this.setState({ width: c.offsetWidth });
+    }
+  }
+
   render () {
-    const { medias, shouldUpdateScroll, isLoading, hasMore, isAccount } = this.props;
+    const { attachments, shouldUpdateScroll, isLoading, hasMore, isAccount } = this.props;
+    const { width } = this.state;
 
     if (!isAccount) {
       return (
@@ -104,9 +127,7 @@ class AccountGallery extends ImmutablePureComponent {
       );
     }
 
-    let loadOlder = null;
-
-    if (!medias && isLoading) {
+    if (!attachments && isLoading) {
       return (
         <Column>
           <LoadingIndicator />
@@ -114,7 +135,9 @@ class AccountGallery extends ImmutablePureComponent {
       );
     }
 
-    if (hasMore && !(isLoading && medias.size === 0)) {
+    let loadOlder = null;
+
+    if (hasMore && !(isLoading && attachments.size === 0)) {
       loadOlder = <LoadMore visible={!isLoading} onClick={this.handleLoadOlder} />;
     }
 
@@ -126,23 +149,17 @@ class AccountGallery extends ImmutablePureComponent {
           <div className='scrollable scrollable--flex' onScroll={this.handleScroll}>
             <HeaderContainer accountId={this.props.params.accountId} />
 
-            <div role='feed' className='account-gallery__container'>
-              {medias.map((media, index) => media === null ? (
-                <LoadMoreMedia
-                  key={'more:' + medias.getIn(index + 1, 'id')}
-                  maxId={index > 0 ? medias.getIn(index - 1, 'id') : null}
-                  onLoadMore={this.handleLoadMore}
-                />
+            <div role='feed' className='account-gallery__container' ref={this.handleRef}>
+              {attachments.map((attachment, index) => attachment === null ? (
+                <LoadMoreMedia key={'more:' + attachments.getIn(index + 1, 'id')} maxId={index > 0 ? attachments.getIn(index - 1, 'id') : null} onLoadMore={this.handleLoadMore} />
               ) : (
-                <MediaItem
-                  key={media.get('id')}
-                  media={media}
-                />
+                <MediaItem key={attachment.get('id')} attachment={attachment} displayWidth={width} onOpenMedia={this.handleOpenMedia} />
               ))}
+
               {loadOlder}
             </div>
 
-            {isLoading && medias.size === 0 && (
+            {isLoading && attachments.size === 0 && (
               <div className='scrollable__append'>
                 <LoadingIndicator />
               </div>

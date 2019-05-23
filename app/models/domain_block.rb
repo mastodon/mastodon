@@ -29,4 +29,11 @@ class DomainBlock < ApplicationRecord
   def self.blocked?(domain)
     where(domain: domain, severity: :suspend).exists?
   end
+
+  def stricter_than?(other_block)
+    return true if suspend?
+    return false if other_block.suspend? && (silence? || noop?)
+    return false if other_block.silence? && noop?
+    (reject_media || !other_block.reject_media) && (reject_reports || !other_block.reject_reports)
+  end
 end

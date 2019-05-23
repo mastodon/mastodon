@@ -73,17 +73,13 @@ class Search extends React.PureComponent {
     }
   }
 
-  handleKeyDown = (e) => {
+  handleKeyUp = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
       this.props.onSubmit();
     } else if (e.key === 'Escape') {
       document.querySelector('.ui').parentElement.focus();
     }
-  }
-
-  noop () {
-
   }
 
   handleFocus = () => {
@@ -110,7 +106,7 @@ class Search extends React.PureComponent {
             placeholder={intl.formatMessage(messages.placeholder)}
             value={value}
             onChange={this.handleChange}
-            onKeyUp={this.handleKeyDown}
+            onKeyUp={this.handleKeyUp}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
           />

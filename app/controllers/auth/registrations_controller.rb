@@ -33,7 +33,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     resource.agreement          = true
     resource.current_sign_in_ip = request.remote_ip
 
-    resource.current_sign_in_ip = request.remote_ip if resource.current_sign_in_ip.nil?
     resource.build_account if resource.account.nil?
   end
 
@@ -92,7 +91,8 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def set_invite
-    @invite = invite_code.present? ? Invite.find_by(code: invite_code) : nil
+    invite = invite_code.present? ? Invite.find_by(code: invite_code) : nil
+    @invite = invite&.valid_for_use? ? invite : nil
   end
 
   def determine_layout
