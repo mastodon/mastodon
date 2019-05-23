@@ -133,7 +133,7 @@ module SignatureVerification
   end
 
   def stoplight_wrap_request(&block)
-    Stoplight("source:#{request.ip}", &block)
+    Stoplight("source:#{request.remote_ip}", &block)
       .with_fallback { nil }
       .with_threshold(1)
       .with_cool_off_time(5.minutes.seconds)
