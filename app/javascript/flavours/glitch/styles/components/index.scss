@@ -608,7 +608,6 @@
 .columns-area--mobile {
   flex-direction: column;
   width: 100%;
-  max-width: 600px;
   margin: 0 auto;
 
   .column,
@@ -624,7 +623,7 @@
   }
 
   @media screen and (min-width: 360px) {
-    padding: 10px;
+    padding: 10px 0;
   }
 
   @media screen and (min-width: 630px) {
@@ -685,8 +684,7 @@
   .tabs-bar {
     margin: 10px auto;
     margin-bottom: 0;
-    width: calc(100% - 20px);
-    max-width: 600px;
+    width: 100%;
   }
 
   .react-swipeable-view-container .columns-area--mobile {

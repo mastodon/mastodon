@@ -11,6 +11,39 @@
   justify-content: flex-start;
   overflow-x: auto;
   position: relative;
+
+  &__panels {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    &__pane {
+      flex: 1 1 auto;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      display: flex;
+      justify-content: flex-end;
+
+      &__inner {
+        pointer-events: auto;
+        height: 100%;
+      }
+    }
+
+    &__main {
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+
+      @media screen and (min-width: 360px) {
+        padding: 0 10px;
+      }
+    }
+  }
 }
 
 .react-swipeable-view-container {
@@ -495,5 +528,9 @@
   &:focus,
   &:active {
     background: lighten($ui-highlight-color, 7%);
+  }
+
+  @media screen and (min-width: 630px) {
+    display: none;
   }
 }
