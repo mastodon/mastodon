@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import ReactSwipeableViews from 'react-swipeable-views';
-import { links, getIndex, getLink } from './tabs_bar';
+import TabsBar, { links, getIndex, getLink } from './tabs_bar';
 import { Link } from 'react-router-dom';
 
 import BundleContainer from '../containers/bundle_container';
@@ -140,7 +140,7 @@ class ColumnsArea extends ImmutablePureComponent {
       <ColumnLoading title={title} icon={icon} />;
 
     return (
-      <div className='columns-area' key={index}>
+      <div className='columns-area columns-area--mobile' key={index}>
         {view}
       </div>
     );
@@ -164,17 +164,28 @@ class ColumnsArea extends ImmutablePureComponent {
     if (singleColumn) {
       const floatingActionButton = shouldHideFAB(this.context.router.history.location.pathname) ? null : <Link key='floating-action-button' to='/statuses/new' className='floating-action-button' aria-label={intl.formatMessage(messages.publish)}><Icon id='pencil' /></Link>;
 
-      return columnIndex !== -1 ? [
+      const content = columnIndex !== -1 ? (
         <ReactSwipeableViews key='content' index={columnIndex} onChangeIndex={this.handleSwipe} onTransitionEnd={this.handleAnimationEnd} animateTransitions={shouldAnimate} springConfig={{ duration: '400ms', delay: '0s', easeFunction: 'ease' }} style={{ height: '100%' }}>
           {links.map(this.renderView)}
-        </ReactSwipeableViews>,
+        </ReactSwipeableViews>
+      ) : (
+        <div key='content' className='columns-area columns-area--mobile'>{children}</div>
+      );
 
-        floatingActionButton,
-      ] : [
-        <div className='columns-area'>{children}</div>,
+      return (
+        <div className='columns-area__panels'>
+          <div className='columns-area__panels__pane' />
 
-        floatingActionButton,
-      ];
+          <div className='columns-area__panels__main'>
+            <TabsBar key='tabs' />
+            {content}
+          </div>
+
+          <div className='columns-area__panels__pane' />
+
+          {floatingActionButton}
+        </div>
+      );
     }
 
     return (

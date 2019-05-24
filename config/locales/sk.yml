@@ -14,7 +14,7 @@ sk:
     browse_public_posts: Prebádaj naživo prúd verejných príspevkov na Mastodone
     contact: Kontakt
     contact_missing: Nezadaný
-    contact_unavailable: Neuvedený
+    contact_unavailable: Neuvedený/á
     discover_users: Objavuj užívateľov
     documentation: Dokumentácia
     extended_description_html: |
@@ -67,9 +67,9 @@ sk:
       other: Príspevky
     posts_tab_heading: Príspevky
     posts_with_replies: Príspevky s odpoveďami
-    reserved_username: Prihlasovacie meno je rezervované
+    reserved_username: Prihlasovacie meno je vyhradené
     roles:
-      admin: Administrátor
+      admin: Správca
       bot: Bot
       moderator: Moderátor
     unavailable: Profil nieje dostupný
@@ -177,7 +177,7 @@ sk:
       silenced: Stíšený/é
       statuses: Príspevky
       subscribe: Odoberaj
-      suspended: Zablokovaní
+      suspended: Vylúčený/á
       title: Účty
       unconfirmed_email: Nepotvrdený email
       undo_silenced: Zruš stíšenie
@@ -288,10 +288,10 @@ sk:
       reject_reports: Zamietni hlásenia
       reject_reports_hint: Ignoruj všetky hlásenia prichádzajúce z tejto domény. Nevplýva na blokovania
       rejecting_media: odmietanie médiálnych súborov
-      rejecting_reports: odmietané hlásenia
+      rejecting_reports: odmietanie hlásení
       severity:
-        silence: stíšený
-        suspend: vylúčený
+        silence: stíšené
+        suspend: vylúčené
       show:
         affected_accounts:
           few: Je ovplyvnených %{count} účtov v databázi
@@ -315,7 +315,7 @@ sk:
       title: Blokované emailové adresy
     followers:
       back_to_account: Späť na účet
-      title: Následovatielia užívateľa %{acct}
+      title: Sledovatielia užívateľa %{acct}
     instances:
       by_domain: Doména
       delivery_available: Je v dosahu doručovania
@@ -464,7 +464,7 @@ sk:
     statuses:
       back_to_account: Späť na účet
       batch:
-        delete: Vymazať
+        delete: Vymaž
         nsfw_off: Označ ako nechúlostivé
         nsfw_on: Označ ako chúlostivé
       failed_to_execute: Nepodarilo sa vykonať
@@ -992,5 +992,5 @@ sk:
     seamless_external_login: Si prihlásená/ý cez externú službu, takže nastavenia hesla a emailu ti niesú prístupné.
     signed_in_as: 'Prihlásená/ý ako:'
   verification:
-    explanation_html: 'Môžeš sa <strong>overiť ako majiteľ odkazov v metadátach tvojho profilu</strong>. Na to musí ale odkazovaná stránka obsahovať odkaz späť na tvoj Mastodon profil. Tento spätný odkaz <strong>musí</strong> mať prívlastok <code>rel="me"</code>. Na texte odkazu nezáleží. Tu je príklad:'
+    explanation_html: 'Môžeš sa <strong>overiť ako majiteľ odkazov v metadátach tvojho profilu</strong>. Na to ale musí odkazovaná stránka obsahovať odkaz späť na tvoj Mastodon profil. Tento spätný odkaz <strong>musí</strong> mať prívlastok <code>rel="me"</code>. Na texte odkazu nezáleží. Tu je príklad:'
     verification: Overenie
