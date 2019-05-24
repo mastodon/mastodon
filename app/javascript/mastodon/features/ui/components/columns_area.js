@@ -175,7 +175,7 @@ class ColumnsArea extends ImmutablePureComponent {
 
       return (
         <div className='columns-area__panels'>
-          <div className='columns-area__panels__pane'>
+          <div className='columns-area__panels__pane columns-area__panels__pane--compositional'>
             <div className='columns-area__panels__pane__inner'>
               <ComposePanel />
             </div>
@@ -186,7 +186,7 @@ class ColumnsArea extends ImmutablePureComponent {
             {content}
           </div>
 
-          <div className='columns-area__panels__pane columns-area__panels__pane--start'>
+          <div className='columns-area__panels__pane columns-area__panels__pane--start columns-area__panels__pane--navigational'>
             <div className='columns-area__panels__pane__inner'>
               <NavigationPanel />
             </div>
