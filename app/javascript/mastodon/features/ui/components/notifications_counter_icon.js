@@ -9,16 +9,15 @@ const mapStateToProps = state => ({
 
 const formatNumber = num => num > 99 ? '99+' : num;
 
-const NotificationsCounterIcon = ({ count, className }) => (
+const NotificationsCounterIcon = ({ count }) => (
   <i className='icon-with-badge'>
-    <Icon id='bell' fixedWidth className={className} />
+    <Icon id='bell' fixedWidth />
     {count > 0 && <i className='icon-with-badge__badge'>{formatNumber(count)}</i>}
   </i>
 );
 
 NotificationsCounterIcon.propTypes = {
   count: PropTypes.number.isRequired,
-  className: PropTypes.string,
 };
 
 export default connect(mapStateToProps)(NotificationsCounterIcon);

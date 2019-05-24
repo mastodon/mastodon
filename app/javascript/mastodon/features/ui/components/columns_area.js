@@ -14,8 +14,6 @@ import DrawerLoading from './drawer_loading';
 import BundleColumnError from './bundle_column_error';
 import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline, DirectTimeline, FavouritedStatuses, ListTimeline } from '../../ui/util/async-components';
 import Icon from 'mastodon/components/icon';
-import ComposePanel from './compose_panel';
-import NavigationPanel from './navigation_panel';
 
 import detectPassiveEvents from 'detect-passive-events';
 import { scrollRight } from '../../../scroll';
@@ -175,22 +173,14 @@ class ColumnsArea extends ImmutablePureComponent {
 
       return (
         <div className='columns-area__panels'>
-          <div className='columns-area__panels__pane'>
-            <div className='columns-area__panels__pane__inner'>
-              <ComposePanel />
-            </div>
-          </div>
+          <div className='columns-area__panels__pane' />
 
           <div className='columns-area__panels__main'>
             <TabsBar key='tabs' />
             {content}
           </div>
 
-          <div className='columns-area__panels__pane columns-area__panels__pane--start'>
-            <div className='columns-area__panels__pane__inner'>
-              <NavigationPanel />
-            </div>
-          </div>
+          <div className='columns-area__panels__pane' />
 
           {floatingActionButton}
         </div>
