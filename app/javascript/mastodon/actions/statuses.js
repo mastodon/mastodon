@@ -4,7 +4,6 @@ import { evictStatus } from '../storage/modifier';
 
 import { deleteFromTimelines } from './timelines';
 import { importFetchedStatus, importFetchedStatuses, importAccount, importStatus } from './importer';
-import { ensureComposeIsVisible } from './compose';
 
 export const STATUS_FETCH_REQUEST = 'STATUS_FETCH_REQUEST';
 export const STATUS_FETCH_SUCCESS = 'STATUS_FETCH_SUCCESS';
@@ -143,7 +142,7 @@ export function redraft(status, raw_text) {
   };
 };
 
-export function deleteStatus(id, routerHistory, withRedraft = false) {
+export function deleteStatus(id, router, withRedraft = false) {
   return (dispatch, getState) => {
     let status = getState().getIn(['statuses', id]);
 
@@ -160,7 +159,10 @@ export function deleteStatus(id, routerHistory, withRedraft = false) {
 
       if (withRedraft) {
         dispatch(redraft(status, response.data.text));
-        ensureComposeIsVisible(getState, routerHistory);
+
+        if (!getState().getIn(['compose', 'mounted'])) {
+          router.push('/statuses/new');
+        }
       }
     }).catch(error => {
       dispatch(deleteStatusFail(id, error));

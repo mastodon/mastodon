@@ -2,13 +2,13 @@ import React from 'react';
 import SearchContainer from 'mastodon/features/compose/containers/search_container';
 import ComposeFormContainer from 'mastodon/features/compose/containers/compose_form_container';
 import NavigationContainer from 'mastodon/features/compose/containers/navigation_container';
-import { invitesEnabled, version, repository, source_url } from 'mastodon/initial_state';
+import { me, invitesEnabled, version, profile_directory, repository, source_url } from 'mastodon/initial_state';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
 const ComposePanel = () => (
   <div className='compose-panel'>
-    <SearchContainer openInRoute />
+    <SearchContainer />
     <NavigationContainer />
     <ComposeFormContainer />
 
