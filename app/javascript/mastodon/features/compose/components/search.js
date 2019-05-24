@@ -47,6 +47,10 @@ class SearchPopout extends React.PureComponent {
 export default @injectIntl
 class Search extends React.PureComponent {
 
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  };
+
   static propTypes = {
     value: PropTypes.string.isRequired,
     submitted: PropTypes.bool,
@@ -54,6 +58,7 @@ class Search extends React.PureComponent {
     onSubmit: PropTypes.func.isRequired,
     onClear: PropTypes.func.isRequired,
     onShow: PropTypes.func.isRequired,
+    openInRoute: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
@@ -76,7 +81,12 @@ class Search extends React.PureComponent {
   handleKeyUp = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
+
       this.props.onSubmit();
+
+      if (this.props.openInRoute) {
+        this.context.router.history.push('/search');
+      }
     } else if (e.key === 'Escape') {
       document.querySelector('.ui').parentElement.focus();
     }

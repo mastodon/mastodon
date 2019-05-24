@@ -70,6 +70,14 @@ const messages = defineMessages({
   uploadErrorPoll:  { id: 'upload_error.poll', defaultMessage: 'File upload not allowed with polls.' },
 });
 
+const COMPOSE_PANEL_BREAKPOINT = 600 + (285 * 1) + (10 * 3);
+
+export const ensureComposeIsVisible = (getState, routerHistory) => {
+  if (!getState().getIn(['compose', 'mounted']) && window.innerWidth < COMPOSE_PANEL_BREAKPOINT) {
+    routerHistory.push('/statuses/new');
+  }
+};
+
 export function changeCompose(text) {
   return {
     type: COMPOSE_CHANGE,
@@ -84,9 +92,7 @@ export function replyCompose(status, routerHistory) {
       status: status,
     });
 
-    if (!getState().getIn(['compose', 'mounted'])) {
-      routerHistory.push('/statuses/new');
-    }
+    ensureComposeIsVisible(getState, routerHistory);
   };
 };
 
@@ -128,9 +134,7 @@ export function mentionCompose(account, routerHistory) {
       account: account,
     });
 
-    if (!getState().getIn(['compose', 'mounted'])) {
-      routerHistory.push('/statuses/new');
-    }
+    ensureComposeIsVisible(getState, routerHistory);
   };
 };
 
@@ -141,9 +145,7 @@ export function directCompose(account, routerHistory) {
       account: account,
     });
 
-    if (!getState().getIn(['compose', 'mounted'])) {
-      routerHistory.push('/statuses/new');
-    }
+    ensureComposeIsVisible(getState, routerHistory);
   };
 };
 
