@@ -1921,7 +1921,12 @@ a.account__display-name {
       display: flex;
       justify-content: flex-end;
 
+      &--start {
+        justify-content: flex-start;
+      }
+
       &__inner {
+        width: 285px;
         pointer-events: auto;
         height: 100%;
       }
@@ -2045,6 +2050,7 @@ a.account__display-name {
   display: block;
   flex: 1 1 auto;
   padding: 15px 10px;
+  padding-bottom: 13px;
   color: $primary-text-color;
   text-decoration: none;
   text-align: center;
@@ -2069,6 +2075,7 @@ a.account__display-name {
   &:active {
     @media screen and (min-width: 631px) {
       background: lighten($ui-base-color, 14%);
+      border-bottom-color: lighten($ui-base-color, 14%);
     }
   }
 
@@ -2179,6 +2186,12 @@ a.account__display-name {
   }
 }
 
+@media screen and (min-width: 630px) {
+  .tabs-bar {
+    display: none;
+  }
+}
+
 .icon-with-badge {
   position: relative;
 
@@ -2195,6 +2208,37 @@ a.account__display-name {
     line-height: 14px;
     color: $primary-text-color;
   }
+}
+
+.compose-panel {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .search__input {
+    line-height: 18px;
+    font-size: 14px;
+    padding: 15px;
+    padding-right: 30px;
+  }
+
+  .search__icon .fa {
+    top: 15px;
+  }
+
+  .navigation-bar {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .flex-spacer {
+    background: transparent;
+  }
+}
+
+.navigation-panel {
+  margin-top: 10px;
 }
 
 .drawer__pager {
@@ -2485,8 +2529,30 @@ a.account__display-name {
   padding: 15px;
   text-decoration: none;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     background: lighten($ui-base-color, 11%);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &--transparent {
+    background: transparent;
+    color: $ui-secondary-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: transparent;
+      color: $primary-text-color;
+    }
+
+    &.active {
+      color: $ui-highlight-color;
+    }
   }
 }
 
