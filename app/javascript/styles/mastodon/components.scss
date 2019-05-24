@@ -1921,7 +1921,12 @@ a.account__display-name {
       display: flex;
       justify-content: flex-end;
 
+      &--start {
+        justify-content: flex-start;
+      }
+
       &__inner {
+        width: 285px;
         pointer-events: auto;
         height: 100%;
       }
@@ -2045,6 +2050,7 @@ a.account__display-name {
   display: block;
   flex: 1 1 auto;
   padding: 15px 10px;
+  padding-bottom: 13px;
   color: $primary-text-color;
   text-decoration: none;
   text-align: center;
@@ -2069,6 +2075,7 @@ a.account__display-name {
   &:active {
     @media screen and (min-width: 631px) {
       background: lighten($ui-base-color, 14%);
+      border-bottom-color: lighten($ui-base-color, 14%);
     }
   }
 
@@ -2098,9 +2105,19 @@ a.account__display-name {
     padding: 0;
   }
 
-  .search__input,
   .autosuggest-textarea__textarea {
     font-size: 16px;
+  }
+
+  .search__input {
+    line-height: 18px;
+    font-size: 16px;
+    padding: 15px;
+    padding-right: 30px;
+  }
+
+  .search__icon .fa {
+    top: 15px;
   }
 
   @media screen and (min-width: 360px) {
@@ -2108,6 +2125,10 @@ a.account__display-name {
   }
 
   @media screen and (min-width: 630px) {
+    .search__input {
+      font-size: 14px;
+    }
+
     .detailed-status {
       padding: 15px;
 
@@ -2161,6 +2182,30 @@ a.account__display-name {
   }
 }
 
+.floating-action-button {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.9375rem;
+  height: 3.9375rem;
+  bottom: 1.3125rem;
+  right: 1.3125rem;
+  background: darken($ui-highlight-color, 3%);
+  color: $white;
+  border-radius: 50%;
+  font-size: 21px;
+  line-height: 21px;
+  text-decoration: none;
+  box-shadow: 2px 3px 9px rgba($base-shadow-color, 0.4);
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: lighten($ui-highlight-color, 7%);
+  }
+}
+
 @media screen and (min-width: 360px) {
   .tabs-bar {
     margin: 10px auto;
@@ -2176,6 +2221,35 @@ a.account__display-name {
   .getting-started__trends,
   .search {
     margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 600px + (285px * 1) + (10px * 1)) {
+  .columns-area__panels__pane--compositional {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px + (285px * 1) + (10px * 1)) {
+  .floating-action-button,
+  .tabs-bar__link.optional {
+    display: none;
+  }
+
+  .drawer .search {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px + (285px * 2) + (10px * 2)) {
+  .columns-area__panels__pane--navigational {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px + (285px * 2) + (10px * 2)) {
+  .tabs-bar {
+    display: none;
   }
 }
 
@@ -2195,6 +2269,38 @@ a.account__display-name {
     line-height: 14px;
     color: $primary-text-color;
   }
+}
+
+.compose-panel {
+  width: 285px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .search__input {
+    line-height: 18px;
+    font-size: 14px;
+    padding: 15px;
+    padding-right: 30px;
+  }
+
+  .search__icon .fa {
+    top: 15px;
+  }
+
+  .navigation-bar {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .flex-spacer {
+    background: transparent;
+  }
+}
+
+.navigation-panel {
+  margin-top: 10px;
 }
 
 .drawer__pager {
@@ -2485,8 +2591,30 @@ a.account__display-name {
   padding: 15px;
   text-decoration: none;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     background: lighten($ui-base-color, 11%);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &--transparent {
+    background: transparent;
+    color: $ui-secondary-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: transparent;
+      color: $primary-text-color;
+    }
+
+    &.active {
+      color: $ui-highlight-color;
+    }
   }
 }
 
@@ -5553,34 +5681,6 @@ noscript {
     height: 100%;
     top: 0;
     left: 0;
-  }
-}
-
-.floating-action-button {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 3.9375rem;
-  height: 3.9375rem;
-  bottom: 1.3125rem;
-  right: 1.3125rem;
-  background: darken($ui-highlight-color, 3%);
-  color: $white;
-  border-radius: 50%;
-  font-size: 21px;
-  line-height: 21px;
-  text-decoration: none;
-  box-shadow: 2px 3px 9px rgba($base-shadow-color, 0.4);
-
-  &:hover,
-  &:focus,
-  &:active {
-    background: lighten($ui-highlight-color, 7%);
-  }
-
-  @media screen and (min-width: 630px) {
-    display: none;
   }
 }
 
