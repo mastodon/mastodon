@@ -2125,10 +2125,6 @@ a.account__display-name {
   }
 
   @media screen and (min-width: 630px) {
-    .search__input {
-      font-size: 14px;
-    }
-
     .detailed-status {
       padding: 15px;
 
@@ -2258,7 +2254,7 @@ a.account__display-name {
 
   &__badge {
     position: absolute;
-    right: -13px;
+    left: 9px;
     top: -13px;
     background: $ui-highlight-color;
     border: 2px solid lighten($ui-base-color, 8%);
@@ -2271,6 +2267,10 @@ a.account__display-name {
   }
 }
 
+.column-link--transparent .icon-with-badge__badge {
+  border-color: darken($ui-base-color, 8%);
+}
+
 .compose-panel {
   width: 285px;
   margin-top: 10px;
@@ -2280,7 +2280,7 @@ a.account__display-name {
 
   .search__input {
     line-height: 18px;
-    font-size: 14px;
+    font-size: 16px;
     padding: 15px;
     padding-right: 30px;
   }
