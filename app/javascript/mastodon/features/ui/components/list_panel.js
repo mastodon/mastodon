@@ -13,7 +13,7 @@ const getOrderedLists = createSelector([state => state.get('lists')], lists => {
     return lists;
   }
 
-  return lists.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title')));
+  return lists.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title'))).take(4);
 });
 
 const mapStateToProps = state => ({
@@ -37,7 +37,7 @@ class ListPanel extends ImmutablePureComponent {
   render () {
     const { lists } = this.props;
 
-    if (!lists) {
+    if (!lists || lists.isEmpty()) {
       return null;
     }
 

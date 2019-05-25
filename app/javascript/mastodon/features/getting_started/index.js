@@ -123,7 +123,7 @@ class GettingStarted extends ImmutablePureComponent {
     height += 48*3;
 
     if (myAccount.get('locked')) {
-      navItems.push(<ColumnLink key={i++} icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
+      navItems.push(<ColumnLink key={i++} icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
       height += 48;
     }
 
