@@ -63,7 +63,6 @@ const mapStateToProps = state => ({
   hasComposingText: state.getIn(['compose', 'text']).trim().length !== 0,
   hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
   dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
-  forceSingleColumn: state.getIn(['settings', 'forceSingleColumn'], false),
 });
 
 const keyMap = {
@@ -455,7 +454,7 @@ class UI extends React.PureComponent {
 
   render () {
     const { draggingOver } = this.state;
-    const { children, isComposing, location, dropdownMenuIsOpen, forceSingleColumn } = this.props;
+    const { children, isComposing, location, dropdownMenuIsOpen } = this.props;
 
     const handlers = {
       help: this.handleHotkeyToggleHelp,

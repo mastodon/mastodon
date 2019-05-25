@@ -1,5 +1,4 @@
 import React from 'react';
-import { me, invitesEnabled, version, profile_directory, repository, source_url } from 'mastodon/initial_state';
 import { NavLink, withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import Icon from 'mastodon/components/icon';
@@ -20,7 +19,8 @@ const NavigationPanel = () => (
 
     <hr />
 
-    <a className='column-link column-link--transparent' href='/settings/preferences'><Icon className='column-link__icon' id='cog' fixedWidth /><FormattedMessage id='navigation_bar.preferences' defaultMessage='Preferences' /></a>
+    <a className='column-link column-link--transparent' href='/settings/preferences' target='_blank'><Icon className='column-link__icon' id='cog' fixedWidth /><FormattedMessage id='navigation_bar.preferences' defaultMessage='Preferences' /></a>
+    <a className='column-link column-link--transparent' href='/relationships' target='_blank'><Icon className='column-link__icon' id='address-book-o' fixedWidth /><FormattedMessage id='navigation_bar.follows_and_followers' defaultMessage='Follows and followers' /></a>
   </div>
 );
 
