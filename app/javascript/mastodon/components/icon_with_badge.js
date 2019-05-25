@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'mastodon/components/icon';
 
-const formatNumber = num => num > 99 ? '99+' : num;
+const formatNumber = num => num > 40 ? '40+' : num;
 
 const IconWithBadge = ({ id, count, className }) => (
   <i className='icon-with-badge'>
