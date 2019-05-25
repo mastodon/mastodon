@@ -17,6 +17,7 @@ import { HotKeys } from 'react-hotkeys';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import PollContainer from 'mastodon/containers/poll_container';
+import { displayMedia } from '../initial_state';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -85,6 +86,10 @@ class Status extends ImmutablePureComponent {
     'hidden',
   ];
 
+  state = {
+    showMedia: displayMedia !== 'hide_all' && !this.props.status.get('sensitive') || displayMedia === 'show_all',
+  };
+
   // Track height changes we know about to compensate scrolling
   componentDidMount () {
     this.didShowCard = !this.props.muted && !this.props.hidden && this.props.status && this.props.status.get('card');
@@ -120,6 +125,10 @@ class Status extends ImmutablePureComponent {
         });
       }
     }
+  }
+
+  handleToggleMediaVisibility = () => {
+    this.setState({ showMedia: !this.state.showMedia });
   }
 
   handleClick = () => {
@@ -196,6 +205,10 @@ class Status extends ImmutablePureComponent {
 
   handleHotkeyToggleHidden = () => {
     this.props.onToggleHidden(this._properStatus());
+  }
+
+  handleHotkeyToggleSensitive = () => {
+    this.handleToggleMediaVisibility();
   }
 
   _properStatus () {
@@ -298,6 +311,8 @@ class Status extends ImmutablePureComponent {
                 sensitive={status.get('sensitive')}
                 onOpenVideo={this.handleOpenVideo}
                 cacheWidth={this.props.cacheMediaWidth}
+                visible={this.state.showMedia}
+                onToggleVisibility={this.handleToggleMediaVisibility}
               />
             )}
           </Bundle>
@@ -313,6 +328,8 @@ class Status extends ImmutablePureComponent {
                 onOpenMedia={this.props.onOpenMedia}
                 cacheWidth={this.props.cacheMediaWidth}
                 defaultWidth={this.props.cachedMediaWidth}
+                visible={this.state.showMedia}
+                onToggleVisibility={this.handleToggleMediaVisibility}
               />
             )}
           </Bundle>
@@ -348,6 +365,7 @@ class Status extends ImmutablePureComponent {
       moveUp: this.handleHotkeyMoveUp,
       moveDown: this.handleHotkeyMoveDown,
       toggleHidden: this.handleHotkeyToggleHidden,
+      toggleSensitive: this.handleHotkeyToggleSensitive,
     };
 
     return (
