@@ -178,6 +178,15 @@ jobs:
       - run: bundle exec i18n-tasks missing -t plural
       - run: bundle exec i18n-tasks check-consistent-interpolations
 
+  build-docker-image:
+    <<: *defaults
+    docker:
+    machine: true
+    steps:
+      - *attach_workspace
+      - run: docker build -t tootsuite/mastodon:latest .
+      - run: docker images
+
 workflows:
   version: 2
   build-and-test:
@@ -215,3 +224,6 @@ workflows:
       - check-i18n:
           requires:
             - install-ruby2.6
+      - build-docker-image:
+          requires:
+            - test-ruby2.6
