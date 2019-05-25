@@ -1,5 +1,4 @@
 import React from 'react';
-import { me, invitesEnabled, version, profile_directory, repository, source_url } from 'mastodon/initial_state';
 import { NavLink, withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import Icon from 'mastodon/components/icon';

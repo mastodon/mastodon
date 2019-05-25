@@ -78,7 +78,7 @@ class GettingStarted extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, myAccount, multiColumn, unreadFollowRequests, forceSingleColumn } = this.props;
+    const { intl, myAccount, multiColumn, unreadFollowRequests } = this.props;
 
     const navItems = [];
     let i = 1;

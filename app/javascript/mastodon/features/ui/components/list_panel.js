@@ -38,7 +38,7 @@ class ListPanel extends ImmutablePureComponent {
     const { lists } = this.props;
 
     if (!lists) {
-      return;
+      return null;
     }
 
     return (
