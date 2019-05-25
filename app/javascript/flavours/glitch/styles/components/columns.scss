@@ -26,7 +26,12 @@
       display: flex;
       justify-content: flex-end;
 
+      &--start {
+        justify-content: flex-start;
+      }
+
       &__inner {
+        width: 285px;
         pointer-events: auto;
         height: 100%;
       }
@@ -178,8 +183,30 @@
   padding: 15px;
   text-decoration: none;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     background: lighten($ui-base-color, 11%);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &--transparent {
+    background: transparent;
+    color: $ui-secondary-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: transparent;
+      color: $primary-text-color;
+    }
+
+    &.active {
+      color: $ui-highlight-color;
+    }
   }
 }
 
@@ -504,33 +531,5 @@
   .icon-button {
     flex: 0 0 auto;
     margin: 0 5px;
-  }
-}
-
-.floating-action-button {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 3.9375rem;
-  height: 3.9375rem;
-  bottom: 1.3125rem;
-  right: 1.3125rem;
-  background: darken($ui-highlight-color, 3%);
-  color: $white;
-  border-radius: 50%;
-  font-size: 21px;
-  line-height: 21px;
-  text-decoration: none;
-  box-shadow: 2px 3px 9px rgba($base-shadow-color, 0.4);
-
-  &:hover,
-  &:focus,
-  &:active {
-    background: lighten($ui-highlight-color, 7%);
-  }
-
-  @media screen and (min-width: 630px) {
-    display: none;
   }
 }

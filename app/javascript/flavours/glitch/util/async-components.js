@@ -149,3 +149,7 @@ export function GettingStartedMisc () {
 export function ListAdder () {
   return import(/* webpackChunkName: "features/glitch/async/list_adder" */'flavours/glitch/features/list_adder');
 }
+
+export function Search () {
+  return import(/*webpackChunkName: "features/glitch/async/search" */'flavours/glitch/features/search');
+}

@@ -44,10 +44,11 @@ import {
   Mutes,
   PinnedStatuses,
   Lists,
+  Search,
   GettingStartedMisc,
 } from 'flavours/glitch/util/async-components';
 import { HotKeys } from 'react-hotkeys';
-import { me } from 'flavours/glitch/util/initial_state';
+import { me, forceSingleColumn } from 'flavours/glitch/util/initial_state';
 import { defineMessages, injectIntl } from 'react-intl';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
@@ -68,7 +69,6 @@ const mapStateToProps = state => ({
   unreadNotifications: state.getIn(['notifications', 'unread']),
   showFaviconBadge: state.getIn(['local_settings', 'notifications', 'favicon_badge']),
   hicolorPrivacyIcons: state.getIn(['local_settings', 'hicolor_privacy_icons']),
-  forceSingleColumn: state.getIn(['settings', 'forceSingleColumn'], false),
 });
 
 const keyMap = {
@@ -126,7 +126,6 @@ export default class UI extends React.Component {
     dropdownMenuIsOpen: PropTypes.bool,
     unreadNotifications: PropTypes.number,
     showFaviconBadge: PropTypes.bool,
-    forceSingleColumn: PropTypes.bool,
   };
 
   state = {
@@ -432,7 +431,7 @@ export default class UI extends React.Component {
 
   render () {
     const { width, draggingOver } = this.state;
-    const { children, layout, isWide, navbarUnder, dropdownMenuIsOpen, forceSingleColumn } = this.props;
+    const { children, layout, isWide, navbarUnder, dropdownMenuIsOpen } = this.props;
     const singleColumn = forceSingleColumn || isMobile(width, layout);
     const redirect = singleColumn ? <Redirect from='/' to='/timelines/home' exact /> : <Redirect from='/' to='/getting-started' exact />;
 
@@ -494,7 +493,7 @@ export default class UI extends React.Component {
               <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
               <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
-              <WrappedRoute path='/search' component={Compose} content={children} componentParams={{ isSearchPage: true }} />
+              <WrappedRoute path='/search' component={Search} content={children} />
 
               <WrappedRoute path='/statuses/new' component={Compose} content={children} />
               <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />

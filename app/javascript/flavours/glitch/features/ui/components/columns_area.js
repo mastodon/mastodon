@@ -13,6 +13,8 @@ import ColumnLoading from './column_loading';
 import DrawerLoading from './drawer_loading';
 import BundleColumnError from './bundle_column_error';
 import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline, DirectTimeline, FavouritedStatuses, BookmarkedStatuses, ListTimeline } from 'flavours/glitch/util/async-components';
+import ComposePanel from './compose_panel';
+import NavigationPanel from './navigation_panel';
 
 import detectPassiveEvents from 'detect-passive-events';
 import { scrollRight } from 'flavours/glitch/util/scroll';
@@ -173,14 +175,22 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
       return (
         <div className='columns-area__panels'>
-          <div className='columns-area__panels__pane' />
+          <div className='columns-area__panels__pane columns-area__panels__pane--compositional'>
+            <div className='columns-area__panels__pane__inner'>
+              <ComposePanel />
+            </div>
+          </div>
 
           <div className='columns-area__panels__main'>
             <TabsBar key='tabs' />
             {content}
           </div>
 
-          <div className='columns-area__panels__pane' />
+          <div className='columns-area__panels__pane columns-area__panels__pane--start columns-area__panels__pane--navigational'>
+            <div className='columns-area__panels__pane__inner'>
+              <NavigationPanel />
+            </div>
+          </div>
 
           {floatingActionButton}
         </div>
