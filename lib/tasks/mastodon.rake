@@ -285,6 +285,7 @@ namespace :mastodon do
             domain:               env['LOCAL_DOMAIN'],
             authentication:       env['SMTP_AUTH_METHOD'] == 'none' ? nil : env['SMTP_AUTH_METHOD'] || :plain,
             openssl_verify_mode:  env['SMTP_OPENSSL_VERIFY_MODE'],
+            ca_file:              '/etc/ssl/certs/ca-certificates.crt',
             enable_starttls_auto: true,
           }
 
