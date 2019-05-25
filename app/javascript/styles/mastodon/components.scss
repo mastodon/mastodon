@@ -2325,6 +2325,14 @@ a.account__display-name {
   .flex-spacer {
     background: transparent;
   }
+
+  .autosuggest-textarea__textarea {
+    max-height: 200px;
+  }
+
+  .compose-form__upload-thumbnail {
+    height: 80px;
+  }
 }
 
 .navigation-panel {
@@ -2334,7 +2342,7 @@ a.account__display-name {
     border: 0;
     background: transparent;
     border-top: 1px solid lighten($ui-base-color, 4%);
-    margin: 0;
+    margin: 10px 0;
   }
 }
 
