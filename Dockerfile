@@ -95,7 +95,7 @@ RUN apt -y --no-install-recommends install \
 	ln -s /opt/mastodon /mastodon && \
 	gem install bundler && \
 	rm -rf /var/cache && \
-	rm -rf /var/lib/apt
+	rm -rf /var/lib/apt/lists/*
 
 # Add tini
 ENV TINI_VERSION="0.18.0"
