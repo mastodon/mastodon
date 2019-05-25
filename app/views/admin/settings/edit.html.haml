@@ -77,5 +77,13 @@
     = f.input :site_terms, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_terms.title'), hint: t('admin.settings.site_terms.desc_html'), input_html: { rows: 8 }
     = f.input :custom_css, wrapper: :with_block_label, as: :text, input_html: { rows: 8 }, label: t('admin.settings.custom_css.title'), hint: t('admin.settings.custom_css.desc_html')
 
+  %hr.spacer/
+
+  .fields-group
+    = f.input :featured_link, as: :boolean, wrapper: :with_label, label: t('admin.settings.featured_link.title'), hint: t('admin.settings.featured_link.desc_html')
+    = f.input :featured_link_address, wrapper: :with_block_label, label: t('admin.settings.featured_link_address.title')
+    = f.input :featured_link_title, wrapper: :with_block_label, label: t('admin.settings.featured_link_title.title')
+    = f.input :featured_link_desc, wrapper: :with_block_label, label: t('admin.settings.featured_link_desc.title')
+
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

@@ -43,6 +43,14 @@
               = fa_icon 'tablet fw'
               = t('about.get_apps')
               %small= t('about.apps_platforms')
+        
+        - if Setting.featured_link
+          .directory__tag
+            = link_to @instance_presenter.featured_link_address, target: '_blank', rel: 'noopener' do
+              %h4
+                = fa_icon 'external-link fw'
+                = @instance_presenter.featured_link_title
+                %small= @instance_presenter.featured_link_desc
 
     .landing__grid__column.landing__grid__column-login
       .box-widget

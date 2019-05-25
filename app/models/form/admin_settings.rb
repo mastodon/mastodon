@@ -28,6 +28,10 @@ class Form::AdminSettings
     thumbnail
     hero
     mascot
+    featured_link
+    featured_link_address
+    featured_link_title
+    featured_link_desc
   ).freeze
 
   BOOLEAN_KEYS = %i(
@@ -39,6 +43,7 @@ class Form::AdminSettings
     show_known_fediverse_at_about_page
     preview_sensitive_media
     profile_directory
+    featured_link
   ).freeze
 
   UPLOAD_KEYS = %i(

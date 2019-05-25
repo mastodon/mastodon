@@ -9,6 +9,9 @@ class InstancePresenter
     :site_extended_description,
     :site_terms,
     :closed_registrations_message,
+    :featured_link_address,
+    :featured_link_title,
+    :featured_link_desc,
     to: Setting
   )
 
