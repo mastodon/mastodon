@@ -41,9 +41,9 @@ import { openModal } from '../../actions/modal';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
-import { boostModal, deleteModal, displayMedia } from '../../initial_state';
+import { boostModal, deleteModal } from '../../initial_state';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
-import { textForScreenReader } from '../../components/status';
+import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
 import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
@@ -131,7 +131,7 @@ class Status extends ImmutablePureComponent {
 
   state = {
     fullscreen: false,
-    showMedia: !this.props.status ? undefined : (displayMedia !== 'hide_all' && !this.props.status.get('sensitive') || displayMedia === 'show_all'),
+    showMedia: defaultMediaVisibility(this.props.status),
   };
 
   componentWillMount () {
@@ -147,8 +147,9 @@ class Status extends ImmutablePureComponent {
       this._scrolledIntoView = false;
       this.props.dispatch(fetchStatus(nextProps.params.statusId));
     }
+
     if (!Immutable.is(nextProps.status, this.props.status) && nextProps.status) {
-      this.setState({ showMedia: displayMedia !== 'hide_all' && !nextProps.status.get('sensitive') || displayMedia === 'show_all' });
+      this.setState({ showMedia: defaultMediaVisibility(nextProps.status) });
     }
   }
 
