@@ -9,12 +9,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { me, invitesEnabled, version, profile_directory, repository, source_url } from '../../initial_state';
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
-import { changeSetting } from 'mastodon/actions/settings';
 import { List as ImmutableList } from 'immutable';
 import { Link } from 'react-router-dom';
 import NavigationBar from '../compose/components/navigation_bar';
 import Icon from 'mastodon/components/icon';
-import Toggle from 'react-toggle';
 
 const messages = defineMessages({
   home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
@@ -41,12 +39,10 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   myAccount: state.getIn(['accounts', me]),
   unreadFollowRequests: state.getIn(['user_lists', 'follow_requests', 'items'], ImmutableList()).size,
-  forceSingleColumn: state.getIn(['settings', 'forceSingleColumn'], false),
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchFollowRequests: () => dispatch(fetchFollowRequests()),
-  changeForceSingleColumn: checked => dispatch(changeSetting(['forceSingleColumn'], checked)),
 });
 
 const badgeDisplay = (number, limit) => {
@@ -59,9 +55,15 @@ const badgeDisplay = (number, limit) => {
   }
 };
 
+const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
+
 export default @connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
 class GettingStarted extends ImmutablePureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  };
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
@@ -71,24 +73,23 @@ class GettingStarted extends ImmutablePureComponent {
     fetchFollowRequests: PropTypes.func.isRequired,
     unreadFollowRequests: PropTypes.number,
     unreadNotifications: PropTypes.number,
-    forceSingleColumn: PropTypes.bool,
-    changeForceSingleColumn: PropTypes.func.isRequired,
   };
 
   componentDidMount () {
-    const { myAccount, fetchFollowRequests } = this.props;
+    const { myAccount, fetchFollowRequests, multiColumn } = this.props;
+
+    if (!multiColumn && window.innerWidth >= NAVIGATION_PANEL_BREAKPOINT) {
+      this.context.router.history.replace('/timelines/home');
+      return;
+    }
 
     if (myAccount.get('locked')) {
       fetchFollowRequests();
     }
   }
 
-  handleForceSingleColumnChange = ({ target }) => {
-    this.props.changeForceSingleColumn(target.checked);
-  }
-
   render () {
-    const { intl, myAccount, multiColumn, unreadFollowRequests, forceSingleColumn } = this.props;
+    const { intl, myAccount, multiColumn, unreadFollowRequests } = this.props;
 
     const navItems = [];
     let i = 1;
@@ -133,7 +134,7 @@ class GettingStarted extends ImmutablePureComponent {
     height += 48*3;
 
     if (myAccount.get('locked')) {
-      navItems.push(<ColumnLink key={i++} icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
+      navItems.push(<ColumnLink key={i++} icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
       height += 48;
     }
 
@@ -187,11 +188,6 @@ class GettingStarted extends ImmutablePureComponent {
             </p>
           </div>
         </div>
-
-        <label className='navigational-toggle'>
-          <FormattedMessage id='getting_started.use_simple_layout' defaultMessage='Use simple layout' />
-          <Toggle checked={forceSingleColumn} onChange={this.handleForceSingleColumnChange} />
-        </label>
       </Column>
     );
   }

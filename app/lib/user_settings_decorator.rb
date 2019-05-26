@@ -36,6 +36,7 @@ class UserSettingsDecorator
     user.settings['hide_network']        = hide_network_preference if change?('setting_hide_network')
     user.settings['aggregate_reblogs']   = aggregate_reblogs_preference if change?('setting_aggregate_reblogs')
     user.settings['show_application']    = show_application_preference if change?('setting_show_application')
+    user.settings['advanced_layout']     = advanced_layout_preference if change?('setting_advanced_layout')
     user.settings['default_content_type']= default_content_type_preference if change?('setting_default_content_type')
   end
 
@@ -121,6 +122,10 @@ class UserSettingsDecorator
 
   def aggregate_reblogs_preference
     boolean_cast_setting 'setting_aggregate_reblogs'
+  end
+
+  def advanced_layout_preference
+    boolean_cast_setting 'setting_advanced_layout'
   end
 
   def default_content_type_preference
