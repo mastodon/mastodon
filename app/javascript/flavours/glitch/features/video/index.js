@@ -306,9 +306,6 @@ export default class Video extends React.PureComponent {
     if (this.video && this.state.revealed && this.props.preventPlayback && !prevProps.preventPlayback) {
       this.video.pause();
     }
-  }
-
-  componentDidUpdate (prevProps) {
     if (prevProps.blurhash !== this.props.blurhash && this.props.blurhash) {
       this._decode();
     }
