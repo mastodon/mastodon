@@ -19,6 +19,17 @@ class Sanitize
       node['class'] = class_list.join(' ')
     end
 
+    IMG_TAG_TRANSFORMER = lambda do |env|
+      node = env[:node]
+
+      return unless env[:node_name] == 'img'
+
+      node.name = 'a'
+
+      node['href'] = node['src']
+      node.content = "[🖼 #{node['alt'] || node['href']}]"
+    end
+
     MASTODON_STRICT ||= freeze_config(
       elements: %w(p br span a abbr del pre blockquote code b strong u sub i em h1 h2 h3 h4 h5 ul ol li),
 
@@ -43,6 +54,7 @@ class Sanitize
 
       transformers: [
         CLASS_WHITELIST_TRANSFORMER,
+        IMG_TAG_TRANSFORMER,
       ]
     )
 
