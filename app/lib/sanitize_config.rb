@@ -14,16 +14,29 @@ class Sanitize
         next true if e =~ /^(h|p|u|dt|e)-/ # microformats classes
         next true if e =~ /^(mention|hashtag)$/ # semantic classes
         next true if e =~ /^(ellipsis|invisible)$/ # link formatting classes
+        next true if e =~ /^quote-inline$/ # quote inline classes
       end
 
       node['class'] = class_list.join(' ')
     end
 
     MASTODON_STRICT ||= freeze_config(
-      elements: %w(p br span a),
+      elements: %w(
+        p
+        br
+        span
+        a
+        em
+        i
+        strong
+        b
+        code
+        del
+        s
+      ),
 
       attributes: {
-        'a'    => %w(href rel class),
+        'a'    => %w(href rel class target),
         'span' => %w(class),
       },
 

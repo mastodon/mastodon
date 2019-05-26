@@ -101,7 +101,7 @@ class RemoveStatusService < BaseService
   end
 
   def relayable?
-    @status.public_visibility?
+    @status.public_visibility? && !@account.bot?
   end
 
   def relay!
@@ -147,6 +147,15 @@ class RemoveStatusService < BaseService
       redis.publish("timeline:hashtag:#{hashtag}", @payload)
       redis.publish("timeline:hashtag:#{hashtag}:local", @payload) if @status.local?
     end
+  end
+
+  def remove_from_hashtags_media
+    return unless @status.public_visibility?
+
+    @tags.each do |hashtag|
+      Redis.current.publish("timeline:hashtag:#{hashtag}:media", @payload)
+      Redis.current.publish("timeline:hashtag:#{hashtag}:local:media", @payload) if @status.local?
+      end
   end
 
   def remove_from_public
