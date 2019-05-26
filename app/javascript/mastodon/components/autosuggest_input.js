@@ -49,7 +49,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
     autoFocus: PropTypes.bool,
     className: PropTypes.string,
     id: PropTypes.string,
-    searchTokens: PropTypes.list,
+    searchTokens: PropTypes.arrayOf(PropTypes.string),
     maxLength: PropTypes.number,
   };
 

@@ -30,6 +30,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
     onHeightChange: PropTypes.func,
     domain: PropTypes.string.isRequired,
     compact: PropTypes.bool,
+    showMedia: PropTypes.bool,
+    onToggleMediaVisibility: PropTypes.func,
   };
 
   state = {
@@ -106,7 +108,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     }
 
     if (status.get('poll')) {
-      media = <PollContainer pollId={status.get('poll')} />;
+      media = <PollContainer pollId={status.get('poll')} visible={!status.get('hidden')} />;
     } else if (status.get('media_attachments').size > 0) {
       if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         const video = status.getIn(['media_attachments', 0]);
@@ -122,6 +124,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
             inline
             onOpenVideo={this.handleOpenVideo}
             sensitive={status.get('sensitive')}
+            visible={this.props.showMedia}
+            onToggleVisibility={this.props.onToggleMediaVisibility}
           />
         );
       } else {
@@ -132,6 +136,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
             media={status.get('media_attachments')}
             height={300}
             onOpenMedia={this.props.onOpenMedia}
+            visible={this.props.showMedia}
+            onToggleVisibility={this.props.onToggleMediaVisibility}
           />
         );
       }

@@ -14,7 +14,7 @@ sk:
     browse_public_posts: Prebádaj naživo prúd verejných príspevkov na Mastodone
     contact: Kontakt
     contact_missing: Nezadaný
-    contact_unavailable: Neuvedený
+    contact_unavailable: Neuvedený/á
     discover_users: Objavuj užívateľov
     documentation: Dokumentácia
     extended_description_html: |
@@ -67,9 +67,9 @@ sk:
       other: Príspevky
     posts_tab_heading: Príspevky
     posts_with_replies: Príspevky s odpoveďami
-    reserved_username: Prihlasovacie meno je rezervované
+    reserved_username: Prihlasovacie meno je vyhradené
     roles:
-      admin: Administrátor
+      admin: Správca
       bot: Bot
       moderator: Moderátor
     unavailable: Profil nieje dostupný
@@ -163,7 +163,7 @@ sk:
       resubscribe: Znovu odoberaj
       role: Oprávnenia
       roles:
-        admin: Administrátor
+        admin: Správca
         moderator: Moderátor
         staff: Člen
         user: Užívateľ
@@ -174,10 +174,10 @@ sk:
         created_reports: Vytvorené hlásenia
         targeted_reports: Nahlásenia od ostatných
       silence: Stíš
-      silenced: Utíšený/é
+      silenced: Stíšený/é
       statuses: Príspevky
       subscribe: Odoberaj
-      suspended: Zablokovaní
+      suspended: Vylúčený/á
       title: Účty
       unconfirmed_email: Nepotvrdený email
       undo_silenced: Zruš stíšenie
@@ -288,18 +288,18 @@ sk:
       reject_reports: Zamietni hlásenia
       reject_reports_hint: Ignoruj všetky hlásenia prichádzajúce z tejto domény. Nevplýva na blokovania
       rejecting_media: odmietanie médiálnych súborov
-      rejecting_reports: odmietané hlásenia
+      rejecting_reports: odmietanie hlásení
       severity:
-        silence: stíšený
-        suspend: vylúčený
+        silence: stíšené
+        suspend: vylúčené
       show:
         affected_accounts:
-          few: "%{count} účty v databáze ovplyvnených"
-          one: Jeden účet v databáze bol ovplyvnený
-          other: "%{count} účtov v databáze bolo ovplyvnených"
+          few: Je ovplyvnených %{count} účtov v databázi
+          one: Jeden účet v databázi bol ovplyvnený
+          other: "%{count} účty v databáze boli ovplyvnené"
         retroactive:
-          silence: Zruš stíšenie všetkých existujúcich účtov z tejto domény
-          suspend: Zruš suspendáciu všetkých existujúcich účtov z tejto domény
+          silence: Zruš stíšenie všetkých momentálne utíšených účtov z tejto domény
+          suspend: Zruš suspendáciu všetkých momentálne ovplyvnených účtov z tejto domény
         title: Zruš blokovanie domény %{domain}
         undo: Vráť späť
       undo: Odvolaj blokovanie domény
@@ -315,7 +315,7 @@ sk:
       title: Blokované emailové adresy
     followers:
       back_to_account: Späť na účet
-      title: Následovatielia užívateľa %{acct}
+      title: Sledovatielia užívateľa %{acct}
     instances:
       by_domain: Doména
       delivery_available: Je v dosahu doručovania
@@ -396,7 +396,7 @@ sk:
         desc_html: Sčítanie miestne uverejnených príspevkov, aktívnych užívateľov, a nových registrácii, v týždenných intervaloch
         title: Vydať hromadné štatistiky o užívateľskej aktivite
       bootstrap_timeline_accounts:
-        desc_html: Ak je prezývok viacero, každú oddeľte čiarkou. Možno zadať iba miestne, odomknuté účty. Pokiaľ necháte prázdne, je to pre všetkých miestnych administrátorov.
+        desc_html: Ak je prezývok viacero, každú oddeľ čiarkou. Je možné zadať iba miestne, odomknuté účty. Pokiaľ necháš prázdne, je to pre všetkých miestnych správcov.
         title: Štandardní následovníci nových užívateľov
       contact_information:
         email: Pracovný email
@@ -405,30 +405,30 @@ sk:
         desc_html: Uprav vzhľad pomocou CSS, ktoré je načítané na každej stránke
         title: Vlastné CSS
       hero:
-        desc_html: Zobrazuje sa na hlavnej stránke. Doporučuje sa rozlišenie aspoň 600x100px Pokiaľ nič nieje dodané, bude nastavený základný orázok serveru
+        desc_html: Zobrazuje sa na hlavnej stránke. Doporučené je rozlišenie aspoň 600x100px. Pokiaľ nič nieje dodané, bude nastavený základný orázok serveru.
         title: Obrázok hrdinu
       mascot:
-        desc_html: Zobrazované na viacerých stránkach. Odporúčaná veľkosť aspoň 293×205px. Pokiaľ nieje nahraté, bude zobrazený základný maskot
+        desc_html: Zobrazované na viacerých stránkach. Odporúčaná veľkosť aspoň 293×205px. Pokiaľ nieje nahraté, bude zobrazený základný maskot.
         title: Obrázok maskota
       peers_api_enabled:
-        desc_html: Domény, na ktoré tento server už v rámci fediverse natrafil
+        desc_html: Domény, na ktoré tento server už v rámci fediversa natrafil
         title: Zverejni zoznam objavených serverov
       preview_sensitive_media:
-        desc_html: Náhľad odkazov z iných serverov, bude zobrazený aj vtedy, keď sú médiá označené ako senzitívne
+        desc_html: Náhľad odkazov z iných serverov, bude zobrazený aj vtedy, keď sú médiá označené ako citlivé
         title: Ukazuj aj chúlostivé médiá v náhľadoch OpenGraph
       profile_directory:
         desc_html: Povoľ užívateľom, aby mohli byť nájdení
         title: Zapni profilový katalóg
       registrations:
         closed_message:
-          desc_html: Toto sa zobrazí na hlavnej stránke v prípade že sú registrácie uzavreté. Možno tu použiť aj HTML kód
+          desc_html: Toto sa zobrazí na hlavnej stránke v prípade, že sú registrácie uzavreté. Možno tu použiť aj HTML kód
           title: Správa o uzavretých registráciách
         deletion:
-          desc_html: Dovoľiť každému aby si mohli zmazať svok účet
-          title: Sprístupniť možnosť vymazať si účet
+          desc_html: Dovoľ každému aby si mohli zmazať svok účet
+          title: Sprístupni možnosť vymazať si účet
         min_invite_role:
           disabled: Nikto
-          title: Povoliť pozvánky od
+          title: Povoľ pozvánky od
       registrations_mode:
         modes:
           approved: Pre registráciu je nutné povolenie
@@ -436,11 +436,11 @@ sk:
           open: Ktokoľvek sa môže zaregistrovať
         title: Režím registrácií
       show_known_fediverse_at_about_page:
-        desc_html: Pokiaľ je zapnuté, bude v ukážke osi možné nahliadnúť príspevky z celého známeho fediversa. Inak budú ukázané iba príspevky z miestnej osi.
+        desc_html: Ak je zapnuté, bude v ukážke osi možné nahliadnúť príspevky z celého známeho fediversa. Inak budú ukázané iba príspevky z miestnej osi.
         title: Ukáž celé známe fediverse na náhľade osi
       show_staff_badge:
-        desc_html: Zobraz moderátorsky odznak na užívateľovom profile
-        title: Zobraz značku moderátora
+        desc_html: Ukáž moderátorsky odznak na užívateľovom profile
+        title: Ukáž značku moderátora
       site_description:
         desc_html: Oboznamujúci paragraf na hlavnej stránke a pri meta tagoch. Opíš, čo robí tento Mastodon server špecifickým, a ďalej hocičo iné, čo považuješ za dôležité. Môžeš použiť HTML kód, hlavne <code>&lt;a&gt;</code> a <code>&lt;em&gt;</code>.
         title: Popis servera
@@ -464,7 +464,7 @@ sk:
     statuses:
       back_to_account: Späť na účet
       batch:
-        delete: Vymazať
+        delete: Vymaž
         nsfw_off: Označ ako nechúlostivé
         nsfw_on: Označ ako chúlostivé
       failed_to_execute: Nepodarilo sa vykonať
@@ -992,5 +992,5 @@ sk:
     seamless_external_login: Si prihlásená/ý cez externú službu, takže nastavenia hesla a emailu ti niesú prístupné.
     signed_in_as: 'Prihlásená/ý ako:'
   verification:
-    explanation_html: 'Môžeš sa <strong>overiť ako majiteľ odkazov v metadátach tvojho profilu</strong>. Na to musí ale odkazovaná stránka obsahovať odkaz späť na tvoj Mastodon profil. Tento spätný odkaz <strong>musí</strong> mať prívlastok <code>rel="me"</code>. Na texte odkazu nezáleží. Tu je príklad:'
+    explanation_html: 'Môžeš sa <strong>overiť ako majiteľ odkazov v metadátach tvojho profilu</strong>. Na to ale musí odkazovaná stránka obsahovať odkaz späť na tvoj Mastodon profil. Tento spätný odkaz <strong>musí</strong> mať prívlastok <code>rel="me"</code>. Na texte odkazu nezáleží. Tu je príklad:'
     verification: Overenie
