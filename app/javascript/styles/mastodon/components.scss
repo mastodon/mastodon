@@ -2324,10 +2324,32 @@ a.account__display-name {
 
   .flex-spacer {
     background: transparent;
+    flex: 1 1 auto;
   }
 
-  .autosuggest-textarea__textarea {
-    max-height: 200px;
+  .compose-form {
+    flex: 1;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .autosuggest-input {
+    padding-bottom: 11px;
+  }
+
+  .emoji-picker-dropdown {
+    position: relative;
+    top: 5px;
+    left: 234px;
+    z-index: 1;
+    margin-bottom: -24px;
+  }
+
+  .compose-form__autosuggest-wrapper {
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 4px 4px 0 0;
   }
 
   .compose-form__upload-thumbnail {

@@ -227,6 +227,8 @@ class ComposeForm extends ImmutablePureComponent {
           />
         </div>
 
+        <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
+
         <div className='compose-form__autosuggest-wrapper'>
           <AutosuggestTextarea
             ref={this.setAutosuggestTextarea}
@@ -242,8 +244,6 @@ class ComposeForm extends ImmutablePureComponent {
             onPaste={onPaste}
             autoFocus={!showSearch && !isMobile(window.innerWidth)}
           />
-
-          <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
         </div>
 
         <div className='compose-form__modifiers'>
@@ -274,6 +274,8 @@ class ComposeForm extends ImmutablePureComponent {
         <div className='compose-form__publish'>
           <div className='compose-form__publish-button-wrapper'><Button text={intl.formatMessage(messages.publish_without_community)} onClick={this.handleSubmitWithoutCommunity} disabled={disabledButton} block secondary /></div>
         </div>
+
+        <div className='flex-spacer' />
       </div>
     );
   }
