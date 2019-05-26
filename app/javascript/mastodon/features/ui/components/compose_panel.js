@@ -12,8 +12,6 @@ const ComposePanel = () => (
     <NavigationContainer />
     <ComposeFormContainer />
 
-    <div className='flex-spacer' />
-
     <div className='getting-started__footer'>
       <ul>
         {invitesEnabled && <li><a href='/invites' target='_blank'><FormattedMessage id='getting_started.invite' defaultMessage='Invite people' /></a> · </li>}
