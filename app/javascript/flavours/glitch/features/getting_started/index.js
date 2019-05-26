@@ -101,9 +101,9 @@ const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
   }
 
   componentDidMount () {
-    const { myAccount, fetchFollowRequests } = this.props;
+    const { myAccount, fetchFollowRequests, multiColumn } = this.props;
 
-    if (window.innerWidth >= NAVIGATION_PANEL_BREAKPOINT) {
+    if (!multiColumn && window.innerWidth >= NAVIGATION_PANEL_BREAKPOINT) {
       this.context.router.history.replace('/timelines/home');
       return;
     }
