@@ -41,6 +41,14 @@ export const textForScreenReader = (intl, status, rebloggedByText = false) => {
   return values.join(', ');
 };
 
+export const defaultMediaVisibility = (status) => {
+  if (!status) {
+    return undefined;
+  }
+
+  return (displayMedia !== 'hide_all' && !status.get('sensitive') || displayMedia === 'show_all');
+};
+
 export default @injectIntl
 class Status extends ImmutablePureComponent {
 
@@ -88,7 +96,7 @@ class Status extends ImmutablePureComponent {
   ];
 
   state = {
-    showMedia: !this.props.status ? undefined : (displayMedia !== 'hide_all' && !this.props.status.get('sensitive') || displayMedia === 'show_all'),
+    showMedia: defaultMediaVisibility(this.props.status),
   };
 
   // Track height changes we know about to compensate scrolling
@@ -106,7 +114,7 @@ class Status extends ImmutablePureComponent {
 
   componentWillReceiveProps (nextProps) {
     if (!is(nextProps.status, this.props.status) && nextProps.status) {
-      this.setState({ showMedia: displayMedia !== 'hide_all' && !nextProps.status.get('sensitive') || displayMedia === 'show_all' });
+      this.setState({ showMedia: defaultMediaVisibility(nextProps.status) });
     }
   }
 
