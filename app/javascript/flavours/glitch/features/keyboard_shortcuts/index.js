@@ -71,6 +71,10 @@ export default class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><kbd>x</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.toggle_hidden' defaultMessage='to show/hide text behind CW' /></td>
               </tr>
+              <tr>
+                <td><kbd>h</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.toggle_sensitivity' defaultMessage='to show/hide media' /></td>
+              </tr>
               {collapseEnabled && (
                 <tr>
                   <td><kbd>shift</kbd>+<kbd>x</kbd></td>

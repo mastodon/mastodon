@@ -101,6 +101,7 @@ const keyMap = {
   toggleSpoiler: 'x',
   bookmark: 'd',
   toggleCollapse: 'shift+x',
+  toggleSensitive: 'h',
 };
 
 @connect(mapStateToProps)
