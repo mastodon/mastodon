@@ -93,6 +93,7 @@ const keyMap = {
   goToMuted: 'g m',
   goToRequests: 'g r',
   toggleHidden: 'x',
+  toggleSensitive: 'h',
 };
 
 class SwitchingColumnsArea extends React.PureComponent {
