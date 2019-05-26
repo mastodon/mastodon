@@ -59,7 +59,7 @@ export default class FollowRequests extends ImmutablePureComponent {
     }
 
     return (
-      <Column name='follow-requests' icon='users' heading={intl.formatMessage(messages.heading)}>
+      <Column name='follow-requests' icon='user-plus' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
 
         <ScrollContainer scrollKey='follow_requests' shouldUpdateScroll={this.shouldUpdateScroll}>

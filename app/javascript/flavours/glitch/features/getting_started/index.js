@@ -73,9 +73,15 @@ const badgeDisplay = (number, limit) => {
   }
 };
 
-@connect(makeMapStateToProps, mapDispatchToProps)
-@injectIntl
-export default class GettingStarted extends ImmutablePureComponent {
+const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
+
+ export default @connect(makeMapStateToProps, mapDispatchToProps)
+ @injectIntl
+ class GettingStarted extends ImmutablePureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  };
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
@@ -96,6 +102,11 @@ export default class GettingStarted extends ImmutablePureComponent {
 
   componentDidMount () {
     const { myAccount, fetchFollowRequests } = this.props;
+
+    if (window.innerWidth >= NAVIGATION_PANEL_BREAKPOINT) {
+      this.context.router.history.replace('/timelines/home');
+      return;
+    }
 
     if (myAccount.get('locked')) {
       fetchFollowRequests();
@@ -135,7 +146,7 @@ export default class GettingStarted extends ImmutablePureComponent {
     }
 
     if (myAccount.get('locked')) {
-      navItems.push(<ColumnLink key='6' icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
+      navItems.push(<ColumnLink key='6' icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
     }
 
     navItems.push(<ColumnLink key='7' icon='ellipsis-h' text={intl.formatMessage(messages.misc)} to='/getting-started-misc' />);
