@@ -116,12 +116,6 @@ class Status extends ImmutablePureComponent {
     }
   }
 
-  componentWillReceiveProps (nextProps) {
-    if (!is(nextProps.status, this.props.status) && nextProps.status) {
-      this.setState({ showMedia: defaultMediaVisibility(nextProps.status) });
-    }
-  }
-
   // Compensate height changes
   componentDidUpdate (prevProps, prevState, snapshot) {
     const doShowCard  = !this.props.muted && !this.props.hidden && this.props.status && this.props.status.get('card');
@@ -134,6 +128,10 @@ class Status extends ImmutablePureComponent {
           this.props.updateScrollBottom(snapshot.height - snapshot.top);
         }
       }
+    }
+
+    if (!is(prevProps.status, this.props.status) && this.props.status) {
+      this.setState({ showMedia: defaultMediaVisibility(this.props.status) });
     }
   }
 
