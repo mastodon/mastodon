@@ -18,10 +18,8 @@ class Formatter
     end
 
     raw_content = status.text
-
-    if options[:inline_poll_options] && status.preloadable_poll
-      raw_content = raw_content + "\n\n" + status.preloadable_poll.options.map { |title| "[ ] #{title}" }.join("\n")
-    end
+    raw_content = raw_content + "\n\n" + status.preloadable_poll.options.map { |title| "[ ] #{title}" }.join("\n") if options[:inline_poll_options] && status.preloadable_poll
+    raw_content = "RT @#{prepend_reblog} #{raw_content}" if prepend_reblog
 
     return '' if raw_content.blank?
 
@@ -31,17 +29,31 @@ class Formatter
       return html.html_safe # rubocop:disable Rails/OutputSafety
     end
 
-    linkable_accounts = status.active_mentions.map(&:account)
-    linkable_accounts << status.account
+    formatter_options = {
+      input: :mastodon,
+      entity_output: :as_input,
+      linkable_accounts: status.active_mentions.map(&:account) + [status.account],
+      custom_emojis: options[:custom_emojify] ? status.emojis : nil,
+      autoplay: options[:autoplay],
+    }
 
-    html = raw_content
-    html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
-    html = encode_and_link_urls(html, linkable_accounts)
-    html = encode_custom_emojis(html, status.emojis, options[:autoplay]) if options[:custom_emojify]
-    html = simple_format(html, {}, sanitize: false)
+    html = Kramdown::Document.new(raw_content, formatter_options).to_mastodon
+    html = quotify(html, status, options) if status.quote? && !options[:escape_quotify]
     html = html.delete("\n")
 
     html.html_safe # rubocop:disable Rails/OutputSafety
+  end
+
+  def format_in_quote(status, **options)
+    html = format(status)
+    return '' if html.empty?
+    doc = Nokogiri::HTML.parse(html, nil, 'utf-8')
+    doc.search('span.invisible').remove
+    html = doc.css('body')[0].inner_html
+    html.sub!(/^<p>(.+)<\/p>$/, '\1')
+    html = Sanitize.clean(html).delete("\n").truncate(150)
+    html = encode_custom_emojis(html, status.emojis) if options[:custom_emojify]
+    html.html_safe
   end
 
   def reformat(html)
@@ -186,6 +198,15 @@ class Formatter
     html
   end
 
+  def quotify(html, status, options)
+    #options[:escape_quotify] = true
+    #quote_content = format_in_quote(status.quote, options)
+    url = TagManager.instance.url_for(status.quote)
+    link = encode_and_link_urls(url)
+    #html.sub(/(<[^>]+>)\z/, "<span class=\"quote-inline\"><br/>QT: #{quote_content} [#{link}]</span>\\1")
+    html.sub(/(<[^>]+>)\z/, "<span class=\"quote-inline\"><br/>QT: [#{link}]</span>\\1")
+  end
+
   def rewrite(text, entities)
     text = text.to_s
 
@@ -291,10 +312,10 @@ class Formatter
   end
 
   def hashtag_html(tag)
-    "<a href=\"#{encode(tag_url(tag.downcase))}\" class=\"mention hashtag\" rel=\"tag\">#<span>#{encode(tag)}</span></a>"
+    "<a href=\"#{encode(tag_url(tag.downcase))}\" target=\"_blank\" class=\"mention hashtag\" rel=\"tag\">#<span>#{encode(tag)}</span></a>"
   end
 
   def mention_html(account)
-    "<span class=\"h-card\"><a href=\"#{encode(TagManager.instance.url_for(account))}\" class=\"u-url mention\">@<span>#{encode(account.username)}</span></a></span>"
+    "<span class=\"h-card\"><a href=\"#{encode(TagManager.instance.url_for(account))}\" target=\"_blank\" class=\"u-url mention\">@<span>#{encode(account.username)}</span></a></span>"
   end
 end

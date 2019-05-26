@@ -64,6 +64,7 @@ Rails.application.routes.draw do
 
     resources :followers, only: [:index], controller: :follower_accounts
     resources :following, only: [:index], controller: :following_accounts
+    resources :endorsed, only: [:index], controller: :endorsement_accounts
     resource :follow, only: [:create], controller: :account_follow
     resource :unfollow, only: [:create], controller: :account_unfollow
 
