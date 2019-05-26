@@ -55,9 +55,15 @@ const badgeDisplay = (number, limit) => {
   }
 };
 
+const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
+
 export default @connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
 class GettingStarted extends ImmutablePureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  };
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
@@ -71,6 +77,11 @@ class GettingStarted extends ImmutablePureComponent {
 
   componentDidMount () {
     const { myAccount, fetchFollowRequests } = this.props;
+
+    if (window.innerWidth >= NAVIGATION_PANEL_BREAKPOINT) {
+      this.context.router.history.replace('/timelines/home');
+      return;
+    }
 
     if (myAccount.get('locked')) {
       fetchFollowRequests();
@@ -123,7 +134,7 @@ class GettingStarted extends ImmutablePureComponent {
     height += 48*3;
 
     if (myAccount.get('locked')) {
-      navItems.push(<ColumnLink key={i++} icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
+      navItems.push(<ColumnLink key={i++} icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
       height += 48;
     }
 
