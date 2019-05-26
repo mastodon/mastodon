@@ -147,6 +147,7 @@ class Status extends ImmutablePureComponent {
       this._scrolledIntoView = false;
       this.props.dispatch(fetchStatus(nextProps.params.statusId));
     }
+
     if (!Immutable.is(nextProps.status, this.props.status) && nextProps.status) {
       this.setState({ showMedia: displayMedia !== 'hide_all' && !nextProps.status.get('sensitive') || displayMedia === 'show_all' });
     }
