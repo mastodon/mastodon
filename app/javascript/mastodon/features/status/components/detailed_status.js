@@ -32,6 +32,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
     domain: PropTypes.string.isRequired,
     compact: PropTypes.bool,
     onQuoteToggleHidden: PropTypes.func.isRequired,
+    showMedia: PropTypes.bool,
+    onToggleMediaVisibility: PropTypes.func,
   };
 
   state = {
@@ -180,6 +182,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
             inline
             onOpenVideo={this.handleOpenVideo}
             sensitive={status.get('sensitive')}
+            visible={this.props.showMedia}
+            onToggleVisibility={this.props.onToggleMediaVisibility}
           />
         );
       } else {
@@ -190,6 +194,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
             media={status.get('media_attachments')}
             height={300}
             onOpenMedia={this.props.onOpenMedia}
+            visible={this.props.showMedia}
+            onToggleVisibility={this.props.onToggleMediaVisibility}
           />
         );
       }
