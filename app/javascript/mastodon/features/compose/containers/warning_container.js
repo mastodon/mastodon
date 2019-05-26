@@ -9,7 +9,7 @@ const APPROX_HASHTAG_RE = /(?:^|[^\/\)\w])#(\w*[a-zA-Z·]\w*)/i;
 
 const mapStateToProps = state => ({
   needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', me, 'locked']),
-  hashtagWarning: state.getIn(['compose', 'privacy']) !== 'public' && APPROX_HASHTAG_RE.test(state.getIn(['compose', 'text'])),
+  hashtagWarning: state.getIn(['compose', 'privacy']) !== 'public' && (APPROX_HASHTAG_RE.test(state.getIn(['compose', 'text'])) || ((state.getIn(['compose', 'tagTemplate']) || []).map(tag => tag && tag.get('active') ? (tag.get('text') || '') : '').join('').length > 0)),
   directMessageWarning: state.getIn(['compose', 'privacy']) === 'direct',
 });
 

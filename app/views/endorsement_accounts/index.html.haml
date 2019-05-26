@@ -1,0 +1,16 @@
+- content_for :page_title do
+  = t('accounts.people_endorsed_by', name: display_name(@account))
+
+- content_for :header_tags do
+  %meta{ name: 'robots', content: 'noindex' }/
+  = render 'accounts/og', account: @account, url: account_followers_url(@account, only_path: false)
+
+= render 'accounts/header', account: @account
+
+- if @endorsed.empty?
+  = nothing_here
+- else
+  .card-grid
+    = render partial: 'application/card', collection: @endorsed.map(&:target_account), as: :account
+
+  = paginate @endorsed
