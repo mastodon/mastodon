@@ -46,6 +46,10 @@ export const defaultMediaVisibility = (status) => {
     return undefined;
   }
 
+  if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
+    status = status.get('reblog');
+  }
+
   return (displayMedia !== 'hide_all' && !status.get('sensitive') || displayMedia === 'show_all');
 };
 
