@@ -4,7 +4,7 @@
 %ul.quick-nav
   %li= link_to t('preferences.languages'), '#settings_languages'
   %li= link_to t('preferences.publishing'), '#settings_publishing'
-  %li= link_to t('preferences.other'), '#settings_other'
+  %li= link_to t('preferences.privacy'), '#settings_privacy'
   %li= link_to t('preferences.web'), '#settings_web'
   %li= link_to t('settings.notifications'), settings_notifications_path
 
@@ -27,7 +27,7 @@
 
     = f.input :setting_default_sensitive, as: :boolean, wrapper: :with_label
 
-  %hr#settings_other/
+  %hr#settings_privacy/
 
   .fields-group
     = f.input :setting_noindex, as: :boolean, wrapper: :with_label
