@@ -16,6 +16,7 @@ import NotificationOverlayContainer from 'flavours/glitch/features/notifications
 import classNames from 'classnames';
 import { autoUnfoldCW } from 'flavours/glitch/util/content_warning';
 import PollContainer from 'flavours/glitch/containers/poll_container';
+import { displayMedia } from 'flavours/glitch/util/initial_state';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -37,6 +38,22 @@ export const textForScreenReader = (intl, status, rebloggedByText = false, expan
 
   return values.join(', ');
 };
+
+export const defaultMediaVisibility = (status, settings) => {
+  if (!status) {
+    return undefined;
+  }
+
+  if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
+    status = status.get('reblog');
+  }
+
+  if (settings.getIn(['media', 'reveal_behind_cw']) && !!status.get('spoiler_text')) {
+    return true;
+  }
+
+  return (displayMedia !== 'hide_all' && !status.get('sensitive') || displayMedia === 'show_all');
+}
 
 @injectIntl
 export default class Status extends ImmutablePureComponent {
@@ -82,6 +99,9 @@ export default class Status extends ImmutablePureComponent {
     isCollapsed: false,
     autoCollapsed: false,
     isExpanded: undefined,
+    showMedia: undefined,
+    statusId: undefined,
+    revealBehindCW: undefined,
   }
 
   // Avoid checking props that are functions (and whose equality will always
@@ -103,6 +123,7 @@ export default class Status extends ImmutablePureComponent {
   updateOnStates = [
     'isExpanded',
     'isCollapsed',
+    'showMedia',
   ]
 
   //  If our settings have changed to disable collapsed statuses, then we
@@ -158,6 +179,20 @@ export default class Status extends ImmutablePureComponent {
         update.isExpanded = isExpanded;
         updated = true;
       }
+    }
+
+    if (nextProps.status && nextProps.status.get('id') !== prevState.statusId) {
+      update.showMedia = defaultMediaVisibility(nextProps.status, nextProps.settings);
+      update.statusId = nextProps.status.get('id');
+      updated = true;
+    }
+
+    if (nextProps.settings.getIn(['media', 'reveal_behind_cw']) !== prevState.revealBehindCW) {
+      update.revealBehindCW = nextProps.settings.getIn(['media', 'reveal_behind_cw']);
+      if (update.revealBehindCW) {
+        update.showMedia = defaultMediaVisibility(nextProps.status, nextProps.settings);
+      }
+      updated = true;
     }
 
     return updated ? update : null;
@@ -305,6 +340,10 @@ export default class Status extends ImmutablePureComponent {
     }
   }
 
+  handleToggleMediaVisibility = () => {
+    this.setState({ showMedia: !this.state.showMedia });
+  }
+
   handleAccountClick = (e) => {
     if (this.context.router && e.button === 0) {
       const id = e.currentTarget.getAttribute('data-id');
@@ -374,6 +413,9 @@ export default class Status extends ImmutablePureComponent {
     this.setCollapsed(!this.state.isCollapsed);
   }
 
+  handleHotkeyToggleSensitive = () => {
+    this.handleToggleMediaVisibility();
+  }
 
   handleRef = c => {
     this.node = c;
@@ -490,7 +532,8 @@ export default class Status extends ImmutablePureComponent {
               onOpenVideo={this.handleOpenVideo}
               width={this.props.cachedMediaWidth}
               cacheWidth={this.props.cacheMediaWidth}
-              revealed={settings.getIn(['media', 'reveal_behind_cw']) && !!status.get('spoiler_text') ? true : undefined}
+              visible={this.state.showMedia}
+              onToggleVisibility={this.handleToggleMediaVisibility}
             />)}
           </Bundle>
         );
@@ -508,7 +551,8 @@ export default class Status extends ImmutablePureComponent {
                 onOpenMedia={this.props.onOpenMedia}
                 cacheWidth={this.props.cacheMediaWidth}
                 defaultWidth={this.props.cachedMediaWidth}
-                revealed={settings.getIn(['media', 'reveal_behind_cw']) && !!status.get('spoiler_text') ? true : undefined}
+                visible={this.state.showMedia}
+                onToggleVisibility={this.handleToggleMediaVisibility}
               />
             )}
           </Bundle>
@@ -566,6 +610,7 @@ export default class Status extends ImmutablePureComponent {
       toggleSpoiler: this.handleExpandedToggle,
       bookmark: this.handleHotkeyBookmark,
       toggleCollapse: this.handleHotkeyCollapse,
+      toggleSensitive: this.handleHotkeyToggleSensitive,
     };
 
     const computedClass = classNames('status', `status-${status.get('visibility')}`, {

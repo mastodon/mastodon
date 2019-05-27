@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { fromJS } from 'immutable';
+import { fromJS, is } from 'immutable';
 import { throttle } from 'lodash';
 import classNames from 'classnames';
 import { isFullscreen, requestFullscreen, exitFullscreen } from 'flavours/glitch/util/fullscreen';
@@ -94,7 +94,6 @@ export default class Video extends React.PureComponent {
     width: PropTypes.number,
     height: PropTypes.number,
     sensitive: PropTypes.bool,
-    revealed: PropTypes.bool,
     startTime: PropTypes.number,
     onOpenVideo: PropTypes.func,
     onCloseVideo: PropTypes.func,
@@ -102,9 +101,11 @@ export default class Video extends React.PureComponent {
     fullwidth: PropTypes.bool,
     detailed: PropTypes.bool,
     inline: PropTypes.bool,
-    preventPlayback: PropTypes.bool,
-    intl: PropTypes.object.isRequired,
     cacheWidth: PropTypes.func,
+    intl: PropTypes.object.isRequired,
+    visible: PropTypes.bool,
+    onToggleVisibility: PropTypes.func,
+    preventPlayback: PropTypes.bool,
     blurhash: PropTypes.string,
     link: PropTypes.node,
   };
@@ -119,12 +120,12 @@ export default class Video extends React.PureComponent {
     fullscreen: false,
     hovered: false,
     muted: false,
-    revealed: this.props.revealed === undefined ? (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all') : this.props.revealed,
+    revealed: this.props.visible !== undefined ? this.props.visible : (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all'),
   };
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.revealed === true) {
-      this.setState({ revealed: true });
+    if (!is(nextProps.visible, this.props.visible) && nextProps.visible !== undefined) {
+      this.setState({ revealed: nextProps.visible });
     }
   }
 
@@ -305,9 +306,6 @@ export default class Video extends React.PureComponent {
     if (this.video && this.state.revealed && this.props.preventPlayback && !prevProps.preventPlayback) {
       this.video.pause();
     }
-  }
-
-  componentDidUpdate (prevProps) {
     if (prevProps.blurhash !== this.props.blurhash && this.props.blurhash) {
       this._decode();
     }
@@ -349,7 +347,11 @@ export default class Video extends React.PureComponent {
       this.video.pause();
     }
 
-    this.setState({ revealed: !this.state.revealed });
+    if (this.props.onToggleVisibility) {
+      this.props.onToggleVisibility();
+    } else {
+      this.setState({ revealed: !this.state.revealed });
+    }
   }
 
   handleLoadedData = () => {

@@ -41,7 +41,7 @@ import { HotKeys } from 'react-hotkeys';
 import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/util/initial_state';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from 'flavours/glitch/util/fullscreen';
 import { autoUnfoldCW } from 'flavours/glitch/util/content_warning';
-import { textForScreenReader } from 'flavours/glitch/components/status';
+import { textForScreenReader, defaultMediaVisibility } from 'flavours/glitch/components/status';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -134,6 +134,9 @@ export default class Status extends ImmutablePureComponent {
     isExpanded: undefined,
     threadExpanded: undefined,
     statusId: undefined,
+    loadedStatusId: undefined,
+    showMedia: undefined,
+    revealBehindCW: undefined,
   };
 
   componentDidMount () {
@@ -152,17 +155,31 @@ export default class Status extends ImmutablePureComponent {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (state.statusId === props.params.statusId || !props.params.statusId) {
-      return null;
+    let update = {};
+    let updated = false;
+
+    if (props.params.statusId && state.statusId !== props.params.statusId) {
+      props.dispatch(fetchStatus(props.params.statusId));
+      update.threadExpanded = undefined;
+      update.statusId = props.params.statusId;
+      updated = true;
     }
 
-    props.dispatch(fetchStatus(props.params.statusId));
+    const revealBehindCW = props.settings.getIn(['media', 'reveal_behind_cw']);
+    if (revealBehindCW !== state.revealBehindCW) {
+      update.revealBehindCW = revealBehindCW;
+      if (revealBehindCW) update.showMedia = defaultMediaVisibility(props.status, props.settings);
+      updated = true;
+    }
 
-    return {
-      threadExpanded: undefined,
-      isExpanded: autoUnfoldCW(props.settings, props.status),
-      statusId: props.params.statusId,
-    };
+    if (props.status && state.loadedStatusId !== props.status.get('id')) {
+      update.showMedia = defaultMediaVisibility(props.status, props.settings);
+      update.loadedStatusId = props.status.get('id');
+      update.isExpanded = autoUnfoldCW(props.settings, props.status);
+      updated = true;
+    }
+
+    return updated ? update : null;
   }
 
   handleExpandedToggle = () => {
@@ -170,6 +187,10 @@ export default class Status extends ImmutablePureComponent {
       this.setExpansion(!this.state.isExpanded);
     }
   };
+
+  handleToggleMediaVisibility = () => {
+    this.setState({ showMedia: !this.state.showMedia });
+  }
 
   handleModalFavourite = (status) => {
     this.props.dispatch(favourite(status));
@@ -302,6 +323,10 @@ export default class Status extends ImmutablePureComponent {
 
   handleEmbed = (status) => {
     this.props.dispatch(openModal('EMBED', { url: status.get('url') }));
+  }
+
+  handleHotkeyToggleSensitive = () => {
+    this.handleToggleMediaVisibility();
   }
 
   handleHotkeyMoveUp = () => {
@@ -477,6 +502,7 @@ export default class Status extends ImmutablePureComponent {
       mention: this.handleHotkeyMention,
       openProfile: this.handleHotkeyOpenProfile,
       toggleSpoiler: this.handleExpandedToggle,
+      toggleSensitive: this.handleHotkeyToggleSensitive,
     };
 
     return (
@@ -505,6 +531,8 @@ export default class Status extends ImmutablePureComponent {
                   expanded={isExpanded}
                   onToggleHidden={this.handleExpandedToggle}
                   domain={domain}
+                  showMedia={this.state.showMedia}
+                  onToggleMediaVisibility={this.handleToggleMediaVisibility}
                 />
 
                 <ActionBar
