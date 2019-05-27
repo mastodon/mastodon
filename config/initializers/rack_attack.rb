@@ -32,6 +32,10 @@ class Rack::Attack
     def web_request?
       !api_request?
     end
+
+    def paging_request?
+      params['page'].present? || params['min_id'].present? || params['max_id'].present? || params['since_id'].present?
+    end
   end
 
   PROTECTED_PATHS = %w(
@@ -67,6 +71,15 @@ class Rack::Attack
 
   throttle('throttle_api_sign_up', limit: 5, period: 30.minutes) do |req|
     req.remote_ip if req.post? && req.path == '/api/v1/accounts'
+  end
+
+  # Throttle paging, as it is mainly used for public pages and AP collections
+  throttle('throttle_authenticated_paging', limit: 300, period: 15.minutes) do |req|
+    req.authenticated_user_id if req.paging_request?
+  end
+
+  throttle('throttle_unauthenticated_paging', limit: 300, period: 15.minutes) do |req|
+    req.remote_ip if req.paging_request? && !req.authenticated?
   end
 
   API_DELETE_REBLOG_REGEX = /\A\/api\/v1\/statuses\/[\d]+\/unreblog/.freeze
