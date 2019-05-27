@@ -55,7 +55,8 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
   };
 
   state = {
-    suggestionsHidden: false,
+    suggestionsHidden: true,
+    focused: false,
     selectedSuggestion: 0,
     lastToken: null,
     tokenStart: 0,
@@ -134,7 +135,11 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
   }
 
   onBlur = () => {
-    this.setState({ suggestionsHidden: true });
+    this.setState({ suggestionsHidden: true, focused: false });
+  }
+
+  onFocus = () => {
+    this.setState({ focused: true });
   }
 
   onSuggestionClick = (e) => {
@@ -145,7 +150,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.suggestions !== this.props.suggestions && nextProps.suggestions.size > 0 && this.state.suggestionsHidden) {
+    if (nextProps.suggestions !== this.props.suggestions && nextProps.suggestions.size > 0 && this.state.suggestionsHidden && this.state.focused) {
       this.setState({ suggestionsHidden: false });
     }
   }
@@ -207,6 +212,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
             onChange={this.onChange}
             onKeyDown={this.onKeyDown}
             onKeyUp={onKeyUp}
+            onFocus={this.onFocus}
             onBlur={this.onBlur}
             onPaste={this.onPaste}
             style={style}
