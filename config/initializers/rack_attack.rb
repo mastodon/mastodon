@@ -13,6 +13,10 @@ class Rack::Attack
       )
     end
 
+    def remote_ip
+      @remote_ip ||= (@env["action_dispatch.remote_ip"] || ip).to_s
+    end
+
     def authenticated_user_id
       authenticated_token&.resource_owner_id
     end
@@ -42,7 +46,7 @@ class Rack::Attack
   # (blocklist & throttles are skipped)
   Rack::Attack.safelist('allow from localhost') do |req|
     # Requests are allowed if the return value is truthy
-    req.ip == '127.0.0.1' || req.ip == '::1'
+    req.remote_ip == '127.0.0.1' || req.remote_ip == '::1'
   end
 
   throttle('throttle_authenticated_api', limit: 300, period: 5.minutes) do |req|
@@ -50,7 +54,7 @@ class Rack::Attack
   end
 
   throttle('throttle_unauthenticated_api', limit: 7_500, period: 5.minutes) do |req|
-    req.ip if req.api_request?
+    req.remote_ip if req.api_request?
   end
 
   throttle('throttle_api_media', limit: 30, period: 30.minutes) do |req|
@@ -58,11 +62,11 @@ class Rack::Attack
   end
 
   throttle('throttle_media_proxy', limit: 30, period: 30.minutes) do |req|
-    req.ip if req.path.start_with?('/media_proxy')
+    req.remote_ip if req.path.start_with?('/media_proxy')
   end
 
   throttle('throttle_api_sign_up', limit: 5, period: 30.minutes) do |req|
-    req.ip if req.post? && req.path == '/api/v1/accounts'
+    req.remote_ip if req.post? && req.path == '/api/v1/accounts'
   end
 
   API_DELETE_REBLOG_REGEX = /\A\/api\/v1\/statuses\/[\d]+\/unreblog/.freeze
@@ -73,7 +77,7 @@ class Rack::Attack
   end
 
   throttle('protected_paths', limit: 25, period: 5.minutes) do |req|
-    req.ip if req.post? && req.path =~ PROTECTED_PATHS_REGEX
+    req.remote_ip if req.post? && req.path =~ PROTECTED_PATHS_REGEX
   end
 
   self.throttled_response = lambda do |env|
