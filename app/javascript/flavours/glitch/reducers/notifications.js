@@ -27,7 +27,7 @@ import compareId from 'flavours/glitch/util/compare_id';
 const initialState = ImmutableMap({
   items: ImmutableList(),
   hasMore: true,
-  top: true,
+  top: false,
   mounted: 0,
   unread: 0,
   lastReadId: '0',
