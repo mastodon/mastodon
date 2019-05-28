@@ -7,7 +7,6 @@ SHELL ["bash", "-c"]
 ENV NODE_VER="8.15.0"
 RUN	echo "Etc/UTC" > /etc/localtime && \
 	apt update && \
-	apt -y dist-upgrade && \
 	apt -y install wget make gcc g++ python && \
 	cd ~ && \
 	wget https://nodejs.org/download/release/v$NODE_VER/node-v$NODE_VER.tar.gz && \
@@ -80,7 +79,6 @@ ARG GID=991
 RUN apt update && \
 	echo "Etc/UTC" > /etc/localtime && \
 	ln -s /opt/jemalloc/lib/* /usr/lib/ && \
-	apt -y dist-upgrade && \
 	apt install -y whois wget && \
 	addgroup --gid $GID mastodon && \
 	useradd -m -u $UID -g $GID -d /opt/mastodon mastodon && \
