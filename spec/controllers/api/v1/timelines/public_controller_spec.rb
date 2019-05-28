@@ -16,7 +16,7 @@ describe Api::V1::Timelines::PublicController do
 
     describe 'GET #show' do
       before do
-        PostStatusService.new.call(user.account, 'New status from user for federated public timeline.')
+        PostStatusService.new.call(user.account, text: 'New status from user for federated public timeline.')
       end
 
       it 'returns http success' do
@@ -29,7 +29,7 @@ describe Api::V1::Timelines::PublicController do
 
     describe 'GET #show with local only' do
       before do
-        PostStatusService.new.call(user.account, 'New status from user for local public timeline.')
+        PostStatusService.new.call(user.account, text: 'New status from user for local public timeline.')
       end
 
       it 'returns http success' do

@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 module Admin::FilterHelper
-  ACCOUNT_FILTERS      = %i(local remote by_domain silenced suspended alphabetic username display_name email ip staff).freeze
+  ACCOUNT_FILTERS      = %i(local remote by_domain active silenced suspended username display_name email ip staff).freeze
   REPORT_FILTERS       = %i(resolved account_id target_account_id).freeze
   INVITE_FILTER        = %i(available expired).freeze
   CUSTOM_EMOJI_FILTERS = %i(local remote by_domain shortcode).freeze
+  TAGS_FILTERS         = %i(hidden).freeze
+  INSTANCES_FILTERS    = %i(limited).freeze
 
-  FILTERS = ACCOUNT_FILTERS + REPORT_FILTERS + INVITE_FILTER + CUSTOM_EMOJI_FILTERS
+  FILTERS = ACCOUNT_FILTERS + REPORT_FILTERS + INVITE_FILTER + CUSTOM_EMOJI_FILTERS + TAGS_FILTERS + INSTANCES_FILTERS
 
   def filter_link_to(text, link_to_params, link_class_params = link_to_params)
     new_url = filtered_url_for(link_to_params)

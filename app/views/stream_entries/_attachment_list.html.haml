@@ -1,0 +1,8 @@
+.attachment-list
+  .attachment-list__icon
+    = fa_icon 'link'
+  %ul.attachment-list__list
+    - attachments.each do |media|
+      %li
+        - url = media.remote_url.presence || media.file.url
+        = link_to File.basename(url), url, title: media.description

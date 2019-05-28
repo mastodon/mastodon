@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
-class Settings::ImportsController < ApplicationController
+class Settings::ImportsController < Settings::BaseController
   layout 'admin'
 
   before_action :authenticate_user!
   before_action :set_account
-  before_action :set_body_classes
 
   def show
     @import = Import.new
@@ -31,9 +30,5 @@ class Settings::ImportsController < ApplicationController
 
   def import_params
     params.require(:import).permit(:data, :type)
-  end
-
-  def set_body_classes
-    @body_classes = 'admin'
   end
 end

@@ -22,6 +22,15 @@ module Admin
       @form     = Form::StatusBatch.new
     end
 
+    def show
+      authorize :status, :index?
+
+      @statuses = @account.statuses.where(id: params[:id])
+      authorize @statuses.first, :show?
+
+      @form = Form::StatusBatch.new
+    end
+
     def create
       authorize :status, :update?
 

@@ -24,8 +24,8 @@ RSpec.describe Admin::AccountsController, type: :controller do
         expect(h[:local]).to eq '1'
         expect(h[:remote]).to eq '1'
         expect(h[:by_domain]).to eq 'domain'
+        expect(h[:active]).to eq '1'
         expect(h[:silenced]).to eq '1'
-        expect(h[:alphabetic]).to eq '1'
         expect(h[:suspended]).to eq '1'
         expect(h[:username]).to eq 'username'
         expect(h[:display_name]).to eq 'display name'
@@ -39,8 +39,8 @@ RSpec.describe Admin::AccountsController, type: :controller do
         local: '1',
         remote: '1',
         by_domain: 'domain',
+        active: '1',
         silenced: '1',
-        alphabetic: '1',
         suspended: '1',
         username: 'username',
         display_name: 'display name',
@@ -187,58 +187,6 @@ RSpec.describe Admin::AccountsController, type: :controller do
       it 'fails to enable account' do
         is_expected.to have_http_status :forbidden
         expect(user.reload).to be_disabled
-      end
-    end
-  end
-
-  describe 'POST #disable' do
-    subject { post :disable, params: { id: account.id } }
-
-    let(:current_user) { Fabricate(:user, admin: current_user_admin) }
-    let(:account) { Fabricate(:account, user: user) }
-    let(:user) { Fabricate(:user, disabled: false, admin: target_user_admin) }
-
-    context 'when user is admin' do
-      let(:current_user_admin) { true }
-
-      context 'when target user is admin' do
-        let(:target_user_admin) { true }
-
-        it 'fails to disable account' do
-          is_expected.to have_http_status :forbidden
-          expect(user.reload).not_to be_disabled
-        end
-      end
-
-      context 'when target user is not admin' do
-        let(:target_user_admin) { false }
-
-        it 'succeeds in disabling account' do
-          is_expected.to redirect_to admin_account_path(account.id)
-          expect(user.reload).to be_disabled
-        end
-      end
-    end
-
-    context 'when user is not admin' do
-      let(:current_user_admin) { false }
-
-      context 'when target user is admin' do
-        let(:target_user_admin) { true }
-
-        it 'fails to disable account' do
-          is_expected.to have_http_status :forbidden
-          expect(user.reload).not_to be_disabled
-        end
-      end
-
-      context 'when target user is not admin' do
-        let(:target_user_admin) { false }
-
-        it 'fails to disable account' do
-          is_expected.to have_http_status :forbidden
-          expect(user.reload).not_to be_disabled
-        end
       end
     end
   end

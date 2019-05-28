@@ -19,7 +19,7 @@ RSpec.describe RemoveStatusService, type: :service do
     jeff.follow!(alice)
     hank.follow!(alice)
 
-    @status = PostStatusService.new.call(alice, 'Hello @bob@example.com')
+    @status = PostStatusService.new.call(alice, text: 'Hello @bob@example.com')
     Fabricate(:status, account: bill, reblog: @status, uri: 'hoge')
     subject.call(@status)
   end

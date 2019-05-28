@@ -30,18 +30,26 @@ eo:
     other_instances: Listo de nodoj
     privacy_policy: Privateca politiko
     source_code: Fontkodo
-    status_count_after: mesaĝoj
+    status_count_after:
+      one: mesaĝo
+      other: mesaĝoj
     status_count_before: Kie skribiĝis
     terms: Uzkondiĉoj
-    user_count_after: uzantoj
+    user_count_after:
+      one: uzanto
+      other: uzantoj
     user_count_before: Hejmo de
     what_is_mastodon: Kio estas Mastodon?
   accounts:
     choices_html: 'Proponoj de %{name}:'
     follow: Sekvi
-    followers: Sekvantoj
+    followers:
+      one: Sekvanto
+      other: Sekvantoj
     following: Sekvatoj
     joined: Aliĝis je %{date}
+    last_active: laste aktiva
+    link_verified_on: Proprieto de ĉi tiu ligilo estis kontrolita je %{date}
     media: Aŭdovidaĵoj
     moved_html: "%{name} moviĝis al %{new_profile_link}:"
     network_hidden: Tiu informo ne estas disponebla
@@ -50,7 +58,10 @@ eo:
     people_who_follow: Sekvantoj de %{name}
     pin_errors:
       following: Vi devas sekvi la homon, kiun vi volas proponi
-    posts: Mesaĝoj
+    posts:
+      one: Mesaĝo
+      other: Mesaĝoj
+    posts_tab_heading: Mesaĝoj
     posts_with_replies: Mesaĝoj kaj respondoj
     reserved_username: La uzantnomo estas rezervita
     roles:
@@ -104,6 +115,7 @@ eo:
       media_attachments: Ligitaj aŭdovidaĵoj
       memorialize: Ŝanĝi al memoro
       moderation:
+        active: Aktiva
         all: Ĉio
         silenced: Silentigitaj
         suspended: Haltigitaj
@@ -111,13 +123,10 @@ eo:
       moderation_notes: Kontrolaj notoj
       most_recent_activity: Lasta ago
       most_recent_ip: Lasta IP
+      no_limits_imposed: Neniu limito trudita
       not_subscribed: Ne abonita
-      order:
-        alphabetic: Laŭalfabete
-        most_recent: Plej lastatempa
-        title: Ordo
       outbox_url: Elira URL
-      perform_full_suspension: Tute haltigi
+      perform_full_suspension: Haltigi
       profile_url: Profila URL
       promote: Plirangigi
       protocol: Protokolo
@@ -143,11 +152,12 @@ eo:
       shared_inbox_url: URL de kunhavigita leterkesto
       show:
         created_reports: Signaloj kreitaj de ĉi tiu konto
-        report: signalo
         targeted_reports: Signaloj kreitaj de ĉi tiu konto
       silence: Kaŝi
+      silenced: Silentigita
       statuses: Mesaĝoj
       subscribe: Aboni
+      suspended: Haltigita
       title: Kontoj
       unconfirmed_email: Nekonfirmita retadreso
       undo_silenced: Malfari kaŝon
@@ -164,6 +174,7 @@ eo:
         create_domain_block: "%{name} blokis domajnon %{target}"
         create_email_domain_block: "%{name} metis en nigran liston domajnon %{target}"
         demote_user: "%{name} degradis uzanton %{target}"
+        destroy_custom_emoji: "%{name} neniigis la emoĝion %{target}"
         destroy_domain_block: "%{name} malblokis domajnon %{target}"
         destroy_email_domain_block: "%{name} metis en blankan liston domajnon %{target}"
         destroy_status: "%{name} forigis mesaĝojn de %{target}"
@@ -217,6 +228,7 @@ eo:
       config: Agordado
       feature_deletions: Forigo de kontoj
       feature_invites: Invitaj ligiloj
+      feature_profile_directory: Profilujo
       feature_registrations: Registriĝoj
       feature_relay: Federacia ripetilo
       features: Funkcioj
@@ -249,11 +261,6 @@ eo:
         title: Nova domajna blokado
       reject_media: Malakcepti aŭdovidajn dosierojn
       reject_media_hint: Forigas aŭdovidaĵojn loke konservitajn kaj rifuzas alŝuti ajnan estonte. Senzorge pri haltigoj
-      severities:
-        noop: Nenio
-        silence: Kaŝi
-        suspend: Haltigi
-      severity: Severeco
       show:
         affected_accounts:
           one: Unu konto en la datumbazo esta influita
@@ -263,7 +270,6 @@ eo:
           suspend: Malhaltigi ĉiujn kontojn, kiuj ekzistas en ĉi tiu domajno
         title: Malfari domajnan blokadon por %{domain}
         undo: Malfari
-      title: Domajnaj blokadoj
       undo: Malfari
     email_domain_blocks:
       add_new: Aldoni novan
@@ -276,10 +282,6 @@ eo:
         title: Nova blokado de retadresa domajno
       title: Nigra listo de retadresaj domajnoj
     instances:
-      account_count: Konataj kontoj
-      domain_name: Domajno
-      reset: Restarigi
-      search: Serĉi
       title: Konataj nodoj
     invites:
       deactivate_all: Malaktivigi ĉion
@@ -291,9 +293,15 @@ eo:
       title: Invitoj
     relays:
       add_new: Aldoni novan ripetilon
+      delete: Forigi
       description_html: "<strong>Fratara ripetilo</strong> estas survoja servilo, kiu interŝanĝas grandan kvanton de publikaj mesaĝoj inter serviloj, kiuj abonas kaj publikigas al ĝi. <strong>Ĝi povas helpi etajn kaj mezgrandajn servilojn malkovri enhavon de la fediverse</strong>, kio normale postulus al lokaj uzantoj mane sekvi homojn de foraj serviloj."
+      disable: Malebligi
+      disabled: Malebligita
+      enable: Ebligi
       enable_hint: Post ebligo, via servilo abonos ĉiujn publikajn mesaĝojn de tiu ripetilo, kaj komencos sendi publikajn mesaĝojn de la servilo al ĝi.
+      enabled: Malebligita
       inbox_url: URL de la ripetilo
+      save_and_enable: Konservi kaj ebligi
       setup: Agordi konekton al ripetilo
       status: Stato
       title: Ripetiloj
@@ -340,6 +348,9 @@ eo:
       contact_information:
         email: Publika retadreso
         username: Kontakta uzantnomo
+      custom_css:
+        desc_html: Ŝanĝi la aspekton per CSS ŝargita en ĉiu pago
+        title: Propra CSS
       hero:
         desc_html: Montrata en la ĉefpaĝo. Almenaŭ 600x100px rekomendita. Kiam ne agordita, la bildeto de la nodo estos uzata
         title: Kapbildo
@@ -349,6 +360,9 @@ eo:
       preview_sensitive_media:
         desc_html: Antaŭvido de ligiloj en aliaj retejoj montros bildeton eĉ se la aŭdovidaĵo estas markita kiel tikla
         title: Montri tiklajn aŭdovidaĵojn en la antaŭvidoj de OpenGraph
+      profile_directory:
+        desc_html: Permesi al uzantoj esti troveblaj
+        title: Ebligi la profilujon
       registrations:
         closed_message:
           desc_html: Montrita sur la hejma paĝo kiam registriĝoj estas fermitaj. Vi povas uzi HTML-etikedojn
@@ -408,6 +422,12 @@ eo:
       last_delivery: Lasta livero
       title: WebSub
       topic: Temo
+    tags:
+      hide: Kaŝi de la profilujo
+      name: Kradvorto
+      title: Kradvortoj
+      unhide: Montri en la profilujo
+      visible: Videbla
     title: Administrado
   admin_mailer:
     new_report:
@@ -430,7 +450,7 @@ eo:
     warning: Estu tre atenta kun ĉi tiu datumo. Neniam diskonigu ĝin al iu ajn!
     your_token: Via alira ĵetono
   auth:
-    agreement_html: Per registriĝo, vi konsentas kun <a href="%{rules_path}">la reguloj de nia nodo</a> kaj <a href="%{terms_path}">niaj uzkondiĉoj</a>.
+    agreement_html: Klakante “Registriĝi” sube, vi konsentas kun <a href="%{rules_path}">la reguloj de la nodo</a> kaj <a href="%{terms_path}">niaj uzkondiĉoj</a>.
     change_password: Pasvorto
     confirm_email: Konfirmi retadreson
     delete_account: Forigi konton
@@ -486,6 +506,13 @@ eo:
     success_msg: Via konto estis sukcese forigita
     warning_html: La forigo de la enhavo estas certa nur por ĉi tiu aparta nodo. Enhavo, kiu estis disvastigita verŝajne lasos spurojn. Eksterretaj serviloj kaj serviloj, kiuj ne abonas viajn ĝisdatigojn ne ĝisdatigos siajn datumbazojn.
     warning_title: Disponebleco de disvastigita enhavo
+  directories:
+    directory: Profilujo
+    explanation: Malkovru uzantojn per iliaj interesoj
+    explore_mastodon: Esplori %{title}
+    people:
+      one: "%{count} personoj"
+      other: "%{count} personoj"
   errors:
     '403': Vi ne havas la rajton por vidi ĉi tiun paĝon.
     '404': La paĝo, kiun vi serĉas, ne ekzistas.
@@ -547,6 +574,7 @@ eo:
     resources: Rimedoj
   generic:
     changes_saved_msg: Ŝanĝoj sukcese konservitaj!
+    copy: Kopii
     save_changes: Konservi ŝanĝojn
     validation_errors:
       one: Io mise okazis! Bonvolu konsulti la suban erar-raporton
@@ -658,9 +686,6 @@ eo:
     no_account_html: Ĉu vi ne havas konton? Vi povas <a href='%{sign_up_path}' target='_blank'>registriĝi tie</a>
     proceed: Daŭrigi por eksekvi
     prompt: 'Vi eksekvos:'
-  remote_interaction:
-    proceed: Efektivigi la interagon
-    prompt: 'Vi volas interagi kun ĉi tiu mesaĝo:'
   remote_unfollow:
     error: Eraro
     title: Titolo
@@ -766,6 +791,7 @@ eo:
   time:
     formats:
       default: "%Y-%m-%d %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Enmetu la kodon kreitan de via aŭtentiga aplikaĵo por konfirmi
     description_html: Se vi ebligas <strong>dufaktoran aŭtentigon</strong>, vi bezonos vian poŝtelefonon por ensaluti, ĉar ĝi kreos nombrojn, kiujn vi devos enmeti.
@@ -798,7 +824,6 @@ eo:
       review_preferences_action: Ŝanĝi preferojn
       review_preferences_step: Estu certa ke vi agordis viajn preferojn, kiel kiujn retmesaĝojn vi ŝatus ricevi, aŭ kiun dekomencan privatecan nivelon vi ŝatus ke viaj mesaĝoj havu. Se tio ne ĝenas vin, vi povas ebligi aŭtomatan ekigon de GIF-oj.
       subject: Bonvenon en Mastodon
-      tip_bridge_html: Se vi venas de Twitter, vi povas trovi viajn amikojn en Mastodon per uzo de la <a href="%{bridge_url}">ponta aplikaĵo</a>. Tamen, tio funkcias nur se ankaŭ ili uzis la pontan aplikaĵon!
       tip_federated_timeline: La fratara tempolinio estas antaŭvido de la reto de Mastodon. Sed ĝi enhavas nur homojn, kiuj estas sekvataj de aliaj homoj de via nodo, do ĝi ne estas kompleta.
       tip_following: Vi dekomence sekvas la administrantojn de via servilo. Por trovi pli da interesaj homoj, rigardu la lokan kaj frataran tempoliniojn.
       tip_local_timeline: La loka tempolinio estas antaŭvido de la homoj en %{instance}. Ĉi tiuj estas viaj apudaj najbaroj!
@@ -806,8 +831,11 @@ eo:
       tips: Konsiloj
       title: Bonvenon, %{name}!
   users:
+    follow_limit_reached: Vi ne povas sekvi pli da %{limit} homojn
     invalid_email: La retadreso estas nevalida
     invalid_otp_token: Nevalida kodo de dufaktora aŭtentigo
     otp_lost_help_html: Se vi perdas aliron al ambaŭ, vi povas kontakti %{email}
     seamless_external_login: Vi estas ensalutinta per ekstera servo, do pasvortaj kaj retadresaj agordoj ne estas disponeblaj.
     signed_in_as: 'Ensalutinta kiel:'
+  verification:
+    verification: Kontrolo

@@ -7,7 +7,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/models/report.rb",
-      "line": 86,
+      "line": 90,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "Admin::ActionLog.from(\"(#{[Admin::ActionLog.where(:target_type => \"Report\", :target_id => id, :created_at => ((created_at..updated_at))).unscope(:order), Admin::ActionLog.where(:target_type => \"Account\", :target_id => target_account_id, :created_at => ((created_at..updated_at))).unscope(:order), Admin::ActionLog.where(:target_type => \"Status\", :target_id => status_ids, :created_at => ((created_at..updated_at))).unscope(:order)].map do\n \"(#{query.to_sql})\"\n end.join(\" UNION ALL \")}) AS admin_action_logs\")",
       "render_path": null,
@@ -36,6 +36,26 @@
         "template": "admin/accounts/show"
       },
       "user_input": "Account.find(params[:id]).inbox_url",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "19df3740b8d02a9fe0eb52c939b4b87d3a2a591162a6adfa8d64e9c26aeebe6d",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/status.rb",
+      "line": 84,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "result.joins(\"INNER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Status",
+        "method": null
+      },
+      "user_input": "id",
       "confidence": "Weak",
       "note": ""
     },
@@ -171,6 +191,26 @@
         "template": "stream_entries/embed"
       },
       "user_input": "params[:id]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "6f075c1484908e3ec9bed21ab7cf3c7866be8da3881485d1c82e13093aefcbd7",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/status.rb",
+      "line": 89,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "result.joins(\"LEFT OUTER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Status",
+        "method": null
+      },
+      "user_input": "id",
       "confidence": "Weak",
       "note": ""
     },
@@ -311,25 +351,6 @@
       "note": ""
     },
     {
-      "warning_type": "Dynamic Render Path",
-      "warning_code": 15,
-      "fingerprint": "c5d6945d63264af106d49367228d206aa2f176699ecdce2b98fac101bc6a96cf",
-      "check_name": "Render",
-      "message": "Render path contains parameter value",
-      "file": "app/views/admin/reports/index.html.haml",
-      "line": 22,
-      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
-      "code": "render(action => filtered_reports.page(params[:page]), {})",
-      "render_path": [{"type":"controller","class":"Admin::ReportsController","method":"index","line":10,"file":"app/controllers/admin/reports_controller.rb"}],
-      "location": {
-        "type": "template",
-        "template": "admin/reports/index"
-      },
-      "user_input": "params[:page]",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
       "warning_type": "Cross-Site Scripting",
       "warning_code": 4,
       "fingerprint": "e04aafe1e06cf8317fb6ac0a7f35783e45aa1274272ee6eaf28d39adfdad489b",
@@ -355,7 +376,7 @@
       "check_name": "PermitAttributes",
       "message": "Potentially dangerous key allowed for mass assignment",
       "file": "app/controllers/api/v1/reports_controller.rb",
-      "line": 42,
+      "line": 37,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
       "code": "params.permit(:account_id, :comment, :forward, :status_ids => ([]))",
       "render_path": null,
@@ -388,6 +409,6 @@
       "note": ""
     }
   ],
-  "updated": "2018-08-30 21:55:10 +0200",
+  "updated": "2018-10-20 23:24:45 +1300",
   "brakeman_version": "4.2.1"
 }

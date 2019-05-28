@@ -55,8 +55,12 @@
                             %tbody
                               %tr
                                 %td.button-primary
-                                  = link_to confirmation_url(@resource, confirmation_token: @token) do
-                                    %span= t 'devise.mailer.confirmation_instructions.action'
+                                  - if @resource.created_by_application
+                                    = link_to confirmation_url(@resource, confirmation_token: @token, redirect_to_app: 'true') do
+                                      %span= t 'devise.mailer.confirmation_instructions.action_with_app', app: @resource.created_by_application.name
+                                  - else
+                                    = link_to confirmation_url(@resource, confirmation_token: @token) do
+                                      %span= t 'devise.mailer.confirmation_instructions.action'
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody

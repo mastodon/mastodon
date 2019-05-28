@@ -57,6 +57,10 @@ class Rack::Attack
     req.authenticated_user_id if req.post? && req.path.start_with?('/api/v1/media')
   end
 
+  throttle('throttle_api_sign_up', limit: 5, period: 30.minutes) do |req|
+    req.ip if req.post? && req.path == '/api/v1/accounts'
+  end
+
   throttle('protected_paths', limit: 25, period: 5.minutes) do |req|
     req.ip if req.post? && req.path =~ PROTECTED_PATHS_REGEX
   end

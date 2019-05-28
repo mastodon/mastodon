@@ -14,15 +14,72 @@ RSpec.describe ActivityPub::Activity::Block do
     }.with_indifferent_access
   end
 
-  describe '#perform' do
-    subject { described_class.new(json, sender) }
+  context 'when the recipient does not follow the sender' do
+    describe '#perform' do
+      subject { described_class.new(json, sender) }
 
+      before do
+        subject.perform
+      end
+
+      it 'creates a block from sender to recipient' do
+        expect(sender.blocking?(recipient)).to be true
+      end
+    end
+  end
+
+  context 'when the recipient follows the sender' do
     before do
-      subject.perform
+      recipient.follow!(sender)
     end
 
-    it 'creates a block from sender to recipient' do
-      expect(sender.blocking?(recipient)).to be true
+    describe '#perform' do
+      subject { described_class.new(json, sender) }
+
+      before do
+        subject.perform
+      end
+
+      it 'creates a block from sender to recipient' do
+        expect(sender.blocking?(recipient)).to be true
+      end
+
+      it 'ensures recipient is not following sender' do
+        expect(recipient.following?(sender)).to be false
+      end
+    end
+  end
+
+  context 'when a matching undo has been received first' do
+    let(:undo_json) do
+      {
+        '@context': 'https://www.w3.org/ns/activitystreams',
+        id: 'bar',
+        type: 'Undo',
+        actor: ActivityPub::TagManager.instance.uri_for(sender),
+        object: json,
+      }.with_indifferent_access
+    end
+
+    before do
+      recipient.follow!(sender)
+      ActivityPub::Activity::Undo.new(undo_json, sender).perform
+    end
+
+    describe '#perform' do
+      subject { described_class.new(json, sender) }
+
+      before do
+        subject.perform
+      end
+
+      it 'does not create a block from sender to recipient' do
+        expect(sender.blocking?(recipient)).to be false
+      end
+
+      it 'ensures recipient is not following sender' do
+        expect(recipient.following?(sender)).to be false
+      end
     end
   end
 end

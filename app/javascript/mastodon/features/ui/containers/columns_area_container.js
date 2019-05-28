@@ -8,10 +8,4 @@ const mapStateToProps = state => ({
   isModalOpen: !!state.get('modal').modalType,
 });
 
-const mapDispatchToProps = dispatch => ({
-  closeTutorial() {
-    dispatch(closeTutorial());
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps, null, { withRef: true })(ColumnsArea);
+export default connect(mapStateToProps, null, null, { forwardRef: true })(ColumnsArea);

@@ -50,6 +50,8 @@ class ActivityPub::Activity
         ActivityPub::Activity::Add
       when 'Remove'
         ActivityPub::Activity::Remove
+      when 'Move'
+        ActivityPub::Activity::Move
       end
     end
   end

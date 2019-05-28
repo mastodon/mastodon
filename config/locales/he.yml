@@ -95,10 +95,6 @@ he:
       most_recent_activity: פעילות עדכנית
       most_recent_ip: כתובות אחרונות
       not_subscribed: לא רשום
-      order:
-        alphabetic: אלפביתי
-        most_recent: עדכני
-        title: סידור
       outbox_url: כתובת תיבת דואר יוצא
       perform_full_suspension: ביצוע השעייה מלאה
       profile_url: כתובת פרופיל
@@ -124,7 +120,6 @@ he:
       shared_inbox_url: תיבה משותפת לדואר נכנס
       show:
         created_reports: דיווחים מאת חשבון זה
-        report: דו"ח
         targeted_reports: דיווחים נגד חשבון זה
       silence: השתקה
       statuses: הודעות
@@ -161,10 +156,6 @@ he:
         title: חסימת שרת חדשה
       reject_media: חסימת קבצי מדיה
       reject_media_hint: מסירה קבצי מדיה השמורים מקומית ומונעת מהורדת קבצים נוספים בעתיד. לא רלוונטי להשעיות
-      severities:
-        silence: השתקה
-        suspend: השעייה
-      severity: חוּמרה
       show:
         affected_accounts:
           one: חשבון אחד במסד הנתונים מושפע
@@ -174,11 +165,8 @@ he:
           suspend: הסרת השעייה מכל החשבונות על שרת זה
         title: ביטול חסימת שרת עבור %{domain}
         undo: ביטול
-      title: חסימת שרתים
       undo: ביטול
     instances:
-      account_count: חשבונות מוכרים
-      domain_name: שם מתחם
       title: שרתים מוכרים
     reports:
       are_you_sure: 100% על בטוח?
@@ -297,7 +285,7 @@ he:
       too_many: לא ניתן להוסיף יותר מארבעה קבצים
   notification_mailer:
     digest:
-      body: 'להלן סיכום זריז של הדברים שקרו על מאז ביקורך האחרון ב-%{since}:'
+      body: להלן סיכום זריז של הדברים שקרו על מאז ביקורך האחרון ב-%{since}
       mention: "%{name} פנה אליך ב:"
       new_followers_summary:
         one: נוסף לך עוקב! סחתיין!

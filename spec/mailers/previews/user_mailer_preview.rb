@@ -39,4 +39,9 @@ class UserMailerPreview < ActionMailer::Preview
   def backup_ready
     UserMailer.backup_ready(User.first, Backup.first)
   end
+
+  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/warning
+  def warning
+    UserMailer.warning(User.first, AccountWarning.new(text: '', action: :silence))
+  end
 end

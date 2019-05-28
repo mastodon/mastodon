@@ -103,10 +103,6 @@ zh-HK:
       most_recent_activity: 最新活動
       most_recent_ip: 最新 IP 位域
       not_subscribed: 未訂閱
-      order:
-        alphabetic: 按字母
-        most_recent: 按時間
-        title: 排序
       outbox_url: 寄件箱（Outbox）URL
       perform_full_suspension: 完全停權
       profile_url: 個人檔案 URL
@@ -134,7 +130,6 @@ zh-HK:
       shared_inbox_url: 公共收件箱（Shared Inbox）URL
       show:
         created_reports: 此用戶所提舉報的紀錄
-        report: 舉報
         targeted_reports: 此用戶被舉報的紀錄
       silence: 靜音
       statuses: 文章
@@ -218,11 +213,6 @@ zh-HK:
         title: 新增域名阻隔
       reject_media: 拒絕媒體檔案
       reject_media_hint: 刪除本地緩存的媒體檔案，再也不在未來下載這個站點的檔案。和自動刪除無關
-      severities:
-        noop: 無
-        silence: 自動靜音
-        suspend: 自動刪除
-      severity: 阻隔分級
       show:
         affected_accounts: 資料庫中有%{count}個用戶受影響
         retroactive:
@@ -230,7 +220,6 @@ zh-HK:
           suspend: 對此域名的所有用戶取消除名
         title: 撤銷 %{domain} 的域名阻隔
         undo: 撤銷
-      title: 域名阻隔
       undo: 撤銷
     email_domain_blocks:
       add_new: 加入新項目
@@ -243,10 +232,6 @@ zh-HK:
         title: 新增電郵網域阻隔
       title: 電郵網域阻隔
     instances:
-      account_count: 已知帳號
-      domain_name: 域名
-      reset: 重設
-      search: 搜索
       title: 已知服務站
     invites:
       filter:
@@ -721,7 +706,6 @@ zh-HK:
       review_preferences_action: 更改首選項
       review_preferences_step: 記得調整你的偏好設置，比如你想接收什麼類型的郵件，或者你想把你的文章可見範圍默認設定為什麼級別。如果你沒有暈車的話，考慮一下啟用「自動播放 GIF 動畫」這個選項吧。
       subject: 歡迎來到 Mastodon
-      tip_bridge_html: 如果你剛從 Twitter 來到這裡，你可以在<a href="%{bridge_url}">橋樑站（bridge app）</a>上尋找你的朋友。當然，前提是他們也登錄了橋樑站！
       tip_federated_timeline: 跨站公共時間軸可以讓你一窺更廣闊的 Mastodon 網絡。不過，由於它只顯示你的鄰居們所訂閱的內容，所以並不是全部。
       tip_following: 默認情況下，你會自動關注你所在服務站的管理員。想結交更多有趣的人的話，記得多逛逛本站時間軸和跨站公共時間軸哦。
       tip_local_timeline: 本站時間軸可以讓你一窺 %{instance} 上的用戶。他們就是離你最近的鄰居！

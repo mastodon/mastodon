@@ -17,7 +17,7 @@ describe Api::V1::Timelines::HomeController do
     describe 'GET #show' do
       before do
         follow = Fabricate(:follow, account: user.account)
-        PostStatusService.new.call(follow.target_account, 'New status for user home timeline.')
+        PostStatusService.new.call(follow.target_account, text: 'New status for user home timeline.')
       end
 
       it 'returns http success' do

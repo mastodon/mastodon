@@ -2,12 +2,20 @@
 en:
   simple_form:
     hints:
+      account_warning_preset:
+        text: You can use toot syntax, such as URLs, hashtags and mentions
+      admin_account_action:
+        send_email_notification: The user will receive an explanation of what happened with their account
+        text_html: Optional. You can use toot syntax. You can <a href="%{path}">add warning presets</a> to save time
+        type_html: Choose what to do with <strong>%{acct}</strong>
+        warning_preset_id: Optional. You can still add custom text to end of the preset
       defaults:
         autofollow: People who sign up through the invite will automatically follow you
         avatar: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
         bot: This account mainly performs automated actions and might not be monitored
         context: One or multiple contexts where the filter should apply
         digest: Only sent after a long period of inactivity and only if you have received any personal messages in your absence
+        discoverable_html: The <a href="%{path}" target="_blank">directory</a> lets people find accounts based on interests and activity. Requires at least %{min_followers} followers
         email: You will be sent a confirmation e-mail
         fields: You can have up to 4 items displayed as a table on your profile
         header: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
@@ -18,6 +26,7 @@ en:
         password: Use at least 8 characters
         phrase: Will be matched regardless of casing in text or content warning of a toot
         scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
+        setting_aggregate_reblogs: Do not show new boosts for toots that have been recently boosted (only affects newly-received boosts)
         setting_default_language: The language of your toots can be detected automatically, but it's not always accurate
         setting_display_media_default: Hide media marked as sensitive
         setting_display_media_hide_all: Always hide all media
@@ -38,6 +47,18 @@ en:
         fields:
           name: Label
           value: Content
+      account_warning_preset:
+        text: Preset text
+      admin_account_action:
+        send_email_notification: Notify the user per e-mail
+        text: Custom warning
+        type: Action
+        types:
+          disable: Disable
+          none: Do nothing
+          silence: Silence
+          suspend: Suspend and irreversibly delete account data
+        warning_preset_id: Use a warning preset
       defaults:
         autofollow: Invite to follow your account
         avatar: Avatar
@@ -48,6 +69,7 @@ en:
         context: Filter contexts
         current_password: Current password
         data: Data
+        discoverable: List this account on the directory
         display_name: Display name
         email: E-mail address
         expires_in: Expire after
@@ -63,6 +85,7 @@ en:
         otp_attempt: Two-factor code
         password: Password
         phrase: Keyword or phrase
+        setting_aggregate_reblogs: Group boosts in timelines
         setting_auto_play_gif: Auto-play animated GIFs
         setting_boost_modal: Show confirmation dialog before boosting
         setting_default_language: Posting language

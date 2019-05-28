@@ -1,0 +1,6 @@
+.speech-bubble.warning
+  .speech-bubble__bubble
+    = Formatter.instance.linkify(account_warning.text)
+  .speech-bubble__owner
+    = admin_account_link_to account_warning.account
+    %time.formatted{ datetime: account_warning.created_at.iso8601 }= l account_warning.created_at

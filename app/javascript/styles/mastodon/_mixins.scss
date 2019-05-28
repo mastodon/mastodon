@@ -10,3 +10,34 @@
   height: $size;
   background-size: $size $size;
 }
+
+@mixin search-input() {
+  outline: 0;
+  box-sizing: border-box;
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  font-family: inherit;
+  background: $ui-base-color;
+  color: $darker-text-color;
+  font-size: 14px;
+  margin: 0;
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &::-moz-focus-inner,
+  &:focus,
+  &:active {
+    outline: 0 !important;
+  }
+
+  &:focus {
+    background: lighten($ui-base-color, 4%);
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+  }
+}

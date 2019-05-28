@@ -68,7 +68,7 @@ class Relay < ApplicationRecord
   end
 
   def some_local_account
-    @some_local_account ||= Account.local.find_by(suspended: false)
+    @some_local_account ||= Account.representative
   end
 
   def ensure_disabled

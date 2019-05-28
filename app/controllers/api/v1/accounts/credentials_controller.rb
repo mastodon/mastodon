@@ -21,7 +21,7 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
   private
 
   def account_params
-    params.permit(:display_name, :note, :avatar, :header, :locked, :bot, fields_attributes: [:name, :value])
+    params.permit(:display_name, :note, :avatar, :header, :locked, :bot, :discoverable, fields_attributes: [:name, :value])
   end
 
   def user_settings_params

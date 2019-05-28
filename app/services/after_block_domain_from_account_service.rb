@@ -31,11 +31,11 @@ class AfterBlockDomainFromAccountService < BaseService
 
     return unless follow.account.activitypub?
 
-    json = Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
+    json = ActiveModelSerializers::SerializableResource.new(
       follow,
       serializer: ActivityPub::RejectFollowSerializer,
       adapter: ActivityPub::Adapter
-    ).as_json).sign!(@account))
+    ).to_json
 
     ActivityPub::DeliveryWorker.perform_async(json, @account.id, follow.account.inbox_url)
   end

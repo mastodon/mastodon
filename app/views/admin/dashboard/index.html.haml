@@ -58,6 +58,12 @@
           - else
             %span.pull-right.negative-hint= fa_icon 'times fw'
         %li
+          = link_to t('admin.dashboard.feature_profile_directory'), edit_admin_settings_path
+          - if @profile_directory
+            %span.pull-right.positive-hint= fa_icon 'check fw'
+          - else
+            %span.pull-right.negative-hint= fa_icon 'times fw'
+        %li
           = link_to t('admin.dashboard.feature_relay'), admin_relays_path
           - if @relay_enabled
             %span.pull-right.positive-hint= fa_icon 'check fw'

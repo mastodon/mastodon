@@ -364,7 +364,7 @@ $small-breakpoint: 960px;
 
   @media screen and (max-width: $column-breakpoint) {
     .grid {
-      grid-template-columns: auto;
+      grid-template-columns: 100%;
 
       .column-0 {
         display: block;
@@ -1267,8 +1267,7 @@ $small-breakpoint: 960px;
       }
 
       #mastodon-timeline {
-        display: block;
-        width: 100vw;
+        display: flex;
         height: 100vh;
         border-radius: 0;
       }

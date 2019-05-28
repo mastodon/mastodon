@@ -2,12 +2,11 @@
 
 module Settings
   module TwoFactorAuthentication
-    class ConfirmationsController < ApplicationController
+    class ConfirmationsController < BaseController
       layout 'admin'
 
       before_action :authenticate_user!
       before_action :ensure_otp_secret
-      before_action :set_body_classes
 
       def new
         prepare_two_factor_form
@@ -43,10 +42,6 @@ module Settings
 
       def ensure_otp_secret
         redirect_to settings_two_factor_authentication_path unless current_user.otp_secret
-      end
-
-      def set_body_classes
-        @body_classes = 'admin'
       end
     end
   end

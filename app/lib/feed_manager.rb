@@ -27,7 +27,7 @@ class FeedManager
   end
 
   def push_to_home(account, status)
-    return false unless add_to_feed(:home, account.id, status)
+    return false unless add_to_feed(:home, account.id, status, account.user&.aggregates_reblogs?)
     trim(:home, account.id)
     PushUpdateWorker.perform_async(account.id, status.id, "timeline:#{account.id}") if push_update_required?("timeline:#{account.id}")
     true
@@ -45,7 +45,7 @@ class FeedManager
       should_filter &&= !ListAccount.where(list_id: list.id, account_id: status.in_reply_to_account_id).exists?
       return false if should_filter
     end
-    return false unless add_to_feed(:list, list.id, status)
+    return false unless add_to_feed(:list, list.id, status, list.account.user&.aggregates_reblogs?)
     trim(:list, list.id)
     PushUpdateWorker.perform_async(list.account_id, status.id, "timeline:list:#{list.id}") if push_update_required?("timeline:list:#{list.id}")
     true
@@ -93,7 +93,7 @@ class FeedManager
 
     query.each do |status|
       next if status.direct_visibility? || status.limited_visibility? || filter?(:home, status, into_account)
-      add_to_feed(:home, into_account.id, status)
+      add_to_feed(:home, into_account.id, status, into_account.user&.aggregates_reblogs?)
     end
 
     trim(:home, into_account.id)
@@ -131,7 +131,7 @@ class FeedManager
 
       statuses.each do |status|
         next if filter_from_home?(status, account)
-        added += 1 if add_to_feed(:home, account.id, status)
+        added += 1 if add_to_feed(:home, account.id, status, account.user&.aggregates_reblogs?)
       end
 
       break unless added.zero?
@@ -230,11 +230,11 @@ class FeedManager
   # added, and false if it was not added to the feed. Note that this is
   # an internal helper: callers must call trim or push updates if
   # either action is appropriate.
-  def add_to_feed(timeline_type, account_id, status)
+  def add_to_feed(timeline_type, account_id, status, aggregate_reblogs = true)
     timeline_key = key(timeline_type, account_id)
     reblog_key   = key(timeline_type, account_id, 'reblogs')
 
-    if status.reblog?
+    if status.reblog? && (aggregate_reblogs.nil? || aggregate_reblogs)
       # If the original status or a reblog of it is within
       # REBLOG_FALLOFF statuses from the top, do not re-insert it into
       # the feed

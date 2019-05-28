@@ -15,7 +15,7 @@ class ReportNote < ApplicationRecord
   belongs_to :account
   belongs_to :report, inverse_of: :notes, touch: true
 
-  scope :latest, -> { reorder('created_at ASC') }
+  scope :latest, -> { reorder(created_at: :desc) }
 
   validates :content, presence: true, length: { maximum: 500 }
 end

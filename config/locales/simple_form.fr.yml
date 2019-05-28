@@ -2,12 +2,20 @@
 fr:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Vous pouvez utiliser la syntaxe des pouets, comme les URLs, les hashtags et les mentions
+      admin_account_action:
+        send_email_notification: L'utilisateur recevra une explication de ce qu'il s'est passé avec son compte
+        text_html: Optionnel. Vous pouvez utilisez la syntaxe des pouets. Vous pouvez <a href="%{path}">ajouter des présélections d'attention</a> pour économiser du temps
+        type_html: Choisir que faire avec <strong>%{acct}</strong>
+        warning_preset_id: Optionnel. Vous pouvez toujours ajouter un texte personnalisé à la fin de la présélection
       defaults:
         autofollow: Les personnes qui s’inscrivent grâce à l’invitation vous suivront automatiquement
         avatar: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
         bot: Ce compte exécute principalement des actions automatisées et pourrait ne pas être surveillé
         context: Un ou plusieurs contextes où le filtre devrait s’appliquer
         digest: Uniquement envoyé après une longue période d’inactivité et uniquement si vous avez reçu des messages personnels pendant votre absence
+        discoverable_html: L'<a href="%{path}" target="_blank">annuaire</a> permet aux gens de trouver des comptes en se basant sur les intérêts et les activités. Nécessite au moins %{min_followers} abonnés
         email: Vous recevrez un courriel de confirmation
         fields: Vous pouvez avoir jusqu’à 4 éléments affichés en tant que tableau sur votre profil
         header: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
@@ -18,6 +26,7 @@ fr:
         password: Utilisez au moins 8 caractères
         phrase: Sera trouvé sans que la case ou l’avertissement de contenu du pouet soit pris en compte
         scopes: À quelles APIs l’application sera autorisée à accéder. Si vous sélectionnez un périmètre de haut-niveau, vous n’avez pas besoin de sélectionner les individuels.
+        setting_aggregate_reblogs: Ne pas afficher de nouveaux repartagés pour les pouets qui ont été récemment repartagés (n'affecte que les repartagés nouvellement reçus)
         setting_default_language: La langue de vos pouets peut être détectée automatiquement, mais ça n’est pas toujours pertinent
         setting_display_media_default: Masquer les supports marqués comme sensibles
         setting_display_media_hide_all: Toujours masquer tous les médias
@@ -38,6 +47,18 @@ fr:
         fields:
           name: Étiquette
           value: Contenu
+      account_warning_preset:
+        text: Texte de présélection
+      admin_account_action:
+        send_email_notification: Notifier l'utilisateur par courriel
+        text: Attention personnalisée
+        type: Action
+        types:
+          disable: Désactiver
+          none: Ne rien faire
+          silence: Silence
+          suspend: Suspendre et effacer les données du compte de manière irréversible
+        warning_preset_id: Utiliser un modèle d'avertissement
       defaults:
         autofollow: Invitation à suivre votre compte
         avatar: Image de profil
@@ -48,6 +69,7 @@ fr:
         context: Contextes du filtre
         current_password: Mot de passe actuel
         data: Données
+        discoverable: Inscrire ce compte dans l'annuaire
         display_name: Nom public
         email: Adresse courriel
         expires_in: Expire après
@@ -63,6 +85,7 @@ fr:
         otp_attempt: Code d’identification à deux facteurs
         password: Mot de passe
         phrase: Mot-clé ou phrase
+        setting_aggregate_reblogs: Repartagés en groupe dans la ligne de temps
         setting_auto_play_gif: Lire automatiquement les GIFs animés
         setting_boost_modal: Afficher une fenêtre de confirmation avant de partager
         setting_default_language: Langue de publication
@@ -73,7 +96,7 @@ fr:
         setting_display_media_default: Défaut
         setting_display_media_hide_all: Masquer tout
         setting_display_media_show_all: Montrer tout
-        setting_expand_spoilers: Toujours développer les pouëts marqués d’un avertissement de contenu
+        setting_expand_spoilers: Toujours développer les pouets marqués d’un avertissement de contenu
         setting_hide_network: Cacher votre réseau
         setting_noindex: Demander aux moteurs de recherche de ne pas indexer vos informations personnelles
         setting_reduce_motion: Réduire la vitesse des animations

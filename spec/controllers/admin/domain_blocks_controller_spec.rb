@@ -7,26 +7,6 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
     sign_in Fabricate(:user, admin: true), scope: :user
   end
 
-  describe 'GET #index' do
-    around do |example|
-      default_per_page = DomainBlock.default_per_page
-      DomainBlock.paginates_per 1
-      example.run
-      DomainBlock.paginates_per default_per_page
-    end
-
-    it 'renders domain blocks' do
-      2.times { Fabricate(:domain_block) }
-
-      get :index, params: { page: 2 }
-
-      assigned = assigns(:domain_blocks)
-      expect(assigned.count).to eq 1
-      expect(assigned.klass).to be DomainBlock
-      expect(response).to have_http_status(200)
-    end
-  end
-
   describe 'GET #new' do
     it 'assigns a new domain block' do
       get :new
@@ -53,7 +33,7 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
 
       expect(DomainBlockWorker).to have_received(:perform_async)
       expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')
-      expect(response).to redirect_to(admin_domain_blocks_path)
+      expect(response).to redirect_to(admin_instances_path(limited: '1'))
     end
 
     it 'renders new when failed to save' do
@@ -76,7 +56,7 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
 
       expect(service).to have_received(:call).with(domain_block, true)
       expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.destroyed_msg')
-      expect(response).to redirect_to(admin_domain_blocks_path)
+      expect(response).to redirect_to(admin_instances_path(limited: '1'))
     end
   end
 end

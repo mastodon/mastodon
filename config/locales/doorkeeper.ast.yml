@@ -1,2 +1,72 @@
 ---
-ast: {}
+ast:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nome de l'aplicación
+        website: Sitiu web de l'aplicación
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              invalid_uri: ha ser una URI válida.
+              relative_uri: ha ser una URI absoluta.
+  doorkeeper:
+    applications:
+      buttons:
+        cancel: Encaboxar
+        destroy: Destruyir
+        edit: Editar
+        submit: Unviar
+      index:
+        name: Nome
+      show:
+        actions: Aiciones
+        title: 'Aplicación: %{name}'
+    authorizations:
+      error:
+        title: Asocedió un fallu
+      new:
+        able_to: Va ser a
+        prompt: L'aplicación %{client_name} solicitó l'accesu a la to cuenta
+      show:
+        title: Copia esti códigu d'autorización y apégalu na aplicación.
+    authorized_applications:
+      buttons:
+        revoke: Revocar
+      index:
+        date_format: "%H:%M:%S %d-%m-%Y"
+        title: Les aplicaciones qu'autoricesti
+    errors:
+      messages:
+        invalid_token:
+          expired: Caducó'l pase d'accesu
+          revoked: Revocóse'l pase d'accesu
+          unknown: El pase d'accesu nun ye válidu
+        unauthorized_client: El veceru nun ta autorizáu pa facer esta solicitú usando esti métodu.
+        unsupported_response_type: El sirvidor d'autorización nun sofita esta triba de rempuesta.
+    layouts:
+      admin:
+        nav:
+          applications: Aplicaciones
+          oauth2_provider: Fornidor d'OAuth2
+    scopes:
+      read:accounts: ver información de cuentes
+      read:blocks: ver quién bloquies
+      read:filters: ver les tos peñeres
+      read:follows: ver quién sigues
+      read:lists: ver les tos llistes
+      read:mutes: ver quién silencies
+      read:notifications: ver los tos avisos
+      read:statuses: ver tolos estaos
+      write: modificar los datos de la to cuenta
+      write:accounts: modificar el to perfil
+      write:blocks: bloquiar cuentes y dominios
+      write:filters: crear peñeres
+      write:follows: siguir a xente
+      write:lists: crear llistes
+      write:media: xubir ficheros de medios
+      write:mutes: silenciar xente y conversaciones
+      write:notifications: llimpiar los tos avisos
+      write:statuses: espublizar estaos

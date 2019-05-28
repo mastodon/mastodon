@@ -48,6 +48,7 @@ fr:
       other: Abonné⋅e⋅s
     following: Abonnements
     joined: Inscrit·e en %{date}
+    last_active: actif dernièrement
     link_verified_on: La propriété de ce lien a été vérifiée le %{date}
     media: Médias
     moved_html: "%{name} a changé de compte pour %{new_profile_link} :"
@@ -69,6 +70,9 @@ fr:
       moderator: Modérateur·trice
     unfollow: Ne plus suivre
   admin:
+    account_actions:
+      action: Effectuer une action
+      title: Effectuer une action de modération sur %{acct}
     account_moderation_notes:
       create: Laisser un commentaire
       created_msg: Note de modération créée avec succès !
@@ -88,6 +92,7 @@ fr:
       confirm: Confirmer
       confirmed: Confirmé
       confirming: Confirmation
+      deleted: Effacé
       demote: Rétrograder
       disable: Désactiver
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
@@ -103,7 +108,9 @@ fr:
       followers: Abonné⋅e⋅s
       followers_url: URL des abonné·e·s
       follows: Abonnements
+      header: Entête
       inbox_url: URL d’entrée
+      invited_by: Invité par
       ip: Adresse IP
       location:
         all: Tous
@@ -114,6 +121,7 @@ fr:
       media_attachments: Fichiers médias
       memorialize: Convertir en mémorial
       moderation:
+        active: Actif
         all: Tous
         silenced: Masqués
         suspended: Suspendus
@@ -123,10 +131,6 @@ fr:
       most_recent_ip: Adresse IP la plus récente
       no_limits_imposed: Aucune limite imposée
       not_subscribed: Non abonné
-      order:
-        alphabetic: Alphabétique
-        most_recent: Plus récent
-        title: Tri
       outbox_url: URL de sortie
       perform_full_suspension: Suspendre
       profile_url: URL du profil
@@ -134,8 +138,9 @@ fr:
       protocol: Protocole
       public: Publique
       push_subscription_expires: Expiration de l’abonnement PuSH
-      redownload: Rafraîchir les avatars
+      redownload: Rafraîchir le profil
       remove_avatar: Supprimer l’avatar
+      remove_header: Supprimer l'entête
       resend_confirmation:
         already_confirmed: Cet·te utilisateur·ice est déjà confirmé·e
         send: Renvoyer un courriel de confirmation
@@ -153,9 +158,8 @@ fr:
       search: Rechercher
       shared_inbox_url: URL de la boite de réception partagée
       show:
-        created_reports: Signalements créés par ce compte
-        report: signalement
-        targeted_reports: Signalements créés visant ce compte
+        created_reports: Signalements faits
+        targeted_reports: Signalés par d'autres
       silence: Masquer
       silenced: Silencié
       statuses: Statuts
@@ -173,6 +177,7 @@ fr:
         assigned_to_self_report: "%{name} s’est assigné·e le signalement de %{target}"
         change_email_user: "%{name} a modifié l’adresse de courriel de l’utilisateur·rice %{target}"
         confirm_user: "%{name} adresse courriel confirmée de l’utilisateur·ice %{target}"
+        create_account_warning: "%{name} a envoyé une attention à %{target}"
         create_custom_emoji: "%{name} a importé de nouveaux émojis %{target}"
         create_domain_block: "%{name} a bloqué le domaine %{target}"
         create_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste noire"
@@ -191,7 +196,7 @@ fr:
         remove_avatar_user: "%{name} a supprimé l’avatar de %{target}"
         reopen_report: "%{name} a rouvert le signalement %{target}"
         reset_password_user: "%{name} a réinitialisé le mot de passe de %{target}"
-        resolve_report: "%{name} a résolu la dénonciation de %{target}"
+        resolve_report: "%{name} a résolu le signalement %{target}"
         silence_account: "%{name} a mis le compte %{target} en mode silence"
         suspend_account: "%{name} a suspendu le compte %{target}"
         unassigned_report: "%{name} a désassigné le signalement %{target}"
@@ -231,6 +236,7 @@ fr:
       config: Configuration
       feature_deletions: Suppressions de comptes
       feature_invites: Liens d’invitation
+      feature_profile_directory: Annuaire des profils
       feature_registrations: Inscriptions
       feature_relay: Relais de fédération
       features: Fonctionnalités
@@ -248,7 +254,7 @@ fr:
       week_users_active: actif·ve·s cette semaine
       week_users_new: utilisateur·rice·s cette semaine
     domain_blocks:
-      add_new: Ajouter
+      add_new: Ajouter un nouveau bloqueur de domaine
       created_msg: Le blocage de domaine est désormais activé
       destroyed_msg: Le blocage de domaine a été désactivé
       domain: Domaine
@@ -265,11 +271,11 @@ fr:
       reject_media_hint: Supprime localement les fichiers média stockés et refuse d’en télécharger ultérieurement. Ne concerne pas les suspensions
       reject_reports: Rapports de rejet
       reject_reports_hint: Ignorez tous les rapports provenant de ce domaine. Sans objet pour les suspensions
-      severities:
-        noop: Aucune
-        silence: Masquer
-        suspend: Suspendre
-      severity: Séverité
+      rejecting_media: rejet des fichiers multimédia
+      rejecting_reports: rejet de rapports
+      severity:
+        silence: silencié
+        suspend: suspendu
       show:
         affected_accounts:
           one: Un compte affecté dans la base de données
@@ -279,8 +285,7 @@ fr:
           suspend: Annuler la suspension sur tous les comptes existants pour ce domaine
         title: Annuler le blocage de domaine pour %{domain}
         undo: Annuler
-      title: Blocage de domaines
-      undo: Annuler
+      undo: Annuler le bloqueur de domaine
     email_domain_blocks:
       add_new: Ajouter
       created_msg: Le blocage de domaine de courriel est désormais activé
@@ -291,12 +296,23 @@ fr:
         create: Créer le blocage
         title: Nouveau blocage de domaine de courriel
       title: Blocage de domaines de courriel
+    followers:
+      back_to_account: Retour au compte
+      title: Abonné⋅e⋅s de %{acct}
     instances:
-      account_count: Comptes connus
-      domain_name: Domaine
-      reset: Réinitialiser
-      search: Rechercher
-      title: Instances connues
+      known_accounts:
+        one: "%{count} compte connu"
+        other: "%{count} comptes connus"
+      moderation:
+        all: Tout
+        limited: Limité
+        title: Modération
+      title: Fédération
+      total_blocked_by_us: Bloqués par nous
+      total_followed_by_them: Suivi par eux
+      total_followed_by_us: Suivi par nous
+      total_reported: Signalements à leurs propos
+      total_storage: Attachements de média
     invites:
       deactivate_all: Tout désactiver
       filter:
@@ -378,6 +394,9 @@ fr:
       preview_sensitive_media:
         desc_html: Les liens de prévisualisation sur les autres sites web afficheront une vignette même si le média est sensible
         title: Afficher les médias sensibles dans les prévisualisations OpenGraph
+      profile_directory:
+        desc_html: Permettre aux utilisateurs d'être découverts
+        title: Activer l'annuaire des profils
       registrations:
         closed_message:
           desc_html: Affiché sur la page d’accueil lorsque les inscriptions sont fermées<br>Vous pouvez utiliser des balises HTML
@@ -437,13 +456,21 @@ fr:
       last_delivery: Dernière livraison
       title: WebSub
       topic: Sujet
-    suspensions:
-      bad_acct_msg: La valeur de confirmation n'a pas correspondu. Êtes-vous certain de suspendre le bon compte ?
-      hint_html: 'Pour confirmer la suspension du compte, veuillez entrer %{value} dans le champ ci-dessous :'
-      proceed: Traité
-      title: Suspension de %{acct}
-      warning_html: 'Suspendre ce compte effacera <strong>irréversiblement</strong> les données de ce compte, ce qui inclut :'
+    tags:
+      accounts: Comptes
+      hidden: Masqué
+      hide: Masquer dans l'annuaire
+      name: Hashtag
+      title: Hashtags
+      unhide: Afficher dans l'annuaire
+      visible: Visible
     title: Administration
+    warning_presets:
+      add_new: Ajouter un nouveau
+      delete: Effacer
+      edit: Éditer
+      edit_preset: Éditer la présélection d'attention
+      title: Gérer les présélections d'attention
   admin_mailer:
     new_report:
       body: "%{reporter} a signalé %{target}"
@@ -521,6 +548,16 @@ fr:
     success_msg: Votre compte a été supprimé avec succès
     warning_html: Seule la suppression du contenu depuis cette instance est garantie. Le contenu qui a été partagé est susceptible de laisser des traces. Les serveurs hors-ligne ainsi que ceux n’étant plus abonnés à vos publications ne mettront pas leur base de données à jour.
     warning_title: Disponibilité du contenu disséminé
+  directories:
+    directory: Annuaire des profils
+    enabled: Vous êtes actuellement listé dans l'annuaire.
+    enabled_but_waiting: Vous avez choisi d'être listé dans l'annuaire, mais vous n'avez pas encore le nombre minimum de suiveurs (%{min_followers}) pour y être inscrit.
+    explanation: Découvrir des utilisateurs en se basant sur leurs centres d'intérêt
+    explore_mastodon: Explorer %{title}
+    how_to_enable: Vous n'êtes pas encore inscrit dans l'annuaire. Vous pouvez vous inscrire ci-dessous. Utilisez des hashtags dans votre texte biographique pour être listé sous des hashtags spécifiques !
+    people:
+      one: "%{count} personne"
+      other: "%{count} personne"
   errors:
     '403': Vous n’avez pas accès à cette page.
     '404': La page que vous recherchez n’existe pas.
@@ -543,7 +580,9 @@ fr:
       size: Taille
     blocks: Vous bloquez
     csv: CSV
+    domain_blocks: Bloqueurs de domaine
     follows: Vous suivez
+    lists: Listes
     mutes: Vous masquez
     storage: Médias stockés
   filters:
@@ -692,13 +731,22 @@ fr:
     no_account_html: Vous n’avez pas de compte ? Vous pouvez <a href='%{sign_up_path}' target='_blank'>vous inscrire ici</a>
     proceed: Confirmer l’abonnement
     prompt: 'Vous allez suivre :'
+    reason_html: "<strong>Pourquoi cette étape est-elle nécessaire?</strong> <code>%{instance}</code> pourrait ne pas être le serveur où vous vous êtes inscrit, et nous devons donc vous rediriger vers votre serveur de base en premier."
   remote_interaction:
-    proceed: Confirmer l’interaction
-    prompt: 'Vous désirez interagir avec ce pouet :'
+    favourite:
+      prompt: 'Vous souhaitez mettre ce pouet en favori :'
+    reblog:
+      prompt: 'Vous souhaitez repartager ce pouet :'
+    reply:
+      prompt: 'Vous souhaitez répondre à ce pouet :'
   remote_unfollow:
     error: Erreur
     title: Titre
     unfollowed: Non-suivi
+  scheduled_statuses:
+    over_daily_limit: Vous avez dépassé la limite de %{limit} pouets planifiés pour ce jour
+    over_total_limit: Vous avez dépassé la limite de %{limit} pouets planifiés
+    too_soon: La date planifiée doit être dans le futur
   sessions:
     activity: Dernière activité
     browser: Navigateur
@@ -903,6 +951,22 @@ fr:
       explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon. Elle est maintenant prête à être téléchargée !
       subject: Votre archive est prête à être téléchargée
       title: Récupération de l’archive
+    warning:
+      explanation:
+        disable: Lorsque votre compte est gelé, les données de votre compte demeurent intactes, mais vous ne pouvez effectuer aucune action jusqu'à ce qu'il soit débloqué.
+        silence: Lorsque votre compte est limité, seulement les utilisateurs qui vous suivent déjà verront vos pouets sur ce serveur, et vous pourriez être exclu de plusieurs listes publiques. Néanmoins, d'autres utilisateurs peuvent vous suivre manuellement.
+        suspend: Votre compte a été suspendu, et tous vos pouets et vos fichiers multimédia téléversés ont été supprimés irréversiblement de ce serveur, et des serveurs où vous aviez des abonné⋅e⋅s.
+      review_server_policies: Passer en revue les politiques du serveur
+      subject:
+        disable: Votre compte %{acct} a été gelé
+        none: Avertissement pour %{acct}
+        silence: Votre compte %{acct} a été limité
+        suspend: Votre compte %{acct} a été suspendu
+      title:
+        disable: Compte gelé
+        none: Avertissement
+        silence: Compte limité
+        suspend: Compte suspendu
     welcome:
       edit_profile_action: Configuration du profil
       edit_profile_step: Vous pouvez personnaliser votre profil en téléchargeant un avatar, une image d’en-tête, en changeant votre pseudo et plus encore. Si vous souhaitez examiner les nouveaux·lles abonné·e·s avant qu’il·elle·s ne soient autorisé·e·s à vous suivre, vous pouvez verrouiller votre compte.
@@ -914,7 +978,6 @@ fr:
       review_preferences_action: Modifier les préférences
       review_preferences_step: Assurez-vous de définir vos préférences, telles que les courriels que vous aimeriez recevoir ou le niveau de confidentialité auquel vous aimeriez que vos messages soient soumis par défaut. Si vous n’avez pas le mal des transports, vous pouvez choisir d’activer la lecture automatique des GIF.
       subject: Bienvenue sur Mastodon
-      tip_bridge_html: Si vous venez de Twitter, vous pouvez retrouver vos ami·e·s sur Mastodon en utilisant l’<a href="%{bridge_url}">application de mise en relation</a>. Cela ne fonctionne que s’il·elle·s ont aussi utilisé cette application !
       tip_federated_timeline: La fil public global est une vue en direct du réseau Mastodon. Mais elle n’inclut que les personnes auxquelles vos voisin·es sont abonné·e·s, donc elle n’est pas complète.
       tip_following: Vous suivez les administrateur·rice·s de votre serveur par défaut. Pour trouver d’autres personnes intéressantes, consultez les fils publics local et global.
       tip_local_timeline: Le fil public local est une vue des personnes sur %{instance}. Ce sont vos voisines et voisins immédiats !

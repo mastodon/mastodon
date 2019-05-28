@@ -14,6 +14,7 @@ module Admin
       else
         @account          = @account_moderation_note.target_account
         @moderation_notes = @account.targeted_moderation_notes.latest
+        @warnings         = @account.targeted_account_warnings.latest.custom
 
         render template: 'admin/accounts/show'
       end

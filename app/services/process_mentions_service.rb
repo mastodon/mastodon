@@ -60,11 +60,13 @@ class ProcessMentionsService < BaseService
   end
 
   def activitypub_json
-    @activitypub_json ||= Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
+    return @activitypub_json if defined?(@activitypub_json)
+    payload = ActiveModelSerializers::SerializableResource.new(
       @status,
       serializer: ActivityPub::ActivitySerializer,
       adapter: ActivityPub::Adapter
-    ).as_json).sign!(@status.account))
+    ).as_json
+    @activitypub_json = Oj.dump(@status.distributable? ? ActivityPub::LinkedDataSignature.new(payload).sign!(@status.account) : payload)
   end
 
   def resolve_account_service

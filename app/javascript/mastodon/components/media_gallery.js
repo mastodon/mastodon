@@ -51,6 +51,10 @@ class Item extends React.PureComponent {
     const { index, onClick } = this.props;
 
     if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+      if (this.hoverToPlay()) {
+        e.target.pause();
+        e.target.currentTime = 0;
+      }
       e.preventDefault();
       onClick(index);
     }

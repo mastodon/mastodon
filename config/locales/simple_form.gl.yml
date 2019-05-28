@@ -2,12 +2,20 @@
 gl:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Vostede pode utilizar dar formato ao toot, como URLs, etiquetas e mencións
+      admin_account_action:
+        send_email_notification: A usuaria recibirá unha explicación sobre o que lle aconteceu a súa conta
+        text_html: Optativo. Pode utilizar formato no toot. Pode <a href="%{path}">engadir avisos preestablecidos</a> para aforrar tempo
+        type_html: Escolla que facer con <strong>%{acct}</strong>
+        warning_preset_id: Optativo. Poderá engadir texto personalizado ao final do preestablecido
       defaults:
         autofollow: As persoas que se conectaron a través de un convite seguirana automáticamente a vostede
         avatar: PNG, GIF ou JPG.  Máximo %{size}. Será reducida a %{dimensions}px
         bot: Esta conta realiza principalmente accións automatizadas e podería non estar monitorizada
         context: Un ou varios contextos onde se debería aplicar o filtro
-        digest: Enviar só tras un longo período de inactividade e só si recibeu algunha mensaxe personal na súa ausencia
+        digest: Enviar só tras un longo período de inactividade e só si recibeu algunha mensaxe persoal na súa ausencia
+        discoverable_html: O <a href="%{path}" target="_blank">directorio</a> permite atopar contas en función de intereses e actividade. Require ter ao menos %{min_followers} seguidoras
         email: Enviaráselle un correo-e de confirmación
         fields: Pode ter ate 4 elementos no seu perfil mostrados como unha táboa
         header: PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
@@ -18,6 +26,7 @@ gl:
         password: Utilice 8 caracteres ao menos
         phrase: Concordará independentemente das maiúsculas ou avisos de contido no toot
         scopes: A que APIs terá acceso a aplicación. Si selecciona un ámbito de alto nivel, non precisa seleccionar elementos individuais.
+        setting_aggregate_reblogs: Non mostrar novas promocións de toots que foron promocionados recentemente (só afecta a promocións recén recibidas)
         setting_default_language: Pódese detectar automáticamente o idioma dos seus toots, mais non sempre é preciso
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Ocultar sempre os medios
@@ -26,7 +35,7 @@ gl:
         setting_noindex: Afecta ao seu perfil público e páxinas de estado
         setting_theme: Afecta ao aspecto de Mastodon en calquer dispositivo cando está conectada.
         username: O seu nome de usuaria será único en %{domain}
-        whole_word: Si a chave ou frase de paso é só alfanumérica, só se aplicará si concorda a palabra completa
+        whole_word: Se a chave ou frase de paso é só alfanumérica, só se aplicará se concorda a palabra completa
       imports:
         data: Ficheiro CSV exportado desde outra instancia Mastodon
       sessions:
@@ -38,6 +47,18 @@ gl:
         fields:
           name: Etiqueta
           value: Contido
+      account_warning_preset:
+        text: Texto preestablecido
+      admin_account_action:
+        send_email_notification: Notificar a usuaria por correo-e
+        text: Aviso personalizado
+        type: Acción
+        types:
+          disable: Desactivar
+          none: Non facer nada
+          silence: Acalar
+          suspend: Suspender e eliminar irreversiblemente datos da conta
+        warning_preset_id: Utilizar un aviso preestablecido
       defaults:
         autofollow: Convide a seguir a súa conta
         avatar: Avatar
@@ -48,6 +69,7 @@ gl:
         context: Contextos do filtro
         current_password: Contrasinal actual
         data: Datos
+        discoverable: Incluír esta conta no directorio
         display_name: Nome mostrado
         email: enderezo correo electrónico
         expires_in: Caducidade despois de
@@ -63,6 +85,7 @@ gl:
         otp_attempt: Código de Doble-Factor
         password: Contrasinal
         phrase: Palabra chave ou frase
+        setting_aggregate_reblogs: Agrupar promocións nas liñas temporais
         setting_auto_play_gif: Reprodución automática de GIFs animados
         setting_boost_modal: Pedir confirmación antes de promocionar
         setting_default_language: Idioma de publicación

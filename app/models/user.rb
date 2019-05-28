@@ -36,6 +36,7 @@
 #  invite_id                 :bigint(8)
 #  remember_token            :string
 #  chosen_languages          :string           is an Array
+#  created_by_application_id :bigint(8)
 #
 
 class User < ApplicationRecord
@@ -49,7 +50,7 @@ class User < ApplicationRecord
   # every day. Raising the duration reduces the amount of expensive
   # RegenerationWorker jobs that need to be run when those people come
   # to check their feed
-  ACTIVE_DURATION = ENV.fetch('USER_ACTIVE_DAYS', 7).to_i.days
+  ACTIVE_DURATION = ENV.fetch('USER_ACTIVE_DAYS', 7).to_i.days.freeze
 
   devise :two_factor_authenticatable,
          otp_secret_encryption_key: Rails.configuration.x.otp_secret
@@ -66,6 +67,7 @@ class User < ApplicationRecord
 
   belongs_to :account, inverse_of: :user
   belongs_to :invite, counter_cache: :uses, optional: true
+  belongs_to :created_by_application, class_name: 'Doorkeeper::Application', optional: true
   accepts_nested_attributes_for :account
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
@@ -73,17 +75,19 @@ class User < ApplicationRecord
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?
-  validates_with EmailMxValidator, if: :email_changed?
+  validates_with EmailMxValidator, if: :validate_email_dns?
+  validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
 
   scope :recent, -> { order(id: :desc) }
   scope :admins, -> { where(admin: true) }
   scope :moderators, -> { where(moderator: true) }
   scope :staff, -> { admins.or(moderators) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
+  scope :enabled, -> { where(disabled: false) }
   scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
   scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended: false }) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
-  scope :with_recent_ip_address, ->(value) { where(arel_table[:current_sign_in_ip].eq(value).or(arel_table[:last_sign_in_ip].eq(value))) }
+  scope :emailable, -> { confirmed.enabled.joins(:account).merge(Account.searchable) }
 
   before_validation :sanitize_languages
 
@@ -96,7 +100,7 @@ class User < ApplicationRecord
 
   delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
            :reduce_motion, :system_font_ui, :noindex, :theme, :display_media, :hide_network,
-           :expand_spoilers, :default_language, to: :settings, prefix: :setting, allow_nil: false
+           :expand_spoilers, :default_language, :aggregate_reblogs, to: :settings, prefix: :setting, allow_nil: false
 
   attr_reader :invite_code
 
@@ -135,6 +139,10 @@ class User < ApplicationRecord
 
   def confirmed?
     confirmed_at.present?
+  end
+
+  def invited?
+    invite_id.present?
   end
 
   def staff?
@@ -232,6 +240,10 @@ class User < ApplicationRecord
     @hides_network ||= settings.hide_network
   end
 
+  def aggregates_reblogs?
+    @aggregates_reblogs ||= settings.aggregate_reblogs
+  end
+
   def token_for_app(a)
     return nil if a.nil? || a.owner != self
     Doorkeeper::AccessToken
@@ -291,7 +303,7 @@ class User < ApplicationRecord
       end
 
     if resource.blank?
-      resource = new(email: attributes[:email])
+      resource = new(email: attributes[:email], agreement: true)
       if Devise.check_at_sign && !resource[:email].index('@')
         resource[:email] = Rpam2.getenv(resource.find_pam_service, attributes[:email], attributes[:password], 'email', false)
         resource[:email] = "#{attributes[:email]}@#{resource.find_pam_suffix}" unless resource[:email]
@@ -304,7 +316,7 @@ class User < ApplicationRecord
     resource = joins(:account).find_by(accounts: { username: attributes[Devise.ldap_uid.to_sym].first })
 
     if resource.blank?
-      resource = new(email: attributes[:mail].first, account_attributes: { username: attributes[Devise.ldap_uid.to_sym].first })
+      resource = new(email: attributes[:mail].first, agreement: true, account_attributes: { username: attributes[Devise.ldap_uid.to_sym].first })
       resource.ldap_setup(attributes)
     end
 
@@ -350,11 +362,16 @@ class User < ApplicationRecord
   end
 
   def regenerate_feed!
-    Redis.current.setnx("account:#{account_id}:regeneration", true) && Redis.current.expire("account:#{account_id}:regeneration", 1.day.seconds)
+    return unless Redis.current.setnx("account:#{account_id}:regeneration", true)
+    Redis.current.expire("account:#{account_id}:regeneration", 1.day.seconds)
     RegenerationWorker.perform_async(account_id)
   end
 
   def needs_feed_update?
     last_sign_in_at < ACTIVE_DURATION.ago
+  end
+
+  def validate_email_dns?
+    email_changed? && !(Rails.env.test? || Rails.env.development?)
   end
 end
