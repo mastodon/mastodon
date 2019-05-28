@@ -35,9 +35,7 @@
               %li= link_to t('about.api'), 'https://docs.joinmastodon.org/api/guidelines/'
           .column-2
             %h4= link_to t('about.what_is_mastodon'), 'https://joinmastodon.org/'
-
-            = link_to root_url, class: 'brand' do
-              = render file: Rails.root.join('app', 'javascript', 'images', 'logo_transparent.svg')
+            = link_to svg_logo, root_url, class: 'brand'
           .column-3
             %h4= site_hostname
             %ul
