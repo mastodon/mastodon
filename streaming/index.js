@@ -383,6 +383,7 @@ const startWorker = (workerId) => {
         return;
       }
 
+      const filterBots       = (req.query.no_bots === '1' || req.query.no_bots === 'true');
       const unpackedPayload  = payload;
       const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id));
       const accountDomain    = unpackedPayload.account.acct.split('@')[1];
@@ -412,10 +413,22 @@ const startWorker = (workerId) => {
           queries.push(client.query('SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2', [req.accountId, accountDomain]));
         }
 
+        const botAuthorIds = [];
+        if (filterBots && (unpackedPayload.account.bot || (unpackedPayload.reblog && unpackedPayload.reblog.account.bot))) {
+          if (unpackedPayload.account.bot) botAuthorIds.push(unpackedPayload.account.id);
+          if (unpackedPayload.reblog && unpackedPayload.reblog.account.bot && botAuthorIds.indexOf(unpackedPayload.reblog.account.id) === -1) botAuthorIds.push(unpackedPayload.reblog.account.id);
+          queries.push(client.query(`SELECT 1 FROM follows WHERE (account_id = $1 AND target_account_id IN (${placeholders(botAuthorIds, 1)}) UNION SELECT 1 FROM follow_requests WHERE account_id = $1 AND target_account_id IN (${placeholders(botAuthorIds, 1)})`, [req.accountId].concat(targetAccountIds)));
+        }
+
         Promise.all(queries).then(values => {
           done();
 
-          if (values[0].rows.length > 0 || (values.length > 1 && values[1].rows.length > 0)) {
+          if (values[0].rows.length > 0 || (accountDomain && values.length > 1 && values[1].rows.length > 0)) {
+            return;
+          }
+
+          const botQueryIdx = accountDomain ? 2 : 1;
+          if (values.length > botQueryIdx && values[botQueryIdx].rows.length < botAuthorIds.length) {
             return;
           }
 
