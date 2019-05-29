@@ -4,6 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
 import AsyncSelect from 'react-select/async';
+import SettingToggle from '../../notifications/components/setting_toggle';
 
 const messages = defineMessages({
   placeholder: { id: 'hashtag.column_settings.select.placeholder', defaultMessage: 'Enter hashtags…' },
@@ -87,8 +88,14 @@ class ColumnSettings extends React.PureComponent {
   };
 
   render () {
+    const { settings, onChange } = this.props;
+
     return (
       <div>
+        <div className='column-settings__row'>
+          <SettingToggle settings={settings} settingPath={['noBots']} onChange={onChange} label={<FormattedMessage id='community.column_settings.no_bots' defaultMessage='Hide posts from bots' />} />
+        </div>
+
         <div className='column-settings__row'>
           <div className='setting-toggle'>
             <Toggle id='hashtag.column_settings.tag_toggle' onChange={this.onToggle} checked={this.state.open} />

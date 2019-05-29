@@ -27,6 +27,10 @@ class ColumnSettings extends React.PureComponent {
         <div className='column-settings__row'>
           <SettingToggle prefix='home_timeline' settings={settings} settingPath={['shows', 'reply']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_replies' defaultMessage='Show replies' />} />
         </div>
+
+        <div className='column-settings__row'>
+          <SettingToggle prefix='home_timeline' settings={settings} settingPath={['other', 'noBots']} onChange={onChange} label={<FormattedMessage id='community.column_settings.no_bots' defaultMessage='Hide posts from bots' />} />
+        </div>
       </div>
     );
   }
