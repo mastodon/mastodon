@@ -383,7 +383,7 @@ const startWorker = (workerId) => {
         return;
       }
 
-      const filterBots       = (req.query.no_bots === '1' || req.query.no_bots === 'true');
+      const filterBots       = req.query.no_bots === '1' || req.query.no_bots === 'true';
       const unpackedPayload  = payload;
       const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id));
       const accountDomain    = unpackedPayload.account.acct.split('@')[1];
@@ -417,7 +417,7 @@ const startWorker = (workerId) => {
         if (filterBots && (unpackedPayload.account.bot || (unpackedPayload.reblog && unpackedPayload.reblog.account.bot))) {
           if (unpackedPayload.account.bot) botAuthorIds.push(unpackedPayload.account.id);
           if (unpackedPayload.reblog && unpackedPayload.reblog.account.bot && botAuthorIds.indexOf(unpackedPayload.reblog.account.id) === -1) botAuthorIds.push(unpackedPayload.reblog.account.id);
-          queries.push(client.query(`SELECT 1 FROM follows WHERE (account_id = $1 AND target_account_id IN (${placeholders(botAuthorIds, 1)}) UNION SELECT 1 FROM follow_requests WHERE account_id = $1 AND target_account_id IN (${placeholders(botAuthorIds, 1)})`, [req.accountId].concat(targetAccountIds)));
+          queries.push(client.query(`SELECT 1 FROM follows WHERE (account_id = $1 AND target_account_id IN (${placeholders(botAuthorIds, 1)})) UNION SELECT 1 FROM follow_requests WHERE account_id = $1 AND target_account_id IN (${placeholders(botAuthorIds, 1)})`, [req.accountId].concat(targetAccountIds)));
         }
 
         Promise.all(queries).then(values => {
@@ -590,6 +590,7 @@ const startWorker = (workerId) => {
 
   wss.on('connection', (ws, req) => {
     const location = url.parse(req.url, true);
+    req.query = location.query;
     req.requestId  = uuid.v4();
     req.remoteAddress = ws._socket.remoteAddress;
 
