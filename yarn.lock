@@ -4653,12 +4653,27 @@ intl-messageformat-parser@^1.6.3:
   resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-1.6.3.tgz#26e5363f013f2d54e900de0d180f8b04db0e635b"
   integrity sha512-QslP7jJxG0VCCA2Dy8GfUECzEGEN+duCO5/N6LdOPTf/EOs5B3C6apkznzQ57dUKqtVt4TYJyIS/5Gern/y04A==
 
-intl-messageformat@^2.0.0, intl-messageformat@^2.1.0, intl-messageformat@^2.2.0:
+intl-messageformat@^2.0.0, intl-messageformat@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-2.2.0.tgz#345bcd46de630b7683330c2e52177ff5eab484fc"
   integrity sha1-NFvNRt5jC3aDMwwuUhd/9eq0hPw=
   dependencies:
     intl-messageformat-parser "1.4.0"
+
+intl-messageformat@^3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-3.1.3.tgz#182189467dd6e45b83236c721d4a4ef3ca2bba79"
+  integrity sha512-NvJVu8LqNMn39h/EuhBrP8+d8CXKl/xQ6bLZPlsuNre3fZ/B/C1H86QSi8A67HHEdFkdUVrOGKNeYtyXiyvU+w==
+  dependencies:
+    intl-messageformat-parser "^1.6.3"
+    intl-pluralrules "^1.0.1"
+
+intl-pluralrules@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/intl-pluralrules/-/intl-pluralrules-1.0.2.tgz#ae32d168edb2f643fa260e674f0443e5e6144f0d"
+  integrity sha512-WKOHhcgVsM8BzQzdjYdv2+gPFtyDCKRm+00FPVCjqTk50JVpQpOR4BRMQEEdG5f8neHFQUon+PpdKQW631IuyQ==
+  dependencies:
+    make-plural "^4.3.0"
 
 intl-relativeformat@^2.1.0, intl-relativeformat@^2.2.0:
   version "2.2.0"
@@ -5822,6 +5837,13 @@ make-dir@^1.0.0, make-dir@^1.3.0:
   integrity sha512-2w31R7SJtieJJnQtGc7RVL2StM2vGYVfqUOvUDxH6bC6aJTxPxTF0GnIgCyu7tjockiUWAYQRbxa7vKn34s5sQ==
   dependencies:
     pify "^3.0.0"
+
+make-plural@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/make-plural/-/make-plural-4.3.0.tgz#f23de08efdb0cac2e0c9ba9f315b0dff6b4c2735"
+  integrity sha512-xTYd4JVHpSCW+aqDof6w/MebaMVNTVYBZhbB/vi513xXdiPT92JMVCo0Jq8W2UZnzYRFeVbQiQ+I25l13JuKvA==
+  optionalDependencies:
+    minimist "^1.2.0"
 
 makeerror@1.0.x:
   version "1.0.11"
