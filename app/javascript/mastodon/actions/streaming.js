@@ -50,11 +50,11 @@ export function connectTimelineStream (timelineId, path, pollingRefresh = null, 
   });
 }
 
-const refreshHomeTimelineAndNotification = (dispatch, done) => {
-  dispatch(expandHomeTimeline({}, () => dispatch(expandNotifications({}, done))));
-};
+const refreshHomeTimelineAndNotification = (excludeBots = false) => ((dispatch, done) => {
+  dispatch(expandHomeTimeline({ excludeBots }, () => dispatch(expandNotifications({}, done))));
+});
 
-export const connectUserStream      = ({ excludeBots } = {}) => connectTimelineStream('home', `user${excludeBots ? '&exclude_bots=true' : ''}`, refreshHomeTimelineAndNotification);
+export const connectUserStream      = ({ excludeBots } = {}) => connectTimelineStream('home', `user${excludeBots ? '&exclude_bots=true' : ''}`, refreshHomeTimelineAndNotification(excludeBots));
 export const connectCommunityStream = ({ onlyMedia, excludeBots } = {}) => connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}${excludeBots ? '&exclude_bots=true' : ''}`);
 export const connectPublicStream    = ({ onlyMedia, excludeBots } = {}) => connectTimelineStream(`public${onlyMedia ? ':media' : ''}`, `public${onlyMedia ? ':media' : ''}${excludeBots ? '&exclude_bots=true' : ''}`);
 export const connectHashtagStream   = (id, tag, accept, { excludeBots } = {}) => connectTimelineStream(`hashtag:${id}`, `hashtag&tag=${tag}${excludeBots ? '&exclude_bots=true' : ''}`, null, accept);
