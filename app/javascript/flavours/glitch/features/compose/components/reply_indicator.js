@@ -26,7 +26,7 @@ export default @injectIntl
 class ReplyIndicator extends ImmutablePureComponent {
 
   static propTypes = {
-    status: ImmutablePropTypes.map.isRequired,
+    status: ImmutablePropTypes.map,
     intl: PropTypes.object.isRequired,
     onCancel: PropTypes.func,
   };
