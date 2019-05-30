@@ -68,7 +68,7 @@ const mapStateToProps = state => ({
   hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
   canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < 4,
   dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
-  noBots: state.getIn(['settings', 'home', 'other', 'noBots']),
+  excludeBots: state.getIn(['settings', 'home', 'other', 'excludeBots']),
 });
 
 const keyMap = {
@@ -240,7 +240,7 @@ class UI extends React.PureComponent {
     location: PropTypes.object,
     intl: PropTypes.object.isRequired,
     dropdownMenuIsOpen: PropTypes.bool,
-    noBots: PropTypes.bool,
+    excludeBots: PropTypes.bool,
   };
 
   state = {
@@ -347,7 +347,7 @@ class UI extends React.PureComponent {
   }
 
   componentWillMount () {
-    const { noBots } = this.props;
+    const { excludeBots } = this.props;
 
     window.addEventListener('focus', this.handleWindowFocus, false);
     window.addEventListener('blur', this.handleWindowBlur, false);
@@ -367,7 +367,7 @@ class UI extends React.PureComponent {
       window.setTimeout(() => Notification.requestPermission(), 120 * 1000);
     }
 
-    this.props.dispatch(expandHomeTimeline({ noBots }));
+    this.props.dispatch(expandHomeTimeline({ excludeBots }));
     this.props.dispatch(expandNotifications());
 
     setTimeout(() => this.props.dispatch(fetchFilters()), 500);
@@ -380,9 +380,9 @@ class UI extends React.PureComponent {
   }
 
   componentWillReceiveProps (nextProps) {
-    const { noBots } = nextProps;
-    if (noBots !== this.props.noBots) {
-      this.props.dispatch(expandHomeTimeline({ noBots }));
+    const { excludeBots } = nextProps;
+    if (excludeBots !== this.props.excludeBots) {
+      this.props.dispatch(expandHomeTimeline({ excludeBots }));
     }
   }
 

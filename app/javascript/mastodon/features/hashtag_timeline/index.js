@@ -98,21 +98,21 @@ class HashtagTimeline extends React.PureComponent {
 
   componentDidMount () {
     const { dispatch } = this.props;
-    const { id, tags, noBots } = this.props.params;
+    const { id, tags, excludeBots } = this.props.params;
 
-    this._subscribe(dispatch, id, tags, { noBots });
-    dispatch(expandHashtagTimeline(id, { tags, noBots }));
+    this._subscribe(dispatch, id, tags, { excludeBots });
+    dispatch(expandHashtagTimeline(id, { tags, excludeBots }));
   }
 
   componentWillReceiveProps (nextProps) {
     const { dispatch, params } = this.props;
-    const { id, tags, noBots } = nextProps.params;
+    const { id, tags, excludeBots } = nextProps.params;
 
-    if (id !== params.id || !isEqual(tags, params.tags) || noBots !== params.noBots) {
+    if (id !== params.id || !isEqual(tags, params.tags) || excludeBots !== params.excludeBots) {
       this._unsubscribe();
-      this._subscribe(dispatch, id, tags, { noBots });
+      this._subscribe(dispatch, id, tags, { excludeBots });
       this.props.dispatch(clearTimeline(`hashtag:${id}`));
-      this.props.dispatch(expandHashtagTimeline(id, { tags, noBots }));
+      this.props.dispatch(expandHashtagTimeline(id, { tags, excludeBots }));
     }
   }
 
@@ -125,8 +125,8 @@ class HashtagTimeline extends React.PureComponent {
   }
 
   handleLoadMore = maxId => {
-    const { id, tags, noBots } = this.props.params;
-    this.props.dispatch(expandHashtagTimeline(id, { maxId, tags, noBots }));
+    const { id, tags, excludeBots } = this.props.params;
+    this.props.dispatch(expandHashtagTimeline(id, { maxId, tags, excludeBots }));
   }
 
   render () {

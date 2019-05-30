@@ -93,7 +93,7 @@ class ColumnSettings extends React.PureComponent {
     return (
       <div>
         <div className='column-settings__row'>
-          <SettingToggle settings={settings} settingPath={['noBots']} onChange={onChange} label={<FormattedMessage id='community.column_settings.no_bots' defaultMessage='Hide posts from bots' />} />
+          <SettingToggle settings={settings} settingPath={['excludeBots']} onChange={onChange} label={<FormattedMessage id='community.column_settings.exclude_bots' defaultMessage='Hide posts from bots' />} />
         </div>
 
         <div className='column-settings__row'>

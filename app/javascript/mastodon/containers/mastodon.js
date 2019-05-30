@@ -28,7 +28,7 @@ store.dispatch(fetchCustomEmojis());
 
 const mapStateToProps = state => ({
   showIntroduction: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
-  noBots: state.getIn(['settings', 'home', 'other', 'noBots']),
+  excludeBots: state.getIn(['settings', 'home', 'other', 'excludeBots']),
 });
 
 @connect(mapStateToProps)
@@ -36,7 +36,7 @@ class MastodonMount extends React.PureComponent {
 
   static propTypes = {
     showIntroduction: PropTypes.bool,
-    noBots: PropTypes.bool,
+    excludeBots: PropTypes.bool,
   };
 
   shouldUpdateScroll (_, { location }) {
@@ -44,15 +44,15 @@ class MastodonMount extends React.PureComponent {
   }
 
   componentDidMount() {
-    const { noBots } = this.props;
-    this.disconnect = store.dispatch(connectUserStream({ noBots }));
+    const { excludeBots } = this.props;
+    this.disconnect = store.dispatch(connectUserStream({ excludeBots }));
   }
 
   componentWillReceiveProps (nextProps) {
-    const { noBots } = nextProps;
-    if (noBots !== this.props.noBots) {
+    const { excludeBots } = nextProps;
+    if (excludeBots !== this.props.excludeBots) {
       this.disconnect();
-      this.disconnect = store.dispatch(connectUserStream({ noBots }));
+      this.disconnect = store.dispatch(connectUserStream({ excludeBots }));
     }
   }
 

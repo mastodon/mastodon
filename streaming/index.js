@@ -383,7 +383,7 @@ const startWorker = (workerId) => {
         return;
       }
 
-      const filterBots       = req.query.no_bots === '1' || req.query.no_bots === 'true';
+      const filterBots       = req.query.exclude_bots === '1' || req.query.exclude_bots === 'true';
       const unpackedPayload  = payload;
       const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id));
       const accountDomain    = unpackedPayload.account.acct.split('@')[1];
