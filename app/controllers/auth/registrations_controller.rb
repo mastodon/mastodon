@@ -3,6 +3,8 @@
 class Auth::RegistrationsController < Devise::RegistrationsController
   layout :determine_layout
 
+  skip_before_action :check_access_requirements
+
   before_action :set_invite, only: [:new, :create]
   before_action :check_enabled_registrations, only: [:new, :create]
   before_action :configure_sign_up_params, only: [:create]
