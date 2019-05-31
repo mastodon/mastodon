@@ -5,6 +5,7 @@ class AccountsController < ApplicationController
 
   include AccountControllerConcern
 
+  skip_before_action :check_access_requirements, if: -> { request.format == :json }
   before_action :set_cache_headers
 
   def show
@@ -49,7 +50,7 @@ class AccountsController < ApplicationController
         mark_cacheable!
 
         render_cached_json(['activitypub', 'actor', @account], content_type: 'application/activity+json') do
-          ActiveModelSerializers::SerializableResource.new(@account, serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter)
+          ActiveModelSerializers::SerializableResource.new(@account, serializer: actor_serializer, adapter: ActivityPub::Adapter)
         end
       end
     end
@@ -136,6 +137,14 @@ class AccountsController < ApplicationController
       filtered_statuses.paginate_by_min_id(PAGE_SIZE, params[:min_id]).reverse
     else
       filtered_statuses.paginate_by_max_id(PAGE_SIZE, params[:max_id], params[:since_id]).to_a
+    end
+  end
+
+  def actor_serializer
+    if whitelist_mode? && !current_account
+      ActivityPub::BareActorSerializer
+    else
+      ActivityPub::ActorSerializer
     end
   end
 end
