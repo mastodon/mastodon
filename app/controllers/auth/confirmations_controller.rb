@@ -3,6 +3,8 @@
 class Auth::ConfirmationsController < Devise::ConfirmationsController
   layout 'auth'
 
+  skip_before_action :check_access_requirements
+
   before_action :set_body_classes
   before_action :set_user, only: [:finish_signup]
 

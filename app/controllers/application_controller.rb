@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
   rescue_from Mastodon::NotPermittedError, with: :forbidden
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
+  before_action :check_access_requirements
   before_action :check_user_permissions, if: :user_signed_in?
 
   def raise_not_found
@@ -34,6 +35,10 @@ class ApplicationController < ActionController::Base
 
   def https_enabled?
     Rails.env.production?
+  end
+
+  def whitelist_mode?
+    Rails.configuration.x.whitelist_mode
   end
 
   def store_current_location
@@ -50,6 +55,10 @@ class ApplicationController < ActionController::Base
 
   def check_user_permissions
     forbidden if current_user.disabled? || current_user.account.suspended?
+  end
+
+  def check_access_requirements
+    forbidden if whitelist_mode? && !current_account
   end
 
   def after_sign_out_path_for(_resource_or_scope)

@@ -3,6 +3,7 @@
 class AboutController < ApplicationController
   layout 'public'
 
+  skip_before_action :check_access_requirements
   before_action :set_instance_presenter, only: [:show, :more, :terms]
 
   def show
