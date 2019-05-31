@@ -204,6 +204,8 @@ class Status < ApplicationRecord
     public_visibility? || unlisted_visibility?
   end
 
+  alias sign? distributable?
+
   def with_media?
     media_attachments.any?
   end
