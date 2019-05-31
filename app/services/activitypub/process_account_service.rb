@@ -15,6 +15,8 @@ class ActivityPub::ProcessAccountService < BaseService
     @domain      = domain
     @collections = {}
 
+    return if domain_not_whitelisted?
+
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
         @account        = Account.find_remote(@username, @domain)
@@ -272,5 +274,9 @@ class ActivityPub::ProcessAccountService < BaseService
     token             = attachment['signatureValue']
 
     @account.identity_proofs.where(provider: provider, provider_username: provider_username).find_or_create_by(provider: provider, provider_username: provider_username, token: token)
+  end
+
+  def domain_not_whitelisted?
+    Rails.configuration.x.whitelist_mode && !DomainAllow.allowed?(@domain)
   end
 end

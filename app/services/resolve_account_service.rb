@@ -48,7 +48,7 @@ class ResolveAccountService < BaseService
       return
     end
 
-    return if links_missing?
+    return if links_missing? || domain_not_whitelisted?
     return Account.find_local(@username) if TagManager.instance.local_domain?(@domain)
 
     RedisLock.acquire(lock_options) do |lock|
@@ -75,6 +75,10 @@ class ResolveAccountService < BaseService
 
   def links_missing?
     !(activitypub_ready? || ostatus_ready?)
+  end
+
+  def domain_not_whitelisted?
+    Rails.configuration.x.whitelist_mode && !DomainAllow.allowed?(@domain)
   end
 
   def ostatus_ready?
