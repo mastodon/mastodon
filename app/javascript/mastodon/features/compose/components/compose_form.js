@@ -200,7 +200,7 @@ class ComposeForm extends ImmutablePureComponent {
           />
         </div>
 
-        <div className="emoji-picker-wrapper">
+        <div className='emoji-picker-wrapper'>
           <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
         </div>
 

@@ -227,7 +227,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
         <div className={`autosuggest-textarea__suggestions ${suggestionsHidden || suggestions.isEmpty() ? '' : 'autosuggest-textarea__suggestions--visible'}`}>
           {suggestions.map(this.renderSuggestion)}
         </div>
-      </div>
+      </div>,
     ];
   }
 
