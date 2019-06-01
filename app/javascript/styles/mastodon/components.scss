@@ -333,14 +333,15 @@
     }
   }
 
+  .emoji-picker-dropdown {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+  }
+
   .compose-form__autosuggest-wrapper {
     position: relative;
-
-    .emoji-picker-dropdown {
-      position: absolute;
-      right: 5px;
-      top: 5px;
-    }
   }
 
   .autosuggest-textarea,
@@ -355,7 +356,8 @@
     opacity: 0.0;
 
     &.spoiler-input--visible {
-      height: 47px;
+      height: 36px;
+      margin-bottom: 11px;
       opacity: 1.0;
     }
   }
@@ -404,6 +406,12 @@
       height: 100px !important; // prevent auto-resize textarea
       resize: vertical;
     }
+  }
+
+  .emoji-picker-wrapper,
+  .autosuggest-textarea__suggestions-wrapper {
+    position: relative;
+    height: 0;
   }
 
   .autosuggest-textarea__suggestions {
@@ -566,6 +574,7 @@
     border-radius: 0 0 4px 4px;
     display: flex;
     justify-content: space-between;
+    flex: 0 0 auto;
 
     .compose-form__buttons {
       display: flex;
@@ -614,6 +623,7 @@
     display: flex;
     justify-content: flex-end;
     min-width: 0;
+    flex: 0 0 auto;
 
     .compose-form__publish-button-wrapper {
       overflow: hidden;
@@ -644,6 +654,9 @@
   margin-bottom: 10px;
   background: $ui-primary-color;
   padding: 10px;
+  min-height: 23px;
+  overflow-y: auto;
+  flex: 0 2 auto;
 }
 
 .reply-indicator__header {
@@ -2184,7 +2197,8 @@ a.account__display-name {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: calc(100% - 10px);
+  overflow-y: hidden;
 
   .search__input {
     line-height: 18px;
@@ -2200,14 +2214,33 @@ a.account__display-name {
   .navigation-bar {
     padding-top: 20px;
     padding-bottom: 20px;
+    flex: 0 1 48px;
+    min-height: 20px;
   }
 
   .flex-spacer {
     background: transparent;
   }
 
+  .compose-form {
+    flex: 1;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 310px;
+    padding-bottom: 71px;
+    margin-bottom: -71px;
+  }
+
+  .compose-form__autosuggest-wrapper {
+    overflow-y: auto;
+    background-color: $white;
+    border-radius: 4px 4px 0 0;
+    flex: 0 1 auto;
+  }
+
   .autosuggest-textarea__textarea {
-    max-height: 200px;
+    overflow-y: hidden;
   }
 
   .compose-form__upload-thumbnail {
@@ -2217,6 +2250,9 @@ a.account__display-name {
 
 .navigation-panel {
   margin-top: 10px;
+  margin-bottom: 10px;
+  height: calc(100% - 20px);
+  overflow-y: auto;
 
   hr {
     border: 0;
