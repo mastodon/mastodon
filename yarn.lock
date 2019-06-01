@@ -4632,12 +4632,34 @@ intl-messageformat@^2.0.0, intl-messageformat@^2.1.0, intl-messageformat@^2.2.0:
   dependencies:
     intl-messageformat-parser "1.4.0"
 
-intl-relativeformat@^2.1.0, intl-relativeformat@^2.2.0:
+intl-messageformat@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-3.1.4.tgz#c35efbaf8ddd3840ec316b39c96089d77c55e912"
+  integrity sha512-6f+Kpc8OI0CUCcGNySdoxJIjbYChrrgekIlnIpZVXddEx3kV5Sb+NPOcch/zah2CDQ5O7QOWV4K/zg3/OXh/rg==
+  dependencies:
+    intl-messageformat-parser "^1.6.3"
+    intl-pluralrules "^1.0.1"
+
+intl-pluralrules@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/intl-pluralrules/-/intl-pluralrules-1.0.2.tgz#ae32d168edb2f643fa260e674f0443e5e6144f0d"
+  integrity sha512-WKOHhcgVsM8BzQzdjYdv2+gPFtyDCKRm+00FPVCjqTk50JVpQpOR4BRMQEEdG5f8neHFQUon+PpdKQW631IuyQ==
+  dependencies:
+    make-plural "^4.3.0"
+
+intl-relativeformat@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/intl-relativeformat/-/intl-relativeformat-2.2.0.tgz#6aca95d019ec8d30b6c5653b6629f9983ea5b6c5"
   integrity sha512-4bV/7kSKaPEmu6ArxXf9xjv1ny74Zkwuey8Pm01NH4zggPP7JHwg2STk8Y3JdspCKRDriwIyLRfEXnj2ZLr4Bw==
   dependencies:
     intl-messageformat "^2.0.0"
+
+intl-relativeformat@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/intl-relativeformat/-/intl-relativeformat-3.1.0.tgz#19caf303d1d833b0a0457620c94b5b64d4e334ac"
+  integrity sha512-+fH2Kg4c9ZUvFFjmT+uiiXlZL2/ZNv691jfA8Z0m4vy+JSWgD237tHh3fZ5X7BgLJOS6QO2kC8t7140mI8ILcw==
+  dependencies:
+    intl-messageformat "^3.1.4"
 
 intl@^1.2.5:
   version "1.2.5"
@@ -5799,6 +5821,13 @@ make-dir@^1.0.0, make-dir@^1.3.0:
   integrity sha512-2w31R7SJtieJJnQtGc7RVL2StM2vGYVfqUOvUDxH6bC6aJTxPxTF0GnIgCyu7tjockiUWAYQRbxa7vKn34s5sQ==
   dependencies:
     pify "^3.0.0"
+
+make-plural@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/make-plural/-/make-plural-4.3.0.tgz#f23de08efdb0cac2e0c9ba9f315b0dff6b4c2735"
+  integrity sha512-xTYd4JVHpSCW+aqDof6w/MebaMVNTVYBZhbB/vi513xXdiPT92JMVCo0Jq8W2UZnzYRFeVbQiQ+I25l13JuKvA==
+  optionalDependencies:
+    minimist "^1.2.0"
 
 makeerror@1.0.x:
   version "1.0.11"
