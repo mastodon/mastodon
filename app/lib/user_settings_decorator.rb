@@ -10,6 +10,7 @@ class UserSettingsDecorator
   def update(settings)
     @settings = settings
     process_update
+    process_update_language
   end
 
   private
@@ -19,8 +20,6 @@ class UserSettingsDecorator
     user.settings['interactions']         = merged_interactions if change?('interactions')
     user.settings['default_privacy']      = default_privacy_preference if change?('setting_default_privacy')
     user.settings['default_sensitive']    = default_sensitive_preference if change?('setting_default_sensitive')
-    user.settings['default_language']     = default_language_preference if change?('setting_default_language')
-    user.settings['ignore_toot_language'] = ignore_toot_language_preference if change?('setting_ignore_toot_language')
     user.settings['unfollow_modal']       = unfollow_modal_preference if change?('setting_unfollow_modal')
     user.settings['boost_modal']          = boost_modal_preference if change?('setting_boost_modal')
     user.settings['delete_modal']         = delete_modal_preference if change?('setting_delete_modal')
@@ -35,6 +34,11 @@ class UserSettingsDecorator
     user.settings['aggregate_reblogs']    = aggregate_reblogs_preference if change?('setting_aggregate_reblogs')
     user.settings['show_application']     = show_application_preference if change?('setting_show_application')
     user.settings['advanced_layout']      = advanced_layout_preference if change?('setting_advanced_layout')
+  end
+
+  def process_update_language
+    user.settings['default_language']     = default_language_preference if change?('setting_default_language')
+    user.settings['ignore_toot_language'] = ignore_toot_language_preference if change?('setting_ignore_toot_language')
   end
 
   def merged_notification_emails
