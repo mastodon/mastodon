@@ -151,8 +151,12 @@ export default class StatusActionBar extends ImmutablePureComponent {
 
   handleOpen = () => {
     let state = {...this.context.router.history.location.state};
-    state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
-    this.context.router.history.push(`/statuses/${this.props.status.get('id')}`, state);
+    if (state.mastodonModalOpen) {
+      this.context.router.history.replace(`/statuses/${this.props.status.get('id')}`, { mastodonBackSteps: (state.mastodonBackSteps || 0) + 1 });
+    } else {
+      state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
+      this.context.router.history.push(`/statuses/${this.props.status.get('id')}`, state);
+    }
   }
 
   handleEmbed = () => {
