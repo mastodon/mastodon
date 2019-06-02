@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::LikeSerializer < ActiveModel::Serializer
+class ActivityPub::LikeSerializer < ActivityPub::Serializer
   attributes :id, :type, :actor
   attribute :virtual_object, key: :object
 

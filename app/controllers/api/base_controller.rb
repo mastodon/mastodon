@@ -9,6 +9,8 @@ class Api::BaseController < ApplicationController
   skip_before_action :store_current_location
   skip_before_action :check_user_permissions
 
+  before_action :set_cache_headers
+
   protect_from_forgery with: :null_session
 
   rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
@@ -73,7 +75,9 @@ class Api::BaseController < ApplicationController
     elsif current_user.disabled?
       render json: { error: 'Your login is currently disabled' }, status: 403
     elsif !current_user.confirmed?
-      render json: { error: 'Email confirmation is not completed' }, status: 403
+      render json: { error: 'Your login is missing a confirmed e-mail address' }, status: 403
+    elsif !current_user.approved?
+      render json: { error: 'Your login is currently pending approval' }, status: 403
     else
       set_user_activity
     end
@@ -85,5 +89,9 @@ class Api::BaseController < ApplicationController
 
   def authorize_if_got_token!(*scopes)
     doorkeeper_authorize!(*scopes) if doorkeeper_token
+  end
+
+  def set_cache_headers
+    response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
   end
 end

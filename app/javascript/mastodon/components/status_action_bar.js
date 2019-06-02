@@ -139,7 +139,7 @@ class StatusActionBar extends ImmutablePureComponent {
   }
 
   handleBlockClick = () => {
-    this.props.onBlock(this.props.status.get('account'));
+    this.props.onBlock(this.props.status);
   }
 
   handleOpen = () => {

@@ -183,14 +183,14 @@ export default class StatusContent extends React.PureComponent {
       return (
         <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
-            <span dangerouslySetInnerHTML={spoilerContent} />
+            <span dangerouslySetInnerHTML={spoilerContent} lang={status.get('language')} />
             {' '}
             <button tabIndex='0' className={`status__content__spoiler-link ${hidden ? 'status__content__spoiler-link--show-more' : 'status__content__spoiler-link--show-less'}`} onClick={this.handleSpoilerClick}>{toggleText}</button>
           </p>
 
           {mentionsPlaceholder}
 
-          <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} />
+          <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} lang={status.get('language')} />
         </div>
       );
     } else if (this.props.onClick) {
@@ -202,6 +202,7 @@ export default class StatusContent extends React.PureComponent {
           className={classNames}
           style={directionStyle}
           dangerouslySetInnerHTML={content}
+          lang={status.get('language')}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
         />,
@@ -220,6 +221,7 @@ export default class StatusContent extends React.PureComponent {
           className='status__content'
           style={directionStyle}
           dangerouslySetInnerHTML={content}
+          lang={status.get('language')}
         />
       );
     }

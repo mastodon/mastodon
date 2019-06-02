@@ -22,7 +22,7 @@ export default class DisplayName extends React.PureComponent {
         suffix = `+${others.size - 2}`;
       }
     } else {
-      if (others) {
+      if (others && others.size > 0) {
         account = others.first();
       } else {
         account = this.props.account;

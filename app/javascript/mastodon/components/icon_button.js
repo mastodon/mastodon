@@ -86,6 +86,7 @@ export default class IconButton extends React.PureComponent {
           onClick={this.handleClick}
           style={style}
           tabIndex={tabIndex}
+          disabled={disabled}
         >
           <Icon id={icon} fixedWidth aria-hidden='true' />
         </button>
@@ -104,6 +105,7 @@ export default class IconButton extends React.PureComponent {
             onClick={this.handleClick}
             style={style}
             tabIndex={tabIndex}
+            disabled={disabled}
           >
             <Icon id={icon} style={{ transform: `rotate(${rotate}deg)` }} fixedWidth aria-hidden='true' />
           </button>

@@ -29,6 +29,12 @@ import {
   COMPOSE_UPLOAD_CHANGE_SUCCESS,
   COMPOSE_UPLOAD_CHANGE_FAIL,
   COMPOSE_RESET,
+  COMPOSE_POLL_ADD,
+  COMPOSE_POLL_REMOVE,
+  COMPOSE_POLL_OPTION_ADD,
+  COMPOSE_POLL_OPTION_CHANGE,
+  COMPOSE_POLL_OPTION_REMOVE,
+  COMPOSE_POLL_SETTINGS_CHANGE,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
@@ -55,6 +61,7 @@ const initialState = ImmutableMap({
   is_uploading: false,
   progress: 0,
   media_attachments: ImmutableList(),
+  poll: null,
   suggestion_token: null,
   suggestions: ImmutableList(),
   default_privacy: 'public',
@@ -62,6 +69,12 @@ const initialState = ImmutableMap({
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
   tagHistory: ImmutableList(),
+});
+
+const initialPoll = ImmutableMap({
+  options: ImmutableList(['', '']),
+  expires_in: 24 * 3600,
+  multiple: false,
 });
 
 function statusToTextMentions(state, status) {
@@ -85,6 +98,7 @@ function clearAll(state) {
     map.set('privacy', state.get('default_privacy'));
     map.set('sensitive', false);
     map.update('media_attachments', list => list.clear());
+    map.set('poll', null);
     map.set('idempotencyKey', uuid());
   });
 };
@@ -247,6 +261,7 @@ export default function compose(state = initialState, action) {
       map.set('spoiler', false);
       map.set('spoiler_text', '');
       map.set('privacy', state.get('default_privacy'));
+      map.set('poll', null);
       map.set('idempotencyKey', uuid());
     });
   case COMPOSE_SUBMIT_REQUEST:
@@ -329,7 +344,27 @@ export default function compose(state = initialState, action) {
         map.set('spoiler', false);
         map.set('spoiler_text', '');
       }
+
+      if (action.status.get('poll')) {
+        map.set('poll', ImmutableMap({
+          options: action.status.getIn(['poll', 'options']).map(x => x.get('title')),
+          multiple: action.status.getIn(['poll', 'multiple']),
+          expires_in: 24 * 3600,
+        }));
+      }
     });
+  case COMPOSE_POLL_ADD:
+    return state.set('poll', initialPoll);
+  case COMPOSE_POLL_REMOVE:
+    return state.set('poll', null);
+  case COMPOSE_POLL_OPTION_ADD:
+    return state.updateIn(['poll', 'options'], options => options.push(action.title));
+  case COMPOSE_POLL_OPTION_CHANGE:
+    return state.setIn(['poll', 'options', action.index], action.title);
+  case COMPOSE_POLL_OPTION_REMOVE:
+    return state.updateIn(['poll', 'options'], options => options.delete(action.index));
+  case COMPOSE_POLL_SETTINGS_CHANGE:
+    return state.update('poll', poll => poll.set('expires_in', action.expiresIn).set('multiple', action.isMultiple));
   default:
     return state;
   }

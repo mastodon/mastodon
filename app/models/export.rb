@@ -14,16 +14,24 @@ class Export
   end
 
   def to_muted_accounts_csv
-    to_csv account.muting.select(:username, :domain)
+    CSV.generate(headers: ['Account address', 'Hide notifications'], write_headers: true) do |csv|
+      account.mute_relationships.includes(:target_account).reorder(id: :desc).each do |mute|
+        csv << [acct(mute.target_account), mute.hide_notifications]
+      end
+    end
   end
 
   def to_following_accounts_csv
-    to_csv account.following.select(:username, :domain)
+    CSV.generate(headers: ['Account address', 'Show boosts'], write_headers: true) do |csv|
+      account.active_relationships.includes(:target_account).reorder(id: :desc).each do |follow|
+        csv << [acct(follow.target_account), follow.show_reblogs]
+      end
+    end
   end
 
   def to_lists_csv
     CSV.generate do |csv|
-      account.owned_lists.select(:title).each do |list|
+      account.owned_lists.select(:title, :id).each do |list|
         list.accounts.select(:username, :domain).each do |account|
           csv << [list.title, acct(account)]
         end

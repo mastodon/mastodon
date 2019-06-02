@@ -9,7 +9,7 @@ defaults: &defaults
   site_terms: ''
   site_contact_username: ''
   site_contact_email: ''
-  open_registrations: true
+  registrations_mode: 'open'
   max_toot_chars: 500
   profile_directory: true
   closed_registrations_message: ''
@@ -40,6 +40,7 @@ defaults: &defaults
     follow_request: true
     digest: true
     report: true
+    pending_account: true
   interactions:
     must_be_follower: false
     must_be_following: false

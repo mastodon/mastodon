@@ -7,7 +7,6 @@ cy:
     administered_by: 'Gweinyddir gan:'
     api: API
     apps: Apiau symudol
-    closed_registrations: Mae cofrestru wedi cau ar yr achos hwn ar hyn o bryd. Fodd bynnag, mae modd ffeindio achos arall er mwyn creu cyfrif arno a chael mynediad at union yr un rhwydwaith o'r man hwnnw.
     contact: Cyswllt
     contact_missing: Heb ei osod
     contact_unavailable: Ddim yn berthnasol
@@ -15,19 +14,9 @@ cy:
     extended_description_html: |
       <h3>Lle da ar gyfer rheolau</h3>
       <p>Nid yw'r disgrifiad estynedig wedi ei osod eto.</p>
-    features:
-      humane_approach_body: Gan ddysgu o fethiannau rhwydweithiau eraill, mae Mastodon yn anelu i wneud penderfyniadau dylunio moesol i ymladd camddefnydd o gyfryngau cymdeithasol.
-      humane_approach_title: Agwedd fwy dynol
-      not_a_product_body: Nid yw Mastodon yn rwydwaith masnachol. Nid oes hysbysebion, cloddio data na gerddi caeedig. Nid oes awdurdod canolog.
-      not_a_product_title: Rwyt yn berson, nid yn beth
-      real_conversation_body: Gyda'r modd i ddefnyddio hyd at 500 o nodau a chefnogaeth ar gyfer cynnwys gronynnol a rhybuddion cyfryngau, mae modd i chi fynegi'ch hun yn y ffordd yr hoffech chi.
-      real_conversation_title: Wedi ei adeiladu ar gyfer sgyrsiau go iawn
-      within_reach_body: Nifer o apiau ar gyfer iOS, Android, a nifer blatfformau eraill diolch i amgylchedd API hygyrch i ddatblygwyr sy'n caniatau i chi gadw mewn cysylltiad a'ch ffrindiau o unrhywle.
-      within_reach_title: Bob tro o fewn gafael
     generic_description: Mae %{domain} yn un gweinydd yn y rhwydwaith
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
     learn_more: Dysu mwy
-    other_instances: Rhestr achosion
     privacy_policy: Polisi preifatrwydd
     source_code: Cod ffynhonnell
     status_count_after:
@@ -322,6 +311,7 @@ cy:
       back_to_account: Nôl i'r gyfrif
       title: Dilynwyr %{acct}
     instances:
+      by_domain: Parth
       delivery_available: Mae'r cyflenwad ar gael
       known_accounts:
         few: "%{count} cyfrifon hysbys"
@@ -434,9 +424,6 @@ cy:
         min_invite_role:
           disabled: Neb
           title: Caniatau gwahoddiadau gan
-        open:
-          desc_html: Caniatau i unrhywun greu cyfrif
-          title: Agor cofrestru
       show_known_fediverse_at_about_page:
         desc_html: Wedi'i ddewis, bydd yn dangos rhagolwg o dŵtiau o'r holl ffedysawd. Fel arall bydd ond yn dangos tŵtiau lleol.
         title: Dangos ffedysawd hysbys ar ragolwg y ffrwd
@@ -496,6 +483,8 @@ cy:
       add_new: Ychwanegu newydd
       delete: Dileu
       edit: Golygu
+      edit_preset: Golygu rhagosodiad rhybudd
+      title: Rheoli rhagosodiadau rhybudd
   admin_mailer:
     new_report:
       body: Mae %{reporter} wedi cwyno am %{target}
@@ -517,7 +506,6 @@ cy:
     warning: Byddwch yn ofalus a'r data hyn. Peidiwch a'i rannu byth!
     your_token: Eich tocyn mynediad
   auth:
-    agreement_html: Wrth glicio "Cofrestru" isod yr ydych yn cytuno i ddilyn <a href="%{rules_path}">y rheolau ar gyfer yr achos hwn</a> a <a href="%{terms_path}">ein termau gwasanaeth</a>.
     change_password: Cyfrinair
     confirm_email: Cadarnhau e-bost
     delete_account: Dileu cyfrif
@@ -529,13 +517,11 @@ cy:
     logout: Allgofnodi
     migrate_account: Symud i gyfrif gwahanol
     migrate_account_html: Os hoffech chi ailgyfeirio'r cyfrif hwn at un gwahanol, mae modd <a href="%{path}">ei ffurfweddu yma</a>.
-    or: neu
     or_log_in_with: Neu logiwch mewn a
     providers:
       cas: CAS
       saml: SAML
     register: Cofrestru
-    register_elsewhere: Cofrestru ar weinydd gwahanol
     resend_confirmation: Ailanfon cyfarwyddiadau cadarnhau
     reset_password: Ailosod cyfrinair
     security: Diogelwch
@@ -614,6 +600,10 @@ cy:
     lists: Rhestrau
     mutes: Yr ydych yn tawelu
     storage: Storio cyfryngau
+  featured_tags:
+    add_new: Ychwanegu
+    errors:
+      limit: Yr ydych yn barod wedi cynnwys yr uchafswm o hashnodau
   filters:
     contexts:
       home: Ffrwd gartref
@@ -630,22 +620,6 @@ cy:
       title: Hidlyddion
     new:
       title: Ychwanegu hidlydd newydd
-  followers:
-    domain: Parth
-    explanation_html: Os ydych am sicrhau preifatrwydd eich tŵtiau, rhaid i chi fod yn ymwybodol o bwy sy'n eich dilyn. <strong>Mae eich tŵtiau preifat yn cael eu hanfon at bob achos lle mae gennych ddilynwyr</strong>. Efallai hoffech chi i'w hadolygu o bryd i'w gilydd, a chael gwared ar ddilynwyr os nad ydych yn credu i'r staff neu'r meddalwedd ar yr achosion hynny barchu eich preifatrwydd.
-    followers_count: Nifer y dilynwyr
-    lock_link: Cloi eich cyfrif
-    purge: Dileu o dilynwyr
-    success:
-      few: Yn y broses o ysgafn-flocio defnyddwyr o %{count} parth...
-      many: Yn y broses o ysgafn-flocio defnyddwyr o %{count} parth...
-      one: Yn y broses o ysgafn-flocio dilynwyr o un parth...
-      other: Yn y broses o ysgafn-flocio defnyddwyr o %{count} parth...
-      two: Yn y broses o ysgafn-flocio defnyddwyr o %{count} parth...
-      zero: Yn y broses o ysgafn-flocio defnyddwyr o %{count} parth...
-    true_privacy_html: Cofiwch <strong>mai ond amgryptio pen-i-ben all sicrhau gwir breifatrwydd</strong>.
-    unlocked_warning_html: Gall unrhywun eich dilyn yn syth i weld eich tŵtiau preifat. %{lock_link} i gael adolygu a gwrthod dilynwyr.
-    unlocked_warning_title: Nid yw eich cyfrif wedi ei gloi
   footer:
     developers: Datblygwyr
     more: Mwy…
@@ -662,6 +636,9 @@ cy:
       two: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
       zero: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
   imports:
+    modes:
+      merge: Cyfuno
+      merge_long: Cadw'r cofnodau presennol ac ychwanegu rhai newydd
     preface: Mae modd mewnforio data yr ydych wedi allforio o achos arall, megis rhestr o bobl yr ydych yn ei ddilyn neu yn blocio.
     success: Uwchlwythwyd eich data yn llwyddiannus ac fe fydd yn cael ei brosesu mewn da bryd
     types:
@@ -831,14 +808,11 @@ cy:
     development: Datblygu
     edit_profile: Golygu proffil
     export: Allforio data
-    followers: Dilynwyr awdurdodedig
     import: Mewnforio
     migrate: Mudo cyfrif
     notifications: Hysbysiadau
     preferences: Dewisiadau
-    settings: Gosodiadau
     two_factor_authentication: Awdurdodi dau-gam
-    your_apps: Eich rhaglenni
   statuses:
     attached:
       description: 'Ynghlwm: %{attached}'

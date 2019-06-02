@@ -51,9 +51,9 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
     # Also, Avoid getting slow by not narrowing down by `statuses.account_id`.
     # When narrowing down by `statuses.account_id`, `index_statuses_20180106` will be used
     # and the table will be joined by `Merge Semi Join`, so the query will be slow.
-    Status.joins(:media_attachments).merge(@account.media_attachments).permitted_for(@account, current_account)
-          .paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
-          .reorder(id: :desc).distinct(:id).pluck(:id)
+    @account.statuses.joins(:media_attachments).merge(@account.media_attachments).permitted_for(@account, current_account)
+            .paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
+            .reorder(id: :desc).distinct(:id).pluck(:id)
   end
 
   def pinned_scope
@@ -69,7 +69,13 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def hashtag_scope
-    Status.tagged_with(Tag.find_by(name: params[:tagged])&.id)
+    tag = Tag.find_normalized(params[:tagged])
+
+    if tag
+      Status.tagged_with(tag.id)
+    else
+      Status.none
+    end
   end
 
   def pagination_params(core_params)

@@ -6,7 +6,7 @@
     .sidebar-wrapper
       .sidebar
         = link_to root_path do
-          = image_tag asset_pack_path('logo.svg'), class: 'logo', alt: 'Mastodon'
+          = image_pack_tag 'logo.svg', class: 'logo', alt: 'Mastodon'
 
         = render_navigation
     .content-wrapper

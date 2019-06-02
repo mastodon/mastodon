@@ -292,3 +292,29 @@
 .directory__tag .trends__item__current {
   width: auto;
 }
+
+.pending-account {
+  &__header {
+    color: $darker-text-color;
+
+    a {
+      color: $ui-secondary-color;
+      text-decoration: none;
+
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+
+    strong {
+      color: $primary-text-color;
+      font-weight: 700;
+    }
+  }
+
+  &__body {
+    margin-top: 10px;
+  }
+}

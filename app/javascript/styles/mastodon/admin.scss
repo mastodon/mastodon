@@ -50,6 +50,7 @@ $content-width: 840px;
         color: $darker-text-color;
         text-decoration: none;
         transition: all 200ms linear;
+        transition-property: color, background-color;
         border-radius: 4px 0 0 4px;
 
         i.fa {
@@ -60,6 +61,7 @@ $content-width: 840px;
           color: $primary-text-color;
           background-color: darken($ui-base-color, 5%);
           transition: all 100ms linear;
+          transition-property: color, background-color;
         }
 
         &.selected {
@@ -218,6 +220,11 @@ $content-width: 840px;
 
     .negative-hint {
       color: $error-value-color;
+      font-weight: 500;
+    }
+
+    .neutral-hint {
+      color: $dark-text-color;
       font-weight: 500;
     }
   }
@@ -688,4 +695,12 @@ a.name-tag,
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.ellipsized-ip {
+  display: inline-block;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
 }

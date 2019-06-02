@@ -1,6 +1,5 @@
 - content_for :header_tags do
-  - if @account.user&.setting_noindex
-    %meta{ name: 'robots', content: 'noindex' }/
+  %meta{ name: 'robots', content: 'noindex' }/
 
 .form-container
   .follow-prompt
@@ -18,4 +17,4 @@
 
     %p.hint.subtle-hint
       = t('remote_follow.reason_html', instance: site_hostname)
-      = t('remote_follow.no_account_html', sign_up_path: open_registrations? ? new_user_registration_path : 'https://joinmastodon.org/#getting-started')
+      = t('remote_follow.no_account_html', sign_up_path: available_sign_up_path)

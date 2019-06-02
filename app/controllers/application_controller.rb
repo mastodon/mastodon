@@ -151,6 +151,11 @@ class ApplicationController < ActionController::Base
     response.headers['Vary'] = 'Accept'
   end
 
+  def mark_cacheable!
+    skip_session!
+    expires_in 0, public: true
+  end
+
   def skip_session!
     request.session_options[:skip] = true
   end

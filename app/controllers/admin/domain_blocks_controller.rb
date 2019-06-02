@@ -13,13 +13,25 @@ module Admin
       authorize :domain_block, :create?
 
       @domain_block = DomainBlock.new(resource_params)
+      existing_domain_block = resource_params[:domain].present? ? DomainBlock.find_by(domain: resource_params[:domain]) : nil
 
-      if @domain_block.save
-        DomainBlockWorker.perform_async(@domain_block.id)
-        log_action :create, @domain_block
-        redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
-      else
+      if existing_domain_block.present? && !@domain_block.stricter_than?(existing_domain_block)
+        @domain_block.save
+        flash[:alert] = I18n.t('admin.domain_blocks.existing_domain_block_html', name: existing_domain_block.domain, unblock_url: admin_domain_block_path(existing_domain_block)).html_safe # rubocop:disable Rails/OutputSafety
+        @domain_block.errors[:domain].clear
         render :new
+      else
+        if existing_domain_block.present?
+          @domain_block = existing_domain_block
+          @domain_block.update(resource_params)
+        end
+        if @domain_block.save
+          DomainBlockWorker.perform_async(@domain_block.id)
+          log_action :create, @domain_block
+          redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
+        else
+          render :new
+        end
       end
     end
 

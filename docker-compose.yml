@@ -43,7 +43,7 @@ services:
       - external_network
       - internal_network
     healthcheck:
-      test: ["CMD-SHELL", "wget -q --spider --header 'x-forwarded-proto: https' --proxy off localhost:3000/api/v1/instance || exit 1"]
+      test: ["CMD-SHELL", "wget -q --spider --header 'x-forwarded-proto: https' --proxy=off localhost:3000/api/v1/instance || exit 1"]
     ports:
       - "127.0.0.1:3000:3000"
     depends_on:
@@ -63,7 +63,7 @@ services:
       - external_network
       - internal_network
     healthcheck:
-      test: ["CMD-SHELL", "wget -q --spider --header 'x-forwarded-proto: https' --proxy off localhost:4000/api/v1/streaming/health || exit 1"]
+      test: ["CMD-SHELL", "wget -q --spider --header 'x-forwarded-proto: https' --proxy=off localhost:4000/api/v1/streaming/health || exit 1"]
     ports:
       - "127.0.0.1:4000:4000"
     depends_on:

@@ -7,7 +7,6 @@ id:
     administered_by: 'Dikelola oleh:'
     api: API
     apps: Aplikasi hp
-    closed_registrations: Pendaftaran untuk server ini sedang ditutup. Tetapi, anda bisa mencari server lain untuk membuat akun dan mendapatkan akses dari jaringan yang sama di sana.
     contact: Kontak
     contact_missing: Belum diset
     contact_unavailable: Tidak Tersedia
@@ -15,19 +14,9 @@ id:
     extended_description_html: |
       <h3>Tempat yang baik untuk peraturan</h3>
       <p>Deskripsi lainnya belum diset.</p>
-    features:
-      humane_approach_body: Belajar dari kegagalan jaringan lain, Mastodon berupaya untuk membuat pilihan desain yang etis untuk melawan penyalahgunaan media sosial.
-      humane_approach_title: Pendekatan yang lebih manusiawi
-      not_a_product_body: Mastodon bukanlah jaringan komersil. Tidak ada iklan, tidak ada pengumpulan data, tidak ada batasan vendor. Tidak ada otoritas terpusat.
-      not_a_product_title: Anda adalah orang, bukanlah sebuah produk
-      real_conversation_body: Dengan 500 karakter dan dukungan konten granular dan peringatan media, anda dapat mengekspresikan diri anda sendiri sesuai yang anda mau.
-      real_conversation_title: Dibangun untuk percakapan yang sebenarnya
-      within_reach_body: Berbagai aplikasi untuk iOS, Android, dan platform lainnya berkat ekosistem API yang ramah pada pengembang untuk tetap terhubung dengan teman-teman anda dimanapun.
-      within_reach_title: Selalu dalam jangkauan
     generic_description: "%{domain} adalah satu server dalam jaringan"
     hosted_on: Mastodon dihosting di %{domain}
     learn_more: Pelajari selengkapnya
-    other_instances: Daftar Server
     privacy_policy: Kebijakan Privasi
     source_code: Kode sumber
     status_count_after:
@@ -215,8 +204,6 @@ id:
         closed_message:
           desc_html: Ditampilkan pada halaman depan saat pendaftaran ditutup<br>Anda bisa menggunakan tag HTML
           title: Pesan penutupan pendaftaran
-        open:
-          title: Pendaftaran terbuka
       site_description:
         desc_html: Ditampilkan sebagai sebuah paragraf di halaman depan dan digunakan sebagai tag meta.<br>Anda bisa menggunakan tag HTML, khususnya <code>&lt;a&gt;</code> dan <code>&lt;em&gt;</code>.
         title: Deskripsi situs
@@ -279,18 +266,6 @@ id:
     follows: Anda ikuti
     mutes: Anda bisukan
     storage: Penyimpanan media
-  followers:
-    domain: Domain
-    explanation_html: Jika anda ingin memastikan privasi dari status anda, anda harus tahu siapa yang mengikuti anda. <strong>Status pribadi anda dikirim ke semua server dimana pengikut anda berada</strong>. Anda mungkin ingin untuk mengkaji ulang dan menghapus pengikut jika anda tidak mempercayai bahwa privasi anda di tangan staf atau software di server tersebut.
-    followers_count: Jumlah pengikut
-    lock_link: Kunci akun anda
-    purge: Hapus dari pengikut
-    success:
-      one: Dalam proses memblokir pengikut dari satu domain...
-      other: Dalam proses memblokir pengikut dari %{count} domain...
-    true_privacy_html: Mohon diingat bahwa <strong>privasi yang sebenarnya hanya dapat dicapai dengan enkripsi end-to-end</strong>.
-    unlocked_warning_html: Semua orang dapat mengikuti anda untuk langsung dapat melihat status pribadi anda. %{lock_link} untuk dapat meninjau dan menolak calon pengikut.
-    unlocked_warning_title: Akun anda tidak dikunci
   generic:
     changes_saved_msg: Perubahan berhasil disimpan!
     save_changes: Simpan perubahan
@@ -357,10 +332,8 @@ id:
     back: Kembali ke Mastodon
     edit_profile: Ubah profil
     export: Expor data
-    followers: Pengikut yang diizinkan
     import: Impor
     preferences: Pilihan
-    settings: Pengaturan
     two_factor_authentication: Autentikasi Two-factor
   statuses:
     open_in_web: Buka di web

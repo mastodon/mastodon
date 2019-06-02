@@ -1,17 +1,25 @@
 %tr
   %td
-    = invite.uses
-    = " / #{invite.max_uses}" unless invite.max_uses.nil?
-  %td
-    - if invite.expired?
-      = t('invites.expired')
-    - else
+    .input-copy
+      .input-copy__wrapper
+        %input{ type: :text, maxlength: '999', spellcheck: 'false', readonly: 'true', value: public_invite_url(invite_code: invite.code) }
+      %button{ type: :button }= t('generic.copy')
+
+  - if invite.valid_for_use?
+    %td
+      = fa_icon 'user fw'
+      = invite.uses
+      = " / #{invite.max_uses}" unless invite.max_uses.nil?
+    %td
       - if invite.expires_at.nil?
         ∞
       - else
         %time.formatted{ datetime: invite.expires_at.iso8601, title: l(invite.expires_at) }
           = l invite.expires_at
-  %td= table_link_to 'link', public_invite_url(invite_code: invite.code), public_invite_url(invite_code: invite.code)
+  - else
+    %td{ colspan: 2 }
+      = t('invites.expired')
+
   %td
-    - if !invite.expired? && policy(invite).destroy?
+    - if invite.valid_for_use? && policy(invite).destroy?
       = table_link_to 'times', t('invites.delete'), invite_path(invite), method: :delete

@@ -34,6 +34,11 @@ export function showAlertForError(error) {
   if (error.response) {
     const { data, status, statusText } = error.response;
 
+    if (status === 404 || status === 410) {
+      // Skip these errors as they are reflected in the UI
+      return {};
+    }
+
     let message = statusText;
     let title   = `${status}`;
 

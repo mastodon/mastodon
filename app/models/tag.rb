@@ -64,9 +64,21 @@ class Tag < ApplicationRecord
   end
 
   class << self
-    def search_for(term, limit = 5)
+    def search_for(term, limit = 5, offset = 0)
       pattern = sanitize_sql_like(term.strip) + '%'
-      Tag.where('lower(name) like lower(?)', pattern).order(:name).limit(limit)
+
+      Tag.where('lower(name) like lower(?)', pattern)
+         .order(:name)
+         .limit(limit)
+         .offset(offset)
+    end
+
+    def find_normalized(name)
+      find_by(name: name.mb_chars.downcase.to_s)
+    end
+
+    def find_normalized!(name)
+      find_normalized(name) || raise(ActiveRecord::RecordNotFound)
     end
   end
 
