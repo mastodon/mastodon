@@ -335,32 +335,31 @@ class ComposeForm extends ImmutablePureComponent {
           />
         </div>
 
-        <div className='composer--textarea'>
-          <TextareaIcons advancedOptions={advancedOptions} />
-
-          <AutosuggestTextarea
-            ref={this.setAutosuggestTextarea}
-            placeholder={intl.formatMessage(messages.placeholder)}
-            disabled={isSubmitting}
-            value={this.props.text}
-            onChange={this.handleChange}
-            suggestions={this.props.suggestions}
-            onFocus={this.handleFocus}
-            onKeyDown={this.handleKeyDown}
-            onSuggestionsFetchRequested={onFetchSuggestions}
-            onSuggestionsClearRequested={onClearSuggestions}
-            onSuggestionSelected={this.onSuggestionSelected}
-            onPaste={onPaste}
-            autoFocus={!showSearch && !isMobile(window.innerWidth, layout)}
-          />
-
+        <div className='emoji-picker-wrapper'>
           <EmojiPicker onPickEmoji={handleEmoji} />
         </div>
 
-        <div className='compose-form__modifiers'>
-          <UploadFormContainer />
-          <PollFormContainer />
-        </div>
+        <AutosuggestTextarea
+          ref={this.setAutosuggestTextarea}
+          placeholder={intl.formatMessage(messages.placeholder)}
+          disabled={isSubmitting}
+          value={this.props.text}
+          onChange={this.handleChange}
+          suggestions={this.props.suggestions}
+          onFocus={this.handleFocus}
+          onKeyDown={this.handleKeyDown}
+          onSuggestionsFetchRequested={onFetchSuggestions}
+          onSuggestionsClearRequested={onClearSuggestions}
+          onSuggestionSelected={this.onSuggestionSelected}
+          onPaste={onPaste}
+          autoFocus={!showSearch && !isMobile(window.innerWidth, layout)}
+        >
+          <TextareaIcons advancedOptions={advancedOptions} />
+          <div className='compose-form__modifiers'>
+            <UploadFormContainer />
+            <PollFormContainer />
+          </div>
+        </AutosuggestTextarea>
 
         <OptionsContainer
           advancedOptions={advancedOptions}

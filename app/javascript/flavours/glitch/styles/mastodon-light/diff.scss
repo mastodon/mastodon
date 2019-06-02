@@ -125,7 +125,7 @@
 // Change the default color of several parts of the compose form
 .composer {
 
-  .composer--spoiler input, .composer--textarea textarea {
+  .composer--spoiler input, .compose-form__autosuggest-wrapper textarea {
     color: lighten($ui-base-color, 80%);
 
     &:disabled { background: lighten($simple-background-color, 10%) }

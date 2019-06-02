@@ -818,7 +818,8 @@
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: calc(100% - 10px);
+  overflow-y: hidden;
 
   .search__input {
     line-height: 18px;
@@ -834,14 +835,33 @@
   .navigation-bar {
     padding-top: 20px;
     padding-bottom: 20px;
+    flex: 0 1 48px;
+    min-height: 20px;
   }
 
   .flex-spacer {
     background: transparent;
   }
 
+  .compose-form {
+    flex: 1;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 310px;
+    padding-bottom: 71px;
+    margin-bottom: -71px;
+  }
+
+  .compose-form__autosuggest-wrapper {
+    overflow-y: auto;
+    background-color: $white;
+    border-radius: 4px 4px 0 0;
+    flex: 0 1 auto;
+  }
+
   .autosuggest-textarea__textarea {
-    max-height: 200px;
+    overflow-y: hidden;
   }
 
   .compose-form__upload-thumbnail {
@@ -851,6 +871,9 @@
 
 .navigation-panel {
   margin-top: 10px;
+  margin-bottom: 10px;
+  height: calc(100% - 20px);
+  overflow-y: auto;
 
   hr {
     border: 0;

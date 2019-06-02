@@ -12,7 +12,8 @@
   opacity: 0.0;
 
   &.composer--spoiler--visible {
-    height: 47px;
+    height: 36px;
+    margin-bottom: 11px;
     opacity: 1.0;
   }
 
@@ -98,6 +99,9 @@
   border-radius: 4px;
   padding: 10px;
   background: $ui-primary-color;
+  min-height: 23px;
+  overflow-y: auto;
+  flex: 0 2 auto;
 
   & > header {
     margin-bottom: 5px;
@@ -218,6 +222,7 @@
   position: absolute;
   right: 5px;
   top: 5px;
+  z-index: 1;
 
   ::-webkit-scrollbar-track:hover,
   ::-webkit-scrollbar-track:active {
@@ -225,7 +230,7 @@
   }
 }
 
-.composer--textarea,
+.compose-form__autosuggest-wrapper,
 .autosuggest-input {
   position: relative;
 
@@ -282,6 +287,12 @@
     text-align: center;
     opacity: .8;
   }
+}
+
+.emoji-picker-wrapper,
+.autosuggest-textarea__suggestions-wrapper {
+  position: relative;
+  height: 0;
 }
 
 .autosuggest-textarea__suggestions {
@@ -485,6 +496,7 @@
   box-shadow: inset 0 5px 5px rgba($base-shadow-color, 0.05);
   border-radius: 0 0 4px 4px;
   height: 27px;
+  flex: 0 0 auto;
 
   & > * {
     display: inline-block;
@@ -575,6 +587,7 @@
   text-align: right;
   white-space: nowrap;
   overflow: hidden;
+  justify-content: flex-end;
 
   & > .count {
     display: inline-block;
