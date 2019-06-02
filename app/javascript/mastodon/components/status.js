@@ -17,7 +17,7 @@ import { HotKeys } from 'react-hotkeys';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import PollContainer from 'mastodon/containers/poll_container';
-import { displayMedia } from '../initial_state';
+import { displayMedia, ignoreLanguage } from '../initial_state';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -424,7 +424,7 @@ class Status extends ImmutablePureComponent {
               </a>
             </div>
 
-            <StatusContent status={status} onClick={this.handleClick} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} collapsable />
+            <StatusContent status={status} ignoreLang={ignoreLanguage} onClick={this.handleClick} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} collapsable />
 
             {media}
 
