@@ -200,29 +200,29 @@ class ComposeForm extends ImmutablePureComponent {
           />
         </div>
 
-        <div className='compose-form__autosuggest-wrapper'>
-          <AutosuggestTextarea
-            ref={this.setAutosuggestTextarea}
-            placeholder={intl.formatMessage(messages.placeholder)}
-            disabled={disabled}
-            value={this.props.text}
-            onChange={this.handleChange}
-            suggestions={this.props.suggestions}
-            onKeyDown={this.handleKeyDown}
-            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-            onSuggestionSelected={this.onSuggestionSelected}
-            onPaste={onPaste}
-            autoFocus={!showSearch && !isMobile(window.innerWidth)}
-          />
-
+        <div className='emoji-picker-wrapper'>
           <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
         </div>
 
-        <div className='compose-form__modifiers'>
-          <UploadFormContainer />
-          <PollFormContainer />
-        </div>
+        <AutosuggestTextarea
+          ref={this.setAutosuggestTextarea}
+          placeholder={intl.formatMessage(messages.placeholder)}
+          disabled={disabled}
+          value={this.props.text}
+          onChange={this.handleChange}
+          suggestions={this.props.suggestions}
+          onKeyDown={this.handleKeyDown}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          onSuggestionSelected={this.onSuggestionSelected}
+          onPaste={onPaste}
+          autoFocus={!showSearch && !isMobile(window.innerWidth)}
+        >
+          <div className='compose-form__modifiers'>
+            <UploadFormContainer />
+            <PollFormContainer />
+          </div>
+        </AutosuggestTextarea>
 
         <div className='compose-form__buttons-wrapper'>
           <div className='compose-form__buttons'>
