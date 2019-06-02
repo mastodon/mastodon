@@ -105,7 +105,7 @@ class UserSettingsDecorator
     settings['setting_default_language']
   end
 
-  def ignore_toot_language
+  def ignore_toot_language_preference
     boolean_cast_setting 'setting_ignore_toot_language'
   end
 
