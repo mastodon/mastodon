@@ -105,7 +105,7 @@ RSpec.describe NotifyService, type: :service do
     end
 
     it 'shows reblogs when disabled' do
-      recipient.follow!(sender, reblogs: true)
+      recipient.follow!(sender, reblogs: false)
       is_expected.to change(Notification, :count)
     end
   end
