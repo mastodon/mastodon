@@ -268,9 +268,34 @@
     padding: 10px;
     padding-top: 0;
 
-    .icon-button {
-      font-size: 14px;
-      font-weight: 500;
+    font-size: 14px;
+    font-weight: 500;
+
+    &.active {
+      color: $highlight-text-color;
+    }
+
+    input[type=checkbox] {
+      display: none;
+    }
+
+    .checkbox {
+      display: inline-block;
+      position: relative;
+      border: 1px solid $ui-primary-color;
+      box-sizing: border-box;
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      margin-right: 10px;
+      top: -1px;
+      border-radius: 4px;
+      vertical-align: middle;
+
+      &.active {
+        border-color: $highlight-text-color;
+        background: $highlight-text-color;
+      }
     }
   }
 
@@ -1384,6 +1409,15 @@ a.account__display-name {
   position: absolute;
   top: 10px;
   width: 48px;
+}
+
+.status__expand {
+  width: 68px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  cursor: pointer;
 }
 
 .muted {
@@ -4829,6 +4863,14 @@ a.status-card.compact:hover {
   border-radius: 4px;
   overflow: hidden;
   margin: 2px;
+
+  &__icons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+  }
 }
 
 .notification__filter-bar,
