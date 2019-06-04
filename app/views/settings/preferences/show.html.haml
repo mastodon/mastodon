@@ -47,6 +47,9 @@
       = f.input :setting_display_media, collection: ['default', 'show_all', 'hide_all'], wrapper: :with_label, include_blank: false, label_method: lambda { |item| t("simple_form.hints.defaults.setting_display_media_#{item}") }, hint: false
 
   .fields-group
+    = f.input :setting_advanced_layout, as: :boolean, wrapper: :with_label
+
+  .fields-group
     = f.input :setting_unfollow_modal, as: :boolean, wrapper: :with_label
     = f.input :setting_boost_modal, as: :boolean, wrapper: :with_label
     = f.input :setting_delete_modal, as: :boolean, wrapper: :with_label

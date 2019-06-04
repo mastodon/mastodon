@@ -3,6 +3,39 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [2.8.4] - 2019-05-24
+### Fixed
+
+- Fix delivery not retrying on some inbox errors that should be retriable ([ThibG](https://github.com/tootsuite/mastodon/pull/10812))
+- Fix unnecessary 5 minute cooldowns on signature verifications in some cases ([ThibG](https://github.com/tootsuite/mastodon/pull/10813))
+- Fix possible race condition when processing statuses ([ThibG](https://github.com/tootsuite/mastodon/pull/10815))
+
+### Security
+
+- Require specific OAuth scopes for specific endpoints of the streaming API, instead of merely requiring a token for all endpoints, and allow using WebSockets protocol negotiation to specify the access token instead of using a query string ([ThibG](https://github.com/tootsuite/mastodon/pull/10818))
+
+## [2.8.3] - 2019-05-19
+### Added
+
+- Add `og:image:alt` OpenGraph tag ([BenLubar](https://github.com/tootsuite/mastodon/pull/10779))
+- Add clickable area below avatar in statuses in web UI ([Dar13](https://github.com/tootsuite/mastodon/pull/10766))
+- Add crossed-out eye icon on account gallery in web UI ([Kjwon15](https://github.com/tootsuite/mastodon/pull/10715))
+- Add media description tooltip to thumbnails in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/10713))
+
+### Changed
+
+- Change "mark as sensitive" button into a checkbox for clarity ([ThibG](https://github.com/tootsuite/mastodon/pull/10748))
+
+### Fixed
+
+- Fix bug allowing users to publicly boost their private statuses ([ThibG](https://github.com/tootsuite/mastodon/pull/10775), [ThibG](https://github.com/tootsuite/mastodon/pull/10783))
+- Fix performance in formatter by a little ([ThibG](https://github.com/tootsuite/mastodon/pull/10765))
+- Fix some colors in the light theme ([yuzulabo](https://github.com/tootsuite/mastodon/pull/10754))
+- Fix some colors of the high contrast theme ([yuzulabo](https://github.com/tootsuite/mastodon/pull/10711))
+- Fix ambivalent active state of poll refresh button in web UI ([MaciekBaron](https://github.com/tootsuite/mastodon/pull/10720))
+- Fix duplicate posting being possible from web UI ([hinaloe](https://github.com/tootsuite/mastodon/pull/10785))
+- Fix "invited by" not showing up in admin UI ([ThibG](https://github.com/tootsuite/mastodon/pull/10791))
+
 ## [2.8.2] - 2019-05-05
 ### Added
 
