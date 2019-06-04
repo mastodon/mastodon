@@ -3,8 +3,8 @@ version: 1
 update_configs:
   - package_manager: "ruby:bundler"
     directory: "/"
-    update_schedule: "live"
+    update_schedule: "weekly"
 
   - package_manager: "javascript"
     directory: "/"
-    update_schedule: "live"
+    update_schedule: "weekly"
