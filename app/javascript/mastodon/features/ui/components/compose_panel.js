@@ -9,9 +9,6 @@ const ComposePanel = () => (
     <SearchContainer openInRoute />
     <NavigationContainer />
     <ComposeFormContainer />
-
-    <div className='flex-spacer' />
-
     <LinkFooter withHotkeys />
   </div>
 );
