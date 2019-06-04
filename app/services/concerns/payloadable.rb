@@ -14,6 +14,6 @@ module Payloadable
   end
 
   def signing_enabled?
-    true
+    !Rails.configuration.x.whitelist_mode
   end
 end
