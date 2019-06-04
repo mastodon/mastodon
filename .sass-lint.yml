@@ -1,10 +1,10 @@
 # Linter Documentation:
-# https://github.com/brigade/scss-lint/blob/v0.42.2/lib/scss_lint/linter/README.md
+# https://github.com/sasstools/sass-lint/tree/v1.13.1/docs/options
 
-scss_files: 'app/javascript/styles/**/*.scss'
-
-exclude:
-  - app/javascript/styles/reset.scss
+files:
+  include: app/javascript/styles/**/*.scss
+  ignore:
+    - app/javascript/styles/reset.scss
 
 linters:
   # Reports when you use improper spacing around ! (the "bang") in !default,
