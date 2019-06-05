@@ -33,10 +33,9 @@ const messages = defineMessages({
 export default @injectIntl
 class ComposeForm extends ImmutablePureComponent {
 
-  constructor(props) {
-    super(props);
-    this.composeForm = React.createRef();
-  }
+  setRef = c => {
+    this.composeForm = c;
+  };
 
   static contextTypes = {
     router: PropTypes.object,
@@ -120,7 +119,7 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   handleFocus = () => {
-    this.composeForm.current.scrollIntoView();
+    this.composeForm.scrollIntoView();
   }
 
   componentDidUpdate (prevProps) {
@@ -186,7 +185,7 @@ class ComposeForm extends ImmutablePureComponent {
     }
 
     return (
-      <div className='compose-form' ref={this.composeForm}>
+      <div className='compose-form' ref={this.setRef}>
         <WarningContainer />
 
         <ReplyIndicatorContainer />
