@@ -28,6 +28,10 @@ const messages = defineMessages({
 export default @injectIntl
 class ComposeForm extends ImmutablePureComponent {
 
+  setRef = c => {
+    this.composeForm = c;
+  };
+
   static contextTypes = {
     router: PropTypes.object,
   };
@@ -208,6 +212,10 @@ class ComposeForm extends ImmutablePureComponent {
     }
   }
 
+  handleFocus = () => {
+    this.composeForm.scrollIntoView();
+  }
+
   //  This statement does several things:
   //  - If we're beginning a reply, and,
   //      - Replying to zero or one users, places the cursor at the end
@@ -302,7 +310,7 @@ class ComposeForm extends ImmutablePureComponent {
     let disabledButton = isSubmitting || isUploading || isChangingUpload || (!text.trim().length && !anyMedia);
 
     return (
-      <div className='composer'>
+      <div className='composer' ref={this.setRef}>
         <WarningContainer />
 
         <ReplyIndicatorContainer />
@@ -337,6 +345,7 @@ class ComposeForm extends ImmutablePureComponent {
             value={this.props.text}
             onChange={this.handleChange}
             suggestions={this.props.suggestions}
+            onFocus={this.handleFocus}
             onKeyDown={this.handleKeyDown}
             onSuggestionsFetchRequested={onFetchSuggestions}
             onSuggestionsClearRequested={onClearSuggestions}
