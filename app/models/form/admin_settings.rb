@@ -108,6 +108,8 @@ class Form::AdminSettings
     :site_extended_description=,
     :site_terms,
     :site_terms=,
+    :max_bio_chars,
+    :max_bio_chars=,
     :max_toot_chars,
     :max_toot_chars=,
     :open_registrations,
