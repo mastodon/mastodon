@@ -25,7 +25,6 @@ import search from './search';
 import media_attachments from './media_attachments';
 import notifications from './notifications';
 import height_cache from './height_cache';
-import tutorial from './tutorial';
 import custom_emojis from './custom_emojis';
 import lists from './lists';
 import listEditor from './list_editor';
@@ -61,7 +60,6 @@ const reducers = {
   media_attachments,
   notifications,
   height_cache,
-  tutorial,
   custom_emojis,
   lists,
   listEditor,

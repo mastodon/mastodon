@@ -53,8 +53,6 @@ import { previewState } from './components/media_modal';
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
 
-import TutorialContainer from '../tutorial/containers/tutorial_container';
-
 const messages = defineMessages({
   beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
 });
@@ -484,7 +482,6 @@ class UI extends React.PureComponent {
           <NotificationsContainer />
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
-          <TutorialContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
         </div>
       </HotKeys>
