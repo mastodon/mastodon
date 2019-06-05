@@ -27,7 +27,7 @@ class StatusesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        unless user_signed_in?
+        if current_account.nil?
           skip_session!
           expires_in 10.seconds, public: true
         end
