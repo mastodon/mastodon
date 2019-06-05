@@ -15,19 +15,13 @@ class StreamEntriesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        unless user_signed_in?
-          skip_session!
-          expires_in 5.minutes, public: true
-        end
+        expires_in 5.minutes, public: true unless @stream_entry.hidden?
 
         redirect_to short_account_status_url(params[:account_username], @stream_entry.activity) if @type == 'status'
       end
 
       format.atom do
-        unless @stream_entry.hidden?
-          skip_session!
-          expires_in 3.minutes, public: true
-        end
+        expires_in 3.minutes, public: true unless @stream_entry.hidden?
 
         render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.entry(@stream_entry, true))
       end
