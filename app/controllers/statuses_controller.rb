@@ -38,8 +38,6 @@ class StatusesController < ApplicationController
       end
 
       format.json do
-        mark_cacheable! unless @stream_entry.hidden?
-
         render_cached_json(['activitypub', 'note', @status], content_type: 'application/activity+json', public: !@stream_entry.hidden?) do
           ActiveModelSerializers::SerializableResource.new(@status, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter)
         end
