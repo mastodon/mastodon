@@ -2,12 +2,21 @@
 sr:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Можете користити синтаксу труба, као што су нпр. УРЛ-ова, тарабе и помињања
+      admin_account_action:
+        send_email_notification: Корисник ће добити објашњење тога шта му се десило са налога
+        text_html: Опционално. Можете користити синтаксу труба. Можете <a href="%{path}">додати упозоравајућа преподешавање</a> да сачувате време
+        type_html: Изаберите шта да радите са <strong>%{acct}</strong>
+        warning_preset_id: Опционално. Можете и даље додати прилагођени текст на крај пресета
       defaults:
         autofollow: Особе које се пријаве кроз позивнице ће вас аутоматски запратити
         avatar: PNG, GIF или JPG. Највише %{size}. Биће смањена на %{dimensions}px
         bot: Овај налог углавном врши аутоматизоване радње и можда се не надгледа
         context: Један или више контекста у којима треба да се примени филтер
         digest: Послато после дужег периода неактивности са прегледом свих битних ствари које сте добили док сте били одсутни
+        discoverable_html: <a href="%{path}" target="_blank">Директоријум</a> омогућава људима да пронађу налоге засноване на интересима и активности.  Захтева бар %{min_followers} пратиоца
+        email: Биће вам послата е-пошта са потврдом
         fields: Можете имати до 4 ставке приказане као табела на вашем профилу
         header: PNG, GIF или JPG. Највише %{size}. Биће смањена на %{dimensions}px
         inbox_url: Копирајте URL са насловне стране релеја који желите користити
@@ -17,10 +26,15 @@ sr:
         password: Користите најмање 8 знакова
         phrase: Биће упарена без обзира на велико или мало слово у тексту или упозорења о садржају трубе
         scopes: Којим API-јима ће апликација дозволити приступ. Ако изаберете опсег највишег нивоа, не морате одабрати појединачне.
+        setting_aggregate_reblogs: Не показуј нова дељења за трубе које су недавно подељене (утиче само на недавно примљена дељења)
         setting_default_language: Језик ваших труба може бити аутоматски откривен, али није увек прецизан
+        setting_display_media_default: Сакриј медије означене као осетљиве
+        setting_display_media_hide_all: Увек сакриј све медије
+        setting_display_media_show_all: Увек прикажи медије означене као осетљиве
         setting_hide_network: Кога пратите и ко вас прати неће бити приказано на вашем профилу
         setting_noindex: Утиче на Ваш јавни профил и статусне стране
         setting_theme: Утиче како ће Мастодонт изгледати када сте пријављени са било ког уређаја.
+        username: Ваш надимак ће бити јединствен на %{domain}
         whole_word: Када је кључна реч или фраза искључиво алфанумеричка, биће примењена само ако се подудара са целом речи
       imports:
         data: CSV фајл извезен са друге Мастодонт инстанце
@@ -33,6 +47,18 @@ sr:
         fields:
           name: Етикета
           value: Садржај
+      account_warning_preset:
+        text: Текст пресета
+      admin_account_action:
+        send_email_notification: Обавести корисника преко е-поште
+        text: Прилагођено упозорење
+        type: Радња
+        types:
+          disable: Онемогући
+          none: Не ради ништа
+          silence: Утишај
+          suspend: Обуставите и неповратно избришите податке о налогу
+        warning_preset_id: Користи упозоравајући пресет
       defaults:
         autofollow: Позовите да прати ваш налог
         avatar: Аватар
@@ -43,6 +69,7 @@ sr:
         context: Филтрирај контексте
         current_password: Тренутна лозинка
         data: Подаци
+        discoverable: Наведите овај налог у фасцикли
         display_name: Име за приказ
         email: Адреса е-поште
         expires_in: Истиче након
@@ -58,12 +85,18 @@ sr:
         otp_attempt: Двофакторски код
         password: Лозинка
         phrase: Кључна реч или фраза
+        setting_aggregate_reblogs: Групиши дељења у временским линијама
         setting_auto_play_gif: Аутоматски пуштај анимиране GIF-ове
         setting_boost_modal: Прикажи дијалог за потврду пре давања подршке
         setting_default_language: Језик објављивања
         setting_default_privacy: Приватност објава
         setting_default_sensitive: Увек означи мултимедију као осетљиву
         setting_delete_modal: Прикажи дијалог за потврду пре брисања тута
+        setting_display_media: Приказ медија
+        setting_display_media_default: Подразумевано
+        setting_display_media_hide_all: Сакриј све
+        setting_display_media_show_all: Прикажи све
+        setting_expand_spoilers: Увек прошити трубе које су означене упозорењем садржаја
         setting_hide_network: Сакриј своју мрежу
         setting_noindex: Одјави се од индексирања search engine-а
         setting_reduce_motion: Смањи покрете у анимацијама

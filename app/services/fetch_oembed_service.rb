@@ -43,7 +43,7 @@ class FetchOEmbedService
       res.code != 200 ? nil : res.body_with_limit
     end
 
-    validate(parse_for_format(body)) unless body.nil?
+    validate(parse_for_format(body)) if body.present?
   rescue Oj::ParseError, Ox::ParseError
     nil
   end

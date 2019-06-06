@@ -19,28 +19,15 @@ class Pubsubhubbub::SubscribeService < BaseService
   private
 
   def process_subscribe
-    case subscribe_status
-    when :invalid_topic
+    if account.nil?
       ['Invalid topic URL', 422]
-    when :invalid_callback
+    elsif !valid_callback?
       ['Invalid callback URL', 422]
-    when :callback_not_allowed
+    elsif blocked_domain?
       ['Callback URL not allowed', 403]
-    when :valid
+    else
       confirm_subscription
       ['', 202]
-    end
-  end
-
-  def subscribe_status
-    if account.nil?
-      :invalid_topic
-    elsif !valid_callback?
-      :invalid_callback
-    elsif blocked_domain?
-      :callback_not_allowed
-    else
-      :valid
     end
   end
 
@@ -58,12 +45,7 @@ class Pubsubhubbub::SubscribeService < BaseService
   end
 
   def locate_subscription
-    subscription = Subscription.find_by(account: account, callback_url: callback)
-
-    if subscription.nil?
-      subscription = Subscription.new(account: account, callback_url: callback)
-    end
-
+    subscription = Subscription.find_or_initialize_by(account: account, callback_url: callback)
     subscription.domain = domain
     subscription.save!
     subscription

@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import StatusListContainer from './containers/status_list_container';
+import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import ColumnSettingsContainer from './containers/column_settings_container';
-import { expandHashtagTimeline } from '../../actions/timelines';
+import ShowLocalSettingsContainer from './containers/show_local_settings_container';
+import { expandHashtagTimeline, clearTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { FormattedMessage } from 'react-intl';
 import { connectHashtagStream } from '../../actions/streaming';
+import { isEqual } from 'lodash';
 
 const mapStateToProps = (state, props) => ({
   hasUnread: state.getIn(['timelines', `hashtag:${props.params.id}`, 'unread']) > 0,
@@ -17,6 +19,8 @@ const mapStateToProps = (state, props) => ({
 
 export default @connect(mapStateToProps)
 class HashtagTimeline extends React.PureComponent {
+
+  disconnects = [];
 
   static propTypes = {
     params: PropTypes.object.isRequired,
@@ -38,6 +42,30 @@ class HashtagTimeline extends React.PureComponent {
     }
   }
 
+  title = () => {
+    let title = [this.props.params.id];
+    if (this.additionalFor('any')) {
+      title.push(' ', <FormattedMessage id='hashtag.column_header.tag_mode.any'  values={{ additional: this.additionalFor('any') }} defaultMessage='or {additional}' />);
+    }
+    if (this.additionalFor('all')) {
+      title.push(' ', <FormattedMessage id='hashtag.column_header.tag_mode.all'  values={{ additional: this.additionalFor('all') }} defaultMessage='and {additional}' />);
+    }
+    if (this.additionalFor('none')) {
+      title.push(' ', <FormattedMessage id='hashtag.column_header.tag_mode.none' values={{ additional: this.additionalFor('none') }} defaultMessage='without {additional}' />);
+    }
+    return title;
+  }
+
+  additionalFor = (mode) => {
+    const { tags } = this.props.params;
+
+    if (tags && (tags[mode] || []).length > 0) {
+      return tags[mode].map(tag => tag.value).join('/');
+    } else {
+      return '';
+    }
+  }
+
   handleMove = (dir) => {
     const { columnId, dispatch } = this.props;
     dispatch(moveColumn(columnId, dir));
@@ -47,30 +75,41 @@ class HashtagTimeline extends React.PureComponent {
     this.column.scrollTop();
   }
 
-  _subscribe (dispatch, id, isLocal) {
-    this.disconnect = dispatch(connectHashtagStream(id, isLocal));
+  _subscribe (dispatch, id, isLocal, tags = {}) {
+    let any  = (tags.any || []).map(tag => tag.value);
+    let all  = (tags.all || []).map(tag => tag.value);
+    let none = (tags.none || []).map(tag => tag.value);
+
+    [id, ...any].map((tag) => {
+      this.disconnects.push(dispatch(connectHashtagStream(id, tag, isLocal, (status) => {
+        let tags = status.tags.map(tag => tag.name);
+        return all.filter(tag => tags.includes(tag)).length === all.length &&
+               none.filter(tag => tags.includes(tag)).length === 0;
+      })));
+    });
   }
 
   _unsubscribe () {
-    if (this.disconnect) {
-      this.disconnect();
-      this.disconnect = null;
-    }
+    this.disconnects.map(disconnect => disconnect());
+    this.disconnects = [];
   }
 
   componentDidMount () {
     const { dispatch, isLocal } = this.props;
-    const { id } = this.props.params;
+    const { id, tags } = this.props.params;
 
-    dispatch(expandHashtagTimeline(id, isLocal));
-    this._subscribe(dispatch, id, isLocal);
+    dispatch(expandHashtagTimeline(id, { isLocal, tags }));
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.params.id !== this.props.params.id || nextProps.isLocal !== this.props.isLocal) {
-      this.props.dispatch(expandHashtagTimeline(nextProps.params.id, nextProps.isLocal));
+    const { dispatch, params } = this.props;
+    const { isLocal } = nextProps;
+    const { id, tags } = nextProps.params;
+    if (id !== params.id || this.props.isLocal !== isLocal || !isEqual(tags, params.tags)) {
       this._unsubscribe();
-      this._subscribe(this.props.dispatch, nextProps.params.id, nextProps.isLocal);
+      this._subscribe(dispatch, id, isLocal, tags);
+      this.props.dispatch(clearTimeline(`hashtag:${id}`));
+      this.props.dispatch(expandHashtagTimeline(id, { isLocal, tags }));
     }
   }
 
@@ -83,7 +122,9 @@ class HashtagTimeline extends React.PureComponent {
   }
 
   handleLoadMore = maxId => {
-    this.props.dispatch(expandHashtagTimeline(this.props.params.id, { maxId, isLocal: this.props.isLocal }));
+    const { isLocal } = this.props;
+    const { id, tags } = this.props.params;
+    this.props.dispatch(expandHashtagTimeline(id, { maxId, isLocal, tags }));
   }
 
   render () {
@@ -96,7 +137,7 @@ class HashtagTimeline extends React.PureComponent {
         <ColumnHeader
           icon='hashtag'
           active={hasUnread}
-          title={id}
+          title={this.title()}
           onPin={this.handlePin}
           onMove={this.handleMove}
           onClick={this.handleHeaderClick}
@@ -104,9 +145,10 @@ class HashtagTimeline extends React.PureComponent {
           multiColumn={multiColumn}
           showBackButton
         >
-          <ColumnSettingsContainer
+          <ShowLocalSettingsContainer
             tag={id}
           />
+          {columnId && <ColumnSettingsContainer columnId={columnId} />}
         </ColumnHeader>
 
         <StatusListContainer

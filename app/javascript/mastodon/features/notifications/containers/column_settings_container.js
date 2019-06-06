@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { defineMessages, injectIntl } from 'react-intl';
 import ColumnSettings from '../components/column_settings';
 import { changeSetting } from '../../../actions/settings';
+import { setFilter } from '../../../actions/notifications';
 import { clearNotifications } from '../../../actions/notifications';
 import { changeAlerts as changePushNotifications } from '../../../actions/push_notifications';
 import { openModal } from '../../../actions/modal';
@@ -21,6 +22,9 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onChange (path, checked) {
     if (path[0] === 'push') {
       dispatch(changePushNotifications(path.slice(1), checked));
+    } else if (path[0] === 'quickFilter') {
+      dispatch(changeSetting(['notifications', ...path], checked));
+      dispatch(setFilter('all'));
     } else {
       dispatch(changeSetting(['notifications', ...path], checked));
     }

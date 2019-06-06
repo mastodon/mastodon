@@ -1,0 +1,11 @@
+- content_for :page_title do
+  = t('admin.warning_presets.edit_preset')
+
+= simple_form_for @warning_preset, url: admin_warning_preset_path(@warning_preset) do |f|
+  = render 'shared/error_messages', object: @warning_preset
+
+  .fields-group
+    = f.input :text, wrapper: :with_block_label
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit

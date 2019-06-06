@@ -22,7 +22,7 @@ class InstancePresenter
   end
 
   def status_count
-    Rails.cache.fetch('local_status_count') { Account.local.sum(:statuses_count) }
+    Rails.cache.fetch('local_status_count') { Account.local.joins(:account_stat).sum('account_stats.statuses_count') }.to_i
   end
 
   def domain_count

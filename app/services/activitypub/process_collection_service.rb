@@ -27,7 +27,7 @@ class ActivityPub::ProcessCollectionService < BaseService
   private
 
   def different_actor?
-    @json['actor'].present? && value_or_id(@json['actor']) != @account.uri && @json['signature'].present?
+    @json['actor'].present? && value_or_id(@json['actor']) != @account.uri
   end
 
   def process_items(items)

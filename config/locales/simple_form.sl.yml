@@ -13,5 +13,92 @@ sl:
         header: PNG, GIF ali JPG. Največ %{size}. Zmanjšana bo na %{dimensions}px
         inbox_url: Kopirajte URL naslov s prve strani releja, ki ga želite uporabiti
         irreversible: Filtrirani trobi bodo nepovratno izginili, tudi če je filter kasneje odstranjen
+        locale: Jezik uporabniškega vmesnika, e-poštnih sporočil in potisnih obvestil
+        locked: Zahteva, da ročno odobrite sledilce
+        password: Uporabite najmanj 8 znakov
+        phrase: Se bo ujemal, ne glede na začetnice v tekstu ali opozorilo o vsebini troba
+        scopes: Do katerih API-jev bo imel program dostop. Če izberete obseg najvišje ravni, vam ni treba izbrati posameznih.
+        setting_default_language: Jezik vaših trobov je lahko samodejno zaznan, vendar ni vedno pravilen
+        setting_display_media_default: Skrij medij, ki je označen kot občutljiv
+        setting_display_media_hide_all: Vedno skrij vse medije
+        setting_display_media_show_all: Vedno pokaži medij, ki je označen kot občutljiv
+        setting_hide_network: Kogar spremljate in kdo vas spremlja ne bo prikazano na vašem profilu
+        setting_noindex: Vpliva na vaš javni profil in na strani s stanjem
+        setting_theme: Vpliva na to, kako izgleda Mastodon, ko ste prijavljeni s katero koli napravo.
+        username: Vaše uporabniško ime bo edinstveno na %{domain}
+        whole_word: Ko je ključna beseda ali fraza samo alfanumerična, se bo uporabljala le, če se bo ujemala s celotno besedo
       imports:
         data: Izvožena CSV datoteka iz drugega Mastodon vozlišča
+      sessions:
+        otp: 'Vnesite dvomestno kodo, ki je ustvarjena z aplikacijo na telefonu, ali uporabite eno od vaših obnovitvenih kod:'
+      user:
+        chosen_languages: Ko je označeno, bodo v javnih časovnicah prikazani samo trobi v izbranih jezikih
+    labels:
+      account:
+        fields:
+          name: Oznaka
+          value: Vsebina
+      defaults:
+        autofollow: Povabite, da sledi vašemu računu
+        avatar: Podoba
+        bot: To je račun robota
+        chosen_languages: Filtriraj jezike
+        confirm_new_password: Potrdite novo geslo
+        confirm_password: Potrdite geslo
+        context: Filtriraj vsebino
+        current_password: Trenutno geslo
+        data: Podatki
+        display_name: Prikazno ime
+        email: E-poštni naslov
+        expires_in: Preteče po
+        fields: Metapodatki profila
+        header: Glava
+        inbox_url: URL mape "Prejeto"
+        irreversible: Opusti namesto skrij
+        locale: Jezik vmesnika
+        locked: Zaklenjen račun
+        max_uses: Največje število uporabnikov
+        new_password: Novo geslo
+        note: Bio
+        otp_attempt: Dvofaktorska koda
+        password: Geslo
+        phrase: Ključna beseda ali fraza
+        setting_auto_play_gif: Samodejno predvajanje animiranih GIF-ov
+        setting_boost_modal: Pred sunkom pokaži potrditveno okno
+        setting_default_language: Jezik objavljanja
+        setting_default_privacy: Zasebnost objave
+        setting_default_sensitive: Vedno označi medije kot občutljive
+        setting_delete_modal: Pred brisanjem troba prikaži okno za pritrditev
+        setting_display_media: Prikaz medijev
+        setting_display_media_default: Privzeto
+        setting_display_media_hide_all: Skrij vse
+        setting_display_media_show_all: Prikaži vse
+        setting_expand_spoilers: Vedno razširi trobe, označene z opozorili o vsebini
+        setting_hide_network: Skrij svoje omrežje
+        setting_noindex: Odsotnost indeksiranja iskalnikov
+        setting_reduce_motion: Zmanjšanje premikanja v animacijah
+        setting_system_font_ui: Uporabi privzeto pisavo sistema
+        setting_theme: Tema strani
+        setting_unfollow_modal: Pokaži potrditveno okno, preden nekoga prenehamo slediti
+        severity: Strogost
+        type: Vrsta uvoza
+        username: Uporabniško ime
+        username_or_email: Uporabniško ime ali E-pošta
+        whole_word: Celotna beseda
+      interactions:
+        must_be_follower: Blokiraj obvestila nesledilcev
+        must_be_following: Blokiraj obvestila oseb, ki jim ne sledite
+        must_be_following_dm: Blokiraj neposredna sporočila oseb, ki jim ne sledite
+      notification_emails:
+        digest: Pošlji izvlečke e-pošt
+        favourite: Pošlji e-pošto, ko nekdo doda vaše stanje med priljubljene
+        follow: Pošlji e-pošto, ko vas nekdo sledi
+        follow_request: Pošlji e-pošto, ko vam nekdo želi slediti
+        mention: Pošlji e-pošto, ko vas nekdo omeni
+        reblog: Pošlji e-pošto, ko nekdo sune vaše stanje
+        report: Pošlji e-pošto, ko je oddano novo poročilo
+    'no': Ne
+    required:
+      mark: "*"
+      text: zahtevano
+    'yes': Da

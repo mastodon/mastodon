@@ -17,7 +17,7 @@ RSpec.describe TagsController, type: :controller do
 
       it 'renders application layout' do
         get :show, params: { id: 'test', max_id: late.id }
-        expect(response).to render_template layout: 'application'
+        expect(response).to render_template layout: 'public'
       end
     end
 

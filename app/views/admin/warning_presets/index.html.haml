@@ -1,0 +1,30 @@
+- content_for :page_title do
+  = t('admin.warning_presets.title')
+
+- if can? :create, :account_warning_preset
+  = simple_form_for @warning_preset, url: admin_warning_presets_path do |f|
+    = render 'shared/error_messages', object: @warning_preset
+
+    .fields-group
+      = f.input :text, wrapper: :with_block_label
+
+    .actions
+      = f.button :button, t('admin.warning_presets.add_new'), type: :submit
+
+  %hr.spacer/
+
+- unless @warning_presets.empty?
+  .table-wrapper
+    %table.table
+      %thead
+        %tr
+          %th= t('simple_form.labels.account_warning_preset.text')
+          %th
+      %tbody
+        - @warning_presets.each do |preset|
+          %tr
+            %td
+              = Formatter.instance.linkify(preset.text)
+            %td
+              = table_link_to 'pencil', t('admin.warning_presets.edit'), edit_admin_warning_preset_path(preset)
+              = table_link_to 'trash', t('admin.warning_presets.delete'), admin_warning_preset_path(preset), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }

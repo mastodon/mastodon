@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Settings::ExportsController do
@@ -25,6 +27,25 @@ describe Settings::ExportsController do
       it 'redirects' do
         get :show
         expect(response).to redirect_to '/auth/sign_in'
+      end
+    end
+  end
+
+  describe 'POST #create' do
+    before do
+      sign_in Fabricate(:user), scope: :user
+    end
+
+    it 'redirects to settings_export_path' do
+      post :create
+      expect(response).to redirect_to(settings_export_path)
+    end
+
+    it 'queues BackupWorker job by 1' do
+      Sidekiq::Testing.fake! do
+        expect do
+          post :create
+        end.to change(BackupWorker.jobs, :size).by(1)
       end
     end
   end

@@ -19,6 +19,7 @@ export function fetchCustomEmojis() {
 export function fetchCustomEmojisRequest() {
   return {
     type: CUSTOM_EMOJIS_FETCH_REQUEST,
+    skipLoading: true,
   };
 };
 
@@ -26,6 +27,7 @@ export function fetchCustomEmojisSuccess(custom_emojis) {
   return {
     type: CUSTOM_EMOJIS_FETCH_SUCCESS,
     custom_emojis,
+    skipLoading: true,
   };
 };
 
@@ -33,5 +35,6 @@ export function fetchCustomEmojisFail(error) {
   return {
     type: CUSTOM_EMOJIS_FETCH_FAIL,
     error,
+    skipLoading: true,
   };
 };

@@ -68,10 +68,10 @@ class Account extends ImmutablePureComponent {
 
     if (hidden) {
       return (
-        <div>
+        <Fragment>
           {account.get('display_name')}
           {account.get('username')}
-        </div>
+        </Fragment>
       );
     }
 

@@ -9,6 +9,10 @@ class AccountPolicy < ApplicationPolicy
     staff?
   end
 
+  def warn?
+    staff? && !record.user&.staff?
+  end
+
   def suspend?
     staff? && !record.user&.staff?
   end
@@ -30,6 +34,10 @@ class AccountPolicy < ApplicationPolicy
   end
 
   def remove_avatar?
+    staff?
+  end
+
+  def remove_header?
     staff?
   end
 

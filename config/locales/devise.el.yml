@@ -18,6 +18,7 @@ el:
     mailer:
       confirmation_instructions:
         action: Επιβεβαίωσε διεύθυνση email
+        action_with_app: Επιβεβαίωση και επιστροφή στο %{app}
         explanation: Δημιούργησες έναν λογαριασμό στο %{host} με αυτή τη διεύθυνση email. Με ένα κλικ θα τον ενεργοποιήσεις. Αν δεν το έκανες εσύ, παρακαλούμε αγνόησε αυτό το email.
         extra_html: Παρακαλούμε να διαβάσεις <a href="%{terms_path}">του κανόνες αυτού του κόμβου</a> και <a href="%{policy_path}">τους όρους χρήσης της υπηρεσίας μας</a>.
         subject: 'Mastodon: Οδηγίες επιβεβαίωσης για %{instance}'

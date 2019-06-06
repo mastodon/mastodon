@@ -15,7 +15,7 @@ end
 namespace :emojis do
   desc 'Generate a unicode to filename mapping'
   task :generate do
-    source = 'http://www.unicode.org/Public/emoji/5.0/emoji-test.txt'
+    source = 'http://www.unicode.org/Public/emoji/11.0/emoji-test.txt'
     codes  = []
     dest   = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_map.json')
 
@@ -42,6 +42,8 @@ namespace :emojis do
 
     existence_maps.each do |group|
       existing_one = group.key(true)
+
+      next if existing_one.nil?
 
       group.each_key do |key|
         map[codepoints_to_unicode(key)] = codepoints_to_filename(existing_one)

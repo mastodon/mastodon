@@ -2,12 +2,20 @@
 pt-BR:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Você pode usar a sintaxe de um toot, como URLs, hashtags e menções
+      admin_account_action:
+        send_email_notification: O usuário vai receber uma explicação do que aconteceu com a sua conta
+        text_html: Opcional. Você pode usar a sintaxe de toots. Você pode <a href="%{path}">adicionar avisos pré-definidos</a> para ganhar tempo.
+        type_html: Escolha o que fazer com <strong>%{acct}</strong>
+        warning_preset_id: Opcional. Você ainda pode adicionar texto customizado no fim do texto pré-definido
       defaults:
         autofollow: Pessoas que se cadastrarem através de seu convite te seguirão automaticamente
         avatar: PNG, GIF or JPG. Arquivos de até %{size}. Eles serão diminuídos para %{dimensions}px
         bot: Essa conta executa principalmente ações automatizadas e pode não ser monitorada
         context: Um ou mais contextos onde o filtro deve ser aplicado
         digest: Enviado após um longo período de inatividade com um resumo das menções que você recebeu em sua ausência
+        discoverable_html: O <a href="%{path}" target="_blank">diretório</a> permite encontrar contas baseado em seus interesses e atividades. Requer pelo menos %{min_followers} seguidores
         email: Você receberá um email de confirmação
         fields: Você pode ter até 4 itens exibidos em forma de tabela no seu perfil
         header: PNG, GIF or JPG. Arquivos de até %{size}. Eles serão diminuídos para %{dimensions}px
@@ -18,6 +26,7 @@ pt-BR:
         password: Use pelo menos 8 caracteres
         phrase: Vai coincidir, independente de maiúsculas ou minúsculas, no texto ou no aviso de conteúdo de um toot
         scopes: Quais APIs a aplicação vai ter permissão de acessar. Se você selecionar um escopo de alto nível, você não precisa selecionar individualmente os outros.
+        setting_aggregate_reblogs: Não mostrar novos compartilhamentos para toots que foram compartilhados recentemente (afeta somente novos compartilhamentos recebidos)
         setting_default_language: O idioma de seus toots pode ser detectado automaticamente, mas isso nem sempre é preciso
         setting_display_media_default: Esconder mídia marcada como sensível
         setting_display_media_hide_all: Sempre esconder todas as mídias
@@ -38,6 +47,18 @@ pt-BR:
         fields:
           name: Rótulo
           value: Conteúdo
+      account_warning_preset:
+        text: Texto pré-definido
+      admin_account_action:
+        send_email_notification: Notificar o usuário por e-mail
+        text: Aviso customizado
+        type: Ação
+        types:
+          disable: Desabilitar
+          none: Não fazer nada
+          silence: Silenciar
+          suspend: Suspender e excluir irreversivelmente dados da conta
+        warning_preset_id: Usar um aviso pré-definido
       defaults:
         autofollow: Convite para seguir a sua conta
         avatar: Avatar
@@ -48,6 +69,7 @@ pt-BR:
         context: Contextos de filtro
         current_password: Senha atual
         data: Dados
+        discoverable: Listar essa conta no diretório
         display_name: Nome de exibição
         email: Endereço de e-mail
         expires_in: Expira em
@@ -63,6 +85,7 @@ pt-BR:
         otp_attempt: Código de autenticação em dois passos
         password: Senha
         phrase: Palavra-chave ou frase
+        setting_aggregate_reblogs: Agrupar compartilhamentos nas timelines
         setting_auto_play_gif: Reproduzir GIFs automaticamente
         setting_boost_modal: Mostrar diálogo de confirmação antes de compartilhar postagem
         setting_default_language: Idioma das postagens

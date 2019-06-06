@@ -10,7 +10,6 @@ class VerifyLinkService < BaseService
     return unless link_back_present?
 
     field.mark_verified!
-    field.account.save!
   rescue HTTP::Error, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
     Rails.logger.debug "Error fetching link #{@url}: #{e}"
     nil

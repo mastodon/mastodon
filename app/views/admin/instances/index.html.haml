@@ -1,23 +1,39 @@
 - content_for :page_title do
   = t('admin.instances.title')
 
-= form_tag admin_instances_url, method: 'GET', class: 'simple_form' do
-  .fields-group
-    - %i(domain_name).each do |key|
-      .input.string.optional
-        = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.instances.#{key}")
+.filters
+  .filter-subset
+    %strong= t('admin.instances.moderation.title')
+    %ul
+      %li= filter_link_to t('admin.instances.moderation.all'), limited: nil
+      %li= filter_link_to t('admin.instances.moderation.limited'), limited: '1'
 
-    .actions
-      %button= t('admin.instances.search')
-      = link_to t('admin.instances.reset'), admin_instances_path, class: 'button negative'
+  %div{ style: 'flex: 1 1 auto; text-align: right' }
+    = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path, class: 'button'
 
-.table-wrapper
-  %table.table
-    %thead
-      %tr
-        %th= t('admin.instances.domain_name')
-        %th= t('admin.instances.account_count')
-    %tbody
-      = render @instances
+%hr.spacer/
+
+- @instances.each do |instance|
+  .directory__tag
+    = link_to admin_instance_path(instance) do
+      %h4
+        = instance.domain
+        %small
+          = t('admin.instances.known_accounts', count: instance.accounts_count)
+
+          - if instance.domain_block
+            - if !instance.domain_block.noop?
+              &bull;
+              = t("admin.domain_blocks.severity.#{instance.domain_block.severity}")
+            - if instance.domain_block.reject_media?
+              &bull;
+              = t('admin.domain_blocks.rejecting_media')
+            - if instance.domain_block.reject_reports?
+              &bull;
+              = t('admin.domain_blocks.rejecting_reports')
+
+      .avatar-stack
+        - instance.cached_sample_accounts.each do |account|
+          = image_tag current_account&.user&.setting_auto_play_gif ? account.avatar_original_url : account.avatar_static_url, width: 48, height: 48, alt: '', class: 'account__avatar'
 
 = paginate paginated_instances

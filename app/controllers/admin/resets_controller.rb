@@ -10,11 +10,5 @@ module Admin
       log_action :reset_password, @user
       redirect_to admin_accounts_path
     end
-
-    private
-
-    def set_user
-      @user = Account.find(params[:account_id]).user || raise(ActiveRecord::RecordNotFound)
-    end
   end
 end

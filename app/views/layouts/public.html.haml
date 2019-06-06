@@ -8,6 +8,11 @@
         .nav-left
           = link_to root_url, class: 'brand' do
             = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+
+          - if Setting.profile_directory
+            = link_to t('directories.directory'), explore_path, class: 'nav-link optional'
+          = link_to t('about.about_this'), about_more_path, class: 'nav-link optional'
+          = link_to t('about.apps'), 'https://joinmastodon.org/apps', class: 'nav-link optional'
         .nav-center
         .nav-right
           - if user_signed_in?

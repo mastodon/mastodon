@@ -5,27 +5,29 @@ class StatusLengthValidator < ActiveModel::Validator
 
   def validate(status)
     return unless status.local? && !status.reblog?
-    status.errors.add(:text, I18n.t('statuses.over_character_limit', max: MAX_CHARS)) if too_long?(status)
+
+    @status = status
+    status.errors.add(:text, I18n.t('statuses.over_character_limit', max: MAX_CHARS)) if too_long?
   end
 
   private
 
-  def too_long?(status)
-    countable_length(status) > MAX_CHARS
+  def too_long?
+    countable_length > MAX_CHARS
   end
 
-  def countable_length(status)
-    total_text(status).mb_chars.grapheme_length
+  def countable_length
+    total_text.mb_chars.grapheme_length
   end
 
-  def total_text(status)
-    [status.spoiler_text, countable_text(status)].join
+  def total_text
+    [@status.spoiler_text, countable_text].join
   end
 
-  def countable_text(status)
-    return '' if status.text.nil?
+  def countable_text
+    return '' if @status.text.nil?
 
-    status.text.dup.tap do |new_text|
+    @status.text.dup.tap do |new_text|
       new_text.gsub!(FetchLinkCardService::URL_PATTERN, 'x' * 23)
       new_text.gsub!(Account::MENTION_RE, '@\2')
     end

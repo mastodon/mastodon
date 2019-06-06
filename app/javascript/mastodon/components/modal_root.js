@@ -33,13 +33,15 @@ export default class ModalRoot extends React.PureComponent {
     } else if (!nextProps.children) {
       this.setState({ revealed: false });
     }
+    if (!nextProps.children && !!this.props.children) {
+      this.activeElement.focus();
+      this.activeElement = null;
+    }
   }
 
   componentDidUpdate (prevProps) {
     if (!this.props.children && !!prevProps.children) {
       this.getSiblings().forEach(sibling => sibling.removeAttribute('inert'));
-      this.activeElement.focus();
-      this.activeElement = null;
     }
     if (this.props.children) {
       requestAnimationFrame(() => {

@@ -4,7 +4,6 @@ require 'resolv'
 
 class EmailMxValidator < ActiveModel::Validator
   def validate(user)
-    return if Rails.env.test? || Rails.env.development?
     user.errors.add(:email, I18n.t('users.invalid_email')) if invalid_mx?(user.email)
   end
 
@@ -15,13 +14,23 @@ class EmailMxValidator < ActiveModel::Validator
 
     return true if domain.nil?
 
-    records = Resolv::DNS.new.getresources(domain, Resolv::DNS::Resource::IN::MX).to_a.map { |e| e.exchange.to_s }
-    records = Resolv::DNS.new.getresources(domain, Resolv::DNS::Resource::IN::A).to_a.map { |e| e.address.to_s } if records.empty?
+    hostnames = []
+    ips       = []
 
-    records.empty? || on_blacklist?(records)
+    Resolv::DNS.open do |dns|
+      dns.timeouts = 1
+
+      hostnames = dns.getresources(domain, Resolv::DNS::Resource::IN::MX).to_a.map { |e| e.exchange.to_s }
+
+      ([domain] + hostnames).uniq.each do |hostname|
+        ips.concat(dns.getresources(hostname, Resolv::DNS::Resource::IN::A).to_a.map { |e| e.address.to_s })
+      end
+    end
+
+    ips.empty? || on_blacklist?(hostnames + ips)
   end
 
   def on_blacklist?(values)
-    EmailDomainBlock.where(domain: values).any?
+    EmailDomainBlock.where(domain: values.uniq).any?
   end
 end

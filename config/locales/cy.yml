@@ -30,16 +30,34 @@ cy:
     other_instances: Rhestr achosion
     privacy_policy: Polisi preifatrwydd
     source_code: Cod ffynhonnell
-    status_count_after: statws
+    status_count_after:
+      few: statwsau
+      many: statwsau
+      one: statws
+      other: statwsau
+      two: statwsau
+      zero: statwsau
     status_count_before: Ysgriffennwyd gan
     terms: Telerau gwasanaeth
-    user_count_after: defnyddwyr
+    user_count_after:
+      few: defnyddwyr
+      many: defnyddwyr
+      one: defnyddiwr
+      other: defnyddwyr
+      two: defnyddwyr
+      zero: defnyddwyr
     user_count_before: Cartref i
     what_is_mastodon: Beth yw Mastodon?
   accounts:
     choices_html: 'Dewisiadau %{name}:'
     follow: Dilynwch
-    followers: Dilynwyr
+    followers:
+      few: Dilynwyr
+      many: Dilynwyr
+      one: Dilynwr
+      other: Dilynwyr
+      two: Dilynwyr
+      zero: Dilynwyr
     following: Yn dilyn
     joined: Ymunodd %{date}
     link_verified_on: Gwiriwyd perchnogaeth y ddolen yma ar %{date}
@@ -51,7 +69,13 @@ cy:
     people_who_follow: Pobl sy'n dilyn %{name}
     pin_errors:
       following: Rhaid i ti fod yn dilyn y person yr ydych am ei gymeradwyo yn barod
-    posts: Tŵtiau
+    posts:
+      few: Tŵtiau
+      many: Tŵtiau
+      one: Tŵt
+      other: Tŵtiau
+      two: Tŵtiau
+      zero: Tŵtiau
     posts_tab_heading: Tŵtiau
     posts_with_replies: Tŵtiau ac atebion
     reserved_username: Mae'r enw defnyddiwr ar gadw
@@ -61,6 +85,8 @@ cy:
       moderator: Safonwr
     unfollow: Dad-ddilyn
   admin:
+    account_actions:
+      action: Cyflawni gweithred
     account_moderation_notes:
       create: Gadael nodyn
       created_msg: Crewyd nodyn cymedroli yn llwyddiannus!
@@ -80,6 +106,7 @@ cy:
       confirm: Cadarnhau
       confirmed: Cadarnhawyd
       confirming: Cadarnhau
+      deleted: Wedi dileu
       demote: Diraddio
       disable: Diffodd
       disable_two_factor_authentication: Diffodd 2FA
@@ -95,8 +122,11 @@ cy:
       followers: Dilynwyr
       followers_url: URL Dilynwyr
       follows: Yn dilyn
+      header: Pennawd
       inbox_url: URL Mewnflwch
+      invited_by: Gwahoddwyd gan
       ip: IP
+      joined: Ymunodd
       location:
         all: Popeth
         local: Lleol
@@ -106,6 +136,7 @@ cy:
       media_attachments: Atodiadau
       memorialize: Troi yn gofeb
       moderation:
+        active: Yn weithredol
         all: Popeth
         silenced: Wedi ei dawelu
         suspended: Wedi ei atal
@@ -115,10 +146,6 @@ cy:
       most_recent_ip: IP diweddaraf
       no_limits_imposed: Dim terfynau wedi'i gosod
       not_subscribed: Heb danysgrifio
-      order:
-        alphabetic: Allfabetig
-        most_recent: Diweddaraf
-        title: Trefnu
       outbox_url: Allflwch URL
       perform_full_suspension: Atal
       profile_url: URL proffil
@@ -126,7 +153,7 @@ cy:
       protocol: Protocol
       public: Cyhoeddus
       push_subscription_expires: Tanysgrifiad PuSH yn dod i ben
-      redownload: Adnewyddu afatar
+      redownload: Adnewyddu proffil
       remove_avatar: Dileu afatar
       resend_confirmation:
         already_confirmed: Mae'r defnyddiwr hwn wedi ei gadarnhau yn barod
@@ -146,7 +173,6 @@ cy:
       shared_inbox_url: URL Mewnflwch wedi ei rannu
       show:
         created_reports: Adroddiadau a grewyd gan y cyfri hwn
-        report: adrodd
         targeted_reports: Adroddiadau am y cyfri hwn
       silence: Tawelu
       silenced: Tawelwyd
@@ -159,6 +185,7 @@ cy:
       undo_suspension: Dadwneud ataliad
       unsubscribe: Dad-danysgrifio
       username: Enw defnyddiwr
+      warn: Rhybuddio
       web: Gwe
     action_logs:
       actions:
@@ -257,11 +284,6 @@ cy:
       reject_media_hint: Dileu dogfennau cyfryngau wedi eu cadw yn lleol ac yn gwrthod i lawrlwytho unrhyw rai yn y dyfodol. Amherthnasol i ataliadau
       reject_reports: Gwrthod adroddiadau
       reject_reports_hint: Anwybyddu'r holl adroddiadau sy'n dod o'r parth hwn. Amherthnasol i ataliadau
-      severities:
-        noop: Dim
-        silence: Tawelu
-        suspend: Atal
-      severity: Difrifoldeb
       show:
         affected_accounts: "%{count} o gyfrifoedd yn y bas data wedi eu hefeithio"
         retroactive:
@@ -269,7 +291,6 @@ cy:
           suspend: Dad-atal pob cyfrif o'r parth hwn sy'n bodoli
         title: Dadwneud blocio parth ar gyfer %{domain}
         undo: Dadwneud
-      title: Blociau parth
       undo: Dadwneud
     email_domain_blocks:
       add_new: Ychwanegu
@@ -282,11 +303,10 @@ cy:
         title: Cofnod newydd yng nghosbrestr e-byst
       title: Cosbrestr e-bost
     instances:
-      account_count: Cyfrifau hysbys
-      domain_name: Parth
-      reset: Ailosod
-      search: Chwilio
-      title: Achosion hysbys
+      moderation:
+        all: Pob
+        limited: Gyfyngedig
+      title: Ffederasiwn
     invites:
       deactivate_all: Diffodd pob un
       filter:
@@ -427,13 +447,14 @@ cy:
       last_delivery: Danfoniad diwethaf
       title: WebSub
       topic: Pwnc
-    suspensions:
-      bad_acct_msg: Nid yw'r gwerthoedd cadarnhau yn cyfateb. Ydych chi'n atal y cyfrif cywir?
-      hint_html: 'I gadarnhau atal y cyfrif, mewnbynwch %{value} yn y maes isod:'
-      proceed: Parhau
-      title: Atal %{acct}
-      warning_html: 'Mi fydd atal y cyfrif hwn yn dileu data <strong>am byth</strong> o''r cyfrif hwn, gan gynnwys:'
+    tags:
+      accounts: Cyfrifon
+      hidden: Cudd
+      name: Hashnod
     title: Gweinyddiaeth
+    warning_presets:
+      delete: Dileu
+      edit: Golygu
   admin_mailer:
     new_report:
       body: Mae %{reporter} wedi cwyno am %{target}
@@ -518,7 +539,7 @@ cy:
     '422':
       content: Methwyd i ddilysu diogelwch. A ydych chi'n blocio cwcîs?
       title: Methwyd i ddilysu diogelwch
-    '429': Crogwyd
+    '429': Wedi'i arafu
     '500':
       content: Mae'n ddrwg gennym ni, ond fe aeth rhywbeth o'i le ar ein rhan ni.
       title: Nid yw'r dudalen hon yn gywir
@@ -671,9 +692,6 @@ cy:
     no_account_html: Heb gyfrif? Mae modd i chi <a href='%{sign_up_path}' target='_blank'>gofrestru yma</a>
     proceed: Ymlaen i ddilyn
     prompt: 'Yr ydych am ddilyn:'
-  remote_interaction:
-    proceed: Ymlaen i ryngweithio
-    prompt: 'Rydych eisiau rhyngweithio a''r tŵt hwn:'
   remote_unfollow:
     error: Gwall
     title: Teitl
@@ -738,7 +756,13 @@ cy:
     attached:
       description: 'Ynghlwm: %{attached}'
       image: "%{count} o luniau"
-      video: "%{count} fideo"
+      video:
+        few: "%{count} fideo"
+        many: "%{count} fideo"
+        one: "%{count} fideo"
+        other: "%{count} fideo"
+        two: "%{count} fideo"
+        zero: "%{count} fideo"
     boosted_from_html: Wedi ei fŵstio %{acct_link}
     content_warning: 'Rhybudd cynnwys: %{warning}'
     disallowed_hashtags: 'yn cynnwys yr hashnod gwaharddedig: %{tags}'
@@ -762,7 +786,7 @@ cy:
       unlisted_long: Gall pawb weld, ond heb ei restru ar ffrydiau cyhoeddus
   stream_entries:
     pinned: Tŵt wedi'i binio
-    reblogged: bŵstiwyd
+    reblogged: hybwyd
     sensitive_content: Cynnwys sensitif
   terms:
     body_html: |
@@ -876,6 +900,12 @@ cy:
       explanation: Fe wnaethoch chi gais am gopi wrth gefn llawn o'ch cyfrif Mastodon. Mae nawr yn barod i'w lawrlwytho!
       subject: Mae eich archif yn barod i'w lawrlwytho
       title: Allfudo archif
+    warning:
+      title:
+        disable: Cyfrif wedi'i rewi
+        none: Rhybudd
+        silence: Cyfrif cyfyngedig
+        suspend: Cyfrif wedi'i rewi
     welcome:
       edit_profile_action: Sefydlu proffil
       edit_profile_step: Mae modd i chi addasu eich proffil drwy uwchlwytho afatar, pennawd, drwy newid eich enw arddangos a mwy. Os hoffech chi adolygu dilynwyr newydd cyn iddynt gael caniatad i'ch dilyn, mae modd i chi gloi eich cyfrif.
@@ -887,7 +917,6 @@ cy:
       review_preferences_action: Newid dewisiadau
       review_preferences_step: Gwnewch yn siŵr i chi osod eich dewisiadau, megis pa e-byst hoffech eu derbyn, neu ba lefel preifatrwydd hoffech eich tŵtiau ragosod i. Os nad oes gennych salwch symud, gallwch ddewis i ganiatau chwarae GIFs yn awtomatig.
       subject: Croeso i Mastodon
-      tip_bridge_html: Os ydych yn dod o Twitter, mae modd i chi ganfod eich ffrindiau ar Mastodon drwy ddefnyddio'r <a href="%{bridge_url}">1ap pontio</a>2. Mae hyn ond yn gweithio os ydynt hwythau yn defnyddio'r ap pontio hefyd!
       tip_federated_timeline: Mae'r ffrwd ffederasiwn yn olwg firehose o'r rhwydwaith Mastodon. Ond mae ond yn cynnwys y bobl mae eich cymdogion wedi ymrestru iddynt, felly nid yw'n gyflawn.
       tip_following: Rydych yn dilyn goruwchwyliwr eich gweinydd yn ddiofyn. I ganfod pobl mwy diddorol, edrychwch ar y ffrydiau lleol a'r rhai wedi ei ffedereiddio.
       tip_local_timeline: Mae'r ffrwd leol yn olwg firehose o bobl ar %{instance}. Dyma eich cymdogion agosaf!

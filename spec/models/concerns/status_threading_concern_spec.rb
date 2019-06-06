@@ -118,5 +118,15 @@ describe StatusThreadingConcern do
       viewer.block_domain!('example.com')
       expect(status.descendants(4, viewer)).to_not include(reply2)
     end
+
+    it 'promotes self-replies to the top while leaving the rest in order' do
+      a = Fabricate(:status, account: alice)
+      d = Fabricate(:status, account: jeff, thread: a)
+      e = Fabricate(:status, account: bob, thread: d)
+      c = Fabricate(:status, account: alice, thread: a)
+      f = Fabricate(:status, account: bob, thread: c)
+
+      expect(a.descendants(20)).to eq [c, d, e, f]
+    end
   end
 end

@@ -123,10 +123,6 @@ es:
       most_recent_ip: IP más reciente
       no_limits_imposed: Sin límites impuestos
       not_subscribed: No se está suscrito
-      order:
-        alphabetic: Alfabético
-        most_recent: Más reciente
-        title: Orden
       outbox_url: URL de bandeja de salida
       perform_full_suspension: Suspender
       profile_url: URL del perfil
@@ -154,7 +150,6 @@ es:
       shared_inbox_url: URL de bandeja compartida
       show:
         created_reports: Reportes hechos por esta cuenta
-        report: reportar
         targeted_reports: Reportes hechos sobre esta cuenta
       silence: Silenciar
       silenced: Silenciado
@@ -265,11 +260,6 @@ es:
       reject_media_hint: Remueve localmente archivos multimedia almacenados para descargar cualquiera en el futuro. Irrelevante para suspensiones
       reject_reports: Rechazar informes
       reject_reports_hint: Ignore todos los reportes de este dominio. Irrelevante para suspensiones
-      severities:
-        noop: Ninguno
-        silence: Silenciar
-        suspend: Suspender
-      severity: Severidad
       show:
         affected_accounts:
           one: Una cuenta en la base de datos afectada
@@ -279,7 +269,6 @@ es:
           suspend: Des-suspender todas las cuentas existentes de este dominio
         title: Deshacer bloque de dominio para %{domain}
         undo: Deshacer
-      title: Bloques de Dominio
       undo: Deshacer
     email_domain_blocks:
       add_new: Añadir nuevo
@@ -292,10 +281,6 @@ es:
         title: Nueva entrada en la lista negra de correo
       title: Lista negra de correo
     instances:
-      account_count: Cuentas conocidas
-      domain_name: Dominio
-      reset: Reiniciar
-      search: Buscar
       title: Instancias conocidas
     invites:
       deactivate_all: Desactivar todos
@@ -437,12 +422,6 @@ es:
       last_delivery: Última entrega
       title: WebSub
       topic: Tópico
-    suspensions:
-      bad_acct_msg: El valor de confirmación no cuadra. ¿Estás suspendiendo la cuenta correcta?
-      hint_html: 'Para confirmar las suspensión de la cuenta, por favor introduce %{value} en el campo de abajo:'
-      proceed: Proceder
-      title: Suspender %{acct}
-      warning_html: 'Suspender esta cuenta borrará <strong>irreversiblemente</strong> los datos de stra cuenta que incluyen:'
     title: Administración
   admin_mailer:
     new_report:
@@ -692,9 +671,6 @@ es:
     no_account_html: "¿No tienes una cuenta? Puedes <a href='%{sign_up_path}' target='_blank'>registrarte aqui</a>"
     proceed: Proceder a seguir
     prompt: 'Vas a seguir a:'
-  remote_interaction:
-    proceed: Proceder para interactuar
-    prompt: 'Quieres interactuar con este toot:'
   remote_unfollow:
     error: Error
     title: Título
@@ -833,7 +809,6 @@ es:
       review_preferences_action: Cambiar preferencias
       review_preferences_step: Asegúrate de poner tus preferencias, como que correos te gustaría recibir, o que nivel de privacidad te gustaría que tus publicaciones tengan por defecto. Si no tienes mareos, podrías elegir habilitar la reproducción automática de "GIFs".
       subject: Bienvenido a Mastodon
-      tip_bridge_html: Si esta viniendo desde Twitter, puedes encontrar a tus amigos en Mastodon usando la <a href="%{bridge_url}">aplicación puente</a>. Aunque solo funciona si ellos también usaron la aplicación puente!
       tip_federated_timeline: La línea de tiempo federada es una vista de la red de Mastodon. Pero solo incluye gente que tus vecinos están siguiendo, así que no está completa.
       tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar más gente interesante, revisa las lineas de tiempo local y federada.
       tip_local_timeline: La linea de tiempo local is una vista de la gente en %{instance}. Estos son tus vecinos inmediatos!

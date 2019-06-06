@@ -8,33 +8,9 @@
   = javascript_pack_tag 'about', integrity: true, crossorigin: 'anonymous'
   = render 'og'
 
-.landing-page.tag-page.alternative
-  .features
-    .container
-      .grid
-        .column-1
-          #mastodon-timeline{ data: { props: Oj.dump(default_props.merge(hashtag: @tag.name)) } }
+.page-header
+  %h1= "##{@tag.name}"
+  %p= t('about.about_hashtag_html', hashtag: @tag.name)
 
-        .column-2
-          .about-mastodon
-            .about-hashtag.landing-page__information
-              .brand
-                = link_to root_url do
-                  = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
-
-              %p= t 'about.about_hashtag_html', hashtag: @tag.name
-
-              .cta
-                - if user_signed_in?
-                  = link_to t('settings.back'), root_path, class: 'button button-secondary'
-                - else
-                  = link_to t('auth.login'), new_user_session_path, class: 'button button-secondary'
-                = link_to t('about.learn_more'), about_path, class: 'button button-alternative'
-
-            .landing-page__features.landing-page__information
-              %h3= t 'about.what_is_mastodon'
-              %p= t 'about.about_mastodon_html'
-
-              = render 'features'
-
+#mastodon-timeline{ data: { props: Oj.dump(default_props.merge(hashtag: @tag.name)) }}
 #modal-container

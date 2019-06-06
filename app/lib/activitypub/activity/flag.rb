@@ -8,8 +8,6 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
     target_statuses_by_account = object_uris.map { |uri| status_from_uri(uri) }.compact.select(&:local?).group_by(&:account_id)
 
     target_accounts.each do |target_account|
-      next if Report.where(account: @account, target_account: target_account).exists?
-
       target_statuses = target_statuses_by_account[target_account.id]
 
       ReportService.new.call(

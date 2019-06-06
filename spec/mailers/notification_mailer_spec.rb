@@ -126,19 +126,7 @@ RSpec.describe NotificationMailer, type: :mailer do
       end
     end
 
-    it 'includes activities since the date specified by :since option' do
-      receiver.update!(last_emailed_at: '2000-02-01T00:00:00Z', current_sign_in_at: '2000-03-01T00:00:00Z')
-      mail = NotificationMailer.digest(receiver.account, since: Time.parse('2000-01-01T00:00:00Z'))
-      expect(mail.body.encoded).to include 'Jan 01, 2000, 00:00'
-    end
-
-    it 'includes activities since the receiver was last emailed if :since option is unavailable' do
-      receiver.update!(last_emailed_at: '2000-02-01T00:00:00Z', current_sign_in_at: '2000-03-01T00:00:00Z')
-      mail = NotificationMailer.digest(receiver.account)
-      expect(mail.body.encoded).to include 'Feb 01, 2000, 00:00'
-    end
-
-    it 'includes activities since the receiver last signed in if :since option and the last emailed date are unavailable' do
+    it 'includes activities since the receiver last signed in' do
       receiver.update!(last_emailed_at: nil, current_sign_in_at: '2000-03-01T00:00:00Z')
       mail = NotificationMailer.digest(receiver.account)
       expect(mail.body.encoded).to include 'Mar 01, 2000, 00:00'

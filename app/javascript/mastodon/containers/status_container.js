@@ -45,7 +45,6 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props),
-    tutorial: state.getIn(['tutorial', 'visible']),
   });
 
   return mapStateToProps;
