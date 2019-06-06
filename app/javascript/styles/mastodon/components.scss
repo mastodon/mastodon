@@ -408,10 +408,18 @@
     }
   }
 
-  .emoji-picker-wrapper,
   .autosuggest-textarea__suggestions-wrapper {
     position: relative;
     height: 0;
+  }
+
+  .emoji-picker-wrapper {
+    position: relative;
+    height: 0;
+
+    &.emoji-picker-wrapper--hidden {
+      display: none;
+    }
   }
 
   .autosuggest-textarea__suggestions {
