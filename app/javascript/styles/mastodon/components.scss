@@ -128,7 +128,7 @@
   display: inline-block;
   padding: 0;
   color: $action-button-color;
-  border: none;
+  border: 0;
   background: transparent;
   cursor: pointer;
   transition: color 100ms ease-in;
@@ -196,7 +196,7 @@
 
 .text-icon-button {
   color: $lighter-text-color;
-  border: none;
+  border: 0;
   background: transparent;
   cursor: pointer;
   font-weight: 600;
@@ -353,12 +353,12 @@
   .spoiler-input {
     height: 0;
     transform-origin: bottom;
-    opacity: 0.0;
+    opacity: 0;
 
     &.spoiler-input--visible {
       height: 36px;
       margin-bottom: 11px;
-      opacity: 1.0;
+      opacity: 1;
     }
   }
 
@@ -1193,7 +1193,7 @@
 }
 
 .account__avatar {
-  @include avatar-radius();
+  @include avatar-radius;
   position: relative;
 
   &-inline {
@@ -1203,11 +1203,11 @@
   }
 
   &-composite {
-    @include avatar-radius();
+    @include avatar-radius;
     overflow: hidden;
 
     & > div {
-      @include avatar-radius();
+      @include avatar-radius;
       float: left;
       position: relative;
       box-sizing: border-box;
@@ -1223,12 +1223,12 @@ a .account__avatar {
   @include avatar-size(48px);
 
   &-base {
-    @include avatar-radius();
+    @include avatar-radius;
     @include avatar-size(36px);
   }
 
   &-overlay {
-    @include avatar-radius();
+    @include avatar-radius;
     @include avatar-size(24px);
 
     position: absolute;
@@ -1606,13 +1606,13 @@ a.account__display-name {
     .icon-button.close {
       position: absolute;
       pointer-events: none;
-      transform: scale(0.0, 1.0) translate(-100%, 0);
+      transform: scale(0, 1) translate(-100%, 0);
       opacity: 0;
     }
 
     .compose__action-bar .icon-button {
       pointer-events: auto;
-      transform: scale(1.0, 1.0) translate(0, 0);
+      transform: scale(1, 1) translate(0, 0);
       opacity: 1;
     }
   }
@@ -2711,7 +2711,7 @@ a.account__display-name {
 .setting-text {
   color: $darker-text-color;
   background: transparent;
-  border: none;
+  border: 0;
   border-bottom: 2px solid $ui-primary-color;
   box-sizing: border-box;
   display: block;
@@ -3049,7 +3049,7 @@ a.status-card.compact:hover {
 
   & > button {
     margin: 0;
-    border: none;
+    border: 0;
     padding: 15px 0 15px 15px;
     color: inherit;
     background: transparent;
@@ -3214,11 +3214,11 @@ a.status-card.compact:hover {
 }
 
 .no-reduce-motion .loading-indicator span {
-  animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .no-reduce-motion .loading-indicator__figure {
-  animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 @keyframes loader-figure {
@@ -3385,7 +3385,7 @@ a.status-card.compact:hover {
 
   .column-select {
     &__control {
-      @include search-input();
+      @include search-input;
     }
 
     &__placeholder {
@@ -3436,7 +3436,7 @@ a.status-card.compact:hover {
     }
 
     &__menu {
-      @include search-popout();
+      @include search-popout;
       padding: 0;
       background: $ui-secondary-color;
     }
@@ -3597,7 +3597,7 @@ a.status-card.compact:hover {
 
 .no-reduce-motion .shake-bottom {
   transform-origin: 50% 100%;
-  animation: shake-bottom 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) 2s 2 both;
+  animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) 2s 2 both;
 }
 
 .emoji-picker-dropdown__menu {
@@ -3892,10 +3892,11 @@ a.status-card.compact:hover {
 }
 
 .search__input {
+  @include search-input;
+
   display: block;
   padding: 10px;
   padding-right: 30px;
-  @include search-input();
 }
 
 .search__icon {
@@ -4503,13 +4504,13 @@ a.status-card.compact:hover {
 }
 
 .actions-modal {
+  max-height: 80vh;
+  max-width: 80vw;
+
   .status {
     overflow-y: auto;
     max-height: 300px;
   }
-
-  max-height: 80vh;
-  max-width: 80vw;
 
   .actions-modal__item-label {
     font-weight: 500;
@@ -4725,7 +4726,7 @@ a.status-card.compact:hover {
 }
 
 .media-gallery__item {
-  border: none;
+  border: 0;
   box-sizing: border-box;
   display: block;
   float: left;
@@ -5185,7 +5186,7 @@ a.status-card.compact:hover {
 }
 
 .account-gallery__item {
-  border: none;
+  border: 0;
   box-sizing: border-box;
   display: block;
   position: relative;
@@ -5259,7 +5260,7 @@ a.status-card.compact:hover {
 }
 
 .search-popout {
-  @include search-popout();
+  @include search-popout;
 }
 
 noscript {
@@ -5361,14 +5362,14 @@ noscript {
         .icon-button.close {
           pointer-events: auto;
           opacity: 1;
-          transform: scale(1.0, 1.0) translate(0, 0);
+          transform: scale(1, 1) translate(0, 0);
           bottom: 5px;
         }
 
         .compose__action-bar .icon-button {
           pointer-events: none;
           opacity: 0;
-          transform: scale(0.0, 1.0) translate(100%, 0);
+          transform: scale(0, 1) translate(100%, 0);
         }
       }
     }
@@ -5398,7 +5399,7 @@ noscript {
       box-sizing: border-box;
       display: block;
       width: 100%;
-      border: none;
+      border: 0;
       padding: 10px;
       font-family: $font-monospace, monospace;
       background: $ui-base-color;
