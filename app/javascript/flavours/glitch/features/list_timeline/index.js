@@ -75,6 +75,23 @@ export default class ListTimeline extends React.PureComponent {
     this.disconnect = dispatch(connectListStream(id));
   }
 
+  componentWillReceiveProps (nextProps) {
+    const { dispatch } = this.props;
+    const { id } = nextProps.params;
+
+    if (id !== this.props.params.id) {
+      if (this.disconnect) {
+        this.disconnect();
+        this.disconnect = null;
+      }
+
+      dispatch(fetchList(id));
+      dispatch(expandListTimeline(id));
+
+      this.disconnect = dispatch(connectListStream(id));
+    }
+  }
+
   componentWillUnmount () {
     if (this.disconnect) {
       this.disconnect();
