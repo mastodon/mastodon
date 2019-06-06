@@ -335,7 +335,7 @@ class ComposeForm extends ImmutablePureComponent {
           />
         </div>
 
-        <div className='emoji-picker-wrapper'>
+        <div className={`emoji-picker-wrapper ${this.props.showSearch ? 'emoji-picker-wrapper--hidden' : ''}`}>
           <EmojiPicker onPickEmoji={handleEmoji} />
         </div>
 
