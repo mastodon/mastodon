@@ -60,6 +60,8 @@ export default class Card extends React.PureComponent {
     maxDescription: PropTypes.number,
     onOpenMedia: PropTypes.func.isRequired,
     compact: PropTypes.bool,
+    defaultWidth: PropTypes.number,
+    cacheWidth: PropTypes.func,
   };
 
   static defaultProps = {
@@ -68,7 +70,7 @@ export default class Card extends React.PureComponent {
   };
 
   state = {
-    width: 280,
+    width: this.props.defaultWidth || 280,
     embedded: false,
   };
 
@@ -111,6 +113,7 @@ export default class Card extends React.PureComponent {
 
   setRef = c => {
     if (c) {
+      if (this.props.cacheWidth) this.props.cacheWidth(c.offsetWidth);
       this.setState({ width: c.offsetWidth });
     }
   }

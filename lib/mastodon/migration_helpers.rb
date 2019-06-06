@@ -889,7 +889,7 @@ table #{table}.
 If you are using PostgreSQL you can solve this by logging in to the GitLab
 database (#{dbname}) using a super user and running:
 
-    ALTER #{user} WITH SUPERUSER
+    ALTER USER #{user} WITH SUPERUSER
 
 For MySQL you instead need to run:
 

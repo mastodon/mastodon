@@ -2,6 +2,7 @@
 
 class RemoveStatusService < BaseService
   include StreamEntryRenderer
+  include Redisable
 
   def call(status, **options)
     @payload      = Oj.dump(event: :delete, payload: status.id.to_s)
@@ -55,7 +56,7 @@ class RemoveStatusService < BaseService
 
   def remove_from_affected
     @mentions.map(&:account).select(&:local?).each do |account|
-      Redis.current.publish("timeline:#{account.id}", @payload)
+      redis.publish("timeline:#{account.id}", @payload)
     end
   end
 
@@ -133,26 +134,22 @@ class RemoveStatusService < BaseService
     return unless @status.public_visibility?
 
     @tags.each do |hashtag|
-      Redis.current.publish("timeline:hashtag:#{hashtag}", @payload)
-      Redis.current.publish("timeline:hashtag:#{hashtag}:local", @payload) if @status.local?
+      redis.publish("timeline:hashtag:#{hashtag}", @payload)
+      redis.publish("timeline:hashtag:#{hashtag}:local", @payload) if @status.local?
     end
   end
 
   def remove_from_public
     return unless @status.public_visibility?
 
-    Redis.current.publish('timeline:public', @payload)
-    Redis.current.publish('timeline:public:local', @payload) if @status.local?
+    redis.publish('timeline:public', @payload)
+    redis.publish('timeline:public:local', @payload) if @status.local?
   end
 
   def remove_from_media
     return unless @status.public_visibility?
 
-    Redis.current.publish('timeline:public:media', @payload)
-    Redis.current.publish('timeline:public:local:media', @payload) if @status.local?
-  end
-
-  def redis
-    Redis.current
+    redis.publish('timeline:public:media', @payload)
+    redis.publish('timeline:public:local:media', @payload) if @status.local?
   end
 end

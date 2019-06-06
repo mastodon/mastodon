@@ -295,6 +295,7 @@ class User < ApplicationRecord
 
   def self.pam_get_user(attributes = {})
     return nil unless attributes[:email]
+
     resource =
       if Devise.check_at_sign && !attributes[:email].index('@')
         joins(:account).find_by(accounts: { username: attributes[:email] })
@@ -304,6 +305,7 @@ class User < ApplicationRecord
 
     if resource.blank?
       resource = new(email: attributes[:email], agreement: true)
+
       if Devise.check_at_sign && !resource[:email].index('@')
         resource[:email] = Rpam2.getenv(resource.find_pam_service, attributes[:email], attributes[:password], 'email', false)
         resource[:email] = "#{attributes[:email]}@#{resource.find_pam_suffix}" unless resource[:email]

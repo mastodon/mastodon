@@ -68,6 +68,7 @@ module JsonLdHelper
       return body_to_json(response.body_with_limit) if response.code == 200
     end
     # If request failed, retry without doing it on behalf of a user
+    return if on_behalf_of.nil?
     build_request(uri).perform do |response|
       response.code == 200 ? body_to_json(response.body_with_limit) : nil
     end

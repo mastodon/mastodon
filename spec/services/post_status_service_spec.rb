@@ -36,6 +36,20 @@ RSpec.describe PostStatusService, type: :service do
     expect(status.params['text']).to eq 'Hi future!'
   end
 
+  it 'does not immediately create a status when scheduling a status' do
+    account = Fabricate(:account)
+    media = Fabricate(:media_attachment)
+    future  = Time.now.utc + 2.hours
+
+    status = subject.call(account, text: 'Hi future!', media_ids: [media.id], scheduled_at: future)
+
+    expect(status).to be_a ScheduledStatus
+    expect(status.scheduled_at).to eq future
+    expect(status.params['text']).to eq 'Hi future!'
+    expect(media.reload.status).to be_nil
+    expect(Status.where(text: 'Hi future!').exists?).to be_falsey
+  end
+
   it 'creates response to the original status of boost' do
     boosted_status = Fabricate(:status)
     in_reply_to_status = Fabricate(:status, reblog: boosted_status)
@@ -153,7 +167,7 @@ RSpec.describe PostStatusService, type: :service do
 
   it 'attaches the given media to the created status' do
     account = Fabricate(:account)
-    media = Fabricate(:media_attachment)
+    media = Fabricate(:media_attachment, account: account)
 
     status = subject.call(
       account,
@@ -162,6 +176,19 @@ RSpec.describe PostStatusService, type: :service do
     )
 
     expect(media.reload.status).to eq status
+  end
+
+  it 'does not attach media from another account to the created status' do
+    account = Fabricate(:account)
+    media = Fabricate(:media_attachment, account: Fabricate(:account))
+
+    status = subject.call(
+      account,
+      text: "test status update",
+      media_ids: [media.id],
+    )
+
+    expect(media.reload.status).to eq nil
   end
 
   it 'does not allow attaching more than 4 files' do

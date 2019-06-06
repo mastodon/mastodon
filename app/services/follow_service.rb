@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FollowService < BaseService
+  include Redisable
+
   # Follow a remote user, notify remote user about the follow
   # @param [Account] source_account From which to follow
   # @param [String, Account] uri User URI to follow in the form of username@domain (or account record)
@@ -65,10 +67,6 @@ class FollowService < BaseService
     MergeWorker.perform_async(target_account.id, source_account.id)
 
     follow
-  end
-
-  def redis
-    Redis.current
   end
 
   def build_follow_request_xml(follow_request)

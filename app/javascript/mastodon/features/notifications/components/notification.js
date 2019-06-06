@@ -29,7 +29,15 @@ class Notification extends ImmutablePureComponent {
     onMoveUp: PropTypes.func.isRequired,
     onMoveDown: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
+    onFavourite: PropTypes.func.isRequired,
+    onReblog: PropTypes.func.isRequired,
+    onToggleHidden: PropTypes.func.isRequired,
+    status: PropTypes.option,
     intl: PropTypes.object.isRequired,
+    getScrollPosition: PropTypes.func,
+    updateScrollBottom: PropTypes.func,
+    cacheMediaWidth: PropTypes.func,
+    cachedMediaWidth: PropTypes.number,
   };
 
   handleMoveUp = () => {
@@ -64,14 +72,32 @@ class Notification extends ImmutablePureComponent {
     onMention(notification.get('account'), this.context.router.history);
   }
 
+  handleHotkeyFavourite = () => {
+    const { status } = this.props;
+    if (status) this.props.onFavourite(status);
+  }
+
+  handleHotkeyBoost = e => {
+    const { status } = this.props;
+    if (status) this.props.onReblog(status, e);
+  }
+
+  handleHotkeyToggleHidden = () => {
+    const { status } = this.props;
+    if (status) this.props.onToggleHidden(status);
+  }
+
   getHandlers () {
     return {
-      moveUp: this.handleMoveUp,
-      moveDown: this.handleMoveDown,
+      reply: this.handleMention,
+      favourite: this.handleHotkeyFavourite,
+      boost: this.handleHotkeyBoost,
+      mention: this.handleMention,
       open: this.handleOpen,
       openProfile: this.handleOpenProfile,
-      mention: this.handleMention,
-      reply: this.handleMention,
+      moveUp: this.handleMoveUp,
+      moveDown: this.handleMoveDown,
+      toggleHidden: this.handleHotkeyToggleHidden,
     };
   }
 
@@ -106,6 +132,10 @@ class Notification extends ImmutablePureComponent {
         onMoveDown={this.handleMoveDown}
         onMoveUp={this.handleMoveUp}
         contextType='notifications'
+        getScrollPosition={this.props.getScrollPosition}
+        updateScrollBottom={this.props.updateScrollBottom}
+        cachedMediaWidth={this.props.cachedMediaWidth}
+        cacheMediaWidth={this.props.cacheMediaWidth}
       />
     );
   }
@@ -126,7 +156,17 @@ class Notification extends ImmutablePureComponent {
             </span>
           </div>
 
-          <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss hidden={!!this.props.hidden} />
+          <StatusContainer
+            id={notification.get('status')}
+            account={notification.get('account')}
+            muted
+            withDismiss
+            hidden={!!this.props.hidden}
+            getScrollPosition={this.props.getScrollPosition}
+            updateScrollBottom={this.props.updateScrollBottom}
+            cachedMediaWidth={this.props.cachedMediaWidth}
+            cacheMediaWidth={this.props.cacheMediaWidth}
+          />
         </div>
       </HotKeys>
     );
@@ -148,7 +188,17 @@ class Notification extends ImmutablePureComponent {
             </span>
           </div>
 
-          <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss hidden={this.props.hidden} />
+          <StatusContainer
+            id={notification.get('status')}
+            account={notification.get('account')}
+            muted
+            withDismiss
+            hidden={this.props.hidden}
+            getScrollPosition={this.props.getScrollPosition}
+            updateScrollBottom={this.props.updateScrollBottom}
+            cachedMediaWidth={this.props.cachedMediaWidth}
+            cacheMediaWidth={this.props.cacheMediaWidth}
+          />
         </div>
       </HotKeys>
     );
