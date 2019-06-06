@@ -323,6 +323,7 @@ class ComposeForm extends ImmutablePureComponent {
             searchTokens={[':']}
             id='glitch.composer.spoiler.input'
             className='spoiler-input__input'
+            autoFocus={false}
           />
         </div>
 
