@@ -175,8 +175,6 @@ class ListTimeline extends React.PureComponent {
               <Icon id='trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
           </div>
-
-          <hr />
         </ColumnHeader>
 
         <StatusListContainer
