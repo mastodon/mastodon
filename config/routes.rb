@@ -87,15 +87,17 @@ Rails.application.routes.draw do
   get '/explore', to: 'directories#index', as: :explore
   get '/explore/:id', to: 'directories#show', as: :explore_hashtag
 
-  get '/settings', to: redirect('/settings/preferences')
+  get '/settings', to: redirect('/settings/profile')
 
   namespace :settings do
     resource :profile, only: [:show, :update]
-    resource :preferences, only: [:show, :update]
+
+    get :preferences, to: redirect('/settings/preferences/appearance')
 
     namespace :preferences do
       resource :appearance, only: [:show, :update], controller: :appearance
       resource :notifications, only: [:show, :update]
+      resource :other, only: [:show, :update], controller: :other
     end
 
     resource :import, only: [:show, :create]
