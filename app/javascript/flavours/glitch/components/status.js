@@ -114,8 +114,6 @@ export default class Status extends ImmutablePureComponent {
     'account',
     'settings',
     'prepend',
-    'boostModal',
-    'favouriteModal',
     'muted',
     'collapse',
     'notification',
