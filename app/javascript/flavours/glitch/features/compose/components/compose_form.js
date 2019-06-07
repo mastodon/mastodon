@@ -28,10 +28,6 @@ const messages = defineMessages({
 export default @injectIntl
 class ComposeForm extends ImmutablePureComponent {
 
-  setRef = c => {
-    this.composeForm = c;
-  };
-
   static contextTypes = {
     router: PropTypes.object,
   };
@@ -145,6 +141,10 @@ class ComposeForm extends ImmutablePureComponent {
     }
   }
 
+  setRef = c => {
+    this.composeForm = c;
+  };
+
   //  Inserts an emoji at the caret.
   handleEmoji = (data) => {
     const { textarea: { selectionStart } } = this;
@@ -213,7 +213,9 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   handleFocus = () => {
-    this.composeForm.scrollIntoView();
+    if (this.composeForm) {
+      this.composeForm.scrollIntoView();
+    }
   }
 
   //  This statement does several things:
