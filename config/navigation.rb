@@ -10,10 +10,10 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :identity_proofs, safe_join([fa_icon('key fw'), t('settings.identity_proofs')]), settings_identity_proofs_path, highlights_on: %r{/settings/identity_proofs*}, if: proc { current_account.identity_proofs.exists? }
     end
 
-    n.item :preferences, safe_join([fa_icon('cog fw'), t('settings.preferences')]), settings_preferences_appearance_url do |s|
+    n.item :preferences, safe_join([fa_icon('cog fw'), t('settings.preferences')]), settings_preferences_url do |s|
       s.item :appearance, safe_join([fa_icon('desktop fw'), t('settings.appearance')]), settings_preferences_appearance_url
       s.item :notifications, safe_join([fa_icon('bell fw'), t('settings.notifications')]), settings_preferences_notifications_url
-      s.item :other, safe_join([fa_icon('cog fw'), t('preferences.other')]), settings_preferences_url
+      s.item :other, safe_join([fa_icon('cog fw'), t('preferences.other')]), settings_preferences_other_url
     end
 
     n.item :relationships, safe_join([fa_icon('users fw'), t('settings.relationships')]), relationships_url
