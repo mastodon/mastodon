@@ -96,11 +96,16 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onReblog (status, e) {
-    if (e.shiftKey || !boostModal) {
-      this.onModalReblog(status);
-    } else {
-      dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
-    }
+    dispatch((_, getState) => {
+      let state = getState();
+      if (state.getIn(['local_settings', 'confirm_boost_missing_media_description']) && status.get('media_attachments').some(item => !item.get('description')) && !status.get('reblogged')) {
+        dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog, missingMediaDescription: true }));
+      } else if (e.shiftKey || !boostModal) {
+        this.onModalReblog(status);
+      } else {
+        dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
+      }
+    });
   },
 
   onBookmark (status) {

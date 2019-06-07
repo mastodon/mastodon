@@ -25,6 +25,7 @@ export default class BoostModal extends ImmutablePureComponent {
     status: ImmutablePropTypes.map.isRequired,
     onReblog: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
+    missingMediaDescription: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
@@ -52,7 +53,7 @@ export default class BoostModal extends ImmutablePureComponent {
   }
 
   render () {
-    const { status, intl } = this.props;
+    const { status, missingMediaDescription, intl } = this.props;
     const buttonText = status.get('reblogged') ? messages.cancel_reblog : messages.reblog;
 
     return (
@@ -78,7 +79,13 @@ export default class BoostModal extends ImmutablePureComponent {
         </div>
 
         <div className='boost-modal__action-bar'>
-          <div><FormattedMessage id='boost_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <i className='fa fa-retweet' /></span> }} /></div>
+          <div>
+            { missingMediaDescription ?
+                <FormattedMessage id='boost_modal.missing_description' defaultMessage='This toot contains some media without description' />
+              :
+                <FormattedMessage id='boost_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <i className='fa fa-retweet' /></span> }} />
+            }
+          </div>
           <Button text={intl.formatMessage(buttonText)} onClick={this.handleReblog} ref={this.setRef} />
         </div>
       </div>
