@@ -4,6 +4,7 @@ require 'singleton'
 
 class FeedManager
   include Singleton
+  include Redisable
 
   MAX_ITEMS = 400
 
@@ -35,7 +36,7 @@ class FeedManager
 
   def unpush_from_home(account, status)
     return false unless remove_from_feed(:home, account.id, status)
-    Redis.current.publish("timeline:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s))
+    redis.publish("timeline:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s))
     true
   end
 
@@ -53,7 +54,7 @@ class FeedManager
 
   def unpush_from_list(list, status)
     return false unless remove_from_feed(:list, list.id, status)
-    Redis.current.publish("timeline:list:#{list.id}", Oj.dump(event: :delete, payload: status.id.to_s))
+    redis.publish("timeline:list:#{list.id}", Oj.dump(event: :delete, payload: status.id.to_s))
     true
   end
 
@@ -141,10 +142,6 @@ class FeedManager
   end
 
   private
-
-  def redis
-    Redis.current
-  end
 
   def push_update_required?(timeline_id)
     redis.exists("subscribed:#{timeline_id}")

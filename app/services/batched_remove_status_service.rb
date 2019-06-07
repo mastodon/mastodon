@@ -2,6 +2,7 @@
 
 class BatchedRemoveStatusService < BaseService
   include StreamEntryRenderer
+  include Redisable
 
   # Delete given statuses and reblogs of them
   # Dispatch PuSH updates of the deleted statuses, but only local ones
@@ -107,10 +108,6 @@ class BatchedRemoveStatusService < BaseService
     recipients.each do |recipient_id|
       @salmon_batches << [build_xml(status.stream_entry), status.account_id, recipient_id]
     end
-  end
-
-  def redis
-    Redis.current
   end
 
   def build_xml(stream_entry)

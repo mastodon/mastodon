@@ -107,9 +107,8 @@ class Upload extends ImmutablePureComponent {
                 <label>
                   <span style={{ display: 'none' }}>{intl.formatMessage(messages.description)}</span>
 
-                  <input
+                  <textarea
                     placeholder={intl.formatMessage(messages.description)}
-                    type='text'
                     value={description}
                     maxLength={420}
                     onFocus={this.handleInputFocus}
