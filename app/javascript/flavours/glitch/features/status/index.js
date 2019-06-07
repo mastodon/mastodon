@@ -237,16 +237,12 @@ export default class Status extends ImmutablePureComponent {
   handleReblogClick = (status, e) => {
     const { settings, dispatch } = this.props;
 
-    if (status.get('reblogged')) {
-      dispatch(unreblog(status));
+    if (settings.get('confirm_boost_missing_media_description') && status.get('media_attachments').some(item => !item.get('description')) && !status.get('reblogged')) {
+      dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog, missingMediaDescription: true }));
+    } else if ((e && e.shiftKey) || !boostModal) {
+      this.handleModalReblog(status);
     } else {
-      if (settings.get('confirm_boost_missing_media_description') && status.get('media_attachments').some(item => !item.get('description'))) {
-        dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog, missingMediaDescription: true }));
-      } else if ((e && e.shiftKey) || !boostModal) {
-        this.handleModalReblog(status);
-      } else {
-        dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog }));
-      }
+      dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog }));
     }
   }
 
