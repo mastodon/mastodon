@@ -34,6 +34,10 @@ const messages = defineMessages({
 export default @injectIntl
 class ComposeForm extends ImmutablePureComponent {
 
+  setRef = c => {
+    this.composeForm = c;
+  };
+
   static contextTypes = {
     router: PropTypes.object,
   };
@@ -115,6 +119,10 @@ class ComposeForm extends ImmutablePureComponent {
     this.props.onChangeSpoilerText(e.target.value);
   }
 
+  handleFocus = () => {
+    this.composeForm.scrollIntoView();
+  }
+
   componentDidUpdate (prevProps) {
     // This statement does several things:
     // - If we're beginning a reply, and,
@@ -178,7 +186,7 @@ class ComposeForm extends ImmutablePureComponent {
     }
 
     return (
-      <div className='compose-form'>
+      <div className='compose-form' ref={this.setRef}>
         <WarningContainer />
 
         <ReplyIndicatorContainer />
@@ -201,7 +209,7 @@ class ComposeForm extends ImmutablePureComponent {
           />
         </div>
 
-        <div className='emoji-picker-wrapper'>
+        <div className={`emoji-picker-wrapper ${this.props.showSearch ? 'emoji-picker-wrapper--hidden' : ''}`}>
           <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
         </div>
 
@@ -212,6 +220,7 @@ class ComposeForm extends ImmutablePureComponent {
           value={this.props.text}
           onChange={this.handleChange}
           suggestions={this.props.suggestions}
+          onFocus={this.handleFocus}
           onKeyDown={this.handleKeyDown}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}

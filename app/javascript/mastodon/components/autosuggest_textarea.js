@@ -138,8 +138,11 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     this.setState({ suggestionsHidden: true, focused: false });
   }
 
-  onFocus = () => {
+  onFocus = (e) => {
     this.setState({ focused: true });
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
   }
 
   onSuggestionClick = (e) => {
