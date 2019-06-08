@@ -81,6 +81,11 @@ html {
   }
 }
 
+.getting-started .navigation-bar {
+  border-top: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+}
+
 .compose-form__autosuggest-wrapper,
 .poll__text input[type="text"],
 .compose-form .spoiler-input__input,
@@ -348,6 +353,33 @@ html {
 .error-column {
   color: $primary-text-color;
   background: $white;
+}
+
+.tabs-bar {
+  background: $white;
+  border: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 0;
+
+  &__link {
+    padding-bottom: 14px;
+    border-bottom-width: 1px;
+    border-bottom-color: lighten($ui-base-color, 8%);
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: $ui-base-color;
+    }
+
+    &.active {
+      &:hover,
+      &:active,
+      &:focus {
+        background: transparent;
+        border-bottom-color: $ui-highlight-color;
+      }
+    }
+  }
 }
 
 // Change the default colors used on some parts of the profile pages
