@@ -15,6 +15,19 @@ About what is Mastodon, see [tootsuite/mastodon](https://github.com/tootsuite/ma
 - 未収載タグ付き投稿のタグTLへの表示
 - お気に入りタグ機能
 
+## 開発用docker-composeファイル
+開発に必要なpostgresqlとredisはdocker-composeを用いて1コマンドで起動できるようになっています。
+```
+docker-compose -f docker-compose-dev.yml up -d
+```
+
+また、docker-composeで起動したそれらに接続するために下記の内容を`.env`という名前のファイルとして保存してください。
+```
+DB_HOST=localhost
+DB_USER=mastodon
+DB_PASS=mastodon
+```
+
 ![Mastodon](https://i.imgur.com/NhZc40l.png)
 ========
 
