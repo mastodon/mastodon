@@ -531,23 +531,14 @@ html {
   }
 
   .header {
-    background: lighten($ui-base-color, 24%);
-
-    .nav-link {
-      color: $white;
-
-      &:hover,
-      &:focus,
-      &:active {
-        color: $white;
-      }
-    }
+    background: $ui-base-color;
+    border: 1px solid lighten($ui-base-color, 8%);
 
     .brand {
       &:hover,
       &:focus,
       &:active {
-        background: lighten($ui-base-color, 28%);
+        background: lighten($ui-base-color, 4%);
       }
     }
   }
