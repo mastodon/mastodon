@@ -178,7 +178,7 @@ cs:
       statuses: Tooty
       subscribe: Odebírat
       suspended: Pozastaven/a
-      time_in_queue: 'Čeká ve frontě %{time}'
+      time_in_queue: Čeká ve frontě %{time}
       title: Účty
       unconfirmed_email: Nepotvrzený e-mail
       undo_silenced: Zrušit utišení
@@ -501,16 +501,16 @@ cs:
     new_pending_account:
       body: Detaily nového účtu jsou uvedeny níže. Můžete tento požadavek schválit nebo zamítnout.
       subject: Nový účet čekající na posouzení na %{instance} (%{username})
+    new_report:
+      body: "%{reporter} nahlásil/a uživatele %{target}"
+      body_remote: Někdo z %{domain} nahlásil uživatele %{target}
+      subject: Nové nahlášení pro %{instance} (#%{id})
   appearance:
     advanced_web_interface: Pokročilé webové rozhraní
     advanced_web_interface_hint: 'Chcete-li využít celé šířky vaší obrazovky, dovolí vám pokročilé webové rozhraní nastavit si mnoho různých sloupců, takže můžete vidět ve stejnou chvíli tolik informací, kolik chcete: domovskou časovou osu, oznámení, federovanou časovou osu a libovolný počet seznamů a hashtagů.'
     animations_and_accessibility: Animace a přístupnost
     confirmation_dialogs: Potvrzovací dialogy
     sensitive_content: Citlivý obsah
-    new_report:
-      body: "%{reporter} nahlásil/a uživatele %{target}"
-      body_remote: Někdo z %{domain} nahlásil uživatele %{target}
-      subject: Nové nahlášení pro %{instance} (#%{id})
   application_mailer:
     notification_preferences: Změnit volby e-mailu
     salutation: "%{name},"
