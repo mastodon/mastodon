@@ -175,7 +175,7 @@ export default class StatusContent extends React.PureComponent {
         </Permalink>
       )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
 
-      const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;
+      const toggleText = hidden ? [<FormattedMessage id='status.show_more' defaultMessage='Show more' />, status.get('poll') ? <Icon id='tasks' className='status__content__spoiler-icon' fixedWidth /> : null] : [<FormattedMessage id='status.show_less' defaultMessage='Show less' />];
 
       if (hidden) {
         mentionsPlaceholder = <div>{mentionLinks}</div>;
