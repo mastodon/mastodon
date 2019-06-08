@@ -28,6 +28,10 @@ html {
   background: $white;
   border: 1px solid lighten($ui-base-color, 8%);
 
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-top: 0;
+  }
+
   &--slim-button {
     border: 0;
     top: -49px;
@@ -81,6 +85,15 @@ html {
   }
 }
 
+.getting-started .navigation-bar {
+  border-top: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-top: 0;
+  }
+}
+
 .compose-form__autosuggest-wrapper,
 .poll__text input[type="text"],
 .compose-form .spoiler-input__input,
@@ -93,6 +106,13 @@ html {
 .box-widget textarea,
 .statuses-grid .detailed-status {
   border: 1px solid lighten($ui-base-color, 8%);
+}
+
+.search__input {
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-top: 0;
+    border-bottom: 0;
+  }
 }
 
 .list-editor .search .search__input {
@@ -350,6 +370,37 @@ html {
   background: $white;
 }
 
+.tabs-bar {
+  background: $white;
+  border: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 0;
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-top: 0;
+  }
+
+  &__link {
+    padding-bottom: 14px;
+    border-bottom-width: 1px;
+    border-bottom-color: lighten($ui-base-color, 8%);
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: $ui-base-color;
+    }
+
+    &.active {
+      &:hover,
+      &:active,
+      &:focus {
+        background: transparent;
+        border-bottom-color: $ui-highlight-color;
+      }
+    }
+  }
+}
+
 // Change the default colors used on some parts of the profile pages
 .activity-stream-tabs {
   background: $account-background-color;
@@ -367,6 +418,12 @@ html {
 .landing-page__information.contact-widget {
   background: $white;
   border: 1px solid lighten($ui-base-color, 8%);
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+  }
 }
 
 .landing .hero-widget__text {
@@ -374,10 +431,26 @@ html {
   border-bottom: 0;
 }
 
+.simple_form {
+  input[type=text],
+  input[type=number],
+  input[type=email],
+  input[type=password],
+  textarea {
+    &:hover {
+      border-color: lighten($ui-base-color, 12%);
+    }
+  }
+}
+
 .landing .hero-widget__footer {
   background: $white;
   border: 1px solid lighten($ui-base-color, 8%);
   border-top: 0;
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border: 0;
+  }
 }
 
 .brand__tagline {
@@ -389,6 +462,10 @@ html {
   &:active,
   &:focus {
     background: $ui-base-color;
+  }
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border: 0;
   }
 }
 
@@ -516,6 +593,10 @@ html {
 .public-layout {
   .account__section-headline {
     border: 1px solid lighten($ui-base-color, 8%);
+
+    @media screen and (max-width: $no-gap-breakpoint) {
+      border-top: 0;
+    }
   }
 
   .header,
@@ -533,6 +614,10 @@ html {
   .header {
     background: $ui-base-color;
     border: 1px solid lighten($ui-base-color, 8%);
+
+    @media screen and (max-width: $no-gap-breakpoint) {
+      border: 0;
+    }
 
     .brand {
       &:hover,
@@ -562,6 +647,12 @@ html {
       .avatar img {
         border-color: $account-background-color;
       }
+
+      @media screen and (max-width: $no-columns-breakpoint) {
+        background: $account-background-color;
+        border: 1px solid lighten($ui-base-color, 8%);
+        border-top: 0;
+      }
     }
 
     &__tabs {
@@ -569,7 +660,21 @@ html {
         h1,
         h1 small {
           color: $white;
+
+          @media screen and (max-width: $no-columns-breakpoint) {
+            color: $primary-text-color;
+          }
         }
+      }
+    }
+
+    &__extra {
+      .public-account-bio {
+        border: 0;
+      }
+
+      .public-account-bio .account__header__fields {
+        border-color: lighten($ui-base-color, 8%);
       }
     }
   }
