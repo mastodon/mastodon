@@ -23,9 +23,7 @@
     - if status.spoiler_text?
       %p{ :style => ('margin-bottom: 0' unless current_account&.user&.setting_expand_spoilers) }<
         %span.p-summary> #{Formatter.instance.format_spoiler(status, autoplay: autoplay)}&nbsp;
-        %button.status__content__spoiler-link<
-          = t('statuses.show_more')
-          = fa_icon('tasks fw', class: 'status__content__spoiler-icon') if status.preloadable_poll
+        %button.status__content__spoiler-link= t('statuses.show_more')
     .e-content{ lang: status.language, style: "display: #{!current_account&.user&.setting_expand_spoilers && status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }
       = Formatter.instance.format(status, custom_emojify: true, autoplay: autoplay)
       - if status.preloadable_poll
