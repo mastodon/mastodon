@@ -81,7 +81,7 @@ co:
       destroyed_msg: Nota di muderazione sguassata!
     accounts:
       approve: Appruvà
-      approve_all: Appruvà tutti
+      approve_all: Appruvà tuttu
       are_you_sure: Site sicuru·a?
       avatar: Ritrattu di prufile
       by_domain: Duminiu
@@ -174,6 +174,7 @@ co:
       statuses: Statuti
       subscribe: Abbunassi
       suspended: Suspesu
+      time_in_queue: 'Attesa in fila: %{time}'
       title: Conti
       unconfirmed_email: E-mail micca cunfirmatu
       undo_silenced: Ùn silenzà più
@@ -293,8 +294,8 @@ co:
           one: Un contu tuccatu indè a database
           other: "%{count} conti tuccati indè a database"
         retroactive:
-          silence: Ùn silenzà più i conti nant’à stu duminiu
-          suspend: Ùn suspende più i conti nant’à stu duminiu
+          silence: Ùn silenzà più i conti affettati di stu duminiu
+          suspend: Ùn suspende più i conti affettati di stu duminiu
         title: Ùn bluccà più u duminiu %{domain}
         undo: Annullà
       undo: Annullà u blucchime di duminiu
@@ -498,6 +499,12 @@ co:
       body: "%{reporter} hà palisatu %{target}"
       body_remote: Qualch’unu da %{domain} hà palisatu %{target}
       subject: Novu signalamentu nant’à %{instance} (#%{id})
+  appearance:
+    advanced_web_interface: Interfaccia web avanzata
+    advanced_web_interface_hint: 'S''è voi vulete fà usu di a larghezza sana di u vostru screnu, l''interfaccia web avanzata vi permette di cunfigurà parechje culonne sfarente per vede tutta l''infurmazione chì vulete vede in listessu tempu: Accolta, nutificazione, linea pubblica, è tutti l''hashtag è liste chì vulete.'
+    animations_and_accessibility: Animazione è accessibilità
+    confirmation_dialogs: Pop-up di cunfirmazione
+    sensitive_content: Cuntinutu sensibile
   application_mailer:
     notification_preferences: Cambià e priferenze e-mail
     salutation: "%{name},"
@@ -777,10 +784,9 @@ co:
       too_few_options: deve avè più d'un'uzzione
       too_many_options: ùn pò micca avè più di %{max} uzzione
   preferences:
-    languages: Lingue
     other: Altre
-    publishing: Pubblicazione
-    web: Web
+    posting_defaults: Paramettri predefiniti
+    public_timelines: Linee pubbliche
   relationships:
     activity: Attività di u contu
     dormant: Inattivu
@@ -877,6 +883,7 @@ co:
     migrate: Migrazione di u contu
     notifications: Nutificazione
     preferences: Priferenze
+    profile: Prufile
     relationships: Abbunamenti è abbunati
     two_factor_authentication: Identificazione à dui fattori
   statuses:

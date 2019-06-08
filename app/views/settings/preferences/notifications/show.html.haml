@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('settings.notifications')
 
-= simple_form_for current_user, url: settings_notifications_path, html: { method: :put } do |f|
+= simple_form_for current_user, url: settings_preferences_notifications_path, html: { method: :put } do |f|
   = render 'shared/error_messages', object: current_user
 
   .fields-group

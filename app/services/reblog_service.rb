@@ -3,6 +3,7 @@
 class ReblogService < BaseService
   include Authorization
   include StreamEntryRenderer
+  include Payloadable
 
   # Reblog a status and notify its remote author
   # @param [Account] account Account to reblog from
@@ -18,7 +19,9 @@ class ReblogService < BaseService
 
     return reblog unless reblog.nil?
 
-    reblog = account.statuses.create!(reblog: reblogged_status, text: '', visibility: options[:visibility] || account.user&.setting_default_privacy)
+    visibility = options[:visibility] || account.user&.setting_default_privacy
+    visibility = reblogged_status.visibility if reblogged_status.hidden?
+    reblog = account.statuses.create!(reblog: reblogged_status, text: '', visibility: visibility)
 
     DistributionWorker.perform_async(reblog.id)
     Pubsubhubbub::DistributionWorker.perform_async(reblog.stream_entry.id)
@@ -51,10 +54,6 @@ class ReblogService < BaseService
   end
 
   def build_json(reblog)
-    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
-      reblog,
-      serializer: ActivityPub::ActivitySerializer,
-      adapter: ActivityPub::Adapter
-    ).as_json).sign!(reblog.account))
+    Oj.dump(serialize_payload(reblog, ActivityPub::ActivitySerializer, signer: reblog.account))
   end
 end
