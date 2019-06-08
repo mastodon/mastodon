@@ -21,7 +21,8 @@
     justify-content: center;
     align-items: center;
 
-    img {
+    svg {
+      fill: $primary-text-color;
       height: 42px;
       margin-right: 10px;
     }
@@ -258,12 +259,13 @@
       display: block;
       padding: 15px;
 
-      img {
+      svg {
         display: block;
         height: 18px;
         width: auto;
         position: relative;
         bottom: -2px;
+        fill: $primary-text-color;
 
         @media screen and (max-width: $no-gap-breakpoint) {
           height: 20px;
