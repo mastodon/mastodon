@@ -41,7 +41,7 @@ class MigrateFilters < ActiveRecord::Migration[5.2]
         t.timestamps
       end
 
-      add_foreign_key :glitch_keyword_mutes, :accounts, on_delete: :cascade
+      safety_assured { add_foreign_key :glitch_keyword_mutes, :accounts, on_delete: :cascade }
     end
 
     CustomFilter.where(irreversible: true).find_each do |filter|
