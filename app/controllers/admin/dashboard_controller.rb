@@ -11,6 +11,8 @@ module Admin
       @relay_enabled         = Relay.enabled.exists?
       @single_user_mode      = Rails.configuration.x.single_user_mode
       @registrations_enabled = Setting.registrations_mode != 'none'
+      @max_bio_chars         = Setting.max_bio_chars
+      @max_toot_chars        = Setting.max_toot_chars
       @deletions_enabled     = Setting.open_deletion
       @invites_enabled       = Setting.min_invite_role == 'user'
       @search_enabled        = Chewy.enabled?

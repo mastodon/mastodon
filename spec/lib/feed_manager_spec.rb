@@ -305,6 +305,28 @@ RSpec.describe FeedManager do
 
       expect(Redis.current.zscore("feed:home:0", reblog.id)).to eq nil
     end
+
+    it "does not push direct messages into home timeline if the user has home_dms false" do
+      status    = Fabricate(:status, visibility: :direct)
+      mentioned = Fabricate(:account, id: 1)
+      mentioned.user = Fabricate(:user)
+      mentioned.user.settings.home_dms = false
+      status.mentions.create(account: mentioned)
+
+      FeedManager.instance.merge_into_timeline(status.account, mentioned)
+      expect(Redis.current.zscore("feed:home:1",status.id)).to be_nil
+    end
+
+    it "pushes direct messages into home timeline if the user has home_dms true" do
+      status    = Fabricate(:status, visibility: :direct)
+      mentioned = Fabricate(:account, id: 1)
+      mentioned.user = Fabricate(:user)
+      mentioned.user.settings.home_dms = true
+      status.mentions.create(account: mentioned)
+
+      FeedManager.instance.merge_into_timeline(status.account, mentioned)
+      expect(Redis.current.zscore("feed:home:1",status.id)).to_not be_nil
+    end
   end
 
   describe '#trim' do

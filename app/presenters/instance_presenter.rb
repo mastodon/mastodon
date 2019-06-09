@@ -7,6 +7,8 @@ class InstancePresenter
     :site_short_description,
     :site_description,
     :site_extended_description,
+    :max_bio_chars,
+    :max_toot_chars,
     :site_terms,
     :closed_registrations_message,
     to: Setting
