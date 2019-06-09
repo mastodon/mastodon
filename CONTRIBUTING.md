@@ -12,6 +12,19 @@ You can contribute in the following ways:
 
 If your contributions are accepted into Mastodon, you can request to be paid through [our OpenCollective](https://opencollective.com/mastodon).
 
+## New to Open Source? START HERE
+
+We want all members of the GitHub community to feel welcome when it comes to contributing to our project. You can follow these step-by-step instructions to make a contribution via a pull request.
+
+1. Navigate to the original repository you created your fork from.
+2. To the right of the Branch menu, click New pull request.
+3. On the Compare page, click compare across forks.
+4. Confirm that the base fork is the repository you'd like to merge changes into. Use the base branch drop-down menu to select the branch of the upstream repository you'd like to merge changes into.
+5. Use the head fork drop-down menu to select your fork, then use the compare branch drop-down menu to select the branch you made your changes in.
+6. Type a title and description for your pull request.
+7. If you do not want to allow anyone with push access to the upstream repository to make changes to your PR, unselect Allow edits from maintainers.
+8. To create a pull request that is ready for review, click Create Pull Request. To create a draft pull request, use the drop-down and select Create Draft Pull Request, then click Draft Pull Request.
+
 ## Bug reports
 
 Bug reports and feature suggestions can be submitted to [GitHub Issues](https://github.com/tootsuite/mastodon/issues). Please make sure that you are not submitting duplicates, and that a similar report or request has not already been resolved or rejected in the past using the search function. Please also use descriptive, concise titles.
