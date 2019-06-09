@@ -6,6 +6,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 //  Mastodon imports.
 import Avatar from './avatar';
 import AvatarOverlay from './avatar_overlay';
+import AvatarComposite from './avatar_composite';
 import DisplayName from './display_name';
 
 export default class StatusHeader extends React.PureComponent {
@@ -14,12 +15,18 @@ export default class StatusHeader extends React.PureComponent {
     status: ImmutablePropTypes.map.isRequired,
     friend: ImmutablePropTypes.map,
     parseClick: PropTypes.func.isRequired,
+    otherAccounts: ImmutablePropTypes.list,
   };
 
   //  Handles clicks on account name/image
+  handleClick = (id, e) => {
+    const { parseClick } = this.props;
+    parseClick(e, `/accounts/${id}`);
+  }
+
   handleAccountClick = (e) => {
-    const { status, parseClick } = this.props;
-    parseClick(e, `/accounts/${status.getIn(['account', 'id'])}`);
+    const { status } = this.props;
+    this.handleClick(status.getIn(['account', 'id']), e);
   }
 
   //  Rendering.
@@ -27,36 +34,55 @@ export default class StatusHeader extends React.PureComponent {
     const {
       status,
       friend,
+      otherAccounts,
     } = this.props;
 
     const account = status.get('account');
 
-    return (
-      <div className='status__info__account' >
-        <a
-          href={account.get('url')}
-          target='_blank'
-          className='status__avatar'
-          onClick={this.handleAccountClick}
-        >
-          {
-            friend ? (
-              <AvatarOverlay account={account} friend={friend} />
-            ) : (
-              <Avatar account={account} size={48} />
-            )
-          }
-        </a>
-        <a
-          href={account.get('url')}
-          target='_blank'
-          className='status__display-name'
-          onClick={this.handleAccountClick}
-        >
-          <DisplayName account={account} />
-        </a>
-      </div>
-    );
+    let statusAvatar;
+    if (otherAccounts && otherAccounts.size > 0) {
+      statusAvatar = <AvatarComposite accounts={otherAccounts} size={48} onAccountClick={this.handleClick} />;
+    } else if (friend === undefined || friend === null) {
+      statusAvatar = <Avatar account={account} size={48} />;
+    } else {
+      statusAvatar = <AvatarOverlay account={account} friend={friend} />;
+    }
+
+    if (!otherAccounts) {
+      return (
+        <div className='status__info__account'>
+          <a
+            href={account.get('url')}
+            target='_blank'
+            className='status__avatar'
+            onClick={this.handleAccountClick}
+          >
+            {statusAvatar}
+          </a>
+          <a
+            href={account.get('url')}
+            target='_blank'
+            className='status__display-name'
+            onClick={this.handleAccountClick}
+          >
+            <DisplayName account={account} others={otherAccounts} />
+          </a>
+        </div>
+      );
+    } else {
+      // This is a DM conversation
+      return (
+        <div className='status__info__account'>
+          <span className='status__avatar'>
+            {statusAvatar}
+          </span>
+
+          <span className='status__display-name'>
+            <DisplayName account={account} others={otherAccounts} onAccountClick={this.handleClick} />
+          </span>
+        </div>
+      );
+    }
   }
 
 }

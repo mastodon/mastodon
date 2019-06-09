@@ -5,10 +5,13 @@ import StatusListContainer from 'flavours/glitch/features/ui/containers/status_l
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
 import { expandDirectTimeline } from 'flavours/glitch/actions/timelines';
+import { mountConversations, unmountConversations, expandConversations } from 'flavours/glitch/actions/conversations';
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectDirectStream } from 'flavours/glitch/actions/streaming';
+import { changeSetting } from 'flavours/glitch/actions/settings';
+import ConversationsListContainer from './containers/conversations_list_container';
 
 const messages = defineMessages({
   title: { id: 'column.direct', defaultMessage: 'Direct messages' },
@@ -16,6 +19,7 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'direct', 'unread']) > 0,
+  conversationsMode: state.getIn(['settings', 'direct', 'conversations']),
 });
 
 @connect(mapStateToProps)
@@ -28,6 +32,7 @@ export default class DirectTimeline extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     hasUnread: PropTypes.bool,
     multiColumn: PropTypes.bool,
+    conversationsMode: PropTypes.bool,
   };
 
   handlePin = () => {
@@ -50,13 +55,32 @@ export default class DirectTimeline extends React.PureComponent {
   }
 
   componentDidMount () {
-    const { dispatch } = this.props;
+    const { dispatch, conversationsMode } = this.props;
 
-    dispatch(expandDirectTimeline());
+    dispatch(mountConversations());
+
+    if (conversationsMode) {
+      dispatch(expandConversations());
+    } else {
+      dispatch(expandDirectTimeline());
+    }
+
     this.disconnect = dispatch(connectDirectStream());
   }
 
+  componentDidUpdate(prevProps) {
+    const { dispatch, conversationsMode } = this.props;
+
+    if (prevProps.conversationsMode && !conversationsMode) {
+      dispatch(expandDirectTimeline());
+    } else if (!prevProps.conversationsMode && conversationsMode) {
+      dispatch(expandConversations());
+    }
+  }
+
   componentWillUnmount () {
+    this.props.dispatch(unmountConversations());
+
     if (this.disconnect) {
       this.disconnect();
       this.disconnect = null;
@@ -67,13 +91,48 @@ export default class DirectTimeline extends React.PureComponent {
     this.column = c;
   }
 
-  handleLoadMore = maxId => {
+  handleLoadMoreTimeline = maxId => {
     this.props.dispatch(expandDirectTimeline({ maxId }));
   }
 
+  handleLoadMoreConversations = maxId => {
+    this.props.dispatch(expandConversations({ maxId }));
+  }
+
+  handleTimelineClick = () => {
+    this.props.dispatch(changeSetting(['direct', 'conversations'], false));
+  }
+
+  handleConversationsClick = () => {
+    this.props.dispatch(changeSetting(['direct', 'conversations'], true));
+  }
+
   render () {
-    const { intl, hasUnread, columnId, multiColumn } = this.props;
+    const { intl, hasUnread, columnId, multiColumn, conversationsMode } = this.props;
     const pinned = !!columnId;
+
+    let contents;
+    if (conversationsMode) {
+      contents = (
+        <ConversationsListContainer
+          trackScroll={!pinned}
+          scrollKey={`direct_timeline-${columnId}`}
+          timelineId='direct'
+          onLoadMore={this.handleLoadMore}
+          emptyMessage={<FormattedMessage id='empty_column.direct' defaultMessage="You don't have any direct messages yet. When you send or receive one, it will show up here." />}
+        />
+      );
+    } else {
+      contents = (
+        <StatusListContainer
+          trackScroll={!pinned}
+          scrollKey={`direct_timeline-${columnId}`}
+          timelineId='direct'
+          onLoadMore={this.handleLoadMoreTimeline}
+          emptyMessage={<FormattedMessage id='empty_column.direct' defaultMessage="You don't have any direct messages yet. When you send or receive one, it will show up here." />}
+        />
+      );
+    }
 
     return (
       <Column ref={this.setRef} label={intl.formatMessage(messages.title)}>
@@ -90,13 +149,28 @@ export default class DirectTimeline extends React.PureComponent {
           <ColumnSettingsContainer />
         </ColumnHeader>
 
-        <StatusListContainer
-          trackScroll={!pinned}
-          scrollKey={`direct_timeline-${columnId}`}
-          timelineId='direct'
-          onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.direct' defaultMessage="You don't have any direct messages yet. When you send or receive one, it will show up here." />}
-        />
+        <div className='notification__filter-bar'>
+          <button
+            className={conversationsMode ? 'active' : ''}
+            onClick={this.handleConversationsClick}
+          >
+            <FormattedMessage
+              id='direct.conversations_mode'
+              defaultMessage='Conversations'
+            />
+          </button>
+          <button
+            className={conversationsMode ? '' : 'active'}
+            onClick={this.handleTimelineClick}
+          >
+            <FormattedMessage
+              id='direct.timeline_mode'
+              defaultMessage='Timeline'
+            />
+          </button>
+        </div>
+
+        {contents}
       </Column>
     );
   }

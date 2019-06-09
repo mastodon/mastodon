@@ -46,6 +46,18 @@
     vertical-align: middle;
     margin-right: 5px;
   }
+
+  &-composite {
+    @include avatar-radius;
+    overflow: hidden;
+
+    & div {
+      @include avatar-radius;
+      float: left;
+      position: relative;
+      box-sizing: border-box;
+    }
+  }
 }
 
 .account__avatar-overlay {

@@ -209,7 +209,7 @@
     outline: 0;
     background: lighten($ui-base-color, 4%);
 
-    .status.status-direct {
+    &.status.status-direct:not(.read) {
       background: lighten($ui-base-color, 12%);
 
       &.muted {
@@ -249,8 +249,9 @@
     margin-top: 8px;
   }
 
-  &.status-direct {
+  &.status-direct:not(.read) {
     background: lighten($ui-base-color, 8%);
+    border-bottom-color: lighten($ui-base-color, 12%);
   }
 
   &.light {
@@ -333,7 +334,7 @@
     &:focus > .status__content:after {
       background: linear-gradient(rgba(lighten($ui-base-color, 4%), 0), rgba(lighten($ui-base-color, 4%), 1));
     }
-    &.status-direct> .status__content:after {
+    &.status-direct:not(.read)> .status__content:after {
       background: linear-gradient(rgba(lighten($ui-base-color, 8%), 0), rgba(lighten($ui-base-color, 8%), 1));
     }
 
@@ -599,7 +600,7 @@
   }
 }
 
-.status__display-name,
+a.status__display-name,
 .reply-indicator__display-name,
 .detailed-status__display-name,
 .account__display-name {

@@ -72,6 +72,7 @@ const initialState = ImmutableMap({
   }),
 
   direct: ImmutableMap({
+    conversations: true,
     regex: ImmutableMap({
       body: '',
     }),

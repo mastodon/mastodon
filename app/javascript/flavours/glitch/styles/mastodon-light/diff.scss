@@ -27,15 +27,16 @@
   }
 }
 
-.status.status-direct {
+.status.status-direct:not(.read) {
   background: darken($ui-base-color, 8%);
+  border-bottom-color: darken($ui-base-color, 12%);
 
   &.collapsed> .status__content:after {
     background: linear-gradient(rgba(darken($ui-base-color, 8%), 0), rgba(darken($ui-base-color, 8%), 1));
   }
 }
 
-.focusable:focus.status.status-direct {
+.focusable:focus.status.status-direct:not(.read) {
   background: darken($ui-base-color, 4%);
 
   &.collapsed> .status__content:after {

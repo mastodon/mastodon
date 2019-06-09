@@ -287,8 +287,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
   strong {
-    display: block;
     height: 18px;
     font-size: 16px;
     font-weight: 500;
@@ -308,7 +312,7 @@
     white-space: nowrap;
   }
 
-  &:hover {
+  > a:hover {
     strong {
       text-decoration: underline;
     }

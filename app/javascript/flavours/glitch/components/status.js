@@ -66,6 +66,7 @@ export default class Status extends ImmutablePureComponent {
     containerId: PropTypes.string,
     id: PropTypes.string,
     status: ImmutablePropTypes.map,
+    otherAccounts: ImmutablePropTypes.list,
     account: ImmutablePropTypes.map,
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
@@ -83,6 +84,7 @@ export default class Status extends ImmutablePureComponent {
     muted: PropTypes.bool,
     collapse: PropTypes.bool,
     hidden: PropTypes.bool,
+    unread: PropTypes.bool,
     prepend: PropTypes.string,
     withDismiss: PropTypes.bool,
     onMoveUp: PropTypes.func,
@@ -93,6 +95,7 @@ export default class Status extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
     cacheMediaWidth: PropTypes.func,
     cachedMediaWidth: PropTypes.number,
+    onClick: PropTypes.func,
   };
 
   state = {
@@ -321,17 +324,21 @@ export default class Status extends ImmutablePureComponent {
     const { status } = this.props;
     const { isCollapsed } = this.state;
     if (!router) return;
-    if (destination === undefined) {
-      destination = `/statuses/${
-        status.getIn(['reblog', 'id'], status.get('id'))
-      }`;
-    }
+
     if (e.button === 0 && !(e.ctrlKey || e.altKey || e.metaKey)) {
       if (isCollapsed) this.setCollapsed(false);
       else if (e.shiftKey) {
         this.setCollapsed(true);
         document.getSelection().removeAllRanges();
+      } else if (this.props.onClick) {
+        this.props.onClick();
+        return;
       } else {
+        if (destination === undefined) {
+          destination = `/statuses/${
+            status.getIn(['reblog', 'id'], status.get('id'))
+          }`;
+        }
         let state = {...router.history.location.state};
         state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
         router.history.push(destination, state);
@@ -441,6 +448,7 @@ export default class Status extends ImmutablePureComponent {
       intl,
       status,
       account,
+      otherAccounts,
       settings,
       collapsed,
       muted,
@@ -450,6 +458,7 @@ export default class Status extends ImmutablePureComponent {
       onOpenMedia,
       notification,
       hidden,
+      unread,
       featured,
       ...other
     } = this.props;
@@ -617,6 +626,7 @@ export default class Status extends ImmutablePureComponent {
       collapsed: isCollapsed,
       'has-background': isCollapsed && background,
       'status__wrapper-reply': !!status.get('in_reply_to_id'),
+      read: unread === false,
       muted,
     }, 'focusable');
 
@@ -647,6 +657,7 @@ export default class Status extends ImmutablePureComponent {
                   friend={account}
                   collapsed={isCollapsed}
                   parseClick={parseClick}
+                  otherAccounts={otherAccounts}
                 />
               ) : null}
             </span>
@@ -656,6 +667,7 @@ export default class Status extends ImmutablePureComponent {
               collapsible={settings.getIn(['collapsed', 'enabled'])}
               collapsed={isCollapsed}
               setCollapsed={setCollapsed}
+              directMessage={!!otherAccounts}
             />
           </header>
           <StatusContent
@@ -673,6 +685,7 @@ export default class Status extends ImmutablePureComponent {
               status={status}
               account={status.get('account')}
               showReplyCount={settings.get('show_reply_count')}
+              directMessage={!!otherAccounts}
             />
           ) : null}
           {notification ? (

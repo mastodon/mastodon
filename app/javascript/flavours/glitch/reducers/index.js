@@ -28,6 +28,7 @@ import lists from './lists';
 import listEditor from './list_editor';
 import listAdder from './list_adder';
 import filters from './filters';
+import conversations from './conversations';
 import suggestions from './suggestions';
 import pinnedAccountsEditor from './pinned_accounts_editor';
 import polls from './polls';
@@ -64,6 +65,7 @@ const reducers = {
   listEditor,
   listAdder,
   filters,
+  conversations,
   suggestions,
   pinnedAccountsEditor,
   polls,
