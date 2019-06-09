@@ -5,6 +5,7 @@ import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 import classnames from 'classnames';
+import PollContainer from 'mastodon/containers/poll_container';
 import Icon from 'mastodon/components/icon';
 
 const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
@@ -191,6 +192,8 @@ export default class StatusContent extends React.PureComponent {
           {mentionsPlaceholder}
 
           <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} lang={status.get('language')} />
+
+          {!hidden && !!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
         </div>
       );
     } else if (this.props.onClick) {
@@ -212,9 +215,13 @@ export default class StatusContent extends React.PureComponent {
         output.push(readMoreButton);
       }
 
+      if (status.get('poll')) {
+        output.push(<PollContainer pollId={status.get('poll')} />);
+      }
+
       return output;
     } else {
-      return (
+      const output = [
         <div
           tabIndex='0'
           ref={this.setRef}
@@ -222,8 +229,14 @@ export default class StatusContent extends React.PureComponent {
           style={directionStyle}
           dangerouslySetInnerHTML={content}
           lang={status.get('language')}
-        />
-      );
+        />,
+      ];
+
+      if (status.get('poll')) {
+        output.push(<PollContainer pollId={status.get('poll')} />);
+      }
+
+      return output;
     }
   }
 

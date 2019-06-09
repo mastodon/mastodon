@@ -178,6 +178,7 @@ cs:
       statuses: Tooty
       subscribe: Odebírat
       suspended: Pozastaven/a
+      time_in_queue: Čeká ve frontě %{time}
       title: Účty
       unconfirmed_email: Nepotvrzený e-mail
       undo_silenced: Zrušit utišení
@@ -504,6 +505,12 @@ cs:
       body: "%{reporter} nahlásil/a uživatele %{target}"
       body_remote: Někdo z %{domain} nahlásil uživatele %{target}
       subject: Nové nahlášení pro %{instance} (#%{id})
+  appearance:
+    advanced_web_interface: Pokročilé webové rozhraní
+    advanced_web_interface_hint: 'Chcete-li využít celé šířky vaší obrazovky, dovolí vám pokročilé webové rozhraní nastavit si mnoho různých sloupců, takže můžete vidět ve stejnou chvíli tolik informací, kolik chcete: domovskou časovou osu, oznámení, federovanou časovou osu a libovolný počet seznamů a hashtagů.'
+    animations_and_accessibility: Animace a přístupnost
+    confirmation_dialogs: Potvrzovací dialogy
+    sensitive_content: Citlivý obsah
   application_mailer:
     notification_preferences: Změnit volby e-mailu
     salutation: "%{name},"
@@ -788,10 +795,9 @@ cs:
       too_few_options: musí mít více než jednu položku
       too_many_options: nesmí obsahovat více než %{max} položky
   preferences:
-    languages: Jazyky
     other: Ostatní
-    publishing: Publikování
-    web: Web
+    posting_defaults: Výchozí možnosti psaní
+    public_timelines: Veřejné časové osy
   relationships:
     activity: Aktivita účtu
     dormant: Nečinné

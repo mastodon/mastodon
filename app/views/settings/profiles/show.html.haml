@@ -28,7 +28,7 @@
 
   - if Setting.profile_directory
     .fields-group
-      = f.input :discoverable, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.discoverable_html', min_followers: Account::MIN_FOLLOWERS_DISCOVERY, path: explore_path)
+      = f.input :discoverable, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.discoverable_html', min_followers: Account::MIN_FOLLOWERS_DISCOVERY, path: explore_path), recommended: true
 
   %hr.spacer/
 

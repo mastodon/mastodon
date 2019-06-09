@@ -96,7 +96,7 @@ gem 'rdf-normalize', '~> 0.3'
 
 group :development, :test do
   gem 'fabrication', '~> 2.20'
-  gem 'fuubar', '~> 2.3'
+  gem 'fuubar', '~> 2.4'
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-byebug', '~> 3.7'
   gem 'pry-rails', '~> 0.3'
@@ -129,9 +129,9 @@ group :development do
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
   gem 'rubocop', '~> 0.71', require: false
+  gem 'rubocop-rails', '~> 2.0', require: false
   gem 'brakeman', '~> 4.5', require: false
   gem 'bundler-audit', '~> 0.6', require: false
-  gem 'scss_lint', '~> 0.58', require: false
 
   gem 'capistrano', '~> 3.11'
   gem 'capistrano-rails', '~> 1.4'

@@ -11,9 +11,6 @@ const ComposePanel = () => (
     <NavigationContainer />
     <ComposeFormContainer />
     <Announcements />
-
-    <div className='flex-spacer' />
-
     <LinkFooter withHotkeys />
   </div>
 );
