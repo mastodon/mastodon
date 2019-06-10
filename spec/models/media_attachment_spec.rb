@@ -129,8 +129,9 @@ RSpec.describe MediaAttachment, type: :model do
       expect(media.type).to eq 'image'
     end
 
-    it 'leaves original file as-is' do
+    it 'file_content_typeと拡張子がjpegに設定されている' do
       expect(media.file_content_type).to eq 'image/jpeg'
+      expect(media.file_file_name).to end_with 'jpeg'
     end
 
     it 'sets meta' do
@@ -147,8 +148,9 @@ RSpec.describe MediaAttachment, type: :model do
       expect(media.type).to eq 'image'
     end
 
-    it 'leaves original file as-is' do
+    it 'file_content_typeと拡張子がpngのまま' do
       expect(media.file_content_type).to eq 'image/png'
+      expect(media.file_file_name).to end_with 'png'
     end
 
     it 'sets meta' do
@@ -165,8 +167,9 @@ RSpec.describe MediaAttachment, type: :model do
       expect(media.type).to eq 'image'
     end
 
-    it 'leaves original file as-is' do
+    it 'file_content_typeと拡張子がpngのまま' do
       expect(media.file_content_type).to eq 'image/png'
+      expect(media.file_file_name).to end_with 'png'
     end
 
     it 'sets meta' do

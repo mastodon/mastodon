@@ -3,7 +3,7 @@
 module Paperclip
   # This transcoder is only to be used for the MediaAttachment model
   # to convert images to JPG (except for transparent PNG)
-  class ImgConverter < Processor
+  class PngConverter < Processor
     def make
       opaque = identify('-format "%[opaque]" :src', src: File.expand_path(file.path)).strip.downcase
 
