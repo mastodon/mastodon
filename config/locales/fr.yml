@@ -174,6 +174,7 @@ fr:
       statuses: Statuts
       subscribe: S’abonner
       suspended: Suspendu
+      time_in_queue: En file d’attente %{time}
       title: Comptes
       unconfirmed_email: Courriel non-confirmé
       undo_silenced: Démasquer
@@ -498,6 +499,12 @@ fr:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
       subject: Nouveau signalement sur %{instance} (#%{id})
+  appearance:
+    advanced_web_interface: Interface web avancée
+    advanced_web_interface_hint: 'Si vous voulez utiliser toute la largeur de votre écran, l’interface web avancée vous permet de configurer plusieurs colonnes différentes pour voir autant d’informations que vous le souhaitez en même temps : Accueil, notifications, fil public fédéré, un nombre illimité de listes et hashtags.'
+    animations_and_accessibility: Animations et accessibilité
+    confirmation_dialogs: Dialogues de confirmation
+    sensitive_content: Contenu sensible
   application_mailer:
     notification_preferences: Modifier les préférences de courriel
     salutation: "%{name},"
@@ -778,6 +785,8 @@ fr:
       too_many_options: ne peut contenir plus que %{max} propositions
   preferences:
     other: Autre
+    posting_defaults: Paramètres par défaut des pouets
+    public_timelines: Fils publics
   relationships:
     activity: Activité du compte
     dormant: Dormant
