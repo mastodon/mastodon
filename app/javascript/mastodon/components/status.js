@@ -16,7 +16,6 @@ import { MediaGallery, Video } from '../features/ui/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
-import PollContainer from 'mastodon/containers/poll_container';
 import { displayMedia } from '../initial_state';
 
 // We use the component (and not the container) since we do not want
@@ -172,6 +171,11 @@ class Status extends ImmutablePureComponent {
   }
 
   handleExpandClick = (e) => {
+    if (this.props.onClick) {
+      this.props.onClick();
+      return;
+    }
+
     if (e.button === 0) {
       if (!this.context.router) {
         return;
@@ -321,9 +325,7 @@ class Status extends ImmutablePureComponent {
       status  = status.get('reblog');
     }
 
-    if (status.get('poll')) {
-      media = <PollContainer pollId={status.get('poll')} />;
-    } else if (status.get('media_attachments').size > 0) {
+    if (status.get('media_attachments').size > 0) {
       if (this.props.muted) {
         media = (
           <AttachmentList

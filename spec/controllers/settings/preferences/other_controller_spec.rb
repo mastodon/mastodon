@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Settings::PreferencesController do
+describe Settings::Preferences::OtherController do
   render_views
 
   let(:user) { Fabricate(:user, filtered_languages: []) }
@@ -20,7 +20,7 @@ describe Settings::PreferencesController do
     it 'updates the user record' do
       put :update, params: { user: { locale: 'en', chosen_languages: ['es', 'fr', ''] } }
 
-      expect(response).to redirect_to(settings_preferences_path)
+      expect(response).to redirect_to(settings_preferences_other_path)
       user.reload
       expect(user.locale).to eq 'en'
       expect(user.chosen_languages).to eq ['es', 'fr']
@@ -37,7 +37,7 @@ describe Settings::PreferencesController do
         }
       }
 
-      expect(response).to redirect_to(settings_preferences_path)
+      expect(response).to redirect_to(settings_preferences_other_path)
       user.reload
       expect(user.settings['boost_modal']).to be true
       expect(user.settings['delete_modal']).to be false

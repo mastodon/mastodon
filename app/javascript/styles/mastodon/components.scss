@@ -1839,7 +1839,7 @@ a.account__display-name {
       display: flex;
       flex-direction: column;
 
-      @media screen and (min-width: 360px) {
+      @media screen and (min-width: $no-gap-breakpoint) {
         padding: 0 10px;
       }
     }
@@ -2021,7 +2021,7 @@ a.account__display-name {
     top: 15px;
   }
 
-  @media screen and (min-width: 360px) {
+  @media screen and (min-width: $no-gap-breakpoint) {
     padding: 10px 0;
   }
 
@@ -2135,7 +2135,7 @@ a.account__display-name {
   }
 }
 
-@media screen and (min-width: 360px) {
+@media screen and (min-width: $no-gap-breakpoint) {
   .tabs-bar {
     margin: 10px auto;
     margin-bottom: 0;
@@ -2211,17 +2211,6 @@ a.account__display-name {
   flex-direction: column;
   height: calc(100% - 10px);
   overflow-y: hidden;
-
-  .search__input {
-    line-height: 18px;
-    font-size: 16px;
-    padding: 15px;
-    padding-right: 30px;
-  }
-
-  .search__icon .fa {
-    top: 15px;
-  }
 
   .navigation-bar {
     padding-top: 20px;
@@ -2709,21 +2698,22 @@ a.account__display-name {
 }
 
 .setting-text {
-  color: $darker-text-color;
-  background: transparent;
-  border: 0;
-  border-bottom: 2px solid $ui-primary-color;
-  box-sizing: border-box;
   display: block;
-  font-family: inherit;
-  margin-bottom: 10px;
-  padding: 7px 0;
+  box-sizing: border-box;
   width: 100%;
+  margin: 0;
+  color: $inverted-text-color;
+  background: $simple-background-color;
+  padding: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  border: 0;
+  outline: 0;
+  border-radius: 4px;
 
-  &:focus,
-  &:active {
-    color: $primary-text-color;
-    border-bottom-color: $highlight-text-color;
+  &:focus {
+    outline: 0;
   }
 
   @media screen and (max-width: 600px) {
@@ -3895,8 +3885,10 @@ a.status-card.compact:hover {
   @include search-input;
 
   display: block;
-  padding: 10px;
+  padding: 15px;
   padding-right: 30px;
+  line-height: 18px;
+  font-size: 16px;
 }
 
 .search__icon {
@@ -3911,7 +3903,7 @@ a.status-card.compact:hover {
 
   .fa {
     position: absolute;
-    top: 10px;
+    top: 16px;
     right: 10px;
     z-index: 2;
     display: inline-block;
@@ -3941,7 +3933,7 @@ a.status-card.compact:hover {
   }
 
   .fa-times-circle {
-    top: 11px;
+    top: 17px;
     transform: rotate(0deg);
     color: $action-button-color;
     cursor: pointer;
@@ -4747,7 +4739,6 @@ a.status-card.compact:hover {
   display: block;
   text-decoration: none;
   color: $secondary-text-color;
-  line-height: 0;
   position: relative;
   z-index: 1;
 
@@ -5474,8 +5465,8 @@ noscript {
 }
 
 .column-inline-form {
-  padding: 7px 15px;
-  padding-right: 5px;
+  padding: 15px;
+  padding-right: 0;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -5486,7 +5477,6 @@ noscript {
 
     input {
       width: 100%;
-      margin-bottom: 6px;
 
       &:focus {
         outline: 0;
@@ -5496,7 +5486,7 @@ noscript {
 
   .icon-button {
     flex: 0 0 auto;
-    margin: 0 5px;
+    margin: 0 10px;
   }
 }
 
