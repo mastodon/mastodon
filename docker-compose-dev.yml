@@ -1,0 +1,13 @@
+version: '3'
+services:
+  db:
+    image: postgres:9.5-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - "POSTGRES_USER=mastodon"
+      - "POSTGRES_PASSWORD=mastodon"
+  redis:
+    image: redis:3.2.4-alpine
+    ports:
+      - "6379:6379"
