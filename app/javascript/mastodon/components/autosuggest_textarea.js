@@ -201,7 +201,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     }
 
     return [
-      <div className='compose-form__autosuggest-wrapper'>
+      <div className='compose-form__autosuggest-wrapper' key='autosuggest-wrapper'>
         <div className='autosuggest-textarea'>
           <label>
             <span style={{ display: 'none' }}>{placeholder}</span>
@@ -226,7 +226,8 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
         </div>
         {children}
       </div>,
-      <div className='autosuggest-textarea__suggestions-wrapper'>
+
+      <div className='autosuggest-textarea__suggestions-wrapper' key='suggestions-wrapper'>
         <div className={`autosuggest-textarea__suggestions ${suggestionsHidden || suggestions.isEmpty() ? '' : 'autosuggest-textarea__suggestions--visible'}`}>
           {suggestions.map(this.renderSuggestion)}
         </div>
