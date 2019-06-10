@@ -171,6 +171,11 @@ class Status extends ImmutablePureComponent {
   }
 
   handleExpandClick = (e) => {
+    if (this.props.onClick) {
+      this.props.onClick();
+      return;
+    }
+
     if (e.button === 0) {
       if (!this.context.router) {
         return;
