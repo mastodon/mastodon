@@ -45,8 +45,9 @@ import {
   Mutes,
   PinnedStatuses,
   Lists,
+  Search,
 } from './util/async-components';
-import { me } from '../../initial_state';
+import { me, forceSingleColumn } from '../../initial_state';
 import { previewState as previewMediaState } from './components/media_modal';
 import { previewState as previewVideoState } from './components/video_modal';
 
@@ -63,7 +64,6 @@ const mapStateToProps = state => ({
   hasComposingText: state.getIn(['compose', 'text']).trim().length !== 0,
   hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
   dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
-  forceSingleColumn: state.getIn(['settings', 'forceSingleColumn'], false),
 });
 
 const keyMap = {
@@ -94,6 +94,7 @@ const keyMap = {
   goToMuted: 'g m',
   goToRequests: 'g r',
   toggleHidden: 'x',
+  toggleSensitive: 'h',
 };
 
 class SwitchingColumnsArea extends React.PureComponent {
@@ -102,7 +103,6 @@ class SwitchingColumnsArea extends React.PureComponent {
     children: PropTypes.node,
     location: PropTypes.object,
     onLayoutChange: PropTypes.func.isRequired,
-    forceSingleColumn: PropTypes.bool,
   };
 
   state = {
@@ -141,7 +141,7 @@ class SwitchingColumnsArea extends React.PureComponent {
   }
 
   render () {
-    const { children, forceSingleColumn } = this.props;
+    const { children } = this.props;
     const { mobile } = this.state;
     const singleColumn = forceSingleColumn || mobile;
     const redirect = singleColumn ? <Redirect from='/' to='/timelines/home' exact /> : <Redirect from='/' to='/getting-started' exact />;
@@ -164,7 +164,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
           <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
 
-          <WrappedRoute path='/search' component={Compose} content={children} componentParams={{ isSearchPage: true }} />
+          <WrappedRoute path='/search' component={Search} content={children} />
 
           <WrappedRoute path='/statuses/new' component={Compose} content={children} />
           <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
@@ -209,7 +209,6 @@ class UI extends React.PureComponent {
     location: PropTypes.object,
     intl: PropTypes.object.isRequired,
     dropdownMenuIsOpen: PropTypes.bool,
-    forceSingleColumn: PropTypes.bool,
   };
 
   state = {
@@ -458,7 +457,7 @@ class UI extends React.PureComponent {
 
   render () {
     const { draggingOver } = this.state;
-    const { children, isComposing, location, dropdownMenuIsOpen, forceSingleColumn } = this.props;
+    const { children, isComposing, location, dropdownMenuIsOpen } = this.props;
 
     const handlers = {
       help: this.handleHotkeyToggleHelp,
@@ -484,7 +483,7 @@ class UI extends React.PureComponent {
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
-          <SwitchingColumnsArea location={location} onLayoutChange={this.handleLayoutChange} forceSingleColumn={forceSingleColumn}>
+          <SwitchingColumnsArea location={location} onLayoutChange={this.handleLayoutChange}>
             {children}
           </SwitchingColumnsArea>
 

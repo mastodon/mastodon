@@ -15,7 +15,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.40', require: false
+gem 'aws-sdk-s3', '~> 1.41', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -82,9 +82,9 @@ gem 'simple-navigation', '~> 4.0'
 gem 'simple_form', '~> 4.1'
 gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.1.3'
-gem 'strong_migrations', '~> 0.3'
+gem 'strong_migrations', '~> 0.4'
 gem 'tty-command', '~> 0.8', require: false
-gem 'tty-prompt', '~> 0.18', require: false
+gem 'tty-prompt', '~> 0.19', require: false
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2019'
 gem 'webpacker', '~> 4.0'
@@ -96,7 +96,7 @@ gem 'rdf-normalize', '~> 0.3'
 
 group :development, :test do
   gem 'fabrication', '~> 2.20'
-  gem 'fuubar', '~> 2.3'
+  gem 'fuubar', '~> 2.4'
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-byebug', '~> 3.7'
   gem 'pry-rails', '~> 0.3'
@@ -108,7 +108,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.20'
+  gem 'capybara', '~> 3.22'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 1.9'
   gem 'microformats', '~> 4.1'
@@ -128,10 +128,10 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.70', require: false
+  gem 'rubocop', '~> 0.71', require: false
+  gem 'rubocop-rails', '~> 2.0', require: false
   gem 'brakeman', '~> 4.5', require: false
   gem 'bundler-audit', '~> 0.6', require: false
-  gem 'scss_lint', '~> 0.58', require: false
 
   gem 'capistrano', '~> 3.11'
   gem 'capistrano-rails', '~> 1.4'

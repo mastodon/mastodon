@@ -4,6 +4,10 @@
   overflow: hidden;
   margin-bottom: 10px;
 
+  &--under-tabs {
+    border-radius: 0 0 4px 4px;
+  }
+
   @media screen and (max-width: $no-gap-breakpoint) {
     margin-bottom: 0;
     border-radius: 0;
@@ -89,40 +93,21 @@
     height: auto;
     vertical-align: middle;
     margin-right: 5px;
-
-    path:first-child {
-      fill: $primary-text-color;
-    }
-
-    path:last-child {
-      fill: $ui-highlight-color;
-    }
+    fill: $primary-text-color;
   }
 
   &:active,
   &:focus,
   &:hover {
     background: lighten($ui-highlight-color, 10%);
-
-    svg path:last-child {
-      fill: lighten($ui-highlight-color, 10%);
-    }
   }
 
   &:disabled,
   &.disabled {
-    svg path:last-child {
-      fill: $ui-primary-color;
-    }
-
     &:active,
     &:focus,
     &:hover {
       background: $ui-primary-color;
-
-      svg path:last-child {
-        fill: $ui-primary-color;
-      }
     }
   }
 
@@ -131,10 +116,6 @@
     &:focus,
     &:hover {
       background: $error-red;
-
-      svg path:last-child {
-        fill: $error-red;
-      }
     }
   }
 

@@ -204,6 +204,10 @@ class Account < ApplicationRecord
     end
   end
 
+  def sign?
+    true
+  end
+
   def keypair
     @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
   end
