@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UnfollowService < BaseService
+  include Payloadable
+
   # Unfollow and notify the remote user
   # @param [Account] source_account Where to unfollow from
   # @param [Account] target_account Which to unfollow
@@ -50,19 +52,11 @@ class UnfollowService < BaseService
   end
 
   def build_json(follow)
-    ActiveModelSerializers::SerializableResource.new(
-      follow,
-      serializer: ActivityPub::UndoFollowSerializer,
-      adapter: ActivityPub::Adapter
-    ).to_json
+    Oj.dump(serialize_payload(follow, ActivityPub::UndoFollowSerializer))
   end
 
   def build_reject_json(follow)
-    ActiveModelSerializers::SerializableResource.new(
-      follow,
-      serializer: ActivityPub::RejectFollowSerializer,
-      adapter: ActivityPub::Adapter
-    ).to_json
+    Oj.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer))
   end
 
   def build_xml(follow)

@@ -204,6 +204,8 @@ class Status < ApplicationRecord
     public_visibility? || unlisted_visibility?
   end
 
+  alias sign? distributable?
+
   def with_media?
     media_attachments.any?
   end
@@ -497,7 +499,7 @@ class Status < ApplicationRecord
     return if direct_visibility?
 
     account&.increment_count!(:statuses_count)
-    reblog&.increment_count!(:reblogs_count) if reblog? && (public_visibility? || unlisted_visibility?)
+    reblog&.increment_count!(:reblogs_count) if reblog?
     thread&.increment_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end
 
@@ -505,7 +507,7 @@ class Status < ApplicationRecord
     return if direct_visibility? || marked_for_mass_destruction?
 
     account&.decrement_count!(:statuses_count)
-    reblog&.decrement_count!(:reblogs_count) if reblog? && (public_visibility? || unlisted_visibility?)
+    reblog&.decrement_count!(:reblogs_count) if reblog?
     thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end
 

@@ -174,6 +174,7 @@ ko:
       statuses: 툿 수
       subscribe: 구독하기
       suspended: 정지 됨
+      time_in_queue: "%{time}동안 기다림"
       title: 계정
       unconfirmed_email: 미확인 된 이메일 주소
       undo_silenced: 침묵 해제
@@ -269,6 +270,7 @@ ko:
       created_msg: 도메인 차단 처리를 완료했습니다
       destroyed_msg: 도메인 차단이 해제되었습니다
       domain: 도메인
+      existing_domain_block_html: 이미 %{name}에 대한 더 강력한 제한이 걸려 있습니다, <a href="%{unblock_url}">차단 해제</a>를 먼저 해야 합니다.
       new:
         create: 차단 추가
         hint: 도메인 차단은 내부 데이터베이스에 계정이 생성되는 것까지는 막을 수 없지만, 그 도메인에서 생성된 계정에 자동적으로 특정한 모더레이션을 적용하게 할 수 있습니다.
@@ -499,6 +501,12 @@ ko:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
       body_remote: "%{domain}의 누군가가 %{target}을 신고했습니다"
       subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
+  appearance:
+    advanced_web_interface: 고급 웹 인터페이스
+    advanced_web_interface_hint: '화면의 가로폭을 가득 채우고 싶다면, 고급 웹 인터페이스는 한 번에 여러 정보를 볼 수 있도록 여러 컬럼을 설정할 수 있도록 합니다: 홈, 알림, 연합타임라인, 리스트, 해시태그 등'
+    animations_and_accessibility: 애니메이션과 접근성
+    confirmation_dialogs: 확인 대화상자
+    sensitive_content: 민감한 내용
   application_mailer:
     notification_preferences: 메일 설정 변경
     salutation: "%{name} 님,"
@@ -778,10 +786,9 @@ ko:
       too_few_options: 한가지 이상의 항목을 포함해야 합니다
       too_many_options: 항목은 %{max}개를 넘을 수 없습니다
   preferences:
-    languages: 언어
     other: 기타
-    publishing: 퍼블리싱
-    web: 웹
+    posting_defaults: 게시물 기본설정
+    public_timelines: 공개 타임라인
   relationships:
     activity: 계정 활동
     dormant: 휴면
