@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('settings.preferences')
 
-= simple_form_for current_user, url: settings_preferences_path, html: { method: :put } do |f|
+= simple_form_for current_user, url: settings_preferences_other_path, html: { method: :put } do |f|
   = render 'shared/error_messages', object: current_user
 
   .fields-group
