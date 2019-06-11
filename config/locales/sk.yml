@@ -1,7 +1,6 @@
----
 sk:
   about:
-    about_hashtag_html: Toto sú verejné príspevky, otagované pod <strong>#%{hashtag}</strong>. Ak máš účet hocikde v rámci fediversa, môžeš s nimi narábať.
+    about_hashtag_html: 'Toto sú verejné príspevky, otagované pod <strong>#%{hashtag}</strong>. Ak máš účet hocikde v rámci fediversa, môžeš s nimi narábať.'
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch a na slobodnom softvéri. Je decentralizovaná, podobne ako email.
     about_this: O tomto serveri
     active_count_after: aktívni
@@ -30,25 +29,28 @@ sk:
     server_stats: 'Serverové štatistiky:'
     source_code: Zdrojový kód
     status_count_after:
-      few: príspevkov
-      one: príspevok
-      other: príspevky
+      one: status
+      few: statuses
+      many: statuses
+      other: statuses
     status_count_before: Ktorí napísali
     tagline: Následuj kamarátov, a objavuj nových
     terms: Podmienky užívania
     user_count_after:
-      few: užívateľov
-      one: užívateľ
-      other: užívatelia
+      one: user
+      few: users
+      many: users
+      other: users
     user_count_before: Domov pre
     what_is_mastodon: Čo je Mastodon?
   accounts:
     choices_html: "%{name}vé voľby:"
     follow: Následuj
     followers:
-      few: Sledovateľov
-      one: Sledovateľ
-      other: Sledovatelia
+      one: Follower
+      few: Followers
+      many: Followers
+      other: Followers
     following: Následujem
     joined: Pridal/a sa v %{date}
     last_active: naposledy aktívny
@@ -62,9 +64,10 @@ sk:
     pin_errors:
       following: Musíš už následovať toho človeka, ktorého si praješ zviditeľniť
     posts:
-      few: Príspevkov
-      one: Príspevok
-      other: Príspevky
+      one: Toot
+      few: Toots
+      many: Toots
+      other: Toots
     posts_tab_heading: Príspevky
     posts_with_replies: Príspevky s odpoveďami
     reserved_username: Prihlasovacie meno je vyhradené
@@ -178,6 +181,7 @@ sk:
       statuses: Príspevky
       subscribe: Odoberaj
       suspended: Vylúčený/á
+      time_in_queue: Waiting in queue %{time}
       title: Účty
       unconfirmed_email: Nepotvrdený email
       undo_silenced: Zruš stíšenie
@@ -205,7 +209,7 @@ sk:
         disable_user: "%{name} zakázal prihlásenie pre používateľa %{target}"
         enable_custom_emoji: "%{name} povolil emoji %{target}"
         enable_user: "%{name} povolil prihlásenie pre používateľa %{target}"
-        memorialize_account: '%{name} zmenil účet %{target} na stránku "Navždy budeme spomínať"'
+        memorialize_account: "%{name} zmenil účet %{target} na stránku \"Navždy budeme spomínať\""
         promote_user: "%{name} povýšil/a používateľa %{target}"
         remove_avatar_user: "%{name} odstránil/a %{target}ov avatár"
         reopen_report: "%{name} znovu otvoril/a hlásenie užívateľa %{target}"
@@ -294,9 +298,10 @@ sk:
         suspend: vylúčené
       show:
         affected_accounts:
-          few: Je ovplyvnených %{count} účtov v databázi
-          one: Jeden účet v databázi bol ovplyvnený
-          other: "%{count} účty v databáze boli ovplyvnené"
+          one: One account in the database affected
+          few: "%{count} accounts in the database affected"
+          many: "%{count} accounts in the database affected"
+          other: "%{count} accounts in the database affected"
         retroactive:
           silence: Zruš stíšenie všetkých momentálne utíšených účtov z tejto domény
           suspend: Zruš suspendáciu všetkých momentálne ovplyvnených účtov z tejto domény
@@ -315,14 +320,15 @@ sk:
       title: Blokované emailové adresy
     followers:
       back_to_account: Späť na účet
-      title: Sledovatielia užívateľa %{acct}
+      title: "Sledovatielia užívateľa %{acct}"
     instances:
       by_domain: Doména
       delivery_available: Je v dosahu doručovania
       known_accounts:
-        few: "%{count} známych účtov"
-        one: "%{count} známy účet"
-        other: "%{count} známe účty"
+        one: "%{count} known account"
+        few: "%{count} known accounts"
+        many: "%{count} known accounts"
+        other: "%{count} known accounts"
       moderation:
         all: Všetky
         limited: Obmedzené
@@ -346,7 +352,7 @@ sk:
     relays:
       add_new: Pridaj nový federovací mostík
       delete: Vymaž
-      description_html: "<strong>Federovací mostík</strong> je prechodný server, ktorý obmieňa veľké množstvá verejných príspevkov medzi tými servermi ktoré na od neho odoberajú, aj doňho prispievajú. <strong>Môže to pomôcť malým a stredným instanciám objavovať federovaný obsah</strong>, čo inak vyžaduje aby miestni užívatelia ručne následovali iných ľudí zo vzdialených instancií."
+      description_html: <strong>Federovací mostík</strong> je prechodný server, ktorý obmieňa veľké množstvá verejných príspevkov medzi tými servermi ktoré na od neho odoberajú, aj doňho prispievajú. <strong>Môže to pomôcť malým a stredným instanciám objavovať federovaný obsah</strong>, čo inak vyžaduje aby miestni užívatelia ručne následovali iných ľudí zo vzdialených instancií.
       disable: Vypni
       disabled: Vypnutý
       enable: Povoľ
@@ -499,12 +505,14 @@ sk:
   admin_mailer:
     new_pending_account:
       body: Podrobnosti o novom účte sú uvedené nižšie. Môžeš túto registračnú požiadavku buď prijať, alebo zamietnúť.
+      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter} nahlásil/a %{target}"
       body_remote: Niekto z %{domain} nahlásil/a %{target}
-      subject: Nové hlásenie pre %{instance} (#%{id})
+      subject: 'Nové hlásenie pre %{instance} (#%{id})'
   appearance:
     advanced_web_interface: Pokročilé webové rozhranie
+    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
     animations_and_accessibility: Animácie a prístupnosť
     confirmation_dialogs: Potvrdzovacie dialógy
     sensitive_content: Chúlostivý obsah
@@ -542,6 +550,7 @@ sk:
       cas: CAS
       saml: SAML
     register: Zaregistruj sa
+    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: Zašli potvrdzujúce pokyny znovu
     reset_password: Obnov heslo
     security: Zabezpečenie
@@ -588,9 +597,10 @@ sk:
     explore_mastodon: Prebádaj %{title}
     how_to_enable: Momentálne niesi zaradený/á do verejnej profilovej databázy. Prihlásiť sa môžeš nižšie. Použi haštagy vo svojom biografickom popise na profile, ak chceš byť uvedený/á aj pod konkrétnými haštagmi!
     people:
-      few: "%{count} ľudia"
-      one: "%{count} človek"
-      other: "%{count} ľudia"
+      one: "%{count} person"
+      few: "%{count} people"
+      many: "%{count} people"
+      other: "%{count} people"
   errors:
     '403': Nemáš povolenie pre zobrazenie tejto stránky.
     '404': Stránka ktorú hľadáš nieje tu.
@@ -603,6 +613,9 @@ sk:
       content: Ospravedlňujem sa. Niečo sa pokazilo na našom konci.
       title: Táto stránka nieje v poriadku
     noscript_html: Aby bolo možné používať Mastodon web aplikáciu, povoľ prosím JavaScript. Alebo skús jednu z <a href="%{apps_path}"> aplikácii </a> dostupných pre vašu platformu.
+  existing_username_validator:
+    not_found: could not find a local user with that username
+    not_found_multiple: could not find %{usernames}
   exports:
     archive_takeout:
       date: Dátum
@@ -643,13 +656,36 @@ sk:
     more: Viac…
     resources: Podklady
   generic:
+    all: All
     changes_saved_msg: Zmeny boli úspešne uložené!
     copy: Kopíruj
+    order_by: Order by
     save_changes: Ulož zmeny
     validation_errors:
-      few: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetky %{count} chyby
-      one: Niečo nieje úplne v poriadku! Prosím skontroluj danú chybu
-      other: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetky %{count} nižšie uvedené pochybenia
+      one: Something isn't quite right yet! Please review the error below
+      few: Something isn't quite right yet! Please review %{count} errors below
+      many: Something isn't quite right yet! Please review %{count} errors below
+      other: Something isn't quite right yet! Please review %{count} errors below
+  html_validator:
+    invalid_markup: 'contains invalid HTML markup: %{error}'
+  identity_proofs:
+    active: Active
+    authorize: Yes, authorize
+    authorize_connection_prompt: Authorize this cryptographic connection?
+    errors:
+      failed: The cryptographic connection failed. Please try again from %{provider}.
+      keybase:
+        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
+        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
+      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
+    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
+    i_am_html: I am %{username} on %{service}.
+    identity: Identity
+    inactive: Inactive
+    publicize_checkbox: 'And toot this:'
+    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    status: Verification status
+    view_proof: View proof
   imports:
     modes:
       merge: Spoj dohromady
@@ -679,9 +715,10 @@ sk:
     generate: Vygeneruj
     invited_by: 'Bol/a si pozvaný/á užívateľom:'
     max_uses:
-      few: "%{count} použitia"
-      one: jedno použitie
-      other: "%{count} použití"
+      one: 1 use
+      few: "%{count} uses"
+      many: "%{count} uses"
+      other: "%{count} uses"
     max_uses_prompt: Bez obmedzení
     prompt: Vygeneruj a zdieľaj linky s ostatnými, aby mali umožnený prístup k tomuto serveru
     table:
@@ -708,13 +745,15 @@ sk:
       body: Tu nájdete krátky súhrn správ ktoré ste zmeškali od svojej poslednj návštevi od %{since}
       mention: "%{name} ťa spomenul/a v:"
       new_followers_summary:
-        few: Tiež si získal/a %{count} nových následovateľov za tú dobu čo si bol/a preč. Yay!
-        one: Tiež si získal/a jedného nového následovateľa zatiaľ čo si bol/a preč. Yay!
-        other: Tiež si získal/a %{count} nových následovateľov za tú dobu čo si bol/a preč. Yay!
+        one: Also, you have acquired one new follower while being away! Yay!
+        few: Also, you have acquired %{count} new followers while being away! Amazing!
+        many: Also, you have acquired %{count} new followers while being away! Amazing!
+        other: Also, you have acquired %{count} new followers while being away! Amazing!
       subject:
-        few: "%{count} nové notifikácie od tvojej poslednej návštevy \U0001F418"
-        one: "1 nové oboznámenie od tvojej poslednej návštevy \U0001F418"
-        other: "%{count} nových oboznámení od tvojej poslednej návštevy \U0001F418"
+        one: "1 new notification since your last visit \U0001F418"
+        few: "%{count} new notifications since your last visit \U0001F418"
+        many: "%{count} new notifications since your last visit \U0001F418"
+        other: "%{count} new notifications since your last visit \U0001F418"
       title: Zatiaľ čo si bol/a preč…
     favourite:
       body: 'Tvoj príspevok bol uložený medzi obľúbené užívateľa %{name}:'
@@ -727,11 +766,11 @@ sk:
     follow_request:
       action: Spravuj žiadosti o sledovanie
       body: "%{name} žiada povolenie ťa následovať"
-      subject: "%{name} ťa žiadá o možnosť sledovania"
+      subject: '%{name} ťa žiadá o možnosť sledovania'
       title: Nová žiadosť o následovanie
     mention:
       action: Odpovedať
-      body: "%{name} ťa spomenul/a v:"
+      body: '%{name} ťa spomenul/a v:'
       subject: Bol/a si spomenutý/á užívateľom %{name}
       title: Novo spomenutý/á
     reblog:
@@ -748,6 +787,7 @@ sk:
           quadrillion: Q
           thousand: K
           trillion: T
+          unit: ''
   pagination:
     newer: Novšie
     next: Ďalšie
@@ -766,6 +806,21 @@ sk:
       too_many_options: nemôže zahŕňať viac ako %{max} položiek
   preferences:
     other: Ostatné
+    posting_defaults: Posting defaults
+    public_timelines: Public timelines
+  relationships:
+    activity: Account activity
+    dormant: Dormant
+    last_active: Last active
+    most_recent: Most recent
+    moved: Moved
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Remove all followers from the selected domains
+    remove_selected_followers: Remove selected followers
+    remove_selected_follows: Unfollow selected users
+    status: Account status
   remote_follow:
     acct: Napíš svoju prezývku@doménu z ktorej chceš následovať
     missing_resource: Nemožno nájsť potrebnú presmerovaciu adresu k tvojmu účtu
@@ -843,6 +898,7 @@ sk:
     edit_profile: Uprav profil
     export: Exportuj dáta
     featured_tags: Zvýraznené haštagy
+    identity_proofs: Identity proofs
     import: Importuj
     import_and_export: Import a export
     migrate: Presuň účet
@@ -855,19 +911,22 @@ sk:
     attached:
       description: 'Priložené: %{attached}'
       image:
-        few: "%{count} obrázky"
-        one: "%{count} obrázok"
-        other: "%{count} obrázkov"
+        one: "%{count} image"
+        few: "%{count} images"
+        many: "%{count} images"
+        other: "%{count} images"
       video:
-        few: "%{count} videá"
         one: "%{count} video"
-        other: "%{count} videí"
+        few: "%{count} videos"
+        many: "%{count} videos"
+        other: "%{count} videos"
     boosted_from_html: Povýšené od %{acct_link}
     content_warning: 'Varovanie o obsahu: %{warning}'
     disallowed_hashtags:
-      few: 'obsahoval nepovolené haštagy: %{tags}'
-      one: 'obsahoval nepovolený haštag: %{tags}'
-      other: 'obsahoval nepovolené haštagy: %{tags}'
+      one: 'contained a disallowed hashtag: %{tags}'
+      few: 'contained the disallowed hashtags: %{tags}'
+      many: 'contained the disallowed hashtags: %{tags}'
+      other: 'contained the disallowed hashtags: %{tags}'
     language_detection: Zisti automaticky
     open_in_web: Otvor v okne na webe
     over_character_limit: limit %{max} znakov bol presiahnutý
@@ -878,9 +937,10 @@ sk:
       reblog: Vyzdvihnutie sa nedá pripnúť
     poll:
       total_votes:
-        few: "%{count} hlas(y)ov"
-        one: "%{count} hlas"
-        other: "%{count} hlas(y)ov"
+        one: "%{count} vote"
+        few: "%{count} votes"
+        many: "%{count} votes"
+        other: "%{count} votes"
       vote: Hlasuj
     show_more: Ukáž viac
     sign_in_to_participate: Prihlás sa pre zapojenie do diskusie
@@ -910,7 +970,7 @@ sk:
       V dobrej viere robíme všetko preto, aby bol prístup k tímto príspevkom vymedzený iba pre oprávnených používateľov, ale môže sa stať, že iné servery v tomto ohľade zlyhajú. Preto je dôležité prezrieť si a zhodnotiť, na aké servery patria tvoji následovatelia. V nastaveniach si môžeš zapnúť voľbu ručne povoľovať a odmietať nových následovateľov.
       <em>Prosím maj na pamäti, že správcovia tvojho, aj vzdialeného obdŕžiavajúceho servera majú možnosť vidieť dané príspevky a správy, ale aj, že obdŕžitelia týchto správ si ich môzu odfotiť, skopírovať, alebo ich inak zdieľať. <em>Nezdieľaj žiadne nebezpečné, alebo ohrozujúce správy pomocou Mastodonu!</em></li>
 
-       <li><em>IPky a iné metadáta</em>: Keď sa prihlásiš, zaznamenáva sa IP adresa z ktorej si sa prihlásil/a, takisto ako aj názov tvojho prehliadača. Všetky zaznamenané sezóny sú pre teba dostupné na konktolu, alebo na zamietnutie prístupu v nastaveniach. Posledná použitá IP adresa je uložená až po dobu dvanástich mesiacov. Môžeme si tiež ponechať serverové záznamy, ktoré obsahujú IP adresu každej požiadavky na tento server.</li>
+      <li><em>IPky a iné metadáta</em>: Keď sa prihlásiš, zaznamenáva sa IP adresa z ktorej si sa prihlásil/a, takisto ako aj názov tvojho prehliadača. Všetky zaznamenané sezóny sú pre teba dostupné na konktolu, alebo na zamietnutie prístupu v nastaveniach. Posledná použitá IP adresa je uložená až po dobu dvanástich mesiacov. Môžeme si tiež ponechať serverové záznamy, ktoré obsahujú IP adresu každej požiadavky na tento server.</li>
       </ul>
 
       <hr class="spacer" />
@@ -919,11 +979,11 @@ sk:
 
       <p>Hociktorá z informácií, ktoré sú o tebe zozbierané, môže byť použité následujúcimi spôsobmi:</p>
       <ul>
-        <li>Pre zabezpečenie základného fungovania Mastodonu. Narábať s užívateľským obsahom iných, ako aj prispievať svoj vlastný obsah, možeš len keď si prihlásený/á. Môžeš napríklad následovať iných ľudí, aby si potom videl/a ich príspevky v rámci svojej osobne prispôsobenej domácej osi.</li>
-        <li>Pre lepšie moderovanie komunity sa napríklad môže tvoja IP adresa porovnať s ostatnými už známimi adresami, aby bolo možné zistiť, či nedochádza napríklad k obchádzaniu pravidiel vylúčenia, aleb k iným porušeniam zásad.</li>
-        <li>Emailová adresa, ktorú poskytneš, môže byť použitá na zasielanie informácií, oboznámení keď ostatní užívatelia interaktujú s tvojím obsahom, alebo na posielanie správ, odpovedí na otázky a iné požiadavky.</li>
+      <li>Pre zabezpečenie základného fungovania Mastodonu. Narábať s užívateľským obsahom iných, ako aj prispievať svoj vlastný obsah, možeš len keď si prihlásený/á. Môžeš napríklad následovať iných ľudí, aby si potom videl/a ich príspevky v rámci svojej osobne prispôsobenej domácej osi.</li>
+      <li>Pre lepšie moderovanie komunity sa napríklad môže tvoja IP adresa porovnať s ostatnými už známimi adresami, aby bolo možné zistiť, či nedochádza napríklad k obchádzaniu pravidiel vylúčenia, aleb k iným porušeniam zásad.</li>
+      <li>Emailová adresa, ktorú poskytneš, môže byť použitá na zasielanie informácií, oboznámení keď ostatní užívatelia interaktujú s tvojím obsahom, alebo na posielanie správ, odpovedí na otázky a iné požiadavky.</li>
       </ul>
-    title: Podmienky užívania, a pravidlá súkromia pre %{instance}
+    title: "Podmienky užívania, a pravidlá súkromia pre %{instance}"
   themes:
     contrast: Mastodon (vysoký kontrast)
     default: Mastodon (tmavý)
