@@ -1,29 +1,38 @@
----
 da:
   about:
-    about_hashtag_html: Disse er offentlige trut der indeholder tagget <strong>#%{hashtag}</strong>. Du kan interagere med dem hvis du har en konto hvor som helst i fediverset.
+    about_hashtag_html: 'Disse er offentlige trut der indeholder tagget <strong>#%{hashtag}</strong>. Du kan interagere med dem hvis du har en konto hvor som helst i fediverset.'
     about_mastodon_html: Mastodon er et socialt netværk der er baseret på åbne web protokoller og frit, open-source source software. Der er decentraliseret ligesom e-mail tjenester.
     about_this: Om
+    active_count_after: active
+    active_footnote: Monthly Active Users (MAU)
     administered_by: 'Administreret af:'
     api: API
     apps: Apps til mobilen
     apps_platforms: Brug Mastodon på iOS, Android og andre platformer
+    browse_directory: Browse a profile directory and filter by interests
+    browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Kontakt
     contact_missing: Ikke sat
     contact_unavailable: Ikke tilgængeligt
+    discover_users: Discover users
     documentation: Dokumentation
     extended_description_html: |
       <h3>Et godt sted for regler</h3>
       <p>Den udvidede beskrivelse er endnu ikke blevet opsat.</p>
+    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} er en server i netværket"
+    get_apps: Try a mobile app
     hosted_on: Mostodon hostet på %{domain}
     learn_more: Lær mere
     privacy_policy: Privatlivspolitik
+    see_whats_happening: See what's happening
+    server_stats: 'Server stats:'
     source_code: Kildekode
     status_count_after:
       one: status
       other: statusser
     status_count_before: Som har skrevet
+    tagline: Follow friends and discover new ones
     terms: Vilkår for service
     user_count_after:
       one: bruger
@@ -38,6 +47,7 @@ da:
       other: Følgere
     following: Følger
     joined: Tilmeldt den %{date}
+    last_active: last active
     link_verified_on: Ejerskabet af dette link blev tjekket den %{date}
     media: Medier
     moved_html: "%{name} er flyttet til %{new_profile_link}:"
@@ -57,16 +67,20 @@ da:
       admin: Administrator
       bot: Robot
       moderator: Moderator
+    unavailable: Profile unavailable
     unfollow: Følg ikke længere
   admin:
     account_actions:
       action: Udfør handling
+      title: Perform moderation action on %{acct}
     account_moderation_notes:
       create: Læg en note
       created_msg: Moderator notat succesfuldt oprettet!
       delete: Slet
       destroyed_msg: Moderator notat succesfuldt destrueret!
     accounts:
+      approve: Approve
+      approve_all: Approve all
       are_you_sure: Er du sikker?
       avatar: Profilbillede
       by_domain: Domæne
@@ -80,6 +94,7 @@ da:
       confirm: Bekræft
       confirmed: Bekræftet
       confirming: Bekræfter
+      deleted: Deleted
       demote: Degrader
       disable: Deaktiver
       disable_two_factor_authentication: Deaktiver 2FA
@@ -95,8 +110,11 @@ da:
       followers: Følgere
       followers_url: Link til følgere
       follows: Følger
+      header: Header
       inbox_url: Link til indbakke
+      invited_by: Invited by
       ip: IP-adresse
+      joined: Joined
       location:
         all: Alle
         local: Lokalt
@@ -106,15 +124,20 @@ da:
       media_attachments: Medie bilag
       memorialize: Omdan til et memoriam
       moderation:
+        active: Active
         all: Alle
+        pending: Pending
         silenced: Dæmpet
         suspended: Udelukket
         title: Moderasion
       moderation_notes: Moderator notater
       most_recent_activity: Seneste aktivitet
       most_recent_ip: Senest IP
+      no_account_selected: No accounts were changed as none were selected
+      no_limits_imposed: No limits imposed
       not_subscribed: Ikke abonneret
       outbox_url: Link til udgående
+      pending: Pending review
       perform_full_suspension: Udeluk
       profile_url: Link til profil
       promote: Forfrem
@@ -122,7 +145,10 @@ da:
       public: Offentligt
       push_subscription_expires: PuSH abonnement udløber
       redownload: Opdater profil
+      reject: Reject
+      reject_all: Reject all
       remove_avatar: Fjern profilbillede
+      remove_header: Remove header
       resend_confirmation:
         already_confirmed: Denne bruger er allerede blevet bekræftet
         send: Gensend bekræftelsesmail
@@ -147,22 +173,26 @@ da:
       statuses: Statusser
       subscribe: Abonner
       suspended: Udelukket
+      time_in_queue: Waiting in queue %{time}
       title: Konti
       unconfirmed_email: Ikke-bekræftet email
       undo_silenced: Fortryd dæmpning
       undo_suspension: Fortryd udelukkelse
       unsubscribe: Abonner ikke længere
       username: Brugernavn
+      warn: Warn
       web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} tildelte anmeldelsen %{target} til sig selv"
         change_email_user: "%{name} ændrede email adressen for brugeren %{target}"
         confirm_user: "%{name} bekræftede %{target}s email adresse"
+        create_account_warning: "%{name} sent a warning to %{target}"
         create_custom_emoji: "%{name} uploadede humørikonet %{target}"
         create_domain_block: "%{name} blokerede domænet %{target}"
         create_email_domain_block: "%{name} sortlistede email domænet %{target}"
         demote_user: "%{name} degraderede %{target}"
+        destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_block: "%{name} fjernede blokeringen af domænet %{target}"
         destroy_email_domain_block: "%{name} hvid-listede email domænet %{target}"
         destroy_status: "%{name} fjernede statussen fra %{target}"
@@ -216,8 +246,10 @@ da:
       config: Konfiguration
       feature_deletions: Konto sletninger
       feature_invites: Invitations links
+      feature_profile_directory: Profile directory
       feature_registrations: Registreringer
       feature_relay: Føderations relæ
+      feature_timeline_preview: Timeline preview
       features: Funktioner
       hidden_service: Føderation med skjulte tjenester
       open_reports: åbne anmeldelser
@@ -237,6 +269,7 @@ da:
       created_msg: Domæne blokade bliver nu behandlet
       destroyed_msg: Domæne blokade er blevet annulleret
       domain: Domæne
+      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Opret blokering
         hint: Domæne blokeringen vil ikke forhindre oprettelse af konto opslag i databasen, men vil retroaktivt og automatisk benytte specifikke moderator metoder på disse konti.
@@ -249,6 +282,12 @@ da:
       reject_media: Afvis medie filer
       reject_media_hint: Fjerner lokalt lagrede multimedie filer og nægter at hente nogen i fremtiden. Irrelevant for udelukkelser
       reject_reports: Afvis anmeldelser
+      reject_reports_hint: Ignore all reports coming from this domain. Irrelevant for suspensions
+      rejecting_media: rejecting media files
+      rejecting_reports: rejecting reports
+      severity:
+        silence: silenced
+        suspend: suspended
       show:
         affected_accounts:
           one: En konto i databasen påvirket
@@ -271,8 +310,23 @@ da:
       title: Email sortliste
     followers:
       back_to_account: Tilbage til konto
+      title: "%{acct}'s Followers"
     instances:
+      by_domain: Domain
+      delivery_available: Delivery is available
+      known_accounts:
+        one: "%{count} known account"
+        other: "%{count} known accounts"
+      moderation:
+        all: All
+        limited: Limited
+        title: Moderation
       title: Førderation
+      total_blocked_by_us: Blocked by us
+      total_followed_by_them: Followed by them
+      total_followed_by_us: Followed by us
+      total_reported: Reports about them
+      total_storage: Media attachments
     invites:
       deactivate_all: Deaktiver alle
       filter:
@@ -281,6 +335,8 @@ da:
         expired: Udløbet
         title: Filtre
       title: Invitationer
+    pending_accounts:
+      title: Pending accounts (%{count})
     relays:
       add_new: Tilføj nyt relay
       delete: Slet
@@ -345,12 +401,18 @@ da:
       hero:
         desc_html: Vist på forsiden. Mindst 600x100px anbefales. Hvis ikke sat, vil dette falde tilbage til billedet fra serveren
         title: Billede af helt
+      mascot:
+        desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
+        title: Mascot image
       peers_api_enabled:
         desc_html: Domæne navne denne server er stødt på i fediverset
         title: Udgiv liste over opdagede server
       preview_sensitive_media:
         desc_html: Forhåndsvisninger af links på andre websider vil vise et miniaturebillede selv hvis mediet er markeret som følsomt
         title: Vis følsomt medie i OpenGraph forhåndsvisninger
+      profile_directory:
+        desc_html: Allow users to be discoverable
+        title: Enable profile directory
       registrations:
         closed_message:
           desc_html: Vist på forsiden når registreringer er lukkede. Du kan bruge HTML tags
@@ -361,6 +423,12 @@ da:
         min_invite_role:
           disabled: Ingen
           title: Tillad invitationer af
+      registrations_mode:
+        modes:
+          approved: Approval required for sign up
+          none: Nobody can sign up
+          open: Anyone can sign up
+        title: Registrations mode
       show_known_fediverse_at_about_page:
         desc_html: Når slået til, vil det vise trut fra hele det kendte fedivers på forhåndsvisning. Ellers vil det kun vise lokale trut.
         title: Vis kendte fedivers på tidslinje forhåndsvisning
@@ -410,12 +478,32 @@ da:
     tags:
       accounts: Kontoer
       hidden: Skjult
+      hide: Hide from directory
+      name: Hashtag
+      title: Hashtags
+      unhide: Show in directory
+      visible: Visible
     title: Administration
+    warning_presets:
+      add_new: Add new
+      delete: Delete
+      edit: Edit
+      edit_preset: Edit warning preset
+      title: Manage warning presets
   admin_mailer:
+    new_pending_account:
+      body: The details of the new account are below. You can approve or reject this application.
+      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter} har anmeldt %{target}"
       body_remote: Nogen fra %{domain} har anmeldt %{target}
-      subject: Ny anmeldelse for %{instance} (#%{id})
+      subject: 'Ny anmeldelse for %{instance} (#%{id})'
+  appearance:
+    advanced_web_interface: Advanced web interface
+    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
+    animations_and_accessibility: Animations and accessibility
+    confirmation_dialogs: Confirmation dialogs
+    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Ændre email præferencer
     salutation: "%{name},"
@@ -432,7 +520,9 @@ da:
     warning: Vær meget forsigtig med disse data. Del dem aldrig med nogen!
     your_token: Din adgangs token
   auth:
+    apply_for_account: Request an invite
     change_password: Kodeord
+    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: Bekræft email
     delete_account: Slet konto
     delete_account_html: Hvis du ønsker at slette din konto, kan du <a href="%{path}">gøre det her</a>. Du vil blive bedt om bekræftelse.
@@ -448,10 +538,12 @@ da:
       cas: CAS
       saml: SAML
     register: Opret dig
+    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: Gensend bekræftelses instrukser
     reset_password: Nulstil kodeord
     security: Sikkerhed
     set_new_password: Sæt et nyt kodeord
+    trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: Du følger allerede denne konto
     error: Der opstod desværre en fejl under søgningen af denne fjerne konto
@@ -485,6 +577,16 @@ da:
     success_msg: Din konto er nu blevet slettet
     warning_html: Kun sletning af indhold fra denne specifikke server er garanteret. Indhold der er blevet delt rundt omkring vil sandsynligvis efterlade spor. Offline servere og servere der ikke længere abonnerer på dine opdateringer vil ikke opdatere deres databaser.
     warning_title: Tilgængelighed af delt indhold
+  directories:
+    directory: Profile directory
+    enabled: You are currently listed in the directory.
+    enabled_but_waiting: You have opted-in to be listed in the directory, but you do not have the minimum number of followers (%{min_followers}) to be listed yet.
+    explanation: Discover users based on their interests
+    explore_mastodon: Explore %{title}
+    how_to_enable: You are not currently opted-in to the directory. You can opt-in below. Use hashtags in your bio text to be listed under specific hashtags!
+    people:
+      one: "%{count} person"
+      other: "%{count} people"
   errors:
     '403': Du har ikke tilladelse til at se denne side.
     '404': Den side du leder efter findes ikke.
@@ -497,6 +599,9 @@ da:
       content: Beklager men der gik noget galt i vores ende.
       title: Siden er ikke korrekt
     noscript_html: For at bruge Mastodon web applikationen, aktiver JavaScript. Alternativt kan du prøve en af disse <a href="%{apps_path}">apps</a> til Mastodon for din platform.
+  existing_username_validator:
+    not_found: could not find a local user with that username
+    not_found_multiple: could not find %{usernames}
   exports:
     archive_takeout:
       date: Dato
@@ -507,9 +612,15 @@ da:
       size: Størrelse
     blocks: Du blokerer
     csv: CSV
+    domain_blocks: Domain blocks
     follows: Du følger
+    lists: Lists
     mutes: Du dæmper
     storage: Medie lager
+  featured_tags:
+    add_new: Add new
+    errors:
+      limit: You have already featured the maximum amount of hashtags
   filters:
     contexts:
       home: Hjemme tidslinje
@@ -531,17 +642,45 @@ da:
     more: Mere…
     resources: Ressourcer
   generic:
+    all: All
     changes_saved_msg: Ændringerne blev gemt!
     copy: Kopier
+    order_by: Order by
     save_changes: Gem ændringer
     validation_errors:
       one: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende fejl forneden
       other: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende %{count} fejl forneden
+  html_validator:
+    invalid_markup: 'contains invalid HTML markup: %{error}'
+  identity_proofs:
+    active: Active
+    authorize: Yes, authorize
+    authorize_connection_prompt: Authorize this cryptographic connection?
+    errors:
+      failed: The cryptographic connection failed. Please try again from %{provider}.
+      keybase:
+        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
+        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
+      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
+    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
+    i_am_html: I am %{username} on %{service}.
+    identity: Identity
+    inactive: Inactive
+    publicize_checkbox: 'And toot this:'
+    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    status: Verification status
+    view_proof: View proof
   imports:
+    modes:
+      merge: Merge
+      merge_long: Keep existing records and add new ones
+      overwrite: Overwrite
+      overwrite_long: Replace current records with the new ones
     preface: Du kan importere data du har eksporteret fra en anden server, så som en liste over folk du følger eller blokerer.
     success: Dine data blev succesfuldt uploaded og vil nu blive behandlet hurtigst muligt
     types:
       blocking: Blokeringsliste
+      domain_blocking: Domain blocking list
       following: Følgningsliste
       muting: Liste over dæmpninger
     upload: Læg op
@@ -626,25 +765,65 @@ da:
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: "\n"
+          unit: ''
   pagination:
     newer: Nyere
     next: Næste
     older: Ældre
     prev: Forrige
     truncate: "...&hellip;"
+  polls:
+    errors:
+      already_voted: You have already voted on this poll
+      duplicate_options: contain duplicate items
+      duration_too_long: is too far into the future
+      duration_too_short: is too soon
+      expired: The poll has already ended
+      over_character_limit: cannot be longer than %{max} characters each
+      too_few_options: must have more than one item
+      too_many_options: can't contain more than %{max} items
   preferences:
     other: Andet
+    posting_defaults: Posting defaults
+    public_timelines: Public timelines
+  relationships:
+    activity: Account activity
+    dormant: Dormant
+    last_active: Last active
+    most_recent: Most recent
+    moved: Moved
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Remove all followers from the selected domains
+    remove_selected_followers: Remove selected followers
+    remove_selected_follows: Unfollow selected users
+    status: Account status
   remote_follow:
     acct: Indtast dit brugernavn@domæne du vil handle fra
     missing_resource: Kunne ikke finde det påkrævede omdirigerings link for din konto
     no_account_html: Har du ikke en konto? Du kan <a href='%{sign_up_path}' target='_blank'>oprette dig her</a>
     proceed: Fortsæt for at følge
     prompt: 'Du er ved at følge:'
+    reason_html: "<strong>Why is this step necessary?</strong> <code>%{instance}</code> might not be the server where you are registered, so we need to redirect you to your home server first."
+  remote_interaction:
+    favourite:
+      proceed: Proceed to favourite
+      prompt: 'You want to favourite this toot:'
+    reblog:
+      proceed: Proceed to boost
+      prompt: 'You want to boost this toot:'
+    reply:
+      proceed: Proceed to reply
+      prompt: 'You want to reply to this toot:'
   remote_unfollow:
     error: Fejl
     title: Titel
     unfollowed: Følger ikke længere
+  scheduled_statuses:
+    over_daily_limit: You have exceeded the limit of %{limit} scheduled toots for that day
+    over_total_limit: You have exceeded the limit of %{limit} scheduled toots
+    too_soon: The scheduled date must be in the future
   sessions:
     activity: Sidste aktivitet
     browser: Browser
@@ -687,16 +866,24 @@ da:
     revoke_success: Sessionen blev tilbagekaldt
     title: Sessioner
   settings:
+    account: Account
+    account_settings: Account settings
+    appearance: Appearance
     authorized_apps: Godkendte apps
     back: Tilbage til Mastodon
     delete: Sletning af konto
     development: Udvikling
     edit_profile: Rediger profil
     export: Data eksportering
+    featured_tags: Featured hashtags
+    identity_proofs: Identity proofs
     import: Importer
+    import_and_export: Import and export
     migrate: Konto migrering
     notifications: Notifikationer
     preferences: Præferencer
+    profile: Profile
+    relationships: Follows and followers
     two_factor_authentication: To-faktor godkendelse
   statuses:
     attached:
@@ -720,6 +907,11 @@ da:
       ownership: Du kan ikke fastgøre en anden persons trut
       private: Ikke offentlige trut kan ikke blive fastgjort
       reblog: Fremhævede trut kan ikke fastgøres
+    poll:
+      total_votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
+      vote: Vote
     show_more: Vis mere
     sign_in_to_participate: Log ind for at deltage i samtalen
     title: '%{name}: "%{quote}"'
@@ -735,8 +927,89 @@ da:
     reblogged: fremhævede
     sensitive_content: Følsomt indhold
   terms:
-    body_html: "<p><h2> Privatlivspolitik </h2> \n<h3 id=\"collect\">Hvilke information indsamler vi?</h3> \n\n<ul>\n  <li><em>Grundlæggende kontoinformation </em>: Hvis du registrerer dig på denne server, bliver du måske bedt om at indtaste et brugernavn, en e-mail-adresse og et kodeord. Du kan også indtaste yderligere profiloplysninger, såsom et visningsnavn og biografi, og uploade et profilbillede og headerbillede. Brugernavnet, visningsnavnet, biografien, profilbilledet og hovedbilledet vises altid offentligt. </li> \n  <li> <em>Stillinger, følgende og andre offentlige oplysninger </em>: Listen over personer du følger er offentliggjort, det samme gælder for dine tilhængere. Når du sender en besked, gemmes datoen og klokkeslættet såvel som det program, du sendte beskeden fra. Meddelelser kan indeholde medievedhæftninger, som f.eks. Billeder og videoer. Offentlige og unoterede indlæg er offentligt tilgængelige. Når du har et indlæg på din profil, er det også offentligt tilgængelig information. Dine indlæg leveres til dine tilhængere, i nogle tilfælde betyder det, at de leveres til forskellige servere, og der gemmes kopier der. Når du sletter indlæg, leveres det også til dine tilhængere. Handlingen med reblogging eller favorisering af et andet indlæg er altid offentligt. </li>\n  <li><em> Direkte og efterfølger-kun indlæg </ em>: Alle indlæg gemmes og behandles på serveren. Følgere-kun indlæg leveres til dine tilhængere og brugere, der er nævnt i dem, og direkte indlæg leveres kun til brugere nævnt i dem. I nogle tilfælde betyder det, at de leveres til forskellige servere, og der gemmes kopier der. Vi gør en god tro for at begrænse adgangen til disse stillinger kun til autoriserede personer, men andre servere kan undlade at gøre det. Derfor er det vigtigt at gennemgå de servere, dine tilhængere tilhører. Du kan skifte en mulighed for at godkende og afvise nye følgere manuelt i indstillingerne. <em> Vær opmærksom på, at operatørerne af serveren og enhver modtagende server muligvis kan se sådanne meddelelser </em>, og at modtagere muligvis skærmbilleder, kopierer eller på anden vis deler dem igen. <em> Del ikke nogen farlig information over Mastodon. </em> </li>\n  <li> <em> IP'er og andre metadata </em>: Når du logger ind, registrerer vi den IP-adresse, du logger ind fra, samt navnet på din browser-applikation. Alle indloggede sessioner er tilgængelige til din anmeldelse og tilbagekaldelse i indstillingerne. Den seneste anvendte IP-adresse gemmes i op til 12 måneder. Vi kan også beholde serverlogfiler, som indeholder IP-adressen til hver anmodning til vores server. </li>\n</ul>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"use\">Hvad bruger vi dine oplysninger til? </h3>\n\n<p> Enhver af de oplysninger, vi indsamler fra dig, kan bruges på følgende måder: </p>\n\n<ul>\n  <li> At levere kernen funktionalitet Mastodon. Du kan kun interagere med andres indhold og indsende dit eget indhold, når du er logget ind. Du kan f.eks. Følge andre personer for at se deres kombinerede indlæg på din egen personlige tidslinje. </li>\n  <li> For at hjælpe moderering af samfundet, f.eks. sammenligning af din IP-adresse med andre kendte, for at bestemme forbud mod unddragelse eller andre overtrædelser. </li>\n  <li> Den e-mail-adresse, du angiver, kan bruges til at sende dig oplysninger, meddelelser om andre personer, der interagerer med dit indhold eller sender dig beskeder, og for at svare på henvendelser og / eller andre forespørgsler eller spørgsmål. </li>\n</ul>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"protect\">Hvordan beskytter vi dine oplysninger? </h3>\n\n<p> Vi implementerer en række sikkerhedsforanstaltninger for at opretholde sikkerheden for dine personlige oplysninger, når du indtaster, indsender eller har adgang til dine personlige oplysninger. Bl.a. er din browsersession samt trafikken mellem dine applikationer og API'en sikret med SSL, og din adgangskode er hashed ved hjælp af en stærk envejsalgoritme. Du kan muligvis aktivere tofaktors godkendelse for yderligere at sikre adgang til din konto. </p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"data-retention\"> Hvad er vores data retention politik? </h3>\n\n<p> Vi vil gøre en god tro indsats for at: </p>\n\n<ul>\n  <li> Behold serverlogfiler, der indeholder IP-adressen på alle anmodninger til denne server, for så vidt som sådanne logfiler holdes, ikke mere end 90 dage. </li>\n  <li> Behold de IP-adresser, der er forbundet med registrerede brugere, ikke mere end 12 måneder. </li>\n</ul>\n\n<p> Du kan anmode om og downloade et arkiv af dit indhold, herunder dine indlæg, medievedhæftninger, profilbillede og headerbillede. </p>\n\n<p> Du kan til enhver tid slette din konto. </p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"cookies\"> Bruger vi cookies? </h3>\n\n<p> Ja. Cookies er små filer, som et websted eller dets tjenesteudbyder overfører til din computers harddisk via din webbrowser (hvis du tillader det). Disse cookies gør det muligt for webstedet at genkende din browser og, hvis du har en registreret konto, associerer den med din registrerede konto. </p>\n\n<p> Vi bruger cookies til at forstå og gemme dine præferencer til fremtidige besøg. </p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"disclose\"> Viser vi nogen information til eksterne parter? </h3>\n\n<p> Vi sælger ikke, handler eller på anden måde overfører dine personlige identificerbare oplysninger til eksterne parter. Dette omfatter ikke tillid til tredjeparter, der hjælper os med at drive vores hjemmeside, udføre vores forretning eller servicere dig, så længe parterne er enige om at holde disse oplysninger fortrolige. Vi kan også frigive dine oplysninger, når vi mener, at udgivelsen er hensigtsmæssig for at overholde loven, håndhæve vores webstedspolitikker eller beskytte vores eller andre rettigheder, ejendom eller sikkerhed. </p>\n\n<p> Dit offentlige indhold kan downloades af andre servere i netværket. Dine offentlige og efterfølger-kun indlæg leveres til de servere, hvor dine tilhængere er bosat, og direkte meddelelser leveres til modtagerens servere, for så vidt som disse tilhængere eller modtagere opholder sig på en anden server end dette. </p>\n\n<p> Når du autoriserer et program til at bruge din konto, afhænger det af omfanget af tilladelser, du godkender, det kan få adgang til dine offentlige profiloplysninger, din følgende liste, dine tilhængere, dine lister, alle dine indlæg og dine favoritter. Applikationer kan aldrig få adgang til din e-mail-adresse eller adgangskode. </p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"children\"> Bebyggelse af børn </h3>\n\n<p> Hvis denne server er i EU eller EØS: Vores websted, produkter og tjenester er alle rettet mod personer, der er mindst 16 år gamle. Hvis du er under 16 år, skal du ikke bruge dette websted efter kravene i GDPR (<a href=\"https://en.wikipedia.org/wiki/General_Data_Protection_Regulation\"> Generel databeskyttelsesforordning </a>). . </p>\n\n<p> Hvis denne server er i USA: Vores websted, produkter og tjenester er alle rettet mod personer, der er mindst 13 år. Hvis du er under 13 år, skal du ikke bruge kravene i COPPA (<a href=\"https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\"> Børns online beskyttelse af personlige oplysninger </a>) dette websted. </p>\n\n<p> Lovkrav kan være anderledes, hvis denne server er i en anden jurisdiktion. </p>\n\n<hr class = \"spacer\" />\n\n<h3 id=\"changes\"> Ændringer i vores privatlivspolitik </h3>\n\n<p> Hvis vi beslutter os for at ændre vores privatlivspolitik, vil vi sende disse ændringer på denne side. </p>\n\n<p> Dette dokument er CC-BY-SA. Det blev senest opdateret 7. marts 2018. </p>\n\n<p> Oprindelig tilpasset fra <a href=\"https://github.com/discourse/discourse\"> Discourse privacy policy </a>.</p>\n"
-    title: Vilkår og privatlivpolitik for %{instance}
+    body_html: |
+      <p><h2> Privatlivspolitik </h2> 
+      <h3 id="collect">Hvilke information indsamler vi?</h3> 
+
+      <ul>
+        <li><em>Grundlæggende kontoinformation </em>: Hvis du registrerer dig på denne server, bliver du måske bedt om at indtaste et brugernavn, en e-mail-adresse og et kodeord. Du kan også indtaste yderligere profiloplysninger, såsom et visningsnavn og biografi, og uploade et profilbillede og headerbillede. Brugernavnet, visningsnavnet, biografien, profilbilledet og hovedbilledet vises altid offentligt. </li> 
+        <li> <em>Stillinger, følgende og andre offentlige oplysninger </em>: Listen over personer du følger er offentliggjort, det samme gælder for dine tilhængere. Når du sender en besked, gemmes datoen og klokkeslættet såvel som det program, du sendte beskeden fra. Meddelelser kan indeholde medievedhæftninger, som f.eks. Billeder og videoer. Offentlige og unoterede indlæg er offentligt tilgængelige. Når du har et indlæg på din profil, er det også offentligt tilgængelig information. Dine indlæg leveres til dine tilhængere, i nogle tilfælde betyder det, at de leveres til forskellige servere, og der gemmes kopier der. Når du sletter indlæg, leveres det også til dine tilhængere. Handlingen med reblogging eller favorisering af et andet indlæg er altid offentligt. </li>
+        <li><em> Direkte og efterfølger-kun indlæg </ em>: Alle indlæg gemmes og behandles på serveren. Følgere-kun indlæg leveres til dine tilhængere og brugere, der er nævnt i dem, og direkte indlæg leveres kun til brugere nævnt i dem. I nogle tilfælde betyder det, at de leveres til forskellige servere, og der gemmes kopier der. Vi gør en god tro for at begrænse adgangen til disse stillinger kun til autoriserede personer, men andre servere kan undlade at gøre det. Derfor er det vigtigt at gennemgå de servere, dine tilhængere tilhører. Du kan skifte en mulighed for at godkende og afvise nye følgere manuelt i indstillingerne. <em> Vær opmærksom på, at operatørerne af serveren og enhver modtagende server muligvis kan se sådanne meddelelser </em>, og at modtagere muligvis skærmbilleder, kopierer eller på anden vis deler dem igen. <em> Del ikke nogen farlig information over Mastodon. </em> </li>
+        <li> <em> IP'er og andre metadata </em>: Når du logger ind, registrerer vi den IP-adresse, du logger ind fra, samt navnet på din browser-applikation. Alle indloggede sessioner er tilgængelige til din anmeldelse og tilbagekaldelse i indstillingerne. Den seneste anvendte IP-adresse gemmes i op til 12 måneder. Vi kan også beholde serverlogfiler, som indeholder IP-adressen til hver anmodning til vores server. </li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">Hvad bruger vi dine oplysninger til? </h3>
+
+      <p> Enhver af de oplysninger, vi indsamler fra dig, kan bruges på følgende måder: </p>
+
+      <ul>
+        <li> At levere kernen funktionalitet Mastodon. Du kan kun interagere med andres indhold og indsende dit eget indhold, når du er logget ind. Du kan f.eks. Følge andre personer for at se deres kombinerede indlæg på din egen personlige tidslinje. </li>
+        <li> For at hjælpe moderering af samfundet, f.eks. sammenligning af din IP-adresse med andre kendte, for at bestemme forbud mod unddragelse eller andre overtrædelser. </li>
+        <li> Den e-mail-adresse, du angiver, kan bruges til at sende dig oplysninger, meddelelser om andre personer, der interagerer med dit indhold eller sender dig beskeder, og for at svare på henvendelser og / eller andre forespørgsler eller spørgsmål. </li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">Hvordan beskytter vi dine oplysninger? </h3>
+
+      <p> Vi implementerer en række sikkerhedsforanstaltninger for at opretholde sikkerheden for dine personlige oplysninger, når du indtaster, indsender eller har adgang til dine personlige oplysninger. Bl.a. er din browsersession samt trafikken mellem dine applikationer og API'en sikret med SSL, og din adgangskode er hashed ved hjælp af en stærk envejsalgoritme. Du kan muligvis aktivere tofaktors godkendelse for yderligere at sikre adgang til din konto. </p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention"> Hvad er vores data retention politik? </h3>
+
+      <p> Vi vil gøre en god tro indsats for at: </p>
+
+      <ul>
+        <li> Behold serverlogfiler, der indeholder IP-adressen på alle anmodninger til denne server, for så vidt som sådanne logfiler holdes, ikke mere end 90 dage. </li>
+        <li> Behold de IP-adresser, der er forbundet med registrerede brugere, ikke mere end 12 måneder. </li>
+      </ul>
+
+      <p> Du kan anmode om og downloade et arkiv af dit indhold, herunder dine indlæg, medievedhæftninger, profilbillede og headerbillede. </p>
+
+      <p> Du kan til enhver tid slette din konto. </p>
+
+      <hr class="spacer" />
+
+      <h3 id="cookies"> Bruger vi cookies? </h3>
+
+      <p> Ja. Cookies er små filer, som et websted eller dets tjenesteudbyder overfører til din computers harddisk via din webbrowser (hvis du tillader det). Disse cookies gør det muligt for webstedet at genkende din browser og, hvis du har en registreret konto, associerer den med din registrerede konto. </p>
+
+      <p> Vi bruger cookies til at forstå og gemme dine præferencer til fremtidige besøg. </p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose"> Viser vi nogen information til eksterne parter? </h3>
+
+      <p> Vi sælger ikke, handler eller på anden måde overfører dine personlige identificerbare oplysninger til eksterne parter. Dette omfatter ikke tillid til tredjeparter, der hjælper os med at drive vores hjemmeside, udføre vores forretning eller servicere dig, så længe parterne er enige om at holde disse oplysninger fortrolige. Vi kan også frigive dine oplysninger, når vi mener, at udgivelsen er hensigtsmæssig for at overholde loven, håndhæve vores webstedspolitikker eller beskytte vores eller andre rettigheder, ejendom eller sikkerhed. </p>
+
+      <p> Dit offentlige indhold kan downloades af andre servere i netværket. Dine offentlige og efterfølger-kun indlæg leveres til de servere, hvor dine tilhængere er bosat, og direkte meddelelser leveres til modtagerens servere, for så vidt som disse tilhængere eller modtagere opholder sig på en anden server end dette. </p>
+
+      <p> Når du autoriserer et program til at bruge din konto, afhænger det af omfanget af tilladelser, du godkender, det kan få adgang til dine offentlige profiloplysninger, din følgende liste, dine tilhængere, dine lister, alle dine indlæg og dine favoritter. Applikationer kan aldrig få adgang til din e-mail-adresse eller adgangskode. </p>
+
+      <hr class="spacer" />
+
+      <h3 id="children"> Bebyggelse af børn </h3>
+
+      <p> Hvis denne server er i EU eller EØS: Vores websted, produkter og tjenester er alle rettet mod personer, der er mindst 16 år gamle. Hvis du er under 16 år, skal du ikke bruge dette websted efter kravene i GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation"> Generel databeskyttelsesforordning </a>). . </p>
+
+      <p> Hvis denne server er i USA: Vores websted, produkter og tjenester er alle rettet mod personer, der er mindst 13 år. Hvis du er under 13 år, skal du ikke bruge kravene i COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act"> Børns online beskyttelse af personlige oplysninger </a>) dette websted. </p>
+
+      <p> Lovkrav kan være anderledes, hvis denne server er i en anden jurisdiktion. </p>
+
+      <hr class = "spacer" />
+
+      <h3 id="changes"> Ændringer i vores privatlivspolitik </h3>
+
+      <p> Hvis vi beslutter os for at ændre vores privatlivspolitik, vil vi sende disse ændringer på denne side. </p>
+
+      <p> Dette dokument er CC-BY-SA. Det blev senest opdateret 7. marts 2018. </p>
+
+      <p> Oprindelig tilpasset fra <a href="https://github.com/discourse/discourse"> Discourse privacy policy </a>.</p>
+
+    title: "Vilkår og privatlivpolitik for %{instance}"
   themes:
     contrast: Mastodon (Høj kontrast)
     default: Mastodont (Mørk)
@@ -766,6 +1039,22 @@ da:
       explanation: Din anmodning for fuld backup af din Mastodon konto. Den er nu klar til at blive hentet!
       subject: Dit arkiv er klar til at blive hentet ned
       title: Udpluk af arkiv
+    warning:
+      explanation:
+        disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
+        silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
+        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
+      review_server_policies: Review server policies
+      subject:
+        disable: Your account %{acct} has been frozen
+        none: Warning for %{acct}
+        silence: Your account %{acct} has been limited
+        suspend: Your account %{acct} has been suspended
+      title:
+        disable: Account frozen
+        none: Warning
+        silence: Account limited
+        suspend: Account suspended
     welcome:
       edit_profile_action: Opsæt profil
       edit_profile_step: Du kan skræddersy din profil ved at uploade et profilbillede, overskrift, ændre dit visningsnavn og mere. Hvis du kunne tænke dig at gennemse nye følgere før de må følge dig, kan du låse din konto.
@@ -784,8 +1073,12 @@ da:
       tips: Råd
       title: Velkommen ombord, %{name}!
   users:
+    follow_limit_reached: You cannot follow more than %{limit} people
     invalid_email: E-mail adressen er ugyldig
     invalid_otp_token: Ugyldig to-faktor kode
     otp_lost_help_html: Hvis du har mistet adgang til begge, kan du få kontakt via %{email}
     seamless_external_login: Du er logget ind via en ekstern service, så er kodeord og e-mail indstillinger ikke tilgængelige.
     signed_in_as: 'Logget ind som:'
+  verification:
+    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
+    verification: Verification
