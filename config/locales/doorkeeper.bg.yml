@@ -1,10 +1,11 @@
----
 bg:
   activerecord:
     attributes:
       doorkeeper/application:
         name: Име
         redirect_uri: URI за пренасочване
+        scopes: Scopes
+        website: Application website
     errors:
       models:
         doorkeeper/application:
@@ -33,9 +34,13 @@ bg:
         redirect_uri: Използвай един ред за всяко URI
         scopes: Разделяй диапазоните с интервал. Остави празно, за да използваш диапазона по подразбиране.
       index:
+        application: Application
         callback_url: URL за обратно повикване
+        delete: Delete
         name: Име
         new: Ново приложение
+        scopes: Scopes
+        show: Show
         title: Твоите приложения
       new:
         title: Ново приложение
@@ -109,5 +114,28 @@ bg:
         title: Нужно е упълномощаване по OAuth
     scopes:
       follow: следването, блокирането, деблокирането и отмяната на следването на акаунтите
+      push: receive your push notifications
       read: четенето на данните от твоя акаунт
+      "read:accounts": see accounts information
+      "read:blocks": see your blocks
+      "read:favourites": see your favourites
+      "read:filters": see your filters
+      "read:follows": see your follows
+      "read:lists": see your lists
+      "read:mutes": see your mutes
+      "read:notifications": see your notifications
+      "read:reports": see your reports
+      "read:search": search on your behalf
+      "read:statuses": see all statuses
       write: публикуването от твое име
+      "write:accounts": modify your profile
+      "write:blocks": block accounts and domains
+      "write:favourites": favourite statuses
+      "write:filters": create filters
+      "write:follows": follow people
+      "write:lists": create lists
+      "write:media": upload media files
+      "write:mutes": mute people and conversations
+      "write:notifications": clear your notifications
+      "write:reports": report other people
+      "write:statuses": publish statuses
