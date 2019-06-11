@@ -120,7 +120,7 @@ nl:
         local: Lokaal
         remote: Extern
         title: Locatie
-      login_status: Login status
+      login_status: Loginstatus
       media_attachments: Mediabijlagen
       memorialize: In gedenkpagina veranderen
       moderation:
@@ -173,7 +173,7 @@ nl:
       statuses: Toots
       subscribe: Abonneren
       suspended: Opgeschort
-      time_in_queue: Waiting in queue %{time}
+      time_in_queue: '%{time} in de wachtrij'
       title: Accounts
       unconfirmed_email: Onbevestigd e-mailadres
       undo_silenced: Niet langer negeren
@@ -234,7 +234,7 @@ nl:
       new:
         title: Lokale emoji toevoegen
       overwrite: Overschrijven
-      shortcode: Shortcode
+      shortcode: Verkorte code
       shortcode_hint: Tenminste 2 tekens (alleen alfanumeriek en underscores)
       title: Lokale emoji’s
       unlisted: Niet weergegeven
@@ -269,7 +269,7 @@ nl:
       created_msg: Domeinblokkade wordt nu verwerkt
       destroyed_msg: Domeinblokkade is ongedaan gemaakt
       domain: Domein
-      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
+      existing_domain_block_html: Jij hebt al strengere beperkingen opgelegd aan %{name}, je moet het domein eerst <a href="%{unblock_url}">deblokkeren</a>.
       new:
         create: Blokkade aanmaken
         hint: Een domeinblokkade voorkomt niet dat accountgegevens van dit domein aan de database worden toegevoegd, maar dat er met terugwerkende kracht en automatisch bepaalde moderatiemethoden op deze accounts worden toegepast.
@@ -499,7 +499,7 @@ nl:
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
       subject: 'Nieuwe rapportage op %{instance} (#%{id})'
   appearance:
-    advanced_web_interface: Advanced web interface
+    advanced_web_interface: Geavanceerde webomgeving
     advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
     animations_and_accessibility: Animations and accessibility
     confirmation_dialogs: Confirmation dialogs
