@@ -1,7 +1,6 @@
----
 pt-BR:
   about:
-    about_hashtag_html: Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.
+    about_hashtag_html: 'Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.'
     about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos e software gratuito e de código aberto. É descentralizada como e-mail.
     about_this: Sobre
     active_count_after: Ativo
@@ -41,7 +40,7 @@ pt-BR:
     user_count_before: Casa de
     what_is_mastodon: O que é Mastodon?
   accounts:
-    choices_html: 'Escolhas de %{name}:'
+    choices_html: "Escolhas de %{name}:"
     follow: Seguir
     followers:
       one: Seguidor
@@ -174,6 +173,7 @@ pt-BR:
       statuses: Postagens
       subscribe: Inscrever-se
       suspended: Suspenso
+      time_in_queue: Waiting in queue %{time}
       title: Contas
       unconfirmed_email: E-mail não confirmado
       undo_silenced: Retirar silenciamento
@@ -269,11 +269,12 @@ pt-BR:
       created_msg: Bloqueio de domínio está sendo processado
       destroyed_msg: Bloqueio de domínio desfeito
       domain: Domínio
+      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Criar bloqueio
         hint: O bloqueio de domínio não prevenirá a criação de entradas de contas na base de dados, mas vai reatroativa e automaticamente aplicar métodos específicos de moderação nestas contas.
         severity:
-          desc_html: O <strong>Silêncio</strong> fará com que as postagens da conta fiquem invisíveis para qualquer um que não a esteja seguindo. A <strong>Suspensão</strong> removerá todo o conteúdo da conta, mídia e dados de perfil. Use <strong>Nenhum</strong> se você apenas deseja rejeitar arquivos de mídia.
+          desc_html: "O <strong>Silêncio</strong> fará com que as postagens da conta fiquem invisíveis para qualquer um que não a esteja seguindo. A <strong>Suspensão</strong> removerá todo o conteúdo da conta, mídia e dados de perfil. Use <strong>Nenhum</strong> se você apenas deseja rejeitar arquivos de mídia."
           noop: Nenhum
           silence: Silêncio
           suspend: Suspensão
@@ -309,7 +310,7 @@ pt-BR:
       title: Bloqueio de Domínio de E-mail
     followers:
       back_to_account: Voltar para a conta
-      title: Pessoas que seguem %{acct}
+      title: "Pessoas que seguem %{acct}"
     instances:
       by_domain: Domínio
       delivery_available: Entrega está disponível
@@ -496,7 +497,13 @@ pt-BR:
     new_report:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém da instância %{domain} reportou %{target}
-      subject: Nova denúncia sobre %{instance} (#%{id})
+      subject: 'Nova denúncia sobre %{instance} (#%{id})'
+  appearance:
+    advanced_web_interface: Advanced web interface
+    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
+    animations_and_accessibility: Animations and accessibility
+    confirmation_dialogs: Confirmation dialogs
+    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Mudar preferências de e-mail
     salutation: "%{name},"
@@ -777,6 +784,8 @@ pt-BR:
       too_many_options: não pode ter mais que %{max} itens
   preferences:
     other: Outro
+    posting_defaults: Posting defaults
+    public_timelines: Public timelines
   relationships:
     activity: Atividade da conta
     dormant: Inativo
@@ -923,10 +932,10 @@ pt-BR:
       <h3 id="collect">Que informação nós coletamos?</h3>
 
       <ul>
-        <li><em>Informação básica de conta</em>: Se você se registrar nesse servidor, podemos pedir que você utilize um nome de usuário, um e-mail e uma senha. Você também pode adicionar informações extras como um nome de exibição e biografia; enviar uma imagem de perfil e imagem de cabeçalho. O nome de usuário, nome de exibição, biografia, imagem de perfil e imagem de cabeçalho são sempre listadas publicamente.</li>
-        <li><em>Posts, informação de seguidores e outras informações públicas</em>: A lista de pessoas que você segue é listada publicamente, o mesmo é verdade para quem te segue. Quando você envia uma mensagem, a data e o horário são armazenados, assim como a aplicação que você usou para enviar a mensagem. Mensagens podem conter mídias anexadas, como imagens e vídeos. Posts públicos e não-listados estão disponíveis publicamente. Quando você destaca um post no seu perfil, isso também é uma informação pública. Seus posts são entregues aos seus seguidores e em alguns casos isso significa que eles são enviados para servidores diferentes e cópias são armazenadas nesses servidores. Quando você remove posts, essa informação também é entregue aos seus seguidores. O ato de compartilhar ou favoritar um outro post é sempre público.</li>
-        <li><em>Mensagens diretas e posts somente para seguidores</em>: Todos os posts são armazenados e processados no servidor. Posts somente para seguidores são entregues aos seus seguidores e usuários que são mencionados neles; mensagens diretas são entregues somente aos usuários mencionados nelas. Em alguns casos isso significa que as mensagens são entregues para servidores diferentes e cópias são armazenadas nesses servidores. Nós fazemos esforços substanciais para limitar o acesso dessas mensagens somente para as pessoas autorizadas, mas outros servidores podem não fazer o mesmo. É importante portanto revisar os servidores à qual seus seguidores pertencem. Você pode usar uma opção para aprovar ou rejeitar novos seguidores manualmente nas configurações. <em>Por favor tenha em mente que os operadores do servidor e de qualquer servidores do destinatário podem ver tais mensagens</em>, e que os destinatários podem fazer capturas de tela, copiar ou de outra maneira compartilhar as mensagens. <em>Não compartilhe informação confidencial pelo Mastodon.</em></li>
-        <li><em>IPs e outros metadados</em>: Quando você faz se autentica, nos guardamos o endereço de IP que você usou ao se autenticar e o nome do seu navegador da internet. Todas as sessões autenticadas são disponíveis para serem analisadas e revogadas nas configurações. O último endereço de IP usado é guardado por até 12 meses. Nós também podemos reter históricos do servidor que incluem o endereço de IP de todas as requisições ao nosso servidor.</li>
+      <li><em>Informação básica de conta</em>: Se você se registrar nesse servidor, podemos pedir que você utilize um nome de usuário, um e-mail e uma senha. Você também pode adicionar informações extras como um nome de exibição e biografia; enviar uma imagem de perfil e imagem de cabeçalho. O nome de usuário, nome de exibição, biografia, imagem de perfil e imagem de cabeçalho são sempre listadas publicamente.</li>
+      <li><em>Posts, informação de seguidores e outras informações públicas</em>: A lista de pessoas que você segue é listada publicamente, o mesmo é verdade para quem te segue. Quando você envia uma mensagem, a data e o horário são armazenados, assim como a aplicação que você usou para enviar a mensagem. Mensagens podem conter mídias anexadas, como imagens e vídeos. Posts públicos e não-listados estão disponíveis publicamente. Quando você destaca um post no seu perfil, isso também é uma informação pública. Seus posts são entregues aos seus seguidores e em alguns casos isso significa que eles são enviados para servidores diferentes e cópias são armazenadas nesses servidores. Quando você remove posts, essa informação também é entregue aos seus seguidores. O ato de compartilhar ou favoritar um outro post é sempre público.</li>
+      <li><em>Mensagens diretas e posts somente para seguidores</em>: Todos os posts são armazenados e processados no servidor. Posts somente para seguidores são entregues aos seus seguidores e usuários que são mencionados neles; mensagens diretas são entregues somente aos usuários mencionados nelas. Em alguns casos isso significa que as mensagens são entregues para servidores diferentes e cópias são armazenadas nesses servidores. Nós fazemos esforços substanciais para limitar o acesso dessas mensagens somente para as pessoas autorizadas, mas outros servidores podem não fazer o mesmo. É importante portanto revisar os servidores à qual seus seguidores pertencem. Você pode usar uma opção para aprovar ou rejeitar novos seguidores manualmente nas configurações. <em>Por favor tenha em mente que os operadores do servidor e de qualquer servidores do destinatário podem ver tais mensagens</em>, e que os destinatários podem fazer capturas de tela, copiar ou de outra maneira compartilhar as mensagens. <em>Não compartilhe informação confidencial pelo Mastodon.</em></li>
+      <li><em>IPs e outros metadados</em>: Quando você faz se autentica, nos guardamos o endereço de IP que você usou ao se autenticar e o nome do seu navegador da internet. Todas as sessões autenticadas são disponíveis para serem analisadas e revogadas nas configurações. O último endereço de IP usado é guardado por até 12 meses. Nós também podemos reter históricos do servidor que incluem o endereço de IP de todas as requisições ao nosso servidor.</li>
       </ul>
 
       <hr class="spacer" />
@@ -936,9 +945,9 @@ pt-BR:
       <p>Toda informação que coletamos de você pode ser usada das seguintes maneiras:</p>
 
       <ul>
-        <li>Para prover a funcionalidade básica do Mastodon. Você só pode interagir com o conteúdo de outras pessoas e postar seu próprio conteúdo estando autenticado. Por exemplo, você pode seguir outras pessoas para ver seus posts combinados na sua linha do tempo personalizada.</li>
-        <li>Para auxiliar na moderação da comunidade, por exemplo ao comparar o seu endereço de IP com outros endereços de IP conhecidos para determinar evasão de banimento e outras violações.</li>
-        <li>O endereço de email que você prover pode ser usado para lhe enviar informação, notificação sobre outras pessoas interagindo com o seu conteúdo ou lhe enviando mensagens e para responder a questões ou outros pedidos.</li>
+      <li>Para prover a funcionalidade básica do Mastodon. Você só pode interagir com o conteúdo de outras pessoas e postar seu próprio conteúdo estando autenticado. Por exemplo, você pode seguir outras pessoas para ver seus posts combinados na sua linha do tempo personalizada.</li>
+      <li>Para auxiliar na moderação da comunidade, por exemplo ao comparar o seu endereço de IP com outros endereços de IP conhecidos para determinar evasão de banimento e outras violações.</li>
+      <li>O endereço de email que você prover pode ser usado para lhe enviar informação, notificação sobre outras pessoas interagindo com o seu conteúdo ou lhe enviando mensagens e para responder a questões ou outros pedidos.</li>
       </ul>
 
       <hr class="spacer" />
@@ -954,8 +963,8 @@ pt-BR:
       <p>Nós fazemos esforços substanciais para:</p>
 
       <ul>
-        <li>Reter o histórico do servidor contendo os endereços de IP de todas as requisições feitas à esse servidor, e com respeito a quanto tempo esses logs são retidos, não mais que 90 dias.</li>
-        <li>Reter o endereço de IP associado com usuários registrados não mais que 12 meses.</li>
+      <li>Reter o histórico do servidor contendo os endereços de IP de todas as requisições feitas à esse servidor, e com respeito a quanto tempo esses logs são retidos, não mais que 90 dias.</li>
+      <li>Reter o endereço de IP associado com usuários registrados não mais que 12 meses.</li>
       </ul>
 
       <p>Você pode pedir e fazer o download de um arquivo de todo o conteúdo da sua conta, incluindo as suas mensagens, suas mídias anexadas, imagem de perfil e imagem de topo.</p>
