@@ -1,12 +1,11 @@
----
 zh-TW:
   about:
-    about_hashtag_html: 這些是包含「<strong>#%{hashtag}</strong>」標籤的公開文章。只要你有任何 Mastodon 站點、或者其他站點的使用者，便可以與他們互動。
+    about_hashtag_html: '這些是包含「<strong>#%{hashtag}</strong>」標籤的公開文章。只要你有任何 Mastodon 站點、或者其他站點的使用者，便可以與他們互動。'
     about_mastodon_html: Mastodon （長毛象）是一個<em>自由、開放原始碼</em>的社群網站。它是一個分散式的服務，避免您的通訊被單一商業機構壟斷操控。請您選擇一家您信任的 Mastodon 站點，在上面建立帳戶，然後您就可以和任一 Mastodon 站點上的使用者互通，享受無縫的<em>社群網路</em>交流。
     about_this: 關於本站
     active_count_after: 活躍
     active_footnote: 每月活躍使用者 (MAU)
-    administered_by: 管理者：
+    administered_by: '管理者：'
     api: API
     apps: 行動應用程式
     apps_platforms: 在 iOS、Android 和其他平台使用 Mastodon
@@ -20,22 +19,21 @@ zh-TW:
     extended_description_html: |
       <h3>這裡可以寫一些網站規則</h3>
       <p>本站點未有詳細介紹</p>
+    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} 是 Mastodon 網路中其中一個站點"
     get_apps: 嘗試行動應用程式
     hosted_on: 在 %{domain} 運作的 Mastodon 站點
     learn_more: 了解詳細
     privacy_policy: 隱私權政策
     see_whats_happening: 看看發生什麼事
-    server_stats: 伺服器統計：
+    server_stats: '伺服器統計：'
     source_code: 原始碼
     status_count_after:
-      one: 條嘟文
       other: 條嘟文
     status_count_before: 他們共嘟出了
     tagline: 關注朋友並探索新朋友
     terms: 使用條款
     user_count_after:
-      one: 位使用者
       other: 位使用者
     user_count_before: 註冊使用者數
     what_is_mastodon: 什麼是 Mastodon?
@@ -43,7 +41,6 @@ zh-TW:
     choices_html: "%{name} 的選擇："
     follow: 關注
     followers:
-      one: 關注者
       other: 關注者
     following: 正在關注
     joined: 加入於 %{date}
@@ -53,10 +50,11 @@ zh-TW:
     moved_html: "%{name} 已經搬遷到 %{new_profile_link}:"
     network_hidden: 此訊息不可用
     nothing_here: 暫時沒有內容可供顯示!
-    people_followed_by: "%{name} 關注的人"
+    people_followed_by: '%{name} 關注的人'
     people_who_follow: 關注 %{name} 的人
+    pin_errors:
+      following: You must be already following the person you want to endorse
     posts:
-      one: 嘟文
       other: 嘟文
     posts_tab_heading: 嘟文
     posts_with_replies: 嘟文與回覆
@@ -65,6 +63,7 @@ zh-TW:
       admin: 管理員
       bot: 機器人
       moderator: 版主
+    unavailable: Profile unavailable
     unfollow: 取消關注
   admin:
     account_actions:
@@ -77,6 +76,7 @@ zh-TW:
       destroyed_msg: 成功刪除管理備忘!
     accounts:
       approve: 核准
+      approve_all: Approve all
       are_you_sure: 您確定嗎?
       avatar: 頭像
       by_domain: 站點
@@ -129,6 +129,7 @@ zh-TW:
       moderation_notes: 管理備忘
       most_recent_activity: 最近活動
       most_recent_ip: 最近 IP 位址
+      no_account_selected: No accounts were changed as none were selected
       no_limits_imposed: 未受限制
       not_subscribed: 未訂閱
       outbox_url: 寄件箱 (Outbox) URL
@@ -141,6 +142,7 @@ zh-TW:
       push_subscription_expires: PuSH 訂閱過期
       redownload: 重新整理個人資料
       reject: 拒絕
+      reject_all: Reject all
       remove_avatar: 取消頭像
       remove_header: 移除開頭
       resend_confirmation:
@@ -167,6 +169,7 @@ zh-TW:
       statuses: 嘟文
       subscribe: 訂閱
       suspended: 已停權
+      time_in_queue: Waiting in queue %{time}
       title: 帳戶
       unconfirmed_email: 未確認的電子信箱位址
       undo_silenced: 取消靜音
@@ -242,6 +245,7 @@ zh-TW:
       feature_profile_directory: 個人資料目錄
       feature_registrations: 註冊
       feature_relay: 聯邦中繼站
+      feature_timeline_preview: Timeline preview
       features: 功能
       hidden_service: 與隱密服務互連
       open_reports: 待處理檢舉數
@@ -261,6 +265,7 @@ zh-TW:
       created_msg: 正在進行站點封鎖
       destroyed_msg: 已撤銷站點封鎖
       domain: 站點
+      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: 新增封鎖
         hint: 站點封鎖動作並不會阻止帳戶紀錄被新增至資料庫，但會自動回溯性地對那些帳戶套用特定管理設定。
@@ -281,8 +286,7 @@ zh-TW:
         suspend: 已停權
       show:
         affected_accounts:
-          one: 將影響到資料庫中的 1 個帳戶
-          other: 將影響到資料庫中的 %{count} 個帳戶
+          other: "將影響到資料庫中的 %{count} 個帳戶"
         retroactive:
           silence: 對此站點的所有使用者取消靜音
           suspend: 對此站點的所有使用者取消停權
@@ -303,16 +307,45 @@ zh-TW:
       back_to_account: 返回帳戶
       title: "%{acct} 的關注者"
     instances:
+      by_domain: Domain
+      delivery_available: Delivery is available
+      known_accounts:
+        other: "%{count} known accounts"
+      moderation:
+        all: All
+        limited: Limited
+        title: Moderation
       title: 聯邦
+      total_blocked_by_us: Blocked by us
+      total_followed_by_them: Followed by them
+      total_followed_by_us: Followed by us
+      total_reported: Reports about them
+      total_storage: Media attachments
     invites:
+      deactivate_all: Deactivate all
       filter:
         all: 全部
         available: 可用
         expired: 已失效
         title: 篩選
       title: 邀請使用者
+    pending_accounts:
+      title: Pending accounts (%{count})
     relays:
-      description_html: "<strong>聯邦中繼站</strong> 是種中繼伺服器，會在訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦中探索內容</strong>，而無須本地使用者手動關注遠端伺服器的其他使用者。"
+      add_new: Add new relay
+      delete: Delete
+      description_html: <strong>聯邦中繼站</strong> 是種中繼伺服器，會在訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦中探索內容</strong>，而無須本地使用者手動關注遠端伺服器的其他使用者。
+      disable: Disable
+      disabled: Disabled
+      enable: Enable
+      enable_hint: Once enabled, your server will subscribe to all public toots from this relay, and will begin sending this server's public toots to it.
+      enabled: Enabled
+      inbox_url: Relay URL
+      pending: Waiting for relay's approval
+      save_and_enable: Save and enable
+      setup: Setup a relay connection
+      status: Status
+      title: Relays
     report_notes:
       created_msg: 檢舉記錄建立成功!
       destroyed_msg: 檢舉記錄刪除成功!
@@ -356,12 +389,24 @@ zh-TW:
       contact_information:
         email: 用於聯絡的公開電子信箱位址
         username: 請輸入使用者名稱
+      custom_css:
+        desc_html: Modify the look with CSS loaded on every page
+        title: Custom CSS
       hero:
         desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會重設回伺服器預覽圖
         title: 主題圖片
+      mascot:
+        desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
+        title: Mascot image
       peers_api_enabled:
         desc_html: 本伺服器在聯邦中發現的站點
         title: 發布已知伺服器的列表
+      preview_sensitive_media:
+        desc_html: Link previews on other websites will display a thumbnail even if the media is marked as sensitive
+        title: Show sensitive media in OpenGraph previews
+      profile_directory:
+        desc_html: Allow users to be discoverable
+        title: Enable profile directory
       registrations:
         closed_message:
           desc_html: 關閉註冊時顯示在首頁的內容，可使用 HTML 標籤
@@ -372,6 +417,12 @@ zh-TW:
         min_invite_role:
           disabled: 沒有人
           title: 允許發送邀請的身份
+      registrations_mode:
+        modes:
+          approved: Approval required for sign up
+          none: Nobody can sign up
+          open: Anyone can sign up
+        title: Registrations mode
       show_known_fediverse_at_about_page:
         desc_html: 如果開啟，就會在時間軸預覽顯示其他站點嘟文，否則就只會顯示本站點嘟文。
         title: 在時間軸預覽顯示其他站點嘟文
@@ -384,6 +435,9 @@ zh-TW:
       site_description_extended:
         desc_html: 可放置行為準則、規定以及其他此伺服器特有的內容。可使用 HTML 標籤
         title: 本站詳細資訊
+      site_short_description:
+        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph.
+        title: Short server description
       site_terms:
         desc_html: 可以填寫自己的隱私權政策、使用條款或其他法律文本。可以使用 HTML 標籤
         title: 自訂使用條款
@@ -405,6 +459,7 @@ zh-TW:
       media:
         title: 媒體檔案
       no_media: 不含媒體檔案
+      no_status_selected: No statuses were changed as none were selected
       title: 帳戶嘟文
       with_media: 含有媒體檔案
     subscriptions:
@@ -414,16 +469,39 @@ zh-TW:
       last_delivery: 最後遞送
       title: WebSub 訂閱
       topic: 主題
+    tags:
+      accounts: Accounts
+      hidden: Hidden
+      hide: Hide from directory
+      name: Hashtag
+      title: Hashtags
+      unhide: Show in directory
+      visible: Visible
     title: 管理介面
+    warning_presets:
+      add_new: Add new
+      delete: Delete
+      edit: Edit
+      edit_preset: Edit warning preset
+      title: Manage warning presets
   admin_mailer:
+    new_pending_account:
+      body: The details of the new account are below. You can approve or reject this application.
+      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter} 檢舉了使用者 %{target}"
       body_remote: 來自 %{domain} 的使用者檢舉了使用者 %{target}
-      subject: 來自 %{instance} 的使用者檢舉（#%{id}）
+      subject: '來自 %{instance} 的使用者檢舉（#%{id}）'
+  appearance:
+    advanced_web_interface: Advanced web interface
+    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
+    animations_and_accessibility: Animations and accessibility
+    confirmation_dialogs: Confirmation dialogs
+    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: 變更電子信件設定
     salutation: "%{name}、"
-    settings: 變更電子信箱設定︰%{link}
+    settings: '變更電子信箱設定︰%{link}'
     view: '進入瀏覽:'
     view_profile: 檢視個人資料頁
     view_status: 檢視嘟文
@@ -436,7 +514,9 @@ zh-TW:
     warning: 警告，不要把它分享給任何人!
     your_token: 你的 token
   auth:
+    apply_for_account: Request an invite
     change_password: 密碼
+    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: 確認電子信箱位址
     delete_account: 刪除帳戶
     delete_account_html: 如果你想刪除你的帳戶，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
@@ -452,16 +532,18 @@ zh-TW:
       cas: CAS
       saml: SAML
     register: 註冊
+    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: 重新寄送確認指引
     reset_password: 重設密碼
     security: 登入資訊
     set_new_password: 設定新密碼
+    trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: 你已經關注了這個使用者
     error: 對不起，搜尋其他站點使用者出現錯誤
     follow: 關注
-    follow_request: 關注請求已經發送給：
-    following: 成功! 你正在關注：
+    follow_request: '關注請求已經發送給：'
+    following: '成功! 你正在關注：'
     post_follow:
       close: 你也可以直接關閉這個頁面。
       return: 顯示個人資料頁
@@ -472,9 +554,9 @@ zh-TW:
       about_x_hours: "%{count}小時前"
       about_x_months: "%{count}個月前"
       about_x_years: "%{count}年前"
-      almost_x_years: 接近%{count}年前
+      almost_x_years: "接近%{count}年前"
       half_a_minute: 剛剛
-      less_than_x_minutes: 小於%{count}分鐘前
+      less_than_x_minutes: "小於%{count}分鐘前"
       less_than_x_seconds: 剛剛
       over_x_years: "%{count}年"
       x_days: "%{count}天"
@@ -489,6 +571,15 @@ zh-TW:
     success_msg: 你的帳戶已經成功刪除
     warning_html: 我們只能保證本伺服器上的內容將會被徹底刪除。對於已經被廣泛傳播的內容，它們在本伺服器以外的某些地方可能仍然可見。此外，離線伺服器以及停止接收訂閱的伺服器所儲存的資料亦無法刪除。
     warning_title: 關於已傳播的內容警告
+  directories:
+    directory: Profile directory
+    enabled: You are currently listed in the directory.
+    enabled_but_waiting: You have opted-in to be listed in the directory, but you do not have the minimum number of followers (%{min_followers}) to be listed yet.
+    explanation: Discover users based on their interests
+    explore_mastodon: Explore %{title}
+    how_to_enable: You are not currently opted-in to the directory. You can opt-in below. Use hashtags in your bio text to be listed under specific hashtags!
+    people:
+      other: "%{count} people"
   errors:
     '403': 你沒有觀看這個頁面的權限。
     '404': 您所尋找的網頁不存在。
@@ -501,6 +592,9 @@ zh-TW:
       content: 抱歉，我們的後台出現問題了。
       title: 這個頁面有問題
     noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="%{apps_path}">Mastodon 應用</a>。
+  existing_username_validator:
+    not_found: could not find a local user with that username
+    not_found_multiple: could not find %{usernames}
   exports:
     archive_takeout:
       date: 日期
@@ -511,18 +605,74 @@ zh-TW:
       size: 大小
     blocks: 您封鎖的使用者
     csv: CSV
+    domain_blocks: Domain blocks
     follows: 您關注的使用者
+    lists: Lists
     mutes: 您靜音的使用者
     storage: 儲存空間大小
+  featured_tags:
+    add_new: Add new
+    errors:
+      limit: You have already featured the maximum amount of hashtags
+  filters:
+    contexts:
+      home: Home timeline
+      notifications: Notifications
+      public: Public timelines
+      thread: Conversations
+    edit:
+      title: Edit filter
+    errors:
+      invalid_context: None or invalid context supplied
+      invalid_irreversible: Irreversible filtering only works with home or notifications context
+    index:
+      delete: Delete
+      title: Filters
+    new:
+      title: Add new filter
+  footer:
+    developers: Developers
+    more: More…
+    resources: Resources
   generic:
+    all: All
     changes_saved_msg: 已成功儲存修改!
+    copy: Copy
+    order_by: Order by
     save_changes: 儲存修改
-    validation_errors: 送出的資料有 %{count} 個問題
+    validation_errors:
+      other: Something isn't quite right yet! Please review %{count} errors below
+  html_validator:
+    invalid_markup: 'contains invalid HTML markup: %{error}'
+  identity_proofs:
+    active: Active
+    authorize: Yes, authorize
+    authorize_connection_prompt: Authorize this cryptographic connection?
+    errors:
+      failed: The cryptographic connection failed. Please try again from %{provider}.
+      keybase:
+        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
+        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
+      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
+    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
+    i_am_html: I am %{username} on %{service}.
+    identity: Identity
+    inactive: Inactive
+    publicize_checkbox: 'And toot this:'
+    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    status: Verification status
+    view_proof: View proof
   imports:
+    modes:
+      merge: Merge
+      merge_long: Keep existing records and add new ones
+      overwrite: Overwrite
+      overwrite_long: Replace current records with the new ones
     preface: 您可以在此匯入您在其他伺服器所匯出的資料檔，包括關注的使用者、封鎖的使用者名單。
     success: 資料檔上傳成功，正在匯入，請稍候
     types:
       blocking: 您封鎖的使用者名單
+      domain_blocking: Domain blocking list
       following: 您關注的使用者名單
       muting: 您靜音的使用者名單
     upload: 上傳
@@ -539,8 +689,9 @@ zh-TW:
       '86400': 1 天後
     expires_in_prompt: 永不過期
     generate: 建立邀請連結
-    invited_by: 你的邀請人是：
-    max_uses: "%{count} 次"
+    invited_by: '你的邀請人是：'
+    max_uses:
+      other: "%{count} uses"
     max_uses_prompt: 無限制
     prompt: 建立分享連結，邀請他人在本伺服器註冊
     table:
@@ -556,7 +707,7 @@ zh-TW:
       too_many: 無法加入超過 4 個檔案
   migrations:
     acct: 新帳戶的 使用者名稱@站點網域
-    currently_redirecting: 目前你的個人資料頁顯示的新帳戶是：
+    currently_redirecting: '目前你的個人資料頁顯示的新帳戶是：'
     proceed: 儲存
     updated_msg: 帳戶搬遷設定更新成功!
   moderation:
@@ -566,8 +717,10 @@ zh-TW:
       action: 閱覽所有通知
       body: 以下是自%{since}你最後一次登入以來錯過的訊息摘要
       mention: "%{name} 在此提及了你:"
-      new_followers_summary: 而且，你不在的時候，有 %{count} 個人關注你了! 好棒!
-      subject: "自從上次登入以來，你收到 %{count} 則新的通知 \U0001F418"
+      new_followers_summary:
+        other: Also, you have acquired %{count} new followers while being away! Amazing!
+      subject:
+        other: "%{count} new notifications since your last visit \U0001F418"
       title: 你不在的時候...
     favourite:
       body: '你的嘟文被 %{name} 加入了最愛:'
@@ -580,12 +733,12 @@ zh-TW:
     follow_request:
       action: 處理關注請求
       body: "%{name} 要求關注你"
-      subject: 等待關注你的使用者︰ %{name}
+      subject: '等待關注你的使用者︰ %{name}'
       title: 新的關注請求
     mention:
       action: 回覆
-      body: "%{name} 在嘟文中提及你:"
-      subject: "%{name} 在嘟文中提及你"
+      body: '%{name} 在嘟文中提及你:'
+      subject: '%{name} 在嘟文中提及你'
       title: 新的提及
     reblog:
       body: '你的嘟文被 %{name} 轉嘟:'
@@ -607,18 +760,59 @@ zh-TW:
     next: 下一頁
     older: 較舊
     prev: 上一頁
-    truncate: ''
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: You have already voted on this poll
+      duplicate_options: contain duplicate items
+      duration_too_long: is too far into the future
+      duration_too_short: is too soon
+      expired: The poll has already ended
+      over_character_limit: cannot be longer than %{max} characters each
+      too_few_options: must have more than one item
+      too_many_options: can't contain more than %{max} items
   preferences:
-    other: 其他
+    other: Other
+    posting_defaults: Posting defaults
+    public_timelines: Public timelines
+  relationships:
+    activity: Account activity
+    dormant: Dormant
+    last_active: Last active
+    most_recent: Most recent
+    moved: Moved
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Remove all followers from the selected domains
+    remove_selected_followers: Remove selected followers
+    remove_selected_follows: Unfollow selected users
+    status: Account status
   remote_follow:
     acct: 請輸入您的使用者名稱@站點網域
     missing_resource: 無法找到資源
+    no_account_html: Don't have an account? You can <a href='%{sign_up_path}' target='_blank'>sign up here</a>
     proceed: 下一步
     prompt: '您希望關注:'
+    reason_html: "<strong>Why is this step necessary?</strong> <code>%{instance}</code> might not be the server where you are registered, so we need to redirect you to your home server first."
+  remote_interaction:
+    favourite:
+      proceed: Proceed to favourite
+      prompt: 'You want to favourite this toot:'
+    reblog:
+      proceed: Proceed to boost
+      prompt: 'You want to boost this toot:'
+    reply:
+      proceed: Proceed to reply
+      prompt: 'You want to reply to this toot:'
   remote_unfollow:
     error: 錯誤
     title: 標題
     unfollowed: 取消關注
+  scheduled_statuses:
+    over_daily_limit: You have exceeded the limit of %{limit} scheduled toots for that day
+    over_total_limit: You have exceeded the limit of %{limit} scheduled toots
+    too_soon: The scheduled date must be in the future
   sessions:
     activity: 最近活動
     browser: 瀏覽器
@@ -645,33 +839,52 @@ zh-TW:
     explanation: 這些是現在正登入於你的 Mastodon 帳戶的瀏覽器。
     ip: IP 位址
     platforms:
-      adobe_air: ''
-      linux: ''
-      mac: ''
-      other: 未知平台
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: unknown platform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: 取消
     revoke_success: Session 取消成功
     title: 作業階段
   settings:
+    account: Account
+    account_settings: Account settings
+    appearance: Appearance
     authorized_apps: 已授權應用程式
     back: 回到 Mastodon
     delete: 刪除帳戶
     development: 開發
     edit_profile: 編輯使用者資訊
     export: 匯出
+    featured_tags: Featured hashtags
+    identity_proofs: Identity proofs
     import: 匯入
+    import_and_export: Import and export
     migrate: 帳戶搬遷
     notifications: 通知
     preferences: 偏好設定
+    profile: Profile
+    relationships: Follows and followers
     two_factor_authentication: 兩階段認證
   statuses:
     attached:
-      description: 附件： %{attached}
-      image: "%{count} 幅圖片"
-      video: "%{count} 段影片"
+      description: '附件： %{attached}'
+      image:
+        other: "%{count} images"
+      video:
+        other: "%{count} videos"
     boosted_from_html: 轉嘟自 %{acct_link}
-    content_warning: 內容警告： %{warning}
-    disallowed_hashtags: 包含不允許的標籤： %{tags}
+    content_warning: '內容警告： %{warning}'
+    disallowed_hashtags:
+      other: 'contained the disallowed hashtags: %{tags}'
     language_detection: 自動偵測語言
     open_in_web: 以網頁開啟
     over_character_limit: 超過了 %{max} 字的限制
@@ -680,7 +893,12 @@ zh-TW:
       ownership: 不能置頂他人的嘟文
       private: 不能置頂非公開的嘟文
       reblog: 不能置頂轉嘟
+    poll:
+      total_votes:
+        other: "%{count} votes"
+      vote: Vote
     show_more: 顯示更多
+    sign_in_to_participate: Sign in to participate in the conversation
     title: '%{name}: "%{quote}"'
     visibilities:
       private: 僅關注者
@@ -694,13 +912,96 @@ zh-TW:
     reblogged: 轉嘟
     sensitive_content: 敏感內容
   terms:
+    body_html: |
+      <h2>Privacy Policy</h2>
+      <h3 id="collect">What information do we collect?</h3>
+
+      <ul>
+      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">What do we use your information for?</h3>
+
+      <p>Any of the information we collect from you may be used in the following ways:</p>
+
+      <ul>
+      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">How do we protect your information?</h3>
+
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">What is our data retention policy?</h3>
+
+      <p>We will make a good faith effort to:</p>
+
+      <ul>
+      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+      </ul>
+
+      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
+
+      <p>You may irreversibly delete your account at any time.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Do we use cookies?</h3>
+
+      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+
+      <p>We use cookies to understand and save your preferences for future visits.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
+
+      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
+
+      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
+
+      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Site usage by children</h3>
+
+      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
+
+      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+
+      <p>Law requirements can be different if this server is in another jurisdiction.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Changes to our Privacy Policy</h3>
+
+      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+
+      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
+
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} 使用條款和隱私權政策"
   themes:
     contrast: Mastodon（高對比）
+    default: Mastodon (Dark)
     mastodon-light: Mastodon（亮色主題）
   time:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: 請輸入您認證器產生的代碼，以進行認證
     description_html: 啟用<strong>兩階段認證</strong>後，登入時將需要使手機、或其他種類認證器產生的代碼。
@@ -722,6 +1023,22 @@ zh-TW:
       explanation: 你要求的 Mastodon 帳戶完整備份檔案現已就緒，可供下載!
       subject: 你的備份檔已可供下載
       title: 檔案匯出
+    warning:
+      explanation:
+        disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
+        silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
+        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
+      review_server_policies: Review server policies
+      subject:
+        disable: Your account %{acct} has been frozen
+        none: Warning for %{acct}
+        silence: Your account %{acct} has been limited
+        suspend: Your account %{acct} has been suspended
+      title:
+        disable: Account frozen
+        none: Warning
+        silence: Account limited
+        suspend: Account suspended
     welcome:
       edit_profile_action: 設定個人資料
       edit_profile_step: 你可以設定你的個人資料，包括上傳頭像、橫幅圖片、變更顯示名稱等等。如果你想在新的關注者關注你之前對他們進行審核，你也可以選擇為你的帳戶設為「私人」。
@@ -738,10 +1055,14 @@ zh-TW:
       tip_local_timeline: 本站時間軸可以讓你一窺 %{instance} 上的使用者。他們就是離你最近的鄰居！
       tip_mobile_webapp: 如果你的行動裝置瀏覽器允許你將 Mastodon 新增到主螢幕，你就能夠接收推送訊息。它就像手機APP一樣好用!
       tips: 小幫手
-      title: "%{name} 歡迎你的加入！"
+      title: '%{name} 歡迎你的加入！'
   users:
+    follow_limit_reached: You cannot follow more than %{limit} people
     invalid_email: 電子信箱位址不正確
     invalid_otp_token: 兩階段認證碼不正確
     otp_lost_help_html: 如果你無法訪問這兩者，可以通過 %{email} 與我們聯繫
     seamless_external_login: 由於你是從外部系統登入，所以不能設定密碼與電子郵件。
-    signed_in_as: 目前登入的帳戶：
+    signed_in_as: '目前登入的帳戶：'
+  verification:
+    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
+    verification: Verification
