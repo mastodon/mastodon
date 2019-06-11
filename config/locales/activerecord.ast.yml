@@ -1,9 +1,16 @@
----
 ast:
   activerecord:
+    attributes:
+      poll:
+        expires_at: Deadline
+        options: Choices
     errors:
       models:
         account:
           attributes:
             username:
               invalid: namái lletres, númberos y guiones baxos
+        status:
+          attributes:
+            reblog:
+              taken: of status already exists
