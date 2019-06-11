@@ -14,6 +14,9 @@ const textAtCursorMatchesToken = (str, caretPosition, searchTokens) => {
   let left  = str.slice(0, caretPosition).search(/\S+$/);
   let right = str.slice(caretPosition).search(/\s/);
 
+  if (str[caretPosition - 1] && str[caretPosition - 2] === '/') {
+    return [caretPosition - 1, str.slice(caretPosition - 2, caretPosition)];
+  }
   if (right < 0) {
     word = str.slice(left);
   } else {
@@ -171,6 +174,9 @@ export default class AutosuggestInput extends ImmutablePureComponent {
       inner = <AutosuggestEmoji emoji={suggestion} />;
       key   = suggestion.id;
     } else if (suggestion[0] === '#') {
+      inner = suggestion;
+      key   = suggestion;
+    } else if (suggestion[0] === '[') {
       inner = suggestion;
       key   = suggestion;
     } else {
