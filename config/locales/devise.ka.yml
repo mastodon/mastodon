@@ -1,4 +1,3 @@
----
 ka:
   devise:
     confirmations:
@@ -12,13 +11,16 @@ ka:
       last_attempt: თქვენი ანგარიშის ჩაკეტვამდე დაგრჩათ კიდევ ერთი მცდელობა.
       locked: თქვენი ანგარიში ჩაიკეტა.
       not_found_in_database: არასწორი %{authentication_keys} ან პაროლი.
+      pending: Your account is still under review.
       timeout: თქვენს სესიას გაუვიდა ვადა. გთხოვთ შედით ახლიდან რომ გააგრძელოთ.
       unauthenticated: გაგრძელებამდე საჭიროა შეხვიდეთ ან დარეგისტრირდეთ.
       unconfirmed: გაგრძელებამდე საჭიროა დაამოწმოთ თქვენი ელ-ფოსტა.
     mailer:
       confirmation_instructions:
         action: დაამოწმეთ ელ-ფოსტის მისამართი
+        action_with_app: Confirm and return to %{app}
         explanation: თქვენ ამ ელ-ფოსტის მისამართი ანგარიში შექმენით %{host}-ზე. დარჩა ერთი დაწკაპუნება მის აქტივაციამდე. თუ ეს თქვენ არ იყავით, გთხოვთ არ მიაქციოთ ყურადღება ამ წერილს.
+        explanation_when_pending: You applied for an invite to %{host} with this email address. Once you confirm your e-mail address, we will review your application. You can't login until then. If your application is rejected, your data will be removed, so no further action will be required from you. If this wasn't you, please ignore this email.
         extra_html: გთხოვთ ასევე გაეცნოთ <a href="%{terms_path}">ინსტანციის წესებს</a> და <a href="%{policy_path}">ჩვენს კონფინდენციალურობის პოლიტიკას</a>.
         subject: 'მასტოდონი: დამოწმების ინსტრუქციები %{instance}-თვის'
         title: ელ-ფოსტის მისამართის დამოწმება
@@ -59,6 +61,7 @@ ka:
       signed_up: გამარჯობა! თქვენ წარმატებით დარეგისტრირდით.
       signed_up_but_inactive: თქვენ წარმატებით დარეგისტრირდით. თუმცა, ავტორიზაცია ვერ შედგა, თქვენი ანგარიში ჯერ არაა გააქტიურებული.
       signed_up_but_locked: თქვენ წარმატებით დარეგისტრირდით. თუმცა, აცტორიზაცია ვერ შედგა, თქვენი ანგარიში ჩაკეტილია.
+      signed_up_but_pending: A message with a confirmation link has been sent to your email address. After you click the link, we will review your application. You will be notified if it is approved.
       signed_up_but_unconfirmed: წერილი დამოწმების ბმულით თქვენს ელ-ფოსტაზე გამოგზავნილია. გთხოვთ გაჰყევით ბმულს, რათა გაააქტიუროთ ანგარიში. გთხოვთ შეხედოთ თქვენი სპამის ფოლდერს თუ არ მიიღებთ ამ წერილს.
       update_needs_confirmation: თქვენი ანგარიში წარმატებით განახლდა, მაგრამ გვესაჭიროება თქვენი ელ-ფოსტის მისამართის დამოწმება. შეამოწმეთ ელ-ფოსტა და დასამოწმებლად გადადით მიღებულ ბმულზე. გთხოვთ შეხედოთ თქვენი სპამის ფოლდერს თუ არ მიიღებთ ამ წერილს.
       updated: თქვენი ანგარიში წარმატებით განახლდა.
@@ -78,5 +81,5 @@ ka:
       not_found: ვერ იქნა ნაპოვნი
       not_locked: არ ჩაკეტილა
       not_saved:
-        one: "%{resource} ვერ დამახსოვრდა ერთი შეცდომის გამო:"
+        one: '%{resource} ვერ დამახსოვრდა ერთი შეცდომის გამო:'
         other: "%{resource} ვერ დამახსოვრდა %{count} შეცდომის გამო:"
