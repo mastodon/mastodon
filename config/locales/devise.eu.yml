@@ -1,4 +1,3 @@
----
 eu:
   devise:
     confirmations:
@@ -12,6 +11,7 @@ eu:
       last_attempt: Saiakera bat geratzen zaizu zure kontua giltzapetu aurretik.
       locked: Zure kontua giltzapetuta dago.
       not_found_in_database: Baliogabeko %{authentication_keys} edo pasahitza.
+      pending: Your account is still under review.
       timeout: Zure saioa iraungitu da. Hasi saioa berriro jarraitzeko.
       unauthenticated: Saioa hasi edo izena eman behar duzu jarraitu aurretik.
       unconfirmed: Zure e-mail helbidea baieztatu behar duzu jarraitu aurretik.
@@ -20,6 +20,7 @@ eu:
         action: Baieztatu e-mail helbidea
         action_with_app: Berretsi eta itzuli %{app} aplikaziora
         explanation: Kontu bat sortu duzu %{host} ostalarian e-mail helbide honekin. Aktibatzeko klik bat falta zaizu. Ez baduzu zuk sortu, ez egin ezer e-mail honekin.
+        explanation_when_pending: You applied for an invite to %{host} with this email address. Once you confirm your e-mail address, we will review your application. You can't login until then. If your application is rejected, your data will be removed, so no further action will be required from you. If this wasn't you, please ignore this email.
         extra_html: Egiaztatu <a href="%{terms_path}">zerbitzariaren arauak</a> eta <a href="%{policy_path}">zerbitzuaren erabilera baldintzak</a>.
         subject: 'Mastodon: %{instance} instantziaren argibideak baieztapenerako'
         title: Baieztatu e-mail helbidea
@@ -60,6 +61,7 @@ eu:
       signed_up: Ongi etorri! Ongi hasi duzu saioa.
       signed_up_but_inactive: Ongi eman duzu izena. Hala ere, ezin duzu saioa hasi zure kontua oraindik ez dagoelako aktibatuta.
       signed_up_but_locked: Ongi eman duzu izena. Hala ere, ezin duzu saioa hasi zure kontua giltzapetuta dagoelako.
+      signed_up_but_pending: A message with a confirmation link has been sent to your email address. After you click the link, we will review your application. You will be notified if it is approved.
       signed_up_but_unconfirmed: Baieztapen esteka bat duen e-mail bidali zaizu. Jarraitu esteka zure kontua aktibatzeko. Egiaztatu spam karpeta ez baduzu e-mail hau jaso.
       update_needs_confirmation: Zure kontua ongi eguneratu duzu, baina zure email helbide berria egiaztatu behar dugu. Baieztapen esteka bat duen e-mail bidali zaizu, jarraitu esteka zure e-mal helbide berria baieztatzeko. Egiaztatu spam karpeta ez baduzu e-mail hau jaso.
       updated: Zure kontua ongi eguneratu da.
