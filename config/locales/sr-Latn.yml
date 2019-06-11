@@ -3,102 +3,42 @@ sr:
     about_hashtag_html: 'Ovo su javni statusi tagovani sa <strong>#%{hashtag}</strong>. Možete odgovarati na njih ako imate nalog bilo gde u fediversu.'
     about_mastodon_html: Mastodont je društvena mreža bazirana na otvorenim protokolima i slobodnom softveru otvorenog koda. Decentralizovana je kao što je decentralizovana e-pošta.
     about_this: O instanci
-    active_count_after: active
-    active_footnote: Monthly Active Users (MAU)
-    administered_by: 'Administered by:'
-    api: API
-    apps: Mobile apps
-    apps_platforms: Use Mastodon from iOS, Android and other platforms
-    browse_directory: Browse a profile directory and filter by interests
-    browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Kontakt
     contact_missing: Nije postavljeno
-    contact_unavailable: N/A
-    discover_users: Discover users
-    documentation: Documentation
     extended_description_html: |
       <h3>Dobro mesto za pravila</h3>
       <p>Prošireni opis koji još nije postavljen.</p>
-    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} je server na mreži"
-    get_apps: Try a mobile app
     hosted_on: Mastodont hostovan na %{domain}
     learn_more: Saznajte više
-    privacy_policy: Privacy policy
-    see_whats_happening: See what's happening
-    server_stats: 'Server stats:'
     source_code: Izvorni kod
-    status_count_after:
-      one: status
-      few: statuses
-      other: statuses
     status_count_before: Koji su napisali
-    tagline: Follow friends and discover new ones
-    terms: Terms of service
-    user_count_after:
-      one: user
-      few: users
-      other: users
     user_count_before: Dom za
     what_is_mastodon: Šta je Mastodont?
   accounts:
-    choices_html: "%{name}'s choices:"
-    follow: Follow
-    followers:
-      one: Follower
-      few: Followers
-      other: Followers
-    following: Following
-    joined: Joined %{date}
-    last_active: last active
-    link_verified_on: Ownership of this link was checked on %{date}
     media: Multimedija
     moved_html: "%{name} je pomeren na %{new_profile_link}:"
-    network_hidden: This information is not available
     nothing_here: Ovde nema ništa!
     people_followed_by: Ljudi koje %{name} prati
     people_who_follow: Ljudi koji prate %{name}
-    pin_errors:
-      following: You must be already following the person you want to endorse
-    posts:
-      one: Toot
-      few: Toots
-      other: Toots
-    posts_tab_heading: Toots
     posts_with_replies: Tutovi i odgovori
     reserved_username: Korisničko ime je rezervisano
     roles:
       admin: Administrator
-      bot: Bot
       moderator: Moderator
-    unavailable: Profile unavailable
     unfollow: Otprati
   admin:
-    account_actions:
-      action: Perform action
-      title: Perform moderation action on %{acct}
     account_moderation_notes:
       create: Napravi
       created_msg: Moderatorska beleška uspešno napravljena!
       delete: Obriši
       destroyed_msg: Moderatorska beleška uspešno obrisana!
     accounts:
-      approve: Approve
-      approve_all: Approve all
       are_you_sure: Da li ste sigurni?
-      avatar: Avatar
       by_domain: Domen
-      change_email:
-        changed_msg: Account email successfully changed!
-        current_email: Current email
-        label: Change email
-        new_email: New email
-        submit: Change email
-        title: Change email for %{username}
       confirm: Potvrdi
       confirmed: Potvrđeno
       confirming: Potvrđujući
-      deleted: Deleted
       demote: Ražaluj
       disable: Isključi
       disable_two_factor_authentication: Isključi 2FA
@@ -114,11 +54,7 @@ sr:
       followers: Pratioci
       followers_url: Adresa pratioca
       follows: Praćeni
-      header: Header
       inbox_url: Adresa sandučeta
-      invited_by: Invited by
-      ip: IP
-      joined: Joined
       location:
         all: Sve
         local: Lokalne
@@ -128,31 +64,21 @@ sr:
       media_attachments: Multimedijalni prilozi
       memorialize: Prebaci u in memoriam
       moderation:
-        active: Active
         all: Svi
-        pending: Pending
         silenced: Ućutkani
         suspended: Suspendovani
         title: Moderacija
       moderation_notes: Moderatorske beleške
       most_recent_activity: Najskorija aktivnost
       most_recent_ip: Najskorija IP adresa
-      no_account_selected: No accounts were changed as none were selected
-      no_limits_imposed: No limits imposed
       not_subscribed: Nije pretplaćen
       outbox_url: Odlazno sanduče
-      pending: Pending review
       perform_full_suspension: Izvrši kompletno isključenje
       profile_url: Adresa profila
       promote: Unapredi
       protocol: Protokol
       public: Javno
-      push_subscription_expires: PuSH subscription expires
       redownload: Osveži avatar
-      reject: Reject
-      reject_all: Reject all
-      remove_avatar: Remove avatar
-      remove_header: Remove header
       resend_confirmation:
         already_confirmed: Ovaj korisnik je već potvrđen
         send: Ponovo pošaljite e-poruku za potvrdu
@@ -162,8 +88,6 @@ sr:
       resubscribe: Ponovo se pretplati
       role: Ovlašćenja
       roles:
-        admin: Administrator
-        moderator: Moderator
         staff: Osoblje
         user: Korisnik
       salmon_url: Salmon adresa
@@ -173,30 +97,21 @@ sr:
         created_reports: Prijave koje je napravio ovaj nalog
         targeted_reports: Prijave napravljene o ovom nalogu
       silence: Ućutkaj
-      silenced: Silenced
       statuses: Statusi
       subscribe: Pretplati se
-      suspended: Suspended
-      time_in_queue: Waiting in queue %{time}
       title: Nalozi
-      unconfirmed_email: Unconfirmed email
       undo_silenced: Ukini ćutanje
       undo_suspension: Ukini suspenziju
       unsubscribe: Ukini pretplatu
       username: Korisničko ime
-      warn: Warn
       web: Veb
     action_logs:
       actions:
-        assigned_to_self_report: "%{name} assigned report %{target} to themselves"
-        change_email_user: "%{name} changed the e-mail address of user %{target}"
         confirm_user: "%{name} je potvrdio adresu e-pošte korisnika %{target}"
-        create_account_warning: "%{name} sent a warning to %{target}"
         create_custom_emoji: "%{name} je otpremio novi emotikon %{target}"
         create_domain_block: "%{name} je blokirao domen %{target}"
         create_email_domain_block: "%{name} je stavio na crnu listu domen e-pošte %{target}"
         demote_user: "%{name} je ražalovao korisnika %{target}"
-        destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_block: "%{name} je odblokirao domen %{target}"
         destroy_email_domain_block: "%{name} je stavio na belu listu domen e-pošte %{target}"
         destroy_status: "%{name} je uklonio status korisnika %{target}"
@@ -207,18 +122,14 @@ sr:
         enable_user: "%{name} je omogućio prijavljivanje za korisnika %{target}"
         memorialize_account: "%{name} je pretvorio stranu naloga %{target} kao in memoriam stranu"
         promote_user: "%{name} je unapredio korisnika %{target}"
-        remove_avatar_user: "%{name} removed %{target}'s avatar"
-        reopen_report: "%{name} reopened report %{target}"
         reset_password_user: "%{name} je resetovao lozinku korisniku %{target}"
         resolve_report: "%{name} je odbacio prijavu %{target}"
         silence_account: "%{name} je ućutkao nalog %{target}"
         suspend_account: "%{name} je suspendovao nalog %{target}"
-        unassigned_report: "%{name} unassigned report %{target}"
         unsilence_account: "%{name} je ukinuo ćutanje nalogu %{target}"
         unsuspend_account: "%{name} je ukinuo suspenziju nalogu %{target}"
         update_custom_emoji: "%{name} je izmenio emotikon %{target}"
         update_status: "%{name} je izmenio status korisnika %{target}"
-      deleted_status: "(deleted status)"
       title: Zapisnik
     custom_emojis:
       by_domain: Domen
@@ -245,35 +156,11 @@ sr:
       update_failed_msg: Ne mogu da ažuriram ovaj emotikon
       updated_msg: emotikon uspešno ažuriran!
       upload: Otpremi
-    dashboard:
-      backlog: backlogged jobs
-      config: Configuration
-      feature_deletions: Account deletions
-      feature_invites: Invite links
-      feature_profile_directory: Profile directory
-      feature_registrations: Registrations
-      feature_relay: Federation relay
-      feature_timeline_preview: Timeline preview
-      features: Features
-      hidden_service: Federation with hidden services
-      open_reports: open reports
-      recent_users: Recent users
-      search: Full-text search
-      single_user_mode: Single user mode
-      software: Software
-      space: Space usage
-      title: Dashboard
-      total_users: users in total
-      trends: Trends
-      week_interactions: interactions this week
-      week_users_active: active this week
-      week_users_new: users this week
     domain_blocks:
       add_new: Dodaj novi
       created_msg: Blokiranje domena se obrađuje
       destroyed_msg: Blokiranje domena je opozvano
       domain: Domen
-      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Napravi blokadu
         hint: Blokiranje domena neće sprečiti pravljenje naloga u bazi, ali će retroaktivno i automatski primeniti određene moderatorske metode nad tim nalozima.
@@ -285,13 +172,6 @@ sr:
         title: Novo blokiranje domena
       reject_media: Odbaci multimediju
       reject_media_hint: Uklanja lokalno uskladištene multimedijske fajlove i odbija da ih skida na dalje. Nebitno je za suspenziju
-      reject_reports: Reject reports
-      reject_reports_hint: Ignore all reports coming from this domain. Irrelevant for suspensions
-      rejecting_media: rejecting media files
-      rejecting_reports: rejecting reports
-      severity:
-        silence: silenced
-        suspend: suspended
       show:
         affected_accounts:
           one: Utiče na jedan nalog u bazi
@@ -313,112 +193,33 @@ sr:
         create: Dodaj domen
         title: Nova stavka u crnoj listi e-pošti
       title: Crna lista adresa e-pošte
-    followers:
-      back_to_account: Back To Account
-      title: "%{acct}'s Followers"
     instances:
-      by_domain: Domain
-      delivery_available: Delivery is available
-      known_accounts:
-        one: "%{count} known account"
-        few: "%{count} known accounts"
-        other: "%{count} known accounts"
-      moderation:
-        all: All
-        limited: Limited
-        title: Moderation
       title: Poznate instance
-      total_blocked_by_us: Blocked by us
-      total_followed_by_them: Followed by them
-      total_followed_by_us: Followed by us
-      total_reported: Reports about them
-      total_storage: Media attachments
     invites:
-      deactivate_all: Deactivate all
       filter:
         all: Sve
         available: Aktivne
         expired: Istekle
-        title: Filter
       title: Pozivnice
-    pending_accounts:
-      title: Pending accounts (%{count})
-    relays:
-      add_new: Add new relay
-      delete: Delete
-      description_html: A <strong>federation relay</strong> is an intermediary server that exchanges large volumes of public toots between servers that subscribe and publish to it. <strong>It can help small and medium servers discover content from the fediverse</strong>, which would otherwise require local users manually following other people on remote servers.
-      disable: Disable
-      disabled: Disabled
-      enable: Enable
-      enable_hint: Once enabled, your server will subscribe to all public toots from this relay, and will begin sending this server's public toots to it.
-      enabled: Enabled
-      inbox_url: Relay URL
-      pending: Waiting for relay's approval
-      save_and_enable: Save and enable
-      setup: Setup a relay connection
-      status: Status
-      title: Relays
-    report_notes:
-      created_msg: Report note successfully created!
-      destroyed_msg: Report note successfully deleted!
     reports:
-      account:
-        note: note
-        report: report
       action_taken_by: Akciju izveo
       are_you_sure: Da li ste sigurni?
-      assign_to_self: Assign to me
-      assigned: Assigned moderator
       comment:
         none: Ništa
-      created_at: Reported
       mark_as_resolved: Označi kao rešen
-      mark_as_unresolved: Mark as unresolved
-      notes:
-        create: Add note
-        create_and_resolve: Resolve with note
-        create_and_unresolve: Reopen with note
-        delete: Delete
-        placeholder: Describe what actions have been taken, or any other related updates...
-      reopen: Reopen report
       report: 'Prijava #%{id}'
       reported_account: Prijavljeni nalog
       reported_by: Prijavio
       resolved: Rešeni
-      resolved_msg: Report successfully resolved!
-      status: Status
       title: Prijave
-      unassign: Unassign
       unresolved: Nerešeni
-      updated_at: Updated
     settings:
-      activity_api_enabled:
-        desc_html: Counts of locally posted statuses, active users, and new registrations in weekly buckets
-        title: Publish aggregate statistics about user activity
       bootstrap_timeline_accounts:
         desc_html: Odvojite više korisničkih imena zarezom. Radi samo za lokalne i otključane naloge. Ako je prazno, onda se odnosi na sve lokalne administratore.
         title: Nalozi za automatsko zapraćivanje za nove korisnike
       contact_information:
         email: Poslovna e-pošta
         username: Kontakt korisničko ime
-      custom_css:
-        desc_html: Modify the look with CSS loaded on every page
-        title: Custom CSS
-      hero:
-        desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
-        title: Hero image
-      mascot:
-        desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
-        title: Mascot image
-      peers_api_enabled:
-        desc_html: Domain names this server has encountered in the fediverse
-        title: Publish list of discovered servers
-      preview_sensitive_media:
-        desc_html: Link previews on other websites will display a thumbnail even if the media is marked as sensitive
-        title: Show sensitive media in OpenGraph previews
-      profile_directory:
-        desc_html: Allow users to be discoverable
-        title: Enable profile directory
       registrations:
         closed_message:
           desc_html: Prikazuje se na glavnoj strani kada je instanca zatvorena za registracije. Možete koristiti HTML tagove
@@ -429,15 +230,6 @@ sr:
         min_invite_role:
           disabled: Niko
           title: Samo preko pozivnice
-      registrations_mode:
-        modes:
-          approved: Approval required for sign up
-          none: Nobody can sign up
-          open: Anyone can sign up
-        title: Registrations mode
-      show_known_fediverse_at_about_page:
-        desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show local toots.
-        title: Show known fediverse on timeline preview
       show_staff_badge:
         desc_html: Prikaži bedž osoblja na korisničkoj strani
         title: Prikaži bedž osoblja
@@ -447,9 +239,6 @@ sr:
       site_description_extended:
         desc_html: Dobro mesto za vaš kod ponašanja, pravila, smernice i druge stvari po kojima se Vaša instanca razlikuje. Možete koristiti HTML tagove
         title: Proizvoljne dodatne informacije
-      site_short_description:
-        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph.
-        title: Short server description
       site_terms:
         desc_html: Možete pisati Vašu politiku privatnosti, uslove korišćenja i ostale legalne stvari. Možete koristiti HTML tagove
         title: Proizvoljni uslovi korišćenja
@@ -471,52 +260,20 @@ sr:
       media:
         title: Multimedija
       no_media: Bez multimedije
-      no_status_selected: No statuses were changed as none were selected
       title: Statusi naloga
       with_media: Sa multimedijom
     subscriptions:
-      callback_url: Callback URL
       confirmed: Potvrđeno
       expires_in: Ističe za
       last_delivery: Poslednja dostava
-      title: WebSub
-      topic: Topic
-    tags:
-      accounts: Accounts
-      hidden: Hidden
-      hide: Hide from directory
-      name: Hashtag
-      title: Hashtags
-      unhide: Show in directory
-      visible: Visible
     title: Administracija
-    warning_presets:
-      add_new: Add new
-      delete: Delete
-      edit: Edit
-      edit_preset: Edit warning preset
-      title: Manage warning presets
   admin_mailer:
-    new_pending_account:
-      body: The details of the new account are below. You can approve or reject this application.
-      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter} je prijavio %{target}"
-      body_remote: Someone from %{domain} has reported %{target}
       subject: 'Nova prijava za %{instance} (#%{id})'
-  appearance:
-    advanced_web_interface: Advanced web interface
-    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
-    animations_and_accessibility: Animations and accessibility
-    confirmation_dialogs: Confirmation dialogs
-    sensitive_content: Sensitive content
   application_mailer:
-    notification_preferences: Change e-mail preferences
-    salutation: "%{name},"
     settings: 'Promeni podešavanja e-pošte: %{link}'
     view: 'Pogledaj:'
-    view_profile: View profile
-    view_status: View status
   applications:
     created: Aplikacija uspešno napravljena
     destroyed: Aplikacija uspešno obrisana
@@ -526,10 +283,6 @@ sr:
     warning: Oprezno sa ovim podacima. Nikad je ne delite ni sa kim!
     your_token: Vaš pristupni token
   auth:
-    apply_for_account: Request an invite
-    change_password: Password
-    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
-    confirm_email: Confirm email
     delete_account: Obriši nalog
     delete_account_html: Ako želite da obrišete Vaš nalog, možete <a href="%{path}">nastaviti ovde</a>. Bićete upitani da potvrdite.
     didnt_get_confirmation: Niste dobili poruku sa uputstvima za potvrdu naloga?
@@ -539,19 +292,12 @@ sr:
     logout: Odjava
     migrate_account: Pomeri u drugi nalog
     migrate_account_html: Ako želite da preusmerite ovaj nalog na neki drugi, možete to <a href="%{path}">podesiti ovde</a>.
-    or_log_in_with: Or log in with
-    providers:
-      cas: CAS
-      saml: SAML
     register: Registruj se
-    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: Pošalji poruku sa uputstvima o potvrdi naloga ponovo
     reset_password: Resetuj lozinku
     security: Bezbednost
     set_new_password: Postavi novu lozinku
-    trouble_logging_in: Trouble logging in?
   authorize_follow:
-    already_following: You are already following this account
     error: Nažalost, desila se greška pri traženju udaljenog naloga
     follow: Zaprati
     follow_request: 'Poslali ste zahtev za praćenjen za:'
@@ -563,18 +309,13 @@ sr:
     title: Zaprati %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
       about_x_months: "%{count}mesec"
       about_x_years: "%{count}god"
       almost_x_years: "%{count}god"
       half_a_minute: Upravo sad
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Upravo sad
       over_x_years: "%{count}god"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
       x_months: "%{count}mesec"
-      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Dobar pokušaj, hakeri! Neispravna lozinka
     confirm_password: Unesite trenutnu lozinku da bismo proverili Vaš identitet
@@ -583,116 +324,36 @@ sr:
     success_msg: Vaš nalog je uspešno obrisan
     warning_html: Garantovano je samo brisanje sadržaja sa ove instance. Sadržaj koji je deljen dalje će verovatno da ostavi neke tragove. Nedostupni i ugašeni serveri, kao i serveri koji su odjavljeni od primanja statusa od Vas, neće ažurirati svoje baze.
     warning_title: Dostupnost rasejanog sadržaja
-  directories:
-    directory: Profile directory
-    enabled: You are currently listed in the directory.
-    enabled_but_waiting: You have opted-in to be listed in the directory, but you do not have the minimum number of followers (%{min_followers}) to be listed yet.
-    explanation: Discover users based on their interests
-    explore_mastodon: Explore %{title}
-    how_to_enable: You are not currently opted-in to the directory. You can opt-in below. Use hashtags in your bio text to be listed under specific hashtags!
-    people:
-      one: "%{count} person"
-      few: "%{count} people"
-      other: "%{count} people"
   errors:
     '403': Nemate dozvola da vidite ovu stranu.
     '404': Strana koju ste tražili ne postoji.
     '410': Strana koju ste tražili više ne postoji.
     '422':
-      content: Security verification failed. Are you blocking cookies?
-      title: Security verification failed
     '429': Uspored
     '500':
       content: Izvinjavamo se, nešto je pošlo po zlu sa ove strane.
       title: Strana nije ispravna
     noscript_html: Da biste koristili Mastodont veb aplikaciju, omogućite JavaScript. U suprotnom, probajte neku od <a href="%{apps_path}">originalnih aplikacija</a> za Mastodont za Vašu platformu.
-  existing_username_validator:
-    not_found: could not find a local user with that username
-    not_found_multiple: could not find %{usernames}
   exports:
-    archive_takeout:
-      date: Date
-      download: Download your archive
-      hint_html: You can request an archive of your <strong>toots and uploaded media</strong>. The exported data will be in the ActivityPub format, readable by any compliant software. You can request an archive every 7 days.
-      in_progress: Compiling your archive...
-      request: Request your archive
-      size: Size
     blocks: Blokirali ste
-    csv: CSV
-    domain_blocks: Domain blocks
     follows: Pratite
-    lists: Lists
     mutes: Ućutkali ste
     storage: Multimedijalno skladište
-  featured_tags:
-    add_new: Add new
-    errors:
-      limit: You have already featured the maximum amount of hashtags
-  filters:
-    contexts:
-      home: Home timeline
-      notifications: Notifications
-      public: Public timelines
-      thread: Conversations
-    edit:
-      title: Edit filter
-    errors:
-      invalid_context: None or invalid context supplied
-      invalid_irreversible: Irreversible filtering only works with home or notifications context
-    index:
-      delete: Delete
-      title: Filters
-    new:
-      title: Add new filter
-  footer:
-    developers: Developers
-    more: More…
-    resources: Resources
   generic:
-    all: All
     changes_saved_msg: Izmene uspešno sačuvane!
-    copy: Copy
-    order_by: Order by
     save_changes: Snimi izmene
     validation_errors:
       one: Nešto nije baš kako treba! Pregledajte greške ispod
       few: Nešto nije baš kako treba! Pregledajte %{count} greške ispod
       other: Nešto nije baš kako treba! Pregledajte %{count} grešaka ispod
-  html_validator:
-    invalid_markup: 'contains invalid HTML markup: %{error}'
-  identity_proofs:
-    active: Active
-    authorize: Yes, authorize
-    authorize_connection_prompt: Authorize this cryptographic connection?
-    errors:
-      failed: The cryptographic connection failed. Please try again from %{provider}.
-      keybase:
-        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
-        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
-      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
-    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
-    i_am_html: I am %{username} on %{service}.
-    identity: Identity
-    inactive: Inactive
-    publicize_checkbox: 'And toot this:'
-    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
-    status: Verification status
-    view_proof: View proof
   imports:
-    modes:
-      merge: Merge
-      merge_long: Keep existing records and add new ones
-      overwrite: Overwrite
-      overwrite_long: Replace current records with the new ones
     preface: Možete uvesti podatke koje ste izvezli sa druge instance, kao što su liste ljudi koje ste pratili ili blokirali.
     success: Vaši podaci su uspešno otpremljeni i biće obrađeni uskoro
     types:
       blocking: Lista blokiranja
-      domain_blocking: Domain blocking list
       following: Lista pratilaca
       muting: Lista ućutkanih
     upload: Otpremi
-  in_memoriam_html: In Memoriam.
   invites:
     delete: Deaktiviraj
     expired: Isteklo
@@ -705,7 +366,6 @@ sr:
       '86400': 1 dan
     expires_in_prompt: Nikad
     generate: Generiši
-    invited_by: 'You were invited by:'
     max_uses:
       one: 1 korišćenje
       few: "%{count} korišćenja"
@@ -732,7 +392,6 @@ sr:
     title: Moderacija
   notification_mailer:
     digest:
-      action: View all notifications
       body: Evo kratak pregled šta ste propustili od poslednje posete od %{since}
       mention: "%{name} Vas je pomenuo u:"
       new_followers_summary:
@@ -743,130 +402,47 @@ sr:
         one: "1 novo obaveštenje od poslednje posete \U0001F418"
         few: "%{count} nova obaveštenja od poslednje posete \U0001F418"
         other: "%{count} novih obaveštenja od poslednje posete \U0001F418"
-      title: In your absence...
     favourite:
       body: '%{name} je postavio kao omiljen Vaš status:'
       subject: "%{name} je postavio kao omiljen Vaš status"
-      title: New favourite
     follow:
       body: "%{name} Vas je zapratio!"
       subject: "%{name} Vas je zapratio"
-      title: New follower
     follow_request:
-      action: Manage follow requests
       body: "%{name} je zatražio da Vas zaprati"
       subject: 'Pratioci na čekanju: %{name}'
-      title: New follow request
     mention:
-      action: Reply
       body: '%{name} Vas je pomenuo u:'
       subject: '%{name} Vas je pomenuo'
-      title: New mention
     reblog:
       body: '%{name} Vam je podržao(la) status:'
       subject: "%{name} je podržao(la) Vaš status"
-      title: New boost
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
-    newer: Newer
     next: Sledeći
-    older: Older
     prev: Prethodni
-    truncate: "&hellip;"
-  polls:
-    errors:
-      already_voted: You have already voted on this poll
-      duplicate_options: contain duplicate items
-      duration_too_long: is too far into the future
-      duration_too_short: is too soon
-      expired: The poll has already ended
-      over_character_limit: cannot be longer than %{max} characters each
-      too_few_options: must have more than one item
-      too_many_options: can't contain more than %{max} items
   preferences:
     other: Ostali
-    posting_defaults: Posting defaults
-    public_timelines: Public timelines
-  relationships:
-    activity: Account activity
-    dormant: Dormant
-    last_active: Last active
-    most_recent: Most recent
-    moved: Moved
-    mutual: Mutual
-    primary: Primary
-    relationship: Relationship
-    remove_selected_domains: Remove all followers from the selected domains
-    remove_selected_followers: Remove selected followers
-    remove_selected_follows: Unfollow selected users
-    status: Account status
   remote_follow:
     acct: Unesite Vaš korisnik@domen sa koga želite da pratite
     missing_resource: Ne mogu da nađem zahtevanu adresu preusmeravanja za Vaš nalog
-    no_account_html: Don't have an account? You can <a href='%{sign_up_path}' target='_blank'>sign up here</a>
     proceed: Nastavite da zapratite
     prompt: 'Zapratite će:'
-    reason_html: "<strong>Why is this step necessary?</strong> <code>%{instance}</code> might not be the server where you are registered, so we need to redirect you to your home server first."
-  remote_interaction:
-    favourite:
-      proceed: Proceed to favourite
-      prompt: 'You want to favourite this toot:'
-    reblog:
-      proceed: Proceed to boost
-      prompt: 'You want to boost this toot:'
-    reply:
-      proceed: Proceed to reply
-      prompt: 'You want to reply to this toot:'
-  remote_unfollow:
-    error: Error
-    title: Title
-    unfollowed: Unfollowed
-  scheduled_statuses:
-    over_daily_limit: You have exceeded the limit of %{limit} scheduled toots for that day
-    over_total_limit: You have exceeded the limit of %{limit} scheduled toots
-    too_soon: The scheduled date must be in the future
   sessions:
     activity: Poslednja aktivnost
     browser: Veb čitač
     browsers:
-      alipay: Alipay
       blackberry: Blekberi
       chrome: Hrom
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Nepoznati veb čitač
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Trenutna sesija
     description: "%{browser} sa %{platform}"
     explanation: Ovo su trenutno prijavljeni veb čitači na Vaš Mastodont nalog.
-    ip: IP
     platforms:
       adobe_air: Adobe Air-a
       android: Androida
       blackberry: Blekberija
       chrome_os: Hrom OS-a
       firefox_os: Fajerfoks OS-a
-      ios: iOS
       linux: Linuksa
       mac: Mac-a
       other: nepoznate platforme
@@ -877,43 +453,18 @@ sr:
     revoke_success: Sesija uspešno opozvana
     title: Sesije
   settings:
-    account: Account
-    account_settings: Account settings
-    appearance: Appearance
     authorized_apps: Autorizovane aplikacije
     back: Nazad na Mastodonta
     delete: Brisanje naloga
     development: Razvoj
     edit_profile: Izmena profila
     export: Izvoz podataka
-    featured_tags: Featured hashtags
-    identity_proofs: Identity proofs
     import: Uvoz
-    import_and_export: Import and export
     migrate: Prebacivanje naloga
     notifications: Obaveštenja
     preferences: Podešavanja
-    profile: Profile
-    relationships: Follows and followers
     two_factor_authentication: Dvofaktorska identifikacija
   statuses:
-    attached:
-      description: 'Attached: %{attached}'
-      image:
-        one: "%{count} image"
-        few: "%{count} images"
-        other: "%{count} images"
-      video:
-        one: "%{count} video"
-        few: "%{count} videos"
-        other: "%{count} videos"
-    boosted_from_html: Boosted from %{acct_link}
-    content_warning: 'Content warning: %{warning}'
-    disallowed_hashtags:
-      one: 'contained a disallowed hashtag: %{tags}'
-      few: 'contained the disallowed hashtags: %{tags}'
-      other: 'contained the disallowed hashtags: %{tags}'
-    language_detection: Automatically detect language
     open_in_web: Otvori u vebu
     over_character_limit: ograničenje od %{max} karaktera prekoračeno
     pin_errors:
@@ -921,15 +472,7 @@ sr:
       ownership: Tuđi tutovi ne mogu da se prikače
       private: Tutovi koji nisu javni ne mogu da se prikače
       reblog: Podrška ne može da se prikači
-    poll:
-      total_votes:
-        one: "%{count} vote"
-        few: "%{count} votes"
-        other: "%{count} votes"
-      vote: Vote
     show_more: Prikaži još
-    sign_in_to_participate: Sign in to participate in the conversation
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Samo pratioci
       private_long: Samo prikaži pratiocima
@@ -942,96 +485,9 @@ sr:
     reblogged: podržano
     sensitive_content: Osetljiv sadržaj
   terms:
-    body_html: |
-      <h2>Privacy Policy</h2>
-      <h3 id="collect">What information do we collect?</h3>
-
-      <ul>
-      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
-      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
-      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">What do we use your information for?</h3>
-
-      <p>Any of the information we collect from you may be used in the following ways:</p>
-
-      <ul>
-      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
-      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">How do we protect your information?</h3>
-
-      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">What is our data retention policy?</h3>
-
-      <p>We will make a good faith effort to:</p>
-
-      <ul>
-      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
-      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
-      </ul>
-
-      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
-
-      <p>You may irreversibly delete your account at any time.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Do we use cookies?</h3>
-
-      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
-
-      <p>We use cookies to understand and save your preferences for future visits.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
-
-      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
-
-      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
-
-      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Site usage by children</h3>
-
-      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
-
-      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
-
-      <p>Law requirements can be different if this server is in another jurisdiction.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Changes to our Privacy Policy</h3>
-
-      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
-
-      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
-
-      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "Uslovi korišćenja i politika privatnosti instance %{instance}"
   themes:
-    contrast: Mastodon (High contrast)
     default: Mastodont
-    mastodon-light: Mastodon (Light)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Unesite kod sa Vaše aplikacije za proveru identiteta da potvrdite
     description_html: Ako uključite <strong>dvofaktorsku identifikaciju</strong>, moraćete da imate telefon sa sobom da biste mogli da se prijavite. Telefon će onda generisati tokene za Vašu prijavu.
@@ -1048,51 +504,7 @@ sr:
     recovery_instructions_html: Ako ikada izgubite pristup telefonu, možete iskoristiti kodove za oporavak date ispod da povratite pristup nalogu. <strong>Držite kodove za oporavak na sigurnom</strong>. Na primer, odštampajte ih i čuvajte ih sa ostalim važnim dokumentima.
     setup: Nameštanje
     wrong_code: Uneseni kod nije ispravan! Da li su vremena na serveru i na uređaju ispravna?
-  user_mailer:
-    backup_ready:
-      explanation: You requested a full backup of your Mastodon account. It's now ready for download!
-      subject: Your archive is ready for download
-      title: Archive takeout
-    warning:
-      explanation:
-        disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
-        silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
-        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
-      review_server_policies: Review server policies
-      subject:
-        disable: Your account %{acct} has been frozen
-        none: Warning for %{acct}
-        silence: Your account %{acct} has been limited
-        suspend: Your account %{acct} has been suspended
-      title:
-        disable: Account frozen
-        none: Warning
-        silence: Account limited
-        suspend: Account suspended
-    welcome:
-      edit_profile_action: Setup profile
-      edit_profile_step: You can customize your profile by uploading an avatar, header, changing your display name and more. If you’d like to review new followers before they’re allowed to follow you, you can lock your account.
-      explanation: Here are some tips to get you started
-      final_action: Start posting
-      final_step: 'Start posting! Even without followers your public messages may be seen by others, for example on the local timeline and in hashtags. You may want to introduce yourself on the #introductions hashtag.'
-      full_handle: Your full handle
-      full_handle_hint: This is what you would tell your friends so they can message or follow you from another server.
-      review_preferences_action: Change preferences
-      review_preferences_step: Make sure to set your preferences, such as which emails you'd like to receive, or what privacy level you’d like your posts to default to. If you don’t have motion sickness, you could choose to enable GIF autoplay.
-      subject: Welcome to Mastodon
-      tip_federated_timeline: The federated timeline is a firehose view of the Mastodon network. But it only includes people your neighbours are subscribed to, so it's not complete.
-      tip_following: You follow your server's admin(s) by default. To find more interesting people, check the local and federated timelines.
-      tip_local_timeline: The local timeline is a firehose view of people on %{instance}. These are your immediate neighbours!
-      tip_mobile_webapp: If your mobile browser offers you to add Mastodon to your homescreen, you can receive push notifications. It acts like a native app in many ways!
-      tips: Tips
-      title: Welcome aboard, %{name}!
   users:
-    follow_limit_reached: You cannot follow more than %{limit} people
     invalid_email: Adresa e-pošte nije ispravna
     invalid_otp_token: Neispravni dvofaktorski kod
-    otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
-    seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Prijavljen kao:'
-  verification:
-    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
-    verification: Verification
