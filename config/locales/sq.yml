@@ -3,41 +3,27 @@ sq:
     about_hashtag_html: 'Këto janë mesazhe publike të etiketuar me <strong>#%{hashtag}</strong>. Mundeni të ndërveproni me ta, nëse keni një llogari kudo qoftë në fediverse.'
     about_mastodon_html: Mastodon-i është një rrjet shoqëror i bazuar në protokolle web të hapur dhe në software të lirë, me burim të hapur. Është i decentralizuar, si email-ii.
     about_this: Mbi
-    active_count_after: active
-    active_footnote: Monthly Active Users (MAU)
     administered_by: 'Administruar nga:'
-    api: API
     apps: Aplikacione për celular
-    apps_platforms: Use Mastodon from iOS, Android and other platforms
-    browse_directory: Browse a profile directory and filter by interests
-    browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Kontakt
     contact_missing: I parregulluar
-    contact_unavailable: N/A
-    discover_users: Discover users
     documentation: Dokumentim
     extended_description_html: |
       <h3>Një vend i mirë për rregulla</h3>
       <p>Përshkrimi i zgjeruar s’është sajuar ende.</p>
-    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} është një shërbyes te rrjeti"
-    get_apps: Try a mobile app
     hosted_on: Mastodon i strehuar në %{domain}
     learn_more: Mësoni më tepër
     privacy_policy: Rregulla privatësie
-    see_whats_happening: See what's happening
-    server_stats: 'Server stats:'
     source_code: Kod burim
     status_count_after:
       one: gjendje
       other: gjendje
     status_count_before: Cili krijoi
-    tagline: Follow friends and discover new ones
     terms: Kushte shërbimi
     user_count_after:
       one: përdorues
       other: përdorues
-    user_count_before: Home to
     what_is_mastodon: Ç’është Mastodon-i?
   accounts:
     choices_html: "Zgjedhje të %{name}:"
@@ -49,7 +35,6 @@ sq:
     joined: U bë pjesë më %{date}
     last_active: aktiv së fundi
     link_verified_on: Pronësia e kësaj lidhjeje qe kontrolluar më %{date}
-    media: Media
     moved_html: "%{name} ka kaluar te %{new_profile_link}:"
     network_hidden: Këto të dhëna nuk mund të kihen
     nothing_here: S’ka gjë këtu!
@@ -65,9 +50,6 @@ sq:
     reserved_username: Emri i përdoruesit është i ruajtur për dikë
     roles:
       admin: Përgjegjës
-      bot: Bot
-      moderator: Mod
-    unavailable: Profile unavailable
     unfollow: Resht së ndjekuri
   admin:
     account_actions:
@@ -79,10 +61,7 @@ sq:
       delete: Fshije
       destroyed_msg: Shënimi i moderimit u asgjësua me sukses!
     accounts:
-      approve: Approve
-      approve_all: Approve all
       are_you_sure: A jeni i sigurt?
-      avatar: Avatar
       by_domain: Përkatësi
       change_email:
         changed_msg: Email-i i llogarisë u ndryshua me sukses!
@@ -102,7 +81,6 @@ sq:
       display_name: Emër në ekran
       domain: Përkatësi
       edit: Përpunojeni
-      email: Email
       email_status: Gjendje email-i
       enable: Aktivizoje
       enabled: E aktivizuar
@@ -113,7 +91,6 @@ sq:
       header: Krye
       inbox_url: URL Mesazhesh të Marrë
       invited_by: Ftuar nga
-      ip: IP
       joined: U bë pjesë
       location:
         all: Krejt
@@ -126,18 +103,15 @@ sq:
       moderation:
         active: Aktiv
         all: Krejt
-        pending: Pending
         silenced: U heshtua
         suspended: Të pezulluara
         title: Moderim
       moderation_notes: Shënime moderimesh
       most_recent_activity: Veprimtaria më e freskët
       most_recent_ip: IP-ja më e freskët
-      no_account_selected: No accounts were changed as none were selected
       no_limits_imposed: Pa imponim kufijsh
       not_subscribed: Jo i  pajtuar
       outbox_url: URL Mesazhesh të Dërguar
-      pending: Pending review
       perform_full_suspension: Pezulloje
       profile_url: URL profili
       promote: Promovojeni
@@ -145,8 +119,6 @@ sq:
       public: Publike
       push_subscription_expires: Pajtimi PuSH skadon më
       redownload: Rifresko profilin
-      reject: Reject
-      reject_all: Reject all
       remove_avatar: Hiqe avatarin
       remove_header: Hiqe kryen
       resend_confirmation:
@@ -159,10 +131,8 @@ sq:
       role: Leje
       roles:
         admin: Përgjegjës
-        moderator: Moderator
         staff: Staf
         user: Përdorues
-      salmon_url: Salmon URL
       search: Kërkoni
       shared_inbox_url: URL kutie të përbashkët mesazesh
       show:
@@ -173,7 +143,6 @@ sq:
       statuses: Gjendje
       subscribe: Pajtomë
       suspended: Të pezulluara
-      time_in_queue: Waiting in queue %{time}
       title: Llogari
       unconfirmed_email: Email i paripohuar
       undo_silenced: Zhbëje heshtjen
@@ -181,7 +150,6 @@ sq:
       unsubscribe: Shpajtohuni
       username: Emër përdoruesi
       warn: Sinjalizoje
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
@@ -249,14 +217,12 @@ sq:
       feature_profile_directory: Drejtori profilesh
       feature_registrations: Regjistrime
       feature_relay: Rele federimi
-      feature_timeline_preview: Timeline preview
       features: Veçori
       hidden_service: Federim me shërbime të fshehura
       open_reports: raportime të hapur
       recent_users: Përdorues së fundi
       search: Kërko tekstin e plotë
       single_user_mode: Mënyrë me përdorues të vetëm
-      software: Software
       space: Përdorim hapësire
       title: Pult
       total_users: përdorues gjithsej
@@ -269,7 +235,6 @@ sq:
       created_msg: Bllokimi i përkatësisë tani po përpunohet
       destroyed_msg: Bllokimi i përkatësisë u hoq
       domain: Përkatësi
-      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Krijoni bllokim
         hint: Bllokimi i përkatësisë nuk do të pengojë krijim zërash llogarie te baza e të dhënave, por do të aplikojë në mënyrë retroaktive dhe të vetvetishme metoda specifike moderimi mbi këto llogari.
@@ -312,7 +277,6 @@ sq:
       back_to_account: Mbrapsht Te Llogaria
       title: "Ndjekës të %{acct}"
     instances:
-      by_domain: Domain
       delivery_available: Ka shpërndarje të mundshme
       known_accounts:
         one: "%{count} llogari e njohur"
@@ -335,8 +299,6 @@ sq:
         expired: I skaduar
         title: Filtër
       title: Ftesa
-    pending_accounts:
-      title: Pending accounts (%{count})
     relays:
       add_new: Shtoni rele të re
       delete: Fshije
@@ -423,12 +385,6 @@ sq:
         min_invite_role:
           disabled: Asnjë
           title: Lejo vetëm me ftesa
-      registrations_mode:
-        modes:
-          approved: Approval required for sign up
-          none: Nobody can sign up
-          open: Anyone can sign up
-        title: Registrations mode
       show_known_fediverse_at_about_page:
         desc_html: Kur përdoret, do të shfaqë mesazhe prej krejt fediversit të njohur, si paraparje. Përndryshe do të shfaqë vetëm mesazhe vendore.
         title: Shfaq te paraparja e rrjedhës kohore fedivers të njohur
@@ -462,8 +418,6 @@ sq:
         nsfw_off: Vëri shenjë si jo rezervat
         nsfw_on: Vëri shenjë si rezervat
       failed_to_execute: S’u arrit të përmbushej
-      media:
-        title: Media
       no_media: S’ka media
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
       title: Gjendje llogarish
@@ -473,13 +427,11 @@ sq:
       confirmed: U ripohua
       expires_in: Skadon më
       last_delivery: Dorëzimi e fundit
-      title: WebSub
       topic: Temë
     tags:
       accounts: Llogari
       hidden: Fshehur
       hide: Fshihe prej drejtorie
-      name: Hashtag
       title: Hashtage
       unhide: Shfaqe në drejtori
       visible: E dukshme
@@ -491,22 +443,12 @@ sq:
       edit_preset: Përpunoni sinjalizim të paracaktuar
       title: Administroni sinjalizime të paracaktuara
   admin_mailer:
-    new_pending_account:
-      body: The details of the new account are below. You can approve or reject this application.
-      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter} ka raportuar %{target}"
       body_remote: Dikush nga %{domain} ka raportuar %{target}
       subject: 'Raport i ri për %{instance} (#%{id})'
-  appearance:
-    advanced_web_interface: Advanced web interface
-    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
-    animations_and_accessibility: Animations and accessibility
-    confirmation_dialogs: Confirmation dialogs
-    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Ndryshoni parapëlqime email-i
-    salutation: "%{name},"
     settings: 'Ndryshoni parapëlqime email-i: %{link}'
     view: 'Parje:'
     view_profile: Shihni Profilin
@@ -520,9 +462,7 @@ sq:
     warning: Hapni sytë me ato të dhëna. Mos ia jepni kurrë njeriu!
     your_token: Token-i juaj për hyrje
   auth:
-    apply_for_account: Request an invite
     change_password: Fjalëkalim
-    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: Ripohoni email-in
     delete_account: Fshije llogarinë
     delete_account_html: Nëse dëshironi të fshihni llogarinë tuaj, mund <a href="%{path}">ta bëni që këtu</a>. Do t’ju kërkohet ta ripohoni.
@@ -534,16 +474,11 @@ sq:
     migrate_account: Kaloni në një tjetër llogari
     migrate_account_html: Nëse doni ta ridrejtoni këtë llogari te një tjetër, këtë mund <a href="%{path}">ta formësoni këtu</a>.
     or_log_in_with: Ose bëni hyrjen me
-    providers:
-      cas: CAS
-      saml: SAML
     register: Regjistrohuni
-    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: Ridërgo udhëzime ripohimi
     reset_password: Ricaktoni fjalëkalimin
     security: Siguri
     set_new_password: Caktoni fjalëkalim të ri
-    trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: E ndiqni tashmë këtë llogari
     error: Mjerisht, pati një gabim gjatë kërkimit të llogarisë së largët
@@ -562,13 +497,9 @@ sq:
       about_x_years: "%{count}v"
       almost_x_years: "%{count}v"
       half_a_minute: Mu tani
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Mu tani
       over_x_years: "%{count}v"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
       x_months: "%{count}mj"
-      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Provë e bukur, trimosha! Fjalëkalim i pasaktë
     confirm_password: Jepni fjalëkalimin tuaj të tanishëm që të verifikohet identiteti juaj
@@ -584,9 +515,6 @@ sq:
     explanation: Zbuloni përdorues bazuar në interesat e tyre
     explore_mastodon: Eksploroni %{title}
     how_to_enable: S’keni zgjedhur të jeni i pranishëm te drejtoria. Mund ta bëni më poshtë. Përdorni te teksti i jetëshkrimit tuaj hashtagë, për t’u përfshirë nën hashtagë specifikë!
-    people:
-      one: "%{count} person"
-      other: "%{count} persona"
   errors:
     '403': S’keni leje të shihni këtë faqe.
     '404': Faqja që po kërkonit, s’gjendet këtu.
@@ -599,9 +527,6 @@ sq:
       content: Na ndjeni, diçka shkoi ters në anën tonë.
       title: Kjo faqe s’është e saktë
     noscript_html: Që të përdorni aplikacionin web Mastodon, ju lutemi, aktivizoni JavaScript-in. Ndryshe, provoni për Mastodon-in një nga <a href="%{apps_path}">aplikacionet e brendshëm</a> të platformës tuaj.
-  existing_username_validator:
-    not_found: could not find a local user with that username
-    not_found_multiple: could not find %{usernames}
   exports:
     archive_takeout:
       date: Datë
@@ -611,7 +536,6 @@ sq:
       request: Kërkoni arkivin tuaj
       size: Madhësi
     blocks: Bllokoni
-    csv: CSV
     domain_blocks: Bllokime përkatësish
     follows: Ndiqni
     lists: Lista
@@ -642,34 +566,12 @@ sq:
     more: Më tepër…
     resources: Burime
   generic:
-    all: All
     changes_saved_msg: Ndryshimet u ruajtën me sukses!
     copy: Kopjoje
-    order_by: Order by
     save_changes: Ruaji ndryshimet
     validation_errors:
       one: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni gabimin më poshtë
       other: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni %{count} gabimet më poshtë
-  html_validator:
-    invalid_markup: 'contains invalid HTML markup: %{error}'
-  identity_proofs:
-    active: Active
-    authorize: Yes, authorize
-    authorize_connection_prompt: Authorize this cryptographic connection?
-    errors:
-      failed: The cryptographic connection failed. Please try again from %{provider}.
-      keybase:
-        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
-        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
-      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
-    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
-    i_am_html: I am %{username} on %{service}.
-    identity: Identity
-    inactive: Inactive
-    publicize_checkbox: 'And toot this:'
-    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
-    status: Verification status
-    view_proof: View proof
   imports:
     modes:
       merge: Përzieji
@@ -684,7 +586,6 @@ sq:
       following: Listë ndjekjesh
       muting: Listë heshtimesh
     upload: Ngarkoje
-  in_memoriam_html: In Memoriam.
   invites:
     delete: Çaktivizoje
     expired: Ka skaduar
@@ -758,47 +659,15 @@ sq:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
-          billion: B
-          million: M
           quadrillion: K
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: Më të ri
     next: Pasuesi
     older: Më të vjetër
     prev: I mëparshmi
-    truncate: "&hellip;"
-  polls:
-    errors:
-      already_voted: You have already voted on this poll
-      duplicate_options: contain duplicate items
-      duration_too_long: is too far into the future
-      duration_too_short: is too soon
-      expired: The poll has already ended
-      over_character_limit: cannot be longer than %{max} characters each
-      too_few_options: must have more than one item
-      too_many_options: can't contain more than %{max} items
   preferences:
     other: Tjetër
-    posting_defaults: Posting defaults
-    public_timelines: Public timelines
-  relationships:
-    activity: Account activity
-    dormant: Dormant
-    last_active: Last active
-    most_recent: Most recent
-    moved: Moved
-    mutual: Mutual
-    primary: Primary
-    relationship: Relationship
-    remove_selected_domains: Remove all followers from the selected domains
-    remove_selected_followers: Remove selected followers
-    remove_selected_follows: Unfollow selected users
-    status: Account status
   remote_follow:
     acct: Jepni çiftin tuaj emërpërdoruesi@përkatësi prej të cilit doni që të veprohet
     missing_resource: S’u gjet dot URL-ja e domosdoshme e ridrejtimit për llogarinë tuaj
@@ -828,47 +697,17 @@ sq:
     activity: Veprimtaria e fundit
     browser: Shfletues
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Shfletues i panjohur
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Shfletues Nokia S40 Ovi
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sesioni i tanishëm
     description: "%{browser} në %{platform}"
     explanation: Këta janë shfletuesit e futur në këtë çast te llogaria juaj Mastodon.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: platformë e panjohur
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Shfuqizoje
     revoke_success: Sesioni u shfuqizua me sukses
     title: Sesione
   settings:
-    account: Account
-    account_settings: Account settings
-    appearance: Appearance
     authorized_apps: Aplikacione të autorizuara
     back: Mbrapsht te Mastodon
     delete: Fshirje llogarie
@@ -876,14 +715,10 @@ sq:
     edit_profile: Përpunoni profilin
     export: Eksportim të dhënash
     featured_tags: Hashtagë të zgjedhur
-    identity_proofs: Identity proofs
     import: Importo
-    import_and_export: Import and export
     migrate: Migrim llogarie
     notifications: Njoftime
     preferences: Parapëlqime
-    profile: Profile
-    relationships: Follows and followers
     two_factor_authentication: Mirëfilltësim Dyfaktorësh
   statuses:
     attached:
@@ -891,9 +726,6 @@ sq:
       image:
         one: "%{count} figurë"
         other: "%{count} figura"
-      video:
-        one: "%{count} video"
-        other: "%{count} video"
     boosted_from_html: Përforcuar nga %{acct_link}
     content_warning: 'Sinjalizim lënde: %{warning}'
     disallowed_hashtags:
@@ -907,14 +739,8 @@ sq:
       ownership: S’mund të fiksohen mesazhet e të tjerëve
       private: S’mund të fiksohet mesazh jopublik
       reblog: S’mund të fiksohet një përforcim
-    poll:
-      total_votes:
-        one: "%{count} vote"
-        other: "%{count} votes"
-      vote: Vote
     show_more: Shfaq më tepër
     sign_in_to_participate: Bëni hyrjen, që të merrni pjesë te biseda
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Vetëm ndjekësve
       private_long: Shfaqua vetëm ndjekësve
@@ -1016,7 +842,6 @@ sq:
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Që të bëhet ripohimi, jepni kodin e prodhuar nga aplikacioni juaj i mirëfilltësimeve
     description_html: Nëse aktivizoni <strong>mirëfilltësimin dyfaktorësh</strong>, hyrja do të kërkojë të jeni në zotërim të telefonit tuaj, i cili do të prodhojë kod që duhet ta jepni.
