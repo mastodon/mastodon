@@ -3,36 +3,25 @@ eu:
     about_hashtag_html: 'Hauek  <strong>#%{hashtag}</strong> traola duten toot publikoak dira. Fedibertsoko edozein kontu baduzu harremanetan jarri zaitezke.'
     about_mastodon_html: Mastodon web protokolo ireki eta libreak darabiltzan gizarte sare bat da. E-mail sarea bezala deszentralizatua da.
     about_this: Honi buruz
-    active_count_after: active
-    active_footnote: Monthly Active Users (MAU)
     administered_by: 'Administratzailea(k):'
     api: APIa
     apps: Aplikazio mugikorrak
-    apps_platforms: Use Mastodon from iOS, Android and other platforms
-    browse_directory: Browse a profile directory and filter by interests
-    browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Kontaktua
     contact_missing: Ezarri gabe
     contact_unavailable: E/E
-    discover_users: Discover users
     documentation: Dokumentazioa
     extended_description_html: |
       <h3>Arauentzako toki egoki bat</h3>
       <p>Azalpen luzea ez da ezarri oraindik.</p>
-    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} sareko zerbitzari bat da"
-    get_apps: Try a mobile app
     hosted_on: Mastodon %{domain} domeinuan ostatatua
     learn_more: Ikasi gehiago
     privacy_policy: Pribatutasun politika
-    see_whats_happening: See what's happening
-    server_stats: 'Server stats:'
     source_code: Iturburu kodea
     status_count_after:
       one: mezu
       other: mezu
     status_count_before: Hauek
-    tagline: Follow friends and discover new ones
     terms: Erabilera baldintzak
     user_count_after:
       one: erabiltzaile
@@ -57,9 +46,6 @@ eu:
     people_who_follow: '%{name} jarraitzen dutenak'
     pin_errors:
       following: Onetsi nahi duzun pertsona aurretik jarraitu behar duzu
-    posts:
-      one: Toot
-      other: Toot
     posts_tab_heading: Tootak
     posts_with_replies: Toot eta erantzunak
     reserved_username: Erabiltzaile-izena erreserbatuta dago
@@ -67,7 +53,6 @@ eu:
       admin: Administratzailea
       bot: Bot-a
       moderator: Moderatzailea
-    unavailable: Profile unavailable
     unfollow: Utzi jarraitzeari
   admin:
     account_actions:
@@ -79,8 +64,6 @@ eu:
       delete: Ezabatu
       destroyed_msg: Moderazio ohara ongi suntsitu da!
     accounts:
-      approve: Approve
-      approve_all: Approve all
       are_you_sure: Ziur zaude?
       avatar: Abatarra
       by_domain: Domeinua
@@ -113,7 +96,6 @@ eu:
       header: Goiburua
       inbox_url: Sarrera ontziaren URL-a
       invited_by: 'Honek gonbidatua:'
-      ip: IP
       joined: Elkartuta
       location:
         all: Denak
@@ -126,18 +108,15 @@ eu:
       moderation:
         active: Aktiboa
         all: Denak
-        pending: Pending
         silenced: Isilarazita
         suspended: Kanporatua
         title: Moderazioa
       moderation_notes: Moderazio oharrak
       most_recent_activity: Azken jarduera
       most_recent_ip: Azken IP-a
-      no_account_selected: No accounts were changed as none were selected
       no_limits_imposed: Ez da mugarik ezarri
       not_subscribed: Harpidetu gabe
       outbox_url: Irteera ontziaren URL-a
-      pending: Pending review
       perform_full_suspension: Kanporatu
       profile_url: Profilaren URL-a
       promote: Sustatu
@@ -145,8 +124,6 @@ eu:
       public: Publikoa
       push_subscription_expires: Push harpidetzaren iraugitzea
       redownload: Freskatu profila
-      reject: Reject
-      reject_all: Reject all
       remove_avatar: Kendu abatarra
       remove_header: Kendu goiburua
       resend_confirmation:
@@ -173,7 +150,6 @@ eu:
       statuses: Mezuak
       subscribe: Harpidetu
       suspended: Kanporatuta
-      time_in_queue: Waiting in queue %{time}
       title: Kontuak
       unconfirmed_email: Baieztatu gabeko e-mail helbidea
       undo_silenced: Utzi isilarazteari
@@ -181,7 +157,6 @@ eu:
       unsubscribe: Kendu harpidetza
       username: Erabiltzaile-izena
       warn: Abisatu
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name}(e)k %{target} salaketa bere buruari esleitu dio"
@@ -226,7 +201,6 @@ eu:
       destroyed_msg: Emoji-a ongi suntsitu da!
       disable: Desgaitu
       disabled_msg: Emoji-a ongi desgaitu da
-      emoji: Emoji
       enable: Gaitu
       enabled_msg: Emoji hori ongi gaitu da
       image_hint: PNG gehienez 50KB
@@ -249,14 +223,12 @@ eu:
       feature_profile_directory: Profil-direktorioa
       feature_registrations: Izen emateak
       feature_relay: Federazio haria
-      feature_timeline_preview: Timeline preview
       features: Ezaugarriak
       hidden_service: Federazioa ezkutuko zerbitzuekin
       open_reports: salaketa irekiak
       recent_users: Azken erabiltzaileak
       search: Testu osoko bilaketa
       single_user_mode: Erabiltzaile bakarreko modua
-      software: Software
       space: Espazio erabilera
       title: Kontrol panela
       total_users: erabiltzaile guztira
@@ -269,7 +241,6 @@ eu:
       created_msg: Domeinuaren blokeoa orain prozesatzen ari da
       destroyed_msg: Domeinuaren blokeoa desegin da
       domain: Domeinua
-      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Sortu blokeoa
         hint: Domeinuaren blokeoak ez du eragotziko kontuen sarrerak sortzea datu-basean, baina automatikoki ezarriko zaizkie moderazio metodo bereziak iraganeko mezuetan ere.
@@ -312,7 +283,6 @@ eu:
       back_to_account: Itzuli kontura
       title: "%{acct} kontuaren jarraitzaileak"
     instances:
-      by_domain: Domain
       delivery_available: Bidalketa eskuragarri dago
       known_accounts:
         one: "Kontu ezagun %{count}"
@@ -335,8 +305,6 @@ eu:
         expired: Iraungitua
         title: Iragazi
       title: Gonbidapenak
-    pending_accounts:
-      title: Pending accounts (%{count})
     relays:
       add_new: Gehitu hari berria
       delete: Ezabatu
@@ -423,12 +391,6 @@ eu:
         min_invite_role:
           disabled: Inor ez
           title: Baimendu hauen gobidapenak
-      registrations_mode:
-        modes:
-          approved: Approval required for sign up
-          none: Nobody can sign up
-          open: Anyone can sign up
-        title: Registrations mode
       show_known_fediverse_at_about_page:
         desc_html: Txandakatzean, fedibertsu ezagun osoko toot-ak bistaratuko ditu aurrebistan. Bestela, toot lokalak besterik ez ditu erakutsiko.
         title: Erakutsi fedibertsu ezagun osoko denbora-lerroa aurrebistan
@@ -473,7 +435,6 @@ eu:
       confirmed: Berretsita
       expires_in: Iraungitzea
       last_delivery: Azken bidalketa
-      title: WebSub
       topic: Mintzagaia
     tags:
       accounts: Kontuak
@@ -491,22 +452,12 @@ eu:
       edit_preset: Editatu abisu aurre-ezarpena
       title: Kudeatu abisu aurre-ezarpenak
   admin_mailer:
-    new_pending_account:
-      body: The details of the new account are below. You can approve or reject this application.
-      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter}(e)k %{target} salatu du"
       body_remote: '%{domain} domeinuko norbaitek %{target} salatu du'
       subject: 'Salaketa berria %{instance} instantzian (#%{id})'
-  appearance:
-    advanced_web_interface: Advanced web interface
-    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
-    animations_and_accessibility: Animations and accessibility
-    confirmation_dialogs: Confirmation dialogs
-    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Aldatu e-mail hobespenak
-    salutation: "%{name},"
     settings: 'Aldatu e-mail hobespenak: %{link}'
     view: 'Ikusi:'
     view_profile: Ikusi profila
@@ -520,9 +471,7 @@ eu:
     warning: Kontuz datu hauekin, ez partekatu inoiz inorekin!
     your_token: Zure sarbide token-a
   auth:
-    apply_for_account: Request an invite
     change_password: Pasahitza
-    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: Berretsi e-mail helbidea
     delete_account: Ezabatu kontua
     delete_account_html: Kontua ezabatu nahi baduzu, <a href="%{path}">jarraitu hemen</a>. Berrestea eskatuko zaizu.
@@ -534,16 +483,11 @@ eu:
     migrate_account: Lekualdatu beste kontu batera
     migrate_account_html: Kontu hau beste batera birbideratu nahi baduzu, <a href="%{path}">hemen konfiguratu</a> dezakezu.
     or_log_in_with: Edo hasi saioa honekin
-    providers:
-      cas: CAS
-      saml: SAML
     register: Eman izena
-    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: Birbidali berresteko argibideak
     reset_password: Berrezarri pasahitza
     security: Segurtasuna
     set_new_password: Ezarri pasahitza berria
-    trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: Kontu hau aurretik jarraitzen duzu
     error: Zoritxarrez, urruneko kontua bilatzean errore bat gertatu da
@@ -557,18 +501,14 @@ eu:
     title: Jarraitu %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
       about_x_months: "%{count} hilabete"
       about_x_years: "%{count} urte"
       almost_x_years: "%{count} urte"
       half_a_minute: Oraintxe
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Oraintxe
       over_x_years: "%{count} urte"
       x_days: "%{count} egun"
-      x_minutes: "%{count}m"
       x_months: "%{count} hilabete"
-      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Saiakera ona hacker! Pasahitz okerra
     confirm_password: Sartu zure oraingo pasahitza zure identitatea baieztatzeko
@@ -599,9 +539,6 @@ eu:
       content: Sentitzen dugu, zerbait okerra gertatu da gure aldean.
       title: Orri hau ez da zuzena
     noscript_html: Mastodon web aplikazioa erabiltzeko, gaitu JavaScript. Bestela, probatu Mastodon plataformarako <a href="%{apps_path}">aplikazio natibo</a>ren bat.
-  existing_username_validator:
-    not_found: could not find a local user with that username
-    not_found_multiple: could not find %{usernames}
   exports:
     archive_takeout:
       date: Data
@@ -611,7 +548,6 @@ eu:
       request: Eskatu zure artxiboa
       size: Tamaina
     blocks: Zuk blokeatutakoak
-    csv: CSV
     domain_blocks: Domeinuen blokeoak
     follows: Zuk jarraitutakoak
     lists: Zerrendak
@@ -642,34 +578,12 @@ eu:
     more: Gehiago…
     resources: Baliabideak
   generic:
-    all: All
     changes_saved_msg: Aldaketak ongi gorde dira!
     copy: Kopiatu
-    order_by: Order by
     save_changes: Gorde aldaketak
     validation_errors:
       one: Zerbait ez dabil ongi! Egiaztatu beheko errorea mesedez
       other: Zerbait ez dabil ongi! Egiaztatu beheko %{count}  erroreak mesedez
-  html_validator:
-    invalid_markup: 'contains invalid HTML markup: %{error}'
-  identity_proofs:
-    active: Active
-    authorize: Yes, authorize
-    authorize_connection_prompt: Authorize this cryptographic connection?
-    errors:
-      failed: The cryptographic connection failed. Please try again from %{provider}.
-      keybase:
-        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
-        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
-      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
-    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
-    i_am_html: I am %{username} on %{service}.
-    identity: Identity
-    inactive: Inactive
-    publicize_checkbox: 'And toot this:'
-    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
-    status: Verification status
-    view_proof: View proof
   imports:
     modes:
       merge: Bateratu
@@ -755,50 +669,13 @@ eu:
       body: '%{name}(e)k bultzada eman dio zure mezuari:'
       subject: "%{name}(e)k bultzada eman dio zure mezuari"
       title: Bultzada berria
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: Berriagoa
     next: Hurrengoa
     older: Zaharragoa
     prev: Aurrekoa
-    truncate: "&hellip;"
-  polls:
-    errors:
-      already_voted: You have already voted on this poll
-      duplicate_options: contain duplicate items
-      duration_too_long: is too far into the future
-      duration_too_short: is too soon
-      expired: The poll has already ended
-      over_character_limit: cannot be longer than %{max} characters each
-      too_few_options: must have more than one item
-      too_many_options: can't contain more than %{max} items
   preferences:
     other: Beste bat
-    posting_defaults: Posting defaults
-    public_timelines: Public timelines
-  relationships:
-    activity: Account activity
-    dormant: Dormant
-    last_active: Last active
-    most_recent: Most recent
-    moved: Moved
-    mutual: Mutual
-    primary: Primary
-    relationship: Relationship
-    remove_selected_domains: Remove all followers from the selected domains
-    remove_selected_followers: Remove selected followers
-    remove_selected_follows: Unfollow selected users
-    status: Account status
   remote_follow:
     acct: Sartu jarraitzeko erabili nahi duzun erabiltzaile@domeinua
     missing_resource: Ezin izan da zure konturako behar den birbideratze URL-a
@@ -828,47 +705,18 @@ eu:
     activity: Azken jarduera
     browser: Nabigatzailea
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Nabigatzaile ezezaguna
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi nabigatzailea
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
       qq: QQ nabigatzailea
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Uneko saioa
     description: "%{browser} - %{platform}"
     explanation: Zure Mastodon kontuan saioa hasita duten nabigatzaileak daude.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: plataforma ezezaguna
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Indargabetu
     revoke_success: Saioa ongi indargabetu da
     title: Saioak
   settings:
-    account: Account
-    account_settings: Account settings
-    appearance: Appearance
     authorized_apps: Baimendutako aplikazioak
     back: Itzuli Mastodon-era
     delete: Kontuaren ezabaketa
@@ -876,14 +724,10 @@ eu:
     edit_profile: Aldatu profila
     export: Datuen esportazioa
     featured_tags: Nabarmendutako traolak
-    identity_proofs: Identity proofs
     import: Inportazioa
-    import_and_export: Import and export
     migrate: Kontuaren migrazioa
     notifications: Jakinarazpenak
     preferences: Hobespenak
-    profile: Profile
-    relationships: Follows and followers
     two_factor_authentication: Bi faktoreetako autentifikazioa
   statuses:
     attached:
@@ -907,14 +751,8 @@ eu:
       ownership: Ezin duzu beste norbaiten toot bat finkatu
       private: Ezin dira publikoak ez diren toot-ak finkatu
       reblog: Bultzada bat ezin da finkatu
-    poll:
-      total_votes:
-        one: "%{count} vote"
-        other: "%{count} votes"
-      vote: Vote
     show_more: Erakutsi gehiago
     sign_in_to_participate: Eman izena elkarrizketan parte hartzeko
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Jarraitzaileak besterik ez
       private_long: Erakutsi jarraitzaileei besterik ez
@@ -1016,7 +854,6 @@ eu:
   time:
     formats:
       default: "%Y(e)ko %b %d, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Sartu zure autentifikazio aplikazioak sortutako kodea berresteko
     description_html: <strong>Bi faktoreetako autentifikazioa</strong> gaitzen baduzu, saioa hasteko telefonoa eskura izan beharko duzu, honek zuk sartu behar dituzun kodeak sortuko dituelako.
