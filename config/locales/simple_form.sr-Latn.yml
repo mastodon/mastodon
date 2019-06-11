@@ -1,28 +1,85 @@
----
-sr-Latn:
+sr:
   simple_form:
     hints:
+      account_warning_preset:
+        text: You can use toot syntax, such as URLs, hashtags and mentions
+      admin_account_action:
+        send_email_notification: The user will receive an explanation of what happened with their account
+        text_html: Optional. You can use toot syntax. You can <a href="%{path}">add warning presets</a> to save time
+        type_html: Choose what to do with <strong>%{acct}</strong>
+        warning_preset_id: Optional. You can still add custom text to end of the preset
       defaults:
+        autofollow: People who sign up through the invite will automatically follow you
         avatar: PNG, GIF ili JPG. Najviše %{size}. Biće smanjena na %{dimensions}px
+        bot: This account mainly performs automated actions and might not be monitored
+        context: One or multiple contexts where the filter should apply
         digest: Poslato posle dužeg perioda neaktivnosti sa pregledom svih bitnih stvari koje ste dobili dok ste bili odsutni
+        discoverable_html: The <a href="%{path}" target="_blank">directory</a> lets people find accounts based on interests and activity. Requires at least %{min_followers} followers
+        email: You will be sent a confirmation e-mail
+        fields: You can have up to 4 items displayed as a table on your profile
         header: PNG, GIF ili JPG. Najviše %{size}. Biće smanjena na %{dimensions}px
+        inbox_url: Copy the URL from the frontpage of the relay you want to use
+        irreversible: Filtered toots will disappear irreversibly, even if filter is later removed
+        locale: The language of the user interface, e-mails and push notifications
         locked: Zahteva da pojedinačno odobrite pratioce
+        password: Use at least 8 characters
+        phrase: Will be matched regardless of casing in text or content warning of a toot
+        scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
+        setting_aggregate_reblogs: Do not show new boosts for toots that have been recently boosted (only affects newly-received boosts)
+        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
+        setting_display_media_default: Hide media marked as sensitive
+        setting_display_media_hide_all: Always hide all media
+        setting_display_media_show_all: Always show media marked as sensitive
+        setting_hide_network: Who you follow and who follows you will not be shown on your profile
         setting_noindex: Utiče na Vaš javni profil i statusne strane
+        setting_show_application: The application you use to toot will be displayed in the detailed view of your toots
+        username: Your username will be unique on %{domain}
+        whole_word: When the keyword or phrase is alphanumeric only, it will only be applied if it matches the whole word
+      featured_tag:
+        name: 'You might want to use one of these:'
       imports:
         data: CSV fajl izvezen sa druge Mastodont instance
+      invite_request:
+        text: This will help us review your application
       sessions:
         otp: 'Unesite dvofaktorski kod sa Vašeg telefona ili koristite jedan od kodova za oporavak:'
+      user:
+        chosen_languages: When checked, only toots in selected languages will be displayed in public timelines
     labels:
+      account:
+        fields:
+          name: Label
+          value: Content
+      account_warning_preset:
+        text: Preset text
+      admin_account_action:
+        send_email_notification: Notify the user per e-mail
+        text: Custom warning
+        type: Action
+        types:
+          disable: Disable
+          none: Do nothing
+          silence: Silence
+          suspend: Suspend and irreversibly delete account data
+        warning_preset_id: Use a warning preset
       defaults:
+        autofollow: Invite to follow your account
         avatar: Avatar
+        bot: This is a bot account
+        chosen_languages: Filter languages
         confirm_new_password: Potvrdite novu lozinku
         confirm_password: Potvrdite lozinku
+        context: Filter contexts
         current_password: Trenutna lozinka
         data: Podaci
+        discoverable: List this account on the directory
         display_name: Ime za prikaz
         email: Adresa e-pošte
         expires_in: Ističe nakon
+        fields: Profile metadata
         header: Zaglavlje
+        inbox_url: URL of the relay inbox
+        irreversible: Drop instead of hide
         locale: Jezik
         locked: Zaključaj nalog
         max_uses: Maksimalni broj korišćenja
@@ -30,32 +87,52 @@ sr-Latn:
         note: Biografija
         otp_attempt: Dvofaktorski kod
         password: Lozinka
+        phrase: Keyword or phrase
+        setting_advanced_layout: Enable advanced web interface
+        setting_aggregate_reblogs: Group boosts in timelines
         setting_auto_play_gif: Automatski puštaj animirane GIF-ove
         setting_boost_modal: Prikaži dijalog za potvrdu pre davanja podrške
+        setting_default_language: Posting language
         setting_default_privacy: Privatnost objava
         setting_default_sensitive: Uvek označi multimediju kao osetljivu
         setting_delete_modal: Prikaži dijalog za potvrdu pre brisanja tuta
+        setting_display_media: Media display
+        setting_display_media_default: Default
+        setting_display_media_hide_all: Hide all
+        setting_display_media_show_all: Show all
+        setting_expand_spoilers: Always expand toots marked with content warnings
+        setting_hide_network: Hide your network
         setting_noindex: Odjavi se od indeksiranja search engine-a
         setting_reduce_motion: Smanji pokrete u animacijama
+        setting_show_application: Disclose application used to send toots
         setting_system_font_ui: Koristi sistemski font
         setting_theme: Tema sajta
         setting_unfollow_modal: Prikaži dijalog za potvrdu pre nego što otpratite nekoga
         severity: Oštrina
         type: Tip uvoza
         username: Korisničko ime
+        username_or_email: Username or Email
+        whole_word: Whole word
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Blokiraj obaveštenja od korisnika koji me ne prate
         must_be_following: Blokiraj obaveštenja od ljudi koje ne pratim
         must_be_following_dm: Blokiraj direktne poruke od ljudi koje ne pratim
+      invite_request:
+        text: Why do you want to join?
       notification_emails:
         digest: Šalji e-poštu sa sažetkom
         favourite: Šalji e-poštu kada neko stavi da mu je Vaš status omiljen
         follow: Šalji e-poštu kada Vas neko zaprati
         follow_request: Šalji e-poštu kada neko zatraži da Vas zaprati
         mention: Šalji e-poštu kada Vas neko pomene
+        pending_account: Send e-mail when a new account needs review
         reblog: Šalji e-poštu kada neko podrži Vaš status
-    'no': Ne
+        report: Send e-mail when a new report is submitted
+    'no': 'Ne'
+    recommended: Recommended
     required:
       mark: "*"
       text: obavezno
-    'yes': Da
+    'yes': 'Da'
