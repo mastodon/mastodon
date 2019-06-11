@@ -6,7 +6,6 @@ pt-BR:
     active_count_after: Ativo
     active_footnote: Usuários ativos mensais (UAM)
     administered_by: 'Administrado por:'
-    api: API
     apps: Apps
     apps_platforms: Use o Mastodon a partir de iOS, Android e outras plataformas
     browse_directory: Navegue pelo diretório de perfis e filtre por interesses
@@ -28,9 +27,6 @@ pt-BR:
     see_whats_happening: Veja o que está acontecendo
     server_stats: 'Estatísticas do servidor:'
     source_code: Código-fonte
-    status_count_after:
-      one: status
-      other: status
     status_count_before: Autores de
     tagline: Siga amigos e encontre novos
     terms: Termos de serviço
@@ -57,10 +53,6 @@ pt-BR:
     people_who_follow: Pessoas que seguem %{name}
     pin_errors:
       following: Você tem que estar seguindo a pessoa que você quer sugerir
-    posts:
-      one: Toot
-      other: Toots
-    posts_tab_heading: Toots
     posts_with_replies: Toots e respostas
     reserved_username: Este usuário está reservado
     roles:
@@ -82,7 +74,6 @@ pt-BR:
       approve: Aprovar
       approve_all: Aprovar tudo
       are_you_sure: Você tem certeza?
-      avatar: Avatar
       by_domain: Domínio
       change_email:
         changed_msg: E-mail da conta modificado com sucesso!
@@ -113,11 +104,9 @@ pt-BR:
       header: Cabeçalho
       inbox_url: URL da caixa de entrada
       invited_by: Convidado por
-      ip: IP
       joined: Se cadastrou
       location:
         all: Todos
-        local: Local
         remote: Remoto
         title: Localização
       login_status: Situação de login
@@ -173,7 +162,6 @@ pt-BR:
       statuses: Postagens
       subscribe: Inscrever-se
       suspended: Suspenso
-      time_in_queue: Waiting in queue %{time}
       title: Contas
       unconfirmed_email: E-mail não confirmado
       undo_silenced: Retirar silenciamento
@@ -181,7 +169,6 @@ pt-BR:
       unsubscribe: Desinscrever-se
       username: Nome de usuário
       warn: Notificar
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} designou a denúncia %{target} para si"
@@ -226,7 +213,6 @@ pt-BR:
       destroyed_msg: Emoji deletado com sucesso!
       disable: Desabilitar
       disabled_msg: Emoji desabilitado com sucesso
-      emoji: Emoji
       enable: Habilitar
       enabled_msg: Emoji habilitado com sucesso
       image_hint: PNG de até 50KB
@@ -256,7 +242,6 @@ pt-BR:
       recent_users: Usuários recentes
       search: Pesquisa em texto
       single_user_mode: Modo de usuário único
-      software: Software
       space: Uso de espaço em disco
       title: Painel de controle
       total_users: usuários no total
@@ -269,7 +254,6 @@ pt-BR:
       created_msg: Bloqueio de domínio está sendo processado
       destroyed_msg: Bloqueio de domínio desfeito
       domain: Domínio
-      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Criar bloqueio
         hint: O bloqueio de domínio não prevenirá a criação de entradas de contas na base de dados, mas vai reatroativa e automaticamente aplicar métodos específicos de moderação nestas contas.
@@ -350,7 +334,6 @@ pt-BR:
       pending: Esperando pela aprovação do repetidor
       save_and_enable: Salvar e habilitar
       setup: Configurar uma conexão de repetidor
-      status: Status
       title: Repetidores
     report_notes:
       created_msg: Nota de denúncia criada com sucesso!
@@ -380,7 +363,6 @@ pt-BR:
       reported_by: Denunciada por
       resolved: Resolvido
       resolved_msg: Denúncia resolvida com sucesso!
-      status: Status
       title: Denúncias
       unassign: Desatribuir
       unresolved: Não resolvido
@@ -473,14 +455,11 @@ pt-BR:
       confirmed: Confirmado
       expires_in: Expira em
       last_delivery: Última entrega
-      title: WebSub
       topic: Tópico
     tags:
       accounts: Contas
       hidden: Escondido
       hide: Esconder do diretório
-      name: Hashtag
-      title: Hashtags
       unhide: Mostrar no diretório
       visible: Visível
     title: Administração
@@ -498,15 +477,8 @@ pt-BR:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém da instância %{domain} reportou %{target}
       subject: 'Nova denúncia sobre %{instance} (#%{id})'
-  appearance:
-    advanced_web_interface: Advanced web interface
-    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
-    animations_and_accessibility: Animations and accessibility
-    confirmation_dialogs: Confirmation dialogs
-    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Mudar preferências de e-mail
-    salutation: "%{name},"
     settings: 'Mudar e-mail de preferência: %{link}'
     view: 'Visualizar:'
     view_profile: Ver perfil
@@ -534,9 +506,6 @@ pt-BR:
     migrate_account: Mudar para uma conta diferente
     migrate_account_html: Se você quer redirecionar essa conta para uma outra você pode <a href="%{path}">configurar isso aqui</a>.
     or_log_in_with: Ou faça login com
-    providers:
-      cas: CAS
-      saml: SAML
     register: Cadastrar-se
     registration_closed: "%{instance} não está aceitando novos membros"
     resend_confirmation: Reenviar instruções de confirmação
@@ -557,7 +526,6 @@ pt-BR:
     title: Seguir %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
       about_x_months: "%{count} meses"
       about_x_years: "%{count} anos"
       almost_x_years: "%{count} anos"
@@ -611,7 +579,6 @@ pt-BR:
       request: Solicitar o seu arquivo
       size: Tamanho
     blocks: Você bloqueou
-    csv: CSV
     domain_blocks: Bloqueios de domínio
     follows: Você segue
     lists: Listas
@@ -755,23 +722,11 @@ pt-BR:
       body: 'Sua postagem foi compartilhada por %{name}:'
       subject: "%{name} compartilhou a sua postagem"
       title: Novo compartilhamento
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: Mais novo
     next: Próximo
     older: Mais antigo
     prev: Anterior
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Você já votou nessa enquete
@@ -784,8 +739,6 @@ pt-BR:
       too_many_options: não pode ter mais que %{max} itens
   preferences:
     other: Outro
-    posting_defaults: Posting defaults
-    public_timelines: Public timelines
   relationships:
     activity: Atividade da conta
     dormant: Inativo
@@ -828,40 +781,13 @@ pt-BR:
     activity: Última atividade
     browser: Navegador
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Navegador desconhecido
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Navegador Nokia S40 Ovi
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sessão atual
     description: "%{browser} em %{platform}"
     explanation: Estes são os navegadores que estão conectados com a sua conta do Mastodon.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: Plataforma desconhecida
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Revogar
     revoke_success: Sessão revogada com sucesso
     title: Sessões
@@ -914,7 +840,6 @@ pt-BR:
       vote: Votar
     show_more: Mostrar mais
     sign_in_to_participate: Entre para participar dessa conversa
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Apenas seguidores
       private_long: Mostrar apenas para seguidores
@@ -1015,7 +940,6 @@ pt-BR:
     mastodon-light: Mastodon (claro)
   time:
     formats:
-      default: "%b %d, %Y, %H:%M"
       month: "%B de %Y"
   two_factor_authentication:
     code_hint: Insira o código gerado pelo seu aplicativo auteticador para confirmar
