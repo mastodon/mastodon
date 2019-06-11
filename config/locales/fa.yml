@@ -67,7 +67,6 @@ fa:
       admin: مدیر
       bot: ربات
       moderator: ناظم
-    unavailable: Profile unavailable
     unfollow: پایان پیگیری
   admin:
     account_actions:
@@ -113,7 +112,6 @@ fa:
       header: زمینه
       inbox_url: نشانی صندوق ورودی
       invited_by: دعوت‌شده از طرف
-      ip: IP
       joined: عضویت از
       location:
         all: همه
@@ -269,7 +267,6 @@ fa:
       created_msg: مسدودکردن دامین در حال انجام است
       destroyed_msg: مسدودکردن دامین واگردانده شد
       domain: دامین
-      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: مسدودسازی
         hint: مسدودسازی دامین جلوی فهرست‌شدن حساب‌ها در پایگاه داده را نمی‌گیرد، بلکه به طور خودکار روش‌های مدیریتی را روی فعالیت‌های فعلی و گذشتهٔ آن حساب‌ها اعمال می‌کند.
@@ -335,8 +332,6 @@ fa:
         expired: منقضی‌شده
         title: فیلتر
       title: دعوت‌ها
-    pending_accounts:
-      title: Pending accounts (%{count})
     relays:
       add_new: افزودن رلهٔ تازه
       delete: حذف
@@ -473,7 +468,6 @@ fa:
       confirmed: تأییدشده
       expires_in: مهلت انقضا
       last_delivery: آخرین ارسال
-      title: WebSub
       topic: موضوع
     tags:
       accounts: حساب‌ها
@@ -534,9 +528,6 @@ fa:
     migrate_account: نقل مکان به یک حساب دیگر
     migrate_account_html: اگر می‌خواهید این حساب را به حساب دیگری منتقل کنید، <a href="%{path}">این‌جا را کلیک کنید</a>.
     or_log_in_with: یا ورود به وسیلهٔ
-    providers:
-      cas: CAS
-      saml: SAML
     register: عضو شوید
     registration_closed: "سرور %{instance} عضو تازه‌ای نمی‌پذیرد"
     resend_confirmation: راهنمایی برای تأیید را دوباره بفرست
@@ -611,7 +602,6 @@ fa:
       request: درخواست بایگانی داده‌هایتان
       size: اندازه
     blocks: حساب‌های مسدودشده
-    csv: CSV
     domain_blocks: دامین‌های مسدودشده
     follows: حساب‌های پی‌گرفته
     lists: فهرست‌ها
@@ -755,23 +745,11 @@ fa:
       body: '%{name} نوشتهٔ شما را بازبوقید:'
       subject: "%{name} نوشتهٔ شما را بازبوقید"
       title: بازبوق تازه
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: تازه‌تر
     next: بعدی
     older: قدیمی‌تر
     prev: قبلی
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: شما قبلاً در این نظرسنجی رأی داده‌اید
@@ -784,8 +762,6 @@ fa:
       too_many_options: نمی‌تواند بیشتر از %{max} گزینه داشته باشد
   preferences:
     other: سایر تنظیمات
-    posting_defaults: Posting defaults
-    public_timelines: Public timelines
   relationships:
     activity: فعالیت حساب
     dormant: غیرفعال
@@ -828,40 +804,12 @@ fa:
     activity: آخرین فعالیت
     browser: مرورگر
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: مرورگر ناشناخته
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: نشست فعلی
     description: "%{browser} روی %{platform}"
     explanation: مرورگرهای زیر هم‌اینک به حساب شما وارد شده‌اند.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: سیستم ناشناخته
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: لغو کردن
     revoke_success: نشست با موفقیت لغو شد
     title: نشست‌ها
@@ -914,7 +862,6 @@ fa:
       vote: رأی
     show_more: نمایش
     sign_in_to_participate: برای شرکت در گفتگو وارد حساب خود شوید
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: خصوصی
       private_long: تنها پیگیران شما می‌بینند
@@ -1016,7 +963,6 @@ fa:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: برای تأیید، کدی را که برنامهٔ تأییدکننده ساخته است وارد کنید
     description_html: اگر <strong>ورود دومرحله‌ای</strong> را فعال کنید، برای ورود به سیستم به تلفن خود نیاز خواهید داشت تا برایتان یک کد موقتی بسازد.
