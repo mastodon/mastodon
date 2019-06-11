@@ -26,7 +26,6 @@ ca:
         phrase: Es combinarà independentment del format en el text o l'avís de contingut d'un toot
         scopes: A quines API es permetrà l'accés a l'aplicació. Si selecciones un àmbit d'alt nivell, no cal que seleccionis un d'individual.
         setting_aggregate_reblogs: No mostra els nous impulsos dels toots que ja s'han impulsat recentment (només afecta als impulsos nous rebuts)
-        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
         setting_display_media_default: Amaga els multimèdia marcats com a sensibles
         setting_display_media_hide_all: Sempre oculta tots els multimèdia
         setting_display_media_show_all: Mostra sempre els elements multimèdia marcats com a sensibles
@@ -39,8 +38,6 @@ ca:
         name: 'És possible que vulguis utilitzar un d''aquests:'
       imports:
         data: Fitxer CSV exportat des d'un altre servidor de Mastodon
-      invite_request:
-        text: This will help us review your application
       sessions:
         otp: 'Introdueix el codi de dos factors generat per el teu telèfon o utilitza un dels teus codis de recuperació:'
       user:
@@ -64,7 +61,6 @@ ca:
         warning_preset_id: Utilitza una configuració predefinida d'avís
       defaults:
         autofollow: Convida a seguir el teu compte
-        avatar: Avatar
         bot: Aquest compte és un bot
         chosen_languages: Filtrar llengües
         confirm_new_password: Confirma la contrasenya nova
@@ -88,7 +84,6 @@ ca:
         otp_attempt: Codi de dos factors
         password: Contrasenya
         phrase: Paraula clau o frase
-        setting_advanced_layout: Enable advanced web interface
         setting_aggregate_reblogs: Agrupa impulsos en les línies de temps
         setting_auto_play_gif: Reproducció automàtica de GIFs animats
         setting_boost_modal: Mostra la finestra de confirmació abans d'impulsar
@@ -119,20 +114,14 @@ ca:
         must_be_follower: Blocar les notificacions de persones que no et segueixen
         must_be_following: Bloca les notificacions de persones que no segueixes
         must_be_following_dm: Bloca els missatges directes de persones que no segueixes
-      invite_request:
-        text: Why do you want to join?
       notification_emails:
         digest: Envia un resum per correu electrònic
         favourite: Envia un correu electrònic si algú marca com a preferit el teu estat
         follow: Envia un correu electrònic si algú et segueix
         follow_request: Envia un correu electrònic si algú sol·licita seguir-te
         mention: Envia un correu electrònic si algú et menciona
-        pending_account: Send e-mail when a new account needs review
         reblog: Envia un correu electrònic si algú comparteix el teu estat
         report: Envia un correu electrònic quan s'enviï un nou informe
-    'no': 'No'
-    recommended: Recommended
     required:
-      mark: "*"
       text: necessari
     'yes': 'Sí'
