@@ -1,29 +1,50 @@
----
 hr:
   devise:
     confirmations:
-      already_authenticated: Već si prijavljen.
       confirmed: Tvoja email adresa je uspješno potvrđena.
-      inactive: Tvoj račun još nije aktiviran.
-      invalid: Nevaljan %{authentication_keys} ili lozinka.
-      last_attempt: Imaš još jedan pokušaj prije no što ti se račun zaključa.
-      locked: Tvoj račun je zaključan.
-      not_found_in_database: Nevaljan %{authentication_keys} ili lozinka.
       send_instructions: Primit ćeš email sa uputama kako potvrditi  svoju email adresu za nekoliko minuta.
       send_paranoid_instructions: Ako tvoja email adresa postoji u našoj bazi podataka, primit ćeš email sa uputama kako ju potvrditi za nekoliko minuta.
-      timeout: Tvoja sesija je istekla. Molimo te, prijavi se ponovo kako bi nastavio.
-      unauthenticated: Moraš se registrirati ili prijaviti prije no što nastaviš.
-      unconfirmed: Moraš potvrditi svoju email adresu prije no što nastaviš.
+    failure:
+      already_authenticated: You are already signed in.
+      inactive: Your account is not activated yet.
+      invalid: Invalid %{authentication_keys} or password.
+      last_attempt: You have one more attempt before your account is locked.
+      locked: Your account is locked.
+      not_found_in_database: Invalid %{authentication_keys} or password.
+      pending: Your account is still under review.
+      timeout: Your session expired. Please sign in again to continue.
+      unauthenticated: You need to sign in or sign up before continuing.
+      unconfirmed: You have to confirm your email address before continuing.
     mailer:
       confirmation_instructions:
+        action: Verify email address
+        action_with_app: Confirm and return to %{app}
+        explanation: You have created an account on %{host} with this email address. You are one click away from activating it. If this wasn't you, please ignore this email.
+        explanation_when_pending: You applied for an invite to %{host} with this email address. Once you confirm your e-mail address, we will review your application. You can't login until then. If your application is rejected, your data will be removed, so no further action will be required from you. If this wasn't you, please ignore this email.
+        extra_html: Please also check out <a href="%{terms_path}">the rules of the server</a> and <a href="%{policy_path}">our terms of service</a>.
         subject: 'Mastodon: Upute za potvrđivanje %{instance}'
+        title: Verify email address
       email_changed:
+        explanation: 'The email address for your account is being changed to:'
+        extra: If you did not change your email, it is likely that someone has gained access to your account. Please change your password immediately or contact the server admin if you're locked out of your account.
         subject: 'Mastodon: Email adresa je promijenjena'
         title: Nova email adresa
       password_change:
+        explanation: The password for your account has been changed.
+        extra: If you did not change your password, it is likely that someone has gained access to your account. Please change your password immediately or contact the server admin if you're locked out of your account.
         subject: 'Mastodon: Lozinka je promijenjena'
+        title: Password changed
+      reconfirmation_instructions:
+        explanation: Confirm the new address to change your email.
+        extra: If this change wasn't initiated by you, please ignore this email. The email address for the Mastodon account won't change until you access the link above.
+        subject: 'Mastodon: Confirm email for %{instance}'
+        title: Verify email address
       reset_password_instructions:
+        action: Change password
+        explanation: You requested a new password for your account.
+        extra: If you didn't request this, please ignore this email. Your password won't change until you access the link above and create a new one.
         subject: 'Mastodon: Upute za resetiranje lozinke'
+        title: Password reset
       unlock_instructions:
         subject: 'Mastodon: Upute za otključavanje'
     omniauth_callbacks:
@@ -40,6 +61,7 @@ hr:
       signed_up: Dobro došao! Uspješno si se prijavio.
       signed_up_but_inactive: Uspješno si se registrirao. No, ne možeš se prijaviti, jer ti račun još nije aktiviran.
       signed_up_but_locked: Uspješno si se registrirao. No, ne možeš se prijaviti jer je tvoj račun zaključan.
+      signed_up_but_pending: A message with a confirmation link has been sent to your email address. After you click the link, we will review your application. You will be notified if it is approved.
       signed_up_but_unconfirmed: Poruka sa linkom za potvrđivanje je poslana na tvoju email adresu. Molimo, slijedi link kako bi tvoj račun bio aktiviran.
       update_needs_confirmation: Tvoj račun je uspješno ažuriran, ali trebamo provjeriti tvoju novu email adresu. Molimo, provjeri svoj email i slijedi link za potvrđivanje kako bi tvoja nova email adresa bila potvrđena.
       updated: Tvoj račun je uspješno ažuriran.
@@ -58,4 +80,7 @@ hr:
       expired: je istekao, zatraži novu
       not_found: nije nađen
       not_locked: nije zaključan
-      not_saved: "%{count} greške su zabranile da ovaj %{resource} bude sačuvan:"
+      not_saved:
+        one: '1 error prohibited this %{resource} from being saved:'
+        few: "%{count} errors prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"
