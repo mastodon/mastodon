@@ -3,30 +3,19 @@ cy:
     about_hashtag_html: 'Dyma dŵtiau cyhoeddus wedi eu tagio gyda <strong>#%{hashtag}</strong>. Gallwch ryngweithio gyda nhw os oes gennych gyfrif yn unrhyw le yn y ffeddysawd.'
     about_mastodon_html: Mae Mastodon yn rwydwaith cymdeithasol sy'n seiliedig ar brotocolau gwe a meddalwedd cod agored rhad ac am ddim. Yn debyg i e-bost mae'n ddatganoledig.
     about_this: Ynghylch
-    active_count_after: active
-    active_footnote: Monthly Active Users (MAU)
     administered_by: 'Gweinyddir gan:'
-    api: API
     apps: Apiau symudol
-    apps_platforms: Use Mastodon from iOS, Android and other platforms
-    browse_directory: Browse a profile directory and filter by interests
-    browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Cyswllt
     contact_missing: Heb ei osod
     contact_unavailable: Ddim yn berthnasol
-    discover_users: Discover users
     documentation: Dogfennaeth
     extended_description_html: |
       <h3>Lle da ar gyfer rheolau</h3>
       <p>Nid yw'r disgrifiad estynedig wedi ei osod eto.</p>
-    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "Mae %{domain} yn un gweinydd yn y rhwydwaith"
-    get_apps: Try a mobile app
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
     learn_more: Dysu mwy
     privacy_policy: Polisi preifatrwydd
-    see_whats_happening: See what's happening
-    server_stats: 'Server stats:'
     source_code: Cod ffynhonnell
     status_count_after:
       zero: statwsau
@@ -36,7 +25,6 @@ cy:
       many: statwsau
       other: statwsau
     status_count_before: Ysgriffennwyd gan
-    tagline: Follow friends and discover new ones
     terms: Telerau gwasanaeth
     user_count_after:
       zero: defnyddwyr
@@ -81,9 +69,7 @@ cy:
     reserved_username: Mae'r enw defnyddiwr ar gadw
     roles:
       admin: Gweinyddwr
-      bot: Bot
       moderator: Safonwr
-    unavailable: Profile unavailable
     unfollow: Dad-ddilyn
   admin:
     account_actions:
@@ -95,8 +81,6 @@ cy:
       delete: Dileu
       destroyed_msg: Dinistrwyd nodyn cymedroli yn llwyddiannus!
     accounts:
-      approve: Approve
-      approve_all: Approve all
       are_you_sure: Ydych chi'n siŵr?
       avatar: Afatar
       by_domain: Parth
@@ -129,7 +113,6 @@ cy:
       header: Pennawd
       inbox_url: URL Mewnflwch
       invited_by: Gwahoddwyd gan
-      ip: IP
       joined: Ymunodd
       location:
         all: Popeth
@@ -142,27 +125,21 @@ cy:
       moderation:
         active: Yn weithredol
         all: Popeth
-        pending: Pending
         silenced: Wedi ei dawelu
         suspended: Wedi ei atal
         title: Cymedroli
       moderation_notes: Nodiadau cymedroli
       most_recent_activity: Gweithgarwch diweddaraf
       most_recent_ip: IP diweddaraf
-      no_account_selected: No accounts were changed as none were selected
       no_limits_imposed: Dim terfynau wedi'i gosod
       not_subscribed: Heb danysgrifio
       outbox_url: Allflwch URL
-      pending: Pending review
       perform_full_suspension: Atal
       profile_url: URL proffil
       promote: Hyrwyddo
-      protocol: Protocol
       public: Cyhoeddus
       push_subscription_expires: Tanysgrifiad PuSH yn dod i ben
       redownload: Adnewyddu proffil
-      reject: Reject
-      reject_all: Reject all
       remove_avatar: Dileu afatar
       remove_header: Dileu pennawd
       resend_confirmation:
@@ -176,7 +153,6 @@ cy:
       roles:
         admin: Gweinyddwr
         moderator: Safonwr
-        staff: Staff
         user: Defnyddiwr
       salmon_url: URL Eog
       search: Chwilio
@@ -189,7 +165,6 @@ cy:
       statuses: Statysau
       subscribe: Tanysgrifio
       suspended: Ataliwyd
-      time_in_queue: Waiting in queue %{time}
       title: Cyfrifon
       unconfirmed_email: E-bost heb ei gadarnhau
       undo_silenced: Dadwneud tawelu
@@ -242,7 +217,6 @@ cy:
       destroyed_msg: Llwyddwyd i ddinistrio emojo!
       disable: Diffodd
       disabled_msg: Llwyddwyd i ddiffodd yr emoji hwnnw
-      emoji: Emoji
       enable: Galluogi
       enabled_msg: Llwyddwyd i alluogi yr emoji hwnnw
       image_hint: PNG hyd at 50KB
@@ -265,7 +239,6 @@ cy:
       feature_profile_directory: Cyfeiriadur proffil
       feature_registrations: Cofrestriadau
       feature_relay: Relái ffederasiwn
-      feature_timeline_preview: Timeline preview
       features: Nodweddion
       hidden_service: Ffederasiwn a gwasanaethau cudd
       open_reports: adroddiadau agored
@@ -285,7 +258,6 @@ cy:
       created_msg: Mae'r bloc parth nawr yn cael ei brosesu
       destroyed_msg: Mae'r bloc parth wedi ei ddadwneud
       domain: Parth
-      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Creu bloc
         hint: Ni fydd y bloc parth yn atal cread cofnodion cyfrif yn y bas data, ond mi fydd yn gosod dulliau cymedroli penodol ôl-weithredol ac awtomatig ar y cyfrifau hynny.
@@ -359,8 +331,6 @@ cy:
         expired: Wedi dod i ben
         title: Hidlo
       title: Gwahoddiadau
-    pending_accounts:
-      title: Pending accounts (%{count})
     relays:
       add_new: Ychwanegau relái newydd
       delete: Dileu
@@ -447,12 +417,6 @@ cy:
         min_invite_role:
           disabled: Neb
           title: Caniatau gwahoddiadau gan
-      registrations_mode:
-        modes:
-          approved: Approval required for sign up
-          none: Nobody can sign up
-          open: Anyone can sign up
-        title: Registrations mode
       show_known_fediverse_at_about_page:
         desc_html: Wedi'i ddewis, bydd yn dangos rhagolwg o dŵtiau o'r holl ffedysawd. Fel arall bydd ond yn dangos tŵtiau lleol.
         title: Dangos ffedysawd hysbys ar ragolwg y ffrwd
@@ -497,7 +461,6 @@ cy:
       confirmed: Wedi'i gadarnhau
       expires_in: Dod i ben ymhen
       last_delivery: Danfoniad diwethaf
-      title: WebSub
       topic: Pwnc
     tags:
       accounts: Cyfrifon
@@ -515,22 +478,12 @@ cy:
       edit_preset: Golygu rhagosodiad rhybudd
       title: Rheoli rhagosodiadau rhybudd
   admin_mailer:
-    new_pending_account:
-      body: The details of the new account are below. You can approve or reject this application.
-      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "Mae %{reporter} wedi cwyno am %{target}"
       body_remote: Mae rhywun o %{domain} wedi cwyno am %{target}
       subject: 'Cwyn newydd am %{instance} {#%{id}}'
-  appearance:
-    advanced_web_interface: Advanced web interface
-    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
-    animations_and_accessibility: Animations and accessibility
-    confirmation_dialogs: Confirmation dialogs
-    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Newid gosodiadau e-bost
-    salutation: "%{name},"
     settings: 'Newid gosodiadau e-bost: %{link}'
     view: 'Gweld:'
     view_profile: Gweld proffil
@@ -544,9 +497,7 @@ cy:
     warning: Byddwch yn ofalus a'r data hyn. Peidiwch a'i rannu byth!
     your_token: Eich tocyn mynediad
   auth:
-    apply_for_account: Request an invite
     change_password: Cyfrinair
-    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: Cadarnhau e-bost
     delete_account: Dileu cyfrif
     delete_account_html: Os hoffech chi ddileu eich cyfrif, mae modd <a href="%{path}">parhau yma</a>. Bydd gofyn i chi gadarnhau.
@@ -558,16 +509,11 @@ cy:
     migrate_account: Symud i gyfrif gwahanol
     migrate_account_html: Os hoffech chi ailgyfeirio'r cyfrif hwn at un gwahanol, mae modd <a href="%{path}">ei ffurfweddu yma</a>.
     or_log_in_with: Neu logiwch mewn a
-    providers:
-      cas: CAS
-      saml: SAML
     register: Cofrestru
-    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: Ailanfon cyfarwyddiadau cadarnhau
     reset_password: Ailosod cyfrinair
     security: Diogelwch
     set_new_password: Gosod cyfrinair newydd
-    trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: Yr ydych yn dilyn y cyfrif hwn yn barod
     error: Yn anffodus, roedd gwall tra'n edrych am y cyfrif anghysbell
@@ -586,11 +532,9 @@ cy:
       about_x_years: "%{count}blwyddyn"
       almost_x_years: "%{count}blwyddyn"
       half_a_minute: Newydd fod
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Newydd fod
       over_x_years: "%{count}blwyddyn"
       x_days: "%{count}dydd"
-      x_minutes: "%{count}m"
       x_months: "%{count}mis"
       x_seconds: "%{count}eiliad"
   deletes:
@@ -608,13 +552,6 @@ cy:
     explanation: Darganfod defnyddwyr yn seiliedig ar eu diddordebau
     explore_mastodon: Archwilio %{title}
     how_to_enable: Ar hyn o bryd nid ydych chi wedi dewis y cyfeiriadur. Gallwch ddewis i mewn isod. Defnyddiwch hashnodau yn eich bio-destun i'w restru dan hashnodau penodol!
-    people:
-      zero: "%{count} personau"
-      one: "%{count} person"
-      two: "%{count} personau"
-      few: "%{count} personau"
-      many: "%{count} personau"
-      other: "%{count} personau"
   errors:
     '403': Nid oes gennych ganiatad i weld y dudalen hon.
     '404': Nid yw'r dudalen yr oeddech yn chwilio amdani'n bodoli.
@@ -627,9 +564,6 @@ cy:
       content: Mae'n ddrwg gennym ni, ond fe aeth rhywbeth o'i le ar ein rhan ni.
       title: Nid yw'r dudalen hon yn gywir
     noscript_html: I ddefnyddio ap gwe Mastodon, galluogwch JavaScript os gwlwch yn dda. Fel arall, gallwch drio un o'r <a href="%{apps_path}">apiau cynhenid</a> ar gyfer Mastodon ar eich platfform.
-  existing_username_validator:
-    not_found: could not find a local user with that username
-    not_found_multiple: could not find %{usernames}
   exports:
     archive_takeout:
       date: Dyddiad
@@ -639,7 +573,6 @@ cy:
       request: Gwneud cais am eich archif
       size: Maint
     blocks: Yr ydych yn blocio
-    csv: CSV
     domain_blocks: Blociau parth
     follows: Yr ydych yn dilyn
     lists: Rhestrau
@@ -670,10 +603,8 @@ cy:
     more: Mwy…
     resources: Adnoddau
   generic:
-    all: All
     changes_saved_msg: Llwyddwyd i gadw y newidiadau!
     copy: Copïo
-    order_by: Order by
     save_changes: Cadw newidiadau
     validation_errors:
       zero: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
@@ -682,41 +613,17 @@ cy:
       few: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
       many: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
       other: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
-  html_validator:
-    invalid_markup: 'contains invalid HTML markup: %{error}'
-  identity_proofs:
-    active: Active
-    authorize: Yes, authorize
-    authorize_connection_prompt: Authorize this cryptographic connection?
-    errors:
-      failed: The cryptographic connection failed. Please try again from %{provider}.
-      keybase:
-        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
-        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
-      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
-    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
-    i_am_html: I am %{username} on %{service}.
-    identity: Identity
-    inactive: Inactive
-    publicize_checkbox: 'And toot this:'
-    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
-    status: Verification status
-    view_proof: View proof
   imports:
     modes:
       merge: Cyfuno
       merge_long: Cadw'r cofnodau presennol ac ychwanegu rhai newydd
-      overwrite: Overwrite
-      overwrite_long: Replace current records with the new ones
     preface: Mae modd mewnforio data yr ydych wedi allforio o achos arall, megis rhestr o bobl yr ydych yn ei ddilyn neu yn blocio.
     success: Uwchlwythwyd eich data yn llwyddiannus ac fe fydd yn cael ei brosesu mewn da bryd
     types:
       blocking: Rhestr blocio
-      domain_blocking: Domain blocking list
       following: Rhestr dilyn
       muting: Rhestr tawelu
     upload: Uwchlwytho
-  in_memoriam_html: In Memoriam.
   invites:
     delete: Dadactifadu
     expired: Wedi darfod
@@ -799,135 +706,49 @@ cy:
       body: 'Cafodd eich statws ei fŵstio gan %{name}:'
       subject: "Bŵstiodd %{name} eich statws"
       title: Hwb newydd
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: Diweddarach
     next: Nesaf
     older: Hŷn
     prev: Blaenorol
-    truncate: "&hellip;"
-  polls:
-    errors:
-      already_voted: You have already voted on this poll
-      duplicate_options: contain duplicate items
-      duration_too_long: is too far into the future
-      duration_too_short: is too soon
-      expired: The poll has already ended
-      over_character_limit: cannot be longer than %{max} characters each
-      too_few_options: must have more than one item
-      too_many_options: can't contain more than %{max} items
   preferences:
     other: Arall
-    posting_defaults: Posting defaults
-    public_timelines: Public timelines
-  relationships:
-    activity: Account activity
-    dormant: Dormant
-    last_active: Last active
-    most_recent: Most recent
-    moved: Moved
-    mutual: Mutual
-    primary: Primary
-    relationship: Relationship
-    remove_selected_domains: Remove all followers from the selected domains
-    remove_selected_followers: Remove selected followers
-    remove_selected_follows: Unfollow selected users
-    status: Account status
   remote_follow:
     acct: Mewnbynnwch eich enwdefnyddiwr@parth yr ydych eisiau gweithredu ohonno
     missing_resource: Ni ellir canfod yr URL ailgyferio angenrheidiol i'ch cyfrif
     no_account_html: Heb gyfrif? Mae modd i chi <a href='%{sign_up_path}' target='_blank'>gofrestru yma</a>
     proceed: Ymlaen i ddilyn
     prompt: 'Yr ydych am ddilyn:'
-    reason_html: "<strong>Why is this step necessary?</strong> <code>%{instance}</code> might not be the server where you are registered, so we need to redirect you to your home server first."
-  remote_interaction:
-    favourite:
-      proceed: Proceed to favourite
-      prompt: 'You want to favourite this toot:'
-    reblog:
-      proceed: Proceed to boost
-      prompt: 'You want to boost this toot:'
-    reply:
-      proceed: Proceed to reply
-      prompt: 'You want to reply to this toot:'
   remote_unfollow:
     error: Gwall
     title: Teitl
     unfollowed: Dad-ddilynwyd
-  scheduled_statuses:
-    over_daily_limit: You have exceeded the limit of %{limit} scheduled toots for that day
-    over_total_limit: You have exceeded the limit of %{limit} scheduled toots
-    too_soon: The scheduled date must be in the future
   sessions:
     activity: Gweithgaredd ddiwethaf
     browser: Porwr
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Porwr anhysbys
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Porwr Nokia S40 Ovi
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
       qq: Porwr QQ
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sesiwn cyfredol
     description: "%{browser} ar %{platform}"
     explanation: Dyma'r porwyr gwê sydd wedi mewngofnodi i'ch cyfrif Mastododon ar hyn o bryd.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: platfform anhysbys
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Diddymu
     revoke_success: Sesiwn wedi ei ddiddymu yn llwyddiannus
     title: Sesiynau
   settings:
-    account: Account
-    account_settings: Account settings
-    appearance: Appearance
     authorized_apps: Apiau awdurdodedig
     back: Yn ôl i Mastodon
     delete: Dileu cyfrif
     development: Datblygu
     edit_profile: Golygu proffil
     export: Allforio data
-    featured_tags: Featured hashtags
-    identity_proofs: Identity proofs
     import: Mewnforio
-    import_and_export: Import and export
     migrate: Mudo cyfrif
     notifications: Hysbysiadau
     preferences: Dewisiadau
-    profile: Profile
-    relationships: Follows and followers
     two_factor_authentication: Awdurdodi dau-gam
   statuses:
     attached:
@@ -963,18 +784,8 @@ cy:
       ownership: Ni ellir pinio tŵt rhywun arall
       private: Ni ellir pinio tŵt nad yw'n gyhoeddus
       reblog: Ni ellir pinio bŵstiau
-    poll:
-      total_votes:
-        zero: "%{count} votes"
-        one: "%{count} vote"
-        two: "%{count} votes"
-        few: "%{count} votes"
-        many: "%{count} votes"
-        other: "%{count} votes"
-      vote: Vote
     show_more: Dangos mwy
     sign_in_to_participate: Mengofnodwch i gymryd rhan yn y sgwrs
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Dilynwyr yn unig
       private_long: Dangos i ddilynwyr yn unig
@@ -1073,10 +884,6 @@ cy:
     contrast: Cyferbyniad uchel
     default: Mastodon
     mastodon-light: Mastodon (golau)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Mewnbynwch y côd a grewyd gan eich ap dilysu i gadarnhau
     description_html: Os ydych yn galluogi <strong>awdurdodi dau-gam</strong>, bydd mewngofnodi yn gofyn i chi fod a'ch ffôn gerllaw er mwyn cynhyrchu tocyn i chi gael mewnbynnu.
@@ -1101,8 +908,6 @@ cy:
     warning:
       explanation:
         disable: Er bod eich cyfrif wedi'i rewi, mae eich data cyfrif yn parhau i fod yn gyfan, ond ni allwch chi berfformio unrhyw gamau nes ei ddatgloi.
-        silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
-        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
       review_server_policies: Adolygu polisïau'r gweinydd
       subject:
         disable: Mae'ch cyfrif %{acct} wedi'i rewi
