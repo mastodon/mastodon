@@ -1,4 +1,3 @@
----
 kk:
   devise:
     confirmations:
@@ -12,6 +11,7 @@ kk:
       last_attempt: Аккаунтыңыз құлыпталғанға дейін тағы бір әрекет жасаңыз.
       locked: Аккаунтыңыз құлыпталған.
       not_found_in_database: Қате %{authentication_keys} немесе құпиясөз.
+      pending: Your account is still under review.
       timeout: Сессияңыз аяқталды. Қайтадан кіріңіз жалғастыру үшін.
       unauthenticated: Жалғастыру үшін тіркеліңіз немесе логиніңізбен кіріңіз.
       unconfirmed: Жалғастыру үшін email адресіңізді құптауыңыз керек.
@@ -20,6 +20,7 @@ kk:
         action: Email адресіңізді растаңыз
         action_with_app: Растау және оралу - %{app}
         explanation: Сіз %{host} сайтына тіркелгенсіз осы email адресімен. Активация жасауға бір адам қалды. Егер тіркелмеген болсаңыз, бұл хатты елемеңіз.
+        explanation_when_pending: You applied for an invite to %{host} with this email address. Once you confirm your e-mail address, we will review your application. You can't login until then. If your application is rejected, your data will be removed, so no further action will be required from you. If this wasn't you, please ignore this email.
         extra_html: Сондай-ақ <a href="%{terms_path}">шарттар мен ережелерді</a> және <a href="%{policy_path}">құпиялылық саясатын</a> оқыңыз.
         subject: 'Mastodon: Растау туралы нұсқаулық %{instance}'
         title: Email адресін растау
@@ -48,7 +49,7 @@ kk:
         subject: 'Mastodon: Құлыптан шешу нұсқаулықтары'
     omniauth_callbacks:
       failure: Сізді аутентификациялау мүмкін болмады %{kind} себебі "%{reason}".
-      success: "%{kind} аккаунтынан сәтті аутентификация."
+      success: '%{kind} аккаунтынан сәтті аутентификация.'
     passwords:
       no_token: Бұл бетке құпиясөзді қалпына келтіру электрондық поштасынан шықпай кіре алмайсыз. Құпия сөзді қалпына келтіру электрондық поштасынан шықсаңыз, берілген толық URL мекенжайын пайдаланғаныңызды тексеріңіз.
       send_instructions: Электрондық пошта мекенжайыңыз біздің дерекқорымызда болса, бірнеше минут ішінде құпия сөзді қалпына келтіру сілтемесін аласыз. Бұл хат келмеген болса, спам құтысын тексеріңіз.
@@ -60,6 +61,7 @@ kk:
       signed_up: Қош келдіңіз! Тіркелу сәтті өтті.
       signed_up_but_inactive: Тіркелу сәтті аяқталды. Дегенмен, аккаунтыңыз әлі белсендірілмегендіктен, сізге сайтқа кіру мүмкін болмайды.
       signed_up_but_locked: Тіркелу сәтті аяқталды. Дегенмен, аккаунтыңыз құлыпталғандықтан, сізге сайтқа кіру мүмкін болмайды.
+      signed_up_but_pending: A message with a confirmation link has been sent to your email address. After you click the link, we will review your application. You will be notified if it is approved.
       signed_up_but_unconfirmed: Растау сілтемесі бар хат электрондық поштаыңызға жіберілді. Аккаунтыңызды белсендіру үшін сілтеме бойынша өтіңіз. Бұл хат келмесе, спам құтысын тексеріңіз.
       update_needs_confirmation: Аккаунтыыызды сәтті жаңарттыңыз, бірақ жаңа электрондық поштаны тексеру қажет. Электрондық поштаңызды тексеріп, жаңа электрондық пошта мекенжайыңызды растаңыз. Бұл электрондық поштаны алмасаңыз, спам қалтаңызды тексеріңіз.
       updated: Аккаунтыңыз сәтті жаңартылды.
@@ -74,7 +76,7 @@ kk:
   errors:
     messages:
       already_confirmed: әлдеқашан расталған, логинмен кіре беріңіз
-      confirmation_period_expired: "%{period} ішінде расталуы қажет, жаңасын сұратыңыз"
+      confirmation_period_expired: '%{period} ішінде расталуы қажет, жаңасын сұратыңыз'
       expired: уақыты өтіп кетті, жаңасын сұратыңыз
       not_found: табылмады
       not_locked: құлыпталмады
