@@ -1,3 +1,13 @@
 files:
   - source: /app/javascript/mastodon/locales/en.json
     translation: /app/javascript/mastodon/locales/%two_letters_code%.json
+  - source: /config/locales/en.yml
+    translation: /config/locales/%two_letters_code%.yml
+  - source: /config/locales/simple_form.en.yml
+    translation: /config/locales/simple_form.%two_letters_code%.yml
+  - source: /config/locales/activerecord.en.yml
+    translation: /config/locales/activerecord.%two_letters_code%.yml
+  - source: /config/locales/devise.en.yml
+    translation: /config/locales/devise.%two_letters_code%.yml
+  - source: /config/locales/doorkeeper.en.yml
+    translation: /config/locales/doorkeeper.%two_letters_code%.yml
