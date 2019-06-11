@@ -1,52 +1,100 @@
----
 hu:
   about:
-    about_hashtag_html: Ezek a <strong>#%{hashtag}</strong> címkével ellátott publikus tülkök. Reagálhatsz rájuk, ha már van felhasználói fiókod valahol a föderációban.
+    about_hashtag_html: 'Ezek a <strong>#%{hashtag}</strong> címkével ellátott publikus tülkök. Reagálhatsz rájuk, ha már van felhasználói fiókod valahol a föderációban.'
     about_mastodon_html: Mastodon egy <em>szabad, nyílt forráskódú</em> szociális hálózati kiszolgálo. Egy <em>központosítatlan</em> alternatíva a kereskedelmi platformokra, elkerüli a kommunikációd monopolizációját veszélyét. Bárki futtathatja a Mastodon-t és részt vehet a <em>szociális hálózatban</em>.
     about_this: Rólunk
+    active_count_after: active
+    active_footnote: Monthly Active Users (MAU)
+    administered_by: 'Administered by:'
+    api: API
+    apps: Mobile apps
+    apps_platforms: Use Mastodon from iOS, Android and other platforms
+    browse_directory: Browse a profile directory and filter by interests
+    browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Kapcsolat
     contact_missing: Nincs megadva
     contact_unavailable: N/A
+    discover_users: Discover users
+    documentation: Documentation
     extended_description_html: |
       <h3>Ez itt a szabályzat helye</h3>
       <p>Még nem állítottál be bővebb leírást.</p>
+    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} csak egy a számtalan szerver közül a föderációban"
-    hosted_on: "%{domain} Mastodon instancia"
+    get_apps: Try a mobile app
+    hosted_on: '%{domain} Mastodon instancia'
     learn_more: Tudj meg többet
+    privacy_policy: Privacy policy
+    see_whats_happening: See what's happening
+    server_stats: 'Server stats:'
     source_code: Forráskód
-    status_count_after: tülköt küldött
+    status_count_after:
+      one: status
+      other: statuses
     status_count_before: eddig
-    user_count_after: felhasználónk
+    tagline: Follow friends and discover new ones
+    terms: Terms of service
+    user_count_after:
+      one: user
+      other: users
     user_count_before: Összesen
     what_is_mastodon: Mi a Mastodon?
   accounts:
+    choices_html: "%{name}'s choices:"
     follow: Követés
-    followers: Követők
+    followers:
+      one: Follower
+      other: Followers
     following: Követed őket
+    joined: Joined %{date}
+    last_active: last active
+    link_verified_on: Ownership of this link was checked on %{date}
     media: Média
     moved_html: "%{name} ide költözött: %{new_profile_link}"
+    network_hidden: This information is not available
     nothing_here: Nincs itt semmi!
-    people_followed_by: "%{name} követett személyei"
-    people_who_follow: "%{name} követői"
-    posts: Tülkök
+    people_followed_by: '%{name} követett személyei'
+    people_who_follow: '%{name} követői'
+    pin_errors:
+      following: You must be already following the person you want to endorse
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Tülkök és válaszok
     reserved_username: Ez egy már lefoglalt felhasználónév
     roles:
       admin: Adminisztrátor
+      bot: Bot
       moderator: Moderátor
+    unavailable: Profile unavailable
     unfollow: Követés abbahagyása
   admin:
+    account_actions:
+      action: Perform action
+      title: Perform moderation action on %{acct}
     account_moderation_notes:
       create: Új bejegyzés
       created_msg: Moderációs bejegyzés létrehozva!
       delete: Törlés
       destroyed_msg: Moderációs bejegyzés törölve!
     accounts:
+      approve: Approve
+      approve_all: Approve all
       are_you_sure: Biztos vagy benne?
+      avatar: Avatar
       by_domain: Domain
+      change_email:
+        changed_msg: Account email successfully changed!
+        current_email: Current email
+        label: Change email
+        new_email: New email
+        submit: Change email
+        title: Change email for %{username}
       confirm: Megerősítés
       confirmed: Megerősítve
       confirming: Megerősítve
+      deleted: Deleted
       demote: Lefokozás
       disable: Kikapcsolás
       disable_two_factor_authentication: Kétlépcsős azonosítás kikapcsolása
@@ -62,8 +110,11 @@ hu:
       followers: Követők
       followers_url: Követők URL
       follows: Követettek
+      header: Header
       inbox_url: Beérkezett üzenetek URL
+      invited_by: Invited by
       ip: IP
+      joined: Joined
       location:
         all: Összes
         local: Helyi
@@ -73,15 +124,20 @@ hu:
       media_attachments: Média-csatolmányok
       memorialize: Emlékállítás
       moderation:
+        active: Active
         all: Összes
+        pending: Pending
         silenced: Némítva
         suspended: Felfüggesztve
         title: Moderáció
       moderation_notes: Moderációs bejegyzés
       most_recent_activity: Legutóbbi tevékenységek
       most_recent_ip: Legutóbbi IP-cím
+      no_account_selected: No accounts were changed as none were selected
+      no_limits_imposed: No limits imposed
       not_subscribed: Nincs feliratkozás
       outbox_url: Kimenő üzenetek URL
+      pending: Pending review
       perform_full_suspension: Teljes felfüggesztés
       profile_url: Profil URL
       promote: Előléptetés
@@ -89,6 +145,10 @@ hu:
       public: Nyilvános
       push_subscription_expires: A PuSH feliratkozás elévül
       redownload: Profilkép frissítése
+      reject: Reject
+      reject_all: Reject all
+      remove_avatar: Remove avatar
+      remove_header: Remove header
       resend_confirmation:
         already_confirmed: Ezt a felhasználót már megerősítették
         send: Küldd újra a megerősítő email-t
@@ -109,21 +169,30 @@ hu:
         created_reports: Ezen fiók által létrehozott jelentések
         targeted_reports: Jelentések ezzel a fiókkal kapcsolatban
       silence: Némítás
+      silenced: Silenced
       statuses: Tülkök
       subscribe: Feliratkozás
+      suspended: Suspended
+      time_in_queue: Waiting in queue %{time}
       title: Fiókok
+      unconfirmed_email: Unconfirmed email
       undo_silenced: Némítás visszavonása
       undo_suspension: Felfüggesztés visszavonása
       unsubscribe: Leiratkozás
       username: Felhasználónév
+      warn: Warn
       web: Weboldal
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} assigned report %{target} to themselves"
+        change_email_user: "%{name} changed the e-mail address of user %{target}"
         confirm_user: "%{name} megerősítette e-mail címét: %{target}"
+        create_account_warning: "%{name} sent a warning to %{target}"
         create_custom_emoji: "%{name} új hangulatjelet töltött fel: %{target}"
         create_domain_block: "%{name} letiltotta az alábbi domaint: %{target}"
         create_email_domain_block: "%{name} feketelistára tette az alábbi e-mail domaint: %{target}"
         demote_user: "%{name} lefokozta az alábbi felhasználót: %{target}"
+        destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_block: "%{name} engedélyezte az alábbi domaint: %{target}"
         destroy_email_domain_block: "%{name} fehérlistára tette az alábbi e-mail domaint: %{target}"
         destroy_status: "%{name} eltávolította az alábbi felhasználó tülkjét: %{target}"
@@ -134,14 +203,18 @@ hu:
         enable_user: "%{name} engedélyezte az alábbi felhasználó bejelentkezését: %{target}"
         memorialize_account: "%{name} emléket állított az alábbi felhasználónak: %{target}"
         promote_user: "%{name} előléptette az alábbi felhasználót: %{target}"
+        remove_avatar_user: "%{name} removed %{target}'s avatar"
+        reopen_report: "%{name} reopened report %{target}"
         reset_password_user: "%{name} visszaállította az alábbi felhasználó jelszavát: %{target}"
         resolve_report: "%{name} mellőzte az alábbi jelentést: %{target}"
         silence_account: "%{name} lenémította %{target} felhasználói fiókját"
         suspend_account: "%{name} felfüggesztette %{target} felhasználói fiókját"
+        unassigned_report: "%{name} unassigned report %{target}"
         unsilence_account: "%{name} feloldotta a némítást %{target} felhasználói fiókján"
         unsuspend_account: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
         update_custom_emoji: "%{name} frissítette az alábbi hangulatjelet: %{target}"
         update_status: "%{name} frissítette %{target} felhasználó tülkjét"
+      deleted_status: "(deleted status)"
       title: Audit napló
     custom_emojis:
       by_domain: Domain
@@ -168,30 +241,61 @@ hu:
       update_failed_msg: Nem sikerült frissíteni a hangulatjelet
       updated_msg: Hangulatjel sikeresen frissítve!
       upload: Feltöltés
+    dashboard:
+      backlog: backlogged jobs
+      config: Configuration
+      feature_deletions: Account deletions
+      feature_invites: Invite links
+      feature_profile_directory: Profile directory
+      feature_registrations: Registrations
+      feature_relay: Federation relay
+      feature_timeline_preview: Timeline preview
+      features: Features
+      hidden_service: Federation with hidden services
+      open_reports: open reports
+      recent_users: Recent users
+      search: Full-text search
+      single_user_mode: Single user mode
+      software: Software
+      space: Space usage
+      title: Dashboard
+      total_users: users in total
+      trends: Trends
+      week_interactions: interactions this week
+      week_users_active: active this week
+      week_users_new: users this week
     domain_blocks:
       add_new: Új hozzáadása
       created_msg: A domain-tiltás feldolgozása folyamatban
       destroyed_msg: A domain tiltása feloldva
       domain: Domain
+      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Tiltás létrehozása
         hint: A domain-tiltás nem gátolja meg az új fiókok hozzáadását az abatbázishoz, de visszamenőlegesen és automatikusan aktivál bizonyos moderációs szabályokat ezen fiókok esetében.
         severity:
-          desc_html: A <strong>Némítás</strong> elrejti az adott felhasználó tülkjeit mindenki elől, aki nem követi az adott felhasználót. A <strong>Felfüggesztés</strong> eltávolítja az adott felhasználó által létrehozott minden tartalmat, ide értve a médiafájlokat és a fiókadatokat is. Válaszd az <strong>Egyik sem</strong> opciót, ha csupán a médiafájlokat szeretnéd elutasítani.
+          desc_html: "A <strong>Némítás</strong> elrejti az adott felhasználó tülkjeit mindenki elől, aki nem követi az adott felhasználót. A <strong>Felfüggesztés</strong> eltávolítja az adott felhasználó által létrehozott minden tartalmat, ide értve a médiafájlokat és a fiókadatokat is. Válaszd az <strong>Egyik sem</strong> opciót, ha csupán a médiafájlokat szeretnéd elutasítani."
           noop: Egyik sem
           silence: Némítás
           suspend: Felfüggesztés
         title: Új domain-tiltás
       reject_media: Médiafájlok elutasítása
       reject_media_hint: Eltávolítja a helyben tárolt médiafájlokat és a továbbiakban letiltja az új médiafájlok letöltését. Felfüggesztett fiókok esetében irreleváns opció
+      reject_reports: Reject reports
+      reject_reports_hint: Ignore all reports coming from this domain. Irrelevant for suspensions
+      rejecting_media: rejecting media files
+      rejecting_reports: rejecting reports
+      severity:
+        silence: silenced
+        suspend: suspended
       show:
         affected_accounts:
           one: Összesen egy fiók érintett az adatbázisban
-          other: Összesen %{count} fiók érintett az adatbázisban
+          other: "Összesen %{count} fiók érintett az adatbázisban"
         retroactive:
           silence: Minden felhasználó némításának feloldása ezen a domainen
           suspend: Minden felhasználó felfüggesztésének feloldása ezen a domainen
-        title: "%{domain} domain tiltásának feloldása"
+        title: '%{domain} domain tiltásának feloldása'
         undo: Visszavonás
       undo: Visszavonás
     email_domain_blocks:
@@ -204,28 +308,83 @@ hu:
         create: Domain hozzáadása
         title: Új e-mail feketelista bejegyzés
       title: E-mail feketelista
+    followers:
+      back_to_account: Back To Account
+      title: "%{acct}'s Followers"
     instances:
+      by_domain: Domain
+      delivery_available: Delivery is available
+      known_accounts:
+        one: "%{count} known account"
+        other: "%{count} known accounts"
+      moderation:
+        all: All
+        limited: Limited
+        title: Moderation
       title: Nyilvántartott instanciák
+      total_blocked_by_us: Blocked by us
+      total_followed_by_them: Followed by them
+      total_followed_by_us: Followed by us
+      total_reported: Reports about them
+      total_storage: Media attachments
     invites:
+      deactivate_all: Deactivate all
       filter:
         all: Összes
         available: Elérhető
         expired: Elévült
         title: Szűrő
       title: Meghívások
+    pending_accounts:
+      title: Pending accounts (%{count})
+    relays:
+      add_new: Add new relay
+      delete: Delete
+      description_html: A <strong>federation relay</strong> is an intermediary server that exchanges large volumes of public toots between servers that subscribe and publish to it. <strong>It can help small and medium servers discover content from the fediverse</strong>, which would otherwise require local users manually following other people on remote servers.
+      disable: Disable
+      disabled: Disabled
+      enable: Enable
+      enable_hint: Once enabled, your server will subscribe to all public toots from this relay, and will begin sending this server's public toots to it.
+      enabled: Enabled
+      inbox_url: Relay URL
+      pending: Waiting for relay's approval
+      save_and_enable: Save and enable
+      setup: Setup a relay connection
+      status: Status
+      title: Relays
+    report_notes:
+      created_msg: Report note successfully created!
+      destroyed_msg: Report note successfully deleted!
     reports:
+      account:
+        note: note
+        report: report
       action_taken_by: 'Kezelte:'
       are_you_sure: Biztos vagy benne?
+      assign_to_self: Assign to me
+      assigned: Assigned moderator
       comment:
         none: Egyik sem
+      created_at: Reported
       mark_as_resolved: Megjelölés megoldottként
-      report: "#%{id} számú jelentés"
+      mark_as_unresolved: Mark as unresolved
+      notes:
+        create: Add note
+        create_and_resolve: Resolve with note
+        create_and_unresolve: Reopen with note
+        delete: Delete
+        placeholder: Describe what actions have been taken, or any other related updates...
+      reopen: Reopen report
+      report: '#%{id} számú jelentés'
       reported_account: Bejelentett fiók
       reported_by: 'Jelentette:'
       resolved: Megoldott
+      resolved_msg: Report successfully resolved!
       status: Állapot
       title: Jelentések
+      unassign: Unassign
       unresolved: Megoldatlan
+      updated_at: Updated
     settings:
       activity_api_enabled:
         desc_html: Helyi tülkök, aktív felhasználók és új regisztrációk száma heti bontásban
@@ -236,9 +395,24 @@ hu:
       contact_information:
         email: Kapcsolattartói e-mail cím
         username: Kapcsolattartó felhasználóneve
+      custom_css:
+        desc_html: Modify the look with CSS loaded on every page
+        title: Custom CSS
+      hero:
+        desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
+        title: Hero image
+      mascot:
+        desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
+        title: Mascot image
       peers_api_enabled:
         desc_html: Domainek, amelyekkel ez az instancia kapcsolatban áll
         title: Instanciák listájának közzététele, melyekkel ez a szerver kapcsolatban áll
+      preview_sensitive_media:
+        desc_html: Link previews on other websites will display a thumbnail even if the media is marked as sensitive
+        title: Show sensitive media in OpenGraph previews
+      profile_directory:
+        desc_html: Allow users to be discoverable
+        title: Enable profile directory
       registrations:
         closed_message:
           desc_html: Ez az üzenet jelenik meg a főoldalon, ha a regisztráció nem engedélyezett. HTML-tageket is használhatsz
@@ -249,6 +423,15 @@ hu:
         min_invite_role:
           disabled: Senkinek
           title: Meghívások engedélyezése
+      registrations_mode:
+        modes:
+          approved: Approval required for sign up
+          none: Nobody can sign up
+          open: Anyone can sign up
+        title: Registrations mode
+      show_known_fediverse_at_about_page:
+        desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show local toots.
+        title: Show known fediverse on timeline preview
       show_staff_badge:
         desc_html: Stáb-jelvény megjelenítése a felhasználó oldalán
         title: Stáb-jelvény megjelenítése
@@ -258,6 +441,9 @@ hu:
       site_description_extended:
         desc_html: Ide teheted például a közösségi és egyéb szabályzatot, útmutatókat és mindent, ami egyedivé teszi instanciádat. HTML-tageket is használhatsz
         title: További egyedi információ
+      site_short_description:
+        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph.
+        title: Short server description
       site_terms:
         desc_html: Megírhatod saját adatkezelési szabályzatodat, felhasználási feltételeidet vagy más hasonló jellegű dokumentumodat. HTML-tageket is használhatsz
         title: Egyedi felhasználási feltételek
@@ -279,6 +465,7 @@ hu:
       media:
         title: Média
       no_media: Nem található médiafájl
+      no_status_selected: No statuses were changed as none were selected
       title: Felhasználó tülkjei
       with_media: Médiafájlokkal
     subscriptions:
@@ -288,11 +475,35 @@ hu:
       last_delivery: Utolsó kézbesítés
       title: WebSub
       topic: Téma
+    tags:
+      accounts: Accounts
+      hidden: Hidden
+      hide: Hide from directory
+      name: Hashtag
+      title: Hashtags
+      unhide: Show in directory
+      visible: Visible
     title: Karbantartás
+    warning_presets:
+      add_new: Add new
+      delete: Delete
+      edit: Edit
+      edit_preset: Edit warning preset
+      title: Manage warning presets
   admin_mailer:
+    new_pending_account:
+      body: The details of the new account are below. You can approve or reject this application.
+      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter} jelentette: %{target}"
+      body_remote: Someone from %{domain} has reported %{target}
       subject: 'Új jelentés az alábbi instancián: %{instance} (#%{id})'
+  appearance:
+    advanced_web_interface: Advanced web interface
+    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
+    animations_and_accessibility: Animations and accessibility
+    confirmation_dialogs: Confirmation dialogs
+    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: E-mail beállítások módosítása
     salutation: "%{name},"
@@ -309,6 +520,10 @@ hu:
     warning: Ez érzékeny adat. Soha ne oszd meg másokkal!
     your_token: Hozzáférési kulcsod
   auth:
+    apply_for_account: Request an invite
+    change_password: Password
+    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
+    confirm_email: Confirm email
     delete_account: Felhasználói fiók törlése
     delete_account_html: Felhasználói fiókod törléséhez <a href="%{path}">kattints ide</a>. A rendszer újbóli megerősítést fog kérni.
     didnt_get_confirmation: Nem kaptad meg a megerősítési lépéseket?
@@ -318,12 +533,19 @@ hu:
     logout: Kijelentkezés
     migrate_account: Felhasználói fiók költöztetése
     migrate_account_html: Ha szeretnéd átirányítani ezt a fiókodat egy másikra, a beállításokat <a href="%{path}">itt találod meg</a>.
+    or_log_in_with: Or log in with
+    providers:
+      cas: CAS
+      saml: SAML
     register: Regisztráció
+    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: Megerősítési lépések újraküldése
     reset_password: Jelszó visszaállítása
     security: Biztonság
     set_new_password: Új jelszó beállítása
+    trouble_logging_in: Trouble logging in?
   authorize_follow:
+    already_following: You are already following this account
     error: Hiba történt a távoli felhasználó keresésekor
     follow: Követés
     follow_request: 'Engedélyt kértél az alábbi felhasználó követésére:'
@@ -332,7 +554,7 @@ hu:
       close: Akár be is zárhatod ezt az ablakot.
       return: Visszatérés a felhasználó profiloldalára
       web: Megtekintés a weben
-    title: "%{acct} követése"
+    title: '%{acct} követése'
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ó"
@@ -355,6 +577,16 @@ hu:
     success_msg: Felhasználói fiókod sikeresen törölve lett
     warning_html: Csak azt tudjuk garantálni, hogy az általad létrehozott tartalmat erről az instanciáról töröljük. Ha egyes tartalmaidat sokan megosztották, valószínűleg marad nyomuk a megosztások miatt. Nam fogjuk tudni frissíteni azon instanciák adatbázisát, amelyek nem kapcsolódnak a föderációhoz vagy amelyek leiratkoztak a tülkjeidről.
     warning_title: Szórt tartalmak elérése
+  directories:
+    directory: Profile directory
+    enabled: You are currently listed in the directory.
+    enabled_but_waiting: You have opted-in to be listed in the directory, but you do not have the minimum number of followers (%{min_followers}) to be listed yet.
+    explanation: Discover users based on their interests
+    explore_mastodon: Explore %{title}
+    how_to_enable: You are not currently opted-in to the directory. You can opt-in below. Use hashtags in your bio text to be listed under specific hashtags!
+    people:
+      one: "%{count} person"
+      other: "%{count} people"
   errors:
     '403': Nincs jogosultságod az oldal megtekintéséhez.
     '404': Az általad keresett oldal nem található.
@@ -367,23 +599,88 @@ hu:
       content: Sajnáljuk, valami hiba történt a mi oldalunkon.
       title: Az oldal nem megfelelő
     noscript_html: A Mastodon webalkalmazás használatához engedélyezned kell a JavaScriptet. A másik megoldás, hogy kipróbálod az egyik, a platformodnak megfelelő <a href="%{apps_path}">alkalmazást</a>.
+  existing_username_validator:
+    not_found: could not find a local user with that username
+    not_found_multiple: could not find %{usernames}
   exports:
+    archive_takeout:
+      date: Date
+      download: Download your archive
+      hint_html: You can request an archive of your <strong>toots and uploaded media</strong>. The exported data will be in the ActivityPub format, readable by any compliant software. You can request an archive every 7 days.
+      in_progress: Compiling your archive...
+      request: Request your archive
+      size: Size
     blocks: Tiltólistádon
     csv: CSV
+    domain_blocks: Domain blocks
     follows: Követettjeid
+    lists: Lists
     mutes: Némításaid
     storage: Médiatároló
+  featured_tags:
+    add_new: Add new
+    errors:
+      limit: You have already featured the maximum amount of hashtags
+  filters:
+    contexts:
+      home: Home timeline
+      notifications: Notifications
+      public: Public timelines
+      thread: Conversations
+    edit:
+      title: Edit filter
+    errors:
+      invalid_context: None or invalid context supplied
+      invalid_irreversible: Irreversible filtering only works with home or notifications context
+    index:
+      delete: Delete
+      title: Filters
+    new:
+      title: Add new filter
+  footer:
+    developers: Developers
+    more: More…
+    resources: Resources
   generic:
+    all: All
     changes_saved_msg: Változások sikeresen elmentve!
+    copy: Copy
+    order_by: Order by
     save_changes: Változások mentése
     validation_errors:
       one: Valami nincs rendjén! Kérlek tekintsd meg a hibát alant
       other: Valami nincs rendjén! Kérlek tekintsd meg a %{count} darab hibát alant
+  html_validator:
+    invalid_markup: 'contains invalid HTML markup: %{error}'
+  identity_proofs:
+    active: Active
+    authorize: Yes, authorize
+    authorize_connection_prompt: Authorize this cryptographic connection?
+    errors:
+      failed: The cryptographic connection failed. Please try again from %{provider}.
+      keybase:
+        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
+        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
+      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
+    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
+    i_am_html: I am %{username} on %{service}.
+    identity: Identity
+    inactive: Inactive
+    publicize_checkbox: 'And toot this:'
+    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    status: Verification status
+    view_proof: View proof
   imports:
+    modes:
+      merge: Merge
+      merge_long: Keep existing records and add new ones
+      overwrite: Overwrite
+      overwrite_long: Replace current records with the new ones
     preface: Itt importálhatod egy másik instanciáról lementett adataidat, például követettjeid és letiltott felhasználóid listáját.
     success: Adataidat sikeresen feltöltöttük és feldolgozásukat megkezdtük
     types:
       blocking: Letiltottak listája
+      domain_blocking: Domain blocking list
       following: Követettjeid listája
       muting: Némított felhasználók listája
     upload: Feltöltés
@@ -396,9 +693,11 @@ hu:
       '21600': 6 óra
       '3600': 1 óra
       '43200': 12 óra
+      '604800': 1 week
       '86400': 1 nap
     expires_in_prompt: Soha
     generate: Generálás
+    invited_by: 'You were invited by:'
     max_uses:
       one: 1 felhasználás
       other: "%{count} felhasználás"
@@ -449,8 +748,8 @@ hu:
       title: Új követési kérés
     mention:
       action: Válasz
-      body: "%{name} megemlített téged:"
-      subject: "%{name} megemlített téged"
+      body: '%{name} megemlített téged:'
+      subject: '%{name} megemlített téged'
       title: Új említés
     reblog:
       body: 'Az állapotod reblogolta %{name}:'
@@ -466,18 +765,65 @@ hu:
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: " "
+          unit: ''
   pagination:
+    newer: Newer
     next: Következő
+    older: Older
     prev: Előző
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: You have already voted on this poll
+      duplicate_options: contain duplicate items
+      duration_too_long: is too far into the future
+      duration_too_short: is too soon
+      expired: The poll has already ended
+      over_character_limit: cannot be longer than %{max} characters each
+      too_few_options: must have more than one item
+      too_many_options: can't contain more than %{max} items
   preferences:
     other: Egyéb
+    posting_defaults: Posting defaults
+    public_timelines: Public timelines
+  relationships:
+    activity: Account activity
+    dormant: Dormant
+    last_active: Last active
+    most_recent: Most recent
+    moved: Moved
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Remove all followers from the selected domains
+    remove_selected_followers: Remove selected followers
+    remove_selected_follows: Unfollow selected users
+    status: Account status
   remote_follow:
     acct: Írd be a felhasználódat, amelyről követni szeretnéd felhasznalonev@domain formátumban
     missing_resource: A fiókodnál nem található a szükséges átirányítási URL
+    no_account_html: Don't have an account? You can <a href='%{sign_up_path}' target='_blank'>sign up here</a>
     proceed: Tovább a követéshez
     prompt: 'Őt tervezed követni:'
+    reason_html: "<strong>Why is this step necessary?</strong> <code>%{instance}</code> might not be the server where you are registered, so we need to redirect you to your home server first."
+  remote_interaction:
+    favourite:
+      proceed: Proceed to favourite
+      prompt: 'You want to favourite this toot:'
+    reblog:
+      proceed: Proceed to boost
+      prompt: 'You want to boost this toot:'
+    reply:
+      proceed: Proceed to reply
+      prompt: 'You want to reply to this toot:'
+  remote_unfollow:
+    error: Error
+    title: Title
+    unfollowed: Unfollowed
+  scheduled_statuses:
+    over_daily_limit: You have exceeded the limit of %{limit} scheduled toots for that day
+    over_total_limit: You have exceeded the limit of %{limit} scheduled toots
+    too_soon: The scheduled date must be in the future
   sessions:
     activity: Legutóbbi tevékenység
     browser: Böngésző
@@ -520,18 +866,40 @@ hu:
     revoke_success: Munkamenet sikeresen visszavonva
     title: Munkamenetek
   settings:
+    account: Account
+    account_settings: Account settings
+    appearance: Appearance
     authorized_apps: Jóváhagyott alkalmazások
     back: Vissza a Mastodonhoz
     delete: Fiók törlése
     development: Fejlesztőknek
     edit_profile: Profil szerkesztése
     export: Adatok exportálása
+    featured_tags: Featured hashtags
+    identity_proofs: Identity proofs
     import: Importálás
+    import_and_export: Import and export
     migrate: Fiók átirányítása
     notifications: Értesítések
     preferences: Általános beállítások
+    profile: Profile
+    relationships: Follows and followers
     two_factor_authentication: Kétlépcsős azonosítás
   statuses:
+    attached:
+      description: 'Attached: %{attached}'
+      image:
+        one: "%{count} image"
+        other: "%{count} images"
+      video:
+        one: "%{count} video"
+        other: "%{count} videos"
+    boosted_from_html: Boosted from %{acct_link}
+    content_warning: 'Content warning: %{warning}'
+    disallowed_hashtags:
+      one: 'contained a disallowed hashtag: %{tags}'
+      other: 'contained the disallowed hashtags: %{tags}'
+    language_detection: Automatically detect language
     open_in_web: Megnyitás a weben
     over_character_limit: Túllépted a maximális %{max} karakteres keretet
     pin_errors:
@@ -539,7 +907,13 @@ hu:
       ownership: Nem tűzheted ki valaki más tülkjét
       private: Csak publikus tülköt tűzhetsz ki
       reblog: Reblogolt tülköt nem tudsz kitűzni
+    poll:
+      total_votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
+      vote: Vote
     show_more: Mutass többet
+    sign_in_to_participate: Sign in to participate in the conversation
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Csak követőknek
@@ -553,12 +927,96 @@ hu:
     reblogged: reblogolt
     sensitive_content: Szenzitív tartalom
   terms:
+    body_html: |
+      <h2>Privacy Policy</h2>
+      <h3 id="collect">What information do we collect?</h3>
+
+      <ul>
+      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">What do we use your information for?</h3>
+
+      <p>Any of the information we collect from you may be used in the following ways:</p>
+
+      <ul>
+      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">How do we protect your information?</h3>
+
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">What is our data retention policy?</h3>
+
+      <p>We will make a good faith effort to:</p>
+
+      <ul>
+      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+      </ul>
+
+      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
+
+      <p>You may irreversibly delete your account at any time.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Do we use cookies?</h3>
+
+      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+
+      <p>We use cookies to understand and save your preferences for future visits.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
+
+      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
+
+      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
+
+      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Site usage by children</h3>
+
+      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
+
+      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+
+      <p>Law requirements can be different if this server is in another jurisdiction.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Changes to our Privacy Policy</h3>
+
+      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+
+      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
+
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Felhasználási feltételek és Adatkezelési nyilatkozat"
   themes:
+    contrast: Mastodon (High contrast)
     default: Mastodon
+    mastodon-light: Mastodon (Light)
   time:
     formats:
       default: "%Y %b %d, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Megerősítéshez írd be az alkalmazás által generált kódot
     description_html: He engedélyezed a <strong>kétlépcsős azonosítást</strong>, a bejelentkezéshez szükséged lesz a teefonodre és egy alkalmazásra, amely hozzáférési kódot generál számodra.
@@ -576,6 +1034,26 @@ hu:
     setup: Beállítás
     wrong_code: A beírt kód nem érvényes! A szerver órája és az eszközöd órája szinkronban jár?
   user_mailer:
+    backup_ready:
+      explanation: You requested a full backup of your Mastodon account. It's now ready for download!
+      subject: Your archive is ready for download
+      title: Archive takeout
+    warning:
+      explanation:
+        disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
+        silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
+        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
+      review_server_policies: Review server policies
+      subject:
+        disable: Your account %{acct} has been frozen
+        none: Warning for %{acct}
+        silence: Your account %{acct} has been limited
+        suspend: Your account %{acct} has been suspended
+      title:
+        disable: Account frozen
+        none: Warning
+        silence: Account limited
+        suspend: Account suspended
     welcome:
       edit_profile_action: Készítsd el profilod
       edit_profile_step: 'Itt tudod egyedivé tenni a profilod: feltölthetsz profil- és borítóképet, megváltoztathatod a megjelenített neved és így tovább. Ha jóvá szeretnéd hagyni követőidet, mielőtt láthatják a tülkjeid, itt tudod a fiókodat zárttá tenni.'
@@ -594,6 +1072,12 @@ hu:
       tips: Tippek
       title: Üdv a fedélzeten, %{name}!
   users:
+    follow_limit_reached: You cannot follow more than %{limit} people
     invalid_email: A megadott e-mail cím helytelen
     invalid_otp_token: Érvénytelen ellenőrző kód
-    signed_in_as: Bejelentkezve mint
+    otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
+    seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
+    signed_in_as: 'Bejelentkezve mint'
+  verification:
+    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
+    verification: Verification
