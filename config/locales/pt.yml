@@ -3,36 +3,24 @@ pt:
     about_hashtag_html: 'Estes são toots públicos marcados com <strong>#%{hashtag}</strong>. Podes interagir com eles se tiveres uma conta Mastodon.'
     about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.
     about_this: Sobre esta instância
-    active_count_after: active
-    active_footnote: Monthly Active Users (MAU)
     administered_by: 'Administrado por:'
-    api: API
     apps: Aplicações móveis
-    apps_platforms: Use Mastodon from iOS, Android and other platforms
-    browse_directory: Browse a profile directory and filter by interests
-    browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Contacto
     contact_missing: Não configurado
     contact_unavailable: n.d.
-    discover_users: Discover users
     documentation: Documentação
     extended_description_html: |
       <h3>Um bom lugar para regras</h3>
       <p>A descrição estendida ainda não foi configurada.</p>
-    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} é um servidor na rede"
-    get_apps: Try a mobile app
     hosted_on: Mastodon em %{domain}
     learn_more: Saber mais
     privacy_policy: Política de privacidade
-    see_whats_happening: See what's happening
-    server_stats: 'Server stats:'
     source_code: Código fonte
     status_count_after:
       one: publicação
       other: publicações
     status_count_before: Que fizeram
-    tagline: Follow friends and discover new ones
     terms: termos de serviço
     user_count_after:
       one: utilizador
@@ -49,7 +37,6 @@ pt:
     joined: Aderiu %{date}
     last_active: última vez activo
     link_verified_on: A posse deste link foi verificada em %{date}
-    media: Media
     moved_html: "%{name} mudou-se para %{new_profile_link}:"
     network_hidden: Esta informação não está disponível
     nothing_here: Não há nada aqui!
@@ -67,7 +54,6 @@ pt:
       admin: Administrador
       bot: Robô
       moderator: Moderador
-    unavailable: Profile unavailable
     unfollow: Deixar de seguir
   admin:
     account_actions:
@@ -79,10 +65,7 @@ pt:
       delete: Eliminar
       destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
-      approve: Approve
-      approve_all: Approve all
       are_you_sure: Tens a certeza?
-      avatar: Avatar
       by_domain: Domínio
       change_email:
         changed_msg: E-mail da conta alterado com sucesso!
@@ -113,11 +96,9 @@ pt:
       header: Cabeçalho
       inbox_url: URL da caixa de entrada
       invited_by: Convidado por
-      ip: IP
       joined: Aderiu
       location:
         all: Todos
-        local: Local
         remote: Remoto
         title: Local
       login_status: Estado de início de sessão
@@ -126,18 +107,15 @@ pt:
       moderation:
         active: Activo
         all: Todos
-        pending: Pending
         silenced: Silenciados
         suspended: Supensos
         title: Moderação
       moderation_notes: Notas de moderação
       most_recent_activity: Actividade mais recente
       most_recent_ip: IP mais recente
-      no_account_selected: No accounts were changed as none were selected
       no_limits_imposed: Sem limites impostos
       not_subscribed: Não inscrito
       outbox_url: URL da caixa de saída
-      pending: Pending review
       perform_full_suspension: Fazer suspensão completa
       profile_url: URL do perfil
       promote: Promover
@@ -145,8 +123,6 @@ pt:
       public: Público
       push_subscription_expires: A Inscrição PuSH expira
       redownload: Atualizar avatar
-      reject: Reject
-      reject_all: Reject all
       remove_avatar: Remover o avatar
       remove_header: Remover o cabeçalho
       resend_confirmation:
@@ -173,7 +149,6 @@ pt:
       statuses: Status
       subscribe: Inscrever-se
       suspended: Suspensa
-      time_in_queue: Waiting in queue %{time}
       title: Contas
       unconfirmed_email: E-mail não confirmado
       undo_silenced: Desfazer silenciar
@@ -181,7 +156,6 @@ pt:
       unsubscribe: Cancelar inscrição
       username: Usuário
       warn: Aviso
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} atribuiu o relatório %{target} a si próprios"
@@ -226,7 +200,6 @@ pt:
       destroyed_msg: Emoji destruído com sucesso!
       disable: Desativar
       disabled_msg: Desativado com sucesso este emoji
-      emoji: Emoji
       enable: Ativar
       enabled_msg: Ativado com sucesso este emoji
       image_hint: PNG de até 50KB
@@ -249,14 +222,12 @@ pt:
       feature_profile_directory: Directório de perfil
       feature_registrations: Registos
       feature_relay: Repetidor da federação
-      feature_timeline_preview: Timeline preview
       features: Componentes
       hidden_service: Federação com serviços escondidos
       open_reports: relatórios abertos
       recent_users: Utilizadores recentes
       search: Pesquisa com texto completo
       single_user_mode: Modo de utilizador único
-      software: Software
       space: Utilização do espaço
       title: Painel de controlo
       total_users: total de utilizadores
@@ -269,7 +240,6 @@ pt:
       created_msg: Bloqueio do domínio está a ser processado
       destroyed_msg: Bloqueio de domínio está a ser removido
       domain: Domínio
-      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Criar bloqueio
         hint: O bloqueio de dominio não vai previnir a criação de entradas na base de dados, mas irá retroativamente e automaticamente aplicar métodos de moderação específica nessas contas.
@@ -335,8 +305,6 @@ pt:
         expired: Expirados
         title: Filtro
       title: Convites
-    pending_accounts:
-      title: Pending accounts (%{count})
     relays:
       add_new: Adicionar novo repetidor
       delete: Apagar
@@ -423,12 +391,6 @@ pt:
         min_invite_role:
           disabled: Ninguém
           title: Permitir convites de
-      registrations_mode:
-        modes:
-          approved: Approval required for sign up
-          none: Nobody can sign up
-          open: Anyone can sign up
-        title: Registrations mode
       show_known_fediverse_at_about_page:
         desc_html: Quando comutado, irá mostrar a previsualização de publicações de todo o fediverse conhecido. De outro modo só mostrará publicações locais.
         title: Mostrar o fediverse conhecido na previsualização da cronologia
@@ -473,14 +435,11 @@ pt:
       confirmed: Confirmado
       expires_in: Expira em
       last_delivery: Última entrega
-      title: WebSub
       topic: Tópico
     tags:
       accounts: Contas
       hidden: Escondidas
       hide: Esconder no diretório
-      name: Hashtag
-      title: Hashtags
       unhide: Mostrar no diretório
       visible: Visível
     title: Administração
@@ -491,22 +450,12 @@ pt:
       edit_preset: Editar o aviso predefinido
       title: Gerir os avisos predefinidos
   admin_mailer:
-    new_pending_account:
-      body: The details of the new account are below. You can approve or reject this application.
-      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter} relatou %{target}"
       body_remote: Alguém de %{domain} relatou %{target}
       subject: 'Novo relatório sobre %{instance} (#%{id})'
-  appearance:
-    advanced_web_interface: Advanced web interface
-    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
-    animations_and_accessibility: Animations and accessibility
-    confirmation_dialogs: Confirmation dialogs
-    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Alterar preferências de e-mail
-    salutation: "%{name},"
     settings: 'Alterar preferências de email: %{link}'
     view: 'Ver:'
     view_profile: Ver perfil
@@ -520,9 +469,7 @@ pt:
     warning: Cuidado com estes dados. Não partilhar com ninguém!
     your_token: O teu token de acesso
   auth:
-    apply_for_account: Request an invite
     change_password: Palavra-passe
-    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: Confirmar e-mail
     delete_account: Eliminar conta
     delete_account_html: Se desejas eliminar a conta, podes <a href="%{path}">continua aqui</a>. Uma confirmação será pedida.
@@ -534,16 +481,11 @@ pt:
     migrate_account: Mudar para uma conta diferente
     migrate_account_html: Se desejas redirecionar esta conta para uma outra podes<a href="%{path}">configurar isso aqui</a>.
     or_log_in_with: Ou iniciar sessão com
-    providers:
-      cas: CAS
-      saml: SAML
     register: Registar
-    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Criar nova palavra-passe
     security: Alterar palavra-passe
     set_new_password: Editar palavra-passe
-    trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: Tu já estás a seguir esta conta
     error: Infelizmente, ocorreu um erro ao buscar a conta remota
@@ -557,7 +499,6 @@ pt:
     title: Seguir %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
       about_x_months: "%{count} meses"
       about_x_years: "%{count} anos"
       almost_x_years: "%{count} anos"
@@ -599,9 +540,6 @@ pt:
       content: Desculpe, mas algo correu mal.
       title: Esta página não está correta
     noscript_html: Para usar o aplicativo web do Mastodon, por favor ativa o JavaScript. Alternativamente, experimenta um dos <a href="%{apps_path}">apps nativos</a> para o Mastodon na sua plataforma.
-  existing_username_validator:
-    not_found: could not find a local user with that username
-    not_found_multiple: could not find %{usernames}
   exports:
     archive_takeout:
       date: Data
@@ -611,7 +549,6 @@ pt:
       request: Pede o teu arquivo
       size: Tamanho
     blocks: Bloqueaste
-    csv: CSV
     domain_blocks: Bloqueios de domínio
     follows: Segues
     lists: Listas
@@ -642,34 +579,12 @@ pt:
     more: Mais…
     resources: Recursos
   generic:
-    all: All
     changes_saved_msg: Alterações guardadas!
     copy: Copiar
-    order_by: Order by
     save_changes: Guardar alterações
     validation_errors:
       one: Algo não está correcto. Por favor vê o erro abaixo
       other: Algo não está correto. Por favor vê os %{count} erros abaixo
-  html_validator:
-    invalid_markup: 'contains invalid HTML markup: %{error}'
-  identity_proofs:
-    active: Active
-    authorize: Yes, authorize
-    authorize_connection_prompt: Authorize this cryptographic connection?
-    errors:
-      failed: The cryptographic connection failed. Please try again from %{provider}.
-      keybase:
-        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
-        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
-      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
-    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
-    i_am_html: I am %{username} on %{service}.
-    identity: Identity
-    inactive: Inactive
-    publicize_checkbox: 'And toot this:'
-    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
-    status: Verification status
-    view_proof: View proof
   imports:
     modes:
       merge: Juntar
@@ -755,23 +670,11 @@ pt:
       body: 'O teu post foi partilhado por %{name}:'
       subject: "%{name} partilhou o teu post"
       title: Nova partilha
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: Mais nova
     next: Seguinte
     older: Mais velha
     prev: Anterior
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Tu já votaste nesta sondagem
@@ -784,21 +687,6 @@ pt:
       too_many_options: não pode conter mais do que %{max} itens
   preferences:
     other: Outro
-    posting_defaults: Posting defaults
-    public_timelines: Public timelines
-  relationships:
-    activity: Account activity
-    dormant: Dormant
-    last_active: Last active
-    most_recent: Most recent
-    moved: Moved
-    mutual: Mutual
-    primary: Primary
-    relationship: Relationship
-    remove_selected_domains: Remove all followers from the selected domains
-    remove_selected_followers: Remove selected followers
-    remove_selected_follows: Unfollow selected users
-    status: Account status
   remote_follow:
     acct: Entre seu usuário@domínio do qual quer seguir
     missing_resource: Não foi possível achar a URL de redirecionamento para sua conta
@@ -828,47 +716,19 @@ pt:
     activity: Última atividade
     browser: Navegador
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Navegador desconhecido
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Navegador Nokia S40 Ovi
-      opera: Opera
       otter: Lontra
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sessão atual
     description: "%{browser} em %{platform}"
     explanation: Estes são os navegadores que estão conectados com a tua conta do Mastodon.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
       firefox_os: SO Firefox
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: Plataforma desconhecida
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Revogar
     revoke_success: Sessão revogada com sucesso
     title: Sessões
   settings:
-    account: Account
-    account_settings: Account settings
-    appearance: Appearance
     authorized_apps: Aplicativos autorizados
     back: Voltar ao Mastodon
     delete: Eliminação da conta
@@ -876,14 +736,10 @@ pt:
     edit_profile: Editar perfil
     export: Exportar dados
     featured_tags: Hashtags destacadas
-    identity_proofs: Identity proofs
     import: Importar
-    import_and_export: Import and export
     migrate: Migração de conta
     notifications: Notificações
     preferences: Preferências
-    profile: Profile
-    relationships: Follows and followers
     two_factor_authentication: Autenticação em dois passos
   statuses:
     attached:
@@ -914,7 +770,6 @@ pt:
       vote: Votar
     show_more: Mostrar mais
     sign_in_to_participate: Inicie a sessão para participar na conversa
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Mostrar apenas para seguidores
       private_long: Mostrar apenas para seguidores
@@ -1013,10 +868,6 @@ pt:
     contrast: Mastodon (Elevado contraste)
     default: Mastodon
     mastodon-light: Mastodon (Leve)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Entre o código gerado pelo seu aplicativo para confirmar
     description_html: Se ativar a <strong>autenticação em dois passos</strong>, quando logar será necessário o seu telefone que vai gerar os tokens para validação.
