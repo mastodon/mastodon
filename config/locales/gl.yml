@@ -6,14 +6,12 @@ gl:
     active_count_after: activo
     active_footnote: Usuarias Activas no Mes (UAM)
     administered_by: 'Administrada por:'
-    api: API
     apps: Apps móbiles
     apps_platforms: Utilice Mastodon desde iOS, Android e outras plataformas
     browse_directory: Navegue no directorio de perfís e filtre por intereses
     browse_public_posts: Vexa o fluxo de comentarios públicos en Mastodon
     contact: Contacto
     contact_missing: Non establecido
-    contact_unavailable: N/A
     discover_users: Descubra usuarias
     documentation: Documentación
     extended_description_html: |
@@ -57,17 +55,8 @@ gl:
     people_who_follow: Personas que seguen a %{name}
     pin_errors:
       following: Debe seguir a persoa que intenta recomendar
-    posts:
-      one: Toot
-      other: Toots
-    posts_tab_heading: Toots
     posts_with_replies: Toots e respostas
     reserved_username: O nome de usuaria está reservado
-    roles:
-      admin: Admin
-      bot: Bot
-      moderator: Mod
-    unavailable: Profile unavailable
     unfollow: Deixar de seguir
   admin:
     account_actions:
@@ -80,9 +69,7 @@ gl:
       destroyed_msg: Nota a moderación destruída con éxito!
     accounts:
       approve: Aprobar
-      approve_all: Approve all
       are_you_sure: Está segura?
-      avatar: Avatar
       by_domain: Dominio
       change_email:
         changed_msg: Cambiouse correctamente o correo-e da conta!
@@ -102,7 +89,6 @@ gl:
       display_name: Mostrar nome
       domain: Dominio
       edit: Editar
-      email: Email
       email_status: Estado do correo
       enable: Habilitar
       enabled: Habilitado
@@ -113,11 +99,9 @@ gl:
       header: Cabeceira
       inbox_url: URL da Caixa de entrada
       invited_by: Convidada por
-      ip: IP
       joined: Uniuse
       location:
         all: Todo
-        local: Local
         remote: Remoto
         title: Lugar
       login_status: Estado da conexión
@@ -133,7 +117,6 @@ gl:
       moderation_notes: Notas de moderación
       most_recent_activity: Actividade máis recente
       most_recent_ip: IP máis recente
-      no_account_selected: No accounts were changed as none were selected
       no_limits_imposed: Sen límites impostos
       not_subscribed: Non suscrita
       outbox_url: URL caixa de saída
@@ -146,7 +129,6 @@ gl:
       push_subscription_expires: A suscrición PuSH caduca
       redownload: Actualizar perfil
       reject: Rexeitar
-      reject_all: Reject all
       remove_avatar: Eliminar avatar
       remove_header: Eliminar cabeceira
       resend_confirmation:
@@ -173,7 +155,6 @@ gl:
       statuses: Estados
       subscribe: Subscribir
       suspended: Suspendida
-      time_in_queue: Waiting in queue %{time}
       title: Contas
       unconfirmed_email: Correo non confirmado
       undo_silenced: Desfacer acalar
@@ -181,7 +162,6 @@ gl:
       unsubscribe: Non subscribir
       username: Nome de usuaria
       warn: Aviso
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} asignou o informe %{target} a ela misma"
@@ -226,7 +206,6 @@ gl:
       destroyed_msg: Emojo destruído satisfactoriamente!
       disable: Deshabilitar
       disabled_msg: Deshabilitouse correctamente ese emoji
-      emoji: Emoji
       enable: Habilitar
       enabled_msg: Habilitouse correctamente ese emoji
       image_hint: PNG ate 50KB
@@ -249,14 +228,12 @@ gl:
       feature_profile_directory: Directorio do perfil
       feature_registrations: Rexistros
       feature_relay: Repetidores de federación
-      feature_timeline_preview: Timeline preview
       features: Características
       hidden_service: Federación con servizos ocultos
       open_reports: informes abertos
       recent_users: Usuarias recentes
       search: Busca de texto completo
       single_user_mode: Modo de usuario individual
-      software: Software
       space: Uso de espazo
       title: Taboleiro
       total_users: total de usuarias
@@ -269,7 +246,6 @@ gl:
       created_msg: Estase a procesar o bloqueo do dominio
       destroyed_msg: Desfixose a acción de bloqueo de dominio
       domain: Dominio
-      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Crear bloque
         hint: O bloqueo do dominio non previrá a creación de entradas de contas na base de datos, pero aplicará de xeito retroactivo e automático regras específicas de moderación sobre esas contas.
@@ -335,8 +311,6 @@ gl:
         expired: Cadudado
         title: Filtro
       title: Convida
-    pending_accounts:
-      title: Pending accounts (%{count})
     relays:
       add_new: Engadir un novo repetidor
       delete: Eliminar
@@ -473,7 +447,6 @@ gl:
       confirmed: Confirmado
       expires_in: Caduca en
       last_delivery: Última entrega
-      title: WebSub
       topic: Asunto
     tags:
       accounts: Contas
@@ -482,7 +455,6 @@ gl:
       name: Etiqueta
       title: Etiquetas
       unhide: Mostrar en directorio
-      visible: Visible
     title: Administración
     warning_presets:
       add_new: Engadir novo
@@ -498,15 +470,8 @@ gl:
       body: "%{reporter} informou sobre %{target}"
       body_remote: Alguén desde %{domain} informou sobre %{target}
       subject: 'Novo informe sobre %{instance} (#%{id})'
-  appearance:
-    advanced_web_interface: Advanced web interface
-    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
-    animations_and_accessibility: Animations and accessibility
-    confirmation_dialogs: Confirmation dialogs
-    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Cambiar os axustes de correo-e
-    salutation: "%{name},"
     settings: 'Mudar as preferencias de e-mail: %{link}'
     view: 'Vista:'
     view_profile: Ver perfil
@@ -534,9 +499,6 @@ gl:
     migrate_account: Mover a unha conta diferente
     migrate_account_html: Se desexa redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
     or_log_in_with: ou conectar con
-    providers:
-      cas: CAS
-      saml: SAML
     register: Rexistro
     registration_closed: "%{instance} non está a aceptar novas usuarias"
     resend_confirmation: Voltar a enviar intruccións de confirmación
@@ -557,18 +519,13 @@ gl:
     title: Seguir %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
       about_x_months: "%{count}mes"
       about_x_years: "%{count}a"
       almost_x_years: "%{count}a"
       half_a_minute: Agora
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Agora
       over_x_years: "%{count}a"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
       x_months: "%{count}mes"
-      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Bo intento, hackers! Contrasinal incorrecto
     confirm_password: Introduza o seu contrasinal para verificar a súa identidade
@@ -599,9 +556,6 @@ gl:
       content: Sentímolo, pero algo do noso lado falloou.
       title: Esta páxina non é correcta
     noscript_html: Para utilizar a aplicación web de Mastodon debe habilitar JavaScript. De xeito alternativo, intente unha das <a href="%{apps_path}">apps nativas</a> para Mastodon da súa plataforma.
-  existing_username_validator:
-    not_found: could not find a local user with that username
-    not_found_multiple: could not find %{usernames}
   exports:
     archive_takeout:
       date: Data
@@ -611,7 +565,6 @@ gl:
       request: Solicite o ficheiro
       size: Tamaño
     blocks: A bloquear
-    csv: CSV
     domain_blocks: Bloqueos de dominio
     follows: A seguir
     lists: Listas
@@ -645,13 +598,10 @@ gl:
     all: Todo
     changes_saved_msg: Cambios gardados correctamente!!
     copy: Copiar
-    order_by: Order by
     save_changes: Gardar cambios
     validation_errors:
       one: Algo non está ben de todo! Por favor revise abaixo o erro
       other: Algo aínda non está ben! Por favor revise os %{count} erros abaixo
-  html_validator:
-    invalid_markup: 'contains invalid HTML markup: %{error}'
   identity_proofs:
     active: Activo
     authorize: Si, autorizar
@@ -661,13 +611,10 @@ gl:
       keybase:
         invalid_token: Os testemuños Keybase son hashes de firma e deben ter 66 caracteres hexadecimais
         verification_failed: Keybase non recoñece este testemuño como firma da usuaria de Keybase %{kb_username}. Por favor inténteo desde Keybase.
-      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
     explanation_html: Aquí pódese conectar criptográficamente as suas outras identidades, como a un perfil Keybase. Esto permitelle a outras persoas enviarlle mensaxes cifradas e confiar no contido que vostede lle envía.
     i_am_html: Eu son %{username} en %{service}.
     identity: Identidade
     inactive: Inactiva
-    publicize_checkbox: 'And toot this:'
-    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
     status: Estado da validación
     view_proof: Ver proba
   imports:
@@ -755,23 +702,11 @@ gl:
       body: 'O seu estado foi promocionado por %{name}:'
       subject: "%{name} promoveu o seu estado"
       title: Nova promoción
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: Máis novo
     next: Seguinte
     older: Máis antigo
     prev: Previo
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Xa votou en esta sondaxe
@@ -784,13 +719,9 @@ gl:
       too_many_options: non pode haber máis de %{max} opcións
   preferences:
     other: Outro
-    posting_defaults: Posting defaults
-    public_timelines: Public timelines
   relationships:
     activity: Actividade da conta
     dormant: En repouso
-    last_active: Last active
-    most_recent: Most recent
     moved: Movida
     mutual: Mutuo
     primary: Principal
@@ -828,47 +759,18 @@ gl:
     activity: Última actividade
     browser: Navegador
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Navegador descoñecido
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Navegador Nokia S40 Ovi
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
       qq: Navegador QQ
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
     explanation: Estos son os navegadores web nos que actualmente ten sesión aberta.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: plataforma descoñecida
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Revocar
     revoke_success: A sesión revocouse con éxito
     title: Sesións
   settings:
-    account: Account
-    account_settings: Account settings
-    appearance: Appearance
     authorized_apps: Apps autorizadas
     back: Voltar a Mastodon
     delete: Eliminación da conta
@@ -878,11 +780,9 @@ gl:
     featured_tags: Etiquetas destacadas
     identity_proofs: Probas de identidade
     import: Importar
-    import_and_export: Import and export
     migrate: Migrar conta
     notifications: Notificacións
     preferences: Preferencias
-    profile: Profile
     relationships: Seguindo e seguidoras
     two_factor_authentication: Validar Doble Factor
   statuses:
@@ -914,7 +814,6 @@ gl:
       vote: Votar
     show_more: Mostrar máis
     sign_in_to_participate: Conéctese para participar na conversa
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Só seguidoras
       private_long: Mostrar só as seguidoras
@@ -1016,7 +915,6 @@ gl:
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Introducir o código xerado polo seu aplicativo de autenticación para confirmar
     description_html: Si habilita a <strong>autenticación de doble factor</strong>, a conexión pediralle estar en posesión do seu teléfono, que xerará testemuños para poder entrar.
