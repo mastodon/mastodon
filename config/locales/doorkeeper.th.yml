@@ -1,10 +1,11 @@
----
 th:
   activerecord:
     attributes:
       doorkeeper/application:
         name: ชื่อ
         redirect_uri: เปลี่ยนเส้นทาง URI
+        scopes: Scopes
+        website: Application website
     errors:
       models:
         doorkeeper/application:
@@ -33,9 +34,13 @@ th:
         redirect_uri: ใช้บรรทัดละหนึ่ง URI
         scopes: Separate scopes with spaces. Leave blank to use the default scopes.
       index:
+        application: Application
         callback_url: Callback URL
+        delete: Delete
         name: ชื่อ
         new: New Application
+        scopes: Scopes
+        show: Show
         title: Your applications
       new:
         title: New Application
@@ -109,5 +114,28 @@ th:
         title: OAuth authorization required
     scopes:
       follow: follow, block, unblock and unfollow accounts
+      push: receive your push notifications
       read: read your account's data
+      "read:accounts": see accounts information
+      "read:blocks": see your blocks
+      "read:favourites": see your favourites
+      "read:filters": see your filters
+      "read:follows": see your follows
+      "read:lists": see your lists
+      "read:mutes": see your mutes
+      "read:notifications": see your notifications
+      "read:reports": see your reports
+      "read:search": search on your behalf
+      "read:statuses": see all statuses
       write: post on your behalf
+      "write:accounts": modify your profile
+      "write:blocks": block accounts and domains
+      "write:favourites": favourite statuses
+      "write:filters": create filters
+      "write:follows": follow people
+      "write:lists": create lists
+      "write:media": upload media files
+      "write:mutes": mute people and conversations
+      "write:notifications": clear your notifications
+      "write:reports": report other people
+      "write:statuses": publish statuses
