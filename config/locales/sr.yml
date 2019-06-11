@@ -1,35 +1,43 @@
----
 sr:
   about:
-    about_hashtag_html: Ово су јавни статуси таговани са <strong>#%{hashtag}</strong>. Можете одговарати на њих ако имате налог било где у федиверсу.
+    about_hashtag_html: 'Ово су јавни статуси таговани са <strong>#%{hashtag}</strong>. Можете одговарати на њих ако имате налог било где у федиверсу.'
     about_mastodon_html: Мастодон је друштвена мрежа базирана на отвореним протоколима и слободном софтверу отвореног кода. Децентрализована је као што је децентрализована е-пошта.
     about_this: О инстанци
+    active_count_after: active
+    active_footnote: Monthly Active Users (MAU)
     administered_by: 'Администрирано од стране:'
     api: API
     apps: Мобилне апликације
+    apps_platforms: Use Mastodon from iOS, Android and other platforms
+    browse_directory: Browse a profile directory and filter by interests
+    browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Контакт
     contact_missing: Није постављено
     contact_unavailable: N/A
+    discover_users: Discover users
     documentation: Документација
     extended_description_html: |
       <h3>Добро место за правила</h3>
       <p>Проширени опис који још није постављен.</p>
+    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} је сервер на мрежи"
+    get_apps: Try a mobile app
     hosted_on: Мастодонт хостован на %{domain}
     learn_more: Сазнајте више
     privacy_policy: Полиса приватности
+    see_whats_happening: See what's happening
+    server_stats: 'Server stats:'
     source_code: Изворни код
     status_count_after:
-      few: статуси
-      many: статуси
       one: статус
+      few: статуси
       other: статуса
     status_count_before: Који су написали
+    tagline: Follow friends and discover new ones
     terms: Услови коришћења
     user_count_after:
-      few: корисници
-      many: корисници
       one: корисник
+      few: корисници
       other: корисника
     user_count_before: Дом за
     what_is_mastodon: Шта је Мастодон?
@@ -37,9 +45,8 @@ sr:
     choices_html: "%{name}'s избори:"
     follow: Запрати
     followers:
-      few: Пратиоци
-      many: Пратиоци
       one: Пратиоц
+      few: Пратиоци
       other: Пратиоци
     following: Пратим
     joined: Придружио/ла се %{date}
@@ -54,9 +61,8 @@ sr:
     pin_errors:
       following: Морате пратити ову особу ако хоћете да потврдите
     posts:
-      few: Трубе
-      many: Трубе
       one: Труба
+      few: Трубе
       other: Трубе
     posts_tab_heading: Трубе
     posts_with_replies: Трубе и одговори
@@ -65,6 +71,7 @@ sr:
       admin: Администратор
       bot: Бот
       moderator: Модератор
+    unavailable: Profile unavailable
     unfollow: Отпрати
   admin:
     account_actions:
@@ -76,6 +83,8 @@ sr:
       delete: Обриши
       destroyed_msg: Модераторска белешка успешно обрисана!
     accounts:
+      approve: Approve
+      approve_all: Approve all
       are_you_sure: Да ли сте сигурни?
       avatar: Аватар
       by_domain: Домен
@@ -121,15 +130,18 @@ sr:
       moderation:
         active: Активан
         all: Сви
+        pending: Pending
         silenced: Ућуткани
         suspended: Суспендовани
         title: Модерација
       moderation_notes: Модераторске белешке
       most_recent_activity: Најскорија активност
       most_recent_ip: Најскорија IP адреса
+      no_account_selected: No accounts were changed as none were selected
       no_limits_imposed: Нема ограничења
       not_subscribed: Није претплаћен
       outbox_url: Одлазно сандуче
+      pending: Pending review
       perform_full_suspension: Искључи
       profile_url: Адреса профила
       promote: Унапреди
@@ -137,6 +149,8 @@ sr:
       public: Јавно
       push_subscription_expires: PuSH претплата истиче
       redownload: Освежи профил
+      reject: Reject
+      reject_all: Reject all
       remove_avatar: Уклони аватар
       remove_header: Одстрани заглавље
       resend_confirmation:
@@ -163,6 +177,7 @@ sr:
       statuses: Статуси
       subscribe: Претплати се
       suspended: Суспендовани
+      time_in_queue: Waiting in queue %{time}
       title: Налози
       unconfirmed_email: Непотврђена е-пошта
       undo_silenced: Укини ћутање
@@ -238,6 +253,7 @@ sr:
       feature_profile_directory: Фасцикла профила
       feature_registrations: Регистрација
       feature_relay: Федеративни релеј
+      feature_timeline_preview: Timeline preview
       features: Карактеристике
       hidden_service: Федерација са скривеним услугама
       open_reports: отворене пријаве
@@ -257,6 +273,7 @@ sr:
       created_msg: Блокирање домена се обрађује
       destroyed_msg: Блокирање домена је опозвано
       domain: Домен
+      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Направи блокаду
         hint: Блокирање домена неће спречити прављење налога у бази, али ће ретроактивно и аутоматски применити одређене модераторске методе над тим налозима.
@@ -277,10 +294,9 @@ sr:
         suspend: суспендовани
       show:
         affected_accounts:
-          few: Утиче на %{count} налога у бази
-          many: Утиче на %{count} налога у бази
           one: Један налог у бази података је под утицајем
-          other: Утиче на %{count} налога у бази података
+          few: "Утиче на %{count} налога у бази"
+          other: "Утиче на %{count} налога у бази података"
         retroactive:
           silence: Угаси ућуткивање за све постојеће налоге са овог домена
           suspend: Уклони суспензије за све постојеће налоге са овог домена
@@ -301,11 +317,11 @@ sr:
       back_to_account: Назад на налог
       title: "%{acct} Пратиоци"
     instances:
+      by_domain: Domain
       delivery_available: Достава је доступна
       known_accounts:
-        few: "%{count} знаних налога"
-        many: "%{count} знаних налога"
         one: "%{count} знан налог"
+        few: "%{count} знаних налога"
         other: "%{count} знаних налога"
       moderation:
         all: Све
@@ -316,6 +332,7 @@ sr:
       total_followed_by_them: Праћени од стране њих
       total_followed_by_us: Праћени од стране нас
       total_reported: Пријаве везане за њих
+      total_storage: Media attachments
     invites:
       deactivate_all: Деактивирај све
       filter:
@@ -324,10 +341,12 @@ sr:
         expired: Истекли
         title: Филтер
       title: Позивнице
+    pending_accounts:
+      title: Pending accounts (%{count})
     relays:
       add_new: Додај нови релеј
       delete: Обриши
-      description_html: "<strong>Федерални релеј</strong> је посреднички сервер који размењује велике количине јавних труба између сервера на који је претплаћен и на који објављује.<strong>Може помоћи малим и средњим серверима да открију садржај из федиверса</strong>, који иначе захтева од локалних корисника да ручно пратити остале људе на удаљеним серверима."
+      description_html: <strong>Федерални релеј</strong> је посреднички сервер који размењује велике количине јавних труба између сервера на који је претплаћен и на који објављује.<strong>Може помоћи малим и средњим серверима да открију садржај из федиверса</strong>, који иначе захтева од локалних корисника да ручно пратити остале људе на удаљеним серверима.
       disable: Искључи
       disabled: Искључен
       enable: Укључи
@@ -410,6 +429,12 @@ sr:
         min_invite_role:
           disabled: Нико
           title: Само преко позивнице
+      registrations_mode:
+        modes:
+          approved: Approval required for sign up
+          none: Nobody can sign up
+          open: Anyone can sign up
+        title: Registrations mode
       show_known_fediverse_at_about_page:
         desc_html: Када се упали, показаће трубе из свих знаних федиверса на преглед. У супротном ће само показати локалне трубе.
         title: Покажи познате здружене инстанце у прегледнику временске линије
@@ -472,10 +497,19 @@ sr:
       edit_preset: Уреди пресет упозорења
       title: Управљај пресетима упозорења
   admin_mailer:
+    new_pending_account:
+      body: The details of the new account are below. You can approve or reject this application.
+      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter} је пријавио %{target}"
       body_remote: Нека са домена %{domain} је пријавио %{target}
-      subject: Нова пријава за %{instance} (#%{id})
+      subject: 'Нова пријава за %{instance} (#%{id})'
+  appearance:
+    advanced_web_interface: Advanced web interface
+    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
+    animations_and_accessibility: Animations and accessibility
+    confirmation_dialogs: Confirmation dialogs
+    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Промени преференце Е-поште
     salutation: "%{name},"
@@ -492,7 +526,9 @@ sr:
     warning: Опрезно са овим подацима. Никад је не делите ни са ким!
     your_token: Ваш приступни токен
   auth:
+    apply_for_account: Request an invite
     change_password: Лозинка
+    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: Потврдите адресу е-поште
     delete_account: Обриши налог
     delete_account_html: Ако желите да обришете Ваш налог, можете <a href="%{path}">наставити овде</a>. Бићете упитани да потврдите.
@@ -508,10 +544,12 @@ sr:
       cas: CAS-ом
       saml: SAML-ом
     register: Региструј се
+    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: Пошаљи поруку са упутствима о потврди налога поново
     reset_password: Ресетуј лозинку
     security: Безбедност
     set_new_password: Постави нову лозинку
+    trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: Већ пратите овај налог
     error: Нажалост, десила се грешка при тражењу удаљеног налога
@@ -548,12 +586,13 @@ sr:
   directories:
     directory: Профил фасцикле
     enabled: Ви сте тренутно видљиви у фасцикли.
+    enabled_but_waiting: You have opted-in to be listed in the directory, but you do not have the minimum number of followers (%{min_followers}) to be listed yet.
     explanation: Откријте кориснике на основу њихових интереса
     explore_mastodon: Истражи %{title}
+    how_to_enable: You are not currently opted-in to the directory. You can opt-in below. Use hashtags in your bio text to be listed under specific hashtags!
     people:
-      few: "%{count} људе"
-      many: "%{count} људе"
       one: "%{count} особа/е"
+      few: "%{count} људе"
       other: "%{count} људи"
   errors:
     '403': Немате дозвола да видите ову страну.
@@ -567,6 +606,9 @@ sr:
       content: Извињавамо се, нешто је пошло по злу са ове стране.
       title: Страна није исправна
     noscript_html: Да бисте користили Мастодонт веб апликацију, омогућите JavaScript. У супротном, пробајте неку од <a href="%{apps_path}">оригиналних апликација</a> за Мастодонт за Вашу платформу.
+  existing_username_validator:
+    not_found: could not find a local user with that username
+    not_found_multiple: could not find %{usernames}
   exports:
     archive_takeout:
       date: Датум
@@ -582,6 +624,10 @@ sr:
     lists: Листе
     mutes: Ућуткали сте
     storage: Мултимедијално складиште
+  featured_tags:
+    add_new: Add new
+    errors:
+      limit: You have already featured the maximum amount of hashtags
   filters:
     contexts:
       home: Временска линија почетне
@@ -603,19 +649,46 @@ sr:
     more: Више…
     resources: Ресурси
   generic:
+    all: All
     changes_saved_msg: Измене успешно сачуване!
     copy: Копирај
+    order_by: Order by
     save_changes: Сними измене
     validation_errors:
-      few: Нешто није баш како треба! Прегледајте %{count} грешке испод
-      many: Нешто није баш како треба! Прегледајте %{count} грешака испод
       one: Нешто није баш како треба! Прегледајте грешке испод
+      few: Нешто није баш како треба! Прегледајте %{count} грешке испод
       other: Нешто није баш како треба! Прегледајте %{count} грешака испод
+  html_validator:
+    invalid_markup: 'contains invalid HTML markup: %{error}'
+  identity_proofs:
+    active: Active
+    authorize: Yes, authorize
+    authorize_connection_prompt: Authorize this cryptographic connection?
+    errors:
+      failed: The cryptographic connection failed. Please try again from %{provider}.
+      keybase:
+        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
+        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
+      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
+    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
+    i_am_html: I am %{username} on %{service}.
+    identity: Identity
+    inactive: Inactive
+    publicize_checkbox: 'And toot this:'
+    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    status: Verification status
+    view_proof: View proof
   imports:
+    modes:
+      merge: Merge
+      merge_long: Keep existing records and add new ones
+      overwrite: Overwrite
+      overwrite_long: Replace current records with the new ones
     preface: Можете увести податке које сте извезли са друге инстанце, као што су листе људи које сте пратили или блокирали.
     success: Ваши подаци су успешно отпремљени и биће обрађени ускоро
     types:
       blocking: Листа блокирања
+      domain_blocking: Domain blocking list
       following: Листа пратилаца
       muting: Листа ућутканих
     upload: Отпреми
@@ -634,9 +707,8 @@ sr:
     generate: Генериши
     invited_by: 'Позвао Вас је:'
     max_uses:
-      few: "%{count} коришћења"
-      many: "%{count} коришћења"
       one: 1 коришћење
+      few: "%{count} коришћења"
       other: "%{count} коришћења"
     max_uses_prompt: Без ограничења
     prompt: Генериши и подели линкове са другима да им одобрите приступ овој инстанци
@@ -664,18 +736,16 @@ sr:
       body: Ево кратак преглед порука које сте пропустили од последње посете од %{since}
       mention: "%{name} Вас је поменуо у:"
       new_followers_summary:
-        few: Добили сте %{count} нова пратиоца! Сјајно!
-        many: Добили сте %{count} нових пратиоца! Сјајно!
         one: Добили сте једног новог пратиоца! Јеее!
+        few: Добили сте %{count} нова пратиоца! Сјајно!
         other: Добили сте %{count} нових пратиоца! Сјајно!
       subject:
-        few: "%{count} нова обавештења од последње посете \U0001F418"
-        many: "%{count} нових обавештења од последње посете \U0001F418"
         one: "1 ново обавештење од последње посете \U0001F418"
+        few: "%{count} нова обавештења од последње посете \U0001F418"
         other: "%{count} нових обавештења од последње посете \U0001F418"
       title: Док нисте били ту...
     favourite:
-      body: "%{name} је поставио као омиљен Ваш статус:"
+      body: '%{name} је поставио као омиљен Ваш статус:'
       subject: "%{name} је поставио као омиљен Ваш статус"
       title: Нови омиљени
     follow:
@@ -689,11 +759,11 @@ sr:
       title: Нови захтев за праћење
     mention:
       action: Одговори
-      body: "%{name} Вас је поменуо у:"
-      subject: "%{name} Вас је поменуо"
+      body: '%{name} Вас је поменуо у:'
+      subject: '%{name} Вас је поменуо'
       title: Ново спомињање
     reblog:
-      body: "%{name} Вам је подржао/ла статус:"
+      body: '%{name} Вам је подржао/ла статус:'
       subject: "%{name} је подржао/ла Ваш статус"
       title: Нова подршка
   number:
@@ -713,8 +783,33 @@ sr:
     older: Старије
     prev: Претходни
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: You have already voted on this poll
+      duplicate_options: contain duplicate items
+      duration_too_long: is too far into the future
+      duration_too_short: is too soon
+      expired: The poll has already ended
+      over_character_limit: cannot be longer than %{max} characters each
+      too_few_options: must have more than one item
+      too_many_options: can't contain more than %{max} items
   preferences:
     other: Остало
+    posting_defaults: Posting defaults
+    public_timelines: Public timelines
+  relationships:
+    activity: Account activity
+    dormant: Dormant
+    last_active: Last active
+    most_recent: Most recent
+    moved: Moved
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Remove all followers from the selected domains
+    remove_selected_followers: Remove selected followers
+    remove_selected_follows: Unfollow selected users
+    status: Account status
   remote_follow:
     acct: Унесите Ваш корисник@домен са кога желите да пратите
     missing_resource: Не могу да нађем захтевану адресу преусмеравања за Ваш налог
@@ -723,6 +818,9 @@ sr:
     prompt: 'Запратићете:'
     reason_html: "<strong>Зашто је овај корак неопходан?</strong><code>%{instance}</code> можда није сервер на којем сте регистровани, тако да прво морамо да вас преусмеримо на ваш сервер."
   remote_interaction:
+    favourite:
+      proceed: Proceed to favourite
+      prompt: 'You want to favourite this toot:'
     reblog:
       proceed: Наставите да бисте поделили
       prompt: 'Желите да делите ову трубу:'
@@ -779,36 +877,41 @@ sr:
     revoke_success: Сесија успешно опозвана
     title: Сесије
   settings:
+    account: Account
+    account_settings: Account settings
+    appearance: Appearance
     authorized_apps: Ауторизоване апликације
     back: Назад на Мастодон
     delete: Брисање налога
     development: Развој
     edit_profile: Измена профила
     export: Извоз података
+    featured_tags: Featured hashtags
+    identity_proofs: Identity proofs
     import: Увоз
+    import_and_export: Import and export
     migrate: Пребацивање налога
     notifications: Обавештења
     preferences: Подешавања
+    profile: Profile
+    relationships: Follows and followers
     two_factor_authentication: Двофакторска идентификација
   statuses:
     attached:
       description: 'У прилогу: %{attached}'
       image:
-        few: "%{count} слика"
-        many: "%{count} слика"
         one: "%{count} слику"
+        few: "%{count} слика"
         other: "%{count} слика"
       video:
-        few: "%{count} видео записа"
-        many: "%{count} видео записа"
         one: "%{count} видео запис"
+        few: "%{count} видео записа"
         other: "%{count} видео записа"
     boosted_from_html: Подржано од %{acct_link}
     content_warning: 'Упозорење на садржај: %{warning}'
     disallowed_hashtags:
-      few: 'садржи забрањене хештегове: %{tags}'
-      many: 'садржи забрањене хештегове: %{tags}'
       one: 'садржи забрањени хештег: %{tags}'
+      few: 'садржи забрањене хештегове: %{tags}'
       other: 'садржи забрањене хештегове: %{tags}'
     language_detection: Аутоматскo откривање језика
     open_in_web: Отвори у вебу
@@ -818,6 +921,12 @@ sr:
       ownership: Туђе трубе не могу да се прикаче
       private: Трубе које нису јавне не могу бити прикачене
       reblog: Подршка не може да се прикачи
+    poll:
+      total_votes:
+        one: "%{count} vote"
+        few: "%{count} votes"
+        other: "%{count} votes"
+      vote: Vote
     show_more: Прикажи још
     sign_in_to_participate: Пријавите се да учествујете у разговору
     title: '%{name}: "%{quote}"'
@@ -833,7 +942,88 @@ sr:
     reblogged: подржано
     sensitive_content: Осетљив садржај
   terms:
-    title: Услови коришћења и политика приватности инстанце %{instance}
+    body_html: |
+      <h2>Privacy Policy</h2>
+      <h3 id="collect">What information do we collect?</h3>
+
+      <ul>
+      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">What do we use your information for?</h3>
+
+      <p>Any of the information we collect from you may be used in the following ways:</p>
+
+      <ul>
+      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">How do we protect your information?</h3>
+
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">What is our data retention policy?</h3>
+
+      <p>We will make a good faith effort to:</p>
+
+      <ul>
+      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+      </ul>
+
+      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
+
+      <p>You may irreversibly delete your account at any time.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Do we use cookies?</h3>
+
+      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+
+      <p>We use cookies to understand and save your preferences for future visits.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
+
+      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
+
+      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
+
+      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Site usage by children</h3>
+
+      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
+
+      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+
+      <p>Law requirements can be different if this server is in another jurisdiction.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Changes to our Privacy Policy</h3>
+
+      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+
+      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
+
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+    title: "Услови коришћења и политика приватности инстанце %{instance}"
   themes:
     contrast: Велики контраст
     default: Мастодон
