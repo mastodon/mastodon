@@ -6,7 +6,6 @@ pl:
     active_count_after: aktywni
     active_footnote: Aktywni użytkownicy miesięcznie (MAU)
     administered_by: 'Administrowana przez:'
-    api: API
     apps: Aplikacje
     apps_platforms: Korzystaj z Mastodona z poziomu iOS-a, Androida i innych
     browse_directory: Przeglądaj katalog profilów i filtruj z uwzględnieniem zainteresowań
@@ -73,9 +72,7 @@ pl:
     reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
       admin: Administrator
-      bot: Bot
       moderator: Moderator
-    unavailable: Profile unavailable
     unfollow: Przestań śledzić
   admin:
     account_actions:
@@ -88,7 +85,6 @@ pl:
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
     accounts:
       approve: Przyjmij
-      approve_all: Approve all
       are_you_sure: Jesteś tego pewien?
       avatar: Awatar
       by_domain: Domena
@@ -141,7 +137,6 @@ pl:
       moderation_notes: Notatki moderacyjne
       most_recent_activity: Najnowsza aktywność
       most_recent_ip: Ostatnie IP
-      no_account_selected: No accounts were changed as none were selected
       no_limits_imposed: Nie nałożono ograniczeń
       not_subscribed: Nie zasubskrybowano
       outbox_url: Adres skrzynki nadawczej
@@ -154,7 +149,6 @@ pl:
       push_subscription_expires: Subskrypcja PuSH wygasa
       redownload: Odśwież profil
       reject: Odrzuć
-      reject_all: Reject all
       remove_avatar: Usun awatar
       remove_header: Usuń nagłówek
       resend_confirmation:
@@ -166,8 +160,6 @@ pl:
       resubscribe: Ponów subskrypcję
       role: Uprawnienia
       roles:
-        admin: Administrator
-        moderator: Moderator
         staff: Ekipa
         user: Użytkownik
       salmon_url: Adres Salmon
@@ -181,7 +173,6 @@ pl:
       statuses: Wpisy
       subscribe: Subskrybuj
       suspended: Zawieszono
-      time_in_queue: Waiting in queue %{time}
       title: Konta
       unconfirmed_email: Niepotwierdzony adres e-mail
       undo_silenced: Cofnij wyciszenie
@@ -234,7 +225,6 @@ pl:
       destroyed_msg: Pomyślnie usunięto emoji!
       disable: Wyłącz
       disabled_msg: Pomyślnie wyłączono emoji
-      emoji: Emoji
       enable: Włącz
       enabled_msg: Pomyślnie przywrócono emoji
       image_hint: Plik PNG ważący do 50KB
@@ -242,7 +232,6 @@ pl:
       new:
         title: Dodaj nowe niestandardowe emoji
       overwrite: Zastąp
-      shortcode: Shortcode
       shortcode_hint: Co najmniej 2 znaki, tylko znaki alfanumeryczne i podkreślniki
       title: Niestandardowe emoji
       unlisted: Niewidoczne
@@ -277,7 +266,6 @@ pl:
       created_msg: Blokada domen jest przetwarzana
       destroyed_msg: Blokada domeny nie może zostać odwrócona
       domain: Domena
-      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Utwórz blokadę
         hint: Blokada domen nie zabroni tworzenia wpisów kont w bazie danych, ale pozwoli na automatyczną moderację kont do nich należących.
@@ -347,8 +335,6 @@ pl:
         expired: Wygasłe
         title: Filtruj
       title: Zaproszenia
-    pending_accounts:
-      title: Pending accounts (%{count})
     relays:
       add_new: Dodaj nowy
       delete: Usuń
@@ -474,8 +460,6 @@ pl:
         nsfw_off: Cofnij NSFW
         nsfw_on: Oznacz jako NSFW
       failed_to_execute: Nie udało się wykonać
-      media:
-        title: Media
       no_media: Bez zawartości multimedialnej
       no_status_selected: Żaden wpis nie został zmieniony, bo żaden nie został wybrany
       title: Wpisy konta
@@ -485,13 +469,11 @@ pl:
       confirmed: Potwierdzone
       expires_in: Wygasa
       last_delivery: Ostatnio doręczono
-      title: WebSub
       topic: Temat
     tags:
       accounts: Konta
       hidden: Ukryte
       hide: Ukryj w katalogu
-      name: Hashtag
       title: Hashtagi
       unhide: Pokazuj w katalogu
       visible: Widoczne
@@ -510,15 +492,8 @@ pl:
       body: "Użytkownik %{reporter} zgłosił(a) %{target}"
       body_remote: Użytkownik instancji %{domain} zgłosił(a) %{target}
       subject: 'Nowe zgłoszenie na %{instance} (#%{id})'
-  appearance:
-    advanced_web_interface: Advanced web interface
-    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
-    animations_and_accessibility: Animations and accessibility
-    confirmation_dialogs: Confirmation dialogs
-    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
-    salutation: "%{name},"
     settings: 'Zmień ustawienia powiadamiania: %{link}'
     view: 'Zobacz:'
     view_profile: Wyświetl profil
@@ -546,9 +521,6 @@ pl:
     migrate_account: Przenieś konto
     migrate_account_html: Jeżeli chcesz skonfigurować przekierowanie z obecnego konta na inne, możesz <a href="%{path}">zrobić to tutaj</a>.
     or_log_in_with: Lub zaloguj się z użyciem
-    providers:
-      cas: CAS
-      saml: SAML
     register: Rejestracja
     registration_closed: "%{instance} nie przyjmuje nowych członków"
     resend_confirmation: Ponownie prześlij instrukcje weryfikacji
@@ -569,7 +541,6 @@ pl:
     title: Śledź %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
       about_x_months: "%{count} miesięcy"
       about_x_years: "%{count} lat"
       almost_x_years: "%{count} lat"
@@ -580,7 +551,6 @@ pl:
       x_days: "%{count} dni"
       x_minutes: "%{count}min"
       x_months: "%{count} miesięcy"
-      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Niezła próba, hakerze! Wprowadzono nieprawidłowe hasło
     confirm_password: Wprowadź aktualne hasło, aby potwierdzić tożsamość
@@ -625,7 +595,6 @@ pl:
       request: Uzyskaj archiwum
       size: Rozmiar
     blocks: Zablokowani
-    csv: CSV
     domain_blocks: Blokady domen
     follows: Śledzeni
     lists: Listy
@@ -777,23 +746,11 @@ pl:
       body: 'Twój wpis został podbity przez %{name}:'
       subject: "Twój wpis został podbity przez %{name}"
       title: Nowe podbicie
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: Nowsze
     next: Następna
     older: Starsze
     prev: Poprzednia
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Już oddałeś(-aś) głos w tym głosowaniu
@@ -806,8 +763,6 @@ pl:
       too_many_options: nie może zawierać więcej niż %{max} opcji
   preferences:
     other: Pozostałe
-    posting_defaults: Posting defaults
-    public_timelines: Public timelines
   relationships:
     activity: Aktywność konta
     dormant: Uśpione
@@ -850,47 +805,19 @@ pl:
     activity: Ostatnia aktywność
     browser: Przeglądarka
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: nieznana przeglądarka
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
       otter: Przeglądarka Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Obecna sesja
     description: "%{browser} na %{platform}"
     explanation: Przeglądarki z aktywną sesją Twojego konta.
     ip: Adres IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
       mac: macOS
       other: nieznana platforma
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Unieważnij
     revoke_success: Pomyślnie unieważniono sesję
     title: Sesje
   settings:
-    account: Account
-    account_settings: Account settings
-    appearance: Appearance
     authorized_apps: Uwierzytelnione aplikacje
     back: Powrót do Mastodona
     delete: Usuń konto
@@ -900,11 +827,9 @@ pl:
     featured_tags: Wyróżnione hashtagi
     identity_proofs: Dowody tożsamości
     import: Importowanie danych
-    import_and_export: Import and export
     migrate: Migracja konta
     notifications: Powiadomienia
     preferences: Preferencje
-    profile: Profile
     relationships: Śledzeni i śledzący
     two_factor_authentication: Uwierzytelnianie dwuetapowe
   statuses:
@@ -944,7 +869,6 @@ pl:
       vote: Głosuj
     show_more: Pokaż więcej
     sign_in_to_participate: Zaloguj się, aby udzielić się w tej konwersacji
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Tylko dla śledzących
       private_long: Widoczne tylko dla osób, które Cię śledzą
@@ -1043,10 +967,6 @@ pl:
     contrast: Mastodon (Wysoki kontrast)
     default: Mastodon (Ciemny)
     mastodon-light: Mastodon (Jasny)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Aby kontynuować, wprowadź kod wyświetlany przez aplikację uwierzytelniającą
     description_html: Jeśli włączysz <strong>uwierzytelnianie dwuetapowe</strong>, logowanie się będzie wymagało podania tokenu wyświetlonego na Twoim telefonie.
