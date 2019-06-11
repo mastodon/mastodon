@@ -1,4 +1,3 @@
----
 ko:
   devise:
     confirmations:
@@ -74,3 +73,12 @@ ko:
       send_instructions: 몇 분 이내로 계정 잠금 해제에 대한 안내 메일이 발송 됩니다. 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
       send_paranoid_instructions: 계정이 존재한다면 몇 분 이내로 계정 잠금 해제에 대한 안내 메일이 발송 됩니다. 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
       unlocked: 계정이 성공적으로 잠금 해제 되었습니다. 계속 하려면 로그인 하세요.
+  errors:
+    messages:
+      already_confirmed: was already confirmed, please try signing in
+      confirmation_period_expired: needs to be confirmed within %{period}, please request a new one
+      expired: has expired, please request a new one
+      not_found: not found
+      not_locked: was not locked
+      not_saved:
+        other: "%{count} errors prohibited this %{resource} from being saved:"
