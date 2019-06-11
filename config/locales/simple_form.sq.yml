@@ -1,4 +1,3 @@
----
 sq:
   simple_form:
     hints:
@@ -27,6 +26,7 @@ sq:
         phrase: Do të kërkohet përputhje pavarësish se teksti ose sinjalizimi mbi lëndën e një mesazhi është shkruar me të mëdha apo me të vogla
         scopes: Cilat API do të lejohet të përdorë aplikacioni. Nëse përzgjidhni një shkallë të epërme, nuk ju duhet të përzgjidhni individualet një nga një.
         setting_aggregate_reblogs: Mos shfaq përforcime të reja për mesazhe që janë përforcuar tani së fundi (prek vetëm përforcime të marra rishtas)
+        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
         setting_display_media_default: Fshih media me shenjën rezervat
         setting_display_media_hide_all: Fshih përherë krejt mediat
         setting_display_media_show_all: Mediat me shenjën rezervat shfaqi përherë
@@ -39,6 +39,8 @@ sq:
         name: 'Mund të doni të përdorni një nga këto:'
       imports:
         data: Kartelë CSV të eksportuar nga një tjetër shërbyes Mastodon
+      invite_request:
+        text: This will help us review your application
       sessions:
         otp: 'Jepni kodin dyfaktorësh të prodhuar nga aplikacioni i telefonit tuaj ose përdorni një nga kodet tuaj të rikthimive:'
       user:
@@ -86,6 +88,7 @@ sq:
         otp_attempt: Kod mirëfilltësimi dyfaktorësh
         password: Fjalëkalim
         phrase: Fjalëkyç ose frazë
+        setting_advanced_layout: Enable advanced web interface
         setting_aggregate_reblogs: Grupoji përforcimet në rrjedha kohore
         setting_auto_play_gif: Vetëluaji GIF-et e animuar
         setting_boost_modal: Shfaq dialog ripohimi përpara përforcimi
@@ -116,16 +119,20 @@ sq:
         must_be_follower: Blloko njoftime nga jo-ndjekës
         must_be_following: Blloko njoftime nga persona që nuk i ndiqni
         must_be_following_dm: Blloko mesazhe të drejtpërdrejt nga persona që nuk i ndiqni
+      invite_request:
+        text: Why do you want to join?
       notification_emails:
         digest: Dërgo email-e përmbledhës
         favourite: Të dërgohet email kur dikush parapëlqen gjendjen tuaj
         follow: Të dërgohet email kur dikush fillon t’ju ndjekë
         follow_request: Të dërgohet email kur dikush kërkon t’ju ndjekë
         mention: Të dërgohet email kur dikush ju përmend
+        pending_account: Send e-mail when a new account needs review
         reblog: Dërgo email kur dikush përforcon gjendjen time
         report: Dërgo email kur parashtrohet një raportim i ri
-    'no': Jo
+    'no': 'Jo'
+    recommended: Recommended
     required:
       mark: "*"
       text: e domosdoshme
-    'yes': Po
+    'yes': 'Po'
