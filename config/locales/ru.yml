@@ -170,7 +170,6 @@ ru:
         moderator: Модератор
         staff: Персонал
         user: Пользователь
-      salmon_url: Salmon URL
       search: Поиск
       shared_inbox_url: URL общих входящих
       show:
@@ -181,7 +180,6 @@ ru:
       statuses: Статусы
       subscribe: Подписаться
       suspended: Заморожен
-      time_in_queue: Waiting in queue %{time}
       title: Аккаунты
       unconfirmed_email: Неподтверждённый e-mail
       undo_silenced: Снять глушение
@@ -277,7 +275,6 @@ ru:
       created_msg: Блокировка домена обрабатывается
       destroyed_msg: Блокировка домена снята
       domain: Домен
-      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Создать блокировку
         hint: Блокировка домена не предотвратит создание новых аккаунтов в базе данных, но ретроактивно и автоматически применит указанные методы модерации для этих аккаунтов.
@@ -512,9 +509,6 @@ ru:
       subject: 'Новая жалоба, узел %{instance} (#%{id})'
   appearance:
     advanced_web_interface: Многоколоночный интерфейс
-    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
-    animations_and_accessibility: Animations and accessibility
-    confirmation_dialogs: Confirmation dialogs
     sensitive_content: Чувствительное содержимое
   application_mailer:
     notification_preferences: Изменить настройки e-mail
@@ -787,7 +781,6 @@ ru:
           quadrillion: квадрлн
           thousand: тыс
           trillion: трлн
-          unit: ''
   pagination:
     newer: Новее
     next: След
@@ -806,7 +799,6 @@ ru:
       too_many_options: может содержать не больше %{max} вариантов
   preferences:
     other: Другое
-    posting_defaults: Posting defaults
     public_timelines: Публичные ленты
   relationships:
     activity: Активность аккаунта
