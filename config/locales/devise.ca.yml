@@ -1,4 +1,3 @@
----
 ca:
   devise:
     confirmations:
@@ -8,10 +7,10 @@ ca:
     failure:
       already_authenticated: Ja estàs registrat.
       inactive: El teu compte encara no s'ha activat.
-      invalid: "%{authentication_keys} o contrasenya no són vàlids."
+      invalid: '%{authentication_keys} o contrasenya no són vàlids.'
       last_attempt: Tens un intent més, abans que es bloqui el compte.
       locked: El compte s'ha blocat.
-      not_found_in_database: "%{authentication_keys} o contrasenya no vàlids."
+      not_found_in_database: '%{authentication_keys} o contrasenya no vàlids.'
       pending: El teu compte encara està en revisió.
       timeout: La sessió ha expirat. Inicia sessió una altra vegada per a continuar.
       unauthenticated: Cal iniciar sessió o registrar-se abans de continuar.
