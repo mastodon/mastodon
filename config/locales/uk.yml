@@ -1,55 +1,94 @@
----
 uk:
   about:
-    about_hashtag_html: Немає публічних постів з хештегом<strong>#%{hashtag}</strong>. Ви можете  You can interact with them if you have an account anywhere in the fediverse.
+    about_hashtag_html: 'Немає публічних постів з хештегом<strong>#%{hashtag}</strong>. Ви можете  You can interact with them if you have an account anywhere in the fediverse.'
     about_mastodon_html: Mastodon - це <em>вільна</em> соціальна мережа з <em>відкритим вихідним кодом</em>. Вона є <em>децентралізованою</em> альтернативою комерційним платформам, що дозволяє уникнути ризиків монополізації вашого спілкування однією компанією. Виберіть сервер, якому ви довіряєте &mdash; що б ви не вибрали, Ви зможете спілкуватись з усіма іншими. Будь-який користувач може запустити власну інстанцію Mastodon та без проблем брати участь в <em>соціальній мережі</em>.
     about_this: Про цю інстанцію
+    active_count_after: active
+    active_footnote: Monthly Active Users (MAU)
     administered_by: 'Адміністратор:'
     api: API
+    apps: Mobile apps
+    apps_platforms: Use Mastodon from iOS, Android and other platforms
+    browse_directory: Browse a profile directory and filter by interests
+    browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Зв'язатися
     contact_missing: Не зазначено
     contact_unavailable: Недоступно
+    discover_users: Discover users
     documentation: Документація
     extended_description_html: |
       <h3>Гарне місце для правил</h3>
       <p>Детальний опис ще не налаштований.</p>
+    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} є одним сервером у мережі"
+    get_apps: Try a mobile app
     hosted_on: Mastodon розміщено на %{domain}
     learn_more: Дізнатися більше
     privacy_policy: Політика приватності
+    see_whats_happening: See what's happening
+    server_stats: 'Server stats:'
     source_code: Вихідний код
-    status_count_after: статусів
+    status_count_after:
+      one: status
+      few: statuses
+      many: statuses
+      other: statuses
     status_count_before: Опубліковано
+    tagline: Follow friends and discover new ones
     terms: Правила використання
-    user_count_after: користувачів
+    user_count_after:
+      one: user
+      few: users
+      many: users
+      other: users
     user_count_before: Тут живе
     what_is_mastodon: Що таке Mastodon?
   accounts:
+    choices_html: "%{name}'s choices:"
     follow: Підписатися
-    followers: Підписники
+    followers:
+      one: Follower
+      few: Followers
+      many: Followers
+      other: Followers
     following: Підписаний(-а)
     joined: Приєднався %{date}
+    last_active: last active
+    link_verified_on: Ownership of this link was checked on %{date}
     media: Медіа
     moved_html: "%{name} переїхав на %{new_profile_link}:"
     network_hidden: Ця інформація недоступна
     nothing_here: Тут нічого немає!
     people_followed_by: Люди, на яких підписаний(-а) %{name}
     people_who_follow: Підписники %{name}
-    posts: Пости
+    pin_errors:
+      following: You must be already following the person you want to endorse
+    posts:
+      one: Toot
+      few: Toots
+      many: Toots
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Пости і відповіді
     reserved_username: Це ім'я користувача зарезервоване
     roles:
       admin: Адміністратор
       bot: Бот
       moderator: Мод
+    unavailable: Profile unavailable
     unfollow: Відписатися
   admin:
+    account_actions:
+      action: Perform action
+      title: Perform moderation action on %{acct}
     account_moderation_notes:
       create: Залишити примітки
       created_msg: Примітку модератора успішно створено!
       delete: Видалити
       destroyed_msg: Примітку модератора успішно видалено!
     accounts:
+      approve: Approve
+      approve_all: Approve all
       are_you_sure: Ви впевнені?
       avatar: Аватар
       by_domain: Домен
@@ -63,6 +102,7 @@ uk:
       confirm: Зберегти
       confirmed: Збережено
       confirming: Зберігається
+      deleted: Deleted
       demote: Усунути
       disable: Вимкнути
       disable_two_factor_authentication: Вимкнути двофакторну авторизацію
@@ -78,8 +118,11 @@ uk:
       followers: Підписники
       followers_url: URL підписників
       follows: Підписки
+      header: Header
       inbox_url: Вхідний URL
+      invited_by: Invited by
       ip: IP
+      joined: Joined
       location:
         all: Усі
         local: Локальні
@@ -89,15 +132,20 @@ uk:
       media_attachments: Мультимедійні вкладення
       memorialize: Зробити пам'ятником
       moderation:
+        active: Active
         all: Усі
+        pending: Pending
         silenced: Заглушені
         suspended: Заблоковані
         title: Модерація
       moderation_notes: Примітки модераторів
       most_recent_activity: Остання активність
       most_recent_ip: Останній IP
+      no_account_selected: No accounts were changed as none were selected
+      no_limits_imposed: No limits imposed
       not_subscribed: Не підписані
       outbox_url: Вихідний URL
+      pending: Pending review
       perform_full_suspension: Повне блокування
       profile_url: URL профілю
       promote: Просунути
@@ -105,7 +153,10 @@ uk:
       public: Публічний
       push_subscription_expires: Підписка PuSH спливає
       redownload: Оновити аватар
+      reject: Reject
+      reject_all: Reject all
       remove_avatar: Видалити аватар
+      remove_header: Remove header
       resend_confirmation:
         already_confirmed: Цей користувач уже підтверджений
         send: Надіслати підтвердження ще раз
@@ -126,24 +177,30 @@ uk:
         created_reports: Скарги створені цим аккаунтом
         targeted_reports: Скарги щодо цього аккаунту
       silence: Глушення
+      silenced: Silenced
       statuses: Статуси
       subscribe: Підписатися
+      suspended: Suspended
+      time_in_queue: Waiting in queue %{time}
       title: Акаунти
       unconfirmed_email: Непідтверджений e-mail
       undo_silenced: Зняти глушення
       undo_suspension: Зняти блокування
       unsubscribe: Відписатися
       username: Ім'я користувача
+      warn: Warn
       web: WWW
     action_logs:
       actions:
         assigned_to_self_report: "%{name} призначив(-ла) скаргу %{target} на себе"
         change_email_user: "%{name} змінив(-ла) поштову адресу користувача %{target}"
         confirm_user: "%{name} підтвердив(-ла) статус поштової адреси користувача %{target}"
+        create_account_warning: "%{name} sent a warning to %{target}"
         create_custom_emoji: "%{name} вивантажив(-ла) нове емодзі %{target}"
         create_domain_block: "%{name} заблокував(-ла) домен %{target}"
         create_email_domain_block: "%{name} додав(-ла) поштовий домен %{target} до чорного списку"
         demote_user: "%{name} понизив(-ла) %{target}"
+        destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_block: "%{name} розблокував(-ла) домен %{target}"
         destroy_email_domain_block: "%{name} додав(-ла) поштовий домен %{target} до білого списку"
         destroy_status: "%{name} видалив(-ла) статус користувача %{target}"
@@ -165,6 +222,7 @@ uk:
         unsuspend_account: "%{name} розблокував аккаунт користувача %{target}"
         update_custom_emoji: "%{name} оновив(-ла) емодзі %{target}"
         update_status: "%{name} змінив(-ла) статус користуача %{target}"
+      deleted_status: "(deleted status)"
       title: Журнал подій
     custom_emojis:
       by_domain: Домен
@@ -192,10 +250,14 @@ uk:
       updated_msg: Емодзі успішно оновлене!
       upload: Вивантажити
     dashboard:
+      backlog: backlogged jobs
       config: Налаштування
       feature_deletions: Видалення аккаунтів
       feature_invites: Посилання-запрошення
+      feature_profile_directory: Profile directory
       feature_registrations: Реєстрації
+      feature_relay: Federation relay
+      feature_timeline_preview: Timeline preview
       features: Можливості
       hidden_service: Федерація з прихованими сервісами
       open_reports: відкриті скарги
@@ -215,6 +277,7 @@ uk:
       created_msg: Блокування домену оброблюється
       destroyed_msg: Блокування домену знято
       domain: Домен
+      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Створити блокування
         hint: Блокування домену не завадить створенню нових акаунтів у базі даних, але ретроактивно та автоматично застосує вказані методи модерації для цих акаунтів.
@@ -226,12 +289,19 @@ uk:
         title: Нове блокування домену
       reject_media: Заборонити медіаконтент
       reject_media_hint: Видаляє медіаконтент, збережений локально, і забороняє його завантаження у майбутньому. Не має значення у випадку блокування
+      reject_reports: Reject reports
+      reject_reports_hint: Ignore all reports coming from this domain. Irrelevant for suspensions
+      rejecting_media: rejecting media files
+      rejecting_reports: rejecting reports
+      severity:
+        silence: silenced
+        suspend: suspended
       show:
         affected_accounts:
-          few: Впливає на %{count} акаунти у базі даних
-          many: Впливає на %{count} акаунтів у базі даних
           one: Впливає на один акаунт у базі даних
-          other: Впливає на %{count} акаунтів у базі даних
+          few: "Впливає на %{count} акаунти у базі даних"
+          many: "Впливає на %{count} акаунтів у базі даних"
+          other: "Впливає на %{count} акаунтів у базі даних"
         retroactive:
           silence: Зняти глушення з усіх існуючих акаунтів цього домену
           suspend: Зняти блокування з усіх існуючих акаунтів цього домену
@@ -248,17 +318,52 @@ uk:
         create: Додати домен
         title: Нове доменне блокування домену email
       title: Чорний список поштових доменів
+    followers:
+      back_to_account: Back To Account
+      title: "%{acct}'s Followers"
     instances:
+      by_domain: Domain
+      delivery_available: Delivery is available
+      known_accounts:
+        one: "%{count} known account"
+        few: "%{count} known accounts"
+        many: "%{count} known accounts"
+        other: "%{count} known accounts"
+      moderation:
+        all: All
+        limited: Limited
+        title: Moderation
       title: Відомі інстанції
+      total_blocked_by_us: Blocked by us
+      total_followed_by_them: Followed by them
+      total_followed_by_us: Followed by us
+      total_reported: Reports about them
+      total_storage: Media attachments
     invites:
+      deactivate_all: Deactivate all
       filter:
         all: Все
         available: Доступно
         expired: Просрочено
         title: Фільтр
       title: Запрошення
+    pending_accounts:
+      title: Pending accounts (%{count})
     relays:
+      add_new: Add new relay
+      delete: Delete
+      description_html: A <strong>federation relay</strong> is an intermediary server that exchanges large volumes of public toots between servers that subscribe and publish to it. <strong>It can help small and medium servers discover content from the fediverse</strong>, which would otherwise require local users manually following other people on remote servers.
+      disable: Disable
+      disabled: Disabled
+      enable: Enable
+      enable_hint: Once enabled, your server will subscribe to all public toots from this relay, and will begin sending this server's public toots to it.
+      enabled: Enabled
+      inbox_url: Relay URL
+      pending: Waiting for relay's approval
+      save_and_enable: Save and enable
+      setup: Setup a relay connection
       status: Статус
+      title: Relays
     report_notes:
       created_msg: Скарга успішно створена!
       destroyed_msg: Скарга успішно видалена!
@@ -297,19 +402,29 @@ uk:
         desc_html: Кількість локальних постів, активних та нових користувачів у тижневих розрізах
         title: Публікація агрегованої статистики про активність користувачів
       bootstrap_timeline_accounts:
+        desc_html: Separate multiple usernames by comma. Only local and unlocked accounts will work. Default when empty is all local admins.
         title: Підписки за замовчуванням для нових користувачів
       contact_information:
         email: Введіть публічний email
         username: Введіть ім'я користувача
+      custom_css:
+        desc_html: Modify the look with CSS loaded on every page
+        title: Custom CSS
       hero:
         desc_html: Відображається на головній сторінці. Рекомендована як мінімум 600x100 пікселів. Якщо не вказано, буде використано передпоказ інстанції
         title: Банер інстанції
+      mascot:
+        desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
+        title: Mascot image
       peers_api_enabled:
         desc_html: Доменні ім'я, помічені цією інстанцією федисвіту
         title: Опублікувати список знайдених інстанцій
       preview_sensitive_media:
         desc_html: Передпоказ посилання на інших сайтах буде відображати мініатюру навіть якщо медіа відмічене як вразливе
         title: Показувати вразливе медія у перепоказі OpenGraph
+      profile_directory:
+        desc_html: Allow users to be discoverable
+        title: Enable profile directory
       registrations:
         closed_message:
           desc_html: Відображається на титульній сторінці, коли реєстрація закрита <br>Можна використовувати HTML-теги
@@ -320,6 +435,12 @@ uk:
         min_invite_role:
           disabled: Ніхто
           title: Дозволити запрошення від
+      registrations_mode:
+        modes:
+          approved: Approval required for sign up
+          none: Nobody can sign up
+          open: Anyone can sign up
+        title: Registrations mode
       show_known_fediverse_at_about_page:
         desc_html: Коли увімкнено, будуть показані пости з усього відомого федисвіту у передпоказі. Інакше будуть показані локальні пости.
         title: Показувати доступний федисвіт у передпоказі фіду
@@ -332,10 +453,11 @@ uk:
       site_description_extended:
         desc_html: Відображається на сторінці додаткової информації<br>Можна використовувати HTML-теги
         title: Розширений опис сайту
+      site_short_description:
+        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph.
+        title: Short server description
       site_terms:
-        desc_html: |-
-          Ви можене написати власну політику приватності, умови використанні та інші законні штуки<br>
-          Можете використовувати HTML теги
+        desc_html: "Ви можене написати власну політику приватності, умови використанні та інші законні штуки<br>\nМожете використовувати HTML теги"
         title: Особливі умови використання
       site_title: Назва сайту
       thumbnail:
@@ -355,6 +477,7 @@ uk:
       media:
         title: Медіа
       no_media: Немає медіа
+      no_status_selected: No statuses were changed as none were selected
       title: Статуси аккаунтів
       with_media: З медіа
     subscriptions:
@@ -364,12 +487,35 @@ uk:
       last_delivery: Остання доставка
       title: WebSub
       topic: Тема
+    tags:
+      accounts: Accounts
+      hidden: Hidden
+      hide: Hide from directory
+      name: Hashtag
+      title: Hashtags
+      unhide: Show in directory
+      visible: Visible
     title: Адміністрування
+    warning_presets:
+      add_new: Add new
+      delete: Delete
+      edit: Edit
+      edit_preset: Edit warning preset
+      title: Manage warning presets
   admin_mailer:
+    new_pending_account:
+      body: The details of the new account are below. You can approve or reject this application.
+      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter} поскаржився(-лася) %{target}"
       body_remote: Хтось з домену %{domain} поскаржився(-лася) %{target}
-      subject: Нова скарга до %{instance} (#%{id})
+      subject: 'Нова скарга до %{instance} (#%{id})'
+  appearance:
+    advanced_web_interface: Advanced web interface
+    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
+    animations_and_accessibility: Animations and accessibility
+    confirmation_dialogs: Confirmation dialogs
+    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Змінити налаштування e-mail
     salutation: "%{name},"
@@ -386,7 +532,9 @@ uk:
     warning: Будьте дуже обережні з цими даними. Ніколи не діліться ними ні з ким!
     your_token: Ваш токен доступу
   auth:
+    apply_for_account: Request an invite
     change_password: Пароль
+    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: Підтвердьте e-mail адресу
     delete_account: Видалити аккаунт
     delete_account_html: Якщо ви хочете видалити аккаунт, ви можете <a href="%{path}">перейти сюди</a>. Вас попросять підтвердити дію.
@@ -402,10 +550,12 @@ uk:
       cas: CAS
       saml: SAML
     register: Зареєструватися
+    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: Повторно відправити інструкції з підтвердження
     reset_password: Скинути пароль
     security: Зміна паролю
     set_new_password: Встановити новий пароль
+    trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: Ви вже підписані на цей аккаунт
     error: На жаль, при пошуку віддаленого аккаунту виникла помилка
@@ -439,6 +589,18 @@ uk:
     success_msg: Ваш аккаунт було успішно видалено
     warning_html: Ми можемо гарантувати видалення контенти <b>лише з цього сайту</b>. Контент, що був поширений залишає сліди. Сервери, що є офлайн та ті, що відписалися від наших оновлень не запишуть змін до своїх баз даних.
     warning_title: Про доступність поширеного контенту
+  directories:
+    directory: Profile directory
+    enabled: You are currently listed in the directory.
+    enabled_but_waiting: You have opted-in to be listed in the directory, but you do not have the minimum number of followers (%{min_followers}) to be listed yet.
+    explanation: Discover users based on their interests
+    explore_mastodon: Explore %{title}
+    how_to_enable: You are not currently opted-in to the directory. You can opt-in below. Use hashtags in your bio text to be listed under specific hashtags!
+    people:
+      one: "%{count} person"
+      few: "%{count} people"
+      many: "%{count} people"
+      other: "%{count} people"
   errors:
     '403': У Вас немає доступу до перегляду даної сторінки.
     '404': Сторінка, яку Ви шукали, не існує.
@@ -451,6 +613,9 @@ uk:
       content: Пробачте, та щось пішло не так з нашого боку.
       title: Ця сторінка неправильна
     noscript_html: Для використання веб-застосунку Mastodon, будь-ласка увімкніть JavaScript. Якщо у вас немає такої можливості, скористайтесь одним із <a href="%{apps_path}">нативних застосунків</a> для Mastodon для вашої платформи.
+  existing_username_validator:
+    not_found: could not find a local user with that username
+    not_found_multiple: could not find %{usernames}
   exports:
     archive_takeout:
       date: Дата
@@ -461,9 +626,15 @@ uk:
       size: Розмір
     blocks: Список блокувань
     csv: CSV
+    domain_blocks: Domain blocks
     follows: Підписки
+    lists: Lists
     mutes: Список глушення
     storage: Ваш медіаконтент
+  featured_tags:
+    add_new: Add new
+    errors:
+      limit: You have already featured the maximum amount of hashtags
   filters:
     contexts:
       home: Ваш фід
@@ -480,15 +651,52 @@ uk:
       title: Фільтри
     new:
       title: Додати фільтр
+  footer:
+    developers: Developers
+    more: More…
+    resources: Resources
   generic:
+    all: All
     changes_saved_msg: Зміни успішно збережені!
+    copy: Copy
+    order_by: Order by
     save_changes: Зберегти зміни
-    validation_errors: Щось тут не так! Будь ласка, ознайомтеся з %{count} помилками нижче
+    validation_errors:
+      one: Something isn't quite right yet! Please review the error below
+      few: Something isn't quite right yet! Please review %{count} errors below
+      many: Something isn't quite right yet! Please review %{count} errors below
+      other: Something isn't quite right yet! Please review %{count} errors below
+  html_validator:
+    invalid_markup: 'contains invalid HTML markup: %{error}'
+  identity_proofs:
+    active: Active
+    authorize: Yes, authorize
+    authorize_connection_prompt: Authorize this cryptographic connection?
+    errors:
+      failed: The cryptographic connection failed. Please try again from %{provider}.
+      keybase:
+        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
+        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
+      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
+    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
+    i_am_html: I am %{username} on %{service}.
+    identity: Identity
+    inactive: Inactive
+    publicize_checkbox: 'And toot this:'
+    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    status: Verification status
+    view_proof: View proof
   imports:
+    modes:
+      merge: Merge
+      merge_long: Keep existing records and add new ones
+      overwrite: Overwrite
+      overwrite_long: Replace current records with the new ones
     preface: Вы можете завантажити деякі дані, наприклад, списки людей, на яких Ви підписані чи яких блокуєте, в Ваш акаунт на цій інстанції з файлів, експортованих з іншої інстанції.
     success: Ваші дані були успішно загружені та будуть оброблені в найближчий момент
     types:
       blocking: Список блокувань
+      domain_blocking: Domain blocking list
       following: Підписки
       muting: Список глушення
     upload: Завантажити
@@ -506,7 +714,11 @@ uk:
     expires_in_prompt: Ніколи
     generate: Згенерувати
     invited_by: 'Вас запросив(-ла):'
-    max_uses: "%{count} використань"
+    max_uses:
+      one: 1 use
+      few: "%{count} uses"
+      many: "%{count} uses"
+      other: "%{count} uses"
     max_uses_prompt: Без обмеження
     prompt: Генеруйте та діліться посиланням з іншими для надання доступу до сайту
     table:
@@ -533,19 +745,19 @@ uk:
       body: Коротко про пропущене вами з Вашого останнього входу %{since}
       mention: "%{name} згадав(-ла) Вас в:"
       new_followers_summary:
+        one: Також, у Вас з'явився новий підписник, коли ви були відсутні! Ура!
         few: У Вас з'явилось %{count} нових підписники! Чудово!
         many: У Вас з'явилось %{count} нових підписників! Чудово!
-        one: Також, у Вас з'явився новий підписник, коли ви були відсутні! Ура!
         other: Також, у Вас з'явилось %{count} нових підписників, поки ви були відсутні! Чудово!
       subject:
+        one: "1 нове сповіщення з Вашого останнього входу \U0001F418"
         few: "%{count} нові сповіщення з Вашого останнього входу \U0001F418"
         many: "%{count} нових сповіщень з Вашого останнього входу \U0001F418"
-        one: "1 нове сповіщення з Вашого останнього входу \U0001F418"
         other: "%{count} нових сповіщень з Вашого останнього входу \U0001F418"
       title: Поки ви були відсутні...
     favourite:
       body: 'Ваш статус подобається %{name}:'
-      subject: Користувачу %{name} сподобався ваш статус
+      subject: "Користувачу %{name} сподобався ваш статус"
       title: Нове вподобання
     follow:
       body: "%{name} тепер підписаний на вас!"
@@ -554,7 +766,7 @@ uk:
     follow_request:
       action: Керувати запитами на підписку
       body: "%{name} запитав Вас про підписку"
-      subject: "%{name} хоче підписатися на Вас"
+      subject: '%{name} хоче підписатися на Вас'
       title: Новий запит на підписку
     mention:
       action: Відповісти
@@ -579,20 +791,61 @@ uk:
   pagination:
     newer: Новіше
     next: Далі
+    older: Older
     prev: Назад
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: You have already voted on this poll
+      duplicate_options: contain duplicate items
+      duration_too_long: is too far into the future
+      duration_too_short: is too soon
+      expired: The poll has already ended
+      over_character_limit: cannot be longer than %{max} characters each
+      too_few_options: must have more than one item
+      too_many_options: can't contain more than %{max} items
   preferences:
     other: Інше
+    posting_defaults: Posting defaults
+    public_timelines: Public timelines
+  relationships:
+    activity: Account activity
+    dormant: Dormant
+    last_active: Last active
+    most_recent: Most recent
+    moved: Moved
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Remove all followers from the selected domains
+    remove_selected_followers: Remove selected followers
+    remove_selected_follows: Unfollow selected users
+    status: Account status
   remote_follow:
     acct: Введіть username@domain, яким ви хочете підписатися
     missing_resource: Пошук потрібного перенаправлення URL для Вашого аккаунта закінчився невдачею
     no_account_html: Не маєте аккаунту? Не біда, ви можете <a href='%{sign_up_path}' target='_blank'>зареєструватися</a>
     proceed: Перейти до підписки
     prompt: 'Ви хочете підписатися на:'
+    reason_html: "<strong>Why is this step necessary?</strong> <code>%{instance}</code> might not be the server where you are registered, so we need to redirect you to your home server first."
+  remote_interaction:
+    favourite:
+      proceed: Proceed to favourite
+      prompt: 'You want to favourite this toot:'
+    reblog:
+      proceed: Proceed to boost
+      prompt: 'You want to boost this toot:'
+    reply:
+      proceed: Proceed to reply
+      prompt: 'You want to reply to this toot:'
   remote_unfollow:
     error: Помилка
     title: Заголовок
     unfollowed: Відписані
+  scheduled_statuses:
+    over_daily_limit: You have exceeded the limit of %{limit} scheduled toots for that day
+    over_total_limit: You have exceeded the limit of %{limit} scheduled toots
+    too_soon: The scheduled date must be in the future
   sessions:
     activity: Остання активність
     browser: Браузер
@@ -635,25 +888,45 @@ uk:
     revoke_success: Сесія успішно закінчена
     title: Сесії
   settings:
+    account: Account
+    account_settings: Account settings
+    appearance: Appearance
     authorized_apps: Авторизовані застосунки
     back: Назад у Mastodon
     delete: Видалення аккаунту
     development: Розробка
     edit_profile: Редагувати профіль
     export: Експорт даних
+    featured_tags: Featured hashtags
+    identity_proofs: Identity proofs
     import: Імпорт
+    import_and_export: Import and export
     migrate: Міграція акаунту
     notifications: Сповіщення
     preferences: Налаштування
+    profile: Profile
+    relationships: Follows and followers
     two_factor_authentication: Двофакторна авторизація
   statuses:
     attached:
       description: 'Прикріплено: %{attached}'
-      image: "%{count} картинки"
-      video: "%{count} відео"
+      image:
+        one: "%{count} image"
+        few: "%{count} images"
+        many: "%{count} images"
+        other: "%{count} images"
+      video:
+        one: "%{count} video"
+        few: "%{count} videos"
+        many: "%{count} videos"
+        other: "%{count} videos"
     boosted_from_html: Просунуто від %{acct_link}
     content_warning: 'Попередження про контент: %{warning}'
-    disallowed_hashtags: 'містив заборонені хештеґи: %{tags}'
+    disallowed_hashtags:
+      one: 'contained a disallowed hashtag: %{tags}'
+      few: 'contained the disallowed hashtags: %{tags}'
+      many: 'contained the disallowed hashtags: %{tags}'
+      other: 'contained the disallowed hashtags: %{tags}'
     language_detection: Автоматично визначати мову
     open_in_web: Відкрити у вебі
     over_character_limit: перевищено ліміт символів (%{max})
@@ -662,7 +935,15 @@ uk:
       ownership: Не можна закріпити чужий пост
       private: Не можна закріпити непублічний пост
       reblog: Не можна закріпити просунутий пост
+    poll:
+      total_votes:
+        one: "%{count} vote"
+        few: "%{count} votes"
+        many: "%{count} votes"
+        other: "%{count} votes"
+      vote: Vote
     show_more: Детальніше
+    sign_in_to_participate: Sign in to participate in the conversation
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Для підписників
@@ -676,7 +957,88 @@ uk:
     reblogged: передмухнув(-ла)
     sensitive_content: Несприйнятливий контент
   terms:
-    title: Умови використання та Політика приватності %{instance}
+    body_html: |
+      <h2>Privacy Policy</h2>
+      <h3 id="collect">What information do we collect?</h3>
+
+      <ul>
+      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">What do we use your information for?</h3>
+
+      <p>Any of the information we collect from you may be used in the following ways:</p>
+
+      <ul>
+      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">How do we protect your information?</h3>
+
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">What is our data retention policy?</h3>
+
+      <p>We will make a good faith effort to:</p>
+
+      <ul>
+      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+      </ul>
+
+      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
+
+      <p>You may irreversibly delete your account at any time.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Do we use cookies?</h3>
+
+      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+
+      <p>We use cookies to understand and save your preferences for future visits.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
+
+      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
+
+      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
+
+      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Site usage by children</h3>
+
+      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
+
+      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+
+      <p>Law requirements can be different if this server is in another jurisdiction.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Changes to our Privacy Policy</h3>
+
+      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+
+      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
+
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+    title: "Умови використання та Політика приватності %{instance}"
   themes:
     contrast: Висока контрасність
     default: Mastodon
@@ -684,6 +1046,7 @@ uk:
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Для підтверждення введіть код, згенерований застосунком аутентифікатора
     description_html: При увімкненні <strong>двофакторної аутентифікації</strong>, вхід буде вимагати від Вас використовування Вашого телефона, який згенерує вхідний код.
@@ -705,6 +1068,22 @@ uk:
       explanation: Ви зробили запит на повний архів вашого аккаунту Mastodon. Він вже готовий для завантаження!
       subject: Ваш архів готовий до завантаження
       title: Винесення архіву
+    warning:
+      explanation:
+        disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
+        silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
+        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
+      review_server_policies: Review server policies
+      subject:
+        disable: Your account %{acct} has been frozen
+        none: Warning for %{acct}
+        silence: Your account %{acct} has been limited
+        suspend: Your account %{acct} has been suspended
+      title:
+        disable: Account frozen
+        none: Warning
+        silence: Account limited
+        suspend: Account suspended
     welcome:
       edit_profile_action: Налаштувати профіль
       edit_profile_step: Ви можете налаштувати профіль під себе завантаживши аватар, шпалери, змінивши відображуване ім'я тощо. Якщо ви захочете переглядати нових підписників до того, як вони зможуть підписатися на вас, ви можете заблокувати свій аккаунт.
@@ -723,6 +1102,12 @@ uk:
       tips: Поради
       title: Ласкаво просимо, %{name}!
   users:
+    follow_limit_reached: You cannot follow more than %{limit} people
     invalid_email: Введена адреса e-mail неправильна
     invalid_otp_token: Введено неправильний код
     otp_lost_help_html: Якщо ви втратили доступ до обох, ви можете отримати доступ з %{email}
+    seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
+    signed_in_as: 'Signed in as:'
+  verification:
+    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
+    verification: Verification
