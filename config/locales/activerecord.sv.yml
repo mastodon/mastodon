@@ -1,9 +1,16 @@
----
 sv:
   activerecord:
+    attributes:
+      poll:
+        expires_at: Deadline
+        options: Choices
     errors:
       models:
         account:
           attributes:
             username:
               invalid: enbart bokstäver, siffror och understreck
+        status:
+          attributes:
+            reblog:
+              taken: of status already exists
