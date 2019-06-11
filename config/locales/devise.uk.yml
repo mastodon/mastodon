@@ -1,4 +1,3 @@
----
 uk:
   devise:
     confirmations:
@@ -12,16 +11,40 @@ uk:
       last_attempt: У вас є остання спроба, після якої вхід буде заблокований.
       locked: Ваш акаунт заблокований.
       not_found_in_database: Неправильний %{authentication_keys} або пароль.
+      pending: Your account is still under review.
       timeout: Ваша сесія вичерпана. Будь ласка, зайдіть знову, щоб продовжити.
       unauthenticated: Для продовження Вам потрібно увійти або зареєструватися.
       unconfirmed: Для продовження Вам потрібно підтвердити Вашу поштову скриньку.
     mailer:
       confirmation_instructions:
+        action: Verify email address
+        action_with_app: Confirm and return to %{app}
+        explanation: You have created an account on %{host} with this email address. You are one click away from activating it. If this wasn't you, please ignore this email.
+        explanation_when_pending: You applied for an invite to %{host} with this email address. Once you confirm your e-mail address, we will review your application. You can't login until then. If your application is rejected, your data will be removed, so no further action will be required from you. If this wasn't you, please ignore this email.
+        extra_html: Please also check out <a href="%{terms_path}">the rules of the server</a> and <a href="%{policy_path}">our terms of service</a>.
         subject: 'Mastodon: Інструкції для підтвердження %{instance}'
+        title: Verify email address
+      email_changed:
+        explanation: 'The email address for your account is being changed to:'
+        extra: If you did not change your email, it is likely that someone has gained access to your account. Please change your password immediately or contact the server admin if you're locked out of your account.
+        subject: 'Mastodon: Email changed'
+        title: New email address
       password_change:
+        explanation: The password for your account has been changed.
+        extra: If you did not change your password, it is likely that someone has gained access to your account. Please change your password immediately or contact the server admin if you're locked out of your account.
         subject: 'Mastodon: Ваш пароль змінений'
+        title: Password changed
+      reconfirmation_instructions:
+        explanation: Confirm the new address to change your email.
+        extra: If this change wasn't initiated by you, please ignore this email. The email address for the Mastodon account won't change until you access the link above.
+        subject: 'Mastodon: Confirm email for %{instance}'
+        title: Verify email address
       reset_password_instructions:
+        action: Change password
+        explanation: You requested a new password for your account.
+        extra: If you didn't request this, please ignore this email. Your password won't change until you access the link above and create a new one.
         subject: 'Mastodon: Інструкції для скидання паролю'
+        title: Password reset
       unlock_instructions:
         subject: 'Mastodon: Інструкції для розблокування'
     omniauth_callbacks:
@@ -38,6 +61,7 @@ uk:
       signed_up: Ласкаво просимо! Ви були успішно зареєстровані.
       signed_up_but_inactive: Ви були успішно зареєстровані, але ми не можемо авторизувати вас, оскільки Ваш акаунт ще не активовано.
       signed_up_but_locked: Ви були успішно зареєстровані, аале ми не можемо авторизувати вас, оскільки Ваш акаунт заблокований.
+      signed_up_but_pending: A message with a confirmation link has been sent to your email address. After you click the link, we will review your application. You will be notified if it is approved.
       signed_up_but_unconfirmed: Повідомлення з посиланням на підтвердження будо відправлено на Вашу поштову скриньку. Будь ласка, перейдіть за посиланням, щоб активувати Ваш акаунт.
       update_needs_confirmation: Ви успішно оновили Ваш акаунт, але нам потрібно підтвердити Вашу нову поштову адресу. Будь ласка, перевірте Вашу скриньку та перейдіть за посиланням, щоб активувати Вашу нову адресу.
       updated: Ваш акаунт було успішно оновлено.
@@ -57,7 +81,7 @@ uk:
       not_found: не знайдено
       not_locked: не був заблокований
       not_saved:
+        one: '1 помилка не дала цьому %{resource} зберегтися:'
         few: "%{count} помилок не дало цьому %{resource} зберегтися:"
         many: "%{count} помилок не дало цьому %{resource} зберегтися:"
-        one: '1 помилка не дала цьому %{resource} зберегтися:'
         other: "%{count} помилок не дало цьому %{resource} зберегтися:"
