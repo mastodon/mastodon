@@ -3,54 +3,26 @@ lt:
     about_hashtag_html: 'Čia visiems prieinamas įrankis <strong>#%{hashtag}</strong>. Jūs galite juo naudotis bet kur, jeigu turite paskyra fedi-visatoje.'
     about_mastodon_html: Mastodon, tai socialinis tinklas pagrįstas atviro kodo programavimu, ir atvirais web protokolais. Visiškai nemokamas. Ši sistema decantrilizuota kaip jūsų elektroninis paštas.
     about_this: Apie
-    active_count_after: active
-    active_footnote: Monthly Active Users (MAU)
     administered_by: 'Administruoja:'
-    api: API
     apps: Mobilioji Aplikacija
-    apps_platforms: Use Mastodon from iOS, Android and other platforms
-    browse_directory: Browse a profile directory and filter by interests
-    browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Kontaktai
     contact_missing: Nenustatyta
-    contact_unavailable: N/A
-    discover_users: Discover users
     documentation: Dokumentacija
     extended_description_html: |
       <h3>Taisyklės</h3>
       <p>Ilgas aprašymas dar nėra sudartyas</p>
-    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} yra vienas serveris tinkle"
-    get_apps: Try a mobile app
     hosted_on: Mastodon palaikomas naudojantis %{domain} talpinimu
     learn_more: Daugiau
     privacy_policy: Privatumo Politika
-    see_whats_happening: See what's happening
-    server_stats: 'Server stats:'
     source_code: Šaltinio kodas
-    status_count_after:
-      one: status
-      few: statuses
-      many: statuses
-      other: statuses
     status_count_before: Autorius
-    tagline: Follow friends and discover new ones
     terms: Naudojimo sąlygos
-    user_count_after:
-      one: user
-      few: users
-      many: users
-      other: users
     user_count_before: Namai
     what_is_mastodon: Kas tai, Mastodon?
   accounts:
     choices_html: "%{name} pasirinkimai:"
     follow: Sekti
-    followers:
-      one: Follower
-      few: Followers
-      many: Followers
-      other: Followers
     following: Sekami
     joined: Prisijungiai %{date}
     last_active: paskutinį kartą aktyvus
@@ -63,11 +35,6 @@ lt:
     people_who_follow: Žmonės kurie seka %{name}
     pin_errors:
       following: Privalai sekti žmogų kurį nori pagerbti
-    posts:
-      one: Toot
-      few: Toots
-      many: Toots
-      other: Toots
     posts_tab_heading: Tootai
     posts_with_replies: Tootai ir atsakymai
     reserved_username: Vartotojo vardas rezervuotas
@@ -75,7 +42,6 @@ lt:
       admin: Administratorius
       bot: Bot'as
       moderator: Moderatorius
-    unavailable: Profile unavailable
     unfollow: Nesekti
   admin:
     account_actions:
@@ -87,8 +53,6 @@ lt:
       delete: Ištrinti
       destroyed_msg: Moderacijos žinutė sėkmingai ištrinta!
     accounts:
-      approve: Approve
-      approve_all: Approve all
       are_you_sure: Ar esate įsitikinęs?
       avatar: Profilio nuotrauka
       by_domain: Domenas
@@ -121,7 +85,6 @@ lt:
       header: Antraštė
       inbox_url: Gautųjų URL
       invited_by: Pakvietė
-      ip: IP
       joined: Prisijungė
       location:
         all: Visi
@@ -134,18 +97,15 @@ lt:
       moderation:
         active: Aktyvus
         all: Visi
-        pending: Pending
         silenced: Užtildytas
         suspended: Užrakintas
         title: Moderacija
       moderation_notes: Medaracijos žinutės
       most_recent_activity: Paskutinioji veikla
       most_recent_ip: Paskutinis IP
-      no_account_selected: No accounts were changed as none were selected
       no_limits_imposed: Be limitu
       not_subscribed: Ne prenumeruota
       outbox_url: Išsiustųjų URL
-      pending: Pending review
       perform_full_suspension: Užrakinti
       profile_url: Profilio URL
       promote: Paaukštinti
@@ -153,8 +113,6 @@ lt:
       public: Viešas
       push_subscription_expires: PuSH prenumeramivas pasibaigė
       redownload: Perkrauti profilį
-      reject: Reject
-      reject_all: Reject all
       remove_avatar: Panaikinti profilio nuotrauką
       remove_header: Panaikinti antraštę
       resend_confirmation:
@@ -181,7 +139,6 @@ lt:
       statuses: Statusai
       subscribe: Prenumeruoti
       suspended: Užrakintas
-      time_in_queue: Waiting in queue %{time}
       title: Vartotojai
       unconfirmed_email: Nepatvirtintas el pašto adresas
       undo_silenced: Atšaukti užtildymą
@@ -189,7 +146,6 @@ lt:
       unsubscribe: Nebeprenumeruoti
       username: Slapyvardis
       warn: Įspėti
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} paskyrė reportą %{target} saviems"
@@ -257,7 +213,6 @@ lt:
       feature_profile_directory: Profilio direktorija
       feature_registrations: Registracijos
       feature_relay: Federacijos perjungėjas
-      feature_timeline_preview: Timeline preview
       features: Išskirtinumai
       hidden_service: Federacija su paslėptomis paslaugomis
       open_reports: atidaryti skundai
@@ -277,7 +232,6 @@ lt:
       created_msg: Domeno užblokavimas nagrinėjamas
       destroyed_msg: Domeno blokas pašalintas
       domain: Domenas
-      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Sukurti bloką
         hint: Domeno blokavimas nesustabdys vartotojų paskyrų sukūrimo duomenų sistemoje, tačiau automatiškai pritaikys atitinkamus moderavimo metodus šioms paskyroms.
@@ -297,11 +251,6 @@ lt:
         silence: užtildytas
         suspend: uždraustas
       show:
-        affected_accounts:
-          one: One account in the database affected
-          few: "%{count} accounts in the database affected"
-          many: "%{count} accounts in the database affected"
-          other: "%{count} accounts in the database affected"
         retroactive:
           silence: Atitildyti visus egzistuojančius vartotojus šiame domene
           suspend: Atblokuotis visus egzistuojančius vartotojus šiame domene
@@ -324,11 +273,6 @@ lt:
     instances:
       by_domain: Domenas
       delivery_available: Pristatymas galimas
-      known_accounts:
-        one: "%{count} known account"
-        few: "%{count} known accounts"
-        many: "%{count} known accounts"
-        other: "%{count} known accounts"
       moderation:
         all: Visi
         limited: Limituotas
@@ -347,8 +291,6 @@ lt:
         expired: Pasibaigęs
         title: Filtras
       title: Pakvietimai
-    pending_accounts:
-      title: Pending accounts (%{count})
     relays:
       add_new: Pridėti naują pamainą
       delete: Ištrinti
@@ -435,12 +377,6 @@ lt:
         min_invite_role:
           disabled: Nei vienas
           title: Leisti pakvietimus
-      registrations_mode:
-        modes:
-          approved: Approval required for sign up
-          none: Nobody can sign up
-          open: Anyone can sign up
-        title: Registrations mode
       show_known_fediverse_at_about_page:
         desc_html: Kai įjungta, rodys įrašus iš visos žinomos fedi-visatos. Kitokiu atvėju, rodys tik lokalius įrašus.
         title: Rodyti žinoma fedi-visatos laiko juosta peržiūroje
@@ -503,22 +439,12 @@ lt:
       edit_preset: Keisti įspėjimo nustatymus
       title: Valdyti įspėjimo nustatymus
   admin_mailer:
-    new_pending_account:
-      body: The details of the new account are below. You can approve or reject this application.
-      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter} parašė skundą apie %{target}"
       body_remote: Kažkas iš %{domain} parašė skundą apie %{target}
       subject: 'Naujas skundas %{instance} (#%{id})'
-  appearance:
-    advanced_web_interface: Advanced web interface
-    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
-    animations_and_accessibility: Animations and accessibility
-    confirmation_dialogs: Confirmation dialogs
-    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Keisti el pašto parinktis
-    salutation: "%{name},"
     settings: 'Keisti el pašto parinktis: %{link}'
     view: 'Peržiūra:'
     view_profile: Peržiurėti profilį
@@ -532,9 +458,7 @@ lt:
     warning: Būkite atsargūs su šia informacija. Niekada jos nesidalinkite!
     your_token: Jūsų prieigos žetonas
   auth:
-    apply_for_account: Request an invite
     change_password: Slaptažodis
-    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: Patvirtinti el paštą
     delete_account: Ištrinti paskyrą
     delete_account_html: Jeigu norite ištrinti savo paskyrą, galite eiti <a href="%{path}">čia</a>. Jūsų prašys patvirtinti pasirinkimą.
@@ -546,16 +470,11 @@ lt:
     migrate_account: Prisijungti prie kitos paskyros
     migrate_account_html: Jeigu norite nukreipti šią paskyrą į kita, galite tai <a href="%{path}">konfiguruoti čia</a>.
     or_log_in_with: Arba prisijungti su
-    providers:
-      cas: CAS
-      saml: SAML
     register: Užsiregistruoti
-    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: Išsiųsti dar kartą patvirtinimo instrukcijas
     reset_password: Atstatyti slaptažodį
     security: Apsauga
     set_new_password: Nustatyti naują slaptažodį
-    trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: Jūs jau sekate šią paskyrą
     error: Dėja, aptikta klaida ieškant tolimosios paskyros
@@ -596,11 +515,6 @@ lt:
     explanation: Raskite vartotojus, remiantis tuo, kuo jie domisi
     explore_mastodon: Naršyti %{title}
     how_to_enable: Jūs nesate prisijungęs prie šios direktorijos. Galite prisijungti žemiau. Naudokite saitažodžius savo biografiniame tekste, kad būtumėte rastas naudojantis specifinius saitažodžius!
-    people:
-      one: "%{count} person"
-      few: "%{count} people"
-      many: "%{count} people"
-      other: "%{count} people"
   errors:
     '403': Jūs neturie prieigos matyti šiam puslapiui.
     '404': Puslapis nerastas.
@@ -613,9 +527,6 @@ lt:
       content: Atsiprašome, tačiau mūsų pusėje įvyko klaida.
       title: Netinkamas puslapis
     noscript_html: Kad naudotumėtės Mastodon web aplikacija, prašome įsijungti JavaScript. Alternatyviai, pabandykite viena iš <a href="%{apps_path}">vietinių aplikacijų</a> Mastodon savo platformai.
-  existing_username_validator:
-    not_found: could not find a local user with that username
-    not_found_multiple: could not find %{usernames}
   exports:
     archive_takeout:
       date: Data
@@ -625,7 +536,6 @@ lt:
       request: Prašyti savo archyvo
       size: Dydis
     blocks: Jūs blokuojate
-    csv: CSV
     domain_blocks: Domeno blokai
     follows: Jūs sekate
     lists: Sąrašai
@@ -656,36 +566,9 @@ lt:
     more: Daugiau…
     resources: Resursai
   generic:
-    all: All
     changes_saved_msg: Pakeitimai sėkmingai išsaugoti!
     copy: Kopijuoti
-    order_by: Order by
     save_changes: Išsaugoti pakeitimus
-    validation_errors:
-      one: Something isn't quite right yet! Please review the error below
-      few: Something isn't quite right yet! Please review %{count} errors below
-      many: Something isn't quite right yet! Please review %{count} errors below
-      other: Something isn't quite right yet! Please review %{count} errors below
-  html_validator:
-    invalid_markup: 'contains invalid HTML markup: %{error}'
-  identity_proofs:
-    active: Active
-    authorize: Yes, authorize
-    authorize_connection_prompt: Authorize this cryptographic connection?
-    errors:
-      failed: The cryptographic connection failed. Please try again from %{provider}.
-      keybase:
-        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
-        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
-      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
-    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
-    i_am_html: I am %{username} on %{service}.
-    identity: Identity
-    inactive: Inactive
-    publicize_checkbox: 'And toot this:'
-    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
-    status: Verification status
-    view_proof: View proof
   imports:
     modes:
       merge: Sulieti
@@ -714,11 +597,6 @@ lt:
     expires_in_prompt: Niekada
     generate: Generuoti
     invited_by: 'Jus pakvietė:'
-    max_uses:
-      one: 1 use
-      few: "%{count} uses"
-      many: "%{count} uses"
-      other: "%{count} uses"
     max_uses_prompt: Be limito
     prompt: Generuoti ir dalintis įrašais su kitais, kad sukurti prieigą prie serverio
     table:
@@ -744,16 +622,6 @@ lt:
       action: Peržiurėti visus pranešimus
       body: Čia yra trumpa santrauka žinutės, kurią jūs praleidote nuo jūsų paskutinio apsilankymo %{since}
       mention: "%{name} paminėjo jus:"
-      new_followers_summary:
-        one: Also, you have acquired one new follower while being away! Yay!
-        few: Also, you have acquired %{count} new followers while being away! Amazing!
-        many: Also, you have acquired %{count} new followers while being away! Amazing!
-        other: Also, you have acquired %{count} new followers while being away! Amazing!
-      subject:
-        one: "1 new notification since your last visit \U0001F418"
-        few: "%{count} new notifications since your last visit \U0001F418"
-        many: "%{count} new notifications since your last visit \U0001F418"
-        other: "%{count} new notifications since your last visit \U0001F418"
       title: Kol jūsų nebuvo...
     favourite:
       body: 'Jūsų statusą pamėgo %{name}:'
@@ -777,50 +645,13 @@ lt:
       body: 'Jūsų statusą pakėlė %{name}:'
       subject: "%{name} pakėlė Jūsų statusą"
       title: Naujas pakėlimas
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: Naujesnis
     next: Kitas
     older: Senesnis
     prev: Ankstesnis
-    truncate: "&hellip;"
-  polls:
-    errors:
-      already_voted: You have already voted on this poll
-      duplicate_options: contain duplicate items
-      duration_too_long: is too far into the future
-      duration_too_short: is too soon
-      expired: The poll has already ended
-      over_character_limit: cannot be longer than %{max} characters each
-      too_few_options: must have more than one item
-      too_many_options: can't contain more than %{max} items
   preferences:
     other: Kita
-    posting_defaults: Posting defaults
-    public_timelines: Public timelines
-  relationships:
-    activity: Account activity
-    dormant: Dormant
-    last_active: Last active
-    most_recent: Most recent
-    moved: Moved
-    mutual: Mutual
-    primary: Primary
-    relationship: Relationship
-    remove_selected_domains: Remove all followers from the selected domains
-    remove_selected_followers: Remove selected followers
-    remove_selected_follows: Unfollow selected users
-    status: Account status
   remote_follow:
     acct: Įveskite Jūsų slapyvardį@domenas kurį norite naudoti
     missing_resource: Jūsų paskyros nukreipimo URL nerasta
@@ -850,47 +681,16 @@ lt:
     activity: Paskutinė veikla
     browser: Naršyklė
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Nežinoma naršyklė
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Dabartinė sesija
     description: "%{browser} ant %{platform}"
     explanation: Čia rodomos web naršyklės prijungtos prie Jūsų Mastodon paskyros.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: nežinoma platforma
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Atšaukti
     revoke_success: Sesija sėkmingai atšaukta
     title: Sesijos
   settings:
-    account: Account
-    account_settings: Account settings
-    appearance: Appearance
     authorized_apps: Autorizuotos aplikacijos
     back: Atgal į Mastodon
     delete: Paskyros trynimas
@@ -898,35 +698,16 @@ lt:
     edit_profile: Keisti profilį
     export: Informacijos eksportas
     featured_tags: 'Rodomi saitažodžiai(#)'
-    identity_proofs: Identity proofs
     import: Importuoti
-    import_and_export: Import and export
     migrate: Paskyros migracija
     notifications: Pranešimai
     preferences: Preferencijos
-    profile: Profile
-    relationships: Follows and followers
     two_factor_authentication: Dviejų veiksnių autentikacija
   statuses:
     attached:
       description: 'Pridėta: %{attached}'
-      image:
-        one: "%{count} image"
-        few: "%{count} images"
-        many: "%{count} images"
-        other: "%{count} images"
-      video:
-        one: "%{count} video"
-        few: "%{count} videos"
-        many: "%{count} videos"
-        other: "%{count} videos"
     boosted_from_html: Pakelta iš %{acct_link}
     content_warning: 'Turinio įspėjimas: %{warning}'
-    disallowed_hashtags:
-      one: 'contained a disallowed hashtag: %{tags}'
-      few: 'contained the disallowed hashtags: %{tags}'
-      many: 'contained the disallowed hashtags: %{tags}'
-      other: 'contained the disallowed hashtags: %{tags}'
     language_detection: Automatiškai nustatyti kalbą
     open_in_web: Atidaryti naudojan Web
     over_character_limit: pasiektas %{max} simbolių limitas
@@ -935,16 +716,8 @@ lt:
       ownership: Kitų vartotojų toot'ai negali būti prisegti
       private: Ne vieši toot'ai negali būti prisegti
       reblog: Pakeltos žinutės negali būti prisegtos
-    poll:
-      total_votes:
-        one: "%{count} vote"
-        few: "%{count} votes"
-        many: "%{count} votes"
-        other: "%{count} votes"
-      vote: Vote
     show_more: Daugiau
     sign_in_to_participate: Prisijunkite jeigu norite dalyvauti pokalbyje
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Tik sekėjams
       private_long: Rodyti tik sekėjams
@@ -1041,10 +814,6 @@ lt:
     contrast: Mastodon (Didelio Kontrasto)
     default: Mastodon (Tamsus)
     mastodon-light: Mastodon (Šviesus)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Įveskite autentikacijos aplikacijos sugeneruotą kodą kad galėtumete tęsti
     description_html: Jeigu įjungiate <strong>dviejų veiksnių autentikaciją</strong>, prisijungiant jums reikės turėti su savimi savo telefoną, kuris jums generuos prisijungimo žetonus.
