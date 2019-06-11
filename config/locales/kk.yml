@@ -1,28 +1,38 @@
----
 kk:
   about:
-    about_hashtag_html: Бұл жерде <strong>#%{hashtag}</strong> хэштегімен жинақталған жазбалар. Желіге тіркеліп, сіз де қосыла аласыз бұл ортаға.
+    about_hashtag_html: 'Бұл жерде <strong>#%{hashtag}</strong> хэштегімен жинақталған жазбалар. Желіге тіркеліп, сіз де қосыла аласыз бұл ортаға.'
     about_mastodon_html: Mastodon - әлеуметтік желіге негізделген, тегін және веб протоколды, ашық кодты бағдарлама. Ол email сияқты орталығы жоқ құрылым.
     about_this: Туралы
+    active_count_after: active
+    active_footnote: Monthly Active Users (MAU)
     administered_by: 'Админ:'
     api: API
     apps: Мобиль қосымшалар
+    apps_platforms: Use Mastodon from iOS, Android and other platforms
+    browse_directory: Browse a profile directory and filter by interests
+    browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Байланыс
     contact_missing: Бапталмаған
     contact_unavailable: Белгісіз
+    discover_users: Discover users
     documentation: Құжаттама
     extended_description_html: |
       <h3>Ережелерге арналған жақсы орын</h3>
       <p>Әлі ештеңе жазылмапты</p>
+    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} желідегі серверлердің бірі"
+    get_apps: Try a mobile app
     hosted_on: Mastodon орнатылған %{domain} доменінде
     learn_more: Көбірек білу
     privacy_policy: Құпиялылық саясаты
+    see_whats_happening: See what's happening
+    server_stats: 'Server stats:'
     source_code: Ашық коды
     status_count_after:
       one: жазба
       other: жазба
     status_count_before: Барлығы
+    tagline: Follow friends and discover new ones
     terms: Қолдану шарттары
     user_count_after:
       one: қолданушы
@@ -43,8 +53,8 @@ kk:
     moved_html: "%{name} мына жерге көшті %{new_profile_link}:"
     network_hidden: Бұл ақпарат қолжетімді емес
     nothing_here: Бұл жерде ештеңе жоқ!
-    people_followed_by: "%{name} жазылған адамдар"
-    people_who_follow: "%{name} атты қолданушының оқырмандары"
+    people_followed_by: '%{name} жазылған адамдар'
+    people_who_follow: '%{name} атты қолданушының оқырмандары'
     pin_errors:
       following: Оқығыңыз келген адамға жазылуыңыз керек
     posts:
@@ -57,6 +67,7 @@ kk:
       admin: Админ
       bot: Бот
       moderator: Мод
+    unavailable: Profile unavailable
     unfollow: Оқымау
   admin:
     account_actions:
@@ -68,6 +79,8 @@ kk:
       delete: Өшіру
       destroyed_msg: Модерация жазбасы өшірілді!
     accounts:
+      approve: Approve
+      approve_all: Approve all
       are_you_sure: Шынымен бе?
       avatar: Аватар
       by_domain: Домен
@@ -113,15 +126,18 @@ kk:
       moderation:
         active: Актив
         all: Барлығы
+        pending: Pending
         silenced: Үнсіз
         suspended: Тоқтатылды
         title: Модерация
       moderation_notes: Модерация жазбалары
       most_recent_activity: Соңғы белсенділіктер
       most_recent_ip: Соңғы ІР
+      no_account_selected: No accounts were changed as none were selected
       no_limits_imposed: Шектеу жоқ
       not_subscribed: Жазылмаған
       outbox_url: Кеткен хаттар URL
+      pending: Pending review
       perform_full_suspension: Тоқтат
       profile_url: Профиль URL
       promote: Жарнамалау
@@ -129,6 +145,8 @@ kk:
       public: Ашық
       push_subscription_expires: PuSH жазылу мерзімі аяқталады
       redownload: Профиль жаңарт
+      reject: Reject
+      reject_all: Reject all
       remove_avatar: Аватар өшіру
       remove_header: Мұқаба суретін өшір
       resend_confirmation:
@@ -155,6 +173,7 @@ kk:
       statuses: Статустар
       subscribe: Жазылу
       suspended: Тоқтатылды
+      time_in_queue: Waiting in queue %{time}
       title: Аккаунттар
       unconfirmed_email: Құпталмаған email
       undo_silenced: Үнсіздікті қайтып алу
@@ -230,6 +249,7 @@ kk:
       feature_profile_directory: Профиль каталогы
       feature_registrations: Тіркелулер
       feature_relay: Федерация релесі
+      feature_timeline_preview: Timeline preview
       features: Мүмкіндіктер
       hidden_service: Жасырын қызметтер федерациясы
       open_reports: ашық шағымдар
@@ -249,6 +269,7 @@ kk:
       created_msg: Домендік блок енді өңделуде
       destroyed_msg: Домендік блок қалпына келтірілді
       domain: Домен
+      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Блок құру
         hint: Домендік блок дерекқорда тіркелгі жазбаларын құруға кедергі жасамайды, бірақ сол есептік жазбаларда ретроактивті және автоматты түрде нақты модерация әдістерін қолданады.
@@ -270,11 +291,11 @@ kk:
       show:
         affected_accounts:
           one: Дерекқорда бір тіркелгі қозғалды
-          other: дерекқордағы %{count} аккаунт қозғалған
+          other: "дерекқордағы %{count} аккаунт қозғалған"
         retroactive:
           silence: Осы домендегі бар тіркелгілерді жою
           suspend: Осы домендегі бар барлық тіркелгілерді тоқтатыңыз
-        title: "%{domain} доменіндегі блокты алып таста"
+        title: '%{domain} доменіндегі блокты алып таста'
         undo: Қайтару
       undo: Домен блокын қайтып алу
     email_domain_blocks:
@@ -314,6 +335,8 @@ kk:
         expired: Уақыты өткен
         title: Фильтр
       title: Шақырулар
+    pending_accounts:
+      title: Pending accounts (%{count})
     relays:
       add_new: Жаңа арна қосу
       delete: Өшіру
@@ -400,6 +423,12 @@ kk:
         min_invite_role:
           disabled: Ешкім
           title: Allow шақырулар by
+      registrations_mode:
+        modes:
+          approved: Approval required for sign up
+          none: Nobody can sign up
+          open: Anyone can sign up
+        title: Registrations mode
       show_known_fediverse_at_about_page:
         desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show жергілікті toots.
         title: Show known fediverse on timeline превью
@@ -462,10 +491,19 @@ kk:
       edit_preset: Edit warning prеset
       title: Manage warning presеts
   admin_mailer:
+    new_pending_account:
+      body: The details of the new account are below. You can approve or reject this application.
+      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter} has rеported %{target}"
       body_remote: Someone from %{domain} has rеported %{target}
-      subject: New rеport for %{instance} (#%{id})
+      subject: 'New rеport for %{instance} (#%{id})'
+  appearance:
+    advanced_web_interface: Advanced web interface
+    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
+    animations_and_accessibility: Animations and accessibility
+    confirmation_dialogs: Confirmation dialogs
+    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Change e-mail prеferences
     salutation: "%{name},"
@@ -482,7 +520,9 @@ kk:
     warning: Be very carеful with this data. Never share it with anyone!
     your_token: Your access tokеn
   auth:
+    apply_for_account: Request an invite
     change_password: Құпиясөз
+    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: Еmаil құптау
     delete_account: Аккаунт өшіру
     delete_account_html: Аккаунтыңызды жойғыңыз келсе, <a href="%{path}">мына жерді</a> басыңыз. Сізден растау сұралатын болады.
@@ -498,10 +538,12 @@ kk:
       cas: САS
       saml: SАML
     register: Тіркелу
+    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: Растау нұсқаулықтарын жіберу
     reset_password: Құпиясөзді қалпына келтіру
     security: Қауіпсіздік
     set_new_password: Жаңа құпиясөз қою
+    trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: Бұл аккаунтқа жазылғансыз
     error: Өкінішке орай, қашықтағы тіркелгіні іздеуде қате пайда болды
@@ -540,7 +582,7 @@ kk:
     enabled: Каталогтағы тізімге ендіңіз.
     enabled_but_waiting: Каталогта көрінгіңіз келетінін түсінеміз, бірақ ол үшін кем дегенде (%{min_followers}) оқырманыңыз болуы қажет.
     explanation: Қолданушыларды қызығушылықтарына қарай реттеу
-    explore_mastodon: "%{title} шарлау"
+    explore_mastodon: '%{title} шарлау'
     how_to_enable: Сіз қазіргі уақытта каталогқа қосылмағансыз. Төменде қосылуға болады. Арнайы био мәтініндегі хэштегтерді қолданыңыз!
     people:
       one: "%{count} адам"
@@ -557,6 +599,9 @@ kk:
       content: Кешірерсіз, бірақ қазір бір қате пайда болып тұр.
       title: Бұл бет дұрыс емес екен
     noscript_html: Mastodon веб қосымшасын қолдану үшін, JavaScript қосыңыз. Болмай жатса, <a href="%{apps_path}">мына қосымшаларды</a> қосып көріңіз, Mastodon қолдану үшін.
+  existing_username_validator:
+    not_found: could not find a local user with that username
+    not_found_multiple: could not find %{usernames}
   exports:
     archive_takeout:
       date: Уақыты
@@ -597,12 +642,34 @@ kk:
     more: Тағы…
     resources: Ресурстар
   generic:
+    all: All
     changes_saved_msg: Өзгерістер сәтті сақталды!
     copy: Көшіру
+    order_by: Order by
     save_changes: Өзгерістерді сақтау
     validation_errors:
       one: Бір нәрсе дұрыс емес! Төмендегі қатені қараңыз
       other: Бір нәрсе дұрыс емес! Төмендегі %{count} қатені қараңыз
+  html_validator:
+    invalid_markup: 'contains invalid HTML markup: %{error}'
+  identity_proofs:
+    active: Active
+    authorize: Yes, authorize
+    authorize_connection_prompt: Authorize this cryptographic connection?
+    errors:
+      failed: The cryptographic connection failed. Please try again from %{provider}.
+      keybase:
+        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
+        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
+      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
+    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
+    i_am_html: I am %{username} on %{service}.
+    identity: Identity
+    inactive: Inactive
+    publicize_checkbox: 'And toot this:'
+    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    status: Verification status
+    view_proof: View proof
   imports:
     modes:
       merge: Біріктіру
@@ -698,6 +765,7 @@ kk:
           quadrillion: Q
           thousand: К
           trillion: Т
+          unit: ''
   pagination:
     newer: Ешқашан
     next: Келесі
@@ -711,11 +779,26 @@ kk:
       duration_too_long: тым ұзақ екен
       duration_too_short: тым аз екен
       expired: Сауалнама уақыты аяқталған
-      over_character_limit: "%{max} таңбадан артық болмайды"
+      over_character_limit: '%{max} таңбадан артық болмайды'
       too_few_options: бір жауаптан көп болуы керек
-      too_many_options: "%{max} жауаптан көп болмайды"
+      too_many_options: '%{max} жауаптан көп болмайды'
   preferences:
     other: Басқа
+    posting_defaults: Posting defaults
+    public_timelines: Public timelines
+  relationships:
+    activity: Account activity
+    dormant: Dormant
+    last_active: Last active
+    most_recent: Most recent
+    moved: Moved
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Remove all followers from the selected domains
+    remove_selected_followers: Remove selected followers
+    remove_selected_follows: Unfollow selected users
+    status: Account status
   remote_follow:
     acct: Өзіңіздің username@domain теріңіз
     missing_resource: Аккаунтыңызға байланған URL табылмады
@@ -783,6 +866,9 @@ kk:
     revoke_success: Сессиялар сәтті жабылды
     title: Сессиялар
   settings:
+    account: Account
+    account_settings: Account settings
+    appearance: Appearance
     authorized_apps: Authorizеd apps
     back: Желіге оралу
     delete: Аккаунт өшіру
@@ -790,10 +876,14 @@ kk:
     edit_profile: Профиль өңдеу
     export: Экспорт уақыты
     featured_tags: Таңдаулы хэштегтер
+    identity_proofs: Identity proofs
     import: Импорт
+    import_and_export: Import and export
     migrate: Аккаунт көшіру
     notifications: Ескертпелер
     preferences: Таңдаулар
+    profile: Profile
+    relationships: Follows and followers
     two_factor_authentication: Екі-факторлы авторизация
   statuses:
     attached:
@@ -811,7 +901,7 @@ kk:
       other: 'рұқсат етілмеген хэштегтер: %{tags}'
     language_detection: Тілді өздігінен таңда
     open_in_web: Вебте ашу
-    over_character_limit: "%{max} максимум таңбадан асып кетті"
+    over_character_limit: '%{max} максимум таңбадан асып кетті'
     pin_errors:
       limit: Жабыстырылатын жазба саны максимумынан асты
       ownership: Біреудің жазбасы жабыстырылмайды
@@ -842,10 +932,10 @@ kk:
       <h3 id="collect">What information do we collect?</h3>
 
       <ul>
-        <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
-        <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
-        <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
       </ul>
 
       <hr class="spacer" />
@@ -855,9 +945,9 @@ kk:
       <p>Any of the information we collect from you may be used in the following ways:</p>
 
       <ul>
-        <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
-        <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-        <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
       </ul>
 
       <hr class="spacer" />
@@ -873,8 +963,8 @@ kk:
       <p>We will make a good faith effort to:</p>
 
       <ul>
-        <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
-        <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
       </ul>
 
       <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
@@ -929,7 +1019,7 @@ kk:
       month: "%b %Y"
   two_factor_authentication:
     code_hint: Растау үшін түпнұсқалықты растау бағдарламасы арқылы жасалған кодты енгізіңіз
-    description_html: "<strong>екі факторлы түпнұсқалықты растауды</strong> қоссаңыз, кіру үшін сізге телефонға кіруіңізді талап етеді, сізге арнайы токен беріледі."
+    description_html: <strong>екі факторлы түпнұсқалықты растауды</strong> қоссаңыз, кіру үшін сізге телефонға кіруіңізді талап етеді, сізге арнайы токен беріледі.
     disable: Ажырату
     enable: Қосу
     enabled: Екі-факторлы авторизация қосылған
@@ -956,9 +1046,9 @@ kk:
       review_server_policies: Сервер саясатын қарап шығыңыз
       subject:
         disable: Аккаунтыңыз %{acct} уақытша тоқтатылды
-        none: "%{acct} ескертуі"
-        silence: "%{acct} аккаунтыңыз шектеулі"
-        suspend: "%{acct} аккаунт тоқтатылды"
+        none: '%{acct} ескертуі'
+        silence: '%{acct} аккаунтыңыз шектеулі'
+        suspend: '%{acct} аккаунт тоқтатылды'
       title:
         disable: Аккаунт қатырылды
         none: Ескерту
