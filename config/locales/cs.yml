@@ -6,7 +6,6 @@ cs:
     active_count_after: aktivních
     active_footnote: Měsíční aktivní uživatelé (MAU)
     administered_by: 'Server spravuje:'
-    api: API
     apps: Mobilní aplikace
     apps_platforms: Používejte Mastodon z iOS, Androidu a jiných platforem
     browse_directory: Prozkoumejte adresář profilů a filtrujte dle zájmů
@@ -28,29 +27,14 @@ cs:
     see_whats_happening: Podívejte se, co se děje
     server_stats: 'Statistika serveru:'
     source_code: Zdrojový kód
-    status_count_after:
-      one: status
-      few: statuses
-      many: statuses
-      other: statuses
     status_count_before: Kteří napsali
     tagline: Sledujte své přátele a objevujte nové
     terms: Podmínky používání
-    user_count_after:
-      one: user
-      few: users
-      many: users
-      other: users
     user_count_before: Domov
     what_is_mastodon: Co je Mastodon?
   accounts:
     choices_html: "Volby uživatele %{name}:"
     follow: Sledovat
-    followers:
-      one: Follower
-      few: Followers
-      many: Followers
-      other: Followers
     following: Sledovaných
     joined: Připojil/a se v %{date}
     last_active: naposledy aktivní
@@ -63,11 +47,6 @@ cs:
     people_who_follow: Lidé, kteří sledují uživatele %{name}
     pin_errors:
       following: Musíte již sledovat osobu, kterou chcete podpořit
-    posts:
-      one: Toot
-      few: Toots
-      many: Toots
-      other: Toots
     posts_tab_heading: Tooty
     posts_with_replies: Tooty a odpovědi
     reserved_username: Toto uživatelské jméno je rezervováno
@@ -90,7 +69,6 @@ cs:
       approve: Schválit
       approve_all: Schválit vše
       are_you_sure: Jste si jistý/á?
-      avatar: Avatar
       by_domain: Doména
       change_email:
         changed_msg: E-mail k tomuto účtu byl úspěšně změněn!
@@ -121,7 +99,6 @@ cs:
       header: Záhlaví
       inbox_url: URL příchozí schránky
       invited_by: Pozván/a uživatelem
-      ip: IP
       joined: Připojil/a se
       location:
         all: Všechny
@@ -189,7 +166,6 @@ cs:
       unsubscribe: Přestat odebírat
       username: Uživatelské jméno
       warn: Varovat
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} přidělil/a hlášení %{target} sobě"
@@ -234,7 +210,6 @@ cs:
       destroyed_msg: Emoji úspěšně zničeno!
       disable: Zakázat
       disabled_msg: Emoji bylo úspěšně zakázáno
-      emoji: Emoji
       enable: Povolit
       enabled_msg: Emoji bylo úspěšně povoleno
       image_hint: PNG až do 50 KB
@@ -264,7 +239,6 @@ cs:
       recent_users: Nedávní uživatelé
       search: Fulltextové vyhledávání
       single_user_mode: Režim jednoho uživatele
-      software: Software
       space: Využití prostoru
       title: Přehled
       total_users: uživatelů celkem
@@ -297,11 +271,6 @@ cs:
         silence: utišeno
         suspend: pozastaveno
       show:
-        affected_accounts:
-          one: One account in the database affected
-          few: "%{count} accounts in the database affected"
-          many: "%{count} accounts in the database affected"
-          other: "%{count} accounts in the database affected"
         retroactive:
           silence: Odtišit existující ovlivněné účty z této domény
           suspend: Zrušit pozastavení existujících ovlivněných účtů z této domény
@@ -324,11 +293,6 @@ cs:
     instances:
       by_domain: Doména
       delivery_available: Doručení je k dispozici
-      known_accounts:
-        one: "%{count} known account"
-        few: "%{count} known accounts"
-        many: "%{count} known accounts"
-        other: "%{count} known accounts"
       moderation:
         all: Všechny
         limited: Omezené
@@ -485,13 +449,11 @@ cs:
       confirmed: Potvrzeno
       expires_in: Vyprší v
       last_delivery: Poslední doručení
-      title: WebSub
       topic: Téma
     tags:
       accounts: Účty
       hidden: Skryté
       hide: Skrýt z adresáře
-      name: Hashtag
       title: Hashtagy
       unhide: Zobrazit v adresáři
       visible: Viditelné
@@ -518,7 +480,6 @@ cs:
     sensitive_content: Citlivý obsah
   application_mailer:
     notification_preferences: Změnit volby e-mailu
-    salutation: "%{name},"
     settings: 'Změnit volby e-mailu: %{link}'
     view: 'Zobrazit:'
     view_profile: Zobrazit profil
@@ -546,9 +507,6 @@ cs:
     migrate_account: Přesunout se na jiný účet
     migrate_account_html: Chcete-li přesměrovat tento účet na jiný, můžete to <a href="%{path}">nastavit zde</a>.
     or_log_in_with: Nebo se přihlaste pomocí
-    providers:
-      cas: CAS
-      saml: SAML
     register: Registrovat
     registration_closed: "%{instance} nepřijímá nové členy"
     resend_confirmation: Znovu odeslat pokyny pro potvrzení
@@ -596,11 +554,6 @@ cs:
     explanation: Objevujte uživatele podle jejich zájmů
     explore_mastodon: Prozkoumejte %{title}
     how_to_enable: Aktuálně nejste přihlášen/a do adresáře. Přihlásit se můžete níže. Použijte ve svém popisu profilu hashtagy, abyste mohl/a být uveden/a pod konkrétními hashtagy!
-    people:
-      one: "%{count} person"
-      few: "%{count} people"
-      many: "%{count} people"
-      other: "%{count} people"
   errors:
     '403': Nemáte povolení zobrazit tuto stránku.
     '404': Stránka, kterou hledáte, tu není.
@@ -625,7 +578,6 @@ cs:
       request: Vyžádat svůj archiv
       size: Velikost
     blocks: Blokujete
-    csv: CSV
     domain_blocks: Blokace domén
     follows: Sledujete
     lists: Seznamy
@@ -661,11 +613,6 @@ cs:
     copy: Kopírovat
     order_by: Seřadit od
     save_changes: Uložit změny
-    validation_errors:
-      one: Something isn't quite right yet! Please review the error below
-      few: Something isn't quite right yet! Please review %{count} errors below
-      many: Something isn't quite right yet! Please review %{count} errors below
-      other: Something isn't quite right yet! Please review %{count} errors below
   html_validator:
     invalid_markup: 'obsahuje neplatný HTML kód: %{error}'
   identity_proofs:
@@ -714,11 +661,6 @@ cs:
     expires_in_prompt: Nikdy
     generate: Vygenerovat
     invited_by: 'Byl/a jste pozván/a uživatelem:'
-    max_uses:
-      one: 1 use
-      few: "%{count} uses"
-      many: "%{count} uses"
-      other: "%{count} uses"
     max_uses_prompt: Bez limitu
     prompt: Vygenerujte a sdílejte s ostatními odkazy a umožněte jim přístup na tento server
     table:
@@ -744,16 +686,6 @@ cs:
       action: Zobrazit všechna oznámení
       body: Zde najdete stručný souhrn zpráv, které jste zmeškal/a od vaší poslední návštěvy %{since}
       mention: "%{name} vás zmínil/a v:"
-      new_followers_summary:
-        one: Also, you have acquired one new follower while being away! Yay!
-        few: Also, you have acquired %{count} new followers while being away! Amazing!
-        many: Also, you have acquired %{count} new followers while being away! Amazing!
-        other: Also, you have acquired %{count} new followers while being away! Amazing!
-      subject:
-        one: "1 new notification since your last visit \U0001F418"
-        few: "%{count} new notifications since your last visit \U0001F418"
-        many: "%{count} new notifications since your last visit \U0001F418"
-        other: "%{count} new notifications since your last visit \U0001F418"
       title: Ve vaší nepřítomnosti…
     favourite:
       body: 'Váš toot si oblíbil/a %{name}:'
@@ -787,13 +719,11 @@ cs:
           quadrillion: bld
           thousand: tis
           trillion: bil
-          unit: ''
   pagination:
     newer: Novější
     next: Další
     older: Starší
     prev: Před
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: V této anketě jste již hlasoval/a
@@ -850,40 +780,16 @@ cs:
     activity: Nejnovější aktivita
     browser: Prohlížeč
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Neznámý prohlížeč
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Aktuální relace
     description: "%{browser} na %{platform}"
     explanation: Tohle jsou webové prohlížeče aktuálně přihlášené na váš účet Mastodon.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
       android: Androidu
-      blackberry: Blackberry
       chrome_os: Chrome OS
-      firefox_os: Firefox OS
-      ios: iOS
       linux: Linuxu
       mac: Macu
       other: neznámé platformě
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Zamítnout
     revoke_success: Relace úspěšně zamítnuta
     title: Relace
@@ -899,7 +805,6 @@ cs:
     export: Export dat
     featured_tags: Zvýrazněné hashtagy
     identity_proofs: Důkazy identity
-    import: Import
     import_and_export: Import a export
     migrate: Přesunutí účtu
     notifications: Oznámení
@@ -910,23 +815,8 @@ cs:
   statuses:
     attached:
       description: 'Přiloženo: %{attached}'
-      image:
-        one: "%{count} image"
-        few: "%{count} images"
-        many: "%{count} images"
-        other: "%{count} images"
-      video:
-        one: "%{count} video"
-        few: "%{count} videos"
-        many: "%{count} videos"
-        other: "%{count} videos"
     boosted_from_html: Boostnuto z %{acct_link}
     content_warning: 'Varování o obsahu: %{warning}'
-    disallowed_hashtags:
-      one: 'contained a disallowed hashtag: %{tags}'
-      few: 'contained the disallowed hashtags: %{tags}'
-      many: 'contained the disallowed hashtags: %{tags}'
-      other: 'contained the disallowed hashtags: %{tags}'
     language_detection: Zjistit jazyk automaticky
     open_in_web: Otevřít na webu
     over_character_limit: limit %{max} znaků byl překročen
@@ -936,11 +826,6 @@ cs:
       private: Nelze připnout neveřejné tooty
       reblog: Nelze připnout boost
     poll:
-      total_votes:
-        one: "%{count} vote"
-        few: "%{count} votes"
-        many: "%{count} votes"
-        other: "%{count} votes"
       vote: Hlasovat
     show_more: Zobrazit více
     sign_in_to_participate: Chcete-li se účastnit této konverzace, přihlaste se
@@ -1046,7 +931,6 @@ cs:
   time:
     formats:
       default: "%d. %b %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Pro potvrzení zadejte kód vygenerovaný vaší ověřovací aplikací
     description_html: Povolíte-li <strong>dvoufázové ověřování</strong>, budete při přihlášení potřebovat telefon, který vám vygeneruje přístupové tokeny, které musíte zadat.
