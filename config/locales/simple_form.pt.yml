@@ -26,7 +26,6 @@ pt:
         phrase: Será correspondido independentemente da capitalização ou do aviso de conteúdo duma publicação
         scopes: Quais as APIs a que será concedido acesso. Se escolheres uma abrangência de nível superior, não precisarás de as seleccionar individualmente.
         setting_aggregate_reblogs: Não mostrar novas partilhas que foram partilhadas recentemente (só afecta as novas partilhas)
-        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
         setting_display_media_default: Esconder media marcada como sensível
         setting_display_media_hide_all: Esconder sempre toda a media
         setting_display_media_show_all: Mostrar sempre a media marcada como sensível
@@ -39,8 +38,6 @@ pt:
         name: 'Poderás querer usar um destes:'
       imports:
         data: Arquivo CSV exportado de outro servidor do Mastodon
-      invite_request:
-        text: This will help us review your application
       sessions:
         otp: 'Insere o código de autenticação em dois passos gerado pelo teu telemóvel ou usa um dos teus códigos de recuperação:'
       user:
@@ -88,7 +85,6 @@ pt:
         otp_attempt: Código de autenticação em dois passos
         password: Palavra-passe
         phrase: Palavra ou expressão-chave
-        setting_advanced_layout: Enable advanced web interface
         setting_aggregate_reblogs: Agrupar partilhas em cronologias
         setting_auto_play_gif: Reproduzir GIFs automaticamente
         setting_boost_modal: Solicitar confirmação antes de partilhar uma publicação
@@ -113,26 +109,19 @@ pt:
         username: Nome de utilizador
         username_or_email: Nome de utilizador ou e-mail
         whole_word: Palavra completa
-      featured_tag:
-        name: Hashtag
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de pessoas que não segues
         must_be_following_dm: Bloquear mensagens directas de pessoas que tu não segues
-      invite_request:
-        text: Why do you want to join?
       notification_emails:
         digest: Enviar e-mails de resumo
         favourite: Enviar e-mail quando alguém adiciona uma publicação tua aos favoritos
         follow: Enviar e-mail quando alguém te segue
         follow_request: Enviar e-mail quando alguém solicita ser teu seguidor
         mention: Enviar e-mail quando alguém te menciona
-        pending_account: Send e-mail when a new account needs review
         reblog: Enviar e-mail quando alguém partilha uma publicação tua
         report: Enviar um e-mail quando um novo relatório é submetido
     'no': 'Não'
-    recommended: Recommended
     required:
-      mark: "*"
       text: obrigatório
     'yes': 'Sim'
