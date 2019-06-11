@@ -1,4 +1,3 @@
----
 da:
   devise:
     confirmations:
@@ -12,6 +11,7 @@ da:
       last_attempt: Du har et forsøg tilbage før din konto låses.
       locked: Din konto er låst.
       not_found_in_database: Ugyldig %{authentication_keys} eller ugyldigt kodeord.
+      pending: Your account is still under review.
       timeout: Din session er udløbet. Log venligst ind igen for at fortsætte.
       unauthenticated: Du er nødt til at logge ind eller oprette dig for at fortsætte.
       unconfirmed: Du er nødt til at bekræfte din email adresse for at fortsætte.
@@ -20,6 +20,7 @@ da:
         action: Bekræft email adresse
         action_with_app: Bekræft og vend tilbage til %{app}
         explanation: Du har oprettet en konto på %{host} med denne email adresse. Du er et klik fra at aktivere din konto. Hvis du ikke har oprettet dig, ignorer venligst denne email.
+        explanation_when_pending: You applied for an invite to %{host} with this email address. Once you confirm your e-mail address, we will review your application. You can't login until then. If your application is rejected, your data will be removed, so no further action will be required from you. If this wasn't you, please ignore this email.
         extra_html: Tjek også <a href="%{terms_path}">reglerne for serveren</a> og <a href="%{policy_path}">vores betingelser</a>.
         subject: 'Mastodon: Bekræftelses instrukser for %{instance}'
         title: Bekræft email adresse
@@ -60,6 +61,7 @@ da:
       signed_up: Velkommen! Du har nu tilmeldt dig.
       signed_up_but_inactive: Du har nu oprettet dig. Vi kunne dog ikke logge dig ind da din konto endnu ikke er aktiveret.
       signed_up_but_locked: Du har nu oprettet dig. Vi kunne dog ikke logge dig ind da din konto er låst.
+      signed_up_but_pending: A message with a confirmation link has been sent to your email address. After you click the link, we will review your application. You will be notified if it is approved.
       signed_up_but_unconfirmed: En besked med et bekræftelses link er nu blevet sendt til din email adresse. Følg linket for at aktivere din konti. Tjek din spam mappe hvis du ikke har modtaget denne email.
       update_needs_confirmation: Du har succesfuldt opdateret din konto, men vi er nødt til at bekræfte din email adresse. Tjek venligst din email og følg bekræftelses linket for at bekræfte din nye email adresse. Tjek venligst din spam mappe hvis du ikke har modtaget denne email.
       updated: Din konto er nu blevet opdateret.
