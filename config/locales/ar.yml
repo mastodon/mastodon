@@ -14,7 +14,7 @@ ar:
     contact: للتواصل معنا
     contact_missing: لم يتم تعيينه
     contact_unavailable: غير متوفر
-    discover_users: Discover users
+    discover_users: اكتشف مستخدِمين
     documentation: الدليل
     extended_description_html: |
       <h3>مكان جيد للقواعد</h3>
@@ -26,7 +26,7 @@ ar:
     learn_more: تعلم المزيد
     privacy_policy: سياسة الخصوصية
     see_whats_happening: See what's happening
-    server_stats: 'Server stats:'
+    server_stats: 'احصائيات الخادم:'
     source_code: الشفرة المصدرية
     status_count_after:
       zero: منشورات
@@ -451,7 +451,7 @@ ar:
         modes:
           approved: Approval required for sign up
           none: Nobody can sign up
-          open: Anyone can sign up
+          open: يمكن للجميع إنشاء حساب
         title: Registrations mode
       show_known_fediverse_at_about_page:
         desc_html: عند التثبت ، سوف تظهر toots من جميع fediverse المعروفة على عرض مسبق. وإلا فإنه سيعرض فقط toots المحلية.
@@ -523,11 +523,11 @@ ar:
       body_remote: أبلغ شخص ما من %{domain} عن %{target}
       subject: 'تقرير جديد ل%{instance} (#%{id})'
   appearance:
-    advanced_web_interface: Advanced web interface
+    advanced_web_interface: واجهة الويب المتقدمة
     advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
     animations_and_accessibility: Animations and accessibility
-    confirmation_dialogs: Confirmation dialogs
-    sensitive_content: Sensitive content
+    confirmation_dialogs: نوافذ التأكيد
+    sensitive_content: محتوى حساس
   application_mailer:
     notification_preferences: تعديل خيارات البريد الإلكتروني
     salutation: "%{name}،"
@@ -544,7 +544,7 @@ ar:
     warning: كن حذرا مع هذه البيانات. لا تقم أبدا بمشاركتها مع الآخَرين !
     your_token: رمز نفاذك
   auth:
-    apply_for_account: Request an invite
+    apply_for_account: اطلب دعوة
     change_password: الكلمة السرية
     checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: تأكيد عنوان البريد الإلكتروني
@@ -567,7 +567,7 @@ ar:
     reset_password: إعادة تعيين كلمة المرور
     security: الأمان
     set_new_password: إدخال كلمة مرور جديدة
-    trouble_logging_in: Trouble logging in?
+    trouble_logging_in: هل صادفتكم مشكلة في الولوج؟
   authorize_follow:
     already_following: أنت تتابع بالفعل هذا الحساب
     error: يا للأسف، وقع هناك خطأ إثر عملية البحث عن الحساب عن بعد
@@ -670,10 +670,10 @@ ar:
     more: المزيد …
     resources: الموارد
   generic:
-    all: All
+    all: الكل
     changes_saved_msg: تم حفظ التعديلات بنجاح !
     copy: نسخ
-    order_by: Order by
+    order_by: ترتيب بحسب
     save_changes: حفظ التغييرات
     validation_errors:
       zero: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
@@ -696,8 +696,8 @@ ar:
       wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
     explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
     i_am_html: I am %{username} on %{service}.
-    identity: Identity
-    inactive: Inactive
+    identity: الهوية
+    inactive: ليس نشطا
     publicize_checkbox: 'And toot this:'
     publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
     status: Verification status
@@ -829,20 +829,20 @@ ar:
   preferences:
     other: إعدادات أخرى
     posting_defaults: Posting defaults
-    public_timelines: Public timelines
+    public_timelines: الخيوط الزمنية العامة
   relationships:
-    activity: Account activity
+    activity: نشاط الحساب
     dormant: Dormant
-    last_active: Last active
-    most_recent: Most recent
-    moved: Moved
+    last_active: آخر نشاط
+    most_recent: الأحدث
+    moved: هاجر
     mutual: Mutual
-    primary: Primary
-    relationship: Relationship
+    primary: رئيسي
+    relationship: العلاقة
     remove_selected_domains: Remove all followers from the selected domains
     remove_selected_followers: Remove selected followers
-    remove_selected_follows: Unfollow selected users
-    status: Account status
+    remove_selected_follows: الغي متابعة المستخدمين الذين اخترتهم
+    status: حالة الحساب
   remote_follow:
     acct: قم بإدخال عنوان حسابك username@domain الذي من خلاله تود النشاط
     missing_resource: تعذر العثور على رابط التحويل المطلوب الخاص بحسابك
@@ -910,9 +910,9 @@ ar:
     revoke_success: تم إبطال الجلسة بنجاح
     title: الجلسات
   settings:
-    account: Account
-    account_settings: Account settings
-    appearance: Appearance
+    account: الحساب
+    account_settings: اعدادات الحساب
+    appearance: المظهر
     authorized_apps: التطبيقات المرخص لها
     back: عودة إلى ماستدون
     delete: حذف الحسابات
@@ -920,14 +920,14 @@ ar:
     edit_profile: تعديل الملف الشخصي
     export: تصدير البيانات
     featured_tags: Featured hashtags
-    identity_proofs: Identity proofs
+    identity_proofs: دلائل الهوية
     import: إستيراد
-    import_and_export: Import and export
+    import_and_export: استيراد وتصدير
     migrate: تهجير الحساب
     notifications: الإخطارات
     preferences: التفضيلات
-    profile: Profile
-    relationships: Follows and followers
+    profile: الملف الشخصي
+    relationships: المتابِعون والمتابَعون
     two_factor_authentication: المُصادقة بخُطوَتَيْن
   statuses:
     attached:
@@ -971,7 +971,7 @@ ar:
         few: "%{count} votes"
         many: "%{count} votes"
         other: "%{count} votes"
-      vote: Vote
+      vote: صوّت
     show_more: أظهر المزيد
     sign_in_to_participate: قم بتسجيل الدخول للمشاركة في هذه المحادثة
     title: '%{name} : "%{quote}"'
