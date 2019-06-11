@@ -1,46 +1,25 @@
 es:
   simple_form:
     hints:
-      account_warning_preset:
-        text: You can use toot syntax, such as URLs, hashtags and mentions
-      admin_account_action:
-        send_email_notification: The user will receive an explanation of what happened with their account
-        text_html: Optional. You can use toot syntax. You can <a href="%{path}">add warning presets</a> to save time
-        type_html: Choose what to do with <strong>%{acct}</strong>
-        warning_preset_id: Optional. You can still add custom text to end of the preset
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
         avatar: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         bot: Esta cuenta ejecuta principalmente acciones automatizadas y podría no ser monitorizada
         context: Uno o múltiples contextos en los que debe aplicarse el filtro
         digest: Solo enviado tras un largo periodo de inactividad y solo si has recibido mensajes personales durante tu ausencia
-        discoverable_html: The <a href="%{path}" target="_blank">directory</a> lets people find accounts based on interests and activity. Requires at least %{min_followers} followers
-        email: You will be sent a confirmation e-mail
         fields: Puedes tener hasta 4 elementos mostrándose como una tabla en tu perfil
         header: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         inbox_url: Copia la URL de la página principal del relés que quieres utilizar
         irreversible: Los toots filtrados desaparecerán irreversiblemente, incluso si este filtro es eliminado más adelante
         locale: El idioma de la interfaz de usuario, correos y notificaciones push
         locked: Requiere que manualmente apruebes seguidores y las publicaciones serán mostradas solamente a tus seguidores
-        password: Use at least 8 characters
         phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de un toot
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
-        setting_aggregate_reblogs: Do not show new boosts for toots that have been recently boosted (only affects newly-received boosts)
-        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
-        setting_display_media_default: Hide media marked as sensitive
-        setting_display_media_hide_all: Always hide all media
-        setting_display_media_show_all: Always show media marked as sensitive
         setting_hide_network: A quién sigues y quién te sigue no será mostrado en tu perfil
         setting_noindex: Afecta a tu perfil público y páginas de estado
-        setting_show_application: The application you use to toot will be displayed in the detailed view of your toots
-        username: Your username will be unique on %{domain}
         whole_word: Cuando la palabra clave o frase es solo alfanumérica, solo será aplicado si concuerda con toda la palabra
-      featured_tag:
-        name: 'You might want to use one of these:'
       imports:
         data: Archivo CSV exportado desde otra instancia de Mastodon
-      invite_request:
-        text: This will help us review your application
       sessions:
         otp: 'Introduce el código de autenticación de dos factores geberado por tu aplicación de teléfono o usa uno de tus códigos de recuperación:'
       user:
@@ -50,21 +29,8 @@ es:
         fields:
           name: Etiqueta
           value: Contenido
-      account_warning_preset:
-        text: Preset text
-      admin_account_action:
-        send_email_notification: Notify the user per e-mail
-        text: Custom warning
-        type: Action
-        types:
-          disable: Disable
-          none: Do nothing
-          silence: Silence
-          suspend: Suspend and irreversibly delete account data
-        warning_preset_id: Use a warning preset
       defaults:
         autofollow: Invitar a seguir tu cuenta
-        avatar: Avatar
         bot: Esta es una cuenta bot
         chosen_languages: Filtrar idiomas
         confirm_new_password: Confirmar nueva contraseña
@@ -72,7 +38,6 @@ es:
         context: Filtrar contextos
         current_password: Contraseña actual
         data: Información
-        discoverable: List this account on the directory
         display_name: Nombre para mostrar
         email: Dirección de correo electrónico
         expires_in: Expirar tras
@@ -88,23 +53,15 @@ es:
         otp_attempt: Código de dos factores
         password: Contraseña
         phrase: Palabra clave o frase
-        setting_advanced_layout: Enable advanced web interface
-        setting_aggregate_reblogs: Group boosts in timelines
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
         setting_boost_modal: Mostrar ventana de confirmación antes de un Retoot
         setting_default_language: Idioma de publicación
         setting_default_privacy: Privacidad de publicaciones
         setting_default_sensitive: Marcar siempre imágenes como sensibles
         setting_delete_modal: Mostrar diálogo de confirmación antes de borrar un toot
-        setting_display_media: Media display
-        setting_display_media_default: Default
-        setting_display_media_hide_all: Hide all
-        setting_display_media_show_all: Show all
-        setting_expand_spoilers: Always expand toots marked with content warnings
         setting_hide_network: Ocultar tu red
         setting_noindex: Excluirse del indexado de motores de búsqueda
         setting_reduce_motion: Reducir el movimiento de las animaciones
-        setting_show_application: Disclose application used to send toots
         setting_system_font_ui: Utilizar la tipografía por defecto del sistema
         setting_theme: Tema del sitio
         setting_unfollow_modal: Mostrar diálogo de confirmación antes de dejar de seguir a alguien
@@ -113,26 +70,18 @@ es:
         username: Nombre de usuario
         username_or_email: Usuario o Email
         whole_word: Toda la palabra
-      featured_tag:
-        name: Hashtag
       interactions:
         must_be_follower: Bloquear notificaciones de personas que no te siguen
         must_be_following: Bloquear notificaciones de personas que no sigues
         must_be_following_dm: Bloquear mensajes directos de la gente que no sigues
-      invite_request:
-        text: Why do you want to join?
       notification_emails:
         digest: Enviar resumen de correos electrónicos
         favourite: Enviar correo electrónico cuando alguien de a favorito en su publicación
         follow: Enviar correo electrónico cuando alguien te siga
         follow_request: Enviar correo electrónico cuando alguien solicita seguirte
         mention: Enviar correo electrónico cuando alguien te mencione
-        pending_account: Send e-mail when a new account needs review
         reblog: Enviar correo electrónico cuando alguien comparta su publicación
         report: Enviar un correo cuando se envía un nuevo informe
-    'no': 'No'
-    recommended: Recommended
     required:
-      mark: "*"
       text: necesario
     'yes': 'Sí'
