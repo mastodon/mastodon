@@ -1,28 +1,38 @@
----
 fi:
   about:
-    about_hashtag_html: Nämä ovat hashtagilla <strong>#%{hashtag}</strong> merkittyjä julkisia tuuttauksia. Voit vastata niihin, jos sinulla on tili jossain päin fediversumia.
+    about_hashtag_html: 'Nämä ovat hashtagilla <strong>#%{hashtag}</strong> merkittyjä julkisia tuuttauksia. Voit vastata niihin, jos sinulla on tili jossain päin fediversumia.'
     about_mastodon_html: Mastodon on sosiaalinen verkosto. Se on toteutettu avoimilla verkkoprotokollilla ja vapailla, avoimen lähdekoodin ohjelmistoilla, ja se toimii hajautetusti samaan tapaan kuin sähköposti.
     about_this: Tietoja tästä palvelimesta
+    active_count_after: active
+    active_footnote: Monthly Active Users (MAU)
     administered_by: 'Ylläpitäjä:'
     api: API
     apps: Mobiili sovellukset
+    apps_platforms: Use Mastodon from iOS, Android and other platforms
+    browse_directory: Browse a profile directory and filter by interests
+    browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Ota yhteyttä
     contact_missing: Ei asetettu
     contact_unavailable: Ei saatavilla
+    discover_users: Discover users
     documentation: Dokumentaatio
     extended_description_html: |
       <h3>Hyvä paikka säännöille</h3>
       <p>Pidempää kuvausta ei ole vielä laadittu.</p>
+    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} on yksi verkostoon kuuluvista palvelimista"
+    get_apps: Try a mobile app
     hosted_on: Mastodon palvelimella %{domain}
     learn_more: Lisätietoja
     privacy_policy: Tietosuojaseloste
+    see_whats_happening: See what's happening
+    server_stats: 'Server stats:'
     source_code: Lähdekoodi
     status_count_after:
       one: tila
       other: tilanne
     status_count_before: He ovat luoneet
+    tagline: Follow friends and discover new ones
     terms: Käyttöehdot
     user_count_after:
       one: käyttäjä
@@ -55,15 +65,22 @@ fi:
     reserved_username: Käyttäjänimi on varattu
     roles:
       admin: Ylläpitäjä
+      bot: Bot
       moderator: Moderaattori
+    unavailable: Profile unavailable
     unfollow: Lopeta seuraaminen
   admin:
+    account_actions:
+      action: Perform action
+      title: Perform moderation action on %{acct}
     account_moderation_notes:
       create: Luo
       created_msg: Moderointimerkinnän luonti onnistui!
       delete: Poista
       destroyed_msg: Moderointimerkinnän poisto onnistui!
     accounts:
+      approve: Approve
+      approve_all: Approve all
       are_you_sure: Oletko varma?
       avatar: Profiilikuva
       by_domain: Verkkotunnus
@@ -77,6 +94,7 @@ fi:
       confirm: Vahvista
       confirmed: Vahvistettu
       confirming: Vahvistetaan
+      deleted: Deleted
       demote: Alenna
       disable: Poista käytöstä
       disable_two_factor_authentication: Poista 2FA käytöstä
@@ -92,8 +110,11 @@ fi:
       followers: Seuraajat
       followers_url: Seuraajien osoite
       follows: Seuraa
+      header: Header
       inbox_url: Saapuvan postilaatikon osoite
+      invited_by: Invited by
       ip: IP
+      joined: Joined
       location:
         all: Kaikki
         local: Paikalliset
@@ -103,15 +124,20 @@ fi:
       media_attachments: Medialiitteet
       memorialize: Muuta muistosivuksi
       moderation:
+        active: Active
         all: Kaikki
+        pending: Pending
         silenced: Hiljennetty
         suspended: Jäähyllä
         title: Moderointi
       moderation_notes: Moderointimerkinnät
       most_recent_activity: Viimeisin toiminta
       most_recent_ip: Viimeisin IP
+      no_account_selected: No accounts were changed as none were selected
+      no_limits_imposed: No limits imposed
       not_subscribed: Ei tilaaja
       outbox_url: Lähtevän postilaatikon osoite
+      pending: Pending review
       perform_full_suspension: Siirrä kokonaan jäähylle
       profile_url: Profiilin osoite
       promote: Ylennä
@@ -119,7 +145,10 @@ fi:
       public: Julkinen
       push_subscription_expires: PuSH-tilaus vanhenee
       redownload: Päivitä profiilikuva
+      reject: Reject
+      reject_all: Reject all
       remove_avatar: Poista profiilikuva
+      remove_header: Remove header
       resend_confirmation:
         already_confirmed: Tämä käyttäjä on jo vahvistettu
         send: Lähetä varmistusviesti uudelleen
@@ -140,24 +169,30 @@ fi:
         created_reports: Tämän tilin luomat raportit
         targeted_reports: Tästä tilistä tehdyt raportit
       silence: Hiljennä
+      silenced: Silenced
       statuses: Tilat
       subscribe: Tilaa
+      suspended: Suspended
+      time_in_queue: Waiting in queue %{time}
       title: Tilit
       unconfirmed_email: Sähköpostia ei vahvistettu
       undo_silenced: Peru hiljennys
       undo_suspension: Peru jäähy
       unsubscribe: Lopeta tilaus
       username: Käyttäjänimi
+      warn: Warn
       web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} otti raportin %{target} tehtäväkseen"
         change_email_user: "%{name} vaihtoi käyttäjän %{target} sähköpostiosoitteen"
         confirm_user: "%{name} vahvisti käyttäjän %{target} sähköpostiosoitteen"
+        create_account_warning: "%{name} sent a warning to %{target}"
         create_custom_emoji: "%{name} lähetti uuden emojin %{target}"
         create_domain_block: "%{name} esti verkkotunnuksen %{target}"
         create_email_domain_block: "%{name} lisäsi sähköpostiverkkotunnuksen %{target} estolistalle"
         demote_user: "%{name} alensi käyttäjän %{target}"
+        destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_block: "%{name} poisti verkkotunnuksen %{target} eston"
         destroy_email_domain_block: "%{name} lisäsi sähköpostiverkkotunnuksen %{target} sallittujen listalle"
         destroy_status: "%{name} poisti käyttäjän %{target} tilan"
@@ -174,10 +209,12 @@ fi:
         resolve_report: "%{name} hylkäsi raportin %{target}"
         silence_account: "%{name} hiljensi käyttäjän %{target}"
         suspend_account: "%{name} siirsi käyttäjän %{target} jäähylle"
+        unassigned_report: "%{name} unassigned report %{target}"
         unsilence_account: "%{name} poisti käyttäjän %{target} hiljennyksen"
         unsuspend_account: "%{name} perui käyttäjän %{target} jäähyn"
         update_custom_emoji: "%{name} päivitti emojin %{target}"
         update_status: "%{name} päivitti käyttäjän %{target} tilan"
+      deleted_status: "(deleted status)"
       title: Auditointiloki
     custom_emojis:
       by_domain: Verkkotunnus
@@ -204,11 +241,35 @@ fi:
       update_failed_msg: Emojin päivitys epäonnistui
       updated_msg: Emojin päivitys onnistui!
       upload: Lähetä
+    dashboard:
+      backlog: backlogged jobs
+      config: Configuration
+      feature_deletions: Account deletions
+      feature_invites: Invite links
+      feature_profile_directory: Profile directory
+      feature_registrations: Registrations
+      feature_relay: Federation relay
+      feature_timeline_preview: Timeline preview
+      features: Features
+      hidden_service: Federation with hidden services
+      open_reports: open reports
+      recent_users: Recent users
+      search: Full-text search
+      single_user_mode: Single user mode
+      software: Software
+      space: Space usage
+      title: Dashboard
+      total_users: users in total
+      trends: Trends
+      week_interactions: interactions this week
+      week_users_active: active this week
+      week_users_new: users this week
     domain_blocks:
       add_new: Lisää uusi
       created_msg: Verkkotunnuksen estoa käsitellään
       destroyed_msg: Verkkotunnuksen esto on peruttu
       domain: Verkkotunnus
+      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Luo esto
         hint: Verkkotunnuksen esto ei estä tilien luomista ja lisäämistä tietokantaan, mutta se soveltaa näihin tileihin automaattisesti määrättyjä moderointitoimia tilin luomisen jälkeen.
@@ -220,10 +281,17 @@ fi:
         title: Uusi verkkotunnuksen esto
       reject_media: Hylkää mediatiedostot
       reject_media_hint: Poistaa paikallisesti tallennetut mediatiedostot eikä lataa niitä enää jatkossa. Ei merkitystä jäähyn kohdalla
+      reject_reports: Reject reports
+      reject_reports_hint: Ignore all reports coming from this domain. Irrelevant for suspensions
+      rejecting_media: rejecting media files
+      rejecting_reports: rejecting reports
+      severity:
+        silence: silenced
+        suspend: suspended
       show:
         affected_accounts:
           one: Vaikuttaa yhteen tiliin tietokannassa
-          other: Vaikuttaa %{count} tiliin tietokannassa
+          other: "Vaikuttaa %{count} tiliin tietokannassa"
         retroactive:
           silence: Peru kaikkien tässä verkkotunnuksessa jo olemassa olevien tilien hiljennys
           suspend: Peru kaikkien tässä verkkotunnuksessa jo olemassa olevien tilien jäähy
@@ -240,15 +308,50 @@ fi:
         create: Lisää verkkotunnus
         title: Uusi sähköpostiestolistan merkintä
       title: Sähköpostiestolista
+    followers:
+      back_to_account: Back To Account
+      title: "%{acct}'s Followers"
     instances:
+      by_domain: Domain
+      delivery_available: Delivery is available
+      known_accounts:
+        one: "%{count} known account"
+        other: "%{count} known accounts"
+      moderation:
+        all: All
+        limited: Limited
+        title: Moderation
       title: Tiedossa olevat instanssit
+      total_blocked_by_us: Blocked by us
+      total_followed_by_them: Followed by them
+      total_followed_by_us: Followed by us
+      total_reported: Reports about them
+      total_storage: Media attachments
     invites:
+      deactivate_all: Deactivate all
       filter:
         all: Kaikki
         available: Saatavilla
         expired: Vanhentunut
         title: Suodata
       title: Kutsut
+    pending_accounts:
+      title: Pending accounts (%{count})
+    relays:
+      add_new: Add new relay
+      delete: Delete
+      description_html: A <strong>federation relay</strong> is an intermediary server that exchanges large volumes of public toots between servers that subscribe and publish to it. <strong>It can help small and medium servers discover content from the fediverse</strong>, which would otherwise require local users manually following other people on remote servers.
+      disable: Disable
+      disabled: Disabled
+      enable: Enable
+      enable_hint: Once enabled, your server will subscribe to all public toots from this relay, and will begin sending this server's public toots to it.
+      enabled: Enabled
+      inbox_url: Relay URL
+      pending: Waiting for relay's approval
+      save_and_enable: Save and enable
+      setup: Setup a relay connection
+      status: Status
+      title: Relays
     report_notes:
       created_msg: Muistiinpano onnistuneesti lisätty raporttiin!
       destroyed_msg: Muistiinpano onnistuneesti poistettu raportista!
@@ -259,6 +362,7 @@ fi:
       action_taken_by: Toimenpiteen tekijä
       are_you_sure: Oletko varma?
       assign_to_self: Ota tehtäväksi
+      assigned: Assigned moderator
       comment:
         none: Ei mitään
       created_at: Raportoitu
@@ -271,13 +375,14 @@ fi:
         delete: Poista
         placeholder: Kuvaile mitä toimia on tehty tai muita päivityksiä tähän raporttiin…
       reopen: Avaa raportti uudestaan
-      report: Raportti nro %{id}
+      report: 'Raportti nro %{id}'
       reported_account: Raportoitu tili
       reported_by: Raportoija
       resolved: Ratkaistut
       resolved_msg: Raportti onnistuneesti ratkaistu!
       status: Tila
       title: Raportit
+      unassign: Unassign
       unresolved: Ratkaisemattomat
       updated_at: Päivitetty
     settings:
@@ -290,12 +395,24 @@ fi:
       contact_information:
         email: Työsähköposti
         username: Yhteyshenkilön käyttäjänimi
+      custom_css:
+        desc_html: Modify the look with CSS loaded on every page
+        title: Custom CSS
       hero:
         desc_html: Näytetään etusivulla. Suosituskoko vähintään 600x100 pikseliä. Jos kuvaa ei aseteta, käytetään instanssin pikkukuvaa
         title: Sankarin kuva
+      mascot:
+        desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
+        title: Mascot image
       peers_api_enabled:
         desc_html: Verkkotunnukset, jotka tämä instanssi on kohdannut fediversumissa
         title: Julkaise löydettyjen instanssien luettelo
+      preview_sensitive_media:
+        desc_html: Link previews on other websites will display a thumbnail even if the media is marked as sensitive
+        title: Show sensitive media in OpenGraph previews
+      profile_directory:
+        desc_html: Allow users to be discoverable
+        title: Enable profile directory
       registrations:
         closed_message:
           desc_html: Näytetään etusivulla, kun rekisteröinti on suljettu. HTML-tagit käytössä
@@ -306,6 +423,12 @@ fi:
         min_invite_role:
           disabled: Ei kukaan
           title: Salli kutsut käyttäjältä
+      registrations_mode:
+        modes:
+          approved: Approval required for sign up
+          none: Nobody can sign up
+          open: Anyone can sign up
+        title: Registrations mode
       show_known_fediverse_at_about_page:
         desc_html: Kun tämä on valittu, esikatselussa näytetään tuuttaukset kaikkialta tunnetusta fediversumista. Muutoin näytetään vain paikalliset tuuttaukset.
         title: Näytä aikajanan esikatselussa koko tunnettu fediversumi
@@ -318,6 +441,9 @@ fi:
       site_description_extended:
         desc_html: Hyvä paikka käytösohjeille, säännöille, ohjeistuksille ja muille instanssin muista erottaville asioille. HTML-tagit käytössä
         title: Omavalintaiset laajat tiedot
+      site_short_description:
+        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph.
+        title: Short server description
       site_terms:
         desc_html: Tähän voi kirjoittaa instanssin tietosuojakäytännöstä, käyttöehdoista ja sen sellaisista asioista. HTML-tagit käytössä
         title: Omavalintaiset käyttöehdot
@@ -339,6 +465,7 @@ fi:
       media:
         title: Media
       no_media: Ei mediaa
+      no_status_selected: No statuses were changed as none were selected
       title: Tilin tilat
       with_media: Sisältää mediaa
     subscriptions:
@@ -348,12 +475,35 @@ fi:
       last_delivery: Viimeisin toimitus
       title: WebSub
       topic: Aihe
+    tags:
+      accounts: Accounts
+      hidden: Hidden
+      hide: Hide from directory
+      name: Hashtag
+      title: Hashtags
+      unhide: Show in directory
+      visible: Visible
     title: Ylläpito
+    warning_presets:
+      add_new: Add new
+      delete: Delete
+      edit: Edit
+      edit_preset: Edit warning preset
+      title: Manage warning presets
   admin_mailer:
+    new_pending_account:
+      body: The details of the new account are below. You can approve or reject this application.
+      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter} on raportoinut kohteen %{target}"
       body_remote: Joku osoitteesta %{domain} on raportoinut kohteen %{target}
       subject: Uusi raportti instanssista %{instance} (nro %{id})
+  appearance:
+    advanced_web_interface: Advanced web interface
+    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
+    animations_and_accessibility: Animations and accessibility
+    confirmation_dialogs: Confirmation dialogs
+    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Muuta sähköpostiasetuksia
     salutation: "%{name},"
@@ -370,7 +520,9 @@ fi:
     warning: Säilytä tietoa hyvin. Älä milloinkaan jaa sitä muille!
     your_token: Pääsytunnus
   auth:
+    apply_for_account: Request an invite
     change_password: Salasana
+    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: Vahvista sähköpostiosoite
     delete_account: Poista tili
     delete_account_html: Jos haluat poistaa tilisi, <a href="%{path}">paina tästä</a>. Poisto on vahvistettava.
@@ -386,10 +538,12 @@ fi:
       cas: CAS
       saml: SAML
     register: Rekisteröidy
+    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: Lähetä vahvistusohjeet uudestaan
     reset_password: Palauta salasana
     security: Tunnukset
     set_new_password: Aseta uusi salasana
+    trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: Sinä seuraat jo tätä tiliä
     error: Valitettavasti etätilin haussa tapahtui virhe
@@ -423,6 +577,16 @@ fi:
     success_msg: Tilin poisto onnistui
     warning_html: Sisällön poistaminen taataan vain tämän instanssin osalta. Jos sisältöä on jaettu paljon, siitä todennäköisesti jää jälkiä. Palvelimet, joihin ei saada yhteyttä tai jotka ovat lopettaneet päivitystesi tilaamisen, eivät päivitä tietokantojaan.
     warning_title: Sisällön saatavuustieto levitetty
+  directories:
+    directory: Profile directory
+    enabled: You are currently listed in the directory.
+    enabled_but_waiting: You have opted-in to be listed in the directory, but you do not have the minimum number of followers (%{min_followers}) to be listed yet.
+    explanation: Discover users based on their interests
+    explore_mastodon: Explore %{title}
+    how_to_enable: You are not currently opted-in to the directory. You can opt-in below. Use hashtags in your bio text to be listed under specific hashtags!
+    people:
+      one: "%{count} person"
+      other: "%{count} people"
   errors:
     '403': Sinulla ei ole lupaa nähdä tätä sivua.
     '404': Etsimääsi sivua ei ole olemassa.
@@ -435,6 +599,9 @@ fi:
       content: Valitettavasti jokin meni pieleen meidän päässämme.
       title: Sivu ei ole oikein
     noscript_html: Mastodon-selainsovelluksen käyttöön vaaditaan JavaScript. Voit vaihtoehtoisesti kokeilla jotakin omalle käyttöjärjestelmällesi tehtyä Mastodon<a href="%{apps_path}">sovellusta</a>.
+  existing_username_validator:
+    not_found: could not find a local user with that username
+    not_found_multiple: could not find %{usernames}
   exports:
     archive_takeout:
       date: Päiväys
@@ -445,20 +612,75 @@ fi:
       size: Koko
     blocks: Estot
     csv: CSV
+    domain_blocks: Domain blocks
     follows: Seurattavat
+    lists: Lists
     mutes: Mykistetyt
     storage: Media-arkisto
+  featured_tags:
+    add_new: Add new
+    errors:
+      limit: You have already featured the maximum amount of hashtags
+  filters:
+    contexts:
+      home: Home timeline
+      notifications: Notifications
+      public: Public timelines
+      thread: Conversations
+    edit:
+      title: Edit filter
+    errors:
+      invalid_context: None or invalid context supplied
+      invalid_irreversible: Irreversible filtering only works with home or notifications context
+    index:
+      delete: Delete
+      title: Filters
+    new:
+      title: Add new filter
+  footer:
+    developers: Developers
+    more: More…
+    resources: Resources
   generic:
+    all: All
     changes_saved_msg: Muutosten tallennus onnistui!
+    copy: Copy
+    order_by: Order by
     save_changes: Tallenna muutokset
     validation_errors:
       one: Kaikki ei ole aivan oikein! Tarkasta alla oleva virhe
       other: Kaikki ei ole aivan oikein! Tarkasta alla olevat %{count} virhettä
+  html_validator:
+    invalid_markup: 'contains invalid HTML markup: %{error}'
+  identity_proofs:
+    active: Active
+    authorize: Yes, authorize
+    authorize_connection_prompt: Authorize this cryptographic connection?
+    errors:
+      failed: The cryptographic connection failed. Please try again from %{provider}.
+      keybase:
+        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
+        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
+      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
+    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
+    i_am_html: I am %{username} on %{service}.
+    identity: Identity
+    inactive: Inactive
+    publicize_checkbox: 'And toot this:'
+    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    status: Verification status
+    view_proof: View proof
   imports:
+    modes:
+      merge: Merge
+      merge_long: Keep existing records and add new ones
+      overwrite: Overwrite
+      overwrite_long: Replace current records with the new ones
     preface: Voit tuoda toisesta instanssista viemiäsi tietoja, kuten esimerkiksi seuraamiesi tai estämiesi henkilöiden listan.
     success: Tietojen lähettäminen onnistui, ja ne käsitellään kohtapuoliin
     types:
       blocking: Estettyjen lista
+      domain_blocking: Domain blocking list
       following: Seurattujen lista
       muting: Mykistettyjen lista
     upload: Lähetä
@@ -475,6 +697,7 @@ fi:
       '86400': 1 vuorokausi
     expires_in_prompt: Ei koskaan
     generate: Luo
+    invited_by: 'You were invited by:'
     max_uses:
       one: kertakäyttöinen
       other: "%{count} käyttökertaa"
@@ -511,7 +734,7 @@ fi:
         other: "%{count} uutta ilmoitusta viime käyntisi jälkeen \U0001F418"
       title: Poissaollessasi…
     favourite:
-      body: "%{name} tykkäsi tilastasi:"
+      body: '%{name} tykkäsi tilastasi:'
       subject: "%{name} tykkäsi tilastasi"
       title: Uusi tykkäys
     follow:
@@ -525,11 +748,11 @@ fi:
       title: Uusi seuraamispyyntö
     mention:
       action: Vastaa
-      body: "%{name} mainitsi sinut:"
-      subject: "%{name} mainitsi sinut"
+      body: '%{name} mainitsi sinut:'
+      subject: '%{name} mainitsi sinut'
       title: Uusi maininta
     reblog:
-      body: "%{name} buustasi tilaasi:"
+      body: '%{name} buustasi tilaasi:'
       subject: "%{name} boostasi tilaasi"
       title: Uusi buustaus
   number:
@@ -549,15 +772,58 @@ fi:
     older: Vanhemmat
     prev: Edellinen
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: You have already voted on this poll
+      duplicate_options: contain duplicate items
+      duration_too_long: is too far into the future
+      duration_too_short: is too soon
+      expired: The poll has already ended
+      over_character_limit: cannot be longer than %{max} characters each
+      too_few_options: must have more than one item
+      too_many_options: can't contain more than %{max} items
   preferences:
     other: Muut
+    posting_defaults: Posting defaults
+    public_timelines: Public timelines
+  relationships:
+    activity: Account activity
+    dormant: Dormant
+    last_active: Last active
+    most_recent: Most recent
+    moved: Moved
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Remove all followers from the selected domains
+    remove_selected_followers: Remove selected followers
+    remove_selected_follows: Unfollow selected users
+    status: Account status
   remote_follow:
     acct: Syötä se käyttäjätunnus@verkkotunnus, josta haluat seurata
     missing_resource: Vaadittavaa uudelleenohjaus-URL:ää tiliisi ei löytynyt
+    no_account_html: Don't have an account? You can <a href='%{sign_up_path}' target='_blank'>sign up here</a>
     proceed: Siirry seuraamaan
     prompt: 'Olet aikeissa seurata:'
+    reason_html: "<strong>Why is this step necessary?</strong> <code>%{instance}</code> might not be the server where you are registered, so we need to redirect you to your home server first."
+  remote_interaction:
+    favourite:
+      proceed: Proceed to favourite
+      prompt: 'You want to favourite this toot:'
+    reblog:
+      proceed: Proceed to boost
+      prompt: 'You want to boost this toot:'
+    reply:
+      proceed: Proceed to reply
+      prompt: 'You want to reply to this toot:'
   remote_unfollow:
     error: Virhe
+    title: Title
+    unfollowed: Unfollowed
+  scheduled_statuses:
+    over_daily_limit: You have exceeded the limit of %{limit} scheduled toots for that day
+    over_total_limit: You have exceeded the limit of %{limit} scheduled toots
+    too_soon: The scheduled date must be in the future
   sessions:
     activity: Viimeisin toiminta
     browser: Selain
@@ -600,16 +866,24 @@ fi:
     revoke_success: Istunnon hylkäys onnistui
     title: Istunnot
   settings:
+    account: Account
+    account_settings: Account settings
+    appearance: Appearance
     authorized_apps: Valtuutetut sovellukset
     back: Takaisin Mastodoniin
     delete: Tilin poisto
     development: Kehittäminen
     edit_profile: Muokkaa profiilia
     export: Vie tietoja
+    featured_tags: Featured hashtags
+    identity_proofs: Identity proofs
     import: Tuo
+    import_and_export: Import and export
     migrate: Tilin muutto muualle
     notifications: Ilmoitukset
     preferences: Ominaisuudet
+    profile: Profile
+    relationships: Follows and followers
     two_factor_authentication: Kaksivaiheinen todentaminen
   statuses:
     attached:
@@ -620,10 +894,12 @@ fi:
       video:
         one: "%{count} video"
         other: "%{count} videota"
+    boosted_from_html: Boosted from %{acct_link}
     content_warning: 'Sisältövaroitus: %{warning}'
     disallowed_hashtags:
       one: 'sisälsi aihetunnisteen jota ei sallita: %{tags}'
       other: 'sisälsi aihetunnisteet joita ei sallita: %{tags}'
+    language_detection: Automatically detect language
     open_in_web: Avaa selaimessa
     over_character_limit: merkkimäärän rajoitus %{max} ylitetty
     pin_errors:
@@ -631,8 +907,14 @@ fi:
       ownership: Muiden tuuttauksia ei voi kiinnittää
       private: Piilotettua tuuttausta ei voi kiinnittää
       reblog: Buustausta ei voi kiinnittää
+    poll:
+      total_votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
+      vote: Vote
     show_more: Näytä lisää
-    title: "%{name}: ”%{quote}”"
+    sign_in_to_participate: Sign in to participate in the conversation
+    title: '%{name}: ”%{quote}”'
     visibilities:
       private: Vain seuraajille
       private_long: Näytä vain seuraajille
@@ -645,12 +927,96 @@ fi:
     reblogged: buustasi
     sensitive_content: Arkaluontoista sisältöä
   terms:
+    body_html: |
+      <h2>Privacy Policy</h2>
+      <h3 id="collect">What information do we collect?</h3>
+
+      <ul>
+      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">What do we use your information for?</h3>
+
+      <p>Any of the information we collect from you may be used in the following ways:</p>
+
+      <ul>
+      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">How do we protect your information?</h3>
+
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">What is our data retention policy?</h3>
+
+      <p>We will make a good faith effort to:</p>
+
+      <ul>
+      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+      </ul>
+
+      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
+
+      <p>You may irreversibly delete your account at any time.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Do we use cookies?</h3>
+
+      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+
+      <p>We use cookies to understand and save your preferences for future visits.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
+
+      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
+
+      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
+
+      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Site usage by children</h3>
+
+      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
+
+      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+
+      <p>Law requirements can be different if this server is in another jurisdiction.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Changes to our Privacy Policy</h3>
+
+      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+
+      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
+
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance}, käyttöehdot ja tietosuojakäytäntö"
   themes:
+    contrast: Mastodon (High contrast)
     default: Mastodon
+    mastodon-light: Mastodon (Light)
   time:
     formats:
       default: "%d.%m.%Y klo %H.%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Vahvista syöttämällä todentamissovelluksen generoima koodi
     description_html: Jos otat käyttöön <strong>kaksivaiheisen todentamisen</strong>, kirjautumiseen vaaditaan puhelin, jolla voidaan luoda kirjautumistunnuksia.
@@ -672,6 +1038,22 @@ fi:
       explanation: Pyysit täydellistä varmuuskopiota Mastodon-tilistäsi. Voit nyt ladata sen!
       subject: Arkisto on valmiina ladattavaksi
       title: Arkiston tallennus
+    warning:
+      explanation:
+        disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
+        silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
+        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
+      review_server_policies: Review server policies
+      subject:
+        disable: Your account %{acct} has been frozen
+        none: Warning for %{acct}
+        silence: Your account %{acct} has been limited
+        suspend: Your account %{acct} has been suspended
+      title:
+        disable: Account frozen
+        none: Warning
+        silence: Account limited
+        suspend: Account suspended
     welcome:
       edit_profile_action: Aseta profiili
       edit_profile_step: Voit mukauttaa profiiliasi lataamalla profiilikuvan ja otsakekuvan, muuttamalla näyttönimeäsi ym. Jos haluat hyväksyä uudet seuraajat ennen kuin he voivat seurata sinua, voit lukita tilisi.
@@ -690,8 +1072,12 @@ fi:
       tips: Vinkkejä
       title: Tervetuloa mukaan, %{name}!
   users:
+    follow_limit_reached: You cannot follow more than %{limit} people
     invalid_email: Virheellinen sähköpostiosoite
     invalid_otp_token: Virheellinen kaksivaiheisen todentamisen koodi
     otp_lost_help_html: Jos sinulla ei ole pääsyä kumpaankaan, voit ottaa yhteyttä osoitteeseen %{email}
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
     signed_in_as: 'Kirjautunut henkilönä:'
+  verification:
+    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
+    verification: Verification
