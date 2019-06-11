@@ -1,4 +1,3 @@
----
 es:
   activerecord:
     attributes:
@@ -25,11 +24,11 @@ es:
         edit: Editar
         submit: Enviar
       confirmations:
-        destroy: "¿Está seguro?"
+        destroy: '¿Está seguro?'
       edit:
         title: Editar aplicación
       form:
-        error: "¡Uuups! Compruebe su formulario"
+        error: '¡Uuups! Compruebe su formulario'
       help:
         native_redirect_uri: Utilice %{native_redirect_uri} para pruebas locales
         redirect_uri: Utilice una línea por URI
@@ -68,7 +67,7 @@ es:
       buttons:
         revoke: Revocar
       confirmations:
-        revoke: "¿Está seguro?"
+        revoke: '¿Está seguro?'
       index:
         application: Aplicación
         created_at: Creado el
@@ -115,5 +114,28 @@ es:
         title: OAuth autorización requerida
     scopes:
       follow: seguir, bloquear, desbloquear y dejar de seguir cuentas
+      push: receive your push notifications
       read: leer los datos de tu cuenta
+      "read:accounts": see accounts information
+      "read:blocks": see your blocks
+      "read:favourites": see your favourites
+      "read:filters": see your filters
+      "read:follows": see your follows
+      "read:lists": see your lists
+      "read:mutes": see your mutes
+      "read:notifications": see your notifications
+      "read:reports": see your reports
+      "read:search": search on your behalf
+      "read:statuses": see all statuses
       write: publicar en tu nombre
+      "write:accounts": modify your profile
+      "write:blocks": block accounts and domains
+      "write:favourites": favourite statuses
+      "write:filters": create filters
+      "write:follows": follow people
+      "write:lists": create lists
+      "write:media": upload media files
+      "write:mutes": mute people and conversations
+      "write:notifications": clear your notifications
+      "write:reports": report other people
+      "write:statuses": publish statuses
