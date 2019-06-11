@@ -1,4 +1,3 @@
----
 pt-BR:
   simple_form:
     hints:
@@ -27,6 +26,7 @@ pt-BR:
         phrase: Vai coincidir, independente de maiúsculas ou minúsculas, no texto ou no aviso de conteúdo de um toot
         scopes: Quais APIs a aplicação vai ter permissão de acessar. Se você selecionar um escopo de alto nível, você não precisa selecionar individualmente os outros.
         setting_aggregate_reblogs: Não mostrar novos compartilhamentos para toots que foram compartilhados recentemente (afeta somente novos compartilhamentos recebidos)
+        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
         setting_display_media_default: Esconder mídia marcada como sensível
         setting_display_media_hide_all: Sempre esconder todas as mídias
         setting_display_media_show_all: Sempre mostrar mídia marcada como sensível
@@ -88,6 +88,7 @@ pt-BR:
         otp_attempt: Código de autenticação em dois passos
         password: Senha
         phrase: Palavra-chave ou frase
+        setting_advanced_layout: Enable advanced web interface
         setting_aggregate_reblogs: Agrupar compartilhamentos nas timelines
         setting_auto_play_gif: Reproduzir GIFs automaticamente
         setting_boost_modal: Mostrar diálogo de confirmação antes de compartilhar postagem
@@ -129,8 +130,9 @@ pt-BR:
         pending_account: Mandar um -mail quando uma nova conta precisar ser revisada
         reblog: Mandar um e-mail quando alguém compartilhar suas postagens
         report: Mandar um e-mail quando uma nova denúncia é submetida
-    'no': Não
+    'no': 'Não'
+    recommended: Recommended
     required:
       mark: "*"
       text: obrigatório
-    'yes': Sim
+    'yes': 'Sim'
