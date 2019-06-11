@@ -174,6 +174,7 @@ de:
       statuses: Beiträge
       subscribe: Abonnieren
       suspended: Gesperrt
+      time_in_queue: "%{time} in der Warteschlange"
       title: Konten
       unconfirmed_email: Unbestätigte E-Mail-Adresse
       undo_silenced: Stummschaltung zurücknehmen
@@ -269,6 +270,7 @@ de:
       created_msg: Die Domain-Blockade wird nun durchgeführt
       destroyed_msg: Die Domain-Blockade wurde rückgängig gemacht
       domain: Domain
+      existing_domain_block_html: Es gibt schon eine Blockade für %{name}, diese muss erst <a href="%{unblock_url}">aufgehoben</a> werden.
       new:
         create: Blockade einrichten
         hint: Die Domain-Blockade wird nicht verhindern, dass Konteneinträge in der Datenbank erstellt werden. Aber es werden rückwirkend und automatisch alle Moderationsmethoden auf diese Konten angewendet.
@@ -497,6 +499,12 @@ de:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
       subject: Neue Meldung auf %{instance} (#%{id})
+  appearance:
+    advanced_web_interface: Fortgeschrittene Benutzeroberfläche
+    advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, erlaubt dir die fortgeschrittene Benutzeroberfläche viele unterschiedliche Spalten auf einmal zu sehen, wie z.B. deine Startseite, Benachrichtigungen, das gesamte bekannte Netz, deine Listen und beliebige Hashtags.
+    animations_and_accessibility: Animationen und Barrierefreiheit
+    confirmation_dialogs: Bestätigungsfenster
+    sensitive_content: Heikle Inhalte
   application_mailer:
     notification_preferences: Ändere E-Mail-Einstellungen
     salutation: "%{name},"
@@ -777,6 +785,8 @@ de:
       too_many_options: kann nicht mehr als %{max} Einträge beinhalten
   preferences:
     other: Weiteres
+    posting_defaults: Standardeinstellungen für Beiträge
+    public_timelines: Öffentliche Zeitleisten
   relationships:
     activity: Kontoaktivität
     dormant: Inaktiv
