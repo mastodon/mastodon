@@ -1,52 +1,100 @@
----
-'no':
+"no":
   about:
-    about_hashtag_html: Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.
+    about_hashtag_html: 'Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.'
     about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
     about_this: Om denne instansen
+    active_count_after: active
+    active_footnote: Monthly Active Users (MAU)
+    administered_by: 'Administered by:'
+    api: API
+    apps: Mobile apps
+    apps_platforms: Use Mastodon from iOS, Android and other platforms
+    browse_directory: Browse a profile directory and filter by interests
+    browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Kontakt
     contact_missing: Ikke innstilt
     contact_unavailable: Ikke tilgjengelig
+    discover_users: Discover users
+    documentation: Documentation
     extended_description_html: |
       <h3>En god plassering for regler</h3>
       <p>En utvidet beskrivelse er ikke satt opp ennå.</p>
+    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} er en tjener i nettverket"
+    get_apps: Try a mobile app
     hosted_on: Mastodon driftet på %{domain}
     learn_more: Lær mer
+    privacy_policy: Privacy policy
+    see_whats_happening: See what's happening
+    server_stats: 'Server stats:'
     source_code: Kildekode
-    status_count_after: statuser
+    status_count_after:
+      one: status
+      other: statuses
     status_count_before: Som skrev
-    user_count_after: brukere
+    tagline: Follow friends and discover new ones
+    terms: Terms of service
+    user_count_after:
+      one: user
+      other: users
     user_count_before: Her bor
     what_is_mastodon: Hva er Mastodon?
   accounts:
+    choices_html: "%{name}'s choices:"
     follow: Følg
-    followers: Følgere
+    followers:
+      one: Follower
+      other: Followers
     following: Følger
+    joined: Joined %{date}
+    last_active: last active
+    link_verified_on: Ownership of this link was checked on %{date}
     media: Media
     moved_html: "%{name} har flyttet til %{new_profile_link}:"
+    network_hidden: This information is not available
     nothing_here: Det er ingenting her!
     people_followed_by: Folk som %{name} følger
     people_who_follow: Folk som følger %{name}
-    posts: Poster
+    pin_errors:
+      following: You must be already following the person you want to endorse
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Tuter med svar
     reserved_username: Brukernavnet er reservert
     roles:
       admin: Admin
+      bot: Bot
       moderator: Moderere
+    unavailable: Profile unavailable
     unfollow: Slutte følge
   admin:
+    account_actions:
+      action: Perform action
+      title: Perform moderation action on %{acct}
     account_moderation_notes:
       create: Lag
       created_msg: Moderasjonsnotat laget uten problem!
       delete: Slett
       destroyed_msg: Moderasjonsnotat slettet uten problem!
     accounts:
+      approve: Approve
+      approve_all: Approve all
       are_you_sure: Er du sikker?
+      avatar: Avatar
       by_domain: Domene
+      change_email:
+        changed_msg: Account email successfully changed!
+        current_email: Current email
+        label: Change email
+        new_email: New email
+        submit: Change email
+        title: Change email for %{username}
       confirm: Bekreft
       confirmed: Bekreftet
       confirming: Bekrefte
+      deleted: Deleted
       demote: Degrader
       disable: Deaktiver
       disable_two_factor_authentication: Skru av 2FA
@@ -62,8 +110,11 @@
       followers: Følgere
       followers_url: Følgere URL
       follows: Følginger
+      header: Header
       inbox_url: Innboks URL
+      invited_by: Invited by
       ip: IP-adresse
+      joined: Joined
       location:
         all: Alle
         local: Lokalt
@@ -73,15 +124,20 @@
       media_attachments: Mediavedlegg
       memorialize: Gjør om til et minne
       moderation:
+        active: Active
         all: Alle
+        pending: Pending
         silenced: Målbundet
         suspended: Utvist
         title: Moderasjon
       moderation_notes: Moderasjonsnotater
       most_recent_activity: Nyligste aktivitet
       most_recent_ip: Nyligste IP
+      no_account_selected: No accounts were changed as none were selected
+      no_limits_imposed: No limits imposed
       not_subscribed: Ikke abonnért
       outbox_url: Utboks URL
+      pending: Pending review
       perform_full_suspension: Utfør full utvisning
       profile_url: Profil-URL
       promote: Oppgradere
@@ -89,6 +145,10 @@
       public: Offentlig
       push_subscription_expires: PuSH-abonnent utløper
       redownload: Oppdater avatar
+      reject: Reject
+      reject_all: Reject all
+      remove_avatar: Remove avatar
+      remove_header: Remove header
       resend_confirmation:
         already_confirmed: Denne brukeren er allerede bekreftet
         send: Send bekreftelses-epost på nytt
@@ -109,21 +169,30 @@
         created_reports: Rapporter laget av denne kontoen
         targeted_reports: Rapporter laget om denne kontoen
       silence: Målbind
+      silenced: Silenced
       statuses: Statuser
       subscribe: Abonnere
+      suspended: Suspended
+      time_in_queue: Waiting in queue %{time}
       title: Kontoer
+      unconfirmed_email: Unconfirmed email
       undo_silenced: Angre målbinding
       undo_suspension: Angre utvisning
       unsubscribe: Avslutte abonnementet
       username: Brukernavn
+      warn: Warn
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} assigned report %{target} to themselves"
+        change_email_user: "%{name} changed the e-mail address of user %{target}"
         confirm_user: "%{name} bekreftet e-postadresse for bruker %{target}"
+        create_account_warning: "%{name} sent a warning to %{target}"
         create_custom_emoji: "%{name} lastet opp ny emoji %{target}"
         create_domain_block: "%{name} blokkerte domenet %{target}"
         create_email_domain_block: "%{name} svartelistet e-postdomenet %{target}"
         demote_user: "%{name} degraderte bruker %{target}"
+        destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_block: "%{name} fjernet blokkeringen av domenet %{target}"
         destroy_email_domain_block: "%{name} hvitelistet e-postdomenet %{target}"
         destroy_status: "%{name} fjernet status av %{target}"
@@ -134,14 +203,18 @@
         enable_user: "%{name} aktiverte innlogging for bruker %{target}"
         memorialize_account: "%{name} endret %{target}s konto til en minneside"
         promote_user: "%{name} oppgraderte bruker %{target}"
+        remove_avatar_user: "%{name} removed %{target}'s avatar"
+        reopen_report: "%{name} reopened report %{target}"
         reset_password_user: "%{name} nullstilte passordet til bruker %{target}"
         resolve_report: "%{name} avviste rapporten %{target}"
         silence_account: "%{name} forstummet %{target}s konto"
         suspend_account: "%{name} suspendert %{target}s konto"
+        unassigned_report: "%{name} unassigned report %{target}"
         unsilence_account: "%{name} fjernet forstummingen av %{target}s konto"
         unsuspend_account: "%{name} opphevde suspenderingen av %{target}s konto"
         update_custom_emoji: "%{name} oppdaterte emoji %{target}"
         update_status: "%{name} oppdaterte status for %{target}"
+      deleted_status: "(deleted status)"
       title: Revisionslogg
     custom_emojis:
       by_domain: Domene
@@ -168,11 +241,35 @@
       update_failed_msg: Kunne ikke oppdatere emojien
       updated_msg: Emoji oppdatert uten problemer!
       upload: Last opp
+    dashboard:
+      backlog: backlogged jobs
+      config: Configuration
+      feature_deletions: Account deletions
+      feature_invites: Invite links
+      feature_profile_directory: Profile directory
+      feature_registrations: Registrations
+      feature_relay: Federation relay
+      feature_timeline_preview: Timeline preview
+      features: Features
+      hidden_service: Federation with hidden services
+      open_reports: open reports
+      recent_users: Recent users
+      search: Full-text search
+      single_user_mode: Single user mode
+      software: Software
+      space: Space usage
+      title: Dashboard
+      total_users: users in total
+      trends: Trends
+      week_interactions: interactions this week
+      week_users_active: active this week
+      week_users_new: users this week
     domain_blocks:
       add_new: Lag ny
       created_msg: Domeneblokkering blir nå behandlet
       destroyed_msg: Domeneblokkering har nå blitt angret
       domain: Domene
+      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Lag blokkering
         hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder på de kontoene.
@@ -184,6 +281,13 @@
         title: Ny domeneblokkering
       reject_media: Avvis mediefiler
       reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
+      reject_reports: Reject reports
+      reject_reports_hint: Ignore all reports coming from this domain. Irrelevant for suspensions
+      rejecting_media: rejecting media files
+      rejecting_reports: rejecting reports
+      severity:
+        silence: silenced
+        suspend: suspended
       show:
         affected_accounts:
           one: En konto i databasen påvirket
@@ -204,28 +308,83 @@
         create: Legg til domene
         title: Ny blokkeringsoppføring av e-postdomene
       title: Blokkering av e-postdomene
+    followers:
+      back_to_account: Back To Account
+      title: "%{acct}'s Followers"
     instances:
+      by_domain: Domain
+      delivery_available: Delivery is available
+      known_accounts:
+        one: "%{count} known account"
+        other: "%{count} known accounts"
+      moderation:
+        all: All
+        limited: Limited
+        title: Moderation
       title: Kjente instanser
+      total_blocked_by_us: Blocked by us
+      total_followed_by_them: Followed by them
+      total_followed_by_us: Followed by us
+      total_reported: Reports about them
+      total_storage: Media attachments
     invites:
+      deactivate_all: Deactivate all
       filter:
         all: Alle
         available: Tilgjengelig
         expired: Utløpt
         title: Filter
       title: Invitasjoner
+    pending_accounts:
+      title: Pending accounts (%{count})
+    relays:
+      add_new: Add new relay
+      delete: Delete
+      description_html: A <strong>federation relay</strong> is an intermediary server that exchanges large volumes of public toots between servers that subscribe and publish to it. <strong>It can help small and medium servers discover content from the fediverse</strong>, which would otherwise require local users manually following other people on remote servers.
+      disable: Disable
+      disabled: Disabled
+      enable: Enable
+      enable_hint: Once enabled, your server will subscribe to all public toots from this relay, and will begin sending this server's public toots to it.
+      enabled: Enabled
+      inbox_url: Relay URL
+      pending: Waiting for relay's approval
+      save_and_enable: Save and enable
+      setup: Setup a relay connection
+      status: Status
+      title: Relays
+    report_notes:
+      created_msg: Report note successfully created!
+      destroyed_msg: Report note successfully deleted!
     reports:
+      account:
+        note: note
+        report: report
       action_taken_by: Handling utført av
       are_you_sure: Er du sikker?
+      assign_to_self: Assign to me
+      assigned: Assigned moderator
       comment:
         none: Ingen
+      created_at: Reported
       mark_as_resolved: Merk som løst
+      mark_as_unresolved: Mark as unresolved
+      notes:
+        create: Add note
+        create_and_resolve: Resolve with note
+        create_and_unresolve: Reopen with note
+        delete: Delete
+        placeholder: Describe what actions have been taken, or any other related updates...
+      reopen: Reopen report
       report: 'Rapportér #%{id}'
       reported_account: Rapportert konto
       reported_by: Rapportert av
       resolved: Løst
+      resolved_msg: Report successfully resolved!
       status: Status
       title: Rapporter
+      unassign: Unassign
       unresolved: Uløst
+      updated_at: Updated
     settings:
       activity_api_enabled:
         desc_html: Antall lokale statusposter, aktive brukere og nye registreringer i ukentlige oppdelinger
@@ -236,9 +395,24 @@
       contact_information:
         email: Skriv en offentlig e-postadresse
         username: Skriv brukernavn
+      custom_css:
+        desc_html: Modify the look with CSS loaded on every page
+        title: Custom CSS
+      hero:
+        desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
+        title: Hero image
+      mascot:
+        desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
+        title: Mascot image
       peers_api_enabled:
         desc_html: Domenenavn denne instansen har truffet på i fediverset
         title: Publiser liste over oppdagede instanser
+      preview_sensitive_media:
+        desc_html: Link previews on other websites will display a thumbnail even if the media is marked as sensitive
+        title: Show sensitive media in OpenGraph previews
+      profile_directory:
+        desc_html: Allow users to be discoverable
+        title: Enable profile directory
       registrations:
         closed_message:
           desc_html: Vises på forsiden når registreringer er lukket<br>Du kan bruke HTML-tagger
@@ -249,6 +423,15 @@
         min_invite_role:
           disabled: Ingen
           title: Tillat invitasjoner fra
+      registrations_mode:
+        modes:
+          approved: Approval required for sign up
+          none: Nobody can sign up
+          open: Anyone can sign up
+        title: Registrations mode
+      show_known_fediverse_at_about_page:
+        desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show local toots.
+        title: Show known fediverse on timeline preview
       show_staff_badge:
         desc_html: Vis personalemerke på brukersiden
         title: Vis personalemerke
@@ -258,6 +441,9 @@
       site_description_extended:
         desc_html: Vises på side for utvidet informasjon.<br>Du kan bruke HTML-tagger
         title: Utvidet nettstedsinformasjon
+      site_short_description:
+        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph.
+        title: Short server description
       site_terms:
         desc_html: Du kan skrive din egen personverns-strategi, bruksviklår og andre regler. Du kan bruke HTML tagger
         title: Skreddersydde bruksvilkår
@@ -279,6 +465,7 @@
       media:
         title: Media
       no_media: Ingen media
+      no_status_selected: No statuses were changed as none were selected
       title: Kontostatuser
       with_media: Med media
     subscriptions:
@@ -288,11 +475,35 @@
       last_delivery: Siste levering
       title: WebSub
       topic: Emne
+    tags:
+      accounts: Accounts
+      hidden: Hidden
+      hide: Hide from directory
+      name: Hashtag
+      title: Hashtags
+      unhide: Show in directory
+      visible: Visible
     title: Administrasjon
+    warning_presets:
+      add_new: Add new
+      delete: Delete
+      edit: Edit
+      edit_preset: Edit warning preset
+      title: Manage warning presets
   admin_mailer:
+    new_pending_account:
+      body: The details of the new account are below. You can approve or reject this application.
+      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter} har rapportert %{target}"
-      subject: Ny rapport for %{instance} (#%{id})
+      body_remote: Someone from %{domain} has reported %{target}
+      subject: 'Ny rapport for %{instance} (#%{id})'
+  appearance:
+    advanced_web_interface: Advanced web interface
+    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
+    animations_and_accessibility: Animations and accessibility
+    confirmation_dialogs: Confirmation dialogs
+    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Endre e-post innstillingene
     salutation: "%{name},"
@@ -309,6 +520,10 @@
     warning: Vær veldig forsiktig med denne data. Aldri del den med noen!
     your_token: Din tilgangsnøkkel
   auth:
+    apply_for_account: Request an invite
+    change_password: Password
+    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
+    confirm_email: Confirm email
     delete_account: Slett konto
     delete_account_html: Hvis du ønsker å slette din konto kan du <a href="%{path}">fortsette her</a>. Du vil bli spurt om bekreftelse.
     didnt_get_confirmation: Mottok du ikke instruksjoner om bekreftelse?
@@ -318,12 +533,19 @@
     logout: Logg ut
     migrate_account: Flytt til en annen konto
     migrate_account_html: Hvis du ønsker å henvise denne kontoen til en annen, kan du <a href="%{path}">konfigurere det her</a>.
+    or_log_in_with: Or log in with
+    providers:
+      cas: CAS
+      saml: SAML
     register: Bli med
+    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: Send bekreftelsesinstruksjoner på nytt
     reset_password: Nullstill passord
     security: Sikkerhet
     set_new_password: Sett nytt passord
+    trouble_logging_in: Trouble logging in?
   authorize_follow:
+    already_following: You are already following this account
     error: Uheldigvis skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans
     follow: Følg
     follow_request: 'Du har sendt en følgeforespørsel til:'
@@ -355,6 +577,16 @@
     success_msg: Din konto ble slettet
     warning_html: Kun sletting av innhold fra denne instansen er garantert. Innhold som har blitt delt i stor utstrekning vil sannsynligvis legge igjen spor. Tjenere som er frakoblet og tjenere som ikke abbonerer på dine oppdatereringer vil ikke oppdatere sine databaser.
     warning_title: Tilgjengelighet av spredt innhold
+  directories:
+    directory: Profile directory
+    enabled: You are currently listed in the directory.
+    enabled_but_waiting: You have opted-in to be listed in the directory, but you do not have the minimum number of followers (%{min_followers}) to be listed yet.
+    explanation: Discover users based on their interests
+    explore_mastodon: Explore %{title}
+    how_to_enable: You are not currently opted-in to the directory. You can opt-in below. Use hashtags in your bio text to be listed under specific hashtags!
+    people:
+      one: "%{count} person"
+      other: "%{count} people"
   errors:
     '403': Du har ikke tillatelse til å vise denne siden.
     '404': Siden du leter etter finnes ikke.
@@ -367,23 +599,88 @@
       content: Beklager men noe gikk galt ved vår ende.
       title: Denne siden er ikke korrekt
     noscript_html: For å bruke Mastodon webapplikasjon må du aktivere JavaScript. Alternativt kan du forsøke en av de mange <a href="%{apps_path}">integrerte appene</a> for Mastodon til din plattform.
+  existing_username_validator:
+    not_found: could not find a local user with that username
+    not_found_multiple: could not find %{usernames}
   exports:
+    archive_takeout:
+      date: Date
+      download: Download your archive
+      hint_html: You can request an archive of your <strong>toots and uploaded media</strong>. The exported data will be in the ActivityPub format, readable by any compliant software. You can request an archive every 7 days.
+      in_progress: Compiling your archive...
+      request: Request your archive
+      size: Size
     blocks: Du blokkerer
     csv: CSV
+    domain_blocks: Domain blocks
     follows: Du følger
+    lists: Lists
     mutes: Du demper
     storage: Medialagring
+  featured_tags:
+    add_new: Add new
+    errors:
+      limit: You have already featured the maximum amount of hashtags
+  filters:
+    contexts:
+      home: Home timeline
+      notifications: Notifications
+      public: Public timelines
+      thread: Conversations
+    edit:
+      title: Edit filter
+    errors:
+      invalid_context: None or invalid context supplied
+      invalid_irreversible: Irreversible filtering only works with home or notifications context
+    index:
+      delete: Delete
+      title: Filters
+    new:
+      title: Add new filter
+  footer:
+    developers: Developers
+    more: More…
+    resources: Resources
   generic:
+    all: All
     changes_saved_msg: Vellykket lagring av endringer!
+    copy: Copy
+    order_by: Order by
     save_changes: Lagre endringer
     validation_errors:
       one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
+  html_validator:
+    invalid_markup: 'contains invalid HTML markup: %{error}'
+  identity_proofs:
+    active: Active
+    authorize: Yes, authorize
+    authorize_connection_prompt: Authorize this cryptographic connection?
+    errors:
+      failed: The cryptographic connection failed. Please try again from %{provider}.
+      keybase:
+        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
+        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
+      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
+    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
+    i_am_html: I am %{username} on %{service}.
+    identity: Identity
+    inactive: Inactive
+    publicize_checkbox: 'And toot this:'
+    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    status: Verification status
+    view_proof: View proof
   imports:
+    modes:
+      merge: Merge
+      merge_long: Keep existing records and add new ones
+      overwrite: Overwrite
+      overwrite_long: Replace current records with the new ones
     preface: Du kan importere data om brukere du følger eller blokkerer til kontoen din på denne instansen med eksportfiler fra andre instanser.
     success: Dine data ble mottatt og vil bli behandlet så fort som mulig
     types:
       blocking: Blokkeringsliste
+      domain_blocking: Domain blocking list
       following: Følgeliste
       muting: Dempeliste
     upload: Opplastning
@@ -396,9 +693,11 @@
       '21600': 6 timer
       '3600': 1 time
       '43200': 12 timer
+      '604800': 1 week
       '86400': 1 dag
     expires_in_prompt: Aldri
     generate: Generer
+    invited_by: 'You were invited by:'
     max_uses:
       one: 1 uke
       other: "%{count} bruk"
@@ -466,18 +765,65 @@
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: " "
+          unit: ''
   pagination:
+    newer: Newer
     next: Neste
+    older: Older
     prev: Forrige
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: You have already voted on this poll
+      duplicate_options: contain duplicate items
+      duration_too_long: is too far into the future
+      duration_too_short: is too soon
+      expired: The poll has already ended
+      over_character_limit: cannot be longer than %{max} characters each
+      too_few_options: must have more than one item
+      too_many_options: can't contain more than %{max} items
   preferences:
     other: Annet
+    posting_defaults: Posting defaults
+    public_timelines: Public timelines
+  relationships:
+    activity: Account activity
+    dormant: Dormant
+    last_active: Last active
+    most_recent: Most recent
+    moved: Moved
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Remove all followers from the selected domains
+    remove_selected_followers: Remove selected followers
+    remove_selected_follows: Unfollow selected users
+    status: Account status
   remote_follow:
     acct: Tast inn brukernavn@domene som du vil følge fra
     missing_resource: Kunne ikke finne URLen for din konto
+    no_account_html: Don't have an account? You can <a href='%{sign_up_path}' target='_blank'>sign up here</a>
     proceed: Fortsett med følging
     prompt: 'Du vil følge:'
+    reason_html: "<strong>Why is this step necessary?</strong> <code>%{instance}</code> might not be the server where you are registered, so we need to redirect you to your home server first."
+  remote_interaction:
+    favourite:
+      proceed: Proceed to favourite
+      prompt: 'You want to favourite this toot:'
+    reblog:
+      proceed: Proceed to boost
+      prompt: 'You want to boost this toot:'
+    reply:
+      proceed: Proceed to reply
+      prompt: 'You want to reply to this toot:'
+  remote_unfollow:
+    error: Error
+    title: Title
+    unfollowed: Unfollowed
+  scheduled_statuses:
+    over_daily_limit: You have exceeded the limit of %{limit} scheduled toots for that day
+    over_total_limit: You have exceeded the limit of %{limit} scheduled toots
+    too_soon: The scheduled date must be in the future
   sessions:
     activity: Siste aktivitet
     browser: Nettleser
@@ -520,18 +866,40 @@
     revoke_success: Økt tilbakekalt
     title: Økter
   settings:
+    account: Account
+    account_settings: Account settings
+    appearance: Appearance
     authorized_apps: Autoriserte applikasjoner
     back: Tilbake til Mastodon
     delete: Kontosletting
     development: Utvikling
     edit_profile: Endre profil
     export: Dataeksport
+    featured_tags: Featured hashtags
+    identity_proofs: Identity proofs
     import: Importér
+    import_and_export: Import and export
     migrate: Kontomigrering
     notifications: Varslinger
     preferences: Preferanser
+    profile: Profile
+    relationships: Follows and followers
     two_factor_authentication: Tofaktorautentisering
   statuses:
+    attached:
+      description: 'Attached: %{attached}'
+      image:
+        one: "%{count} image"
+        other: "%{count} images"
+      video:
+        one: "%{count} video"
+        other: "%{count} videos"
+    boosted_from_html: Boosted from %{acct_link}
+    content_warning: 'Content warning: %{warning}'
+    disallowed_hashtags:
+      one: 'contained a disallowed hashtag: %{tags}'
+      other: 'contained the disallowed hashtags: %{tags}'
+    language_detection: Automatically detect language
     open_in_web: Åpne i nettleser
     over_character_limit: grense på %{max} tegn overskredet
     pin_errors:
@@ -539,7 +907,13 @@
       ownership: Kun egne tuter kan festes
       private: Kun offentlige tuter kan festes
       reblog: En fremheving kan ikke festes
+    poll:
+      total_votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
+      vote: Vote
     show_more: Vis mer
+    sign_in_to_participate: Sign in to participate in the conversation
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Privat
@@ -553,12 +927,96 @@
     reblogged: fremhevde
     sensitive_content: Følsomt innhold
   terms:
+    body_html: |
+      <h2>Privacy Policy</h2>
+      <h3 id="collect">What information do we collect?</h3>
+
+      <ul>
+      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">What do we use your information for?</h3>
+
+      <p>Any of the information we collect from you may be used in the following ways:</p>
+
+      <ul>
+      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">How do we protect your information?</h3>
+
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">What is our data retention policy?</h3>
+
+      <p>We will make a good faith effort to:</p>
+
+      <ul>
+      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+      </ul>
+
+      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
+
+      <p>You may irreversibly delete your account at any time.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Do we use cookies?</h3>
+
+      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+
+      <p>We use cookies to understand and save your preferences for future visits.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
+
+      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
+
+      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
+
+      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Site usage by children</h3>
+
+      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
+
+      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+
+      <p>Law requirements can be different if this server is in another jurisdiction.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Changes to our Privacy Policy</h3>
+
+      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+
+      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
+
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Personvern og villkår for bruk av nettstedet"
   themes:
+    contrast: Mastodon (High contrast)
     default: Mastodon
+    mastodon-light: Mastodon (Light)
   time:
     formats:
       default: "%-d. %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Tast koden som ble generert av din autentiseringsapp for å bekrefte
     description_html: Hvis du skrur på <strong>tofaktorautentisering</strong> må du ha din telefon for å logge inn. Denne vil generere koder som du må taste inn.
@@ -576,6 +1034,26 @@
     setup: Sett opp
     wrong_code: Den angitte koden var ugyldig! Stemmer instansens tid overalt med enhetens tid?
   user_mailer:
+    backup_ready:
+      explanation: You requested a full backup of your Mastodon account. It's now ready for download!
+      subject: Your archive is ready for download
+      title: Archive takeout
+    warning:
+      explanation:
+        disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
+        silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
+        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
+      review_server_policies: Review server policies
+      subject:
+        disable: Your account %{acct} has been frozen
+        none: Warning for %{acct}
+        silence: Your account %{acct} has been limited
+        suspend: Your account %{acct} has been suspended
+      title:
+        disable: Account frozen
+        none: Warning
+        silence: Account limited
+        suspend: Account suspended
     welcome:
       edit_profile_action: Sett opp profil
       edit_profile_step: Du kan tilpasse din profil ved å laste opp en avatar, overskrift, endre ditt visningsnavn med mer. Hvis du vil godkjenne hvilke personer som får lov til å følge deg kan du låse kontoen.
@@ -594,6 +1072,12 @@
       tips: Tips
       title: Velkommen ombord, %{name}!
   users:
+    follow_limit_reached: You cannot follow more than %{limit} people
     invalid_email: E-postaddressen er ugyldig
     invalid_otp_token: Ugyldig to-faktorkode
+    otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
+    seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Innlogget som:'
+  verification:
+    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
+    verification: Verification
