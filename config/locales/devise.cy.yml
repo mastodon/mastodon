@@ -1,4 +1,3 @@
----
 cy:
   devise:
     confirmations:
@@ -8,10 +7,11 @@ cy:
     failure:
       already_authenticated: Yr ydych wedi mewngofnodi yn barod.
       inactive: Nid yw eich cyfrif yn weithredol eto.
-      invalid: "%{authentication_keys} neu gyfrinair annilys."
+      invalid: '%{authentication_keys} neu gyfrinair annilys.'
       last_attempt: Mae gennych un cyfle arall cyn i'ch cyfrif gael ei gloi.
       locked: Mae eich cyfrif wedi ei gloi.
-      not_found_in_database: "%{authentication_keys} neu gyfrinair annilys."
+      not_found_in_database: '%{authentication_keys} neu gyfrinair annilys.'
+      pending: Your account is still under review.
       timeout: Mae eich sesiwn wedi dod i ben. Mewngofnodwch eto i barhau.
       unauthenticated: Mae angen i chi fewngofnodi neu gofrestru cyn parhau.
       unconfirmed: Mae rhaid i chi gadarnhau eich cyfeiriad e-bost cyn parhau.
@@ -20,6 +20,7 @@ cy:
         action: Gwiriwch eich cyfeiriad e-bost
         action_with_app: Cadarnhau a dychwelyd i %{app}
         explanation: Yr ydych wedi creu cyfrif ar %{host} gyda'r cyfrif e-bost hwn. Dim ond un clic sydd angen i'w wneud yn weithredol. Os nad chi oedd hyn, anwybyddwch yr e-bost hwn os gwelwch yn dda.
+        explanation_when_pending: You applied for an invite to %{host} with this email address. Once you confirm your e-mail address, we will review your application. You can't login until then. If your application is rejected, your data will be removed, so no further action will be required from you. If this wasn't you, please ignore this email.
         extra_html: Gwnewch yn siŵr i edrych ar <a href="%{terms_path}">reolau'r achos</a> a <a href="%{policy_path}">ein telerau gwasanaeth</a>.
         subject: 'Mastodon: Canllawiau cadarnhau i %{instance}'
         title: Gwirio cyfeiriad e-bost
@@ -60,6 +61,7 @@ cy:
       signed_up: Croeso! Rydych wedi cofrestru'n llwyddiannus.
       signed_up_but_inactive: Yr ydych wedi cofrestru'n llwyddiannus. Fodd bynnag, ni allwn eich mewngofnodi achos nid yw eich cyfrif wedi ei actifadu eto.
       signed_up_but_locked: Yr ydych wedi cofrestru'n llwyddiannus. Fodd bynnag, ni allwn eich mewngofnodi achos fod eich cyfrif wedi ei gloi.
+      signed_up_but_pending: A message with a confirmation link has been sent to your email address. After you click the link, we will review your application. You will be notified if it is approved.
       signed_up_but_unconfirmed: Mae neges gyda dolen cadarnhau wedi ei anfon i'ch cyfeiriad e-bost. Dilynwch y ddolen er mwyn actifadu eich cyfrif. Edrychwch yn eich ffolder sbam os na dderbynioch chi'r e-bost hwn os gwelwch yn dda.
       update_needs_confirmation: Rydych wedi diweddaru eich cyfrif yn llwyddiannus, ond mae angen i ni wirio'ch cyfeiriad e-bost newydd. Edrychwch ar eich e-byst a dilynwch y ddolen gadarnhau er mwyn cadarnhau eich cyfeiriad e-bost newydd. Edrychwch ar eich ffolder sbam os na dderbynioch chi yr e-bost hwn.
       updated: Mae eich cyfrif wedi ei ddiweddaru yn llwyddiannus.
@@ -79,9 +81,9 @@ cy:
       not_found: heb ei ganfod
       not_locked: heb ei gloi
       not_saved:
-        few: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
-        many: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
+        zero: "Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:"
         one: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd 1 gwall:'
-        other: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
-        two: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
-        zero: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
+        two: "Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:"
+        few: "Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:"
+        many: "Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:"
+        other: "Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:"
