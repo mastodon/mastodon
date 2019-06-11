@@ -1,4 +1,3 @@
----
 nl:
   simple_form:
     hints:
@@ -27,6 +26,7 @@ nl:
         phrase: Komt overeen ongeacht hoofd-/kleine letters of tekstwaarschuwingen
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
         setting_aggregate_reblogs: Geen nieuwe boosts tonen voor toots die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
+        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
         setting_display_media_default: Als gevoelig gemarkeerde media verbergen
         setting_display_media_hide_all: Media altijd verbergen
         setting_display_media_show_all: Als gevoelig gemarkeerde media altijd verbergen
@@ -88,6 +88,7 @@ nl:
         otp_attempt: Tweestaps-aanmeldcode
         password: Wachtwoord
         phrase: Trefwoord of zinsdeel
+        setting_advanced_layout: Enable advanced web interface
         setting_aggregate_reblogs: Boosts in tijdlijnen groeperen
         setting_auto_play_gif: Speel geanimeerde GIF's automatisch af
         setting_boost_modal: Vraag voor het boosten van een toot een bevestiging
@@ -129,8 +130,9 @@ nl:
         pending_account: Een e-mail verzenden wanneer een nieuw account moet worden beoordeeld
         reblog: Een e-mail versturen wanneer iemand jouw toot heeft geboost
         report: Verstuur een e-mail wanneer een nieuw rapportage is ingediend
-    'no': Nee
+    'no': 'Nee'
+    recommended: Recommended
     required:
       mark: "*"
       text: vereist
-    'yes': Ja
+    'yes': 'Ja'
