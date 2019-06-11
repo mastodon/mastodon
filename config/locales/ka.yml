@@ -1,36 +1,54 @@
----
 ka:
   about:
-    about_hashtag_html: ეს საჯარო ტუტებია, რომლებიც ატარებენ <strong>#%{hashtag}</strong> ტეგს. მათთან ინტერაქციას შეძლებთ, თუ ფედივერსში გაქვთ რაიმე ანგარიში.
+    about_hashtag_html: 'ეს საჯარო ტუტებია, რომლებიც ატარებენ <strong>#%{hashtag}</strong> ტეგს. მათთან ინტერაქციას შეძლებთ, თუ ფედივერსში გაქვთ რაიმე ანგარიში.'
     about_mastodon_html: მასტოდონი ღია ვებ პროტოკოლებზე და უფასო, ღია პროგრამებზე დაფუძნებული სოციალური ქსელია. ის ისეთი დეცენტრალიზებულია როგორც ელ-ფოსტა.
     about_this: შესახებ
+    active_count_after: active
+    active_footnote: Monthly Active Users (MAU)
     administered_by: 'ადმინისტრატორი:'
     api: აპი
     apps: მობილური აპლიკაციები
+    apps_platforms: Use Mastodon from iOS, Android and other platforms
+    browse_directory: Browse a profile directory and filter by interests
+    browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: კონტაქტი
     contact_missing: არაა დაყენებული
     contact_unavailable: მიუწ.
+    discover_users: Discover users
     documentation: დოკუმენტაცია
     extended_description_html: |
       <h3>კარგი ადგილი წესებისთვის</h3>
       <p>განვრცობილი აღწერილობა ჯერ არ შექმნილა.</p>
+    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} ერთი სერვერია ქსელში"
+    get_apps: Try a mobile app
     hosted_on: მასტოდონს მასპინძლობს %{domain}
     learn_more: გაიგე მეტი
     privacy_policy: კონფიდენციალურობის პოლიტიკა
+    see_whats_happening: See what's happening
+    server_stats: 'Server stats:'
     source_code: კოდი
-    status_count_after: სტატუსები
+    status_count_after:
+      one: status
+      other: statuses
     status_count_before: ვინც უავტორა
+    tagline: Follow friends and discover new ones
     terms: მომსახურების პირობები
-    user_count_after: მომხმარებლისთვის
+    user_count_after:
+      one: user
+      other: users
     user_count_before: სახლი
     what_is_mastodon: რა არის მასტოდონი?
   accounts:
     choices_html: "%{name}-ის არჩევნები:"
     follow: გაყევი
-    followers: მიმდევრები
+    followers:
+      one: Follower
+      other: Followers
     following: მიჰყვება
     joined: გაწევრიანდა %{date}
+    last_active: last active
+    link_verified_on: Ownership of this link was checked on %{date}
     media: მედია
     moved_html: "%{name} გადავიდა %{new_profile_link}:"
     network_hidden: ეს ინფორმაცია ხელმიუწვდომელია
@@ -39,21 +57,30 @@ ka:
     people_who_follow: ხალხი ვინც მიჰყვება %{name}-ს
     pin_errors:
       following: იმ ადამიანს, ვინც მოგწონთ, უკვე უნდა მიჰყვებოდეთ
-    posts: ტუტები
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: ტუტები და პასუხები
     reserved_username: მომხმარებელი რეზერვირებულია
     roles:
       admin: ადმინისტრატორი
       bot: ბოტი
       moderator: მოდერატორი
+    unavailable: Profile unavailable
     unfollow: ნუღარ მიჰყვები
   admin:
+    account_actions:
+      action: Perform action
+      title: Perform moderation action on %{acct}
     account_moderation_notes:
       create: დატოვეთ ჩანაწერი
       created_msg: მოდერაციის ჩანაწერი წარმატებით შეიქმნა!
       delete: გაუქმება
       destroyed_msg: მოდერაციის ჩანაწერი წარმატებით გაუქმდა!
     accounts:
+      approve: Approve
+      approve_all: Approve all
       are_you_sure: დარწმუნებული ხარ?
       avatar: ავატარი
       by_domain: დომენი
@@ -67,6 +94,7 @@ ka:
       confirm: დადასტურება
       confirmed: დადასტურებულია
       confirming: დასტურდება
+      deleted: Deleted
       demote: დაქვეითება
       disable: გამორთვა
       disable_two_factor_authentication: გამორთე 2FA
@@ -82,8 +110,11 @@ ka:
       followers: მიმდევრები
       followers_url: მიმდევრების ურლ
       follows: დადევნებები
+      header: Header
       inbox_url: ინბოქსის ურლ
+      invited_by: Invited by
       ip: აი-პი
+      joined: Joined
       location:
         all: ყველა
         local: ლოკალური
@@ -93,15 +124,20 @@ ka:
       media_attachments: თან-დართული მედია
       memorialize: აქციე მემორანდუმად
       moderation:
+        active: Active
         all: ყველა
+        pending: Pending
         silenced: გაჩუმებული
         suspended: შეჩერებული
         title: მოდერაცია
       moderation_notes: მოდერაციის ჩანაწერები
       most_recent_activity: უახლესი აქტივობა
       most_recent_ip: უახლესი აი-პი
+      no_account_selected: No accounts were changed as none were selected
+      no_limits_imposed: No limits imposed
       not_subscribed: გამოუწერელი
       outbox_url: აუთბოქსის ურლ
+      pending: Pending review
       perform_full_suspension: მოახდინეთ სრული შეჩერება
       profile_url: პროფილის ურლ
       promote: დაწინაურება
@@ -109,7 +145,10 @@ ka:
       public: საჯარო
       push_subscription_expires: ფუშ გამოწერა უქმდება
       redownload: განაახლე ავატარი
+      reject: Reject
+      reject_all: Reject all
       remove_avatar: გააუქმე ავატარი
+      remove_header: Remove header
       resend_confirmation:
         already_confirmed: ეს მომხმარებელი უკვე დამოწმებულია
         send: დამოწმების ინსტრუქციების გადაგზავნა
@@ -130,24 +169,30 @@ ka:
         created_reports: ამ ანგარიშის მიერ შექმნილი რეპორტები
         targeted_reports: ამ ანგარიშზე მიღებული რეპორტები
       silence: სიჩუმე
+      silenced: Silenced
       statuses: სტატუსები
       subscribe: გამოწერა
+      suspended: Suspended
+      time_in_queue: Waiting in queue %{time}
       title: ანგარიშები
       unconfirmed_email: დაუმოწმებელი ელ-ფოსტა
       undo_silenced: გაჩუმების მოშორება
       undo_suspension: შეჩერების მოშორება
       unsubscribe: გამოწერის შეწყვეტა
       username: მომხმარებლის სახელი
+      warn: Warn
       web: ვები
     action_logs:
       actions:
         assigned_to_self_report: "%{name}-მა დანიშნა რეპორტი %{target} საკუთარ თავზე"
         change_email_user: "%{name}-მა შეცვალა %{target} მომხმარებლის ელ-ფოსტის მისამართი"
         confirm_user: "%{name}-მა დაამოწმა %{target} მომხმარებლის ელ-ფოსტის მისამართი"
+        create_account_warning: "%{name} sent a warning to %{target}"
         create_custom_emoji: "%{name}-მა ატვირთა ახალი ემოჯი %{target}"
         create_domain_block: "%{name}-მა დაბლოკა დომენი %{target}"
         create_email_domain_block: "%{name}-მა შავ სიაში მოაქცია დომენი %{target}"
         demote_user: "%{name}-მა დააქვეითა მომხმარებელი %{target}"
+        destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_block: "%{name}-მა ბლოკი მოხსნა დომენს %{target}"
         destroy_email_domain_block: "%{name} თეთრ სიაში მოაქცია დომენი %{target}"
         destroy_status: "%{name}-მა გააუქმა სტატუსი %{target}-ზე"
@@ -201,8 +246,10 @@ ka:
       config: კონფიგურაცია
       feature_deletions: ანგარიშის გაუქმებები
       feature_invites: მოწვევის ბმულები
+      feature_profile_directory: Profile directory
       feature_registrations: რეგისტრაციები
       feature_relay: ფედერაციის რილეი
+      feature_timeline_preview: Timeline preview
       features: ფუნქციები
       hidden_service: ფედერაცია დამალულ სერვისებთან
       open_reports: ღია რეპორტები
@@ -222,6 +269,7 @@ ka:
       created_msg: დომენის ბლოკი ახლა პროცესირების ქვეშაა
       destroyed_msg: დომენის ბლოკი გაუქმდა
       domain: დომენი
+      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: ბლოკის შექმნა
         hint: დომენის ბლოკი არ შეაჩერებს ანგარიშების ჩაწერას მონაცემთა ბაზაში, მაგრამ ეს ამ ანგარიშებზე რეტროაქტიულად და ავტომატურად გაატარებს სპეციფიურ მოდერაციის მეთოდებს.
@@ -233,10 +281,17 @@ ka:
         title: ახალი დომენის ბლოკი
       reject_media: მედია ფაილების უარყოფა
       reject_media_hint: შლის ლოკალურად შენახულ მედია ფაილებს და უარყოფს სამომავლო გადმოტვირთებს. შეუსაბამო შეჩერებებისთვის
+      reject_reports: Reject reports
+      reject_reports_hint: Ignore all reports coming from this domain. Irrelevant for suspensions
+      rejecting_media: rejecting media files
+      rejecting_reports: rejecting reports
+      severity:
+        silence: silenced
+        suspend: suspended
       show:
         affected_accounts:
           one: გავლენა იქონია მონაცემთა ბაზაში ერთ ანგარიშზე
-          other: გავლენა იქონიო მონაცემთა ბაზაში %{count} ანგარიშზე
+          other: "გავლენა იქონიო მონაცემთა ბაზაში %{count} ანგარიშზე"
         retroactive:
           silence: ამ დომენში ყველა არსებულ ანგარიშზე გაჩუმების მოშორება
           suspend: ამ დომენში ყველა არსებულ ანგარიშზე შეჩერების მოშორება
@@ -253,8 +308,25 @@ ka:
         create: დომენის დამატება
         title: ელ-ფოსტის ახალი შენატანი შავ სიაში
       title: ელ-ფოსტის შავი სია
+    followers:
+      back_to_account: Back To Account
+      title: "%{acct}'s Followers"
     instances:
+      by_domain: Domain
+      delivery_available: Delivery is available
+      known_accounts:
+        one: "%{count} known account"
+        other: "%{count} known accounts"
+      moderation:
+        all: All
+        limited: Limited
+        title: Moderation
       title: ცნობილი ინსტანციები
+      total_blocked_by_us: Blocked by us
+      total_followed_by_them: Followed by them
+      total_followed_by_us: Followed by us
+      total_reported: Reports about them
+      total_storage: Media attachments
     invites:
       deactivate_all: ყველას დეაქტივაცია
       filter:
@@ -263,11 +335,20 @@ ka:
         expired: ვადაგასული
         title: ფილტრი
       title: მოწვევები
+    pending_accounts:
+      title: Pending accounts (%{count})
     relays:
       add_new: ახელი რილეი
-      description_html: "<strong>ფედერაციის რილეი</strong> შუამავალი სერვერია, რომელიც ცვლის საჯარო ტუტების დიდ ოდენობას იმ სერვერებს შორის, რომლებიც გამოიწერენ და მასზე გამოაქვეყნებენ. <strong>ეს მცირე და საშუალო სერვერებს ეხმარება აღმოაჩინონ კონტენტი ფედივერსისგან</strong>, რომელიც სხვა შემთხვევაში მომხარებლებს აიძულებდა მექნიკურ რეჟიმში გაჰყოლოდნენ ხალხს სხვა დისტანციურ სერვერებზე."
+      delete: Delete
+      description_html: <strong>ფედერაციის რილეი</strong> შუამავალი სერვერია, რომელიც ცვლის საჯარო ტუტების დიდ ოდენობას იმ სერვერებს შორის, რომლებიც გამოიწერენ და მასზე გამოაქვეყნებენ. <strong>ეს მცირე და საშუალო სერვერებს ეხმარება აღმოაჩინონ კონტენტი ფედივერსისგან</strong>, რომელიც სხვა შემთხვევაში მომხარებლებს აიძულებდა მექნიკურ რეჟიმში გაჰყოლოდნენ ხალხს სხვა დისტანციურ სერვერებზე.
+      disable: Disable
+      disabled: Disabled
+      enable: Enable
       enable_hint: ამოქმდების შემდეგ, თქვენი სერვერი გამოიწერს ყველა საჯარო ტუტს ამ რილეიდან და დაიწყებს სერვერის ღია ტუტების იქ გაგზავნას.
+      enabled: Enabled
       inbox_url: რილეი ურლ
+      pending: Waiting for relay's approval
+      save_and_enable: Save and enable
       setup: რილეი კავშირის დამყარება
       status: სტატუსი
       title: რილეი სია
@@ -314,15 +395,24 @@ ka:
       contact_information:
         email: ბიზნეს ელ-ფოსტა
         username: საკონტაქტო მომხმარებლის სახელი
+      custom_css:
+        desc_html: Modify the look with CSS loaded on every page
+        title: Custom CSS
       hero:
         desc_html: წინა გვერდზე გამოჩენილი. მინ. 600/100პიქს. რეკომენდირებული. როდესაც არაა დაყენებული, ჩნდება ინსტანციის პიქტოგრამა
         title: გმირი სურათი
+      mascot:
+        desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
+        title: Mascot image
       peers_api_enabled:
         desc_html: დომენების სახელები რომლებსაც შეხვდა ეს ინსტანცია ფედივერსში
         title: გამოაქვეყნე აღმოჩენილი ინსტანციების სია
       preview_sensitive_media:
         desc_html: ბმულის პრევიუები სხვა ვებ-საიტებზე გამოაჩენენ პიქტოგრამას, მაშინაც კი თუ მედია მონიშნულია მგრძნობიარედ
         title: გამოაჩინე მგრძნობიარე მედია ოუფენ-გრეფ პრევიუებში
+      profile_directory:
+        desc_html: Allow users to be discoverable
+        title: Enable profile directory
       registrations:
         closed_message:
           desc_html: გამოჩნდება წინა გვერდზე, როდესაც რეგისტრაციები დახურულია. შეგიძლიათ გამოიყენოთ ჰტმლ ტეგები
@@ -333,6 +423,12 @@ ka:
         min_invite_role:
           disabled: არავინ
           title: ნება დაერთოს მოწვეევებს
+      registrations_mode:
+        modes:
+          approved: Approval required for sign up
+          none: Nobody can sign up
+          open: Anyone can sign up
+        title: Registrations mode
       show_known_fediverse_at_about_page:
         desc_html: ჩართვისას, ეს გამოაჩენს ტუტებს ყველა ცნობილი ფედივერსისგან პრევიუზე. სხვა შემთხვევაში, გამოაჩენს მხოლოდ ლოკალურ ტუტებს.
         title: გამოჩნდეს ცნობილი ვედივერსი თაიმლაინ პრევიუში
@@ -379,12 +475,35 @@ ka:
       last_delivery: ბოლო მიღება
       title: ვებ-საბი
       topic: სათაური
+    tags:
+      accounts: Accounts
+      hidden: Hidden
+      hide: Hide from directory
+      name: Hashtag
+      title: Hashtags
+      unhide: Show in directory
+      visible: Visible
     title: ადმინისტრაცია
+    warning_presets:
+      add_new: Add new
+      delete: Delete
+      edit: Edit
+      edit_preset: Edit warning preset
+      title: Manage warning presets
   admin_mailer:
+    new_pending_account:
+      body: The details of the new account are below. You can approve or reject this application.
+      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter}-მა დაარეპორტა %{target}"
       body_remote: ვიღაცამ %{domain}-იდან დაარეპორტა %{target}
-      subject: ახალი რეპორტი %{instance} (#%{id})-ზე
+      subject: 'ახალი რეპორტი %{instance} (#%{id})-ზე'
+  appearance:
+    advanced_web_interface: Advanced web interface
+    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
+    animations_and_accessibility: Animations and accessibility
+    confirmation_dialogs: Confirmation dialogs
+    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: შეცვალეთ ელ-ფოსტის პრეფერნსიები
     salutation: "%{name},"
@@ -401,7 +520,9 @@ ka:
     warning: იყავით ძალიან ფრთხილად ამ მონაცემთან. არასდროს გააზიაროთ ეს!
     your_token: თქვენი წვდომის ტოკენი
   auth:
+    apply_for_account: Request an invite
     change_password: პაროლი
+    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: ელ-ფოსტის დამოწმება
     delete_account: ანგარიშის გაუქმება
     delete_account_html: თუ გსურთ გააუქმოთ თქვენი ანგარიში, შეგიძლიათ <a href="%{path}">გააგრძელოთ აქ</a>. საჭირო იქნება დამოწმება.
@@ -417,10 +538,12 @@ ka:
       cas: ქეს
       saml: სამლ
     register: რეგისტრაცია
+    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: დამოწმების ინსტრუქციების ხელახალი გამოგზავნა
     reset_password: პაროლის გადატვირთვა
     security: უსაფრთხოება
     set_new_password: ახალი პაროლის დაყენება
+    trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: უკვე მიჰყვებით ამ ანგარიშს
     error: სამწუხაროთ, დისტანციური სერვერის წაკითხვამ გამოიწვია შეცდომა
@@ -454,6 +577,16 @@ ka:
     success_msg: თქვენი ანგარიში წარმატებით გაუქმდა
     warning_html: მოცულობის გაუქმება გარანტირებულია მხოლოდ ამ ინსტანციაზე. კონტენტი რომელიც ფართო მასშტაბით გაზიარდა უფრო დატოვებს კვალს. ოფლაინ სერვერები და სერვერები, რომლებმაც შეწყვიტეს თქვენი განახლებების გამოწერა არ განაახლებენ მონაცემთა ბაზებს.
     warning_title: წვდომა გავრცელებულ კონტენტზე
+  directories:
+    directory: Profile directory
+    enabled: You are currently listed in the directory.
+    enabled_but_waiting: You have opted-in to be listed in the directory, but you do not have the minimum number of followers (%{min_followers}) to be listed yet.
+    explanation: Discover users based on their interests
+    explore_mastodon: Explore %{title}
+    how_to_enable: You are not currently opted-in to the directory. You can opt-in below. Use hashtags in your bio text to be listed under specific hashtags!
+    people:
+      one: "%{count} person"
+      other: "%{count} people"
   errors:
     '403': ამ გვერდის ხილვის უფლება არ გაქვთ.
     '404': გვერდი რომელსაც ეძებთ არ არსებობს.
@@ -466,6 +599,9 @@ ka:
       content: ბოდიში, ჩვენ მხარეს რაღაც არია.
       title: გვერდი არაა სწორი
     noscript_html: მასტოდონ ვებ-აპლიკაციის გამოყენებისთვის, გთხოვთ ჩართოთ ჯავასკრიპტი. სხვა შემთხვევაში, მასტოდონის თქვენი პატფორმისთვის სცადეთ გამოიყენოთ ერთ-ერთი <a href="%{apps_path}">მშობლიური აპლიკაცია</a>.
+  existing_username_validator:
+    not_found: could not find a local user with that username
+    not_found_multiple: could not find %{usernames}
   exports:
     archive_takeout:
       date: თარიღი
@@ -476,9 +612,15 @@ ka:
       size: ზომა
     blocks: თქვენ ბლოკავთ
     csv: ცსვ
+    domain_blocks: Domain blocks
     follows: თქვენ მიჰყვებით
+    lists: Lists
     mutes: თქვენ აჩუმებთ
     storage: მედია საცავი
+  featured_tags:
+    add_new: Add new
+    errors:
+      limit: You have already featured the maximum amount of hashtags
   filters:
     contexts:
       home: სახლის თაიმლაინი
@@ -500,16 +642,45 @@ ka:
     more: მეტი…
     resources: რესურსები
   generic:
+    all: All
     changes_saved_msg: ცვლილებები წარმატებით დამახსოვრდა!
+    copy: Copy
+    order_by: Order by
     save_changes: ცვლილებების შენახვა
     validation_errors:
       one: რაღაც ჯერ არაა მთლად კარგად! გთხოვთ განიხილოთ ქვემოთ მოცემული შეცდომები
       other: რაღაც ჯერ არაა მთლად კარგად! გთხოვთ განიხილოთ ქვემოთ მოცემული %{count} შეცდომა
+  html_validator:
+    invalid_markup: 'contains invalid HTML markup: %{error}'
+  identity_proofs:
+    active: Active
+    authorize: Yes, authorize
+    authorize_connection_prompt: Authorize this cryptographic connection?
+    errors:
+      failed: The cryptographic connection failed. Please try again from %{provider}.
+      keybase:
+        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
+        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
+      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
+    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
+    i_am_html: I am %{username} on %{service}.
+    identity: Identity
+    inactive: Inactive
+    publicize_checkbox: 'And toot this:'
+    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    status: Verification status
+    view_proof: View proof
   imports:
+    modes:
+      merge: Merge
+      merge_long: Keep existing records and add new ones
+      overwrite: Overwrite
+      overwrite_long: Replace current records with the new ones
     preface: შეგიძლიათ დააიმპორტოთ მონაცემები, რომლებიც დააექსპორტეთ სხვა სერვერიდან, მაგალითად ადამიანების სია, რომლებსაც მიჰყვებით ან ბლოკავთ.
     success: თქვენი მონაცემები წარმატებით აიტვირთა და მათი პროცესირება მოხდება გარკვეულ დროში
     types:
       blocking: ბლოკირების სია
+      domain_blocking: Domain blocking list
       following: დადევნების სია
       muting: გაჩუმების სია
     upload: ატვირთვა
@@ -601,18 +772,58 @@ ka:
     older: ძველი
     prev: წინა
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: You have already voted on this poll
+      duplicate_options: contain duplicate items
+      duration_too_long: is too far into the future
+      duration_too_short: is too soon
+      expired: The poll has already ended
+      over_character_limit: cannot be longer than %{max} characters each
+      too_few_options: must have more than one item
+      too_many_options: can't contain more than %{max} items
   preferences:
     other: სხვა
+    posting_defaults: Posting defaults
+    public_timelines: Public timelines
+  relationships:
+    activity: Account activity
+    dormant: Dormant
+    last_active: Last active
+    most_recent: Most recent
+    moved: Moved
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Remove all followers from the selected domains
+    remove_selected_followers: Remove selected followers
+    remove_selected_follows: Unfollow selected users
+    status: Account status
   remote_follow:
     acct: შეიყვანეთ თქვენი username@domain საიდანაც გსურთ გაჰყვეთ
     missing_resource: საჭირო გადამისამართების ურლ თქვენი ანგარიშისთვის ვერ მოიძებნა
     no_account_html: არ გაქვთ ანგარიში? შეგიძლიათ <a href='%{sign_up_path}' target='_blank'>დარეგისტრირდეთ აქ</a>
     proceed: გააგრძელეთ გასაყოლად
     prompt: 'თქვენ გაჰყვებით:'
+    reason_html: "<strong>Why is this step necessary?</strong> <code>%{instance}</code> might not be the server where you are registered, so we need to redirect you to your home server first."
+  remote_interaction:
+    favourite:
+      proceed: Proceed to favourite
+      prompt: 'You want to favourite this toot:'
+    reblog:
+      proceed: Proceed to boost
+      prompt: 'You want to boost this toot:'
+    reply:
+      proceed: Proceed to reply
+      prompt: 'You want to reply to this toot:'
   remote_unfollow:
     error: შეცდომა
     title: სათაური
     unfollowed: დადევნების შეწყვეტა
+  scheduled_statuses:
+    over_daily_limit: You have exceeded the limit of %{limit} scheduled toots for that day
+    over_total_limit: You have exceeded the limit of %{limit} scheduled toots
+    too_soon: The scheduled date must be in the future
   sessions:
     activity: ბოლო აქტივობა
     browser: ბრაუზერი
@@ -655,16 +866,24 @@ ka:
     revoke_success: სესია წარმატებით გაუქმდა
     title: სესიები
   settings:
+    account: Account
+    account_settings: Account settings
+    appearance: Appearance
     authorized_apps: ავტორიზირებული აპლიკაციები
     back: უკან მასტოდონისკენ
     delete: ანგარიშის გაუქმება
     development: დეველოპმენტი
     edit_profile: პროფილის ცვლილება
     export: მონაცემის ექსპორტი
+    featured_tags: Featured hashtags
+    identity_proofs: Identity proofs
     import: იმპორტი
+    import_and_export: Import and export
     migrate: ანგარიშის მიგრაცია
     notifications: შეტყობინებები
     preferences: პრეფერენციები
+    profile: Profile
+    relationships: Follows and followers
     two_factor_authentication: მეორე-ფაქტორის აუტენტიფიკაცია
   statuses:
     attached:
@@ -688,6 +907,11 @@ ka:
       ownership: სხვისი ტუტი ვერ აიპინება
       private: არა-საჯარო ტუტი ვერ აიპინება
       reblog: ბუსტი ვერ აიპინება
+    poll:
+      total_votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
+      vote: Vote
     show_more: მეტის ჩვენება
     sign_in_to_participate: საუბარში მონაწილეობისთვის გაიარეთ ავტორიზაცია
     title: '%{name}: "%{quote}"'
@@ -708,10 +932,10 @@ ka:
       <h3 id="collect">რა ინფორმაციას ვაგროვებთ?</h3>
 
       <ul>
-        <li><em>ძირითადი ანგარიშის ინფორმაცია</em>: თუ დარეგისტრირდებით ამ სერვერზე, შესაძლოა მოგთხოვოთ მომხმარებლის სახელი, ელ-ფოსტის მისამართი და პაროლი. შესაძლებელია, ასევე შეიყვანოთ დამატებითი პროფილის ინორმაცია, როგორიცაა დისპლეის სახელი და ბიოგრაფია, ასევე ატვირთოთ პროფილის და დასათაურების სურათი. მომხმარებლის სახელი, დისპლეის სახელი, ბიოგრაფია, პროფილის სურათი, დასათაურების სურათი ყოველთვის ღიადაა ჩამოთვლილი.</li>
-        <li><em>პოსტები, დადევნებები და სხვა საჯარო ინფორმაცია</em>: ადამიანების სია, რომლებსაც მიჰყვებით საჯაროდაა ჩამოთვლილი, იგივე ეხება თქვენს მიდევრებსაც. როდესაც აგზავნით წერილს, თარიღი, დრო და აპლიკაცია თუ საიდანაც განათავსეთ წერილი ინახება. წერილები შესაძლოა შეიცავდნენ მედია ფაილებს, როგორებიცაა სურათები და ვიდეოები. ღია და ჩამოუთვლელი პოსტები ხელმისაწვდომია საჯაროდ. როდესაც ათავსებთ პოსტს თქვენს პროფილზე, ის ასევე საჟაროდ წვდომადი ხდება. თქვენი პოსტები ეგზავნებათ თქვენს მიმდევრებს, ზოგიერთ შემთხვევაში ეს ნიშნავს, რომ ისინი იგზავნება სხვა სერვერებზე და მათი ასლები იქვე ინახება. როდესაც აუქმებთ პოსტს, ეს მოქმედება ეგზავნებათ თქვენს მიმდევრებს. რე-ბლოგირების ან ფავორიტად ქცევის ქმედებები ასევე საქვეყნოა.</li>
-        <li><em>პირდაპირი და პოსტები მხოლოდ-მიმდევრებისთვის</em>: ყველა პოსტი ინახება და მათი პროცესირება ხდება სერვერზე. პოსტები რომლებიც განეკუთვნება მხოლოდ მიმდევრებს მიეწოდებათ მათ, მომხმარებლები, რომლებიც დასახელებულია პოსტებში და პირდაპირი პოსტები ეგზავნებათ მხოლოდ ჩამოთვლილ მომხმარებლებს. ზოგიერთ შემთხვევაში, ეს ნიშნავს, რომ გადაგზავნა ხდება გარე სერვერებზე და ასლებიც იქ ინახება. ჩვენ დიდ ძალისხმევას ვუწევთ წვდომის ლიმიტს მხოლოდ აუტორიზირებული ადამიანებისთვის, თუმცა სხვა სერვერებმა შეიძლება ეს არ აწარმოონ. აქედან გამომდინარე, მნიშვნელოვანია განიხილოთ სერვერები, საიდანაც მოდიან თქვენი მიმდევრები. შეგიძლიათ ჩართოთ ან გამორთოთ პარამეტრი, დაადასტუროთ ან უარყოთ ახალი მიმდევარი. <em>გთხოვთ გაითვალისწინოთ, რომ სერვერის ოპერაციები და სხვა მიმღები სერვერები შესაძლოა კითხულობდნენ ამგვარ წერილებს</em>, მიმღებებს შეუძლიათ შექმნან სქრინშოთი, დააკოპირონ ან ხელახლა გააზიარონ ისინი. <em>არ გააზიაროთ საშიში ინფორმაცია მასტოდონით.</em></li>
-        <li><em>აი-პიები და სხვა მეტა-მონაცემები</em>: როდესაც გაივლით აუტენტიფიკაციას, ჩვენ ვინახავთ აი-პი მისამართს საიდანაც შემოხვედით, ასევე ბრაუზერის აპლიკაციას. ყველა ავტორიზირებული სესია თქვენთვის განსახილველად და გასაუქმებლად ხელმისაწვდომია პარამეტრებში. ბოლო შენახული აი-პი მისამართი ინახება მაქსიმუმ 12 თვით. ჩვენ ასევე შეიძლება გაგვაჩნდეს სერვერის ლოგი, რომელიც ინახავს თითოეული მოთხოვნის IP მისამართს.</li>
+      <li><em>ძირითადი ანგარიშის ინფორმაცია</em>: თუ დარეგისტრირდებით ამ სერვერზე, შესაძლოა მოგთხოვოთ მომხმარებლის სახელი, ელ-ფოსტის მისამართი და პაროლი. შესაძლებელია, ასევე შეიყვანოთ დამატებითი პროფილის ინორმაცია, როგორიცაა დისპლეის სახელი და ბიოგრაფია, ასევე ატვირთოთ პროფილის და დასათაურების სურათი. მომხმარებლის სახელი, დისპლეის სახელი, ბიოგრაფია, პროფილის სურათი, დასათაურების სურათი ყოველთვის ღიადაა ჩამოთვლილი.</li>
+      <li><em>პოსტები, დადევნებები და სხვა საჯარო ინფორმაცია</em>: ადამიანების სია, რომლებსაც მიჰყვებით საჯაროდაა ჩამოთვლილი, იგივე ეხება თქვენს მიდევრებსაც. როდესაც აგზავნით წერილს, თარიღი, დრო და აპლიკაცია თუ საიდანაც განათავსეთ წერილი ინახება. წერილები შესაძლოა შეიცავდნენ მედია ფაილებს, როგორებიცაა სურათები და ვიდეოები. ღია და ჩამოუთვლელი პოსტები ხელმისაწვდომია საჯაროდ. როდესაც ათავსებთ პოსტს თქვენს პროფილზე, ის ასევე საჟაროდ წვდომადი ხდება. თქვენი პოსტები ეგზავნებათ თქვენს მიმდევრებს, ზოგიერთ შემთხვევაში ეს ნიშნავს, რომ ისინი იგზავნება სხვა სერვერებზე და მათი ასლები იქვე ინახება. როდესაც აუქმებთ პოსტს, ეს მოქმედება ეგზავნებათ თქვენს მიმდევრებს. რე-ბლოგირების ან ფავორიტად ქცევის ქმედებები ასევე საქვეყნოა.</li>
+      <li><em>პირდაპირი და პოსტები მხოლოდ-მიმდევრებისთვის</em>: ყველა პოსტი ინახება და მათი პროცესირება ხდება სერვერზე. პოსტები რომლებიც განეკუთვნება მხოლოდ მიმდევრებს მიეწოდებათ მათ, მომხმარებლები, რომლებიც დასახელებულია პოსტებში და პირდაპირი პოსტები ეგზავნებათ მხოლოდ ჩამოთვლილ მომხმარებლებს. ზოგიერთ შემთხვევაში, ეს ნიშნავს, რომ გადაგზავნა ხდება გარე სერვერებზე და ასლებიც იქ ინახება. ჩვენ დიდ ძალისხმევას ვუწევთ წვდომის ლიმიტს მხოლოდ აუტორიზირებული ადამიანებისთვის, თუმცა სხვა სერვერებმა შეიძლება ეს არ აწარმოონ. აქედან გამომდინარე, მნიშვნელოვანია განიხილოთ სერვერები, საიდანაც მოდიან თქვენი მიმდევრები. შეგიძლიათ ჩართოთ ან გამორთოთ პარამეტრი, დაადასტუროთ ან უარყოთ ახალი მიმდევარი. <em>გთხოვთ გაითვალისწინოთ, რომ სერვერის ოპერაციები და სხვა მიმღები სერვერები შესაძლოა კითხულობდნენ ამგვარ წერილებს</em>, მიმღებებს შეუძლიათ შექმნან სქრინშოთი, დააკოპირონ ან ხელახლა გააზიარონ ისინი. <em>არ გააზიაროთ საშიში ინფორმაცია მასტოდონით.</em></li>
+      <li><em>აი-პიები და სხვა მეტა-მონაცემები</em>: როდესაც გაივლით აუტენტიფიკაციას, ჩვენ ვინახავთ აი-პი მისამართს საიდანაც შემოხვედით, ასევე ბრაუზერის აპლიკაციას. ყველა ავტორიზირებული სესია თქვენთვის განსახილველად და გასაუქმებლად ხელმისაწვდომია პარამეტრებში. ბოლო შენახული აი-პი მისამართი ინახება მაქსიმუმ 12 თვით. ჩვენ ასევე შეიძლება გაგვაჩნდეს სერვერის ლოგი, რომელიც ინახავს თითოეული მოთხოვნის IP მისამართს.</li>
       </ul>
 
       <hr class="spacer" />
@@ -721,9 +945,9 @@ ka:
       <p>ნებისმიერი სხვა ინფორმაცია, რომელსაც ვაგროვებთ თქვენგან შესაძლოა გამოყენებულ იქნას შემდეგი გზებით:</p>
 
       <ul>
-        <li>რომ უზრუნველვყოთ მასტოდონის მთავარი ფუნქციონალი. შეგიძლიათ ინტერაქცია გაუწიოთ მხოლოდ სხვის კონტენტს და შექმნათ პოსტები მაშინ როდესაც ავტორიზებული ხართ. მაგალითად, შესაძლოა გაჰყვეთ სხვა ადამიანებს, რათა იხილოთ მათი ჯამური პოსტები საკუთარ პერსონალიზებულ სახლის თაიმლაინზე.</li>
-        <li>რომ შევუწყვოთ ხელი საზოგადოების მოდერაციას, მაგალითად შევადაროთ თქვენი აი-პი მისამართი სხვა ცნობილ მისამართებს, რათა ამოვიცნოთ ბანის გადაუხდელობა ან სხვა დარღვევები.</li>
-        <li>ელ-ფოსტის მისამართი რომელსაც გვაწვდით, შესაძლოა გამოვიყენოთ თქვენთვის ინფორმაციის გამოსაგძავნად, შეგატყობინოთ სხვა ადამიანების ინტერაქციაზე თქვენს კონტენტთან ან თქვენთვის გამოგზავნილ წერილებზე, ასევე რომ გიპასუხოთ მოთხოვნებზე და/ან სხვა საკითხებზე.</li>
+      <li>რომ უზრუნველვყოთ მასტოდონის მთავარი ფუნქციონალი. შეგიძლიათ ინტერაქცია გაუწიოთ მხოლოდ სხვის კონტენტს და შექმნათ პოსტები მაშინ როდესაც ავტორიზებული ხართ. მაგალითად, შესაძლოა გაჰყვეთ სხვა ადამიანებს, რათა იხილოთ მათი ჯამური პოსტები საკუთარ პერსონალიზებულ სახლის თაიმლაინზე.</li>
+      <li>რომ შევუწყვოთ ხელი საზოგადოების მოდერაციას, მაგალითად შევადაროთ თქვენი აი-პი მისამართი სხვა ცნობილ მისამართებს, რათა ამოვიცნოთ ბანის გადაუხდელობა ან სხვა დარღვევები.</li>
+      <li>ელ-ფოსტის მისამართი რომელსაც გვაწვდით, შესაძლოა გამოვიყენოთ თქვენთვის ინფორმაციის გამოსაგძავნად, შეგატყობინოთ სხვა ადამიანების ინტერაქციაზე თქვენს კონტენტთან ან თქვენთვის გამოგზავნილ წერილებზე, ასევე რომ გიპასუხოთ მოთხოვნებზე და/ან სხვა საკითხებზე.</li>
       </ul>
 
       <hr class="spacer" />
@@ -739,8 +963,8 @@ ka:
       <p>ჩვენ არ დავიშურებთ ძალისხმევას რომ:</p>
 
       <ul>
-        <li>შევინარჩუნოთ სერვერის ლოგები, რომლებიც მოიცავენ ყველა მოთხოვნის აი-პი მისამართს, თუმცა ესეთი ლოგები არ ინახება 90 დღეზე მეტ ხანს.</li>
-        <li>შევინარჩუნოთ რეგისტრირებული მომხმარებლების აი-პი მისამართები მაქსიმუმ 12 თვით.</li>
+      <li>შევინარჩუნოთ სერვერის ლოგები, რომლებიც მოიცავენ ყველა მოთხოვნის აი-პი მისამართს, თუმცა ესეთი ლოგები არ ინახება 90 დღეზე მეტ ხანს.</li>
+      <li>შევინარჩუნოთ რეგისტრირებული მომხმარებლების აი-პი მისამართები მაქსიმუმ 12 თვით.</li>
       </ul>
 
       <p>შეგიძლიათ მოითხოვოთ და ჩამოტვირთოთ თქვენი კონტენტის არქივი, რომელიც მოიცავს თქვენს პოსტებს, მედია ფაილებს, პროფილის და დასათაურების სურათს.</p>
@@ -814,6 +1038,22 @@ ka:
       explanation: თქვენ მოითხოვეთ თქვენი მასტოდონის ანგარიშის სრული რეზერვაცია. ის ახლა უკვე მზადაა გადმოსაწერად!
       subject: თქვენი არქივი გადმოსაწერად მზადაა
       title: არქივის მიღება
+    warning:
+      explanation:
+        disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
+        silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
+        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
+      review_server_policies: Review server policies
+      subject:
+        disable: Your account %{acct} has been frozen
+        none: Warning for %{acct}
+        silence: Your account %{acct} has been limited
+        suspend: Your account %{acct} has been suspended
+      title:
+        disable: Account frozen
+        none: Warning
+        silence: Account limited
+        suspend: Account suspended
     welcome:
       edit_profile_action: პროფილის მოწყობა
       edit_profile_step: შეგიძლიათ მოაწყოთ თქვენი პროფილი ავატარის ატვირთვით, დასათაურების სურათით, თქვენი დისპლეი სახელის შეცვლით და სხვა. თუ გსურთ გაუწიოთ ახალ მიმდევრებს რევიუ, სანამ რეალურად გამოგყვებიან, შეგიძლიათ ჩაკეტოთ თქვენი ანგარიში.
@@ -832,8 +1072,12 @@ ka:
       tips: რჩევები
       title: კეთილი იყოს თქვენი მობრძანება, %{name}!
   users:
+    follow_limit_reached: You cannot follow more than %{limit} people
     invalid_email: ელ-ფოსტის მისამართი არაა მართებული
     invalid_otp_token: არასწორი მეორე ფაქტორის კოდი
     otp_lost_help_html: თუ დაკარგეთ წვდომა ორივეზე, შესაძლოა დაუკავშირდეთ %{email}-ს
     seamless_external_login: შესული ხართ გარე სერვისით, აქედან გამომდინარე პაროლი და ელ-ფოსტის მისამართი არაა ხელმისაწვდომი.
     signed_in_as: 'შესული ხართ როგორც:'
+  verification:
+    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
+    verification: Verification
