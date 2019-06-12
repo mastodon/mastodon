@@ -26,21 +26,15 @@ ro:
         phrase: Vor fi potrivite indiferent de textul din casetă sau advertismentul unei postări
         scopes: La care API-uri aplicația are nevoie de acces. Dacă selectezi un scop principal nu mai e nevoie să selectezi fiecare sub-scop al acestuia.
         setting_aggregate_reblogs: Nu afișa redistribuirile noi pentru postările care au fost deja recent redistribuite (afectează doar noile redistribuiri primite)
-        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
         setting_display_media_default: Ascunde conținutul media marcat ca sensibil (NSFW)
         setting_display_media_hide_all: Întotdeauna ascunde tot conținutul media
         setting_display_media_show_all: Întotdeauna afișează conținutul media marcat ca sensibil
         setting_hide_network: Pe cine urmărești și cine te urmărește nu vor fi afișați pe profilul tău
         setting_noindex: Afecteazâ profilul tău public și statusurile tale
-        setting_show_application: The application you use to toot will be displayed in the detailed view of your toots
         username: Numele tău de utilizator va fi unic pe %{domain}
         whole_word: Când fraza sau cuvântul este doar alfanumeric, acesta se aplică doar dacă există o potrivire completă
-      featured_tag:
-        name: 'You might want to use one of these:'
       imports:
         data: Fișierul CSV exportat de la o altă instanță
-      invite_request:
-        text: This will help us review your application
       sessions:
         otp: 'Introdu codul pentru dubla protecție generat de telefonul mobil sau unul din codurile de rezervă:'
       user:
@@ -71,7 +65,6 @@ ro:
         confirm_password: Confirmă parola
         context: Contextele filtrului
         current_password: Parola actuală
-        data: Data
         discoverable: Listează acest cont in director
         display_name: Numele afișat
         email: Adresa de e-mail
@@ -88,23 +81,16 @@ ro:
         otp_attempt: Cod dublă protecție
         password: Parolă
         phrase: Cuvânt sau frază
-        setting_advanced_layout: Enable advanced web interface
-        setting_aggregate_reblogs: Group boosts in timelines
         setting_auto_play_gif: Redă automat animațiile GIF
         setting_boost_modal: Arată dialogul de confirmare înainte de a redistribui
         setting_default_language: În ce limbă postezi
         setting_default_privacy: Cine vede postările tale
         setting_default_sensitive: Întotdeauna marchează conținutul media ca sensibil
         setting_delete_modal: Arată dialogul de confirmare înainte de a șterge o postare
-        setting_display_media: Media display
         setting_display_media_default: Standard
-        setting_display_media_hide_all: Hide all
-        setting_display_media_show_all: Show all
-        setting_expand_spoilers: Always expand toots marked with content warnings
         setting_hide_network: Ascunde rețeaua
         setting_noindex: Nu permite motoarelor de căutare să indexeze rețeaua ta
         setting_reduce_motion: Redu mișcarea în animații
-        setting_show_application: Disclose application used to send toots
         setting_system_font_ui: Utilizează fontul standard as sistemului
         setting_theme: Tema siteului
         setting_unfollow_modal: Arată dialogul de confirmare înainte de a nu mai urmări pe cineva
@@ -113,26 +99,19 @@ ro:
         username: Nume de utilizator
         username_or_email: Numele de utilizator sau adresa de E-mail
         whole_word: Cuvânt întreg
-      featured_tag:
-        name: Hashtag
       interactions:
         must_be_follower: Blochează notificările de la persoane care nu te urmăresc
         must_be_following: Blochează notificările de la persoane pe care nu le urmărești
         must_be_following_dm: Blochează mesajele directe de la persoane pe care nu le urmărești
-      invite_request:
-        text: Why do you want to join?
       notification_emails:
         digest: Trimite rezumate
         favourite: Trimite e-mail când cineva favorizează unul din statusurile tale
         follow: Trimite e-mail când cineva te urmărește
         follow_request: Trimite e-mail când cineva trimite o cerere de urmărire
         mention: Trimite e-mail când cineva te menționează
-        pending_account: Send e-mail when a new account needs review
         reblog: Trimite e-mail când cineva redistribuie unul din statusurile tale
         report: Trimite e-mail când un raport nou este trimis
     'no': 'Nu'
-    recommended: Recommended
     required:
-      mark: "*"
       text: obligatoriu
     'yes': 'Da'
