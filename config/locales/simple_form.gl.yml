@@ -26,7 +26,6 @@ gl:
         phrase: Concordará independentemente das maiúsculas ou avisos de contido no toot
         scopes: A que APIs terá acceso a aplicación. Si selecciona un ámbito de alto nivel, non precisa seleccionar elementos individuais.
         setting_aggregate_reblogs: Non mostrar novas promocións de toots que foron promocionados recentemente (só afecta a promocións recén recibidas)
-        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Ocultar sempre os medios
         setting_display_media_show_all: Mostrar sempre os medios marcados como sensibles
@@ -39,8 +38,6 @@ gl:
         name: 'Podería utilizar algunha de estas:'
       imports:
         data: Ficheiro CSV exportado desde outro servidor Mastodon
-      invite_request:
-        text: This will help us review your application
       sessions:
         otp: 'Introduza o código de doble-factor xerado no aplicativo do seu móbil ou utilice un dos seus códigos de recuperación:'
       user:
@@ -64,7 +61,6 @@ gl:
         warning_preset_id: Utilizar un aviso preestablecido
       defaults:
         autofollow: Convide a seguir a súa conta
-        avatar: Avatar
         bot: Esta conta é de un bot
         chosen_languages: Filtrar idiomas
         confirm_new_password: Confirme o novo contrasinal
@@ -88,7 +84,6 @@ gl:
         otp_attempt: Código de Doble-Factor
         password: Contrasinal
         phrase: Palabra chave ou frase
-        setting_advanced_layout: Enable advanced web interface
         setting_aggregate_reblogs: Agrupar promocións nas liñas temporais
         setting_auto_play_gif: Reprodución automática de GIFs animados
         setting_boost_modal: Pedir confirmación antes de promocionar
@@ -119,20 +114,15 @@ gl:
         must_be_follower: Bloquear as notificacións de non-seguidoras
         must_be_following: Bloquea as notificacións de personas que non segue
         must_be_following_dm: Bloquea as mensaxes directas de personas que non segue
-      invite_request:
-        text: Why do you want to join?
       notification_emails:
         digest: Enviar correos con resumos
         favourite: Enviar un correo cando alguén marca como favorita unha das súas publicacións
         follow: Enviar un correo cando alguén a segue
         follow_request: Enviar un correo cando alguén solicita seguila
         mention: Enviar un correo cando alguén a menciona
-        pending_account: Send e-mail when a new account needs review
         reblog: Enviar un correo cando alguén promociona a súa mensaxe
         report: Enviar un correo cando se envíe un novo informe
     'no': 'Non'
-    recommended: Recommended
     required:
-      mark: "*"
       text: requerido
     'yes': 'Si'
