@@ -11,16 +11,13 @@ hu:
       last_attempt: Már csak egy próbálkozásod maradt mielőtt a fiókod lezárásra kerül.
       locked: Fiókod le van zárva.
       not_found_in_database: Helytelen %{authentication_keys} vagy jelszó.
-      pending: Your account is still under review.
       timeout: A munkamenet lejárt. Jelentkezz be újra a folytatáshoz.
       unauthenticated: A folytatás előtt be kell jelentkezned.
       unconfirmed: A folytatás előtt meg kell erősítened az e-mail címed.
     mailer:
       confirmation_instructions:
         action: Erősítsd meg az e-mail címedet
-        action_with_app: Confirm and return to %{app}
         explanation: Ezzel az e-mail címmel kezdeményeztek regisztrációt a(z) %{host} oldalon. Csak egy kattintás, és a felhasználói fiókdat aktiváljuk. Ha a regisztrációt nem te kezdeményezted, kérjük tekintsd ezt az e-mailt tárgytalannak.
-        explanation_when_pending: You applied for an invite to %{host} with this email address. Once you confirm your e-mail address, we will review your application. You can't login until then. If your application is rejected, your data will be removed, so no further action will be required from you. If this wasn't you, please ignore this email.
         extra_html: Kérjük tekintsd át a <a href="%{terms_path}">az instancia szabályzatát</a> és <a href="%{policy_path}">a felhasználási feltételeket</a>.
         subject: 'Mastodon: Megerősítési lépések %{instance}'
         title: E-mail cím megerősítése
@@ -61,7 +58,6 @@ hu:
       signed_up: Üdvözlünk! Sikeresen regisztráltál.
       signed_up_but_inactive: Sikeresen regisztráltál. Ennek ellenére nem tudunk beléptetni, ugyanis a fiókod még nem lett aktiválva.
       signed_up_but_locked: Sikeresen regisztráltál. Ennek ellenére nem tudunk beléptetni, ugyanis a fiókod le lett zárva.
-      signed_up_but_pending: A message with a confirmation link has been sent to your email address. After you click the link, we will review your application. You will be notified if it is approved.
       signed_up_but_unconfirmed: Egy üzenet a megerősítési linkkel kiküldésre került az e-mail címedre. Kérjük használd a linket a fiókod aktiválásához.
       update_needs_confirmation: Sikeresen frissítetted a fiókodat, de szükségünk van az e-mail címed megerősítésére. Kérlek ellenőrizd az e-mailedet és kövesd a levélben szereplő megerősítési linket az e-mail címed megerősítéséhez.
       updated: Fiókod frissítése sikeres.
