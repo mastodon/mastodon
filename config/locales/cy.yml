@@ -3,19 +3,30 @@ cy:
     about_hashtag_html: 'Dyma dŵtiau cyhoeddus wedi eu tagio gyda <strong>#%{hashtag}</strong>. Gallwch ryngweithio gyda nhw os oes gennych gyfrif yn unrhyw le yn y ffeddysawd.'
     about_mastodon_html: Mae Mastodon yn rwydwaith cymdeithasol sy'n seiliedig ar brotocolau gwe a meddalwedd cod agored rhad ac am ddim. Yn debyg i e-bost mae'n ddatganoledig.
     about_this: Ynghylch
+    active_count_after: yn weithredol
+    active_footnote: Defnyddwyr Gweithredol Misol (DGM)
     administered_by: 'Gweinyddir gan:'
+    api: API
     apps: Apiau symudol
+    apps_platforms: Defnyddio Mastodon o iOS, Android a phlatfformau eraill
+    browse_directory: Pori cyfeiriadur proffil a hidlo wrth diddordebau
+    browse_public_posts: Pori ffrwd byw o byst cyhoeddus ar Fastodon
     contact: Cyswllt
     contact_missing: Heb ei osod
     contact_unavailable: Ddim yn berthnasol
+    discover_users: Darganfod defnyddwyr
     documentation: Dogfennaeth
     extended_description_html: |
       <h3>Lle da ar gyfer rheolau</h3>
       <p>Nid yw'r disgrifiad estynedig wedi ei osod eto.</p>
+    federation_hint_html: Gyda cyfrif ar %{instance}, gallwch dilyn pobl ar unrhyw gweinydd Mastodon, a thu hwnt.
     generic_description: "Mae %{domain} yn un gweinydd yn y rhwydwaith"
+    get_apps: Rhowch gynnig ar ap dyfeis symudol
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
     learn_more: Dysu mwy
     privacy_policy: Polisi preifatrwydd
+    see_whats_happening: Gweld beth sy'n digwydd
+    server_stats: 'Ystadegau gweinydd:'
     source_code: Cod ffynhonnell
     status_count_after:
       zero: statwsau
@@ -25,6 +36,7 @@ cy:
       many: statwsau
       other: statwsau
     status_count_before: Ysgriffennwyd gan
+    tagline: Dilyn ffrindiau a darganfod rhai newydd
     terms: Telerau gwasanaeth
     user_count_after:
       zero: defnyddwyr
@@ -69,18 +81,22 @@ cy:
     reserved_username: Mae'r enw defnyddiwr ar gadw
     roles:
       admin: Gweinyddwr
+      bot: Bot
       moderator: Safonwr
+    unavailable: Proffil ddim ar gael
     unfollow: Dad-ddilyn
   admin:
     account_actions:
       action: Cyflawni gweithred
-      title: Perfformio cymedroli ar %{acct}
+      title: Perfformio gweithrediad goruwchwylio ar %{acct}
     account_moderation_notes:
       create: Gadael nodyn
-      created_msg: Crewyd nodyn cymedroli yn llwyddiannus!
+      created_msg: Crewyd nodyn goruwchwylio yn llwyddiannus!
       delete: Dileu
-      destroyed_msg: Dinistrwyd nodyn cymedroli yn llwyddiannus!
+      destroyed_msg: Dinistrwyd nodyn goruwchwylio yn llwyddiannus!
     accounts:
+      approve: Cymeradwyo
+      approve_all: Cymeradwyo pob un
       are_you_sure: Ydych chi'n siŵr?
       avatar: Afatar
       by_domain: Parth
@@ -113,6 +129,7 @@ cy:
       header: Pennawd
       inbox_url: URL Mewnflwch
       invited_by: Gwahoddwyd gan
+      ip: IP
       joined: Ymunodd
       location:
         all: Popeth
@@ -125,12 +142,14 @@ cy:
       moderation:
         active: Yn weithredol
         all: Popeth
+        pending: Yn aros
         silenced: Wedi ei dawelu
         suspended: Wedi ei atal
-        title: Cymedroli
-      moderation_notes: Nodiadau cymedroli
+        title: Goruwchwyliad
+      moderation_notes: Nodiadau goruwchwylio
       most_recent_activity: Gweithgarwch diweddaraf
       most_recent_ip: IP diweddaraf
+      no_account_selected: Ni newidwyd dim cyfrif achos ni ddewiswyd dim un
       no_limits_imposed: Dim terfynau wedi'i gosod
       not_subscribed: Heb danysgrifio
       outbox_url: Allflwch URL
@@ -152,7 +171,7 @@ cy:
       role: Caniatâd
       roles:
         admin: Gweinyddwr
-        moderator: Safonwr
+        moderator: Aroglygydd
         user: Defnyddiwr
       salmon_url: URL Eog
       search: Chwilio
@@ -260,7 +279,7 @@ cy:
       domain: Parth
       new:
         create: Creu bloc
-        hint: Ni fydd y bloc parth yn atal cread cofnodion cyfrif yn y bas data, ond mi fydd yn gosod dulliau cymedroli penodol ôl-weithredol ac awtomatig ar y cyfrifau hynny.
+        hint: Ni fydd y bloc parth yn atal cread cofnodion cyfrif yn y bas data, ond mi fydd yn gosod dulliau goruwchwylio penodol ôl-weithredol ac awtomatig ar y cyfrifau hynny.
         severity:
           desc_html: "Mae <strong>Tawelu</strong> yn gwneud twtiau y cyfrif yn anweledig i unrhyw un nad yw'n dilyn y cyfrif. Mae <strong>Atal</strong> yn cael gwared ar holl gynnwys, cyfryngau a data proffil y cyfrif. Defnyddiwch <strong>Dim</strong> os ydych chi ond am wrthod dogfennau cyfryngau."
           noop: Dim
@@ -316,7 +335,7 @@ cy:
       moderation:
         all: Pob
         limited: Gyfyngedig
-        title: Cymedroli
+        title: Goruwchwyliad
       title: Ffederasiwn
       total_blocked_by_us: Wedi'i bloc gan ni
       total_followed_by_them: Yn dilyn ganynt
@@ -356,7 +375,7 @@ cy:
       action_taken_by: Gwnaethpwyd hyn gan
       are_you_sure: Ydych chi'n sicr?
       assign_to_self: Aseinio i mi
-      assigned: Cymedrolwr wedi'i aseinio
+      assigned: Arolygwr wedi'i aseinio
       comment:
         none: Dim
       created_at: Adroddwyd
@@ -663,7 +682,7 @@ cy:
     proceed: Cadw
     updated_msg: Diweddarwyd gosodiad mudo eich cyfrif yn llwyddiannus!
   moderation:
-    title: Cymedroli
+    title: Goruwchwyliad
   notification_mailer:
     digest:
       action: Gweld holl hysbysiadau
