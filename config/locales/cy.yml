@@ -544,7 +544,9 @@ cy:
     warning: Byddwch yn ofalus a'r data hyn. Peidiwch a'i rannu byth!
     your_token: Eich tocyn mynediad
   auth:
+    apply_for_account: Gofyn am wahoddiad
     change_password: Cyfrinair
+    checkbox_agreement_html: Rydw i'n cytuno i'r <a href="%{rules_path}" target="_blank">rheolau'r gweinydd</a> a'r <a href="%{terms_path}" target="_blank">telerau gwasanaeth</a>
     confirm_email: Cadarnhau e-bost
     delete_account: Dileu cyfrif
     delete_account_html: Os hoffech chi ddileu eich cyfrif, mae modd <a href="%{path}">parhau yma</a>. Bydd gofyn i chi gadarnhau.
@@ -556,11 +558,16 @@ cy:
     migrate_account: Symud i gyfrif gwahanol
     migrate_account_html: Os hoffech chi ailgyfeirio'r cyfrif hwn at un gwahanol, mae modd <a href="%{path}">ei ffurfweddu yma</a>.
     or_log_in_with: Neu logiwch mewn a
+    providers:
+      cas: CAS
+      saml: SAML
     register: Cofrestru
+    registration_closed: "Nid yw %{instance} yn derbyn aelodau newydd"
     resend_confirmation: Ailanfon cyfarwyddiadau cadarnhau
     reset_password: Ailosod cyfrinair
     security: Diogelwch
     set_new_password: Gosod cyfrinair newydd
+    trouble_logging_in: Trafferdd mewngofnodi?
   authorize_follow:
     already_following: Yr ydych yn dilyn y cyfrif hwn yn barod
     error: Yn anffodus, roedd gwall tra'n edrych am y cyfrif anghysbell
@@ -579,9 +586,11 @@ cy:
       about_x_years: "%{count}blwyddyn"
       almost_x_years: "%{count}blwyddyn"
       half_a_minute: Newydd fod
+      less_than_x_minutes: "%{count}munud"
       less_than_x_seconds: Newydd fod
       over_x_years: "%{count}blwyddyn"
       x_days: "%{count}dydd"
+      x_minutes: "%{count}munud"
       x_months: "%{count}mis"
       x_seconds: "%{count}eiliad"
   deletes:
@@ -611,6 +620,9 @@ cy:
       content: Mae'n ddrwg gennym ni, ond fe aeth rhywbeth o'i le ar ein rhan ni.
       title: Nid yw'r dudalen hon yn gywir
     noscript_html: I ddefnyddio ap gwe Mastodon, galluogwch JavaScript os gwlwch yn dda. Fel arall, gallwch drio un o'r <a href="%{apps_path}">apiau cynhenid</a> ar gyfer Mastodon ar eich platfform.
+  existing_username_validator:
+    not_found: ni ddarganfwyd defnyddiwr lleol gyda'r enw cyfrif hynny
+    not_found_multiple: ni ddarganfwyd %{usernames}
   exports:
     archive_takeout:
       date: Dyddiad
@@ -620,6 +632,7 @@ cy:
       request: Gwneud cais am eich archif
       size: Maint
     blocks: Yr ydych yn blocio
+    csv: CSV
     domain_blocks: Blociau parth
     follows: Yr ydych yn dilyn
     lists: Rhestrau
@@ -650,8 +663,10 @@ cy:
     more: Mwy…
     resources: Adnoddau
   generic:
+    all: Popeth
     changes_saved_msg: Llwyddwyd i gadw y newidiadau!
     copy: Copïo
+    order_by: Trefnu wrth
     save_changes: Cadw newidiadau
     validation_errors:
       zero: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
@@ -660,17 +675,41 @@ cy:
       few: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
       many: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
       other: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
+  html_validator:
+    invalid_markup: 'yn cynnwys marciad HTML annilys: %{error}'
+  identity_proofs:
+    active: Yn weithredol
+    authorize: Ie, awdurdodi
+    authorize_connection_prompt: Awdurdodi y cysylltiad cryptograffig hon?
+    errors:
+      failed: Methwyd y cysylltiad cryptograffig. Ceisiwch eto o %{provider}, os gwelwch yn dda.
+      keybase:
+        invalid_token: Mae tocynnau keybase yn hashiau o llofnodau ac mae rhaid iddynt bod yn 66 cymeriadau hecs
+        verification_failed: Nid yw Keybase yn adnabod y tocyn hyn fel llofnod defnyddiwr Keybase %{kb_username}. Cesiwch eto o Keybase, os gwelwch yn dda.
+      wrong_user: Ni all greu prawf ar gyfer %{proving} tra wedi mewngofnodi fel %{current}. Mewngofnodi fel %{proving} a cheisiwch eto.
+    explanation_html: Fama gallwch cysylltu i'ch hunanieithau arall yn cryptograffig, er enghraifft proffil Keybase. Mae hyn yn gadael pobl arall i anfon chi negeseuon amgryptiedig a ymddiried mewn cynnwys rydych yn eich anfon iddynt.
+    i_am_html: Rydw i'n %{username} ar %{service}.
+    identity: Hunaniaeth
+    inactive: Anweithgar
+    publicize_checkbox: 'A thŵtiwch hon:'
+    publicize_toot: 'Wedi profi! Rydw i''n %{username} ar %{service}: %{url}'
+    status: Statws gwirio
+    view_proof: Gweld prawf
   imports:
     modes:
       merge: Cyfuno
       merge_long: Cadw'r cofnodau presennol ac ychwanegu rhai newydd
+      overwrite: Trosysgrifio
+      overwrite_long: Disodli cofnodau bresennol gyda'r cofnodau newydd
     preface: Mae modd mewnforio data yr ydych wedi allforio o achos arall, megis rhestr o bobl yr ydych yn ei ddilyn neu yn blocio.
     success: Uwchlwythwyd eich data yn llwyddiannus ac fe fydd yn cael ei brosesu mewn da bryd
     types:
       blocking: Rhestr blocio
+      domain_blocking: Rhestr rhwystro parth
       following: Rhestr dilyn
       muting: Rhestr tawelu
     upload: Uwchlwytho
+  in_memoriam_html: Mewn Cofiad.
   invites:
     delete: Dadactifadu
     expired: Wedi darfod
@@ -753,11 +792,29 @@ cy:
       body: 'Cafodd eich statws ei fŵstio gan %{name}:'
       subject: "Bŵstiodd %{name} eich statws"
       title: Hwb newydd
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: Biliwn
+          million: Miliwn
+          quadrillion: Cwadriliwn
+          thousand: Mil
+          trillion: Triliwn
   pagination:
     newer: Diweddarach
     next: Nesaf
     older: Hŷn
     prev: Blaenorol
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Rydych chi barod wedi pleidleisio ar y pleidlais hon
+      duplicate_options: yn cynnwys eitemau dyblyg
+      duration_too_long: yn rhy bell yn y dyfodol
+      duration_too_short: yn rhy fuan
+      expired: Mae'r pleidlais wedi gorffen yn barod
   preferences:
     other: Arall
   remote_follow:
