@@ -5,11 +5,9 @@ es:
     about_mastodon_html: Mastodon es un servidor de red social <em>libre y de código abierto</em>. Una alternativa <em>descentralizada</em> a plataformas comerciales, que evita el riesgo de que una única compañía monopolice tu comunicación. Cualquiera puede ejecutar Mastodon y participar sin problemas en la <em>red social</em>.
     about_this: Acerca de esta instancia
     administered_by: 'Administrado por:'
-    api: API
     apps: Aplicaciones móviles
     contact: Contacto
     contact_missing: No especificado
-    contact_unavailable: N/A
     documentation: Documentación
     extended_description_html: |
       <h3>Un buen lugar para las reglas</h3>
@@ -39,7 +37,6 @@ es:
     joined: Se unió el %{date}
     last_active: última conexión
     link_verified_on: La propiedad de este vínculo fue verificada el %{date}
-    media: Media
     moved_html: "%{name} se ha trasladado a %{new_profile_link}:"
     network_hidden: Esta información no está disponible
     nothing_here: "¡No hay nada aquí!"
@@ -47,15 +44,10 @@ es:
     people_who_follow: Usuarios que siguen a %{name}
     pin_errors:
       following: Debes estar siguiendo a la persona a la que quieres aprobar
-    posts:
-      one: Toot
-      other: Toots
-    posts_tab_heading: Toots
     posts_with_replies: Toots con respuestas
     reserved_username: El nombre de usuario está reservado
     roles:
       admin: Administrador
-      bot: Bot
       moderator: Moderador
     unfollow: Dejar de seguir
   admin:
@@ -68,7 +60,6 @@ es:
       destroyed_msg: "¡Nota de moderación destruida con éxito!"
     accounts:
       are_you_sure: "¿Estás seguro?"
-      avatar: Avatar
       by_domain: Dominio
       change_email:
         changed_msg: "¡El correo electrónico se ha actualizado correctamente!"
@@ -99,10 +90,8 @@ es:
       header: Cabecera
       inbox_url: URL de la bandeja de entrada
       invited_by: Invitado por
-      ip: IP
       location:
         all: Todos
-        local: Local
         remote: Remoto
         title: Localización
       login_status: Estado del login
@@ -158,7 +147,6 @@ es:
       undo_suspension: Des-suspender
       unsubscribe: Desuscribir
       username: Nombre de usuario
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} se ha asignado la denuncia %{target} a sí mismo"
@@ -202,7 +190,6 @@ es:
       destroyed_msg: "¡Emojo destruido con éxito!"
       disable: Deshabilitar
       disabled_msg: Se deshabilitó con éxito ese emoji
-      emoji: Emoji
       enable: Habilitar
       enabled_msg: Se habilitó con éxito ese emoji
       image_hint: PNG de hasta 50KB
@@ -230,7 +217,6 @@ es:
       recent_users: Usuarios recientes
       search: Búsqueda por texto completo
       single_user_mode: Modo único usuario
-      software: Software
       space: Uso de almacenamiento
       title: Tablero
       total_users: usuarios en total
@@ -413,7 +399,6 @@ es:
       confirmed: Confirmado
       expires_in: Expira en
       last_delivery: Última entrega
-      title: WebSub
       topic: Tópico
     title: Administración
   admin_mailer:
@@ -423,7 +408,6 @@ es:
       subject: Nuevo reporte para la %{instance} (#%{id})
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
-    salutation: "%{name},"
     settings: 'Cambiar preferencias de correo: %{link}'
     view: 'Vista:'
     view_profile: Ver perfil
@@ -449,9 +433,6 @@ es:
     migrate_account: Mudarse a otra cuenta
     migrate_account_html: Si deseas redireccionar esta cuenta a otra distinta, puedes <a href="%{path}">configurarlo aquí</a>.
     or_log_in_with: O inicia sesión con
-    providers:
-      cas: CAS
-      saml: SAML
     register: Registrarse
     resend_confirmation: Volver a enviar el correo de confirmación
     reset_password: Restablecer contraseña
@@ -470,18 +451,10 @@ es:
     title: Seguir a %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
       about_x_months: "%{count}m"
-      about_x_years: "%{count}y"
-      almost_x_years: "%{count}y"
       half_a_minute: Justo ahora
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Justo ahora
-      over_x_years: "%{count}y"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
       x_months: "%{count}m"
-      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: "¡Buen intento, hackers! Contraseña incorrecta"
     confirm_password: Ingresa tu contraseña actual para demostrar tu identidad
@@ -511,7 +484,6 @@ es:
       request: Solicitar tu archivo
       size: Tamaño
     blocks: Personas que has bloqueado
-    csv: CSV
     follows: Personas que sigues
     mutes: Tienes en silencio
     storage: Almacenamiento
@@ -621,23 +593,11 @@ es:
       body: "%{name} ha retooteado tu estado:"
       subject: "%{name} ha retooteado tu estado"
       title: Nueva difusión
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: " "
   pagination:
     newer: Más nuevo
     next: Próximo
     older: Más antiguo
     prev: Anterior
-    truncate: "&hellip;"
   preferences:
     other: Otros
   remote_follow:
@@ -647,47 +607,18 @@ es:
     proceed: Proceder a seguir
     prompt: 'Vas a seguir a:'
   remote_unfollow:
-    error: Error
     title: Título
     unfollowed: Ha dejado de seguirse
   sessions:
     activity: Última actividad
     browser: Navegador
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Desconocido
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
     explanation: Estos son los navegadores web conectados actualmente en tu cuenta de Mastodon.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: Desconocido
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Revocar
     revoke_success: Sesión revocada exitosamente
     title: Sesiones
@@ -727,7 +658,6 @@ es:
       reblog: Un boost no puede fijarse
     show_more: Mostrar más
     sign_in_to_participate: Regístrate para participar en la conversación
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Sólo mostrar a seguidores
       private_long: Solo mostrar a tus seguidores
@@ -748,7 +678,6 @@ es:
   time:
     formats:
       default: "%d de %b del %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Ingresa el código generado por tu aplicación de autenticación para confirmar
     description_html: Si habilitas la <strong>autenticación de dos factores</strong>, se requerirá estar en posesión de su teléfono, lo que generará tokens para que usted pueda iniciar sesión.
@@ -785,7 +714,6 @@ es:
       tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar más gente interesante, revisa las lineas de tiempo local y federada.
       tip_local_timeline: La linea de tiempo local is una vista de la gente en %{instance}. Estos son tus vecinos inmediatos!
       tip_mobile_webapp: Si el navegador de tu dispositivo móvil ofrece agregar Mastodon a tu página de inicio, puedes recibir notificaciones. Actúa como una aplicación nativa en muchas formas!
-      tips: Tips
       title: Te damos la bienvenida a bordo, %{name}!
   users:
     follow_limit_reached: No puedes seguir a más de %{limit} personas
