@@ -4,13 +4,9 @@ ar:
     about_mastodon_html: ماستدون شبكة إجتماعية مبنية على أسُس بروتوكولات برمجيات الويب الحرة و مفتوحة المصدر. و هو لامركزي تمامًا كالبريد الإلكتروني.
     about_this: عن مثيل الخادوم هذا
     active_count_after: نشط
-    active_footnote: Monthly Active Users (MAU)
     administered_by: 'يُديره :'
     api: واجهة برمجة التطبيقات
     apps: تطبيقات الأجهزة المحمولة
-    apps_platforms: Use Mastodon from iOS, Android and other platforms
-    browse_directory: Browse a profile directory and filter by interests
-    browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: للتواصل معنا
     contact_missing: لم يتم تعيينه
     contact_unavailable: غير متوفر
@@ -19,7 +15,6 @@ ar:
     extended_description_html: |
       <h3>مكان جيد للقواعد</h3>
       <p>لم يتم بعد إدخال الوصف الطويل.</p>
-    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} هو سيرفر من بين سيرفرات الشبكة"
     get_apps: جرّب تطبيقا على الموبايل
     hosted_on: ماستدون مُستضاف على %{domain}
@@ -95,8 +90,6 @@ ar:
       delete: حذف
       destroyed_msg: تم تدمير ملاحظة الإشراف بنجاح !
     accounts:
-      approve: Approve
-      approve_all: Approve all
       are_you_sure: متأكد ؟
       avatar: الصورة الرمزية
       by_domain: النطاق
@@ -142,14 +135,12 @@ ar:
       moderation:
         active: نشِط
         all: الكل
-        pending: Pending
         silenced: تم كتمه
         suspended: مُجَمَّد
         title: الإشراف
       moderation_notes: ملاحظات الإشراف
       most_recent_activity: آخر نشاط حديث
       most_recent_ip: أحدث عنوان إيبي
-      no_account_selected: No accounts were changed as none were selected
       no_limits_imposed: مِن دون حدود مشروطة
       not_subscribed: غير مشترك
       outbox_url: رابط صندوق الصادر
@@ -161,8 +152,6 @@ ar:
       public: عمومي
       push_subscription_expires: انتهاء الاشتراك ”PuSH“
       redownload: تحديث الصفحة الشخصية
-      reject: Reject
-      reject_all: Reject all
       remove_avatar: حذف الصورة الرمزية
       remove_header: حذف الرأسية
       resend_confirmation:
@@ -189,7 +178,6 @@ ar:
       statuses: المنشورات
       subscribe: اشترك
       suspended: تم تعليقه
-      time_in_queue: Waiting in queue %{time}
       title: الحسابات
       unconfirmed_email: البريد الإلكتروني غير مؤكد
       undo_silenced: رفع الصمت
@@ -285,7 +273,6 @@ ar:
       created_msg: إنّ حجب النطاق حيز التشغيل
       destroyed_msg: تم إلغاء الحجب المفروض على النطاق
       domain: النطاق
-      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: إنشاء حظر
         hint: لن تمنع كتلة المجال إنشاء إدخالات حساب في قاعدة البيانات ، ولكنها ستطبق طرق الإشراف المحددة بأثر رجعي وتلقائي على هذه الحسابات.
@@ -298,9 +285,6 @@ ar:
       reject_media: رفض ملفات الوسائط
       reject_media_hint: يزيل ملفات الوسائط المخزنة محليًا ويرفض تنزيل أي ملفات في المستقبل. غير ذي صلة للتعليق
       reject_reports: رفض التقارير
-      reject_reports_hint: Ignore all reports coming from this domain. Irrelevant for suspensions
-      rejecting_media: rejecting media files
-      rejecting_reports: rejecting reports
       severity:
         silence: تم كتمه
         suspend: تم تعليقه
@@ -343,7 +327,6 @@ ar:
         other: "%{count} حسابات معروفة"
       moderation:
         all: كافتها
-        limited: Limited
         title: الإشراف
       title: الفديرالية
       total_blocked_by_us: المحجوبة مِن طرفنا
@@ -364,7 +347,6 @@ ar:
     relays:
       add_new: إضافة مُرحّل جديد
       delete: حذف
-      description_html: A <strong>federation relay</strong> is an intermediary server that exchanges large volumes of public toots between servers that subscribe and publish to it. <strong>It can help small and medium servers discover content from the fediverse</strong>, which would otherwise require local users manually following other people on remote servers.
       disable: تعطيل
       disabled: مُعطَّل
       enable: تشغيل
@@ -425,9 +407,6 @@ ar:
       hero:
         desc_html: معروض على الصفحة الأولى. لا يقل عن 600 × 100 بكسل. عند عدم التعيين ، تعود الصورة إلى النسخة المصغرة على سبيل المثال
         title: الصورة الرأسية
-      mascot:
-        desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
-        title: Mascot image
       peers_api_enabled:
         desc_html: أسماء النطاقات التي إلتقى بها مثيل الخادوم على البيئة الموحَّدة فيديفرس
         title: نشر عدد مثيلات الخوادم التي تم مصادفتها
@@ -449,7 +428,6 @@ ar:
           title: المستخدِمون المصرح لهم لإرسال الدعوات
       registrations_mode:
         modes:
-          approved: Approval required for sign up
           none: لا أحد يمكنه إنشاء حساب
           open: يمكن للجميع إنشاء حساب
         title: طريقة إنشاء الحسابات
@@ -497,7 +475,6 @@ ar:
       confirmed: مؤكَّد
       expires_in: تنتهي مدة صلاحيتها في
       last_delivery: آخر إيداع
-      title: WebSub
       topic: الموضوع
     tags:
       accounts: الحسابات
@@ -516,7 +493,6 @@ ar:
       title: إدارة نماذج التحذير
   admin_mailer:
     new_pending_account:
-      body: The details of the new account are below. You can approve or reject this application.
       subject: حساب جديد في انتظار مراجعة على %{instance} (%{username})
     new_report:
       body: "قام %{reporter} بالإبلاغ عن %{target}"
@@ -524,15 +500,12 @@ ar:
       subject: 'تقرير جديد ل%{instance} (#%{id})'
   appearance:
     advanced_web_interface: واجهة الويب المتقدمة
-    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
-    animations_and_accessibility: Animations and accessibility
     confirmation_dialogs: نوافذ التأكيد
     sensitive_content: محتوى حساس
   application_mailer:
     notification_preferences: تعديل خيارات البريد الإلكتروني
     salutation: "%{name}،"
     settings: 'تغيير تفضيلات البريد الإلكتروني : %{link}'
-    view: 'View:'
     view_profile: عرض الملف الشخصي
     view_status: عرض المنشور
   applications:
@@ -558,9 +531,6 @@ ar:
     migrate_account: الإنتقال إلى حساب آخر
     migrate_account_html: إن كنت ترغب في تحويل هذا الحساب نحو حساب آخَر، يُمكِنُك <a href="%{path}">إعداده هنا</a>.
     or_log_in_with: أو قم بتسجيل الدخول بواسطة
-    providers:
-      cas: CAS
-      saml: SAML
     register: إنشاء حساب
     registration_closed: "لا يقبل %{instance} استقبال أعضاء جدد"
     resend_confirmation: إعادة إرسال تعليمات التأكيد
@@ -596,18 +566,14 @@ ar:
   deletes:
     bad_password_msg: محاولة جيدة يا هاكرز ! كلمة السر خاطئة
     confirm_password: قم بإدخال كلمتك السرية الحالية للتحقق من هويتك
-    description_html: This will <strong>permanently, irreversibly</strong> remove content from your account and deactivate it. Your username will remain reserved to prevent future impersonations.
     proceed: حذف حساب
     success_msg: تم حذف حسابك بنجاح
-    warning_html: Only deletion of content from this particular server is guaranteed. Content that has been widely shared is likely to leave traces. Offline servers and servers that have unsubscribed from your updates will not update their databases.
     warning_title: توافر المحتوى المنشور و المبعثَر
   directories:
     directory: سِجلّ الحسابات
     enabled: إنّ حسابك الآن ضمن فهرس المستخدِمين.
-    enabled_but_waiting: You have opted-in to be listed in the directory, but you do not have the minimum number of followers (%{min_followers}) to be listed yet.
     explanation: استكشف مستخدِمين آخرين حسب المواضيع التي تهمهم
     explore_mastodon: استكشف %{title}
-    how_to_enable: You are not currently opted-in to the directory. You can opt-in below. Use hashtags in your bio text to be listed under specific hashtags!
     people:
       zero: "%{count} شخص"
       one: "%{count} شخص"
@@ -628,7 +594,6 @@ ar:
       title: هذه الصفحة خاطئة
     noscript_html: يرجى تفعيل الجافا سكريبت لاستخدام تطبيق الويب لماستدون، أو عِوض ذلك قوموا بتجريب إحدى <a href="%{apps_path}">التطبيقات الأصلية</a> الدّاعمة لماستدون على منصّتكم.
   existing_username_validator:
-    not_found: could not find a local user with that username
     not_found_multiple: تعذر العثور على %{usernames}
   exports:
     archive_takeout:
@@ -639,7 +604,6 @@ ar:
       request: طلب نسخة لحسابك
       size: الحجم
     blocks: قمت بحظر
-    csv: CSV
     domain_blocks: النطاقات المحظورة
     follows: أنت تتبع
     lists: القوائم
@@ -647,8 +611,6 @@ ar:
     storage: ذاكرة التخزين
   featured_tags:
     add_new: إضافة واحد
-    errors:
-      limit: You have already featured the maximum amount of hashtags
   filters:
     contexts:
       home: الخيط الزمني الرئيسي
@@ -682,24 +644,12 @@ ar:
       few: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
       many: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
       other: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
-  html_validator:
-    invalid_markup: 'contains invalid HTML markup: %{error}'
   identity_proofs:
     active: نشط
-    authorize: Yes, authorize
-    authorize_connection_prompt: Authorize this cryptographic connection?
-    errors:
-      failed: The cryptographic connection failed. Please try again from %{provider}.
-      keybase:
-        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
-        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
-      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
-    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
     i_am_html: أنا %{username} على %{service}.
     identity: الهوية
     inactive: ليس نشطا
     publicize_checkbox: 'وقم بتبويق هذا:'
-    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
     status: حالة التحقق
     view_proof: عرض الدليل
   imports:
@@ -804,12 +754,8 @@ ar:
       decimal_units:
         format: "%n%u"
         units:
-          billion: B
-          million: M
           quadrillion: كواد
           thousand: ألف
-          trillion: T
-          unit: ''
   pagination:
     newer: الأحدَث
     next: التالي
@@ -818,29 +764,18 @@ ar:
     truncate: "و"
   polls:
     errors:
-      already_voted: You have already voted on this poll
-      duplicate_options: contain duplicate items
-      duration_too_long: is too far into the future
-      duration_too_short: is too soon
       expired: لقد انتهى استطلاع الرأي
-      over_character_limit: cannot be longer than %{max} characters each
-      too_few_options: must have more than one item
-      too_many_options: can't contain more than %{max} items
   preferences:
     other: إعدادات أخرى
     posting_defaults: التفضيلات الافتراضية لنشر التبويقات
     public_timelines: الخيوط الزمنية العامة
   relationships:
     activity: نشاط الحساب
-    dormant: Dormant
     last_active: آخر نشاط
     most_recent: الأحدث
     moved: هاجر
-    mutual: Mutual
     primary: رئيسي
     relationship: العلاقة
-    remove_selected_domains: Remove all followers from the selected domains
-    remove_selected_followers: Remove selected followers
     remove_selected_follows: الغي متابعة المستخدمين الذين اخترتهم
     status: حالة الحساب
   remote_follow:
@@ -849,7 +784,6 @@ ar:
     no_account_html: أليس عندك حساب بعدُ ؟ يُمْكنك <a href='%{sign_up_path}' target='_blank'>التسجيل مِن هنا</a>
     proceed: أكمل المتابعة
     prompt: 'إنك  بصدد متابعة :'
-    reason_html: "<strong>Why is this step necessary?</strong> <code>%{instance}</code> might not be the server where you are registered, so we need to redirect you to your home server first."
   remote_interaction:
     favourite:
       proceed: المواصلة إلى المفضلة
@@ -864,10 +798,6 @@ ar:
     error: خطأ
     title: العنوان
     unfollowed: غير متابَع
-  scheduled_statuses:
-    over_daily_limit: You have exceeded the limit of %{limit} scheduled toots for that day
-    over_total_limit: You have exceeded the limit of %{limit} scheduled toots
-    too_soon: The scheduled date must be in the future
   sessions:
     activity: آخر نشاط
     browser: المتصفح
@@ -919,7 +849,6 @@ ar:
     development: التطوير
     edit_profile: تعديل الملف الشخصي
     export: تصدير البيانات
-    featured_tags: Featured hashtags
     identity_proofs: دلائل الهوية
     import: إستيراد
     import_and_export: استيراد وتصدير
@@ -964,13 +893,6 @@ ar:
       private: لا يمكن تدبيس تبويق لم يُنشر للعامة
       reblog: لا يمكن تثبيت ترقية
     poll:
-      total_votes:
-        zero: "%{count} votes"
-        one: "%{count} vote"
-        two: "%{count} votes"
-        few: "%{count} votes"
-        many: "%{count} votes"
-        other: "%{count} votes"
       vote: صوّت
     show_more: أظهر المزيد
     sign_in_to_participate: قم بتسجيل الدخول للمشاركة في هذه المحادثة
@@ -987,96 +909,11 @@ ar:
     reblogged: رقّاه
     sensitive_content: محتوى حساس
   terms:
-    body_html: |
-      <h2>Privacy Policy</h2>
-      <h3 id="collect">What information do we collect?</h3>
-
-      <ul>
-      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
-      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
-      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">What do we use your information for?</h3>
-
-      <p>Any of the information we collect from you may be used in the following ways:</p>
-
-      <ul>
-      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
-      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">How do we protect your information?</h3>
-
-      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">What is our data retention policy?</h3>
-
-      <p>We will make a good faith effort to:</p>
-
-      <ul>
-      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
-      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
-      </ul>
-
-      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
-
-      <p>You may irreversibly delete your account at any time.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Do we use cookies?</h3>
-
-      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
-
-      <p>We use cookies to understand and save your preferences for future visits.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
-
-      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
-
-      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
-
-      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Site usage by children</h3>
-
-      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
-
-      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
-
-      <p>Law requirements can be different if this server is in another jurisdiction.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Changes to our Privacy Policy</h3>
-
-      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
-
-      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
-
-      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "شروط الخدمة وسياسة الخصوصية على %{instance}"
   themes:
     contrast: تباين عالٍ
     default: ماستدون
     mastodon-light: ماستدون (فاتح)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: قم بإدخال الرمز المُوَلّد عبر تطبيق المصادقة للتأكيد
     description_html: في حال تفعيل <strong>المصادقة بخطوتين </strong>، فتسجيل الدخول يتطلب منك أن يكون بحوزتك هاتفك النقال قصد توليد الرمز الذي سيتم إدخاله.
@@ -1090,7 +927,6 @@ ar:
     manual_instructions: 'في حالة تعذّر مسح رمز الكيو آر أو طُلب منك إدخال يدوي، يُمْكِنك إدخال هذا النص السري على التطبيق :'
     recovery_codes: النسخ الإحتياطي لرموز الإسترجاع
     recovery_codes_regenerated: تم إعادة توليد رموز الإسترجاع الإحتياطية بنجاح
-    recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. <strong>Keep the recovery codes safe</strong>. For example, you may print them and store them with other important documents.
     setup: تنشيط
     wrong_code: الرمز الذي أدخلته غير صالح ! تحقق من صحة الوقت على الخادم و الجهاز ؟
   user_mailer:
@@ -1099,20 +935,14 @@ ar:
       subject: نسخة بيانات حسابك جاهزة للتنزيل
       title: المغادرة بأرشيف الحساب
     warning:
-      explanation:
-        disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
-        silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
-        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
       review_server_policies: مراجعة شروط السيرفر
       subject:
         disable: تم تجميد حسابك %{acct}
         none: تحذير إلى %{acct}
-        silence: Your account %{acct} has been limited
         suspend: لقد تم تعليق حسابك %{acct}
       title:
         disable: الحساب مُجمَّد
         none: تحذير
-        silence: Account limited
         suspend: الحساب مُعلَّق
     welcome:
       edit_profile_action: تهيئة الملف الشخصي
@@ -1123,12 +953,10 @@ ar:
       full_handle: عنوانك الكامل
       full_handle_hint: هذا هو ما يجب تقديمه لأصدقائك قصد أن يكون بإمكانهم متابَعتك أو مُراسَلتك حتى و إن كانت حساباتهم على خوادم أخرى.
       review_preferences_action: تعديل التفضيلات
-      review_preferences_step: Make sure to set your preferences, such as which emails you'd like to receive, or what privacy level you’d like your posts to default to. If you don’t have motion sickness, you could choose to enable GIF autoplay.
       subject: أهلًا بك على ماستدون
       tip_federated_timeline: الخيط الزمني الفديرالي هو بمثابة شبه نظرة شاملة على شبكة ماستدون. غير أنه لا يشمل إلا على الأشخاص المتابَعين مِن طرف جيرانك و جاراتك، لذا فهذا الخيط لا يعكس كافة الشبكة برُمّتها.
       tip_following: أنت تتبع تلقائيا مديري و مديرات الخادم. للعثور على أشخاص مميزين أو قد تهمك حساباتهم بإمكانك الإطلاع على الخيوط المحلية و كذا الفدرالية.
       tip_local_timeline: الخيط الزمني المحلي هو بمثابة نظرة سريعة على الأشخاص المتواجدين على %{instance} يمكن اعتبارهم كجيرانك وجاراتك الأقرب إليك!
-      tip_mobile_webapp: If your mobile browser offers you to add Mastodon to your homescreen, you can receive push notifications. It acts like a native app in many ways!
       tips: نصائح
       title: أهلاً بك، %{name} !
   users:
@@ -1139,5 +967,4 @@ ar:
     seamless_external_login: لقد قمت بتسجيل الدخول عبر خدمة خارجية، إنّ إعدادات الكلمة السرية و البريد الإلكتروني غير متوفرة.
     signed_in_as: 'تم تسجيل دخولك بصفة :'
   verification:
-    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
     verification: التحقق
