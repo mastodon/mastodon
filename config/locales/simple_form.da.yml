@@ -1,20 +1,14 @@
 da:
   simple_form:
     hints:
-      account_warning_preset:
-        text: You can use toot syntax, such as URLs, hashtags and mentions
       admin_account_action:
-        send_email_notification: The user will receive an explanation of what happened with their account
-        text_html: Optional. You can use toot syntax. You can <a href="%{path}">add warning presets</a> to save time
         type_html: Vælg hvad du vil gøre med <strong>%{acct}</strong>
-        warning_preset_id: Optional. You can still add custom text to end of the preset
       defaults:
         autofollow: Folk der har oprettet sig gennem invitationen vil automatisk følge dig
         avatar: PNG, GIF eller JPG. Højest %{size}. Vil blive skaleret ned til %{dimensions}px
         bot: Denne konto udfører hovedsageligt automatiserede handlinger og bliver muligvis ikke overvåget
         context: En eller flere sammenhænge hvor filteret skal være gældende
         digest: Sendes kun efter en lang periode med inaktivitet og kun hvis du har modtaget nogle personlige beskeder mens du er væk
-        discoverable_html: The <a href="%{path}" target="_blank">directory</a> lets people find accounts based on interests and activity. Requires at least %{min_followers} followers
         email: Du vil få tilsendt en bekræftelsed mail
         fields: Du kan have op til 4 ting vist som en tabel på din profil
         header: PNG, GIF eller JPG. Højest %{size}. Vil blive skaleret ned til %{dimensions}px
@@ -25,22 +19,14 @@ da:
         password: Brug mindst 8 tegn
         phrase: Vil blive parret uanset om der er store eller små bogstaver i teksten eller om der er en advarsel om et trut
         scopes: Hvilke APIs applikationen vil få adgang til. Hvis du vælger et højtlevel omfang, behøver du ikke vælge enkeltstående.
-        setting_aggregate_reblogs: Do not show new boosts for toots that have been recently boosted (only affects newly-received boosts)
-        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
         setting_display_media_default: Skjul medier markeret som følsomt
         setting_display_media_hide_all: Skjul altid alle medier
-        setting_display_media_show_all: Always show media marked as sensitive
         setting_hide_network: Hvem du følger og hvem der følger dig vil ikke blive vist på din profil
         setting_noindex: Påvirker din offentlige profil og status sider
-        setting_show_application: The application you use to toot will be displayed in the detailed view of your toots
         username: Dit brugernavn vil være unikt på %{domain}
         whole_word: Når nøgle ordet eller udtrykket kun er alfanumerisk, vil det kun blive brugt hvis det passer hele ordet
-      featured_tag:
-        name: 'You might want to use one of these:'
       imports:
         data: CSV fil eksporteret fra en anden Mastodon server
-      invite_request:
-        text: This will help us review your application
       sessions:
         otp: 'Indtast to-faktor koden der generes af appen af appen på din telefon eller brug en af din genoprettelses koder:'
       user:
@@ -50,18 +36,11 @@ da:
         fields:
           name: Etiket
           value: Indhold
-      account_warning_preset:
-        text: Preset text
       admin_account_action:
-        send_email_notification: Notify the user per e-mail
-        text: Custom warning
         type: Handling
         types:
           disable: Deaktiver
           none: Gør intet
-          silence: Silence
-          suspend: Suspend and irreversibly delete account data
-        warning_preset_id: Use a warning preset
       defaults:
         autofollow: Inviter til at følge din konto
         avatar: Profilbillede
@@ -71,8 +50,6 @@ da:
         confirm_password: Bekræft adgangskode
         context: Filtrer sammenhænge
         current_password: Nuværende adgangskode
-        data: Data
-        discoverable: List this account on the directory
         display_name: Visningsnavn
         email: E-mail adresse
         expires_in: Udløber efter
@@ -88,8 +65,6 @@ da:
         otp_attempt: To-faktor kode
         password: Adgangskode
         phrase: Nøgleord eller sætning
-        setting_advanced_layout: Enable advanced web interface
-        setting_aggregate_reblogs: Group boosts in timelines
         setting_auto_play_gif: Afspil automatisk animerede GIFs
         setting_boost_modal: Vis bekræftelses dialog før du fremhæver
         setting_default_language: Sprog for opslag
@@ -104,7 +79,6 @@ da:
         setting_hide_network: Skjul dit netværk
         setting_noindex: Frameld dig søgemaskiners indeksering
         setting_reduce_motion: Reducer animationers bevægelse
-        setting_show_application: Disclose application used to send toots
         setting_system_font_ui: Brug systemets standard font
         setting_theme: Tema for side
         setting_unfollow_modal: Vis bekræftelses dialog før du stopper med at følge nogen
@@ -113,26 +87,19 @@ da:
         username: Brugernavn
         username_or_email: Brugernavn eller Email
         whole_word: Helt ord
-      featured_tag:
-        name: Hashtag
       interactions:
         must_be_follower: Bloker notifikationer fra folk der ikke følger dig
         must_be_following: Bloker notifikationer fra folk du ikke følger
         must_be_following_dm: Bloker direkte beskeder fra folk du ikke følger
-      invite_request:
-        text: Why do you want to join?
       notification_emails:
         digest: Send sammendrag via emails
         favourite: Send email når nogen favoriserer din status
         follow: Send e-mail når nogen følger dig
         follow_request: Send email når nogen anmoder om at følge dig
         mention: Send e-mail når nogen nævner dig
-        pending_account: Send e-mail when a new account needs review
         reblog: Send email når nogen fremhæver din status
         report: Send email når en ny anmeldelse bliver indsendt
     'no': 'Nej'
-    recommended: Recommended
     required:
-      mark: "*"
       text: påkrævet
     'yes': 'Ja'
