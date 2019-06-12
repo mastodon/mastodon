@@ -1,11 +1,9 @@
----
 sl:
   about:
-    about_hashtag_html: To so javni tuti, označeni z <strong>#%{hashtag}</strong>. Z njimi se lahko povežete, če imate račun kjerkoli v fediversu.
+    about_hashtag_html: 'To so javni tuti, označeni z <strong>#%{hashtag}</strong>. Z njimi se lahko povežete, če imate račun kjerkoli v fediversu.'
     about_mastodon_html: Mastodon je socialno omrežje, ki temelji na odprtih spletnih protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran, kot e-pošta.
     about_this: O Mastodonu
     administered_by: 'Upravlja:'
-    api: API
     apps: Mobilne aplikacije
     contact: Kontakt
     contact_missing: Ni nastavljeno
@@ -20,27 +18,27 @@ sl:
     privacy_policy: Politika zasebnosti
     source_code: Izvorna koda
     status_count_after:
-      few: stanja
       one: stanje
-      other: stanj
       two: stanja
+      few: stanja
+      other: stanj
     status_count_before: Ki so avtorji
     terms: Pogoji storitve
     user_count_after:
-      few: uporabniki
       one: uporabnik
-      other: uporabnikov
       two: uporabniki
+      few: uporabniki
+      other: uporabnikov
     user_count_before: Dom za
     what_is_mastodon: Kaj je Mastodon?
   accounts:
     choices_html: "%{name} izbire:"
     follow: Sledi
     followers:
-      few: Sledilci
       one: Sledilec
-      other: Sledilci
       two: Sledilci
+      few: Sledilci
+      other: Sledilci
     following: Sledim
     joined: Se je pridružil na %{date}
     last_active: zadnji aktivni
@@ -54,17 +52,16 @@ sl:
     pin_errors:
       following: Verjetno že sledite osebi, ki jo želite potrditi
     posts:
-      few: Trob
       one: Trob
-      other: Trob
       two: Trob
+      few: Trob
+      other: Trob
     posts_tab_heading: Trobi
     posts_with_replies: Tuti in odgovori
     reserved_username: Uporabniško ime je zasedeno
     roles:
       admin: Skrbnik
       bot: Robot
-      moderator: Mod
     unfollow: Prenehaj slediti
   admin:
     account_actions:
@@ -77,7 +74,6 @@ sl:
       destroyed_msg: Moderirana opomba je uspešno uničena!
     accounts:
       are_you_sure: Ali si prepričan?
-      avatar: Avatar
       by_domain: Domena
       change_email:
         changed_msg: E-pošta računa je uspešno spremenjena!
@@ -108,7 +104,6 @@ sl:
       header: Glava
       inbox_url: URl v mapi "Prejeto"
       invited_by: Povabljen od
-      ip: IP
       joined: Pridružil
       location:
         all: Vse
@@ -149,10 +144,8 @@ sl:
       role: Dovoljenja
       roles:
         admin: Skrbnik
-        moderator: Moderator
         staff: Osebje
         user: Uporabnik
-      salmon_url: Salmon URL
       search: Poišči
       shared_inbox_url: URL mape "Prejeto v skupni rabi"
       show:
@@ -277,10 +270,10 @@ sl:
         suspend: suspendirani
       show:
         affected_accounts:
-          few: "%{count} računov v bazi podatkov so prizadeti"
           one: En račun v bazi podatkov je prizadet
-          other: "%{count} računov v bazi podatkov so prizadeti"
           two: "%{count} računov v bazi podatkov so prizadeti"
+          few: "%{count} računov v bazi podatkov so prizadeti"
+          other: "%{count} računov v bazi podatkov so prizadeti"
         retroactive:
           silence: Prekliči utišanje za vse obstoječe račune iz te domene
           suspend: Odsuspendiraj vse obstoječe račune iz te domene
@@ -299,14 +292,14 @@ sl:
       title: Črni seznam e-pošte
     followers:
       back_to_account: Nazaj na račun
-      title: Sledilci od %{acct}
+      title: "Sledilci od %{acct}"
     instances:
       delivery_available: Na voljo je dostava
       known_accounts:
-        few: "%{count} znanih računov"
         one: "%{count} znan račun"
-        other: "%{count} znanih računov"
         two: "%{count} znanih računov"
+        few: "%{count} znanih računov"
+        other: "%{count} znanih računov"
       moderation:
         all: Vse
         limited: Omejeno
@@ -323,12 +316,11 @@ sl:
         all: Vse
         available: Razpoložljivo
         expired: Potekel
-        title: Filter
       title: Povabila
     relays:
       add_new: Dodaj nov rele
       delete: Izbriši
-      description_html: "<strong>Rele federacije</strong> je posredniški strežnik, ki si izmenjuje velike količine javnih trobov med strežniki, ki so se naročili in objavili na njem. <strong>Majhnim in srednjim strežnikom lahko pomaga pri odkrivanju vsebine iz sistema fediverse</strong>, kar bi sicer zahtevalo, da lokalni uporabniki ročno sledijo druge osebe na oddaljenih strežnikih."
+      description_html: <strong>Rele federacije</strong> je posredniški strežnik, ki si izmenjuje velike količine javnih trobov med strežniki, ki so se naročili in objavili na njem. <strong>Majhnim in srednjim strežnikom lahko pomaga pri odkrivanju vsebine iz sistema fediverse</strong>, kar bi sicer zahtevalo, da lokalni uporabniki ročno sledijo druge osebe na oddaljenih strežnikih.
       disable: Onemogoči
       disabled: Onemogočeno
       enable: Omogoči
@@ -386,6 +378,21 @@ sl:
       custom_css:
         desc_html: Spremeni videz z naloženim CSS na vsaki strani
         title: CSS po meri
+  errors:
+    '403': You don't have permission to view this page.
+    '404': The page you are looking for isn't here.
+    '410': The page you were looking for doesn't exist here anymore.
+    '422':
+    '429': Throttled
+    '500':
+  invites:
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day
   statuses:
     pin_errors:
       ownership: Trob nekoga drugega ne more biti pripet
