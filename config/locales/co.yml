@@ -1,13 +1,11 @@
----
 co:
   about:
-    about_hashtag_html: Quessi sò statuti pubblichi taggati cù <strong>#%{hashtag}</strong>. Pudete interagisce cù elli sì voi avete un contu in qualche parte di u fediverse.
+    about_hashtag_html: 'Quessi sò statuti pubblichi taggati cù <strong>#%{hashtag}</strong>. Pudete interagisce cù elli sì voi avete un contu in qualche parte di u fediverse.'
     about_mastodon_html: Mastodon ghjè una rete suciale custruita incù prutucolli web aperti è lugiziali liberi. Hè decentralizatu cumu l’e-mail.
     about_this: À prupositu
     active_count_after: attivi
     active_footnote: Utilizatori Attivi Mensili (UAM)
     administered_by: 'Amministratu da:'
-    api: API
     apps: Applicazione per u telefuninu
     apps_platforms: Utilizà Mastodon dapoi à iOS, Android è altre piattaforme
     browse_directory: Navigà un'annuariu di i prufili è filtra per interessi
@@ -50,7 +48,6 @@ co:
     joined: Quì dapoi %{date}
     last_active: ultima attività
     link_verified_on: A pruprietà d'issu ligame hè stata verificata u %{date}
-    media: Media
     moved_html: "%{name} hà cambiatu di contu, avà hè nant’à %{new_profile_link}:"
     network_hidden: St'infurmazione ùn hè micca dispunibule
     nothing_here: Ùn c’hè nunda quì!
@@ -66,7 +63,6 @@ co:
     reserved_username: Stu cugnome hè riservatu
     roles:
       admin: Amministratore
-      bot: Bot
       moderator: Muderatore
     unavailable: Prufile micca dispunibule
     unfollow: Ùn siguità più
@@ -114,7 +110,6 @@ co:
       header: Intistatura
       inbox_url: URL di l’inbox
       invited_by: Invitatu da
-      ip: IP
       joined: Ghjuntu
       location:
         all: Tutti
@@ -154,7 +149,6 @@ co:
         already_confirmed: St’utilizatore hè digià cunfirmatu
         send: Rimandà un’e-mail di cunfirmazione
         success: L’e-mail di cunfirmazione hè statu mandatu!
-      reset: Reset
       reset_password: Riinizializà a chjave d’accessu
       resubscribe: Riabbunassi
       role: Auturizazione
@@ -182,7 +176,6 @@ co:
       unsubscribe: Disabbunassi
       username: Cugnome
       warn: Averte
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} s’hè assignatu u signalamentu %{target}"
@@ -227,7 +220,6 @@ co:
       destroyed_msg: L’emoji hè stata tolta!
       disable: Disattivà
       disabled_msg: L’emoji hè stata disattivata
-      emoji: Emoji
       enable: Attivà
       enabled_msg: L’emoji hè stata attivata
       image_hint: PNG di 50Ko o menu
@@ -259,7 +251,6 @@ co:
       single_user_mode: Modu utilizatore unicu
       software: Lugiziale
       space: Usu di u spaziu
-      title: Dashboard
       total_users: utilizatori in tutale
       trends: Tindenze
       week_interactions: interazzione sta settimana
@@ -275,7 +266,7 @@ co:
         create: Creà un blucchime
         hint: U blucchime di duminiu ùn impedirà micca a creazione di conti indè a database, mà metudi di muderazione specifiche saranu applicati.
         severity:
-          desc_html: Cù <strong>Silenzà</strong>, solu l’abbunati di u contu viderenu i so missaghji. <strong>Suspende</strong> sguassarà tutti i cuntenuti è dati di u contu. Utilizate <strong>Nisuna</strong> s’è voi vulete solu righjittà fugliali media.
+          desc_html: "Cù <strong>Silenzà</strong>, solu l’abbunati di u contu viderenu i so missaghji. <strong>Suspende</strong> sguassarà tutti i cuntenuti è dati di u contu. Utilizate <strong>Nisuna</strong> s’è voi vulete solu righjittà fugliali media."
           noop: Nisuna
           silence: Silenzà
           suspend: Suspende
@@ -311,7 +302,7 @@ co:
       title: Lista nera e-mail
     followers:
       back_to_account: Rivene à u Contu
-      title: Abbunati à %{acct}
+      title: "Abbunati à %{acct}"
     instances:
       by_domain: Duminiu
       delivery_available: Rimessa dispunibule
@@ -463,8 +454,6 @@ co:
         nsfw_off: Indicà cum’è micca sensibile
         nsfw_on: Indicà cum’è sensibile
       failed_to_execute: Esecuzione impussibule
-      media:
-        title: Media
       no_media: Nisun media
       no_status_selected: I statuti ùn sò micca stati mudificati perchè manc'unu era selezziunatu
       title: Statutu di u contu
@@ -474,13 +463,11 @@ co:
       confirmed: Cunfirmatu
       expires_in: Spira in
       last_delivery: Ultima arricata
-      title: WebSub
       topic: Sughjettu
     tags:
       accounts: Conti
       hidden: Piattatu
       hide: Piattà di l'annuariu
-      name: Hashtag
       title: Hashtag
       unhide: Mustrà in l'annuariu
       visible: Visibile
@@ -498,7 +485,7 @@ co:
     new_report:
       body: "%{reporter} hà palisatu %{target}"
       body_remote: Qualch’unu da %{domain} hà palisatu %{target}
-      subject: Novu signalamentu nant’à %{instance} (#%{id})
+      subject: 'Novu signalamentu nant’à %{instance} (#%{id})'
   appearance:
     advanced_web_interface: Interfaccia web avanzata
     advanced_web_interface_hint: 'S''è voi vulete fà usu di a larghezza sana di u vostru screnu, l''interfaccia web avanzata vi permette di cunfigurà parechje culonne sfarente per vede tutta l''infurmazione chì vulete vede in listessu tempu: Accolta, nutificazione, linea pubblica, è tutti l''hashtag è liste chì vulete.'
@@ -507,7 +494,6 @@ co:
     sensitive_content: Cuntinutu sensibile
   application_mailer:
     notification_preferences: Cambià e priferenze e-mail
-    salutation: "%{name},"
     settings: 'Cambià e priferenze e-mail: %{link}'
     view: 'Vede:'
     view_profile: Vede u prufile
@@ -535,9 +521,6 @@ co:
     migrate_account: Cambià di contu
     migrate_account_html: S’è voi vulete riindirizà stu contu versu un’altru, <a href="%{path}">ghjè pussibule quì</a>.
     or_log_in_with: O cunnettatevi cù
-    providers:
-      cas: CAS
-      saml: SAML
     register: Arregistrassi
     registration_closed: "%{instance} ùn accetta micca novi socii"
     resend_confirmation: Rimandà l’istruzzioni di cunfirmazione
@@ -558,18 +541,8 @@ co:
     title: Siguità %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
-      about_x_months: "%{count}mo"
-      about_x_years: "%{count}y"
-      almost_x_years: "%{count}y"
       half_a_minute: Avà
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Avà
-      over_x_years: "%{count}y"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
-      x_months: "%{count}mo"
-      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: È nò! Sta chjave ùn hè curretta
     confirm_password: Entrate a vostra chjave d’accessu attuale per verificà a vostra identità
@@ -612,7 +585,6 @@ co:
       request: Dumandà u vostr’archiviu
       size: Pesu
     blocks: Bluccate
-    csv: CSV
     domain_blocks: Blucchime di duminiu
     follows: Seguitate
     lists: Liste
@@ -735,7 +707,7 @@ co:
         other: "%{count} nutificazione nove dapoi à a vostr’ultima visita \U0001F418"
       title: Dapoi l’ultima volta…
     favourite:
-      body: "%{name} hà aghjuntu u vostru statutu à i so favuriti :"
+      body: '%{name} hà aghjuntu u vostru statutu à i so favuriti :'
       subject: "%{name} hà messu u vostru post in i so favuriti"
       title: Novu favuritu
     follow:
@@ -749,8 +721,8 @@ co:
       title: Nova dumanda d’abbunamentu
     mention:
       action: Risposta
-      body: "%{name} v’hà mintuvatu·a indè :"
-      subject: "%{name} v’hà mintuvatu·a"
+      body: '%{name} v’hà mintuvatu·a indè :'
+      subject: '%{name} v’hà mintuvatu·a'
       title: Nova menzione
     reblog:
       body: 'U vostru statutu hè statu spartutu da %{name}:'
@@ -759,20 +731,14 @@ co:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
           billion: G
-          million: M
           quadrillion: P
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: Più ricente
     next: Dopu
     older: Più vechju
     prev: Nanzu
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Avete digià vutatu nant'à stu scandagliu
@@ -829,40 +795,12 @@ co:
     activity: Ultima attività
     browser: Navigatore
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Navigatore scunnisciutu
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sessione attuale
     description: "%{browser} nant’à %{platform}"
     explanation: Quessi sò i navigatori cunnettati à u vostru contu Mastodon.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: piattaforma scunnisciuta
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Rivucà
     revoke_success: Sessione rivucata
     title: Sessioni
@@ -915,7 +853,6 @@ co:
       vote: Vutà
     show_more: Vede di più
     sign_in_to_participate: Cunnettatevi per participà à a cunversazione
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Solu per l’abbunati
       private_long: Mustrà solu à l’abbunati
@@ -933,10 +870,10 @@ co:
       <h3 id="collect">Quelles informations collectons-nous ?</h3>
 
       <ul>
-        <li><em>Informations de base sur votre compte</em> : Si vous vous inscrivez sur ce serveur, il vous sera demandé de rentrer un identifiant, une adresse électronique et un mot de passe. Vous pourrez également ajouter des informations additionnelles sur votre profil, telles qu’un nom public et une biographie, ainsi que téléverser une image de profil et une image d’en-tête. Vos identifiant, nom public, biographie, image de profil et image d’en-tête seront toujours affichés publiquement.</li>
+      <li><em>Informations de base sur votre compte</em> : Si vous vous inscrivez sur ce serveur, il vous sera demandé de rentrer un identifiant, une adresse électronique et un mot de passe. Vous pourrez également ajouter des informations additionnelles sur votre profil, telles qu’un nom public et une biographie, ainsi que téléverser une image de profil et une image d’en-tête. Vos identifiant, nom public, biographie, image de profil et image d’en-tête seront toujours affichés publiquement.</li>
       <li><em>Posts, liste d’abonnements et autres informations publiques</em> : La liste de vos abonnements ainsi que la liste de vos abonné·e·s sont publiques. Quand vous postez un message, la date et l’heure d’envoi ainsi que le nom de l’application utilisée pour sa transmission sont enregistré·e·s. Des médias, tels que des images ou des vidéos, peuvent être joints aux messages. Les posts publics et non listés sont affichés publiquement. Quand vous mettez en avant un post sur votre profil, ce post est également affiché publiquement. Vos messages sont délivrés à vos abonné·e·s, ce qui, dans certains cas, signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Quand vous supprimer un post, il est probable que vos abonné·e·s en soient informé·e·s. Partager un message ou le marquer comme favori est toujours une action publique.</li>
-        <li><em>Posts directs et abonné·e·s uniquement</em> : Tous les posts sont stockés et traités par le serveur. Les messages abonné·e·s uniquement ne sont transmis qu’à vos abonné·e·s et aux personnes mentionnées dans le corps du message, tandis que les messages directs ne sont transmis qu’aux personnes mentionnées. Dans certains cas, cela signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Nous faisons un effort de bonne fois pour en limiter l’accès uniquement aux personnes autorisées, mais ce n’est pas nécessairement le cas des autres serveurs. Il est donc très important que vous vérifiiez les serveurs auxquels appartiennent vos abonné·e·s. Il vous est possible d’activer une option dans les paramètres afin d’approuver et de rejeter manuellement les nouveaux·lles abonné·e·s. <em>Gardez s’il-vous-plaît en mémoire que les opérateur·rice·s du serveur ainsi que celles et ceux de n’importe quel serveur récepteur peuvent voir ces messages</em> et qu’il est possible pour les destinataires de faire des captures d’écran, de copier et plus généralement de repartager ces messages. <em>Ne partager aucune information sensible à l’aide de Mastodon.</em></li>
-        <li><em>IP et autres métadonnées</em> : Quand vous vous connectez, nous enregistrons votre adresse IP ainsi que le nom de votre navigateur web. Toutes les sessions enregistrées peuvent être consultées dans les paramètres, afin que vous puissiez les surveiller et éventuellement les révoquer. La dernière adresse IP utilisée est conservée pour une durée de 12 mois. Nous sommes également susceptibles de conserver les journaux du serveur, ce qui inclut l’adresse IP de chaque requête reçue.</li>
+      <li><em>Posts directs et abonné·e·s uniquement</em> : Tous les posts sont stockés et traités par le serveur. Les messages abonné·e·s uniquement ne sont transmis qu’à vos abonné·e·s et aux personnes mentionnées dans le corps du message, tandis que les messages directs ne sont transmis qu’aux personnes mentionnées. Dans certains cas, cela signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Nous faisons un effort de bonne fois pour en limiter l’accès uniquement aux personnes autorisées, mais ce n’est pas nécessairement le cas des autres serveurs. Il est donc très important que vous vérifiiez les serveurs auxquels appartiennent vos abonné·e·s. Il vous est possible d’activer une option dans les paramètres afin d’approuver et de rejeter manuellement les nouveaux·lles abonné·e·s. <em>Gardez s’il-vous-plaît en mémoire que les opérateur·rice·s du serveur ainsi que celles et ceux de n’importe quel serveur récepteur peuvent voir ces messages</em> et qu’il est possible pour les destinataires de faire des captures d’écran, de copier et plus généralement de repartager ces messages. <em>Ne partager aucune information sensible à l’aide de Mastodon.</em></li>
+      <li><em>IP et autres métadonnées</em> : Quand vous vous connectez, nous enregistrons votre adresse IP ainsi que le nom de votre navigateur web. Toutes les sessions enregistrées peuvent être consultées dans les paramètres, afin que vous puissiez les surveiller et éventuellement les révoquer. La dernière adresse IP utilisée est conservée pour une durée de 12 mois. Nous sommes également susceptibles de conserver les journaux du serveur, ce qui inclut l’adresse IP de chaque requête reçue.</li>
       </ul>
 
       <hr class="spacer" />
@@ -946,9 +883,9 @@ co:
       <p>Toutes les informations que nous collectons sur vous peuvent être utilisées d’une des manières suivantes :</p>
 
       <ul>
-        <li>Pour vous fournir les fonctionnalités de base de Mastodon. Vous ne pouvez interagir avec le contenu des autres et poster votre propre contenu que lorsque vous êtes connecté·e. Par exemple, vous pouvez vous abonner à plusieurs autres comptes pour voir l’ensemble de leurs posts dans votre fil d’accueil personnalisé.</li>
-        <li>Pour aider à la modération de la communauté, par exemple, comparer votre adresse IP à d’autres afin de déterminer si un bannissement a été contourné ou si une autre violation aux règles a été commise.</li>
-        <li>L’adresse électronique que vous nous avez fournie peut être utilisée pour vous envoyez des informations, des notifications lorsque d’autres personnes interagissent avec votre contenu ou vous envoient des messages, pour répondre à des demandes de votre part ainsi que pour tout autres requêtes ou questions.</li>
+      <li>Pour vous fournir les fonctionnalités de base de Mastodon. Vous ne pouvez interagir avec le contenu des autres et poster votre propre contenu que lorsque vous êtes connecté·e. Par exemple, vous pouvez vous abonner à plusieurs autres comptes pour voir l’ensemble de leurs posts dans votre fil d’accueil personnalisé.</li>
+      <li>Pour aider à la modération de la communauté, par exemple, comparer votre adresse IP à d’autres afin de déterminer si un bannissement a été contourné ou si une autre violation aux règles a été commise.</li>
+      <li>L’adresse électronique que vous nous avez fournie peut être utilisée pour vous envoyez des informations, des notifications lorsque d’autres personnes interagissent avec votre contenu ou vous envoient des messages, pour répondre à des demandes de votre part ainsi que pour tout autres requêtes ou questions.</li>
       </ul>
 
       <hr class="spacer" />
@@ -964,8 +901,8 @@ co:
       <p>Nous ferons un effort de bonne foi :</p>
 
       <ul>
-        <li>Pour ne pas conserver plus de 90 jours les journaux systèmes contenant les adresses IP de toutes les requêtes reçues par ce serveur.</li>
-        <li>Pour ne pas conserver plus de 12 mois les adresses IP associées aux utilisateur·ice·s enregistré·e·s.</li>
+      <li>Pour ne pas conserver plus de 90 jours les journaux systèmes contenant les adresses IP de toutes les requêtes reçues par ce serveur.</li>
+      <li>Pour ne pas conserver plus de 12 mois les adresses IP associées aux utilisateur·ice·s enregistré·e·s.</li>
       </ul>
 
       <p>Vous pouvez demander une archive de votre contenu, incluant vos posts, vos médias joints, votre image de profil et votre image d’en-tête.</p>
@@ -1009,7 +946,7 @@ co:
       <p>Ce document est publié sous lincence CC-BY-SA. Il a été mis à jours pour la dernière fois le 7 mars 2018.</p>
 
       <p>Originellement adapté de la <a href="https://github.com/discourse/discourse">politique de confidentialité de Discourse</a>.</p>
-    title: Termini d’usu è di cunfidenzialità per %{instance}
+    title: "Termini d’usu è di cunfidenzialità per %{instance}"
   themes:
     contrast: Mastodon (Cuntrastu altu)
     default: Mastodon (Scuru)
@@ -1017,7 +954,6 @@ co:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Entrate u codice generatu da l’applicazione per cunfirmà
     description_html: S’ella hè attivata <strong>l’identificazione à dui fattori</strong>, duvete avè u vostru telefuninu pè ottene un codice di cunnezzione.
