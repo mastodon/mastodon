@@ -1,4 +1,3 @@
----
 zh-HK:
   devise:
     confirmations:
@@ -23,9 +22,9 @@ zh-HK:
         subject: 'Mastodon: 確認電郵地址 %{instance}'
         title: 驗證電子郵件地址
       email_changed:
-        explanation: 你的帳戶的電子郵件地址即將變更為：
+        explanation: '你的帳戶的電子郵件地址即將變更為：'
         extra: 如果你沒有請求更改你的電子郵件地址，則他人很有可能已經入侵你的帳戶。請立即更改你的密碼；如果你已經無法訪問你的帳戶，請聯繫服務站的管理員請求協助。
-        subject: Mastodon：電子郵件地址已被更改
+        subject: 'Mastodon：電子郵件地址已被更改'
         title: 新電子郵件地址
       password_change:
         explanation: 你的帳戶的密碼已被更改。
@@ -35,7 +34,7 @@ zh-HK:
       reconfirmation_instructions:
         explanation: 點擊下面的連結來確認你的新電子郵件地址。
         extra: 如果你沒有請求本次變更，請忽略此郵件。 Mastodon 帳戶的電子郵件地址只有在你點擊上面的連結後才會更改。
-        subject: Mastodon：確認 %{instance} 電子郵件地址
+        subject: 'Mastodon：確認 %{instance} 電子郵件地址'
         title: 驗證電子郵件地址
       reset_password_instructions:
         action: 更改密碼
@@ -78,5 +77,4 @@ zh-HK:
       not_found: 找不到
       not_locked: 並未被鎖定
       not_saved:
-        one: 1 個錯誤令 %{resource} 無法被儲存︰
         other: "%{count} 個錯誤令 %{resource} 無法被儲存︰"
