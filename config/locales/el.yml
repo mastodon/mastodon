@@ -6,7 +6,6 @@ el:
     active_count_after: ενεργοί
     active_footnote: Μηνιαίοι Ενεργοί Χρήστες (ΜΕΧ)
     administered_by: 'Διαχειριστής:'
-    api: API
     apps: Εφαρμογές κινητών
     apps_platforms: Χρησιμοποίησε το Mastodon από το iOS, το Android και αλλού
     browse_directory: Ξεφύλλισε ένα κατάλογο χρηστών και φίλτραρε ανά ενδιαφέροντα
@@ -67,7 +66,6 @@ el:
       admin: Διαχειριστής
       bot: Μποτ (αυτόματος λογαριασμός)
       moderator: Μεσολαβητής
-    unavailable: Profile unavailable
     unfollow: Διακοπή παρακολούθησης
   admin:
     account_actions:
@@ -80,7 +78,6 @@ el:
       destroyed_msg: Επιτυχής καταστροφή σημειώματος μεσολάβησης!
     accounts:
       approve: Έγκριση
-      approve_all: Approve all
       are_you_sure: Σίγουρα;
       avatar: Αβατάρ
       by_domain: Τομέας
@@ -102,7 +99,6 @@ el:
       display_name: Όνομα εμφάνισης
       domain: Τομέας
       edit: Αλλαγή
-      email: Email
       email_status: Κατάσταση email
       enable: Ενεργοποίηση
       enabled: Ενεργοποιημένο
@@ -113,7 +109,6 @@ el:
       header: Επικεφαλίδα
       inbox_url: URL εισερχομένων
       invited_by: Προσκλήθηκε από
-      ip: IP
       joined: Γράφτηκε
       location:
         all: Όλες
@@ -133,7 +128,6 @@ el:
       moderation_notes: Σημειώσεις μεσολάβησης
       most_recent_activity: Πιο πρόσφατη δραστηριότητα
       most_recent_ip: Πιο πρόσφατη IP
-      no_account_selected: No accounts were changed as none were selected
       no_limits_imposed: Χωρίς όρια
       not_subscribed: Άνευ συνδρομής
       outbox_url: URL εξερχομένων
@@ -146,7 +140,6 @@ el:
       push_subscription_expires: Η εγγραφή PuSH λήγει
       redownload: Ανανέωση αβατάρ
       reject: Απόρριψη
-      reject_all: Reject all
       remove_avatar: Απομακρυσμένο αβατάρ
       remove_header: Αφαίρεση επικεφαλίδας
       resend_confirmation:
@@ -173,7 +166,6 @@ el:
       statuses: Καταστάσεις
       subscribe: Εγγραφή
       suspended: Σε αναστολή
-      time_in_queue: Waiting in queue %{time}
       title: Λογαριασμοί
       unconfirmed_email: Ανεπιβεβαίωτο email
       undo_silenced: Αναίρεση αποσιώπησης
@@ -226,7 +218,6 @@ el:
       destroyed_msg: Επιτυχής καταστροφή του emojo!
       disable: Απενεργοποίηση
       disabled_msg: Επιτυχής απενεργοποίηση αυτού του emoji
-      emoji: Emoji
       enable: Ενεργοποίηση
       enabled_msg: Επιτυχής ενεργοποίηση αυτού του emoji
       image_hint: PNG έως 50KB
@@ -249,7 +240,6 @@ el:
       feature_profile_directory: Κατάλογος χρηστών
       feature_registrations: Εγγραφές
       feature_relay: Ανταποκριτής ομοσπονδίας
-      feature_timeline_preview: Timeline preview
       features: Λειτουργίες
       hidden_service: Ομοσπονδία με κρυμμένες υπηρεσίες
       open_reports: ανοιχτές καταγγελίες
@@ -269,7 +259,6 @@ el:
       created_msg: Ο αποκλεισμός τομέα είναι υπό επεξεργασία
       destroyed_msg: Ο αποκλεισμός τομέα άρθηκε
       domain: Τομέας
-      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Δημιουργία αποκλεισμού
         hint: Ο αποκλεισμός τομέα δεν θα αποτρέψει νέες καταχωρίσεις λογαριασμών στην βάση δεδομένων, αλλά θα εφαρμόσει αναδρομικά και αυτόματα συγκεκριμένες πολιτικές μεσολάβησης σε αυτούς τους λογαριασμούς.
@@ -335,8 +324,6 @@ el:
         expired: Ληγμένες
         title: Φίλτρο
       title: Προσκλήσεις
-    pending_accounts:
-      title: Pending accounts (%{count})
     relays:
       add_new: Πρόσθεσε νέο ανταποκριτή (relay)
       delete: Διαγραφή
@@ -473,7 +460,6 @@ el:
       confirmed: Επιβεβαιωμένες
       expires_in: Λήγει σε
       last_delivery: Τελευταία παράδοση
-      title: WebSub
       topic: Θέμα
     tags:
       accounts: Λογαριασμοί
@@ -498,15 +484,8 @@ el:
       body: "Ο/Η %{reporter} κατήγγειλε τον/την %{target}"
       body_remote: Κάποιος/α από τον τομέα %{domain} κατήγγειλε τον/την %{target}
       subject: 'Νέα καταγγελία για %{instance} (#%{id})'
-  appearance:
-    advanced_web_interface: Advanced web interface
-    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
-    animations_and_accessibility: Animations and accessibility
-    confirmation_dialogs: Confirmation dialogs
-    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Αλλαγή προτιμήσεων email
-    salutation: "%{name},"
     settings: 'Άλλαξε τις προτιμήσεις email: %{link}'
     view: 'Προβολή:'
     view_profile: Προβολή προφίλ
@@ -536,7 +515,6 @@ el:
     or_log_in_with: Ή συνδέσου με
     providers:
       cas: Υπηρεσία Κεντρικής Πιστοποίησης (CAS)
-      saml: SAML
     register: Εγγραφή
     registration_closed: "Το %{instance} δεν δέχεται νέα μέλη"
     resend_confirmation: Στείλε ξανά τις οδηγίες επιβεβαίωσης
@@ -611,7 +589,6 @@ el:
       request: Αιτήσου το αρχείο σου
       size: Μέγεθος
     blocks: Μπλοκάρεις
-    csv: CSV
     domain_blocks: Μπλοκαρίσματα κόμβων
     follows: Ακολουθείς
     lists: Λίστες
@@ -645,7 +622,6 @@ el:
     all: Όλα
     changes_saved_msg: Οι αλλαγές αποθηκεύτηκαν!
     copy: Αντιγραφή
-    order_by: Order by
     save_changes: Αποθήκευσε τις αλλαγές
     validation_errors:
       one: Κάτι δεν είναι εντάξει ακόμα! Για κοίταξε το παρακάτω σφάλμα
@@ -661,13 +637,10 @@ el:
       keybase:
         invalid_token: Τα κλειδιά Keybase είναι κατακερματισμένες υπογραφές και πρέπει να έχουν μήκος 66 δεκαεξαδικών χαρακτήρων
         verification_failed: Το Keybase δεν δέχτηκε αυτό το κλειδί ως υπογραφή του χρήστη %{kb_username}. Παρακαλούμε δοκίμασε μέσω Keybase.
-      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
     explanation_html: Εδώ μπορείς να συνδέσεις κρυπτογραφικά τις υπόλοιπες ταυτοτητές σου, όπως για παράδειγμα ένα προφίλ στο Keybase. Αυτό επιτρέπει σε άλλους ανθρώπους να σου στέλνουν κρυπτογραφημένα μηνύματα και να μπορούν να εμπιστευτούν το περιεχόμενο που τους στέλνεις εσύ.
     i_am_html: Είμαι ο/η %{username} στην υπηρεσία %{service}.
     identity: Ταυτότητα
     inactive: Ανενεργή
-    publicize_checkbox: 'And toot this:'
-    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
     status: Κατάσταση επαλήθευσης
     view_proof: Εμφάνιση απόδειξης
   imports:
@@ -758,20 +731,17 @@ el:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
           billion: δις.
           million: εκ.
           quadrillion: τετράκις.
           thousand: χ.
           trillion: τρις.
-          unit: ''
   pagination:
     newer: Νεότερο
     next: Επόμενο
     older: Παλιότερο
     prev: Προηγούμενο
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Έχεις ήδη ψηφίσει σε αυτή την ψηφοφορία
@@ -784,13 +754,9 @@ el:
       too_many_options: δεν μπορεί να έχει περισσότερες από %{max} επιλογές
   preferences:
     other: Άλλο
-    posting_defaults: Posting defaults
-    public_timelines: Public timelines
   relationships:
     activity: Δραστηριότητα λογαριασμού
     dormant: Αδρανής
-    last_active: Last active
-    most_recent: Most recent
     moved: Μετακόμισε
     mutual: Αμοιβαίος
     primary: Βασικός
@@ -828,47 +794,16 @@ el:
     activity: Τελευταία δραστηριότητα
     browser: Φυλλομετρητής (Browser)
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Άγνωστος φυλλομετρητής
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Τρέχουσα σύνδεση
     description: "%{browser} σε %{platform}"
     explanation: Αυτοί είναι οι φυλλομετρητές (browsers) που είναι συνδεδεμένοι στον λογαριασμό σου στο Mastodon αυτή τη στιγμή.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: άγνωστη πλατφόρμα
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Ανακάλεσε
     revoke_success: Η σύνδεση ανακλήθηκε επιτυχώς
     title: Σύνδεση
   settings:
-    account: Account
-    account_settings: Account settings
-    appearance: Appearance
     authorized_apps: Εγκεκριμένες εφαρμογές
     back: Πίσω στο Mastodon
     delete: Διαγραφή λογαριασμού
@@ -878,11 +813,9 @@ el:
     featured_tags: Χαρακτηριστικές ταμπέλες
     identity_proofs: Αποδείξεις ταυτοτήτων
     import: Εισαγωγή
-    import_and_export: Import and export
     migrate: Μετακόμιση λογαριασμού
     notifications: Ειδοποιήσεις
     preferences: Προτιμήσεις
-    profile: Profile
     relationships: Ακολουθεί και ακολουθείται
     two_factor_authentication: Πιστοποίηση 2 παραγόντων (2FA)
   statuses:
@@ -914,7 +847,6 @@ el:
       vote: Ψήφισε
     show_more: Δείξε περισσότερα
     sign_in_to_participate: Εγγράφου για να συμμετάσχεις στη συζήτηση
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Μόνο ακόλουθοι
       private_long: Εμφάνιση μόνο σε ακόλουθους
@@ -1013,10 +945,6 @@ el:
     contrast: Mastodon (Υψηλή αντίθεση)
     default: Mastodon (Σκοτεινό)
     mastodon-light: Mastodon (Ανοιχτόχρωμο)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Βάλε τον κωδικό που δημιούργησε η εφαρμογή πιστοποίησής σου για επιβεβαίωση
     description_html: Αν ενεργοποιήσεις την <strong>πιστοποίηση 2 παραγόντων (2FA)</strong>, για να συνδεθείς θα πρέπει να έχεις το τηλέφωνό σου, που θα σου δημιουργήσει κλειδιά εισόδου.
