@@ -1,46 +1,19 @@
 zh-HK:
   simple_form:
     hints:
-      account_warning_preset:
-        text: You can use toot syntax, such as URLs, hashtags and mentions
-      admin_account_action:
-        send_email_notification: The user will receive an explanation of what happened with their account
-        text_html: Optional. You can use toot syntax. You can <a href="%{path}">add warning presets</a> to save time
-        type_html: Choose what to do with <strong>%{acct}</strong>
-        warning_preset_id: Optional. You can still add custom text to end of the preset
       defaults:
         autofollow: 通過邀請網址註冊的用戶將會自動關注你
         avatar: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會縮裁成 %{dimensions}px
         bot: 提醒用戶本帳號是機械人
-        context: One or multiple contexts where the filter should apply
         digest: 僅在你長時間未登錄，且收到了私信時發送
-        discoverable_html: The <a href="%{path}" target="_blank">directory</a> lets people find accounts based on interests and activity. Requires at least %{min_followers} followers
-        email: You will be sent a confirmation e-mail
         fields: 個人資料頁可顯示多至 4 個項目
         header: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會縮裁成 %{dimensions}px
-        inbox_url: Copy the URL from the frontpage of the relay you want to use
-        irreversible: Filtered toots will disappear irreversibly, even if filter is later removed
         locale: 使用者介面、電郵和通知的語言
         locked: 你必須人手核准每個用戶對你的關注請求，而你的文章私隱會被預設為「只有關注你的人能看」
-        password: Use at least 8 characters
-        phrase: Will be matched regardless of casing in text or content warning of a toot
-        scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
-        setting_aggregate_reblogs: Do not show new boosts for toots that have been recently boosted (only affects newly-received boosts)
-        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
-        setting_display_media_default: Hide media marked as sensitive
-        setting_display_media_hide_all: Always hide all media
-        setting_display_media_show_all: Always show media marked as sensitive
         setting_hide_network: 你關注的人和關注你的人將不會在你的個人資料頁上顯示
         setting_noindex: 此設定會影響到你的公開個人資料以及文章頁面
-        setting_show_application: The application you use to toot will be displayed in the detailed view of your toots
-        username: Your username will be unique on %{domain}
-        whole_word: When the keyword or phrase is alphanumeric only, it will only be applied if it matches the whole word
-      featured_tag:
-        name: 'You might want to use one of these:'
       imports:
         data: 自其他服務站匯出的 CSV 檔案
-      invite_request:
-        text: This will help us review your application
       sessions:
         otp: '輸入你手機上生成的雙重認證碼，或者任意一個恢復代碼：'
       user:
@@ -50,18 +23,6 @@ zh-HK:
         fields:
           name: 標籤
           value: 內容
-      account_warning_preset:
-        text: Preset text
-      admin_account_action:
-        send_email_notification: Notify the user per e-mail
-        text: Custom warning
-        type: Action
-        types:
-          disable: Disable
-          none: Do nothing
-          silence: Silence
-          suspend: Suspend and irreversibly delete account data
-        warning_preset_id: Use a warning preset
       defaults:
         autofollow: 邀請別人關注你的賬號
         avatar: 個人頭像
@@ -69,17 +30,13 @@ zh-HK:
         chosen_languages: 語言過濾
         confirm_new_password: 確認新密碼
         confirm_password: 確認密碼
-        context: Filter contexts
         current_password: 目前密碼
         data: 資料
-        discoverable: List this account on the directory
         display_name: 顯示名稱
         email: 電郵地址
         expires_in: 失效時間
         fields: 資料
         header: 個人頁面頂部
-        inbox_url: URL of the relay inbox
-        irreversible: Drop instead of hide
         locale: 介面語言
         locked: 將用戶轉為「私人」
         max_uses: 最大使用次數
@@ -87,24 +44,15 @@ zh-HK:
         note: 簡介
         otp_attempt: 雙重認證碼
         password: 密碼
-        phrase: Keyword or phrase
-        setting_advanced_layout: Enable advanced web interface
-        setting_aggregate_reblogs: Group boosts in timelines
         setting_auto_play_gif: 自動播放 GIF
         setting_boost_modal: 在轉推前詢問我
         setting_default_language: 文章語言
         setting_default_privacy: 文章預設為
         setting_default_sensitive: 預設我的內容為敏感內容
         setting_delete_modal: 刪推前詢問我
-        setting_display_media: Media display
-        setting_display_media_default: Default
-        setting_display_media_hide_all: Hide all
-        setting_display_media_show_all: Show all
-        setting_expand_spoilers: Always expand toots marked with content warnings
         setting_hide_network: 隱藏你的社交網絡
         setting_noindex: 阻止搜尋引擎檢索
         setting_reduce_motion: 減低動畫效果
-        setting_show_application: Disclose application used to send toots
         setting_system_font_ui: 使用系統預設字型
         setting_theme: 網站主題
         setting_unfollow_modal: 取消關注前跳出詢問我
@@ -112,27 +60,18 @@ zh-HK:
         type: 匯入資料類型
         username: 用戶名稱
         username_or_email: 用戶名稱或電郵
-        whole_word: Whole word
-      featured_tag:
-        name: Hashtag
       interactions:
         must_be_follower: 隱藏沒有關注你的用戶的通知
         must_be_following: 隱藏你不關注的用戶的通知
         must_be_following_dm: 隱藏你不關注的用戶的私信
-      invite_request:
-        text: Why do you want to join?
       notification_emails:
         digest: 定期電郵摘要
         favourite: 當有用戶喜歡你的文章時，發電郵通知
         follow: 當有用戶關注你時，發電郵通知
         follow_request: 當有用戶要求關注你時，發電郵通知
         mention: 當有用戶在文章提及你時，發電郵通知
-        pending_account: Send e-mail when a new account needs review
         reblog: 當有用戶轉推你的文章時，發電郵通知
-        report: Send e-mail when a new report is submitted
     'no': '否'
-    recommended: Recommended
     required:
-      mark: "*"
       text: 必須填寫
     'yes': '是'
