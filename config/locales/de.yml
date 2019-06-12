@@ -1,7 +1,6 @@
----
 de:
   about:
-    about_hashtag_html: Dies sind öffentliche Beiträge, die mit <strong>#%{hashtag}</strong> getaggt wurden. Wenn du irgendwo im Fediversum ein Konto besitzt, kannst du mit ihnen interagieren.
+    about_hashtag_html: 'Dies sind öffentliche Beiträge, die mit <strong>#%{hashtag}</strong> getaggt wurden. Wenn du irgendwo im Fediversum ein Konto besitzt, kannst du mit ihnen interagieren.'
     about_mastodon_html: Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral (so wie E-Mail!).
     about_this: Über diesen Server
     active_count_after: aktiv
@@ -28,14 +27,14 @@ de:
     server_stats: 'Serverstatistiken:'
     source_code: Quellcode
     status_count_after:
-      one: Statusmeldung
-      other: Statusmeldungen
+      one: Beitrag
+      other: Beiträge
     status_count_before: mit
     tagline: Finde Freunde und entdecke neue
     terms: Nutzungsbedingungen
     user_count_after:
-      one: Benutzer:in
-      other: Benutzer:innen
+      one: Profil
+      other: Profile
     user_count_before: Zuhause für
     what_is_mastodon: Was ist Mastodon?
   accounts:
@@ -76,8 +75,8 @@ de:
       delete: Löschen
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
     accounts:
-      approve: Aktzeptieren
-      approve_all: Alle aktzeptieren
+      approve: Akzeptieren
+      approve_all: Alle akzeptieren
       are_you_sure: Bist du sicher?
       avatar: Profilbild
       change_email:
@@ -115,7 +114,7 @@ de:
         remote: Entfernt
         title: Ort
       login_status: Loginstatus
-      media_attachments: Medienanhänge
+      media_attachments: Dateien
       memorialize: In Gedenkmal verwandeln
       moderation:
         active: Aktiv
@@ -165,7 +164,7 @@ de:
       statuses: Beiträge
       subscribe: Abonnieren
       suspended: Gesperrt
-      time_in_queue: "%{time} in der Warteschlange"
+      time_in_queue: '%{time} in der Warteschlange'
       title: Konten
       unconfirmed_email: Unbestätigte E-Mail-Adresse
       undo_silenced: Stummschaltung zurücknehmen
@@ -218,7 +217,7 @@ de:
       disabled_msg: Das Emoji wurde deaktiviert
       enable: Aktivieren
       enabled_msg: Das Emoji wurde aktiviert
-      image_hint: PNG bis 50 kB
+      image_hint: PNG bis zu 50 kB
       listed: Gelistet
       new:
         title: Eigenes Emoji hinzufügen
@@ -472,10 +471,10 @@ de:
     new_report:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
-      subject: Neue Meldung auf %{instance} (#%{id})
+      subject: 'Neue Meldung auf %{instance} (#%{id})'
   appearance:
     advanced_web_interface: Fortgeschrittene Benutzeroberfläche
-    advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, erlaubt dir die fortgeschrittene Benutzeroberfläche viele unterschiedliche Spalten auf einmal zu sehen, wie z.B. deine Startseite, Benachrichtigungen, das gesamte bekannte Netz, deine Listen und beliebige Hashtags.
+    advanced_web_interface_hint: 'Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, erlaubt dir die fortgeschrittene Benutzeroberfläche viele unterschiedliche Spalten auf einmal zu sehen, wie z.B. deine Startseite, Benachrichtigungen, das gesamte bekannte Netz, deine Listen und beliebige Hashtags.'
     animations_and_accessibility: Animationen und Barrierefreiheit
     confirmation_dialogs: Bestätigungsfenster
     sensitive_content: Heikle Inhalte
@@ -525,7 +524,7 @@ de:
       close: Oder du schließt einfach dieses Fenster.
       return: Zeige Profil des Benutzers
       web: Das Web öffnen
-    title: "%{acct} folgen"
+    title: '%{acct} folgen'
   datetime:
     distance_in_words:
       half_a_minute: Gerade eben
@@ -708,11 +707,11 @@ de:
       title: Neue Folge-Anfrage
     mention:
       action: Antworten
-      body: "%{name} hat dich erwähnt:"
-      subject: "%{name} hat dich erwähnt"
+      body: '%{name} hat dich erwähnt:'
+      subject: '%{name} hat dich erwähnt'
       title: Neue Erwähnung
     reblog:
-      body: "%{name} hat deinen Beitrag geteilt:"
+      body: '%{name} hat deinen Beitrag geteilt:'
       subject: "%{name} hat deinen Beitrag geteilt"
       title: Dein Beitrag wurde geteilt
   pagination:
