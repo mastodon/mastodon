@@ -20,12 +20,13 @@ es:
         action: Verificar dirección de correo electrónico
         action_with_app: Confirmar y regresar a %{app}
         explanation: Has creado una cuenta en %{host} con esta dirección de correo electrónico. Estas a un clic de activarla. Si no fue usted, por favor ignore este correo electrónico.
+        explanation_when_pending: Usted ha solicitado una invitación a %{host} con esta dirección de correo electrónico. Una vez que confirme su dirección de correo electrónico, revisaremos su aplicación. No puede iniciar sesión hasta que su aplicación sea revisada. Si su solicitud está rechazada, sus datos serán eliminados, así que no será necesaria ninguna acción adicional por ti. Si no fuera usted, por favor ignore este correo electrónico.
         extra_html: Por favor revise <a href="%{terms_path}">las reglas de la instancia</a> y <a href="%{policy_path}">nuestros términos de servicio</a>.
         subject: 'Mastodon: Instrucciones de confirmación para %{instance}'
         title: Verificar dirección de correo electrónico
       email_changed:
         explanation: 'El correo electrónico para su cuenta esta siendo cambiada a:'
-        extra: Si usted no a cambiado su correo electrónico. es probable que alguien a conseguido acceso a su cuenta. Por favor cambie su contraseña inmediatamente o contacte a el administrador de la instancia si usted esta bloqueado de su cuenta.
+        extra: Si usted no ha cambiado su correo electrónico, es probable que alguien haya conseguido acceso a su cuenta. Por favor cambie su contraseña inmediatamente o contacte al administrador de la instancia si usted no puede iniciar sesión.
         subject: 'Mastodon: Correo electrónico cambiado'
         title: Nueva dirección de correo electrónico
       password_change:
