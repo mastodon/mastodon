@@ -1,85 +1,34 @@
 fi:
   simple_form:
     hints:
-      account_warning_preset:
-        text: You can use toot syntax, such as URLs, hashtags and mentions
       admin_account_action:
         send_email_notification: Käyttäjä saa selityksen mitä tapahtui hänen tililleen
-        text_html: Optional. You can use toot syntax. You can <a href="%{path}">add warning presets</a> to save time
-        type_html: Choose what to do with <strong>%{acct}</strong>
-        warning_preset_id: Optional. You can still add custom text to end of the preset
       defaults:
-        autofollow: People who sign up through the invite will automatically follow you
         avatar: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
-        bot: This account mainly performs automated actions and might not be monitored
-        context: One or multiple contexts where the filter should apply
         digest: Lähetetään vain pitkän poissaolon jälkeen ja vain, jos olet saanut suoria viestejä poissaolosi aikana
-        discoverable_html: The <a href="%{path}" target="_blank">directory</a> lets people find accounts based on interests and activity. Requires at least %{min_followers} followers
-        email: You will be sent a confirmation e-mail
         fields: Sinulla voi olla korkeintaan 4 asiaa profiilissasi taulukossa
         header: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
-        inbox_url: Copy the URL from the frontpage of the relay you want to use
-        irreversible: Filtered toots will disappear irreversibly, even if filter is later removed
-        locale: The language of the user interface, e-mails and push notifications
         locked: Sinun täytyy hyväksyä seuraajat manuaalisesti
-        password: Use at least 8 characters
-        phrase: Will be matched regardless of casing in text or content warning of a toot
-        scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
-        setting_aggregate_reblogs: Do not show new boosts for toots that have been recently boosted (only affects newly-received boosts)
-        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
-        setting_display_media_default: Hide media marked as sensitive
-        setting_display_media_hide_all: Always hide all media
-        setting_display_media_show_all: Always show media marked as sensitive
-        setting_hide_network: Who you follow and who follows you will not be shown on your profile
         setting_noindex: Vaikuttaa julkiseen profiiliisi ja tilasivuihisi
-        setting_show_application: The application you use to toot will be displayed in the detailed view of your toots
-        username: Your username will be unique on %{domain}
-        whole_word: When the keyword or phrase is alphanumeric only, it will only be applied if it matches the whole word
-      featured_tag:
-        name: 'You might want to use one of these:'
       imports:
         data: Toisesta Mastodon-instanssista tuotu CSV-tiedosto
-      invite_request:
-        text: This will help us review your application
       sessions:
         otp: 'Syötä puhelimeen saamasi kaksivaiheisen tunnistautumisen koodi tai käytä palautuskoodia.'
-      user:
-        chosen_languages: When checked, only toots in selected languages will be displayed in public timelines
     labels:
       account:
         fields:
-          name: Label
           value: Sisältö
-      account_warning_preset:
-        text: Preset text
-      admin_account_action:
-        send_email_notification: Notify the user per e-mail
-        text: Custom warning
-        type: Action
-        types:
-          disable: Disable
-          none: Do nothing
-          silence: Silence
-          suspend: Suspend and irreversibly delete account data
-        warning_preset_id: Use a warning preset
       defaults:
-        autofollow: Invite to follow your account
         avatar: Profiilikuva
-        bot: This is a bot account
-        chosen_languages: Filter languages
         confirm_new_password: Vahvista uusi salasana
         confirm_password: Vahvista salasana
-        context: Filter contexts
         current_password: Nykyinen salasana
         data: Tiedot
-        discoverable: List this account on the directory
         display_name: Nimimerkki
         email: Sähköpostiosoite
         expires_in: Vanhenee
         fields: Profiilin metadata
         header: Otsakekuva
-        inbox_url: URL of the relay inbox
-        irreversible: Drop instead of hide
         locale: Kieli
         locked: Lukitse tili
         max_uses: Käyttökertoja enintään
@@ -87,24 +36,13 @@ fi:
         note: Kuvaus
         otp_attempt: Kaksivaiheisen tunnistuksen koodi
         password: Salasana
-        phrase: Keyword or phrase
-        setting_advanced_layout: Enable advanced web interface
-        setting_aggregate_reblogs: Group boosts in timelines
         setting_auto_play_gif: Toista GIF-animaatiot automaattisesti
         setting_boost_modal: Kysy vahvistusta ennen buustausta
-        setting_default_language: Posting language
         setting_default_privacy: Julkaisun näkyvyys
         setting_default_sensitive: Merkitse media aina arkaluontoiseksi
         setting_delete_modal: Kysy vahvistusta ennen tuuttauksen poistamista
-        setting_display_media: Media display
-        setting_display_media_default: Default
-        setting_display_media_hide_all: Hide all
-        setting_display_media_show_all: Show all
-        setting_expand_spoilers: Always expand toots marked with content warnings
-        setting_hide_network: Hide your network
         setting_noindex: Jättäydy pois hakukoneindeksoinnista
         setting_reduce_motion: Vähennä animaatioiden liikettä
-        setting_show_application: Disclose application used to send toots
         setting_system_font_ui: Käytä järjestelmän oletusfonttia
         setting_theme: Sivuston teema
         setting_unfollow_modal: Kysy vahvistusta, ennen kuin lopetat seuraamisen
@@ -112,27 +50,18 @@ fi:
         type: Tietojen laji
         username: Käyttäjänimi
         username_or_email: Käyttäjänimi tai sähköposti
-        whole_word: Whole word
-      featured_tag:
-        name: Hashtag
       interactions:
         must_be_follower: Estä ilmoitukset käyttäjiltä, jotka eivät seuraa sinua
         must_be_following: Estä ilmoitukset käyttäjiltä, joita et seuraa
         must_be_following_dm: Estä suorat viestit käyttäjiltä, joita et seuraa
-      invite_request:
-        text: Why do you want to join?
       notification_emails:
         digest: Lähetä koosteviestejä sähköpostitse
         favourite: Lähetä sähköposti, kun joku tykkää tilastasi
         follow: Lähetä sähköposti, kun joku seuraa sinua
         follow_request: Lähetä sähköposti, kun joku pyytää seurata sinua
         mention: Lähetä sähköposti, kun sinut mainitaan
-        pending_account: Send e-mail when a new account needs review
         reblog: Lähetä sähköposti, kun joku buustaa julkaisusi
-        report: Send e-mail when a new report is submitted
     'no': 'Ei'
-    recommended: Recommended
     required:
-      mark: "*"
       text: pakollinen tieto
     'yes': 'Kyllä'
