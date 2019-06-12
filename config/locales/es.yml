@@ -7,20 +7,25 @@ es:
     apps: Aplicaciones móviles
     contact: Contacto
     contact_missing: No especificado
+    discover_users: Descubrir usuarios
     documentation: Documentación
     extended_description_html: |
       <h3>Un buen lugar para las reglas</h3>
       <p>La descripción extendida no se ha colocado aún.</p>
+    federation_hint_html: Con una cuenta en %{instance} usted podrá seguir a las personas en cualquier servidor de Mastodon y más allá.
     generic_description: "%{domain} es un servidor en la red"
+    get_apps: Probar una aplicación móvil
     hosted_on: Mastodon hosteado en %{domain}
     learn_more: Aprende más
     privacy_policy: Política de privacidad
+    see_whats_happening: Ver lo que está pasando
     server_stats: 'Datos del servidor:'
     source_code: Código fuente
     status_count_after:
       one: estado
       other: estados
     status_count_before: Qué han escrito
+    tagline: Seguir a amigos existentes y descubre nuevos
     terms: Condiciones de servicio
     user_count_after:
       one: usuario
@@ -44,14 +49,20 @@ es:
     people_who_follow: Usuarios que siguen a %{name}
     pin_errors:
       following: Debes estar siguiendo a la persona a la que quieres aprobar
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Toots con respuestas
     reserved_username: El nombre de usuario está reservado
     roles:
       admin: Administrador
       moderator: Moderador
+    unavailable: Perfil no disponible
     unfollow: Dejar de seguir
   admin:
     account_actions:
+      action: Realizar acción
       title: Moderar %{acct}
     account_moderation_notes:
       create: Crear
@@ -59,6 +70,8 @@ es:
       delete: Borrar
       destroyed_msg: '¡Nota de moderación destruida con éxito!'
     accounts:
+      approve: Aprobar
+      approve_all: Aprobar todos
       are_you_sure: '¿Estás seguro?'
       by_domain: Dominio
       change_email:
@@ -106,9 +119,11 @@ es:
       moderation_notes: Notas de moderación
       most_recent_activity: Actividad más reciente
       most_recent_ip: IP más reciente
+      no_account_selected: Ninguna cuenta se cambió como ninguna fue seleccionada
       no_limits_imposed: Sin límites impuestos
       not_subscribed: No se está suscrito
       outbox_url: URL de bandeja de salida
+      pending: Revisión pendiente
       perform_full_suspension: Suspender
       profile_url: URL del perfil
       promote: Promocionar
@@ -117,6 +132,7 @@ es:
       push_subscription_expires: Expiración de la suscripción PuSH
       redownload: Refrescar avatar
       reject: Rechazar
+      reject_all: Rechazar todos
       remove_avatar: Eliminar el avatar
       resend_confirmation:
         already_confirmed: Este usuario ya está confirmado
