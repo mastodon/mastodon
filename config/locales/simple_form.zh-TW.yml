@@ -26,7 +26,6 @@ zh-TW:
         phrase: 無論是嘟文的本文或是內容警告都會被過濾
         scopes: 允許讓應用程式存取的 API。 若您選擇最高階範圍，則無須選擇個別項目。
         setting_aggregate_reblogs: 請勿顯示最近已被轉嘟之嘟文的最新轉嘟（只影響最新收到的嘟文）
-        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
         setting_display_media_default: 隱藏標為敏感的媒體
         setting_display_media_hide_all: 總是隱藏所有媒體
         setting_display_media_show_all: 總是顯示標為敏感的媒體
@@ -39,8 +38,6 @@ zh-TW:
         name: '您可能想使用其中一個：'
       imports:
         data: 從其他 Mastodon 伺服器匯出的 CSV 檔案
-      invite_request:
-        text: This will help us review your application
       sessions:
         otp: '請輸入產生自您手機 App 的兩步驟驗證碼，或輸入其中一個復原代碼：'
       user:
@@ -88,7 +85,6 @@ zh-TW:
         otp_attempt: 兩步驟驗證碼
         password: 密碼
         phrase: 關鍵字或片語
-        setting_advanced_layout: Enable advanced web interface
         setting_aggregate_reblogs: 時間軸中的群組轉嘟
         setting_auto_play_gif: 自動播放 GIF 動畫
         setting_boost_modal: 在轉嘟前先詢問我
@@ -119,20 +115,15 @@ zh-TW:
         must_be_follower: 封鎖非關注者的通知
         must_be_following: 封鎖您未關注之使用者的通知
         must_be_following_dm: 封鎖您未關注之使用者的私訊
-      invite_request:
-        text: Why do you want to join?
       notification_emails:
         digest: 傳送摘要信件
         favourite: 當有使用者喜歡你的嘟文時，傳送電子信件通知
         follow: 當有使用者關注你時，傳送電子信件通知
         follow_request: 當有使用者請求關注你時，傳送電子信件通知
         mention: 當有使用者在嘟文提及你時，傳送電子信件通知
-        pending_account: Send e-mail when a new account needs review
         reblog: 當有使用者轉嘟你的嘟文時，傳送電子信件通知
         report: 當提交新檢舉時傳送電子郵件
     'no': '否'
-    recommended: Recommended
     required:
-      mark: "*"
       text: 必須填寫
     'yes': '是'
