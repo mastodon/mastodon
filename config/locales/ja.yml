@@ -174,6 +174,7 @@ ja:
       statuses: トゥート数
       subscribe: 購読する
       suspended: 停止済み
+      time_in_queue: "%{time} 待ち"
       title: アカウント
       unconfirmed_email: 確認待ちのメールアドレス
       undo_silenced: サイレンスから戻す
@@ -498,6 +499,12 @@ ja:
       body: "%{reporter} が %{target} を通報しました"
       body_remote: "%{domain} の誰かが %{target} を通報しました"
       subject: "%{instance} の新しい通報 (#%{id})"
+  appearance:
+    advanced_web_interface: 上級者向け UI
+    advanced_web_interface_hint: ディスプレイを幅いっぱいまで活用したい場合、上級者向け UI をおすすめします。ホーム、通知、連合タイムライン、更にはリストやハッシュタグなど、様々な異なるカラムから望む限りの情報を一度に受け取れるような設定が可能になります。
+    animations_and_accessibility: アニメーションとアクセシビリティー
+    confirmation_dialogs: 確認ダイアログ
+    sensitive_content: 閲覧注意コンテンツ
   application_mailer:
     notification_preferences: メール設定の変更
     salutation: "%{name} さん"
@@ -777,6 +784,8 @@ ja:
       too_many_options: は%{max}個までです
   preferences:
     other: その他
+    posting_defaults: デフォルトの投稿設定
+    public_timelines: 公開タイムライン
   relationships:
     activity: 活動
     dormant: 非アクティブ
@@ -859,7 +868,7 @@ ja:
   settings:
     account: アカウント
     account_settings: セキュリティ
-    appearance: プロフィールを編集
+    appearance: 外観
     authorized_apps: 認証済みアプリ
     back: Mastodon に戻る
     delete: アカウントの削除
