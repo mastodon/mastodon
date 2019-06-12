@@ -1,20 +1,12 @@
 sl:
   simple_form:
     hints:
-      account_warning_preset:
-        text: You can use toot syntax, such as URLs, hashtags and mentions
-      admin_account_action:
-        send_email_notification: The user will receive an explanation of what happened with their account
-        text_html: Optional. You can use toot syntax. You can <a href="%{path}">add warning presets</a> to save time
-        type_html: Choose what to do with <strong>%{acct}</strong>
-        warning_preset_id: Optional. You can still add custom text to end of the preset
       defaults:
         autofollow: Osebe, ki se prijavijo prek povabila, vas bodo samodejno sledile
         avatar: PNG, GIF ali JPG. Največ %{size}. Zmanjšana bo na %{dimensions}px
         bot: Ta račun v glavnem opravlja samodejna dejanja in morda ni pod nadzorom
         context: En ali več kontekstov, kjer naj se uporabi filter
         digest: Pošlje se le po dolgem obdobju nedejavnosti in samo, če ste prejeli osebna sporočila v vaši odsotnosti
-        discoverable_html: The <a href="%{path}" target="_blank">directory</a> lets people find accounts based on interests and activity. Requires at least %{min_followers} followers
         email: Poslali vam bomo potrditveno e-pošto
         fields: Na svojem profilu lahko imate do 4 predmete prikazane kot tabelo.
         header: PNG, GIF ali JPG. Največ %{size}. Zmanjšana bo na %{dimensions}px
@@ -25,22 +17,15 @@ sl:
         password: Uporabite najmanj 8 znakov
         phrase: Se bo ujemal, ne glede na začetnice v tekstu ali opozorilo o vsebini troba
         scopes: Do katerih API-jev bo imel program dostop. Če izberete obseg najvišje ravni, vam ni treba izbrati posameznih.
-        setting_aggregate_reblogs: Do not show new boosts for toots that have been recently boosted (only affects newly-received boosts)
-        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
         setting_display_media_default: Skrij medij, ki je označen kot občutljiv
         setting_display_media_hide_all: Vedno skrij vse medije
         setting_display_media_show_all: Vedno pokaži medij, ki je označen kot občutljiv
         setting_hide_network: Kogar spremljate in kdo vas spremlja ne bo prikazano na vašem profilu
         setting_noindex: Vpliva na vaš javni profil in na strani s stanjem
-        setting_show_application: The application you use to toot will be displayed in the detailed view of your toots
         username: Vaše uporabniško ime bo edinstveno na %{domain}
         whole_word: Ko je ključna beseda ali fraza samo alfanumerična, se bo uporabljala le, če se bo ujemala s celotno besedo
-      featured_tag:
-        name: 'You might want to use one of these:'
       imports:
         data: Izvožena CSV datoteka iz drugega Mastodon vozlišča
-      invite_request:
-        text: This will help us review your application
       sessions:
         otp: 'Vnesite dvomestno kodo, ki je ustvarjena z aplikacijo na telefonu, ali uporabite eno od vaših obnovitvenih kod:'
       user:
@@ -50,18 +35,6 @@ sl:
         fields:
           name: Oznaka
           value: Vsebina
-      account_warning_preset:
-        text: Preset text
-      admin_account_action:
-        send_email_notification: Notify the user per e-mail
-        text: Custom warning
-        type: Action
-        types:
-          disable: Disable
-          none: Do nothing
-          silence: Silence
-          suspend: Suspend and irreversibly delete account data
-        warning_preset_id: Use a warning preset
       defaults:
         autofollow: Povabite, da sledi vašemu računu
         avatar: Podoba
@@ -72,7 +45,6 @@ sl:
         context: Filtriraj vsebino
         current_password: Trenutno geslo
         data: Podatki
-        discoverable: List this account on the directory
         display_name: Prikazno ime
         email: E-poštni naslov
         expires_in: Preteče po
@@ -84,12 +56,9 @@ sl:
         locked: Zaklenjen račun
         max_uses: Največje število uporabnikov
         new_password: Novo geslo
-        note: Bio
         otp_attempt: Dvofaktorska koda
         password: Geslo
         phrase: Ključna beseda ali fraza
-        setting_advanced_layout: Enable advanced web interface
-        setting_aggregate_reblogs: Group boosts in timelines
         setting_auto_play_gif: Samodejno predvajanje animiranih GIF-ov
         setting_boost_modal: Pred sunkom pokaži potrditveno okno
         setting_default_language: Jezik objavljanja
@@ -104,7 +73,6 @@ sl:
         setting_hide_network: Skrij svoje omrežje
         setting_noindex: Odsotnost indeksiranja iskalnikov
         setting_reduce_motion: Zmanjšanje premikanja v animacijah
-        setting_show_application: Disclose application used to send toots
         setting_system_font_ui: Uporabi privzeto pisavo sistema
         setting_theme: Tema strani
         setting_unfollow_modal: Pokaži potrditveno okno, preden nekoga prenehamo slediti
@@ -113,26 +81,19 @@ sl:
         username: Uporabniško ime
         username_or_email: Uporabniško ime ali E-pošta
         whole_word: Celotna beseda
-      featured_tag:
-        name: Hashtag
       interactions:
         must_be_follower: Blokiraj obvestila nesledilcev
         must_be_following: Blokiraj obvestila oseb, ki jim ne sledite
         must_be_following_dm: Blokiraj neposredna sporočila oseb, ki jim ne sledite
-      invite_request:
-        text: Why do you want to join?
       notification_emails:
         digest: Pošlji izvlečke e-pošt
         favourite: Pošlji e-pošto, ko nekdo doda vaše stanje med priljubljene
         follow: Pošlji e-pošto, ko vas nekdo sledi
         follow_request: Pošlji e-pošto, ko vam nekdo želi slediti
         mention: Pošlji e-pošto, ko vas nekdo omeni
-        pending_account: Send e-mail when a new account needs review
         reblog: Pošlji e-pošto, ko nekdo sune vaše stanje
         report: Pošlji e-pošto, ko je oddana nova prijava
     'no': 'Ne'
-    recommended: Recommended
     required:
-      mark: "*"
       text: zahtevano
     'yes': 'Da'
