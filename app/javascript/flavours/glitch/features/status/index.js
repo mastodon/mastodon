@@ -231,7 +231,13 @@ export default class Status extends ImmutablePureComponent {
   }
 
   handleModalReblog = (status) => {
-    this.props.dispatch(reblog(status));
+    const { dispatch } = this.props;
+
+    if (status.get('reblogged')) {
+      dispatch(unreblog(status));
+    } else {
+      dispatch(reblog(status));
+    }
   }
 
   handleReblogClick = (status, e) => {
