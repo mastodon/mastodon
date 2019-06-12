@@ -1,4 +1,3 @@
----
 pl:
   simple_form:
     hints:
@@ -86,7 +85,6 @@ pl:
         otp_attempt: Kod uwierzytelnienia dwustopniowego
         password: Hasło
         phrase: Słowo kluczowe lub fraza
-        scopes: Do których API aplikacja będzie miała dostęp. Jeżeli wybierzesz zakres wyższego poziomu, nie musisz zaznaczać bardziej szczegółowych.
         setting_aggregate_reblogs: Grupuj podbicia na osiach czasu
         setting_auto_play_gif: Automatycznie odtwarzaj animowane GIFy
         setting_boost_modal: Pytaj o potwierdzenie przed podbiciem
@@ -111,8 +109,6 @@ pl:
         username: Nazwa użytkownika
         username_or_email: Nazwa użytkownika lub adres e-mail
         whole_word: Całe słowo
-      featured_tag:
-        name: Hashtag
       interactions:
         must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie śledzą
         must_be_following: Nie wyświetlaj powiadomień od osób, których nie śledzisz
@@ -125,8 +121,7 @@ pl:
         mention: Powiadamiaj mnie e-mailem, gdy ktoś o mnie wspomni
         reblog: Powiadamiaj mnie e-mailem, gdy ktoś podbije mój wpis
         report: Powiadamiaj mnie e-mailem, gdy zostanie utworzone nowe zgłoszenie
-    'no': Nie
+    'no': 'Nie'
     required:
-      mark: "*"
       text: pole wymagane
-    'yes': Tak
+    'yes': 'Tak'
