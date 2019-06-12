@@ -1,4 +1,5 @@
 import detectPassiveEvents from 'detect-passive-events';
+import { forceSingleColumn } from 'flavours/glitch/util/initial_state';
 
 const LAYOUT_BREAKPOINT = 630;
 
@@ -9,7 +10,7 @@ export function isMobile(width, columns) {
   case 'single':
     return true;
   default:
-    return width <= LAYOUT_BREAKPOINT;
+    return forceSingleColumn || width <= LAYOUT_BREAKPOINT;
   }
 };
 

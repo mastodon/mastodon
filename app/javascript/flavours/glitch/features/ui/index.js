@@ -48,7 +48,7 @@ import {
   GettingStartedMisc,
 } from 'flavours/glitch/util/async-components';
 import { HotKeys } from 'react-hotkeys';
-import { me, forceSingleColumn } from 'flavours/glitch/util/initial_state';
+import { me } from 'flavours/glitch/util/initial_state';
 import { defineMessages, injectIntl } from 'react-intl';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
@@ -432,7 +432,7 @@ export default class UI extends React.Component {
   render () {
     const { width, draggingOver } = this.state;
     const { children, layout, isWide, navbarUnder, dropdownMenuIsOpen } = this.props;
-    const singleColumn = forceSingleColumn || isMobile(width, layout);
+    const singleColumn = isMobile(width, layout);
     const redirect = singleColumn ? <Redirect from='/' to='/timelines/home' exact /> : <Redirect from='/' to='/getting-started' exact />;
 
     const columnsClass = layout => {
