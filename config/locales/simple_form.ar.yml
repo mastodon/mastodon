@@ -5,7 +5,6 @@ ar:
         text: بإمكانك استخدام نفس القواعد التي نجدها في التبويقات كعناوين الروابط والوسوم والإشارات
       admin_account_action:
         send_email_notification: سوف يتلقى المستخدم رسالة تُفسِّر ما حدث على حسابه
-        text_html: Optional. You can use toot syntax. You can <a href="%{path}">add warning presets</a> to save time
         type_html: اختر ما تود إجراؤه على <strong>%{acct}</strong>
         warning_preset_id: اختياري. يمكنك إضافة نص مخصص إلى نهاية النموذج
       defaults:
@@ -14,7 +13,6 @@ ar:
         bot: يُعلِم أنّ هذا الحساب لا يمثل شخصًا
         context: واحد أو أكثر من السياقات التي يجب أن ينطبق عليها عامل التصفية
         digest: تُرسَل إليك بعد مُضيّ مدة مِن خمول نشاطك و فقط إذا ما تلقيت رسائل شخصية مباشِرة أثناء فترة غيابك مِن الشبكة
-        discoverable_html: The <a href="%{path}" target="_blank">directory</a> lets people find accounts based on interests and activity. Requires at least %{min_followers} followers
         email: سوف تتلقى رسالة إلكترونية للتأكيد
         fields: يُمكنك عرض 4 عناصر على شكل جدول في ملفك الشخصي
         header: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير %{size}. سيتم تصغيره إلى %{dimensions}px
@@ -26,21 +24,16 @@ ar:
         phrase: سوف يتم العثور عليه مهما كان نوع النص أو حتى و إن كان داخل الويب فيه تحذير عن المحتوى
         scopes: ما هي المجالات المسموح بها في التطبيق ؟ إن قمت باختيار أعلى المجالات فيمكنك الإستغناء عن الخَيار اليدوي.
         setting_aggregate_reblogs: لا تقم بعرض المشارَكات الجديدة لتبويقات قد قُمتَ بمشاركتها سابقا (هذا الإجراء يعني المشاركات الجديدة فقط التي تلقيتَها)
-        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
         setting_display_media_default: إخفاء الوسائط المُعيَّنة كحساسة
         setting_display_media_hide_all: إخفاء كافة الوسائط دائمًا
         setting_display_media_show_all: دائمًا عرض الوسائط المُعيَّنة كحساسة
         setting_hide_network: الحسابات التي تُتابعها و التي تُتابِعك على حد سواء لن تُعرَض على صفحتك الشخصية
         setting_noindex: ذلك يؤثر على حالة ملفك الشخصي و صفحاتك
-        setting_show_application: The application you use to toot will be displayed in the detailed view of your toots
         username: اسم المستخدم الخاص بك سوف يكون فريدا مِن نوعه على %{domain}
-        whole_word: When the keyword or phrase is alphanumeric only, it will only be applied if it matches the whole word
       featured_tag:
         name: 'رُبَّما تريد/ي استخدام أحد هؤلاء:'
       imports:
         data: ملف CSV تم تصديره مِن خادوم ماستدون آخر
-      invite_request:
-        text: This will help us review your application
       sessions:
         otp: 'قم بإدخال رمز المصادقة بخطوتين الذي قام بتوليده تطبيق جهازك أو إستخدم أحد رموز النفاذ الإحتياطية :'
       user:
@@ -127,11 +120,9 @@ ar:
         follow: إبعث بريداً إلكترونيًا عندما يتبعك أحد
         follow_request: إبعث بريدا إلكترونيا عندما يقوم أحدهم بإرسال طلب بالمتابعة
         mention: إبعث بريداً إلكترونيًا عندما يُشير إليك أو يذكُرك أحدهم
-        pending_account: Send e-mail when a new account needs review
         reblog: إبعث بريداً إلكترونيًا عندما يقوم أحدهم بترقية منشورك
         report: إرسال رسالة إلكترونية عند تلقّي إبلاغ جديد
     'no': 'لا'
-    recommended: Recommended
     required:
       mark: "*"
       text: مطلوب
