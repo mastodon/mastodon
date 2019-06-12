@@ -11,16 +11,13 @@ sv:
       last_attempt: Du har ytterligare ett försök innan ditt konto blir låst.
       locked: Ditt konto är låst.
       not_found_in_database: Ogiltigt %{authentication_keys} eller lösenord.
-      pending: Your account is still under review.
       timeout: Din session löpte ut. Vänligen logga in igen för att fortsätta.
       unauthenticated: Du måste logga in eller registrera dig innan du fortsätter.
       unconfirmed: Du måste bekräfta din e-postadress innan du fortsätter.
     mailer:
       confirmation_instructions:
         action: Verifiera e-postadress
-        action_with_app: Confirm and return to %{app}
         explanation: Du har skapat ett konto på %{host} med den här e-postadressen. Du är ett klick bort från att aktivera det. Om det inte var du ignorerar det här e-postmeddelandet.
-        explanation_when_pending: You applied for an invite to %{host} with this email address. Once you confirm your e-mail address, we will review your application. You can't login until then. If your application is rejected, your data will be removed, so no further action will be required from you. If this wasn't you, please ignore this email.
         extra_html: Kolla gärna också <a href="%{terms_path}">instansens regler</a> och <a href="%{policy_path}">våra användarvillkor</a>.
         subject: 'Mastodon: Bekräftelsesinstruktioner för %{instance}'
         title: Verifiera e-postadress
@@ -61,7 +58,6 @@ sv:
       signed_up: Välkommen! Du har nu registrerat dig.
       signed_up_but_inactive: Du har nu registrerat dig. Vi kunde dock inte logga in dig eftersom ditt konto ännu inte är aktiverat.
       signed_up_but_locked: Du har nu registrerat dig. Vi kunde dock inte logga in eftersom ditt konto är låst.
-      signed_up_but_pending: A message with a confirmation link has been sent to your email address. After you click the link, we will review your application. You will be notified if it is approved.
       signed_up_but_unconfirmed: Ett meddelande med en bekräftelse länk har skickats till din e-postadress. Vänligen följ länken för att aktivera ditt konto. Kontrollera din spammapp om du inte fick det här e-postmeddelandet.
       update_needs_confirmation: Du har uppdaterat ditt konto med framgång, men vi måste verifiera din nya e-postadress. Vänligen kolla din email och följ bekräfta länken för att bekräfta din nya e-postadress. Kontrollera din spammapp om du inte fick det här e-postmeddelandet.
       updated: Ditt konto har uppdaterats utan problem.
