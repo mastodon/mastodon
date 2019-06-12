@@ -552,6 +552,42 @@
   }
 }
 
+.column,
+.drawer {
+  flex: 1 1 100%;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 631px) {
+  .columns-area {
+    padding: 0;
+  }
+
+  .column,
+  .drawer {
+    flex: 0 0 auto;
+    padding: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+
+    &:first-child {
+      padding-left: 10px;
+    }
+
+    &:last-child {
+      padding-right: 10px;
+    }
+  }
+
+  .columns-area > div {
+    .column,
+    .drawer {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+}
+
 .tabs-bar {
   box-sizing: border-box;
   display: flex;
