@@ -35,7 +35,6 @@ hu:
         scopes: A nézeteket szóközzel válaszd el. Hagyd üresen az alapértelmezett nézetekhez.
       index:
         application: Alkalmazás
-        callback_url: Callback URL
         delete: Eltávolítás
         name: Név
         new: Új alkalmazás
@@ -61,8 +60,6 @@ hu:
         able_to: Képes lesz
         prompt: '%{client_name} nevű alkalmazás engedélyt kér a fiókodhoz való hozzáféréshez.'
         title: Engedély szükséges
-      show:
-        title: Copy this authorization code and paste it to the application.
     authorized_applications:
       buttons:
         revoke: Visszavonás
@@ -71,7 +68,6 @@ hu:
       index:
         application: Alkalmazás
         created_at: Készítve
-        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Hatáskör
         title: Engedélyezett alkalmazásaid
     errors:
@@ -114,28 +110,5 @@ hu:
         title: OAuth engedély szükséges
     scopes:
       follow: fiókok követése, blokkoláse, blokkolás feloldása és követés abbahagyása
-      push: receive your push notifications
       read: fiókod adatainak olvasása
-      "read:accounts": see accounts information
-      "read:blocks": see your blocks
-      "read:favourites": see your favourites
-      "read:filters": see your filters
-      "read:follows": see your follows
-      "read:lists": see your lists
-      "read:mutes": see your mutes
-      "read:notifications": see your notifications
-      "read:reports": see your reports
-      "read:search": search on your behalf
-      "read:statuses": see all statuses
       write: bejegyzés írása a nevedben
-      "write:accounts": modify your profile
-      "write:blocks": block accounts and domains
-      "write:favourites": favourite statuses
-      "write:filters": create filters
-      "write:follows": follow people
-      "write:lists": create lists
-      "write:media": upload media files
-      "write:mutes": mute people and conversations
-      "write:notifications": clear your notifications
-      "write:reports": report other people
-      "write:statuses": publish statuses
