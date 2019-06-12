@@ -1,138 +1,42 @@
 id:
   simple_form:
     hints:
-      account_warning_preset:
-        text: You can use toot syntax, such as URLs, hashtags and mentions
-      admin_account_action:
-        send_email_notification: The user will receive an explanation of what happened with their account
-        text_html: Optional. You can use toot syntax. You can <a href="%{path}">add warning presets</a> to save time
-        type_html: Choose what to do with <strong>%{acct}</strong>
-        warning_preset_id: Optional. You can still add custom text to end of the preset
       defaults:
-        autofollow: People who sign up through the invite will automatically follow you
         avatar: PNG, GIF atau JPG. Maksimal %{size}. Ukuran dikecilkan menjadi %{dimensions}px
-        bot: This account mainly performs automated actions and might not be monitored
-        context: One or multiple contexts where the filter should apply
-        digest: Only sent after a long period of inactivity and only if you have received any personal messages in your absence
-        discoverable_html: The <a href="%{path}" target="_blank">directory</a> lets people find accounts based on interests and activity. Requires at least %{min_followers} followers
-        email: You will be sent a confirmation e-mail
-        fields: You can have up to 4 items displayed as a table on your profile
         header: PNG, GIF atau JPG. Maksimal %{size}. Ukuran dikecilkan menjadi %{dimensions}px
-        inbox_url: Copy the URL from the frontpage of the relay you want to use
-        irreversible: Filtered toots will disappear irreversibly, even if filter is later removed
-        locale: The language of the user interface, e-mails and push notifications
         locked: Anda harus menerima permintaan pengikut secara manual dan setting privasi postingan akan diubah khusus untuk pengikut
-        password: Use at least 8 characters
-        phrase: Will be matched regardless of casing in text or content warning of a toot
-        scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
-        setting_aggregate_reblogs: Do not show new boosts for toots that have been recently boosted (only affects newly-received boosts)
-        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
-        setting_display_media_default: Hide media marked as sensitive
-        setting_display_media_hide_all: Always hide all media
-        setting_display_media_show_all: Always show media marked as sensitive
-        setting_hide_network: Who you follow and who follows you will not be shown on your profile
-        setting_noindex: Affects your public profile and status pages
-        setting_show_application: The application you use to toot will be displayed in the detailed view of your toots
-        username: Your username will be unique on %{domain}
-        whole_word: When the keyword or phrase is alphanumeric only, it will only be applied if it matches the whole word
-      featured_tag:
-        name: 'You might want to use one of these:'
       imports:
         data: File CSV yang diexpor dari server Mastodon lain
-      invite_request:
-        text: This will help us review your application
       sessions:
         otp: 'Masukkan kode dua-faktor dari handphone atau gunakan kode pemulihan anda.'
-      user:
-        chosen_languages: When checked, only toots in selected languages will be displayed in public timelines
     labels:
-      account:
-        fields:
-          name: Label
-          value: Content
-      account_warning_preset:
-        text: Preset text
-      admin_account_action:
-        send_email_notification: Notify the user per e-mail
-        text: Custom warning
-        type: Action
-        types:
-          disable: Disable
-          none: Do nothing
-          silence: Silence
-          suspend: Suspend and irreversibly delete account data
-        warning_preset_id: Use a warning preset
       defaults:
-        autofollow: Invite to follow your account
-        avatar: Avatar
-        bot: This is a bot account
-        chosen_languages: Filter languages
         confirm_new_password: Konfirmasi kata sandi baru
         confirm_password: Konfirmasi kata sandi
-        context: Filter contexts
         current_password: Kata sandi sekarang
-        data: Data
-        discoverable: List this account on the directory
         display_name: Nama yang ditampilkan
         email: Alamat e-mail
-        expires_in: Expire after
-        fields: Profile metadata
-        header: Header
-        inbox_url: URL of the relay inbox
-        irreversible: Drop instead of hide
         locale: Bahasa
         locked: Buat akun menjadi pribadi
-        max_uses: Max number of uses
         new_password: Password baru
-        note: Bio
         otp_attempt: Kode dua-faktor
         password: Kata sandi
-        phrase: Keyword or phrase
-        setting_advanced_layout: Enable advanced web interface
-        setting_aggregate_reblogs: Group boosts in timelines
-        setting_auto_play_gif: Auto-play animated GIFs
         setting_boost_modal: Tampilkan dialog konfirmasi dialog sebelum boost
-        setting_default_language: Posting language
         setting_default_privacy: Privasi postingan
-        setting_default_sensitive: Always mark media as sensitive
-        setting_delete_modal: Show confirmation dialog before deleting a toot
-        setting_display_media: Media display
-        setting_display_media_default: Default
-        setting_display_media_hide_all: Hide all
-        setting_display_media_show_all: Show all
-        setting_expand_spoilers: Always expand toots marked with content warnings
-        setting_hide_network: Hide your network
-        setting_noindex: Opt-out of search engine indexing
-        setting_reduce_motion: Reduce motion in animations
-        setting_show_application: Disclose application used to send toots
-        setting_system_font_ui: Use system's default font
-        setting_theme: Site theme
-        setting_unfollow_modal: Show confirmation dialog before unfollowing someone
         severity: Keparahan
         type: Tipe impor
         username: Nama pengguna
-        username_or_email: Username or Email
-        whole_word: Whole word
-      featured_tag:
-        name: Hashtag
       interactions:
         must_be_follower: Blokir notifikasi dari non-pengikut
         must_be_following: Blokir notifikasi dari orang yang tidak anda ikuti
-        must_be_following_dm: Block direct messages from people you don't follow
-      invite_request:
-        text: Why do you want to join?
       notification_emails:
         digest: Kirim email berisi rangkuman
         favourite: Kirim email saat seseorang menyukai status anda
         follow: Kirim email saat seseorang mengikuti anda
         follow_request: Kirim email saat seseorang meminta untuk mengikuti anda
         mention: Kirim email saat seseorang menyebut anda
-        pending_account: Send e-mail when a new account needs review
         reblog: Kirim email saat seseorang mem-boost status anda
-        report: Send e-mail when a new report is submitted
     'no': 'Tidak'
-    recommended: Recommended
     required:
-      mark: "*"
       text: wajib
     'yes': 'Ya'
