@@ -1,74 +1,24 @@
 ast:
   devise:
-    confirmations:
-      confirmed: Your email address has been successfully confirmed.
-      send_instructions: You will receive an email with instructions for how to confirm your email address in a few minutes. Please check your spam folder if you didn't receive this email.
-      send_paranoid_instructions: If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes. Please check your spam folder if you didn't receive this email.
     failure:
       already_authenticated: Yá aniciesti sesión.
       inactive: Entá nun s'activó la cuenta.
-      invalid: Invalid %{authentication_keys} or password.
       last_attempt: Tienes un intentu más enantes de bloquiar la cuenta.
       locked: La cuenta ta bloquiada.
-      not_found_in_database: Invalid %{authentication_keys} or password.
-      pending: Your account is still under review.
       timeout: La sesión caducó. Volvi aniciar sesión pa siguir, por favor.
       unauthenticated: Precises aniciar sesión o rexistrate enantes de siguir.
-      unconfirmed: You have to confirm your email address before continuing.
     mailer:
       confirmation_instructions:
-        action: Verify email address
-        action_with_app: Confirm and return to %{app}
         explanation: Creesti una cuenta en %{host} con esta direición de corréu. Tas a un clic d'activala. Si nun fuisti tu, inora esti corréu.
-        explanation_when_pending: You applied for an invite to %{host} with this email address. Once you confirm your e-mail address, we will review your application. You can't login until then. If your application is rejected, your data will be removed, so no further action will be required from you. If this wasn't you, please ignore this email.
-        extra_html: Please also check out <a href="%{terms_path}">the rules of the server</a> and <a href="%{policy_path}">our terms of service</a>.
-        subject: 'Mastodon: Confirmation instructions for %{instance}'
-        title: Verify email address
       email_changed:
-        explanation: 'The email address for your account is being changed to:'
-        extra: If you did not change your email, it is likely that someone has gained access to your account. Please change your password immediately or contact the server admin if you're locked out of your account.
-        subject: 'Mastodon: Email changed'
         title: Direición de corréu nueva
-      password_change:
-        explanation: The password for your account has been changed.
-        extra: If you did not change your password, it is likely that someone has gained access to your account. Please change your password immediately or contact the server admin if you're locked out of your account.
-        subject: 'Mastodon: Password changed'
-        title: Password changed
-      reconfirmation_instructions:
-        explanation: Confirm the new address to change your email.
-        extra: If this change wasn't initiated by you, please ignore this email. The email address for the Mastodon account won't change until you access the link above.
-        subject: 'Mastodon: Confirm email for %{instance}'
-        title: Verify email address
       reset_password_instructions:
-        action: Change password
         explanation: Solicitesti una contraseña nueva pa la cuenta.
         extra: Si nun solicitesti esto, inora esti corréu. La contraseña nun va camudar hasta que nun accedas al enllaz d'enriba y crees una nueva.
-        subject: 'Mastodon: Reset password instructions'
-        title: Password reset
-      unlock_instructions:
-        subject: 'Mastodon: Unlock instructions'
-    omniauth_callbacks:
-      failure: Could not authenticate you from %{kind} because "%{reason}".
-      success: Successfully authenticated from %{kind} account.
-    passwords:
-      no_token: You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided.
-      send_instructions: If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes. Please check your spam folder if you didn't receive this email.
-      send_paranoid_instructions: If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes. Please check your spam folder if you didn't receive this email.
-      updated: Your password has been changed successfully. You are now signed in.
-      updated_not_active: Your password has been changed successfully.
     registrations:
-      destroyed: Bye! Your account has been successfully cancelled. We hope to see you again soon.
       signed_up: '¡Afáyate! Rexistréstite con ésitu.'
-      signed_up_but_inactive: You have signed up successfully. However, we could not sign you in because your account is not yet activated.
-      signed_up_but_locked: You have signed up successfully. However, we could not sign you in because your account is locked.
-      signed_up_but_pending: A message with a confirmation link has been sent to your email address. After you click the link, we will review your application. You will be notified if it is approved.
       signed_up_but_unconfirmed: Unvióse un mensaxe de confirmación a la direición de corréu. Sigui l'enllaz p'activar la cuenta. Comprueba la carpeta Puxarra si nun recibiesti esti corréu, por favor.
-      update_needs_confirmation: You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address. Please check your spam folder if you didn't receive this email.
       updated: La cuenta anovóse con ésitu.
-    sessions:
-      already_signed_out: Signed out successfully.
-      signed_in: Signed in successfully.
-      signed_out: Signed out successfully.
     unlocks:
       send_instructions: Nunos minutos vas recibir un corréu coles instrucciones pa cómo desbloquiar la cuenta. Comprueba la carpeta Puxarra si nun lu recibiesti.
       send_paranoid_instructions: Si esiste la cuenta, nun momentu vas recibir un corréu coles instrucciones pa cómo desbloquiala. Comprueba la carpeta Puxarra si nun recibiesti esti corréu.
@@ -76,10 +26,4 @@ ast:
   errors:
     messages:
       already_confirmed: yá se confirmó, volvi aniciar sesión
-      confirmation_period_expired: needs to be confirmed within %{period}, please request a new one
-      expired: has expired, please request a new one
       not_found: nun s'alcontró
-      not_locked: was not locked
-      not_saved:
-        one: '1 error prohibited this %{resource} from being saved:'
-        other: "%{count} errors prohibited this %{resource} from being saved:"
