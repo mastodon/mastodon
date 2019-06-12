@@ -20,7 +20,6 @@ sk:
         action: Potvrď emailovú adresu
         action_with_app: Potvrď a vráť sa na %{app}
         explanation: S touto emailovou adresou si si vytvoril/a účet na %{host}. Si iba jeden klik od jeho aktivácie. Pokiaľ si to ale nebol/a ty, prosím ignoruj tento email.
-        explanation_when_pending: You applied for an invite to %{host} with this email address. Once you confirm your e-mail address, we will review your application. You can't login until then. If your application is rejected, your data will be removed, so no further action will be required from you. If this wasn't you, please ignore this email.
         extra_html: Prosím, pozri sa aj na <a href="%{terms_path}"> pravidlá tohto servera,</a> a <a href="%{policy_path}"> naše užívaťeľské podiemky</a>.
         subject: 'Mastodon: Potvrdzovacie pokyny pre %{instance}'
         title: Potvrď emailovú adresu
@@ -80,8 +79,3 @@ sk:
       expired: vypŕšal, prosím, vyžiadaj si nový
       not_found: nenájdený
       not_locked: nebol zamknutý
-      not_saved:
-        one: '1 error prohibited this %{resource} from being saved:'
-        few: "%{count} errors prohibited this %{resource} from being saved:"
-        many: "%{count} errors prohibited this %{resource} from being saved:"
-        other: "%{count} errors prohibited this %{resource} from being saved:"
