@@ -1,7 +1,6 @@
----
 pt-BR:
   about:
-    about_hashtag_html: Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.
+    about_hashtag_html: 'Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.'
     about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos e software gratuito e de código aberto. É descentralizada como e-mail.
     about_this: Sobre
     active_count_after: Ativo
@@ -37,7 +36,7 @@ pt-BR:
     user_count_before: Casa de
     what_is_mastodon: O que é Mastodon?
   accounts:
-    choices_html: 'Escolhas de %{name}:'
+    choices_html: "Escolhas de %{name}:"
     follow: Seguir
     followers:
       one: Seguidor
@@ -259,7 +258,7 @@ pt-BR:
         create: Criar bloqueio
         hint: O bloqueio de domínio não prevenirá a criação de entradas de contas na base de dados, mas vai reatroativa e automaticamente aplicar métodos específicos de moderação nestas contas.
         severity:
-          desc_html: O <strong>Silêncio</strong> fará com que as postagens da conta fiquem invisíveis para qualquer um que não a esteja seguindo. A <strong>Suspensão</strong> removerá todo o conteúdo da conta, mídia e dados de perfil. Use <strong>Nenhum</strong> se você apenas deseja rejeitar arquivos de mídia.
+          desc_html: "O <strong>Silêncio</strong> fará com que as postagens da conta fiquem invisíveis para qualquer um que não a esteja seguindo. A <strong>Suspensão</strong> removerá todo o conteúdo da conta, mídia e dados de perfil. Use <strong>Nenhum</strong> se você apenas deseja rejeitar arquivos de mídia."
           noop: Nenhum
           silence: Silêncio
           suspend: Suspensão
@@ -295,7 +294,7 @@ pt-BR:
       title: Bloqueio de Domínio de E-mail
     followers:
       back_to_account: Voltar para a conta
-      title: Pessoas que seguem %{acct}
+      title: "Pessoas que seguem %{acct}"
     instances:
       by_domain: Domínio
       delivery_available: Entrega está disponível
@@ -477,7 +476,7 @@ pt-BR:
     new_report:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém da instância %{domain} reportou %{target}
-      subject: Nova denúncia sobre %{instance} (#%{id})
+      subject: 'Nova denúncia sobre %{instance} (#%{id})'
   application_mailer:
     notification_preferences: Mudar preferências de e-mail
     settings: 'Mudar e-mail de preferência: %{link}'
