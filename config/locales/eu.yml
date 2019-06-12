@@ -47,9 +47,6 @@ eu:
     people_who_follow: "%{name} jarraitzen dutenak"
     pin_errors:
       following: Onetsi nahi duzun pertsona aurretik jarraitu behar duzu
-    posts:
-      one: Toot
-      other: Toot
     posts_tab_heading: Tootak
     posts_with_replies: Toot eta erantzunak
     reserved_username: Erabiltzaile-izena erreserbatuta dago
@@ -100,7 +97,6 @@ eu:
       header: Goiburua
       inbox_url: Sarrera ontziaren URL-a
       invited_by: 'Honek gonbidatua:'
-      ip: IP
       joined: Elkartuta
       location:
         all: Denak
@@ -162,7 +158,6 @@ eu:
       unsubscribe: Kendu harpidetza
       username: Erabiltzaile-izena
       warn: Abisatu
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name}(e)k %{target} salaketa bere buruari esleitu dio"
@@ -207,7 +202,6 @@ eu:
       destroyed_msg: Emoji-a ongi suntsitu da!
       disable: Desgaitu
       disabled_msg: Emoji-a ongi desgaitu da
-      emoji: Emoji
       enable: Gaitu
       enabled_msg: Emoji hori ongi gaitu da
       image_hint: PNG gehienez 50KB
@@ -236,7 +230,6 @@ eu:
       recent_users: Azken erabiltzaileak
       search: Testu osoko bilaketa
       single_user_mode: Erabiltzaile bakarreko modua
-      software: Software
       space: Espazio erabilera
       title: Kontrol panela
       total_users: erabiltzaile guztira
@@ -443,7 +436,6 @@ eu:
       confirmed: Berretsita
       expires_in: Iraungitzea
       last_delivery: Azken bidalketa
-      title: WebSub
       topic: Mintzagaia
     tags:
       accounts: Kontuak
@@ -467,7 +459,6 @@ eu:
       subject: Salaketa berria %{instance} instantzian (#%{id})
   application_mailer:
     notification_preferences: Aldatu e-mail hobespenak
-    salutation: "%{name},"
     settings: 'Aldatu e-mail hobespenak: %{link}'
     view: 'Ikusi:'
     view_profile: Ikusi profila
@@ -493,9 +484,6 @@ eu:
     migrate_account: Lekualdatu beste kontu batera
     migrate_account_html: Kontu hau beste batera birbideratu nahi baduzu, <a href="%{path}">hemen konfiguratu</a> dezakezu.
     or_log_in_with: Edo hasi saioa honekin
-    providers:
-      cas: CAS
-      saml: SAML
     register: Eman izena
     resend_confirmation: Birbidali berresteko argibideak
     reset_password: Berrezarri pasahitza
@@ -514,18 +502,14 @@ eu:
     title: Jarraitu %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
       about_x_months: "%{count} hilabete"
       about_x_years: "%{count} urte"
       almost_x_years: "%{count} urte"
       half_a_minute: Oraintxe
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Oraintxe
       over_x_years: "%{count} urte"
       x_days: "%{count} egun"
-      x_minutes: "%{count}m"
       x_months: "%{count} hilabete"
-      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Saiakera ona hacker! Pasahitz okerra
     confirm_password: Sartu zure oraingo pasahitza zure identitatea baieztatzeko
@@ -565,7 +549,6 @@ eu:
       request: Eskatu zure artxiboa
       size: Tamaina
     blocks: Zuk blokeatutakoak
-    csv: CSV
     domain_blocks: Domeinuen blokeoak
     follows: Zuk jarraitutakoak
     lists: Zerrendak
@@ -687,23 +670,11 @@ eu:
       body: "%{name}(e)k bultzada eman dio zure mezuari:"
       subject: "%{name}(e)k bultzada eman dio zure mezuari"
       title: Bultzada berria
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: "."
   pagination:
     newer: Berriagoa
     next: Hurrengoa
     older: Zaharragoa
     prev: Aurrekoa
-    truncate: "&hellip;"
   preferences:
     other: Beste bat
   remote_follow:
@@ -735,40 +706,14 @@ eu:
     activity: Azken jarduera
     browser: Nabigatzailea
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Nabigatzaile ezezaguna
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi nabigatzailea
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
       qq: QQ nabigatzailea
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Uneko saioa
     description: "%{browser} - %{platform}"
     explanation: Zure Mastodon kontuan saioa hasita duten nabigatzaileak daude.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: plataforma ezezaguna
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Indargabetu
     revoke_success: Saioa ongi indargabetu da
     title: Saioak
@@ -809,7 +754,6 @@ eu:
       reblog: Bultzada bat ezin da finkatu
     show_more: Erakutsi gehiago
     sign_in_to_participate: Eman izena elkarrizketan parte hartzeko
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Jarraitzaileak besterik ez
       private_long: Erakutsi jarraitzaileei besterik ez
@@ -827,10 +771,10 @@ eu:
       <h3 id="collect">Zer informazio biltzen dugu?</h3>
 
       <ul>
-        <li><em>Kontuaren oinarrizko informazioa</em>: Zerbitzari honetan izena ematen baduzu, erabiltzaile-izena, e-mail helbidea eta pasahitza sartzea galdetu dakizuke.  Profilean bestelako informazioa sartu dezakezu esaterako pantaila.-izena eta biografia, eta profileko eta goiburuko irudiak igo ditzakezu. Erabiltzaile-izena, pantaiula-izena, biografia, profileko irudia eta goiburuko irudia beti dira publikoak.</li>
-        <li><em>Mezuak, jarraitzea eta beste informazioa</em>: Jarraitzen duzun jendearen zerrenda publikoa da, baita zure jarraitzaileena.  Mezu bat bidaltzean, data eta ordua eta mezua bidaltzeko erabilitako aplikazioa gordetzen dira. Mezuen eranskinak izan ditzakete, esaterako irudiak eta bideoak. Mezu publikoak eta zerrendatu gabeak publikoki ikusi daitezke. Zure profilean mezu bat sustatzen duzunean, informazio hori ere publikoki eskuragarri dago. Zure mezuak zure jarraitzaileei bidaltzen zaie, kasu batzuetan honek esan nahi du beste zerbitzari batzuetara bidaltzen dela eta han kopiak gordetzen dituzte. Mezuak ezabatzen dituzunean, hau zure jarraitzaileei bidaltzen zaie ere, beste mezu batzuk zabaltzea edo gogoko izatea beti da informazio publikoa.</li>
-        <li><em>Mezu zuzenak eta soilik jarraitzaileentzako mezuak</em>: Mezu guztiak zerbitzarian gorde eta prozesatzen dira. Soilik jarraitzaileentzako diren mezuak  zure jarraitzaileei bidaltzen zaie eta bertan aipatutako erabiltzaileei, mezu zuzenak soilik aipatutako erabiltzaileei bidaltzen zaie. Honek esan nahi du kasu batzuetan beste zerbitzari batzuetara bidaltzen dela mezua eta han kopiak gordetzen direla. Borondate oneko ahalegin bat egiten dugu mezuok soilik baimena duten pertsonek ikus ditzaten, baina beste zerbitzariek agian ez. Hortaz,  zure jarraitzaileen zerbitzaria zein den egiaztatzea garrantzitsua da.  Jarraitzaileak eskuz onartu eta ukatzeko aukera aldatu dezakezu. <em>Kontuan izan zerbitzariaren operadoreak eta mezua jasotzen duen edozein zerbitzarik operadoreek mezuok ikus ditzaketela</em> eta edonork atera dezakeela pantaila argazki bat, kopiatu edo beste modu batean partekatu.<em>Ez partekatu informazio arriskutsua Mastodon bidez.</em></li>
-        <li><em>IP-ak eta bestelako meta-datuak</em>: Saioa hasten duzunean, zure IP helbidea gordetzen dugu, eta erabiltzen duzun nabigatzaile edo aplikazioa. Hasitako saio guztiak zuk ikusteko mopduan daude eta ezarpenetan indargabetu ditzakezu. Erabilitako azken IP helbidea 12 hilabetez gordetzen da. Gure zerbitzariak jasotako eskari guztiak eta IP-a duten zerbitzariko egunkariak gorde genitzake.</li>
+      <li><em>Kontuaren oinarrizko informazioa</em>: Zerbitzari honetan izena ematen baduzu, erabiltzaile-izena, e-mail helbidea eta pasahitza sartzea galdetu dakizuke.  Profilean bestelako informazioa sartu dezakezu esaterako pantaila.-izena eta biografia, eta profileko eta goiburuko irudiak igo ditzakezu. Erabiltzaile-izena, pantaiula-izena, biografia, profileko irudia eta goiburuko irudia beti dira publikoak.</li>
+      <li><em>Mezuak, jarraitzea eta beste informazioa</em>: Jarraitzen duzun jendearen zerrenda publikoa da, baita zure jarraitzaileena.  Mezu bat bidaltzean, data eta ordua eta mezua bidaltzeko erabilitako aplikazioa gordetzen dira. Mezuen eranskinak izan ditzakete, esaterako irudiak eta bideoak. Mezu publikoak eta zerrendatu gabeak publikoki ikusi daitezke. Zure profilean mezu bat sustatzen duzunean, informazio hori ere publikoki eskuragarri dago. Zure mezuak zure jarraitzaileei bidaltzen zaie, kasu batzuetan honek esan nahi du beste zerbitzari batzuetara bidaltzen dela eta han kopiak gordetzen dituzte. Mezuak ezabatzen dituzunean, hau zure jarraitzaileei bidaltzen zaie ere, beste mezu batzuk zabaltzea edo gogoko izatea beti da informazio publikoa.</li>
+      <li><em>Mezu zuzenak eta soilik jarraitzaileentzako mezuak</em>: Mezu guztiak zerbitzarian gorde eta prozesatzen dira. Soilik jarraitzaileentzako diren mezuak  zure jarraitzaileei bidaltzen zaie eta bertan aipatutako erabiltzaileei, mezu zuzenak soilik aipatutako erabiltzaileei bidaltzen zaie. Honek esan nahi du kasu batzuetan beste zerbitzari batzuetara bidaltzen dela mezua eta han kopiak gordetzen direla. Borondate oneko ahalegin bat egiten dugu mezuok soilik baimena duten pertsonek ikus ditzaten, baina beste zerbitzariek agian ez. Hortaz,  zure jarraitzaileen zerbitzaria zein den egiaztatzea garrantzitsua da.  Jarraitzaileak eskuz onartu eta ukatzeko aukera aldatu dezakezu. <em>Kontuan izan zerbitzariaren operadoreak eta mezua jasotzen duen edozein zerbitzarik operadoreek mezuok ikus ditzaketela</em> eta edonork atera dezakeela pantaila argazki bat, kopiatu edo beste modu batean partekatu.<em>Ez partekatu informazio arriskutsua Mastodon bidez.</em></li>
+      <li><em>IP-ak eta bestelako meta-datuak</em>: Saioa hasten duzunean, zure IP helbidea gordetzen dugu, eta erabiltzen duzun nabigatzaile edo aplikazioa. Hasitako saio guztiak zuk ikusteko mopduan daude eta ezarpenetan indargabetu ditzakezu. Erabilitako azken IP helbidea 12 hilabetez gordetzen da. Gure zerbitzariak jasotako eskari guztiak eta IP-a duten zerbitzariko egunkariak gorde genitzake.</li>
       </ul>
 
       <hr class="spacer" />
@@ -840,9 +784,9 @@ eu:
       <p>Biltzen dugun informazio guztia honela erabiltzen da:</p>
 
       <ul>
-        <li>Mastodon zerbitzuko funtzio nagusietarako. Beste pertsonen edukiarekin harremanetan sartzeko edo zure edukia argitaratzeko saioa hasi behar duzu. Adibidez, beste pertsona batzuk jarraitu ditzakezu zure denbora-lerro pertsonalizatu bat izateko.</li>
-        <li>Komunitatearen moderazioari laguntzeko, esaterako zure IP-a ezagutzen ditugun beste batzuekin alderatu dezakegu, debekuak ekiditea edo bestelako arau-urraketak eragozteko.</li>
-        <li>Emandako e-mail helbidea informazioa bidaltzeko erabili genezake, beste pertsonek zure edukiekin harremanetan jartzean jakinarazteko, edo mezu bat bidaltzen dizutenean, galderak erantzutean eta bestelako eskari eta galderetarako.</li>
+      <li>Mastodon zerbitzuko funtzio nagusietarako. Beste pertsonen edukiarekin harremanetan sartzeko edo zure edukia argitaratzeko saioa hasi behar duzu. Adibidez, beste pertsona batzuk jarraitu ditzakezu zure denbora-lerro pertsonalizatu bat izateko.</li>
+      <li>Komunitatearen moderazioari laguntzeko, esaterako zure IP-a ezagutzen ditugun beste batzuekin alderatu dezakegu, debekuak ekiditea edo bestelako arau-urraketak eragozteko.</li>
+      <li>Emandako e-mail helbidea informazioa bidaltzeko erabili genezake, beste pertsonek zure edukiekin harremanetan jartzean jakinarazteko, edo mezu bat bidaltzen dizutenean, galderak erantzutean eta bestelako eskari eta galderetarako.</li>
       </ul>
 
       <hr class="spacer" />
@@ -858,8 +802,8 @@ eu:
       <p>Borondate oneko ahalegina egingo dugu honetarako:</p>
 
       <ul>
-        <li>Zerbitzari honetara egindako eskari guztien egunkaria IP helbidearekin, 90 egunez gehienez.</li>
-        <li>Izena eman duten erabiltzaileen eskariekin lotutako IP helbideak, 12 hilabetez gehienez..</li>
+      <li>Zerbitzari honetara egindako eskari guztien egunkaria IP helbidearekin, 90 egunez gehienez.</li>
+      <li>Izena eman duten erabiltzaileen eskariekin lotutako IP helbideak, 12 hilabetez gehienez..</li>
       </ul>
 
       <p>Zure edukiaren kopia duen artxibo bat eskatu eta deskargatu dezakezu, bertan mezuak multimedia eranskinak, profileko irudia eta goiburuko irudia daude.</p>
@@ -911,7 +855,6 @@ eu:
   time:
     formats:
       default: "%Y(e)ko %b %d, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Sartu zure autentifikazio aplikazioak sortutako kodea berresteko
     description_html: "<strong>Bi faktoreetako autentifikazioa</strong> gaitzen baduzu, saioa hasteko telefonoa eskura izan beharko duzu, honek zuk sartu behar dituzun kodeak sortuko dituelako."

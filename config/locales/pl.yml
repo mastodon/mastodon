@@ -7,7 +7,6 @@ pl:
     active_count_after: aktywni
     active_footnote: Aktywni użytkownicy miesięcznie (MAU)
     administered_by: 'Administrowana przez:'
-    api: API
     apps: Aplikacje
     apps_platforms: Korzystaj z Mastodona z poziomu iOS-a, Androida i innych
     browse_directory: Przeglądaj katalog profilów i filtruj z uwzględnieniem zainteresowań
@@ -74,7 +73,6 @@ pl:
     reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
       admin: Administrator
-      bot: Bot
       moderator: Moderator
     unfollow: Przestań śledzić
   admin:
@@ -163,8 +161,6 @@ pl:
       resubscribe: Ponów subskrypcję
       role: Uprawnienia
       roles:
-        admin: Administrator
-        moderator: Moderator
         staff: Ekipa
         user: Użytkownik
       salmon_url: Adres Salmon
@@ -230,7 +226,6 @@ pl:
       destroyed_msg: Pomyślnie usunięto emoji!
       disable: Wyłącz
       disabled_msg: Pomyślnie wyłączono emoji
-      emoji: Emoji
       enable: Włącz
       enabled_msg: Pomyślnie przywrócono emoji
       image_hint: Plik PNG ważący do 50KB
@@ -238,7 +233,6 @@ pl:
       new:
         title: Dodaj nowe niestandardowe emoji
       overwrite: Zastąp
-      shortcode: Shortcode
       shortcode_hint: Co najmniej 2 znaki, tylko znaki alfanumeryczne i podkreślniki
       title: Niestandardowe emoji
       unlisted: Niewidoczne
@@ -467,8 +461,6 @@ pl:
         nsfw_off: Cofnij NSFW
         nsfw_on: Oznacz jako NSFW
       failed_to_execute: Nie udało się wykonać
-      media:
-        title: Media
       no_media: Bez zawartości multimedialnej
       no_status_selected: Żaden wpis nie został zmieniony, bo żaden nie został wybrany
       title: Wpisy konta
@@ -478,13 +470,11 @@ pl:
       confirmed: Potwierdzone
       expires_in: Wygasa
       last_delivery: Ostatnio doręczono
-      title: WebSub
       topic: Temat
     tags:
       accounts: Konta
       hidden: Ukryte
       hide: Ukryj w katalogu
-      name: Hashtag
       title: Hashtagi
       unhide: Pokazuj w katalogu
       visible: Widoczne
@@ -505,7 +495,6 @@ pl:
       subject: Nowe zgłoszenie na %{instance} (#%{id})
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
-    salutation: "%{name},"
     settings: 'Zmień ustawienia powiadamiania: %{link}'
     view: 'Zobacz:'
     view_profile: Wyświetl profil
@@ -533,9 +522,6 @@ pl:
     migrate_account: Przenieś konto
     migrate_account_html: Jeżeli chcesz skonfigurować przekierowanie z obecnego konta na inne, możesz <a href="%{path}">zrobić to tutaj</a>.
     or_log_in_with: Lub zaloguj się z użyciem
-    providers:
-      cas: CAS
-      saml: SAML
     register: Rejestracja
     registration_closed: "%{instance} nie przyjmuje nowych członków"
     resend_confirmation: Ponownie prześlij instrukcje weryfikacji
@@ -556,7 +542,6 @@ pl:
     title: Śledź %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
       about_x_months: "%{count} miesięcy"
       about_x_years: "%{count} lat"
       almost_x_years: "%{count} lat"
@@ -567,7 +552,6 @@ pl:
       x_days: "%{count} dni"
       x_minutes: "%{count}min"
       x_months: "%{count} miesięcy"
-      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Niezła próba, hakerze! Wprowadzono nieprawidłowe hasło
     confirm_password: Wprowadź aktualne hasło, aby potwierdzić tożsamość
@@ -612,7 +596,6 @@ pl:
       request: Uzyskaj archiwum
       size: Rozmiar
     blocks: Zablokowani
-    csv: CSV
     domain_blocks: Blokady domen
     follows: Śledzeni
     lists: Listy
@@ -764,23 +747,11 @@ pl:
       body: 'Twój wpis został podbity przez %{name}:'
       subject: Twój wpis został podbity przez %{name}
       title: Nowe podbicie
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: Nowsze
     next: Następna
     older: Starsze
     prev: Poprzednia
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Już oddałeś(-aś) głos w tym głosowaniu
@@ -835,40 +806,15 @@ pl:
     activity: Ostatnia aktywność
     browser: Przeglądarka
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: nieznana przeglądarka
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
       otter: Przeglądarka Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Obecna sesja
     description: "%{browser} na %{platform}"
     explanation: Przeglądarki z aktywną sesją Twojego konta.
     ip: Adres IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
       mac: macOS
       other: nieznana platforma
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Unieważnij
     revoke_success: Pomyślnie unieważniono sesję
     title: Sesje
@@ -924,7 +870,6 @@ pl:
       vote: Głosuj
     show_more: Pokaż więcej
     sign_in_to_participate: Zaloguj się, aby udzielić się w tej konwersacji
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Tylko dla śledzących
       private_long: Widoczne tylko dla osób, które Cię śledzą
@@ -942,10 +887,10 @@ pl:
       <h3 id="collect">Jakie informacje zbieramy?</h3>
 
       <ul>
-        <li><em>Podstawowe informacje o koncie</em>: Podczas rejestracji na tym serwerze, możesz zostać poproszony(-a) o wprowadzenie nazwy użytkownika, adresu e-mail i hasła. Możesz także wprowadzić dodatkowe informacje o profilu, takie jak nazwa wyświetlana i biografia oraz wysłać awatar i obraz nagłówka. Nazwa użytkownika, nazwa wyświetlana, biografia, awatar i obraz nagłówka są zawsze widoczne dla wszystkich.</li>
-        <li><em>Wpisy, śledzenie i inne publiczne informacje</em>: Lista osób które śledzisz jest widoczna publicznie, tak jak lista osób, które Cię śledzą. Jeżeli dodasz wpis, data i czas jego utworzenia i aplikacja, z której go wysłano są przechowywane. Wiadomości mogą zawierać załączniki multimedialne, takie jak zdjęcia i filmy. Publiczne i niewidoczne wpisy są dostępne publicznie. Udostępniony wpis również jest widoczny publicznie. Twoje wpisy są dostarczane obserwującym, co oznacza że jego kopie mogą zostać dostarczone i być przechowywane na innych serwerach. Kiedy usuniesz wpis, przestaje być widoczny również dla osób śledzących Cię. „Podbijanie” i dodanie do ulubionych jest zawsze publiczne.</li>
-        <li><em>Wpisy bezpośrednie i tylko dla śledzących</em>: Wszystkie wpisy są przechowywane i przetwarzane na serwerze. Wpisy przeznaczone tylko dla śledzących są widoczne tylko dla nich i osób wspomnianych we wpisie, a wpisy bezpośrednie tylko dla wspomnianych. W wielu przypadkach oznacza to, że ich kopie są dostarczane i przechowywane na innych serwerach. Staramy się ograniczać zasięg tych wpisów wyłącznie do właściwych odbiorców, ale inne serwery mogą tego nie robić. Ważne jest, aby sprawdzać jakich serwerów używają osoby, które Cię śledzą. Możesz aktywować opcję pozwalającą na ręczne akceptowanie i odrzucanie nowych śledzących. <em>Pamiętaj, że właściciele serwerów mogą zobaczyć te wiadomości</em>, a odbiorcy mogą wykonać zrzut ekranu, skopiować lub udostępniać ten wpis. <em>Nie udostępniaj wrażliwych danych z użyciem Mastodona.</em></li>
-        <li><em>Adresy IP i inne metadane</em>: Kiedy zalogujesz się, przechowujemy adres IP użyty w trakcie logowania wraz z nazwą używanej przeglądarki. Wszystkie aktywne sesje możesz zobaczyć (i wygasić) w ustawieniach. Ostatnio używany adres IP jest przechowywany przez nas do 12 miesięcy. Możemy również przechowywać adresy IP wykorzystywane przy każdym działaniu na serwerze.</li>
+      <li><em>Podstawowe informacje o koncie</em>: Podczas rejestracji na tym serwerze, możesz zostać poproszony(-a) o wprowadzenie nazwy użytkownika, adresu e-mail i hasła. Możesz także wprowadzić dodatkowe informacje o profilu, takie jak nazwa wyświetlana i biografia oraz wysłać awatar i obraz nagłówka. Nazwa użytkownika, nazwa wyświetlana, biografia, awatar i obraz nagłówka są zawsze widoczne dla wszystkich.</li>
+      <li><em>Wpisy, śledzenie i inne publiczne informacje</em>: Lista osób które śledzisz jest widoczna publicznie, tak jak lista osób, które Cię śledzą. Jeżeli dodasz wpis, data i czas jego utworzenia i aplikacja, z której go wysłano są przechowywane. Wiadomości mogą zawierać załączniki multimedialne, takie jak zdjęcia i filmy. Publiczne i niewidoczne wpisy są dostępne publicznie. Udostępniony wpis również jest widoczny publicznie. Twoje wpisy są dostarczane obserwującym, co oznacza że jego kopie mogą zostać dostarczone i być przechowywane na innych serwerach. Kiedy usuniesz wpis, przestaje być widoczny również dla osób śledzących Cię. „Podbijanie” i dodanie do ulubionych jest zawsze publiczne.</li>
+      <li><em>Wpisy bezpośrednie i tylko dla śledzących</em>: Wszystkie wpisy są przechowywane i przetwarzane na serwerze. Wpisy przeznaczone tylko dla śledzących są widoczne tylko dla nich i osób wspomnianych we wpisie, a wpisy bezpośrednie tylko dla wspomnianych. W wielu przypadkach oznacza to, że ich kopie są dostarczane i przechowywane na innych serwerach. Staramy się ograniczać zasięg tych wpisów wyłącznie do właściwych odbiorców, ale inne serwery mogą tego nie robić. Ważne jest, aby sprawdzać jakich serwerów używają osoby, które Cię śledzą. Możesz aktywować opcję pozwalającą na ręczne akceptowanie i odrzucanie nowych śledzących. <em>Pamiętaj, że właściciele serwerów mogą zobaczyć te wiadomości</em>, a odbiorcy mogą wykonać zrzut ekranu, skopiować lub udostępniać ten wpis. <em>Nie udostępniaj wrażliwych danych z użyciem Mastodona.</em></li>
+      <li><em>Adresy IP i inne metadane</em>: Kiedy zalogujesz się, przechowujemy adres IP użyty w trakcie logowania wraz z nazwą używanej przeglądarki. Wszystkie aktywne sesje możesz zobaczyć (i wygasić) w ustawieniach. Ostatnio używany adres IP jest przechowywany przez nas do 12 miesięcy. Możemy również przechowywać adresy IP wykorzystywane przy każdym działaniu na serwerze.</li>
       </ul>
 
       <hr class="spacer" />
@@ -955,9 +900,9 @@ pl:
       <p>Zebrane informacje mogą zostać użyte w następujące sposoby:</p>
 
       <ul>
-        <li>Aby dostarczyć podstawową funkcjonalność Mastodona. Możesz wchodzić w interakcje z zawartością tworzoną przez innych tylko gdy jesteś zalogowany. Na przykład, możesz śledzić innych, aby widzieć ich wpisy w dostosowanej osi czasu.</li>
-        <li>Aby wspomóc moderację społeczności, na przykład porównując Twój adres IP ze znanymi, aby rozpoznać próbę obejścia blokady i inne naruszenia.</li>
-        <li>Adres e-mail może zostać wykorzystany, aby wysyłać Ci informacje, powiadomienia o osobach wchodzących w interakcje z tworzoną przez Ciebie zawartością, wysyłających Ci wiadomości, odpowiadać na zgłoszenia i inne żądania lub zapytania.</li>
+      <li>Aby dostarczyć podstawową funkcjonalność Mastodona. Możesz wchodzić w interakcje z zawartością tworzoną przez innych tylko gdy jesteś zalogowany. Na przykład, możesz śledzić innych, aby widzieć ich wpisy w dostosowanej osi czasu.</li>
+      <li>Aby wspomóc moderację społeczności, na przykład porównując Twój adres IP ze znanymi, aby rozpoznać próbę obejścia blokady i inne naruszenia.</li>
+      <li>Adres e-mail może zostać wykorzystany, aby wysyłać Ci informacje, powiadomienia o osobach wchodzących w interakcje z tworzoną przez Ciebie zawartością, wysyłających Ci wiadomości, odpowiadać na zgłoszenia i inne żądania lub zapytania.</li>
       </ul>
 
       <hr class="spacer" />
@@ -973,8 +918,8 @@ pl:
       <p>Staramy się:</p>
 
       <ul>
-        <li>Przechowywać logi zawierające adresy IP używane przy każdym żądaniu do serwera przez nie dłużej niż 90 dni.</li>
-        <li>Przechowywać adresy IP przypisane do użytkowników przez nie dłużej niż 12 miesięcy.</li>
+      <li>Przechowywać logi zawierające adresy IP używane przy każdym żądaniu do serwera przez nie dłużej niż 90 dni.</li>
+      <li>Przechowywać adresy IP przypisane do użytkowników przez nie dłużej niż 12 miesięcy.</li>
       </ul>
 
       <p>Możesz zażądać i pobrać archiwum tworzonej zawartości, wliczając Twoje wpisy, załączniki multimedialne, awatar i zdjęcie nagłówka.</p>
@@ -1023,10 +968,6 @@ pl:
     contrast: Mastodon (Wysoki kontrast)
     default: Mastodon (Ciemny)
     mastodon-light: Mastodon (Jasny)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Aby kontynuować, wprowadź kod wyświetlany przez aplikację uwierzytelniającą
     description_html: Jeśli włączysz <strong>uwierzytelnianie dwuetapowe</strong>, logowanie się będzie wymagało podania tokenu wyświetlonego na Twoim telefonie.

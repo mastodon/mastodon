@@ -4,7 +4,6 @@ hr:
     attributes:
       doorkeeper/application:
         name: Ime
-        redirect_uri: Redirect URI
     errors:
       models:
         doorkeeper/application:
@@ -33,7 +32,6 @@ hr:
         redirect_uri: Koristi jednu liniju po URI
         scopes: Odvoji scopes sa razmacima. Ostavi prazninu kako bi koristio zadane scopes.
       index:
-        callback_url: Callback URL
         name: Ime
         new: Nova Aplikacija
         title: Tvoje aplikacije
@@ -43,7 +41,6 @@ hr:
         actions: Akcije
         application_id: Id Aplikacije
         callback_urls: Callback urls
-        scopes: Scopes
         secret: Tajna
         title: 'Aplikacija: %{name}'
     authorizations:
@@ -56,8 +53,6 @@ hr:
         able_to: Moći će
         prompt: Aplikacija %{client_name} je zatražila pristup tvom računu
         title: Traži se autorizacija
-      show:
-        title: Copy this authorization code and paste it to the application.
     authorized_applications:
       buttons:
         revoke: Odbij
@@ -66,15 +61,11 @@ hr:
       index:
         application: Aplikacija
         created_at: Ovlašeno
-        date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Scopes
         title: Tvoje autorizirane aplikacije
     errors:
       messages:
         access_denied: Vlasnik resursa / autorizacijski server je odbio zahtjev.
-        credential_flow_not_configured: Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
         invalid_client: Autentifikacija klijenta nije uspjela zbog nepoznatog klijenta, neuključene autentifikacije od strane klijenta, ili nepodržane metode autentifikacije.
-        invalid_grant: The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
         invalid_redirect_uri: The redirect uri included nije valjan.
         invalid_request: Zahtjevu nedostaje traženi parametar, uključuje nepodržanu vrijednost parametra, ili je na neki drugi način neispravno formiran.
         invalid_resource_owner: The provided resource owner credentials nisu valjani, ili vlasnik resursa ne može biti nađen
@@ -83,7 +74,6 @@ hr:
           expired: Pristupni token je istekao
           revoked: Pristupni token je odbijen
           unknown: Pristupni token nije valjan
-        resource_owner_authenticator_not_configured: Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.
         server_error: Autorizacijski server naišao je na neočekivani uvjet, što ga je onemogućilo da ispuni zahtjev.
         temporarily_unavailable: Autorizacijski server trenutno nije u mogućnosti  izvesti zahtjev zbog privremenog preopterećenja ili održavanja servera.
         unauthorized_client: Klijent nije ovlašten izvesti zahtjev koristeći ovu metodu.
@@ -104,7 +94,6 @@ hr:
       admin:
         nav:
           applications: Aplikacije
-          oauth2_provider: OAuth2 Provider
       application:
         title: Traži se OAuth autorizacija
     scopes:

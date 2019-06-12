@@ -4,20 +4,25 @@ ar:
     about_hashtag_html: هذه تبويقات متاحة للجمهور تحتوي على الكلمات الدلالية <strong>#%{hashtag}</strong>. يمكنك التفاعل معها إن كان لديك حساب في أي مكان على الفديفرس.
     about_mastodon_html: ماستدون شبكة إجتماعية مبنية على أسُس بروتوكولات برمجيات الويب الحرة و مفتوحة المصدر. و هو لامركزي تمامًا كالبريد الإلكتروني.
     about_this: عن مثيل الخادوم هذا
+    active_count_after: نشط
     administered_by: 'يُديره :'
     api: واجهة برمجة التطبيقات
     apps: تطبيقات الأجهزة المحمولة
     contact: للتواصل معنا
     contact_missing: لم يتم تعيينه
     contact_unavailable: غير متوفر
+    discover_users: اكتشف مستخدِمين
     documentation: الدليل
     extended_description_html: |
       <h3>مكان جيد للقواعد</h3>
       <p>لم يتم بعد إدخال الوصف الطويل.</p>
     generic_description: "%{domain} هو سيرفر من بين سيرفرات الشبكة"
+    get_apps: جرّب تطبيقا على الموبايل
     hosted_on: ماستدون مُستضاف على %{domain}
     learn_more: تعلم المزيد
     privacy_policy: سياسة الخصوصية
+    see_whats_happening: اطّلع على ما يجري
+    server_stats: 'احصائيات الخادم:'
     source_code: الشفرة المصدرية
     status_count_after:
       few: منشورات
@@ -27,6 +32,7 @@ ar:
       two: منشورات
       zero: منشورات
     status_count_before: نشروا
+    tagline: اتبع أصدقائك وصديقاتك واكتشف آخرين وأخريات
     terms: شروط الخدمة
     user_count_after:
       few: مستخدمين
@@ -73,6 +79,7 @@ ar:
       admin: المدير
       bot: روبوت
       moderator: مُشرِف
+    unavailable: الحساب غير متوفر
     unfollow: إلغاء المتابعة
   admin:
     account_actions:
@@ -129,15 +136,18 @@ ar:
       moderation:
         active: نشِط
         all: الكل
+        pending: قيد المراجعة
         silenced: تم كتمه
         suspended: مُجَمَّد
         title: الإشراف
       moderation_notes: ملاحظات الإشراف
       most_recent_activity: آخر نشاط حديث
       most_recent_ip: أحدث عنوان إيبي
+      no_account_selected: لم يطرأ أي تغيير على أي حساب بما أنه لم يتم اختيار أي واحد
       no_limits_imposed: مِن دون حدود مشروطة
       not_subscribed: غير مشترك
       outbox_url: رابط صندوق الصادر
+      pending: في انتظار المراجعة
       perform_full_suspension: تعليق الحساب
       profile_url: رابط الملف الشخصي
       promote: ترقية
@@ -145,6 +155,8 @@ ar:
       public: عمومي
       push_subscription_expires: انتهاء الاشتراك ”PuSH“
       redownload: تحديث الصفحة الشخصية
+      reject: ارفض
+      reject_all: ارفض الكل
       remove_avatar: حذف الصورة الرمزية
       remove_header: حذف الرأسية
       resend_confirmation:
@@ -171,6 +183,7 @@ ar:
       statuses: المنشورات
       subscribe: اشترك
       suspended: تم تعليقه
+      time_in_queue: في قائمة الانتظار %{time}
       title: الحسابات
       unconfirmed_email: البريد الإلكتروني غير مؤكد
       undo_silenced: رفع الصمت
@@ -246,6 +259,7 @@ ar:
       feature_profile_directory: دليل الحسابات
       feature_registrations: التسجيلات
       feature_relay: المُرحّل الفديرالي
+      feature_timeline_preview: معاينة الخيط الزمني
       features: الميّزات
       hidden_service: الفيديرالية مع الخدمات الخفية
       open_reports: فتح الشكاوي
@@ -334,6 +348,8 @@ ar:
         expired: المنتهي صلاحيتها
         title: التصفية
       title: الدعوات
+    pending_accounts:
+      title: الحسابات المعلقة (%{count})
     relays:
       add_new: إضافة مُرحّل جديد
       delete: حذف
@@ -416,6 +432,11 @@ ar:
         min_invite_role:
           disabled: لا أحد
           title: المستخدِمون المصرح لهم لإرسال الدعوات
+      registrations_mode:
+        modes:
+          none: لا أحد يمكنه إنشاء حساب
+          open: يمكن للجميع إنشاء حساب
+        title: طريقة إنشاء الحسابات
       show_known_fediverse_at_about_page:
         desc_html: عند التثبت ، سوف تظهر toots من جميع fediverse المعروفة على عرض مسبق. وإلا فإنه سيعرض فقط toots المحلية.
         title: إظهار الفيديفرس الموحَّد في خيط المُعايَنة
@@ -460,7 +481,6 @@ ar:
       confirmed: مؤكَّد
       expires_in: تنتهي مدة صلاحيتها في
       last_delivery: آخر إيداع
-      title: WebSub
       topic: الموضوع
     tags:
       accounts: الحسابات
@@ -478,15 +498,20 @@ ar:
       edit_preset: تعديل نموذج التحذير
       title: إدارة نماذج التحذير
   admin_mailer:
+    new_pending_account:
+      subject: حساب جديد في انتظار مراجعة على %{instance} (%{username})
     new_report:
       body: قام %{reporter} بالإبلاغ عن %{target}
       body_remote: أبلغ شخص ما من %{domain} عن %{target}
       subject: تقرير جديد ل%{instance} (#%{id})
+  appearance:
+    advanced_web_interface: واجهة الويب المتقدمة
+    confirmation_dialogs: نوافذ التأكيد
+    sensitive_content: محتوى حساس
   application_mailer:
     notification_preferences: تعديل خيارات البريد الإلكتروني
     salutation: "%{name}،"
     settings: 'تغيير تفضيلات البريد الإلكتروني : %{link}'
-    view: 'View:'
     view_profile: عرض الملف الشخصي
     view_status: عرض المنشور
   applications:
@@ -498,7 +523,9 @@ ar:
     warning: كن حذرا مع هذه البيانات. لا تقم أبدا بمشاركتها مع الآخَرين !
     your_token: رمز نفاذك
   auth:
+    apply_for_account: اطلب دعوة
     change_password: الكلمة السرية
+    checkbox_agreement_html: أوافق على <a href="%{rules_path}" target="_blank">قواعد الخادم</a> و <a href="%{terms_path}" target="_blank">شروط الخدمة</a>
     confirm_email: تأكيد عنوان البريد الإلكتروني
     delete_account: حذف حساب
     delete_account_html: إن كنت ترغب في حذف حسابك يُمكنك <a href="%{path}">المواصلة هنا</a>. سوف يُطلَبُ منك التأكيد قبل الحذف.
@@ -510,14 +537,13 @@ ar:
     migrate_account: الإنتقال إلى حساب آخر
     migrate_account_html: إن كنت ترغب في تحويل هذا الحساب نحو حساب آخَر، يُمكِنُك <a href="%{path}">إعداده هنا</a>.
     or_log_in_with: أو قم بتسجيل الدخول بواسطة
-    providers:
-      cas: CAS
-      saml: SAML
     register: إنشاء حساب
+    registration_closed: لا يقبل %{instance} استقبال أعضاء جدد
     resend_confirmation: إعادة إرسال تعليمات التأكيد
     reset_password: إعادة تعيين كلمة المرور
     security: الأمان
     set_new_password: إدخال كلمة مرور جديدة
+    trouble_logging_in: هل صادفتكم مشكلة في الولوج؟
   authorize_follow:
     already_following: أنت تتابع بالفعل هذا الحساب
     error: يا للأسف، وقع هناك خطأ إثر عملية البحث عن الحساب عن بعد
@@ -573,6 +599,8 @@ ar:
       content: نحن متأسفون، لقد حدث خطأ ما مِن جانبنا.
       title: هذه الصفحة خاطئة
     noscript_html: يرجى تفعيل الجافا سكريبت لاستخدام تطبيق الويب لماستدون، أو عِوض ذلك قوموا بتجريب إحدى <a href="%{apps_path}">التطبيقات الأصلية</a> الدّاعمة لماستدون على منصّتكم.
+  existing_username_validator:
+    not_found_multiple: تعذر العثور على %{usernames}
   exports:
     archive_takeout:
       date: التاريخ
@@ -582,7 +610,6 @@ ar:
       request: طلب نسخة لحسابك
       size: الحجم
     blocks: قمت بحظر
-    csv: CSV
     domain_blocks: النطاقات المحظورة
     follows: أنت تتبع
     lists: القوائم
@@ -611,8 +638,10 @@ ar:
     more: المزيد …
     resources: الموارد
   generic:
+    all: الكل
     changes_saved_msg: تم حفظ التعديلات بنجاح !
     copy: نسخ
+    order_by: ترتيب بحسب
     save_changes: حفظ التغييرات
     validation_errors:
       few: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
@@ -621,6 +650,14 @@ ar:
       other: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
       two: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
       zero: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
+  identity_proofs:
+    active: نشط
+    i_am_html: أنا %{username} على %{service}.
+    identity: الهوية
+    inactive: ليس نشطا
+    publicize_checkbox: 'وقم بتبويق هذا:'
+    status: حالة التحقق
+    view_proof: عرض الدليل
   imports:
     modes:
       merge: دمج
@@ -723,20 +760,30 @@ ar:
       decimal_units:
         format: "%n%u"
         units:
-          billion: B
-          million: M
           quadrillion: كواد
           thousand: ألف
-          trillion: T
-          unit: ''
   pagination:
     newer: الأحدَث
     next: التالي
     older: الأقدَم
     prev: السابق
     truncate: و
+  polls:
+    errors:
+      expired: لقد انتهى استطلاع الرأي
   preferences:
     other: إعدادات أخرى
+    posting_defaults: التفضيلات الافتراضية لنشر التبويقات
+    public_timelines: الخيوط الزمنية العامة
+  relationships:
+    activity: نشاط الحساب
+    last_active: آخر نشاط
+    most_recent: الأحدث
+    moved: هاجر
+    primary: رئيسي
+    relationship: العلاقة
+    remove_selected_follows: الغي متابعة المستخدمين الذين اخترتهم
+    status: حالة الحساب
   remote_follow:
     acct: قم بإدخال عنوان حسابك username@domain الذي من خلاله تود النشاط
     missing_resource: تعذر العثور على رابط التحويل المطلوب الخاص بحسابك
@@ -799,16 +846,23 @@ ar:
     revoke_success: تم إبطال الجلسة بنجاح
     title: الجلسات
   settings:
+    account: الحساب
+    account_settings: اعدادات الحساب
+    appearance: المظهر
     authorized_apps: التطبيقات المرخص لها
     back: عودة إلى ماستدون
     delete: حذف الحسابات
     development: التطوير
     edit_profile: تعديل الملف الشخصي
     export: تصدير البيانات
+    identity_proofs: دلائل الهوية
     import: إستيراد
+    import_and_export: استيراد وتصدير
     migrate: تهجير الحساب
     notifications: الإخطارات
     preferences: التفضيلات
+    profile: الملف الشخصي
+    relationships: المتابِعون والمتابَعون
     two_factor_authentication: المُصادقة بخُطوَتَيْن
   statuses:
     attached:
@@ -844,6 +898,8 @@ ar:
       ownership: لا يمكن تدبيس تبويق نشره شخص آخر
       private: لا يمكن تدبيس تبويق لم يُنشر للعامة
       reblog: لا يمكن تثبيت ترقية
+    poll:
+      vote: صوّت
     show_more: أظهر المزيد
     sign_in_to_participate: قم بتسجيل الدخول للمشاركة في هذه المحادثة
     title: '%{name} : "%{quote}"'
@@ -864,10 +920,6 @@ ar:
     contrast: تباين عالٍ
     default: ماستدون
     mastodon-light: ماستدون (فاتح)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: قم بإدخال الرمز المُوَلّد عبر تطبيق المصادقة للتأكيد
     description_html: في حال تفعيل <strong>المصادقة بخطوتين </strong>، فتسجيل الدخول يتطلب منك أن يكون بحوزتك هاتفك النقال قصد توليد الرمز الذي سيتم إدخاله.

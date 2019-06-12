@@ -7,7 +7,6 @@ eo:
     active_count_after: aktiva
     active_footnote: Monate Aktivaj Uzantoj (MAU)
     administered_by: 'Administrata de:'
-    api: API
     apps: Poŝtelefonaj aplikaĵoj
     apps_platforms: Uzu Mastodon ĉe iOS, Android kaj aliajn platformojn
     browse_directory: Esplori profilujo kaj filtri per interesoj
@@ -68,6 +67,7 @@ eo:
       admin: Administranto
       bot: Roboto
       moderator: Kontrolanto
+    unavailable: Profilo ne disponebla
     unfollow: Ne plu sekvi
   admin:
     account_actions:
@@ -132,6 +132,7 @@ eo:
       moderation_notes: Kontrolaj notoj
       most_recent_activity: Lasta ago
       most_recent_ip: Lasta IP
+      no_account_selected: Neniu konto estis ŝanĝita ĉar neniu estis selektita
       no_limits_imposed: Neniu limito trudita
       not_subscribed: Ne abonita
       outbox_url: Elira URL
@@ -491,6 +492,9 @@ eo:
       body: "%{reporter} signalis %{target}"
       body_remote: Iu de %{domain} signalis %{target}
       subject: Nova signalo por %{instance} (#%{id})
+  appearance:
+    advanced_web_interface: Altnivela retpaĝa interfaco
+    sensitive_content: Tikla enhavo
   application_mailer:
     notification_preferences: Ŝanĝi retmesaĝajn preferojn
     salutation: "%{name},"
@@ -655,8 +659,6 @@ eo:
     i_am_html: Mi estas %{username} en %{service}.
     identity: Identeco
     inactive: Malaktiva
-    publicize_checkbox: 'And toot this:'
-    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
     status: Confirmo statuso
     view_proof: Vidi pruvo
   imports:
@@ -754,7 +756,6 @@ eo:
           quadrillion: Dd
           thousand: m
           trillion: Dn
-          unit: " "
   pagination:
     newer: Pli nova
     next: Sekva
@@ -774,18 +775,8 @@ eo:
   preferences:
     other: Aliaj aferoj
   relationships:
-    activity: Account activity
-    dormant: Dormant
-    last_active: Last active
-    most_recent: Most recent
-    moved: Moved
-    mutual: Mutual
-    primary: Primary
-    relationship: Relationship
-    remove_selected_domains: Remove all followers from the selected domains
-    remove_selected_followers: Remove selected followers
-    remove_selected_follows: Unfollow selected users
-    status: Account status
+    dormant: Dormanta
+    moved: Moviĝita
   remote_follow:
     acct: Enmetu vian uzantnomo@domajno de kie vi volas agi
     missing_resource: La URL de plusendado ne estis trovita
@@ -835,7 +826,6 @@ eo:
     current_session: Nuna seanco
     description: "%{browser} en %{platform}"
     explanation: Ĉi tiuj estas la retumiloj nun ensalutintaj al via Mastodon-konto.
-    ip: IP
     platforms:
       adobe_air: Adobe Air
       android: Android
@@ -853,6 +843,9 @@ eo:
     revoke_success: Seanco sukcese malvalidigita
     title: Seancoj
   settings:
+    account: Konto
+    account_settings: Agordoj de konto
+    appearance: Apero
     authorized_apps: Rajtigitaj aplikaĵoj
     back: Reveni al Mastodon
     delete: Konta forigo
@@ -860,12 +853,13 @@ eo:
     edit_profile: Redakti profilon
     export: Eksporti datumojn
     featured_tags: Elstarigitaj kradvortoj
-    identity_proofs: Identity proofs
     import: Importi
+    import_and_export: Alporto kaj elporto
     migrate: Konta migrado
     notifications: Sciigoj
     preferences: Preferoj
-    relationships: Follows and followers
+    profile: Profilo
+    relationships: Sekvatoj kaj sekvantoj
     two_factor_authentication: Dufaktora aŭtentigo
   statuses:
     attached:
@@ -896,7 +890,7 @@ eo:
       vote: Voĉdoni
     show_more: Montri pli
     sign_in_to_participate: Ensaluti por partopreni en la konversacio
-    title: '%{name}: "%{quote}"'
+    title: "%{name}: “%{quote}”"
     visibilities:
       private: Montri nur al sekvantoj
       private_long: Montri nur al sekvantoj

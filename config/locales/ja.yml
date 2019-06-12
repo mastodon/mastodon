@@ -7,14 +7,12 @@ ja:
     active_count_after: 人アクティブ
     active_footnote: 月間アクティブユーザー数 (MAU)
     administered_by: '管理者:'
-    api: API
     apps: アプリ
     apps_platforms: iOSやAndroidなど、各種環境から利用できます
     browse_directory: ディレクトリから気になる人を探しましょう
     browse_public_posts: Mastodonの公開ライブストリームをご覧ください
     contact: 連絡先
     contact_missing: 未設定
-    contact_unavailable: N/A
     discover_users: ユーザーを見つける
     documentation: ドキュメント
     extended_description_html: |
@@ -23,20 +21,16 @@ ja:
     federation_hint_html: "%{instance} のアカウントひとつでどんなMastodon互換サーバーのユーザーでもフォローできるでしょう。"
     generic_description: "%{domain} は、Mastodon サーバーの一つです"
     get_apps: モバイルアプリを試す
-    hosted_on: Mastodon hosted on %{domain}
     learn_more: もっと詳しく
     privacy_policy: プライバシーポリシー
     see_whats_happening: やりとりを見てみる
     server_stats: 'サーバー統計:'
     source_code: ソースコード
     status_count_after:
-      one: トゥート
       other: トゥート
     status_count_before: トゥート数
-    tagline: Follow friends and discover new ones
     terms: 利用規約
     user_count_after:
-      one: 人
       other: 人
     user_count_before: ユーザー数
     what_is_mastodon: Mastodon とは？
@@ -44,7 +38,6 @@ ja:
     choices_html: "%{name} によるおすすめ:"
     follow: フォロー
     followers:
-      one: フォロワー
       other: フォロワー
     following: フォロー中
     joined: "%{date} に登録"
@@ -59,15 +52,10 @@ ja:
     pin_errors:
       following: おすすめしたい人はあなたが既にフォローしている必要があります
     posts:
-      one: トゥート
       other: トゥート
     posts_tab_heading: トゥート
     posts_with_replies: トゥートと返信
     reserved_username: このユーザー名は予約されています
-    roles:
-      admin: Admin
-      bot: Bot
-      moderator: Mod
     unavailable: プロフィールは利用できません
     unfollow: フォロー解除
   admin:
@@ -109,12 +97,9 @@ ja:
       enabled: 有効
       feed_url: フィードURL
       followers: フォロワー数
-      followers_url: Followers URL
       follows: フォロー数
       header: ヘッダー
-      inbox_url: Inbox URL
       invited_by: 招待した人
-      ip: IP
       joined: 登録日
       location:
         all: すべて
@@ -137,7 +122,6 @@ ja:
       no_account_selected: 何も選択されていないため、変更されていません
       no_limits_imposed: 制限なし
       not_subscribed: 購読していない
-      outbox_url: Outbox URL
       pending: 承認待ち
       perform_full_suspension: 活動を完全に停止させる
       profile_url: プロフィールURL
@@ -163,9 +147,7 @@ ja:
         moderator: モデレーター
         staff: スタッフ
         user: ユーザー
-      salmon_url: Salmon URL
       search: 検索
-      shared_inbox_url: Shared inbox URL
       show:
         created_reports: このアカウントで作られた通報
         targeted_reports: このアカウントについての通報
@@ -182,7 +164,6 @@ ja:
       unsubscribe: 購読の解除
       username: ユーザー名
       warn: 警告
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
@@ -291,7 +272,6 @@ ja:
         suspend: 停止中
       show:
         affected_accounts:
-          one: データベース中の一つのアカウントに影響します
           other: データベース中の%{count}個のアカウントに影響します
         retroactive:
           silence: このドメインの既存の影響するアカウントのサイレンスを戻す
@@ -316,7 +296,6 @@ ja:
       by_domain: ドメイン
       delivery_available: 配送可能
       known_accounts:
-        one: 既知のアカウント数 %{count}
         other: 既知のアカウント数 %{count}
       moderation:
         all: すべて
@@ -474,7 +453,6 @@ ja:
       confirmed: 確認済み
       expires_in: 期限
       last_delivery: 最終配送
-      title: WebSub
       topic: トピック
     tags:
       accounts: アカウント
@@ -535,9 +513,6 @@ ja:
     migrate_account: 別のアカウントに引っ越す
     migrate_account_html: 引っ越し先を明記したい場合は<a href="%{path}">こちら</a>で設定できます。
     or_log_in_with: または次のサービスでログイン
-    providers:
-      cas: CAS
-      saml: SAML
     register: 登録する
     registration_closed: "%{instance} は現在、新規登録停止中です"
     resend_confirmation: 確認メールを再送する
@@ -586,7 +561,6 @@ ja:
     explore_mastodon: "%{title}を探索"
     how_to_enable: あなたはディレクトリへの掲載を選択していません。下記から選択できます。ハッシュタグカラムに掲載するにはプロフィール文にハッシュタグを使用してください。
     people:
-      one: "%{count} 人"
       other: "%{count} 人"
   errors:
     '403': このページを表示する権限がありません。
@@ -612,7 +586,6 @@ ja:
       request: アーカイブをリクエスト
       size: 容量
     blocks: ブロック
-    csv: CSV
     domain_blocks: 非表示にしたドメイン
     follows: フォロー
     lists: リスト
@@ -649,7 +622,6 @@ ja:
     order_by: 並び順
     save_changes: 変更を保存
     validation_errors:
-      one: エラーが発生しました！ 以下のエラーを確認してください
       other: エラーが発生しました！ 以下の%{count}個のエラーを確認してください
   html_validator:
     invalid_markup: '無効なHTMLマークアップが含まれています: %{error}'
@@ -664,11 +636,8 @@ ja:
         verification_failed: KeybaseはこのトークンをKeybaseユーザー%{kb_username}の署名として認識しませんでした。Keybaseから再試行してください。
       wrong_user: "%{current}としてログインしている間%{proving}の証明を作成することはできません。%{proving}としてログインし、もう一度やり直してください。"
     explanation_html: ここではKeybaseのような他のサービスのアカウントと暗号化し関連づけることができます。これにより他の人が暗号化されたメッセージを送信したり、その内容を信用できるようになります。
-    i_am_html: I am %{username} on %{service}.
-    identity: Identity
     inactive: 非アクティブ
     publicize_checkbox: 'そしてこれをトゥートします:'
-    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
     status: 認証状態
     view_proof: 証明を表示
   imports:
@@ -700,7 +669,6 @@ ja:
     generate: 作成
     invited_by: '次の人に招待されました:'
     max_uses:
-      one: '1'
       other: "%{count}"
     max_uses_prompt: 無制限
     prompt: リンクを生成・共有してこのサーバーへの新規登録を受け付けることができます
@@ -728,10 +696,8 @@ ja:
       body: '最後のログイン（%{since}）からの出来事:'
       mention: "%{name} さんがあなたに返信しました:"
       new_followers_summary:
-        one: また、離れている間に新たなフォロワーを獲得しました！
         other: また、離れている間に%{count} 人の新たなフォロワーを獲得しました！
       subject:
-        one: "新しい1件の通知 \U0001F418"
         other: "新しい%{count}件の通知 \U0001F418"
       title: 不在の間に…
     favourite:
@@ -756,22 +722,11 @@ ja:
       body: "%{name} さんにブーストされた、あなたのトゥートがあります:"
       subject: "%{name} さんにブーストされました"
       title: 新たなブースト
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
   pagination:
     newer: 新しいトゥート
     next: 次
     older: 以前のトゥート
     prev: 前
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: このアンケートには投票済みです
@@ -783,7 +738,6 @@ ja:
       too_few_options: は複数必要です
       too_many_options: は%{max}個までです
   preferences:
-    other: その他
     posting_defaults: デフォルトの投稿設定
     public_timelines: 公開タイムライン
   relationships:
@@ -828,40 +782,9 @@ ja:
     activity: 最後のアクティビティ
     browser: ブラウザ
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: 不明なブラウザ
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: 現在のセッション
-    description: "%{browser} on %{platform}"
     explanation: あなたのMastodonアカウントに現在ログインしているウェブブラウザの一覧です。
-    ip: IP
-    platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
-      other: 不明なプラットフォーム
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: 削除
     revoke_success: セッションを削除しました
     title: セッション
@@ -876,7 +799,6 @@ ja:
     edit_profile: プロフィールを編集
     export: データのエクスポート
     featured_tags: 注目のハッシュタグ
-    identity_proofs: Identity proofs
     import: データのインポート
     import_and_export: インポート・エクスポート
     migrate: アカウントの引っ越し
@@ -889,15 +811,12 @@ ja:
     attached:
       description: '添付: %{attached}'
       image:
-        one: "%{count} 枚の画像"
         other: "%{count} 枚の画像"
       video:
-        one: "%{count} 本の動画"
         other: "%{count} 本の動画"
     boosted_from_html: "%{acct_link} からブースト"
     content_warning: '閲覧注意: %{warning}'
     disallowed_hashtags:
-      one: '許可されていないハッシュタグが含まれています: %{tags}'
       other: '許可されていないハッシュタグが含まれています: %{tags}'
     language_detection: 自動検出
     open_in_web: Webで開く
@@ -909,12 +828,10 @@ ja:
       reblog: ブーストを固定することはできません
     poll:
       total_votes:
-        one: "%{count}票"
         other: "%{count}票"
       vote: 投票
     show_more: もっと見る
     sign_in_to_participate: ログインして会話に参加
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: フォロワー限定
       private_long: フォロワーにのみ表示されます
@@ -932,10 +849,10 @@ ja:
       <h3 id="collect">どのような情報を収集しますか？</h3>
 
       <ul>
-        <li><em>基本的なアカウント情報</em>: 当サイトに登録すると、ユーザー名・メールアドレス・パスワードの入力を求められることがあります。また表示名や自己紹介・プロフィール画像・ヘッダー画像といった追加のプロフィールを登録できます。ユーザー名・表示名・自己紹介・プロフィール画像・ヘッダー画像は常に公開されます。</li>
-        <li><em>投稿・フォロー・その他公開情報</em>: フォローしているユーザーの一覧は一般公開されます。フォロワーも同様です。メッセージを投稿する際、日時だけでなく投稿に使用したアプリケーション名も記録されます。メッセージには写真や動画といった添付メディアを含むことがあります。「公開」や「未収載」の投稿は一般公開されます。プロフィールに投稿を載せるとそれもまた公開情報となります。投稿はフォロワーに配信されます。場合によっては他のサーバーに配信され、そこにコピーが保存されることを意味します。投稿を削除した場合も同様にフォロワーに配信されます。他の投稿をリブログやお気に入り登録する行動は常に公開されます。</li>
-        <li><em>「ダイレクト」と「フォロワー限定」投稿</em>: すべての投稿はサーバーに保存され、処理されます。「フォロワー限定」投稿はフォロワーと投稿に書かれたユーザーに配信されます。「ダイレクト」投稿は投稿に書かれたユーザーにのみ配信されます。場合によっては他のサーバーに配信され、そこにコピーが保存されることを意味します。私たちはこれらの閲覧を一部の許可された者に限定するよう誠意を持って努めます。しかし他のサーバーにおいても同様に扱われるとは限りません。したがって、相手の所属するサーバーを吟味することが重要です。設定で新しいフォロワーの承認または拒否を手動で行うよう切り替えることもできます。<em>サーバー管理者は「ダイレクト」や「フォロワー限定」投稿も閲覧する可能性があることを忘れないでください。</em>また受信者がスクリーンショットやコピー、もしくは共有する可能性があることを忘れないでください。<em>いかなる危険な情報もMastodon上で共有しないでください。</em></li>
-        <li><em>IPアドレスやその他メタデータ</em>: ログインする際IPアドレスだけでなくブラウザーアプリケーション名を記録します。ログインしたセッションはすべてユーザー設定で見直し、取り消すことができます。使用されている最新のIPアドレスは最大12ヵ月間保存されます。またサーバーへのIPアドレスを含むすべてのリクエストのログを保持することがあります。</li>
+      <li><em>基本的なアカウント情報</em>: 当サイトに登録すると、ユーザー名・メールアドレス・パスワードの入力を求められることがあります。また表示名や自己紹介・プロフィール画像・ヘッダー画像といった追加のプロフィールを登録できます。ユーザー名・表示名・自己紹介・プロフィール画像・ヘッダー画像は常に公開されます。</li>
+      <li><em>投稿・フォロー・その他公開情報</em>: フォローしているユーザーの一覧は一般公開されます。フォロワーも同様です。メッセージを投稿する際、日時だけでなく投稿に使用したアプリケーション名も記録されます。メッセージには写真や動画といった添付メディアを含むことがあります。「公開」や「未収載」の投稿は一般公開されます。プロフィールに投稿を載せるとそれもまた公開情報となります。投稿はフォロワーに配信されます。場合によっては他のサーバーに配信され、そこにコピーが保存されることを意味します。投稿を削除した場合も同様にフォロワーに配信されます。他の投稿をリブログやお気に入り登録する行動は常に公開されます。</li>
+      <li><em>「ダイレクト」と「フォロワー限定」投稿</em>: すべての投稿はサーバーに保存され、処理されます。「フォロワー限定」投稿はフォロワーと投稿に書かれたユーザーに配信されます。「ダイレクト」投稿は投稿に書かれたユーザーにのみ配信されます。場合によっては他のサーバーに配信され、そこにコピーが保存されることを意味します。私たちはこれらの閲覧を一部の許可された者に限定するよう誠意を持って努めます。しかし他のサーバーにおいても同様に扱われるとは限りません。したがって、相手の所属するサーバーを吟味することが重要です。設定で新しいフォロワーの承認または拒否を手動で行うよう切り替えることもできます。<em>サーバー管理者は「ダイレクト」や「フォロワー限定」投稿も閲覧する可能性があることを忘れないでください。</em>また受信者がスクリーンショットやコピー、もしくは共有する可能性があることを忘れないでください。<em>いかなる危険な情報もMastodon上で共有しないでください。</em></li>
+      <li><em>IPアドレスやその他メタデータ</em>: ログインする際IPアドレスだけでなくブラウザーアプリケーション名を記録します。ログインしたセッションはすべてユーザー設定で見直し、取り消すことができます。使用されている最新のIPアドレスは最大12ヵ月間保存されます。またサーバーへのIPアドレスを含むすべてのリクエストのログを保持することがあります。</li>
       </ul>
 
       <hr class="spacer" />
@@ -945,9 +862,9 @@ ja:
       <p>収集した情報は次の用途に使用されることがあります:</p>
 
       <ul>
-        <li>Mastodonのコア機能の提供: ログインしている間にかぎり他の人たちと投稿を通じて交流することができます。例えば自分専用のホームタイムラインで投稿をまとめて読むために他の人たちをフォローできます。</li>
-        <li>コミュニティ維持の補助: 例えばIPアドレスを既知のものと比較し、BAN回避目的の複数登録者やその他違反者を判別します。</li>
-        <li>提供されたメールアドレスはお知らせの送信・投稿に対するリアクションやメッセージ送信の通知・お問い合わせやその他要求や質問への返信に使用されることがあります。</li>
+      <li>Mastodonのコア機能の提供: ログインしている間にかぎり他の人たちと投稿を通じて交流することができます。例えば自分専用のホームタイムラインで投稿をまとめて読むために他の人たちをフォローできます。</li>
+      <li>コミュニティ維持の補助: 例えばIPアドレスを既知のものと比較し、BAN回避目的の複数登録者やその他違反者を判別します。</li>
+      <li>提供されたメールアドレスはお知らせの送信・投稿に対するリアクションやメッセージ送信の通知・お問い合わせやその他要求や質問への返信に使用されることがあります。</li>
       </ul>
 
       <hr class="spacer" />
@@ -963,8 +880,8 @@ ja:
       <p>私たちは次のように誠意を持って努めます:</p>
 
       <ul>
-        <li>当サイトへのIPアドレスを含むすべての要求に対するサーバーログを90日以内のできるかぎりの間保持します。</li>
-        <li>登録されたユーザーに関連付けられたIPアドレスを12ヵ月以内の間保持します。</li>
+      <li>当サイトへのIPアドレスを含むすべての要求に対するサーバーログを90日以内のできるかぎりの間保持します。</li>
+      <li>登録されたユーザーに関連付けられたIPアドレスを12ヵ月以内の間保持します。</li>
       </ul>
 
       <p>あなたは投稿・添付メディア・プロフィール画像・ヘッダー画像を含む自身のデータのアーカイブを要求し、ダウンロードすることができます。</p>
