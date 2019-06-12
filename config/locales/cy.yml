@@ -451,6 +451,8 @@ cy:
         modes:
           approved: Mae angen cymeradwyaeth ar gyfer cofrestru
           none: Ni all unrhyw un cofrestru
+          open: Gall unrhyw un cofrestru
+        title: Modd cofrestriadau
       show_known_fediverse_at_about_page:
         desc_html: Wedi'i ddewis, bydd yn dangos rhagolwg o dŵtiau o'r holl ffedysawd. Fel arall bydd ond yn dangos tŵtiau lleol.
         title: Dangos ffedysawd hysbys ar ragolwg y ffrwd
@@ -495,6 +497,7 @@ cy:
       confirmed: Wedi'i gadarnhau
       expires_in: Dod i ben ymhen
       last_delivery: Danfoniad diwethaf
+      title: WebSub
       topic: Pwnc
     tags:
       accounts: Cyfrifon
@@ -512,12 +515,22 @@ cy:
       edit_preset: Golygu rhagosodiad rhybudd
       title: Rheoli rhagosodiadau rhybudd
   admin_mailer:
+    new_pending_account:
+      body: Mae manylion y cyfrif newydd yn isod. Gallwch cymeradwyo neu wrthod y ceisiad hon.
+      subject: Cyfrif newydd i fynu ar gyfer adolygiad ar %{instance} (%{username})
     new_report:
       body: "Mae %{reporter} wedi cwyno am %{target}"
       body_remote: Mae rhywun o %{domain} wedi cwyno am %{target}
       subject: 'Cwyn newydd am %{instance} {#%{id}}'
+  appearance:
+    advanced_web_interface: Rhyngwyneb gwe uwch
+    advanced_web_interface_hint: 'Os hoffech gwneud defnydd o gyd o''ch lled sgrin, mae''r rhyngwyneb gwe uwch yn gadael i chi ffurfweddu sawl colofn wahanol i weld cymaint o wybodaeth â hoffech: Catref, hysbysiadau, llinell amser y ffedysawd, unrhyw nifer o rhestrau ac hashnodau.'
+    animations_and_accessibility: Animeiddiau ac hygyrchedd
+    confirmation_dialogs: Deialog cadarnhau
+    sensitive_content: Cynnwys sensitif
   application_mailer:
     notification_preferences: Newid gosodiadau e-bost
+    salutation: "%{name},"
     settings: 'Newid gosodiadau e-bost: %{link}'
     view: 'Gweld:'
     view_profile: Gweld proffil
