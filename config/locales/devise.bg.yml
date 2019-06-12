@@ -11,40 +11,16 @@ bg:
       last_attempt: Разполагаш с още един опит преди профилът ти да бъде заключен.
       locked: Профилът ти е заключен.
       not_found_in_database: Невалиден %{authentication_keys}.
-      pending: Your account is still under review.
       timeout: Сесията ти изтече, моля влез отново, за да продължиш.
       unauthenticated: Преди да продължиш, трябва да влезеш в профила си или да се регистрираш.
       unconfirmed: Преди да продължиш, трябва да потвърдиш регистрацията си.
     mailer:
       confirmation_instructions:
-        action: Verify email address
-        action_with_app: Confirm and return to %{app}
-        explanation: You have created an account on %{host} with this email address. You are one click away from activating it. If this wasn't you, please ignore this email.
-        explanation_when_pending: You applied for an invite to %{host} with this email address. Once you confirm your e-mail address, we will review your application. You can't login until then. If your application is rejected, your data will be removed, so no further action will be required from you. If this wasn't you, please ignore this email.
-        extra_html: Please also check out <a href="%{terms_path}">the rules of the server</a> and <a href="%{policy_path}">our terms of service</a>.
         subject: 'Mastodon: Инструкции за потвърждаване %{instance}'
-        title: Verify email address
-      email_changed:
-        explanation: 'The email address for your account is being changed to:'
-        extra: If you did not change your email, it is likely that someone has gained access to your account. Please change your password immediately or contact the server admin if you're locked out of your account.
-        subject: 'Mastodon: Email changed'
-        title: New email address
       password_change:
-        explanation: The password for your account has been changed.
-        extra: If you did not change your password, it is likely that someone has gained access to your account. Please change your password immediately or contact the server admin if you're locked out of your account.
         subject: 'Mastodon: Паролата е променена'
-        title: Password changed
-      reconfirmation_instructions:
-        explanation: Confirm the new address to change your email.
-        extra: If this change wasn't initiated by you, please ignore this email. The email address for the Mastodon account won't change until you access the link above.
-        subject: 'Mastodon: Confirm email for %{instance}'
-        title: Verify email address
       reset_password_instructions:
-        action: Change password
-        explanation: You requested a new password for your account.
-        extra: If you didn't request this, please ignore this email. Your password won't change until you access the link above and create a new one.
         subject: 'Инструкции за смяна на паролата'
-        title: Password reset
       unlock_instructions:
         subject: 'Инструкции за отключване'
     omniauth_callbacks:
@@ -61,7 +37,6 @@ bg:
       signed_up: Привет! Регистрирацията ти е успешна.
       signed_up_but_inactive: Регистрирацията ти е успешна. Въпреки това, не можеш да влезеш в профила си, защото той все още не е потвърден.
       signed_up_but_locked: Регистрирацията ти е успешна. Въпреки това, не можеш да влезеш в профила си, защото той е заключен.
-      signed_up_but_pending: A message with a confirmation link has been sent to your email address. After you click the link, we will review your application. You will be notified if it is approved.
       signed_up_but_unconfirmed: Писмо с връзка за потвърждаване на профила ти беше изпратено на твоя имейл адрес. Моля, отвори връзката, за да активираш своя профил.
       update_needs_confirmation: Профилът ти е успешно променен, но ние трябва да проверим твоя нов имейл адрес. Моля, провери пощата си и отвори връзката за потвърждаване на новия адрес.
       updated: Профилът ти е успешно променен.
