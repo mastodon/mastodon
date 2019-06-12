@@ -11,16 +11,13 @@
       last_attempt: Du har ett forsøk igjen før kontoen din låses.
       locked: Din konto er låst.
       not_found_in_database: Ugyldig %{authentication_keys} eller passord.
-      pending: Your account is still under review.
       timeout: Økten din løp ut på tid. Logg inn på nytt for å fortsette.
       unauthenticated: Du må logge inn eller registrere deg før du kan fortsette.
       unconfirmed: Du må bekrefte e-postadressen din før du kan fortsette.
     mailer:
       confirmation_instructions:
         action: Bekreft e-postadresse
-        action_with_app: Confirm and return to %{app}
         explanation: Du har laget en konto på %{host} med denne e-postadressen. Du er ett klikk unna å aktivere den. Hvis dette ikke var deg, vennligst se bort fra denne e-posten.
-        explanation_when_pending: You applied for an invite to %{host} with this email address. Once you confirm your e-mail address, we will review your application. You can't login until then. If your application is rejected, your data will be removed, so no further action will be required from you. If this wasn't you, please ignore this email.
         extra_html: Vennligst også sjekk ut <a href="%{terms_path}">instansens regler </a> og <a href="%{policy_path}">våre bruksvilkår</a>.
         subject: 'Mastodon: Instruksjoner for å bekrefte e-postadresse %{instance}'
         title: Bekreft e-postadresse
@@ -61,7 +58,6 @@
       signed_up: Velkommen! Registreringen var vellykket.
       signed_up_but_inactive: Registreringen var vellykket. Vi kunne dessverre ikke logge deg inn fordi kontoen din ennå ikke har blitt aktivert.
       signed_up_but_locked: Registreringen var vellykket. Vi kunne dessverre ikke logge deg inn fordi kontoen din har blitt låst.
-      signed_up_but_pending: A message with a confirmation link has been sent to your email address. After you click the link, we will review your application. You will be notified if it is approved.
       signed_up_but_unconfirmed: En e-post med en bekreftelseslenke har blitt sendt til din innboks. Klikk på lenken i e-posten for å aktivere kontoen din.
       update_needs_confirmation: Du har oppdatert kontoen din, men vi må bekrefte din nye e-postadresse. Sjekk e-posten din og følg bekreftelseslenken for å bekrefte din nye e-postadresse.
       updated: Kontoen din ble oppdatert.
