@@ -6,12 +6,14 @@ gl:
     active_count_after: activo
     active_footnote: Usuarias Activas no Mes (UAM)
     administered_by: 'Administrada por:'
+    api: API
     apps: Apps móbiles
     apps_platforms: Utilice Mastodon desde iOS, Android e outras plataformas
     browse_directory: Navegue no directorio de perfís e filtre por intereses
     browse_public_posts: Vexa o fluxo de comentarios públicos en Mastodon
     contact: Contacto
     contact_missing: Non establecido
+    contact_unavailable: N/A
     discover_users: Descubra usuarias
     documentation: Documentación
     extended_description_html: |
@@ -55,8 +57,17 @@ gl:
     people_who_follow: Personas que seguen a %{name}
     pin_errors:
       following: Debe seguir a persoa que intenta recomendar
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Toots e respostas
     reserved_username: O nome de usuaria está reservado
+    roles:
+      admin: Admin
+      bot: Bot
+      moderator: Mod
+    unavailable: Perfil non dispoñible
     unfollow: Deixar de seguir
   admin:
     account_actions:
@@ -69,7 +80,9 @@ gl:
       destroyed_msg: Nota a moderación destruída con éxito!
     accounts:
       approve: Aprobar
+      approve_all: Aprobar todo
       are_you_sure: Está segura?
+      avatar: Avatar
       by_domain: Dominio
       change_email:
         changed_msg: Cambiouse correctamente o correo-e da conta!
@@ -89,6 +102,7 @@ gl:
       display_name: Mostrar nome
       domain: Dominio
       edit: Editar
+      email: Correo-e
       email_status: Estado do correo
       enable: Habilitar
       enabled: Habilitado
@@ -99,9 +113,11 @@ gl:
       header: Cabeceira
       inbox_url: URL da Caixa de entrada
       invited_by: Convidada por
+      ip: IP
       joined: Uniuse
       location:
         all: Todo
+        local: Local
         remote: Remoto
         title: Lugar
       login_status: Estado da conexión
@@ -117,6 +133,7 @@ gl:
       moderation_notes: Notas de moderación
       most_recent_activity: Actividade máis recente
       most_recent_ip: IP máis recente
+      no_account_selected: Non cambiou nada xa que non tiña nada seleccionado
       no_limits_imposed: Sen límites impostos
       not_subscribed: Non suscrita
       outbox_url: URL caixa de saída
@@ -129,6 +146,7 @@ gl:
       push_subscription_expires: A suscrición PuSH caduca
       redownload: Actualizar perfil
       reject: Rexeitar
+      reject_all: Rexeitar todo
       remove_avatar: Eliminar avatar
       remove_header: Eliminar cabeceira
       resend_confirmation:
@@ -155,6 +173,7 @@ gl:
       statuses: Estados
       subscribe: Subscribir
       suspended: Suspendida
+      time_in_queue: Agardando en cola %{time}
       title: Contas
       unconfirmed_email: Correo non confirmado
       undo_silenced: Desfacer acalar
@@ -162,6 +181,7 @@ gl:
       unsubscribe: Non subscribir
       username: Nome de usuaria
       warn: Aviso
+      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} asignou o informe %{target} a ela misma"
@@ -206,6 +226,7 @@ gl:
       destroyed_msg: Emojo destruído satisfactoriamente!
       disable: Deshabilitar
       disabled_msg: Deshabilitouse correctamente ese emoji
+      emoji: Emoji
       enable: Habilitar
       enabled_msg: Habilitouse correctamente ese emoji
       image_hint: PNG ate 50KB
@@ -228,12 +249,14 @@ gl:
       feature_profile_directory: Directorio do perfil
       feature_registrations: Rexistros
       feature_relay: Repetidores de federación
+      feature_timeline_preview: Vista previa da TL
       features: Características
       hidden_service: Federación con servizos ocultos
       open_reports: informes abertos
       recent_users: Usuarias recentes
       search: Busca de texto completo
       single_user_mode: Modo de usuario individual
+      software: Software
       space: Uso de espazo
       title: Taboleiro
       total_users: total de usuarias
@@ -246,6 +269,7 @@ gl:
       created_msg: Estase a procesar o bloqueo do dominio
       destroyed_msg: Desfixose a acción de bloqueo de dominio
       domain: Dominio
+      existing_domain_block_html: Xa estableceu límites estrictos para %{name}, precisa <a href="%{unblock_url}">desbloqueala</a> primeiro.
       new:
         create: Crear bloque
         hint: O bloqueo do dominio non previrá a creación de entradas de contas na base de datos, pero aplicará de xeito retroactivo e automático regras específicas de moderación sobre esas contas.
@@ -311,6 +335,8 @@ gl:
         expired: Cadudado
         title: Filtro
       title: Convida
+    pending_accounts:
+      title: Contas pendentes (%{count})
     relays:
       add_new: Engadir un novo repetidor
       delete: Eliminar
@@ -447,6 +473,7 @@ gl:
       confirmed: Confirmado
       expires_in: Caduca en
       last_delivery: Última entrega
+      title: WebSub
       topic: Asunto
     tags:
       accounts: Contas
@@ -455,6 +482,7 @@ gl:
       name: Etiqueta
       title: Etiquetas
       unhide: Mostrar en directorio
+      visible: Visible
     title: Administración
     warning_presets:
       add_new: Engadir novo
