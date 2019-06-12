@@ -6,6 +6,7 @@ co:
     active_count_after: attivi
     active_footnote: Utilizatori Attivi Mensili (UAM)
     administered_by: 'Amministratu da:'
+    api: API
     apps: Applicazione per u telefuninu
     apps_platforms: Utilizà Mastodon dapoi à iOS, Android è altre piattaforme
     browse_directory: Navigà un'annuariu di i prufili è filtra per interessi
@@ -48,6 +49,7 @@ co:
     joined: Quì dapoi %{date}
     last_active: ultima attività
     link_verified_on: A pruprietà d'issu ligame hè stata verificata u %{date}
+    media: Media
     moved_html: "%{name} hà cambiatu di contu, avà hè nant’à %{new_profile_link}:"
     network_hidden: St'infurmazione ùn hè micca dispunibule
     nothing_here: Ùn c’hè nunda quì!
@@ -63,6 +65,7 @@ co:
     reserved_username: Stu cugnome hè riservatu
     roles:
       admin: Amministratore
+      bot: Bot
       moderator: Muderatore
     unavailable: Prufile micca dispunibule
     unfollow: Ùn siguità più
@@ -110,6 +113,7 @@ co:
       header: Intistatura
       inbox_url: URL di l’inbox
       invited_by: Invitatu da
+      ip: IP
       joined: Ghjuntu
       location:
         all: Tutti
@@ -149,6 +153,7 @@ co:
         already_confirmed: St’utilizatore hè digià cunfirmatu
         send: Rimandà un’e-mail di cunfirmazione
         success: L’e-mail di cunfirmazione hè statu mandatu!
+      reset: Riinizializà
       reset_password: Riinizializà a chjave d’accessu
       resubscribe: Riabbunassi
       role: Auturizazione
@@ -176,6 +181,7 @@ co:
       unsubscribe: Disabbunassi
       username: Cugnome
       warn: Averte
+      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} s’hè assignatu u signalamentu %{target}"
@@ -220,6 +226,7 @@ co:
       destroyed_msg: L’emoji hè stata tolta!
       disable: Disattivà
       disabled_msg: L’emoji hè stata disattivata
+      emoji: Emoji
       enable: Attivà
       enabled_msg: L’emoji hè stata attivata
       image_hint: PNG di 50Ko o menu
@@ -251,6 +258,7 @@ co:
       single_user_mode: Modu utilizatore unicu
       software: Lugiziale
       space: Usu di u spaziu
+      title: Quatru di strumenti
       total_users: utilizatori in tutale
       trends: Tindenze
       week_interactions: interazzione sta settimana
@@ -454,6 +462,8 @@ co:
         nsfw_off: Indicà cum’è micca sensibile
         nsfw_on: Indicà cum’è sensibile
       failed_to_execute: Esecuzione impussibule
+      media:
+        title: Media
       no_media: Nisun media
       no_status_selected: I statuti ùn sò micca stati mudificati perchè manc'unu era selezziunatu
       title: Statutu di u contu
@@ -463,11 +473,13 @@ co:
       confirmed: Cunfirmatu
       expires_in: Spira in
       last_delivery: Ultima arricata
+      title: WebSub
       topic: Sughjettu
     tags:
       accounts: Conti
       hidden: Piattatu
       hide: Piattà di l'annuariu
+      name: Hashtag
       title: Hashtag
       unhide: Mustrà in l'annuariu
       visible: Visibile
@@ -494,6 +506,7 @@ co:
     sensitive_content: Cuntinutu sensibile
   application_mailer:
     notification_preferences: Cambià e priferenze e-mail
+    salutation: "%{name},"
     settings: 'Cambià e priferenze e-mail: %{link}'
     view: 'Vede:'
     view_profile: Vede u prufile
@@ -521,6 +534,9 @@ co:
     migrate_account: Cambià di contu
     migrate_account_html: S’è voi vulete riindirizà stu contu versu un’altru, <a href="%{path}">ghjè pussibule quì</a>.
     or_log_in_with: O cunnettatevi cù
+    providers:
+      cas: CAS
+      saml: SAML
     register: Arregistrassi
     registration_closed: "%{instance} ùn accetta micca novi socii"
     resend_confirmation: Rimandà l’istruzzioni di cunfirmazione
@@ -541,8 +557,18 @@ co:
     title: Siguità %{acct}
   datetime:
     distance_in_words:
+      about_x_hours: "%{count}o"
+      about_x_months: "%{count}Me"
+      about_x_years: "%{count}A"
+      almost_x_years: "%{count}A"
       half_a_minute: Avà
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Avà
+      over_x_years: "%{count}A"
+      x_days: "%{count}ghj"
+      x_minutes: "%{count}m"
+      x_months: "%{count}Me"
+      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: È nò! Sta chjave ùn hè curretta
     confirm_password: Entrate a vostra chjave d’accessu attuale per verificà a vostra identità
@@ -585,6 +611,7 @@ co:
       request: Dumandà u vostr’archiviu
       size: Pesu
     blocks: Bluccate
+    csv: CSV
     domain_blocks: Blucchime di duminiu
     follows: Seguitate
     lists: Liste
@@ -731,14 +758,19 @@ co:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: G
+          million: M
           quadrillion: P
+          thousand: K
+          trillion: Ma
   pagination:
     newer: Più ricente
     next: Dopu
     older: Più vechju
     prev: Nanzu
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Avete digià vutatu nant'à stu scandagliu
@@ -795,12 +827,40 @@ co:
     activity: Ultima attività
     browser: Navigatore
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Navigatore scunnisciutu
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sessione attuale
     description: "%{browser} nant’à %{platform}"
     explanation: Quessi sò i navigatori cunnettati à u vostru contu Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
       other: piattaforma scunnisciuta
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Rivucà
     revoke_success: Sessione rivucata
     title: Sessioni
@@ -853,6 +913,7 @@ co:
       vote: Vutà
     show_more: Vede di più
     sign_in_to_participate: Cunnettatevi per participà à a cunversazione
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Solu per l’abbunati
       private_long: Mustrà solu à l’abbunati
@@ -954,6 +1015,7 @@ co:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Entrate u codice generatu da l’applicazione per cunfirmà
     description_html: S’ella hè attivata <strong>l’identificazione à dui fattori</strong>, duvete avè u vostru telefuninu pè ottene un codice di cunnezzione.
