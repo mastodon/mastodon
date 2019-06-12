@@ -1,4 +1,3 @@
----
 cy:
   simple_form:
     hints:
@@ -34,7 +33,6 @@ cy:
     labels:
       account:
         fields:
-          name: Label
           value: Cynnwys
       account_warning_preset:
         text: Testun rhagosodedig
@@ -57,7 +55,6 @@ cy:
         confirm_password: Cadarnhau cyfrinair
         context: Hidlo cyd-destunau
         current_password: Cyfrinair presennol
-        data: Data
         discoverable: Rhestrwch y cyfrif hwn ar y cyfeiriadur
         display_name: Enw arddangos
         email: Cyfeiriad e-bost
@@ -109,8 +106,7 @@ cy:
         mention: Anfon e-bost pan mae rhywun yn eich crybwyll
         reblog: Anfon e-bost pan mae rhywun yn bŵstio eich statws
         report: Anfon e-bost pan y cyflwynir adroddiad newydd
-    'no': Na
+    'no': 'Na'
     required:
-      mark: "*"
       text: gofynnol
-    'yes': Ie
+    'yes': 'Ie'
