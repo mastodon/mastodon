@@ -1,6 +1,7 @@
+---
 el:
   about:
-    about_hashtag_html: 'Αυτά είναι κάποια από τα δημόσια τουτ σημειωμένα με <strong>#%{hashtag}</strong>. Μπορείς να αλληλεπιδράσεις με αυτά αν έχεις λογαριασμό οπουδήποτε στο fediverse.'
+    about_hashtag_html: Αυτά είναι κάποια από τα δημόσια τουτ σημειωμένα με <strong>#%{hashtag}</strong>. Μπορείς να αλληλεπιδράσεις με αυτά αν έχεις λογαριασμό οπουδήποτε στο fediverse.
     about_mastodon_html: Το Mastodon είναι ένα κοινωνικό δίκτυο που βασίζεται σε ανοιχτά δικτυακά πρωτόκολλα και ελεύθερο λογισμικό ανοιχτού κώδικα. Είναι αποκεντρωμένο όπως το e-mail.
     about_this: Σχετικά
     active_count_after: ενεργοί
@@ -39,7 +40,7 @@ el:
     user_count_before: Σπίτι για
     what_is_mastodon: Τι είναι το Mastodon;
   accounts:
-    choices_html: "Επιλογές του/της %{name}:"
+    choices_html: 'Επιλογές του/της %{name}:'
     follow: Ακολούθησε
     followers:
       one: Ακόλουθος
@@ -49,7 +50,7 @@ el:
     last_active: τελευταία ενεργός/ή
     link_verified_on: Η κυριότητα αυτού του συνδέσμου ελέγχθηκε στις %{date}
     media: Πολυμέσα
-    moved_html: "Ο/Η %{name} μετακόμισε στο %{new_profile_link}:"
+    moved_html: 'Ο/Η %{name} μετακόμισε στο %{new_profile_link}:'
     network_hidden: Αυτή η πληροφορία δεν είναι διαθέσιμη
     nothing_here: Δεν υπάρχει τίποτα εδώ!
     people_followed_by: Χρήστες που ακολουθεί ο/η %{name}
@@ -176,36 +177,36 @@ el:
       web: Διαδίκτυο
     action_logs:
       actions:
-        assigned_to_self_report: "Ο/Η %{name} ανάθεσε την καταγγελία %{target} στον εαυτό του/της"
-        change_email_user: "Ο/Η %{name} άλλαξε τη διεύθυνση email του χρήστη %{target}"
-        confirm_user: "Ο/Η %{name} επιβεβαίωσε τη διεύθυνση email του χρήστη %{target}"
-        create_account_warning: "Ο/Η %{name} έστειλε προειδοποίηση προς %{target}"
-        create_custom_emoji: "Ο/Η %{name} ανέβασε νέο emoji %{target}"
-        create_domain_block: "Ο/Η %{name} μπλόκαρε τον τομέα %{target}"
-        create_email_domain_block: "Ο/Η %{name} έβαλε τον τομέα email %{target} σε μαύρη λίστα"
-        demote_user: "Ο/Η %{name} υποβίβασε το χρήστη %{target}"
-        destroy_custom_emoji: "Ο/Η %{name} κατέστρεψε το emoji %{target}"
-        destroy_domain_block: "Ο/Η %{name} ξεμπλόκαρε τον τομέα %{target}"
-        destroy_email_domain_block: "Ο/Η %{name} έβαλε τον τομέα email %{target} σε λευκή λίστα"
-        destroy_status: "Ο/Η %{name} αφαίρεσε την κατάσταση του/της %{target}"
-        disable_2fa_user: "Ο/Η %{name} απενεργοποίησε την απαίτηση δύο παραγόντων για το χρήστη %{target}"
-        disable_custom_emoji: "Ο/Η %{name} απενεργοποίησε το emoji %{target}"
-        disable_user: "Ο/Η %{name} απενεργοποίησε την είσοδο για το χρήστη %{target}"
-        enable_custom_emoji: "Ο/Η %{name} ενεργοποίησε το emoji %{target}"
-        enable_user: "Ο/Η %{name} ενεργοποίησε την είσοδο του χρήστη %{target}"
-        memorialize_account: "Ο/Η %{name} μετέτρεψε το λογαριασμό του/της %{target} σε σελίδα νεκρολογίας"
-        promote_user: "Ο/Η %{name} προβίβασε το χρήστη %{target}"
-        remove_avatar_user: "Ο/Η %{name} αφαίρεσε το αβατάρ του/της %{target}"
-        reopen_report: "Ο/Η %{name} ξανάνοιξε την καταγγελία %{target}"
-        reset_password_user: "Ο/Η %{name} επανέφερε το συνθηματικό του χρήστη %{target}"
-        resolve_report: "Ο/Η %{name} επέλυσε την καταγγελία %{target}"
-        silence_account: "Ο/Η %{name} αποσιώπησε το λογαριασμό του/της %{target}"
-        suspend_account: "Ο/Η %{name} έπαυσε το λογαριασμό του/της %{target}"
-        unassigned_report: "Ο/Η %{name} αποδέσμευσε την καταγγελία %{target}"
-        unsilence_account: "Ο/Η %{name} ήρε την αποσιώπηση του λογαριασμού του/της %{target}"
-        unsuspend_account: "Ο/Η %{name} ήρε την παύση του λογαριασμού του χρήστη %{target}"
-        update_custom_emoji: "Ο/Η %{name} ενημέρωσε το emoji %{target}"
-        update_status: "Ο/Η %{name} ενημέρωσε την κατάσταση του/της %{target}"
+        assigned_to_self_report: Ο/Η %{name} ανάθεσε την καταγγελία %{target} στον εαυτό του/της
+        change_email_user: Ο/Η %{name} άλλαξε τη διεύθυνση email του χρήστη %{target}
+        confirm_user: Ο/Η %{name} επιβεβαίωσε τη διεύθυνση email του χρήστη %{target}
+        create_account_warning: Ο/Η %{name} έστειλε προειδοποίηση προς %{target}
+        create_custom_emoji: Ο/Η %{name} ανέβασε νέο emoji %{target}
+        create_domain_block: Ο/Η %{name} μπλόκαρε τον τομέα %{target}
+        create_email_domain_block: Ο/Η %{name} έβαλε τον τομέα email %{target} σε μαύρη λίστα
+        demote_user: Ο/Η %{name} υποβίβασε το χρήστη %{target}
+        destroy_custom_emoji: Ο/Η %{name} κατέστρεψε το emoji %{target}
+        destroy_domain_block: Ο/Η %{name} ξεμπλόκαρε τον τομέα %{target}
+        destroy_email_domain_block: Ο/Η %{name} έβαλε τον τομέα email %{target} σε λευκή λίστα
+        destroy_status: Ο/Η %{name} αφαίρεσε την κατάσταση του/της %{target}
+        disable_2fa_user: Ο/Η %{name} απενεργοποίησε την απαίτηση δύο παραγόντων για το χρήστη %{target}
+        disable_custom_emoji: Ο/Η %{name} απενεργοποίησε το emoji %{target}
+        disable_user: Ο/Η %{name} απενεργοποίησε την είσοδο για το χρήστη %{target}
+        enable_custom_emoji: Ο/Η %{name} ενεργοποίησε το emoji %{target}
+        enable_user: Ο/Η %{name} ενεργοποίησε την είσοδο του χρήστη %{target}
+        memorialize_account: Ο/Η %{name} μετέτρεψε το λογαριασμό του/της %{target} σε σελίδα νεκρολογίας
+        promote_user: Ο/Η %{name} προβίβασε το χρήστη %{target}
+        remove_avatar_user: Ο/Η %{name} αφαίρεσε το αβατάρ του/της %{target}
+        reopen_report: Ο/Η %{name} ξανάνοιξε την καταγγελία %{target}
+        reset_password_user: Ο/Η %{name} επανέφερε το συνθηματικό του χρήστη %{target}
+        resolve_report: Ο/Η %{name} επέλυσε την καταγγελία %{target}
+        silence_account: Ο/Η %{name} αποσιώπησε το λογαριασμό του/της %{target}
+        suspend_account: Ο/Η %{name} έπαυσε το λογαριασμό του/της %{target}
+        unassigned_report: Ο/Η %{name} αποδέσμευσε την καταγγελία %{target}
+        unsilence_account: Ο/Η %{name} ήρε την αποσιώπηση του λογαριασμού του/της %{target}
+        unsuspend_account: Ο/Η %{name} ήρε την παύση του λογαριασμού του χρήστη %{target}
+        update_custom_emoji: Ο/Η %{name} ενημέρωσε το emoji %{target}
+        update_status: Ο/Η %{name} ενημέρωσε την κατάσταση του/της %{target}
       deleted_status: "(διαγραμμένη δημοσίευση)"
       title: Αρχείο ελέγχου
     custom_emojis:
@@ -263,7 +264,7 @@ el:
         create: Δημιουργία αποκλεισμού
         hint: Ο αποκλεισμός τομέα δεν θα αποτρέψει νέες καταχωρίσεις λογαριασμών στην βάση δεδομένων, αλλά θα εφαρμόσει αναδρομικά και αυτόματα συγκεκριμένες πολιτικές μεσολάβησης σε αυτούς τους λογαριασμούς.
         severity:
-          desc_html: "Η <strong>αποσιώπηση</strong> θα κάνει αόρατες τις δημοσιεύσεις ενός λογαριασμού σε όσους δεν τον ακολουθούν. Η <strong>αναστολή</strong> θα αφαιρέσει όλο το περιεχόμενο, τα πολυμέσα και τα στοιχεία προφίλ ενός λογαριασμού. Χρησιμοποίησε το <strong>κανένα</strong> αν θέλεις απλά να απορρίψεις τα αρχεία πολυμέσων."
+          desc_html: Η <strong>αποσιώπηση</strong> θα κάνει αόρατες τις δημοσιεύσεις ενός λογαριασμού σε όσους δεν τον ακολουθούν. Η <strong>αναστολή</strong> θα αφαιρέσει όλο το περιεχόμενο, τα πολυμέσα και τα στοιχεία προφίλ ενός λογαριασμού. Χρησιμοποίησε το <strong>κανένα</strong> αν θέλεις απλά να απορρίψεις τα αρχεία πολυμέσων.
           noop: Κανένα
           silence: Σίγαση
           suspend: Αναστολή
@@ -280,7 +281,7 @@ el:
       show:
         affected_accounts:
           one: Επηρεάζεται ένας λογαριασμός στη βάση δεδομένων
-          other: "Επηρεάζονται %{count} λογαριασμοί στη βάση δεδομένων"
+          other: Επηρεάζονται %{count} λογαριασμοί στη βάση δεδομένων
         retroactive:
           silence: Αναίρεση αποσιώπησης όλων των λογαριασμός του τομέα
           suspend: Αναίρεση αναστολής όλων των λογαριασμών του τομέα
@@ -299,7 +300,7 @@ el:
       title: Μαύρη λίστα email
     followers:
       back_to_account: Επιστροφή στον λογαριασμό
-      title: "Ακόλουθοι του/της %{acct}"
+      title: Ακόλουθοι του/της %{acct}
     instances:
       by_domain: Τομέας
       delivery_available: Διαθέσιμη παράδοση
@@ -481,9 +482,9 @@ el:
       body: Τα στοιχεία του νέου λογαριασμού είναι παρακάτω. Μπορείς να εγκρίνεις ή να απορρίψεις αυτή την αίτηση.
       subject: Νέος λογαριασμός προς έγκριση στο %{instance} (%{username})
     new_report:
-      body: "Ο/Η %{reporter} κατήγγειλε τον/την %{target}"
+      body: Ο/Η %{reporter} κατήγγειλε τον/την %{target}
       body_remote: Κάποιος/α από τον τομέα %{domain} κατήγγειλε τον/την %{target}
-      subject: 'Νέα καταγγελία για %{instance} (#%{id})'
+      subject: Νέα καταγγελία για %{instance} (#%{id})
   application_mailer:
     notification_preferences: Αλλαγή προτιμήσεων email
     settings: 'Άλλαξε τις προτιμήσεις email: %{link}'
@@ -516,7 +517,7 @@ el:
     providers:
       cas: Υπηρεσία Κεντρικής Πιστοποίησης (CAS)
     register: Εγγραφή
-    registration_closed: "Το %{instance} δεν δέχεται νέα μέλη"
+    registration_closed: Το %{instance} δεν δέχεται νέα μέλη
     resend_confirmation: Στείλε ξανά τις οδηγίες επιβεβαίωσης
     reset_password: Επαναφορά συνθηματικού
     security: Ασφάλεια
@@ -698,7 +699,7 @@ el:
     digest:
       action: Δες όλες τις ειδοποιήσεις
       body: Μια σύνοψη των μηνυμάτων που έχασες από την τελευταία επίσκεψή σου στις %{since}
-      mention: "Ο/Η %{name} σε ανέφερε στις:"
+      mention: 'Ο/Η %{name} σε ανέφερε στις:'
       new_followers_summary:
         one: Επίσης, απέκτησες έναν νέο ακόλουθο ενώ ήσουν μακριά!
         other: Επίσης, απέκτησες %{count} νέους ακόλουθους ενώ ήσουν μακριά! Εκπληκτικό!
@@ -708,11 +709,11 @@ el:
       title: Ενώ έλειπες...
     favourite:
       body: 'Η κατάστασή σου αγαπήθηκε από τον/την %{name}:'
-      subject: "Ο/Η %{name} αγάπησε την κατάστασή σου"
+      subject: Ο/Η %{name} αγάπησε την κατάστασή σου
       title: Νέο αγαπημένο
     follow:
-      body: "Ο/Η %{name} πλέον σε ακολουθεί!"
-      subject: "Ο/Η %{name} πλέον σε ακολουθεί"
+      body: Ο/Η %{name} πλέον σε ακολουθεί!
+      subject: Ο/Η %{name} πλέον σε ακολουθεί
       title: Νέος/α ακόλουθος
     follow_request:
       action: Διαχειρίσου τα αιτήματα παρακολούθησης
@@ -726,7 +727,7 @@ el:
       title: Νέα αναφορά
     reblog:
       body: 'Η κατάστασή σου προωθήθηκε από τον/την %{name}:'
-      subject: "Ο/Η %{name} προώθησε την κατάστασή σου"
+      subject: Ο/Η %{name} προώθησε την κατάστασή σου
       title: Νέα προώθηση
   number:
     human:
@@ -940,7 +941,7 @@ el:
       <p>Η άδεια χρήσης αυτού του κειμένου είναι κατάCC-BY-SA. Ενημερώθηκε τελευταία φορά στις 7 Μαρτίου, 2018.</p>
 
       <p>Οι παραπάνω όροι έχουν προσαρμοστεί από τους αντίστοιχους όρους του <a href="https://github.com/discourse/discourse">Discourse</a>.</p>
-    title: "Όροι Χρήσης και Πολιτική Απορρήτου του κόμβου %{instance}"
+    title: Όροι Χρήσης και Πολιτική Απορρήτου του κόμβου %{instance}
   themes:
     contrast: Mastodon (Υψηλή αντίθεση)
     default: Mastodon (Σκοτεινό)

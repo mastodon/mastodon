@@ -1,3 +1,4 @@
+---
 pl:
   devise:
     confirmations:
@@ -81,7 +82,7 @@ pl:
       not_found: nie znaleziono
       not_locked: było zablokowane
       not_saved:
+        few: 'Błędy (%{count}) uniemożliwiły zapisanie tego %{resource}:'
+        many: 'Błędy (%{count}) uniemożliwiły zapisanie tego %{resource}:'
         one: '1 błąd nie uniemożliwił zapisanie %{resource}:'
-        few: "Błędy (%{count}) uniemożliwiły zapisanie tego %{resource}:"
-        many: "Błędy (%{count}) uniemożliwiły zapisanie tego %{resource}:"
-        other: "Błędy (%{count}) uniemożliwiły zapisanie tego %{resource}:"
+        other: 'Błędy (%{count}) uniemożliwiły zapisanie tego %{resource}:'

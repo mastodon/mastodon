@@ -1,6 +1,7 @@
+---
 pt:
   about:
-    about_hashtag_html: 'Estes são toots públicos marcados com <strong>#%{hashtag}</strong>. Podes interagir com eles se tiveres uma conta Mastodon.'
+    about_hashtag_html: Estes são toots públicos marcados com <strong>#%{hashtag}</strong>. Podes interagir com eles se tiveres uma conta Mastodon.
     about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.
     about_this: Sobre esta instância
     administered_by: 'Administrado por:'
@@ -28,7 +29,7 @@ pt:
     user_count_before: Casa para
     what_is_mastodon: O que é o Mastodon?
   accounts:
-    choices_html: "escolhas de %{name}:"
+    choices_html: 'escolhas de %{name}:'
     follow: Seguir
     followers:
       one: Seguidor
@@ -280,7 +281,7 @@ pt:
       title: Bloqueio de Domínio de Email
     followers:
       back_to_account: Voltar à conta
-      title: "Seguidores de %{acct}"
+      title: Seguidores de %{acct}
     instances:
       by_domain: Domínio
       delivery_available: Entrega disponível
@@ -453,7 +454,7 @@ pt:
     new_report:
       body: "%{reporter} relatou %{target}"
       body_remote: Alguém de %{domain} relatou %{target}
-      subject: 'Novo relatório sobre %{instance} (#%{id})'
+      subject: Novo relatório sobre %{instance} (#%{id})
   application_mailer:
     notification_preferences: Alterar preferências de e-mail
     settings: 'Alterar preferências de email: %{link}'
@@ -516,7 +517,9 @@ pt:
     description_html: Isto vai <strong>permanente e irreversivelmente</strong> remover conteúdo da tua conta e desativá-la. O teu nome de utilizador permanecerá reservado para prevenir futuros roubos de identidade.
     proceed: Eliminar conta
     success_msg: A tua conta foi eliminada com sucesso
-    warning_html: "Apenas a eliminação de conteúdo desta instância é garantido.\nConteúdo que tenha sido partilhado com outras instâncias muito provavelmente deixará pegadas. Servidores offline e servidores que se desinscreveram das tuas atualizações não  atualizarão as suas bases de dados."
+    warning_html: |-
+      Apenas a eliminação de conteúdo desta instância é garantido.
+      Conteúdo que tenha sido partilhado com outras instâncias muito provavelmente deixará pegadas. Servidores offline e servidores que se desinscreveram das tuas atualizações não  atualizarão as suas bases de dados.
     warning_title: Disponibilidade de conteúdo disseminado
   directories:
     directory: Dirétorio de perfil
@@ -664,7 +667,7 @@ pt:
     mention:
       action: Responder
       body: 'Foste mencionado por %{name}:'
-      subject: '%{name} mencionou-te'
+      subject: "%{name} mencionou-te"
       title: Nova menção
     reblog:
       body: 'O teu post foi partilhado por %{name}:'
