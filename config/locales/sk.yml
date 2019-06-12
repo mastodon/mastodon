@@ -1,6 +1,7 @@
+---
 sk:
   about:
-    about_hashtag_html: 'Toto sú verejné príspevky, otagované pod <strong>#%{hashtag}</strong>. Ak máš účet hocikde v rámci fediversa, môžeš s nimi narábať.'
+    about_hashtag_html: Toto sú verejné príspevky, otagované pod <strong>#%{hashtag}</strong>. Ak máš účet hocikde v rámci fediversa, môžeš s nimi narábať.
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch a na slobodnom softvéri. Je decentralizovaná, podobne ako email.
     about_this: O tomto serveri
     active_count_after: aktívni
@@ -184,7 +185,7 @@ sk:
         disable_user: "%{name} zakázal prihlásenie pre používateľa %{target}"
         enable_custom_emoji: "%{name} povolil emoji %{target}"
         enable_user: "%{name} povolil prihlásenie pre používateľa %{target}"
-        memorialize_account: "%{name} zmenil účet %{target} na stránku \"Navždy budeme spomínať\""
+        memorialize_account: '%{name} zmenil účet %{target} na stránku "Navždy budeme spomínať"'
         promote_user: "%{name} povýšil/a používateľa %{target}"
         remove_avatar_user: "%{name} odstránil/a %{target}ov avatár"
         reopen_report: "%{name} znovu otvoril/a hlásenie užívateľa %{target}"
@@ -290,7 +291,7 @@ sk:
       title: Blokované emailové adresy
     followers:
       back_to_account: Späť na účet
-      title: "Sledovatielia užívateľa %{acct}"
+      title: Sledovatielia užívateľa %{acct}
     instances:
       by_domain: Doména
       delivery_available: Je v dosahu doručovania
@@ -317,7 +318,7 @@ sk:
     relays:
       add_new: Pridaj nový federovací mostík
       delete: Vymaž
-      description_html: <strong>Federovací mostík</strong> je prechodný server, ktorý obmieňa veľké množstvá verejných príspevkov medzi tými servermi ktoré na od neho odoberajú, aj doňho prispievajú. <strong>Môže to pomôcť malým a stredným instanciám objavovať federovaný obsah</strong>, čo inak vyžaduje aby miestni užívatelia ručne následovali iných ľudí zo vzdialených instancií.
+      description_html: "<strong>Federovací mostík</strong> je prechodný server, ktorý obmieňa veľké množstvá verejných príspevkov medzi tými servermi ktoré na od neho odoberajú, aj doňho prispievajú. <strong>Môže to pomôcť malým a stredným instanciám objavovať federovaný obsah</strong>, čo inak vyžaduje aby miestni užívatelia ručne následovali iných ľudí zo vzdialených instancií."
       disable: Vypni
       disabled: Vypnutý
       enable: Povoľ
@@ -472,7 +473,7 @@ sk:
     new_report:
       body: "%{reporter} nahlásil/a %{target}"
       body_remote: Niekto z %{domain} nahlásil/a %{target}
-      subject: 'Nové hlásenie pre %{instance} (#%{id})'
+      subject: Nové hlásenie pre %{instance} (#%{id})
   appearance:
     advanced_web_interface: Pokročilé webové rozhranie
     animations_and_accessibility: Animácie a prístupnosť
@@ -672,11 +673,11 @@ sk:
     follow_request:
       action: Spravuj žiadosti o sledovanie
       body: "%{name} žiada povolenie ťa následovať"
-      subject: '%{name} ťa žiadá o možnosť sledovania'
+      subject: "%{name} ťa žiadá o možnosť sledovania"
       title: Nová žiadosť o následovanie
     mention:
       action: Odpovedať
-      body: '%{name} ťa spomenul/a v:'
+      body: "%{name} ťa spomenul/a v:"
       subject: Bol/a si spomenutý/á užívateľom %{name}
       title: Novo spomenutý/á
     reblog:
@@ -827,7 +828,7 @@ sk:
       <li>Pre lepšie moderovanie komunity sa napríklad môže tvoja IP adresa porovnať s ostatnými už známimi adresami, aby bolo možné zistiť, či nedochádza napríklad k obchádzaniu pravidiel vylúčenia, aleb k iným porušeniam zásad.</li>
       <li>Emailová adresa, ktorú poskytneš, môže byť použitá na zasielanie informácií, oboznámení keď ostatní užívatelia interaktujú s tvojím obsahom, alebo na posielanie správ, odpovedí na otázky a iné požiadavky.</li>
       </ul>
-    title: "Podmienky užívania, a pravidlá súkromia pre %{instance}"
+    title: Podmienky užívania, a pravidlá súkromia pre %{instance}
   themes:
     contrast: Mastodon (vysoký kontrast)
     default: Mastodon (tmavý)

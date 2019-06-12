@@ -1,6 +1,7 @@
+---
 hu:
   about:
-    about_hashtag_html: 'Ezek a <strong>#%{hashtag}</strong> címkével ellátott publikus tülkök. Reagálhatsz rájuk, ha már van felhasználói fiókod valahol a föderációban.'
+    about_hashtag_html: Ezek a <strong>#%{hashtag}</strong> címkével ellátott publikus tülkök. Reagálhatsz rájuk, ha már van felhasználói fiókod valahol a föderációban.
     about_mastodon_html: Mastodon egy <em>szabad, nyílt forráskódú</em> szociális hálózati kiszolgálo. Egy <em>központosítatlan</em> alternatíva a kereskedelmi platformokra, elkerüli a kommunikációd monopolizációját veszélyét. Bárki futtathatja a Mastodon-t és részt vehet a <em>szociális hálózatban</em>.
     about_this: Rólunk
     contact: Kapcsolat
@@ -9,7 +10,7 @@ hu:
       <h3>Ez itt a szabályzat helye</h3>
       <p>Még nem állítottál be bővebb leírást.</p>
     generic_description: "%{domain} csak egy a számtalan szerver közül a föderációban"
-    hosted_on: '%{domain} Mastodon instancia'
+    hosted_on: "%{domain} Mastodon instancia"
     learn_more: Tudj meg többet
     source_code: Forráskód
     status_count_before: eddig
@@ -21,8 +22,8 @@ hu:
     media: Média
     moved_html: "%{name} ide költözött: %{new_profile_link}"
     nothing_here: Nincs itt semmi!
-    people_followed_by: '%{name} követett személyei'
-    people_who_follow: '%{name} követői'
+    people_followed_by: "%{name} követett személyei"
+    people_who_follow: "%{name} követői"
     posts_with_replies: Tülkök és válaszok
     reserved_username: Ez egy már lefoglalt felhasználónév
     roles:
@@ -164,7 +165,7 @@ hu:
         create: Tiltás létrehozása
         hint: A domain-tiltás nem gátolja meg az új fiókok hozzáadását az abatbázishoz, de visszamenőlegesen és automatikusan aktivál bizonyos moderációs szabályokat ezen fiókok esetében.
         severity:
-          desc_html: "A <strong>Némítás</strong> elrejti az adott felhasználó tülkjeit mindenki elől, aki nem követi az adott felhasználót. A <strong>Felfüggesztés</strong> eltávolítja az adott felhasználó által létrehozott minden tartalmat, ide értve a médiafájlokat és a fiókadatokat is. Válaszd az <strong>Egyik sem</strong> opciót, ha csupán a médiafájlokat szeretnéd elutasítani."
+          desc_html: A <strong>Némítás</strong> elrejti az adott felhasználó tülkjeit mindenki elől, aki nem követi az adott felhasználót. A <strong>Felfüggesztés</strong> eltávolítja az adott felhasználó által létrehozott minden tartalmat, ide értve a médiafájlokat és a fiókadatokat is. Válaszd az <strong>Egyik sem</strong> opciót, ha csupán a médiafájlokat szeretnéd elutasítani.
           noop: Egyik sem
           silence: Némítás
           suspend: Felfüggesztés
@@ -174,11 +175,11 @@ hu:
       show:
         affected_accounts:
           one: Összesen egy fiók érintett az adatbázisban
-          other: "Összesen %{count} fiók érintett az adatbázisban"
+          other: Összesen %{count} fiók érintett az adatbázisban
         retroactive:
           silence: Minden felhasználó némításának feloldása ezen a domainen
           suspend: Minden felhasználó felfüggesztésének feloldása ezen a domainen
-        title: '%{domain} domain tiltásának feloldása'
+        title: "%{domain} domain tiltásának feloldása"
         undo: Visszavonás
       undo: Visszavonás
     email_domain_blocks:
@@ -205,7 +206,7 @@ hu:
       comment:
         none: Egyik sem
       mark_as_resolved: Megjelölés megoldottként
-      report: '#%{id} számú jelentés'
+      report: "#%{id} számú jelentés"
       reported_account: Bejelentett fiók
       reported_by: 'Jelentette:'
       resolved: Megoldott
@@ -315,7 +316,7 @@ hu:
       close: Akár be is zárhatod ezt az ablakot.
       return: Visszatérés a felhasználó profiloldalára
       web: Megtekintés a weben
-    title: '%{acct} követése'
+    title: "%{acct} követése"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ó"
@@ -431,8 +432,8 @@ hu:
       title: Új követési kérés
     mention:
       action: Válasz
-      body: '%{name} megemlített téged:'
-      subject: '%{name} megemlített téged'
+      body: "%{name} megemlített téged:"
+      subject: "%{name} megemlített téged"
       title: Új említés
     reblog:
       body: 'Az állapotod reblogolta %{name}:'
@@ -538,4 +539,4 @@ hu:
   users:
     invalid_email: A megadott e-mail cím helytelen
     invalid_otp_token: Érvénytelen ellenőrző kód
-    signed_in_as: 'Bejelentkezve mint'
+    signed_in_as: Bejelentkezve mint
