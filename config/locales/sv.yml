@@ -4,6 +4,7 @@ sv:
     about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
     about_this: Om
     administered_by: 'Administreras av:'
+    api: API
     contact: Kontakt
     contact_missing: Inte inställd
     extended_description_html: |
@@ -14,11 +15,13 @@ sv:
     learn_more: Lär dig mer
     source_code: Källkod
     status_count_before: Som skapat
+    terms: Användarvillkor
     user_count_before: Hem till
     what_is_mastodon: Vad är Mastodon?
   accounts:
     follow: Följa
     following: Följer
+    media: Media
     moved_html: "%{name} har flyttat till %{new_profile_link}:"
     network_hidden: Denna information är inte tillgänglig
     nothing_here: Det finns inget här!
@@ -347,6 +350,9 @@ sv:
     migrate_account: Flytta till ett annat konto
     migrate_account_html: Om du vill omdirigera detta konto till ett annat, kan du <a href="%{path}">konfigurera det här</a>.
     or_log_in_with: Eller logga in med
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registrera
     resend_confirmation: Skicka instruktionerna om bekräftelse igen
     reset_password: Återställ lösenord
@@ -405,6 +411,7 @@ sv:
       request: Efterfråga ditt arkiv
       size: Storlek
     blocks: Du blockerar
+    csv: CSV
     follows: Du följer
     mutes: Du tystar
     storage: Medialagring
@@ -513,12 +520,31 @@ sv:
     activity: Senaste aktivitet
     browser: Webbläsare
     browsers:
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Okänd browser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      safari: Safari
     current_session: Nuvarande session
     description: "%{browser} på %{platform}"
     explanation: Detta är inloggade webbläsare på Mastodon just nu.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
       other: okänd plattform
+      windows: Windows
     revoke: Återkalla
     revoke_success: Sessionen återkallas framgångsrikt
     title: Sessioner
