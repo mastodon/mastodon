@@ -1,3 +1,4 @@
+---
 hu:
   devise:
     confirmations:
@@ -45,7 +46,7 @@ hu:
       unlock_instructions:
         subject: 'Mastodon: Feloldási lépések'
     omniauth_callbacks:
-      failure: '%{kind} nem hitelesíthető, mert %{reason}.'
+      failure: "%{kind} nem hitelesíthető, mert %{reason}."
       success: Sikeres hitelesítés %{kind} fiókról.
     passwords:
       no_token: Nem férhetsz hozzá az oldalhoz jelszó visszaállító e-mail nélkül. Ha egy jelszó visszaállító e-mail hozott ide, ellenőrizd, hogy a megadott teljes URL-t használd.
@@ -72,7 +73,7 @@ hu:
   errors:
     messages:
       already_confirmed: már meg lett erősítve, kérjük jelentkezz be
-      confirmation_period_expired: '%{period} belül kellett megerősíteni, kérjük igényelj újat'
+      confirmation_period_expired: "%{period} belül kellett megerősíteni, kérjük igényelj újat"
       expired: lejárt, kérjük igényelj újat
       not_found: nem található
       not_locked: nincs lezárva
