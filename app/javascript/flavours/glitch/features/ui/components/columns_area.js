@@ -52,6 +52,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
     singleColumn: PropTypes.bool,
     children: PropTypes.node,
     navbarUnder: PropTypes.bool,
+    openSettings: PropTypes.func,
   };
 
   state = {
@@ -157,7 +158,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
   }
 
   render () {
-    const { columns, children, singleColumn, swipeToChangeColumns, intl, navbarUnder } = this.props;
+    const { columns, children, singleColumn, swipeToChangeColumns, intl, navbarUnder, openSettings } = this.props;
     const { shouldAnimate } = this.state;
 
     const columnIndex = getIndex(this.context.router.history.location.pathname);
@@ -190,7 +191,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
           <div className='columns-area__panels__pane columns-area__panels__pane--start columns-area__panels__pane--navigational'>
             <div className='columns-area__panels__pane__inner'>
-              <NavigationPanel />
+              <NavigationPanel onOpenSettings={openSettings} />
             </div>
           </div>
 
