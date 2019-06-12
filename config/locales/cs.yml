@@ -1,12 +1,12 @@
----
 cs:
   about:
-    about_hashtag_html: Tohle jsou veřejné tooty označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv ve fedivesmíru, můžete s nimi interagovat.
+    about_hashtag_html: 'Tohle jsou veřejné tooty označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv ve fedivesmíru, můžete s nimi interagovat.'
     about_mastodon_html: Mastodon je sociální síť založená na otevřených webových protokolech a svobodném, otevřeném softwaru. Je decentralizovaná jako e-mail.
     about_this: O tomto serveru
     active_count_after: aktivních
     active_footnote: Měsíční aktivní uživatelé (MAU)
     administered_by: 'Server spravuje:'
+    api: API
     apps: Mobilní aplikace
     apps_platforms: Používejte Mastodon z iOS, Androidu a jiných platforem
     browse_directory: Prozkoumejte adresář profilů a filtrujte dle zájmů
@@ -28,14 +28,29 @@ cs:
     see_whats_happening: Podívejte se, co se děje
     server_stats: 'Statistika serveru:'
     source_code: Zdrojový kód
+    status_count_after:
+      one: příspěvek
+      few: příspěvky
+      many: příspěvků
+      other: příspěvků
     status_count_before: Kteří napsali
     tagline: Sledujte své přátele a objevujte nové
     terms: Podmínky používání
+    user_count_after:
+      one: uživatel
+      few: uživatelé
+      many: uživatelů
+      other: uživatelů
     user_count_before: Domov
     what_is_mastodon: Co je Mastodon?
   accounts:
-    choices_html: 'Volby uživatele %{name}:'
+    choices_html: "Volby uživatele %{name}:"
     follow: Sledovat
+    followers:
+      one: Sledující
+      few: Sledující
+      many: Sledujících
+      other: Sledujících
     following: Sledovaných
     joined: Připojil/a se v %{date}
     last_active: naposledy aktivní
@@ -48,6 +63,11 @@ cs:
     people_who_follow: Lidé, kteří sledují uživatele %{name}
     pin_errors:
       following: Musíte již sledovat osobu, kterou chcete podpořit
+    posts:
+      one: Toot
+      few: Tooty
+      many: Tootů
+      other: Tootů
     posts_tab_heading: Tooty
     posts_with_replies: Tooty a odpovědi
     reserved_username: Toto uživatelské jméno je rezervováno
@@ -70,6 +90,7 @@ cs:
       approve: Schválit
       approve_all: Schválit vše
       are_you_sure: Jste si jistý/á?
+      avatar: Avatar
       by_domain: Doména
       change_email:
         changed_msg: E-mail k tomuto účtu byl úspěšně změněn!
@@ -100,6 +121,7 @@ cs:
       header: Záhlaví
       inbox_url: URL příchozí schránky
       invited_by: Pozván/a uživatelem
+      ip: IP adresa
       joined: Připojil/a se
       location:
         all: Všechny
@@ -167,6 +189,7 @@ cs:
       unsubscribe: Přestat odebírat
       username: Uživatelské jméno
       warn: Varovat
+      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} přidělil/a hlášení %{target} sobě"
@@ -211,6 +234,7 @@ cs:
       destroyed_msg: Emoji úspěšně zničeno!
       disable: Zakázat
       disabled_msg: Emoji bylo úspěšně zakázáno
+      emoji: Emoji
       enable: Povolit
       enabled_msg: Emoji bylo úspěšně povoleno
       image_hint: PNG až do 50 KB
@@ -240,6 +264,7 @@ cs:
       recent_users: Nedávní uživatelé
       search: Fulltextové vyhledávání
       single_user_mode: Režim jednoho uživatele
+      software: Software
       space: Využití prostoru
       title: Přehled
       total_users: uživatelů celkem
@@ -257,7 +282,7 @@ cs:
         create: Vytvořit blokaci
         hint: Blokace domény nezakáže vytváření záznamů účtů v databázi, ale bude na tyto účty zpětně a automaticky aplikovat specifické metody moderování.
         severity:
-          desc_html: Funkce <strong>Utišit</strong> zneviditelní příspěvky z účtu komukoliv, kdo jej nesleduje. Funkce <strong>Pozastavit</strong> odstraní všechen obsah, média a profilová data účtu. Pro pouhé odmítnutí mediálních souborů použijte funkci <strong>Žádné</strong>.
+          desc_html: "Funkce <strong>Utišit</strong> zneviditelní příspěvky z účtu komukoliv, kdo jej nesleduje. Funkce <strong>Pozastavit</strong> odstraní všechen obsah, média a profilová data účtu. Pro pouhé odmítnutí mediálních souborů použijte funkci <strong>Žádné</strong>."
           noop: Žádné
           silence: Utišit
           suspend: Pozastavit
@@ -272,6 +297,11 @@ cs:
         silence: utišeno
         suspend: pozastaveno
       show:
+        affected_accounts:
+          one: Jeden účet v databázi byl ovlivněn
+          few: "%{count} účty v databázi byly ovlivněny"
+          many: "%{count} účtů v databázi bylo ovlivněno"
+          other: "%{count} účtů v databázi bylo ovlivněno"
         retroactive:
           silence: Odtišit existující ovlivněné účty z této domény
           suspend: Zrušit pozastavení existujících ovlivněných účtů z této domény
@@ -290,10 +320,15 @@ cs:
       title: Černá listina e-mailů
     followers:
       back_to_account: Zpět na účet
-      title: Sledující uživatele %{acct}
+      title: "Sledující uživatele %{acct}"
     instances:
       by_domain: Doména
       delivery_available: Doručení je k dispozici
+      known_accounts:
+        one: "%{count} známý účet"
+        few: "%{count} známé účty"
+        many: "%{count} známých účtů"
+        other: "%{count} známých účtů"
       moderation:
         all: Všechny
         limited: Omezené
@@ -317,7 +352,7 @@ cs:
     relays:
       add_new: Přidat nový most
       delete: Smazat
-      description_html: "<strong>Federovací most</strong> je přechodný server, který vyměňuje velká množství veřejných tootů mezi servery, které z něj odebírají a publikují na něj. <strong>Může pomoci malým a středně velkým serverům objevovat obsah z fedivesmíru</strong>, což by jinak vyžadovalo, aby místní uživatelé manuálně sledovali jiné lidi na vzdálených serverech."
+      description_html: <strong>Federovací most</strong> je přechodný server, který vyměňuje velká množství veřejných tootů mezi servery, které z něj odebírají a publikují na něj. <strong>Může pomoci malým a středně velkým serverům objevovat obsah z fedivesmíru</strong>, což by jinak vyžadovalo, aby místní uživatelé manuálně sledovali jiné lidi na vzdálených serverech.
       disable: Zakázat
       disabled: Zakázáno
       enable: Povolit
@@ -450,11 +485,13 @@ cs:
       confirmed: Potvrzeno
       expires_in: Vyprší v
       last_delivery: Poslední doručení
+      title: WebSub
       topic: Téma
     tags:
       accounts: Účty
       hidden: Skryté
       hide: Skrýt z adresáře
+      name: Hashtag
       title: Hashtagy
       unhide: Zobrazit v adresáři
       visible: Viditelné
@@ -472,7 +509,7 @@ cs:
     new_report:
       body: "%{reporter} nahlásil/a uživatele %{target}"
       body_remote: Někdo z %{domain} nahlásil uživatele %{target}
-      subject: Nové nahlášení pro %{instance} (#%{id})
+      subject: 'Nové nahlášení pro %{instance} (#%{id})'
   appearance:
     advanced_web_interface: Pokročilé webové rozhraní
     advanced_web_interface_hint: 'Chcete-li využít celé šířky vaší obrazovky, dovolí vám pokročilé webové rozhraní nastavit si mnoho různých sloupců, takže můžete vidět ve stejnou chvíli tolik informací, kolik chcete: domovskou časovou osu, oznámení, federovanou časovou osu a libovolný počet seznamů a hashtagů.'
@@ -830,7 +867,7 @@ cs:
       vote: Hlasovat
     show_more: Zobrazit více
     sign_in_to_participate: Chcete-li se účastnit této konverzace, přihlaste se
-    title: "%{name}: „%{quote}“"
+    title: '%{name}: „%{quote}“'
     visibilities:
       private: Pouze pro sledující
       private_long: Zobrazit pouze sledujícím
@@ -924,7 +961,7 @@ cs:
       <p>Tento dokument je dostupný pod licencí CC-BY-SA. Byl naposledy aktualizován 7. března 2018.</p>
 
       <p>Původně adaptováno ze <a href="https://github.com/discourse/discourse">zásad soukromí Discourse</a>.</p>
-    title: Podmínky používání a zásady soukromí %{instance}
+    title: "Podmínky používání a zásady soukromí %{instance}"
   themes:
     contrast: Mastodon (vysoký kontrast)
     default: Mastodon (tmavý)
