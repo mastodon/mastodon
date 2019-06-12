@@ -842,15 +842,32 @@ gl:
       phantom_js: PhantomJS
       qq: Navegador QQ
       safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
     explanation: Estos son os navegadores web nos que actualmente ten sesión aberta.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
       other: plataforma descoñecida
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Revocar
     revoke_success: A sesión revocouse con éxito
     title: Sesións
   settings:
+    account: Conta
+    account_settings: Axustes da conta
+    appearance: Aparencia
     authorized_apps: Apps autorizadas
     back: Voltar a Mastodon
     delete: Eliminación da conta
@@ -860,9 +877,11 @@ gl:
     featured_tags: Etiquetas destacadas
     identity_proofs: Probas de identidade
     import: Importar
+    import_and_export: Importar e exportar
     migrate: Migrar conta
     notifications: Notificacións
     preferences: Preferencias
+    profile: Perfil
     relationships: Seguindo e seguidoras
     two_factor_authentication: Validar Doble Factor
   statuses:
@@ -894,6 +913,7 @@ gl:
       vote: Votar
     show_more: Mostrar máis
     sign_in_to_participate: Conéctese para participar na conversa
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Só seguidoras
       private_long: Mostrar só as seguidoras
@@ -995,6 +1015,7 @@ gl:
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Introducir o código xerado polo seu aplicativo de autenticación para confirmar
     description_html: Si habilita a <strong>autenticación de doble factor</strong>, a conexión pediralle estar en posesión do seu teléfono, que xerará testemuños para poder entrar.
