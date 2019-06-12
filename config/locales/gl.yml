@@ -1,20 +1,17 @@
----
 gl:
   about:
-    about_hashtag_html: Estas son mensaxes públicas etiquetadas con <strong>#%{hashtag}</strong>. Pode interactuar con elas si ten unha conta nalgures do fediverso.
+    about_hashtag_html: 'Estas son mensaxes públicas etiquetadas con <strong>#%{hashtag}</strong>. Pode interactuar con elas si ten unha conta nalgures do fediverso.'
     about_mastodon_html: Mastodon é unha rede social que se basea en protocolos web abertos e libres, software de código aberto. É descentralizada como o correo electrónico.
     about_this: Sobre
     active_count_after: activo
     active_footnote: Usuarias Activas no Mes (UAM)
     administered_by: 'Administrada por:'
-    api: API
     apps: Apps móbiles
     apps_platforms: Utilice Mastodon desde iOS, Android e outras plataformas
     browse_directory: Navegue no directorio de perfís e filtre por intereses
     browse_public_posts: Vexa o fluxo de comentarios públicos en Mastodon
     contact: Contacto
     contact_missing: Non establecido
-    contact_unavailable: N/A
     discover_users: Descubra usuarias
     documentation: Documentación
     extended_description_html: |
@@ -41,7 +38,7 @@ gl:
     user_count_before: Fogar de
     what_is_mastodon: Qué é Mastodon?
   accounts:
-    choices_html: 'Eleccións de %{name}:'
+    choices_html: "Eleccións de %{name}:"
     follow: Seguir
     followers:
       one: Seguidora
@@ -58,16 +55,8 @@ gl:
     people_who_follow: Personas que seguen a %{name}
     pin_errors:
       following: Debe seguir a persoa que intenta recomendar
-    posts:
-      one: Toot
-      other: Toots
-    posts_tab_heading: Toots
     posts_with_replies: Toots e respostas
     reserved_username: O nome de usuaria está reservado
-    roles:
-      admin: Admin
-      bot: Bot
-      moderator: Mod
     unfollow: Deixar de seguir
   admin:
     account_actions:
@@ -81,7 +70,6 @@ gl:
     accounts:
       approve: Aprobar
       are_you_sure: Está segura?
-      avatar: Avatar
       by_domain: Dominio
       change_email:
         changed_msg: Cambiouse correctamente o correo-e da conta!
@@ -101,7 +89,6 @@ gl:
       display_name: Mostrar nome
       domain: Dominio
       edit: Editar
-      email: Email
       email_status: Estado do correo
       enable: Habilitar
       enabled: Habilitado
@@ -112,11 +99,9 @@ gl:
       header: Cabeceira
       inbox_url: URL da Caixa de entrada
       invited_by: Convidada por
-      ip: IP
       joined: Uniuse
       location:
         all: Todo
-        local: Local
         remote: Remoto
         title: Lugar
       login_status: Estado da conexión
@@ -149,7 +134,7 @@ gl:
       resend_confirmation:
         already_confirmed: Este usuario ya está confirmado
         send: Reenviar el correo electrónico de confirmación
-        success: "¡Correo electrónico de confirmación enviado con éxito!"
+        success: '¡Correo electrónico de confirmación enviado con éxito!'
       reset: Restablecer
       reset_password: Restablecer contrasinal
       resubscribe: Voltar a suscribir
@@ -177,7 +162,6 @@ gl:
       unsubscribe: Non subscribir
       username: Nome de usuaria
       warn: Aviso
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} asignou o informe %{target} a ela misma"
@@ -222,7 +206,6 @@ gl:
       destroyed_msg: Emojo destruído satisfactoriamente!
       disable: Deshabilitar
       disabled_msg: Deshabilitouse correctamente ese emoji
-      emoji: Emoji
       enable: Habilitar
       enabled_msg: Habilitouse correctamente ese emoji
       image_hint: PNG ate 50KB
@@ -251,7 +234,6 @@ gl:
       recent_users: Usuarias recentes
       search: Busca de texto completo
       single_user_mode: Modo de usuario individual
-      software: Software
       space: Uso de espazo
       title: Taboleiro
       total_users: total de usuarias
@@ -285,7 +267,7 @@ gl:
       show:
         affected_accounts:
           one: Afectoulle a unha conta na base de datos
-          other: Afectoulle a %{count} contas na base de datos
+          other: "Afectoulle a %{count} contas na base de datos"
         retroactive:
           silence: Non silenciar todas as contas existentes de este dominio
           suspend: Non suspender todas as contas existentes de este dominio
@@ -304,7 +286,7 @@ gl:
       title: Lista negra de E-mail
     followers:
       back_to_account: Voltar a Conta
-      title: Seguidoras de %{acct}
+      title: "Seguidoras de %{acct}"
     instances:
       by_domain: Dominio
       delivery_available: A entrega está dispoñible
@@ -465,7 +447,6 @@ gl:
       confirmed: Confirmado
       expires_in: Caduca en
       last_delivery: Última entrega
-      title: WebSub
       topic: Asunto
     tags:
       accounts: Contas
@@ -474,7 +455,6 @@ gl:
       name: Etiqueta
       title: Etiquetas
       unhide: Mostrar en directorio
-      visible: Visible
     title: Administración
     warning_presets:
       add_new: Engadir novo
@@ -489,10 +469,9 @@ gl:
     new_report:
       body: "%{reporter} informou sobre %{target}"
       body_remote: Alguén desde %{domain} informou sobre %{target}
-      subject: Novo informe sobre %{instance} (#%{id})
+      subject: 'Novo informe sobre %{instance} (#%{id})'
   application_mailer:
     notification_preferences: Cambiar os axustes de correo-e
-    salutation: "%{name},"
     settings: 'Mudar as preferencias de e-mail: %{link}'
     view: 'Vista:'
     view_profile: Ver perfil
@@ -520,9 +499,6 @@ gl:
     migrate_account: Mover a unha conta diferente
     migrate_account_html: Se desexa redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
     or_log_in_with: ou conectar con
-    providers:
-      cas: CAS
-      saml: SAML
     register: Rexistro
     registration_closed: "%{instance} non está a aceptar novas usuarias"
     resend_confirmation: Voltar a enviar intruccións de confirmación
@@ -543,18 +519,13 @@ gl:
     title: Seguir %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
       about_x_months: "%{count}mes"
       about_x_years: "%{count}a"
       almost_x_years: "%{count}a"
       half_a_minute: Agora
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Agora
       over_x_years: "%{count}a"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
       x_months: "%{count}mes"
-      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Bo intento, hackers! Contrasinal incorrecto
     confirm_password: Introduza o seu contrasinal para verificar a súa identidade
@@ -594,7 +565,6 @@ gl:
       request: Solicite o ficheiro
       size: Tamaño
     blocks: A bloquear
-    csv: CSV
     domain_blocks: Bloqueos de dominio
     follows: A seguir
     lists: Listas
@@ -732,23 +702,11 @@ gl:
       body: 'O seu estado foi promocionado por %{name}:'
       subject: "%{name} promoveu o seu estado"
       title: Nova promoción
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: " "
   pagination:
     newer: Máis novo
     next: Seguinte
     older: Máis antigo
     prev: Previo
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Xa votou en esta sondaxe
@@ -801,40 +759,14 @@ gl:
     activity: Última actividade
     browser: Navegador
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Navegador descoñecido
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Navegador Nokia S40 Ovi
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
       qq: Navegador QQ
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
     explanation: Estos son os navegadores web nos que actualmente ten sesión aberta.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: plataforma descoñecida
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Revocar
     revoke_success: A sesión revocouse con éxito
     title: Sesións
@@ -882,7 +814,6 @@ gl:
       vote: Votar
     show_more: Mostrar máis
     sign_in_to_participate: Conéctese para participar na conversa
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Só seguidoras
       private_long: Mostrar só as seguidoras
@@ -900,10 +831,10 @@ gl:
       <h3 id="collect">Qué información recollemos?</h3>
 
       <ul>
-        <li><em>Información básica da conta</em>: Si se rexistra en este servidor, pediráselle un nome de usuaria, un enderezo de correo electrónico e un contrasinal. De xeito adicional tamén poderá introducir información como un nome público e biografía, tamén subir unha fotografía de perfil e unha imaxe para a cabeceira. O nome de usuaria, o nome público, a biografía e as imaxes de perfil e cabeceira sempre se mostran publicamente.</li>
-        <li><em>Publicacións, seguimento e outra información pública</em>: O listado das persoas que segue é un listado público, o mesmo acontece coas súas seguidoras. Cando evía unha mensaxe, a data e hora gárdanse así como o aplicativo que utilizou para enviar a mensaxe. As publicacións poderían conter ficheiros de medios anexos, como fotografías e vídeos. As publicacións públicas e as non listadas están dispoñibles de xeito público. Cando destaca unha publicación no seu perfil tamén é pública. As publicacións son enviadas as súas seguidoras, en algúns casos pode acontecer que estén en diferentes servidores e gárdanse copias neles. Cando elemina unha publicación tamén se envía as súas seguidoras. A acción de voltar a publicar ou marcar como favorita outra publicación sempre é pública.</li>
-        <li><em>Mensaxes directas e só para seguidoras</em>: Todas as mensaxes gárdanse e procésanse no servidor. As mensaxes só para seguidoras son entregadas as súas seguidoras e as usuarias que son mencionadas en elas, e as mensaxes directas entréganse só as usuarias mencionadas en elas. En algúns casos esto implica que son entregadas a diferentes servidores e gárdanse copias alí. Facemos un esforzo sincero para limitar o acceso a esas publicacións só as persoas autorizadas, pero outros servidores poderían non ser tan escrupulosos. Polo tanto, é importante revisar os servidores onde se hospedan as súas seguidoras. Nos axustes pode activar a opción de aprovar ou rexeitar novas seguidoras de xeito manual.  <em>Teña en conta que a administración do servidor e todos os outros servidores implicados poden ver as mensaxes.</em>, e as destinatarias poderían facer capturas de pantalla, copiar e voltar a compartir as mensaxes. <em>Non comparta información comprometida en Mastodon.</em></li>
-        <li><em>IPs e outros metadatos</em>: Cando se conecta, gravamos o IP desde onde se conecta, así como o nome do aplicativo desde onde o fai. Todas as sesións conectadas están dispoñibles para revisar e revogar nos axustes. O último enderezo IP utilizado gárdase ate por 12 meses. Tamén poderiamos gardar informes do servidor que inclúan o enderezo IP de cada petición ao servidor.</li>
+      <li><em>Información básica da conta</em>: Si se rexistra en este servidor, pediráselle un nome de usuaria, un enderezo de correo electrónico e un contrasinal. De xeito adicional tamén poderá introducir información como un nome público e biografía, tamén subir unha fotografía de perfil e unha imaxe para a cabeceira. O nome de usuaria, o nome público, a biografía e as imaxes de perfil e cabeceira sempre se mostran publicamente.</li>
+      <li><em>Publicacións, seguimento e outra información pública</em>: O listado das persoas que segue é un listado público, o mesmo acontece coas súas seguidoras. Cando evía unha mensaxe, a data e hora gárdanse así como o aplicativo que utilizou para enviar a mensaxe. As publicacións poderían conter ficheiros de medios anexos, como fotografías e vídeos. As publicacións públicas e as non listadas están dispoñibles de xeito público. Cando destaca unha publicación no seu perfil tamén é pública. As publicacións son enviadas as súas seguidoras, en algúns casos pode acontecer que estén en diferentes servidores e gárdanse copias neles. Cando elemina unha publicación tamén se envía as súas seguidoras. A acción de voltar a publicar ou marcar como favorita outra publicación sempre é pública.</li>
+      <li><em>Mensaxes directas e só para seguidoras</em>: Todas as mensaxes gárdanse e procésanse no servidor. As mensaxes só para seguidoras son entregadas as súas seguidoras e as usuarias que son mencionadas en elas, e as mensaxes directas entréganse só as usuarias mencionadas en elas. En algúns casos esto implica que son entregadas a diferentes servidores e gárdanse copias alí. Facemos un esforzo sincero para limitar o acceso a esas publicacións só as persoas autorizadas, pero outros servidores poderían non ser tan escrupulosos. Polo tanto, é importante revisar os servidores onde se hospedan as súas seguidoras. Nos axustes pode activar a opción de aprovar ou rexeitar novas seguidoras de xeito manual.  <em>Teña en conta que a administración do servidor e todos os outros servidores implicados poden ver as mensaxes.</em>, e as destinatarias poderían facer capturas de pantalla, copiar e voltar a compartir as mensaxes. <em>Non comparta información comprometida en Mastodon.</em></li>
+      <li><em>IPs e outros metadatos</em>: Cando se conecta, gravamos o IP desde onde se conecta, así como o nome do aplicativo desde onde o fai. Todas as sesións conectadas están dispoñibles para revisar e revogar nos axustes. O último enderezo IP utilizado gárdase ate por 12 meses. Tamén poderiamos gardar informes do servidor que inclúan o enderezo IP de cada petición ao servidor.</li>
       </ul>
 
       <hr class="spacer" />
@@ -913,9 +844,9 @@ gl:
       <p>Toda a información que recollemos podería ser utilizada dos seguintes xeitos:</p>
 
       <ul>
-        <li>Para proporcionar a funcionabiliade básica de Mastodon. Só pode interactuar co contido de outra xente e publicar o seu propio contido si está conectada. Por exemplo, podería seguir outra xente e ver as súas publicacións combinadas nunha liña temporal inicial persoalizada.</li>
-        <li>Para axudar a moderar a comunidade, por exemplo comparando o seu enderezo IP con outros coñecidos para evitar esquivar os rexeitamentos ou outras infraccións.</li>
-        <li>O endero de correo electrónico que nos proporciona podería ser utilizado para enviarlle información, notificacións sobre outra xente que interactúa cos seus contidos ou lle envía mensaxes, e para respostar a consultas, e/ou outras cuestións ou peticións.</li>
+      <li>Para proporcionar a funcionabiliade básica de Mastodon. Só pode interactuar co contido de outra xente e publicar o seu propio contido si está conectada. Por exemplo, podería seguir outra xente e ver as súas publicacións combinadas nunha liña temporal inicial persoalizada.</li>
+      <li>Para axudar a moderar a comunidade, por exemplo comparando o seu enderezo IP con outros coñecidos para evitar esquivar os rexeitamentos ou outras infraccións.</li>
+      <li>O endero de correo electrónico que nos proporciona podería ser utilizado para enviarlle información, notificacións sobre outra xente que interactúa cos seus contidos ou lle envía mensaxes, e para respostar a consultas, e/ou outras cuestións ou peticións.</li>
       </ul>
 
       <hr class="spacer" />
@@ -931,8 +862,8 @@ gl:
       <p>Faremos un sincero esforzo en:</p>
 
       <ul>
-        <li>Protexer informes do servidor que conteñan direccións IP das peticións ao servidor, ate a data estos informes gárdanse por non máis de 90 días.</li>
-        <li>Reter os enderezos IP asociados con usuarias rexistradas non máis de 12 meses.</li>
+      <li>Protexer informes do servidor que conteñan direccións IP das peticións ao servidor, ate a data estos informes gárdanse por non máis de 90 días.</li>
+      <li>Reter os enderezos IP asociados con usuarias rexistradas non máis de 12 meses.</li>
       </ul>
 
       <p>Pode solicitar e descargar un ficheiro cos seus contidos, incluíndo publicacións, anexos de medios, imaxes de perfil e imaxe da cabeceira.</p>
@@ -984,7 +915,6 @@ gl:
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Introducir o código xerado polo seu aplicativo de autenticación para confirmar
     description_html: Si habilita a <strong>autenticación de doble factor</strong>, a conexión pediralle estar en posesión do seu teléfono, que xerará testemuños para poder entrar.
