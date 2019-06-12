@@ -57,6 +57,9 @@ eu:
     people_who_follow: '%{name} jarraitzen dutenak'
     pin_errors:
       following: Onetsi nahi duzun pertsona aurretik jarraitu behar duzu
+    posts:
+      one: Toot
+      other: Tootak
     posts_tab_heading: Tootak
     posts_with_replies: Toot eta erantzunak
     reserved_username: Erabiltzaile-izena erreserbatuta dago
@@ -725,6 +728,14 @@ eu:
     dormant: Ez aktiboa
     last_active: Azkenekoz aktiboa
     most_recent: Azkenak
+    moved: Lekuz aldatua
+    mutual: Alde bikoa
+    primary: Primarioa
+    relationship: Erlazioa
+    remove_selected_domains: Kendu hautatutako domeinuetako jarraitzaile guztiak
+    remove_selected_followers: Kendu hautatutako jarraitzaileak
+    remove_selected_follows: Utzi hautatutako erabiltzaileak jarraitzeari
+    status: Kontuaren egoera
   remote_follow:
     acct: Sartu jarraitzeko erabili nahi duzun erabiltzaile@domeinua
     missing_resource: Ezin izan da zure konturako behar den birbideratze URL-a
@@ -754,18 +765,47 @@ eu:
     activity: Azken jarduera
     browser: Nabigatzailea
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Nabigatzaile ezezaguna
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi nabigatzailea
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
       qq: QQ nabigatzailea
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Uneko saioa
     description: "%{browser} - %{platform}"
     explanation: Zure Mastodon kontuan saioa hasita duten nabigatzaileak daude.
+    ip: IP-a
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
       other: plataforma ezezaguna
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Indargabetu
     revoke_success: Saioa ongi indargabetu da
     title: Saioak
   settings:
+    account: Kontua
+    account_settings: Kontuaren ezarpenak
+    appearance: Itxura
     authorized_apps: Baimendutako aplikazioak
     back: Itzuli Mastodon-era
     delete: Kontuaren ezabaketa
@@ -773,10 +813,14 @@ eu:
     edit_profile: Aldatu profila
     export: Datuen esportazioa
     featured_tags: Nabarmendutako traolak
+    identity_proofs: Identitate frogak
     import: Inportazioa
+    import_and_export: Inportatu eta esportatu
     migrate: Kontuaren migrazioa
     notifications: Jakinarazpenak
     preferences: Hobespenak
+    profile: Profila
+    relationships: Jarraitutakoak eta jarraitzaileak
     two_factor_authentication: Bi faktoreetako autentifikazioa
   statuses:
     attached:
@@ -800,8 +844,14 @@ eu:
       ownership: Ezin duzu beste norbaiten toot bat finkatu
       private: Ezin dira publikoak ez diren toot-ak finkatu
       reblog: Bultzada bat ezin da finkatu
+    poll:
+      total_votes:
+        one: "Boto %{count}"
+        other: "%{count} boto"
+      vote: Bozkatu
     show_more: Erakutsi gehiago
     sign_in_to_participate: Eman izena elkarrizketan parte hartzeko
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Jarraitzaileak besterik ez
       private_long: Erakutsi jarraitzaileei besterik ez
