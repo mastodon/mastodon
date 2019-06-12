@@ -22,7 +22,6 @@ fa:
         cancel: لغو
         destroy: پاک کردن
         edit: ویرایش
-        submit: Submit
       confirmations:
         destroy: آیا مطمئن هستید؟
       edit:
@@ -45,7 +44,6 @@ fa:
       new:
         title: برنامهٔ تازه
       show:
-        actions: Actions
         application_id: کلید کلاینت
         callback_urls: نشانی‌های Callabck
         scopes: دامنه‌ها
@@ -71,29 +69,17 @@ fa:
       index:
         application: برنامه
         created_at: مجازشده از
-        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: اجازه‌ها
         title: برنامه‌های مجاز
     errors:
       messages:
         access_denied: دارندهٔ منبع یا سرور اجازه دهنده درخواست را نپذیرفت.
-        credential_flow_not_configured: Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
-        invalid_client: Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.
-        invalid_grant: The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
-        invalid_redirect_uri: The redirect uri included is not valid.
-        invalid_request: The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.
-        invalid_resource_owner: The provided resource owner credentials are not valid, or resource owner cannot be found
-        invalid_scope: The requested scope is invalid, unknown, or malformed.
         invalid_token:
           expired: کد دسترسی منقضی شده است
           revoked: کد دسترسی فسخ شده است
           unknown: کد دسترسی معتبر نیست
-        resource_owner_authenticator_not_configured: Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.
         server_error: خطای پیش‌بینی‌نشده‌ای برای سرور اجازه‌دهنده رخ داد که جلوی اجرای این درخواست را گرفت.
         temporarily_unavailable: سرور اجازه‌دهنده به دلیل بار زیاد یا تعمیرات سرور هم‌اینک نمی‌تواند درخواست شما را بررسی کند.
-        unauthorized_client: The client is not authorized to perform this request using this method.
-        unsupported_grant_type: The authorization grant type is not supported by the authorization server.
-        unsupported_response_type: The authorization server does not support this response type.
     flash:
       applications:
         create:
@@ -116,26 +102,4 @@ fa:
       follow: پیگیری، مسدودسازی، لغو مسدودسازی، و لغو پیگیری حساب‌ها
       push: برای حساب خود اعلان‌های لحظه‌ای دریافت کنید
       read: خواندن اطلاعات حساب شما
-      "read:accounts": see accounts information
-      "read:blocks": see your blocks
-      "read:favourites": see your favourites
-      "read:filters": see your filters
-      "read:follows": see your follows
-      "read:lists": see your lists
-      "read:mutes": see your mutes
-      "read:notifications": see your notifications
-      "read:reports": see your reports
-      "read:search": search on your behalf
-      "read:statuses": see all statuses
       write: انتشار مطالب از طرف شما
-      "write:accounts": modify your profile
-      "write:blocks": block accounts and domains
-      "write:favourites": favourite statuses
-      "write:filters": create filters
-      "write:follows": follow people
-      "write:lists": create lists
-      "write:media": upload media files
-      "write:mutes": mute people and conversations
-      "write:notifications": clear your notifications
-      "write:reports": report other people
-      "write:statuses": publish statuses
