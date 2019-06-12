@@ -7,7 +7,7 @@ ca:
     active_footnote: Usuaris actius mensuals (UAM)
     administered_by: 'Administrat per:'
     api: API
-    apps: Apps mòbil
+    apps: Apps mòbils
     apps_platforms: Utilitza Mastodon des de iOS, Android i altres plataformes
     browse_directory: Navega per el directori de perfils i filtra segons interessos
     browse_public_posts: Navega per una transmissió en directe de publicacions públiques a Mastodon
@@ -29,8 +29,8 @@ ca:
     server_stats: 'Estadístiques del servidor:'
     source_code: Codi font
     status_count_after:
-      one: estat
-      other: estats
+      one: toot
+      other: toots
     status_count_before: Que han escrit
     tagline: Segueix els teus amics i descobreix-ne de nous
     terms: Termes del servei
@@ -840,13 +840,30 @@ ca:
       opera: Opera
       otter: Otter
       phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sessió actual
     description: "%{browser} de %{platform}"
     explanation: Aquests són els navegadors web que actualment han iniciat la sessió amb el teu compte de Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
       other: plataforma desconeguda
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Revoca
     revoke_success: S'ha revocat la sessió amb èxit
+    title: Sessions
   settings:
     account: Compte
     account_settings: Ajustos del compte
@@ -896,6 +913,7 @@ ca:
       vote: Vota
     show_more: Mostrar més
     sign_in_to_participate: Inicia la sessió per participar a la conversa
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Només seguidors
       private_long: Mostra només als seguidors
@@ -994,6 +1012,10 @@ ca:
     contrast: Mastodon (Alt contrast)
     default: Mastodon (Fosc)
     mastodon-light: Mastodon (Clar)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Introdueix el codi generat per l'aplicació autenticadora per a confirmar
     description_html: Si habilites l'<strong>autenticació de dos factors</strong>, et caldrà tenir el teu telèfon, que generarà tokens per a que puguis iniciar sessió.
