@@ -270,19 +270,6 @@ export default class UI extends React.Component {
     };
   }
 
-  shouldComponentUpdate (nextProps) {
-    if (nextProps.navbarUnder !== this.props.navbarUnder) {
-      // Avoid expensive update just to toggle a class
-      this.node.classList.toggle('navbar-under', nextProps.navbarUnder);
-
-      return false;
-    }
-
-    // Why isn't this working?!?
-    // return super.shouldComponentUpdate(nextProps, nextState);
-    return true;
-  }
-
   componentDidUpdate (prevProps) {
     if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
       this.columnsAreaNode.handleChildrenContentChange();
@@ -477,7 +464,7 @@ export default class UI extends React.Component {
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
         <div className={className} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
-          <ColumnsAreaContainer ref={this.setColumnsAreaRef} singleColumn={singleColumn}>
+          <ColumnsAreaContainer ref={this.setColumnsAreaRef} singleColumn={singleColumn} navbarUnder={navbarUnder}>
             <WrappedSwitch>
               {redirect}
               <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
