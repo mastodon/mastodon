@@ -7,12 +7,14 @@ ja:
     active_count_after: 人アクティブ
     active_footnote: 月間アクティブユーザー数 (MAU)
     administered_by: '管理者:'
+    api: API
     apps: アプリ
     apps_platforms: iOSやAndroidなど、各種環境から利用できます
     browse_directory: ディレクトリから気になる人を探しましょう
     browse_public_posts: Mastodonの公開ライブストリームをご覧ください
     contact: 連絡先
     contact_missing: 未設定
+    contact_unavailable: N/A
     discover_users: ユーザーを見つける
     documentation: ドキュメント
     extended_description_html: |
@@ -21,6 +23,7 @@ ja:
     federation_hint_html: "%{instance} のアカウントひとつでどんなMastodon互換サーバーのユーザーでもフォローできるでしょう。"
     generic_description: "%{domain} は、Mastodon サーバーの一つです"
     get_apps: モバイルアプリを試す
+    hosted_on: Mastodon hosted on %{domain}
     learn_more: もっと詳しく
     privacy_policy: プライバシーポリシー
     see_whats_happening: やりとりを見てみる
@@ -29,6 +32,7 @@ ja:
     status_count_after:
       other: トゥート
     status_count_before: トゥート数
+    tagline: Follow friends and discover new ones
     terms: 利用規約
     user_count_after:
       other: 人
@@ -56,6 +60,10 @@ ja:
     posts_tab_heading: トゥート
     posts_with_replies: トゥートと返信
     reserved_username: このユーザー名は予約されています
+    roles:
+      admin: Admin
+      bot: Bot
+      moderator: Mod
     unavailable: プロフィールは利用できません
     unfollow: フォロー解除
   admin:
@@ -97,9 +105,12 @@ ja:
       enabled: 有効
       feed_url: フィードURL
       followers: フォロワー数
+      followers_url: Followers URL
       follows: フォロー数
       header: ヘッダー
+      inbox_url: Inbox URL
       invited_by: 招待した人
+      ip: IP
       joined: 登録日
       location:
         all: すべて
@@ -122,6 +133,7 @@ ja:
       no_account_selected: 何も選択されていないため、変更されていません
       no_limits_imposed: 制限なし
       not_subscribed: 購読していない
+      outbox_url: Outbox URL
       pending: 承認待ち
       perform_full_suspension: 活動を完全に停止させる
       profile_url: プロフィールURL
@@ -147,7 +159,9 @@ ja:
         moderator: モデレーター
         staff: スタッフ
         user: ユーザー
+      salmon_url: Salmon URL
       search: 検索
+      shared_inbox_url: Shared inbox URL
       show:
         created_reports: このアカウントで作られた通報
         targeted_reports: このアカウントについての通報
@@ -164,6 +178,7 @@ ja:
       unsubscribe: 購読の解除
       username: ユーザー名
       warn: 警告
+      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
@@ -453,6 +468,7 @@ ja:
       confirmed: 確認済み
       expires_in: 期限
       last_delivery: 最終配送
+      title: WebSub
       topic: トピック
     tags:
       accounts: アカウント
@@ -513,6 +529,9 @@ ja:
     migrate_account: 別のアカウントに引っ越す
     migrate_account_html: 引っ越し先を明記したい場合は<a href="%{path}">こちら</a>で設定できます。
     or_log_in_with: または次のサービスでログイン
+    providers:
+      cas: CAS
+      saml: SAML
     register: 登録する
     registration_closed: "%{instance} は現在、新規登録停止中です"
     resend_confirmation: 確認メールを再送する
@@ -586,6 +605,7 @@ ja:
       request: アーカイブをリクエスト
       size: 容量
     blocks: ブロック
+    csv: CSV
     domain_blocks: 非表示にしたドメイン
     follows: フォロー
     lists: リスト
@@ -636,8 +656,10 @@ ja:
         verification_failed: KeybaseはこのトークンをKeybaseユーザー%{kb_username}の署名として認識しませんでした。Keybaseから再試行してください。
       wrong_user: "%{current}としてログインしている間%{proving}の証明を作成することはできません。%{proving}としてログインし、もう一度やり直してください。"
     explanation_html: ここではKeybaseのような他のサービスのアカウントと暗号化し関連づけることができます。これにより他の人が暗号化されたメッセージを送信したり、その内容を信用できるようになります。
+    i_am_html: I am %{username} on %{service}.
     inactive: 非アクティブ
     publicize_checkbox: 'そしてこれをトゥートします:'
+    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
     status: 認証状態
     view_proof: 証明を表示
   imports:
@@ -722,11 +744,22 @@ ja:
       body: "%{name} さんにブーストされた、あなたのトゥートがあります:"
       subject: "%{name} さんにブーストされました"
       title: 新たなブースト
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   pagination:
     newer: 新しいトゥート
     next: 次
     older: 以前のトゥート
     prev: 前
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: このアンケートには投票済みです
@@ -738,6 +771,7 @@ ja:
       too_few_options: は複数必要です
       too_many_options: は%{max}個までです
   preferences:
+    other: その他
     posting_defaults: デフォルトの投稿設定
     public_timelines: 公開タイムライン
   relationships:
@@ -782,9 +816,40 @@ ja:
     activity: 最後のアクティビティ
     browser: ブラウザ
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: 不明なブラウザ
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: 現在のセッション
+    description: "%{browser} on %{platform}"
     explanation: あなたのMastodonアカウントに現在ログインしているウェブブラウザの一覧です。
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: 不明なプラットフォーム
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: 削除
     revoke_success: セッションを削除しました
     title: セッション
@@ -832,6 +897,7 @@ ja:
       vote: 投票
     show_more: もっと見る
     sign_in_to_participate: ログインして会話に参加
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: フォロワー限定
       private_long: フォロワーにのみ表示されます

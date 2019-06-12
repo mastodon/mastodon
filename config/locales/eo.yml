@@ -7,6 +7,7 @@ eo:
     active_count_after: aktiva
     active_footnote: Monate Aktivaj Uzantoj (MAU)
     administered_by: 'Administrata de:'
+    api: API
     apps: Poŝtelefonaj aplikaĵoj
     apps_platforms: Uzu Mastodon ĉe iOS, Android kaj aliajn platformojn
     browse_directory: Esplori profilujo kaj filtri per interesoj
@@ -80,6 +81,7 @@ eo:
       destroyed_msg: Kontrola noto sukcese detruita!
     accounts:
       approve: Aprobi
+      approve_all: Aprobi ĉiujn
       are_you_sure: Ĉu vi certas?
       avatar: Profilbildo
       by_domain: Domajno
@@ -145,6 +147,7 @@ eo:
       push_subscription_expires: Eksvalidiĝo de la abono al PuSH
       redownload: Aktualigi profilon
       reject: Malakcepti
+      reject_all: Malaprobi ĉiujn
       remove_avatar: Forigi profilbildon
       remove_header: Forigi kapan bildon
       resend_confirmation:
@@ -777,6 +780,9 @@ eo:
   relationships:
     dormant: Dormanta
     moved: Moviĝita
+    mutual: Reciproka
+    primary: Primara
+    status: Statuso de la konto
   remote_follow:
     acct: Enmetu vian uzantnomo@domajno de kie vi volas agi
     missing_resource: La URL de plusendado ne estis trovita
@@ -826,6 +832,7 @@ eo:
     current_session: Nuna seanco
     description: "%{browser} en %{platform}"
     explanation: Ĉi tiuj estas la retumiloj nun ensalutintaj al via Mastodon-konto.
+    ip: IP
     platforms:
       adobe_air: Adobe Air
       android: Android

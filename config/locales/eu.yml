@@ -4,25 +4,36 @@ eu:
     about_hashtag_html: Hauek  <strong>#%{hashtag}</strong> traola duten toot publikoak dira. Fedibertsoko edozein kontu baduzu harremanetan jarri zaitezke.
     about_mastodon_html: Mastodon web protokolo ireki eta libreak darabiltzan gizarte sare bat da. E-mail sarea bezala deszentralizatua da.
     about_this: Honi buruz
+    active_count_after: aktiboa
+    active_footnote: Hilabeteko erabiltzaile aktiboak (HEA)
     administered_by: 'Administratzailea(k):'
     api: APIa
     apps: Aplikazio mugikorrak
+    apps_platforms: Erabili Mastodon, iOS, Android eta beste plataformetatik
+    browse_directory: Arakatu profilen direktorio bat eta iragazi interesen arabera
+    browse_public_posts: Arakatu Mastodoneko mezu publikoen zuzeneko jario bat
     contact: Kontaktua
     contact_missing: Ezarri gabe
     contact_unavailable: E/E
+    discover_users: Aurkitu erabiltzaileak
     documentation: Dokumentazioa
     extended_description_html: |
       <h3>Arauentzako toki egoki bat</h3>
       <p>Azalpen luzea ez da ezarri oraindik.</p>
+    federation_hint_html: "%{instance} instantzian kontu bat izanda edozein Mastodon zerbitzariko jendea jarraitu ahal izango duzu, eta harago ere."
     generic_description: "%{domain} sareko zerbitzari bat da"
+    get_apps: Probatu mugikorrerako aplikazio bat
     hosted_on: Mastodon %{domain} domeinuan ostatatua
     learn_more: Ikasi gehiago
     privacy_policy: Pribatutasun politika
+    see_whats_happening: Ikusi zer gertatzen ari den
+    server_stats: 'Zerbitzariaren estatistikak:'
     source_code: Iturburu kodea
     status_count_after:
       one: mezu
       other: mezu
     status_count_before: Hauek
+    tagline: Jarraitu lagunak eta egin berriak
     terms: Erabilera baldintzak
     user_count_after:
       one: erabiltzaile
@@ -47,6 +58,9 @@ eu:
     people_who_follow: "%{name} jarraitzen dutenak"
     pin_errors:
       following: Onetsi nahi duzun pertsona aurretik jarraitu behar duzu
+    posts:
+      one: Toot
+      other: Tootak
     posts_tab_heading: Tootak
     posts_with_replies: Toot eta erantzunak
     reserved_username: Erabiltzaile-izena erreserbatuta dago
@@ -54,6 +68,7 @@ eu:
       admin: Administratzailea
       bot: Bot-a
       moderator: Moderatzailea
+    unavailable: Profila ez dago eskuragarri
     unfollow: Utzi jarraitzeari
   admin:
     account_actions:
@@ -65,6 +80,8 @@ eu:
       delete: Ezabatu
       destroyed_msg: Moderazio ohara ongi suntsitu da!
     accounts:
+      approve: Onartu
+      approve_all: Onartu denak
       are_you_sure: Ziur zaude?
       avatar: Abatarra
       by_domain: Domeinua
@@ -97,6 +114,7 @@ eu:
       header: Goiburua
       inbox_url: Sarrera ontziaren URL-a
       invited_by: 'Honek gonbidatua:'
+      ip: IP-a
       joined: Elkartuta
       location:
         all: Denak
@@ -109,15 +127,18 @@ eu:
       moderation:
         active: Aktiboa
         all: Denak
+        pending: Zain
         silenced: Isilarazita
         suspended: Kanporatua
         title: Moderazioa
       moderation_notes: Moderazio oharrak
       most_recent_activity: Azken jarduera
       most_recent_ip: Azken IP-a
+      no_account_selected: Ez da konturik aldatu ez delako bata bera hautatu
       no_limits_imposed: Ez da mugarik ezarri
       not_subscribed: Harpidetu gabe
       outbox_url: Irteera ontziaren URL-a
+      pending: Berrikusketa egiteke
       perform_full_suspension: Kanporatu
       profile_url: Profilaren URL-a
       promote: Sustatu
@@ -125,6 +146,8 @@ eu:
       public: Publikoa
       push_subscription_expires: Push harpidetzaren iraugitzea
       redownload: Freskatu profila
+      reject: Ukatu
+      reject_all: Ukatu denak
       remove_avatar: Kendu abatarra
       remove_header: Kendu goiburua
       resend_confirmation:
@@ -151,6 +174,7 @@ eu:
       statuses: Mezuak
       subscribe: Harpidetu
       suspended: Kanporatuta
+      time_in_queue: Kolan zain %{time}
       title: Kontuak
       unconfirmed_email: Baieztatu gabeko e-mail helbidea
       undo_silenced: Utzi isilarazteari
@@ -158,6 +182,7 @@ eu:
       unsubscribe: Kendu harpidetza
       username: Erabiltzaile-izena
       warn: Abisatu
+      web: Weba
     action_logs:
       actions:
         assigned_to_self_report: "%{name}(e)k %{target} salaketa bere buruari esleitu dio"
@@ -202,6 +227,7 @@ eu:
       destroyed_msg: Emoji-a ongi suntsitu da!
       disable: Desgaitu
       disabled_msg: Emoji-a ongi desgaitu da
+      emoji: Emojia
       enable: Gaitu
       enabled_msg: Emoji hori ongi gaitu da
       image_hint: PNG gehienez 50KB
@@ -224,12 +250,14 @@ eu:
       feature_profile_directory: Profil-direktorioa
       feature_registrations: Izen emateak
       feature_relay: Federazio haria
+      feature_timeline_preview: Denbora-lerroaren aurrebista
       features: Ezaugarriak
       hidden_service: Federazioa ezkutuko zerbitzuekin
       open_reports: salaketa irekiak
       recent_users: Azken erabiltzaileak
       search: Testu osoko bilaketa
       single_user_mode: Erabiltzaile bakarreko modua
+      software: Softwarea
       space: Espazio erabilera
       title: Kontrol panela
       total_users: erabiltzaile guztira
@@ -284,6 +312,7 @@ eu:
       back_to_account: Itzuli kontura
       title: "%{acct} kontuaren jarraitzaileak"
     instances:
+      by_domain: Domeinua
       delivery_available: Bidalketa eskuragarri dago
       known_accounts:
         one: Kontu ezagun %{count}
@@ -306,6 +335,8 @@ eu:
         expired: Iraungitua
         title: Iragazi
       title: Gonbidapenak
+    pending_accounts:
+      title: Zain dauden kontuak (%{count})
     relays:
       add_new: Gehitu hari berria
       delete: Ezabatu
@@ -392,6 +423,12 @@ eu:
         min_invite_role:
           disabled: Inor ez
           title: Baimendu hauen gobidapenak
+      registrations_mode:
+        modes:
+          approved: Izena emateko onarpena behar da
+          none: Ezin du inork izena eman
+          open: Edonork eman dezake izena
+        title: Erregistratzeko modua
       show_known_fediverse_at_about_page:
         desc_html: Txandakatzean, fedibertsu ezagun osoko toot-ak bistaratuko ditu aurrebistan. Bestela, toot lokalak besterik ez ditu erakutsiko.
         title: Erakutsi fedibertsu ezagun osoko denbora-lerroa aurrebistan
@@ -436,6 +473,7 @@ eu:
       confirmed: Berretsita
       expires_in: Iraungitzea
       last_delivery: Azken bidalketa
+      title: WebSub
       topic: Mintzagaia
     tags:
       accounts: Kontuak
@@ -453,10 +491,19 @@ eu:
       edit_preset: Editatu abisu aurre-ezarpena
       title: Kudeatu abisu aurre-ezarpenak
   admin_mailer:
+    new_pending_account:
+      body: Kontu berriaren xehetasunak azpian daude. Eskaera hau onartu edo ukatu dezakezu.
+      subject: Kontu berria berrikusteko %{instance} instantzian (%{username})
     new_report:
       body: "%{reporter}(e)k %{target} salatu du"
       body_remote: "%{domain} domeinuko norbaitek %{target} salatu du"
       subject: Salaketa berria %{instance} instantzian (#%{id})
+  appearance:
+    advanced_web_interface: Web interfaze aurreratua
+    advanced_web_interface_hint: 'Pantaila bere zabalera osoan erabili nahi baduzu, web interfaze aurreratuak hainbat zutabe desberdin konfiguratzea ahalbidetzen dizu, aldi berean nahi beste informazio ikusteko: Hasiera, jakinarazpenak, federatutako denbora-lerroa, edo nahi beste zerrenda eta traola.'
+    animations_and_accessibility: Animazioak eta irisgarritasuna
+    confirmation_dialogs: Berrespen dialogoak
+    sensitive_content: Eduki hunkigarria
   application_mailer:
     notification_preferences: Aldatu e-mail hobespenak
     settings: 'Aldatu e-mail hobespenak: %{link}'
@@ -677,6 +724,19 @@ eu:
     prev: Aurrekoa
   preferences:
     other: Beste bat
+  relationships:
+    activity: Kontuaren aktibitatea
+    dormant: Ez aktiboa
+    last_active: Azkenekoz aktiboa
+    most_recent: Azkenak
+    moved: Lekuz aldatua
+    mutual: Alde bikoa
+    primary: Primarioa
+    relationship: Erlazioa
+    remove_selected_domains: Kendu hautatutako domeinuetako jarraitzaile guztiak
+    remove_selected_followers: Kendu hautatutako jarraitzaileak
+    remove_selected_follows: Utzi hautatutako erabiltzaileak jarraitzeari
+    status: Kontuaren egoera
   remote_follow:
     acct: Sartu jarraitzeko erabili nahi duzun erabiltzaile@domeinua
     missing_resource: Ezin izan da zure konturako behar den birbideratze URL-a
@@ -706,18 +766,47 @@ eu:
     activity: Azken jarduera
     browser: Nabigatzailea
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Nabigatzaile ezezaguna
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi nabigatzailea
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
       qq: QQ nabigatzailea
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Uneko saioa
     description: "%{browser} - %{platform}"
     explanation: Zure Mastodon kontuan saioa hasita duten nabigatzaileak daude.
+    ip: IP-a
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
       other: plataforma ezezaguna
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Indargabetu
     revoke_success: Saioa ongi indargabetu da
     title: Saioak
   settings:
+    account: Kontua
+    account_settings: Kontuaren ezarpenak
+    appearance: Itxura
     authorized_apps: Baimendutako aplikazioak
     back: Itzuli Mastodon-era
     delete: Kontuaren ezabaketa
@@ -725,10 +814,14 @@ eu:
     edit_profile: Aldatu profila
     export: Datuen esportazioa
     featured_tags: Nabarmendutako traolak
+    identity_proofs: Identitate frogak
     import: Inportazioa
+    import_and_export: Inportatu eta esportatu
     migrate: Kontuaren migrazioa
     notifications: Jakinarazpenak
     preferences: Hobespenak
+    profile: Profila
+    relationships: Jarraitutakoak eta jarraitzaileak
     two_factor_authentication: Bi faktoreetako autentifikazioa
   statuses:
     attached:
@@ -752,8 +845,14 @@ eu:
       ownership: Ezin duzu beste norbaiten toot bat finkatu
       private: Ezin dira publikoak ez diren toot-ak finkatu
       reblog: Bultzada bat ezin da finkatu
+    poll:
+      total_votes:
+        one: Boto %{count}
+        other: "%{count} boto"
+      vote: Bozkatu
     show_more: Erakutsi gehiago
     sign_in_to_participate: Eman izena elkarrizketan parte hartzeko
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Jarraitzaileak besterik ez
       private_long: Erakutsi jarraitzaileei besterik ez
