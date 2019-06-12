@@ -1,4 +1,3 @@
----
 ar:
   activerecord:
     attributes:
@@ -51,7 +50,7 @@ ar:
         callback_urls: روابط رد النداء
         scopes: المجالات
         secret: السر
-        title: 'تطبيق : %{name}'
+        title: 'تطبيق: %{name}'
     authorizations:
       buttons:
         authorize: ترخيص
@@ -72,7 +71,7 @@ ar:
       index:
         application: التطبيق
         created_at: صُرّح له في
-        date_format: "%d-%m-%Y %H:%M:%S"
+        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: المجالات
         title: تطبيقاتك المرخص لها
     errors:
@@ -85,11 +84,11 @@ ar:
         invalid_resource_owner: إنّ المُعرِّفات التي قدّمها صاحب المورِد غير صحيحة أو أنه لا وجود لصاحب المورِد
         invalid_scope: المجال المطلوب غير صحيح أو مجهول أو مُعبَّر عنه بشكل خاطئ.
         invalid_token:
-          expired: إنتهت فترة صلاحيته رمز المصادقة
+          expired: انتهت فترة صلاحيته رمز المصادقة
           revoked: تم إبطال رمز المصادقة
           unknown: رمز المصادقة غير صالح
         resource_owner_authenticator_not_configured: لقد أخفقت عملية البحث عن صاحب المَورِد لغياب الضبط في Doorkeeper.configure.resource_owner_authenticator.
-        server_error: لقد صادفَ خادوم التصريحات ضروفا غير مواتية، الأمر الذي مَنَعه مِن مواصلة دراسة الطلب.
+        server_error: لقد صادفَ خادوم التصريحات ظروفا غير مواتية، الأمر الذي مَنَعه مِن مواصلة دراسة الطلب.
         temporarily_unavailable: تعذر على خادم التفويض معالجة الطلب و ذلك بسبب زيادة مؤقتة في التحميل أو عملية صيانة مبرمجة على الخادم.
         unauthorized_client: لا يصرح للعميل بتنفيذ هذا الطلب باستخدام هذه الطريقة.
         unsupported_grant_type: هذا النوع من منح التصريح غير معتمد في خادم الترخيص.
@@ -116,26 +115,26 @@ ar:
       follow: تعديل علاقات الحساب
       push: تلقي إشعاراتك
       read: قراءة كافة بيانات حسابك
-      read:accounts: معاينة معلومات الحساب
-      read:blocks: رؤية الحسابات التي قمت بحجبها
-      read:favourites: رؤية مفضلاتك
-      read:filters: رؤية عوامل التصفية الخاصة بك
-      read:follows: رؤية متابِعيك
-      read:lists: رؤية قوائمك
-      read:mutes: رؤية الحسابات التي كَتمتَها
-      read:notifications: رؤية إشعاراتك الخاصة
-      read:reports: رؤية إبلاغاتك
-      read:search: البحث مكانك
-      read:statuses: رؤية كافة المنشورات
+      "read:accounts": معاينة معلومات الحساب
+      "read:blocks": رؤية الحسابات التي قمت بحجبها
+      "read:favourites": رؤية مفضلاتك
+      "read:filters": رؤية عوامل التصفية الخاصة بك
+      "read:follows": رؤية متابِعيك
+      "read:lists": رؤية قوائمك
+      "read:mutes": رؤية الحسابات التي كَتمتَها
+      "read:notifications": رؤية إشعاراتك الخاصة
+      "read:reports": رؤية إبلاغاتك
+      "read:search": البحث مكانك
+      "read:statuses": رؤية كافة المنشورات
       write: تغيير كافة بيانات حسابك
-      write:accounts: تعديل ملفك الشخصي
-      write:blocks: حجب الحسابات و النطاقات
-      write:favourites: الإعجاب بمنشورات
-      write:filters: إنشاء عوامل تصفية
-      write:follows: متابَعة الأشخاص
-      write:lists: إنشاء القوائم
-      write:media: إرسال الصور
-      write:mutes: كتم الأشخاص و المحادثات
-      write:notifications: مسح إشعاراتك
-      write:reports: الإبلاغ عن الأشخاص نيابة عنك
-      write:statuses: نشر منشورات
+      "write:accounts": تعديل ملفك الشخصي
+      "write:blocks": حجب الحسابات و النطاقات
+      "write:favourites": الإعجاب بمنشورات
+      "write:filters": إنشاء عوامل تصفية
+      "write:follows": متابَعة الأشخاص
+      "write:lists": إنشاء القوائم
+      "write:media": إرسال الصور
+      "write:mutes": كتم الأشخاص و المحادثات
+      "write:notifications": مسح إشعاراتك
+      "write:reports": الإبلاغ عن الأشخاص نيابة عنك
+      "write:statuses": نشر منشورات
