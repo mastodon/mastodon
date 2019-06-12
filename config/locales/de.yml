@@ -6,12 +6,14 @@ de:
     active_count_after: aktiv
     active_footnote: Monatlich Aktive Nutzer_innen (MAU)
     administered_by: 'Betrieben von:'
+    api: API
     apps: Mobile Apps
     apps_platforms: Benutze Mastodon auf iOS, Android und anderen Plattformen
     browse_directory: Durchsuche das Profilverzeichnis und filtere nach Interessen
     browse_public_posts: Stöbere durch öffentliche Beiträge auf Mastodon
     contact: Kontakt
     contact_missing: Nicht angegeben
+    contact_unavailable: Nicht verfügbar
     discover_users: Benutzer_innen entdecken
     documentation: Dokumentation
     extended_description_html: |
@@ -62,6 +64,8 @@ de:
     posts_with_replies: Beiträge mit Antworten
     reserved_username: Dieser Profilname ist belegt
     roles:
+      admin: Administrator
+      bot: Bot
       moderator: Moderator
     unavailable: Profil nicht verfügbar
     unfollow: Entfolgen
@@ -79,6 +83,7 @@ de:
       approve_all: Alle akzeptieren
       are_you_sure: Bist du sicher?
       avatar: Profilbild
+      by_domain: Domain
       change_email:
         changed_msg: E-Mail-Adresse des Kontos erfolgreich geändert!
         current_email: Aktuelle E-Mail-Adresse
@@ -95,6 +100,7 @@ de:
       disable_two_factor_authentication: 2FA abschalten
       disabled: Ausgeschaltet
       display_name: Anzeigename
+      domain: Domain
       edit: Bearbeiten
       email: E-Mail
       email_status: E-Mail-Status
@@ -104,6 +110,7 @@ de:
       followers: Folgende
       followers_url: URL des Folgenden
       follows: Folgt
+      header: Titelbild
       inbox_url: Posteingangs-URL
       invited_by: Eingeladen von
       ip: IP-Adresse
@@ -122,6 +129,7 @@ de:
         pending: Ausstehend
         silenced: Stummgeschaltet
         suspended: Gesperrt
+        title: Moderation
       moderation_notes: Moderationsnotizen
       most_recent_activity: Letzte Aktivität
       most_recent_ip: Letzte IP-Adresse
@@ -150,6 +158,7 @@ de:
       resubscribe: Wieder abonnieren
       role: Berechtigungen
       roles:
+        admin: Administrator
         moderator: Moderator:in
         staff: Mitarbeiter
         user: Nutzer
@@ -172,6 +181,7 @@ de:
       unsubscribe: Abbestellen
       username: Profilname
       warn: Warnen
+      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
@@ -207,6 +217,7 @@ de:
       deleted_status: "(gelöschter Beitrag)"
       title: Überprüfungsprotokoll
     custom_emojis:
+      by_domain: Domain
       copied_msg: Eine lokale Kopie des Emojis wurde erstellt
       copy: Kopieren
       copy_failed_msg: Es konnte keine lokale Kopie des Emojis erstellt werden
@@ -215,6 +226,7 @@ de:
       destroyed_msg: Emoji gelöscht!
       disable: Deaktivieren
       disabled_msg: Das Emoji wurde deaktiviert
+      emoji: Emoji
       enable: Aktivieren
       enabled_msg: Das Emoji wurde aktiviert
       image_hint: PNG bis zu 50 kB
@@ -244,9 +256,11 @@ de:
       recent_users: Neueste Nutzer
       search: Volltextsuche
       single_user_mode: Einzelnutzermodus
+      software: Software
       space: Speicherverbrauch
       title: Übersicht
       total_users: Benutzer:innen insgesamt
+      trends: Trends
       week_interactions: Interaktionen diese Woche
       week_users_active: Aktiv diese Woche
       week_users_new: Benutzer:innen diese Woche
@@ -254,6 +268,7 @@ de:
       add_new: Neue Domainblockade hinzufügen
       created_msg: Die Domain-Blockade wird nun durchgeführt
       destroyed_msg: Die Domain-Blockade wurde rückgängig gemacht
+      domain: Domain
       existing_domain_block_html: Es gibt schon eine Blockade für %{name}, diese muss erst <a href="%{unblock_url}">aufgehoben</a> werden.
       new:
         create: Blockade einrichten
@@ -288,6 +303,7 @@ de:
       created_msg: E-Mail-Domain-Blockade erfolgreich erstellt
       delete: Löschen
       destroyed_msg: E-Mail-Domain-Blockade erfolgreich gelöscht
+      domain: Domain
       new:
         create: Blockade erstellen
         title: Neue E-Mail-Domain-Blockade
@@ -296,6 +312,7 @@ de:
       back_to_account: Zurück zum Konto
       title: "%{acct}'s Follower"
     instances:
+      by_domain: Domain
       delivery_available: Zustellung ist verfügbar
       known_accounts:
         one: "%{count} bekanntes Konto"
@@ -303,6 +320,7 @@ de:
       moderation:
         all: Alle
         limited: Limitiert
+        title: Moderation
       title: Föderation
       total_blocked_by_us: Von uns gesperrt
       total_followed_by_them: Gefolgt von denen
@@ -315,6 +333,7 @@ de:
         all: Alle
         available: Verfügbar
         expired: Ausgelaufen
+        title: Filter
       title: Einladungen
     pending_accounts:
       title: Ausstehende Konten (%{count})
@@ -331,6 +350,8 @@ de:
       pending: Warte auf Zustimmung des Relays
       save_and_enable: Speichern und aktivieren
       setup: Relayverbindung einrichten
+      status: Zustand
+      title: Relais
     report_notes:
       created_msg: Meldungs-Kommentar erfolgreich erstellt!
       destroyed_msg: Meldungs-Kommentar erfolgreich gelöscht!
@@ -359,6 +380,7 @@ de:
       reported_by: Gemeldet von
       resolved: Gelöst
       resolved_msg: Meldung erfolgreich gelöst!
+      status: Zustand
       title: Meldungen
       unassign: Zuweisung entfernen
       unresolved: Ungelöst
@@ -451,13 +473,17 @@ de:
       confirmed: Bestätigt
       expires_in: Verfällt in
       last_delivery: Letzte Zustellung
+      title: WebSub
       topic: Thema
     tags:
       accounts: Konten
       hidden: Versteckt
       hide: Vor Verzeichnis verstecken
+      name: Hashtag
+      title: Hashtags
       unhide: Zeige in Verzeichnis
       visible: Sichtbar
+    title: Administration
     warning_presets:
       add_new: Neu hinzufügen
       delete: Löschen
@@ -480,6 +506,7 @@ de:
     sensitive_content: Heikle Inhalte
   application_mailer:
     notification_preferences: Ändere E-Mail-Einstellungen
+    salutation: "%{name},"
     settings: 'E-Mail-Einstellungen ändern: %{link}'
     view: 'Ansehen:'
     view_profile: Zeige Profil
@@ -507,6 +534,9 @@ de:
     migrate_account: Ziehe zu einem anderen Konto um
     migrate_account_html: Wenn du wünschst, dieses Konto zu einem anderen umzuziehen, kannst du <a href="%{path}">dies hier einstellen</a>.
     or_log_in_with: Oder anmelden mit
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registrieren
     registration_closed: "%{instance} akzeptiert keine neuen Mitglieder"
     resend_confirmation: Bestätigungs-Mail erneut versenden
@@ -527,10 +557,18 @@ de:
     title: '%{acct} folgen'
   datetime:
     distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
       half_a_minute: Gerade eben
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Gerade eben
       over_x_years: "%{count}J"
       x_days: "%{count}T"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mo"
+      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Falsches Passwort
     confirm_password: Gib dein derzeitiges Passwort ein, um deine Identität zu bestätigen
@@ -573,6 +611,7 @@ de:
       request: Dein Archiv anfragen
       size: Größe
     blocks: Du hast blockiert
+    csv: CSV
     domain_blocks: Domainblockaden
     follows: Du folgst
     lists: Listen
@@ -680,6 +719,8 @@ de:
     currently_redirecting: 'Deine Profilweiterleitung wurde gesetzt auf:'
     proceed: Speichern
     updated_msg: Deine Konto-Migrationseinstellungen wurden erfolgreich aktualisiert!
+  moderation:
+    title: Moderation
   notification_mailer:
     digest:
       action: Zeige alle Benachrichtigungen
@@ -714,11 +755,22 @@ de:
       body: '%{name} hat deinen Beitrag geteilt:'
       subject: "%{name} hat deinen Beitrag geteilt"
       title: Dein Beitrag wurde geteilt
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   pagination:
     newer: Neuer
     next: Vorwärts
     older: Älter
     prev: Zurück
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Du hast bereits für diese Umfrage abgestimmt
@@ -773,14 +825,42 @@ de:
     too_soon: Das geplante Datum muss in der Zukunft liegen
   sessions:
     activity: Letzte Aktivität
+    browser: Browser
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Unbekannter Browser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Aktuelle Sitzung
     description: "%{browser} auf %{platform}"
     explanation: Dies sind die Webbrowser, die derzeit in deinem Mastodon-Konto eingeloggt sind.
     ip: IP-Adresse
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
       other: unbekannte Plattform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Schließen
     revoke_success: Sitzung erfolgreich geschlossen
     title: Sitzungen
@@ -833,6 +913,7 @@ de:
       vote: Abstimmen
     show_more: Mehr anzeigen
     sign_in_to_participate: Melde dich an, um an der Konversation teilzuhaben
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Nur Folgende
       private_long: Nur für Folgende sichtbar
@@ -936,6 +1017,7 @@ de:
   time:
     formats:
       default: "%d.%m.%Y %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Gib zur Bestätigung den Code ein, den deine Authenticator-App generiert hat
     description_html: Wenn du <strong>Zwei-Faktor-Authentisierung (2FA)</strong> aktivierst, wirst du dein Telefon zum Anmelden benötigen. Darauf werden Tokens erzeugt, die du bei der Anmeldung eingeben musst.
