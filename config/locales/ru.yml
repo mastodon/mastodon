@@ -1,7 +1,6 @@
----
 ru:
   about:
-    about_hashtag_html: Это публичные статусы, отмеченные хэштегом <strong>#%{hashtag}</strong>. Вы можете взаимодействовать с ними при наличии у Вас аккаунта в глобальной сети Mastodon.
+    about_hashtag_html: 'Это публичные статусы, отмеченные хэштегом <strong>#%{hashtag}</strong>. Вы можете взаимодействовать с ними при наличии у Вас аккаунта в глобальной сети Mastodon.'
     about_mastodon_html: Mastodon - это <em>свободная</em> социальная сеть с <em>открытым исходным кодом</em>. Как <em>децентрализованная</em> альтернатива коммерческим платформам, Mastodon предотвращает риск монополизации Вашего общения одной компанией. Выберите сервер, которому Вы доверяете &mdash; что бы Вы ни выбрали, Вы сможете общаться со всеми остальными. Любой может запустить свой собственный узел Mastodon и участвовать в <em>социальной сети</em> совершенно бесшовно.
     about_this: Об этом узле
     active_count_after: активных
@@ -30,17 +29,17 @@ ru:
     server_stats: 'Статистика сервера:'
     source_code: Исходный код
     status_count_after:
+      one: статус
       few: статуса
       many: статусов
-      one: статус
       other: статусов
     status_count_before: Опубликовано
     tagline: Подписывайтесь на друзей и заводите новые знакомства
     terms: Условия использования
     user_count_after:
+      one: пользователь
       few: пользователя
       many: пользователей
-      one: пользователь
       other: пользователей
     user_count_before: Здесь живет
     what_is_mastodon: Что такое Mastodon?
@@ -48,9 +47,9 @@ ru:
     choices_html: "%{name} рекомендует:"
     follow: Подписаться
     followers:
+      one: подписчик
       few: подписчика
       many: подписчиков
-      one: подписчик
       other: подписчиков
     following: подписки
     joined: 'Дата регистрации: %{date}'
@@ -65,9 +64,9 @@ ru:
     pin_errors:
       following: Чтобы порекомендовать кого-то, надо сначала на них подписаться
     posts:
+      one: статус
       few: статуса
       many: статусов
-      one: статус
       other: статусов
     posts_tab_heading: Статусы
     posts_with_replies: Посты с ответами
@@ -171,7 +170,6 @@ ru:
         moderator: Модератор
         staff: Персонал
         user: Пользователь
-      salmon_url: Salmon URL
       search: Поиск
       shared_inbox_url: URL общих входящих
       show:
@@ -297,10 +295,10 @@ ru:
         suspend: заморожен
       show:
         affected_accounts:
-          few: Влияет на %{count} аккаунта в базе данных
-          many: Влияет на %{count} аккаунтов в базе данных
           one: Влияет на один аккаунт в базе данных
-          other: Влияет на %{count} аккаунтов в базе данных
+          few: "Влияет на %{count} аккаунта в базе данных"
+          many: "Влияет на %{count} аккаунтов в базе данных"
+          other: "Влияет на %{count} аккаунтов в базе данных"
         retroactive:
           silence: Снять глушение со всех существующих аккаунтов этого домена
           suspend: Снять блокировку со всех существующих аккаунтов этого домена
@@ -319,14 +317,14 @@ ru:
       title: Доменная блокировка email
     followers:
       back_to_account: Вернуться к аккаунту
-      title: Подписчики пользователя %{acct}
+      title: "Подписчики пользователя %{acct}"
     instances:
       by_domain: Домен
       delivery_available: Доставка возможна
       known_accounts:
+        one: "%{count} известный аккаунт"
         few: "%{count} известных аккаунта"
         many: "%{count} известных аккаунтов"
-        one: "%{count} известный аккаунт"
         other: "%{count} известных аккаунтов"
       moderation:
         all: Все
@@ -351,7 +349,7 @@ ru:
     relays:
       add_new: Добавить ретранслятор
       delete: Удалить
-      description_html: "<strong>Федеративный ретранслятор</strong> – это промежуточный сервер, который передаёт большие объёмы публичных статусов между серверами, которые подписываются и публикуют туда. <strong>Это может помочь небольшим и средним серверам находить записи со всей федерации</strong>, ведь в противном случае пользователям нужно будет вручную подписываться на людей с удалённых узлов."
+      description_html: <strong>Федеративный ретранслятор</strong> – это промежуточный сервер, который передаёт большие объёмы публичных статусов между серверами, которые подписываются и публикуют туда. <strong>Это может помочь небольшим и средним серверам находить записи со всей федерации</strong>, ведь в противном случае пользователям нужно будет вручную подписываться на людей с удалённых узлов.
       disable: Отключить
       disabled: Отключено
       enable: Включить
@@ -508,7 +506,10 @@ ru:
     new_report:
       body: "%{reporter} подал(а) жалобу на %{target}"
       body_remote: Кто-то с узла %{domain} пожаловался на %{target}
-      subject: Новая жалоба, узел %{instance} (#%{id})
+      subject: 'Новая жалоба, узел %{instance} (#%{id})'
+  appearance:
+    advanced_web_interface: Многоколоночный интерфейс
+    sensitive_content: Чувствительное содержимое
   application_mailer:
     notification_preferences: Изменить настройки e-mail
     salutation: "%{name},"
@@ -590,9 +591,9 @@ ru:
     explore_mastodon: Изучайте %{title}
     how_to_enable: Вы ещё не находитесь в каталоге. Можете добавиться ниже. Используйте хэштеги в разделе "о себе", чтобы вас находили по этим хэштегам!
     people:
+      one: "%{count} человек"
       few: "%{count} человека"
       many: "%{count} человек"
-      one: "%{count} человек"
       other: "%{count} человек"
   errors:
     '403': У Вас нет доступа к просмотру этой страницы.
@@ -655,12 +656,12 @@ ru:
     order_by: Сортировать по
     save_changes: Сохранить изменения
     validation_errors:
+      one: Что-то здесь не так! Пожалуйста, прочитайте об ошибке ниже
       few: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
       many: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
-      one: Что-то здесь не так! Пожалуйста, прочитайте об ошибке ниже
       other: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
   html_validator:
-    invalid_markup: 'contains invalid HTML markup: %{error}'
+    invalid_markup: 'невалидная разметка HTML: %{error}'
   identity_proofs:
     active: Активно
     authorize: Да, авторизовать
@@ -708,9 +709,9 @@ ru:
     generate: Сгенерировать
     invited_by: 'Вас пригласил(а):'
     max_uses:
+      one: 1 исп
       few: "%{count} исп."
       many: "%{count} исп."
-      one: 1 исп
       other: "%{count} исп"
     max_uses_prompt: Без лимита
     prompt: Генерируйте и делитесь ссылками с другими, чтобы предоставить им доступ к этому узлу
@@ -738,14 +739,14 @@ ru:
       body: Кратко о пропущенных Вами сообщениях с Вашего последнего захода %{since}
       mention: "%{name} упомянул(а) Вас в:"
       new_followers_summary:
+        one: Также, пока вас не было, у вас появился новый подписчик! Ура!
         few: У вас появилось %{count} новых подписчика! Отлично!
         many: У вас появилось %{count} новых подписчиков! Отлично!
-        one: Также, пока вас не было, у вас появился новый подписчик! Ура!
         other: Также, пока вас не было, у вас появилось %{count} новых подписчиков! Отлично!
       subject:
+        one: "1 новое уведомление с вашего последнего захода \U0001F418"
         few: "%{count} новых уведомления с вашего последнего захода \U0001F418"
         many: "%{count} новых уведомлений с вашего последнего захода \U0001F418"
-        one: "1 новое уведомление с вашего последнего захода \U0001F418"
         other: "%{count} новых уведомлений с вашего последнего захода \U0001F418"
       title: В ваше отсутствие…
     favourite:
@@ -759,7 +760,7 @@ ru:
     follow_request:
       action: Управление запросами на подписку
       body: "%{name} запросил вас о подписке"
-      subject: "%{name} хочет подписаться на вас"
+      subject: '%{name} хочет подписаться на вас'
       title: Новый запрос о подписке
     mention:
       action: Ответить
@@ -780,7 +781,6 @@ ru:
           quadrillion: квадрлн
           thousand: тыс
           trillion: трлн
-          unit: ''
   pagination:
     newer: Новее
     next: След
@@ -799,6 +799,7 @@ ru:
       too_many_options: может содержать не больше %{max} вариантов
   preferences:
     other: Другое
+    public_timelines: Публичные ленты
   relationships:
     activity: Активность аккаунта
     dormant: Заброшенные
@@ -902,21 +903,21 @@ ru:
     attached:
       description: 'Вложение: %{attached}'
       image:
+        one: "%{count} изображение"
         few: "%{count} изображения"
         many: "%{count} изображений"
-        one: "%{count} изображение"
         other: "%{count} изображений"
       video:
+        one: "%{count} видео"
         few: "%{count} видео"
         many: "%{count} видео"
-        one: "%{count} видео"
         other: "%{count} видео"
     boosted_from_html: Продвижение польз. %{acct_link}
     content_warning: 'Спойлер: %{warning}'
     disallowed_hashtags:
+      one: 'содержался запрещённый хэштег: %{tags}'
       few: 'содержались запрещённые хэштеги: %{tags}'
       many: 'содержались запрещённые хэштеги: %{tags}'
-      one: 'содержался запрещённый хэштег: %{tags}'
       other: 'содержались запрещённые хэштеги: %{tags}'
     language_detection: Определять язык автоматически
     open_in_web: Открыть в WWW
@@ -928,9 +929,9 @@ ru:
       reblog: Нельзя закрепить продвинутый статус
     poll:
       total_votes:
+        one: "%{count} голос"
         few: "%{count} голоса"
         many: "%{count} голосов"
-        one: "%{count} голос"
         other: "%{count} голосов"
       vote: Голосовать
     show_more: Ещё
@@ -953,10 +954,10 @@ ru:
       <h3 id="collect">What information do we collect?</h3>
 
       <ul>
-        <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
-        <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
-        <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
       </ul>
 
       <hr class="spacer" />
@@ -966,9 +967,9 @@ ru:
       <p>Any of the information we collect from you may be used in the following ways:</p>
 
       <ul>
-        <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
-        <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-        <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
       </ul>
 
       <hr class="spacer" />
@@ -984,8 +985,8 @@ ru:
       <p>We will make a good faith effort to:</p>
 
       <ul>
-        <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
-        <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
       </ul>
 
       <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
@@ -1025,7 +1026,7 @@ ru:
       <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
-    title: Условия обслуживания и политика конфиденциальности %{instance}
+    title: "Условия обслуживания и политика конфиденциальности %{instance}"
   themes:
     contrast: Mastodon (высококонтрастная)
     default: Mastodon (тёмная)
@@ -1063,7 +1064,7 @@ ru:
       review_server_policies: Посмотреть правила сервера
       subject:
         disable: Ваш аккаунт %{acct} заморожен
-        none: "%{acct}, вам вынесено предупреждение"
+        none: '%{acct}, вам вынесено предупреждение'
         silence: Ваш аккаунт %{acct} был ограничен
         suspend: Ваш аккаунт %{acct} был заблокирован
       title:
