@@ -1,4 +1,3 @@
----
 cs:
   devise:
     confirmations:
@@ -81,3 +80,8 @@ cs:
       expired: vypršel, prosím vyžádejte si nový
       not_found: nenalezen
       not_locked: nebyl uzamčen
+      not_saved:
+        one: '1 chyba zabránila uložení tohoto %{resource}:'
+        few: "%{count} chyby zabránily uložení tohoto %{resource}:"
+        many: "%{count} chyb zabránilo uložení tohoto %{resource}:"
+        other: "%{count} chyb zabránilo uložení tohoto %{resource}:"
