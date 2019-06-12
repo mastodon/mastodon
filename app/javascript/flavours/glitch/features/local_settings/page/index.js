@@ -11,8 +11,11 @@ import LocalSettingsPageItem from './item';
 
 const messages = defineMessages({
   layout_auto: {  id: 'layout.auto', defaultMessage: 'Auto' },
+  layout_auto_hint: {  id: 'layout.hint.auto', defaultMessage: 'Automatically chose layout based on “Enable advanced web interface” setting and screen size.' },
   layout_desktop: { id: 'layout.desktop', defaultMessage: 'Desktop' },
+  layout_desktop_hint: { id: 'layout.hint.desktop', defaultMessage: 'Use multiple-column layout regardless of the “Enable advanced web interface” setting or screen size.' },
   layout_mobile: { id: 'layout.single', defaultMessage: 'Mobile' },
+  layout_mobile_hint: { id: 'layout.hint.single', defaultMessage: 'Use single-column layout regardless of the “Enable advanced web interface” setting or screen size.' },
   side_arm_none: { id: 'settings.side_arm.none', defaultMessage: 'None' },
   side_arm_keep: { id: 'settings.side_arm_reply_mode.keep', defaultMessage: 'Keep secondary toot button to set privacy' },
   side_arm_copy: { id: 'settings.side_arm_reply_mode.copy', defaultMessage: 'Copy privacy setting of the toot being replied to' },
@@ -87,9 +90,9 @@ export default class LocalSettingsPage extends React.PureComponent {
             item={['layout']}
             id='mastodon-settings--layout'
             options={[
-              { value: 'auto', message: intl.formatMessage(messages.layout_auto) },
-              { value: 'multiple', message: intl.formatMessage(messages.layout_desktop) },
-              { value: 'single', message: intl.formatMessage(messages.layout_mobile) },
+              { value: 'auto', message: intl.formatMessage(messages.layout_auto), hint: intl.formatMessage(messages.layout_auto_hint) },
+              { value: 'multiple', message: intl.formatMessage(messages.layout_desktop), hint: intl.formatMessage(messages.layout_desktop_hint) },
+              { value: 'single', message: intl.formatMessage(messages.layout_mobile), hint: intl.formatMessage(messages.layout_mobile_hint) },
             ]}
             onChange={onChange}
           >
