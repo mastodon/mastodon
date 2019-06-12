@@ -265,7 +265,7 @@ cy:
       feature_profile_directory: Cyfeiriadur proffil
       feature_registrations: Cofrestriadau
       feature_relay: Relái ffederasiwn
-      feature_timeline_preview: Rhagolwg llinell amser
+      feature_timeline_preview: Rhagolwg o'r ffrwd
       features: Nodweddion
       hidden_service: Ffederasiwn a gwasanaethau cudd
       open_reports: adroddiadau agored
@@ -524,7 +524,7 @@ cy:
       subject: 'Cwyn newydd am %{instance} {#%{id}}'
   appearance:
     advanced_web_interface: Rhyngwyneb gwe uwch
-    advanced_web_interface_hint: 'Os hoffech gwneud defnydd o gyd o''ch lled sgrin, mae''r rhyngwyneb gwe uwch yn gadael i chi ffurfweddu sawl colofn wahanol i weld cymaint o wybodaeth â hoffech: Catref, hysbysiadau, llinell amser y ffedysawd, unrhyw nifer o rhestrau ac hashnodau.'
+    advanced_web_interface_hint: 'Os hoffech gwneud defnydd o gyd o''ch lled sgrin, mae''r rhyngwyneb gwe uwch yn gadael i chi ffurfweddu sawl colofn wahanol i weld cymaint o wybodaeth â hoffech: Catref, hysbysiadau, ffrwd y ffedysawd, unrhyw nifer o rhestrau ac hashnodau.'
     animations_and_accessibility: Animeiddiau ac hygyrchedd
     confirmation_dialogs: Deialog cadarnhau
     sensitive_content: Cynnwys sensitif
@@ -815,8 +815,26 @@ cy:
       duration_too_long: yn rhy bell yn y dyfodol
       duration_too_short: yn rhy fuan
       expired: Mae'r pleidlais wedi gorffen yn barod
+      over_character_limit: ni all fod yn hirach na %{max} cymeriad yr un
+      too_few_options: rhaid cael fwy nag un eitem
+      too_many_options: ni all cynnwys fwy na %{max} o eitemau
   preferences:
     other: Arall
+    posting_defaults: Rhagosodiadau postio
+    public_timelines: Ffrydau gyhoeddus
+  relationships:
+    activity: Gweithgareddau cyfrif
+    dormant: Segur
+    last_active: Gweithred ddiwethaf
+    most_recent: Yn diweddaraf
+    moved: Wedi symud
+    mutual: Cydfuddiannol
+    primary: Cynradd
+    relationship: Perthynas
+    remove_selected_domains: Tynnu pob dilynydd o'r parthau dewisiedig
+    remove_selected_followers: Tynnu'r dilynydd dewisiedig
+    remove_selected_follows: Dad-ddilyn y defnyddwyr dewisiedig
+    status: Statws cyfrif
   remote_follow:
     acct: Mewnbynnwch eich enwdefnyddiwr@parth yr ydych eisiau gweithredu ohonno
     missing_resource: Ni ellir canfod yr URL ailgyferio angenrheidiol i'ch cyfrif
