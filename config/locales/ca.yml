@@ -6,6 +6,7 @@ ca:
     active_count_after: actiu
     active_footnote: Usuaris actius mensuals (UAM)
     administered_by: 'Administrat per:'
+    api: API
     apps: Apps mòbil
     apps_platforms: Utilitza Mastodon des de iOS, Android i altres plataformes
     browse_directory: Navega per el directori de perfils i filtra segons interessos
@@ -56,10 +57,15 @@ ca:
     people_who_follow: Usuaris que segueixen %{name}
     pin_errors:
       following: Has d'estar seguint la persona que vulguis avalar
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Toots i respostes
     reserved_username: El nom d'usuari està reservat
     roles:
       admin: Administrador
+      bot: Bot
       moderator: Moderador
     unavailable: Perfil inaccessible
     unfollow: Deixa de seguir
@@ -76,6 +82,7 @@ ca:
       approve: Aprova
       approve_all: Aprova'ls tots
       are_you_sure: N'estàs segur?
+      avatar: Avatar
       by_domain: Domini
       change_email:
         changed_msg: El correu electrònic del compte s'ha canviat correctament!
@@ -106,9 +113,11 @@ ca:
       header: Capçalera
       inbox_url: URL de la safata d'entrada
       invited_by: Convidat per
+      ip: IP
       joined: Unit
       location:
         all: Tot
+        local: Local
         remote: Remot
         title: Localització
       login_status: Estat d'accés
@@ -132,6 +141,7 @@ ca:
       perform_full_suspension: Suspèn
       profile_url: URL del perfil
       promote: Promociona
+      protocol: Protocol
       public: Públic
       push_subscription_expires: La subscripció PuSH expira
       redownload: Actualitza el perfil
@@ -171,6 +181,7 @@ ca:
       unsubscribe: Cancel·la la subscripció
       username: Nom d'usuari
       warn: Avís
+      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} han assignat l'informe %{target} a ells mateixos"
@@ -215,6 +226,7 @@ ca:
       destroyed_msg: Emojo s'ha destruït amb èxit!
       disable: Inhabilita
       disabled_msg: S'ha inhabilitat l'emoji amb èxit
+      emoji: Emoji
       enable: Habilita
       enabled_msg: S'ha habilitat amb èxit emoji
       image_hint: PNG de fins a 50 KB
@@ -339,6 +351,7 @@ ca:
       save_and_enable: Desa i activa
       setup: Configura una connexió de relay
       status: Estat
+      title: Relays
     report_notes:
       created_msg: La nota del informe s'ha creat correctament!
       destroyed_msg: La nota del informe s'ha esborrat correctament!
@@ -460,6 +473,7 @@ ca:
       confirmed: Confirmat
       expires_in: Expira en
       last_delivery: Últim lliurament
+      title: WebSub
       topic: Tema
     tags:
       accounts: Comptes
@@ -468,6 +482,7 @@ ca:
       name: Etiqueta
       title: Etiquetes
       unhide: Mostra en el directori
+      visible: Visible
     title: Administració
     warning_presets:
       add_new: Afegir nou
@@ -491,6 +506,7 @@ ca:
     sensitive_content: Contingut sensible
   application_mailer:
     notification_preferences: Canvia les preferències de correu
+    salutation: "%{name},"
     settings: 'Canvia les preferències de correu: %{link}'
     view: 'Visualització:'
     view_profile: Mostra el perfil
@@ -518,6 +534,9 @@ ca:
     migrate_account: Mou a un compte diferent
     migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots  <a href="%{path}">configurar aquí</a>.
     or_log_in_with: O inicia sessió amb
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registre
     registration_closed: "%{instance} no accepta nous membres"
     resend_confirmation: Torna a enviar el correu de confirmació
@@ -543,6 +562,7 @@ ca:
       about_x_years: "%{count} anys"
       almost_x_years: "%{count}anys"
       half_a_minute: Ara mateix
+      less_than_x_minutes: "fa %{count} minuts"
       less_than_x_seconds: Ara mateix
       over_x_years: "%{count} anys"
       x_days: "%{count} dies"
@@ -591,6 +611,7 @@ ca:
       request: Sol·licita el teu arxiu
       size: Tamany
     blocks: Persones que has blocat
+    csv: CSV
     domain_blocks: Bloquejos de dominis
     follows: Persones que segueixes
     lists: Llistes
@@ -737,13 +758,19 @@ ca:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
+          billion: B
+          million: M
+          quadrillion: Q
           thousand: m
+          trillion: T
   pagination:
     newer: Més recent
     next: Endavant
     older: Més vell
     prev: Enrere
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Ja has votat en aquesta enquesta
@@ -789,6 +816,7 @@ ca:
       proceed: Procedir a respondre
       prompt: 'Vols respondre a aquest toot:'
   remote_unfollow:
+    error: Error
     title: Títol
     unfollowed: Sense seguir
   scheduled_statuses:
@@ -799,7 +827,19 @@ ca:
     activity: Última activitat
     browser: Navegador
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Navegador desconegut
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
     current_session: Sessió actual
     description: "%{browser} de %{platform}"
     explanation: Aquests són els navegadors web que actualment han iniciat la sessió amb el teu compte de Mastodon.
