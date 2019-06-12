@@ -1,7 +1,6 @@
----
 nl:
   about:
-    about_hashtag_html: Dit zijn openbare toots die getagged zijn met <strong>#%{hashtag}</strong>. Je kunt er op reageren of iets anders mee doen als je op Mastodon (of ergens anders in de fediverse) een account hebt.
+    about_hashtag_html: 'Dit zijn openbare toots die getagged zijn met <strong>#%{hashtag}</strong>. Je kunt er op reageren of iets anders mee doen als je op Mastodon (of ergens anders in de fediverse) een account hebt.'
     about_mastodon_html: Mastodon is een sociaal netwerk dat gebruikt maakt van open webprotocollen en vrije software. Het is net zoals e-mail gedecentraliseerd.
     about_this: Over deze server
     active_count_after: actief
@@ -41,7 +40,7 @@ nl:
     user_count_before: Thuisbasis van
     what_is_mastodon: Wat is Mastodon?
   accounts:
-    choices_html: 'Aanbevelingen van %{name}:'
+    choices_html: "Aanbevelingen van %{name}:"
     follow: Volgen
     followers:
       one: Volger
@@ -121,7 +120,7 @@ nl:
         local: Lokaal
         remote: Extern
         title: Locatie
-      login_status: Login status
+      login_status: Loginstatus
       media_attachments: Mediabijlagen
       memorialize: In gedenkpagina veranderen
       moderation:
@@ -174,6 +173,7 @@ nl:
       statuses: Toots
       subscribe: Abonneren
       suspended: Opgeschort
+      time_in_queue: '%{time} in de wachtrij'
       title: Accounts
       unconfirmed_email: Onbevestigd e-mailadres
       undo_silenced: Niet langer negeren
@@ -186,34 +186,34 @@ nl:
       actions:
         assigned_to_self_report: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
         change_email_user: "%{name} veranderde het e-mailadres van gebruiker %{target}"
-        confirm_user: E-mailadres van gebruiker %{target} is door %{name} bevestigd
+        confirm_user: "E-mailadres van gebruiker %{target} is door %{name} bevestigd"
         create_account_warning: "%{name} verzond een waarschuwing naar %{target}"
-        create_custom_emoji: Nieuwe emoji %{target} is door %{name} geüpload
-        create_domain_block: Domein %{target} is door %{name} geblokkeerd
-        create_email_domain_block: E-maildomein %{target} is door %{name} op de zwarte lijst geplaatst
-        demote_user: Gebruiker %{target} is door %{name} gedegradeerd
+        create_custom_emoji: "Nieuwe emoji %{target} is door %{name} geüpload"
+        create_domain_block: "Domein %{target} is door %{name} geblokkeerd"
+        create_email_domain_block: "E-maildomein %{target} is door %{name} op de zwarte lijst geplaatst"
+        demote_user: "Gebruiker %{target} is door %{name} gedegradeerd"
         destroy_custom_emoji: "%{name} verwijderde emoji %{target}"
-        destroy_domain_block: Domein %{target} is door %{name} gedeblokkeerd
-        destroy_email_domain_block: E-maildomein %{target} is door %{name} op de witte lijst geplaatst
-        destroy_status: Toot van %{target} is door %{name} verwijderd
-        disable_2fa_user: Vereisten tweestapsverificatie van %{target} zijn door %{name} uitgeschakeld
-        disable_custom_emoji: Emoji %{target} is door %{name} uitgeschakeld
-        disable_user: Inloggen voor %{target} is door %{name} uitgeschakeld
-        enable_custom_emoji: Emoji %{target} is door %{name} ingeschakeld
-        enable_user: Inloggen voor %{target} is door %{name} ingeschakeld
-        memorialize_account: Account %{target} is door %{name} in een gedenkpagina veranderd
-        promote_user: Gebruiker %{target} is door %{name} gepromoveerd
+        destroy_domain_block: "Domein %{target} is door %{name} gedeblokkeerd"
+        destroy_email_domain_block: "E-maildomein %{target} is door %{name} op de witte lijst geplaatst"
+        destroy_status: "Toot van %{target} is door %{name} verwijderd"
+        disable_2fa_user: "Vereisten tweestapsverificatie van %{target} zijn door %{name} uitgeschakeld"
+        disable_custom_emoji: "Emoji %{target} is door %{name} uitgeschakeld"
+        disable_user: "Inloggen voor %{target} is door %{name} uitgeschakeld"
+        enable_custom_emoji: "Emoji %{target} is door %{name} ingeschakeld"
+        enable_user: "Inloggen voor %{target} is door %{name} ingeschakeld"
+        memorialize_account: "Account %{target} is door %{name} in een gedenkpagina veranderd"
+        promote_user: "Gebruiker %{target} is door %{name} gepromoveerd"
         remove_avatar_user: "%{name} verwijderde de avatar van %{target}"
         reopen_report: "%{name} heeft rapportage %{target} heropend"
-        reset_password_user: Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld
+        reset_password_user: "Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld"
         resolve_report: "%{name} heeft rapportage %{target} opgelost"
-        silence_account: Account %{target} is door %{name} genegeerd
-        suspend_account: Account %{target} is door %{name} opgeschort
+        silence_account: "Account %{target} is door %{name} genegeerd"
+        suspend_account: "Account %{target} is door %{name} opgeschort"
         unassigned_report: "%{name} heeft het toewijzen van rapportage %{target} ongedaan gemaakt"
-        unsilence_account: Negeren van account %{target} is door %{name} opgeheven
-        unsuspend_account: Opschorten van account %{target} is door %{name} opgeheven
-        update_custom_emoji: Emoji %{target} is door %{name} bijgewerkt
-        update_status: De toots van %{target} zijn door %{name} bijgewerkt
+        unsilence_account: "Negeren van account %{target} is door %{name} opgeheven"
+        unsuspend_account: "Opschorten van account %{target} is door %{name} opgeheven"
+        update_custom_emoji: "Emoji %{target} is door %{name} bijgewerkt"
+        update_status: "De toots van %{target} zijn door %{name} bijgewerkt"
       deleted_status: "(verwijderde toot}"
       title: Auditlog
     custom_emojis:
@@ -234,7 +234,7 @@ nl:
       new:
         title: Lokale emoji toevoegen
       overwrite: Overschrijven
-      shortcode: Shortcode
+      shortcode: Verkorte code
       shortcode_hint: Tenminste 2 tekens (alleen alfanumeriek en underscores)
       title: Lokale emoji’s
       unlisted: Niet weergegeven
@@ -269,6 +269,7 @@ nl:
       created_msg: Domeinblokkade wordt nu verwerkt
       destroyed_msg: Domeinblokkade is ongedaan gemaakt
       domain: Domein
+      existing_domain_block_html: Jij hebt al strengere beperkingen opgelegd aan %{name}, je moet het domein eerst <a href="%{unblock_url}">deblokkeren</a>.
       new:
         create: Blokkade aanmaken
         hint: Een domeinblokkade voorkomt niet dat accountgegevens van dit domein aan de database worden toegevoegd, maar dat er met terugwerkende kracht en automatisch bepaalde moderatiemethoden op deze accounts worden toegepast.
@@ -309,7 +310,7 @@ nl:
       title: E-maildomeinen blokkeren
     followers:
       back_to_account: Terug naar account
-      title: Volgers van %{acct}
+      title: "Volgers van %{acct}"
     instances:
       by_domain: Domein
       delivery_available: Bezorging is mogelijk
@@ -496,7 +497,13 @@ nl:
     new_report:
       body: "%{reporter} heeft %{target} gerapporteerd"
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
-      subject: Nieuwe rapportage op %{instance} (#%{id})
+      subject: 'Nieuwe rapportage op %{instance} (#%{id})'
+  appearance:
+    advanced_web_interface: Geavanceerde webomgeving
+    advanced_web_interface_hint: 'Wanneer je van de hele schermbreedte gebruik wilt maken, stelt de geavanceerde webomgeving je in staat om meerdere verschillende kolommen te configureren. Hiermee kun je zoveel mogelijk informatie op hetzelfde moment bekijken, zoals: Start, meldingen, de globale tijdlijn, meerdere lijsten en hashtags.'
+    animations_and_accessibility: Animaties en toegankelijkheid
+    confirmation_dialogs: Bevestigingen
+    sensitive_content: Gevoelige inhoud
   application_mailer:
     notification_preferences: E-mailvoorkeuren wijzigen
     salutation: "%{name},"
@@ -575,7 +582,7 @@ nl:
     enabled: Je staat momenteel in de gebruikersgids vermeldt.
     enabled_but_waiting: Je hebt er voor gekozen om in de gebruikersgids te worden vermeldt, maar je hebt daarvoor nog niet het minimaal aantal volgers (%{min_followers}).
     explanation: Ontdek gebruikers aan de hand van hun interesses
-    explore_mastodon: "%{title} verkennen"
+    explore_mastodon: '%{title} verkennen'
     how_to_enable: Je geeft momenteel geen toestemming om in de gebruikersgids te worden vermeldt. Je kunt hieronder toestemming geven. Gebruik hashtags in de tekst van jouw bio, om onder bepaalde hashtags te worden vermeldt!
     people:
       one: "%{count} gebruikers"
@@ -753,12 +760,11 @@ nl:
       decimal_units:
         format: "%n%u"
         units:
-          billion: B
-          million: M
-          quadrillion: Q
+          billion: mld.
+          million: mln.
+          quadrillion: qdn.
           thousand: K
-          trillion: T
-          unit: " "
+          trillion: bln.
   pagination:
     newer: Nieuwer
     next: Volgende
@@ -777,6 +783,8 @@ nl:
       too_many_options: kan niet meer dan %{max} items bevatten
   preferences:
     other: Overig
+    posting_defaults: Standaardinstellingen voor posten
+    public_timelines: Openbare tijdlijnen
   relationships:
     activity: Accountactiviteit
     dormant: Sluimerend
@@ -923,10 +931,10 @@ nl:
       <h3 id="collect">What information do we collect?</h3>
 
       <ul>
-        <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
-        <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
-        <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
       </ul>
 
       <hr class="spacer" />
@@ -936,9 +944,9 @@ nl:
       <p>Any of the information we collect from you may be used in the following ways:</p>
 
       <ul>
-        <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
-        <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-        <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
       </ul>
 
       <hr class="spacer" />
@@ -954,8 +962,8 @@ nl:
       <p>We will make a good faith effort to:</p>
 
       <ul>
-        <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
-        <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
       </ul>
 
       <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
@@ -999,7 +1007,7 @@ nl:
       <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
-    title: Gebruiksvoorwaarden en privacybeleid van %{instance}
+    title: "Gebruiksvoorwaarden en privacybeleid van %{instance}"
   themes:
     contrast: Mastodon (hoog contrast)
     default: Mastodon (donker)
@@ -1018,7 +1026,7 @@ nl:
     generate_recovery_codes: Herstelcodes genereren
     instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het inloggen moet invoeren."
     lost_recovery_codes: Met herstelcodes kun je toegang tot jouw account krijgen wanneer je jouw telefoon bent kwijtgeraakt. Wanneer je jouw herstelcodes bent kwijtgeraakt, kan je ze hier opnieuw genereren. Jouw oude herstelcodes zijn daarna ongeldig.
-    manual_instructions: Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder de geheime code in platte tekst.
+    manual_instructions: 'Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder de geheime code in platte tekst.'
     recovery_codes: Herstelcodes back-uppen
     recovery_codes_regenerated: Opnieuw genereren herstelcodes geslaagd
     recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige plek bewaard</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.
