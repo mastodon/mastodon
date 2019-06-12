@@ -1,34 +1,28 @@
----
 hu:
   about:
-    about_hashtag_html: Ezek a <strong>#%{hashtag}</strong> címkével ellátott publikus tülkök. Reagálhatsz rájuk, ha már van felhasználói fiókod valahol a föderációban.
+    about_hashtag_html: 'Ezek a <strong>#%{hashtag}</strong> címkével ellátott publikus tülkök. Reagálhatsz rájuk, ha már van felhasználói fiókod valahol a föderációban.'
     about_mastodon_html: Mastodon egy <em>szabad, nyílt forráskódú</em> szociális hálózati kiszolgálo. Egy <em>központosítatlan</em> alternatíva a kereskedelmi platformokra, elkerüli a kommunikációd monopolizációját veszélyét. Bárki futtathatja a Mastodon-t és részt vehet a <em>szociális hálózatban</em>.
     about_this: Rólunk
     contact: Kapcsolat
     contact_missing: Nincs megadva
-    contact_unavailable: N/A
     extended_description_html: |
       <h3>Ez itt a szabályzat helye</h3>
       <p>Még nem állítottál be bővebb leírást.</p>
     generic_description: "%{domain} csak egy a számtalan szerver közül a föderációban"
-    hosted_on: "%{domain} Mastodon instancia"
+    hosted_on: '%{domain} Mastodon instancia'
     learn_more: Tudj meg többet
     source_code: Forráskód
-    status_count_after: tülköt küldött
     status_count_before: eddig
-    user_count_after: felhasználónk
     user_count_before: Összesen
     what_is_mastodon: Mi a Mastodon?
   accounts:
     follow: Követés
-    followers: Követők
     following: Követed őket
     media: Média
     moved_html: "%{name} ide költözött: %{new_profile_link}"
     nothing_here: Nincs itt semmi!
-    people_followed_by: "%{name} követett személyei"
-    people_who_follow: "%{name} követői"
-    posts: Tülkök
+    people_followed_by: '%{name} követett személyei'
+    people_who_follow: '%{name} követői'
     posts_with_replies: Tülkök és válaszok
     reserved_username: Ez egy már lefoglalt felhasználónév
     roles:
@@ -43,7 +37,6 @@ hu:
       destroyed_msg: Moderációs bejegyzés törölve!
     accounts:
       are_you_sure: Biztos vagy benne?
-      by_domain: Domain
       confirm: Megerősítés
       confirmed: Megerősítve
       confirming: Megerősítve
@@ -52,7 +45,6 @@ hu:
       disable_two_factor_authentication: Kétlépcsős azonosítás kikapcsolása
       disabled: Kikapcsolva
       display_name: Megjelenített név
-      domain: Domain
       edit: Szerkesztés
       email: E-mail
       email_status: E-mail állapot
@@ -63,7 +55,6 @@ hu:
       followers_url: Követők URL
       follows: Követettek
       inbox_url: Beérkezett üzenetek URL
-      ip: IP
       location:
         all: Összes
         local: Helyi
@@ -102,7 +93,6 @@ hu:
         moderator: Moderátor
         staff: Stáb
         user: Felhasználó
-      salmon_url: Salmon URL
       search: Keresés
       shared_inbox_url: Bejövő üzenetek URL keresése
       show:
@@ -144,7 +134,6 @@ hu:
         update_status: "%{name} frissítette %{target} felhasználó tülkjét"
       title: Audit napló
     custom_emojis:
-      by_domain: Domain
       copied_msg: Sikeresen létrehoztuk a hangulatjel helyi másolatát
       copy: Másolás
       copy_failed_msg: Hangulatjel helyi másolatának létrehozása sikertelen
@@ -161,7 +150,6 @@ hu:
       new:
         title: Új egyedi hangulatjel hozzáadása
       overwrite: Felülírás
-      shortcode: Shortcode
       shortcode_hint: Legalább két karakter, csak betűk, számok és alsóvonás
       title: Egyedi hangulatjelek
       unlisted: Nincs listázva
@@ -172,12 +160,11 @@ hu:
       add_new: Új hozzáadása
       created_msg: A domain-tiltás feldolgozása folyamatban
       destroyed_msg: A domain tiltása feloldva
-      domain: Domain
       new:
         create: Tiltás létrehozása
         hint: A domain-tiltás nem gátolja meg az új fiókok hozzáadását az abatbázishoz, de visszamenőlegesen és automatikusan aktivál bizonyos moderációs szabályokat ezen fiókok esetében.
         severity:
-          desc_html: A <strong>Némítás</strong> elrejti az adott felhasználó tülkjeit mindenki elől, aki nem követi az adott felhasználót. A <strong>Felfüggesztés</strong> eltávolítja az adott felhasználó által létrehozott minden tartalmat, ide értve a médiafájlokat és a fiókadatokat is. Válaszd az <strong>Egyik sem</strong> opciót, ha csupán a médiafájlokat szeretnéd elutasítani.
+          desc_html: "A <strong>Némítás</strong> elrejti az adott felhasználó tülkjeit mindenki elől, aki nem követi az adott felhasználót. A <strong>Felfüggesztés</strong> eltávolítja az adott felhasználó által létrehozott minden tartalmat, ide értve a médiafájlokat és a fiókadatokat is. Válaszd az <strong>Egyik sem</strong> opciót, ha csupán a médiafájlokat szeretnéd elutasítani."
           noop: Egyik sem
           silence: Némítás
           suspend: Felfüggesztés
@@ -187,11 +174,11 @@ hu:
       show:
         affected_accounts:
           one: Összesen egy fiók érintett az adatbázisban
-          other: Összesen %{count} fiók érintett az adatbázisban
+          other: "Összesen %{count} fiók érintett az adatbázisban"
         retroactive:
           silence: Minden felhasználó némításának feloldása ezen a domainen
           suspend: Minden felhasználó felfüggesztésének feloldása ezen a domainen
-        title: "%{domain} domain tiltásának feloldása"
+        title: '%{domain} domain tiltásának feloldása'
         undo: Visszavonás
       undo: Visszavonás
     email_domain_blocks:
@@ -199,7 +186,6 @@ hu:
       created_msg: E-mail domain sikeresen hozzáadva a feketelistához
       delete: Törlés
       destroyed_msg: E-mail domain sikeresen eltávolítva a feketelistáról
-      domain: Domain
       new:
         create: Domain hozzáadása
         title: Új e-mail feketelista bejegyzés
@@ -219,7 +205,7 @@ hu:
       comment:
         none: Egyik sem
       mark_as_resolved: Megjelölés megoldottként
-      report: "#%{id} számú jelentés"
+      report: '#%{id} számú jelentés'
       reported_account: Bejelentett fiók
       reported_by: 'Jelentette:'
       resolved: Megoldott
@@ -282,11 +268,9 @@ hu:
       title: Felhasználó tülkjei
       with_media: Médiafájlokkal
     subscriptions:
-      callback_url: Callback URL
       confirmed: Megerősítve
       expires_in: Elévül
       last_delivery: Utolsó kézbesítés
-      title: WebSub
       topic: Téma
     title: Karbantartás
   admin_mailer:
@@ -295,7 +279,6 @@ hu:
       subject: 'Új jelentés az alábbi instancián: %{instance} (#%{id})'
   application_mailer:
     notification_preferences: E-mail beállítások módosítása
-    salutation: "%{name},"
     settings: 'E-mail beállítások módosítása: %{link}'
     view: 'Megtekintés:'
     view_profile: Profil megtekintése
@@ -332,7 +315,7 @@ hu:
       close: Akár be is zárhatod ezt az ablakot.
       return: Visszatérés a felhasználó profiloldalára
       web: Megtekintés a weben
-    title: "%{acct} követése"
+    title: '%{acct} követése'
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ó"
@@ -369,7 +352,6 @@ hu:
     noscript_html: A Mastodon webalkalmazás használatához engedélyezned kell a JavaScriptet. A másik megoldás, hogy kipróbálod az egyik, a platformodnak megfelelő <a href="%{apps_path}">alkalmazást</a>.
   exports:
     blocks: Tiltólistádon
-    csv: CSV
     follows: Követettjeid
     mutes: Némításaid
     storage: Médiatároló
@@ -387,7 +369,6 @@ hu:
       following: Követettjeid listája
       muting: Némított felhasználók listája
     upload: Feltöltés
-  in_memoriam_html: In Memoriam.
   invites:
     delete: Visszavonás
     expired: Lejárt
@@ -396,6 +377,7 @@ hu:
       '21600': 6 óra
       '3600': 1 óra
       '43200': 12 óra
+      '604800': 1 week
       '86400': 1 nap
     expires_in_prompt: Soha
     generate: Generálás
@@ -449,28 +431,16 @@ hu:
       title: Új követési kérés
     mention:
       action: Válasz
-      body: "%{name} megemlített téged:"
-      subject: "%{name} megemlített téged"
+      body: '%{name} megemlített téged:'
+      subject: '%{name} megemlített téged'
       title: Új említés
     reblog:
       body: 'Az állapotod reblogolta %{name}:'
       subject: "%{name} reblogolta az állapotod"
       title: Új reblog
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: " "
   pagination:
     next: Következő
     prev: Előző
-    truncate: "&hellip;"
   preferences:
     other: Egyéb
   remote_follow:
@@ -482,40 +452,13 @@ hu:
     activity: Legutóbbi tevékenység
     browser: Böngésző
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Ismeretlen böngésző
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Böngésző
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Jelenlegi munkamenet
     description: "%{browser} az alábbi platformon: %{platform}"
     explanation: Jelenleg az alábbi böngészőkkel vagy bejelentkezve a fiókodba.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: ismeretlen platform
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Visszavonás
     revoke_success: Munkamenet sikeresen visszavonva
     title: Munkamenetek
@@ -540,7 +483,6 @@ hu:
       private: Csak publikus tülköt tűzhetsz ki
       reblog: Reblogolt tülköt nem tudsz kitűzni
     show_more: Mutass többet
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Csak követőknek
       private_long: A tülk csak követőidnek jelenik meg
@@ -596,4 +538,4 @@ hu:
   users:
     invalid_email: A megadott e-mail cím helytelen
     invalid_otp_token: Érvénytelen ellenőrző kód
-    signed_in_as: Bejelentkezve mint
+    signed_in_as: 'Bejelentkezve mint'
