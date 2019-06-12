@@ -498,8 +498,15 @@ gl:
       body: "%{reporter} informou sobre %{target}"
       body_remote: Alguén desde %{domain} informou sobre %{target}
       subject: 'Novo informe sobre %{instance} (#%{id})'
+  appearance:
+    advanced_web_interface: Interface web avanzada
+    advanced_web_interface_hint: 'Se quere utilizar todo o ancho da súa pantalla, a interface web avanzada permítelle configurar diferentes columnas para ver tanta información como desexe. Inicio, notificacións, liña temporal federada, calquera número de listas e etiquetas.'
+    animations_and_accessibility: Animacións e accesibilidade
+    confirmation_dialogs: Diálogos de confirmación
+    sensitive_content: Contido sensible
   application_mailer:
     notification_preferences: Cambiar os axustes de correo-e
+    salutation: "%{name},"
     settings: 'Mudar as preferencias de e-mail: %{link}'
     view: 'Vista:'
     view_profile: Ver perfil
@@ -527,6 +534,9 @@ gl:
     migrate_account: Mover a unha conta diferente
     migrate_account_html: Se desexa redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
     or_log_in_with: ou conectar con
+    providers:
+      cas: CAS
+      saml: SAML
     register: Rexistro
     registration_closed: "%{instance} non está a aceptar novas usuarias"
     resend_confirmation: Voltar a enviar intruccións de confirmación
@@ -547,13 +557,18 @@ gl:
     title: Seguir %{acct}
   datetime:
     distance_in_words:
+      about_x_hours: "%{count}h"
       about_x_months: "%{count}mes"
       about_x_years: "%{count}a"
       almost_x_years: "%{count}a"
       half_a_minute: Agora
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Agora
       over_x_years: "%{count}a"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
       x_months: "%{count}mes"
+      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Bo intento, hackers! Contrasinal incorrecto
     confirm_password: Introduza o seu contrasinal para verificar a súa identidade
@@ -584,6 +599,9 @@ gl:
       content: Sentímolo, pero algo do noso lado falloou.
       title: Esta páxina non é correcta
     noscript_html: Para utilizar a aplicación web de Mastodon debe habilitar JavaScript. De xeito alternativo, intente unha das <a href="%{apps_path}">apps nativas</a> para Mastodon da súa plataforma.
+  existing_username_validator:
+    not_found: non se atopou unha usuaria local con ese alcume
+    not_found_multiple: non se atopou a %{usernames}
   exports:
     archive_takeout:
       date: Data
@@ -593,6 +611,7 @@ gl:
       request: Solicite o ficheiro
       size: Tamaño
     blocks: A bloquear
+    csv: CSV
     domain_blocks: Bloqueos de dominio
     follows: A seguir
     lists: Listas
@@ -626,10 +645,13 @@ gl:
     all: Todo
     changes_saved_msg: Cambios gardados correctamente!!
     copy: Copiar
+    order_by: Ordenar por
     save_changes: Gardar cambios
     validation_errors:
       one: Algo non está ben de todo! Por favor revise abaixo o erro
       other: Algo aínda non está ben! Por favor revise os %{count} erros abaixo
+  html_validator:
+    invalid_markup: 'contén etiquetas HTML non válidas: %{error}'
   identity_proofs:
     active: Activo
     authorize: Si, autorizar
@@ -639,10 +661,13 @@ gl:
       keybase:
         invalid_token: Os testemuños Keybase son hashes de firma e deben ter 66 caracteres hexadecimais
         verification_failed: Keybase non recoñece este testemuño como firma da usuaria de Keybase %{kb_username}. Por favor inténteo desde Keybase.
+      wrong_user: Non se puido crear a proba para %{proving} mentras está conectada como %{current}. Conéctese como %{proving} e inténteo de novo.
     explanation_html: Aquí pódese conectar criptográficamente as suas outras identidades, como a un perfil Keybase. Esto permitelle a outras persoas enviarlle mensaxes cifradas e confiar no contido que vostede lle envía.
     i_am_html: Eu son %{username} en %{service}.
     identity: Identidade
     inactive: Inactiva
+    publicize_checkbox: 'E tootee esto:'
+    publicize_toot: 'Comprobado! Eu son %{username} en %{service}: %{url}'
     status: Estado da validación
     view_proof: Ver proba
   imports:
@@ -730,11 +755,22 @@ gl:
       body: 'O seu estado foi promocionado por %{name}:'
       subject: "%{name} promoveu o seu estado"
       title: Nova promoción
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   pagination:
     newer: Máis novo
     next: Seguinte
     older: Máis antigo
     prev: Previo
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Xa votou en esta sondaxe
@@ -747,9 +783,13 @@ gl:
       too_many_options: non pode haber máis de %{max} opcións
   preferences:
     other: Outro
+    posting_defaults: Valores por omisión
+    public_timelines: Liñas temporais públicas
   relationships:
     activity: Actividade da conta
     dormant: En repouso
+    last_active: Último activo
+    most_recent: Máis recente
     moved: Movida
     mutual: Mutuo
     primary: Principal
@@ -787,9 +827,21 @@ gl:
     activity: Última actividade
     browser: Navegador
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Navegador descoñecido
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Navegador Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
       qq: Navegador QQ
+      safari: Safari
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
     explanation: Estos son os navegadores web nos que actualmente ten sesión aberta.
