@@ -11,7 +11,6 @@ fi:
       last_attempt: Voit yrittää enää kerran, ennen kuin tili lukitaan.
       locked: Tili on lukittu.
       not_found_in_database: Virheellinen %{authentication_keys} tai salasana.
-      pending: Your account is still under review.
       timeout: Istunto on umpeutunut. Jatka kirjautumalla sisään.
       unauthenticated: Kirjaudu sisään tai rekisteröidy, jos haluat jatkaa.
       unconfirmed: Vahvista sähköpostiosoitteesi, ennen kuin jatkat.
@@ -20,7 +19,6 @@ fi:
         action: Vahvista sähköpostiosoite
         action_with_app: Vahvista ja palaa %{app}
         explanation: Olet luonut tilin palvelimelle %{host} käyttäen tätä sähköpostiosoitetta. Aktivoi tili yhdellä klikkauksella. Jos et luonut tiliä itse, voit jättää tämän viestin huomiotta.
-        explanation_when_pending: You applied for an invite to %{host} with this email address. Once you confirm your e-mail address, we will review your application. You can't login until then. If your application is rejected, your data will be removed, so no further action will be required from you. If this wasn't you, please ignore this email.
         extra_html: Katso myös <a href="%{terms_path}">instanssin säännöt</a> ja <a href="%{policy_path}">käyttöehdot</a>.
         subject: 'Mastodon: Vahvistusohjeet - %{instance}'
         title: Vahvista sähköpostiosoite
@@ -61,7 +59,6 @@ fi:
       signed_up: Tervetuloa! Rekisteröityminen onnistui.
       signed_up_but_inactive: Rekisteröityminen onnistui. Emme kuitenkaan voi kirjata sinua sisään, sillä tiliäsi ei ole vielä aktivoitu.
       signed_up_but_locked: Rekisteröityminen onnistui. Emme kuitenkaan voi kirjata sinua sisään, sillä tilisi on lukittu.
-      signed_up_but_pending: A message with a confirmation link has been sent to your email address. After you click the link, we will review your application. You will be notified if it is approved.
       signed_up_but_unconfirmed: Sähköpostiosoitteeseesi on lähetetty vahvistuslinkki. Aktivoi tili seuraamalla linkkiä. Jos et saanut viestiä, tarkista roskapostikansio.
       update_needs_confirmation: Tilin päivitys onnistui, mutta uusi sähköpostiosoite on vahvistettava. Tarkista sähköpostisi ja vahvista uusi sähköpostiosoite seuraamalla vahvistuslinkkiä. Jos et saanut viestiä, tarkista roskapostikansio.
       updated: Tilin päivitys onnistui.
