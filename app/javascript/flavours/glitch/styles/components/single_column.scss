@@ -1,0 +1,232 @@
+.compose-panel {
+  width: 285px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 10px);
+  overflow-y: hidden;
+
+  .drawer--search input {
+    line-height: 18px;
+    font-size: 16px;
+    padding: 15px;
+    padding-right: 30px;
+  }
+
+  .search__icon .fa {
+    top: 15px;
+  }
+
+  .drawer--account {
+    flex: 0 1 48px;
+  }
+
+  .flex-spacer {
+    background: transparent;
+  }
+
+  .composer {
+    flex: 1;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 310px;
+  }
+
+  .compose-form__autosuggest-wrapper {
+    overflow-y: auto;
+    background-color: $white;
+    border-radius: 4px 4px 0 0;
+    flex: 0 1 auto;
+  }
+
+  .autosuggest-textarea__textarea {
+    overflow-y: hidden;
+  }
+
+  .compose-form__upload-thumbnail {
+    height: 80px;
+  }
+}
+
+.navigation-panel {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: calc(100% - 20px);
+  overflow-y: auto;
+
+  hr {
+    border: 0;
+    background: transparent;
+    border-top: 1px solid lighten($ui-base-color, 4%);
+    margin: 10px 0;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .tabs-bar__link {
+    span {
+      display: inline;
+    }
+  }
+}
+
+.columns-area--mobile {
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+
+  .column,
+  .drawer {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+
+  .autosuggest-textarea__textarea {
+    font-size: 16px;
+  }
+
+  .search__input {
+    line-height: 18px;
+    font-size: 16px;
+    padding: 15px;
+    padding-right: 30px;
+  }
+
+  .search__icon .fa {
+    top: 15px;
+  }
+
+  @media screen and (min-width: 360px) {
+    padding: 10px 0;
+  }
+
+  @media screen and (min-width: 630px) {
+    .detailed-status {
+      padding: 15px;
+
+      .media-gallery,
+      .video-player {
+        margin-top: 15px;
+      }
+    }
+
+    .account__header__bar {
+      padding: 5px 10px;
+    }
+
+    .navigation-bar,
+    .compose-form {
+      padding: 15px;
+    }
+
+    .compose-form .compose-form__publish .compose-form__publish-button-wrapper {
+      padding-top: 15px;
+    }
+
+    .status {
+      padding: 15px;
+      min-height: 48px + 2px;
+
+      .media-gallery,
+      &__action-bar,
+      .video-player {
+        margin-top: 10px;
+      }
+    }
+
+    .account {
+      padding: 15px 10px;
+
+      &__header__bio {
+        margin: 0 -10px;
+      }
+    }
+
+    .notification {
+      &__message {
+        padding-top: 15px;
+      }
+
+      .status {
+        padding-top: 8px;
+      }
+
+      .account {
+        padding-top: 8px;
+      }
+    }
+  }
+}
+
+.floating-action-button {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.9375rem;
+  height: 3.9375rem;
+  bottom: 1.3125rem;
+  right: 1.3125rem;
+  background: darken($ui-highlight-color, 3%);
+  color: $white;
+  border-radius: 50%;
+  font-size: 21px;
+  line-height: 21px;
+  text-decoration: none;
+  box-shadow: 2px 3px 9px rgba($base-shadow-color, 0.4);
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: lighten($ui-highlight-color, 7%);
+  }
+}
+
+@media screen and (min-width: 360px) {
+  .tabs-bar {
+    margin: 10px auto;
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  .react-swipeable-view-container .columns-area--mobile {
+    height: calc(100% - 20px) !important;
+  }
+
+  .getting-started__wrapper,
+  .getting-started__trends,
+  .search {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 600px + (285px * 1) + (10px * 1)) {
+  .columns-area__panels__pane--compositional {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px + (285px * 1) + (10px * 1)) {
+  .floating-action-button,
+  .tabs-bar__link.optional {
+    display: none;
+  }
+
+  .search-page .search {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px + (285px * 2) + (10px * 2)) {
+  .columns-area__panels__pane--navigational {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px + (285px * 2) + (10px * 2)) {
+  .tabs-bar {
+    display: none;
+  }
+}

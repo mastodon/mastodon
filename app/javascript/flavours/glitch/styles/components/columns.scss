@@ -90,34 +90,6 @@
   overflow: hidden;
 }
 
-@include multi-columns('screen and (min-width: 631px)', $parent: null) {
-  .columns-area {
-    padding: 0;
-  }
-
-  .column {
-    flex: 0 0 auto;
-    padding: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
-
-    &:first-child {
-      padding-left: 10px;
-    }
-
-    &:last-child {
-      padding-right: 10px;
-    }
-  }
-
-  .columns-area > div {
-    .column {
-      padding-left: 5px;
-      padding-right: 5px;
-    }
-  }
-}
-
 .column-back-button {
   background: lighten($ui-base-color, 4%);
   color: $highlight-text-color;
@@ -298,7 +270,7 @@
   flex-direction: column;
   overflow: hidden;
 
-  .wide & {
+  .wide .columns-area:not(.columns-area--mobile) & {
     flex: auto;
     min-width: 330px;
     max-width: 400px;
