@@ -153,12 +153,16 @@ cy:
       no_limits_imposed: Dim terfynau wedi'i gosod
       not_subscribed: Heb danysgrifio
       outbox_url: Allflwch URL
+      pending: Yn aros am adolygiad
       perform_full_suspension: Atal
       profile_url: URL proffil
       promote: Hyrwyddo
+      protocol: Protocol
       public: Cyhoeddus
       push_subscription_expires: Tanysgrifiad PuSH yn dod i ben
       redownload: Adnewyddu proffil
+      reject: Gwrthod
+      reject_all: Gwrthod pob un
       remove_avatar: Dileu afatar
       remove_header: Dileu pennawd
       resend_confirmation:
@@ -172,6 +176,7 @@ cy:
       roles:
         admin: Gweinyddwr
         moderator: Aroglygydd
+        staff: Staff
         user: Defnyddiwr
       salmon_url: URL Eog
       search: Chwilio
@@ -184,6 +189,7 @@ cy:
       statuses: Statysau
       subscribe: Tanysgrifio
       suspended: Ataliwyd
+      time_in_queue: Yn aros yn y rhestr am %{time}
       title: Cyfrifon
       unconfirmed_email: E-bost heb ei gadarnhau
       undo_silenced: Dadwneud tawelu
@@ -236,6 +242,7 @@ cy:
       destroyed_msg: Llwyddwyd i ddinistrio emojo!
       disable: Diffodd
       disabled_msg: Llwyddwyd i ddiffodd yr emoji hwnnw
+      emoji: Emoji
       enable: Galluogi
       enabled_msg: Llwyddwyd i alluogi yr emoji hwnnw
       image_hint: PNG hyd at 50KB
@@ -258,6 +265,7 @@ cy:
       feature_profile_directory: Cyfeiriadur proffil
       feature_registrations: Cofrestriadau
       feature_relay: Relái ffederasiwn
+      feature_timeline_preview: Rhagolwg llinell amser
       features: Nodweddion
       hidden_service: Ffederasiwn a gwasanaethau cudd
       open_reports: adroddiadau agored
@@ -277,6 +285,7 @@ cy:
       created_msg: Mae'r bloc parth nawr yn cael ei brosesu
       destroyed_msg: Mae'r bloc parth wedi ei ddadwneud
       domain: Parth
+      existing_domain_block_html: Rydych yn barod wedi gosod cyfyngau fwy llym ar %{name}, mae rhaid i chi ei <a href="%{unblock_url}">ddadblocio</a> yn gyntaf.
       new:
         create: Creu bloc
         hint: Ni fydd y bloc parth yn atal cread cofnodion cyfrif yn y bas data, ond mi fydd yn gosod dulliau goruwchwylio penodol ôl-weithredol ac awtomatig ar y cyfrifau hynny.
@@ -350,6 +359,8 @@ cy:
         expired: Wedi dod i ben
         title: Hidlo
       title: Gwahoddiadau
+    pending_accounts:
+      title: Cyfrifau yn aros (%{count})
     relays:
       add_new: Ychwanegau relái newydd
       delete: Dileu
