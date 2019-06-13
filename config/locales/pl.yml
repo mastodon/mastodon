@@ -515,8 +515,10 @@ pl:
     advanced_web_interface_hint: 'Jeśli chcesz użyć pełną szerokość swojego ekranu, zaawansowany interfejs użytkownika pozwala Ci skonfigurować wiele różnych kolumn, by zobaczyć jak najwięcej informacji kiedy tylko chcesz. Strona główna, Powiadomienia, Globalna oś czasu, dowolna ilość list i hasztagów.'
     animations_and_accessibility: Animacje i dostępność
     confirmation_dialogs: Dialogi potwierdzenia
+    sensitive_content: Wrażliwa zawartość
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
+    salutation: "%{name},"
     settings: 'Zmień ustawienia powiadamiania: %{link}'
     view: 'Zobacz:'
     view_profile: Wyświetl profil
@@ -544,6 +546,9 @@ pl:
     migrate_account: Przenieś konto
     migrate_account_html: Jeżeli chcesz skonfigurować przekierowanie z obecnego konta na inne, możesz <a href="%{path}">zrobić to tutaj</a>.
     or_log_in_with: Lub zaloguj się z użyciem
+    providers:
+      cas: CAS
+      saml: SAML
     register: Rejestracja
     registration_closed: "%{instance} nie przyjmuje nowych członków"
     resend_confirmation: Ponownie prześlij instrukcje weryfikacji
@@ -564,6 +569,7 @@ pl:
     title: Śledź %{acct}
   datetime:
     distance_in_words:
+      about_x_hours: "%{count}g"
       about_x_months: "%{count} miesięcy"
       about_x_years: "%{count} lat"
       almost_x_years: "%{count} lat"
@@ -574,6 +580,7 @@ pl:
       x_days: "%{count} dni"
       x_minutes: "%{count}min"
       x_months: "%{count} miesięcy"
+      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Niezła próba, hakerze! Wprowadzono nieprawidłowe hasło
     confirm_password: Wprowadź aktualne hasło, aby potwierdzić tożsamość
@@ -618,6 +625,7 @@ pl:
       request: Uzyskaj archiwum
       size: Rozmiar
     blocks: Zablokowani
+    csv: CSV
     domain_blocks: Blokady domen
     follows: Śledzeni
     lists: Listy
@@ -769,11 +777,22 @@ pl:
       body: 'Twój wpis został podbity przez %{name}:'
       subject: "Twój wpis został podbity przez %{name}"
       title: Nowe podbicie
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: mld
+          million: mil
+          quadrillion: bld
+          thousand: tys
+          trillion: bln
   pagination:
     newer: Nowsze
     next: Następna
     older: Starsze
     prev: Poprzednia
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Już oddałeś(-aś) głos w tym głosowaniu
@@ -786,6 +805,8 @@ pl:
       too_many_options: nie może zawierać więcej niż %{max} opcji
   preferences:
     other: Pozostałe
+    posting_defaults: Domyślne ustawienia wpisów
+    public_timelines: Publiczne osie czasu
   relationships:
     activity: Aktywność konta
     dormant: Uśpione
@@ -828,19 +849,47 @@ pl:
     activity: Ostatnia aktywność
     browser: Przeglądarka
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: nieznana przeglądarka
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
       otter: Przeglądarka Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Obecna sesja
     description: "%{browser} na %{platform}"
     explanation: Przeglądarki z aktywną sesją Twojego konta.
     ip: Adres IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: macOS
       other: nieznana platforma
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Unieważnij
     revoke_success: Pomyślnie unieważniono sesję
     title: Sesje
   settings:
+    account: Konto
+    account_settings: Ustawienia konta
+    appearance: Wygląd
     authorized_apps: Uwierzytelnione aplikacje
     back: Powrót do Mastodona
     delete: Usuń konto
@@ -850,9 +899,11 @@ pl:
     featured_tags: Wyróżnione hashtagi
     identity_proofs: Dowody tożsamości
     import: Importowanie danych
+    import_and_export: Import i eksport
     migrate: Migracja konta
     notifications: Powiadomienia
     preferences: Preferencje
+    profile: Profil
     relationships: Śledzeni i śledzący
     two_factor_authentication: Uwierzytelnianie dwuetapowe
   statuses:
@@ -892,6 +943,7 @@ pl:
       vote: Głosuj
     show_more: Pokaż więcej
     sign_in_to_participate: Zaloguj się, aby udzielić się w tej konwersacji
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Tylko dla śledzących
       private_long: Widoczne tylko dla osób, które Cię śledzą
@@ -990,6 +1042,10 @@ pl:
     contrast: Mastodon (Wysoki kontrast)
     default: Mastodon (Ciemny)
     mastodon-light: Mastodon (Jasny)
+  time:
+    formats:
+      default: "%d. %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Aby kontynuować, wprowadź kod wyświetlany przez aplikację uwierzytelniającą
     description_html: Jeśli włączysz <strong>uwierzytelnianie dwuetapowe</strong>, logowanie się będzie wymagało podania tokenu wyświetlonego na Twoim telefonie.
