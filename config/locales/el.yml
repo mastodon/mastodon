@@ -903,6 +903,7 @@ el:
       vote: Ψήφισε
     show_more: Δείξε περισσότερα
     sign_in_to_participate: Εγγράφου για να συμμετάσχεις στη συζήτηση
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Μόνο ακόλουθοι
       private_long: Εμφάνιση μόνο σε ακόλουθους
@@ -1001,6 +1002,10 @@ el:
     contrast: Mastodon (Υψηλή αντίθεση)
     default: Mastodon (Σκοτεινό)
     mastodon-light: Mastodon (Ανοιχτόχρωμο)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Βάλε τον κωδικό που δημιούργησε η εφαρμογή πιστοποίησής σου για επιβεβαίωση
     description_html: Αν ενεργοποιήσεις την <strong>πιστοποίηση 2 παραγόντων (2FA)</strong>, για να συνδεθείς θα πρέπει να έχεις το τηλέφωνό σου, που θα σου δημιουργήσει κλειδιά εισόδου.
