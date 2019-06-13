@@ -41,6 +41,10 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.mention' defaultMessage='to mention author' /></td>
               </tr>
               <tr>
+                <td><kbd>o</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.media' defaultMessage='to open media attachment' /></td>
+              </tr>
+              <tr>
                 <td><kbd>p</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.profile' defaultMessage="to open author's profile" /></td>
               </tr>
@@ -53,7 +57,7 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.boost' defaultMessage='to boost' /></td>
               </tr>
               <tr>
-                <td><kbd>enter</kbd>, <kbd>o</kbd></td>
+                <td><kbd>enter</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.enter' defaultMessage='to open status' /></td>
               </tr>
               <tr>

@@ -236,6 +236,13 @@ class Status extends ImmutablePureComponent {
     this.context.router.history.push(`/statuses/${this._properStatus().get('id')}`);
   }
 
+  handleHotkeyOpenMediaView = () => {
+    const attachments = this._properStatus().get('media_attachments');
+    if (attachments.size) {
+      this.props.onOpenMedia(attachments, 0);
+    }
+  }
+
   handleHotkeyOpenProfile = () => {
     this.context.router.history.push(`/accounts/${this._properStatus().getIn(['account', 'id'])}`);
   }
@@ -288,6 +295,7 @@ class Status extends ImmutablePureComponent {
       boost: this.handleHotkeyBoost,
       mention: this.handleHotkeyMention,
       open: this.handleHotkeyOpen,
+      openMediaView: this.handleHotkeyOpenMediaView,
       openProfile: this.handleHotkeyOpenProfile,
       moveUp: this.handleHotkeyMoveUp,
       moveDown: this.handleHotkeyMoveDown,
