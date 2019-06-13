@@ -35,12 +35,72 @@ ko:
         scopes: 스페이스로 범위를 구분하세요. 빈 칸으로 놔두면 기본 범위를 사용합니다.
       index:
         application: 애플리케이션
+        callback_url: 콜백 URL
+        delete: 삭제
+        name: 이름
+        new: 새 애플리케이션
+        scopes: 범위
+        show: 표시
+        title: 당신의 애플리케이션들
+      new:
+        title: 새 애플리케이션
+      show:
+        actions: 동작
+        application_id: 클라이언트 키
+        callback_urls: 콜백 URL
+        scopes: 범위
+        secret: 클라이언트 비밀키
+        title: '애플리케이션: %{name}'
+    authorizations:
+      buttons:
+        authorize: 승인
+        deny: 거부
+      error:
+        title: 에러가 발생하였습니다
+      new:
+        able_to: 다음과 같은 행동들이 가능합니다
+        prompt: '%{client_name}이 당신의 계정에 접근 권한을 요청합니다'
+        title: 승인 필요
+      show:
+        title: 이 승인 코드를 복사하여 애플리케이션에 붙여넣으세요
     authorized_applications:
+      buttons:
+        revoke: 취소
+      confirmations:
+        revoke: 확실합니까?
       index:
+        application: 애플리케이션
+        created_at: 승인 됨
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: 범위
         title: 당신의 승인 된 애플리케이션들
     errors:
       messages:
         access_denied: 리소스 소유자 또는 권한 부여 서버가 요청을 거부했습니다.
+        invalid_redirect_uri: 리디렉션 URI가 올바르지 않습니다
+        invalid_request: 요청에 필요한 매개변수가 없거나, 지원 되지 않는 매개변수가 있거나, 형식이 잘못되었습니다.
+        invalid_token:
+          expired: 액세스 토큰이 만료되었습니다.
+          revoked: 액세스 토큰이 취소되었습니다.
+          unknown: 액세스 토큰이 잘못되었습니다.
+    flash:
+      applications:
+        create:
+          notice: 애플리케이션이 생성 되었습니다.
+        destroy:
+          notice: 애플리케이션이 삭제 되었습니다.
+        update:
+          notice: 애플리케이션이 갱신 되었습니다.
+      authorized_applications:
+        destroy:
+          notice: 애플리케이션이 취소 되었습니다.
+    layouts:
+      admin:
+        nav:
+          applications: 애플리케이션
+          oauth2_provider: OAuth2 제공자
+      application:
+        title: OAuth 인증이 필요합니다
     scopes:
       follow: 계정의 관계를 수정
       push: 푸시 알림을 받기
@@ -67,3 +127,4 @@ ko:
       "write:mutes": 사람이나 대화 뮤트
       "write:notifications": 알림 모두 지우기
       "write:reports": 다른 사람을 신고
+      "write:statuses": 게시물 게시
