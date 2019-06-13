@@ -337,7 +337,6 @@
     position: absolute;
     top: 5px;
     right: 5px;
-    z-index: 1;
   }
 
   .compose-form__autosuggest-wrapper {
@@ -411,15 +410,6 @@
   .autosuggest-textarea__suggestions-wrapper {
     position: relative;
     height: 0;
-  }
-
-  .emoji-picker-wrapper {
-    position: relative;
-    height: 0;
-
-    &.emoji-picker-wrapper--hidden {
-      display: none;
-    }
   }
 
   .autosuggest-textarea__suggestions {
