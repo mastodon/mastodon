@@ -1985,11 +1985,6 @@ a.account__display-name {
     font-size: 16px;
   }
 
-  &.active {
-    border-bottom: 2px solid $highlight-text-color;
-    color: $highlight-text-color;
-  }
-
   &:hover,
   &:focus,
   &:active {
@@ -1997,6 +1992,11 @@ a.account__display-name {
       background: lighten($ui-base-color, 14%);
       border-bottom-color: lighten($ui-base-color, 14%);
     }
+  }
+
+  &.active {
+    border-bottom: 2px solid $highlight-text-color;
+    color: $highlight-text-color;
   }
 
   span {
@@ -3093,6 +3093,10 @@ a.status-card.compact:hover {
 .column-header__buttons {
   height: 48px;
   display: flex;
+}
+
+.column-header__links {
+  margin-bottom: 14px;
 }
 
 .column-header__links .text-btn {
