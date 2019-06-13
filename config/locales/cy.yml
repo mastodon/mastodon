@@ -522,7 +522,7 @@ cy:
     new_report:
       body: Mae %{reporter} wedi cwyno am %{target}
       body_remote: Mae rhywun o %{domain} wedi cwyno am %{target}
-      subject: Cwyn newydd am %{instance} {#%{id}}
+      subject: Cwyn newydd am %{instance} (#%{id})
   appearance:
     advanced_web_interface: Rhyngwyneb gwe uwch
     advanced_web_interface_hint: 'Os hoffech gwneud defnydd o gyd o''ch lled sgrin, mae''r rhyngwyneb gwe uwch yn gadael i chi ffurfweddu sawl colofn wahanol i weld cymaint o wybodaeth â hoffech: Catref, hysbysiadau, ffrwd y ffedysawd, unrhyw nifer o rhestrau ac hashnodau.'
@@ -1004,8 +1004,8 @@ cy:
       <p>Cafodd ei addasu yn wreiddiol o'r<a href="https://github.com/discourse/discourse">Polisi preifatrwydd disgwrs</a>.</p>
     title: "%{instance} Termau Gwasanaeth a Polisi Preifatrwydd"
   themes:
-    contrast: Cyferbyniad uchel
-    default: Mastodon
+    contrast: Mastodon (Cyferbyniad uchel)
+    default: Mastodon (Tywyll)
     mastodon-light: Mastodon (golau)
   two_factor_authentication:
     code_hint: Mewnbynwch y côd a grewyd gan eich ap dilysu i gadarnhau

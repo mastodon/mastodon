@@ -138,8 +138,8 @@ de:
       no_limits_imposed: Keine Beschränkungen
       not_subscribed: Nicht abonniert
       outbox_url: Postausgangs-URL
-      pending: Ausstehender Review
-      perform_full_suspension: Sperren
+      pending: In Warteschlange
+      perform_full_suspension: Verbannen
       profile_url: Profil-URL
       promote: Befördern
       protocol: Protokoll
@@ -149,10 +149,10 @@ de:
       reject: Ablehnen
       reject_all: Alle ablehnen
       remove_avatar: Profilbild entfernen
-      remove_header: Header entfernen
+      remove_header: Titelbild entfernen
       resend_confirmation:
-        already_confirmed: Diese:r Benutzer:in wurde bereits bestätigt
-        send: Bestätigungsmail erneut senden
+        already_confirmed: Diese_r Benutzer_in wurde bereits bestätigt
+        send: Bestätigungs-E-Mail erneut senden
         success: Bestätigungs-E-Mail erfolgreich gesendet!
       reset: Zurücksetzen
       reset_password: Passwort zurücksetzen
@@ -160,25 +160,25 @@ de:
       role: Berechtigungen
       roles:
         admin: Administrator
-        moderator: Moderator:in
+        moderator: Moderator_in
         staff: Mitarbeiter
         user: Nutzer
       salmon_url: Salmon-URL
       search: Suche
       shared_inbox_url: Geteilte Posteingang-URL
       show:
-        created_reports: Erstellte Beschwerdemeldungen
-        targeted_reports: Beschwerdemeldungen von anderen
+        created_reports: Erstellte Meldungen
+        targeted_reports: Von anderen gemeldet
       silence: Stummschalten
       silenced: Stummgeschaltet
       statuses: Beiträge
       subscribe: Abonnieren
-      suspended: Gesperrt
+      suspended: Verbannt
       time_in_queue: "%{time} in der Warteschlange"
       title: Konten
       unconfirmed_email: Unbestätigte E-Mail-Adresse
-      undo_silenced: Stummschaltung zurücknehmen
-      undo_suspension: Sperre zurücknehmen
+      undo_silenced: Stummschaltung aufheben
+      undo_suspension: Verbannung aufheben
       unsubscribe: Abbestellen
       username: Profilname
       warn: Warnen
@@ -192,29 +192,29 @@ de:
         create_custom_emoji: "%{name} hat neues Emoji %{target} hochgeladen"
         create_domain_block: "%{name} hat die Domain %{target} blockiert"
         create_email_domain_block: "%{name} hat die E-Mail-Domain %{target} geblacklistet"
-        demote_user: "%{name} stufte Benutzer:in %{target} herunter"
+        demote_user: "%{name} stufte Benutzer_in %{target} herunter"
         destroy_custom_emoji: "%{name} zerstörte Emoji %{target}"
         destroy_domain_block: "%{name} hat die Domain %{target} entblockt"
         destroy_email_domain_block: "%{name} hat die E-Mail-Domain %{target} gewhitelistet"
-        destroy_status: "%{name} hat Status von %{target} entfernt"
-        disable_2fa_user: "%{name} hat Zwei-Faktor-Anforderung für Benutzer:in %{target} deaktiviert"
+        destroy_status: "%{name} hat einen Beitrag von %{target} entfernt"
+        disable_2fa_user: "%{name} hat Zwei-Faktor-Anforderung für Benutzer_in %{target} deaktiviert"
         disable_custom_emoji: "%{name} hat das %{target} Emoji deaktiviert"
-        disable_user: "%{name} hat den Login für Benutzer:in  %{target} deaktiviert"
+        disable_user: "%{name} hat Zugang von Benutzer_in %{target} deaktiviert"
         enable_custom_emoji: "%{name} hat das %{target} Emoji aktiviert"
-        enable_user: "%{name} hat die Anmeldung für di:en Benutzer:in %{target} aktiviert"
-        memorialize_account: "%{name} hat %{target}s Konto in eine Gedenkseite umgewandelt"
+        enable_user: "%{name} hat Zugang von Benutzer_in %{target} aktiviert"
+        memorialize_account: "%{name} hat das Konto von %{target} in eine Gedenkseite umgewandelt"
         promote_user: "%{name} hat %{target} befördert"
         remove_avatar_user: "%{name} hat das Profilbild von %{target} entfernt"
         reopen_report: "%{name} hat die Meldung %{target} wieder geöffnet"
-        reset_password_user: "%{name} hat das Passwort für di:en Benutzer:in %{target} zurückgesetzt"
+        reset_password_user: "%{name} hat das Passwort von %{target} zurückgesetzt"
         resolve_report: "%{name} hat die Meldung %{target} bearbeitet"
-        silence_account: "%{name} hat %{target}s Konto stummgeschaltet"
-        suspend_account: "%{name} hat %{target}s Konto gesperrt"
+        silence_account: "%{name} hat das Konto von %{target} stummgeschaltet"
+        suspend_account: "%{name} hat das Konto von %{target} verbannt"
         unassigned_report: "%{name} hat die Zuweisung der Meldung %{target} entfernt"
-        unsilence_account: "%{name} hat die Stummschaltung von %{target}s Konto aufgehoben"
-        unsuspend_account: "%{name} hat die Sperrung von %{target}s Konto aufgehoben"
+        unsilence_account: "%{name} hat die Stummschaltung von %{target} aufgehoben"
+        unsuspend_account: "%{name} hat die Verbannung von %{target} aufgehoben"
         update_custom_emoji: "%{name} hat das %{target} Emoji geändert"
-        update_status: "%{name} hat den Status von %{target} aktualisiert"
+        update_status: "%{name} hat einen Beitrag von %{target} aktualisiert"
       deleted_status: "(gelöschter Beitrag)"
       title: Überprüfungsprotokoll
     custom_emojis:
@@ -253,14 +253,14 @@ de:
       feature_timeline_preview: Zeitleistenvorschau
       features: Funktionen
       hidden_service: Föderation mit versteckten Diensten
-      open_reports: Offene Meldungen
+      open_reports: Ausstehende Meldungen
       recent_users: Neueste Nutzer
       search: Volltextsuche
       single_user_mode: Einzelnutzermodus
       software: Software
       space: Speicherverbrauch
       title: Übersicht
-      total_users: Benutzer:innen insgesamt
+      total_users: Benutzer_innen insgesamt
       trends: Trends
       week_interactions: Interaktionen diese Woche
       week_users_active: Aktiv diese Woche
@@ -284,8 +284,8 @@ de:
       reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
       reject_reports: Meldungen ablehnen
       reject_reports_hint: Ignoriere alle Meldungen von dieser Domain. Irrelevant für Sperrungen
-      rejecting_media: Mediendateien ablehnen
-      rejecting_reports: Beschwerdemeldungen ablehnen
+      rejecting_media: Mediendateien werden nicht gespeichert
+      rejecting_reports: Meldungen werden ignoriert
       severity:
         silence: stummgeschaltet
         suspend: gesperrt
@@ -511,7 +511,7 @@ de:
     settings: 'E-Mail-Einstellungen ändern: %{link}'
     view: 'Ansehen:'
     view_profile: Zeige Profil
-    view_status: Zeige Status
+    view_status: Beitrag öffnen
   applications:
     created: Anwendung erfolgreich erstellt
     destroyed: Anwendung erfolgreich gelöscht
@@ -714,7 +714,7 @@ de:
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält, angehängt werden
-      too_many: Es können nicht mehr als 4 Bilder angehängt werden
+      too_many: Es können nicht mehr als 4 Dateien angehängt werden
   migrations:
     acct: benutzername@domain des neuen Kontos
     currently_redirecting: 'Deine Profilweiterleitung wurde gesetzt auf:'
@@ -897,8 +897,8 @@ de:
     boosted_from_html: Geteilt von %{acct_link}
     content_warning: 'Inhaltswarnung: %{warning}'
     disallowed_hashtags:
-      one: 'Enthält den unerlaubten Hashtag: %{tags}'
-      other: 'Enthält die unerlaubten Hashtags: %{tags}'
+      one: 'enthält einen verbotenen Hashtag: %{tags}'
+      other: 'enthält verbotene Hashtags: %{tags}'
     language_detection: Sprache automatisch erkennen
     open_in_web: Im Web öffnen
     over_character_limit: Zeichenlimit von %{max} überschritten
@@ -1021,7 +1021,7 @@ de:
       month: "%b %Y"
   two_factor_authentication:
     code_hint: Gib zur Bestätigung den Code ein, den deine Authenticator-App generiert hat
-    description_html: Wenn du <strong>Zwei-Faktor-Authentisierung (2FA)</strong> aktivierst, wirst du dein Telefon zum Anmelden benötigen. Darauf werden Tokens erzeugt, die du bei der Anmeldung eingeben musst.
+    description_html: Wenn du <strong>Zwei-Faktor-Authentifizierung (2FA)</strong> aktivierst, wirst du dein Telefon zum Anmelden benötigen. Darauf werden Sicherheitscodes erzeugt, die du bei der Anmeldung eingeben musst.
     disable: Deaktivieren
     enable: Aktivieren
     enabled: Zwei-Faktor-Authentisierung ist aktiviert

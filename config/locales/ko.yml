@@ -7,12 +7,14 @@ ko:
     active_count_after: 활성 사용자
     active_footnote: 월간 활성 사용자
     administered_by: '관리자:'
+    api: API
     apps: 모바일 앱
     apps_platforms: 마스토돈을 iOS, 안드로이드, 다른 플랫폼들에서도 사용하세요
     browse_directory: 프로필 디렉터리를 둘러보고 관심사 찾기
     browse_public_posts: 마스토돈의 공개 라이브 스트림을 둘러보기
     contact: 연락처
     contact_missing: 미설정
+    contact_unavailable: 없음
     discover_users: 유저 발견하기
     documentation: 문서
     extended_description_html: |
@@ -108,6 +110,7 @@ ko:
       header: 헤더
       inbox_url: 수신함 URL
       invited_by: 초대자
+      ip: IP
       joined: 가입
       location:
         all: 전체
@@ -156,6 +159,7 @@ ko:
         moderator: 모더레이터
         staff: 스태프
         user: 사용자
+      salmon_url: Salmon URL
       search: 검색
       shared_inbox_url: 공유된 inbox URL
       show:
@@ -466,6 +470,7 @@ ko:
       confirmed: 확인됨
       expires_in: 기한
       last_delivery: 최종 발송
+      title: WebSub
       topic: 토픽
     tags:
       accounts: 계정들
@@ -500,6 +505,7 @@ ko:
     notification_preferences: 메일 설정 변경
     salutation: "%{name} 님,"
     settings: '메일 설정을 변경: %{link}'
+    view: '보기:'
     view_profile: 프로필 보기
     view_status: 게시물 보기
   applications:
@@ -525,6 +531,9 @@ ko:
     migrate_account: 계정 옮기기
     migrate_account_html: 이 계정을 다른 계정으로 리디렉션 하길 원하는 경우 <a href="%{path}">여기</a>에서 설정할 수 있습니다.
     or_log_in_with: 다른 방법으로 로그인 하려면
+    providers:
+      cas: CAS
+      saml: SAML
     register: 등록하기
     registration_closed: "%{instance}는 새로운 가입을 받지 않고 있습니다"
     resend_confirmation: 확인 메일을 다시 보내기
@@ -598,6 +607,7 @@ ko:
       request: 아카이브 요청하기
       size: 크기
     blocks: 차단
+    csv: CSV
     domain_blocks: 도메인 차단
     follows: 팔로우
     lists: 리스트
@@ -737,11 +747,18 @@ ko:
       body: "%{name} 님이 내 툿을 부스트 했습니다:"
       subject: "%{name} 님이 내 툿을 부스트 했습니다"
       title: 새 부스트
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          million: M
   pagination:
     newer: 새로운 툿
     next: 다음
     older: 오래된 툿
     prev: 이전
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: 이미 투표에 참여하셨습니다
@@ -753,6 +770,7 @@ ko:
       too_few_options: 한가지 이상의 항목을 포함해야 합니다
       too_many_options: 항목은 %{max}개를 넘을 수 없습니다
   preferences:
+    other: 기타
     posting_defaults: 게시물 기본설정
     public_timelines: 공개 타임라인
   relationships:
@@ -808,20 +826,26 @@ ko:
       micro_messenger: 마이크로메신저
       nokia: 노키아 S40 Ovi 브라우저
       opera: 오페라
+      otter: Otter
+      phantom_js: PhantomJS
       qq: QQ 브라우저
       safari: 사파리
+      uc_browser: UC브라우저
       weibo: 웨이보
     current_session: 현재 세션
     description: "%{platform}의 %{browser}"
     explanation: 내 마스토돈 계정에 현재 로그인 중인 웹 브라우저 목록입니다.
+    ip: IP
     platforms:
       adobe_air: 어도비 에어
       android: 안드로이드
       blackberry: 블랙베리
       chrome_os: 크롬OS
       firefox_os: 파이어폭스OS
+      ios: iOS
       linux: 리눅스
       mac: 맥
+      other: 알 수 없는 플랫폼
       windows: 윈도우즈
       windows_mobile: 윈도우즈 모바일
       windows_phone: 윈도우즈 폰
@@ -873,6 +897,7 @@ ko:
       vote: 투표
     show_more: 더 보기
     sign_in_to_participate: 로그인 하여 이 대화에 참여하기
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: 비공개
       private_long: 팔로워에게만 공개됩니다
