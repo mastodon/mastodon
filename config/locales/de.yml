@@ -198,14 +198,14 @@ de:
         destroy_status: "%{name} hat Status von %{target} entfernt"
         disable_2fa_user: "%{name} hat Zwei-Faktor-Anforderung für Benutzer_in %{target} deaktiviert"
         disable_custom_emoji: "%{name} hat das %{target} Emoji deaktiviert"
-        disable_user: "%{name} hat den Login für Benutzer:in  %{target} deaktiviert"
+        disable_user: "%{name} hat Zugang von Benutzer_in %{target} deaktiviert"
         enable_custom_emoji: "%{name} hat das %{target} Emoji aktiviert"
-        enable_user: "%{name} hat die Anmeldung für di:en Benutzer:in %{target} aktiviert"
-        memorialize_account: "%{name} hat %{target}s Konto in eine Gedenkseite umgewandelt"
+        enable_user: "%{name} hat Zugang von Benutzer_in %{target} aktiviert"
+        memorialize_account: "%{name} hat das Konto von %{target} in eine Gedenkseite umgewandelt"
         promote_user: "%{name} hat %{target} befördert"
         remove_avatar_user: "%{name} hat das Profilbild von %{target} entfernt"
         reopen_report: "%{name} hat die Meldung %{target} wieder geöffnet"
-        reset_password_user: "%{name} hat das Passwort für di:en Benutzer:in %{target} zurückgesetzt"
+        reset_password_user: "%{name} hat das Passwort von %{target} zurückgesetzt"
         resolve_report: "%{name} hat die Meldung %{target} bearbeitet"
         silence_account: "%{name} hat %{target}s Konto stummgeschaltet"
         suspend_account: "%{name} hat %{target}s Konto gesperrt"
@@ -1020,7 +1020,7 @@ de:
       month: "%b %Y"
   two_factor_authentication:
     code_hint: Gib zur Bestätigung den Code ein, den deine Authenticator-App generiert hat
-    description_html: Wenn du <strong>Zwei-Faktor-Authentisierung (2FA)</strong> aktivierst, wirst du dein Telefon zum Anmelden benötigen. Darauf werden Tokens erzeugt, die du bei der Anmeldung eingeben musst.
+    description_html: Wenn du <strong>Zwei-Faktor-Authentifizierung (2FA)</strong> aktivierst, wirst du dein Telefon zum Anmelden benötigen. Darauf werden Sicherheitscodes erzeugt, die du bei der Anmeldung eingeben musst.
     disable: Deaktivieren
     enable: Aktivieren
     enabled: Zwei-Faktor-Authentisierung ist aktiviert
