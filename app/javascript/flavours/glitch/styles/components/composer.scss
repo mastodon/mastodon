@@ -222,7 +222,6 @@
   position: absolute;
   right: 5px;
   top: 5px;
-  z-index: 1;
 
   ::-webkit-scrollbar-track:hover,
   ::-webkit-scrollbar-track:active {
@@ -292,15 +291,6 @@
 .autosuggest-textarea__suggestions-wrapper {
   position: relative;
   height: 0;
-}
-
-.emoji-picker-wrapper {
-  position: relative;
-  height: 0;
-
-  &.emoji-picker-wrapper--hidden {
-    display: none;
-  }
 }
 
 .autosuggest-textarea__suggestions {
