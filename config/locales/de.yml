@@ -137,8 +137,8 @@ de:
       no_limits_imposed: Keine Beschränkungen
       not_subscribed: Nicht abonniert
       outbox_url: Postausgangs-URL
-      pending: Ausstehender Review
-      perform_full_suspension: Sperren
+      pending: In Warteschlange
+      perform_full_suspension: Verbannen
       profile_url: Profil-URL
       promote: Befördern
       protocol: Protokoll
@@ -148,10 +148,10 @@ de:
       reject: Ablehnen
       reject_all: Alle ablehnen
       remove_avatar: Profilbild entfernen
-      remove_header: Header entfernen
+      remove_header: Titelbild entfernen
       resend_confirmation:
         already_confirmed: Diese_r Benutzer_in wurde bereits bestätigt
-        send: Bestätigungsmail erneut senden
+        send: Bestätigungs-E-Mail erneut senden
         success: Bestätigungs-E-Mail erfolgreich gesendet!
       reset: Zurücksetzen
       reset_password: Passwort zurücksetzen
@@ -166,18 +166,18 @@ de:
       search: Suche
       shared_inbox_url: Geteilte Posteingang-URL
       show:
-        created_reports: Erstellte Beschwerdemeldungen
-        targeted_reports: Beschwerdemeldungen von anderen
+        created_reports: Erstellte Meldungen
+        targeted_reports: Von anderen gemeldet
       silence: Stummschalten
       silenced: Stummgeschaltet
       statuses: Beiträge
       subscribe: Abonnieren
-      suspended: Gesperrt
+      suspended: Verbannt
       time_in_queue: '%{time} in der Warteschlange'
       title: Konten
       unconfirmed_email: Unbestätigte E-Mail-Adresse
-      undo_silenced: Stummschaltung zurücknehmen
-      undo_suspension: Sperre zurücknehmen
+      undo_silenced: Stummschaltung aufheben
+      undo_suspension: Verbannung aufheben
       unsubscribe: Abbestellen
       username: Profilname
       warn: Warnen
@@ -195,7 +195,7 @@ de:
         destroy_custom_emoji: "%{name} zerstörte Emoji %{target}"
         destroy_domain_block: "%{name} hat die Domain %{target} entblockt"
         destroy_email_domain_block: "%{name} hat die E-Mail-Domain %{target} gewhitelistet"
-        destroy_status: "%{name} hat Status von %{target} entfernt"
+        destroy_status: "%{name} hat einen Beitrag von %{target} entfernt"
         disable_2fa_user: "%{name} hat Zwei-Faktor-Anforderung für Benutzer_in %{target} deaktiviert"
         disable_custom_emoji: "%{name} hat das %{target} Emoji deaktiviert"
         disable_user: "%{name} hat Zugang von Benutzer_in %{target} deaktiviert"
@@ -213,7 +213,7 @@ de:
         unsilence_account: "%{name} hat die Stummschaltung von %{target} aufgehoben"
         unsuspend_account: "%{name} hat die Verbannung von %{target} aufgehoben"
         update_custom_emoji: "%{name} hat das %{target} Emoji geändert"
-        update_status: "%{name} hat den Status von %{target} aktualisiert"
+        update_status: "%{name} hat einen Beitrag von %{target} aktualisiert"
       deleted_status: "(gelöschter Beitrag)"
       title: Überprüfungsprotokoll
     custom_emojis:
@@ -510,7 +510,7 @@ de:
     settings: 'E-Mail-Einstellungen ändern: %{link}'
     view: 'Ansehen:'
     view_profile: Zeige Profil
-    view_status: Zeige Status
+    view_status: Beitrag öffnen
   applications:
     created: Anwendung erfolgreich erstellt
     destroyed: Anwendung erfolgreich gelöscht
