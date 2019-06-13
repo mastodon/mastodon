@@ -7,6 +7,7 @@ import StatusContent from 'flavours/glitch/components/status_content';
 import Avatar from 'flavours/glitch/components/avatar';
 import RelativeTimestamp from 'flavours/glitch/components/relative_timestamp';
 import DisplayName from 'flavours/glitch/components/display_name';
+import AttachmentList from 'flavours/glitch/components/attachment_list';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
@@ -75,6 +76,13 @@ export default class BoostModal extends ImmutablePureComponent {
             </div>
 
             <StatusContent status={status} />
+
+            {status.get('media_attachments').size > 0 && (
+              <AttachmentList
+                compact
+                media={status.get('media_attachments')}
+              />
+            )}
           </div>
         </div>
 
