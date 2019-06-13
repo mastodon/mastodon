@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 });
 
-export default @connect(mapStateToProps)
+export default @connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
 class Compose extends React.PureComponent {
   static propTypes = {
