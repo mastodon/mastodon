@@ -1,12 +1,12 @@
----
 pl:
   about:
-    about_hashtag_html: Znajdują się tu publiczne wpisy oznaczone hashtagiem <strong>#%{hashtag}</strong>. Możesz dołączyć do dyskusji, jeżeli posiadasz konto gdziekolwiek w Fediwersum.
+    about_hashtag_html: 'Znajdują się tu publiczne wpisy oznaczone hashtagiem <strong>#%{hashtag}</strong>. Możesz dołączyć do dyskusji, jeżeli posiadasz konto gdziekolwiek w Fediwersum.'
     about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
     about_this: O tej instancji
     active_count_after: aktywni
     active_footnote: Aktywni użytkownicy miesięcznie (MAU)
     administered_by: 'Administrowana przez:'
+    api: API
     apps: Aplikacje
     apps_platforms: Korzystaj z Mastodona z poziomu iOS-a, Androida i innych
     browse_directory: Przeglądaj katalog profilów i filtruj z uwzględnieniem zainteresowań
@@ -29,27 +29,27 @@ pl:
     server_stats: 'Statystyki serwera:'
     source_code: Kod źródłowy
     status_count_after:
+      one: wpisu
       few: wpisów
       many: wpisów
-      one: wpisu
       other: wpisów
     status_count_before: Są autorami
     tagline: Śledź znajomych i poznawal nowych
     terms: Zasady użytkowania
     user_count_after:
+      one: użytkownik
       few: użytkowników
       many: użytkowników
-      one: użytkownik
       other: użytkowników
     user_count_before: Z serwera korzysta
     what_is_mastodon: Czym jest Mastodon?
   accounts:
-    choices_html: 'Polecani przez %{name}:'
+    choices_html: "Polecani przez %{name}:"
     follow: Śledź
     followers:
+      one: śledzący
       few: śledzących
       many: śledzących
-      one: śledzący
       other: Śledzących
     following: Śledzonych
     joined: Dołączył(a) %{date}
@@ -64,16 +64,18 @@ pl:
     pin_errors:
       following: Musisz śledzić osobę, którą chcesz polecać
     posts:
+      one: wpis
       few: wpisy
       many: wpisów
-      one: wpis
       other: Wpisów
     posts_tab_heading: Wpisy
     posts_with_replies: Wpisy z odpowiedziami
     reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
       admin: Administrator
+      bot: Bot
       moderator: Moderator
+    unavailable: Profil niedostępny
     unfollow: Przestań śledzić
   admin:
     account_actions:
@@ -86,6 +88,7 @@ pl:
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
     accounts:
       approve: Przyjmij
+      approve_all: Zatwierdź wszystkie
       are_you_sure: Jesteś tego pewien?
       avatar: Awatar
       by_domain: Domena
@@ -138,6 +141,7 @@ pl:
       moderation_notes: Notatki moderacyjne
       most_recent_activity: Najnowsza aktywność
       most_recent_ip: Ostatnie IP
+      no_account_selected: Żadne konto nie zostało zmienione, bo żadne nie zostało wybrane
       no_limits_imposed: Nie nałożono ograniczeń
       not_subscribed: Nie zasubskrybowano
       outbox_url: Adres skrzynki nadawczej
@@ -150,6 +154,7 @@ pl:
       push_subscription_expires: Subskrypcja PuSH wygasa
       redownload: Odśwież profil
       reject: Odrzuć
+      reject_all: Odrzuć wszystkie
       remove_avatar: Usun awatar
       remove_header: Usuń nagłówek
       resend_confirmation:
@@ -161,6 +166,8 @@ pl:
       resubscribe: Ponów subskrypcję
       role: Uprawnienia
       roles:
+        admin: Administrator
+        moderator: Moderator
         staff: Ekipa
         user: Użytkownik
       salmon_url: Adres Salmon
@@ -174,6 +181,7 @@ pl:
       statuses: Wpisy
       subscribe: Subskrybuj
       suspended: Zawieszono
+      time_in_queue: Czekanie w kolejce %{time}
       title: Konta
       unconfirmed_email: Niepotwierdzony adres e-mail
       undo_silenced: Cofnij wyciszenie
@@ -226,6 +234,7 @@ pl:
       destroyed_msg: Pomyślnie usunięto emoji!
       disable: Wyłącz
       disabled_msg: Pomyślnie wyłączono emoji
+      emoji: Emotikona
       enable: Włącz
       enabled_msg: Pomyślnie przywrócono emoji
       image_hint: Plik PNG ważący do 50KB
@@ -233,6 +242,7 @@ pl:
       new:
         title: Dodaj nowe niestandardowe emoji
       overwrite: Zastąp
+      shortcode: Krótki kod
       shortcode_hint: Co najmniej 2 znaki, tylko znaki alfanumeryczne i podkreślniki
       title: Niestandardowe emoji
       unlisted: Niewidoczne
@@ -267,6 +277,7 @@ pl:
       created_msg: Blokada domen jest przetwarzana
       destroyed_msg: Blokada domeny nie może zostać odwrócona
       domain: Domena
+      existing_domain_block_html: Już narzuciłeś bardziej rygorystyczne limity na %{name}, musisz najpierw <a href="%{unblock_url}">je odblokować</a>.
       new:
         create: Utwórz blokadę
         hint: Blokada domen nie zabroni tworzenia wpisów kont w bazie danych, ale pozwoli na automatyczną moderację kont do nich należących.
@@ -287,10 +298,10 @@ pl:
         suspend: zawieszono
       show:
         affected_accounts:
-          few: Dotknęło %{count} kont w bazie danych
-          many: Dotknęło %{count} kont w bazie danych
           one: Dotknęło jedno konto w bazie danych
-          other: Dotknęło %{count} kont w bazie danych
+          few: "Dotknęło %{count} kont w bazie danych"
+          many: "Dotknęło %{count} kont w bazie danych"
+          other: "Dotknęło %{count} kont w bazie danych"
         retroactive:
           silence: Odwołaj wyciszenie wszystkich kont w tej domenie
           suspend: Odwołaj zawieszenie wszystkich kont w tej domenie
@@ -309,14 +320,14 @@ pl:
       title: Blokowanie domen e-mail
     followers:
       back_to_account: Wróć do konta
-      title: Śledzący %{acct}
+      title: "Śledzący %{acct}"
     instances:
       by_domain: Domena
       delivery_available: Doręczanie jest dostępne
       known_accounts:
+        one: "%{count} znane konto"
         few: "%{count} znane konta"
         many: "%{count} znane konta"
-        one: "%{count} znane konto"
         other: "%{count} znane konta"
       moderation:
         all: Wszystkie
@@ -336,10 +347,12 @@ pl:
         expired: Wygasłe
         title: Filtruj
       title: Zaproszenia
+    pending_accounts:
+      title: Oczekujące konta (%{count})
     relays:
       add_new: Dodaj nowy
       delete: Usuń
-      description_html: "<strong>Przekaźnik federacji</strong> jest pośredniczącym serwerem wymieniającym duże ilości publicznych wpisów pomiędzy serwerami które subskrybują je i publikują na nich. <strong>Pomaga to małym i średnim instancją poznawać nową zawartość z Fediwersum</strong>, co w innym przypadku wymagałoby od użytkowników ręcznego śledzenia osób z innych serwerów."
+      description_html: <strong>Przekaźnik federacji</strong> jest pośredniczącym serwerem wymieniającym duże ilości publicznych wpisów pomiędzy serwerami które subskrybują je i publikują na nich. <strong>Pomaga to małym i średnim instancją poznawać nową zawartość z Fediwersum</strong>, co w innym przypadku wymagałoby od użytkowników ręcznego śledzenia osób z innych serwerów.
       disable: Wyłącz
       disabled: Wyłączony
       enable: Włącz
@@ -461,6 +474,8 @@ pl:
         nsfw_off: Cofnij NSFW
         nsfw_on: Oznacz jako NSFW
       failed_to_execute: Nie udało się wykonać
+      media:
+        title: Multimedia
       no_media: Bez zawartości multimedialnej
       no_status_selected: Żaden wpis nie został zmieniony, bo żaden nie został wybrany
       title: Wpisy konta
@@ -470,11 +485,13 @@ pl:
       confirmed: Potwierdzone
       expires_in: Wygasa
       last_delivery: Ostatnio doręczono
+      title: WebSub
       topic: Temat
     tags:
       accounts: Konta
       hidden: Ukryte
       hide: Ukryj w katalogu
+      name: Hasztag
       title: Hashtagi
       unhide: Pokazuj w katalogu
       visible: Widoczne
@@ -490,9 +507,14 @@ pl:
       body: Poniżej znajdują się szczegóły dotycząće nowego konta. Możesz przyjąć lub odrzucić to podanie.
       subject: Nowe konto czeka na przegląd na %{instance} (%{username})
     new_report:
-      body: Użytkownik %{reporter} zgłosił(a) %{target}
+      body: "Użytkownik %{reporter} zgłosił(a) %{target}"
       body_remote: Użytkownik instancji %{domain} zgłosił(a) %{target}
-      subject: Nowe zgłoszenie na %{instance} (#%{id})
+      subject: 'Nowe zgłoszenie na %{instance} (#%{id})'
+  appearance:
+    advanced_web_interface: Zaawansowany interfejs użytkownika
+    advanced_web_interface_hint: 'Jeśli chcesz użyć pełną szerokość swojego ekranu, zaawansowany interfejs użytkownika pozwala Ci skonfigurować wiele różnych kolumn, by zobaczyć jak najwięcej informacji kiedy tylko chcesz. Strona główna, Powiadomienia, Globalna oś czasu, dowolna ilość list i hasztagów.'
+    animations_and_accessibility: Animacje i dostępność
+    confirmation_dialogs: Dialogi potwierdzenia
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
     settings: 'Zmień ustawienia powiadamiania: %{link}'
@@ -568,9 +590,9 @@ pl:
     explore_mastodon: Odkrywaj %{title}
     how_to_enable: Nie jesteś obecnie zapisany(-a) do katalogu. Poniżej możesz zapisać się. Użyj hashtagów w swoim opisie, aby zostać wyświetlonym pod określonymi hashtagami!
     people:
+      one: "%{count} osoba"
       few: "%{count} osoby"
       many: "%{count} osób"
-      one: "%{count} osoba"
       other: "%{count} osób"
   errors:
     '403': Nie masz uprawnień, aby wyświetlić tę stronę.
@@ -632,9 +654,9 @@ pl:
     order_by: Uporządkuj według
     save_changes: Zapisz zmiany
     validation_errors:
+      one: Coś jest wciąż nie tak! Przyjrzyj się poniższemu błędowi
       few: Coś jest wciąż nie tak! Przejrzyj %{count} poniższe błędy
       many: Coś jest wciąż nie tak! Przejrzyj %{count} poniższych błędów
-      one: Coś jest wciąż nie tak! Przyjrzyj się poniższemu błędowi
       other: Coś jest wciąż nie tak! Przejrzyj poniższe błędy (%{count})
   html_validator:
     invalid_markup: 'zawiera nieprawidłową składnię HTML: %{error}'
@@ -685,9 +707,9 @@ pl:
     generate: Wygeneruj
     invited_by: 'Zostałeś(-aś) zaproszony(-a) przez:'
     max_uses:
+      one: jedno użycie
       few: "%{count} użycia"
       many: "%{count} użyć"
-      one: jedno użycie
       other: "%{count} użyć"
     max_uses_prompt: Bez ograniczenia
     prompt: Wygeneruj odnośniki i udostępnij je innym, aby pozwolić na rejestrację na tym serwerze
@@ -715,14 +737,14 @@ pl:
       body: Oto krótkie podsumowanie wiadomości, które ominęły Cię od Twojej ostatniej wizyty (%{since})
       mention: "%{name} wspomniał o Tobie w:"
       new_followers_summary:
-        few: "(%{count}) nowe osoby śledzą Cię!"
-        many: "(%{count}) nowych osób Cię śledzi! Wspaniale!"
         one: Dodatkowo, w czasie nieobecności zaczęła śledzić Cię jedna osoba Gratulacje!
+        few: (%{count}) nowe osoby śledzą Cię!
+        many: (%{count}) nowych osób Cię śledzi! Wspaniale!
         other: Dodatkowo, zaczęło Cię śledzić %{count} nowych osób! Wspaniale!
       subject:
+        one: "1 nowe powiadomienie od Twojej ostatniej wizyty \U0001F418"
         few: "%{count} nowe powiadomienia od Twojej ostatniej wizyty \U0001F418"
         many: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
-        one: "1 nowe powiadomienie od Twojej ostatniej wizyty \U0001F418"
         other: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
       title: W trakcie Twojej nieobecności…
     favourite:
@@ -740,12 +762,12 @@ pl:
       title: Nowa prośba o możliwość śledzenia
     mention:
       action: Odpowiedz
-      body: "%{name} wspomniał(a) o Tobie w:"
-      subject: "%{name} wspomniał(a) o Tobie"
+      body: '%{name} wspomniał(a) o Tobie w:'
+      subject: '%{name} wspomniał(a) o Tobie'
       title: Nowe wspomnienie o Tobie
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
-      subject: Twój wpis został podbity przez %{name}
+      subject: "Twój wpis został podbity przez %{name}"
       title: Nowe podbicie
   pagination:
     newer: Nowsze
@@ -837,21 +859,21 @@ pl:
     attached:
       description: 'Załączono: %{attached}'
       image:
+        one: "%{count} obraz"
         few: "%{count} obrazy"
         many: "%{count} obrazów"
-        one: "%{count} obraz"
         other: "%{count} obrazów"
       video:
+        one: "%{count} film"
         few: "%{count} filmy"
         many: "%{count} filmów"
-        one: "%{count} film"
         other: "%{count} filmów"
     boosted_from_html: Podbito przez %{acct_link}
     content_warning: 'Ostrzeżenie o zawartości: %{warning}'
     disallowed_hashtags:
+      one: 'zawiera niedozwolony hashtag: %{tags}'
       few: 'zawiera niedozwolone hashtagi: %{tags}'
       many: 'zawiera niedozwolone hashtagi: %{tags}'
-      one: 'zawiera niedozwolony hashtag: %{tags}'
       other: 'zawiera niedozwolone hashtagi: %{tags}'
     language_detection: Automatycznie wykrywaj język
     open_in_web: Otwórz w przeglądarce
@@ -863,9 +885,9 @@ pl:
       reblog: Nie możesz przypiąć podbicia wpisu
     poll:
       total_votes:
+        one: "%{count} głos"
         few: "%{count} głosy"
         many: "%{count} głosy"
-        one: "%{count} głos"
         other: "%{count} głosy"
       vote: Głosuj
     show_more: Pokaż więcej
@@ -963,7 +985,7 @@ pl:
       <p>Dokument jest dostępny na licencji CC-BY-SA. Ostatnio zmodyfikowano go 7 marca 2018, przetłumaczono 9 kwietnia 2018. Tłumaczenie (mimo dołożenia wszelkich starań) może nie być w pełni poprawne.</p>
 
       <p>Bazowano na <a href="https://github.com/discourse/discourse">polityce prywatności Discourse</a>.</p>
-    title: Zasady korzystania i polityka prywatności %{instance}
+    title: "Zasady korzystania i polityka prywatności %{instance}"
   themes:
     contrast: Mastodon (Wysoki kontrast)
     default: Mastodon (Ciemny)
