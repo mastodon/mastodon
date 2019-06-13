@@ -269,6 +269,7 @@ eu:
       created_msg: Domeinuaren blokeoa orain prozesatzen ari da
       destroyed_msg: Domeinuaren blokeoa desegin da
       domain: Domeinua
+      existing_domain_block_html: '%{name} domeinuan muga zorrotzagoak ezarri dituzu jada, aurretik <a href="%{unblock_url}">desblokeatu</a> beharko duzu.'
       new:
         create: Sortu blokeoa
         hint: Domeinuaren blokeoak ez du eragotziko kontuen sarrerak sortzea datu-basean, baina automatikoki ezarriko zaizkie moderazio metodo bereziak iraganeko mezuetan ere.
@@ -657,7 +658,11 @@ eu:
     authorize_connection_prompt: Baimendu zifratutako konexio hau?
     errors:
       failed: Zifratutako konexioak huts egin du. Saiatu berriro %{provider} hornitzailetik.
+      keybase:
+        invalid_token: Keybase-ko token-ak sinaduren hash-ak dira eta 66 hex karakterekoak izan beha dira
+        verification_failed: Keybase-k ez du token hau Keybase-ko %{kb_username} erabiltzailearen sinaduratzat onartzen. Saiatu berriro Keybase-tik.
       wrong_user: Ezin izan da %{proving} erabiltzailearentzat froga sortu %{current} gisa saioa hasita. Hasi saioa %{proving} erabilita eta saiatu berriro.
+    explanation_html: Hemen modu zifratuan konektatu ditzakezu zure beste identitateak, esaterako Keybase profila. Honek beste jendeak zuri zifratutako mezuak bidaltzea ahalbidetzen du, eta zuk beraiei bidalitako edukia fidagarritzat jotzea.
     i_am_html: '%{username} erabiltzailea naiz %{service} zerbitzuan.'
     identity: Identitatea
     inactive: Ez aktiboa
@@ -1010,6 +1015,7 @@ eu:
   time:
     formats:
       default: "%Y(e)ko %b %d, %H:%M"
+      month: "%Y(e)ko %b"
   two_factor_authentication:
     code_hint: Sartu zure autentifikazio aplikazioak sortutako kodea berresteko
     description_html: <strong>Bi faktoreetako autentifikazioa</strong> gaitzen baduzu, saioa hasteko telefonoa eskura izan beharko duzu, honek zuk sartu behar dituzun kodeak sortuko dituelako.
