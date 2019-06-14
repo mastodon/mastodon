@@ -4,6 +4,7 @@ import NavigationContainer from './containers/navigation_container';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
+import { mountCompose, unmountCompose } from 'flavours/glitch/actions/compose';
 import { injectIntl, defineMessages } from 'react-intl';
 import classNames from 'classnames';
 import SearchContainer from './containers/search_container';
@@ -27,6 +28,14 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onClickElefriend () {
     dispatch(cycleElefriendCompose());
   },
+
+  onMount () {
+    dispatch(mountCompose());
+  },
+
+  onUnmount () {
+    dispatch(unmountCompose());
+  },
 });
 
 export default @connect(mapStateToProps, mapDispatchToProps)
@@ -38,8 +47,26 @@ class Compose extends React.PureComponent {
     isSearchPage: PropTypes.bool,
     elefriend: PropTypes.number,
     onClickElefriend: PropTypes.func,
+    onMount: PropTypes.func,
+    onUnmount: PropTypes.func,
     intl: PropTypes.object.isRequired,
   };
+
+  componentDidMount () {
+    const { isSearchPage } = this.props;
+
+    if (!isSearchPage) {
+      this.props.onMount();
+    }
+  }
+
+  componentWillUnmount () {
+    const { isSearchPage } = this.props;
+
+    if (!isSearchPage) {
+      this.props.onUnmount();
+    }
+  }
 
   render () {
     const {
