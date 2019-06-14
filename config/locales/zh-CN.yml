@@ -308,6 +308,8 @@ zh-CN:
     instances:
       by_domain: 域名
       delivery_available: 无法投递
+      known_accounts:
+        other: "%{count} 个已知帐户"
       moderation:
         all: 全部
         limited: 受限的
@@ -326,6 +328,8 @@ zh-CN:
         expired: 已失效
         title: 筛选
       title: 邀请用户
+    pending_accounts:
+      title: 待处理的帐户 (%{count})
     relays:
       add_new: 添加新的中继
       delete: 删除
@@ -431,7 +435,8 @@ zh-CN:
         desc_html: 可以填写行为守则、规定、指南或其他本站特有的内容。可以使用 HTML 标签
         title: 本站详细介绍
       site_short_description:
-        title: 服务器短简介
+        desc_html: 会在在侧栏和元数据标签中显示。可以用一小段话描述 Mastodon 是什么，以及本服务器的特点。
+        title: 服务器一句话介绍
       site_terms:
         desc_html: 可以填写自己的隐私权政策、使用条款或其他法律文本。可以使用 HTML 标签
         title: 自定义使用条款
@@ -635,7 +640,12 @@ zh-CN:
   identity_proofs:
     active: 有效
     authorize: 是，授权
+    errors:
+      failed: 密码关联失败。请在 %{provider} 上重新尝试。
+      wrong_user: 无法以 %{current} 的身份创建 %{proving} 的证明。请以 %{proving} 的身份登录并再次尝试。
+    explanation_html: 在这里，你可以和你的其他身份建立密码学关联，例如 Keybase 个人资料。这可以让别人向你发送加密信息，并信任你发给他们的内容。
     i_am_html: 我是 %{service} 上的 %{username} 。
+    identity: 身份
     inactive: 失效
     publicize_checkbox: '并发一条这样的嘟文：'
     publicize_toot: '证明完毕！我是 %{service} 上的 %{username}: %{url}'
@@ -698,6 +708,8 @@ zh-CN:
       mention: "%{name} 在嘟文中提到了你："
       new_followers_summary:
         other: 而且，你不在的时候，有 %{count} 个人关注了你！好棒！
+      subject:
+        other: "自从上次访问后，有 %{count} 条新通知 \U0001F418"
       title: 在你不在的这段时间……
     favourite:
       body: '你的嘟文被 %{name} 收藏了：'
@@ -757,6 +769,7 @@ zh-CN:
     relationship: 关系
     remove_selected_domains: 从选定的域名中删除所有关注者
     remove_selected_followers: 移除选中的关注者
+    remove_selected_follows: 取消关注所选用户
     status: 帐户状态
   remote_follow:
     acct: 请输入你的“用户名@实例域名”
@@ -764,6 +777,7 @@ zh-CN:
     no_account_html: 还没有帐号？你可以<a href='%{sign_up_path}' target='_blank'>注册一个</a>
     proceed: 确认关注
     prompt: '你正准备关注：'
+    reason_html: "<strong>为什么需要这个步骤？</strong> <code>%{instance}</code> 可能不是您所注册的服务器，所以我们需要先重定向到您所在的服务器。"
   remote_interaction:
     favourite:
       proceed: 确认收藏
@@ -915,6 +929,7 @@ zh-CN:
       explanation:
         disable: 虽然您的帐户被冻结，您的帐户数据仍然完整；但是您无法在解锁前执行任何操作。
         silence: 当您的帐户受限时，只有已经关注过你的人才会这台服务器上看到你的嘟文，并且您会被排除在各种公共列表之外。但是，其他人仍然可以手动关注你。
+        suspend: 您的帐户已被封禁，所有的嘟文和您上传的媒体文件都已经从该服务器和您的关注者的服务器上删除并且不可恢复。
       review_server_policies: 审阅服务器条款
       subject:
         disable: 您的帐户 %{acct} 已被冻结
@@ -951,4 +966,5 @@ zh-CN:
     seamless_external_login: 因为你是通过外部服务登录的，所以密码和电子邮件地址设置都不可用。
     signed_in_as: '当前登录的帐户：'
   verification:
+    explanation_html: '您可以 <strong>验证自己是个人资料元数据中的某个链接的所有者</strong>。 为此，被链接网站必须包含一个到您的 Mastodon 主页的链接。链接中 <strong>必须</strong> 包括 <code>rel="me"</code> 属性。链接的文本内容可以随意填写。例如：'
     verification: 验证
