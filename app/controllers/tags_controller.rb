@@ -9,12 +9,14 @@ class TagsController < ApplicationController
   before_action :set_instance_presenter
 
   def show
-    @tag = Tag.find_by!(name: params[:id].downcase)
+    @tag = Tag.find_normalized!(params[:id])
 
     respond_to do |format|
       format.html do
-        serializable_resource = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(initial_state_params), serializer: InitialStateSerializer)
-        @initial_state_json   = serializable_resource.to_json
+        @initial_state_json = ActiveModelSerializers::SerializableResource.new(
+          InitialStatePresenter.new(settings: {}, token: current_session&.token),
+          serializer: InitialStateSerializer
+        ).to_json
       end
 
       format.rss do
@@ -25,8 +27,7 @@ class TagsController < ApplicationController
       end
 
       format.json do
-        @statuses = HashtagQueryService.new.call(@tag, params.slice(:any, :all, :none), current_account, params[:local])
-                                       .paginate_by_max_id(PAGE_SIZE, params[:max_id])
+        @statuses = HashtagQueryService.new.call(@tag, params.slice(:any, :all, :none), current_account, params[:local]).paginate_by_max_id(PAGE_SIZE, params[:max_id])
         @statuses = cache_collection(@statuses, Status)
 
         render json: collection_presenter,
@@ -54,12 +55,5 @@ class TagsController < ApplicationController
       size: @tag.statuses.count,
       items: @statuses.map { |s| ActivityPub::TagManager.instance.uri_for(s) }
     )
-  end
-
-  def initial_state_params
-    {
-      settings: {},
-      token: current_session&.token,
-    }
   end
 end

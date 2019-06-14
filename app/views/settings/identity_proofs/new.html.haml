@@ -1,0 +1,36 @@
+- content_for :page_title do
+  = t('identity_proofs.authorize_connection_prompt')
+
+.form-container
+  .oauth-prompt
+    %h2= t('identity_proofs.authorize_connection_prompt')
+
+  = simple_form_for @proof, url: settings_identity_proofs_url, html: { method: :post } do |f|
+    = f.input :provider, as: :hidden
+    = f.input :provider_username, as: :hidden
+    = f.input :token, as: :hidden
+
+    = hidden_field_tag :user_agent, params[:user_agent]
+
+    .connection-prompt
+      .connection-prompt__row.connection-prompt__connection
+        .connection-prompt__column
+          = image_tag current_account.avatar.url(:original), size: 96, class: 'account__avatar'
+
+          %p= t('identity_proofs.i_am_html', username: content_tag(:strong,current_account.username), service: site_hostname)
+
+        .connection-prompt__column.connection-prompt__column-sep
+          = fa_icon 'link'
+
+        .connection-prompt__column
+          = image_tag @proof.badge.avatar_url, size: 96, class: 'account__avatar'
+
+          %p= t('identity_proofs.i_am_html', username: content_tag(:strong, @proof.provider_username), service: @proof.provider.capitalize)
+
+    .connection-prompt__post
+      = f.input :post_status, label: t('identity_proofs.publicize_checkbox'), as: :boolean, wrapper: :with_label, :input_html => { checked: true }
+
+      = f.input :status_text, as: :text, input_html: { value: t('identity_proofs.publicize_toot', username: @proof.provider_username, service: @proof.provider.capitalize, url: @proof.badge.proof_url), rows: 4 }
+
+    = f.button :button, t('identity_proofs.authorize'), type: :submit
+    = link_to t('simple_form.no'), settings_identity_proofs_url, class: 'button negative'

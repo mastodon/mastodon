@@ -43,6 +43,10 @@ export function normalizeStatus(status, normalOldStatus) {
     normalStatus.reblog = status.reblog.id;
   }
 
+  if (status.poll && status.poll.id) {
+    normalStatus.poll = status.poll.id;
+  }
+
   // Only calculate these values when status first encountered
   // Otherwise keep the ones already in the reducer
   if (normalOldStatus) {
@@ -62,4 +66,17 @@ export function normalizeStatus(status, normalOldStatus) {
   }
 
   return normalStatus;
+}
+
+export function normalizePoll(poll) {
+  const normalPoll = { ...poll };
+
+  const emojiMap = makeEmojiMap(normalPoll);
+
+  normalPoll.options = poll.options.map(option => ({
+    ...option,
+    title_emojified: emojify(escapeTextContentForBrowser(option.title), emojiMap),
+  }));
+
+  return normalPoll;
 }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import { FormattedMessage } from 'react-intl';
+import Icon from 'mastodon/components/icon';
 
 export default class UploadProgress extends React.PureComponent {
 
@@ -21,7 +22,7 @@ export default class UploadProgress extends React.PureComponent {
     return (
       <div className='upload-progress'>
         <div className='upload-progress__icon'>
-          <i className='fa fa-upload' />
+          <Icon id='upload' />
         </div>
 
         <div className='upload-progress__message'>

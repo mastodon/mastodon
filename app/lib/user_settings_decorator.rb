@@ -32,6 +32,7 @@ class UserSettingsDecorator
     user.settings['theme']               = theme_preference if change?('setting_theme')
     user.settings['hide_network']        = hide_network_preference if change?('setting_hide_network')
     user.settings['aggregate_reblogs']   = aggregate_reblogs_preference if change?('setting_aggregate_reblogs')
+    user.settings['show_application']    = show_application_preference if change?('setting_show_application')
   end
 
   def merged_notification_emails
@@ -88,6 +89,10 @@ class UserSettingsDecorator
 
   def hide_network_preference
     boolean_cast_setting 'setting_hide_network'
+  end
+
+  def show_application_preference
+    boolean_cast_setting 'setting_show_application'
   end
 
   def theme_preference

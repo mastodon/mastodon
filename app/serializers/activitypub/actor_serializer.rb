@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
-class ActivityPub::ActorSerializer < ActiveModel::Serializer
+class ActivityPub::ActorSerializer < ActivityPub::Serializer
   include RoutingHelper
+
+  context :security
+
+  context_extensions :manually_approves_followers, :featured, :also_known_as,
+                     :moved_to, :property_value, :hashtag, :emoji, :identity_proof
 
   attributes :id, :type, :following, :followers,
              :inbox, :outbox, :featured,
@@ -16,7 +21,7 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   attribute :moved_to, if: :moved?
   attribute :also_known_as, if: :also_known_as?
 
-  class EndpointsSerializer < ActiveModel::Serializer
+  class EndpointsSerializer < ActivityPub::Serializer
     include RoutingHelper
 
     attributes :shared_inbox
@@ -110,7 +115,7 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   end
 
   def virtual_attachments
-    object.fields
+    object.fields + object.identity_proofs.active
   end
 
   def moved_to
@@ -124,7 +129,7 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   class CustomEmojiSerializer < ActivityPub::EmojiSerializer
   end
 
-  class TagSerializer < ActiveModel::Serializer
+  class TagSerializer < ActivityPub::Serializer
     include RoutingHelper
 
     attributes :type, :href, :name
@@ -142,7 +147,7 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
     end
   end
 
-  class Account::FieldSerializer < ActiveModel::Serializer
+  class Account::FieldSerializer < ActivityPub::Serializer
     attributes :type, :name, :value
 
     def type
@@ -151,6 +156,26 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
 
     def value
       Formatter.instance.format_field(object.account, object.value)
+    end
+  end
+
+  class AccountIdentityProofSerializer < ActivityPub::Serializer
+    attributes :type, :name, :signature_algorithm, :signature_value
+
+    def type
+      'IdentityProof'
+    end
+
+    def name
+      object.provider_username
+    end
+
+    def signature_algorithm
+      object.provider
+    end
+
+    def signature_value
+      object.token
     end
   end
 end

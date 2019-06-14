@@ -4,36 +4,36 @@ gl:
     about_hashtag_html: Estas son mensaxes públicas etiquetadas con <strong>#%{hashtag}</strong>. Pode interactuar con elas si ten unha conta nalgures do fediverso.
     about_mastodon_html: Mastodon é unha rede social que se basea en protocolos web abertos e libres, software de código aberto. É descentralizada como o correo electrónico.
     about_this: Sobre
+    active_count_after: activo
+    active_footnote: Usuarias Activas no Mes (UAM)
     administered_by: 'Administrada por:'
     api: API
     apps: Apps móbiles
-    closed_registrations: O rexistro en esta instancia está pechado en este intre. Porén! Pode atopar unha instancia diferente para obter unha conta e ter acceso exactamente a misma rede desde alí.
+    apps_platforms: Utilice Mastodon desde iOS, Android e outras plataformas
+    browse_directory: Navegue no directorio de perfís e filtre por intereses
+    browse_public_posts: Vexa o fluxo de comentarios públicos en Mastodon
     contact: Contacto
     contact_missing: Non establecido
     contact_unavailable: N/A
+    discover_users: Descubra usuarias
     documentation: Documentación
     extended_description_html: |
       <h3>Un bo lugar para regras</h3>
       <p>A descrición extendida aínda non se proporcionou.</p>
-    features:
-      humane_approach_body: Aprendendo dos erros de outras redes, Mastodon intenta tomar decisións éticas de deseño para loitar contra os usos incorrectos da rede.
-      humane_approach_title: Unha aproximación máis humana
-      not_a_product_body: Mastodon non é unha rede comercial. Sen anuncios, sen minería de datos, sen xardíns privados. Non hai autoridade centralizada.
-      not_a_product_title: Vostede é unha persoa, non un producto
-      real_conversation_body: Con 500 caracteres a súa disposición, soporte para contido polo miúdo e avisos sobre o contido, pode expresarse vostede con libertade.
-      real_conversation_title: Construído para conversacións reais
-      within_reach_body: Existen múltiples aplicacións para iOS, Android e outras plataformas grazas a un entorno API amigable para o desenvolvedor que lle permite estar ao tanto cos seus amigos en calquer lugar.
-      within_reach_title: Sempre en contacto
+    federation_hint_html: Con unha conta en %{instance} poderá seguir a outras persoas en calquera dos servidores Mastodon e incluso máis.
     generic_description: "%{domain} é un servidor na rede"
+    get_apps: Probe cunha app móbil
     hosted_on: Mastodon aloxado en %{domain}
     learn_more: Coñeza máis
-    other_instances: Listado de instancias
     privacy_policy: Política de intimidade
+    see_whats_happening: Mire o que acontece
+    server_stats: 'Estatísticas:'
     source_code: Código fonte
     status_count_after:
       one: estado
       other: estados
     status_count_before: Que publicaron
+    tagline: Siga as amizades e faga outras novas
     terms: Termos do servizo
     user_count_after:
       one: usuaria
@@ -79,6 +79,7 @@ gl:
       delete: Eliminar
       destroyed_msg: Nota a moderación destruída con éxito!
     accounts:
+      approve: Aprobar
       are_you_sure: Está segura?
       avatar: Avatar
       by_domain: Dominio
@@ -124,6 +125,7 @@ gl:
       moderation:
         active: Activa
         all: Todo
+        pending: Pendente
         silenced: Acalado
         suspended: Suspendido
         title: Moderación
@@ -133,6 +135,7 @@ gl:
       no_limits_imposed: Sen límites impostos
       not_subscribed: Non suscrita
       outbox_url: URL caixa de saída
+      pending: Pendente revisión
       perform_full_suspension: Suspender
       profile_url: URL do perfil
       promote: Promocionar
@@ -140,6 +143,7 @@ gl:
       public: Público
       push_subscription_expires: A suscrición PuSH caduca
       redownload: Actualizar perfil
+      reject: Rexeitar
       remove_avatar: Eliminar avatar
       remove_header: Eliminar cabeceira
       resend_confirmation:
@@ -302,6 +306,7 @@ gl:
       back_to_account: Voltar a Conta
       title: Seguidoras de %{acct}
     instances:
+      by_domain: Dominio
       delivery_available: A entrega está dispoñible
       known_accounts:
         one: "%{count} conta coñecida"
@@ -386,14 +391,14 @@ gl:
         desc_html: Modificar o aspecto con CSS cargado en cada páxina
         title: CSS persoalizado
       hero:
-        desc_html: Mostrado na portada. Recoméndase 600x100px como mínimo. Si non se establece, mostrará a imaxe por omisión da instancia
+        desc_html: Mostrado na portada. Recoméndase 600x100px como mínimo. Se non se establece, mostrará a imaxe por omisión do servidor
         title: Imáxe Heróe
       mascot:
         desc_html: Mostrado en varias páxinas. Recoméndase 293x205 como mínimo. Se non se establece publícase a mascota por omisión
         title: Imaxe da mascota
       peers_api_enabled:
-        desc_html: Nome de dominio que esta instancia atopou no fediverso
-        title: Publicar lista de instancias descubertas
+        desc_html: Nomes de dominio que este servidor atopou no fediverso
+        title: Publicar lista de servidores descubertos
       preview_sensitive_media:
         desc_html: A vista previa de ligazóns de outros sitios web mostrará unha imaxe incluso si os medios están marcados como sensibles
         title: Mostrar medios sensibles con vista previa OpenGraph
@@ -410,9 +415,12 @@ gl:
         min_invite_role:
           disabled: Ninguén
           title: Permitir convites por
-        open:
-          desc_html: Permitir que calquera poida crear unha conta
-          title: Abrir rexistro
+      registrations_mode:
+        modes:
+          approved: Precisa aprobación para rexistrarse
+          none: Rexistro pechado
+          open: Rexistro aberto
+        title: Estado do rexistro
       show_known_fediverse_at_about_page:
         desc_html: Si activado, mostraralle os toots de todo o fediverso coñecido nunha vista previa. Si non só mostrará os toots locais.
         title: Mostrar vista previa do fediverso na liña temporal
@@ -421,20 +429,20 @@ gl:
         title: Mostrar insigna de membresía
       site_description:
         desc_html: Parágrafo de presentación na páxina principal. Describe o que fai especial a este servidor Mastodon e calquera outra ouca importante. Pode utilizar etiquetas HTML, en particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
-        title: Descrición da instancia
+        title: Descrición do servidor
       site_description_extended:
-        desc_html: Un bo lugar para o seu código de conducta, regras, guías e outras cousas que distingan a súa instancia. Pode utilizar etiquetas HTML
+        desc_html: Un bo lugar para o seu código de conducta, regras, guías e outras cousas que distingan ao seu servidor. Pode utilizar etiquetas HTML
         title: Información extendida da persoalización
       site_short_description:
-        desc_html: Mostrado na barra lateral e nas etiquetas meta. Describe o que é Mastodon e que fai especial a este servidor nun só parágrafo. Si está baldeiro, mostrará a descrición da instancia.
-        title: Descrición curta da instancia
+        desc_html: Mostrado na barra lateral e nas etiquetas meta. Describe o que é Mastodon e que fai especial a este servidor nun só parágrafo. Si está baldeiro, mostrará a descrición do servidor.
+        title: Descrición curta do servidor
       site_terms:
         desc_html: Pode escribir a súa propia política de intimidade, termos de servizo ou aclaracións legais. Pode utilizar etiquetas HTML
         title: Termos de servizo persoalizados
-      site_title: Nome da instancia
+      site_title: Nome do servidor
       thumbnail:
         desc_html: Utilizado para vistas previsas vía OpenGraph e API. Recoméndase 1200x630px
-        title: Icona da instancia
+        title: Icona do servidor
       timeline_preview:
         desc_html: Mostrar liña de tempo pública na páxina de inicio
         title: vista previa da liña temporal
@@ -475,6 +483,9 @@ gl:
       edit_preset: Editar aviso preestablecido
       title: Xestionar avisos preestablecidos
   admin_mailer:
+    new_pending_account:
+      body: Abaixo están os detalles da conta. Pode aprobar ou rexeitar esta solicitude.
+      subject: Hai unha conta nova para revisar en %{instance} (%{username})
     new_report:
       body: "%{reporter} informou sobre %{target}"
       body_remote: Alguén desde %{domain} informou sobre %{target}
@@ -495,8 +506,9 @@ gl:
     warning: Teña moito tino con estos datos. Nunca os comparta con ninguén!
     your_token: O seu testemuño de acceso
   auth:
-    agreement_html: Ao pulsar "Rexistrar" vostede acorda seguir <a href="%{rules_path}">as normas da instancia</a> e <a href="%{terms_path}">os termos do servizo</a>.
+    apply_for_account: Solicite un convite
     change_password: Contrasinal
+    checkbox_agreement_html: Acepto as <a href="%{rules_path}" target="_blank">regras do servidor</a> e os <a href="%{terms_path}" target="_blank">termos do servizo</a>
     confirm_email: Confirmar correo-e
     delete_account: Eliminar conta
     delete_account_html: Se desexa eliminar a súa conta, pode <a href="%{path}">facelo aquí</a>. Pediráselle confirmación.
@@ -507,17 +519,17 @@ gl:
     logout: Desconectar
     migrate_account: Mover a unha conta diferente
     migrate_account_html: Se desexa redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
-    or: ou
     or_log_in_with: ou conectar con
     providers:
       cas: CAS
       saml: SAML
     register: Rexistro
-    register_elsewhere: Rexístrese en outro servidor
+    registration_closed: "%{instance} non está a aceptar novas usuarias"
     resend_confirmation: Voltar a enviar intruccións de confirmación
     reset_password: Restablecer contrasinal
     security: Seguridade
     set_new_password: Establecer novo contrasinal
+    trouble_logging_in: Problemas para conectar?
   authorize_follow:
     already_following: Xa está a seguir esta conta
     error: Desgraciadamente, algo fallou ao buscar a conta remota
@@ -549,7 +561,7 @@ gl:
     description_html: Esto eliminará de xeito <strong>permanente e irreversible</strong> o contido da súa conta e será desactivada. O seu nome de usuaria permanecerá reservado para evitar futuras confusións de identidades.
     proceed: Eliminar conta
     success_msg: A súa conta eliminouse correctamente
-    warning_html: Só se garantiza a eliminación de contido de esta instancia. O contido que foi compartido con outras instancias é probable que deixe rastros. O servidores fora de liña e servidores que se desuscribiron das súas actualizacións non actualizarán as súas bases de datos.
+    warning_html: Só se garantiza a eliminación de contido de este servidor. O contido que foi compartido con outras instancias é probable que deixe rastros. O servidores fora de liña e servidores que se desuscribiron das súas actualizacións non actualizarán as súas bases de datos.
     warning_title: Dispoñibilidade do contido espallado
   directories:
     directory: Directorio de perfil
@@ -563,8 +575,8 @@ gl:
       other: "%{count} persoas"
   errors:
     '403': Non ten permiso para ver esta páxina.
-    '404': A páxina que está a buscar non existe.
-    '410': A páxina que busca xa non existe.
+    '404': A páxina que está a buscar non está aquí.
+    '410': A páxina que estaba a buscar xa non existe.
     '422':
       content: Fallou a verificación de seguridade. Está bloqueando as cookies?
       title: Fallou a verficación de seguridade
@@ -577,7 +589,7 @@ gl:
     archive_takeout:
       date: Data
       download: Descargue o seu ficheiro
-      hint_html: Pode solicitar un ficheiro cos <strong>seus toots ficheiros de medios</strong>. Os datos estarán en formato ActivityPub e son compatibles con calquer software que o cumpla. Pode solicitar un ficheiro cada 7 días.
+      hint_html: Pode solicitar un ficheiro cos <strong>seus toots e ficheiros de medios</strong>. Os datos estarán en formato ActivityPub e son compatibles con calquer software que o siga. Pode solicitar un ficheiro cada 7 días.
       in_progress: Xerando o seu ficheiro...
       request: Solicite o ficheiro
       size: Tamaño
@@ -588,6 +600,10 @@ gl:
     lists: Listas
     mutes: Acalou
     storage: Almacenamento de medios
+  featured_tags:
+    add_new: Engadir novo
+    errors:
+      limit: Xa acadou o número máximo de etiquetas
   filters:
     contexts:
       home: Liña temporal inicial
@@ -604,34 +620,44 @@ gl:
       title: Filtros
     new:
       title: Engadir novo filtro
-  followers:
-    domain: Dominio
-    explanation_html: Se quere asegurar a intimidade dos seus estados, debe ser consciente de quen a está a seguir. <strong>Os seus estados privados son enviados a todas as instancias onde ten seguidoras</strong>. Podería querer revisalas, e elminar seguidoras si non confía que a súa intimidade sexa respetada polos administradores ou o software de esa instancia.
-    followers_count: Número de seguidoras
-    lock_link: Bloquear a súa conta
-    purge: Eliminar das seguidoras
-    success:
-      one: En proceso de bloquear seguidoras de un dominio...
-      other: No proceso de bloquear seguidoras de %{count} dominios...
-    true_privacy_html: Por favor teña en conta que <strong>a verdadeira intimidade só pode ser conseguida con cifrado de extremo-a-extremo</strong>.
-    unlocked_warning_html: Calquera pode seguila para inmediatamente ver os seus estados privados. %{lock_link} para poder revisar e rexeitar seguidoras.
-    unlocked_warning_title: A súa conta non está pechada
   footer:
     developers: Desenvolvedoras
     more: Máis…
     resources: Recursos
   generic:
+    all: Todo
     changes_saved_msg: Cambios gardados correctamente!!
     copy: Copiar
     save_changes: Gardar cambios
     validation_errors:
       one: Algo non está ben de todo! Por favor revise abaixo o erro
       other: Algo aínda non está ben! Por favor revise os %{count} erros abaixo
+  identity_proofs:
+    active: Activo
+    authorize: Si, autorizar
+    authorize_connection_prompt: Autorizar esta conexión criptográfica?
+    errors:
+      failed: Fallou a conexión criptográfica. Por favor inténteo de novo desde %{provider}.
+      keybase:
+        invalid_token: Os testemuños Keybase son hashes de firma e deben ter 66 caracteres hexadecimais
+        verification_failed: Keybase non recoñece este testemuño como firma da usuaria de Keybase %{kb_username}. Por favor inténteo desde Keybase.
+    explanation_html: Aquí pódese conectar criptográficamente as suas outras identidades, como a un perfil Keybase. Esto permitelle a outras persoas enviarlle mensaxes cifradas e confiar no contido que vostede lle envía.
+    i_am_html: Eu son %{username} en %{service}.
+    identity: Identidade
+    inactive: Inactiva
+    status: Estado da validación
+    view_proof: Ver proba
   imports:
-    preface: Pode importar os datos que exportou de outra instancia, tales como a lista de usuarias que está a seguir ou bloquear.
+    modes:
+      merge: Fusionar
+      merge_long: Manter os rexistros actuais e engadir novos
+      overwrite: Sobreescribir
+      overwrite_long: Sustituír rexistros actuais cos novos
+    preface: Pode importar os datos que exportou de outro servidor, tales como a lista de usuarias que está a seguir ou bloquear.
     success: Os seus datos foron correctamente subidos e serán procesados ao momento
     types:
       blocking: Lista de bloqueo
+      domain_blocking: Lista de bloqueo de dominios
       following: Lista de seguimento
       muting: Lista de usuarias acaladas
     upload: Subir
@@ -653,7 +679,7 @@ gl:
       one: 1 uso
       other: "%{count} usos"
     max_uses_prompt: Sen límite
-    prompt: Xerar e compartir ligazóns con outras para permitir acceso a esta instancia
+    prompt: Xerar e compartir ligazóns con outras para permitir acceso a este servidor
     table:
       expires_at: Caduca
       uses: Usos
@@ -723,11 +749,32 @@ gl:
     older: Máis antigo
     prev: Previo
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Xa votou en esta sondaxe
+      duplicate_options: contén elementos duplicados
+      duration_too_long: está moi lonxe no futuro
+      duration_too_short: é demasiado cedo
+      expired: A sondaxe rematou
+      over_character_limit: non poden ter máis de %{max} caracteres cada unha
+      too_few_options: debe ter máis de unha opción
+      too_many_options: non pode haber máis de %{max} opcións
   preferences:
     languages: Idiomas
     other: Outro
     publishing: Publicando
     web: Web
+  relationships:
+    activity: Actividade da conta
+    dormant: En repouso
+    moved: Movida
+    mutual: Mutuo
+    primary: Principal
+    relationship: Relación
+    remove_selected_domains: Eliminar todas as seguidoras dos dominios escollidos
+    remove_selected_followers: Eliminar as seguidoras escollidas
+    remove_selected_follows: Deixar de seguir as usuarias escollidas
+    status: Estado da conta
   remote_follow:
     acct: Introduza o seu usuaria@servidor desde onde quere interactuar
     missing_resource: Non se puido atopar o URL de redirecionamento requerido para a súa conta
@@ -801,14 +848,14 @@ gl:
     development: Desenvolvemento
     edit_profile: Editar perfil
     export: Exportar datos
-    followers: Seguidoras autorizadas
+    featured_tags: Etiquetas destacadas
+    identity_proofs: Probas de identidade
     import: Importar
     migrate: Migrar conta
     notifications: Notificacións
     preferences: Preferencias
-    settings: Axustes
+    relationships: Seguindo e seguidoras
     two_factor_authentication: Validar Doble Factor
-    your_apps: As súas aplicacións
   statuses:
     attached:
       description: 'Axenado: %{attached}'
@@ -831,6 +878,11 @@ gl:
       ownership: Non pode fixar a mensaxe de outra usuaria
       private: As mensaxes non-públicas non poden ser fixadas
       reblog: Non se poden fixar as mensaxes promovidas
+    poll:
+      total_votes:
+        one: "%{count} voto"
+        other: "%{count} votos"
+      vote: Votar
     show_more: Mostrar máis
     sign_in_to_participate: Conéctese para participar na conversa
     title: '%{name}: "%{quote}"'
@@ -929,9 +981,9 @@ gl:
       <p>Adaptado do orixinal <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Termos do Servizo e Política de Intimidade"
   themes:
-    contrast: Alto contraste
-    default: Mastodon
-    mastodon-light: Mastodon (claro)
+    contrast: Mastodon (Alto contraste)
+    default: Mastodon (Escuro)
+    mastodon-light: Mastodon (Claro)
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
@@ -980,7 +1032,7 @@ gl:
       final_action: Comece a publicar
       final_step: 'Publique! Incluso sin seguidoras as súas mensaxes serán vistas por outras, por exemplo na liña temporal local e nas etiquetas. Podería presentarse no #fediverso utilizando a etiqueta #introductions.'
       full_handle: O seu alcume completo
-      full_handle_hint: Esto é o que lle dirá aos seus amigos para que poidan seguila ou enviarlle mensaxes desde outra instancia.
+      full_handle_hint: Esto é o que lle dirá aos seus amigos para que poidan seguila ou enviarlle mensaxes desde outro servidor.
       review_preferences_action: Cambiar preferencias
       review_preferences_step: Lembre establecer as preferencias, tales como qué correos-e lle querería recibir, ou o nivel de intimidade por omisión para as súas mensaxes. Se non lle molestan as imaxes con movemento, pode escoller que os GIF se reproduzan automáticamente.
       subject: Benvida a Mastodon

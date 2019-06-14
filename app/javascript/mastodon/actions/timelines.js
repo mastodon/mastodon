@@ -12,6 +12,7 @@ export const TIMELINE_EXPAND_FAIL    = 'TIMELINE_EXPAND_FAIL';
 
 export const TIMELINE_SCROLL_TOP = 'TIMELINE_SCROLL_TOP';
 
+export const TIMELINE_CONNECT    = 'TIMELINE_CONNECT';
 export const TIMELINE_DISCONNECT = 'TIMELINE_DISCONNECT';
 
 export function updateTimeline(timeline, status, accept) {
@@ -140,6 +141,13 @@ export function scrollTopTimeline(timeline, top) {
     type: TIMELINE_SCROLL_TOP,
     timeline,
     top,
+  };
+};
+
+export function connectTimeline(timeline) {
+  return {
+    type: TIMELINE_CONNECT,
+    timeline,
   };
 };
 

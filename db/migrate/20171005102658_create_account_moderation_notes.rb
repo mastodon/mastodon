@@ -7,6 +7,7 @@ class CreateAccountModerationNotes < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+
     add_foreign_key :account_moderation_notes, :accounts, column: :target_account_id
   end
 end

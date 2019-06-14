@@ -3,6 +3,27 @@ require 'rails_helper'
 RSpec.describe ReblogService, type: :service do
   let(:alice)  { Fabricate(:account, username: 'alice') }
 
+  context 'creates a reblog with appropriate visibility' do
+    let(:bob)               { Fabricate(:account, username: 'bob') }
+    let(:visibility)        { :public }
+    let(:reblog_visibility) { :public }
+    let(:status)            { Fabricate(:status, account: bob, visibility: visibility) }
+
+    subject { ReblogService.new }
+
+    before do
+      subject.call(alice, status, visibility: reblog_visibility)
+    end
+
+    describe 'boosting privately' do
+      let(:reblog_visibility) { :private }
+
+      it 'reblogs privately' do
+        expect(status.reblogs.first.visibility).to eq 'private'
+      end
+    end
+  end
+
   context 'OStatus' do
     let(:bob)    { Fabricate(:account, username: 'bob', domain: 'example.com', salmon_url: 'http://salmon.example.com') }
     let(:status) { Fabricate(:status, account: bob, uri: 'tag:example.com;something:something') }

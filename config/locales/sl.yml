@@ -7,7 +7,6 @@ sl:
     administered_by: 'Upravlja:'
     api: API
     apps: Mobilne aplikacije
-    closed_registrations: Registracije so trenutno zaprte na tem vozlišču. Vendar! Tukaj lahko najdete druga vozlišča, na katerih se prijavite in dostopate do istega omrežja od tam.
     contact: Kontakt
     contact_missing: Ni nastavljeno
     contact_unavailable: Ni na voljo
@@ -15,32 +14,22 @@ sl:
     extended_description_html: |
       <h3>Dober prostor za pravila</h3>
       <p>Razširjen opis še ni bil nastavljen.</p>
-    features:
-      humane_approach_body: Na podlagi učenja od neuspehov drugih omrežij, želi Mastodon oblikovati etične načrte za boj proti zlorabi socialnih medijev.
-      humane_approach_title: Bolj human pristop
-      not_a_product_body: Mastodon ni komercialno omrežje. Brez oglaševanja, brez podatkovnega rudarjenja, brez obzidanih vrtov. Ni osrednjega organa.
-      not_a_product_title: Ti si oseba, ne izdelek
-      real_conversation_body: S 500 znaki, ki so vam na voljo, in podporo za zrnate vsebine ter opozorila pred mediji, se lahko izrazite tako, kot želite.
-      real_conversation_title: Zgrajen za pravi pogovor
-      within_reach_body: Zahvaljujoč razvijalcem prijaznemu API ekosistemu, obstaja več aplikacija za iOS, Arduino in druge platforme, ki vam omogočajo, da sledite svojim prijateljem kjerkoli.
-      within_reach_title: Vedno na dosegu roke
     generic_description: "%{domain} je en strežnik v omrežju"
     hosted_on: Mastodon gostuje na %{domain}
     learn_more: Spoznaj več
-    other_instances: Seznam vozlišč
     privacy_policy: Politika zasebnosti
     source_code: Izvorna koda
     status_count_after:
       few: stanja
       one: stanje
-      other: stanja
+      other: stanj
       two: stanja
-    status_count_before: Kdo je avtor
+    status_count_before: Ki so avtorji
     terms: Pogoji storitve
     user_count_after:
       few: uporabniki
       one: uporabnik
-      other: uporabniki
+      other: uporabnikov
       two: uporabniki
     user_count_before: Dom za
     what_is_mastodon: Kaj je Mastodon?
@@ -54,6 +43,7 @@ sl:
       two: Sledilci
     following: Sledim
     joined: Se je pridružil na %{date}
+    last_active: zadnji aktivni
     link_verified_on: Lastništvo te povezave je bilo preverjeno na %{date}
     media: Medij
     moved_html: "%{name} se je prestavil na %{new_profile_link}:"
@@ -77,8 +67,11 @@ sl:
       moderator: Mod
     unfollow: Prenehaj slediti
   admin:
+    account_actions:
+      action: Izvedi dejanje
+      title: Izvedi moderirano dejanje %{acct}
     account_moderation_notes:
-      create: Pusti sporočilo
+      create: Pusti opombo
       created_msg: Uspešno ustvarjena opomba moderiranja!
       delete: Izbriši
       destroyed_msg: Moderirana opomba je uspešno uničena!
@@ -96,6 +89,7 @@ sl:
       confirm: Potrdi
       confirmed: Potrjeno
       confirming: Potrjujem
+      deleted: Izbrisano
       demote: Ponižaj
       disable: Onemogoči
       disable_two_factor_authentication: Onemogoči 2FA
@@ -111,8 +105,11 @@ sl:
       followers: Sledilci
       followers_url: URL sledilci
       follows: Sledi
+      header: Glava
       inbox_url: URl v mapi "Prejeto"
+      invited_by: Povabljen od
       ip: IP
+      joined: Pridružil
       location:
         all: Vse
         local: Lokalno
@@ -122,6 +119,7 @@ sl:
       media_attachments: Medijske priloge
       memorialize: Spremenite v spomin
       moderation:
+        active: Dejaven
         all: Vse
         silenced: Utišan
         suspended: Suspendiran
@@ -129,7 +127,265 @@ sl:
       moderation_notes: Opombe moderiranja
       most_recent_activity: Zadnja aktivnost
       most_recent_ip: Zadnji IP
+      no_limits_imposed: Brez omejitev
+      not_subscribed: Ni naročeno
+      outbox_url: URl za pošiljanje
+      perform_full_suspension: Začasno ustavi
+      profile_url: URL profila
       promote: Spodbujanje
+      protocol: Protokol
+      public: Javen
+      push_subscription_expires: Naročnina PuSH preteče
+      redownload: Osveži profil
+      remove_avatar: Odstrani podobo
+      remove_header: Odstrani glavo
+      resend_confirmation:
+        already_confirmed: Ta uporabnik je že potrjen
+        send: Ponovno pošlji potrditveno e-pošto
+        success: Potrditvena e-pošta je uspešno poslana!
+      reset: Ponastavi
+      reset_password: Ponastavi geslo
+      resubscribe: Ponovno se naroči
+      role: Dovoljenja
+      roles:
+        admin: Skrbnik
+        moderator: Moderator
+        staff: Osebje
+        user: Uporabnik
+      salmon_url: Salmon URL
+      search: Poišči
+      shared_inbox_url: URL mape "Prejeto v skupni rabi"
+      show:
+        created_reports: Narejene prijave
+        targeted_reports: Prijavili drugi
+      silence: Utišaj
+      silenced: Utišan
+      statuses: Stanja
+      subscribe: Naroči
+      suspended: Suspendiran
+      title: Računi
+      unconfirmed_email: Nepotrjena e-pošta
+      undo_silenced: Razveljavi utišanje
+      undo_suspension: Razveljavi suspendiranje
+      unsubscribe: Odjavi se od naročnine
+      username: Uporabniško ime
+      warn: Opozori
+      web: Splet
+    action_logs:
+      actions:
+        assigned_to_self_report: "%{name} je prijavil %{target} sebi"
+        change_email_user: "%{name} je spremenil naslov e-pošte uporabnika %{target}"
+        confirm_user: "%{name} je potrdil naslov e-pošte uporabnika %{target}"
+        create_account_warning: "%{name} je poslal opozorilo %{target}"
+        create_custom_emoji: "%{name} je poslal nove emotikone %{target}"
+        create_domain_block: "%{name} je blokiral domeno %{target}"
+        create_email_domain_block: "%{name} je dal na črni seznam e-pošto domene %{target}"
+        demote_user: "%{name} je degradiral uporabnika %{target}"
+        destroy_custom_emoji: "%{name} je uničil emotikon %{target}"
+        destroy_domain_block: "%{name} je odblokiral domeno %{target}"
+        destroy_email_domain_block: "%{name} je dal na beli seznam e-pošto domene %{target}"
+        destroy_status: "%{name} je odstranil stanje od %{target}"
+        disable_2fa_user: "%{name} je onemogočil dvofaktorsko zahtevo za uporabnika %{target}"
+        disable_custom_emoji: "%{name} je onemogočil emotikon %{target}"
+        disable_user: "%{name} je onemogočil prijavo za uporabnika %{target}"
+        enable_custom_emoji: "%{name} je omogočil emotikon %{target}"
+        enable_user: "%{name} je omogočil prijavo za uporabnika %{target}"
+        memorialize_account: "%{name} je spremenil račun od %{target} v stran spominov"
+        promote_user: "%{name} je spodbudil uporabnika %{target}"
+        remove_avatar_user: "%{name} je odstranil podobo od %{target}"
+        reopen_report: "%{name} je ponovno odprl prijavo %{target}"
+        reset_password_user: "%{name} je ponastavil geslo od uporabnika %{target}"
+        resolve_report: "%{name} je razrešil prijavo %{target}"
+        silence_account: "%{name} je utišal račun od %{target}"
+        suspend_account: "%{name} je začasno ustavil račun od %{target}"
+        unassigned_report: "%{name} je nedodeljeno prijavil %{target}"
+        unsilence_account: "%{name} je preklical utišanje računa od %{target}"
+        unsuspend_account: "%{name} je aktiviral račun od %{target}"
+        update_custom_emoji: "%{name} je posodobil emotikone %{target}"
+        update_status: "%{name} je posodobil stanje od %{target}"
+      deleted_status: "(izbrisano stanje)"
+      title: Dnevnik revizije
+    custom_emojis:
+      by_domain: Domena
+      copied_msg: Lokalna kopija emotikona je bila uspešno ustvarjena
+      copy: Kopiraj
+      copy_failed_msg: Lokalne kopije emotikona ni bilo mogoče ustvariti
+      created_msg: Emotikon je uspešno ustvarjen!
+      delete: Izbriši
+      destroyed_msg: Emotikon je uspešno uničen!
+      disable: Onemogoči
+      disabled_msg: Ta emotikon je uspešno onemogočen
+      emoji: Emotikon
+      enable: Omogoči
+      enabled_msg: Ta emotikon je uspešno omogočen
+      image_hint: PNG do 50KB
+      listed: Navedeno
+      new:
+        title: Dodaj nove emotikone
+      overwrite: Prepiši
+      shortcode: Kratka koda
+      shortcode_hint: Najmanj 2 znaka, samo alfanumerični znaki in podčrtaji
+      title: Emotikoni po meri
+      unlisted: Neuvrščeni
+      update_failed_msg: Tega emotikona ni bilo mogoče posodobiti
+      updated_msg: Emotikon je uspešno posodobljen!
+      upload: Pošlji
+    dashboard:
+      backlog: Zaostala opravila
+      config: Nastavitve
+      feature_deletions: Brisanje računov
+      feature_invites: Poveza povabil
+      feature_profile_directory: Mapa profila
+      feature_registrations: Registracije
+      feature_relay: Rele federacije
+      features: Zmožnosti
+      hidden_service: Federacija s skritimi storitvami
+      open_reports: odprte prijave
+      recent_users: Nedavni uporabniki
+      search: Iskanje po celotnem besedilu
+      single_user_mode: Način enega uporabnika
+      software: Programska oprema
+      space: Uporaba prostora
+      title: Nadzorna plošča
+      total_users: Skupaj uporabnikov
+      trends: Trendi
+      week_interactions: interakcije ta teden
+      week_users_active: aktivni ta teden
+      week_users_new: uporabniki ta teden
+    domain_blocks:
+      add_new: Dodaj nov domenski blok
+      created_msg: Domenski blok se sedaj obdeluje
+      destroyed_msg: Domenski blok je bil razveljavljen
+      domain: Domena
+      new:
+        create: Ustvari blok
+        hint: Domenski blok ne bo preprečil ustvarjanja vnosov računov v zbirko podatkov, ampak bo retroaktivno in samodejno uporabil posebne metode moderiranja na teh računih.
+        severity:
+          desc_html: "<strong>Utišaj</strong> bo vse objave računa naredil nevidne vsem, ki jih ne sledijo. <strong>Suspendiraj</strong> bo odstranil vso vsebino, medije in podatke profila računa. Uporabi <strong>nič</strong>, če želite le zavrniti predstavnostne datoteke."
+          noop: Nič
+          silence: Utišaj
+          suspend: Suspendiraj
+        title: Nov domenski blok
+      reject_media: Zavrni predstavnostne datoteke
+      reject_media_hint: Odstrani lokalno shranjene predstavnostne datoteke in zavrača prenašanje le-teh v prihodnosti. Za suspenzije ni pomembno
+      reject_reports: Zavrnjene prijave
+      reject_reports_hint: Prezri vse prijave, ki pridejo iz te domene. Za suspenzije ni pomembno
+      rejecting_media: zavrnitev predstavnostnih datotek
+      rejecting_reports: zavrnitev prijav
+      severity:
+        silence: utišani
+        suspend: suspendirani
+      show:
+        affected_accounts:
+          few: "%{count} računov v bazi podatkov so prizadeti"
+          one: En račun v bazi podatkov je prizadet
+          other: "%{count} računov v bazi podatkov so prizadeti"
+          two: "%{count} računov v bazi podatkov so prizadeti"
+        retroactive:
+          silence: Prekliči utišanje za vse obstoječe račune iz te domene
+          suspend: Odsuspendiraj vse obstoječe račune iz te domene
+        title: Razveljavi domenski blok za %{domain}
+        undo: Razveljavi
+      undo: Razveljavi domenski blok
+    email_domain_blocks:
+      add_new: Dodaj novo
+      created_msg: Domena e-pošte je bila uspešno dodana na črni seznam
+      delete: Izbriši
+      destroyed_msg: Domena e-pošte je bila uspešno izbrisana iz črnega seznama
+      domain: Domena
+      new:
+        create: Dodaj domeno
+        title: Nov vnos e-pošte na črni seznam
+      title: Črni seznam e-pošte
+    followers:
+      back_to_account: Nazaj na račun
+      title: Sledilci od %{acct}
+    instances:
+      delivery_available: Na voljo je dostava
+      known_accounts:
+        few: "%{count} znanih računov"
+        one: "%{count} znan račun"
+        other: "%{count} znanih računov"
+        two: "%{count} znanih računov"
+      moderation:
+        all: Vse
+        limited: Omejeno
+        title: Moderiranje
+      title: Federacija
+      total_blocked_by_us: Blokirano iz naše strani
+      total_followed_by_them: Oni ti sledijo
+      total_followed_by_us: Mi ti sledimo
+      total_reported: Poročila o njih
+      total_storage: Predstavnostne priloge
+    invites:
+      deactivate_all: Onemogoči vse
+      filter:
+        all: Vse
+        available: Razpoložljivo
+        expired: Potekel
+        title: Filter
+      title: Povabila
+    relays:
+      add_new: Dodaj nov rele
+      delete: Izbriši
+      description_html: "<strong>Rele federacije</strong> je posredniški strežnik, ki si izmenjuje velike količine javnih trobov med strežniki, ki so se naročili in objavili na njem. <strong>Majhnim in srednjim strežnikom lahko pomaga pri odkrivanju vsebine iz sistema fediverse</strong>, kar bi sicer zahtevalo, da lokalni uporabniki ročno sledijo druge osebe na oddaljenih strežnikih."
+      disable: Onemogoči
+      disabled: Onemogočeno
+      enable: Omogoči
+      enable_hint: Ko je omogočen, se bo vaš strežnik naročil na vse javne trobe iz tega releja in začel pošiljati javne trobe tega strežnika.
+      enabled: Omogočeno
+      inbox_url: URL releja
+      pending: Čakanje na odobritev releja
+      save_and_enable: Shrani in omogoči
+      setup: Nastavi povezavo releja
+      status: Stanje
+      title: Releji
+    report_notes:
+      created_msg: Opomba o prijavi je uspešno ustvarjena!
+      destroyed_msg: Opomba o prijavi je uspešno izbrisana!
+    reports:
+      account:
+        note: opomba
+        report: prijava
+      action_taken_by: Dejanje, ki ga je sprejel
+      are_you_sure: Ali ste prepričani?
+      assign_to_self: Dodeli meni
+      assigned: Dodeljen moderator
+      comment:
+        none: Nič
+      created_at: Prijavljeno
+      mark_as_resolved: Označi kot rešeno
+      mark_as_unresolved: Označi kot nerešeno
+      notes:
+        create: Dodaj opombo
+        create_and_resolve: Razreši z opombo
+        create_and_unresolve: Ponovo odpri z opombo
+        delete: Izbriši
+        placeholder: Opišite dejanja, ki ste jih izvedli, ali katere koli druge posodobitve...
+      reopen: Ponovno odpri prijavo
+      report: 'Prijavi #%{id}'
+      reported_account: Prijavljeni račun
+      reported_by: Prijavljen od
+      resolved: Razrešeno
+      resolved_msg: Prijava je uspešno razrešena!
+      status: Stanje
+      title: Prijave
+      unassign: Odstopi
+      unresolved: Nerešeno
+      updated_at: Posodobljen
+    settings:
+      activity_api_enabled:
+        desc_html: Številke lokalno objavljenih stanj, aktivnih uporabnikov in novih registracij na tedenskih seznamih
+        title: Objavi združeno statistiko o dejavnosti uporabnikov
+      bootstrap_timeline_accounts:
+        desc_html: Več uporabniških imen ločite z vejico. Deluje samo na lokalnih in odklenjenih računih. Privzeto, ko je prazno, pri vseh lokalnih skrbnikih.
+        title: Privzeta sledenja za nove uporabnike
+      contact_information:
+        email: Poslovna e-pošta
+        username: Uporabniško ime stika
+      custom_css:
+        desc_html: Spremeni videz z naloženim CSS na vsaki strani
+        title: CSS po meri
   statuses:
     pin_errors:
       ownership: Trob nekoga drugega ne more biti pripet

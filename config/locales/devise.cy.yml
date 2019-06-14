@@ -18,6 +18,7 @@ cy:
     mailer:
       confirmation_instructions:
         action: Gwiriwch eich cyfeiriad e-bost
+        action_with_app: Cadarnhau a dychwelyd i %{app}
         explanation: Yr ydych wedi creu cyfrif ar %{host} gyda'r cyfrif e-bost hwn. Dim ond un clic sydd angen i'w wneud yn weithredol. Os nad chi oedd hyn, anwybyddwch yr e-bost hwn os gwelwch yn dda.
         extra_html: Gwnewch yn siŵr i edrych ar <a href="%{terms_path}">reolau'r achos</a> a <a href="%{policy_path}">ein telerau gwasanaeth</a>.
         subject: 'Mastodon: Canllawiau cadarnhau i %{instance}'
@@ -77,4 +78,10 @@ cy:
       expired: wedi dod i ben, gwnewch gais am un newydd os gwelwch yn dda
       not_found: heb ei ganfod
       not_locked: heb ei gloi
-      not_saved: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
+      not_saved:
+        few: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
+        many: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
+        one: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd 1 gwall:'
+        other: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
+        two: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
+        zero: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'

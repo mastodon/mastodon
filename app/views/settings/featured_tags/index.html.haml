@@ -1,0 +1,27 @@
+- content_for :page_title do
+  = t('settings.featured_tags')
+
+= simple_form_for @featured_tag, url: settings_featured_tags_path do |f|
+  = render 'shared/error_messages', object: @featured_tag
+
+  .fields-group
+    = f.input :name, wrapper: :with_block_label, hint: safe_join([t('simple_form.hints.featured_tag.name'), safe_join(@most_used_tags.map { |tag| link_to("##{tag.name}", settings_featured_tags_path(featured_tag: { name: tag.name }), method: :post) }, ', ')], ' ')
+
+  .actions
+    = f.button :button, t('featured_tags.add_new'), type: :submit
+
+%hr.spacer/
+
+- @featured_tags.each do |featured_tag|
+  .directory__tag{ class: params[:tag] == featured_tag.name ? 'active' : nil }
+    %div
+      %h4
+        = fa_icon 'hashtag'
+        = featured_tag.name
+        %small
+          - if featured_tag.last_status_at.nil?
+            = t('accounts.nothing_here')
+          - else
+            %time{ datetime: featured_tag.last_status_at.iso8601, title: l(featured_tag.last_status_at) }= l featured_tag.last_status_at
+          = table_link_to 'trash', t('filters.index.delete'), settings_featured_tag_path(featured_tag), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }
+      .trends__item__current= number_to_human featured_tag.statuses_count, strip_insignificant_zeros: true

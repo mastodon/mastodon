@@ -12,6 +12,7 @@ pt-BR:
       last_attempt: Você tem apenas mais uma tentativa sobrando antes que a sua conta seja bloqueada.
       locked: A sua conta está bloqueada.
       not_found_in_database: "%{authentication_keys} ou senha inválida."
+      pending: Sua conta ainda está sendo revisada.
       timeout: A sua sessão expirou. Por favor, entre novamente para continuar.
       unauthenticated: Você precisa entrar ou cadastrar-se antes de continuar.
       unconfirmed: Você precisa confirmar o seu endereço de e-mail antes de continuar.
@@ -20,6 +21,7 @@ pt-BR:
         action: Verificar endereço de e-mail
         action_with_app: Confirmar e voltar para %{app}
         explanation: Você criou uma conta em %{host} com esse endereço de e-mail. Você está a um clique de ativá-la. Se não foi você, por favor ignore esse e-mail.
+        explanation_when_pending: Você pediu um convite para %{host} com esse endereço de email. Assim que você confirmar o seu endereço de e-mail, iremos revisar o seu pedido. Você não poderá fazer login até então. Se sua aplicação for rejeitada, seus dados serão removidos e nenhuma ação será necessária da sua parte. Se você não pediu por isso, por favor ignore esse e-mail.
         extra_html: Por favor confira também <a href="%{terms_path}">as regras da instância</a> e <a href="%{policy_path}">nossos termos de serviço</a>.
         subject: 'Mastodon: Instruções de confirmação para %{instance}'
         title: Verifique o endereço de e-mail
@@ -60,6 +62,7 @@ pt-BR:
       signed_up: Bem vindo! A sua conta foi registrada com sucesso.
       signed_up_but_inactive: A sua conta foi registrada. No entanto, não abrimos a sua sessão porque a sua conta ainda não foi ativada.
       signed_up_but_locked: A sua conta foi registrada. No entanto, não abrimos a sua sessão porque a sua conta está bloqueada.
+      signed_up_but_pending: Uma mensagem com um link de confirmação foi enviada ao seu endereço de e-mail. Depois que você clicar no link, revisaremos seu pedido. Você será notificado se seu pedido for aprovado.
       signed_up_but_unconfirmed: Uma mensagem com um link de confirmação foi enviada para o seu endereço de e-mail. Por favor, siga o link para ativar a sua conta e, caso não tenha recebido esta mensagem, cheque a sua pasta de spam.
       update_needs_confirmation: Você mudou o seu endereço de e-mail ou a sua senha, mas é necessário confirmar a mudança. Por favor siga o link que foi enviado para o seu novo endereço de e-mail e, caso não tenha recebido esta mensagem, cheque a sua pasta de spam.
       updated: A sua conta foi alterada com sucesso.

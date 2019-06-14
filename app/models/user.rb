@@ -37,11 +37,12 @@
 #  remember_token            :string
 #  chosen_languages          :string           is an Array
 #  created_by_application_id :bigint(8)
+#  approved                  :boolean          default(TRUE), not null
 #
 
 class User < ApplicationRecord
   include Settings::Extend
-  include Omniauthable
+  include UserRoles
 
   # The home and list feeds will be stored in Redis for this amount
   # of time, and status fan-out to followers will include only people
@@ -61,9 +62,9 @@ class User < ApplicationRecord
   devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  devise :pam_authenticatable if ENV['PAM_ENABLED'] == 'true'
-
-  devise :omniauthable
+  include Omniauthable
+  include PamAuthenticable
+  include LdapAuthenticable
 
   belongs_to :account, inverse_of: :user
   belongs_to :invite, counter_cache: :uses, optional: true
@@ -73,15 +74,17 @@ class User < ApplicationRecord
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
   has_many :backups, inverse_of: :user
 
+  has_one :invite_request, class_name: 'UserInviteRequest', inverse_of: :user, dependent: :destroy
+  accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? }
+
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?
   validates_with EmailMxValidator, if: :validate_email_dns?
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
 
   scope :recent, -> { order(id: :desc) }
-  scope :admins, -> { where(admin: true) }
-  scope :moderators, -> { where(moderator: true) }
-  scope :staff, -> { admins.or(moderators) }
+  scope :pending, -> { where(approved: false) }
+  scope :approved, -> { where(approved: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
   scope :enabled, -> { where(disabled: false) }
   scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
@@ -90,6 +93,7 @@ class User < ApplicationRecord
   scope :emailable, -> { confirmed.enabled.joins(:account).merge(Account.searchable) }
 
   before_validation :sanitize_languages
+  before_create :set_approved
 
   # This avoids a deprecation warning from Rails 5.1
   # It seems possible that a future release of devise-two-factor will
@@ -100,42 +104,9 @@ class User < ApplicationRecord
 
   delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
            :reduce_motion, :system_font_ui, :noindex, :theme, :display_media, :hide_network,
-           :expand_spoilers, :default_language, :aggregate_reblogs, to: :settings, prefix: :setting, allow_nil: false
+           :expand_spoilers, :default_language, :aggregate_reblogs, :show_application, to: :settings, prefix: :setting, allow_nil: false
 
   attr_reader :invite_code
-
-  def pam_conflict(_)
-    # block pam login tries on traditional account
-    nil
-  end
-
-  def pam_conflict?
-    return false unless Devise.pam_authentication
-    encrypted_password.present? && pam_managed_user?
-  end
-
-  def pam_get_name
-    return account.username if account.present?
-    super
-  end
-
-  def pam_setup(_attributes)
-    acc = Account.new(username: pam_get_name)
-    acc.save!(validate: false)
-
-    self.email = "#{acc.username}@#{find_pam_suffix}" if email.nil? && find_pam_suffix
-    self.confirmed_at = Time.now.utc
-    self.admin = false
-    self.account = acc
-
-    acc.destroy! unless save
-  end
-
-  def ldap_setup(_attributes)
-    self.confirmed_at = Time.now.utc
-    self.admin = false
-    save!
-  end
 
   def confirmed?
     confirmed_at.present?
@@ -143,33 +114,6 @@ class User < ApplicationRecord
 
   def invited?
     invite_id.present?
-  end
-
-  def staff?
-    admin? || moderator?
-  end
-
-  def role
-    if admin?
-      'admin'
-    elsif moderator?
-      'moderator'
-    else
-      'user'
-    end
-  end
-
-  def role?(role)
-    case role
-    when 'user'
-      true
-    when 'moderator'
-      staff?
-    when 'admin'
-      admin?
-    else
-      false
-    end
   end
 
   def disable!
@@ -183,39 +127,50 @@ class User < ApplicationRecord
   end
 
   def confirm
-    new_user = !confirmed?
+    new_user      = !confirmed?
+    self.approved = true if open_registrations?
 
     super
-    prepare_new_user! if new_user
+
+    if new_user && approved?
+      prepare_new_user!
+    elsif new_user
+      notify_staff_about_pending_account!
+    end
   end
 
   def confirm!
-    new_user = !confirmed?
+    new_user      = !confirmed?
+    self.approved = true if open_registrations?
 
     skip_confirmation!
     save!
-    prepare_new_user! if new_user
+
+    prepare_new_user! if new_user && approved?
+  end
+
+  def pending?
+    !approved?
+  end
+
+  def active_for_authentication?
+    super && approved?
+  end
+
+  def inactive_message
+    !approved? ? :pending : super
+  end
+
+  def approve!
+    return if approved?
+
+    update!(approved: true)
+    prepare_new_user!
   end
 
   def update_tracked_fields!(request)
     super
     prepare_returning_user!
-  end
-
-  def promote!
-    if moderator?
-      update!(moderator: false, admin: true)
-    elsif !admin?
-      update!(moderator: true)
-    end
-  end
-
-  def demote!
-    if admin?
-      update!(admin: false, moderator: true)
-    elsif moderator?
-      update!(moderator: false)
-    end
   end
 
   def disable_two_factor!
@@ -236,12 +191,20 @@ class User < ApplicationRecord
     settings.notification_emails['report']
   end
 
+  def allows_pending_account_emails?
+    settings.notification_emails['pending_account']
+  end
+
   def hides_network?
     @hides_network ||= settings.hide_network
   end
 
   def aggregates_reblogs?
     @aggregates_reblogs ||= settings.aggregate_reblogs
+  end
+
+  def shows_application?
+    @shows_application ||= settings.show_application
   end
 
   def token_for_app(a)
@@ -293,43 +256,6 @@ class User < ApplicationRecord
     super
   end
 
-  def self.pam_get_user(attributes = {})
-    return nil unless attributes[:email]
-
-    resource =
-      if Devise.check_at_sign && !attributes[:email].index('@')
-        joins(:account).find_by(accounts: { username: attributes[:email] })
-      else
-        find_by(email: attributes[:email])
-      end
-
-    if resource.blank?
-      resource = new(email: attributes[:email], agreement: true)
-
-      if Devise.check_at_sign && !resource[:email].index('@')
-        resource[:email] = Rpam2.getenv(resource.find_pam_service, attributes[:email], attributes[:password], 'email', false)
-        resource[:email] = "#{attributes[:email]}@#{resource.find_pam_suffix}" unless resource[:email]
-      end
-    end
-    resource
-  end
-
-  def self.ldap_get_user(attributes = {})
-    resource = joins(:account).find_by(accounts: { username: attributes[Devise.ldap_uid.to_sym].first })
-
-    if resource.blank?
-      resource = new(email: attributes[:mail].first, agreement: true, account_attributes: { username: attributes[Devise.ldap_uid.to_sym].first })
-      resource.ldap_setup(attributes)
-    end
-
-    resource
-  end
-
-  def self.authenticate_with_pam(attributes = {})
-    return nil unless Devise.pam_authentication
-    super
-  end
-
   def show_all_media?
     setting_display_media == 'show_all'
   end
@@ -346,6 +272,14 @@ class User < ApplicationRecord
 
   private
 
+  def set_approved
+    self.approved = open_registrations? || invited?
+  end
+
+  def open_registrations?
+    Setting.registrations_mode == 'open'
+  end
+
   def sanitize_languages
     return if chosen_languages.nil?
     chosen_languages.reject!(&:blank?)
@@ -361,6 +295,13 @@ class User < ApplicationRecord
   def prepare_returning_user!
     ActivityTracker.record('activity:logins', id)
     regenerate_feed! if needs_feed_update?
+  end
+
+  def notify_staff_about_pending_account!
+    User.staff.includes(:account).each do |u|
+      next unless u.allows_pending_account_emails?
+      AdminMailer.new_pending_account(u.account, self).deliver_later
+    end
   end
 
   def regenerate_feed!

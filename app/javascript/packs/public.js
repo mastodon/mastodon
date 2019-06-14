@@ -192,14 +192,20 @@ function main() {
   });
 
   delegate(document, '.input-copy input', 'click', ({ target }) => {
+    target.focus();
     target.select();
+    target.setSelectionRange(0, target.value.length);
   });
 
   delegate(document, '.input-copy button', 'click', ({ target }) => {
     const input = target.parentNode.querySelector('.input-copy__wrapper input');
 
+    const oldReadOnly = input.readonly;
+
+    input.readonly = false;
     input.focus();
     input.select();
+    input.setSelectionRange(0, input.value.length);
 
     try {
       if (document.execCommand('copy')) {
@@ -213,6 +219,8 @@ function main() {
     } catch (err) {
       console.error(err);
     }
+
+    input.readonly = oldReadOnly;
   });
 }
 

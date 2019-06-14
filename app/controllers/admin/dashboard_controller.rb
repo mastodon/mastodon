@@ -10,7 +10,7 @@ module Admin
       @interactions_week     = Redis.current.get("activity:interactions:#{current_week}") || 0
       @relay_enabled         = Relay.enabled.exists?
       @single_user_mode      = Rails.configuration.x.single_user_mode
-      @registrations_enabled = Setting.open_registrations
+      @registrations_enabled = Setting.registrations_mode != 'none'
       @deletions_enabled     = Setting.open_deletion
       @invites_enabled       = Setting.min_invite_role == 'user'
       @search_enabled        = Chewy.enabled?
@@ -29,6 +29,7 @@ module Admin
       @hidden_service        = ENV['ALLOW_ACCESS_TO_HIDDEN_SERVICE'] == 'true'
       @trending_hashtags     = TrendingTags.get(7)
       @profile_directory     = Setting.profile_directory
+      @timeline_preview      = Setting.timeline_preview
     end
 
     private

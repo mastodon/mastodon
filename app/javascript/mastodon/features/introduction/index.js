@@ -89,7 +89,7 @@ const FrameInteractions = ({ onNext }) => (
     </div>
 
     <div className='introduction__action'>
-      <button className='button' onClick={onNext}><FormattedMessage id='introduction.interactions.action' defaultMessage='Finish tutorial!' /></button>
+      <button className='button' onClick={onNext}><FormattedMessage id='introduction.interactions.action' defaultMessage='Finish toot-orial!' /></button>
     </div>
   </div>
 );

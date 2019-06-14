@@ -33,9 +33,12 @@ nl:
         setting_display_media_show_all: Als gevoelig gemarkeerde media altijd verbergen
         setting_hide_network: Wie jij volgt en wie jou volgen wordt niet op jouw profiel getoond
         setting_noindex: Heeft invloed op jouw openbare profiel en toots
+        setting_show_application: De toepassing de je gebruikt om te tooten wordt in de gedetailleerde weergave van de toot getoond
         setting_theme: Heeft invloed op hoe de webapp van Mastodon eruitziet (op elk apparaat waarmee je inlogt).
         username: Jouw gebruikersnaam is uniek op %{domain}
         whole_word: Wanneer het trefwoord of zinsdeel alfanumeriek is, wordt het alleen gefilterd wanneer het hele woord overeenkomt
+      featured_tag:
+        name: 'Je wilt misschien een van deze gebruiken:'
       imports:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       sessions:
@@ -100,6 +103,7 @@ nl:
         setting_hide_network: Jouw volgers en wie je volgt verbergen
         setting_noindex: Jouw toots niet door zoekmachines laten indexeren
         setting_reduce_motion: Langzamere animaties
+        setting_show_application: Toepassing onthullen die je voor het verzenden van toots gebruikt
         setting_system_font_ui: Standaardlettertype van jouw systeem gebruiken
         setting_theme: Thema website
         setting_unfollow_modal: Vraag voor het ontvolgen van iemand een bevestiging
@@ -108,6 +112,8 @@ nl:
         username: Gebruikersnaam
         username_or_email: Gebruikersnaam of e-mailadres
         whole_word: Heel woord
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren

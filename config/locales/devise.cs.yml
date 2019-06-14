@@ -3,15 +3,16 @@ cs:
   devise:
     confirmations:
       confirmed: Vaše e-mailová adresa byla úspěšně ověřena.
-      send_instructions: Za několik minut obdržíte e-mail s instrukcemi pro potvrzení vašeho účtu. Pokud tento e-mail neobdržíte, zkontrolujte si složku „spam“.
-      send_paranoid_instructions: Pokud tato e-mailová adresa existuje v naší databázi, obdržíte za několik minut e-mail s instrukcemi pro potvrzení vašeho účtu. Pokud tento e-mail neobdržíte, zkontrolujte si složku „spam“.
+      send_instructions: Za několik minut obdržíte e-mail s instrukcemi pro potvrzení vašeho účtu. Pokud tento e-mail neobdržíte, prosím zkontrolujte si složku „spam“.
+      send_paranoid_instructions: Pokud vaše e-mailová adresa existuje v naší databázi, obdržíte za několik minut e-mail s instrukcemi pro potvrzení vaší e-mailové adresy. Pokud tento e-mail neobdržíte, prosím zkontrolujte si složku „spam“.
     failure:
       already_authenticated: Již jste přihlášen/a.
       inactive: Váš účet ještě není aktivován.
-      invalid: Neplatné %{authentication_keys} nebo heslo.
+      invalid: Neplatný %{authentication_keys} nebo heslo.
       last_attempt: Máte ještě jeden pokus, než bude váš účet uzamčen.
       locked: Váš účet je uzamčen.
       not_found_in_database: Neplatné %{authentication_keys} nebo heslo.
+      pending: Váš účet je stále posuzován.
       timeout: Vaše relace vypršela. Pro pokračování se prosím přihlaste znovu.
       unauthenticated: Před pokračováním se musíte přihlásit nebo registrovat.
       unconfirmed: Před pokračováním musíte potvrdit svůj e-mail.
@@ -19,18 +20,19 @@ cs:
       confirmation_instructions:
         action: Potvrdit e-mailovou adresu
         action_with_app: Potvrdit a navrátit se do %{app}
-        explanation: S touto e-mailovou adresou jste si vytvořil/a účet na %{host}. K jeho aktivaci vám zbývá jedno kliknutí. Pokud jste to nebyl/a vy, ignorujte této e-mail.
-        extra_html: Prosím podívejte se také na <a href="%{terms_path}">pravidla této instance</a> a <a href="%{policy_path}">naše podmínky používání</a>.
+        explanation: S touto e-mailovou adresou jste si vytvořil/a účet na %{host}. K jeho aktivaci vám zbývá jedno kliknutí. Pokud jste to nebyl/a vy, prosím ignorujte tento e-mail.
+        explanation_when_pending: S touto e-mailovou adresou jste si vyžádal/a pozvánku na %{host}. Jakmile svou e-mailovou adresu potvrdíte, posoudíme váš poadavek. Do té doby se nemůžete přihlásit. Pokud bude váš požadavek zamítnut, budou vaše data odstraněna, takže od vás nebude vyžadována žádná další akce. Pokud jste to nebyl/a vy, prosím ignorujte tento e-mail.
+        extra_html: Prosím podívejte se také na <a href="%{terms_path}">pravidla tohoto serveru</a> a <a href="%{policy_path}">naše podmínky používání</a>.
         subject: 'Mastodon: Potvrzovací instrukce pro %{instance}'
         title: Potvrďte e-mailovou adresu
       email_changed:
         explanation: 'E-mailová adresa vašeho účtu byla změněna na:'
-        extra: Pokud jste si e-mail nezměnil/a, je pravděpodobné, že někdo jiný získal přístup k vašemu účtu. Prosím změňte si okamžitě heslo, nebo, pokud se nemůžete na účet přihlásit, kontaktujte administrátora instance.
+        extra: Pokud jste si e-mail nezměnil/a, je pravděpodobné, že někdo jiný získal přístup k vašemu účtu. Prosím změňte si okamžitě heslo, nebo, pokud se nemůžete na účet přihlásit, kontaktujte administrátora serveru.
         subject: 'Mastodon: E-mail byl změněn'
         title: Nová e-mailová adresa
       password_change:
         explanation: Heslo k vašemu účtu bylo změněno.
-        extra: Pokud jste si heslo nezměnil/a, je pravděpodobné, že někdo jiný získal přístup k vašemu účtu. Prosím změňte si okamžitě heslo, nebo, pokud se nemůžete na účet přihlásit, kontaktujte administrátora instance.
+        extra: Pokud jste si heslo nezměnil/a, je pravděpodobné, že někdo jiný získal přístup k vašemu účtu. Prosím změňte si okamžitě heslo, nebo, pokud se nemůžete na účet přihlásit, kontaktujte administrátora serveru.
         subject: 'Mastodon: Heslo bylo změněno'
         title: Heslo bylo změněno
       reconfirmation_instructions:
@@ -42,7 +44,7 @@ cs:
         action: Změnit heslo
         explanation: Vyžádal/a jste si pro svůj účet nové heslo.
         extra: Pokud jste tohle nevyžádal/a, prosím ignorujte tento e-mail. Vaše heslo nebude změněno, dokud nepřejdete na výše uvedenou adresu a nevytvoříte si nové.
-        subject: 'Mastodon: Instrukce pro obnovu hesla'
+        subject: 'Mastodon: Instrukce pro obnovení hesla'
         title: Obnovení hesla
       unlock_instructions:
         subject: 'Mastodon: Instrukce pro odemčení účtu'
@@ -50,9 +52,9 @@ cs:
       failure: Nelze vás ověřit z %{kind}, protože „%{reason}“.
       success: Úspěšně ověřeno z účtu %{kind}.
     passwords:
-      no_token: Tuto stránku nemůžete navštívit, pokud nepřicházíte z e-mailu pro obnovu hesla. Pokud jste z něj přišel/la, ujistěte se, že jste použil/a celé URL z e-mailu.
-      send_instructions: Pokud vaše e-mailová adresa existuje v naší databázi, obdržíte za pár minut ve vašem e-mailu odkaz pro obnovení hesla. Prosím zkontrolujte si složku spam, jestli jste tento e-mail neobdržel/a.
-      send_paranoid_instructions: Pokud vaše e-mailová adresa existuje v naší databázi, obdržíte za pár minut ve vašem e-mailu odkaz pro obnovení hesla. Prosím zkontrolujte si složku spam, jestli jste tento e-mail neobdržel/a.
+      no_token: Tuto stránku nemůžete navštívit, pokud nepřicházíte z e-mailu pro obnovení hesla. Pokud z něj přicházíte, ujistěte se, že jste použil/a celé URL z e-mailu.
+      send_instructions: Pokud vaše e-mailová adresa existuje v naší databázi, obdržíte za několik minut ve vašem e-mailu odkaz pro obnovení hesla. Pokud tento e-mail neobdržíte, prosím zkontrolujte si složku „spam“.
+      send_paranoid_instructions: Pokud vaše e-mailová adresa existuje v naší databázi, obdržíte za několik minut ve vašem e-mailu odkaz pro obnovení hesla. Pokud tento e-mail neobdržíte, prosím zkontrolujte si složku „spam“.
       updated: Vaše heslo bylo úspěšně změněno. Nyní jste přihlášen/a.
       updated_not_active: Vaše heslo bylo úspěšně změněno.
     registrations:
@@ -60,16 +62,17 @@ cs:
       signed_up: Vítejte! Registroval/a jste se úspěšně.
       signed_up_but_inactive: Registroval/a jste se úspěšně. Nemohli jsme vás však přihlásit, protože váš účet ještě není aktivován.
       signed_up_but_locked: Registroval/a jste se úspěšně. Nemohli jsme vás však přihlásit, protože váš účet je uzamčen.
-      signed_up_but_unconfirmed: Na vaši e-mailovou adresu byla poslána zpráva s potvrzovacím odkazem. Pro aktivaci účtu přejděte na danou adresu. Prosím zkontrolujte si složku spam, jestli jste tento e-mail neobdržel/a.
-      update_needs_confirmation: Váš účet byl úspěšně aktualizován, ale je potřeba ověřit vaši novou e-mailovou adresu. Prosím zkontrolujte si e-mail a klikněte na odkaz pro potvrzení vaši nové e-mailové adresy. Prosím zkontrolujte si složku spam, jestli jste tento e-mail neobdržel/a.
+      signed_up_but_pending: Na vaši e-mailovou adresu byla poslána zpráva s potvrzovacím odkazem. Poté, co kliknete na odkaz, posoudíme váš požadavek. Pokud bude schválen, budete informován/a.
+      signed_up_but_unconfirmed: Na vaši e-mailovou adresu byla poslána zpráva s potvrzovacím odkazem. Pro aktivaci účtu přejděte na danou adresu. Pokud jste tento e-mail neobdržel/a, prosím zkontrolujte si složku spam.
+      update_needs_confirmation: Váš účet byl úspěšně aktualizován, ale je potřeba ověřit vaši novou e-mailovou adresu. Pokud tento e-mail neobdržíte, prosím zkontrolujte si složku „spam“.
       updated: Váš účet byl úspěšně aktualizován.
     sessions:
       already_signed_out: Odhlášení proběhlo úspěšně.
       signed_in: Přihlášení proběhlo úspěšně.
       signed_out: Odhlášení proběhlo úspěšně.
     unlocks:
-      send_instructions: Za pár minut obdržíte e-mail s instrukcemi pro odemčení vašeho účtu. Prosím zkontrolujte si složku spam, jestli jste tento e-mail neobdržel/a.
-      send_paranoid_instructions: Pokud váš účet existuje, obdržíte za pár minut e-mail s instrukcemi pro odemčení vašeho účtu. Prosím zkontrolujte si složku spam, jestli jste tento e-mail neobdržel/a.
+      send_instructions: Za několik minut obdržíte e-mail s instrukcemi pro odemčení vašeho účtu. Pokud tento e-mail neobdržíte, prosím zkontrolujte si složku „spam“.
+      send_paranoid_instructions: Pokud váš účet existuje, obdržíte za několik minut e-mail s instrukcemi pro odemčení vašeho účtu. Pokud tento e-mail neobdržíte, prosím zkontrolujte si složku „spam“.
       unlocked: Váš účet byl úspěšně odemčen. Pro pokračování se prosím přihlaste.
   errors:
     messages:
