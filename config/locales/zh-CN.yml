@@ -487,6 +487,7 @@ zh-CN:
       subject: '来自 %{instance} 的用户举报（#%{id}）'
   appearance:
     advanced_web_interface: 高级 web 界面
+    advanced_web_interface_hint: '如果你想使用整个屏幕宽度，高级 web 界面允许您配置多个不同的栏目，可以同时看到更多的信息：主页、通知、跨站时间线、任意数量的列表和话题标签。'
     animations_and_accessibility: 动画和访问助手
     confirmation_dialogs: 确认对话框
     sensitive_content: 敏感内容
@@ -621,14 +622,21 @@ zh-CN:
       title: 添加新的过滤器
   footer:
     developers: 开发者
+    more: 更多…
+    resources: 资源
   generic:
+    all: 全部
     changes_saved_msg: 更改保存成功！
+    copy: 复制
     order_by: 排序方式
     save_changes: 保存更改
     validation_errors:
       other: 出错啦！检查一下下面 %{count} 处出错的地方吧
   identity_proofs:
+    active: 有效
+    authorize: 是，授权
     i_am_html: 我是 %{service} 上的 %{username} 。
+    inactive: 失效
     publicize_checkbox: '并发一条这样的嘟文：'
     publicize_toot: '证明完毕！我是 %{service} 上的 %{username}: %{url}'
     status: 验证状态
@@ -741,27 +749,45 @@ zh-CN:
     other: 其他
     public_timelines: 公共时间轴
   relationships:
+    activity: 账户活动
     last_active: 最近活动
     most_recent: 最近的
     moved: 已迁移
     mutual: 互相关注
     relationship: 关系
     remove_selected_domains: 从选定的域名中删除所有关注者
+    remove_selected_followers: 移除选中的关注者
+    status: 帐户状态
   remote_follow:
     acct: 请输入你的“用户名@实例域名”
     missing_resource: 无法确定你的帐户的跳转 URL
     no_account_html: 还没有帐号？你可以<a href='%{sign_up_path}' target='_blank'>注册一个</a>
     proceed: 确认关注
     prompt: '你正准备关注：'
+  remote_interaction:
+    favourite:
+      proceed: 确认收藏
+      prompt: '您想要收藏此嘟文：'
+    reblog:
+      proceed: 确认转嘟
+      prompt: '您想要转嘟此条：'
+    reply:
+      proceed: 确认回复
+      prompt: '您想要回复此嘟文：'
   remote_unfollow:
     error: 错误
     title: 标题
     unfollowed: 已取消关注
+  scheduled_statuses:
+    over_daily_limit: 您已超出每日定时嘟文的上限（%{limit} 条）
+    over_total_limit: 您已超出定时嘟文的上限（%{limit} 条）
+    too_soon: 所定的时间必须在未来
   sessions:
     activity: 最后一次活跃的时间
     browser: 浏览器
     browsers:
       alipay: 支付宝
+      blackberry: 黑莓
       chrome: Chrome
       edge: 微软 Edge
       electron: Electron
@@ -771,6 +797,7 @@ zh-CN:
       micro_messenger: 微信
       nokia: Nokia S40 Ovi 浏览器
       opera: 欧朋浏览器
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ浏览器
       safari: Safari
@@ -885,6 +912,10 @@ zh-CN:
       subject: 你的存档已经准备完毕
       title: 存档导出
     warning:
+      explanation:
+        disable: 虽然您的帐户被冻结，您的帐户数据仍然完整；但是您无法在解锁前执行任何操作。
+        silence: 当您的帐户受限时，只有已经关注过你的人才会这台服务器上看到你的嘟文，并且您会被排除在各种公共列表之外。但是，其他人仍然可以手动关注你。
+      review_server_policies: 审阅服务器条款
       subject:
         disable: 您的帐户 %{acct} 已被冻结
         none: 对 %{acct} 的警告
@@ -919,3 +950,5 @@ zh-CN:
     otp_lost_help_html: 如果你不慎丢失了所有的代码，请联系 %{email} 寻求帮助
     seamless_external_login: 因为你是通过外部服务登录的，所以密码和电子邮件地址设置都不可用。
     signed_in_as: '当前登录的帐户：'
+  verification:
+    verification: 验证
