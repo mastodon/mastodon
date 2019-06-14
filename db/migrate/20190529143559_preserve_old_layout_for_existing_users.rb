@@ -6,7 +6,7 @@ class PreserveOldLayoutForExistingUsers < ActiveRecord::Migration[5.2]
     # want to use, therefore ensure that it is saved explicitly and not based
     # on the to-be-changed default
 
-    User.where(User.arel_table[:current_sign_in_at].gteq(1.month.ago)).find_each do |user|
+    User.where(User.arel_table[:current_sign_in_at].gteq(2.year.ago)).find_each do |user|
       next if Setting.unscoped.where(thing_type: 'User', thing_id: user.id, var: 'advanced_layout').exists?
       user.settings.advanced_layout = true
     end
